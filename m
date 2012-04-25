@@ -1,45 +1,25 @@
-Return-Path: <halstead@happypunch.com>
-Received: from mail-pz0-f41.google.com (mail-pz0-f41.google.com
-	[209.85.210.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E9324E01206
-	for <yocto@yoctoproject.org>; Wed, 25 Apr 2012 10:16:41 -0700 (PDT)
-Received: by dajx4 with SMTP id x4so426952daj.28
-	for <yocto@yoctoproject.org>; Wed, 25 Apr 2012 10:16:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=happypunch.com; s=google;
-	h=sender:message-id:date:from:user-agent:mime-version:to:subject
-	:x-enigmail-version:content-type;
-	bh=J5yA32QGgt6Ue1x/YGuBJ1CFVlPWzTPscqVmjtSXbYw=;
-	b=QItUf49LDmh8MjuoDLO/KiXSwDVb7VTtGU96KuB5an6PkLONUD962mQgaMxXqwoB/N
-	u0sZCSI+C9Pc7z55PCoLvS2BKw1s/e8X9l3l2/w0Ae75SUNnj/OJ5c+ms+Xa2xeJf3T0
-	scmWMls7AneVa4eVoNThRE/OJ8kvc6TcqAGuI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=sender:message-id:date:from:user-agent:mime-version:to:subject
-	:x-enigmail-version:content-type:x-gm-message-state;
-	bh=J5yA32QGgt6Ue1x/YGuBJ1CFVlPWzTPscqVmjtSXbYw=;
-	b=dCqm8buHIEk3XUKA2+QlLX9gJa3saf8zUdLEmNEnAOy1UL8N8IDc/O5sV+mYnPozJh
-	vyPHt0tcdQGZVG/3X/UExVcjdCY4bhYspU7ZfLNkLWgxSG9/Z18BikbmU5IIiQNQFDVU
-	uTQS7o4+7g9k2V4IYr0bSJqVxexLOkzEb1Tj+D1BUHA96zENSsVNXLw9XNe9QDawPws5
-	DWTvBTy1FdK7erFOh0HHBrVm7oh0B9s8P9D8gRfoh/Gn0RinoSMdrHCAsP97huvhj8Cr
-	TlpHDs/roriIdmB0ZENOnuEZZzAY0QVsQgBiSrxpN0suhC4xTa88apN8IxPKQCHp0z5x
-	+32Q==
-Received: by 10.68.189.231 with SMTP id gl7mr8347906pbc.151.1335374201818;
-	Wed, 25 Apr 2012 10:16:41 -0700 (PDT)
-Received: from pride.incitedev.com (8-92.ptpg.oregonstate.edu. [128.193.8.92])
-	by mx.google.com with ESMTPS id vm4sm620733pbc.47.2012.04.25.10.16.40
-	(version=SSLv3 cipher=OTHER); Wed, 25 Apr 2012 10:16:40 -0700 (PDT)
-Sender: Michael Halstead <halstead@happypunch.com>
-Message-ID: <4F983177.2070805@yoctoproject.org>
-Date: Wed, 25 Apr 2012 10:16:39 -0700
-From: Michael Halstead <michael@yoctoproject.org>
-User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:11.0) Gecko/20120329 Thunderbird/11.0.1
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 90D1BE01363
+	for <yocto@yoctoproject.org>; Wed, 25 Apr 2012 10:17:54 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail1.windriver.com (8.14.3/8.14.3) with ESMTP id q3PHHsid014125
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Wed, 25 Apr 2012 10:17:54 -0700 (PDT)
+Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
+	Wed, 25 Apr 2012 10:17:54 -0700
+Message-ID: <4F9831B7.4060809@windriver.com>
+Date: Wed, 25 Apr 2012 13:17:43 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:8.0) Gecko/20111124 Thunderbird/8.0
 MIME-Version: 1.0
-To: yocto@yoctoproject.org, yocto-infrastructure@yoctoproject.org
-X-Enigmail-Version: 1.4
-X-Gm-Message-State: ALoCoQmQ4HdJM0Ipd19guqAQXIA9CTwaq0+9N+XHOWWk1cvGk5OQHSCYpqLIPdURc3ffjKYrH/hx
-Subject: Bugzilla Downtime for Upgrades
+To: <tom.zanussi@intel.com>
+References: <cover.1335362402.git.tom.zanussi@intel.com>
+In-Reply-To: <cover.1335362402.git.tom.zanussi@intel.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH 0/1][3.2 KERNEL] standard/default/emenlow update
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,112 +31,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 25 Apr 2012 17:16:42 -0000
-X-Groupsio-MsgNum: 6209
-Content-Type: multipart/signed; protocol="application/pkcs7-signature";
-	micalg=sha1; boundary="------------ms070900000206080700010904"
+X-List-Received-Date: Wed, 25 Apr 2012 17:17:54 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
---------------ms070900000206080700010904
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+On 12-04-25 10:11 AM, tom.zanussi@intel.com wrote:
+> From: Tom Zanussi<tom.zanussi@intel.com>
+>
+> This fixes [YOCTO #1669].  Please pull into linux-yocto-3.2.
+>
+> The following changes since commit 86d05af47be45c786c1823a76b6854fa8b411bec:
+>    Bruce Ashfield (1):
+>          Merge branch 'yocto/standard/base' into standard/default/emenlow
 
-Bugzilla will temporarily go offline on Friday April 27th 2012 at 19:00
-UTC (12 noon PDT) for 10 minutes to 1 hour. During this time we will
-update to the newest version of Bugzilla. We will also rename
-classifications and products to reflect changes in Yocto Project. The
-new names will make labeling and finding bugs easier in the future.
+Looks fine. I'll merge this into a spot that only the psb boards
+will pick up, and we won't need any core SRCREV updates .. to stay
+out of the 1.2 release's way.
 
-I will e-mail the list once the upgrade is complete.
+Bruce
 
-Michael Halstead
-Yocto Project / Sys Admin
+>
+> are available in the git repository at:
+>
+>    git://git.yoctoproject.org/linux-yocto-2.6.37-contrib.git tzanussi/drm-lock-fix
+>    http://git.yoctoproject.org/cgit/cgit.cgi/linux-yocto-2.6.37-contrib/commit/?h=tzanussi/drm-lock-fix
+>
+> Tom Zanussi (1):
+>    bsp/emenlow: give up drm_global_mutex on contention in drm_lock()
+>
+>   drivers/gpu/drm-psb/drm_lock.c |    2 ++
+>   1 files changed, 2 insertions(+), 0 deletions(-)
+>
 
 
-
---------------ms070900000206080700010904
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
-
-MIAGCSqGSIb3DQEHAqCAMIACAQExCzAJBgUrDgMCGgUAMIAGCSqGSIb3DQEHAQAAoIINYjCCBjQw
-ggQcoAMCAQICAR4wDQYJKoZIhvcNAQEFBQAwfTELMAkGA1UEBhMCSUwxFjAUBgNVBAoTDVN0YXJ0
-Q29tIEx0ZC4xKzApBgNVBAsTIlNlY3VyZSBEaWdpdGFsIENlcnRpZmljYXRlIFNpZ25pbmcxKTAn
-BgNVBAMTIFN0YXJ0Q29tIENlcnRpZmljYXRpb24gQXV0aG9yaXR5MB4XDTA3MTAyNDIxMDE1NVoX
-DTE3MTAyNDIxMDE1NVowgYwxCzAJBgNVBAYTAklMMRYwFAYDVQQKEw1TdGFydENvbSBMdGQuMSsw
-KQYDVQQLEyJTZWN1cmUgRGlnaXRhbCBDZXJ0aWZpY2F0ZSBTaWduaW5nMTgwNgYDVQQDEy9TdGFy
-dENvbSBDbGFzcyAxIFByaW1hcnkgSW50ZXJtZWRpYXRlIENsaWVudCBDQTCCASIwDQYJKoZIhvcN
-AQEBBQADggEPADCCAQoCggEBAMcJg8zOLdgasSmkLhOrlr6KMoOMpohBllVHrdRvEg/q6r8jR+EK
-75xCGhR8ToREoqe7zM9/UnC6TS2y9UKTpT1v7RSMzR0t6ndl0TWBuUr/UXBhPk+Kmy7bI4yW4urC
-+y7P3/1/X7U8ocb8VpH/Clt+4iq7nirMcNh6qJR+xjOhV+VHzQMALuGYn5KZmc1NbJQYclsGkDxD
-z2UbFqE2+6vIZoL+jb9x4Pa5gNf1TwSDkOkikZB1xtB4ZqtXThaABSONdfmv/Z1pua3FYxnCFmdr
-/+N2JLKutIxMYqQOJebr/f/h5t95m4JgrM3Y/w7YX9d7YAL9jvN4SydHsU6n65cCAwEAAaOCAa0w
-ggGpMA8GA1UdEwEB/wQFMAMBAf8wDgYDVR0PAQH/BAQDAgEGMB0GA1UdDgQWBBRTcu2SnODaywFc
-fH6WNU7y1LhRgjAfBgNVHSMEGDAWgBROC+8apEBbpRdphzDKNGhD0EGu8jBmBggrBgEFBQcBAQRa
-MFgwJwYIKwYBBQUHMAGGG2h0dHA6Ly9vY3NwLnN0YXJ0c3NsLmNvbS9jYTAtBggrBgEFBQcwAoYh
-aHR0cDovL3d3dy5zdGFydHNzbC5jb20vc2ZzY2EuY3J0MFsGA1UdHwRUMFIwJ6AloCOGIWh0dHA6
-Ly93d3cuc3RhcnRzc2wuY29tL3Nmc2NhLmNybDAnoCWgI4YhaHR0cDovL2NybC5zdGFydHNzbC5j
-b20vc2ZzY2EuY3JsMIGABgNVHSAEeTB3MHUGCysGAQQBgbU3AQIBMGYwLgYIKwYBBQUHAgEWImh0
-dHA6Ly93d3cuc3RhcnRzc2wuY29tL3BvbGljeS5wZGYwNAYIKwYBBQUHAgEWKGh0dHA6Ly93d3cu
-c3RhcnRzc2wuY29tL2ludGVybWVkaWF0ZS5wZGYwDQYJKoZIhvcNAQEFBQADggIBAAqDCH14qywG
-XLhjjF6uHLkjd02hcdh9hrw+VUsv+q1eeQWB21jWj3kJ96AUlPCoEGZ/ynJNScWy6QMVQjbbMXlt
-UfO4n4bGGdKo3awPWp61tjAFgraLJgDk+DsSvUD6EowjMTNx25GQgyYJ5RPIzKKR9tQW8gGK+2+R
-HxkUCTbYFnL6kl8Ch507rUdPPipJ9CgJFws3kDS3gOS5WFMxcjO5DwKfKSETEPrHh7p5shuuNktv
-sv6hxHTLhiMKX893gxdT3XLS9OKmCv87vkINQcNEcIIoFWbP9HORz9v3vQwR4e3ksLc2JZOAFK+s
-sS5XMEoznzpihEP0PLc4dCBYjbvSD7kxgDwZ+Aj8Q9PkbvE9sIPP7ON0fz095HdThKjiVJe6vofq
-+n6b1NBc8XdrQvBmunwxD5nvtTW4vtN6VY7mUCmxsCieuoBJ9OlqmsVWQvifIYf40dJPZkk9YgGT
-zWLpXDSfLSplbY2LL9C9U0ptvjcDjefLTvqSFc7tw1sEhF0n/qpA2r0GpvkLRDmcSwVyPvmjFBGq
-Up/pNy8ZuPGQmHwFi2/14+xeSUDG2bwnsYJQG2EdJCB6luQ57GEnTA/yKZSTKI8dDQa8Sd3zfXb1
-9mOgSF0bBdXbuKhEpuP9wirslFe6fQ1t5j5R0xi72MZ8ikMu1RQZKCyDbMwazlHiMIIHJjCCBg6g
-AwIBAgIDA37RMA0GCSqGSIb3DQEBBQUAMIGMMQswCQYDVQQGEwJJTDEWMBQGA1UEChMNU3RhcnRD
-b20gTHRkLjErMCkGA1UECxMiU2VjdXJlIERpZ2l0YWwgQ2VydGlmaWNhdGUgU2lnbmluZzE4MDYG
-A1UEAxMvU3RhcnRDb20gQ2xhc3MgMSBQcmltYXJ5IEludGVybWVkaWF0ZSBDbGllbnQgQ0EwHhcN
-MTIwMTA2MTMyOTE3WhcNMTMwMTA2MDcxMjUwWjBnMRkwFwYDVQQNExBlTGJQOTQ4c1JVN2dZQXYy
-MSEwHwYDVQQDDBhtaWNoYWVsQHlvY3RvcHJvamVjdC5vcmcxJzAlBgkqhkiG9w0BCQEWGG1pY2hh
-ZWxAeW9jdG9wcm9qZWN0Lm9yZzCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBANhLuIfm
-OceuHa0beGkrktR2YWPzNci0abL4tkli9NVHN7gPjrZHErqn81LXKr+lHSPe5K9H2ziM9Xy8dWpV
-jcNiTvkKj2RgoCZn48TVpCA93UR/abpbUcQixLrz0aKrwbL6cgHNBwaWwH4YnBtdDpGCoBsIN1ex
-hSgNX27KyhApSzrMdIgHvO5UchBiARXh2Ll+Wf7G6ph+TFq2BCGu7MI9pDn6FZwHri78KOKM7aP8
-g7oUmuwauWZ855YV1rE+nE+/yeBuCdgIG2l2v2YYN+nrhhFSymolp8NgPoSztKrx7sRbOEkuC4hq
-fWch+MEWos24nHnsnCw9cwMO4m+kN7sCAwEAAaOCA7MwggOvMAkGA1UdEwQCMAAwCwYDVR0PBAQD
-AgSwMB0GA1UdJQQWMBQGCCsGAQUFBwMCBggrBgEFBQcDBDAdBgNVHQ4EFgQUrNEl25qGFro/pXDh
-zeZZX1M1JGMwHwYDVR0jBBgwFoAUU3Ltkpzg2ssBXHx+ljVO8tS4UYIwIwYDVR0RBBwwGoEYbWlj
-aGFlbEB5b2N0b3Byb2plY3Qub3JnMIICIQYDVR0gBIICGDCCAhQwggIQBgsrBgEEAYG1NwECAjCC
-Af8wLgYIKwYBBQUHAgEWImh0dHA6Ly93d3cuc3RhcnRzc2wuY29tL3BvbGljeS5wZGYwNAYIKwYB
-BQUHAgEWKGh0dHA6Ly93d3cuc3RhcnRzc2wuY29tL2ludGVybWVkaWF0ZS5wZGYwgfcGCCsGAQUF
-BwICMIHqMCcWIFN0YXJ0Q29tIENlcnRpZmljYXRpb24gQXV0aG9yaXR5MAMCAQEagb5UaGlzIGNl
-cnRpZmljYXRlIHdhcyBpc3N1ZWQgYWNjb3JkaW5nIHRvIHRoZSBDbGFzcyAxIFZhbGlkYXRpb24g
-cmVxdWlyZW1lbnRzIG9mIHRoZSBTdGFydENvbSBDQSBwb2xpY3ksIHJlbGlhbmNlIG9ubHkgZm9y
-IHRoZSBpbnRlbmRlZCBwdXJwb3NlIGluIGNvbXBsaWFuY2Ugb2YgdGhlIHJlbHlpbmcgcGFydHkg
-b2JsaWdhdGlvbnMuMIGcBggrBgEFBQcCAjCBjzAnFiBTdGFydENvbSBDZXJ0aWZpY2F0aW9uIEF1
-dGhvcml0eTADAgECGmRMaWFiaWxpdHkgYW5kIHdhcnJhbnRpZXMgYXJlIGxpbWl0ZWQhIFNlZSBz
-ZWN0aW9uICJMZWdhbCBhbmQgTGltaXRhdGlvbnMiIG9mIHRoZSBTdGFydENvbSBDQSBwb2xpY3ku
-MDYGA1UdHwQvMC0wK6ApoCeGJWh0dHA6Ly9jcmwuc3RhcnRzc2wuY29tL2NydHUxLWNybC5jcmww
-gY4GCCsGAQUFBwEBBIGBMH8wOQYIKwYBBQUHMAGGLWh0dHA6Ly9vY3NwLnN0YXJ0c3NsLmNvbS9z
-dWIvY2xhc3MxL2NsaWVudC9jYTBCBggrBgEFBQcwAoY2aHR0cDovL2FpYS5zdGFydHNzbC5jb20v
-Y2VydHMvc3ViLmNsYXNzMS5jbGllbnQuY2EuY3J0MCMGA1UdEgQcMBqGGGh0dHA6Ly93d3cuc3Rh
-cnRzc2wuY29tLzANBgkqhkiG9w0BAQUFAAOCAQEAUjNTeM730SEKLMbJ4THlGkx3KFkaYxIKf1C1
-PvZz9d6fq6VfFL1xbqSsz2og/hiCccC/GYFTKAK3W23LHjiETtNCK6pDzFTzeFxKdYOIoCcCjjxE
-IF0D16A1gXBp6G9tT6yUiy916wF8Ic/Etxti4ksydRWDet1LsXXNKt8gdolgPVImHm2VRX/8M9KG
-HU2/1oXXgjV2yC77sPVAaVoIBdiRdMOAS7gRt0pX+xNY+R8iItIfQO5Nf6mlRMgwXy/e+pYvSil+
-T1jdMQD6k07jZ1kpPAHujuCA5p6EWs+hpDXh7fq+lmfM9zZoTWtEDIJMrLvYy2IMD3NE0clxH+GY
-iTGCA9AwggPMAgEBMIGUMIGMMQswCQYDVQQGEwJJTDEWMBQGA1UEChMNU3RhcnRDb20gTHRkLjEr
-MCkGA1UECxMiU2VjdXJlIERpZ2l0YWwgQ2VydGlmaWNhdGUgU2lnbmluZzE4MDYGA1UEAxMvU3Rh
-cnRDb20gQ2xhc3MgMSBQcmltYXJ5IEludGVybWVkaWF0ZSBDbGllbnQgQ0ECAwN+0TAJBgUrDgMC
-GgUAoIICEDAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0xMjA0MjUx
-NzE2MzlaMCMGCSqGSIb3DQEJBDEWBBToG9NscKFrmLUmGjDXuUuz1707zzBfBgkqhkiG9w0BCQ8x
-UjBQMAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzAOBggqhkiG9w0DAgICAIAwDQYIKoZIhvcNAwIC
-AUAwBwYFKw4DAgcwDQYIKoZIhvcNAwICASgwgaUGCSsGAQQBgjcQBDGBlzCBlDCBjDELMAkGA1UE
-BhMCSUwxFjAUBgNVBAoTDVN0YXJ0Q29tIEx0ZC4xKzApBgNVBAsTIlNlY3VyZSBEaWdpdGFsIENl
-cnRpZmljYXRlIFNpZ25pbmcxODA2BgNVBAMTL1N0YXJ0Q29tIENsYXNzIDEgUHJpbWFyeSBJbnRl
-cm1lZGlhdGUgQ2xpZW50IENBAgMDftEwgacGCyqGSIb3DQEJEAILMYGXoIGUMIGMMQswCQYDVQQG
-EwJJTDEWMBQGA1UEChMNU3RhcnRDb20gTHRkLjErMCkGA1UECxMiU2VjdXJlIERpZ2l0YWwgQ2Vy
-dGlmaWNhdGUgU2lnbmluZzE4MDYGA1UEAxMvU3RhcnRDb20gQ2xhc3MgMSBQcmltYXJ5IEludGVy
-bWVkaWF0ZSBDbGllbnQgQ0ECAwN+0TANBgkqhkiG9w0BAQEFAASCAQAMrXIG7o2X3cMyatn1i4iZ
-YFFOLHRME3hQc0fH/FKeQtvizW6c+qzBtbGuoJA+9wD+ZsoAwmow6rKfLDe8zHcuQX//iKsn8X14
-ZhgS19PumbdS6Ny350t4cHk6ChxAzLvDkV5OXzweFad8wjrH1zrBPzrdxuLAJhWm2lHKalm3lF0R
-bcxIFIfaaZCKIImlUWkqUWa5msTFhx9tgsInqJau/F/tCS3ejeBMSAL/uW3pgl/PqvigI1WLOkKs
-1nbDJ+rQqgguB+EZip1y9PQM5mieMANIfCJpQPXtb/Wh6OCvJvRGxfIOcBPAQewRTw8OFv3XxWNG
-2sPb8ui4m1ETqfvzAAAAAAAA
-
---------------ms070900000206080700010904--
