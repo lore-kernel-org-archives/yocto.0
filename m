@@ -1,33 +1,32 @@
-Return-Path: <song.liu@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B7221E0044D
-	for <yocto@yoctoproject.org>; Tue, 24 Apr 2012 11:21:03 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 24 Apr 2012 11:20:48 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="133328701"
-Received: from orsmsx606.amr.corp.intel.com ([10.22.226.128])
-	by orsmga001.jf.intel.com with ESMTP; 24 Apr 2012 11:20:48 -0700
-Received: from orsmsx152.amr.corp.intel.com (10.22.226.39) by
-	orsmsx606.amr.corp.intel.com (10.22.226.128) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Tue, 24 Apr 2012 11:20:47 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.159]) by
-	ORSMSX152.amr.corp.intel.com ([169.254.8.220]) with mapi id
-	14.01.0355.002; Tue, 24 Apr 2012 11:20:47 -0700
-From: "Liu, Song" <song.liu@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Minutes: Yocto Project Technical Team Meeting - Tuesday, April
-	24, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
-Thread-Index: AQHNIkb4ShBvS8Q3eE2DF+nn47Ushw==
-Date: Tue, 24 Apr 2012 18:20:46 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A4836501A@ORSMSX101.amr.corp.intel.com>
-References: <7E680CB2A76BB8438D08CF13C09FC53A257BE410@ORSMSX101.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
+Return-Path: <pcjegan@gmail.com>
+Received: from mail-wi0-f176.google.com (mail-wi0-f176.google.com
+	[209.85.212.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6B9BDE013B7
+	for <yocto@yoctoproject.org>; Wed, 25 Apr 2012 01:54:35 -0700 (PDT)
+Received: by wibhm17 with SMTP id hm17so4202063wib.11
+	for <yocto@yoctoproject.org>; Wed, 25 Apr 2012 01:54:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=9ENrcUxv3m50XAulAhIDhbVEs+DRFEDhAOT7+7FEhP0=;
+	b=d9QdltUH/taDfndZut0Jmp6+BgSl+a/CIUCWdTBBKtFrQWK2ntxgBS6cm6CDXkUKbL
+	hEzuwnbwgN3AmKwG6IKPitVXj1EYi125cQqPPy/pgSFdmGjSQmpizqui8442PnHMgtkw
+	Vw95AyixOrClNR1rC399bpUwFhwbcQEynqjMzXLYDMXg149+MLBw3CEelPb64AgYlBQS
+	mLwJ/iVsAYYZwxEA0+v51XXBdEIvtc5YbtiuBCR1GKfDo0MhRIO7FKdy7Vbrcan0zkun
+	ZqN4Z+rzTWC8JuZS5hLqb79GeWV2CwJjZgRoL0gcFXdTIntHjZfHM3JjutU/iofj99yH
+	p0zQ==
+Received: by 10.180.83.72 with SMTP id o8mr4579612wiy.5.1335344074189; Wed, 25
+	Apr 2012 01:54:34 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Minutes: Yocto Project Technical Team Meeting - Tuesday, April 24, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+Received: by 10.216.185.195 with HTTP; Wed, 25 Apr 2012 01:54:13 -0700 (PDT)
+In-Reply-To: <CAAA4K6J1SNRCr0uM1tT=DjyV47mk-KqGUZjT+B8qgujANw9ZTQ@mail.gmail.com>
+References: <CAAA4K6J1SNRCr0uM1tT=DjyV47mk-KqGUZjT+B8qgujANw9ZTQ@mail.gmail.com>
+From: Jegan Chandru <pcjegan@gmail.com>
+Date: Wed, 25 Apr 2012 14:24:13 +0530
+Message-ID: <CAAA4K6L7GxoqUdOdn8MCd0YX8pKtJz-noEmbMarO93zYGCAmxw@mail.gmail.com>
+To: openembedded-core@lists.openembedded.org
+Cc: yocto@yoctoproject.org
+Subject: Re: adding package nss in rootfs failed with dependency "/usr/local/bin/perl"
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,75 +38,57 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 24 Apr 2012 18:21:03 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
+X-List-Received-Date: Wed, 25 Apr 2012 08:54:35 -0000
+Content-Type: multipart/alternative; boundary=f46d0442887e31ea4004be7d0508
+
+--f46d0442887e31ea4004be7d0508
+Content-Type: text/plain; charset=ISO-8859-1
+
+> This is a bug in the nss package.  It has an executable shell script that
+has a:
+
+> #! /usr/local/bin/perl
+
+> in it, which causes RPM to add a dependency on that specific path, and
+nothing
+> is providing the path.
+
+> The fix is either, decide this is a sample/demo shell script and remove
+it from
+> the nss package -- or fix the script to use the proper perl location of
+> "${bindir}/perl"
+
+Thanks Mark for pointing it out. That solved it. I fixed the script to use
+proper perl and added nss in rootfs with no problem.
+
+-JC
+
+--f46d0442887e31ea4004be7d0508
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-Attendees:=20
-Mark, Jeremy, Dave, Saul, Michael, Richard, Darren, Tom, Jessica, Jeffro, P=
-aul, Jeff, Bruce, Sean, Matthew, Song
-=A0
-Agenda
-* Opens collection - 5 min (Song)
-=A0
-* Yocto 1.2 M4 status - 15 min (Song/Team)
-  - Thanks for the team's hard work and great help from the community for 1=
-.2 release.
-  - The latest build has all key fixes for 1.2, QA started full pass testin=
-g. Should be completed by this Saturday. (4/29-/5/1, Shanghai team holiday)=
-. If things go well, we will have the release readiness meeting next Monday=
- and release on the same day (April 30th).
-  - We will keep watching the QA progress until we have the final QA report=
-.
-=A0
-* Yocto 1.3 planning - processes (Song)
-  - Feel free to put feature requests in Bugzilla as enhancement bugs.
-  - the 1.3 feature list wiki page is being worked on to sync with the Bugz=
-illa dynamically.=20
-  - Two process docs will go out for review. One short one for reference. T=
-he long one is for more background and detail.
-=A0
-* SWAT team rotation: Beth -> Jessica.
-=A0
-* Opens - 10 min
-  - 1.2 change log: a week ago, went through git history, come up with a li=
-st of changes. It's sent out to the public mailing list. Saul will talk to =
-Beth about this. Beth can take over when Paul is on vacation.
-=A0
-* Team Sharing - 20 min
-  - Matthew: nothing to share. Freescale BSPs release sometime in May. Have=
- not synced with ARM, will be doing that.
-  - Sean: We are in the planning phase for the next release. For more activ=
-e involvement in YP.
-  - Bruce: Working on bug fixing with 3.2 kernel. Spending time on 3.4 kern=
-el.=20
-  - Jeff: Nothing
-  - Paul: Fixing bugs for the release. One won't make 1.2. 1858, we underst=
-and the problem now. It's basically 2 bugs.
-  - Jeffro: There is a group creating BSP for Raspberry Pi, Qt. 4-5 people.=
- Paul agreed to help them. Updated YP statistics wiki page (email on the pu=
-b mailing list). We can use the BSP mailing list to get more people involve=
-d. Send them invitation from the list.
-  - Jessica: working on bug triage, other things for 1.2 release. Working w=
-ith Michael to get Bugzilla re-orged. 1.3 planning for ADT.
-  - Tom: Get back to BSPs, bug fixing.
-  - Darren: Some internal BSP week, focusing on FRI II BSP.=20
-  - Richard: Tied up with the 1.2 release. Bug fixing, pseudo issue, etc. f=
-ound problems with qemu emulation, fixed the problem. Debug build issues, m=
-ake 1.2 high quality. Started another branch to collect patches. Not openin=
-g up the master for now. Hope to get some QA on the branch after 1.2 releas=
-e.=20
-   - Michael: worked on bugzilla re-org. working with Jefro, Song on some i=
-ssues. General maintenance. Continue to work on monitoring upgrade. Plannin=
-g for the week after the release to upgrade the infrastructure. Bugzilla up=
-grade could be done first thing after the release. Found some issues in bug=
- statistics, will work on that this week.=20
-   - Saul: working with the team and Richard on 1.2. Looking at pacjkage up=
-date. Things for the master next. This week, more of the same. Wrapping up =
-1.2. Scott will be the maintainer for 1.2.1.=20
-   - Jeremy: Working on the current release.
-   - Mark: working on fixing update alternative staff. Upgrading RPM to the=
- latest RPM5 version.=20
+<div class=3D"gmail_extra">&gt; This is a bug in the nss package. =A0It has=
+ an executable shell script that has a:</div><div class=3D"gmail_extra"><br=
+></div><div class=3D"gmail_extra">&gt; #! /usr/local/bin/perl</div><div cla=
+ss=3D"gmail_extra">
 
+<br></div><div class=3D"gmail_extra">&gt; in it, which causes RPM to add a =
+dependency on that specific path, and nothing=A0</div><div class=3D"gmail_e=
+xtra">&gt; is providing the path.</div><div class=3D"gmail_extra"><br></div=
+><div class=3D"gmail_extra">
 
+&gt; The fix is either, decide this is a sample/demo shell script and remov=
+e it from=A0</div><div class=3D"gmail_extra">&gt; the nss package -- or fix=
+ the script to use the proper perl location of=A0</div><div class=3D"gmail_=
+extra">
+
+&gt; &quot;${bindir}/perl&quot;</div><div class=3D"gmail_extra"><br></div><=
+div class=3D"gmail_extra">Thanks Mark for pointing it out. That solved it. =
+I fixed the script to use proper perl and added nss in rootfs with no probl=
+em.</div>
+
+<div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">-JC</div><d=
+iv class=3D"gmail_extra"><br><br>
+</div>
+
+--f46d0442887e31ea4004be7d0508--
