@@ -1,36 +1,30 @@
-Return-Path: <martin.jansa@gmail.com>
-Received: from mail-we0-f176.google.com (mail-we0-f176.google.com
-	[74.125.82.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5387AE0030B
-	for <yocto@yoctoproject.org>; Thu, 26 Apr 2012 00:32:40 -0700 (PDT)
-Received: by werc1 with SMTP id c1so783279wer.35
-	for <yocto@yoctoproject.org>; Thu, 26 Apr 2012 00:32:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:content-disposition:in-reply-to:user-agent;
-	bh=10Zu/SYaXMK7zOmOBN0wTeLAYOXFnrsd6jSD5MAWYpE=;
-	b=PQXzmHj6CYuQC4nCesWVc7jHGc+OqYAU5RiApVuTcWBLR67q+wC0lMpI0xLS5UaRjp
-	7gVG1KQ/3r8ArJvLTRG49UBO7Gg0FQz97+nXXUToZQH+PmXP4MTbyq8x1AArVFZYpgsH
-	ZF/XxbFZSqnB+18J7UbIcplPExjSijpNrK9gfv3FWq76leV+z8+hyfLPRNYk+9px/nqe
-	rgcyN0DW1X4MKmTWXILbUK6J4tqowaKK8Y+479n2uQRJusgoKVdorHZt+DwJSBGU+hrB
-	duMtmNBQTZGyM8vBDrdclweEoDbxr6X5ao5d/hj3+Uod7lh5btkq/Ir2Ya1Oie6WaOMj
-	4DBw==
-Received: by 10.180.83.72 with SMTP id o8mr13871103wiy.5.1335425559088;
-	Thu, 26 Apr 2012 00:32:39 -0700 (PDT)
-Received: from localhost ([94.230.152.246])
-	by mx.google.com with ESMTPS id w10sm8318333wiy.3.2012.04.26.00.32.37
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Thu, 26 Apr 2012 00:32:37 -0700 (PDT)
-Date: Thu, 26 Apr 2012 09:32:40 +0200
-From: Martin Jansa <martin.jansa@gmail.com>
-To: Apelete Seketeli <apelete@seketeli.net>
-Message-ID: <20120426073240.GA3646@jama.jama.net>
-References: <20120425214752.GA3525@hermes>
-MIME-Version: 1.0
-In-Reply-To: <20120425214752.GA3525@hermes>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-Cc: yocto@yoctoproject.org
-Subject: Re: [opkg-utils] Asking for an old patch review
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
+	[93.97.173.237])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8908EE0044A
+	for <yocto@yoctoproject.org>; Thu, 26 Apr 2012 03:43:53 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q3QAhP1V002308;
+	Thu, 26 Apr 2012 11:43:25 +0100
+Received: from tim.rpsys.net ([127.0.0.1])
+	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
+	port 10024) with LMTP
+	id 01236-07; Thu, 26 Apr 2012 11:43:21 +0100 (BST)
+Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q3QAhH8d002302
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Thu, 26 Apr 2012 11:43:18 +0100
+Message-ID: <1335436998.20130.0.camel@ted>
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: Martin Jansa <martin.jansa@gmail.com>
+Date: Thu, 26 Apr 2012 11:43:18 +0100
+In-Reply-To: <cover.1333058256.git.Martin.Jansa@gmail.com>
+References: <cover.1333058256.git.Martin.Jansa@gmail.com>
+X-Mailer: Evolution 3.2.2- 
+Mime-Version: 1.0
+X-Virus-Scanned: amavisd-new at rpsys.net
+Cc: yocto@yoctoproject.org, Enrico Scholz <enrico.scholz@sigma-chemnitz.de>
+Subject: Re: [opkg-utils][PATCH 00/22] Partially prepare for python3 and fix old Packages file reuse
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,58 +36,90 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 26 Apr 2012 07:32:40 -0000
-X-Groupsio-MsgNum: 6224
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="FL5UXtIhxfXey3p5"
-Content-Disposition: inline
+X-List-Received-Date: Thu, 26 Apr 2012 10:43:54 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
---FL5UXtIhxfXey3p5
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Fri, 2012-03-30 at 00:21 +0200, Martin Jansa wrote:
+> First 5 patches are taken from oe-core.
+> 
+> Then there are some cleanups and fixes for issues I've found while looking 
+> for cause of very long package-index calls.
+> 
+> Some patches uses compatible changes from 2to3 (tested with python2.7), but
+> python3 support is not 100% complete, but were closer.
+> 
+> And in the end I've found the cause.. printing long fields (e. g. description)
+> with opkg.py was producing empty lines in Packages file (which are Packages entry 
+> separators) so only first entries till first empty line were processed from old
+> Packages file and the rest was always extracted from control files in packaged .ipk.
+> 
+> And this also fixes Packages.filelist generation.
+> 
+> I don't use python very much, so please review.
+> 
+> And the speedup? Almost 60 times :)
+> before:
+> real    20m10.484s
+> user    18m32.335s
+> sys     0m11.885s
+> 
+> after
+> real    0m24.492s
+> user    0m23.748s
+> sys     0m0.565s
+> 
+> The following changes since commit 002d29bc605d7c2d02e4cf20a43c5277c15f5597:
+> 
+>   [opkg-utils] fix install fail problem  Thanks for khorben's patch :-)  https://docs.openmoko.org/trac/attachment/ticket/2072/patch-opkg-utils_Makefile_install_path.diff (2008-11-03 03:59:59 +0000)
+> 
+> are available in the git repository at:
+>   git://github.com/shr-project/opkg-utils jansa/pull
+>   https://github.com/shr-project/opkg-utils/tree/jansa/pull
+> 
+> Christopher Larson (1):
+>   Use python via the PATH, rather than hardcoding /usr/bin/python
+> 
+> Enrico Scholz (1):
+>   opkg-make-index: convert mtime to int before comparing it
+> 
+> Khem Raj (1):
+>   opkg.py: Add knowledge about License field in ipk headers
+> 
+> Martin Jansa (17):
+>   opkg.py: use hashlib instead of old md5 module
+>   opkg.py, arfile.py: report which file has wrong format and use the
+>     same test
+>   arfile: decode read lines as ascii string before getting fields from
+>     it
+>   2to3: use subprocess instead of commands
+>   2to3: print fixes
+>   2to3: dictionary fixes
+>   2to3: exception handling fixes
+>   opkg-make-index: show OSError/IOError
+>   opkg.py: use string funtcions directly on string variable
+>   opkg.py: catch TypeError when reading control file, to show which one
+>     is failing
+>   arfile: fix test
+>   opkg-make-index: don't use stdout for Packages output and use __str__
+>     instead of __repr__
+>   opkg.py: cast lines from controlfile as string
+>   opkg.py: computeFileMD5 only when we have fn, otherwise fails to read
+>     None file
+>   opkg.py: fix write_package when called from main test
+>   opkg.py: use textwrap for description writing
+>   opkg.py: improve test so it prints temporary control file with long
+>     description and then reads it back
+> 
+> Richard Purdie (1):
+>   opkg-make-index: don't error out when some package disappears
+> 
+> Scott Anderson (1):
+>   arfile.py: handle six digit UIDs
 
-On Wed, Apr 25, 2012 at 11:47:52PM +0200, Apelete Seketeli wrote:
-> Hello,
->=20
-> I'm trying to get a patch for opkg-utils into oe-classic, and it seems
-> some of the changes of my patch were already submitted to yocto a
-> month ago:
->=20
-> https://lists.yoctoproject.org/pipermail/yocto/2012-March/007851.html
->=20
-> Since the opkg-utils recipe in oe-classic is using the yocto
-> repository as SRC_URI, the patch mentioned in the link above should be
-> applied to the yocto repository before I make further changes to
-> opkg-utils.
->=20
-> Could someone here do a review of the above mentioned patch please ?
+I reviewed these and they all look like good improvements. I've merged
+it into master, thanks!
 
-FWIW: I'm using all those changes squashed together
-http://git.openembedded.org/openembedded-core-contrib/commit/?h=3Dshr&id=3D=
-b355502a48371cd7fb676eb01cf15c9b9c941352
+Richard
 
-and when that patchset get applied upstream we'll just change SRCREV and
-drop shr.patch..=20
 
-feel free to do it that way in oe-classic too, if it's not applied
-soon..
-
-Cheers,
-
---=20
-Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
-
---FL5UXtIhxfXey3p5
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2.0.19 (GNU/Linux)
-
-iEYEARECAAYFAk+Y+hgACgkQN1Ujt2V2gBwXlQCfRToX4kyqUGILHcm7iDzTmXRS
-O04AoKyEjdsfzdBeQXovaFwS2NUJtnWb
-=7fuV
------END PGP SIGNATURE-----
-
---FL5UXtIhxfXey3p5--
