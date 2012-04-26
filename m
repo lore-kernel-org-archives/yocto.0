@@ -1,24 +1,28 @@
-Return-Path: <rahul.saxena@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6905EE01206
-	for <yocto@yoctoproject.org>; Wed, 25 Apr 2012 18:30:30 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 25 Apr 2012 18:30:30 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="133878606"
-Received: from rsaxena-desktop.sc.intel.com (HELO localhost) ([143.183.188.84])
-	by orsmga001.jf.intel.com with ESMTP; 25 Apr 2012 18:30:29 -0700
-From: rahul.saxena@intel.com
-To: yocto@yoctoproject.org, bruce.ashfield@windriver.org,
-	tom.zanussi@intel.com, kishore.k.bodke@intel.com
-Date: Wed, 25 Apr 2012 11:17:57 -0700
-Message-Id: <cf367651dd5655164f1198c7e320441935f4083d.1335393643.git.rahul.saxena@intel.com>
-X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <0db94ea0705ad766cf9397aedef8a5f343b5629d.1335393641.git.rahul.saxena@intel.com>
-References: <0db94ea0705ad766cf9397aedef8a5f343b5629d.1335393641.git.rahul.saxena@intel.com>
-In-Reply-To: <cover.1335393639.git.rahul.saxena@intel.com>
-References: <cover.1335393639.git.rahul.saxena@intel.com>
-Subject: [PATCH 3/3] add patch linux-3.0.0-ttm-clear-high.patch
+Return-Path: <Kai.Kang@windriver.com>
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1EB59E013FF
+	for <yocto@yoctoproject.org>; Wed, 25 Apr 2012 19:00:06 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail1.windriver.com (8.14.3/8.14.3) with ESMTP id q3Q206xM021242
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Wed, 25 Apr 2012 19:00:06 -0700 (PDT)
+Received: from [128.224.162.164] (128.224.162.164) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.1.255.0;
+	Wed, 25 Apr 2012 19:00:05 -0700
+Message-ID: <4F98AC31.5080708@windriver.com>
+Date: Thu, 26 Apr 2012 10:00:17 +0800
+From: Kang Kai <Kai.Kang@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:10.0.2) Gecko/20120216 Thunderbird/10.0.2
+MIME-Version: 1.0
+To: Zumeng Chen <zumeng.chen@windriver.com>
+References: <1335348389-12781-1-git-send-email-kai.kang@windriver.com>
+	<4F980070.2070303@windriver.com> <4F989DF9.1070308@windriver.com>
+	<4F98A1A0.4060601@windriver.com> <4F98A1D0.5040102@windriver.com>
+In-Reply-To: <4F98A1D0.5040102@windriver.com>
+X-Originating-IP: [128.224.162.164]
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH] mm/msync: tweak tmpfs patch for syscall msync
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,34 +34,122 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 26 Apr 2012 01:30:30 -0000
+X-List-Received-Date: Thu, 26 Apr 2012 02:00:06 -0000
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
 
-From: Rahul Saxena <rahul.saxena@intel.com>
+On 2012年04月26日 09:16, Zumeng Chen wrote:
+> 于 2012年04月26日 09:15, Bruce Ashfield 写道:
+>> On 12-04-25 8:59 PM, Zumeng Chen wrote:
+>>> That was my last version, you can google to get by "msync zumeng"
+>>> So feel free to merge it.
+>>
+>> Sounds good, but we should still get the header updates, since the
+>> first version merged into the tree already.
+> Yes, NP, I'm OK with all changes. :)
+Thanks.
+I'll send version 2 with header updates.
 
-Add patch for TTM page allocation from high memory
-
-Signed-off-by: Rahul Saxena <rahul.saxena@intel.com>
----
- drivers/gpu/drm/ttm/ttm_page_alloc.c |    5 ++++-
- 1 files changed, 4 insertions(+), 1 deletions(-)
-
-diff --git a/drivers/gpu/drm/ttm/ttm_page_alloc.c b/drivers/gpu/drm/ttm/ttm_page_alloc.c
-index d948575..df976d9 100644
---- a/drivers/gpu/drm/ttm/ttm_page_alloc.c
-+++ b/drivers/gpu/drm/ttm/ttm_page_alloc.c
-@@ -708,7 +708,10 @@ int ttm_get_pages(struct list_head *pages, int flags,
- 	/* clear the pages coming from the pool if requested */
- 	if (flags & TTM_PAGE_FLAG_ZERO_ALLOC) {
- 		list_for_each_entry(p, pages, lru) {
--			clear_page(page_address(p));
-+			if (PageHighMem(p))
-+				clear_highpage(p);
-+			else
-+				clear_page(page_address(p));
- 		}
- 	}
- 
--- 
-1.7.4.1
+>
+> Regards,
+> Zumeng
+>>
+>> Bruce
+>>
+>>>
+>>> Regards,
+>>> Zumeng
+>>> 于 2012年04月25日 21:47, Bruce Ashfield 写道:
+>>>> On 12-04-25 06:06 AM, Kang Kai wrote:
+>>>>> Commit 1c3ae5441 fixes MIPS CPU cache alias problem. But it makes
+>>>>
+>>>> Put a short log after the commit ID, that way we can read what the
+>>>> old commit was trying to do right in this commit.
+>>>>
+>>>>> posix test cases mlockall/3-6 3-7 fail.
+>>>>
+>>>> Can we expand on what the test is doing ? That way the commit
+>>>> header is stand alone. I know that I haven't memorized what all the
+>>>> posix tests do :)
+>>>>
+>>>>> Tweak the patch to:
+>>>>> 1 check the vma and its flags first
+>>>>
+>>>> Can you expand here as well. Do you really mean that you've moved
+>>>> the CONFIG_TMPFS block down in the function so that the normal
+>>>> vma flag checking will occur ?
+>>>>
+>>>>> 2 don't quit the function when meet first vma belongs to tmpfs file
+>>>>
+>>>> And for this part, can you (or Zumeng) explain why we used to need
+>>>> to exit immediately and now we don't ?
+>>>>
+>>>> The patch looks good though, thanks for looking into this tricky
+>>>> area of code.
+>>>>
+>>>> Cheers,
+>>>>
+>>>> Bruce
+>>>>
+>>>>>
+>>>>> Signed-off-by: Kang Kai<kai.kang@windriver.com>
+>>>>> ---
+>>>>> mm/msync.c | 30 +++++++++++++-----------------
+>>>>> 1 files changed, 13 insertions(+), 17 deletions(-)
+>>>>>
+>>>>> diff --git a/mm/msync.c b/mm/msync.c
+>>>>> index ced6215..31cd311 100644
+>>>>> --- a/mm/msync.c
+>>>>> +++ b/mm/msync.c
+>>>>> @@ -60,23 +60,6 @@ SYSCALL_DEFINE3(msync, unsigned long, start,
+>>>>> size_t, len, int, flags)
+>>>>> down_read(&mm->mmap_sem);
+>>>>> vma = find_vma(mm, start);
+>>>>>
+>>>>> -#ifdef CONFIG_TMPFS
+>>>>> - /*
+>>>>> - * For tmpfs, no matter which flag(ASYNC or SYNC) gets from msync,
+>>>>> - * there is not so much thing to do for CPUs without cache alias,
+>>>>> - * But for some CPUs with cache alias, msync has to flush cache
+>>>>> - * explicitly, which makes sure the data coherency between memory
+>>>>> - * file and cache.
+>>>>> - */
+>>>>> - file = vma->vm_file;
+>>>>> - if (file&& (file->f_op ==&shmem_file_operations)) {
+>>>>> - if(CPU_HAS_CACHE_ALIAS)
+>>>>> - flush_cache_range(vma, start, start+len);
+>>>>> - error = 0;
+>>>>> - goto out_unlock;
+>>>>> - }
+>>>>> -#endif
+>>>>> -
+>>>>> for (;;) {
+>>>>>
+>>>>> /* Still start< end. */
+>>>>> @@ -97,6 +80,19 @@ SYSCALL_DEFINE3(msync, unsigned long, start,
+>>>>> size_t, len, int, flags)
+>>>>> goto out_unlock;
+>>>>> }
+>>>>> file = vma->vm_file;
+>>>>> +#ifdef CONFIG_TMPFS
+>>>>> + /*
+>>>>> + * For tmpfs, no matter which flag(ASYNC or SYNC) gets from msync,
+>>>>> + * there is not so much thing to do for CPUs without cache alias,
+>>>>> + * But for some CPUs with cache alias, msync has to flush cache
+>>>>> + * explicitly, which makes sure the data coherency between memory
+>>>>> + * file and cache.
+>>>>> + */
+>>>>> + if (file&& (file->f_op ==&shmem_file_operations)) {
+>>>>> + if(CPU_HAS_CACHE_ALIAS)
+>>>>> + flush_cache_range(vma, start, start+len);
+>>>>> + }
+>>>>> +#endif
+>>>>> start = vma->vm_end;
+>>>>> if ((flags& MS_SYNC)&& file&&
+>>>>> (vma->vm_flags& VM_SHARED)) {
+>>>>
+>>>
+>>
+>
 
 
