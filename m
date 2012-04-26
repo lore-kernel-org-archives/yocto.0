@@ -1,16 +1,16 @@
 Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5324BE01396
-	for <yocto@yoctoproject.org>; Thu, 26 Apr 2012 11:54:58 -0700 (PDT)
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C2D8FE00596
+	for <yocto@yoctoproject.org>; Thu, 26 Apr 2012 13:03:58 -0700 (PDT)
 Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q3QIsvxm029405
+	by mail1.windriver.com (8.14.3/8.14.3) with ESMTP id q3QK3vpc011347
 	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 26 Apr 2012 11:54:57 -0700 (PDT)
+	Thu, 26 Apr 2012 13:03:57 -0700 (PDT)
 Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
 	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Thu, 26 Apr 2012 11:54:57 -0700
-Message-ID: <4F9999F6.8070201@windriver.com>
-Date: Thu, 26 Apr 2012 14:54:46 -0400
+	Thu, 26 Apr 2012 13:03:57 -0700
+Message-ID: <4F99AA22.40106@windriver.com>
+Date: Thu, 26 Apr 2012 16:03:46 -0400
 From: Bruce Ashfield <bruce.ashfield@windriver.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:8.0) Gecko/20111124 Thunderbird/8.0
@@ -31,7 +31,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 26 Apr 2012 18:54:58 -0000
+X-List-Received-Date: Thu, 26 Apr 2012 20:03:58 -0000
 Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
 Content-Transfer-Encoding: 7bit
 
@@ -44,16 +44,31 @@ On 12-04-26 04:55 AM, rahul.saxena@intel.com wrote:
 > A revert of the existing version of this patch is done and then the new
 > version is added. A new patch to handle TTM page allocation from
 > high memory is also added.
->
-> Please pull into yocto/pvr branch of linux-yocto-3.0
 
-Looks fine, I'll do the merge later today and send email when
-things get pushed out.
+Rahul,
 
-Cheers,
+Can you confirm for me that this commit:
+
+commit 9d0264753e869d21ec4d9a6dd5558de73d64f94d
+Author: Kishore Bodke <kishore.k.bodke@intel.com>
+Date:   Fri Mar 9 11:03:56 2012 -0800
+
+     yocto/pvr: add hdmi/acpi definitions
+
+     Adding the identifier for the CedarTrail HDMI to allow peripheral
+     detection.
+
+     Signed-off-by: Kishore Bodke <kishore.k.bodke@intel.com>
+
+:100644 100644 db39e9e... 47a98ff... M  drivers/acpi/video.c
+:100644 100644 bd0ae69... 1b05ed1... M  sound/pci/hda/patch_hdmi.c
+
+Should stay on the yocto/pvr branch ?
 
 Bruce
 
+>
+> Please pull into yocto/pvr branch of linux-yocto-3.0
 >
 > Signed-off-by: Rahul Saxena<rahul.saxena@intel.com>
 > --
