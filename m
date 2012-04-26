@@ -1,22 +1,25 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4BEB2E013D0
-	for <yocto@yoctoproject.org>; Thu, 26 Apr 2012 11:48:28 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 26 Apr 2012 11:48:28 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="135825857"
-Received: from unknown (HELO localhost) ([10.255.12.155])
-	by azsmga001.ch.intel.com with ESMTP; 26 Apr 2012 11:48:27 -0700
-From: tom.zanussi@intel.com
-To: yocto@yoctoproject.org,
-	bruce.ashfield@windriver.com
-Date: Thu, 26 Apr 2012 13:48:38 -0500
-Message-Id: <52f2cbf1a68ba0056f34f73f71c690b7c83f6e0c.1335447006.git.tom.zanussi@intel.com>
-X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <cover.1335447006.git.tom.zanussi@intel.com>
-References: <cover.1335447006.git.tom.zanussi@intel.com>
-Subject: [PATCH 1/1][KERNEL 3.2] bsp/emenlow: initialize lvds backlight only if lvds enabled
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1C963E01206
+	for <yocto@yoctoproject.org>; Thu, 26 Apr 2012 11:50:17 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail1.windriver.com (8.14.3/8.14.3) with ESMTP id q3QIoGgV010397
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Thu, 26 Apr 2012 11:50:17 -0700 (PDT)
+Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
+	Thu, 26 Apr 2012 11:50:16 -0700
+Message-ID: <4F9998DD.4030302@windriver.com>
+Date: Thu, 26 Apr 2012 14:50:05 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:8.0) Gecko/20111124 Thunderbird/8.0
+MIME-Version: 1.0
+To: Kang Kai <kai.kang@windriver.com>
+References: <1335408370-23570-1-git-send-email-kai.kang@windriver.com>
+In-Reply-To: <1335408370-23570-1-git-send-email-kai.kang@windriver.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: [Patch v2] mm/msync: tweak tmpfs patch for syscall msync
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,99 +31,22 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 26 Apr 2012 18:48:28 -0000
+X-List-Received-Date: Thu, 26 Apr 2012 18:50:17 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: Tom Zanussi <tom.zanussi@intel.com>
+On 12-04-25 10:46 PM, Kang Kai wrote:
+> Hi Bruce,
+>
+> This Version 2 just update the commit header.
 
-intel_lvds_init() initializes the lvds backlight even if the lvds init
-failed.  That doesn't make sense, and causes unnecessary error
-messages in the kernel log.
+Looks good. Merging to the routerstation pro branch.
 
-Put the backlight init code into a separat function and only call it
-if the lvds panel was successfully initialized.
+Bruce
 
-Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
----
- drivers/gpu/drm-psb/intel_lvds.c |   51 ++++++++++++++++++++-----------------
- 1 files changed, 28 insertions(+), 23 deletions(-)
-
-diff --git a/drivers/gpu/drm-psb/intel_lvds.c b/drivers/gpu/drm-psb/intel_lvds.c
-index 218e895..6a55c9b 100644
---- a/drivers/gpu/drm-psb/intel_lvds.c
-+++ b/drivers/gpu/drm-psb/intel_lvds.c
-@@ -611,6 +611,33 @@ int intel_get_acpi_dod(char *method)
- 	kfree(buffer.pointer);
- 	return found;
- }
-+
-+static void intel_lvds_backlight_init(struct drm_device *dev)
-+{
-+	if ((blc_type == BLC_I2C_TYPE) || (blc_type == BLC_PWM_TYPE)){	
-+		struct backlight_properties props;
-+		memset(&props, 0, sizeof(struct backlight_properties));
-+		props.type = BACKLIGHT_RAW;
-+		/* add /sys/class/backlight interface as standard */
-+		psbbl_device = backlight_device_register("psblvds", &dev->pdev->dev, dev, &psbbl_ops, &props);
-+		if (psbbl_device){
-+#if LINUX_VERSION_CODE <= KERNEL_VERSION(2,6,20)
-+			down(&psbbl_device->sem);
-+			psbbl_device->props->max_brightness = BRIGHTNESS_MAX_LEVEL;
-+			psbbl_device->props->brightness = lvds_backlight;
-+			psbbl_device->props->power = FB_BLANK_UNBLANK;
-+			psbbl_device->props->update_status(psbbl_device);
-+			up(&psbbl_device->sem);
-+#else
-+			psbbl_device->props.max_brightness = BRIGHTNESS_MAX_LEVEL;
-+			psbbl_device->props.brightness = lvds_backlight;
-+			psbbl_device->props.power = FB_BLANK_UNBLANK;
-+			backlight_update_status(psbbl_device);
-+#endif
-+		}
-+	}
-+}
-+
- /**
-  * intel_lvds_init - setup LVDS outputs on this device
-  * @dev: drm device
-@@ -802,29 +829,6 @@ void intel_lvds_init(struct drm_device *dev)
- 		}
- 	}
- 
--	if ((blc_type == BLC_I2C_TYPE) || (blc_type == BLC_PWM_TYPE)){	
--		struct backlight_properties props;
--		memset(&props, 0, sizeof(struct backlight_properties));
--		props.type = BACKLIGHT_RAW;
--		/* add /sys/class/backlight interface as standard */
--		psbbl_device = backlight_device_register("psblvds", &dev->pdev->dev, dev, &psbbl_ops, &props);
--		if (psbbl_device){
--#if LINUX_VERSION_CODE <= KERNEL_VERSION(2,6,20)
--			down(&psbbl_device->sem);
--			psbbl_device->props->max_brightness = BRIGHTNESS_MAX_LEVEL;
--			psbbl_device->props->brightness = lvds_backlight;
--			psbbl_device->props->power = FB_BLANK_UNBLANK;
--			psbbl_device->props->update_status(psbbl_device);
--			up(&psbbl_device->sem);
--#else
--			psbbl_device->props.max_brightness = BRIGHTNESS_MAX_LEVEL;
--			psbbl_device->props.brightness = lvds_backlight;
--			psbbl_device->props.power = FB_BLANK_UNBLANK;
--			backlight_update_status(psbbl_device);
--#endif
--		}
--	}
--
- blc_out:
- 
- 	/* Set up the DDC bus. */
-@@ -939,6 +943,7 @@ blc_out:
- #endif
- 
- out:
-+	intel_lvds_backlight_init(dev);
- 	return;
- 
- failed:
--- 
-1.7.0.4
+>
+> Regards,
+> Kai
+>
 
 
