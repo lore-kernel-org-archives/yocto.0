@@ -1,32 +1,31 @@
-Return-Path: <bruce.ashfield@gmail.com>
-Received: from mail-pz0-f41.google.com (mail-pz0-f41.google.com
-	[209.85.210.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 35212E0030B
-	for <yocto@yoctoproject.org>; Fri, 27 Apr 2012 14:41:38 -0700 (PDT)
-Received: by dajx4 with SMTP id x4so1577975daj.28
-	for <yocto@yoctoproject.org>; Fri, 27 Apr 2012 14:41:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type:content-transfer-encoding;
-	bh=C4e2Jk5qOI/BaWhH3yiAxl577rOQdRCk5SBBjgFue3Y=;
-	b=zrupID7TZwEsUIu8exhi0rWRyBreHdm1PgwL2VYRk4nYG1wf0Gnb0o/55+JHmOtC5O
-	OhZp70m8/jGrJ08/Gu+XF6jc+bi+K7n0fU0ynHN33SMi4FxsTZgMMECCRcMER/2uBUi4
-	PwBfeQtiHXz73TqehFbRbGRZI/M2qOTrSz0qp8RniL7VDVSTG5WvKIfTUq84+Ng1PP6o
-	FX2yQy5WIhGgXWeR1w2KmLwYKtFO+D2foRHTWD/4+7t0JBkWutJ27lc0uSpUB3COsB8E
-	Y4+2Q6ln5A92RD+XR0X5QoNb33PC91YWspsyBSetXPLbZgliezft8uFhJkT1YsKBmGSQ
-	/XIQ==
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1F9C3E0030B
+	for <yocto@yoctoproject.org>; Fri, 27 Apr 2012 15:53:10 -0700 (PDT)
+Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
+	([99.241.91.63] helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
+	id 1SNu2H-00088r-3A
+	for yocto@yoctoproject.org; Fri, 27 Apr 2012 18:53:09 -0400
+Date: Fri, 27 Apr 2012 18:53:04 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.DEB.2.02.1204271850580.3661@oneiric>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
-Received: by 10.68.239.102 with SMTP id vr6mr682083pbc.62.1335562897882; Fri,
-	27 Apr 2012 14:41:37 -0700 (PDT)
-Received: by 10.68.55.104 with HTTP; Fri, 27 Apr 2012 14:41:37 -0700 (PDT)
-In-Reply-To: <m6pgwr51yllj.fsf@tfitzsim-lnx.cisco.com>
-References: <m6pgwr51yllj.fsf@tfitzsim-lnx.cisco.com>
-Date: Fri, 27 Apr 2012 17:41:37 -0400
-Message-ID: <CADkTA4PrUJeCUGPWccRRiENzqm8+dOAgbkTXj7Kxn4hZTUtSLw@mail.gmail.com>
-From: Bruce Ashfield <bruce.ashfield@gmail.com>
-To: Thomas Fitzsimmons <fitzsim@cisco.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: Experimenting with kgit-scc
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: looking for recom for MIPS dev kit (*not* RS pro)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,55 +37,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 27 Apr 2012 21:41:38 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-On Fri, Apr 27, 2012 at 4:18 PM, Thomas Fitzsimmons <fitzsim@cisco.com> wro=
-te:
-> Hi,
->
-> Are there plans in the Yocto roadmap to make the meta/scripts/kgit tools
-> generally usable?
->
-> I like the organization of the Yocto kernel repository and for my
-> embedded project I'm considering using the Yocto build system along with
-> a Yocto-style kernel tree instead of maintaining my kernel patches as
-> recipe add-ons. =A0The Yocto-style kernel repo could be either a local
-> clone of Yocto's kernel repo with extra machine-specific branches, or a
-> kernel.org tree locally post-processed by kgit-scc.
->
-> I experimented with meta/scripts/kgit-scc from linux-yocto-dev but the
-> kgit tools don't seem to be intended for general use yet (e.g. the -meta
-> files contain hard-coded home directory paths, and guilt-push complains
-> that guilt-init must be run first). =A0The official Yocto documentation
-> says as much, but I was wondering if there are future plans to
-> generalize these tools.
-
-I've got a series of patches that aren't yet published that make things mor=
-e
-generic + some documentation about how to use them to create repositories
-from scratch.
-
-Both those changes are largely prep'd and I should have them out in the
-next few weeks (i.e. early in the 1.3 cycle).
-
-Cheers,
-
-Bruce
-
->
-> Thanks,
-> Thomas
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+X-List-Received-Date: Fri, 27 Apr 2012 22:53:10 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
 
+  a potential training client of mine would like an intro embedded
+linux course ideally on a MIPS-based dev kit.  i'm aware that the
+reference BSP for that in yocto is the routerstation pro, but i just
+learned today that it's "end of life" so i'd rather get something
+newer.
 
---=20
-"Thou shalt not follow the NULL pointer, for chaos and madness await
-thee at its end"
+  any recommendations on a decent, not stupidly expensive MIPS dev kit
+that perhaps already has some yocto backing?  thanks.
+
+rday
+
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
