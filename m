@@ -1,27 +1,43 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0D579E01206
-	for <yocto@yoctoproject.org>; Thu, 26 Apr 2012 19:59:32 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail1.windriver.com (8.14.3/8.14.3) with ESMTP id q3R2xUPd016052
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 26 Apr 2012 19:59:30 -0700 (PDT)
-Received: from bruce-ashfields-macbook.local (128.224.23.61) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.1.255.0; Thu, 26 Apr 2012 19:59:30 -0700
-Message-ID: <4F9A0B90.6090308@windriver.com>
-Date: Thu, 26 Apr 2012 22:59:28 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7;
-	rv:9.0) Gecko/20111222 Thunderbird/9.0.1
-MIME-Version: 1.0
-To: "Saxena, Rahul" <rahul.saxena@intel.com>
-References: <cover.1335393639.git.rahul.saxena@intel.com>
-	<4F99AA22.40106@windriver.com>
-	<63ECFF2A2302B44093D7CE9E9962C490102E27@ORSMSX103.amr.corp.intel.com>
-In-Reply-To: <63ECFF2A2302B44093D7CE9E9962C490102E27@ORSMSX103.amr.corp.intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [kernel][PATCH 0/3] Cover letter to update pvr patches
+Return-Path: <koen@beagleboard.org>
+Received: from mail-wi0-f182.google.com (mail-wi0-f182.google.com
+	[209.85.212.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A7DB3E00596
+	for <yocto@yoctoproject.org>; Thu, 26 Apr 2012 23:39:56 -0700 (PDT)
+Received: by wibhr14 with SMTP id hr14so243877wib.11
+	for <yocto@yoctoproject.org>; Thu, 26 Apr 2012 23:39:55 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=subject:mime-version:content-type:from:in-reply-to:date:cc
+	:content-transfer-encoding:message-id:references:to:x-mailer
+	:x-gm-message-state;
+	bh=auKWZDQhfke6uhSXvTuSzqiIZWlJTsVlOsGtJJPOuZw=;
+	b=NeeuNZ9XTbYmxKul4ydXGwH99+P7iZuJLAUxHOqXwt9UguwJvSwG8YNIsV67AEBdk1
+	ZizvSYfwvRmd+A+nMAdL6igV10tX735T4ewKDkPMID3wJtNC0REx5ztDRq8IlVJiFcNO
+	OEq3MNb6UXQFbHgbMCbGFMgZklcX449XJGy9xJQbUuYqSQsfMVwmU7gKYrjp2HbBd4oa
+	tb66PxxrxWXuakw4uMhew+LY1wGAJeT8l2f/tWhdnpddksGQLUkLGQzyMw6UiU4Jeoos
+	O60ITeZUSSTFG6JNe9bwh35SvahWEoB8SL5nqmt/Le6xm3VSXmkV3t+/zHLXXyDQDiHY
+	Emxw==
+Received: by 10.180.101.230 with SMTP id fj6mr2892522wib.13.1335508795677;
+	Thu, 26 Apr 2012 23:39:55 -0700 (PDT)
+Received: from [172.20.1.36] (ip545070eb.adsl-surfen.hetnet.nl.
+	[84.80.112.235])
+	by mx.google.com with ESMTPS id fl2sm4221963wib.2.2012.04.26.23.39.54
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Thu, 26 Apr 2012 23:39:54 -0700 (PDT)
+Mime-Version: 1.0 (Apple Message framework v1257)
+From: Koen Kooi <koen@beagleboard.org>
+In-Reply-To: <20120426185224.GF3646@jama.jama.net>
+Date: Fri, 27 Apr 2012 08:39:55 +0200
+Message-Id: <556E6D34-6DE8-4D2F-8B48-E11B717E1915@beagleboard.org>
+References: <cover.1333058256.git.Martin.Jansa@gmail.com>
+	<1335436998.20130.0.camel@ted>
+	<EE230536-AE66-41DB-93EE-B1A7CA9FFD75@beagleboard.org>
+	<20120426185224.GF3646@jama.jama.net>
+To: Martin Jansa <martin.jansa@gmail.com>
+X-Mailer: Apple Mail (2.1257)
+X-Gm-Message-State: ALoCoQkDxNPdbARMY78xEYIYd0t5RC2+IJDNkdJzvN46hggy6pxWi7BHYf9FmZ9dZlJIQnZcAAOD
+Cc: yocto@yoctoproject.org, Enrico Scholz <enrico.scholz@sigma-chemnitz.de>
+Subject: Re: [opkg-utils][PATCH 00/22] Partially prepare for python3 and fix old Packages file reuse
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,120 +49,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 27 Apr 2012 02:59:32 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 27 Apr 2012 06:39:57 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
-On 12-04-26 4:38 PM, Saxena, Rahul wrote:
-> Hi Bruce,
->
-> Yes, the>>  yocto/pvr: add hdmi/acpi definitions<<  commit stays as this patch
-> has not been updated by MeeGo.
->
-> Thanks for checking.
 
-Perfect. I just pushed out the updated yocto/pvr branch.
+Op 26 apr. 2012, om 20:52 heeft Martin Jansa het volgende geschreven:
 
-Cheers,
+> On Thu, Apr 26, 2012 at 06:21:45PM +0200, Koen Kooi wrote:
+>>=20
+>> Op 26 apr. 2012, om 12:43 heeft Richard Purdie het volgende =
+geschreven:
+>>=20
+>>> On Fri, 2012-03-30 at 00:21 +0200, Martin Jansa wrote:
+>>>> First 5 patches are taken from oe-core.
+>>>>=20
+>>>> Then there are some cleanups and fixes for issues I've found while =
+looking=20
+>>>> for cause of very long package-index calls.
+>>>>=20
+>>>> Some patches uses compatible changes from 2to3 (tested with =
+python2.7), but
+>>>> python3 support is not 100% complete, but were closer.
+>>>>=20
+>>>> And in the end I've found the cause.. printing long fields (e. g. =
+description)
+>>>> with opkg.py was producing empty lines in Packages file (which are =
+Packages entry=20
+>>>> separators) so only first entries till first empty line were =
+processed from old
+>>>> Packages file and the rest was always extracted from control files =
+in packaged .ipk.
+>>>>=20
+>>>> And this also fixes Packages.filelist generation.
+>>>>=20
+>>>> I don't use python very much, so please review.
+>>>>=20
+>>>> And the speedup? Almost 60 times :)
+>>=20
+>> [..]
+>>=20
+>>> I reviewed these and they all look like good improvements. I've =
+merged
+>>> it into master, thanks!
+>>=20
+>> After some more time in oe-core master for testing we should =
+seriously consider cherry-picking the SRCREV bump to the denzil branch.
+>=20
+> Agreed, saves about 4 hours per day (13 images each with own =
+package-index run=20
+> and extra run for feed if built after iamges) on my buildhost for last =
+month or so :)
 
-Bruce
-
->
-> Rahul
->
-> -----Original Message-----
-> From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]
-> Sent: Thursday, April 26, 2012 1:04 PM
-> To: Saxena, Rahul
-> Cc: yocto@yoctoproject.org; Zanussi, Tom; Bodke, Kishore K
-> Subject: Re: [kernel][PATCH 0/3] Cover letter to update pvr patches
->
-> On 12-04-26 04:55 AM, rahul.saxena@intel.com wrote:
->> From: Rahul Saxena<rahul.saxena@intel.com>
->>
->> Cover letter to update pvr patches.
->> A updated version of linux-3.0.0-cdv patch for pvr driver that
->> includes vaapi (Video Acceleration API) related fixes was recently released by MeeGo.
->> A revert of the existing version of this patch is done and then the
->> new version is added. A new patch to handle TTM page allocation from
->> high memory is also added.
->
-> Rahul,
->
-> Can you confirm for me that this commit:
->
-> commit 9d0264753e869d21ec4d9a6dd5558de73d64f94d
-> Author: Kishore Bodke<kishore.k.bodke@intel.com>
-> Date:   Fri Mar 9 11:03:56 2012 -0800
->
->       yocto/pvr: add hdmi/acpi definitions
->
->       Adding the identifier for the CedarTrail HDMI to allow peripheral
->       detection.
->
->       Signed-off-by: Kishore Bodke<kishore.k.bodke@intel.com>
->
-> :100644 100644 db39e9e... 47a98ff... M  drivers/acpi/video.c
-> :100644 100644 bd0ae69... 1b05ed1... M  sound/pci/hda/patch_hdmi.c
->
-> Should stay on the yocto/pvr branch ?
->
-> Bruce
->
->>
->> Please pull into yocto/pvr branch of linux-yocto-3.0
->>
->> Signed-off-by: Rahul Saxena<rahul.saxena@intel.com>
->> --
->>
->> The following changes since commit 9d0264753e869d21ec4d9a6dd5558de73d64f94d:
->>
->>     yocto/pvr: add hdmi/acpi definitions (2012-03-09 14:50:44 -0500)
->>
->> are available in the git repository at:
->>     git://git.pokylinux.org/linux-yocto-2.6.37-contrib rsaxena-yocto/pvr
->>
->> http://git.pokylinux.org/cgit.cgi/linux-yocto-2.6.37-contrib/log/?h=rs
->> axena-yocto/pvr
->>
->> Rahul Saxena (3):
->>     Revert "yocto/pvr: integrate pvr support"
->>     add updated version of linux-3.0.0-cdv.patch
->>     add patch linux-3.0.0-ttm-clear-high.patch
->>
->>    drivers/gpu/drm/ttm/ttm_page_alloc.c               |    5 +-
->>    drivers/staging/cdv/Kconfig                        |    1 +
->>    drivers/staging/cdv/Makefile                       |    2 +-
->>    drivers/staging/cdv/drv/psb_drm.h                  |    3 +
->>    drivers/staging/cdv/drv/psb_drv.c                  |   73 +++--
->>    drivers/staging/cdv/drv/psb_drv.h                  |   24 +-
->>    drivers/staging/cdv/drv/psb_fb.c                   |  134 ++++-----
->>    drivers/staging/cdv/drv/psb_gtt.c                  |   29 +-
->>    drivers/staging/cdv/drv/psb_intel_bios.c           |   90 +++++-
->>    drivers/staging/cdv/drv/psb_intel_bios.h           |   35 ++-
->>    drivers/staging/cdv/drv/psb_intel_display.c        |  310 +++++++++++++-------
->>    drivers/staging/cdv/drv/psb_intel_dpll_cdv.c       |   85 +++++-
->>    drivers/staging/cdv/drv/psb_intel_drv.h            |   12 +-
->>    drivers/staging/cdv/drv/psb_intel_lvds.c           |  178 +++++++++++-
->>    drivers/staging/cdv/drv/psb_intel_opregion.c       |    2 +-
->>    drivers/staging/cdv/drv/psb_intel_reg.h            |   36 +++-
->>    drivers/staging/cdv/drv/psb_irq.c                  |   12 +-
->>    drivers/staging/cdv/drv/psb_powermgmt.c            |   29 ++-
->>    drivers/staging/cdv/drv/psb_pvr_glue.c             |    4 +-
->>    drivers/staging/cdv/drv/psb_reg.h                  |    8 +-
->>    drivers/staging/cdv/imgv/psb_msvdx.c               |   25 ++-
->>    drivers/staging/cdv/imgv/psb_msvdx.h               |    7 +-
->>    drivers/staging/cdv/imgv/psb_msvdxinit.c           |   51 +++-
->>    .../3rdparty/linux_framebuffer_mrst/mrstlfb.h      |    6 +
->>    .../linux_framebuffer_mrst/mrstlfb_displayclass.c  |  125 +++++++-
->>    .../linux_framebuffer_mrst/mrstlfb_linux.c         |    8 +-
->>    .../pvr/services4/srvkm/devices/sgx/sgxconfig.h    |   65 ++++
->>    .../cdv/pvr/services4/srvkm/hwdefs/sgxerrata.h     |    4 +
->>    .../pvr/services4/srvkm/hwdefs/sgxfeaturedefs.h    |    3 +-
->>    .../cdv/pvr/services4/system/unified/sysconfig.c   |   11 +-
->>    .../cdv/pvr/services4/system/unified/sysconfig.h   |   30 --
->>    31 files changed, 1021 insertions(+), 386 deletions(-)
->>
->
-
+I merged in denzil-next locally and grabbed 26465 from patchwork. Let's =
+see how much time it saves on my machine :)=
 
