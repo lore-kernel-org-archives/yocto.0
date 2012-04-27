@@ -1,43 +1,34 @@
-Return-Path: <koen@beagleboard.org>
-Received: from mail-wg0-f54.google.com (mail-wg0-f54.google.com [74.125.82.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2E18FE00596
-	for <yocto@yoctoproject.org>; Fri, 27 Apr 2012 05:42:45 -0700 (PDT)
-Received: by wgbfg15 with SMTP id fg15so518597wgb.11
-	for <yocto@yoctoproject.org>; Fri, 27 Apr 2012 05:42:44 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=subject:mime-version:content-type:from:in-reply-to:date:cc
-	:content-transfer-encoding:message-id:references:to:x-mailer
-	:x-gm-message-state;
-	bh=avCdSFu1tpquxM9zUMO+BzVNoXL1ISi+B4hm4wh8EDk=;
-	b=Q3fyHj1REBS2NSRMQZVltI+kv4Ca0BRLpORznZMjJXmJywrjKPkKspmU6MHpcHZ01S
-	Bg8YDPNh6qP9tRp/RzSaop3zqNOR5gQIOuVf18BGUeKvTYvzbcFo3NMoX8Uh2mTj2q1b
-	JwnNblgfCzTdxi+SFBy4P2M1LiTtilvFWy+H0vMEQefH3janAHKYyU6hE1nefhJVKzPJ
-	m1mV+8942MfsbGv/R+zwd8SBmOv+SJ4Gk3B0hpfn82HTDgDHeglIkQuobDwZcTuD1mCY
-	fMONntji72w4FvTLCNDqwZtAirL9O+Dw3iwbzRhrsGhbaXXxxjZaw5ZwF169aEsIN0Dz
-	gx/w==
-Received: by 10.180.101.136 with SMTP id fg8mr5734303wib.4.1335530563940;
-	Fri, 27 Apr 2012 05:42:43 -0700 (PDT)
-Received: from [172.20.0.96] (ip545070eb.adsl-surfen.hetnet.nl.
-	[84.80.112.235])
-	by mx.google.com with ESMTPS id ea6sm4381777wib.5.2012.04.27.05.42.42
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Fri, 27 Apr 2012 05:42:42 -0700 (PDT)
-Mime-Version: 1.0 (Apple Message framework v1257)
-From: Koen Kooi <koen@beagleboard.org>
-In-Reply-To: <556E6D34-6DE8-4D2F-8B48-E11B717E1915@beagleboard.org>
-Date: Fri, 27 Apr 2012 14:42:40 +0200
-Message-Id: <B59F788F-4CDC-4089-8FF0-F78A82C83FEF@beagleboard.org>
-References: <cover.1333058256.git.Martin.Jansa@gmail.com>
-	<1335436998.20130.0.camel@ted>
-	<EE230536-AE66-41DB-93EE-B1A7CA9FFD75@beagleboard.org>
-	<20120426185224.GF3646@jama.jama.net>
-	<556E6D34-6DE8-4D2F-8B48-E11B717E1915@beagleboard.org>
-To: Martin Jansa <martin.jansa@gmail.com>
-X-Mailer: Apple Mail (2.1257)
-X-Gm-Message-State: ALoCoQm2z53j3O2rLCH2YHMnp6hlt6yEhCssEUv0vBQSXB/Fvz6WHdLudjizgTWsMK0VioHSfFjn
-Cc: yocto@yoctoproject.org, Enrico Scholz <enrico.scholz@sigma-chemnitz.de>
-Subject: Re: [opkg-utils][PATCH 00/22] Partially prepare for python3 and fix old Packages file reuse
+Return-Path: <jfabernathy@gmail.com>
+Received: from mail-qc0-f176.google.com (mail-qc0-f176.google.com
+	[209.85.216.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1288BE006C7
+	for <yocto@yoctoproject.org>; Fri, 27 Apr 2012 07:15:25 -0700 (PDT)
+Received: by qcsd1 with SMTP id d1so490687qcs.35
+	for <yocto@yoctoproject.org>; Fri, 27 Apr 2012 07:15:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=message-id:date:from:user-agent:mime-version:to:subject
+	:content-type:content-transfer-encoding;
+	bh=2wGz4U1uOH/V9to2qWOh3gzv1zzrfJ+DH5nY7CMxj3Q=;
+	b=owhGo9qeyfZOQl3iMFZDD+ttjt0uFoYksy/3ifMBhk0uAOcYzIErGGw4hXasCrtKC+
+	lb2idUKIq9ehaNA7AF6rjwH9+L6NV3j22zbD5p+lordwTfIyS9yqCoSvtFlZFtgyxPq8
+	sFixDNcvTPMNyBHGtVe3XfJ2FlP4gWhk/MzBg1AlYZn5oWdFm6q2ZgcBKqMSIj9JxGT9
+	lPWqDb+ciWKvJcxnNsRoo5Ba6xHGkmsPgGReWU2RdpJQKBnaQZIiY5Qu4+skuXzXm9h0
+	Sn2ZRNzxcKBky4k97n1iMiP/0Ef1zJWUd1sAmYVef+qjN1PZi7h+vQgG9x92ViSgYmvy
+	owGg==
+Received: by 10.229.135.137 with SMTP id n9mr2800284qct.48.1335536125228;
+	Fri, 27 Apr 2012 07:15:25 -0700 (PDT)
+Received: from [10.0.1.54] (nc-184-4-33-55.dhcp.embarqhsd.net. [184.4.33.55])
+	by mx.google.com with ESMTPS id
+	gw8sm10564721qab.7.2012.04.27.07.15.23 (version=SSLv3 cipher=OTHER);
+	Fri, 27 Apr 2012 07:15:24 -0700 (PDT)
+Message-ID: <4F9AA9FA.6020604@gmail.com>
+Date: Fri, 27 Apr 2012 10:15:22 -0400
+From: jfabernathy <jfabernathy@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:11.0) Gecko/20120410 Thunderbird/11.0.1
+MIME-Version: 1.0
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: rebuilds -- when to do what??
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,65 +40,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 27 Apr 2012 12:42:45 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 27 Apr 2012 14:15:26 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
+Over the past 6 months, I've learned a lot about what I should do to 
+work with Yocto successfully, However, the area of biggest confusion for 
+me is what to do when I want to rebuild something.
 
-Op 27 apr. 2012, om 08:39 heeft Koen Kooi het volgende geschreven:
+I generally work from Master repository and when I see significant 
+changes while doing git pull, I try to rebuild one of my projects.  I've 
+tried a lot of the methods:
 
->=20
-> Op 26 apr. 2012, om 20:52 heeft Martin Jansa het volgende geschreven:
->=20
->> On Thu, Apr 26, 2012 at 06:21:45PM +0200, Koen Kooi wrote:
->>>=20
->>> Op 26 apr. 2012, om 12:43 heeft Richard Purdie het volgende =
-geschreven:
->>>=20
->>>> On Fri, 2012-03-30 at 00:21 +0200, Martin Jansa wrote:
->>>>> First 5 patches are taken from oe-core.
->>>>>=20
->>>>> Then there are some cleanups and fixes for issues I've found while =
-looking=20
->>>>> for cause of very long package-index calls.
->>>>>=20
->>>>> Some patches uses compatible changes from 2to3 (tested with =
-python2.7), but
->>>>> python3 support is not 100% complete, but were closer.
->>>>>=20
->>>>> And in the end I've found the cause.. printing long fields (e. g. =
-description)
->>>>> with opkg.py was producing empty lines in Packages file (which are =
-Packages entry=20
->>>>> separators) so only first entries till first empty line were =
-processed from old
->>>>> Packages file and the rest was always extracted from control files =
-in packaged .ipk.
->>>>>=20
->>>>> And this also fixes Packages.filelist generation.
->>>>>=20
->>>>> I don't use python very much, so please review.
->>>>>=20
->>>>> And the speedup? Almost 60 times :)
->>>=20
->>> [..]
->>>=20
->>>> I reviewed these and they all look like good improvements. I've =
-merged
->>>> it into master, thanks!
->>>=20
->>> After some more time in oe-core master for testing we should =
-seriously consider cherry-picking the SRCREV bump to the denzil branch.
->>=20
->> Agreed, saves about 4 hours per day (13 images each with own =
-package-index run=20
->> and extra run for feed if built after iamges) on my buildhost for =
-last month or so :)
->=20
-> I merged in denzil-next locally and grabbed 26465 from patchwork. =
-Let's see how much time it saves on my machine :)
+1.  just bitbake again.
+2.  bitbake -c cleanall or -c cleansstate core-image-sato
+3.  If I know a recipe has changed, I'll bitbake -c cleansstate "recipe 
+name"
 
-With a relatively small deploy area: 7 minutes saved per image build!
+Most of the time something fails.  Researching what, is an impossibility 
+to me and much quicker to just delete the build directory and redo it.
 
+Is there a good "how to" rebuild?  Or is it the best use of time to just 
+tell users to blow away the build dir. and restart, saving the old 
+local.conf and bblayer.conf?
+
+Jim A
 
 
