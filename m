@@ -1,34 +1,34 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6E288E00723
-	for <yocto@yoctoproject.org>; Sun, 29 Apr 2012 09:17:56 -0700 (PDT)
-Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
-	([99.241.91.63] helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
-	id 1SOWot-0003Ue-4e; Sun, 29 Apr 2012 12:17:55 -0400
-Date: Sun, 29 Apr 2012 12:17:48 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Bruce Ashfield <bruce.ashfield@gmail.com>
-In-Reply-To: <CADkTA4M9gGXZ_D70y7TEZG5SJUpPG-Zyo2mk84XUUKfDr0sNnw@mail.gmail.com>
-Message-ID: <alpine.DEB.2.02.1204291215330.8985@oneiric>
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-lpp01m010-f48.google.com (mail-lpp01m010-f48.google.com
+	[209.85.215.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DC70CE00723
+	for <yocto@yoctoproject.org>; Sun, 29 Apr 2012 10:09:28 -0700 (PDT)
+Received: by lagu2 with SMTP id u2so1974053lag.35
+	for <yocto@yoctoproject.org>; Sun, 29 Apr 2012 10:09:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type:content-transfer-encoding;
+	bh=m9I/Xozyh3Qr2gWQmxhvzIHAAQnA4APjZEw4eOXoH7U=;
+	b=0TtQ2MHUQsKv0pWAqni+09N9WJBq5iQG8uxO4nQ7j6sWnOtVe/hQw5iUZoiapfyJ3e
+	3MuuM6EzBR3tysIegN5MoT3tENfl/g3AfFfQEB+dhhoLYCvGDpUJhgJUhPw4X27pqMuk
+	gq8fa0TuIMUtgGf5cHDrNAOhySaz6XOvlhVpB6a7rvJlR57kk8bEhrzusilJh9ZizGDD
+	lWKL2JxzdE3fDlmpJFJ0J6G3y3n2E7LdAbcJN3WAWnnUWcIDzrgl7PVpqps6P68+8e5C
+	X7NwMPiMy/HJEWkNv0/gDL3kKl7rVkZMgioeOCy1v545pgm6NExsvAm/5DHeF76G3/jr
+	CyvQ==
+Received: by 10.112.100.170 with SMTP id ez10mr8986607lbb.15.1335719367645;
+	Sun, 29 Apr 2012 10:09:27 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.152.129.134 with HTTP; Sun, 29 Apr 2012 10:08:56 -0700 (PDT)
+In-Reply-To: <alpine.DEB.2.02.1204291215330.8985@oneiric>
 References: <alpine.DEB.2.02.1204271850580.3661@oneiric>
 	<CAMKF1sq+D5vPhm2A=s7+hMkUkX0mw4N57NdDrkdHzGRxQ=-ioQ@mail.gmail.com>
 	<alpine.DEB.2.02.1204290608390.18791@oneiric>
 	<CADkTA4M9gGXZ_D70y7TEZG5SJUpPG-Zyo2mk84XUUKfDr0sNnw@mail.gmail.com>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
-MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+	<alpine.DEB.2.02.1204291215330.8985@oneiric>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Sun, 29 Apr 2012 10:08:56 -0700
+Message-ID: <CAMKF1sqV2wyDf1ErJEBKjf3enJV=59SObdbJs_iW9w6x-GYXUg@mail.gmail.com>
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>
 Cc: Yocto discussion list <yocto@yoctoproject.org>
 Subject: Re: looking for recom for MIPS dev kit (*not* RS pro)
 X-BeenThere: yocto@yoctoproject.org
@@ -42,63 +42,17 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 29 Apr 2012 16:17:56 -0000
-Content-Type: MULTIPART/MIXED; BOUNDARY="8323329-685148115-1335716273=:8985"
+X-List-Received-Date: Sun, 29 Apr 2012 17:09:29 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
---8323329-685148115-1335716273=:8985
-Content-Type: TEXT/PLAIN; charset=ISO-8859-1
-Content-Transfer-Encoding: QUOTED-PRINTABLE
-
-On Sun, 29 Apr 2012, Bruce Ashfield wrote:
-
-> On Sun, Apr 29, 2012 at 6:09 AM, Robert P. J. Day <rpjday@crashcourse.ca>=
- wrote:
-> > On Sat, 28 Apr 2012, Khem Raj wrote:
-> >
-> >> On Fri, Apr 27, 2012 at 3:53 PM, Robert P. J. Day <rpjday@crashcourse.=
-ca> wrote:
-> >> >
-> >> > =A0a potential training client of mine would like an intro embedded
-> >> > linux course ideally on a MIPS-based dev kit. =A0i'm aware that the
-> >> > reference BSP for that in yocto is the routerstation pro, but i just
-> >> > learned today that it's "end of life" so i'd rather get something
-> >> > newer.
-> >> >
-> >> > =A0any recommendations on a decent, not stupidly expensive MIPS dev =
-kit
-> >>
-> >> http://www.lemote.com/en/products/Notebook/2010/0310/112.html
-> >>
-> >> > that perhaps already has some yocto backing? =A0thanks.
-> >> >
-> >>
-> >> i dont think yocto has a BSP for it though.
-> >
-> > =A0interesting. =A0but given that the routerstation pro is end of lifed=
-,
-> > are there any plans to switch to a different MIPS platform as the
-> > yocto reference for MIPS? =A0just curious.
+On Sun, Apr 29, 2012 at 9:17 AM, Robert P. J. Day <rpjday@crashcourse.ca> w=
+rote:
 >
-> Yes there is a plan. The link that Khem sent is one that I've been
-> watching and considering, but no decision has been made yet. We'll
-> refresh the hardware reference BSPs in the 1.3 cycle.
+>
+> =C2=A0where would one even *get* one of those leeyoong notebooks?
 
-  where would one even *get* one of those leeyoong notebooks?
+http://www.lemote.com/en/about/contact/
 
-rday
+they have a US contact there.
 
---=20
-
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-
---8323329-685148115-1335716273=:8985--
