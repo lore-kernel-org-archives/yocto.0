@@ -1,34 +1,31 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4547BE0137A
-	for <yocto@yoctoproject.org>; Sun, 29 Apr 2012 03:09:39 -0700 (PDT)
-Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
-	([99.241.91.63] helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
-	id 1SOR4U-0005RZ-9K; Sun, 29 Apr 2012 06:09:38 -0400
-Date: Sun, 29 Apr 2012 06:09:30 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <CAMKF1sq+D5vPhm2A=s7+hMkUkX0mw4N57NdDrkdHzGRxQ=-ioQ@mail.gmail.com>
-Message-ID: <alpine.DEB.2.02.1204290608390.18791@oneiric>
-References: <alpine.DEB.2.02.1204271850580.3661@oneiric>
-	<CAMKF1sq+D5vPhm2A=s7+hMkUkX0mw4N57NdDrkdHzGRxQ=-ioQ@mail.gmail.com>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <daniel.toussaint@gmail.com>
+Received: from mail-ob0-f176.google.com (mail-ob0-f176.google.com
+	[209.85.214.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 99CE9E01307
+	for <yocto@yoctoproject.org>; Sun, 29 Apr 2012 06:16:45 -0700 (PDT)
+Received: by obbef5 with SMTP id ef5so4177366obb.35
+	for <yocto@yoctoproject.org>; Sun, 29 Apr 2012 06:16:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:sender:date:x-google-sender-auth:message-id:subject
+	:from:to:content-type;
+	bh=z6LnaH1jYvKuJCF3BX2KR5v/d+zTKYiHArhAIjx6fUQ=;
+	b=h97ksgGXZlpneJO4R3mc80+iRlIBJy34x9XODF52ION+EL9Cg1mY6lD63I9D6EIEyf
+	Fq/Qv+KjXaifaeee9F2J5wuiBxZAhL8DDjX7Kow7TB62IUU2zSM+hd0Ci9SqzcnfHPOU
+	SJMgAqzZ25ojDyitXZ1JJIhnpnXVa51N1XUqpj8Hry1YKZFLiOO+JnLCLnYdx/UtTXa8
+	YfnM5l6Mlko0AZR+7R7h2/MPms4Cvj8YUVanSAlP5rJbrDIg+/zoFeeWNor4Xkq78BRz
+	qG+6vz3DRgjOcVoLZAHQz6xbVD3dIqdcTosXjngKz3kV0GXb/5ejmJFSYssB+T4cUlJF
+	URZQ==
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: looking for recom for MIPS dev kit (*not* RS pro)
+Received: by 10.182.225.2 with SMTP id rg2mr7276222obc.2.1335705404870; Sun,
+	29 Apr 2012 06:16:44 -0700 (PDT)
+Sender: daniel.toussaint@gmail.com
+Received: by 10.182.37.202 with HTTP; Sun, 29 Apr 2012 06:16:44 -0700 (PDT)
+Date: Sun, 29 Apr 2012 21:16:44 +0800
+X-Google-Sender-Auth: shwSXqgji1fXYUmqgCCnXFYWFEY
+Message-ID: <CADVYk4SBWkAnU4RL6k2_+1aedbFnfptohKffjGdaK6C2bs-6RQ@mail.gmail.com>
+From: Daniel Toussaint <daniel@dmhome.net>
+To: yocto@yoctoproject.org
+Subject: Building a Qt4-x11 app.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,52 +37,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 29 Apr 2012 10:09:39 -0000
-Content-Type: MULTIPART/MIXED; BOUNDARY="8323329-1880981967-1335694176=:18791"
+X-List-Received-Date: Sun, 29 Apr 2012 13:16:45 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
---8323329-1880981967-1335694176=:18791
-Content-Type: TEXT/PLAIN; charset=UTF-8
-Content-Transfer-Encoding: QUOTED-PRINTABLE
+I wish to run an application developed with QT in a Yocto filesystem.
+The app should be linked against Qt4-X11 libs. What is the exact work
+flow to get my app cross compiled on my x86_64 host ?
+So far I have :
+-> Build a complete core-image-sato with IPKG as a packaging system.
+-> Build qt4-x11-free
+-> Build qt4-tools-nativesdk
 
-On Sat, 28 Apr 2012, Khem Raj wrote:
+Now, I got something called qmake2 in the build directory
+(sysroot-x86_64) , but it complains about not finding the right qmake
+specs.
+I got the feeling I am doing something fundamentally wrong with my
+setup, can anyone enlighten me ?
 
-> On Fri, Apr 27, 2012 at 3:53 PM, Robert P. J. Day <rpjday@crashcourse.ca>=
- wrote:
-> >
-> > =C2=A0a potential training client of mine would like an intro embedded
-> > linux course ideally on a MIPS-based dev kit. =C2=A0i'm aware that the
-> > reference BSP for that in yocto is the routerstation pro, but i just
-> > learned today that it's "end of life" so i'd rather get something
-> > newer.
-> >
-> > =C2=A0any recommendations on a decent, not stupidly expensive MIPS dev =
-kit
->
-> http://www.lemote.com/en/products/Notebook/2010/0310/112.html
->
-> > that perhaps already has some yocto backing? =C2=A0thanks.
-> >
->
-> i dont think yocto has a BSP for it though.
+Thanks a lot.
 
-  interesting.  but given that the routerstation pro is end of lifed,
-are there any plans to switch to a different MIPS platform as the
-yocto reference for MIPS?  just curious.
+-- 
+Gtalk: daniel.toussaint@gmail.com
+Skype: supertoussi
+Cell: +886-915-680-291
 
-rday
-
---=20
-
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-
---8323329-1880981967-1335694176=:18791--
