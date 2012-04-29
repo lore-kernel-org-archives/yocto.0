@@ -1,38 +1,22 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-lpp01m010-f48.google.com (mail-lpp01m010-f48.google.com
-	[209.85.215.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5E96CE013D1
-	for <yocto@yoctoproject.org>; Sun, 29 Apr 2012 11:49:01 -0700 (PDT)
-Received: by lagu2 with SMTP id u2so2006985lag.35
-	for <yocto@yoctoproject.org>; Sun, 29 Apr 2012 11:49:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type:content-transfer-encoding;
-	bh=BdjDJSiRqUNFBC7AiEAYJ/Whifi5THKC5GDriBJNrDk=;
-	b=OPmfDE/XOf0ZNrBGkCLjObbiOYf89s+KhB4yOs+ZqLjH+ozUbMlyCpUjgfoP2UFNup
-	icXWUmoAg+V21U7c9ta0NRbNOsz00pgbZRI7ZExuf0/C8kHbZtLblP+CA1ZJ219VcZTz
-	NEKGMXMgF8eJC//b9/sYYVelaFwK/M4RIjFuQE3ILl7crc3GEBXT6Zt5Qo70OLVgdo2k
-	+D1NB23SmYk6aSSbhiy0lrZ7khm+y5+phF8R60fI2z08O1fBDlYnUfkRfAJVkUWH2ySN
-	D97W015Gl/E3Ansn3j36z0FkorxbZ/XgghAc3FDxKE7G1ahugXndhWwwwcl2Cv7HdZJs
-	HDwQ==
-Received: by 10.112.100.170 with SMTP id ez10mr9102739lbb.15.1335725340271;
-	Sun, 29 Apr 2012 11:49:00 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.152.129.134 with HTTP; Sun, 29 Apr 2012 11:48:29 -0700 (PDT)
-In-Reply-To: <3ED83A9DB3B6D94CA68BF7C03F2981D35B042416CC@EXDCVYMBSTM006.EQ1STM.local>
-References: <3ED83A9DB3B6D94CA68BF7C03F2981D35A844F357F@EXDCVYMBSTM006.EQ1STM.local>
-	<4F7C42E5.8000301@windriver.com>
-	<3ED83A9DB3B6D94CA68BF7C03F2981D35AE63C1B66@EXDCVYMBSTM006.EQ1STM.local>
-	<4F825F65.4040706@windriver.com>
-	<3ED83A9DB3B6D94CA68BF7C03F2981D35AE63C1B69@EXDCVYMBSTM006.EQ1STM.local>
-	<CADkTA4PnNWTbtpzVu=Qhegg87Ai=XNXgH5VD6c7mCK=BYj3dgg@mail.gmail.com>
-	<3ED83A9DB3B6D94CA68BF7C03F2981D35B042416CC@EXDCVYMBSTM006.EQ1STM.local>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Sun, 29 Apr 2012 11:48:29 -0700
-Message-ID: <CAMKF1srQQsDuVgGjpom2V0hC-EqWJE=3upfkcf-2GgGpQO8Y+w@mail.gmail.com>
-To: Om Prakash PAL <omprakash.pal@stericsson.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Porting of specific Kernel/Driver into yocto.
+Return-Path: <eric@eukrea.com>
+Received: from smtp3-g21.free.fr (smtp3-g21.free.fr [212.27.42.3])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B0516E013D1
+	for <yocto@yoctoproject.org>; Sun, 29 Apr 2012 12:14:19 -0700 (PDT)
+Received: from eb-e6520 (unknown [82.233.81.124])
+	by smtp3-g21.free.fr (Postfix) with ESMTP id 11F27A625A;
+	Sun, 29 Apr 2012 21:14:10 +0200 (CEST)
+Date: Sun, 29 Apr 2012 21:14:09 +0200
+From: Eric =?ISO-8859-1?B?QuluYXJk?= <eric@eukrea.com>
+To: Wolfgang Denk <wd@denx.de>
+Message-ID: <20120429211409.14cd6fc5@eb-e6520>
+In-Reply-To: <20120429144117.99E6B202B38@gemini.denx.de>
+References: <CADVYk4SBWkAnU4RL6k2_+1aedbFnfptohKffjGdaK6C2bs-6RQ@mail.gmail.com>
+	<20120429144117.99E6B202B38@gemini.denx.de>
+Organization: =?ISO-8859-1?B?RXVrculh?= Electromatique
+X-Mailer: Claws Mail 3.8.0 (GTK+ 2.24.8; x86_64-redhat-linux-gnu)
+Mime-Version: 1.0
+Cc: yocto@yoctoproject.org
+Subject: Re: Building a Qt4-x11 app.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,27 +28,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 29 Apr 2012 18:49:01 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Sun, 29 Apr 2012 19:14:21 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-On Sun, Apr 29, 2012 at 2:58 AM, Om Prakash PAL
-<omprakash.pal@stericsson.com> wrote:
-> Hi Bruce,
-> for porting of our local kernel,we have created an BSP layer and to chang=
-e the the kernel, =C2=A0we have created an linux-yocto_3.0.bbappend file in=
-side meta<BSP>/recipes-kernel/linux/
-> like this:-
->
-> FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
->
-> COMPATIBLE_MACHINE_<BSP_name> =3D "BSP_name"
->
-> # KMACHINE is the branch to build
-> KMACHINE_<BSP_name> =3D "local_branch"
->
-> SRCREV_machine_pn_linux-yocto_<BSP_name> ?=3D "XXXXXXXX" (here we have as=
-sign top commit ID of our local kernel)
+Le Sun, 29 Apr 2012 16:41:17 +0200,
+Wolfgang Denk <wd@denx.de> a =E9crit :
 
-that should be SRCREV_machine_pn-linux-yocto_<BSP_name>
+> Dear Daniel,
+>=20
+> In message <CADVYk4SBWkAnU4RL6k2_+1aedbFnfptohKffjGdaK6C2bs-6RQ@mail.gmai=
+l.com> you wrote:
+> > I wish to run an application developed with QT in a Yocto filesystem.
+> > The app should be linked against Qt4-X11 libs. What is the exact work
+> > flow to get my app cross compiled on my x86_64 host ?
+> > So far I have :
+> > -> Build a complete core-image-sato with IPKG as a packaging system.
+> > -> Build qt4-x11-free
+> > -> Build qt4-tools-nativesdk
+> >=20
+> > Now, I got something called qmake2 in the build directory
+> > (sysroot-x86_64) , but it complains about not finding the right qmake
+> > specs.
+> > I got the feeling I am doing something fundamentally wrong with my
+> > setup, can anyone enlighten me ?
+>=20
+> Try building "meta-toolchain-qte" for the cross development tools,
+> and "core-image-qte-sdk" for a reasonably complete root file system
+> that can also be used for native development when needed.
+>=20
+this won't work for qt4-x11, only for qt4-embedded.
+
+Eric
 
