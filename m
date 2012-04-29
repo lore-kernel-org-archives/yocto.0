@@ -1,39 +1,34 @@
-Return-Path: <wd@denx.de>
-Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.10])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B170EE00723
-	for <yocto@yoctoproject.org>; Sun, 29 Apr 2012 07:41:20 -0700 (PDT)
-Received: from frontend1.mail.m-online.net (frontend1.mail.intern.m-online.net
-	[192.168.8.180])
-	by mail-out.m-online.net (Postfix) with ESMTP id 3VgWly4jCjz3hhVq;
-	Sun, 29 Apr 2012 16:41:18 +0200 (CEST)
-Received: from localhost (dynscan1.mnet-online.de [192.168.8.164])
-	by mail.m-online.net (Postfix) with ESMTP id 3VgWly4zdMz4KLCx;
-	Sun, 29 Apr 2012 16:41:18 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at mnet-online.de
-Received: from smtp-auth.mnet-online.de ([192.168.8.180])
-	by localhost (dynscan1.mail.m-online.net [192.168.8.164]) (amavisd-new,
-	port 10024)
-	with ESMTP id lxnAOzIJeE-n; Sun, 29 Apr 2012 16:41:18 +0200 (CEST)
-Received: from diddl.denx.de (host-80-81-18-216.customer.m-online.net
-	[80.81.18.216]) by smtp-auth.mnet-online.de (Postfix) with ESMTPA;
-	Sun, 29 Apr 2012 16:41:18 +0200 (CEST)
-Received: from gemini.denx.de (unknown [10.0.0.2])
-	by diddl.denx.de (Postfix) with ESMTP id DB0DB1A272F;
-	Sun, 29 Apr 2012 16:41:17 +0200 (CEST)
-Received: from gemini.denx.de (localhost [IPv6:::1])
-	by gemini.denx.de (Postfix) with ESMTP id 99E6B202B38;
-	Sun, 29 Apr 2012 16:41:17 +0200 (CEST)
-To: Daniel Toussaint <daniel@dmhome.net>
-From: Wolfgang Denk <wd@denx.de>
+Return-Path: <bruce.ashfield@gmail.com>
+Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
+	[209.85.160.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A2035E00723
+	for <yocto@yoctoproject.org>; Sun, 29 Apr 2012 08:03:24 -0700 (PDT)
+Received: by pbbjt11 with SMTP id jt11so3725444pbb.35
+	for <yocto@yoctoproject.org>; Sun, 29 Apr 2012 08:03:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type:content-transfer-encoding;
+	bh=7/zlzMgBr9zSCxroW+16NSc83j3zya3u+xhszWUEQX4=;
+	b=Cgvtdx+kPSbLcCL6cv8LkaTtAjwz1XTm7GUI4nC0o2Vt1ebODFD1kIFjRPXWzucZab
+	s9vjc4s6H749w8uZFYEV4wPhRYvnBfSeE/zSYe3JJb4aQauTsexIG5L+B0MYVExppIBf
+	YZl5g2T9hIIdOyix3SQEZvZh1u5BimnWniSf78uxH5W7P7x0es6922yD9cPorAX5YZRD
+	teXCGeTy3PtswLl34Yt/mg1Z+4Ee+UGPNnI29if4+9z5b1vTl2xn0e7S9XoQVZLQF/lY
+	3dMbSxyKyp0NIe/mFmpOgOvQMPDX7KWwhVjsu3QeG+F5mEXhAQH0odLT5hYnfhwoImOg
+	SX0Q==
 MIME-Version: 1.0
-In-reply-to: <CADVYk4SBWkAnU4RL6k2_+1aedbFnfptohKffjGdaK6C2bs-6RQ@mail.gmail.com>
-References: <CADVYk4SBWkAnU4RL6k2_+1aedbFnfptohKffjGdaK6C2bs-6RQ@mail.gmail.com>
-Comments: In-reply-to Daniel Toussaint <daniel@dmhome.net>
-	message dated "Sun, 29 Apr 2012 21:16:44 +0800."
-Date: Sun, 29 Apr 2012 16:41:17 +0200
-Message-Id: <20120429144117.99E6B202B38@gemini.denx.de>
-Cc: yocto@yoctoproject.org
-Subject: Re: Building a Qt4-x11 app.
+Received: by 10.68.191.130 with SMTP id gy2mr5522356pbc.62.1335711804199; Sun,
+	29 Apr 2012 08:03:24 -0700 (PDT)
+Received: by 10.68.55.104 with HTTP; Sun, 29 Apr 2012 08:03:24 -0700 (PDT)
+In-Reply-To: <alpine.DEB.2.02.1204290608390.18791@oneiric>
+References: <alpine.DEB.2.02.1204271850580.3661@oneiric>
+	<CAMKF1sq+D5vPhm2A=s7+hMkUkX0mw4N57NdDrkdHzGRxQ=-ioQ@mail.gmail.com>
+	<alpine.DEB.2.02.1204290608390.18791@oneiric>
+Date: Sun, 29 Apr 2012 11:03:24 -0400
+Message-ID: <CADkTA4M9gGXZ_D70y7TEZG5SJUpPG-Zyo2mk84XUUKfDr0sNnw@mail.gmail.com>
+From: Bruce Ashfield <bruce.ashfield@gmail.com>
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: looking for recom for MIPS dev kit (*not* RS pro)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,38 +40,75 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 29 Apr 2012 14:41:20 -0000
-Content-type: text/plain; charset=UTF-8
-Content-transfer-encoding: 8bit
+X-List-Received-Date: Sun, 29 Apr 2012 15:03:24 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-Dear Daniel,
+On Sun, Apr 29, 2012 at 6:09 AM, Robert P. J. Day <rpjday@crashcourse.ca> w=
+rote:
+> On Sat, 28 Apr 2012, Khem Raj wrote:
+>
+>> On Fri, Apr 27, 2012 at 3:53 PM, Robert P. J. Day <rpjday@crashcourse.ca=
+> wrote:
+>> >
+>> > =A0a potential training client of mine would like an intro embedded
+>> > linux course ideally on a MIPS-based dev kit. =A0i'm aware that the
+>> > reference BSP for that in yocto is the routerstation pro, but i just
+>> > learned today that it's "end of life" so i'd rather get something
+>> > newer.
+>> >
+>> > =A0any recommendations on a decent, not stupidly expensive MIPS dev ki=
+t
+>>
+>> http://www.lemote.com/en/products/Notebook/2010/0310/112.html
+>>
+>> > that perhaps already has some yocto backing? =A0thanks.
+>> >
+>>
+>> i dont think yocto has a BSP for it though.
+>
+> =A0interesting. =A0but given that the routerstation pro is end of lifed,
+> are there any plans to switch to a different MIPS platform as the
+> yocto reference for MIPS? =A0just curious.
 
-In message <CADVYk4SBWkAnU4RL6k2_+1aedbFnfptohKffjGdaK6C2bs-6RQ@mail.gmail.com> you wrote:
-> I wish to run an application developed with QT in a Yocto filesystem.
-> The app should be linked against Qt4-X11 libs. What is the exact work
-> flow to get my app cross compiled on my x86_64 host ?
-> So far I have :
-> -> Build a complete core-image-sato with IPKG as a packaging system.
-> -> Build qt4-x11-free
-> -> Build qt4-tools-nativesdk
-> 
-> Now, I got something called qmake2 in the build directory
-> (sysroot-x86_64) , but it complains about not finding the right qmake
-> specs.
-> I got the feeling I am doing something fundamentally wrong with my
-> setup, can anyone enlighten me ?
+Yes there is a plan. The link that Khem sent is one that I've been watching=
+ and
+considering, but no decision has been made yet. We'll refresh the hardware
+reference BSPs in the 1.3 cycle.
 
-Try building "meta-toolchain-qte" for the cross development tools,
-and "core-image-qte-sdk" for a reasonably complete root file system
-that can also be used for native development when needed.
+Cheers,
 
-Best regards,
+Bruce
 
-Wolfgang Denk
+>
+> rday
+>
+> --
+>
+> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> Robert P. J. Day =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
+=A0 =A0 Ottawa, Ontario, CANADA
+> =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0http://crashcourse.ca
+>
+> Twitter: =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
+=A0 =A0 =A0 http://twitter.com/rpjday
+> LinkedIn: =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 htt=
+p://ca.linkedin.com/in/rpjday
+> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
--- 
-DENX Software Engineering GmbH,     MD: Wolfgang Denk & Detlev Zundel
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-Phone: (+49)-8142-66989-10 Fax: (+49)-8142-66989-80 Email: wd@denx.de
-Include the success of others in your dreams for your own success.
+
+
+--=20
+"Thou shalt not follow the NULL pointer, for chaos and madness await
+thee at its end"
 
