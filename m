@@ -1,19 +1,21 @@
 Return-Path: <tom.zanussi@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5E8EBE0044D
-	for <yocto@yoctoproject.org>; Mon, 30 Apr 2012 12:11:45 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 30 Apr 2012 12:11:44 -0700
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 03B1DE0137A
+	for <yocto@yoctoproject.org>; Mon, 30 Apr 2012 12:11:46 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 30 Apr 2012 12:11:46 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="138391952"
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="160071264"
 Received: from unknown (HELO localhost) ([10.255.12.127])
-	by orsmga002.jf.intel.com with ESMTP; 30 Apr 2012 12:11:44 -0700
+	by fmsmga002.fm.intel.com with ESMTP; 30 Apr 2012 12:11:46 -0700
 From: tom.zanussi@intel.com
 To: yocto@yoctoproject.org
-Date: Mon, 30 Apr 2012 14:12:12 -0500
-Message-Id: <cover.1335812928.git.tom.zanussi@intel.com>
+Date: Mon, 30 Apr 2012 14:12:14 -0500
+Message-Id: <3cea3e5b38f503cb2ac22bedf88e1ba14391c2ab.1335812928.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.0.4
-Subject: [PATCH 0/2] A couple yocto-bsp fixes, v3
+In-Reply-To: <cover.1335812928.git.tom.zanussi@intel.com>
+References: <cover.1335812928.git.tom.zanussi@intel.com>
+Subject: [PATCH 1/2] yocto-kernel: use BUILDDIR to find bblayers.conf
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -25,30 +27,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 30 Apr 2012 19:11:45 -0000
+X-List-Received-Date: Mon, 30 Apr 2012 19:11:47 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-Fixes for a couple yocto-bsp bugs.
+The current code assumes that builddir == srcdir/build, which it
+obviously isn't sometimes.  Use BUILDDIR to get the actual builddir
+being used.
 
-v2: fixed up the yocto-bsp help text as suggested by Darren Hart.
-v3: fixed more of the yocto-bsp help text as suggested by William Mills.
+Fixes [YOCTO #2219].
 
-The following changes since commit f39ba520d6f2477c99839a92049b1bb279f092cf:
-  Richard Purdie (1):
-        qt-4.8.1: Fix compile failures on qemux86
+Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
+---
+ scripts/lib/bsp/kernel.py |    7 ++++++-
+ 1 files changed, 6 insertions(+), 1 deletions(-)
 
-are available in the git repository at:
-
-  git://git.yoctoproject.org/poky-contrib.git tzanussi/yocto-bsp-fixes-2219-2330
-  http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/log/?h=tzanussi/yocto-bsp-fixes-2219-2330
-
-Tom Zanussi (2):
-  yocto-kernel: use BUILDDIR to find bblayers.conf
-  yocto-bsp: clarify help with reference to meta-intel
-
- scripts/lib/bsp/help.py   |   48 +++++++++++++++++++++++++++++++++++++++++---
- scripts/lib/bsp/kernel.py |    7 +++++-
- 2 files changed, 50 insertions(+), 5 deletions(-)
+diff --git a/scripts/lib/bsp/kernel.py b/scripts/lib/bsp/kernel.py
+index 360851b..8b3aa72 100644
+--- a/scripts/lib/bsp/kernel.py
++++ b/scripts/lib/bsp/kernel.py
+@@ -37,7 +37,12 @@ def find_bblayers(scripts_path):
+     """
+     Find and return a sanitized list of the layers found in BBLAYERS.
+     """
+-    bblayers_conf = os.path.join(scripts_path, "../build/conf/bblayers.conf")
++    try:
++        builddir = os.environ["BUILDDIR"]
++    except KeyError:
++        print "BUILDDIR not found, exiting. (Did you forget to source oe-init-build-env?)"
++        sys.exit(1)
++    bblayers_conf = os.path.join(builddir, "conf/bblayers.conf")
+ 
+     layers = []
+ 
+-- 
+1.7.0.4
 
 
