@@ -1,28 +1,30 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
-	[93.97.173.237])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 74734E0030B;
-	Mon, 30 Apr 2012 07:55:15 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q3UEtEvg004536;
-	Mon, 30 Apr 2012 15:55:14 +0100
-Received: from tim.rpsys.net ([127.0.0.1])
-	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
-	port 10024) with LMTP
-	id 04394-02; Mon, 30 Apr 2012 15:55:09 +0100 (BST)
-Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q3UEt5cQ004527
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
-	Mon, 30 Apr 2012 15:55:06 +0100
-Message-ID: <1335797707.7415.23.camel@ted>
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Michael Halstead <michael@yoctoproject.org>
-Date: Mon, 30 Apr 2012 15:55:07 +0100
-In-Reply-To: <4F9DA1E7.6070500@yoctoproject.org>
-References: <4F9DA1E7.6070500@yoctoproject.org>
-X-Mailer: Evolution 3.2.2- 
-Mime-Version: 1.0
-X-Virus-Scanned: amavisd-new at rpsys.net
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-lpp01m010-f48.google.com (mail-lpp01m010-f48.google.com
+	[209.85.215.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B9678E0030B;
+	Mon, 30 Apr 2012 08:00:42 -0700 (PDT)
+Received: by lagu2 with SMTP id u2so2568044lag.35
+	for <multiple recipients>; Mon, 30 Apr 2012 08:00:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=+Pb6QfpVsTTnLg9oPvDxaQgC/sWbixQQ5zvglXHXge8=;
+	b=DCaWRaD2CbzvUlKoWEJlOJR7vCW0U4KdDSWwuOh7ER5sEAL4wG7XTM+cUtJW/AwDXJ
+	8dN1RzPwXHMchE1K+vaiT3mBA2q1siP+B+AK6T8+zlDoFXOsVoHLCMJskCYrDgkRIFmx
+	67iQLiiNVvEuKg/Wnfv8ZkMG7Dx3omA6C8FK+3uf62BV7De+dg9vRsFtdof3eVFJlHeh
+	hY0/gdrsNKDj2t5Y9TG6E6pvNjKIV3YZ8D1VB/jhpWDg5jvNWJR2MYsU/l021puG6M4L
+	DTlhqwHJEivEGuwQWhIByOn/wXiKOOABjnPurJBcu70x5ayhUeShGFwrItww5XeCISUk
+	m8dg==
+Received: by 10.112.32.72 with SMTP id g8mr4096729lbi.43.1335798041573; Mon,
+	30 Apr 2012 08:00:41 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.152.129.134 with HTTP; Mon, 30 Apr 2012 08:00:10 -0700 (PDT)
+In-Reply-To: <1335797707.7415.23.camel@ted>
+References: <4F9DA1E7.6070500@yoctoproject.org> <1335797707.7415.23.camel@ted>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Mon, 30 Apr 2012 08:00:10 -0700
+Message-ID: <CAMKF1sq1oJY3GL4pOJb3bzCq6hRk46TdrAcUwvEX2kLLrXXKDA@mail.gmail.com>
+To: Richard Purdie <richard.purdie@linuxfoundation.org>
 Cc: Yocto Project Discussion <yocto@yoctoproject.org>,
 	yocto-infrastructure@yoctoproject.org
 Subject: Re: [Yocto-infrastructure] Bugzilla Upgrade Complete
@@ -37,23 +39,15 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 30 Apr 2012 14:55:16 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 30 Apr 2012 15:00:43 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On Sun, 2012-04-29 at 13:17 -0700, Michael Halstead wrote:
-> The upgrade to Bugzilla 4.2.1 is complete. The upgrade completed with
-> 0 errors and 0 warnings. Total downtime was 6 minutes. I am still
-> working on smoothly re-categorizing and renaming classifications,
-> products, and components.
-> 
-> Here are a list of new features from bugzilla.org.
+On Mon, Apr 30, 2012 at 7:55 AM, Richard Purdie
+<richard.purdie@linuxfoundation.org> wrote:
+> I noticed I'm starting to get bugzilla emails in HTML format. Its not a
+> major issue, just a bit of a surprise!
 
-I noticed I'm starting to get bugzilla emails in HTML format. Its not a
-major issue, just a bit of a surprise!
-
-Cheers,
-
-Richard
-
+thats default, I think you can adjust it in your user profile though.
+I would prefer
+default to be text though but thats just me.
 
