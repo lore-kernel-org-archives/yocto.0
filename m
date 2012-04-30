@@ -1,48 +1,36 @@
-Return-Path: <omprakash.pal@stericsson.com>
-Received: from eu1sys200aog115.obsmtp.com (eu1sys200aog115.obsmtp.com
-	[207.126.144.139])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 350D0E0030B
-	for <yocto@yoctoproject.org>; Mon, 30 Apr 2012 01:45:33 -0700 (PDT)
-Received: from beta.dmz-eu.st.com ([164.129.1.35]) (using TLSv1) by
-	eu1sys200aob115.postini.com ([207.126.147.11]) with SMTP
-	ID DSNKT55RK/3Ni9CrVmPQfUv7NEJvO2GZOKoh@postini.com;
-	Mon, 30 Apr 2012 08:45:34 UTC
-Received: from zeta.dmz-eu.st.com (zeta.dmz-eu.st.com [164.129.230.9])
-	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 9A5C1117;
-	Mon, 30 Apr 2012 08:45:22 +0000 (GMT)
-Received: from relay2.stm.gmessaging.net (unknown [10.230.100.18])
-	by zeta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 46CD02580;
-	Mon, 30 Apr 2012 08:45:22 +0000 (GMT)
-Received: from exdcvycastm003.EQ1STM.local (alteon-source-exch [10.230.100.61])
-	(using TLSv1 with cipher RC4-MD5 (128/128 bits))
-	(Client CN "exdcvycastm003", Issuer "exdcvycastm003" (not verified))
-	by relay2.stm.gmessaging.net (Postfix) with ESMTPS id 27702A8083;
-	Mon, 30 Apr 2012 10:45:18 +0200 (CEST)
-Received: from EXDCVYMBSTM006.EQ1STM.local ([10.230.100.3]) by
-	exdcvycastm003.EQ1STM.local ([10.230.100.1]) with mapi; Mon, 30 Apr 2012
-	10:45:21 +0200
-From: Om Prakash PAL <omprakash.pal@stericsson.com>
-To: Khem Raj <raj.khem@gmail.com>
-Date: Mon, 30 Apr 2012 10:45:20 +0200
-Thread-Topic: [yocto] Porting of specific Kernel/Driver into yocto.
-Thread-Index: Ac0mOL6jqvLU4NkdS2qEzAt3ksAkMgAcX3Ke
-Message-ID: <3ED83A9DB3B6D94CA68BF7C03F2981D35B042416CD@EXDCVYMBSTM006.EQ1STM.local>
-References: <3ED83A9DB3B6D94CA68BF7C03F2981D35A844F357F@EXDCVYMBSTM006.EQ1STM.local>
-	<4F7C42E5.8000301@windriver.com>
-	<3ED83A9DB3B6D94CA68BF7C03F2981D35AE63C1B66@EXDCVYMBSTM006.EQ1STM.local>
-	<4F825F65.4040706@windriver.com>
-	<3ED83A9DB3B6D94CA68BF7C03F2981D35AE63C1B69@EXDCVYMBSTM006.EQ1STM.local>
-	<CADkTA4PnNWTbtpzVu=Qhegg87Ai=XNXgH5VD6c7mCK=BYj3dgg@mail.gmail.com>
-	<3ED83A9DB3B6D94CA68BF7C03F2981D35B042416CC@EXDCVYMBSTM006.EQ1STM.local>,
-	<CAMKF1srQQsDuVgGjpom2V0hC-EqWJE=3upfkcf-2GgGpQO8Y+w@mail.gmail.com>
-In-Reply-To: <CAMKF1srQQsDuVgGjpom2V0hC-EqWJE=3upfkcf-2GgGpQO8Y+w@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+Return-Path: <daniel.toussaint@gmail.com>
+Received: from mail-lb0-f176.google.com (mail-lb0-f176.google.com
+	[209.85.217.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 67F5AE0030B
+	for <yocto@yoctoproject.org>; Mon, 30 Apr 2012 03:04:09 -0700 (PDT)
+Received: by lbbgg13 with SMTP id gg13so2335262lbb.35
+	for <yocto@yoctoproject.org>; Mon, 30 Apr 2012 03:04:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:sender:in-reply-to:references:date
+	:x-google-sender-auth:message-id:subject:from:to:cc:content-type
+	:content-transfer-encoding;
+	bh=WciRxAJL/u+6iZ7TX7UKy2jAi0x9xcic77lYsEnhdWE=;
+	b=S2yb3UvRwIZNUWEf0uwsfYIC1DK0ZMgOGaxMh1BJQFmCZzqnSct3aDR6oSTQOEABPe
+	k0HGXMrPfiNEtOPpjGKrMxNCG9AH+gYcxhucK7U6JXYos3AvKPxYnErymXbsmwB/9HB8
+	1zqL2apScMPgC0iouJso4LiTcXhW7vlbu/CEcxUYA0eIc7lqh3YFijF6N0fHRWMPGbMt
+	KMS67R/Ke5m/5C0etwZxuypBMZ7QEdjqrgs2QysCFWewU8ziHuQZr4SsOTuf5Cy1LhQB
+	mg0oxQRRLW5u3eGxMogVIhP/o+avPIjz72njWbhOrEtArfw6RFSKWkTd52Wbg4gZQarT
+	EONw==
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Porting of specific Kernel/Driver into yocto.
+Received: by 10.152.132.166 with SMTP id ov6mr4700408lab.35.1335780248111;
+	Mon, 30 Apr 2012 03:04:08 -0700 (PDT)
+Sender: daniel.toussaint@gmail.com
+Received: by 10.112.82.10 with HTTP; Mon, 30 Apr 2012 03:04:08 -0700 (PDT)
+In-Reply-To: <20120429211959.3f12671b@eb-e6520>
+References: <CADVYk4SBWkAnU4RL6k2_+1aedbFnfptohKffjGdaK6C2bs-6RQ@mail.gmail.com>
+	<20120429211959.3f12671b@eb-e6520>
+Date: Mon, 30 Apr 2012 18:04:08 +0800
+X-Google-Sender-Auth: Bc1L5eKXJ8T89CrD1rXNya-4vbo
+Message-ID: <CADVYk4SjZfheURc8fkeqZZz-tcuUf1pAxnw6DPyQrM3Prbdbng@mail.gmail.com>
+From: Daniel Toussaint <daniel@dmhome.net>
+To: =?ISO-8859-1?Q?Eric_B=E9nard?= <eric@eukrea.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: Building a Qt4-x11 app.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,61 +42,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 30 Apr 2012 08:45:34 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Mon, 30 Apr 2012 10:04:09 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-
-________________________________________
-From: Khem Raj [raj.khem@gmail.com]
-Sent: Monday, April 30, 2012 12:18 AM
-To: Om Prakash PAL
-Cc: Bruce Ashfield; yocto@yoctoproject.org
-Subject: Re: [yocto] Porting of specific Kernel/Driver into yocto.
-
-On Sun, Apr 29, 2012 at 2:58 AM, Om Prakash PAL
-<omprakash.pal@stericsson.com> wrote:
-> Hi Bruce,
-> for porting of our local kernel,we have created an BSP layer and to chang=
-e the the kernel,  we have created an linux-yocto_3.0.bbappend file inside =
-meta<BSP>/recipes-kernel/linux/
-> like this:-
+On Mon, Apr 30, 2012 at 3:19 AM, Eric B=E9nard <eric@eukrea.com> wrote:
+> Le Sun, 29 Apr 2012 21:16:44 +0800,
+> Daniel Toussaint <daniel@dmhome.net> a =E9crit :
 >
-> FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
+>> I wish to run an application developed with QT in a Yocto filesystem.
+>> The app should be linked against Qt4-X11 libs. What is the exact work
+>> flow to get my app cross compiled on my x86_64 host ?
+>> So far I have :
+>> -> Build a complete core-image-sato with IPKG as a packaging system.
+>> -> Build qt4-x11-free
+>> -> Build qt4-tools-nativesdk
+>>
+>> Now, I got something called qmake2 in the build directory
+>> (sysroot-x86_64) , but it complains about not finding the right qmake
+>> specs.
+>> I got the feeling I am doing something fundamentally wrong with my
+>> setup, can anyone enlighten me ?
+>>
+> simply write a recipe for your app and let the build system build
+> your application.
 >
-> COMPATIBLE_MACHINE_<BSP_name> =3D "BSP_name"
+> The recipe can be quite simple if your app doesn't depends on other
+> libs than qt4 :
 >
-> # KMACHINE is the branch to build
-> KMACHINE_<BSP_name> =3D "local_branch"
+> DESCRIPTION =3D "Application QT4-X11"
+> SECTION =3D "Apps"
+> LICENSE =3D "yourlicense"
+> LIC_FILES_CHKSUM =3D "file://youlicense;md5=3Dyourmd5"
 >
-> SRCREV_machine_pn_linux-yocto_<BSP_name> ?=3D "XXXXXXXX" (here we have as=
-sign top commit ID of our local kernel)
+> inherit qt4x11
+>
+> SRC_URI =3D "file://application.tar.bz2"
+> # or directly download it from a VCS
+>
+> # may be necessary :
+> EXTRA_QMAKEVARS_PRE +=3D "PREFIX=3D/usr"
+> EXTRA_OEMAKE +=3D "INSTALL_ROOT=3D${D}"
+>
+> do_install() {
+> =A0 =A0 =A0 =A0oe_runmake install INSTALL_ROOT=3D${D}
+> }
+>
+> Eric
 
-that should be SRCREV_machine_pn-linux-yocto_<BSP_name>
+Thanks a lot that worked great !
 
-yes I have done same and same Error is coming again then set=20
-YOCTO_KERNEL_EXTERNAL_BRANCH =3D"local_branch"; in conf/local.conf file and=
- now its working bu now problem is something different:
-
-ERROR: Function 'do_patch' failed (see /home/apallan/yocto/hello_build/tmp/=
-work/u8500-poky-linux-gnueabi/linux-yocto-3.0.4+git2+0a81a5eaa7a5c1216cbd08=
-7bec5ec7cd8a448383-r3/temp/log.do_patch.20524 for further information)
-ERROR: Logfile of failure stored in: /home/apallan/yocto/hello_build/tmp/wo=
-rk/u8500-poky-linux-gnueabi/linux-yocto-3.0.4+git2+0a81a5eaa7a5c1216cbd087b=
-ec5ec7cd8a448383-r3/temp/log.do_patch.20524
-Log data follows:
-| ERROR. meta data not found, check upstream repo for tags and branches
-| ERROR: Function 'do_patch' failed (see /home/apallan/yocto/hello_build/tm=
-p/work/u8500-poky-linux-gnueabi/linux-yocto-3.0.4+git2+0a81a5eaa7a5c1216cbd=
-087bec5ec7cd8a448383-r3/temp/log.do_patch.20524 for further information)
-NOTE: package linux-yocto-3.0.4+git2+0a81a5eaa7a5c1216cbd087bec5ec7cd8a4483=
-83-r3: task do_patch: Failed
-ERROR: Task 516 (/home/apallan/yocto/poky-edison-6.0/meta/recipes-kernel/li=
-nux/linux-yocto_3.0.bb, do_patch) failed with exit code '1'
-
-Best Regards,
-Om Prakash Pal
-
-
+--=20
+Gtalk: daniel.toussaint@gmail.com
+Skype: supertoussi
+Cell: +886-915-680-291
 
