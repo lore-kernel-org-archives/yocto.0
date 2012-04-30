@@ -1,26 +1,26 @@
 Return-Path: <dvhart@linux.intel.com>
 Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B0109E0030B
-	for <yocto@yoctoproject.org>; Mon, 30 Apr 2012 16:48:51 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 67F73E0030B
+	for <yocto@yoctoproject.org>; Mon, 30 Apr 2012 16:49:56 -0700 (PDT)
 Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 30 Apr 2012 16:48:51 -0700
+	by azsmga102.ch.intel.com with ESMTP; 30 Apr 2012 16:49:52 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="137223436"
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="137223626"
 Received: from unknown (HELO envy.home) ([10.255.12.63])
-	by azsmga001.ch.intel.com with ESMTP; 30 Apr 2012 16:48:50 -0700
-Message-ID: <4F9F24C4.1050907@linux.intel.com>
-Date: Mon, 30 Apr 2012 16:48:20 -0700
+	by azsmga001.ch.intel.com with ESMTP; 30 Apr 2012 16:49:52 -0700
+Message-ID: <4F9F2501.4040002@linux.intel.com>
+Date: Mon, 30 Apr 2012 16:49:21 -0700
 From: Darren Hart <dvhart@linux.intel.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:12.0) Gecko/20120424 Thunderbird/12.0
 MIME-Version: 1.0
 To: tom.zanussi@intel.com
-References: <cover.1335812928.git.tom.zanussi@intel.com>
-	<3cea3e5b38f503cb2ac22bedf88e1ba14391c2ab.1335812928.git.tom.zanussi@intel.com>
-In-Reply-To: <3cea3e5b38f503cb2ac22bedf88e1ba14391c2ab.1335812928.git.tom.zanussi@intel.com>
+References: <3cea3e5b38f503cb2ac22bedf88e1ba14391c2ab.1335812928.git.tom.zanussi@intel.com>
+	<bd53feca27fc84d1b8bfbf0d2979a1fef7228e44.1335812928.git.tom.zanussi@intel.com>
+In-Reply-To: <bd53feca27fc84d1b8bfbf0d2979a1fef7228e44.1335812928.git.tom.zanussi@intel.com>
 X-Enigmail-Version: 1.4.1
 Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 1/2] yocto-kernel: use BUILDDIR to find bblayers.conf
+Subject: Re: [PATCH 2/2] yocto-bsp: clarify help with reference to meta-intel
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,45 +32,100 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 30 Apr 2012 23:48:51 -0000
+X-List-Received-Date: Mon, 30 Apr 2012 23:49:56 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
+
+
 
 On 04/30/2012 12:12 PM, tom.zanussi@intel.com wrote:
 > From: Tom Zanussi <tom.zanussi@intel.com>
 > 
-> The current code assumes that builddir == srcdir/build, which it
-> obviously isn't sometimes.  Use BUILDDIR to get the actual builddir
-> being used.
+> The current yocto-bsp help assumes knowledge that the meta-intel layer
+> needs to be cloned before it's put into the BBLAYERS.  Avoid the
+> guesswork and state the details explicitly in the help.
 > 
-> Fixes [YOCTO #2219].
+> Also, the shorter 'usage' string doesn't mention it at all; it would
+> help to at minimum mention it and refer the user to the detailed help.
+> 
+> Fixes [YOCTO #2330].
 > 
 > Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
 
 Acked-by: Darren Hart <dvhart@linux.intel.com>
 
 > ---
->  scripts/lib/bsp/kernel.py |    7 ++++++-
->  1 files changed, 6 insertions(+), 1 deletions(-)
+>  scripts/lib/bsp/help.py |   48 +++++++++++++++++++++++++++++++++++++++++++---
+>  1 files changed, 44 insertions(+), 4 deletions(-)
 > 
-> diff --git a/scripts/lib/bsp/kernel.py b/scripts/lib/bsp/kernel.py
-> index 360851b..8b3aa72 100644
-> --- a/scripts/lib/bsp/kernel.py
-> +++ b/scripts/lib/bsp/kernel.py
-> @@ -37,7 +37,12 @@ def find_bblayers(scripts_path):
->      """
->      Find and return a sanitized list of the layers found in BBLAYERS.
->      """
-> -    bblayers_conf = os.path.join(scripts_path, "../build/conf/bblayers.conf")
-> +    try:
-> +        builddir = os.environ["BUILDDIR"]
-> +    except KeyError:
-> +        print "BUILDDIR not found, exiting. (Did you forget to source oe-init-build-env?)"
-> +        sys.exit(1)
-> +    bblayers_conf = os.path.join(builddir, "conf/bblayers.conf")
+> diff --git a/scripts/lib/bsp/help.py b/scripts/lib/bsp/help.py
+> index f78b09b..2d16d2e 100644
+> --- a/scripts/lib/bsp/help.py
+> +++ b/scripts/lib/bsp/help.py
+> @@ -115,6 +115,18 @@ yocto_bsp_create_usage = """
+>   'properties' that will be used to fill out the BSP-specific portions
+>   of the BSP.  The possible values for the 'karch' paramter can be
+>   listed via 'yocto-bsp list karch'.
+> +
+> + NOTE: Once created, you should add your new layer to your
+> + bblayers.conf file in order for it to be subsequently seen and
+> + modified by the yocto-kernel tool.
+> +
+> + See 'yocto bsp help create' for more detailed instructions.
+> +
+> + NOTE: For x86- and x86_64-based BSPs, the generated BSP assumes the
+> + presence of the meta-intel layer. Ensure the meta-intel layer is
+> + present and added to bblayers.conf.
+> +
+> + See 'yocto bsp help create' for more detailed instructions.
+>  """
 >  
->      layers = []
+>  yocto_bsp_create_help = """
+> @@ -156,12 +168,40 @@ DESCRIPTION
+>      current directory, and is useful for debugging.
 >  
+>      NOTE: Once created, you should add your new layer to your
+> -    bblayers.conf file in order for it to be subsquently seen and
+> +    bblayers.conf file in order for it to be subsequently seen and
+>      modified by the yocto-kernel tool.
+>  
+> -    NOTE for x86- and x86_64-based BSPs: The generated BSP assumes the
+> -    presence of the of the meta-intel layer, so you should also have a
+> -    meta-intel layer present and added to your bblayers.conf as well.
+> +    For example, assuming your poky repo is at /path/to/poky, your new
+> +    BSP layer is at /path/to/poky/meta-mybsp, and your build directory
+> +    is /path/to/build:
+> +
+> +    $ gedit /path/to/build/conf/bblayers.conf
+> +
+> +    BBLAYERS ?= " \\
+> +      /path/to/poky/meta \\
+> +      /path/to/poky/meta-yocto \\
+> +      /path/to/poky/meta-mybsp \\
+> +      "
+> +
+> +    NOTE: For x86- and x86_64-based BSPs, the generated BSP assumes
+> +    the presence of the meta-intel layer. Ensure the meta-intel layer
+> +    is present and added to bblayers.conf.
+> +
+> +    For example, assuming your poky repo is at /path/to/poky, your new
+> +    BSP layer is at /path/to/poky/meta-mybsp, and your build directory
+> +    is /path/to/build:
+> +
+> +    $ cd /path/to/poky
+> +    $ git clone git://git.yoctoproject.org/meta-intel.git
+> +
+> +    $ gedit /path/to/build/conf/bblayers.conf
+> +
+> +    BBLAYERS ?= " \\
+> +      /path/to/poky/meta \\
+> +      /path/to/poky/meta-yocto \\
+> +      /path/to/poky/meta-intel \\
+> +      /path/to/poky/meta-mybsp \\
+> +      "
+>  """
+>  
+>  yocto_bsp_list_usage = """
 
 -- 
 Darren Hart
