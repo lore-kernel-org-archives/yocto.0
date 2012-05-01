@@ -1,21 +1,21 @@
-Return-Path: <dvhart@linux.intel.com>
+Return-Path: <kishore.k.bodke@intel.com>
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D14B1E00723
-	for <yocto@yoctoproject.org>; Tue,  1 May 2012 15:29:12 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 72A5DE00723
+	for <yocto@yoctoproject.org>; Tue,  1 May 2012 16:09:01 -0700 (PDT)
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 01 May 2012 15:29:12 -0700
+	by orsmga102.jf.intel.com with ESMTP; 01 May 2012 16:09:01 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="138900722"
-Received: from unknown (HELO localhost) ([10.255.12.136])
-	by orsmga002.jf.intel.com with ESMTP; 01 May 2012 15:15:10 -0700
-From: Darren Hart <dvhart@linux.intel.com>
-To: Yocto Project <yocto@yoctoproject.org>,
-	Bruce Ashfield <bruce.ashfield@windriver.com>,
-	Tom Zanussi <tom.zanussi@intel.com>
-Date: Tue,  1 May 2012 15:14:37 -0700
-Message-Id: <cover.1335908646.git.dvhart@linux.intel.com>
-X-Mailer: git-send-email 1.7.7.6
-Subject: [PATCH 0/1][linux-yocto-3.2] pch_gbe: Do not abort probe on bad MAC
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="138914942"
+Received: from rsaxena-rosecity.sc.intel.com (HELO localhost)
+	([143.183.188.83])
+	by orsmga002.jf.intel.com with ESMTP; 01 May 2012 16:09:01 -0700
+From: rahul.saxena@intel.com
+To: yocto@yoctoproject.org, tom.zanussi@intel.com,
+	bruce.ashfield@windriver.com, kishore.k.bodke@intel.com
+Date: Tue,  1 May 2012 15:58:40 -0700
+Message-Id: <cover.1335911494.git.rahul.saxena@intel.com>
+X-Mailer: git-send-email 1.7.4.1
+Subject: [meta-intel][PATCH 0/1] Add SRCREV of yocto/pvr kernel branch
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,27 +27,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 01 May 2012 22:29:12 -0000
+X-List-Received-Date: Tue, 01 May 2012 23:09:01 -0000
 
-This somehow missed the 3.0 to 3.2 update. It is required for networking
-on the sys940x BSP. Please apply to standard/base and derived branches.
+From: Rahul Saxena <rahul.saxena@intel.com>
 
-The following changes since commit 900717638fab9d2b25be35f3612ccfd95ceb31d1:
+SRCREV for yocto/pvr was needed after the new rev of the kernel pvr patches were added
 
-  Merge branch 'yocto/standard/base' into standard/base (2012-03-16 10:43:42 -0400)
+Signed-off-by: Rahul Saxena <rahul.saxena@.intel.com>
+
+--
+The following changes since commit 0861f2513ebe7e1ad18291664356cfeab3c196b9:
+
+  meta-cedartrail: fix README to state tools-testapps needed for Glxgears (2012-04-16 16:34:31 -0500)
 
 are available in the git repository at:
+  git://git.pokylinux.org/meta-intel-contrib rsaxena-edison
+  http://git.pokylinux.org/cgit.cgi/meta-intel-contrib/log/?h=rsaxena-edison
 
-  git://git.infradead.org/users/dvhart/linux-yocto-3.2.git dvhart/standard/pch_gbe
-  http://git.infradead.org/users/dvhart/linux-yocto-3.2.git/shortlog/refs/heads/dvhart/standard/pch_gbe
+Rahul Saxena (1):
+  meta-cedartrail: add SRCREV of yocto/pvr kernel branch
 
-Darren Hart (1):
-  pch_gbe: Do not abort probe on bad MAC
-
- .../net/ethernet/oki-semi/pch_gbe/pch_gbe_main.c   |   17 ++++++++++++++---
- 1 files changed, 14 insertions(+), 3 deletions(-)
+ .../linux/linux-yocto-rt_3.0.bbappend              |    3 +--
+ .../recipes-kernel/linux/linux-yocto_3.0.bbappend  |    3 ++-
+ 2 files changed, 3 insertions(+), 3 deletions(-)
 
 -- 
-1.7.7.6
+1.7.4.1
 
 
