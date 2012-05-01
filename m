@@ -1,37 +1,21 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
-	[209.85.160.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E0F9FE01374
-	for <yocto@yoctoproject.org>; Tue,  1 May 2012 07:49:12 -0700 (PDT)
-Received: by pbbrq8 with SMTP id rq8so1664552pbb.35
-	for <yocto@yoctoproject.org>; Tue, 01 May 2012 07:49:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=message-id:date:from:user-agent:mime-version:to:cc:subject
-	:references:in-reply-to:x-enigmail-version:content-type
-	:content-transfer-encoding;
-	bh=WQtapCvywywsw0b/b0fw3TZNrj/3WOaeeYNGlkvyinE=;
-	b=Io6MK+bK+Fyl9zA0AookDBer3XGjY8G07NemsXtb3tTagTvqqmOMfuBSA98YTdoUxn
-	WRglTsibTbeQw8kwZT8fwV4Ob97c7tG26qAgvEOPV3RlynknjGSo2rIYkByXtgZIhucS
-	pF9D++NdWJzsds4i9k/1By8hrMI79MMkC3RPOfGQnV7dSmaxC8K3sWVKJaROkKGR5FB6
-	j1l+A6Aue0Ys6IK0bRS/Iick42otMg1dFT4H33lgAXfwxucer1Kxpzq7LxSx4jMS1Iea
-	pnc7bW5ASkqRywjupUYh7kX61mSt62mjeTsas2PUVNHOylOQKusD+PZ6pHN61qPy5Tt9
-	uPZQ==
-Received: by 10.68.226.99 with SMTP id rr3mr57531291pbc.48.1335883752746;
-	Tue, 01 May 2012 07:49:12 -0700 (PDT)
-Received: from [192.168.1.104] (99-57-140-209.lightspeed.sntcca.sbcglobal.net.
-	[99.57.140.209])
-	by mx.google.com with ESMTPS id nv2sm9831289pbb.6.2012.05.01.07.49.10
-	(version=SSLv3 cipher=OTHER); Tue, 01 May 2012 07:49:11 -0700 (PDT)
-Message-ID: <4F9FF7E2.7010308@gmail.com>
-Date: Tue, 01 May 2012 07:49:06 -0700
-From: Khem Raj <raj.khem@gmail.com>
-User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:11.0) Gecko/20120411 Thunderbird/11.0.1
-MIME-Version: 1.0
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 45054E01374
+	for <yocto@yoctoproject.org>; Tue,  1 May 2012 07:58:38 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 01 May 2012 07:58:38 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="138738152"
+Received: from unknown (HELO [10.255.12.170]) ([10.255.12.170])
+	by orsmga002.jf.intel.com with ESMTP; 01 May 2012 07:58:37 -0700
+From: Tom Zanussi <tom.zanussi@intel.com>
 To: Frans Meulenbroeks <fransmeulenbroeks@gmail.com>
-References: <CACW_hTYtBp5Px_7bYcKY86fqisZEgX7PvJS4kk6JPf2Xrn8TDA@mail.gmail.com>
 In-Reply-To: <CACW_hTYtBp5Px_7bYcKY86fqisZEgX7PvJS4kk6JPf2Xrn8TDA@mail.gmail.com>
-X-Enigmail-Version: 1.4.1
+References: <CACW_hTYtBp5Px_7bYcKY86fqisZEgX7PvJS4kk6JPf2Xrn8TDA@mail.gmail.com>
+Date: Tue, 01 May 2012 09:58:37 -0500
+Message-ID: <1335884317.27056.93.camel@elmorro>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.28.3 
 Cc: yocto@yoctoproject.org
 Subject: Re: bsp experiences
 X-BeenThere: yocto@yoctoproject.org
@@ -45,51 +29,111 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 01 May 2012 14:49:13 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Tue, 01 May 2012 14:58:38 -0000
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
------BEGIN PGP SIGNED MESSAGE-----
-Hash: SHA1
+Hi Frans,
 
-On 05/01/2012 07:21 AM, Frans Meulenbroeks wrote:
+Thanks for your input, comments below...
+
+On Tue, 2012-05-01 at 16:21 +0200, Frans Meulenbroeks wrote:
 > Dear all,
 > 
-> In this email I'd like to share my experiences wrt creating a new
-> bsp. I hope this is useful for someone (e.g. for updating the doc).
-> Feel free to point out the n00bish errors I made, or where I could
-> have improved.
+> In this email I'd like to share my experiences wrt creating a new bsp.
+> I hope this is useful for someone (e.g. for updating the doc). Feel
+> free to point out the n00bish errors I made, or where I could have
+> improved.
 > 
-> Aim was to bring my current board (powerpc mpc8313e based) onto
-> yocto 1.2 This board is already working under oe classic.
+> Aim was to bring my current board (powerpc mpc8313e based) onto yocto 1.2
+> This board is already working under oe classic.
 > 
-> I started fetching poky-denzil-7.0. Tested by building
-> core-image-minimal. No problems here.
+> I started fetching poky-denzil-7.0.
+> Tested by building core-image-minimal. No problems here.
 > 
-> Then I wanted to add my own bsp. Decided to use the bsp-guide as a
-> starter.
+> Then I wanted to add my own bsp. Decided to use the bsp-guide as a starter.
 > 
-> Tried to use yocto-bsp with the standard 7.0 setup (where there is
-> a poky-denzil-7.0-build dir adjacent to the soruce dir). yocto-bsp
-> when invoked complained with: IOError: [Errno 2] No such file or
-> directory: 
+> Tried to use yocto-bsp with the standard 7.0 setup (where there is a
+> poky-denzil-7.0-build dir adjacent to the soruce dir).
+> yocto-bsp when invoked complained with:
+> IOError: [Errno 2] No such file or directory:
 > '/home/frans/poky-denzil-7.0/scripts/../build/conf/bblayers.conf'
 > 
 
-Did you use the environment script (oe-init-build-env) to initialize
-your build env ?
+This should be fixed by the fix for this bug:
 
-> I resolved this for now by making
-> /home/frans/poky-denzil-7.0/build/ a symlink to
-> /home/frans/poky-denzil-7.0-build Not sure if that is the desired
-> solution but anyway this allowed me to move forward
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=2219
+
+which didn't make it into the release, and hasn't been pulled into
+master yet either...
+
+But actually that should only apply to yocto-kernel, not yocto-bsp.
+
+Can you provide more info on your exact setup and commands you used?
+
+> I resolved this for now by making /home/frans/poky-denzil-7.0/build/ a
+> symlink to /home/frans/poky-denzil-7.0-build
+> Not sure if that is the desired solution but anyway this allowed me to
+> move forward
 > 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.11 (GNU/Linux)
-Comment: Using GnuPG with Mozilla - http://enigmail.mozdev.org/
+> Reinvoked yocto-bsp create, this indeed gave progress.
+> Now had to decide on the machine branch to start this on. As mpc8315
+> is fairly close decide to start with that one.
+> tuning support was a bit tough. The 8313 machine conf file in
+> oe-classic said ppce300c3, so used ppce300c2 as a starter
+> next modified the file that contains the device tree to the default 8313 dts.
+> 
+> That generated the layer.
+> Still had to add the layer to bblayers.conf (I was somewhat surprised
+> by this as the script before complained about not being able to find
+> that file so I somehow expected it to be added automatically)
+> 
 
-iEYEARECAAYFAk+f9+IACgkQuwUzVZGdMxQfOACeJ/ED83N3MWpssJ9Akspk6qVw
-CDEAnibX0Spq7ckffJI3Lh9adZS+Tzc1
-=Kdko
------END PGP SIGNATURE-----
+The tools are conservative about changing anything outside of what they
+generated - not sure it makes sense to have them changing
+bblayers.conf...
+
+> Also went to conf/machine in my bsp and changed it to use
+> tune-ppce300c3 instead of c2, and created this include file by copying
+> the c2 file to c3 and renaming all references to c2 by c3 (as these
+> were the only changes when comparing the oe classic c2 and c3 tune inc
+> files.
+> 
+> While building core-image-minimal, building the kernel failed because
+> recipes-kernel/linux/linux-yocto_3.2.bbappend had some references to
+> mpc8315*. Replaced these with mpc8313*. (not fully sure if that is
+> fully sound though; anyway I need to hack the kernel part anyway).
+> And now, while typing this, things are happily humming along, giving
+> me time to type this message.
+> 
+
+The ppc template support is pretty much untested - I focused only on
+platforms I had hardware support for and didn't do much with the others,
+as mentioned in the submission.
+
+So I'll be happy to change the templates to make them match reality and
+be more useful out-of the box for those platforms I don't know much
+about.
+
+The other thing to note however is that the tool is meant to give a
+starting point which will likely need to be tweaked in order to actually
+work on the hardware.  It should at least compile, though...
+
+Tom
+
+> Next step is probably see if I can run the executables created; if so,
+> move on to adding my own image recipe, and see if I can get that
+> going.
+> After that hack the kernel recipe (so it uses my own defconfig and
+> device tree, and add our own drivers).
+> I'll write a followup email if there are things that could e.g. be
+> avoided by updating the docs.
+> 
+> Frans
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
+
 
