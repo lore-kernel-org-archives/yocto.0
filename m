@@ -1,25 +1,29 @@
-Return-Path: <mark.hatle@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EC0C1E0030B
-	for <yocto@yoctoproject.org>; Tue,  1 May 2012 08:33:28 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q41FXSDe003682
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Tue, 1 May 2012 08:33:28 -0700 (PDT)
-Received: from msp-dhcp15.wrs.com (172.25.34.15) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Tue, 1 May 2012 08:33:28 -0700
-Message-ID: <4FA00247.8030705@windriver.com>
-Date: Tue, 1 May 2012 10:33:27 -0500
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6;
-	rv:12.0) Gecko/20120420 Thunderbird/12.0
-MIME-Version: 1.0
-To: <yocto@yoctoproject.org>
-References: <CACW_hTYtBp5Px_7bYcKY86fqisZEgX7PvJS4kk6JPf2Xrn8TDA@mail.gmail.com>
-In-Reply-To: <CACW_hTYtBp5Px_7bYcKY86fqisZEgX7PvJS4kk6JPf2Xrn8TDA@mail.gmail.com>
-Subject: Re: bsp experiences
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
+	[93.97.173.237])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B05C4E0030B
+	for <yocto@yoctoproject.org>; Tue,  1 May 2012 08:50:29 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q41FoPHi015328;
+	Tue, 1 May 2012 16:50:25 +0100
+Received: from tim.rpsys.net ([127.0.0.1])
+	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
+	port 10024) with LMTP
+	id 15117-01; Tue,  1 May 2012 16:50:21 +0100 (BST)
+Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q41FoEaB015322
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Tue, 1 May 2012 16:50:16 +0100
+Message-ID: <1335887416.7415.125.camel@ted>
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: openembedded-devel <openembedded-devel@openembedded.org>,
+	openembedded-core <openembedded-core@lists.openembedded.org>, yocto
+	<yocto@yoctoproject.org>
+Date: Tue, 01 May 2012 16:50:16 +0100
+X-Mailer: Evolution 3.2.2- 
+Mime-Version: 1.0
+X-Virus-Scanned: amavisd-new at rpsys.net
+Subject: 1.3 Planning Process
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,53 +35,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 01 May 2012 15:33:29 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+X-List-Received-Date: Tue, 01 May 2012 15:50:30 -0000
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-On 5/1/12 9:21 AM, Frans Meulenbroeks wrote:
-> Dear all,
->
+I just wanted to highlight that the planning process for the next Yocto
+Project release (tentatively '1.3') is well under way now. I sent out a
+previous email about this but this is a quick reminder.
 
-...
+We use the bugzilla (bugzilla.yoctoproject.org) to track proposed ideas
+and these will ultimately end up on
+https://wiki.yoctoproject.org/wiki/Yocto_1.3_Features as in previous
+releases as we work through the planning process. The aims and
+objectives for the next release are listed there (Continuity / Refresh,
+Continuity / Refresh and Usability).
 
-> Also went to conf/machine in my bsp and changed it to use
-> tune-ppce300c3 instead of c2, and created this include file by copying
-> the c2 file to c3 and renaming all references to c2 by c3 (as these
-> were the only changes when comparing the oe classic c2 and c3 tune inc
-> files.
->
-> While building core-image-minimal, building the kernel failed because
-> recipes-kernel/linux/linux-yocto_3.2.bbappend had some references to
-> mpc8315*. Replaced these with mpc8313*. (not fully sure if that is
-> fully sound though; anyway I need to hack the kernel part anyway).
-> And now, while typing this, things are happily humming along, giving
-> me time to type this message.
->
-> Next step is probably see if I can run the executables created; if so,
-> move on to adding my own image recipe, and see if I can get that
-> going.
-> After that hack the kernel recipe (so it uses my own defconfig and
-> device tree, and add our own drivers).
-> I'll write a followup email if there are things that could e.g. be
-> avoided by updating the docs.
+I can't promise things listed will happen or in what time frame but I do
+know if they're not there, they're much less likely to happen! :)
 
-Once you have verified that the e300c3 binaries are functional, please send a 
-your updated tune to the oe-core list... or if you prefer send it to me and I 
-can review it and submit it (with your permission) to the oe-core list.
+Alternatively if anyone does want to discuss the future direction of the
+project(s), now is a good time to do it. Whilst I'm copying various
+lists, I'd suggest this discussion happens on OE-Core unless the
+question is clearly more appropriate elsewhere.
 
-I'm interested in keeping the tunes updated as much as reasonable for a growing 
-list of supportable cores.
+Cheers,
 
-BTW isn't the e300c3 a hard-float (standard classic PPC floating point?)  If so 
-be sure to change the TUNE_FEATURES to fpu-hard.
+Richard
 
---Mark
 
-> Frans
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+
+
 
 
