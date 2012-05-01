@@ -1,26 +1,34 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 67F73E0030B
-	for <yocto@yoctoproject.org>; Mon, 30 Apr 2012 16:49:56 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 30 Apr 2012 16:49:52 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="137223626"
-Received: from unknown (HELO envy.home) ([10.255.12.63])
-	by azsmga001.ch.intel.com with ESMTP; 30 Apr 2012 16:49:52 -0700
-Message-ID: <4F9F2501.4040002@linux.intel.com>
-Date: Mon, 30 Apr 2012 16:49:21 -0700
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:12.0) Gecko/20120424 Thunderbird/12.0
+Return-Path: <bruce.ashfield@gmail.com>
+Received: from mail-pz0-f41.google.com (mail-pz0-f41.google.com
+	[209.85.210.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CD452E0030B
+	for <yocto@yoctoproject.org>; Mon, 30 Apr 2012 17:16:24 -0700 (PDT)
+Received: by dajx4 with SMTP id x4so5041851daj.28
+	for <yocto@yoctoproject.org>; Mon, 30 Apr 2012 17:16:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type:content-transfer-encoding;
+	bh=E7bCKB4yoJpA+eo+UfOAI1c+4V2gnLpNzx1hlPz7HZg=;
+	b=yHAXKFXbifNj4H2J08/4ZrTjETUMl0nhk9skBHt67morebVCpP6i4Wy63VcCR3DGCQ
+	hRYtLcoJB3KQmCRa7vkvDk6KRl8727OMbRV9Lers4mXnbXff0JGE+pHTGfbFZ65eTr/J
+	1p/SUlxFwyDDumNE0FMcT1lCx7OzZqPObItlIeAtvoTF+sJ3WuiMfOXyaYuOd77yJRpq
+	+nj5rgIaRvGTsj4+ttjR08m65batytNZYuCgrcPe58Yp8hN/mNdZePAI8kCNDAbR2x8f
+	W0SBeJAwExBuCAbIc4r9Wpa3mC8RIqb7aVia9MkWY3UMGKqJeo9CxiTLye89dzljztEO
+	H+qA==
 MIME-Version: 1.0
-To: tom.zanussi@intel.com
-References: <3cea3e5b38f503cb2ac22bedf88e1ba14391c2ab.1335812928.git.tom.zanussi@intel.com>
-	<bd53feca27fc84d1b8bfbf0d2979a1fef7228e44.1335812928.git.tom.zanussi@intel.com>
-In-Reply-To: <bd53feca27fc84d1b8bfbf0d2979a1fef7228e44.1335812928.git.tom.zanussi@intel.com>
-X-Enigmail-Version: 1.4.1
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 2/2] yocto-bsp: clarify help with reference to meta-intel
+Received: by 10.68.229.97 with SMTP id sp1mr10111850pbc.41.1335831384590; Mon,
+	30 Apr 2012 17:16:24 -0700 (PDT)
+Received: by 10.68.55.104 with HTTP; Mon, 30 Apr 2012 17:16:24 -0700 (PDT)
+In-Reply-To: <D98BDF90-3361-4255-BE28-F53A645862CD@keylevel.com>
+References: <82CCA538-B495-44B3-8E06-F13282FAC541@keylevel.com>
+	<4F9EA067.5030806@windriver.com>
+	<D98BDF90-3361-4255-BE28-F53A645862CD@keylevel.com>
+Date: Mon, 30 Apr 2012 20:16:24 -0400
+Message-ID: <CADkTA4N-RuxU6WbVhEw=TmdcWj85xjPM4NAiFgMbxKCPGV+2=Q@mail.gmail.com>
+From: Bruce Ashfield <bruce.ashfield@gmail.com>
+To: Chris Tapp <opensource@keylevel.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: BSP kernel configuration redefines config options
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,103 +40,86 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 30 Apr 2012 23:49:56 -0000
+X-List-Received-Date: Tue, 01 May 2012 00:16:24 -0000
 Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+
+On Mon, Apr 30, 2012 at 4:16 PM, Chris Tapp <opensource@keylevel.com> wrote=
+:
+> On 30 Apr 2012, at 15:23, Bruce Ashfield wrote:
+>
+>> On 12-04-30 10:20 AM, Chris Tapp wrote:
+>>> I've got a BSP that has the following kernel configuration linux-yocto_=
+3.0.bbappend:
+>>>
+>>> FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
+>>>
+>>> COMPATIBLE_MACHINE_mybsp =3D "mybsp"
+>>> KMACHINE_mybsp =A0=3D "yocto/standard/common-pc/base"
+>>>
+>>> SRC_URI +=3D " file://defconfig"
+>>>
+>>> SRCREV_machine_pn-linux-yocto_mybsp ?=3D "d7e81e7f975c57c581ce13446adf0=
+23f95d9fd9f"
+>>> SRCREV_meta_pn-linux-yocto_mybsp ?=3D "d386e09f316e03061c088d2b13a48605=
+c20fb3a6"
+>>>
+>>> This builds ok, but I get a note that says "There were 43 kernel config=
+ options redefined during processing this BSP". I assume this is because th=
+e defconfig file is at odds with the kernel I've selected as the base for t=
+he BSP. Is it possible to get this note to 'go away' ?
+>>
+>> Yes, that's exactly what would be triggering it. It's currently
+>> not controlled via a flag, since it is technically a value add :)
+>
+> Yes, I suspected a 'conflict of interest' here ;-)
+>
+>> But to make it go away, I'd just suggest overriding do_kernel_configchec=
+k()
+>> in your layer.
+>
+> Is that all that happens in here, or would I be losing something I may wa=
+nt to know about as well?
+
+It tells you about overrides, invalid, duplicate, redefined, hardware
+and non-hardware options.
+But it's all 'configure validation and reporting'. So if you don't
+want that, just clobber the routine.
+
+Cheers,
+
+Bruce
+
+>
+>> Cheers,
+>>
+>> Bruce
+>>
+>>>
+>>> I'm running under 6.0.1 and haven't spotted anything in the user manual=
+s that I think would help.
+>>>
+>>> Chris Tapp
+>>>
+>>> opensource@keylevel.com
+>>> www.keylevel.com
+>>>
+>>>
+>>>
+>>> _______________________________________________
+>>> yocto mailing list
+>>> yocto@yoctoproject.org
+>>> https://lists.yoctoproject.org/listinfo/yocto
+>>
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
 
 
-On 04/30/2012 12:12 PM, tom.zanussi@intel.com wrote:
-> From: Tom Zanussi <tom.zanussi@intel.com>
-> 
-> The current yocto-bsp help assumes knowledge that the meta-intel layer
-> needs to be cloned before it's put into the BBLAYERS.  Avoid the
-> guesswork and state the details explicitly in the help.
-> 
-> Also, the shorter 'usage' string doesn't mention it at all; it would
-> help to at minimum mention it and refer the user to the detailed help.
-> 
-> Fixes [YOCTO #2330].
-> 
-> Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
-
-Acked-by: Darren Hart <dvhart@linux.intel.com>
-
-> ---
->  scripts/lib/bsp/help.py |   48 +++++++++++++++++++++++++++++++++++++++++++---
->  1 files changed, 44 insertions(+), 4 deletions(-)
-> 
-> diff --git a/scripts/lib/bsp/help.py b/scripts/lib/bsp/help.py
-> index f78b09b..2d16d2e 100644
-> --- a/scripts/lib/bsp/help.py
-> +++ b/scripts/lib/bsp/help.py
-> @@ -115,6 +115,18 @@ yocto_bsp_create_usage = """
->   'properties' that will be used to fill out the BSP-specific portions
->   of the BSP.  The possible values for the 'karch' paramter can be
->   listed via 'yocto-bsp list karch'.
-> +
-> + NOTE: Once created, you should add your new layer to your
-> + bblayers.conf file in order for it to be subsequently seen and
-> + modified by the yocto-kernel tool.
-> +
-> + See 'yocto bsp help create' for more detailed instructions.
-> +
-> + NOTE: For x86- and x86_64-based BSPs, the generated BSP assumes the
-> + presence of the meta-intel layer. Ensure the meta-intel layer is
-> + present and added to bblayers.conf.
-> +
-> + See 'yocto bsp help create' for more detailed instructions.
->  """
->  
->  yocto_bsp_create_help = """
-> @@ -156,12 +168,40 @@ DESCRIPTION
->      current directory, and is useful for debugging.
->  
->      NOTE: Once created, you should add your new layer to your
-> -    bblayers.conf file in order for it to be subsquently seen and
-> +    bblayers.conf file in order for it to be subsequently seen and
->      modified by the yocto-kernel tool.
->  
-> -    NOTE for x86- and x86_64-based BSPs: The generated BSP assumes the
-> -    presence of the of the meta-intel layer, so you should also have a
-> -    meta-intel layer present and added to your bblayers.conf as well.
-> +    For example, assuming your poky repo is at /path/to/poky, your new
-> +    BSP layer is at /path/to/poky/meta-mybsp, and your build directory
-> +    is /path/to/build:
-> +
-> +    $ gedit /path/to/build/conf/bblayers.conf
-> +
-> +    BBLAYERS ?= " \\
-> +      /path/to/poky/meta \\
-> +      /path/to/poky/meta-yocto \\
-> +      /path/to/poky/meta-mybsp \\
-> +      "
-> +
-> +    NOTE: For x86- and x86_64-based BSPs, the generated BSP assumes
-> +    the presence of the meta-intel layer. Ensure the meta-intel layer
-> +    is present and added to bblayers.conf.
-> +
-> +    For example, assuming your poky repo is at /path/to/poky, your new
-> +    BSP layer is at /path/to/poky/meta-mybsp, and your build directory
-> +    is /path/to/build:
-> +
-> +    $ cd /path/to/poky
-> +    $ git clone git://git.yoctoproject.org/meta-intel.git
-> +
-> +    $ gedit /path/to/build/conf/bblayers.conf
-> +
-> +    BBLAYERS ?= " \\
-> +      /path/to/poky/meta \\
-> +      /path/to/poky/meta-yocto \\
-> +      /path/to/poky/meta-intel \\
-> +      /path/to/poky/meta-mybsp \\
-> +      "
->  """
->  
->  yocto_bsp_list_usage = """
-
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
+--=20
+"Thou shalt not follow the NULL pointer, for chaos and madness await
+thee at its end"
 
