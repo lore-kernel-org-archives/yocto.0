@@ -1,37 +1,19 @@
-Return-Path: <otavio.salvador@gmail.com>
-Received: from mail-vb0-f48.google.com (mail-vb0-f48.google.com
-	[209.85.212.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AD257E01374
-	for <yocto@yoctoproject.org>; Tue,  1 May 2012 14:47:47 -0700 (PDT)
-Received: by vbjk17 with SMTP id k17so4738392vbj.35
-	for <yocto@yoctoproject.org>; Tue, 01 May 2012 14:47:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:date
-	:x-google-sender-auth:message-id:subject:from:to:cc:content-type
-	:content-transfer-encoding;
-	bh=3rd9NK3IuscU0S+o1ZEZDmkOdIgX/eyqDskvAkF+dSw=;
-	b=oXV9U403OqpleBWjM1SfnB04FlT55tSVsatfB8D2EMuGfzkOnpHar9mfHEO3sS4TDK
-	R85IhOSYrHeVWJm4tgpJnCkqtoPUkOGtSZa38VO/Nt6tp8igu++ThTzvrniLOipRKy6d
-	Ya+Wy++j6yrcfzVGALmb7MVt/5EWN+mynsUHInPcNd5m0TUwHqXXG4htUp6aGxgBtR9G
-	my8JT7NGHLqKT6ubDkfnkyAudk0u5Ut6Zled77jp8R4XI7i6GXfA36FD8tyNGY5RqkMS
-	g3+FA+0UjcDlUl052F4Q6pva1HWvKbRoh0A33qGIJv9GzS21z+amMYL3x3b7Xb0R4Q+v
-	riVw==
-MIME-Version: 1.0
-Received: by 10.220.224.68 with SMTP id in4mr18599664vcb.24.1335908866907;
-	Tue, 01 May 2012 14:47:46 -0700 (PDT)
-Sender: otavio.salvador@gmail.com
-Received: by 10.220.108.146 with HTTP; Tue, 1 May 2012 14:47:46 -0700 (PDT)
-In-Reply-To: <4FA052CB.6050508@intel.com>
-References: <4FA001F0.7010705@intel.com>
-	<4FA052CB.6050508@intel.com>
-Date: Tue, 1 May 2012 18:47:46 -0300
-X-Google-Sender-Auth: E-NXD5ufrfk_C_-7Rxe5QHQna8g
-Message-ID: <CAP9ODKpym3UOZGGhkjVH6UW3d8mGwijoPOCp9jAUq72MEgTLrQ@mail.gmail.com>
-From: Otavio Salvador <otavio@ossystems.com.br>
-To: Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>
-Cc: yocto@yoctoproject.org
-Subject: Re: [OE-core] Yocto Project 1.2.1 release plan.
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 521DEE00723
+	for <yocto@yoctoproject.org>; Tue,  1 May 2012 15:13:25 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 01 May 2012 15:13:24 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="95224152"
+Received: from unknown (HELO localhost) ([10.255.12.136])
+	by AZSMGA002.ch.intel.com with ESMTP; 01 May 2012 15:13:24 -0700
+From: Darren Hart <dvhart@linux.intel.com>
+To: Yocto Project <yocto@yoctoproject.org>, Tom Zanussi <tom.zanussi@intel.com>
+Date: Tue,  1 May 2012 15:12:44 -0700
+Message-Id: <cover.1335909082.git.dvhart@linux.intel.com>
+X-Mailer: git-send-email 1.7.7.6
+Subject: [PATCH 0/7][meta-intel][RFC] Update n450, fri2, and sys940x to 3.2
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,22 +25,56 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 01 May 2012 21:47:47 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 01 May 2012 22:13:25 -0000
 
-On Tue, May 1, 2012 at 6:16 PM, Scott Garman <scott.a.garman@intel.com> wro=
-te:
-> Sorry about this folks - my denzil-next branch was based on oe-core and n=
-ot
-> poky. So I've just deleted the branch and will be re-creating it shortly.
+These patches update the n450, fri2, and sys940x machines to the 3.2 linux-yocto
+kernel. These patches have been built, booted, and usability tested on the three
+platforms for the linux-yocto-3.2 kernel using the sato image. The
+meta-kernel-dev layer was used to test these kernels using a local repository.
 
-Grrrr :-(
+These patches are in final form with the exception of the SRCREV updates which
+will be required once the corresponding linux-yocto-3.2 patches have been
+committed. Once that happens I will push these to meta-intel with the
+appropriate SRCREV updates.
 
---=20
-Otavio Salvador=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0O=
-.S. Systems
-E-mail: otavio@ossystems.com.br=A0 http://www.ossystems.com.br
-Mobile: +55 53 9981-7854=A0 =A0 =A0 =A0=A0 =A0 =A0 =A0http://projetos.ossys=
-tems.com.br
+The following changes since commit bde31fd7e66faea865d24ff0858a9006b89e4e54:
+
+  meta-emenlow: update kernel SRCREVs (2012-04-26 15:24:31 -0500)
+
+are available in the git repository at:
+  git://git.yoctoproject.org/meta-intel-contrib dvhart/update-3.2
+  http://git.yoctoproject.org/cgit.cgi/meta-intel-contrib/log/?h=dvhart/update-3.2
+
+Darren Hart (7):
+  fri2: Prefer linux-yocto 3.2
+  linux-firmware: Move fri2 linux-firmware append to common
+  n450: Update to linux-yocto 3.2
+  sys940x: prefer xf86-input-evdev 2.6.0
+  sys940x: Add product URL to README
+  ia32-base.inc: Use a weak default assignment for kernel provider and
+    version
+  sys940x: Update to linux-yocto 3.2
+
+ .../linux-firmware/linux-firmware_git.bbappend     |    0
+ conf/machine/include/ia32-base.inc                 |    4 ++--
+ meta-fri2/conf/machine/fri2-noemgd.conf            |    3 +++
+ meta-fri2/conf/machine/fri2.conf                   |    3 +++
+ meta-n450/conf/machine/n450.conf                   |    3 +++
+ .../linux/linux-yocto-rt_3.2.bbappend              |   10 ++++++++++
+ .../recipes-kernel/linux/linux-yocto_3.2.bbappend  |    7 +++++++
+ meta-sys940x/README                                |    3 +++
+ meta-sys940x/conf/machine/sys940x-noemgd.conf      |    2 ++
+ meta-sys940x/conf/machine/sys940x.conf             |    3 +++
+ .../linux/linux-yocto-rt_3.2.bbappend              |   12 ++++++++++++
+ .../recipes-kernel/linux/linux-yocto_3.2.bbappend  |   15 +++++++++++++++
+ 12 files changed, 63 insertions(+), 2 deletions(-)
+ rename {meta-fri2 => common}/recipes-kernel/linux-firmware/linux-firmware_git.bbappend (100%)
+ create mode 100644 meta-n450/recipes-kernel/linux/linux-yocto-rt_3.2.bbappend
+ create mode 100644 meta-n450/recipes-kernel/linux/linux-yocto_3.2.bbappend
+ create mode 100644 meta-sys940x/recipes-kernel/linux/linux-yocto-rt_3.2.bbappend
+ create mode 100644 meta-sys940x/recipes-kernel/linux/linux-yocto_3.2.bbappend
+
+-- 
+1.7.7.6
+
 
