@@ -1,23 +1,39 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 45054E01374
-	for <yocto@yoctoproject.org>; Tue,  1 May 2012 07:58:38 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 01 May 2012 07:58:38 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="138738152"
-Received: from unknown (HELO [10.255.12.170]) ([10.255.12.170])
-	by orsmga002.jf.intel.com with ESMTP; 01 May 2012 07:58:37 -0700
-From: Tom Zanussi <tom.zanussi@intel.com>
-To: Frans Meulenbroeks <fransmeulenbroeks@gmail.com>
-In-Reply-To: <CACW_hTYtBp5Px_7bYcKY86fqisZEgX7PvJS4kk6JPf2Xrn8TDA@mail.gmail.com>
-References: <CACW_hTYtBp5Px_7bYcKY86fqisZEgX7PvJS4kk6JPf2Xrn8TDA@mail.gmail.com>
-Date: Tue, 01 May 2012 09:58:37 -0500
-Message-ID: <1335884317.27056.93.camel@elmorro>
-Mime-Version: 1.0
-X-Mailer: Evolution 2.28.3 
-Cc: yocto@yoctoproject.org
-Subject: Re: bsp experiences
+Return-Path: <scott.a.garman@intel.com>
+Received: from fmsmga102.fm.intel.com (mga10.intel.com [192.55.52.92])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 177A7E0030B
+	for <yocto@yoctoproject.org>; Tue,  1 May 2012 08:32:04 -0700 (PDT)
+Received: from mail-pb0-f52.google.com ([209.85.160.52])
+	by mga11.intel.com with ESMTP/TLS/RC4-SHA; 01 May 2012 08:32:03 -0700
+Received: by pbbro8 with SMTP id ro8so10213549pbb.25
+	for <yocto@yoctoproject.org>; Tue, 01 May 2012 08:32:03 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=message-id:date:from:user-agent:mime-version:to:cc:subject
+	:content-type:content-transfer-encoding:x-gm-message-state;
+	bh=Vu7ZqIokqeBQATGHABgghm4DE7SEz+UFBdzT1HXPa8U=;
+	b=OFQvHu0rfNkSO6LNVCisgcah557rHA45FJFdpeB7BwxgTL1NktxqM4rZF7TN2n7e/8
+	mB4B2WveiE0Mov+DVNriNotRDCy9lCcRZShtotN8w+AsCfr/4cs3G7DnJp5NWDemF3F8
+	bCwygxJjAlwAuQ19BMkf/wprQtPBo+zHRbGi1s3s+Bu7hk/f89JmzrwH+AwfJvcVrYC1
+	K8onlozF8LzbdM6h1yPdQxHW0ShIUgsJmepuPsOURu2wzPWeJB2VmQWJR386steSbM29
+	c8u7YyR4fahQ/70UvF8joPZK4U+7bDZJ0AzNQ1fkYrwwTug4ThMjTYYyLUBoAkNV7rUf
+	Q+5w==
+Received: by 10.68.218.7 with SMTP id pc7mr51475674pbc.4.1335886323001;
+	Tue, 01 May 2012 08:32:03 -0700 (PDT)
+Received: from [192.168.1.12] (c-76-105-137-48.hsd1.or.comcast.net.
+	[76.105.137.48])
+	by mx.google.com with ESMTPS id wf6sm19476122pbc.8.2012.05.01.08.32.00
+	(version=SSLv3 cipher=OTHER); Tue, 01 May 2012 08:32:01 -0700 (PDT)
+Message-ID: <4FA001F0.7010705@intel.com>
+Date: Tue, 01 May 2012 08:32:00 -0700
+From: Scott Garman <scott.a.garman@intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:11.0) Gecko/20120329 Thunderbird/11.0.1
+MIME-Version: 1.0
+To: yocto@yoctoproject.org
+X-Gm-Message-State: ALoCoQnx8RlS6bKwaOwdP07p4uPm5s8WYmkqt/ELS1Mp9QRRFzBH0vtwfPyBk+MjuUmGxS9Zjbin
+Cc: Patches and discussions about the oe-core layer
+	<openembedded-core@lists.openembedded.org>
+Subject: Yocto Project 1.2.1 release plan.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,111 +45,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 01 May 2012 14:58:38 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Tue, 01 May 2012 15:32:04 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Hi Frans,
+Hi all,
 
-Thanks for your input, comments below...
+I'm going to be the maintainer of the Yocto Project 1.2.1 release, and 
+wanted to let everyone know some details about the current status of 
+this release.
 
-On Tue, 2012-05-01 at 16:21 +0200, Frans Meulenbroeks wrote:
-> Dear all,
-> 
-> In this email I'd like to share my experiences wrt creating a new bsp.
-> I hope this is useful for someone (e.g. for updating the doc). Feel
-> free to point out the n00bish errors I made, or where I could have
-> improved.
-> 
-> Aim was to bring my current board (powerpc mpc8313e based) onto yocto 1.2
-> This board is already working under oe classic.
-> 
-> I started fetching poky-denzil-7.0.
-> Tested by building core-image-minimal. No problems here.
-> 
-> Then I wanted to add my own bsp. Decided to use the bsp-guide as a starter.
-> 
-> Tried to use yocto-bsp with the standard 7.0 setup (where there is a
-> poky-denzil-7.0-build dir adjacent to the soruce dir).
-> yocto-bsp when invoked complained with:
-> IOError: [Errno 2] No such file or directory:
-> '/home/frans/poky-denzil-7.0/scripts/../build/conf/bblayers.conf'
-> 
+Richard has already started pulling in some patches from master into the 
+denzil-next branch on oe-core:
 
-This should be fixed by the fix for this bug:
+http://git.openembedded.org/openembedded-core/log/?h=denzil-next
 
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=2219
+I'll be merging these on an ongoing basis into my sgarman/denzil-next 
+branch in the poky-contrib repo:
 
-which didn't make it into the release, and hasn't been pulled into
-master yet either...
+http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/log/?h=sgarman/denzil-next
 
-But actually that should only apply to yocto-kernel, not yocto-bsp.
+The primary focus for getting patches into 1.2.1 is bugfixing, security 
+updates, and making sure the recently released Ubuntu, Fedora, and 
+OpenSUSE distros work with this release. All other kinds of patches 
+(e.g, performance) will have a very high bar to reach for them to be 
+accepted (i.e, it will have to be very clear they pose little risk to 
+introducing more bugs or stability issues). And of course anything that 
+breaks APIs or compatibility is off the table.
 
-Can you provide more info on your exact setup and commands you used?
+It would help me out greatly if in your pull requests you could mention 
+when you want your commit to also be included in 1.2.1.
 
-> I resolved this for now by making /home/frans/poky-denzil-7.0/build/ a
-> symlink to /home/frans/poky-denzil-7.0-build
-> Not sure if that is the desired solution but anyway this allowed me to
-> move forward
-> 
-> Reinvoked yocto-bsp create, this indeed gave progress.
-> Now had to decide on the machine branch to start this on. As mpc8315
-> is fairly close decide to start with that one.
-> tuning support was a bit tough. The 8313 machine conf file in
-> oe-classic said ppce300c3, so used ppce300c2 as a starter
-> next modified the file that contains the device tree to the default 8313 dts.
-> 
-> That generated the layer.
-> Still had to add the layer to bblayers.conf (I was somewhat surprised
-> by this as the script before complained about not being able to find
-> that file so I somehow expected it to be added automatically)
-> 
+Our intention is currently to include bugfixes for these bugs in the 
+eventual release of 1.2.1:
 
-The tools are conservative about changing anything outside of what they
-generated - not sure it makes sense to have them changing
-bblayers.conf...
+https://bugzilla.yoctoproject.org/buglist.cgi?query_format=advanced&list_id=4572&bug_status=NEW&bug_status=ACCEPTED&bug_status=REOPENED&bug_status=NEEDINFO&bug_status=WaitForUpstream&bug_status=RESOLVED&bug_status=VERIFIED&bug_status=CLOSED&target_milestone=1.2.1
 
-> Also went to conf/machine in my bsp and changed it to use
-> tune-ppce300c3 instead of c2, and created this include file by copying
-> the c2 file to c3 and renaming all references to c2 by c3 (as these
-> were the only changes when comparing the oe classic c2 and c3 tune inc
-> files.
-> 
-> While building core-image-minimal, building the kernel failed because
-> recipes-kernel/linux/linux-yocto_3.2.bbappend had some references to
-> mpc8315*. Replaced these with mpc8313*. (not fully sure if that is
-> fully sound though; anyway I need to hack the kernel part anyway).
-> And now, while typing this, things are happily humming along, giving
-> me time to type this message.
-> 
+This list is not set in stone and may change at any time. My very rough 
+guesstimate is that we will start testing release candidates for 1.2.1 
+in about 6-8 weeks.
 
-The ppc template support is pretty much untested - I focused only on
-platforms I had hardware support for and didn't do much with the others,
-as mentioned in the submission.
+Thanks, and I look forward to helping to ensure that 1.2.1 is a solid 
+and well-tested release!
 
-So I'll be happy to change the templates to make them match reality and
-be more useful out-of the box for those platforms I don't know much
-about.
+Scott
 
-The other thing to note however is that the tool is meant to give a
-starting point which will likely need to be tweaked in order to actually
-work on the hardware.  It should at least compile, though...
+IRC: zenlinux
 
-Tom
-
-> Next step is probably see if I can run the executables created; if so,
-> move on to adding my own image recipe, and see if I can get that
-> going.
-> After that hack the kernel recipe (so it uses my own defconfig and
-> device tree, and add our own drivers).
-> I'll write a followup email if there are things that could e.g. be
-> avoided by updating the docs.
-> 
-> Frans
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
-
+-- 
+Scott Garman
+Embedded Linux Engineer - Yocto Project
+Intel Open Source Technology Center
 
