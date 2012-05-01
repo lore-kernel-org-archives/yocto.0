@@ -1,19 +1,23 @@
 Return-Path: <dvhart@linux.intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 521DEE00723
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8B422E00723
 	for <yocto@yoctoproject.org>; Tue,  1 May 2012 15:13:25 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 01 May 2012 15:13:24 -0700
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 01 May 2012 15:13:25 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="95224152"
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="160634564"
 Received: from unknown (HELO localhost) ([10.255.12.136])
-	by AZSMGA002.ch.intel.com with ESMTP; 01 May 2012 15:13:24 -0700
+	by fmsmga002.fm.intel.com with ESMTP; 01 May 2012 15:13:25 -0700
 From: Darren Hart <dvhart@linux.intel.com>
 To: Yocto Project <yocto@yoctoproject.org>, Tom Zanussi <tom.zanussi@intel.com>
-Date: Tue,  1 May 2012 15:12:44 -0700
-Message-Id: <cover.1335909082.git.dvhart@linux.intel.com>
+Date: Tue,  1 May 2012 15:12:45 -0700
+Message-Id: <ff5735683d1bb8a81cebea32c4e365a74091a003.1335909082.git.dvhart@linux.intel.com>
 X-Mailer: git-send-email 1.7.7.6
-Subject: [PATCH 0/7][meta-intel][RFC] Update n450, fri2, and sys940x to 3.2
+In-Reply-To: <cover.1335909082.git.dvhart@linux.intel.com>
+References: <cover.1335909082.git.dvhart@linux.intel.com>
+In-Reply-To: <cover.1335909082.git.dvhart@linux.intel.com>
+References: <cover.1335909082.git.dvhart@linux.intel.com>
+Subject: [PATCH 1/7] fri2: Prefer linux-yocto 3.2
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,53 +31,43 @@ List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
 X-List-Received-Date: Tue, 01 May 2012 22:13:25 -0000
 
-These patches update the n450, fri2, and sys940x machines to the 3.2 linux-yocto
-kernel. These patches have been built, booted, and usability tested on the three
-platforms for the linux-yocto-3.2 kernel using the sato image. The
-meta-kernel-dev layer was used to test these kernels using a local repository.
+Update the Fish River Island II BSPs to build using linux-yocto_3.2
+by default.
 
-These patches are in final form with the exception of the SRCREV updates which
-will be required once the corresponding linux-yocto-3.2 patches have been
-committed. Once that happens I will push these to meta-intel with the
-appropriate SRCREV updates.
+Signed-off-by: Darren Hart <dvhart@linux.intel.com>
+---
+ meta-fri2/conf/machine/fri2-noemgd.conf |    3 +++
+ meta-fri2/conf/machine/fri2.conf        |    3 +++
+ 2 files changed, 6 insertions(+), 0 deletions(-)
 
-The following changes since commit bde31fd7e66faea865d24ff0858a9006b89e4e54:
-
-  meta-emenlow: update kernel SRCREVs (2012-04-26 15:24:31 -0500)
-
-are available in the git repository at:
-  git://git.yoctoproject.org/meta-intel-contrib dvhart/update-3.2
-  http://git.yoctoproject.org/cgit.cgi/meta-intel-contrib/log/?h=dvhart/update-3.2
-
-Darren Hart (7):
-  fri2: Prefer linux-yocto 3.2
-  linux-firmware: Move fri2 linux-firmware append to common
-  n450: Update to linux-yocto 3.2
-  sys940x: prefer xf86-input-evdev 2.6.0
-  sys940x: Add product URL to README
-  ia32-base.inc: Use a weak default assignment for kernel provider and
-    version
-  sys940x: Update to linux-yocto 3.2
-
- .../linux-firmware/linux-firmware_git.bbappend     |    0
- conf/machine/include/ia32-base.inc                 |    4 ++--
- meta-fri2/conf/machine/fri2-noemgd.conf            |    3 +++
- meta-fri2/conf/machine/fri2.conf                   |    3 +++
- meta-n450/conf/machine/n450.conf                   |    3 +++
- .../linux/linux-yocto-rt_3.2.bbappend              |   10 ++++++++++
- .../recipes-kernel/linux/linux-yocto_3.2.bbappend  |    7 +++++++
- meta-sys940x/README                                |    3 +++
- meta-sys940x/conf/machine/sys940x-noemgd.conf      |    2 ++
- meta-sys940x/conf/machine/sys940x.conf             |    3 +++
- .../linux/linux-yocto-rt_3.2.bbappend              |   12 ++++++++++++
- .../recipes-kernel/linux/linux-yocto_3.2.bbappend  |   15 +++++++++++++++
- 12 files changed, 63 insertions(+), 2 deletions(-)
- rename {meta-fri2 => common}/recipes-kernel/linux-firmware/linux-firmware_git.bbappend (100%)
- create mode 100644 meta-n450/recipes-kernel/linux/linux-yocto-rt_3.2.bbappend
- create mode 100644 meta-n450/recipes-kernel/linux/linux-yocto_3.2.bbappend
- create mode 100644 meta-sys940x/recipes-kernel/linux/linux-yocto-rt_3.2.bbappend
- create mode 100644 meta-sys940x/recipes-kernel/linux/linux-yocto_3.2.bbappend
-
+diff --git a/meta-fri2/conf/machine/fri2-noemgd.conf b/meta-fri2/conf/machine/fri2-noemgd.conf
+index 9ba5753..31c890a 100644
+--- a/meta-fri2/conf/machine/fri2-noemgd.conf
++++ b/meta-fri2/conf/machine/fri2-noemgd.conf
+@@ -10,6 +10,9 @@ require conf/machine/include/ia32-base.inc
+ MACHINE_FEATURES += "wifi 3g pcbios efi"
+ MACHINE_EXTRA_RRECOMMENDS += "linux-firmware-iwlwifi-6000g2a-5"
+ 
++PREFERRED_PROVIDER_virtual/kernel = "linux-yocto"
++PREFERRED_VERSION_linux-yocto = "3.2%"
++
+ XSERVER ?= "${XSERVER_IA32_BASE} \
+            ${XSERVER_IA32_EXT} \
+            ${XSERVER_IA32_VESA} \
+diff --git a/meta-fri2/conf/machine/fri2.conf b/meta-fri2/conf/machine/fri2.conf
+index 1cd6a3e..4924ca2 100644
+--- a/meta-fri2/conf/machine/fri2.conf
++++ b/meta-fri2/conf/machine/fri2.conf
+@@ -10,6 +10,9 @@ require conf/machine/include/ia32-base.inc
+ MACHINE_FEATURES += "wifi 3g pcbios efi"
+ MACHINE_EXTRA_RRECOMMENDS += "linux-firmware-iwlwifi-6000g2a-5"
+ 
++PREFERRED_PROVIDER_virtual/kernel = "linux-yocto"
++PREFERRED_VERSION_linux-yocto = "3.2%"
++
+ XSERVER ?= "${XSERVER_IA32_BASE} \
+            ${XSERVER_IA32_EXT} \
+            ${XSERVER_IA32_EMGD} \
 -- 
 1.7.7.6
 
