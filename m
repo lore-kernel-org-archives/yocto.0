@@ -1,23 +1,21 @@
 Return-Path: <dvhart@linux.intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 86A1FE01402
-	for <yocto@yoctoproject.org>; Tue,  1 May 2012 15:24:27 -0700 (PDT)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D14B1E00723
+	for <yocto@yoctoproject.org>; Tue,  1 May 2012 15:29:12 -0700 (PDT)
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 01 May 2012 15:24:27 -0700
+	by orsmga102.jf.intel.com with ESMTP; 01 May 2012 15:29:12 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="138899602"
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="138900722"
 Received: from unknown (HELO localhost) ([10.255.12.136])
-	by orsmga002.jf.intel.com with ESMTP; 01 May 2012 15:13:29 -0700
+	by orsmga002.jf.intel.com with ESMTP; 01 May 2012 15:15:10 -0700
 From: Darren Hart <dvhart@linux.intel.com>
-To: Yocto Project <yocto@yoctoproject.org>, Tom Zanussi <tom.zanussi@intel.com>
-Date: Tue,  1 May 2012 15:12:49 -0700
-Message-Id: <0547e99509a97a445652702c5021030cac4911d9.1335909082.git.dvhart@linux.intel.com>
+To: Yocto Project <yocto@yoctoproject.org>,
+	Bruce Ashfield <bruce.ashfield@windriver.com>,
+	Tom Zanussi <tom.zanussi@intel.com>
+Date: Tue,  1 May 2012 15:14:37 -0700
+Message-Id: <cover.1335908646.git.dvhart@linux.intel.com>
 X-Mailer: git-send-email 1.7.7.6
-In-Reply-To: <cover.1335909082.git.dvhart@linux.intel.com>
-References: <cover.1335909082.git.dvhart@linux.intel.com>
-In-Reply-To: <cover.1335909082.git.dvhart@linux.intel.com>
-References: <cover.1335909082.git.dvhart@linux.intel.com>
-Subject: [PATCH 5/7] sys940x: Add product URL to README
+Subject: [PATCH 0/1][linux-yocto-3.2] pch_gbe: Do not abort probe on bad MAC
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,30 +27,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 01 May 2012 22:24:27 -0000
+X-List-Received-Date: Tue, 01 May 2012 22:29:12 -0000
 
-Add the Inforce Computing website product URL for the SYS940X reference plaform
-to the sys940x bsp README.
+This somehow missed the 3.0 to 3.2 update. It is required for networking
+on the sys940x BSP. Please apply to standard/base and derived branches.
 
-Signed-off-by: Darren Hart <dvhart@linux.intel.com>
----
- meta-sys940x/README |    3 +++
- 1 files changed, 3 insertions(+), 0 deletions(-)
+The following changes since commit 900717638fab9d2b25be35f3612ccfd95ceb31d1:
 
-diff --git a/meta-sys940x/README b/meta-sys940x/README
-index e349008..b030faf 100644
---- a/meta-sys940x/README
-+++ b/meta-sys940x/README
-@@ -9,6 +9,9 @@ processor, plus the Intel EG20T Platform Controller Hub (Tunnel Creek
- It also supports the E6xx embedded on-chip graphics via the Intel
- Embedded Media and Graphics Driver (EMGD) 1.10 Driver.
- 
-+More details available on the product page:
-+http://www.inforcecomputing.com/SYS940X_ECX.html
-+
- 
- Dependencies
- ============
+  Merge branch 'yocto/standard/base' into standard/base (2012-03-16 10:43:42 -0400)
+
+are available in the git repository at:
+
+  git://git.infradead.org/users/dvhart/linux-yocto-3.2.git dvhart/standard/pch_gbe
+  http://git.infradead.org/users/dvhart/linux-yocto-3.2.git/shortlog/refs/heads/dvhart/standard/pch_gbe
+
+Darren Hart (1):
+  pch_gbe: Do not abort probe on bad MAC
+
+ .../net/ethernet/oki-semi/pch_gbe/pch_gbe_main.c   |   17 ++++++++++++++---
+ 1 files changed, 14 insertions(+), 3 deletions(-)
+
 -- 
 1.7.7.6
 
