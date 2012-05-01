@@ -1,23 +1,21 @@
 Return-Path: <dvhart@linux.intel.com>
 Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F1917E0140E
-	for <yocto@yoctoproject.org>; Tue,  1 May 2012 15:13:30 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EF96EE00723
+	for <yocto@yoctoproject.org>; Tue,  1 May 2012 15:14:08 -0700 (PDT)
 Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga101.ch.intel.com with ESMTP; 01 May 2012 15:13:30 -0700
+	by azsmga101.ch.intel.com with ESMTP; 01 May 2012 15:14:08 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="95224174"
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="95224388"
 Received: from unknown (HELO localhost) ([10.255.12.136])
-	by AZSMGA002.ch.intel.com with ESMTP; 01 May 2012 15:13:30 -0700
+	by AZSMGA002.ch.intel.com with ESMTP; 01 May 2012 15:14:06 -0700
 From: Darren Hart <dvhart@linux.intel.com>
-To: Yocto Project <yocto@yoctoproject.org>, Tom Zanussi <tom.zanussi@intel.com>
-Date: Tue,  1 May 2012 15:12:51 -0700
-Message-Id: <af85a6ca90545e08cf57fce239b3a50402aa399e.1335909082.git.dvhart@linux.intel.com>
+To: Yocto Project <yocto@yoctoproject.org>,
+	Bruce Ashfield <bruce.ashfield@windriver.com>,
+	Tom Zanussi <tom.zanussi@intel.com>
+Date: Tue,  1 May 2012 15:13:24 -0700
+Message-Id: <cover.1335908926.git.dvhart@linux.intel.com>
 X-Mailer: git-send-email 1.7.7.6
-In-Reply-To: <cover.1335909082.git.dvhart@linux.intel.com>
-References: <cover.1335909082.git.dvhart@linux.intel.com>
-In-Reply-To: <cover.1335909082.git.dvhart@linux.intel.com>
-References: <cover.1335909082.git.dvhart@linux.intel.com>
-Subject: [PATCH 7/7] sys940x: Update to linux-yocto 3.2
+Subject: [PATCH 0/7][linux-yocto-3.2] fri2 and sys940x meta updates
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,85 +27,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 01 May 2012 22:13:31 -0000
+X-List-Received-Date: Tue, 01 May 2012 22:14:09 -0000
 
-Prefer the 3.2 version of linux-yocto.
+Please apply to linux-yocto-3.2 meta branch.
 
-Signed-off-by: Darren Hart <dvhart@linux.intel.com>
----
- meta-sys940x/conf/machine/sys940x-noemgd.conf      |    2 ++
- meta-sys940x/conf/machine/sys940x.conf             |    2 ++
- .../linux/linux-yocto-rt_3.2.bbappend              |   12 ++++++++++++
- .../recipes-kernel/linux/linux-yocto_3.2.bbappend  |   15 +++++++++++++++
- 4 files changed, 31 insertions(+), 0 deletions(-)
- create mode 100644 meta-sys940x/recipes-kernel/linux/linux-yocto-rt_3.2.bbappend
- create mode 100644 meta-sys940x/recipes-kernel/linux/linux-yocto_3.2.bbappend
+The following changes since commit b14a08f5c7b469a5077c10942f4e1aec171faa9d:
 
-diff --git a/meta-sys940x/conf/machine/sys940x-noemgd.conf b/meta-sys940x/conf/machine/sys940x-noemgd.conf
-index 537e419..23ec0bc 100644
---- a/meta-sys940x/conf/machine/sys940x-noemgd.conf
-+++ b/meta-sys940x/conf/machine/sys940x-noemgd.conf
-@@ -10,6 +10,8 @@ require conf/machine/include/ia32-base.inc
- # Add "pcbios" if you have a non-efi version of the firmware
- MACHINE_FEATURES += "efi pcbios"
- 
-+PREFERRED_VERSION_linux-yocto ?= "3.2%"
-+
- XSERVER ?= "${XSERVER_IA32_BASE} \
-            ${XSERVER_IA32_EXT} \
-            ${XSERVER_IA32_VESA} \
-diff --git a/meta-sys940x/conf/machine/sys940x.conf b/meta-sys940x/conf/machine/sys940x.conf
-index 7123653..4b9b91d 100644
---- a/meta-sys940x/conf/machine/sys940x.conf
-+++ b/meta-sys940x/conf/machine/sys940x.conf
-@@ -10,6 +10,8 @@ require conf/machine/include/ia32-base.inc
- # Add "pcbios" if you have a non-efi version of the firmware
- MACHINE_FEATURES += "efi pcbios"
- 
-+PREFERRED_VERSION_linux-yocto ?= "3.2%"
-+
- XSERVER ?= "${XSERVER_IA32_BASE} \
-            ${XSERVER_IA32_EXT} \
-            ${XSERVER_IA32_EMGD} \
-diff --git a/meta-sys940x/recipes-kernel/linux/linux-yocto-rt_3.2.bbappend b/meta-sys940x/recipes-kernel/linux/linux-yocto-rt_3.2.bbappend
-new file mode 100644
-index 0000000..888bb98
---- /dev/null
-+++ b/meta-sys940x/recipes-kernel/linux/linux-yocto-rt_3.2.bbappend
-@@ -0,0 +1,12 @@
-+FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-+
-+COMPATIBLE_MACHINE_sys940x = "sys940x"
-+KMACHINE_sys940x = "sys940x"
-+
-+COMPATIBLE_MACHINE_sys940x-noemgd = "sys940x-noemgd"
-+KMACHINE_sys940x-noemgd = "sys940x"
-+
-+# Update the following to use a different BSP branch or meta SRCREV
-+#KBRANCH_sys940x = "yocto/standard/preempt-rt/base"
-+#SRCREV_machine_pn-linux-yocto-rt_sys940x ?= XXXX
-+#SRCREV_meta_pn-linux-yocto-rt_sys940x ?= XXXX
-diff --git a/meta-sys940x/recipes-kernel/linux/linux-yocto_3.2.bbappend b/meta-sys940x/recipes-kernel/linux/linux-yocto_3.2.bbappend
-new file mode 100644
-index 0000000..98d6562
---- /dev/null
-+++ b/meta-sys940x/recipes-kernel/linux/linux-yocto_3.2.bbappend
-@@ -0,0 +1,15 @@
-+FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-+
-+
-+COMPATIBLE_MACHINE_sys940x = "sys940x"
-+KMACHINE_sys940x  = "sys940x"
-+KBRANCH_sys940x = "standard/default/base"
-+
-+COMPATIBLE_MACHINE_sys940x-noemgd = "sys940x-noemgd"
-+KMACHINE_sys940x-noemgd  = "sys940x"
-+KBRANCH_sys940x-noemgd = "standard/default/base"
-+
-+#SRCREV_machine_pn-linux-yocto_sys940x ?= "5df0b4c2538399aed543133b3855f809adf08ab8"
-+#SRCREV_meta_pn-linux-yocto_sys940x ?= "77ca4855e80acb8dad21acea946908716c308b5b"
-+#SRCREV_machine_pn-linux-yocto_sys940x-noemgd ?= "5df0b4c2538399aed543133b3855f809adf08ab8"
-+#SRCREV_meta_pn-linux-yocto_sys940x-noemgd ?= "77ca4855e80acb8dad21acea946908716c308b5b"
+  meta: Clean up BSPs kernel config (2012-04-17 16:04:15 -0400)
+
+are available in the git repository at:
+  git://git.infradead.org/users/dvhart/linux-yocto-3.2.git dvhart/meta/dev
+  http://git.infradead.org/users/dvhart/linux-yocto-3.2.git/shortlog/refs/heads/dvhart/meta/dev
+
+Darren Hart (7):
+  fri2: Use emgd-1.10 feature and branch
+  fri2: Cleanup fri2-$KTYPE.scc files re efi-ext.scc
+  sys940x: Move emgd-1.10 data to the standard scc file
+  sys940x: Add efi-ext to standard and preempt-rt configs
+  sys940x: Add common standard and preempt-rt features
+  sys940x: Use PHYSICAL_START of 0x200000 to boot
+  sys940x: Cleanup sys940x.scc
+
+ meta/cfg/kernel-cache/bsp/fri2/fri2-preempt-rt.scc |    2 +-
+ meta/cfg/kernel-cache/bsp/fri2/fri2-standard.scc   |    6 +++---
+ .../bsp/sys940x/sys940x-preempt-rt.scc             |    8 ++++++++
+ .../kernel-cache/bsp/sys940x/sys940x-standard.scc  |   12 ++++++++++++
+ meta/cfg/kernel-cache/bsp/sys940x/sys940x.cfg      |    4 ++++
+ meta/cfg/kernel-cache/bsp/sys940x/sys940x.scc      |   10 ++--------
+ 6 files changed, 30 insertions(+), 12 deletions(-)
+
 -- 
 1.7.7.6
 
