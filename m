@@ -1,31 +1,23 @@
-Return-Path: <fransmeulenbroeks@gmail.com>
-Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
-	[209.85.160.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A9A97E013DC
-	for <yocto@yoctoproject.org>; Tue,  1 May 2012 13:26:41 -0700 (PDT)
-Received: by pbbrq8 with SMTP id rq8so2199547pbb.35
-	for <yocto@yoctoproject.org>; Tue, 01 May 2012 13:26:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type:content-transfer-encoding;
-	bh=b/pO8UTx8SkxMRDGylVmJHZ7e7wy8MArex8rxV35nFg=;
-	b=FleIoypWOj+pSCAhdOLrPGbFcU0LCF34aG42y0cT6mG28j0YhCVXbXQyB+Sn/vc17x
-	u1iI9xE1vRSoM6ltonKUfTapMzSg1hN1Po/CIwtVghyRfq80pA0LzccwaNRuwFovq8bn
-	e6tUnvQf6Tf73MoIHhQIeAgiawO1m/ni2Im2ZY/6iGIoq53rRcx0ClnFqKxDvqK3/SOE
-	n6/uc0iLIAxTwuxeJ+8o7xkqtoummOZ/U3subux69uhbtDNzdiiATgxtwPo+mu3aOqT/
-	U1e16muRBkEDXjjbRNriR/mWaWyEMjfNq9rHERnRDV2OMZMbHQ1xvv+vwifjqNKrdMc4
-	JrRg==
-MIME-Version: 1.0
-Received: by 10.68.202.130 with SMTP id ki2mr15572425pbc.52.1335904001355;
-	Tue, 01 May 2012 13:26:41 -0700 (PDT)
-Received: by 10.68.48.164 with HTTP; Tue, 1 May 2012 13:26:41 -0700 (PDT)
-In-Reply-To: <4FA00247.8030705@windriver.com>
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A5B5BE01374
+	for <yocto@yoctoproject.org>; Tue,  1 May 2012 13:36:46 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 01 May 2012 13:36:45 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="135845592"
+Received: from unknown (HELO [10.255.12.170]) ([10.255.12.170])
+	by orsmga001.jf.intel.com with ESMTP; 01 May 2012 13:36:44 -0700
+From: Tom Zanussi <tom.zanussi@intel.com>
+To: Frans Meulenbroeks <fransmeulenbroeks@gmail.com>
+In-Reply-To: <CACW_hTaf6QY0g-65=OqWcVVfZ55LG3vFvrMiSTfd17cVYXHFUg@mail.gmail.com>
 References: <CACW_hTYtBp5Px_7bYcKY86fqisZEgX7PvJS4kk6JPf2Xrn8TDA@mail.gmail.com>
-	<4FA00247.8030705@windriver.com>
-Date: Tue, 1 May 2012 22:26:41 +0200
-Message-ID: <CACW_hTZYaxGdEJNw_Nd8KES=X1KQmaJMurya63MsWAnT71YsrQ@mail.gmail.com>
-From: Frans Meulenbroeks <fransmeulenbroeks@gmail.com>
-To: Mark Hatle <mark.hatle@windriver.com>
+	<1335884317.27056.93.camel@elmorro>
+	<CACW_hTaf6QY0g-65=OqWcVVfZ55LG3vFvrMiSTfd17cVYXHFUg@mail.gmail.com>
+Date: Tue, 01 May 2012 15:36:45 -0500
+Message-ID: <1335904605.27056.161.camel@elmorro>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.28.3 
 Cc: yocto@yoctoproject.org
 Subject: Re: bsp experiences
 X-BeenThere: yocto@yoctoproject.org
@@ -39,36 +31,156 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 01 May 2012 20:26:41 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 01 May 2012 20:36:46 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-2012/5/1 Mark Hatle <mark.hatle@windriver.com>:
+On Tue, 2012-05-01 at 22:23 +0200, Frans Meulenbroeks wrote:
+> 2012/5/1 Tom Zanussi <tom.zanussi@intel.com>:
+> > Hi Frans,
+> >
+> > Thanks for your input, comments below...
+> >
+> > On Tue, 2012-05-01 at 16:21 +0200, Frans Meulenbroeks wrote:
+> >> Dear all,
+> >>
+> >> In this email I'd like to share my experiences wrt creating a new bsp.
+> >> I hope this is useful for someone (e.g. for updating the doc). Feel
+> >> free to point out the n00bish errors I made, or where I could have
+> >> improved.
+> >>
+> >> Aim was to bring my current board (powerpc mpc8313e based) onto yocto 1.2
+> >> This board is already working under oe classic.
+> >>
+> >> I started fetching poky-denzil-7.0.
+> >> Tested by building core-image-minimal. No problems here.
+> >>
+> >> Then I wanted to add my own bsp. Decided to use the bsp-guide as a starter.
+> >>
+> >> Tried to use yocto-bsp with the standard 7.0 setup (where there is a
+> >> poky-denzil-7.0-build dir adjacent to the soruce dir).
+> >> yocto-bsp when invoked complained with:
+> >> IOError: [Errno 2] No such file or directory:
+> >> '/home/frans/poky-denzil-7.0/scripts/../build/conf/bblayers.conf'
+> >>
+> >
+> > This should be fixed by the fix for this bug:
+> >
+> > https://bugzilla.yoctoproject.org/show_bug.cgi?id=2219
+> >
+> > which didn't make it into the release, and hasn't been pulled into
+> > master yet either...
+> >
+> > But actually that should only apply to yocto-kernel, not yocto-bsp.
+> >
+> > Can you provide more info on your exact setup and commands you used?
+> 
+> I just downloaded denzel according to the quickstart guide.
+> My build dir was outside the source tree.
+> 
+> I did
+>     $ wget http://downloads.yoctoproject.org/releases/yocto/yocto-1.2/poky-denzil-7.0.tar.bz2
+>      $ tar xjf poky-denzil-7.0.tar.bz2
+>      $ source poky-denzil-7.0/oe-init-build-env poky-denzil-7.0-build
+> Tweaked local.conf a little (parallel make and bbthreads and rm_work).
+> Then build core-image-minimal for for the standard machine (x68 emu or so)
+> 
+> after that in the build dir I did (if I recall correctly)
+> yocto-bsp create mpc8313 powerpc
+> 
+> That gave the error.
+> I think the exact message is still on the console of my build system
+> at work. Will check, if so I can email it tomorrow.
+> 
 
-[...]
+No need, I just tried it myself here using the instructions from your
+e-mail of a few minutes ago and saw the error after a couple steps
+through.
 
->
-> Once you have verified that the e300c3 binaries are functional, please se=
-nd
-> a your updated tune to the oe-core list... or if you prefer send it to me
-> and I can review it and submit it (with your permission) to the oe-core
-> list.
->
-> I'm interested in keeping the tunes updated as much as reasonable for a
-> growing list of supportable cores.
->
-> BTW isn't the e300c3 a hard-float (standard classic PPC floating point?) =
-=A0If
-> so be sure to change the TUNE_FEATURES to fpu-hard.
+The following patch fixed it:
 
-Hi Mark,
+http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/log/?h=tzanussi/yocto-bsp-fixes-2219-2330
 
-I can send the tune file once ok; np.
-Thanks for the FP remark. There was not really a difference in the
-oe-classic tune files, but I noticed this might be relevant in
-oe-core.
-Probably I would not have noticed soon without your remark as there is
-not really any FP in our code.
+I can't fix it in the release of course, but I'll at least submit a
+patch to the release notes and the quick start...
 
-Best regards, Frans
+> >
+> >> I resolved this for now by making /home/frans/poky-denzil-7.0/build/ a
+> >> symlink to /home/frans/poky-denzil-7.0-build
+> >> Not sure if that is the desired solution but anyway this allowed me to
+> >> move forward
+> >>
+> >> Reinvoked yocto-bsp create, this indeed gave progress.
+> >> Now had to decide on the machine branch to start this on. As mpc8315
+> >> is fairly close decide to start with that one.
+> >> tuning support was a bit tough. The 8313 machine conf file in
+> >> oe-classic said ppce300c3, so used ppce300c2 as a starter
+> >> next modified the file that contains the device tree to the default 8313 dts.
+> >>
+> >> That generated the layer.
+> >> Still had to add the layer to bblayers.conf (I was somewhat surprised
+> >> by this as the script before complained about not being able to find
+> >> that file so I somehow expected it to be added automatically)
+> >>
+> >
+> > The tools are conservative about changing anything outside of what they
+> > generated - not sure it makes sense to have them changing
+> > bblayers.conf...
+> 
+> That's ok.
+> After sending my mail I noticed that the doc says that one needs to
+> update bblayers.conf
+> 
+> It might be an idea to let the script spit out a message that the user
+> still needs to do this though.
+> 
+> >
+> >> Also went to conf/machine in my bsp and changed it to use
+> >> tune-ppce300c3 instead of c2, and created this include file by copying
+> >> the c2 file to c3 and renaming all references to c2 by c3 (as these
+> >> were the only changes when comparing the oe classic c2 and c3 tune inc
+> >> files.
+> >>
+> >> While building core-image-minimal, building the kernel failed because
+> >> recipes-kernel/linux/linux-yocto_3.2.bbappend had some references to
+> >> mpc8315*. Replaced these with mpc8313*. (not fully sure if that is
+> >> fully sound though; anyway I need to hack the kernel part anyway).
+> >> And now, while typing this, things are happily humming along, giving
+> >> me time to type this message.
+> >>
+> >
+> > The ppc template support is pretty much untested - I focused only on
+> > platforms I had hardware support for and didn't do much with the others,
+> > as mentioned in the submission.
+> >
+> > So I'll be happy to change the templates to make them match reality and
+> > be more useful out-of the box for those platforms I don't know much
+> > about.
+> >
+> > The other thing to note however is that the tool is meant to give a
+> > starting point which will likely need to be tweaked in order to actually
+> > work on the hardware.  It should at least compile, though...
+> >
+> 
+> Understood. I'm not too sure how well the template works.
+> I'm still in the process to migrate (knowledgewise) from oe-classic to yocto.
+> If I find out how to improve the template (or something else), I'll
+> let you know (or submit a patch)
+> 
+
+Either way would be great.  Basically the templates are just BSP files
+with markup inside that provide sets of options.  Even if you just had a
+set of BSP files for powerpc that you think would be good for providing
+a generic starting point, I (or you) could translate those into a BSP
+template and we could add options for various things like tuning files
+on top of that.
+
+Thanks,
+
+Tom
+
+> Keep up the good work!
+> Frans
+
+
 
