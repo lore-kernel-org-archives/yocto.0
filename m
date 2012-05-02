@@ -1,33 +1,36 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 74BABE0044A
-	for <yocto@yoctoproject.org>; Wed,  2 May 2012 08:23:02 -0700 (PDT)
-Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
-	([99.241.91.63] helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.69) (envelope-from <rpjday@crashcourse.ca>)
-	id 1SPbOO-0003xr-EA; Wed, 02 May 2012 11:23:00 -0400
-Date: Wed, 2 May 2012 11:22:54 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: "Osier-mixon, Jeffrey" <jeffrey.osier-mixon@intel.com>
+Return-Path: <elvis.dowson@gmail.com>
+Received: from mail-we0-f176.google.com (mail-we0-f176.google.com
+	[74.125.82.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CE621E0044A
+	for <yocto@yoctoproject.org>; Wed,  2 May 2012 08:29:26 -0700 (PDT)
+Received: by werc12 with SMTP id c12so636646wer.35
+	for <yocto@yoctoproject.org>; Wed, 02 May 2012 08:29:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=content-type:mime-version:subject:from:in-reply-to:date
+	:content-transfer-encoding:message-id:references:to:x-mailer;
+	bh=/sA1xn5R0RIUDB92Ol6lRy1Ym4fpPXHnBmRIq7h/Yj0=;
+	b=l+dCb5PKY4i23dSRzO9vFlHVIBe7Zu7EKda6bF5eTgCB5sem6dbU9EVvBkv9JeoXJv
+	lIrElJsGV8OdvecNr2A/wTlBJ9UYiyaGGxGvh7aVcry+xPiQq6k32lE+MxlsX4T7jFgo
+	9hzomf42EpAvSlJf5paopCEuXT43cvzTD9YfFcLSX+vdMmLJxjaHtPM35TFhXBkPAyhu
+	YkjbOSmY0Aw8lhUGwTkRSFw/sOA47/2D0axLuISEu64SFHtiSFifGs4u3Rn3tpRgJbAd
+	vHWSGqKdupB0V/T8p3/NfjKI8D3jOZ88hyigylfmCO07PHvj2ogid1q5AQBBbntYsnLz
+	RFtg==
+Received: by 10.180.107.101 with SMTP id hb5mr2945852wib.7.1335972565997;
+	Wed, 02 May 2012 08:29:25 -0700 (PDT)
+Received: from [192.168.1.33] (240.Red-88-6-19.staticIP.rima-tde.net.
+	[88.6.19.240])
+	by mx.google.com with ESMTPS id e6sm44768001wix.8.2012.05.02.08.29.24
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Wed, 02 May 2012 08:29:25 -0700 (PDT)
+Mime-Version: 1.0 (Apple Message framework v1257)
+From: Elvis Dowson <elvis.dowson@gmail.com>
 In-Reply-To: <CALZ2gZXUVzF6zrMPEb=aWd9Wmmpv+i+b5-+FtzFmaWJmutSZuQ@mail.gmail.com>
-Message-ID: <alpine.DEB.2.02.1205021122330.22325@oneiric>
+Date: Wed, 2 May 2012 17:29:23 +0200
+Message-Id: <823F6240-3BD2-4DEC-9403-CFB8482878ED@gmail.com>
 References: <54272CA3-A67B-4CA5-9AE5-C9E2D44FC2B3@gmail.com>
 	<CALZ2gZXUVzF6zrMPEb=aWd9Wmmpv+i+b5-+FtzFmaWJmutSZuQ@mail.gmail.com>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
-MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+To: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+X-Mailer: Apple Mail (2.1257)
 Subject: Re: Is it not necessary to sudo dpkg-reconfigure dash with Poky 1.2 on Ubuntu 12.04
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -40,31 +43,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 02 May 2012 15:23:02 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Wed, 02 May 2012 15:29:27 -0000
+Content-Type: text/plain; charset=iso-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, 2 May 2012, Osier-mixon, Jeffrey wrote:
+Hi Jeffrey,
 
-> Good catch. I'm still installing 12.04 and can't check at the
-> moment, but there is an easy way to tell:
->
-> file /bin/sh
->
-> If it points to bash you should be fine, if it points to dash then
-> you'll need to reconfigure. Please let me know the results and I'll
-> make sure it gets documented either way.
+On May 2, 2012, at 5:18 PM, Osier-mixon, Jeffrey wrote:
 
-  i was fairly sure this was no longer an issue.
+> Good catch. I'm still installing 12.04 and can't check at the moment.
 
-rday
+I'll switch back to dash and check it out.
 
--- 
+FYI, the user experience with Ubuntu 12.04 64-bit, running inside a =
+VMware Fusion
+Tech Preview 2012 virtual machine is pretty good. They've finally added =
+support
+for 3D OpenGL acceleration for Ubuntu 12.04.
 
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
+http://communities.vmware.com/community/vmtn/beta/fusiontp2012
 
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+Elvis Dowson
+
 
