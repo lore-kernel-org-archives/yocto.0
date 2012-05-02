@@ -1,33 +1,37 @@
-Return-Path: <elvis.dowson@gmail.com>
-Received: from mail-wg0-f54.google.com (mail-wg0-f54.google.com [74.125.82.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1C3B8E0044D
-	for <yocto@yoctoproject.org>; Wed,  2 May 2012 11:54:29 -0700 (PDT)
-Received: by wgbfg15 with SMTP id fg15so796378wgb.11
-	for <yocto@yoctoproject.org>; Wed, 02 May 2012 11:54:28 -0700 (PDT)
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
+	[209.85.160.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9FD84E00723
+	for <yocto@yoctoproject.org>; Wed,  2 May 2012 14:14:14 -0700 (PDT)
+Received: by pbbrq8 with SMTP id rq8so2113012pbb.35
+	for <yocto@yoctoproject.org>; Wed, 02 May 2012 14:14:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:content-type:content-transfer-encoding:subject:date:message-id
-	:to:mime-version:x-mailer;
-	bh=ASjlaqzW6ef/lMLCNCIC0kmWPKulT8MguNDeVHtyf7U=;
-	b=LUvY4MhZwzp8oosuWbnojZT1LhdjQO3AD+YSjFWyv2g8LvP2/q/qVHfDW3Y2G/rPpb
-	6KaTrw3/iSGaHK+M8ryrEGaJjb+8ICeusKhp1cvWLqqZf3vYEsyFkXLV5O4Xs9nG8PIN
-	5lL48Vy/3BaWxb4KAaui8bv/6CgVBJx/wWs6YGk40JANdmC2sTGdHnuT29N8RzD1vCID
-	WeaD53vGK1MuskigfDE4WEe/FtIgs1PZcj4GBjrBd0r+8jKdD2rP+Ht2Bois64yb4cwP
-	apjPgIJVJ5I5BUDjwLwByTkKfMI0HyAIVNYwEQPeVDTwfsi+rXFR1Ycab9jglP6QZwci
-	qQNg==
-Received: by 10.180.97.228 with SMTP id ed4mr5656167wib.0.1335984868559;
-	Wed, 02 May 2012 11:54:28 -0700 (PDT)
-Received: from [192.168.1.33] (240.Red-88-6-19.staticIP.rima-tde.net.
-	[88.6.19.240])
-	by mx.google.com with ESMTPS id fn2sm9365830wib.0.2012.05.02.11.54.27
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Wed, 02 May 2012 11:54:27 -0700 (PDT)
-From: Elvis Dowson <elvis.dowson@gmail.com>
-Date: Wed, 2 May 2012 20:54:25 +0200
-Message-Id: <F4C0A6A6-CDA5-484C-91A1-D9E179AF2A26@gmail.com>
-To: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-Mime-Version: 1.0 (Apple Message framework v1257)
-X-Mailer: Apple Mail (2.1257)
-Subject: How does the Yocto gitweb interface group the git repositories
+	h=message-id:date:from:user-agent:mime-version:to:subject:references
+	:in-reply-to:x-enigmail-version:content-type
+	:content-transfer-encoding;
+	bh=/+zrVXVrKfCztITvCDlWkEo6SgMYprAwXV5GDGkC8Bk=;
+	b=D5mI6XbLv6zB1rOKk5PzawDPkIOVghXFSYewPaxWNA60cTXmjRVQwYTc84G/Bu60vx
+	53e7HK7yWFzsO5sIWO7xLRrq5L11XC2c1GjAlEWu46sni1lx2xMt/FMS9W2G96BPKQCU
+	9zJqbtlRFkyATtTF+kvcobb0lqFxzgGi1aSVApEooILzGlOwNI8Pg67WX5iVnHeWIzdz
+	lNwRCm2SbW9pU9D5VCVugw9aLP/C4IGrREKSdR0waZi82FfnGp36tJpbdcyct+SiqHMF
+	uhe6Up4ScpQ7oigt0k8gJlNP20KzWYV3/jcb6UNXpSzRC63baO70QBOHx1jUvvxk5ycu
+	9kvg==
+Received: by 10.68.219.34 with SMTP id pl2mr1007545pbc.56.1335993254400;
+	Wed, 02 May 2012 14:14:14 -0700 (PDT)
+Received: from [172.23.3.173] (natint3.juniper.net. [66.129.224.36])
+	by mx.google.com with ESMTPS id tx9sm2999331pbc.10.2012.05.02.14.14.11
+	(version=SSLv3 cipher=OTHER); Wed, 02 May 2012 14:14:12 -0700 (PDT)
+Message-ID: <4FA1A3A1.90905@gmail.com>
+Date: Wed, 02 May 2012 14:14:09 -0700
+From: Khem Raj <raj.khem@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:11.0) Gecko/20120411 Thunderbird/11.0.1
+MIME-Version: 1.0
+To: yocto@yoctoproject.org
+References: <25705145-EBDA-4027-8291-AAF4F3F28775@gmail.com>
+In-Reply-To: <25705145-EBDA-4027-8291-AAF4F3F28775@gmail.com>
+X-Enigmail-Version: 1.4.1
+Subject: Re: Xilinx FPGA development board meta repositories
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,27 +43,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 02 May 2012 18:54:30 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 02 May 2012 21:14:14 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-Hi,
-       I'm trying to mirror the yocto repositories on my development =
-machine. I was wondering how the yocto web interface groups the various =
-repositories like IDE Plugins, Matchbox, Misc, Poky, Poky Support, etc.
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
 
-http://git.yoctoproject.org/
+On 05/02/2012 07:53 AM, Elvis Dowson wrote:
+> Hi, Are there any Yocto meta repositories for Xilinx FPGAs
+> (Virtex-5, Spartan-6, etc) and their corresponding FPGA development
+> boards (ML-507, SP-601, etc)
+> 
 
-For example, the URI for the Anjuta Poky git repo is =
-git://git.yoctoproject.org/anjuta-poky, but when rendered using the =
-Yocto web interface, it is displayed under IDE Plugins > anjuta-poxy
+there is a list of available layers maintained here
 
-I'd like to have a similar grouping for my local repository, so that I =
-can classify stuff from Yocto, OpenEmbedded, Android, etc.
-
-Best regards,
-
-Elvis Dowson
+http://www.openembedded.org/wiki/LayerIndex
 
 
+> Best regards,
+> 
+> Elvis Dowson _______________________________________________ yocto
+> mailing list yocto@yoctoproject.org 
+> https://lists.yoctoproject.org/listinfo/yocto
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.11 (GNU/Linux)
+Comment: Using GnuPG with Mozilla - http://enigmail.mozdev.org/
+
+iEYEARECAAYFAk+ho6EACgkQuwUzVZGdMxRgbwCeMKfkqnXWO7frMcLimeYxPDTT
+VBYAn2kWxm+NR6tPpqPw6aM34gIOPhVr
+=de3c
+-----END PGP SIGNATURE-----
 
