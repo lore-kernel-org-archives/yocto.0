@@ -1,28 +1,26 @@
-Return-Path: <fransmeulenbroeks@gmail.com>
-Received: from mail-ob0-f176.google.com (mail-ob0-f176.google.com
-	[209.85.214.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6D160E00723
-	for <yocto@yoctoproject.org>; Wed,  2 May 2012 00:28:51 -0700 (PDT)
-Received: by obbef5 with SMTP id ef5so788591obb.35
-	for <yocto@yoctoproject.org>; Wed, 02 May 2012 00:28:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=4rLxtdbIeo9YaZfoveRhyO2+J+IW6vzuBFrFziRpYxU=;
-	b=NlY2Y2BCn++vF5crZPqHFRB2IyUoFJxVyxm+HWxEgXnBEtFul9hhg0ZHF7OP+xR14m
-	JHo8UyIE/CCHMvEhmS+rKcNPTN4crJcjE9f73Ev2lKGwMy15GxMxqIcLm5kw4b8dBuAs
-	lu8cJACEHNbt2gwI7AwZHK5oDpgXqDVTOGM/UqY0rm/118WlK33khXHqp5G4xs9nkDuM
-	S5EdnewgNt9wIk1K4mxl9YsnN4iCEr1tb52wCm0Lbw+SINrxGUiNKGBnCGg8XFsPhg/5
-	B7Pg6qnmf/8iAOIyj8B5/bVfHSpPo3tICeSqoA0ERSQUYlPS4P9i4v8kb2xp2SQl4Jy/
-	4W8g==
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 34770E01402
+	for <yocto@yoctoproject.org>; Wed,  2 May 2012 05:55:28 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q42CtQhK002882
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Wed, 2 May 2012 05:55:26 -0700 (PDT)
+Received: from [128.224.92.159] (128.224.92.159) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
+	Wed, 2 May 2012 05:55:27 -0700
+Message-ID: <4FA12EBD.5010306@windriver.com>
+Date: Wed, 2 May 2012 08:55:25 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:11.0) Gecko/20120329 Thunderbird/11.0.1
 MIME-Version: 1.0
-Received: by 10.60.172.231 with SMTP id bf7mr32951873oec.45.1335943729332;
-	Wed, 02 May 2012 00:28:49 -0700 (PDT)
-Received: by 10.60.11.98 with HTTP; Wed, 2 May 2012 00:28:49 -0700 (PDT)
-Date: Wed, 2 May 2012 09:28:49 +0200
-Message-ID: <CACW_hTaEwdB1uiYRkboek=24bm4FNoRwSVEyboKG-FnB7ndQgg@mail.gmail.com>
-From: Frans Meulenbroeks <fransmeulenbroeks@gmail.com>
-To: yocto@yoctoproject.org
-Subject: yocto 1.2 first experiences
+To: Darren Hart <dvhart@linux.intel.com>
+References: <cover.1335909082.git.dvhart@linux.intel.com>
+	<d70b8e0f1ec6eade123a18194283b15e8aaa2bef.1335909082.git.dvhart@linux.intel.com>
+In-Reply-To: <d70b8e0f1ec6eade123a18194283b15e8aaa2bef.1335909082.git.dvhart@linux.intel.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [PATCH 3/7] n450: Update to linux-yocto 3.2
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,92 +32,75 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 02 May 2012 07:28:51 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Wed, 02 May 2012 12:55:28 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Dear all,
+On 12-05-01 06:12 PM, Darren Hart wrote:
+> Update the PREFERRED_VERSION to 3.2.
+> Drop cfg/smp.scc as this is now included in common-pc.
 
-I have build core-image-minimal with yocto 1.2
-Worked quite nice, but it did give 10 warnings
+Just having a look at the series now. Can you confirm for me if there
+are 3 or 7 patches for n450 ? I see the other syslinux series has 7
+patches, but only 3 here. Just a number issue on the send ? Or did
+I manage to lose 4 changes ?
 
-Four of these were non-fetchers:
-WARNING: Failed to fetch URL
-http://kernel.org/pub/linux/kernel/people/jsipek/guilt/guilt-0.33.tar.gz
-WARNING: Failed to fetch URL
-http://kernel.org/pub/linux/utils/kernel/module-init-tools/module-init-tools-3.16.tar.bz2
-WARNING: Failed to fetch URL
-http://kernel.org/pub/linux/utils/usb/usbutils/usbutils-0.91.tar.gz
-WARNING: Failed to fetch URL
-http://kernel.org/pub/linux/utils/kernel/hotplug/udev-164.tar.gz
+Cheers,
 
-The other 6 were QA related:
-bash:
-WARNING: QA Issue: bash: Found a reference to /usr/ in
-/home/frans/poky-denzil-7.0-build/tmp/work/i586-poky-linux/bash-4.2-r2/packages-split/bash/bin/bashbug
-WARNING: QA Issue: Shell scripts in base_bindir and base_sbindir
-should not reference anything in exec_prefix
+Bruce
 
-and 4 in sysvinit:
+>
+> Signed-off-by: Darren Hart<dvhart@linux.intel.com>
+> ---
+>   meta-n450/conf/machine/n450.conf                   |    3 +++
+>   .../linux/linux-yocto-rt_3.2.bbappend              |   10 ++++++++++
+>   .../recipes-kernel/linux/linux-yocto_3.2.bbappend  |    7 +++++++
+>   3 files changed, 20 insertions(+), 0 deletions(-)
+>   create mode 100644 meta-n450/recipes-kernel/linux/linux-yocto-rt_3.2.bbappend
+>   create mode 100644 meta-n450/recipes-kernel/linux/linux-yocto_3.2.bbappend
+>
+> diff --git a/meta-n450/conf/machine/n450.conf b/meta-n450/conf/machine/n450.conf
+> index dac63ed..7ce4cc7 100644
+> --- a/meta-n450/conf/machine/n450.conf
+> +++ b/meta-n450/conf/machine/n450.conf
+> @@ -3,6 +3,9 @@
+>
+>   #@DESCRIPTION: Machine configuration for Intel 1-N450 based systems
+>
+> +PREFERRED_PROVIDER-virtual/kernel ?= "linux-yocto"
+> +PREFERRED_VERSION_linux-yocto ?= "3.2%"
+> +
+>   require conf/machine/include/tune-atom.inc
+>   require conf/machine/include/ia32-base.inc
+>
+> diff --git a/meta-n450/recipes-kernel/linux/linux-yocto-rt_3.2.bbappend b/meta-n450/recipes-kernel/linux/linux-yocto-rt_3.2.bbappend
+> new file mode 100644
+> index 0000000..1c7fef9
+> --- /dev/null
+> +++ b/meta-n450/recipes-kernel/linux/linux-yocto-rt_3.2.bbappend
+> @@ -0,0 +1,10 @@
+> +FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+> +COMPATIBLE_MACHINE_n450 = "n450"
+> +KMACHINE_n450 = "atom-pc"
+> +
+> +KERNEL_FEATURES_append_n450 += " cfg/smp.scc"
+> +
+> +# Update the following to use a different BSP branch or meta SRCREV
+> +#KBRANCH_n450 = "yocto/standard/preempt-rt/base"
+> +#SRCREV_machine_pn-linux-yocto-rt_n450 ?= XXXX
+> +#SRCREV_meta_pn-linux-yocto-rt_n450 ?= XXXX
+> diff --git a/meta-n450/recipes-kernel/linux/linux-yocto_3.2.bbappend b/meta-n450/recipes-kernel/linux/linux-yocto_3.2.bbappend
+> new file mode 100644
+> index 0000000..f02c475
+> --- /dev/null
+> +++ b/meta-n450/recipes-kernel/linux/linux-yocto_3.2.bbappend
+> @@ -0,0 +1,7 @@
+> +FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+> +COMPATIBLE_MACHINE_n450 = "n450"
+> +KMACHINE_n450  = "atom-pc"
+> +KBRANCH_n450 = "standard/default/common-pc/base"
+> +
+> +#SRCREV_machine_pn-linux-yocto_n450 = XXXX
+> +#SRCREV_meta_pn-linux-yocto_n450 ?= XXXX
 
-WARNING: QA Issue: udev:
-/home/frans/poky-denzil-7.0-build/tmp/work/i586-poky-linux/udev-164-r13/packages-split/libgudev/lib/libgudev-1.0.so.0.0.1
-links to something under exec_prefix
-WARNING: QA Issue: ldd reports:     libudev.so.0 =>
-/home/frans/poky-denzil-7.0-build/tmp/sysroots/qemux86/lib/libudev.so.0
-(0xdead1000)
-    libgobject-2.0.so.0 =>
-/home/frans/poky-denzil-7.0-build/tmp/sysroots/qemux86/usr/lib/libgobject-2.0.so.0
-(0xdead2000)
-    libffi.so.5 =>
-/home/frans/poky-denzil-7.0-build/tmp/sysroots/qemux86/usr/lib/libffi.so.5
-(0xdead3000)
-    libgthread-2.0.so.0 =>
-/home/frans/poky-denzil-7.0-build/tmp/sysroots/qemux86/usr/lib/libgthread-2.0.so.0
-(0xdead4000)
-    libpthread.so.0 =>
-/home/frans/poky-denzil-7.0-build/tmp/sysroots/qemux86/lib/libpthread.so.0
-(0xdead5000)
-    libglib-2.0.so.0 =>
-/home/frans/poky-denzil-7.0-build/tmp/sysroots/qemux86/usr/lib/libglib-2.0.so.0
-(0xdead6000)
-    librt.so.1 =>
-/home/frans/poky-denzil-7.0-build/tmp/sysroots/qemux86/lib/librt.so.1
-(0xdead7000)
-    libc.so.6 =>
-/home/frans/poky-denzil-7.0-build/tmp/sysroots/qemux86/lib/libc.so.6
-(0xdead8000)
-    /lib/ld-linux.so.2 =>
-/home/frans/poky-denzil-7.0-build/tmp/sysroots/qemux86/lib/ld-linux.so.2
-(0xdead9000)
-
-WARNING: QA Issue: udev:
-/home/frans/poky-denzil-7.0-build/tmp/work/i586-poky-linux/udev-164-r13/packages-split/udev-acl/lib/udev/udev-acl
-links to something under exec_prefix
-WARNING: QA Issue: ldd reports:     libacl.so.1 =>
-/home/frans/poky-denzil-7.0-build/tmp/sysroots/qemux86/lib/libacl.so.1
-(0xdead1000)
-    libpthread.so.0 =>
-/home/frans/poky-denzil-7.0-build/tmp/sysroots/qemux86/lib/libpthread.so.0
-(0xdead2000)
-    libglib-2.0.so.0 =>
-/home/frans/poky-denzil-7.0-build/tmp/sysroots/qemux86/usr/lib/libglib-2.0.so.0
-(0xdead3000)
-    libc.so.6 =>
-/home/frans/poky-denzil-7.0-build/tmp/sysroots/qemux86/lib/libc.so.6
-(0xdead4000)
-    libattr.so.1 =>
-/home/frans/poky-denzil-7.0-build/tmp/sysroots/qemux86/lib/libattr.so.1
-(0xdead5000)
-    /lib/ld-linux.so.2 =>
-/home/frans/poky-denzil-7.0-build/tmp/sysroots/qemux86/lib/ld-linux.so.2
-(0xdead6000)
-    librt.so.1 =>
-/home/frans/poky-denzil-7.0-build/tmp/sysroots/qemux86/lib/librt.so.1
-(0xdead7000)
-
-Not too sure if these are really harmful, and I guess they are already
-known, but decided to report them anyway (better safe than sorry :-)
-).
-
-Best regards, Frans
 
