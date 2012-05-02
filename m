@@ -1,37 +1,35 @@
 Return-Path: <jeffrey.osier-mixon@intel.com>
-Received: from azsmga101.ch.intel.com (mga07.intel.com [143.182.124.22])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 146CCE0044D
-	for <yocto@yoctoproject.org>; Wed,  2 May 2012 08:16:16 -0700 (PDT)
-Received: from mail-vx0-f180.google.com ([209.85.220.180])
-	by mga03.intel.com with ESMTP/TLS/RC4-SHA; 02 May 2012 08:16:15 -0700
-Received: by vcbfl10 with SMTP id fl10so515458vcb.25
-	for <yocto@yoctoproject.org>; Wed, 02 May 2012 08:16:14 -0700 (PDT)
+Received: from fmsmga101.fm.intel.com (mga05.intel.com [192.55.52.89])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0AF1EE0030B
+	for <yocto@yoctoproject.org>; Wed,  2 May 2012 08:18:56 -0700 (PDT)
+Received: from mail-vb0-f52.google.com ([209.85.212.52])
+	by mga01.intel.com with ESMTP/TLS/RC4-SHA; 02 May 2012 08:18:55 -0700
+Received: by vbzb23 with SMTP id b23so514822vbz.25
+	for <yocto@yoctoproject.org>; Wed, 02 May 2012 08:18:54 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=google.com; s=20120113;
 	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
 	:cc:content-type:content-transfer-encoding:x-gm-message-state;
-	bh=rJtxRUHyRTbMxv+yNhrT66jkRF4NCXUom0dS0cqYkIw=;
-	b=fEh37SpIuzqejCq2OjGP1rAZEft7pu4c+l+EKrrXEWMauSeWj4bBjij0JaFhwQApUH
-	97+a+fbkEhrW+ZKxk0tOMrU9SIPIgP7+ESMEqkaYt4v9lgtcQPk8sQN2gTjR+XsTiWRa
-	NtW9Es4QNLwhXH3ph1spP/+v1N8bRqxGih9gZfZQh0mMHxTY/42pndhXBZjfgSfvcH5m
-	gee1qr8FbF0+DgS8pUSwYLc8Nl+rMk46K/NNyJ06gYx4jIkj+FvAV4Ods7iACeiDSYjN
-	0qhW/z/079ny/eaDQkCAH6WTTE7m28X+8W4xLtTevJKf7rRGh+4+WYMvJ+eOKa+hYuWa
-	vdhQ==
+	bh=g4f+8vb6Ti5OzoCW9BAvIoXuIOEvRk9nfN6bD+avsrs=;
+	b=Rns208+iZhPmKEg4KBThdwgaz8BWbkJ7G1Gu8Xi8fGfpp0DmoXW1dmJ3M555xl61CK
+	l7n+JDlui4NWuVX6Rnfyx5rRf/tT3H5Draj7W90NJUJutZvBzZ2ffbIG8DLH8KbbOuJX
+	zScF7L66+wOG8ptXYjeDRQ4Yg5kRGX6ZaPfZc/kQ6g9w5OpGuvpib4801neahRbhjt2+
+	UVQyh0ys85l1XHrW/QgPzTf9CqNl+KW9scLOX8zaxLw/CBcVVR5r0uHLirSCm8/6thy5
+	Kl/l3v1gYp5Vu2yLAtACVqzGOpeJgkwCeZ85gsn8guxeWezuSuTvx0LRQN/nVzr8t928
+	aKmg==
 MIME-Version: 1.0
-Received: by 10.52.95.198 with SMTP id dm6mr7335933vdb.91.1335971774304; Wed,
-	02 May 2012 08:16:14 -0700 (PDT)
-Received: by 10.52.31.74 with HTTP; Wed, 2 May 2012 08:16:14 -0700 (PDT)
-In-Reply-To: <F16535A6-A93C-451B-AB8E-13A90B69D405@gmail.com>
-References: <25705145-EBDA-4027-8291-AAF4F3F28775@gmail.com>
-	<4FA14B43.5080804@communistcode.co.uk>
-	<F16535A6-A93C-451B-AB8E-13A90B69D405@gmail.com>
-Date: Wed, 2 May 2012 08:16:14 -0700
-Message-ID: <CALZ2gZWTAyX03s_HaBBfgj0ONk0rvojg+WRicZZz8DiaAe3gkg@mail.gmail.com>
+Received: by 10.220.156.72 with SMTP id v8mr9856748vcw.45.1335971934650; Wed,
+	02 May 2012 08:18:54 -0700 (PDT)
+Received: by 10.52.31.74 with HTTP; Wed, 2 May 2012 08:18:54 -0700 (PDT)
+In-Reply-To: <54272CA3-A67B-4CA5-9AE5-C9E2D44FC2B3@gmail.com>
+References: <54272CA3-A67B-4CA5-9AE5-C9E2D44FC2B3@gmail.com>
+Date: Wed, 2 May 2012 08:18:54 -0700
+Message-ID: <CALZ2gZXUVzF6zrMPEb=aWd9Wmmpv+i+b5-+FtzFmaWJmutSZuQ@mail.gmail.com>
 From: "Osier-mixon, Jeffrey" <jeffrey.osier-mixon@intel.com>
 To: Elvis Dowson <elvis.dowson@gmail.com>
-X-Gm-Message-State: ALoCoQkz479n4SEWuwWYkcos4Cqxc3RttI2KhC+yHto98gacQehnihHX4+POkC6GiMBBLe8+NTBo
+X-Gm-Message-State: ALoCoQl3d5J0h4Uhir6Ls9+EFdWfX+H/jghr28nvhOeXyK5lvvO8UgGDMlXJ6/SrpaKzQ/rmLL7x
 Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-Subject: Re: Xilinx FPGA development board meta repositories
+Subject: Re: Is it not necessary to sudo dpkg-reconfigure dash with Poky 1.2 on Ubuntu 12.04
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,30 +41,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 02 May 2012 15:16:16 -0000
+X-List-Received-Date: Wed, 02 May 2012 15:18:56 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-Let us know how it goes!
+Good catch. I'm still installing 12.04 and can't check at the moment,
+but there is an easy way to tell:
 
-On Wed, May 2, 2012 at 8:12 AM, Elvis Dowson <elvis.dowson@gmail.com> wrote=
+file /bin/sh
+
+If it points to bash you should be fine, if it points to dash then
+you'll need to reconfigure. Please let me know the results and I'll
+make sure it gets documented either way.
+
+hope that helps!
+
+On Wed, May 2, 2012 at 8:16 AM, Elvis Dowson <elvis.dowson@gmail.com> wrote=
 :
+> Hi,
+> =A0 =A0 =A0 Is it not necessary to run
 >
-> On May 2, 2012, at 4:57 PM, Jack Mitchell wrote:
+> sudo dpkg-reconfigure dash
 >
->> There is a meta-xilinx git repo but I've never ventured as far as using =
-it...
->>
->> http://git.yoctoproject.org/cgit/cgit.cgi/meta-xilinx/
+> with Poky 1.2 on Ubuntu 12.04 ?
 >
-> Great! I'll test it out, and see if I can get one of my FPGA boards runni=
-ng with it.
+> It is not mentioned in the latest yocto documentation:
+>
+> http://www.yoctoproject.org/docs/current/yocto-project-qs/yocto-project-q=
+s.html
+>
+> However, the previous version documentation mentions it:
+>
+> http://www.yoctoproject.org/docs/1.1.1/yocto-project-qs/yocto-project-qs.=
+html
 >
 > Elvis Dowson
+>
 > _______________________________________________
 > yocto mailing list
 > yocto@yoctoproject.org
 > https://lists.yoctoproject.org/listinfo/yocto
+>
 
 
 
