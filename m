@@ -1,33 +1,20 @@
-Return-Path: <elvis.dowson@gmail.com>
-Received: from mail-wg0-f54.google.com (mail-wg0-f54.google.com [74.125.82.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C312CE0140E
-	for <yocto@yoctoproject.org>; Wed,  2 May 2012 07:53:46 -0700 (PDT)
-Received: by wgbfg15 with SMTP id fg15so561908wgb.11
-	for <yocto@yoctoproject.org>; Wed, 02 May 2012 07:53:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:content-type:content-transfer-encoding:subject:date:message-id
-	:to:mime-version:x-mailer;
-	bh=EmVhPlVJk3fNyGLj3wkhC6tgKlGr93NxapwQiFTzmWE=;
-	b=FJldWrj/32kbhQ4ezJA3U6pK1Wa4ZxrycKtiuWtD4FXayEtsRXeTFkg/scAWxoRIZw
-	Bg5ek88LiHzSk3FSL4YD+Fox2eP0GeDBtJSOySmLwnbnLE8ZtFFlzMzA3jsyLL9RuK2d
-	KlVh07/WVjvdk4uIIKLoifM1IquBSGCnckLMdJ8KaxlnruPI81YmYBqA7/A71Nbwl4bT
-	rsRXb+RJaf0PPNV8UIe0WvaGda2DsW1KEyhobfVpLa9uEchnUo9fkqorZoPWCHLW23Zf
-	8Oz3yvLizMgxdlGeHc9s1OPn4jyeIWZT7+4NXWxpCTkmRWL1cXV8jBVMB1Sdd29QJK9i
-	wg+A==
-Received: by 10.180.94.161 with SMTP id dd1mr14893803wib.16.1335970425930;
-	Wed, 02 May 2012 07:53:45 -0700 (PDT)
-Received: from [192.168.1.33] (240.Red-88-6-19.staticIP.rima-tde.net.
-	[88.6.19.240])
-	by mx.google.com with ESMTPS id e6sm44602283wix.8.2012.05.02.07.53.44
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Wed, 02 May 2012 07:53:45 -0700 (PDT)
-From: Elvis Dowson <elvis.dowson@gmail.com>
-Date: Wed, 2 May 2012 16:53:43 +0200
-Message-Id: <25705145-EBDA-4027-8291-AAF4F3F28775@gmail.com>
-To: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-Mime-Version: 1.0 (Apple Message framework v1257)
-X-Mailer: Apple Mail (2.1257)
-Subject: Xilinx FPGA development board meta repositories
+Return-Path: <ml@communistcode.co.uk>
+Received: from tinyArch.localdomain (unknown [78.110.170.148])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 62466E0140E
+	for <yocto@yoctoproject.org>; Wed,  2 May 2012 07:56:38 -0700 (PDT)
+Received: from [192.168.0.58] (unknown [195.171.99.130])
+	by tinyArch.localdomain (Postfix) with ESMTPSA id 3C665472A1
+	for <yocto@yoctoproject.org>; Wed,  2 May 2012 15:14:34 +0100 (BST)
+Message-ID: <4FA14B43.5080804@communistcode.co.uk>
+Date: Wed, 02 May 2012 15:57:07 +0100
+From: Jack Mitchell <ml@communistcode.co.uk>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:12.0) Gecko/20120426 Thunderbird/12.0
+MIME-Version: 1.0
+To: yocto@yoctoproject.org
+References: <25705145-EBDA-4027-8291-AAF4F3F28775@gmail.com>
+In-Reply-To: <25705145-EBDA-4027-8291-AAF4F3F28775@gmail.com>
+Subject: Re: Xilinx FPGA development board meta repositories
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,16 +26,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 02 May 2012 14:53:47 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 02 May 2012 14:56:38 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi,
-       Are there any Yocto meta repositories for Xilinx FPGAs (Virtex-5, =
-Spartan-6, etc) and their corresponding FPGA development boards (ML-507, =
-SP-601, etc)
+On 02/05/12 15:53, Elvis Dowson wrote:
+> Hi,
+>         Are there any Yocto meta repositories for Xilinx FPGAs (Virtex-5, Spartan-6, etc) and their corresponding FPGA development boards (ML-507, SP-601, etc)
+>
+> Best regards,
+>
+> Elvis Dowson
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-Best regards,
+There is a meta-xilinx git repo but I've never ventured as far as using 
+it...
 
-Elvis Dowson=
+http://git.yoctoproject.org/cgit/cgit.cgi/meta-xilinx/
+
+-- 
+
+   Jack Mitchell (jack@embed.me.uk)
+   Embedded Systems Engineer
+   http://www.embed.me.uk
+
+--
+
 
