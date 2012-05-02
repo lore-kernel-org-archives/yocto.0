@@ -1,37 +1,21 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
-	[209.85.160.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9FD84E00723
-	for <yocto@yoctoproject.org>; Wed,  2 May 2012 14:14:14 -0700 (PDT)
-Received: by pbbrq8 with SMTP id rq8so2113012pbb.35
-	for <yocto@yoctoproject.org>; Wed, 02 May 2012 14:14:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=message-id:date:from:user-agent:mime-version:to:subject:references
-	:in-reply-to:x-enigmail-version:content-type
-	:content-transfer-encoding;
-	bh=/+zrVXVrKfCztITvCDlWkEo6SgMYprAwXV5GDGkC8Bk=;
-	b=D5mI6XbLv6zB1rOKk5PzawDPkIOVghXFSYewPaxWNA60cTXmjRVQwYTc84G/Bu60vx
-	53e7HK7yWFzsO5sIWO7xLRrq5L11XC2c1GjAlEWu46sni1lx2xMt/FMS9W2G96BPKQCU
-	9zJqbtlRFkyATtTF+kvcobb0lqFxzgGi1aSVApEooILzGlOwNI8Pg67WX5iVnHeWIzdz
-	lNwRCm2SbW9pU9D5VCVugw9aLP/C4IGrREKSdR0waZi82FfnGp36tJpbdcyct+SiqHMF
-	uhe6Up4ScpQ7oigt0k8gJlNP20KzWYV3/jcb6UNXpSzRC63baO70QBOHx1jUvvxk5ycu
-	9kvg==
-Received: by 10.68.219.34 with SMTP id pl2mr1007545pbc.56.1335993254400;
-	Wed, 02 May 2012 14:14:14 -0700 (PDT)
-Received: from [172.23.3.173] (natint3.juniper.net. [66.129.224.36])
-	by mx.google.com with ESMTPS id tx9sm2999331pbc.10.2012.05.02.14.14.11
-	(version=SSLv3 cipher=OTHER); Wed, 02 May 2012 14:14:12 -0700 (PDT)
-Message-ID: <4FA1A3A1.90905@gmail.com>
-Date: Wed, 02 May 2012 14:14:09 -0700
-From: Khem Raj <raj.khem@gmail.com>
-User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:11.0) Gecko/20120411 Thunderbird/11.0.1
-MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <25705145-EBDA-4027-8291-AAF4F3F28775@gmail.com>
-In-Reply-To: <25705145-EBDA-4027-8291-AAF4F3F28775@gmail.com>
-X-Enigmail-Version: 1.4.1
-Subject: Re: Xilinx FPGA development board meta repositories
+Return-Path: <kishore.k.bodke@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EDDBCE00723
+	for <yocto@yoctoproject.org>; Wed,  2 May 2012 14:18:43 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga102.fm.intel.com with ESMTP; 02 May 2012 14:18:43 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="148656256"
+Received: from rsaxena-rosecity.sc.intel.com (HELO localhost)
+	([143.183.188.83])
+	by fmsmga001.fm.intel.com with ESMTP; 02 May 2012 14:18:43 -0700
+From: rahul.saxena@intel.com
+To: yocto@yoctoproject.org, tom.zanussi@intel.com,
+	bruce.ashfield@windriver.com, kishore.k.bodke@intel.com
+Date: Wed,  2 May 2012 14:08:20 -0700
+Message-Id: <cover.1335992611.git.rahul.saxena@intel.com>
+X-Mailer: git-send-email 1.7.4.1
+Subject: [meta-intel][PATCH 0/1] Add SRCREV of yocto/pvr kernel branch
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,36 +27,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 02 May 2012 21:14:14 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 02 May 2012 21:18:44 -0000
 
------BEGIN PGP SIGNED MESSAGE-----
-Hash: SHA1
+From: Rahul Saxena <rahul.saxena@intel.com>
 
-On 05/02/2012 07:53 AM, Elvis Dowson wrote:
-> Hi, Are there any Yocto meta repositories for Xilinx FPGAs
-> (Virtex-5, Spartan-6, etc) and their corresponding FPGA development
-> boards (ML-507, SP-601, etc)
-> 
+SRCREV for yocto/pvr was needed after the new rev of the kernel pvr patches were added
 
-there is a list of available layers maintained here
+Signed-off-by: Rahul Saxena <rahul.saxena@.intel.com>
+--
 
-http://www.openembedded.org/wiki/LayerIndex
+The following changes since commit 0861f2513ebe7e1ad18291664356cfeab3c196b9:
 
+  meta-cedartrail: fix README to state tools-testapps needed for Glxgears (2012-04-16 16:34:31 -0500)
 
-> Best regards,
-> 
-> Elvis Dowson _______________________________________________ yocto
-> mailing list yocto@yoctoproject.org 
-> https://lists.yoctoproject.org/listinfo/yocto
+are available in the git repository at:
+  git://git.pokylinux.org/meta-intel-contrib rsaxena-edison3
+  http://git.pokylinux.org/cgit.cgi/meta-intel-contrib/log/?h=rsaxena-edison3
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.11 (GNU/Linux)
-Comment: Using GnuPG with Mozilla - http://enigmail.mozdev.org/
+Rahul Saxena (1):
+  meta-cedartrail: add SRCREV of yocto/pvr kernel branch
 
-iEYEARECAAYFAk+ho6EACgkQuwUzVZGdMxRgbwCeMKfkqnXWO7frMcLimeYxPDTT
-VBYAn2kWxm+NR6tPpqPw6aM34gIOPhVr
-=de3c
------END PGP SIGNATURE-----
+ .../linux/linux-yocto-rt_3.0.bbappend              |    3 +--
+ .../recipes-kernel/linux/linux-yocto_3.0.bbappend  |   10 +++++++---
+ 2 files changed, 8 insertions(+), 5 deletions(-)
+
+-- 
+1.7.4.1
+
 
