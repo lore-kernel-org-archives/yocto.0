@@ -1,33 +1,22 @@
-Return-Path: <kergoth@gmail.com>
-Received: from mail-wg0-f42.google.com (mail-wg0-f42.google.com [74.125.82.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 128AEE0044A
-	for <yocto@yoctoproject.org>; Wed,  2 May 2012 08:20:32 -0700 (PDT)
-Received: by wgbds11 with SMTP id ds11so711450wgb.5
-	for <yocto@yoctoproject.org>; Wed, 02 May 2012 08:20:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:from:date
-	:x-google-sender-auth:message-id:subject:to:cc:content-type;
-	bh=dgINxxLWqzkyJ7L2DGw+2VKVPMf0KxAtSIeUKS7EjYo=;
-	b=W5PU/YrPLmDbbZlh2s8P+okWDOYsDlAVKBupsjVjviac5T2wEcCB6HQ0ELwTPNnDDC
-	iLSFCATaOpO1bm0bjq/NJdRx5ed3hfu7zVJmJUx3SO2flMQaRuoSmtuT6zTXlnjgJBh9
-	WsTVKa3mKQNqpYWrDsKeygIlJq7MeA5A19NjqJlKH1Fiue4FTzMr5B/0T1y95mhNbyd2
-	H+1+1FpH95FGl4DWgGoEPzMx8rJdrUYWpy/uX1Wq9AfDyVWsQyjU0oP5xaabYIePV7d/
-	05xLzOye/JzMEyFFXWtVbQyiHBI2aOLMMfSabHVbFZUm/ss5CfP7g01e4lFsyGJAqVLh
-	8xwA==
-Received: by 10.216.134.136 with SMTP id s8mr17851374wei.6.1335972032043; Wed,
-	02 May 2012 08:20:32 -0700 (PDT)
+Return-Path: <josh@linux.intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C4DE8E0044A
+	for <yocto@yoctoproject.org>; Wed,  2 May 2012 08:21:20 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 02 May 2012 08:21:20 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="95543678"
+Received: from unknown (HELO [10.255.12.207]) ([10.255.12.207])
+	by AZSMGA002.ch.intel.com with ESMTP; 02 May 2012 08:21:20 -0700
+Message-ID: <4FA150EF.8090801@linux.intel.com>
+Date: Wed, 02 May 2012 08:21:19 -0700
+From: Joshua Lock <josh@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:12.0) Gecko/20120424 Thunderbird/12.0
 MIME-Version: 1.0
-Sender: kergoth@gmail.com
-Received: by 10.216.209.9 with HTTP; Wed, 2 May 2012 08:20:11 -0700 (PDT)
-In-Reply-To: <CALZ2gZXUVzF6zrMPEb=aWd9Wmmpv+i+b5-+FtzFmaWJmutSZuQ@mail.gmail.com>
+To: yocto@yoctoproject.org
 References: <54272CA3-A67B-4CA5-9AE5-C9E2D44FC2B3@gmail.com>
-	<CALZ2gZXUVzF6zrMPEb=aWd9Wmmpv+i+b5-+FtzFmaWJmutSZuQ@mail.gmail.com>
-From: Chris Larson <clarson@kergoth.com>
-Date: Wed, 2 May 2012 08:20:11 -0700
-X-Google-Sender-Auth: nd2zFH7smiZG-OC0vDpu7idzDBI
-Message-ID: <CABcZANn=sp+CEBPGu+7+isdCEY974Zmt=6V3QOKVA6MhXkK+fQ@mail.gmail.com>
-To: "Osier-mixon, Jeffrey" <jeffrey.osier-mixon@intel.com>
-Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+In-Reply-To: <54272CA3-A67B-4CA5-9AE5-C9E2D44FC2B3@gmail.com>
 Subject: Re: Is it not necessary to sudo dpkg-reconfigure dash with Poky 1.2 on Ubuntu 12.04
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -40,22 +29,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 02 May 2012 15:20:33 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 02 May 2012 15:21:20 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Wed, May 2, 2012 at 8:18 AM, Osier-mixon, Jeffrey
-<jeffrey.osier-mixon@intel.com> wrote:
-> Good catch. I'm still installing 12.04 and can't check at the moment,
-> but there is an easy way to tell:
+On 02/05/12 08:16, Elvis Dowson wrote:
+> Hi,
+> Is it not necessary to run
 >
-> file /bin/sh
+> sudo dpkg-reconfigure dash
 >
-> If it points to bash you should be fine, if it points to dash then
-> you'll need to reconfigure. Please let me know the results and I'll
-> make sure it gets documented either way.
+> with Poky 1.2 on Ubuntu 12.04 ?
 
-From discussion on IRC, folks have said /bin/sh being bash is no
-longer required.
+It should not be.
+
+We made a concerted effort to ensure Poky runs under the Dash shell in 
+the 1.2 cycle. I believe there are several developers of the project 
+using Dash as their primary shell without issue.
+
+Regards,
+Joshua
 -- 
-Christopher Larson
+Joshua Lock
+         Yocto Project
+         Intel Open Source Technology Centre
 
