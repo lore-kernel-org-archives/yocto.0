@@ -1,34 +1,24 @@
-Return-Path: <elvis.dowson@gmail.com>
-Received: from mail-wi0-f176.google.com (mail-wi0-f176.google.com
-	[209.85.212.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3049CE013B7
-	for <yocto@yoctoproject.org>; Thu,  3 May 2012 05:56:08 -0700 (PDT)
-Received: by wibhm17 with SMTP id hm17so269803wib.11
-	for <yocto@yoctoproject.org>; Thu, 03 May 2012 05:56:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:content-type:content-transfer-encoding:subject:date:message-id
-	:to:mime-version:x-mailer;
-	bh=Mx7lwp1lrNGthl5VIdTI5Zhms8L++DWOWpQpELQL0+s=;
-	b=sdVGbbc9KXlY7KFjjFDOVi1wI690AUt6vNlS/bZu70xvSNs/yF28ouXg8haklYqvND
-	dgGjKGA6aSfsOEXgfMUfzvmIKA74U/CFXFDhcQi8/x+mQ96D/gg2Uw6T6ScwvVrdlMTt
-	au9rx9Fy/G/mFhkwcciaWaqBA9/QaPkdUPMW1xNWDqoiYL+k0NUWkj04PKgGCjxD45E6
-	1k0GYksgg6qVHmuFXe1oDYrc57rYNVXWvathjy0tD/n1xgrH0jxOo1ae1cPEETXRCp9e
-	vYI6Igf0GysiAmhW0i59BYRg9wI9Ylpfn7cb2uuWl/1X6PAF/vIzY+dicMH6Ruxungvl
-	w6UA==
-Received: by 10.216.141.164 with SMTP id g36mr508489wej.119.1336049767181;
-	Thu, 03 May 2012 05:56:07 -0700 (PDT)
-Received: from [192.168.1.33] (240.Red-88-6-19.staticIP.rima-tde.net.
-	[88.6.19.240])
-	by mx.google.com with ESMTPS id l5sm1900418wia.11.2012.05.03.05.56.04
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Thu, 03 May 2012 05:56:06 -0700 (PDT)
-From: Elvis Dowson <elvis.dowson@gmail.com>
-Date: Thu, 3 May 2012 14:56:03 +0200
-Message-Id: <880CAB78-91DC-46B5-A4BB-00D33FFA9624@gmail.com>
-To: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-Mime-Version: 1.0 (Apple Message framework v1257)
-X-Mailer: Apple Mail (2.1257)
-Subject: Build error: Could not inherit file classes/systemd.bbclass
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E860BE013B7
+	for <yocto@yoctoproject.org>; Thu,  3 May 2012 06:22:24 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 03 May 2012 06:21:42 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="138437166"
+Received: from unknown (HELO helios.localnet) ([10.252.120.59])
+	by azsmga001.ch.intel.com with ESMTP; 03 May 2012 06:21:41 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Elvis Dowson <elvis.dowson@gmail.com>
+Date: Thu, 03 May 2012 14:21:40 +0100
+Message-ID: <11827908.GWIN234cRG@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.8.2 (Linux/3.0.0-19-generic-pae; KDE/4.8.2; i686; ; )
+In-Reply-To: <880CAB78-91DC-46B5-A4BB-00D33FFA9624@gmail.com>
+References: <880CAB78-91DC-46B5-A4BB-00D33FFA9624@gmail.com>
+MIME-Version: 1.0
+Cc: yocto@yoctoproject.org
+Subject: Re: Build error: Could not inherit file classes/systemd.bbclass
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,33 +30,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 03 May 2012 12:56:08 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 03 May 2012 13:22:25 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Hi,
-     I've setup and configured an Ubuntu-12.04 LTS 64-bit system, and I =
-get a build error when I run the following command:
+On Thursday 03 May 2012 14:56:03 Elvis Dowson wrote:
+>      I've setup and configured an Ubuntu-12.04 LTS 64-bit system, and I get
+> a build error when I run the following command:
+> 
+> $ bitbake -c fetchall core-image-minimal
+> 
+> Pseudo is not present but is required, building this first before the main
+> build WARNING: Host distribution "Ubuntu 12.04 LTS" has not been validated
+> with this version of the build system; you may possibly experience
+> unexpected failures. It is recommended that you use a tested distribution.
 
-$ bitbake -c fetchall core-image-minimal
+This can be ignored - 12.04 *is* supported; it's just that the final version 
+string wasn't what I expected it to be. I'll send a patch for this soon and it 
+can hopefully go into 1.2.1.
 
-Pseudo is not present but is required, building this first before the =
-main build
-WARNING: Host distribution "Ubuntu 12.04 LTS" has not been validated =
-with this version of the build system; you may possibly experience =
-unexpected failures. It is recommended that you use a tested =
-distribution.
-ERROR: ParseError at =
-/tool/yocto/meta-ti/recipes-misc/payload/bonescript.bb:5: Could not =
-inherit file classes/systemd.bbclass
-ERROR: Command execution failed: Exited with 1
+> ERROR: ParseError at
+> /tool/yocto/meta-ti/recipes-misc/payload/bonescript.bb:5: Could not inherit
+> file classes/systemd.bbclass ERROR: Command execution failed: Exited with 1
 
-Summary: There was 1 WARNING message shown.
-Summary: There were 2 ERROR messages shown, returning a non-zero exit =
-code.
+systemd.bbclass is part of the meta-oe layer, so you'll need to add that to 
+your bblayers.conf.
 
+BTW I'm not sure if the meta-ti maintainers have finished their work to ensure 
+meta-ti works with distros other than Angstrom. If they haven't you may 
+experience problems.
 
-Best regards,
+Cheers,
+Paul
 
-Elvis Dowson=
+-- 
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
