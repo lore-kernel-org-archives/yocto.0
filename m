@@ -1,21 +1,27 @@
-Return-Path: <giovanni.pavoni@exorint.it>
-Received: from esafe.exorint.net (esafe.exorint.net [89.96.201.228])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 3A7BCE00723
-	for <yocto@yoctoproject.org>; Thu,  3 May 2012 03:22:43 -0700 (PDT)
-Received: from sitek.exorint.net ([192.168.0.249]) by eSafe SMTP Relay
-	1326992231; Thu, 03 May 2012 12:21:48 +0100
-To: yocto@yoctoproject.org
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (hermes.mlbassoc.com [64.234.241.98])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0FDF0E00723
+	for <yocto@yoctoproject.org>; Thu,  3 May 2012 03:27:01 -0700 (PDT)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id 63745F81213; Thu,  3 May 2012 04:27:00 -0600 (MDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-0.9 required=4.0 tests=ALL_TRUSTED,BAYES_00,
+	DEAR_SOMETHING autolearn=no version=3.3.2
+Received: from hermes.chez-thomas.org (localhost.localdomain [127.0.0.1])
+	by mail.chez-thomas.org (Postfix) with ESMTP id B6F85F8120C;
+	Thu,  3 May 2012 04:26:52 -0600 (MDT)
+Message-ID: <4FA25D6C.8070605@mlbassoc.com>
+Date: Thu, 03 May 2012 04:26:52 -0600
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:12.0) Gecko/20120424 Thunderbird/12.0
 MIME-Version: 1.0
-X-KeepSent: 2A8EADBF:1A016282-C12579F3:0038D0CC;type=4; name=$KeepSent
-X-Mailer: Lotus Notes Release 8.5.2 August 10, 2010
-Message-ID: <OF2A8EADBF.1A016282-ONC12579F3.0038D0CC-C12579F3.00390132@Sitek.it>
-From: giovanni.pavoni@exorint.it
-Date: Thu, 3 May 2012 12:22:22 +0200
-X-MIMETrack: Serialize by Router on sitek/Sitek(Release 8.5.3|September 15,
-	2011) at 03/05/201212.22.22, Serialize complete
-	at 03/05/2012 12.22.22
-X-ESAFE-STATUS: [esafe.exorint.net] Mail allowed
-Subject: Need help for building kernel image with embedded initramfs.cpio
+To: yocto@yoctoproject.org
+References: <OF2A8EADBF.1A016282-ONC12579F3.0038D0CC-C12579F3.00390132@Sitek.it>
+In-Reply-To: <OF2A8EADBF.1A016282-ONC12579F3.0038D0CC-C12579F3.00390132@Sitek.it>
+Subject: Re: Need help for building kernel image with embedded initramfs.cpio
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,131 +33,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 03 May 2012 10:22:44 -0000
-Content-Type: multipart/alternative;
-	boundary="=_alternative 0039012FC12579F3_="
+X-List-Received-Date: Thu, 03 May 2012 10:27:01 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
---=_alternative 0039012FC12579F3_=
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: base64
+On 2012-05-03 04:22, giovanni.pavoni@exorint.it wrote:
+> Dear Sirs,
+>
+> for my cortex A8 based system, I am in the need to deploy
+> a sort of "safe mode image" that should bootstrap only
+> in case of system recovery.
+>
+> This image fits particularily well the model of a ramfs based system
+> with contents such as core-image-minimal-mtdutils plus some tools addition.
+>
+> I defined a "myimage.bb" recipe for this image that generates a "myimage.cpio"
+>
+> However I am in the need to:
+>
+> 1. establish in myimage.bb a relation with virtual/kernel and ask to generate
+> kernel modules only.
+>
+> 2. retrieve modules only from the kernel staging area and made them part of
+> "myimage.cpio"
+>
+> 3. change the config of my kernel to add CONFIG_INITRAMFS_SOURCE = "myimage.cpio"
+> and copy myimage.cpio from staging area to kernel build location.
+>
+> 4. build kernel and deploy the emitted uImage as "mykernel+myimage"
+>
+> Anyone can help with suggestions/guidelines and/or codesnips?
 
-RGVhciBTaXJzLA0KDQpmb3IgbXkgY29ydGV4IEE4IGJhc2VkIHN5c3RlbSwgSSBhbSBpbiB0aGUg
-bmVlZCB0byBkZXBsb3kgDQphIHNvcnQgb2YgInNhZmUgbW9kZSBpbWFnZSIgdGhhdCBzaG91bGQg
-Ym9vdHN0cmFwIG9ubHkgDQppbiBjYXNlIG9mIHN5c3RlbSByZWNvdmVyeS4gDQoNClRoaXMgaW1h
-Z2UgZml0cyBwYXJ0aWN1bGFyaWx5IHdlbGwgdGhlIG1vZGVsIG9mIGEgcmFtZnMgYmFzZWQgc3lz
-dGVtDQp3aXRoIGNvbnRlbnRzIHN1Y2ggYXMgY29yZS1pbWFnZS1taW5pbWFsLW10ZHV0aWxzIHBs
-dXMgc29tZSB0b29scyANCmFkZGl0aW9uLg0KDQpJIGRlZmluZWQgYSAibXlpbWFnZS5iYiIgcmVj
-aXBlIGZvciB0aGlzIGltYWdlIHRoYXQgZ2VuZXJhdGVzIGEgDQoibXlpbWFnZS5jcGlvIg0KDQpI
-b3dldmVyIEkgYW0gaW4gdGhlIG5lZWQgdG86DQoNCjEuIGVzdGFibGlzaCBpbiBteWltYWdlLmJi
-IGEgcmVsYXRpb24gd2l0aCB2aXJ0dWFsL2tlcm5lbCBhbmQgYXNrIHRvIA0KZ2VuZXJhdGUNCmtl
-cm5lbCBtb2R1bGVzIG9ubHkuDQoNCjIuIHJldHJpZXZlIG1vZHVsZXMgb25seSBmcm9tIHRoZSBr
-ZXJuZWwgc3RhZ2luZyBhcmVhIGFuZCBtYWRlIHRoZW0gcGFydCANCm9mIA0KIm15aW1hZ2UuY3Bp
-byINCg0KMy4gY2hhbmdlIHRoZSBjb25maWcgb2YgbXkga2VybmVsIHRvIGFkZCBDT05GSUdfSU5J
-VFJBTUZTX1NPVVJDRSA9IA0KIm15aW1hZ2UuY3BpbyINCmFuZCBjb3B5IG15aW1hZ2UuY3BpbyBm
-cm9tIHN0YWdpbmcgYXJlYSB0byBrZXJuZWwgYnVpbGQgbG9jYXRpb24uDQoNCjQuIGJ1aWxkIGtl
-cm5lbCBhbmQgZGVwbG95IHRoZSBlbWl0dGVkIHVJbWFnZSBhcyAibXlrZXJuZWwrbXlpbWFnZSIN
-Cg0KQW55b25lIGNhbiBoZWxwIHdpdGggc3VnZ2VzdGlvbnMvZ3VpZGVsaW5lcyBhbmQvb3IgY29k
-ZXNuaXBzPw0KDQpLaW5kIHJlZ2FyZHMNCg0KDQoNCkdpb3Zhbm5pIFBhdm9uaQ0KUiZEIERlcGFy
-dG1lbnQNCg0KRXhvciBJbnRlcm5hdGlvbmFsIFMucC5BLg0KVmlhIE1vbnRlIEZpb3Jpbm8sOQ0K
-SS0zNzA1NyBTYW4gR2lvdmFubmkgTHVwYXRvdG8gKFZSKQ0KUGhvbmU6KzM5MDQ1ODc3NDgzOSAt
-IEZheDorMzkwNDU4Nzc5MDIzDQoNCmdpb3Zhbm5pLnBhdm9uaUBleG9yaW50Lml0IC0gd3d3LmV4
-b3JpbnQubmV0IC0gd3d3LmV4b3JpbnQuaXQNCg0KDQoNCkFUVEVOWklPTkU6IFByaXZhY3kgUG9s
-aWN5IOKAkyBELkxncy4gMTk2LzIwMDMNCiBMZSBpbmZvcm1hemlvbmkgY29udGVudXRlIGluIHF1
-ZXN0byBtZXNzYWdnaW8gZGkgcG9zdGEgZWxldHRyb25pY2Egc29ubyBkaSANCmNhcmF0dGVyZSBw
-cml2YXRvIGUgY29uZmlkZW56aWFsZSBlZCBlc2NsdXNpdmFtZW50ZSByaXZvbHRlIGFsIGRlc3Rp
-bmF0YXJpbyANCnNvcHJhIGluZGljYXRvLiBOZWwgY2FzbyBhdmVzdGUgcmljZXZ1dG8gcXVlc3Rv
-IG1lc3NhZ2dpbyBkaSBwb3N0YSBlbGV0dHJvbmljYSANCnBlciBlcnJvcmUsIHZpIGNvbXVuaWNo
-aWFtbyBjaGUgYWkgc2Vuc2kgZGVsIHN1ZGRldHRvIGRlY3JldG8gw6ggdmlldGF0byBs4oCZdXNv
-LCANCmxhIGRpZmZ1c2lvbmUsIGRpc3RyaWJ1emlvbmUgbyByaXByb2R1emlvbmUgZGEgcGFydGUg
-ZGkgb2duaSBhbHRyYSBwZXJzb25hLiANClNpZXRlIHByZWdhdGkgZGkgc2VnbmFsYXJsbyBpbW1l
-ZGlhdGFtZW50ZSByaXNwb25kZW5kbyBhbCBtaXR0ZW50ZSBlIGRpIA0KZGlzdHJ1Z2dlcmUgcXVh
-bnRvIHJpY2V2dXRvIChjb21wcmVzaSBpIGZpbGUgYWxsZWdhdGkpIHNlbnphIGZhcm5lIGNvcGlh
-IG8gDQpsZWdnZXJuZSBpbCBjb250ZW51dG8uDQoNClRoaXMgZS1tYWlsIHRyYW5zbWlzc2lvbiBj
-b250YWlucyBpbmZvcm1hdGlvbiB0aGF0IGlzIGNvbmZpZGVudGlhbCBhbmQgbWF5IGJlIA0KcHJp
-dmlsZWdlZC4gSXQgaXMgaW50ZW5kZWQgb25seSBmb3IgdGhlIGFkZHJlc3NlZShzKSBuYW1lZCBh
-Ym92ZS4gSWYgeW91IA0KcmVjZWl2ZSB0aGlzIGUtbWFpbCBpbiBlcnJvciwgcGxlYXNlIGRvIG5v
-dCByZWFkLCBjb3B5IG9yIGRpc3NlbWluYXRlIGl0IGluIGFueSANCm1hbm5lci4gSWYgeW91IGFy
-ZSBub3QgdGhlIGludGVuZGVkIHJlY2lwaWVudCwgYW55IGRpc2Nsb3N1cmUsIGNvcHlpbmcsIA0K
-ZGlzdHJpYnV0aW9uIG9yIHVzZSBvZiB0aGUgY29udGVudHMgb2YgdGhpcyBpbmZvcm1hdGlvbiBp
-cyBwcm9oaWJpdGVkLiBQbGVhc2UgDQpyZXBseSB0byB0aGUgbWVzc2FnZSBpbW1lZGlhdGVseSBi
-eSBpbmZvcm1pbmcgdGhlIHNlbmRlciB0aGF0IHRoZSBtZXNzYWdlIHdhcyANCm1pc2RpcmVjdGVk
-LiBBZnRlciByZXBseWluZywgcGxlYXNlIGVyYXNlIGl0IGZyb20geW91ciBjb21wdXRlciBzeXN0
-ZW0uIFlvdXIgDQphc3Npc3RhbmNlIGluIGNvcnJlY3RpbmcgdGhpcyBlcnJvciBpcyBhcHByZWNp
-YXRlZC4NCiA=
+Why not use an 'initrd' image + kernel instead?  It's much simpler
+to build and U-Boot has good support for this.  I use this method
+all the time for just the scenario you mention.
 
---=_alternative 0039012FC12579F3_=
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: base64
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
-PGZvbnQgc2l6ZT0yIGZhY2U9InNhbnMtc2VyaWYiPkRlYXIgU2lycyw8L2ZvbnQ+DQo8YnI+DQo8
-YnI+PGZvbnQgc2l6ZT0yIGZhY2U9InNhbnMtc2VyaWYiPmZvciBteSBjb3J0ZXggQTggYmFzZWQg
-c3lzdGVtLCBJIGFtDQppbiB0aGUgbmVlZCB0byBkZXBsb3kgPC9mb250Pg0KPGJyPjxmb250IHNp
-emU9MiBmYWNlPSJzYW5zLXNlcmlmIj5hIHNvcnQgb2YgJnF1b3Q7c2FmZSBtb2RlIGltYWdlJnF1
-b3Q7DQp0aGF0IHNob3VsZCBib290c3RyYXAgb25seSA8L2ZvbnQ+DQo8YnI+PGZvbnQgc2l6ZT0y
-IGZhY2U9InNhbnMtc2VyaWYiPmluIGNhc2Ugb2Ygc3lzdGVtIHJlY292ZXJ5LiA8L2ZvbnQ+DQo8
-YnI+DQo8YnI+PGZvbnQgc2l6ZT0yIGZhY2U9InNhbnMtc2VyaWYiPlRoaXMgaW1hZ2UgZml0cyBw
-YXJ0aWN1bGFyaWx5IHdlbGwgdGhlDQptb2RlbCBvZiBhIHJhbWZzIGJhc2VkIHN5c3RlbTwvZm9u
-dD4NCjxicj48Zm9udCBzaXplPTIgZmFjZT0ic2Fucy1zZXJpZiI+d2l0aCBjb250ZW50cyBzdWNo
-IGFzIGNvcmUtaW1hZ2UtbWluaW1hbC1tdGR1dGlscw0KcGx1cyBzb21lIHRvb2xzIGFkZGl0aW9u
-LjwvZm9udD4NCjxicj4NCjxicj48Zm9udCBzaXplPTIgZmFjZT0ic2Fucy1zZXJpZiI+SSBkZWZp
-bmVkIGEgJnF1b3Q7bXlpbWFnZS5iYiZxdW90OyByZWNpcGUNCmZvciB0aGlzIGltYWdlIHRoYXQg
-Z2VuZXJhdGVzIGEgJnF1b3Q7bXlpbWFnZS5jcGlvJnF1b3Q7PC9mb250Pg0KPGJyPg0KPGJyPjxm
-b250IHNpemU9MiBmYWNlPSJzYW5zLXNlcmlmIj5Ib3dldmVyIEkgYW0gaW4gdGhlIG5lZWQgdG86
-PC9mb250Pg0KPGJyPg0KPGJyPjxmb250IHNpemU9MiBmYWNlPSJzYW5zLXNlcmlmIj4xLiBlc3Rh
-Ymxpc2ggaW4gbXlpbWFnZS5iYiBhIHJlbGF0aW9uDQp3aXRoIHZpcnR1YWwva2VybmVsIGFuZCBh
-c2sgdG8gZ2VuZXJhdGU8L2ZvbnQ+DQo8YnI+PGZvbnQgc2l6ZT0yIGZhY2U9InNhbnMtc2VyaWYi
-Pmtlcm5lbCBtb2R1bGVzIG9ubHkuPC9mb250Pg0KPGJyPg0KPGJyPjxmb250IHNpemU9MiBmYWNl
-PSJzYW5zLXNlcmlmIj4yLiByZXRyaWV2ZSBtb2R1bGVzIG9ubHkgZnJvbSB0aGUga2VybmVsDQpz
-dGFnaW5nIGFyZWEgYW5kIG1hZGUgdGhlbSBwYXJ0IG9mIDwvZm9udD4NCjxicj48Zm9udCBzaXpl
-PTIgZmFjZT0ic2Fucy1zZXJpZiI+JnF1b3Q7bXlpbWFnZS5jcGlvJnF1b3Q7PC9mb250Pg0KPGJy
-Pg0KPGJyPjxmb250IHNpemU9MiBmYWNlPSJzYW5zLXNlcmlmIj4zLiBjaGFuZ2UgdGhlIGNvbmZp
-ZyBvZiBteSBrZXJuZWwgdG8NCmFkZCBDT05GSUdfSU5JVFJBTUZTX1NPVVJDRSA9ICZxdW90O215
-aW1hZ2UuY3BpbyZxdW90OzwvZm9udD4NCjxicj48Zm9udCBzaXplPTIgZmFjZT0ic2Fucy1zZXJp
-ZiI+YW5kIGNvcHkgbXlpbWFnZS5jcGlvIGZyb20gc3RhZ2luZyBhcmVhDQp0byBrZXJuZWwgYnVp
-bGQgbG9jYXRpb24uPC9mb250Pg0KPGJyPg0KPGJyPjxmb250IHNpemU9MiBmYWNlPSJzYW5zLXNl
-cmlmIj40LiBidWlsZCBrZXJuZWwgYW5kIGRlcGxveSB0aGUgZW1pdHRlZA0KdUltYWdlIGFzICZx
-dW90O215a2VybmVsK215aW1hZ2UmcXVvdDs8L2ZvbnQ+DQo8YnI+DQo8YnI+PGZvbnQgc2l6ZT0y
-IGZhY2U9InNhbnMtc2VyaWYiPkFueW9uZSBjYW4gaGVscCB3aXRoIHN1Z2dlc3Rpb25zL2d1aWRl
-bGluZXMNCmFuZC9vciBjb2Rlc25pcHM/PC9mb250Pg0KPGJyPg0KPGJyPjxmb250IHNpemU9MiBm
-YWNlPSJzYW5zLXNlcmlmIj5LaW5kIHJlZ2FyZHM8Yj48YnI+DQo8L2I+PC9mb250Pg0KDQoNCjxm
-b250IHNpemU9MSBmYWNlPSJBcmlhbCI+PGJyPg0KPC9mb250Pg0KPGJyPjxmb250IHNpemU9MiBm
-YWNlPSJzYW5zLXNlcmlmIj48Yj5HaW92YW5uaSBQYXZvbmk8L2I+PC9mb250Pg0KPGJyPjxmb250
-IHNpemU9MiBmYWNlPSJzYW5zLXNlcmlmIj5SJkQgRGVwYXJ0bWVudDwvZm9udD4NCjxicj4NCjxi
-cj48Zm9udCBzaXplPTIgZmFjZT0ic2Fucy1zZXJpZiI+PGI+RXhvciBJbnRlcm5hdGlvbmFsIFMu
-cC5BLjwvYj48YnI+DQpWaWEgTW9udGUgRmlvcmlubyw5PGJyPg0KSS0zNzA1NyBTYW4gR2lvdmFu
-bmkgTHVwYXRvdG8gKFZSKTxicj4NClBob25lOiszOTA0NTg3NzQ4MzkgLSBGYXg6KzM5MDQ1ODc3
-OTAyMzxicj4NCjwvZm9udD4NCjxicj48Zm9udCBzaXplPTIgZmFjZT0ic2Fucy1zZXJpZiI+Z2lv
-dmFubmkucGF2b25pQGV4b3JpbnQuaXQgLSA8L2ZvbnQ+PGEgaHJlZj13d3cuZXhvcmludC5uZXQ+
-PGZvbnQgc2l6ZT0yIGZhY2U9InNhbnMtc2VyaWYiPnd3dy5leG9yaW50Lm5ldDwvZm9udD48L2E+
-PGZvbnQgc2l6ZT0yIGZhY2U9InNhbnMtc2VyaWYiPg0KLSA8L2ZvbnQ+PGEgaHJlZj13d3cuZXhv
-cmludC5pdD48Zm9udCBzaXplPTIgZmFjZT0ic2Fucy1zZXJpZiI+d3d3LmV4b3JpbnQuaXQ8L2Zv
-bnQ+PC9hPjxmb250IHNpemU9MiBmYWNlPSJzYW5zLXNlcmlmIj48YnI+DQo8L2ZvbnQ+DQo8YnI+
-DQoNCjxmb250IHNpemU9MSBmYWNlPSJBcmlhbCI+PGJyPg0KPC9mb250Pjxmb250IHNpemU9MSBj
-b2xvcj0jNWY1ZjVmIGZhY2U9IkFyaWFsIj48aT5BVFRFTlpJT05FOiBQcml2YWN5IFBvbGljeQ0K
-4oCTIEQuTGdzLiAxOTYvMjAwMzwvaT48L2ZvbnQ+DQo8YnI+PGZvbnQgc2l6ZT0xIGNvbG9yPSM1
-ZjVmNWYgZmFjZT0iQXJpYWwiPjxpPiZuYnNwO0xlIGluZm9ybWF6aW9uaSBjb250ZW51dGUNCmlu
-IHF1ZXN0byBtZXNzYWdnaW8gZGkgcG9zdGEgZWxldHRyb25pY2Egc29ubyBkaSBjYXJhdHRlcmUg
-cHJpdmF0byBlIGNvbmZpZGVuemlhbGUNCmVkIGVzY2x1c2l2YW1lbnRlIHJpdm9sdGUgYWwgZGVz
-dGluYXRhcmlvIHNvcHJhIGluZGljYXRvLiBOZWwgY2FzbyBhdmVzdGUNCnJpY2V2dXRvIHF1ZXN0
-byBtZXNzYWdnaW8gZGkgcG9zdGEgZWxldHRyb25pY2EgcGVyIGVycm9yZSwgdmkgY29tdW5pY2hp
-YW1vDQpjaGUgYWkgc2Vuc2kgZGVsIHN1ZGRldHRvIGRlY3JldG8gw6ggdmlldGF0byBs4oCZdXNv
-LCBsYSBkaWZmdXNpb25lLCBkaXN0cmlidXppb25lDQpvIHJpcHJvZHV6aW9uZSBkYSBwYXJ0ZSBk
-aSBvZ25pIGFsdHJhIHBlcnNvbmEuIFNpZXRlIHByZWdhdGkgZGkgc2VnbmFsYXJsbw0KaW1tZWRp
-YXRhbWVudGUgcmlzcG9uZGVuZG8gYWwgbWl0dGVudGUgZSBkaSBkaXN0cnVnZ2VyZSBxdWFudG8g
-cmljZXZ1dG8NCihjb21wcmVzaSBpIGZpbGUgYWxsZWdhdGkpIHNlbnphIGZhcm5lIGNvcGlhIG8g
-bGVnZ2VybmUgaWwgY29udGVudXRvLjwvaT48L2ZvbnQ+DQo8YnI+DQo8YnI+PGZvbnQgc2l6ZT0x
-IGNvbG9yPSM1ZjVmNWYgZmFjZT0iQXJpYWwiPjxpPlRoaXMgZS1tYWlsIHRyYW5zbWlzc2lvbg0K
-Y29udGFpbnMgaW5mb3JtYXRpb24gdGhhdCBpcyBjb25maWRlbnRpYWwgYW5kIG1heSBiZSBwcml2
-aWxlZ2VkLiBJdCBpcw0KaW50ZW5kZWQgb25seSBmb3IgdGhlIGFkZHJlc3NlZShzKSBuYW1lZCBh
-Ym92ZS4gSWYgeW91IHJlY2VpdmUgdGhpcyBlLW1haWwNCmluIGVycm9yLCBwbGVhc2UgZG8gbm90
-IHJlYWQsIGNvcHkgb3IgZGlzc2VtaW5hdGUgaXQgaW4gYW55IG1hbm5lci4gSWYNCnlvdSBhcmUg
-bm90IHRoZSBpbnRlbmRlZCByZWNpcGllbnQsIGFueSBkaXNjbG9zdXJlLCBjb3B5aW5nLCBkaXN0
-cmlidXRpb24NCm9yIHVzZSBvZiB0aGUgY29udGVudHMgb2YgdGhpcyBpbmZvcm1hdGlvbiBpcyBw
-cm9oaWJpdGVkLiBQbGVhc2UgcmVwbHkNCnRvIHRoZSBtZXNzYWdlIGltbWVkaWF0ZWx5IGJ5IGlu
-Zm9ybWluZyB0aGUgc2VuZGVyIHRoYXQgdGhlIG1lc3NhZ2Ugd2FzDQptaXNkaXJlY3RlZC4gQWZ0
-ZXIgcmVwbHlpbmcsIHBsZWFzZSBlcmFzZSBpdCBmcm9tIHlvdXIgY29tcHV0ZXIgc3lzdGVtLg0K
-WW91ciBhc3Npc3RhbmNlIGluIGNvcnJlY3RpbmcgdGhpcyBlcnJvciBpcyBhcHByZWNpYXRlZC48
-L2k+PC9mb250Pg0KPGJyPjxmb250IHNpemU9MSBjb2xvcj0jODA4MDgwIGZhY2U9IkFyaWFsIj48
-aT4mbmJzcDs8L2k+PC9mb250Pg0K
-
---=_alternative 0039012FC12579F3_=--
