@@ -1,29 +1,32 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (hermes.mlbassoc.com [64.234.241.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 51694E00596
-	for <yocto@yoctoproject.org>; Thu,  3 May 2012 12:07:12 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id E69EEF81269; Thu,  3 May 2012 13:07:10 -0600 (MDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=ham version=3.3.2
-Received: from hermes.chez-thomas.org (localhost.localdomain [127.0.0.1])
-	by mail.chez-thomas.org (Postfix) with ESMTP id B3EE7F81268;
-	Thu,  3 May 2012 13:07:06 -0600 (MDT)
-Message-ID: <4FA2D75A.3040504@mlbassoc.com>
-Date: Thu, 03 May 2012 13:07:06 -0600
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:12.0) Gecko/20120424 Thunderbird/12.0
-MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <880CAB78-91DC-46B5-A4BB-00D33FFA9624@gmail.com>
-	<11827908.GWIN234cRG@helios> <4FA2A6A5.6030807@mlbassoc.com>
-	<27A92832-EECC-4D6B-A77A-834E20FB4C75@gmail.com>
-In-Reply-To: <27A92832-EECC-4D6B-A77A-834E20FB4C75@gmail.com>
-Subject: Re: Build error: Could not inherit file classes/systemd.bbclass
+Return-Path: <elvis.dowson@gmail.com>
+Received: from mail-wg0-f54.google.com (mail-wg0-f54.google.com [74.125.82.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 31719E00723
+	for <yocto@yoctoproject.org>; Thu,  3 May 2012 12:11:53 -0700 (PDT)
+Received: by wgbfg15 with SMTP id fg15so1684482wgb.11
+	for <yocto@yoctoproject.org>; Thu, 03 May 2012 12:11:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:content-type:subject:date:message-id:to:mime-version:x-mailer;
+	bh=eB/UQfoQhUneK8NBMsZJuxRQdPnysvMbNs32v1JHY1U=;
+	b=sV6O56pJ2M6SV0y6fOoTrESpQzLliGbx2iI2HvjZ/PzXimbC5pprKJKMXjSXxTGWhD
+	QeJk17qmM/zAaOaUO5N7z2gdQxT1WvFbvcX4NcpRT8cRvbmhbz9bK7pNSUu2NAI1BnKS
+	+QsJoPW7z3EVRW8HUsGX1okxgcZip6KjzD4r364Q+Wh9TVTx3FlQAbB3+SA3Iz7nVA3w
+	cWtSSUEknN5I1XUJ0hh5dLCmAKPxdLC/lvGBrvGVPiE/akVIh4Cqj5afjdLAUfn5ZMhF
+	pI6WOlMmoXHtzJIsfDFIb5zhtuKoMbku1iUYoN13kl4aIbC7RcAI3+kjQQo53DpAPckg
+	IBdA==
+Received: by 10.180.94.161 with SMTP id dd1mr5974085wib.16.1336072312392;
+	Thu, 03 May 2012 12:11:52 -0700 (PDT)
+Received: from [192.168.1.35] (39.Red-81-33-71.dynamicIP.rima-tde.net.
+	[81.33.71.39])
+	by mx.google.com with ESMTPS id h8sm6104526wix.4.2012.05.03.12.11.50
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Thu, 03 May 2012 12:11:51 -0700 (PDT)
+From: Elvis Dowson <elvis.dowson@gmail.com>
+Date: Thu, 3 May 2012 21:11:49 +0200
+Message-Id: <9E175296-180A-45B0-BD08-2F926537552B@gmail.com>
+To: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+Mime-Version: 1.0 (Apple Message framework v1257)
+X-Mailer: Apple Mail (2.1257)
+Subject: How to fix warning: set SYSTEMD_PACKAGES as <existing-package>-systemd
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,49 +38,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 03 May 2012 19:07:12 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 03 May 2012 19:11:53 -0000
+Content-Type: multipart/alternative;
+	boundary="Apple-Mail=_B4C158AF-45A1-4710-8D3C-D88D21BA66B9"
 
-On 2012-05-03 12:22, Elvis Dowson wrote:
-> Hi,
->
-> On May 3, 2012, at 5:39 PM, Gary Thomas wrote:
->
->> On 2012-05-03 07:21, Paul Eggleton wrote:
->> I saw this checkin yesterday on meta-ti:
->> Module: meta-ti
->> Branch: refs/tags/v2012.05-yocto1.2
->> Tag: ccae351a692bf6fa17a4a1e35b89ff6efcd35c6c
->> URL: http://arago-project.org/git/meta-ti.git/?a=tag;h=ccae351a692bf6fa17a4a1e35b89ff6efcd35c6c
->>
->> Tagger: Denys Dmytriyenko <denys@ti.com <mailto:denys@ti.com>>
->> Date: Wed May 2 03:41:43 2012 -0400
->>
->> 2012.05 release, compatible with Yocto Project 1.2 Denzil
->>
->> So it looks like it should be close at least :-) I don't know how the
->> meta-ti repo on yoctoproject.org <http://yoctoproject.org> tracks the arago-project one...
->
-> The meta-ti repo on yoctoproject.org <http://yoctoproject.org> tracks the arago-project one closely.
->
-> The following bblayers.conf configuration worked
->
-> BBFILES ?= ""
-> BBLAYERS ?= " \
-> /tool/yocto/poky/meta \
-> /tool/yocto/poky/meta-yocto \
-> /tool/yocto/meta-openembedded/meta-oe \
-> /tool/yocto/meta-gumstix \
-> /tool/yocto/meta-ti \
-> /tool/yocto/meta-xilinx \
-> "
+--Apple-Mail=_B4C158AF-45A1-4710-8D3C-D88D21BA66B9
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=us-ascii
 
-IMO, you should be able to use meta-ti *without* meta-oe (I do anyway)
+Hi,
+      I get a bunch of warnings asking me to set SYSTEMD_PACKAGES as =
+<existing-package>-systemd.
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+WARNING: /tool/yocto/meta-ti/recipes-misc/payload/bonescript.bb: it is =
+recommended to set SYSTEMD_PACKAGES as <existing-package>-systemd
+WARNING: =
+/tool/yocto/meta-openembedded/meta-oe/recipes-connectivity/networkmanager/=
+networkmanager_0.9.2.0.bb: it is recommended to set SYSTEMD_PACKAGES as =
+<existing-package>-systemd
+WARNING: =
+/tool/yocto/poky/meta/recipes-extended/lighttpd/lighttpd_1.4.30.bb: it =
+is recommended to set SYSTEMD_PACKAGES as <existing-package>-systemd
 
+What should I do to fix these warnings?
+
+Best regards,
+
+Elvis Dowson
+
+
+--Apple-Mail=_B4C158AF-45A1-4710-8D3C-D88D21BA66B9
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=us-ascii
+
+<html><head></head><body style=3D"word-wrap: break-word; =
+-webkit-nbsp-mode: space; -webkit-line-break: after-white-space; =
+"><div>Hi,</div><div>&nbsp; &nbsp; &nbsp; I get a bunch of warnings =
+asking me to&nbsp;set SYSTEMD_PACKAGES as =
+&lt;existing-package&gt;-systemd.</div><div><br></div><div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">WARNING: =
+/tool/yocto/meta-ti/recipes-misc/payload/bonescript.bb: it is =
+recommended to set SYSTEMD_PACKAGES as =
+&lt;existing-package&gt;-systemd</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">WARNING: =
+/tool/yocto/meta-openembedded/meta-oe/recipes-connectivity/networkmanager/=
+networkmanager_0.9.2.0.bb: it is recommended to set SYSTEMD_PACKAGES as =
+&lt;existing-package&gt;-systemd</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">WARNING: =
+/tool/yocto/poky/meta/recipes-extended/lighttpd/lighttpd_1.4.30.bb: it =
+is recommended to set SYSTEMD_PACKAGES as =
+&lt;existing-package&gt;-systemd</font></div></div><div><br></div><div>Wha=
+t should I do to fix these warnings?</div><div><br></div><div>Best =
+regards,</div><div><br></div><div>Elvis =
+Dowson</div><div><br></div></body></html>=
+
+--Apple-Mail=_B4C158AF-45A1-4710-8D3C-D88D21BA66B9--
