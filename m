@@ -1,36 +1,35 @@
 Return-Path: <elvis.dowson@gmail.com>
 Received: from mail-wg0-f54.google.com (mail-wg0-f54.google.com [74.125.82.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AEFFDE0044D
-	for <yocto@yoctoproject.org>; Thu,  3 May 2012 11:22:40 -0700 (PDT)
-Received: by wgbfg15 with SMTP id fg15so1648489wgb.11
-	for <yocto@yoctoproject.org>; Thu, 03 May 2012 11:22:39 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 22F95E0070C
+	for <yocto@yoctoproject.org>; Thu,  3 May 2012 11:27:17 -0700 (PDT)
+Received: by wgbfg15 with SMTP id fg15so1651898wgb.11
+	for <yocto@yoctoproject.org>; Thu, 03 May 2012 11:27:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=from:mime-version:content-type:subject:date:in-reply-to:to
 	:references:message-id:x-mailer;
-	bh=S3IbEHh5gC7aT+b+I/1V1oSaAZA2FBi2jC45GILBCRw=;
-	b=CDohSWYyyvGETL4aFB2qJ1BScoW+cv/AzZKYSJhLRSFgOUd5NI+ssgK1mGysUw8g7t
-	7Wy2v6FkmykGo2De3ZK/2WUWUu/kzzfgehI8DzLrSLOj6aXEYRAtGZr5dbf/qszCIDLj
-	dDlDeJJILL6zM4eIcGY0syxjJZN6Ffq27JJJW1YHlSIPPvC5qFpqItfUun4LopyifDMK
-	26lCp0RmLmRYhBHKUJVADUBh1NA2WMSxeb3D2+E7M8ZCcq+OLqsF3VEEAhnP7VTrriUU
-	RbUQlv/yiHEmRNUV2ndIKNj8QJdOAvwTsTBomsQYYrHfiT96n1tigdmjIE5khS+WOcOP
-	5KKA==
-Received: by 10.216.195.10 with SMTP id o10mr2145297wen.11.1336069359195;
-	Thu, 03 May 2012 11:22:39 -0700 (PDT)
+	bh=34u9+wqRo0qKIu4Sk1FM/K2FbSWTk4lOPKKMLlXGFhI=;
+	b=Uy2z0X0Eiy+goP/sm8YMsGOJ9zJNtNqF5QSXbYsmKOulm6XCTG7i7GdF67FLTNQfpo
+	kE64gEGBVbSPdTAGIe29obCZCqhfqSOclWjEq4F7HJVqf3qZQQXVEe7ojunxDnmGGmrI
+	y+mzeqqqDLHFgTapbfyX3Vp8+t9acluKQ+pX952n90R256U8iWKexFutIDu1yjFl3MeE
+	Wz9SfbV706yztV2X9rgTkRJHGNrD7MwWqr/8W+CruqAL1ZuDO3u5QczOH12w5+zMAQu8
+	K0AWgPRs1ayS+V+ZvNQyrMH2LjdFAxQNWghSAhqSOzJ6DrPHWh+RwjNyykSX52xzja05
+	4xbA==
+Received: by 10.180.77.233 with SMTP id v9mr5638954wiw.22.1336069637100;
+	Thu, 03 May 2012 11:27:17 -0700 (PDT)
 Received: from [192.168.1.33] (240.Red-88-6-19.staticIP.rima-tde.net.
 	[88.6.19.240])
-	by mx.google.com with ESMTPS id n20sm5661261wiw.5.2012.05.03.11.22.37
+	by mx.google.com with ESMTPS id 6sm1390002wiz.1.2012.05.03.11.27.15
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Thu, 03 May 2012 11:22:38 -0700 (PDT)
+	Thu, 03 May 2012 11:27:16 -0700 (PDT)
 From: Elvis Dowson <elvis.dowson@gmail.com>
 Mime-Version: 1.0 (Apple Message framework v1257)
-Date: Thu, 3 May 2012 20:22:36 +0200
-In-Reply-To: <4FA2A6A5.6030807@mlbassoc.com>
+Date: Thu, 3 May 2012 20:27:13 +0200
+In-Reply-To: <1658FA66-CEFA-4D13-8410-F3E63449D44F@gmail.com>
 To: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-References: <880CAB78-91DC-46B5-A4BB-00D33FFA9624@gmail.com>
-	<11827908.GWIN234cRG@helios> <4FA2A6A5.6030807@mlbassoc.com>
-Message-Id: <27A92832-EECC-4D6B-A77A-834E20FB4C75@gmail.com>
+References: <1658FA66-CEFA-4D13-8410-F3E63449D44F@gmail.com>
+Message-Id: <52424B5A-DBAD-4A38-ACDE-A61E4E1C4ED3@gmail.com>
 X-Mailer: Apple Mail (2.1257)
-Subject: Re: Build error: Could not inherit file classes/systemd.bbclass
+Subject: Re: Failed to fetch URL http://downloads.sourceforge.net/project/libcg/libcgroup/v0.37.1/libcgroup-0.37.1.tar.bz2
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,123 +41,70 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 03 May 2012 18:22:41 -0000
+X-List-Received-Date: Thu, 03 May 2012 18:27:18 -0000
 Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_6418D589-DC92-4285-8ACD-B081F88FBAAD"
+	boundary="Apple-Mail=_163BAB95-BD12-4DEF-8B8F-A032B8D4A16C"
 
---Apple-Mail=_6418D589-DC92-4285-8ACD-B081F88FBAAD
+--Apple-Mail=_163BAB95-BD12-4DEF-8B8F-A032B8D4A16C
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain;
 	charset=us-ascii
 
 Hi,
 
-On May 3, 2012, at 5:39 PM, Gary Thomas wrote:
+On May 3, 2012, at 6:52 PM, Elvis Dowson wrote:
 
-> On 2012-05-03 07:21, Paul Eggleton wrote:
-> I saw this checkin yesterday on meta-ti:
->  Module: meta-ti
->  Branch: refs/tags/v2012.05-yocto1.2
->  Tag:    ccae351a692bf6fa17a4a1e35b89ff6efcd35c6c
->  URL:    =
-http://arago-project.org/git/meta-ti.git/?a=3Dtag;h=3Dccae351a692bf6fa17a4=
-a1e35b89ff6efcd35c6c
+> When I try to run bitbake -c fetchall core-image-minimal, it fails to =
+fetch libcgroup-0.37.1
 >=20
->  Tagger: Denys Dmytriyenko <denys@ti.com>
->  Date:   Wed May  2 03:41:43 2012 -0400
->=20
->  2012.05 release, compatible with Yocto Project 1.2 Denzil
->=20
-> So it looks like it should be close at least :-)  I don't know how the
-> meta-ti repo on yoctoproject.org tracks the arago-project one...
+> NOTE: Running task 139 of 305 (ID: 264, =
+/tool/yocto/meta-openembedded/meta-oe/recipes-core/libcgroup/libcgroup_0.3=
+7.1.bb, do_fetch)
+> NOTE: package libcgroup-0.37.1-r1: task do_fetch: Started
+> WARNING: Failed to fetch URL =
+http://downloads.sourceforge.net/project/libcg/libcgroup/v0.37.1/libcgroup=
+-0.37.1.tar.bz2
 
-The meta-ti repo on yoctoproject.org tracks the arago-project one =
-closely.
+This was a transient failure because the SourceForge mirrors were down =
+for about 4 hours. Its up now, and all the packages are downloading =
+fine.
 
-The following bblayers.conf configuration worked
-
-BBFILES ?=3D ""
-BBLAYERS ?=3D " \
-  /tool/yocto/poky/meta \
-  /tool/yocto/poky/meta-yocto \
-  /tool/yocto/meta-openembedded/meta-oe \
-  /tool/yocto/meta-gumstix \
-  /tool/yocto/meta-ti \
-  /tool/yocto/meta-xilinx \
-  "
+I'm starting to like yocto, its definitely got a more deterministic feel =
+to it, and things seem to be logically laid out and easy to configure.
 
 Best regards,
 
 Elvis Dowson=
 
---Apple-Mail=_6418D589-DC92-4285-8ACD-B081F88FBAAD
+--Apple-Mail=_163BAB95-BD12-4DEF-8B8F-A032B8D4A16C
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/html;
 	charset=us-ascii
 
 <html><head></head><body style=3D"word-wrap: break-word; =
 -webkit-nbsp-mode: space; -webkit-line-break: after-white-space; =
-">Hi,<div><br><div><div>On May 3, 2012, at 5:39 PM, Gary Thomas =
+">Hi,<div><br><div><div>On May 3, 2012, at 6:52 PM, Elvis Dowson =
 wrote:</div><br class=3D"Apple-interchange-newline"><blockquote =
-type=3D"cite"><div>On 2012-05-03 07:21, Paul Eggleton =
-wrote:</div></blockquote><blockquote type=3D"cite"><div>I saw this =
-checkin yesterday on meta-ti:<br> &nbsp;Module: meta-ti<br> =
-&nbsp;Branch: refs/tags/v2012.05-yocto1.2<br> &nbsp;Tag: =
-&nbsp;&nbsp;&nbsp;ccae351a692bf6fa17a4a1e35b89ff6efcd35c6c<br> =
-&nbsp;URL: &nbsp;&nbsp;&nbsp;<a =
-href=3D"http://arago-project.org/git/meta-ti.git/?a=3Dtag;h=3Dccae351a692b=
-f6fa17a4a1e35b89ff6efcd35c6c">http://arago-project.org/git/meta-ti.git/?a=3D=
-tag;h=3Dccae351a692bf6fa17a4a1e35b89ff6efcd35c6c</a><br><br> =
-&nbsp;Tagger: Denys Dmytriyenko &lt;<a =
-href=3D"mailto:denys@ti.com">denys@ti.com</a>&gt;<br> &nbsp;Date: =
-&nbsp;&nbsp;Wed May &nbsp;2 03:41:43 2012 -0400<br><br> &nbsp;2012.05 =
-release, compatible with Yocto Project 1.2 Denzil<br><br>So it looks =
-like it should be close at least :-) &nbsp;I don't know how =
-the<br>meta-ti repo on <a =
-href=3D"http://yoctoproject.org">yoctoproject.org</a> tracks the =
-arago-project one...<br></div></blockquote></div><br><div>The meta-ti =
-repo on <a href=3D"http://yoctoproject.org">yoctoproject.org</a> tracks =
-the arago-project one closely.</div></div><div><br></div><div>The =
-following bblayers.conf configuration =
-worked</div><div><br></div><div><div style=3D"margin-top: 0px; =
-margin-right: 0px; margin-bottom: 0px; margin-left: 0px; font: normal =
-normal normal 10px/normal Monaco; ">BBFILES ?=3D ""</div><div =
-style=3D"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; =
-margin-left: 0px; font: normal normal normal 10px/normal Monaco; =
-">BBLAYERS ?=3D " \</div><div style=3D"margin-top: 0px; margin-right: =
-0px; margin-bottom: 0px; margin-left: 0px; font: normal normal normal =
-10px/normal Monaco; ">&nbsp; /tool/yocto/poky/meta \</div><div =
-style=3D"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; =
-margin-left: 0px; font: normal normal normal 10px/normal Monaco; =
-">&nbsp; /tool/yocto/poky/meta-yocto \</div><div style=3D"margin-top: =
-0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; font: =
-normal normal normal 10px/normal Monaco; ">&nbsp; <font =
-class=3D"Apple-style-span" =
-color=3D"#103ffb">/tool/yocto/meta-openembedded/meta-oe</font> =
-\</div><div style=3D"margin-top: 0px; margin-right: 0px; margin-bottom: =
-0px; margin-left: 0px; font: normal normal normal 10px/normal Monaco; =
-">&nbsp; /tool/yocto/meta-gumstix \</div><div style=3D"margin-top: 0px; =
-margin-right: 0px; margin-bottom: 0px; margin-left: 0px; font: normal =
-normal normal 10px/normal Monaco; ">&nbsp; /tool/yocto/meta-ti =
-\</div><div style=3D"margin-top: 0px; margin-right: 0px; margin-bottom: =
-0px; margin-left: 0px; font: normal normal normal 10px/normal Monaco; =
-">&nbsp; /tool/yocto/meta-xilinx \</div></div><div style=3D"margin-top: =
-0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; font: =
-normal normal normal 10px/normal Monaco; "><div style=3D"margin-top: =
-0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; font: =
-normal normal normal 10px/normal Monaco; ">&nbsp;&nbsp;"</div><div =
-style=3D"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; =
-margin-left: 0px; font: normal normal normal 10px/normal Monaco; =
-"><br></div><div style=3D"margin-top: 0px; margin-right: 0px; =
-margin-bottom: 0px; margin-left: 0px; font: normal normal normal =
-10px/normal Monaco; "><font class=3D"Apple-style-span" face=3D"Helvetica" =
-size=3D"3">Best regards,</font></div><div style=3D"margin-top: 0px; =
-margin-right: 0px; margin-bottom: 0px; margin-left: 0px; font: normal =
-normal normal 10px/normal Monaco; "><font class=3D"Apple-style-span" =
-face=3D"Helvetica" size=3D"3"><br></font></div><div style=3D"margin-top: =
-0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; font: =
-normal normal normal 10px/normal Monaco; "><font =
-class=3D"Apple-style-span" face=3D"Helvetica" size=3D"3">Elvis =
-Dowson</font></div></div></body></html>=
+type=3D"cite"><div style=3D"word-wrap: break-word; -webkit-nbsp-mode: =
+space; -webkit-line-break: after-white-space; "><div>When I try to =
+run&nbsp;bitbake -c fetchall core-image-minimal, it fails to fetch =
+libcgroup-0.37.1</div><div><br></div><div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">NOTE: Running task =
+139 of 305 (ID: 264, =
+/tool/yocto/meta-openembedded/meta-oe/recipes-core/libcgroup/libcgroup_0.3=
+7.1.bb, do_fetch)</font></div><div><font class=3D"Apple-style-span" =
+face=3D"Monaco" size=3D"2">NOTE: package libcgroup-0.37.1-r1: task =
+do_fetch: Started</font></div><div><font class=3D"Apple-style-span" =
+face=3D"Monaco" size=3D"2">WARNING: Failed to fetch URL <a =
+href=3D"http://downloads.sourceforge.net/project/libcg/libcgroup/v0.37.1/l=
+ibcgroup-0.37.1.tar.bz2">http://downloads.sourceforge.net/project/libcg/li=
+bcgroup/v0.37.1/libcgroup-0.37.1.tar.bz2</a></font></div></div></div></blo=
+ckquote><br></div><div>This was a transient failure because the =
+SourceForge mirrors were down for about 4 hours. Its up now, and all the =
+packages are downloading fine.</div></div><div><br></div><div>I'm =
+starting to like yocto, its definitely got a more deterministic feel to =
+it, and things seem to be logically laid out and easy to =
+configure.</div><div><br></div><div>Best =
+regards,</div><div><br></div><div>Elvis Dowson</div></body></html>=
 
---Apple-Mail=_6418D589-DC92-4285-8ACD-B081F88FBAAD--
+--Apple-Mail=_163BAB95-BD12-4DEF-8B8F-A032B8D4A16C--
