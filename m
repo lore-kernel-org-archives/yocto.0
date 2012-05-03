@@ -1,28 +1,25 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (hermes.mlbassoc.com [64.234.241.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 85A5FE0044A
-	for <yocto@yoctoproject.org>; Thu,  3 May 2012 08:39:23 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id 09801F81265; Thu,  3 May 2012 09:39:22 -0600 (MDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=ham version=3.3.2
-Received: from hermes.chez-thomas.org (localhost.localdomain [127.0.0.1])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 1C7EBF81253;
-	Thu,  3 May 2012 09:39:17 -0600 (MDT)
-Message-ID: <4FA2A6A5.6030807@mlbassoc.com>
-Date: Thu, 03 May 2012 09:39:17 -0600
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:12.0) Gecko/20120424 Thunderbird/12.0
+Return-Path: <giovanni.pavoni@exorint.it>
+Received: from esafe.exorint.net (esafe.exorint.net [89.96.201.228])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id E70FAE0044A;
+	Thu,  3 May 2012 09:00:49 -0700 (PDT)
+Received: from sitek.exorint.net ([192.168.0.251]) by eSafe SMTP Relay
+	1326992231; Thu, 03 May 2012 17:59:53 +0100
+In-Reply-To: <CAAQYJAs5EVfq+3E0J1FiZZMppvDUd=xpmEj2R1Hr3V3APQrL7g@mail.gmail.com>
+References: <OF2A8EADBF.1A016282-ONC12579F3.0038D0CC-C12579F3.00390132@Sitek.it>
+	<CAAQYJAs5EVfq+3E0J1FiZZMppvDUd=xpmEj2R1Hr3V3APQrL7g@mail.gmail.com>
+To: Andrea Adami <andrea.adami@gmail.com>
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <880CAB78-91DC-46B5-A4BB-00D33FFA9624@gmail.com>
-	<11827908.GWIN234cRG@helios>
-In-Reply-To: <11827908.GWIN234cRG@helios>
-Subject: Re: Build error: Could not inherit file classes/systemd.bbclass
+X-KeepSent: 3FED1B75:579277FB-C12579F3:0057B45D;type=4; name=$KeepSent
+X-Mailer: Lotus Notes Release 8.5.2 August 10, 2010
+Message-ID: <OF3FED1B75.579277FB-ONC12579F3.0057B45D-C12579F3.0057F44E@Sitek.it>
+From: giovanni.pavoni@exorint.it
+Date: Thu, 3 May 2012 18:00:25 +0200
+X-MIMETrack: Serialize by Router on sitek/Sitek(Release 8.5.3|September 15,
+	2011) at 03/05/201218.00.27, Serialize complete
+	at 03/05/2012 18.00.27
+X-ESAFE-STATUS: [esafe.exorint.net] Mail allowed
+Cc: yocto@yoctoproject.org, yocto-bounces@yoctoproject.org
+Subject: Re: Need help for building kernel image with embeddedinitramfs.cpio
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,54 +31,170 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 03 May 2012 15:39:23 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 03 May 2012 16:00:51 -0000
+Content-Type: multipart/alternative;
+	boundary="=_alternative 0057F44EC12579F3_="
 
-On 2012-05-03 07:21, Paul Eggleton wrote:
-> On Thursday 03 May 2012 14:56:03 Elvis Dowson wrote:
->>       I've setup and configured an Ubuntu-12.04 LTS 64-bit system, and I get
->> a build error when I run the following command:
->>
->> $ bitbake -c fetchall core-image-minimal
->>
->> Pseudo is not present but is required, building this first before the main
->> build WARNING: Host distribution "Ubuntu 12.04 LTS" has not been validated
->> with this version of the build system; you may possibly experience
->> unexpected failures. It is recommended that you use a tested distribution.
->
-> This can be ignored - 12.04 *is* supported; it's just that the final version
-> string wasn't what I expected it to be. I'll send a patch for this soon and it
-> can hopefully go into 1.2.1.
->
->> ERROR: ParseError at
->> /tool/yocto/meta-ti/recipes-misc/payload/bonescript.bb:5: Could not inherit
->> file classes/systemd.bbclass ERROR: Command execution failed: Exited with 1
->
-> systemd.bbclass is part of the meta-oe layer, so you'll need to add that to
-> your bblayers.conf.
->
-> BTW I'm not sure if the meta-ti maintainers have finished their work to ensure
-> meta-ti works with distros other than Angstrom. If they haven't you may
-> experience problems.
+--=_alternative 0057F44EC12579F3_=
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: base64
 
-I saw this checkin yesterday on meta-ti:
-   Module: meta-ti
-   Branch: refs/tags/v2012.05-yocto1.2
-   Tag:    ccae351a692bf6fa17a4a1e35b89ff6efcd35c6c
-   URL:    http://arago-project.org/git/meta-ti.git/?a=tag;h=ccae351a692bf6fa17a4a1e35b89ff6efcd35c6c
+VGhhbmtzIGZvciB5b3VyIHN1Z2dlc3Rpb24uIEkgaGF2ZSBub3QgeWV0IHRyaWVkIHdpdGgga2Vy
+bmVsIG1vZHVsZXMNCmJ1dCB0aGUgd2hvbGUgYnVpbGQgc2VxdWVuY2UgYXBwZWFycyBmaW5lIGFu
+ZCB0aGUgb3V0cHV0IGlzIHJ1bm5pbmcuIA0KDQpJIGFtIGhpdHRpbmcgYSBwcm9ibGVtIHRob3Vn
+aHQgd2l0aCBzdGVwIDMNCg0KSSBoYXZlIHRoaXMgbGF5b3V0IChtZXRhLW15bGF5ZXIgaXMgcGFy
+YWxsZWwgdG8gbWV0YS15b2N0byk6DQoNCm1ldGEtbXlsYXllci9jb25mL21hY2hpbmUvbXltYWNo
+aW5lLmNvbmYNCm1ldGEtbXlsYXllci9yZWNpcGVzLWtlcm5lbC9saW51eC9saW51eC5pbmMNCm1l
+dGEtbXlsYXllci9yZWNpcGVzLWtlcm5lbC9saW51eC9saW51eF8yLjYuMzcuYmINCm1ldGEtbXls
+YXllci9yZWNpcGVzLWtlcm5lbC9saW51eC9saW51eF8yLjYuMzcvbXltYWNoaW5lL2RlZmNvbmZp
+Zw0KDQpsaW51eC5pbmMgaW5oZXJpdCBmcm9tIGtlcm5lbCBhbmQgSSBhbSBzZXR0aW5nDQpQUkVG
+RVJSRURfUFJPVklERVJfdmlydHVhbC9rZXJuZWwgPSAibGludXgiDQpQUkVGRVJSRURfVkVSU0lP
+Tl9saW51eCA/PSAiMi42LjM3Ig0KaW4gbXltYWNoaW5lLmNvbmYuIA0KDQpUaGlzIGJ1aWxkcyBh
+bmQgZGVwbG95cyBhIHVJbWFnZS1teW1hY2hpbmUtInN0YW1wMSIuYmluIGZpbmUgZm9yIA0KbXlt
+YWNoaW5lLg0KDQpJIGFkZGVkIGEga2VybmVsIHJlY2lwZSBpbiBteSByZWNpcGUta2VybmVsIGxh
+eWVyIA0KbGlrZSB0aGlzOg0KDQptZXRhLW15bGF5ZXIvcmVjaXBlcy1rZXJuZWwvbGludXgvbGlu
+dXhyYW1mc18yLjYuMzcuYmINCm1ldGEtbXlsYXllci9yZWNpcGVzLWtlcm5lbC9saW51eC9saW51
+eHJhbWZzXzIuNi4zNy9teW1hY2hpbmUvZGVmY29uZmlnIA0KDQppbiBsaW51eHJhbWZzXzIuNi4z
+Ny9teW1hY2hpbmUvZGVmY29uZmlnIEkgcGF0Y2hlZCBhbGwgb3B0aW9ucyBmb3IgcmFtZnMgDQoo
+c291cmNlIC8gY29tcHJlc3Npb24gZXRjKQ0KYW5kIHR3ZWFrZWQgbGludXhyYW1mc18yLjYuMzcu
+YmIgYXMgcGVyIHlvdXIgaW5kaWNhdGlvbiAoc3RhcnRpbmcgZnJvbSB0aGUgDQpsaW51eF8yLjYu
+MzcuYmINCkkgaGFkIHVwIGFuZCBydW5uaW5nKS4NCg0KUHJvYmxlbXM6DQoNCjEuIHdoZW4gSSBy
+dW4gImJpdGJha2UgbGludXhyYW1mcyIgSSBnZXQgDQoiRVJST1I6IE11bHRpcGxlIC5iYiBmaWxl
+cyBhcmUgZHVlIHRvIGJlIGJ1aWx0IHdoaWNoIGVhY2ggcHJvdmlkZSANCnZpcnR1YWwva2VybmVs
+IiANCg0KSSBhbSBzZWVpbmcgbXVsdGlwbGUgcmVmZXJlbmNlIG9uIHRoZSBuZXQgYWJvdXQgdGhp
+cyBlcnJvciBidXQgSSBhbSBub3QgDQp1bmRlcnN0YW5kaW5nDQpob3cgdG8gaGFuZGxlLiBCb3Ro
+IGxpbnV4cmFtZnNfMi42LjM3LmJiIGFuZCBsaW51eF8yLjYuMzcuYmIgYXJlIHByb3ZpZGluZyAN
+CnZpcnR1YWwva2VybmVsLg0KDQoyLiAiYml0YmFrZSBsaW51eHJhbWZzIiBkZXBsb3lzIGEgdUlt
+YWdlLW15bWFjaGluZS0ic3RhbXAyIi5iaW4gDQpUbyBvdmVyd3JpdGUgdGhpcyBpbiBhIHdheSBJ
+IGdldCBhIHVJbWFnZS1yYW1mcy1teW1hY2hpbmUtInN0YW1weHh4Ii5iaW4NCihzbyB0aGF0IEkg
+Y2FuIGVhc2lseSBpZGVudGlmeSBpdCBhZ2FpbnN0IGEgbm9ybWFsIHVJbWFnZSAtIG9ubHkga2Vy
+bmVsKSANCndoYXQgZG9fKiB0YXNrIHNob3VsZCBJIHJlaW1wbGVtZW50IGluIG15IGxpbnV4cmFt
+ZnNfMi42LjM3LmJiIHJlY2lwZT8NCg0KVGhhbmtzIGluIGFkdmFuY2UgZm9yIHlvdXIgYXR0ZW50
+aW9uDQoNCg0KR2lvdmFubmkgUGF2b25pDQpSJkQgRGVwYXJ0bWVudA0KDQpFeG9yIEludGVybmF0
+aW9uYWwgUy5wLkEuDQpWaWEgTW9udGUgRmlvcmlubyw5DQpJLTM3MDU3IFNhbiBHaW92YW5uaSBM
+dXBhdG90byAoVlIpDQpQaG9uZTorMzkwNDU4Nzc0ODM5IC0gRmF4OiszOTA0NTg3NzkwMjMNCg0K
+Z2lvdmFubmkucGF2b25pQGV4b3JpbnQuaXQgLSB3d3cuZXhvcmludC5uZXQgLSB3d3cuZXhvcmlu
+dC5pdA0KDQoNCg0KQVRURU5aSU9ORTogUHJpdmFjeSBQb2xpY3kg4oCTIEQuTGdzLiAxOTYvMjAw
+Mw0KIExlIGluZm9ybWF6aW9uaSBjb250ZW51dGUgaW4gcXVlc3RvIG1lc3NhZ2dpbyBkaSBwb3N0
+YSBlbGV0dHJvbmljYSBzb25vIGRpIA0KY2FyYXR0ZXJlIHByaXZhdG8gZSBjb25maWRlbnppYWxl
+IGVkIGVzY2x1c2l2YW1lbnRlIHJpdm9sdGUgYWwgZGVzdGluYXRhcmlvIA0Kc29wcmEgaW5kaWNh
+dG8uIE5lbCBjYXNvIGF2ZXN0ZSByaWNldnV0byBxdWVzdG8gbWVzc2FnZ2lvIGRpIHBvc3RhIGVs
+ZXR0cm9uaWNhIA0KcGVyIGVycm9yZSwgdmkgY29tdW5pY2hpYW1vIGNoZSBhaSBzZW5zaSBkZWwg
+c3VkZGV0dG8gZGVjcmV0byDDqCB2aWV0YXRvIGzigJl1c28sIA0KbGEgZGlmZnVzaW9uZSwgZGlz
+dHJpYnV6aW9uZSBvIHJpcHJvZHV6aW9uZSBkYSBwYXJ0ZSBkaSBvZ25pIGFsdHJhIHBlcnNvbmEu
+IA0KU2lldGUgcHJlZ2F0aSBkaSBzZWduYWxhcmxvIGltbWVkaWF0YW1lbnRlIHJpc3BvbmRlbmRv
+IGFsIG1pdHRlbnRlIGUgZGkgDQpkaXN0cnVnZ2VyZSBxdWFudG8gcmljZXZ1dG8gKGNvbXByZXNp
+IGkgZmlsZSBhbGxlZ2F0aSkgc2VuemEgZmFybmUgY29waWEgbyANCmxlZ2dlcm5lIGlsIGNvbnRl
+bnV0by4NCg0KVGhpcyBlLW1haWwgdHJhbnNtaXNzaW9uIGNvbnRhaW5zIGluZm9ybWF0aW9uIHRo
+YXQgaXMgY29uZmlkZW50aWFsIGFuZCBtYXkgYmUgDQpwcml2aWxlZ2VkLiBJdCBpcyBpbnRlbmRl
+ZCBvbmx5IGZvciB0aGUgYWRkcmVzc2VlKHMpIG5hbWVkIGFib3ZlLiBJZiB5b3UgDQpyZWNlaXZl
+IHRoaXMgZS1tYWlsIGluIGVycm9yLCBwbGVhc2UgZG8gbm90IHJlYWQsIGNvcHkgb3IgZGlzc2Vt
+aW5hdGUgaXQgaW4gYW55IA0KbWFubmVyLiBJZiB5b3UgYXJlIG5vdCB0aGUgaW50ZW5kZWQgcmVj
+aXBpZW50LCBhbnkgZGlzY2xvc3VyZSwgY29weWluZywgDQpkaXN0cmlidXRpb24gb3IgdXNlIG9m
+IHRoZSBjb250ZW50cyBvZiB0aGlzIGluZm9ybWF0aW9uIGlzIHByb2hpYml0ZWQuIFBsZWFzZSAN
+CnJlcGx5IHRvIHRoZSBtZXNzYWdlIGltbWVkaWF0ZWx5IGJ5IGluZm9ybWluZyB0aGUgc2VuZGVy
+IHRoYXQgdGhlIG1lc3NhZ2Ugd2FzIA0KbWlzZGlyZWN0ZWQuIEFmdGVyIHJlcGx5aW5nLCBwbGVh
+c2UgZXJhc2UgaXQgZnJvbSB5b3VyIGNvbXB1dGVyIHN5c3RlbS4gWW91ciANCmFzc2lzdGFuY2Ug
+aW4gY29ycmVjdGluZyB0aGlzIGVycm9yIGlzIGFwcHJlY2lhdGVkLg0KIA==
 
-   Tagger: Denys Dmytriyenko <denys@ti.com>
-   Date:   Wed May  2 03:41:43 2012 -0400
+--=_alternative 0057F44EC12579F3_=
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: base64
 
-   2012.05 release, compatible with Yocto Project 1.2 Denzil
+PGZvbnQgc2l6ZT0yIGZhY2U9InNhbnMtc2VyaWYiPlRoYW5rcyBmb3IgeW91ciBzdWdnZXN0aW9u
+LiBJIGhhdmUgbm90DQp5ZXQgdHJpZWQgd2l0aCBrZXJuZWwgbW9kdWxlczwvZm9udD4NCjxicj48
+Zm9udCBzaXplPTIgZmFjZT0ic2Fucy1zZXJpZiI+YnV0IHRoZSB3aG9sZSBidWlsZCBzZXF1ZW5j
+ZSBhcHBlYXJzDQpmaW5lIGFuZCB0aGUgb3V0cHV0IGlzIHJ1bm5pbmcuIDwvZm9udD4NCjxicj4N
+Cjxicj48Zm9udCBzaXplPTIgZmFjZT0ic2Fucy1zZXJpZiI+SSBhbSBoaXR0aW5nIGEgcHJvYmxl
+bSB0aG91Z2h0IHdpdGgNCnN0ZXAgMzwvZm9udD4NCjxicj4NCjxicj48Zm9udCBzaXplPTIgZmFj
+ZT0ic2Fucy1zZXJpZiI+SSBoYXZlIHRoaXMgbGF5b3V0IChtZXRhLW15bGF5ZXIgaXMNCnBhcmFs
+bGVsIHRvIG1ldGEteW9jdG8pOjwvZm9udD4NCjxicj4NCjxicj48Zm9udCBzaXplPTIgZmFjZT0i
+c2Fucy1zZXJpZiI+bWV0YS1teWxheWVyL2NvbmYvbWFjaGluZS9teW1hY2hpbmUuY29uZjwvZm9u
+dD4NCjxicj48Zm9udCBzaXplPTIgZmFjZT0ic2Fucy1zZXJpZiI+bWV0YS1teWxheWVyL3JlY2lw
+ZXMta2VybmVsL2xpbnV4L2xpbnV4LmluYzwvZm9udD4NCjxicj48Zm9udCBzaXplPTIgZmFjZT0i
+c2Fucy1zZXJpZiI+bWV0YS1teWxheWVyL3JlY2lwZXMta2VybmVsL2xpbnV4L2xpbnV4XzIuNi4z
+Ny5iYjwvZm9udD4NCjxicj48Zm9udCBzaXplPTIgZmFjZT0ic2Fucy1zZXJpZiI+bWV0YS1teWxh
+eWVyL3JlY2lwZXMta2VybmVsL2xpbnV4L2xpbnV4XzIuNi4zNy9teW1hY2hpbmUvZGVmY29uZmln
+PC9mb250Pg0KPGJyPg0KPGJyPjxmb250IHNpemU9MiBmYWNlPSJzYW5zLXNlcmlmIj5saW51eC5p
+bmMgaW5oZXJpdCBmcm9tIGtlcm5lbCBhbmQgSQ0KYW0gc2V0dGluZzwvZm9udD4NCjxicj48Zm9u
+dCBzaXplPTIgZmFjZT0ic2Fucy1zZXJpZiI+UFJFRkVSUkVEX1BST1ZJREVSX3ZpcnR1YWwva2Vy
+bmVsID0NCiZxdW90O2xpbnV4JnF1b3Q7PC9mb250Pg0KPGJyPjxmb250IHNpemU9MiBmYWNlPSJz
+YW5zLXNlcmlmIj5QUkVGRVJSRURfVkVSU0lPTl9saW51eCA/PSAmcXVvdDsyLjYuMzcmcXVvdDs8
+L2ZvbnQ+DQo8YnI+PGZvbnQgc2l6ZT0yIGZhY2U9InNhbnMtc2VyaWYiPmluIG15bWFjaGluZS5j
+b25mLiA8L2ZvbnQ+DQo8YnI+DQo8YnI+PGZvbnQgc2l6ZT0yIGZhY2U9InNhbnMtc2VyaWYiPlRo
+aXMgYnVpbGRzIGFuZCBkZXBsb3lzIGEgdUltYWdlLW15bWFjaGluZS0mcXVvdDtzdGFtcDEmcXVv
+dDsuYmluDQpmaW5lIGZvciBteW1hY2hpbmUuPC9mb250Pg0KPGJyPg0KPGJyPjxmb250IHNpemU9
+MiBmYWNlPSJzYW5zLXNlcmlmIj5JIGFkZGVkIGEga2VybmVsIHJlY2lwZSBpbiBteSByZWNpcGUt
+a2VybmVsDQpsYXllciA8L2ZvbnQ+DQo8YnI+PGZvbnQgc2l6ZT0yIGZhY2U9InNhbnMtc2VyaWYi
+Pmxpa2UgdGhpczo8L2ZvbnQ+DQo8YnI+DQo8YnI+PGZvbnQgc2l6ZT0yIGZhY2U9InNhbnMtc2Vy
+aWYiPm1ldGEtbXlsYXllci9yZWNpcGVzLWtlcm5lbC9saW51eC9saW51eHJhbWZzXzIuNi4zNy5i
+YjwvZm9udD4NCjxicj48Zm9udCBzaXplPTIgZmFjZT0ic2Fucy1zZXJpZiI+bWV0YS1teWxheWVy
+L3JlY2lwZXMta2VybmVsL2xpbnV4L2xpbnV4cmFtZnNfMi42LjM3L215bWFjaGluZS9kZWZjb25m
+aWcNCiZuYnNwOyAmbmJzcDs8L2ZvbnQ+DQo8YnI+DQo8YnI+PGZvbnQgc2l6ZT0yIGZhY2U9InNh
+bnMtc2VyaWYiPmluIGxpbnV4cmFtZnNfMi42LjM3L215bWFjaGluZS9kZWZjb25maWcNCkkgcGF0
+Y2hlZCBhbGwgb3B0aW9ucyBmb3IgcmFtZnMgKHNvdXJjZSAvIGNvbXByZXNzaW9uIGV0Yyk8L2Zv
+bnQ+DQo8YnI+PGZvbnQgc2l6ZT0yIGZhY2U9InNhbnMtc2VyaWYiPmFuZCB0d2Vha2VkIGxpbnV4
+cmFtZnNfMi42LjM3LmJiIGFzDQpwZXIgeW91ciBpbmRpY2F0aW9uIChzdGFydGluZyBmcm9tIHRo
+ZSBsaW51eF8yLjYuMzcuYmI8L2ZvbnQ+DQo8YnI+PGZvbnQgc2l6ZT0yIGZhY2U9InNhbnMtc2Vy
+aWYiPkkgaGFkIHVwIGFuZCBydW5uaW5nKS48L2ZvbnQ+DQo8YnI+DQo8YnI+PGZvbnQgc2l6ZT0y
+IGZhY2U9InNhbnMtc2VyaWYiPlByb2JsZW1zOjwvZm9udD4NCjxicj4NCjxicj48Zm9udCBzaXpl
+PTIgZmFjZT0ic2Fucy1zZXJpZiI+MS4gd2hlbiBJIHJ1biAmcXVvdDtiaXRiYWtlIGxpbnV4cmFt
+ZnMmcXVvdDsNCkkgZ2V0IDwvZm9udD4NCjxicj48Zm9udCBzaXplPTIgZmFjZT0ic2Fucy1zZXJp
+ZiI+JnF1b3Q7RVJST1I6IE11bHRpcGxlIC5iYiBmaWxlcyBhcmUNCmR1ZSB0byBiZSBidWlsdCB3
+aGljaCBlYWNoIHByb3ZpZGUgdmlydHVhbC9rZXJuZWwmcXVvdDsgPC9mb250Pg0KPGJyPg0KPGJy
+Pjxmb250IHNpemU9MiBmYWNlPSJzYW5zLXNlcmlmIj5JIGFtIHNlZWluZyBtdWx0aXBsZSByZWZl
+cmVuY2Ugb24gdGhlDQpuZXQgYWJvdXQgdGhpcyBlcnJvciBidXQgSSBhbSBub3QgdW5kZXJzdGFu
+ZGluZzwvZm9udD4NCjxicj48Zm9udCBzaXplPTIgZmFjZT0ic2Fucy1zZXJpZiI+aG93IHRvIGhh
+bmRsZS4gQm90aCBsaW51eHJhbWZzXzIuNi4zNy5iYg0KYW5kIGxpbnV4XzIuNi4zNy5iYiBhcmUg
+cHJvdmlkaW5nIHZpcnR1YWwva2VybmVsLjwvZm9udD4NCjxicj4NCjxicj48Zm9udCBzaXplPTIg
+ZmFjZT0ic2Fucy1zZXJpZiI+Mi4gJnF1b3Q7Yml0YmFrZSBsaW51eHJhbWZzJnF1b3Q7IGRlcGxv
+eXMNCmEgdUltYWdlLW15bWFjaGluZS0mcXVvdDtzdGFtcDImcXVvdDsuYmluICZuYnNwOzwvZm9u
+dD4NCjxicj48Zm9udCBzaXplPTIgZmFjZT0ic2Fucy1zZXJpZiI+VG8gb3ZlcndyaXRlIHRoaXMg
+aW4gYSB3YXkgSSBnZXQgYSB1SW1hZ2UtcmFtZnMtbXltYWNoaW5lLSZxdW90O3N0YW1weHh4JnF1
+b3Q7LmJpbjwvZm9udD4NCjxicj48Zm9udCBzaXplPTIgZmFjZT0ic2Fucy1zZXJpZiI+KHNvIHRo
+YXQgSSBjYW4gZWFzaWx5IGlkZW50aWZ5IGl0IGFnYWluc3QNCmEgbm9ybWFsIHVJbWFnZSAtIG9u
+bHkga2VybmVsKSA8L2ZvbnQ+DQo8YnI+PGZvbnQgc2l6ZT0yIGZhY2U9InNhbnMtc2VyaWYiPndo
+YXQgZG9fKiB0YXNrIHNob3VsZCBJIHJlaW1wbGVtZW50DQppbiBteSBsaW51eHJhbWZzXzIuNi4z
+Ny5iYiByZWNpcGU/PC9mb250Pg0KPGJyPg0KPGJyPjxmb250IHNpemU9MiBmYWNlPSJzYW5zLXNl
+cmlmIj5UaGFua3MgaW4gYWR2YW5jZSBmb3IgeW91ciBhdHRlbnRpb248L2ZvbnQ+DQoNCg0KPGZv
+bnQgc2l6ZT0xIGZhY2U9IkFyaWFsIj48YnI+DQo8L2ZvbnQ+DQo8YnI+PGZvbnQgc2l6ZT0yIGZh
+Y2U9InNhbnMtc2VyaWYiPjxiPkdpb3Zhbm5pIFBhdm9uaTwvYj48L2ZvbnQ+DQo8YnI+PGZvbnQg
+c2l6ZT0yIGZhY2U9InNhbnMtc2VyaWYiPlImRCBEZXBhcnRtZW50PC9mb250Pg0KPGJyPg0KPGJy
+Pjxmb250IHNpemU9MiBmYWNlPSJzYW5zLXNlcmlmIj48Yj5FeG9yIEludGVybmF0aW9uYWwgUy5w
+LkEuPC9iPjxicj4NClZpYSBNb250ZSBGaW9yaW5vLDk8YnI+DQpJLTM3MDU3IFNhbiBHaW92YW5u
+aSBMdXBhdG90byAoVlIpPGJyPg0KUGhvbmU6KzM5MDQ1ODc3NDgzOSAtIEZheDorMzkwNDU4Nzc5
+MDIzPGJyPg0KPC9mb250Pg0KPGJyPjxmb250IHNpemU9MiBmYWNlPSJzYW5zLXNlcmlmIj5naW92
+YW5uaS5wYXZvbmlAZXhvcmludC5pdCAtIDwvZm9udD48YSBocmVmPXd3dy5leG9yaW50Lm5ldD48
+Zm9udCBzaXplPTIgZmFjZT0ic2Fucy1zZXJpZiI+d3d3LmV4b3JpbnQubmV0PC9mb250PjwvYT48
+Zm9udCBzaXplPTIgZmFjZT0ic2Fucy1zZXJpZiI+DQotIDwvZm9udD48YSBocmVmPXd3dy5leG9y
+aW50Lml0Pjxmb250IHNpemU9MiBmYWNlPSJzYW5zLXNlcmlmIj53d3cuZXhvcmludC5pdDwvZm9u
+dD48L2E+PGZvbnQgc2l6ZT0yIGZhY2U9InNhbnMtc2VyaWYiPjxicj4NCjwvZm9udD4NCjxicj4N
+Cg0KPGZvbnQgc2l6ZT0xIGZhY2U9IkFyaWFsIj48YnI+DQo8L2ZvbnQ+PGZvbnQgc2l6ZT0xIGNv
+bG9yPSM1ZjVmNWYgZmFjZT0iQXJpYWwiPjxpPkFUVEVOWklPTkU6IFByaXZhY3kgUG9saWN5DQri
+gJMgRC5MZ3MuIDE5Ni8yMDAzPC9pPjwvZm9udD4NCjxicj48Zm9udCBzaXplPTEgY29sb3I9IzVm
+NWY1ZiBmYWNlPSJBcmlhbCI+PGk+Jm5ic3A7TGUgaW5mb3JtYXppb25pIGNvbnRlbnV0ZQ0KaW4g
+cXVlc3RvIG1lc3NhZ2dpbyBkaSBwb3N0YSBlbGV0dHJvbmljYSBzb25vIGRpIGNhcmF0dGVyZSBw
+cml2YXRvIGUgY29uZmlkZW56aWFsZQ0KZWQgZXNjbHVzaXZhbWVudGUgcml2b2x0ZSBhbCBkZXN0
+aW5hdGFyaW8gc29wcmEgaW5kaWNhdG8uIE5lbCBjYXNvIGF2ZXN0ZQ0KcmljZXZ1dG8gcXVlc3Rv
+IG1lc3NhZ2dpbyBkaSBwb3N0YSBlbGV0dHJvbmljYSBwZXIgZXJyb3JlLCB2aSBjb211bmljaGlh
+bW8NCmNoZSBhaSBzZW5zaSBkZWwgc3VkZGV0dG8gZGVjcmV0byDDqCB2aWV0YXRvIGzigJl1c28s
+IGxhIGRpZmZ1c2lvbmUsIGRpc3RyaWJ1emlvbmUNCm8gcmlwcm9kdXppb25lIGRhIHBhcnRlIGRp
+IG9nbmkgYWx0cmEgcGVyc29uYS4gU2lldGUgcHJlZ2F0aSBkaSBzZWduYWxhcmxvDQppbW1lZGlh
+dGFtZW50ZSByaXNwb25kZW5kbyBhbCBtaXR0ZW50ZSBlIGRpIGRpc3RydWdnZXJlIHF1YW50byBy
+aWNldnV0bw0KKGNvbXByZXNpIGkgZmlsZSBhbGxlZ2F0aSkgc2VuemEgZmFybmUgY29waWEgbyBs
+ZWdnZXJuZSBpbCBjb250ZW51dG8uPC9pPjwvZm9udD4NCjxicj4NCjxicj48Zm9udCBzaXplPTEg
+Y29sb3I9IzVmNWY1ZiBmYWNlPSJBcmlhbCI+PGk+VGhpcyBlLW1haWwgdHJhbnNtaXNzaW9uDQpj
+b250YWlucyBpbmZvcm1hdGlvbiB0aGF0IGlzIGNvbmZpZGVudGlhbCBhbmQgbWF5IGJlIHByaXZp
+bGVnZWQuIEl0IGlzDQppbnRlbmRlZCBvbmx5IGZvciB0aGUgYWRkcmVzc2VlKHMpIG5hbWVkIGFi
+b3ZlLiBJZiB5b3UgcmVjZWl2ZSB0aGlzIGUtbWFpbA0KaW4gZXJyb3IsIHBsZWFzZSBkbyBub3Qg
+cmVhZCwgY29weSBvciBkaXNzZW1pbmF0ZSBpdCBpbiBhbnkgbWFubmVyLiBJZg0KeW91IGFyZSBu
+b3QgdGhlIGludGVuZGVkIHJlY2lwaWVudCwgYW55IGRpc2Nsb3N1cmUsIGNvcHlpbmcsIGRpc3Ry
+aWJ1dGlvbg0Kb3IgdXNlIG9mIHRoZSBjb250ZW50cyBvZiB0aGlzIGluZm9ybWF0aW9uIGlzIHBy
+b2hpYml0ZWQuIFBsZWFzZSByZXBseQ0KdG8gdGhlIG1lc3NhZ2UgaW1tZWRpYXRlbHkgYnkgaW5m
+b3JtaW5nIHRoZSBzZW5kZXIgdGhhdCB0aGUgbWVzc2FnZSB3YXMNCm1pc2RpcmVjdGVkLiBBZnRl
+ciByZXBseWluZywgcGxlYXNlIGVyYXNlIGl0IGZyb20geW91ciBjb21wdXRlciBzeXN0ZW0uDQpZ
+b3VyIGFzc2lzdGFuY2UgaW4gY29ycmVjdGluZyB0aGlzIGVycm9yIGlzIGFwcHJlY2lhdGVkLjwv
+aT48L2ZvbnQ+DQo8YnI+PGZvbnQgc2l6ZT0xIGNvbG9yPSM4MDgwODAgZmFjZT0iQXJpYWwiPjxp
+PiZuYnNwOzwvaT48L2ZvbnQ+DQo=
 
-So it looks like it should be close at least :-)  I don't know how the
-meta-ti repo on yoctoproject.org tracks the arago-project one...
-
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
-
+--=_alternative 0057F44EC12579F3_=--
