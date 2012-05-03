@@ -1,25 +1,36 @@
-Return-Path: <sgw@linux.intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9D705E0044D
-	for <yocto@yoctoproject.org>; Thu,  3 May 2012 11:16:31 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 03 May 2012 11:16:31 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="149027415"
-Received: from unknown (HELO [10.255.12.171]) ([10.255.12.171])
-	by fmsmga001.fm.intel.com with ESMTP; 03 May 2012 11:16:30 -0700
-Message-ID: <4FA2CB7E.7080600@linux.intel.com>
-Date: Thu, 03 May 2012 11:16:30 -0700
-From: Saul Wold <sgw@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:12.0) Gecko/20120424 Thunderbird/12.0
-MIME-Version: 1.0
-To: Frans Meulenbroeks <fransmeulenbroeks@gmail.com>
-References: <CACW_hTb5BO+mS07Xnd534N5V-ETtwrXc=NNo67kxcemQPGuJog@mail.gmail.com>
-In-Reply-To: <CACW_hTb5BO+mS07Xnd534N5V-ETtwrXc=NNo67kxcemQPGuJog@mail.gmail.com>
-Cc: yocto@yoctoproject.org,
-	openembedded-devel <openembedded-devel@lists.openembedded.org>
-Subject: Re: yocto 1.2: 2nd experiences: image building problems
+Return-Path: <elvis.dowson@gmail.com>
+Received: from mail-wg0-f54.google.com (mail-wg0-f54.google.com [74.125.82.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AEFFDE0044D
+	for <yocto@yoctoproject.org>; Thu,  3 May 2012 11:22:40 -0700 (PDT)
+Received: by wgbfg15 with SMTP id fg15so1648489wgb.11
+	for <yocto@yoctoproject.org>; Thu, 03 May 2012 11:22:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:mime-version:content-type:subject:date:in-reply-to:to
+	:references:message-id:x-mailer;
+	bh=S3IbEHh5gC7aT+b+I/1V1oSaAZA2FBi2jC45GILBCRw=;
+	b=CDohSWYyyvGETL4aFB2qJ1BScoW+cv/AzZKYSJhLRSFgOUd5NI+ssgK1mGysUw8g7t
+	7Wy2v6FkmykGo2De3ZK/2WUWUu/kzzfgehI8DzLrSLOj6aXEYRAtGZr5dbf/qszCIDLj
+	dDlDeJJILL6zM4eIcGY0syxjJZN6Ffq27JJJW1YHlSIPPvC5qFpqItfUun4LopyifDMK
+	26lCp0RmLmRYhBHKUJVADUBh1NA2WMSxeb3D2+E7M8ZCcq+OLqsF3VEEAhnP7VTrriUU
+	RbUQlv/yiHEmRNUV2ndIKNj8QJdOAvwTsTBomsQYYrHfiT96n1tigdmjIE5khS+WOcOP
+	5KKA==
+Received: by 10.216.195.10 with SMTP id o10mr2145297wen.11.1336069359195;
+	Thu, 03 May 2012 11:22:39 -0700 (PDT)
+Received: from [192.168.1.33] (240.Red-88-6-19.staticIP.rima-tde.net.
+	[88.6.19.240])
+	by mx.google.com with ESMTPS id n20sm5661261wiw.5.2012.05.03.11.22.37
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Thu, 03 May 2012 11:22:38 -0700 (PDT)
+From: Elvis Dowson <elvis.dowson@gmail.com>
+Mime-Version: 1.0 (Apple Message framework v1257)
+Date: Thu, 3 May 2012 20:22:36 +0200
+In-Reply-To: <4FA2A6A5.6030807@mlbassoc.com>
+To: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+References: <880CAB78-91DC-46B5-A4BB-00D33FFA9624@gmail.com>
+	<11827908.GWIN234cRG@helios> <4FA2A6A5.6030807@mlbassoc.com>
+Message-Id: <27A92832-EECC-4D6B-A77A-834E20FB4C75@gmail.com>
+X-Mailer: Apple Mail (2.1257)
+Subject: Re: Build error: Could not inherit file classes/systemd.bbclass
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,69 +42,123 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 03 May 2012 18:16:31 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 03 May 2012 18:22:41 -0000
+Content-Type: multipart/alternative;
+	boundary="Apple-Mail=_6418D589-DC92-4285-8ACD-B081F88FBAAD"
 
-On 05/03/2012 01:01 AM, Frans Meulenbroeks wrote:
-> Dear all,
->
-> I'm migrating a project from oe-classic to yocto 1.2.
-> This goes fairly smoothly. Got some warnings I reported before.
->
-> If I build my app it runs fine (with the uclibc from oe-classic that
-> is already on the board).
-> Next step was to try to build a complete image.
->
-> There I encountered two issues.
-> The first one was that my image recipe had a few SRC_URI += lines.
-> This to get the static device table I am using and two files I needed
-> in my IMAGE_POSTPRCESS_COMMAND.
-> However yocto immediately goes into do_rootfs, and does not have a
-> fetch/unpack step (as oe-classic used to have).
->
-> I have worked around this by adding
->
-> python do_get_src () {
->      bb.build.exec_func('base_do_fetch', d)
->      bb.build.exec_func('base_do_unpack', d)
-> }
-> addtask do_get_src before do_rootfs
->
-> to my image recipe. I think it would be nice to have this
-> automatically done if a non-empty SRC_URI is found (but unfortunately
-> I am not enough of a python wiz to provide a patch).
-> Anyway that kept me moving.
->
-Can you file a enhancement bug for the above issue.
+--Apple-Mail=_6418D589-DC92-4285-8ACD-B081F88FBAAD
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=us-ascii
 
-> The second issue is probably lib related. As I need a small footprint
-> (not too much storage available) my project uses uclibc.
-> When building the image I get some 15 or so of these:
-> | 	rtld(GNU_HASH) is needed by busybox-1.19.4-r6.ppce300c3
-> | 	rtld(GNU_HASH) is needed by i2c-tools-3.0.3-r0.ppce300c3
-> | 	rtld(GNU_HASH) is needed by libz1-1.2.6-r1.ppce300c3
-> ...
->
-> I noticed that eglibc has this:
-> meta/recipes-core/eglibc/eglibc-package.inc:RPROVIDES_${PN} =
-> "glibc${PKGSUFFIX} rtld(GNU_HASH)"
->
-> but I did not find a similar RPROVIDES for uclibc.
-> Not sure whether it is missing there, or whether the dependencies for
-> the packages like busybox and libz1 are wrong.
-> Anyone any advice ?
->
-Khem might be able to help with this maybe.
+Hi,
 
-Thanks
-	Sau!
+On May 3, 2012, at 5:39 PM, Gary Thomas wrote:
 
-> Thanks, Frans
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
->
+> On 2012-05-03 07:21, Paul Eggleton wrote:
+> I saw this checkin yesterday on meta-ti:
+>  Module: meta-ti
+>  Branch: refs/tags/v2012.05-yocto1.2
+>  Tag:    ccae351a692bf6fa17a4a1e35b89ff6efcd35c6c
+>  URL:    =
+http://arago-project.org/git/meta-ti.git/?a=3Dtag;h=3Dccae351a692bf6fa17a4=
+a1e35b89ff6efcd35c6c
+>=20
+>  Tagger: Denys Dmytriyenko <denys@ti.com>
+>  Date:   Wed May  2 03:41:43 2012 -0400
+>=20
+>  2012.05 release, compatible with Yocto Project 1.2 Denzil
+>=20
+> So it looks like it should be close at least :-)  I don't know how the
+> meta-ti repo on yoctoproject.org tracks the arago-project one...
 
+The meta-ti repo on yoctoproject.org tracks the arago-project one =
+closely.
+
+The following bblayers.conf configuration worked
+
+BBFILES ?=3D ""
+BBLAYERS ?=3D " \
+  /tool/yocto/poky/meta \
+  /tool/yocto/poky/meta-yocto \
+  /tool/yocto/meta-openembedded/meta-oe \
+  /tool/yocto/meta-gumstix \
+  /tool/yocto/meta-ti \
+  /tool/yocto/meta-xilinx \
+  "
+
+Best regards,
+
+Elvis Dowson=
+
+--Apple-Mail=_6418D589-DC92-4285-8ACD-B081F88FBAAD
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=us-ascii
+
+<html><head></head><body style=3D"word-wrap: break-word; =
+-webkit-nbsp-mode: space; -webkit-line-break: after-white-space; =
+">Hi,<div><br><div><div>On May 3, 2012, at 5:39 PM, Gary Thomas =
+wrote:</div><br class=3D"Apple-interchange-newline"><blockquote =
+type=3D"cite"><div>On 2012-05-03 07:21, Paul Eggleton =
+wrote:</div></blockquote><blockquote type=3D"cite"><div>I saw this =
+checkin yesterday on meta-ti:<br> &nbsp;Module: meta-ti<br> =
+&nbsp;Branch: refs/tags/v2012.05-yocto1.2<br> &nbsp;Tag: =
+&nbsp;&nbsp;&nbsp;ccae351a692bf6fa17a4a1e35b89ff6efcd35c6c<br> =
+&nbsp;URL: &nbsp;&nbsp;&nbsp;<a =
+href=3D"http://arago-project.org/git/meta-ti.git/?a=3Dtag;h=3Dccae351a692b=
+f6fa17a4a1e35b89ff6efcd35c6c">http://arago-project.org/git/meta-ti.git/?a=3D=
+tag;h=3Dccae351a692bf6fa17a4a1e35b89ff6efcd35c6c</a><br><br> =
+&nbsp;Tagger: Denys Dmytriyenko &lt;<a =
+href=3D"mailto:denys@ti.com">denys@ti.com</a>&gt;<br> &nbsp;Date: =
+&nbsp;&nbsp;Wed May &nbsp;2 03:41:43 2012 -0400<br><br> &nbsp;2012.05 =
+release, compatible with Yocto Project 1.2 Denzil<br><br>So it looks =
+like it should be close at least :-) &nbsp;I don't know how =
+the<br>meta-ti repo on <a =
+href=3D"http://yoctoproject.org">yoctoproject.org</a> tracks the =
+arago-project one...<br></div></blockquote></div><br><div>The meta-ti =
+repo on <a href=3D"http://yoctoproject.org">yoctoproject.org</a> tracks =
+the arago-project one closely.</div></div><div><br></div><div>The =
+following bblayers.conf configuration =
+worked</div><div><br></div><div><div style=3D"margin-top: 0px; =
+margin-right: 0px; margin-bottom: 0px; margin-left: 0px; font: normal =
+normal normal 10px/normal Monaco; ">BBFILES ?=3D ""</div><div =
+style=3D"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; =
+margin-left: 0px; font: normal normal normal 10px/normal Monaco; =
+">BBLAYERS ?=3D " \</div><div style=3D"margin-top: 0px; margin-right: =
+0px; margin-bottom: 0px; margin-left: 0px; font: normal normal normal =
+10px/normal Monaco; ">&nbsp; /tool/yocto/poky/meta \</div><div =
+style=3D"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; =
+margin-left: 0px; font: normal normal normal 10px/normal Monaco; =
+">&nbsp; /tool/yocto/poky/meta-yocto \</div><div style=3D"margin-top: =
+0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; font: =
+normal normal normal 10px/normal Monaco; ">&nbsp; <font =
+class=3D"Apple-style-span" =
+color=3D"#103ffb">/tool/yocto/meta-openembedded/meta-oe</font> =
+\</div><div style=3D"margin-top: 0px; margin-right: 0px; margin-bottom: =
+0px; margin-left: 0px; font: normal normal normal 10px/normal Monaco; =
+">&nbsp; /tool/yocto/meta-gumstix \</div><div style=3D"margin-top: 0px; =
+margin-right: 0px; margin-bottom: 0px; margin-left: 0px; font: normal =
+normal normal 10px/normal Monaco; ">&nbsp; /tool/yocto/meta-ti =
+\</div><div style=3D"margin-top: 0px; margin-right: 0px; margin-bottom: =
+0px; margin-left: 0px; font: normal normal normal 10px/normal Monaco; =
+">&nbsp; /tool/yocto/meta-xilinx \</div></div><div style=3D"margin-top: =
+0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; font: =
+normal normal normal 10px/normal Monaco; "><div style=3D"margin-top: =
+0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; font: =
+normal normal normal 10px/normal Monaco; ">&nbsp;&nbsp;"</div><div =
+style=3D"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; =
+margin-left: 0px; font: normal normal normal 10px/normal Monaco; =
+"><br></div><div style=3D"margin-top: 0px; margin-right: 0px; =
+margin-bottom: 0px; margin-left: 0px; font: normal normal normal =
+10px/normal Monaco; "><font class=3D"Apple-style-span" face=3D"Helvetica" =
+size=3D"3">Best regards,</font></div><div style=3D"margin-top: 0px; =
+margin-right: 0px; margin-bottom: 0px; margin-left: 0px; font: normal =
+normal normal 10px/normal Monaco; "><font class=3D"Apple-style-span" =
+face=3D"Helvetica" size=3D"3"><br></font></div><div style=3D"margin-top: =
+0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; font: =
+normal normal normal 10px/normal Monaco; "><font =
+class=3D"Apple-style-span" face=3D"Helvetica" size=3D"3">Elvis =
+Dowson</font></div></div></body></html>=
+
+--Apple-Mail=_6418D589-DC92-4285-8ACD-B081F88FBAAD--
