@@ -1,30 +1,28 @@
-Return-Path: <elvis.dowson@mac.com>
-Received: from nk11p04mm-asmtpout008.mac.com (nk11p04mm-asmtp008.mac.com
-	[17.158.236.243])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 372E0E00723
-	for <yocto@yoctoproject.org>; Thu,  3 May 2012 05:54:29 -0700 (PDT)
-MIME-version: 1.0
-Received: from [192.168.1.33] ([88.6.19.240]) by nk11p04mm-asmtp008.mac.com
-	(Oracle Communications Messaging Server 7u4-23.01(7.0.4.23.0) 64bit
-	(built Aug
-	10 2011)) with ESMTPSA id <0M3G005106IMDD30@nk11p04mm-asmtp008.mac.com>
-	for yocto@yoctoproject.org; Thu, 03 May 2012 12:54:28 +0000 (GMT)
-X-Proofpoint-Virus-Version: vendor=fsecure
-	engine=2.50.10432:5.6.7580,1.0.260,0.0.0000
-	definitions=2012-05-03_03:2012-05-02, 2012-05-03,
-	1970-01-01 signatures=0
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 spamscore=0
-	ipscore=0 suspectscore=0 phishscore=0 bulkscore=0 adultscore=0
-	classifier=spam
-	adjust=0 reason=mlx scancount=1 engine=6.0.2-1012030000
-	definitions=main-1205030103
-From: Elvis Dowson <elvis.dowson@mac.com>
-Date: Thu, 03 May 2012 14:54:21 +0200
-Message-id: <5896B268-BD82-48B1-8FEA-3F7DA21A96CE@mac.com>
-To: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-X-Mailer: Apple Mail (2.1257)
-X-Mailman-Approved-At: Thu, 03 May 2012 08:31:58 -0700
-Subject: Build error: Could not inherit file classes/systemd.bbclass
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (hermes.mlbassoc.com [64.234.241.98])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 85A5FE0044A
+	for <yocto@yoctoproject.org>; Thu,  3 May 2012 08:39:23 -0700 (PDT)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id 09801F81265; Thu,  3 May 2012 09:39:22 -0600 (MDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=ham version=3.3.2
+Received: from hermes.chez-thomas.org (localhost.localdomain [127.0.0.1])
+	by mail.chez-thomas.org (Postfix) with ESMTP id 1C7EBF81253;
+	Thu,  3 May 2012 09:39:17 -0600 (MDT)
+Message-ID: <4FA2A6A5.6030807@mlbassoc.com>
+Date: Thu, 03 May 2012 09:39:17 -0600
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:12.0) Gecko/20120424 Thunderbird/12.0
+MIME-Version: 1.0
+To: yocto@yoctoproject.org
+References: <880CAB78-91DC-46B5-A4BB-00D33FFA9624@gmail.com>
+	<11827908.GWIN234cRG@helios>
+In-Reply-To: <11827908.GWIN234cRG@helios>
+Subject: Re: Build error: Could not inherit file classes/systemd.bbclass
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,25 +34,54 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 03 May 2012 12:54:29 -0000
-Content-transfer-encoding: 7BIT
-Content-type: text/plain; CHARSET=US-ASCII
+X-List-Received-Date: Thu, 03 May 2012 15:39:23 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi,
-      I've setup and configured an Ubuntu-12.04 LTS 64-bit system, and I get a build error when I run the following command:
+On 2012-05-03 07:21, Paul Eggleton wrote:
+> On Thursday 03 May 2012 14:56:03 Elvis Dowson wrote:
+>>       I've setup and configured an Ubuntu-12.04 LTS 64-bit system, and I get
+>> a build error when I run the following command:
+>>
+>> $ bitbake -c fetchall core-image-minimal
+>>
+>> Pseudo is not present but is required, building this first before the main
+>> build WARNING: Host distribution "Ubuntu 12.04 LTS" has not been validated
+>> with this version of the build system; you may possibly experience
+>> unexpected failures. It is recommended that you use a tested distribution.
+>
+> This can be ignored - 12.04 *is* supported; it's just that the final version
+> string wasn't what I expected it to be. I'll send a patch for this soon and it
+> can hopefully go into 1.2.1.
+>
+>> ERROR: ParseError at
+>> /tool/yocto/meta-ti/recipes-misc/payload/bonescript.bb:5: Could not inherit
+>> file classes/systemd.bbclass ERROR: Command execution failed: Exited with 1
+>
+> systemd.bbclass is part of the meta-oe layer, so you'll need to add that to
+> your bblayers.conf.
+>
+> BTW I'm not sure if the meta-ti maintainers have finished their work to ensure
+> meta-ti works with distros other than Angstrom. If they haven't you may
+> experience problems.
 
-$ bitbake -c fetchall core-image-minimal
+I saw this checkin yesterday on meta-ti:
+   Module: meta-ti
+   Branch: refs/tags/v2012.05-yocto1.2
+   Tag:    ccae351a692bf6fa17a4a1e35b89ff6efcd35c6c
+   URL:    http://arago-project.org/git/meta-ti.git/?a=tag;h=ccae351a692bf6fa17a4a1e35b89ff6efcd35c6c
 
-Pseudo is not present but is required, building this first before the main build
-WARNING: Host distribution "Ubuntu 12.04 LTS" has not been validated with this version of the build system; you may possibly experience unexpected failures. It is recommended that you use a tested distribution.
-ERROR: ParseError at /tool/yocto/meta-ti/recipes-misc/payload/bonescript.bb:5: Could not inherit file classes/systemd.bbclass
-ERROR: Command execution failed: Exited with 1
+   Tagger: Denys Dmytriyenko <denys@ti.com>
+   Date:   Wed May  2 03:41:43 2012 -0400
 
-Summary: There was 1 WARNING message shown.
-Summary: There were 2 ERROR messages shown, returning a non-zero exit code.
+   2012.05 release, compatible with Yocto Project 1.2 Denzil
 
+So it looks like it should be close at least :-)  I don't know how the
+meta-ti repo on yoctoproject.org tracks the arago-project one...
 
-Best regards,
-
-Elvis Dowson
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
