@@ -1,30 +1,29 @@
-Return-Path: <elvis.dowson@mac.com>
-Received: from nk11p04mm-asmtpout009.mac.com (nk11p04mm-asmtp009.mac.com
-	[17.158.236.118])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8C8C4E0044D
-	for <yocto@yoctoproject.org>; Thu,  3 May 2012 11:49:13 -0700 (PDT)
-MIME-version: 1.0
-Received: from [192.168.1.33] ([88.6.19.240]) by nk11p04mm-asmtp009.mac.com
-	(Oracle Communications Messaging Server 7u4-23.01(7.0.4.23.0) 64bit
-	(built Aug
-	10 2011)) with ESMTPSA id <0M3G000NYMXYIQ10@nk11p04mm-asmtp009.mac.com>
-	for yocto@yoctoproject.org; Thu, 03 May 2012 18:49:13 +0000 (GMT)
-X-Proofpoint-Virus-Version: vendor=fsecure
-	engine=2.50.10432:5.6.7580,1.0.260,0.0.0000
-	definitions=2012-05-03_07:2012-05-03, 2012-05-03,
-	1970-01-01 signatures=0
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 spamscore=0
-	ipscore=0 suspectscore=0 phishscore=0 bulkscore=0 adultscore=0
-	classifier=spam
-	adjust=0 reason=mlx scancount=1 engine=6.0.2-1012030000
-	definitions=main-1205030204
-From: Elvis Dowson <elvis.dowson@mac.com>
-Date: Thu, 03 May 2012 20:49:09 +0200
-Message-id: <10617B07-572F-45A3-9508-4451FEB9299F@mac.com>
-To: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-X-Mailer: Apple Mail (2.1257)
-X-Mailman-Approved-At: Thu, 03 May 2012 11:54:51 -0700
-Subject: [meta-xilinx] Rename to util-linux_2.21.1.bbappend
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (hermes.mlbassoc.com [64.234.241.98])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 51694E00596
+	for <yocto@yoctoproject.org>; Thu,  3 May 2012 12:07:12 -0700 (PDT)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id E69EEF81269; Thu,  3 May 2012 13:07:10 -0600 (MDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=ham version=3.3.2
+Received: from hermes.chez-thomas.org (localhost.localdomain [127.0.0.1])
+	by mail.chez-thomas.org (Postfix) with ESMTP id B3EE7F81268;
+	Thu,  3 May 2012 13:07:06 -0600 (MDT)
+Message-ID: <4FA2D75A.3040504@mlbassoc.com>
+Date: Thu, 03 May 2012 13:07:06 -0600
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:12.0) Gecko/20120424 Thunderbird/12.0
+MIME-Version: 1.0
+To: yocto@yoctoproject.org
+References: <880CAB78-91DC-46B5-A4BB-00D33FFA9624@gmail.com>
+	<11827908.GWIN234cRG@helios> <4FA2A6A5.6030807@mlbassoc.com>
+	<27A92832-EECC-4D6B-A77A-834E20FB4C75@gmail.com>
+In-Reply-To: <27A92832-EECC-4D6B-A77A-834E20FB4C75@gmail.com>
+Subject: Re: Build error: Could not inherit file classes/systemd.bbclass
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,56 +35,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 03 May 2012 18:49:13 -0000
-Content-transfer-encoding: 7BIT
-Content-type: text/plain; CHARSET=US-ASCII
+X-List-Received-Date: Thu, 03 May 2012 19:07:12 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi,
-      This patch fixes a build issue with meta-xilinx, since util-linux_2.21.bb recipe has been renamed to util-linux_2.21.1.bb
+On 2012-05-03 12:22, Elvis Dowson wrote:
+> Hi,
+>
+> On May 3, 2012, at 5:39 PM, Gary Thomas wrote:
+>
+>> On 2012-05-03 07:21, Paul Eggleton wrote:
+>> I saw this checkin yesterday on meta-ti:
+>> Module: meta-ti
+>> Branch: refs/tags/v2012.05-yocto1.2
+>> Tag: ccae351a692bf6fa17a4a1e35b89ff6efcd35c6c
+>> URL: http://arago-project.org/git/meta-ti.git/?a=tag;h=ccae351a692bf6fa17a4a1e35b89ff6efcd35c6c
+>>
+>> Tagger: Denys Dmytriyenko <denys@ti.com <mailto:denys@ti.com>>
+>> Date: Wed May 2 03:41:43 2012 -0400
+>>
+>> 2012.05 release, compatible with Yocto Project 1.2 Denzil
+>>
+>> So it looks like it should be close at least :-) I don't know how the
+>> meta-ti repo on yoctoproject.org <http://yoctoproject.org> tracks the arago-project one...
+>
+> The meta-ti repo on yoctoproject.org <http://yoctoproject.org> tracks the arago-project one closely.
+>
+> The following bblayers.conf configuration worked
+>
+> BBFILES ?= ""
+> BBLAYERS ?= " \
+> /tool/yocto/poky/meta \
+> /tool/yocto/poky/meta-yocto \
+> /tool/yocto/meta-openembedded/meta-oe \
+> /tool/yocto/meta-gumstix \
+> /tool/yocto/meta-ti \
+> /tool/yocto/meta-xilinx \
+> "
 
-Best regards,
+IMO, you should be able to use meta-ti *without* meta-oe (I do anyway)
 
-Elvis Dowson
-
-
-From 6d5684d44c1eac67e551a98b0751e996470d203c Mon Sep 17 00:00:00 2001
-From: Elvis Dowson <elvis.dowson@gmail.com>
-Date: Thu, 3 May 2012 20:34:51 +0200
-Subject: [PATCH] Rename to util-linux_2.21.1.bbappend
-
-This commit renames util-linux_2.21.bbappend to util-linux_2.21.1.bbappend
-to match the corresponding change in version to the
-poky/meta/recipes-core/util-linux/util-linux_2.21.1.bb recipe.
-
-Signed-off-by: Elvis Dowson <elvis.dowson@gmail.com>
----
- recipes-core/util-linux/util-linux_2.21.1.bbappend |    3 +++
- recipes-core/util-linux/util-linux_2.21.bbappend   |    3 ---
- 2 files changed, 3 insertions(+), 3 deletions(-)
- create mode 100644 recipes-core/util-linux/util-linux_2.21.1.bbappend
- delete mode 100644 recipes-core/util-linux/util-linux_2.21.bbappend
-
-diff --git a/recipes-core/util-linux/util-linux_2.21.1.bbappend b/recipes-core/util-linux/util-linux_2.21.1.bbappend
-new file mode 100644
-index 0000000..5199eb2
---- /dev/null
-+++ b/recipes-core/util-linux/util-linux_2.21.1.bbappend
-@@ -0,0 +1,3 @@
-+FILESEXTRAPATHS := "${THISDIR}/${PN}"
-+# Disable microblaze ncurses support
-+EXTRA_OECONF_microblaze += " --without-ncurses "
-diff --git a/recipes-core/util-linux/util-linux_2.21.bbappend b/recipes-core/util-linux/util-linux_2.21.bbappend
-deleted file mode 100644
-index 5199eb2..0000000
---- a/recipes-core/util-linux/util-linux_2.21.bbappend
-+++ /dev/null
-@@ -1,3 +0,0 @@
--FILESEXTRAPATHS := "${THISDIR}/${PN}"
--# Disable microblaze ncurses support
--EXTRA_OECONF_microblaze += " --without-ncurses "
 -- 
-1.7.9.5
-
-
-
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
