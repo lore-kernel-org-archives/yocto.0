@@ -1,25 +1,33 @@
-Return-Path: <giovanni.pavoni@exorint.it>
-Received: from esafe.exorint.net (esafe.exorint.net [89.96.201.228])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id E70FAE0044A;
-	Thu,  3 May 2012 09:00:49 -0700 (PDT)
-Received: from sitek.exorint.net ([192.168.0.251]) by eSafe SMTP Relay
-	1326992231; Thu, 03 May 2012 17:59:53 +0100
-In-Reply-To: <CAAQYJAs5EVfq+3E0J1FiZZMppvDUd=xpmEj2R1Hr3V3APQrL7g@mail.gmail.com>
-References: <OF2A8EADBF.1A016282-ONC12579F3.0038D0CC-C12579F3.00390132@Sitek.it>
-	<CAAQYJAs5EVfq+3E0J1FiZZMppvDUd=xpmEj2R1Hr3V3APQrL7g@mail.gmail.com>
-To: Andrea Adami <andrea.adami@gmail.com>
-MIME-Version: 1.0
-X-KeepSent: 3FED1B75:579277FB-C12579F3:0057B45D;type=4; name=$KeepSent
-X-Mailer: Lotus Notes Release 8.5.2 August 10, 2010
-Message-ID: <OF3FED1B75.579277FB-ONC12579F3.0057B45D-C12579F3.0057F44E@Sitek.it>
-From: giovanni.pavoni@exorint.it
-Date: Thu, 3 May 2012 18:00:25 +0200
-X-MIMETrack: Serialize by Router on sitek/Sitek(Release 8.5.3|September 15,
-	2011) at 03/05/201218.00.27, Serialize complete
-	at 03/05/2012 18.00.27
-X-ESAFE-STATUS: [esafe.exorint.net] Mail allowed
-Cc: yocto@yoctoproject.org, yocto-bounces@yoctoproject.org
-Subject: Re: Need help for building kernel image with embeddedinitramfs.cpio
+Return-Path: <elvis.dowson@gmail.com>
+Received: from mail-we0-f176.google.com (mail-we0-f176.google.com
+	[74.125.82.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 16B77E0044A
+	for <yocto@yoctoproject.org>; Thu,  3 May 2012 09:25:44 -0700 (PDT)
+Received: by werc12 with SMTP id c12so1664591wer.35
+	for <yocto@yoctoproject.org>; Thu, 03 May 2012 09:25:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:content-type:subject:date:message-id:to:mime-version:x-mailer;
+	bh=S/mWPcqU9DeyN5UR4SMlcm6rZ3tg+EI1censYxEPKkk=;
+	b=JNYWQCVFijzXCvhmaRtKrAKLwC9Sz8OaNja3Ecg3LTJL0ZarEyGwpeo1hK4IN1O7Ae
+	jEAvPuRDqrHBM4FB8LDkacFWzYPaAC18302BQX0xdeGN47RUCBS9P0q/vGNJeL6fDtXe
+	p8m/s8iQVEgwh4NzLYk2vvTcigk6PZc808HFXSMDPFSxdxh164z/or9wFYR8LmdCU6KC
+	/9NWIoG/zWsufA2RhffGjqK8nsf4VFD3Z60oHCeApmTMpytOnLw4mX0MwmwcKj/P+v5n
+	84PoCPGanWparLWoNPTNNpG6YanW8FxTB5tY15ViPkLQWD5q9Dp0Zq1KQ6Vi/UtR2Z4t
+	ESXg==
+Received: by 10.180.88.67 with SMTP id be3mr4725476wib.20.1336062343954;
+	Thu, 03 May 2012 09:25:43 -0700 (PDT)
+Received: from [192.168.1.33] (240.Red-88-6-19.staticIP.rima-tde.net.
+	[88.6.19.240])
+	by mx.google.com with ESMTPS id j3sm4682034wiw.1.2012.05.03.09.25.41
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Thu, 03 May 2012 09:25:42 -0700 (PDT)
+From: Elvis Dowson <elvis.dowson@gmail.com>
+Date: Thu, 3 May 2012 18:25:40 +0200
+Message-Id: <7513B431-B65B-4ADC-AAA3-9C54F9A37028@gmail.com>
+To: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+Mime-Version: 1.0 (Apple Message framework v1257)
+X-Mailer: Apple Mail (2.1257)
+Subject: ERROR: ParseError at /tool/yocto/poky-extras/meta-linaro/recipes-devtools/gcc/gcc-4.5.1.linaro.inc:1: Could not include required file recipes-devtools/gcc/gcc-4.5.1.inc
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,170 +39,115 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 03 May 2012 16:00:51 -0000
+X-List-Received-Date: Thu, 03 May 2012 16:25:45 -0000
 Content-Type: multipart/alternative;
-	boundary="=_alternative 0057F44EC12579F3_="
+	boundary="Apple-Mail=_B3531271-BB07-493C-8903-45C3D9B1F3B7"
 
---=_alternative 0057F44EC12579F3_=
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: base64
+--Apple-Mail=_B3531271-BB07-493C-8903-45C3D9B1F3B7
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=us-ascii
 
-VGhhbmtzIGZvciB5b3VyIHN1Z2dlc3Rpb24uIEkgaGF2ZSBub3QgeWV0IHRyaWVkIHdpdGgga2Vy
-bmVsIG1vZHVsZXMNCmJ1dCB0aGUgd2hvbGUgYnVpbGQgc2VxdWVuY2UgYXBwZWFycyBmaW5lIGFu
-ZCB0aGUgb3V0cHV0IGlzIHJ1bm5pbmcuIA0KDQpJIGFtIGhpdHRpbmcgYSBwcm9ibGVtIHRob3Vn
-aHQgd2l0aCBzdGVwIDMNCg0KSSBoYXZlIHRoaXMgbGF5b3V0IChtZXRhLW15bGF5ZXIgaXMgcGFy
-YWxsZWwgdG8gbWV0YS15b2N0byk6DQoNCm1ldGEtbXlsYXllci9jb25mL21hY2hpbmUvbXltYWNo
-aW5lLmNvbmYNCm1ldGEtbXlsYXllci9yZWNpcGVzLWtlcm5lbC9saW51eC9saW51eC5pbmMNCm1l
-dGEtbXlsYXllci9yZWNpcGVzLWtlcm5lbC9saW51eC9saW51eF8yLjYuMzcuYmINCm1ldGEtbXls
-YXllci9yZWNpcGVzLWtlcm5lbC9saW51eC9saW51eF8yLjYuMzcvbXltYWNoaW5lL2RlZmNvbmZp
-Zw0KDQpsaW51eC5pbmMgaW5oZXJpdCBmcm9tIGtlcm5lbCBhbmQgSSBhbSBzZXR0aW5nDQpQUkVG
-RVJSRURfUFJPVklERVJfdmlydHVhbC9rZXJuZWwgPSAibGludXgiDQpQUkVGRVJSRURfVkVSU0lP
-Tl9saW51eCA/PSAiMi42LjM3Ig0KaW4gbXltYWNoaW5lLmNvbmYuIA0KDQpUaGlzIGJ1aWxkcyBh
-bmQgZGVwbG95cyBhIHVJbWFnZS1teW1hY2hpbmUtInN0YW1wMSIuYmluIGZpbmUgZm9yIA0KbXlt
-YWNoaW5lLg0KDQpJIGFkZGVkIGEga2VybmVsIHJlY2lwZSBpbiBteSByZWNpcGUta2VybmVsIGxh
-eWVyIA0KbGlrZSB0aGlzOg0KDQptZXRhLW15bGF5ZXIvcmVjaXBlcy1rZXJuZWwvbGludXgvbGlu
-dXhyYW1mc18yLjYuMzcuYmINCm1ldGEtbXlsYXllci9yZWNpcGVzLWtlcm5lbC9saW51eC9saW51
-eHJhbWZzXzIuNi4zNy9teW1hY2hpbmUvZGVmY29uZmlnIA0KDQppbiBsaW51eHJhbWZzXzIuNi4z
-Ny9teW1hY2hpbmUvZGVmY29uZmlnIEkgcGF0Y2hlZCBhbGwgb3B0aW9ucyBmb3IgcmFtZnMgDQoo
-c291cmNlIC8gY29tcHJlc3Npb24gZXRjKQ0KYW5kIHR3ZWFrZWQgbGludXhyYW1mc18yLjYuMzcu
-YmIgYXMgcGVyIHlvdXIgaW5kaWNhdGlvbiAoc3RhcnRpbmcgZnJvbSB0aGUgDQpsaW51eF8yLjYu
-MzcuYmINCkkgaGFkIHVwIGFuZCBydW5uaW5nKS4NCg0KUHJvYmxlbXM6DQoNCjEuIHdoZW4gSSBy
-dW4gImJpdGJha2UgbGludXhyYW1mcyIgSSBnZXQgDQoiRVJST1I6IE11bHRpcGxlIC5iYiBmaWxl
-cyBhcmUgZHVlIHRvIGJlIGJ1aWx0IHdoaWNoIGVhY2ggcHJvdmlkZSANCnZpcnR1YWwva2VybmVs
-IiANCg0KSSBhbSBzZWVpbmcgbXVsdGlwbGUgcmVmZXJlbmNlIG9uIHRoZSBuZXQgYWJvdXQgdGhp
-cyBlcnJvciBidXQgSSBhbSBub3QgDQp1bmRlcnN0YW5kaW5nDQpob3cgdG8gaGFuZGxlLiBCb3Ro
-IGxpbnV4cmFtZnNfMi42LjM3LmJiIGFuZCBsaW51eF8yLjYuMzcuYmIgYXJlIHByb3ZpZGluZyAN
-CnZpcnR1YWwva2VybmVsLg0KDQoyLiAiYml0YmFrZSBsaW51eHJhbWZzIiBkZXBsb3lzIGEgdUlt
-YWdlLW15bWFjaGluZS0ic3RhbXAyIi5iaW4gDQpUbyBvdmVyd3JpdGUgdGhpcyBpbiBhIHdheSBJ
-IGdldCBhIHVJbWFnZS1yYW1mcy1teW1hY2hpbmUtInN0YW1weHh4Ii5iaW4NCihzbyB0aGF0IEkg
-Y2FuIGVhc2lseSBpZGVudGlmeSBpdCBhZ2FpbnN0IGEgbm9ybWFsIHVJbWFnZSAtIG9ubHkga2Vy
-bmVsKSANCndoYXQgZG9fKiB0YXNrIHNob3VsZCBJIHJlaW1wbGVtZW50IGluIG15IGxpbnV4cmFt
-ZnNfMi42LjM3LmJiIHJlY2lwZT8NCg0KVGhhbmtzIGluIGFkdmFuY2UgZm9yIHlvdXIgYXR0ZW50
-aW9uDQoNCg0KR2lvdmFubmkgUGF2b25pDQpSJkQgRGVwYXJ0bWVudA0KDQpFeG9yIEludGVybmF0
-aW9uYWwgUy5wLkEuDQpWaWEgTW9udGUgRmlvcmlubyw5DQpJLTM3MDU3IFNhbiBHaW92YW5uaSBM
-dXBhdG90byAoVlIpDQpQaG9uZTorMzkwNDU4Nzc0ODM5IC0gRmF4OiszOTA0NTg3NzkwMjMNCg0K
-Z2lvdmFubmkucGF2b25pQGV4b3JpbnQuaXQgLSB3d3cuZXhvcmludC5uZXQgLSB3d3cuZXhvcmlu
-dC5pdA0KDQoNCg0KQVRURU5aSU9ORTogUHJpdmFjeSBQb2xpY3kg4oCTIEQuTGdzLiAxOTYvMjAw
-Mw0KIExlIGluZm9ybWF6aW9uaSBjb250ZW51dGUgaW4gcXVlc3RvIG1lc3NhZ2dpbyBkaSBwb3N0
-YSBlbGV0dHJvbmljYSBzb25vIGRpIA0KY2FyYXR0ZXJlIHByaXZhdG8gZSBjb25maWRlbnppYWxl
-IGVkIGVzY2x1c2l2YW1lbnRlIHJpdm9sdGUgYWwgZGVzdGluYXRhcmlvIA0Kc29wcmEgaW5kaWNh
-dG8uIE5lbCBjYXNvIGF2ZXN0ZSByaWNldnV0byBxdWVzdG8gbWVzc2FnZ2lvIGRpIHBvc3RhIGVs
-ZXR0cm9uaWNhIA0KcGVyIGVycm9yZSwgdmkgY29tdW5pY2hpYW1vIGNoZSBhaSBzZW5zaSBkZWwg
-c3VkZGV0dG8gZGVjcmV0byDDqCB2aWV0YXRvIGzigJl1c28sIA0KbGEgZGlmZnVzaW9uZSwgZGlz
-dHJpYnV6aW9uZSBvIHJpcHJvZHV6aW9uZSBkYSBwYXJ0ZSBkaSBvZ25pIGFsdHJhIHBlcnNvbmEu
-IA0KU2lldGUgcHJlZ2F0aSBkaSBzZWduYWxhcmxvIGltbWVkaWF0YW1lbnRlIHJpc3BvbmRlbmRv
-IGFsIG1pdHRlbnRlIGUgZGkgDQpkaXN0cnVnZ2VyZSBxdWFudG8gcmljZXZ1dG8gKGNvbXByZXNp
-IGkgZmlsZSBhbGxlZ2F0aSkgc2VuemEgZmFybmUgY29waWEgbyANCmxlZ2dlcm5lIGlsIGNvbnRl
-bnV0by4NCg0KVGhpcyBlLW1haWwgdHJhbnNtaXNzaW9uIGNvbnRhaW5zIGluZm9ybWF0aW9uIHRo
-YXQgaXMgY29uZmlkZW50aWFsIGFuZCBtYXkgYmUgDQpwcml2aWxlZ2VkLiBJdCBpcyBpbnRlbmRl
-ZCBvbmx5IGZvciB0aGUgYWRkcmVzc2VlKHMpIG5hbWVkIGFib3ZlLiBJZiB5b3UgDQpyZWNlaXZl
-IHRoaXMgZS1tYWlsIGluIGVycm9yLCBwbGVhc2UgZG8gbm90IHJlYWQsIGNvcHkgb3IgZGlzc2Vt
-aW5hdGUgaXQgaW4gYW55IA0KbWFubmVyLiBJZiB5b3UgYXJlIG5vdCB0aGUgaW50ZW5kZWQgcmVj
-aXBpZW50LCBhbnkgZGlzY2xvc3VyZSwgY29weWluZywgDQpkaXN0cmlidXRpb24gb3IgdXNlIG9m
-IHRoZSBjb250ZW50cyBvZiB0aGlzIGluZm9ybWF0aW9uIGlzIHByb2hpYml0ZWQuIFBsZWFzZSAN
-CnJlcGx5IHRvIHRoZSBtZXNzYWdlIGltbWVkaWF0ZWx5IGJ5IGluZm9ybWluZyB0aGUgc2VuZGVy
-IHRoYXQgdGhlIG1lc3NhZ2Ugd2FzIA0KbWlzZGlyZWN0ZWQuIEFmdGVyIHJlcGx5aW5nLCBwbGVh
-c2UgZXJhc2UgaXQgZnJvbSB5b3VyIGNvbXB1dGVyIHN5c3RlbS4gWW91ciANCmFzc2lzdGFuY2Ug
-aW4gY29ycmVjdGluZyB0aGlzIGVycm9yIGlzIGFwcHJlY2lhdGVkLg0KIA==
+Hi,
+       In my bblayers.conf, I've included the poky-extras/meta-linaro =
+meta layer.
 
---=_alternative 0057F44EC12579F3_=
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: base64
+BBLAYERS ?=3D " \
+  /tool/yocto/poky/meta \
+  /tool/yocto/poky/meta-yocto \
+  /tool/yocto/poky-extras/meta-kernel-dev \
+  /tool/yocto/poky-extras/meta-linaro \
+  /tool/yocto/meta-openembedded/meta-oe \
+  /tool/yocto/meta-gumstix \
+  /tool/yocto/meta-ti \
+  /tool/yocto/meta-xilinx \
+  "
 
-PGZvbnQgc2l6ZT0yIGZhY2U9InNhbnMtc2VyaWYiPlRoYW5rcyBmb3IgeW91ciBzdWdnZXN0aW9u
-LiBJIGhhdmUgbm90DQp5ZXQgdHJpZWQgd2l0aCBrZXJuZWwgbW9kdWxlczwvZm9udD4NCjxicj48
-Zm9udCBzaXplPTIgZmFjZT0ic2Fucy1zZXJpZiI+YnV0IHRoZSB3aG9sZSBidWlsZCBzZXF1ZW5j
-ZSBhcHBlYXJzDQpmaW5lIGFuZCB0aGUgb3V0cHV0IGlzIHJ1bm5pbmcuIDwvZm9udD4NCjxicj4N
-Cjxicj48Zm9udCBzaXplPTIgZmFjZT0ic2Fucy1zZXJpZiI+SSBhbSBoaXR0aW5nIGEgcHJvYmxl
-bSB0aG91Z2h0IHdpdGgNCnN0ZXAgMzwvZm9udD4NCjxicj4NCjxicj48Zm9udCBzaXplPTIgZmFj
-ZT0ic2Fucy1zZXJpZiI+SSBoYXZlIHRoaXMgbGF5b3V0IChtZXRhLW15bGF5ZXIgaXMNCnBhcmFs
-bGVsIHRvIG1ldGEteW9jdG8pOjwvZm9udD4NCjxicj4NCjxicj48Zm9udCBzaXplPTIgZmFjZT0i
-c2Fucy1zZXJpZiI+bWV0YS1teWxheWVyL2NvbmYvbWFjaGluZS9teW1hY2hpbmUuY29uZjwvZm9u
-dD4NCjxicj48Zm9udCBzaXplPTIgZmFjZT0ic2Fucy1zZXJpZiI+bWV0YS1teWxheWVyL3JlY2lw
-ZXMta2VybmVsL2xpbnV4L2xpbnV4LmluYzwvZm9udD4NCjxicj48Zm9udCBzaXplPTIgZmFjZT0i
-c2Fucy1zZXJpZiI+bWV0YS1teWxheWVyL3JlY2lwZXMta2VybmVsL2xpbnV4L2xpbnV4XzIuNi4z
-Ny5iYjwvZm9udD4NCjxicj48Zm9udCBzaXplPTIgZmFjZT0ic2Fucy1zZXJpZiI+bWV0YS1teWxh
-eWVyL3JlY2lwZXMta2VybmVsL2xpbnV4L2xpbnV4XzIuNi4zNy9teW1hY2hpbmUvZGVmY29uZmln
-PC9mb250Pg0KPGJyPg0KPGJyPjxmb250IHNpemU9MiBmYWNlPSJzYW5zLXNlcmlmIj5saW51eC5p
-bmMgaW5oZXJpdCBmcm9tIGtlcm5lbCBhbmQgSQ0KYW0gc2V0dGluZzwvZm9udD4NCjxicj48Zm9u
-dCBzaXplPTIgZmFjZT0ic2Fucy1zZXJpZiI+UFJFRkVSUkVEX1BST1ZJREVSX3ZpcnR1YWwva2Vy
-bmVsID0NCiZxdW90O2xpbnV4JnF1b3Q7PC9mb250Pg0KPGJyPjxmb250IHNpemU9MiBmYWNlPSJz
-YW5zLXNlcmlmIj5QUkVGRVJSRURfVkVSU0lPTl9saW51eCA/PSAmcXVvdDsyLjYuMzcmcXVvdDs8
-L2ZvbnQ+DQo8YnI+PGZvbnQgc2l6ZT0yIGZhY2U9InNhbnMtc2VyaWYiPmluIG15bWFjaGluZS5j
-b25mLiA8L2ZvbnQ+DQo8YnI+DQo8YnI+PGZvbnQgc2l6ZT0yIGZhY2U9InNhbnMtc2VyaWYiPlRo
-aXMgYnVpbGRzIGFuZCBkZXBsb3lzIGEgdUltYWdlLW15bWFjaGluZS0mcXVvdDtzdGFtcDEmcXVv
-dDsuYmluDQpmaW5lIGZvciBteW1hY2hpbmUuPC9mb250Pg0KPGJyPg0KPGJyPjxmb250IHNpemU9
-MiBmYWNlPSJzYW5zLXNlcmlmIj5JIGFkZGVkIGEga2VybmVsIHJlY2lwZSBpbiBteSByZWNpcGUt
-a2VybmVsDQpsYXllciA8L2ZvbnQ+DQo8YnI+PGZvbnQgc2l6ZT0yIGZhY2U9InNhbnMtc2VyaWYi
-Pmxpa2UgdGhpczo8L2ZvbnQ+DQo8YnI+DQo8YnI+PGZvbnQgc2l6ZT0yIGZhY2U9InNhbnMtc2Vy
-aWYiPm1ldGEtbXlsYXllci9yZWNpcGVzLWtlcm5lbC9saW51eC9saW51eHJhbWZzXzIuNi4zNy5i
-YjwvZm9udD4NCjxicj48Zm9udCBzaXplPTIgZmFjZT0ic2Fucy1zZXJpZiI+bWV0YS1teWxheWVy
-L3JlY2lwZXMta2VybmVsL2xpbnV4L2xpbnV4cmFtZnNfMi42LjM3L215bWFjaGluZS9kZWZjb25m
-aWcNCiZuYnNwOyAmbmJzcDs8L2ZvbnQ+DQo8YnI+DQo8YnI+PGZvbnQgc2l6ZT0yIGZhY2U9InNh
-bnMtc2VyaWYiPmluIGxpbnV4cmFtZnNfMi42LjM3L215bWFjaGluZS9kZWZjb25maWcNCkkgcGF0
-Y2hlZCBhbGwgb3B0aW9ucyBmb3IgcmFtZnMgKHNvdXJjZSAvIGNvbXByZXNzaW9uIGV0Yyk8L2Zv
-bnQ+DQo8YnI+PGZvbnQgc2l6ZT0yIGZhY2U9InNhbnMtc2VyaWYiPmFuZCB0d2Vha2VkIGxpbnV4
-cmFtZnNfMi42LjM3LmJiIGFzDQpwZXIgeW91ciBpbmRpY2F0aW9uIChzdGFydGluZyBmcm9tIHRo
-ZSBsaW51eF8yLjYuMzcuYmI8L2ZvbnQ+DQo8YnI+PGZvbnQgc2l6ZT0yIGZhY2U9InNhbnMtc2Vy
-aWYiPkkgaGFkIHVwIGFuZCBydW5uaW5nKS48L2ZvbnQ+DQo8YnI+DQo8YnI+PGZvbnQgc2l6ZT0y
-IGZhY2U9InNhbnMtc2VyaWYiPlByb2JsZW1zOjwvZm9udD4NCjxicj4NCjxicj48Zm9udCBzaXpl
-PTIgZmFjZT0ic2Fucy1zZXJpZiI+MS4gd2hlbiBJIHJ1biAmcXVvdDtiaXRiYWtlIGxpbnV4cmFt
-ZnMmcXVvdDsNCkkgZ2V0IDwvZm9udD4NCjxicj48Zm9udCBzaXplPTIgZmFjZT0ic2Fucy1zZXJp
-ZiI+JnF1b3Q7RVJST1I6IE11bHRpcGxlIC5iYiBmaWxlcyBhcmUNCmR1ZSB0byBiZSBidWlsdCB3
-aGljaCBlYWNoIHByb3ZpZGUgdmlydHVhbC9rZXJuZWwmcXVvdDsgPC9mb250Pg0KPGJyPg0KPGJy
-Pjxmb250IHNpemU9MiBmYWNlPSJzYW5zLXNlcmlmIj5JIGFtIHNlZWluZyBtdWx0aXBsZSByZWZl
-cmVuY2Ugb24gdGhlDQpuZXQgYWJvdXQgdGhpcyBlcnJvciBidXQgSSBhbSBub3QgdW5kZXJzdGFu
-ZGluZzwvZm9udD4NCjxicj48Zm9udCBzaXplPTIgZmFjZT0ic2Fucy1zZXJpZiI+aG93IHRvIGhh
-bmRsZS4gQm90aCBsaW51eHJhbWZzXzIuNi4zNy5iYg0KYW5kIGxpbnV4XzIuNi4zNy5iYiBhcmUg
-cHJvdmlkaW5nIHZpcnR1YWwva2VybmVsLjwvZm9udD4NCjxicj4NCjxicj48Zm9udCBzaXplPTIg
-ZmFjZT0ic2Fucy1zZXJpZiI+Mi4gJnF1b3Q7Yml0YmFrZSBsaW51eHJhbWZzJnF1b3Q7IGRlcGxv
-eXMNCmEgdUltYWdlLW15bWFjaGluZS0mcXVvdDtzdGFtcDImcXVvdDsuYmluICZuYnNwOzwvZm9u
-dD4NCjxicj48Zm9udCBzaXplPTIgZmFjZT0ic2Fucy1zZXJpZiI+VG8gb3ZlcndyaXRlIHRoaXMg
-aW4gYSB3YXkgSSBnZXQgYSB1SW1hZ2UtcmFtZnMtbXltYWNoaW5lLSZxdW90O3N0YW1weHh4JnF1
-b3Q7LmJpbjwvZm9udD4NCjxicj48Zm9udCBzaXplPTIgZmFjZT0ic2Fucy1zZXJpZiI+KHNvIHRo
-YXQgSSBjYW4gZWFzaWx5IGlkZW50aWZ5IGl0IGFnYWluc3QNCmEgbm9ybWFsIHVJbWFnZSAtIG9u
-bHkga2VybmVsKSA8L2ZvbnQ+DQo8YnI+PGZvbnQgc2l6ZT0yIGZhY2U9InNhbnMtc2VyaWYiPndo
-YXQgZG9fKiB0YXNrIHNob3VsZCBJIHJlaW1wbGVtZW50DQppbiBteSBsaW51eHJhbWZzXzIuNi4z
-Ny5iYiByZWNpcGU/PC9mb250Pg0KPGJyPg0KPGJyPjxmb250IHNpemU9MiBmYWNlPSJzYW5zLXNl
-cmlmIj5UaGFua3MgaW4gYWR2YW5jZSBmb3IgeW91ciBhdHRlbnRpb248L2ZvbnQ+DQoNCg0KPGZv
-bnQgc2l6ZT0xIGZhY2U9IkFyaWFsIj48YnI+DQo8L2ZvbnQ+DQo8YnI+PGZvbnQgc2l6ZT0yIGZh
-Y2U9InNhbnMtc2VyaWYiPjxiPkdpb3Zhbm5pIFBhdm9uaTwvYj48L2ZvbnQ+DQo8YnI+PGZvbnQg
-c2l6ZT0yIGZhY2U9InNhbnMtc2VyaWYiPlImRCBEZXBhcnRtZW50PC9mb250Pg0KPGJyPg0KPGJy
-Pjxmb250IHNpemU9MiBmYWNlPSJzYW5zLXNlcmlmIj48Yj5FeG9yIEludGVybmF0aW9uYWwgUy5w
-LkEuPC9iPjxicj4NClZpYSBNb250ZSBGaW9yaW5vLDk8YnI+DQpJLTM3MDU3IFNhbiBHaW92YW5u
-aSBMdXBhdG90byAoVlIpPGJyPg0KUGhvbmU6KzM5MDQ1ODc3NDgzOSAtIEZheDorMzkwNDU4Nzc5
-MDIzPGJyPg0KPC9mb250Pg0KPGJyPjxmb250IHNpemU9MiBmYWNlPSJzYW5zLXNlcmlmIj5naW92
-YW5uaS5wYXZvbmlAZXhvcmludC5pdCAtIDwvZm9udD48YSBocmVmPXd3dy5leG9yaW50Lm5ldD48
-Zm9udCBzaXplPTIgZmFjZT0ic2Fucy1zZXJpZiI+d3d3LmV4b3JpbnQubmV0PC9mb250PjwvYT48
-Zm9udCBzaXplPTIgZmFjZT0ic2Fucy1zZXJpZiI+DQotIDwvZm9udD48YSBocmVmPXd3dy5leG9y
-aW50Lml0Pjxmb250IHNpemU9MiBmYWNlPSJzYW5zLXNlcmlmIj53d3cuZXhvcmludC5pdDwvZm9u
-dD48L2E+PGZvbnQgc2l6ZT0yIGZhY2U9InNhbnMtc2VyaWYiPjxicj4NCjwvZm9udD4NCjxicj4N
-Cg0KPGZvbnQgc2l6ZT0xIGZhY2U9IkFyaWFsIj48YnI+DQo8L2ZvbnQ+PGZvbnQgc2l6ZT0xIGNv
-bG9yPSM1ZjVmNWYgZmFjZT0iQXJpYWwiPjxpPkFUVEVOWklPTkU6IFByaXZhY3kgUG9saWN5DQri
-gJMgRC5MZ3MuIDE5Ni8yMDAzPC9pPjwvZm9udD4NCjxicj48Zm9udCBzaXplPTEgY29sb3I9IzVm
-NWY1ZiBmYWNlPSJBcmlhbCI+PGk+Jm5ic3A7TGUgaW5mb3JtYXppb25pIGNvbnRlbnV0ZQ0KaW4g
-cXVlc3RvIG1lc3NhZ2dpbyBkaSBwb3N0YSBlbGV0dHJvbmljYSBzb25vIGRpIGNhcmF0dGVyZSBw
-cml2YXRvIGUgY29uZmlkZW56aWFsZQ0KZWQgZXNjbHVzaXZhbWVudGUgcml2b2x0ZSBhbCBkZXN0
-aW5hdGFyaW8gc29wcmEgaW5kaWNhdG8uIE5lbCBjYXNvIGF2ZXN0ZQ0KcmljZXZ1dG8gcXVlc3Rv
-IG1lc3NhZ2dpbyBkaSBwb3N0YSBlbGV0dHJvbmljYSBwZXIgZXJyb3JlLCB2aSBjb211bmljaGlh
-bW8NCmNoZSBhaSBzZW5zaSBkZWwgc3VkZGV0dG8gZGVjcmV0byDDqCB2aWV0YXRvIGzigJl1c28s
-IGxhIGRpZmZ1c2lvbmUsIGRpc3RyaWJ1emlvbmUNCm8gcmlwcm9kdXppb25lIGRhIHBhcnRlIGRp
-IG9nbmkgYWx0cmEgcGVyc29uYS4gU2lldGUgcHJlZ2F0aSBkaSBzZWduYWxhcmxvDQppbW1lZGlh
-dGFtZW50ZSByaXNwb25kZW5kbyBhbCBtaXR0ZW50ZSBlIGRpIGRpc3RydWdnZXJlIHF1YW50byBy
-aWNldnV0bw0KKGNvbXByZXNpIGkgZmlsZSBhbGxlZ2F0aSkgc2VuemEgZmFybmUgY29waWEgbyBs
-ZWdnZXJuZSBpbCBjb250ZW51dG8uPC9pPjwvZm9udD4NCjxicj4NCjxicj48Zm9udCBzaXplPTEg
-Y29sb3I9IzVmNWY1ZiBmYWNlPSJBcmlhbCI+PGk+VGhpcyBlLW1haWwgdHJhbnNtaXNzaW9uDQpj
-b250YWlucyBpbmZvcm1hdGlvbiB0aGF0IGlzIGNvbmZpZGVudGlhbCBhbmQgbWF5IGJlIHByaXZp
-bGVnZWQuIEl0IGlzDQppbnRlbmRlZCBvbmx5IGZvciB0aGUgYWRkcmVzc2VlKHMpIG5hbWVkIGFi
-b3ZlLiBJZiB5b3UgcmVjZWl2ZSB0aGlzIGUtbWFpbA0KaW4gZXJyb3IsIHBsZWFzZSBkbyBub3Qg
-cmVhZCwgY29weSBvciBkaXNzZW1pbmF0ZSBpdCBpbiBhbnkgbWFubmVyLiBJZg0KeW91IGFyZSBu
-b3QgdGhlIGludGVuZGVkIHJlY2lwaWVudCwgYW55IGRpc2Nsb3N1cmUsIGNvcHlpbmcsIGRpc3Ry
-aWJ1dGlvbg0Kb3IgdXNlIG9mIHRoZSBjb250ZW50cyBvZiB0aGlzIGluZm9ybWF0aW9uIGlzIHBy
-b2hpYml0ZWQuIFBsZWFzZSByZXBseQ0KdG8gdGhlIG1lc3NhZ2UgaW1tZWRpYXRlbHkgYnkgaW5m
-b3JtaW5nIHRoZSBzZW5kZXIgdGhhdCB0aGUgbWVzc2FnZSB3YXMNCm1pc2RpcmVjdGVkLiBBZnRl
-ciByZXBseWluZywgcGxlYXNlIGVyYXNlIGl0IGZyb20geW91ciBjb21wdXRlciBzeXN0ZW0uDQpZ
-b3VyIGFzc2lzdGFuY2UgaW4gY29ycmVjdGluZyB0aGlzIGVycm9yIGlzIGFwcHJlY2lhdGVkLjwv
-aT48L2ZvbnQ+DQo8YnI+PGZvbnQgc2l6ZT0xIGNvbG9yPSM4MDgwODAgZmFjZT0iQXJpYWwiPjxp
-PiZuYnNwOzwvaT48L2ZvbnQ+DQo=
+However, I get a build error when I execute the following command:
 
---=_alternative 0057F44EC12579F3_=--
+$ bitbake -c fetchall meta-toolchain
+
+Pseudo is not present but is required, building this first before the =
+main build
+WARNING: Host distribution "Ubuntu 12.04 LTS" has not been validated =
+with this version of the build system; you may possibly experience =
+unexpected failures. It is recommended that you use a tested =
+distribution.
+WARNING: /tool/yocto/meta-ti/recipes-misc/payload/bonescript.bb: it is =
+recommended to set SYSTEMD_PACKAGES as <existing-package>-systemd
+ERROR: ParseError at =
+/tool/yocto/poky-extras/meta-linaro/recipes-devtools/gcc/gcc-4.5.1.linaro.=
+inc:1: Could not include required file =
+recipes-devtools/gcc/gcc-4.5.1.inc
+ERROR: Command execution failed: Exited with 1
+
+Summary: There were 2 WARNING messages shown.
+Summary: There were 2 ERROR messages shown, returning a non-zero exit =
+code.
+
+Am I missing an additional meta-layer?
+
+Best regards,
+
+Elvis Dowson=
+
+--Apple-Mail=_B3531271-BB07-493C-8903-45C3D9B1F3B7
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=us-ascii
+
+<html><head></head><body style=3D"word-wrap: break-word; =
+-webkit-nbsp-mode: space; -webkit-line-break: after-white-space; =
+">Hi,<div>&nbsp; &nbsp; &nbsp; &nbsp;In my bblayers.conf, I've included =
+the&nbsp;poky-extras/meta-linaro meta =
+layer.</div><div><br></div><div><div><font class=3D"Apple-style-span" =
+face=3D"Monaco" size=3D"2">BBLAYERS ?=3D " \</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">&nbsp; =
+/tool/yocto/poky/meta \</font></div><div><font class=3D"Apple-style-span" =
+face=3D"Monaco" size=3D"2">&nbsp; /tool/yocto/poky/meta-yocto =
+\</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
+size=3D"2">&nbsp; /tool/yocto/poky-extras/meta-kernel-dev =
+\</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
+size=3D"2">&nbsp; /tool/yocto/poky-extras/meta-linaro =
+\</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
+size=3D"2">&nbsp; /tool/yocto/meta-openembedded/meta-oe =
+\</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
+size=3D"2">&nbsp; /tool/yocto/meta-gumstix \</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">&nbsp; =
+/tool/yocto/meta-ti \</font></div><div><font class=3D"Apple-style-span" =
+face=3D"Monaco" size=3D"2">&nbsp; /tool/yocto/meta-xilinx =
+\</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
+size=3D"2">&nbsp; "</font></div></div><div><br></div><div>However, I get =
+a build error when I execute the following =
+command:</div><div><br></div><div><div><font class=3D"Apple-style-span" =
+face=3D"Monaco" size=3D"2">$ bitbake -c fetchall =
+meta-toolchain</font></div><div><font class=3D"Apple-style-span" =
+face=3D"Monaco" size=3D"2"><br></font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">Pseudo is not =
+present but is required, building this first before the main =
+build</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
+size=3D"2">WARNING: Host distribution "Ubuntu 12.04 LTS" has not been =
+validated with this version of the build system; you may possibly =
+experience unexpected failures. It is recommended that you use a tested =
+distribution.</font></div><div><font class=3D"Apple-style-span" =
+face=3D"Monaco" size=3D"2">WARNING: =
+/tool/yocto/meta-ti/recipes-misc/payload/bonescript.bb: it is =
+recommended to set SYSTEMD_PACKAGES as =
+&lt;existing-package&gt;-systemd</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">ERROR: ParseError =
+at =
+/tool/yocto/poky-extras/meta-linaro/recipes-devtools/gcc/gcc-4.5.1.linaro.=
+inc:1: Could not include required file =
+recipes-devtools/gcc/gcc-4.5.1.inc</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">ERROR: Command =
+execution failed: Exited with 1</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" =
+size=3D"2"><br></font></div><div><font class=3D"Apple-style-span" =
+face=3D"Monaco" size=3D"2">Summary: There were 2 WARNING messages =
+shown.</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
+size=3D"2">Summary: There were 2 ERROR messages shown, returning a =
+non-zero exit code.</font></div></div><div><br></div><div>Am I missing =
+an additional meta-layer?</div><div><br></div><div>Best =
+regards,</div><div><br></div><div>Elvis Dowson</div></body></html>=
+
+--Apple-Mail=_B3531271-BB07-493C-8903-45C3D9B1F3B7--
