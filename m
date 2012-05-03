@@ -1,36 +1,26 @@
-Return-Path: <elvis.dowson@gmail.com>
-Received: from mail-we0-f176.google.com (mail-we0-f176.google.com
-	[74.125.82.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3D246E00596
-	for <yocto@yoctoproject.org>; Thu,  3 May 2012 14:42:39 -0700 (PDT)
-Received: by werc12 with SMTP id c12so1919934wer.35
-	for <yocto@yoctoproject.org>; Thu, 03 May 2012 14:42:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=content-type:mime-version:subject:from:in-reply-to:date
-	:content-transfer-encoding:message-id:references:to:x-mailer;
-	bh=srlyRY3bjWtGomTjv8ZPn5KUQDxmQGFOSaC2idJUI1A=;
-	b=G9ya3qk1j8MKMOEjsoVSB3zBpt+BSRZPLHtS++TrnTt56cMMNX4+I59M4tT98a/3gD
-	0ajPSn+wgLvCMwm0kTEvT+wMUYCH1VF0uZ+lB0dM0+aMjH8MycTiqkC7VSWqpeYwdXMx
-	iqMh0CncmIWdEtTTFZtptIB5SXpugLSGvaBU6SxmqfxSAfRxMjb9Z7X09MvFxooRUs34
-	PtL9NzwGG094AokeP3IxiD8peCO1n3V/kcZzxRjknmWCx7Z2VdraIlN8O80ljR2Zd9k6
-	gG8iWTGMEZ0d/m93+LHtC29wtwAC07cr238St2+ET6efNdFVm5OPIPZfjFF1OQgwJlDm
-	Cevg==
-Received: by 10.180.24.7 with SMTP id q7mr6383743wif.11.1336081357639;
-	Thu, 03 May 2012 14:42:37 -0700 (PDT)
-Received: from [192.168.1.35] (39.Red-81-33-71.dynamicIP.rima-tde.net.
-	[81.33.71.39])
-	by mx.google.com with ESMTPS id ff9sm22642wib.2.2012.05.03.14.42.36
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Thu, 03 May 2012 14:42:36 -0700 (PDT)
-Mime-Version: 1.0 (Apple Message framework v1257)
-From: Elvis Dowson <elvis.dowson@gmail.com>
-In-Reply-To: <4064BB91-B82E-4D59-B0B6-A21FC9733C0C@gmail.com>
-Date: Thu, 3 May 2012 23:42:34 +0200
-Message-Id: <E6B74C60-DDCA-4C71-BE97-3DFF81257C34@gmail.com>
-References: <4064BB91-B82E-4D59-B0B6-A21FC9733C0C@gmail.com>
-To: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-X-Mailer: Apple Mail (2.1257)
-Subject: Re: How to specify a machine defconfig for a linux recipe
+Return-Path: <denis@denix.org>
+Received: from vms173003pub.verizon.net (vms173003pub.verizon.net
+	[206.46.173.3])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 51969E00596
+	for <yocto@yoctoproject.org>; Thu,  3 May 2012 14:53:01 -0700 (PDT)
+Received: from gandalf.denix.org ([unknown] [108.48.117.33])
+	by vms173003.mailsrvcs.net
+	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
+	2009)) with ESMTPA id <0M3G00765VFVDBH1@vms173003.mailsrvcs.net> for
+	yocto@yoctoproject.org; Thu, 03 May 2012 16:52:43 -0500 (CDT)
+Received: by gandalf.denix.org (Postfix, from userid 1000)	id 057F420099; Thu,
+	03 May 2012 17:52:42 -0400 (EDT)
+Date: Thu, 03 May 2012 17:52:42 -0400
+From: Denys Dmytriyenko <denis@denix.org>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Message-id: <20120503215242.GC9822@denix.org>
+References: <880CAB78-91DC-46B5-A4BB-00D33FFA9624@gmail.com>
+	<11827908.GWIN234cRG@helios>
+MIME-version: 1.0
+In-reply-to: <11827908.GWIN234cRG@helios>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: yocto@yoctoproject.org
+Subject: Re: Build error: Could not inherit file classes/systemd.bbclass
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,53 +32,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 03 May 2012 21:42:39 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 03 May 2012 21:53:01 -0000
+Content-type: text/plain; charset=us-ascii
+Content-disposition: inline
 
-Hi,
+On Thu, May 03, 2012 at 02:21:40PM +0100, Paul Eggleton wrote:
+> On Thursday 03 May 2012 14:56:03 Elvis Dowson wrote:
+> >      I've setup and configured an Ubuntu-12.04 LTS 64-bit system, and I get
+> > a build error when I run the following command:
+> > 
+> > $ bitbake -c fetchall core-image-minimal
+> > 
+> > Pseudo is not present but is required, building this first before the main
+> > build WARNING: Host distribution "Ubuntu 12.04 LTS" has not been validated
+> > with this version of the build system; you may possibly experience
+> > unexpected failures. It is recommended that you use a tested distribution.
+> 
+> This can be ignored - 12.04 *is* supported; it's just that the final version 
+> string wasn't what I expected it to be. I'll send a patch for this soon and it 
+> can hopefully go into 1.2.1.
+> 
+> > ERROR: ParseError at
+> > /tool/yocto/meta-ti/recipes-misc/payload/bonescript.bb:5: Could not inherit
+> > file classes/systemd.bbclass ERROR: Command execution failed: Exited with 1
+> 
+> systemd.bbclass is part of the meta-oe layer, so you'll need to add that to 
+> your bblayers.conf.
+> 
+> BTW I'm not sure if the meta-ti maintainers have finished their work to ensure 
+> meta-ti works with distros other than Angstrom. If they haven't you may 
+> experience problems.
 
-On May 3, 2012, at 9:55 PM, Elvis Dowson wrote:
+Yes, meta-ti does not require Angstrom.
 
-> How can I specify a machine defconfig for a linux recipe?
->=20
-> For example, if I set=20
->=20
-> # kernel provider
-> PREFERRED_PROVIDER_virtual/kernel =3D "linux-omap3"
->=20
-> and try to build my machine, I get the following errors:
->=20
-> ERROR: Function failed: Fetcher failure for URL: 'file://defconfig'. =
-Unable to fetch URL from any source.
-> NOTE: package linux-omap3-3.2-r0: task do_fetch: Failed
-> ERROR: Task 125 =
-(/tool/yocto/meta-gumstix/recipes-kernel/linux/linux-omap3_3.2.bb, =
-do_fetch) failed with exit code '1'
-> NOTE: Tasks Summary: Attempted 304 tasks of which 302 didn't need to =
-be rerun and 1 failed.
->=20
-> Summary: 1 task failed:
->  /tool/yocto/meta-gumstix/recipes-kernel/linux/linux-omap3_3.2.bb, =
-do_fetch
-
-I solved this one.=20
-
-Turns out, since I defined a new machine called overo-fire-chestnut43, I =
-had to also create a folder called overo-fire-chestnut43 to hold the =
-defconfig file as follows:=20
-
-=
-meta-gumstix/recipes-kernel/linux/linux-omap3/overo-fire-chestnut43/defcon=
-fig
-
-I recall, the trend was to move away from user supplied defconfigs, and =
-have it get generated automatically by the build process, and then =
-specify some hints. Is there any example of how I can modify the =
-existing meta-gumstix or any other meta-layer, to get the defconfig to =
-get generated automatically?
-
-Best regards,
-
-Elvis Dowson=
+-- 
+Denys
 
