@@ -1,34 +1,23 @@
-Return-Path: <elvis.dowson@gmail.com>
-Received: from mail-wi0-f176.google.com (mail-wi0-f176.google.com
-	[209.85.212.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 469C2E013B7
-	for <yocto@yoctoproject.org>; Thu,  3 May 2012 03:42:28 -0700 (PDT)
-Received: by wibhm17 with SMTP id hm17so171381wib.11
-	for <yocto@yoctoproject.org>; Thu, 03 May 2012 03:42:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:content-type:content-transfer-encoding:subject:date:message-id
-	:to:mime-version:x-mailer;
-	bh=jWmV2ejOy0rUHcTNSzzPJg92Ap2XhLIycVuR5DrlVWM=;
-	b=MTMjpFNr4ihEcp/Fyl8G/21hwQr7mvv/vFWWxQV6N/6yHC3dO8ipkEtfKCVMVwDPDP
-	5kajhzKU8ArEJ5mTbPx36j7VGMGXbq29Ugr2Y7h8el0DCTwkigBuHI4R0fUYleNl+uWL
-	KAn4FxOi0UaPz/CTIpxawz/vnwVo1QfKp/Zk880fl9ui7QArWmomSooEEDZv/iIbmatY
-	mZVzoi2MvzPS+yX1SwAel9BBIumyO0EaG3eFQZnMC2dtimTA5ska21PsdjgU6p9SvIqj
-	2ljgPRmkaln+OU/hHBZXQ7Qd3fdUM2qyx/4GEH2MwiBG2ojYtvY9XLmN5IcfyxL+IJd7
-	7tqA==
-Received: by 10.216.139.79 with SMTP id b57mr1074572wej.37.1336041747443;
-	Thu, 03 May 2012 03:42:27 -0700 (PDT)
-Received: from [192.168.1.33] (240.Red-88-6-19.staticIP.rima-tde.net.
-	[88.6.19.240])
-	by mx.google.com with ESMTPS id b3sm1375981wib.4.2012.05.03.03.42.26
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Thu, 03 May 2012 03:42:26 -0700 (PDT)
-From: Elvis Dowson <elvis.dowson@gmail.com>
-Date: Thu, 3 May 2012 12:42:24 +0200
-Message-Id: <44738C6D-691F-4F6D-ACCC-11A51F9CE4B2@gmail.com>
-To: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-Mime-Version: 1.0 (Apple Message framework v1257)
-X-Mailer: Apple Mail (2.1257)
-Subject: Is it necessary to specify TARGET_ARM = "arm" ?
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6FF17E00723
+	for <yocto@yoctoproject.org>; Thu,  3 May 2012 03:49:22 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 03 May 2012 03:49:11 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="139587189"
+Received: from unknown (HELO helios.localnet) ([10.252.120.59])
+	by orsmga002.jf.intel.com with ESMTP; 03 May 2012 03:49:10 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Elvis Dowson <elvis.dowson@gmail.com>, yocto@yoctoproject.org
+Date: Thu, 03 May 2012 11:49:08 +0100
+Message-ID: <3705393.MBXsxixX8C@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.8.2 (Linux/3.0.0-19-generic-pae; KDE/4.8.2; i686; ; )
+In-Reply-To: <44738C6D-691F-4F6D-ACCC-11A51F9CE4B2@gmail.com>
+References: <44738C6D-691F-4F6D-ACCC-11A51F9CE4B2@gmail.com>
+MIME-Version: 1.0
+Subject: Re: Is it necessary to specify TARGET_ARM = "arm" ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,29 +29,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 03 May 2012 10:42:28 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 03 May 2012 10:49:22 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Hi,
-      If in my overo.inc file, I specify the following:
+On Thursday 03 May 2012 12:42:24 Elvis Dowson wrote:
+> Hi,
+>       If in my overo.inc file, I specify the following:
+> 
+> SOC_FAMILY = "omap3"
+> require conf/machine/include/soc-family.inc
+> 
+> require conf/machine/include/omap3.inc
+> require conf/machine/include/tune-cortexa8.inc
+> 
+> Is it necessary to specify TARGET_ARCH = "arm"  for the machine
+> configuration?
 
-SOC_FAMILY =3D "omap3"
-require conf/machine/include/soc-family.inc
+This already comes in via omap3.inc, so you don't need to do this in your 
+machine config.
 
-require conf/machine/include/omap3.inc
-require conf/machine/include/tune-cortexa8.inc
+Also, it's worth noting that in current meta-ti master you don't need to 
+require tune-cortexa8.inc either since omap3.inc does this too (unless you're 
+wanting to support use with an older version of the meta-ti layer).
 
-Is it necessary to specify TARGET_ARCH =3D "arm"  for the machine =
-configuration?
+Cheers,
+Paul
 
-The machine configurations in the meta-ti repositories don't have them =
-any more.
+-- 
 
-Best regards,
-
-Elvis Dowson
-
-
-
+Paul Eggleton
+Intel Open Source Technology Centre
 
