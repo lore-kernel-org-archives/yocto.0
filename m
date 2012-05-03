@@ -1,33 +1,19 @@
-Return-Path: <elvis.dowson@gmail.com>
-Received: from mail-we0-f176.google.com (mail-we0-f176.google.com
-	[74.125.82.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 16B77E0044A
-	for <yocto@yoctoproject.org>; Thu,  3 May 2012 09:25:44 -0700 (PDT)
-Received: by werc12 with SMTP id c12so1664591wer.35
-	for <yocto@yoctoproject.org>; Thu, 03 May 2012 09:25:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:content-type:subject:date:message-id:to:mime-version:x-mailer;
-	bh=S/mWPcqU9DeyN5UR4SMlcm6rZ3tg+EI1censYxEPKkk=;
-	b=JNYWQCVFijzXCvhmaRtKrAKLwC9Sz8OaNja3Ecg3LTJL0ZarEyGwpeo1hK4IN1O7Ae
-	jEAvPuRDqrHBM4FB8LDkacFWzYPaAC18302BQX0xdeGN47RUCBS9P0q/vGNJeL6fDtXe
-	p8m/s8iQVEgwh4NzLYk2vvTcigk6PZc808HFXSMDPFSxdxh164z/or9wFYR8LmdCU6KC
-	/9NWIoG/zWsufA2RhffGjqK8nsf4VFD3Z60oHCeApmTMpytOnLw4mX0MwmwcKj/P+v5n
-	84PoCPGanWparLWoNPTNNpG6YanW8FxTB5tY15ViPkLQWD5q9Dp0Zq1KQ6Vi/UtR2Z4t
-	ESXg==
-Received: by 10.180.88.67 with SMTP id be3mr4725476wib.20.1336062343954;
-	Thu, 03 May 2012 09:25:43 -0700 (PDT)
-Received: from [192.168.1.33] (240.Red-88-6-19.staticIP.rima-tde.net.
-	[88.6.19.240])
-	by mx.google.com with ESMTPS id j3sm4682034wiw.1.2012.05.03.09.25.41
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Thu, 03 May 2012 09:25:42 -0700 (PDT)
-From: Elvis Dowson <elvis.dowson@gmail.com>
-Date: Thu, 3 May 2012 18:25:40 +0200
-Message-Id: <7513B431-B65B-4ADC-AAA3-9C54F9A37028@gmail.com>
-To: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-Mime-Version: 1.0 (Apple Message framework v1257)
-X-Mailer: Apple Mail (2.1257)
-Subject: ERROR: ParseError at /tool/yocto/poky-extras/meta-linaro/recipes-devtools/gcc/gcc-4.5.1.linaro.inc:1: Could not include required file recipes-devtools/gcc/gcc-4.5.1.inc
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EE05AE00596
+	for <yocto@yoctoproject.org>; Thu,  3 May 2012 09:43:37 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 03 May 2012 09:43:37 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="136653393"
+Received: from unknown (HELO helios.ger.corp.intel.com) ([10.252.120.59])
+	by orsmga001.jf.intel.com with ESMTP; 03 May 2012 09:43:36 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Thu,  3 May 2012 17:43:16 +0100
+Message-Id: <1336063397-10503-1-git-send-email-paul.eggleton@linux.intel.com>
+X-Mailer: git-send-email 1.7.5.4
+Subject: [yocto-docs] [PATCH 1/2] documentation/yocto-project-qs: a few more dependency tidy-ups
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,115 +25,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 03 May 2012 16:25:45 -0000
-Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_B3531271-BB07-493C-8903-45C3D9B1F3B7"
+X-List-Received-Date: Thu, 03 May 2012 16:43:38 -0000
 
---Apple-Mail=_B3531271-BB07-493C-8903-45C3D9B1F3B7
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=us-ascii
+* Remove mercurial as this is no longer needed
+* linuxdoc-tools was mentioned twice in the CentOS list
 
-Hi,
-       In my bblayers.conf, I've included the poky-extras/meta-linaro =
-meta layer.
+Signed-off-by: Paul Eggleton <paul.eggleton@linux.intel.com>
+---
+ .../yocto-project-qs/yocto-project-qs.xml          |    6 +++---
+ 1 files changed, 3 insertions(+), 3 deletions(-)
 
-BBLAYERS ?=3D " \
-  /tool/yocto/poky/meta \
-  /tool/yocto/poky/meta-yocto \
-  /tool/yocto/poky-extras/meta-kernel-dev \
-  /tool/yocto/poky-extras/meta-linaro \
-  /tool/yocto/meta-openembedded/meta-oe \
-  /tool/yocto/meta-gumstix \
-  /tool/yocto/meta-ti \
-  /tool/yocto/meta-xilinx \
-  "
+diff --git a/documentation/yocto-project-qs/yocto-project-qs.xml b/documentation/yocto-project-qs/yocto-project-qs.xml
+index 06c2fd8..04bfdb5 100644
+--- a/documentation/yocto-project-qs/yocto-project-qs.xml
++++ b/documentation/yocto-project-qs/yocto-project-qs.xml
+@@ -232,7 +232,7 @@
+      unzip texi2html texinfo libsdl1.2-dev docbook-utils fop gawk \
+      python-pysqlite2 diffstat make gcc build-essential xsltproc \
+      g++ desktop-file-utils chrpath libgl1-mesa-dev libglu1-mesa-dev \
+-     mercurial autoconf automake groff libtool xterm libxml-parser-perl
++     autoconf automake groff libtool xterm libxml-parser-perl
+                 </literallayout>
+         </section>
+ 
+@@ -279,7 +279,7 @@
+                 <literallayout class='monospaced'>
+      $ sudo zypper install python gcc gcc-c++ libtool fop \
+      subversion git chrpath automake make wget xsltproc \
+-     diffstat texinfo mercurial freeglut-devel libSDL-devel
++     diffstat texinfo freeglut-devel libSDL-devel
+                 </literallayout>
+         </section>
+ 
+@@ -298,7 +298,7 @@
+        unzip perl texinfo texi2html diffstat openjade zlib-devel \
+        docbook-style-dsssl sed docbook-style-xsl docbook-dtds \
+        docbook-utils bc glibc-devel pcre pcre-devel \
+-       groff linuxdoc-tools patch linuxdoc-tools cmake \
++       groff linuxdoc-tools patch cmake \
+        tcl-devel gettext ncurses apr \
+        SDL-devel mesa-libGL-devel mesa-libGLU-devel gnome-doc-utils \
+        autoconf automake libtool xterm
+-- 
+1.7.5.4
 
-However, I get a build error when I execute the following command:
 
-$ bitbake -c fetchall meta-toolchain
-
-Pseudo is not present but is required, building this first before the =
-main build
-WARNING: Host distribution "Ubuntu 12.04 LTS" has not been validated =
-with this version of the build system; you may possibly experience =
-unexpected failures. It is recommended that you use a tested =
-distribution.
-WARNING: /tool/yocto/meta-ti/recipes-misc/payload/bonescript.bb: it is =
-recommended to set SYSTEMD_PACKAGES as <existing-package>-systemd
-ERROR: ParseError at =
-/tool/yocto/poky-extras/meta-linaro/recipes-devtools/gcc/gcc-4.5.1.linaro.=
-inc:1: Could not include required file =
-recipes-devtools/gcc/gcc-4.5.1.inc
-ERROR: Command execution failed: Exited with 1
-
-Summary: There were 2 WARNING messages shown.
-Summary: There were 2 ERROR messages shown, returning a non-zero exit =
-code.
-
-Am I missing an additional meta-layer?
-
-Best regards,
-
-Elvis Dowson=
-
---Apple-Mail=_B3531271-BB07-493C-8903-45C3D9B1F3B7
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html;
-	charset=us-ascii
-
-<html><head></head><body style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; -webkit-line-break: after-white-space; =
-">Hi,<div>&nbsp; &nbsp; &nbsp; &nbsp;In my bblayers.conf, I've included =
-the&nbsp;poky-extras/meta-linaro meta =
-layer.</div><div><br></div><div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2">BBLAYERS ?=3D " \</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">&nbsp; =
-/tool/yocto/poky/meta \</font></div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2">&nbsp; /tool/yocto/poky/meta-yocto =
-\</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
-size=3D"2">&nbsp; /tool/yocto/poky-extras/meta-kernel-dev =
-\</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
-size=3D"2">&nbsp; /tool/yocto/poky-extras/meta-linaro =
-\</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
-size=3D"2">&nbsp; /tool/yocto/meta-openembedded/meta-oe =
-\</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
-size=3D"2">&nbsp; /tool/yocto/meta-gumstix \</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">&nbsp; =
-/tool/yocto/meta-ti \</font></div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2">&nbsp; /tool/yocto/meta-xilinx =
-\</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
-size=3D"2">&nbsp; "</font></div></div><div><br></div><div>However, I get =
-a build error when I execute the following =
-command:</div><div><br></div><div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2">$ bitbake -c fetchall =
-meta-toolchain</font></div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2"><br></font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">Pseudo is not =
-present but is required, building this first before the main =
-build</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
-size=3D"2">WARNING: Host distribution "Ubuntu 12.04 LTS" has not been =
-validated with this version of the build system; you may possibly =
-experience unexpected failures. It is recommended that you use a tested =
-distribution.</font></div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2">WARNING: =
-/tool/yocto/meta-ti/recipes-misc/payload/bonescript.bb: it is =
-recommended to set SYSTEMD_PACKAGES as =
-&lt;existing-package&gt;-systemd</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">ERROR: ParseError =
-at =
-/tool/yocto/poky-extras/meta-linaro/recipes-devtools/gcc/gcc-4.5.1.linaro.=
-inc:1: Could not include required file =
-recipes-devtools/gcc/gcc-4.5.1.inc</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">ERROR: Command =
-execution failed: Exited with 1</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" =
-size=3D"2"><br></font></div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2">Summary: There were 2 WARNING messages =
-shown.</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
-size=3D"2">Summary: There were 2 ERROR messages shown, returning a =
-non-zero exit code.</font></div></div><div><br></div><div>Am I missing =
-an additional meta-layer?</div><div><br></div><div>Best =
-regards,</div><div><br></div><div>Elvis Dowson</div></body></html>=
-
---Apple-Mail=_B3531271-BB07-493C-8903-45C3D9B1F3B7--
