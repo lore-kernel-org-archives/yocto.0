@@ -1,27 +1,34 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (hermes.mlbassoc.com [64.234.241.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0FDF0E00723
-	for <yocto@yoctoproject.org>; Thu,  3 May 2012 03:27:01 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id 63745F81213; Thu,  3 May 2012 04:27:00 -0600 (MDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-0.9 required=4.0 tests=ALL_TRUSTED,BAYES_00,
-	DEAR_SOMETHING autolearn=no version=3.3.2
-Received: from hermes.chez-thomas.org (localhost.localdomain [127.0.0.1])
-	by mail.chez-thomas.org (Postfix) with ESMTP id B6F85F8120C;
-	Thu,  3 May 2012 04:26:52 -0600 (MDT)
-Message-ID: <4FA25D6C.8070605@mlbassoc.com>
-Date: Thu, 03 May 2012 04:26:52 -0600
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:12.0) Gecko/20120424 Thunderbird/12.0
-MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <OF2A8EADBF.1A016282-ONC12579F3.0038D0CC-C12579F3.00390132@Sitek.it>
-In-Reply-To: <OF2A8EADBF.1A016282-ONC12579F3.0038D0CC-C12579F3.00390132@Sitek.it>
-Subject: Re: Need help for building kernel image with embedded initramfs.cpio
+Return-Path: <elvis.dowson@gmail.com>
+Received: from mail-wi0-f176.google.com (mail-wi0-f176.google.com
+	[209.85.212.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5837BE00723
+	for <yocto@yoctoproject.org>; Thu,  3 May 2012 03:39:56 -0700 (PDT)
+Received: by wibhm17 with SMTP id hm17so169678wib.11
+	for <yocto@yoctoproject.org>; Thu, 03 May 2012 03:39:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:content-type:content-transfer-encoding:subject:date:message-id
+	:to:mime-version:x-mailer;
+	bh=7NMCdMBwhEiETC6IrcKqNWXm3/aUUVeKLTPXCAoNSCM=;
+	b=d+NzugjBZTVyoQzdNVo/Uj7TtP78LUQyk0JzhQF9bcjDylqBUOZENNXdHMKepsEYM+
+	2bu15KO6EeUav02VLqwXSb9fzmdwZ/waHZKoUXSAJ+rksOOe3t53PDlIu2qbbG2nZcjb
+	92qljkzqR4t/3JmNvig31KigxeLYtLSFsosQTs6OP+l4T4fw3/CE8mVEpCP0LGvfbjj+
+	JWQv+lXgDN32E3AyiFt/b4c/8LHTzmzPY0Jhx7BGBftxrPgAVq8CT5nisOAeWt56GerP
+	1m5O7ewmaPmhxwfCnQOVK8tXCS48WKRhQIopE6Qq8C6cktPqd4UEflQ2A4BKCvTNYBC1
+	9thw==
+Received: by 10.180.103.35 with SMTP id ft3mr2126655wib.0.1336041595166;
+	Thu, 03 May 2012 03:39:55 -0700 (PDT)
+Received: from [192.168.1.33] (240.Red-88-6-19.staticIP.rima-tde.net.
+	[88.6.19.240])
+	by mx.google.com with ESMTPS id gd4sm2195196wib.6.2012.05.03.03.39.53
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Thu, 03 May 2012 03:39:53 -0700 (PDT)
+From: Elvis Dowson <elvis.dowson@gmail.com>
+Date: Thu, 3 May 2012 12:39:51 +0200
+Message-Id: <BA52B53E-20CC-4598-B9C3-A0099FFB0CCB@gmail.com>
+To: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+Mime-Version: 1.0 (Apple Message framework v1257)
+X-Mailer: Apple Mail (2.1257)
+Subject: Is it correct to specify uboot in MACHINE_FEATURES?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,44 +40,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 03 May 2012 10:27:01 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 03 May 2012 10:39:56 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
-On 2012-05-03 04:22, giovanni.pavoni@exorint.it wrote:
-> Dear Sirs,
->
-> for my cortex A8 based system, I am in the need to deploy
-> a sort of "safe mode image" that should bootstrap only
-> in case of system recovery.
->
-> This image fits particularily well the model of a ramfs based system
-> with contents such as core-image-minimal-mtdutils plus some tools addition.
->
-> I defined a "myimage.bb" recipe for this image that generates a "myimage.cpio"
->
-> However I am in the need to:
->
-> 1. establish in myimage.bb a relation with virtual/kernel and ask to generate
-> kernel modules only.
->
-> 2. retrieve modules only from the kernel staging area and made them part of
-> "myimage.cpio"
->
-> 3. change the config of my kernel to add CONFIG_INITRAMFS_SOURCE = "myimage.cpio"
-> and copy myimage.cpio from staging area to kernel build location.
->
-> 4. build kernel and deploy the emitted uImage as "mykernel+myimage"
->
-> Anyone can help with suggestions/guidelines and/or codesnips?
+Hi,
+      For my overo-fire-chestnut43.conf machine configuration, if I =
+specify u-boot in the EXTRA_IMAGEDEPENDS as follows:
 
-Why not use an 'initrd' image + kernel instead?  It's much simpler
-to build and U-Boot has good support for this.  I use this method
-all the time for just the scenario you mention.
+EXTRA_IMAGEDEPENDS =3D "u-boot x-load"
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+Is there any purpose served by specifying uboot in the MACHINE_FEATURES =
+as follows ?
+
+MACHINE_FEATURES =3D "kernel26 alsa apm usbgadget usbhost vfat ext2 =
+screen touchscreen serial ethernet uboot"
+
+Best regards,
+
+Elvis Dowson
+
 
