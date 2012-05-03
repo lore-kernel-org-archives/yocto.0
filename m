@@ -1,32 +1,25 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-lb0-f176.google.com (mail-lb0-f176.google.com
-	[209.85.217.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 42260E0044D
-	for <yocto@yoctoproject.org>; Thu,  3 May 2012 10:02:41 -0700 (PDT)
-Received: by lboj14 with SMTP id j14so1130293lbo.35
-	for <yocto@yoctoproject.org>; Thu, 03 May 2012 10:02:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type:content-transfer-encoding;
-	bh=ma9Ri2nxFDtaTdZYgYXX3Xwvx9WgPQNAg/Q92h1gBJk=;
-	b=ZwbEIpmn00smA5loA2CKdSt/jgnbKclYO1D58sh3mDrg6XdKlQKixshUzhS3RKPZQk
-	JWc8/4RB6D38Q/fPAEYKpgOi7YzQqkPkUpjSjZTlYl0DBnGjG7AjjQkAOkN3Dnvz1CjD
-	Rsrz0wxnb6JMS2yccMrThY4tuu43U+ttXe+yPm+HtVUvL4CLc9+cI6eUwUazswy2p/Wh
-	+Y8YQz9FU/Rx8UodYJgTu843GCyhqmDTNxKNsGe25iM1Xpd9iphi6TPmiLr8ZO7pve4u
-	bq43GNC2DN0dfgjwjvpINWCAvwrj5B2WQGHyblAd+2tos2IDrWISjT5tM5OF17Nma3/4
-	tGPA==
-Received: by 10.152.111.198 with SMTP id ik6mr2712579lab.38.1336064559981;
-	Thu, 03 May 2012 10:02:39 -0700 (PDT)
+Return-Path: <sgw@linux.intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9D705E0044D
+	for <yocto@yoctoproject.org>; Thu,  3 May 2012 11:16:31 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga102.fm.intel.com with ESMTP; 03 May 2012 11:16:31 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="149027415"
+Received: from unknown (HELO [10.255.12.171]) ([10.255.12.171])
+	by fmsmga001.fm.intel.com with ESMTP; 03 May 2012 11:16:30 -0700
+Message-ID: <4FA2CB7E.7080600@linux.intel.com>
+Date: Thu, 03 May 2012 11:16:30 -0700
+From: Saul Wold <sgw@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:12.0) Gecko/20120424 Thunderbird/12.0
 MIME-Version: 1.0
-Received: by 10.152.129.134 with HTTP; Thu, 3 May 2012 10:02:08 -0700 (PDT)
-In-Reply-To: <7513B431-B65B-4ADC-AAA3-9C54F9A37028@gmail.com>
-References: <7513B431-B65B-4ADC-AAA3-9C54F9A37028@gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Thu, 3 May 2012 10:02:08 -0700
-Message-ID: <CAMKF1srm-fj99U6cMF-FWM_RWBWjPAQYyPJM2Zr4n0dRnXwJuQ@mail.gmail.com>
-To: Elvis Dowson <elvis.dowson@gmail.com>
-Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-Subject: Re: ERROR: ParseError at /tool/yocto/poky-extras/meta-linaro/recipes-devtools/gcc/gcc-4.5.1.linaro.inc:1: Could not include required file recipes-devtools/gcc/gcc-4.5.1.inc
+To: Frans Meulenbroeks <fransmeulenbroeks@gmail.com>
+References: <CACW_hTb5BO+mS07Xnd534N5V-ETtwrXc=NNo67kxcemQPGuJog@mail.gmail.com>
+In-Reply-To: <CACW_hTb5BO+mS07Xnd534N5V-ETtwrXc=NNo67kxcemQPGuJog@mail.gmail.com>
+Cc: yocto@yoctoproject.org,
+	openembedded-devel <openembedded-devel@lists.openembedded.org>
+Subject: Re: yocto 1.2: 2nd experiences: image building problems
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,13 +31,69 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 03 May 2012 17:02:41 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 03 May 2012 18:16:31 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Thu, May 3, 2012 at 9:25 AM, Elvis Dowson <elvis.dowson@gmail.com> wrote=
-:
-> =C2=A0 /tool/yocto/poky-extras/meta-linaro \
+On 05/03/2012 01:01 AM, Frans Meulenbroeks wrote:
+> Dear all,
+>
+> I'm migrating a project from oe-classic to yocto 1.2.
+> This goes fairly smoothly. Got some warnings I reported before.
+>
+> If I build my app it runs fine (with the uclibc from oe-classic that
+> is already on the board).
+> Next step was to try to build a complete image.
+>
+> There I encountered two issues.
+> The first one was that my image recipe had a few SRC_URI += lines.
+> This to get the static device table I am using and two files I needed
+> in my IMAGE_POSTPRCESS_COMMAND.
+> However yocto immediately goes into do_rootfs, and does not have a
+> fetch/unpack step (as oe-classic used to have).
+>
+> I have worked around this by adding
+>
+> python do_get_src () {
+>      bb.build.exec_func('base_do_fetch', d)
+>      bb.build.exec_func('base_do_unpack', d)
+> }
+> addtask do_get_src before do_rootfs
+>
+> to my image recipe. I think it would be nice to have this
+> automatically done if a non-empty SRC_URI is found (but unfortunately
+> I am not enough of a python wiz to provide a patch).
+> Anyway that kept me moving.
+>
+Can you file a enhancement bug for the above issue.
 
-I think you should remove above layer from BBLAYERS
+> The second issue is probably lib related. As I need a small footprint
+> (not too much storage available) my project uses uclibc.
+> When building the image I get some 15 or so of these:
+> | 	rtld(GNU_HASH) is needed by busybox-1.19.4-r6.ppce300c3
+> | 	rtld(GNU_HASH) is needed by i2c-tools-3.0.3-r0.ppce300c3
+> | 	rtld(GNU_HASH) is needed by libz1-1.2.6-r1.ppce300c3
+> ...
+>
+> I noticed that eglibc has this:
+> meta/recipes-core/eglibc/eglibc-package.inc:RPROVIDES_${PN} =
+> "glibc${PKGSUFFIX} rtld(GNU_HASH)"
+>
+> but I did not find a similar RPROVIDES for uclibc.
+> Not sure whether it is missing there, or whether the dependencies for
+> the packages like busybox and libz1 are wrong.
+> Anyone any advice ?
+>
+Khem might be able to help with this maybe.
+
+Thanks
+	Sau!
+
+> Thanks, Frans
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
 
