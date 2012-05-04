@@ -1,25 +1,26 @@
-Return-Path: <denis@denix.org>
-Received: from vms173005pub.verizon.net (vms173005pub.verizon.net
-	[206.46.173.5])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 00058E0070C
-	for <yocto@yoctoproject.org>; Thu,  3 May 2012 15:56:55 -0700 (PDT)
-Received: from gandalf.denix.org ([unknown] [108.48.117.33])
-	by vms173005.mailsrvcs.net
-	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0M3G00C6UYE1GD30@vms173005.mailsrvcs.net> for
-	yocto@yoctoproject.org; Thu, 03 May 2012 17:56:40 -0500 (CDT)
-Received: by gandalf.denix.org (Postfix, from userid 1000)	id B506620099; Thu,
-	03 May 2012 18:56:24 -0400 (EDT)
-Date: Thu, 03 May 2012 18:56:24 -0400
-From: Denys Dmytriyenko <denis@denix.org>
-To: Elvis Dowson <elvis.dowson@gmail.com>
-Message-id: <20120503225624.GH9822@denix.org>
-References: <9E175296-180A-45B0-BD08-2F926537552B@gmail.com>
-MIME-version: 1.0
-In-reply-to: <9E175296-180A-45B0-BD08-2F926537552B@gmail.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-Subject: Re: How to fix warning: set SYSTEMD_PACKAGES as <existing-package>-systemd
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 242C1E00596
+	for <yocto@yoctoproject.org>; Thu,  3 May 2012 17:33:53 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga102.fm.intel.com with ESMTP; 03 May 2012 17:33:52 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="149140820"
+Received: from unknown (HELO envy.home) ([10.255.12.74])
+	by fmsmga001.fm.intel.com with ESMTP; 03 May 2012 17:33:52 -0700
+Message-ID: <4FA31E73.501@linux.intel.com>
+Date: Thu, 03 May 2012 17:10:27 -0700
+From: Darren Hart <dvhart@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:12.0) Gecko/20120424 Thunderbird/12.0
+MIME-Version: 1.0
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
+References: <cover.1335908646.git.dvhart@linux.intel.com>
+	<4FA306CC.3060308@windriver.com>
+In-Reply-To: <4FA306CC.3060308@windriver.com>
+X-Enigmail-Version: 1.4.1
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [PATCH 0/1][linux-yocto-3.2] pch_gbe: Do not abort probe on bad MAC
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,32 +32,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 03 May 2012 22:56:56 -0000
-Content-type: text/plain; charset=us-ascii
-Content-disposition: inline
+X-List-Received-Date: Fri, 04 May 2012 00:33:53 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-On Thu, May 03, 2012 at 09:11:49PM +0200, Elvis Dowson wrote:
-> Hi,
->       I get a bunch of warnings asking me to set SYSTEMD_PACKAGES as 
-> <existing-package>-systemd.
 
-You get those from the recipes that inherit systemd.bbclass, but not set 
-SYSTEMD_PACKAGES with ${PN}-systemd for some reason. Sometimes it's wrong and 
-needs fixing, but often it's done on purpose and the warning just needs to be 
-silenced.
 
-> WARNING: /tool/yocto/meta-ti/recipes-misc/payload/bonescript.bb: it is recommended to set SYSTEMD_PACKAGES as <existing-package>-systemd
+On 05/03/2012 03:29 PM, Bruce Ashfield wrote:
+> On 12-05-01 06:14 PM, Darren Hart wrote:
+>> This somehow missed the 3.0 to 3.2 update. It is required for networking
+>> on the sys940x BSP. Please apply to standard/base and derived branches.
+> 
+> The somehow .. is that I thought this made 3.2, and it didn't. This is 
+> merged
+> here, and when I get back to a decent internet connection. It'll appear
+> on the servers.
+> 
 
-The first one is now silenced in meta-ti.
+It's been proposed to stable since, so it will make it eventually.
 
-> WARNING: /tool/yocto/meta-openembedded/meta-oe/recipes-connectivity/networkmanager/networkmanager_0.9.2.0.bb: it is recommended to set SYSTEMD_PACKAGES as <existing-package>-systemd
-> WARNING: /tool/yocto/poky/meta/recipes-extended/lighttpd/lighttpd_1.4.30.bb: it is recommended to set SYSTEMD_PACKAGES as <existing-package>-systemd
 
-For these 2 please report them on openembedded-devel mailing list, where 
-meta-oe things are being discussed. The last warning is confisuing, as it 
-reports the recipe is in poky/oe-core, but it actually comes from the 
-corresponding .bbappend in meta-oe.
+> Bruce
+> 
+>>
+>> The following changes since commit 900717638fab9d2b25be35f3612ccfd95ceb31d1:
+>>
+>>    Merge branch 'yocto/standard/base' into standard/base (2012-03-16 10:43:42 -0400)
+>>
+>> are available in the git repository at:
+>>
+>>    git://git.infradead.org/users/dvhart/linux-yocto-3.2.git dvhart/standard/pch_gbe
+>>    http://git.infradead.org/users/dvhart/linux-yocto-3.2.git/shortlog/refs/heads/dvhart/standard/pch_gbe
+>>
+>> Darren Hart (1):
+>>    pch_gbe: Do not abort probe on bad MAC
+>>
+>>   .../net/ethernet/oki-semi/pch_gbe/pch_gbe_main.c   |   17 ++++++++++++++---
+>>   1 files changed, 14 insertions(+), 3 deletions(-)
+>>
+> 
 
 -- 
-Denys
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
