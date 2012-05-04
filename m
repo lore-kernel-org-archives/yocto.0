@@ -1,23 +1,29 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 71F92E00596
-	for <yocto@yoctoproject.org>; Fri,  4 May 2012 13:41:18 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 04 May 2012 13:41:18 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="149471919"
-Received: from unknown (HELO [10.255.12.135]) ([10.255.12.135])
-	by fmsmga001.fm.intel.com with ESMTP; 04 May 2012 13:41:17 -0700
-From: Tom Zanussi <tom.zanussi@intel.com>
-To: kishore.k.bodke@intel.com
-In-Reply-To: <cover.1336157346.git.kishore.k.bodke@intel.com>
-References: <cover.1336157346.git.kishore.k.bodke@intel.com>
-Date: Fri, 04 May 2012 15:41:05 -0500
-Message-ID: <1336164065.21923.18.camel@elmorro>
-Mime-Version: 1.0
-X-Mailer: Evolution 2.28.3 
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 0/1] [meta-intel] Cedartrail: Update SRCREV of yocto/pvr kernel branch
+Return-Path: <opensource@keylevel.com>
+Received: from hxhsvr03.internetintuitive.net (hxhsvr03.internetintuitive.net
+	[80.254.228.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 52690E00596
+	for <yocto@yoctoproject.org>; Fri,  4 May 2012 13:43:14 -0700 (PDT)
+Received: from [109.224.129.17] (port=48729
+	helo=macbook-pro.durham.keylevel.com)
+	by hxhsvr03.internetintuitive.net with esmtpa (Exim 4.69)
+	(envelope-from <opensource@keylevel.com>) id 1SQPLM-0005VR-EQ
+	for yocto@yoctoproject.org; Fri, 04 May 2012 21:43:12 +0100
+From: Chris Tapp <opensource@keylevel.com>
+Date: Fri, 4 May 2012 20:00:01 +0100
+Message-Id: <FF473BAD-04D9-4409-9B7E-D49AD4B4AA11@keylevel.com>
+To: Yocto Project <yocto@yoctoproject.org>
+Mime-Version: 1.0 (Apple Message framework v1257)
+X-Mailer: Apple Mail (2.1257)
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - hxhsvr03.internetintuitive.net
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - keylevel.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: GCC patch failures with 7.0.0
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,41 +35,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 04 May 2012 20:41:18 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 04 May 2012 20:43:14 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
-Pulled into master.  (meta-intel/denzil is just a placeholder for
-documentation at this point).
+Building core-image-sato I get a patch failure when cache-amnesia.patch =
+is applied in gcc-cross.
 
-Tom
+If I then run bitbake -c patch gcc-cross I get the same error, but if I =
+-c clean and then -c patch it applies as it should.
 
-On Fri, 2012-05-04 at 11:55 -0700, kishore.k.bodke@intel.com wrote:
-> From: Kishore Bodke <kishore.k.bodke@intel.com>
-> 
-> This patch is to update the SRCREVs for the yocto/pvr
-> to pull in the new kernel patches.
-> 
-> Please pull into meta-intel/denzil.
-> 
-> Thanks
-> Kishore.
-> 
-> The following changes since commit bde31fd7e66faea865d24ff0858a9006b89e4e54:
-> 
->   meta-emenlow: update kernel SRCREVs (2012-04-26 15:24:31 -0500)
-> 
-> are available in the git repository at:
-> 
->   git://git.pokylinux.org/meta-intel-contrib kishore/denzil
->   http://git.pokylinux.org/cgit.cgi/meta-intel-contrib/log/?h=kishore/denzil
-> 
-> Kishore Bodke (1):
->   Cedartrail: Update SRCREV of yocto/pvr kernel branch
-> 
->  .../recipes-kernel/linux/linux-yocto_3.0.bbappend  |    4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
-> 
+Any ideas what could be causing this? Could this be a parallel make =
+artefact?
+
+Chris Tapp
+
+opensource@keylevel.com
+www.keylevel.com
+
 
 
 
