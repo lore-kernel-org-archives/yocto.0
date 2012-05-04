@@ -1,16 +1,16 @@
 Return-Path: <opensource@keylevel.com>
 Received: from hxhsvr03.internetintuitive.net (hxhsvr03.internetintuitive.net
 	[80.254.228.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 52690E00596
-	for <yocto@yoctoproject.org>; Fri,  4 May 2012 13:43:14 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 49151E00596
+	for <yocto@yoctoproject.org>; Fri,  4 May 2012 13:43:20 -0700 (PDT)
 Received: from [109.224.129.17] (port=48729
 	helo=macbook-pro.durham.keylevel.com)
 	by hxhsvr03.internetintuitive.net with esmtpa (Exim 4.69)
-	(envelope-from <opensource@keylevel.com>) id 1SQPLM-0005VR-EQ
-	for yocto@yoctoproject.org; Fri, 04 May 2012 21:43:12 +0100
+	(envelope-from <opensource@keylevel.com>) id 1SQPLT-0005VR-IP
+	for yocto@yoctoproject.org; Fri, 04 May 2012 21:43:19 +0100
 From: Chris Tapp <opensource@keylevel.com>
-Date: Fri, 4 May 2012 20:00:01 +0100
-Message-Id: <FF473BAD-04D9-4409-9B7E-D49AD4B4AA11@keylevel.com>
+Date: Fri, 4 May 2012 21:43:19 +0100
+Message-Id: <71C6E1B6-E238-45C2-B9F6-7D9C38AD446C@keylevel.com>
 To: Yocto Project <yocto@yoctoproject.org>
 Mime-Version: 1.0 (Apple Message framework v1257)
 X-Mailer: Apple Mail (2.1257)
@@ -35,7 +35,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 04 May 2012 20:43:14 -0000
+X-List-Received-Date: Fri, 04 May 2012 20:43:20 -0000
 Content-Type: text/plain; charset=us-ascii
 Content-Transfer-Encoding: quoted-printable
 
