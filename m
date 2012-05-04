@@ -1,34 +1,24 @@
-Return-Path: <elvis.dowson@gmail.com>
-Received: from mail-we0-f176.google.com (mail-we0-f176.google.com
-	[74.125.82.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 743A9E0044D
-	for <yocto@yoctoproject.org>; Fri,  4 May 2012 14:47:33 -0700 (PDT)
-Received: by werc1 with SMTP id c1so284485wer.35
-	for <yocto@yoctoproject.org>; Fri, 04 May 2012 14:47:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:content-type:content-transfer-encoding:subject:date:message-id
-	:to:mime-version:x-mailer;
-	bh=ubLlEdW5yI+w7CsR3lcl+9z00w5WunKfGTYPCYlNAng=;
-	b=xM4nxq4FWVjGZY3BBY+v9kWkJq2Pd1t83WyE6F6KZET5GsOWw/PQMhUlE5WQnYlSJM
-	ZvTDeDaeUnabWG3CMp8s9IMUXtDDdlU48wM0lp7EJE2iKwU7lbJN7KTiYNNU86jfmfYW
-	tgKg+fWwqCViWK8uxGo8C/M5PqHHKNTxgYz8yBuiK00crzSuyyFxLRtHmErCqfQopSwX
-	XPw9cqMfVYYZFjLdld4uO09kkR/7kp7uiaa7e+nX1CHax/8sBJ5qg1BH2uvJI9XZfJdu
-	O0/obXkskoCwFvhR6XznTQGitOW4XpAH6IfGTGGS05k7fvJz3yKqLldVnOBtApv01Gsq
-	DXpA==
-Received: by 10.180.79.135 with SMTP id j7mr16249189wix.19.1336168052419;
-	Fri, 04 May 2012 14:47:32 -0700 (PDT)
-Received: from [192.168.1.34] (5.Red-83-49-41.dynamicIP.rima-tde.net.
-	[83.49.41.5])
-	by mx.google.com with ESMTPS id j3sm946673wiw.1.2012.05.04.14.47.31
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Fri, 04 May 2012 14:47:31 -0700 (PDT)
-From: Elvis Dowson <elvis.dowson@gmail.com>
-Date: Fri, 4 May 2012 23:47:29 +0200
-Message-Id: <4A8D5C4F-3A9B-4171-9254-2DC2E273396C@gmail.com>
-To: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-Mime-Version: 1.0 (Apple Message framework v1257)
-X-Mailer: Apple Mail (2.1257)
-Subject: How to fix unpack errors
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 98268E0044D
+	for <yocto@yoctoproject.org>; Fri,  4 May 2012 15:07:53 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 04 May 2012 15:07:53 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="137170694"
+Received: from unknown (HELO localhost) ([10.255.12.135])
+	by orsmga001.jf.intel.com with ESMTP; 04 May 2012 15:07:52 -0700
+From: tom.zanussi@intel.com
+To: yocto@yoctoproject.org, bruce.ashfield@windriver.com,
+	dvhart@linux.intel.com
+Date: Fri,  4 May 2012 17:07:31 -0500
+Message-Id: <71d8929ff51f27808e52e22152c2df9af94a26cd.1336167660.git.tom.zanussi@intel.com>
+X-Mailer: git-send-email 1.7.0.4
+In-Reply-To: <18a0f57440e7e601e4a6e58a649299be4db7ccbd.1336167660.git.tom.zanussi@intel.com>
+References: <18a0f57440e7e601e4a6e58a649299be4db7ccbd.1336167660.git.tom.zanussi@intel.com>
+In-Reply-To: <cover.1336167660.git.tom.zanussi@intel.com>
+References: <cover.1336167660.git.tom.zanussi@intel.com>
+Subject: [PATCH 2/7][KERNEL] meta: add usb/xhci-hcd feature
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,18 +30,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 04 May 2012 21:47:33 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 04 May 2012 22:07:53 -0000
 
-Hi,
-     How can I resolve these unpack errors:
+From: Tom Zanussi <tom.zanussi@intel.com>
 
-ERROR: Task 513 =
-(/tool/yocto/meta-gumstix/recipes-kernel/linux/linux-omap3_3.2.bb, =
-do_unpack) failed with exit code '1'
+Add an 'xhci-hcd' feature that turns on the kernel options required to
+support xhci (USB 3.0).
 
-Best regards,
+Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
+---
+ meta/cfg/kernel-cache/features/usb/xhci-hcd.cfg |    1 +
+ meta/cfg/kernel-cache/features/usb/xhci-hcd.scc |    4 ++++
+ 2 files changed, 5 insertions(+), 0 deletions(-)
+ create mode 100644 meta/cfg/kernel-cache/features/usb/xhci-hcd.cfg
+ create mode 100644 meta/cfg/kernel-cache/features/usb/xhci-hcd.scc
 
-Elvis Dowson=
+diff --git a/meta/cfg/kernel-cache/features/usb/xhci-hcd.cfg b/meta/cfg/kernel-cache/features/usb/xhci-hcd.cfg
+new file mode 100644
+index 0000000..ae4294b
+--- /dev/null
++++ b/meta/cfg/kernel-cache/features/usb/xhci-hcd.cfg
+@@ -0,0 +1 @@
++CONFIG_USB_XHCI_HCD=y
+diff --git a/meta/cfg/kernel-cache/features/usb/xhci-hcd.scc b/meta/cfg/kernel-cache/features/usb/xhci-hcd.scc
+new file mode 100644
+index 0000000..e9af080
+--- /dev/null
++++ b/meta/cfg/kernel-cache/features/usb/xhci-hcd.scc
+@@ -0,0 +1,4 @@
++define KFEATURE_DESCRIPTION "Enable options for xhci (USB 3.0)"
++define KFEATURE_COMPATIBILITY board
++
++kconf hardware xhci-hcd.cfg
+-- 
+1.7.0.4
+
 
