@@ -1,24 +1,43 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5E29CE00746
-	for <yocto@yoctoproject.org>; Fri,  4 May 2012 15:08:48 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 04 May 2012 15:08:47 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="96571990"
-Received: from unknown (HELO localhost) ([10.255.12.135])
-	by AZSMGA002.ch.intel.com with ESMTP; 04 May 2012 15:07:55 -0700
-From: tom.zanussi@intel.com
-To: yocto@yoctoproject.org, bruce.ashfield@windriver.com,
-	dvhart@linux.intel.com
-Date: Fri,  4 May 2012 17:07:32 -0500
-Message-Id: <47d430c295a427aed1ecedd7158bec7c28624da4.1336167660.git.tom.zanussi@intel.com>
-X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <18a0f57440e7e601e4a6e58a649299be4db7ccbd.1336167660.git.tom.zanussi@intel.com>
-References: <18a0f57440e7e601e4a6e58a649299be4db7ccbd.1336167660.git.tom.zanussi@intel.com>
-In-Reply-To: <cover.1336167660.git.tom.zanussi@intel.com>
-References: <cover.1336167660.git.tom.zanussi@intel.com>
-Subject: [PATCH 3/7][KERNEL] meta: add usb/ehci-hcd feature
+Return-Path: <scott.a.garman@intel.com>
+Received: from orsmga101.jf.intel.com (mga06.intel.com [134.134.136.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1E216E0044D
+	for <yocto@yoctoproject.org>; Fri,  4 May 2012 15:20:43 -0700 (PDT)
+Received: from mail-pz0-f45.google.com ([209.85.210.45])
+	by mga02.intel.com with ESMTP/TLS/RC4-SHA; 04 May 2012 15:20:42 -0700
+Received: by dadv2 with SMTP id v2so4681200dad.4
+	for <yocto@yoctoproject.org>; Fri, 04 May 2012 15:20:42 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=message-id:date:from:user-agent:mime-version:to:cc:subject
+	:references:in-reply-to:content-type:content-transfer-encoding
+	:x-gm-message-state;
+	bh=f5wW12uTf7Vj8lwPu8rTLkI9j/wdYUe6GR7frIk67FE=;
+	b=omvombCXCrN+EYLYTSdTYe2g/APweiPd4XSku32b/gCuXEW40oNuKcF/iGsYKAX/Fg
+	FOoRKO3ZW7MhC8xWAg/ajZIY24qn+xqb+n/CksFo6CbFfMd0qkEWXrJLganKq6JGgpEf
+	bjYHRYWLVHdR95wWSmjDgj/zVNElllFbhO4Gp/I04ht3fO5NGlX7W/HzWlpSDTj3baOR
+	OQxvXurctwBNnPKjpaRpsCt/aIJnGLViMfGfJB2ha43pez8Oy99aYBOzZMXdwyAB8tP/
+	kwgBXJJElvMxOhnYfRKWfAUyTZmBp1fzVpk7aScZL5ijQ50yATn6FyXZzC/BIxMF4yiD
+	os2w==
+Received: by 10.68.232.228 with SMTP id tr4mr2268568pbc.12.1336170042349;
+	Fri, 04 May 2012 15:20:42 -0700 (PDT)
+Received: from [192.168.10.254] (c-98-246-229-6.hsd1.or.comcast.net.
+	[98.246.229.6])
+	by mx.google.com with ESMTPS id pl8sm9799577pbb.72.2012.05.04.15.20.39
+	(version=SSLv3 cipher=OTHER); Fri, 04 May 2012 15:20:41 -0700 (PDT)
+Message-ID: <4FA45634.9020309@intel.com>
+Date: Fri, 04 May 2012 15:20:36 -0700
+From: Scott Garman <scott.a.garman@intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:12.0) Gecko/20120430 Thunderbird/12.0.1
+MIME-Version: 1.0
+To: Tom Zanussi <tom.zanussi@intel.com>
+References: <cover.1335812928.git.tom.zanussi@intel.com>
+	<3cea3e5b38f503cb2ac22bedf88e1ba14391c2ab.1335812928.git.tom.zanussi@intel.com>
+	<4FA41CAC.2090208@intel.com> <1336159114.21923.15.camel@elmorro>
+In-Reply-To: <1336159114.21923.15.camel@elmorro>
+X-Gm-Message-State: ALoCoQmhpLJtKLyT+PXc2y7on+OybOL28R6PSbIil+NcWDQsGBLTMDlNzD8nr6efHbdSJecWEuBJ
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH 1/2] yocto-kernel: use BUILDDIR to find bblayers.conf
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,39 +49,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 04 May 2012 22:08:48 -0000
+X-List-Received-Date: Fri, 04 May 2012 22:20:43 -0000
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: Tom Zanussi <tom.zanussi@intel.com>
+On 05/04/2012 12:18 PM, Tom Zanussi wrote:
+> On Fri, 2012-05-04 at 11:15 -0700, Scott Garman wrote:
+>> On 04/30/2012 12:12 PM, tom.zanussi@intel.com wrote:
+>>> From: Tom Zanussi<tom.zanussi@intel.com>
+>>>
+>>> The current code assumes that builddir == srcdir/build, which it
+>>> obviously isn't sometimes.  Use BUILDDIR to get the actual builddir
+>>> being used.
+>>>
+>>> Fixes [YOCTO #2219].
+>>>
+>>> Signed-off-by: Tom Zanussi<tom.zanussi@intel.com>
+>>
+>> Merged to denzil-next, thanks!
+>>
+>
+> Thanks, Scott!
+>
+> Could you also merge the other patch that was part of this patchset?
+> (yocto-bsp: clarify help with reference to meta-intel)
 
-Add an 'ehci-hcd' feature that turns on the kernel options required to
-support ehci (USB 2.0).
+Thanks for catching that - I've now merged this commit as well.
 
-Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
----
- meta/cfg/kernel-cache/features/usb/ehci-hcd.cfg |    1 +
- meta/cfg/kernel-cache/features/usb/ehci-hcd.scc |    4 ++++
- 2 files changed, 5 insertions(+), 0 deletions(-)
- create mode 100644 meta/cfg/kernel-cache/features/usb/ehci-hcd.cfg
- create mode 100644 meta/cfg/kernel-cache/features/usb/ehci-hcd.scc
+http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/log/?h=sgarman/denzil-next
 
-diff --git a/meta/cfg/kernel-cache/features/usb/ehci-hcd.cfg b/meta/cfg/kernel-cache/features/usb/ehci-hcd.cfg
-new file mode 100644
-index 0000000..7322dc2
---- /dev/null
-+++ b/meta/cfg/kernel-cache/features/usb/ehci-hcd.cfg
-@@ -0,0 +1 @@
-+CONFIG_USB_EHCI_HCD=y
-diff --git a/meta/cfg/kernel-cache/features/usb/ehci-hcd.scc b/meta/cfg/kernel-cache/features/usb/ehci-hcd.scc
-new file mode 100644
-index 0000000..eafc580
---- /dev/null
-+++ b/meta/cfg/kernel-cache/features/usb/ehci-hcd.scc
-@@ -0,0 +1,4 @@
-+define KFEATURE_DESCRIPTION "Enable options for ehci (USB 2.0)"
-+define KFEATURE_COMPATIBILITY board
-+
-+kconf hardware ehci-hcd.cfg
+Scott
+
 -- 
-1.7.0.4
-
+Scott Garman
+Embedded Linux Engineer - Yocto Project
+Intel Open Source Technology Center
 
