@@ -1,33 +1,32 @@
-Return-Path: <gley-yocto@m.gmane.org>
-Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 19BB8E0044D
-	for <yocto@yoctoproject.org>; Fri,  4 May 2012 13:57:33 -0700 (PDT)
-Received: from list by plane.gmane.org with local (Exim 4.69)
-	(envelope-from <gley-yocto@m.gmane.org>) id 1SQPZD-0006MP-AO
-	for yocto@yoctoproject.org; Fri, 04 May 2012 22:57:31 +0200
-Received: from ip66-35-226-228.altera.com ([66.35.226.228])
-	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
-	id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Fri, 04 May 2012 22:57:31 +0200
-Received: from jrucker by ip66-35-226-228.altera.com with local (Gmexim 0.1
-	(Debian)) id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Fri, 04 May 2012 22:57:31 +0200
-X-Injected-Via-Gmane: http://gmane.org/
-To: yocto@yoctoproject.org
-From: Jim Rucker <jrucker@altera.com>
-Date: Fri, 4 May 2012 20:57:19 +0000 (UTC)
-Message-ID: <loom.20120504T225223-561@post.gmane.org>
-References: <loom.20120504T174109-199@post.gmane.org>
-	<CAEsOVNfDA9rcQ1dshyKBq=rCk4nmqsBTQ0QvNL9jxa5SO52VBg@mail.gmail.com>
-	<4FA4403E.8010000@windriver.com>
-Mime-Version: 1.0
-X-Complaints-To: usenet@dough.gmane.org
-X-Gmane-NNTP-Posting-Host: sea.gmane.org
-User-Agent: Loom/3.14 (http://gmane.org/)
-X-Loom-IP: 66.35.226.228 (Mozilla/5.0 (Windows NT 6.1;
-	WOW64) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.162
-	Safari/535.19)
-Subject: Re: error with bb.fetch2.get_srcrev(d)
+Return-Path: <opensource@keylevel.com>
+Received: from hxhsvr03.internetintuitive.net (hxhsvr03.internetintuitive.net
+	[80.254.228.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 43F82E00596
+	for <yocto@yoctoproject.org>; Fri,  4 May 2012 14:09:11 -0700 (PDT)
+Received: from [109.224.129.17] (port=24168
+	helo=macbook-pro.durham.keylevel.com)
+	by hxhsvr03.internetintuitive.net with esmtpa (Exim 4.69)
+	(envelope-from <opensource@keylevel.com>) id 1SQPkU-00067V-F3
+	for yocto@yoctoproject.org; Fri, 04 May 2012 22:09:10 +0100
+Mime-Version: 1.0 (Apple Message framework v1257)
+From: Chris Tapp <opensource@keylevel.com>
+In-Reply-To: <CAMKF1srzXUyJsfNALUdVng9-UAP1+oMgdq=fcNM3Txncua4yGw@mail.gmail.com>
+Date: Fri, 4 May 2012 22:09:07 +0100
+Message-Id: <9EDADDD9-4571-4160-8799-A68FC79D29B6@keylevel.com>
+References: <FF473BAD-04D9-4409-9B7E-D49AD4B4AA11@keylevel.com>
+	<CAMKF1srzXUyJsfNALUdVng9-UAP1+oMgdq=fcNM3Txncua4yGw@mail.gmail.com>
+To: Yocto Project <yocto@yoctoproject.org>
+X-Mailer: Apple Mail (2.1257)
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - hxhsvr03.internetintuitive.net
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - keylevel.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: Re: GCC patch failures with 7.0.0
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,46 +38,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 04 May 2012 20:57:33 -0000
+X-List-Received-Date: Fri, 04 May 2012 21:09:11 -0000
 Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
 
-> >
-> > Does your u-boot SRCREV = ${AUTOREV}? You could try picking a specific
-> > SHA so it does not have to check for the latest each time.
-> 
-> This is definitely a good suggestion. If you aren't using AUTOREV, then
-> something else is triggering the fetcher. All of your parsed recipes can
-> trigger fetchers, whether or not it is precisely what you are building,
-> since the upstream sources are part of determining what needs to be
-> rebuilt. It was a surprising (to me), but fundamental thing that happens,
-> and I've just gotten used to it :)
-> 
-> Richard could probably correct my description above, or provide more
-> options.
-> 
-> Bruce
-> 
-> >
-> > -M
-> > _______________________________________________
-> > yocto mailing list
-> > yocto@...
-> > https://lists.yoctoproject.org/listinfo/yocto
-> 
-> 
+On 4 May 2012, at 21:53, Khem Raj wrote:
 
-Thanks for the quick replys. I don't have SRCREV = ${AUTOREV}, but what I did 
-find is that someone put in the following:
-PV="2011.12+${SRCPV}
-PR="${inC_PR}.0"
+> On Fri, May 4, 2012 at 12:00 PM, Chris Tapp <opensource@keylevel.com> =
+wrote:
+>> Building core-image-sato I get a patch failure when =
+cache-amnesia.patch is applied in gcc-cross.
+>>=20
+>> If I then run bitbake -c patch gcc-cross I get the same error, but if =
+I -c clean and then -c patch it applies as it should.
+>>=20
+>> Any ideas what could be causing this? Could this be a parallel make =
+artefact?
+>>=20
+>=20
+> thinking that you are building from scratch it should have already =
+patched tree
+> during gcc-cross-initial build so I wonder why is it trying to repatch =
+it during
+> gcc-cross build. Could be some checksum issue where suddenly bitake =
+thinks it
+> needs to repatch it.
 
-When I removed these it seems to have fixed the issue. Was I wrong to remove 
-these? In the documentation, it says the following which led me to believe that 
-the inclusion of PV was a hack, and not part of something that should be 
-released
-"PV is generally not overridden within a recipe unless it is building an 
-unstable version from a source code repository (e.g. Git or Subversion)."
+Hi Khem,
 
+Thanks. You made me realise that it's my fault. Sorry to bother =
+everyone!
+
+I was playing with the task scheduler within bitbake and forgot to =
+switch back to the working version before I started the build.
+
+Chris
 
 
