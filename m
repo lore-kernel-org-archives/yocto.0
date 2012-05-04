@@ -1,26 +1,26 @@
-Return-Path: <woailinux@hotmail.com>
-Received: from blu0-omc3-s38.blu0.hotmail.com (blu0-omc3-s38.blu0.hotmail.com
-	[65.55.116.113])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 02BE8E0044D
-	for <yocto@yoctoproject.org>; Fri,  4 May 2012 09:10:31 -0700 (PDT)
-Received: from BLU0-SMTP98 ([65.55.116.72]) by blu0-omc3-s38.blu0.hotmail.com
-	with Microsoft SMTPSVC(6.0.3790.4675); 
-	Fri, 4 May 2012 09:10:30 -0700
-X-Originating-IP: [114.255.122.12]
-X-Originating-Email: [woailinux@hotmail.com]
-Message-ID: <BLU0-SMTP9800BBCD2EEA3D7A38253CB92C0@phx.gbl>
-Received: from [172.21.23.12] ([114.255.122.12]) by BLU0-SMTP98.phx.gbl over
-	TLS secured channel with Microsoft SMTPSVC(6.0.3790.4675); 
-	Fri, 4 May 2012 09:10:30 -0700
-Date: Sat, 5 May 2012 00:10:23 +0800
-From: jack <woailinux@hotmail.com>
-User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:7.0.1) Gecko/20110929 Thunderbird/7.0.1
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2DCBBE006C7
+	for <yocto@yoctoproject.org>; Fri,  4 May 2012 09:17:30 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 04 May 2012 09:17:29 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="138953582"
+Received: from unknown (HELO envy.home) ([10.255.12.74])
+	by azsmga001.ch.intel.com with ESMTP; 04 May 2012 09:17:29 -0700
+Message-ID: <4FA400FA.9030903@linux.intel.com>
+Date: Fri, 04 May 2012 09:16:58 -0700
+From: Darren Hart <dvhart@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:12.0) Gecko/20120424 Thunderbird/12.0
 MIME-Version: 1.0
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-X-OriginalArrivalTime: 04 May 2012 16:10:30.0549 (UTC)
-	FILETIME=[6D512450:01CD2A10]
-Subject: When "bitbake core-image-sato-sdk", Error: Function failed: do_kernel_configme. Who can explain Bruce Ashfield's solution? thank you!
+To: tom.zanussi@intel.com
+References: <cover.1336015630.git.tom.zanussi@intel.com>
+	<5c329be00981f6c931bd192bf5af741fb7da4a81.1336015630.git.tom.zanussi@intel.com>
+In-Reply-To: <5c329be00981f6c931bd192bf5af741fb7da4a81.1336015630.git.tom.zanussi@intel.com>
+X-Enigmail-Version: 1.4.1
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH 1/5][KERNEL] meta: add usb/host/base feature
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,117 +32,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 04 May 2012 16:10:32 -0000
-Content-Type: multipart/alternative;
-	boundary="------------060902090605080003010907"
-
---------------060902090605080003010907
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+X-List-Received-Date: Fri, 04 May 2012 16:17:30 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-Hello, all! When "bitbake core-image-sato-sdk", I was puzzled by such 
-errors:
 
 
-NOTE: package 
-linux-yocto-3.0.23+git1+59314a3523e360796419d76d78c6f7d8c5ef2593_1+63c65842a3a74e4bd3128004ac29b5639f16433f-r4: 
-task do_kernel_configme: Started
-ERROR: Function failed: do_kernel_configme (see 
-/home/jackie/esdc/poky/build/tmp/work/esdc2012-poky-linux/linux-yocto-3.0.23+git1+59314a3523e360796419d76d78c6f7d8c5ef2593_1+63c65842a3a74e4bd3128004ac29b5639f16433f-r4/temp/log.do_kernel_configme.18778 
-for further information)
-ERROR: Logfile of failure stored in: 
-/home/jackie/esdc/poky/build/tmp/work/esdc2012-poky-linux/linux-yocto-3.0.23+git1+59314a3523e360796419d76d78c6f7d8c5ef2593_1+63c65842a3a74e4bd3128004ac29b5639f16433f-r4/temp/log.do_kernel_configme.18778
-Log data follows:
-| ERROR: Function failed: do_kernel_configme (see 
-/home/jackie/esdc/poky/build/tmp/work/esdc2012-poky-linux/linux-yocto-3.0.23+git1+59314a3523e360796419d76d78c6f7d8c5ef2593_1+63c65842a3a74e4bd3128004ac29b5639f16433f-r4/temp/log.do_kernel_configme.18778 
-for further information)
-| [INFO] doing kernel configme
-| 
-/home/jackie/esdc/poky/build/tmp/work/esdc2012-poky-linux/linux-yocto-3.0.23+git1+59314a3523e360796419d76d78c6f7d8c5ef2593_1+63c65842a3a74e4bd3128004ac29b5639f16433f-r4/temp/run.do_kernel_configme.18778: 
-line 92: 
-:/home/jackie/esdc/poky/scripts:/home/jackie/esdc/poky/build/tmp/work/esdc2012-poky-linux/linux-yocto-3.0.23+git1+59314a3523e360796419d76d78c6f7d8c5ef2593_1+63c65842a3a74e4bd3128004ac29b5639f16433f-r4/linux/scripts/util: 
-No such file or directory
-NOTE: package 
-linux-yocto-3.0.23+git1+59314a3523e360796419d76d78c6f7d8c5ef2593_1+63c65842a3a74e4bd3128004ac29b5639f16433f-r4: 
-task do_kernel_configme: Failed
-ERROR: Task 760 
-(/home/jackie/esdc/poky/meta/recipes-kernel/linux/linux-yocto_3.0.bb, 
-do_kernel_configme) failed with exit code '1'
-Waiting for 2 active tasks to finish:
-0: gcc-cross-4.6.3+svnr184847-r23 do_compile (pid 14631)
-1: eggdbus-native-0.6-r3 do_compile (pid 18130)
+On 05/02/2012 08:35 PM, tom.zanussi@intel.com wrote:
+> From: Tom Zanussi <tom.zanussi@intel.com>
+> 
+> Add a feature to enable 'base' support for USB, mainly to be included
+> by derived features such as ehch, xhci, etc.
 
+This seems overly granular in my opinion. I think I would just include
+the two required options in each of the *hci features.
 
-I googled and found Bruce Ashfield 
-<http://search.gmane.org/?author=Bruce+Ashfield&sort=date>'s solution:
-In the meantime, if you remove the kern-tools-native_git.bbappend from 
-the meta-kernel-dev
-layer, the AUTOREV setting will be removed, and you won't pull in tools 
-that are too
-new for the matching kernel.
+--
+Darren
 
-But where is the kern-tools-native_git.bbappend and meta-kernel-dev? I 
-am newer to yocto, who can help me?
+> 
+> Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
+> ---
+>  meta/cfg/kernel-cache/features/usb/host/base.cfg |    3 +++
+>  meta/cfg/kernel-cache/features/usb/host/base.scc |    4 ++++
+>  2 files changed, 7 insertions(+), 0 deletions(-)
+>  create mode 100644 meta/cfg/kernel-cache/features/usb/host/base.cfg
+>  create mode 100644 meta/cfg/kernel-cache/features/usb/host/base.scc
+> 
+> diff --git a/meta/cfg/kernel-cache/features/usb/host/base.cfg b/meta/cfg/kernel-cache/features/usb/host/base.cfg
+> new file mode 100644
+> index 0000000..dec6a47
+> --- /dev/null
+> +++ b/meta/cfg/kernel-cache/features/usb/host/base.cfg
+> @@ -0,0 +1,3 @@
+> +CONFIG_USB_SUPPORT=y
+> +CONFIG_USB=y
+> +
+> diff --git a/meta/cfg/kernel-cache/features/usb/host/base.scc b/meta/cfg/kernel-cache/features/usb/host/base.scc
+> new file mode 100644
+> index 0000000..3c93475
+> --- /dev/null
+> +++ b/meta/cfg/kernel-cache/features/usb/host/base.scc
+> @@ -0,0 +1,4 @@
+> +define KFEATURE_DESCRIPTION "Enable core options for USB support"
+> +define KFEATURE_COMPATIBILITY board
+> +
+> +kconf hardware base.cfg
 
-Thanks!
+-- 
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
---------------060902090605080003010907
-Content-Type: text/html; charset="ISO-8859-1"
-Content-Transfer-Encoding: 7bit
-
-<html>
-  <head>
-
-    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    Hello, all! When "bitbake core-image-sato-sdk", I was puzzled by
-    such errors:<br>
-    <br>
-    <br>
-    NOTE: package
-    linux-yocto-3.0.23+git1+59314a3523e360796419d76d78c6f7d8c5ef2593_1+63c65842a3a74e4bd3128004ac29b5639f16433f-r4:
-    task do_kernel_configme: Started<br>
-    ERROR: Function failed: do_kernel_configme (see
-    /home/jackie/esdc/poky/build/tmp/work/esdc2012-poky-linux/linux-yocto-3.0.23+git1+59314a3523e360796419d76d78c6f7d8c5ef2593_1+63c65842a3a74e4bd3128004ac29b5639f16433f-r4/temp/log.do_kernel_configme.18778
-    for further information)<br>
-    ERROR: Logfile of failure stored in:
-/home/jackie/esdc/poky/build/tmp/work/esdc2012-poky-linux/linux-yocto-3.0.23+git1+59314a3523e360796419d76d78c6f7d8c5ef2593_1+63c65842a3a74e4bd3128004ac29b5639f16433f-r4/temp/log.do_kernel_configme.18778<br>
-    Log data follows:<br>
-    | ERROR: Function failed: do_kernel_configme (see
-    /home/jackie/esdc/poky/build/tmp/work/esdc2012-poky-linux/linux-yocto-3.0.23+git1+59314a3523e360796419d76d78c6f7d8c5ef2593_1+63c65842a3a74e4bd3128004ac29b5639f16433f-r4/temp/log.do_kernel_configme.18778
-    for further information)<br>
-    | [INFO] doing kernel configme<br>
-    |
-    /home/jackie/esdc/poky/build/tmp/work/esdc2012-poky-linux/linux-yocto-3.0.23+git1+59314a3523e360796419d76d78c6f7d8c5ef2593_1+63c65842a3a74e4bd3128004ac29b5639f16433f-r4/temp/run.do_kernel_configme.18778:
-    line 92:
-    :/home/jackie/esdc/poky/scripts:/home/jackie/esdc/poky/build/tmp/work/esdc2012-poky-linux/linux-yocto-3.0.23+git1+59314a3523e360796419d76d78c6f7d8c5ef2593_1+63c65842a3a74e4bd3128004ac29b5639f16433f-r4/linux/scripts/util:
-    No such file or directory<br>
-    NOTE: package
-    linux-yocto-3.0.23+git1+59314a3523e360796419d76d78c6f7d8c5ef2593_1+63c65842a3a74e4bd3128004ac29b5639f16433f-r4:
-    task do_kernel_configme: Failed<br>
-    ERROR: Task 760
-    (/home/jackie/esdc/poky/meta/recipes-kernel/linux/linux-yocto_3.0.bb,
-    do_kernel_configme) failed with exit code '1'<br>
-    Waiting for 2 active tasks to finish:<br>
-    0: gcc-cross-4.6.3+svnr184847-r23 do_compile (pid 14631)<br>
-    1: eggdbus-native-0.6-r3 do_compile (pid 18130)<br>
-    <br>
-    &nbsp;<br>
-    I googled and found <span class="author"><a
-        href="http://search.gmane.org/?author=Bruce+Ashfield&amp;sort=date"
-        rel="nofollow">Bruce Ashfield</a>'s solution:<br>
-    </span>In the meantime, if you remove the
-    kern-tools-native_git.bbappend from the meta-kernel-dev<br>
-    layer, the AUTOREV setting will be removed, and you won't pull in
-    tools that are too<br>
-    new for the matching kernel.<br>
-    <br>
-    But where is the kern-tools-native_git.bbappend and meta-kernel-dev?
-    I am newer to yocto, who can help me?<br>
-    &nbsp;<br>
-    Thanks!<br>
-  </body>
-</html>
-
---------------060902090605080003010907--
