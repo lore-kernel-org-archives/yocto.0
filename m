@@ -1,28 +1,25 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 00847E006C7
-	for <yocto@yoctoproject.org>; Fri,  4 May 2012 09:34:50 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 04 May 2012 09:34:50 -0700
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 655C8E006C7
+	for <yocto@yoctoproject.org>; Fri,  4 May 2012 09:35:12 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 04 May 2012 09:35:12 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="140161524"
-Received: from unknown (HELO envy.home) ([10.255.12.74])
-	by orsmga002.jf.intel.com with ESMTP; 04 May 2012 09:34:50 -0700
-Message-ID: <4FA4050C.4080607@linux.intel.com>
-Date: Fri, 04 May 2012 09:34:20 -0700
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:12.0) Gecko/20120424 Thunderbird/12.0
-MIME-Version: 1.0
-To: Tom Zanussi <tom.zanussi@intel.com>
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="137071543"
+Received: from unknown (HELO [10.255.12.135]) ([10.255.12.135])
+	by orsmga001.jf.intel.com with ESMTP; 04 May 2012 09:35:11 -0700
+From: Tom Zanussi <tom.zanussi@intel.com>
+To: Darren Hart <dvhart@linux.intel.com>
+In-Reply-To: <4FA402C4.3070107@linux.intel.com>
 References: <cover.1336015630.git.tom.zanussi@intel.com>
-	<5c329be00981f6c931bd192bf5af741fb7da4a81.1336015630.git.tom.zanussi@intel.com>
-	<4FA400FA.9030903@linux.intel.com>
-	<1336148918.21923.4.camel@elmorro>
-In-Reply-To: <1336148918.21923.4.camel@elmorro>
-X-Enigmail-Version: 1.4.1
+	<4FA27CAF.8020205@windriver.com> <1336053044.2450.86.camel@elmorro>
+	<4FA28EC9.1050607@windriver.com>  <4FA402C4.3070107@linux.intel.com>
+Date: Fri, 04 May 2012 11:35:00 -0500
+Message-ID: <1336149300.21923.8.camel@elmorro>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.28.3 
 Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 1/5][KERNEL] meta: add usb/host/base feature
+Subject: Re: [PATCH 0/5][KERNEL] add x/ehci-hcd and mei features
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,84 +31,146 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 04 May 2012 16:34:51 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Fri, 04 May 2012 16:35:12 -0000
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-
-
-On 05/04/2012 09:28 AM, Tom Zanussi wrote:
-> On Fri, 2012-05-04 at 09:16 -0700, Darren Hart wrote:
->>
->> On 05/02/2012 08:35 PM, tom.zanussi@intel.com wrote:
->>> From: Tom Zanussi <tom.zanussi@intel.com>
->>>
->>> Add a feature to enable 'base' support for USB, mainly to be included
->>> by derived features such as ehch, xhci, etc.
->>
->> This seems overly granular in my opinion. I think I would just include
->> the two required options in each of the *hci features.
->>
+On Fri, 2012-05-04 at 09:24 -0700, Darren Hart wrote:
 > 
-> Really?  This seems to me a perfect use case for taking advantage of the
-> 'reusibality' conf fragments offer.  There would be four of these, that
-> alone would seem to justify using a 'subroutine', but there could be
-> more in the future, and if so, this fragment would be readily available.
+> On 05/03/2012 06:57 AM, Bruce Ashfield wrote:
+> > On 12-05-03 09:50 AM, Tom Zanussi wrote:
+> >> On Thu, 2012-05-03 at 08:40 -0400, Bruce Ashfield wrote:
+> >>> On 12-05-02 11:35 PM, tom.zanussi@intel.com wrote:
+> >>>> From: Tom Zanussi<tom.zanussi@intel.com>
+> >>>>
+> >>>> This adds a few new features, one for xhci-hcd and another for
+> >>>> amt/mei, and refactors some existing config options into a new
+> >>>> echi-hcd, which is then used in crownbay.
+> >>>>
+> >>>> If this looks like the way to go, I'll add similar USB features
+> >>>> for ohci and uhci and fix up all the meta-intel BSPs to use
+> >>>> them.
+> >>>
+> >>> I had a look, and while at first I thought it was perhaps an over
+> >>> splitting and categorization. It does make things very clear, and
+> >>> gets us a split that can be used to keep configs minimal and reusable.
+> >>>
+> >>> I also wasn't sure about directory splitting, since we do end up
+> >>> with the names both in .scc/.cfg and the directory name. We could
+> >>> flatten the directory down to just 'usb' and keep the names of the
+> >>> files as the differentiator. And if we don't think we'll have to
+> >>> carry any patches, we could put it under cfg/usb/<Tom's stuff>.
+> >>>
+> >>> I don't have a really strong opinion (but gave my preference) on this
+> >>> split (several directories vs single), and I'd bet that you considered
+> >>> the same thing. Comments ?
+> >>>
+> >>
+> >> The directory splitting is definitely a result of personal preference on
+> >> my part i.e. directories are cheap and I hate having bunches of files in
+> >> a single directory.  This is actually the reason I tend to
+> >> avoid /cfg. ;-)
+> > 
+> > Aha! A valid point :)
+> > 
+> >>
+> >> In this case and most others, I find the directory splitting maps more
+> >> cleanly 'at-a-glance' for me to the split in functionality, but as I
+> >> said it's a personal preference and if most people prefer a more
+> >> flattened tree, then I don't have a problem making that change...
+> > 
+> > Nope. I'd rather not have you re-do it for just that minor change, when
+> > there's a valid reason on both sides.
+> > 
+> > I tossed the email .. and something has happened to my IMAP connection,
+> > so I can't find them now. Can you resend just the pull request ? or
+> > just the patches to me.
+> > 
+> > We can wait to see if Darren has a strong opinion one way or the other
+> > as well.
 > 
-
-I agree in principle, but feel the two lines of obvious requirements
-aren't worth it.
-
-> i.e. I don't see any reason to 'inline' these...
-
-I think "the line" is obviously a subjective one. And since you are the
-one that put in the time to prepare the meta-data, I don't feel strongly
-enough about it to argue the point. So I won't object to them going in
-as is.
-
---
-Darren
-
-> 
-> Tom
-> 
->> --
->> Darren
->>
->>>
->>> Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
->>> ---
->>>  meta/cfg/kernel-cache/features/usb/host/base.cfg |    3 +++
->>>  meta/cfg/kernel-cache/features/usb/host/base.scc |    4 ++++
->>>  2 files changed, 7 insertions(+), 0 deletions(-)
->>>  create mode 100644 meta/cfg/kernel-cache/features/usb/host/base.cfg
->>>  create mode 100644 meta/cfg/kernel-cache/features/usb/host/base.scc
->>>
->>> diff --git a/meta/cfg/kernel-cache/features/usb/host/base.cfg b/meta/cfg/kernel-cache/features/usb/host/base.cfg
->>> new file mode 100644
->>> index 0000000..dec6a47
->>> --- /dev/null
->>> +++ b/meta/cfg/kernel-cache/features/usb/host/base.cfg
->>> @@ -0,0 +1,3 @@
->>> +CONFIG_USB_SUPPORT=y
->>> +CONFIG_USB=y
->>> +
->>> diff --git a/meta/cfg/kernel-cache/features/usb/host/base.scc b/meta/cfg/kernel-cache/features/usb/host/base.scc
->>> new file mode 100644
->>> index 0000000..3c93475
->>> --- /dev/null
->>> +++ b/meta/cfg/kernel-cache/features/usb/host/base.scc
->>> @@ -0,0 +1,4 @@
->>> +define KFEATURE_DESCRIPTION "Enable core options for USB support"
->>> +define KFEATURE_COMPATIBILITY board
->>> +
->>> +kconf hardware base.cfg
->>
-> 
+> Personally I prefer to keep directories minimal until such time as there
+> is a need for more. As it is we're only talking about a handful of files
+> which are still easily filtered. Still, this isn't a huge deal. I care
+> more about the granularity of the setup. I feel having the usb/base bit
+> adds unnecessarily to the file count.
 > 
 
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
+OK, sounds like people like flat directories.
+
+Actually, the other option would be to just put the options into the
+top-level feature like everything else.  Was trying to clean that
+current situation up a bit, but maybe it's not really needed and I'll
+just continue with that, will have to think on it....
+
+Tom
+
+> Otherwise I'm content-ish.
+> 
+> --
+> Darren
+> 
+> > 
+> > Bruce
+> > 
+> >>
+> >> Tom
+> >>
+> >>
+> >>> But definitely, this is the way to go, just a minor question about the
+> >>> organization of the files.
+> >>>
+> >>> Bruce
+> >>>
+> >>>
+> >>>>
+> >>>> Please pull into linux-yocto-3.2.
+> >>>>
+> >>>> Thanks,
+> >>>>
+> >>>> Tom
+> >>>>
+> >>>> The following changes since commit b14a08f5c7b469a5077c10942f4e1aec171faa9d:
+> >>>>     Yang Shi (1):
+> >>>>           meta: Clean up BSPs kernel config
+> >>>>
+> >>>> are available in the git repository at:
+> >>>>
+> >>>>     git://git.yoctoproject.org/linux-yocto-2.6.37-contrib.git tzanussi/xhcd-mei-features
+> >>>>     http://git.yoctoproject.org/cgit.cgi//log/?h=tzanussi/xhcd-mei-features
+> >>>>
+> >>>> Tom Zanussi (5):
+> >>>>     meta: add usb/host/base feature
+> >>>>     meta: add usb/xhci-hcd feature
+> >>>>     meta: add usb/ehci-hcd feature
+> >>>>     meta/crownbay: use ehci-hcd feature
+> >>>>     meta: add mei feature
+> >>>>
+> >>>>    meta/cfg/kernel-cache/bsp/crownbay/crownbay.cfg    |    4 ----
+> >>>>    meta/cfg/kernel-cache/bsp/crownbay/crownbay.scc    |    2 ++
+> >>>>    meta/cfg/kernel-cache/features/amt/mei/mei.cfg     |    3 +++
+> >>>>    meta/cfg/kernel-cache/features/amt/mei/mei.scc     |    4 ++++
+> >>>>    .../features/usb/ehci-hcd/ehci-hcd.cfg             |    1 +
+> >>>>    .../features/usb/ehci-hcd/ehci-hcd.scc             |    6 ++++++
+> >>>>    meta/cfg/kernel-cache/features/usb/host/base.cfg   |    3 +++
+> >>>>    meta/cfg/kernel-cache/features/usb/host/base.scc   |    4 ++++
+> >>>>    .../features/usb/xhci-hcd/xhci-hcd.cfg             |    1 +
+> >>>>    .../features/usb/xhci-hcd/xhci-hcd.scc             |    6 ++++++
+> >>>>    10 files changed, 30 insertions(+), 4 deletions(-)
+> >>>>    create mode 100644 meta/cfg/kernel-cache/features/amt/mei/mei.cfg
+> >>>>    create mode 100644 meta/cfg/kernel-cache/features/amt/mei/mei.scc
+> >>>>    create mode 100644 meta/cfg/kernel-cache/features/usb/ehci-hcd/ehci-hcd.cfg
+> >>>>    create mode 100644 meta/cfg/kernel-cache/features/usb/ehci-hcd/ehci-hcd.scc
+> >>>>    create mode 100644 meta/cfg/kernel-cache/features/usb/host/base.cfg
+> >>>>    create mode 100644 meta/cfg/kernel-cache/features/usb/host/base.scc
+> >>>>    create mode 100644 meta/cfg/kernel-cache/features/usb/xhci-hcd/xhci-hcd.cfg
+> >>>>    create mode 100644 meta/cfg/kernel-cache/features/usb/xhci-hcd/xhci-hcd.scc
+> >>>>
+> >>>
+> >>
+> >>
+> > 
+> 
+
+
 
