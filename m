@@ -1,20 +1,24 @@
 Return-Path: <tom.zanussi@intel.com>
 Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CB936E00596
-	for <yocto@yoctoproject.org>; Fri,  4 May 2012 15:08:47 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5E29CE00746
+	for <yocto@yoctoproject.org>; Fri,  4 May 2012 15:08:48 -0700 (PDT)
 Received: from azsmga002.ch.intel.com ([10.2.17.35])
 	by azsmga102.ch.intel.com with ESMTP; 04 May 2012 15:08:47 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="96572196"
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="96571990"
 Received: from unknown (HELO localhost) ([10.255.12.135])
-	by AZSMGA002.ch.intel.com with ESMTP; 04 May 2012 15:07:47 -0700
+	by AZSMGA002.ch.intel.com with ESMTP; 04 May 2012 15:07:55 -0700
 From: tom.zanussi@intel.com
 To: yocto@yoctoproject.org, bruce.ashfield@windriver.com,
 	dvhart@linux.intel.com
 Date: Fri,  4 May 2012 17:07:32 -0500
-Message-Id: <cover.1336167660.git.tom.zanussi@intel.com>
+Message-Id: <47d430c295a427aed1ecedd7158bec7c28624da4.1336167660.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.0.4
-Subject: [PATCH 0/7][KERNEL] add usb and mei features
+In-Reply-To: <18a0f57440e7e601e4a6e58a649299be4db7ccbd.1336167660.git.tom.zanussi@intel.com>
+References: <18a0f57440e7e601e4a6e58a649299be4db7ccbd.1336167660.git.tom.zanussi@intel.com>
+In-Reply-To: <cover.1336167660.git.tom.zanussi@intel.com>
+References: <cover.1336167660.git.tom.zanussi@intel.com>
+Subject: [PATCH 3/7][KERNEL] meta: add usb/ehci-hcd feature
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,67 +34,35 @@ X-List-Received-Date: Fri, 04 May 2012 22:08:48 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-This adds a few new features, one each for usb/[xeou]hci-hcd and
-another for amt/mei, and refactors existing config options into a new
-usb/base, which are then used in crownbay.
+Add an 'ehci-hcd' feature that turns on the kernel options required to
+support ehci (USB 2.0).
 
-v2: after suggestions from Bruce and Darren of a preference for a more
-flattened feature tree structure, moved all the features into a single
-usb/ feature dir.  I did however retain the common 'base' feature
-because inlining that in each feature would mean that the same common
-set would be repeated in multiple config fragments if more than one usb
-feature was included in a BSP.
-
-Please pull into linux-yocto-3.2.
-
-Thanks,
-
-Tom
-
-The following changes since commit b14a08f5c7b469a5077c10942f4e1aec171faa9d:
-  Yang Shi (1):
-        meta: Clean up BSPs kernel config
-
-are available in the git repository at:
-
-  git://git.yoctoproject.org/linux-yocto-2.6.37-contrib.git tzanussi/xhcd-mei-features
-  http://git.yoctoproject.org/cgit.cgi//log/?h=tzanussi/xhcd-mei-features
-
-Tom Zanussi (7):
-  meta: add usb/base feature
-  meta: add usb/xhci-hcd feature
-  meta: add usb/ehci-hcd feature
-  meta: add usb/ohci-hcd feature
-  meta: add usb/uhci-hcd feature
-  meta/crownbay: use usb features
-  meta: add mei feature
-
- meta/cfg/kernel-cache/bsp/crownbay/crownbay.cfg |    6 ------
- meta/cfg/kernel-cache/bsp/crownbay/crownbay.scc |    5 +++++
- meta/cfg/kernel-cache/features/amt/mei/mei.cfg  |    3 +++
- meta/cfg/kernel-cache/features/amt/mei/mei.scc  |    4 ++++
- meta/cfg/kernel-cache/features/usb/base.cfg     |    3 +++
- meta/cfg/kernel-cache/features/usb/base.scc     |    4 ++++
+Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
+---
  meta/cfg/kernel-cache/features/usb/ehci-hcd.cfg |    1 +
  meta/cfg/kernel-cache/features/usb/ehci-hcd.scc |    4 ++++
- meta/cfg/kernel-cache/features/usb/ohci-hcd.cfg |    1 +
- meta/cfg/kernel-cache/features/usb/ohci-hcd.scc |    4 ++++
- meta/cfg/kernel-cache/features/usb/uhci-hcd.cfg |    1 +
- meta/cfg/kernel-cache/features/usb/uhci-hcd.scc |    4 ++++
- meta/cfg/kernel-cache/features/usb/xhci-hcd.cfg |    1 +
- meta/cfg/kernel-cache/features/usb/xhci-hcd.scc |    4 ++++
- 14 files changed, 39 insertions(+), 6 deletions(-)
- create mode 100644 meta/cfg/kernel-cache/features/amt/mei/mei.cfg
- create mode 100644 meta/cfg/kernel-cache/features/amt/mei/mei.scc
- create mode 100644 meta/cfg/kernel-cache/features/usb/base.cfg
- create mode 100644 meta/cfg/kernel-cache/features/usb/base.scc
+ 2 files changed, 5 insertions(+), 0 deletions(-)
  create mode 100644 meta/cfg/kernel-cache/features/usb/ehci-hcd.cfg
  create mode 100644 meta/cfg/kernel-cache/features/usb/ehci-hcd.scc
- create mode 100644 meta/cfg/kernel-cache/features/usb/ohci-hcd.cfg
- create mode 100644 meta/cfg/kernel-cache/features/usb/ohci-hcd.scc
- create mode 100644 meta/cfg/kernel-cache/features/usb/uhci-hcd.cfg
- create mode 100644 meta/cfg/kernel-cache/features/usb/uhci-hcd.scc
- create mode 100644 meta/cfg/kernel-cache/features/usb/xhci-hcd.cfg
- create mode 100644 meta/cfg/kernel-cache/features/usb/xhci-hcd.scc
+
+diff --git a/meta/cfg/kernel-cache/features/usb/ehci-hcd.cfg b/meta/cfg/kernel-cache/features/usb/ehci-hcd.cfg
+new file mode 100644
+index 0000000..7322dc2
+--- /dev/null
++++ b/meta/cfg/kernel-cache/features/usb/ehci-hcd.cfg
+@@ -0,0 +1 @@
++CONFIG_USB_EHCI_HCD=y
+diff --git a/meta/cfg/kernel-cache/features/usb/ehci-hcd.scc b/meta/cfg/kernel-cache/features/usb/ehci-hcd.scc
+new file mode 100644
+index 0000000..eafc580
+--- /dev/null
++++ b/meta/cfg/kernel-cache/features/usb/ehci-hcd.scc
+@@ -0,0 +1,4 @@
++define KFEATURE_DESCRIPTION "Enable options for ehci (USB 2.0)"
++define KFEATURE_COMPATIBILITY board
++
++kconf hardware ehci-hcd.cfg
+-- 
+1.7.0.4
 
 
