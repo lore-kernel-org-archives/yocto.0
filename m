@@ -1,25 +1,23 @@
 Return-Path: <tom.zanussi@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 082D1E0044D
-	for <yocto@yoctoproject.org>; Fri,  4 May 2012 12:18:46 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 04 May 2012 12:18:46 -0700
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 71F92E00596
+	for <yocto@yoctoproject.org>; Fri,  4 May 2012 13:41:18 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 04 May 2012 13:41:18 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="139024765"
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="149471919"
 Received: from unknown (HELO [10.255.12.135]) ([10.255.12.135])
-	by azsmga001.ch.intel.com with ESMTP; 04 May 2012 12:18:46 -0700
+	by fmsmga001.fm.intel.com with ESMTP; 04 May 2012 13:41:17 -0700
 From: Tom Zanussi <tom.zanussi@intel.com>
-To: Scott Garman <scott.a.garman@intel.com>
-In-Reply-To: <4FA41CAC.2090208@intel.com>
-References: <cover.1335812928.git.tom.zanussi@intel.com>
-	<3cea3e5b38f503cb2ac22bedf88e1ba14391c2ab.1335812928.git.tom.zanussi@intel.com>
-	<4FA41CAC.2090208@intel.com>
-Date: Fri, 04 May 2012 14:18:34 -0500
-Message-ID: <1336159114.21923.15.camel@elmorro>
+To: kishore.k.bodke@intel.com
+In-Reply-To: <cover.1336157346.git.kishore.k.bodke@intel.com>
+References: <cover.1336157346.git.kishore.k.bodke@intel.com>
+Date: Fri, 04 May 2012 15:41:05 -0500
+Message-ID: <1336164065.21923.18.camel@elmorro>
 Mime-Version: 1.0
 X-Mailer: Evolution 2.28.3 
 Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 1/2] yocto-kernel: use BUILDDIR to find bblayers.conf
+Subject: Re: [PATCH 0/1] [meta-intel] Cedartrail: Update SRCREV of yocto/pvr kernel branch
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,37 +29,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 04 May 2012 19:18:47 -0000
+X-List-Received-Date: Fri, 04 May 2012 20:41:18 -0000
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-On Fri, 2012-05-04 at 11:15 -0700, Scott Garman wrote:
-> On 04/30/2012 12:12 PM, tom.zanussi@intel.com wrote:
-> > From: Tom Zanussi<tom.zanussi@intel.com>
-> >
-> > The current code assumes that builddir == srcdir/build, which it
-> > obviously isn't sometimes.  Use BUILDDIR to get the actual builddir
-> > being used.
-> >
-> > Fixes [YOCTO #2219].
-> >
-> > Signed-off-by: Tom Zanussi<tom.zanussi@intel.com>
-> 
-> Merged to denzil-next, thanks!
-> 
-
-Thanks, Scott!
-
-Could you also merge the other patch that was part of this patchset?
-(yocto-bsp: clarify help with reference to meta-intel)
-
-Thanks,
+Pulled into master.  (meta-intel/denzil is just a placeholder for
+documentation at this point).
 
 Tom
 
-> http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/log/?h=sgarman/denzil-next
+On Fri, 2012-05-04 at 11:55 -0700, kishore.k.bodke@intel.com wrote:
+> From: Kishore Bodke <kishore.k.bodke@intel.com>
 > 
-> Scott
+> This patch is to update the SRCREVs for the yocto/pvr
+> to pull in the new kernel patches.
+> 
+> Please pull into meta-intel/denzil.
+> 
+> Thanks
+> Kishore.
+> 
+> The following changes since commit bde31fd7e66faea865d24ff0858a9006b89e4e54:
+> 
+>   meta-emenlow: update kernel SRCREVs (2012-04-26 15:24:31 -0500)
+> 
+> are available in the git repository at:
+> 
+>   git://git.pokylinux.org/meta-intel-contrib kishore/denzil
+>   http://git.pokylinux.org/cgit.cgi/meta-intel-contrib/log/?h=kishore/denzil
+> 
+> Kishore Bodke (1):
+>   Cedartrail: Update SRCREV of yocto/pvr kernel branch
+> 
+>  .../recipes-kernel/linux/linux-yocto_3.0.bbappend  |    4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
 > 
 
 
