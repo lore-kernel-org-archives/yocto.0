@@ -1,50 +1,29 @@
-Return-Path: <B29882@freescale.com>
-Received: from tx2outboundpool.messaging.microsoft.com
-	(tx2ehsobe001.messaging.microsoft.com [65.55.88.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 14065E0044D
-	for <yocto@yoctoproject.org>; Fri,  4 May 2012 09:08:06 -0700 (PDT)
-Received: from mail111-tx2-R.bigfish.com (10.9.14.245) by
-	TX2EHSOBE005.bigfish.com (10.9.40.25) with Microsoft SMTP Server id
-	14.1.225.23; Fri, 4 May 2012 16:07:54 +0000
-Received: from mail111-tx2 (localhost [127.0.0.1])	by
-	mail111-tx2-R.bigfish.com (Postfix) with ESMTP id 72EE9260654	for
-	<yocto@yoctoproject.org>; Fri,  4 May 2012 16:07:54 +0000 (UTC)
-X-SpamScore: -9
-X-BigFish: VS-9(zz9371I1432N98dKzz1202hzz8275bhz2dh2a8h668h839h8e2h8e3hbe9i)
-X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null); IPV:NLI;
-	H:mail.freescale.net; RD:none; EFVD:NLI
-Received: from mail111-tx2 (localhost.localdomain [127.0.0.1]) by mail111-tx2
-	(MessageSwitch) id 1336147673348584_20377;
-	Fri,  4 May 2012 16:07:53 +0000 (UTC)
-Received: from TX2EHSMHS025.bigfish.com (unknown [10.9.14.247])	by
-	mail111-tx2.bigfish.com (Postfix) with ESMTP id 436C3A0211;
-	Fri,  4 May 2012 16:07:53 +0000 (UTC)
-Received: from mail.freescale.net (70.37.183.190) by TX2EHSMHS025.bigfish.com
-	(10.9.99.125) with Microsoft SMTP Server (TLS) id 14.1.225.23;
-	Fri, 4 May 2012 16:07:52 +0000
-Received: from 039-SN1MPN1-002.039d.mgd.msft.net ([169.254.2.151]) by
-	039-SN1MMR1-001.039d.mgd.msft.net ([10.84.1.13]) with mapi id
-	14.01.0355.003; Fri, 4 May 2012 11:08:02 -0500
-From: McClintock Matthew-B29882 <B29882@freescale.com>
-To: Jim Rucker <jrucker@altera.com>
-Thread-Topic: [yocto] error with bb.fetch2.get_srcrev(d)
-Thread-Index: AQHNKhAUdsY+SAO8lkm6TyZ3WRIl4g==
-Date: Fri, 4 May 2012 16:08:01 +0000
-Message-ID: <CAEsOVNfDA9rcQ1dshyKBq=rCk4nmqsBTQ0QvNL9jxa5SO52VBg@mail.gmail.com>
-References: <loom.20120504T174109-199@post.gmane.org>
-In-Reply-To: <loom.20120504T174109-199@post.gmane.org>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [99.47.177.27]
+Return-Path: <woailinux@hotmail.com>
+Received: from blu0-omc3-s38.blu0.hotmail.com (blu0-omc3-s38.blu0.hotmail.com
+	[65.55.116.113])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 02BE8E0044D
+	for <yocto@yoctoproject.org>; Fri,  4 May 2012 09:10:31 -0700 (PDT)
+Received: from BLU0-SMTP98 ([65.55.116.72]) by blu0-omc3-s38.blu0.hotmail.com
+	with Microsoft SMTPSVC(6.0.3790.4675); 
+	Fri, 4 May 2012 09:10:30 -0700
+X-Originating-IP: [114.255.122.12]
+X-Originating-Email: [woailinux@hotmail.com]
+Message-ID: <BLU0-SMTP9800BBCD2EEA3D7A38253CB92C0@phx.gbl>
+Received: from [172.21.23.12] ([114.255.122.12]) by BLU0-SMTP98.phx.gbl over
+	TLS secured channel with Microsoft SMTPSVC(6.0.3790.4675); 
+	Fri, 4 May 2012 09:10:30 -0700
+Date: Sat, 5 May 2012 00:10:23 +0800
+From: jack <woailinux@hotmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:7.0.1) Gecko/20110929 Thunderbird/7.0.1
 MIME-Version: 1.0
-X-OriginatorOrg: freescale.com
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: error with bb.fetch2.get_srcrev(d)
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+X-OriginalArrivalTime: 04 May 2012 16:10:30.0549 (UTC)
+	FILETIME=[6D512450:01CD2A10]
+Subject: When "bitbake core-image-sato-sdk", Error: Function failed: do_kernel_configme. Who can explain Bruce Ashfield's solution? thank you!
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: McClintock Matthew-B29882 <B29882@freescale.com>
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -53,71 +32,117 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 04 May 2012 16:08:06 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-ID: <0B0A1380747B3A4FAC049FD2D93E1FA7@mgd.freescale.com>
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 04 May 2012 16:10:32 -0000
+Content-Type: multipart/alternative;
+	boundary="------------060902090605080003010907"
 
-On Fri, May 4, 2012 at 10:46 AM, Jim Rucker <jrucker@altera.com> wrote:
-> In the project that I'm working on we have a recipes-bsp and recipes-kern=
-el, and
-> when I try to build virtual/kernel I'm getting the following error. It lo=
-oks to
-> me like it's trying to get the git from our u-boot server so it can find =
-the
-> version, but at this point I'm trying to build the kernel, not u-boot. So=
-, is
-> there a way to build it independently, and if so how do I isolate the iss=
-ue?
-> bitbake -DDD doesn't provide any additional info
->
->
->
-> ERROR: Failure expanding variable SRCPV, expression was
-> ${@bb.fetch2.get_srcrev(d)} which triggered exception FetchError: Fetcher
-> failure for URL: 'None'. Fetch command export HOME=3D"/home/jrucker"; exp=
-ort
-> SSH_AGENT_PID=3D"1461"; export SSH_AUTH_SOCK=3D"/tmp/keyring-yphCY1/ssh";=
- export
-> GIT_CONFIG=3D"/home/jrucker/poky/6.0/poky-edison-6.0/build/tmp/sysroots/i=
-686-
-> linux/usr/etc/gitconfig"; export PATH=3D"/home/jrucker/poky/6.0/poky-edis=
-on-
-> 6.0/build/tmp/sysroots/i686-linux/usr/bin/armv7a-vfp-neon-poky-linux-
-> gnueabi:/home/jrucker/poky/6.0/poky-edison-
-> 6.0/build/tmp/sysroots/socfpga5xs1/usr/bin/crossscripts:/home/jrucker/pok=
-y/6.0/p
-> oky-edison-6.0/build/tmp/sysroots/i686-
-> linux/usr/sbin:/home/jrucker/poky/6.0/poky-edison-6.0/build/tmp/sysroots/=
-i686-
-> linux/usr/bin:/home/jrucker/poky/6.0/poky-edison-6.0/build/tmp/sysroots/i=
-686-
-> linux/sbin:/home/jrucker/poky/6.0/poky-edison-6.0/build/tmp/sysroots/i686=
--
-> linux//bin:/home/jrucker/poky/6.0/poky-edison-
-> 6.0/bitbake/bin/:/home/jrucker/poky/6.0/poky-edison-
-> 6.0/scripts:/home/jrucker/poky/6.0/poky-edison-
-> 6.0/bitbake/bin/:/home/jrucker/poky/6.0/poky-edison-
-> 6.0/scripts:/home/jrucker/poky/6.0/poky-edison-
-> 6.0/bitbake/bin/:/home/jrucker/poky/6.0/poky-edison-
-> 6.0/scripts:/home/jrucker/poky/6.0/poky-edison-
-> 6.0/bitbake/bin/:/home/jrucker/poky/6.0/poky-edison-
-> 6.0/scripts:/home/jrucker/poky/6.0/poky-edison-
-> 6.0/bitbake/bin/:/home/jrucker/poky/6.0/poky-edison-
-> 6.0/scripts:/home/jrucker/poky/6.0/poky-edison-
-> 6.0/bitbake/bin/:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:=
-/usr/sb
-> in:/usr/bin:/sbin:/bin:/usr/games:/home/jrucker/poky/6.0/poky-edison-
-> 6.0/scripts"; git ls-remote ssh://git@ec2-67-102-16-93.compute-
-> 1.amazonaws.com/uboot.git socfpga5xs1_v2011.12 failed with signal 128, ou=
-tput:
-> Permission denied (publickey).
-> fatal: The remote end hung up unexpectedly
+--------------060902090605080003010907
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Does your u-boot SRCREV =3D ${AUTOREV}? You could try picking a specific
-SHA so it does not have to check for the latest each time.
-
--M=
+Hello, all! When "bitbake core-image-sato-sdk", I was puzzled by such 
+errors:
 
 
+NOTE: package 
+linux-yocto-3.0.23+git1+59314a3523e360796419d76d78c6f7d8c5ef2593_1+63c65842a3a74e4bd3128004ac29b5639f16433f-r4: 
+task do_kernel_configme: Started
+ERROR: Function failed: do_kernel_configme (see 
+/home/jackie/esdc/poky/build/tmp/work/esdc2012-poky-linux/linux-yocto-3.0.23+git1+59314a3523e360796419d76d78c6f7d8c5ef2593_1+63c65842a3a74e4bd3128004ac29b5639f16433f-r4/temp/log.do_kernel_configme.18778 
+for further information)
+ERROR: Logfile of failure stored in: 
+/home/jackie/esdc/poky/build/tmp/work/esdc2012-poky-linux/linux-yocto-3.0.23+git1+59314a3523e360796419d76d78c6f7d8c5ef2593_1+63c65842a3a74e4bd3128004ac29b5639f16433f-r4/temp/log.do_kernel_configme.18778
+Log data follows:
+| ERROR: Function failed: do_kernel_configme (see 
+/home/jackie/esdc/poky/build/tmp/work/esdc2012-poky-linux/linux-yocto-3.0.23+git1+59314a3523e360796419d76d78c6f7d8c5ef2593_1+63c65842a3a74e4bd3128004ac29b5639f16433f-r4/temp/log.do_kernel_configme.18778 
+for further information)
+| [INFO] doing kernel configme
+| 
+/home/jackie/esdc/poky/build/tmp/work/esdc2012-poky-linux/linux-yocto-3.0.23+git1+59314a3523e360796419d76d78c6f7d8c5ef2593_1+63c65842a3a74e4bd3128004ac29b5639f16433f-r4/temp/run.do_kernel_configme.18778: 
+line 92: 
+:/home/jackie/esdc/poky/scripts:/home/jackie/esdc/poky/build/tmp/work/esdc2012-poky-linux/linux-yocto-3.0.23+git1+59314a3523e360796419d76d78c6f7d8c5ef2593_1+63c65842a3a74e4bd3128004ac29b5639f16433f-r4/linux/scripts/util: 
+No such file or directory
+NOTE: package 
+linux-yocto-3.0.23+git1+59314a3523e360796419d76d78c6f7d8c5ef2593_1+63c65842a3a74e4bd3128004ac29b5639f16433f-r4: 
+task do_kernel_configme: Failed
+ERROR: Task 760 
+(/home/jackie/esdc/poky/meta/recipes-kernel/linux/linux-yocto_3.0.bb, 
+do_kernel_configme) failed with exit code '1'
+Waiting for 2 active tasks to finish:
+0: gcc-cross-4.6.3+svnr184847-r23 do_compile (pid 14631)
+1: eggdbus-native-0.6-r3 do_compile (pid 18130)
+
+
+I googled and found Bruce Ashfield 
+<http://search.gmane.org/?author=Bruce+Ashfield&sort=date>'s solution:
+In the meantime, if you remove the kern-tools-native_git.bbappend from 
+the meta-kernel-dev
+layer, the AUTOREV setting will be removed, and you won't pull in tools 
+that are too
+new for the matching kernel.
+
+But where is the kern-tools-native_git.bbappend and meta-kernel-dev? I 
+am newer to yocto, who can help me?
+
+Thanks!
+
+--------------060902090605080003010907
+Content-Type: text/html; charset="ISO-8859-1"
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    Hello, all! When "bitbake core-image-sato-sdk", I was puzzled by
+    such errors:<br>
+    <br>
+    <br>
+    NOTE: package
+    linux-yocto-3.0.23+git1+59314a3523e360796419d76d78c6f7d8c5ef2593_1+63c65842a3a74e4bd3128004ac29b5639f16433f-r4:
+    task do_kernel_configme: Started<br>
+    ERROR: Function failed: do_kernel_configme (see
+    /home/jackie/esdc/poky/build/tmp/work/esdc2012-poky-linux/linux-yocto-3.0.23+git1+59314a3523e360796419d76d78c6f7d8c5ef2593_1+63c65842a3a74e4bd3128004ac29b5639f16433f-r4/temp/log.do_kernel_configme.18778
+    for further information)<br>
+    ERROR: Logfile of failure stored in:
+/home/jackie/esdc/poky/build/tmp/work/esdc2012-poky-linux/linux-yocto-3.0.23+git1+59314a3523e360796419d76d78c6f7d8c5ef2593_1+63c65842a3a74e4bd3128004ac29b5639f16433f-r4/temp/log.do_kernel_configme.18778<br>
+    Log data follows:<br>
+    | ERROR: Function failed: do_kernel_configme (see
+    /home/jackie/esdc/poky/build/tmp/work/esdc2012-poky-linux/linux-yocto-3.0.23+git1+59314a3523e360796419d76d78c6f7d8c5ef2593_1+63c65842a3a74e4bd3128004ac29b5639f16433f-r4/temp/log.do_kernel_configme.18778
+    for further information)<br>
+    | [INFO] doing kernel configme<br>
+    |
+    /home/jackie/esdc/poky/build/tmp/work/esdc2012-poky-linux/linux-yocto-3.0.23+git1+59314a3523e360796419d76d78c6f7d8c5ef2593_1+63c65842a3a74e4bd3128004ac29b5639f16433f-r4/temp/run.do_kernel_configme.18778:
+    line 92:
+    :/home/jackie/esdc/poky/scripts:/home/jackie/esdc/poky/build/tmp/work/esdc2012-poky-linux/linux-yocto-3.0.23+git1+59314a3523e360796419d76d78c6f7d8c5ef2593_1+63c65842a3a74e4bd3128004ac29b5639f16433f-r4/linux/scripts/util:
+    No such file or directory<br>
+    NOTE: package
+    linux-yocto-3.0.23+git1+59314a3523e360796419d76d78c6f7d8c5ef2593_1+63c65842a3a74e4bd3128004ac29b5639f16433f-r4:
+    task do_kernel_configme: Failed<br>
+    ERROR: Task 760
+    (/home/jackie/esdc/poky/meta/recipes-kernel/linux/linux-yocto_3.0.bb,
+    do_kernel_configme) failed with exit code '1'<br>
+    Waiting for 2 active tasks to finish:<br>
+    0: gcc-cross-4.6.3+svnr184847-r23 do_compile (pid 14631)<br>
+    1: eggdbus-native-0.6-r3 do_compile (pid 18130)<br>
+    <br>
+    &nbsp;<br>
+    I googled and found <span class="author"><a
+        href="http://search.gmane.org/?author=Bruce+Ashfield&amp;sort=date"
+        rel="nofollow">Bruce Ashfield</a>'s solution:<br>
+    </span>In the meantime, if you remove the
+    kern-tools-native_git.bbappend from the meta-kernel-dev<br>
+    layer, the AUTOREV setting will be removed, and you won't pull in
+    tools that are too<br>
+    new for the matching kernel.<br>
+    <br>
+    But where is the kern-tools-native_git.bbappend and meta-kernel-dev?
+    I am newer to yocto, who can help me?<br>
+    &nbsp;<br>
+    Thanks!<br>
+  </body>
+</html>
+
+--------------060902090605080003010907--
