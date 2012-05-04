@@ -1,21 +1,30 @@
-Return-Path: <giovanni.pavoni@exorint.it>
-Received: from esafe.exorint.net (esafe.exorint.net [89.96.201.228])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 19C91E006C7
-	for <yocto@yoctoproject.org>; Fri,  4 May 2012 07:11:23 -0700 (PDT)
-Received: from sitek.exorint.net ([192.168.0.251]) by eSafe SMTP Relay
-	1326992231; Fri, 04 May 2012 16:10:28 +0100
+Return-Path: <gley-yocto@m.gmane.org>
+Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C354CE0044D
+	for <yocto@yoctoproject.org>; Fri,  4 May 2012 08:50:07 -0700 (PDT)
+Received: from list by plane.gmane.org with local (Exim 4.69)
+	(envelope-from <gley-yocto@m.gmane.org>) id 1SQKlh-0008UE-3A
+	for yocto@yoctoproject.org; Fri, 04 May 2012 17:50:05 +0200
+Received: from ip66-35-226-228.altera.com ([66.35.226.228])
+	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
+	id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Fri, 04 May 2012 17:50:04 +0200
+Received: from jrucker by ip66-35-226-228.altera.com with local (Gmexim 0.1
+	(Debian)) id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Fri, 04 May 2012 17:50:04 +0200
+X-Injected-Via-Gmane: http://gmane.org/
 To: yocto@yoctoproject.org
-MIME-Version: 1.0
-X-KeepSent: 202ED6ED:0B9727AB-C12579F4:004CA197;type=4; name=$KeepSent
-X-Mailer: Lotus Notes Release 8.5.2 August 10, 2010
-Message-ID: <OF202ED6ED.0B9727AB-ONC12579F4.004CA197-C12579F4.004DF0C3@Sitek.it>
-From: giovanni.pavoni@exorint.it
-Date: Fri, 4 May 2012 16:11:20 +0200
-X-MIMETrack: Serialize by Router on sitek/Sitek(Release 8.5.3|September 15,
-	2011) at 04/05/201216.11.19, Serialize complete
-	at 04/05/2012 16.11.19
-X-ESAFE-STATUS: [esafe.exorint.net] Mail allowed
-Subject: Denzil-7.0: unable to login as root with core-image-minimal
+From: Jim Rucker <jrucker@altera.com>
+Date: Fri, 4 May 2012 15:46:13 +0000 (UTC)
+Message-ID: <loom.20120504T174109-199@post.gmane.org>
+Mime-Version: 1.0
+X-Complaints-To: usenet@dough.gmane.org
+X-Gmane-NNTP-Posting-Host: sea.gmane.org
+User-Agent: Loom/3.14 (http://gmane.org/)
+X-Loom-IP: 66.35.226.228 (Mozilla/5.0 (Windows NT 6.1;
+	WOW64) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.162
+	Safari/535.19)
+Subject: error with bb.fetch2.get_srcrev(d)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,101 +36,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 04 May 2012 14:11:25 -0000
-Content-Type: multipart/alternative;
-	boundary="=_alternative 004DF0C1C12579F4_="
+X-List-Received-Date: Fri, 04 May 2012 15:50:08 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
 
---=_alternative 004DF0C1C12579F4_=
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: base64
+In the project that I'm working on we have a recipes-bsp and recipes-kernel, and 
+when I try to build virtual/kernel I'm getting the following error. It looks to 
+me like it's trying to get the git from our u-boot server so it can find the 
+version, but at this point I'm trying to build the kernel, not u-boot. So, is 
+there a way to build it independently, and if so how do I isolate the issue? 
+bitbake -DDD doesn't provide any additional info
 
-V2UganVzdCBidWlsdCB0aGUgY29yZS1pbWFnZS1taW5pbWFsIHdpdGggRGVuemlsLTcuMC4NCg0K
-V2hlbiB0cnlpbmcgdG8gbG9naW4gYXMgcm9vdCBmcm9tIHRoZSBjb25zb2xlLCB3ZSBnZXQgdGhl
-IGZvbGxvd2luZyBlcnJvciANCm1lc3NhZ2U6DQoiTG9naW46IG5vIHZhbGlkIHNoYWRvdyBwYXNz
-d29yZCINCg0KSWYgd2UgY2hlY2sgdGhlIGNvbnRlbnRzIG9mIHRoZSAvZXRjIGRpcmVjdG9yeSwg
-d2Ugc2VlICJzaGFkb3ciIGlzIG5vdCANCnByZXNlbnQuDQpBbnkgc3VnZ2VzdGlvbj8NCg0KTWFu
-eSB0aGFua3MgaW4gYWR2YW5jZSBmb3IgeW91ciBhdHRlbnRpb24uDQpHaW92YW5uaSBQLg0KDQoN
-Ckdpb3Zhbm5pIFBhdm9uaQ0KUiZEIERlcGFydG1lbnQNCg0KRXhvciBJbnRlcm5hdGlvbmFsIFMu
-cC5BLg0KVmlhIE1vbnRlIEZpb3Jpbm8sOQ0KSS0zNzA1NyBTYW4gR2lvdmFubmkgTHVwYXRvdG8g
-KFZSKQ0KUGhvbmU6KzM5MDQ1ODc3NDgzOSAtIEZheDorMzkwNDU4Nzc5MDIzDQoNCmdpb3Zhbm5p
-LnBhdm9uaUBleG9yaW50Lml0IC0gd3d3LmV4b3JpbnQubmV0IC0gd3d3LmV4b3JpbnQuaXQNCg0K
-DQoNCkFUVEVOWklPTkU6IFByaXZhY3kgUG9saWN5IOKAkyBELkxncy4gMTk2LzIwMDMNCiBMZSBp
-bmZvcm1hemlvbmkgY29udGVudXRlIGluIHF1ZXN0byBtZXNzYWdnaW8gZGkgcG9zdGEgZWxldHRy
-b25pY2Egc29ubyBkaSANCmNhcmF0dGVyZSBwcml2YXRvIGUgY29uZmlkZW56aWFsZSBlZCBlc2Ns
-dXNpdmFtZW50ZSByaXZvbHRlIGFsIGRlc3RpbmF0YXJpbyANCnNvcHJhIGluZGljYXRvLiBOZWwg
-Y2FzbyBhdmVzdGUgcmljZXZ1dG8gcXVlc3RvIG1lc3NhZ2dpbyBkaSBwb3N0YSBlbGV0dHJvbmlj
-YSANCnBlciBlcnJvcmUsIHZpIGNvbXVuaWNoaWFtbyBjaGUgYWkgc2Vuc2kgZGVsIHN1ZGRldHRv
-IGRlY3JldG8gw6ggdmlldGF0byBs4oCZdXNvLCANCmxhIGRpZmZ1c2lvbmUsIGRpc3RyaWJ1emlv
-bmUgbyByaXByb2R1emlvbmUgZGEgcGFydGUgZGkgb2duaSBhbHRyYSBwZXJzb25hLiANClNpZXRl
-IHByZWdhdGkgZGkgc2VnbmFsYXJsbyBpbW1lZGlhdGFtZW50ZSByaXNwb25kZW5kbyBhbCBtaXR0
-ZW50ZSBlIGRpIA0KZGlzdHJ1Z2dlcmUgcXVhbnRvIHJpY2V2dXRvIChjb21wcmVzaSBpIGZpbGUg
-YWxsZWdhdGkpIHNlbnphIGZhcm5lIGNvcGlhIG8gDQpsZWdnZXJuZSBpbCBjb250ZW51dG8uDQoN
-ClRoaXMgZS1tYWlsIHRyYW5zbWlzc2lvbiBjb250YWlucyBpbmZvcm1hdGlvbiB0aGF0IGlzIGNv
-bmZpZGVudGlhbCBhbmQgbWF5IGJlIA0KcHJpdmlsZWdlZC4gSXQgaXMgaW50ZW5kZWQgb25seSBm
-b3IgdGhlIGFkZHJlc3NlZShzKSBuYW1lZCBhYm92ZS4gSWYgeW91IA0KcmVjZWl2ZSB0aGlzIGUt
-bWFpbCBpbiBlcnJvciwgcGxlYXNlIGRvIG5vdCByZWFkLCBjb3B5IG9yIGRpc3NlbWluYXRlIGl0
-IGluIGFueSANCm1hbm5lci4gSWYgeW91IGFyZSBub3QgdGhlIGludGVuZGVkIHJlY2lwaWVudCwg
-YW55IGRpc2Nsb3N1cmUsIGNvcHlpbmcsIA0KZGlzdHJpYnV0aW9uIG9yIHVzZSBvZiB0aGUgY29u
-dGVudHMgb2YgdGhpcyBpbmZvcm1hdGlvbiBpcyBwcm9oaWJpdGVkLiBQbGVhc2UgDQpyZXBseSB0
-byB0aGUgbWVzc2FnZSBpbW1lZGlhdGVseSBieSBpbmZvcm1pbmcgdGhlIHNlbmRlciB0aGF0IHRo
-ZSBtZXNzYWdlIHdhcyANCm1pc2RpcmVjdGVkLiBBZnRlciByZXBseWluZywgcGxlYXNlIGVyYXNl
-IGl0IGZyb20geW91ciBjb21wdXRlciBzeXN0ZW0uIFlvdXIgDQphc3Npc3RhbmNlIGluIGNvcnJl
-Y3RpbmcgdGhpcyBlcnJvciBpcyBhcHByZWNpYXRlZC4NCiA=
 
---=_alternative 004DF0C1C12579F4_=
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: base64
 
-PGZvbnQgc2l6ZT0yIGZhY2U9InNhbnMtc2VyaWYiPldlIGp1c3QgYnVpbHQgdGhlIGNvcmUtaW1h
-Z2UtbWluaW1hbCB3aXRoDQpEZW56aWwtNy4wLjwvZm9udD4NCjxicj4NCjxicj48Zm9udCBzaXpl
-PTIgZmFjZT0ic2Fucy1zZXJpZiI+V2hlbiB0cnlpbmcgdG8gbG9naW4gYXMgcm9vdCBmcm9tIHRo
-ZQ0KY29uc29sZSwgd2UgZ2V0IHRoZSBmb2xsb3dpbmcgZXJyb3IgbWVzc2FnZTo8L2ZvbnQ+DQo8
-YnI+PGZvbnQgc2l6ZT0yIGZhY2U9InNhbnMtc2VyaWYiPiZxdW90O0xvZ2luOiBubyB2YWxpZCBz
-aGFkb3cgcGFzc3dvcmQmcXVvdDs8L2ZvbnQ+DQo8YnI+DQo8YnI+PGZvbnQgc2l6ZT0yIGZhY2U9
-InNhbnMtc2VyaWYiPklmIHdlIGNoZWNrIHRoZSBjb250ZW50cyBvZiB0aGUgL2V0Yw0KZGlyZWN0
-b3J5LCB3ZSBzZWUgJnF1b3Q7c2hhZG93JnF1b3Q7IGlzIG5vdCBwcmVzZW50LjwvZm9udD4NCjxi
-cj48Zm9udCBzaXplPTIgZmFjZT0ic2Fucy1zZXJpZiI+QW55IHN1Z2dlc3Rpb24/PC9mb250Pg0K
-PGJyPg0KPGJyPjxmb250IHNpemU9MiBmYWNlPSJzYW5zLXNlcmlmIj5NYW55IHRoYW5rcyBpbiBh
-ZHZhbmNlIGZvciB5b3VyIGF0dGVudGlvbi48L2ZvbnQ+DQo8YnI+PGZvbnQgc2l6ZT0yIGZhY2U9
-InNhbnMtc2VyaWYiPkdpb3Zhbm5pIFAuPC9mb250Pg0KDQoNCjxmb250IHNpemU9MSBmYWNlPSJB
-cmlhbCI+PGJyPg0KPC9mb250Pg0KPGJyPjxmb250IHNpemU9MiBmYWNlPSJzYW5zLXNlcmlmIj48
-Yj5HaW92YW5uaSBQYXZvbmk8L2I+PC9mb250Pg0KPGJyPjxmb250IHNpemU9MiBmYWNlPSJzYW5z
-LXNlcmlmIj5SJkQgRGVwYXJ0bWVudDwvZm9udD4NCjxicj4NCjxicj48Zm9udCBzaXplPTIgZmFj
-ZT0ic2Fucy1zZXJpZiI+PGI+RXhvciBJbnRlcm5hdGlvbmFsIFMucC5BLjwvYj48YnI+DQpWaWEg
-TW9udGUgRmlvcmlubyw5PGJyPg0KSS0zNzA1NyBTYW4gR2lvdmFubmkgTHVwYXRvdG8gKFZSKTxi
-cj4NClBob25lOiszOTA0NTg3NzQ4MzkgLSBGYXg6KzM5MDQ1ODc3OTAyMzxicj4NCjwvZm9udD4N
-Cjxicj48Zm9udCBzaXplPTIgZmFjZT0ic2Fucy1zZXJpZiI+Z2lvdmFubmkucGF2b25pQGV4b3Jp
-bnQuaXQgLSA8L2ZvbnQ+PGEgaHJlZj13d3cuZXhvcmludC5uZXQ+PGZvbnQgc2l6ZT0yIGZhY2U9
-InNhbnMtc2VyaWYiPnd3dy5leG9yaW50Lm5ldDwvZm9udD48L2E+PGZvbnQgc2l6ZT0yIGZhY2U9
-InNhbnMtc2VyaWYiPg0KLSA8L2ZvbnQ+PGEgaHJlZj13d3cuZXhvcmludC5pdD48Zm9udCBzaXpl
-PTIgZmFjZT0ic2Fucy1zZXJpZiI+d3d3LmV4b3JpbnQuaXQ8L2ZvbnQ+PC9hPjxmb250IHNpemU9
-MiBmYWNlPSJzYW5zLXNlcmlmIj48YnI+DQo8L2ZvbnQ+DQo8YnI+DQoNCjxmb250IHNpemU9MSBm
-YWNlPSJBcmlhbCI+PGJyPg0KPC9mb250Pjxmb250IHNpemU9MSBjb2xvcj0jNWY1ZjVmIGZhY2U9
-IkFyaWFsIj48aT5BVFRFTlpJT05FOiBQcml2YWN5IFBvbGljeQ0K4oCTIEQuTGdzLiAxOTYvMjAw
-MzwvaT48L2ZvbnQ+DQo8YnI+PGZvbnQgc2l6ZT0xIGNvbG9yPSM1ZjVmNWYgZmFjZT0iQXJpYWwi
-PjxpPiZuYnNwO0xlIGluZm9ybWF6aW9uaSBjb250ZW51dGUNCmluIHF1ZXN0byBtZXNzYWdnaW8g
-ZGkgcG9zdGEgZWxldHRyb25pY2Egc29ubyBkaSBjYXJhdHRlcmUgcHJpdmF0byBlIGNvbmZpZGVu
-emlhbGUNCmVkIGVzY2x1c2l2YW1lbnRlIHJpdm9sdGUgYWwgZGVzdGluYXRhcmlvIHNvcHJhIGlu
-ZGljYXRvLiBOZWwgY2FzbyBhdmVzdGUNCnJpY2V2dXRvIHF1ZXN0byBtZXNzYWdnaW8gZGkgcG9z
-dGEgZWxldHRyb25pY2EgcGVyIGVycm9yZSwgdmkgY29tdW5pY2hpYW1vDQpjaGUgYWkgc2Vuc2kg
-ZGVsIHN1ZGRldHRvIGRlY3JldG8gw6ggdmlldGF0byBs4oCZdXNvLCBsYSBkaWZmdXNpb25lLCBk
-aXN0cmlidXppb25lDQpvIHJpcHJvZHV6aW9uZSBkYSBwYXJ0ZSBkaSBvZ25pIGFsdHJhIHBlcnNv
-bmEuIFNpZXRlIHByZWdhdGkgZGkgc2VnbmFsYXJsbw0KaW1tZWRpYXRhbWVudGUgcmlzcG9uZGVu
-ZG8gYWwgbWl0dGVudGUgZSBkaSBkaXN0cnVnZ2VyZSBxdWFudG8gcmljZXZ1dG8NCihjb21wcmVz
-aSBpIGZpbGUgYWxsZWdhdGkpIHNlbnphIGZhcm5lIGNvcGlhIG8gbGVnZ2VybmUgaWwgY29udGVu
-dXRvLjwvaT48L2ZvbnQ+DQo8YnI+DQo8YnI+PGZvbnQgc2l6ZT0xIGNvbG9yPSM1ZjVmNWYgZmFj
-ZT0iQXJpYWwiPjxpPlRoaXMgZS1tYWlsIHRyYW5zbWlzc2lvbg0KY29udGFpbnMgaW5mb3JtYXRp
-b24gdGhhdCBpcyBjb25maWRlbnRpYWwgYW5kIG1heSBiZSBwcml2aWxlZ2VkLiBJdCBpcw0KaW50
-ZW5kZWQgb25seSBmb3IgdGhlIGFkZHJlc3NlZShzKSBuYW1lZCBhYm92ZS4gSWYgeW91IHJlY2Vp
-dmUgdGhpcyBlLW1haWwNCmluIGVycm9yLCBwbGVhc2UgZG8gbm90IHJlYWQsIGNvcHkgb3IgZGlz
-c2VtaW5hdGUgaXQgaW4gYW55IG1hbm5lci4gSWYNCnlvdSBhcmUgbm90IHRoZSBpbnRlbmRlZCBy
-ZWNpcGllbnQsIGFueSBkaXNjbG9zdXJlLCBjb3B5aW5nLCBkaXN0cmlidXRpb24NCm9yIHVzZSBv
-ZiB0aGUgY29udGVudHMgb2YgdGhpcyBpbmZvcm1hdGlvbiBpcyBwcm9oaWJpdGVkLiBQbGVhc2Ug
-cmVwbHkNCnRvIHRoZSBtZXNzYWdlIGltbWVkaWF0ZWx5IGJ5IGluZm9ybWluZyB0aGUgc2VuZGVy
-IHRoYXQgdGhlIG1lc3NhZ2Ugd2FzDQptaXNkaXJlY3RlZC4gQWZ0ZXIgcmVwbHlpbmcsIHBsZWFz
-ZSBlcmFzZSBpdCBmcm9tIHlvdXIgY29tcHV0ZXIgc3lzdGVtLg0KWW91ciBhc3Npc3RhbmNlIGlu
-IGNvcnJlY3RpbmcgdGhpcyBlcnJvciBpcyBhcHByZWNpYXRlZC48L2k+PC9mb250Pg0KPGJyPjxm
-b250IHNpemU9MSBjb2xvcj0jODA4MDgwIGZhY2U9IkFyaWFsIj48aT4mbmJzcDs8L2k+PC9mb250
-Pg0K
+ERROR: Failure expanding variable SRCPV, expression was 
+${@bb.fetch2.get_srcrev(d)} which triggered exception FetchError: Fetcher 
+failure for URL: 'None'. Fetch command export HOME="/home/jrucker"; export 
+SSH_AGENT_PID="1461"; export SSH_AUTH_SOCK="/tmp/keyring-yphCY1/ssh"; export 
+GIT_CONFIG="/home/jrucker/poky/6.0/poky-edison-6.0/build/tmp/sysroots/i686-
+linux/usr/etc/gitconfig"; export PATH="/home/jrucker/poky/6.0/poky-edison-
+6.0/build/tmp/sysroots/i686-linux/usr/bin/armv7a-vfp-neon-poky-linux-
+gnueabi:/home/jrucker/poky/6.0/poky-edison-
+6.0/build/tmp/sysroots/socfpga5xs1/usr/bin/crossscripts:/home/jrucker/poky/6.0/p
+oky-edison-6.0/build/tmp/sysroots/i686-
+linux/usr/sbin:/home/jrucker/poky/6.0/poky-edison-6.0/build/tmp/sysroots/i686-
+linux/usr/bin:/home/jrucker/poky/6.0/poky-edison-6.0/build/tmp/sysroots/i686-
+linux/sbin:/home/jrucker/poky/6.0/poky-edison-6.0/build/tmp/sysroots/i686-
+linux//bin:/home/jrucker/poky/6.0/poky-edison-
+6.0/bitbake/bin/:/home/jrucker/poky/6.0/poky-edison-
+6.0/scripts:/home/jrucker/poky/6.0/poky-edison-
+6.0/bitbake/bin/:/home/jrucker/poky/6.0/poky-edison-
+6.0/scripts:/home/jrucker/poky/6.0/poky-edison-
+6.0/bitbake/bin/:/home/jrucker/poky/6.0/poky-edison-
+6.0/scripts:/home/jrucker/poky/6.0/poky-edison-
+6.0/bitbake/bin/:/home/jrucker/poky/6.0/poky-edison-
+6.0/scripts:/home/jrucker/poky/6.0/poky-edison-
+6.0/bitbake/bin/:/home/jrucker/poky/6.0/poky-edison-
+6.0/scripts:/home/jrucker/poky/6.0/poky-edison-
+6.0/bitbake/bin/:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sb
+in:/usr/bin:/sbin:/bin:/usr/games:/home/jrucker/poky/6.0/poky-edison-
+6.0/scripts"; git ls-remote ssh://git@ec2-67-102-16-93.compute-
+1.amazonaws.com/uboot.git socfpga5xs1_v2011.12 failed with signal 128, output:
+Permission denied (publickey).
+fatal: The remote end hung up unexpectedly
 
---=_alternative 004DF0C1C12579F4_=--
+
+
