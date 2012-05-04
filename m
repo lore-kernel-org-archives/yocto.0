@@ -1,24 +1,34 @@
-Return-Path: <sgw@linux.intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 10C9FE0044D
-	for <yocto@yoctoproject.org>; Fri,  4 May 2012 14:36:06 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 04 May 2012 14:36:05 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="149488030"
-Received: from unknown (HELO [10.255.12.171]) ([10.255.12.171])
-	by fmsmga001.fm.intel.com with ESMTP; 04 May 2012 14:36:05 -0700
-Message-ID: <4FA44BC5.7050104@linux.intel.com>
-Date: Fri, 04 May 2012 14:36:05 -0700
-From: Saul Wold <sgw@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:12.0) Gecko/20120424 Thunderbird/12.0
-MIME-Version: 1.0
-To: Kristoffer Eriksson <kristoffer.ericson@gmail.com>
-References: <20120425214752.GA3525@hermes> <4FA448A1.5070306@gmail.com>
-In-Reply-To: <4FA448A1.5070306@gmail.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: [opkg-utils] Asking for an old patch review
+Return-Path: <elvis.dowson@gmail.com>
+Received: from mail-we0-f176.google.com (mail-we0-f176.google.com
+	[74.125.82.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 743A9E0044D
+	for <yocto@yoctoproject.org>; Fri,  4 May 2012 14:47:33 -0700 (PDT)
+Received: by werc1 with SMTP id c1so284485wer.35
+	for <yocto@yoctoproject.org>; Fri, 04 May 2012 14:47:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:content-type:content-transfer-encoding:subject:date:message-id
+	:to:mime-version:x-mailer;
+	bh=ubLlEdW5yI+w7CsR3lcl+9z00w5WunKfGTYPCYlNAng=;
+	b=xM4nxq4FWVjGZY3BBY+v9kWkJq2Pd1t83WyE6F6KZET5GsOWw/PQMhUlE5WQnYlSJM
+	ZvTDeDaeUnabWG3CMp8s9IMUXtDDdlU48wM0lp7EJE2iKwU7lbJN7KTiYNNU86jfmfYW
+	tgKg+fWwqCViWK8uxGo8C/M5PqHHKNTxgYz8yBuiK00crzSuyyFxLRtHmErCqfQopSwX
+	XPw9cqMfVYYZFjLdld4uO09kkR/7kp7uiaa7e+nX1CHax/8sBJ5qg1BH2uvJI9XZfJdu
+	O0/obXkskoCwFvhR6XznTQGitOW4XpAH6IfGTGGS05k7fvJz3yKqLldVnOBtApv01Gsq
+	DXpA==
+Received: by 10.180.79.135 with SMTP id j7mr16249189wix.19.1336168052419;
+	Fri, 04 May 2012 14:47:32 -0700 (PDT)
+Received: from [192.168.1.34] (5.Red-83-49-41.dynamicIP.rima-tde.net.
+	[83.49.41.5])
+	by mx.google.com with ESMTPS id j3sm946673wiw.1.2012.05.04.14.47.31
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Fri, 04 May 2012 14:47:31 -0700 (PDT)
+From: Elvis Dowson <elvis.dowson@gmail.com>
+Date: Fri, 4 May 2012 23:47:29 +0200
+Message-Id: <4A8D5C4F-3A9B-4171-9254-2DC2E273396C@gmail.com>
+To: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+Mime-Version: 1.0 (Apple Message framework v1257)
+X-Mailer: Apple Mail (2.1257)
+Subject: How to fix unpack errors
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,39 +40,18 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 04 May 2012 21:36:06 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 04 May 2012 21:47:33 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
-On 05/04/2012 02:22 PM, Kristoffer Eriksson wrote:
-> Any updates on this?
->
-> Apelete Seketeli skrev 2012-04-25 23:47:
->> Hello,
->>
->> I'm trying to get a patch for opkg-utils into oe-classic, and it seems
->> some of the changes of my patch were already submitted to yocto a
->> month ago:
->>
->> https://lists.yoctoproject.org/pipermail/yocto/2012-March/007851.html
->>
->> Since the opkg-utils recipe in oe-classic is using the yocto
->> repository as SRC_URI, the patch mentioned in the link above should be
->> applied to the yocto repository before I make further changes to
->> opkg-utils.
->>
->> Could someone here do a review of the above mentioned patch please ?
->>
-Have you checked the opkg-utils git repo?  It seems they have been merged.
+Hi,
+     How can I resolve these unpack errors:
 
-Sau!
+ERROR: Task 513 =
+(/tool/yocto/meta-gumstix/recipes-kernel/linux/linux-omap3_3.2.bb, =
+do_unpack) failed with exit code '1'
 
->> Best regards.
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
->
+Best regards,
+
+Elvis Dowson=
 
