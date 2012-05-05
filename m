@@ -1,38 +1,24 @@
-Return-Path: <elvis.dowson@gmail.com>
-Received: from mail-we0-f176.google.com (mail-we0-f176.google.com
-	[74.125.82.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 467FFE0044D
-	for <yocto@yoctoproject.org>; Fri,  4 May 2012 16:50:54 -0700 (PDT)
-Received: by werc1 with SMTP id c1so338248wer.35
-	for <yocto@yoctoproject.org>; Fri, 04 May 2012 16:50:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:mime-version:content-type:subject:date:in-reply-to:to
-	:references:message-id:x-mailer;
-	bh=Te33znkvYSTHlZBOJijKJl4CS8oAoFvz3ZDmIdRoBH4=;
-	b=VOmTi4L3xXf7r2npTwtZHlIzo47N5xTMY9d87Zmw9ABU0OD6xDvWhkqkMrJTw4SchR
-	FXGBjA2ZhutDdUQK45cWFLLt4tX1Vw5n7Lgn4ZhuMgIYsOHGg7kgluMWkQUCuxDaUyHE
-	mKzLhV1qpAifm8+S/0HjnogtXbv18xra4aukojLPdfoYo8+kOAAIl6LVW+4oNDhZe57M
-	8Ia5uxLdl8sy+nNZlPDymiU0CDaki1SbUjSP1VpuUW2Kz7nNuaZcGkgT0lJ5pNqrx2XN
-	EubMmb8JC4DEmusvF3gNFPXNtp/FWgE+QB+mJ4Yq5YWQRp+QY9s+VtnBK03kbJJy242X
-	W6fg==
-Received: by 10.180.101.65 with SMTP id fe1mr16904924wib.21.1336175453224;
-	Fri, 04 May 2012 16:50:53 -0700 (PDT)
-Received: from [192.168.1.34] (5.Red-83-49-41.dynamicIP.rima-tde.net.
-	[83.49.41.5])
-	by mx.google.com with ESMTPS id f19sm1897930wiw.11.2012.05.04.16.50.51
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Fri, 04 May 2012 16:50:52 -0700 (PDT)
-From: Elvis Dowson <elvis.dowson@gmail.com>
-Mime-Version: 1.0 (Apple Message framework v1257)
-Date: Sat, 5 May 2012 01:50:50 +0200
-In-Reply-To: <EE9DD0E6-24C8-4F2A-936D-27F6153EE6F5@gmail.com>
-To: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-References: <4A8D5C4F-3A9B-4171-9254-2DC2E273396C@gmail.com>
-	<4FA45D23.8040905@mlbassoc.com>
-	<EE9DD0E6-24C8-4F2A-936D-27F6153EE6F5@gmail.com>
-Message-Id: <155473BC-ACC4-498F-B343-A50DAE172C38@gmail.com>
-X-Mailer: Apple Mail (2.1257)
-Subject: Re: How to fix unpack errors
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 06305E0044D
+	for <yocto@yoctoproject.org>; Fri,  4 May 2012 17:07:08 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 04 May 2012 17:07:08 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="162178855"
+Received: from unknown (HELO [10.255.12.135]) ([10.255.12.135])
+	by fmsmga002.fm.intel.com with ESMTP; 04 May 2012 17:07:07 -0700
+From: Tom Zanussi <tom.zanussi@intel.com>
+To: Darren Hart <dvhart@linux.intel.com>
+In-Reply-To: <4FA4608D.3000803@linux.intel.com>
+References: <cover.1336167660.git.tom.zanussi@intel.com>
+	<4FA4608D.3000803@linux.intel.com>
+Date: Fri, 04 May 2012 19:06:53 -0500
+Message-ID: <1336176413.21923.23.camel@elmorro>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.28.3 
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH 0/7][KERNEL] add usb and mei features
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,74 +30,125 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 04 May 2012 23:50:54 -0000
-Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_D70C1F46-A2DC-422A-84D7-D323A3E387C9"
+X-List-Received-Date: Sat, 05 May 2012 00:07:09 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
---Apple-Mail=_D70C1F46-A2DC-422A-84D7-D323A3E387C9
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=us-ascii
+On Fri, 2012-05-04 at 16:04 -0700, Darren Hart wrote:
+> 
+> On 05/04/2012 03:07 PM, tom.zanussi@intel.com wrote:
+> > From: Tom Zanussi <tom.zanussi@intel.com>
+> > 
+> > This adds a few new features, one each for usb/[xeou]hci-hcd and
+> > another for amt/mei, and refactors existing config options into a new
+> > usb/base, which are then used in crownbay.
+> > 
+> > v2: after suggestions from Bruce and Darren of a preference for a more
+> > flattened feature tree structure, moved all the features into a single
+> > usb/ feature dir.  I did however retain the common 'base' feature
+> > because inlining that in each feature would mean that the same common
+> > set would be repeated in multiple config fragments if more than one usb
+> > feature was included in a BSP.
+> 
+> As things stand now, a BSP would have to include both the base and the
+> *hcd right?
+> 
+> include usb/base.scc
+> include ehci-hcd.scc
+> 
+> Seems to me we should manage the dependencies wherever we can. When I've
+> created fragments I've been including their requirements as well to make
+> it easier on the integrator. Since you've put the dependencies in their
+> own fragment, why not include the fragment in the *hcd.scc files?
+> 
+> +++ b/meta/cfg/kernel-cache/features/usb/ehci-hcd.scc
+> @@ -0,0 +1,4 @@
+> +define KFEATURE_DESCRIPTION "Enable options for ehci (USB 2.0)"
+> +define KFEATURE_COMPATIBILITY board
+> +
+> + include base.scc
+> +kconf hardware ehci-hcd.cfg
+> 
+> Now if someone need only include the one line for the *hcd. Since it's
+> only a total of 3 lines of CONFIG settings we're packaging up here, it
+> seems to me we should be able to enable it with only 1 line of meta data.
+> 
 
-Hi,
+Yes, this is exactly what I did in the previous patchset.
 
-On May 5, 2012, at 1:32 AM, Elvis Dowson wrote:
+The problem is that if we do this for each of the *hcd fragments, we end
+up with the options in base.cfg repeated for each, which may or may not
+produce a config-check warning.
 
-> git checkout b2a449a98ee17df64fecf5b4770d74b04e21d2cd could not be =
-run:
+To avoid that, we need to be able to add the base.cfg items once
+followed by the individual *hcd items as I did with the crownbay
+example:
 
-The above message gave me the clue as to why it wasn't working. It =
-probably couldn't find that particular commit id.
-
-What I did is do a local checkout of the exact same branch, and updated =
-the SRCREV to the latest for the omap-3.2 branch in steve's kernel, and =
-it was able to go past the unpack errors.
-
-SRCREV =3D "33128932803c3f8c35fe8dae257901deb60db2aa"
-SRC_URI =3D =
-"git://www.sakoman.com/git/linux-omap-2.6.git;branch=3Domap-3.2;protocol=3D=
-git \
-	   file://defconfig \
-           file://${BOOT_SPLASH} \
-           "
-
-Best regards,
-
-Elvis Dowson
++include features/usb/base.scc
++include features/usb/ehci-hcd.scc
++include features/usb/ohci-hcd.scc
++include features/usb/uhci-hcd.scc
 
 
---Apple-Mail=_D70C1F46-A2DC-422A-84D7-D323A3E387C9
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html;
-	charset=us-ascii
+Tom
 
-<html><head></head><body style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; -webkit-line-break: after-white-space; =
-">Hi,<div><br><div><div>On May 5, 2012, at 1:32 AM, Elvis Dowson =
-wrote:</div><br class=3D"Apple-interchange-newline"><blockquote =
-type=3D"cite"><div style=3D"word-wrap: break-word; -webkit-nbsp-mode: =
-space; -webkit-line-break: after-white-space; =
-"><div><div><div><div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2">git checkout =
-b2a449a98ee17df64fecf5b4770d74b04e21d2cd could not be =
-run:</font></div></div></div></div></div></div></blockquote><br></div><div=
->The above message gave me the clue as to why it wasn't working. It =
-probably couldn't find that particular commit =
-id.</div><div><br></div><div>What I did is do a local checkout of the =
-exact same branch, and updated the SRCREV to the latest for the omap-3.2 =
-branch in steve's kernel, and it was able to go past the unpack =
-errors.</div><div><br></div><div><div>SRCREV =3D =
-"33128932803c3f8c35fe8dae257901deb60db2aa"</div><div>SRC_URI =3D "<a =
-href=3D"git://www.sakoman.com/git/linux-omap-2.6.git;branch=3Domap-3.2;pro=
-tocol=3Dgit">git://www.sakoman.com/git/linux-omap-2.6.git;branch=3Domap-3.=
-2;protocol=3Dgit</a> \</div><div><span class=3D"Apple-tab-span" =
-style=3D"white-space:pre">	</span> &nbsp; <a =
-href=3D"file:///defconfig">file://defconfig</a> \</div><div>&nbsp; =
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<a =
-href=3D"file:///${BOOT_SPLASH}">file://${BOOT_SPLASH}</a> =
-\</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
-&nbsp;"</div></div><div><br></div><div>Best =
-regards,</div><div><br></div><div>Elvis =
-Dowson</div><br></div></body></html>=
+> --
+> Darren
+> 
+> > 
+> > Please pull into linux-yocto-3.2.
+> > 
+> > Thanks,
+> > 
+> > Tom
+> > 
+> > The following changes since commit b14a08f5c7b469a5077c10942f4e1aec171faa9d:
+> >   Yang Shi (1):
+> >         meta: Clean up BSPs kernel config
+> > 
+> > are available in the git repository at:
+> > 
+> >   git://git.yoctoproject.org/linux-yocto-2.6.37-contrib.git tzanussi/xhcd-mei-features
+> >   http://git.yoctoproject.org/cgit.cgi//log/?h=tzanussi/xhcd-mei-features
+> > 
+> > Tom Zanussi (7):
+> >   meta: add usb/base feature
+> >   meta: add usb/xhci-hcd feature
+> >   meta: add usb/ehci-hcd feature
+> >   meta: add usb/ohci-hcd feature
+> >   meta: add usb/uhci-hcd feature
+> >   meta/crownbay: use usb features
+> >   meta: add mei feature
+> > 
+> >  meta/cfg/kernel-cache/bsp/crownbay/crownbay.cfg |    6 ------
+> >  meta/cfg/kernel-cache/bsp/crownbay/crownbay.scc |    5 +++++
+> >  meta/cfg/kernel-cache/features/amt/mei/mei.cfg  |    3 +++
+> >  meta/cfg/kernel-cache/features/amt/mei/mei.scc  |    4 ++++
+> >  meta/cfg/kernel-cache/features/usb/base.cfg     |    3 +++
+> >  meta/cfg/kernel-cache/features/usb/base.scc     |    4 ++++
+> >  meta/cfg/kernel-cache/features/usb/ehci-hcd.cfg |    1 +
+> >  meta/cfg/kernel-cache/features/usb/ehci-hcd.scc |    4 ++++
+> >  meta/cfg/kernel-cache/features/usb/ohci-hcd.cfg |    1 +
+> >  meta/cfg/kernel-cache/features/usb/ohci-hcd.scc |    4 ++++
+> >  meta/cfg/kernel-cache/features/usb/uhci-hcd.cfg |    1 +
+> >  meta/cfg/kernel-cache/features/usb/uhci-hcd.scc |    4 ++++
+> >  meta/cfg/kernel-cache/features/usb/xhci-hcd.cfg |    1 +
+> >  meta/cfg/kernel-cache/features/usb/xhci-hcd.scc |    4 ++++
+> >  14 files changed, 39 insertions(+), 6 deletions(-)
+> >  create mode 100644 meta/cfg/kernel-cache/features/amt/mei/mei.cfg
+> >  create mode 100644 meta/cfg/kernel-cache/features/amt/mei/mei.scc
+> >  create mode 100644 meta/cfg/kernel-cache/features/usb/base.cfg
+> >  create mode 100644 meta/cfg/kernel-cache/features/usb/base.scc
+> >  create mode 100644 meta/cfg/kernel-cache/features/usb/ehci-hcd.cfg
+> >  create mode 100644 meta/cfg/kernel-cache/features/usb/ehci-hcd.scc
+> >  create mode 100644 meta/cfg/kernel-cache/features/usb/ohci-hcd.cfg
+> >  create mode 100644 meta/cfg/kernel-cache/features/usb/ohci-hcd.scc
+> >  create mode 100644 meta/cfg/kernel-cache/features/usb/uhci-hcd.cfg
+> >  create mode 100644 meta/cfg/kernel-cache/features/usb/uhci-hcd.scc
+> >  create mode 100644 meta/cfg/kernel-cache/features/usb/xhci-hcd.cfg
+> >  create mode 100644 meta/cfg/kernel-cache/features/usb/xhci-hcd.scc
+> > 
+> 
 
---Apple-Mail=_D70C1F46-A2DC-422A-84D7-D323A3E387C9--
+
+
