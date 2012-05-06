@@ -1,31 +1,20 @@
-Return-Path: <jiajun.xu@intel.com>
+Return-Path: <tom.zanussi@intel.com>
 Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EAB95E0059A
-	for <yocto@yoctoproject.org>; Sun,  6 May 2012 07:48:14 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C639AE013D1
+	for <yocto@yoctoproject.org>; Sun,  6 May 2012 09:53:42 -0700 (PDT)
 Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 06 May 2012 07:48:14 -0700
+	by azsmga102.ch.intel.com with ESMTP; 06 May 2012 09:53:42 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="139491424"
-Received: from azsmsx601.amr.corp.intel.com ([10.2.121.193])
-	by azsmga001.ch.intel.com with ESMTP; 06 May 2012 07:48:14 -0700
-Received: from shsmsx102.ccr.corp.intel.com (10.239.4.154) by
-	azsmsx601.amr.corp.intel.com (10.2.121.193) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Sun, 6 May 2012 07:48:13 -0700
-Received: from shsmsx101.ccr.corp.intel.com ([169.254.1.240]) by
-	SHSMSX102.ccr.corp.intel.com ([169.254.2.226]) with mapi id
-	14.01.0355.002; Sun, 6 May 2012 22:48:12 +0800
-From: "Xu, Jiajun" <jiajun.xu@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Yocto weekly bug trend charts -- WW18
-Thread-Index: Ac0rl0HlHpuvaFFNT1mi4sak4/QaSA==
-Date: Sun, 6 May 2012 14:48:11 +0000
-Message-ID: <90741FE9B50D654690EB940EDB456C8E0F70B3@SHSMSX101.ccr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.239.127.40]
-MIME-Version: 1.0
-Subject: Yocto weekly bug trend charts -- WW18
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="139511821"
+Received: from unknown (HELO localhost) ([10.255.12.135])
+	by azsmga001.ch.intel.com with ESMTP; 06 May 2012 09:53:41 -0700
+From: tom.zanussi@intel.com
+To: yocto@yoctoproject.org, bruce.ashfield@windriver.com,
+	dvhart@linux.intel.com
+Date: Sun,  6 May 2012 11:53:17 -0500
+Message-Id: <cover.1336321542.git.tom.zanussi@intel.com>
+X-Mailer: git-send-email 1.7.0.4
+Subject: [PATCH 0/7][KERNEL] add usb and mei features
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,18 +26,73 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 06 May 2012 14:48:15 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Sun, 06 May 2012 16:53:42 -0000
 
-Hi all,
-	This is the weekly bug trend for WW18. Yocto 1.2 was released last week. T=
-he new submitted vs. fixed bug number is 51 vs. 35. WDD number and Open Bug=
- number increased a lot, as 893 and 184. Bug status of WW18 could be found =
-on https://wiki.yoctoproject.org/wiki/Yocto_Bug_Trend.
+From: Tom Zanussi <tom.zanussi@intel.com>
 
-Best Regards,
-Jiajun
+This adds a few new features, one each for usb/[xeou]hci-hcd and
+another for amt/mei, and refactors existing config options into a new
+usb/base, which are then used in crownbay.
+
+v2: after suggestions from Bruce and Darren of a preference for a more
+flattened feature tree structure, moved all the features into a single
+usb/ feature dir.  I did however retain the common 'base' feature
+because inlining that in each feature would mean that the same common
+set would be repeated in multiple config fragments if more than one usb
+feature was included in a BSP.
+
+v3: include base.scc into each *hcd fragment again.
+
+Please pull into linux-yocto-3.2.
+
+Thanks,
+
+Tom
+
+The following changes since commit b14a08f5c7b469a5077c10942f4e1aec171faa9d:
+  Yang Shi (1):
+        meta: Clean up BSPs kernel config
+
+are available in the git repository at:
+
+  git://git.yoctoproject.org/linux-yocto-2.6.37-contrib.git tzanussi/xhcd-mei-features
+  http://git.yoctoproject.org/cgit.cgi//log/?h=tzanussi/xhcd-mei-features
+
+Tom Zanussi (7):
+  meta: add usb/base feature
+  meta: add usb/xhci-hcd feature
+  meta: add usb/ehci-hcd feature
+  meta: add usb/ohci-hcd feature
+  meta: add usb/uhci-hcd feature
+  meta/crownbay: use usb features
+  meta: add mei feature
+
+ meta/cfg/kernel-cache/bsp/crownbay/crownbay.cfg |    6 ------
+ meta/cfg/kernel-cache/bsp/crownbay/crownbay.scc |    4 ++++
+ meta/cfg/kernel-cache/features/amt/mei/mei.cfg  |    3 +++
+ meta/cfg/kernel-cache/features/amt/mei/mei.scc  |    4 ++++
+ meta/cfg/kernel-cache/features/usb/base.cfg     |    3 +++
+ meta/cfg/kernel-cache/features/usb/base.scc     |    4 ++++
+ meta/cfg/kernel-cache/features/usb/ehci-hcd.cfg |    1 +
+ meta/cfg/kernel-cache/features/usb/ehci-hcd.scc |    6 ++++++
+ meta/cfg/kernel-cache/features/usb/ohci-hcd.cfg |    1 +
+ meta/cfg/kernel-cache/features/usb/ohci-hcd.scc |    6 ++++++
+ meta/cfg/kernel-cache/features/usb/uhci-hcd.cfg |    1 +
+ meta/cfg/kernel-cache/features/usb/uhci-hcd.scc |    6 ++++++
+ meta/cfg/kernel-cache/features/usb/xhci-hcd.cfg |    1 +
+ meta/cfg/kernel-cache/features/usb/xhci-hcd.scc |    6 ++++++
+ 14 files changed, 46 insertions(+), 6 deletions(-)
+ create mode 100644 meta/cfg/kernel-cache/features/amt/mei/mei.cfg
+ create mode 100644 meta/cfg/kernel-cache/features/amt/mei/mei.scc
+ create mode 100644 meta/cfg/kernel-cache/features/usb/base.cfg
+ create mode 100644 meta/cfg/kernel-cache/features/usb/base.scc
+ create mode 100644 meta/cfg/kernel-cache/features/usb/ehci-hcd.cfg
+ create mode 100644 meta/cfg/kernel-cache/features/usb/ehci-hcd.scc
+ create mode 100644 meta/cfg/kernel-cache/features/usb/ohci-hcd.cfg
+ create mode 100644 meta/cfg/kernel-cache/features/usb/ohci-hcd.scc
+ create mode 100644 meta/cfg/kernel-cache/features/usb/uhci-hcd.cfg
+ create mode 100644 meta/cfg/kernel-cache/features/usb/uhci-hcd.scc
+ create mode 100644 meta/cfg/kernel-cache/features/usb/xhci-hcd.cfg
+ create mode 100644 meta/cfg/kernel-cache/features/usb/xhci-hcd.scc
 
 
