@@ -1,22 +1,24 @@
 Return-Path: <tom.zanussi@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9DD89E013D3
-	for <yocto@yoctoproject.org>; Sun,  6 May 2012 09:53:44 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 06 May 2012 09:53:44 -0700
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8D5E7E01418
+	for <yocto@yoctoproject.org>; Sun,  6 May 2012 09:53:46 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 06 May 2012 09:53:46 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="96972097"
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="140704908"
 Received: from unknown (HELO localhost) ([10.255.12.135])
-	by AZSMGA002.ch.intel.com with ESMTP; 06 May 2012 09:53:43 -0700
+	by orsmga002.jf.intel.com with ESMTP; 06 May 2012 09:53:45 -0700
 From: tom.zanussi@intel.com
 To: yocto@yoctoproject.org, bruce.ashfield@windriver.com,
 	dvhart@linux.intel.com
-Date: Sun,  6 May 2012 11:53:15 -0500
-Message-Id: <18a0f57440e7e601e4a6e58a649299be4db7ccbd.1336321542.git.tom.zanussi@intel.com>
+Date: Sun,  6 May 2012 11:53:16 -0500
+Message-Id: <8cd7f235dc0bfbc21d74f548d2a1d55a36055448.1336321542.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.0.4
+In-Reply-To: <18a0f57440e7e601e4a6e58a649299be4db7ccbd.1336321542.git.tom.zanussi@intel.com>
+References: <18a0f57440e7e601e4a6e58a649299be4db7ccbd.1336321542.git.tom.zanussi@intel.com>
 In-Reply-To: <cover.1336321542.git.tom.zanussi@intel.com>
 References: <cover.1336321542.git.tom.zanussi@intel.com>
-Subject: [PATCH 1/7][KERNEL] meta: add usb/base feature
+Subject: [PATCH 2/7][KERNEL] meta: add usb/xhci-hcd feature
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,39 +30,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 06 May 2012 16:53:44 -0000
+X-List-Received-Date: Sun, 06 May 2012 16:53:46 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-Add a feature to enable 'base' support for USB.
+Add an 'xhci-hcd' feature that turns on the kernel options required to
+support xhci (USB 3.0).
 
 Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
 ---
- meta/cfg/kernel-cache/features/usb/base.cfg |    3 +++
- meta/cfg/kernel-cache/features/usb/base.scc |    4 ++++
+ meta/cfg/kernel-cache/features/usb/xhci-hcd.cfg |    1 +
+ meta/cfg/kernel-cache/features/usb/xhci-hcd.scc |    6 ++++++
  2 files changed, 7 insertions(+), 0 deletions(-)
- create mode 100644 meta/cfg/kernel-cache/features/usb/base.cfg
- create mode 100644 meta/cfg/kernel-cache/features/usb/base.scc
+ create mode 100644 meta/cfg/kernel-cache/features/usb/xhci-hcd.cfg
+ create mode 100644 meta/cfg/kernel-cache/features/usb/xhci-hcd.scc
 
-diff --git a/meta/cfg/kernel-cache/features/usb/base.cfg b/meta/cfg/kernel-cache/features/usb/base.cfg
+diff --git a/meta/cfg/kernel-cache/features/usb/xhci-hcd.cfg b/meta/cfg/kernel-cache/features/usb/xhci-hcd.cfg
 new file mode 100644
-index 0000000..dec6a47
+index 0000000..ae4294b
 --- /dev/null
-+++ b/meta/cfg/kernel-cache/features/usb/base.cfg
-@@ -0,0 +1,3 @@
-+CONFIG_USB_SUPPORT=y
-+CONFIG_USB=y
-+
-diff --git a/meta/cfg/kernel-cache/features/usb/base.scc b/meta/cfg/kernel-cache/features/usb/base.scc
++++ b/meta/cfg/kernel-cache/features/usb/xhci-hcd.cfg
+@@ -0,0 +1 @@
++CONFIG_USB_XHCI_HCD=y
+diff --git a/meta/cfg/kernel-cache/features/usb/xhci-hcd.scc b/meta/cfg/kernel-cache/features/usb/xhci-hcd.scc
 new file mode 100644
-index 0000000..3c93475
+index 0000000..f559ce7
 --- /dev/null
-+++ b/meta/cfg/kernel-cache/features/usb/base.scc
-@@ -0,0 +1,4 @@
-+define KFEATURE_DESCRIPTION "Enable core options for USB support"
++++ b/meta/cfg/kernel-cache/features/usb/xhci-hcd.scc
+@@ -0,0 +1,6 @@
++define KFEATURE_DESCRIPTION "Enable options for xhci (USB 3.0)"
 +define KFEATURE_COMPATIBILITY board
 +
-+kconf hardware base.cfg
++include base.scc
++
++kconf hardware xhci-hcd.cfg
 -- 
 1.7.0.4
 
