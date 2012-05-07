@@ -1,31 +1,62 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 45E0FE0137A
-	for <yocto@yoctoproject.org>; Tue,  8 May 2012 06:22:49 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail1.windriver.com (8.14.3/8.14.3) with ESMTP id q48DMkYR002352
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Tue, 8 May 2012 06:22:46 -0700 (PDT)
-Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Tue, 8 May 2012 06:22:45 -0700
-Message-ID: <4FA91E24.6030800@windriver.com>
-Date: Tue, 8 May 2012 09:22:44 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:12.0) Gecko/20120430 Thunderbird/12.0.1
+Return-Path: <song.liu@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BE8AEE01206
+	for <yocto@yoctoproject.org>; Mon,  7 May 2012 10:26:42 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 07 May 2012 10:26:42 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="141043788"
+Received: from orsmsx605.amr.corp.intel.com ([10.22.226.10])
+	by orsmga002.jf.intel.com with ESMTP; 07 May 2012 10:26:42 -0700
+Received: from orsmsx152.amr.corp.intel.com (10.22.226.39) by
+	orsmsx605.amr.corp.intel.com (10.22.226.10) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Mon, 7 May 2012 10:26:42 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.36]) by
+	ORSMSX152.amr.corp.intel.com ([169.254.8.73]) with mapi id
+	14.01.0355.002; Mon, 7 May 2012 10:26:41 -0700
+From: "Liu, Song" <song.liu@intel.com>
+To: "Liu, Song" <song.liu@intel.com>, "Stewart, David C"
+	<david.c.stewart@intel.com>, 'Anders Darander' <anders@chargestorm.se>, 
+	"Barros Pena, Belen" <belen.barros.pena@intel.com>, "Bodke, Kishore K"
+	<kishore.k.bodke@intel.com>,
+	'Bruce Ashfield' <bruce.ashfield@windriver.com>, 
+	'Daniel Cauchy' <dcauchy@mvista.com>, "'deVries, Alex'"
+	<Alex.deVries@windriver.com>, "'Dixon, Brad'" <Brad_Dixon@mentor.com>, 
+	"Dmytriyenko, Denys" <denys@ti.com>, "Erway, Tracey M"
+	<tracey.m.erway@intel.com>, "Flanagan, Elizabeth"
+	<elizabeth.flanagan@intel.com>, "Hart, Darren" <darren.hart@intel.com>, 
+	"'Hatle, Mark'" <mark.hatle@windriver.com>, 'Jeremy Puhlman'
+	<jpuhlman@gmail.com>, "Kooi, Koen" <k-kooi@ti.com>, "Kridner, Jason"
+	<jdk@ti.com>, "Li, Susie" <susie.li@intel.com>, "'Lieu.Ta@windriver.com'"
+	<'Lieu.Ta@windriver.com'>, "Lock, Joshua" <joshua.lock@intel.com>,
+	"'McCombe, Kevin'" <kevin.mccombe@windriver.com>, "Moeller, Thorsten"
+	<thorsten.moeller@intel.com>, "'morvek@mvista.com'" <'morvek@mvista.com'>, 
+	"Osier-mixon, Jeffrey" <jeffrey.osier-mixon@intel.com>, "'Polk, Jeffrey'"
+	<jeff.polk@windriver.com>, "Purdie, Richard" <richard.purdie@intel.com>,
+	"'Ranslam, Rob'" <Rob.Ranslam@windriver.com>, "Saxena, Rahul"
+	<rahul.saxena@intel.com>, "Wang, Shane" <shane.wang@intel.com>, "Wold,
+	Saul" <saul.wold@intel.com>, "Yu, Ke" <ke.yu@intel.com>, "Zanussi, Tom"
+	<tom.zanussi@intel.com>, "Zhang, Jessica" <jessica.zhang@intel.com>,
+	"Rifenbark, Scott M" <scott.m.rifenbark@intel.com>, "'Hudson, Sean'"
+	<Sean_Hudson@mentor.com>, "Serban,
+	Laurentiu" <laurentiu.serban@intel.com>, 
+	"Petrisor, Ileana" <ileana.petrisor@intel.com>, "Damian, Alexandru"
+	<alexandru.damian@intel.com>
+Thread-Topic: Agenda: Yocto Project Technical Team Meeting - Tuesday, May
+	08, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+Thread-Index: AQHNLHaQzz6Hank1jEKKGDT6INPo8A==
+Date: Mon, 7 May 2012 17:26:40 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A483CF009@ORSMSX101.amr.corp.intel.com>
+References: <7E680CB2A76BB8438D08CF13C09FC53A257BE410@ORSMSX101.amr.corp.intel.com>
+In-Reply-To: <7E680CB2A76BB8438D08CF13C09FC53A257BE410@ORSMSX101.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.138]
 MIME-Version: 1.0
-To: Frans Meulenbroeks <fransmeulenbroeks@gmail.com>
-References: <CACW_hTacgFqj2NQZ4aNuN5WBm2R9Ge3NS25XVJTKjmKm6spHKw@mail.gmail.com>
-	<4FA7E0DB.7050508@windriver.com>
-	<CACW_hTZj8W-eS0+3GzELu1J_kTww1dgLB4a17bvYtcmZ77ymaQ@mail.gmail.com>
-	<4FA82443.10001@windriver.com>
-	<CACW_hTbZze5nfCsuy097zUmyEs=0s6HT=y-q9af5fFd150bJRg@mail.gmail.com>
-	<4FA914B1.3060602@windriver.com>
-	<CACW_hTZ68+Ok8z+6diWZ=xToE9jPqZaoAAOdyYc6-xVsy7mszQ@mail.gmail.com>
-In-Reply-To: <CACW_hTZ68+Ok8z+6diWZ=xToE9jPqZaoAAOdyYc6-xVsy7mszQ@mail.gmail.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: modify a kernel patch
+X-Mailman-Approved-At: Tue, 08 May 2012 06:58:42 -0700
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Agenda: Yocto Project Technical Team Meeting - Tuesday, May 08, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,282 +68,127 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 08 May 2012 13:22:49 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 07 May 2012 17:26:42 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-On 12-05-08 09:03 AM, Frans Meulenbroeks wrote:
-> 2012/5/8 Bruce Ashfield<bruce.ashfield@windriver.com>:
->> On 12-05-08 03:18 AM, Frans Meulenbroeks wrote:
->>>
->>> 2012/5/7 Bruce Ashfield<bruce.ashfield@windriver.com>:
->>>>
->>>> On 12-05-07 03:29 PM, Frans Meulenbroeks wrote:
->>>>>
->>>>>
->>>>> 2012/5/7 Bruce Ashfield<bruce.ashfield@windriver.com>:
->>>>>>
->>>>>>
->>>>>> On 12-05-07 10:41 AM, Frans Meulenbroeks wrote:
->>>>>>>
->>>>>>>
->>>>>>>
->>>>>>> Hi all,
->>>>>>>
->>>>>>> Not sure what the best place is to mail this (the YP list or oe-core
->>>>>>> or oe-devel or ...)
->>>>>>> Apologies if this is the wrong place.
->>>>>>>
->>>>>>> The problem I'm facing is the following:
->>>>>>> I have a kernel with some additional drivers that are not upstreamed
->>>>>>> because they are very specifc.
->>>>>>> I'm moving from oe-classic to denzil and from 2.6.38 to 3.2.
->>>>>>> Now some of the patches do not apply any more.
->>>>>>> In oe-classic I would have gone to the ker>
->> Cheers
->>
->> Belen
->>
->>
->> On 08/05/2012 13:23, "Frans Meulenbroeks"<fransmeulenbroeks@gmail.com>
->> wrote:
->>
->>> 2012/5/8 Barros Pena, Belen<belen.barros.pena@intel.com>:
->>>> Hi Frans,
->>>>
->>>> Thank you so much for agreeing to talk to us. Outside working hours
->>>> should
->>>> be no problem. What time would be good for you?
->>>>
->>>>
->>>> If you are ok with it, I'd like to record our conversation: it means I
->>>> don't need to take lots of notes and I can focus on talking to you.
->>>> Using
->>>> Skype makes the recording easier: would you mind if we use that instead
->>>> of
->>>> the phone? My Skype ID is belenbarrospena.
->>>>
->>>> All the best,
->>>>
->>>> Belen
->>>>
->>>>
->>> Hi Belen,
->>>
->>> Recording is no problem. Tonight I'm a little bit low on time, but I
->>> think tomorrow evening I'm fairly flexible (this may still change
->>> though, my life is sometimes somewhat hectic).
->>> 20.30 or so will probably work for me, but if you prefer earlier or
->>> later that is also probably no problem.
->>> And recording is also no problem.
->>>
->>> Best regards, Frans
->>
->> ---------------------------------------------------------------------
->> Intel Corporation (UK) Limited
->> Registered No. 1134945 (England)
->> Registered Office: Pipers Way, Swindon SN3 1RJ
->> VAT No: 860 2173 47
->>
->> This e-mail and any attachments may contain confidential material for
->> the sole use of the intended recipient(s). Any review or distribution
->> by others is strictly prohibited. If you are not the intended
->> recipient, please contact the sender and delete all copies.
->>
->
-> nel work dir, fix the issue,
->>>>>>> do a quilt refresh and copy the patch back (there is a patch that
->>>>>>> contains our driver)
->>>>>>> However, denzil uses guilt instead of quilt
->>>>>>>
->>>>>>> If I do a devshell of virtual/kernel and want to do with guilt what I
->>>>>>> used to do with quilt I run into a problem.
->>>>>>> guilt status says: Patches directory does not exist, try guilt-init
->>>>>>> and indeed there is no patches dir like there was in oe-classic
->>>>>>
->>>>>>
->>>>>>
->>>>>>
->>>>>> Do you have guilt installed locally ? You are likely using the
->>>>>> native guilt. To keep patch lists separate on a per-branch basis
->>>>>> and to be able to capture them on th meta-branch, there are some
->>>>>> patches to guilt that move the patch directory location.
->>>>>
->>>>>
->>>>>
->>>>> Guilt natively complained about a mismatch with the git version (my
->>>>> work system is still ubuntu 10.04).
->>>>> If I do a bitbake -c devshell virtual/kernel and use guilt there, I
->>>>> get the error on the patches directory that I mentioned above.
->>>>> It was my idea that I then would get the oe version in my path but I
->>>>> did not really verify that. Then again under devshell I did not get
->>>>> complaints about the git version. Will verify this tomorrow (I have no
->>>>> access to the build system from here).
->>>>>>
->>>>>>
->>>>>>>
->> Cheers
->>
->> Belen
->>
->>
->> On 08/05/2012 13:23, "Frans Meulenbroeks"<fransmeulenbroeks@gmail.com>
->> wrote:
->>
->>> 2012/5/8 Barros Pena, Belen<belen.barros.pena@intel.com>:
->>>> Hi Frans,
->>>>
->>>> Thank you so much for agreeing to talk to us. Outside working hours
->>>> should
->>>> be no problem. What time would be good for you?
->>>>
->>>>
->>>> If you are ok with it, I'd like to record our conversation: it means I
->>>> don't need to take lots of notes and I can focus on talking to you.
->>>> Using
->>>> Skype makes the recording easier: would you mind if we use that instead
->>>> of
->>>> the phone? My Skype ID is belenbarrospena.
->>>>
->>>> All the best,
->>>>
->>>> Belen
->>>>
->>>>
->>> Hi Belen,
->>>
->>> Recording is no problem. Tonight I'm a little bit low on time, but I
->>> think tomorrow evening I'm fairly flexible (this may still change
->>> though, my life is sometimes somewhat hectic).
->>> 20.30 or so will probably work for me, but if you prefer earlier or
->>> later that is also probably no problem.
->>> And recording is also no problem.
->>>
->>> Best regards, Frans
->>
->> ---------------------------------------------------------------------
->> Intel Corporation (UK) Limited
->> Registered No. 1134945 (England)
->> Registered Office: Pipers Way, Swindon SN3 1RJ
->> VAT No: 860 2173 47
->>
->> This e-mail and any attachments may contain confidential material for
->> the sole use of the intended recipient(s). Any review or distribution
->> by others is strictly prohibited. If you are not the intended
->> recipient, please contact the sender and delete all copies.
->>
->
->
->>>>>> Are you working on top of linux-yocto-3.2 ? Or some other 3.2 tree ?
->>>>>
->>>>>
->>>>>
->>>>> I downloaded the denzil tarball from yoctoproject.com. I made some
->>>>> config changed and added a few local patches (bringing things over
->>>>> from my 2.6.38 oe-classic kernel).
->>>>>
->>>>> Should I have gotten a patches dir in my tmp/work/mymachine/linux* dir
->>>>> (I have my own machine mpc8313e based)
->>>>
->>>>
->>>>
->>>> The patches are pulled underneath the kernel tree itself, so that
->>>> they can be incorporated with other git manipulations of the tree
->>>> and shared as appropriate.
->>>>
->>>> So the patches directory exists in ${S}/meta/patches/$branch_name
->>>>
->>> Ok found that dir. However....
->>> It is still not clear to me how to use this though.
->>>
->>> What I did was start a devshell for virtual/kernel.
->>> Within the devshell guilt is in the path, but still it does not work
->>> (I also tried invoking guilt with the full path).
->>>   From my devshell window:
->>>
->>>
->>> frans@frans-desktop:~/poky-denzil-7.0-build/tmp/work/syrcxx-poky-linux-uclibc/linux-yocto-3.2.11+git1+b14a08f5c7b469a5077c10942f4e1aec171faa9d_1+01e948c2bdf7f5ad9f2b30047a8d3493a1a2880a-r1.23/linux$
->>> which guilt
->>> /home/frans/poky-denzil-7.0-build/tmp/sysroots/x86_64-linux/usr/bin/guilt
->>>
->>> frans@frans-desktop:~/poky-denzil-7.0-build/tmp/work/syrcxx-poky-linux-uclibc/linux-yocto-3.2.11+git1+b14a08f5c7b469a5077c10942f4e1aec171faa9d_1+01e948c2bdf7f5ad9f2b30047a8d3493a1a2880a-r1.23/linux$
->>> /home/frans/poky-denzil-7.0-build/tmp/sysroots/x86_64-linux/usr/bin/guilt
->>> status
->>> Patches directory doesn't exist, try guilt-init
->>>
->>> This is with the standard denzil 7.0 release.
->>>
->>> I've also been to the meta/patches dir and tried guilt status in there
->>> but to no avail.
->>> (or should I have manually made a symlink or so
->>
->>
->> There's nothing extra that should have to be done, I use guilt during patch
->> carry forward and tree generation, it's simply a matter of a few
->> environment variables.
->>
->> That being said, I've largely replaced guilt with mbox manipulations,
->> so I'm a bit concerned about bit rot.
->>
->> Is there any way you can get me access to your layer and patches ?
->> A simple test run is probably the easiest way for me to see what's
->> happened.
->>
->>
->>>
->>> Not sure what I am doing wrong.
->>> Is there a small example or some doc on how to do this? or can someone
->>> give a few commands that would show how to modify an existing patch
->>> (or create a new one) with patch?
->>
->>
->> There are docs, but if guilt next, or guilt push -f aren't working, they
->> won't be of much use.
->>
->>
->>> (btw noticed that the patches are also in
->>> .git/refs/patches/...
->>> however the guilt doc says:
->>> In Guilt, all the patches are stored in .git/patches/$branch/, where
->>> $branch ...
->>
->>
->> That's an unmodified guilt, you can't commit and track the series if you
->> let guilt store information under .git, so I created a variable and
->> relocated it.
->>
->>
->>>
->>> Also tried to add a symlink from .git/patches to .git/refs/patches but
->>> that did not help either.
->>>
->>> Thanks for any suggestion!
->>
->>
->> I can easily give you the raw git commands to make this work, but the guilt
->> path is supposed to be the gentle entry to the process. We need to
->> diagnose what is happening .. and I need to see it happen in front of
->> me, so I can try a few things.
->>
->> Cheers,
->>
->> Bruce
->>
->
-> Bruce,
->
-> Thanks for your help.
-> I'l try to make a small overlay based upon the standard denzil 7.0
-> layer and send you the diffs.
-> This will take a little bit of time as I want to verify here first
-> that this still has the problem.
+Agenda
+* Opens collection - 5 min (Song)
+* Yocto 1.3 planning  - 10 min (Song/team)
+* SWAT team rotation: Paul -> Saul
+* Opens - 10 min
+* Team Sharing - 20 min
 
-Sounds good. I'm just concerned that this didn't work right out of the
-box.
 
-Bruce
+-----Original Appointment-----
 
->
-> Best regards, Frans
+
+Conference details=20
+Conference name:=20
+Yocto Technical Team
+Conference date/start time:=20
+Tue Jun 28, 2011 at 10:00 AM Central Daylight Time=20
+Participants:=20
+30
+Duration:=20
+60 minutes=20
+Participant passcode:=20
+49611427=20
+Dial-in number:=20
+1.972.995.7777=20
+US Toll Free number:=20
+1.877.561.6828=20
+BlackBerry users, click this link to join your conference as a chairperson:
+1.972.995.7777x67184230#
+BlackBerry users, click this link to join your conference as a participant:
+1.972.995.7777x49611427#
+=A0
+Depending on where you are dialing from, either your BlackBerry will pause =
+and enter the passcode automatically or you will be prompted to click again=
+ to dial the passcode.
+
+Local and Global Access Numbers=20
+
+
+Country=20
+Dial-in number
+Australia:=20
+1800 636 843
+Czech Republic:=20
+242 430 350
+China (Beijing):=20
+From office dial 8-9957777 or 8784277=20
+Beijing Out of Office dial 5878 4277
+China (Shanghai):=20
+From office dial 8-9957777 or 3073322=20
+Shanghai Out of Office dial 2307 3322
+China (Shenzen):=20
+From office dial 8-9957777 or 6007877=20
+Shenzen Out of Office dial 2600 7877
+China (Other Cities):=20
+From IP phone dial 8-9957777=20
+Other cities - Non IP phone dial 021-23073322
+Denmark:=20
+8060 1400
+Finland:=20
+09 41333477
+France:=20
+0497 275888
+Germany:=20
+08161 803232
+Holland:=20
+030 2417490
+India:=20
+BSNL subscribers use 1800 425 9996 (Toll Free)
+Airtel subscribers use 0008 009 861 212 (Toll Free)
+From TI Campus use 89957777
+Others use 2509 9555 (Landline within Bangalore) or
+80 2509 9555 (Outside Bangalore)
+Israel:=20
+09 790 6715
+Italy:=20
+039 69061234 (039 is local city code not country code)
+Japan:=20
+From TI Campus use 8 995 7777=20
+Outside TI use 03 4331 3777
+Malaysia:=20
+From IP phone dial 2643799=20
+From Kuala Lumpur dial 4264 3799=20
+Outside Kuala Lumpur dial (03)4264 3799
+Norway:=20
+2 295 8744
+Philippines:=20
+From Baguio City use 4471177=20
+From Metro Manila area use 8702477
+Singapore:=20
+From IP phone dial 3894777=20
+Outside TI use 6389 4777
+South Korea:=20
+From IP phone dial 5606998=20
+From Seoul dial 5606998=20
+Outside Seoul dial (02)5606998
+Sweden:=20
+08 58755577
+Taiwan:=20
+From IP phone dial 1363=20
+From Taipei dial 2241 1363=20
+Outside Taipei dial (02)2241 1363
+Turkey:=20
+Landline Only dial 0811 288 0001=20
+then enter 877 633 1123=20
+UK:=20
+01604 663003
+US:=20
+972 995 7777 or 1877 561 6828
+
+Recurring conferences=20
+First scheduled conference:=20
+Tue Jun 28, 2011
+Recurrence frequency:=20
+Weekly - Every 1 week(s) on Tuesday
+Recurrence ends:=20
+End on Fri Jun 22, 2012, 10:40 AM CDT
+
 
 
