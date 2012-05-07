@@ -1,33 +1,33 @@
-Return-Path: <song.liu@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1E3A6E0137A
-	for <yocto@yoctoproject.org>; Mon,  7 May 2012 10:52:38 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 07 May 2012 10:52:37 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="150188995"
-Received: from orsmsx606.amr.corp.intel.com ([10.22.226.128])
-	by fmsmga001.fm.intel.com with ESMTP; 07 May 2012 10:52:36 -0700
-Received: from orsmsx151.amr.corp.intel.com (10.22.226.38) by
-	orsmsx606.amr.corp.intel.com (10.22.226.128) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Mon, 7 May 2012 10:52:09 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.36]) by
-	ORSMSX151.amr.corp.intel.com ([169.254.7.219]) with mapi id
-	14.01.0355.002; Mon, 7 May 2012 10:52:09 -0700
-From: "Liu, Song" <song.liu@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Agenda: Yocto Project Technical Team Meeting - Tuesday, May 08,
-	2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada). - updated
-Thread-Index: AQHNLHofwlIuR2Rv5k2lqP1CR224oQ==
-Date: Mon, 7 May 2012 17:52:08 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A483CF099@ORSMSX101.amr.corp.intel.com>
-References: <7E680CB2A76BB8438D08CF13C09FC53A257BE410@ORSMSX101.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.138]
+Return-Path: <fransmeulenbroeks@gmail.com>
+Received: from mail-pz0-f41.google.com (mail-pz0-f41.google.com
+	[209.85.210.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E68A4E0137A
+	for <yocto@yoctoproject.org>; Mon,  7 May 2012 12:29:14 -0700 (PDT)
+Received: by dakp5 with SMTP id p5so20015719dak.28
+	for <yocto@yoctoproject.org>; Mon, 07 May 2012 12:29:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=zcrJ3lPuybUrKXIpyB4egTonlFmlRXigqp+WIaJquRQ=;
+	b=bB3raNiaN8w0i+lJs54BtmC17Y7IMPuPiQQ0mZu1yvWpGCD+pB0OVcfmEnrTqCJHnS
+	MqUhbkmsnAxs9OqBlIcIQ9B9+aT6RlP8pT4tAXMUe0HUH3FamvmA7vLxla9oWDq1tJnx
+	YKTUGHMPVm2ii/y/nBJVMTaNY1TaZgOS8iwM6nRkPncxpOs/pDs9YsiTd93RUMDqI2Iw
+	c9r/BSgZg1QsDWyIsBiuMBvuImIYz+9/AnPPqs0bFGihwjKxvbYaMNfdNltzXUm00ZG9
+	SowjKd2LVtXagDskkAABxKC81UYscXEcIC9dgC2VxkJ2dBheXpC88ONknHZ861Za30RE
+	AGUw==
 MIME-Version: 1.0
-Subject: Agenda: Yocto Project Technical Team Meeting - Tuesday, May 08, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada). - updated
+Received: by 10.68.221.35 with SMTP id qb3mr29571952pbc.136.1336418954681;
+	Mon, 07 May 2012 12:29:14 -0700 (PDT)
+Received: by 10.68.48.164 with HTTP; Mon, 7 May 2012 12:29:14 -0700 (PDT)
+In-Reply-To: <4FA7E0DB.7050508@windriver.com>
+References: <CACW_hTacgFqj2NQZ4aNuN5WBm2R9Ge3NS25XVJTKjmKm6spHKw@mail.gmail.com>
+	<4FA7E0DB.7050508@windriver.com>
+Date: Mon, 7 May 2012 21:29:14 +0200
+Message-ID: <CACW_hTZj8W-eS0+3GzELu1J_kTww1dgLB4a17bvYtcmZ77ymaQ@mail.gmail.com>
+From: Frans Meulenbroeks <fransmeulenbroeks@gmail.com>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: modify a kernel patch
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,128 +39,67 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 07 May 2012 17:52:38 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 07 May 2012 19:29:15 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-Agenda:
+2012/5/7 Bruce Ashfield <bruce.ashfield@windriver.com>:
+> On 12-05-07 10:41 AM, Frans Meulenbroeks wrote:
+>>
+>> Hi all,
+>>
+>> Not sure what the best place is to mail this (the YP list or oe-core
+>> or oe-devel or ...)
+>> Apologies if this is the wrong place.
+>>
+>> The problem I'm facing is the following:
+>> I have a kernel with some additional drivers that are not upstreamed
+>> because they are very specifc.
+>> I'm moving from oe-classic to denzil and from 2.6.38 to 3.2.
+>> Now some of the patches do not apply any more.
+>> In oe-classic I would have gone to the kernel work dir, fix the issue,
+>> do a quilt refresh and copy the patch back (there is a patch that
+>> contains our driver)
+>> However, denzil uses guilt instead of quilt
+>>
+>> If I do a devshell of virtual/kernel and want to do with guilt what I
+>> used to do with quilt I run into a problem.
+>> guilt status says: Patches directory does not exist, try guilt-init
+>> and indeed there is no patches dir like there was in oe-classic
+>
+>
+> Do you have guilt installed locally ? You are likely using the
+> native guilt. To keep patch lists separate on a per-branch basis
+> and to be able to capture them on th meta-branch, there are some
+> patches to guilt that move the patch directory location.
 
-* Opens collection - 5 min (Song)
-* Yocto 1.2.1 status update - 10 min (Scott Garman)=20
-* Yocto 1.3 planning  - 10 min (Song/team)
-* SWAT team rotation: Paul -> Saul
-* Opens - 10 min
-* Team Sharing - 20 min
+Guilt natively complained about a mismatch with the git version (my
+work system is still ubuntu 10.04).
+If I do a bitbake -c devshell virtual/kernel and use guilt there, I
+get the error on the patches directory that I mentioned above.
+It was my idea that I then would get the oe version in my path but I
+did not really verify that. Then again under devshell I did not get
+complaints about the git version. Will verify this tomorrow (I have no
+access to the build system from here).
+>
+> Are you working on top of linux-yocto-3.2 ? Or some other 3.2 tree ?
 
+I downloaded the denzil tarball from yoctoproject.com. I made some
+config changed and added a few local patches (bringing things over
+from my 2.6.38 oe-classic kernel).
 
------Original Appointment-----
-
-
-Conference details
-Conference name:=20
-Yocto Technical Team
-Conference date/start time:=20
-Tue Jun 28, 2011 at 10:00 AM Central Daylight Time
-Participants:=20
-30
-Duration:=20
-60 minutes
-Participant passcode:=20
-49611427
-Dial-in number:=20
-1.972.995.7777
-US Toll Free number:=20
-1.877.561.6828
-BlackBerry users, click this link to join your conference as a chairperson:
-1.972.995.7777x67184230#
-BlackBerry users, click this link to join your conference as a participant:
-1.972.995.7777x49611427#
-=A0
-Depending on where you are dialing from, either your BlackBerry will pause =
-and enter the passcode automatically or you will be prompted to click again=
- to dial the passcode.
-
-Local and Global Access Numbers=20
-
-
-Country
-Dial-in number
-Australia:=20
-1800 636 843
-Czech Republic:=20
-242 430 350
-China (Beijing):=20
-From office dial 8-9957777 or 8784277
-Beijing Out of Office dial 5878 4277
-China (Shanghai):=20
-From office dial 8-9957777 or 3073322
-Shanghai Out of Office dial 2307 3322
-China (Shenzen):=20
-From office dial 8-9957777 or 6007877
-Shenzen Out of Office dial 2600 7877
-China (Other Cities):=20
-From IP phone dial 8-9957777
-Other cities - Non IP phone dial 021-23073322
-Denmark:=20
-8060 1400
-Finland:=20
-09 41333477
-France:=20
-0497 275888
-Germany:=20
-08161 803232
-Holland:=20
-030 2417490
-India:=20
-BSNL subscribers use 1800 425 9996 (Toll Free) Airtel subscribers use 0008 =
-009 861 212 (Toll Free) From TI Campus use 89957777 Others use 2509 9555 (L=
-andline within Bangalore) or
-80 2509 9555 (Outside Bangalore)
-Israel:=20
-09 790 6715
-Italy:=20
-039 69061234 (039 is local city code not country code)
-Japan:=20
-From TI Campus use 8 995 7777
-Outside TI use 03 4331 3777
-Malaysia:=20
-From IP phone dial 2643799
-From Kuala Lumpur dial 4264 3799
-Outside Kuala Lumpur dial (03)4264 3799
-Norway:=20
-2 295 8744
-Philippines:=20
-From Baguio City use 4471177
-From Metro Manila area use 8702477
-Singapore:=20
-From IP phone dial 3894777
-Outside TI use 6389 4777
-South Korea:=20
-From IP phone dial 5606998
-From Seoul dial 5606998
-Outside Seoul dial (02)5606998
-Sweden:=20
-08 58755577
-Taiwan:=20
-From IP phone dial 1363
-From Taipei dial 2241 1363
-Outside Taipei dial (02)2241 1363
-Turkey:=20
-Landline Only dial 0811 288 0001
-then enter 877 633 1123
-UK:=20
-01604 663003
-US:=20
-972 995 7777 or 1877 561 6828
-
-Recurring conferences
-First scheduled conference:=20
-Tue Jun 28, 2011
-Recurrence frequency:=20
-Weekly - Every 1 week(s) on Tuesday
-Recurrence ends:=20
-End on Fri Jun 22, 2012, 10:40 AM CDT
-
-
+Should I have gotten a patches dir in my tmp/work/mymachine/linux* dir
+(I have my own machine mpc8313e based)
+>
+>
+>>
+>> Hence my question:
+>> What is a good workflow to modify a kernel patch.
+>> Or, what magic incantation do I need to give to guilt to make it working.
+>
+>
+> See above.
+>
+> Bruce
+>
+Thanks! Frans
 
