@@ -1,31 +1,34 @@
-Return-Path: <fransmeulenbroeks@gmail.com>
-Received: from mail-pz0-f41.google.com (mail-pz0-f41.google.com
-	[209.85.210.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6EF3AE0137A
-	for <yocto@yoctoproject.org>; Tue,  8 May 2012 03:29:18 -0700 (PDT)
-Received: by dakp5 with SMTP id p5so20897715dak.28
-	for <yocto@yoctoproject.org>; Tue, 08 May 2012 03:29:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:content-type; bh=8XF2q8s2DwJC2S3jI52QIVz80XdD7e08Mq1XPGIPx2g=;
-	b=S4AlrhWZFCv2ZZdb/i7NojleBh9V+ZhtBSl9R51AjUvbBfzBolM3L8+pQ+LUnMgSyu
-	IQZnB0vN/T2C6XNCVdRXS63qHftGCXHB0AO3SxGGCguRdcmuqIewL/+imcmMulvcDVeA
-	Ls4ZLuNaHwdnlQNP7Sj2iQgokK+UXGCVMgMXwQ65h6lVsrdLgfL/DEgKxkmr3YnKg8h7
-	/zYW5Km4tiN1J0FQ3VXYMuRpnPiaeF50ho4yFTR66sFbc4yng0nzV/S8pCaN+fnvZYSh
-	Nud+0wEGAFrdq4M/DXsiX3J64jeryvr5pOw2wDSMK6tmq/ZbK6ZELFgJCFi7OYslMMYE
-	4+rA==
+Return-Path: <jim@halfman.com>
+Received: from mail-wg0-f54.google.com (mail-wg0-f54.google.com [74.125.82.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EEF24E0137A
+	for <yocto@yoctoproject.org>; Tue,  8 May 2012 03:50:18 -0700 (PDT)
+Received: by wgbfg15 with SMTP id fg15so4683934wgb.11
+	for <yocto@yoctoproject.org>; Tue, 08 May 2012 03:50:18 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=date:from:to:message-id:subject:x-mailer:mime-version:content-type
+	:x-gm-message-state;
+	bh=Imy1LRw4waefv1qHnbTkGO3/ZqUCiiTnujfL0tRVTR4=;
+	b=cTiXxQ/Cek8GAE4ftezU3ZWa4LFlS77rfm8syIbOT1UTRfwObftcE6m61W4qB8PCbR
+	7RPhG3dzJ0uijsSZbDKHEeMKc/9MZ0X+8Ef4r4sd0V/8Z/rEgqgq7yg/F/pAQ/I+9dqM
+	0XFj7ul5i731sL1kMkcYK9merOzmi/3jMPWeI0gd0iqcfJBx212xWNZcoLL9wN+6thWd
+	xp8E/t95XHF8RjExdg/hDmHJW9q1eJ8AlW0jqaMRATMRFjAZDLNajP+kFUEmra6B1JRm
+	eCAn28QGi9V9FPKSEDostbq5OHoq/VgmLqXqWuDIIDc8n8yFps0Zhpsoz+IkUFlZZHNt
+	eDhA==
+Received: by 10.180.97.4 with SMTP id dw4mr43274102wib.18.1336474217933;
+	Tue, 08 May 2012 03:50:17 -0700 (PDT)
+Received: from jkosem-MacBook-Pro.local ([83.217.123.106])
+	by mx.google.com with ESMTPS id fm1sm27925639wib.10.2012.05.08.03.50.15
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Tue, 08 May 2012 03:50:16 -0700 (PDT)
+Date: Tue, 8 May 2012 11:50:15 +0100
+From: Jim Kosem <jim@halfman.com>
+To: yocto@yoctoproject.org
+Message-ID: <7B5D5B32880342B1A71D5C3F7F7D41F7@halfman.com>
+X-Mailer: sparrow 1.5 (build 1043.1)
 MIME-Version: 1.0
-Received: by 10.68.242.1 with SMTP id wm1mr6501852pbc.73.1336472958065; Tue,
-	08 May 2012 03:29:18 -0700 (PDT)
-Received: by 10.68.48.164 with HTTP; Tue, 8 May 2012 03:29:18 -0700 (PDT)
-In-Reply-To: <CACW_hTaroQeLuPDF5LbhfLCuB=-qpLFPFLP1eDAGZmWAqdkHJg@mail.gmail.com>
-References: <CACW_hTaV80O+vVw+hweKZxDWgNFOjgDU4mHemivEFudiA9PLvg@mail.gmail.com>
-	<CACW_hTaroQeLuPDF5LbhfLCuB=-qpLFPFLP1eDAGZmWAqdkHJg@mail.gmail.com>
-Date: Tue, 8 May 2012 12:29:18 +0200
-Message-ID: <CACW_hTaeANMD271GeoU0hP8aacDd-8AhyrvXZ185LJoXLxqoqw@mail.gmail.com>
-From: Frans Meulenbroeks <fransmeulenbroeks@gmail.com>
-To: yocto@yoctoproject.org, "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-Subject: Re: [denzil] Licenses, source distribution etc
+X-Gm-Message-State: ALoCoQncma//+Y1F5yQVNIyCBeq660h0yUpyP+BVpI4rdFB/MSiGhHhmJamDd9NzaiYnO24XOGT7
+Subject: Yocto Web Hob 1.3 requirements
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,86 +40,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 08 May 2012 10:29:18 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Tue, 08 May 2012 10:50:19 -0000
+Content-Type: multipart/alternative; boundary="4fa8fa67_4ad084e9_1f3"
 
-2012/5/8 Frans Meulenbroeks <fransmeulenbroeks@gmail.com>:
-> 2012/5/8 Frans Meulenbroeks <fransmeulenbroeks@gmail.com>:
->> Dear all,
->>
->> A next question/issue wrt my denzil experiment:
->>
->> I wanted to know what licenses are used in my image.
->> I found tmp/deploy/licenses but this is package oriented and does not
->> really give a quick overview.
->>
->> The manual gave me this section:
->> http://www.yoctoproject.org/docs/current/poky-ref-manual/poky-ref-manual.html#ref-classes-src-distribute
->>
->> I tried to inherit src_distribute and src_distribute_local, but to no avail
->> Running a find on the source tree did not reveal these classes:
->>
->> frans@frans-desktop:~/poky-denzil-7.0$ find | grep distribute
->> ./meta/classes/pkg_distribute.bbclass
->> frans@frans-desktop:~/poky-denzil-7.0$
->>
->> Something missing?
->> And what is the best way to find out what licenses are used?
->>
->> Thanks, (and keep up the good work!)
->> Frans.
->
-> Googled a little bit further.
-> Guess this is a documentation issue as the classes have been
-> deliberatly removed.
-> See http://patches.openembedded.org/patch/23171/
->
-> Frans
+--4fa8fa67_4ad084e9_1f3
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
-One more thing:
-I've added the archiver class. I also have rm_work (not sure if that is related)
-Now when running a build I get errors like this:
+Hi, 
 
-NOTE: Running task 1029 of 1279 (ID: 1167,
-/home/frans/poky-denzil-7.0/meta/recipes-core/gettext/gettext_0.18.1.1.bb,
-do_package_write_rpm)
-NOTE: package gettext-0.18.1.1-r11: task do_package_write_rpm: Started
-ERROR: Error executing a python function in
-/home/frans/poky-denzil-7.0/meta/recipes-core/gettext/gettext_0.18.1.1.bb:
-AttributeError: 'NoneType' object has no attribute 'upper'
+We in the Yocto London team have put together user requirements and ideas around what we think Web Hob should be.
 
-ERROR: The stack trace of python calls that resulted in this
-exception/failure was:
-ERROR:   File "do_remove_tarball", line 14, in <module>
-ERROR:
-ERROR:   File "do_remove_tarball", line 3, in do_remove_tarball
-ERROR:
-ERROR: The code that was being executed was:
-ERROR:      0010:		except (TypeError,OSError):
-ERROR:      0011:				pass
-ERROR:      0012:
-ERROR:      0013:
-ERROR:  *** 0014:do_remove_tarball(d)
-ERROR:      0015:
-ERROR: (file: 'do_remove_tarball', lineno: 14, function: <module>)
-ERROR:      0001:
-ERROR:      0002:def do_remove_tarball(d):
-ERROR:  *** 0003:	if d.getVar('SOURCE_ARCHIVE_PACKAGE_TYPE',
-True).upper() == 'SRPM':
-ERROR:      0004:		work_dir = d.getVar('WORKDIR', True)
-ERROR:      0005:		try:
-ERROR:      0006:			for file in os.listdir(os.getcwd()):
-ERROR:      0007:				if file in get_package(d):
-ERROR: (file: 'do_remove_tarball', lineno: 3, function: do_remove_tarball)
-ERROR: Function failed: do_remove_tarball
-ERROR: Logfile of failure stored in:
-/home/frans/poky-denzil-7.0-build/tmp/work/ppce300c3-poky-linux-uclibc/gettext-0.18.1.1-r11/temp/log.do_package_write_rpm.11248
-NOTE: package gettext-0.18.1.1-r11: task do_package_write_rpm: Failed
-ERROR: Task 1167
-(/home/frans/poky-denzil-7.0/meta/recipes-core/gettext/gettext_0.18.1.1.bb,
-do_package_write_rpm) failed with exit code '1'
+https://wiki.yoctoproject.org/wiki/Yocto_Webhob_1.3
 
-And still no deploy/sources dir
+Any contributions, help and comments are appreciated.
 
-Best regards, Frans
+Thanks.
 
+- Jim Kosem 
+
+
+--4fa8fa67_4ad084e9_1f3
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
+
+
+                <div>
+                    Hi,
+                </div><div><br></div><div>We in the Yocto London team hav=
+e put together user requirements and ideas around what we think Web Hob s=
+hould be.</div><div><br></div><div><a href=3D=22https://wiki.yoctoproject=
+.org/wiki/Yocto=5FWebhob=5F1.3=22>https://wiki.yoctoproject.org/wiki/Yoct=
+o=5FWebhob=5F1.3</a></div><div><br></div><div>Any contributions, help and=
+ comments are appreciated.</div><div><br></div><div>Thanks.</div><div><br=
+></div><div>- Jim Kosem</div>
+                <div></div>
+            
+
+--4fa8fa67_4ad084e9_1f3--
