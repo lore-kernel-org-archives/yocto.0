@@ -1,62 +1,33 @@
-Return-Path: <song.liu@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BE8AEE01206
-	for <yocto@yoctoproject.org>; Mon,  7 May 2012 10:26:42 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 07 May 2012 10:26:42 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="141043788"
-Received: from orsmsx605.amr.corp.intel.com ([10.22.226.10])
-	by orsmga002.jf.intel.com with ESMTP; 07 May 2012 10:26:42 -0700
-Received: from orsmsx152.amr.corp.intel.com (10.22.226.39) by
-	orsmsx605.amr.corp.intel.com (10.22.226.10) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Mon, 7 May 2012 10:26:42 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.36]) by
-	ORSMSX152.amr.corp.intel.com ([169.254.8.73]) with mapi id
-	14.01.0355.002; Mon, 7 May 2012 10:26:41 -0700
-From: "Liu, Song" <song.liu@intel.com>
-To: "Liu, Song" <song.liu@intel.com>, "Stewart, David C"
-	<david.c.stewart@intel.com>, 'Anders Darander' <anders@chargestorm.se>, 
-	"Barros Pena, Belen" <belen.barros.pena@intel.com>, "Bodke, Kishore K"
-	<kishore.k.bodke@intel.com>,
-	'Bruce Ashfield' <bruce.ashfield@windriver.com>, 
-	'Daniel Cauchy' <dcauchy@mvista.com>, "'deVries, Alex'"
-	<Alex.deVries@windriver.com>, "'Dixon, Brad'" <Brad_Dixon@mentor.com>, 
-	"Dmytriyenko, Denys" <denys@ti.com>, "Erway, Tracey M"
-	<tracey.m.erway@intel.com>, "Flanagan, Elizabeth"
-	<elizabeth.flanagan@intel.com>, "Hart, Darren" <darren.hart@intel.com>, 
-	"'Hatle, Mark'" <mark.hatle@windriver.com>, 'Jeremy Puhlman'
-	<jpuhlman@gmail.com>, "Kooi, Koen" <k-kooi@ti.com>, "Kridner, Jason"
-	<jdk@ti.com>, "Li, Susie" <susie.li@intel.com>, "'Lieu.Ta@windriver.com'"
-	<'Lieu.Ta@windriver.com'>, "Lock, Joshua" <joshua.lock@intel.com>,
-	"'McCombe, Kevin'" <kevin.mccombe@windriver.com>, "Moeller, Thorsten"
-	<thorsten.moeller@intel.com>, "'morvek@mvista.com'" <'morvek@mvista.com'>, 
-	"Osier-mixon, Jeffrey" <jeffrey.osier-mixon@intel.com>, "'Polk, Jeffrey'"
-	<jeff.polk@windriver.com>, "Purdie, Richard" <richard.purdie@intel.com>,
-	"'Ranslam, Rob'" <Rob.Ranslam@windriver.com>, "Saxena, Rahul"
-	<rahul.saxena@intel.com>, "Wang, Shane" <shane.wang@intel.com>, "Wold,
-	Saul" <saul.wold@intel.com>, "Yu, Ke" <ke.yu@intel.com>, "Zanussi, Tom"
-	<tom.zanussi@intel.com>, "Zhang, Jessica" <jessica.zhang@intel.com>,
-	"Rifenbark, Scott M" <scott.m.rifenbark@intel.com>, "'Hudson, Sean'"
-	<Sean_Hudson@mentor.com>, "Serban,
-	Laurentiu" <laurentiu.serban@intel.com>, 
-	"Petrisor, Ileana" <ileana.petrisor@intel.com>, "Damian, Alexandru"
-	<alexandru.damian@intel.com>
-Thread-Topic: Agenda: Yocto Project Technical Team Meeting - Tuesday, May
-	08, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
-Thread-Index: AQHNLHaQzz6Hank1jEKKGDT6INPo8A==
-Date: Mon, 7 May 2012 17:26:40 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A483CF009@ORSMSX101.amr.corp.intel.com>
-References: <7E680CB2A76BB8438D08CF13C09FC53A257BE410@ORSMSX101.amr.corp.intel.com>
-In-Reply-To: <7E680CB2A76BB8438D08CF13C09FC53A257BE410@ORSMSX101.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.138]
+Return-Path: <kergoth@gmail.com>
+Received: from mail-wg0-f54.google.com (mail-wg0-f54.google.com [74.125.82.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 277C5E01206
+	for <yocto@yoctoproject.org>; Tue,  8 May 2012 06:59:48 -0700 (PDT)
+Received: by wgbfg15 with SMTP id fg15so4840323wgb.11
+	for <yocto@yoctoproject.org>; Tue, 08 May 2012 06:59:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:sender:in-reply-to:references:from:date
+	:x-google-sender-auth:message-id:subject:to:cc:content-type;
+	bh=JMrtTSERwH0K1y51Nzo90Dx2ONJeZcIaHQc/6c9Kq+k=;
+	b=QnbhQM3vLAXfhCYaTJzaZ22F0qHH/sNsEu11E87KivHyty/7BPlSKnHy7T2n9D3wZY
+	oSRsHZYl17ulp+cJK2hPwcQQtMuIPQLcKpaTM1/vD3m4y+mBtN0cKxIdQ5OEPSFrHiVW
+	WdPGgLXkBwbFWm8lVuk4rosShPf5cEpTWeDCSU+vT0b0oksQFX+jxjilbnfxYljdExyc
+	u8gtbHPcSK9IUmXC+4rFz5WpP4GLPH6CIAfr4U8E1BbT5uFo2lYX/+N047EbIt1LeZE2
+	FunBVFrShqdywAWVmOnTk7a7+tSMVK4iX5qHw2R6A/2EgOfZu5VOEnV8nrEuv1ZkHXxy
+	8DkA==
+Received: by 10.180.24.35 with SMTP id r3mr44954247wif.7.1336485586299; Tue,
+	08 May 2012 06:59:46 -0700 (PDT)
 MIME-Version: 1.0
-X-Mailman-Approved-At: Tue, 08 May 2012 06:58:42 -0700
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Agenda: Yocto Project Technical Team Meeting - Tuesday, May 08, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+Sender: kergoth@gmail.com
+Received: by 10.216.181.16 with HTTP; Tue, 8 May 2012 06:59:25 -0700 (PDT)
+In-Reply-To: <CAPhrxTpxKd=UutkKUuU1hcE=JN3nObzh0aot9x=B4EBJPr3oYw@mail.gmail.com>
+References: <CAPhrxTpxKd=UutkKUuU1hcE=JN3nObzh0aot9x=B4EBJPr3oYw@mail.gmail.com>
+From: Chris Larson <clarson@kergoth.com>
+Date: Tue, 8 May 2012 06:59:25 -0700
+X-Google-Sender-Auth: aAP9jTRJo_VNZ0G1qKsML73ow8I
+Message-ID: <CABcZANm125goVF54Lg4Exy4yaOs8Bevq-sTYcZ1bHy7HViykxA@mail.gmail.com>
+To: Radha Krishna Srimanthula <srimanthula.radhakrishna@gmail.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: Help with configuring Yocto with an external toolchain
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,127 +39,21 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 07 May 2012 17:26:42 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 08 May 2012 13:59:48 -0000
+Content-Type: text/plain; charset=UTF-8
 
-Agenda
-* Opens collection - 5 min (Song)
-* Yocto 1.3 planning  - 10 min (Song/team)
-* SWAT team rotation: Paul -> Saul
-* Opens - 10 min
-* Team Sharing - 20 min
+On Tue, May 8, 2012 at 2:39 AM, Radha Krishna Srimanthula
+<srimanthula.radhakrishna@gmail.com> wrote:
+> I have an armv5tej platform for which I need put in place, a toolchain and a
+> build system. It is in this regard that I need some help:
+>
+> Can Yocto use an external toolchain (we use CodeSourcery)? If so, how do I
+> configure Yocto to use the external toolchain? I went through the developers
+> and user manuals of Yocto - am not too sure how to go about doing this. Can
+> you please help me with this?
 
-
------Original Appointment-----
-
-
-Conference details=20
-Conference name:=20
-Yocto Technical Team
-Conference date/start time:=20
-Tue Jun 28, 2011 at 10:00 AM Central Daylight Time=20
-Participants:=20
-30
-Duration:=20
-60 minutes=20
-Participant passcode:=20
-49611427=20
-Dial-in number:=20
-1.972.995.7777=20
-US Toll Free number:=20
-1.877.561.6828=20
-BlackBerry users, click this link to join your conference as a chairperson:
-1.972.995.7777x67184230#
-BlackBerry users, click this link to join your conference as a participant:
-1.972.995.7777x49611427#
-=A0
-Depending on where you are dialing from, either your BlackBerry will pause =
-and enter the passcode automatically or you will be prompted to click again=
- to dial the passcode.
-
-Local and Global Access Numbers=20
-
-
-Country=20
-Dial-in number
-Australia:=20
-1800 636 843
-Czech Republic:=20
-242 430 350
-China (Beijing):=20
-From office dial 8-9957777 or 8784277=20
-Beijing Out of Office dial 5878 4277
-China (Shanghai):=20
-From office dial 8-9957777 or 3073322=20
-Shanghai Out of Office dial 2307 3322
-China (Shenzen):=20
-From office dial 8-9957777 or 6007877=20
-Shenzen Out of Office dial 2600 7877
-China (Other Cities):=20
-From IP phone dial 8-9957777=20
-Other cities - Non IP phone dial 021-23073322
-Denmark:=20
-8060 1400
-Finland:=20
-09 41333477
-France:=20
-0497 275888
-Germany:=20
-08161 803232
-Holland:=20
-030 2417490
-India:=20
-BSNL subscribers use 1800 425 9996 (Toll Free)
-Airtel subscribers use 0008 009 861 212 (Toll Free)
-From TI Campus use 89957777
-Others use 2509 9555 (Landline within Bangalore) or
-80 2509 9555 (Outside Bangalore)
-Israel:=20
-09 790 6715
-Italy:=20
-039 69061234 (039 is local city code not country code)
-Japan:=20
-From TI Campus use 8 995 7777=20
-Outside TI use 03 4331 3777
-Malaysia:=20
-From IP phone dial 2643799=20
-From Kuala Lumpur dial 4264 3799=20
-Outside Kuala Lumpur dial (03)4264 3799
-Norway:=20
-2 295 8744
-Philippines:=20
-From Baguio City use 4471177=20
-From Metro Manila area use 8702477
-Singapore:=20
-From IP phone dial 3894777=20
-Outside TI use 6389 4777
-South Korea:=20
-From IP phone dial 5606998=20
-From Seoul dial 5606998=20
-Outside Seoul dial (02)5606998
-Sweden:=20
-08 58755577
-Taiwan:=20
-From IP phone dial 1363=20
-From Taipei dial 2241 1363=20
-Outside Taipei dial (02)2241 1363
-Turkey:=20
-Landline Only dial 0811 288 0001=20
-then enter 877 633 1123=20
-UK:=20
-01604 663003
-US:=20
-972 995 7777 or 1877 561 6828
-
-Recurring conferences=20
-First scheduled conference:=20
-Tue Jun 28, 2011
-Recurrence frequency:=20
-Weekly - Every 1 week(s) on Tuesday
-Recurrence ends:=20
-End on Fri Jun 22, 2012, 10:40 AM CDT
-
-
+TCMODE = "external-csl"
+EXTERNAL_TOOLCHAIN = "/path/to/sourcery/toolchain"
+-- 
+Christopher Larson
 
