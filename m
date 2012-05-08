@@ -1,23 +1,39 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 48437E0140F
-	for <yocto@yoctoproject.org>; Tue,  8 May 2012 14:39:04 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 08 May 2012 14:39:04 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="140561045"
-Received: from unknown (HELO localhost) ([10.255.12.248])
-	by azsmga001.ch.intel.com with ESMTP; 08 May 2012 14:39:03 -0700
-From: tom.zanussi@intel.com
-To: yocto@yoctoproject.org
-Date: Tue,  8 May 2012 16:39:06 -0500
-Message-Id: <96df30005bbc8095713d03956e7f9058a2e97561.1336510378.git.tom.zanussi@intel.com>
-X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <d1f334823a4ae92e6304acf74d3f9d1d56f5518a.1336510378.git.tom.zanussi@intel.com>
-References: <d1f334823a4ae92e6304acf74d3f9d1d56f5518a.1336510378.git.tom.zanussi@intel.com>
-In-Reply-To: <cover.1336510378.git.tom.zanussi@intel.com>
-References: <cover.1336510378.git.tom.zanussi@intel.com>
-Subject: [PATCH 3/3] meta-fishriver: remove smp options from recipe-space
+Return-Path: <autif.mlist@gmail.com>
+Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
+	[209.85.160.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 74509E0044A
+	for <yocto@yoctoproject.org>; Tue,  8 May 2012 15:40:12 -0700 (PDT)
+Received: by pbbrq8 with SMTP id rq8so11438580pbb.35
+	for <yocto@yoctoproject.org>; Tue, 08 May 2012 15:40:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=fCAawN8Vq50CY73AYjMsB6v3m4Ns1dyLv5v2R32nWgM=;
+	b=KUT0zbLvjMFS53gAPiQHDS3Z8Rn5Tzh0EcfMqokyXXtscWufgh6P0BUhYFuS1ekyc8
+	BQnTWXdASx05CSGJ7wlbv3lqZ/Aw8g8ykm6umavMhMEHB5IfL7LB8UGzHpagNFz41wuD
+	1nIGs+slV5+vqknAOa5kFCWjBoyV402XD3KfYH9G3NrL+ULp5jFLR1q9mwAtF+K1B0a9
+	FpsizkFgL98vvOADuJYsPCeX60/WzPmjvLOUPIJHcoxsrpdSYj5PqVePs+RIgS/NVKQV
+	g2VUneqltVQI11kcgbY3D/AKYjznxIyFo23kmHhOBNoxcw+MSKRXKxbfyMweNzgjyZyk
+	4Cig==
+MIME-Version: 1.0
+Received: by 10.68.223.231 with SMTP id qx7mr2052591pbc.134.1336516812233;
+	Tue, 08 May 2012 15:40:12 -0700 (PDT)
+Received: by 10.68.14.166 with HTTP; Tue, 8 May 2012 15:40:12 -0700 (PDT)
+In-Reply-To: <4FA971E3.70904@windriver.com>
+References: <CACW_hTacgFqj2NQZ4aNuN5WBm2R9Ge3NS25XVJTKjmKm6spHKw@mail.gmail.com>
+	<4FA7E0DB.7050508@windriver.com>
+	<CACW_hTZj8W-eS0+3GzELu1J_kTww1dgLB4a17bvYtcmZ77ymaQ@mail.gmail.com>
+	<4FA82443.10001@windriver.com>
+	<CACW_hTbZze5nfCsuy097zUmyEs=0s6HT=y-q9af5fFd150bJRg@mail.gmail.com>
+	<4FA914B1.3060602@windriver.com>
+	<CACW_hTZ68+Ok8z+6diWZ=xToE9jPqZaoAAOdyYc6-xVsy7mszQ@mail.gmail.com>
+	<4FA971E3.70904@windriver.com>
+Date: Tue, 8 May 2012 18:40:12 -0400
+Message-ID: <CADzUK1KTda0WsbULkuU5QeeWeosiYuy1hWt6_UM1n-Q_41dORA@mail.gmail.com>
+From: Autif Khan <autif.mlist@gmail.com>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: modify a kernel patch
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,31 +45,15 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 08 May 2012 21:39:04 -0000
+X-List-Received-Date: Tue, 08 May 2012 22:40:12 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-From: Tom Zanussi <tom.zanussi@intel.com>
+On Tue, May 8, 2012 at 3:20 PM, Bruce Ashfield
+<bruce.ashfield@windriver.com> wrote:
+>
+> For anyone following along (all one of them), Frans and I have this
+> working now. It was a missing export of GUILT_BASE. I just sent a patch
+> to the list for it.
 
-SMP support is now configured in the kernel branch, remove it from
-recipe-space.
-
-Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
----
- .../recipes-kernel/linux/linux-yocto_3.2.bbappend  |    1 -
- 1 files changed, 0 insertions(+), 1 deletions(-)
-
-diff --git a/meta-fishriver/recipes-kernel/linux/linux-yocto_3.2.bbappend b/meta-fishriver/recipes-kernel/linux/linux-yocto_3.2.bbappend
-index 0d074b7..6a9159d 100644
---- a/meta-fishriver/recipes-kernel/linux/linux-yocto_3.2.bbappend
-+++ b/meta-fishriver/recipes-kernel/linux/linux-yocto_3.2.bbappend
-@@ -3,7 +3,6 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
- COMPATIBLE_MACHINE_fishriver = "fishriver"
- KMACHINE_fishriver  = "fishriver"
- KBRANCH_fishriver  = "standard/default/fishriver"
--KERNEL_FEATURES_append_fishriver += " cfg/smp.scc"
- 
- SRCREV_machine_pn-linux-yocto_fishriver ?= "4f08c069762fa475e773b02f11635a3a173bdca5"
- SRCREV_meta_pn-linux-yocto_fishriver ?= "514847185c78c07f52e02750fbe0a03ca3a31d8f"
--- 
-1.7.0.4
-
+Thanks!
 
