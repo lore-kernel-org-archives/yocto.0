@@ -1,37 +1,26 @@
-Return-Path: <scott.a.garman@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 87EE2E0030B
-	for <yocto@yoctoproject.org>; Tue,  8 May 2012 09:07:41 -0700 (PDT)
-Received: from mail-pb0-f52.google.com ([209.85.160.52])
-	by mga09.intel.com with ESMTP/TLS/RC4-SHA; 08 May 2012 09:07:19 -0700
-Received: by pbbro8 with SMTP id ro8so27397194pbb.25
-	for <yocto@yoctoproject.org>; Tue, 08 May 2012 09:07:19 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=message-id:date:from:user-agent:mime-version:to:subject
-	:content-type:content-transfer-encoding:x-gm-message-state;
-	bh=aM+cdzYXXqWL5FGWPiWiPgMLRGxrgQ2r9DevTROudUo=;
-	b=Cg0rOhs0WuIvHH2Wu5jCuZ5otGhjjo+RyK/18PZ2bVeY1MC906W4M1ggixdkqZCDfU
-	xWXc2DM+3ZLPD2uW1GGzIqFOJrzFa9Jn2x1jCbudKjp27MhbRbmWl1eXktnUT5RxHDmu
-	8743O+BvL6n3/NbdbWyu6wfUgvgJ/ShNuKj83OeWVp9JZM0E/KVlU0TJMJ3YgF+00dZV
-	ktYWFKrIrpOruY2Y+q94UahlgcmDiXFI9mh4ciiMlFgMgOzXa5b61f8xPXpzcoq10Oe1
-	sUDBWS4WLZjzDSfi84uOropjSnDUQSaBBl1JyDe1B9Vh++u4sdXIki/XqaZCf6gt6XRm
-	sVdA==
-Received: by 10.68.229.69 with SMTP id so5mr9961870pbc.141.1336493239043;
-	Tue, 08 May 2012 09:07:19 -0700 (PDT)
-Received: from [192.168.1.12] (c-76-105-137-48.hsd1.or.comcast.net.
-	[76.105.137.48])
-	by mx.google.com with ESMTPS id qk5sm2792920pbc.45.2012.05.08.09.07.17
-	(version=SSLv3 cipher=OTHER); Tue, 08 May 2012 09:07:18 -0700 (PDT)
-Message-ID: <4FA944B4.6060104@intel.com>
-Date: Tue, 08 May 2012 09:07:16 -0700
-From: Scott Garman <scott.a.garman@intel.com>
+Return-Path: <sgw@linux.intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6D794E0030B
+	for <yocto@yoctoproject.org>; Tue,  8 May 2012 09:37:57 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga101.ch.intel.com with ESMTP; 08 May 2012 09:37:56 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="97716289"
+Received: from unknown (HELO [10.255.12.218]) ([10.255.12.218])
+	by AZSMGA002.ch.intel.com with ESMTP; 08 May 2012 09:37:56 -0700
+Message-ID: <4FA94BE4.1040503@linux.intel.com>
+Date: Tue, 08 May 2012 09:37:56 -0700
+From: Saul Wold <sgw@linux.intel.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:11.0) Gecko/20120329 Thunderbird/11.0.1
+	rv:12.0) Gecko/20120424 Thunderbird/12.0
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-X-Gm-Message-State: ALoCoQlvDqvSHcCAkBASiXLpNPvNK/7LKv+h0ucME1rb/SZR57mv9kT0mbQHAu4uCBTNr1O5tf2/
-Subject: Point-release process wiki page.
+To: Frans Meulenbroeks <fransmeulenbroeks@gmail.com>
+References: <CACW_hTaV80O+vVw+hweKZxDWgNFOjgDU4mHemivEFudiA9PLvg@mail.gmail.com>
+	<CACW_hTaroQeLuPDF5LbhfLCuB=-qpLFPFLP1eDAGZmWAqdkHJg@mail.gmail.com>
+	<CACW_hTaeANMD271GeoU0hP8aacDd-8AhyrvXZ185LJoXLxqoqw@mail.gmail.com>
+In-Reply-To: <CACW_hTaeANMD271GeoU0hP8aacDd-8AhyrvXZ185LJoXLxqoqw@mail.gmail.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: [denzil] Licenses, source distribution etc
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,30 +32,104 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 08 May 2012 16:07:41 -0000
+X-List-Received-Date: Tue, 08 May 2012 16:37:57 -0000
 Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Hi all,
+On 05/08/2012 03:29 AM, Frans Meulenbroeks wrote:
+> 2012/5/8 Frans Meulenbroeks<fransmeulenbroeks@gmail.com>:
+>> 2012/5/8 Frans Meulenbroeks<fransmeulenbroeks@gmail.com>:
+>>> Dear all,
+>>>
+>>> A next question/issue wrt my denzil experiment:
+>>>
+>>> I wanted to know what licenses are used in my image.
+>>> I found tmp/deploy/licenses but this is package oriented and does not
+>>> really give a quick overview.
+>>>
+>>> The manual gave me this section:
+>>> http://www.yoctoproject.org/docs/current/poky-ref-manual/poky-ref-manual.html#ref-classes-src-distribute
+>>>
+>>> I tried to inherit src_distribute and src_distribute_local, but to no avail
+>>> Running a find on the source tree did not reveal these classes:
+>>>
+>>> frans@frans-desktop:~/poky-denzil-7.0$ find | grep distribute
+>>> ./meta/classes/pkg_distribute.bbclass
+>>> frans@frans-desktop:~/poky-denzil-7.0$
+>>>
+>>> Something missing?
+>>> And what is the best way to find out what licenses are used?
+>>>
+>>> Thanks, (and keep up the good work!)
+>>> Frans.
+>>
+>> Googled a little bit further.
+>> Guess this is a documentation issue as the classes have been
+>> deliberatly removed.
+>> See http://patches.openembedded.org/patch/23171/
+>>
+>> Frans
+>
+> One more thing:
+> I've added the archiver class. I also have rm_work (not sure if that is related)
+> Now when running a build I get errors like this:
+>
+> NOTE: Running task 1029 of 1279 (ID: 1167,
+> /home/frans/poky-denzil-7.0/meta/recipes-core/gettext/gettext_0.18.1.1.bb,
+> do_package_write_rpm)
+> NOTE: package gettext-0.18.1.1-r11: task do_package_write_rpm: Started
+> ERROR: Error executing a python function in
+> /home/frans/poky-denzil-7.0/meta/recipes-core/gettext/gettext_0.18.1.1.bb:
+> AttributeError: 'NoneType' object has no attribute 'upper'
+>
+> ERROR: The stack trace of python calls that resulted in this
+> exception/failure was:
+> ERROR:   File "do_remove_tarball", line 14, in<module>
+> ERROR:
+> ERROR:   File "do_remove_tarball", line 3, in do_remove_tarball
+> ERROR:
+> ERROR: The code that was being executed was:
+> ERROR:      0010:		except (TypeError,OSError):
+> ERROR:      0011:				pass
+> ERROR:      0012:
+> ERROR:      0013:
+> ERROR:  *** 0014:do_remove_tarball(d)
+> ERROR:      0015:
+> ERROR: (file: 'do_remove_tarball', lineno: 14, function:<module>)
+> ERROR:      0001:
+> ERROR:      0002:def do_remove_tarball(d):
+> ERROR:  *** 0003:	if d.getVar('SOURCE_ARCHIVE_PACKAGE_TYPE',
+> True).upper() == 'SRPM':
+> ERROR:      0004:		work_dir = d.getVar('WORKDIR', True)
+> ERROR:      0005:		try:
+> ERROR:      0006:			for file in os.listdir(os.getcwd()):
+> ERROR:      0007:				if file in get_package(d):
+> ERROR: (file: 'do_remove_tarball', lineno: 3, function: do_remove_tarball)
+> ERROR: Function failed: do_remove_tarball
+> ERROR: Logfile of failure stored in:
+> /home/frans/poky-denzil-7.0-build/tmp/work/ppce300c3-poky-linux-uclibc/gettext-0.18.1.1-r11/temp/log.do_package_write_rpm.11248
+> NOTE: package gettext-0.18.1.1-r11: task do_package_write_rpm: Failed
+> ERROR: Task 1167
+> (/home/frans/poky-denzil-7.0/meta/recipes-core/gettext/gettext_0.18.1.1.bb,
+> do_package_write_rpm) failed with exit code '1'
+>
+> And still no deploy/sources dir
+>
+Frans Please file a bug against this and the src-distrubute class 
+documentation.
 
-As mentioned in the Yocto Technical Team call this morning, I have 
-started documenting the workflow used to maintain a point-release on the 
-wiki:
+Yes, we did rework the source archiving and I guess it was not tested as 
+fully as it could have been.
 
-https://wiki.yoctoproject.org/wiki/Yocto_Point-Release_Development_Workflow
+Did you set SOURCE_ARCHIVE_PACKAGE_TYPE?
 
-Right now most of the information there is fairly high-level, and as I 
-refine my processes further, I'll be including things such as script 
-snippets or git commands I end up using to manage things.
+Sau!
 
-I also intend to add a section on testing guidelines, as I try to move 
-beyond just doing build tests on our QEMU architectures to doing things 
-like testing non-gplv3 builds, poky-tiny distro, etc.
-
-Scott
-
--- 
-Scott Garman
-Embedded Linux Engineer - Yocto Project
-Intel Open Source Technology Center
+> Best regards, Frans
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
 
