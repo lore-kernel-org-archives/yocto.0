@@ -1,27 +1,35 @@
-Return-Path: <denis@denix.org>
-Received: from vms173019pub.verizon.net (vms173019pub.verizon.net
-	[206.46.173.19])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0CE02E01206
-	for <yocto@yoctoproject.org>; Tue,  8 May 2012 07:06:37 -0700 (PDT)
-Received: from gandalf.denix.org ([unknown] [108.48.117.33])
-	by vms173019.mailsrvcs.net
-	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0M3P006MVJ6ANSG1@vms173019.mailsrvcs.net> for
-	yocto@yoctoproject.org; Tue, 08 May 2012 09:06:11 -0500 (CDT)
-Received: by gandalf.denix.org (Postfix, from userid 1000)	id 8FC6720168; Tue,
-	08 May 2012 10:06:10 -0400 (EDT)
-Date: Tue, 08 May 2012 10:06:10 -0400
-From: Denys Dmytriyenko <denis@denix.org>
-To: "Osier-mixon, Jeffrey" <jeffrey.osier-mixon@intel.com>
-Message-id: <20120508140610.GK11416@denix.org>
-References: <752F5B12-4CCB-4C62-A1DE-61EA5BD21CE9@keylevel.com>
-	<F549F654-3C59-46D2-9CA4-CE734301938B@keylevel.com>
-	<CALZ2gZU7DOYu6+kZ-DY=hw-3v5Gyqn2nABDgz06h+S4rubfL+A@mail.gmail.com>
-MIME-version: 1.0
-In-reply-to: <CALZ2gZU7DOYu6+kZ-DY=hw-3v5Gyqn2nABDgz06h+S4rubfL+A@mail.gmail.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7A4D0E0030B
+	for <yocto@yoctoproject.org>; Tue,  8 May 2012 08:08:26 -0700 (PDT)
+Received: from mail-lpp01m010-f52.google.com ([209.85.215.52])
+	by mga09.intel.com with ESMTP/TLS/RC4-SHA; 08 May 2012 08:08:25 -0700
+Received: by lahj13 with SMTP id j13so851127lah.25
+	for <yocto@yoctoproject.org>; Tue, 08 May 2012 08:08:23 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type:x-gm-message-state;
+	bh=xe0QDXUD5G8ScjZNFE+0VIKOXSxLSyuOtZZYlijg0Vw=;
+	b=PsafN1d7/QnkTBArWKGRW1jLluGM3wK12D3X2KujOyhPg9Gr2hgRz5EIqmuC2TBMNB
+	UwOCw0jH+grbYAsrHGKvcFnq0vTAuzlwvULlrD+mm7PFmCyOqacVrOMyZAXnmwDW08QF
+	OG0pMin1ZG5Y+JxGS/JYJhJbNCV86levcxS9dz0HiVHAALjstsF0LIdE0FMPqEmLzXjL
+	VDyngQZC+w7ZT9rMGpfczQkqJRzb2+ZW35DYHb5kMKtZUCrwDk4XPR9MeAbUcE6q6RKI
+	8TZleciuzi5svTAdrLkI7b6TOSMa2rzs82Okrx3hp6mh8ii5UU4IUYIX8YHO01U4cQkh
+	b5Ig==
+MIME-Version: 1.0
+Received: by 10.112.38.70 with SMTP id e6mr9103935lbk.6.1336489703545; Tue, 08
+	May 2012 08:08:23 -0700 (PDT)
+Received: by 10.112.107.137 with HTTP; Tue, 8 May 2012 08:08:23 -0700 (PDT)
+In-Reply-To: <CACW_hTaV80O+vVw+hweKZxDWgNFOjgDU4mHemivEFudiA9PLvg@mail.gmail.com>
+References: <CACW_hTaV80O+vVw+hweKZxDWgNFOjgDU4mHemivEFudiA9PLvg@mail.gmail.com>
+Date: Tue, 8 May 2012 08:08:23 -0700
+Message-ID: <CAPhnLPD1hXOUa_Zyi=OHM8a5B1CwdOCAxfuH=T1qqhTmchgi7Q@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: Frans Meulenbroeks <fransmeulenbroeks@gmail.com>
+X-Gm-Message-State: ALoCoQl/sxpMvqar2wooE7kk9ULdhd+M38gLeYkMwul9oKbKK/bm6kcPjgBPmWiS/qCCwRJ+aumZ
 Cc: yocto@yoctoproject.org
-Subject: Re: Raspberry Pi
+Subject: Re: [denzil] Licenses, source distribution etc
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,57 +41,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 08 May 2012 14:06:37 -0000
-Content-type: text/plain; charset=iso-8859-1
-Content-disposition: inline
-Content-transfer-encoding: 8bit
+X-List-Received-Date: Tue, 08 May 2012 15:08:26 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On Tue, May 08, 2012 at 12:58:32AM -0700, Osier-mixon, Jeffrey wrote:
-> Hi Chris & all - there is a small group working on a Yocto Project BSP
-> for the Raspberry Pi, particularly to get Qt working (this is the
-> QtonPi group to which Brian referred in an earlier message). I can put
-> you in touch with them if you like.
+On Tue, May 8, 2012 at 12:57 AM, Frans Meulenbroeks
+<fransmeulenbroeks@gmail.com> wrote:
+> Dear all,
+>
+> A next question/issue wrt my denzil experiment:
+>
+> I wanted to know what licenses are used in my image.
+> I found tmp/deploy/licenses but this is package oriented and does not
+> really give a quick overview.
+>
+> The manual gave me this section:
+> http://www.yoctoproject.org/docs/current/poky-ref-manual/poky-ref-manual.html#ref-classes-src-distribute
+>
+> I tried to inherit src_distribute and src_distribute_local, but to no avail
+> Running a find on the source tree did not reveal these classes:
+>
+> frans@frans-desktop:~/poky-denzil-7.0$ find | grep distribute
+> ./meta/classes/pkg_distribute.bbclass
+> frans@frans-desktop:~/poky-denzil-7.0$
+>
+> Something missing?
+> And what is the best way to find out what licenses are used?
 
-There is even a repository available for it now:
+tmp/deploy/${IMAGE}/license.manifest
 
-https://github.com/djwillis/meta-raspberrypi
+I have a bug open to document the license infrastructure.
 
--- 
-Denys
+-b
 
-
-> On Tue, May 8, 2012 at 12:43 AM, Chris Tapp <opensource@keylevel.com> wrote:
-> > On 15 Dec 2011, at 21:47, Chris Tapp wrote:
-> >
-> >> Is anyone on this list considering (or working on) a BSP for the Raspberry Pi (http://www.raspberrypi.org/faqs) ?
-> >>
-> >> For those that haven't seen it, it's a credit-card sized 'home pc' aimed primarily at educational users that includes a 700MHz ARM11 core, HDMI, OpenGL ES 2.0, ethernet and audio for about $35. It will be supporting Debian, Fedora and ArchLinux at launch.
-> >>
-> >> Looks like a good board for people that want to get in to Yocto / embedded linux. Also looks like it's a good platform for some of my stuff...
-> >>
-> >> I would be interested in working on a BSP / distro if anyone is working on it or would like to work on it.
-> >
-> > Well, I've finally got to the top of the order list and should be getting some hardware within the next few days. Time to get started!
-> >
-> > I guess the first thing to do is get a kernel built. I'm not up-to-date with ARM - are there any BSPs available for similar devices / the ARM11 core?
-> >
-> > Chris Tapp
-> >
-> > opensource@keylevel.com
-> > www.keylevel.com
-> >
-> > _______________________________________________
-> > yocto mailing list
-> > yocto@yoctoproject.org
-> > https://lists.yoctoproject.org/listinfo/yocto
-> 
-> 
-> 
-> -- 
-> Jeff Osier-Mixon http://jefro.net/blog
-> Yocto Project Community Manager @Intel http://yoctoproject.org
+>
+> Thanks, (and keep up the good work!)
+> Frans.
 > _______________________________________________
 > yocto mailing list
 > yocto@yoctoproject.org
 > https://lists.yoctoproject.org/listinfo/yocto
+
+
+
+-- 
+Elizabeth Flanagan
+Yocto Project
+Build and Release
 
