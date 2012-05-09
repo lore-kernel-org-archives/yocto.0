@@ -1,41 +1,33 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-wi0-f182.google.com (mail-wi0-f182.google.com
-	[209.85.212.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 76D1CE01206
-	for <yocto@yoctoproject.org>; Tue,  8 May 2012 21:31:42 -0700 (PDT)
-Received: by wibhm4 with SMTP id hm4so1317789wib.11
-	for <yocto@yoctoproject.org>; Tue, 08 May 2012 21:31:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=Q+fXAYjtyDEQWULoy8sw7WaFm8m7aN5ENPDzFAb37ug=;
-	b=CSeynJqiIcNBwcLLU64aWlyAV2GKYQusaIyPaOpT8OpKts3feciIhJ0U4s1GykYDS3
-	da04fsyFL9MKM448/4+Aa+RVkG7VrHumTNvlhYnfVVE07B3pyQxunnrFlKEXnF5O+PNo
-	ZoYPWjctHuO2TIsXI8IAWCfCKDtBRKLPu2ef2ohMLsT5kiFQuPVEU5N7DSuiFUnthAin
-	IzT0CQgsJioTSdaFWXEf2BcKET8yxb1f6ceEKMry4Fll6URMGcVU3KXnwoiKKqfZv/va
-	t4hO8ZVDY3ZvJ/Sa5Gd/ad6lfBGKkROZC+sCmMn1evHGmjgX5QuC8o96EhQ2cmaIk53C
-	+d7w==
-Received: by 10.216.150.225 with SMTP id z75mr13929926wej.77.1336537901229;
-	Tue, 08 May 2012 21:31:41 -0700 (PDT)
+Return-Path: <david.c.stewart@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B24E0E01206
+	for <yocto@yoctoproject.org>; Tue,  8 May 2012 22:18:44 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 08 May 2012 22:18:44 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="140704420"
+Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
+	by azsmga001.ch.intel.com with ESMTP; 08 May 2012 22:18:43 -0700
+Received: from orsmsx153.amr.corp.intel.com (10.22.226.247) by
+	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Tue, 8 May 2012 22:18:43 -0700
+Received: from orsmsx105.amr.corp.intel.com ([169.254.4.173]) by
+	ORSMSX153.amr.corp.intel.com ([169.254.13.77]) with mapi id
+	14.01.0355.002; Tue, 8 May 2012 22:18:43 -0700
+From: "Stewart, David C" <david.c.stewart@intel.com>
+To: "'xiaofeng.yan@windriver.com'" <xiaofeng.yan@windriver.com>,
+	"'yocto@yoctoproject.org'" <yocto@yoctoproject.org>
+Thread-Topic: [yocto] test
+Thread-Index: AQHNLY806MAnh2zNS066JGtAjIPGaZbA60fx
+Date: Wed, 9 May 2012 05:18:42 +0000
+Message-ID: <CDED78A957032E45B3239CDDA7642D151C7FFC7C@ORSMSX105.amr.corp.intel.com>
+In-Reply-To: <4FA9DC7C.6080108@windriver.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.142]
 MIME-Version: 1.0
-Received: by 10.194.23.66 with HTTP; Tue, 8 May 2012 21:31:11 -0700 (PDT)
-In-Reply-To: <4FA9C489.9070106@windriver.com>
-References: <CACW_hTacgFqj2NQZ4aNuN5WBm2R9Ge3NS25XVJTKjmKm6spHKw@mail.gmail.com>
-	<4FA7E0DB.7050508@windriver.com>
-	<CACW_hTZj8W-eS0+3GzELu1J_kTww1dgLB4a17bvYtcmZ77ymaQ@mail.gmail.com>
-	<4FA82443.10001@windriver.com>
-	<CACW_hTbZze5nfCsuy097zUmyEs=0s6HT=y-q9af5fFd150bJRg@mail.gmail.com>
-	<4FA914B1.3060602@windriver.com>
-	<CACW_hTZ68+Ok8z+6diWZ=xToE9jPqZaoAAOdyYc6-xVsy7mszQ@mail.gmail.com>
-	<4FA971E3.70904@windriver.com>
-	<CADzUK1KTda0WsbULkuU5QeeWeosiYuy1hWt6_UM1n-Q_41dORA@mail.gmail.com>
-	<4FA9C489.9070106@windriver.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Tue, 8 May 2012 21:31:11 -0700
-Message-ID: <CAMKF1spkYmu1eo12NYZ0qP-h0a77vWoU63LxPmkomMdcTJLgeA@mail.gmail.com>
-To: Bruce Ashfield <bruce.ashfield@windriver.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: modify a kernel patch
+Subject: Re: test
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,13 +39,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 09 May 2012 04:31:42 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 09 May 2012 05:18:44 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, May 8, 2012 at 6:12 PM, Bruce Ashfield
-<bruce.ashfield@windriver.com> wrote:
->
-> Does this mean you are the one person that was following!? :)
+I didn't know there was going to be a test!
 
-LOL
+Sent from my Blackberry
+
+----- Original Message -----
+From: Xiaofeng Yan [mailto:xiaofeng.yan@windriver.com]
+Sent: Tuesday, May 08, 2012 07:54 PM=0A=
+To: yocto@yoctoproject.org <yocto@yoctoproject.org>
+Subject: [yocto] test
+
+test
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
 
