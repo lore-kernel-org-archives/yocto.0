@@ -1,25 +1,34 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 70C6BE0140E
-	for <yocto@yoctoproject.org>; Wed,  9 May 2012 11:18:49 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 09 May 2012 11:18:49 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="164069658"
-Received: from unknown (HELO envy.home) ([10.255.13.57])
-	by fmsmga002.fm.intel.com with ESMTP; 09 May 2012 11:18:48 -0700
-Message-ID: <4FAAB4EB.8040502@linux.intel.com>
-Date: Wed, 09 May 2012 11:18:19 -0700
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:12.0) Gecko/20120424 Thunderbird/12.0
+Return-Path: <andrea.adami@gmail.com>
+Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
+	[209.85.160.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3913EE0140E
+	for <yocto@yoctoproject.org>; Wed,  9 May 2012 11:41:09 -0700 (PDT)
+Received: by pbbrq8 with SMTP id rq8so1109443pbb.35
+	for <yocto@yoctoproject.org>; Wed, 09 May 2012 11:41:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:content-type:content-transfer-encoding;
+	bh=j2QVM6HNJ4EC2v+Mak4KeStigrk1MQQH9ZtwimufFY4=;
+	b=0P+97K2qfnUTiYvYSNcd85AiyMSLySdyc94gFFBO5f1KSKxAmZimkCP8uBUIrDekvJ
+	+RVNVSHYxpuvqT7KLXBLJLj+/b2TbgaPyiM7sMR64gdKOJXTnu0BtT6rEFX3A7RTk+pV
+	2hvWt2zQJpLrWagCiyToJz7Yh9a/1z0g46Cw3TOkFKi061OP4lsPLnf+/3R9/4rLqtrI
+	knilw6iv046rsvx/jW7H62e9ywrDIFeH4e0wIw50KTykhB9+LO9r0gagySHS+pFCdJZi
+	2HWAldxuSR7oFBSO9VMJK/9ASBhgYWNLGyqlxkSy1TcCDpeZMA+IuMgEei7hUIb2mR7l
+	TacQ==
 MIME-Version: 1.0
-To: Manuel Bessler <manuel.bessler@gmail.com>
-References: <CAKSdS8LS3dX_zJpg8cZ5NqdN3DyHbRXdtK01oPukLfNmmfVFDQ@mail.gmail.com>
-In-Reply-To: <CAKSdS8LS3dX_zJpg8cZ5NqdN3DyHbRXdtK01oPukLfNmmfVFDQ@mail.gmail.com>
-X-Enigmail-Version: 1.4.1
-Cc: yocto@yoctoproject.org
-Subject: Re: initramfs image
+Received: by 10.68.190.7 with SMTP id gm7mr11562331pbc.156.1336588868624; Wed,
+	09 May 2012 11:41:08 -0700 (PDT)
+Received: by 10.142.54.11 with HTTP; Wed, 9 May 2012 11:41:08 -0700 (PDT)
+In-Reply-To: <CAAQYJAuR5hTaxfQCYxOd0a-hXVavHEpaVRMLtYLffVgHbNBTuA@mail.gmail.com>
+References: <OF2A8EADBF.1A016282-ONC12579F3.0038D0CC-C12579F3.00390132@Sitek.it>
+	<CAAQYJAs5EVfq+3E0J1FiZZMppvDUd=xpmEj2R1Hr3V3APQrL7g@mail.gmail.com>
+	<OF3FED1B75.579277FB-ONC12579F3.0057B45D-C12579F3.0057F44E@Sitek.it>
+	<CAAQYJAuR5hTaxfQCYxOd0a-hXVavHEpaVRMLtYLffVgHbNBTuA@mail.gmail.com>
+Date: Wed, 9 May 2012 20:41:08 +0200
+Message-ID: <CAAQYJAviOZDqBYrDGECG9KJ4WxN=KNGPXgCTTKROj9=_LqDo9A@mail.gmail.com>
+From: Andrea Adami <andrea.adami@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Need help for building kernel image with embeddedinitramfs.cpio
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,70 +40,132 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 09 May 2012 18:18:49 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 09 May 2012 18:41:09 -0000
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: quoted-printable
+
+I've realized my answer was not sent to the list.
+
+I'll do it now, being the subject may be of interest.
+
+Andrea
 
 
+---------- Forwarded message ----------
+From: Andrea Adami <andrea.adami@gmail.com>
+Date: Thu, May 3, 2012 at 6:24 PM
+Subject: Re: [yocto] Need help for building kernel image with
+embeddedinitramfs.cpio
+To: giovanni.pavoni@exorint.it
 
-On 05/08/2012 06:54 PM, Manuel Bessler wrote:
-> Hi,
-> 
-> I'm trying to figure out how to build an image of type initramfs, ie.
-> kernel with built-in rootfs.
-> I've got a rootfs.cpio.gz in build/tmp/deploy/images. But how do I
-> tell the kernel to actually use it
-> and "swallow in" the rootfs.
 
-This isn't currently supported. The problem is the kernel would have to
-wait for the image to be completed, and the image currently waits for
-the kernel to be completed. In practice, this is often done in two
-stages, the kernel is built, the rootfs is built, then the kernel is
-rebuilt. This workflow has not been configured for OE/Yocto yet. If this
-is an important feature for you, please consider opening a feature request.
+On Thu, May 3, 2012 at 6:00 PM, =A0<giovanni.pavoni@exorint.it> wrote:
+> Thanks for your suggestion. I have not yet tried with kernel modules
+> but the whole build sequence appears fine and the output is running.
+>
+> I am hitting a problem thought with step 3
+>
+> I have this layout (meta-mylayer is parallel to meta-yocto):
+>
+> meta-mylayer/conf/machine/mymachine.conf
+> meta-mylayer/recipes-kernel/linux/linux.inc
+> meta-mylayer/recipes-kernel/linux/linux_2.6.37.bb
+> meta-mylayer/recipes-kernel/linux/linux_2.6.37/mymachine/defconfig
+>
+> linux.inc inherit from kernel and I am setting
+> PREFERRED_PROVIDER_virtual/kernel =3D "linux"
+> PREFERRED_VERSION_linux ?=3D "2.6.37"
+> in mymachine.conf.
+>
+> This builds and deploys a uImage-mymachine-"stamp1".bin fine for mymachin=
+e.
+>
+> I added a kernel recipe in my recipe-kernel layer
+> like this:
+>
+> meta-mylayer/recipes-kernel/linux/linuxramfs_2.6.37.bb
+> meta-mylayer/recipes-kernel/linux/linuxramfs_2.6.37/mymachine/defconfig
+>
+> in linuxramfs_2.6.37/mymachine/defconfig I patched all options for ramfs
+> (source / compression etc)
+> and tweaked linuxramfs_2.6.37.bb as per your indication (starting from th=
+e
+> linux_2.6.37.bb
+> I had up and running).
+>
+> Problems:
+>
+> 1. when I run "bitbake linuxramfs" I get
+> "ERROR: Multiple .bb files are due to be built which each provide
+> virtual/kernel"
+>
+> I am seeing multiple reference on the net about this error but I am not
+> understanding
+> how to handle. Both linuxramfs_2.6.37.bb and linux_2.6.37.bb are providin=
+g
+> virtual/kernel.
+>
+this can be solved adding =A0PROVIDES =3D ""
+(see the kexecboot kernels linked above)
 
-Regards,
+> 2. "bitbake linuxramfs" deploys a uImage-mymachine-"stamp2".bin
+> To overwrite this in a way I get a uImage-ramfs-mymachine-"stampxxx".bin
+> (so that I can easily identify it against a normal uImage - only kernel)
+> what do_* task should I reimplement in my linuxramfs_2.6.37.bb recipe?
+>
+KERNEL_IMAGE_BASE_NAME
+KERNEL_IMAGE_SYMLINK_NAME
 
-Darren Hart
+see:
+http://cgit.openembedded.org/meta-openembedded/tree/meta-initramfs/recipes-=
+kernel/linux/linux-yocto-tiny-kexecboot_3.2.bb
 
-> 
-> I've found a few variable that have to do with initramfs', but there
-> are no simple examples,
-> and for some variables I've not found any examples nor documentation at all.
-> 
-> in  .../images/myimage-initramfs.bb I have:
-> require myimage.bb
-> INITRAMFS_FSTYPES = "cpio.gz"
-> IMAGE_FSTYPES = "${INITRAMFS_FSTYPES}"
-> 
-> In the same file I tried to set INITRAMFS_IMAGE to:
-> INITRAMFS_IMAGE = "myimage "
-> 
-> 
-> Do I need to set CONFIG_INITRAMFS_SOURCE in my kernel config manually,
-> and if yes, to what?
-> My kernel recipe is (for now) a simple kernel build, ie "inherit
-> kernel"-based only.
-> 
-> Am I using INITRAMFS_IMAGE the right way? What about INITRAMFS_TASK ?
-> I could not find any information on this variable....
-> 
-> I'm using yocto 1.2.
-> 
-> 
-> Does anyone have a simple example on how to build a kernel with
-> initramfs built in?
-> 
-> I'd appreciate any help.
-> Thanks,
-> Manuel
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+> Thanks in advance for your attention
+>
+YW
 
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
+Cheers
+
+Andrea (from Verona)
+
+> Giovanni Pavoni
+> R&D Department
+>
+> Exor International S.p.A.
+> Via Monte Fiorino,9
+> I-37057 San Giovanni Lupatoto (VR)
+> Phone:+390458774839 - Fax:+390458779023
+>
+> giovanni.pavoni@exorint.it - www.exorint.net - www.exorint.it
+>
+>
+> ATTENZIONE: Privacy Policy =96 D.Lgs. 196/2003
+> =A0Le informazioni contenute in questo messaggio di posta elettronica son=
+o di
+> carattere privato e confidenziale ed esclusivamente rivolte al destinatar=
+io
+> sopra indicato. Nel caso aveste ricevuto questo messaggio di posta
+> elettronica per errore, vi comunichiamo che ai sensi del suddetto decreto=
+ =E8
+> vietato l=92uso, la diffusione, distribuzione o riproduzione da parte di =
+ogni
+> altra persona. Siete pregati di segnalarlo immediatamente rispondendo al
+> mittente e di distruggere quanto ricevuto (compresi i file allegati) senz=
+a
+> farne copia o leggerne il contenuto.
+>
+> This e-mail transmission contains information that is confidential and ma=
+y
+> be privileged. It is intended only for the addressee(s) named above. If y=
+ou
+> receive this e-mail in error, please do not read, copy or disseminate it =
+in
+> any manner. If you are not the intended recipient, any disclosure, copyin=
+g,
+> distribution or use of the contents of this information is prohibited.
+> Please reply to the message immediately by informing the sender that the
+> message was misdirected. After replying, please erase it from your comput=
+er
+> system. Your assistance in correcting this error is appreciated.
+>
 
