@@ -1,36 +1,44 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 722B7E0044A
-	for <yocto@yoctoproject.org>; Tue,  8 May 2012 18:14:06 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q491ChFr008665
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Tue, 8 May 2012 18:12:43 -0700 (PDT)
-Received: from bruce-ashfields-macbook.local (128.224.23.161) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.1.255.0; Tue, 8 May 2012 18:12:42 -0700
-Message-ID: <4FA9C489.9070106@windriver.com>
-Date: Tue, 8 May 2012 21:12:41 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7;
-	rv:9.0) Gecko/20111222 Thunderbird/9.0.1
+Return-Path: <yesyanus@yahoo.com>
+Received: from nm30-vm1.bullet.mail.ne1.yahoo.com
+	(nm30-vm1.bullet.mail.ne1.yahoo.com [98.138.90.46])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id C3596E01206
+	for <yocto@yoctoproject.org>; Tue,  8 May 2012 18:52:02 -0700 (PDT)
+Received: from [98.138.90.54] by nm30.bullet.mail.ne1.yahoo.com with NNFMP;
+	09 May 2012 01:52:01 -0000
+Received: from [98.138.88.237] by tm7.bullet.mail.ne1.yahoo.com with NNFMP;
+	09 May 2012 01:52:01 -0000
+Received: from [127.0.0.1] by omp1037.mail.ne1.yahoo.com with NNFMP;
+	09 May 2012 01:52:01 -0000
+X-Yahoo-Newman-Property: ymail-3
+X-Yahoo-Newman-Id: 967005.44096.bm@omp1037.mail.ne1.yahoo.com
+Received: (qmail 73395 invoked by uid 60001); 9 May 2012 01:52:01 -0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s1024;
+	t=1336528321; bh=ewqlFU0SjexbKFEfH9YlV9OljhFF0GVJDHHW2j64ytc=;
+	h=X-YMail-OSG:Received:X-Mailer:Message-ID:Date:From:Reply-To:Subject:To:MIME-Version:Content-Type;
+	b=fVamZUgJ493IM+9UUYHWeXTabBkHt8ZwHvmG1RXdTWBzQ2T1X1wKqb7QCXu+BWamj3Kq1lK2yoZocW704CGGH19877/NWgBQxc90bvxNFlXvuHh+hIvdu088NW6np9dNyRUkjBxnpfLvHAEGlAncqj5xEt+Mqwa4D1EkqtTibUk=
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=s1024; d=yahoo.com;
+	h=X-YMail-OSG:Received:X-Mailer:Message-ID:Date:From:Reply-To:Subject:To:MIME-Version:Content-Type;
+	b=aGOJP49VP8q7T3T4Pr52XgznS0UQFGXn74iJ1Q6DiIXZ/4ynjej9yxN2rsaxCQpvlQZNIMTcXNTd4jnWdM/zSRK0/PLVPi3MfScVoBPb7fh39F+fx6qNfXrp8r7YLVeGcLt4JrWMX+OTyTxa1VJ7JNzkZ0O9uWVrL8FtnruEAjY=;
+X-YMail-OSG: HjhJIqkVM1kvuZNvZbDQvUFMlMVJ88iITbaKV0iCUPbsmgC
+	q8uqVlMLKtt7gwSmBaYqjPoazJ3rvlOPSbDps.Lkfn7_rYOJs8PTS52CHhWf
+	R47TN0BewNDO9n6__3p3NCEDkqneFrwudQwcnXlwlcQ1xiqsndbdWBBA_kKY
+	u92vXbhLP7cMdyGrskFk7vPDCmyuiS.kgu5I62Nt2RHx91lhZDvCeb7Fhf.A
+	z3xkYTOkpf3n8oSS_KmwyOu60P0IoPzkfiINK6lAO63PFEogNlIwDh4w539S
+	ze5.LJ0EY8XUIngrHT0vSYwfTqePQeqWpGKIiz0Ui8uvmLzYtymUJ6UwWWDy
+	_Bmk_Z2HIydHGR9HfUSeH45jKnoj4DtxNFY4hQ6qjfCjOII6n
+Received: from [61.148.56.138] by web121503.mail.ne1.yahoo.com via HTTP;
+	Tue, 08 May 2012 18:52:01 PDT
+X-Mailer: YahooMailWebService/0.8.117.340979
+Message-ID: <1336528321.58059.YahooMailNeo@web121503.mail.ne1.yahoo.com>
+Date: Tue, 8 May 2012 18:52:01 -0700 (PDT)
+From: Yes Yanus <yesyanus@yahoo.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 MIME-Version: 1.0
-To: Autif Khan <autif.mlist@gmail.com>
-References: <CACW_hTacgFqj2NQZ4aNuN5WBm2R9Ge3NS25XVJTKjmKm6spHKw@mail.gmail.com>
-	<4FA7E0DB.7050508@windriver.com>
-	<CACW_hTZj8W-eS0+3GzELu1J_kTww1dgLB4a17bvYtcmZ77ymaQ@mail.gmail.com>
-	<4FA82443.10001@windriver.com>
-	<CACW_hTbZze5nfCsuy097zUmyEs=0s6HT=y-q9af5fFd150bJRg@mail.gmail.com>
-	<4FA914B1.3060602@windriver.com>
-	<CACW_hTZ68+Ok8z+6diWZ=xToE9jPqZaoAAOdyYc6-xVsy7mszQ@mail.gmail.com>
-	<4FA971E3.70904@windriver.com>
-	<CADzUK1KTda0WsbULkuU5QeeWeosiYuy1hWt6_UM1n-Q_41dORA@mail.gmail.com>
-In-Reply-To: <CADzUK1KTda0WsbULkuU5QeeWeosiYuy1hWt6_UM1n-Q_41dORA@mail.gmail.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: modify a kernel patch
+Subject: test
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: Yes Yanus <yesyanus@yahoo.com>
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -39,24 +47,18 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 09 May 2012 01:14:06 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 09 May 2012 01:52:03 -0000
+Content-Type: multipart/alternative;
+	boundary="828875537-480109091-1336528321=:58059"
 
-On 12-05-08 6:40 PM, Autif Khan wrote:
-> On Tue, May 8, 2012 at 3:20 PM, Bruce Ashfield
-> <bruce.ashfield@windriver.com>  wrote:
->>
->> For anyone following along (all one of them), Frans and I have this
->> working now. It was a missing export of GUILT_BASE. I just sent a patch
->> to the list for it.
->
-> Thanks!
+--828875537-480109091-1336528321=:58059
+Content-Type: text/plain; charset=us-ascii
 
-Does this mean you are the one person that was following!? :)
+test
 
-Cheers,
+--828875537-480109091-1336528321=:58059
+Content-Type: text/html; charset=us-ascii
 
-Bruce
+<html><body><div style="color:#000; background-color:#fff; font-family:times new roman, new york, times, serif;font-size:14pt"><div>test</div></div></body></html>
 
-
+--828875537-480109091-1336528321=:58059--
