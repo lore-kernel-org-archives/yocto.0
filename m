@@ -1,28 +1,25 @@
-Return-Path: <opensource@keylevel.com>
-Received: from hxhsvr03.internetintuitive.net (hxhsvr03.internetintuitive.net
-	[80.254.228.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6E1A4E0140F
-	for <yocto@yoctoproject.org>; Wed,  9 May 2012 14:39:46 -0700 (PDT)
-Received: from [109.224.129.17] (port=59132 helo=[192.168.1.83])
-	by hxhsvr03.internetintuitive.net with esmtpa (Exim 4.69)
-	(envelope-from <opensource@keylevel.com>) id 1SSEbp-0005Yc-6S
-	for yocto@yoctoproject.org; Wed, 09 May 2012 22:39:45 +0100
-From: Chris Tapp <opensource@keylevel.com>
-Date: Wed, 9 May 2012 22:39:41 +0100
-Message-Id: <2BC681BE-E7C5-4CDD-8E03-7E567D5A8288@keylevel.com>
-To: Yocto Project <yocto@yoctoproject.org>
-Mime-Version: 1.0 (Apple Message framework v1257)
-X-Mailer: Apple Mail (2.1257)
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - hxhsvr03.internetintuitive.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: gettext.bb question
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 90995E0140E
+	for <yocto@yoctoproject.org>; Wed,  9 May 2012 15:36:16 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail1.windriver.com (8.14.3/8.14.3) with ESMTP id q49MaFQL000398
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Wed, 9 May 2012 15:36:15 -0700 (PDT)
+Received: from bruce-ashfields-macbook.local (128.224.23.174) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
+	14.1.255.0; Wed, 9 May 2012 15:36:15 -0700
+Message-ID: <4FAAF15E.3090007@windriver.com>
+Date: Wed, 9 May 2012 18:36:14 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7;
+	rv:9.0) Gecko/20111222 Thunderbird/9.0.1
+MIME-Version: 1.0
+To: "Bodke, Kishore K" <kishore.k.bodke@intel.com>
+References: <D956029D25CF204F948EA0FB515E1EE20ACA749B@ORSMSX105.amr.corp.intel.com>
+In-Reply-To: <D956029D25CF204F948EA0FB515E1EE20ACA749B@ORSMSX105.amr.corp.intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: KERNEL build failure for Master
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,27 +31,83 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 09 May 2012 21:39:46 -0000
-Content-Type: text/plain; charset=us-ascii
+X-List-Received-Date: Wed, 09 May 2012 22:36:16 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Looking at gettext_0.18.1.1.bb in 7.0.0 I see:
+On 12-05-09 4:37 PM, Bodke, Kishore K wrote:
+> Hi,
+>
+> Linux-yocto build is failing for Cedartrail for the Master and denzil
+> branch.
+>
+> Is it failing for any other BSPs?
 
-PROVIDES = "virtual/libintl virtual/gettext"
-PROVIDES_virtclass-native = "virtual/gettext-native"
+Everything is fine here, this looks to be something specific with your
+proxy setup injecting bad commands into the subshell.
 
-makes sense so far. However, I also see:
+Bruce
 
-DEPENDS = "libxml2-native gettext-native virtual/libiconv ncurses expat"
-DEPENDS_virtclass-native = "libxml2-native gettext-minimal-native"
-
-What does -native in the DEPENDS= 'do' here?
-
-Chris Tapp
-
-opensource@keylevel.com
-www.keylevel.com
-
-
+>
+> Below is the error.
+>
+> ERROR: Function failed: Fetcher failure: Fetch command export
+> HOME="/home/kishore"; export
+> https_proxy="https://proxy.sc.intel.com:911/"; export
+> ftp_proxy="http://proxy.sc.intel.com:911/"; export
+> http_proxy="http://proxy.sc.intel.com:911/"; export
+> GIT_CONFIG="/usr/local/src/may_9/build/tmp/sysroots/x86_64-linux/etc/gitconfig";
+> export GIT_PROXY_COMMAND="/usr/local/bin/git-proxy"; export
+> PATH="/usr/local/src/may_9/build/tmp/sysroots/x86_64-linux/usr/bin/core2-poky-linux:/usr/local/src/may_9/build/tmp/sysroots/cedartrail/usr/bin/crossscripts:/usr/local/src/may_9/build/tmp/sysroots/x86_64-linux/usr/sbin:/usr/local/src/may_9/build/tmp/sysroots/x86_64-linux/usr/bin:/usr/local/src/may_9/build/tmp/sysroots/x86_64-linux/sbin:/usr/local/src/may_9/build/tmp/sysroots/x86_64-linux//bin:/usr/local/src/may_9/scripts:/usr/local/src/may_9/bitbake/bin/:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/src/may_9/scripts";
+> git clone -s -n --mirror
+> /usr/local/src/may_9/build/downloads/git2/git.yoctoproject.org.linux-yocto-3.0/
+> /usr/local/src/may_9/build/tmp/work/cedartrail-poky-linux/linux-yocto-3.0.24+git1+a4ac64fe873f08ef718e2849b88914725dc99c1c_1+81fd8c307997aff37916828dc8b4ef72f5d35a94-r4/git/
+> could not be run:
+>
+> None
+>
+> ERROR: Logfile of failure stored in:
+> /usr/local/src/may_9/build/tmp/work/cedartrail-poky-linux/linux-yocto-3.0.24+git1+a4ac64fe873f08ef718e2849b88914725dc99c1c_1+81fd8c307997aff37916828dc8b4ef72f5d35a94-r4/temp/log.do_unpack.4250
+>
+> Log data follows:
+>
+> | DEBUG: Running export HOME="/home/kishore"; export
+> https_proxy="https://proxy.sc.intel.com:911/"; export
+> ftp_proxy="http://proxy.sc.intel.com:911/"; export
+> http_proxy="http://proxy.sc.intel.com:911/"; export
+> GIT_CONFIG="/usr/local/src/may_9/build/tmp/sysroots/x86_64-linux/etc/gitconfig";
+> export GIT_PROXY_COMMAND="/usr/local/bin/git-proxy"; export
+> PATH="/usr/local/src/may_9/build/tmp/sysroots/x86_64-linux/usr/bin/core2-poky-linux:/usr/local/src/may_9/build/tmp/sysroots/cedartrail/usr/bin/crossscripts:/usr/local/src/may_9/build/tmp/sysroots/x86_64-linux/usr/sbin:/usr/local/src/may_9/build/tmp/sysroots/x86_64-linux/usr/bin:/usr/local/src/may_9/build/tmp/sysroots/x86_64-linux/sbin:/usr/local/src/may_9/build/tmp/sysroots/x86_64-linux//bin:/usr/local/src/may_9/scripts:/usr/local/src/may_9/bitbake/bin/:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/src/may_9/scripts";
+> git clone -s -n --mirror
+> /usr/local/src/may_9/build/downloads/git2/git.yoctoproject.org.linux-yocto-3.0/
+> /usr/local/src/may_9/build/tmp/work/cedartrail-poky-linux/linux-yocto-3.0.24+git1+a4ac64fe873f08ef718e2849b88914725dc99c1c_1+81fd8c307997aff37916828dc8b4ef72f5d35a94-r4/git/
+>
+> | ERROR: Function failed: Fetcher failure: Fetch command export
+> HOME="/home/kishore"; export
+> https_proxy="https://proxy.sc.intel.com:911/"; export
+> ftp_proxy="http://proxy.sc.intel.com:911/"; export
+> http_proxy="http://proxy.sc.intel.com:911/"; export
+> GIT_CONFIG="/usr/local/src/may_9/build/tmp/sysroots/x86_64-linux/etc/gitconfig";
+> export GIT_PROXY_COMMAND="/usr/local/bin/git-proxy"; export
+> PATH="/usr/local/src/may_9/build/tmp/sysroots/x86_64-linux/usr/bin/core2-poky-linux:/usr/local/src/may_9/build/tmp/sysroots/cedartrail/usr/bin/crossscripts:/usr/local/src/may_9/build/tmp/sysroots/x86_64-linux/usr/sbin:/usr/local/src/may_9/build/tmp/sysroots/x86_64-linux/usr/bin:/usr/local/src/may_9/build/tmp/sysroots/x86_64-linux/sbin:/usr/local/src/may_9/build/tmp/sysroots/x86_64-linux//bin:/usr/local/src/may_9/scripts:/usr/local/src/may_9/bitbake/bin/:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/src/may_9/scripts";
+> git clone -s -n --mirror
+> /usr/local/src/may_9/build/downloads/git2/git.yoctoproject.org.linux-yocto-3.0/
+> /usr/local/src/may_9/build/tmp/work/cedartrail-poky-linux/linux-yocto-3.0.24+git1+a4ac64fe873f08ef718e2849b88914725dc99c1c_1+81fd8c307997aff37916828dc8b4ef72f5d35a94-r4/git/
+> could not be run:
+>
+> | None
+>
+> NOTE: package
+> linux-yocto-3.0.24+git1+a4ac64fe873f08ef718e2849b88914725dc99c1c_1+81fd8c307997aff37916828dc8b4ef72f5d35a94-r4:
+> task do_unpack: Failed
+>
+> ERROR: Task 858
+> (/usr/local/src/may_9/meta/recipes-kernel/linux/linux-yocto_3.0.bb,
+> do_unpack) failed with exit code '1'
+>
+> Thanks
+>
+> Kishore.
+>
 
 
