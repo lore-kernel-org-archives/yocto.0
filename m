@@ -1,40 +1,26 @@
-Return-Path: <scott.a.garman@intel.com>
-Received: from azsmga102.ch.intel.com (mga12.intel.com [143.182.124.36])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1C07DE0140C
-	for <yocto@yoctoproject.org>; Wed,  9 May 2012 09:31:09 -0700 (PDT)
-Received: from mail-pz0-f52.google.com ([209.85.210.52])
-	by mga14.intel.com with ESMTP/TLS/RC4-SHA; 09 May 2012 09:31:07 -0700
-Received: by dano14 with SMTP id o14so1738879dan.25
-	for <yocto@yoctoproject.org>; Wed, 09 May 2012 09:31:04 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=message-id:date:from:user-agent:mime-version:to:subject:references
-	:in-reply-to:content-type:content-transfer-encoding
-	:x-gm-message-state;
-	bh=zSIXp+MUJQGSj3LCKmj0d8JMaSv9WsKd7cC/ZgQvJxw=;
-	b=PvZ8zwnKWTDDUs59SgwIH0hGS5MwQJI//7Uhu1aQL3bjmpHd8niveNtFTg8wzBfdFy
-	pMX6IcRvShtAsOOAtRGXuM+q4xIIXF82tnfQZm94PqdxbggSw3nTpeXeEhJcy53nncOR
-	/nBBUQkv0+UgRV+Uus61meNMZyo7BDuv41AebDUUzK7XHQQbYuKTNNo8j1rh0Ul9UiwG
-	4t3Iiaqoe7mlksPfDMUqFpd2kuu8CeHlYzEG3oc/yPdG53QyuG11fhaNHfTOPbEzbmX0
-	XfiETK49surJDVehjLw7VPfLvWo2vLQcn1maW/rUA8fiyd20ku5tX5Ql2lkkwLlrdKGT
-	G6FA==
-Received: by 10.68.223.37 with SMTP id qr5mr10808392pbc.159.1336581063910;
-	Wed, 09 May 2012 09:31:03 -0700 (PDT)
-Received: from [10.1.10.192] (c-50-137-42-92.hsd1.or.comcast.net.
-	[50.137.42.92])
-	by mx.google.com with ESMTPS id uz10sm415302pbc.17.2012.05.09.09.31.01
-	(version=SSLv3 cipher=OTHER); Wed, 09 May 2012 09:31:02 -0700 (PDT)
-Message-ID: <4FAA9BC4.5020508@intel.com>
-Date: Wed, 09 May 2012 09:31:00 -0700
-From: Scott Garman <scott.a.garman@intel.com>
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2FE89E0140E
+	for <yocto@yoctoproject.org>; Wed,  9 May 2012 11:14:38 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 09 May 2012 11:14:37 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="141988292"
+Received: from unknown (HELO envy.home) ([10.255.13.57])
+	by orsmga002.jf.intel.com with ESMTP; 09 May 2012 11:14:37 -0700
+Message-ID: <4FAAB3EF.7000301@linux.intel.com>
+Date: Wed, 09 May 2012 11:14:07 -0700
+From: Darren Hart <dvhart@linux.intel.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:12.0) Gecko/20120430 Thunderbird/12.0.1
+	rv:12.0) Gecko/20120424 Thunderbird/12.0
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <1336561783.93905.YahooMailClassic@web92402.mail.cnh.yahoo.com>
-In-Reply-To: <1336561783.93905.YahooMailClassic@web92402.mail.cnh.yahoo.com>
-X-Gm-Message-State: ALoCoQkZMqcc5T06luJRxVnNO5jzJUaxLme/boZr8/0uX50tsuafOcL2v5vQ3gXUyhI6b5sxnbTz
-Subject: Re: how to use video ??
+To: tom.zanussi@intel.com
+References: <7c0829132be31ea39b475943ae66230ff9ef9563.1336510043.git.tom.zanussi@intel.com>
+	<baa4fcbfd70feedeef680b214a6f4186743e3c4b.1336510044.git.tom.zanussi@intel.com>
+In-Reply-To: <baa4fcbfd70feedeef680b214a6f4186743e3c4b.1336510044.git.tom.zanussi@intel.com>
+X-Enigmail-Version: 1.4.1
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH 5/9][KERNEL] meta/jasperforest: remove boot-live options
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,22 +32,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 09 May 2012 16:31:09 -0000
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Wed, 09 May 2012 18:14:38 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-On 05/09/2012 04:09 AM, 王春泽   wrote:
->     hi,we are studying yocto now.but we met a problem. we cann't drive
->     the video. canyou give us some advice ?
->     thanks!!
 
-Which video? What error are you encountering? No one will be able to 
-help you without more context about your problem.
 
-Scott
+On 05/08/2012 02:37 PM, tom.zanussi@intel.com wrote:
+> From: Tom Zanussi <tom.zanussi@intel.com>
+> 
+> The boot-live options are already included via common-pc-64 so remove
+> the associated config settings from the top-level feature.
+
+The appropriate place for these in my opinion is in BSP-standard.scc and
+BSP-preempt_rt.scc. That would be the common-pc-64-standard.scc for
+example in this case.
+
+This should not be part of a machine config fragment as it is more of a
+ktype policy item than it is a bsp item. I expect "standard" kernels to
+be able to do live boot, but "tiny" images should not.
+
+Note that usb-mass-storage.scc should also be added to the standard and
+preempt-rt scc files per BSP. I've done the former and am currently
+working through the latter with my BSPs.
+
+--
+Darren
+
+> 
+> Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
+> ---
+>  .../kernel-cache/bsp/jasperforest/jasperforest.cfg |    7 -------
+>  1 files changed, 0 insertions(+), 7 deletions(-)
+> 
+> diff --git a/meta/cfg/kernel-cache/bsp/jasperforest/jasperforest.cfg b/meta/cfg/kernel-cache/bsp/jasperforest/jasperforest.cfg
+> index 0a81a19..e2310a5 100644
+> --- a/meta/cfg/kernel-cache/bsp/jasperforest/jasperforest.cfg
+> +++ b/meta/cfg/kernel-cache/bsp/jasperforest/jasperforest.cfg
+> @@ -34,13 +34,6 @@ CONFIG_PM=y
+>  CONFIG_ACPI=y
+>  CONFIG_INPUT=y
+>  
+> -# Needed for booting (and using) USB memory sticks
+> -CONFIG_BLK_DEV_LOOP=y
+> -CONFIG_NLS_CODEPAGE_437=y
+> -CONFIG_NLS_ISO8859_1=y
+> -
+> -CONFIG_RD_GZIP=y
+> -
+>  # NUMA support
+>  CONFIG_NUMA=y
+>  CONFIG_X86_64_ACPI_NUMA=y
 
 -- 
-Scott Garman
-Embedded Linux Engineer - Yocto Project
+Darren Hart
 Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
