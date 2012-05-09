@@ -1,44 +1,31 @@
-Return-Path: <yesyanus@yahoo.com>
-Received: from nm30-vm1.bullet.mail.ne1.yahoo.com
-	(nm30-vm1.bullet.mail.ne1.yahoo.com [98.138.90.46])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id C3596E01206
-	for <yocto@yoctoproject.org>; Tue,  8 May 2012 18:52:02 -0700 (PDT)
-Received: from [98.138.90.54] by nm30.bullet.mail.ne1.yahoo.com with NNFMP;
-	09 May 2012 01:52:01 -0000
-Received: from [98.138.88.237] by tm7.bullet.mail.ne1.yahoo.com with NNFMP;
-	09 May 2012 01:52:01 -0000
-Received: from [127.0.0.1] by omp1037.mail.ne1.yahoo.com with NNFMP;
-	09 May 2012 01:52:01 -0000
-X-Yahoo-Newman-Property: ymail-3
-X-Yahoo-Newman-Id: 967005.44096.bm@omp1037.mail.ne1.yahoo.com
-Received: (qmail 73395 invoked by uid 60001); 9 May 2012 01:52:01 -0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s1024;
-	t=1336528321; bh=ewqlFU0SjexbKFEfH9YlV9OljhFF0GVJDHHW2j64ytc=;
-	h=X-YMail-OSG:Received:X-Mailer:Message-ID:Date:From:Reply-To:Subject:To:MIME-Version:Content-Type;
-	b=fVamZUgJ493IM+9UUYHWeXTabBkHt8ZwHvmG1RXdTWBzQ2T1X1wKqb7QCXu+BWamj3Kq1lK2yoZocW704CGGH19877/NWgBQxc90bvxNFlXvuHh+hIvdu088NW6np9dNyRUkjBxnpfLvHAEGlAncqj5xEt+Mqwa4D1EkqtTibUk=
-DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=s1024; d=yahoo.com;
-	h=X-YMail-OSG:Received:X-Mailer:Message-ID:Date:From:Reply-To:Subject:To:MIME-Version:Content-Type;
-	b=aGOJP49VP8q7T3T4Pr52XgznS0UQFGXn74iJ1Q6DiIXZ/4ynjej9yxN2rsaxCQpvlQZNIMTcXNTd4jnWdM/zSRK0/PLVPi3MfScVoBPb7fh39F+fx6qNfXrp8r7YLVeGcLt4JrWMX+OTyTxa1VJ7JNzkZ0O9uWVrL8FtnruEAjY=;
-X-YMail-OSG: HjhJIqkVM1kvuZNvZbDQvUFMlMVJ88iITbaKV0iCUPbsmgC
-	q8uqVlMLKtt7gwSmBaYqjPoazJ3rvlOPSbDps.Lkfn7_rYOJs8PTS52CHhWf
-	R47TN0BewNDO9n6__3p3NCEDkqneFrwudQwcnXlwlcQ1xiqsndbdWBBA_kKY
-	u92vXbhLP7cMdyGrskFk7vPDCmyuiS.kgu5I62Nt2RHx91lhZDvCeb7Fhf.A
-	z3xkYTOkpf3n8oSS_KmwyOu60P0IoPzkfiINK6lAO63PFEogNlIwDh4w539S
-	ze5.LJ0EY8XUIngrHT0vSYwfTqePQeqWpGKIiz0Ui8uvmLzYtymUJ6UwWWDy
-	_Bmk_Z2HIydHGR9HfUSeH45jKnoj4DtxNFY4hQ6qjfCjOII6n
-Received: from [61.148.56.138] by web121503.mail.ne1.yahoo.com via HTTP;
-	Tue, 08 May 2012 18:52:01 PDT
-X-Mailer: YahooMailWebService/0.8.117.340979
-Message-ID: <1336528321.58059.YahooMailNeo@web121503.mail.ne1.yahoo.com>
-Date: Tue, 8 May 2012 18:52:01 -0700 (PDT)
-From: Yes Yanus <yesyanus@yahoo.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Return-Path: <manuel.bessler@gmail.com>
+Received: from mail-vb0-f48.google.com (mail-vb0-f48.google.com
+	[209.85.212.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E16E7E01206
+	for <yocto@yoctoproject.org>; Tue,  8 May 2012 18:54:55 -0700 (PDT)
+Received: by vbjk17 with SMTP id k17so4862080vbj.35
+	for <yocto@yoctoproject.org>; Tue, 08 May 2012 18:54:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=7ugnQ1nbeRaHxSz3rBWfpzTdISrehNfN1lM22H+6pFE=;
+	b=rt9CPFwzVYi2GTC8k9bKjeIGkTn7xDk6UQMwBaA9mNX04zmlnvsvr6gtSg2f3TUFQA
+	QZAlQXGqcB/JHVZ2rLEgZoEZIbHPM9jXWiThCzX+xhMAIVPv167rFshB6+Kd86TNLDjN
+	mmOVCqvbkb1xmID3MBpsTYTEaUqtftvSfJ4VzVjguThdhR7nrZ8Krhf1QCRXqdHC+if8
+	ofc156bzbu9rAXm7pOIKoCNyUW/XqOHjjqaCNFwegWaIQWoH2UeUJTisnV/MtxLEnXzQ
+	mu/iuufgpXUExzbKnUu0HW/vXbxnX/g4HbDBzeFOFdfAHc4AqeSLDxw7SgCPxEOGxAL0
+	U5Ng==
 MIME-Version: 1.0
-Subject: test
+Received: by 10.52.34.241 with SMTP id c17mr2583573vdj.40.1336528494998; Tue,
+	08 May 2012 18:54:54 -0700 (PDT)
+Received: by 10.220.182.136 with HTTP; Tue, 8 May 2012 18:54:54 -0700 (PDT)
+Date: Tue, 8 May 2012 21:54:54 -0400
+Message-ID: <CAKSdS8LS3dX_zJpg8cZ5NqdN3DyHbRXdtK01oPukLfNmmfVFDQ@mail.gmail.com>
+From: Manuel Bessler <manuel.bessler@gmail.com>
+To: yocto@yoctoproject.org
+Subject: initramfs image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: Yes Yanus <yesyanus@yahoo.com>
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -47,18 +34,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 09 May 2012 01:52:03 -0000
-Content-Type: multipart/alternative;
-	boundary="828875537-480109091-1336528321=:58059"
+X-List-Received-Date: Wed, 09 May 2012 01:54:56 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
---828875537-480109091-1336528321=:58059
-Content-Type: text/plain; charset=us-ascii
+Hi,
 
-test
+I'm trying to figure out how to build an image of type initramfs, ie.
+kernel with built-in rootfs.
+I've got a rootfs.cpio.gz in build/tmp/deploy/images. But how do I
+tell the kernel to actually use it
+and "swallow in" the rootfs.
 
---828875537-480109091-1336528321=:58059
-Content-Type: text/html; charset=us-ascii
+I've found a few variable that have to do with initramfs', but there
+are no simple examples,
+and for some variables I've not found any examples nor documentation at all.
 
-<html><body><div style="color:#000; background-color:#fff; font-family:times new roman, new york, times, serif;font-size:14pt"><div>test</div></div></body></html>
+in  .../images/myimage-initramfs.bb I have:
+require myimage.bb
+INITRAMFS_FSTYPES = "cpio.gz"
+IMAGE_FSTYPES = "${INITRAMFS_FSTYPES}"
 
---828875537-480109091-1336528321=:58059--
+In the same file I tried to set INITRAMFS_IMAGE to:
+INITRAMFS_IMAGE = "myimage "
+
+
+Do I need to set CONFIG_INITRAMFS_SOURCE in my kernel config manually,
+and if yes, to what?
+My kernel recipe is (for now) a simple kernel build, ie "inherit
+kernel"-based only.
+
+Am I using INITRAMFS_IMAGE the right way? What about INITRAMFS_TASK ?
+I could not find any information on this variable....
+
+I'm using yocto 1.2.
+
+
+Does anyone have a simple example on how to build a kernel with
+initramfs built in?
+
+I'd appreciate any help.
+Thanks,
+Manuel
+
