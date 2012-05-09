@@ -1,23 +1,26 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 51A61E01411
-	for <yocto@yoctoproject.org>; Wed,  9 May 2012 11:50:30 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 09 May 2012 11:50:30 -0700
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EE022E0140E
+	for <yocto@yoctoproject.org>; Wed,  9 May 2012 12:11:52 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 09 May 2012 12:11:52 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="151096991"
-Received: from unknown (HELO [10.255.12.248]) ([10.255.12.248])
-	by fmsmga001.fm.intel.com with ESMTP; 09 May 2012 11:50:29 -0700
-From: Tom Zanussi <tom.zanussi@intel.com>
-To: Darren Hart <dvhart@linux.intel.com>
-In-Reply-To: <4FAAB3EF.7000301@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="141021313"
+Received: from unknown (HELO envy.home) ([10.255.13.57])
+	by azsmga001.ch.intel.com with ESMTP; 09 May 2012 12:11:52 -0700
+Message-ID: <4FAAC15A.40508@linux.intel.com>
+Date: Wed, 09 May 2012 12:11:22 -0700
+From: Darren Hart <dvhart@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:12.0) Gecko/20120424 Thunderbird/12.0
+MIME-Version: 1.0
+To: Tom Zanussi <tom.zanussi@intel.com>
 References: <7c0829132be31ea39b475943ae66230ff9ef9563.1336510043.git.tom.zanussi@intel.com>
 	<baa4fcbfd70feedeef680b214a6f4186743e3c4b.1336510044.git.tom.zanussi@intel.com>
 	<4FAAB3EF.7000301@linux.intel.com>
-Date: Wed, 09 May 2012 13:50:43 -0500
-Message-ID: <1336589443.2323.99.camel@elmorro>
-Mime-Version: 1.0
-X-Mailer: Evolution 2.28.3 
+	<1336589443.2323.99.camel@elmorro>
+In-Reply-To: <1336589443.2323.99.camel@elmorro>
+X-Enigmail-Version: 1.4.1
 Cc: yocto@yoctoproject.org
 Subject: Re: [PATCH 5/9][KERNEL] meta/jasperforest: remove boot-live options
 X-BeenThere: yocto@yoctoproject.org
@@ -31,71 +34,89 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 09 May 2012 18:50:30 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Wed, 09 May 2012 19:11:53 -0000
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On Wed, 2012-05-09 at 11:14 -0700, Darren Hart wrote:
-> 
-> On 05/08/2012 02:37 PM, tom.zanussi@intel.com wrote:
-> > From: Tom Zanussi <tom.zanussi@intel.com>
-> > 
-> > The boot-live options are already included via common-pc-64 so remove
-> > the associated config settings from the top-level feature.
-> 
-> The appropriate place for these in my opinion is in BSP-standard.scc and
-> BSP-preempt_rt.scc. That would be the common-pc-64-standard.scc for
-> example in this case.
-> 
-> This should not be part of a machine config fragment as it is more of a
-> ktype policy item than it is a bsp item. I expect "standard" kernels to
-> be able to do live boot, but "tiny" images should not.
-> 
-
-Right, this patch does actually remove it from the machine fragment for
-the BSP, but I take your point - I was noticing when adding the usb
-features that there are plenty of opportunities for cleanup of the
-common-pc-* fragments, and it probably does make sense to add
-'policy'-related features to the -standard/preempt-rt containers in
-general, though not just for 'tiny' since I doubt anyone would ever want
-a 'tiny' jasperforest BSP.
-
-So, agreed in principal, but that's a separate task from this patchset.
-
-Tom 
-
-> Note that usb-mass-storage.scc should also be added to the standard and
-> preempt-rt scc files per BSP. I've done the former and am currently
-> working through the latter with my BSPs.
-> 
-> --
-> Darren
-> 
-> > 
-> > Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
-> > ---
-> >  .../kernel-cache/bsp/jasperforest/jasperforest.cfg |    7 -------
-> >  1 files changed, 0 insertions(+), 7 deletions(-)
-> > 
-> > diff --git a/meta/cfg/kernel-cache/bsp/jasperforest/jasperforest.cfg b/meta/cfg/kernel-cache/bsp/jasperforest/jasperforest.cfg
-> > index 0a81a19..e2310a5 100644
-> > --- a/meta/cfg/kernel-cache/bsp/jasperforest/jasperforest.cfg
-> > +++ b/meta/cfg/kernel-cache/bsp/jasperforest/jasperforest.cfg
-> > @@ -34,13 +34,6 @@ CONFIG_PM=y
-> >  CONFIG_ACPI=y
-> >  CONFIG_INPUT=y
-> >  
-> > -# Needed for booting (and using) USB memory sticks
-> > -CONFIG_BLK_DEV_LOOP=y
-> > -CONFIG_NLS_CODEPAGE_437=y
-> > -CONFIG_NLS_ISO8859_1=y
-> > -
-> > -CONFIG_RD_GZIP=y
-> > -
-> >  # NUMA support
-> >  CONFIG_NUMA=y
-> >  CONFIG_X86_64_ACPI_NUMA=y
-> 
 
 
+On 05/09/2012 11:50 AM, Tom Zanussi wrote:
+> On Wed, 2012-05-09 at 11:14 -0700, Darren Hart wrote:
+>>
+>> On 05/08/2012 02:37 PM, tom.zanussi@intel.com wrote:
+>>> From: Tom Zanussi <tom.zanussi@intel.com>
+>>>
+>>> The boot-live options are already included via common-pc-64 so remove
+>>> the associated config settings from the top-level feature.
+>>
+>> The appropriate place for these in my opinion is in BSP-standard.scc and
+>> BSP-preempt_rt.scc. That would be the common-pc-64-standard.scc for
+>> example in this case.
+>>
+>> This should not be part of a machine config fragment as it is more of a
+>> ktype policy item than it is a bsp item. I expect "standard" kernels to
+>> be able to do live boot, but "tiny" images should not.
+>>
+> 
+> Right, this patch does actually remove it from the machine fragment for
+> the BSP, but I take your point - I was noticing when adding the usb
+> features that there are plenty of opportunities for cleanup of the
+> common-pc-* fragments, and it probably does make sense to add
+> 'policy'-related features to the -standard/preempt-rt containers in
+> general, though not just for 'tiny' since I doubt anyone would ever want
+> a 'tiny' jasperforest BSP.
+> 
+
+Right, tiny was just an example.
+
+> So, agreed in principal, but that's a separate task from this patchset.
+
+That's fine. I can do it as well when I update the others. Nice to do
+general changes like that at once so the BSPs remain consistent.
+
+--
+Darren
+
+> 
+> Tom 
+> 
+>> Note that usb-mass-storage.scc should also be added to the standard and
+>> preempt-rt scc files per BSP. I've done the former and am currently
+>> working through the latter with my BSPs.
+>>
+>> --
+>> Darren
+>>
+>>>
+>>> Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
+>>> ---
+>>>  .../kernel-cache/bsp/jasperforest/jasperforest.cfg |    7 -------
+>>>  1 files changed, 0 insertions(+), 7 deletions(-)
+>>>
+>>> diff --git a/meta/cfg/kernel-cache/bsp/jasperforest/jasperforest.cfg b/meta/cfg/kernel-cache/bsp/jasperforest/jasperforest.cfg
+>>> index 0a81a19..e2310a5 100644
+>>> --- a/meta/cfg/kernel-cache/bsp/jasperforest/jasperforest.cfg
+>>> +++ b/meta/cfg/kernel-cache/bsp/jasperforest/jasperforest.cfg
+>>> @@ -34,13 +34,6 @@ CONFIG_PM=y
+>>>  CONFIG_ACPI=y
+>>>  CONFIG_INPUT=y
+>>>  
+>>> -# Needed for booting (and using) USB memory sticks
+>>> -CONFIG_BLK_DEV_LOOP=y
+>>> -CONFIG_NLS_CODEPAGE_437=y
+>>> -CONFIG_NLS_ISO8859_1=y
+>>> -
+>>> -CONFIG_RD_GZIP=y
+>>> -
+>>>  # NUMA support
+>>>  CONFIG_NUMA=y
+>>>  CONFIG_X86_64_ACPI_NUMA=y
+>>
+> 
+> 
+
+-- 
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
