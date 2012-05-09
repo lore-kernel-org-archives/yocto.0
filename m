@@ -1,32 +1,32 @@
-Return-Path: <Xiaofeng.Yan@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DC909E013EC
-	for <yocto@yoctoproject.org>; Tue,  8 May 2012 23:08:43 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q4968gG9005284
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Tue, 8 May 2012 23:08:42 -0700 (PDT)
-Received: from [128.224.162.223] (128.224.162.223) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.1.255.0;
-	Tue, 8 May 2012 23:08:42 -0700
-Message-ID: <4FAA09D2.10203@windriver.com>
-Date: Wed, 9 May 2012 14:08:18 +0800
-From: Xiaofeng Yan <xiaofeng.yan@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:11.0) Gecko/20120329 Thunderbird/11.0.1
+Return-Path: <lianhao.lu@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9B048E01206
+	for <yocto@yoctoproject.org>; Wed,  9 May 2012 01:11:13 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 09 May 2012 01:11:13 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="97999939"
+Received: from azsmsx601.amr.corp.intel.com ([10.2.121.193])
+	by AZSMGA002.ch.intel.com with ESMTP; 09 May 2012 01:11:13 -0700
+Received: from shsmsx151.ccr.corp.intel.com (10.239.6.50) by
+	azsmsx601.amr.corp.intel.com (10.2.121.193) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Wed, 9 May 2012 01:11:12 -0700
+Received: from shsmsx102.ccr.corp.intel.com ([169.254.2.133]) by
+	SHSMSX151.ccr.corp.intel.com ([169.254.3.90]) with mapi id
+	14.01.0355.002; Wed, 9 May 2012 16:11:10 +0800
+From: "Lu, Lianhao" <lianhao.lu@intel.com>
+To: "Hart, Darren" <darren.hart@intel.com>
+Thread-Topic: How to launch core-image-minimal built upon poky-tiny
+Thread-Index: Ac0tu0j4ONNmbClXQruhWlhHvTIxeA==
+Date: Wed, 9 May 2012 08:11:09 +0000
+Message-ID: <857BE142E5399E46B20FD45B9DB8A7BC0FDB4798@SHSMSX102.ccr.corp.intel.com>
+Accept-Language: zh-CN, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.239.127.40]
 MIME-Version: 1.0
-To: Frans Meulenbroeks <fransmeulenbroeks@gmail.com>
-References: <CACW_hTaV80O+vVw+hweKZxDWgNFOjgDU4mHemivEFudiA9PLvg@mail.gmail.com>
-	<CACW_hTaroQeLuPDF5LbhfLCuB=-qpLFPFLP1eDAGZmWAqdkHJg@mail.gmail.com>
-	<CACW_hTaeANMD271GeoU0hP8aacDd-8AhyrvXZ185LJoXLxqoqw@mail.gmail.com>
-	<4FA94BE4.1040503@linux.intel.com>
-	<CACW_hTY_wtMa4ZLwRXMdeiJyouKkG0TTSe6PdO+m8Gt02-LM=w@mail.gmail.com>
-	<1336542274.43652.YahooMailNeo@web121503.mail.ne1.yahoo.com>
-	<CACW_hTaOOT8XoGiA55UtcTNeCVAzvWJ7UEvfGBv3GiE4fyX1WQ@mail.gmail.com>
-In-Reply-To: <CACW_hTaOOT8XoGiA55UtcTNeCVAzvWJ7UEvfGBv3GiE4fyX1WQ@mail.gmail.com>
-X-Originating-IP: [128.224.162.223]
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [denzil] Licenses, source distribution etc
+Subject: How to launch core-image-minimal built upon poky-tiny
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,31 +38,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 09 May 2012 06:08:44 -0000
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Wed, 09 May 2012 08:11:13 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 2012年05月09日 14:01, Frans Meulenbroeks wrote:
-> 2012/5/9 Yes Yanus<yesyanus@yahoo.com>:
->> If you use archiver.bbclass , you should enable three variables
->> INHERIT += "archive-original-source"
->> SOURCE_ARCHIVE_PACKAGE_TYPE = 'srpm' or 'tar'
->> SOURCE_ARCHIVE_LOG_WITH_SCRIPTS ?= 'logs_with_scripts' or 'logs'
->>
->
-> Thanks. I'll try that.
-> Originally I had only INHERIT += "archiver"
-Hi Frans,
+Hi Darren,
 
-Thanks for your information. I will update archiver.bbclass with 
-stronger coding.
-you will get more description after reading 
-meta-yocto/conf/local.conf.sample.
-> Best regards, Frans
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+Do you know how to use qemu to launch the core-image-minimal image build up=
+on the poky-tiny distribution?
 
+I tried the following command but ended up in "Kernel panic - not syncing: =
+No init found."
+
+tmp/sysroot/x86_64-linux/usr/bin/qemu -kernel /tmp/deploy/image/bzImage-qem=
+ux86.bin -append "console=3DttyS0, 115200 root=3D0800" -nographic tmp/deplo=
+y/images/core-image-minimal-qemux86.ext2
+
+Best Regards
+-Lianhao
 
