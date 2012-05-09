@@ -1,25 +1,41 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 76626E01206
-	for <yocto@yoctoproject.org>; Tue,  8 May 2012 21:25:39 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q494PctW025914
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Tue, 8 May 2012 21:25:38 -0700 (PDT)
-Received: from bruce-ashfields-macbook.local (128.224.23.174) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.1.255.0; Tue, 8 May 2012 21:25:38 -0700
-Message-ID: <4FA9F1C1.8020408@windriver.com>
-Date: Wed, 9 May 2012 00:25:37 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7;
-	rv:9.0) Gecko/20111222 Thunderbird/9.0.1
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-wi0-f182.google.com (mail-wi0-f182.google.com
+	[209.85.212.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 76D1CE01206
+	for <yocto@yoctoproject.org>; Tue,  8 May 2012 21:31:42 -0700 (PDT)
+Received: by wibhm4 with SMTP id hm4so1317789wib.11
+	for <yocto@yoctoproject.org>; Tue, 08 May 2012 21:31:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=Q+fXAYjtyDEQWULoy8sw7WaFm8m7aN5ENPDzFAb37ug=;
+	b=CSeynJqiIcNBwcLLU64aWlyAV2GKYQusaIyPaOpT8OpKts3feciIhJ0U4s1GykYDS3
+	da04fsyFL9MKM448/4+Aa+RVkG7VrHumTNvlhYnfVVE07B3pyQxunnrFlKEXnF5O+PNo
+	ZoYPWjctHuO2TIsXI8IAWCfCKDtBRKLPu2ef2ohMLsT5kiFQuPVEU5N7DSuiFUnthAin
+	IzT0CQgsJioTSdaFWXEf2BcKET8yxb1f6ceEKMry4Fll6URMGcVU3KXnwoiKKqfZv/va
+	t4hO8ZVDY3ZvJ/Sa5Gd/ad6lfBGKkROZC+sCmMn1evHGmjgX5QuC8o96EhQ2cmaIk53C
+	+d7w==
+Received: by 10.216.150.225 with SMTP id z75mr13929926wej.77.1336537901229;
+	Tue, 08 May 2012 21:31:41 -0700 (PDT)
 MIME-Version: 1.0
-To: <tom.zanussi@intel.com>
-References: <cover.1336510043.git.tom.zanussi@intel.com>
-In-Reply-To: <cover.1336510043.git.tom.zanussi@intel.com>
+Received: by 10.194.23.66 with HTTP; Tue, 8 May 2012 21:31:11 -0700 (PDT)
+In-Reply-To: <4FA9C489.9070106@windriver.com>
+References: <CACW_hTacgFqj2NQZ4aNuN5WBm2R9Ge3NS25XVJTKjmKm6spHKw@mail.gmail.com>
+	<4FA7E0DB.7050508@windriver.com>
+	<CACW_hTZj8W-eS0+3GzELu1J_kTww1dgLB4a17bvYtcmZ77ymaQ@mail.gmail.com>
+	<4FA82443.10001@windriver.com>
+	<CACW_hTbZze5nfCsuy097zUmyEs=0s6HT=y-q9af5fFd150bJRg@mail.gmail.com>
+	<4FA914B1.3060602@windriver.com>
+	<CACW_hTZ68+Ok8z+6diWZ=xToE9jPqZaoAAOdyYc6-xVsy7mszQ@mail.gmail.com>
+	<4FA971E3.70904@windriver.com>
+	<CADzUK1KTda0WsbULkuU5QeeWeosiYuy1hWt6_UM1n-Q_41dORA@mail.gmail.com>
+	<4FA9C489.9070106@windriver.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Tue, 8 May 2012 21:31:11 -0700
+Message-ID: <CAMKF1spkYmu1eo12NYZ0qP-h0a77vWoU63LxPmkomMdcTJLgeA@mail.gmail.com>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
 Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 0/9][KERNEL] meta-intel updates
+Subject: Re: modify a kernel patch
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,53 +47,13 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 09 May 2012 04:25:39 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 09 May 2012 04:31:42 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On 12-05-08 5:37 PM, tom.zanussi@intel.com wrote:
-> From: Tom Zanussi<tom.zanussi@intel.com>
+On Tue, May 8, 2012 at 6:12 PM, Bruce Ashfield
+<bruce.ashfield@windriver.com> wrote:
 >
-> More updates for meta-intel 1.2.
->
-> Please pull into linux-yocto 3.2.
+> Does this mean you are the one person that was following!? :)
 
-merged and pushed out. I'll send the main recipe updates as part of
-my next pull request, but they are available for you to use now.
-
-Bruce
-
->
-> The following changes since commit 6b3d4e09aa2531e9649f3f03827b7efbccfcec03:
->    Tom Zanussi (1):
->          meta: add mei feature
->
-> are available in the git repository at:
->
->    git://git.yoctoproject.org/linux-yocto-2.6.37-contrib.git tzanussi/1.2-updates-2
->    http://git.yoctoproject.org/cgit/cgit.cgi/linux-yocto-2.6.37-contrib/log/?h=tzanussi/1.2-updates-2
->
-> Tom Zanussi (9):
->    meta/emenlow: use usb features
->    meta/fishriver: use usb features
->    meta/jasperforest: use usb features
->    meta/sugarbay: use usb features
->    meta/jasperforest: remove boot-live options
->    meta/sugarbay: remove boot-live options
->    meta/crownbay: move smp options from recipe-space
->    meta/emenlow: move smp options from recipe-space
->    meta/fishriver: move smp options from recipe-space
->
->   meta/cfg/kernel-cache/bsp/crownbay/crownbay.scc    |    1 +
->   meta/cfg/kernel-cache/bsp/emenlow/emenlow.cfg      |    7 +------
->   meta/cfg/kernel-cache/bsp/emenlow/emenlow.scc      |    5 +++++
->   meta/cfg/kernel-cache/bsp/fishriver/fishriver.cfg  |    8 +-------
->   meta/cfg/kernel-cache/bsp/fishriver/fishriver.scc  |    5 +++++
->   .../kernel-cache/bsp/jasperforest/jasperforest.cfg |   14 +-------------
->   .../kernel-cache/bsp/jasperforest/jasperforest.scc |    4 ++++
->   meta/cfg/kernel-cache/bsp/sugarbay/sugarbay.cfg    |   14 +-------------
->   meta/cfg/kernel-cache/bsp/sugarbay/sugarbay.scc    |    3 +++
->   9 files changed, 22 insertions(+), 39 deletions(-)
->
-
+LOL
 
