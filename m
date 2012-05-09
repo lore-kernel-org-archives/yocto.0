@@ -1,28 +1,23 @@
-Return-Path: <manuel.bessler@gmail.com>
-Received: from mail-vb0-f48.google.com (mail-vb0-f48.google.com
-	[209.85.212.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E16E7E01206
-	for <yocto@yoctoproject.org>; Tue,  8 May 2012 18:54:55 -0700 (PDT)
-Received: by vbjk17 with SMTP id k17so4862080vbj.35
-	for <yocto@yoctoproject.org>; Tue, 08 May 2012 18:54:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=7ugnQ1nbeRaHxSz3rBWfpzTdISrehNfN1lM22H+6pFE=;
-	b=rt9CPFwzVYi2GTC8k9bKjeIGkTn7xDk6UQMwBaA9mNX04zmlnvsvr6gtSg2f3TUFQA
-	QZAlQXGqcB/JHVZ2rLEgZoEZIbHPM9jXWiThCzX+xhMAIVPv167rFshB6+Kd86TNLDjN
-	mmOVCqvbkb1xmID3MBpsTYTEaUqtftvSfJ4VzVjguThdhR7nrZ8Krhf1QCRXqdHC+if8
-	ofc156bzbu9rAXm7pOIKoCNyUW/XqOHjjqaCNFwegWaIQWoH2UeUJTisnV/MtxLEnXzQ
-	mu/iuufgpXUExzbKnUu0HW/vXbxnX/g4HbDBzeFOFdfAHc4AqeSLDxw7SgCPxEOGxAL0
-	U5Ng==
+Return-Path: <Xiaofeng.Yan@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BC7AAE01206
+	for <yocto@yoctoproject.org>; Tue,  8 May 2012 19:55:18 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q492tGjN017702
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Tue, 8 May 2012 19:55:16 -0700 (PDT)
+Received: from [128.224.162.223] (128.224.162.223) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.1.255.0;
+	Tue, 8 May 2012 19:55:15 -0700
+Message-ID: <4FA9DC7C.6080108@windriver.com>
+Date: Wed, 9 May 2012 10:54:52 +0800
+From: Xiaofeng Yan <xiaofeng.yan@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:11.0) Gecko/20120329 Thunderbird/11.0.1
 MIME-Version: 1.0
-Received: by 10.52.34.241 with SMTP id c17mr2583573vdj.40.1336528494998; Tue,
-	08 May 2012 18:54:54 -0700 (PDT)
-Received: by 10.220.182.136 with HTTP; Tue, 8 May 2012 18:54:54 -0700 (PDT)
-Date: Tue, 8 May 2012 21:54:54 -0400
-Message-ID: <CAKSdS8LS3dX_zJpg8cZ5NqdN3DyHbRXdtK01oPukLfNmmfVFDQ@mail.gmail.com>
-From: Manuel Bessler <manuel.bessler@gmail.com>
-To: yocto@yoctoproject.org
-Subject: initramfs image
+To: <yocto@yoctoproject.org>
+X-Originating-IP: [128.224.162.223]
+Subject: test
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,45 +29,9 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 09 May 2012 01:54:56 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Wed, 09 May 2012 02:55:18 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi,
-
-I'm trying to figure out how to build an image of type initramfs, ie.
-kernel with built-in rootfs.
-I've got a rootfs.cpio.gz in build/tmp/deploy/images. But how do I
-tell the kernel to actually use it
-and "swallow in" the rootfs.
-
-I've found a few variable that have to do with initramfs', but there
-are no simple examples,
-and for some variables I've not found any examples nor documentation at all.
-
-in  .../images/myimage-initramfs.bb I have:
-require myimage.bb
-INITRAMFS_FSTYPES = "cpio.gz"
-IMAGE_FSTYPES = "${INITRAMFS_FSTYPES}"
-
-In the same file I tried to set INITRAMFS_IMAGE to:
-INITRAMFS_IMAGE = "myimage "
-
-
-Do I need to set CONFIG_INITRAMFS_SOURCE in my kernel config manually,
-and if yes, to what?
-My kernel recipe is (for now) a simple kernel build, ie "inherit
-kernel"-based only.
-
-Am I using INITRAMFS_IMAGE the right way? What about INITRAMFS_TASK ?
-I could not find any information on this variable....
-
-I'm using yocto 1.2.
-
-
-Does anyone have a simple example on how to build a kernel with
-initramfs built in?
-
-I'd appreciate any help.
-Thanks,
-Manuel
+test
 
