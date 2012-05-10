@@ -1,31 +1,23 @@
-Return-Path: <opensource@keylevel.com>
-Received: from hxhsvr03.internetintuitive.net (hxhsvr03.internetintuitive.net
-	[80.254.228.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 62FEBE0044A
-	for <yocto@yoctoproject.org>; Thu, 10 May 2012 13:54:19 -0700 (PDT)
-Received: from [109.224.129.17] (port=10731
-	helo=macbook-pro.durham.keylevel.com)
-	by hxhsvr03.internetintuitive.net with esmtpa (Exim 4.69)
-	(envelope-from <opensource@keylevel.com>)
-	id 1SSaNO-0005wh-GP; Thu, 10 May 2012 21:54:18 +0100
-Mime-Version: 1.0 (Apple Message framework v1278)
-From: Chris Tapp <opensource@keylevel.com>
-In-Reply-To: <1336682659.27808.9.camel@elmorro>
-Date: Thu, 10 May 2012 21:54:15 +0100
-Message-Id: <5E9AB811-0DDC-4B82-8C7C-67ADCFE06F27@keylevel.com>
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A618BE013FF
+	for <yocto@yoctoproject.org>; Thu, 10 May 2012 13:59:46 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 10 May 2012 13:59:46 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="98697321"
+Received: from unknown (HELO [10.255.12.70]) ([10.255.12.70])
+	by AZSMGA002.ch.intel.com with ESMTP; 10 May 2012 13:59:44 -0700
+From: Tom Zanussi <tom.zanussi@intel.com>
+To: Khem Raj <raj.khem@gmail.com>
+In-Reply-To: <CAMKF1spgcY_ebT=Xb5i1aDSY5J-35ZUc1NRLQHYP5+At8HxhCA@mail.gmail.com>
 References: <8B59D504-F8BF-4329-92F8-EEC7F96FE207@keylevel.com>
 	<1336682659.27808.9.camel@elmorro>
-To: Tom Zanussi <tom.zanussi@intel.com>
-X-Mailer: Apple Mail (2.1278)
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - hxhsvr03.internetintuitive.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+	<CAMKF1spgcY_ebT=Xb5i1aDSY5J-35ZUc1NRLQHYP5+At8HxhCA@mail.gmail.com>
+Date: Thu, 10 May 2012 15:59:42 -0500
+Message-ID: <1336683582.27808.10.camel@elmorro>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.28.3 
 Cc: Yocto Project <yocto@yoctoproject.org>
 Subject: Re: Using meta-intel with Denzil
 X-BeenThere: yocto@yoctoproject.org
@@ -39,39 +31,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 10 May 2012 20:54:19 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 10 May 2012 20:59:46 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-On 10 May 2012, at 21:44, Tom Zanussi wrote:
+On Thu, 2012-05-10 at 13:52 -0700, Khem Raj wrote:
+> On Thu, May 10, 2012 at 1:44 PM, Tom Zanussi <tom.zanussi@intel.com> wrote:
+> > On Thu, 2012-05-10 at 21:38 +0100, Chris Tapp wrote:
+> >> I just tried to build 'crownbay' under Denzil but I got an error saying that xserver-xf86-dri-lite.inc could not be found.
+> 
+> hold on and keep playing with qemu machines until meta-intel releases
+> denzil compatible BSP layer which should be anytime soon.
+> 
 
-> On Thu, 2012-05-10 at 21:38 +0100, Chris Tapp wrote:
->> I just tried to build 'crownbay' under Denzil but I got an error =
-saying that xserver-xf86-dri-lite.inc could not be found.
->>=20
->> It looks as if new meta is available in the git repository. Is there =
-a plan for 7.0.0 downloads to be available from the downloads page?
->>=20
->=20
-> Yes, the plan these days is to release the meta-intel BSPs a few weeks
-> or so following the poky release.  We expect to have denzil BSP
-> downloads available from the downloads directory in a couple weeks...
+What's there in master now is compatible with denzil, so no need to do
+that.
 
+Tom
 
-Thanks Tom.
-
-Is there any information produced for a release to explain what needs =
-looking at to bring a BSP in line with the release?
-
-I found the above when I tried to bring something I'm working on in to =
-Denzil. It would be really helpful if there was an easy way to find out =
-what I need to consider ;-)
-
-Chris Tapp
-
-opensource@keylevel.com
-www.keylevel.com
-
+> >>
+> >> It looks as if new meta is available in the git repository. Is there a plan for 7.0.0 downloads to be available from the downloads page?
+> >>
+> >
+> > Yes, the plan these days is to release the meta-intel BSPs a few weeks
+> > or so following the poky release.  We expect to have denzil BSP
+> > downloads available from the downloads directory in a couple weeks...
+> >
+> > Tom
+> >
+> >> Chris Tapp
+> >>
+> >> opensource@keylevel.com
+> >> www.keylevel.com
+> >>
+> >>
+> >>
+> >> _______________________________________________
+> >> yocto mailing list
+> >> yocto@yoctoproject.org
+> >> https://lists.yoctoproject.org/listinfo/yocto
+> >
+> >
+> > _______________________________________________
+> > yocto mailing list
+> > yocto@yoctoproject.org
+> > https://lists.yoctoproject.org/listinfo/yocto
 
 
 
