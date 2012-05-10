@@ -1,31 +1,37 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-ee0-f48.google.com (mail-ee0-f48.google.com [74.125.83.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 37F41E0141F
-	for <yocto@yoctoproject.org>; Wed,  9 May 2012 20:27:18 -0700 (PDT)
-Received: by eekb45 with SMTP id b45so406361eek.35
-	for <yocto@yoctoproject.org>; Wed, 09 May 2012 20:27:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=U8Ip9ncEWY5odyLdmj9Bkn6eGw2Rq7k7lEBqtTlRnTc=;
-	b=M3sRc/lG6OvbrMb/YWUKJX6AK2w9tdbuQdts9LdZFHruJMOA0FKLLLHqi12/gnuoQx
-	Wqwk3hrhvSEx77Pq20iIKtj/Oj0tQvbguzz7qdYNI9LaViPdDHuMWvXQLuPbE+ckVca8
-	mLL4S69XQcTSl8aQSdb++FIVc1cTaxDSHEAlZJp0CZfXgdOi0jzjAFhe60Iuk0FNw+o6
-	UfZQn5HJ7Ja+ilJnyXdYV5X2RjewRu6P5vS0PIzcS6NprPgs52q5pOcBpAKVZni3tjhD
-	fzoRwZFcJ8vKsLWACsfWVmxFZZUeYC0yft/M5zIM52fSi9nnIt7dw/xlCsmLRNgRTaQH
-	02Sg==
-Received: by 10.14.47.131 with SMTP id t3mr466738eeb.118.1336620436947; Wed,
-	09 May 2012 20:27:16 -0700 (PDT)
+Return-Path: <kishore.k.bodke@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BBF7EE0044A
+	for <yocto@yoctoproject.org>; Thu, 10 May 2012 11:08:27 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 10 May 2012 11:08:27 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="164560948"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
+	by fmsmga002.fm.intel.com with ESMTP; 10 May 2012 11:08:27 -0700
+Received: from orsmsx104.amr.corp.intel.com (10.22.225.131) by
+	orsmsx603.amr.corp.intel.com (10.22.226.49) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Thu, 10 May 2012 11:08:27 -0700
+Received: from orsmsx105.amr.corp.intel.com ([169.254.4.232]) by
+	ORSMSX104.amr.corp.intel.com ([169.254.3.228]) with mapi id
+	14.01.0355.002; Thu, 10 May 2012 11:08:26 -0700
+From: "Bodke, Kishore K" <kishore.k.bodke@intel.com>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
+Thread-Topic: KERNEL build failure for Master
+Thread-Index: Ac0uI4uCE6w8e6uIQ7WlYwJv9qIp/QAS0TQAAA3RTCD//5lWAP//N/Og
+Date: Thu, 10 May 2012 18:08:26 +0000
+Message-ID: <D956029D25CF204F948EA0FB515E1EE20ACAC958@ORSMSX105.amr.corp.intel.com>
+References: <D956029D25CF204F948EA0FB515E1EE20ACA749B@ORSMSX105.amr.corp.intel.com>
+	<4FAAF15E.3090007@windriver.com>
+	<D956029D25CF204F948EA0FB515E1EE20ACA969A@ORSMSX105.amr.corp.intel.com>
+	<4FAAF7FA.8060205@windriver.com>
+In-Reply-To: <4FAAF7FA.8060205@windriver.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.139]
 MIME-Version: 1.0
-Received: by 10.14.2.132 with HTTP; Wed, 9 May 2012 20:26:45 -0700 (PDT)
-In-Reply-To: <2BC681BE-E7C5-4CDD-8E03-7E567D5A8288@keylevel.com>
-References: <2BC681BE-E7C5-4CDD-8E03-7E567D5A8288@keylevel.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Wed, 9 May 2012 20:26:45 -0700
-Message-ID: <CAMKF1soOa84kp6YLCg=XrUqAb25ZbbmUcK-oJFT9dWrqRttP6A@mail.gmail.com>
-To: Chris Tapp <opensource@keylevel.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: gettext.bb question
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: KERNEL build failure for Master
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,20 +43,250 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 10 May 2012 03:27:18 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 10 May 2012 18:08:28 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, May 9, 2012 at 2:39 PM, Chris Tapp <opensource@keylevel.com> wrote:
+
+
+>-----Original Message-----
+>From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]
+>Sent: Wednesday, May 09, 2012 4:04 PM
+>To: Bodke, Kishore K
+>Cc: yocto@yoctoproject.org
+>Subject: Re: KERNEL build failure for Master
 >
-> DEPENDS = "libxml2-native gettext-native virtual/libiconv ncurses expat"
-> DEPENDS_virtclass-native = "libxml2-native gettext-minimal-native"
+>On 12-05-09 7:01 PM, Bodke, Kishore K wrote:
+>> Is this error also proxy setup issue?
 >
-> What does -native in the DEPENDS= 'do' here?
+>Nope. I sent a fix for it today, and Richard merged it to master
+>a few hours ago. An update should fix your issue.
 
-there is a bit of optimization here to parallelize the build where
-gettext-minimal-native is now used otherwise
-gettext becomes serialization point for build
+I have updated. But I still see the error.
+If it is a proxy setup issue, I should not be able to build any BSPs.
+But I am able to build ROMLEY successfully.
+It is only failing for Cedartrail.
 
-You should also look at gettext.bbclass when you are
-looking into understanding gettext dependencies
+WARNING: Failed to fetch URL git://git.yoctoproject.org/linux-yocto-3.0;pro=
+tocol=3Dgit;bareclone=3D1;branch=3Dyocto/standard/base,meta,yocto/pvr;name=
+=3Dmachine,meta,pvr
+NOTE: package kmod-native-8-r0.0: task do_patch: Started
+ERROR: Fetcher failure: Fetch command export HOME=3D"/home/kishore"; export=
+ https_proxy=3D"https://proxy.sc.intel.com:911/"; export ftp_proxy=3D"http:=
+//proxy.sc.intel.com:911/"; export http_proxy=3D"http://proxy.sc.intel.com:=
+911/"; export GIT_CONFIG=3D"/usr/local/src/may10/build/tmp/sysroots/x86_64-=
+linux/etc/gitconfig"; export GIT_PROXY_COMMAND=3D"/usr/local/bin/git-proxy"=
+; export PATH=3D"/usr/local/src/may10/build/tmp/sysroots/x86_64-linux/usr/b=
+in/core2-poky-linux:/usr/local/src/may10/build/tmp/sysroots/cedartrail/usr/=
+bin/crossscripts:/usr/local/src/may10/build/tmp/sysroots/x86_64-linux/usr/s=
+bin:/usr/local/src/may10/build/tmp/sysroots/x86_64-linux/usr/bin:/usr/local=
+/src/may10/build/tmp/sysroots/x86_64-linux/sbin:/usr/local/src/may10/build/=
+tmp/sysroots/x86_64-linux//bin:/usr/local/src/may10/scripts:/usr/local/src/=
+may10/bitbake/bin/:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:=
+/bin:/usr/games:/usr/local/src/may10/scripts"; tar -xzf /usr/local/src/may1=
+0/build/downloads/git2_git.yoctoproject.org.linux-yocto-3.0.tar.gz could no=
+t be run:
+None
+ERROR: Function failed: Fetcher failure for URL: 'git://git.yoctoproject.or=
+g/linux-yocto-3.0;protocol=3Dgit;bareclone=3D1;branch=3Dyocto/standard/base=
+,meta,yocto/pvr;name=3Dmachine,meta,pvr'. Unable to fetch URL from any sour=
+ce.
+ERROR: Logfile of failure stored in: /usr/local/src/may10/build/tmp/work/ce=
+dartrail-poky-linux/linux-yocto-3.0.24+git1+a4ac64fe873f08ef718e2849b889147=
+25dc99c1c_1+81fd8c307997aff37916828dc8b4ef72f5d35a94-r4/temp/log.do_fetch.2=
+6424
+NOTE: package linux-yocto-3.0.24+git1+a4ac64fe873f08ef718e2849b88914725dc99=
+c1c_1+81fd8c307997aff37916828dc8b4ef72f5d35a94-r4: task do_fetch: Failed
+ERROR: Task 6 (/usr/local/src/may10/meta/recipes-kernel/linux/linux-yocto_3=
+.0.bb, do_fetch) failed with exit code '1'
+
+Thanks
+Kishore.
+
+>
+>Bruce
+>
+>>
+>> ERROR: Function failed: do_patch (see
+>/usr/local/src/may_9/build/tmp/work/cedartrail-poky-linux/linux-yocto-
+>3.0.24+git1+a4ac64fe873f08ef718e2849b88914725dc99c1c_1+81fd8c307997aff37
+>916828dc8b4ef72f5d35a94-r4/temp/log.do_patch.7982 for further
+>information)
+>> ERROR: Logfile of failure stored in:
+>/usr/local/src/may_9/build/tmp/work/cedartrail-poky-linux/linux-yocto-
+>3.0.24+git1+a4ac64fe873f08ef718e2849b88914725dc99c1c_1+81fd8c307997aff37
+>916828dc8b4ef72f5d35a94-r4/temp/log.do_patch.7982
+>> Log data follows:
+>> | ERROR: Function failed: do_patch (see
+>/usr/local/src/may_9/build/tmp/work/cedartrail-poky-linux/linux-yocto-
+>3.0.24+git1+a4ac64fe873f08ef718e2849b88914725dc99c1c_1+81fd8c307997aff37
+>916828dc8b4ef72f5d35a94-r4/temp/log.do_patch.7982 for further
+>information)
+>> | WARNING: addon feature "features/netfilter" was not found
+>> | WARNING: addon feature "features/taskstats" was not found
+>> | WARNING: addon feature "cfg/smp" was not found
+>> | WARNING: addon feature "cfg/drm-cdvpvr" was not found
+>> | WARNING: addon feature "bsp/cedartrail/cedartrail-pvr-merge" was not
+>found
+>> | WARNING: addon feature "cfg/efi-ext" was not found
+>> | WARNING: addon feature "features/power/intel" was not found
+>> | ERROR: required features were not found. aborting
+>> | ERROR. Could not update yocto/standard/base
+>> NOTE: package linux-yocto-
+>3.0.24+git1+a4ac64fe873f08ef718e2849b88914725dc99c1c_1+81fd8c307997aff37
+>916828dc8b4ef72f5d35a94-r4: task do_patch: Failed
+>>
+>> Thanks
+>> Kishore.
+>>
+>>> -----Original Message-----
+>>> From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]
+>>> Sent: Wednesday, May 09, 2012 3:36 PM
+>>> To: Bodke, Kishore K
+>>> Cc: yocto@yoctoproject.org
+>>> Subject: Re: KERNEL build failure for Master
+>>>
+>>> On 12-05-09 4:37 PM, Bodke, Kishore K wrote:
+>>>> Hi,
+>>>>
+>>>> Linux-yocto build is failing for Cedartrail for the Master and
+>denzil
+>>>> branch.
+>>>>
+>>>> Is it failing for any other BSPs?
+>>>
+>>> Everything is fine here, this looks to be something specific with
+>your
+>>> proxy setup injecting bad commands into the subshell.
+>>>
+>>> Bruce
+>>>
+>>>>
+>>>> Below is the error.
+>>>>
+>>>> ERROR: Function failed: Fetcher failure: Fetch command export
+>>>> HOME=3D"/home/kishore"; export
+>>>> https_proxy=3D"https://proxy.sc.intel.com:911/"; export
+>>>> ftp_proxy=3D"http://proxy.sc.intel.com:911/"; export
+>>>> http_proxy=3D"http://proxy.sc.intel.com:911/"; export
+>>>> GIT_CONFIG=3D"/usr/local/src/may_9/build/tmp/sysroots/x86_64-
+>>> linux/etc/gitconfig";
+>>>> export GIT_PROXY_COMMAND=3D"/usr/local/bin/git-proxy"; export
+>>>> PATH=3D"/usr/local/src/may_9/build/tmp/sysroots/x86_64-
+>>> linux/usr/bin/core2-poky-
+>>>
+>linux:/usr/local/src/may_9/build/tmp/sysroots/cedartrail/usr/bin/crosssc
+>>> ripts:/usr/local/src/may_9/build/tmp/sysroots/x86_64-
+>>> linux/usr/sbin:/usr/local/src/may_9/build/tmp/sysroots/x86_64-
+>>> linux/usr/bin:/usr/local/src/may_9/build/tmp/sysroots/x86_64-
+>>> linux/sbin:/usr/local/src/may_9/build/tmp/sysroots/x86_64-
+>>>
+>linux//bin:/usr/local/src/may_9/scripts:/usr/local/src/may_9/bitbake/bin
+>>>
+>/:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/game
+>>> s:/usr/local/src/may_9/scripts";
+>>>> git clone -s -n --mirror
+>>>>
+>/usr/local/src/may_9/build/downloads/git2/git.yoctoproject.org.linux-
+>>> yocto-3.0/
+>>>> /usr/local/src/may_9/build/tmp/work/cedartrail-poky-linux/linux-
+>yocto-
+>>>
+>3.0.24+git1+a4ac64fe873f08ef718e2849b88914725dc99c1c_1+81fd8c307997aff37
+>>> 916828dc8b4ef72f5d35a94-r4/git/
+>>>> could not be run:
+>>>>
+>>>> None
+>>>>
+>>>> ERROR: Logfile of failure stored in:
+>>>> /usr/local/src/may_9/build/tmp/work/cedartrail-poky-linux/linux-
+>yocto-
+>>>
+>3.0.24+git1+a4ac64fe873f08ef718e2849b88914725dc99c1c_1+81fd8c307997aff37
+>>> 916828dc8b4ef72f5d35a94-r4/temp/log.do_unpack.4250
+>>>>
+>>>> Log data follows:
+>>>>
+>>>> | DEBUG: Running export HOME=3D"/home/kishore"; export
+>>>> https_proxy=3D"https://proxy.sc.intel.com:911/"; export
+>>>> ftp_proxy=3D"http://proxy.sc.intel.com:911/"; export
+>>>> http_proxy=3D"http://proxy.sc.intel.com:911/"; export
+>>>> GIT_CONFIG=3D"/usr/local/src/may_9/build/tmp/sysroots/x86_64-
+>>> linux/etc/gitconfig";
+>>>> export GIT_PROXY_COMMAND=3D"/usr/local/bin/git-proxy"; export
+>>>> PATH=3D"/usr/local/src/may_9/build/tmp/sysroots/x86_64-
+>>> linux/usr/bin/core2-poky-
+>>>
+>linux:/usr/local/src/may_9/build/tmp/sysroots/cedartrail/usr/bin/crosssc
+>>> ripts:/usr/local/src/may_9/build/tmp/sysroots/x86_64-
+>>> linux/usr/sbin:/usr/local/src/may_9/build/tmp/sysroots/x86_64-
+>>> linux/usr/bin:/usr/local/src/may_9/build/tmp/sysroots/x86_64-
+>>> linux/sbin:/usr/local/src/may_9/build/tmp/sysroots/x86_64-
+>>>
+>linux//bin:/usr/local/src/may_9/scripts:/usr/local/src/may_9/bitbake/bin
+>>>
+>/:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/game
+>>> s:/usr/local/src/may_9/scripts";
+>>>> git clone -s -n --mirror
+>>>>
+>/usr/local/src/may_9/build/downloads/git2/git.yoctoproject.org.linux-
+>>> yocto-3.0/
+>>>> /usr/local/src/may_9/build/tmp/work/cedartrail-poky-linux/linux-
+>yocto-
+>>>
+>3.0.24+git1+a4ac64fe873f08ef718e2849b88914725dc99c1c_1+81fd8c307997aff37
+>>> 916828dc8b4ef72f5d35a94-r4/git/
+>>>>
+>>>> | ERROR: Function failed: Fetcher failure: Fetch command export
+>>>> HOME=3D"/home/kishore"; export
+>>>> https_proxy=3D"https://proxy.sc.intel.com:911/"; export
+>>>> ftp_proxy=3D"http://proxy.sc.intel.com:911/"; export
+>>>> http_proxy=3D"http://proxy.sc.intel.com:911/"; export
+>>>> GIT_CONFIG=3D"/usr/local/src/may_9/build/tmp/sysroots/x86_64-
+>>> linux/etc/gitconfig";
+>>>> export GIT_PROXY_COMMAND=3D"/usr/local/bin/git-proxy"; export
+>>>> PATH=3D"/usr/local/src/may_9/build/tmp/sysroots/x86_64-
+>>> linux/usr/bin/core2-poky-
+>>>
+>linux:/usr/local/src/may_9/build/tmp/sysroots/cedartrail/usr/bin/crosssc
+>>> ripts:/usr/local/src/may_9/build/tmp/sysroots/x86_64-
+>>> linux/usr/sbin:/usr/local/src/may_9/build/tmp/sysroots/x86_64-
+>>> linux/usr/bin:/usr/local/src/may_9/build/tmp/sysroots/x86_64-
+>>> linux/sbin:/usr/local/src/may_9/build/tmp/sysroots/x86_64-
+>>>
+>linux//bin:/usr/local/src/may_9/scripts:/usr/local/src/may_9/bitbake/bin
+>>>
+>/:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/game
+>>> s:/usr/local/src/may_9/scripts";
+>>>> git clone -s -n --mirror
+>>>>
+>/usr/local/src/may_9/build/downloads/git2/git.yoctoproject.org.linux-
+>>> yocto-3.0/
+>>>> /usr/local/src/may_9/build/tmp/work/cedartrail-poky-linux/linux-
+>yocto-
+>>>
+>3.0.24+git1+a4ac64fe873f08ef718e2849b88914725dc99c1c_1+81fd8c307997aff37
+>>> 916828dc8b4ef72f5d35a94-r4/git/
+>>>> could not be run:
+>>>>
+>>>> | None
+>>>>
+>>>> NOTE: package
+>>>> linux-yocto-
+>>>
+>3.0.24+git1+a4ac64fe873f08ef718e2849b88914725dc99c1c_1+81fd8c307997aff37
+>>> 916828dc8b4ef72f5d35a94-r4:
+>>>> task do_unpack: Failed
+>>>>
+>>>> ERROR: Task 858
+>>>> (/usr/local/src/may_9/meta/recipes-kernel/linux/linux-yocto_3.0.bb,
+>>>> do_unpack) failed with exit code '1'
+>>>>
+>>>> Thanks
+>>>>
+>>>> Kishore.
+>>>>
+>>
+
 
