@@ -1,23 +1,33 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 62574E013FF
-	for <yocto@yoctoproject.org>; Thu, 10 May 2012 14:01:42 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 10 May 2012 14:01:42 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="164642180"
-Received: from unknown (HELO [10.255.12.70]) ([10.255.12.70])
-	by fmsmga002.fm.intel.com with ESMTP; 10 May 2012 14:01:41 -0700
-From: Tom Zanussi <tom.zanussi@intel.com>
-To: Chris Tapp <opensource@keylevel.com>
-In-Reply-To: <5E9AB811-0DDC-4B82-8C7C-67ADCFE06F27@keylevel.com>
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-ey0-f176.google.com (mail-ey0-f176.google.com
+	[209.85.215.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CE2A1E013FF
+	for <yocto@yoctoproject.org>; Thu, 10 May 2012 14:02:10 -0700 (PDT)
+Received: by eaab16 with SMTP id b16so904908eaa.35
+	for <yocto@yoctoproject.org>; Thu, 10 May 2012 14:02:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=Qe74JLbgSzldJxIWJA8i5QP9EoYABKFiKD0Y74TUMQ4=;
+	b=EHtuy9Hnd+CY8f/u2xjeXXOmBhxkEe1uB1+FPtt+EIcNrbHndDgSkYzt+jL2E8EjJO
+	15sXSlF124eoV+6iHGG4ks2WzF2zHs7VuJQzs/oRVZzVHjM8YzhPwB9GgHRpNKSmhEtw
+	ThXD9NDhIUkvLrsH5LYIJMJRIM5GTwPygQ1P07V0/ZCefiWYXtm2T9x1SAXXr7MNPSsC
+	wtLnjwLj4q11vNcAY5VOcE1glqOcIXGrAbsDTrQyqZDI/xJ6yGFZ/BeKyR5gFgyBRdWc
+	K9Ak6rFRgzd0vdskR69dzxU4y2FkCerTwgrmo+QvWA4HU2t7bDUKG0jYTJoXID6XS62n
+	jS4w==
+Received: by 10.213.115.193 with SMTP id j1mr1748005ebq.141.1336683729903;
+	Thu, 10 May 2012 14:02:09 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.14.2.132 with HTTP; Thu, 10 May 2012 14:01:39 -0700 (PDT)
+In-Reply-To: <1336683582.27808.10.camel@elmorro>
 References: <8B59D504-F8BF-4329-92F8-EEC7F96FE207@keylevel.com>
 	<1336682659.27808.9.camel@elmorro>
-	<5E9AB811-0DDC-4B82-8C7C-67ADCFE06F27@keylevel.com>
-Date: Thu, 10 May 2012 16:01:40 -0500
-Message-ID: <1336683700.27808.12.camel@elmorro>
-Mime-Version: 1.0
-X-Mailer: Evolution 2.28.3 
+	<CAMKF1spgcY_ebT=Xb5i1aDSY5J-35ZUc1NRLQHYP5+At8HxhCA@mail.gmail.com>
+	<1336683582.27808.10.camel@elmorro>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Thu, 10 May 2012 14:01:39 -0700
+Message-ID: <CAMKF1sp4hwd_Mw6L6J7WPiA5hER30wvrK6tLf4v_cUVE0MAZ6w@mail.gmail.com>
+To: Tom Zanussi <tom.zanussi@intel.com>
 Cc: Yocto Project <yocto@yoctoproject.org>
 Subject: Re: Using meta-intel with Denzil
 X-BeenThere: yocto@yoctoproject.org
@@ -31,47 +41,14 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 10 May 2012 21:01:42 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 10 May 2012 21:02:11 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On Thu, 2012-05-10 at 21:54 +0100, Chris Tapp wrote:
-> On 10 May 2012, at 21:44, Tom Zanussi wrote:
-> 
-> > On Thu, 2012-05-10 at 21:38 +0100, Chris Tapp wrote:
-> >> I just tried to build 'crownbay' under Denzil but I got an error saying that xserver-xf86-dri-lite.inc could not be found.
-> >> 
-> >> It looks as if new meta is available in the git repository. Is there a plan for 7.0.0 downloads to be available from the downloads page?
-> >> 
-> > 
-> > Yes, the plan these days is to release the meta-intel BSPs a few weeks
-> > or so following the poky release.  We expect to have denzil BSP
-> > downloads available from the downloads directory in a couple weeks...
-> 
-> 
-> Thanks Tom.
-> 
-> Is there any information produced for a release to explain what needs looking at to bring a BSP in line with the release?
-> 
-> I found the above when I tried to bring something I'm working on in to Denzil. It would be really helpful if there was an easy way to find out what I need to consider ;-)
-> 
+On Thu, May 10, 2012 at 1:59 PM, Tom Zanussi <tom.zanussi@intel.com> wrote:
+>
+>
+> What's there in master now is compatible with denzil, so no need to do
+> that.
 
-I wish there were. ;-)  I don't know any substitute for that kind of
-thing than looking at git history and trying to build.
-
-BTW, I don't know why you'd be seeing that xserver-xf86-dri-lite.inc
-error unless you had something out of date - the current master for
-crownbay works find for me with poky/denzil...
-
-Tom
-
-> Chris Tapp
-> 
-> opensource@keylevel.com
-> www.keylevel.com
-> 
-> 
-> 
-
-
+even better
 
