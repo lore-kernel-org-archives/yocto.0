@@ -1,21 +1,25 @@
-Return-Path: <giovanni.pavoni@exorint.it>
-Received: from esafe.exorint.net (esafe.exorint.net [89.96.201.228])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 45281E0044A
-	for <yocto@yoctoproject.org>; Fri, 11 May 2012 03:05:56 -0700 (PDT)
-Received: from sitek.exorint.net ([192.168.0.251]) by eSafe SMTP Relay
-	1326992231; Fri, 11 May 2012 12:04:56 +0100
-To: yocto@yoctoproject.org
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BCD78E01402
+	for <yocto@yoctoproject.org>; Fri, 11 May 2012 05:38:48 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q4BCclFB003483
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Fri, 11 May 2012 05:38:47 -0700 (PDT)
+Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
+	Fri, 11 May 2012 05:38:47 -0700
+Message-ID: <4FAD0855.4080209@windriver.com>
+Date: Fri, 11 May 2012 08:38:45 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:12.0) Gecko/20120430 Thunderbird/12.0.1
 MIME-Version: 1.0
-X-KeepSent: A1796C74:ACE26C2F-C12579FB:0036B178;type=4; name=$KeepSent
-X-Mailer: Lotus Notes Release 8.5.2 August 10, 2010
-Message-ID: <OFA1796C74.ACE26C2F-ONC12579FB.0036B178-C12579FB.003777C1@Sitek.it>
-From: giovanni.pavoni@exorint.it
-Date: Fri, 11 May 2012 12:05:51 +0200
-X-MIMETrack: Serialize by Router on sitek/Sitek(Release 8.5.3|September 15,
-	2011) at 11/05/201212.05.52, Serialize complete
-	at 11/05/2012 12.05.52
-X-ESAFE-STATUS: [esafe.exorint.net] Mail allowed
-Subject: Missing QtDeclarative when building the arm-toolchain-qte
+To: Frans Meulenbroeks <fransmeulenbroeks@gmail.com>
+References: <CACW_hTYnH_ccSf7844bwwKeKH+otHopbbz7h2igrCMhUddN1tQ@mail.gmail.com>
+In-Reply-To: <CACW_hTYnH_ccSf7844bwwKeKH+otHopbbz7h2igrCMhUddN1tQ@mail.gmail.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: kernel rebuild and bitbake -c menuconfig
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,105 +31,139 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 11 May 2012 10:05:57 -0000
-Content-Type: multipart/alternative;
-	boundary="=_alternative 003777BCC12579FB_="
+X-List-Received-Date: Fri, 11 May 2012 12:38:48 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
---=_alternative 003777BCC12579FB_=
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: base64
+On 12-05-11 03:07 AM, Frans Meulenbroeks wrote:
+> Hi,
+>
+> I'm wondering how to do a kernel rebuild after doing changing the .config using
+> bitbake -c menuconfig virtual/kernel
+> I've tried forcing a recompile using:
+> bitbake -ccompile -f virtual/kernel
+> that indeed rebuilds the kernel
+> However if I then do a bitbake virtual/kernel this does not result in
+> an image in my deploy dir.
+>
+> system info
+> host: ubuntu 12.04
+> denzil 7.0 software (from tarball)
+> target: ppc (actually for my own board but I did not do weird things
+> in my bsp, like adding extra tasks.
+>
+> It seems the vmlinux.bin.gz is still generated but the uImage is not
+> (which can also be seen from the log below where do_install is not
+> ran.
+> Additional proof:
+> f5ad9f2b30047a8d3493a1a2880a-r1.40$ ls -l ./image/kernel/uImage
+> ./linux-syrcxx-standard-build/vmlinux.bin.gz
+> -rw-r--r-- 1 frans frans 1609509 2012-05-10 10:19 ./image/kernel/uImage
+> -rwxr-xr-x 1 frans frans 1611499 2012-05-11 08:52
+> ./linux-syrcxx-standard-build/vmlinux.bin.gz
+> This si from after I ran the bitbake commands below.
+>
+> What is going wrong here?
 
-V2UgYXJlIGV4cGVyaWVuY2luZyB0aGUgZm9sbG93aW5nIGlzc3VlIHdpdGggWW9jdG8gdi4xMg0K
-V2UgZ2VuZXJhdGVkIHRoZSBxdGU0IHRvb2xjaGFpbiBmb3IgYXJtIChiaXRiYWtlIG1ldGEtdG9v
-bGNoYWluLXF0ZSkgYW5kIA0Kd2Ugc3VjY2Vzc2Z1bGx5IG9idGFpbmVkIHBva3ktZWxpYmMteDg2
-XzY0LWFybS10b29sY2hhaW4tcXRlLTEuMi50YXIuYnoyIA0KYXMgb3V0cHV0Lg0KUHJvYmxlbSBp
-cyB0aGF0IHN1Y2ggdG9vbGNoYWluIGRvZXMgbm90IHNlZW0gdG8gY29udGFpbiB0aGUgUXREZWNs
-YXJhdGl2ZSANCmxpYnJhcnkgYW5kIHJlbGF0ZWQgaGVhZGVycywgZXZlbiBpZiANCmxpYnF0ZGVj
-bGFyYXRpdmVlNC00LjcuNC1yNDMuOC5hcm12N2EucnBtIHdhcyBidWlsdC4NCg0KQW55IHN1Z2dl
-c3Rpb24gYWJvdXQgaG93IHRvIGFkZCBzdWNoIGZlYXR1cmUgdG8gdGhlIHRvb2xjaGFpbiA/DQoN
-ClRoYW5rcyBpbiBhZHZhbmNlIGZvciB5b3VyIGF0dGVudGlvbg0KS2luZCByZWdhcmRzDQpHaW92
-YW5uaSBQLg0KDQoNCkdpb3Zhbm5pIFBhdm9uaQ0KUiZEIERlcGFydG1lbnQNCg0KRXhvciBJbnRl
-cm5hdGlvbmFsIFMucC5BLg0KVmlhIE1vbnRlIEZpb3Jpbm8sOQ0KSS0zNzA1NyBTYW4gR2lvdmFu
-bmkgTHVwYXRvdG8gKFZSKQ0KUGhvbmU6KzM5MDQ1ODc3NDgzOSAtIEZheDorMzkwNDU4Nzc5MDIz
-DQoNCmdpb3Zhbm5pLnBhdm9uaUBleG9yaW50Lml0IC0gd3d3LmV4b3JpbnQubmV0IC0gd3d3LmV4
-b3JpbnQuaXQNCg0KQVRURU5aSU9ORTogUHJpdmFjeSBQb2xpY3kg4oCTIEQuTGdzLiAxOTYvMjAw
-Mw0KIExlIGluZm9ybWF6aW9uaSBjb250ZW51dGUgaW4gcXVlc3RvIG1lc3NhZ2dpbyBkaSBwb3N0
-YSBlbGV0dHJvbmljYSBzb25vIGRpIA0KY2FyYXR0ZXJlIHByaXZhdG8gZSBjb25maWRlbnppYWxl
-IGVkIGVzY2x1c2l2YW1lbnRlIHJpdm9sdGUgYWwgZGVzdGluYXRhcmlvIA0Kc29wcmEgaW5kaWNh
-dG8uIE5lbCBjYXNvIGF2ZXN0ZSByaWNldnV0byBxdWVzdG8gbWVzc2FnZ2lvIGRpIHBvc3RhIGVs
-ZXR0cm9uaWNhIA0KcGVyIGVycm9yZSwgdmkgY29tdW5pY2hpYW1vIGNoZSBhaSBzZW5zaSBkZWwg
-c3VkZGV0dG8gZGVjcmV0byDDqCB2aWV0YXRvIGzigJl1c28sIA0KbGEgZGlmZnVzaW9uZSwgZGlz
-dHJpYnV6aW9uZSBvIHJpcHJvZHV6aW9uZSBkYSBwYXJ0ZSBkaSBvZ25pIGFsdHJhIHBlcnNvbmEu
-IA0KU2lldGUgcHJlZ2F0aSBkaSBzZWduYWxhcmxvIGltbWVkaWF0YW1lbnRlIHJpc3BvbmRlbmRv
-IGFsIG1pdHRlbnRlIGUgZGkgDQpkaXN0cnVnZ2VyZSBxdWFudG8gcmljZXZ1dG8gKGNvbXByZXNp
-IGkgZmlsZSBhbGxlZ2F0aSkgc2VuemEgZmFybmUgY29waWEgbyANCmxlZ2dlcm5lIGlsIGNvbnRl
-bnV0by4NCg0KVGhpcyBlLW1haWwgdHJhbnNtaXNzaW9uIGNvbnRhaW5zIGluZm9ybWF0aW9uIHRo
-YXQgaXMgY29uZmlkZW50aWFsIGFuZCBtYXkgYmUgDQpwcml2aWxlZ2VkLiBJdCBpcyBpbnRlbmRl
-ZCBvbmx5IGZvciB0aGUgYWRkcmVzc2VlKHMpIG5hbWVkIGFib3ZlLiBJZiB5b3UgDQpyZWNlaXZl
-IHRoaXMgZS1tYWlsIGluIGVycm9yLCBwbGVhc2UgZG8gbm90IHJlYWQsIGNvcHkgb3IgZGlzc2Vt
-aW5hdGUgaXQgaW4gYW55IA0KbWFubmVyLiBJZiB5b3UgYXJlIG5vdCB0aGUgaW50ZW5kZWQgcmVj
-aXBpZW50LCBhbnkgZGlzY2xvc3VyZSwgY29weWluZywgDQpkaXN0cmlidXRpb24gb3IgdXNlIG9m
-IHRoZSBjb250ZW50cyBvZiB0aGlzIGluZm9ybWF0aW9uIGlzIHByb2hpYml0ZWQuIFBsZWFzZSAN
-CnJlcGx5IHRvIHRoZSBtZXNzYWdlIGltbWVkaWF0ZWx5IGJ5IGluZm9ybWluZyB0aGUgc2VuZGVy
-IHRoYXQgdGhlIG1lc3NhZ2Ugd2FzIA0KbWlzZGlyZWN0ZWQuIEFmdGVyIHJlcGx5aW5nLCBwbGVh
-c2UgZXJhc2UgaXQgZnJvbSB5b3VyIGNvbXB1dGVyIHN5c3RlbS4gWW91ciANCmFzc2lzdGFuY2Ug
-aW4gY29ycmVjdGluZyB0aGlzIGVycm9yIGlzIGFwcHJlY2lhdGVkLg0K
+You are likely hitting this bug:
 
---=_alternative 003777BCC12579FB_=
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: base64
+   https://bugzilla.yoctoproject.org/show_bug.cgi?id=2256
 
-PGZvbnQgc2l6ZT0yIGZhY2U9InNhbnMtc2VyaWYiPldlIGFyZSBleHBlcmllbmNpbmcgdGhlIGZv
-bGxvd2luZyBpc3N1ZQ0Kd2l0aCBZb2N0byB2LjEyPC9mb250Pg0KPGJyPjxmb250IHNpemU9MiBm
-YWNlPSJzYW5zLXNlcmlmIj5XZSBnZW5lcmF0ZWQgdGhlIHF0ZTQgdG9vbGNoYWluIGZvcg0KYXJt
-IChiaXRiYWtlIG1ldGEtdG9vbGNoYWluLXF0ZSkgYW5kIHdlIHN1Y2Nlc3NmdWxseSBvYnRhaW5l
-ZCBwb2t5LWVsaWJjLXg4Nl82NC1hcm0tdG9vbGNoYWluLXF0ZS0xLjIudGFyLmJ6Mg0KYXMgb3V0
-cHV0LjwvZm9udD4NCjxicj48Zm9udCBzaXplPTIgZmFjZT0ic2Fucy1zZXJpZiI+UHJvYmxlbSBp
-cyB0aGF0IHN1Y2ggdG9vbGNoYWluIGRvZXMNCm5vdCBzZWVtIHRvIGNvbnRhaW4gdGhlIFF0RGVj
-bGFyYXRpdmUgbGlicmFyeSBhbmQgcmVsYXRlZCBoZWFkZXJzLCBldmVuDQppZiBsaWJxdGRlY2xh
-cmF0aXZlZTQtNC43LjQtcjQzLjguYXJtdjdhLnJwbSB3YXMgYnVpbHQuPC9mb250Pg0KPGJyPg0K
-PGJyPjxmb250IHNpemU9MiBmYWNlPSJzYW5zLXNlcmlmIj5Bbnkgc3VnZ2VzdGlvbiBhYm91dCBo
-b3cgdG8gYWRkIHN1Y2gNCmZlYXR1cmUgdG8gdGhlIHRvb2xjaGFpbiA/PC9mb250Pg0KPGJyPg0K
-PGJyPjxmb250IHNpemU9MiBmYWNlPSJzYW5zLXNlcmlmIj5UaGFua3MgaW4gYWR2YW5jZSBmb3Ig
-eW91ciBhdHRlbnRpb248L2ZvbnQ+DQo8YnI+PGZvbnQgc2l6ZT0yIGZhY2U9InNhbnMtc2VyaWYi
-PktpbmQgcmVnYXJkczwvZm9udD4NCjxicj48Zm9udCBzaXplPTIgZmFjZT0ic2Fucy1zZXJpZiI+
-R2lvdmFubmkgUC48L2ZvbnQ+DQoNCg0KPGZvbnQgc2l6ZT0xIGZhY2U9IkFyaWFsIj48YnI+DQo8
-L2ZvbnQ+DQo8YnI+PGZvbnQgc2l6ZT0yIGZhY2U9InNhbnMtc2VyaWYiPjxiPkdpb3Zhbm5pIFBh
-dm9uaTwvYj48L2ZvbnQ+DQo8YnI+PGZvbnQgc2l6ZT0yIGZhY2U9InNhbnMtc2VyaWYiPlImRCBE
-ZXBhcnRtZW50PC9mb250Pg0KPGJyPg0KPGJyPjxmb250IHNpemU9MiBmYWNlPSJzYW5zLXNlcmlm
-Ij48Yj5FeG9yIEludGVybmF0aW9uYWwgUy5wLkEuPC9iPjxicj4NClZpYSBNb250ZSBGaW9yaW5v
-LDk8YnI+DQpJLTM3MDU3IFNhbiBHaW92YW5uaSBMdXBhdG90byAoVlIpPGJyPg0KUGhvbmU6KzM5
-MDQ1ODc3NDgzOSAtIEZheDorMzkwNDU4Nzc5MDIzPGJyPg0KPC9mb250Pg0KPGJyPjxmb250IHNp
-emU9MiBmYWNlPSJzYW5zLXNlcmlmIj5naW92YW5uaS5wYXZvbmlAZXhvcmludC5pdCAtIDwvZm9u
-dD48YSBocmVmPXd3dy5leG9yaW50Lm5ldD48Zm9udCBzaXplPTIgZmFjZT0ic2Fucy1zZXJpZiI+
-d3d3LmV4b3JpbnQubmV0PC9mb250PjwvYT48Zm9udCBzaXplPTIgZmFjZT0ic2Fucy1zZXJpZiI+
-DQotIDwvZm9udD48YSBocmVmPXd3dy5leG9yaW50Lml0Pjxmb250IHNpemU9MiBmYWNlPSJzYW5z
-LXNlcmlmIj53d3cuZXhvcmludC5pdDwvZm9udD48L2E+PGZvbnQgc2l6ZT0yIGZhY2U9InNhbnMt
-c2VyaWYiPjxicj4NCjwvZm9udD4NCjxicj48Zm9udCBzaXplPTEgY29sb3I9IzVmNWY1ZiBmYWNl
-PSJBcmlhbCI+PGk+QVRURU5aSU9ORTogUHJpdmFjeSBQb2xpY3kNCuKAkyBELkxncy4gMTk2LzIw
-MDM8L2k+PC9mb250Pg0KPGJyPjxmb250IHNpemU9MSBjb2xvcj0jNWY1ZjVmIGZhY2U9IkFyaWFs
-Ij48aT4mbmJzcDtMZSBpbmZvcm1hemlvbmkgY29udGVudXRlDQppbiBxdWVzdG8gbWVzc2FnZ2lv
-IGRpIHBvc3RhIGVsZXR0cm9uaWNhIHNvbm8gZGkgY2FyYXR0ZXJlIHByaXZhdG8gZSBjb25maWRl
-bnppYWxlDQplZCBlc2NsdXNpdmFtZW50ZSByaXZvbHRlIGFsIGRlc3RpbmF0YXJpbyBzb3ByYSBp
-bmRpY2F0by4gTmVsIGNhc28gYXZlc3RlDQpyaWNldnV0byBxdWVzdG8gbWVzc2FnZ2lvIGRpIHBv
-c3RhIGVsZXR0cm9uaWNhIHBlciBlcnJvcmUsIHZpIGNvbXVuaWNoaWFtbw0KY2hlIGFpIHNlbnNp
-IGRlbCBzdWRkZXR0byBkZWNyZXRvIMOoIHZpZXRhdG8gbOKAmXVzbywgbGEgZGlmZnVzaW9uZSwg
-ZGlzdHJpYnV6aW9uZQ0KbyByaXByb2R1emlvbmUgZGEgcGFydGUgZGkgb2duaSBhbHRyYSBwZXJz
-b25hLiBTaWV0ZSBwcmVnYXRpIGRpIHNlZ25hbGFybG8NCmltbWVkaWF0YW1lbnRlIHJpc3BvbmRl
-bmRvIGFsIG1pdHRlbnRlIGUgZGkgZGlzdHJ1Z2dlcmUgcXVhbnRvIHJpY2V2dXRvDQooY29tcHJl
-c2kgaSBmaWxlIGFsbGVnYXRpKSBzZW56YSBmYXJuZSBjb3BpYSBvIGxlZ2dlcm5lIGlsIGNvbnRl
-bnV0by48L2k+PC9mb250Pg0KPGJyPg0KPGJyPjxmb250IHNpemU9MSBjb2xvcj0jNWY1ZjVmIGZh
-Y2U9IkFyaWFsIj48aT5UaGlzIGUtbWFpbCB0cmFuc21pc3Npb24NCmNvbnRhaW5zIGluZm9ybWF0
-aW9uIHRoYXQgaXMgY29uZmlkZW50aWFsIGFuZCBtYXkgYmUgcHJpdmlsZWdlZC4gSXQgaXMNCmlu
-dGVuZGVkIG9ubHkgZm9yIHRoZSBhZGRyZXNzZWUocykgbmFtZWQgYWJvdmUuIElmIHlvdSByZWNl
-aXZlIHRoaXMgZS1tYWlsDQppbiBlcnJvciwgcGxlYXNlIGRvIG5vdCByZWFkLCBjb3B5IG9yIGRp
-c3NlbWluYXRlIGl0IGluIGFueSBtYW5uZXIuIElmDQp5b3UgYXJlIG5vdCB0aGUgaW50ZW5kZWQg
-cmVjaXBpZW50LCBhbnkgZGlzY2xvc3VyZSwgY29weWluZywgZGlzdHJpYnV0aW9uDQpvciB1c2Ug
-b2YgdGhlIGNvbnRlbnRzIG9mIHRoaXMgaW5mb3JtYXRpb24gaXMgcHJvaGliaXRlZC4gUGxlYXNl
-IHJlcGx5DQp0byB0aGUgbWVzc2FnZSBpbW1lZGlhdGVseSBieSBpbmZvcm1pbmcgdGhlIHNlbmRl
-ciB0aGF0IHRoZSBtZXNzYWdlIHdhcw0KbWlzZGlyZWN0ZWQuIEFmdGVyIHJlcGx5aW5nLCBwbGVh
-c2UgZXJhc2UgaXQgZnJvbSB5b3VyIGNvbXB1dGVyIHN5c3RlbS4NCllvdXIgYXNzaXN0YW5jZSBp
-biBjb3JyZWN0aW5nIHRoaXMgZXJyb3IgaXMgYXBwcmVjaWF0ZWQuPC9pPjwvZm9udD4NCjxicj4N
-Cg==
+It's a known issue that is being worked on for 1.3, but the bugzilla has
+workarounds that you can use in the meantime.
 
---=_alternative 003777BCC12579FB_=--
+Cheers,
+
+Bruce
+
+>
+> Frans.
+>
+> Log from
+> bitbake -c compile -f virtual/kernel; bitbake virtual/kernel
+>
+> frans@frans-desktop:~/poky-denzil-7.0-build$ bitbake virtual/kernel
+> -ccompile -f; bitbake virtual/kernel
+> Loading cache: 100%
+> |########################################################################################################################|
+> ETA:  00:00:00
+> Loaded 1106 entries from dependency cache.
+>
+> OE Build Configuration:
+> BB_VERSION        = "1.15.1"
+> TARGET_ARCH       = "powerpc"
+> TARGET_OS         = "linux-uclibc"
+> MACHINE           = "syrcxx"
+> DISTRO            = "poky"
+> DISTRO_VERSION    = "1.2"
+> TUNE_FEATURES     = "m32 fpu-hard ppce300c3"
+> TARGET_FPU        = ""
+> meta
+> meta-yocto
+> meta-syrcxx       = "<unknown>:<unknown>"
+>
+> NOTE: Resolving any missing task queue dependencies
+> NOTE: Preparing runqueue
+> ^[NOTE: Executing SetScene Tasks
+> NOTE: Executing RunQueue Tasks
+> kNOTE: Running task 278 of 278 (ID: 8,
+> /home/frans/poky-denzil-7.0/meta/recipes-kernel/linux/linux-yocto_3.2.bb,
+> do_compile)
+> kkNOTE: package
+> linux-yocto-3.2.11+git1+b14a08f5c7b469a5077c10942f4e1aec171faa9d_1+01e948c2bdf7f5ad9f2b30047a8d3493a1a2880a-r1.40:
+> task do_compile: Started
+> NOTE: package linux-yocto-3.2.11+git1+b14a08f5c7b469a5077c10942f4e1aec171faa9d_1+01e948c2bdf7f5ad9f2b30047a8d3493a1a2880a-r1.40:
+> task do_compile: Succeeded
+> NOTE: Tasks Summary: Attempted 278 tasks of which 277 didn't need to
+> be rerun and all succeeded.
+> Loading cache: 100%
+> |########################################################################################################################|
+> ETA:  00:00:00
+> Loaded 1106 entries from dependency cache.
+>
+> OE Build Configuration:
+> BB_VERSION        = "1.15.1"
+> TARGET_ARCH       = "powerpc"
+> TARGET_OS         = "linux-uclibc"
+> MACHINE           = "syrcxx"
+> DISTRO            = "poky"
+> DISTRO_VERSION    = "1.2"
+> TUNE_FEATURES     = "m32 fpu-hard ppce300c3"
+> TARGET_FPU        = ""
+> meta
+> meta-yocto
+> meta-syrcxx       = "<unknown>:<unknown>"
+>
+> NOTE: Resolving any missing task queue dependencies
+> NOTE: Preparing runqueue
+> NOTE: Executing SetScene Tasks
+> NOTE: Running setscene task 213 of 235
+> (/home/frans/poky-denzil-7.0/meta/recipes-kernel/linux/linux-yocto_3.2.bb,
+> do_populate_sysroot_setscene)
+> NOTE: Running setscene task 214 of 235
+> (/home/frans/poky-denzil-7.0/meta/recipes-kernel/linux/linux-yocto_3.2.bb,
+> do_deploy_setscene)
+> NOTE: package linux-yocto-3.2.11+git1+b14a08f5c7b469a5077c10942f4e1aec171faa9d_1+01e948c2bdf7f5ad9f2b30047a8d3493a1a2880a-r1.40:
+> task do_populate_sysroot_setscene: Started
+> NOTE: package linux-yocto-3.2.11+git1+b14a08f5c7b469a5077c10942f4e1aec171faa9d_1+01e948c2bdf7f5ad9f2b30047a8d3493a1a2880a-r1.40:
+> task do_deploy_setscene: Started
+> NOTE: package linux-yocto-3.2.11+git1+b14a08f5c7b469a5077c10942f4e1aec171faa9d_1+01e948c2bdf7f5ad9f2b30047a8d3493a1a2880a-r1.40:
+> task do_deploy_setscene: Succeeded
+> NOTE: Running setscene task 215 of 235
+> (/home/frans/poky-denzil-7.0/meta/recipes-kernel/linux/linux-yocto_3.2.bb,
+> do_package_setscene)
+> NOTE: package linux-yocto-3.2.11+git1+b14a08f5c7b469a5077c10942f4e1aec171faa9d_1+01e948c2bdf7f5ad9f2b30047a8d3493a1a2880a-r1.40:
+> task do_package_setscene: Started
+> NOTE: package linux-yocto-3.2.11+git1+b14a08f5c7b469a5077c10942f4e1aec171faa9d_1+01e948c2bdf7f5ad9f2b30047a8d3493a1a2880a-r1.40:
+> task do_package_setscene: Succeeded
+> NOTE: package linux-yocto-3.2.11+git1+b14a08f5c7b469a5077c10942f4e1aec171faa9d_1+01e948c2bdf7f5ad9f2b30047a8d3493a1a2880a-r1.40:
+> task do_populate_sysroot_setscene: Succeeded
+> NOTE: Executing RunQueue Tasks
+> NOTE: Tasks Summary: Attempted 664 tasks of which 664 didn't need to
+> be rerun and all succeeded.
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
+
