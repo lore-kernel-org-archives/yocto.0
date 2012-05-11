@@ -1,29 +1,25 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DFECEE00746
-	for <yocto@yoctoproject.org>; Fri, 11 May 2012 12:26:53 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q4BJQqf1003841
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 11 May 2012 12:26:52 -0700 (PDT)
-Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Fri, 11 May 2012 12:26:52 -0700
-Message-ID: <4FAD67FA.9090401@windriver.com>
-Date: Fri, 11 May 2012 15:26:50 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:12.0) Gecko/20120430 Thunderbird/12.0.1
-MIME-Version: 1.0
-To: Frans Meulenbroeks <fransmeulenbroeks@gmail.com>
-References: <CACW_hTYnH_ccSf7844bwwKeKH+otHopbbz7h2igrCMhUddN1tQ@mail.gmail.com>
-	<4FAD0855.4080209@windriver.com>
-	<CACW_hTarP91KOUOYRHTgPJhF5Q8jYgY4XY8xZCrUEciwNCniMQ@mail.gmail.com>
-	<4FAD0E47.3050604@windriver.com>
-	<CACW_hTbbp=Oo=iLwiTAH9eda=aJ_Rts1-YDRRtTeONa3qeB73Q@mail.gmail.com>
-In-Reply-To: <CACW_hTbbp=Oo=iLwiTAH9eda=aJ_Rts1-YDRRtTeONa3qeB73Q@mail.gmail.com>
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 31E38E00747
+	for <yocto@yoctoproject.org>; Fri, 11 May 2012 12:29:25 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 11 May 2012 12:29:25 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="139621111"
+Received: from unknown (HELO [10.255.12.70]) ([10.255.12.70])
+	by orsmga001.jf.intel.com with ESMTP; 11 May 2012 12:29:24 -0700
+From: Tom Zanussi <tom.zanussi@intel.com>
+To: Darren Hart <dvhart@linux.intel.com>
+In-Reply-To: <4FAD3B0E.1020804@linux.intel.com>
+References: <594ba05ab96a837575960ba514ae153eeef899b7.1336697506.git.tom.zanussi@intel.com>
+	<db3779a87c8877876dc4e5afe6bfa81914dc9725.1336697506.git.tom.zanussi@intel.com>
+	<4FAD3B0E.1020804@linux.intel.com>
+Date: Fri, 11 May 2012 14:29:19 -0500
+Message-ID: <1336764559.27950.1.camel@elmorro>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.28.3 
 Cc: yocto@yoctoproject.org
-Subject: Re: kernel rebuild and bitbake -c menuconfig
+Subject: Re: [PATCH 04/10] meta/common-pc: factor out policy-related options
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,129 +31,112 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 11 May 2012 19:26:54 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+X-List-Received-Date: Fri, 11 May 2012 19:29:25 -0000
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-On 12-05-11 09:12 AM, Frans Meulenbroeks wrote:
-> 2012/5/11 Bruce Ashfield<bruce.ashfield@windriver.com>:
->> On 12-05-11 08:51 AM, Frans Meulenbroeks wrote:
->>>
->>> 2012/5/11 Bruce Ashfield<bruce.ashfield@windriver.com>:
->>>>
->>>> On 12-05-11 03:07 AM, Frans Meulenbroeks wrote:
->>>>>
->>>>>
->>>>> Hi,
->>>>>
->>>>> I'm wondering how to do a kernel rebuild after doing changing the
->>>>> .config
->>>>> using
->>>>> bitbake -c menuconfig virtual/kernel
->>>>> I've tried forcing a recompile using:
->>>>> bitbake -ccompile -f virtual/kernel
->>>>> that indeed rebuilds the kernel
->>>>> However if I then do a bitbake virtual/kernel this does not result in
->>>>> an image in my deploy dir.
->>>>>
->>>>> system info
->>>>> host: ubuntu 12.04
->>>>> denzil 7.0 software (from tarball)
->>>>> target: ppc (actually for my own board but I did not do weird things
->>>>> in my bsp, like adding extra tasks.
->>>>>
->>>>> It seems the vmlinux.bin.gz is still generated but the uImage is not
->>>>> (which can also be seen from the log below where do_install is not
->>>>> ran.
->>>>> Additional proof:
->>>>> f5ad9f2b30047a8d3493a1a2880a-r1.40$ ls -l ./image/kernel/uImage
->>>>> ./linux-syrcxx-standard-build/vmlinux.bin.gz
->>>>> -rw-r--r-- 1 frans frans 1609509 2012-05-10 10:19 ./image/kernel/uImage
->>>>> -rwxr-xr-x 1 frans frans 1611499 2012-05-11 08:52
->>>>> ./linux-syrcxx-standard-build/vmlinux.bin.gz
->>>>> This si from after I ran the bitbake commands below.
->>>>>
->>>>> What is going wrong here?
->>>>
->>>>
->>>>
->>>> You are likely hitting this bug:
->>>>
->>>>   https://bugzilla.yoctoproject.org/show_bug.cgi?id=2256
->>>>
->>>> It's a known issue that is being worked on for 1.3, but the bugzilla has
->>>> workarounds that youl can use in the meantime.
->>>>
->>>> Cheers,
->>>>
->>>> Bruce
->>>>
->>> Bruce,
->>>
->>> Thanks for the reference.
->>> I am indeed seeing that bug.
->>>
->>> What I did was the solution of Darren that was listed in comment5, but
->>> that did not work for me.
->>> I was unaware of the cleansstate task.
->>>
->>> Actually thinking of it, if in the flow:
->>> $ bitbake virtual/kernel -c cleansstate
->>> $ bitbake virtual/kernel -c menuconfig
->>> $ bitbake virtual/kernel -c compile -f; bitbake virtual/kernel
->>> the first two steps can be exchanged (so first menuconfig then
->>> cleansstate, then menuconfig could force the cleansstate to run
->>>
->>> (or menuconfig could run cleanstate befure doing the actual menuconfig
->>> work)
->>
->>
->> Hopefully we'll end up with a flag that can just indicate that sstate
->> shouldn't be used for a particular package after a certain trigger has
->> been hit .. or something like that :)
->>
->> But indeed, we could automatically trigger some sstate cleaning as well
->> as an option.
->>
->> Glad to hear that you are around the issue now,
->>
->> Bruce
->
-> Well the problem is not as well solved as I'd hoped for as cleansstate
-> does imply a -clean and so blows away any other change
->
-> I've added this to bug 2256:
+On Fri, 2012-05-11 at 09:15 -0700, Darren Hart wrote:
+> 
+> On 05/10/2012 06:00 PM, tom.zanussi@intel.com wrote:
+> > From: Tom Zanussi <tom.zanussi@intel.com>
+> > 
+> > Refactor bsp/common-pc/common-pc* to keep hardware-related options in
+> > the base common-pc.scc while moving the more 'policy'-related options
+> > into the files that include the base common-pc.scc fragment.
+> > 
+> > This allows the different kernel types to make use of the basic
+> > machine support without dragging along possibly unwanted options that
+> > fall under the heading of 'policy' for a specific kernel type.
+> > 
+> > Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
+> > ---
+> >  .../bsp/common-pc/common-pc-preempt-rt.scc         |    7 +++++++
+> >  .../bsp/common-pc/common-pc-standard.scc           |    6 ++++++
+> >  .../kernel-cache/bsp/common-pc/common-pc-tiny.scc  |    5 +----
+> >  meta/cfg/kernel-cache/bsp/common-pc/common-pc.scc  |    4 ----
+> >  4 files changed, 14 insertions(+), 8 deletions(-)
+> > 
+> > diff --git a/meta/cfg/kernel-cache/bsp/common-pc/common-pc-preempt-rt.scc b/meta/cfg/kernel-cache/bsp/common-pc/common-pc-preempt-rt.scc
+> > index f8716ee..706f669 100644
+> > --- a/meta/cfg/kernel-cache/bsp/common-pc/common-pc-preempt-rt.scc
+> > +++ b/meta/cfg/kernel-cache/bsp/common-pc/common-pc-preempt-rt.scc
+> > @@ -4,4 +4,11 @@ define KARCH i386
+> >  
+> >  # no new branch required, re-use the ktypes/preempt-rt branch
+> >  include ktypes/preempt-rt
+> > +
+> >  include bsp/common-pc/common-pc.scc
+> > +
+> > +# default policy for preempt-rt kernels
+> 
+> 
+> needs  usb-mass-storage here
+> 
 
-Good (sort of) .. the bug is definitely the right place to log this.
+Again, note that the original common-pc* doesn't have these options
+other than CONFIG_USB_STORAGE and CONFIG_SCSI.
 
->
-> Unfortunately this does not only apply to menuconfig.
->
-> The following scenario also does not work
-> bitbake virtual/kernel
-> modify a kernel source file
-> bitbake -ccompile -f virtual/kernel
-> bitbake virtual/kernel
-> The latter does not run do_install
->
-> This is on ppc
->
-> I tried the cleansstate solution, as suggested by Darren in comment 7
-> but unfortunately cleansstate implies clean so it removes the whole
-> tree (including the modified file).
->
-> Best regards, Frans
-> (ps: for me it is nice to have do_install being run as I combine
-> device tree and kernel image into a single file using mkimage in
-> do_install_append.; will try next time to do a -c compile -f followed
-> by a -c install f)
+> > +include cfg/boot-live.scc
+> > +include features/latencytop/latencytop.scc
+> > +include features/profiling/profiling.scc
+> > +include cfg/virtio.scc
+> > diff --git a/meta/cfg/kernel-cache/bsp/common-pc/common-pc-standard.scc b/meta/cfg/kernel-cache/bsp/common-pc/common-pc-standard.scc
+> > index f5baf52..83d49fd 100644
+> > --- a/meta/cfg/kernel-cache/bsp/common-pc/common-pc-standard.scc
+> > +++ b/meta/cfg/kernel-cache/bsp/common-pc/common-pc-standard.scc
+> > @@ -6,3 +6,9 @@ include ktypes/standard
+> >  branch common-pc
+> >  
+> >  include common-pc.scc
+> > +
+> > +# default policy for standard kernels
+> 
+> needs  usb-mass-storage here and the config removed from common-pc.cfg
+> 
 
-So the work around is slightly more complicated for now, with the extra
-forced install.
+Same here...
 
-Definitely something we'll fix up during the worklow streamlining being
-done as part of 1.3.
+Tom
 
-Bruce
+> > +include cfg/boot-live.scc
+> > +include features/latencytop/latencytop.scc
+> > +include features/profiling/profiling.scc
+> > +include cfg/virtio.scc
+> > diff --git a/meta/cfg/kernel-cache/bsp/common-pc/common-pc-tiny.scc b/meta/cfg/kernel-cache/bsp/common-pc/common-pc-tiny.scc
+> > index 8d7a498..900eb27 100644
+> > --- a/meta/cfg/kernel-cache/bsp/common-pc/common-pc-tiny.scc
+> > +++ b/meta/cfg/kernel-cache/bsp/common-pc/common-pc-tiny.scc
+> > @@ -5,8 +5,5 @@ define KARCH i386
+> >  include ktypes/tiny
+> >  branch common-pc
+> >  
+> > -# Don't include common-pc.scc directly,
+> > -# it pulls in too many non-hardware options
+> > -kconf hardware common-pc.cfg
+> > -kconf hardware common-pc-gfx.cfg
+> > +include common-pc.scc
+> 
+> Nice!
+> 
+> > diff --git a/meta/cfg/kernel-cache/bsp/common-pc/common-pc.scc b/meta/cfg/kernel-cache/bsp/common-pc/common-pc.scc
+> > index 2338ea6..9bd72c1 100644
+> > --- a/meta/cfg/kernel-cache/bsp/common-pc/common-pc.scc
+> > +++ b/meta/cfg/kernel-cache/bsp/common-pc/common-pc.scc
+> > @@ -1,11 +1,7 @@
+> >  kconf hardware common-pc.cfg
+> >  kconf hardware common-pc-gfx.cfg
+> >  
+> > -include cfg/boot-live.scc
+> >  include features/usb/ehci-hcd.scc
+> >  include features/usb/uhci-hcd.scc
+> >  include features/intel-e1xxxx/intel-e100.scc
+> >  include features/intel-e1xxxx/intel-e1xxxx.scc
+> > -include features/latencytop/latencytop.scc
+> > -include features/profiling/profiling.scc
+> > -include cfg/virtio.scc
+> 
+> Nice.
+> 
+
 
 
