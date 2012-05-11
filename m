@@ -1,25 +1,20 @@
-Return-Path: <philip@balister.org>
-Received: from sanddollar.geekisp.com (sanddollar.geekisp.com
-	[216.168.135.167])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7580CE0044A
-	for <yocto@yoctoproject.org>; Thu, 10 May 2012 14:41:51 -0700 (PDT)
-Received: (qmail 30735 invoked by uid 1003); 10 May 2012 21:41:50 -0000
-Received: from unknown (HELO ?192.168.1.102?)
-	(philip@opensdr.com@71.171.22.246)
-	by mail.geekisp.com with (DHE-RSA-AES256-SHA encrypted) SMTP;
-	10 May 2012 21:41:50 -0000
-Message-ID: <4FAC361D.60609@balister.org>
-Date: Thu, 10 May 2012 17:41:49 -0400
-From: Philip Balister <philip@balister.org>
-User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
-	rv:1.9.2.24) Gecko/20111108 Fedora/3.1.16-1.fc14 Thunderbird/3.1.16
-MIME-Version: 1.0
-To: openembedded-devel@lists.openembedded.org, 
-	openembedded-core <openembedded-core@lists.openembedded.org>,
-	openembedded-members@lists.openembedded.org, 
-	Yocto Project <yocto@yoctoproject.org>
-X-Enigmail-Version: 1.1.2
-Subject: [oe] Linuxtag 2012
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D9FF7E0044A
+	for <yocto@yoctoproject.org>; Thu, 10 May 2012 18:00:07 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga102.fm.intel.com with ESMTP; 10 May 2012 18:00:07 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="151639824"
+Received: from unknown (HELO localhost) ([10.255.12.70])
+	by fmsmga001.fm.intel.com with ESMTP; 10 May 2012 18:00:06 -0700
+From: tom.zanussi@intel.com
+To: yocto@yoctoproject.org, bruce.ashfield@windriver.com,
+	dvhart@linux.intel.com
+Date: Thu, 10 May 2012 20:00:03 -0500
+Message-Id: <cover.1336697506.git.tom.zanussi@intel.com>
+X-Mailer: git-send-email 1.7.0.4
+Subject: [PATCH 00/10][KERNEL][RFC] policy cleanup patches
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,77 +26,67 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 10 May 2012 21:41:51 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 11 May 2012 01:00:08 -0000
 
-Sorry for the massive crossposting here, but I want to reach the widest
-audience.
+From: Tom Zanussi <tom.zanussi@intel.com>
 
-In previous years, Florian has done a really good job working for
-OpenEmbedded at LinuxTag. However, this year, he is not certain if he
-can attend, so he needs our help with the stand.
+This set of patches factors out the policy vs hardware-related config
+of the common-pc and common-pc-64 along with some meta-intel BSPs.
 
-Basically, we need people at the booth for the entire show to explain
-what OpenEmbedded is and field questions about OpenEmbedded and the
-Yocto Project. (You will get lots of people wanting to know what the
-difference is between the Yocto project and OpenEmbedded). You do not
-need to be an expert OE person to do a good job.
+There are also a couple usb cleanups as well.
 
-I encourage anyone involved in OpenEmbedded who can get to Linuxtag for
-even a day to help it. It is a really fun time, and Berlin is a really
-nice place to visit.
+This is an RFC patchset because it's completely untested at this
+point so shouldn't be pulled in - I wanted to get this pre-NAKed
+at least once before actually going through the trouble of testing.  ;-)
 
-We encourage people to bring devices that are made with OpenEmbedded and
-related technology to show off at the stand.
+Tom
 
-If you can help, or have questions about helping please reply to this email.
+The following changes since commit 1dfd60fa1250259eed38ae5b2840eb37e3758a1b:
+  Tom Zanussi (1):
+        meta/fishriver: move smp options from recipe-space
 
-Philip
+are available in the git repository at:
 
--------- Original Message --------
-Subject: [oe] Linuxtag 2012
-Date: Tue, 08 May 2012 00:23:42 +0200
-From: Florian Boor <florian.boor@kernelconcepts.de>
-Reply-To: openembedded-devel@lists.openembedded.org
-To: openembedded-devel <openembedded-devel@openembedded.org>
+  git://git.yoctoproject.org/linux-yocto-2.6.37-contrib.git tzanussi/policy-cleanup
+  http://git.yoctoproject.org/cgit/cgit.cgi/linux-yocto-2.6.37-contrib/log/?h=tzanussi/policy-cleanup
 
-Hallo list!
+Tom Zanussi (10):
+  meta: add ROOT_HUB_TT config option to the usb/ehci-hcd feature
+  meta/common-pc: use usb features
+  meta/common-pc-64: use usb features
+  meta/common-pc: factor out policy-related options
+  meta/common-pc: factor out policy-related options
+  meta/crownbay: factor out policy-related options
+  meta/emenlow: factor out policy-related options
+  meta/emenlow: factor out policy-related options
+  meta/jasperforest: factor out policy-related options
+  meta/sugarbay: factor out policy-related options
 
-We have been accepted for a project booth at LinuxTag [1] again this year!
-This means that we have a booth at the largest Linux fair in Europe and the
-opportunity to get in touch with users, companies and other projects there.
-
-LinuxTag takes place in Berlin, Germany from May 23 to 26.
-
-We need several people who want to help manning the booth. The years
-before was
-able to attend myself but this year I still do not know if I'll be able
-to do
-so. So if you are able to attend please take this chance to represent OE at
-LinuxTag!
-
-We have a big box with useful things for the booth (TFT, table cloth with OE
-logo, lamps, flyers...). This box will be available at the event location.
-Something useful to bring yourself are all sorts of devices OE supports.
-
-Greetings
-
-Florian
-
-[1] http://www.linuxtag.org
-
--- 
-The dream of yesterday                  Florian Boor
-is the hope of today                    Tel: +49 271-771091-15
-and the reality of tomorrow.            Fax: +49 271-771091-19
-[Robert Hutchings Goddard, 1904]        florian.boor@kernelconcepts.de
-                                        http://www.kernelconcepts.de/en
-
-
-_______________________________________________
-Openembedded-devel mailing list
-Openembedded-devel@lists.openembedded.org
-http://lists.linuxtogo.org/cgi-bin/mailman/listinfo/openembedded-devel
+ .../bsp/common-pc-64/common-pc-64-preempt-rt.scc   |    6 ++++++
+ .../bsp/common-pc-64/common-pc-64-standard.scc     |    6 ++++++
+ .../kernel-cache/bsp/common-pc-64/common-pc-64.cfg |    3 ---
+ .../kernel-cache/bsp/common-pc-64/common-pc-64.scc |    8 ++------
+ .../bsp/common-pc/common-pc-preempt-rt.scc         |    7 +++++++
+ .../bsp/common-pc/common-pc-standard.scc           |    6 ++++++
+ .../kernel-cache/bsp/common-pc/common-pc-tiny.scc  |    5 +----
+ meta/cfg/kernel-cache/bsp/common-pc/common-pc.cfg  |    5 -----
+ meta/cfg/kernel-cache/bsp/common-pc/common-pc.scc  |    6 ++----
+ .../bsp/crownbay/crownbay-preempt-rt.scc           |    8 ++++++++
+ .../bsp/crownbay/crownbay-standard.scc             |    7 +++++++
+ meta/cfg/kernel-cache/bsp/crownbay/crownbay.scc    |    7 -------
+ .../bsp/emenlow/emenlow-preempt-rt.scc             |    8 ++++++++
+ .../kernel-cache/bsp/emenlow/emenlow-standard.scc  |    8 ++++++++
+ meta/cfg/kernel-cache/bsp/emenlow/emenlow.scc      |    7 -------
+ .../bsp/fishriver/fishriver-preempt-rt.scc         |    8 ++++++++
+ .../bsp/fishriver/fishriver-standard.scc           |    8 ++++++++
+ meta/cfg/kernel-cache/bsp/fishriver/fishriver.scc  |    7 -------
+ .../bsp/jasperforest/jasperforest-preempt-rt.scc   |    7 +++++++
+ .../bsp/jasperforest/jasperforest-standard.scc     |    6 ++++++
+ .../kernel-cache/bsp/jasperforest/jasperforest.scc |    6 ------
+ .../bsp/sugarbay/sugarbay-preempt-rt.scc           |    7 +++++++
+ .../bsp/sugarbay/sugarbay-standard.scc             |    6 ++++++
+ meta/cfg/kernel-cache/bsp/sugarbay/sugarbay.scc    |    6 ------
+ meta/cfg/kernel-cache/features/usb/ehci-hcd.cfg    |    1 +
+ 25 files changed, 104 insertions(+), 55 deletions(-)
 
 
