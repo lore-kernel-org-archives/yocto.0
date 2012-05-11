@@ -1,24 +1,28 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9E87AE01429
-	for <yocto@yoctoproject.org>; Thu, 10 May 2012 18:00:27 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 10 May 2012 18:00:27 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="151639912"
-Received: from unknown (HELO localhost) ([10.255.12.70])
-	by fmsmga001.fm.intel.com with ESMTP; 10 May 2012 18:00:26 -0700
-From: tom.zanussi@intel.com
-To: yocto@yoctoproject.org, bruce.ashfield@windriver.com,
-	dvhart@linux.intel.com
-Date: Thu, 10 May 2012 20:00:06 -0500
-Message-Id: <eddd249e96f531ba43064efa77ddaa6b7dd57275.1336697506.git.tom.zanussi@intel.com>
-X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <594ba05ab96a837575960ba514ae153eeef899b7.1336697506.git.tom.zanussi@intel.com>
-References: <594ba05ab96a837575960ba514ae153eeef899b7.1336697506.git.tom.zanussi@intel.com>
-In-Reply-To: <cover.1336697506.git.tom.zanussi@intel.com>
-References: <cover.1336697506.git.tom.zanussi@intel.com>
-Subject: [PATCH 10/10] meta/sugarbay: factor out policy-related options
+Return-Path: <chinhuat@gmail.com>
+Received: from mail-yw0-f48.google.com (mail-yw0-f48.google.com
+	[209.85.213.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 94790E0044A
+	for <yocto@yoctoproject.org>; Thu, 10 May 2012 18:35:31 -0700 (PDT)
+Received: by yhfq46 with SMTP id q46so2890639yhf.35
+	for <yocto@yoctoproject.org>; Thu, 10 May 2012 18:35:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=H5ZuvnssFdj55rOL1BCtQycPkt2a1bKH0a8zoJdBBrA=;
+	b=f8CsNd71Nd9SAnMW8C2s5WPRovZzVySpu1OlUBb+RUtTe8WrGTmIdR8V1GFtK/kaAj
+	sL1h2AfOLwJsOgkxEIxnsqO+NwcvKxppBYzL4RW7sy8+ypAjirHeTFcpsr0GhQ56vbHc
+	b1s7ZW4Iep3Jd0E0AVA1prKVcUOP/QezVmkP23+s79qAD0nF20KtRh7BdHzGnArKAmoW
+	86EUTWDViUqzLJ2nqr9l/IM1UY05xIMbEUfrtqAVe65rjKoIxiIzxJSKkyExnSbfXrBP
+	Uffyi9fV8R0sPk3MQDnhp1/GfbqdjcLyn6TSmXidbxFM5p6QSDqr4hblnGr7dw4+MvQL
+	v5pg==
+MIME-Version: 1.0
+Received: by 10.236.78.5 with SMTP id f5mr8163281yhe.14.1336700131032; Thu, 10
+	May 2012 18:35:31 -0700 (PDT)
+Received: by 10.236.105.148 with HTTP; Thu, 10 May 2012 18:35:30 -0700 (PDT)
+Date: Fri, 11 May 2012 09:35:30 +0800
+Message-ID: <CABzAcgiKqN-hQ56HoZny6=EeiDbnbFAb0CoqBb7R_eJ5EEdUKQ@mail.gmail.com>
+From: Chin Huat Ang <chinhuat@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Cloning yocto repos over https
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,75 +34,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 11 May 2012 01:00:27 -0000
+X-List-Received-Date: Fri, 11 May 2012 01:35:31 -0000
+Content-Type: multipart/alternative; boundary=20cf3005155a7b3e9f04bfb8c0f8
 
-From: Tom Zanussi <tom.zanussi@intel.com>
+--20cf3005155a7b3e9f04bfb8c0f8
+Content-Type: text/plain; charset=ISO-8859-1
 
-Refactor bsp/common-pc/common-pc* to keep hardware-related options in
-the base sugarbay.scc while moving the more 'policy'-related options
-into the files that include the base sugarbay.scc fragment.
+Hi,
 
-This allows the different kernel types to make use of the basic
-machine support without dragging along possibly unwanted options that
-fall under the heading of 'policy' for a specific kernel type.
+Is there a way to clone yocto repositories (say, poky) over https?
 
-Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
----
- .../bsp/sugarbay/sugarbay-preempt-rt.scc           |    7 +++++++
- .../bsp/sugarbay/sugarbay-standard.scc             |    6 ++++++
- meta/cfg/kernel-cache/bsp/sugarbay/sugarbay.scc    |    6 ------
- 3 files changed, 13 insertions(+), 6 deletions(-)
+I'm behind a firewall where git port is blocked, getting it opened is a
+bureaucracy nightmare.
 
-diff --git a/meta/cfg/kernel-cache/bsp/sugarbay/sugarbay-preempt-rt.scc b/meta/cfg/kernel-cache/bsp/sugarbay/sugarbay-preempt-rt.scc
-index e824f6f..d9df73b 100644
---- a/meta/cfg/kernel-cache/bsp/sugarbay/sugarbay-preempt-rt.scc
-+++ b/meta/cfg/kernel-cache/bsp/sugarbay/sugarbay-preempt-rt.scc
-@@ -5,4 +5,11 @@ define KARCH x86_64
- # no new branch required, re-use the ktypes/preempt-rt branch
- include ktypes/preempt-rt
- include bsp/common-pc-64/common-pc-64.scc
-+
- include sugarbay.scc
-+
-+# default policy for preempt-rt kernels
-+include cfg/usb-mass-storage.scc
-+include features/logbuf/size-normal.scc
-+include features/latencytop/latencytop.scc
-+include features/profiling/profiling.scc
-diff --git a/meta/cfg/kernel-cache/bsp/sugarbay/sugarbay-standard.scc b/meta/cfg/kernel-cache/bsp/sugarbay/sugarbay-standard.scc
-index 8c2a19b..421364e 100644
---- a/meta/cfg/kernel-cache/bsp/sugarbay/sugarbay-standard.scc
-+++ b/meta/cfg/kernel-cache/bsp/sugarbay/sugarbay-standard.scc
-@@ -6,3 +6,9 @@ include bsp/common-pc-64/common-pc-64-standard
- branch sugarbay
- 
- include sugarbay.scc
-+
-+# default policy for standard kernels
-+include cfg/usb-mass-storage.scc
-+include features/logbuf/size-normal.scc
-+include features/latencytop/latencytop.scc
-+include features/profiling/profiling.scc
-diff --git a/meta/cfg/kernel-cache/bsp/sugarbay/sugarbay.scc b/meta/cfg/kernel-cache/bsp/sugarbay/sugarbay.scc
-index 128efd3..d8144f0 100644
---- a/meta/cfg/kernel-cache/bsp/sugarbay/sugarbay.scc
-+++ b/meta/cfg/kernel-cache/bsp/sugarbay/sugarbay.scc
-@@ -2,14 +2,8 @@ kconf hardware sugarbay.cfg
- 
- include features/i915/i915.scc
- include features/serial/8250.scc
--include cfg/usb-mass-storage.scc
- include features/power/intel.scc
- 
--include features/logbuf/size-normal.scc
--
--include features/latencytop/latencytop.scc
--include features/profiling/profiling.scc
--
- include features/usb/ehci-hcd.scc
- include features/usb/ohci-hcd.scc
- include features/usb/uhci-hcd.scc
--- 
-1.7.0.4
+--Chin Huat
 
+--20cf3005155a7b3e9f04bfb8c0f8
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
+Hi,<div><br></div><div>Is there a way to clone yocto repositories (say, pok=
+y) over https?</div><div><br></div><div>I&#39;m behind a firewall where git=
+ port is blocked, getting it opened is a bureaucracy nightmare.</div><div>
+<br></div><div>--Chin Huat=A0</div>
+
+--20cf3005155a7b3e9f04bfb8c0f8--
