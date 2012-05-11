@@ -1,25 +1,26 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4041AE01426
-	for <yocto@yoctoproject.org>; Fri, 11 May 2012 09:18:57 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q4BGGi7K006610
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 11 May 2012 09:16:44 -0700 (PDT)
-Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Fri, 11 May 2012 09:16:44 -0700
-Message-ID: <4FAD3B6A.9070801@windriver.com>
-Date: Fri, 11 May 2012 12:16:42 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E8134E01426
+	for <yocto@yoctoproject.org>; Fri, 11 May 2012 09:21:05 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 11 May 2012 09:19:03 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="142832241"
+Received: from unknown (HELO envy.home) ([10.255.12.96])
+	by orsmga002.jf.intel.com with ESMTP; 11 May 2012 09:19:02 -0700
+Message-ID: <4FAD3BC9.1030606@linux.intel.com>
+Date: Fri, 11 May 2012 09:18:17 -0700
+From: Darren Hart <dvhart@linux.intel.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:12.0) Gecko/20120430 Thunderbird/12.0.1
+	rv:12.0) Gecko/20120424 Thunderbird/12.0
 MIME-Version: 1.0
-To: <tom.zanussi@intel.com>
-References: <cover.1336697506.git.tom.zanussi@intel.com>
-In-Reply-To: <cover.1336697506.git.tom.zanussi@intel.com>
-Cc: yocto@yoctoproject.org, dvhart@linux.intel.com
-Subject: Re: [PATCH 00/10][KERNEL][RFC] policy cleanup patches
+To: tom.zanussi@intel.com
+References: <594ba05ab96a837575960ba514ae153eeef899b7.1336697506.git.tom.zanussi@intel.com>
+	<0a78d7e8401e3d500b3cb784c6bf0a4e7271f99e.1336697506.git.tom.zanussi@intel.com>
+In-Reply-To: <0a78d7e8401e3d500b3cb784c6bf0a4e7271f99e.1336697506.git.tom.zanussi@intel.com>
+X-Enigmail-Version: 1.4.1
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH 06/10] meta/crownbay: factor out policy-related options
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,80 +32,98 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 11 May 2012 16:20:05 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+X-List-Received-Date: Fri, 11 May 2012 16:21:06 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-On 12-05-10 09:00 PM, tom.zanussi@intel.com wrote:
-> From: Tom Zanussi<tom.zanussi@intel.com>
->
-> This set of patches factors out the policy vs hardware-related config
-> of the common-pc and common-pc-64 along with some meta-intel BSPs.
->
-> There are also a couple usb cleanups as well.
->
-> This is an RFC patchset because it's completely untested at this
-> point so shouldn't be pulled in - I wanted to get this pre-NAKed
-> at least once before actually going through the trouble of testing.  ;-)
 
-I see Darren's around and adding some comments. I'll have a look at this
-later today, and provide some feedback.
 
-Just wanted to let you know that I've seen it, and plan to have a detailed
-look at it shortly.
+On 05/10/2012 06:00 PM, tom.zanussi@intel.com wrote:
+> From: Tom Zanussi <tom.zanussi@intel.com>
+> 
+> Refactor bsp/common-pc/common-pc* to keep hardware-related options in
 
-Bruce
+oops                   ^
 
->
-> Tom
->
-> The following changes since commit 1dfd60fa1250259eed38ae5b2840eb37e3758a1b:
->    Tom Zanussi (1):
->          meta/fishriver: move smp options from recipe-space
->
-> are available in the git repository at:
->
->    git://git.yoctoproject.org/linux-yocto-2.6.37-contrib.git tzanussi/policy-cleanup
->    http://git.yoctoproject.org/cgit/cgit.cgi/linux-yocto-2.6.37-contrib/log/?h=tzanussi/policy-cleanup
->
-> Tom Zanussi (10):
->    meta: add ROOT_HUB_TT config option to the usb/ehci-hcd feature
->    meta/common-pc: use usb features
->    meta/common-pc-64: use usb features
->    meta/common-pc: factor out policy-related options
->    meta/common-pc: factor out policy-related options
->    meta/crownbay: factor out policy-related options
->    meta/emenlow: factor out policy-related options
->    meta/emenlow: factor out policy-related options
->    meta/jasperforest: factor out policy-related options
->    meta/sugarbay: factor out policy-related options
->
->   .../bsp/common-pc-64/common-pc-64-preempt-rt.scc   |    6 ++++++
->   .../bsp/common-pc-64/common-pc-64-standard.scc     |    6 ++++++
->   .../kernel-cache/bsp/common-pc-64/common-pc-64.cfg |    3 ---
->   .../kernel-cache/bsp/common-pc-64/common-pc-64.scc |    8 ++------
->   .../bsp/common-pc/common-pc-preempt-rt.scc         |    7 +++++++
->   .../bsp/common-pc/common-pc-standard.scc           |    6 ++++++
->   .../kernel-cache/bsp/common-pc/common-pc-tiny.scc  |    5 +----
->   meta/cfg/kernel-cache/bsp/common-pc/common-pc.cfg  |    5 -----
->   meta/cfg/kernel-cache/bsp/common-pc/common-pc.scc  |    6 ++----
->   .../bsp/crownbay/crownbay-preempt-rt.scc           |    8 ++++++++
->   .../bsp/crownbay/crownbay-standard.scc             |    7 +++++++
->   meta/cfg/kernel-cache/bsp/crownbay/crownbay.scc    |    7 -------
->   .../bsp/emenlow/emenlow-preempt-rt.scc             |    8 ++++++++
->   .../kernel-cache/bsp/emenlow/emenlow-standard.scc  |    8 ++++++++
->   meta/cfg/kernel-cache/bsp/emenlow/emenlow.scc      |    7 -------
->   .../bsp/fishriver/fishriver-preempt-rt.scc         |    8 ++++++++
->   .../bsp/fishriver/fishriver-standard.scc           |    8 ++++++++
->   meta/cfg/kernel-cache/bsp/fishriver/fishriver.scc  |    7 -------
->   .../bsp/jasperforest/jasperforest-preempt-rt.scc   |    7 +++++++
->   .../bsp/jasperforest/jasperforest-standard.scc     |    6 ++++++
->   .../kernel-cache/bsp/jasperforest/jasperforest.scc |    6 ------
->   .../bsp/sugarbay/sugarbay-preempt-rt.scc           |    7 +++++++
->   .../bsp/sugarbay/sugarbay-standard.scc             |    6 ++++++
->   meta/cfg/kernel-cache/bsp/sugarbay/sugarbay.scc    |    6 ------
->   meta/cfg/kernel-cache/features/usb/ehci-hcd.cfg    |    1 +
->   25 files changed, 104 insertions(+), 55 deletions(-)
->
+> the base crownbay.scc while moving the more 'policy'-related options
+> into the files that include the base crownbay.scc fragment.
+> 
+> This allows the different kernel types to make use of the basic
+> machine support without dragging along possibly unwanted options that
+> fall under the heading of 'policy' for a specific kernel type.
+> 
+> Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
 
+
+With minor comment tweak above:
+
+Acked-by-by: Darren Hart <dvhart@linux.intel.com>
+
+> ---
+>  .../bsp/crownbay/crownbay-preempt-rt.scc           |    8 ++++++++
+>  .../bsp/crownbay/crownbay-standard.scc             |    7 +++++++
+>  meta/cfg/kernel-cache/bsp/crownbay/crownbay.scc    |    7 -------
+>  3 files changed, 15 insertions(+), 7 deletions(-)
+> 
+> diff --git a/meta/cfg/kernel-cache/bsp/crownbay/crownbay-preempt-rt.scc b/meta/cfg/kernel-cache/bsp/crownbay/crownbay-preempt-rt.scc
+> index d58b4be..11067ef 100644
+> --- a/meta/cfg/kernel-cache/bsp/crownbay/crownbay-preempt-rt.scc
+> +++ b/meta/cfg/kernel-cache/bsp/crownbay/crownbay-preempt-rt.scc
+> @@ -4,4 +4,12 @@ define KARCH i386
+>  
+>  # no new branch required, re-use the ktypes/preempt-rt branch
+>  include ktypes/preempt-rt
+> +
+>  include crownbay.scc
+> +
+> +# default policy for preempt-rt kernels
+> +include cfg/usb-mass-storage.scc
+> +include cfg/boot-live.scc
+> +include features/logbuf/size-normal.scc
+> +include features/latencytop/latencytop.scc
+> +include features/profiling/profiling.scc
+> diff --git a/meta/cfg/kernel-cache/bsp/crownbay/crownbay-standard.scc b/meta/cfg/kernel-cache/bsp/crownbay/crownbay-standard.scc
+> index d6036f7..dd9dbc7 100644
+> --- a/meta/cfg/kernel-cache/bsp/crownbay/crownbay-standard.scc
+> +++ b/meta/cfg/kernel-cache/bsp/crownbay/crownbay-standard.scc
+> @@ -9,3 +9,10 @@ include features/emgd/emgd-1.10.scc
+>  git merge emgd-1.10
+>  
+>  include crownbay.scc
+> +
+> +# default policy for standard kernels
+> +include cfg/usb-mass-storage.scc
+> +include cfg/boot-live.scc
+> +include features/logbuf/size-normal.scc
+> +include features/latencytop/latencytop.scc
+> +include features/profiling/profiling.scc
+> diff --git a/meta/cfg/kernel-cache/bsp/crownbay/crownbay.scc b/meta/cfg/kernel-cache/bsp/crownbay/crownbay.scc
+> index c4bc1a5..82ed6f3 100644
+> --- a/meta/cfg/kernel-cache/bsp/crownbay/crownbay.scc
+> +++ b/meta/cfg/kernel-cache/bsp/crownbay/crownbay.scc
+> @@ -8,16 +8,9 @@ include cfg/dmaengine.scc
+>  include features/serial/8250.scc
+>  include features/hpet/hpet.scc
+>  include cfg/vesafb.scc
+> -include cfg/usb-mass-storage.scc
+> -include cfg/boot-live.scc
+>  include cfg/smp.scc
+>  include features/power/intel.scc
+>  
+> -include features/logbuf/size-normal.scc
+> -
+> -include features/latencytop/latencytop.scc
+> -include features/profiling/profiling.scc
+> -
+>  include features/usb/ehci-hcd.scc
+>  include features/usb/ohci-hcd.scc
+>  include features/usb/uhci-hcd.scc
+
+Independent from this patch, but does crownbay have all three? ehci and
+ohci seems a lot more likely to me.
+
+-- 
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
