@@ -1,27 +1,25 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0C630E00723
-	for <yocto@yoctoproject.org>; Fri, 11 May 2012 11:42:00 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail1.windriver.com (8.14.3/8.14.3) with ESMTP id q4BIfwlH006037
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 11 May 2012 11:41:58 -0700 (PDT)
-Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Fri, 11 May 2012 11:41:58 -0700
-Message-ID: <4FAD5D74.3080004@windriver.com>
-Date: Fri, 11 May 2012 14:41:56 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:12.0) Gecko/20120430 Thunderbird/12.0.1
-MIME-Version: 1.0
-To: "Bodke, Kishore K" <kishore.k.bodke@intel.com>
-References: <99B4EF8390848E44BF0CFDBD67466FA40ECE86@PGSMSX103.gar.corp.intel.com>
-	<D956029D25CF204F948EA0FB515E1EE20ACACD57@ORSMSX105.amr.corp.intel.com>
-In-Reply-To: <D956029D25CF204F948EA0FB515E1EE20ACACD57@ORSMSX105.amr.corp.intel.com>
-Cc: Yocto Project Discussions <yocto@linux.intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Unable to fetch URL from any source
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 89EF5E00746
+	for <yocto@yoctoproject.org>; Fri, 11 May 2012 12:26:33 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 11 May 2012 12:26:33 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="165092631"
+Received: from unknown (HELO [10.255.12.70]) ([10.255.12.70])
+	by fmsmga002.fm.intel.com with ESMTP; 11 May 2012 12:26:32 -0700
+From: Tom Zanussi <tom.zanussi@intel.com>
+To: Darren Hart <dvhart@linux.intel.com>
+In-Reply-To: <4FAD3A75.7070403@linux.intel.com>
+References: <594ba05ab96a837575960ba514ae153eeef899b7.1336697506.git.tom.zanussi@intel.com>
+	<4b87723a74ddeb8a322878d1eab1d519d4d065ae.1336697506.git.tom.zanussi@intel.com>
+	<4FAD3A75.7070403@linux.intel.com>
+Date: Fri, 11 May 2012 14:26:27 -0500
+Message-ID: <1336764387.27808.36.camel@elmorro>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.28.3 
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH 02/10] meta/common-pc: use usb features
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,53 +31,70 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 11 May 2012 18:42:00 -0000
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Fri, 11 May 2012 19:26:33 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-On 12-05-11 01:04 PM, Bodke, Kishore K wrote:
-> Yes.
->
-> I saw the same failures too.
->
-> For some reason 3.0 kernel fetch failures started showing up for Cedartrail.
->
-> There is a discussion thread on this in the mailing list.
->
-> Bruce might be able to give some pointers on this.
+On Fri, 2012-05-11 at 09:12 -0700, Darren Hart wrote:
+> 
+> On 05/10/2012 05:59 PM, tom.zanussi@intel.com wrote:
+> > From: Tom Zanussi <tom.zanussi@intel.com>
+> > 
+> > Use the available ehci and uhci usb features and remove the associated
+> > config settings from the top-level common-pc feature.
+> > 
+> > Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
+> 
+> For what this does:
+> 
+> Acked-by: Darren Hart <dvhart@linux.intel.com>
+> 
+> Further thoughts:
+> 
+> I wonder why common-pc does not include OHCI HCDs?
+> 
+> >  CONFIG_USB_STORAGE=y
+> 
+> This should really be pulled out as well and added to the standard and
+> preempt-rt bsp-ktype.scc files.
+> 
 
-Unfortunately not. From what I hear, it's server issues. Which will be
-resolved ASAP.
+The CONFIG_USB_STORAGE setting here is standalone, and the common-pc*
+don't have the other options contained in the usb-mass-storage feature,
+so that's why this was left behind.  Perhaps they should also include
+the usb-mass-storage feature as well, but that would be adding more than
+cleanup at this point.
 
-Cheers,
+Anyway, note that the later patches do add the usb-mass-storage to the
+standard and preempt-rt files for the other non-common-pc* BSPs in the
+patchset. 
 
-Bruce
+> 
+> >  CONFIG_USB_HID=y
+> >  CONFIG_USB_HIDDEV=y
+> > diff --git a/meta/cfg/kernel-cache/bsp/common-pc/common-pc.scc b/meta/cfg/kernel-cache/bsp/common-pc/common-pc.scc
+> > index bab45e6..2338ea6 100644
+> > --- a/meta/cfg/kernel-cache/bsp/common-pc/common-pc.scc
+> > +++ b/meta/cfg/kernel-cache/bsp/common-pc/common-pc.scc
+> > @@ -2,6 +2,8 @@ kconf hardware common-pc.cfg
+> >  kconf hardware common-pc-gfx.cfg
+> >  
+> >  include cfg/boot-live.scc
+> 
+> This should be moved to the standard and preempt-rt bsp-ktype.scc files
+> as well.
+> 
 
->
-> -Kishore.
->
-> *From:*yocto-bounces@linux.intel.com
-> [mailto:yocto-bounces@linux.intel.com] *On Behalf Of *Chiang, Terence
-> *Sent:* Friday, May 11, 2012 3:05 AM
-> *To:* Yocto Project Discussions (yocto@linux.intel.com)
-> *Subject:* [Yocto] Unable to fetch URL from any source
->
-> Hi
->
-> While I build the image for cedartrail with “denzil”
->
-> With meta-cedartrail and distro = “poky”. the error is following and the
-> detail log is attached.
->
-> Function failed: Fetcher failure for URL:
-> 'git://git.yoctoproject.org/linux-yocto-3.0;protocol=git;bareclone=1;branch=yocto/standard/cedartrail,meta,yocto/pvr;name=machine,meta,pvr'.
-> Unable to fetch URL from any source.
->
-> Do you encounter similar issue?
->
-> /Regard,/
->
-> -Terence
->
+The later patches do this for the boot-live feature.
+
+Tom
+
+> > +include features/usb/ehci-hcd.scc
+> > +include features/usb/uhci-hcd.scc
+> >  include features/intel-e1xxxx/intel-e100.scc
+> >  include features/intel-e1xxxx/intel-e1xxxx.scc
+> >  include features/latencytop/latencytop.scc
+> 
+
 
 
