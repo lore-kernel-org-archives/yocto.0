@@ -1,23 +1,31 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BCD78E01402
-	for <yocto@yoctoproject.org>; Fri, 11 May 2012 05:38:48 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q4BCclFB003483
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 11 May 2012 05:38:47 -0700 (PDT)
-Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Fri, 11 May 2012 05:38:47 -0700
-Message-ID: <4FAD0855.4080209@windriver.com>
-Date: Fri, 11 May 2012 08:38:45 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:12.0) Gecko/20120430 Thunderbird/12.0.1
+Return-Path: <fransmeulenbroeks@gmail.com>
+Received: from mail-pz0-f48.google.com (mail-pz0-f48.google.com
+	[209.85.210.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0C016E01402
+	for <yocto@yoctoproject.org>; Fri, 11 May 2012 05:51:12 -0700 (PDT)
+Received: by dadz8 with SMTP id z8so4148018dad.35
+	for <yocto@yoctoproject.org>; Fri, 11 May 2012 05:51:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type:content-transfer-encoding;
+	bh=7DXWJ0rAlEdgAjbeh7q+9eQh2UyIB9ZVlPGXxyj0ZZs=;
+	b=ijZxYHDSBsOGG07OPdVqRjWQ986R0+wMyvh4/TQuF6ilqofYclkVqLwm8BJDuGxTft
+	uSuErSc4e61AstWQ/ydpYYtZfQRzuKuQYaHO7vmWpyQ9YX+3BZ1rh5hihS8+ol9vnKvK
+	4kz94otKq9x2MzjlZNwj24ZkCF8CSJtSCPRyBdiNO/5CnXt3Byy1kdBQfdUb8+dcDRi+
+	vYLZFPW3z2N7V+cv8WlokFDzbRUkJ6w8KnnjHbiAwkHgSAHAWmipf3GRSNEu2TwwL7n6
+	hc5aitcSzePDTONMdJ2nlxBBFhD/lnL3PIfdj+QToh24tAXLjGRZq78aI3BiCcEcb/Kc
+	JlUg==
 MIME-Version: 1.0
-To: Frans Meulenbroeks <fransmeulenbroeks@gmail.com>
+Received: by 10.68.136.69 with SMTP id py5mr31150996pbb.115.1336740671833;
+	Fri, 11 May 2012 05:51:11 -0700 (PDT)
+Received: by 10.68.48.164 with HTTP; Fri, 11 May 2012 05:51:11 -0700 (PDT)
+In-Reply-To: <4FAD0855.4080209@windriver.com>
 References: <CACW_hTYnH_ccSf7844bwwKeKH+otHopbbz7h2igrCMhUddN1tQ@mail.gmail.com>
-In-Reply-To: <CACW_hTYnH_ccSf7844bwwKeKH+otHopbbz7h2igrCMhUddN1tQ@mail.gmail.com>
+	<4FAD0855.4080209@windriver.com>
+Date: Fri, 11 May 2012 14:51:11 +0200
+Message-ID: <CACW_hTarP91KOUOYRHTgPJhF5Q8jYgY4XY8xZCrUEciwNCniMQ@mail.gmail.com>
+From: Frans Meulenbroeks <fransmeulenbroeks@gmail.com>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
 Cc: yocto@yoctoproject.org
 Subject: Re: kernel rebuild and bitbake -c menuconfig
 X-BeenThere: yocto@yoctoproject.org
@@ -31,139 +39,74 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 11 May 2012 12:38:48 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 11 May 2012 12:51:12 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-On 12-05-11 03:07 AM, Frans Meulenbroeks wrote:
-> Hi,
+2012/5/11 Bruce Ashfield <bruce.ashfield@windriver.com>:
+> On 12-05-11 03:07 AM, Frans Meulenbroeks wrote:
+>>
+>> Hi,
+>>
+>> I'm wondering how to do a kernel rebuild after doing changing the .confi=
+g
+>> using
+>> bitbake -c menuconfig virtual/kernel
+>> I've tried forcing a recompile using:
+>> bitbake -ccompile -f virtual/kernel
+>> that indeed rebuilds the kernel
+>> However if I then do a bitbake virtual/kernel this does not result in
+>> an image in my deploy dir.
+>>
+>> system info
+>> host: ubuntu 12.04
+>> denzil 7.0 software (from tarball)
+>> target: ppc (actually for my own board but I did not do weird things
+>> in my bsp, like adding extra tasks.
+>>
+>> It seems the vmlinux.bin.gz is still generated but the uImage is not
+>> (which can also be seen from the log below where do_install is not
+>> ran.
+>> Additional proof:
+>> f5ad9f2b30047a8d3493a1a2880a-r1.40$ ls -l ./image/kernel/uImage
+>> ./linux-syrcxx-standard-build/vmlinux.bin.gz
+>> -rw-r--r-- 1 frans frans 1609509 2012-05-10 10:19 ./image/kernel/uImage
+>> -rwxr-xr-x 1 frans frans 1611499 2012-05-11 08:52
+>> ./linux-syrcxx-standard-build/vmlinux.bin.gz
+>> This si from after I ran the bitbake commands below.
+>>
+>> What is going wrong here?
 >
-> I'm wondering how to do a kernel rebuild after doing changing the .config using
-> bitbake -c menuconfig virtual/kernel
-> I've tried forcing a recompile using:
-> bitbake -ccompile -f virtual/kernel
-> that indeed rebuilds the kernel
-> However if I then do a bitbake virtual/kernel this does not result in
-> an image in my deploy dir.
 >
-> system info
-> host: ubuntu 12.04
-> denzil 7.0 software (from tarball)
-> target: ppc (actually for my own board but I did not do weird things
-> in my bsp, like adding extra tasks.
+> You are likely hitting this bug:
 >
-> It seems the vmlinux.bin.gz is still generated but the uImage is not
-> (which can also be seen from the log below where do_install is not
-> ran.
-> Additional proof:
-> f5ad9f2b30047a8d3493a1a2880a-r1.40$ ls -l ./image/kernel/uImage
-> ./linux-syrcxx-standard-build/vmlinux.bin.gz
-> -rw-r--r-- 1 frans frans 1609509 2012-05-10 10:19 ./image/kernel/uImage
-> -rwxr-xr-x 1 frans frans 1611499 2012-05-11 08:52
-> ./linux-syrcxx-standard-build/vmlinux.bin.gz
-> This si from after I ran the bitbake commands below.
+> =A0https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D2256
 >
-> What is going wrong here?
+> It's a known issue that is being worked on for 1.3, but the bugzilla has
+> workarounds that youl can use in the meantime.
+>
+> Cheers,
+>
+> Bruce
+>
+Bruce,
 
-You are likely hitting this bug:
+Thanks for the reference.
+I am indeed seeing that bug.
 
-   https://bugzilla.yoctoproject.org/show_bug.cgi?id=2256
+What I did was the solution of Darren that was listed in comment5, but
+that did not work for me.
+I was unaware of the cleansstate task.
 
-It's a known issue that is being worked on for 1.3, but the bugzilla has
-workarounds that you can use in the meantime.
+Actually thinking of it, if in the flow:
+$ bitbake virtual/kernel -c cleansstate
+$ bitbake virtual/kernel -c menuconfig
+$ bitbake virtual/kernel -c compile -f; bitbake virtual/kernel
+the first two steps can be exchanged (so first menuconfig then
+cleansstate, then menuconfig could force the cleansstate to run
 
-Cheers,
+(or menuconfig could run cleanstate befure doing the actual menuconfig work=
+)
 
-Bruce
-
->
-> Frans.
->
-> Log from
-> bitbake -c compile -f virtual/kernel; bitbake virtual/kernel
->
-> frans@frans-desktop:~/poky-denzil-7.0-build$ bitbake virtual/kernel
-> -ccompile -f; bitbake virtual/kernel
-> Loading cache: 100%
-> |########################################################################################################################|
-> ETA:  00:00:00
-> Loaded 1106 entries from dependency cache.
->
-> OE Build Configuration:
-> BB_VERSION        = "1.15.1"
-> TARGET_ARCH       = "powerpc"
-> TARGET_OS         = "linux-uclibc"
-> MACHINE           = "syrcxx"
-> DISTRO            = "poky"
-> DISTRO_VERSION    = "1.2"
-> TUNE_FEATURES     = "m32 fpu-hard ppce300c3"
-> TARGET_FPU        = ""
-> meta
-> meta-yocto
-> meta-syrcxx       = "<unknown>:<unknown>"
->
-> NOTE: Resolving any missing task queue dependencies
-> NOTE: Preparing runqueue
-> ^[NOTE: Executing SetScene Tasks
-> NOTE: Executing RunQueue Tasks
-> kNOTE: Running task 278 of 278 (ID: 8,
-> /home/frans/poky-denzil-7.0/meta/recipes-kernel/linux/linux-yocto_3.2.bb,
-> do_compile)
-> kkNOTE: package
-> linux-yocto-3.2.11+git1+b14a08f5c7b469a5077c10942f4e1aec171faa9d_1+01e948c2bdf7f5ad9f2b30047a8d3493a1a2880a-r1.40:
-> task do_compile: Started
-> NOTE: package linux-yocto-3.2.11+git1+b14a08f5c7b469a5077c10942f4e1aec171faa9d_1+01e948c2bdf7f5ad9f2b30047a8d3493a1a2880a-r1.40:
-> task do_compile: Succeeded
-> NOTE: Tasks Summary: Attempted 278 tasks of which 277 didn't need to
-> be rerun and all succeeded.
-> Loading cache: 100%
-> |########################################################################################################################|
-> ETA:  00:00:00
-> Loaded 1106 entries from dependency cache.
->
-> OE Build Configuration:
-> BB_VERSION        = "1.15.1"
-> TARGET_ARCH       = "powerpc"
-> TARGET_OS         = "linux-uclibc"
-> MACHINE           = "syrcxx"
-> DISTRO            = "poky"
-> DISTRO_VERSION    = "1.2"
-> TUNE_FEATURES     = "m32 fpu-hard ppce300c3"
-> TARGET_FPU        = ""
-> meta
-> meta-yocto
-> meta-syrcxx       = "<unknown>:<unknown>"
->
-> NOTE: Resolving any missing task queue dependencies
-> NOTE: Preparing runqueue
-> NOTE: Executing SetScene Tasks
-> NOTE: Running setscene task 213 of 235
-> (/home/frans/poky-denzil-7.0/meta/recipes-kernel/linux/linux-yocto_3.2.bb,
-> do_populate_sysroot_setscene)
-> NOTE: Running setscene task 214 of 235
-> (/home/frans/poky-denzil-7.0/meta/recipes-kernel/linux/linux-yocto_3.2.bb,
-> do_deploy_setscene)
-> NOTE: package linux-yocto-3.2.11+git1+b14a08f5c7b469a5077c10942f4e1aec171faa9d_1+01e948c2bdf7f5ad9f2b30047a8d3493a1a2880a-r1.40:
-> task do_populate_sysroot_setscene: Started
-> NOTE: package linux-yocto-3.2.11+git1+b14a08f5c7b469a5077c10942f4e1aec171faa9d_1+01e948c2bdf7f5ad9f2b30047a8d3493a1a2880a-r1.40:
-> task do_deploy_setscene: Started
-> NOTE: package linux-yocto-3.2.11+git1+b14a08f5c7b469a5077c10942f4e1aec171faa9d_1+01e948c2bdf7f5ad9f2b30047a8d3493a1a2880a-r1.40:
-> task do_deploy_setscene: Succeeded
-> NOTE: Running setscene task 215 of 235
-> (/home/frans/poky-denzil-7.0/meta/recipes-kernel/linux/linux-yocto_3.2.bb,
-> do_package_setscene)
-> NOTE: package linux-yocto-3.2.11+git1+b14a08f5c7b469a5077c10942f4e1aec171faa9d_1+01e948c2bdf7f5ad9f2b30047a8d3493a1a2880a-r1.40:
-> task do_package_setscene: Started
-> NOTE: package linux-yocto-3.2.11+git1+b14a08f5c7b469a5077c10942f4e1aec171faa9d_1+01e948c2bdf7f5ad9f2b30047a8d3493a1a2880a-r1.40:
-> task do_package_setscene: Succeeded
-> NOTE: package linux-yocto-3.2.11+git1+b14a08f5c7b469a5077c10942f4e1aec171faa9d_1+01e948c2bdf7f5ad9f2b30047a8d3493a1a2880a-r1.40:
-> task do_populate_sysroot_setscene: Succeeded
-> NOTE: Executing RunQueue Tasks
-> NOTE: Tasks Summary: Attempted 664 tasks of which 664 didn't need to
-> be rerun and all succeeded.
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
+Best regards, Frans
 
