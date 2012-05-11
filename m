@@ -1,28 +1,28 @@
-Return-Path: <chinhuat@gmail.com>
-Received: from mail-yw0-f48.google.com (mail-yw0-f48.google.com
-	[209.85.213.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 94790E0044A
-	for <yocto@yoctoproject.org>; Thu, 10 May 2012 18:35:31 -0700 (PDT)
-Received: by yhfq46 with SMTP id q46so2890639yhf.35
-	for <yocto@yoctoproject.org>; Thu, 10 May 2012 18:35:31 -0700 (PDT)
+Return-Path: <fransmeulenbroeks@gmail.com>
+Received: from mail-pz0-f48.google.com (mail-pz0-f48.google.com
+	[209.85.210.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 166DDE0044A
+	for <yocto@yoctoproject.org>; Fri, 11 May 2012 00:07:05 -0700 (PDT)
+Received: by dadz8 with SMTP id z8so3717324dad.35
+	for <yocto@yoctoproject.org>; Fri, 11 May 2012 00:07:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=H5ZuvnssFdj55rOL1BCtQycPkt2a1bKH0a8zoJdBBrA=;
-	b=f8CsNd71Nd9SAnMW8C2s5WPRovZzVySpu1OlUBb+RUtTe8WrGTmIdR8V1GFtK/kaAj
-	sL1h2AfOLwJsOgkxEIxnsqO+NwcvKxppBYzL4RW7sy8+ypAjirHeTFcpsr0GhQ56vbHc
-	b1s7ZW4Iep3Jd0E0AVA1prKVcUOP/QezVmkP23+s79qAD0nF20KtRh7BdHzGnArKAmoW
-	86EUTWDViUqzLJ2nqr9l/IM1UY05xIMbEUfrtqAVe65rjKoIxiIzxJSKkyExnSbfXrBP
-	Uffyi9fV8R0sPk3MQDnhp1/GfbqdjcLyn6TSmXidbxFM5p6QSDqr4hblnGr7dw4+MvQL
-	v5pg==
+	bh=3/2torxRCoibPxKmQ2R7Kt12eo1d16nY6WaXkI+uWZo=;
+	b=SwqichQxrfemmcE4QBGLWbKMqVvbcyPgV+z2Ve+g2czBq1yefrfqT4WW7ffzFLGJKL
+	YS+a8zVUFZNrCKNFt3kmg9XrwT6rgqK5djlPtEKtg/Z/nEtxME4fPtASR4H3Cn/pBNmN
+	PyvM3/f/sYT1bpe3TQVI0GRnZAB3YH9foGAO8at2vjKItl8jANBLHhgOS3yUW/DDFMau
+	04FrW7AAT1GtyLdRjtlC942vfOinPRhschZHC4Ip6NklVdEqh7qb3dvgrqMLP9v9HGDj
+	4+rpb3aEKA0JWWidoSif+btuoIgFAc+UahdoyWHfWtsMw/E8sZlc4Bq2mALYqVeNwaLd
+	Ljxw==
 MIME-Version: 1.0
-Received: by 10.236.78.5 with SMTP id f5mr8163281yhe.14.1336700131032; Thu, 10
-	May 2012 18:35:31 -0700 (PDT)
-Received: by 10.236.105.148 with HTTP; Thu, 10 May 2012 18:35:30 -0700 (PDT)
-Date: Fri, 11 May 2012 09:35:30 +0800
-Message-ID: <CABzAcgiKqN-hQ56HoZny6=EeiDbnbFAb0CoqBb7R_eJ5EEdUKQ@mail.gmail.com>
-From: Chin Huat Ang <chinhuat@gmail.com>
+Received: by 10.68.202.8 with SMTP id ke8mr28242522pbc.94.1336720024709; Fri,
+	11 May 2012 00:07:04 -0700 (PDT)
+Received: by 10.68.48.164 with HTTP; Fri, 11 May 2012 00:07:04 -0700 (PDT)
+Date: Fri, 11 May 2012 09:07:04 +0200
+Message-ID: <CACW_hTYnH_ccSf7844bwwKeKH+otHopbbz7h2igrCMhUddN1tQ@mail.gmail.com>
+From: Frans Meulenbroeks <fransmeulenbroeks@gmail.com>
 To: yocto@yoctoproject.org
-Subject: Cloning yocto repos over https
+Subject: kernel rebuild and bitbake -c menuconfig
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,28 +34,120 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 11 May 2012 01:35:31 -0000
-Content-Type: multipart/alternative; boundary=20cf3005155a7b3e9f04bfb8c0f8
-
---20cf3005155a7b3e9f04bfb8c0f8
+X-List-Received-Date: Fri, 11 May 2012 07:07:05 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 
 Hi,
 
-Is there a way to clone yocto repositories (say, poky) over https?
+I'm wondering how to do a kernel rebuild after doing changing the .config using
+bitbake -c menuconfig virtual/kernel
+I've tried forcing a recompile using:
+bitbake -ccompile -f virtual/kernel
+that indeed rebuilds the kernel
+However if I then do a bitbake virtual/kernel this does not result in
+an image in my deploy dir.
 
-I'm behind a firewall where git port is blocked, getting it opened is a
-bureaucracy nightmare.
+system info
+host: ubuntu 12.04
+denzil 7.0 software (from tarball)
+target: ppc (actually for my own board but I did not do weird things
+in my bsp, like adding extra tasks.
 
---Chin Huat
+It seems the vmlinux.bin.gz is still generated but the uImage is not
+(which can also be seen from the log below where do_install is not
+ran.
+Additional proof:
+f5ad9f2b30047a8d3493a1a2880a-r1.40$ ls -l ./image/kernel/uImage
+./linux-syrcxx-standard-build/vmlinux.bin.gz
+-rw-r--r-- 1 frans frans 1609509 2012-05-10 10:19 ./image/kernel/uImage
+-rwxr-xr-x 1 frans frans 1611499 2012-05-11 08:52
+./linux-syrcxx-standard-build/vmlinux.bin.gz
+This si from after I ran the bitbake commands below.
 
---20cf3005155a7b3e9f04bfb8c0f8
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+What is going wrong here?
 
-Hi,<div><br></div><div>Is there a way to clone yocto repositories (say, pok=
-y) over https?</div><div><br></div><div>I&#39;m behind a firewall where git=
- port is blocked, getting it opened is a bureaucracy nightmare.</div><div>
-<br></div><div>--Chin Huat=A0</div>
+Frans.
 
---20cf3005155a7b3e9f04bfb8c0f8--
+Log from
+bitbake -c compile -f virtual/kernel; bitbake virtual/kernel
+
+frans@frans-desktop:~/poky-denzil-7.0-build$ bitbake virtual/kernel
+-ccompile -f; bitbake virtual/kernel
+Loading cache: 100%
+|########################################################################################################################|
+ETA:  00:00:00
+Loaded 1106 entries from dependency cache.
+
+OE Build Configuration:
+BB_VERSION        = "1.15.1"
+TARGET_ARCH       = "powerpc"
+TARGET_OS         = "linux-uclibc"
+MACHINE           = "syrcxx"
+DISTRO            = "poky"
+DISTRO_VERSION    = "1.2"
+TUNE_FEATURES     = "m32 fpu-hard ppce300c3"
+TARGET_FPU        = ""
+meta
+meta-yocto
+meta-syrcxx       = "<unknown>:<unknown>"
+
+NOTE: Resolving any missing task queue dependencies
+NOTE: Preparing runqueue
+^[NOTE: Executing SetScene Tasks
+NOTE: Executing RunQueue Tasks
+kNOTE: Running task 278 of 278 (ID: 8,
+/home/frans/poky-denzil-7.0/meta/recipes-kernel/linux/linux-yocto_3.2.bb,
+do_compile)
+kkNOTE: package
+linux-yocto-3.2.11+git1+b14a08f5c7b469a5077c10942f4e1aec171faa9d_1+01e948c2bdf7f5ad9f2b30047a8d3493a1a2880a-r1.40:
+task do_compile: Started
+NOTE: package linux-yocto-3.2.11+git1+b14a08f5c7b469a5077c10942f4e1aec171faa9d_1+01e948c2bdf7f5ad9f2b30047a8d3493a1a2880a-r1.40:
+task do_compile: Succeeded
+NOTE: Tasks Summary: Attempted 278 tasks of which 277 didn't need to
+be rerun and all succeeded.
+Loading cache: 100%
+|########################################################################################################################|
+ETA:  00:00:00
+Loaded 1106 entries from dependency cache.
+
+OE Build Configuration:
+BB_VERSION        = "1.15.1"
+TARGET_ARCH       = "powerpc"
+TARGET_OS         = "linux-uclibc"
+MACHINE           = "syrcxx"
+DISTRO            = "poky"
+DISTRO_VERSION    = "1.2"
+TUNE_FEATURES     = "m32 fpu-hard ppce300c3"
+TARGET_FPU        = ""
+meta
+meta-yocto
+meta-syrcxx       = "<unknown>:<unknown>"
+
+NOTE: Resolving any missing task queue dependencies
+NOTE: Preparing runqueue
+NOTE: Executing SetScene Tasks
+NOTE: Running setscene task 213 of 235
+(/home/frans/poky-denzil-7.0/meta/recipes-kernel/linux/linux-yocto_3.2.bb,
+do_populate_sysroot_setscene)
+NOTE: Running setscene task 214 of 235
+(/home/frans/poky-denzil-7.0/meta/recipes-kernel/linux/linux-yocto_3.2.bb,
+do_deploy_setscene)
+NOTE: package linux-yocto-3.2.11+git1+b14a08f5c7b469a5077c10942f4e1aec171faa9d_1+01e948c2bdf7f5ad9f2b30047a8d3493a1a2880a-r1.40:
+task do_populate_sysroot_setscene: Started
+NOTE: package linux-yocto-3.2.11+git1+b14a08f5c7b469a5077c10942f4e1aec171faa9d_1+01e948c2bdf7f5ad9f2b30047a8d3493a1a2880a-r1.40:
+task do_deploy_setscene: Started
+NOTE: package linux-yocto-3.2.11+git1+b14a08f5c7b469a5077c10942f4e1aec171faa9d_1+01e948c2bdf7f5ad9f2b30047a8d3493a1a2880a-r1.40:
+task do_deploy_setscene: Succeeded
+NOTE: Running setscene task 215 of 235
+(/home/frans/poky-denzil-7.0/meta/recipes-kernel/linux/linux-yocto_3.2.bb,
+do_package_setscene)
+NOTE: package linux-yocto-3.2.11+git1+b14a08f5c7b469a5077c10942f4e1aec171faa9d_1+01e948c2bdf7f5ad9f2b30047a8d3493a1a2880a-r1.40:
+task do_package_setscene: Started
+NOTE: package linux-yocto-3.2.11+git1+b14a08f5c7b469a5077c10942f4e1aec171faa9d_1+01e948c2bdf7f5ad9f2b30047a8d3493a1a2880a-r1.40:
+task do_package_setscene: Succeeded
+NOTE: package linux-yocto-3.2.11+git1+b14a08f5c7b469a5077c10942f4e1aec171faa9d_1+01e948c2bdf7f5ad9f2b30047a8d3493a1a2880a-r1.40:
+task do_populate_sysroot_setscene: Succeeded
+NOTE: Executing RunQueue Tasks
+NOTE: Tasks Summary: Attempted 664 tasks of which 664 didn't need to
+be rerun and all succeeded.
+
