@@ -1,28 +1,25 @@
 Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4A96DE00746
-	for <yocto@yoctoproject.org>; Fri, 11 May 2012 13:15:14 -0700 (PDT)
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E6A8EE00746
+	for <yocto@yoctoproject.org>; Fri, 11 May 2012 13:17:53 -0700 (PDT)
 Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q4BKFDBM010441
+	by mail1.windriver.com (8.14.3/8.14.3) with ESMTP id q4BKHrEE007372
 	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 11 May 2012 13:15:13 -0700 (PDT)
+	Fri, 11 May 2012 13:17:53 -0700 (PDT)
 Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
 	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Fri, 11 May 2012 13:15:13 -0700
-Message-ID: <4FAD734F.5010503@windriver.com>
-Date: Fri, 11 May 2012 16:15:11 -0400
+	Fri, 11 May 2012 13:17:52 -0700
+Message-ID: <4FAD73EE.8000209@windriver.com>
+Date: Fri, 11 May 2012 16:17:50 -0400
 From: Bruce Ashfield <bruce.ashfield@windriver.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:12.0) Gecko/20120430 Thunderbird/12.0.1
 MIME-Version: 1.0
-To: Tom Zanussi <tom.zanussi@intel.com>
-References: <594ba05ab96a837575960ba514ae153eeef899b7.1336697506.git.tom.zanussi@intel.com>
-	<4b87723a74ddeb8a322878d1eab1d519d4d065ae.1336697506.git.tom.zanussi@intel.com>
-	<4FAD3A75.7070403@linux.intel.com>
-	<1336764387.27808.36.camel@elmorro>
-In-Reply-To: <1336764387.27808.36.camel@elmorro>
-Cc: yocto@yoctoproject.org, Darren Hart <dvhart@linux.intel.com>
-Subject: Re: [PATCH 02/10] meta/common-pc: use usb features
+To: <tom.zanussi@intel.com>
+References: <cover.1336697506.git.tom.zanussi@intel.com>
+In-Reply-To: <cover.1336697506.git.tom.zanussi@intel.com>
+Cc: yocto@yoctoproject.org, dvhart@linux.intel.com
+Subject: Re: [PATCH 00/10][KERNEL][RFC] policy cleanup patches
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,80 +31,77 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 11 May 2012 20:15:14 -0000
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+X-List-Received-Date: Fri, 11 May 2012 20:17:54 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 12-05-11 03:26 PM, Tom Zanussi wrote:
-> On Fri, 2012-05-11 at 09:12 -0700, Darren Hart wrote:
->>
->> On 05/10/2012 05:59 PM, tom.zanussi@intel.com wrote:
->>> From: Tom Zanussi<tom.zanussi@intel.com>
->>>
->>> Use the available ehci and uhci usb features and remove the associated
->>> config settings from the top-level common-pc feature.
->>>
->>> Signed-off-by: Tom Zanussi<tom.zanussi@intel.com>
->>
->> For what this does:
->>
->> Acked-by: Darren Hart<dvhart@linux.intel.com>
->>
->> Further thoughts:
->>
->> I wonder why common-pc does not include OHCI HCDs?
->>
->>>   CONFIG_USB_STORAGE=y
->>
->> This should really be pulled out as well and added to the standard and
->> preempt-rt bsp-ktype.scc files.
->>
+On 12-05-10 09:00 PM, tom.zanussi@intel.com wrote:
+> From: Tom Zanussi<tom.zanussi@intel.com>
 >
-> The CONFIG_USB_STORAGE setting here is standalone, and the common-pc*
-> don't have the other options contained in the usb-mass-storage feature,
-> so that's why this was left behind.  Perhaps they should also include
-> the usb-mass-storage feature as well, but that would be adding more than
-> cleanup at this point.
+> This set of patches factors out the policy vs hardware-related config
+> of the common-pc and common-pc-64 along with some meta-intel BSPs.
+>
+> There are also a couple usb cleanups as well.
+>
+> This is an RFC patchset because it's completely untested at this
+> point so shouldn't be pulled in - I wanted to get this pre-NAKed
+> at least once before actually going through the trouble of testing.  ;-)
 
-Agreed. We can address that later, but for the cleanup, I can see why
-it's orphaned.
-
-This all change looks fine to me.
+No NAK here. This looks fine to me. I only commented once, for everything
+that I didn't say anything, that means no problems here.
 
 Bruce
 
 >
-> Anyway, note that the later patches do add the usb-mass-storage to the
-> standard and preempt-rt files for the other non-common-pc* BSPs in the
-> patchset.
->
->>
->>>   CONFIG_USB_HID=y
->>>   CONFIG_USB_HIDDEV=y
->>> diff --git a/meta/cfg/kernel-cache/bsp/common-pc/common-pc.scc b/meta/cfg/kernel-cache/bsp/common-pc/common-pc.scc
->>> index bab45e6..2338ea6 100644
->>> --- a/meta/cfg/kernel-cache/bsp/common-pc/common-pc.scc
->>> +++ b/meta/cfg/kernel-cache/bsp/common-pc/common-pc.scc
->>> @@ -2,6 +2,8 @@ kconf hardware common-pc.cfg
->>>   kconf hardware common-pc-gfx.cfg
->>>
->>>   include cfg/boot-live.scc
->>
->> This should be moved to the standard and preempt-rt bsp-ktype.scc files
->> as well.
->>
->
-> The later patches do this for the boot-live feature.
->
 > Tom
 >
->>> +include features/usb/ehci-hcd.scc
->>> +include features/usb/uhci-hcd.scc
->>>   include features/intel-e1xxxx/intel-e100.scc
->>>   include features/intel-e1xxxx/intel-e1xxxx.scc
->>>   include features/latencytop/latencytop.scc
->>
+> The following changes since commit 1dfd60fa1250259eed38ae5b2840eb37e3758a1b:
+>    Tom Zanussi (1):
+>          meta/fishriver: move smp options from recipe-space
 >
+> are available in the git repository at:
+>
+>    git://git.yoctoproject.org/linux-yocto-2.6.37-contrib.git tzanussi/policy-cleanup
+>    http://git.yoctoproject.org/cgit/cgit.cgi/linux-yocto-2.6.37-contrib/log/?h=tzanussi/policy-cleanup
+>
+> Tom Zanussi (10):
+>    meta: add ROOT_HUB_TT config option to the usb/ehci-hcd feature
+>    meta/common-pc: use usb features
+>    meta/common-pc-64: use usb features
+>    meta/common-pc: factor out policy-related options
+>    meta/common-pc: factor out policy-related options
+>    meta/crownbay: factor out policy-related options
+>    meta/emenlow: factor out policy-related options
+>    meta/emenlow: factor out policy-related options
+>    meta/jasperforest: factor out policy-related options
+>    meta/sugarbay: factor out policy-related options
+>
+>   .../bsp/common-pc-64/common-pc-64-preempt-rt.scc   |    6 ++++++
+>   .../bsp/common-pc-64/common-pc-64-standard.scc     |    6 ++++++
+>   .../kernel-cache/bsp/common-pc-64/common-pc-64.cfg |    3 ---
+>   .../kernel-cache/bsp/common-pc-64/common-pc-64.scc |    8 ++------
+>   .../bsp/common-pc/common-pc-preempt-rt.scc         |    7 +++++++
+>   .../bsp/common-pc/common-pc-standard.scc           |    6 ++++++
+>   .../kernel-cache/bsp/common-pc/common-pc-tiny.scc  |    5 +----
+>   meta/cfg/kernel-cache/bsp/common-pc/common-pc.cfg  |    5 -----
+>   meta/cfg/kernel-cache/bsp/common-pc/common-pc.scc  |    6 ++----
+>   .../bsp/crownbay/crownbay-preempt-rt.scc           |    8 ++++++++
+>   .../bsp/crownbay/crownbay-standard.scc             |    7 +++++++
+>   meta/cfg/kernel-cache/bsp/crownbay/crownbay.scc    |    7 -------
+>   .../bsp/emenlow/emenlow-preempt-rt.scc             |    8 ++++++++
+>   .../kernel-cache/bsp/emenlow/emenlow-standard.scc  |    8 ++++++++
+>   meta/cfg/kernel-cache/bsp/emenlow/emenlow.scc      |    7 -------
+>   .../bsp/fishriver/fishriver-preempt-rt.scc         |    8 ++++++++
+>   .../bsp/fishriver/fishriver-standard.scc           |    8 ++++++++
+>   meta/cfg/kernel-cache/bsp/fishriver/fishriver.scc  |    7 -------
+>   .../bsp/jasperforest/jasperforest-preempt-rt.scc   |    7 +++++++
+>   .../bsp/jasperforest/jasperforest-standard.scc     |    6 ++++++
+>   .../kernel-cache/bsp/jasperforest/jasperforest.scc |    6 ------
+>   .../bsp/sugarbay/sugarbay-preempt-rt.scc           |    7 +++++++
+>   .../bsp/sugarbay/sugarbay-standard.scc             |    6 ++++++
+>   meta/cfg/kernel-cache/bsp/sugarbay/sugarbay.scc    |    6 ------
+>   meta/cfg/kernel-cache/features/usb/ehci-hcd.cfg    |    1 +
+>   25 files changed, 104 insertions(+), 55 deletions(-)
 >
 
 
