@@ -1,30 +1,20 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0DA57E00746
-	for <yocto@yoctoproject.org>; Fri, 11 May 2012 15:55:29 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 11 May 2012 15:55:26 -0700
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CA9CFE013BB
+	for <yocto@yoctoproject.org>; Sat, 12 May 2012 12:42:14 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 12 May 2012 12:42:14 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="142955259"
-Received: from rkern1-mobl.amr.corp.intel.com (HELO envy.home) ([10.7.199.157])
-	by orsmga002.jf.intel.com with ESMTP; 11 May 2012 15:55:26 -0700
-Message-ID: <4FAD98B1.2020308@linux.intel.com>
-Date: Fri, 11 May 2012 15:54:41 -0700
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:12.0) Gecko/20120424 Thunderbird/12.0
-MIME-Version: 1.0
-To: Tom Zanussi <tom.zanussi@intel.com>
-References: <594ba05ab96a837575960ba514ae153eeef899b7.1336697506.git.tom.zanussi@intel.com>
-	<0a78d7e8401e3d500b3cb784c6bf0a4e7271f99e.1336697506.git.tom.zanussi@intel.com>
-	<4FAD3BC9.1030606@linux.intel.com>
-	<1336774104.27950.13.camel@elmorro>
-	<4FAD9442.5040105@linux.intel.com>
-	<1336776169.27950.17.camel@elmorro>
-In-Reply-To: <1336776169.27950.17.camel@elmorro>
-X-Enigmail-Version: 1.4.1
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 06/10] meta/crownbay: factor out policy-related options
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="152211936"
+Received: from unknown (HELO localhost) ([10.255.12.76])
+	by fmsmga001.fm.intel.com with ESMTP; 12 May 2012 12:42:13 -0700
+From: tom.zanussi@intel.com
+To: yocto@yoctoproject.org, bruce.ashfield@windriver.com,
+	dvhart@linux.intel.com
+Date: Sat, 12 May 2012 14:42:04 -0500
+Message-Id: <cover.1336851382.git.tom.zanussi@intel.com>
+X-Mailer: git-send-email 1.7.0.4
+Subject: [PATCH 00/22][KERNEL][RFC] policy cleanup patches, v2
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,51 +26,103 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 11 May 2012 22:55:29 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Sat, 12 May 2012 19:42:14 -0000
 
+From: Tom Zanussi <tom.zanussi@intel.com>
 
+This set of patches factors out the policy vs hardware-related config
+of the common-pc and common-pc-64 along with some meta-intel BSPs.
 
-On 05/11/2012 03:42 PM, Tom Zanussi wrote:
-> On Fri, 2012-05-11 at 15:35 -0700, Darren Hart wrote:
->>
->> On 05/11/2012 03:08 PM, Tom Zanussi wrote:
->>> On Fri, 2012-05-11 at 09:18 -0700, Darren Hart wrote:
->>
->>>> Independent from this patch, but does crownbay have all three? ehci and
->>>> ohci seems a lot more likely to me.
->>>>
->>>
->>> lsusb shows ehci and ohci, but why did you think ohci would be more
->>> likely?
->>>
->>> Tom
->>
->>
->> I believe UHCI is only seen on non-intel platforms, primarily AMD and
->> maybe VIA systems... just something I had a vague recollection of.
->>
-> 
-> I thought it was the opposite, but was probably thrown off by emenlow
-> which has UHCI...
+There are also a couple usb cleanups as well.
 
-  │ Symbol: USB_UHCI_HCD [=y]                                                  │  
-  │ Type  : tristate                                                           │  
-  │ Prompt: UHCI HCD (most Intel and VIA) support                              │  
-  │   Defined at drivers/usb/host/Kconfig:444                                  │  
-  │   Depends on: USB_SUPPORT [=y] && USB [=y] && (PCI [=y] || SPARC_LEON)     │  
-  │   Location:                                                                │  
-  │     -> Device Drivers                                                      │  
-  │       -> USB support (USB_SUPPORT [=y]) 
+This is still an RFC patchset because it's completely untested at this
+point so shouldn't be pulled in yet.
 
+v2: updated to reflect Darren's comments.  This new patchset also
+adds the usb-mass-storage feature to common-pc and common-pc-64,
+and at the same time factors out the common SCSI pieces into a new
+set of scsi features.  It also removes options and feature use made
+redundant by the above changes.
 
-And I see lots of ARM OHCI bits... so maybe you're right. But for the EG20T, as
-you pointed out, it seems to be EHCI and OHCI for whatever reason.
+Tom
 
+The following changes since commit 1dfd60fa1250259eed38ae5b2840eb37e3758a1b:
+  Tom Zanussi (1):
+        meta/fishriver: move smp options from recipe-space
 
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
+are available in the git repository at:
+
+  git://git.yoctoproject.org/linux-yocto-2.6.37-contrib.git tzanussi/policy-cleanup
+  http://git.yoctoproject.org/cgit/cgit.cgi/linux-yocto-2.6.37-contrib/log/?h=tzanussi/policy-cleanup
+
+Tom Zanussi (22):
+  meta: add ROOT_HUB_TT config option to the usb/ehci-hcd feature
+  meta/common-pc: use usb features
+  meta/common-pc-64: use usb features
+  meta/common-pc: factor out policy-related options
+  meta/common-pc-64: factor out policy-related options
+  meta/crownbay: factor out policy-related options
+  meta/emenlow: factor out policy-related options
+  meta/fishriver: factor out policy-related options
+  meta/jasperforest: factor out policy-related options
+  meta/sugarbay: factor out policy-related options
+  meta: add scsi feature
+  meta: add scsi disk feature
+  meta: factor out SCSI options from the usb-mass-storage feature
+  meta/common-pc: use usb-mass-storage feature
+  meta: add scsi cdrom feature
+  meta/common-pc-64: use usb-mass-storage feature
+  meta/common-pc-64: factor out SCSI CDROM option
+  meta/jasperforest: remove redundant features and options
+  meta/sugarbay: remove redundant features and options
+  meta/crownbay: remove redundant features and options
+  meta/emenlow: remove redundant features and options
+  meta/fishriver: remove redundant features and options
+
+ .../bsp/common-pc-64/common-pc-64-preempt-rt.scc   |    7 +++++++
+ .../bsp/common-pc-64/common-pc-64-standard.scc     |    7 +++++++
+ .../kernel-cache/bsp/common-pc-64/common-pc-64.cfg |    8 --------
+ .../kernel-cache/bsp/common-pc-64/common-pc-64.scc |   10 ++++------
+ .../bsp/common-pc/common-pc-preempt-rt.scc         |    8 ++++++++
+ .../bsp/common-pc/common-pc-standard.scc           |    7 +++++++
+ .../kernel-cache/bsp/common-pc/common-pc-tiny.scc  |    5 +----
+ meta/cfg/kernel-cache/bsp/common-pc/common-pc.cfg  |    8 --------
+ meta/cfg/kernel-cache/bsp/common-pc/common-pc.scc  |    7 +++----
+ .../bsp/crownbay/crownbay-preempt-rt.scc           |    8 ++++++++
+ .../bsp/crownbay/crownbay-standard.scc             |    7 +++++++
+ meta/cfg/kernel-cache/bsp/crownbay/crownbay.cfg    |    1 -
+ meta/cfg/kernel-cache/bsp/crownbay/crownbay.scc    |    8 --------
+ .../bsp/emenlow/emenlow-preempt-rt.scc             |    8 ++++++++
+ .../kernel-cache/bsp/emenlow/emenlow-standard.scc  |    8 ++++++++
+ meta/cfg/kernel-cache/bsp/emenlow/emenlow.cfg      |    1 -
+ meta/cfg/kernel-cache/bsp/emenlow/emenlow.scc      |    8 --------
+ .../bsp/fishriver/fishriver-preempt-rt.scc         |    8 ++++++++
+ .../bsp/fishriver/fishriver-standard.scc           |    8 ++++++++
+ meta/cfg/kernel-cache/bsp/fishriver/fishriver.cfg  |    1 -
+ meta/cfg/kernel-cache/bsp/fishriver/fishriver.scc  |    8 --------
+ .../bsp/jasperforest/jasperforest-preempt-rt.scc   |    4 ++++
+ .../bsp/jasperforest/jasperforest-standard.scc     |    3 +++
+ .../kernel-cache/bsp/jasperforest/jasperforest.cfg |    1 -
+ .../kernel-cache/bsp/jasperforest/jasperforest.scc |    8 --------
+ .../bsp/sugarbay/sugarbay-preempt-rt.scc           |    4 ++++
+ .../bsp/sugarbay/sugarbay-standard.scc             |    3 +++
+ meta/cfg/kernel-cache/bsp/sugarbay/sugarbay.cfg    |    1 -
+ meta/cfg/kernel-cache/bsp/sugarbay/sugarbay.scc    |    8 --------
+ meta/cfg/kernel-cache/cfg/usb-mass-storage.cfg     |    2 --
+ meta/cfg/kernel-cache/cfg/usb-mass-storage.scc     |    2 ++
+ meta/cfg/kernel-cache/features/scsi/cdrom.cfg      |    1 +
+ meta/cfg/kernel-cache/features/scsi/cdrom.scc      |    6 ++++++
+ meta/cfg/kernel-cache/features/scsi/disk.cfg       |    1 +
+ meta/cfg/kernel-cache/features/scsi/disk.scc       |    6 ++++++
+ meta/cfg/kernel-cache/features/scsi/scsi.cfg       |    1 +
+ meta/cfg/kernel-cache/features/scsi/scsi.scc       |    4 ++++
+ meta/cfg/kernel-cache/features/usb/ehci-hcd.cfg    |    1 +
+ 38 files changed, 120 insertions(+), 77 deletions(-)
+ create mode 100644 meta/cfg/kernel-cache/features/scsi/cdrom.cfg
+ create mode 100644 meta/cfg/kernel-cache/features/scsi/cdrom.scc
+ create mode 100644 meta/cfg/kernel-cache/features/scsi/disk.cfg
+ create mode 100644 meta/cfg/kernel-cache/features/scsi/disk.scc
+ create mode 100644 meta/cfg/kernel-cache/features/scsi/scsi.cfg
+ create mode 100644 meta/cfg/kernel-cache/features/scsi/scsi.scc
+
 
