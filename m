@@ -1,24 +1,24 @@
 Return-Path: <tom.zanussi@intel.com>
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EA06CE013BB
-	for <yocto@yoctoproject.org>; Sat, 12 May 2012 12:42:58 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6FF30E01428
+	for <yocto@yoctoproject.org>; Sat, 12 May 2012 12:42:59 -0700 (PDT)
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 12 May 2012 12:42:47 -0700
+	by orsmga102.jf.intel.com with ESMTP; 12 May 2012 12:42:49 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="139887781"
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="139887783"
 Received: from unknown (HELO localhost) ([10.255.12.76])
-	by orsmga001.jf.intel.com with ESMTP; 12 May 2012 12:42:46 -0700
+	by orsmga001.jf.intel.com with ESMTP; 12 May 2012 12:42:48 -0700
 From: tom.zanussi@intel.com
 To: yocto@yoctoproject.org, bruce.ashfield@windriver.com,
 	dvhart@linux.intel.com
-Date: Sat, 12 May 2012 14:42:04 -0500
-Message-Id: <881b0e18067e82261f265a871a883d9f7430e1ba.1336851382.git.tom.zanussi@intel.com>
+Date: Sat, 12 May 2012 14:42:05 -0500
+Message-Id: <732c8234d7f2de17bb2d83ecabc64c816dd9166d.1336851382.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <594ba05ab96a837575960ba514ae153eeef899b7.1336851382.git.tom.zanussi@intel.com>
 References: <594ba05ab96a837575960ba514ae153eeef899b7.1336851382.git.tom.zanussi@intel.com>
 In-Reply-To: <cover.1336851382.git.tom.zanussi@intel.com>
 References: <cover.1336851382.git.tom.zanussi@intel.com>
-Subject: [PATCH 19/22] meta/sugarbay: remove redundant features and options
+Subject: [PATCH 20/22] meta/crownbay: remove redundant features and options
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,44 +34,19 @@ X-List-Received-Date: Sat, 12 May 2012 19:42:59 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-Remove features and options already inherited from common-pc-64.
+Remove the BLK_DEV_SD option already covered by the usb-mass-storage
+feature.
 
 Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
 ---
- .../bsp/sugarbay/sugarbay-preempt-rt.scc           |    3 ---
- .../bsp/sugarbay/sugarbay-standard.scc             |    3 ---
- meta/cfg/kernel-cache/bsp/sugarbay/sugarbay.cfg    |    1 -
- 3 files changed, 0 insertions(+), 7 deletions(-)
+ meta/cfg/kernel-cache/bsp/crownbay/crownbay.cfg |    1 -
+ 1 files changed, 0 insertions(+), 1 deletions(-)
 
-diff --git a/meta/cfg/kernel-cache/bsp/sugarbay/sugarbay-preempt-rt.scc b/meta/cfg/kernel-cache/bsp/sugarbay/sugarbay-preempt-rt.scc
-index d9df73b..0403a60 100644
---- a/meta/cfg/kernel-cache/bsp/sugarbay/sugarbay-preempt-rt.scc
-+++ b/meta/cfg/kernel-cache/bsp/sugarbay/sugarbay-preempt-rt.scc
-@@ -9,7 +9,4 @@ include bsp/common-pc-64/common-pc-64.scc
- include sugarbay.scc
- 
- # default policy for preempt-rt kernels
--include cfg/usb-mass-storage.scc
- include features/logbuf/size-normal.scc
--include features/latencytop/latencytop.scc
--include features/profiling/profiling.scc
-diff --git a/meta/cfg/kernel-cache/bsp/sugarbay/sugarbay-standard.scc b/meta/cfg/kernel-cache/bsp/sugarbay/sugarbay-standard.scc
-index 421364e..5d6eebe 100644
---- a/meta/cfg/kernel-cache/bsp/sugarbay/sugarbay-standard.scc
-+++ b/meta/cfg/kernel-cache/bsp/sugarbay/sugarbay-standard.scc
-@@ -8,7 +8,4 @@ branch sugarbay
- include sugarbay.scc
- 
- # default policy for standard kernels
--include cfg/usb-mass-storage.scc
- include features/logbuf/size-normal.scc
--include features/latencytop/latencytop.scc
--include features/profiling/profiling.scc
-diff --git a/meta/cfg/kernel-cache/bsp/sugarbay/sugarbay.cfg b/meta/cfg/kernel-cache/bsp/sugarbay/sugarbay.cfg
-index 1b370ba..787ee5b 100644
---- a/meta/cfg/kernel-cache/bsp/sugarbay/sugarbay.cfg
-+++ b/meta/cfg/kernel-cache/bsp/sugarbay/sugarbay.cfg
-@@ -13,7 +13,6 @@ CONFIG_PATA_SCH=y
+diff --git a/meta/cfg/kernel-cache/bsp/crownbay/crownbay.cfg b/meta/cfg/kernel-cache/bsp/crownbay/crownbay.cfg
+index 7d1362b..a4ab52b 100644
+--- a/meta/cfg/kernel-cache/bsp/crownbay/crownbay.cfg
++++ b/meta/cfg/kernel-cache/bsp/crownbay/crownbay.cfg
+@@ -15,7 +15,6 @@ CONFIG_PATA_SCH=y
  CONFIG_MMC_SDHCI_PCI=y
  CONFIG_PCIEPORTBUS=y
  CONFIG_NET=y
