@@ -1,40 +1,32 @@
-Return-Path: <wd@denx.de>
-Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.10])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 85057E013A6
-	for <yocto@yoctoproject.org>; Mon, 14 May 2012 14:12:31 -0700 (PDT)
-Received: from frontend1.mail.m-online.net (frontend1.mail.intern.m-online.net
-	[192.168.8.180])
-	by mail-out.m-online.net (Postfix) with ESMTP id 3VrvkP14jSz3hhZF;
-	Mon, 14 May 2012 23:12:28 +0200 (CEST)
-Received: from localhost (dynscan1.mnet-online.de [192.168.8.164])
-	by mail.m-online.net (Postfix) with ESMTP id 3VrvkN5CW7z4KK2H;
-	Mon, 14 May 2012 23:12:28 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at mnet-online.de
-Received: from smtp-auth.mnet-online.de ([192.168.8.180])
-	by localhost (dynscan1.mail.m-online.net [192.168.8.164]) (amavisd-new,
-	port 10024)
-	with ESMTP id FipK02JQ+2zh; Mon, 14 May 2012 23:12:28 +0200 (CEST)
-Received: from diddl.denx.de (host-80-81-18-216.customer.m-online.net
-	[80.81.18.216]) by smtp-auth.mnet-online.de (Postfix) with ESMTPA;
-	Mon, 14 May 2012 23:12:27 +0200 (CEST)
-Received: from gemini.denx.de (gemini.denx.de [10.0.0.2])
-	by diddl.denx.de (Postfix) with ESMTP id 65ADC1A5AA9;
-	Mon, 14 May 2012 23:12:27 +0200 (CEST)
-Received: from gemini.denx.de (localhost [IPv6:::1])
-	by gemini.denx.de (Postfix) with ESMTP id 345B4202B34;
-	Mon, 14 May 2012 23:12:27 +0200 (CEST)
-To: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-From: Wolfgang Denk <wd@denx.de>
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-ey0-f176.google.com (mail-ey0-f176.google.com
+	[209.85.215.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7134CE013A6
+	for <yocto@yoctoproject.org>; Mon, 14 May 2012 14:31:26 -0700 (PDT)
+Received: by eaab16 with SMTP id b16so1978808eaa.35
+	for <yocto@yoctoproject.org>; Mon, 14 May 2012 14:31:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type:content-transfer-encoding;
+	bh=3Q2615YJJew0VOkd5siOUyFXoaXVhc75BBPXpop81x0=;
+	b=TnbIHEcnaV5S9L5jDdYvAYlHATrU0Cyq+hara7aYO6IMM4uK39KqNBHxRNz2ZTKiyM
+	pU5dnmfwBVi3yLTVp0T+vSlRZ83AlPKttVQiFAWw5Ha9HCiw6ozP2ToSozPEvAXLRzit
+	Noo5cwJgAWKC7GujhBVpY1yWR/rsWxgv0bzPpdsldzOkv2atlk01JkXN4PaISEqdzorA
+	BPFDbPWyPlAdHAwdlCzStokw6ZRvqpXYfm2VLXAh0hz1EayfVx+PARWVgHqsKdjreIzX
+	pfrmZN5ZBxVZ6fEFNiiZ4aFkfKRdtDalbd+sn98MRHUyqN3FPOlVOfoO2Gjt55qlmx0J
+	4rrQ==
+Received: by 10.14.99.129 with SMTP id x1mr1757102eef.108.1337031084951; Mon,
+	14 May 2012 14:31:24 -0700 (PDT)
 MIME-Version: 1.0
-In-reply-to: <CAPhnLPDzcwr+0uMFk274KKtfbGD48-z5yQDqD=JozLO0jA9QRA@mail.gmail.com>
-References: <20120514201154.8A627202B34@gemini.denx.de>
-	<CAPhnLPDzcwr+0uMFk274KKtfbGD48-z5yQDqD=JozLO0jA9QRA@mail.gmail.com>
-Comments: In-reply-to "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-	message dated "Mon, 14 May 2012 13:58:17 -0700."
-Date: Mon, 14 May 2012 23:12:27 +0200
-Message-Id: <20120514211227.345B4202B34@gemini.denx.de>
-Cc: yocto@yoctoproject.org
-Subject: Re: LICENSE = "GPL" -- problem?
+Received: by 10.14.2.132 with HTTP; Mon, 14 May 2012 14:30:54 -0700 (PDT)
+In-Reply-To: <EE688041-FB89-4D1A-AE38-8DFF617C244D@keylevel.com>
+References: <EE688041-FB89-4D1A-AE38-8DFF617C244D@keylevel.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Mon, 14 May 2012 14:30:54 -0700
+Message-ID: <CAMKF1sr_pC3+dZMwM+p_1ErhZde64ht28jv0jvyfxz=6ATD35w@mail.gmail.com>
+To: Chris Tapp <opensource@keylevel.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: Kernel modules fail to compile for ARM
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,38 +38,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 14 May 2012 21:12:31 -0000
-Content-type: text/plain; charset=UTF-8
-Content-transfer-encoding: 8bit
+X-List-Received-Date: Mon, 14 May 2012 21:31:26 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Dear Elizabeth,
+On Mon, May 14, 2012 at 11:52 AM, Chris Tapp <opensource@keylevel.com> wrot=
+e:
+> | =C2=A0 CC [M] =C2=A0net/core/pktgen.o
+> | /media/SSD-RAID/build-edison-pi/tmp/work/pi-poky-linux-gnueabi/linux-yo=
+cto-3.0.18+git1+d386e09f316e03061c088d2b13a48605c20fb3a6_1+2bba211297d10047=
+637b8f49abd2c5415480ce4d-r3/linux/net/core/pktgen.c: In function 'pktgen_if=
+_show':
+> | /media/SSD-RAID/build-edison-pi/tmp/work/pi-poky-linux-gnueabi/linux-yo=
+cto-3.0.18+git1+d386e09f316e03061c088d2b13a48605c20fb3a6_1+2bba211297d10047=
+637b8f49abd2c5415480ce4d-r3/linux/net/core/pktgen.c:682:2: error: can't fin=
+d a register in class 'GENERAL_REGS' while reloading 'asm'
+> | /media/SSD-RAID/build-edison-pi/tmp/work/pi-poky-linux-gnueabi/linux-yo=
+cto-3.0.18+git1+d386e09f316e03061c088d2b13a48605c20fb3a6_1+2bba211297d10047=
+637b8f49abd2c5415480ce4d-r3/linux/net/core/pktgen.c:682:2: error: can't fin=
+d a register in class 'GENERAL_REGS' while reloading 'asm'
+> | /media/SSD-RAID/build-edison-pi/tmp/work/pi-poky-linux-gnueabi/linux-yo=
+cto-3.0.18+git1+d386e09f316e03061c088d2b13a48605c20fb3a6_1+2bba211297d10047=
+637b8f49abd2c5415480ce4d-r3/linux/net/core/pktgen.c:682:2: error: 'asm' ope=
+rand has impossible constraints
+> | /media/SSD-RAID/build-edison-pi/tmp/work/pi-poky-linux-gnueabi/linux-yo=
+cto-3.0.18+git1+d386e09f316e03061c088d2b13a48605c20fb3a6_1+2bba211297d10047=
+637b8f49abd2c5415480ce4d-r3/linux/net/core/pktgen.c:682:2: error: 'asm' ope=
+rand has impossible constraints
+> | make[4]: *** [net/core/pktgen.o] Error 1
 
-In message <CAPhnLPDzcwr+0uMFk274KKtfbGD48-z5yQDqD=JozLO0jA9QRA@mail.gmail.com> you wrote:
->
-> > which whould read "GPLv2" instead of "GPL".  A scan detected that the
-> > same string "GPL" is used in a number of other recipes:
-> >
-> > bitbake/lib/bb/shell.py:LICENSE = "GPL"
-> > meta/recipes-kernel/kern-tools/kern-tools-native_git.bb:LICENSE = "GPL"
-> > meta/recipes-kernel/linux/linux-dummy.bb:LICENSE = "GPL"
-> > meta/recipes-bsp/x-load/x-load.inc:LICENSE = "GPL"
-> > meta/recipes-devtools/gcc/gcc-common.inc:LICENSE = "GPL"
-> > meta/recipes-devtools/unifdef/unifdef-native_2.6.18+git.bb:LICENSE = "G> PL"
-> >
-> > Eventually these should be fixed, too?
->
-> Yes, GPL is somewhat meaningless so these should be audited to
-> determine the correct GPL version and corrected.
-
-Should I create an entry in the bug database?
-
-Best regards,
-
-Wolfgang Denk
-
--- 
-DENX Software Engineering GmbH,     MD: Wolfgang Denk & Detlev Zundel
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-Phone: (+49)-8142-66989-10 Fax: (+49)-8142-66989-80 Email: wd@denx.de
-Computers are not intelligent. They only think they are.
+interesting. This is gcc puking with some insane inline assembly. Can
+you post preprocessed pktgen.c and cmdline arguments used to compile
+it ?
+and is it using gcc 4.7 or 4.6 ?
 
