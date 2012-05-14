@@ -1,27 +1,36 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 04926E01396
-	for <yocto@yoctoproject.org>; Mon, 14 May 2012 09:36:59 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 14 May 2012 09:36:59 -0700
+Return-Path: <kishore.k.bodke@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 29CF4E01396
+	for <yocto@yoctoproject.org>; Mon, 14 May 2012 09:59:15 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 14 May 2012 09:59:14 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="140450964"
-Received: from dkrish4-mobl.amr.corp.intel.com (HELO envy.home)
-	([10.7.199.153])
-	by orsmga001.jf.intel.com with ESMTP; 14 May 2012 09:36:59 -0700
-Message-ID: <4FB13480.3000501@linux.intel.com>
-Date: Mon, 14 May 2012 09:36:16 -0700
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:12.0) Gecko/20120424 Thunderbird/12.0
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="166095786"
+Received: from orsmsx606.amr.corp.intel.com ([10.22.226.128])
+	by fmsmga002.fm.intel.com with ESMTP; 14 May 2012 09:59:14 -0700
+Received: from orsmsx101.amr.corp.intel.com (10.22.225.128) by
+	orsmsx606.amr.corp.intel.com (10.22.226.128) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Mon, 14 May 2012 09:59:14 -0700
+Received: from orsmsx105.amr.corp.intel.com ([169.254.4.232]) by
+	ORSMSX101.amr.corp.intel.com ([169.254.8.121]) with mapi id
+	14.01.0355.002; Mon, 14 May 2012 09:59:14 -0700
+From: "Bodke, Kishore K" <kishore.k.bodke@intel.com>
+To: Yocto Project Discussions <yocto@linux.intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Unable to fetch URL from any source
+Thread-Index: Ac0vXYfqo3OUnH4MTu+dY+HkyEL2NAAOdnqgABJCBwAAhI+qsA==
+Date: Mon, 14 May 2012 16:59:12 +0000
+Message-ID: <D956029D25CF204F948EA0FB515E1EE20ACAE48B@ORSMSX105.amr.corp.intel.com>
+References: <99B4EF8390848E44BF0CFDBD67466FA40ECE86@PGSMSX103.gar.corp.intel.com>
+	<D956029D25CF204F948EA0FB515E1EE20ACACD57@ORSMSX105.amr.corp.intel.com>
+	<4FAD5D74.3080004@windriver.com>
+In-Reply-To: <4FAD5D74.3080004@windriver.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-To: tom.zanussi@intel.com
-References: <594ba05ab96a837575960ba514ae153eeef899b7.1336851382.git.tom.zanussi@intel.com>
-	<991789c30cbc85521bf8c76bcea45df1184cb0ab.1336851382.git.tom.zanussi@intel.com>
-In-Reply-To: <991789c30cbc85521bf8c76bcea45df1184cb0ab.1336851382.git.tom.zanussi@intel.com>
-X-Enigmail-Version: 1.4.1
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 11/22] meta: add scsi feature
+Subject: Re: Unable to fetch URL from any source
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,39 +42,74 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 14 May 2012 16:37:00 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 14 May 2012 16:59:15 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
 
 
-On 05/12/2012 12:41 PM, tom.zanussi@intel.com wrote:
-> From: Tom Zanussi <tom.zanussi@intel.com>
-> 
-> Add a feature to enable SCSI support.  This also creates a scsi/
-> directory to contain further SCSI options.
-> 
-> Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
-> ---
->  meta/cfg/kernel-cache/features/scsi/scsi.cfg |    1 +
->  meta/cfg/kernel-cache/features/scsi/scsi.scc |    4 ++++
->  2 files changed, 5 insertions(+), 0 deletions(-)
->  create mode 100644 meta/cfg/kernel-cache/features/scsi/scsi.cfg
->  create mode 100644 meta/cfg/kernel-cache/features/scsi/scsi.scc
-> 
-> diff --git a/meta/cfg/kernel-cache/features/scsi/scsi.cfg b/meta/cfg/kernel-cache/features/scsi/scsi.cfg
-> new file mode 100644
-> index 0000000..2e9142f
-> --- /dev/null
-> +++ b/meta/cfg/kernel-cache/features/scsi/scsi.cfg
-> @@ -0,0 +1 @@
-> +CONFIG_SCSI=y
+>-----Original Message-----
+>From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]
+>Sent: Friday, May 11, 2012 11:42 AM
+>To: Bodke, Kishore K
+>Cc: Yocto Project Discussions; yocto@yoctoproject.org
+>Subject: Re: Unable to fetch URL from any source
+>
+>On 12-05-11 01:04 PM, Bodke, Kishore K wrote:
+>> Yes.
+>>
+>> I saw the same failures too.
+>>
+>> For some reason 3.0 kernel fetch failures started showing up for
+>Cedartrail.
+>>
+>> There is a discussion thread on this in the mailing list.
+>>
+>> Bruce might be able to give some pointers on this.
+>
+>Unfortunately not. From what I hear, it's server issues. Which will be
+>resolved ASAP.
 
-There are additional dependencies for this which certain policy
-configurations may not enable for us. CONFIG_BLOCK for example.
+Does anyone have update on this?
 
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
+Thanks
+Kishore.
+
+>
+>Cheers,
+>
+>Bruce
+>
+>>
+>> -Kishore.
+>>
+>> *From:*yocto-bounces@linux.intel.com
+>> [mailto:yocto-bounces@linux.intel.com] *On Behalf Of *Chiang, Terence
+>> *Sent:* Friday, May 11, 2012 3:05 AM
+>> *To:* Yocto Project Discussions (yocto@linux.intel.com)
+>> *Subject:* [Yocto] Unable to fetch URL from any source
+>>
+>> Hi
+>>
+>> While I build the image for cedartrail with "denzil"
+>>
+>> With meta-cedartrail and distro =3D "poky". the error is following and
+>the
+>> detail log is attached.
+>>
+>> Function failed: Fetcher failure for URL:
+>> 'git://git.yoctoproject.org/linux-yocto-
+>3.0;protocol=3Dgit;bareclone=3D1;branch=3Dyocto/standard/cedartrail,meta,y=
+octo
+>/pvr;name=3Dmachine,meta,pvr'.
+>> Unable to fetch URL from any source.
+>>
+>> Do you encounter similar issue?
+>>
+>> /Regard,/
+>>
+>> -Terence
+>>
+
 
