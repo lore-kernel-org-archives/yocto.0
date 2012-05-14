@@ -1,33 +1,29 @@
-Return-Path: <wd@denx.de>
-Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B1633E013A6
-	for <yocto@yoctoproject.org>; Mon, 14 May 2012 13:11:57 -0700 (PDT)
-Received: from frontend1.mail.m-online.net (unknown [192.168.8.180])
-	by mail-out.m-online.net (Postfix) with ESMTP id 3VrtNX3wb5z4Kh0d
-	for <yocto@yoctoproject.org>; Mon, 14 May 2012 22:11:56 +0200 (CEST)
-Received: from localhost (dynscan1.mnet-online.de [192.168.8.164])
-	by mail.m-online.net (Postfix) with ESMTP id 3VrtNX1M5mz4KK6X
-	for <yocto@yoctoproject.org>; Mon, 14 May 2012 22:11:56 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at mnet-online.de
-Received: from smtp-auth.mnet-online.de ([192.168.8.180])
-	by localhost (dynscan1.mail.m-online.net [192.168.8.164]) (amavisd-new,
-	port 10024) with ESMTP id DMkVDiZwQS+9 for <yocto@yoctoproject.org>;
-	Mon, 14 May 2012 22:11:55 +0200 (CEST)
-Received: from diddl.denx.de (host-80-81-18-216.customer.m-online.net
-	[80.81.18.216]) by smtp-auth.mnet-online.de (Postfix) with ESMTPA
-	for <yocto@yoctoproject.org>; Mon, 14 May 2012 22:11:55 +0200 (CEST)
-Received: from gemini.denx.de (unknown [10.0.0.2])
-	by diddl.denx.de (Postfix) with ESMTP id 6A1541A5AA9
-	for <yocto@yoctoproject.org>; Mon, 14 May 2012 22:11:55 +0200 (CEST)
-Received: from gemini.denx.de (localhost [IPv6:::1])
-	by gemini.denx.de (Postfix) with ESMTP id 8A627202B34
-	for <yocto@yoctoproject.org>; Mon, 14 May 2012 22:11:54 +0200 (CEST)
-To: yocto@yoctoproject.org
-From: Wolfgang Denk <wd@denx.de>
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E54E9E013BB
+	for <yocto@yoctoproject.org>; Mon, 14 May 2012 13:15:56 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 14 May 2012 13:15:56 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="143873028"
+Received: from dkrish4-mobl.amr.corp.intel.com (HELO envy.home)
+	([10.7.199.153])
+	by orsmga002.jf.intel.com with ESMTP; 14 May 2012 13:15:56 -0700
+Message-ID: <4FB167D1.5010703@linux.intel.com>
+Date: Mon, 14 May 2012 13:15:13 -0700
+From: Darren Hart <dvhart@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:12.0) Gecko/20120424 Thunderbird/12.0
 MIME-Version: 1.0
-Date: Mon, 14 May 2012 22:11:54 +0200
-Message-Id: <20120514201154.8A627202B34@gemini.denx.de>
-Subject: LICENSE = "GPL" -- problem?
+To: Tom Zanussi <tom.zanussi@intel.com>
+References: <594ba05ab96a837575960ba514ae153eeef899b7.1336851382.git.tom.zanussi@intel.com>
+	<991789c30cbc85521bf8c76bcea45df1184cb0ab.1336851382.git.tom.zanussi@intel.com>
+	<4FB13480.3000501@linux.intel.com>
+	<1337025318.3850.8.camel@elmorro>
+In-Reply-To: <1337025318.3850.8.camel@elmorro>
+X-Enigmail-Version: 1.4.1
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH 11/22] meta: add scsi feature
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,37 +35,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 14 May 2012 20:11:57 -0000
-Content-type: text/plain; charset=UTF-8
-Content-transfer-encoding: 8bit
+X-List-Received-Date: Mon, 14 May 2012 20:15:57 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi,
 
-we noticed warnings like "No generic license file exists for: GPL in
-any provider" for our own linux kernel recipe.  The cause wa the use
-of an entry
 
-	LICENSE = "GPL"
+On 05/14/2012 12:55 PM, Tom Zanussi wrote:
+> On Mon, 2012-05-14 at 09:36 -0700, Darren Hart wrote:
+>>
+>> On 05/12/2012 12:41 PM, tom.zanussi@intel.com wrote:
+>>> From: Tom Zanussi <tom.zanussi@intel.com>
+>>>
+>>> Add a feature to enable SCSI support.  This also creates a scsi/
+>>> directory to contain further SCSI options.
+>>>
+>>> Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
+>>> ---
+>>>  meta/cfg/kernel-cache/features/scsi/scsi.cfg |    1 +
+>>>  meta/cfg/kernel-cache/features/scsi/scsi.scc |    4 ++++
+>>>  2 files changed, 5 insertions(+), 0 deletions(-)
+>>>  create mode 100644 meta/cfg/kernel-cache/features/scsi/scsi.cfg
+>>>  create mode 100644 meta/cfg/kernel-cache/features/scsi/scsi.scc
+>>>
+>>> diff --git a/meta/cfg/kernel-cache/features/scsi/scsi.cfg b/meta/cfg/kernel-cache/features/scsi/scsi.cfg
+>>> new file mode 100644
+>>> index 0000000..2e9142f
+>>> --- /dev/null
+>>> +++ b/meta/cfg/kernel-cache/features/scsi/scsi.cfg
+>>> @@ -0,0 +1 @@
+>>> +CONFIG_SCSI=y
+>>
+>> There are additional dependencies for this which certain policy
+>> configurations may not enable for us. CONFIG_BLOCK for example.
+>>
+> 
+> I only see a CONFIG_BLOCK dependency for CONFIG_SCSI - what are the
+> other 'additional dependencies' you mention?
+> 
+> Tom
 
-which whould read "GPLv2" instead of "GPL".  A scan detected that the
-same string "GPL" is used in a number of other recipes:
-
-bitbake/lib/bb/shell.py:LICENSE = "GPL"
-meta/recipes-kernel/kern-tools/kern-tools-native_git.bb:LICENSE = "GPL"
-meta/recipes-kernel/linux/linux-dummy.bb:LICENSE = "GPL"
-meta/recipes-bsp/x-load/x-load.inc:LICENSE = "GPL"
-meta/recipes-devtools/gcc/gcc-common.inc:LICENSE = "GPL"
-meta/recipes-devtools/unifdef/unifdef-native_2.6.18+git.bb:LICENSE = "GPL"
-
-Eventually these should be fixed, too?
-
-Best regards,
-
-Wolfgang Denk
+What I do is look up each CONFIG_ in menuconfig (the / search) and trace
+the depends all the way up. For this I only looked at CONFIG_BLK_DEV_SD
+and CONFIG_SCSI. If CONFIG_BLOCK doesn't have any additional
+dependencies, then it's just CONFIG_BLOCK.
 
 -- 
-DENX Software Engineering GmbH,     MD: Wolfgang Denk & Detlev Zundel
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-Phone: (+49)-8142-66989-10 Fax: (+49)-8142-66989-80 Email: wd@denx.de
-Human beings were created by water to transport it uphill.
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
