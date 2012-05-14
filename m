@@ -1,29 +1,35 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AFED8E013BB
-	for <yocto@yoctoproject.org>; Mon, 14 May 2012 13:16:08 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 14 May 2012 13:16:08 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="143873125"
-Received: from dkrish4-mobl.amr.corp.intel.com (HELO envy.home)
-	([10.7.199.153])
-	by orsmga002.jf.intel.com with ESMTP; 14 May 2012 13:16:08 -0700
-Message-ID: <4FB167DD.3050004@linux.intel.com>
-Date: Mon, 14 May 2012 13:15:25 -0700
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:12.0) Gecko/20120424 Thunderbird/12.0
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from fmsmga102.fm.intel.com (mga10.intel.com [192.55.52.92])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8492FE013A6
+	for <yocto@yoctoproject.org>; Mon, 14 May 2012 13:58:20 -0700 (PDT)
+Received: from mail-lb0-f180.google.com ([209.85.217.180])
+	by mga11.intel.com with ESMTP/TLS/RC4-SHA; 14 May 2012 13:58:19 -0700
+Received: by lbbgh12 with SMTP id gh12so3257059lbb.25
+	for <yocto@yoctoproject.org>; Mon, 14 May 2012 13:58:17 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type:content-transfer-encoding:x-gm-message-state;
+	bh=Vh3l3I9wyjRqgRKQ7X2Z283WCNhWiL6jxqNwH38pyRY=;
+	b=WAyrHQz4A8t1oB1r2eS2GMAMGmX0gzK54J3+VOPznWi5ReGNhswACb/CzN39hUUpDN
+	U47jRLmJT+rSrPGY6W6PHfrR0dW0vcWvPMmZtE+oyMeU9fMbrTKRx7IDj7ghcGtLzEKQ
+	0qYiN2JdGYmCl3Wrt4D/nxx66iAMjJnFXNzuYngWzLW7WrdwcEHzSeer71HuwhfZg5/7
+	BkdSzCx/f1SlGSaO4HIKap6YipQ09SJM19JehpET5psboDac5AR1iljEWJjTM8PEJhMl
+	CqbDRvqcSUT7AItMkXoLv5NKcJdUsUK7JdIARbfU+0F8qcnHJppR7SHKt/fhr+s6H+hT
+	6JYg==
 MIME-Version: 1.0
-To: Tom Zanussi <tom.zanussi@intel.com>
-References: <594ba05ab96a837575960ba514ae153eeef899b7.1336851382.git.tom.zanussi@intel.com>
-	<c8205ee5bb6bd7938dcd1868f26953ec2759a966.1336851382.git.tom.zanussi@intel.com>
-	<4FB1333E.6000509@linux.intel.com>
-	<1337025452.3850.10.camel@elmorro>
-In-Reply-To: <1337025452.3850.10.camel@elmorro>
-X-Enigmail-Version: 1.4.1
+Received: by 10.152.108.38 with SMTP id hh6mr9684617lab.28.1337029097517; Mon,
+	14 May 2012 13:58:17 -0700 (PDT)
+Received: by 10.112.107.137 with HTTP; Mon, 14 May 2012 13:58:17 -0700 (PDT)
+In-Reply-To: <20120514201154.8A627202B34@gemini.denx.de>
+References: <20120514201154.8A627202B34@gemini.denx.de>
+Date: Mon, 14 May 2012 13:58:17 -0700
+Message-ID: <CAPhnLPDzcwr+0uMFk274KKtfbGD48-z5yQDqD=JozLO0jA9QRA@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: Wolfgang Denk <wd@denx.de>
+X-Gm-Message-State: ALoCoQkNnzyos6XC06WvHwtsPk96IMIhQlSezyCUs2uCZJzQ0vRe6HmmQ5Kw3erVAWV9YfgBnEoy
 Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 09/22] meta/jasperforest: factor out policy-related options
+Subject: Re: LICENSE = "GPL" -- problem?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,33 +41,56 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 14 May 2012 20:16:08 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 14 May 2012 20:58:20 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+On Mon, May 14, 2012 at 1:11 PM, Wolfgang Denk <wd@denx.de> wrote:
+> Hi,
+>
+> we noticed warnings like "No generic license file exists for: GPL in
+> any provider" for our own linux kernel recipe. =A0The cause wa the use
+> of an entry
+>
+> =A0 =A0 =A0 =A0LICENSE =3D "GPL"
+>
+> which whould read "GPLv2" instead of "GPL". =A0A scan detected that the
+> same string "GPL" is used in a number of other recipes:
+>
+> bitbake/lib/bb/shell.py:LICENSE =3D "GPL"
+> meta/recipes-kernel/kern-tools/kern-tools-native_git.bb:LICENSE =3D "GPL"
+> meta/recipes-kernel/linux/linux-dummy.bb:LICENSE =3D "GPL"
+> meta/recipes-bsp/x-load/x-load.inc:LICENSE =3D "GPL"
+> meta/recipes-devtools/gcc/gcc-common.inc:LICENSE =3D "GPL"
+> meta/recipes-devtools/unifdef/unifdef-native_2.6.18+git.bb:LICENSE =3D "G=
+PL"
+>
+> Eventually these should be fixed, too?
+
+Yes, GPL is somewhat meaningless so these should be audited to
+determine the correct GPL version and corrected.
+
+-b
+
+>
+> Best regards,
+>
+> Wolfgang Denk
+>
+> --
+> DENX Software Engineering GmbH, =A0 =A0 MD: Wolfgang Denk & Detlev Zundel
+> HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+> Phone: (+49)-8142-66989-10 Fax: (+49)-8142-66989-80 Email: wd@denx.de
+> Human beings were created by water to transport it uphill.
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
 
 
-On 05/14/2012 12:57 PM, Tom Zanussi wrote:
-> On Mon, 2012-05-14 at 09:30 -0700, Darren Hart wrote:
->>
->> On 05/12/2012 12:41 PM, tom.zanussi@intel.com wrote:
->>
->>>  include features/usb/ehci-hcd.scc
->>> -include features/usb/ohci-hcd.scc
->>> -include features/usb/uhci-hcd.scc
->>
->> Jasper forest is EHCI only?
->>
->>
-> 
-> Yes, it only has two EHCI controllers.  Anyway, all of these features
-> are inherited from common-pc-64, so if anything, the thing to do would
-> be to remove ehci here.
-
-Ah right.
-
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
+--=20
+Elizabeth Flanagan
+Yocto Project
+Build and Release
 
