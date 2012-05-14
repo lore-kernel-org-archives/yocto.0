@@ -1,33 +1,25 @@
-Return-Path: <opensource@keylevel.com>
-Received: from hxhsvr03.internetintuitive.net (hxhsvr03.internetintuitive.net
-	[80.254.228.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8523AE013A6
-	for <yocto@yoctoproject.org>; Mon, 14 May 2012 12:51:04 -0700 (PDT)
-Received: from [109.224.129.17] (port=4728
-	helo=macbook-pro.durham.keylevel.com)
-	by hxhsvr03.internetintuitive.net with esmtpa (Exim 4.69)
-	(envelope-from <opensource@keylevel.com>)
-	id 1SU1IM-0006qt-J8; Mon, 14 May 2012 20:51:02 +0100
-Mime-Version: 1.0 (Apple Message framework v1278)
-From: Chris Tapp <opensource@keylevel.com>
-In-Reply-To: <4FB15788.80900@windriver.com>
-Date: Mon, 14 May 2012 20:50:59 +0100
-Message-Id: <3BAD6080-9269-4AD2-819F-546E09FE8BB3@keylevel.com>
-References: <EE688041-FB89-4D1A-AE38-8DFF617C244D@keylevel.com>
-	<4FB15788.80900@windriver.com>
-To: Bruce Ashfield <bruce.ashfield@windriver.com>
-X-Mailer: Apple Mail (2.1278)
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - hxhsvr03.internetintuitive.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: Kernel modules fail to compile for ARM
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 653ACE013A6
+	for <yocto@yoctoproject.org>; Mon, 14 May 2012 12:55:33 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 14 May 2012 12:55:33 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="143016865"
+Received: from unknown (HELO [10.255.12.76]) ([10.255.12.76])
+	by azsmga001.ch.intel.com with ESMTP; 14 May 2012 12:55:32 -0700
+From: Tom Zanussi <tom.zanussi@intel.com>
+To: Darren Hart <dvhart@linux.intel.com>
+In-Reply-To: <4FB13480.3000501@linux.intel.com>
+References: <594ba05ab96a837575960ba514ae153eeef899b7.1336851382.git.tom.zanussi@intel.com>
+	<991789c30cbc85521bf8c76bcea45df1184cb0ab.1336851382.git.tom.zanussi@intel.com>
+	<4FB13480.3000501@linux.intel.com>
+Date: Mon, 14 May 2012 14:55:18 -0500
+Message-ID: <1337025318.3850.8.camel@elmorro>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.28.3 
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH 11/22] meta: add scsi feature
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,70 +31,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 14 May 2012 19:51:04 -0000
-Content-Type: text/plain; charset=iso-8859-1
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 14 May 2012 19:55:33 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-On 14 May 2012, at 20:05, Bruce Ashfield wrote:
+On Mon, 2012-05-14 at 09:36 -0700, Darren Hart wrote:
+> 
+> On 05/12/2012 12:41 PM, tom.zanussi@intel.com wrote:
+> > From: Tom Zanussi <tom.zanussi@intel.com>
+> > 
+> > Add a feature to enable SCSI support.  This also creates a scsi/
+> > directory to contain further SCSI options.
+> > 
+> > Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
+> > ---
+> >  meta/cfg/kernel-cache/features/scsi/scsi.cfg |    1 +
+> >  meta/cfg/kernel-cache/features/scsi/scsi.scc |    4 ++++
+> >  2 files changed, 5 insertions(+), 0 deletions(-)
+> >  create mode 100644 meta/cfg/kernel-cache/features/scsi/scsi.cfg
+> >  create mode 100644 meta/cfg/kernel-cache/features/scsi/scsi.scc
+> > 
+> > diff --git a/meta/cfg/kernel-cache/features/scsi/scsi.cfg b/meta/cfg/kernel-cache/features/scsi/scsi.cfg
+> > new file mode 100644
+> > index 0000000..2e9142f
+> > --- /dev/null
+> > +++ b/meta/cfg/kernel-cache/features/scsi/scsi.cfg
+> > @@ -0,0 +1 @@
+> > +CONFIG_SCSI=y
+> 
+> There are additional dependencies for this which certain policy
+> configurations may not enable for us. CONFIG_BLOCK for example.
+> 
 
-> On 12-05-14 02:52 PM, Chris Tapp wrote:
->> I'm trying to put a BSP together for an ARM system (Raspberry Pi, =
-ARM1176JZF-S CPU). However, when I try and build the kernel I am getting =
-a build failure when the kernel modules are compiled:
->>=20
->> |   CC [M]  net/core/pktgen.o
->> | =
-/media/SSD-RAID/build-edison-pi/tmp/work/pi-poky-linux-gnueabi/linux-yocto=
--3.0.18+git1+d386e09f316e03061c088d2b13a48605c20fb3a6_1+2bba211297d1004763=
-7b8f49abd2c5415480ce4d-r3/linux/net/core/pktgen.c: In function =
-'pktgen_if_show':
->> | =
-/media/SSD-RAID/build-edison-pi/tmp/work/pi-poky-linux-gnueabi/linux-yocto=
--3.0.18+git1+d386e09f316e03061c088d2b13a48605c20fb3a6_1+2bba211297d1004763=
-7b8f49abd2c5415480ce4d-r3/linux/net/core/pktgen.c:682:2: error: can't =
-find a register in class 'GENERAL_REGS' while reloading 'asm'
->> | =
-/media/SSD-RAID/build-edison-pi/tmp/work/pi-poky-linux-gnueabi/linux-yocto=
--3.0.18+git1+d386e09f316e03061c088d2b13a48605c20fb3a6_1+2bba211297d1004763=
-7b8f49abd2c5415480ce4d-r3/linux/net/core/pktgen.c:682:2: error: can't =
-find a register in class 'GENERAL_REGS' while reloading 'asm'
->> | =
-/media/SSD-RAID/build-edison-pi/tmp/work/pi-poky-linux-gnueabi/linux-yocto=
--3.0.18+git1+d386e09f316e03061c088d2b13a48605c20fb3a6_1+2bba211297d1004763=
-7b8f49abd2c5415480ce4d-r3/linux/net/core/pktgen.c:682:2: error: 'asm' =
-operand has impossible constraints
->> | =
-/media/SSD-RAID/build-edison-pi/tmp/work/pi-poky-linux-gnueabi/linux-yocto=
--3.0.18+git1+d386e09f316e03061c088d2b13a48605c20fb3a6_1+2bba211297d1004763=
-7b8f49abd2c5415480ce4d-r3/linux/net/core/pktgen.c:682:2: error: 'asm' =
-operand has impossible constraints
->> | make[4]: *** [net/core/pktgen.o] Error 1
->>=20
->> As a test, I __think__ I've modified my machine configuration so that =
-it is the same as the BeagleBoard, but that also get the same even =
-though the use of the BeagleBoard machine itself compiles. The only =
-difference is I am trying to use the 3.0 kernel.
->>=20
->> I see that the 3.0.bbappend doesn't list beagleboard as a =
-'compatible' machine but 2.6.37 does (under 6.0.1). Is what I see a =
-known issue with the 3.0 kernel, or is there something else I can check?
->=20
-> It was a matter of time and energy and the lack of an urgent need to
-> update things.
->=20
-> The board does work on the newer kernels (obviously), so trying the
-> same thing against the 3.2+ kernel would be a good starting point.
+I only see a CONFIG_BLOCK dependency for CONFIG_SCSI - what are the
+other 'additional dependencies' you mention?
 
-
-I'm seeing the same under 7.0.0 if I use the 3.2 kernel. Note - if I set =
-MACHINE =3D "beagleboard" then it builds ok, so it must be something I'm =
-doing, but ...
-
-Chris Tapp
-
-opensource@keylevel.com
-www.keylevel.com
-
-
+Tom
 
 
