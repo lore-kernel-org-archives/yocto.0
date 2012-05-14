@@ -1,25 +1,33 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 49384E013BB
-	for <yocto@yoctoproject.org>; Mon, 14 May 2012 12:58:08 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 14 May 2012 12:57:46 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="143866100"
-Received: from unknown (HELO [10.255.12.76]) ([10.255.12.76])
-	by orsmga002.jf.intel.com with ESMTP; 14 May 2012 12:57:46 -0700
-From: Tom Zanussi <tom.zanussi@intel.com>
-To: Darren Hart <dvhart@linux.intel.com>
-In-Reply-To: <4FB1333E.6000509@linux.intel.com>
-References: <594ba05ab96a837575960ba514ae153eeef899b7.1336851382.git.tom.zanussi@intel.com>
-	<c8205ee5bb6bd7938dcd1868f26953ec2759a966.1336851382.git.tom.zanussi@intel.com>
-	<4FB1333E.6000509@linux.intel.com>
-Date: Mon, 14 May 2012 14:57:32 -0500
-Message-ID: <1337025452.3850.10.camel@elmorro>
-Mime-Version: 1.0
-X-Mailer: Evolution 2.28.3 
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 09/22] meta/jasperforest: factor out policy-related options
+Return-Path: <wd@denx.de>
+Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B1633E013A6
+	for <yocto@yoctoproject.org>; Mon, 14 May 2012 13:11:57 -0700 (PDT)
+Received: from frontend1.mail.m-online.net (unknown [192.168.8.180])
+	by mail-out.m-online.net (Postfix) with ESMTP id 3VrtNX3wb5z4Kh0d
+	for <yocto@yoctoproject.org>; Mon, 14 May 2012 22:11:56 +0200 (CEST)
+Received: from localhost (dynscan1.mnet-online.de [192.168.8.164])
+	by mail.m-online.net (Postfix) with ESMTP id 3VrtNX1M5mz4KK6X
+	for <yocto@yoctoproject.org>; Mon, 14 May 2012 22:11:56 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at mnet-online.de
+Received: from smtp-auth.mnet-online.de ([192.168.8.180])
+	by localhost (dynscan1.mail.m-online.net [192.168.8.164]) (amavisd-new,
+	port 10024) with ESMTP id DMkVDiZwQS+9 for <yocto@yoctoproject.org>;
+	Mon, 14 May 2012 22:11:55 +0200 (CEST)
+Received: from diddl.denx.de (host-80-81-18-216.customer.m-online.net
+	[80.81.18.216]) by smtp-auth.mnet-online.de (Postfix) with ESMTPA
+	for <yocto@yoctoproject.org>; Mon, 14 May 2012 22:11:55 +0200 (CEST)
+Received: from gemini.denx.de (unknown [10.0.0.2])
+	by diddl.denx.de (Postfix) with ESMTP id 6A1541A5AA9
+	for <yocto@yoctoproject.org>; Mon, 14 May 2012 22:11:55 +0200 (CEST)
+Received: from gemini.denx.de (localhost [IPv6:::1])
+	by gemini.denx.de (Postfix) with ESMTP id 8A627202B34
+	for <yocto@yoctoproject.org>; Mon, 14 May 2012 22:11:54 +0200 (CEST)
+To: yocto@yoctoproject.org
+From: Wolfgang Denk <wd@denx.de>
+MIME-Version: 1.0
+Date: Mon, 14 May 2012 22:11:54 +0200
+Message-Id: <20120514201154.8A627202B34@gemini.denx.de>
+Subject: LICENSE = "GPL" -- problem?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,28 +39,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 14 May 2012 19:58:08 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 14 May 2012 20:11:57 -0000
+Content-type: text/plain; charset=UTF-8
+Content-transfer-encoding: 8bit
 
-On Mon, 2012-05-14 at 09:30 -0700, Darren Hart wrote:
-> 
-> On 05/12/2012 12:41 PM, tom.zanussi@intel.com wrote:
-> 
-> >  include features/usb/ehci-hcd.scc
-> > -include features/usb/ohci-hcd.scc
-> > -include features/usb/uhci-hcd.scc
-> 
-> Jasper forest is EHCI only?
-> 
-> 
+Hi,
 
-Yes, it only has two EHCI controllers.  Anyway, all of these features
-are inherited from common-pc-64, so if anything, the thing to do would
-be to remove ehci here.
+we noticed warnings like "No generic license file exists for: GPL in
+any provider" for our own linux kernel recipe.  The cause wa the use
+of an entry
 
-Tom
+	LICENSE = "GPL"
 
+which whould read "GPLv2" instead of "GPL".  A scan detected that the
+same string "GPL" is used in a number of other recipes:
 
+bitbake/lib/bb/shell.py:LICENSE = "GPL"
+meta/recipes-kernel/kern-tools/kern-tools-native_git.bb:LICENSE = "GPL"
+meta/recipes-kernel/linux/linux-dummy.bb:LICENSE = "GPL"
+meta/recipes-bsp/x-load/x-load.inc:LICENSE = "GPL"
+meta/recipes-devtools/gcc/gcc-common.inc:LICENSE = "GPL"
+meta/recipes-devtools/unifdef/unifdef-native_2.6.18+git.bb:LICENSE = "GPL"
 
+Eventually these should be fixed, too?
+
+Best regards,
+
+Wolfgang Denk
+
+-- 
+DENX Software Engineering GmbH,     MD: Wolfgang Denk & Detlev Zundel
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+Phone: (+49)-8142-66989-10 Fax: (+49)-8142-66989-80 Email: wd@denx.de
+Human beings were created by water to transport it uphill.
 
