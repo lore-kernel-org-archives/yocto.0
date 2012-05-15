@@ -1,38 +1,24 @@
-Return-Path: <John.Willis@Distant-earth.com>
-Received: from omta4.brinkster.com (omta4.brinkster.com [65.182.109.104])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 85C9AE013FE
-	for <yocto@yoctoproject.org>; Tue, 15 May 2012 08:26:43 -0700 (PDT)
-Received: from localhost (localhost.localdomain [127.0.0.1])
-	by omta4.brinkster.com (Postfix) with ESMTP id 48926617AFC;
-	Tue, 15 May 2012 08:26:43 -0700 (MST)
-X-Virus-Scanned: amavisd-new at omta4.brinkster.com
-Received: from omta4.brinkster.com ([127.0.0.1])
-	by localhost (omta4.brinkster.com [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id TgBGcC54rYeD; Tue, 15 May 2012 08:26:36 -0700 (MST)
-Received: from mta9.brinkster.com (unknown [65.182.109.88])
-	by omta4.brinkster.com (Postfix) with ESMTPS id 2DF3E617D25;
-	Tue, 15 May 2012 08:26:36 -0700 (MST)
-Received: from localhost (localhost.localdomain [127.0.0.1])
-	by mta9.brinkster.com (Postfix) with ESMTP id F1B51248032;
-	Tue, 15 May 2012 11:26:33 -0400 (EDT)
-X-Virus-Scanned: amavisd-new at mta9.brinkster.com
-Received: from mta9.brinkster.com ([127.0.0.1])
-	by localhost (mta9.brinkster.com [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id POFQjx+NXidy; Tue, 15 May 2012 11:26:23 -0400 (EDT)
-Received: from MareImbrium (cpc1-bath5-2-0-cust122.aztw.cable.virginmedia.com
-	[77.99.62.123]) (Authenticated sender: John.Willis@Distant-earth.com)
-	by mta9.brinkster.com (Postfix) with ESMTPA id 83CB5248006;
-	Tue, 15 May 2012 11:26:22 -0400 (EDT)
-From: "John Willis" <John.Willis@Distant-earth.com>
-To: "'Osier-mixon, Jeffrey'" <jeffrey.osier-mixon@intel.com>
-References: <EE688041-FB89-4D1A-AE38-8DFF617C244D@keylevel.com>	<4FB21EBC.1000106@r-finger.com>	<025701cd32aa$31600d60$94202820$@Distant-earth.com>
-	<CALZ2gZVaAg2sFHuEa-=5tfGxh1+Wh4KmhiWc+QnH6oKz_68FFw@mail.gmail.com>
-In-Reply-To: <CALZ2gZVaAg2sFHuEa-=5tfGxh1+Wh4KmhiWc+QnH6oKz_68FFw@mail.gmail.com>
-Date: Tue, 15 May 2012 16:26:22 +0100
-Message-ID: <026701cd32af$16acc760$44065620$@Distant-earth.com>
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D2279E006DA
+	for <yocto@yoctoproject.org>; Tue, 15 May 2012 08:44:18 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q4FFiFFt025040
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Tue, 15 May 2012 08:44:15 -0700 (PDT)
+Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
+	Tue, 15 May 2012 08:44:15 -0700
+Message-ID: <4FB279CC.1080503@windriver.com>
+Date: Tue, 15 May 2012 11:44:12 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:12.0) Gecko/20120430 Thunderbird/12.0.1
 MIME-Version: 1.0
-X-Mailer: Microsoft Outlook 14.0
-thread-index: AQJnJZGXbdhFACSTLxopVN3R29NV+AJqHPLfAt1zr08BL0tYvJVjWpKg
+To: Tomas Frydrych <tf+lists.yocto@r-finger.com>
+References: <EE688041-FB89-4D1A-AE38-8DFF617C244D@keylevel.com>
+	<4FB21EBC.1000106@r-finger.com>
+In-Reply-To: <4FB21EBC.1000106@r-finger.com>
 Cc: yocto@yoctoproject.org
 Subject: Re: Raspberry Pi [was Re: Kernel modules fail to compile for ARM]
 X-BeenThere: yocto@yoctoproject.org
@@ -46,30 +32,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 15 May 2012 15:26:43 -0000
-Content-Type: text/plain;
-	charset="us-ascii"
+X-List-Received-Date: Tue, 15 May 2012 15:44:19 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
 Content-Transfer-Encoding: 7bit
-Content-Language: en-us
 
-> There do seem to be multiple efforts. The Qt on Pi folks are also putting
-> together a BSP. I'd like to find a way to put everyone together to make
-sure
-> effort is not being duplicated. Is there interest in a meeting of
-interested
-> parties, perhaps on Thursday?
+On 12-05-15 05:15 AM, Tomas Frydrych wrote:
+> On 14/05/12 19:52, Chris Tapp wrote:
+>> I'm trying to put a BSP together for an ARM system (Raspberry Pi, ARM1176JZF-S CPU).
+>
+> I got the feeling that there might be multiple OE/RPI efforts going on
+> at the same time unaware of each other, e.g., I noticed this
+> meta-raspberrypi layer on github that seems to be well on the way,
+> https://github.com/djwillis/meta-raspberrypi ... perhaps getting various
+> folk interested in this together would be beneficial.
 
-I have quite a few commitments on Thursday (oe hacking is not my day job)
-but pulling everyone together sounds like a very good idea. I'll try and
-make a meeting if someone else wants to pull it together.
+I'll jump in and ask my obvious question, if we want to pull in some
+extra BSP/kernel developers, is there a fundamental reason why a
+different kernel/kernel version than one of the linux-yocto ones is
+being used ?
 
-It's also worth pushing http://www.openembedded.org/wiki/LayerIndex again as
-people (me included) often seem to forget to add layers to this so it can be
-hard to find out if pre-existing work is being carried out.
+If you line up with one of those, there's a chance to pickup fixes,
+features and have someone like me help maintain things where it
+makes sense.
 
-Regards,
+Collecting kernels and BSPs in trees all over the place is one of the
+things that I'd like to try and help with going forward in 2012.
 
-John
+Cheers,
 
+Bruce
+
+>
+> Tomas
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
 
