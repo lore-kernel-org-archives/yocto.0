@@ -1,32 +1,40 @@
-Return-Path: <song.liu@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9A13CE006DA
-	for <yocto@yoctoproject.org>; Tue, 15 May 2012 08:22:32 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 15 May 2012 08:22:32 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; 
-	d="scan'208,217";a="143437616"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
-	by azsmga001.ch.intel.com with ESMTP; 15 May 2012 08:22:31 -0700
-Received: from orsmsx153.amr.corp.intel.com (10.22.226.247) by
-	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Tue, 15 May 2012 08:22:31 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.121]) by
-	ORSMSX153.amr.corp.intel.com ([169.254.13.77]) with mapi id
-	14.01.0355.002; Tue, 15 May 2012 08:22:30 -0700
-From: "Liu, Song" <song.liu@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: YP 1.3 release criteria
-Thread-Index: Ac0yroqZmKFRtI8ZRIqfb0RWpHvx3A==
-Date: Tue, 15 May 2012 15:22:30 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A483F19B4@ORSMSX101.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.139]
+Return-Path: <John.Willis@Distant-earth.com>
+Received: from omta4.brinkster.com (omta4.brinkster.com [65.182.109.104])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 85C9AE013FE
+	for <yocto@yoctoproject.org>; Tue, 15 May 2012 08:26:43 -0700 (PDT)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by omta4.brinkster.com (Postfix) with ESMTP id 48926617AFC;
+	Tue, 15 May 2012 08:26:43 -0700 (MST)
+X-Virus-Scanned: amavisd-new at omta4.brinkster.com
+Received: from omta4.brinkster.com ([127.0.0.1])
+	by localhost (omta4.brinkster.com [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id TgBGcC54rYeD; Tue, 15 May 2012 08:26:36 -0700 (MST)
+Received: from mta9.brinkster.com (unknown [65.182.109.88])
+	by omta4.brinkster.com (Postfix) with ESMTPS id 2DF3E617D25;
+	Tue, 15 May 2012 08:26:36 -0700 (MST)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by mta9.brinkster.com (Postfix) with ESMTP id F1B51248032;
+	Tue, 15 May 2012 11:26:33 -0400 (EDT)
+X-Virus-Scanned: amavisd-new at mta9.brinkster.com
+Received: from mta9.brinkster.com ([127.0.0.1])
+	by localhost (mta9.brinkster.com [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id POFQjx+NXidy; Tue, 15 May 2012 11:26:23 -0400 (EDT)
+Received: from MareImbrium (cpc1-bath5-2-0-cust122.aztw.cable.virginmedia.com
+	[77.99.62.123]) (Authenticated sender: John.Willis@Distant-earth.com)
+	by mta9.brinkster.com (Postfix) with ESMTPA id 83CB5248006;
+	Tue, 15 May 2012 11:26:22 -0400 (EDT)
+From: "John Willis" <John.Willis@Distant-earth.com>
+To: "'Osier-mixon, Jeffrey'" <jeffrey.osier-mixon@intel.com>
+References: <EE688041-FB89-4D1A-AE38-8DFF617C244D@keylevel.com>	<4FB21EBC.1000106@r-finger.com>	<025701cd32aa$31600d60$94202820$@Distant-earth.com>
+	<CALZ2gZVaAg2sFHuEa-=5tfGxh1+Wh4KmhiWc+QnH6oKz_68FFw@mail.gmail.com>
+In-Reply-To: <CALZ2gZVaAg2sFHuEa-=5tfGxh1+Wh4KmhiWc+QnH6oKz_68FFw@mail.gmail.com>
+Date: Tue, 15 May 2012 16:26:22 +0100
+Message-ID: <026701cd32af$16acc760$44065620$@Distant-earth.com>
 MIME-Version: 1.0
-Subject: YP 1.3 release criteria
+X-Mailer: Microsoft Outlook 14.0
+thread-index: AQJnJZGXbdhFACSTLxopVN3R29NV+AJqHPLfAt1zr08BL0tYvJVjWpKg
+Cc: yocto@yoctoproject.org
+Subject: Re: Raspberry Pi [was Re: Kernel modules fail to compile for ARM]
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,77 +46,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 15 May 2012 15:22:32 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_7E680CB2A76BB8438D08CF13C09FC53A483F19B4ORSMSX101amrcor_"
+X-List-Received-Date: Tue, 15 May 2012 15:26:43 -0000
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Content-Language: en-us
 
---_000_7E680CB2A76BB8438D08CF13C09FC53A483F19B4ORSMSX101amrcor_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+> There do seem to be multiple efforts. The Qt on Pi folks are also putting
+> together a BSP. I'd like to find a way to put everyone together to make
+sure
+> effort is not being duplicated. Is there interest in a meeting of
+interested
+> parties, perhaps on Thursday?
 
-https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.3_Status#Milestone_1
+I have quite a few commitments on Thursday (oe hacking is not my day job)
+but pulling everyone together sounds like a very good idea. I'll try and
+make a meeting if someone else wants to pull it together.
 
---_000_7E680CB2A76BB8438D08CF13C09FC53A483F19B4ORSMSX101amrcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+It's also worth pushing http://www.openembedded.org/wiki/LayerIndex again as
+people (me included) often seem to forget to add layers to this so it can be
+hard to find out if pre-existing work is being carried out.
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:x=3D"urn:schemas-microsoft-com:office:excel" xmlns:dt=3D"uuid:C2F4101=
-0-65B3-11d1-A29F-00AA00C14882" xmlns:m=3D"http://schemas.microsoft.com/offi=
-ce/2004/12/omml" xmlns=3D"http://www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_=
-Project_v1.3_Status#Milestone_1">https://wiki.yoctoproject.org/wiki/Yocto_P=
-roject_v1.3_Status#Milestone_1</a><o:p></o:p></p>
-</div>
-</body>
-</html>
+Regards,
 
---_000_7E680CB2A76BB8438D08CF13C09FC53A483F19B4ORSMSX101amrcor_--
+John
+
+
+
