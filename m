@@ -1,32 +1,45 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-ey0-f176.google.com (mail-ey0-f176.google.com
-	[209.85.215.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7134CE013A6
-	for <yocto@yoctoproject.org>; Mon, 14 May 2012 14:31:26 -0700 (PDT)
-Received: by eaab16 with SMTP id b16so1978808eaa.35
-	for <yocto@yoctoproject.org>; Mon, 14 May 2012 14:31:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type:content-transfer-encoding;
-	bh=3Q2615YJJew0VOkd5siOUyFXoaXVhc75BBPXpop81x0=;
-	b=TnbIHEcnaV5S9L5jDdYvAYlHATrU0Cyq+hara7aYO6IMM4uK39KqNBHxRNz2ZTKiyM
-	pU5dnmfwBVi3yLTVp0T+vSlRZ83AlPKttVQiFAWw5Ha9HCiw6ozP2ToSozPEvAXLRzit
-	Noo5cwJgAWKC7GujhBVpY1yWR/rsWxgv0bzPpdsldzOkv2atlk01JkXN4PaISEqdzorA
-	BPFDbPWyPlAdHAwdlCzStokw6ZRvqpXYfm2VLXAh0hz1EayfVx+PARWVgHqsKdjreIzX
-	pfrmZN5ZBxVZ6fEFNiiZ4aFkfKRdtDalbd+sn98MRHUyqN3FPOlVOfoO2Gjt55qlmx0J
-	4rrQ==
-Received: by 10.14.99.129 with SMTP id x1mr1757102eef.108.1337031084951; Mon,
-	14 May 2012 14:31:24 -0700 (PDT)
+Return-Path: <halstead@happypunch.com>
+Received: from mail-yw0-f48.google.com (mail-yw0-f48.google.com
+	[209.85.213.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 96C59E013BB
+	for <yocto@yoctoproject.org>; Mon, 14 May 2012 20:21:57 -0700 (PDT)
+Received: by yhfq46 with SMTP id q46so6521570yhf.35
+	for <yocto@yoctoproject.org>; Mon, 14 May 2012 20:21:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=happypunch.com; s=google;
+	h=mime-version:sender:in-reply-to:references:date
+	:x-google-sender-auth:message-id:subject:from:to:content-type;
+	bh=RVkJBle8/c5OfAyEEAaD+rliD90Uvrvp0Gv+uqe8yY4=;
+	b=AonvfKXMit2SIqkQTdg6poC2rd71LR9EznPmuIyYooKfNhnNq6/InPZrnD9OTS6Kez
+	qTVqz1pRZilh/eYODwpNuiTQbfFxYlVigJrvzz8/GPdEogxfnMp+qqloJSuMAxsmWbGM
+	CFEYBuz9d61zmxvmLhcBEy5nl6YccmjNfZWLQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:sender:in-reply-to:references:date
+	:x-google-sender-auth:message-id:subject:from:to:content-type
+	:x-gm-message-state;
+	bh=RVkJBle8/c5OfAyEEAaD+rliD90Uvrvp0Gv+uqe8yY4=;
+	b=ZAsMPpw/XgW4hl+rBFuqXio5lULr3kgWDEJdK603OolAZvnRSGEYI9eyf2QVAWwrIp
+	CLiBq4q3z0EBEoWeKsr9rEXfpAjffrf9hJrvQcHzGS/SYTQoD7MsCHdpiMxY2gZm+Ii5
+	DbomNluEzPlNmYSnxb3Y0N4nfWefng9g1boEAUa+l1yxy9Hx93NwK1RWag0oZODmlXQN
+	+nwLAHj/DNkpDx7oZIQkTnLRjXx8vUzty0GkenBE4f32twYSfWqvqafYozL4EAVWxsjl
+	k4MsoVY2vIdQsN1uXICHMnEDm+7JYd6KOjsBm+CFxxdChLm+EDJn61wJ82SM+TmVEBQU
+	yhTA==
 MIME-Version: 1.0
-Received: by 10.14.2.132 with HTTP; Mon, 14 May 2012 14:30:54 -0700 (PDT)
-In-Reply-To: <EE688041-FB89-4D1A-AE38-8DFF617C244D@keylevel.com>
-References: <EE688041-FB89-4D1A-AE38-8DFF617C244D@keylevel.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Mon, 14 May 2012 14:30:54 -0700
-Message-ID: <CAMKF1sr_pC3+dZMwM+p_1ErhZde64ht28jv0jvyfxz=6ATD35w@mail.gmail.com>
-To: Chris Tapp <opensource@keylevel.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: Kernel modules fail to compile for ARM
+Received: by 10.50.186.134 with SMTP id fk6mr6500282igc.22.1337052116600; Mon,
+	14 May 2012 20:21:56 -0700 (PDT)
+Sender: halstead@happypunch.com
+Received: by 10.50.216.228 with HTTP; Mon, 14 May 2012 20:21:56 -0700 (PDT)
+Received: by 10.50.216.228 with HTTP; Mon, 14 May 2012 20:21:56 -0700 (PDT)
+In-Reply-To: <CA+f-kVKVWsG7A4N2Sabgb-J81PrDH+2tNaormqNGfgEkTfnNxw@mail.gmail.com>
+References: <CA+f-kVKVWsG7A4N2Sabgb-J81PrDH+2tNaormqNGfgEkTfnNxw@mail.gmail.com>
+Date: Mon, 14 May 2012 20:21:56 -0700
+X-Google-Sender-Auth: j9d2H951tzCT7_d7sZl4LhyZc-s
+Message-ID: <CA+f-kVJxDQDddjSEb3eR_-ZQuDx_FCq+BPgRZUU61rfCPJchBA@mail.gmail.com>
+From: Michael Halstead <michael@yoctoproject.org>
+To: yocto@yoctoproject.org
+X-Gm-Message-State: ALoCoQmI3/+jf/RdZD85UyA9fdLSN/x1YjQ/ByNVeWo80IwSHpZt99tqLHy1Pfld/JR/y6DAVbiV
+Subject: Download mirror instability
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,37 +51,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 14 May 2012 21:31:26 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Tue, 15 May 2012 03:21:58 -0000
+Content-Type: multipart/alternative; boundary=14dae9340f2d74c7ec04c00ab472
+
+--14dae9340f2d74c7ec04c00ab472
+Content-Type: text/plain; charset=ISO-8859-1
+
+We are experiencing download mirror instability that began with a DDOS on
+Friday. Since then the network configuration attached to the mirror server
+has been in flux. This caused several outages. Fetcher failures during the
+last 36 hours are probably caused by these issues.
+
+I am in the process of building a new download server which will help with
+stability. I will post to the list when the build is complete.
+
+Michael Halstead
+Yocto Project / Sys Admin
+
+--14dae9340f2d74c7ec04c00ab472
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, May 14, 2012 at 11:52 AM, Chris Tapp <opensource@keylevel.com> wrot=
-e:
-> | =C2=A0 CC [M] =C2=A0net/core/pktgen.o
-> | /media/SSD-RAID/build-edison-pi/tmp/work/pi-poky-linux-gnueabi/linux-yo=
-cto-3.0.18+git1+d386e09f316e03061c088d2b13a48605c20fb3a6_1+2bba211297d10047=
-637b8f49abd2c5415480ce4d-r3/linux/net/core/pktgen.c: In function 'pktgen_if=
-_show':
-> | /media/SSD-RAID/build-edison-pi/tmp/work/pi-poky-linux-gnueabi/linux-yo=
-cto-3.0.18+git1+d386e09f316e03061c088d2b13a48605c20fb3a6_1+2bba211297d10047=
-637b8f49abd2c5415480ce4d-r3/linux/net/core/pktgen.c:682:2: error: can't fin=
-d a register in class 'GENERAL_REGS' while reloading 'asm'
-> | /media/SSD-RAID/build-edison-pi/tmp/work/pi-poky-linux-gnueabi/linux-yo=
-cto-3.0.18+git1+d386e09f316e03061c088d2b13a48605c20fb3a6_1+2bba211297d10047=
-637b8f49abd2c5415480ce4d-r3/linux/net/core/pktgen.c:682:2: error: can't fin=
-d a register in class 'GENERAL_REGS' while reloading 'asm'
-> | /media/SSD-RAID/build-edison-pi/tmp/work/pi-poky-linux-gnueabi/linux-yo=
-cto-3.0.18+git1+d386e09f316e03061c088d2b13a48605c20fb3a6_1+2bba211297d10047=
-637b8f49abd2c5415480ce4d-r3/linux/net/core/pktgen.c:682:2: error: 'asm' ope=
-rand has impossible constraints
-> | /media/SSD-RAID/build-edison-pi/tmp/work/pi-poky-linux-gnueabi/linux-yo=
-cto-3.0.18+git1+d386e09f316e03061c088d2b13a48605c20fb3a6_1+2bba211297d10047=
-637b8f49abd2c5415480ce4d-r3/linux/net/core/pktgen.c:682:2: error: 'asm' ope=
-rand has impossible constraints
-> | make[4]: *** [net/core/pktgen.o] Error 1
+<p>We are experiencing download mirror instability that began with a DDOS o=
+n Friday. Since then the network configuration attached to the mirror serve=
+r has been in flux. This caused several outages. Fetcher failures during th=
+e last 36 hours are probably caused by these issues.</p>
 
-interesting. This is gcc puking with some insane inline assembly. Can
-you post preprocessed pktgen.c and cmdline arguments used to compile
-it ?
-and is it using gcc 4.7 or 4.6 ?
+<p>I am in the process of building a new download server which will help wi=
+th stability. I will post to the list when the build is complete.</p>
+<p>Michael Halstead<br>
+Yocto Project / Sys Admin</p>
 
+--14dae9340f2d74c7ec04c00ab472--
