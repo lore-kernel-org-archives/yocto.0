@@ -1,50 +1,40 @@
-Return-Path: <halstead@happypunch.com>
-Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
-	[209.85.160.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 926ECE013BB
-	for <yocto@yoctoproject.org>; Tue, 15 May 2012 04:08:45 -0700 (PDT)
-Received: by pbbrq8 with SMTP id rq8so9908676pbb.35
-	for <yocto@yoctoproject.org>; Tue, 15 May 2012 04:08:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=happypunch.com; s=google;
-	h=sender:message-id:date:from:user-agent:mime-version:to:subject
-	:references:in-reply-to:x-enigmail-version:content-type;
-	bh=oe5PBNlaO5lgvUiPOQ+QiDNq/XftbUHvffYb+2V9/rQ=;
-	b=PBZVeG02oLV5v1KBCWeXxRa/6RicMeZrFbWw5hyn2TMV10S15TK5RvRGsUcnOPO8Vg
-	xwO3e/6DtctvkTe4fmropwyf7Z5xDwJUmr2eiBGDVHyNM/uqQg0IU1e08troQpLytIQb
-	P37rdJ40ut9Dpk44nyf57AKE/E1R3LsQOBZ30=
+Return-Path: <koen@beagleboard.org>
+Received: from mail-we0-f176.google.com (mail-we0-f176.google.com
+	[74.125.82.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E18BDE013BB
+	for <yocto@yoctoproject.org>; Tue, 15 May 2012 03:24:09 -0700 (PDT)
+Received: by weyr3 with SMTP id r3so3255014wey.35
+	for <yocto@yoctoproject.org>; Tue, 15 May 2012 03:24:08 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=google.com; s=20120113;
-	h=sender:message-id:date:from:user-agent:mime-version:to:subject
-	:references:in-reply-to:x-enigmail-version:content-type
+	h=content-type:mime-version:subject:from:date
+	:content-transfer-encoding:message-id:references:to:x-mailer
 	:x-gm-message-state;
-	bh=oe5PBNlaO5lgvUiPOQ+QiDNq/XftbUHvffYb+2V9/rQ=;
-	b=MqWWmAt/vxAhVAK2Tttgai+KbFxLms5aGhQCpMWdg0pAEgjPIB2wFn2zB/9mBMpmD5
-	U2VK3kjFLCPJX+m6l9ZW6C5pnxNC4YBS2lC+r0WWrqaI4X8xzrOIT4nEvLDvdFyJNrwk
-	Rt1uS72xVJ1xvtm+7PErLkiCRhG9n4GMqHuvgfq14RwPgsiBihyJVtHCk1uue746U0pO
-	qEWy564puQN8VN3m1tGjh1WM2wi9qjJ62+QMbWfWierVE9WHa5PeNPYiPk4+F5Vxnltt
-	PhlCpJlV7IU4ntDLcKymXrQkO57sBU6CpjZ775XijNPYbHiLfT2XepOG9z5pKDGtHEi2
-	fdkg==
-Received: by 10.68.228.97 with SMTP id sh1mr4245246pbc.113.1337080125297;
-	Tue, 15 May 2012 04:08:45 -0700 (PDT)
-Received: from [192.168.1.70] (static-50-43-40-17.bvtn.or.frontiernet.net.
-	[50.43.40.17])
-	by mx.google.com with ESMTPS id tx3sm1568567pbc.2.2012.05.15.04.08.41
-	(version=SSLv3 cipher=OTHER); Tue, 15 May 2012 04:08:42 -0700 (PDT)
-Sender: Michael Halstead <halstead@happypunch.com>
-Message-ID: <4FB23937.7020102@yoctoproject.org>
-Date: Tue, 15 May 2012 04:08:39 -0700
-From: Michael Halstead <michael@yoctoproject.org>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:12.0) Gecko/20120430 Thunderbird/12.0.1
-MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <CA+f-kVKVWsG7A4N2Sabgb-J81PrDH+2tNaormqNGfgEkTfnNxw@mail.gmail.com>
-	<CA+f-kVJxDQDddjSEb3eR_-ZQuDx_FCq+BPgRZUU61rfCPJchBA@mail.gmail.com>
-In-Reply-To: <CA+f-kVJxDQDddjSEb3eR_-ZQuDx_FCq+BPgRZUU61rfCPJchBA@mail.gmail.com>
-X-Enigmail-Version: 1.5pre
-X-Gm-Message-State: ALoCoQk5syItIeXsnlZ6AqyVroSVNs4ng7WjubZ/MtNORAKZEME5rO83I0qdLRPQDrKLWUHMZKJa
-Subject: Re: Download mirror instability
+	bh=McnA6FRLYTJxDE6HuiuVwhFoEakM4btcCAb/yDQQ++o=;
+	b=hKvJ0ezdjmPhuIewcsoSSQH853ZpMchGmVJC9ZkKWaMDYaafaeOWtaji4TR7ZaGqvC
+	0VsgO1rauzLoaxgvti010qm8DmJB8EcbFuCGOCGi8sIrh3KMlQ5qocYXKRIHfZQzOjU/
+	zyT0Go7iafpqUh/SUiXmjYJ5vk7PcX1Rqcsc+DdJxwntWW8aT5JLJ3/B8IO2CHw5xj+m
+	45M3mDJoT/rEpGt4BqVdjSm+KoaaUxVhfIlV4b7lGFsXybWFxp0WqvifwqkjQ7ECzMjC
+	MEJasYCE45h40pE9IYTUsgadYZRvecwr/5IMvZUah1nNX2MA7TL68mPbEkrd6PDhKuek
+	jsrQ==
+Received: by 10.180.107.100 with SMTP id hb4mr15456653wib.22.1337077448431;
+	Tue, 15 May 2012 03:24:08 -0700 (PDT)
+Received: from [172.20.1.36] (ip545070eb.adsl-surfen.hetnet.nl.
+	[84.80.112.235])
+	by mx.google.com with ESMTPS id b3sm41495335wib.4.2012.05.15.03.24.07
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Tue, 15 May 2012 03:24:07 -0700 (PDT)
+Mime-Version: 1.0 (Apple Message framework v1278)
+From: Koen Kooi <koen@beagleboard.org>
+Date: Tue, 15 May 2012 12:24:05 +0200
+Message-Id: <68CABEC6-8244-414C-94FB-BBBA477DA9AC@beagleboard.org>
+References: <27B37797-BB4C-44C7-90D9-4E3D2192F3F7@dominion.thruhere.net>
+To: Discussion of the angstrom distribution development
+	<angstrom-distro-devel@linuxtogo.org>
+X-Mailer: Apple Mail (2.1278)
+X-Gm-Message-State: ALoCoQnecw2JSa4E1wKItRSVh4MU3NChOIcU8sRSP2n7H7jpxL0/OX24PIjGEXP7EtQr1Re7uXXs
+X-Mailman-Approved-At: Tue, 15 May 2012 04:13:20 -0700
+Subject: Narcissus update <- IMPORTANT
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -56,121 +46,59 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 15 May 2012 11:08:45 -0000
-X-Groupsio-MsgNum: 6675
-Content-Type: multipart/signed; protocol="application/pkcs7-signature";
-	micalg=sha1; boundary="------------ms050809020502040507050902"
-
---------------ms050809020502040507050902
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Tue, 15 May 2012 10:24:10 -0000
+Content-Type: text/plain; charset=us-ascii
 Content-Transfer-Encoding: quoted-printable
 
-The new download mirror is now active. Fetching from
-downloads.yoctoproject.org should be reliable once again.
+Apologies for the massive cross-post, but most users don't read the =
+development lists :) To avoid 'reply all' mistakes the addressed lists =
+are in BCC. In case you are wondering which lists: the beagleboard list, =
+the meta-ti list and the yocto project list.
 
-Michael Halstead
-Yocto Project / Sys Admin
+A minor update to the below: the test server will be down for a short =
+time wednesday to upgrade the RAM.
+
+Begin doorgestuurd bericht:
+
+> Van: Koen Kooi <koen@dominion.thruhere.net>
+> Onderwerp: Narcissus update <- IMPORTANT
+> Datum: 3 mei 2012 11:49:56 GMT+02:00
+> Aan: Discussion of the angstrom distribution development =
+<angstrom-distro-devel@linuxtogo.org>
+>=20
+> Hi,
+>=20
+> With the change to an oe-core based system a lot of things changed and =
+angstrom itself has gone through some changes as well. One of those =
+changes is that some packages were renamed or deprecated.=20
+> To keep narcissus working the decision was made to remove all machines =
+and trim the package lists.
+>=20
+> The new machine list matches the autobuilder: qemuarm, qemumips, =
+qemuppc, qemux86, beagleboard and beagleboard. That matches the machines =
+supported in OE-core and the ones I get paid to support for my day job.
+>=20
+> The branch: =
+https://github.com/Angstrom-distribution/narcissus/commits/core-update
+> Test setup: http://dominion.thruhere.net/koen/narcissus/
+>=20
+> The process to add machines is fairly simple:
+>=20
+> 1) Find the layer for the machine in =
+http://www.openembedded.org/wiki/LayerIndex
+> 2) Check the setup scripts to see if it's already configured
+> 3) Send patch for setupscripts
+> 4) Send patch for narcissus
+>=20
+> The process for packages is pretty much the same. The will need review =
+since not every layer plays nice with others. I'm hoping that this =
+process will be easy enough for people to follow while preventing =
+non-working combinations to get added.
+>=20
+> As always, feedback appreciated.
+>=20
+> regards,
+>=20
+> Koen
 
 
-On 05/14/2012 08:21 PM, Michael Halstead wrote:
->
-> We are experiencing download mirror instability that began with a DDOS
-> on Friday. Since then the network configuration attached to the mirror
-> server has been in flux. This caused several outages. Fetcher failures
-> during the last 36 hours are probably caused by these issues.
->
-> I am in the process of building a new download server which will help
-> with stability. I will post to the list when the build is complete.
->
-> Michael Halstead
-> Yocto Project / Sys Admin
->
-
-
---------------ms050809020502040507050902
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
-
-MIAGCSqGSIb3DQEHAqCAMIACAQExCzAJBgUrDgMCGgUAMIAGCSqGSIb3DQEHAQAAoIINYjCCBjQw
-ggQcoAMCAQICAR4wDQYJKoZIhvcNAQEFBQAwfTELMAkGA1UEBhMCSUwxFjAUBgNVBAoTDVN0YXJ0
-Q29tIEx0ZC4xKzApBgNVBAsTIlNlY3VyZSBEaWdpdGFsIENlcnRpZmljYXRlIFNpZ25pbmcxKTAn
-BgNVBAMTIFN0YXJ0Q29tIENlcnRpZmljYXRpb24gQXV0aG9yaXR5MB4XDTA3MTAyNDIxMDE1NVoX
-DTE3MTAyNDIxMDE1NVowgYwxCzAJBgNVBAYTAklMMRYwFAYDVQQKEw1TdGFydENvbSBMdGQuMSsw
-KQYDVQQLEyJTZWN1cmUgRGlnaXRhbCBDZXJ0aWZpY2F0ZSBTaWduaW5nMTgwNgYDVQQDEy9TdGFy
-dENvbSBDbGFzcyAxIFByaW1hcnkgSW50ZXJtZWRpYXRlIENsaWVudCBDQTCCASIwDQYJKoZIhvcN
-AQEBBQADggEPADCCAQoCggEBAMcJg8zOLdgasSmkLhOrlr6KMoOMpohBllVHrdRvEg/q6r8jR+EK
-75xCGhR8ToREoqe7zM9/UnC6TS2y9UKTpT1v7RSMzR0t6ndl0TWBuUr/UXBhPk+Kmy7bI4yW4urC
-+y7P3/1/X7U8ocb8VpH/Clt+4iq7nirMcNh6qJR+xjOhV+VHzQMALuGYn5KZmc1NbJQYclsGkDxD
-z2UbFqE2+6vIZoL+jb9x4Pa5gNf1TwSDkOkikZB1xtB4ZqtXThaABSONdfmv/Z1pua3FYxnCFmdr
-/+N2JLKutIxMYqQOJebr/f/h5t95m4JgrM3Y/w7YX9d7YAL9jvN4SydHsU6n65cCAwEAAaOCAa0w
-ggGpMA8GA1UdEwEB/wQFMAMBAf8wDgYDVR0PAQH/BAQDAgEGMB0GA1UdDgQWBBRTcu2SnODaywFc
-fH6WNU7y1LhRgjAfBgNVHSMEGDAWgBROC+8apEBbpRdphzDKNGhD0EGu8jBmBggrBgEFBQcBAQRa
-MFgwJwYIKwYBBQUHMAGGG2h0dHA6Ly9vY3NwLnN0YXJ0c3NsLmNvbS9jYTAtBggrBgEFBQcwAoYh
-aHR0cDovL3d3dy5zdGFydHNzbC5jb20vc2ZzY2EuY3J0MFsGA1UdHwRUMFIwJ6AloCOGIWh0dHA6
-Ly93d3cuc3RhcnRzc2wuY29tL3Nmc2NhLmNybDAnoCWgI4YhaHR0cDovL2NybC5zdGFydHNzbC5j
-b20vc2ZzY2EuY3JsMIGABgNVHSAEeTB3MHUGCysGAQQBgbU3AQIBMGYwLgYIKwYBBQUHAgEWImh0
-dHA6Ly93d3cuc3RhcnRzc2wuY29tL3BvbGljeS5wZGYwNAYIKwYBBQUHAgEWKGh0dHA6Ly93d3cu
-c3RhcnRzc2wuY29tL2ludGVybWVkaWF0ZS5wZGYwDQYJKoZIhvcNAQEFBQADggIBAAqDCH14qywG
-XLhjjF6uHLkjd02hcdh9hrw+VUsv+q1eeQWB21jWj3kJ96AUlPCoEGZ/ynJNScWy6QMVQjbbMXlt
-UfO4n4bGGdKo3awPWp61tjAFgraLJgDk+DsSvUD6EowjMTNx25GQgyYJ5RPIzKKR9tQW8gGK+2+R
-HxkUCTbYFnL6kl8Ch507rUdPPipJ9CgJFws3kDS3gOS5WFMxcjO5DwKfKSETEPrHh7p5shuuNktv
-sv6hxHTLhiMKX893gxdT3XLS9OKmCv87vkINQcNEcIIoFWbP9HORz9v3vQwR4e3ksLc2JZOAFK+s
-sS5XMEoznzpihEP0PLc4dCBYjbvSD7kxgDwZ+Aj8Q9PkbvE9sIPP7ON0fz095HdThKjiVJe6vofq
-+n6b1NBc8XdrQvBmunwxD5nvtTW4vtN6VY7mUCmxsCieuoBJ9OlqmsVWQvifIYf40dJPZkk9YgGT
-zWLpXDSfLSplbY2LL9C9U0ptvjcDjefLTvqSFc7tw1sEhF0n/qpA2r0GpvkLRDmcSwVyPvmjFBGq
-Up/pNy8ZuPGQmHwFi2/14+xeSUDG2bwnsYJQG2EdJCB6luQ57GEnTA/yKZSTKI8dDQa8Sd3zfXb1
-9mOgSF0bBdXbuKhEpuP9wirslFe6fQ1t5j5R0xi72MZ8ikMu1RQZKCyDbMwazlHiMIIHJjCCBg6g
-AwIBAgIDA37RMA0GCSqGSIb3DQEBBQUAMIGMMQswCQYDVQQGEwJJTDEWMBQGA1UEChMNU3RhcnRD
-b20gTHRkLjErMCkGA1UECxMiU2VjdXJlIERpZ2l0YWwgQ2VydGlmaWNhdGUgU2lnbmluZzE4MDYG
-A1UEAxMvU3RhcnRDb20gQ2xhc3MgMSBQcmltYXJ5IEludGVybWVkaWF0ZSBDbGllbnQgQ0EwHhcN
-MTIwMTA2MTMyOTE3WhcNMTMwMTA2MDcxMjUwWjBnMRkwFwYDVQQNExBlTGJQOTQ4c1JVN2dZQXYy
-MSEwHwYDVQQDDBhtaWNoYWVsQHlvY3RvcHJvamVjdC5vcmcxJzAlBgkqhkiG9w0BCQEWGG1pY2hh
-ZWxAeW9jdG9wcm9qZWN0Lm9yZzCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBANhLuIfm
-OceuHa0beGkrktR2YWPzNci0abL4tkli9NVHN7gPjrZHErqn81LXKr+lHSPe5K9H2ziM9Xy8dWpV
-jcNiTvkKj2RgoCZn48TVpCA93UR/abpbUcQixLrz0aKrwbL6cgHNBwaWwH4YnBtdDpGCoBsIN1ex
-hSgNX27KyhApSzrMdIgHvO5UchBiARXh2Ll+Wf7G6ph+TFq2BCGu7MI9pDn6FZwHri78KOKM7aP8
-g7oUmuwauWZ855YV1rE+nE+/yeBuCdgIG2l2v2YYN+nrhhFSymolp8NgPoSztKrx7sRbOEkuC4hq
-fWch+MEWos24nHnsnCw9cwMO4m+kN7sCAwEAAaOCA7MwggOvMAkGA1UdEwQCMAAwCwYDVR0PBAQD
-AgSwMB0GA1UdJQQWMBQGCCsGAQUFBwMCBggrBgEFBQcDBDAdBgNVHQ4EFgQUrNEl25qGFro/pXDh
-zeZZX1M1JGMwHwYDVR0jBBgwFoAUU3Ltkpzg2ssBXHx+ljVO8tS4UYIwIwYDVR0RBBwwGoEYbWlj
-aGFlbEB5b2N0b3Byb2plY3Qub3JnMIICIQYDVR0gBIICGDCCAhQwggIQBgsrBgEEAYG1NwECAjCC
-Af8wLgYIKwYBBQUHAgEWImh0dHA6Ly93d3cuc3RhcnRzc2wuY29tL3BvbGljeS5wZGYwNAYIKwYB
-BQUHAgEWKGh0dHA6Ly93d3cuc3RhcnRzc2wuY29tL2ludGVybWVkaWF0ZS5wZGYwgfcGCCsGAQUF
-BwICMIHqMCcWIFN0YXJ0Q29tIENlcnRpZmljYXRpb24gQXV0aG9yaXR5MAMCAQEagb5UaGlzIGNl
-cnRpZmljYXRlIHdhcyBpc3N1ZWQgYWNjb3JkaW5nIHRvIHRoZSBDbGFzcyAxIFZhbGlkYXRpb24g
-cmVxdWlyZW1lbnRzIG9mIHRoZSBTdGFydENvbSBDQSBwb2xpY3ksIHJlbGlhbmNlIG9ubHkgZm9y
-IHRoZSBpbnRlbmRlZCBwdXJwb3NlIGluIGNvbXBsaWFuY2Ugb2YgdGhlIHJlbHlpbmcgcGFydHkg
-b2JsaWdhdGlvbnMuMIGcBggrBgEFBQcCAjCBjzAnFiBTdGFydENvbSBDZXJ0aWZpY2F0aW9uIEF1
-dGhvcml0eTADAgECGmRMaWFiaWxpdHkgYW5kIHdhcnJhbnRpZXMgYXJlIGxpbWl0ZWQhIFNlZSBz
-ZWN0aW9uICJMZWdhbCBhbmQgTGltaXRhdGlvbnMiIG9mIHRoZSBTdGFydENvbSBDQSBwb2xpY3ku
-MDYGA1UdHwQvMC0wK6ApoCeGJWh0dHA6Ly9jcmwuc3RhcnRzc2wuY29tL2NydHUxLWNybC5jcmww
-gY4GCCsGAQUFBwEBBIGBMH8wOQYIKwYBBQUHMAGGLWh0dHA6Ly9vY3NwLnN0YXJ0c3NsLmNvbS9z
-dWIvY2xhc3MxL2NsaWVudC9jYTBCBggrBgEFBQcwAoY2aHR0cDovL2FpYS5zdGFydHNzbC5jb20v
-Y2VydHMvc3ViLmNsYXNzMS5jbGllbnQuY2EuY3J0MCMGA1UdEgQcMBqGGGh0dHA6Ly93d3cuc3Rh
-cnRzc2wuY29tLzANBgkqhkiG9w0BAQUFAAOCAQEAUjNTeM730SEKLMbJ4THlGkx3KFkaYxIKf1C1
-PvZz9d6fq6VfFL1xbqSsz2og/hiCccC/GYFTKAK3W23LHjiETtNCK6pDzFTzeFxKdYOIoCcCjjxE
-IF0D16A1gXBp6G9tT6yUiy916wF8Ic/Etxti4ksydRWDet1LsXXNKt8gdolgPVImHm2VRX/8M9KG
-HU2/1oXXgjV2yC77sPVAaVoIBdiRdMOAS7gRt0pX+xNY+R8iItIfQO5Nf6mlRMgwXy/e+pYvSil+
-T1jdMQD6k07jZ1kpPAHujuCA5p6EWs+hpDXh7fq+lmfM9zZoTWtEDIJMrLvYy2IMD3NE0clxH+GY
-iTGCA9AwggPMAgEBMIGUMIGMMQswCQYDVQQGEwJJTDEWMBQGA1UEChMNU3RhcnRDb20gTHRkLjEr
-MCkGA1UECxMiU2VjdXJlIERpZ2l0YWwgQ2VydGlmaWNhdGUgU2lnbmluZzE4MDYGA1UEAxMvU3Rh
-cnRDb20gQ2xhc3MgMSBQcmltYXJ5IEludGVybWVkaWF0ZSBDbGllbnQgQ0ECAwN+0TAJBgUrDgMC
-GgUAoIICEDAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0xMjA1MTUx
-MTA4MzlaMCMGCSqGSIb3DQEJBDEWBBQHuhszr4GXmj2zvhcZ1SDdABjJcDBfBgkqhkiG9w0BCQ8x
-UjBQMAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzAOBggqhkiG9w0DAgICAIAwDQYIKoZIhvcNAwIC
-AUAwBwYFKw4DAgcwDQYIKoZIhvcNAwICASgwgaUGCSsGAQQBgjcQBDGBlzCBlDCBjDELMAkGA1UE
-BhMCSUwxFjAUBgNVBAoTDVN0YXJ0Q29tIEx0ZC4xKzApBgNVBAsTIlNlY3VyZSBEaWdpdGFsIENl
-cnRpZmljYXRlIFNpZ25pbmcxODA2BgNVBAMTL1N0YXJ0Q29tIENsYXNzIDEgUHJpbWFyeSBJbnRl
-cm1lZGlhdGUgQ2xpZW50IENBAgMDftEwgacGCyqGSIb3DQEJEAILMYGXoIGUMIGMMQswCQYDVQQG
-EwJJTDEWMBQGA1UEChMNU3RhcnRDb20gTHRkLjErMCkGA1UECxMiU2VjdXJlIERpZ2l0YWwgQ2Vy
-dGlmaWNhdGUgU2lnbmluZzE4MDYGA1UEAxMvU3RhcnRDb20gQ2xhc3MgMSBQcmltYXJ5IEludGVy
-bWVkaWF0ZSBDbGllbnQgQ0ECAwN+0TANBgkqhkiG9w0BAQEFAASCAQB5Nx8mvt5HlgCHSTQH1rr0
-srnt1aZiEdvyPRA7joDfkNfABbf/8bz1Lgq6453ZxXrbvdC6c88uMx89P/lpZFjIei16/bxSTZ9i
-7sM/bOkMmu6uiICiocm6AIpZ7jjEia2cqCg4VNtIdO+ghkcx3wcfdIHM5QyMGKpEVN559gbu6iI8
-XRIz4oSUAuaEovwGOQWcZiEDtNRVzlAZAWH1XYuZF3LDdyhis6p39tl4VFoqPnGyWH4SSzICTVgf
-dP3o8e6ZbWDHWSFVJexX6YJ6F+3l2QzDYW5e/xm6RsL24lu70jCcLVnuh8fE8eSccVo+QTYIS7hg
-miySwWkJ/ps8CozNAAAAAAAA
-
---------------ms050809020502040507050902--
