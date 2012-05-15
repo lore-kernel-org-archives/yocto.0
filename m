@@ -1,33 +1,35 @@
-Return-Path: <rstreif@linuxfoundation.org>
-Received: from mail-bk0-f48.google.com (mail-bk0-f48.google.com
-	[209.85.214.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 68F3FE01206
-	for <yocto@yoctoproject.org>; Tue, 15 May 2012 15:38:20 -0700 (PDT)
-Received: by bkcjf20 with SMTP id jf20so126343bkc.35
-	for <yocto@yoctoproject.org>; Tue, 15 May 2012 15:38:19 -0700 (PDT)
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 72245E01206
+	for <yocto@yoctoproject.org>; Tue, 15 May 2012 15:53:42 -0700 (PDT)
+Received: from mail-lpp01m010-f52.google.com ([209.85.215.52])
+	by mga09.intel.com with ESMTP/TLS/RC4-SHA; 15 May 2012 15:53:41 -0700
+Received: by lahj13 with SMTP id j13so69975lah.25
+	for <yocto@yoctoproject.org>; Tue, 15 May 2012 15:53:39 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=google.com; s=20120113;
-	h=mime-version:sender:date:x-google-sender-auth:message-id:subject
-	:from:to:content-type:x-gm-message-state;
-	bh=Bot4LY01dsXzGbcdxyCPut900mhEGFInsf+qUpfa1Og=;
-	b=oICjtgv7sPzeKp9zN35rpfHEkRcWfxsbFOXbHqmGhddoYWPQyCC4UMPIUKs1fT+gj7
-	nZ9uD64HLRMYr8CgWRQTS/cpE5Vpd00Ad2sbn6tS27f2xx/CurUcJsdb1SHlaXk47K//
-	iH2HInGoXCFhL5DWAXQiM4i+huicyH4YA8B9T6pknhV2sCVPq4WHoIsY3oO9uvC5MBgh
-	U8JTNQuJeKJCgjtwYM9+Cg7B0LLNd0yrxtLPvDAlDhABa5X98FYepnjTHoiJ7p4DLcrw
-	AOvQDRpOLvs3++fqcdo/kbaqmhM1rGXjF6LJLWdfx5XfiZlm6JVYSW8xyIjRlWtyla6t
-	gfYA==
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type:x-gm-message-state;
+	bh=VqjFeYrFE4IbulX/QP5DfM9Hj+IPiyja3By9BqE4tbk=;
+	b=nob+hRxs4AX4H5+3NURmYnvpQ9vdOgKN1w2mbO3oA+LUh0VwSIfwyuYzek5I/UyV+h
+	dpfno76YzzPAIHRO+bRINJ4VgR5pT7z17Okxz9mMY1YwGTNXuReIfrgbFozibXie5rlR
+	r+bpeYRFV/GQXlAWUpZCY3aOW586FSjqf4ZVTXpcTa5GHz17atEprEj9VbNTBgzDnLF3
+	0Vcbc+0/P67+pM6W09L+itisoSvImKbc4FDS0H4mpYOuy20FayxsFy7E2wL8tvgoBeAo
+	ioJ47JVj0cvaX4LF2MEvgVTP3yj6qqOkJcX6yPgHEmHRPaSQiQ5k80aXlcj49whLb+TK
+	lLnw==
 MIME-Version: 1.0
-Received: by 10.204.133.220 with SMTP id g28mr277965bkt.54.1337121499001; Tue,
-	15 May 2012 15:38:19 -0700 (PDT)
-Sender: rstreif@linuxfoundation.org
-Received: by 10.205.65.134 with HTTP; Tue, 15 May 2012 15:38:18 -0700 (PDT)
-Date: Tue, 15 May 2012 15:38:18 -0700
-X-Google-Sender-Auth: y35GoOpU6Q0FmN_OujPqZ8DzPy0
-Message-ID: <CA+gsK-ph__F9gNUYSnb_pN2xjLbv8zwB6Sk+J5qiKD43fZx7-w@mail.gmail.com>
-From: Rudolf Streif <rudolf.streif@linux.com>
-To: yocto@yoctoproject.org
-X-Gm-Message-State: ALoCoQknrRtZoXMgDPGElilcCQ+Y+3BaGM5aU+l/OTcxZLTpjuwyDbQuN6P3lsJhNUM1Nm1ZzFEv
-Subject: How is the list in package.manifest derived?
+Received: by 10.152.132.4 with SMTP id oq4mr648617lab.40.1337122419701; Tue,
+	15 May 2012 15:53:39 -0700 (PDT)
+Received: by 10.112.107.137 with HTTP; Tue, 15 May 2012 15:53:39 -0700 (PDT)
+In-Reply-To: <CA+gsK-ph__F9gNUYSnb_pN2xjLbv8zwB6Sk+J5qiKD43fZx7-w@mail.gmail.com>
+References: <CA+gsK-ph__F9gNUYSnb_pN2xjLbv8zwB6Sk+J5qiKD43fZx7-w@mail.gmail.com>
+Date: Tue, 15 May 2012 15:53:39 -0700
+Message-ID: <CAPhnLPANF6KeOtgKa_L2PjV+hCg2Kb8_CFR9tPLzOA1kNNdUrQ@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: Rudolf Streif <rudolf.streif@linux.com>
+X-Gm-Message-State: ALoCoQkGNU+1laep1XtziVLboXyXl9cXKlfyAdVtWCL4XhTP5l8i6jAwZp+08NHSFHLQ0/nd9xEv
+Cc: yocto@yoctoproject.org
+Subject: Re: How is the list in package.manifest derived?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,77 +41,76 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 15 May 2012 22:38:20 -0000
-Content-Type: multipart/alternative; boundary=00151743f7c2f8328704c01adb21
-
---00151743f7c2f8328704c01adb21
+X-List-Received-Date: Tue, 15 May 2012 22:53:42 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 
-I used poky-denzil-7.0 to build a core-image-minimal for the BeagleBoard.
-Now I am looking for a list of everything that went into my image together
-with the license information. The logical thing seems to be
-${TMPDIR}/deploy/licenses/core-image-minimal-beagleboard-<timestamp>/package.manifest:
+On Tue, May 15, 2012 at 3:38 PM, Rudolf Streif <rudolf.streif@linux.com> wrote:
+> I used poky-denzil-7.0 to build a core-image-minimal for the BeagleBoard.
+> Now I am looking for a list of everything that went into my image together
+> with the license information. The logical thing seems to be
+> ${TMPDIR}/deploy/licenses/core-image-minimal-beagleboard-<timestamp>/package.manifest:
+>
+> base-files
+> base-passwd
+> bash
+> busybox
+> busybox-syslog
+> busybox-udhcpc
+> initscripts
+> libc6
+> libgcc1
+> libtinfo5
+> libusb-1.0-0
+> libusb-compat
+> modutils-initscripts
+> ncurses-terminfo-base
+> netbase
+> pciutils-ids
+> sysvinit
+> sysvinit-inittab
+> sysvinit-pidof
+> task-core-boot
+> tinylogin
+> udev
+> udev-extraconf
+> udev-utils
+> update-alternatives-cworth
+> update-rc.d
+> usbutils-ids
+>
+> However, I don't think this is everything that went into the image. I would
+> expect the kernel to be in the list as well as module-init-tools and u-boot.
+> Apparently package.manifest and the corresponding license.manifest for an
+> image target do not contain all the licensing information that a device
+> builder would need to give to the end customer. How is that list created?
 
-base-files
-base-passwd
-bash
-busybox
-busybox-syslog
-busybox-udhcpc
-initscripts
-libc6
-libgcc1
-libtinfo5
-libusb-1.0-0
-libusb-compat
-modutils-initscripts
-ncurses-terminfo-base
-netbase
-pciutils-ids
-sysvinit
-sysvinit-inittab
-sysvinit-pidof
-task-core-boot
-tinylogin
-udev
-udev-extraconf
-udev-utils
-update-alternatives-cworth
-update-rc.d
-usbutils-ids
+This list is created via license_create_manifest within
+license.bbclass. I'm currently in the process of refactoring it quite
+a bit so I'll look out for this issue.
 
-However, I don't think this is everything that went into the image. I would
-expect the kernel to be in the list as well as module-init-tools and
-u-boot. Apparently package.manifest and the corresponding license.manifest
-for an image target do not contain all the licensing information that a
-device builder would need to give to the end customer. How is that list
-created?
+It derives the list from list_installed_packages. Which means that
+there may be an issue with that function. The way I'm planning on
+doing it does not use list_installed_packages, however I'm going to
+open a bug on it to verify that it is in fact returning an incomplete
+list.
 
-Rudi
+What would be helpful here is knowing what package type you're using.
 
---00151743f7c2f8328704c01adb21
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+-b
 
-I used poky-denzil-7.0 to build a core-image-minimal for the BeagleBoard. N=
-ow I am looking for a list of everything that went into my image together w=
-ith the license information. The logical thing seems to be ${TMPDIR}/deploy=
-/licenses/core-image-minimal-beagleboard-&lt;timestamp&gt;/package.manifest=
-:<div>
-<br></div><div><div>base-files</div><div>base-passwd</div><div>bash</div><d=
-iv>busybox</div><div>busybox-syslog</div><div>busybox-udhcpc</div><div>init=
-scripts</div><div>libc6</div><div>libgcc1</div><div>libtinfo5</div><div>
-libusb-1.0-0</div><div>libusb-compat</div><div>modutils-initscripts</div><d=
-iv>ncurses-terminfo-base</div><div>netbase</div><div>pciutils-ids</div><div=
->sysvinit</div><div>sysvinit-inittab</div><div>sysvinit-pidof</div><div>
-task-core-boot</div><div>tinylogin</div><div>udev</div><div>udev-extraconf<=
-/div><div>udev-utils</div><div>update-alternatives-cworth</div><div>update-=
-rc.d</div><div>usbutils-ids</div></div><div><br></div><div>However, I don&#=
-39;t think this is everything that went into the image. I would expect the =
-kernel to be in the list as well as module-init-tools and u-boot. Apparentl=
-y package.manifest and the corresponding license.manifest for an image targ=
-et do not contain all the licensing information that a device builder would=
- need to give to the end customer. How is that list created?</div>
-<div><br></div><div>Rudi</div>
+>
+> Rudi
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
---00151743f7c2f8328704c01adb21--
+
+
+-- 
+Elizabeth Flanagan
+Yocto Project
+Build and Release
+
