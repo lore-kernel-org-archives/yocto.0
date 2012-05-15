@@ -1,40 +1,44 @@
-Return-Path: <koen@beagleboard.org>
-Received: from mail-we0-f176.google.com (mail-we0-f176.google.com
-	[74.125.82.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E18BDE013BB
-	for <yocto@yoctoproject.org>; Tue, 15 May 2012 03:24:09 -0700 (PDT)
-Received: by weyr3 with SMTP id r3so3255014wey.35
-	for <yocto@yoctoproject.org>; Tue, 15 May 2012 03:24:08 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=content-type:mime-version:subject:from:date
-	:content-transfer-encoding:message-id:references:to:x-mailer
-	:x-gm-message-state;
-	bh=McnA6FRLYTJxDE6HuiuVwhFoEakM4btcCAb/yDQQ++o=;
-	b=hKvJ0ezdjmPhuIewcsoSSQH853ZpMchGmVJC9ZkKWaMDYaafaeOWtaji4TR7ZaGqvC
-	0VsgO1rauzLoaxgvti010qm8DmJB8EcbFuCGOCGi8sIrh3KMlQ5qocYXKRIHfZQzOjU/
-	zyT0Go7iafpqUh/SUiXmjYJ5vk7PcX1Rqcsc+DdJxwntWW8aT5JLJ3/B8IO2CHw5xj+m
-	45M3mDJoT/rEpGt4BqVdjSm+KoaaUxVhfIlV4b7lGFsXybWFxp0WqvifwqkjQ7ECzMjC
-	MEJasYCE45h40pE9IYTUsgadYZRvecwr/5IMvZUah1nNX2MA7TL68mPbEkrd6PDhKuek
-	jsrQ==
-Received: by 10.180.107.100 with SMTP id hb4mr15456653wib.22.1337077448431;
-	Tue, 15 May 2012 03:24:08 -0700 (PDT)
-Received: from [172.20.1.36] (ip545070eb.adsl-surfen.hetnet.nl.
-	[84.80.112.235])
-	by mx.google.com with ESMTPS id b3sm41495335wib.4.2012.05.15.03.24.07
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Tue, 15 May 2012 03:24:07 -0700 (PDT)
-Mime-Version: 1.0 (Apple Message framework v1278)
-From: Koen Kooi <koen@beagleboard.org>
-Date: Tue, 15 May 2012 12:24:05 +0200
-Message-Id: <68CABEC6-8244-414C-94FB-BBBA477DA9AC@beagleboard.org>
-References: <27B37797-BB4C-44C7-90D9-4E3D2192F3F7@dominion.thruhere.net>
-To: Discussion of the angstrom distribution development
-	<angstrom-distro-devel@linuxtogo.org>
-X-Mailer: Apple Mail (2.1278)
-X-Gm-Message-State: ALoCoQnecw2JSa4E1wKItRSVh4MU3NChOIcU8sRSP2n7H7jpxL0/OX24PIjGEXP7EtQr1Re7uXXs
-X-Mailman-Approved-At: Tue, 15 May 2012 04:13:20 -0700
-Subject: Narcissus update <- IMPORTANT
+Return-Path: <John.Willis@Distant-earth.com>
+Received: from omta2.brinkster.com (omta2.brinkster.com [65.182.109.101])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 54AD0E006C7
+	for <yocto@yoctoproject.org>; Tue, 15 May 2012 07:51:27 -0700 (PDT)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by omta2.brinkster.com (Postfix) with ESMTP id CDDDB1C19F00;
+	Tue, 15 May 2012 07:51:25 -0700 (MST)
+X-DSPAM-Result: Spam
+X-DSPAM-Class: Spam
+X-DSPAM-Confidence: 0.52
+X-DSPAM-Probability: 0.9649
+X-DSPAM-Signature: N/A
+X-Virus-Scanned: amavisd-new at 
+Received: from omta2.brinkster.com ([127.0.0.1])
+	by localhost (omta2.brinkster.com [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id DbTdGw-2bLcK; Tue, 15 May 2012 07:51:25 -0700 (MST)
+Received: from mta5.brinkster.com (unknown [65.182.109.84])
+	by omta2.brinkster.com (Postfix) with ESMTPS id 8D4F31C19F03;
+	Tue, 15 May 2012 07:51:25 -0700 (MST)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by mta5.brinkster.com (Postfix) with ESMTP id B3718284644;
+	Tue, 15 May 2012 10:51:23 -0400 (EDT)
+X-Virus-Scanned: amavisd-new at mta5.brinkster.com
+Received: from mta5.brinkster.com ([127.0.0.1])
+	by localhost (mta5.brinkster.com [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id H875-1bsnUmC; Tue, 15 May 2012 10:51:22 -0400 (EDT)
+Received: from MareImbrium (cpc1-bath5-2-0-cust122.aztw.cable.virginmedia.com
+	[77.99.62.123]) (Authenticated sender: John.Willis@Distant-earth.com)
+	by mta5.brinkster.com (Postfix) with ESMTPA id D991F2C2A15;
+	Tue, 15 May 2012 10:51:21 -0400 (EDT)
+From: "John Willis" <John.Willis@Distant-earth.com>
+To: "'Tomas Frydrych'" <tf+lists.yocto@r-finger.com>, <yocto@yoctoproject.org>
+References: <EE688041-FB89-4D1A-AE38-8DFF617C244D@keylevel.com>
+	<4FB21EBC.1000106@r-finger.com>
+In-Reply-To: <4FB21EBC.1000106@r-finger.com>
+Date: Tue, 15 May 2012 15:51:20 +0100
+Message-ID: <025701cd32aa$31600d60$94202820$@Distant-earth.com>
+MIME-Version: 1.0
+X-Mailer: Microsoft Outlook 14.0
+thread-index: AQJnJZGXbdhFACSTLxopVN3R29NV+AJqHPLflYO0guA=
+Subject: Re: Raspberry Pi [was Re: Kernel modules fail to compile for ARM]
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,59 +50,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 15 May 2012 10:24:10 -0000
-Content-Type: text/plain; charset=us-ascii
+X-List-Received-Date: Tue, 15 May 2012 14:51:27 -0000
+Content-Type: text/plain;
+	charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+Content-Language: en-us
 
-Apologies for the massive cross-post, but most users don't read the =
-development lists :) To avoid 'reply all' mistakes the addressed lists =
-are in BCC. In case you are wondering which lists: the beagleboard list, =
-the meta-ti list and the yocto project list.
+Hi Tomas,
 
-A minor update to the below: the test server will be down for a short =
-time wednesday to upgrade the RAM.
+> On 14/05/12 19:52, Chris Tapp wrote:
+> > I'm trying to put a BSP together for an ARM system (Raspberry Pi,
+> ARM1176JZF-S CPU).
+>=20
+> I got the feeling that there might be multiple OE/RPI efforts going on =
+at the
+> same time unaware of each other, e.g., I noticed this meta-raspberrypi =
+layer
+> on github that seems to be well on the way,
+> https://github.com/djwillis/meta-raspberrypi ... perhaps getting =
+various
+> folk interested in this together would be beneficial.
 
-Begin doorgestuurd bericht:
+If anyone wants to pitch in with patches that would be great. There is =
+also a little more information on the layer from a post of mine a few =
+weeks back - http://blogs.distant-earth.com/wp/?p=3D377.
 
-> Van: Koen Kooi <koen@dominion.thruhere.net>
-> Onderwerp: Narcissus update <- IMPORTANT
-> Datum: 3 mei 2012 11:49:56 GMT+02:00
-> Aan: Discussion of the angstrom distribution development =
-<angstrom-distro-devel@linuxtogo.org>
->=20
-> Hi,
->=20
-> With the change to an oe-core based system a lot of things changed and =
-angstrom itself has gone through some changes as well. One of those =
-changes is that some packages were renamed or deprecated.=20
-> To keep narcissus working the decision was made to remove all machines =
-and trim the package lists.
->=20
-> The new machine list matches the autobuilder: qemuarm, qemumips, =
-qemuppc, qemux86, beagleboard and beagleboard. That matches the machines =
-supported in OE-core and the ones I get paid to support for my day job.
->=20
-> The branch: =
-https://github.com/Angstrom-distribution/narcissus/commits/core-update
-> Test setup: http://dominion.thruhere.net/koen/narcissus/
->=20
-> The process to add machines is fairly simple:
->=20
-> 1) Find the layer for the machine in =
-http://www.openembedded.org/wiki/LayerIndex
-> 2) Check the setup scripts to see if it's already configured
-> 3) Send patch for setupscripts
-> 4) Send patch for narcissus
->=20
-> The process for packages is pretty much the same. The will need review =
-since not every layer plays nice with others. I'm hoping that this =
-process will be easy enough for people to follow while preventing =
-non-working combinations to get added.
->=20
-> As always, feedback appreciated.
->=20
-> regards,
->=20
-> Koen
+I tend to build my layers using Angstrom as the distro (in fact it is =
+now referenced in the Angstrom setup scripts) or straight OE-core and no =
+distro so I can't claim this layer is well tested on Yocto but there are =
+very few, if any, reasons it will not work well. Pull requests are great =
+;).
+
+There are a few things missing at the moment, mainly the binary GPU libs =
+but as the proprietary licence has now been sorted for the blobs I'll =
+push the recipe in the next few days.=20
+
+Other than that it works pretty well on both variants of the hardware =
+but there is always room for improvement.
+
+Regards,
+
+John
+
 
 
