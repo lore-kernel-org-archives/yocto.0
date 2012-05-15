@@ -1,37 +1,32 @@
-Return-Path: <jeffrey.osier-mixon@intel.com>
-Received: from azsmga101.ch.intel.com (mga07.intel.com [143.182.124.22])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 767A4E006C7
-	for <yocto@yoctoproject.org>; Tue, 15 May 2012 08:05:48 -0700 (PDT)
-Received: from mail-vb0-f52.google.com ([209.85.212.52])
-	by mga03.intel.com with ESMTP/TLS/RC4-SHA; 15 May 2012 08:05:22 -0700
-Received: by vbzb23 with SMTP id b23so6161426vbz.25
-	for <yocto@yoctoproject.org>; Tue, 15 May 2012 08:05:21 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type:content-transfer-encoding:x-gm-message-state;
-	bh=mtkX0ZSExhNFTAq69wi49t+y+FJUDwsjVhquxFgD9WI=;
-	b=LSXhv9V51n2K29H4vNi1nVarakZDRLh1ybUVxQ39XHh6qIeOJTHoDIQCD0FE8uBwBg
-	4kzK589/Y1TgStTvz/tEZFVxQuQxNz5+mFXl2XzeIRhjMNbsZAZ+Ahf2RrC8GCoVV1LC
-	/hOnEwPX0jCNEqQa5YafSmi4baif8P1GIe250P5k870HmBTWm/bOWHy6r362MejYA2go
-	SXHXw+MHRFu1BDfBW3uxqP5N25eOFWRPwieCorpNUx0UxpMgIH5Qk4ZEjjTJqmJXg9bJ
-	vwu75TGIHvoiRwYvKscwkixitRHVLlBjwtohV5DDLjwNxF7ZrvZ3ygYWHfGu37X+DfKA
-	zQ0g==
+Return-Path: <song.liu@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9A13CE006DA
+	for <yocto@yoctoproject.org>; Tue, 15 May 2012 08:22:32 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 15 May 2012 08:22:32 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; 
+	d="scan'208,217";a="143437616"
+Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
+	by azsmga001.ch.intel.com with ESMTP; 15 May 2012 08:22:31 -0700
+Received: from orsmsx153.amr.corp.intel.com (10.22.226.247) by
+	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Tue, 15 May 2012 08:22:31 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.121]) by
+	ORSMSX153.amr.corp.intel.com ([169.254.13.77]) with mapi id
+	14.01.0355.002; Tue, 15 May 2012 08:22:30 -0700
+From: "Liu, Song" <song.liu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: YP 1.3 release criteria
+Thread-Index: Ac0yroqZmKFRtI8ZRIqfb0RWpHvx3A==
+Date: Tue, 15 May 2012 15:22:30 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A483F19B4@ORSMSX101.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.139]
 MIME-Version: 1.0
-Received: by 10.52.180.232 with SMTP id dr8mr5918008vdc.111.1337094321006;
-	Tue, 15 May 2012 08:05:21 -0700 (PDT)
-Received: by 10.52.31.74 with HTTP; Tue, 15 May 2012 08:05:20 -0700 (PDT)
-In-Reply-To: <025701cd32aa$31600d60$94202820$@Distant-earth.com>
-References: <EE688041-FB89-4D1A-AE38-8DFF617C244D@keylevel.com>
-	<4FB21EBC.1000106@r-finger.com>
-	<025701cd32aa$31600d60$94202820$@Distant-earth.com>
-Date: Tue, 15 May 2012 08:05:20 -0700
-Message-ID: <CALZ2gZVaAg2sFHuEa-=5tfGxh1+Wh4KmhiWc+QnH6oKz_68FFw@mail.gmail.com>
-From: "Osier-mixon, Jeffrey" <jeffrey.osier-mixon@intel.com>
-To: John Willis <John.Willis@distant-earth.com>
-X-Gm-Message-State: ALoCoQn8Zw2gjtbU69AkCYOu/1dhJPZdKJxtBqSBfso+tSK9FOGduDR7cQ9KywKTFeqwYfPT/qgQ
-Cc: yocto@yoctoproject.org
-Subject: Re: Raspberry Pi [was Re: Kernel modules fail to compile for ARM]
+Subject: YP 1.3 release criteria
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,60 +38,77 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 15 May 2012 15:05:48 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Tue, 15 May 2012 15:22:32 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_7E680CB2A76BB8438D08CF13C09FC53A483F19B4ORSMSX101amrcor_"
+
+--_000_7E680CB2A76BB8438D08CF13C09FC53A483F19B4ORSMSX101amrcor_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-There do seem to be multiple efforts. The Qt on Pi folks are also
-putting together a BSP. I'd like to find a way to put everyone
-together to make sure effort is not being duplicated. Is there
-interest in a meeting of interested parties, perhaps on Thursday?
+https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.3_Status#Milestone_1
 
-On Tue, May 15, 2012 at 7:51 AM, John Willis
-<John.Willis@distant-earth.com> wrote:
-> Hi Tomas,
->
->> On 14/05/12 19:52, Chris Tapp wrote:
->> > I'm trying to put a BSP together for an ARM system (Raspberry Pi,
->> ARM1176JZF-S CPU).
->>
->> I got the feeling that there might be multiple OE/RPI efforts going on a=
-t the
->> same time unaware of each other, e.g., I noticed this meta-raspberrypi l=
-ayer
->> on github that seems to be well on the way,
->> https://github.com/djwillis/meta-raspberrypi ... perhaps getting various
->> folk interested in this together would be beneficial.
->
-> If anyone wants to pitch in with patches that would be great. There is al=
-so a little more information on the layer from a post of mine a few weeks b=
-ack - http://blogs.distant-earth.com/wp/?p=3D377.
->
-> I tend to build my layers using Angstrom as the distro (in fact it is now=
- referenced in the Angstrom setup scripts) or straight OE-core and no distr=
-o so I can't claim this layer is well tested on Yocto but there are very fe=
-w, if any, reasons it will not work well. Pull requests are great ;).
->
-> There are a few things missing at the moment, mainly the binary GPU libs =
-but as the proprietary licence has now been sorted for the blobs I'll push =
-the recipe in the next few days.
->
-> Other than that it works pretty well on both variants of the hardware but=
- there is always room for improvement.
->
-> Regards,
->
-> John
->
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+--_000_7E680CB2A76BB8438D08CF13C09FC53A483F19B4ORSMSX101amrcor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" xmlns:dt=3D"uuid:C2F4101=
+0-65B3-11d1-A29F-00AA00C14882" xmlns:m=3D"http://schemas.microsoft.com/offi=
+ce/2004/12/omml" xmlns=3D"http://www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_=
+Project_v1.3_Status#Milestone_1">https://wiki.yoctoproject.org/wiki/Yocto_P=
+roject_v1.3_Status#Milestone_1</a><o:p></o:p></p>
+</div>
+</body>
+</html>
 
-
---=20
-Jeff Osier-Mixon=A0http://jefro.net/blog
-Yocto Project Community Manager @Intel=A0http://yoctoproject.org
-
+--_000_7E680CB2A76BB8438D08CF13C09FC53A483F19B4ORSMSX101amrcor_--
