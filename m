@@ -1,22 +1,50 @@
-Return-Path: <tf+lists.yocto@r-finger.com>
-Received: from r-finger.com (r-finger.com [178.79.160.5])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 21B07E013A6
-	for <yocto@yoctoproject.org>; Tue, 15 May 2012 02:15:43 -0700 (PDT)
-Received: from [192.168.0.2] (host86-170-61-246.range86-170.btcentralplus.com
-	[86.170.61.246]) (using TLSv1 with cipher AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by r-finger.com (Postfix) with ESMTPSA id 983D860E52;
-	Tue, 15 May 2012 10:15:41 +0100 (BST)
-Message-ID: <4FB21EBC.1000106@r-finger.com>
-Date: Tue, 15 May 2012 10:15:40 +0100
-From: Tomas Frydrych <tf+lists.yocto@r-finger.com>
+Return-Path: <halstead@happypunch.com>
+Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
+	[209.85.160.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 926ECE013BB
+	for <yocto@yoctoproject.org>; Tue, 15 May 2012 04:08:45 -0700 (PDT)
+Received: by pbbrq8 with SMTP id rq8so9908676pbb.35
+	for <yocto@yoctoproject.org>; Tue, 15 May 2012 04:08:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=happypunch.com; s=google;
+	h=sender:message-id:date:from:user-agent:mime-version:to:subject
+	:references:in-reply-to:x-enigmail-version:content-type;
+	bh=oe5PBNlaO5lgvUiPOQ+QiDNq/XftbUHvffYb+2V9/rQ=;
+	b=PBZVeG02oLV5v1KBCWeXxRa/6RicMeZrFbWw5hyn2TMV10S15TK5RvRGsUcnOPO8Vg
+	xwO3e/6DtctvkTe4fmropwyf7Z5xDwJUmr2eiBGDVHyNM/uqQg0IU1e08troQpLytIQb
+	P37rdJ40ut9Dpk44nyf57AKE/E1R3LsQOBZ30=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=sender:message-id:date:from:user-agent:mime-version:to:subject
+	:references:in-reply-to:x-enigmail-version:content-type
+	:x-gm-message-state;
+	bh=oe5PBNlaO5lgvUiPOQ+QiDNq/XftbUHvffYb+2V9/rQ=;
+	b=MqWWmAt/vxAhVAK2Tttgai+KbFxLms5aGhQCpMWdg0pAEgjPIB2wFn2zB/9mBMpmD5
+	U2VK3kjFLCPJX+m6l9ZW6C5pnxNC4YBS2lC+r0WWrqaI4X8xzrOIT4nEvLDvdFyJNrwk
+	Rt1uS72xVJ1xvtm+7PErLkiCRhG9n4GMqHuvgfq14RwPgsiBihyJVtHCk1uue746U0pO
+	qEWy564puQN8VN3m1tGjh1WM2wi9qjJ62+QMbWfWierVE9WHa5PeNPYiPk4+F5Vxnltt
+	PhlCpJlV7IU4ntDLcKymXrQkO57sBU6CpjZ775XijNPYbHiLfT2XepOG9z5pKDGtHEi2
+	fdkg==
+Received: by 10.68.228.97 with SMTP id sh1mr4245246pbc.113.1337080125297;
+	Tue, 15 May 2012 04:08:45 -0700 (PDT)
+Received: from [192.168.1.70] (static-50-43-40-17.bvtn.or.frontiernet.net.
+	[50.43.40.17])
+	by mx.google.com with ESMTPS id tx3sm1568567pbc.2.2012.05.15.04.08.41
+	(version=SSLv3 cipher=OTHER); Tue, 15 May 2012 04:08:42 -0700 (PDT)
+Sender: Michael Halstead <halstead@happypunch.com>
+Message-ID: <4FB23937.7020102@yoctoproject.org>
+Date: Tue, 15 May 2012 04:08:39 -0700
+From: Michael Halstead <michael@yoctoproject.org>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:10.0.3) Gecko/20120329 Icedove/10.0.3
+	rv:12.0) Gecko/20120430 Thunderbird/12.0.1
 MIME-Version: 1.0
 To: yocto@yoctoproject.org
-References: <EE688041-FB89-4D1A-AE38-8DFF617C244D@keylevel.com>
-In-Reply-To: <EE688041-FB89-4D1A-AE38-8DFF617C244D@keylevel.com>
-Subject: Raspberry Pi [was Re: Kernel modules fail to compile for ARM]
+References: <CA+f-kVKVWsG7A4N2Sabgb-J81PrDH+2tNaormqNGfgEkTfnNxw@mail.gmail.com>
+	<CA+f-kVJxDQDddjSEb3eR_-ZQuDx_FCq+BPgRZUU61rfCPJchBA@mail.gmail.com>
+In-Reply-To: <CA+f-kVJxDQDddjSEb3eR_-ZQuDx_FCq+BPgRZUU61rfCPJchBA@mail.gmail.com>
+X-Enigmail-Version: 1.5pre
+X-Gm-Message-State: ALoCoQk5syItIeXsnlZ6AqyVroSVNs4ng7WjubZ/MtNORAKZEME5rO83I0qdLRPQDrKLWUHMZKJa
+Subject: Re: Download mirror instability
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,18 +56,121 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 15 May 2012 09:15:43 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 15 May 2012 11:08:45 -0000
+X-Groupsio-MsgNum: 6675
+Content-Type: multipart/signed; protocol="application/pkcs7-signature";
+	micalg=sha1; boundary="------------ms050809020502040507050902"
 
-On 14/05/12 19:52, Chris Tapp wrote:
-> I'm trying to put a BSP together for an ARM system (Raspberry Pi, ARM1176JZF-S CPU). 
+--------------ms050809020502040507050902
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-I got the feeling that there might be multiple OE/RPI efforts going on
-at the same time unaware of each other, e.g., I noticed this
-meta-raspberrypi layer on github that seems to be well on the way,
-https://github.com/djwillis/meta-raspberrypi ... perhaps getting various
-folk interested in this together would be beneficial.
+The new download mirror is now active. Fetching from
+downloads.yoctoproject.org should be reliable once again.
 
-Tomas
+Michael Halstead
+Yocto Project / Sys Admin
 
+
+On 05/14/2012 08:21 PM, Michael Halstead wrote:
+>
+> We are experiencing download mirror instability that began with a DDOS
+> on Friday. Since then the network configuration attached to the mirror
+> server has been in flux. This caused several outages. Fetcher failures
+> during the last 36 hours are probably caused by these issues.
+>
+> I am in the process of building a new download server which will help
+> with stability. I will post to the list when the build is complete.
+>
+> Michael Halstead
+> Yocto Project / Sys Admin
+>
+
+
+--------------ms050809020502040507050902
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: S/MIME Cryptographic Signature
+
+MIAGCSqGSIb3DQEHAqCAMIACAQExCzAJBgUrDgMCGgUAMIAGCSqGSIb3DQEHAQAAoIINYjCCBjQw
+ggQcoAMCAQICAR4wDQYJKoZIhvcNAQEFBQAwfTELMAkGA1UEBhMCSUwxFjAUBgNVBAoTDVN0YXJ0
+Q29tIEx0ZC4xKzApBgNVBAsTIlNlY3VyZSBEaWdpdGFsIENlcnRpZmljYXRlIFNpZ25pbmcxKTAn
+BgNVBAMTIFN0YXJ0Q29tIENlcnRpZmljYXRpb24gQXV0aG9yaXR5MB4XDTA3MTAyNDIxMDE1NVoX
+DTE3MTAyNDIxMDE1NVowgYwxCzAJBgNVBAYTAklMMRYwFAYDVQQKEw1TdGFydENvbSBMdGQuMSsw
+KQYDVQQLEyJTZWN1cmUgRGlnaXRhbCBDZXJ0aWZpY2F0ZSBTaWduaW5nMTgwNgYDVQQDEy9TdGFy
+dENvbSBDbGFzcyAxIFByaW1hcnkgSW50ZXJtZWRpYXRlIENsaWVudCBDQTCCASIwDQYJKoZIhvcN
+AQEBBQADggEPADCCAQoCggEBAMcJg8zOLdgasSmkLhOrlr6KMoOMpohBllVHrdRvEg/q6r8jR+EK
+75xCGhR8ToREoqe7zM9/UnC6TS2y9UKTpT1v7RSMzR0t6ndl0TWBuUr/UXBhPk+Kmy7bI4yW4urC
++y7P3/1/X7U8ocb8VpH/Clt+4iq7nirMcNh6qJR+xjOhV+VHzQMALuGYn5KZmc1NbJQYclsGkDxD
+z2UbFqE2+6vIZoL+jb9x4Pa5gNf1TwSDkOkikZB1xtB4ZqtXThaABSONdfmv/Z1pua3FYxnCFmdr
+/+N2JLKutIxMYqQOJebr/f/h5t95m4JgrM3Y/w7YX9d7YAL9jvN4SydHsU6n65cCAwEAAaOCAa0w
+ggGpMA8GA1UdEwEB/wQFMAMBAf8wDgYDVR0PAQH/BAQDAgEGMB0GA1UdDgQWBBRTcu2SnODaywFc
+fH6WNU7y1LhRgjAfBgNVHSMEGDAWgBROC+8apEBbpRdphzDKNGhD0EGu8jBmBggrBgEFBQcBAQRa
+MFgwJwYIKwYBBQUHMAGGG2h0dHA6Ly9vY3NwLnN0YXJ0c3NsLmNvbS9jYTAtBggrBgEFBQcwAoYh
+aHR0cDovL3d3dy5zdGFydHNzbC5jb20vc2ZzY2EuY3J0MFsGA1UdHwRUMFIwJ6AloCOGIWh0dHA6
+Ly93d3cuc3RhcnRzc2wuY29tL3Nmc2NhLmNybDAnoCWgI4YhaHR0cDovL2NybC5zdGFydHNzbC5j
+b20vc2ZzY2EuY3JsMIGABgNVHSAEeTB3MHUGCysGAQQBgbU3AQIBMGYwLgYIKwYBBQUHAgEWImh0
+dHA6Ly93d3cuc3RhcnRzc2wuY29tL3BvbGljeS5wZGYwNAYIKwYBBQUHAgEWKGh0dHA6Ly93d3cu
+c3RhcnRzc2wuY29tL2ludGVybWVkaWF0ZS5wZGYwDQYJKoZIhvcNAQEFBQADggIBAAqDCH14qywG
+XLhjjF6uHLkjd02hcdh9hrw+VUsv+q1eeQWB21jWj3kJ96AUlPCoEGZ/ynJNScWy6QMVQjbbMXlt
+UfO4n4bGGdKo3awPWp61tjAFgraLJgDk+DsSvUD6EowjMTNx25GQgyYJ5RPIzKKR9tQW8gGK+2+R
+HxkUCTbYFnL6kl8Ch507rUdPPipJ9CgJFws3kDS3gOS5WFMxcjO5DwKfKSETEPrHh7p5shuuNktv
+sv6hxHTLhiMKX893gxdT3XLS9OKmCv87vkINQcNEcIIoFWbP9HORz9v3vQwR4e3ksLc2JZOAFK+s
+sS5XMEoznzpihEP0PLc4dCBYjbvSD7kxgDwZ+Aj8Q9PkbvE9sIPP7ON0fz095HdThKjiVJe6vofq
++n6b1NBc8XdrQvBmunwxD5nvtTW4vtN6VY7mUCmxsCieuoBJ9OlqmsVWQvifIYf40dJPZkk9YgGT
+zWLpXDSfLSplbY2LL9C9U0ptvjcDjefLTvqSFc7tw1sEhF0n/qpA2r0GpvkLRDmcSwVyPvmjFBGq
+Up/pNy8ZuPGQmHwFi2/14+xeSUDG2bwnsYJQG2EdJCB6luQ57GEnTA/yKZSTKI8dDQa8Sd3zfXb1
+9mOgSF0bBdXbuKhEpuP9wirslFe6fQ1t5j5R0xi72MZ8ikMu1RQZKCyDbMwazlHiMIIHJjCCBg6g
+AwIBAgIDA37RMA0GCSqGSIb3DQEBBQUAMIGMMQswCQYDVQQGEwJJTDEWMBQGA1UEChMNU3RhcnRD
+b20gTHRkLjErMCkGA1UECxMiU2VjdXJlIERpZ2l0YWwgQ2VydGlmaWNhdGUgU2lnbmluZzE4MDYG
+A1UEAxMvU3RhcnRDb20gQ2xhc3MgMSBQcmltYXJ5IEludGVybWVkaWF0ZSBDbGllbnQgQ0EwHhcN
+MTIwMTA2MTMyOTE3WhcNMTMwMTA2MDcxMjUwWjBnMRkwFwYDVQQNExBlTGJQOTQ4c1JVN2dZQXYy
+MSEwHwYDVQQDDBhtaWNoYWVsQHlvY3RvcHJvamVjdC5vcmcxJzAlBgkqhkiG9w0BCQEWGG1pY2hh
+ZWxAeW9jdG9wcm9qZWN0Lm9yZzCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBANhLuIfm
+OceuHa0beGkrktR2YWPzNci0abL4tkli9NVHN7gPjrZHErqn81LXKr+lHSPe5K9H2ziM9Xy8dWpV
+jcNiTvkKj2RgoCZn48TVpCA93UR/abpbUcQixLrz0aKrwbL6cgHNBwaWwH4YnBtdDpGCoBsIN1ex
+hSgNX27KyhApSzrMdIgHvO5UchBiARXh2Ll+Wf7G6ph+TFq2BCGu7MI9pDn6FZwHri78KOKM7aP8
+g7oUmuwauWZ855YV1rE+nE+/yeBuCdgIG2l2v2YYN+nrhhFSymolp8NgPoSztKrx7sRbOEkuC4hq
+fWch+MEWos24nHnsnCw9cwMO4m+kN7sCAwEAAaOCA7MwggOvMAkGA1UdEwQCMAAwCwYDVR0PBAQD
+AgSwMB0GA1UdJQQWMBQGCCsGAQUFBwMCBggrBgEFBQcDBDAdBgNVHQ4EFgQUrNEl25qGFro/pXDh
+zeZZX1M1JGMwHwYDVR0jBBgwFoAUU3Ltkpzg2ssBXHx+ljVO8tS4UYIwIwYDVR0RBBwwGoEYbWlj
+aGFlbEB5b2N0b3Byb2plY3Qub3JnMIICIQYDVR0gBIICGDCCAhQwggIQBgsrBgEEAYG1NwECAjCC
+Af8wLgYIKwYBBQUHAgEWImh0dHA6Ly93d3cuc3RhcnRzc2wuY29tL3BvbGljeS5wZGYwNAYIKwYB
+BQUHAgEWKGh0dHA6Ly93d3cuc3RhcnRzc2wuY29tL2ludGVybWVkaWF0ZS5wZGYwgfcGCCsGAQUF
+BwICMIHqMCcWIFN0YXJ0Q29tIENlcnRpZmljYXRpb24gQXV0aG9yaXR5MAMCAQEagb5UaGlzIGNl
+cnRpZmljYXRlIHdhcyBpc3N1ZWQgYWNjb3JkaW5nIHRvIHRoZSBDbGFzcyAxIFZhbGlkYXRpb24g
+cmVxdWlyZW1lbnRzIG9mIHRoZSBTdGFydENvbSBDQSBwb2xpY3ksIHJlbGlhbmNlIG9ubHkgZm9y
+IHRoZSBpbnRlbmRlZCBwdXJwb3NlIGluIGNvbXBsaWFuY2Ugb2YgdGhlIHJlbHlpbmcgcGFydHkg
+b2JsaWdhdGlvbnMuMIGcBggrBgEFBQcCAjCBjzAnFiBTdGFydENvbSBDZXJ0aWZpY2F0aW9uIEF1
+dGhvcml0eTADAgECGmRMaWFiaWxpdHkgYW5kIHdhcnJhbnRpZXMgYXJlIGxpbWl0ZWQhIFNlZSBz
+ZWN0aW9uICJMZWdhbCBhbmQgTGltaXRhdGlvbnMiIG9mIHRoZSBTdGFydENvbSBDQSBwb2xpY3ku
+MDYGA1UdHwQvMC0wK6ApoCeGJWh0dHA6Ly9jcmwuc3RhcnRzc2wuY29tL2NydHUxLWNybC5jcmww
+gY4GCCsGAQUFBwEBBIGBMH8wOQYIKwYBBQUHMAGGLWh0dHA6Ly9vY3NwLnN0YXJ0c3NsLmNvbS9z
+dWIvY2xhc3MxL2NsaWVudC9jYTBCBggrBgEFBQcwAoY2aHR0cDovL2FpYS5zdGFydHNzbC5jb20v
+Y2VydHMvc3ViLmNsYXNzMS5jbGllbnQuY2EuY3J0MCMGA1UdEgQcMBqGGGh0dHA6Ly93d3cuc3Rh
+cnRzc2wuY29tLzANBgkqhkiG9w0BAQUFAAOCAQEAUjNTeM730SEKLMbJ4THlGkx3KFkaYxIKf1C1
+PvZz9d6fq6VfFL1xbqSsz2og/hiCccC/GYFTKAK3W23LHjiETtNCK6pDzFTzeFxKdYOIoCcCjjxE
+IF0D16A1gXBp6G9tT6yUiy916wF8Ic/Etxti4ksydRWDet1LsXXNKt8gdolgPVImHm2VRX/8M9KG
+HU2/1oXXgjV2yC77sPVAaVoIBdiRdMOAS7gRt0pX+xNY+R8iItIfQO5Nf6mlRMgwXy/e+pYvSil+
+T1jdMQD6k07jZ1kpPAHujuCA5p6EWs+hpDXh7fq+lmfM9zZoTWtEDIJMrLvYy2IMD3NE0clxH+GY
+iTGCA9AwggPMAgEBMIGUMIGMMQswCQYDVQQGEwJJTDEWMBQGA1UEChMNU3RhcnRDb20gTHRkLjEr
+MCkGA1UECxMiU2VjdXJlIERpZ2l0YWwgQ2VydGlmaWNhdGUgU2lnbmluZzE4MDYGA1UEAxMvU3Rh
+cnRDb20gQ2xhc3MgMSBQcmltYXJ5IEludGVybWVkaWF0ZSBDbGllbnQgQ0ECAwN+0TAJBgUrDgMC
+GgUAoIICEDAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0xMjA1MTUx
+MTA4MzlaMCMGCSqGSIb3DQEJBDEWBBQHuhszr4GXmj2zvhcZ1SDdABjJcDBfBgkqhkiG9w0BCQ8x
+UjBQMAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzAOBggqhkiG9w0DAgICAIAwDQYIKoZIhvcNAwIC
+AUAwBwYFKw4DAgcwDQYIKoZIhvcNAwICASgwgaUGCSsGAQQBgjcQBDGBlzCBlDCBjDELMAkGA1UE
+BhMCSUwxFjAUBgNVBAoTDVN0YXJ0Q29tIEx0ZC4xKzApBgNVBAsTIlNlY3VyZSBEaWdpdGFsIENl
+cnRpZmljYXRlIFNpZ25pbmcxODA2BgNVBAMTL1N0YXJ0Q29tIENsYXNzIDEgUHJpbWFyeSBJbnRl
+cm1lZGlhdGUgQ2xpZW50IENBAgMDftEwgacGCyqGSIb3DQEJEAILMYGXoIGUMIGMMQswCQYDVQQG
+EwJJTDEWMBQGA1UEChMNU3RhcnRDb20gTHRkLjErMCkGA1UECxMiU2VjdXJlIERpZ2l0YWwgQ2Vy
+dGlmaWNhdGUgU2lnbmluZzE4MDYGA1UEAxMvU3RhcnRDb20gQ2xhc3MgMSBQcmltYXJ5IEludGVy
+bWVkaWF0ZSBDbGllbnQgQ0ECAwN+0TANBgkqhkiG9w0BAQEFAASCAQB5Nx8mvt5HlgCHSTQH1rr0
+srnt1aZiEdvyPRA7joDfkNfABbf/8bz1Lgq6453ZxXrbvdC6c88uMx89P/lpZFjIei16/bxSTZ9i
+7sM/bOkMmu6uiICiocm6AIpZ7jjEia2cqCg4VNtIdO+ghkcx3wcfdIHM5QyMGKpEVN559gbu6iI8
+XRIz4oSUAuaEovwGOQWcZiEDtNRVzlAZAWH1XYuZF3LDdyhis6p39tl4VFoqPnGyWH4SSzICTVgf
+dP3o8e6ZbWDHWSFVJexX6YJ6F+3l2QzDYW5e/xm6RsL24lu70jCcLVnuh8fE8eSccVo+QTYIS7hg
+miySwWkJ/ps8CozNAAAAAAAA
+
+--------------ms050809020502040507050902--
