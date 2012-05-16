@@ -1,24 +1,24 @@
 Return-Path: <tom.zanussi@intel.com>
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C4B89E01412
-	for <yocto@yoctoproject.org>; Wed, 16 May 2012 08:51:07 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 16 May 2012 08:51:07 -0700
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AEE1BE01421
+	for <yocto@yoctoproject.org>; Wed, 16 May 2012 08:51:08 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 16 May 2012 08:51:08 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="153671010"
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="167150451"
 Received: from unknown (HELO localhost) ([10.255.12.76])
-	by fmsmga001.fm.intel.com with ESMTP; 16 May 2012 08:51:06 -0700
+	by fmsmga002.fm.intel.com with ESMTP; 16 May 2012 08:51:08 -0700
 From: tom.zanussi@intel.com
 To: yocto@yoctoproject.org, bruce.ashfield@windriver.com,
 	dvhart@linux.intel.com
-Date: Wed, 16 May 2012 10:50:23 -0500
-Message-Id: <1f5a10bb9d68537d36b6ebcd8393c1e18f58a998.1337182769.git.tom.zanussi@intel.com>
+Date: Wed, 16 May 2012 10:50:24 -0500
+Message-Id: <5a3f5c724b0ce2b0e7d97b6c3b304c7ebcc7913c.1337182769.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <594ba05ab96a837575960ba514ae153eeef899b7.1337182769.git.tom.zanussi@intel.com>
 References: <594ba05ab96a837575960ba514ae153eeef899b7.1337182769.git.tom.zanussi@intel.com>
 In-Reply-To: <cover.1337182769.git.tom.zanussi@intel.com>
 References: <cover.1337182769.git.tom.zanussi@intel.com>
-Subject: [PATCH 03/22][KERNEL] meta/common-pc-64: use usb features
+Subject: [PATCH 04/22][KERNEL] meta/common-pc: factor out policy-related options
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,46 +30,87 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 16 May 2012 15:51:07 -0000
+X-List-Received-Date: Wed, 16 May 2012 15:51:08 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-Use the available ehci and uhci usb features and remove the associated
-config settings from the top-level common-pc feature.
+Refactor bsp/common-pc/common-pc* to keep hardware-related options in
+the base common-pc.scc while moving the more 'policy'-related options
+into the files that include the base common-pc.scc fragment.
+
+This allows the different kernel types to make use of the basic
+machine support without dragging along possibly unwanted options that
+fall under the heading of 'policy' for a specific kernel type.
 
 Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
 ---
- .../kernel-cache/bsp/common-pc-64/common-pc-64.cfg |    3 ---
- .../kernel-cache/bsp/common-pc-64/common-pc-64.scc |    2 ++
- 2 files changed, 2 insertions(+), 3 deletions(-)
+ .../bsp/common-pc/common-pc-preempt-rt.scc         |    7 +++++++
+ .../bsp/common-pc/common-pc-standard.scc           |    6 ++++++
+ .../kernel-cache/bsp/common-pc/common-pc-tiny.scc  |    5 +----
+ meta/cfg/kernel-cache/bsp/common-pc/common-pc.scc  |    5 +----
+ 4 files changed, 15 insertions(+), 8 deletions(-)
 
-diff --git a/meta/cfg/kernel-cache/bsp/common-pc-64/common-pc-64.cfg b/meta/cfg/kernel-cache/bsp/common-pc-64/common-pc-64.cfg
-index 3b2621e..8d35931 100644
---- a/meta/cfg/kernel-cache/bsp/common-pc-64/common-pc-64.cfg
-+++ b/meta/cfg/kernel-cache/bsp/common-pc-64/common-pc-64.cfg
-@@ -59,9 +59,6 @@ CONFIG_SERIAL_8250_CONSOLE=y
- CONFIG_SERIAL_8250_PCI=y
- CONFIG_SERIAL_8250_PNP=y
+diff --git a/meta/cfg/kernel-cache/bsp/common-pc/common-pc-preempt-rt.scc b/meta/cfg/kernel-cache/bsp/common-pc/common-pc-preempt-rt.scc
+index f8716ee..706f669 100644
+--- a/meta/cfg/kernel-cache/bsp/common-pc/common-pc-preempt-rt.scc
++++ b/meta/cfg/kernel-cache/bsp/common-pc/common-pc-preempt-rt.scc
+@@ -4,4 +4,11 @@ define KARCH i386
  
--CONFIG_USB=y
--CONFIG_USB_EHCI_HCD=y
--CONFIG_USB_UHCI_HCD=y
- CONFIG_USB_STORAGE=y
- # For /proc/bus/usb and lsusb.
- CONFIG_USB_DEVICEFS=y
-diff --git a/meta/cfg/kernel-cache/bsp/common-pc-64/common-pc-64.scc b/meta/cfg/kernel-cache/bsp/common-pc-64/common-pc-64.scc
-index b27e793..d0327c5 100644
---- a/meta/cfg/kernel-cache/bsp/common-pc-64/common-pc-64.scc
-+++ b/meta/cfg/kernel-cache/bsp/common-pc-64/common-pc-64.scc
-@@ -4,6 +4,8 @@ kconf hardware common-pc-64-graphics.cfg
- include cfg/boot-live.scc
+ # no new branch required, re-use the ktypes/preempt-rt branch
+ include ktypes/preempt-rt
++
+ include bsp/common-pc/common-pc.scc
++
++# default policy for preempt-rt kernels
++include cfg/boot-live.scc
++include features/latencytop/latencytop.scc
++include features/profiling/profiling.scc
++include cfg/virtio.scc
+diff --git a/meta/cfg/kernel-cache/bsp/common-pc/common-pc-standard.scc b/meta/cfg/kernel-cache/bsp/common-pc/common-pc-standard.scc
+index f5baf52..83d49fd 100644
+--- a/meta/cfg/kernel-cache/bsp/common-pc/common-pc-standard.scc
++++ b/meta/cfg/kernel-cache/bsp/common-pc/common-pc-standard.scc
+@@ -6,3 +6,9 @@ include ktypes/standard
+ branch common-pc
  
- include features/hpet/hpet.scc
-+include features/usb/ehci-hcd.scc
-+include features/usb/uhci-hcd.scc
+ include common-pc.scc
++
++# default policy for standard kernels
++include cfg/boot-live.scc
++include features/latencytop/latencytop.scc
++include features/profiling/profiling.scc
++include cfg/virtio.scc
+diff --git a/meta/cfg/kernel-cache/bsp/common-pc/common-pc-tiny.scc b/meta/cfg/kernel-cache/bsp/common-pc/common-pc-tiny.scc
+index 8d7a498..900eb27 100644
+--- a/meta/cfg/kernel-cache/bsp/common-pc/common-pc-tiny.scc
++++ b/meta/cfg/kernel-cache/bsp/common-pc/common-pc-tiny.scc
+@@ -5,8 +5,5 @@ define KARCH i386
+ include ktypes/tiny
+ branch common-pc
+ 
+-# Don't include common-pc.scc directly,
+-# it pulls in too many non-hardware options
+-kconf hardware common-pc.cfg
+-kconf hardware common-pc-gfx.cfg
++include common-pc.scc
+ 
+diff --git a/meta/cfg/kernel-cache/bsp/common-pc/common-pc.scc b/meta/cfg/kernel-cache/bsp/common-pc/common-pc.scc
+index 2338ea6..02ddfd4 100644
+--- a/meta/cfg/kernel-cache/bsp/common-pc/common-pc.scc
++++ b/meta/cfg/kernel-cache/bsp/common-pc/common-pc.scc
+@@ -1,11 +1,8 @@
+ kconf hardware common-pc.cfg
+ kconf hardware common-pc-gfx.cfg
+ 
+-include cfg/boot-live.scc
+ include features/usb/ehci-hcd.scc
+ include features/usb/uhci-hcd.scc
++include features/usb/ohci-hcd.scc
  include features/intel-e1xxxx/intel-e100.scc
  include features/intel-e1xxxx/intel-e1xxxx.scc
- 
+-include features/latencytop/latencytop.scc
+-include features/profiling/profiling.scc
+-include cfg/virtio.scc
 -- 
 1.7.0.4
 
