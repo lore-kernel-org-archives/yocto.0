@@ -1,28 +1,20 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 87D0AE01206
-	for <yocto@yoctoproject.org>; Wed, 16 May 2012 05:55:51 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q4GCtmt6003010
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 16 May 2012 05:55:49 -0700 (PDT)
-Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Wed, 16 May 2012 05:55:48 -0700
-Message-ID: <4FB3A3D1.8060909@windriver.com>
-Date: Wed, 16 May 2012 08:55:45 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:12.0) Gecko/20120430 Thunderbird/12.0.1
-MIME-Version: 1.0
-To: Tomas Frydrych <tf+lists.yocto@r-finger.com>
-References: <EE688041-FB89-4D1A-AE38-8DFF617C244D@keylevel.com>
-	<4FB21EBC.1000106@r-finger.com> <4FB279CC.1080503@windriver.com>
-	<4FB29419.7070302@r-finger.com> <4FB29B74.3090105@windriver.com>
-	<4FB35B59.6000605@r-finger.com>
-In-Reply-To: <4FB35B59.6000605@r-finger.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: Raspberry Pi [was Re: Kernel modules fail to compile for ARM]
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A7C16E013EB
+	for <yocto@yoctoproject.org>; Wed, 16 May 2012 08:51:01 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 16 May 2012 08:51:01 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="100803867"
+Received: from unknown (HELO localhost) ([10.255.12.76])
+	by AZSMGA002.ch.intel.com with ESMTP; 16 May 2012 08:51:00 -0700
+From: tom.zanussi@intel.com
+To: yocto@yoctoproject.org, bruce.ashfield@windriver.com,
+	dvhart@linux.intel.com
+Date: Wed, 16 May 2012 10:50:34 -0500
+Message-Id: <cover.1337182769.git.tom.zanussi@intel.com>
+X-Mailer: git-send-email 1.7.0.4
+Subject: [PATCH 00/22][KERNEL] policy cleanup patches, v3
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,101 +26,110 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 16 May 2012 12:55:51 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 16 May 2012 15:51:01 -0000
 
-On 12-05-16 03:46 AM, Tomas Frydrych wrote:
-> Hi Bruce,
->
-> On 15/05/12 19:07, Bruce Ashfield wrote:
->> On 12-05-15 01:36 PM, Tomas Frydrych wrote:
->>> Let me turn this question back at you then: is Yocto going to be doing
->>> thorough Q&A for all of these HW platforms? Decent Q&A is what really
->>> sets Yocto apart, and what makes it my first port of call, but I got a
->>> feeling that the scope of this is at the moment somewhat restricted as
->>> far as HW is concerned; without Q&A 'fixes' quickly turn into problems
->>> -- I'd rather be pulling kernel from somewhere that deals with the
->>> specific HW that pick up generic fixes without the Q&A.
->>
->> I spend all day every day working with targets across the spectrum of
->> arch and use case, with plenty of drivers and core infrastructure
->> in common, so those sorts of changes being monitored and being included
->> are definitely in place.
->
-> Cool, but a developer working with targets does not really qualify as
-> QA. QA implies testing that culminates in a formal release.
+From: Tom Zanussi <tom.zanussi@intel.com>
 
-ok, I'll agree that one person's QA is another person's boot test :)
-I was more meaning, unit, device testing. Performing full QA across
-several machines that share an architecture and common code is something
-that I've been trying to reduce for some time now.
+This set of patches factors out the policy vs hardware-related config
+of the common-pc and common-pc-64 along with some meta-intel BSPs.
 
-And what I mean by that, is that machine/BSP testing should at some
-level rely on the results from other arch testing (posix, ltp, etc)
-being transitive to that machine. That allows the BSP testing to
-focus on the drivers and configuration that are unique to the board.
+There are also a couple usb cleanups as well.
 
-When I was writing this, I was thinking of someone, anyone, running
-their normal use cases with the board. Those cases + architecture
-generic QA gets you a long way to full QA.
+This patchset has been boot-tested with sato images on the following
+machines: qemux86, qemux86-64, crownbay, sugarbay, emenlow, and
+jasperforest.
 
->
->
->> As for hardware specific QA, the yocto project itself runs QA on targets
->> that we've tagged as a hardware reference. The raspberry pi is one that
->> I've been considering as a new reference, so if that was the case, it would
->> get extra coverage.
->
-> It is certainly an interesting / high profile enough board to be of
-> interest to Yocto as a project I think.
->
->
->> That being said, it obviously doesn't scale that just because we align
->> on a kernel version, set of features, base configuration, etc, that
->> the yocto project itself would run machine/BSP specific QA. That would
->> be a place where interested parties would already be doing QA,
->
-> This is where it becomes problematic. Interested parties simply cannot
-> be relied on doing QA, that was pretty much why Poky came to be (BTW,
-> 'git tag' provides a rudimentary insight into project QA mentality; the
-> absence of release tags invariably means no QA worth mentioning and pain
-> in store ... an interesting exercise when it comes to meta-*).
+v2: updated to reflect Darren's comments.  This new patchset also
+adds the usb-mass-storage feature to common-pc and common-pc-64,
+and at the same time factors out the common SCSI pieces into a new
+set of scsi features.  It also removes options and feature use made
+redundant by the above changes.
 
-Agreed. That's why having a set of references boards, and extended
-references boards is key. That way at least some testing and quality
-is in place, even if not perfect.
+v3: updated to reflect Darren's latest comments i.e. CONFIG_BLOCK
+added to the scsi feature, and ehci removed from jasperforest and
+sugarbay since that comes in via common-pc-64.
 
->
-> So, if meta-yocto contains machine/<somemachine>.conf I expect
-> meta-yocto to be providing quality assured images for<somemachine>. If
-> Yocto can't do that, I question the value of including it at all.
+Please pull into linux-yocto-3.2.
+ 
+Tom
 
-I don't disagree. I just think that having even a common base, or
-common kernel version removes some of the duplication of effort,
-even if it doesn't take us all the way to a full QA .. since scaling
-to that for hundreds of boards might be difficult (and the 'might'
-is meant to be understated :).
+The following changes since commit 1dfd60fa1250259eed38ae5b2840eb37e3758a1b:
+  Tom Zanussi (1):
+        meta/fishriver: move smp options from recipe-space
 
->
->
-> But that aside, I'd very much recommend that the RPI kernel for
-> meta-rasberrypi to be based on the Yocto kernel tree; as a Yocto user,
-> rather than a kernel developer, the whole config fragment machinery
-> provides a very clean and controlled way of managing the kernel and is
-> really nice to work with. :-)
+are available in the git repository at:
 
-It's a start!
+  git://git.yoctoproject.org/linux-yocto-2.6.37-contrib.git tzanussi/policy-cleanup
+  http://git.yoctoproject.org/cgit/cgit.cgi/linux-yocto-2.6.37-contrib/log/?h=tzanussi/policy-cleanup
 
-Cheers,
+Tom Zanussi (22):
+  meta: add ROOT_HUB_TT config option to the usb/ehci-hcd feature
+  meta/common-pc: use usb features
+  meta/common-pc-64: use usb features
+  meta/common-pc: factor out policy-related options
+  meta/common-pc-64: factor out policy-related options
+  meta/crownbay: factor out policy-related options
+  meta/emenlow: factor out policy-related options
+  meta/fishriver: factor out policy-related options
+  meta/jasperforest: factor out policy-related options
+  meta/sugarbay: factor out policy-related options
+  meta: add scsi feature
+  meta: add scsi disk feature
+  meta: factor out SCSI options from the usb-mass-storage feature
+  meta/common-pc: use usb-mass-storage feature
+  meta: add scsi cdrom feature
+  meta/common-pc-64: use usb-mass-storage feature
+  meta/common-pc-64: factor out SCSI CDROM option
+  meta/jasperforest: remove redundant features and options
+  meta/sugarbay: remove redundant features and options
+  meta/crownbay: remove redundant features and options
+  meta/emenlow: remove redundant features and options
+  meta/fishriver: remove redundant features and options
 
-Bruce
-
->
-> Tomas
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+ .../bsp/common-pc-64/common-pc-64-preempt-rt.scc   |    7 +++++++
+ .../bsp/common-pc-64/common-pc-64-standard.scc     |    7 +++++++
+ .../kernel-cache/bsp/common-pc-64/common-pc-64.cfg |    8 --------
+ .../kernel-cache/bsp/common-pc-64/common-pc-64.scc |   10 ++++------
+ .../bsp/common-pc/common-pc-preempt-rt.scc         |    8 ++++++++
+ .../bsp/common-pc/common-pc-standard.scc           |    7 +++++++
+ .../kernel-cache/bsp/common-pc/common-pc-tiny.scc  |    5 +----
+ meta/cfg/kernel-cache/bsp/common-pc/common-pc.cfg  |    8 --------
+ meta/cfg/kernel-cache/bsp/common-pc/common-pc.scc  |    7 +++----
+ .../bsp/crownbay/crownbay-preempt-rt.scc           |    8 ++++++++
+ .../bsp/crownbay/crownbay-standard.scc             |    7 +++++++
+ meta/cfg/kernel-cache/bsp/crownbay/crownbay.cfg    |    1 -
+ meta/cfg/kernel-cache/bsp/crownbay/crownbay.scc    |    8 --------
+ .../bsp/emenlow/emenlow-preempt-rt.scc             |    8 ++++++++
+ .../kernel-cache/bsp/emenlow/emenlow-standard.scc  |    8 ++++++++
+ meta/cfg/kernel-cache/bsp/emenlow/emenlow.cfg      |    1 -
+ meta/cfg/kernel-cache/bsp/emenlow/emenlow.scc      |    8 --------
+ .../bsp/fishriver/fishriver-preempt-rt.scc         |    8 ++++++++
+ .../bsp/fishriver/fishriver-standard.scc           |    8 ++++++++
+ meta/cfg/kernel-cache/bsp/fishriver/fishriver.cfg  |    1 -
+ meta/cfg/kernel-cache/bsp/fishriver/fishriver.scc  |    8 --------
+ .../bsp/jasperforest/jasperforest-preempt-rt.scc   |    4 ++++
+ .../bsp/jasperforest/jasperforest-standard.scc     |    3 +++
+ .../kernel-cache/bsp/jasperforest/jasperforest.cfg |    1 -
+ .../kernel-cache/bsp/jasperforest/jasperforest.scc |   10 ----------
+ .../bsp/sugarbay/sugarbay-preempt-rt.scc           |    4 ++++
+ .../bsp/sugarbay/sugarbay-standard.scc             |    3 +++
+ meta/cfg/kernel-cache/bsp/sugarbay/sugarbay.cfg    |    1 -
+ meta/cfg/kernel-cache/bsp/sugarbay/sugarbay.scc    |   10 ----------
+ meta/cfg/kernel-cache/cfg/usb-mass-storage.cfg     |    2 --
+ meta/cfg/kernel-cache/cfg/usb-mass-storage.scc     |    2 ++
+ meta/cfg/kernel-cache/features/scsi/cdrom.cfg      |    1 +
+ meta/cfg/kernel-cache/features/scsi/cdrom.scc      |    6 ++++++
+ meta/cfg/kernel-cache/features/scsi/disk.cfg       |    1 +
+ meta/cfg/kernel-cache/features/scsi/disk.scc       |    6 ++++++
+ meta/cfg/kernel-cache/features/scsi/scsi.cfg       |    2 ++
+ meta/cfg/kernel-cache/features/scsi/scsi.scc       |    4 ++++
+ meta/cfg/kernel-cache/features/usb/ehci-hcd.cfg    |    1 +
+ 38 files changed, 121 insertions(+), 81 deletions(-)
+ create mode 100644 meta/cfg/kernel-cache/features/scsi/cdrom.cfg
+ create mode 100644 meta/cfg/kernel-cache/features/scsi/cdrom.scc
+ create mode 100644 meta/cfg/kernel-cache/features/scsi/disk.cfg
+ create mode 100644 meta/cfg/kernel-cache/features/scsi/disk.scc
+ create mode 100644 meta/cfg/kernel-cache/features/scsi/scsi.cfg
+ create mode 100644 meta/cfg/kernel-cache/features/scsi/scsi.scc
 
 
