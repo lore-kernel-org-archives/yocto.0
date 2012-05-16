@@ -1,38 +1,24 @@
-Return-Path: <rstreif@linuxfoundation.org>
-Received: from mail-bk0-f48.google.com (mail-bk0-f48.google.com
-	[209.85.214.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 539A3E0030B
-	for <yocto@yoctoproject.org>; Tue, 15 May 2012 22:10:29 -0700 (PDT)
-Received: by bkcjf20 with SMTP id jf20so364881bkc.35
-	for <yocto@yoctoproject.org>; Tue, 15 May 2012 22:10:28 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:date
-	:x-google-sender-auth:message-id:subject:from:to:cc:content-type
-	:x-gm-message-state;
-	bh=AcW6vRCIl8rMoueSSBIonc6HrBasnwvBMvdSLJSJ/Og=;
-	b=Ab9qHftxpREmxhn7DBoXefDl19DBZSzFZXauz9EJbWoXQZbOWnFyv4I+hU89c9UK0m
-	eNi01q8NcSlFdVakVL0VPx/lCcJb5qgB+3K0S5YCx5TAtjw6hq/LrfiGouIlAmak6nUp
-	QCIUQemnuMCQ6MhD+YWUfBLZ6d5N99P0XjJBGYtgSbFhLMs3+LF8FhH8M1bkDcXU2bwl
-	6gLEMu1BhH60GV9nercgjq2sE2tbGquJE7NNVz+nK2Z4pdA2LFFKldxcVlkNz9P1eYwR
-	r+bg5H2LLmxD53pImXyutR/Ir76sZrzsmSPSsIP9egZ14wZoKMAw5nftaCQjv7PJwLjf
-	Yf9A==
+Return-Path: <tf+lists.yocto@r-finger.com>
+Received: from r-finger.com (r-finger.com [178.79.160.5])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E1DB0E01206
+	for <yocto@yoctoproject.org>; Wed, 16 May 2012 00:46:40 -0700 (PDT)
+Received: from [192.168.0.2] (host86-170-61-246.range86-170.btcentralplus.com
+	[86.170.61.246]) (using TLSv1 with cipher AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by r-finger.com (Postfix) with ESMTPSA id 2B0CA60E52
+	for <yocto@yoctoproject.org>; Wed, 16 May 2012 08:46:40 +0100 (BST)
+Message-ID: <4FB35B59.6000605@r-finger.com>
+Date: Wed, 16 May 2012 08:46:33 +0100
+From: Tomas Frydrych <tf+lists.yocto@r-finger.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:10.0.3) Gecko/20120329 Icedove/10.0.3
 MIME-Version: 1.0
-Received: by 10.204.133.220 with SMTP id g28mr602257bkt.54.1337145028026; Tue,
-	15 May 2012 22:10:28 -0700 (PDT)
-Sender: rstreif@linuxfoundation.org
-Received: by 10.205.65.134 with HTTP; Tue, 15 May 2012 22:10:28 -0700 (PDT)
-In-Reply-To: <CAMKF1srwhxNcOkqouicvy9C4HviCLH3k0n+FjSHnP5NV-5ArpQ@mail.gmail.com>
-References: <CA+gsK-ph__F9gNUYSnb_pN2xjLbv8zwB6Sk+J5qiKD43fZx7-w@mail.gmail.com>
-	<CAMKF1srwhxNcOkqouicvy9C4HviCLH3k0n+FjSHnP5NV-5ArpQ@mail.gmail.com>
-Date: Tue, 15 May 2012 22:10:28 -0700
-X-Google-Sender-Auth: 92OJzGwl6DzcIkMr4s54QZIRbGc
-Message-ID: <CA+gsK-p5xV5JLr_TkA+P+w=tgrGqC8pJwowiCR4haeXfKueGTw@mail.gmail.com>
-From: Rudolf Streif <rudolf.streif@linux.com>
-To: Khem Raj <raj.khem@gmail.com>
-X-Gm-Message-State: ALoCoQkFFyWHCXisNUDiE+/RycQ0SNOGuhN6c+fmrmUyIqxq/4Czew5b2npzhmg3c16yGZv8JNAz
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: How is the list in package.manifest derived?
+To: yocto@yoctoproject.org
+References: <EE688041-FB89-4D1A-AE38-8DFF617C244D@keylevel.com>
+	<4FB21EBC.1000106@r-finger.com> <4FB279CC.1080503@windriver.com>
+	<4FB29419.7070302@r-finger.com> <4FB29B74.3090105@windriver.com>
+In-Reply-To: <4FB29B74.3090105@windriver.com>
+Subject: Re: Raspberry Pi [was Re: Kernel modules fail to compile for ARM]
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,66 +30,61 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 16 May 2012 05:10:29 -0000
-Content-Type: multipart/alternative; boundary=00151743f7c268a13b04c0205659
+X-List-Received-Date: Wed, 16 May 2012 07:46:41 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
---00151743f7c268a13b04c0205659
-Content-Type: text/plain; charset=ISO-8859-1
+Hi Bruce,
 
->> I think kernel and uboot  are not bundled into image but kernel modules
-are why
->> module-init-tools does not appear there might be a bug
+On 15/05/12 19:07, Bruce Ashfield wrote:
+> On 12-05-15 01:36 PM, Tomas Frydrych wrote:
+>> Let me turn this question back at you then: is Yocto going to be doing
+>> thorough Q&A for all of these HW platforms? Decent Q&A is what really
+>> sets Yocto apart, and what makes it my first port of call, but I got a
+>> feeling that the scope of this is at the moment somewhat restricted as
+>> far as HW is concerned; without Q&A 'fixes' quickly turn into problems
+>> -- I'd rather be pulling kernel from somewhere that deals with the
+>> specific HW that pick up generic fixes without the Q&A.
+> 
+> I spend all day every day working with targets across the spectrum of
+> arch and use case, with plenty of drivers and core infrastructure
+> in common, so those sorts of changes being monitored and being included
+> are definitely in place.
 
-Yes, that is technically of course correct. However, the idea of
-package.manifest and license.manifest should be to provide a list of
-everything that goes into the distribution together with the licenses.
-That's what one needs to provide to customers. And the image recipe has
-these items as dependencies.
+Cool, but a developer working with targets does not really qualify as
+QA. QA implies testing that culminates in a formal release.
 
-I would think that anything that is a runtime dependency of an image should
-show up in the manifests. task-core-boot is a runtime dependency of
-core-image-minimal. Interestingly, virtual/kernel is not a runtime
-dependency of task-core-boot but it is a build-time dependency. From the
-view of the build system that is correct and sufficient. It creates the
-kernel but of course the kernel is not included with the root file system
-image. It looks to me as if the class creating the licensing manifest
-evaluates the runtime dependencies which is not sufficient.
 
-That explains the kernel. But it does not explain module-init-tools, as you
-say. Checking reverse dependencies of module-init-tools shows nothing
-depends on them. So how do they get included with the root fs in the first
-place?
+> As for hardware specific QA, the yocto project itself runs QA on targets
+> that we've tagged as a hardware reference. The raspberry pi is one that
+> I've been considering as a new reference, so if that was the case, it would
+> get extra coverage.
 
-Another strange thing I cannot make sense of is that linux-yocto runtime
-depends on python, perl, elfutils, kernel-base and kernel-image.
+It is certainly an interesting / high profile enough board to be of
+interest to Yocto as a project I think.
 
-:rjs
 
---00151743f7c268a13b04c0205659
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+> That being said, it obviously doesn't scale that just because we align
+> on a kernel version, set of features, base configuration, etc, that
+> the yocto project itself would run machine/BSP specific QA. That would
+> be a place where interested parties would already be doing QA,
 
-&gt;&gt; I think kernel and uboot =A0are not bundled into image but kernel =
-modules are why<div>&gt;&gt; module-init-tools does not appear there might =
-be a bug<div><br></div><div>Yes, that is technically of course correct. How=
-ever, the idea of package.manifest and license.manifest should be to provid=
-e a list of everything that goes into the distribution together with the li=
-censes. That&#39;s what one needs to provide to customers. And the image re=
-cipe has these items as dependencies.</div>
-<div><br></div><div>I would think that anything that is a runtime dependenc=
-y of an image should show up in the manifests. task-core-boot is a runtime =
-dependency of core-image-minimal. Interestingly, virtual/kernel is not a ru=
-ntime dependency of task-core-boot but it is a build-time dependency. From =
-the view of the build system that is correct and sufficient. It creates the=
- kernel but of course the kernel is not included with the root file system =
-image. It looks to me as if the class creating the licensing manifest evalu=
-ates the runtime dependencies which is not sufficient.</div>
-<div><br></div><div>That explains the kernel. But it does not explain modul=
-e-init-tools, as you say. Checking reverse dependencies of module-init-tool=
-s shows nothing depends on them. So how do they get included with the root =
-fs in the first place?</div>
-<div><br></div><div>Another strange thing I cannot make sense of is that li=
-nux-yocto runtime depends on python, perl, elfutils, kernel-base and kernel=
--image.</div><div><br></div><div>:rjs<br><br></div></div>
+This is where it becomes problematic. Interested parties simply cannot
+be relied on doing QA, that was pretty much why Poky came to be (BTW,
+'git tag' provides a rudimentary insight into project QA mentality; the
+absence of release tags invariably means no QA worth mentioning and pain
+in store ... an interesting exercise when it comes to meta-*).
 
---00151743f7c268a13b04c0205659--
+So, if meta-yocto contains machine/<somemachine>.conf I expect
+meta-yocto to be providing quality assured images for <somemachine>. If
+Yocto can't do that, I question the value of including it at all.
+
+
+But that aside, I'd very much recommend that the RPI kernel for
+meta-rasberrypi to be based on the Yocto kernel tree; as a Yocto user,
+rather than a kernel developer, the whole config fragment machinery
+provides a very clean and controlled way of managing the kernel and is
+really nice to work with. :-)
+
+Tomas
+
