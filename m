@@ -1,22 +1,24 @@
 Return-Path: <tom.zanussi@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 86E10E0142C
-	for <yocto@yoctoproject.org>; Wed, 16 May 2012 08:51:18 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 16 May 2012 08:51:03 -0700
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 69849E0142D
+	for <yocto@yoctoproject.org>; Wed, 16 May 2012 08:51:21 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga102.fm.intel.com with ESMTP; 16 May 2012 08:51:21 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="144734185"
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="153671112"
 Received: from unknown (HELO localhost) ([10.255.12.76])
-	by orsmga002.jf.intel.com with ESMTP; 16 May 2012 08:51:02 -0700
+	by fmsmga001.fm.intel.com with ESMTP; 16 May 2012 08:51:20 -0700
 From: tom.zanussi@intel.com
 To: yocto@yoctoproject.org, bruce.ashfield@windriver.com,
 	dvhart@linux.intel.com
-Date: Wed, 16 May 2012 10:50:21 -0500
-Message-Id: <594ba05ab96a837575960ba514ae153eeef899b7.1337182769.git.tom.zanussi@intel.com>
+Date: Wed, 16 May 2012 10:50:31 -0500
+Message-Id: <6872a814e74ea432bc0bb4f1caf936a5bc7a2913.1337182769.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.0.4
+In-Reply-To: <594ba05ab96a837575960ba514ae153eeef899b7.1337182769.git.tom.zanussi@intel.com>
+References: <594ba05ab96a837575960ba514ae153eeef899b7.1337182769.git.tom.zanussi@intel.com>
 In-Reply-To: <cover.1337182769.git.tom.zanussi@intel.com>
 References: <cover.1337182769.git.tom.zanussi@intel.com>
-Subject: [PATCH 01/22][KERNEL] meta: add ROOT_HUB_TT config option to the usb/ehci-hcd feature
+Subject: [PATCH 11/22][KERNEL] meta: add scsi feature
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,26 +30,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 16 May 2012 15:51:18 -0000
+X-List-Received-Date: Wed, 16 May 2012 15:51:21 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-Add root hub transaction translator support for supporting companion
-ohci/uhci controllers , which is safe even if the ehci controller
-doesn't have companion controllers.
+Add a feature to enable SCSI support.  This also creates a scsi/
+directory to contain further SCSI options.
 
 Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
 ---
- meta/cfg/kernel-cache/features/usb/ehci-hcd.cfg |    1 +
- 1 files changed, 1 insertions(+), 0 deletions(-)
+ meta/cfg/kernel-cache/features/scsi/scsi.cfg |    2 ++
+ meta/cfg/kernel-cache/features/scsi/scsi.scc |    4 ++++
+ 2 files changed, 6 insertions(+), 0 deletions(-)
+ create mode 100644 meta/cfg/kernel-cache/features/scsi/scsi.cfg
+ create mode 100644 meta/cfg/kernel-cache/features/scsi/scsi.scc
 
-diff --git a/meta/cfg/kernel-cache/features/usb/ehci-hcd.cfg b/meta/cfg/kernel-cache/features/usb/ehci-hcd.cfg
-index 7322dc2..b977248 100644
---- a/meta/cfg/kernel-cache/features/usb/ehci-hcd.cfg
-+++ b/meta/cfg/kernel-cache/features/usb/ehci-hcd.cfg
-@@ -1 +1,2 @@
- CONFIG_USB_EHCI_HCD=y
-+CONFIG_USB_EHCI_ROOT_HUB_TT=y
+diff --git a/meta/cfg/kernel-cache/features/scsi/scsi.cfg b/meta/cfg/kernel-cache/features/scsi/scsi.cfg
+new file mode 100644
+index 0000000..0965a80
+--- /dev/null
++++ b/meta/cfg/kernel-cache/features/scsi/scsi.cfg
+@@ -0,0 +1,2 @@
++CONFIG_BLOCK=y
++CONFIG_SCSI=y
+diff --git a/meta/cfg/kernel-cache/features/scsi/scsi.scc b/meta/cfg/kernel-cache/features/scsi/scsi.scc
+new file mode 100644
+index 0000000..bd739e8
+--- /dev/null
++++ b/meta/cfg/kernel-cache/features/scsi/scsi.scc
+@@ -0,0 +1,4 @@
++define KFEATURE_DESCRIPTION "Enable options for SCSI support"
++define KFEATURE_COMPATIBILITY board
++
++kconf hardware scsi.cfg
 -- 
 1.7.0.4
 
