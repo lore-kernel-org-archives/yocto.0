@@ -1,24 +1,24 @@
 Return-Path: <tom.zanussi@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 49640E01432
-	for <yocto@yoctoproject.org>; Wed, 16 May 2012 08:51:23 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 16 May 2012 08:51:23 -0700
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 01942E013EB
+	for <yocto@yoctoproject.org>; Wed, 16 May 2012 08:51:26 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 16 May 2012 08:51:24 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="153671117"
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="141328232"
 Received: from unknown (HELO localhost) ([10.255.12.76])
-	by fmsmga001.fm.intel.com with ESMTP; 16 May 2012 08:51:22 -0700
+	by orsmga001.jf.intel.com with ESMTP; 16 May 2012 08:51:17 -0700
 From: tom.zanussi@intel.com
 To: yocto@yoctoproject.org, bruce.ashfield@windriver.com,
 	dvhart@linux.intel.com
-Date: Wed, 16 May 2012 10:50:32 -0500
-Message-Id: <4c8135e837f7f2ffe6f690c38e14d4d888669a62.1337182769.git.tom.zanussi@intel.com>
+Date: Wed, 16 May 2012 10:50:29 -0500
+Message-Id: <8b7fbc2016d0c887de22cab84a22075916de178b.1337182769.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <594ba05ab96a837575960ba514ae153eeef899b7.1337182769.git.tom.zanussi@intel.com>
 References: <594ba05ab96a837575960ba514ae153eeef899b7.1337182769.git.tom.zanussi@intel.com>
 In-Reply-To: <cover.1337182769.git.tom.zanussi@intel.com>
 References: <cover.1337182769.git.tom.zanussi@intel.com>
-Subject: [PATCH 12/22][KERNEL] meta: add scsi disk feature
+Subject: [PATCH 09/22][KERNEL] meta/jasperforest: factor out policy-related options
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,39 +30,75 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 16 May 2012 15:51:23 -0000
+X-List-Received-Date: Wed, 16 May 2012 15:51:27 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-Add a feature to enable SCSI disk support.
+Refactor bsp/common-pc/jasperforest* to keep hardware-related options
+in the base jasperforest.scc while moving the more 'policy'-related
+options into the files that include the base jasperforest.scc
+fragment.
+
+This allows the different kernel types to make use of the basic
+machine support without dragging along possibly unwanted options that
+fall under the heading of 'policy' for a specific kernel type.
 
 Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
 ---
- meta/cfg/kernel-cache/features/scsi/disk.cfg |    1 +
- meta/cfg/kernel-cache/features/scsi/disk.scc |    6 ++++++
- 2 files changed, 7 insertions(+), 0 deletions(-)
- create mode 100644 meta/cfg/kernel-cache/features/scsi/disk.cfg
- create mode 100644 meta/cfg/kernel-cache/features/scsi/disk.scc
+ .../bsp/jasperforest/jasperforest-preempt-rt.scc   |    7 +++++++
+ .../bsp/jasperforest/jasperforest-standard.scc     |    6 ++++++
+ .../kernel-cache/bsp/jasperforest/jasperforest.scc |   10 ----------
+ 3 files changed, 13 insertions(+), 10 deletions(-)
 
-diff --git a/meta/cfg/kernel-cache/features/scsi/disk.cfg b/meta/cfg/kernel-cache/features/scsi/disk.cfg
-new file mode 100644
-index 0000000..e71b9a4
---- /dev/null
-+++ b/meta/cfg/kernel-cache/features/scsi/disk.cfg
-@@ -0,0 +1 @@
-+CONFIG_BLK_DEV_SD=y
-diff --git a/meta/cfg/kernel-cache/features/scsi/disk.scc b/meta/cfg/kernel-cache/features/scsi/disk.scc
-new file mode 100644
-index 0000000..fdda548
---- /dev/null
-+++ b/meta/cfg/kernel-cache/features/scsi/disk.scc
-@@ -0,0 +1,6 @@
-+define KFEATURE_DESCRIPTION "Enable options for SCSI disk support"
-+define KFEATURE_COMPATIBILITY board
+diff --git a/meta/cfg/kernel-cache/bsp/jasperforest/jasperforest-preempt-rt.scc b/meta/cfg/kernel-cache/bsp/jasperforest/jasperforest-preempt-rt.scc
+index 4b5c2ca..b3a6370 100644
+--- a/meta/cfg/kernel-cache/bsp/jasperforest/jasperforest-preempt-rt.scc
++++ b/meta/cfg/kernel-cache/bsp/jasperforest/jasperforest-preempt-rt.scc
+@@ -5,4 +5,11 @@ define KARCH x86_64
+ # no new branch required, re-use the ktypes/preempt-rt branch
+ include ktypes/preempt-rt
+ include bsp/common-pc-64/common-pc-64.scc
 +
-+include scsi.scc
+ include jasperforest.scc
 +
-+kconf hardware disk.cfg
++# default policy for preempt-rt kernels
++include cfg/usb-mass-storage.scc
++include features/logbuf/size-normal.scc
++include features/latencytop/latencytop.scc
++include features/profiling/profiling.scc
+diff --git a/meta/cfg/kernel-cache/bsp/jasperforest/jasperforest-standard.scc b/meta/cfg/kernel-cache/bsp/jasperforest/jasperforest-standard.scc
+index baf66d8..ec7a10a 100644
+--- a/meta/cfg/kernel-cache/bsp/jasperforest/jasperforest-standard.scc
++++ b/meta/cfg/kernel-cache/bsp/jasperforest/jasperforest-standard.scc
+@@ -6,3 +6,9 @@ include bsp/common-pc-64/common-pc-64-standard
+ branch jasperforest
+ 
+ include jasperforest.scc
++
++# default policy for standard kernels
++include cfg/usb-mass-storage.scc
++include features/logbuf/size-normal.scc
++include features/latencytop/latencytop.scc
++include features/profiling/profiling.scc
+diff --git a/meta/cfg/kernel-cache/bsp/jasperforest/jasperforest.scc b/meta/cfg/kernel-cache/bsp/jasperforest/jasperforest.scc
+index 82f0f52..f27a473 100644
+--- a/meta/cfg/kernel-cache/bsp/jasperforest/jasperforest.scc
++++ b/meta/cfg/kernel-cache/bsp/jasperforest/jasperforest.scc
+@@ -2,14 +2,4 @@ kconf hardware jasperforest.cfg
+ 
+ include features/serial/8250.scc
+ include cfg/vesafb.scc
+-include cfg/usb-mass-storage.scc
+ include features/power/intel.scc
+-
+-include features/logbuf/size-normal.scc
+-
+-include features/latencytop/latencytop.scc
+-include features/profiling/profiling.scc
+-
+-include features/usb/ehci-hcd.scc
+-include features/usb/ohci-hcd.scc
+-include features/usb/uhci-hcd.scc
 -- 
 1.7.0.4
 
