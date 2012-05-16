@@ -1,38 +1,30 @@
-Return-Path: <rstreif@linuxfoundation.org>
-Received: from mail-bk0-f48.google.com (mail-bk0-f48.google.com
-	[209.85.214.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DC097E01408
-	for <yocto@yoctoproject.org>; Tue, 15 May 2012 17:33:14 -0700 (PDT)
-Received: by bkcjf20 with SMTP id jf20so209671bkc.35
-	for <yocto@yoctoproject.org>; Tue, 15 May 2012 17:33:13 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:date
-	:x-google-sender-auth:message-id:subject:from:to:content-type
-	:x-gm-message-state;
-	bh=6TBTcGZI2t3LyfCHQrKM5BeK0WeMJBAkDgjD+C90Tf0=;
-	b=LvEXBlDFTQGPzJOGO4vTEkaOP2CIucGYQbuWE/Lkg5qF5tHXuz+F0Tvc+mD06jTOXK
-	kXsNX8ITQxAJIQJL3fMXTW8XBxSYtFmvGYpIiK2BUyw92m3QC0LBIwAMe+gNgeFzev3G
-	tvuzK55joAV3F+e/Rdu28QW7JQaK1fHu7odSDt+4GC93TaBW9tqrgBgA6BAaMMrX0VFt
-	bA3AVSiLK1vy4HfvV6u5BLE1UPQnvQAA3NJPeaMJz2ZqhTdHo9UsWMK6oINEV+2RKEcL
-	cAqdfmHbzfSnLddaakNykAz5ghnqtD2laWyQSVbg2uZIkNs2g1rEMWdRvsEgX1k0mod0
-	5egA==
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-ee0-f48.google.com (mail-ee0-f48.google.com [74.125.83.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1E5AAE0030B
+	for <yocto@yoctoproject.org>; Tue, 15 May 2012 21:37:55 -0700 (PDT)
+Received: by eekb45 with SMTP id b45so65606eek.35
+	for <yocto@yoctoproject.org>; Tue, 15 May 2012 21:37:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=1OSi9KPzfMUqS2m+4B1eOnUgTJQImiZYs5qnVj2IhRI=;
+	b=P+5lWkmcH8p9DanVUx5Oew0Va3hzd+L6gLFuhApbBJoq7uVp4LTr0YVqvtaEOHGt+9
+	SIT7gu+F1ei1r68oEUiRmfsxjByHg5AYNLGw1lC0odLqN0inbBagtPOg8ILgb59umYUn
+	cxunW00+p/qQUuBaZ1oDy74g9Pj8N3lJVHuVsYB6nJdbQc5I1AUfabsFjr0u0h/TsloN
+	epmOsXvrtsBkC94hKHMU4l/YniKWmGQ/Q3UIRmCKgBVBJc4wLY2NLfexBp3TM0o8WLfG
+	uPVB2kyxt3HV3XQb58HT0hU3QnZojI2kMyTKzoXdkr0zkGectY2sPplHvSorh/n32Uyl
+	Wscg==
 MIME-Version: 1.0
-Received: by 10.204.152.132 with SMTP id g4mr390778bkw.88.1337128393388; Tue,
-	15 May 2012 17:33:13 -0700 (PDT)
-Sender: rstreif@linuxfoundation.org
-Received: by 10.205.65.134 with HTTP; Tue, 15 May 2012 17:33:13 -0700 (PDT)
-In-Reply-To: <CAPhnLPAyjXju0tf=0m_+Y6EDecrA_Em1iev+zM9eSTRC7C17=w@mail.gmail.com>
+Received: by 10.14.99.129 with SMTP id x1mr190965eef.108.1337143074445; Tue,
+	15 May 2012 21:37:54 -0700 (PDT)
+Received: by 10.14.2.132 with HTTP; Tue, 15 May 2012 21:37:54 -0700 (PDT)
+In-Reply-To: <CA+gsK-ph__F9gNUYSnb_pN2xjLbv8zwB6Sk+J5qiKD43fZx7-w@mail.gmail.com>
 References: <CA+gsK-ph__F9gNUYSnb_pN2xjLbv8zwB6Sk+J5qiKD43fZx7-w@mail.gmail.com>
-	<CAPhnLPANF6KeOtgKa_L2PjV+hCg2Kb8_CFR9tPLzOA1kNNdUrQ@mail.gmail.com>
-	<CA+gsK-o6DM31+ypUBtR9DqX0jhEEESOJVp8Qe9viUzGhJac0dA@mail.gmail.com>
-	<CAPhnLPAyjXju0tf=0m_+Y6EDecrA_Em1iev+zM9eSTRC7C17=w@mail.gmail.com>
-Date: Tue, 15 May 2012 17:33:13 -0700
-X-Google-Sender-Auth: Ehz1ysU0669v55u3xamU8iT8PJc
-Message-ID: <CA+gsK-pOMkiP2Jk_kN2NCk43Zomy=XpUcjEtLD-C0ch6eSZmCA@mail.gmail.com>
-From: Rudolf Streif <rudolf.streif@linux.com>
-To: yocto@yoctoproject.org
-X-Gm-Message-State: ALoCoQnC1n9Hp6byOpHFeJJQETeQkTqCWtjc/aNnqF222VyiC4J++VZ8wZpsDuHXPcYip4EqjkJT
+Date: Tue, 15 May 2012 21:37:54 -0700
+Message-ID: <CAMKF1srwhxNcOkqouicvy9C4HviCLH3k0n+FjSHnP5NV-5ArpQ@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+To: Rudolf Streif <rudolf.streif@linux.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: How is the list in package.manifest derived?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -45,52 +37,81 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 16 May 2012 00:33:15 -0000
-Content-Type: multipart/alternative; boundary=0015175ce024e833d804c01c7658
+X-List-Received-Date: Wed, 16 May 2012 04:37:56 -0000
+Content-Type: multipart/alternative; boundary=bcaec53968c8f75b0a04c01fe133
 
---0015175ce024e833d804c01c7658
-Content-Type: text/plain; charset=ISO-8859-1
+--bcaec53968c8f75b0a04c01fe133
+Content-Type: text/plain; charset=UTF-8
 
-Related to that I have another question. If I use this recipe to create an
-image
+On Tuesday, May 15, 2012, Rudolf Streif <rudolf.streif@linux.com> wrote:
+> I used poky-denzil-7.0 to build a core-image-minimal for the BeagleBoard.
+Now I am looking for a list of everything that went into my image together
+with the license information. The logical thing seems to be
+${TMPDIR}/deploy/licenses/core-image-minimal-beagleboard-<timestamp>/package.manifest:
+> base-files
+> base-passwd
+> bash
+> busybox
+> busybox-syslog
+> busybox-udhcpc
+> initscripts
+> libc6
+> libgcc1
+> libtinfo5
+> libusb-1.0-0
+> libusb-compat
+> modutils-initscripts
+> ncurses-terminfo-base
+> netbase
+> pciutils-ids
+> sysvinit
+> sysvinit-inittab
+> sysvinit-pidof
+> task-core-boot
+> tinylogin
+> udev
+> udev-extraconf
+> udev-utils
+> update-alternatives-cworth
+> update-rc.d
+> usbutils-ids
+> However, I don't think this is everything that went into the image. I
+would expect the kernel to be in the list as well as module-init-tools and
+u-boot. Apparently package.manifest and the corresponding license.manifest
+for an image target do not contain all the licensing information that a
+device builder would need to give to the end customer. How is that list
+created?
 
-DESCRIPTION = "A small image with gcc"
-IMAGE_INSTALL = "task-core-boot gcc"
-LICENSE = "MIT"
-inherit core-image
+I think kernel and uboot  are not bundled into image but kernel modules are
+why module-init-tools does not appear there might be a bug
+> Rudi
 
-and call it myimage.bb
-
-${TMPDIR}/deploy/icenses will contain a subdirectory named myimage.
-However, the content of the directory is not, as I would love to have it, a
-license.manifest and a package.manifest file but the MIT licensing
-information.
-
-What makes a recipe such as core-image-minimal.bb magically different from
-myimage.bb so that the former includes the manifests? It does not seem to
-be the content of the recipe.
-
-:rjs
-
---0015175ce024e833d804c01c7658
-Content-Type: text/html; charset=ISO-8859-1
+--bcaec53968c8f75b0a04c01fe133
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Related to that I have another question. If I use this recipe to create an =
-image
-<div><br></div><div><div>DESCRIPTION =3D &quot;A small image with gcc&quot;=
-</div><div>IMAGE_INSTALL =3D &quot;task-core-boot gcc&quot;</div><div>LICEN=
-SE =3D &quot;MIT&quot;</div><div>inherit core-image</div></div><div><br></d=
-iv>
-<div>and call it <a href=3D"http://myimage.bb">myimage.bb</a></div><div><br=
-></div><div>${TMPDIR}/deploy/icenses will contain a subdirectory named myim=
-age. However, the content of the directory is not, as I would love to have =
-it, a license.manifest and a package.manifest file but the MIT licensing in=
-formation.</div>
-<div><br></div><div>What makes a recipe such as <a href=3D"http://core-imag=
-e-minimal.bb">core-image-minimal.bb</a> magically different from <a href=3D=
-"http://myimage.bb">myimage.bb</a> so that the former includes the manifest=
-s? It does not seem to be the content of the recipe.</div>
-<div><br></div><div>:rjs</div><div><br></div>
+<br><br>On Tuesday, May 15, 2012, Rudolf Streif &lt;<a href=3D"mailto:rudol=
+f.streif@linux.com">rudolf.streif@linux.com</a>&gt; wrote:<br>&gt; I used p=
+oky-denzil-7.0 to build a core-image-minimal for the BeagleBoard. Now I am =
+looking for a list of everything that went into my image together with the =
+license information. The logical thing seems to be ${TMPDIR}/deploy/license=
+s/core-image-minimal-beagleboard-&lt;timestamp&gt;/package.manifest:<br>
+&gt; base-files<br>&gt; base-passwd<br>&gt; bash<br>&gt; busybox<br>&gt; bu=
+sybox-syslog<br>&gt; busybox-udhcpc<br>&gt; initscripts<br>&gt; libc6<br>&g=
+t; libgcc1<br>&gt; libtinfo5<br>&gt; libusb-1.0-0<br>&gt; libusb-compat<br>
+&gt; modutils-initscripts<br>&gt; ncurses-terminfo-base<br>&gt; netbase<br>=
+&gt; pciutils-ids<br>&gt; sysvinit<br>&gt; sysvinit-inittab<br>&gt; sysvini=
+t-pidof<br>&gt; task-core-boot<br>&gt; tinylogin<br>&gt; udev<br>&gt; udev-=
+extraconf<br>
+&gt; udev-utils<br>&gt; update-alternatives-cworth<br>&gt; update-rc.d<br>&=
+gt; usbutils-ids<br>&gt; However, I don&#39;t think this is everything that=
+ went into the image. I would expect the kernel to be in the list as well a=
+s module-init-tools and u-boot. Apparently package.manifest and the corresp=
+onding license.manifest for an image target do not contain all the licensin=
+g information that a device builder would need to give to the end customer.=
+ How is that list created?<br>
+<br>I think kernel and uboot =C2=A0are not bundled into image but kernel mo=
+dules are why module-init-tools does not appear there might be a bug <br>&g=
+t; Rudi
 
---0015175ce024e833d804c01c7658--
+--bcaec53968c8f75b0a04c01fe133--
