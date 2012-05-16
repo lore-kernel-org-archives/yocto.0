@@ -1,29 +1,36 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-ee0-f48.google.com (mail-ee0-f48.google.com [74.125.83.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1E5AAE0030B
-	for <yocto@yoctoproject.org>; Tue, 15 May 2012 21:37:55 -0700 (PDT)
-Received: by eekb45 with SMTP id b45so65606eek.35
-	for <yocto@yoctoproject.org>; Tue, 15 May 2012 21:37:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=1OSi9KPzfMUqS2m+4B1eOnUgTJQImiZYs5qnVj2IhRI=;
-	b=P+5lWkmcH8p9DanVUx5Oew0Va3hzd+L6gLFuhApbBJoq7uVp4LTr0YVqvtaEOHGt+9
-	SIT7gu+F1ei1r68oEUiRmfsxjByHg5AYNLGw1lC0odLqN0inbBagtPOg8ILgb59umYUn
-	cxunW00+p/qQUuBaZ1oDy74g9Pj8N3lJVHuVsYB6nJdbQc5I1AUfabsFjr0u0h/TsloN
-	epmOsXvrtsBkC94hKHMU4l/YniKWmGQ/Q3UIRmCKgBVBJc4wLY2NLfexBp3TM0o8WLfG
-	uPVB2kyxt3HV3XQb58HT0hU3QnZojI2kMyTKzoXdkr0zkGectY2sPplHvSorh/n32Uyl
-	Wscg==
+Return-Path: <rstreif@linuxfoundation.org>
+Received: from mail-bk0-f48.google.com (mail-bk0-f48.google.com
+	[209.85.214.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 539A3E0030B
+	for <yocto@yoctoproject.org>; Tue, 15 May 2012 22:10:29 -0700 (PDT)
+Received: by bkcjf20 with SMTP id jf20so364881bkc.35
+	for <yocto@yoctoproject.org>; Tue, 15 May 2012 22:10:28 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:sender:in-reply-to:references:date
+	:x-google-sender-auth:message-id:subject:from:to:cc:content-type
+	:x-gm-message-state;
+	bh=AcW6vRCIl8rMoueSSBIonc6HrBasnwvBMvdSLJSJ/Og=;
+	b=Ab9qHftxpREmxhn7DBoXefDl19DBZSzFZXauz9EJbWoXQZbOWnFyv4I+hU89c9UK0m
+	eNi01q8NcSlFdVakVL0VPx/lCcJb5qgB+3K0S5YCx5TAtjw6hq/LrfiGouIlAmak6nUp
+	QCIUQemnuMCQ6MhD+YWUfBLZ6d5N99P0XjJBGYtgSbFhLMs3+LF8FhH8M1bkDcXU2bwl
+	6gLEMu1BhH60GV9nercgjq2sE2tbGquJE7NNVz+nK2Z4pdA2LFFKldxcVlkNz9P1eYwR
+	r+bg5H2LLmxD53pImXyutR/Ir76sZrzsmSPSsIP9egZ14wZoKMAw5nftaCQjv7PJwLjf
+	Yf9A==
 MIME-Version: 1.0
-Received: by 10.14.99.129 with SMTP id x1mr190965eef.108.1337143074445; Tue,
-	15 May 2012 21:37:54 -0700 (PDT)
-Received: by 10.14.2.132 with HTTP; Tue, 15 May 2012 21:37:54 -0700 (PDT)
-In-Reply-To: <CA+gsK-ph__F9gNUYSnb_pN2xjLbv8zwB6Sk+J5qiKD43fZx7-w@mail.gmail.com>
+Received: by 10.204.133.220 with SMTP id g28mr602257bkt.54.1337145028026; Tue,
+	15 May 2012 22:10:28 -0700 (PDT)
+Sender: rstreif@linuxfoundation.org
+Received: by 10.205.65.134 with HTTP; Tue, 15 May 2012 22:10:28 -0700 (PDT)
+In-Reply-To: <CAMKF1srwhxNcOkqouicvy9C4HviCLH3k0n+FjSHnP5NV-5ArpQ@mail.gmail.com>
 References: <CA+gsK-ph__F9gNUYSnb_pN2xjLbv8zwB6Sk+J5qiKD43fZx7-w@mail.gmail.com>
-Date: Tue, 15 May 2012 21:37:54 -0700
-Message-ID: <CAMKF1srwhxNcOkqouicvy9C4HviCLH3k0n+FjSHnP5NV-5ArpQ@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-To: Rudolf Streif <rudolf.streif@linux.com>
+	<CAMKF1srwhxNcOkqouicvy9C4HviCLH3k0n+FjSHnP5NV-5ArpQ@mail.gmail.com>
+Date: Tue, 15 May 2012 22:10:28 -0700
+X-Google-Sender-Auth: 92OJzGwl6DzcIkMr4s54QZIRbGc
+Message-ID: <CA+gsK-p5xV5JLr_TkA+P+w=tgrGqC8pJwowiCR4haeXfKueGTw@mail.gmail.com>
+From: Rudolf Streif <rudolf.streif@linux.com>
+To: Khem Raj <raj.khem@gmail.com>
+X-Gm-Message-State: ALoCoQkFFyWHCXisNUDiE+/RycQ0SNOGuhN6c+fmrmUyIqxq/4Czew5b2npzhmg3c16yGZv8JNAz
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: How is the list in package.manifest derived?
 X-BeenThere: yocto@yoctoproject.org
@@ -37,81 +44,66 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 16 May 2012 04:37:56 -0000
-Content-Type: multipart/alternative; boundary=bcaec53968c8f75b0a04c01fe133
+X-List-Received-Date: Wed, 16 May 2012 05:10:29 -0000
+Content-Type: multipart/alternative; boundary=00151743f7c268a13b04c0205659
 
---bcaec53968c8f75b0a04c01fe133
-Content-Type: text/plain; charset=UTF-8
+--00151743f7c268a13b04c0205659
+Content-Type: text/plain; charset=ISO-8859-1
 
-On Tuesday, May 15, 2012, Rudolf Streif <rudolf.streif@linux.com> wrote:
-> I used poky-denzil-7.0 to build a core-image-minimal for the BeagleBoard.
-Now I am looking for a list of everything that went into my image together
-with the license information. The logical thing seems to be
-${TMPDIR}/deploy/licenses/core-image-minimal-beagleboard-<timestamp>/package.manifest:
-> base-files
-> base-passwd
-> bash
-> busybox
-> busybox-syslog
-> busybox-udhcpc
-> initscripts
-> libc6
-> libgcc1
-> libtinfo5
-> libusb-1.0-0
-> libusb-compat
-> modutils-initscripts
-> ncurses-terminfo-base
-> netbase
-> pciutils-ids
-> sysvinit
-> sysvinit-inittab
-> sysvinit-pidof
-> task-core-boot
-> tinylogin
-> udev
-> udev-extraconf
-> udev-utils
-> update-alternatives-cworth
-> update-rc.d
-> usbutils-ids
-> However, I don't think this is everything that went into the image. I
-would expect the kernel to be in the list as well as module-init-tools and
-u-boot. Apparently package.manifest and the corresponding license.manifest
-for an image target do not contain all the licensing information that a
-device builder would need to give to the end customer. How is that list
-created?
+>> I think kernel and uboot  are not bundled into image but kernel modules
+are why
+>> module-init-tools does not appear there might be a bug
 
-I think kernel and uboot  are not bundled into image but kernel modules are
-why module-init-tools does not appear there might be a bug
-> Rudi
+Yes, that is technically of course correct. However, the idea of
+package.manifest and license.manifest should be to provide a list of
+everything that goes into the distribution together with the licenses.
+That's what one needs to provide to customers. And the image recipe has
+these items as dependencies.
 
---bcaec53968c8f75b0a04c01fe133
-Content-Type: text/html; charset=UTF-8
+I would think that anything that is a runtime dependency of an image should
+show up in the manifests. task-core-boot is a runtime dependency of
+core-image-minimal. Interestingly, virtual/kernel is not a runtime
+dependency of task-core-boot but it is a build-time dependency. From the
+view of the build system that is correct and sufficient. It creates the
+kernel but of course the kernel is not included with the root file system
+image. It looks to me as if the class creating the licensing manifest
+evaluates the runtime dependencies which is not sufficient.
+
+That explains the kernel. But it does not explain module-init-tools, as you
+say. Checking reverse dependencies of module-init-tools shows nothing
+depends on them. So how do they get included with the root fs in the first
+place?
+
+Another strange thing I cannot make sense of is that linux-yocto runtime
+depends on python, perl, elfutils, kernel-base and kernel-image.
+
+:rjs
+
+--00151743f7c268a13b04c0205659
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-<br><br>On Tuesday, May 15, 2012, Rudolf Streif &lt;<a href=3D"mailto:rudol=
-f.streif@linux.com">rudolf.streif@linux.com</a>&gt; wrote:<br>&gt; I used p=
-oky-denzil-7.0 to build a core-image-minimal for the BeagleBoard. Now I am =
-looking for a list of everything that went into my image together with the =
-license information. The logical thing seems to be ${TMPDIR}/deploy/license=
-s/core-image-minimal-beagleboard-&lt;timestamp&gt;/package.manifest:<br>
-&gt; base-files<br>&gt; base-passwd<br>&gt; bash<br>&gt; busybox<br>&gt; bu=
-sybox-syslog<br>&gt; busybox-udhcpc<br>&gt; initscripts<br>&gt; libc6<br>&g=
-t; libgcc1<br>&gt; libtinfo5<br>&gt; libusb-1.0-0<br>&gt; libusb-compat<br>
-&gt; modutils-initscripts<br>&gt; ncurses-terminfo-base<br>&gt; netbase<br>=
-&gt; pciutils-ids<br>&gt; sysvinit<br>&gt; sysvinit-inittab<br>&gt; sysvini=
-t-pidof<br>&gt; task-core-boot<br>&gt; tinylogin<br>&gt; udev<br>&gt; udev-=
-extraconf<br>
-&gt; udev-utils<br>&gt; update-alternatives-cworth<br>&gt; update-rc.d<br>&=
-gt; usbutils-ids<br>&gt; However, I don&#39;t think this is everything that=
- went into the image. I would expect the kernel to be in the list as well a=
-s module-init-tools and u-boot. Apparently package.manifest and the corresp=
-onding license.manifest for an image target do not contain all the licensin=
-g information that a device builder would need to give to the end customer.=
- How is that list created?<br>
-<br>I think kernel and uboot =C2=A0are not bundled into image but kernel mo=
-dules are why module-init-tools does not appear there might be a bug <br>&g=
-t; Rudi
+&gt;&gt; I think kernel and uboot =A0are not bundled into image but kernel =
+modules are why<div>&gt;&gt; module-init-tools does not appear there might =
+be a bug<div><br></div><div>Yes, that is technically of course correct. How=
+ever, the idea of package.manifest and license.manifest should be to provid=
+e a list of everything that goes into the distribution together with the li=
+censes. That&#39;s what one needs to provide to customers. And the image re=
+cipe has these items as dependencies.</div>
+<div><br></div><div>I would think that anything that is a runtime dependenc=
+y of an image should show up in the manifests. task-core-boot is a runtime =
+dependency of core-image-minimal. Interestingly, virtual/kernel is not a ru=
+ntime dependency of task-core-boot but it is a build-time dependency. From =
+the view of the build system that is correct and sufficient. It creates the=
+ kernel but of course the kernel is not included with the root file system =
+image. It looks to me as if the class creating the licensing manifest evalu=
+ates the runtime dependencies which is not sufficient.</div>
+<div><br></div><div>That explains the kernel. But it does not explain modul=
+e-init-tools, as you say. Checking reverse dependencies of module-init-tool=
+s shows nothing depends on them. So how do they get included with the root =
+fs in the first place?</div>
+<div><br></div><div>Another strange thing I cannot make sense of is that li=
+nux-yocto runtime depends on python, perl, elfutils, kernel-base and kernel=
+-image.</div><div><br></div><div>:rjs<br><br></div></div>
 
---bcaec53968c8f75b0a04c01fe133--
+--00151743f7c268a13b04c0205659--
