@@ -1,24 +1,22 @@
 Return-Path: <tom.zanussi@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 56F4CE0142B
-	for <yocto@yoctoproject.org>; Wed, 16 May 2012 08:51:16 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 16 May 2012 08:51:15 -0700
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 86E10E0142C
+	for <yocto@yoctoproject.org>; Wed, 16 May 2012 08:51:18 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 16 May 2012 08:51:03 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="167150485"
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="144734185"
 Received: from unknown (HELO localhost) ([10.255.12.76])
-	by fmsmga002.fm.intel.com with ESMTP; 16 May 2012 08:51:15 -0700
+	by orsmga002.jf.intel.com with ESMTP; 16 May 2012 08:51:02 -0700
 From: tom.zanussi@intel.com
 To: yocto@yoctoproject.org, bruce.ashfield@windriver.com,
 	dvhart@linux.intel.com
-Date: Wed, 16 May 2012 10:50:28 -0500
-Message-Id: <fea1b0e38eafb4a737861916207d45fc779e5829.1337182769.git.tom.zanussi@intel.com>
+Date: Wed, 16 May 2012 10:50:21 -0500
+Message-Id: <594ba05ab96a837575960ba514ae153eeef899b7.1337182769.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <594ba05ab96a837575960ba514ae153eeef899b7.1337182769.git.tom.zanussi@intel.com>
-References: <594ba05ab96a837575960ba514ae153eeef899b7.1337182769.git.tom.zanussi@intel.com>
 In-Reply-To: <cover.1337182769.git.tom.zanussi@intel.com>
 References: <cover.1337182769.git.tom.zanussi@intel.com>
-Subject: [PATCH 08/22][KERNEL] meta/fishriver: factor out policy-related options
+Subject: [PATCH 01/22][KERNEL] meta: add ROOT_HUB_TT config option to the usb/ehci-hcd feature
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,79 +28,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 16 May 2012 15:51:16 -0000
+X-List-Received-Date: Wed, 16 May 2012 15:51:18 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-Refactor bsp/common-pc/fishriver* to keep hardware-related options in
-the base fishriver.scc while moving the more 'policy'-related options
-into the files that include the base fishriver.scc fragment.
-
-This allows the different kernel types to make use of the basic
-machine support without dragging along possibly unwanted options that
-fall under the heading of 'policy' for a specific kernel type.
+Add root hub transaction translator support for supporting companion
+ohci/uhci controllers , which is safe even if the ehci controller
+doesn't have companion controllers.
 
 Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
 ---
- .../bsp/fishriver/fishriver-preempt-rt.scc         |    8 ++++++++
- .../bsp/fishriver/fishriver-standard.scc           |    8 ++++++++
- meta/cfg/kernel-cache/bsp/fishriver/fishriver.scc  |    8 --------
- 3 files changed, 16 insertions(+), 8 deletions(-)
+ meta/cfg/kernel-cache/features/usb/ehci-hcd.cfg |    1 +
+ 1 files changed, 1 insertions(+), 0 deletions(-)
 
-diff --git a/meta/cfg/kernel-cache/bsp/fishriver/fishriver-preempt-rt.scc b/meta/cfg/kernel-cache/bsp/fishriver/fishriver-preempt-rt.scc
-index 1a5e46a..f37e1c6 100644
---- a/meta/cfg/kernel-cache/bsp/fishriver/fishriver-preempt-rt.scc
-+++ b/meta/cfg/kernel-cache/bsp/fishriver/fishriver-preempt-rt.scc
-@@ -4,4 +4,12 @@ define KARCH i386
- 
- # no new branch required, re-use the ktypes/preempt-rt branch
- include ktypes/preempt-rt
-+
- include fishriver.scc
-+
-+# default policy for preempt-rt kernels
-+include cfg/usb-mass-storage.scc
-+include cfg/boot-live.scc
-+include features/logbuf/size-normal.scc
-+include features/latencytop/latencytop.scc
-+include features/profiling/profiling.scc
-diff --git a/meta/cfg/kernel-cache/bsp/fishriver/fishriver-standard.scc b/meta/cfg/kernel-cache/bsp/fishriver/fishriver-standard.scc
-index e697d7e..fb2dc25 100644
---- a/meta/cfg/kernel-cache/bsp/fishriver/fishriver-standard.scc
-+++ b/meta/cfg/kernel-cache/bsp/fishriver/fishriver-standard.scc
-@@ -9,3 +9,11 @@ include features/emgd/emgd.scc
- git merge emgd
- 
- include fishriver.scc
-+
-+# default policy for standard kernels
-+include cfg/usb-mass-storage.scc
-+include cfg/boot-live.scc
-+include features/logbuf/size-normal.scc
-+include features/latencytop/latencytop.scc
-+include features/profiling/profiling.scc
-+
-diff --git a/meta/cfg/kernel-cache/bsp/fishriver/fishriver.scc b/meta/cfg/kernel-cache/bsp/fishriver/fishriver.scc
-index e401274..f06618b 100644
---- a/meta/cfg/kernel-cache/bsp/fishriver/fishriver.scc
-+++ b/meta/cfg/kernel-cache/bsp/fishriver/fishriver.scc
-@@ -8,16 +8,8 @@ include features/serial/8250.scc
- include features/hpet/hpet.scc
- include features/ericsson-3g/f5521gw.scc
- include cfg/vesafb.scc
--include cfg/usb-mass-storage.scc
--include cfg/boot-live.scc
- include cfg/smp.scc
- include features/power/intel.scc
- 
--include features/logbuf/size-normal.scc
--
--include features/latencytop/latencytop.scc
--include features/profiling/profiling.scc
--
- include features/usb/ehci-hcd.scc
--include features/usb/ohci-hcd.scc
- include features/usb/uhci-hcd.scc
+diff --git a/meta/cfg/kernel-cache/features/usb/ehci-hcd.cfg b/meta/cfg/kernel-cache/features/usb/ehci-hcd.cfg
+index 7322dc2..b977248 100644
+--- a/meta/cfg/kernel-cache/features/usb/ehci-hcd.cfg
++++ b/meta/cfg/kernel-cache/features/usb/ehci-hcd.cfg
+@@ -1 +1,2 @@
+ CONFIG_USB_EHCI_HCD=y
++CONFIG_USB_EHCI_ROOT_HUB_TT=y
 -- 
 1.7.0.4
 
