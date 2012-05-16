@@ -1,24 +1,24 @@
 Return-Path: <tom.zanussi@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ECDFBE01422
-	for <yocto@yoctoproject.org>; Wed, 16 May 2012 08:51:13 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 16 May 2012 08:51:13 -0700
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 80529E0142A
+	for <yocto@yoctoproject.org>; Wed, 16 May 2012 08:51:14 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga102.fm.intel.com with ESMTP; 16 May 2012 08:51:14 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="100803952"
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="153671069"
 Received: from unknown (HELO localhost) ([10.255.12.76])
-	by AZSMGA002.ch.intel.com with ESMTP; 16 May 2012 08:51:11 -0700
+	by fmsmga001.fm.intel.com with ESMTP; 16 May 2012 08:51:13 -0700
 From: tom.zanussi@intel.com
 To: yocto@yoctoproject.org, bruce.ashfield@windriver.com,
 	dvhart@linux.intel.com
-Date: Wed, 16 May 2012 10:50:26 -0500
-Message-Id: <4748d50f630bfbdc57a3ada7992f0d4e8ca1ae1d.1337182769.git.tom.zanussi@intel.com>
+Date: Wed, 16 May 2012 10:50:27 -0500
+Message-Id: <13bf9ab557b1e521bbf871b1d98d63a308a8f726.1337182769.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <594ba05ab96a837575960ba514ae153eeef899b7.1337182769.git.tom.zanussi@intel.com>
 References: <594ba05ab96a837575960ba514ae153eeef899b7.1337182769.git.tom.zanussi@intel.com>
 In-Reply-To: <cover.1337182769.git.tom.zanussi@intel.com>
 References: <cover.1337182769.git.tom.zanussi@intel.com>
-Subject: [PATCH 06/22][KERNEL] meta/crownbay: factor out policy-related options
+Subject: [PATCH 07/22][KERNEL] meta/emenlow: factor out policy-related options
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,9 +34,9 @@ X-List-Received-Date: Wed, 16 May 2012 15:51:14 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-Refactor bsp/common-pc/crownbay* to keep hardware-related options in
-the base crownbay.scc while moving the more 'policy'-related options
-into the files that include the base crownbay.scc fragment.
+Refactor bsp/emenlow/emenlow* to keep hardware-related options in the
+base emenlow.scc while moving the more 'policy'-related options into
+the files that include the base emenlow.scc fragment.
 
 This allows the different kernel types to make use of the basic
 machine support without dragging along possibly unwanted options that
@@ -44,21 +44,21 @@ fall under the heading of 'policy' for a specific kernel type.
 
 Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
 ---
- .../bsp/crownbay/crownbay-preempt-rt.scc           |    8 ++++++++
- .../bsp/crownbay/crownbay-standard.scc             |    7 +++++++
- meta/cfg/kernel-cache/bsp/crownbay/crownbay.scc    |    8 --------
- 3 files changed, 15 insertions(+), 8 deletions(-)
+ .../bsp/emenlow/emenlow-preempt-rt.scc             |    8 ++++++++
+ .../kernel-cache/bsp/emenlow/emenlow-standard.scc  |    8 ++++++++
+ meta/cfg/kernel-cache/bsp/emenlow/emenlow.scc      |    8 --------
+ 3 files changed, 16 insertions(+), 8 deletions(-)
 
-diff --git a/meta/cfg/kernel-cache/bsp/crownbay/crownbay-preempt-rt.scc b/meta/cfg/kernel-cache/bsp/crownbay/crownbay-preempt-rt.scc
-index d58b4be..11067ef 100644
---- a/meta/cfg/kernel-cache/bsp/crownbay/crownbay-preempt-rt.scc
-+++ b/meta/cfg/kernel-cache/bsp/crownbay/crownbay-preempt-rt.scc
+diff --git a/meta/cfg/kernel-cache/bsp/emenlow/emenlow-preempt-rt.scc b/meta/cfg/kernel-cache/bsp/emenlow/emenlow-preempt-rt.scc
+index 156e4c6..85d8367 100644
+--- a/meta/cfg/kernel-cache/bsp/emenlow/emenlow-preempt-rt.scc
++++ b/meta/cfg/kernel-cache/bsp/emenlow/emenlow-preempt-rt.scc
 @@ -4,4 +4,12 @@ define KARCH i386
  
  # no new branch required, re-use the ktypes/preempt-rt branch
  include ktypes/preempt-rt
 +
- include crownbay.scc
+ include emenlow.scc
 +
 +# default policy for preempt-rt kernels
 +include cfg/usb-mass-storage.scc
@@ -66,14 +66,14 @@ index d58b4be..11067ef 100644
 +include features/logbuf/size-normal.scc
 +include features/latencytop/latencytop.scc
 +include features/profiling/profiling.scc
-diff --git a/meta/cfg/kernel-cache/bsp/crownbay/crownbay-standard.scc b/meta/cfg/kernel-cache/bsp/crownbay/crownbay-standard.scc
-index d6036f7..dd9dbc7 100644
---- a/meta/cfg/kernel-cache/bsp/crownbay/crownbay-standard.scc
-+++ b/meta/cfg/kernel-cache/bsp/crownbay/crownbay-standard.scc
-@@ -9,3 +9,10 @@ include features/emgd/emgd-1.10.scc
- git merge emgd-1.10
+diff --git a/meta/cfg/kernel-cache/bsp/emenlow/emenlow-standard.scc b/meta/cfg/kernel-cache/bsp/emenlow/emenlow-standard.scc
+index 804b36e..aac1b09 100644
+--- a/meta/cfg/kernel-cache/bsp/emenlow/emenlow-standard.scc
++++ b/meta/cfg/kernel-cache/bsp/emenlow/emenlow-standard.scc
+@@ -6,3 +6,11 @@ include ktypes/standard
+ branch emenlow
  
- include crownbay.scc
+ include emenlow.scc
 +
 +# default policy for standard kernels
 +include cfg/usb-mass-storage.scc
@@ -81,18 +81,18 @@ index d6036f7..dd9dbc7 100644
 +include features/logbuf/size-normal.scc
 +include features/latencytop/latencytop.scc
 +include features/profiling/profiling.scc
-diff --git a/meta/cfg/kernel-cache/bsp/crownbay/crownbay.scc b/meta/cfg/kernel-cache/bsp/crownbay/crownbay.scc
-index c4bc1a5..08e3083 100644
---- a/meta/cfg/kernel-cache/bsp/crownbay/crownbay.scc
-+++ b/meta/cfg/kernel-cache/bsp/crownbay/crownbay.scc
-@@ -8,16 +8,8 @@ include cfg/dmaengine.scc
++
+diff --git a/meta/cfg/kernel-cache/bsp/emenlow/emenlow.scc b/meta/cfg/kernel-cache/bsp/emenlow/emenlow.scc
+index 2967d93..e69c0c5 100644
+--- a/meta/cfg/kernel-cache/bsp/emenlow/emenlow.scc
++++ b/meta/cfg/kernel-cache/bsp/emenlow/emenlow.scc
+@@ -6,15 +6,7 @@ include features/intel-e1xxxx/intel-e1xxxx.scc
+ include features/drm-psb/drm-psb.scc
  include features/serial/8250.scc
- include features/hpet/hpet.scc
  include cfg/vesafb.scc
 -include cfg/usb-mass-storage.scc
 -include cfg/boot-live.scc
  include cfg/smp.scc
- include features/power/intel.scc
  
 -include features/logbuf/size-normal.scc
 -
@@ -100,8 +100,8 @@ index c4bc1a5..08e3083 100644
 -include features/profiling/profiling.scc
 -
  include features/usb/ehci-hcd.scc
- include features/usb/ohci-hcd.scc
--include features/usb/uhci-hcd.scc
+-include features/usb/ohci-hcd.scc
+ include features/usb/uhci-hcd.scc
 -- 
 1.7.0.4
 
