@@ -1,29 +1,24 @@
-Return-Path: <opensource@keylevel.com>
-Received: from hxhsvr03.internetintuitive.net (hxhsvr03.internetintuitive.net
-	[80.254.228.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B8A3AE01421
-	for <yocto@yoctoproject.org>; Thu, 17 May 2012 13:10:14 -0700 (PDT)
-Received: from [109.224.129.17] (port=6532
-	helo=macbook-pro.durham.keylevel.com)
-	by hxhsvr03.internetintuitive.net with esmtpa (Exim 4.69)
-	(envelope-from <opensource@keylevel.com>) id 1SV71Z-0005Q8-4u
-	for yocto@yoctoproject.org; Thu, 17 May 2012 21:10:13 +0100
-From: Chris Tapp <opensource@keylevel.com>
-Date: Thu, 17 May 2012 21:10:10 +0100
-Message-Id: <0A3A31D3-D0DF-4C56-8896-1075F801C8BD@keylevel.com>
-To: Yocto Project <yocto@yoctoproject.org>
-Mime-Version: 1.0 (Apple Message framework v1278)
-X-Mailer: Apple Mail (2.1278)
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - hxhsvr03.internetintuitive.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: Per-machine DEPENDS
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 61632E01402
+	for <yocto@yoctoproject.org>; Thu, 17 May 2012 13:27:54 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 17 May 2012 13:27:53 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="145287293"
+Received: from unknown (HELO helios.localnet) ([10.252.120.128])
+	by orsmga002.jf.intel.com with ESMTP; 17 May 2012 13:27:53 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Chris Tapp <opensource@keylevel.com>
+Date: Thu, 17 May 2012 21:27:52 +0100
+Message-ID: <4904220.mFpDsjEpuq@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.8.2 (Linux/3.2.0-24-generic-pae; KDE/4.8.2; i686; ; )
+In-Reply-To: <0A3A31D3-D0DF-4C56-8896-1075F801C8BD@keylevel.com>
+References: <0A3A31D3-D0DF-4C56-8896-1075F801C8BD@keylevel.com>
+MIME-Version: 1.0
+Cc: yocto@yoctoproject.org
+Subject: Re: Per-machine DEPENDS
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,27 +30,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 17 May 2012 20:10:14 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 17 May 2012 20:27:54 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Is it possible to have the (R)DEPENDS list vary depending on the machine =
-being built?
+On Thursday 17 May 2012 21:10:10 Chris Tapp wrote:
+> Is it possible to have the (R)DEPENDS list vary depending on the machine
+> being built?
+> 
+> For example, I want 'this-bit' to be included for a 'machine-1' build, but
+> not 'machine-2'.
+> 
+> Something like:
+> 
+> DEPENDS = "common-stuff"
+> 
+> DEPENDS_machine-1 = "${DEPENDS} this-stuff"
 
-For example, I want 'this-bit' to be included for a 'machine-1' build, =
-but not 'machine-2'.
+Yes, that will work. If the DEPENDS change implies some different configuration 
+I'd recommend being explicit about it as well e.g. via EXTRA_OECONF or 
+whatever is appropriate; this is particularly important for the case where the 
+extra dependency is not included and the configure script for the application 
+would auto-detect the presence of the additional dependency in the absence of 
+an explicit configure option.
 
-Something like:
+Also, ideally these machine-specific bits should live in a bbappend within the 
+BSP for that machine, thus keeping the recipe itself more or less generic.
 
-DEPENDS =3D "common-stuff"
+Cheers,
+Paul
 
-DEPENDS_machine-1 =3D "${DEPENDS} this-stuff"
+-- 
 
-Chris Tapp
-
-opensource@keylevel.com
-www.keylevel.com
-
-
-
+Paul Eggleton
+Intel Open Source Technology Centre
 
