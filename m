@@ -1,26 +1,29 @@
-Return-Path: <josh@linux.intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AE4E1E00746
-	for <yocto@yoctoproject.org>; Thu, 17 May 2012 13:01:17 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 17 May 2012 13:01:02 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="141829096"
-Received: from unknown (HELO [10.7.198.58]) ([10.7.198.58])
-	by orsmga001.jf.intel.com with ESMTP; 17 May 2012 13:01:02 -0700
-Message-ID: <4FB558FE.80308@linux.intel.com>
-Date: Thu, 17 May 2012 13:01:02 -0700
-From: Joshua Lock <josh@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:12.0) Gecko/20120430 Thunderbird/12.0.1
-MIME-Version: 1.0
-To: Andrea Galbusera <gizero@gmail.com>
-References: <CAC+thW11WFJcsJifYnzO3gQRivaCGjk_H+-kcMMQk+Weh4TcLg@mail.gmail.com>
-	<4FB53CF1.7090504@linux.intel.com>
-	<CAC+thW1-ir4bmjFn56h3mgCxi5=HQW64zOswZrbSigkzGnRVSA@mail.gmail.com>
-In-Reply-To: <CAC+thW1-ir4bmjFn56h3mgCxi5=HQW64zOswZrbSigkzGnRVSA@mail.gmail.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: meta-toolchain-sdk fails in edison with package_ipk
+Return-Path: <opensource@keylevel.com>
+Received: from hxhsvr03.internetintuitive.net (hxhsvr03.internetintuitive.net
+	[80.254.228.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B8A3AE01421
+	for <yocto@yoctoproject.org>; Thu, 17 May 2012 13:10:14 -0700 (PDT)
+Received: from [109.224.129.17] (port=6532
+	helo=macbook-pro.durham.keylevel.com)
+	by hxhsvr03.internetintuitive.net with esmtpa (Exim 4.69)
+	(envelope-from <opensource@keylevel.com>) id 1SV71Z-0005Q8-4u
+	for yocto@yoctoproject.org; Thu, 17 May 2012 21:10:13 +0100
+From: Chris Tapp <opensource@keylevel.com>
+Date: Thu, 17 May 2012 21:10:10 +0100
+Message-Id: <0A3A31D3-D0DF-4C56-8896-1075F801C8BD@keylevel.com>
+To: Yocto Project <yocto@yoctoproject.org>
+Mime-Version: 1.0 (Apple Message framework v1278)
+X-Mailer: Apple Mail (2.1278)
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - hxhsvr03.internetintuitive.net
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - keylevel.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: Per-machine DEPENDS
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,81 +35,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 17 May 2012 20:01:17 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 17 May 2012 20:10:14 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
-On 17/05/12 12:34, Andrea Galbusera wrote:
-> Hi Joshua,
->
-> On Thu, May 17, 2012 at 8:01 PM, Joshua Lock<josh@linux.intel.com>  wrote:
->> Hello Andrea,
->>
->>
->> On 17/05/12 01:21, Andrea Galbusera wrote:
->>>
->>> Hello,
->>> Is there any known problem when building meta-toolchain-sdk target
->>> with PACKAGE_CLASSES = "package_ipk" ?
->>>
->>> I have deterministic failure in do_populate_sdk with latest edison
->>> metadata and default local.conf (other than changing PACKAGE_CLASSES
->>> to ipk).
->>> Don't have a denzil tree at hand, but I'm going to check if this is
->>> reproducible with 1.2 too.
->>>
->>> To me it seem the failing task is trying to access host files on my
->>> build system. Here is the first error I can see:
->>>
->>>> Installing libtelepathy-dbg (0.3.3-r3) to root...
->>>> Downloading
->>>> file:/scratch/gizero/edison-build-raid.orig/tmp/deploy/ipk/i586/libtelepathy-dbg_0.3.3-r3_i586.ipk.
->>>> touch: cannot touch `/etc/shells': Permission denied
->>>> mkdir: cannot create directory `/var/lib/opkg/alternatives': Permission
->>>> denied
->>>
->>>
->>> Here you can see the full log (few lines stripped to satisfy pastebin
->>> size limits...):
->>>
->>> http://pastebin.com/Gim3DacX
->>>
->>> Build works when I switch to rpm instead of ipk, but I want ipk for my
->>> target and, at moment, I need to switch back and forth the two formats
->>> when I need to update either my images or my sdk. Is there a smarter
->>> way to stay with rpm for the sdk and with ipk for the target images?
->>
->>
->> I've discovered that this is fixed in Denzil
->
-> Thank you for your investigation! I ran out of time and could not test
-> with denzil today, but you anticipated results... ;-)
->
->> https://bugzilla.yoctoproject.org/show_bug.cgi?id=1869
->>
->> http://git.yoctoproject.org/cgit.cgi/poky/commit/?id=c4de612298266653130dd2e5b8378f62dda77e9f
->>
->> I tested here and can report that the issue is resolved with that patch
->> applied.
->>
->> This patch has been applied to my josh/edison branch of the poky-contrib
->> repository and should make it into the main edison branch, and a point
->> release, in the near future.
->>
->> Thanks for the report,
->
-> Glad to hear edison too will benefit of the fix! I noticed another
-> strange behavior while experimenting with different configurations of
-> PACKAGE_CLASSES: but I'd prefer repeating my tests before reporting
-> issues.
+Is it possible to have the (R)DEPENDS list vary depending on the machine =
+being built?
 
-I'm currently working with Edison to provide an update with various bug 
-fixes so please do report your findings here or at bugzilla.yoctoproject.org
+For example, I want 'this-bit' to be included for a 'machine-1' build, =
+but not 'machine-2'.
 
-Regards,
-Joshua
--- 
-Joshua Lock
-         Yocto Project
-         Intel Open Source Technology Centre
+Something like:
+
+DEPENDS =3D "common-stuff"
+
+DEPENDS_machine-1 =3D "${DEPENDS} this-stuff"
+
+Chris Tapp
+
+opensource@keylevel.com
+www.keylevel.com
+
+
+
 
