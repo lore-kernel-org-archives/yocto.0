@@ -1,23 +1,32 @@
-Return-Path: <josh@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5EB62E006DA
-	for <yocto@yoctoproject.org>; Thu, 17 May 2012 11:01:25 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 17 May 2012 11:01:21 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="141783813"
-Received: from unknown (HELO [10.7.198.58]) ([10.7.198.58])
-	by orsmga001.jf.intel.com with ESMTP; 17 May 2012 11:01:21 -0700
-Message-ID: <4FB53CF1.7090504@linux.intel.com>
-Date: Thu, 17 May 2012 11:01:21 -0700
-From: Joshua Lock <josh@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:12.0) Gecko/20120430 Thunderbird/12.0.1
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-ey0-f176.google.com (mail-ey0-f176.google.com
+	[209.85.215.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7D730E006DA
+	for <yocto@yoctoproject.org>; Thu, 17 May 2012 11:16:19 -0700 (PDT)
+Received: by eaab16 with SMTP id b16so643668eaa.35
+	for <yocto@yoctoproject.org>; Thu, 17 May 2012 11:16:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type:content-transfer-encoding;
+	bh=qxUaLpCp9klfiUZ+UiX80/rrGPJZXnE1wuAMroTkas8=;
+	b=MndIaE21Fn9vIvyMJ+TmkvASAaTClRF9RXZJb1JbATFbtRF+zmrf+UHsbKxcJF81bZ
+	WtWJVoZUsL5jD775zSdhX/sWD42eiLdcvbYGg9PQHe+oOK7sk7HZTMX+ANaDANsNAGPV
+	nFK5qIQaJ2VnbfEfPLfLqvy5YnPiEnEcK12XbUcvj+aPUbv5z89wzVeX2AgBrVc1+JWf
+	zF5IpqKEwoITkEvja3inbfyKzDH8SgVeOO+fNhEarmZ9B5mn66Qm/foMmqowhpaM1r5q
+	NlHeKdpx2vPkPYZrLreynteVFQtoqTO2LS57hweFIymzEOPv0e131fvKxkTo9RN/myj8
+	2gYA==
+Received: by 10.213.105.196 with SMTP id u4mr2444114ebo.92.1337278577881; Thu,
+	17 May 2012 11:16:17 -0700 (PDT)
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <CAC+thW11WFJcsJifYnzO3gQRivaCGjk_H+-kcMMQk+Weh4TcLg@mail.gmail.com>
-In-Reply-To: <CAC+thW11WFJcsJifYnzO3gQRivaCGjk_H+-kcMMQk+Weh4TcLg@mail.gmail.com>
-Subject: Re: meta-toolchain-sdk fails in edison with package_ipk
+Received: by 10.14.2.132 with HTTP; Thu, 17 May 2012 11:15:47 -0700 (PDT)
+In-Reply-To: <CAPhnLPA-Jim7bHCOwcqzPfcxdD-zpsovb6YOqAvjLREYpit68w@mail.gmail.com>
+References: <CAPhnLPA-Jim7bHCOwcqzPfcxdD-zpsovb6YOqAvjLREYpit68w@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Thu, 17 May 2012 11:15:47 -0700
+Message-ID: <CAMKF1sodOA9SrUcqHnTV7Ttw4=NkikenJAbF0P-CqcnhQTBRxA@mail.gmail.com>
+To: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+Cc: florin.sarbu@windriver.com, yocto@yoctoproject.org, andrei@gherzan.ro
+Subject: Re: Solution to fetching the linux-yocto-3.0 tarball
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,59 +38,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 17 May 2012 18:01:25 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 17 May 2012 18:16:19 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Hello Andrea,
-
-On 17/05/12 01:21, Andrea Galbusera wrote:
-> Hello,
-> Is there any known problem when building meta-toolchain-sdk target
-> with PACKAGE_CLASSES = "package_ipk" ?
+On Thu, May 17, 2012 at 10:37 AM, Flanagan, Elizabeth
+<elizabeth.flanagan@intel.com> wrote:
 >
-> I have deterministic failure in do_populate_sdk with latest edison
-> metadata and default local.conf (other than changing PACKAGE_CLASSES
-> to ipk).
-> Don't have a denzil tree at hand, but I'm going to check if this is
-> reproducible with 1.2 too.
 >
-> To me it seem the failing task is trying to access host files on my
-> build system. Here is the first error I can see:
+> PREMIRRORS ?=3D "\
+> bzr://.*/.* =C2=A0 http://autobuilder.yoctoproject.org/sources/ \n \
+> cvs://.*/.* =C2=A0 http://autobuilder.yoctoproject.org/sources/ \n \
+> git://.*/.* =C2=A0 http://autobuilder.yoctoproject.org/sources/ \n \
+> hg://.*/.* =C2=A0 =C2=A0http://autobuilder.yoctoproject.org/sources/ \n \
+> osc://.*/.* =C2=A0 http://autobuilder.yoctoproject.org/sources/ \n \
+> p4://.*/.* =C2=A0 =C2=A0http://autobuilder.yoctoproject.org/sources/ \n \
+> svk://.*/.* =C2=A0 http://autobuilder.yoctoproject.org/sources/ \n \
+> svn://.*/.* =C2=A0 http://autobuilder.yoctoproject.org/sources/ \n"
 >
->> Installing libtelepathy-dbg (0.3.3-r3) to root...
->> Downloading file:/scratch/gizero/edison-build-raid.orig/tmp/deploy/ipk/i586/libtelepathy-dbg_0.3.3-r3_i586.ipk.
->> touch: cannot touch `/etc/shells': Permission denied
->> mkdir: cannot create directory `/var/lib/opkg/alternatives': Permission denied
->
-> Here you can see the full log (few lines stripped to satisfy pastebin
-> size limits...):
->
-> http://pastebin.com/Gim3DacX
->
-> Build works when I switch to rpm instead of ipk, but I want ipk for my
-> target and, at moment, I need to switch back and forth the two formats
-> when I need to update either my images or my sdk. Is there a smarter
-> way to stay with rpm for the sdk and with ipk for the target images?
+> MIRRORS =3D+ "\
+> ftp://.*/.* =C2=A0 =C2=A0 =C2=A0http://autobuilder.yoctoproject.org/sourc=
+es/ \n \
+> http://.*/.* =C2=A0 =C2=A0 http://autobuilder.yoctoproject.org/sources/ \=
+n \
+> https://.*/.* =C2=A0 =C2=A0http://autobuilder.yoctoproject.org/sources/ \=
+n"
 
-I've discovered that this is fixed in Denzil
-
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=1869
-
-http://git.yoctoproject.org/cgit.cgi/poky/commit/?id=c4de612298266653130dd2e5b8378f62dda77e9f
-
-I tested here and can report that the issue is resolved with that patch 
-applied.
-
-This patch has been applied to my josh/edison branch of the poky-contrib 
-repository and should make it into the main edison branch, and a point 
-release, in the near future.
-
-Thanks for the report,
-
-Joshua
--- 
-Joshua Lock
-         Yocto Project
-         Intel Open Source Technology Centre
+is autobuilder.yoctoproject.org same as sources.yoctoproject.org
 
