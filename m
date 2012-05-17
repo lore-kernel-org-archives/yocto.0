@@ -1,31 +1,24 @@
-Return-Path: <opensource@keylevel.com>
-Received: from hxhsvr03.internetintuitive.net (hxhsvr03.internetintuitive.net
-	[80.254.228.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3F640E01421
-	for <yocto@yoctoproject.org>; Thu, 17 May 2012 14:07:54 -0700 (PDT)
-Received: from [109.224.129.17] (port=64453
-	helo=macbook-pro.durham.keylevel.com)
-	by hxhsvr03.internetintuitive.net with esmtpa (Exim 4.69)
-	(envelope-from <opensource@keylevel.com>)
-	id 1SV7vN-0006hj-4j; Thu, 17 May 2012 22:07:53 +0100
-Mime-Version: 1.0 (Apple Message framework v1278)
-From: Chris Tapp <opensource@keylevel.com>
-In-Reply-To: <4904220.mFpDsjEpuq@helios>
-Date: Thu, 17 May 2012 22:07:50 +0100
-Message-Id: <850EEF2D-6A67-4987-B202-A24461737544@keylevel.com>
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 71ED8E01421
+	for <yocto@yoctoproject.org>; Thu, 17 May 2012 14:22:20 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 17 May 2012 14:22:20 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="144584650"
+Received: from unknown (HELO helios.localnet) ([10.252.120.128])
+	by azsmga001.ch.intel.com with ESMTP; 17 May 2012 14:22:19 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Chris Tapp <opensource@keylevel.com>
+Date: Thu, 17 May 2012 22:22:18 +0100
+Message-ID: <8363795.7bU7lvsc4a@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.8.2 (Linux/3.2.0-24-generic-pae; KDE/4.8.2; i686; ; )
+In-Reply-To: <850EEF2D-6A67-4987-B202-A24461737544@keylevel.com>
 References: <0A3A31D3-D0DF-4C56-8896-1075F801C8BD@keylevel.com>
 	<4904220.mFpDsjEpuq@helios>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-X-Mailer: Apple Mail (2.1278)
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - hxhsvr03.internetintuitive.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+	<850EEF2D-6A67-4987-B202-A24461737544@keylevel.com>
+MIME-Version: 1.0
 Cc: yocto@yoctoproject.org
 Subject: Re: Per-machine DEPENDS
 X-BeenThere: yocto@yoctoproject.org
@@ -39,55 +32,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 17 May 2012 21:07:54 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 17 May 2012 21:22:20 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
+On Thursday 17 May 2012 22:07:50 Chris Tapp wrote:
+> On 17 May 2012, at 21:27, Paul Eggleton wrote:
+> > On Thursday 17 May 2012 21:10:10 Chris Tapp wrote:
+> >> Is it possible to have the (R)DEPENDS list vary depending on the machine
+> >> being built?
+> >> 
+> >> For example, I want 'this-bit' to be included for a 'machine-1' build,
+> >> but
+> >> not 'machine-2'.
+> >> 
+> >> Something like:
+> >> 
+> >> DEPENDS = "common-stuff"
+> >> 
+> >> DEPENDS_machine-1 = "${DEPENDS} this-stuff"
+> > 
+> > Yes, that will work. If the DEPENDS change implies some different
+> > configuration I'd recommend being explicit about it as well e.g. via
+> > EXTRA_OECONF or whatever is appropriate; this is particularly important
+> > for the case where the extra dependency is not included and the configure
+> > script for the application would auto-detect the presence of the
+> > additional dependency in the absence of an explicit configure option.
+> 
+> Thanks. Is there some documentation that explains how the suffixes are build
+> up, when they are used, etc. ?
 
-On 17 May 2012, at 21:27, Paul Eggleton wrote:
+These "suffixes" are called overrides in BitBake parlance. If an override 
+appears in the OVERRIDES variable then it is applied, and the OVERRIDES 
+variable is built up out of the values of various other variables (including 
+MACHINE, DISTRO, etc - see 'bitbake -e | grep OVERRIDES'). I'm pretty sure 
+this is covered in the BitBake manual, although unfortunately that is only 
+available in source format right now.
 
-> On Thursday 17 May 2012 21:10:10 Chris Tapp wrote:
->> Is it possible to have the (R)DEPENDS list vary depending on the =
-machine
->> being built?
->>=20
->> For example, I want 'this-bit' to be included for a 'machine-1' =
-build, but
->> not 'machine-2'.
->>=20
->> Something like:
->>=20
->> DEPENDS =3D "common-stuff"
->>=20
->> DEPENDS_machine-1 =3D "${DEPENDS} this-stuff"
->=20
-> Yes, that will work. If the DEPENDS change implies some different =
-configuration=20
-> I'd recommend being explicit about it as well e.g. via EXTRA_OECONF or=20=
+Cheers,
+Paul
 
-> whatever is appropriate; this is particularly important for the case =
-where the=20
-> extra dependency is not included and the configure script for the =
-application=20
-> would auto-detect the presence of the additional dependency in the =
-absence of=20
-> an explicit configure option.
+-- 
 
-Thanks. Is there some documentation that explains how the suffixes are =
-build up, when they are used, etc. ?
-
-> Also, ideally these machine-specific bits should live in a bbappend =
-within the=20
-> BSP for that machine, thus keeping the recipe itself more or less =
-generic.
-
-Yes, that makes sense. I'll give it a go.
-
-Chris Tapp
-
-opensource@keylevel.com
-www.keylevel.com
-
-
-
+Paul Eggleton
+Intel Open Source Technology Centre
 
