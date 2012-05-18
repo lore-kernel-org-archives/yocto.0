@@ -1,22 +1,29 @@
-Return-Path: <kishore.k.bodke@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 28B4EE0142C
-	for <yocto@yoctoproject.org>; Fri, 18 May 2012 12:17:12 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 18 May 2012 12:17:11 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="154523727"
-Received: from kishore-desktop.sc.intel.com (HELO localhost) ([143.183.188.90])
-	by fmsmga001.fm.intel.com with ESMTP; 18 May 2012 12:17:11 -0700
-From: kishore.k.bodke@intel.com
-To: yocto@yoctoproject.org,
-	bruce.ashfield@windriver.com
-Date: Fri, 18 May 2012 12:15:50 -0700
-Message-Id: <c6b354ed7b3b2bc4e9b8da7ca797667f18c2357a.1337368253.git.kishore.k.bodke@intel.com>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <cover.1337368253.git.kishore.k.bodke@intel.com>
-References: <cover.1337368253.git.kishore.k.bodke@intel.com>
-Subject: [PATCH 1/1] [KERNEL] Cedartrail: Move PVR specific to meta
+Return-Path: <opensource@keylevel.com>
+Received: from hxhsvr03.internetintuitive.net (hxhsvr03.internetintuitive.net
+	[80.254.228.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DB013E013B7
+	for <yocto@yoctoproject.org>; Fri, 18 May 2012 13:21:57 -0700 (PDT)
+Received: from [109.224.129.17] (port=31564
+	helo=macbook-pro.durham.keylevel.com)
+	by hxhsvr03.internetintuitive.net with esmtpa (Exim 4.69)
+	(envelope-from <opensource@keylevel.com>) id 1SVTgS-0004vm-88
+	for yocto@yoctoproject.org; Fri, 18 May 2012 21:21:56 +0100
+From: Chris Tapp <opensource@keylevel.com>
+Date: Fri, 18 May 2012 21:21:54 +0100
+Message-Id: <D444A89B-F6BA-46D7-84FD-BE09D40E918C@keylevel.com>
+To: Yocto Project <yocto@yoctoproject.org>
+Mime-Version: 1.0 (Apple Message framework v1278)
+X-Mailer: Apple Mail (2.1278)
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - hxhsvr03.internetintuitive.net
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - keylevel.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: How to set a DISTRO_FEATURE?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,31 +35,21 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 18 May 2012 19:17:12 -0000
+X-List-Received-Date: Fri, 18 May 2012 20:21:58 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
-From: Kishore Bodke <kishore.k.bodke@intel.com>
+I've got a build based on the 'poky' distro.
 
-Moving Cedartrail PVR specific feature set
-to kernel meta branch.
+I want to use libsdl with directfb, but this option is only enabled if =
+'directfb' is in DISTRO_FEATURES. Can I set this without creating my own =
+distro?
 
-Signed-off-by: Kishore Bodke <kishore.k.bodke@intel.com>
----
- .../bsp/cedartrail/cedartrail-pvr-merge.scc        |    6 ++++++
- 1 file changed, 6 insertions(+)
+Chris Tapp
 
-diff --git a/meta/cfg/kernel-cache/bsp/cedartrail/cedartrail-pvr-merge.scc b/meta/cfg/kernel-cache/bsp/cedartrail/cedartrail-pvr-merge.scc
-index f83c02b..029a341 100644
---- a/meta/cfg/kernel-cache/bsp/cedartrail/cedartrail-pvr-merge.scc
-+++ b/meta/cfg/kernel-cache/bsp/cedartrail/cedartrail-pvr-merge.scc
-@@ -1 +1,7 @@
- git merge yocto/pvr
-+
-+include  cfg/smp.scc
-+include  cfg/drm-cdvpvr.scc
-+include  cfg/efi-ext.scc
-+include  features/power/intel.scc
-+include  features/powertop/powertop.scc
--- 
-1.7.9.5
+opensource@keylevel.com
+www.keylevel.com
+
+
 
 
