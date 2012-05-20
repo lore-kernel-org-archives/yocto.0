@@ -1,32 +1,35 @@
-Return-Path: <opensource@keylevel.com>
-Received: from hxhsvr03.internetintuitive.net (hxhsvr03.internetintuitive.net
-	[80.254.228.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1BDD1E013FB;
-	Sat, 19 May 2012 15:09:50 -0700 (PDT)
-Received: from [109.224.129.17] (port=2862
-	helo=macbook-pro.durham.keylevel.com)
-	by hxhsvr03.internetintuitive.net with esmtpa (Exim 4.69)
-	(envelope-from <opensource@keylevel.com>)
-	id 1SVrqM-0005Op-S7; Sat, 19 May 2012 23:09:46 +0100
-Mime-Version: 1.0 (Apple Message framework v1278)
-From: Chris Tapp <opensource@keylevel.com>
-In-Reply-To: <CAK18fxEh2HW+VQ5yrLdh3pr4hE8ZZzG2ecZXFLy2=40hQ+zYdg@mail.gmail.com>
-Date: Sat, 19 May 2012 23:09:48 +0100
-Message-Id: <6CA23492-79BC-43A4-9A28-65554E2909A7@keylevel.com>
-References: <CAK18fxEh2HW+VQ5yrLdh3pr4hE8ZZzG2ecZXFLy2=40hQ+zYdg@mail.gmail.com>
-To: Andrei Gherzan <andrei@gherzan.ro>
-X-Mailer: Apple Mail (2.1278)
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - hxhsvr03.internetintuitive.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: yocto@yoctoproject.org, poky@yoctoproject.org
-Subject: Re: RaspberryPi Layer
+Return-Path: <josh@hipro.co.in>
+Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
+	[209.85.160.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ECFC6E00723
+	for <yocto@yoctoproject.org>; Sun, 20 May 2012 08:39:45 -0700 (PDT)
+Received: by pbbrq8 with SMTP id rq8so7859635pbb.35
+	for <yocto@yoctoproject.org>; Sun, 20 May 2012 08:39:45 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=message-id:subject:from:to:date:organization:content-type:x-mailer
+	:mime-version:x-gm-message-state;
+	bh=WBTp/4H/MjwY3zSLDxvMgqbNd8BMad+1trXULhHvjuE=;
+	b=DsefydVOCxUh9fKtNkEy/FxHk5nUs48zWsydMW/dRZTY96QZ0ylfYZ0YiEmbW/qoiy
+	7eA9kIWolS4qz/WsiaySGwYKOR8KnQABGAcZTvnbrU4EAX0ThCkN/yNIvZgocrL6InmH
+	VYIIflUbzbC34/Ed3WGEc1HTF7U9RNYMtTKHKNSch8+7qFu3PCLlNhr18Ln/9glHEnei
+	PEjY/RLQAJJDMTrJvsYhkSvefmeHzkHPSZ7BkiAVhO/iHhIF8JY85sJyXXh30xCRBE2c
+	Rmda7lqeyjXEHAgWRYtd0DvWHQD7ZF1oaOwXn1mdNYWwMcDPqBwtHioMjh736CnuFAxA
+	83Zg==
+Received: by 10.68.200.193 with SMTP id ju1mr56352020pbc.90.1337528384850;
+	Sun, 20 May 2012 08:39:44 -0700 (PDT)
+Received: from [192.168.10.211] ([59.99.251.45])
+	by mx.google.com with ESMTPS id tj4sm5932193pbc.33.2012.05.20.08.39.41
+	(version=SSLv3 cipher=OTHER); Sun, 20 May 2012 08:39:43 -0700 (PDT)
+Message-ID: <1337528370.3567.17.camel@babel.joshhome>
+From: Joshua Immanuel <josh@hipro.co.in>
+To: Yocto Project <yocto@yoctoproject.org>
+Date: Sun, 20 May 2012 21:09:30 +0530
+Organization: HiPro IT Solutions Private Limited
+X-Mailer: Evolution 3.2.2-1+b1 
+Mime-Version: 1.0
+X-Gm-Message-State: ALoCoQnVZCHeThJYTNInceqFizMqBvkURVsRGqtOUESVDKU2r2xY6D5paW/TB3fPq58T+/uXh/d/
+Subject: python-pygobject fails to find python-dev package
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,62 +41,72 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 19 May 2012 22:09:50 -0000
-Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_DBD935DE-D84A-4388-960D-5538FB0664FA"
+X-List-Received-Date: Sun, 20 May 2012 15:39:46 -0000
+X-Groupsio-MsgNum: 6761
+Content-Type: multipart/signed; micalg="pgp-sha1";
+	protocol="application/pgp-signature"; 
+	boundary="=-8V1NwkcdotX2Q0gAiOdN"
 
---Apple-Mail=_DBD935DE-D84A-4388-960D-5538FB0664FA
+--=-8V1NwkcdotX2Q0gAiOdN
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=iso-8859-1
 
-On 19 May 2012, at 22:51, Andrei Gherzan wrote:
+Hello,
 
-> After an exchange of messages with Richard, Saul and John Willis (he =
-already started a layer for oe and did a good job in it) i want to =
-announce that i started start a fork from his layer and with Florin =
-Sarbu will prepare a layer for RaspberryPi to work upon poky.=20
-> Until a stable version of this layer we will keep this layer on =
-bitbucket: https://bitbucket.org/agherzan/meta-raspberrypi.=20
-> I don't know if a mailing list is needed but if there are any others =
-who want to contribute on this, we can adopt meta-fsl-arm's solution of =
-a google group and use it as a way of communicating.=20
->=20
-> Waiting for feedback and hope there will be others to come along.=20
+The do_configure for python-pygobject fails with the following error
+message
 
-Hi Andrei,
+> | checking for headers required to compile python extensions... not found
+> | configure: error: could not find Python headers
 
-I'm interested in this. I've got a board here and have some basic stuff =
-running based on the work John has done.
+The configure script tries to find "Python.h" file and fails
+subsequently. The required package for this is python-dev. I can find
+this package in the bitbake environment for python
 
-Graphics is painfully slow at the moment, but this seems to be mainly =
-down to there being no hardware acceleration in the images that have =
-been produced yet. It looks as if directfb (http://directfb.org/) plan =
-to have this running shortly, so that looks like it would be worth =
-keeping an eye on.
+$ bitbake -e python | grep ^PACKAGES=3D
+PACKAGES=3D"libpython2 python-dbg python-audio python-bsddb python-codecs
+python-compile python-compiler python-compression python-core
+python-crypt python-ctypes python-curses python-datetime python-db
+python-debugger python-dev python-difflib python-distutils
+python-doctest python-elementtree python-email python-fcntl python-gdbm
+python-hotshot python-html python-idle python-image python-io
+python-json python-lang python-logging python-mailbox python-math
+python-mime python-mmap python-multiprocessing python-netclient
+python-netserver python-numbers python-pickle python-pkgutil
+python-pprint python-profile python-pydoc python-re python-readline
+python-resource python-robotparser python-shell python-smtpd
+python-sqlite3 python-sqlite3-tests python-stringold python-subprocess
+python-syslog python-terminal python-tests python-textutils
+python-threading python-tkinter python-unittest python-unixadmin
+python-xml python-xmlrpc python-zlib python-modules python-misc
+python-man"
 
-Chris Tapp
+In my recipe which RDEPENDS on python-pygobject, If I specify
 
-opensource@keylevel.com
-www.keylevel.com
+        DEPENDS +=3D "python-dev"
+       =20
+bitbake complains for "Missing or unbuildable dependency chain".
+Specifying DEPENDS as just "python" doesn't solve the missing Python
+header error for python-pygobject. How do I address this issue? Maybe I
+am missing something trivial. Please enlighten me.
 
+Regards
+--=20
+Joshua Immanuel
+HiPro IT Solutions Private Limited
+http://hipro.co.in
 
-
-
---Apple-Mail=_DBD935DE-D84A-4388-960D-5538FB0664FA
+--=-8V1NwkcdotX2Q0gAiOdN
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
 Content-Transfer-Encoding: 7bit
-Content-Type: text/html;
-	charset=iso-8859-1
 
-<html><head></head><body style="word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-line-break: after-white-space; "><div><div>On 19 May 2012, at 22:51, Andrei Gherzan wrote:</div><br class="Apple-interchange-newline"><blockquote type="cite">After an exchange of messages with Richard, Saul and John Willis (he already started a layer for oe and did a good job in it) i want to announce that i started start a fork from his layer and with Florin Sarbu will prepare a layer for RaspberryPi to work upon poky.&nbsp;<div>
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.12 (GNU/Linux)
 
+iEYEABECAAYFAk+5EDMACgkQWw85XwuSFMJt+gCfd4aJP7Htv8DmF/WIWQPsxpmx
+8cYAn1kqq1y1SGLlElzz3SXd+vPY34Ed
+=ooo/
+-----END PGP SIGNATURE-----
 
-Until a stable version of this layer we will keep this layer on bitbucket:&nbsp;<a href="https://bitbucket.org/agherzan/meta-raspberrypi" target="_blank">https://bitbucket.org/agherzan/meta-raspberrypi</a>.&nbsp;</div><div>I don't know if a mailing list is needed but if there are any others who want to contribute on this, we can adopt meta-fsl-arm's solution of a google group and use it as a way of&nbsp;communicating.&nbsp;</div>
-
-
-<div><br></div><div>Waiting for feedback and hope there will be others to come along.&nbsp;<br clear="all"><div style="text-align:center"></div></div></blockquote><br></div><div>Hi Andrei,</div><div><br></div><div>I'm interested in this. I've got a board here and have some basic stuff running based on the work John has done.</div><div><br></div><div>Graphics is painfully slow at the moment, but this seems to be mainly down to there being no hardware acceleration in the images that have been produced yet. It looks as if directfb (<a href="http://directfb.org/">http://directfb.org/</a>) plan to have this running shortly, so that looks like it would be worth keeping an eye on.</div><br><div apple-content-edited="true">
-<span class="Apple-style-span" style="border-collapse: separate; color: rgb(0, 0, 0); font-family: Helvetica; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: auto; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-border-horizontal-spacing: 0px; -webkit-border-vertical-spacing: 0px; -webkit-text-decorations-in-effect: none; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; font-size: medium; "><div>Chris Tapp</div><div><br></div><div><a href="mailto:opensource@keylevel.com">opensource@keylevel.com</a></div><div><a href="http://www.keylevel.com">www.keylevel.com</a></div><div><br></div></span><br class="Apple-interchange-newline">
-</div>
-<br></body></html>
-
---Apple-Mail=_DBD935DE-D84A-4388-960D-5538FB0664FA--
+--=-8V1NwkcdotX2Q0gAiOdN--
