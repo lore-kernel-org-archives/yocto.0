@@ -1,25 +1,20 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (hermes.mlbassoc.com [64.234.241.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 60426E0030B
-	for <yocto@yoctoproject.org>; Mon, 21 May 2012 10:51:15 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id 18C49F811FB; Mon, 21 May 2012 11:51:15 -0600 (MDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=unavailable version=3.3.2
-Received: from hermes.chez-thomas.org (localhost.localdomain [127.0.0.1])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 4DA25F811F9;
-	Mon, 21 May 2012 11:51:13 -0600 (MDT)
-Message-ID: <4FBA8091.1040509@mlbassoc.com>
-Date: Mon, 21 May 2012 11:51:13 -0600
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:12.0) Gecko/20120430 Thunderbird/12.0.1
-MIME-Version: 1.0
-To: Yocto Project <yocto@yoctoproject.org>
-Subject: Trouble building RasberryPi with Yocto/Poky
+Return-Path: <kishore.k.bodke@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B3B02E0030B
+	for <yocto@yoctoproject.org>; Mon, 21 May 2012 10:57:09 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 21 May 2012 10:57:08 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="169272205"
+Received: from kishore-desktop.sc.intel.com (HELO localhost) ([143.183.188.90])
+	by fmsmga002.fm.intel.com with ESMTP; 21 May 2012 10:57:08 -0700
+From: kishore.k.bodke@intel.com
+To: yocto@yoctoproject.org,
+	tom.zanussi@intel.com
+Date: Mon, 21 May 2012 10:55:52 -0700
+Message-Id: <cover.1337621438.git.kishore.k.bodke@intel.com>
+X-Mailer: git-send-email 1.7.9.5
+Subject: [PATCH 0/1] [meta-intel] Update PVR Graphics drivers.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,37 +26,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 21 May 2012 17:51:16 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 21 May 2012 17:57:09 -0000
 
-I tried to build a simple image using just Poky+meta-raspberrypi
-Build Configuration:
-BB_VERSION        = "1.15.2"
-TARGET_ARCH       = "arm"
-TARGET_OS         = "linux-gnueabi"
-MACHINE           = "raspberrypi"
-DISTRO            = "poky"
-DISTRO_VERSION    = "1.2+snapshot-20120521"
-TUNE_FEATURES     = "armv6 vfp arm1176jzfs"
-TARGET_FPU        = "vfp"
-meta
-meta-yocto        = "master:f24d8df3af52e2a2911233746ad69f8899bbdf93"
-meta-raspberrypi  = "master:d1e802561ab5c70680fd6ee70a47791fe78aa977"
+From: Kishore Bodke <kishore.k.bodke@intel.com>
 
-When I ran 'bitbake core-image-sato', I got this error:
+Pointing to the latest version of PVR
+Graphics drivers for the Cedartrail BSP.
 
-| make[1]: *** No rule to make target 
-`/local/rpi_poky/tmp/work/raspberrypi-poky-linux-gnueabi/linux-raspberrypi-3.1.9-rpi+r1+git0ec4154d64ebba48ca2446cde60a90546311defc-r1/image/lib/firmware/./', needed by 
-`/local/rpi_poky/tmp/work/raspberrypi-poky-linux-gnueabi/linux-raspberrypi-3.1.9-rpi+r1+git0ec4154d64ebba48ca2446cde60a90546311defc-r1/image/lib/firmware/ti_3410.fw'.  Stop.
-
-Any ideas how to move forward?
+Please pull into meta-intel/denzil
 
 Thanks
+Kishore.
+
+The following changes since commit 7c1086df3f92d76ca1a062f9b4b1daf6823bfb63:
+
+  emgd-driver-bin: skip insane ldflags check (2012-05-17 20:15:53 -0500)
+
+are available in the git repository at:
+
+  git://git.pokylinux.org/meta-intel-contrib kishore/cedartrail-pvrupdate
+  http://git.pokylinux.org/cgit.cgi/meta-intel-contrib/log/?h=kishore/cedartrail-pvrupdate
+
+Kishore Bodke (1):
+  meta-cedartrail: Update PVR Graphics drivers.
+
+ .../xorg-driver/cdv-pvr-driver.inc                 |   14 +++---
+ .../xorg-driver/cdv-pvr-driver_1.0.bb              |   46 ++++++++++----------
+ 2 files changed, 28 insertions(+), 32 deletions(-)
 
 -- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+1.7.9.5
+
 
