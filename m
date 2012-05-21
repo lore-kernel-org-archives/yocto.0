@@ -1,36 +1,28 @@
-Return-Path: <andrei@gherzan.ro>
-Received: from mail-yx0-f176.google.com (mail-yx0-f176.google.com
-	[209.85.213.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9E317E0030B
-	for <yocto@yoctoproject.org>; Mon, 21 May 2012 13:09:16 -0700 (PDT)
-Received: by yenm14 with SMTP id m14so6106245yen.35
-	for <yocto@yoctoproject.org>; Mon, 21 May 2012 13:09:16 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:x-originating-ip:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type:x-gm-message-state;
-	bh=6jR7UEv6qIVdKyZdps2yGce3a+wPceb+A3HSZw4UoM0=;
-	b=Q6CNKUiexPByisBDGva2wJLVfQGXIZqkqCy1+5DWcDwto2t82WSmoz/CFmy3aDKaSU
-	5tecT2vhzCuBVVNyVtxkgiOgTNAKqMc+kIf7VfUABy36eDa8ddRYFVBEzdtaKaxW5b+1
-	blHzcwJjJ/J3bMn+ud71ktIHvgEEeZIhdDFwNdGUtk5dSVM6pUH/nekEsrOJuW/buBv1
-	ifDiCNfPBvR4hZMVI7j8paDZnlJMvARS5lXlEhD9CieRxGnFinbL52HwAtvMIZYabRq6
-	oAFiaGkoybW1wUrdoCWrGUQpMZ7WwcF30aLtkTlvB8vMSkwf5RZJhk3o7yLIFUpjgk22
-	9K1Q==
-Received: by 10.50.219.162 with SMTP id pp2mr7852277igc.40.1337630955656; Mon,
-	21 May 2012 13:09:15 -0700 (PDT)
+Return-Path: <emirelkholy@gmail.com>
+Received: from mail-vb0-f48.google.com (mail-vb0-f48.google.com
+	[209.85.212.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EC852E0030B
+	for <yocto@yoctoproject.org>; Mon, 21 May 2012 14:18:51 -0700 (PDT)
+Received: by vbjk17 with SMTP id k17so5594570vbj.35
+	for <yocto@yoctoproject.org>; Mon, 21 May 2012 14:18:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=NTlHaOzho07dH8QqovjoF5ElzEsIDTWVDiKtEfLYXLI=;
+	b=KCtFfR37IVC40Bb8HYTeMMKoNozcc7+mOoJKptPTn6KwLAOu/Atg5IkGTxUMQzNhfY
+	sTAT5UW4BphME4SzF+acthFfJ81isYgb2T2mOvQ8FDP5Z1AUGagq6mtbolr5yUf+GhTo
+	o//4Fsvx9L37MrlOfJTKfxceHYz3Wm1RD/srSudgh109TE1PfKAcl5ptwwgednMEYOuR
+	H6sJeHTlsigqWzpjImwRK3LwouSMkypbuZVLVnUblu/TA3aOuj8Kb0U/XY5Tnv4qoqGe
+	UqbW7T+yyjZ5RkBMkL5f7bH1rtzhcxRmSebR/fpFiz3kumtI+5dm+bOESqA92Xfi5xXV
+	JQmw==
 MIME-Version: 1.0
-Received: by 10.64.25.18 with HTTP; Mon, 21 May 2012 13:08:54 -0700 (PDT)
-X-Originating-IP: [79.117.102.5]
-In-Reply-To: <EC37B226-4E57-4C84-9510-F6EEC7FF4FCF@keylevel.com>
-References: <CAK18fxEh2HW+VQ5yrLdh3pr4hE8ZZzG2ecZXFLy2=40hQ+zYdg@mail.gmail.com>
-	<EC37B226-4E57-4C84-9510-F6EEC7FF4FCF@keylevel.com>
-From: Andrei Gherzan <andrei@gherzan.ro>
-Date: Mon, 21 May 2012 23:08:54 +0300
-Message-ID: <CAK18fxFT4OfRrOAK2yQrPcMWv0asds7rFM+DvzKW83WcCERr-A@mail.gmail.com>
-To: Chris Tapp <opensource@keylevel.com>
-X-Gm-Message-State: ALoCoQlmoCDQjstkmg9O/gMLBdJtn/RiwfGTKnI0SxJLlu2L1X5sR/FspQkD7miMmT238qJrkznT
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: RaspberryPi Layer
+Received: by 10.220.209.72 with SMTP id gf8mr30448vcb.72.1337635131086; Mon,
+	21 May 2012 14:18:51 -0700 (PDT)
+Received: by 10.52.157.71 with HTTP; Mon, 21 May 2012 14:18:51 -0700 (PDT)
+Date: Mon, 21 May 2012 17:18:51 -0400
+Message-ID: <CAExZvuOOdBRz3=zeko8gbdnXOQDaQ5mzvLNXFCi-uW3mduYNhw@mail.gmail.com>
+From: Emir Elkholy <emirelkholy@gmail.com>
+To: yocto@yoctoproject.org
+Subject: sending ioctl 5310 to a partition!
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,75 +34,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 21 May 2012 20:09:16 -0000
-Content-Type: multipart/alternative; boundary=14dae9340e05f3d75804c0917934
-
---14dae9340e05f3d75804c0917934
+X-List-Received-Date: Mon, 21 May 2012 21:18:52 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 
-Yes it is. Forget that.
-We decided to use a single layer for both distros.
+Hello,
 
+I am trying to install an image of Yocto to my CRB (cedartrail). After
+creating the bootable usb with the new image on it as a usb-zip
+(because it is too large for the hdd method of install), I insert it
+into one of the usb slots of my CRB. After turning the CRB on the
+prompt says "boot". At this point if you don't type anything it just
+runs the image off of the USB. This worked with no problem. What
+didn't work was trying to install the new image on my CRB. When the
+CRB starts with the USB attached, it prompts the user with "boot"
+which at this stage i typed "install". It seemed as if it was
+installing because it was outputting various text, but then it just
+stopped after outputting to the screen "sending ioctl 5310 to a
+partition!". Hopefully someone on the mailing list has seen this
+before. Any advise would help.
 
-On Mon, May 21, 2012 at 10:59 PM, Chris Tapp <opensource@keylevel.com>wrote:
+Thanks
 
->
-> After seeing:
->
-> > After an exchange of messages with Richard, Saul and John Willis ... i
-> started start a fork ...
->
-> I thought this was now 'the' meta-layer for the RPi. Is that not the case?
-> It really would make sense for everyone to pull in the same direction.
->
-> Chris Tapp
->
-> opensource@keylevel.com
-> www.keylevel.com
->
->
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
-
---14dae9340e05f3d75804c0917934
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-Yes it is. Forget that.=A0<div>We decided to use a single layer for both di=
-stros.<br>
-<br><br><div class=3D"gmail_quote">On Mon, May 21, 2012 at 10:59 PM, Chris =
-Tapp <span dir=3D"ltr">&lt;<a href=3D"mailto:opensource@keylevel.com" targe=
-t=3D"_blank">opensource@keylevel.com</a>&gt;</span> wrote:<br><blockquote c=
-lass=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;=
-padding-left:1ex">
-
-<br>
-After seeing:<br>
-<br>
-&gt; After an exchange of messages with Richard, Saul and John Willis ... i=
- started start a fork ...<br>
-<br>
-I thought this was now &#39;the&#39; meta-layer for the RPi. Is that not th=
-e case? It really would make sense for everyone to pull in the same directi=
-on.<br>
-<br>
-Chris Tapp<br>
-<br>
-<a href=3D"mailto:opensource@keylevel.com">opensource@keylevel.com</a><br>
-<a href=3D"http://www.keylevel.com" target=3D"_blank">www.keylevel.com</a><=
-br>
-<div class=3D"HOEnZb"><div class=3D"h5"><br>
-<br>
-<br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
->https://lists.yoctoproject.org/listinfo/yocto</a><br>
-</div></div></blockquote></div><br></div>
-
---14dae9340e05f3d75804c0917934--
