@@ -1,24 +1,45 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E5A91E0044A
-	for <yocto@yoctoproject.org>; Mon, 21 May 2012 08:31:05 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 21 May 2012 08:31:05 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="142863105"
-Received: from unknown (HELO helios.localnet) ([10.252.120.175])
-	by orsmga001.jf.intel.com with ESMTP; 21 May 2012 08:31:04 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: John Willis <John.Willis@distant-earth.com>
-Date: Mon, 21 May 2012 16:31:03 +0100
-Message-ID: <2402037.qbM01MX6gb@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.8.2 (Linux/3.2.0-24-generic-pae; KDE/4.8.2; i686; ; )
-In-Reply-To: <00b101cd3764$be9cd960$3bd68c20$@Distant-earth.com>
+Return-Path: <John.Willis@Distant-earth.com>
+Received: from omta1.brinkster.com (omta1.brinkster.com [65.182.109.100])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6C3C0E0044A
+	for <yocto@yoctoproject.org>; Mon, 21 May 2012 08:34:56 -0700 (PDT)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by omta1.brinkster.com (Postfix) with ESMTP id 81E4F17300D2;
+	Mon, 21 May 2012 08:34:55 -0700 (MST)
+X-DSPAM-Result: Spam
+X-DSPAM-Class: Spam
+X-DSPAM-Confidence: 0.53
+X-DSPAM-Probability: 1.0000
+X-DSPAM-Signature: N/A
+X-Virus-Scanned: amavisd-new at 
+Received: from omta1.brinkster.com ([127.0.0.1])
+	by localhost (omta1.brinkster.com [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id vcBvohpmL7U3; Mon, 21 May 2012 08:34:55 -0700 (MST)
+Received: from mta1.brinkster.com (unknown [65.182.109.80])
+	by omta1.brinkster.com (Postfix) with ESMTPS id 49CE71BF848C;
+	Mon, 21 May 2012 08:34:55 -0700 (MST)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by mta1.brinkster.com (Postfix) with ESMTP id A481F84034;
+	Mon, 21 May 2012 11:34:54 -0400 (EDT)
+X-Virus-Scanned: amavisd-new at mta1.brinkster.com
+Received: from mta1.brinkster.com ([127.0.0.1])
+	by localhost (mta1.brinkster.com [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id FiH9iWlUlBv2; Mon, 21 May 2012 11:34:54 -0400 (EDT)
+Received: from MareImbrium (cpc1-bath5-2-0-cust122.aztw.cable.virginmedia.com
+	[77.99.62.123]) (Authenticated sender: John.Willis@Distant-earth.com)
+	by mta1.brinkster.com (Postfix) with ESMTPA id 913798402A;
+	Mon, 21 May 2012 11:34:53 -0400 (EDT)
+From: "John Willis" <John.Willis@Distant-earth.com>
+To: "'Paul Eggleton'" <paul.eggleton@linux.intel.com>
 References: <CAK18fxEh2HW+VQ5yrLdh3pr4hE8ZZzG2ecZXFLy2=40hQ+zYdg@mail.gmail.com>
 	<14387597.ECeojYX8cL@helios>
 	<00b101cd3764$be9cd960$3bd68c20$@Distant-earth.com>
+	<2402037.qbM01MX6gb@helios>
+In-Reply-To: <2402037.qbM01MX6gb@helios>
+Date: Mon, 21 May 2012 16:34:55 +0100
+Message-ID: <00b501cd3767$46f76530$d4e62f90$@Distant-earth.com>
 MIME-Version: 1.0
+X-Mailer: Microsoft Outlook 14.0
+Thread-Index: AQJLnJjx9mRORCE/eZTxyGMKfWBA0QHTClRWAcpobvACHxONxpWpsOUw
 Cc: yocto@yoctoproject.org
 Subject: Re: [poky] RaspberryPi Layer
 X-BeenThere: yocto@yoctoproject.org
@@ -32,29 +53,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 21 May 2012 15:31:06 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Mon, 21 May 2012 15:34:56 -0000
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Content-Language: en-us
 
-On Monday 21 May 2012 16:16:47 John Willis wrote:
-> > > For example parsing libav and rpi-zram-service will fail. We don't
-> > > have libav and we don't have systemd yet in poky.
-> > 
-> > OK, sure, that isn't ideal - however meta-ti suffers from this issue as
-> > well, and they have instructions in the layer README which tell people
-> > the BBMASK they can use to fix it. Can we not do the same here?
+Hi Paul,
+
+> > That had been my plan but I got the impression that was frowned up in
+> > the Yocto environment.
 > 
-> That had been my plan but I got the impression that was frowned up in the
-> Yocto environment.
+> Well, IMHO it's suboptimal, but far less so than two separate competing
+> layers that ultimately exist for the same purpose.
 
-Well, IMHO it's suboptimal, but far less so than two separate competing layers 
-that ultimately exist for the same purpose.
+Pushed a note in the README with suggestions on a suitable Yocto BBMASK.
 
-Cheers,
-Paul
+John
 
--- 
 
-Paul Eggleton
-Intel Open Source Technology Centre
 
