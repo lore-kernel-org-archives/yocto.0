@@ -1,29 +1,31 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (hermes.mlbassoc.com [64.234.241.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0FEFBE0044A
-	for <yocto@yoctoproject.org>; Mon, 21 May 2012 12:31:12 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id B49D5F81220; Mon, 21 May 2012 13:31:11 -0600 (MDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=unavailable version=3.3.2
-Received: from hermes.chez-thomas.org (localhost.localdomain [127.0.0.1])
-	by mail.chez-thomas.org (Postfix) with ESMTP id B3919F81203;
-	Mon, 21 May 2012 13:31:10 -0600 (MDT)
-Message-ID: <4FBA97FE.2000909@mlbassoc.com>
-Date: Mon, 21 May 2012 13:31:10 -0600
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:12.0) Gecko/20120430 Thunderbird/12.0.1
-MIME-Version: 1.0
-To: Martin Jansa <martin.jansa@gmail.com>
-References: <4FBA8091.1040509@mlbassoc.com>
-	<20120521192834.GA3154@jama.jama.net>
-In-Reply-To: <20120521192834.GA3154@jama.jama.net>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: Trouble building RasberryPi with Yocto/Poky
+Return-Path: <opensource@keylevel.com>
+Received: from hxhsvr03.internetintuitive.net (hxhsvr03.internetintuitive.net
+	[80.254.228.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 051EEE0030B
+	for <yocto@yoctoproject.org>; Mon, 21 May 2012 12:59:19 -0700 (PDT)
+Received: from [109.224.129.17] (port=5738
+	helo=macbook-pro.durham.keylevel.com)
+	by hxhsvr03.internetintuitive.net with esmtpa (Exim 4.69)
+	(envelope-from <opensource@keylevel.com>) id 1SWYlB-0001Zx-6N
+	for yocto@yoctoproject.org; Mon, 21 May 2012 20:59:17 +0100
+Mime-Version: 1.0 (Apple Message framework v1278)
+From: Chris Tapp <opensource@keylevel.com>
+In-Reply-To: <CAK18fxEh2HW+VQ5yrLdh3pr4hE8ZZzG2ecZXFLy2=40hQ+zYdg@mail.gmail.com>
+Date: Mon, 21 May 2012 20:59:12 +0100
+Message-Id: <EC37B226-4E57-4C84-9510-F6EEC7FF4FCF@keylevel.com>
+References: <CAK18fxEh2HW+VQ5yrLdh3pr4hE8ZZzG2ecZXFLy2=40hQ+zYdg@mail.gmail.com>
+To: Yocto Project <yocto@yoctoproject.org>
+X-Mailer: Apple Mail (2.1278)
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - hxhsvr03.internetintuitive.net
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - keylevel.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: Re: RaspberryPi Layer
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,44 +37,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 21 May 2012 19:31:12 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 21 May 2012 19:59:19 -0000
+Content-Type: text/plain; charset=iso-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-On 2012-05-21 13:28, Martin Jansa wrote:
-> On Mon, May 21, 2012 at 11:51:13AM -0600, Gary Thomas wrote:
->> I tried to build a simple image using just Poky+meta-raspberrypi
->> Build Configuration:
->> BB_VERSION        = "1.15.2"
->> TARGET_ARCH       = "arm"
->> TARGET_OS         = "linux-gnueabi"
->> MACHINE           = "raspberrypi"
->> DISTRO            = "poky"
->> DISTRO_VERSION    = "1.2+snapshot-20120521"
->> TUNE_FEATURES     = "armv6 vfp arm1176jzfs"
->> TARGET_FPU        = "vfp"
->> meta
->> meta-yocto        = "master:f24d8df3af52e2a2911233746ad69f8899bbdf93"
->> meta-raspberrypi  = "master:d1e802561ab5c70680fd6ee70a47791fe78aa977"
->>
->> When I ran 'bitbake core-image-sato', I got this error:
->>
->> | make[1]: *** No rule to make target
->> `/local/rpi_poky/tmp/work/raspberrypi-poky-linux-gnueabi/linux-raspberrypi-3.1.9-rpi+r1+git0ec4154d64ebba48ca2446cde60a90546311defc-r1/image/lib/firmware/./', needed by
->> `/local/rpi_poky/tmp/work/raspberrypi-poky-linux-gnueabi/linux-raspberrypi-3.1.9-rpi+r1+git0ec4154d64ebba48ca2446cde60a90546311defc-r1/image/lib/firmware/ti_3410.fw'.  Stop.
->>
->> Any ideas how to move forward?
->
-> If your distro is using make-3.82 than you need something like this
-> http://git.shr-project.org/git/?p=meta-smartphone.git;a=commit;h=9c45467120d525a406fe8ec012c6231180c99767
-> to fix this race. (I haven't seen it with make-3.81)
 
-It is indeed.  I'll work up a patch for this (doesn't look
-like a work-around causes any undue complications)
+After seeing:
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+> After an exchange of messages with Richard, Saul and John Willis ... i =
+started start a fork ...
+
+I thought this was now 'the' meta-layer for the RPi. Is that not the =
+case? It really would make sense for everyone to pull in the same =
+direction.
+
+Chris Tapp
+
+opensource@keylevel.com
+www.keylevel.com
+
+
+
 
