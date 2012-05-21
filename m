@@ -1,35 +1,22 @@
-Return-Path: <josh@hipro.co.in>
-Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
-	[209.85.160.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ECFC6E00723
-	for <yocto@yoctoproject.org>; Sun, 20 May 2012 08:39:45 -0700 (PDT)
-Received: by pbbrq8 with SMTP id rq8so7859635pbb.35
-	for <yocto@yoctoproject.org>; Sun, 20 May 2012 08:39:45 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=message-id:subject:from:to:date:organization:content-type:x-mailer
-	:mime-version:x-gm-message-state;
-	bh=WBTp/4H/MjwY3zSLDxvMgqbNd8BMad+1trXULhHvjuE=;
-	b=DsefydVOCxUh9fKtNkEy/FxHk5nUs48zWsydMW/dRZTY96QZ0ylfYZ0YiEmbW/qoiy
-	7eA9kIWolS4qz/WsiaySGwYKOR8KnQABGAcZTvnbrU4EAX0ThCkN/yNIvZgocrL6InmH
-	VYIIflUbzbC34/Ed3WGEc1HTF7U9RNYMtTKHKNSch8+7qFu3PCLlNhr18Ln/9glHEnei
-	PEjY/RLQAJJDMTrJvsYhkSvefmeHzkHPSZ7BkiAVhO/iHhIF8JY85sJyXXh30xCRBE2c
-	Rmda7lqeyjXEHAgWRYtd0DvWHQD7ZF1oaOwXn1mdNYWwMcDPqBwtHioMjh736CnuFAxA
-	83Zg==
-Received: by 10.68.200.193 with SMTP id ju1mr56352020pbc.90.1337528384850;
-	Sun, 20 May 2012 08:39:44 -0700 (PDT)
-Received: from [192.168.10.211] ([59.99.251.45])
-	by mx.google.com with ESMTPS id tj4sm5932193pbc.33.2012.05.20.08.39.41
-	(version=SSLv3 cipher=OTHER); Sun, 20 May 2012 08:39:43 -0700 (PDT)
-Message-ID: <1337528370.3567.17.camel@babel.joshhome>
-From: Joshua Immanuel <josh@hipro.co.in>
-To: Yocto Project <yocto@yoctoproject.org>
-Date: Sun, 20 May 2012 21:09:30 +0530
-Organization: HiPro IT Solutions Private Limited
-X-Mailer: Evolution 3.2.2-1+b1 
-Mime-Version: 1.0
-X-Gm-Message-State: ALoCoQnVZCHeThJYTNInceqFizMqBvkURVsRGqtOUESVDKU2r2xY6D5paW/TB3fPq58T+/uXh/d/
-Subject: python-pygobject fails to find python-dev package
+Return-Path: <tf+lists.yocto@r-finger.com>
+Received: from r-finger.com (r-finger.com [178.79.160.5])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 71AE7E00747
+	for <yocto@yoctoproject.org>; Mon, 21 May 2012 00:47:11 -0700 (PDT)
+Received: from [192.168.0.2] (host86-170-71-0.range86-170.btcentralplus.com
+	[86.170.71.0]) (using TLSv1 with cipher AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by r-finger.com (Postfix) with ESMTPSA id 5EE429ADB
+	for <yocto@yoctoproject.org>; Mon, 21 May 2012 08:47:10 +0100 (BST)
+Message-ID: <4FB9F2FD.3060200@r-finger.com>
+Date: Mon, 21 May 2012 08:47:09 +0100
+From: Tomas Frydrych <tf+lists.yocto@r-finger.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:10.0.3) Gecko/20120329 Icedove/10.0.3
+MIME-Version: 1.0
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <CAK18fxEh2HW+VQ5yrLdh3pr4hE8ZZzG2ecZXFLy2=40hQ+zYdg@mail.gmail.com>
+In-Reply-To: <CAK18fxEh2HW+VQ5yrLdh3pr4hE8ZZzG2ecZXFLy2=40hQ+zYdg@mail.gmail.com>
+Subject: Re: [poky] RaspberryPi Layer
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,72 +28,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 20 May 2012 15:39:46 -0000
-X-Groupsio-MsgNum: 6761
-Content-Type: multipart/signed; micalg="pgp-sha1";
-	protocol="application/pgp-signature"; 
-	boundary="=-8V1NwkcdotX2Q0gAiOdN"
-
---=-8V1NwkcdotX2Q0gAiOdN
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hello,
-
-The do_configure for python-pygobject fails with the following error
-message
-
-> | checking for headers required to compile python extensions... not found
-> | configure: error: could not find Python headers
-
-The configure script tries to find "Python.h" file and fails
-subsequently. The required package for this is python-dev. I can find
-this package in the bitbake environment for python
-
-$ bitbake -e python | grep ^PACKAGES=3D
-PACKAGES=3D"libpython2 python-dbg python-audio python-bsddb python-codecs
-python-compile python-compiler python-compression python-core
-python-crypt python-ctypes python-curses python-datetime python-db
-python-debugger python-dev python-difflib python-distutils
-python-doctest python-elementtree python-email python-fcntl python-gdbm
-python-hotshot python-html python-idle python-image python-io
-python-json python-lang python-logging python-mailbox python-math
-python-mime python-mmap python-multiprocessing python-netclient
-python-netserver python-numbers python-pickle python-pkgutil
-python-pprint python-profile python-pydoc python-re python-readline
-python-resource python-robotparser python-shell python-smtpd
-python-sqlite3 python-sqlite3-tests python-stringold python-subprocess
-python-syslog python-terminal python-tests python-textutils
-python-threading python-tkinter python-unittest python-unixadmin
-python-xml python-xmlrpc python-zlib python-modules python-misc
-python-man"
-
-In my recipe which RDEPENDS on python-pygobject, If I specify
-
-        DEPENDS +=3D "python-dev"
-       =20
-bitbake complains for "Missing or unbuildable dependency chain".
-Specifying DEPENDS as just "python" doesn't solve the missing Python
-header error for python-pygobject. How do I address this issue? Maybe I
-am missing something trivial. Please enlighten me.
-
-Regards
---=20
-Joshua Immanuel
-HiPro IT Solutions Private Limited
-http://hipro.co.in
-
---=-8V1NwkcdotX2Q0gAiOdN
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
+X-List-Received-Date: Mon, 21 May 2012 07:47:11 -0000
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.12 (GNU/Linux)
+Hi,
 
-iEYEABECAAYFAk+5EDMACgkQWw85XwuSFMJt+gCfd4aJP7Htv8DmF/WIWQPsxpmx
-8cYAn1kqq1y1SGLlElzz3SXd+vPY34Ed
-=ooo/
------END PGP SIGNATURE-----
+On 19/05/12 22:51, Andrei Gherzan wrote:
+> After an exchange of messages with Richard, Saul and John Willis (he
+> already started a layer for oe and did a good job in it) i want to
+> announce that i started start a fork from his layer and with Florin
+> Sarbu will prepare a layer for RaspberryPi to work upon poky. 
 
---=-8V1NwkcdotX2Q0gAiOdN--
+Why a fork? This is a bsp layer so it should be sufficiently generic to
+work both with Poky and OE, it is really undesirable that there should
+be more than one m-rpi layers in circulation.
+
+> Until a stable version of this layer we will keep this layer on
+> bitbucket: https://bitbucket.org/agherzan/meta-raspberrypi. 
+
+Considering that John Willis's work is on github, where a number of
+people follow it already, why move this somewhere else? This just makes
+it harder for anyone interested in this work to track what is going on.
+
+My suggestion is to set up a github project for this, move John's repo
+under that as the master, and then any temporary tweaking for poky and
+otherwise can be done branches rather than separate repositories.
+
+> I don't know if a mailing list is needed but if there are any others who
+> want to contribute on this, we can adopt meta-fsl-arm's solution of a
+> google group and use it as a way of communicating. 
+
+I think mailing list is needed; please do not use a group for this, and
+certainly not one that requires a google login. Perhaps Yocto could let
+us have a meta-rpi list?
+
+Tomas
+
