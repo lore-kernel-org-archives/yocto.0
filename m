@@ -1,34 +1,27 @@
-Return-Path: <andrei@gherzan.ro>
-Received: from mail-gg0-f176.google.com (mail-gg0-f176.google.com
-	[209.85.161.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AAC0FE0030B
-	for <yocto@yoctoproject.org>; Mon, 21 May 2012 11:47:24 -0700 (PDT)
-Received: by ggnk4 with SMTP id k4so5985338ggn.35
-	for <yocto@yoctoproject.org>; Mon, 21 May 2012 11:47:24 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:x-originating-ip:in-reply-to:references:date
-	:message-id:subject:from:to:cc:content-type:x-gm-message-state;
-	bh=h25KXSRzJyne7oD5C8yLAWzJBiR+fN+5NIwwav6n+m0=;
-	b=K9Hn5+0UaSt9GNOvz0DTPEC3b4h8af4jtbvsC1rfc2Sp0sZS0sT4Bk9C898k1v3w+D
-	4XavT26xtD0C14R6+PKflrOCBO33FHUzBR2vMTQYmFvFBSnNpERVED4IlIPWexR1JaYF
-	877o+aubfyp+tD3Fu4384qUiTy3YkSnB5PwY5ENSQc0l7rn4VYD55ALfrtTP4g4aeXdX
-	ANBcCv7I28N1RZTQPrgnTUVyfQFYH/3QhNZJQiVpKQT/InRGTVR3ghRbDHWS4WvXI/Vs
-	d374VmuXnNTdG2igJC2Pw/shIAslHSuWBGeiQ9b/tuNPuhQd1iQiotPkue89Cb2798mD
-	cutg==
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (hermes.mlbassoc.com [64.234.241.98])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3CA5DE0030B
+	for <yocto@yoctoproject.org>; Mon, 21 May 2012 11:56:06 -0700 (PDT)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id AAF47F811FB; Mon, 21 May 2012 12:56:05 -0600 (MDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=ham version=3.3.2
+Received: from hermes.chez-thomas.org (localhost.localdomain [127.0.0.1])
+	by mail.chez-thomas.org (Postfix) with ESMTP id BDF40F811F9;
+	Mon, 21 May 2012 12:56:04 -0600 (MDT)
+Message-ID: <4FBA8FC4.8070400@mlbassoc.com>
+Date: Mon, 21 May 2012 12:56:04 -0600
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:12.0) Gecko/20120430 Thunderbird/12.0.1
 MIME-Version: 1.0
-Received: by 10.50.163.37 with SMTP id yf5mr7684973igb.40.1337626043824; Mon,
-	21 May 2012 11:47:23 -0700 (PDT)
-Received: by 10.64.25.18 with HTTP; Mon, 21 May 2012 11:47:23 -0700 (PDT)
-X-Originating-IP: [109.166.128.220]
-Received: by 10.64.25.18 with HTTP; Mon, 21 May 2012 11:47:23 -0700 (PDT)
-In-Reply-To: <4FBA8091.1040509@mlbassoc.com>
+To: Andrei Gherzan <andrei@gherzan.ro>
 References: <4FBA8091.1040509@mlbassoc.com>
-Date: Mon, 21 May 2012 21:47:23 +0300
-Message-ID: <CAK18fxFmxGnEvwvutufoRjhfTfrZhi8qJ5JvJey0n3RS3sABSQ@mail.gmail.com>
-From: Andrei Gherzan <andrei@gherzan.ro>
-To: Gary Thomas <gary@mlbassoc.com>
-X-Gm-Message-State: ALoCoQnZweFb/AbMCt1fc0rRSo6JI9q1BAzbOGBKVdMQl1uGGFKlakgbEl1oFkgCYazG3+onzCK4
+	<CAK18fxFmxGnEvwvutufoRjhfTfrZhi8qJ5JvJey0n3RS3sABSQ@mail.gmail.com>
+In-Reply-To: <CAK18fxFmxGnEvwvutufoRjhfTfrZhi8qJ5JvJey0n3RS3sABSQ@mail.gmail.com>
 Cc: Yocto Project <yocto@yoctoproject.org>
 Subject: Re: Trouble building RasberryPi with Yocto/Poky
 X-BeenThere: yocto@yoctoproject.org
@@ -42,104 +35,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 21 May 2012 18:47:24 -0000
-Content-Type: multipart/alternative; boundary=e89a8f646a8b2f39cf04c09055ba
+X-List-Received-Date: Mon, 21 May 2012 18:56:06 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
---e89a8f646a8b2f39cf04c09055ba
-Content-Type: text/plain; charset=ISO-8859-1
+On 2012-05-21 12:47, Andrei Gherzan wrote:
+> Give some more output please.
 
-Give some more output please.
-On May 21, 2012 8:51 PM, "Gary Thomas" <gary@mlbassoc.com> wrote:
+That's about all there is - you can see the layer versions, it's breaking during the
+kernel install.  Looks like there may be some package dependency that's missing - where
+does the 'lib/__firmware/ti_3410.fw' file get created?
 
-> I tried to build a simple image using just Poky+meta-raspberrypi
-> Build Configuration:
-> BB_VERSION        = "1.15.2"
-> TARGET_ARCH       = "arm"
-> TARGET_OS         = "linux-gnueabi"
-> MACHINE           = "raspberrypi"
-> DISTRO            = "poky"
-> DISTRO_VERSION    = "1.2+snapshot-20120521"
-> TUNE_FEATURES     = "armv6 vfp arm1176jzfs"
-> TARGET_FPU        = "vfp"
-> meta
-> meta-yocto        = "master:**f24d8df3af52e2a2911233746ad69f**8899bbdf93"
-> meta-raspberrypi  = "master:**d1e802561ab5c70680fd6ee70a4779**1fe78aa977"
+The full (install) log for the kernel has no other useful info.
+
+Maybe some guidance on how this was built, e.g. how does one build a bootable
+image using OE & meta-raspberrypi?  what image to build?
+
 >
-> When I ran 'bitbake core-image-sato', I got this error:
+> On May 21, 2012 8:51 PM, "Gary Thomas" <gary@mlbassoc.com <mailto:gary@mlbassoc.com>> wrote:
 >
-> | make[1]: *** No rule to make target `/local/rpi_poky/tmp/work/**
-> raspberrypi-poky-linux-**gnueabi/linux-raspberrypi-3.1.**9-rpi+r1+**
-> git0ec4154d64ebba48ca2446cde60**a90546311defc-r1/image/lib/**firmware/./',
-> needed by `/local/rpi_poky/tmp/work/**raspberrypi-poky-linux-**
-> gnueabi/linux-raspberrypi-3.1.**9-rpi+r1+**git0ec4154d64ebba48ca2446cde60*
-> *a90546311defc-r1/image/lib/**firmware/ti_3410.fw'.  Stop.
+>     I tried to build a simple image using just Poky+meta-raspberrypi
+>     Build Configuration:
+>     BB_VERSION        = "1.15.2"
+>     TARGET_ARCH       = "arm"
+>     TARGET_OS         = "linux-gnueabi"
+>     MACHINE           = "raspberrypi"
+>     DISTRO            = "poky"
+>     DISTRO_VERSION    = "1.2+snapshot-20120521"
+>     TUNE_FEATURES     = "armv6 vfp arm1176jzfs"
+>     TARGET_FPU        = "vfp"
+>     meta
+>     meta-yocto        = "master:__f24d8df3af52e2a2911233746ad69f__8899bbdf93"
+>     meta-raspberrypi  = "master:__d1e802561ab5c70680fd6ee70a4779__1fe78aa977"
 >
-> Any ideas how to move forward?
+>     When I ran 'bitbake core-image-sato', I got this error:
 >
-> Thanks
+>     | make[1]: *** No rule to make target
+>     `/local/rpi_poky/tmp/work/__raspberrypi-poky-linux-__gnueabi/linux-raspberrypi-3.1.__9-rpi+r1+__git0ec4154d64ebba48ca2446cde60__a90546311defc-r1/image/lib/__firmware/./',
+>     needed by
+>     `/local/rpi_poky/tmp/work/__raspberrypi-poky-linux-__gnueabi/linux-raspberrypi-3.1.__9-rpi+r1+__git0ec4154d64ebba48ca2446cde60__a90546311defc-r1/image/lib/__firmware/ti_3410.fw'.
+>       Stop.
 >
-> --
-> ------------------------------**------------------------------
-> Gary Thomas                 |  Consulting for the
-> MLB Associates              |    Embedded world
-> ------------------------------**------------------------------
-> ______________________________**_________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.**org/listinfo/yocto<https://lists.yoctoproject.org/listinfo/yocto>
->
+>     Any ideas how to move forward?
 
---e89a8f646a8b2f39cf04c09055ba
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
-<p>Give some more output please.</p>
-<div class=3D"gmail_quote">On May 21, 2012 8:51 PM, &quot;Gary Thomas&quot;=
- &lt;<a href=3D"mailto:gary@mlbassoc.com">gary@mlbassoc.com</a>&gt; wrote:<=
-br type=3D"attribution"><blockquote class=3D"gmail_quote" style=3D"margin:0=
- 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
-I tried to build a simple image using just Poky+meta-raspberrypi<br>
-Build Configuration:<br>
-BB_VERSION =A0 =A0 =A0 =A0=3D &quot;1.15.2&quot;<br>
-TARGET_ARCH =A0 =A0 =A0 =3D &quot;arm&quot;<br>
-TARGET_OS =A0 =A0 =A0 =A0 =3D &quot;linux-gnueabi&quot;<br>
-MACHINE =A0 =A0 =A0 =A0 =A0 =3D &quot;raspberrypi&quot;<br>
-DISTRO =A0 =A0 =A0 =A0 =A0 =A0=3D &quot;poky&quot;<br>
-DISTRO_VERSION =A0 =A0=3D &quot;1.2+snapshot-20120521&quot;<br>
-TUNE_FEATURES =A0 =A0 =3D &quot;armv6 vfp arm1176jzfs&quot;<br>
-TARGET_FPU =A0 =A0 =A0 =A0=3D &quot;vfp&quot;<br>
-meta<br>
-meta-yocto =A0 =A0 =A0 =A0=3D &quot;master:<u></u>f24d8df3af52e2a2911233746=
-ad69f<u></u>8899bbdf93&quot;<br>
-meta-raspberrypi =A0=3D &quot;master:<u></u>d1e802561ab5c70680fd6ee70a4779<=
-u></u>1fe78aa977&quot;<br>
-<br>
-When I ran &#39;bitbake core-image-sato&#39;, I got this error:<br>
-<br>
-| make[1]: *** No rule to make target `/local/rpi_poky/tmp/work/<u></u>rasp=
-berrypi-poky-linux-<u></u>gnueabi/linux-raspberrypi-3.1.<u></u>9-rpi+r1+<u>=
-</u>git0ec4154d64ebba48ca2446cde60<u></u>a90546311defc-r1/image/lib/<u></u>=
-firmware/./&#39;, needed by `/local/rpi_poky/tmp/work/<u></u>raspberrypi-po=
-ky-linux-<u></u>gnueabi/linux-raspberrypi-3.1.<u></u>9-rpi+r1+<u></u>git0ec=
-4154d64ebba48ca2446cde60<u></u>a90546311defc-r1/image/lib/<u></u>firmware/t=
-i_3410.fw&#39;. =A0Stop.<br>
-
-<br>
-Any ideas how to move forward?<br>
-<br>
-Thanks<br>
-<br>
--- <br>
-------------------------------<u></u>------------------------------<br>
-Gary Thomas =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 | =A0Consulting for the<br>
-MLB Associates =A0 =A0 =A0 =A0 =A0 =A0 =A0| =A0 =A0Embedded world<br>
-------------------------------<u></u>------------------------------<br>
-______________________________<u></u>_________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
->https://lists.yoctoproject.<u></u>org/listinfo/yocto</a><br>
-</blockquote></div>
-
---e89a8f646a8b2f39cf04c09055ba--
