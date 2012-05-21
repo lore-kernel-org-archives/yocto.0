@@ -1,28 +1,19 @@
-Return-Path: <emirelkholy@gmail.com>
-Received: from mail-vb0-f48.google.com (mail-vb0-f48.google.com
-	[209.85.212.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EC852E0030B
-	for <yocto@yoctoproject.org>; Mon, 21 May 2012 14:18:51 -0700 (PDT)
-Received: by vbjk17 with SMTP id k17so5594570vbj.35
-	for <yocto@yoctoproject.org>; Mon, 21 May 2012 14:18:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=NTlHaOzho07dH8QqovjoF5ElzEsIDTWVDiKtEfLYXLI=;
-	b=KCtFfR37IVC40Bb8HYTeMMKoNozcc7+mOoJKptPTn6KwLAOu/Atg5IkGTxUMQzNhfY
-	sTAT5UW4BphME4SzF+acthFfJ81isYgb2T2mOvQ8FDP5Z1AUGagq6mtbolr5yUf+GhTo
-	o//4Fsvx9L37MrlOfJTKfxceHYz3Wm1RD/srSudgh109TE1PfKAcl5ptwwgednMEYOuR
-	H6sJeHTlsigqWzpjImwRK3LwouSMkypbuZVLVnUblu/TA3aOuj8Kb0U/XY5Tnv4qoqGe
-	UqbW7T+yyjZ5RkBMkL5f7bH1rtzhcxRmSebR/fpFiz3kumtI+5dm+bOESqA92Xfi5xXV
-	JQmw==
-MIME-Version: 1.0
-Received: by 10.220.209.72 with SMTP id gf8mr30448vcb.72.1337635131086; Mon,
-	21 May 2012 14:18:51 -0700 (PDT)
-Received: by 10.52.157.71 with HTTP; Mon, 21 May 2012 14:18:51 -0700 (PDT)
-Date: Mon, 21 May 2012 17:18:51 -0400
-Message-ID: <CAExZvuOOdBRz3=zeko8gbdnXOQDaQ5mzvLNXFCi-uW3mduYNhw@mail.gmail.com>
-From: Emir Elkholy <emirelkholy@gmail.com>
+Return-Path: <reinette.chatre@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A7687E0030B
+	for <yocto@yoctoproject.org>; Mon, 21 May 2012 14:35:43 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 21 May 2012 14:35:43 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="143019093"
+Received: from unknown (HELO rchatre.jf.intel.com) ([10.7.198.60])
+	by orsmga001.jf.intel.com with ESMTP; 21 May 2012 14:35:43 -0700
+From: Reinette Chatre <reinette.chatre@intel.com>
 To: yocto@yoctoproject.org
-Subject: sending ioctl 5310 to a partition!
+Date: Mon, 21 May 2012 14:35:11 -0700
+Message-Id: <1337636111-16405-1-git-send-email-reinette.chatre@intel.com>
+X-Mailer: git-send-email 1.7.7.6
+Subject: [PATCH] bitbake.conf: ensure .la and SOLIBSDEV libraries end in -dev package
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,24 +25,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 21 May 2012 21:18:52 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Mon, 21 May 2012 21:35:43 -0000
 
-Hello,
+When libraries are installed in ${libdir}/${BPN} we need to ensure that
+those libraries without version number end up in the -dev package. If not
+the error "ERROR: QA Issue: non -dev/-dbg/-nativesdk package contains
+symlink .so: " is encountered.
 
-I am trying to install an image of Yocto to my CRB (cedartrail). After
-creating the bootable usb with the new image on it as a usb-zip
-(because it is too large for the hdd method of install), I insert it
-into one of the usb slots of my CRB. After turning the CRB on the
-prompt says "boot". At this point if you don't type anything it just
-runs the image off of the USB. This worked with no problem. What
-didn't work was trying to install the new image on my CRB. When the
-CRB starts with the USB attached, it prompts the user with "boot"
-which at this stage i typed "install". It seemed as if it was
-installing because it was outputting various text, but then it just
-stopped after outputting to the screen "sending ioctl 5310 to a
-partition!". Hopefully someone on the mailing list has seen this
-before. Any advise would help.
+A change like this is required since package named ${PN} is evaluated
+before ${PN}-dev and FILES_${PN} currently contains ${libdir}/${BPN}/*.
+A recipe author is thus not able to use FILES_${PN}-dev
+to try and place the .la and .so libraries in the development package.
 
-Thanks
+Signed-off-by: Reinette Chatre <reinette.chatre@intel.com>
+---
+ meta/conf/bitbake.conf |    5 +++--
+ 1 files changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/meta/conf/bitbake.conf b/meta/conf/bitbake.conf
+index 7073018..02bd309 100644
+--- a/meta/conf/bitbake.conf
++++ b/meta/conf/bitbake.conf
+@@ -261,7 +261,7 @@ FILES_${PN} = "${bindir}/* ${sbindir}/* ${libexecdir}/* ${libdir}/lib*${SOLIBS}
+             ${sysconfdir} ${sharedstatedir} ${localstatedir} \
+             ${base_bindir}/* ${base_sbindir}/* \
+             ${base_libdir}/*${SOLIBS} \
+-            ${datadir}/${BPN} ${libdir}/${BPN}/* \
++            ${datadir}/${BPN} ${libdir}/${BPN}/*${SOLIBS} \
+             ${datadir}/pixmaps ${datadir}/applications \
+             ${datadir}/idl ${datadir}/omf ${datadir}/sounds \
+             ${libdir}/bonobo/servers"
+@@ -272,7 +272,8 @@ SECTION_${PN}-doc = "doc"
+ 
+ FILES_${PN}-dev = "${includedir} ${libdir}/lib*${SOLIBSDEV} ${libdir}/*.la \
+                 ${libdir}/*.o ${libdir}/pkgconfig ${datadir}/pkgconfig \
+-                ${datadir}/aclocal ${base_libdir}/*.o"
++                ${datadir}/aclocal ${base_libdir}/*.o \
++                ${libdir}/${BPN}/*${SOLIBSDEV} ${libdir}/${BPN}/*.la"
+ SECTION_${PN}-dev = "devel"
+ ALLOW_EMPTY_${PN}-dev = "1"
+ RDEPENDS_${PN}-dev = "${PN} (= ${EXTENDPKGV})"
+-- 
+1.7.7.6
+
 
