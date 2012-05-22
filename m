@@ -1,24 +1,34 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 85D43E01304
-	for <yocto@yoctoproject.org>; Tue, 22 May 2012 13:22:03 -0700 (PDT)
+Return-Path: <jessica.zhang@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9D686E01396
+	for <yocto@yoctoproject.org>; Tue, 22 May 2012 13:23:49 -0700 (PDT)
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 22 May 2012 13:22:03 -0700
+	by fmsmga101.fm.intel.com with ESMTP; 22 May 2012 13:23:49 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="169923833"
-Received: from unknown (HELO [10.255.12.14]) ([10.255.12.14])
-	by fmsmga002.fm.intel.com with ESMTP; 22 May 2012 13:22:02 -0700
-From: Tom Zanussi <tom.zanussi@intel.com>
-To: jfabernathy <jfabernathy@gmail.com>
-In-Reply-To: <4FBBF389.9030606@gmail.com>
-References: <cover.1337621438.git.kishore.k.bodke@intel.com>
-	<1337717064.32464.33.camel@elmorro>  <4FBBF389.9030606@gmail.com>
-Date: Tue, 22 May 2012 15:22:21 -0500
-Message-ID: <1337718141.32464.38.camel@elmorro>
-Mime-Version: 1.0
-X-Mailer: Evolution 2.28.3 
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 0/1] [meta-intel] Update PVR Graphics drivers.
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="169924595"
+Received: from orsmsx606.amr.corp.intel.com ([10.22.226.128])
+	by fmsmga002.fm.intel.com with ESMTP; 22 May 2012 13:23:49 -0700
+Received: from orsmsx152.amr.corp.intel.com (10.22.226.39) by
+	orsmsx606.amr.corp.intel.com (10.22.226.128) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Tue, 22 May 2012 13:23:48 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.121]) by
+	ORSMSX152.amr.corp.intel.com ([169.254.8.73]) with mapi id
+	14.01.0355.002; Tue, 22 May 2012 13:23:48 -0700
+From: "Zhang, Jessica" <jessica.zhang@intel.com>
+To: Emir Elkholy <emirelkholy@gmail.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] Connecting to target using eclipse/ADT
+Thread-Index: AQHNOEzinaywyvqyok6sdJwKwHX6+pbWQIXA
+Date: Tue, 22 May 2012 20:23:48 +0000
+Message-ID: <C6510F6D410BB64A8C15398EDC6B847C46A4CAFC@ORSMSX101.amr.corp.intel.com>
+References: <CAExZvuNa59NhtL767y9fD-A05rZkpYdp+55N-zHWn2kJeEU_Fw@mail.gmail.com>
+In-Reply-To: <CAExZvuNa59NhtL767y9fD-A05rZkpYdp+55N-zHWn2kJeEU_Fw@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.139]
+MIME-Version: 1.0
+Subject: Re: Connecting to target using eclipse/ADT
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,66 +40,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 22 May 2012 20:22:03 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 22 May 2012 20:23:49 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, 2012-05-22 at 16:14 -0400, jfabernathy wrote:
-> On 05/22/2012 04:04 PM, Tom Zanussi wrote:
-> > On Mon, 2012-05-21 at 10:55 -0700, kishore.k.bodke@intel.com wrote:
-> >> From: Kishore Bodke<kishore.k.bodke@intel.com>
-> >>
-> >> Pointing to the latest version of PVR
-> >> Graphics drivers for the Cedartrail BSP.
-> >>
-> >> Please pull into meta-intel/denzil
-> >>
-> > Pulled into meta-intel/master.
-> Tom, how long does this take before a git pull will get the changes into 
-> my system?  I tried when I saw your email and nothing was updated.
-> 
+So do you have access to your target at all? Can you verify that the tcf-ag=
+ent is up running on the target device?
 
-It should be immediate.  You can always verify by looking here:
+-----Original Message-----
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Emir Elkholy
+Sent: Tuesday, May 22, 2012 11:58 AM
+To: yocto@yoctoproject.org
+Subject: [yocto] Connecting to target using eclipse/ADT
 
-http://git.yoctoproject.org/cgit/cgit.cgi/meta-intel/log/
+When connecting to my CRB that is running off a usb drive that has yocto on=
+ it I am trying to connect to the CRB from my host in order to debug using =
+TCF agent. Through eclipse I am entering the IP address of the target, and =
+attempting to debug from the debug configurations menu. Using a simple hell=
+oworld as an example, the file is actually transferred to the target CRB, b=
+ut the debugging fails. Eclipse gives me a connection timing out error (not=
+ allowing me to debug). Is there a link that describes how to connect to a =
+physical target using eclipse and the ADT? Is there anything that must be d=
+one on the target side first before attempting to debug? I only enter the I=
+P address of the target under debug configurations, I don't setup anything =
+on the target side, maybe this is the problem? I followed the same procedur=
+e as connecting to the QEMU (which works) as I did with the physical hardwa=
+re. I can't find anything online about a connection time out either.
 
-Tom
-
-> Jim A
-> 
-> > Thanks,
-> >
-> > Tom
-> >
-> >> Thanks
-> >> Kishore.
-> >>
-> >> The following changes since commit 7c1086df3f92d76ca1a062f9b4b1daf6823bfb63:
-> >>
-> >>    emgd-driver-bin: skip insane ldflags check (2012-05-17 20:15:53 -0500)
-> >>
-> >> are available in the git repository at:
-> >>
-> >>    git://git.pokylinux.org/meta-intel-contrib kishore/cedartrail-pvrupdate
-> >>    http://git.pokylinux.org/cgit.cgi/meta-intel-contrib/log/?h=kishore/cedartrail-pvrupdate
-> >>
-> >> Kishore Bodke (1):
-> >>    meta-cedartrail: Update PVR Graphics drivers.
-> >>
-> >>   .../xorg-driver/cdv-pvr-driver.inc                 |   14 +++---
-> >>   .../xorg-driver/cdv-pvr-driver_1.0.bb              |   46 ++++++++++----------
-> >>   2 files changed, 28 insertions(+), 32 deletions(-)
-> >>
-> >
-> > _______________________________________________
-> > yocto mailing list
-> > yocto@yoctoproject.org
-> > https://lists.yoctoproject.org/listinfo/yocto
-> 
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
-
+Thanks
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
 
