@@ -1,28 +1,37 @@
-Return-Path: <emirelkholy@gmail.com>
-Received: from mail-yx0-f176.google.com (mail-yx0-f176.google.com
-	[209.85.213.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6A2D6E01304
-	for <yocto@yoctoproject.org>; Tue, 22 May 2012 11:58:22 -0700 (PDT)
-Received: by yenm14 with SMTP id m14so7393640yen.35
-	for <yocto@yoctoproject.org>; Tue, 22 May 2012 11:58:21 -0700 (PDT)
+Return-Path: <martin.jansa@gmail.com>
+Received: from mail-wi0-f182.google.com (mail-wi0-f182.google.com
+	[209.85.212.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 31626E01304
+	for <yocto@yoctoproject.org>; Tue, 22 May 2012 12:24:09 -0700 (PDT)
+Received: by wibhm6 with SMTP id hm6so3366857wib.11
+	for <yocto@yoctoproject.org>; Tue, 22 May 2012 12:24:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=EzoiHcaiW/3yF3qui56c/9GZ6jV2UsbULbFF8VvK1rE=;
-	b=RXgANUHFlzDLtFNIfRb7jkpeIXp0fXkIFntPEenXPX9Gy9H6XXfc07TUiYdaz6qEba
-	SgtQc9XnTOLZo+Zl3xto/WBJkwUAxeq3clJvW/nDlSanxueN51nsqLt3FnvOkKr27PJE
-	QweI/n2AReNn5eeqCtm4RutE+w1FPOZ8W+4OvR+H33i9lnTfXLmTzVKvcOKtJLC95jSy
-	179KAYLBf14NfPkq8bNrh+ZEBpFXW3PkLkyk6VcB4ECZJ//rkVqltb7gCPmeEwHIPJxY
-	ihfOWWIjKbLnCkvXOI1p2vvUO1wYBeQ9UJeDF8C4AALhEU4Ecz9mbi1FDtBit0lcDs2H
-	V/Lw==
+	h=date:from:to:cc:subject:message-id:references:mime-version
+	:content-type:content-disposition:in-reply-to:user-agent;
+	bh=xXH88nDdq47nd12rc7BTBo+XXtLNjOful8KxA3KQ054=;
+	b=jt3qiuqTykoef2ymer+jBC60vGYyXTezCsQ8a+wgcA3qganxtLNx312WkR1HxaMpW8
+	YFTHICzlC1fPY/OWP45qbjNSFLybGVzp7GFxuygr35xRqx40xpVOk9ZsZeUNYIgETTW8
+	VQmWycuiqmMQaP09exTcBkbmh5hkbJ+Nh+A0S6OFn4ato1KC0GaJb9dyYDEt6Yzo5e3n
+	PMgclNlkgUbJYD/v86zF7iPvd/iWx0FTA2MYHygW2PRIJu8Ds3qIFZGvYfkyWAGbQ9Tk
+	RozgmIgrglC7bAJWXiR4H60MGgkLC53qUAyQ5sIUCu7LuBjWxN+cUMEVdYqKuEbWZoNk
+	lTaA==
+Received: by 10.180.24.103 with SMTP id t7mr37322300wif.16.1337714647409;
+	Tue, 22 May 2012 12:24:07 -0700 (PDT)
+Received: from localhost ([94.230.152.246])
+	by mx.google.com with ESMTPS id ei4sm46477170wid.5.2012.05.22.12.24.05
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Tue, 22 May 2012 12:24:05 -0700 (PDT)
+Date: Tue, 22 May 2012 21:24:06 +0200
+From: Martin Jansa <martin.jansa@gmail.com>
+To: Tom Zanussi <tom.zanussi@intel.com>
+Message-ID: <20120522192406.GA3995@jama.jama.net>
+References: <1337655403-4049-1-git-send-email-challinan@gmail.com>
+	<1337700685.32464.16.camel@elmorro>
 MIME-Version: 1.0
-Received: by 10.236.153.104 with SMTP id e68mr28355175yhk.36.1337713101668;
-	Tue, 22 May 2012 11:58:21 -0700 (PDT)
-Received: by 10.146.234.10 with HTTP; Tue, 22 May 2012 11:58:21 -0700 (PDT)
-Date: Tue, 22 May 2012 14:58:21 -0400
-Message-ID: <CAExZvuNa59NhtL767y9fD-A05rZkpYdp+55N-zHWn2kJeEU_Fw@mail.gmail.com>
-From: Emir Elkholy <emirelkholy@gmail.com>
-To: yocto@yoctoproject.org
-Subject: Connecting to target using eclipse/ADT
+In-Reply-To: <1337700685.32464.16.camel@elmorro>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH] Fix X server on emenlow when built with gcc 4.7.x
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,24 +43,387 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 22 May 2012 18:58:22 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Tue, 22 May 2012 19:24:09 -0000
+X-Groupsio-MsgNum: 6806
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="k+w/mQv8wyuph6w0"
+Content-Disposition: inline
 
-When connecting to my CRB that is running off a usb drive that has
-yocto on it I am trying to connect to the CRB from my host in order to
-debug using TCF agent. Through eclipse I am entering the IP address of
-the target, and attempting to debug from the debug configurations
-menu. Using a simple helloworld as an example, the file is actually
-transferred to the target CRB, but the debugging fails. Eclipse gives
-me a connection timing out error (not allowing me to debug). Is there
-a link that describes how to connect to a physical target
-using eclipse and the ADT? Is there anything that must be done on the
-target side first before attempting to debug? I only enter the IP
-address of the target under debug configurations, I don't setup
-anything on the target side, maybe this is the problem? I followed the
-same procedure as connecting to the QEMU (which works) as I did with
-the physical hardware. I can't find anything online about a connection
-time out either.
+--k+w/mQv8wyuph6w0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Thanks
+On Tue, May 22, 2012 at 10:31:25AM -0500, Tom Zanussi wrote:
+> On Mon, 2012-05-21 at 21:56 -0500, Christopher Hallinan wrote:
+> > On Mon, May 21, 2012 at 2:30 PM, Tom Zanussi <tom.zanussi@intel.com> wr=
+ote:
+> > > On Fri, 2012-05-18 at 23:02 -0400, Chris Hallinan wrote:
+> > >> On Fri, May 18, 2012 at 6:25 PM, Tom Zanussi <tom.zanussi@intel.com>=
+ wrote:
+> > >> > On Fri, 2012-05-18 at 17:38 -0400, Chris Hallinan wrote:
+> > >> >> Note: this patch has already been submitted against other BSPs,
+> > >> >> originally submitted to oe-core by Gary Thomas.  I ran into this =
+same
+> > >> >> issue building MACHINE=3Demenlow on my own Z530 platform.  There =
+are
+> > >> >> likely others as well where this needs to be applied.
+> > >> >>
+> > >> >> Upstream is here:
+> > >> >> https://bugs.freedesktop.org/show_bug.cgi?id=3D18451
+> > >> >>
+> > >> >> PR has been bumped.
+> > >> >>
+> > >> >
+> > >> > Hi, thanks for the patch - I see the problem and will pull this in=
+ as
+> > >> > soon as I can build and test it, but am getting a patch failure in=
+ the
+> > >> > build after pulling it in for testing.  I'll fix it up, but just
+> > >> > mentioning it in case you had any ideas why it might work for you =
+but
+> > >> > fail here...
+> > >> >
+> > >>
+> > >> Sorry, Tom.
+> > >> Odd, I generated the patch using git diff, but didn't actually try to
+> > >> apply it to an unpatched tree.  Looking at it, it isn't obvious why =
+it
+> > >> fails. Someone with more git/patch foo than me could probably explain
+> > >> it ;)
+> > >>
+> > >> This one works (for me) against current top of tree:
+> > >>
+> > >
+> > > It must be a whitespace problem - I still couldn't apply it, so manua=
+lly
+> > > fixed it up here, patch below.
+> > >
+> > > I also added an Upstream-status: section to the patch.
+> > >
+> > > Also, before pulling it in, I'll need to have you send me your
+> > > Signed-off-by: line.
+> > >
+> > > Unfortunately, the problem now is that although I am getting a sato
+> > > desktop, it has no icons or mouse/keyboard and I see this in the
+> > > Xorg.0.log:
+> > >
+> > > Backtrace:
+> > > 0: /usr/bin/Xorg (xorg_backtrace+0x37) [0x80e2e37]
+> > > 1: /usr/bin/Xorg (0x8047000+0x5bda6) [0x80a2da6]
+> > > 2: linux-gate.so.1 (__kernel_rt_sigreturn+0x0) [0xffffe40c]
+> > > 3: /usr/lib/xorg/modules/drivers/psb_drv.so (0xb769b000+0x690c)
+> > > [0xb76a190c]
+> > > 4: /usr/lib/xorg/modules/libexa.so (0xb71ab000+0xcd0a) [0xb71b7d0a]
+> > > 5: /usr/lib/xorg/modules/libexa.so (0xb71ab000+0xd300) [0xb71b8300]
+> > > 6: /usr/lib/xorg/modules/libexa.so (0xb71ab000+0xb5fd) [0xb71b65fd]
+> > > 7: /usr/bin/Xorg (0x8047000+0xc60c0) [0x810d0c0]
+> > > 8: /usr/bin/Xorg (CompositeGlyphs+0xb1) [0x819f131]
+> > > 9: /usr/bin/Xorg (0x8047000+0xc2e1e) [0x8109e1e]
+> > > 10: /usr/bin/Xorg (0x8047000+0xbdb2e) [0x8104b2e]
+> > > 11: /usr/bin/Xorg (0x8047000+0x286cf) [0x806f6cf]
+> > > 12: /usr/bin/Xorg (0x8047000+0x1bbca) [0x8062bca]
+> > > 13: /lib/libc.so.6 (__libc_start_main+0xf5) [0x42892ba5]
+> > > 14: /usr/bin/Xorg (0x8047000+0x1bea1) [0x8062ea1]
+> > > Segmentation fault at address 0xc
+> > >
+> > > Fatal server error:
+> > > Caught signal 11 (Segmentation fault). Server aborting
+> > >
+> > >
+> > > Can you tell me which poky commit you're using?
+> >=20
+> > I haven't sync'd lately. I'm using=20
+> > poky: f39ba520d6f2477c99839a92049b1bb279f092cf
+> > meta-intel: bde31fd7e66faea865d24ff0858a9006b89e4e54
+> >=20
+> > Third time should be a charm.  With kergoth's help, I think I got this =
+patch format correct!
+> >=20
+> > Signed-off-by: Christopher Hallinan <challinan@gmail.com>
+>=20
+> Yep, third time was the charm - applied cleanly and booted into sato
+> without problem...
+>=20
+> Pulled into meta-intel/master.
 
+Why not use patch with proper headers like Upstream-Status? (just copy
+it oe-core patch properly).
+
+Or does meta-intel have different commit guidelines?
+
+Cheers,
+
+>=20
+> Thanks!
+>=20
+> Tom
+>=20
+> > ---
+> >  .../files/fix-bogus-stack-variables.patch          |  204 ++++++++++++=
+++++++++
+> >  .../xorg-xserver/xserver-psb-1.7.99.2.inc          |    5 +-
+> >  2 files changed, 207 insertions(+), 2 deletions(-)
+> >  create mode 100644 meta-emenlow/recipes-graphics/xorg-xserver/files/fi=
+x-bogus-stack-variables.patch
+> >=20
+> > diff --git a/meta-emenlow/recipes-graphics/xorg-xserver/files/fix-bogus=
+-stack-variables.patch b/meta-emenlow/recipes-graphics/xorg-xserver/files/f=
+ix-bogus-stack-variables.patch
+> > new file mode 100644
+> > index 0000000..5c9581a
+> > --- /dev/null
+> > +++ b/meta-emenlow/recipes-graphics/xorg-xserver/files/fix-bogus-stack-=
+variables.patch
+> > @@ -0,0 +1,204 @@
+> > +diff --git a/Xext/xace.c b/Xext/xace.c
+> > +index e10d837..c757cad 100644
+> > +--- a/Xext/xace.c
+> > ++++ b/Xext/xace.c
+> > +@@ -87,7 +87,18 @@ void XaceHookAuditEnd(ClientPtr ptr, int result)
+> > +  */
+> > + int XaceHook(int hook, ...)
+> > + {
+> > +-    pointer calldata;	/* data passed to callback */
+> > ++    union {
+> > ++	XaceResourceAccessRec res;
+> > ++	XaceDeviceAccessRec dev;
+> > ++	XaceSendAccessRec send;
+> > ++	XaceReceiveAccessRec recv;
+> > ++	XaceClientAccessRec client;
+> > ++	XaceExtAccessRec ext;
+> > ++	XaceServerAccessRec server;
+> > ++	XaceScreenAccessRec screen;
+> > ++	XaceAuthAvailRec auth;
+> > ++	XaceKeyAvailRec key;
+> > ++    } u;
+> > +     int *prv =3D NULL;	/* points to return value from callback */
+> > +     va_list ap;		/* argument list */
+> > +     va_start(ap, hook);
+> > +@@ -99,117 +110,86 @@ int XaceHook(int hook, ...)
+> > +      */
+> > +     switch (hook)
+> > +     {
+> > +-	case XACE_RESOURCE_ACCESS: {
+> > +-	    XaceResourceAccessRec rec;
+> > +-	    rec.client =3D va_arg(ap, ClientPtr);
+> > +-	    rec.id =3D va_arg(ap, XID);
+> > +-	    rec.rtype =3D va_arg(ap, RESTYPE);
+> > +-	    rec.res =3D va_arg(ap, pointer);
+> > +-	    rec.ptype =3D va_arg(ap, RESTYPE);
+> > +-	    rec.parent =3D va_arg(ap, pointer);
+> > +-	    rec.access_mode =3D va_arg(ap, Mask);
+> > +-	    rec.status =3D Success; /* default allow */
+> > +-	    calldata =3D &rec;
+> > +-	    prv =3D &rec.status;
+> > ++	case XACE_RESOURCE_ACCESS:
+> > ++	    u.res.client =3D va_arg(ap, ClientPtr);
+> > ++	    u.res.id =3D va_arg(ap, XID);
+> > ++	    u.res.rtype =3D va_arg(ap, RESTYPE);
+> > ++	    u.res.res =3D va_arg(ap, pointer);
+> > ++	    u.res.ptype =3D va_arg(ap, RESTYPE);
+> > ++	    u.res.parent =3D va_arg(ap, pointer);
+> > ++	    u.res.access_mode =3D va_arg(ap, Mask);
+> > ++	    u.res.status =3D Success; /* default allow */
+> > ++	    prv =3D &u.res.status;
+> > + 	    break;
+> > +-	}
+> > +-	case XACE_DEVICE_ACCESS: {
+> > +-	    XaceDeviceAccessRec rec;
+> > +-	    rec.client =3D va_arg(ap, ClientPtr);
+> > +-	    rec.dev =3D va_arg(ap, DeviceIntPtr);
+> > +-	    rec.access_mode =3D va_arg(ap, Mask);
+> > +-	    rec.status =3D Success; /* default allow */
+> > +-	    calldata =3D &rec;
+> > +-	    prv =3D &rec.status;
+> > ++	case XACE_DEVICE_ACCESS:
+> > ++	    u.dev.client =3D va_arg(ap, ClientPtr);
+> > ++	    u.dev.dev =3D va_arg(ap, DeviceIntPtr);
+> > ++	    u.dev.access_mode =3D va_arg(ap, Mask);
+> > ++	    u.dev.status =3D Success; /* default allow */
+> > ++	    prv =3D &u.dev.status;
+> > + 	    break;
+> > +-	}
+> > +-	case XACE_SEND_ACCESS: {
+> > +-	    XaceSendAccessRec rec;
+> > +-	    rec.client =3D va_arg(ap, ClientPtr);
+> > +-	    rec.dev =3D va_arg(ap, DeviceIntPtr);
+> > +-	    rec.pWin =3D va_arg(ap, WindowPtr);
+> > +-	    rec.events =3D va_arg(ap, xEventPtr);
+> > +-	    rec.count =3D va_arg(ap, int);
+> > +-	    rec.status =3D Success; /* default allow */
+> > +-	    calldata =3D &rec;
+> > +-	    prv =3D &rec.status;
+> > ++	case XACE_SEND_ACCESS:
+> > ++	    u.send.client =3D va_arg(ap, ClientPtr);
+> > ++	    u.send.dev =3D va_arg(ap, DeviceIntPtr);
+> > ++	    u.send.pWin =3D va_arg(ap, WindowPtr);
+> > ++	    u.send.events =3D va_arg(ap, xEventPtr);
+> > ++	    u.send.count =3D va_arg(ap, int);
+> > ++	    u.send.status =3D Success; /* default allow */
+> > ++	    prv =3D &u.send.status;
+> > + 	    break;
+> > +-	}
+> > +-	case XACE_RECEIVE_ACCESS: {
+> > +-	    XaceReceiveAccessRec rec;
+> > +-	    rec.client =3D va_arg(ap, ClientPtr);
+> > +-	    rec.pWin =3D va_arg(ap, WindowPtr);
+> > +-	    rec.events =3D va_arg(ap, xEventPtr);
+> > +-	    rec.count =3D va_arg(ap, int);
+> > +-	    rec.status =3D Success; /* default allow */
+> > +-	    calldata =3D &rec;
+> > +-	    prv =3D &rec.status;
+> > ++	case XACE_RECEIVE_ACCESS:
+> > ++	    u.recv.client =3D va_arg(ap, ClientPtr);
+> > ++	    u.recv.pWin =3D va_arg(ap, WindowPtr);
+> > ++	    u.recv.events =3D va_arg(ap, xEventPtr);
+> > ++	    u.recv.count =3D va_arg(ap, int);
+> > ++	    u.recv.status =3D Success; /* default allow */
+> > ++	    prv =3D &u.recv.status;
+> > + 	    break;
+> > +-	}
+> > +-	case XACE_CLIENT_ACCESS: {
+> > +-	    XaceClientAccessRec rec;
+> > +-	    rec.client =3D va_arg(ap, ClientPtr);
+> > +-	    rec.target =3D va_arg(ap, ClientPtr);
+> > +-	    rec.access_mode =3D va_arg(ap, Mask);
+> > +-	    rec.status =3D Success; /* default allow */
+> > +-	    calldata =3D &rec;
+> > +-	    prv =3D &rec.status;
+> > ++	case XACE_CLIENT_ACCESS:
+> > ++	    u.client.client =3D va_arg(ap, ClientPtr);
+> > ++	    u.client.target =3D va_arg(ap, ClientPtr);
+> > ++	    u.client.access_mode =3D va_arg(ap, Mask);
+> > ++	    u.client.status =3D Success; /* default allow */
+> > ++	    prv =3D &u.client.status;
+> > + 	    break;
+> > +-	}
+> > +-	case XACE_EXT_ACCESS: {
+> > +-	    XaceExtAccessRec rec;
+> > +-	    rec.client =3D va_arg(ap, ClientPtr);
+> > +-	    rec.ext =3D va_arg(ap, ExtensionEntry*);
+> > +-	    rec.access_mode =3D DixGetAttrAccess;
+> > +-	    rec.status =3D Success; /* default allow */
+> > +-	    calldata =3D &rec;
+> > +-	    prv =3D &rec.status;
+> > ++	case XACE_EXT_ACCESS:
+> > ++	    u.ext.client =3D va_arg(ap, ClientPtr);
+> > ++	    u.ext.ext =3D va_arg(ap, ExtensionEntry*);
+> > ++	    u.ext.access_mode =3D DixGetAttrAccess;
+> > ++	    u.ext.status =3D Success; /* default allow */
+> > ++	    prv =3D &u.ext.status;
+> > + 	    break;
+> > +-	}
+> > +-	case XACE_SERVER_ACCESS: {
+> > +-	    XaceServerAccessRec rec;
+> > +-	    rec.client =3D va_arg(ap, ClientPtr);
+> > +-	    rec.access_mode =3D va_arg(ap, Mask);
+> > +-	    rec.status =3D Success; /* default allow */
+> > +-	    calldata =3D &rec;
+> > +-	    prv =3D &rec.status;
+> > ++	case XACE_SERVER_ACCESS:
+> > ++	    u.server.client =3D va_arg(ap, ClientPtr);
+> > ++	    u.server.access_mode =3D va_arg(ap, Mask);
+> > ++	    u.server.status =3D Success; /* default allow */
+> > ++	    prv =3D &u.server.status;
+> > + 	    break;
+> > +-	}
+> > + 	case XACE_SCREEN_ACCESS:
+> > +-	case XACE_SCREENSAVER_ACCESS: {
+> > +-	    XaceScreenAccessRec rec;
+> > +-	    rec.client =3D va_arg(ap, ClientPtr);
+> > +-	    rec.screen =3D va_arg(ap, ScreenPtr);
+> > +-	    rec.access_mode =3D va_arg(ap, Mask);
+> > +-	    rec.status =3D Success; /* default allow */
+> > +-	    calldata =3D &rec;
+> > +-	    prv =3D &rec.status;
+> > ++	case XACE_SCREENSAVER_ACCESS:
+> > ++	    u.screen.client =3D va_arg(ap, ClientPtr);
+> > ++	    u.screen.screen =3D va_arg(ap, ScreenPtr);
+> > ++	    u.screen.access_mode =3D va_arg(ap, Mask);
+> > ++	    u.screen.status =3D Success; /* default allow */
+> > ++	    prv =3D &u.screen.status;
+> > + 	    break;
+> > +-	}
+> > +-	case XACE_AUTH_AVAIL: {
+> > +-	    XaceAuthAvailRec rec;
+> > +-	    rec.client =3D va_arg(ap, ClientPtr);
+> > +-	    rec.authId =3D va_arg(ap, XID);
+> > +-	    calldata =3D &rec;
+> > ++	case XACE_AUTH_AVAIL:
+> > ++	    u.auth.client =3D va_arg(ap, ClientPtr);
+> > ++	    u.auth.authId =3D va_arg(ap, XID);
+> > + 	    break;
+> > +-	}
+> > +-	case XACE_KEY_AVAIL: {
+> > +-	    XaceKeyAvailRec rec;
+> > +-	    rec.event =3D va_arg(ap, xEventPtr);
+> > +-	    rec.keybd =3D va_arg(ap, DeviceIntPtr);
+> > +-	    rec.count =3D va_arg(ap, int);
+> > +-	    calldata =3D &rec;
+> > ++	case XACE_KEY_AVAIL:
+> > ++	    u.key.event =3D va_arg(ap, xEventPtr);
+> > ++	    u.key.keybd =3D va_arg(ap, DeviceIntPtr);
+> > ++	    u.key.count =3D va_arg(ap, int);
+> > + 	    break;
+> > +-	}
+> > +-	default: {
+> > ++	default:
+> > + 	    va_end(ap);
+> > + 	    return 0;	/* unimplemented hook number */
+> > +-	}
+> > +     }
+> > +     va_end(ap);
+> > + =20
+> > +     /* call callbacks and return result, if any. */
+> > +-    CallCallbacks(&XaceHooks[hook], calldata);
+> > ++    CallCallbacks(&XaceHooks[hook], &u);
+> > +     return prv ? *prv : Success;
+> > + }
+> > diff --git a/meta-emenlow/recipes-graphics/xorg-xserver/xserver-psb-1.7=
+=2E99.2.inc b/meta-emenlow/recipes-graphics/xorg-xserver/xserver-psb-1.7.99=
+=2E2.inc
+> > index 9ee9c97..1fe962b 100644
+> > --- a/meta-emenlow/recipes-graphics/xorg-xserver/xserver-psb-1.7.99.2.i=
+nc
+> > +++ b/meta-emenlow/recipes-graphics/xorg-xserver/xserver-psb-1.7.99.2.i=
+nc
+> > @@ -1,4 +1,4 @@
+> > -PR =3D "r5"
+> > +PR =3D "r6"
+> > =20
+> >  PROTO_DEPS +=3D "xf86driproto dri2proto"
+> > =20
+> > @@ -8,7 +8,8 @@ SRC_URI +=3D "file://nodolt.patch \
+> >              file://crosscompile.patch \
+> >  	    file://libdrm-poulsbo.patch \
+> >  	    file://werror-address-fix.patch \
+> > -	    file://ptr-to-int-cast-fix.patch"
+> > +	    file://ptr-to-int-cast-fix.patch \
+> > +	    file://fix-bogus-stack-variables.patch"
+> > =20
+> >  # Misc build failure for master HEAD
+> >  SRC_URI +=3D "file://fix_open_max_preprocessor_error.patch"
+>=20
+>=20
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
+--=20
+Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
+
+--k+w/mQv8wyuph6w0
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2.0.19 (GNU/Linux)
+
+iEYEARECAAYFAk+759YACgkQN1Ujt2V2gBzTHgCgoU5mzLck7zjjKYUG0WnQiDJV
+b+YAnA+dCpuE+Vq/mkgK128DsTMKSswv
+=1xoZ
+-----END PGP SIGNATURE-----
+
+--k+w/mQv8wyuph6w0--
