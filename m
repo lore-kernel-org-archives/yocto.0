@@ -1,36 +1,36 @@
-Return-Path: <jessica.zhang@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EE7C0E01396
-	for <yocto@yoctoproject.org>; Tue, 22 May 2012 13:39:40 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 22 May 2012 13:39:40 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="103022820"
-Received: from orsmsx606.amr.corp.intel.com ([10.22.226.128])
-	by AZSMGA002.ch.intel.com with ESMTP; 22 May 2012 13:39:40 -0700
-Received: from orsmsx151.amr.corp.intel.com (10.22.226.38) by
-	orsmsx606.amr.corp.intel.com (10.22.226.128) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Tue, 22 May 2012 13:39:39 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.121]) by
-	ORSMSX151.amr.corp.intel.com ([169.254.7.219]) with mapi id
-	14.01.0355.002; Tue, 22 May 2012 13:39:39 -0700
-From: "Zhang, Jessica" <jessica.zhang@intel.com>
-To: "emirelkholy@gmail.com" <emirelkholy@gmail.com>
-Thread-Topic: [yocto] Connecting to target using eclipse/ADT
-Thread-Index: AQHNOEzinaywyvqyok6sdJwKwHX6+pbWQIXAgAB5ooD//4rucA==
-Date: Tue, 22 May 2012 20:39:38 +0000
-Message-ID: <C6510F6D410BB64A8C15398EDC6B847C46A4CB35@ORSMSX101.amr.corp.intel.com>
-References: <CAExZvuNa59NhtL767y9fD-A05rZkpYdp+55N-zHWn2kJeEU_Fw@mail.gmail.com>
-	<C6510F6D410BB64A8C15398EDC6B847C46A4CAFC@ORSMSX101.amr.corp.intel.com>
-	<91072D03-738A-4BC9-803F-0803A2D88171@gmail.com>
-In-Reply-To: <91072D03-738A-4BC9-803F-0803A2D88171@gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.139]
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-ey0-f176.google.com (mail-ey0-f176.google.com
+	[209.85.215.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7843AE01304
+	for <yocto@yoctoproject.org>; Tue, 22 May 2012 14:46:40 -0700 (PDT)
+Received: by eaab16 with SMTP id b16so1946902eaa.35
+	for <yocto@yoctoproject.org>; Tue, 22 May 2012 14:46:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=J/XJDwXgEhoi3jbSZfSl+X6wXZBPL2bXpa+p+e5HeVo=;
+	b=nmEADucdZ/YPLmNwHMyndV2Q+TGIujQVTvuP/N486EL2pMt7+BpUPOedpURlb3la5C
+	GUv/h0OUhndeVud5ZwpKZRfJ5B0sgkK0d8vEr73ySJDI9uwAau4NB/kND4nK5I6NCue5
+	iRYaSwaCWhpLm8L1O2xn5BgI/rJW1Yks4hDBg5OztBfS415nl/z3s7hTWIeXOk+tdYsP
+	OphKcgI+We+utq00rkkC/3DqnkVMGUPiYrn19D1SoAArZkk2LKHM1pvsjbfec0wQfcuC
+	T2s7FnTYa/Q8qFQuFtxSlTjEG2NlRHzz5nlBJY4g9hmUiDMbNVaBmlleRgRjQp9qV9dZ
+	6n+g==
+Received: by 10.213.29.211 with SMTP id r19mr239960ebc.68.1337723198479; Tue,
+	22 May 2012 14:46:38 -0700 (PDT)
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Connecting to target using eclipse/ADT
+Received: by 10.14.188.11 with HTTP; Tue, 22 May 2012 14:46:05 -0700 (PDT)
+In-Reply-To: <CAK18fxG3A-j4aZa2gwuAcRrssmWr2sC+vPW2bQkVHiy=dMPfVg@mail.gmail.com>
+References: <CAK18fxEh2HW+VQ5yrLdh3pr4hE8ZZzG2ecZXFLy2=40hQ+zYdg@mail.gmail.com>
+	<EC37B226-4E57-4C84-9510-F6EEC7FF4FCF@keylevel.com>
+	<CAK18fxFT4OfRrOAK2yQrPcMWv0asds7rFM+DvzKW83WcCERr-A@mail.gmail.com>
+	<77643DAB-8A26-4C55-B020-A2DB9423C180@keylevel.com>
+	<CAK18fxG3A-j4aZa2gwuAcRrssmWr2sC+vPW2bQkVHiy=dMPfVg@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Tue, 22 May 2012 14:46:05 -0700
+Message-ID: <CAMKF1soYvVZE0R6LQArCRwL4aYEuJa0VUPWs7OZdb5MbWebKEg@mail.gmail.com>
+To: Andrei Gherzan <andrei@gherzan.ro>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: RaspberryPi Layer
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,63 +42,13 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 22 May 2012 20:39:41 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 22 May 2012 21:46:40 -0000
+Content-Type: text/plain; charset=UTF-8
 
-So if you can tell the hello world program is transferred to the remote tar=
-get successfully, I'm assuming that you can access the remote target.  So o=
-n it, can you grep the running process and see whether there's tcf-agent?
-
------Original Message-----
-From: emirelkholy@gmail.com [mailto:emirelkholy@gmail.com]
-Sent: Tuesday, May 22, 2012 1:37 PM
-To: Zhang, Jessica
-Cc: yocto@yoctoproject.org
-Subject: Re: [yocto] Connecting to target using eclipse/ADT
-
-Hello,
-I can ping my target with no problem, and when I tried to debug a hello wor=
-ld program it transferred the hello world file the target. The connection j=
-ust timed out so I was unable to debug through eclipse. How can I check to =
-verify the tcf agent is running on thr target? Do you have instructions?
-
-Thanks,
-Emir
-
-
-
-On May 22, 2012, at 4:23 PM, "Zhang, Jessica" <jessica.zhang@intel.com> wro=
-te:
-
-> So do you have access to your target at all? Can you verify that the tcf-=
-agent is up running on the target device?
+On Tue, May 22, 2012 at 12:43 PM, Andrei Gherzan <andrei@gherzan.ro> wrote:
+> https://github.com/djwillis/meta-raspberrypi
 >
-> -----Original Message-----
-> From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.o=
-rg] On Behalf Of Emir Elkholy
-> Sent: Tuesday, May 22, 2012 11:58 AM
-> To: yocto@yoctoproject.org
-> Subject: [yocto] Connecting to target using eclipse/ADT
->
-> When connecting to my CRB that is running off a usb drive that has yocto =
-on it I am trying to connect to the CRB from my host in order to debug usin=
-g TCF agent. Through eclipse I am entering the IP address of the target, an=
-d attempting to debug from the debug configurations menu. Using a simple he=
-lloworld as an example, the file is actually transferred to the target CRB,=
- but the debugging fails. Eclipse gives me a connection timing out error (n=
-ot allowing me to debug). Is there a link that describes how to connect to =
-a physical target using eclipse and the ADT? Is there anything that must be=
- done on the target side first before attempting to debug? I only enter the=
- IP address of the target under debug configurations, I don't setup anythin=
-g on the target side, maybe this is the problem? I followed the same proced=
-ure as connecting to the QEMU (which works) as I did with the physical hard=
-ware. I can't find anything online about a connection time out either.
->
-> Thanks
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+
+good job in joining hands on this one lets make this layer seamless for all
+users of rPI with OE
 
