@@ -1,23 +1,23 @@
 Return-Path: <tom.zanussi@intel.com>
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4F332E01206
-	for <yocto@yoctoproject.org>; Wed, 23 May 2012 12:52:36 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C0714E0142F
+	for <yocto@yoctoproject.org>; Wed, 23 May 2012 12:52:37 -0700 (PDT)
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 23 May 2012 12:52:36 -0700
+	by fmsmga101.fm.intel.com with ESMTP; 23 May 2012 12:52:37 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="156323120"
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="156323125"
 Received: from unknown (HELO localhost) ([10.255.12.14])
-	by fmsmga001.fm.intel.com with ESMTP; 23 May 2012 12:52:35 -0700
+	by fmsmga001.fm.intel.com with ESMTP; 23 May 2012 12:52:37 -0700
 From: tom.zanussi@intel.com
 To: yocto@yoctoproject.org
-Date: Wed, 23 May 2012 14:52:35 -0500
-Message-Id: <5921ca9a35c2113423ffaa55ba70bac4af166873.1337801535.git.tom.zanussi@intel.com>
+Date: Wed, 23 May 2012 14:52:36 -0500
+Message-Id: <46f3795327dd380cab13316447aff5e70fe302ad.1337801535.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <a5a4b657ee72340fc000206e5f8208a8bfbdad1a.1337801535.git.tom.zanussi@intel.com>
 References: <a5a4b657ee72340fc000206e5f8208a8bfbdad1a.1337801535.git.tom.zanussi@intel.com>
 In-Reply-To: <cover.1337801535.git.tom.zanussi@intel.com>
 References: <cover.1337801535.git.tom.zanussi@intel.com>
-Subject: [PATCH 08/20] yasm: new recipe
+Subject: [PATCH 09/20] ffmpeg: add --enable-yasm
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,52 +29,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 23 May 2012 19:52:36 -0000
+X-List-Received-Date: Wed, 23 May 2012 19:52:37 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-x86 (SSE) assembler supporting NASM and GAS-syntaxes, needed by
-ffmpeg.
-
-Taken from oe-classic (git://git.openembedded.org/openembedded):
-
-    commit 22f72e1751108cf5092332a952fcbadec5cd1a0d
-    Author: Khem Raj <raj.khem@gmail.com>
-    Date:   Tue Mar 22 12:21:50 2011 -0700
-
-        yasm: Upgrade yasm_0.7.2.bb -> yasm_1.1.0.bb
-
-        Signed-off-by: Khem Raj <raj.khem@gmail.com>
+Enable yasm for the ffmpeg build - we don't want a 'crippled build' or
+lipsync problems.
 
 Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
 ---
- common/recipes-support/yasm/yasm_1.1.0.bb |   17 +++++++++++++++++
- 1 files changed, 17 insertions(+), 0 deletions(-)
- create mode 100644 common/recipes-support/yasm/yasm_1.1.0.bb
+ common/recipes-multimedia/ffmpeg/ffmpeg.inc       |    2 +-
+ common/recipes-multimedia/ffmpeg/ffmpeg_0.7.12.bb |    1 +
+ 2 files changed, 2 insertions(+), 1 deletions(-)
 
-diff --git a/common/recipes-support/yasm/yasm_1.1.0.bb b/common/recipes-support/yasm/yasm_1.1.0.bb
-new file mode 100644
-index 0000000..7c3fc86
---- /dev/null
-+++ b/common/recipes-support/yasm/yasm_1.1.0.bb
-@@ -0,0 +1,17 @@
-+DESCRIPTION = "x86 (SSE) assembler supporting NASM and GAS-syntaxes"
-+LICENSE = "BSD"
-+HOMEPAGE = "http://www.tortall.net/projects/yasm/"
-+PR = "r0"
-+
-+LIC_FILES_CHKSUM = "file://COPYING;md5=26c9f3d11f88911950f9ff62189d3d4f"
-+
-+SRC_URI = "http://www.tortall.net/projects/yasm/releases/yasm-${PV}.tar.gz"
-+
-+SRC_URI[md5sum] = "8392e5f2235c2c2a981e1a633f2698cb"
-+SRC_URI[sha256sum] = "e5d56b582f3d0c30ed5c4fc221063e4175602307ea645520889458133671c232"
-+
-+S = "${WORKDIR}/yasm-${PV}"
-+
-+inherit autotools gettext
-+
-+BBCLASSEXTEND = "native"
+diff --git a/common/recipes-multimedia/ffmpeg/ffmpeg.inc b/common/recipes-multimedia/ffmpeg/ffmpeg.inc
+index aa11ee9..96da7c2 100644
+--- a/common/recipes-multimedia/ffmpeg/ffmpeg.inc
++++ b/common/recipes-multimedia/ffmpeg/ffmpeg.inc
+@@ -7,7 +7,7 @@ LICENSE = "GPLv2+ & LGPLv2.1+"
+ 
+ ARM_INSTRUCTION_SET = "arm"
+ 
+-DEPENDS = "zlib libogg libvorbis libtheora liba52 libva"
++DEPENDS = "zlib libogg libvorbis libtheora liba52 libva yasm-native"
+ 
+ INC_PR = "r0"
+ 
+diff --git a/common/recipes-multimedia/ffmpeg/ffmpeg_0.7.12.bb b/common/recipes-multimedia/ffmpeg/ffmpeg_0.7.12.bb
+index 0d316d0..31442cc 100644
+--- a/common/recipes-multimedia/ffmpeg/ffmpeg_0.7.12.bb
++++ b/common/recipes-multimedia/ffmpeg/ffmpeg_0.7.12.bb
+@@ -27,6 +27,7 @@ EXTRA_OECONF = " \
+         --enable-swscale \
+         --enable-vaapi \
+         --enable-gpl \
++        --enable-yasm \
+         --extra-cflags="${TARGET_CFLAGS} ${HOST_CC_ARCH}${TOOLCHAIN_OPTIONS}" \
+         --extra-ldflags="${TARGET_LDFLAGS}" \
+         --sysroot="${STAGING_DIR_TARGET}" \
 -- 
 1.7.0.4
 
