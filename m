@@ -1,37 +1,34 @@
-Return-Path: <rahul.saxena@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 52B9BE01206;
-	Wed, 23 May 2012 13:47:15 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 23 May 2012 13:47:15 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="170541288"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
-	by fmsmga002.fm.intel.com with ESMTP; 23 May 2012 13:47:14 -0700
-Received: from orsmsx105.amr.corp.intel.com (10.22.225.132) by
-	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Wed, 23 May 2012 13:47:14 -0700
-Received: from orsmsx103.amr.corp.intel.com ([169.254.2.163]) by
-	ORSMSX105.amr.corp.intel.com ([169.254.4.232]) with mapi id
-	14.01.0355.002; Wed, 23 May 2012 13:47:14 -0700
-From: "Saxena, Rahul" <rahul.saxena@intel.com>
-To: Wolfgang Denk <wd@denx.de>, "Flanagan, Elizabeth"
-	<elizabeth.flanagan@intel.com>
-Thread-Topic: [yocto] [ANNOUNCEMENT] Cedar Trail with PowerVR for Edison 6.0.1
-Thread-Index: AQHNOKc6KcZHDLQEz0yLoDlDOjxM6JbX2H3w
-Date: Wed, 23 May 2012 20:47:13 +0000
-Message-ID: <63ECFF2A2302B44093D7CE9E9962C490127DD2@ORSMSX103.amr.corp.intel.com>
-References: <CAPhnLPBb-qcMq-MHwbxoiu9qXChaWJkvTgVavSR1goyh_8t55w@mail.gmail.com>
-	<20120523054439.75DAD20025A@gemini.denx.de>
-In-Reply-To: <20120523054439.75DAD20025A@gemini.denx.de>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
+Return-Path: <bruce.ashfield@gmail.com>
+Received: from mail-pz0-f48.google.com (mail-pz0-f48.google.com
+	[209.85.210.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6F690E01206
+	for <yocto@yoctoproject.org>; Wed, 23 May 2012 13:47:35 -0700 (PDT)
+Received: by dadz8 with SMTP id z8so13373960dad.35
+	for <yocto@yoctoproject.org>; Wed, 23 May 2012 13:47:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type:content-transfer-encoding;
+	bh=E1Ruw3Lx5CMd7wQv0yTn6fRl4nljSI4aGiwTig9dOz0=;
+	b=Zpq/U+A/o8C98INSOpofcbcEWXNW5QsGHiLblXfriNtRe3r16HJyeT/RHD+GoIfVRv
+	3a64rBA9D5qUQHP8adq1YswKFNQIA09GBPB8YTO+w1aM5dGPi2yt5+lck7wYgKa2FfDl
+	tT5pm137246BtjSLqLr5HwbQXYeC05pOxsDxibu+PaWpmMJztJQMejHTqzYkH5r9CQrj
+	0ayyqT2XUIbE5kw5iyhapmNcq8nVIWc21b9NpDVTPhEyWeHWMTF9NYBGp/FDposk0uJP
+	T4c6PitBATsZdKahbHvzorwd2M6bVoVclL9QNq5fVeoNXpitjbuErMpDV0z6UwUAno7A
+	RTAQ==
 MIME-Version: 1.0
-Cc: "yocto-announce@yoctoproject.org" <yocto-announce@yoctoproject.org>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [ANNOUNCEMENT] Cedar Trail with PowerVR for Edison 6.0.1
+Received: by 10.68.191.68 with SMTP id gw4mr13660996pbc.135.1337806054988;
+	Wed, 23 May 2012 13:47:34 -0700 (PDT)
+Received: by 10.68.197.4 with HTTP; Wed, 23 May 2012 13:47:34 -0700 (PDT)
+In-Reply-To: <1337805097.32464.52.camel@elmorro>
+References: <cover.1337801535.git.tom.zanussi@intel.com>
+	<CADkTA4Mx2CPG1SzF63Wyx7mRL9y+fC2CUuBZ=-_GPUPXE4N-eA@mail.gmail.com>
+	<1337805097.32464.52.camel@elmorro>
+Date: Wed, 23 May 2012 17:47:34 -0300
+Message-ID: <CADkTA4NVpuwx79cm8afisUSF8fB-t3ChYRdCOpbg=a6SazFeeQ@mail.gmail.com>
+From: Bruce Ashfield <bruce.ashfield@gmail.com>
+To: Tom Zanussi <tom.zanussi@intel.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH 00/20] meta-intel: new chiefriver BSP and supporting recipes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,59 +40,211 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 23 May 2012 20:47:15 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Wed, 23 May 2012 20:47:35 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-Please see section 1.4 of the bsp-guide (http://www.yoctoproject.org/docs/l=
-atest/bsp-guide/bsp-guide.html) including the following text:=20
+On Wed, May 23, 2012 at 5:31 PM, Tom Zanussi <tom.zanussi@intel.com> wrote:
+> On Wed, 2012-05-23 at 17:26 -0300, Bruce Ashfield wrote:
+>> On Wed, May 23, 2012 at 4:52 PM, =A0<tom.zanussi@intel.com> wrote:
+>> > From: Tom Zanussi <tom.zanussi@intel.com>
+>> >
+>> > This patchset implements a new BSP for the 'Chief River' platform, whi=
+ch
+>> > consists of the Intel Ivy Bridge processor and Panther Point PCH. =A0I=
+t
+>> > assumes that the Ivy Bridge integrated graphics are being used.
+>> >
+>> > It also adds a few new recipes related to video acceleration which are
+>> > modified versions of oe-core or yocto meta-demo recipes (ffmpeg,
+>> > yasm-native, gstreamer-vaapi), along with tweaks needed to work with
+>> > intel video acceleration components.
+>> >
+>> > There are also some new intel-specific video acceleration components
+>> > (libva-1.0.15, intel-driver-1.0.15, va-intel) either needed for video
+>> > acceleration on Intel platforms, or allowing for easier integration
+>> > with the existing meta-intel BSPs. =A0These finally allow the chiefriv=
+er,
+>> > sugarbay, and crownbay BSPs to share a common set of video components,
+>> > and have been tested with all three.
+>> >
+>> > Finally, there's a new recipe for the Intel Local Manageability Servic=
+e
+>> > (LMS), which allows Intel BSPs to access the Intel Active Management
+>> > Technology (AMT) firmware via the Intel Management Engine Interface (M=
+EI),
+>> > which is used by the Chief River BSP.
+>>
+>> For some reason gmail dropped most of this series on me. Just so I'm sur=
+e,
+>> is there a board description as part of this series for the kernel
+>> tree ? Or is that
+>> still pending ?
+>>
+>
+> Yeah, still forthcoming - I didn't post it because you're on vacation (I
+> assume that's still correct). =A0I think Darren and I wanted to
+> consolidate the kernel stuff anyway, so it'll come with that...
 
-" Note
-Pre-compiled images are bundled with a time-limited kernel that runs for a =
-predetermined amount of time (10 days) before it forces the system to reboo=
-t. This limitation is meant to discourage direct redistribution of the imag=
-e. You must eventually rebuild the image if you want to remove this restric=
-tion."
+Perfect. Yes, I'm still on vacation .. but my gmail follows me around, so
+I peeked in after a couple of days and wondered what it had done with
+those missing email .. one less thing to hunt down out of the thousands
+of email when I get back to my inbox.
+
+It is most appreciated that a few less email splashed down while I
+was out :)
+
+Cheers,
+
+Bruce
+
+>
+> I also may have some further tweaks as well, so for all those reasons,
+> don't worry about it quite yet. ;-)
+>
+> Tom
+>
+>> Cheers,
+>>
+>> Bruce
+>>
+>> >
+>> > The following changes since commit a62c485edffed30ea95658760948fd50925=
+adfb0:
+>> > =A0Darren Hart (1):
+>> > =A0 =A0 =A0 =A0linux-yocto_3.0: Update KMACHINE and KBRANCH to play ni=
+ce with new kerntools
+>> >
+>> > are available in the git repository at:
+>> >
+>> > =A0git://git.yoctoproject.org/meta-intel.git tzanussi/chiefriver.v1
+>> > =A0http://git.yoctoproject.org/cgit/cgit.cgi/meta-intel/log/?h=3Dtzanu=
+ssi/chiefriver.v1
+>> >
+>> > Tom Zanussi (20):
+>> > =A0meta-chiefriver: new layer for Chief River (Ivy Bridge/Panther Poin=
+t)
+>> > =A0 =A0systems
+>> > =A0meta-intel: add gstreamer-vaapi_git recipe
+>> > =A0meta-intel: new libva-1.0.15 recipe
+>> > =A0meta-intel: new intel-driver-1.0.15 recipe
+>> > =A0ffmpeg: new recipe
+>> > =A0ffmpeg: add --enable-vaapi
+>> > =A0ffmpeg: add --enable-gpl
+>> > =A0yasm: new recipe
+>> > =A0ffmpeg: add --enable-yasm
+>> > =A0gst-ffmpeg: add bbappend for external ffmpeg
+>> > =A0gst-va-intel: add conditional vaapi implementation
+>> > =A0va-intel: new package
+>> > =A0gst-va-intel: clarify DESCRIPTION
+>> > =A0meta-intel: remove video acceleration from emgd XSERVER
+>> > =A0meta-chiefriver: use gst-va-intel and va-intel
+>> > =A0meta-sugarbay: use gst-va-intel and va-intel
+>> > =A0meta-crownbay: use gst-va-intel and va-intel and gst-va-mixvideo
+>> > =A0lms: new recipe
+>> > =A0meta-chiefriver: use lms
+>> > =A0meta-chiefriver: use the mei kernel feature
+>> >
+>> > =A0.../amt/lms/atnetworktool-printf-fix.patch =A0 =A0 =A0 =A0 | =A0 14=
+ +++
+>> > =A0common/recipes-bsp/amt/lms_7.1.20.bb =A0 =A0 =A0 =A0 =A0 =A0 =A0 | =
+=A0 42 ++++++++
+>> > =A0common/recipes-multimedia/ffmpeg/ffmpeg.inc =A0 =A0 =A0 =A0| =A0108=
+ ++++++++++++++++++++
+>> > =A0common/recipes-multimedia/ffmpeg/ffmpeg_0.7.12.bb =A0| =A0 44 +++++=
++++
+>> > =A0.../gstreamer/gst-ffmpeg_0.10.13.bbappend =A0 =A0 =A0 =A0 =A0| =A0 =
+=A02 +
+>> > =A0.../recipes-multimedia/gstreamer/gst-va-intel.bb =A0 | =A0 15 +++-
+>> > =A0.../gstreamer/gstreamer-vaapi_git.bb =A0 =A0 =A0 =A0 =A0 =A0 =A0 | =
+=A0 26 +++++
+>> > =A0.../libva/libva-intel-driver.inc =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
+=A0 | =A0 24 +++++
+>> > =A0.../libva/libva-intel-driver_1.0.15.bb =A0 =A0 =A0 =A0 =A0 =A0 | =
+=A0 =A08 ++
+>> > =A0common/recipes-multimedia/libva/libva_1.0.15.bb =A0 =A0| =A0 =A08 +=
++
+>> > =A0common/recipes-multimedia/libva/va-intel.bb =A0 =A0 =A0 =A0| =A0 20=
+ ++++
+>> > =A0common/recipes-support/yasm/yasm_1.1.0.bb =A0 =A0 =A0 =A0 =A0| =A0 =
+17 +++
+>> > =A0conf/machine/include/ia32-base.inc =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
+| =A0 =A04 -
+>> > =A0meta-chiefriver/COPYING.MIT =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0=
+ =A0 =A0| =A0 17 +++
+>> > =A0meta-chiefriver/README =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
+=A0 =A0 =A0 | =A0107 +++++++++++++++++++
+>> > =A0meta-chiefriver/README.sources =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
+=A0 | =A0 17 +++
+>> > =A0meta-chiefriver/conf/layer.conf =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0=
+ =A0| =A0 10 ++
+>> > =A0meta-chiefriver/conf/machine/chiefriver.conf =A0 =A0 =A0 | =A0 19 +=
++++
+>> > =A0.../formfactor/formfactor/chiefriver/machconfig =A0 =A0| =A0 =A03 +
+>> > =A0.../recipes-bsp/formfactor/formfactor_0.0.bbappend | =A0 =A03 +
+>> > =A0.../tasks/task-core-tools-profile.bbappend =A0 =A0 =A0 =A0 | =A0 =
+=A02 +
+>> > =A0.../xserver-xf86-config/chiefriver/xorg.conf =A0 =A0 =A0 | =A0 26 +=
+++++
+>> > =A0.../xorg-xserver/xserver-xf86-config_0.1.bbappend =A0| =A0 =A03 +
+>> > =A0.../linux/linux-yocto-rt_3.2.bbappend =A0 =A0 =A0 =A0 =A0 =A0 =A0| =
+=A0 =A08 ++
+>> > =A0.../recipes-kernel/linux/linux-yocto_3.2.bbappend =A0| =A0 10 ++
+>> > =A0meta-crownbay/conf/machine/crownbay.conf =A0 =A0 =A0 =A0 =A0 | =A0 =
+=A06 +-
+>> > =A0meta-sugarbay/conf/machine/sugarbay.conf =A0 =A0 =A0 =A0 =A0 | =A0 =
+=A04 +
+>> > =A027 files changed, 561 insertions(+), 6 deletions(-)
+>> > =A0create mode 100644 common/recipes-bsp/amt/lms/atnetworktool-printf-=
+fix.patch
+>> > =A0create mode 100644 common/recipes-bsp/amt/lms_7.1.20.bb
+>> > =A0create mode 100644 common/recipes-multimedia/ffmpeg/ffmpeg.inc
+>> > =A0create mode 100644 common/recipes-multimedia/ffmpeg/ffmpeg_0.7.12.b=
+b
+>> > =A0create mode 100644 common/recipes-multimedia/gstreamer/gst-ffmpeg_0=
+.10.13.bbappend
+>> > =A0create mode 100644 common/recipes-multimedia/gstreamer/gstreamer-va=
+api_git.bb
+>> > =A0create mode 100644 common/recipes-multimedia/libva/libva-intel-driv=
+er.inc
+>> > =A0create mode 100644 common/recipes-multimedia/libva/libva-intel-driv=
+er_1.0.15.bb
+>> > =A0create mode 100644 common/recipes-multimedia/libva/libva_1.0.15.bb
+>> > =A0create mode 100644 common/recipes-multimedia/libva/va-intel.bb
+>> > =A0create mode 100644 common/recipes-support/yasm/yasm_1.1.0.bb
+>> > =A0create mode 100644 meta-chiefriver/COPYING.MIT
+>> > =A0create mode 100644 meta-chiefriver/README
+>> > =A0create mode 100644 meta-chiefriver/README.sources
+>> > =A0create mode 100644 meta-chiefriver/conf/layer.conf
+>> > =A0create mode 100644 meta-chiefriver/conf/machine/chiefriver.conf
+>> > =A0create mode 100644 meta-chiefriver/recipes-bsp/formfactor/formfacto=
+r/chiefriver/machconfig
+>> > =A0create mode 100644 meta-chiefriver/recipes-bsp/formfactor/formfacto=
+r_0.0.bbappend
+>> > =A0create mode 100644 meta-chiefriver/recipes-core/tasks/task-core-too=
+ls-profile.bbappend
+>> > =A0create mode 100644 meta-chiefriver/recipes-graphics/xorg-xserver/xs=
+erver-xf86-config/chiefriver/xorg.conf
+>> > =A0create mode 100644 meta-chiefriver/recipes-graphics/xorg-xserver/xs=
+erver-xf86-config_0.1.bbappend
+>> > =A0create mode 100644 meta-chiefriver/recipes-kernel/linux/linux-yocto=
+-rt_3.2.bbappend
+>> > =A0create mode 100644 meta-chiefriver/recipes-kernel/linux/linux-yocto=
+_3.2.bbappend
+>> >
+>> > _______________________________________________
+>> > yocto mailing list
+>> > yocto@yoctoproject.org
+>> > https://lists.yoctoproject.org/listinfo/yocto
+>>
+>>
+>>
+>
+>
 
 
-Thanks
-Rahul
-
-
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Wolfgang Denk
-Sent: Tuesday, May 22, 2012 10:45 PM
-To: Flanagan, Elizabeth
-Cc: yocto-announce@yoctoproject.org; yocto@yoctoproject.org
-Subject: Re: [yocto] [ANNOUNCEMENT] Cedar Trail with PowerVR for Edison 6.0=
-.1
-
-Dear Elizabeth,
-
-In message <CAPhnLPBb-qcMq-MHwbxoiu9qXChaWJkvTgVavSR1goyh_8t55w@mail.gmail.=
-com> you wrote:
->=20
-> This release enables the BSP to use the latest available kernel=20
-> patches for Intel's PowerVR graphics driver. The BSP image includes=20
-> time limited kernel images for testing purposes.
-
-This is probaby a stupid question, so I apologize in advance:
-
-What is a time limited kernel image?
-
-Best regards,
-
-Wolfgang Denk
 
 --=20
-DENX Software Engineering GmbH,     MD: Wolfgang Denk & Detlev Zundel
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-Phone: (+49)-8142-66989-10 Fax: (+49)-8142-66989-80 Email: wd@denx.de You h=
-ave the capacity to learn from  mistakes.  You'll  learn  a  lot today.
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
+"Thou shalt not follow the NULL pointer, for chaos and madness await
+thee at its end"
 
