@@ -1,36 +1,32 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-ey0-f176.google.com (mail-ey0-f176.google.com
-	[209.85.215.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7843AE01304
-	for <yocto@yoctoproject.org>; Tue, 22 May 2012 14:46:40 -0700 (PDT)
-Received: by eaab16 with SMTP id b16so1946902eaa.35
-	for <yocto@yoctoproject.org>; Tue, 22 May 2012 14:46:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=J/XJDwXgEhoi3jbSZfSl+X6wXZBPL2bXpa+p+e5HeVo=;
-	b=nmEADucdZ/YPLmNwHMyndV2Q+TGIujQVTvuP/N486EL2pMt7+BpUPOedpURlb3la5C
-	GUv/h0OUhndeVud5ZwpKZRfJ5B0sgkK0d8vEr73ySJDI9uwAau4NB/kND4nK5I6NCue5
-	iRYaSwaCWhpLm8L1O2xn5BgI/rJW1Yks4hDBg5OztBfS415nl/z3s7hTWIeXOk+tdYsP
-	OphKcgI+We+utq00rkkC/3DqnkVMGUPiYrn19D1SoAArZkk2LKHM1pvsjbfec0wQfcuC
-	T2s7FnTYa/Q8qFQuFtxSlTjEG2NlRHzz5nlBJY4g9hmUiDMbNVaBmlleRgRjQp9qV9dZ
-	6n+g==
-Received: by 10.213.29.211 with SMTP id r19mr239960ebc.68.1337723198479; Tue,
-	22 May 2012 14:46:38 -0700 (PDT)
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 13D5AE01304
+	for <yocto@yoctoproject.org>; Tue, 22 May 2012 17:45:38 -0700 (PDT)
+Received: from mail-lb0-f180.google.com ([209.85.217.180])
+	by mga09.intel.com with ESMTP/TLS/RC4-SHA; 22 May 2012 17:45:37 -0700
+Received: by lbbgh12 with SMTP id gh12so4273902lbb.25
+	for <yocto@yoctoproject.org>; Tue, 22 May 2012 17:45:35 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type
+	:content-transfer-encoding:x-gm-message-state;
+	bh=zUy5EvgQ0TdXNQmtP0BIyaXacphNhqJtDQfTSaGljzg=;
+	b=icf3GvfMqg76C8Lmu+pjXq9JXHsx7YZaUMQ0oTEr+WD5M8cnCkkse/XfYu7GFXoHJj
+	gZ3D5lNCYl6hHOo2BWp5OHK1zahjpeBkGn3tcA5EksJFiqwPHEJ6fm3qg0nUBiLIban1
+	CSbUGdCtBuk/gtAUaU5VMVg7ksZmFAOvuw/jm7ziPasEysF9ZWcXZ2U7BWxQTvSV9j9O
+	9XskhoxpO6NQ2melVb77I2TkKFDUjRr78haApRMtAm9if9/5PDTniCUNXoUl/JGgHNAe
+	IhrMqcu7qvMYg2V+jc1e8dNidAI1a/njnCJOE3pAdr0UqQkHEkOzJCDksMzrLt/hDx5V
+	roJw==
 MIME-Version: 1.0
-Received: by 10.14.188.11 with HTTP; Tue, 22 May 2012 14:46:05 -0700 (PDT)
-In-Reply-To: <CAK18fxG3A-j4aZa2gwuAcRrssmWr2sC+vPW2bQkVHiy=dMPfVg@mail.gmail.com>
-References: <CAK18fxEh2HW+VQ5yrLdh3pr4hE8ZZzG2ecZXFLy2=40hQ+zYdg@mail.gmail.com>
-	<EC37B226-4E57-4C84-9510-F6EEC7FF4FCF@keylevel.com>
-	<CAK18fxFT4OfRrOAK2yQrPcMWv0asds7rFM+DvzKW83WcCERr-A@mail.gmail.com>
-	<77643DAB-8A26-4C55-B020-A2DB9423C180@keylevel.com>
-	<CAK18fxG3A-j4aZa2gwuAcRrssmWr2sC+vPW2bQkVHiy=dMPfVg@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Tue, 22 May 2012 14:46:05 -0700
-Message-ID: <CAMKF1soYvVZE0R6LQArCRwL4aYEuJa0VUPWs7OZdb5MbWebKEg@mail.gmail.com>
-To: Andrei Gherzan <andrei@gherzan.ro>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: RaspberryPi Layer
+Received: by 10.112.11.38 with SMTP id n6mr10610582lbb.82.1337733935107; Tue,
+	22 May 2012 17:45:35 -0700 (PDT)
+Received: by 10.112.1.227 with HTTP; Tue, 22 May 2012 17:45:35 -0700 (PDT)
+Date: Tue, 22 May 2012 17:45:35 -0700
+Message-ID: <CAPhnLPBb-qcMq-MHwbxoiu9qXChaWJkvTgVavSR1goyh_8t55w@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: yocto@yoctoproject.org, yocto-announce@yoctoproject.org
+X-Gm-Message-State: ALoCoQkMCgQFRb2mDYJhgb5yBDKRhLJoS085pwfYsP/myNIVjZudjvohSoXwBYoVnWX/3tSyviyD
+Subject: [ANNOUNCEMENT] Cedar Trail with PowerVR for Edison 6.0.1
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,13 +38,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 22 May 2012 21:46:40 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 23 May 2012 00:45:38 -0000
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, May 22, 2012 at 12:43 PM, Andrei Gherzan <andrei@gherzan.ro> wrote:
-> https://github.com/djwillis/meta-raspberrypi
->
+An updated Cedar Trail BSP for Edison has been released and is available at=
+:
 
-good job in joining hands on this one lets make this layer seamless for all
-users of rPI with OE
+http://www.yoctoproject.org/download/bsp/intel%C2%AE-atom%E2%84%A2-processo=
+r-n2000-and-d2000-series-based-platform-cedar-trail-powervr-graphics
+
+The 'Cedar Trail' platform consists of the Cedarview (Intel=AE Atom=99
+N2600, N2800 and D2700) processor, plus the Tiger Point (Intel=AE NM10
+Express) Chipset.
+
+This release enables the BSP to use the latest available kernel
+patches for Intel's PowerVR graphics driver. The BSP image includes
+time limited kernel images for testing purposes.
+
+The images included in the BSP were built from:
+meta-intel: http://git.yoctoproject.org/cgit/cgit.cgi/meta-intel/commit/?h=
+=3Dedison&id=3D8639a836d388812887ecd28bd4e7c6
+poky: http://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/?h=3Dedison&id=
+=3D0fbd6a161576b2cafa8583adde0ffb15347c884a
+
+Source for the included images is available at:
+http://downloads.yoctoproject.org/releases/yocto/yocto-1.1/sources/
+
+--=20
+Elizabeth Flanagan
+Yocto Project
+Build and Release
 
