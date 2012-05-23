@@ -1,36 +1,39 @@
-Return-Path: <jfabernathy@gmail.com>
-Received: from mail-yw0-f48.google.com (mail-yw0-f48.google.com
-	[209.85.213.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DD072E01206
-	for <yocto@yoctoproject.org>; Wed, 23 May 2012 14:43:51 -0700 (PDT)
-Received: by yhfq46 with SMTP id q46so9081042yhf.35
-	for <yocto@yoctoproject.org>; Wed, 23 May 2012 14:43:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+Return-Path: <scott.a.garman@intel.com>
+Received: from fmsmga102.fm.intel.com (mga10.intel.com [192.55.52.92])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1A47AE01206
+	for <yocto@yoctoproject.org>; Wed, 23 May 2012 15:00:54 -0700 (PDT)
+Received: from mail-pz0-f52.google.com ([209.85.210.52])
+	by mga11.intel.com with ESMTP/TLS/RC4-MD5; 23 May 2012 15:00:53 -0700
+Received: by dano14 with SMTP id o14so10446302dan.25
+	for <yocto@yoctoproject.org>; Wed, 23 May 2012 15:00:53 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
 	h=message-id:date:from:user-agent:mime-version:to:cc:subject
-	:references:in-reply-to:content-type:content-transfer-encoding;
-	bh=tKp75E6ReWEF5u/LypgPqzIAwKEjALOaL1dC8tEvIGc=;
-	b=pCoBcnAvmOnzys712ZbGlcyPhdyoZHQW+7HkXRVAGneDJfn+VXxfH8rSTezrZxiG/m
-	ImI7/XbAA6hvzR+dSVOXZUrDG93HfEP8abPEo/rA+KA7Ip/ZL1oXkjEPAoBCEiMHqXRz
-	eOflQtjKTFgpIELhOqyxEK0uXSEI3+3Xsv6PxkbcM/buhGXiulze2/lqxLiuCx9Foq4h
-	fKzNG56GlSLGlqye4ljbsDahDtKUtUAjEnnMV7+8zKS83LZRRY9HQmEUfAli3q8qMEni
-	r+IamybPdxzniCMS18OHbuqqODLDBuuzP2eiW8n16Umgbb6+kAlVKVsnCurWefTsfhVO
-	StHA==
-Received: by 10.236.191.36 with SMTP id f24mr33897327yhn.100.1337809430288;
-	Wed, 23 May 2012 14:43:50 -0700 (PDT)
-Received: from [10.0.1.54] (nc-184-4-33-55.dhcp.embarqhsd.net. [184.4.33.55])
-	by mx.google.com with ESMTPS id i67sm427877yhh.21.2012.05.23.14.43.49
-	(version=SSLv3 cipher=OTHER); Wed, 23 May 2012 14:43:49 -0700 (PDT)
-Message-ID: <4FBD5A14.7090702@gmail.com>
-Date: Wed, 23 May 2012 17:43:48 -0400
-From: jfabernathy <jfabernathy@gmail.com>
+	:content-type:content-transfer-encoding:x-gm-message-state;
+	bh=enL3Fkk6CUHFIKfjsYC57FU649k2yDqTLKgBhleAOfw=;
+	b=P2W7NuEEloxCXAwV0EHBQW2eAB9UYbXDIdo1fxbT0ujAwy+cRBW+5y7Yah/vz9pIih
+	A87tcGOyIa+lFUJQvFa6PpLccknQUlr0HxZGKPZSx/DBqMQ/8RRvyjl/YRRzC83SZofi
+	zQYNHiPij4J87skrBrdivN7CS4mnkX8Ss3wnZf+Pf/wtcQsbQKUj6WIcnJFQkMO1GhUa
+	56stnZzFcuNKKxubpjSsFjfphesiFLOj9oiw8PqrNNmWZWICsL4PQ6xCIjestB2tiC83
+	z8N65+MJhDLaNYcKBsL0gIt2NlXOnUzJyxxmcVs0jE6nRB8suOJFKu21C/eoON3lHeVO
+	Rzew==
+Received: by 10.68.234.129 with SMTP id ue1mr10549223pbc.140.1337810453264;
+	Wed, 23 May 2012 15:00:53 -0700 (PDT)
+Received: from [192.168.1.105] (c-76-105-137-48.hsd1.or.comcast.net.
+	[76.105.137.48])
+	by mx.google.com with ESMTPS id x1sm3106639pbp.50.2012.05.23.15.00.50
+	(version=SSLv3 cipher=OTHER); Wed, 23 May 2012 15:00:51 -0700 (PDT)
+Message-ID: <4FBD5E10.3070403@intel.com>
+Date: Wed, 23 May 2012 15:00:48 -0700
+From: Scott Garman <scott.a.garman@intel.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:12.0) Gecko/20120430 Thunderbird/12.0.1
 MIME-Version: 1.0
-To: Darren Hart <dvhart@linux.intel.com>
-References: <4FBCD12E.3050407@gmail.com> <4FBD2B4F.5030203@linux.intel.com>
-In-Reply-To: <4FBD2B4F.5030203@linux.intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: bitbake failure on meta-cedartrail using master branch
+To: Patches and discussions about the oe-core layer
+	<openembedded-core@lists.openembedded.org>
+X-Gm-Message-State: ALoCoQkaeRRJT7dRtJDKWWX4Y5oYvUh/2o8pIF7iRlmkNgyDSqyHrwwALaZQAPc9WnLJthXOpu/3
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, poky@yoctoproject.org
+Subject: RFC: Merging commits from into the main denzil branch
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,151 +45,63 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 23 May 2012 21:43:52 -0000
+X-List-Received-Date: Wed, 23 May 2012 22:00:54 -0000
 Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 05/23/2012 02:24 PM, Darren Hart wrote:
-> On 05/23/2012 04:59 AM, jfabernathy wrote:
->> FYI,
->>
->> I just pulled the lasted patches into my system and ran a bitbake of
->> cedartrail with the PVR driver.
-> I have a fix for this, was waiting for an Ack and got side tracked.
-> Please pull meta-intel again and try again with the master branch.
->
-> You should have the following commit now:
->
-> commit a62c485edffed30ea95658760948fd50925adfb0
-> Author: Darren Hart<dvhart@linux.intel.com>
-> Date:   Fri May 18 09:19:31 2012 -0700
->
->      linux-yocto_3.0: Update KMACHINE and KBRANCH to play nice with new
-> kerntools
->
-> Thanks,
->
-> Darren
+Hello all,
 
-Thanks, that got past it.
+As most of you know, I've been pulling commits into a pair of 
+sgarman/denzil-next branches which are intended to eventually become the 
+next Denzil point-release, 1.2.1.
 
-Jim A
+oe-core based branch:
+http://git.openembedded.org/openembedded-core-contrib/log/?h=sgarman/denzil-next
 
->> I got a failure on the kernel build.  log below:
->> ERROR: Logfile of failure stored in:
->> /build/cdv-master/tmp/work/cedartrail-poky-linux/linux-yocto-3.0.24+git1+a4ac64fe873f08ef718e2849b88914725dc99c1c_1+81fd8c307997aff37916828dc8b4ef72f5d35a94-r4/temp/log.do_patch.29202
->> Log data follows:
->> | Branch meta-temp set up to track remote branch meta from origin.
->> | git reset --mixed 620917de59eeb934b9f8cf35cc2d95c1ac8ed0fc
->> | Deleted branch meta-temp (was 620917d).
->> | /build/cdv-master/tmp/sysroots/x86_64-linux/usr/bin/updateme: line
->> 434: yocto/standard/cedartrail-standard.scc: No such file or directory
->> | /build/cdv-master/tmp/sysroots/x86_64-linux/usr/bin/updateme: line
->> 436: yocto/standard/cedartrail-standard.scc: No such file or directory
->> | /build/cdv-master/tmp/sysroots/x86_64-linux/usr/bin/updateme: line
->> 437: yocto/standard/cedartrail-standard.scc: No such file or directory
->> | /build/cdv-master/tmp/sysroots/x86_64-linux/usr/bin/updateme: line
->> 438: yocto/standard/cedartrail-standard.scc: No such file or directory
->> | /build/cdv-master/tmp/sysroots/x86_64-linux/usr/bin/updateme: line
->> 441: yocto/standard/cedartrail-standard.scc: No such file or directory
->> | readlink: missing operand
->> | Try `readlink --help' for more information.
->> | /build/cdv-master/tmp/sysroots/x86_64-linux/usr/bin/scc: line 399:
->> yocto/standard/cedartrail-standard: No such file or directory
->> | /build/cdv-master/tmp/sysroots/x86_64-linux/usr/bin/scc: line 399:
->> yocto/standard/cedartrail-standard: No such file or directory
->> | /build/cdv-master/tmp/sysroots/x86_64-linux/usr/bin/scc: line 399:
->> yocto/standard/cedartrail-standard: No such file or directory
->> | /build/cdv-master/tmp/sysroots/x86_64-linux/usr/bin/scc: line 399:
->> yocto/standard/cedartrail-standard: No such file or directory
->> | /build/cdv-master/tmp/sysroots/x86_64-linux/usr/bin/scc: line 399:
->> yocto/standard/cedartrail-standard: No such file or directory
->> | /build/cdv-master/tmp/sysroots/x86_64-linux/usr/bin/scc: line 399:
->> yocto/standard/cedartrail-standard: No such file or directory
->> | /build/cdv-master/tmp/sysroots/x86_64-linux/usr/bin/scc: line 399:
->> yocto/standard/cedartrail-standard: No such file or directory
->> | /build/cdv-master/tmp/sysroots/x86_64-linux/usr/bin/scc: line 399:
->> yocto/standard/cedartrail-standard: No such file or directory
->> | /build/cdv-master/tmp/sysroots/x86_64-linux/usr/bin/scc: line 399:
->> yocto/standard/cedartrail-standard: No such file or directory
->> | /build/cdv-master/tmp/sysroots/x86_64-linux/usr/bin/scc: line 399:
->> yocto/standard/cedartrail-standard: No such file or directory
->> | /build/cdv-master/tmp/sysroots/x86_64-linux/usr/bin/scc: line 399:
->> yocto/standard/cedartrail-standard: No such file or directory
->> | /build/cdv-master/tmp/sysroots/x86_64-linux/usr/bin/scc: line 399:
->> yocto/standard/cedartrail-standard: No such file or directory
->> | /build/cdv-master/tmp/sysroots/x86_64-linux/usr/bin/scc: line 399:
->> yocto/standard/cedartrail-standard: No such file or directory
->> | /build/cdv-master/tmp/sysroots/x86_64-linux/usr/bin/scc: line 399:
->> yocto/standard/cedartrail-standard: No such file or directory
->> | /build/cdv-master/tmp/sysroots/x86_64-linux/usr/bin/scc: line 399:
->> yocto/standard/cedartrail-standard: No such file or directory
->> | /build/cdv-master/tmp/sysroots/x86_64-linux/usr/bin/scc: line 399:
->> yocto/standard/cedartrail-standard: No such file or directory
->> | /build/cdv-master/tmp/sysroots/x86_64-linux/usr/bin/scc: line 399:
->> yocto/standard/cedartrail-standard: No such file or directory
->> | /build/cdv-master/tmp/sysroots/x86_64-linux/usr/bin/scc: line 399:
->> yocto/standard/cedartrail-standard: No such file or directory
->> | /build/cdv-master/tmp/sysroots/x86_64-linux/usr/bin/scc: line 399:
->> yocto/standard/cedartrail-standard: No such file or directory
->> | /build/cdv-master/tmp/sysroots/x86_64-linux/usr/bin/scc: line 399:
->> yocto/standard/cedartrail-standard: No such file or directory
->> | /build/cdv-master/tmp/sysroots/x86_64-linux/usr/bin/scc: line 399:
->> yocto/standard/cedartrail-standard: No such file or directory
->> | /build/cdv-master/tmp/sysroots/x86_64-linux/usr/bin/scc: line 399:
->> yocto/standard/cedartrail-standard: No such file or directory
->> | /build/cdv-master/tmp/sysroots/x86_64-linux/usr/bin/scc: line 399:
->> yocto/standard/cedartrail-standard: No such file or directory
->> | /build/cdv-master/tmp/sysroots/x86_64-linux/usr/bin/scc: line 399:
->> yocto/standard/cedartrail-standard: No such file or directory
->> | /build/cdv-master/tmp/sysroots/x86_64-linux/usr/bin/scc: line 399:
->> yocto/staERROR: Function failed: do_patch (see
->> /build/cdv-master/tmp/work/cedartrail-poky-linux/linux-yocto-3.0.24+git1+a4ac64fe873f08ef718e2849b88914725dc99c1c_1+81fd8c307997aff37916828dc8b4ef72f5d35a94-r4/temp/log.do_patch.29202
->> for further information)
->> | ndard/cedartrail-standard: No such file or directory
->> | /build/cdv-master/tmp/sysroots/x86_64-linux/usr/bin/scc: line 399:
->> yocto/standard/cedartrail-standard: No such file or directory
->> | /build/cdv-master/tmp/sysroots/x86_64-linux/usr/bin/scc: line 399:
->> yocto/standard/cedartrail-standard: No such file or directory
->> | /build/cdv-master/tmp/sysroots/x86_64-linux/usr/bin/scc: line 399:
->> yocto/standard/cedartrail-standard: No such file or directory
->> | /build/cdv-master/tmp/sysroots/x86_64-linux/usr/bin/scc: line 399:
->> yocto/standard/cedartrail-standard: No such file or directory
->> | /build/cdv-master/tmp/sysroots/x86_64-linux/usr/bin/scc: line 399:
->> yocto/standard/cedartrail-standard: No such file or directory
->> | /build/cdv-master/tmp/sysroots/x86_64-linux/usr/bin/scc: line 399:
->> yocto/standard/cedartrail-standard: No such file or directory
->> | /build/cdv-master/tmp/sysroots/x86_64-linux/usr/bin/scc: line 399:
->> yocto/standard/cedartrail-standard: No such file or directory
->> | /build/cdv-master/tmp/sysroots/x86_64-linux/usr/bin/scc: line 399:
->> yocto/standard/cedartrail-standard: No such file or directory
->> | /build/cdv-master/tmp/sysroots/x86_64-linux/usr/bin/scc: line 399:
->> yocto/standard/cedartrail-standard: No such file or directory
->> | /build/cdv-master/tmp/sysroots/x86_64-linux/usr/bin/scc: line 399:
->> yocto/standard/cedartrail-standard: No such file or directory
->> | /build/cdv-master/tmp/sysroots/x86_64-linux/usr/bin/scc: line 399:
->> yocto/standard/cedartrail-standard: No such file or directory
->> | /build/cdv-master/tmp/sysroots/x86_64-linux/usr/bin/scc: line 399:
->> yocto/standard/cedartrail-standard: No such file or directory
->> | /build/cdv-master/tmp/sysroots/x86_64-linux/usr/bin/scc: line 399:
->> yocto/standard/cedartrail-standard: No such file or directory
->> | /build/cdv-master/tmp/sysroots/x86_64-linux/usr/bin/scc: line 399:
->> yocto/standard/cedartrail-standard: No such file or directory
->> | /build/cdv-master/tmp/sysroots/x86_64-linux/usr/bin/scc: line 399:
->> yocto/standard/cedartrail-standard: No such file or directory
->> | ERROR. Could not find an excutable target for yocto/standard/base
->> | ERROR. Could not locate meta series for yocto/standard/cedartrail
->> | ERROR. Could not modify yocto/standard/base
->> NOTE: package
->> linux-yocto-3.0.24+git1+a4ac64fe873f08ef718e2849b88914725dc99c1c_1+81fd8c307997aff37916828dc8b4ef72f5d35a94-r4:
->> task do_patch: Failed
->> ERROR: Task 838
->> (/home/jim/poky/meta/recipes-kernel/linux/linux-yocto_3.0.bb, do_patch)
->> failed with exit code '1'
->>
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
+poky based branch:
+http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/log/?h=sgarman/denzil-next
 
+So far I haven't merged or requested to merge any of these commits into 
+the main denzil branches of oe-core and poky, for two main reasons:
+
+1. I've only performed the most basic build testing of these branches on 
+a desktop system, building core-image-minimal and core-image-sato for 
+our 5 qemu machines.
+
+2. To date, we haven't had a clear process on how to transition from the 
+maintainer's personal branch into the official repo branch. I'd like to 
+develop a clear and documented process on doing this that involves 
+community feedback on the commits.
+
+Just this week I've been able to start using the Yocto autobuilder to do 
+more comprehensive testing of my denzil-next branch, so issue #1 is 
+finally resolved, and I've got a green build to raise my confidence level:
+
+http://autobuilder.yoctoproject.org:8010/builders/nightly/builds/462
+
+So now to address issue #2. The goal is to incorporate community 
+feedback, so I'm looking to get ACKs or NAKs for these commits before 
+they go into the main denzil branch.
+
+My proposal is to send denzil pull requests to the appropriate mailing 
+lists, and Richard can merge them into the main repo denzil branches 
+once they've received review by the community.
+
+My goal is to send these pull requests about once per week, once I've 
+managed to get a green build out of the Yocto autobuilder for my contrib 
+branch.
+
+What do folks think about this? Now's your opportunity to offer feedback 
+and influence this process.
+
+Thanks!
+
+Scott
+
+Yocto 1.2.1 release maintainer
+
+-- 
+Scott Garman
+Embedded Linux Engineer - Yocto Project
+Intel Open Source Technology Center
 
