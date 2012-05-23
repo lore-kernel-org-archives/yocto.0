@@ -1,34 +1,25 @@
-Return-Path: <opensource@keylevel.com>
-Received: from hxhsvr03.internetintuitive.net (hxhsvr03.internetintuitive.net
-	[80.254.228.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DAEAAE01304
-	for <yocto@yoctoproject.org>; Wed, 23 May 2012 00:55:36 -0700 (PDT)
-Received: from [109.224.129.17] (port=14604
-	helo=macbook-pro.durham.keylevel.com)
-	by hxhsvr03.internetintuitive.net with esmtpa (Exim 4.69)
-	(envelope-from <opensource@keylevel.com>)
-	id 1SX6Pu-0004dY-Up; Wed, 23 May 2012 08:55:35 +0100
-Mime-Version: 1.0 (Apple Message framework v1278)
-From: Chris Tapp <opensource@keylevel.com>
-In-Reply-To: <8363795.7bU7lvsc4a@helios>
-Date: Wed, 23 May 2012 08:55:33 +0100
-Message-Id: <2B5CA5ED-EFE8-4F53-B592-55BCDA9AA8FD@keylevel.com>
+Return-Path: <tf+lists.yocto@r-finger.com>
+Received: from r-finger.com (r-finger.com [178.79.160.5])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A940AE01304
+	for <yocto@yoctoproject.org>; Wed, 23 May 2012 01:32:01 -0700 (PDT)
+Received: from [192.168.0.2] (host86-170-37-213.range86-170.btcentralplus.com
+	[86.170.37.213]) (using TLSv1 with cipher AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by r-finger.com (Postfix) with ESMTPSA id 3C3659ADB
+	for <yocto@yoctoproject.org>; Wed, 23 May 2012 09:32:00 +0100 (BST)
+Message-ID: <4FBCA07F.1050001@r-finger.com>
+Date: Wed, 23 May 2012 09:31:59 +0100
+From: Tomas Frydrych <tf+lists.yocto@r-finger.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:10.0.3) Gecko/20120329 Icedove/10.0.3
+MIME-Version: 1.0
+To: yocto@yoctoproject.org
 References: <0A3A31D3-D0DF-4C56-8896-1075F801C8BD@keylevel.com>
 	<4904220.mFpDsjEpuq@helios>
 	<850EEF2D-6A67-4987-B202-A24461737544@keylevel.com>
 	<8363795.7bU7lvsc4a@helios>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-X-Mailer: Apple Mail (2.1278)
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - hxhsvr03.internetintuitive.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: yocto@yoctoproject.org
+	<2B5CA5ED-EFE8-4F53-B592-55BCDA9AA8FD@keylevel.com>
+In-Reply-To: <2B5CA5ED-EFE8-4F53-B592-55BCDA9AA8FD@keylevel.com>
 Subject: Re: Per-machine DEPENDS
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -41,79 +32,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 23 May 2012 07:55:37 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 23 May 2012 08:32:01 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On 17 May 2012, at 22:22, Paul Eggleton wrote:
+On 23/05/12 08:55, Chris Tapp wrote:
+> Do overrides work with any variable? The RPi layer is using BBMASK to
+> filter out some recipes when building against Yocto. This has to be
+> manually added to local.conf. 
 
-> On Thursday 17 May 2012 22:07:50 Chris Tapp wrote:
->> On 17 May 2012, at 21:27, Paul Eggleton wrote:
->>> On Thursday 17 May 2012 21:10:10 Chris Tapp wrote:
->>>> Is it possible to have the (R)DEPENDS list vary depending on the =
-machine
->>>> being built?
->>>>=20
->>>> For example, I want 'this-bit' to be included for a 'machine-1' =
-build,
->>>> but
->>>> not 'machine-2'.
->>>>=20
->>>> Something like:
->>>>=20
->>>> DEPENDS =3D "common-stuff"
->>>>=20
->>>> DEPENDS_machine-1 =3D "${DEPENDS} this-stuff"
->>>=20
->>> Yes, that will work. If the DEPENDS change implies some different
->>> configuration I'd recommend being explicit about it as well e.g. via
->>> EXTRA_OECONF or whatever is appropriate; this is particularly =
-important
->>> for the case where the extra dependency is not included and the =
-configure
->>> script for the application would auto-detect the presence of the
->>> additional dependency in the absence of an explicit configure =
-option.
->>=20
->> Thanks. Is there some documentation that explains how the suffixes =
-are build
->> up, when they are used, etc. ?
->=20
-> These "suffixes" are called overrides in BitBake parlance. If an =
-override=20
-> appears in the OVERRIDES variable then it is applied, and the =
-OVERRIDES=20
-> variable is built up out of the values of various other variables =
-(including=20
-> MACHINE, DISTRO, etc - see 'bitbake -e | grep OVERRIDES'). I'm pretty =
-sure=20
-> this is covered in the BitBake manual, although unfortunately that is =
-only=20
-> available in source format right now.
+It does not have to be local.conf; if you are adding meta-raspberrypi,
+you have to set up the layer configuration at minimum, and probably
+other things, so you can set it up somewhere more appropriate.
+local.conf is really just for changes when testing things, etc.
 
+> Would it be possible to do this
+> automatically in the layer using an override based on the distro
+> name/version? e.g. could something like the following be added to the
+> layer.conf file?
+> 
+> BBMASK_poky_7.0? += " ${LAYERDIR}/stuff-i-dont-want"
 
-Do overrides work with any variable? The RPi layer is using BBMASK to =
-filter out some recipes when building against Yocto. This has to be =
-manually added to local.conf. Would it be possible to do this =
-automatically in the layer using an override based on the distro =
-name/version? e.g. could something like the following be added to the =
-layer.conf file?
+I don't know if the overrides work with this variable in particular, but
+even if they did, it is not a good idea for a layer of any kind to be
+changing the BBMASK value, because the layer cannot make any assumptions
+about what might or might not be appropriate to mask out.
 
-BBMASK_poky_7.0? +=3D " ${LAYERDIR}/stuff-i-dont-want"
+(Also note that BBMASK is pyton regex, so BBMASK += "
+${LAYERDIR}/stuff-i-dont-want" will not work, it would need, e.g., to
+include the '|' operator)
 
-Or would it be better to have distro-specific recipe trees and then =
-(somehow) apply overrides to BBFILES:
+> 
+> Or would it be better to have distro-specific recipe trees
 
-BBFILES :=3D "${BBFILES} ${LAYERDIR}/recipes*/*/*.bb \=20
-            ${LAYERDIR}/recipes*/*/*.bbappend"
+Specifically to the m-rpi, there are only two problematic recipes, the
+libav.bbappend, but you only know on the distro level whether you need
+to mask this out or now (i.e., someone's poky-derrived distro might well
+include libav).
 
-BBFILES<something-to-add-parts> "${LAYERDIR}/poky-7.0/*/*.bbappend"
+The second is the rpi-zram-service which needs systemd.
+This recipe needs to be reworked so it produces both -systemd and -initd
+packages, from which the distro can then pull in the appropriate one;
+one of the packages can even be a dummy (which for poky could be
+achieved by adding systemd.bbclass stub).
 
-Chris Tapp
-
-opensource@keylevel.com
-www.keylevel.com
-
-
-
+Tomas
 
