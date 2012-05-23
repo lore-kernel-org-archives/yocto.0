@@ -1,19 +1,23 @@
 Return-Path: <tom.zanussi@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1526EE01206
-	for <yocto@yoctoproject.org>; Wed, 23 May 2012 12:52:22 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 23 May 2012 12:52:21 -0700
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DB856E013EC
+	for <yocto@yoctoproject.org>; Wed, 23 May 2012 12:52:26 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga101.ch.intel.com with ESMTP; 23 May 2012 12:52:26 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="156323084"
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="103456174"
 Received: from unknown (HELO localhost) ([10.255.12.14])
-	by fmsmga001.fm.intel.com with ESMTP; 23 May 2012 12:52:21 -0700
+	by AZSMGA002.ch.intel.com with ESMTP; 23 May 2012 12:52:25 -0700
 From: tom.zanussi@intel.com
 To: yocto@yoctoproject.org
-Date: Wed, 23 May 2012 14:52:40 -0500
-Message-Id: <cover.1337801535.git.tom.zanussi@intel.com>
+Date: Wed, 23 May 2012 14:52:29 -0500
+Message-Id: <3cca0ca6debc6be162956d814fd31a8b4ac101cf.1337801535.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.0.4
-Subject: [PATCH 00/20] meta-intel: new chiefriver BSP and supporting recipes
+In-Reply-To: <a5a4b657ee72340fc000206e5f8208a8bfbdad1a.1337801535.git.tom.zanussi@intel.com>
+References: <a5a4b657ee72340fc000206e5f8208a8bfbdad1a.1337801535.git.tom.zanussi@intel.com>
+In-Reply-To: <cover.1337801535.git.tom.zanussi@intel.com>
+References: <cover.1337801535.git.tom.zanussi@intel.com>
+Subject: [PATCH 02/20] meta-intel: add gstreamer-vaapi_git recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -25,113 +29,72 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 23 May 2012 19:52:22 -0000
+X-List-Received-Date: Wed, 23 May 2012 19:52:27 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-This patchset implements a new BSP for the 'Chief River' platform, which
-consists of the Intel Ivy Bridge processor and Panther Point PCH.  It
-assumes that the Ivy Bridge integrated graphics are being used.
+Based on the gstreamer-vaapi_0.2.5.bb recipe from the Yocto Project
+meta-demo layer (git://git.yoctoproject.org/meta-demo):
 
-It also adds a few new recipes related to video acceleration which are
-modified versions of oe-core or yocto meta-demo recipes (ffmpeg,
-yasm-native, gstreamer-vaapi), along with tweaks needed to work with
-intel video acceleration components.
+    commit a33dd433b629f08bc6517ef2ad3bdd36814ebe85
+    Author: Joshua Lock <josh@linux.intel.com>
+    Date:   Tue Mar 22 12:11:42 2011 +0000
 
-There are also some new intel-specific video acceleration components
-(libva-1.0.15, intel-driver-1.0.15, va-intel) either needed for video
-acceleration on Intel platforms, or allowing for easier integration
-with the existing meta-intel BSPs.  These finally allow the chiefriver,
-sugarbay, and crownbay BSPs to share a common set of video components,
-and have been tested with all three.
+        gstreamer-vaapi: new recipe
 
-Finally, there's a new recipe for the Intel Local Manageability Service
-(LMS), which allows Intel BSPs to access the Intel Active Management
-Technology (AMT) firmware via the Intel Management Engine Interface (MEI),
-which is used by the Chief River BSP.
+        currently untested but will likely be useful in future so commiting it so
+        that it doesn't get lost
 
-The following changes since commit a62c485edffed30ea95658760948fd50925adfb0:
-  Darren Hart (1):
-        linux-yocto_3.0: Update KMACHINE and KBRANCH to play nice with new kerntools
+        Signed-off-by: Joshua Lock <josh@linux.intel.com>
 
-are available in the git repository at:
+Additional changes made by Tom Zanussi <tom.zanussi@intel.com> in
+order to work with the other multimedia recipes in meta-intel/common:
 
-  git://git.yoctoproject.org/meta-intel.git tzanussi/chiefriver.v1
-  http://git.yoctoproject.org/cgit/cgit.cgi/meta-intel/log/?h=tzanussi/chiefriver.v1
+- summary and description
+- correct license
+- changed into a _git recipe in order to pick up post-0.2.5 versions
+- additional inherits
+- tested
 
-Tom Zanussi (20):
-  meta-chiefriver: new layer for Chief River (Ivy Bridge/Panther Point)
-    systems
-  meta-intel: add gstreamer-vaapi_git recipe
-  meta-intel: new libva-1.0.15 recipe
-  meta-intel: new intel-driver-1.0.15 recipe
-  ffmpeg: new recipe
-  ffmpeg: add --enable-vaapi
-  ffmpeg: add --enable-gpl
-  yasm: new recipe
-  ffmpeg: add --enable-yasm
-  gst-ffmpeg: add bbappend for external ffmpeg
-  gst-va-intel: add conditional vaapi implementation
-  va-intel: new package
-  gst-va-intel: clarify DESCRIPTION
-  meta-intel: remove video acceleration from emgd XSERVER
-  meta-chiefriver: use gst-va-intel and va-intel
-  meta-sugarbay: use gst-va-intel and va-intel
-  meta-crownbay: use gst-va-intel and va-intel and gst-va-mixvideo
-  lms: new recipe
-  meta-chiefriver: use lms
-  meta-chiefriver: use the mei kernel feature
-
- .../amt/lms/atnetworktool-printf-fix.patch         |   14 +++
- common/recipes-bsp/amt/lms_7.1.20.bb               |   42 ++++++++
- common/recipes-multimedia/ffmpeg/ffmpeg.inc        |  108 ++++++++++++++++++++
- common/recipes-multimedia/ffmpeg/ffmpeg_0.7.12.bb  |   44 ++++++++
- .../gstreamer/gst-ffmpeg_0.10.13.bbappend          |    2 +
- .../recipes-multimedia/gstreamer/gst-va-intel.bb   |   15 +++-
- .../gstreamer/gstreamer-vaapi_git.bb               |   26 +++++
- .../libva/libva-intel-driver.inc                   |   24 +++++
- .../libva/libva-intel-driver_1.0.15.bb             |    8 ++
- common/recipes-multimedia/libva/libva_1.0.15.bb    |    8 ++
- common/recipes-multimedia/libva/va-intel.bb        |   20 ++++
- common/recipes-support/yasm/yasm_1.1.0.bb          |   17 +++
- conf/machine/include/ia32-base.inc                 |    4 -
- meta-chiefriver/COPYING.MIT                        |   17 +++
- meta-chiefriver/README                             |  107 +++++++++++++++++++
- meta-chiefriver/README.sources                     |   17 +++
- meta-chiefriver/conf/layer.conf                    |   10 ++
- meta-chiefriver/conf/machine/chiefriver.conf       |   19 ++++
- .../formfactor/formfactor/chiefriver/machconfig    |    3 +
- .../recipes-bsp/formfactor/formfactor_0.0.bbappend |    3 +
- .../tasks/task-core-tools-profile.bbappend         |    2 +
- .../xserver-xf86-config/chiefriver/xorg.conf       |   26 +++++
- .../xorg-xserver/xserver-xf86-config_0.1.bbappend  |    3 +
- .../linux/linux-yocto-rt_3.2.bbappend              |    8 ++
- .../recipes-kernel/linux/linux-yocto_3.2.bbappend  |   10 ++
- meta-crownbay/conf/machine/crownbay.conf           |    6 +-
- meta-sugarbay/conf/machine/sugarbay.conf           |    4 +
- 27 files changed, 561 insertions(+), 6 deletions(-)
- create mode 100644 common/recipes-bsp/amt/lms/atnetworktool-printf-fix.patch
- create mode 100644 common/recipes-bsp/amt/lms_7.1.20.bb
- create mode 100644 common/recipes-multimedia/ffmpeg/ffmpeg.inc
- create mode 100644 common/recipes-multimedia/ffmpeg/ffmpeg_0.7.12.bb
- create mode 100644 common/recipes-multimedia/gstreamer/gst-ffmpeg_0.10.13.bbappend
+Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
+---
+ .../gstreamer/gstreamer-vaapi_git.bb               |   26 ++++++++++++++++++++
+ 1 files changed, 26 insertions(+), 0 deletions(-)
  create mode 100644 common/recipes-multimedia/gstreamer/gstreamer-vaapi_git.bb
- create mode 100644 common/recipes-multimedia/libva/libva-intel-driver.inc
- create mode 100644 common/recipes-multimedia/libva/libva-intel-driver_1.0.15.bb
- create mode 100644 common/recipes-multimedia/libva/libva_1.0.15.bb
- create mode 100644 common/recipes-multimedia/libva/va-intel.bb
- create mode 100644 common/recipes-support/yasm/yasm_1.1.0.bb
- create mode 100644 meta-chiefriver/COPYING.MIT
- create mode 100644 meta-chiefriver/README
- create mode 100644 meta-chiefriver/README.sources
- create mode 100644 meta-chiefriver/conf/layer.conf
- create mode 100644 meta-chiefriver/conf/machine/chiefriver.conf
- create mode 100644 meta-chiefriver/recipes-bsp/formfactor/formfactor/chiefriver/machconfig
- create mode 100644 meta-chiefriver/recipes-bsp/formfactor/formfactor_0.0.bbappend
- create mode 100644 meta-chiefriver/recipes-core/tasks/task-core-tools-profile.bbappend
- create mode 100644 meta-chiefriver/recipes-graphics/xorg-xserver/xserver-xf86-config/chiefriver/xorg.conf
- create mode 100644 meta-chiefriver/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend
- create mode 100644 meta-chiefriver/recipes-kernel/linux/linux-yocto-rt_3.2.bbappend
- create mode 100644 meta-chiefriver/recipes-kernel/linux/linux-yocto_3.2.bbappend
+
+diff --git a/common/recipes-multimedia/gstreamer/gstreamer-vaapi_git.bb b/common/recipes-multimedia/gstreamer/gstreamer-vaapi_git.bb
+new file mode 100644
+index 0000000..8ffbb51
+--- /dev/null
++++ b/common/recipes-multimedia/gstreamer/gstreamer-vaapi_git.bb
+@@ -0,0 +1,26 @@
++SUMMARY = "VA-API support to GStreamer"
++DESCRIPTION = "gstreamer-vaapi consists of a collection of VA-API \
++based plugins for GStreamer and helper libraries: `vaapidecode', \
++`vaapiconvert', and `vaapisink'."
++
++LICENSE = "LGPLv2.1+"
++LIC_FILES_CHKSUM = "file://COPYING.LIB;md5=4fbd65380cdd255951079008b364516c"
++
++DEPENDS = "gstreamer libva ffmpeg"
++
++# 0.2.9 tag
++SRCREV = "c98c14bd32855467a5a0ff21b6c703e9e3461467"
++PV = "0.2.9+git${SRCPV}"
++PR = "r0"
++
++SRC_URI = "git://gitorious.org/vaapi/gstreamer-vaapi.git"
++SRC_URI[md5sum] = "729d75f21df79114a8c81d896489e5ad"
++SRC_URI[sha256sum] = "f1770c4537f1615701dbc845eee5732fbb1036b3acafbc7488e551fab334a31d"
++
++S = "${WORKDIR}/git"
++
++inherit autotools pkgconfig gtk-doc
++
++FILES_${PN} += "${libdir}/gstreamer-0.10/*.so"
++FILES_${PN}-dbg += "${libdir}/gstreamer-0.10/.debug"
++FILES_${PN}-dev += "${libdir}/gstreamer-0.10/*.la ${libdir}/gstreamer-0.10/*.a"
+-- 
+1.7.0.4
 
 
