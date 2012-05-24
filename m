@@ -1,31 +1,34 @@
-Return-Path: <jefro.net@gmail.com>
-Received: from mail-yw0-f48.google.com (mail-yw0-f48.google.com
-	[209.85.213.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A0A74E013EC
-	for <yocto@yoctoproject.org>; Thu, 24 May 2012 08:00:46 -0700 (PDT)
-Received: by yhfq46 with SMTP id q46so10013524yhf.35
-	for <yocto@yoctoproject.org>; Thu, 24 May 2012 08:00:46 -0700 (PDT)
+Return-Path: <kergoth@gmail.com>
+Received: from mail-wg0-f54.google.com (mail-wg0-f54.google.com [74.125.82.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7D93AE01363
+	for <yocto@yoctoproject.org>; Thu, 24 May 2012 08:21:43 -0700 (PDT)
+Received: by wgbfg15 with SMTP id fg15so6965927wgb.11
+	for <yocto@yoctoproject.org>; Thu, 24 May 2012 08:21:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:date:x-google-sender-auth:message-id:subject
-	:from:to:content-type;
-	bh=qYFQlLC095beDJhYUhS9Do2GlN2U8dqQip1gXrjUaoU=;
-	b=EnYTr5ZhzzmndRLN2ga8QdR9b+l+QFarh59kLYYf9qydmPCQJLREf/z+K1vK+oCCyw
-	VVgiuS6e+Mfa0R0hhM2ZiH181Pxb5f7SeCPvwjfBu23v9fgOtoP4cgi+71J9EoxZsM72
-	9f4TS5j2OlRs1opWZTKRfeePEfGSIKArmeD0hNhOLja1SJbpXp34rq/mYNtf480vmUY3
-	tck9/I3pSzMsf3MhMY8DFP+3AzDhSukRf3UReZjv8lrfxKkbCBHAICuOW0OsgfMKQ+UR
-	vbHpQriWchBqg8rXFdnfBfrRE2L3QB8iT+qe8zNB15XTAqrx/V+MpqDSAIl0U4TAhqMS
-	YiUQ==
+	h=mime-version:sender:in-reply-to:references:from:date
+	:x-google-sender-auth:message-id:subject:to:cc:content-type
+	:content-transfer-encoding;
+	bh=0n989SB6ntOqF56sljD9PV1GQdoK54z/xIRW0INNp3I=;
+	b=OCfeVyP8f1k57ZWLgQ0pzOmyGK1dXIWnnHsQ/yDXIJdrNfByVzQwrQCOylBXmN7oH7
+	QVrFOUF4yrOQcMTVi1J0cU6X8loTsVJDVyHOU345cp1vA6JFMjA8z3VQUt3IXqeRu5ua
+	F45RoIz/Cjaa/WHM3bo0b2QJSUL4UPrQE/tC6uZUOs5t2aD++lwSXfY9IWt4LNLZGc5j
+	JDUS0IFnMKUAGeC0aSlLzBhPJSPpxcrI3lTGAApPg/yAD0b4RWO0zoGvRg9GOfeUckAZ
+	hQovP5G2dW3j0QuHA2IVEIKc1wnbSdd53D2kih9e0TV3hbfZSffjt9Of/ePdhflLErhR
+	GLbA==
+Received: by 10.180.102.36 with SMTP id fl4mr48403394wib.2.1337872902364; Thu,
+	24 May 2012 08:21:42 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.50.100.129 with SMTP id ey1mr2155340igb.2.1337871645809; Thu,
-	24 May 2012 08:00:45 -0700 (PDT)
-Sender: jefro.net@gmail.com
-Received: by 10.64.13.164 with HTTP; Thu, 24 May 2012 08:00:45 -0700 (PDT)
-Date: Thu, 24 May 2012 08:00:45 -0700
-X-Google-Sender-Auth: SNyFtAv1Se3t9l42HbzUJWUPdJE
-Message-ID: <CA+YB3ra0n4iF0dD7E+OP=wR=YjKbroY2Yp-LBqXv0sXkC4ya_w@mail.gmail.com>
-From: Jeff Osier-Mixon <jefro@jefro.net>
-To: Yocto Project <yocto@yoctoproject.org>
-Subject: Yocto Project at upcoming conferences
+Sender: kergoth@gmail.com
+Received: by 10.216.181.16 with HTTP; Thu, 24 May 2012 08:21:22 -0700 (PDT)
+In-Reply-To: <4FBE4BD6.5060800@gmail.com>
+References: <4FBE4BD6.5060800@gmail.com>
+From: Chris Larson <clarson@kergoth.com>
+Date: Thu, 24 May 2012 08:21:22 -0700
+X-Google-Sender-Auth: yV6ZOXUmpTMj0dws22yrkXMg6Nc
+Message-ID: <CABcZANmZ1k3vpJJxKKGNYG-bbZ-YH2bS5Fej6O5E=Fg5aRkitA@mail.gmail.com>
+To: jfabernathy <jfabernathy@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: checking out branches: tracking vs. tags
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,29 +40,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 24 May 2012 15:00:46 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Thu, 24 May 2012 15:21:43 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Hi everyone - I just wanted to let everyone know our upcoming
-conference schedule.
+On Thu, May 24, 2012 at 7:55 AM, jfabernathy <jfabernathy@gmail.com> wrote:
+> the Development Manual Appendix A
+> (http://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html#dev-=
+manual-bsp-appendix),
+> I see the statement:
+>
+> =C2=A0$ git checkout denzil-7.0 -b denzil
+>
+>
+> What I think this does is create me a local branch that is fixed to what =
+was
+> committed when the denzil-7.0 tag was created and it will remain that way
+> and will not track the denzil branch as it gets updated. =C2=A0Right????
+>
+> Now if I want to track the denzil branch as changes are committed, I thin=
+k I
+> do the following.
+>
+> =C2=A0$ git checkout origin/denzil -b denzil
+>
+>
+> Now I can do git pull commands to get the updates that are committed.
+> Right??
 
-LinuxCon Japan, Yokohama JP, June 6-8 - Saul Wold will be talking
-about Yocto on Thurs, June 7
-
-OSCON, Portland OR, July 16-20 - I will be giving a talk on the Yocto
-Project on July 19
-
-LinuxCon, San Diego, CA - CFP ends on June 1, so get those talks in!
-
-LinuxCon Europe / Embedded Linux Conference Europe, Nov 5-7, Barcelona
-SP - CFP ends Aug 1
-
-If you plan to submit a talk about the Yocto Project to these or any
-other conferences, please let me know so I can keep track.
-
-thanks & hope to see you there
-
--- 
-Jeff Osier-Mixon http://jefro.net/blog
-Yocto Project Community Manager @Intel http://yoctoproject.org
+Your arguments are backwards. See git help checkout.
+--=20
+Christopher Larson
 
