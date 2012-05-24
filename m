@@ -1,34 +1,31 @@
-Return-Path: <jfabernathy@gmail.com>
-Received: from mail-vc0-f176.google.com (mail-vc0-f176.google.com
-	[209.85.220.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2427BE01363
-	for <yocto@yoctoproject.org>; Thu, 24 May 2012 07:55:19 -0700 (PDT)
-Received: by vcbfo14 with SMTP id fo14so2246082vcb.35
-	for <yocto@yoctoproject.org>; Thu, 24 May 2012 07:55:18 -0700 (PDT)
+Return-Path: <jefro.net@gmail.com>
+Received: from mail-yw0-f48.google.com (mail-yw0-f48.google.com
+	[209.85.213.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A0A74E013EC
+	for <yocto@yoctoproject.org>; Thu, 24 May 2012 08:00:46 -0700 (PDT)
+Received: by yhfq46 with SMTP id q46so10013524yhf.35
+	for <yocto@yoctoproject.org>; Thu, 24 May 2012 08:00:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=message-id:date:from:user-agent:mime-version:to:subject
-	:content-type:content-transfer-encoding;
-	bh=Zjr+3rm5gR3Pomb9ejKQ5kF9KtIY3XlS1uypFNuKXx8=;
-	b=afH8vl4CroGjDgjey0VHhu4IwMHGDchtsXsVJ1M7BNWPsfvItlITwSoZ2t7dQzGxbq
-	1uiSf04FqLXGF8OxoiMt6s9OwHuuf7b9T/xHrLGcIFT27StqH914QOMeQiTTF1tf4wIb
-	s0HRQufOVPvdx6qMpNdIoAyU+xw5Wy1dx9n9AFiBodTC+cAzvrVK0oyweb0Fs2gTPZlw
-	PPkYvRHPnkp4hVXpRbrwH0oB2bRP1evjCReDZzSP7F2NfJyb/gWw5KMx+1/B4nkQx9KC
-	I7hsH8TQhHmsbISJz3li+zlLwx6xRb6eghjRD4dYNnPy9jLoUhJIKZncLViifDyoIq5X
-	SV1A==
-Received: by 10.52.95.225 with SMTP id dn1mr2441470vdb.99.1337871318381;
-	Thu, 24 May 2012 07:55:18 -0700 (PDT)
-Received: from [10.0.1.54] (nc-184-4-33-55.dhcp.embarqhsd.net. [184.4.33.55])
-	by mx.google.com with ESMTPS id
-	o15sm28250693vdi.15.2012.05.24.07.55.17 (version=SSLv3 cipher=OTHER);
-	Thu, 24 May 2012 07:55:17 -0700 (PDT)
-Message-ID: <4FBE4BD6.5060800@gmail.com>
-Date: Thu, 24 May 2012 10:55:18 -0400
-From: jfabernathy <jfabernathy@gmail.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:12.0) Gecko/20120430 Thunderbird/12.0.1
+	h=mime-version:sender:date:x-google-sender-auth:message-id:subject
+	:from:to:content-type;
+	bh=qYFQlLC095beDJhYUhS9Do2GlN2U8dqQip1gXrjUaoU=;
+	b=EnYTr5ZhzzmndRLN2ga8QdR9b+l+QFarh59kLYYf9qydmPCQJLREf/z+K1vK+oCCyw
+	VVgiuS6e+Mfa0R0hhM2ZiH181Pxb5f7SeCPvwjfBu23v9fgOtoP4cgi+71J9EoxZsM72
+	9f4TS5j2OlRs1opWZTKRfeePEfGSIKArmeD0hNhOLja1SJbpXp34rq/mYNtf480vmUY3
+	tck9/I3pSzMsf3MhMY8DFP+3AzDhSukRf3UReZjv8lrfxKkbCBHAICuOW0OsgfMKQ+UR
+	vbHpQriWchBqg8rXFdnfBfrRE2L3QB8iT+qe8zNB15XTAqrx/V+MpqDSAIl0U4TAhqMS
+	YiUQ==
 MIME-Version: 1.0
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: checking out branches: tracking vs. tags
+Received: by 10.50.100.129 with SMTP id ey1mr2155340igb.2.1337871645809; Thu,
+	24 May 2012 08:00:45 -0700 (PDT)
+Sender: jefro.net@gmail.com
+Received: by 10.64.13.164 with HTTP; Thu, 24 May 2012 08:00:45 -0700 (PDT)
+Date: Thu, 24 May 2012 08:00:45 -0700
+X-Google-Sender-Auth: SNyFtAv1Se3t9l42HbzUJWUPdJE
+Message-ID: <CA+YB3ra0n4iF0dD7E+OP=wR=YjKbroY2Yp-LBqXv0sXkC4ya_w@mail.gmail.com>
+From: Jeff Osier-Mixon <jefro@jefro.net>
+To: Yocto Project <yocto@yoctoproject.org>
+Subject: Yocto Project at upcoming conferences
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,31 +37,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 24 May 2012 14:55:19 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 24 May 2012 15:00:46 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-I'm trying to understand a few git concepts as they relate to Yocto.  
-Reading the 1.2 version of the Development Manual Appendix A 
-(http://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html#dev-manual-bsp-appendix), 
-I see the statement:
+Hi everyone - I just wanted to let everyone know our upcoming
+conference schedule.
 
-   $ git checkout denzil-7.0 -b denzil
+LinuxCon Japan, Yokohama JP, June 6-8 - Saul Wold will be talking
+about Yocto on Thurs, June 7
 
+OSCON, Portland OR, July 16-20 - I will be giving a talk on the Yocto
+Project on July 19
 
-What I think this does is create me a local branch that is fixed to what 
-was committed when the denzil-7.0 tag was created and it will remain 
-that way and will not track the denzil branch as it gets updated.  Right????
+LinuxCon, San Diego, CA - CFP ends on June 1, so get those talks in!
 
-Now if I want to track the denzil branch as changes are committed, I 
-think I do the following.
+LinuxCon Europe / Embedded Linux Conference Europe, Nov 5-7, Barcelona
+SP - CFP ends Aug 1
 
-  $ git checkout origin/denzil -b denzil
+If you plan to submit a talk about the Yocto Project to these or any
+other conferences, please let me know so I can keep track.
 
+thanks & hope to see you there
 
-Now I can do git pull commands to get the updates that are committed. 
-Right??
-
-Jim A
-
+-- 
+Jeff Osier-Mixon http://jefro.net/blog
+Yocto Project Community Manager @Intel http://yoctoproject.org
 
