@@ -1,39 +1,32 @@
-Return-Path: <scott.a.garman@intel.com>
-Received: from fmsmga102.fm.intel.com (mga10.intel.com [192.55.52.92])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1A47AE01206
-	for <yocto@yoctoproject.org>; Wed, 23 May 2012 15:00:54 -0700 (PDT)
-Received: from mail-pz0-f52.google.com ([209.85.210.52])
-	by mga11.intel.com with ESMTP/TLS/RC4-MD5; 23 May 2012 15:00:53 -0700
-Received: by dano14 with SMTP id o14so10446302dan.25
-	for <yocto@yoctoproject.org>; Wed, 23 May 2012 15:00:53 -0700 (PDT)
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from fmsmga101.fm.intel.com (mga05.intel.com [192.55.52.89])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EF38DE01206
+	for <yocto@yoctoproject.org>; Wed, 23 May 2012 17:15:56 -0700 (PDT)
+Received: from mail-lb0-f180.google.com ([209.85.217.180])
+	by mga01.intel.com with ESMTP/TLS/RC4-SHA; 23 May 2012 17:15:56 -0700
+Received: by lbbgh12 with SMTP id gh12so4989895lbb.25
+	for <yocto@yoctoproject.org>; Wed, 23 May 2012 17:15:54 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=google.com; s=20120113;
-	h=message-id:date:from:user-agent:mime-version:to:cc:subject
-	:content-type:content-transfer-encoding:x-gm-message-state;
-	bh=enL3Fkk6CUHFIKfjsYC57FU649k2yDqTLKgBhleAOfw=;
-	b=P2W7NuEEloxCXAwV0EHBQW2eAB9UYbXDIdo1fxbT0ujAwy+cRBW+5y7Yah/vz9pIih
-	A87tcGOyIa+lFUJQvFa6PpLccknQUlr0HxZGKPZSx/DBqMQ/8RRvyjl/YRRzC83SZofi
-	zQYNHiPij4J87skrBrdivN7CS4mnkX8Ss3wnZf+Pf/wtcQsbQKUj6WIcnJFQkMO1GhUa
-	56stnZzFcuNKKxubpjSsFjfphesiFLOj9oiw8PqrNNmWZWICsL4PQ6xCIjestB2tiC83
-	z8N65+MJhDLaNYcKBsL0gIt2NlXOnUzJyxxmcVs0jE6nRB8suOJFKu21C/eoON3lHeVO
-	Rzew==
-Received: by 10.68.234.129 with SMTP id ue1mr10549223pbc.140.1337810453264;
-	Wed, 23 May 2012 15:00:53 -0700 (PDT)
-Received: from [192.168.1.105] (c-76-105-137-48.hsd1.or.comcast.net.
-	[76.105.137.48])
-	by mx.google.com with ESMTPS id x1sm3106639pbp.50.2012.05.23.15.00.50
-	(version=SSLv3 cipher=OTHER); Wed, 23 May 2012 15:00:51 -0700 (PDT)
-Message-ID: <4FBD5E10.3070403@intel.com>
-Date: Wed, 23 May 2012 15:00:48 -0700
-From: Scott Garman <scott.a.garman@intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:12.0) Gecko/20120430 Thunderbird/12.0.1
+	h=mime-version:date:message-id:subject:from:to:cc:content-type
+	:x-gm-message-state;
+	bh=tbZxbBy0/z11eiYFfg1OVMufwkckHpB4c9zfzdOqlYc=;
+	b=Pj2vGY/ek3S2UfNHz4C3hQh4LRjOyht8uO8gYSBDJgyT1Ejhet1oY2Wqzee0oUiMjg
+	O5rspe2IAEPtW8kUhmCYw5u6oZoZEwGQ7kRPGydAdK974xURc1lOipxajjQL352TIZbe
+	xPguhGTe49OMi+9WIv4dOeVlFf2iRhhTvOSqQGcvNkzfLTAf1IlYjWUvX+lM6Y/q5GdY
+	plmdUTDD2egwTRR8WSTZ/DwOZh4GL5IldlvP+VK4NZ3W23etzwZqrCouw6BnPQYNsuwy
+	4wGeEeM7V17uEH950UBhoNx77aNqmI57jvF4a+fnq+QW4W6v+SuuwMvgMrrl1MzRWhrp
+	YVKg==
 MIME-Version: 1.0
-To: Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>
-X-Gm-Message-State: ALoCoQkaeRRJT7dRtJDKWWX4Y5oYvUh/2o8pIF7iRlmkNgyDSqyHrwwALaZQAPc9WnLJthXOpu/3
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, poky@yoctoproject.org
-Subject: RFC: Merging commits from into the main denzil branch
+Received: by 10.112.103.130 with SMTP id fw2mr12858344lbb.107.1337818554170;
+	Wed, 23 May 2012 17:15:54 -0700 (PDT)
+Received: by 10.112.1.227 with HTTP; Wed, 23 May 2012 17:15:54 -0700 (PDT)
+Date: Wed, 23 May 2012 17:15:54 -0700
+Message-ID: <CAPhnLPB0OA7fkjZEyZ_cPSwLPZk8sgTGYKJ4O-78Pd2_qtrAQA@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: yocto@yoctoproject.org
+X-Gm-Message-State: ALoCoQlIzca1UpjJLzM+WSHG1RJLT1x7g02Xz0gA3IWbj/ZU9N9k7QdvYzgClBnFHs0b3uAHbQhB
+Subject: [Autobuilder] M1_w3 and 1.2.1 builds.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,63 +38,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 23 May 2012 22:00:54 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 24 May 2012 00:15:57 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-Hello all,
+As the autobuilder has been getting a bit of exercise this week I
+wanted to let people know of some recent buildouts of interest to QA
 
-As most of you know, I've been pulling commits into a pair of 
-sgarman/denzil-next branches which are intended to eventually become the 
-next Denzil point-release, 1.2.1.
+The weekly build for the milestone 1, week 3 of 1.3 will be available
+very shortly at :
+http://autobuilder.yoctoproject.org/pub/nightly/20120523-2
 
-oe-core based branch:
-http://git.openembedded.org/openembedded-core-contrib/log/?h=sgarman/denzil-next
+An issue with sanity testing of SSTATE_DIR has been noticed and Joshua
+Lock has already submitted a patch for it.
 
-poky based branch:
-http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/log/?h=sgarman/denzil-next
+A test build of 1.2.1 was built last night. It is available at:
+http://autobuilder.yoctoproject.org/pub/nightly/20120523-1
 
-So far I haven't merged or requested to merge any of these commits into 
-the main denzil branches of oe-core and poky, for two main reasons:
-
-1. I've only performed the most basic build testing of these branches on 
-a desktop system, building core-image-minimal and core-image-sato for 
-our 5 qemu machines.
-
-2. To date, we haven't had a clear process on how to transition from the 
-maintainer's personal branch into the official repo branch. I'd like to 
-develop a clear and documented process on doing this that involves 
-community feedback on the commits.
-
-Just this week I've been able to start using the Yocto autobuilder to do 
-more comprehensive testing of my denzil-next branch, so issue #1 is 
-finally resolved, and I've got a green build to raise my confidence level:
-
-http://autobuilder.yoctoproject.org:8010/builders/nightly/builds/462
-
-So now to address issue #2. The goal is to incorporate community 
-feedback, so I'm looking to get ACKs or NAKs for these commits before 
-they go into the main denzil branch.
-
-My proposal is to send denzil pull requests to the appropriate mailing 
-lists, and Richard can merge them into the main repo denzil branches 
-once they've received review by the community.
-
-My goal is to send these pull requests about once per week, once I've 
-managed to get a green build out of the Yocto autobuilder for my contrib 
-branch.
-
-What do folks think about this? Now's your opportunity to offer feedback 
-and influence this process.
-
-Thanks!
-
-Scott
-
-Yocto 1.2.1 release maintainer
+It was all green, with the exception of a known issue in the AB with
+grabbing poky-contrib git archives.
+It was built from:
+Repo:       git://git.yoctoproject.org/poky-contrib
+Branch:	sgarman/denzil-next
 
 -- 
-Scott Garman
-Embedded Linux Engineer - Yocto Project
-Intel Open Source Technology Center
+Elizabeth Flanagan
+Yocto Project
+Build and Release
 
