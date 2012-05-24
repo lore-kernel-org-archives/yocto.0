@@ -1,32 +1,39 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from orsmga101.jf.intel.com (mga06.intel.com [134.134.136.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E9F22E01206
-	for <yocto@yoctoproject.org>; Wed, 23 May 2012 17:35:49 -0700 (PDT)
-Received: from mail-lpp01m010-f52.google.com ([209.85.215.52])
-	by mga02.intel.com with ESMTP/TLS/RC4-SHA; 23 May 2012 17:35:48 -0700
-Received: by lahj13 with SMTP id j13so5024439lah.25
-	for <yocto@yoctoproject.org>; Wed, 23 May 2012 17:35:46 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type
-	:x-gm-message-state;
-	bh=iMFxtwsaUEbYfrEoGbCNJ4Qadk6r9YQaakp9rgYzDHc=;
-	b=ITm4scJZRYCdpxHiZrGo6wBZdj3XMFI8j4U0eK73WErmcx7mkzWNSJLHTTkEhlRDcT
-	COCHF0+szfb4Y+YKq4CiLoNXvffaKz2ge0fpl1rVVp5Qaw0ig3rqtDB9DqNSdP9FY44S
-	9fLcXE4lXiF/7yDgT8MB5Tq26QHQtJpwyIEU7uJpXAab7zarCkmFyKOhMOvFc8Cy7gXo
-	1TUdln02LeW1Uy68UEuaPVTOfvB/Jqji/44U5jyNvXrmXg7UKuJdWCGxx5J/t2+va95v
-	1DafVryGyAuUp36Jzarwz0Mqqm3x3/xln2ZdcEQEeTY0dFAM+DH7+PU+xMyytKpCGEPl
-	xRHg==
+Return-Path: <david.c.stewart@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B2012E01206;
+	Wed, 23 May 2012 17:37:25 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 23 May 2012 17:37:25 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="147030598"
+Received: from orsmsx606.amr.corp.intel.com ([10.22.226.128])
+	by azsmga001.ch.intel.com with ESMTP; 23 May 2012 17:37:24 -0700
+Received: from orsmsx151.amr.corp.intel.com (10.22.226.38) by
+	orsmsx606.amr.corp.intel.com (10.22.226.128) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Wed, 23 May 2012 17:37:24 -0700
+Received: from orsmsx105.amr.corp.intel.com ([169.254.4.232]) by
+	ORSMSX151.amr.corp.intel.com ([169.254.7.219]) with mapi id
+	14.01.0355.002; Wed, 23 May 2012 17:37:23 -0700
+From: "Stewart, David C" <david.c.stewart@intel.com>
+To: "Saxena, Rahul" <rahul.saxena@intel.com>, Wolfgang Denk <wd@denx.de>,
+	"Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>, "Rifenbark, Scott M"
+	<scott.m.rifenbark@intel.com>
+Thread-Topic: [yocto] [ANNOUNCEMENT] Cedar Trail with PowerVR for Edison 6.0.1
+Thread-Index: AQHNOH1s7U1u/dUHgE2hXCfPyaPOMJbXUqeAgAD8LID//8oFEA==
+Date: Thu, 24 May 2012 00:37:23 +0000
+Message-ID: <CDED78A957032E45B3239CDDA7642D151C81DAE8@ORSMSX105.amr.corp.intel.com>
+References: <CAPhnLPBb-qcMq-MHwbxoiu9qXChaWJkvTgVavSR1goyh_8t55w@mail.gmail.com>
+	<20120523054439.75DAD20025A@gemini.denx.de>
+	<63ECFF2A2302B44093D7CE9E9962C490127DD2@ORSMSX103.amr.corp.intel.com>
+In-Reply-To: <63ECFF2A2302B44093D7CE9E9962C490127DD2@ORSMSX103.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.139]
 MIME-Version: 1.0
-Received: by 10.112.42.228 with SMTP id r4mr9621150lbl.4.1337819746789; Wed,
-	23 May 2012 17:35:46 -0700 (PDT)
-Received: by 10.112.1.227 with HTTP; Wed, 23 May 2012 17:35:46 -0700 (PDT)
-Date: Wed, 23 May 2012 17:35:46 -0700
-Message-ID: <CAPhnLPA_m59_8fkbD5vU1cti9+-nW_hh9PMazD8QsF1FrxzbhA@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: yocto@yoctoproject.org
-X-Gm-Message-State: ALoCoQl5gbcV0j8dx8O5OL+jdSHYKieH+i4lqFgJEx+pmhA6LeIYQ4GukTlFKE7w7QzwvkljdOKu
-Subject: Planned Autobuilder Downtime
+Cc: "yocto-announce@yoctoproject.org" <yocto-announce@yoctoproject.org>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [ANNOUNCEMENT] Cedar Trail with PowerVR for Edison 6.0.1
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,49 +45,81 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 24 May 2012 00:35:50 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Thu, 24 May 2012 00:37:25 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-All,
+This should actually read as optional for compliance with the BSP Guide. I'=
+ve already asked Scott to work on an explicit list of "required" vs "option=
+al" items to conform with the guide to make this clearer.
 
-I'll be upgrading the autobuilder servers on Friday afternoon, US west
-coast time and conducting a test build of master and edison over the
-weekend to verify that everything is working correctly. This will not
-effect downloads, however the autobuilders will not be available for
-builds for about 24 hours while final testing is completed. This
-upgrade is mostly configuration related and has been delayed for some
-time now due to autobuilder lockout periods. This upgrade will be
-fixing the following bugs:
+The Intel silicon guys do this for their BSPs for a variety of reasons. I w=
+ouldn't necessarily expect anyone else to do this.
 
-2029 Add a core-image-rt DISTRO target
-2028 Add a poky-tiny DISTRO target
-1850 Add new nightly-misc target to test other combinations
-2191 i686-x86_64 toolchain is copied to the incorrect sharing directory
-
-This upgrade also will allow for the autobuilder software to be more
-flexible. The code has been cleaned up a bit more and some new
-features added. One of the things I've wanted to add for a while now
-is the ability to due pure OE-Core builds. The basic support for that
-is in this upgrade. Also, this upgrade handles BSP builds more
-smoothly than before, allowing us to utilize multiple bsp providers
-(meta-ti, meta-intel, meta-fsl for example) in creating bblayers.conf.
-And finally, this will also bring the production autobuilder entirely
-in line with the git tree, something that has been planned for some
-time. As the config file is now entirely controlled via the
-autobuilder.conf file, it allows us to have a single generic
-yoctoABConfig.py.
-
-Lastly, I'll be updating credentials on the server. If you have build
-permission on the server and have not sent me updated credentials,
-please do so before Friday, as all prior credentials will be revoked
-Friday afternoon.
-
-Thanks,
-
--b
-
--- 
-Elizabeth Flanagan
-Yocto Project
-Build and Release
+>From: yocto-bounces@yoctoproject.org [mailto:yocto-
+>bounces@yoctoproject.org] On Behalf Of Saxena, Rahul
+>Sent: Wednesday, May 23, 2012 1:47 PM
+>To: Wolfgang Denk; Flanagan, Elizabeth
+>Cc: yocto-announce@yoctoproject.org; yocto@yoctoproject.org
+>Subject: Re: [yocto] [ANNOUNCEMENT] Cedar Trail with PowerVR for Edison
+>6.0.1
+>
+>Please see section 1.4 of the bsp-guide
+>(http://www.yoctoproject.org/docs/latest/bsp-guide/bsp-guide.html)
+>including the following text:
+>
+>" Note
+>Pre-compiled images are bundled with a time-limited kernel that runs for a
+>predetermined amount of time (10 days) before it forces the system to
+>reboot. This limitation is meant to discourage direct redistribution of th=
+e
+>image. You must eventually rebuild the image if you want to remove this
+>restriction."
+>
+>
+>Thanks
+>Rahul
+>
+>
+>-----Original Message-----
+>From: yocto-bounces@yoctoproject.org [mailto:yocto-
+>bounces@yoctoproject.org] On Behalf Of Wolfgang Denk
+>Sent: Tuesday, May 22, 2012 10:45 PM
+>To: Flanagan, Elizabeth
+>Cc: yocto-announce@yoctoproject.org; yocto@yoctoproject.org
+>Subject: Re: [yocto] [ANNOUNCEMENT] Cedar Trail with PowerVR for Edison
+>6.0.1
+>
+>Dear Elizabeth,
+>
+>In message <CAPhnLPBb-qcMq-
+>MHwbxoiu9qXChaWJkvTgVavSR1goyh_8t55w@mail.gmail.com> you wrote:
+>>
+>> This release enables the BSP to use the latest available kernel
+>> patches for Intel's PowerVR graphics driver. The BSP image includes
+>> time limited kernel images for testing purposes.
+>
+>This is probaby a stupid question, so I apologize in advance:
+>
+>What is a time limited kernel image?
+>
+>Best regards,
+>
+>Wolfgang Denk
+>
+>--
+>DENX Software Engineering GmbH,     MD: Wolfgang Denk & Detlev Zundel
+>HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+>Phone: (+49)-8142-66989-10 Fax: (+49)-8142-66989-80 Email: wd@denx.de
+>You have the capacity to learn from  mistakes.  You'll  learn  a  lot toda=
+y.
+>_______________________________________________
+>yocto mailing list
+>yocto@yoctoproject.org
+>https://lists.yoctoproject.org/listinfo/yocto
+>_______________________________________________
+>yocto mailing list
+>yocto@yoctoproject.org
+>https://lists.yoctoproject.org/listinfo/yocto
 
