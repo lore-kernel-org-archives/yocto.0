@@ -1,19 +1,21 @@
 Return-Path: <tom.zanussi@intel.com>
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 96355E0137A
-	for <yocto@yoctoproject.org>; Fri, 25 May 2012 14:50:11 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B1AEDE01422
+	for <yocto@yoctoproject.org>; Fri, 25 May 2012 14:50:13 -0700 (PDT)
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 25 May 2012 14:50:11 -0700
+	by orsmga101.jf.intel.com with ESMTP; 25 May 2012 14:50:13 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="144781913"
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="144781930"
 Received: from unknown (HELO localhost) ([10.255.12.14])
-	by orsmga001.jf.intel.com with ESMTP; 25 May 2012 14:50:10 -0700
+	by orsmga001.jf.intel.com with ESMTP; 25 May 2012 14:50:13 -0700
 From: tom.zanussi@intel.com
 To: yocto@yoctoproject.org
-Date: Fri, 25 May 2012 16:50:43 -0500
-Message-Id: <cover.1337981713.git.tom.zanussi@intel.com>
+Date: Fri, 25 May 2012 16:50:26 -0500
+Message-Id: <a5a4b657ee72340fc000206e5f8208a8bfbdad1a.1337981719.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.0.4
-Subject: [PATCH 00/22] meta-intel: new chiefriver BSP and supporting recipes
+In-Reply-To: <cover.1337981713.git.tom.zanussi@intel.com>
+References: <cover.1337981713.git.tom.zanussi@intel.com>
+Subject: [PATCH 01/22] meta-chiefriver: new layer for Chief River (Ivy Bridge/Panther Point) systems
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -25,108 +27,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 25 May 2012 21:50:11 -0000
+X-List-Received-Date: Fri, 25 May 2012 21:50:13 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-This patchset implements a new BSP for the 'Chief River' platform, which
-consists of the Intel Ivy Bridge processor and Panther Point PCH.  It
-assumes that the Ivy Bridge integrated graphics are being used.
+This layer provides support for Ivy Bridge + Panther Point Intel systems.
 
-It also adds a few new recipes related to video acceleration which are
-modified versions of oe-core or yocto meta-demo recipes (ffmpeg,
-yasm-native, gstreamer-vaapi), along with tweaks needed to work with
-intel video acceleration components.
-
-There are also some new intel-specific video acceleration components
-(libva-1.0.15, intel-driver-1.0.15, va-intel) either needed for video
-acceleration on Intel platforms, or allowing for easier integration
-with the existing meta-intel BSPs.  These finally allow the chiefriver,
-sugarbay, and crownbay BSPs to share a common set of video components,
-and have been tested with all three.
-
-Finally, there's a new recipe for the Intel Local Manageability Service
-(LMS), which allows Intel BSPs to access the Intel Active Management
-Technology (AMT) firmware via the Intel Management Engine Interface (MEI),
-which is used by the Chief River BSP.
-
-v2: added rc6 kernel feature usage and added chiefriver to MAINTAINERS
-
-The following changes since commit a62c485edffed30ea95658760948fd50925adfb0:
-  Darren Hart (1):
-        linux-yocto_3.0: Update KMACHINE and KBRANCH to play nice with new kerntools
-
-are available in the git repository at:
-
-  git://git.yoctoproject.org/meta-intel.git tzanussi/chiefriver.v2
-  http://git.yoctoproject.org/cgit/cgit.cgi/meta-intel/log/?h=tzanussi/chiefriver.v2
-
-Tom Zanussi (22):
-  meta-chiefriver: new layer for Chief River (Ivy Bridge/Panther Point)
-    systems
-  meta-intel: add gstreamer-vaapi_git recipe
-  meta-intel: new libva-1.0.15 recipe
-  meta-intel: new intel-driver-1.0.15 recipe
-  ffmpeg: new recipe
-  ffmpeg: add --enable-vaapi
-  ffmpeg: add --enable-gpl
-  yasm: new recipe
-  ffmpeg: add --enable-yasm
-  gst-ffmpeg: add bbappend for external ffmpeg
-  gst-va-intel: add conditional vaapi implementation
-  va-intel: new package
-  gst-va-intel: clarify DESCRIPTION
-  meta-intel: remove video acceleration from emgd XSERVER
-  meta-chiefriver: use gst-va-intel and va-intel
-  meta-sugarbay: use gst-va-intel and va-intel
-  meta-crownbay: use gst-va-intel and va-intel and gst-va-mixvideo
-  lms: new recipe
-  meta-chiefriver: use lms
-  meta-chiefriver: use the mei kernel feature
-  meta-sugarbay: use rc6 kernel feature
-  meta-intel: add chiefriver BSP to MAINTAINERS
-
- MAINTAINERS                                        |    4 +
- .../amt/lms/atnetworktool-printf-fix.patch         |   14 +++
- common/recipes-bsp/amt/lms_7.1.20.bb               |   42 ++++++++
- common/recipes-multimedia/ffmpeg/ffmpeg.inc        |  108 ++++++++++++++++++++
- common/recipes-multimedia/ffmpeg/ffmpeg_0.7.12.bb  |   44 ++++++++
- .../gstreamer/gst-ffmpeg_0.10.13.bbappend          |    2 +
- .../recipes-multimedia/gstreamer/gst-va-intel.bb   |   15 +++-
- .../gstreamer/gstreamer-vaapi_git.bb               |   26 +++++
- .../libva/libva-intel-driver.inc                   |   24 +++++
- .../libva/libva-intel-driver_1.0.15.bb             |    8 ++
- common/recipes-multimedia/libva/libva_1.0.15.bb    |    8 ++
- common/recipes-multimedia/libva/va-intel.bb        |   20 ++++
- common/recipes-support/yasm/yasm_1.1.0.bb          |   17 +++
- conf/machine/include/ia32-base.inc                 |    4 -
+Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
+---
  meta-chiefriver/COPYING.MIT                        |   17 +++
- meta-chiefriver/README                             |  107 +++++++++++++++++++
+ meta-chiefriver/README                             |  107 ++++++++++++++++++++
  meta-chiefriver/README.sources                     |   17 +++
  meta-chiefriver/conf/layer.conf                    |   10 ++
- meta-chiefriver/conf/machine/chiefriver.conf       |   19 ++++
+ meta-chiefriver/conf/machine/chiefriver.conf       |   15 +++
  .../formfactor/formfactor/chiefriver/machconfig    |    3 +
  .../recipes-bsp/formfactor/formfactor_0.0.bbappend |    3 +
  .../tasks/task-core-tools-profile.bbappend         |    2 +
  .../xserver-xf86-config/chiefriver/xorg.conf       |   26 +++++
  .../xorg-xserver/xserver-xf86-config_0.1.bbappend  |    3 +
  .../linux/linux-yocto-rt_3.2.bbappend              |    8 ++
- .../recipes-kernel/linux/linux-yocto_3.2.bbappend  |   10 ++
- meta-crownbay/conf/machine/crownbay.conf           |    6 +-
- meta-sugarbay/conf/machine/sugarbay.conf           |    4 +
- .../recipes-kernel/linux/linux-yocto_3.2.bbappend  |    2 +
- 29 files changed, 567 insertions(+), 6 deletions(-)
- create mode 100644 common/recipes-bsp/amt/lms/atnetworktool-printf-fix.patch
- create mode 100644 common/recipes-bsp/amt/lms_7.1.20.bb
- create mode 100644 common/recipes-multimedia/ffmpeg/ffmpeg.inc
- create mode 100644 common/recipes-multimedia/ffmpeg/ffmpeg_0.7.12.bb
- create mode 100644 common/recipes-multimedia/gstreamer/gst-ffmpeg_0.10.13.bbappend
- create mode 100644 common/recipes-multimedia/gstreamer/gstreamer-vaapi_git.bb
- create mode 100644 common/recipes-multimedia/libva/libva-intel-driver.inc
- create mode 100644 common/recipes-multimedia/libva/libva-intel-driver_1.0.15.bb
- create mode 100644 common/recipes-multimedia/libva/libva_1.0.15.bb
- create mode 100644 common/recipes-multimedia/libva/va-intel.bb
- create mode 100644 common/recipes-support/yasm/yasm_1.1.0.bb
+ .../recipes-kernel/linux/linux-yocto_3.2.bbappend  |    8 ++
+ 12 files changed, 219 insertions(+), 0 deletions(-)
  create mode 100644 meta-chiefriver/COPYING.MIT
  create mode 100644 meta-chiefriver/README
  create mode 100644 meta-chiefriver/README.sources
@@ -139,5 +60,299 @@ Tom Zanussi (22):
  create mode 100644 meta-chiefriver/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend
  create mode 100644 meta-chiefriver/recipes-kernel/linux/linux-yocto-rt_3.2.bbappend
  create mode 100644 meta-chiefriver/recipes-kernel/linux/linux-yocto_3.2.bbappend
+
+diff --git a/meta-chiefriver/COPYING.MIT b/meta-chiefriver/COPYING.MIT
+new file mode 100644
+index 0000000..fb950dc
+--- /dev/null
++++ b/meta-chiefriver/COPYING.MIT
+@@ -0,0 +1,17 @@
++Permission is hereby granted, free of charge, to any person obtaining a copy 
++of this software and associated documentation files (the "Software"), to deal 
++in the Software without restriction, including without limitation the rights 
++to use, copy, modify, merge, publish, distribute, sublicense, and/or sell 
++copies of the Software, and to permit persons to whom the Software is 
++furnished to do so, subject to the following conditions:
++
++The above copyright notice and this permission notice shall be included in 
++all copies or substantial portions of the Software.
++
++THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
++IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
++FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE 
++AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
++LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, 
++OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN 
++THE SOFTWARE.
+diff --git a/meta-chiefriver/README b/meta-chiefriver/README
+new file mode 100644
+index 0000000..49e4461
+--- /dev/null
++++ b/meta-chiefriver/README
+@@ -0,0 +1,107 @@
++This README file contains information on building the meta-chiefriver
++BSP layer, and booting the images contained in the /binary directory.
++Please see the corresponding sections below for details.
++
++The 'Chief River' platform consists of the Intel Ivy Bridge processor,
++plus the Panther Point PCH.  This BSP assumes that the Ivy Bridge
++integrated graphics are being used.
++
++
++Dependencies
++============
++
++This layer depends on:
++
++  URI: git://git.openembedded.org/bitbake
++  branch: master
++
++  URI: git://git.openembedded.org/openembedded-core
++  layers: meta
++  branch: master
++
++  URI: git://git.yoctoproject.org/meta-intel
++  layers: intel
++  branch: master
++
++
++Table of Contents
++=================
++
++  I. Building the meta-chiefriver BSP layer
++ II. Booting the images in /binary
++
++
++I. Building the meta-chiefriver BSP layer
++=========================================
++
++In order to build an image with BSP support for a given release, you
++need to download the corresponding BSP tarball from the 'Board Support
++Package (BSP) Downloads' page of the Yocto Project website.
++
++Having done that, and assuming you extracted the BSP tarball contents
++at the top-level of your yocto build tree, you can build a chiefriver
++image by adding the location of the meta-chiefriver layer to
++bblayers.conf, along with the meta-intel layer itself (to access
++common metadata shared between BSPs) e.g.:
++
++  yocto/meta-intel \
++  yocto/meta-intel/meta-chiefriver \
++
++To enable the chiefriver layer, add the chiefriver MACHINE to local.conf:
++
++  MACHINE ?= "chiefriver"
++
++You should then be able to build a chiefriver image as such:
++
++  $ source oe-init-build-env
++  $ bitbake core-image-sato
++
++At the end of a successful build, you should have a live image that
++you can boot from a USB flash drive (see instructions on how to do
++that below, in the section 'Booting the images from /binary').
++
++As an alternative to downloading the BSP tarball, you can also work
++directly from the meta-intel git repository.  For each BSP in the
++'meta-intel' repository, there are multiple branches, one
++corresponding to each major release starting with 'laverne' (0.90), in
++addition to the latest code which tracks the current master (note that
++not all BSPs are present in every release).  Instead of extracting a
++BSP tarball at the top level of your yocto build tree, you can
++equivalently check out the appropriate branch from the meta-intel
++repository at the same location.
++
++
++II. Booting the images in /binary
++=================================
++
++This BSP contains bootable live images, which can be used to directly
++boot Yocto off of a USB flash drive.
++
++Under Linux, insert a USB flash drive.  Assuming the USB flash drive
++takes device /dev/sdf, use dd to copy the live image to it.  For
++example:
++
++# dd if=core-image-sato-chiefriver-20101207053738.hddimg of=/dev/sdf
++# sync
++# eject /dev/sdf
++
++This should give you a bootable USB flash device.  Insert the device
++into a bootable USB socket on the target, and power on.  This should
++result in a system booted to the Sato graphical desktop.
++
++If you want a terminal, use the arrows at the top of the UI to move to
++different pages of available applications, one of which is named
++'Terminal'.  Clicking that should give you a root terminal.
++
++If you want to ssh into the system, you can use the root terminal to
++ifconfig the IP address and use that to ssh in.  The root password is
++empty, so to log in type 'root' for the user name and hit 'Enter' at
++the Password prompt: and you should be in.
++
++----
++
++If you find you're getting corrupt images on the USB (it doesn't show
++the syslinux boot: prompt, or the boot: prompt contains strange
++characters), try doing this first:
++
++# dd if=/dev/zero of=/dev/sdf bs=1M count=512
+diff --git a/meta-chiefriver/README.sources b/meta-chiefriver/README.sources
+new file mode 100644
+index 0000000..76180f1
+--- /dev/null
++++ b/meta-chiefriver/README.sources
+@@ -0,0 +1,17 @@
++The sources for the packages comprising the images shipped with this
++BSP can be found at the following location:
++
++http://downloads.yoctoproject.org/mirror/sources/
++
++The metadata used to generate the images shipped with this BSP, in
++addition to the code contained in this BSP, can be found at the
++following location:
++
++http://www.yoctoproject.org/downloads/yocto-1.2/poky-denzil-7.0.tar.bz2
++
++The metadata used to generate the images shipped with this BSP, in
++addition to the code contained in this BSP, can also be found at the
++following locations:
++
++git://git.yoctoproject.org/poky.git
++git://git.yoctoproject.org/meta-intel
+diff --git a/meta-chiefriver/conf/layer.conf b/meta-chiefriver/conf/layer.conf
+new file mode 100644
+index 0000000..5dc3c02
+--- /dev/null
++++ b/meta-chiefriver/conf/layer.conf
+@@ -0,0 +1,10 @@
++# We have a conf and classes directory, add to BBPATH
++BBPATH := "${BBPATH}:${LAYERDIR}"
++
++# We have a recipes directory, add to BBFILES
++BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
++	${LAYERDIR}/recipes-*/*/*.bbappend"
++
++BBFILE_COLLECTIONS += "chiefriver"
++BBFILE_PATTERN_chiefriver := "^${LAYERDIR}/"
++BBFILE_PRIORITY_chiefriver = "6"
+diff --git a/meta-chiefriver/conf/machine/chiefriver.conf b/meta-chiefriver/conf/machine/chiefriver.conf
+new file mode 100644
+index 0000000..c9237f4
+--- /dev/null
++++ b/meta-chiefriver/conf/machine/chiefriver.conf
+@@ -0,0 +1,15 @@
++#@TYPE: Machine
++#@NAME: chiefriver
++
++#@DESCRIPTION: Machine configuration for Chief River systems
++# i.e. Ivy Bridge + Panther Point
++
++PREFERRED_VERSION_linux-yocto ?= "3.2%"
++
++require conf/machine/include/tune-x86_64.inc
++require conf/machine/include/ia32-base.inc
++
++XSERVER ?= "${XSERVER_IA32_BASE} \
++           ${XSERVER_IA32_EXT} \
++           ${XSERVER_IA32_I965} \
++           "
+diff --git a/meta-chiefriver/recipes-bsp/formfactor/formfactor/chiefriver/machconfig b/meta-chiefriver/recipes-bsp/formfactor/formfactor/chiefriver/machconfig
+new file mode 100644
+index 0000000..ffce012
+--- /dev/null
++++ b/meta-chiefriver/recipes-bsp/formfactor/formfactor/chiefriver/machconfig
+@@ -0,0 +1,3 @@
++# Assume a USB mouse and keyboard are connected
++HAVE_TOUCHSCREEN=0
++HAVE_KEYBOARD=1
+diff --git a/meta-chiefriver/recipes-bsp/formfactor/formfactor_0.0.bbappend b/meta-chiefriver/recipes-bsp/formfactor/formfactor_0.0.bbappend
+new file mode 100644
+index 0000000..54da0ff
+--- /dev/null
++++ b/meta-chiefriver/recipes-bsp/formfactor/formfactor_0.0.bbappend
+@@ -0,0 +1,3 @@
++FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
++ 
++PRINC = "1"
+diff --git a/meta-chiefriver/recipes-core/tasks/task-core-tools-profile.bbappend b/meta-chiefriver/recipes-core/tasks/task-core-tools-profile.bbappend
+new file mode 100644
+index 0000000..4631da3
+--- /dev/null
++++ b/meta-chiefriver/recipes-core/tasks/task-core-tools-profile.bbappend
+@@ -0,0 +1,2 @@
++RRECOMMENDS_task-core-tools-profile_append_chiefriver = " systemtap"
++
+diff --git a/meta-chiefriver/recipes-graphics/xorg-xserver/xserver-xf86-config/chiefriver/xorg.conf b/meta-chiefriver/recipes-graphics/xorg-xserver/xserver-xf86-config/chiefriver/xorg.conf
+new file mode 100644
+index 0000000..96b94b4
+--- /dev/null
++++ b/meta-chiefriver/recipes-graphics/xorg-xserver/xserver-xf86-config/chiefriver/xorg.conf
+@@ -0,0 +1,26 @@
++Section "Device"
++    Identifier	"Intel Graphics Driver"
++    Driver	"intel"
++EndSection
++
++Section "Monitor"
++    Identifier    "Generic Monitor"
++    Option        "DPMS"
++EndSection
++
++Section "Screen"
++    Identifier    "Default Screen"
++    Device	  "Intel Graphics Driver"
++    Monitor       "Generic Monitor"
++    DefaultDepth  24
++EndSection
++
++Section "ServerLayout"
++    Identifier     "Default Layout"
++    Screen         "Default Screen"
++EndSection
++
++Section "ServerFlags"
++    Option        "DontZap"  "0"
++    Option        "AutoAddDevices"  "False"
++EndSection
+diff --git a/meta-chiefriver/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend b/meta-chiefriver/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend
+new file mode 100644
+index 0000000..4b8d0e6
+--- /dev/null
++++ b/meta-chiefriver/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend
+@@ -0,0 +1,3 @@
++THISDIR := "${@os.path.dirname(bb.data.getVar('FILE', d, True))}"
++FILESPATH =. "${@base_set_filespath(["${THISDIR}/${PN}"], d)}:"
++
+diff --git a/meta-chiefriver/recipes-kernel/linux/linux-yocto-rt_3.2.bbappend b/meta-chiefriver/recipes-kernel/linux/linux-yocto-rt_3.2.bbappend
+new file mode 100644
+index 0000000..9e4a4a0
+--- /dev/null
++++ b/meta-chiefriver/recipes-kernel/linux/linux-yocto-rt_3.2.bbappend
+@@ -0,0 +1,8 @@
++FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
++COMPATIBLE_MACHINE_chiefriver = "chiefriver"
++KMACHINE_chiefriver  = "chiefriver"
++
++# Update the following to use a different BSP branch or meta SRCREV
++#KBRANCH_chiefriver  = "standard/preempt-rt/base"
++#SRCREV_machine_pn-linux-yocto-rt_chiefriver ?= XXXX
++#SRCREV_meta_pn-linux-yocto-rt_chiefriver ?= XXXX
+diff --git a/meta-chiefriver/recipes-kernel/linux/linux-yocto_3.2.bbappend b/meta-chiefriver/recipes-kernel/linux/linux-yocto_3.2.bbappend
+new file mode 100644
+index 0000000..0b707be
+--- /dev/null
++++ b/meta-chiefriver/recipes-kernel/linux/linux-yocto_3.2.bbappend
+@@ -0,0 +1,8 @@
++FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
++
++COMPATIBLE_MACHINE_chiefriver = "chiefriver"
++KMACHINE_chiefriver  = "chiefriver"
++KBRANCH_chiefriver  = "standard/default/common-pc-64/chiefriver"
++
++SRCREV_machine_pn-linux-yocto_chiefriver ?= "dbe820c277dfa6cbc249d410e8b083286ec484b7"
++SRCREV_meta_pn-linux-yocto_chiefriver ?= "353d43d340e87996b4be4c5f6ddb4447e050b65c"
+-- 
+1.7.0.4
 
 
