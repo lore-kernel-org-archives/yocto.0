@@ -1,23 +1,20 @@
-Return-Path: <kishore.k.bodke@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 03163E0137A
-	for <yocto@yoctoproject.org>; Fri, 25 May 2012 10:46:03 -0700 (PDT)
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 847E8E00746
+	for <yocto@yoctoproject.org>; Fri, 25 May 2012 13:59:40 -0700 (PDT)
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 25 May 2012 10:46:03 -0700
+	by orsmga101.jf.intel.com with ESMTP; 25 May 2012 13:59:39 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="144716851"
-Received: from kishore-desktop.sc.intel.com (HELO localhost)
-	([143.183.188.165])
-	by orsmga001.jf.intel.com with ESMTP; 25 May 2012 10:46:03 -0700
-From: kishore.k.bodke@intel.com
-To: yocto@yoctoproject.org,
-	bruce.ashfield@windriver.com
-Date: Fri, 25 May 2012 10:44:33 -0700
-Message-Id: <b020797ce6117f93030afd3c5db69732af25649f.1337967434.git.kishore.k.bodke@intel.com>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <cover.1337967434.git.kishore.k.bodke@intel.com>
-References: <cover.1337967434.git.kishore.k.bodke@intel.com>
-Subject: [PATCH 1/1] [KERNEL] meta: Add cedartrail kernel features
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="144768916"
+Received: from unknown (HELO localhost) ([10.255.12.14])
+	by orsmga001.jf.intel.com with ESMTP; 25 May 2012 13:59:39 -0700
+From: tom.zanussi@intel.com
+To: yocto@yoctoproject.org, kishore.k.bodke@intel.com, dvhart@linux.intel.com,
+	rahul.saxena@intel.com
+Date: Fri, 25 May 2012 16:00:12 -0500
+Message-Id: <cover.1337979215.git.tom.zanussi@intel.com>
+X-Mailer: git-send-email 1.7.0.4
+Subject: [PATCH 0/1] meta-intel: update README.sources for all BSPs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,29 +26,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 25 May 2012 17:46:04 -0000
+X-List-Received-Date: Fri, 25 May 2012 20:59:40 -0000
 
-From: Kishore Bodke <kishore.k.bodke@intel.com>
+From: Tom Zanussi <tom.zanussi@intel.com>
 
-Move Kernel Features out of the BSP
-and add to the Cedartrail Machine branch.
+I took the liberty of updating all the BSPs in meta-intel with the denzil
+sources URL.
 
-Signed-off-by: Kishore Bodke <kishore.k.bodke@intel.com>
----
- .../bsp/cedartrail/cedartrail-pvr-merge.scc        |    4 ++++
- 1 file changed, 4 insertions(+)
+To those on the To list: please let me know if you don't want this for
+your BSP(s).
 
-diff --git a/meta/cfg/kernel-cache/bsp/cedartrail/cedartrail-pvr-merge.scc b/meta/cfg/kernel-cache/bsp/cedartrail/cedartrail-pvr-merge.scc
-index f83c02b..98807fa 100644
---- a/meta/cfg/kernel-cache/bsp/cedartrail/cedartrail-pvr-merge.scc
-+++ b/meta/cfg/kernel-cache/bsp/cedartrail/cedartrail-pvr-merge.scc
-@@ -1 +1,5 @@
- git merge yocto/pvr
-+
-+include features/power/intel.scc
-+include cfg/smp.scc
-+include cfg/drm-cdvpvr.scc
--- 
-1.7.9.5
+The following changes since commit a62c485edffed30ea95658760948fd50925adfb0:
+  Darren Hart (1):
+        linux-yocto_3.0: Update KMACHINE and KBRANCH to play nice with new kerntools
+
+are available in the git repository at:
+
+  git://git.yoctoproject.org/meta-intel.git tzanussi/denzil-README.sources-update
+  http://git.yoctoproject.org/cgit/cgit.cgi/meta-intel/log/?h=tzanussi/denzil-README.sources-update
+
+Tom Zanussi (1):
+  meta-intel: update README.sources with denzil link
+
+ meta-cedartrail/README.sources   |    2 +-
+ meta-crownbay/README.sources     |    2 +-
+ meta-emenlow/README.sources      |    2 +-
+ meta-fishriver/README.sources    |    2 +-
+ meta-fri2/README.sources         |    2 +-
+ meta-jasperforest/README.sources |    2 +-
+ meta-n450/README.sources         |    2 +-
+ meta-romley/README.sources       |    2 +-
+ meta-sugarbay/README.sources     |    2 +-
+ meta-sys940x/README.sources      |    3 +--
+ 10 files changed, 10 insertions(+), 11 deletions(-)
 
 
