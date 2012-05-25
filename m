@@ -1,23 +1,23 @@
 Return-Path: <tom.zanussi@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5407CE01412
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B2F90E01412
 	for <yocto@yoctoproject.org>; Fri, 25 May 2012 14:50:44 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 25 May 2012 14:50:44 -0700
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 25 May 2012 14:50:44 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="147944702"
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="144782112"
 Received: from unknown (HELO localhost) ([10.255.12.14])
-	by azsmga001.ch.intel.com with ESMTP; 25 May 2012 14:50:43 -0700
+	by orsmga001.jf.intel.com with ESMTP; 25 May 2012 14:50:41 -0700
 From: tom.zanussi@intel.com
 To: yocto@yoctoproject.org
-Date: Fri, 25 May 2012 16:50:45 -0500
-Message-Id: <e929ac6571c32ceb1eb11c6116a696d1576f555d.1337981721.git.tom.zanussi@intel.com>
+Date: Fri, 25 May 2012 16:50:44 -0500
+Message-Id: <6746f4417a227d4084f151a94fd0ff826a2c9cbb.1337981721.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <a5a4b657ee72340fc000206e5f8208a8bfbdad1a.1337981719.git.tom.zanussi@intel.com>
 References: <a5a4b657ee72340fc000206e5f8208a8bfbdad1a.1337981719.git.tom.zanussi@intel.com>
 In-Reply-To: <cover.1337981713.git.tom.zanussi@intel.com>
 References: <cover.1337981713.git.tom.zanussi@intel.com>
-Subject: [PATCH 20/22] meta-chiefriver: use the mei kernel feature
+Subject: [PATCH 19/22] meta-chiefriver: use lms
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,27 +33,23 @@ X-List-Received-Date: Fri, 25 May 2012 21:50:44 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-Add AMT/mei support as a kernel feature here instead of in the
-linux-yocto metadata - mei support is currently a feature in staging,
-and not everyone might want a tainted kernel.
+Chiefriver needs lms support for AMT, add it.
 
 Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
 ---
- .../recipes-kernel/linux/linux-yocto_3.2.bbappend  |    2 ++
- 1 files changed, 2 insertions(+), 0 deletions(-)
+ meta-chiefriver/conf/machine/chiefriver.conf |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
 
-diff --git a/meta-chiefriver/recipes-kernel/linux/linux-yocto_3.2.bbappend b/meta-chiefriver/recipes-kernel/linux/linux-yocto_3.2.bbappend
-index 0b707be..083ddfb 100644
---- a/meta-chiefriver/recipes-kernel/linux/linux-yocto_3.2.bbappend
-+++ b/meta-chiefriver/recipes-kernel/linux/linux-yocto_3.2.bbappend
-@@ -4,5 +4,7 @@ COMPATIBLE_MACHINE_chiefriver = "chiefriver"
- KMACHINE_chiefriver  = "chiefriver"
- KBRANCH_chiefriver  = "standard/default/common-pc-64/chiefriver"
+diff --git a/meta-chiefriver/conf/machine/chiefriver.conf b/meta-chiefriver/conf/machine/chiefriver.conf
+index a78e4fd..4a35913 100644
+--- a/meta-chiefriver/conf/machine/chiefriver.conf
++++ b/meta-chiefriver/conf/machine/chiefriver.conf
+@@ -16,4 +16,4 @@ XSERVER ?= "${XSERVER_IA32_BASE} \
  
-+KERNEL_FEATURES_append_chiefriver = " features/amt/mei"
-+
- SRCREV_machine_pn-linux-yocto_chiefriver ?= "dbe820c277dfa6cbc249d410e8b083286ec484b7"
- SRCREV_meta_pn-linux-yocto_chiefriver ?= "353d43d340e87996b4be4c5f6ddb4447e050b65c"
+ VA_FEATURES ?= "gst-va-intel va-intel"
+ 
+-MACHINE_EXTRA_RRECOMMENDS += "${VA_FEATURES}"
++MACHINE_EXTRA_RRECOMMENDS += "${VA_FEATURES} lms"
 -- 
 1.7.0.4
 
