@@ -1,23 +1,23 @@
 Return-Path: <tom.zanussi@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 063E5E01412
-	for <yocto@yoctoproject.org>; Fri, 25 May 2012 14:50:32 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 25 May 2012 14:50:32 -0700
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 00256E01412
+	for <yocto@yoctoproject.org>; Fri, 25 May 2012 14:50:34 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 25 May 2012 14:50:34 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="171420253"
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="104438629"
 Received: from unknown (HELO localhost) ([10.255.12.14])
-	by fmsmga002.fm.intel.com with ESMTP; 25 May 2012 14:50:32 -0700
+	by AZSMGA002.ch.intel.com with ESMTP; 25 May 2012 14:50:34 -0700
 From: tom.zanussi@intel.com
 To: yocto@yoctoproject.org
-Date: Fri, 25 May 2012 16:50:38 -0500
-Message-Id: <83847b66d0bd96ff0daa5ea41548b43e7c5209bc.1337981721.git.tom.zanussi@intel.com>
+Date: Fri, 25 May 2012 16:50:39 -0500
+Message-Id: <babd331ef5dd69daae187368a065dcb3d5d6db40.1337981721.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <a5a4b657ee72340fc000206e5f8208a8bfbdad1a.1337981719.git.tom.zanussi@intel.com>
 References: <a5a4b657ee72340fc000206e5f8208a8bfbdad1a.1337981719.git.tom.zanussi@intel.com>
 In-Reply-To: <cover.1337981713.git.tom.zanussi@intel.com>
 References: <cover.1337981713.git.tom.zanussi@intel.com>
-Subject: [PATCH 13/22] gst-va-intel: clarify DESCRIPTION
+Subject: [PATCH 14/22] meta-intel: remove video acceleration from emgd XSERVER
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,27 +29,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 25 May 2012 21:50:33 -0000
+X-List-Received-Date: Fri, 25 May 2012 21:50:35 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-Modify the description to clarify that these are gstreamer addons.
+Video acceleration dependencies really don't belong in the XSERVER
+variable - remove them; we'll add them back later via va-intel.
 
 Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
 ---
- .../recipes-multimedia/gstreamer/gst-va-intel.bb   |    2 +-
- 1 files changed, 1 insertions(+), 1 deletions(-)
+ conf/machine/include/ia32-base.inc |    4 ----
+ 1 files changed, 0 insertions(+), 4 deletions(-)
 
-diff --git a/common/recipes-multimedia/gstreamer/gst-va-intel.bb b/common/recipes-multimedia/gstreamer/gst-va-intel.bb
-index 4f7fe9f..17cb7c8 100644
---- a/common/recipes-multimedia/gstreamer/gst-va-intel.bb
-+++ b/common/recipes-multimedia/gstreamer/gst-va-intel.bb
-@@ -1,4 +1,4 @@
--DESCRIPTION = "Video Acceleration Add-ons for Intel BSPs"
-+DESCRIPTION = "GStreamer Video Acceleration Add-ons for Intel BSPs"
- LICENSE = "MIT"
- DEPENDS = "gst-meta-base"
- LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=3f40d7994397109285ec7b81fdeb3b58 \
+diff --git a/conf/machine/include/ia32-base.inc b/conf/machine/include/ia32-base.inc
+index be1c8e0..99ac352 100644
+--- a/conf/machine/include/ia32-base.inc
++++ b/conf/machine/include/ia32-base.inc
+@@ -57,10 +57,6 @@ XSERVER_IA32_I965 = "xf86-video-intel \
+            "
+ 
+ XSERVER_IA32_EMGD = "emgd-driver-bin \
+-           libva-x11 \
+-           libva-tpi \
+-           libva-glx \
+-           libva-egl \
+            "
+ 
+ XSERVER_IA32_VESA = "xf86-video-vesa"
 -- 
 1.7.0.4
 
