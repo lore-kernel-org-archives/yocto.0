@@ -1,23 +1,23 @@
 Return-Path: <tom.zanussi@intel.com>
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 89A9BE01421
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A6A0FE01412
 	for <yocto@yoctoproject.org>; Fri, 25 May 2012 14:51:15 -0700 (PDT)
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
 	by fmsmga102.fm.intel.com with ESMTP; 25 May 2012 14:51:15 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="157376073"
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="157376075"
 Received: from unknown (HELO localhost) ([10.255.12.14])
-	by fmsmga001.fm.intel.com with ESMTP; 25 May 2012 14:50:29 -0700
+	by fmsmga001.fm.intel.com with ESMTP; 25 May 2012 14:50:31 -0700
 From: tom.zanussi@intel.com
 To: yocto@yoctoproject.org
-Date: Fri, 25 May 2012 16:50:36 -0500
-Message-Id: <6412e791187add0dc73f3b1d0df5a9dd0c871fff.1337981721.git.tom.zanussi@intel.com>
+Date: Fri, 25 May 2012 16:50:37 -0500
+Message-Id: <366449c86dbf663bd24da9727d9759ab24ea2c75.1337981721.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.0.4
 In-Reply-To: <a5a4b657ee72340fc000206e5f8208a8bfbdad1a.1337981719.git.tom.zanussi@intel.com>
 References: <a5a4b657ee72340fc000206e5f8208a8bfbdad1a.1337981719.git.tom.zanussi@intel.com>
 In-Reply-To: <cover.1337981713.git.tom.zanussi@intel.com>
 References: <cover.1337981713.git.tom.zanussi@intel.com>
-Subject: [PATCH 11/22] gst-va-intel: add conditional vaapi implementation
+Subject: [PATCH 12/22] va-intel: new package
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,57 +33,41 @@ X-List-Received-Date: Fri, 25 May 2012 21:51:15 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-Use different versions of vaapi interface implementaion depending on
-what a machine specifies.  The default if no MACHINE_FEATURE is
-specified is gstreamer-vaapi.  Other machines may need a different
-implementation e.g. a machine using emgd would specify
-'gst-va-mixvideo' in its MACHINE_FEATURES in order to have the
-implementation satisfied by emgd instead of gstreamer-vaapi, which
-this also implements.
+We need some libraries for video acceleration which depend on the
+video implementation being used e.g. vanilla intel vs emgd, so create
+a new 'va-intel' package group for them.
 
 Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
 ---
- .../recipes-multimedia/gstreamer/gst-va-intel.bb   |   13 +++++++++++++
- 1 files changed, 13 insertions(+), 0 deletions(-)
+ common/recipes-multimedia/libva/va-intel.bb |   20 ++++++++++++++++++++
+ 1 files changed, 20 insertions(+), 0 deletions(-)
+ create mode 100644 common/recipes-multimedia/libva/va-intel.bb
 
-diff --git a/common/recipes-multimedia/gstreamer/gst-va-intel.bb b/common/recipes-multimedia/gstreamer/gst-va-intel.bb
-index 31bde4e..4f7fe9f 100644
---- a/common/recipes-multimedia/gstreamer/gst-va-intel.bb
-+++ b/common/recipes-multimedia/gstreamer/gst-va-intel.bb
-@@ -6,10 +6,14 @@ LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=3f40d7994397109285ec7b81fdeb3
- 
- PR = "r0"
- 
-+VAAPI_IMPL = "${@base_contains('MACHINE_FEATURES', 'gst-va-mixvideo', 'gst-va-mixvideo-vaapi', \
-+             'gst-va-intel-vaapi', d)}"
+diff --git a/common/recipes-multimedia/libva/va-intel.bb b/common/recipes-multimedia/libva/va-intel.bb
+new file mode 100644
+index 0000000..3ce857a
+--- /dev/null
++++ b/common/recipes-multimedia/libva/va-intel.bb
+@@ -0,0 +1,20 @@
++DESCRIPTION = "Video Acceleration Add-ons for Intel BSPs"
++LICENSE = "MIT"
++LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=3f40d7994397109285ec7b81fdeb3b58 \
++                    file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
 +
- PACKAGES = "\
-     gst-va-intel \
-     gst-va-intel-general \
-     gst-va-intel-video \
-+    ${VAAPI_IMPL} \
-     "
- 
- ALLOW_EMPTY = "1"
-@@ -17,6 +21,7 @@ ALLOW_EMPTY = "1"
- RDEPENDS_gst-va-intel = "\
-     gst-va-intel-general \
-     gst-va-intel-video \
-+    ${VAAPI_IMPL} \
-     "
- 
- RDEPENDS_gst-va-intel-general = "\
-@@ -26,3 +31,11 @@ RDEPENDS_gst-va-intel-general = "\
- RDEPENDS_gst-va-intel-video = "\
-     gst-plugins-good-isomp4 \
-     "
++PR = "r0"
 +
-+RDEPENDS_gst-va-intel-vaapi = "\
-+    gstreamer-vaapi \
++VA_IMPL = "${@base_contains('MACHINE_FEATURES', 'gst-va-mixvideo', \
++          'libva libva-x11 libva-tpi libva-glx libva-egl', \
++          'libva libva-intel-driver', d)}"
++
++PACKAGES = "\
++    va-intel \
 +    "
 +
-+RDEPENDS_gst-va-mixvideo-vaapi = "\
-+    emgd-driver-bin \
++ALLOW_EMPTY = "1"
++
++RDEPENDS_va-intel = " \
++    ${VA_IMPL} \
 +    "
 -- 
 1.7.0.4
