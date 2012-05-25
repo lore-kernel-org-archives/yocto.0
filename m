@@ -1,42 +1,42 @@
 Return-Path: <darren@apps.dvhart.com>
-Received: from mail-pz0-f48.google.com (mail-pz0-f48.google.com
-	[209.85.210.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6D7A9E01439
-	for <yocto@yoctoproject.org>; Fri, 25 May 2012 15:21:14 -0700 (PDT)
-Received: by mail-pz0-f48.google.com with SMTP id z8so2389509dad.35
-	for <yocto@yoctoproject.org>; Fri, 25 May 2012 15:21:14 -0700 (PDT)
+Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
+	[209.85.160.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AB31EE01432
+	for <yocto@yoctoproject.org>; Fri, 25 May 2012 15:21:15 -0700 (PDT)
+Received: by mail-pb0-f48.google.com with SMTP id rq8so3054677pbb.35
+	for <yocto@yoctoproject.org>; Fri, 25 May 2012 15:21:15 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=google.com; s=20120113;
 	h=sender:from:to:subject:date:message-id:x-mailer:in-reply-to
 	:references:in-reply-to:references:x-gm-message-state;
-	bh=AzS7a5j32yW8nbbjdqTcVqGUtbEqtGwdhR2kv6fcHCI=;
-	b=HUwspnuDocH0Czo2/8ewCvA7f1t4ewPz2obJloAMehasOAHaeBH/Fbmm/I6tY/RGLS
-	5rA1KoYfHXAkXlQ5RhJhezqxz2kEqDGkZkweFDwEU7FfffTtvT+HD6kRCTIxr/61VVZH
-	cg4vNeVg1fm/f83gWYcloHVlvN8XBSwEu4p9SJqWS/q57y734UIa0w+bS6fd3Pr1MMWU
-	AU2+E6B5/jOrKm4cBKPn3q1ktcjZBx38PfqyEwGFdFEhZVl7nuOfBrOgGzKkWJRwTrAS
-	qTa949LfGkMYo87+HhYLLdzaBAMq7jd2bDwmSkNFR6xuc2qWsggOxOKPKXix6oToT2Hf
-	KOvg==
-Received: by 10.68.238.228 with SMTP id vn4mr1381760pbc.132.1337984474367;
-	Fri, 25 May 2012 15:21:14 -0700 (PDT)
+	bh=r0HcI1m6bCcdM2iQyvgJWdmC8lxyX2v26xSxT9G8aeY=;
+	b=SyKvblEK5FbVdXXHhuRm9i7dQGQSG1S+QiIcG+s59HAKkcjNGkRbuPv1gmNAfUJWiJ
+	PgwrwQnY3dou0I16oSpiVvnMVSgAkZ5Md3neqfW3PlBcpTvDcrVD5cEe9B4vw8/U/l5n
+	iGqZJ/fzDmbDkJvDyHXl/1gBZRCSM+sNGkBaZRA6LSB+8Nx1MPUXMF+Kj/dZj/a2NfP1
+	g12UIr3xQo/wi454BF6iaeVIshcBIQ6QvXcQOHE7M9kek8kYUNBxqNdT5XIMGqUA/kzL
+	r/8XKujaBEQf37X2MhJ5IoEzBEnWV7BT9gIlnZsZt6u8RLLngILYhdE07c2ALEiqrS8Q
+	IsZA==
+Received: by 10.68.235.102 with SMTP id ul6mr1314402pbc.152.1337984475629;
+	Fri, 25 May 2012 15:21:15 -0700 (PDT)
 Received: from localhost (static-50-53-99-101.bvtn.or.frontiernet.net.
 	[50.53.99.101])
-	by mx.google.com with ESMTPS id ve6sm10331399pbc.75.2012.05.25.15.21.13
+	by mx.google.com with ESMTPS id px4sm10344232pbb.53.2012.05.25.15.21.14
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Fri, 25 May 2012 15:21:13 -0700 (PDT)
+	Fri, 25 May 2012 15:21:15 -0700 (PDT)
 Sender: Darren Hart <darren@apps.dvhart.com>
 From: Darren Hart <dvhart@linux.intel.com>
 To: Yocto Project <yocto@yoctoproject.org>,
 	Bruce Ashfield <bruce.ashfield@windriver.com>,
 	Tom Zanussi <tom.zanussi@intel.com>
-Date: Fri, 25 May 2012 15:20:56 -0700
-Message-Id: <a54acdd57dc7eb5599fdc7326fbc7493b540d098.1337984389.git.dvhart@linux.intel.com>
+Date: Fri, 25 May 2012 15:20:57 -0700
+Message-Id: <1aabe375a76ec95e7309bd99c60383433924bc89.1337984389.git.dvhart@linux.intel.com>
 X-Mailer: git-send-email 1.7.5.4
 In-Reply-To: <cover.1337984389.git.dvhart@linux.intel.com>
 References: <cover.1337984389.git.dvhart@linux.intel.com>
 In-Reply-To: <cover.1337984389.git.dvhart@linux.intel.com>
 References: <cover.1337984389.git.dvhart@linux.intel.com>
-X-Gm-Message-State: ALoCoQmZVsNJjzSv8kEzE6D3xWOSTWPyItfqIIBiMcY4n+8v7aWzb01jXruN3/+PG78qr5jcn15u
-Subject: [PATCH 5/6] fri2: add usb-mass-storage to standard and preempt-rt
+X-Gm-Message-State: ALoCoQnmscwAgtYdt4APKMX8f7X9C9uffdb6rGxYdlBWPNHwpHJE0l7kIBcm3FxCsE0D7XiIt8xI
+Subject: [PATCH 6/6] fri2: update base config
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,41 +48,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 25 May 2012 22:21:14 -0000
+X-List-Received-Date: Fri, 25 May 2012 22:21:15 -0000
 
-The standard and preempt-rt kernels both support live boot and are expected to
-support general use cases. Include support for usb-mass-storage.
+Include the USB CDC_NCM driver as built-in. Comment out i2c features that are
+not yet ready for use.
 
 Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 ---
- meta/cfg/kernel-cache/bsp/fri2/fri2-preempt-rt.scc |    1 +
- meta/cfg/kernel-cache/bsp/fri2/fri2-standard.scc   |    1 +
- 2 files changed, 2 insertions(+), 0 deletions(-)
+ meta/cfg/kernel-cache/bsp/fri2/fri2.cfg |   18 ++++++++++--------
+ 1 files changed, 10 insertions(+), 8 deletions(-)
 
-diff --git a/meta/cfg/kernel-cache/bsp/fri2/fri2-preempt-rt.scc b/meta/cfg/kernel-cache/bsp/fri2/fri2-preempt-rt.scc
-index 2404a78..03f4bf0 100644
---- a/meta/cfg/kernel-cache/bsp/fri2/fri2-preempt-rt.scc
-+++ b/meta/cfg/kernel-cache/bsp/fri2/fri2-preempt-rt.scc
-@@ -8,6 +8,7 @@ include fri2.scc
- include cfg/efi-ext.scc
+diff --git a/meta/cfg/kernel-cache/bsp/fri2/fri2.cfg b/meta/cfg/kernel-cache/bsp/fri2/fri2.cfg
+index 751956d..586308e 100644
+--- a/meta/cfg/kernel-cache/bsp/fri2/fri2.cfg
++++ b/meta/cfg/kernel-cache/bsp/fri2/fri2.cfg
+@@ -34,16 +34,18 @@ CONFIG_PACKET=y
  
- # default policy for preempt-rt kernels
-+include cfg/usb-mass-storage.scc
- include cfg/boot-live.scc
- include features/logbuf/size-normal.scc
- include features/latencytop/latencytop.scc
-diff --git a/meta/cfg/kernel-cache/bsp/fri2/fri2-standard.scc b/meta/cfg/kernel-cache/bsp/fri2/fri2-standard.scc
-index ed92fa7..cbe5878 100644
---- a/meta/cfg/kernel-cache/bsp/fri2/fri2-standard.scc
-+++ b/meta/cfg/kernel-cache/bsp/fri2/fri2-standard.scc
-@@ -12,6 +12,7 @@ include fri2.scc
- include cfg/efi-ext.scc
+ # Enable FRI2 Specific Hardware
+ # Zigbee 802.15.4 Support
++CONFIG_USB_CDC_NCM=y
+ CONFIG_IEEE802154=y
+-# CONFIG_IEEE802154_6LOWPAN is not set
++CONFIG_IEEE802154_6LOWPAN=y
  
- # default policy for standard kernels
-+include cfg/usb-mass-storage.scc
- include cfg/boot-live.scc
- include features/logbuf/size-normal.scc
- include features/latencytop/latencytop.scc
+ # Bluetooth Support
+ CONFIG_BT=y
+ 
+-# I2C GPIO
+-CONFIG_GPIO_PCA953X=y
+-# I2C Accelerometer
+-CONFIG_MISC_DEVICES=y
+-CONFIG_I2C=y
+-CONFIG_INPUT=y
+-CONFIG_SENSORS_LIS3_I2C=y
++# FRI2 CPLD I2C bus and devices
++#CONFIG_I2C=y
++#CONFIG_I2C_BOARDINFO=y
++#CONFIG_I2C_CHARDEV=y
++#CONFIG_I2C_KEMPLD=y
++#CONFIG_GPIO_PCA953X=y
++#CONFIG_GPIO_PCA9555_FRI2=y
++#CONFIG_LIS331DLH=y
 -- 
 1.7.5.4
 
