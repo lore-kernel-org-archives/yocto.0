@@ -1,29 +1,21 @@
-Return-Path: <mihaix.lindner@linux.intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1F1E9E013EC
-	for <yocto@yoctoproject.org>; Thu, 24 May 2012 09:59:49 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 24 May 2012 09:59:48 -0700
+Return-Path: <kishore.k.bodke@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BB2EDE00746
+	for <yocto@yoctoproject.org>; Fri, 25 May 2012 10:46:02 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 25 May 2012 10:46:02 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="147394390"
-Received: from linux.jf.intel.com (HELO linux.intel.com) ([10.23.219.25])
-	by azsmga001.ch.intel.com with ESMTP; 24 May 2012 09:59:48 -0700
-Received: from moolinex.rb.intel.com (unknown [10.237.105.40])
-	by linux.intel.com (Postfix) with ESMTP id D8E3E2C8001
-	for <yocto@yoctoproject.org>; Thu, 24 May 2012 09:59:48 -0700 (PDT)
-Message-ID: <4FBE693C.7040506@linux.intel.com>
-Date: Thu, 24 May 2012 20:00:44 +0300
-From: Mihai Lindner <mihaix.lindner@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:12.0) Gecko/20120420 Thunderbird/12.0
-MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <4FBE4BD6.5060800@gmail.com>
-	<CABcZANmZ1k3vpJJxKKGNYG-bbZ-YH2bS5Fej6O5E=Fg5aRkitA@mail.gmail.com>
-	<4FBE5702.2090301@gmail.com>
-	<CABcZANnO3p7AfG1a4cm=PLZv74=-F_zm1Z6=9CTG9yLDw4fONg@mail.gmail.com>
-In-Reply-To: <CABcZANnO3p7AfG1a4cm=PLZv74=-F_zm1Z6=9CTG9yLDw4fONg@mail.gmail.com>
-Subject: Re: checking out branches: tracking vs. tags
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="104362663"
+Received: from kishore-desktop.sc.intel.com (HELO localhost)
+	([143.183.188.165])
+	by AZSMGA002.ch.intel.com with ESMTP; 25 May 2012 10:46:02 -0700
+From: kishore.k.bodke@intel.com
+To: yocto@yoctoproject.org,
+	bruce.ashfield@windriver.com
+Date: Fri, 25 May 2012 10:44:30 -0700
+Message-Id: <cover.1337967434.git.kishore.k.bodke@intel.com>
+X-Mailer: git-send-email 1.7.9.5
+Subject: [PATCH 0/1] [KERNEL] Cedartrail Add Kernel features
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,55 +27,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 24 May 2012 16:59:49 -0000
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 25 May 2012 17:46:02 -0000
 
-On 05/24/2012 07:32 PM, Chris Larson wrote:
-> On Thu, May 24, 2012 at 8:42 AM, jfabernathy<jfabernathy@gmail.com>  wrote:
->> On 05/24/2012 11:21 AM, Chris Larson wrote:
->>>
->>> On Thu, May 24, 2012 at 7:55 AM, jfabernathy<jfabernathy@gmail.com>
->>>   wrote:
->>>>
->>>> the Development Manual Appendix A
->>>>
->>>> (http://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html#dev-manual-bsp-appendix),
->>>> I see the statement:
->>>>
->>>>   $ git checkout denzil-7.0 -b denzil
->>>>
->>>>
->>>> What I think this does is create me a local branch that is fixed to what
->>>> was
->>>> committed when the denzil-7.0 tag was created and it will remain that way
->>>> and will not track the denzil branch as it gets updated.  Right????
->>>>
->>>> Now if I want to track the denzil branch as changes are committed, I
->>>> think I
->>>> do the following.
->>>>
->>>>   $ git checkout origin/denzil -b denzil
->>>>
->>>>
->>>> Now I can do git pull commands to get the updates that are committed.
->>>> Right??
->>>
->>> Your arguments are backwards. See git help checkout.
->>
->> I looked at git help and man git, but it is still unclear because if I do
->> the first one where I checkout using the tag, I cannot git pull at all; I
->> get an error, about not enough information to merge.  However, if I use the
->> name of the branch I can now do git pull when changes are committed to
->> denzil.  That's why I thought I understood it.  But who knows.
->
-> You're right, my mistake. Those commands are fine, and your
-> understanding is largely correct. I highly recommend reading Pro Git
-> for further information.
+From: Kishore Bodke <kishore.k.bodke@intel.com>
 
-If you checkout the tag you get the source as it was when the tag was made, without being able to pull, as there's nothing new to be pulled (in detached head state, that's why you get an error). You may see it as a snapshot of the repository.
-If you checkout the branch, you'll pull commits brought to that remote branch.
-Bye,
+Add Power Management and move kernel features to
+Cedartrail Machine branch.
+
+Please pull into linux-yocto-3.0/meta.
+
+Thanks
+Kishore.
+
+The following changes since commit 34e0d2b4b4e9778b31f9ea99ca43f0dc71a7ee23:
+
+  meta: Clean up BSPs kernel config (2012-04-17 16:01:19 -0400)
+
+are available in the git repository at:
+
+  git://git.pokylinux.org/linux-yocto-2.6.37-contrib kishore/cedartrail
+  http://git.pokylinux.org/cgit.cgi/linux-yocto-2.6.37-contrib/log/?h=kishore/cedartrail
+
+Kishore Bodke (1):
+  meta: Add cedartrail kernel features
+
+ .../bsp/cedartrail/cedartrail-pvr-merge.scc        |    4 ++++
+ 1 file changed, 4 insertions(+)
+
 -- 
-Mihai Lindner
+1.7.9.5
+
 
