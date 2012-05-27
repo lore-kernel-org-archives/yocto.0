@@ -1,31 +1,32 @@
-Return-Path: <jiajun.xu@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 43965E0070C
-	for <yocto@yoctoproject.org>; Sun, 27 May 2012 06:37:54 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga101.ch.intel.com with ESMTP; 27 May 2012 06:37:53 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="104777852"
-Received: from azsmsx601.amr.corp.intel.com ([10.2.121.193])
-	by AZSMGA002.ch.intel.com with ESMTP; 27 May 2012 06:37:53 -0700
-Received: from shsmsx102.ccr.corp.intel.com (10.239.4.154) by
-	azsmsx601.amr.corp.intel.com (10.2.121.193) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Sun, 27 May 2012 06:37:52 -0700
-Received: from shsmsx101.ccr.corp.intel.com ([169.254.1.94]) by
-	SHSMSX102.ccr.corp.intel.com ([169.254.2.133]) with mapi id
-	14.01.0355.002; Sun, 27 May 2012 21:37:51 +0800
-From: "Xu, Jiajun" <jiajun.xu@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Yocto weekly bug trend charts -- WW21
-Thread-Index: Ac08DelHBn/rFlssQ4uTHsl0ulj7iw==
-Date: Sun, 27 May 2012 13:37:51 +0000
-Message-ID: <90741FE9B50D654690EB940EDB456C8E1292E3@SHSMSX101.ccr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.239.127.40]
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from orsmga101.jf.intel.com (mga06.intel.com [134.134.136.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 284A3E013A6
+	for <yocto@yoctoproject.org>; Sun, 27 May 2012 10:13:32 -0700 (PDT)
+Received: from mail-lb0-f180.google.com ([209.85.217.180])
+	by mga02.intel.com with ESMTP/TLS/RC4-SHA; 27 May 2012 10:13:31 -0700
+Received: by lbbgh12 with SMTP id gh12so1329092lbb.25
+	for <yocto@yoctoproject.org>; Sun, 27 May 2012 10:13:10 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type
+	:x-gm-message-state;
+	bh=xKJDxn+TfKJa2whAn/UzMUljHcjDAffPmeuJDDSYhHE=;
+	b=P/+kVdquIlkMR71SRUfV6hcMoYDP04D/Qb/Yk+negZMccpzGwnrHm+hPSFL3Z+JcYm
+	qo874RK5avLQLI8lBLUZ0nmL5VrgX4yaF+h44PtBjOl997/Xce9scj3+VYHjeklNqZHk
+	LC/CnKsfH86NllKc4lSlBmdEIHCjX/jEgO5x5GS7OJl0eD+z+jgtWOEwLUuAvbNmkqP5
+	O+CXcClTEjQepMcna22sCML6/akn8Y7VGA/+CxxgVK3BQLTO5koQQJh0fHLSQqyiE2sR
+	rMX9kJ1KBl41ivvkcGMQthRrdF2Ww212yKJYW+CG7eUx4/Zfhg4lCn0Zw9Dsi/uhCPP2
+	lvPQ==
 MIME-Version: 1.0
-Subject: Yocto weekly bug trend charts -- WW21
+Received: by 10.112.37.71 with SMTP id w7mr2521822lbj.2.1338138790043; Sun, 27
+	May 2012 10:13:10 -0700 (PDT)
+Received: by 10.112.1.227 with HTTP; Sun, 27 May 2012 10:13:10 -0700 (PDT)
+Date: Sun, 27 May 2012 10:13:10 -0700
+Message-ID: <CAPhnLPD8vLUe6NWJ4rSLc=EkNT3XjpDwUuMfgMEERA5wEaz_Kg@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: yocto@yoctoproject.org
+X-Gm-Message-State: ALoCoQm78mZ8l+7E28W8LK083nT8mLFKpAQwF2HcDN4vTEl34bspih2RHkQj/4I91kbYS/FsPufO
+Subject: Autobuilder test status.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,18 +38,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 27 May 2012 13:37:54 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Sun, 27 May 2012 17:13:32 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-Hi all,
-	This is the weekly bug trend for WW21. The new submitted vs. fixed bug num=
-ber is 31 vs. 23. WDD number and Open Bug number increased a lot, as 993 an=
-d 202. Bug status of WW21 could be found on https://wiki.yoctoproject.org/w=
-iki/Yocto_Bug_Trend.
+The autobuilder tests have almost completed and the autobuilder is
+back on line with the exception of meta-intel builds. Those builders
+will be online on Tuesday.
 
-Best Regards,
-Jiajun
+I have one final test of master running to determine the base time
+needed to rebuild off of the same git revision. Once that build is
+finished I'll turn the build failure emails back on.
 
+Please be aware that prior credentials have changed during the
+upgrade. If you had the ability to run builds on the ab and no longer
+have that ability, please contact me off list.
+
+-- 
+Elizabeth Flanagan
+Yocto Project
+Build and Release
 
