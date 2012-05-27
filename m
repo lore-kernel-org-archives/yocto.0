@@ -1,33 +1,20 @@
-Return-Path: <rstreif@linuxfoundation.org>
-Received: from mail-bk0-f48.google.com (mail-bk0-f48.google.com
-	[209.85.214.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1419EE00746
-	for <yocto@yoctoproject.org>; Fri, 25 May 2012 15:52:56 -0700 (PDT)
-Received: by bkcjf20 with SMTP id jf20so1718076bkc.35
-	for <yocto@yoctoproject.org>; Fri, 25 May 2012 15:52:56 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:sender:date:x-google-sender-auth:message-id:subject
-	:from:to:content-type:x-gm-message-state;
-	bh=ZKcLJpnkWzoMaYTe3UITHHAY4G/1ScMw9+GtcE6Seug=;
-	b=AeD3TAphUwr1sRj2YQWs8dM+gVf44J2J+YuHChdiMrDaMp4K+40YDZvtEbOfpQ0z5S
-	B4vhdkXkAJWBpKeGDLChIelcbXbVMrQK/2xwIHHnCHUQUPFlOnNLSt9Cq6QuqVctJ1gR
-	HDbSQ+QLL4F7pIeNwci//L7uj66uxt5zbMC60HeGBSQ/5NYvj5uya0fSrJvq0WQBMR2l
-	fQ5IyJMR030/QKaQujsj7WVzZaQ7Qu6ATSkhvRbDBo2XB6J5FFoKmrTXZz6cyPPxAf4B
-	1COKQiDz9uqdGBxtH283ezCI1wSsLY4881zDMEsYjkf6AKRY0Y7c78TaUDWLw2i7CuPL
-	/NEA==
+Return-Path: <kgy@teledigit.eu>
+Received: from teledigit.eu (teledigit.eu [195.56.148.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CA3D6E006DA
+	for <yocto@yoctoproject.org>; Sun, 27 May 2012 04:38:05 -0700 (PDT)
+X-AuthUser: kgy@teledigit.eu
+Received: from linux-8cfk.localnet ([188.36.52.128]:60776)
+	by teledigit.eu with [XMail 1.27 ESMTP Server]
+	id <S806F> for <yocto@yoctoproject.org> from <kgy@teledigit.eu>;
+	Sun, 27 May 2012 14:34:27 +0200
+From: =?ISO-8859-1?Q?K=F6vesdi_Gy=F6rgy?= <kgy@teledigit.eu>
+To: Yocto Project Discussion <yocto@yoctoproject.org>
+Date: Sun, 27 May 2012 13:41:15 +0200
+Message-ID: <1886451.M9Ys9y8xhR@linux-8cfk>
+Organization: NNG
+User-Agent: KMail/4.7.2 (Linux/3.1.9-1.4-desktop; KDE/4.7.2; i686; ; )
 MIME-Version: 1.0
-Received: by 10.204.152.196 with SMTP id h4mr214416bkw.131.1337986375848; Fri,
-	25 May 2012 15:52:55 -0700 (PDT)
-Sender: rstreif@linuxfoundation.org
-Received: by 10.205.65.134 with HTTP; Fri, 25 May 2012 15:52:55 -0700 (PDT)
-Date: Fri, 25 May 2012 15:52:55 -0700
-X-Google-Sender-Auth: RLcOOOrELb9D3Jk4CdU65zZ0n20
-Message-ID: <CA+gsK-qXd1De=kyWbkXXO_9M7VruxNT+DLvpH9ZykPdLE4v1pw@mail.gmail.com>
-From: Rudolf Streif <rudolf.streif@linux.com>
-To: yocto@yoctoproject.org
-X-Gm-Message-State: ALoCoQmTrwb+TC+I3BHbOOVqMdfzmfHy71ciJDOdHA4IUbyrYoTtCj486brdVvZGMgV9Sp97Rt1U
-Subject: Building linux-yocto kernel for BeagleBone
+Subject: help building my own recipes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,27 +26,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 25 May 2012 22:52:57 -0000
-Content-Type: multipart/alternative; boundary=0015175cbab2a594d104c0e43ab2
+X-List-Received-Date: Sun, 27 May 2012 11:38:06 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
---0015175cbab2a594d104c0e43ab2
-Content-Type: text/plain; charset=ISO-8859-1
+Hi,
 
-Has anyone tried to build a linux-yocto kernel for the BeagleBone? I
-understand that there is the meta-ti layer to build an image for the BBone
-but the recipes are not utilizing the Yocto Project kernels.
+I have a Beagleboard-C4, and have successfully built some default images.
 
-I know that the OMAP3 CPU of the BBoard is different form the AM355x CPU on
-the BBone. However, can the yocto/standard/beagleboard branch be leveraged
-to start off?
+I started to collect receipes for my own build, following their dependencies.
+At a point, i got the following error message:
 
-Thanks,
-Rudi
+ERROR: Failure expanding variable FILESPATH, expression was ${@base_set_filespath([ "/home/kgy/work/Yoctoproject/Poky/meta-kgy/yocto/recipes-ti/codec-engine/ti-codecs-omap3530-4_00_00_00-${MACHINE_KERNEL_PR}a", "/home/kgy/work/Yoctoproject/Poky/meta-kgy/yocto/recipes-ti/codec-engine/ti-codecs-omap3530-4_00_00_00", "/home/kgy/work/Yoctoproject/Poky/meta-kgy/yocto/recipes-ti/codec-engine/ti-codecs-omap3530", "/home/kgy/work/Yoctoproject/Poky/meta-kgy/yocto/recipes-ti/codec-engine/ti-codecs-omap3530-4_00_00_00", "/home/kgy/work/Yoctoproject/Poky/meta-kgy/yocto/recipes-ti/codec-engine/ti-codecs-omap3530", "/home/kgy/work/Yoctoproject/Poky/meta-kgy/yocto/recipes-ti/codec-engine/files", "/home/kgy/work/Yoctoproject/Poky/meta-kgy/yocto/recipes-ti/codec-engine" ], d)} which triggered exception SyntaxError: EOL while scanning string literal (FILESPATH, line 1)
+ERROR: Command execution failed: Exited with 1
+Summary: There were 2 ERROR messages shown, returning a non-zero exit code.
 
---0015175cbab2a594d104c0e43ab2
-Content-Type: text/html; charset=ISO-8859-1
+According to the answers i found in mail archives, a variable setting is missing, but i cannot
+determine which. It happened when 'meta-ti' was added.
+How can i determine what is missing?
 
-Has anyone tried to build a linux-yocto kernel for the BeagleBone? I understand that there is the meta-ti layer to build an image for the BBone but the recipes are not utilizing the Yocto Project kernels.<div><br></div><div>
-I know that the OMAP3 CPU of the BBoard is different form the AM355x CPU on the BBone. However, can the yocto/standard/beagleboard branch be leveraged to start off?</div><div><br></div><div>Thanks,</div><div>Rudi</div>
+Thanx
+Gyorgy Kovesdi
 
---0015175cbab2a594d104c0e43ab2--
+
