@@ -1,35 +1,24 @@
-Return-Path: <lianhao.lu@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B7061E01425
-	for <yocto@yoctoproject.org>; Sun, 27 May 2012 22:59:17 -0700 (PDT)
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 592DDE01426
+	for <yocto@yoctoproject.org>; Mon, 28 May 2012 06:12:49 -0700 (PDT)
 Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga101.ch.intel.com with ESMTP; 27 May 2012 22:59:17 -0700
+	by azsmga102.ch.intel.com with ESMTP; 28 May 2012 06:12:48 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="104933686"
-Received: from azsmsx601.amr.corp.intel.com ([10.2.121.193])
-	by AZSMGA002.ch.intel.com with ESMTP; 27 May 2012 22:59:16 -0700
-Received: from shsmsx101.ccr.corp.intel.com (10.239.4.153) by
-	azsmsx601.amr.corp.intel.com (10.2.121.193) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Sun, 27 May 2012 22:59:14 -0700
-Received: from shsmsx102.ccr.corp.intel.com ([169.254.2.133]) by
-	SHSMSX101.ccr.corp.intel.com ([169.254.1.94]) with mapi id
-	14.01.0355.002; Mon, 28 May 2012 13:59:12 +0800
-From: "Lu, Lianhao" <lianhao.lu@intel.com>
-To: Navani Srivastava <navani.srivastava@gmail.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] Broken SDK
-Thread-Index: AQHNPJOfd91Qw09DEUyod8uKtPkDm5bes19Q
-Date: Mon, 28 May 2012 05:59:11 +0000
-Message-ID: <857BE142E5399E46B20FD45B9DB8A7BC0FDCB920@SHSMSX102.ccr.corp.intel.com>
-References: <CA+Z6RkU-GBXYHygXhY8UQkxe-5vQSvj-4xqSHuueN=VnN126qA@mail.gmail.com>
-In-Reply-To: <CA+Z6RkU-GBXYHygXhY8UQkxe-5vQSvj-4xqSHuueN=VnN126qA@mail.gmail.com>
-Accept-Language: zh-CN, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.239.127.40]
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="105049833"
+Received: from unknown (HELO helios.localnet) ([10.252.120.22])
+	by AZSMGA002.ch.intel.com with ESMTP; 28 May 2012 06:12:47 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: giovanni.pavoni@exorint.it
+Date: Mon, 28 May 2012 14:12:46 +0100
+Message-ID: <2460439.PjbaxxI4Ls@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.8.2 (Linux/3.2.0-24-generic-pae; KDE/4.8.2; i686; ; )
+In-Reply-To: <OFE026F14C.CD47DB28-ONC1257A08.00323D36-C1257A08.00325870@Sitek.it>
+References: <OFE026F14C.CD47DB28-ONC1257A08.00323D36-C1257A08.00325870@Sitek.it>
 MIME-Version: 1.0
-Cc: "navani.srivastava@lnties.com" <navani.srivastava@lnties.com>
-Subject: Re: Broken SDK
+Cc: yocto@yoctoproject.org
+Subject: Re: Help in building an ad-hoc qte image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,32 +30,103 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 28 May 2012 05:59:17 -0000
-Content-Language: en-US
+X-List-Received-Date: Mon, 28 May 2012 13:12:49 -0000
+Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
 
-Navani Srivastava wrote on 2012-05-28:
-> Hi,
->=20
->=20
->=20
-> I am working with poky-bernerd-5.0. I have built cross-toolchain for qt w=
-ith "bitbake -v meta-toolchain-qte" for arm1136 architecture.
->=20
-> I got the tool chain "poky-eglibc-i686-arm-toolchain-1.0.tar.bz2" under b=
-uild/tmp/deploy/sdk/ directory. On untaring this Toolchain I found
-> that cross gcc wasn't included in the SDK. Can anyone please help me in r=
-ecognizing the problem?
->=20
+Hi Giovanni,
 
-I think the meta-toolchain-qte was not workable in benard. You might need t=
-o cherry-pick other patches for the recipe meta-toolchian-qte.
+On Thursday 24 May 2012 11:09:54 giovanni.pavoni@exorint.it wrote:
+> this is to ask for help in building an ad-hoc qte image. My image bb sets
+> as DEPENDS a custom "task-qt4e-xyz" task. Where task-qt4e-xyz.bb looks as 
+> follow:
+> 
+> //---------------------//
+> 
+> DESCRIPTION = "QT4 embedded xyz base image feed"
+> PR = "r1"
+> LICENSE = "MIT"
+> 
+> LIC_FILES_CHKSUM = "file://$
+> {COREBASE}/LICENSE;md5=3f40d7994397109285ec7b81fdeb3b58 \
+>                     file://$
+> {COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
+> 
+> PR = "r3"
+> 
+> inherit task
+> 
+> TOUCH = ' ${@base_contains("MACHINE_FEATURES", "touchscreen", "tslib 
+> tslib-calibrate", "",d)}'
+> 
+> PACKAGES += " \
+>         ${PN}-base \
+>         "
+> DEPENDS = "qt4-embedded"
+> 
+> RDEPENDS_${PN}-base = " \
+>         qt4-embedded-conf \
+>         libqt-embeddedcore4 \
+>         libqt-embeddeddbus4 \
+>         libqt-embeddedgui4 \
+>         libqt-embeddedmultimedia4 \
+>         libqt-embeddednetwork4 \
+>         libqt-embeddedscript4 \
+>         libqt-embeddedscripttools4 \
+>         libqt-embeddedsvg4 \
+>         libqt-embeddedxml4 \
+>         qt4-embedded-fonts-ttf-dejavu \
+>         qt4-embedded-fonts-ttf-vera \
+>         qt4-embedded-plugin-iconengine-svgicon \
+>         qt4-embedded-plugin-imageformat-gif \
+>         qt4-embedded-plugin-imageformat-ico \
+>         qt4-embedded-plugin-imageformat-jpeg \
+>         qt4-embedded-plugin-imageformat-mng \
+>         qt4-embedded-plugin-imageformat-svg \
+>         qt4-embedded-plugin-imageformat-tiff \
+>         qt4-embedded-plugin-mousedriver-tslib \
+>         qt4-embedded-plugin-script-dbus \
+>         ${TOUCH} \
+>         "
+>  
+> RDEPENDS_${PN}-base_ANOTHERBOARD  = " \
+>         libqt-embeddedphonon4 \
+>         qt4-embedded-plugin-phonon-backend-gstreamer \
+>         "
+>  
+> RRECOMMENDS_${PN}-base = " \
+>         libqt-embeddedwebkit4 \
+>         libqt-embeddedxmlpatterns4 \
+>         "
+> //---------------------//
+> 
+> The problem: I am getting in my image gstreamer contents (see below for 
+> files in my rootfs)
+> but I unable to trace what gets it in. I need to build gstreamer to add to 
+> ANOTHERBOARD
+> (thus would expect to add it to RDEPENDS_${PN}-base_ANOTHERBOARD) but do 
+> not need it by default.
 
-http://git.yoctoproject.org/cgit/cgit.cgi/poky/log/meta/recipes-qt/meta/met=
-a-toolchain-qte.bb=20
+If I understand correctly in that you have more than one machine and you need 
+gstreamer on ANOTHERBOARD and all other machines don't need it, I think the 
+problem here may be that the task package is not being built as machine-
+specific; thus if task-qt4e-xyz is built for ANOTHERBOARD first then it will 
+bring in qt4-embedded-plugin-phonon-backend-gstreamer which pulls in 
+gstreamer. You may find that the problem goes away if you add this to the task 
+recipe:
 
-Best Regards,
-Lianhao
+PACKAGE_ARCH = "${MACHINE_ARCH}"
 
+It's worth noting however that you don't have to add qt4-embedded-plugin-
+phonon-backend-gstreamer here at all in order to have it built - the qt4 
+recipes always build it; so if you were adding it here just to make it build 
+and you don't need it installed by default, none of this is necessary at all.
+
+Cheers,
+Paul
+
+-- 
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
