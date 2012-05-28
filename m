@@ -1,29 +1,35 @@
-Return-Path: <navani.srivastava@gmail.com>
-Received: from mail-bk0-f48.google.com (mail-bk0-f48.google.com
-	[209.85.214.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 61D09E01428
-	for <yocto@yoctoproject.org>; Sun, 27 May 2012 22:34:47 -0700 (PDT)
-Received: by bkcjf20 with SMTP id jf20so2987227bkc.35
-	for <yocto@yoctoproject.org>; Sun, 27 May 2012 22:34:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:from:date:message-id:subject:to:cc:content-type;
-	bh=oVqMGJ7KvnMcdVb88UjQpUh49LhTAQlO8eTKr2rSO6E=;
-	b=BhVbJ+gUrPZiy/a7LDVIlk6UDUcjQRByuxKNY1fb10M0TXOdRCy04+6KD/IjGF36zq
-	RNe8MnvGqsB/WRf/GIF4+HlSvLHJVA5CeZTQR1LQ9EHKRNeftQ8gF8m8x4rWKRYLY7KJ
-	FHeF1IhotTT8Lt0HpGzy1/WZrAS3JOdliNHN1ehGoxXV8ZqLx3Og/mYxh7FY8t6R1lzv
-	ZPLuixJ5ZgmyHgJYpR5MdpG3DmGSsI7H8z+kzH7HWd+/wHJYdaokIM4NLnzaVxkASsVb
-	LfBT3h5ZwRcuBjHwkZNRRo9ByXpsuc4lDm6Ct5qNZFI1/h0EBwPWV0vCcKVV4XNGdVLD
-	Uk4w==
-Received: by 10.204.151.81 with SMTP id b17mr2850509bkw.52.1338183286159; Sun,
-	27 May 2012 22:34:46 -0700 (PDT)
+Return-Path: <lianhao.lu@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B7061E01425
+	for <yocto@yoctoproject.org>; Sun, 27 May 2012 22:59:17 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga101.ch.intel.com with ESMTP; 27 May 2012 22:59:17 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="104933686"
+Received: from azsmsx601.amr.corp.intel.com ([10.2.121.193])
+	by AZSMGA002.ch.intel.com with ESMTP; 27 May 2012 22:59:16 -0700
+Received: from shsmsx101.ccr.corp.intel.com (10.239.4.153) by
+	azsmsx601.amr.corp.intel.com (10.2.121.193) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Sun, 27 May 2012 22:59:14 -0700
+Received: from shsmsx102.ccr.corp.intel.com ([169.254.2.133]) by
+	SHSMSX101.ccr.corp.intel.com ([169.254.1.94]) with mapi id
+	14.01.0355.002; Mon, 28 May 2012 13:59:12 +0800
+From: "Lu, Lianhao" <lianhao.lu@intel.com>
+To: Navani Srivastava <navani.srivastava@gmail.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] Broken SDK
+Thread-Index: AQHNPJOfd91Qw09DEUyod8uKtPkDm5bes19Q
+Date: Mon, 28 May 2012 05:59:11 +0000
+Message-ID: <857BE142E5399E46B20FD45B9DB8A7BC0FDCB920@SHSMSX102.ccr.corp.intel.com>
+References: <CA+Z6RkU-GBXYHygXhY8UQkxe-5vQSvj-4xqSHuueN=VnN126qA@mail.gmail.com>
+In-Reply-To: <CA+Z6RkU-GBXYHygXhY8UQkxe-5vQSvj-4xqSHuueN=VnN126qA@mail.gmail.com>
+Accept-Language: zh-CN, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.239.127.40]
 MIME-Version: 1.0
-Received: by 10.204.232.209 with HTTP; Sun, 27 May 2012 22:34:25 -0700 (PDT)
-From: Navani Srivastava <navani.srivastava@gmail.com>
-Date: Mon, 28 May 2012 11:04:25 +0530
-Message-ID: <CA+Z6RkU-GBXYHygXhY8UQkxe-5vQSvj-4xqSHuueN=VnN126qA@mail.gmail.com>
-To: yocto@yoctoproject.org
-Cc: navani.srivastava@lnties.com
-Subject: Broken SDK
+Cc: "navani.srivastava@lnties.com" <navani.srivastava@lnties.com>
+Subject: Re: Broken SDK
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,54 +41,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 28 May 2012 05:34:47 -0000
-Content-Type: multipart/alternative; boundary=0015175cabae6a77fb04c11213bc
-
---0015175cabae6a77fb04c11213bc
-Content-Type: text/plain; charset=windows-1252
+X-List-Received-Date: Mon, 28 May 2012 05:59:17 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+Navani Srivastava wrote on 2012-05-28:
+> Hi,
+>=20
+>=20
+>=20
+> I am working with poky-bernerd-5.0. I have built cross-toolchain for qt w=
+ith "bitbake -v meta-toolchain-qte" for arm1136 architecture.
+>=20
+> I got the tool chain "poky-eglibc-i686-arm-toolchain-1.0.tar.bz2" under b=
+uild/tmp/deploy/sdk/ directory. On untaring this Toolchain I found
+> that cross gcc wasn't included in the SDK. Can anyone please help me in r=
+ecognizing the problem?
+>=20
+
+I think the meta-toolchain-qte was not workable in benard. You might need t=
+o cherry-pick other patches for the recipe meta-toolchian-qte.
+
+http://git.yoctoproject.org/cgit/cgit.cgi/poky/log/meta/recipes-qt/meta/met=
+a-toolchain-qte.bb=20
+
+Best Regards,
+Lianhao
 
 
-
-I am working with poky-bernerd-5.0. I have built cross-toolchain for qt
-with =93bitbake =96v meta-toolchain-qte=94 for arm1136 architecture.
-
-I got the tool chain =93poky-eglibc-i686-arm-toolchain-1.0.tar.bz2=94 under
-build/tmp/deploy/sdk/ directory. On untaring this Toolchain I found that cr=
-oss
-gcc wasn=92t included in the SDK. Can anyone please help me in recognizing
-the problem?
-
-
-
-
-
-Thanks and Regards
-
-Navani Kamal Srivastava
-
---0015175cabae6a77fb04c11213bc
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: quoted-printable
-
-<p class=3D"MsoNormal">Hi,</p>
-<p class=3D"MsoNormal">=A0</p>
-<p class=3D"MsoNormal">I am working with poky-bernerd-5.0. I have built=20
-cross-toolchain for qt with =93bitbake =96v meta-toolchain-qte=94 for arm11=
-36=20
-architecture.</p>
-<p class=3D"MsoNormal">I got the tool chain =93poky-eglibc-i686-arm-toolcha=
-in-1.0.tar.bz2=94 under build/tmp/deploy/sdk/ directory. On untaring this T=
-oolchain I found that
-<span lang=3D"EN-GB">cross gcc wasn=92t included in the SDK.</span><span la=
-ng=3D"EN-GB">
-</span>Can anyone please help me in recognizing the problem? <br></p>
-<p class=3D"MsoNormal">=A0</p>
-<p class=3D"MsoNormal">=A0</p>
-<p class=3D"MsoNormal">Thanks and Regards</p>
-<p class=3D"MsoNormal">Navani Kamal Srivastava</p>
-<p class=3D"MsoNormal">=A0</p>
-
---0015175cabae6a77fb04c11213bc--
