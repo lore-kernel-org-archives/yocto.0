@@ -1,25 +1,31 @@
-Return-Path: <marco.monguzzi@exorint.it>
-Received: from esafe.exorint.net (esafe.exorint.net [89.96.201.228])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id E4EA2E01425
-	for <yocto@yoctoproject.org>; Tue, 29 May 2012 09:41:07 -0700 (PDT)
-Received: from sitek.exorint.net ([192.168.0.251]) by eSafe SMTP Relay
-	1326992231; Tue, 29 May 2012 18:39:56 +0100
-In-Reply-To: <1825014.hTMMLqSJaD@helios>
-References: <OFEE166903.804CCB84-ONC1257A0D.0035DA8C-C1257A0D.00394872@Sitek.it>
-	<1825014.hTMMLqSJaD@helios>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Return-Path: <wmills@ti.com>
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3C821E0044A
+	for <yocto@yoctoproject.org>; Tue, 29 May 2012 11:41:46 -0700 (PDT)
+Received: from dlelxv30.itg.ti.com ([172.17.2.17])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id q4TIfh6V015364;
+	Tue, 29 May 2012 13:41:44 -0500
+Received: from DFLE71.ent.ti.com (dfle71.ent.ti.com [128.247.5.62])
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id q4TIfh7D019116;
+	Tue, 29 May 2012 13:41:43 -0500
+Received: from dlelxv22.itg.ti.com (172.17.1.197) by dfle71.ent.ti.com
+	(128.247.5.62) with Microsoft SMTP Server id 14.1.323.3;
+	Tue, 29 May 2012 13:41:44 -0500
+Received: from gtwmills.gt.design.ti.com (gtwmills.gt.design.ti.com
+	[158.218.102.52])	by dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id
+	q4TIfgZm017716;	Tue, 29 May 2012 13:41:42 -0500
+Message-ID: <4FC51866.5050505@ti.com>
+Date: Tue, 29 May 2012 14:41:42 -0400
+From: William Mills <wmills@ti.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US;
+	rv:1.9.2.27) Gecko/20120216 Thunderbird/3.1.19
 MIME-Version: 1.0
-X-KeepSent: 542BEDA1:C7E5949E-C1257A0D:005A42AA;type=4; name=$KeepSent
-X-Mailer: Lotus Notes Release 8.5.3 September 15, 2011
-Message-ID: <OF542BEDA1.C7E5949E-ONC1257A0D.005A42AA-C1257A0D.005BA65C@Sitek.it>
-From: marco.monguzzi@exorint.it
-Date: Tue, 29 May 2012 18:40:50 +0200
-X-MIMETrack: Serialize by Router on sitek/Sitek(Release 8.5.3|September 15,
-	2011) at 29/05/201218.40.49, Serialize complete
-	at 29/05/2012 18.40.49
-X-ESAFE-STATUS: [esafe.exorint.net] Mail allowed
+To: Rudolf Streif <rudolf.streif@linux.com>
+References: <CA+gsK-qXd1De=kyWbkXXO_9M7VruxNT+DLvpH9ZykPdLE4v1pw@mail.gmail.com>	<CAPWh-0JB5PFxRw-8kX5+TEdWTpcq47n7TFqZpnst-QkO9O1PEw@mail.gmail.com>
+	<CA+gsK-q9Sk2ba-W5EiPc=4+LJeu2dwLEk+QkehfGvE5XnQVV9A@mail.gmail.com>
+In-Reply-To: <CA+gsK-q9Sk2ba-W5EiPc=4+LJeu2dwLEk+QkehfGvE5XnQVV9A@mail.gmail.com>
 Cc: yocto@yoctoproject.org
-Subject: Re: Help in building an ad-hoc qte image
+Subject: Re: Building linux-yocto kernel for BeagleBone
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,110 +37,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 29 May 2012 16:41:08 -0000
-Content-Type: multipart/alternative;
-	boundary="=_alternative 005BA65CC1257A0D_="
+X-List-Received-Date: Tue, 29 May 2012 18:41:46 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
---=_alternative 005BA65CC1257A0D_=
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: base64
+On 05/29/2012 12:11 PM, Rudolf Streif wrote:
+> KMACHINE_beaglebone = "yocto/standard/beagleboard"
 
-SGkgUGF1bCBhbmQgQW5kcmVhDQoNCnRoYW5rcyBmb3IgeW91ciByZXBseS4gSSBkaWQgc29tZSB0
-ZXN0aW5nIChpbmNsdWRpbmcgc3BsaXR0aW5nIHRhc2sgcmVjaXBlIA0KcGVyIGVhY2ggdGFyZ2V0
-IGFuZCBpbmNsdWRpbmcgUEFDS0FHRV9BUkNIID0gIiR7TUFDSElORV9BUkNIfSIpIA0KYnV0IHdp
-dGggbm8gc3VjY2Vzcy4NCg0KRXZlbiByZW1vdmluZyB0aGlzIGZyb20gdGFzayByZWNpcGVzOiAN
-Cg0KUkRFUEVORFNfJHtQTn0tYmFzZV9hcHBlbmRfQU5PVEhFUkJPQVJEICA9ICIgXA0KICAgICAg
-ICBsaWJxdC1lbWJlZGRlZHBob25vbjQgXA0KICAgICAgICBxdDQtZW1iZWRkZWQtcGx1Z2luLXBo
-b25vbi1iYWNrZW5kLWdzdHJlYW1lciBcDQogICAgICAgICINCg0KcHVsbHMgaW4gZ3N0cmVhbWVy
-LiBJIGd1ZXNzIHNvbWUgb3RoZXIgcXQgbGliIChvdGhlciB0aGFuIHBob25vbiAmIA0KZ3N0cmVh
-bWVyIHBsdWdpbikgZG8gaW50cm9kdWNlIHNvbWUgc2hsaWJkZXBzIHRvIGdzdHJlYW1lcg0KYXMg
-UGF1bCBpbmRpY2F0ZWQuDQoNCnRoYW5rcyBmb3IgeW91ciBoZWxwLiBSZWdhcmRzLg0KDQoNCk1h
-cmNvIE1vbmd1enppDQpSJkQgRGVwYXJ0bWVudA0KDQpFeG9yIEludGVybmF0aW9uYWwgUy5wLkEu
-DQpWaWEgTW9udGUgRmlvcmlubyw5DQpJLTM3MDU3IFNhbiBHaW92YW5uaSBMdXBhdG90byAoVlIp
-DQpQaG9uZTorMzkwNDU4Nzc0ODA5IC0gRmF4OiszOTA0NTg3NzkwMjMNCk1vYmlsZTorMzkzNDAw
-ODg0NDMzDQptYXJjby5tb25ndXp6aUBleG9yaW50Lml0IC0gd3d3LmV4b3JpbnQubmV0IC0gd3d3
-LmV4b3JpbnQuaXQNCg0KQVRURU5aSU9ORTogUHJpdmFjeSBQb2xpY3kg4oCTIEQuTGdzLiAxOTYv
-MjAwMw0KIExlIGluZm9ybWF6aW9uaSBjb250ZW51dGUgaW4gcXVlc3RvIG1lc3NhZ2dpbyBkaSBw
-b3N0YSBlbGV0dHJvbmljYSBzb25vIGRpIA0KY2FyYXR0ZXJlIHByaXZhdG8gZSBjb25maWRlbnpp
-YWxlIGVkIGVzY2x1c2l2YW1lbnRlIHJpdm9sdGUgYWwgZGVzdGluYXRhcmlvIA0Kc29wcmEgaW5k
-aWNhdG8uIE5lbCBjYXNvIGF2ZXN0ZSByaWNldnV0byBxdWVzdG8gbWVzc2FnZ2lvIGRpIHBvc3Rh
-IGVsZXR0cm9uaWNhIA0KcGVyIGVycm9yZSwgdmkgY29tdW5pY2hpYW1vIGNoZSBhaSBzZW5zaSBk
-ZWwgc3VkZGV0dG8gZGVjcmV0byDDqCB2aWV0YXRvIGzigJl1c28sIA0KbGEgZGlmZnVzaW9uZSwg
-ZGlzdHJpYnV6aW9uZSBvIHJpcHJvZHV6aW9uZSBkYSBwYXJ0ZSBkaSBvZ25pIGFsdHJhIHBlcnNv
-bmEuIA0KU2lldGUgcHJlZ2F0aSBkaSBzZWduYWxhcmxvIGltbWVkaWF0YW1lbnRlIHJpc3BvbmRl
-bmRvIGFsIG1pdHRlbnRlIGUgZGkgDQpkaXN0cnVnZ2VyZSBxdWFudG8gcmljZXZ1dG8gKGNvbXBy
-ZXNpIGkgZmlsZSBhbGxlZ2F0aSkgc2VuemEgZmFybmUgY29waWEgbyANCmxlZ2dlcm5lIGlsIGNv
-bnRlbnV0by4NCg0KVGhpcyBlLW1haWwgdHJhbnNtaXNzaW9uIGNvbnRhaW5zIGluZm9ybWF0aW9u
-IHRoYXQgaXMgY29uZmlkZW50aWFsIGFuZCBtYXkgYmUgDQpwcml2aWxlZ2VkLiBJdCBpcyBpbnRl
-bmRlZCBvbmx5IGZvciB0aGUgYWRkcmVzc2VlKHMpIG5hbWVkIGFib3ZlLiBJZiB5b3UgDQpyZWNl
-aXZlIHRoaXMgZS1tYWlsIGluIGVycm9yLCBwbGVhc2UgZG8gbm90IHJlYWQsIGNvcHkgb3IgZGlz
-c2VtaW5hdGUgaXQgaW4gYW55IA0KbWFubmVyLiBJZiB5b3UgYXJlIG5vdCB0aGUgaW50ZW5kZWQg
-cmVjaXBpZW50LCBhbnkgZGlzY2xvc3VyZSwgY29weWluZywgDQpkaXN0cmlidXRpb24gb3IgdXNl
-IG9mIHRoZSBjb250ZW50cyBvZiB0aGlzIGluZm9ybWF0aW9uIGlzIHByb2hpYml0ZWQuIFBsZWFz
-ZSANCnJlcGx5IHRvIHRoZSBtZXNzYWdlIGltbWVkaWF0ZWx5IGJ5IGluZm9ybWluZyB0aGUgc2Vu
-ZGVyIHRoYXQgdGhlIG1lc3NhZ2Ugd2FzIA0KbWlzZGlyZWN0ZWQuIEFmdGVyIHJlcGx5aW5nLCBw
-bGVhc2UgZXJhc2UgaXQgZnJvbSB5b3VyIGNvbXB1dGVyIHN5c3RlbS4gWW91ciANCmFzc2lzdGFu
-Y2UgaW4gY29ycmVjdGluZyB0aGlzIGVycm9yIGlzIGFwcHJlY2lhdGVkLg0K
+Sorry, they are not _that_ close.
 
---=_alternative 005BA65CC1257A0D_=
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: base64
+> Any suggestions would be appreciated.
 
-PGZvbnQgc2l6ZT0yIGZhY2U9InNhbnMtc2VyaWYiPkhpIFBhdWwgYW5kIEFuZHJlYTwvZm9udD4N
-Cjxicj4NCjxicj48Zm9udCBzaXplPTIgZmFjZT0ic2Fucy1zZXJpZiI+dGhhbmtzIGZvciB5b3Vy
-IHJlcGx5LiBJIGRpZCBzb21lIHRlc3RpbmcNCihpbmNsdWRpbmcgc3BsaXR0aW5nIHRhc2sgcmVj
-aXBlIHBlciBlYWNoIHRhcmdldCBhbmQgaW5jbHVkaW5nIFBBQ0tBR0VfQVJDSA0KPSAmcXVvdDsk
-e01BQ0hJTkVfQVJDSH0mcXVvdDspIDwvZm9udD4NCjxicj48Zm9udCBzaXplPTIgZmFjZT0ic2Fu
-cy1zZXJpZiI+YnV0IHdpdGggbm8gc3VjY2Vzcy48L2ZvbnQ+DQo8YnI+DQo8YnI+PGZvbnQgc2l6
-ZT0yIGZhY2U9InNhbnMtc2VyaWYiPkV2ZW4gcmVtb3ZpbmcgdGhpcyBmcm9tIHRhc2sgcmVjaXBl
-czoNCjwvZm9udD4NCjxicj48dHQ+PGZvbnQgc2l6ZT0zPjxicj4NClJERVBFTkRTXyR7UE59LWJh
-c2VfYXBwZW5kX0FOT1RIRVJCT0FSRCAmbmJzcDs9ICZxdW90OyBcPGJyPg0KICZuYnNwOyAmbmJz
-cDsgJm5ic3A7ICZuYnNwO2xpYnF0LWVtYmVkZGVkcGhvbm9uNCBcPGJyPg0KICZuYnNwOyAmbmJz
-cDsgJm5ic3A7ICZuYnNwO3F0NC1lbWJlZGRlZC1wbHVnaW4tcGhvbm9uLWJhY2tlbmQtZ3N0cmVh
-bWVyDQpcPGJyPg0KICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyZxdW90OzwvZm9udD48L3R0
-Pg0KPGJyPg0KPGJyPjxmb250IHNpemU9MiBmYWNlPSJzYW5zLXNlcmlmIj5wdWxscyBpbiBnc3Ry
-ZWFtZXIuIEkgZ3Vlc3Mgc29tZSBvdGhlcg0KcXQgbGliIChvdGhlciB0aGFuIHBob25vbiAmYW1w
-OyBnc3RyZWFtZXIgcGx1Z2luKSBkbyBpbnRyb2R1Y2Ugc29tZSA8L2ZvbnQ+PHR0Pjxmb250IHNp
-emU9Mz5zaGxpYmRlcHMNCjwvZm9udD48L3R0Pjxmb250IHNpemU9MiBmYWNlPSJzYW5zLXNlcmlm
-Ij50byBnc3RyZWFtZXI8L2ZvbnQ+DQo8YnI+PGZvbnQgc2l6ZT0yIGZhY2U9InNhbnMtc2VyaWYi
-PmFzIFBhdWwgaW5kaWNhdGVkLjwvZm9udD4NCjxicj4NCjxicj48Zm9udCBzaXplPTIgZmFjZT0i
-c2Fucy1zZXJpZiI+dGhhbmtzIGZvciB5b3VyIGhlbHAuIFJlZ2FyZHMuPC9mb250Pg0KDQoNCjxm
-b250IHNpemU9MSBmYWNlPSJBcmlhbCI+PGJyPg0KPC9mb250Pg0KPGJyPjxmb250IHNpemU9MiBm
-YWNlPSJzYW5zLXNlcmlmIj48Yj5NYXJjbyBNb25ndXp6aTwvYj48L2ZvbnQ+DQo8YnI+PGZvbnQg
-c2l6ZT0yIGZhY2U9InNhbnMtc2VyaWYiPlImRCBEZXBhcnRtZW50PC9mb250Pg0KPGJyPg0KPGJy
-Pjxmb250IHNpemU9MiBmYWNlPSJzYW5zLXNlcmlmIj48Yj5FeG9yIEludGVybmF0aW9uYWwgUy5w
-LkEuPC9iPjxicj4NClZpYSBNb250ZSBGaW9yaW5vLDk8YnI+DQpJLTM3MDU3IFNhbiBHaW92YW5u
-aSBMdXBhdG90byAoVlIpPGJyPg0KUGhvbmU6KzM5MDQ1ODc3NDgwOSAtIEZheDorMzkwNDU4Nzc5
-MDIzPGJyPg0KTW9iaWxlOiszOTM0MDA4ODQ0MzM8L2ZvbnQ+DQo8YnI+PGZvbnQgc2l6ZT0yIGZh
-Y2U9InNhbnMtc2VyaWYiPm1hcmNvLm1vbmd1enppQGV4b3JpbnQuaXQgLSA8L2ZvbnQ+PGEgaHJl
-Zj13d3cuZXhvcmludC5uZXQ+PGZvbnQgc2l6ZT0yIGZhY2U9InNhbnMtc2VyaWYiPnd3dy5leG9y
-aW50Lm5ldDwvZm9udD48L2E+PGZvbnQgc2l6ZT0yIGZhY2U9InNhbnMtc2VyaWYiPg0KLSA8L2Zv
-bnQ+PGEgaHJlZj13d3cuZXhvcmludC5pdD48Zm9udCBzaXplPTIgZmFjZT0ic2Fucy1zZXJpZiI+
-d3d3LmV4b3JpbnQuaXQ8L2ZvbnQ+PC9hPjxmb250IHNpemU9MiBmYWNlPSJzYW5zLXNlcmlmIj48
-YnI+DQo8L2ZvbnQ+DQo8YnI+PGZvbnQgc2l6ZT0xIGNvbG9yPSM1ZjVmNWYgZmFjZT0iQXJpYWwi
-PjxpPkFUVEVOWklPTkU6IFByaXZhY3kgUG9saWN5DQrigJMgRC5MZ3MuIDE5Ni8yMDAzPC9pPjwv
-Zm9udD4NCjxicj48Zm9udCBzaXplPTEgY29sb3I9IzVmNWY1ZiBmYWNlPSJBcmlhbCI+PGk+Jm5i
-c3A7TGUgaW5mb3JtYXppb25pIGNvbnRlbnV0ZQ0KaW4gcXVlc3RvIG1lc3NhZ2dpbyBkaSBwb3N0
-YSBlbGV0dHJvbmljYSBzb25vIGRpIGNhcmF0dGVyZSBwcml2YXRvIGUgY29uZmlkZW56aWFsZQ0K
-ZWQgZXNjbHVzaXZhbWVudGUgcml2b2x0ZSBhbCBkZXN0aW5hdGFyaW8gc29wcmEgaW5kaWNhdG8u
-IE5lbCBjYXNvIGF2ZXN0ZQ0KcmljZXZ1dG8gcXVlc3RvIG1lc3NhZ2dpbyBkaSBwb3N0YSBlbGV0
-dHJvbmljYSBwZXIgZXJyb3JlLCB2aSBjb211bmljaGlhbW8NCmNoZSBhaSBzZW5zaSBkZWwgc3Vk
-ZGV0dG8gZGVjcmV0byDDqCB2aWV0YXRvIGzigJl1c28sIGxhIGRpZmZ1c2lvbmUsIGRpc3RyaWJ1
-emlvbmUNCm8gcmlwcm9kdXppb25lIGRhIHBhcnRlIGRpIG9nbmkgYWx0cmEgcGVyc29uYS4gU2ll
-dGUgcHJlZ2F0aSBkaSBzZWduYWxhcmxvDQppbW1lZGlhdGFtZW50ZSByaXNwb25kZW5kbyBhbCBt
-aXR0ZW50ZSBlIGRpIGRpc3RydWdnZXJlIHF1YW50byByaWNldnV0bw0KKGNvbXByZXNpIGkgZmls
-ZSBhbGxlZ2F0aSkgc2VuemEgZmFybmUgY29waWEgbyBsZWdnZXJuZSBpbCBjb250ZW51dG8uPC9p
-PjwvZm9udD4NCjxicj4NCjxicj48Zm9udCBzaXplPTEgY29sb3I9IzVmNWY1ZiBmYWNlPSJBcmlh
-bCI+PGk+VGhpcyBlLW1haWwgdHJhbnNtaXNzaW9uDQpjb250YWlucyBpbmZvcm1hdGlvbiB0aGF0
-IGlzIGNvbmZpZGVudGlhbCBhbmQgbWF5IGJlIHByaXZpbGVnZWQuIEl0IGlzDQppbnRlbmRlZCBv
-bmx5IGZvciB0aGUgYWRkcmVzc2VlKHMpIG5hbWVkIGFib3ZlLiBJZiB5b3UgcmVjZWl2ZSB0aGlz
-IGUtbWFpbA0KaW4gZXJyb3IsIHBsZWFzZSBkbyBub3QgcmVhZCwgY29weSBvciBkaXNzZW1pbmF0
-ZSBpdCBpbiBhbnkgbWFubmVyLiBJZg0KeW91IGFyZSBub3QgdGhlIGludGVuZGVkIHJlY2lwaWVu
-dCwgYW55IGRpc2Nsb3N1cmUsIGNvcHlpbmcsIGRpc3RyaWJ1dGlvbg0Kb3IgdXNlIG9mIHRoZSBj
-b250ZW50cyBvZiB0aGlzIGluZm9ybWF0aW9uIGlzIHByb2hpYml0ZWQuIFBsZWFzZSByZXBseQ0K
-dG8gdGhlIG1lc3NhZ2UgaW1tZWRpYXRlbHkgYnkgaW5mb3JtaW5nIHRoZSBzZW5kZXIgdGhhdCB0
-aGUgbWVzc2FnZSB3YXMNCm1pc2RpcmVjdGVkLiBBZnRlciByZXBseWluZywgcGxlYXNlIGVyYXNl
-IGl0IGZyb20geW91ciBjb21wdXRlciBzeXN0ZW0uDQpZb3VyIGFzc2lzdGFuY2UgaW4gY29ycmVj
-dGluZyB0aGlzIGVycm9yIGlzIGFwcHJlY2lhdGVkLjwvaT48L2ZvbnQ+DQo8YnI+DQo=
+meta-ti has support for DM37x and for AM335x.  You can observe the 
+differences there.
 
---=_alternative 005BA65CC1257A0D_=--
+> On Sun, May 27, 2012 at 12:34 PM, Sanyaade Adekoya <sanyaade@gmail.com
+> <mailto:sanyaade@gmail.com>> wrote:
+>
+>     Hi,
+>     According to Ti, BeagleBone is just a small BeagleBoard in a small
+>     factor so a common base like a bare build for BeagleBoard should run
+>     on BeagleBone. I think the is same for OMAP family.
+>
+>
+
+Yes, an AM335x uses the base OMAP family mach-omap2 but a binary kernel 
+for the AM/DM35/37 won't work on it.
+
