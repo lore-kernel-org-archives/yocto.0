@@ -1,36 +1,36 @@
 Return-Path: <martin.jansa@gmail.com>
-Received: from mail-bk0-f48.google.com (mail-bk0-f48.google.com
-	[209.85.214.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7AA5CE01434
-	for <yocto@yoctoproject.org>; Tue, 29 May 2012 08:34:28 -0700 (PDT)
-Received: by bkcjf20 with SMTP id jf20so4711274bkc.35
-	for <yocto@yoctoproject.org>; Tue, 29 May 2012 08:34:27 -0700 (PDT)
+Received: from mail-wi0-f182.google.com (mail-wi0-f182.google.com
+	[209.85.212.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E71F0E01437
+	for <yocto@yoctoproject.org>; Tue, 29 May 2012 08:34:34 -0700 (PDT)
+Received: by wibhm6 with SMTP id hm6so2391662wib.11
+	for <yocto@yoctoproject.org>; Tue, 29 May 2012 08:34:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=from:to:subject:date:message-id:x-mailer:in-reply-to:references
 	:in-reply-to:references;
-	bh=EL3SmxlpYhYdqPzDkqKj1xN8b2z19DKnJjENqV258ng=;
-	b=Z1Wy+FitE/zAEJ4pYdHBal4lohKcFGvPkVIFer2+RyNCGgeWfvYJRybAQ4EjyHXKlw
-	DGm/guIL81i8iX0riSFCdD5zulInwPFq2d4FnnwGMz/sspaczQSjwQuxPaqIFTFXlFxu
-	cpnr7wBlsKMiNrhJ7RBrcu//+Q6qIHpKEsbdLYZSzm7jNKtmCs57ryYpPBjVNuev2E4+
-	pB60OvPgsCTk4zhEenPtA8B60Nf2ga0XQ05260jJMI+2R7ABPtaIplNantQVebthZ+XA
-	X4xYua7W1PsCRpSDOhxKjGoso6h5vXpqoW1CcEX6pWfQAnAds3zlI7eTTFs7uHmfjJ1P
-	cRaw==
-Received: by 10.204.148.72 with SMTP id o8mr6016275bkv.127.1338305667014;
-	Tue, 29 May 2012 08:34:27 -0700 (PDT)
+	bh=crYNcMuw2bZtOy6qRlpxy7KxaP9TNsz3/J/SsxcmAbk=;
+	b=d30Yo5Lw9jzKxsa2q5db0/mrfjVe/aSXtL5vBLULQZnrC917LnPsM/5CAMOIHCn1uW
+	8OI9gFIFHFuLC7aKWaJP6rg3ozS/zUU1GHw5Qr4ynRQuk8eyhRGsz7zVmrtexWqQE8E2
+	uiDK1w/uid6R5GDdj/bxrdU9sBYzIMkhVNp9cTtkJuTbad1G3feq1BLXzZcz0Iyat7l/
+	MlQq6RwGOkWUwd8xN683tbDhP0dAnvQRTgV7OhbgWM0wI6908jnQGqM4+HBOB8L53VDl
+	1qw5qKHyld1lY16UPPDtE/DvsMw94ry1g24NonWHh++EW/FThltkWI39NHL1rWfq5AMl
+	pj/A==
+Received: by 10.216.55.148 with SMTP id k20mr7512164wec.70.1338305674045;
+	Tue, 29 May 2012 08:34:34 -0700 (PDT)
 Received: from localhost ([94.230.152.246])
-	by mx.google.com with ESMTPS id m2sm18526364bkm.2.2012.05.29.08.34.25
+	by mx.google.com with ESMTPS id et10sm28989742wib.2.2012.05.29.08.34.32
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Tue, 29 May 2012 08:34:26 -0700 (PDT)
+	Tue, 29 May 2012 08:34:33 -0700 (PDT)
 From: Martin Jansa <martin.jansa@gmail.com>
 To: yocto@yoctoproject.org
-Date: Tue, 29 May 2012 17:34:14 +0200
-Message-Id: <527918a02c6d8529a545d5e76ff08ab8e0a82f19.1338305162.git.Martin.Jansa@gmail.com>
+Date: Tue, 29 May 2012 17:34:15 +0200
+Message-Id: <2dd04cb574dacdc2b8446ace3ba4e52a1abe4d6d.1338305162.git.Martin.Jansa@gmail.com>
 X-Mailer: git-send-email 1.7.8.6
 In-Reply-To: <cover.1338305162.git.Martin.Jansa@gmail.com>
 References: <cover.1338305162.git.Martin.Jansa@gmail.com>
 In-Reply-To: <cover.1338305162.git.Martin.Jansa@gmail.com>
 References: <cover.1338305162.git.Martin.Jansa@gmail.com>
-Subject: [opkg-utils][PATCH 1/2] Option "C" ist shown in usage() and implemented, but was missing in getopts. Added "C".
+Subject: [opkg-utils][PATCH 2/2] Changed call to subprocess.check_output which isn't compatible with Python 2.6
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,28 +42,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 29 May 2012 15:34:28 -0000
+X-List-Received-Date: Tue, 29 May 2012 15:34:35 -0000
 
-From: Ondics Githubler <githubler@ondics.de>
+From: Chris Diamand <chris@diamand.org>
 
-Signed-off-by: Martin Jansa <Martin.Jansa@gmail.com>
+subprocess.check_output is not present in Python 2.6. Since the return value
+is not being used anyway, replace it with subprocess.call(), which is.
+
+Signed-off-by: Chris Diamand <chris@diamand.org>
 ---
- opkg-build |    2 +-
+ opkg-make-index |    2 +-
  1 files changed, 1 insertions(+), 1 deletions(-)
 
-diff --git a/opkg-build b/opkg-build
-index 012afd3..485897a 100755
---- a/opkg-build
-+++ b/opkg-build
-@@ -160,7 +160,7 @@ outer=ar
- noclean=0
- opkext=0
- usage="Usage: $0 [-c] [-C] [-O] [-o owner] [-g group] <pkg_directory> [<destination_directory>]"
--while getopts "cg:ho:vO" opt; do
-+while getopts "cCg:ho:vO" opt; do
-     case $opt in
- 	o ) owner=$OPTARG
- 	    ogargs="--owner=$owner"
+diff --git a/opkg-make-index b/opkg-make-index
+index 22393e8..1c3a8e1 100755
+--- a/opkg-make-index
++++ b/opkg-make-index
+@@ -186,7 +186,7 @@ if packages_filename:
+      gzip_filename = ("%s.gz" % packages_filename)
+      tmp_gzip_filename = ("%s.%d" % (gzip_filename, os.getpid()))
+      gzip_cmd = "gzip -9c < %s > %s" % (tmp_packages_filename, tmp_gzip_filename)
+-     rc = subprocess.check_output(gzip_cmd, shell=True)
++     subprocess.call(gzip_cmd, shell=True)
+      os.rename(tmp_packages_filename, packages_filename)
+      os.rename(tmp_gzip_filename, gzip_filename)
+ 
 -- 
 1.7.8.6
 
