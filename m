@@ -1,26 +1,33 @@
-Return-Path: <woailinux@hotmail.com>
-Received: from blu0-omc3-s38.blu0.hotmail.com (blu0-omc3-s38.blu0.hotmail.com
-	[65.55.116.113])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B5640E01429
-	for <yocto@yoctoproject.org>; Tue, 29 May 2012 06:07:39 -0700 (PDT)
-Received: from BLU0-SMTP194 ([65.55.116.74]) by blu0-omc3-s38.blu0.hotmail.com
-	with Microsoft SMTPSVC(6.0.3790.4675); 
-	Tue, 29 May 2012 06:07:39 -0700
-X-Originating-IP: [114.255.122.12]
-X-Originating-Email: [woailinux@hotmail.com]
-Message-ID: <BLU0-SMTP194504711819C3FD84E79DFB9050@phx.gbl>
-Received: from [172.21.23.43] ([114.255.122.12]) by BLU0-SMTP194.phx.gbl over
-	TLS secured channel with Microsoft SMTPSVC(6.0.3790.4675); 
-	Tue, 29 May 2012 06:07:37 -0700
-Date: Tue, 29 May 2012 21:07:30 +0800
-From: jack <woailinux@hotmail.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:7.0.1) Gecko/20110929 Thunderbird/7.0.1
+Return-Path: <song.liu@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F10E2E0142F
+	for <yocto@yoctoproject.org>; Tue, 29 May 2012 06:15:53 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 29 May 2012 06:15:53 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="145770742"
+Received: from orsmsx605.amr.corp.intel.com ([10.22.226.10])
+	by orsmga001.jf.intel.com with ESMTP; 29 May 2012 06:15:53 -0700
+Received: from orsmsx151.amr.corp.intel.com (10.22.226.38) by
+	orsmsx605.amr.corp.intel.com (10.22.226.10) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Tue, 29 May 2012 06:15:53 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.121]) by
+	ORSMSX151.amr.corp.intel.com ([169.254.7.219]) with mapi id
+	14.01.0355.002; Tue, 29 May 2012 06:15:53 -0700
+From: "Liu, Song" <song.liu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Agenda: Yocto Project Technical Team Meeting - Tuesday, May
+	29, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+Thread-Index: AQHNPZ0sGRhC2OqDdU2RsC/DdJ2o/g==
+Date: Tue, 29 May 2012 13:15:52 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A483FB9D1@ORSMSX101.amr.corp.intel.com>
+References: <7E680CB2A76BB8438D08CF13C09FC53A257BE410@ORSMSX101.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-X-OriginalArrivalTime: 29 May 2012 13:07:37.0885 (UTC)
-	FILETIME=[056D3CD0:01CD3D9C]
-Subject: How to use Software support layers such as "meta-browser" in a yocto image?
+Subject: Agenda: Yocto Project Technical Team Meeting - Tuesday, May 29, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,38 +39,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 29 May 2012 13:07:39 -0000
-Content-Type: multipart/alternative;
-	boundary="------------040701090201030601090009"
+X-List-Received-Date: Tue, 29 May 2012 13:15:54 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
---------------040701090201030601090009
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+Agenda
+* Opens collection - 5 min (Song)
+* 1.2.1 update - 10 min (ScottG)
+* 1.1.2 update - 10 min (Josh/Beth)
+* Yocto 1.3 status  - 10 min (Song/team)
+  - 1.3 feature list: https://wiki.yoctoproject.org/wiki/Yocto_1.3_Features=
+=20
+  - 1.3 schedule: https://wiki.yoctoproject.org/wiki/Yocto_1.3_Schedule=20
+  - 1.3 status: https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.3_Statu=
+s=20
+* SWAT team rotation: Beth -> Paul
+* Opens - 5 min
+* Team sharing - 20 min
 
-Hello, all!
-Who can tell me how could I use the /Software support layers /that 
-provided by http://www.openembedded.org/wiki/LayerIndex into my own 
-yocto image? For example, how could I use "meta-browser" during image 
-building?
-Thanks!
 
---------------040701090201030601090009
-Content-Type: text/html; charset="ISO-8859-1"
-Content-Transfer-Encoding: 7bit
-
-<html>
-  <head>
-
-    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    Hello, all! <br>
-    Who can tell me how could I use the <i>Software support layers </i>that
-    provided by <a class="moz-txt-link-freetext" href="http://www.openembedded.org/wiki/LayerIndex">http://www.openembedded.org/wiki/LayerIndex</a> into my own
-    yocto image? For example, how could I use "meta-browser" during
-    image building?<br>
-    Thanks!<br>
-  </body>
-</html>
-
---------------040701090201030601090009--
