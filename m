@@ -1,31 +1,36 @@
 Return-Path: <martin.jansa@gmail.com>
-Received: from mail-wi0-f176.google.com (mail-wi0-f176.google.com
-	[209.85.212.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 13972E013D3
-	for <yocto@yoctoproject.org>; Tue, 29 May 2012 08:34:20 -0700 (PDT)
-Received: by wibhn14 with SMTP id hn14so2379052wib.11
-	for <yocto@yoctoproject.org>; Tue, 29 May 2012 08:34:19 -0700 (PDT)
+Received: from mail-bk0-f48.google.com (mail-bk0-f48.google.com
+	[209.85.214.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7AA5CE01434
+	for <yocto@yoctoproject.org>; Tue, 29 May 2012 08:34:28 -0700 (PDT)
+Received: by bkcjf20 with SMTP id jf20so4711274bkc.35
+	for <yocto@yoctoproject.org>; Tue, 29 May 2012 08:34:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:subject:date:message-id:x-mailer;
-	bh=bYdARDnIwDm0b9cC9hfH7mXk2SI5Idds6rYBHwkcl6U=;
-	b=uL7tMEqt31toENwweHzlNy4TOFLBsYc8lx1vYGNb9S5epDhPeqDGD61HABZtt6mBRW
-	Uq9HzW/SoW9fK26JarxRUh8vk/76GCgSLe26EV6ufeZSKxiX8NWbCYdxyRJfWsaMQHbR
-	A+wI+JV5m7xkqdDx9Jc//klKyPA/LBzAf16IkA2ZK4I2t2gqOkNxTL1u+1KpxyBMpai6
-	wEZb7UYyalR5+VK5HdKwPf6YPBjoreirI2TKJCagktTAC3GKpwBN7X74qbUhpQuRFKH9
-	q9uw0OlSvltPVOAvuOYsAae7lwFdKeVkE0Ox+H05Fo9hHZudcpxDBfNtln5aUl8iBLRu
-	jshg==
-Received: by 10.216.213.28 with SMTP id z28mr7986683weo.50.1338305659728;
-	Tue, 29 May 2012 08:34:19 -0700 (PDT)
+	h=from:to:subject:date:message-id:x-mailer:in-reply-to:references
+	:in-reply-to:references;
+	bh=EL3SmxlpYhYdqPzDkqKj1xN8b2z19DKnJjENqV258ng=;
+	b=Z1Wy+FitE/zAEJ4pYdHBal4lohKcFGvPkVIFer2+RyNCGgeWfvYJRybAQ4EjyHXKlw
+	DGm/guIL81i8iX0riSFCdD5zulInwPFq2d4FnnwGMz/sspaczQSjwQuxPaqIFTFXlFxu
+	cpnr7wBlsKMiNrhJ7RBrcu//+Q6qIHpKEsbdLYZSzm7jNKtmCs57ryYpPBjVNuev2E4+
+	pB60OvPgsCTk4zhEenPtA8B60Nf2ga0XQ05260jJMI+2R7ABPtaIplNantQVebthZ+XA
+	X4xYua7W1PsCRpSDOhxKjGoso6h5vXpqoW1CcEX6pWfQAnAds3zlI7eTTFs7uHmfjJ1P
+	cRaw==
+Received: by 10.204.148.72 with SMTP id o8mr6016275bkv.127.1338305667014;
+	Tue, 29 May 2012 08:34:27 -0700 (PDT)
 Received: from localhost ([94.230.152.246])
-	by mx.google.com with ESMTPS id bn9sm28982155wib.5.2012.05.29.08.34.18
+	by mx.google.com with ESMTPS id m2sm18526364bkm.2.2012.05.29.08.34.25
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Tue, 29 May 2012 08:34:19 -0700 (PDT)
+	Tue, 29 May 2012 08:34:26 -0700 (PDT)
 From: Martin Jansa <martin.jansa@gmail.com>
 To: yocto@yoctoproject.org
-Date: Tue, 29 May 2012 17:34:13 +0200
-Message-Id: <cover.1338305162.git.Martin.Jansa@gmail.com>
+Date: Tue, 29 May 2012 17:34:14 +0200
+Message-Id: <527918a02c6d8529a545d5e76ff08ab8e0a82f19.1338305162.git.Martin.Jansa@gmail.com>
 X-Mailer: git-send-email 1.7.8.6
-Subject: [opkg-utils][PATCH 0/2] opkg-utils fix for python-2.6 and fix for missing getopts
+In-Reply-To: <cover.1338305162.git.Martin.Jansa@gmail.com>
+References: <cover.1338305162.git.Martin.Jansa@gmail.com>
+In-Reply-To: <cover.1338305162.git.Martin.Jansa@gmail.com>
+References: <cover.1338305162.git.Martin.Jansa@gmail.com>
+Subject: [opkg-utils][PATCH 1/2] Option "C" ist shown in usage() and implemented, but was missing in getopts. Added "C".
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,28 +42,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 29 May 2012 15:34:21 -0000
+X-List-Received-Date: Tue, 29 May 2012 15:34:28 -0000
 
-The following changes since commit 44df9dd3dc411ca1255cb4b23bde7eb71aed4778:
+From: Ondics Githubler <githubler@ondics.de>
 
-  opkg-make-index: disable filelist by default (2012-04-26 11:39:42 +0100)
+Signed-off-by: Martin Jansa <Martin.Jansa@gmail.com>
+---
+ opkg-build |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
 
-are available in the git repository at:
-  git://github.com/shr-project/opkg-utils jansa/pull
-  https://github.com/shr-project/opkg-utils/tree/jansa/pull
-
-Chris Diamand (1):
-  Changed call to subprocess.check_output which isn't compatible with
-    Python 2.6
-
-Ondics Githubler (1):
-  Option "C" ist shown in usage() and implemented, but was missing in
-    getopts. Added "C".
-
- opkg-build      |    2 +-
- opkg-make-index |    2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
-
+diff --git a/opkg-build b/opkg-build
+index 012afd3..485897a 100755
+--- a/opkg-build
++++ b/opkg-build
+@@ -160,7 +160,7 @@ outer=ar
+ noclean=0
+ opkext=0
+ usage="Usage: $0 [-c] [-C] [-O] [-o owner] [-g group] <pkg_directory> [<destination_directory>]"
+-while getopts "cg:ho:vO" opt; do
++while getopts "cCg:ho:vO" opt; do
+     case $opt in
+ 	o ) owner=$OPTARG
+ 	    ogargs="--owner=$owner"
 -- 
 1.7.8.6
 
