@@ -1,28 +1,31 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (hermes.mlbassoc.com [64.234.241.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8FE60E0142F
-	for <yocto@yoctoproject.org>; Tue, 29 May 2012 06:41:35 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id 231D4F811EC; Tue, 29 May 2012 07:41:35 -0600 (MDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=unavailable version=3.3.2
-Received: from hermes.chez-thomas.org (localhost.localdomain [127.0.0.1])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 9DCA2F811EB;
-	Tue, 29 May 2012 07:41:33 -0600 (MDT)
-Message-ID: <4FC4D20D.5060602@mlbassoc.com>
-Date: Tue, 29 May 2012 07:41:33 -0600
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:12.0) Gecko/20120430 Thunderbird/12.0.1
-MIME-Version: 1.0
+Return-Path: <martin.jansa@gmail.com>
+Received: from mail-wi0-f176.google.com (mail-wi0-f176.google.com
+	[209.85.212.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 13972E013D3
+	for <yocto@yoctoproject.org>; Tue, 29 May 2012 08:34:20 -0700 (PDT)
+Received: by wibhn14 with SMTP id hn14so2379052wib.11
+	for <yocto@yoctoproject.org>; Tue, 29 May 2012 08:34:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:subject:date:message-id:x-mailer;
+	bh=bYdARDnIwDm0b9cC9hfH7mXk2SI5Idds6rYBHwkcl6U=;
+	b=uL7tMEqt31toENwweHzlNy4TOFLBsYc8lx1vYGNb9S5epDhPeqDGD61HABZtt6mBRW
+	Uq9HzW/SoW9fK26JarxRUh8vk/76GCgSLe26EV6ufeZSKxiX8NWbCYdxyRJfWsaMQHbR
+	A+wI+JV5m7xkqdDx9Jc//klKyPA/LBzAf16IkA2ZK4I2t2gqOkNxTL1u+1KpxyBMpai6
+	wEZb7UYyalR5+VK5HdKwPf6YPBjoreirI2TKJCagktTAC3GKpwBN7X74qbUhpQuRFKH9
+	q9uw0OlSvltPVOAvuOYsAae7lwFdKeVkE0Ox+H05Fo9hHZudcpxDBfNtln5aUl8iBLRu
+	jshg==
+Received: by 10.216.213.28 with SMTP id z28mr7986683weo.50.1338305659728;
+	Tue, 29 May 2012 08:34:19 -0700 (PDT)
+Received: from localhost ([94.230.152.246])
+	by mx.google.com with ESMTPS id bn9sm28982155wib.5.2012.05.29.08.34.18
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Tue, 29 May 2012 08:34:19 -0700 (PDT)
+From: Martin Jansa <martin.jansa@gmail.com>
 To: yocto@yoctoproject.org
-References: <BLU0-SMTP194504711819C3FD84E79DFB9050@phx.gbl>
-	<4FC4CE49.4010300@linux.intel.com>
-In-Reply-To: <4FC4CE49.4010300@linux.intel.com>
-Subject: Re: How to use Software support layers such as "meta-browser" in a yocto image?
+Date: Tue, 29 May 2012 17:34:13 +0200
+Message-Id: <cover.1338305162.git.Martin.Jansa@gmail.com>
+X-Mailer: git-send-email 1.7.8.6
+Subject: [opkg-utils][PATCH 0/2] opkg-utils fix for python-2.6 and fix for missing getopts
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,28 +37,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 29 May 2012 13:41:35 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 29 May 2012 15:34:21 -0000
 
-On 2012-05-29 07:25, Mihai Lindner wrote:
-> On 05/29/2012 04:07 PM, jack wrote:
->> Hello, all!
->> Who can tell me how could I use the /Software support layers /that provided by http://www.openembedded.org/wiki/LayerIndex into my own yocto image? For example, how could I use "meta-browser" during image building?
->> Thanks!
+The following changes since commit 44df9dd3dc411ca1255cb4b23bde7eb71aed4778:
 
-> Hello,
->
-> Clone it into your ./poky/ directory, alongside the other meta directories in ./poky/, and reference it in ./build/conf/bblayers.conf file, BBLAYERS variable (after you sourced oe-init-build-env).
-> Happy baking!
->
+  opkg-make-index: disable filelist by default (2012-04-26 11:39:42 +0100)
 
-Note: layers can be anywhere, so there's no need to put it into
-your "poky" tree.  Just specify the full path in your bblayers.conf
+are available in the git repository at:
+  git://github.com/shr-project/opkg-utils jansa/pull
+  https://github.com/shr-project/opkg-utils/tree/jansa/pull
+
+Chris Diamand (1):
+  Changed call to subprocess.check_output which isn't compatible with
+    Python 2.6
+
+Ondics Githubler (1):
+  Option "C" ist shown in usage() and implemented, but was missing in
+    getopts. Added "C".
+
+ opkg-build      |    2 +-
+ opkg-make-index |    2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
 -- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+1.7.8.6
+
 
