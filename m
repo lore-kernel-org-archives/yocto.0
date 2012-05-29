@@ -1,33 +1,66 @@
 Return-Path: <song.liu@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5B159E013B7
-	for <yocto@yoctoproject.org>; Tue, 29 May 2012 14:48:23 -0700 (PDT)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 16E1EE006D9
+	for <yocto@yoctoproject.org>; Tue, 29 May 2012 14:47:48 -0700 (PDT)
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 29 May 2012 14:48:23 -0700
+	by orsmga101.jf.intel.com with ESMTP; 29 May 2012 14:47:47 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="149968048"
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="149967698"
 Received: from orsmsx606.amr.corp.intel.com ([10.22.226.128])
-	by orsmga002.jf.intel.com with ESMTP; 29 May 2012 14:48:23 -0700
-Received: from orsmsx151.amr.corp.intel.com (10.22.226.38) by
+	by orsmga002.jf.intel.com with ESMTP; 29 May 2012 14:47:47 -0700
+Received: from orsmsx152.amr.corp.intel.com (10.22.226.39) by
 	orsmsx606.amr.corp.intel.com (10.22.226.128) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Tue, 29 May 2012 14:48:22 -0700
+	(TLS) id 8.2.255.0; Tue, 29 May 2012 14:47:46 -0700
 Received: from orsmsx101.amr.corp.intel.com ([169.254.8.121]) by
-	ORSMSX151.amr.corp.intel.com ([169.254.7.219]) with mapi id
-	14.01.0355.002; Tue, 29 May 2012 14:48:22 -0700
+	ORSMSX152.amr.corp.intel.com ([169.254.8.73]) with mapi id
+	14.01.0355.002; Tue, 29 May 2012 14:47:46 -0700
 From: "Liu, Song" <song.liu@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Minutes: Yocto Project Technical Team Meeting - Tuesday, May
-	29, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
-Thread-Index: AQHNPeTEV8gnFOUvRUml8SxlSWwA9A==
-Date: Tue, 29 May 2012 21:48:21 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A483FC9C3@ORSMSX101.amr.corp.intel.com>
+To: "Liu, Song" <song.liu@intel.com>, "Petrisor, Ileana"
+	<ileana.petrisor@intel.com>, "Damian, Alexandru"
+	<alexandru.damian@intel.com>, 'Anders Darander' <anders@chargestorm.se>,
+	"Barros Pena, Belen" <belen.barros.pena@intel.com>, "Bodke, Kishore K"
+	<kishore.k.bodke@intel.com>,
+	'Bruce Ashfield' <bruce.ashfield@windriver.com>, 
+	'Daniel Cauchy' <dcauchy@mvista.com>, "'deVries, Alex'"
+	<Alex.deVries@windriver.com>, "'Dixon, Brad'" <Brad_Dixon@mentor.com>, 
+	"Dmytriyenko, Denys" <denys@ti.com>, "Erway, Tracey M"
+	<tracey.m.erway@intel.com>, "Flanagan, Elizabeth"
+	<elizabeth.flanagan@intel.com>, "Hart, Darren" <darren.hart@intel.com>, 
+	"'Hatle, Mark'" <mark.hatle@windriver.com>, 'Jeremy Puhlman'
+	<jpuhlman@gmail.com>, "Kooi, Koen" <k-kooi@ti.com>, "Kridner, Jason"
+	<jdk@ti.com>, "Li, Susie" <susie.li@intel.com>, "'Lieu.Ta@windriver.com'"
+	<'Lieu.Ta@windriver.com'>, "Lock, Joshua" <joshua.lock@intel.com>,
+	"'McCombe, Kevin'" <kevin.mccombe@windriver.com>, "Moeller, Thorsten"
+	<thorsten.moeller@intel.com>, "'morvek@mvista.com'" <'morvek@mvista.com'>, 
+	"Osier-mixon, Jeffrey" <jeffrey.osier-mixon@intel.com>, "'Polk, Jeffrey'"
+	<jeff.polk@windriver.com>, "Purdie, Richard" <richard.purdie@intel.com>,
+	"'Ranslam, Rob'" <Rob.Ranslam@windriver.com>, "Saxena, Rahul"
+	<rahul.saxena@intel.com>, "Stewart, David C" <david.c.stewart@intel.com>,
+	"Wang, Shane" <shane.wang@intel.com>, "Wold, Saul" <saul.wold@intel.com>,
+	"Yu, Ke" <ke.yu@intel.com>, "Zanussi, Tom" <tom.zanussi@intel.com>,
+	"Zhang, Jessica" <jessica.zhang@intel.com>, "Rifenbark, Scott M"
+	<scott.m.rifenbark@intel.com>, "'Hudson, Sean'" <Sean_Hudson@mentor.com>,
+	"Serban, Laurentiu" <laurentiu.serban@intel.com>, "Burton, Ross"
+	<ross.burton@intel.com>
+Thread-Topic: Yocto Project Technical Team Meeting - Tuesday, May 29, 2012
+	8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+Thread-Index: AQHNPeSuT95rukrfuUG02tFtNKP8ag==
+Date: Tue, 29 May 2012 21:47:46 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A483FC98C@ORSMSX101.amr.corp.intel.com>
 References: <7E680CB2A76BB8438D08CF13C09FC53A257BE410@ORSMSX101.amr.corp.intel.com>
+In-Reply-To: <7E680CB2A76BB8438D08CF13C09FC53A257BE410@ORSMSX101.amr.corp.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [10.22.254.138]
 MIME-Version: 1.0
-Subject: Minutes: Yocto Project Technical Team Meeting - Tuesday, May 29, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+X-Mailman-Approved-At: Tue, 29 May 2012 15:15:53 -0700
+Cc: "Calles Palacios, Osvaldo" <osvaldo.calles.palacios@intel.com>,
+	"Santana Lopez, Mario A" <mario.a.santana.lopez@intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>, "'Sadiq,
+	Irfan'" <Irfan_Sadiq@mentor.com>, "Ortega Garcia,
+	Adrian" <adrian.ortega.garcia@intel.com>
+Subject: Re: Yocto Project Technical Team Meeting - Tuesday, May 29, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,7 +72,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 29 May 2012 21:48:23 -0000
+X-List-Received-Date: Tue, 29 May 2012 21:47:48 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
