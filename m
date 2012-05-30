@@ -1,27 +1,50 @@
-Return-Path: <josh@linux.intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 85467E0070B
-	for <yocto@yoctoproject.org>; Wed, 30 May 2012 08:57:05 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 30 May 2012 08:57:05 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="158751521"
-Received: from unknown (HELO [10.255.12.96]) ([10.255.12.96])
-	by fmsmga001.fm.intel.com with ESMTP; 30 May 2012 08:57:05 -0700
-Message-ID: <4FC64350.60401@linux.intel.com>
-Date: Wed, 30 May 2012 08:57:04 -0700
-From: Joshua Lock <josh@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:12.0) Gecko/20120430 Thunderbird/12.0.1
+Return-Path: <B29882@freescale.com>
+Received: from am1outboundpool.messaging.microsoft.com
+	(am1ehsobe001.messaging.microsoft.com [213.199.154.204])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 29D47E013D3
+	for <yocto@yoctoproject.org>; Wed, 30 May 2012 09:08:27 -0700 (PDT)
+Received: from mail59-am1-R.bigfish.com (10.3.201.231) by
+	AM1EHSOBE005.bigfish.com (10.3.204.25) with Microsoft SMTP Server id
+	14.1.225.23; Wed, 30 May 2012 16:08:00 +0000
+Received: from mail59-am1 (localhost [127.0.0.1])	by mail59-am1-R.bigfish.com
+	(Postfix) with ESMTP id 6B018140134;
+	Wed, 30 May 2012 16:08:00 +0000 (UTC)
+X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null); IPV:NLI;
+	H:mail.freescale.net; RD:none; EFVD:NLI
+X-SpamScore: 11
+X-BigFish: VS11(zz9371Ic89bh1432N98dKzz1202hzz8275bhf73b6ilz2dh2a8h668h839h8e2h8e3hf0ahbe9i)
+Received: from mail59-am1 (localhost.localdomain [127.0.0.1]) by mail59-am1
+	(MessageSwitch) id 1338394078486378_20475;
+	Wed, 30 May 2012 16:07:58 +0000 (UTC)
+Received: from AM1EHSMHS001.bigfish.com (unknown [10.3.201.234])	by
+	mail59-am1.bigfish.com (Postfix) with ESMTP id 751C9400049;
+	Wed, 30 May 2012 16:07:58 +0000 (UTC)
+Received: from mail.freescale.net (70.37.183.190) by AM1EHSMHS001.bigfish.com
+	(10.3.207.101) with Microsoft SMTP Server (TLS) id 14.1.225.23;
+	Wed, 30 May 2012 16:07:57 +0000
+Received: from 039-SN1MPN1-001.039d.mgd.msft.net ([169.254.1.135]) by
+	039-SN1MMR1-001.039d.mgd.msft.net ([10.84.1.13]) with mapi id
+	14.02.0298.005; Wed, 30 May 2012 11:08:15 -0500
+From: McClintock Matthew-B29882 <B29882@freescale.com>
+To: =?iso-8859-1?Q?David_Nystr=F6m?= <david.nystrom@enea.com>
+Thread-Topic: [yocto] ALT_SRC_URI ?
+Thread-Index: AQHNPn5qCSDY21u1BUuWJ+PxCm5Hng==
+Date: Wed, 30 May 2012 16:08:14 +0000
+Message-ID: <CAEsOVNfUrVFO-zqO-G2Ci958_oUGSzUnpOG-3dL8X_bS-R_1UQ@mail.gmail.com>
+References: <4FC62CB6.8060004@enea.com>
+In-Reply-To: <4FC62CB6.8060004@enea.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [70.112.201.132]
 MIME-Version: 1.0
-To: Ross Burton <ross.burton@intel.com>
-References: <cover.1338390959.git.ross.burton@intel.com>
-In-Reply-To: <cover.1338390959.git.ross.burton@intel.com>
-Cc: yocto@yoctoproject.org, Darren Hart <dvhart@linux.intel.com>
-Subject: Re: [PATCH 0/1] [1.1.2] Fix syslinux on kernel 3.3
+X-OriginatorOrg: freescale.com
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: ALT_SRC_URI ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: McClintock Matthew-B29882 <B29882@freescale.com>
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -30,45 +53,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 30 May 2012 15:57:05 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 30 May 2012 16:08:27 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-ID: <37754E4B1443D34E959D75D233063A7B@mgd.freescale.com>
+Content-Transfer-Encoding: quoted-printable
 
-On 30/05/12 08:29, Ross Burton wrote:
-> Backporting a patch from master that fixes building syslinux on kernel 3.3.
-
-This change is in my recently proposed series of updates for 
-2011-1/edison which was sent to the OE-Core list.
-
-See:
-http://thread.gmane.org/gmane.comp.handhelds.openembedded.core/20836
-
-and:
-
-http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/log/?h=josh/edison
-
-Joshua
-
+On Wed, May 30, 2012 at 9:20 AM, David Nystr=F6m <david.nystrom@enea.com> w=
+rote:
+> Hi,
 >
-> The following changes since commit 1cdea4cf5f8ec8b32aa406b1767338a11618dba5:
+> Since meta-fsl-ppc:s git daemon(git://git.freescale.com) was down, I
+> experimented with adding the http reference as a mirror.
 >
->    syslinux: Avoid using linux.ext2_fs.h if possible (2012-05-28 12:29:04 +0100)
+> MIRRORS_prepend =3D "\
+> git://git.freescale.com/ppc/sdk/linux.git
+> git://git.freescale.com/git/cgit.cgi/ppc/sdk/linux.git;protocol=3Dhttp \n=
+ "
 >
-> are available in the git repository at:
->    git://git.yoctoproject.org/poky-contrib ross/edison-2236
->    http://git.yoctoproject.org/cgit.cgi/poky-contrib/log/?h=ross/edison-2236
+> Which failed and gave me:
+> http://pastebin.com/5sTQ0eMC
 >
-> Darren Hart (1):
->    syslinux: Avoid using linux.ext2_fs.h if possible
+> It shows bitbake trying to fetch something assumed to be created as a
+> bitbake mirror, mangling the name.
 >
->   .../libinstaller-Avoid-using-linux-ext2_fs.h.patch |  975 ++++++++++++++++++++
->   meta/recipes-devtools/syslinux/syslinux_4.03.bb    |    5 +-
->   2 files changed, 978 insertions(+), 2 deletions(-)
->   create mode 100644 meta/recipes-devtools/syslinux/files/libinstaller-Avoid-using-linux-ext2_fs.h.patch
->
+> How would I go about doing above ?, getting it to failover to my own
+> specified link ?
 
--- 
-Joshua Lock
-         Yocto Project
-         Intel Open Source Technology Centre
+It appears to expect mirrors to be in a tarred up bare git repository.
+Not sure if there is a way around this. You could do an override
+somewhere:
+
+SRC_URI_pn-linux-qoriq-sdk =3D "git://some/other/place"
+
+-M=
+
 
