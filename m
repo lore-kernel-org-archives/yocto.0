@@ -1,51 +1,36 @@
-Return-Path: <halstead@happypunch.com>
-Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
-	[209.85.160.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 71627E0070B
-	for <yocto@yoctoproject.org>; Wed, 30 May 2012 08:12:42 -0700 (PDT)
-Received: by pbbrq8 with SMTP id rq8so105568pbb.35
-	for <yocto@yoctoproject.org>; Wed, 30 May 2012 08:12:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=happypunch.com; s=google;
-	h=sender:message-id:date:from:user-agent:mime-version:to:cc:subject
-	:references:in-reply-to:x-enigmail-version:content-type;
-	bh=XJIdF7arW4pkraHoMyBjAkBVjJGUj8PRi4iqB9j2HOM=;
-	b=ByRxqkr2+Rf0pNNuUcPQAeD34HuoVkm/ou/kVowqzvtqeX6WzkSo/v2wPAbq8+J5WF
-	zjQdCQnZSvagYc8fJOf2QitRS8ryAGcZ1bG4JbqT0Ykm3SiTekCpfPRyLwTfNJf0Bag/
-	46p19ueWEhamt3ClbwMPlFpFE03o7QnfL8yR0=
+Return-Path: <ross.burton@intel.com>
+Received: from azsmga101.ch.intel.com (mga07.intel.com [143.182.124.22])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F1B2BE0070B
+	for <yocto@yoctoproject.org>; Wed, 30 May 2012 08:31:33 -0700 (PDT)
+Received: from mail-wi0-f178.google.com ([209.85.212.178])
+	by mga03.intel.com with ESMTP/TLS/RC4-SHA; 30 May 2012 08:31:33 -0700
+Received: by wibhn6 with SMTP id hn6so3191097wib.13
+	for <yocto@yoctoproject.org>; Wed, 30 May 2012 08:31:31 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=google.com; s=20120113;
-	h=sender:message-id:date:from:user-agent:mime-version:to:cc:subject
-	:references:in-reply-to:x-enigmail-version:content-type
-	:x-gm-message-state;
-	bh=XJIdF7arW4pkraHoMyBjAkBVjJGUj8PRi4iqB9j2HOM=;
-	b=lbTohfgBgCVphwUjd9txAtybXMLiRw1Okuz0cFLDjHP3PPn1N9A8uLgj+ZuqrNUqcR
-	0/oJvk6/uaXdKYD8mouT4gpEtr5dfh3jYqVIO1NvdrEswGY6gMDixlFyDdNE7Gal9U0i
-	09UhyC5/dMTh41Y+x/kAg6PTo3EtgWNLeiW2kOBfKHz8MByVe5g2DQLn9+nEKZbCke0n
-	qvW7DH8vDe9JAvunLFXyYqTLKFA4bOAfx60pp2iSCgTEfSQz8VTSRazNThdngmCrih4R
-	+BMCmKqh2jl+gpO2KLYFy6WajUHRsvUAV0ETbxfFbGfSjABcYt/3bKyprTeal2Yv3e5a
-	MxHw==
-Received: by 10.68.227.69 with SMTP id ry5mr50923223pbc.16.1338390762047;
-	Wed, 30 May 2012 08:12:42 -0700 (PDT)
-Received: from pride.incitedev.com
-	(static-50-43-40-17.bvtn.or.frontiernet.net. [50.43.40.17])
-	by mx.google.com with ESMTPS id ou5sm763522pbb.54.2012.05.30.08.12.40
-	(version=SSLv3 cipher=OTHER); Wed, 30 May 2012 08:12:41 -0700 (PDT)
-Sender: Michael Halstead <halstead@happypunch.com>
-Message-ID: <4FC638E8.1050401@yoctoproject.org>
-Date: Wed, 30 May 2012 08:12:40 -0700
-From: Michael Halstead <michael@yoctoproject.org>
-User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:12.0) Gecko/20120430 Thunderbird/12.0.1
-MIME-Version: 1.0
-To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-References: <4FC009CD.9030201@yoctoproject.org>
-	<41DEA4B02DBDEF40A0F3B6D0DDB12379469FAF74@ORSMSX101.amr.corp.intel.com>
-In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB12379469FAF74@ORSMSX101.amr.corp.intel.com>
-X-Enigmail-Version: 1.5pre
-X-Gm-Message-State: ALoCoQkZlI7aYCCMggbLAtwNSfQvUQ3nxe/8zB+hFAVBHav0OrRsb52P16kmNFhrCm1FpremX5Aq
-Cc: Yocto Project Discussion <yocto@yoctoproject.org>
-Subject: Re: Bugzilla Re-organization
+	h=from:to:cc:subject:date:message-id:x-mailer:x-gm-message-state;
+	bh=yFmXxAAW+C4H/4n1RtaQlsZMrhXtkoM8pdSicL2ttOo=;
+	b=E2Sn3TKlOaBHNV4Zclx0oIlL6UQmh4SxBdbipc9hfFPlFl7EtuGAybE2sX7n86+dMr
+	e4+AArz3VmCxLaU2r9G4DObvYN1Var71nSUNqF9WUxGpnldW3lu5VQi5HrKNd+lUF6YT
+	ppuvrO9qv5QJIYi/EhEuev68OTEHbutBxasjgs5whWUBjnP1Pwuc8MKU6tIZ7xT2bJQs
+	+XDxRKmLNL6cTRJfs+vRU7ZjkL/+9LL8xCVDE6e3ifhjAbohF3IF77VPmyXo+O03Sw2j
+	Yw2/FD/gEyd7b/+YDmMqGYz5Xii2yNtl01Q3t6w179sJIxUyUwjTI3jPo+iLHUZQmF3N
+	qo8A==
+Received: by 10.216.226.32 with SMTP id a32mr10313349weq.190.1338391891101;
+	Wed, 30 May 2012 08:31:31 -0700 (PDT)
+Received: from localhost.localdomain (35.106.2.81.in-addr.arpa. [81.2.106.35])
+	by mx.google.com with ESMTPS id
+	gc6sm34055306wib.0.2012.05.30.08.31.29
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Wed, 30 May 2012 08:31:30 -0700 (PDT)
+From: Ross Burton <ross.burton@intel.com>
+To: yocto@yoctoproject.org
+Date: Wed, 30 May 2012 16:29:45 +0100
+Message-Id: <cover.1338390959.git.ross.burton@intel.com>
+X-Mailer: git-send-email 1.7.7.6
+X-Gm-Message-State: ALoCoQnmMf5LczxpzRP29vh2DKbVw0/GcSUx/rrnBmIdJgHl1VaUbPSCiG4CtFLwy01TLDRfMmiM
+Cc: Darren Hart <dvhart@linux.intel.com>
+Subject: [PATCH 0/1] [1.1.2] Fix syslinux on kernel 3.3
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -57,135 +42,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 30 May 2012 15:12:42 -0000
-X-Groupsio-MsgNum: 6960
-Content-Type: multipart/signed; protocol="application/pkcs7-signature";
-	micalg=sha1; boundary="------------ms090100000801040800010103"
+X-List-Received-Date: Wed, 30 May 2012 15:31:34 -0000
 
---------------ms090100000801040800010103
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+Backporting a patch from master that fixes building syslinux on kernel 3.3.
 
-On 05/30/2012 07:51 AM, Rifenbark, Scott M wrote:
-> For documentation there should be six things.  We are missing the ADT M=
-anual and the BSP manual.
-The reclassification step is incomplete. ADT didn't reclassify as
-expected and has remained in Build System & Metadata. BSPs is still in
-Yocto Project Components. I'll correct these in the script and import
-fresh data to test.
+The following changes since commit 1cdea4cf5f8ec8b32aa406b1767338a11618dba5:
 
-Thank you Scott for reporting this.
+  syslinux: Avoid using linux.ext2_fs.h if possible (2012-05-28 12:29:04 +0100)
 
-Michael Halstead
->
-> ScottR
->
-> -----Original Message-----
-> From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject=
-=2Eorg] On Behalf Of Michael Halstead
-> Sent: Friday, May 25, 2012 3:38 PM
-> To: yocto-infrastructure@yoctoproject.org; Yocto Project Discussion
-> Subject: [yocto] Bugzilla Re-organization
->
-> The first draft of the reorganized bugzilla is available for feedback n=
-ow at https://bugzilla.yoctodev.org/. Outgoing e-mail is currently disabl=
-ed on this preview copy. Please feel free to take a look and see if you s=
-pot any errors. Additional refinement of  product or component descriptio=
-ns will be helpful as well.
->
-> --
-> Michael Halstead
-> Yocto Project / Sys Admin
->
->
->
+are available in the git repository at:
+  git://git.yoctoproject.org/poky-contrib ross/edison-2236
+  http://git.yoctoproject.org/cgit.cgi/poky-contrib/log/?h=ross/edison-2236
+
+Darren Hart (1):
+  syslinux: Avoid using linux.ext2_fs.h if possible
+
+ .../libinstaller-Avoid-using-linux-ext2_fs.h.patch |  975 ++++++++++++++++++++
+ meta/recipes-devtools/syslinux/syslinux_4.03.bb    |    5 +-
+ 2 files changed, 978 insertions(+), 2 deletions(-)
+ create mode 100644 meta/recipes-devtools/syslinux/files/libinstaller-Avoid-using-linux-ext2_fs.h.patch
+
+-- 
+1.7.7.6
 
 
-
---------------ms090100000801040800010103
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
-
-MIAGCSqGSIb3DQEHAqCAMIACAQExCzAJBgUrDgMCGgUAMIAGCSqGSIb3DQEHAQAAoIINYjCCBjQw
-ggQcoAMCAQICAR4wDQYJKoZIhvcNAQEFBQAwfTELMAkGA1UEBhMCSUwxFjAUBgNVBAoTDVN0YXJ0
-Q29tIEx0ZC4xKzApBgNVBAsTIlNlY3VyZSBEaWdpdGFsIENlcnRpZmljYXRlIFNpZ25pbmcxKTAn
-BgNVBAMTIFN0YXJ0Q29tIENlcnRpZmljYXRpb24gQXV0aG9yaXR5MB4XDTA3MTAyNDIxMDE1NVoX
-DTE3MTAyNDIxMDE1NVowgYwxCzAJBgNVBAYTAklMMRYwFAYDVQQKEw1TdGFydENvbSBMdGQuMSsw
-KQYDVQQLEyJTZWN1cmUgRGlnaXRhbCBDZXJ0aWZpY2F0ZSBTaWduaW5nMTgwNgYDVQQDEy9TdGFy
-dENvbSBDbGFzcyAxIFByaW1hcnkgSW50ZXJtZWRpYXRlIENsaWVudCBDQTCCASIwDQYJKoZIhvcN
-AQEBBQADggEPADCCAQoCggEBAMcJg8zOLdgasSmkLhOrlr6KMoOMpohBllVHrdRvEg/q6r8jR+EK
-75xCGhR8ToREoqe7zM9/UnC6TS2y9UKTpT1v7RSMzR0t6ndl0TWBuUr/UXBhPk+Kmy7bI4yW4urC
-+y7P3/1/X7U8ocb8VpH/Clt+4iq7nirMcNh6qJR+xjOhV+VHzQMALuGYn5KZmc1NbJQYclsGkDxD
-z2UbFqE2+6vIZoL+jb9x4Pa5gNf1TwSDkOkikZB1xtB4ZqtXThaABSONdfmv/Z1pua3FYxnCFmdr
-/+N2JLKutIxMYqQOJebr/f/h5t95m4JgrM3Y/w7YX9d7YAL9jvN4SydHsU6n65cCAwEAAaOCAa0w
-ggGpMA8GA1UdEwEB/wQFMAMBAf8wDgYDVR0PAQH/BAQDAgEGMB0GA1UdDgQWBBRTcu2SnODaywFc
-fH6WNU7y1LhRgjAfBgNVHSMEGDAWgBROC+8apEBbpRdphzDKNGhD0EGu8jBmBggrBgEFBQcBAQRa
-MFgwJwYIKwYBBQUHMAGGG2h0dHA6Ly9vY3NwLnN0YXJ0c3NsLmNvbS9jYTAtBggrBgEFBQcwAoYh
-aHR0cDovL3d3dy5zdGFydHNzbC5jb20vc2ZzY2EuY3J0MFsGA1UdHwRUMFIwJ6AloCOGIWh0dHA6
-Ly93d3cuc3RhcnRzc2wuY29tL3Nmc2NhLmNybDAnoCWgI4YhaHR0cDovL2NybC5zdGFydHNzbC5j
-b20vc2ZzY2EuY3JsMIGABgNVHSAEeTB3MHUGCysGAQQBgbU3AQIBMGYwLgYIKwYBBQUHAgEWImh0
-dHA6Ly93d3cuc3RhcnRzc2wuY29tL3BvbGljeS5wZGYwNAYIKwYBBQUHAgEWKGh0dHA6Ly93d3cu
-c3RhcnRzc2wuY29tL2ludGVybWVkaWF0ZS5wZGYwDQYJKoZIhvcNAQEFBQADggIBAAqDCH14qywG
-XLhjjF6uHLkjd02hcdh9hrw+VUsv+q1eeQWB21jWj3kJ96AUlPCoEGZ/ynJNScWy6QMVQjbbMXlt
-UfO4n4bGGdKo3awPWp61tjAFgraLJgDk+DsSvUD6EowjMTNx25GQgyYJ5RPIzKKR9tQW8gGK+2+R
-HxkUCTbYFnL6kl8Ch507rUdPPipJ9CgJFws3kDS3gOS5WFMxcjO5DwKfKSETEPrHh7p5shuuNktv
-sv6hxHTLhiMKX893gxdT3XLS9OKmCv87vkINQcNEcIIoFWbP9HORz9v3vQwR4e3ksLc2JZOAFK+s
-sS5XMEoznzpihEP0PLc4dCBYjbvSD7kxgDwZ+Aj8Q9PkbvE9sIPP7ON0fz095HdThKjiVJe6vofq
-+n6b1NBc8XdrQvBmunwxD5nvtTW4vtN6VY7mUCmxsCieuoBJ9OlqmsVWQvifIYf40dJPZkk9YgGT
-zWLpXDSfLSplbY2LL9C9U0ptvjcDjefLTvqSFc7tw1sEhF0n/qpA2r0GpvkLRDmcSwVyPvmjFBGq
-Up/pNy8ZuPGQmHwFi2/14+xeSUDG2bwnsYJQG2EdJCB6luQ57GEnTA/yKZSTKI8dDQa8Sd3zfXb1
-9mOgSF0bBdXbuKhEpuP9wirslFe6fQ1t5j5R0xi72MZ8ikMu1RQZKCyDbMwazlHiMIIHJjCCBg6g
-AwIBAgIDA37RMA0GCSqGSIb3DQEBBQUAMIGMMQswCQYDVQQGEwJJTDEWMBQGA1UEChMNU3RhcnRD
-b20gTHRkLjErMCkGA1UECxMiU2VjdXJlIERpZ2l0YWwgQ2VydGlmaWNhdGUgU2lnbmluZzE4MDYG
-A1UEAxMvU3RhcnRDb20gQ2xhc3MgMSBQcmltYXJ5IEludGVybWVkaWF0ZSBDbGllbnQgQ0EwHhcN
-MTIwMTA2MTMyOTE3WhcNMTMwMTA2MDcxMjUwWjBnMRkwFwYDVQQNExBlTGJQOTQ4c1JVN2dZQXYy
-MSEwHwYDVQQDDBhtaWNoYWVsQHlvY3RvcHJvamVjdC5vcmcxJzAlBgkqhkiG9w0BCQEWGG1pY2hh
-ZWxAeW9jdG9wcm9qZWN0Lm9yZzCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBANhLuIfm
-OceuHa0beGkrktR2YWPzNci0abL4tkli9NVHN7gPjrZHErqn81LXKr+lHSPe5K9H2ziM9Xy8dWpV
-jcNiTvkKj2RgoCZn48TVpCA93UR/abpbUcQixLrz0aKrwbL6cgHNBwaWwH4YnBtdDpGCoBsIN1ex
-hSgNX27KyhApSzrMdIgHvO5UchBiARXh2Ll+Wf7G6ph+TFq2BCGu7MI9pDn6FZwHri78KOKM7aP8
-g7oUmuwauWZ855YV1rE+nE+/yeBuCdgIG2l2v2YYN+nrhhFSymolp8NgPoSztKrx7sRbOEkuC4hq
-fWch+MEWos24nHnsnCw9cwMO4m+kN7sCAwEAAaOCA7MwggOvMAkGA1UdEwQCMAAwCwYDVR0PBAQD
-AgSwMB0GA1UdJQQWMBQGCCsGAQUFBwMCBggrBgEFBQcDBDAdBgNVHQ4EFgQUrNEl25qGFro/pXDh
-zeZZX1M1JGMwHwYDVR0jBBgwFoAUU3Ltkpzg2ssBXHx+ljVO8tS4UYIwIwYDVR0RBBwwGoEYbWlj
-aGFlbEB5b2N0b3Byb2plY3Qub3JnMIICIQYDVR0gBIICGDCCAhQwggIQBgsrBgEEAYG1NwECAjCC
-Af8wLgYIKwYBBQUHAgEWImh0dHA6Ly93d3cuc3RhcnRzc2wuY29tL3BvbGljeS5wZGYwNAYIKwYB
-BQUHAgEWKGh0dHA6Ly93d3cuc3RhcnRzc2wuY29tL2ludGVybWVkaWF0ZS5wZGYwgfcGCCsGAQUF
-BwICMIHqMCcWIFN0YXJ0Q29tIENlcnRpZmljYXRpb24gQXV0aG9yaXR5MAMCAQEagb5UaGlzIGNl
-cnRpZmljYXRlIHdhcyBpc3N1ZWQgYWNjb3JkaW5nIHRvIHRoZSBDbGFzcyAxIFZhbGlkYXRpb24g
-cmVxdWlyZW1lbnRzIG9mIHRoZSBTdGFydENvbSBDQSBwb2xpY3ksIHJlbGlhbmNlIG9ubHkgZm9y
-IHRoZSBpbnRlbmRlZCBwdXJwb3NlIGluIGNvbXBsaWFuY2Ugb2YgdGhlIHJlbHlpbmcgcGFydHkg
-b2JsaWdhdGlvbnMuMIGcBggrBgEFBQcCAjCBjzAnFiBTdGFydENvbSBDZXJ0aWZpY2F0aW9uIEF1
-dGhvcml0eTADAgECGmRMaWFiaWxpdHkgYW5kIHdhcnJhbnRpZXMgYXJlIGxpbWl0ZWQhIFNlZSBz
-ZWN0aW9uICJMZWdhbCBhbmQgTGltaXRhdGlvbnMiIG9mIHRoZSBTdGFydENvbSBDQSBwb2xpY3ku
-MDYGA1UdHwQvMC0wK6ApoCeGJWh0dHA6Ly9jcmwuc3RhcnRzc2wuY29tL2NydHUxLWNybC5jcmww
-gY4GCCsGAQUFBwEBBIGBMH8wOQYIKwYBBQUHMAGGLWh0dHA6Ly9vY3NwLnN0YXJ0c3NsLmNvbS9z
-dWIvY2xhc3MxL2NsaWVudC9jYTBCBggrBgEFBQcwAoY2aHR0cDovL2FpYS5zdGFydHNzbC5jb20v
-Y2VydHMvc3ViLmNsYXNzMS5jbGllbnQuY2EuY3J0MCMGA1UdEgQcMBqGGGh0dHA6Ly93d3cuc3Rh
-cnRzc2wuY29tLzANBgkqhkiG9w0BAQUFAAOCAQEAUjNTeM730SEKLMbJ4THlGkx3KFkaYxIKf1C1
-PvZz9d6fq6VfFL1xbqSsz2og/hiCccC/GYFTKAK3W23LHjiETtNCK6pDzFTzeFxKdYOIoCcCjjxE
-IF0D16A1gXBp6G9tT6yUiy916wF8Ic/Etxti4ksydRWDet1LsXXNKt8gdolgPVImHm2VRX/8M9KG
-HU2/1oXXgjV2yC77sPVAaVoIBdiRdMOAS7gRt0pX+xNY+R8iItIfQO5Nf6mlRMgwXy/e+pYvSil+
-T1jdMQD6k07jZ1kpPAHujuCA5p6EWs+hpDXh7fq+lmfM9zZoTWtEDIJMrLvYy2IMD3NE0clxH+GY
-iTGCA9AwggPMAgEBMIGUMIGMMQswCQYDVQQGEwJJTDEWMBQGA1UEChMNU3RhcnRDb20gTHRkLjEr
-MCkGA1UECxMiU2VjdXJlIERpZ2l0YWwgQ2VydGlmaWNhdGUgU2lnbmluZzE4MDYGA1UEAxMvU3Rh
-cnRDb20gQ2xhc3MgMSBQcmltYXJ5IEludGVybWVkaWF0ZSBDbGllbnQgQ0ECAwN+0TAJBgUrDgMC
-GgUAoIICEDAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0xMjA1MzAx
-NTEyNDBaMCMGCSqGSIb3DQEJBDEWBBQiyKI54t0xEvyEizRckRx9zTq17jBfBgkqhkiG9w0BCQ8x
-UjBQMAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzAOBggqhkiG9w0DAgICAIAwDQYIKoZIhvcNAwIC
-AUAwBwYFKw4DAgcwDQYIKoZIhvcNAwICASgwgaUGCSsGAQQBgjcQBDGBlzCBlDCBjDELMAkGA1UE
-BhMCSUwxFjAUBgNVBAoTDVN0YXJ0Q29tIEx0ZC4xKzApBgNVBAsTIlNlY3VyZSBEaWdpdGFsIENl
-cnRpZmljYXRlIFNpZ25pbmcxODA2BgNVBAMTL1N0YXJ0Q29tIENsYXNzIDEgUHJpbWFyeSBJbnRl
-cm1lZGlhdGUgQ2xpZW50IENBAgMDftEwgacGCyqGSIb3DQEJEAILMYGXoIGUMIGMMQswCQYDVQQG
-EwJJTDEWMBQGA1UEChMNU3RhcnRDb20gTHRkLjErMCkGA1UECxMiU2VjdXJlIERpZ2l0YWwgQ2Vy
-dGlmaWNhdGUgU2lnbmluZzE4MDYGA1UEAxMvU3RhcnRDb20gQ2xhc3MgMSBQcmltYXJ5IEludGVy
-bWVkaWF0ZSBDbGllbnQgQ0ECAwN+0TANBgkqhkiG9w0BAQEFAASCAQChPjGTJktMOtMpIRx2D8h0
-z5Sh+uKo+/dugOYEiVamfrcP/CxmdMsGZ/SqeXYyaO8WwQ9JWMg0YTNNj/rqPnvpKSm/fORSTnVA
-Tv1mn7vlrQisVISVbnosK9f6yooSRSlYMwZmK6tMEwPqzn3EL03v7LaHXcxjlJ6q/T5bKNC+L0OI
-tLlmnvTBsVUY36TSGhnJIQAg0w8SCaxVKR7/nlOFfWvVgBgd+z2Y6MwfEZO+udRZE176ajp9eoFi
-AYtKJVNrLmBRT7oj+6JwIe+RxpFch+ErFNcBw1wAAcMa46jU56ov5YQRNwHqKTmLSGtxf+4gTAla
-W6+hM4ErdaSTfxggAAAAAAAA
-
---------------ms090100000801040800010103--
