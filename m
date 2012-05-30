@@ -1,50 +1,41 @@
-Return-Path: <B29882@freescale.com>
-Received: from am1outboundpool.messaging.microsoft.com
-	(am1ehsobe001.messaging.microsoft.com [213.199.154.204])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 29D47E013D3
-	for <yocto@yoctoproject.org>; Wed, 30 May 2012 09:08:27 -0700 (PDT)
-Received: from mail59-am1-R.bigfish.com (10.3.201.231) by
-	AM1EHSOBE005.bigfish.com (10.3.204.25) with Microsoft SMTP Server id
-	14.1.225.23; Wed, 30 May 2012 16:08:00 +0000
-Received: from mail59-am1 (localhost [127.0.0.1])	by mail59-am1-R.bigfish.com
-	(Postfix) with ESMTP id 6B018140134;
-	Wed, 30 May 2012 16:08:00 +0000 (UTC)
-X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null); IPV:NLI;
-	H:mail.freescale.net; RD:none; EFVD:NLI
-X-SpamScore: 11
-X-BigFish: VS11(zz9371Ic89bh1432N98dKzz1202hzz8275bhf73b6ilz2dh2a8h668h839h8e2h8e3hf0ahbe9i)
-Received: from mail59-am1 (localhost.localdomain [127.0.0.1]) by mail59-am1
-	(MessageSwitch) id 1338394078486378_20475;
-	Wed, 30 May 2012 16:07:58 +0000 (UTC)
-Received: from AM1EHSMHS001.bigfish.com (unknown [10.3.201.234])	by
-	mail59-am1.bigfish.com (Postfix) with ESMTP id 751C9400049;
-	Wed, 30 May 2012 16:07:58 +0000 (UTC)
-Received: from mail.freescale.net (70.37.183.190) by AM1EHSMHS001.bigfish.com
-	(10.3.207.101) with Microsoft SMTP Server (TLS) id 14.1.225.23;
-	Wed, 30 May 2012 16:07:57 +0000
-Received: from 039-SN1MPN1-001.039d.mgd.msft.net ([169.254.1.135]) by
-	039-SN1MMR1-001.039d.mgd.msft.net ([10.84.1.13]) with mapi id
-	14.02.0298.005; Wed, 30 May 2012 11:08:15 -0500
-From: McClintock Matthew-B29882 <B29882@freescale.com>
-To: =?iso-8859-1?Q?David_Nystr=F6m?= <david.nystrom@enea.com>
-Thread-Topic: [yocto] ALT_SRC_URI ?
-Thread-Index: AQHNPn5qCSDY21u1BUuWJ+PxCm5Hng==
-Date: Wed, 30 May 2012 16:08:14 +0000
-Message-ID: <CAEsOVNfUrVFO-zqO-G2Ci958_oUGSzUnpOG-3dL8X_bS-R_1UQ@mail.gmail.com>
-References: <4FC62CB6.8060004@enea.com>
-In-Reply-To: <4FC62CB6.8060004@enea.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [70.112.201.132]
+Return-Path: <ross.burton@intel.com>
+Received: from fmsmga102.fm.intel.com (mga10.intel.com [192.55.52.92])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5AE03E0070B
+	for <yocto@yoctoproject.org>; Wed, 30 May 2012 09:40:59 -0700 (PDT)
+Received: from mail-pz0-f52.google.com ([209.85.210.52])
+	by mga11.intel.com with ESMTP/TLS/RC4-MD5; 30 May 2012 09:40:58 -0700
+Received: by dano14 with SMTP id o14so11992dan.25
+	for <yocto@yoctoproject.org>; Wed, 30 May 2012 09:40:57 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type:x-gm-message-state;
+	bh=CS84onHri1lpinvYKI2GNGnYhETHwBhB45WLn1d7K90=;
+	b=KkHGXeAxTf5Z30JPKoAy2BpYCwoivW7wWIGwln+HkQmtIfJ/fVyv5DojXUpqRmVEU6
+	WAVQ25XnnbATvyQc5C2c5l3tDk6VZ8M/y91SGXWxXtHYMuLr+1m82fnmUgPQmGdwKyf2
+	u7CBAeAsNxo0yhq7R05ae8VgTdfc2YUa/+amu0Q4qLkxeAEF7vfnb4GpYLU+5JmDA4iX
+	gWPq8lexrZePi4xwKMJokoqEB9fjZ8VUyKuV6CSCB3fPVlIyFtK7Tsdb8wxGy8P33KmE
+	Svt5LIcCijprQEn9Xa2idZt8UMqKiPo8HcfL1v8oz+qtpYE+kPwVsDbVLlL0pz0CnBrB
+	fgdA==
+Received: by 10.68.238.68 with SMTP id vi4mr28743758pbc.123.1338396057400;
+	Wed, 30 May 2012 09:40:57 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: freescale.com
+Received: by 10.142.229.14 with HTTP; Wed, 30 May 2012 09:40:36 -0700 (PDT)
+In-Reply-To: <CAJTo0LbN00yBJG29umhXMwkPxkXJbumUmSH8SqMg4w8qiN7s8g@mail.gmail.com>
+References: <3142CB09BE468C408BD5916115E8D45F0129A8@G2W2535.americas.hpqcorp.net>
+	<CAJTo0LbO9isDBoeO-oMf3nR5+57mgJq66Q1njfEsaR1A2whi=g@mail.gmail.com>
+	<3142CB09BE468C408BD5916115E8D45F012A0C@G2W2535.americas.hpqcorp.net>
+	<CAJTo0LbN00yBJG29umhXMwkPxkXJbumUmSH8SqMg4w8qiN7s8g@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Wed, 30 May 2012 17:40:36 +0100
+Message-ID: <CAJTo0LZF6teAnRO656qfK0NTPaiE21FQHCBRKX-EfHMRLu08Xw@mail.gmail.com>
+To: "Racine, Michel" <michel.racine@hp.com>
+X-Gm-Message-State: ALoCoQlDqqX2B25IrdbzG6m1SayvaImS0+ULgqxG50u72XM/uaFy99UGLwG3Fk89bp+YFWeKALjg
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: ALT_SRC_URI ?
+Subject: Re: Build issue (syslinux ext2_fs.h error) in Edison 6.0.1
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: McClintock Matthew-B29882 <B29882@freescale.com>
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -53,39 +44,15 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 30 May 2012 16:08:27 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-ID: <37754E4B1443D34E959D75D233063A7B@mgd.freescale.com>
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 30 May 2012 16:40:59 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On Wed, May 30, 2012 at 9:20 AM, David Nystr=F6m <david.nystrom@enea.com> w=
-rote:
-> Hi,
->
-> Since meta-fsl-ppc:s git daemon(git://git.freescale.com) was down, I
-> experimented with adding the http reference as a mirror.
->
-> MIRRORS_prepend =3D "\
-> git://git.freescale.com/ppc/sdk/linux.git
-> git://git.freescale.com/git/cgit.cgi/ppc/sdk/linux.git;protocol=3Dhttp \n=
- "
->
-> Which failed and gave me:
-> http://pastebin.com/5sTQ0eMC
->
-> It shows bitbake trying to fetch something assumed to be created as a
-> bitbake mirror, mangling the name.
->
-> How would I go about doing above ?, getting it to failover to my own
-> specified link ?
+On 30 May 2012 15:44, Burton, Ross <ross.burton@intel.com> wrote:
+> On 30 May 2012 15:35, Racine, Michel <michel.racine@hp.com> wrote:
+>> I'm currently working from a tar ball release of 6.0.1. Could you please point me to docs/link to obtain a patch? I probably missed it from the docs I looked at...
 
-It appears to expect mirrors to be in a tarred up bare git repository.
-Not sure if there is a way around this. You could do an override
-somewhere:
+Small update - this is in the queue for the next point release of
+Edison already.
 
-SRC_URI_pn-linux-qoriq-sdk =3D "git://some/other/place"
-
--M=
-
+Ross
 
