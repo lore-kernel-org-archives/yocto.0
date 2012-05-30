@@ -1,66 +1,35 @@
-Return-Path: <song.liu@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 16E1EE006D9
-	for <yocto@yoctoproject.org>; Tue, 29 May 2012 14:47:48 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 29 May 2012 14:47:47 -0700
+Return-Path: <dongxiao.xu@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1EFFEE0030B
+	for <yocto@yoctoproject.org>; Tue, 29 May 2012 22:45:29 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 29 May 2012 22:45:28 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="149967698"
-Received: from orsmsx606.amr.corp.intel.com ([10.22.226.128])
-	by orsmga002.jf.intel.com with ESMTP; 29 May 2012 14:47:47 -0700
-Received: from orsmsx152.amr.corp.intel.com (10.22.226.39) by
-	orsmsx606.amr.corp.intel.com (10.22.226.128) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Tue, 29 May 2012 14:47:46 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.121]) by
-	ORSMSX152.amr.corp.intel.com ([169.254.8.73]) with mapi id
-	14.01.0355.002; Tue, 29 May 2012 14:47:46 -0700
-From: "Liu, Song" <song.liu@intel.com>
-To: "Liu, Song" <song.liu@intel.com>, "Petrisor, Ileana"
-	<ileana.petrisor@intel.com>, "Damian, Alexandru"
-	<alexandru.damian@intel.com>, 'Anders Darander' <anders@chargestorm.se>,
-	"Barros Pena, Belen" <belen.barros.pena@intel.com>, "Bodke, Kishore K"
-	<kishore.k.bodke@intel.com>,
-	'Bruce Ashfield' <bruce.ashfield@windriver.com>, 
-	'Daniel Cauchy' <dcauchy@mvista.com>, "'deVries, Alex'"
-	<Alex.deVries@windriver.com>, "'Dixon, Brad'" <Brad_Dixon@mentor.com>, 
-	"Dmytriyenko, Denys" <denys@ti.com>, "Erway, Tracey M"
-	<tracey.m.erway@intel.com>, "Flanagan, Elizabeth"
-	<elizabeth.flanagan@intel.com>, "Hart, Darren" <darren.hart@intel.com>, 
-	"'Hatle, Mark'" <mark.hatle@windriver.com>, 'Jeremy Puhlman'
-	<jpuhlman@gmail.com>, "Kooi, Koen" <k-kooi@ti.com>, "Kridner, Jason"
-	<jdk@ti.com>, "Li, Susie" <susie.li@intel.com>, "'Lieu.Ta@windriver.com'"
-	<'Lieu.Ta@windriver.com'>, "Lock, Joshua" <joshua.lock@intel.com>,
-	"'McCombe, Kevin'" <kevin.mccombe@windriver.com>, "Moeller, Thorsten"
-	<thorsten.moeller@intel.com>, "'morvek@mvista.com'" <'morvek@mvista.com'>, 
-	"Osier-mixon, Jeffrey" <jeffrey.osier-mixon@intel.com>, "'Polk, Jeffrey'"
-	<jeff.polk@windriver.com>, "Purdie, Richard" <richard.purdie@intel.com>,
-	"'Ranslam, Rob'" <Rob.Ranslam@windriver.com>, "Saxena, Rahul"
-	<rahul.saxena@intel.com>, "Stewart, David C" <david.c.stewart@intel.com>,
-	"Wang, Shane" <shane.wang@intel.com>, "Wold, Saul" <saul.wold@intel.com>,
-	"Yu, Ke" <ke.yu@intel.com>, "Zanussi, Tom" <tom.zanussi@intel.com>,
-	"Zhang, Jessica" <jessica.zhang@intel.com>, "Rifenbark, Scott M"
-	<scott.m.rifenbark@intel.com>, "'Hudson, Sean'" <Sean_Hudson@mentor.com>,
-	"Serban, Laurentiu" <laurentiu.serban@intel.com>, "Burton, Ross"
-	<ross.burton@intel.com>
-Thread-Topic: Yocto Project Technical Team Meeting - Tuesday, May 29, 2012
-	8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
-Thread-Index: AQHNPeSuT95rukrfuUG02tFtNKP8ag==
-Date: Tue, 29 May 2012 21:47:46 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A483FC98C@ORSMSX101.amr.corp.intel.com>
-References: <7E680CB2A76BB8438D08CF13C09FC53A257BE410@ORSMSX101.amr.corp.intel.com>
-In-Reply-To: <7E680CB2A76BB8438D08CF13C09FC53A257BE410@ORSMSX101.amr.corp.intel.com>
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; 
+	d="scan'208,217";a="149319259"
+Received: from azsmsx601.amr.corp.intel.com ([10.2.121.193])
+	by azsmga001.ch.intel.com with ESMTP; 29 May 2012 22:45:28 -0700
+Received: from shsmsx151.ccr.corp.intel.com (10.239.6.50) by
+	azsmsx601.amr.corp.intel.com (10.2.121.193) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Tue, 29 May 2012 22:45:28 -0700
+Received: from shsmsx102.ccr.corp.intel.com ([169.254.2.133]) by
+	SHSMSX151.ccr.corp.intel.com ([169.254.3.90]) with mapi id
+	14.01.0355.002; Wed, 30 May 2012 13:45:26 +0800
+From: "Xu, Dongxiao" <dongxiao.xu@intel.com>
+To: Jim Kosem <jim@halfman.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] Yocto Web Hob 1.3 requirements
+Thread-Index: AQHNLQhpBg4Wa+SU/ki/Eu6p+OWvjpbh9GiQ
+Date: Wed, 30 May 2012 05:45:25 +0000
+Message-ID: <40776A41FC278F40B59438AD47D147A90FD7D8F0@SHSMSX102.ccr.corp.intel.com>
+References: <7B5D5B32880342B1A71D5C3F7F7D41F7@halfman.com>
+In-Reply-To: <7B5D5B32880342B1A71D5C3F7F7D41F7@halfman.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.138]
+x-originating-ip: [10.239.127.40]
 MIME-Version: 1.0
-X-Mailman-Approved-At: Tue, 29 May 2012 15:15:53 -0700
-Cc: "Calles Palacios, Osvaldo" <osvaldo.calles.palacios@intel.com>,
-	"Santana Lopez, Mario A" <mario.a.santana.lopez@intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>, "'Sadiq,
-	Irfan'" <Irfan_Sadiq@mentor.com>, "Ortega Garcia,
-	Adrian" <adrian.ortega.garcia@intel.com>
-Subject: Re: Yocto Project Technical Team Meeting - Tuesday, May 29, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+Subject: Re: Yocto Web Hob 1.3 requirements
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,98 +41,118 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 29 May 2012 21:47:48 -0000
+X-List-Received-Date: Wed, 30 May 2012 05:45:29 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/alternative;
+	boundary="_000_40776A41FC278F40B59438AD47D147A90FD7D8F0SHSMSX102ccrcor_"
 
-Attendees:
-Beth, Richard, Dave, Paul, Joshua, Michael, Jefro, Darren, Tom, Denys, Bruc=
-e, Jeff, Mark, ScottR, Sahad, Sean, Ross, Song
-=A0
-New member - Ross Burton: Joined Yocto Project yesterday, joined Intel 4 ye=
-ars ago. Worked on moblin, meego, tizen,  worked on Poky when I was with Op=
-enhand.
-=A0
-Agenda
-* Opens collection - 5 min (Song)
-* 1.2.1 update - 10 min (ScottG)
-  - 30 fixed, 18 remaining
-  - pull request for the first batch sent, RP is planning merging them toda=
-y or tomorrow.
-* 1.1.2 update - 10 min (Josh/Beth)
-  - Not a lot of changes last week, pull request sent, should be merged in =
-a couple of days according to Richard.
-  - Build ETA, the end of this week.
-* Yocto 1.3 status  - 10 min (Song/team)
-  - 1.3 feature list: https://wiki.yoctoproject.org/wiki/Yocto_1.3_Features=
-=20
-  - 1.3 schedule: https://wiki.yoctoproject.org/wiki/Yocto_1.3_Schedule=20
-  - 1.3 status: https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.3_Statu=
-s=20
-=A0
-  - Made some progress last week. Probably some items on the scheduled have=
- not been updated due to the holiday yesterday. There are a couple of issue=
-s with items still in scheduled stage, will check with the team.
-  - The bug count is a high, US UK team (some of you probably busy last wee=
-k on 1.2.1 bugs) should pay more attention to bugs. Romania team and the PR=
-C team is in the mode of transitioning this week.
-  - Items still in 'scheduled' stage:=20
-    2396 (Bruce): p1, Bruce will look into this.
-    Beth completed 3 items for m1, still 4 left on the M1 schedule. 2 of th=
-em are P1s. Beth will look into them. Some of them may slip into M2.
-  - Master status (Beth):  2 failures in poky-tiny. Additional targets adde=
-d for nightly (5 and 1/2 hour with sstate for nightly to 11 hours without),=
- meta-intel build (ETA, today), update of AB infrastructure in the last wee=
-kend. Weekly build this week for QA is on track.
-  - Go over the high bugs: 8 high bugs, 2 scheduled for M1, 1 still needs a=
- target milestone. Mark will look into 2420.
-=A0
-* SWAT team rotation: Beth -> Paul
-* Opens - 5 min
-  - RP: status of pull requests for oe-core. Last week concerned about mast=
-er. There has been some changes in master, fixes, package update, doing tes=
-ting over the weekend to make sure master is stable. Mark's patch and Nitin=
-'s are still outstanding, will be merged soon. Expect to see some other pat=
-ches going into master in the next few days.=20
-  - Michael: requests to enable http for git repos. Requests from the commu=
-nity, have trouble using git protocol to pull source code, asked to enable =
-http. RP: sounds fine. Http access will be read-only. There are some techni=
-cal issues with using https for pull requests (RP/Michael).=20
-  - Jefro: conferences: check if anyone submitted any talks for any conf, i=
-f you have, please let jeff know: Mark has one for LinuxCon. Sean consideri=
-ng submit same topic for elce from elc. Dave: it's good to talk about your =
-work, Dave will have an overview talk for the LinuxCon.=20
-  - Josh: Q&A forum for the yocto project: Jefro: still on the plan, lookin=
-g for a piece software compatible with Drupal. We have quote to build it. S=
-till at the late design phase.
- =20
-* Team sharing - 20 min
- - Sean: nothing this week.
- - Sahad: nothing this week.
- - ScottR: last week some testing on 1.2.1, completed that. Will work on bu=
-g fixing for 1.3 m4.
- - Mark: working on prelink issues, something we have for x32 seems to have=
- some problem, working on it. Integrating patches from mentor also.
- - Jeff: nothing this week
- - Bruce: Was out last week. Still catching up. Will work on 1.3 items.
- - Denys: was out last week.
- - Tom: working on getting 1.2 meta-intel BSPs released. Waiting for some k=
-ernel things to appear from Bruce (Bruce already know this). Then will move=
- on to 1.3.=20
- - Darren: more time on fish-II. Accelerometer driver will turn into a much=
- larger effort, working with maintainers. Worked on zigbee with Scott Garma=
-n also. This week finishing up meta-intel work. Move on to 1.3 work.
- - Michael: last week update bugzilla requests. There was an email sent out=
- to the mailing list on the preview. Will make it alive if there is no obje=
-ction. Gerneal AB work, some work on package.yoctoproject.org.=20
- - Paul: out 3 days last week. Submit and merged 2044.that threw out some o=
-ther issues. Working on fixing them. Will be out whole week next week.
- - Richard: merging patches last week, submit some fixes, working through s=
-ome bugs, reviewed patches. This week more of the same. Out next week for U=
-K holiday.
-  - Beth: AB upgrade, bugzilla upgrade, AB development cluster to test the =
-things (will announce it in the mailing list). Working with an intern. Met =
-him last weekend, trying to get him situated in Portland.=20
+--_000_40776A41FC278F40B59438AD47D147A90FD7D8F0SHSMSX102ccrcor_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
+SGkgSmltLA0KDQpEbyB5b3UgaGF2ZSBhbnkgdXBkYXRlIG9uIHRoZSBwcm9ncmVzcyBvZiBVSS9w
+cm9jZXNzIGRlc2lnbiBhYm91dCB0aGUgd2ViaG9iIGRlc2lnbj8NCg0KVGhhbmtzLA0KRG9uZ3hp
+YW8NCg0KRnJvbTogeW9jdG8tYm91bmNlc0B5b2N0b3Byb2plY3Qub3JnIFttYWlsdG86eW9jdG8t
+Ym91bmNlc0B5b2N0b3Byb2plY3Qub3JnXSBPbiBCZWhhbGYgT2YgSmltIEtvc2VtDQpTZW50OiBU
+dWVzZGF5LCBNYXkgMDgsIDIwMTIgNjo1MCBQTQ0KVG86IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcN
+ClN1YmplY3Q6IFt5b2N0b10gWW9jdG8gV2ViIEhvYiAxLjMgcmVxdWlyZW1lbnRzDQoNCkhpLA0K
+DQpXZSBpbiB0aGUgWW9jdG8gTG9uZG9uIHRlYW0gaGF2ZSBwdXQgdG9nZXRoZXIgdXNlciByZXF1
+aXJlbWVudHMgYW5kIGlkZWFzIGFyb3VuZCB3aGF0IHdlIHRoaW5rIFdlYiBIb2Igc2hvdWxkIGJl
+Lg0KDQpodHRwczovL3dpa2kueW9jdG9wcm9qZWN0Lm9yZy93aWtpL1lvY3RvX1dlYmhvYl8xLjMN
+Cg0KQW55IGNvbnRyaWJ1dGlvbnMsIGhlbHAgYW5kIGNvbW1lbnRzIGFyZSBhcHByZWNpYXRlZC4N
+Cg0KVGhhbmtzLg0KDQotIEppbSBLb3NlbQ0K
 
+--_000_40776A41FC278F40B59438AD47D147A90FD7D8F0SHSMSX102ccrcor_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
+
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTQgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+5a6L5L2TOw0KCXBhbm9zZS0xOjIgMSA2IDAgMyAxIDEgMSAxIDE7fQ0KQGZvbnQtZmFjZQ0KCXtm
+b250LWZhbWlseTrlrovkvZM7DQoJcGFub3NlLTE6MiAxIDYgMCAzIDEgMSAxIDEgMTt9DQpAZm9u
+dC1mYWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQg
+MyAyIDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseTpUYWhvbWE7DQoJcGFub3NlLTE6MiAx
+MSA2IDQgMyA1IDQgNCAyIDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseToiXEDlrovkvZMi
+Ow0KCXBhbm9zZS0xOjIgMSA2IDAgMyAxIDEgMSAxIDE7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMg
+Ki8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWwsIGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBj
+bTsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJZm9udC1zaXplOjEyLjBwdDsNCglmb250LWZh
+bWlseTrlrovkvZM7fQ0KYTpsaW5rLCBzcGFuLk1zb0h5cGVybGluaw0KCXttc28tc3R5bGUtcHJp
+b3JpdHk6OTk7DQoJY29sb3I6Ymx1ZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCmE6
+dmlzaXRlZCwgc3Bhbi5Nc29IeXBlcmxpbmtGb2xsb3dlZA0KCXttc28tc3R5bGUtcHJpb3JpdHk6
+OTk7DQoJY29sb3I6cHVycGxlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0Kc3Bhbi5F
+bWFpbFN0eWxlMTcNCgl7bXNvLXN0eWxlLXR5cGU6cGVyc29uYWwtcmVwbHk7DQoJZm9udC1mYW1p
+bHk6IkNhbGlicmkiLCJzYW5zLXNlcmlmIjsNCgljb2xvcjojMUY0OTdEO30NCi5Nc29DaHBEZWZh
+dWx0DQoJe21zby1zdHlsZS10eXBlOmV4cG9ydC1vbmx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJp
+Iiwic2Fucy1zZXJpZiI7fQ0KQHBhZ2UgV29yZFNlY3Rpb24xDQoJe3NpemU6NjEyLjBwdCA3OTIu
+MHB0Ow0KCW1hcmdpbjo3Mi4wcHQgOTAuMHB0IDcyLjBwdCA5MC4wcHQ7fQ0KZGl2LldvcmRTZWN0
+aW9uMQ0KCXtwYWdlOldvcmRTZWN0aW9uMTt9DQotLT48L3N0eWxlPjwhLS1baWYgZ3RlIG1zbyA5
+XT48eG1sPg0KPG86c2hhcGVkZWZhdWx0cyB2OmV4dD0iZWRpdCIgc3BpZG1heD0iMTAyNiIgLz4N
+CjwveG1sPjwhW2VuZGlmXS0tPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVsYXlv
+dXQgdjpleHQ9ImVkaXQiPg0KPG86aWRtYXAgdjpleHQ9ImVkaXQiIGRhdGE9IjEiIC8+DQo8L286
+c2hhcGVsYXlvdXQ+PC94bWw+PCFbZW5kaWZdLS0+DQo8L2hlYWQ+DQo8Ym9keSBsYW5nPSJaSC1D
+TiIgbGluaz0iYmx1ZSIgdmxpbms9InB1cnBsZSI+DQo8ZGl2IGNsYXNzPSJXb3JkU2VjdGlvbjEi
+Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNp
+emU6MTAuNXB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJp
+ZiZxdW90Oztjb2xvcjojMUY0OTdEIj5IaSBKaW0sPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAg
+Y2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTAu
+NXB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90
+Oztjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0i
+TXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMC41cHQ7Zm9u
+dC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9y
+OiMxRjQ5N0QiPkRvIHlvdSBoYXZlIGFueSB1cGRhdGUgb24gdGhlIHByb2dyZXNzIG9mIFVJL3By
+b2Nlc3MgZGVzaWduIGFib3V0IHRoZSB3ZWJob2IgZGVzaWduPzxvOnA+PC9vOnA+PC9zcGFuPjwv
+cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1z
+aXplOjEwLjVwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2Vy
+aWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAg
+Y2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTAu
+NXB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90
+Oztjb2xvcjojMUY0OTdEIj5UaGFua3MsPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9
+Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTAuNXB0O2Zv
+bnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xv
+cjojMUY0OTdEIj5Eb25neGlhbzxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29O
+b3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjEwLjVwdDtmb250LWZh
+bWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFG
+NDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPGRpdiBzdHlsZT0iYm9yZGVyOm5v
+bmU7Ym9yZGVyLWxlZnQ6c29saWQgYmx1ZSAxLjVwdDtwYWRkaW5nOjBjbSAwY20gMGNtIDQuMHB0
+Ij4NCjxkaXY+DQo8ZGl2IHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXItdG9wOnNvbGlkICNCNUM0
+REYgMS4wcHQ7cGFkZGluZzozLjBwdCAwY20gMGNtIDBjbSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+Ij48Yj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1p
+bHk6JnF1b3Q7VGFob21hJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDsiPkZyb206PC9zcGFu
+PjwvYj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1p
+bHk6JnF1b3Q7VGFob21hJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDsiPiB5b2N0by1ib3Vu
+Y2VzQHlvY3RvcHJvamVjdC5vcmcgW21haWx0bzp5b2N0by1ib3VuY2VzQHlvY3RvcHJvamVjdC5v
+cmddDQo8Yj5PbiBCZWhhbGYgT2YgPC9iPkppbSBLb3NlbTxicj4NCjxiPlNlbnQ6PC9iPiBUdWVz
+ZGF5LCBNYXkgMDgsIDIwMTIgNjo1MCBQTTxicj4NCjxiPlRvOjwvYj4geW9jdG9AeW9jdG9wcm9q
+ZWN0Lm9yZzxicj4NCjxiPlN1YmplY3Q6PC9iPiBbeW9jdG9dIFlvY3RvIFdlYiBIb2IgMS4zIHJl
+cXVpcmVtZW50czxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8cCBjbGFz
+cz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+
+PC9wPg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj5IaSwg
+PG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1h
+bCI+PHNwYW4gbGFuZz0iRU4tVVMiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2
+Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj5XZSBpbiB0
+aGUgWW9jdG8gTG9uZG9uIHRlYW0gaGF2ZSBwdXQgdG9nZXRoZXIgdXNlciByZXF1aXJlbWVudHMg
+YW5kIGlkZWFzIGFyb3VuZCB3aGF0IHdlIHRoaW5rIFdlYiBIb2Igc2hvdWxkIGJlLjxvOnA+PC9v
+OnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFu
+IGxhbmc9IkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+
+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+PGEgaHJlZj0iaHR0cHM6
+Ly93aWtpLnlvY3RvcHJvamVjdC5vcmcvd2lraS9Zb2N0b19XZWJob2JfMS4zIj5odHRwczovL3dp
+a2kueW9jdG9wcm9qZWN0Lm9yZy93aWtpL1lvY3RvX1dlYmhvYl8xLjM8L2E+PG86cD48L286cD48
+L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFu
+Zz0iRU4tVVMiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxw
+IGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj5BbnkgY29udHJpYnV0aW9ucywg
+aGVscCBhbmQgY29tbWVudHMgYXJlIGFwcHJlY2lhdGVkLjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4N
+CjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj48
+bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNv
+Tm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+VGhhbmtzLjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4N
+CjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj48
+bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNv
+Tm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+LSBKaW0gS29zZW08bzpwPjwvbzpwPjwvc3Bhbj48
+L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
+
+--_000_40776A41FC278F40B59438AD47D147A90FD7D8F0SHSMSX102ccrcor_--
