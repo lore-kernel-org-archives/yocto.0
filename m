@@ -1,37 +1,36 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <scott.m.rifenbark@intel.com>
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 04215E00723
-	for <yocto@yoctoproject.org>; Wed, 30 May 2012 07:44:52 -0700 (PDT)
-Received: from mail-qc0-f180.google.com ([209.85.216.180])
-	by mga09.intel.com with ESMTP/TLS/RC4-MD5; 30 May 2012 07:44:26 -0700
-Received: by qcmv28 with SMTP id v28so2531341qcm.25
-	for <yocto@yoctoproject.org>; Wed, 30 May 2012 07:44:26 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type:x-gm-message-state;
-	bh=xAxINk06LxX2iJdRK+G3anmPBdH+Y4ilDVOXhxSO6Cs=;
-	b=L3OmcV84Rn/4jOhlc2UCGBq6eTr3CLJxL7AdBBMZVNpZUNK2+cD0k80ewvXgs/CvK4
-	xyu4hyTuX7VI09WXTehItstqBTPOB2UeX6tU3/2h31cj5veLxVUaVHlXGpvnAQaOBpw9
-	5dYaX/ZROJqWDGmQs/rjSb9u0O9d/IBJKaowwvSSdA3WaQvb1Htqb//WgprowrrbHcPg
-	69tsomRoihvJCk9rlUztGjnpk9Y+EAD+uqYRa61u1P8gDULXE+NksqaD9i/xL1Jr7xDs
-	DYg8q4ictIqKEDsiY+A4xmkXUdEGYKz7CNkotVn0rSZpjNuoPATsIqvBhdRIPQY0WeLg
-	r+8A==
-Received: by 10.224.44.136 with SMTP id a8mr16180300qaf.34.1338389066057; Wed,
-	30 May 2012 07:44:26 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DD9BDE00723;
+	Wed, 30 May 2012 07:51:00 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 30 May 2012 07:51:00 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="146244156"
+Received: from orsmsx605.amr.corp.intel.com ([10.22.226.10])
+	by orsmga001.jf.intel.com with ESMTP; 30 May 2012 07:51:00 -0700
+Received: from orsmsx151.amr.corp.intel.com (10.22.226.38) by
+	orsmsx605.amr.corp.intel.com (10.22.226.10) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Wed, 30 May 2012 07:51:00 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.121]) by
+	ORSMSX151.amr.corp.intel.com ([169.254.7.219]) with mapi id
+	14.01.0355.002; Wed, 30 May 2012 07:51:00 -0700
+From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+To: Michael Halstead <michael@yoctoproject.org>,
+	"yocto-infrastructure@yoctoproject.org"
+	<yocto-infrastructure@yoctoproject.org>, Yocto Project Discussion
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] Bugzilla Re-organization
+Thread-Index: AQHNOscZJ1BzKeKO1UeKdc+xtHIecpbicYxg
+Date: Wed, 30 May 2012 14:51:00 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB12379469FAF74@ORSMSX101.amr.corp.intel.com>
+References: <4FC009CD.9030201@yoctoproject.org>
+In-Reply-To: <4FC009CD.9030201@yoctoproject.org>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-Received: by 10.229.53.212 with HTTP; Wed, 30 May 2012 07:44:05 -0700 (PDT)
-In-Reply-To: <3142CB09BE468C408BD5916115E8D45F012A0C@G2W2535.americas.hpqcorp.net>
-References: <3142CB09BE468C408BD5916115E8D45F0129A8@G2W2535.americas.hpqcorp.net>
-	<CAJTo0LbO9isDBoeO-oMf3nR5+57mgJq66Q1njfEsaR1A2whi=g@mail.gmail.com>
-	<3142CB09BE468C408BD5916115E8D45F012A0C@G2W2535.americas.hpqcorp.net>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Wed, 30 May 2012 15:44:05 +0100
-Message-ID: <CAJTo0LbN00yBJG29umhXMwkPxkXJbumUmSH8SqMg4w8qiN7s8g@mail.gmail.com>
-To: "Racine, Michel" <michel.racine@hp.com>
-X-Gm-Message-State: ALoCoQliqKKkrt1HrG5g43iE9MFPhNtWn3QGknBVG1HAkyOQPXCaHbrTGvbB6QCMBH+frX7SZYsH
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Build issue (syslinux ext2_fs.h error) in Edison 6.0.1
+Subject: Re: Bugzilla Re-organization
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,21 +42,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 30 May 2012 14:44:53 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 30 May 2012 14:51:01 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Michel,
+For documentation there should be six things.  We are missing the ADT Manua=
+l and the BSP manual.
 
-On 30 May 2012 15:35, Racine, Michel <michel.racine@hp.com> wrote:
-> I'm currently working from a tar ball release of 6.0.1. Could you please point me to docs/link to obtain a patch? I probably missed it from the docs I looked at...
+ScottR
 
-The patch is attached to the bug at
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=2236.  The direct
-URL is https://bugzilla.yoctoproject.org/attachment.cgi?id=439.
+-----Original Message-----
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Michael Halstead
+Sent: Friday, May 25, 2012 3:38 PM
+To: yocto-infrastructure@yoctoproject.org; Yocto Project Discussion
+Subject: [yocto] Bugzilla Re-organization
 
-Save that, then patch -p1 < /path/to/the/patch at the top of the
-edison tree should result in it fixing syslinux.  From memory it
-cleanly applies to edison.
+The first draft of the reorganized bugzilla is available for feedback now a=
+t https://bugzilla.yoctodev.org/. Outgoing e-mail is currently disabled on =
+this preview copy. Please feel free to take a look and see if you spot any =
+errors. Additional refinement of  product or component descriptions will be=
+ helpful as well.
 
-Ross
+--
+Michael Halstead
+Yocto Project / Sys Admin
+
+
 
