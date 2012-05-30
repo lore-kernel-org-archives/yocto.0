@@ -1,38 +1,31 @@
-Return-Path: <ross.burton@intel.com>
-Received: from fmsmga102.fm.intel.com (mga10.intel.com [192.55.52.92])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5AE03E0070B
-	for <yocto@yoctoproject.org>; Wed, 30 May 2012 09:40:59 -0700 (PDT)
-Received: from mail-pz0-f52.google.com ([209.85.210.52])
-	by mga11.intel.com with ESMTP/TLS/RC4-MD5; 30 May 2012 09:40:58 -0700
-Received: by dano14 with SMTP id o14so11992dan.25
-	for <yocto@yoctoproject.org>; Wed, 30 May 2012 09:40:57 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type:x-gm-message-state;
-	bh=CS84onHri1lpinvYKI2GNGnYhETHwBhB45WLn1d7K90=;
-	b=KkHGXeAxTf5Z30JPKoAy2BpYCwoivW7wWIGwln+HkQmtIfJ/fVyv5DojXUpqRmVEU6
-	WAVQ25XnnbATvyQc5C2c5l3tDk6VZ8M/y91SGXWxXtHYMuLr+1m82fnmUgPQmGdwKyf2
-	u7CBAeAsNxo0yhq7R05ae8VgTdfc2YUa/+amu0Q4qLkxeAEF7vfnb4GpYLU+5JmDA4iX
-	gWPq8lexrZePi4xwKMJokoqEB9fjZ8VUyKuV6CSCB3fPVlIyFtK7Tsdb8wxGy8P33KmE
-	Svt5LIcCijprQEn9Xa2idZt8UMqKiPo8HcfL1v8oz+qtpYE+kPwVsDbVLlL0pz0CnBrB
-	fgdA==
-Received: by 10.68.238.68 with SMTP id vi4mr28743758pbc.123.1338396057400;
-	Wed, 30 May 2012 09:40:57 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.142.229.14 with HTTP; Wed, 30 May 2012 09:40:36 -0700 (PDT)
-In-Reply-To: <CAJTo0LbN00yBJG29umhXMwkPxkXJbumUmSH8SqMg4w8qiN7s8g@mail.gmail.com>
-References: <3142CB09BE468C408BD5916115E8D45F0129A8@G2W2535.americas.hpqcorp.net>
-	<CAJTo0LbO9isDBoeO-oMf3nR5+57mgJq66Q1njfEsaR1A2whi=g@mail.gmail.com>
-	<3142CB09BE468C408BD5916115E8D45F012A0C@G2W2535.americas.hpqcorp.net>
-	<CAJTo0LbN00yBJG29umhXMwkPxkXJbumUmSH8SqMg4w8qiN7s8g@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Wed, 30 May 2012 17:40:36 +0100
-Message-ID: <CAJTo0LZF6teAnRO656qfK0NTPaiE21FQHCBRKX-EfHMRLu08Xw@mail.gmail.com>
-To: "Racine, Michel" <michel.racine@hp.com>
-X-Gm-Message-State: ALoCoQlDqqX2B25IrdbzG6m1SayvaImS0+ULgqxG50u72XM/uaFy99UGLwG3Fk89bp+YFWeKALjg
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
+	[93.97.173.237])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C328BE0070B
+	for <yocto@yoctoproject.org>; Wed, 30 May 2012 10:12:59 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q4UHCra6023738;
+	Wed, 30 May 2012 18:12:53 +0100
+Received: from tim.rpsys.net ([127.0.0.1])
+	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
+	port 10024) with LMTP
+	id 23236-08; Wed, 30 May 2012 18:12:49 +0100 (BST)
+Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q4UHCiqA023731
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Wed, 30 May 2012 18:12:44 +0100
+Message-ID: <1338397963.20169.170.camel@ted>
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: McClintock Matthew-B29882 <B29882@freescale.com>
+Date: Wed, 30 May 2012 18:12:43 +0100
+In-Reply-To: <CAEsOVNfUrVFO-zqO-G2Ci958_oUGSzUnpOG-3dL8X_bS-R_1UQ@mail.gmail.com>
+References: <4FC62CB6.8060004@enea.com>
+	<CAEsOVNfUrVFO-zqO-G2Ci958_oUGSzUnpOG-3dL8X_bS-R_1UQ@mail.gmail.com>
+X-Mailer: Evolution 3.2.2- 
+Mime-Version: 1.0
+X-Virus-Scanned: amavisd-new at rpsys.net
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Build issue (syslinux ext2_fs.h error) in Edison 6.0.1
+Subject: Re: ALT_SRC_URI ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,15 +37,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 30 May 2012 16:40:59 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 30 May 2012 17:13:00 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-On 30 May 2012 15:44, Burton, Ross <ross.burton@intel.com> wrote:
-> On 30 May 2012 15:35, Racine, Michel <michel.racine@hp.com> wrote:
->> I'm currently working from a tar ball release of 6.0.1. Could you please point me to docs/link to obtain a patch? I probably missed it from the docs I looked at...
+On Wed, 2012-05-30 at 16:08 +0000, McClintock Matthew-B29882 wrote:
+> On Wed, May 30, 2012 at 9:20 AM, David Nyström <david.nystrom@enea.com> wrote:
+> > Hi,
+> >
+> > Since meta-fsl-ppc:s git daemon(git://git.freescale.com) was down, I
+> > experimented with adding the http reference as a mirror.
+> >
+> > MIRRORS_prepend = "\
+> > git://git.freescale.com/ppc/sdk/linux.git
+> > git://git.freescale.com/git/cgit.cgi/ppc/sdk/linux.git;protocol=http \n "
+> >
+> > Which failed and gave me:
+> > http://pastebin.com/5sTQ0eMC
+> >
+> > It shows bitbake trying to fetch something assumed to be created as a
+> > bitbake mirror, mangling the name.
+> >
+> > How would I go about doing above ?, getting it to failover to my own
+> > specified link ?
+> 
+> It appears to expect mirrors to be in a tarred up bare git repository.
+> Not sure if there is a way around this. You could do an override
+> somewhere:
+> 
+> SRC_URI_pn-linux-qoriq-sdk = "git://some/other/place"
 
-Small update - this is in the queue for the next point release of
-Edison already.
+There is an open bug on this issue. Fixing it requires some invasive
+changes to the fetcher code so its not been done yet and I wanted to get
+the checksum issues out the way first.
 
-Ross
+Cheers,
+
+Richard
+
 
