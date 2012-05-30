@@ -1,35 +1,19 @@
-Return-Path: <dongxiao.xu@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1EFFEE0030B
-	for <yocto@yoctoproject.org>; Tue, 29 May 2012 22:45:29 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 29 May 2012 22:45:28 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; 
-	d="scan'208,217";a="149319259"
-Received: from azsmsx601.amr.corp.intel.com ([10.2.121.193])
-	by azsmga001.ch.intel.com with ESMTP; 29 May 2012 22:45:28 -0700
-Received: from shsmsx151.ccr.corp.intel.com (10.239.6.50) by
-	azsmsx601.amr.corp.intel.com (10.2.121.193) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Tue, 29 May 2012 22:45:28 -0700
-Received: from shsmsx102.ccr.corp.intel.com ([169.254.2.133]) by
-	SHSMSX151.ccr.corp.intel.com ([169.254.3.90]) with mapi id
-	14.01.0355.002; Wed, 30 May 2012 13:45:26 +0800
-From: "Xu, Dongxiao" <dongxiao.xu@intel.com>
-To: Jim Kosem <jim@halfman.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] Yocto Web Hob 1.3 requirements
-Thread-Index: AQHNLQhpBg4Wa+SU/ki/Eu6p+OWvjpbh9GiQ
-Date: Wed, 30 May 2012 05:45:25 +0000
-Message-ID: <40776A41FC278F40B59438AD47D147A90FD7D8F0@SHSMSX102.ccr.corp.intel.com>
-References: <7B5D5B32880342B1A71D5C3F7F7D41F7@halfman.com>
-In-Reply-To: <7B5D5B32880342B1A71D5C3F7F7D41F7@halfman.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.239.127.40]
+Return-Path: <David.Nystrom@enea.com>
+Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id 1E893E0070B
+	for <yocto@yoctoproject.org>; Wed, 30 May 2012 07:20:28 -0700 (PDT)
+Received: from [172.16.140.132] (172.16.140.132) by smtp.enea.com
+	(172.21.1.208) with Microsoft SMTP Server id 14.2.247.3;
+	Wed, 30 May 2012 16:20:26 +0200
+Message-ID: <4FC62CB6.8060004@enea.com>
+Date: Wed, 30 May 2012 16:20:38 +0200
+From: =?UTF-8?B?RGF2aWQgTnlzdHLDtm0=?= <david.nystrom@enea.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:12.0) Gecko/20120430 Thunderbird/12.0.1
 MIME-Version: 1.0
-Subject: Re: Yocto Web Hob 1.3 requirements
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+X-Originating-IP: [172.16.140.132]
+Subject: ALT_SRC_URI ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,118 +25,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 30 May 2012 05:45:29 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_40776A41FC278F40B59438AD47D147A90FD7D8F0SHSMSX102ccrcor_"
+X-List-Received-Date: Wed, 30 May 2012 14:20:29 -0000
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 
---_000_40776A41FC278F40B59438AD47D147A90FD7D8F0SHSMSX102ccrcor_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Hi,
 
-SGkgSmltLA0KDQpEbyB5b3UgaGF2ZSBhbnkgdXBkYXRlIG9uIHRoZSBwcm9ncmVzcyBvZiBVSS9w
-cm9jZXNzIGRlc2lnbiBhYm91dCB0aGUgd2ViaG9iIGRlc2lnbj8NCg0KVGhhbmtzLA0KRG9uZ3hp
-YW8NCg0KRnJvbTogeW9jdG8tYm91bmNlc0B5b2N0b3Byb2plY3Qub3JnIFttYWlsdG86eW9jdG8t
-Ym91bmNlc0B5b2N0b3Byb2plY3Qub3JnXSBPbiBCZWhhbGYgT2YgSmltIEtvc2VtDQpTZW50OiBU
-dWVzZGF5LCBNYXkgMDgsIDIwMTIgNjo1MCBQTQ0KVG86IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcN
-ClN1YmplY3Q6IFt5b2N0b10gWW9jdG8gV2ViIEhvYiAxLjMgcmVxdWlyZW1lbnRzDQoNCkhpLA0K
-DQpXZSBpbiB0aGUgWW9jdG8gTG9uZG9uIHRlYW0gaGF2ZSBwdXQgdG9nZXRoZXIgdXNlciByZXF1
-aXJlbWVudHMgYW5kIGlkZWFzIGFyb3VuZCB3aGF0IHdlIHRoaW5rIFdlYiBIb2Igc2hvdWxkIGJl
-Lg0KDQpodHRwczovL3dpa2kueW9jdG9wcm9qZWN0Lm9yZy93aWtpL1lvY3RvX1dlYmhvYl8xLjMN
-Cg0KQW55IGNvbnRyaWJ1dGlvbnMsIGhlbHAgYW5kIGNvbW1lbnRzIGFyZSBhcHByZWNpYXRlZC4N
-Cg0KVGhhbmtzLg0KDQotIEppbSBLb3NlbQ0K
+Since meta-fsl-ppc:s git daemon(git://git.freescale.com) was down, I 
+experimented with adding the http reference as a mirror.
 
---_000_40776A41FC278F40B59438AD47D147A90FD7D8F0SHSMSX102ccrcor_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+MIRRORS_prepend = "\
+git://git.freescale.com/ppc/sdk/linux.git 
+git://git.freescale.com/git/cgit.cgi/ppc/sdk/linux.git;protocol=http \n "
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTQgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-5a6L5L2TOw0KCXBhbm9zZS0xOjIgMSA2IDAgMyAxIDEgMSAxIDE7fQ0KQGZvbnQtZmFjZQ0KCXtm
-b250LWZhbWlseTrlrovkvZM7DQoJcGFub3NlLTE6MiAxIDYgMCAzIDEgMSAxIDEgMTt9DQpAZm9u
-dC1mYWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQg
-MyAyIDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseTpUYWhvbWE7DQoJcGFub3NlLTE6MiAx
-MSA2IDQgMyA1IDQgNCAyIDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseToiXEDlrovkvZMi
-Ow0KCXBhbm9zZS0xOjIgMSA2IDAgMyAxIDEgMSAxIDE7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMg
-Ki8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWwsIGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBj
-bTsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJZm9udC1zaXplOjEyLjBwdDsNCglmb250LWZh
-bWlseTrlrovkvZM7fQ0KYTpsaW5rLCBzcGFuLk1zb0h5cGVybGluaw0KCXttc28tc3R5bGUtcHJp
-b3JpdHk6OTk7DQoJY29sb3I6Ymx1ZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCmE6
-dmlzaXRlZCwgc3Bhbi5Nc29IeXBlcmxpbmtGb2xsb3dlZA0KCXttc28tc3R5bGUtcHJpb3JpdHk6
-OTk7DQoJY29sb3I6cHVycGxlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0Kc3Bhbi5F
-bWFpbFN0eWxlMTcNCgl7bXNvLXN0eWxlLXR5cGU6cGVyc29uYWwtcmVwbHk7DQoJZm9udC1mYW1p
-bHk6IkNhbGlicmkiLCJzYW5zLXNlcmlmIjsNCgljb2xvcjojMUY0OTdEO30NCi5Nc29DaHBEZWZh
-dWx0DQoJe21zby1zdHlsZS10eXBlOmV4cG9ydC1vbmx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJp
-Iiwic2Fucy1zZXJpZiI7fQ0KQHBhZ2UgV29yZFNlY3Rpb24xDQoJe3NpemU6NjEyLjBwdCA3OTIu
-MHB0Ow0KCW1hcmdpbjo3Mi4wcHQgOTAuMHB0IDcyLjBwdCA5MC4wcHQ7fQ0KZGl2LldvcmRTZWN0
-aW9uMQ0KCXtwYWdlOldvcmRTZWN0aW9uMTt9DQotLT48L3N0eWxlPjwhLS1baWYgZ3RlIG1zbyA5
-XT48eG1sPg0KPG86c2hhcGVkZWZhdWx0cyB2OmV4dD0iZWRpdCIgc3BpZG1heD0iMTAyNiIgLz4N
-CjwveG1sPjwhW2VuZGlmXS0tPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVsYXlv
-dXQgdjpleHQ9ImVkaXQiPg0KPG86aWRtYXAgdjpleHQ9ImVkaXQiIGRhdGE9IjEiIC8+DQo8L286
-c2hhcGVsYXlvdXQ+PC94bWw+PCFbZW5kaWZdLS0+DQo8L2hlYWQ+DQo8Ym9keSBsYW5nPSJaSC1D
-TiIgbGluaz0iYmx1ZSIgdmxpbms9InB1cnBsZSI+DQo8ZGl2IGNsYXNzPSJXb3JkU2VjdGlvbjEi
-Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNp
-emU6MTAuNXB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJp
-ZiZxdW90Oztjb2xvcjojMUY0OTdEIj5IaSBKaW0sPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAg
-Y2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTAu
-NXB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90
-Oztjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0i
-TXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMC41cHQ7Zm9u
-dC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9y
-OiMxRjQ5N0QiPkRvIHlvdSBoYXZlIGFueSB1cGRhdGUgb24gdGhlIHByb2dyZXNzIG9mIFVJL3By
-b2Nlc3MgZGVzaWduIGFib3V0IHRoZSB3ZWJob2IgZGVzaWduPzxvOnA+PC9vOnA+PC9zcGFuPjwv
-cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1z
-aXplOjEwLjVwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2Vy
-aWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAg
-Y2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTAu
-NXB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90
-Oztjb2xvcjojMUY0OTdEIj5UaGFua3MsPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9
-Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTAuNXB0O2Zv
-bnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xv
-cjojMUY0OTdEIj5Eb25neGlhbzxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29O
-b3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjEwLjVwdDtmb250LWZh
-bWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFG
-NDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPGRpdiBzdHlsZT0iYm9yZGVyOm5v
-bmU7Ym9yZGVyLWxlZnQ6c29saWQgYmx1ZSAxLjVwdDtwYWRkaW5nOjBjbSAwY20gMGNtIDQuMHB0
-Ij4NCjxkaXY+DQo8ZGl2IHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXItdG9wOnNvbGlkICNCNUM0
-REYgMS4wcHQ7cGFkZGluZzozLjBwdCAwY20gMGNtIDBjbSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-Ij48Yj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1p
-bHk6JnF1b3Q7VGFob21hJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDsiPkZyb206PC9zcGFu
-PjwvYj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1p
-bHk6JnF1b3Q7VGFob21hJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDsiPiB5b2N0by1ib3Vu
-Y2VzQHlvY3RvcHJvamVjdC5vcmcgW21haWx0bzp5b2N0by1ib3VuY2VzQHlvY3RvcHJvamVjdC5v
-cmddDQo8Yj5PbiBCZWhhbGYgT2YgPC9iPkppbSBLb3NlbTxicj4NCjxiPlNlbnQ6PC9iPiBUdWVz
-ZGF5LCBNYXkgMDgsIDIwMTIgNjo1MCBQTTxicj4NCjxiPlRvOjwvYj4geW9jdG9AeW9jdG9wcm9q
-ZWN0Lm9yZzxicj4NCjxiPlN1YmplY3Q6PC9iPiBbeW9jdG9dIFlvY3RvIFdlYiBIb2IgMS4zIHJl
-cXVpcmVtZW50czxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8cCBjbGFz
-cz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+
-PC9wPg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj5IaSwg
-PG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1h
-bCI+PHNwYW4gbGFuZz0iRU4tVVMiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2
-Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj5XZSBpbiB0
-aGUgWW9jdG8gTG9uZG9uIHRlYW0gaGF2ZSBwdXQgdG9nZXRoZXIgdXNlciByZXF1aXJlbWVudHMg
-YW5kIGlkZWFzIGFyb3VuZCB3aGF0IHdlIHRoaW5rIFdlYiBIb2Igc2hvdWxkIGJlLjxvOnA+PC9v
-OnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFu
-IGxhbmc9IkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+
-DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+PGEgaHJlZj0iaHR0cHM6
-Ly93aWtpLnlvY3RvcHJvamVjdC5vcmcvd2lraS9Zb2N0b19XZWJob2JfMS4zIj5odHRwczovL3dp
-a2kueW9jdG9wcm9qZWN0Lm9yZy93aWtpL1lvY3RvX1dlYmhvYl8xLjM8L2E+PG86cD48L286cD48
-L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFu
-Zz0iRU4tVVMiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxw
-IGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj5BbnkgY29udHJpYnV0aW9ucywg
-aGVscCBhbmQgY29tbWVudHMgYXJlIGFwcHJlY2lhdGVkLjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4N
-CjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj48
-bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNv
-Tm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+VGhhbmtzLjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4N
-CjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj48
-bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNv
-Tm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+LSBKaW0gS29zZW08bzpwPjwvbzpwPjwvc3Bhbj48
-L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
+Which failed and gave me:
+http://pastebin.com/5sTQ0eMC
 
---_000_40776A41FC278F40B59438AD47D147A90FD7D8F0SHSMSX102ccrcor_--
+It shows bitbake trying to fetch something assumed to be created as a 
+bitbake mirror, mangling the name.
+
+How would I go about doing above ?, getting it to failover to my own 
+specified link ?
+
+I'm on denzil.
+
+Br,
+David
+
+
+
+
