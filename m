@@ -1,34 +1,30 @@
-Return-Path: <jfabernathy@gmail.com>
-Received: from mail-vc0-f176.google.com (mail-vc0-f176.google.com
-	[209.85.220.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C56D7E0044A
-	for <yocto@yoctoproject.org>; Thu, 31 May 2012 09:11:35 -0700 (PDT)
-Received: by vcbfo14 with SMTP id fo14so905653vcb.35
-	for <yocto@yoctoproject.org>; Thu, 31 May 2012 09:11:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=message-id:date:from:user-agent:mime-version:to:subject
-	:content-type:content-transfer-encoding;
-	bh=r5t41jRkZ9+5JDnZH2gmxReguXVkRjEQRuhj9pao3iY=;
-	b=bg4nif3R9Xd3zSyQVv9TwR9XmA05h4e21JNAQFhV5uEtEFqG0L7qhjO894YEpdTXSI
-	Z5FqOogMBBO7MC+gMS2MBFFeIYAbqzQQoQOZTs30Ihei+q8MpNyO9AhJMgmyIf50Y9OF
-	UAe5hJPwtvUJO/vIkwTN0aZFLBukWnwvM1xxQkZplVKxefo+7zpJcsv0nHgu6h2QlrN4
-	ndClL3qZ7boYJcALxZcpt0BUOCvBx7kQYuW6PpaJnK1SNxnuf6psAjL9wTuEAv1nsHeS
-	J6p9sN5pNeA9Si9qxxswtxQDL+YfPQjBf7oJXih/+NYfyxcqvFoJf6hw9p81hMf5iIu4
-	wBvA==
-Received: by 10.52.35.15 with SMTP id d15mr2340509vdj.128.1338480694923;
-	Thu, 31 May 2012 09:11:34 -0700 (PDT)
-Received: from [10.0.1.54] (nc-184-4-33-55.dhcp.embarqhsd.net. [184.4.33.55])
-	by mx.google.com with ESMTPS id
-	i19sm5487290vdt.18.2012.05.31.09.11.34 (version=SSLv3 cipher=OTHER);
-	Thu, 31 May 2012 09:11:34 -0700 (PDT)
-Message-ID: <4FC79837.2070309@gmail.com>
-Date: Thu, 31 May 2012 12:11:35 -0400
-From: jfabernathy <jfabernathy@gmail.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:12.0) Gecko/20120430 Thunderbird/12.0.1
-MIME-Version: 1.0
+Return-Path: <belen.barros.pena@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 15BC8E006C7
+	for <yocto@yoctoproject.org>; Thu, 31 May 2012 09:56:04 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 31 May 2012 09:56:02 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="150014677"
+Received: from irsmsx103.ger.corp.intel.com ([163.33.3.157])
+	by azsmga001.ch.intel.com with ESMTP; 31 May 2012 09:56:01 -0700
+Received: from irsmsx104.ger.corp.intel.com ([169.254.5.11]) by
+	IRSMSX103.ger.corp.intel.com ([169.254.3.48]) with mapi id
+	14.01.0355.002; Thu, 31 May 2012 17:55:38 +0100
+From: "Barros Pena, Belen" <belen.barros.pena@intel.com>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: meta-cedartrail - serial console
+Thread-Topic: Hob implementation: vanilla or branded?
+Thread-Index: AQHNP01Uf/EqqzYAnkC8VEbMTXpj+ZbkHcsA
+Date: Thu, 31 May 2012 16:55:37 +0000
+Message-ID: <CBED6054.10464%belen.barros.pena@intel.com>
+In-Reply-To: <CBED5FA2.10462%belen.barros.pena@intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Microsoft-MacOutlook/14.2.2.120421
+x-originating-ip: [10.252.57.56]
+MIME-Version: 1.0
+Subject: Hob implementation: vanilla or branded?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,34 +36,57 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 31 May 2012 16:11:36 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 31 May 2012 16:56:04 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <02F5AB489737D443A72A83365F507823@intel.com>
+Content-Transfer-Encoding: quoted-printable
 
-Using a DN2800MT (Marshalltown) Intel board, I'm testing the 
-meta-cedartrail using edison branch and noticed an issues with the 
-serial console.
+Hi all,
 
-The cedartrail.conf in the machine directory has the following statements:
+As part of the Hob work for the 1.3 release it looks like we need to make
+a visual design and implementation decision: do we want a 'vanilla' or a
+'branded' look for Hob? Sorry if the choice of words is not the best.
+Neither 'vanilla' nor 'branded' are meant in any negative way.
 
-SYSLINUX_OPTS = "serial 0 115200"
-SERIAL_CONSOLE = "115200 ttyS0"
-APPEND += "console=ttyS0,115200 console=tty0"
+We did have this conversation when we started work on the 1.2 release of
+Hob, but somehow we settled for a middle way that is not working well and
+is causing issues like bug 1701. From my conversations with UI engineers
+and people with lots of experience in building applications using the GTK
+toolkit, the middle way just doesn't work.
 
-However, when the image booted, I had no serial console on ttyS0.  I 
-checked /etc/inittab and noticed that the following line existed:
+What I mean by 'vanilla' is an implementation that takes the visual
+appearance from the theme installed in the Hob host. The main advantage of
+vanilla implementations is they guarantee that Hob will play nicely with
+its host computer.
 
-S:2345:respawn:/sbin/getty 115200 ttyS3
+What I mean by branded is a visually customised appearance which, apart
+from basic UI elements like window chrome and window controls, takes no
+input from the host theme. The advantage of this approach is full control
+over the Hob appearance (Hob should look like Hob no matter what Linux
+distribution you are using).
 
-I changed the ttyS3 to ttyS0 and then I have a serial console on the 
-next reboot.  So it appears the override in the .conf file is not 
-working.  Also I only have the console from getty, and not the kernel 
-logging console.
+Personally, I have no preferences: I think both have strengths and
+weaknesses and I am happy to go with any of the two. What I wouldn't like
+is sticking to a half-way-in-between approach which is giving us a lot of
+grief.
 
-Anyone have a solution??
+I would like to know what the Yocto Project community thinks about these 2
+approaches.
 
-If this is considered a bug I can put it on bugzilla.
+Thanks!
 
-Jim A
+Belen
+
+---------------------------------------------------------------------
+Intel Corporation (UK) Limited
+Registered No. 1134945 (England)
+Registered Office: Pipers Way, Swindon SN3 1RJ
+VAT No: 860 2173 47
+
+This e-mail and any attachments may contain confidential material for
+the sole use of the intended recipient(s). Any review or distribution
+by others is strictly prohibited. If you are not the intended
+recipient, please contact the sender and delete all copies.
 
 
