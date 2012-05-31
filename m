@@ -1,26 +1,26 @@
 Return-Path: <dvhart@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 758B9E006D9
-	for <yocto@yoctoproject.org>; Thu, 31 May 2012 11:10:01 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 31 May 2012 11:09:34 -0700
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 73A8EE006C7
+	for <yocto@yoctoproject.org>; Thu, 31 May 2012 11:14:55 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 31 May 2012 11:14:55 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="146709235"
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="150943763"
 Received: from jlstreix-mobl.amr.corp.intel.com (HELO envy.home)
 	([10.7.199.145])
-	by orsmga001.jf.intel.com with ESMTP; 31 May 2012 11:09:34 -0700
-Message-ID: <4FC7B3A3.4030706@linux.intel.com>
-Date: Thu, 31 May 2012 11:08:35 -0700
+	by orsmga002.jf.intel.com with ESMTP; 31 May 2012 11:14:55 -0700
+Message-ID: <4FC7B4E3.1010401@linux.intel.com>
+Date: Thu, 31 May 2012 11:13:55 -0700
 From: Darren Hart <dvhart@linux.intel.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:12.0) Gecko/20120430 Thunderbird/12.0.1
 MIME-Version: 1.0
-To: "Barros Pena, Belen" <belen.barros.pena@intel.com>
-References: <CBED6054.10464%belen.barros.pena@intel.com>
-In-Reply-To: <CBED6054.10464%belen.barros.pena@intel.com>
+To: jfabernathy <jfabernathy@gmail.com>
+References: <4FC79837.2070309@gmail.com>
+In-Reply-To: <4FC79837.2070309@gmail.com>
 X-Enigmail-Version: 1.4.1
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Hob implementation: vanilla or branded?
+Subject: Re: meta-cedartrail - serial console
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,37 +32,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 31 May 2012 18:10:01 -0000
+X-List-Received-Date: Thu, 31 May 2012 18:14:55 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
 
 
-On 05/31/2012 09:55 AM, Barros Pena, Belen wrote:
-> Hi all,
+On 05/31/2012 09:11 AM, jfabernathy wrote:
+> Using a DN2800MT (Marshalltown) Intel board, I'm testing the 
+> meta-cedartrail using edison branch and noticed an issues with the 
+> serial console.
 > 
-> As part of the Hob work for the 1.3 release it looks like we need to make
-> a visual design and implementation decision: do we want a 'vanilla' or a
-> 'branded' look for Hob? Sorry if the choice of words is not the best.
-> Neither 'vanilla' nor 'branded' are meant in any negative way.
+> The cedartrail.conf in the machine directory has the following statements:
 > 
-> We did have this conversation when we started work on the 1.2 release of
-> Hob, but somehow we settled for a middle way that is not working well and
-> is causing issues like bug 1701. From my conversations with UI engineers
-> and people with lots of experience in building applications using the GTK
-> toolkit, the middle way just doesn't work.
+> SYSLINUX_OPTS = "serial 0 115200"
+> SERIAL_CONSOLE = "115200 ttyS0"
+> APPEND += "console=ttyS0,115200 console=tty0"
 > 
-> What I mean by 'vanilla' is an implementation that takes the visual
-> appearance from the theme installed in the Hob host. The main advantage of
-> vanilla implementations is they guarantee that Hob will play nicely with
-> its host computer.
+> However, when the image booted, I had no serial console on ttyS0.  I 
+> checked /etc/inittab and noticed that the following line existed:
+> 
+> S:2345:respawn:/sbin/getty 115200 ttyS3
+> 
+> I changed the ttyS3 to ttyS0 and then I have a serial console on the 
+> next reboot.  So it appears the override in the .conf file is not 
+> working.  Also I only have the console from getty, and not the kernel 
+> logging console.
+> 
+> Anyone have a solution??
+> 
+> If this is considered a bug I can put it on bugzilla.
 
-This would be very much preferred in my opinion. Having applications
-that ignore the preferences I have set for theme, colors, fonts, etc. is
-very annoying. Applications that ignore the GNOME HIG are even more
-irritating as the button layout and general workflow is enough different
-from the rest of the applications in my desktop that they become awkward
-to use and break the continuity of the desktop experience.
+Lets make sure your environment is what we expect. Please provide the
+output of:
+
+$ bitbake core-image-minimal -e | grep SERIAL_CONSOLE=
+
+If it is not "115200 ttyS0" then it is getting overwritten somewhere
+either in your config, or possibly by an inappropriate selection of an
+assignment operator (=, ?=, etc.) in edison.
 
 -- 
 Darren Hart
