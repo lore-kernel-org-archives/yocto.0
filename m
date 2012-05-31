@@ -1,28 +1,51 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4CD9EE006C7
-	for <yocto@yoctoproject.org>; Thu, 31 May 2012 11:57:59 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail1.windriver.com (8.14.3/8.14.3) with ESMTP id q4VIvvef008078
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 31 May 2012 11:57:57 -0700 (PDT)
-Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Thu, 31 May 2012 11:57:57 -0700
-Message-ID: <4FC7BF2E.2050704@windriver.com>
-Date: Thu, 31 May 2012 14:57:50 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:12.0) Gecko/20120430 Thunderbird/12.0.1
+Return-Path: <B29882@freescale.com>
+Received: from tx2outboundpool.messaging.microsoft.com
+	(tx2ehsobe002.messaging.microsoft.com [65.55.88.12])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7A952E006D9
+	for <yocto@yoctoproject.org>; Thu, 31 May 2012 11:58:30 -0700 (PDT)
+Received: from mail77-tx2-R.bigfish.com (10.9.14.245) by
+	TX2EHSOBE003.bigfish.com (10.9.40.23) with Microsoft SMTP Server id
+	14.1.225.23; Thu, 31 May 2012 18:58:01 +0000
+Received: from mail77-tx2 (localhost [127.0.0.1])	by mail77-tx2-R.bigfish.com
+	(Postfix) with ESMTP id 52F1E4012E;
+	Thu, 31 May 2012 18:58:01 +0000 (UTC)
+X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null); IPV:NLI;
+	H:mail.freescale.net; RD:none; EFVD:NLI
+X-SpamScore: -13
+X-BigFish: VS-13(zz9371I103dK14ffI1432N98dKzz1202hzz8275bhz2dh2a8h668h839h8e2h8e3hf0ahbe9i)
+Received: from mail77-tx2 (localhost.localdomain [127.0.0.1]) by mail77-tx2
+	(MessageSwitch) id 1338490679806291_23250;
+	Thu, 31 May 2012 18:57:59 +0000 (UTC)
+Received: from TX2EHSMHS023.bigfish.com (unknown [10.9.14.244])	by
+	mail77-tx2.bigfish.com (Postfix) with ESMTP id C289346004B;
+	Thu, 31 May 2012 18:57:59 +0000 (UTC)
+Received: from mail.freescale.net (70.37.183.190) by TX2EHSMHS023.bigfish.com
+	(10.9.99.123) with Microsoft SMTP Server (TLS) id 14.1.225.23;
+	Thu, 31 May 2012 18:57:56 +0000
+Received: from 039-SN1MPN1-001.039d.mgd.msft.net ([169.254.1.135]) by
+	039-SN1MMR1-002.039d.mgd.msft.net ([10.84.1.15]) with mapi id
+	14.02.0298.005; Thu, 31 May 2012 13:58:03 -0500
+From: McClintock Matthew-B29882 <B29882@freescale.com>
+To: "Barros Pena, Belen" <belen.barros.pena@intel.com>
+Thread-Topic: [yocto] Hob implementation: vanilla or branded?
+Thread-Index: AQHNP19N0mwWmcbwE06ou9zaNvAENw==
+Date: Thu, 31 May 2012 18:58:02 +0000
+Message-ID: <CAEsOVNe4zNtFyyQ+47OXNPTzxxMNZs59CJExoPhxGkbSp8tyZw@mail.gmail.com>
+References: <CBED5FA2.10462%belen.barros.pena@intel.com>
+	<CBED6054.10464%belen.barros.pena@intel.com>
+In-Reply-To: <CBED6054.10464%belen.barros.pena@intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [70.112.201.132]
 MIME-Version: 1.0
-To: Darren Hart <dvhart@linux.intel.com>
-References: <cover.1338487192.git.dvhart@linux.intel.com>
-In-Reply-To: <cover.1338487192.git.dvhart@linux.intel.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [PATCH 0/2][linux-yocto-3.2] fri2 serial port fixes for preempt-rt
+X-OriginatorOrg: freescale.com
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Hob implementation: vanilla or branded?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: McClintock Matthew-B29882 <B29882@freescale.com>
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -31,44 +54,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 31 May 2012 18:57:59 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 31 May 2012 18:58:30 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-ID: <8BA1F7F9139FA54985F7145583108B18@mgd.freescale.com>
+Content-Transfer-Encoding: quoted-printable
 
-On 12-05-31 02:04 PM, Darren Hart wrote:
-> These patches address are lockup when attempting login over serial on the fri2
-> when running the preempt-rt kernel. I have sent the first patch out for review,
-> but have not yet heard back. The serial port works and appears fairly stable.
-> However, I would prefer to keep these patches in yocto/preempt-rt/fri2 until
-> they are merged upstream in their final form. Please apply to a new branch:
+On Thu, May 31, 2012 at 11:55 AM, Barros Pena, Belen
+<belen.barros.pena@intel.com> wrote:
+> Hi all,
 >
->      yocto/preempt-rt/fri2
+> As part of the Hob work for the 1.3 release it looks like we need to make
+> a visual design and implementation decision: do we want a 'vanilla' or a
+> 'branded' look for Hob? Sorry if the choice of words is not the best.
+> Neither 'vanilla' nor 'branded' are meant in any negative way.
+>
+> We did have this conversation when we started work on the 1.2 release of
+> Hob, but somehow we settled for a middle way that is not working well and
+> is causing issues like bug 1701. From my conversations with UI engineers
+> and people with lots of experience in building applications using the GTK
+> toolkit, the middle way just doesn't work.
+>
+> What I mean by 'vanilla' is an implementation that takes the visual
+> appearance from the theme installed in the Hob host. The main advantage o=
+f
+> vanilla implementations is they guarantee that Hob will play nicely with
+> its host computer.
+>
+> What I mean by branded is a visually customised appearance which, apart
+> from basic UI elements like window chrome and window controls, takes no
+> input from the host theme. The advantage of this approach is full control
+> over the Hob appearance (Hob should look like Hob no matter what Linux
+> distribution you are using).
+>
+> Personally, I have no preferences: I think both have strengths and
+> weaknesses and I am happy to go with any of the two. What I wouldn't like
+> is sticking to a half-way-in-between approach which is giving us a lot of
+> grief.
+>
+> I would like to know what the Yocto Project community thinks about these =
+2
+> approaches.
+>
+> Thanks!
 
-Ack. I'm fine with that as well, I'll create the branch and lock the
-patches in there.
+Vanilla.
 
-Also updating the -rt patch at the same time.
-
-Cheers,
-
-Bruce
-
->
->
-> The following changes since commit c004dd798ce68af4d7677939426b083575523db5:
->
->    pch_uart: Add eg20t_port lock field, avoid recursive spinlock on port->lock (2012-05-30 23:22:37 -0700)
->
-> are available in the git repository at:
->    git://git.yoctoproject.org/linux-yocto-2.6.37-contrib dvhart/standard/preempt-rt/fri2
->    http://git.yoctoproject.org/cgit.cgi/linux-yocto-2.6.37-contrib/log/?h=dvhart/standard/preempt-rt/fri2
->
-> Darren Hart (2):
->    pch_uart: Add eg20t_port lock field, avoid recursive spinlocks
->    [RT] pch_uart: Correct spin_lock and irqsave usage in pch_console_write
->
->   drivers/tty/serial/pch_uart.c |   26 ++++++++++++++++++--------
->   1 files changed, 18 insertions(+), 8 deletions(-)
->
+-M=
 
 
