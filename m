@@ -1,30 +1,22 @@
-Return-Path: <belen.barros.pena@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 15BC8E006C7
-	for <yocto@yoctoproject.org>; Thu, 31 May 2012 09:56:04 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 31 May 2012 09:56:02 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="150014677"
-Received: from irsmsx103.ger.corp.intel.com ([163.33.3.157])
-	by azsmga001.ch.intel.com with ESMTP; 31 May 2012 09:56:01 -0700
-Received: from irsmsx104.ger.corp.intel.com ([169.254.5.11]) by
-	IRSMSX103.ger.corp.intel.com ([169.254.3.48]) with mapi id
-	14.01.0355.002; Thu, 31 May 2012 17:55:38 +0100
-From: "Barros Pena, Belen" <belen.barros.pena@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Hob implementation: vanilla or branded?
-Thread-Index: AQHNP01Uf/EqqzYAnkC8VEbMTXpj+ZbkHcsA
-Date: Thu, 31 May 2012 16:55:37 +0000
-Message-ID: <CBED6054.10464%belen.barros.pena@intel.com>
-In-Reply-To: <CBED5FA2.10462%belen.barros.pena@intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Microsoft-MacOutlook/14.2.2.120421
-x-originating-ip: [10.252.57.56]
+Return-Path: <tf+lists.yocto@r-finger.com>
+Received: from r-finger.com (r-finger.com [178.79.160.5])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BD9E6E006C7
+	for <yocto@yoctoproject.org>; Thu, 31 May 2012 10:08:41 -0700 (PDT)
+Received: from [192.168.0.2] (host86-170-69-161.range86-170.btcentralplus.com
+	[86.170.69.161]) (using TLSv1 with cipher AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by r-finger.com (Postfix) with ESMTPSA id BD44F9ADB
+	for <yocto@yoctoproject.org>; Thu, 31 May 2012 18:08:40 +0100 (BST)
+Message-ID: <4FC7A593.4080900@r-finger.com>
+Date: Thu, 31 May 2012 18:08:35 +0100
+From: Tomas Frydrych <tf+lists.yocto@r-finger.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:10.0.3) Gecko/20120329 Icedove/10.0.3
 MIME-Version: 1.0
-Subject: Hob implementation: vanilla or branded?
+To: yocto@yoctoproject.org
+References: <CBED6054.10464%belen.barros.pena@intel.com>
+In-Reply-To: <CBED6054.10464%belen.barros.pena@intel.com>
+Subject: Re: Hob implementation: vanilla or branded?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,57 +28,20 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 31 May 2012 16:56:04 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <02F5AB489737D443A72A83365F507823@intel.com>
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 31 May 2012 17:08:42 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi all,
+Hi,
 
-As part of the Hob work for the 1.3 release it looks like we need to make
-a visual design and implementation decision: do we want a 'vanilla' or a
-'branded' look for Hob? Sorry if the choice of words is not the best.
-Neither 'vanilla' nor 'branded' are meant in any negative way.
+On 31/05/12 17:55, Barros Pena, Belen wrote:
+> I would like to know what the Yocto Project community thinks about these 2
+> approaches.
 
-We did have this conversation when we started work on the 1.2 release of
-Hob, but somehow we settled for a middle way that is not working well and
-is causing issues like bug 1701. From my conversations with UI engineers
-and people with lots of experience in building applications using the GTK
-toolkit, the middle way just doesn't work.
+Vanilla please, 'branded' applications are so 1990s. I think very few
+users care whether an application looks different on a different OS then
+their own, but we all get very frustrated when an application brakes the
+normal paradigms of our OS.
 
-What I mean by 'vanilla' is an implementation that takes the visual
-appearance from the theme installed in the Hob host. The main advantage of
-vanilla implementations is they guarantee that Hob will play nicely with
-its host computer.
-
-What I mean by branded is a visually customised appearance which, apart
-from basic UI elements like window chrome and window controls, takes no
-input from the host theme. The advantage of this approach is full control
-over the Hob appearance (Hob should look like Hob no matter what Linux
-distribution you are using).
-
-Personally, I have no preferences: I think both have strengths and
-weaknesses and I am happy to go with any of the two. What I wouldn't like
-is sticking to a half-way-in-between approach which is giving us a lot of
-grief.
-
-I would like to know what the Yocto Project community thinks about these 2
-approaches.
-
-Thanks!
-
-Belen
-
----------------------------------------------------------------------
-Intel Corporation (UK) Limited
-Registered No. 1134945 (England)
-Registered Office: Pipers Way, Swindon SN3 1RJ
-VAT No: 860 2173 47
-
-This e-mail and any attachments may contain confidential material for
-the sole use of the intended recipient(s). Any review or distribution
-by others is strictly prohibited. If you are not the intended
-recipient, please contact the sender and delete all copies.
-
+Tomas
 
