@@ -1,35 +1,34 @@
 Return-Path: <jfabernathy@gmail.com>
 Received: from mail-vc0-f176.google.com (mail-vc0-f176.google.com
 	[209.85.220.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3D451E0070B
-	for <yocto@yoctoproject.org>; Thu, 31 May 2012 11:36:30 -0700 (PDT)
-Received: by vcbfo14 with SMTP id fo14so1041778vcb.35
-	for <yocto@yoctoproject.org>; Thu, 31 May 2012 11:36:29 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6AABDE006C7
+	for <yocto@yoctoproject.org>; Thu, 31 May 2012 11:54:56 -0700 (PDT)
+Received: by vcbfo14 with SMTP id fo14so1059703vcb.35
+	for <yocto@yoctoproject.org>; Thu, 31 May 2012 11:54:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=message-id:date:from:user-agent:mime-version:to:cc:subject
 	:references:in-reply-to:content-type:content-transfer-encoding;
-	bh=9I/m7/F6IEKAuRRo03izc8KTgNb+JaQgTGuECFa0ArE=;
-	b=zdoflOHt1CkqLfJH7OYtCrMy5hYyF74DeH0VTvysWzzbu01EXagAaX7ID38tIlFLFh
-	LTH9rIjM1jw8DUbf2phFJEBQ/z22FE5NKO0dGZXmjyO4ZcPlYbcb7fqlTdI23aHaEBE+
-	3RsIrEuDdETGkYRg1oUzW3kw26C/eUhjeCdVzPh0iIx9EUmLMvMQJyoS4na0Atam4T3u
-	oq9M8QxiXV+0C74aN9N706DebFLprLJSD/yKBaiAowfabJija0BzDqMCoYYwfxexhrz9
-	IyfEAVg5dNlzAcuPJTxvgZMVME26SSxf8xljCYkDRMUWjVwHfr1mtQVE4x6oXLaea6Cf
-	ysuQ==
-Received: by 10.52.34.73 with SMTP id x9mr19080777vdi.27.1338489389540;
-	Thu, 31 May 2012 11:36:29 -0700 (PDT)
+	bh=HvZ6kX2oeB9iCzbXywDnWenNWdQhOVuH5SYQLWTRC54=;
+	b=FHww8vcqNW6C7gcu3rXmt56S8CURn8yuOQRKziJe2NyHrHO5CwhUr8SZ3ExcpdCbkO
+	BXdd5L6IPJQv1QfgWGKweXn5sJ31MLvvSyAhpBJlPlAOqb/OpqnpR0zlZQUAE0DK5rZ4
+	2Az7O1RQTxdEx+xtUE9iLULbNqS4bXVgrDYHVvYa/kKCFIndrP2rf564Ui7uzEqvgOR1
+	tylA4HgvIrO8dAM+eM3aF0cyq3mh90YSbjYeaGXWsUaJocg7Wi1KX/8NsUhQEk+z1tv2
+	1YdjylNu7m8T5B2FlWG/pxjj8cnHGRYHndKkVJASWPHRe5OylIRZt8KgMptx4coRSP23
+	zQFQ==
+Received: by 10.220.230.135 with SMTP id jm7mr3385809vcb.23.1338490495782;
+	Thu, 31 May 2012 11:54:55 -0700 (PDT)
 Received: from [10.0.1.54] (nc-184-4-33-55.dhcp.embarqhsd.net. [184.4.33.55])
-	by mx.google.com with ESMTPS id g10sm6124308vdk.2.2012.05.31.11.36.28
-	(version=SSLv3 cipher=OTHER); Thu, 31 May 2012 11:36:28 -0700 (PDT)
-Message-ID: <4FC7BA2D.60400@gmail.com>
-Date: Thu, 31 May 2012 14:36:29 -0400
+	by mx.google.com with ESMTPS id m14sm6196578vdh.4.2012.05.31.11.54.55
+	(version=SSLv3 cipher=OTHER); Thu, 31 May 2012 11:54:55 -0700 (PDT)
+Message-ID: <4FC7BE80.4060700@gmail.com>
+Date: Thu, 31 May 2012 14:54:56 -0400
 From: jfabernathy <jfabernathy@gmail.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:12.0) Gecko/20120430 Thunderbird/12.0.1
 MIME-Version: 1.0
-To: "Bodke, Kishore K" <kishore.k.bodke@intel.com>
-References: <4FC79837.2070309@gmail.com>
-	<D956029D25CF204F948EA0FB515E1EE20ACB7838@ORSMSX105.amr.corp.intel.com>
-In-Reply-To: <D956029D25CF204F948EA0FB515E1EE20ACB7838@ORSMSX105.amr.corp.intel.com>
+To: Darren Hart <dvhart@linux.intel.com>
+References: <4FC79837.2070309@gmail.com> <4FC7B4E3.1010401@linux.intel.com>
+In-Reply-To: <4FC7B4E3.1010401@linux.intel.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: meta-cedartrail - serial console
 X-BeenThere: yocto@yoctoproject.org
@@ -43,19 +42,13 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 31 May 2012 18:36:30 -0000
+X-List-Received-Date: Thu, 31 May 2012 18:54:56 -0000
 Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 05/31/2012 02:18 PM, Bodke, Kishore K wrote:
+On 05/31/2012 02:13 PM, Darren Hart wrote:
 >
->> -----Original Message-----
->> From: yocto-bounces@yoctoproject.org [mailto:yocto-
->> bounces@yoctoproject.org] On Behalf Of jfabernathy
->> Sent: Thursday, May 31, 2012 9:12 AM
->> To: yocto@yoctoproject.org
->> Subject: [yocto] meta-cedartrail - serial console
->>
+> On 05/31/2012 09:11 AM, jfabernathy wrote:
 >> Using a DN2800MT (Marshalltown) Intel board, I'm testing the
 >> meta-cedartrail using edison branch and noticed an issues with the
 >> serial console.
@@ -66,20 +59,6 @@ On 05/31/2012 02:18 PM, Bodke, Kishore K wrote:
 >> SERIAL_CONSOLE = "115200 ttyS0"
 >> APPEND += "console=ttyS0,115200 console=tty0"
 >>
-> I just saw that Edison branch has ttyS3 enabled.
->
-> SYSLINUX_OPTS = "serial 3 115200"
-> SERIAL_CONSOLE = "115200 ttyS3"
-> APPEND += "console=ttyS3,115200 console=tty3"
->
-> Are you looking into right branch?
-you are right. too many tests in parallel.  In Edison it does have 
-ttyS3.  I'll edit that to ttyS01 and see if if can get it right for the 
-DN2800MT board.  Is there a way to override the standard settings in the 
-local.conf file???
-> Thanks
-> -Kishore.
->
 >> However, when the image booted, I had no serial console on ttyS0.  I
 >> checked /etc/inittab and noticed that the following line existed:
 >>
@@ -93,12 +72,31 @@ local.conf file???
 >> Anyone have a solution??
 >>
 >> If this is considered a bug I can put it on bugzilla.
->>
->> Jim A
->>
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
+> Lets make sure your environment is what we expect. Please provide the
+> output of:
+>
+> $ bitbake core-image-minimal -e | grep SERIAL_CONSOLE=
+>
+> If it is not "115200 ttyS0" then it is getting overwritten somewhere
+> either in your config, or possibly by an inappropriate selection of an
+> assignment operator (=, ?=, etc.) in edison.
+okay now I'm confused.  while the cedartrail.conf file has the following:
+SYSLINUX_OPTS = "serial 3 115200"
+SERIAL_CONSOLE = "115200 ttyS3"
+APPEND += "console=ttyS3,115200 console=tty3"
+
+
+The output of the bitbake command you suggested above gives:
+jim@ubuntu-x64:~/poky/build$ bitbake core-image-minimal -e | grep 
+SERIAL_CONSOLE=
+
+# SERIAL_CONSOLE=115200 ttyS0
+SERIAL_CONSOLE="115200 ttyS0"
+jim@ubuntu-x64:~/poky/build$
+
+So is the bitbake command showing the results before the cedartrail.conf 
+options take affect??
+
+Jim A
 
 
