@@ -1,31 +1,32 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
-	[93.97.173.237])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C328BE0070B
-	for <yocto@yoctoproject.org>; Wed, 30 May 2012 10:12:59 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q4UHCra6023738;
-	Wed, 30 May 2012 18:12:53 +0100
-Received: from tim.rpsys.net ([127.0.0.1])
-	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
-	port 10024) with LMTP
-	id 23236-08; Wed, 30 May 2012 18:12:49 +0100 (BST)
-Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q4UHCiqA023731
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
-	Wed, 30 May 2012 18:12:44 +0100
-Message-ID: <1338397963.20169.170.camel@ted>
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: McClintock Matthew-B29882 <B29882@freescale.com>
-Date: Wed, 30 May 2012 18:12:43 +0100
-In-Reply-To: <CAEsOVNfUrVFO-zqO-G2Ci958_oUGSzUnpOG-3dL8X_bS-R_1UQ@mail.gmail.com>
-References: <4FC62CB6.8060004@enea.com>
-	<CAEsOVNfUrVFO-zqO-G2Ci958_oUGSzUnpOG-3dL8X_bS-R_1UQ@mail.gmail.com>
-X-Mailer: Evolution 3.2.2- 
-Mime-Version: 1.0
-X-Virus-Scanned: amavisd-new at rpsys.net
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: ALT_SRC_URI ?
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from orsmga101.jf.intel.com (mga06.intel.com [134.134.136.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4DC35E01423
+	for <yocto@yoctoproject.org>; Wed, 30 May 2012 18:03:48 -0700 (PDT)
+Received: from mail-lpp01m010-f52.google.com ([209.85.215.52])
+	by mga02.intel.com with ESMTP/TLS/RC4-SHA; 30 May 2012 18:03:47 -0700
+Received: by lahj13 with SMTP id j13so280713lah.25
+	for <yocto@yoctoproject.org>; Wed, 30 May 2012 18:03:45 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type
+	:x-gm-message-state;
+	bh=AahXC0r10jHmq5AwcKswoE+gqWqtdt4Zq0jnx8qsG5E=;
+	b=Dx5Ef4dA+vn/X9PlS7fDNCFCnTHcZnwNJBL4xN8sThz5FSRYHtjFhnhqdEerfrtmtg
+	85qrUz1Uq9eaVn+SRl6jc+y8387ri14lR00deRqIUg09H8nR20Wn+qNNKWRA78zkrO20
+	RdslM9XBw00YJ6RASQq2eUxhSIl92jxFVMTQnwJJJhXmHCKv6fk/XKWzTI8IKJoHs8zh
+	GmFQiiDrtN+aAGWh/baiZzseJJF2DJ+MjWgOFo/a9HUEFqxzJ6lPsNSwj29ea+Q+yi36
+	6PGXf2WKqrhkGn3CvkU6CPyNtJtI6JSRbDXmAUZLtjUgmvkhatqFoJML4gYpQxPgpKql
+	W20A==
+MIME-Version: 1.0
+Received: by 10.152.112.138 with SMTP id iq10mr17772011lab.13.1338426225117;
+	Wed, 30 May 2012 18:03:45 -0700 (PDT)
+Received: by 10.112.1.227 with HTTP; Wed, 30 May 2012 18:03:44 -0700 (PDT)
+Date: Wed, 30 May 2012 18:03:44 -0700
+Message-ID: <CAPhnLPC6auSpiJ-ZQkgMwC3XGroAvmhOK702J_4EC0PXbc6tmg@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: yocto@yoctoproject.org
+X-Gm-Message-State: ALoCoQmBYQYUKb9KuSargcVqztmjuJQTmsjX8Yg/JiRFYhmCimXCVEb+Fu6etcWzjlL+rXMsYD8k
+Subject: [Announcement] Weekly build availability
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,42 +38,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 30 May 2012 17:13:00 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Thu, 31 May 2012 01:03:48 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On Wed, 2012-05-30 at 16:08 +0000, McClintock Matthew-B29882 wrote:
-> On Wed, May 30, 2012 at 9:20 AM, David Nyström <david.nystrom@enea.com> wrote:
-> > Hi,
-> >
-> > Since meta-fsl-ppc:s git daemon(git://git.freescale.com) was down, I
-> > experimented with adding the http reference as a mirror.
-> >
-> > MIRRORS_prepend = "\
-> > git://git.freescale.com/ppc/sdk/linux.git
-> > git://git.freescale.com/git/cgit.cgi/ppc/sdk/linux.git;protocol=http \n "
-> >
-> > Which failed and gave me:
-> > http://pastebin.com/5sTQ0eMC
-> >
-> > It shows bitbake trying to fetch something assumed to be created as a
-> > bitbake mirror, mangling the name.
-> >
-> > How would I go about doing above ?, getting it to failover to my own
-> > specified link ?
-> 
-> It appears to expect mirrors to be in a tarred up bare git repository.
-> Not sure if there is a way around this. You could do an override
-> somewhere:
-> 
-> SRC_URI_pn-linux-qoriq-sdk = "git://some/other/place"
+The weekly build for the milestone 1 of 1.3 will be available
+very shortly at :
+http://autobuilder.yoctoproject.org/pub/nightly/20120530-2
 
-There is an open bug on this issue. Fixing it requires some invasive
-changes to the fetcher code so its not been done yet and I wanted to get
-the checksum issues out the way first.
+We currently have two issues:
+poky-tiny failure:
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=2523
 
-Cheers,
+non-gplv3 failure:
+NOTE: package gnome-doc-utils-native-0.20.6-r8: task do_install: Failed
+I looked to verify that this wasn't an infrastructure issue. It
+appears not to be.
+If anyone has more info on this, I'd appreciate it.
 
-Richard
-
+-- 
+Elizabeth Flanagan
+Yocto Project
+Build and Release
 
