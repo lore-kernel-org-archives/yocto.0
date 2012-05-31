@@ -1,22 +1,37 @@
-Return-Path: <ml@communistcode.co.uk>
-Received: from tinyArch.localdomain (unknown [78.110.170.148])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CC03BE006C7
-	for <yocto@yoctoproject.org>; Thu, 31 May 2012 10:55:53 -0700 (PDT)
-Received: from [192.168.1.113]
-	(cpc2-cmbg15-2-0-cust171.5-4.cable.virginmedia.com [86.26.12.172])
-	by tinyArch.localdomain (Postfix) with ESMTPSA id DF5DB608BE
-	for <yocto@yoctoproject.org>; Thu, 31 May 2012 18:54:33 +0100 (BST)
-Message-ID: <4FC7B0A5.2020008@communistcode.co.uk>
-Date: Thu, 31 May 2012 18:55:49 +0100
-From: Jack Mitchell <ml@communistcode.co.uk>
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
-	rv:12.0) Gecko/20120428 Thunderbird/12.0.1
-MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <CBED6054.10464%belen.barros.pena@intel.com>
-	<4FC7A593.4080900@r-finger.com>
-In-Reply-To: <4FC7A593.4080900@r-finger.com>
-Subject: Re: Hob implementation: vanilla or branded?
+Return-Path: <darren@apps.dvhart.com>
+Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
+	[209.85.160.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5BF41E006C7
+	for <yocto@yoctoproject.org>; Thu, 31 May 2012 11:05:02 -0700 (PDT)
+Received: by pbbrq8 with SMTP id rq8so2284515pbb.35
+	for <yocto@yoctoproject.org>; Thu, 31 May 2012 11:05:02 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=sender:from:to:subject:date:message-id:x-mailer:x-gm-message-state;
+	bh=HOAe0YOdQ4oP6uZO+ZKaMVG05slvGC+pdmNNW8AFJHQ=;
+	b=GI5CVQGHTsCLLehNzbsYW840D49swCcDPcVTNTYAU5bsEKQNmr9MBJor1zIqtWqevK
+	CX3AS+A8qH40q7xxJJpCDHbxePqeigpSKVnrjm+dKyFKbdfhCvk8AA5syXONvP9ZH8MN
+	vuTRUp/Z87KkPUF1MAZlRPDpG4Ob/xk8QEzIY7MCIS2Vwig537ACz8kv98WJJ8PI7Yes
+	8V9TwhCmADO955PWgkktYvneJ+Rf3hUUAd8Py3ds96bixDl0ZvasygsnwS2rm1BVPUOp
+	ZYeYUVuv8oDegMVC+NTHYokn97CmTC4Uga0yfIVnImjazwXhvG/XgeknCgJgWDM38E6S
+	aKpA==
+Received: by 10.68.225.101 with SMTP id rj5mr2218916pbc.2.1338487502009;
+	Thu, 31 May 2012 11:05:02 -0700 (PDT)
+Received: from localhost (static-50-53-99-101.bvtn.or.frontiernet.net.
+	[50.53.99.101])
+	by mx.google.com with ESMTPS id ua6sm4887313pbc.20.2012.05.31.11.05.01
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Thu, 31 May 2012 11:05:01 -0700 (PDT)
+Sender: Darren Hart <darren@apps.dvhart.com>
+From: Darren Hart <dvhart@linux.intel.com>
+To: Yocto Project <yocto@yoctoproject.org>,
+	Bruce Ashfield <bruce.ashfield@windriver.com>,
+	Tom Zanussi <tom.zanussi@intel.com>
+Date: Thu, 31 May 2012 11:04:57 -0700
+Message-Id: <cover.1338487192.git.dvhart@linux.intel.com>
+X-Mailer: git-send-email 1.7.5.4
+X-Gm-Message-State: ALoCoQkMNQxUZRpArQcAAdBPt1hC5xkZwXha7eOnhBIrncucnJM77hKuRJtNWR0TsbdfqyP+3qZG
+Subject: [PATCH 0/2][linux-yocto-3.2] fri2 serial port fixes for preempt-rt
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,22 +43,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 31 May 2012 17:55:54 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 31 May 2012 18:05:02 -0000
 
-On 31/05/2012 18:08, Tomas Frydrych wrote:
-> Hi,
->
-> On 31/05/12 17:55, Barros Pena, Belen wrote:
->> I would like to know what the Yocto Project community thinks about these 2
->> approaches.
-> Vanilla please, 'branded' applications are so 1990s. I think very few
-> users care whether an application looks different on a different OS then
-> their own, but we all get very frustrated when an application brakes the
-> normal paradigms of our OS.
->
-> Tomas
+These patches address are lockup when attempting login over serial on the fri2
+when running the preempt-rt kernel. I have sent the first patch out for review,
+but have not yet heard back. The serial port works and appears fairly stable.
+However, I would prefer to keep these patches in yocto/preempt-rt/fri2 until
+they are merged upstream in their final form. Please apply to a new branch:
 
-+1
+    yocto/preempt-rt/fri2
+
+
+The following changes since commit c004dd798ce68af4d7677939426b083575523db5:
+
+  pch_uart: Add eg20t_port lock field, avoid recursive spinlock on port->lock (2012-05-30 23:22:37 -0700)
+
+are available in the git repository at:
+  git://git.yoctoproject.org/linux-yocto-2.6.37-contrib dvhart/standard/preempt-rt/fri2
+  http://git.yoctoproject.org/cgit.cgi/linux-yocto-2.6.37-contrib/log/?h=dvhart/standard/preempt-rt/fri2
+
+Darren Hart (2):
+  pch_uart: Add eg20t_port lock field, avoid recursive spinlocks
+  [RT] pch_uart: Correct spin_lock and irqsave usage in pch_console_write
+
+ drivers/tty/serial/pch_uart.c |   26 ++++++++++++++++++--------
+ 1 files changed, 18 insertions(+), 8 deletions(-)
+
+-- 
+1.7.5.4
+
 
