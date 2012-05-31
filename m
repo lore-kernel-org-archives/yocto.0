@@ -1,27 +1,28 @@
-Return-Path: <darren.hart@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 52072E006D9
-	for <yocto@yoctoproject.org>; Thu, 31 May 2012 12:44:20 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 31 May 2012 12:44:20 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="150986713"
-Received: from jlstreix-mobl.amr.corp.intel.com (HELO envy.home)
-	([10.7.199.145])
-	by orsmga002.jf.intel.com with ESMTP; 31 May 2012 12:44:19 -0700
-Message-ID: <4FC7C9D8.5030301@intel.com>
-Date: Thu, 31 May 2012 12:43:20 -0700
-From: Darren Hart <darren.hart@intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:12.0) Gecko/20120430 Thunderbird/12.0.1
+Return-Path: <linux.mrjimorg@gmail.com>
+Received: from mail-yx0-f176.google.com (mail-yx0-f176.google.com
+	[209.85.213.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6CCDAE006D9
+	for <yocto@yoctoproject.org>; Thu, 31 May 2012 15:17:21 -0700 (PDT)
+Received: by yenm14 with SMTP id m14so1610145yen.35
+	for <yocto@yoctoproject.org>; Thu, 31 May 2012 15:17:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=b0uKdhaRpMVDQ3gqZH1MgK9xAowX7OSouASwLusMwkw=;
+	b=SkvobMstgewF/GoSfqqcfPZQbSKZrE619zFCRHeiKPCQx3SnWxoA99shvh1yBbKPHr
+	GLjpc0CTqFctri3I2kJMgUks18mPFtVnR8bULzJelFlAzAkNc7Jxznqivmkd3Jwlrvd2
+	mHesX3bfdfQdzHPIDypSy3VbPqlNTdIRJIDk9i5nUM4YrZXAdn8Q4bxX+mALpYKxxdbc
+	77y8/tFAXTJ9aa0cWlvSVohif0N9O4p3q7Nzh7pn7qGTGI0ksqeEED+MVr7OPIA8MD+d
+	CRDwml392l3Vw9hhZ8mBIiHhFu3uSuR5bZ9U9x401IwNWA88qJI9aWGd28RBQ4ZgaSkH
+	txKA==
 MIME-Version: 1.0
-To: jfabernathy <jfabernathy@gmail.com>
-References: <4FC79837.2070309@gmail.com>
-	<D956029D25CF204F948EA0FB515E1EE20ACB7838@ORSMSX105.amr.corp.intel.com>
-	<4FC7C769.1030903@gmail.com>
-In-Reply-To: <4FC7C769.1030903@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: meta-cedartrail - serial console
+Received: by 10.50.222.170 with SMTP id qn10mr225527igc.45.1338502640493; Thu,
+	31 May 2012 15:17:20 -0700 (PDT)
+Received: by 10.50.170.100 with HTTP; Thu, 31 May 2012 15:17:20 -0700 (PDT)
+Date: Thu, 31 May 2012 17:17:20 -0500
+Message-ID: <CAH6UwN18AD83hzxDeFLCL8H_FBssoi5bwmQ-EHmWeJd7inMZBg@mail.gmail.com>
+From: Jim Rucker <linux.mrjimorg@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Hello
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,87 +34,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 31 May 2012 19:44:20 -0000
+X-List-Received-Date: Thu, 31 May 2012 22:17:21 -0000
+Content-Type: multipart/alternative; boundary=14dae93411116ae50904c15c6e3a
+
+--14dae93411116ae50904c15c6e3a
 Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
 
-On 05/31/2012 12:32 PM, jfabernathy wrote:
-> On 05/31/2012 02:18 PM, Bodke, Kishore K wrote:
->>
->>> -----Original Message-----
->>> From: yocto-bounces@yoctoproject.org [mailto:yocto-
->>> bounces@yoctoproject.org] On Behalf Of jfabernathy
->>> Sent: Thursday, May 31, 2012 9:12 AM
->>> To: yocto@yoctoproject.org
->>> Subject: [yocto] meta-cedartrail - serial console
->>>
->>> Using a DN2800MT (Marshalltown) Intel board, I'm testing the
->>> meta-cedartrail using edison branch and noticed an issues with the
->>> serial console.
->>>
->>> The cedartrail.conf in the machine directory has the following statements:
->>>
->>> SYSLINUX_OPTS = "serial 0 115200"
->>> SERIAL_CONSOLE = "115200 ttyS0"
->>> APPEND += "console=ttyS0,115200 console=tty0"
->>>
->> I just saw that Edison branch has ttyS3 enabled.
->>
->> SYSLINUX_OPTS = "serial 3 115200"
->> SERIAL_CONSOLE = "115200 ttyS3"
->> APPEND += "console=ttyS3,115200 console=tty3"
->>
->> Are you looking into right branch?
->>
->> Thanks
->> -Kishore.
->>   
-> 
-> So how do you get changes in the cedartrail.conf file to take affect??  
-> I edited the file and did the bitbake again, but nothing changed.  I'm 
-> guessing I need a bitbake -c cleansstate "somthing"  But I don't know 
-> what to put there to make rebuild with ttyS0.
-> 
+I'm fairly new to Yocto and Poky and I have a question that I haven't been
+able to find through Google. If there are multiple .bb files in a
+directory, how does bitbake choose which one to use?
+        Background: I'm inheriting a project from someone and they have a
+SRC_URI="git" version and a SRC_URI="file://" version and the git version
+is always being called but that server isn't available yet.
 
-Ah yes, this rebuild is a bit frustrating. I believe it is the
-task_core* tasks you need to rebuild. bitbake -u depexp -g
-core-image-base (whatever your image is) will allow you to view which
-task_ tasks it is building, try cleansstate'ing those and rebuilding the
-image.
+--14dae93411116ae50904c15c6e3a
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
---
-Darren
+I&#39;m fairly new to Yocto and Poky and I have a question that I haven&#39=
+;t been able to find through Google.=A0If there are multiple .bb files in a=
+ directory, how does bitbake choose which one to use?=A0<div>=A0 =A0 =A0 =
+=A0 Background: I&#39;m inheriting a project from someone and they have a S=
+RC_URI=3D&quot;git&quot; version and a=A0SRC_URI=3D&quot;file://&quot; vers=
+ion and the git version is always being called but that server isn&#39;t av=
+ailable yet.</div>
+<div><br></div><div><br></div>
 
-> Jim A
->>> However, when the image booted, I had no serial console on ttyS0.  I
->>> checked /etc/inittab and noticed that the following line existed:
->>>
->>> S:2345:respawn:/sbin/getty 115200 ttyS3
->>>
->>> I changed the ttyS3 to ttyS0 and then I have a serial console on the
->>> next reboot.  So it appears the override in the .conf file is not
->>> working.  Also I only have the console from getty, and not the kernel
->>> logging console.
->>>
->>> Anyone have a solution??
->>>
->>> If this is considered a bug I can put it on bugzilla.
->>>
->>> Jim A
->>>
->>> _______________________________________________
->>> yocto mailing list
->>> yocto@yoctoproject.org
->>> https://lists.yoctoproject.org/listinfo/yocto
-> 
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
-
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
-
+--14dae93411116ae50904c15c6e3a--
