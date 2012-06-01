@@ -1,27 +1,34 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 72602E00747
-	for <yocto@yoctoproject.org>; Fri,  1 Jun 2012 10:56:45 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 01 Jun 2012 10:56:45 -0700
+Return-Path: <kishore.k.bodke@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AE6BEE013D1
+	for <yocto@yoctoproject.org>; Fri,  1 Jun 2012 11:03:35 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga102.fm.intel.com with ESMTP; 01 Jun 2012 11:03:35 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="147107296"
-Received: from unknown (HELO envy.home) ([10.255.12.201])
-	by orsmga001.jf.intel.com with ESMTP; 01 Jun 2012 10:56:44 -0700
-Message-ID: <4FC9021D.1050706@linux.intel.com>
-Date: Fri, 01 Jun 2012 10:55:41 -0700
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:12.0) Gecko/20120430 Thunderbird/12.0.1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="159634862"
+Received: from orsmsx606.amr.corp.intel.com ([10.22.226.128])
+	by fmsmga001.fm.intel.com with ESMTP; 01 Jun 2012 11:03:35 -0700
+Received: from orsmsx102.amr.corp.intel.com (10.22.225.129) by
+	orsmsx606.amr.corp.intel.com (10.22.226.128) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Fri, 1 Jun 2012 11:03:35 -0700
+Received: from orsmsx105.amr.corp.intel.com ([169.254.4.232]) by
+	ORSMSX102.amr.corp.intel.com ([169.254.1.192]) with mapi id
+	14.01.0355.002; Fri, 1 Jun 2012 11:03:34 -0700
+From: "Bodke, Kishore K" <kishore.k.bodke@intel.com>
+To: "Hart, Darren" <darren.hart@intel.com>, jfabernathy <jfabernathy@gmail.com>
+Thread-Topic: [yocto] meta-cedartrail - serial console
+Thread-Index: AQHNP0g7G3Yb1O/j10yH4rRy4+tABpbkNHnwgACKq4CAAALnAIAA/UQg
+Date: Fri, 1 Jun 2012 18:03:34 +0000
+Message-ID: <D956029D25CF204F948EA0FB515E1EE20ACB7D5F@ORSMSX105.amr.corp.intel.com>
+References: <4FC79837.2070309@gmail.com>
+	<D956029D25CF204F948EA0FB515E1EE20ACB7838@ORSMSX105.amr.corp.intel.com>
+	<4FC7C769.1030903@gmail.com> <4FC7C9D8.5030301@intel.com>
+In-Reply-To: <4FC7C9D8.5030301@intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-To: jfabernathy <jfabernathy@gmail.com>
-References: <4FC79837.2070309@gmail.com> <4FC7B4E3.1010401@linux.intel.com>
-	<4FC7BE80.4060700@gmail.com> <4FC7C965.1020809@linux.intel.com>
-	<4FC8E39D.3010702@gmail.com> <4FC8F564.90704@linux.intel.com>
-	<4FC8FE53.4030508@gmail.com> <4FC8FF90.20403@linux.intel.com>
-	<4FC90183.2080107@gmail.com>
-In-Reply-To: <4FC90183.2080107@gmail.com>
-X-Enigmail-Version: 1.4.1
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: meta-cedartrail - serial console
 X-BeenThere: yocto@yoctoproject.org
@@ -35,136 +42,123 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 01 Jun 2012 17:56:45 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 01 Jun 2012 18:03:35 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
 
 
-On 06/01/2012 10:53 AM, jfabernathy wrote:
-> On 06/01/2012 01:44 PM, Darren Hart wrote:
->>
->> On 06/01/2012 10:39 AM, jfabernathy wrote:
->>> On 06/01/2012 01:01 PM, Darren Hart wrote:
->>>> On 06/01/2012 08:45 AM, jfabernathy wrote:
->>>>> On 05/31/2012 03:41 PM, Darren Hart wrote:
->>>>>> On 05/31/2012 11:54 AM, jfabernathy wrote:
->>>>>>> On 05/31/2012 02:13 PM, Darren Hart wrote:
->>>>>>>> On 05/31/2012 09:11 AM, jfabernathy wrote:
->>>>>>>>> Using a DN2800MT (Marshalltown) Intel board, I'm testing the
->>>>>>>>> meta-cedartrail using edison branch and noticed an issues with the
->>>>>>>>> serial console.
->>>>>>>>>
->>>>>>>>> The cedartrail.conf in the machine directory has the following statements:
->>>>>>>>>
->>>>>>>>> SYSLINUX_OPTS = "serial 0 115200"
->>>>>>>>> SERIAL_CONSOLE = "115200 ttyS0"
->>>>>>>>> APPEND += "console=ttyS0,115200 console=tty0"
->>>>>>>>>
->>>>>>>>> However, when the image booted, I had no serial console on ttyS0.  I
->>>>>>>>> checked /etc/inittab and noticed that the following line existed:
->>>>>>>>>
->>>>>>>>> S:2345:respawn:/sbin/getty 115200 ttyS3
->>>>>>>>>
->>>>>>>>> I changed the ttyS3 to ttyS0 and then I have a serial console on the
->>>>>>>>> next reboot.  So it appears the override in the .conf file is not
->>>>>>>>> working.  Also I only have the console from getty, and not the kernel
->>>>>>>>> logging console.
->>>>>>>>>
->>>>>>>>> Anyone have a solution??
->>>>>>>>>
->>>>>>>>> If this is considered a bug I can put it on bugzilla.
->>>>>>>> Lets make sure your environment is what we expect. Please provide the
->>>>>>>> output of:
->>>>>>>>
->>>>>>>> $ bitbake core-image-minimal -e | grep SERIAL_CONSOLE=
->>>>>>>>
->>>>>>>> If it is not "115200 ttyS0" then it is getting overwritten somewhere
->>>>>>>> either in your config, or possibly by an inappropriate selection of an
->>>>>>>> assignment operator (=, ?=, etc.) in edison.
->>>>>>> okay now I'm confused.  while the cedartrail.conf file has the following:
->>>>>>> SYSLINUX_OPTS = "serial 3 115200"
->>>>>>> SERIAL_CONSOLE = "115200 ttyS3"
->>>>>>> APPEND += "console=ttyS3,115200 console=tty3"
->>>>>>>
->>>>>>>
->>>>>>> The output of the bitbake command you suggested above gives:
->>>>>>> jim@ubuntu-x64:~/poky/build$ bitbake core-image-minimal -e | grep
->>>>>>> SERIAL_CONSOLE=
->>>>>>>
->>>>>>> # SERIAL_CONSOLE=115200 ttyS0
->>>>>>> SERIAL_CONSOLE="115200 ttyS0"
->>>>>>> jim@ubuntu-x64:~/poky/build$
->>>>>>>
->>>>>>> So is the bitbake command showing the results before the cedartrail.conf
->>>>>>> options take affect??
->>>>>> variable assignments can be tricky, and are not the easiest things to
->>>>>> track down. I suggest looking through your configured layers and looking
->>>>>> for all the SERIAL_CONSOLE assignments using ttyS3 and ttyS0 and see if
->>>>>> you can determine what is overriding your cedartrail.conf setting.
->>>>>>
->>>>> What I found out is the only variable that matters for login console in
->>>>> my situation is SERIAL_CONSOLE because I have to use grub and the boot
->>>>> from hard drive method because my image can't be put on a USB Flash for
->>>>> some reason.  So I manually have to edit the grub.cfg file as documented
->>>>> on the wiki "How Do I" section of putting Yocto on a hard drive.  Adding
->>>>> console=ttyS0,115200 on the linux statement takes care of the boot console.
->>>> I believe this is a manual process currently. Please open an enhancement
->>>> in bugzilla for your specific situation and I'll incporporate into the
->>>> larger boot process and image revamp we're doing for 1.3.
+>-----Original Message-----
+>From: Hart, Darren
+>Sent: Thursday, May 31, 2012 12:43 PM
+>To: jfabernathy
+>Cc: Bodke, Kishore K; yocto@yoctoproject.org
+>Subject: Re: [yocto] meta-cedartrail - serial console
+>
+>On 05/31/2012 12:32 PM, jfabernathy wrote:
+>> On 05/31/2012 02:18 PM, Bodke, Kishore K wrote:
+>>>
+>>>> -----Original Message-----
+>>>> From: yocto-bounces@yoctoproject.org [mailto:yocto-
+>>>> bounces@yoctoproject.org] On Behalf Of jfabernathy
+>>>> Sent: Thursday, May 31, 2012 9:12 AM
+>>>> To: yocto@yoctoproject.org
+>>>> Subject: [yocto] meta-cedartrail - serial console
 >>>>
->>> I'll make the entry.
->>>>> So the question is has there been any thought about automating the
->>>>> choice of boot loader and the parameters that are needed or optional?
->>>>> In the case of meta-cedartrail, the cedartrail.conf assumes syslinux is
->>>>> the boot loader. When I could use a USB Flash key, creating a boot
->>>>> device was a trivial dd statement.  Because I have to use a hard drive
->>>>> now, I have to do a number of manual steps.  Or is there a way to create
->>>>> a boot-able hard drive with syslinux so the cedartrail.conf parameters
->>>>> are all that is needed to adjust?
->>>> This is all good feedback to consider as we work through making more
->>>> universally bootable images. This is becoming a hot topic as people are
->>>> using Yocto in more and more situations and as things like EFI become
->>>> more commonplace.
+>>>> Using a DN2800MT (Marshalltown) Intel board, I'm testing the
+>>>> meta-cedartrail using edison branch and noticed an issues with the
+>>>> serial console.
 >>>>
->>>> There is no reason you can't just dd (have a look at
->>>> scripts/contrib/ddimage) the image to a hard disk instead of a usb
->>>> stick. You may need a USB to SATA adapter for your host (this is what I
->>>> use). If you have a USB port, you could just use the install option.
->>> This script does not eliminate the boot error I get with syslinux on USB
->>> flash keys.  I noticed the script is not in edison but is in denzil, so
->>> I got it there and tried to run it against an image created with
->>> edison.  I still get the same boot error I get with dd, which is
->>> understandable since that's what the script uses.  Not sure if this is a
->>> size issue because my image is over a 1GB.  I'm guessing this this will
->>> still fail on a hard drive with the dd'ing of the .hddimg, but I'll test
->>> it anyway.
->> Sorry, ddimage wasn't meant to fix the issue, just as a slightly more
->> convenient/safe wrapper around dd.
+>>>> The cedartrail.conf in the machine directory has the following stateme=
+nts:
+>>>>
+>>>> SYSLINUX_OPTS =3D "serial 0 115200"
+>>>> SERIAL_CONSOLE =3D "115200 ttyS0"
+>>>> APPEND +=3D "console=3DttyS0,115200 console=3Dtty0"
+>>>>
+>>> I just saw that Edison branch has ttyS3 enabled.
+>>>
+>>> SYSLINUX_OPTS =3D "serial 3 115200"
+>>> SERIAL_CONSOLE =3D "115200 ttyS3"
+>>> APPEND +=3D "console=3DttyS3,115200 console=3Dtty3"
+>>>
+>>> Are you looking into right branch?
+>>>
+>>> Thanks
+>>> -Kishore.
+>>>
 >>
->> I'm not familiar with the error you are seeing with the live image. Can
->> you point me to the thread or the bug?
+>> So how do you get changes in the cedartrail.conf file to take affect??
+>> I edited the file and did the bitbake again, but nothing changed.  I'm
+>> guessing I need a bitbake -c cleansstate "somthing"  But I don't know
+>> what to put there to make rebuild with ttyS0.
+>>
+>
+>Ah yes, this rebuild is a bit frustrating. I believe it is the
+>task_core* tasks you need to rebuild. bitbake -u depexp -g
+>core-image-base (whatever your image is) will allow you to view which
+>task_ tasks it is building, try cleansstate'ing those and rebuilding the
+>image.
 
-> Well this boot error issue seems to be USB Key related because I just 
-> did the ddimage script on a edison core-image-sato image using the 
-> .hddimg file and it worked correctly on a hard drive.  This was a 1.2GB 
-> image.  Now I'll have to add in the parameters that give you more free 
-> disk space now that I'm testing with a real hard drive.
-> 
-> The readme in most of the x86 BSP directory in meta-intel talk about if 
-> you get boot errors to:
-> 
-> dd if=/dev/zero of=/dev/sdf bs=1M count=512
-> 
-> I have not found this to work.  Maybe it's a count size issue.  I always 
-> use 512, but maybe it should be 4096 for a 4GB USB key.
-> 
+I had to remove the above 3 lines from cedartrail.conf and=20
+SERIAL_CONSOLE ?=3D "115200 ttyS0" line from conf/machine/include/ia32-base=
+.inc
+rebuild the image.
+It is disabled now.
 
-What is the boot error?
+I edited grub and added back console=3DttyS0,115200 console=3Dtty0
+Serial console got active, but I could not get the login prompt on serial c=
+onsole, only boot messages and serial console hangs after these messages.
+
+EXT3-fs (loop0): recovery complete
+EXT3-fs (loop0): mounted filesystem with ordered data mode
+udev[469]: starting version 164
+NET: Registered protocol family 10
+ADDRCONF(NETDEV_UP): eth0: link is not ready
+ip_tables: (C) 2000-2006 Netfilter Core Team
+nf_conntrack version 0.5.0 (16384 buckets, 65536 max)
 
 
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
+Gfx desktop came up though with no issues.
+
+Thanks
+Kishore.
+
+>
+>--
+>Darren
+>
+>> Jim A
+>>>> However, when the image booted, I had no serial console on ttyS0.  I
+>>>> checked /etc/inittab and noticed that the following line existed:
+>>>>
+>>>> S:2345:respawn:/sbin/getty 115200 ttyS3
+>>>>
+>>>> I changed the ttyS3 to ttyS0 and then I have a serial console on the
+>>>> next reboot.  So it appears the override in the .conf file is not
+>>>> working.  Also I only have the console from getty, and not the kernel
+>>>> logging console.
+>>>>
+>>>> Anyone have a solution??
+>>>>
+>>>> If this is considered a bug I can put it on bugzilla.
+>>>>
+>>>> Jim A
+>>>>
+>>>> _______________________________________________
+>>>> yocto mailing list
+>>>> yocto@yoctoproject.org
+>>>> https://lists.yoctoproject.org/listinfo/yocto
+>>
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
+>--
+>Darren Hart
+>Intel Open Source Technology Center
+>Yocto Project - Linux Kernel
 
