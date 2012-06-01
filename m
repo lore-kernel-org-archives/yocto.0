@@ -1,23 +1,35 @@
-Return-Path: <David.Nystrom@enea.com>
-Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id C7C89E01435
-	for <yocto@yoctoproject.org>; Fri,  1 Jun 2012 03:34:11 -0700 (PDT)
-Received: from [172.16.140.132] (172.16.140.132) by smtp.enea.com
-	(172.21.1.209) with Microsoft SMTP Server id 14.2.247.3; Fri, 1 Jun 2012
-	12:34:09 +0200
-Message-ID: <4FC89AB1.40706@enea.com>
-Date: Fri, 1 Jun 2012 12:34:25 +0200
-From: =?UTF-8?B?RGF2aWQgTnlzdHLDtm0=?= <david.nystrom@enea.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:12.0) Gecko/20120430 Thunderbird/12.0.1
+Return-Path: <scott.m.rifenbark@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4BBDFE00747
+	for <yocto@yoctoproject.org>; Fri,  1 Jun 2012 07:16:51 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 01 Jun 2012 07:16:50 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="150412261"
+Received: from orsmsx606.amr.corp.intel.com ([10.22.226.128])
+	by azsmga001.ch.intel.com with ESMTP; 01 Jun 2012 07:16:50 -0700
+Received: from orsmsx103.amr.corp.intel.com (10.22.225.130) by
+	orsmsx606.amr.corp.intel.com (10.22.226.128) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Fri, 1 Jun 2012 07:16:50 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.121]) by
+	ORSMSX103.amr.corp.intel.com ([169.254.2.163]) with mapi id
+	14.01.0355.002; Fri, 1 Jun 2012 07:16:49 -0700
+From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+To: Khem Raj <raj.khem@gmail.com>, Jim Rucker <linux.mrjimorg@gmail.com>
+Thread-Topic: [yocto] Hello
+Thread-Index: AQHNP3s1/p8fnszUE0eFHk7dqU5PJpbk8JKAgACQTRA=
+Date: Fri, 1 Jun 2012 14:16:49 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB12379469FB953@ORSMSX101.amr.corp.intel.com>
+References: <CAH6UwN18AD83hzxDeFLCL8H_FBssoi5bwmQ-EHmWeJd7inMZBg@mail.gmail.com>
+	<CAMKF1sox5fA9yNXUK9UsEBTz2jDB8446WsYWBO=9msVM5UuuJg@mail.gmail.com>
+In-Reply-To: <CAMKF1sox5fA9yNXUK9UsEBTz2jDB8446WsYWBO=9msVM5UuuJg@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-To: Khem Raj <raj.khem@gmail.com>
-References: <4FC74DF9.3070401@enea.com>
-	<CAMKF1soZ7Ss7s245Y4xtGBypheW5RSDgJMCRAr1FG2xF5cE3-w@mail.gmail.com>
-In-Reply-To: <CAMKF1soZ7Ss7s245Y4xtGBypheW5RSDgJMCRAr1FG2xF5cE3-w@mail.gmail.com>
-X-Originating-IP: [172.16.140.132]
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: PR and bbappends
+Subject: Re: Hello
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,43 +41,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 01 Jun 2012 10:34:12 -0000
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 01 Jun 2012 14:16:51 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-On 05/31/2012 04:01 PM, Khem Raj wrote:
-> On Thu, May 31, 2012 at 3:54 AM, David Nystr=C3=B6m<david.nystrom@enea.co=
-m>  wrote:
->> Hi All,
->>
->> Is there a good way to get the layer name ?, I want to add
->> PR .=3D "+${LAYER_NAME}.0" to my bbappends for clarity and versioning wh=
-en
->> having multiple meta layers.
->> Where a bbappend:s on package X can reside in one, two or more layers.
->>
-> you could look into  bitbake-layers tool
-> bitbake-layers show-overlayed will show the recipes overlays
-> if thats the problem you are trying to solve
->
-Thanks, I was unaware of that script. But not really want I want to do.
-We are going to have multiple BSP layers sourced from BSP suppliers, and=20
-customer specific layers on top of this.
-When it comes to testing, we want our test-objects(binary packages) to=20
-differ depending on which layers appended them,
-so that we can easily automate a testing procedure, and reduce possible=20
-permutations of testobjects.(For unit testing).
-
-Also, when you see bash_4.2-r2+meta-fsl-ppc.0+meta-ti.2_ppce500mc.ipk,=20
-you directly see who manipulated the contents
-of the bash package. And where eventual failures could originate from.
-
->> Best Regards,
->> David
->>
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
-
+Q3VycmVudCBtYW51YWwgc2V0IGlzOg0KDQpodHRwOi8vd3d3LnlvY3RvcHJvamVjdC5vcmcvZG9j
+cy9jdXJyZW50L3Bva3ktcmVmLW1hbnVhbC9wb2t5LXJlZi1tYW51YWwuaHRtbCN2YXItUFJFRkVS
+UkVEX1BST1ZJREVSDQpodHRwOi8vd3d3LnlvY3RvcHJvamVjdC5vcmcvZG9jcy9jdXJyZW50L3Bv
+a3ktcmVmLW1hbnVhbC9wb2t5LXJlZi1tYW51YWwuaHRtbCN2YXItUFJFRkVSUkVEX1ZFUlNJT04N
+Cg0KVGhlIGRlc2NyaXB0aW9ucyBmb3IgdGhlc2UgZ2xvc3NhcmllcywgaG93ZXZlciwgYXJlIGlk
+ZW50aWNhbCBpbiB0aGUgYXJjaGl2ZWQgdmVyc2lvbnMgb2YgdGhlIG1hbnVhbCBhbmQgdGhlIGN1
+cnJlbnQgdmVyc2lvbi4gIA0KDQpTY290dA0KDQotLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0K
+RnJvbTogeW9jdG8tYm91bmNlc0B5b2N0b3Byb2plY3Qub3JnIFttYWlsdG86eW9jdG8tYm91bmNl
+c0B5b2N0b3Byb2plY3Qub3JnXSBPbiBCZWhhbGYgT2YgS2hlbSBSYWoNClNlbnQ6IFRodXJzZGF5
+LCBNYXkgMzEsIDIwMTIgMzozMSBQTQ0KVG86IEppbSBSdWNrZXINCkNjOiB5b2N0b0B5b2N0b3By
+b2plY3Qub3JnDQpTdWJqZWN0OiBSZTogW3lvY3RvXSBIZWxsbw0KDQpPbiBUaHUsIE1heSAzMSwg
+MjAxMiBhdCAzOjE3IFBNLCBKaW0gUnVja2VyIDxsaW51eC5tcmppbW9yZ0BnbWFpbC5jb20+IHdy
+b3RlOg0KPiBJJ20gZmFpcmx5IG5ldyB0byBZb2N0byBhbmQgUG9reSBhbmQgSSBoYXZlIGEgcXVl
+c3Rpb24gdGhhdCBJIGhhdmVuJ3QgYmVlbg0KPiBhYmxlIHRvIGZpbmQgdGhyb3VnaCBHb29nbGUu
+wqBJZiB0aGVyZSBhcmUgbXVsdGlwbGUgLmJiIGZpbGVzIGluIGEgZGlyZWN0b3J5LA0KPiBob3cg
+ZG9lcyBiaXRiYWtlIGNob29zZSB3aGljaCBvbmUgdG8gdXNlPw0KDQoNCnJlYWQNCg0KaHR0cDov
+L3d3dy55b2N0b3Byb2plY3Qub3JnL2RvY3MvMS4wL3Bva3ktcmVmLW1hbnVhbC9wb2t5LXJlZi1t
+YW51YWwuaHRtbCN2YXItUFJFRkVSUkVEX1BST1ZJREVSDQpodHRwOi8vd3d3LnlvY3RvcHJvamVj
+dC5vcmcvZG9jcy8xLjAvcG9reS1yZWYtbWFudWFsL3Bva3ktcmVmLW1hbnVhbC5odG1sI3Zhci1Q
+UkVGRVJSRURfVkVSU0lPTg0KDQo+IMKgIMKgIMKgIMKgIEJhY2tncm91bmQ6IEknbSBpbmhlcml0
+aW5nIGEgcHJvamVjdCBmcm9tIHNvbWVvbmUgYW5kIHRoZXkgaGF2ZSBhDQo+IFNSQ19VUkk9Imdp
+dCIgdmVyc2lvbiBhbmQgYcKgU1JDX1VSST0iZmlsZTovLyIgdmVyc2lvbiBhbmQgdGhlIGdpdCB2
+ZXJzaW9uIGlzDQo+IGFsd2F5cyBiZWluZyBjYWxsZWQgYnV0IHRoYXQgc2VydmVyIGlzbid0IGF2
+YWlsYWJsZSB5ZXQuDQo+DQo+DQo+DQo+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fDQo+IHlvY3RvIG1haWxpbmcgbGlzdA0KPiB5b2N0b0B5b2N0b3Byb2pl
+Y3Qub3JnDQo+IGh0dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9saXN0aW5mby95b2N0bw0K
+Pg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCnlvY3Rv
+IG1haWxpbmcgbGlzdA0KeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0KaHR0cHM6Ly9saXN0cy55b2N0
+b3Byb2plY3Qub3JnL2xpc3RpbmZvL3lvY3RvDQo=
 
