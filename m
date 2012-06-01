@@ -1,43 +1,52 @@
-Return-Path: <jfabernathy@gmail.com>
-Received: from mail-qc0-f176.google.com (mail-qc0-f176.google.com
-	[209.85.216.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6DA9DE00747
-	for <yocto@yoctoproject.org>; Fri,  1 Jun 2012 12:14:15 -0700 (PDT)
-Received: by qcsc21 with SMTP id c21so1614001qcs.35
-	for <yocto@yoctoproject.org>; Fri, 01 Jun 2012 12:14:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=message-id:date:from:user-agent:mime-version:to:cc:subject
-	:references:in-reply-to:content-type:content-transfer-encoding;
-	bh=dJygcKbTozRF2QSuctKm8+XxLwLs/PT4/OEIQLqs0Uo=;
-	b=CE9Uw+G+3/zKiGhnnchexZsa+QIi6fABDTxvNdjc1FB+7T4rNsYfNEGM+sghZAXfks
-	KPhlDVDvjFd0dybBlbk1NoZ84pEYG/Go5KvTOTlXQWJAhtnH0hCsPTM7RUlJOFUyB/wX
-	KhJ2jAuYzXo2Av3qNeQOecAKAOeG2WXAWeDZUvpxs5EsHDz45jQjVAN0B0/XfPy7P4OF
-	8ClM8SUfrr2WVZQn9U3DusglGO9xh5ci9NuA3Uv58d2E37I7h45fXvgZM0y7irEOcDmd
-	He7g+/DPPAitOwpctuxMbYOmNcquT2IPYJy+HBXFQaHEhYLQ7lGYZKqp7WTHMBMI9vE0
-	1zow==
-Received: by 10.224.180.75 with SMTP id bt11mr4482713qab.35.1338578054771;
-	Fri, 01 Jun 2012 12:14:14 -0700 (PDT)
-Received: from [10.0.1.54] (nc-184-4-33-55.dhcp.embarqhsd.net. [184.4.33.55])
-	by mx.google.com with ESMTPS id dx8sm5011388qab.8.2012.06.01.12.14.13
-	(version=SSLv3 cipher=OTHER); Fri, 01 Jun 2012 12:14:14 -0700 (PDT)
-Message-ID: <4FC91488.9080106@gmail.com>
-Date: Fri, 01 Jun 2012 15:14:16 -0400
-From: jfabernathy <jfabernathy@gmail.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:12.0) Gecko/20120430 Thunderbird/12.0.1
+Return-Path: <B29882@freescale.com>
+Received: from va3outboundpool.messaging.microsoft.com
+	(va3ehsobe006.messaging.microsoft.com [216.32.180.16])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 21E67E00747
+	for <yocto@yoctoproject.org>; Fri,  1 Jun 2012 12:32:14 -0700 (PDT)
+Received: from mail136-va3-R.bigfish.com (10.7.14.247) by
+	VA3EHSOBE008.bigfish.com (10.7.40.28) with Microsoft SMTP Server id
+	14.1.225.23; Fri, 1 Jun 2012 19:31:42 +0000
+Received: from mail136-va3 (localhost [127.0.0.1])	by
+	mail136-va3-R.bigfish.com (Postfix) with ESMTP id DA5632205F6;
+	Fri,  1 Jun 2012 19:31:41 +0000 (UTC)
+X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null); IPV:NLI;
+	H:mail.freescale.net; RD:none; EFVD:NLI
+X-SpamScore: -12
+X-BigFish: VS-12(zzbb2dI9371Ic89bh14ffI1432N98dK4015Izz1202hzz8275bhz2dh2a8h668h839h8e2h8e3hf0ahbe9i)
+Received: from mail136-va3 (localhost.localdomain [127.0.0.1]) by mail136-va3
+	(MessageSwitch) id 1338579100957271_25491;
+	Fri,  1 Jun 2012 19:31:40 +0000 (UTC)
+Received: from VA3EHSMHS029.bigfish.com (unknown [10.7.14.241])	by
+	mail136-va3.bigfish.com (Postfix) with ESMTP id E64D02C004E;
+	Fri,  1 Jun 2012 19:31:40 +0000 (UTC)
+Received: from mail.freescale.net (70.37.183.190) by VA3EHSMHS029.bigfish.com
+	(10.7.99.39) with Microsoft SMTP Server (TLS) id 14.1.225.23;
+	Fri, 1 Jun 2012 19:31:39 +0000
+Received: from 039-SN1MPN1-001.039d.mgd.msft.net ([169.254.1.135]) by
+	039-SN1MMR1-003.039d.mgd.msft.net ([10.84.1.16]) with mapi id
+	14.02.0298.005; Fri, 1 Jun 2012 14:32:09 -0500
+From: McClintock Matthew-B29882 <B29882@freescale.com>
+To: =?iso-8859-1?Q?David_Nystr=F6m?= <david.nystrom@enea.com>
+Thread-Topic: [yocto] PR and bbappends
+Thread-Index: AQHNQC08F6FBMtsNeUqUffi7RpSPeA==
+Date: Fri, 1 Jun 2012 19:32:09 +0000
+Message-ID: <CAEsOVNc8n1yqOxc12osvmUB1+qCAxZFo077WEk4+AnaaN6KCgg@mail.gmail.com>
+References: <4FC74DF9.3070401@enea.com>
+	<CAMKF1soZ7Ss7s245Y4xtGBypheW5RSDgJMCRAr1FG2xF5cE3-w@mail.gmail.com>
+	<4FC89AB1.40706@enea.com>
+In-Reply-To: <4FC89AB1.40706@enea.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [70.112.201.132]
 MIME-Version: 1.0
-To: Darren Hart <dvhart@linux.intel.com>
-References: <4FC79837.2070309@gmail.com> <4FC7B4E3.1010401@linux.intel.com>
-	<4FC7BE80.4060700@gmail.com> <4FC7C965.1020809@linux.intel.com>
-	<4FC8E39D.3010702@gmail.com> <4FC8F564.90704@linux.intel.com>
-	<4FC8FE53.4030508@gmail.com> <4FC8FF90.20403@linux.intel.com>
-	<4FC90183.2080107@gmail.com> <4FC9021D.1050706@linux.intel.com>
-In-Reply-To: <4FC9021D.1050706@linux.intel.com>
+X-OriginatorOrg: freescale.com
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: meta-cedartrail - serial console
+Subject: Re: PR and bbappends
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: McClintock Matthew-B29882 <B29882@freescale.com>
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -46,133 +55,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 01 Jun 2012 19:14:15 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 01 Jun 2012 19:32:14 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-ID: <656FBF2ED7A3DF4FAF8ADB5F5398FE28@mgd.freescale.com>
+Content-Transfer-Encoding: quoted-printable
 
-On 06/01/2012 01:55 PM, Darren Hart wrote:
->
-> On 06/01/2012 10:53 AM, jfabernathy wrote:
->> On 06/01/2012 01:44 PM, Darren Hart wrote:
->>> On 06/01/2012 10:39 AM, jfabernathy wrote:
->>>> On 06/01/2012 01:01 PM, Darren Hart wrote:
->>>>> On 06/01/2012 08:45 AM, jfabernathy wrote:
->>>>>> On 05/31/2012 03:41 PM, Darren Hart wrote:
->>>>>>> On 05/31/2012 11:54 AM, jfabernathy wrote:
->>>>>>>> On 05/31/2012 02:13 PM, Darren Hart wrote:
->>>>>>>>> On 05/31/2012 09:11 AM, jfabernathy wrote:
->>>>>>>>>> Using a DN2800MT (Marshalltown) Intel board, I'm testing the
->>>>>>>>>> meta-cedartrail using edison branch and noticed an issues with the
->>>>>>>>>> serial console.
->>>>>>>>>>
->>>>>>>>>> The cedartrail.conf in the machine directory has the following statements:
->>>>>>>>>>
->>>>>>>>>> SYSLINUX_OPTS = "serial 0 115200"
->>>>>>>>>> SERIAL_CONSOLE = "115200 ttyS0"
->>>>>>>>>> APPEND += "console=ttyS0,115200 console=tty0"
->>>>>>>>>>
->>>>>>>>>> However, when the image booted, I had no serial console on ttyS0.  I
->>>>>>>>>> checked /etc/inittab and noticed that the following line existed:
->>>>>>>>>>
->>>>>>>>>> S:2345:respawn:/sbin/getty 115200 ttyS3
->>>>>>>>>>
->>>>>>>>>> I changed the ttyS3 to ttyS0 and then I have a serial console on the
->>>>>>>>>> next reboot.  So it appears the override in the .conf file is not
->>>>>>>>>> working.  Also I only have the console from getty, and not the kernel
->>>>>>>>>> logging console.
->>>>>>>>>>
->>>>>>>>>> Anyone have a solution??
->>>>>>>>>>
->>>>>>>>>> If this is considered a bug I can put it on bugzilla.
->>>>>>>>> Lets make sure your environment is what we expect. Please provide the
->>>>>>>>> output of:
->>>>>>>>>
->>>>>>>>> $ bitbake core-image-minimal -e | grep SERIAL_CONSOLE=
->>>>>>>>>
->>>>>>>>> If it is not "115200 ttyS0" then it is getting overwritten somewhere
->>>>>>>>> either in your config, or possibly by an inappropriate selection of an
->>>>>>>>> assignment operator (=, ?=, etc.) in edison.
->>>>>>>> okay now I'm confused.  while the cedartrail.conf file has the following:
->>>>>>>> SYSLINUX_OPTS = "serial 3 115200"
->>>>>>>> SERIAL_CONSOLE = "115200 ttyS3"
->>>>>>>> APPEND += "console=ttyS3,115200 console=tty3"
->>>>>>>>
->>>>>>>>
->>>>>>>> The output of the bitbake command you suggested above gives:
->>>>>>>> jim@ubuntu-x64:~/poky/build$ bitbake core-image-minimal -e | grep
->>>>>>>> SERIAL_CONSOLE=
->>>>>>>>
->>>>>>>> # SERIAL_CONSOLE=115200 ttyS0
->>>>>>>> SERIAL_CONSOLE="115200 ttyS0"
->>>>>>>> jim@ubuntu-x64:~/poky/build$
->>>>>>>>
->>>>>>>> So is the bitbake command showing the results before the cedartrail.conf
->>>>>>>> options take affect??
->>>>>>> variable assignments can be tricky, and are not the easiest things to
->>>>>>> track down. I suggest looking through your configured layers and looking
->>>>>>> for all the SERIAL_CONSOLE assignments using ttyS3 and ttyS0 and see if
->>>>>>> you can determine what is overriding your cedartrail.conf setting.
->>>>>>>
->>>>>> What I found out is the only variable that matters for login console in
->>>>>> my situation is SERIAL_CONSOLE because I have to use grub and the boot
->>>>>> from hard drive method because my image can't be put on a USB Flash for
->>>>>> some reason.  So I manually have to edit the grub.cfg file as documented
->>>>>> on the wiki "How Do I" section of putting Yocto on a hard drive.  Adding
->>>>>> console=ttyS0,115200 on the linux statement takes care of the boot console.
->>>>> I believe this is a manual process currently. Please open an enhancement
->>>>> in bugzilla for your specific situation and I'll incporporate into the
->>>>> larger boot process and image revamp we're doing for 1.3.
->>>>>
->>>> I'll make the entry.
->>>>>> So the question is has there been any thought about automating the
->>>>>> choice of boot loader and the parameters that are needed or optional?
->>>>>> In the case of meta-cedartrail, the cedartrail.conf assumes syslinux is
->>>>>> the boot loader. When I could use a USB Flash key, creating a boot
->>>>>> device was a trivial dd statement.  Because I have to use a hard drive
->>>>>> now, I have to do a number of manual steps.  Or is there a way to create
->>>>>> a boot-able hard drive with syslinux so the cedartrail.conf parameters
->>>>>> are all that is needed to adjust?
->>>>> This is all good feedback to consider as we work through making more
->>>>> universally bootable images. This is becoming a hot topic as people are
->>>>> using Yocto in more and more situations and as things like EFI become
->>>>> more commonplace.
->>>>>
->>>>> There is no reason you can't just dd (have a look at
->>>>> scripts/contrib/ddimage) the image to a hard disk instead of a usb
->>>>> stick. You may need a USB to SATA adapter for your host (this is what I
->>>>> use). If you have a USB port, you could just use the install option.
->>>> This script does not eliminate the boot error I get with syslinux on USB
->>>> flash keys.  I noticed the script is not in edison but is in denzil, so
->>>> I got it there and tried to run it against an image created with
->>>> edison.  I still get the same boot error I get with dd, which is
->>>> understandable since that's what the script uses.  Not sure if this is a
->>>> size issue because my image is over a 1GB.  I'm guessing this this will
->>>> still fail on a hard drive with the dd'ing of the .hddimg, but I'll test
->>>> it anyway.
->>> Sorry, ddimage wasn't meant to fix the issue, just as a slightly more
->>> convenient/safe wrapper around dd.
+On Fri, Jun 1, 2012 at 5:34 AM, David Nystr=F6m <david.nystrom@enea.com> wr=
+ote:
+> On 05/31/2012 04:01 PM, Khem Raj wrote:
+>>
+>> On Thu, May 31, 2012 at 3:54 AM, David Nystr=F6m<david.nystrom@enea.com>
+>> =A0wrote:
 >>>
->>> I'm not familiar with the error you are seeing with the live image. Can
->>> you point me to the thread or the bug?
->> Well this boot error issue seems to be USB Key related because I just
->> did the ddimage script on a edison core-image-sato image using the
->> .hddimg file and it worked correctly on a hard drive.  This was a 1.2GB
->> image.  Now I'll have to add in the parameters that give you more free
->> disk space now that I'm testing with a real hard drive.
+>>> Hi All,
+>>>
+>>> Is there a good way to get the layer name ?, I want to add
+>>> PR .=3D "+${LAYER_NAME}.0" to my bbappends for clarity and versioning w=
+hen
+>>> having multiple meta layers.
+>>> Where a bbappend:s on package X can reside in one, two or more layers.
+>>>
+>> you could look into =A0bitbake-layers tool
+>> bitbake-layers show-overlayed will show the recipes overlays
+>> if thats the problem you are trying to solve
 >>
->> The readme in most of the x86 BSP directory in meta-intel talk about if
->> you get boot errors to:
->>
->> dd if=/dev/zero of=/dev/sdf bs=1M count=512
->>
->> I have not found this to work.  Maybe it's a count size issue.  I always
->> use 512, but maybe it should be 4096 for a 4GB USB key.
->>
-> What is the boot error?
+> Thanks, I was unaware of that script. But not really want I want to do.
+> We are going to have multiple BSP layers sourced from BSP suppliers, and
+> customer specific layers on top of this.
+> When it comes to testing, we want our test-objects(binary packages) to
+> differ depending on which layers appended them,
+> so that we can easily automate a testing procedure, and reduce possible
+> permutations of testobjects.(For unit testing).
 >
-SYSLINUX 4.03 2010-10-22 CHS Load error- Boot error
+> Also, when you see bash_4.2-r2+meta-fsl-ppc.0+meta-ti.2_ppce500mc.ipk, yo=
+u
+> directly see who manipulated the contents
+> of the bash package. And where eventual failures could originate from.
 
-Jim A
+Some based layers should not modify certain packages. Which
+meta-fsl-ppc is guilty of doing which I would like to cleanup. Changes
+to packages should be moved up to a distro layer I believe?
 
+-M=
 
 
