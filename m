@@ -1,31 +1,27 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-ee0-f48.google.com (mail-ee0-f48.google.com [74.125.83.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EC77FE013D1
-	for <yocto@yoctoproject.org>; Fri,  1 Jun 2012 11:07:43 -0700 (PDT)
-Received: by eekb45 with SMTP id b45so1101917eek.35
-	for <yocto@yoctoproject.org>; Fri, 01 Jun 2012 11:07:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=kRbb4P68SwtqPfhEmj+WFo5Cp7Bf4Zxh2bG03mcfauQ=;
-	b=s2UXks1PYpDsfHEEG9j0B8QDg7jqpV1O2dNIHEL2aVUXoXuUvuu0QCCc43k4ACWx/G
-	vfFTb8RGA5YbiG1SnP6AL1VfZEhaAeBJ2P3rX8803ap1M4I7ngfz1Ga5uEqKOANVVzPe
-	NmVrOoXAcnm9PMxDiVGp+/1yO6dmfipLJJgpsx7T75qSVpyAhauMX6ZX2mqNYMMOy/LD
-	9MRbD30eIKtM5hsFsp1rkDcZYZknYgLMzuuRK+82zxK0/30QDSb20t435ZYW7EL4HyBB
-	WDN5PzjUwM2vupHoEmqrzt37SLxpxVBPNUPADcp38J2Zfkw+uDQXDg0L6JZ8r0tD3NYs
-	BSiQ==
-Received: by 10.14.188.140 with SMTP id a12mr1692269een.25.1338574062352; Fri,
-	01 Jun 2012 11:07:42 -0700 (PDT)
+Return-Path: <darren.hart@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E3A47E00747
+	for <yocto@yoctoproject.org>; Fri,  1 Jun 2012 11:13:13 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 01 Jun 2012 11:13:13 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="151467686"
+Received: from unknown (HELO envy.home) ([10.255.12.201])
+	by orsmga002.jf.intel.com with ESMTP; 01 Jun 2012 11:13:13 -0700
+Message-ID: <4FC905FA.7010707@intel.com>
+Date: Fri, 01 Jun 2012 11:12:10 -0700
+From: Darren Hart <darren.hart@intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:12.0) Gecko/20120430 Thunderbird/12.0.1
 MIME-Version: 1.0
-Received: by 10.14.188.11 with HTTP; Fri, 1 Jun 2012 11:07:12 -0700 (PDT)
-In-Reply-To: <4FC8D934.7050100@linux.intel.com>
-References: <4FC8D934.7050100@linux.intel.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Fri, 1 Jun 2012 11:07:12 -0700
-Message-ID: <CAMKF1sqQoxAVSg6kzPp394SGs701b1YeUK6E_hsmG4+0QpRJXw@mail.gmail.com>
-To: John Toomey <john.toomey@linux.intel.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: meta-toolchain uclibc issue
+To: "Bodke, Kishore K" <kishore.k.bodke@intel.com>
+References: <4FC79837.2070309@gmail.com>
+	<D956029D25CF204F948EA0FB515E1EE20ACB7838@ORSMSX105.amr.corp.intel.com>
+	<4FC7C769.1030903@gmail.com> <4FC7C9D8.5030301@intel.com>
+	<D956029D25CF204F948EA0FB515E1EE20ACB7D5F@ORSMSX105.amr.corp.intel.com>
+In-Reply-To: <D956029D25CF204F948EA0FB515E1EE20ACB7D5F@ORSMSX105.amr.corp.intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: meta-cedartrail - serial console
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,52 +33,74 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 01 Jun 2012 18:07:44 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Fri, 01 Jun 2012 18:13:14 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-On Fri, Jun 1, 2012 at 8:01 AM, John Toomey <john.toomey@linux.intel.com> wrote:
-> Hello all,
->
-> I'm trying to use uClibc and meta-toolchain to compile software for my
-> target system. After building and installing the toolchain I get the
-> following error when trying to compile:
->
-> /toolchain$ $CC hello.c -o hello_after
-> /toolchain/poky/1.2/sysroots/x86_64-pokysdk-linux/usr/bin/i586-poky-linux-uclibc/../../libexec/i586-poky-linux-uclibc/gcc/i586-poky-linux-uclibc/4.6.4/ld:
-> cannot find uclibc_nonshared.a
-> collect2: ld returned 1 exit status
->
-> but if I include the following Yocto tmp directory
->
-> /toolchain$ $CC -o hello hello.c -L
-> .../tmp/work/i586-poky-linux-uclibc/uclibc-0.9.33-r6.0/package/usr/lib
->
-> everythoing works correctly. Does anyone know why this file isnt included in
-> the toolchain package? Is this something im doing wrong or an issue with
-> meta-toolchain?
+On 06/01/2012 11:03 AM, Bodke, Kishore K wrote:
+> 
+> 
+>> -----Original Message-----
+>> From: Hart, Darren
+>> Sent: Thursday, May 31, 2012 12:43 PM
+>> To: jfabernathy
+>> Cc: Bodke, Kishore K; yocto@yoctoproject.org
+>> Subject: Re: [yocto] meta-cedartrail - serial console
+>>
+>> On 05/31/2012 12:32 PM, jfabernathy wrote:
+>>> On 05/31/2012 02:18 PM, Bodke, Kishore K wrote:
+>>>>
+>>>>> -----Original Message-----
+>>>>> From: yocto-bounces@yoctoproject.org [mailto:yocto-
+>>>>> bounces@yoctoproject.org] On Behalf Of jfabernathy
+>>>>> Sent: Thursday, May 31, 2012 9:12 AM
+>>>>> To: yocto@yoctoproject.org
+>>>>> Subject: [yocto] meta-cedartrail - serial console
+>>>>>
+>>>>> Using a DN2800MT (Marshalltown) Intel board, I'm testing the
+>>>>> meta-cedartrail using edison branch and noticed an issues with the
+>>>>> serial console.
+>>>>>
+>>>>> The cedartrail.conf in the machine directory has the following statements:
+>>>>>
+>>>>> SYSLINUX_OPTS = "serial 0 115200"
+>>>>> SERIAL_CONSOLE = "115200 ttyS0"
+>>>>> APPEND += "console=ttyS0,115200 console=tty0"
+>>>>>
+>>>> I just saw that Edison branch has ttyS3 enabled.
+>>>>
+>>>> SYSLINUX_OPTS = "serial 3 115200"
+>>>> SERIAL_CONSOLE = "115200 ttyS3"
+>>>> APPEND += "console=ttyS3,115200 console=tty3"
+>>>>
+>>>> Are you looking into right branch?
+>>>>
+>>>> Thanks
+>>>> -Kishore.
+>>>>
+>>>
+>>> So how do you get changes in the cedartrail.conf file to take affect??
+>>> I edited the file and did the bitbake again, but nothing changed.  I'm
+>>> guessing I need a bitbake -c cleansstate "somthing"  But I don't know
+>>> what to put there to make rebuild with ttyS0.
+>>>
+>>
+>> Ah yes, this rebuild is a bit frustrating. I believe it is the
+>> task_core* tasks you need to rebuild. bitbake -u depexp -g
+>> core-image-base (whatever your image is) will allow you to view which
+>> task_ tasks it is building, try cleansstate'ing those and rebuilding the
+>> image.
+> 
+> I had to remove the above 3 lines from cedartrail.conf and 
+> SERIAL_CONSOLE ?= "115200 ttyS0" line from conf/machine/include/ia32-base.inc
+> rebuild the image.
+> It is disabled now.
 
-if you are not on master then please cherry-pick below for OE-Core
-
-commit d78ef792ac000637191defa049f197733481733a
-Author: Mark Norman <mpnorman@gmail.com>
-Date:   Wed Apr 25 20:14:20 2012 +0930
-
-    uclibc SDK not including libpthread_nonshared.a
-
-    Modified the uclibc PACKAGES list order to ensure the uclibc-dev package is
-    processed before uclibc-staticdev to allow *_nonshared.a libraries to be
-    packaged in the uclibc-dev package.  The *_nonshared.a libraries
-are required
-    by the SDK.
+Did you try with SERIAL_CONSOLE="" in cedartrail.conf ?
 
 
->
-> Thanks,
-> John
->
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+-- 
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
