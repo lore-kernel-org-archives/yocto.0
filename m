@@ -1,27 +1,31 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6B700E0044A;
-	Thu, 31 May 2012 20:37:56 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail1.windriver.com (8.14.3/8.14.3) with ESMTP id q513bsx3013195
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 31 May 2012 20:37:54 -0700 (PDT)
-Received: from bruce-ashfields-macbook.local (128.224.20.180) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.1.255.0; Thu, 31 May 2012 20:37:54 -0700
-Message-ID: <4FC83910.9050302@windriver.com>
-Date: Thu, 31 May 2012 23:37:52 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7;
-	rv:9.0) Gecko/20111222 Thunderbird/9.0.1
+Return-Path: <yilongx.y.sun@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C07FCE0030B
+	for <yocto@yoctoproject.org>; Fri,  1 Jun 2012 03:05:34 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 01 Jun 2012 03:05:33 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="150337527"
+Received: from azsmsx601.amr.corp.intel.com ([10.2.121.193])
+	by azsmga001.ch.intel.com with ESMTP; 01 Jun 2012 03:05:33 -0700
+Received: from shsmsx151.ccr.corp.intel.com (10.239.6.50) by
+	azsmsx601.amr.corp.intel.com (10.2.121.193) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Fri, 1 Jun 2012 03:05:33 -0700
+Received: from shsmsx102.ccr.corp.intel.com ([169.254.2.133]) by
+	SHSMSX151.ccr.corp.intel.com ([169.254.3.90]) with mapi id
+	14.01.0355.002; Fri, 1 Jun 2012 18:03:36 +0800
+From: "Sun, YilongX Y" <yilongx.y.sun@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: about syslog configurable
+Thread-Index: Ac0/3c37Pt4nC5Y3SkGnl+0ZFkKFHQ==
+Date: Fri, 1 Jun 2012 10:03:34 +0000
+Message-ID: <A5935CA1C3864E4F87CAF536E3331CBF0FD2BF13@SHSMSX102.ccr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.239.127.40]
 MIME-Version: 1.0
-To: Darren Hart <dvhart@linux.intel.com>
-References: <4FC009CD.9030201@yoctoproject.org>
-	<4FC7B80E.1020802@linux.intel.com>
-In-Reply-To: <4FC7B80E.1020802@linux.intel.com>
-Cc: Yocto Project Discussion <yocto@yoctoproject.org>,
-	yocto-infrastructure@yoctoproject.org
-Subject: Re: Bugzilla Re-organization
+Subject: about syslog configurable
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,65 +37,21 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 01 Jun 2012 03:37:56 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 01 Jun 2012 10:05:34 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 12-05-31 2:27 PM, Darren Hart wrote:
->
->
-> On 05/25/2012 03:38 PM, Michael Halstead wrote:
->> The first draft of the reorganized bugzilla is available for feedback
->> now at https://bugzilla.yoctodev.org/. Outgoing e-mail is currently
->> disabled on this preview copy. Please feel free to take a look and see
->> if you spot any errors. Additional refinement of  product or component
->> descriptions will be helpful as well.
->>
->
-> It seems to me one should be able to find the linux-yocto kernel itself
-> under the Yocto Project Components from the basic search page. Currently
-> there is Kernel Tooling and BSPs, but there are times when the bug is
-> not BSP specific and is in the kernel itself, not the tooling. For this,
-> a hierarchy like the following might be preferable:
->
-> Yocto Project Components
->    BSPs
->      bsps
->    Kernel
->      linux-yocto
->      configuration
->      kernel-tooling
+Hi all
+   Anyone who knows the feature about " syslog configurable". Now I find no=
+ syslog thread in the background.
+The file " /etc/syslog-startup.conf " is a link file. So I don't know how t=
+o modify it. Who can help me to explain this feature.
+Thanks in advance.
 
-+1. I completely agree with this.
 
->
-> I am still not sure how best to deal with BSPs here and BSPs in Build
-> System&  Metadata. I think We should pick one or the other as the
-> distinction between the two is non-obvious (actually I have no idea what
-> it would be).
-
-Agreed .. that this is hard. If we used 'configuration' for the kernel
-category, could the build system + meta data fall into that as well
-under BSPs ?
-
-i.e.
-
-    BSPs
-      bsps - runtime
-      bsps - configuration
-
-?
-
-Bruce
-
->
-> Tom, Bruce: opinions on the above?
->
->
-> "Build System&  Metadata" and "Yocto Metadata Layers" use different
-> naming schemes for the components in the various layers products. Some
-> use meta- others do not.
->
->
-
+Best wishes
+Yilong..Sun
+=20
+=20
 
