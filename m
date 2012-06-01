@@ -1,34 +1,23 @@
-Return-Path: <hongnax.xu@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5A505E0030B
-	for <yocto@yoctoproject.org>; Fri,  1 Jun 2012 03:26:08 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 01 Jun 2012 03:26:07 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="150342818"
-Received: from azsmsx601.amr.corp.intel.com ([10.2.121.193])
-	by azsmga001.ch.intel.com with ESMTP; 01 Jun 2012 03:26:07 -0700
-Received: from shsmsx151.ccr.corp.intel.com (10.239.6.50) by
-	azsmsx601.amr.corp.intel.com (10.2.121.193) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Fri, 1 Jun 2012 03:26:07 -0700
-Received: from shsmsx102.ccr.corp.intel.com ([169.254.2.133]) by
-	SHSMSX151.ccr.corp.intel.com ([169.254.3.90]) with mapi id
-	14.01.0355.002; Fri, 1 Jun 2012 18:26:05 +0800
-From: "Xu, HongnaX" <hongnax.xu@intel.com>
-To: "Sun, YilongX Y" <yilongx.y.sun@intel.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: about syslog configurable
-Thread-Index: Ac0/3c37Pt4nC5Y3SkGnl+0ZFkKFHQAAYk7Q
-Date: Fri, 1 Jun 2012 10:26:04 +0000
-Message-ID: <953BC298FE16B64A865952E4C88593020FD37A2F@SHSMSX102.ccr.corp.intel.com>
-References: <A5935CA1C3864E4F87CAF536E3331CBF0FD2BF13@SHSMSX102.ccr.corp.intel.com>
-In-Reply-To: <A5935CA1C3864E4F87CAF536E3331CBF0FD2BF13@SHSMSX102.ccr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.239.127.40]
+Return-Path: <David.Nystrom@enea.com>
+Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id C7C89E01435
+	for <yocto@yoctoproject.org>; Fri,  1 Jun 2012 03:34:11 -0700 (PDT)
+Received: from [172.16.140.132] (172.16.140.132) by smtp.enea.com
+	(172.21.1.209) with Microsoft SMTP Server id 14.2.247.3; Fri, 1 Jun 2012
+	12:34:09 +0200
+Message-ID: <4FC89AB1.40706@enea.com>
+Date: Fri, 1 Jun 2012 12:34:25 +0200
+From: =?UTF-8?B?RGF2aWQgTnlzdHLDtm0=?= <david.nystrom@enea.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:12.0) Gecko/20120430 Thunderbird/12.0.1
 MIME-Version: 1.0
-Subject: Re: about syslog configurable
+To: Khem Raj <raj.khem@gmail.com>
+References: <4FC74DF9.3070401@enea.com>
+	<CAMKF1soZ7Ss7s245Y4xtGBypheW5RSDgJMCRAr1FG2xF5cE3-w@mail.gmail.com>
+In-Reply-To: <CAMKF1soZ7Ss7s245Y4xtGBypheW5RSDgJMCRAr1FG2xF5cE3-w@mail.gmail.com>
+X-Originating-IP: [172.16.140.132]
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: PR and bbappends
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,48 +29,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 01 Jun 2012 10:26:08 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Fri, 01 Jun 2012 10:34:12 -0000
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
-Hi all
-  QA check if syslog could be configured and run without problem on BSPs wi=
-th the latest poky/master tree.
-We found that the feature had been changed, so we could not check it, so is=
- there anybody tell us how to check?
-our test steps followed:
-**********************************
-1.Get a Yocto image from autobuilder or local build.
-2.Launch image and check if syslog is started by default in background with=
- ps command.
-3.Modify /etc/syslog-startup.conf, change the LOGFILE to /var/log/messages.=
-test
-4.Restart syslog with command "/etc/init.d/syslog restart"
-5.check if syslog is started in background with ps command
-6.Check if there file generated under /var/log/message.test
-***********************************
+On 05/31/2012 04:01 PM, Khem Raj wrote:
+> On Thu, May 31, 2012 at 3:54 AM, David Nystr=C3=B6m<david.nystrom@enea.co=
+m>  wrote:
+>> Hi All,
+>>
+>> Is there a good way to get the layer name ?, I want to add
+>> PR .=3D "+${LAYER_NAME}.0" to my bbappends for clarity and versioning wh=
+en
+>> having multiple meta layers.
+>> Where a bbappend:s on package X can reside in one, two or more layers.
+>>
+> you could look into  bitbake-layers tool
+> bitbake-layers show-overlayed will show the recipes overlays
+> if thats the problem you are trying to solve
+>
+Thanks, I was unaware of that script. But not really want I want to do.
+We are going to have multiple BSP layers sourced from BSP suppliers, and=20
+customer specific layers on top of this.
+When it comes to testing, we want our test-objects(binary packages) to=20
+differ depending on which layers appended them,
+so that we can easily automate a testing procedure, and reduce possible=20
+permutations of testobjects.(For unit testing).
 
-Best Regards,
-Hongna
+Also, when you see bash_4.2-r2+meta-fsl-ppc.0+meta-ti.2_ppce500mc.ipk,=20
+you directly see who manipulated the contents
+of the bash package. And where eventual failures could originate from.
 
------Original Message-----
-From: Sun, YilongX Y=20
-Sent: Friday, June 01, 2012 6:04 PM
-To: yocto@yoctoproject.org
-Cc: Xu, HongnaX; Xu, Jiajun; Ma, NingX
-Subject: about syslog configurable
+>> Best Regards,
+>> David
+>>
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
 
-Hi all
-   Anyone who knows the feature about " syslog configurable". Now I find no=
- syslog thread in the background.
-The file " /etc/syslog-startup.conf " is a link file. So I don't know how t=
-o modify it. Who can help me to explain this feature.
-Thanks in advance.
-
-
-Best wishes
-Yilong..Sun
-=20
-=20
 
