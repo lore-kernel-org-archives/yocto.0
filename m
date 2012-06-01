@@ -1,40 +1,31 @@
-Return-Path: <jfabernathy@gmail.com>
-Received: from mail-vc0-f176.google.com (mail-vc0-f176.google.com
-	[209.85.220.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7BA9DE01443
-	for <yocto@yoctoproject.org>; Fri,  1 Jun 2012 13:08:04 -0700 (PDT)
-Received: by mail-vc0-f176.google.com with SMTP id fo14so1983052vcb.35
-	for <yocto@yoctoproject.org>; Fri, 01 Jun 2012 13:08:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=message-id:date:from:user-agent:mime-version:to:cc:subject
-	:references:in-reply-to:content-type:content-transfer-encoding;
-	bh=9d2/QKWXQ/Ws4SIhLkB63LnrJoMm307ccjoDi7JslbE=;
-	b=W0XI2E71Ujs+69BZeVBxcnM9fX1YvY2T6wTtfqPycWp7lTXoGyb1dAf/WYpESlwOEi
-	mw6ND0LFtJ6SoiUhBpnUofp/jTxuJCyzQuyuBBB6jl5JjBsKYszAFENYBOW/cRltfLZT
-	85hv6C+TI0L3ZdoGWJBE2S4Uc8V7dE1HRLxdzSUBLb/vSMGlRxXzH/5G+PHM/QtNXAFK
-	QtxAhVoj6f1A8LPDrkSUGXezD0aV3fBGZ609eR4/oWfkjBpPYrSaCzN5J+jTgN83LUjF
-	SjTYDkkPDVgmgG90EC7eNK4en8TsvZqN7CsSrXdx4+XFjCawvI+7pye20YGX7HpDCdtC
-	ONgg==
-Received: by 10.220.150.14 with SMTP id w14mr3926888vcv.59.1338581284185;
-	Fri, 01 Jun 2012 13:08:04 -0700 (PDT)
-Received: from [10.0.1.54] (nc-184-4-33-55.dhcp.embarqhsd.net. [184.4.33.55])
-	by mx.google.com with ESMTPS id ek5sm4600433vdb.5.2012.06.01.13.08.03
-	(version=SSLv3 cipher=OTHER); Fri, 01 Jun 2012 13:08:03 -0700 (PDT)
-Message-ID: <4FC92126.1020105@gmail.com>
-Date: Fri, 01 Jun 2012 16:08:06 -0400
-From: jfabernathy <jfabernathy@gmail.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:12.0) Gecko/20120430 Thunderbird/12.0.1
+Return-Path: <reinette.chatre@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1F855E01443
+	for <yocto@yoctoproject.org>; Fri,  1 Jun 2012 13:09:40 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 01 Jun 2012 13:09:39 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="147143372"
+Received: from orsmsx606.amr.corp.intel.com ([10.22.226.128])
+	by orsmga001.jf.intel.com with ESMTP; 01 Jun 2012 13:09:39 -0700
+Received: from orsmsx102.amr.corp.intel.com (10.22.225.129) by
+	orsmsx606.amr.corp.intel.com (10.22.226.128) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Fri, 1 Jun 2012 13:09:39 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.121]) by
+	ORSMSX102.amr.corp.intel.com ([169.254.1.192]) with mapi id
+	14.01.0355.002; Fri, 1 Jun 2012 13:09:39 -0700
+From: "Chatre, Reinette" <reinette.chatre@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Building poky-tiny for ARM fails in do_compile of elfutils
+Thread-Index: AQHNQDJ5RjyZO1Dx60S+12DoBMmjig==
+Date: Fri, 1 Jun 2012 20:09:38 +0000
+Message-ID: <1338581348.20547.41.camel@rchatre.jf.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.7.198.149]
 MIME-Version: 1.0
-To: Darren Hart <dvhart@linux.intel.com>
-References: <4FC79837.2070309@gmail.com> <4FC7B4E3.1010401@linux.intel.com>
-	<4FC7BE80.4060700@gmail.com> <4FC7C965.1020809@linux.intel.com>
-	<4FC8E39D.3010702@gmail.com> <4FC8F564.90704@linux.intel.com>
-	<4FC8FE53.4030508@gmail.com> <4FC8FF90.20403@linux.intel.com>
-	<4FC90183.2080107@gmail.com> <4FC9021D.1050706@linux.intel.com>
-In-Reply-To: <4FC9021D.1050706@linux.intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: meta-cedartrail - serial console
+Subject: Building poky-tiny for ARM fails in do_compile of elfutils
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,154 +37,132 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 01 Jun 2012 20:08:04 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 01 Jun 2012 20:09:40 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <5278148DC8641E4E9944A977943EBF47@intel.com>
+Content-Transfer-Encoding: base64
 
-On 06/01/2012 01:55 PM, Darren Hart wrote:
->
-> On 06/01/2012 10:53 AM, jfabernathy wrote:
->> On 06/01/2012 01:44 PM, Darren Hart wrote:
->>> On 06/01/2012 10:39 AM, jfabernathy wrote:
->>>> On 06/01/2012 01:01 PM, Darren Hart wrote:
->>>>> On 06/01/2012 08:45 AM, jfabernathy wrote:
->>>>>> On 05/31/2012 03:41 PM, Darren Hart wrote:
->>>>>>> On 05/31/2012 11:54 AM, jfabernathy wrote:
->>>>>>>> On 05/31/2012 02:13 PM, Darren Hart wrote:
->>>>>>>>> On 05/31/2012 09:11 AM, jfabernathy wrote:
->>>>>>>>>> Using a DN2800MT (Marshalltown) Intel board, I'm testing the
->>>>>>>>>> meta-cedartrail using edison branch and noticed an issues with the
->>>>>>>>>> serial console.
->>>>>>>>>>
->>>>>>>>>> The cedartrail.conf in the machine directory has the following statements:
->>>>>>>>>>
->>>>>>>>>> SYSLINUX_OPTS = "serial 0 115200"
->>>>>>>>>> SERIAL_CONSOLE = "115200 ttyS0"
->>>>>>>>>> APPEND += "console=ttyS0,115200 console=tty0"
->>>>>>>>>>
->>>>>>>>>> However, when the image booted, I had no serial console on ttyS0.  I
->>>>>>>>>> checked /etc/inittab and noticed that the following line existed:
->>>>>>>>>>
->>>>>>>>>> S:2345:respawn:/sbin/getty 115200 ttyS3
->>>>>>>>>>
->>>>>>>>>> I changed the ttyS3 to ttyS0 and then I have a serial console on the
->>>>>>>>>> next reboot.  So it appears the override in the .conf file is not
->>>>>>>>>> working.  Also I only have the console from getty, and not the kernel
->>>>>>>>>> logging console.
->>>>>>>>>>
->>>>>>>>>> Anyone have a solution??
->>>>>>>>>>
->>>>>>>>>> If this is considered a bug I can put it on bugzilla.
->>>>>>>>> Lets make sure your environment is what we expect. Please provide the
->>>>>>>>> output of:
->>>>>>>>>
->>>>>>>>> $ bitbake core-image-minimal -e | grep SERIAL_CONSOLE=
->>>>>>>>>
->>>>>>>>> If it is not "115200 ttyS0" then it is getting overwritten somewhere
->>>>>>>>> either in your config, or possibly by an inappropriate selection of an
->>>>>>>>> assignment operator (=, ?=, etc.) in edison.
->>>>>>>> okay now I'm confused.  while the cedartrail.conf file has the following:
->>>>>>>> SYSLINUX_OPTS = "serial 3 115200"
->>>>>>>> SERIAL_CONSOLE = "115200 ttyS3"
->>>>>>>> APPEND += "console=ttyS3,115200 console=tty3"
->>>>>>>>
->>>>>>>>
->>>>>>>> The output of the bitbake command you suggested above gives:
->>>>>>>> jim@ubuntu-x64:~/poky/build$ bitbake core-image-minimal -e | grep
->>>>>>>> SERIAL_CONSOLE=
->>>>>>>>
->>>>>>>> # SERIAL_CONSOLE=115200 ttyS0
->>>>>>>> SERIAL_CONSOLE="115200 ttyS0"
->>>>>>>> jim@ubuntu-x64:~/poky/build$
->>>>>>>>
->>>>>>>> So is the bitbake command showing the results before the cedartrail.conf
->>>>>>>> options take affect??
->>>>>>> variable assignments can be tricky, and are not the easiest things to
->>>>>>> track down. I suggest looking through your configured layers and looking
->>>>>>> for all the SERIAL_CONSOLE assignments using ttyS3 and ttyS0 and see if
->>>>>>> you can determine what is overriding your cedartrail.conf setting.
->>>>>>>
->>>>>> What I found out is the only variable that matters for login console in
->>>>>> my situation is SERIAL_CONSOLE because I have to use grub and the boot
->>>>>> from hard drive method because my image can't be put on a USB Flash for
->>>>>> some reason.  So I manually have to edit the grub.cfg file as documented
->>>>>> on the wiki "How Do I" section of putting Yocto on a hard drive.  Adding
->>>>>> console=ttyS0,115200 on the linux statement takes care of the boot console.
->>>>> I believe this is a manual process currently. Please open an enhancement
->>>>> in bugzilla for your specific situation and I'll incporporate into the
->>>>> larger boot process and image revamp we're doing for 1.3.
->>>>>
->>>> I'll make the entry.
->>>>>> So the question is has there been any thought about automating the
->>>>>> choice of boot loader and the parameters that are needed or optional?
->>>>>> In the case of meta-cedartrail, the cedartrail.conf assumes syslinux is
->>>>>> the boot loader. When I could use a USB Flash key, creating a boot
->>>>>> device was a trivial dd statement.  Because I have to use a hard drive
->>>>>> now, I have to do a number of manual steps.  Or is there a way to create
->>>>>> a boot-able hard drive with syslinux so the cedartrail.conf parameters
->>>>>> are all that is needed to adjust?
->>>>> This is all good feedback to consider as we work through making more
->>>>> universally bootable images. This is becoming a hot topic as people are
->>>>> using Yocto in more and more situations and as things like EFI become
->>>>> more commonplace.
->>>>>
->>>>> There is no reason you can't just dd (have a look at
->>>>> scripts/contrib/ddimage) the image to a hard disk instead of a usb
->>>>> stick. You may need a USB to SATA adapter for your host (this is what I
->>>>> use). If you have a USB port, you could just use the install option.
->>>> This script does not eliminate the boot error I get with syslinux on USB
->>>> flash keys.  I noticed the script is not in edison but is in denzil, so
->>>> I got it there and tried to run it against an image created with
->>>> edison.  I still get the same boot error I get with dd, which is
->>>> understandable since that's what the script uses.  Not sure if this is a
->>>> size issue because my image is over a 1GB.  I'm guessing this this will
->>>> still fail on a hard drive with the dd'ing of the .hddimg, but I'll test
->>>> it anyway.
->>> Sorry, ddimage wasn't meant to fix the issue, just as a slightly more
->>> convenient/safe wrapper around dd.
->>>
->>> I'm not familiar with the error you are seeing with the live image. Can
->>> you point me to the thread or the bug?
->> Well this boot error issue seems to be USB Key related because I just
->> did the ddimage script on a edison core-image-sato image using the
->> .hddimg file and it worked correctly on a hard drive.  This was a 1.2GB
->> image.  Now I'll have to add in the parameters that give you more free
->> disk space now that I'm testing with a real hard drive.
->>
->> The readme in most of the x86 BSP directory in meta-intel talk about if
->> you get boot errors to:
->>
->> dd if=/dev/zero of=/dev/sdf bs=1M count=512
->>
->> I have not found this to work.  Maybe it's a count size issue.  I always
->> use 512, but maybe it should be 4096 for a 4GB USB key.
->>
-> What is the boot error?
->
->
-I went back and did a clean test of this.  Goal was to not change files 
-in the meta-cedartrail BSP and just use local.conf to override changes.
-1.  So I have a clean clone of poky git and checked out edison branch. 
-Also a new meta-intel tracking edison.
-2.  in local.conf I overrode the default serial console:
-     SERIAL_CONSOLE = "115200 ttyS3"  (in cedartrail.conf in machine 
-directory)
-
-     SERIAL_CONSOLE_cedartrail = "115200 ttyS0"  (in local.conf)
-3. bitbaked core-image-sato
-4.  used ddimage script from master branch, edited for my blacklist, to 
-put core-image-sato-cedartrail.hddimg onto a SATA hard drive connect via 
-USB to SATA adapter.
-5. boot hard drive on Marshalltown DN2800MT Cedartrail board.  Syslinux 
-and boot messages where still on HDMI monitor.  Once booted with GUI 
-working on HDMI monitor, I also have a serial login on COM1 port (ttyS0) 
-via minicom.
-
-Next test is to see how to override the syslinux and kernel boot console 
-statements in cedartrail.conf by placing statements in local.conf.
-
-JIm A
-
-
-
+SGksDQoNCkkgYW0gdHJ5aW5nIHRvIGNyZWF0ZSBhIHBva3ktdGlueSBiYXNlZCBpbWFnZSBmb3Ig
+QVJNLiBUaGlzIGN1cnJlbnRseQ0KZmFpbHMgaW4gdGhlICJkb19jb21waWxlIiB0YXNrIG9mIGVs
+ZnV0aWxzLiBBcyBhIGZpcnN0IGF0dGVtcHQgSSB0cnkgdG8NCmhhdmUgdGhpbmdzIGFzIHNpbXBs
+ZSBhcyBwb3NzaWJsZS4gU3RhcnRpbmcgd2l0aCBhIGNsZWFuIDcuMCBEZW56aWwNCmluIC9vcHQv
+cG9reS5naXQgb24gbXkgZGV2ZWxvcG1lbnQgc3lzdGVtIGFuZCB1c2UgYSBzZXBhcmF0ZSBidWls
+ZA0KZGlyZWN0b3J5ICRIT01FL3Bva3lfYnVpbGQgdGhhdCBpcyBjcmVhdGVkIGFzOg0KDQokIGNk
+ICRIT01FL3Bva3lfYnVpbGQNCiQgLiAvb3B0L3Bva3kuZ2l0L29lLWluaXQtYnVpbGQtZW52IC4N
+Cg0KSSBlZGl0IHRoZSAkSE9NRS9wb2t5X2J1aWxkL2NvbmYvbG9jYWwuY29uZiBhcyBiZWxvdzoN
+Cg0KLS0tIG9yZy9jb25mL2xvY2FsLmNvbmYJMjAxMi0wNi0wMSAxMDo0Nzo0OS4yMTUwODg5ODUg
+LTA3MDANCisrKyAkSE9NRS9wb2t5X2J1aWxkL2NvbmYvbG9jYWwuY29uZgkyMDEyLTA2LTAxIDEx
+OjU2OjI0LjkzMDE1MDc0NiAtMDcwMA0KQEAgLTQ4LDcgKzQ4LDcgQEANCiAjTUFDSElORSA/PSAi
+cm91dGVyc3RhdGlvbnBybyINCiAjDQogIyBUaGlzIHNldHMgdGhlIGRlZmF1bHQgbWFjaGluZSB0
+byBiZSBxZW11eDg2IGlmIG5vIG90aGVyIG1hY2hpbmUgaXMgc2VsZWN0ZWQ6DQotTUFDSElORSA/
+Pz0gInFlbXV4ODYiDQorTUFDSElORSA/Pz0gInFlbXVhcm0iDQogDQogIw0KICMgV2hlcmUgdG8g
+cGxhY2UgZG93bmxvYWRzDQpAQCAtOTksNyArOTksNyBAQCBNQUNISU5FID8/PSAicWVtdXg4NiIN
+CiAjIFVsdGltYXRlbHkgd2hlbiBjcmVhdGluZyBjdXN0b20gcG9saWN5LCBwZW9wbGUgd2lsbCBs
+aWtlbHkgZW5kIHVwIHN1YmNsYXNzaW5nIA0KICMgdGhlc2UgZGVmYXVsdHMuDQogIw0KLURJU1RS
+TyA/PSAicG9reSINCitESVNUUk8gPz0gInBva3ktdGlueSINCiAjIEFzIGFuIGV4YW1wbGUgb2Yg
+YSBzdWJjbGFzcyB0aGVyZSBpcyBhICJibGVlZGluZyIgZWRnZSBwb2xpY3kgY29uZmlndXJhdGlv
+bg0KICMgd2hlcmUgbWFueSB2ZXJzaW9ucyBhcmUgc2V0IHRvIHRoZSBhYnNvbHV0ZSBsYXRlc3Qg
+Y29kZSBmcm9tIHRoZSB1cHN0cmVhbSANCiAjIHNvdXJjZSBjb250cm9sIHN5c3RlbXMuIFRoaXMg
+aXMganVzdCBtZW50aW9uZWQgaGVyZSBhcyBhbiBleGFtcGxlLCBpdHMgbm90DQpAQCAtMTE4LDcg
+KzExOCw3IEBAIERJU1RSTyA/PSAicG9reSINCiAjICAtICdwYWNrYWdlX3JwbScgZm9yIHJwbSBz
+dHlsZSBwYWNrYWdlcw0KICMgRS5nLjogUEFDS0FHRV9DTEFTU0VTID89ICJwYWNrYWdlX3JwbSBw
+YWNrYWdlX2RlYiBwYWNrYWdlX2lwayINCiAjIFdlIGRlZmF1bHQgdG8gcnBtOg0KLVBBQ0tBR0Vf
+Q0xBU1NFUyA/PSAicGFja2FnZV9ycG0iDQorUEFDS0FHRV9DTEFTU0VTID89ICJwYWNrYWdlX2lw
+ayINCiANCiAjDQogIyBTREsvQURUIHRhcmdldCBhcmNoaXRlY3R1cmUNCkBAIC0yMjQsMyArMjI0
+LDYgQEAgUEFUQ0hSRVNPTFZFID0gIm5vb3AiDQogIyB0cmFjayB0aGUgdmVyc2lvbiBvZiB0aGlz
+IGZpbGUgd2hlbiBpdCB3YXMgZ2VuZXJhdGVkLiBUaGlzIGNhbiBzYWZlbHkgYmUgaWdub3JlZCBp
+Zg0KICMgdGhpcyBkb2Vzbid0IG1lYW4gYW55dGhpbmcgdG8geW91Lg0KIENPTkZfVkVSU0lPTiA9
+ICIxIg0KKw0KKyNkaXNhYmxlIHVzYWdlIG9mIGNjYWNoZQ0KK0NDQUNIRT0iIg0KDQpBZnRlciB0
+aGUgYWJvdmUgSSBraWNrIG9mZiBhIGJ1aWxkIHdpdGg6DQoNCiQgYml0YmFrZSBjb3JlLWltYWdl
+LW1pbmltYWwNCg0KQXMgbWVudGlvbmVkIGVhcmxpZXIsIHRoZSBhYm92ZSBmYWlscyBpbiAiZG9f
+Y29tcGlsZSIgb2YgZWxmdXRpbHMgd2l0aCBvdXRwdXQgbGlrZToNCg0KfCBhcm0tcG9reS1saW51
+eC1nbnVlYWJpLXJhbmxpYiBsaWJkd19waWMuYQ0KfCBhcm0tcG9reS1saW51eC1nbnVlYWJpLWdj
+YyAgLW1hcmNoPWFybXY1dGUgIC1tYXJtIC1tdGh1bWItaW50ZXJ3b3JrICAtbXR1bmU9YXJtOTI2
+ZWotcyAtLXN5c3Jvb3Q9L2hvbWUvcmNoYXRyZS9wb2t5X2J1aWxkL3RtcC9zeXNyb290cy9xZW11
+YXJtIC1zdGQ9Z251OTkgLVdhbGwgLVdzaGFkb3cgLVdlcnJvciAtV3VudXNlZCAtV2V4dHJhIC1m
+Z251ODktaW5saW5lIC1XZm9ybWF0PTIgICAgLU8yIC1waXBlIC1nIC1mZWxpbWluYXRlLXVudXNl
+ZC1kZWJ1Zy10eXBlcyAgLVdsLC1PMSAtV2wsLS1oYXNoLXN0eWxlPWdudSAtV2wsLS1hcy1uZWVk
+ZWQgLW8gbGliZHcuc28gLXNoYXJlZCAtbyBsaWJkdy5zbyAtV2wsLS1zb25hbWUsbGliZHcuc28u
+MSwteixkZWZzIFwNCnwgwrstLS0tLS1XbCwtLWVuYWJsZS1uZXctZHRhZ3MsLXJwYXRoLC91c3Iv
+bGliL2VsZnV0aWxzIFwNCnwgwrstLS0tLS1XbCwtLXZlcnNpb24tc2NyaXB0LGxpYmR3Lm1hcCwt
+LW5vLXVuZGVmaW5lZCBcDQp8IMK7LS0tLS0tV2wsLS13aG9sZS1hcmNoaXZlIGxpYmR3X3BpYy5h
+IC4uL2xpYmR3ZmwvbGliZHdmbF9waWMuYSAuLi9saWJlYmwvbGliZWJsLmEgLi4vbGliZWxmL2xp
+YmVsZi5zbyAtV2wsLS1uby13aG9sZS1hcmNoaXZlXA0KfCDCuy0tLS0tLWxkbCAtbGJ6MiAtbHoN
+CnwgLi4vbGliZHdmbC9saWJkd2ZsX3BpYy5hKGxpbnV4LWtlcm5lbC1tb2R1bGVzLm9zKTogSW4g
+ZnVuY3Rpb24gYGR3ZmxfbGludXhfa2VybmVsX3JlcG9ydF9vZmZsaW5lJzoNCnwgL2hvbWUvcmNo
+YXRyZS9wb2t5X2J1aWxkL3RtcC93b3JrL2FybXY1dGUtcG9reS1saW51eC1nbnVlYWJpL2VsZnV0
+aWxzLTAuMTQ4LXI3L2VsZnV0aWxzLTAuMTQ4L2xpYmR3ZmwvbGludXgta2VybmVsLW1vZHVsZXMu
+YzozMTA6IHVuZGVmaW5lZCByZWZlcmVuY2UgdG8gYGZ0c19vcGVuJw0KfCAvaG9tZS9yY2hhdHJl
+L3Bva3lfYnVpbGQvdG1wL3dvcmsvYXJtdjV0ZS1wb2t5LWxpbnV4LWdudWVhYmkvZWxmdXRpbHMt
+MC4xNDgtcjcvZWxmdXRpbHMtMC4xNDgvbGliZHdmbC9saW51eC1rZXJuZWwtbW9kdWxlcy5jOjMy
+MDogdW5kZWZpbmVkIHJlZmVyZW5jZSB0byBgZnRzX3JlYWQnDQp8IC9ob21lL3JjaGF0cmUvcG9r
+eV9idWlsZC90bXAvd29yay9hcm12NXRlLXBva3ktbGludXgtZ251ZWFiaS9lbGZ1dGlscy0wLjE0
+OC1yNy9lbGZ1dGlscy0wLjE0OC9saWJkd2ZsL2xpbnV4LWtlcm5lbC1tb2R1bGVzLmM6MzkxOiB1
+bmRlZmluZWQgcmVmZXJlbmNlIHRvIGBmdHNfY2xvc2UnDQp8IC9ob21lL3JjaGF0cmUvcG9reV9i
+dWlsZC90bXAvd29yay9hcm12NXRlLXBva3ktbGludXgtZ251ZWFiaS9lbGZ1dGlscy0wLjE0OC1y
+Ny9lbGZ1dGlscy0wLjE0OC9saWJkd2ZsL2xpbnV4LWtlcm5lbC1tb2R1bGVzLmM6MzI3OiB1bmRl
+ZmluZWQgcmVmZXJlbmNlIHRvIGBmdHNfc2V0Jw0KfCAuLi9saWJkd2ZsL2xpYmR3ZmxfcGljLmEo
+bGludXgta2VybmVsLW1vZHVsZXMub3MpOiBJbiBmdW5jdGlvbiBgZHdmbF9saW51eF9rZXJuZWxf
+ZmluZF9lbGYnOg0KfCAvaG9tZS9yY2hhdHJlL3Bva3lfYnVpbGQvdG1wL3dvcmsvYXJtdjV0ZS1w
+b2t5LWxpbnV4LWdudWVhYmkvZWxmdXRpbHMtMC4xNDgtcjcvZWxmdXRpbHMtMC4xNDgvbGliZHdm
+bC9saW51eC1rZXJuZWwtbW9kdWxlcy5jOjY0NzogdW5kZWZpbmVkIHJlZmVyZW5jZSB0byBgZnRz
+X29wZW4nDQp8IC9ob21lL3JjaGF0cmUvcG9reV9idWlsZC90bXAvd29yay9hcm12NXRlLXBva3kt
+bGludXgtZ251ZWFiaS9lbGZ1dGlscy0wLjE0OC1yNy9lbGZ1dGlscy0wLjE0OC9saWJkd2ZsL2xp
+bnV4LWtlcm5lbC1tb2R1bGVzLmM6NjkxOiB1bmRlZmluZWQgcmVmZXJlbmNlIHRvIGBmdHNfcmVh
+ZCcNCnwgL2hvbWUvcmNoYXRyZS9wb2t5X2J1aWxkL3RtcC93b3JrL2FybXY1dGUtcG9reS1saW51
+eC1nbnVlYWJpL2VsZnV0aWxzLTAuMTQ4LXI3L2VsZnV0aWxzLTAuMTQ4L2xpYmR3ZmwvbGludXgt
+a2VybmVsLW1vZHVsZXMuYzo2OTE6IHVuZGVmaW5lZCByZWZlcmVuY2UgdG8gYGZ0c19yZWFkJw0K
+fCAvaG9tZS9yY2hhdHJlL3Bva3lfYnVpbGQvdG1wL3dvcmsvYXJtdjV0ZS1wb2t5LWxpbnV4LWdu
+dWVhYmkvZWxmdXRpbHMtMC4xNDgtcjcvZWxmdXRpbHMtMC4xNDgvbGliZHdmbC9saW51eC1rZXJu
+ZWwtbW9kdWxlcy5jOjc0MDogdW5kZWZpbmVkIHJlZmVyZW5jZSB0byBgZnRzX2Nsb3NlJw0KfCAv
+aG9tZS9yY2hhdHJlL3Bva3lfYnVpbGQvdG1wL3dvcmsvYXJtdjV0ZS1wb2t5LWxpbnV4LWdudWVh
+YmkvZWxmdXRpbHMtMC4xNDgtcjcvZWxmdXRpbHMtMC4xNDgvbGliZHdmbC9saW51eC1rZXJuZWwt
+bW9kdWxlcy5jOjcxNTogdW5kZWZpbmVkIHJlZmVyZW5jZSB0byBgZnRzX2Nsb3NlJw0KfCAvaG9t
+ZS9yY2hhdHJlL3Bva3lfYnVpbGQvdG1wL3dvcmsvYXJtdjV0ZS1wb2t5LWxpbnV4LWdudWVhYmkv
+ZWxmdXRpbHMtMC4xNDgtcjcvZWxmdUVSUk9SOiBGdW5jdGlvbiBmYWlsZWQ6IGRvX2NvbXBpbGUg
+KHNlZSAvaG9tZS9yY2hhdHJlL3Bva3lfYnVpbGQvdG1wL3dvcmsvYXJtdjV0ZS1wb2t5LWxpbnV4
+LWdudWVhYmkvZWxmdXRpbHMtMC4xNDgtcjcvdGVtcC9sb2cuZG9fY29tcGlsZS4yNTU5OSBmb3Ig
+ZnVydGhlciBpbmZvcm1hdGlvbikNCnwgdGlscy0wLjE0OC9saWJkd2ZsL2xpbnV4LWtlcm5lbC1t
+b2R1bGVzLmM6Njk4OiB1bmRlZmluZWQgcmVmZXJlbmNlIHRvIGBmdHNfc2V0Jw0KfCAuLi9saWJk
+d2ZsL2xpYmR3ZmxfcGljLmEobGludXgta2VybmVsLW1vZHVsZXMub3MpOiBJbiBmdW5jdGlvbiBg
+Y2hlY2tfbW9kdWxlX25vdGVzJzoNCnwgL2hvbWUvcmNoYXRyZS9wb2t5X2J1aWxkL3RtcC93b3Jr
+L2FybXY1dGUtcG9reS1saW51eC1nbnVlYWJpL2VsZnV0aWxzLTAuMTQ4LXI3L2VsZnV0aWxzLTAu
+MTQ4L2xpYmR3ZmwvbGludXgta2VybmVsLW1vZHVsZXMuYzo1MzI6IHVuZGVmaW5lZCByZWZlcmVu
+Y2UgdG8gYGZ0c19vcGVuJw0KfCAvaG9tZS9yY2hhdHJlL3Bva3lfYnVpbGQvdG1wL3dvcmsvYXJt
+djV0ZS1wb2t5LWxpbnV4LWdudWVhYmkvZWxmdXRpbHMtMC4xNDgtcjcvZWxmdXRpbHMtMC4xNDgv
+bGliZHdmbC9saW51eC1rZXJuZWwtbW9kdWxlcy5jOjU0MTogdW5kZWZpbmVkIHJlZmVyZW5jZSB0
+byBgZnRzX3JlYWQnDQp8IC9ob21lL3JjaGF0cmUvcG9reV9idWlsZC90bXAvd29yay9hcm12NXRl
+LXBva3ktbGludXgtZ251ZWFiaS9lbGZ1dGlscy0wLjE0OC1yNy9lbGZ1dGlscy0wLjE0OC9saWJk
+d2ZsL2xpbnV4LWtlcm5lbC1tb2R1bGVzLmM6NTcwOiB1bmRlZmluZWQgcmVmZXJlbmNlIHRvIGBm
+dHNfY2xvc2UnDQp8IC4uL2xpYmVibC9saWJlYmwuYShlYmx3c3RydGFiLm8pOiBJbiBmdW5jdGlv
+biBgY29weXN0cmluZ3MnOg0KfCAvaG9tZS9yY2hhdHJlL3Bva3lfYnVpbGQvdG1wL3dvcmsvYXJt
+djV0ZS1wb2t5LWxpbnV4LWdudWVhYmkvZWxmdXRpbHMtMC4xNDgtcjcvZWxmdXRpbHMtMC4xNDgv
+bGliZWJsL2VibHdzdHJ0YWIuYzozMjk6IHVuZGVmaW5lZCByZWZlcmVuY2UgdG8gYHdtZW1wY3B5
+Jw0KfCAuLi9saWJlYmwvbGliZWJsLmEoZWJsd3N0cnRhYi5vKTogSW4gZnVuY3Rpb24gYGVibF93
+c3RydGFiYWRkJzoNCnwgL2hvbWUvcmNoYXRyZS9wb2t5X2J1aWxkL3RtcC93b3JrL2FybXY1dGUt
+cG9reS1saW51eC1nbnVlYWJpL2VsZnV0aWxzLTAuMTQ4LXI3L2VsZnV0aWxzLTAuMTQ4L2xpYmVi
+bC9lYmx3c3RydGFiLmM6MjQ5OiB1bmRlZmluZWQgcmVmZXJlbmNlIHRvIGB3Y3NsZW4nDQp8IC4u
+L2xpYmVibC9saWJlYmwuYShlYmx3c3RydGFiLm8pOiBJbiBmdW5jdGlvbiBgc2VhcmNoc3RyaW5n
+JzoNCnwgL2hvbWUvcmNoYXRyZS9wb2t5X2J1aWxkL3RtcC93b3JrL2FybXY1dGUtcG9reS1saW51
+eC1nbnVlYWJpL2VsZnV0aWxzLTAuMTQ4LXI3L2VsZnV0aWxzLTAuMTQ4L2xpYmVibC9lYmx3c3Ry
+dGFiLmM6MjI4OiB1bmRlZmluZWQgcmVmZXJlbmNlIHRvIGB3bWVtY21wJw0KfCBjb2xsZWN0Mjog
+bGQgcmV0dXJuZWQgMSBleGl0IHN0YXR1cw0KfCBtYWtlWzNdOiAqKiogW2xpYmR3LnNvXSBFcnJv
+ciAxDQp8IG1ha2VbM106IExlYXZpbmcgZGlyZWN0b3J5IGAvaG9tZS9yY2hhdHJlL3Bva3lfYnVp
+bGQvdG1wL3dvcmsvYXJtdjV0ZS1wb2t5LWxpbnV4LWdudWVhYmkvZWxmdXRpbHMtMC4xNDgtcjcv
+ZWxmdXRpbHMtMC4xNDgvbGliZHcnDQp8IG1ha2VbMl06ICoqKiBbYWxsXSBFcnJvciAyDQp8IG1h
+a2VbMl06IExlYXZpbmcgZGlyZWN0b3J5IGAvaG9tZS9yY2hhdHJlL3Bva3lfYnVpbGQvdG1wL3dv
+cmsvYXJtdjV0ZS1wb2t5LWxpbnV4LWdudWVhYmkvZWxmdXRpbHMtMC4xNDgtcjcvZWxmdXRpbHMt
+MC4xNDgvbGliZHcnDQp8IG1ha2VbMV06ICoqKiBbYWxsLXJlY3Vyc2l2ZV0gRXJyb3IgMQ0KfCBt
+YWtlWzFdOiBMZWF2aW5nIGRpcmVjdG9yeSBgL2hvbWUvcmNoYXRyZS9wb2t5X2J1aWxkL3RtcC93
+b3JrL2FybXY1dGUtcG9reS1saW51eC1nbnVlYWJpL2VsZnV0aWxzLTAuMTQ4LXI3L2VsZnV0aWxz
+LTAuMTQ4Jw0KfCBtYWtlOiAqKiogW2FsbF0gRXJyb3IgMg0KfCBFUlJPUjogb2VfcnVubWFrZSBm
+YWlsZWQNCg0KIA0KSSB3b3VsZCBhcHByZWNpYXRlIGFueSBoaW50cyBvbiBob3cgdG8gYnVpbGQg
+YSBwb2t5LXRpbnkgaW1hZ2UgZm9yIEFSTS4NCkkgd291bGQgcHJlZmVyIHRvIGJ1aWxkIGFuIGlt
+YWdlIHRoYXQgY2FuIHJ1biBpbiB0aGUgaG9zdCdzIHFlbXUsIG5vdA0KbmVlZGluZyB5b2N0byB0
+byBidWlsZCBxZW11LiBJdCBzZWVtcyB0aGF0IEkgd2lsbCBoYXZlIHRvIGNyZWF0ZSBhIG5ldw0K
+bWFjaGluZSBjb25maWd1cmF0aW9uIGZvciB0aGF0IGJ1dCB3YW50ZWQgdG8gc2VlIGlmIEkgY2Fu
+IGdldCB0aGUNCnN0YW5kYXJkIGl0ZW1zIGJ1aWx0IGZpcnN0LCB3aGljaCBpcyBnaXZpbmcgdGhl
+IHByb2JsZW1zIGRlc2NyaWJlZA0KYWJvdmUuDQoNClRoYW5rIHlvdSB2ZXJ5IG11Y2gNCg0KUmVp
+bmV0dGUNCg0K
 
