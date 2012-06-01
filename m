@@ -1,35 +1,39 @@
-Return-Path: <scott.m.rifenbark@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4BBDFE00747
-	for <yocto@yoctoproject.org>; Fri,  1 Jun 2012 07:16:51 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 01 Jun 2012 07:16:50 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="150412261"
-Received: from orsmsx606.amr.corp.intel.com ([10.22.226.128])
-	by azsmga001.ch.intel.com with ESMTP; 01 Jun 2012 07:16:50 -0700
-Received: from orsmsx103.amr.corp.intel.com (10.22.225.130) by
-	orsmsx606.amr.corp.intel.com (10.22.226.128) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Fri, 1 Jun 2012 07:16:50 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.121]) by
-	ORSMSX103.amr.corp.intel.com ([169.254.2.163]) with mapi id
-	14.01.0355.002; Fri, 1 Jun 2012 07:16:49 -0700
-From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-To: Khem Raj <raj.khem@gmail.com>, Jim Rucker <linux.mrjimorg@gmail.com>
-Thread-Topic: [yocto] Hello
-Thread-Index: AQHNP3s1/p8fnszUE0eFHk7dqU5PJpbk8JKAgACQTRA=
-Date: Fri, 1 Jun 2012 14:16:49 +0000
-Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB12379469FB953@ORSMSX101.amr.corp.intel.com>
-References: <CAH6UwN18AD83hzxDeFLCL8H_FBssoi5bwmQ-EHmWeJd7inMZBg@mail.gmail.com>
-	<CAMKF1sox5fA9yNXUK9UsEBTz2jDB8446WsYWBO=9msVM5UuuJg@mail.gmail.com>
-In-Reply-To: <CAMKF1sox5fA9yNXUK9UsEBTz2jDB8446WsYWBO=9msVM5UuuJg@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
+Return-Path: <jim@halfman.com>
+Received: from mail-we0-f176.google.com (mail-we0-f176.google.com
+	[74.125.82.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A2BDEE00747
+	for <yocto@yoctoproject.org>; Fri,  1 Jun 2012 07:19:14 -0700 (PDT)
+Received: by weyr3 with SMTP id r3so1814311wey.35
+	for <yocto@yoctoproject.org>; Fri, 01 Jun 2012 07:19:13 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=date:from:to:cc:message-id:in-reply-to:references:subject:x-mailer
+	:mime-version:content-type:x-gm-message-state;
+	bh=FgCdiW1pz/oKRZCHceW0MRbK57sU0bTxxm8A7IeVnHA=;
+	b=MljB6QLJp19b97lRLRdDwvlVYaOJjVaWFlVuSDbnpQ7D6kphW2PTGn25FuY9gDe+Dh
+	N7b3hdwI5wFPrv5JG89VYTZEEbOMYwOra7YjfAwjYrDqPfmDdwQLu29PYrKGeGgJHg+G
+	rN81ia2NgrRW4J528Ksph9uqIzsKgnO7JJIRQugOeh5IfFHNW5eRmGxsQkGv/C9m5gSf
+	+xlDLdw5l6BTFKAu6JBqVPe5Ktyoea6oMyb4TfUqNH7Wc3BsCy5PGEIkRK0crF6lQZIi
+	BcmXcPTpAKr3dDpdgxoGCkaxp9Anulbs0qPyFJF7zR+/bdAWT6r8Yamj7HgUJL46oG89
+	ko/Q==
+Received: by 10.216.143.73 with SMTP id k51mr2289436wej.55.1338560353481;
+	Fri, 01 Jun 2012 07:19:13 -0700 (PDT)
+Received: from [192.168.2.98] ([83.217.123.106])
+	by mx.google.com with ESMTPS id dg2sm7785435wib.4.2012.06.01.07.19.10
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Fri, 01 Jun 2012 07:19:11 -0700 (PDT)
+Date: Fri, 1 Jun 2012 15:19:09 +0100
+From: Jim Kosem <jim@halfman.com>
+To: =?utf-8?Q?Xu=2C_Dongxiao?= <dongxiao.xu@intel.com>
+Message-ID: <C0F3ED93D1034E4D8F5A33FC145A76A6@halfman.com>
+In-Reply-To: <40776A41FC278F40B59438AD47D147A90FD7D8F0@SHSMSX102.ccr.corp.intel.com>
+References: <7B5D5B32880342B1A71D5C3F7F7D41F7@halfman.com>
+	<40776A41FC278F40B59438AD47D147A90FD7D8F0@SHSMSX102.ccr.corp.intel.com>
+X-Mailer: sparrow 1.6 (build 1081.27)
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Hello
+X-Gm-Message-State: ALoCoQnuhOPHeDjxkB4GB6Ydi5cNE7bpXNRFFSWhhjMfJkxwSDNs/uGeViPyeHKMUte5xgaS7Rtv
+Cc: "=?utf-8?Q?yocto=40yoctoproject.org?=" <yocto@yoctoproject.org>
+Subject: Re: Yocto Web Hob 1.3 requirements
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,38 +45,265 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 01 Jun 2012 14:16:51 -0000
-Content-Language: en-US
+X-List-Received-Date: Fri, 01 Jun 2012 14:19:15 -0000
+Content-Type: multipart/alternative; boundary="4fc8cf5d_22221a70_1fa9"
+
+--4fc8cf5d_22221a70_1fa9
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
-Q3VycmVudCBtYW51YWwgc2V0IGlzOg0KDQpodHRwOi8vd3d3LnlvY3RvcHJvamVjdC5vcmcvZG9j
-cy9jdXJyZW50L3Bva3ktcmVmLW1hbnVhbC9wb2t5LXJlZi1tYW51YWwuaHRtbCN2YXItUFJFRkVS
-UkVEX1BST1ZJREVSDQpodHRwOi8vd3d3LnlvY3RvcHJvamVjdC5vcmcvZG9jcy9jdXJyZW50L3Bv
-a3ktcmVmLW1hbnVhbC9wb2t5LXJlZi1tYW51YWwuaHRtbCN2YXItUFJFRkVSUkVEX1ZFUlNJT04N
-Cg0KVGhlIGRlc2NyaXB0aW9ucyBmb3IgdGhlc2UgZ2xvc3NhcmllcywgaG93ZXZlciwgYXJlIGlk
-ZW50aWNhbCBpbiB0aGUgYXJjaGl2ZWQgdmVyc2lvbnMgb2YgdGhlIG1hbnVhbCBhbmQgdGhlIGN1
-cnJlbnQgdmVyc2lvbi4gIA0KDQpTY290dA0KDQotLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0K
-RnJvbTogeW9jdG8tYm91bmNlc0B5b2N0b3Byb2plY3Qub3JnIFttYWlsdG86eW9jdG8tYm91bmNl
-c0B5b2N0b3Byb2plY3Qub3JnXSBPbiBCZWhhbGYgT2YgS2hlbSBSYWoNClNlbnQ6IFRodXJzZGF5
-LCBNYXkgMzEsIDIwMTIgMzozMSBQTQ0KVG86IEppbSBSdWNrZXINCkNjOiB5b2N0b0B5b2N0b3By
-b2plY3Qub3JnDQpTdWJqZWN0OiBSZTogW3lvY3RvXSBIZWxsbw0KDQpPbiBUaHUsIE1heSAzMSwg
-MjAxMiBhdCAzOjE3IFBNLCBKaW0gUnVja2VyIDxsaW51eC5tcmppbW9yZ0BnbWFpbC5jb20+IHdy
-b3RlOg0KPiBJJ20gZmFpcmx5IG5ldyB0byBZb2N0byBhbmQgUG9reSBhbmQgSSBoYXZlIGEgcXVl
-c3Rpb24gdGhhdCBJIGhhdmVuJ3QgYmVlbg0KPiBhYmxlIHRvIGZpbmQgdGhyb3VnaCBHb29nbGUu
-wqBJZiB0aGVyZSBhcmUgbXVsdGlwbGUgLmJiIGZpbGVzIGluIGEgZGlyZWN0b3J5LA0KPiBob3cg
-ZG9lcyBiaXRiYWtlIGNob29zZSB3aGljaCBvbmUgdG8gdXNlPw0KDQoNCnJlYWQNCg0KaHR0cDov
-L3d3dy55b2N0b3Byb2plY3Qub3JnL2RvY3MvMS4wL3Bva3ktcmVmLW1hbnVhbC9wb2t5LXJlZi1t
-YW51YWwuaHRtbCN2YXItUFJFRkVSUkVEX1BST1ZJREVSDQpodHRwOi8vd3d3LnlvY3RvcHJvamVj
-dC5vcmcvZG9jcy8xLjAvcG9reS1yZWYtbWFudWFsL3Bva3ktcmVmLW1hbnVhbC5odG1sI3Zhci1Q
-UkVGRVJSRURfVkVSU0lPTg0KDQo+IMKgIMKgIMKgIMKgIEJhY2tncm91bmQ6IEknbSBpbmhlcml0
-aW5nIGEgcHJvamVjdCBmcm9tIHNvbWVvbmUgYW5kIHRoZXkgaGF2ZSBhDQo+IFNSQ19VUkk9Imdp
-dCIgdmVyc2lvbiBhbmQgYcKgU1JDX1VSST0iZmlsZTovLyIgdmVyc2lvbiBhbmQgdGhlIGdpdCB2
-ZXJzaW9uIGlzDQo+IGFsd2F5cyBiZWluZyBjYWxsZWQgYnV0IHRoYXQgc2VydmVyIGlzbid0IGF2
-YWlsYWJsZSB5ZXQuDQo+DQo+DQo+DQo+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fDQo+IHlvY3RvIG1haWxpbmcgbGlzdA0KPiB5b2N0b0B5b2N0b3Byb2pl
-Y3Qub3JnDQo+IGh0dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9saXN0aW5mby95b2N0bw0K
-Pg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCnlvY3Rv
-IG1haWxpbmcgbGlzdA0KeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0KaHR0cHM6Ly9saXN0cy55b2N0
-b3Byb2plY3Qub3JnL2xpc3RpbmZvL3lvY3RvDQo=
+Hi, 
 
+Sure do. The presentation of the webHob designs here at the OSTC in London went over really well. We'll be sharing the design next week after our Bank Holiday here in the UK. 
+
+-- 
+Jim Kosem
+Skype: jkosem
+GTalk: jim@halfman.com
+Mobile: 07757 559081
+
+Note: I read and reply to email only a couple of times a day. If you need something quicker, please use Skype, GTalk or if its urgent call my mobile.
+
+
+On Wednesday, 30 May 2012 - week 22 at 06:45, Xu, Dongxiao wrote:
+
+> 
+> Hi Jim,
+> 
+> 
+>  
+> 
+> 
+> Do you have any update on the progress of UI/process design about the webhob design?
+> 
+> 
+>  
+> 
+> 
+> Thanks,
+> 
+> 
+> Dongxiao
+> 
+> 
+>  
+> 
+> 
+> From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org] On Behalf Of Jim Kosem
+> Sent: Tuesday, May 08, 2012 6:50 PM
+> To: yocto@yoctoproject.org (mailto:yocto@yoctoproject.org)
+> Subject: [yocto] Yocto Web Hob 1.3 requirements
+> 
+> 
+> 
+> 
+>  
+> 
+> 
+> Hi, 
+> 
+> 
+> 
+>  
+> 
+> 
+> 
+> We in the Yocto London team have put together user requirements and ideas around what we think Web Hob should be.
+> 
+> 
+> 
+>  
+> 
+> 
+> 
+> https://wiki.yoctoproject.org/wiki/Yocto_Webhob_1.3
+> 
+> 
+> 
+>  
+> 
+> 
+> 
+> Any contributions, help and comments are appreciated.
+> 
+> 
+> 
+>  
+> 
+> 
+> 
+> Thanks.
+> 
+> 
+> 
+>  
+> 
+> 
+> 
+> - Jim Kosem
+> 
+> 
+> 
+> 
+> 
+> 
+
+
+
+--4fc8cf5d_22221a70_1fa9
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
+
+
+                <div>
+                    Hi,
+                </div><div><br></div><div>Sure do. The presentation of th=
+e webHob designs here at the OSTC in London went over really well. We'll =
+be sharing the design next week after our Bank Holiday here in the UK.</d=
+iv>
+                <div><div><br></div><div>--&nbsp;</div><div>Jim Kosem</di=
+v><div>Skype: jkosem</div><div>GTalk: jim=40halfman.com</div><div>Mobile:=
+ 07757 559081</div><div><br></div><div>Note: I read and reply to email on=
+ly a couple of times a day. If you need something quicker, please use Sky=
+pe, GTalk or if its urgent call my mobile.</div><div><br></div></div>
+                =20
+                <p style=3D=22color: =23A0A0A8;=22>On Wednesday, 30 May 2=
+012 - week 22 at 06:45, Xu, Dongxiao wrote:</p>
+                <blockquote type=3D=22cite=22 style=3D=22border-left-styl=
+e:solid;border-width:1px;margin-left:0px;padding-left:10px;=22>
+                    <span><div><div>
+
+<meta http-equiv=3D=22Content-Type=22 content=3D=22text/html; charset=3Du=
+tf-8=22>
+<meta name=3D=22Generator=22 content=3D=22Microsoft Word 14 (filtered med=
+ium)=22>
+<=21--=5Bif gte mso 9=5D><xml>
+<o:shapedefaults v:ext=3D=22edit=22 spidmax=3D=221026=22 />
+</xml><=21=5Bendif=5D--><=21--=5Bif gte mso 9=5D><xml>
+<o:shapelayout v:ext=3D=22edit=22>
+<o:idmap v:ext=3D=22edit=22 data=3D=221=22 />
+</o:shapelayout></xml><=21=5Bendif=5D-->
+
+
+<div>
+<p style=3D=22margin-top: 0px; margin-right: 0px; margin-bottom: 0px; mar=
+gin-left: 0px; =22><span lang=3D=22EN-US=22 style=3D=22font-size:10.5pt;f=
+ont-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:=231=46497D=22=
+>Hi Jim,<o:p></o:p></span></p>
+<p style=3D=22margin-top: 0px; margin-right: 0px; margin-bottom: 0px; mar=
+gin-left: 0px; =22><span lang=3D=22EN-US=22 style=3D=22font-size:10.5pt;f=
+ont-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:=231=46497D=22=
+><o:p>&nbsp;</o:p></span></p>
+<p style=3D=22margin-top: 0px; margin-right: 0px; margin-bottom: 0px; mar=
+gin-left: 0px; =22><span lang=3D=22EN-US=22 style=3D=22font-size:10.5pt;f=
+ont-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:=231=46497D=22=
+>Do you have any update on the progress of UI/process design about the we=
+bhob design=3F<o:p></o:p></span></p>
+<p style=3D=22margin-top: 0px; margin-right: 0px; margin-bottom: 0px; mar=
+gin-left: 0px; =22><span lang=3D=22EN-US=22 style=3D=22font-size:10.5pt;f=
+ont-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:=231=46497D=22=
+><o:p>&nbsp;</o:p></span></p>
+<p style=3D=22margin-top: 0px; margin-right: 0px; margin-bottom: 0px; mar=
+gin-left: 0px; =22><span lang=3D=22EN-US=22 style=3D=22font-size:10.5pt;f=
+ont-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:=231=46497D=22=
+>Thanks,<o:p></o:p></span></p>
+<p style=3D=22margin-top: 0px; margin-right: 0px; margin-bottom: 0px; mar=
+gin-left: 0px; =22><span lang=3D=22EN-US=22 style=3D=22font-size:10.5pt;f=
+ont-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:=231=46497D=22=
+>Dongxiao<o:p></o:p></span></p>
+<p style=3D=22margin-top: 0px; margin-right: 0px; margin-bottom: 0px; mar=
+gin-left: 0px; =22><span lang=3D=22EN-US=22 style=3D=22font-size:10.5pt;f=
+ont-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:=231=46497D=22=
+><o:p>&nbsp;</o:p></span></p>
+<div style=3D=22border:none;border-left:solid blue 1.5pt;padding:0cm 0cm =
+0cm 4.0pt=22>
+<div>
+<div style=3D=22border:none;border-top:solid =23B5C4D=46 1.0pt;padding:3.=
+0pt 0cm 0cm 0cm=22>
+<p style=3D=22margin-top: 0px; margin-right: 0px; margin-bottom: 0px; mar=
+gin-left: 0px; =22><b><span lang=3D=22EN-US=22 style=3D=22font-size:10.0p=
+t;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;=22>=46rom:</span>=
+</b><span lang=3D=22EN-US=22 style=3D=22font-size:10.0pt;font-family:&quo=
+t;Tahoma&quot;,&quot;sans-serif&quot;=22> yocto-bounces=40yoctoproject.or=
+g =5B<a href=3D=22mailto:yocto-bounces=40yoctoproject.org=22>mailto:yocto=
+-bounces=40yoctoproject.org</a>=5D
+<b>On Behalf Of </b>Jim Kosem<br>
+<b>Sent:</b> Tuesday, May 08, 2012 6:50 PM<br>
+<b>To:</b> <a href=3D=22mailto:yocto=40yoctoproject.org=22>yocto=40yoctop=
+roject.org</a><br>
+<b>Subject:</b> =5Byocto=5D Yocto Web Hob 1.3 requirements<o:p></o:p></sp=
+an></p>
+</div>
+</div>
+<p style=3D=22margin-top: 0px; margin-right: 0px; margin-bottom: 0px; mar=
+gin-left: 0px; =22><span lang=3D=22EN-US=22><o:p>&nbsp;</o:p></span></p>
+<div>
+<p style=3D=22margin-top: 0px; margin-right: 0px; margin-bottom: 0px; mar=
+gin-left: 0px; =22><span lang=3D=22EN-US=22>Hi, <o:p></o:p></span></p>
+</div>
+<div>
+<p style=3D=22margin-top: 0px; margin-right: 0px; margin-bottom: 0px; mar=
+gin-left: 0px; =22><span lang=3D=22EN-US=22><o:p>&nbsp;</o:p></span></p>
+</div>
+<div>
+<p style=3D=22margin-top: 0px; margin-right: 0px; margin-bottom: 0px; mar=
+gin-left: 0px; =22><span lang=3D=22EN-US=22>We in the Yocto London team h=
+ave put together user requirements and ideas around what we think Web Hob=
+ should be.<o:p></o:p></span></p>
+</div>
+<div>
+<p style=3D=22margin-top: 0px; margin-right: 0px; margin-bottom: 0px; mar=
+gin-left: 0px; =22><span lang=3D=22EN-US=22><o:p>&nbsp;</o:p></span></p>
+</div>
+<div>
+<p style=3D=22margin-top: 0px; margin-right: 0px; margin-bottom: 0px; mar=
+gin-left: 0px; =22><span lang=3D=22EN-US=22><a href=3D=22https://wiki.yoc=
+toproject.org/wiki/Yocto=5FWebhob=5F1.3=22>https://wiki.yoctoproject.org/=
+wiki/Yocto=5FWebhob=5F1.3</a><o:p></o:p></span></p>
+</div>
+<div>
+<p style=3D=22margin-top: 0px; margin-right: 0px; margin-bottom: 0px; mar=
+gin-left: 0px; =22><span lang=3D=22EN-US=22><o:p>&nbsp;</o:p></span></p>
+</div>
+<div>
+<p style=3D=22margin-top: 0px; margin-right: 0px; margin-bottom: 0px; mar=
+gin-left: 0px; =22><span lang=3D=22EN-US=22>Any contributions, help and c=
+omments are appreciated.<o:p></o:p></span></p>
+</div>
+<div>
+<p style=3D=22margin-top: 0px; margin-right: 0px; margin-bottom: 0px; mar=
+gin-left: 0px; =22><span lang=3D=22EN-US=22><o:p>&nbsp;</o:p></span></p>
+</div>
+<div>
+<p style=3D=22margin-top: 0px; margin-right: 0px; margin-bottom: 0px; mar=
+gin-left: 0px; =22><span lang=3D=22EN-US=22>Thanks.<o:p></o:p></span></p>=
+
+</div>
+<div>
+<p style=3D=22margin-top: 0px; margin-right: 0px; margin-bottom: 0px; mar=
+gin-left: 0px; =22><span lang=3D=22EN-US=22><o:p>&nbsp;</o:p></span></p>
+</div>
+<div>
+<p style=3D=22margin-top: 0px; margin-right: 0px; margin-bottom: 0px; mar=
+gin-left: 0px; =22><span lang=3D=22EN-US=22>- Jim Kosem<o:p></o:p></span>=
+</p>
+</div>
+</div>
+</div>
+
+
+</div></div></span>
+                =20
+                =20
+                =20
+                =20
+                </blockquote>
+                =20
+                <div>
+                    <br>
+                </div>
+            
+
+--4fc8cf5d_22221a70_1fa9--
