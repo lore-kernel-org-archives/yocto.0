@@ -1,32 +1,26 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9B9FAE01443
-	for <yocto@yoctoproject.org>; Fri,  1 Jun 2012 14:20:03 -0700 (PDT)
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9A4DBE01443;
+	Fri,  1 Jun 2012 14:33:28 -0700 (PDT)
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 01 Jun 2012 14:20:03 -0700
+	by fmsmga102.fm.intel.com with ESMTP; 01 Jun 2012 14:33:28 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="173812884"
-Received: from unknown (HELO envy.home) ([10.255.12.201])
-	by fmsmga002.fm.intel.com with ESMTP; 01 Jun 2012 14:20:03 -0700
-Message-ID: <4FC931C4.3040409@linux.intel.com>
-Date: Fri, 01 Jun 2012 14:19:00 -0700
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:12.0) Gecko/20120430 Thunderbird/12.0.1
-MIME-Version: 1.0
-To: jfabernathy <jfabernathy@gmail.com>
-References: <4FC79837.2070309@gmail.com> <4FC7B4E3.1010401@linux.intel.com>
-	<4FC7BE80.4060700@gmail.com> <4FC7C965.1020809@linux.intel.com>
-	<4FC8E39D.3010702@gmail.com> <4FC8F564.90704@linux.intel.com>
-	<4FC8FE53.4030508@gmail.com> <4FC8FF90.20403@linux.intel.com>
-	<4FC90183.2080107@gmail.com> <4FC9021D.1050706@linux.intel.com>
-	<4FC91488.9080106@gmail.com> <4FC91FE0.9040909@linux.intel.com>
-	<4FC92118.1060606@gmail.com> <4FC921B3.8060904@linux.intel.com>
-	<4FC926A6.2070902@gmail.com>
-In-Reply-To: <4FC926A6.2070902@gmail.com>
-X-Enigmail-Version: 1.4.1
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: meta-cedartrail - serial console
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="173816530"
+Received: from unknown (HELO [10.255.12.175]) ([10.255.12.175])
+	by fmsmga002.fm.intel.com with ESMTP; 01 Jun 2012 14:33:27 -0700
+From: Tom Zanussi <tom.zanussi@intel.com>
+To: Darren Hart <dvhart@linux.intel.com>
+In-Reply-To: <4FC8FFBC.6060002@linux.intel.com>
+References: <4FC009CD.9030201@yoctoproject.org>
+	<4FC7B80E.1020802@linux.intel.com> <4FC83910.9050302@windriver.com>
+	<4FC8FFBC.6060002@linux.intel.com>
+Date: Fri, 01 Jun 2012 16:33:34 -0500
+Message-ID: <1338586414.28421.11.camel@elmorro>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.28.3 
+Cc: Yocto Project Discussion <yocto@yoctoproject.org>,
+	yocto-infrastructure@yoctoproject.org
+Subject: Re: Bugzilla Re-organization
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,44 +32,155 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 01 Jun 2012 21:20:03 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Fri, 01 Jun 2012 21:33:28 -0000
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
+On Fri, 2012-06-01 at 10:45 -0700, Darren Hart wrote:
+> 
+> On 05/31/2012 08:37 PM, Bruce Ashfield wrote:
+> > On 12-05-31 2:27 PM, Darren Hart wrote:
+> >>
+> >>
+> >> On 05/25/2012 03:38 PM, Michael Halstead wrote:
+> >>> The first draft of the reorganized bugzilla is available for feedback
+> >>> now at https://bugzilla.yoctodev.org/. Outgoing e-mail is currently
+> >>> disabled on this preview copy. Please feel free to take a look and see
+> >>> if you spot any errors. Additional refinement of  product or component
+> >>> descriptions will be helpful as well.
+> >>>
+> >>
+> >> It seems to me one should be able to find the linux-yocto kernel itself
+> >> under the Yocto Project Components from the basic search page. Currently
+> >> there is Kernel Tooling and BSPs, but there are times when the bug is
+> >> not BSP specific and is in the kernel itself, not the tooling. For this,
+> >> a hierarchy like the following might be preferable:
+> >>
+> >> Yocto Project Components
+> >>    BSPs
+> >>      bsps
+> >>    Kernel
+> >>      linux-yocto
+> >>      configuration
+> >>      kernel-tooling
+> > 
+> > +1. I completely agree with this.
+> > 
+> >>
+> >> I am still not sure how best to deal with BSPs here and BSPs in Build
+> >> System&  Metadata. I think We should pick one or the other as the
+> >> distinction between the two is non-obvious (actually I have no idea what
+> >> it would be).
+> > 
+> > Agreed .. that this is hard. If we used 'configuration' for the kernel
+> > category, could the build system + meta data fall into that as well
+> > under BSPs ?
+> > 
+> > i.e.
+> > 
+> >     BSPs
+> >       bsps - runtime
+> >       bsps - configuration
+> 
+> I think so. I like this better.
+> 
+> Tom, any objections?
+> 
+
+No objections, this all looks fine to me.
+
+> Yocto Project Components
+>    BSPs
+>      bsps-runtime
+>      bsps-configuration
+>    Kernel
+>      linux-yocto
+>      kernel-configuration
+>      kernel-tooling
+> 
+> The other Kernel related path would include
+> Build System & Metadata
+>   Layers - OpenEmbedded-Core
+>     kernel
+> 
+> This would be for the kernel.bbclass and other recipes and classes.
+> 
+
+It would be nice to have that fact reflected in the name somehow, to
+avoid confusion for users with Yocto Project Components->Kernel, but I'm
+not coming up with anything wieldy.
+
+> I think we should just kill:
+> Build System & Metadata
+>   Layers - BSPs
+> 
+> and move all the BSP components under Yocto Project Components->BSPs
+> 
+
+I agree, it would just add confusion to keep this.
+
+> Finally there is:
+> 
+> Build System & Metadata
+>   Layers - meta-yocto
+>     machines
+> 
+> Which should just go away and be replaced witha BSPs->meta-yocto
+> component, if anything.
+> 
+
+Better known as 'core BSPs', which might be more clear to some...
+
+> So, the final layout would be:
+> 
+> Yocto Project Components
+>    BSPs
+>      bsps-runtime
+>      bsps-configuration (these top too being "generic" buckets)
+>      bsps-meta-yocto
+
+On the other hand this naming is clean and consistent with the rest, so
+is probably better.
+
+>      bsps-meta-fsl-ppc
+>      bsps-meta-intel
+>      bsps-meta-ti
+>      bsps-tools
+>      bsps-xilinx (meta-xilinx?)
+> 
+>    Kernel
+>      linux-yocto
+>      kernel-configuration
+>      kernel-tooling
+> 
+> I believe this would make it much easier for us to manage Kernel related
+> issues across the project.
+> 
+
+I agree. Acked-by-me...
+
+Tom
+
+> --
+> Darren
+> 
+> 
+> > 
+> > ?
+> > 
+> > Bruce
+> > 
+> >>
+> >> Tom, Bruce: opinions on the above?
+> >>
+> >>
+> >> "Build System&  Metadata" and "Yocto Metadata Layers" use different
+> >> naming schemes for the components in the various layers products. Some
+> >> use meta- others do not.
+> >>
+> >>
+> > 
+> 
 
 
-On 06/01/2012 01:31 PM, jfabernathy wrote:
-> On 06/01/2012 04:10 PM, Darren Hart wrote:
->>
->> On 06/01/2012 01:07 PM, jfabernathy wrote:
->>> On 06/01/2012 04:02 PM, Darren Hart wrote:
->>>>>> What is the boot error?
->>>>>>
->>>>> SYSLINUX 4.03 2010-10-22 CHS Load error- Boot error
->>>>>
->>>>> Jim A
->>>> OK, I suggest following the instructions for creating a USBZIP format in
->>>> README.hardware. If that fails, this merits a bug. Regardless, as rework
->>>> the images for 1.3, we should be able to avoid the many many boot errors
->>>> like this that people have been reporting and we've been working around.
->>>>
->>> I'll test the USBZIP method, but that has a many steps as the How Do I-
->>> hard drive method.  I think we need a script like ddimage for USBZIP method.
->>>
->> Attached. I've passed this out to a few people. Would people like to see
->> this in scripts/contrib?
->>
-> I think the script is great and should be in the contrib directory.  One 
-> question about it.  on the instructions to remove and reinsert the usb 
-> key, mine automounts on reinsertion.  Is that going to create a 
-> problem?? What the script created booted, but it seemed odd that the 
-> automount happened, and the script seems to mount in the /tmp dir.
-
-It should probably force an unmount in a few places. Care to write up a
-patch?
-
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
 
