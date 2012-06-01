@@ -1,32 +1,27 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-ey0-f176.google.com (mail-ey0-f176.google.com
-	[209.85.215.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EF1CEE006D9
-	for <yocto@yoctoproject.org>; Thu, 31 May 2012 15:31:48 -0700 (PDT)
-Received: by eaab16 with SMTP id b16so365536eaa.35
-	for <yocto@yoctoproject.org>; Thu, 31 May 2012 15:31:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type:content-transfer-encoding;
-	bh=CkdOgSZpErvJpUqdINieY1Y+K6VsAciA+xajGm0+FU0=;
-	b=gneERFVyd7xnNASkIniAPqiqGqekkcAAOCD+tqXACODdWQc0Z7Sn01CYhchgrv8E65
-	B2/dNuhsEylv3YsCEpiIPIono+3bNAqZzyVvfJuP5GJQ8BKmVyBJE4igJcMqFMXjQHW7
-	PWydijpGCDoKuC2bUJSthRRd1WRdaybbwR94R24Ru1FPnfZ8F+E/1uStQABcmU44kIqn
-	A9UhYAKQv9VmEqGdxYXXHPFKyld4NMXxdpcZIFO24VzdM8TulTiqUV4yr/Y/hsWhDe+I
-	cbvUyoSi0SphohUzBHzDL+jHf1U4Fgr1crTauRqQCDGW8NnFSiaxu66+ZeXBVwpLbCsI
-	+6nA==
-Received: by 10.14.97.135 with SMTP id t7mr198379eef.177.1338503507682; Thu,
-	31 May 2012 15:31:47 -0700 (PDT)
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6B700E0044A;
+	Thu, 31 May 2012 20:37:56 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail1.windriver.com (8.14.3/8.14.3) with ESMTP id q513bsx3013195
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Thu, 31 May 2012 20:37:54 -0700 (PDT)
+Received: from bruce-ashfields-macbook.local (128.224.20.180) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
+	14.1.255.0; Thu, 31 May 2012 20:37:54 -0700
+Message-ID: <4FC83910.9050302@windriver.com>
+Date: Thu, 31 May 2012 23:37:52 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7;
+	rv:9.0) Gecko/20111222 Thunderbird/9.0.1
 MIME-Version: 1.0
-Received: by 10.14.188.11 with HTTP; Thu, 31 May 2012 15:31:17 -0700 (PDT)
-In-Reply-To: <CAH6UwN18AD83hzxDeFLCL8H_FBssoi5bwmQ-EHmWeJd7inMZBg@mail.gmail.com>
-References: <CAH6UwN18AD83hzxDeFLCL8H_FBssoi5bwmQ-EHmWeJd7inMZBg@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Thu, 31 May 2012 15:31:17 -0700
-Message-ID: <CAMKF1sox5fA9yNXUK9UsEBTz2jDB8446WsYWBO=9msVM5UuuJg@mail.gmail.com>
-To: Jim Rucker <linux.mrjimorg@gmail.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: Hello
+To: Darren Hart <dvhart@linux.intel.com>
+References: <4FC009CD.9030201@yoctoproject.org>
+	<4FC7B80E.1020802@linux.intel.com>
+In-Reply-To: <4FC7B80E.1020802@linux.intel.com>
+Cc: Yocto Project Discussion <yocto@yoctoproject.org>,
+	yocto-infrastructure@yoctoproject.org
+Subject: Re: Bugzilla Re-organization
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,37 +33,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 31 May 2012 22:31:49 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 01 Jun 2012 03:37:56 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Thu, May 31, 2012 at 3:17 PM, Jim Rucker <linux.mrjimorg@gmail.com> wrot=
-e:
-> I'm fairly new to Yocto and Poky and I have a question that I haven't bee=
-n
-> able to find through Google.=C2=A0If there are multiple .bb files in a di=
-rectory,
-> how does bitbake choose which one to use?
-
-
-read
-
-http://www.yoctoproject.org/docs/1.0/poky-ref-manual/poky-ref-manual.html#v=
-ar-PREFERRED_PROVIDER
-http://www.yoctoproject.org/docs/1.0/poky-ref-manual/poky-ref-manual.html#v=
-ar-PREFERRED_VERSION
-
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 Background: I'm inheriting a project from som=
-eone and they have a
-> SRC_URI=3D"git" version and a=C2=A0SRC_URI=3D"file://" version and the gi=
-t version is
-> always being called but that server isn't available yet.
+On 12-05-31 2:27 PM, Darren Hart wrote:
 >
 >
+> On 05/25/2012 03:38 PM, Michael Halstead wrote:
+>> The first draft of the reorganized bugzilla is available for feedback
+>> now at https://bugzilla.yoctodev.org/. Outgoing e-mail is currently
+>> disabled on this preview copy. Please feel free to take a look and see
+>> if you spot any errors. Additional refinement of  product or component
+>> descriptions will be helpful as well.
+>>
 >
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+> It seems to me one should be able to find the linux-yocto kernel itself
+> under the Yocto Project Components from the basic search page. Currently
+> there is Kernel Tooling and BSPs, but there are times when the bug is
+> not BSP specific and is in the kernel itself, not the tooling. For this,
+> a hierarchy like the following might be preferable:
 >
+> Yocto Project Components
+>    BSPs
+>      bsps
+>    Kernel
+>      linux-yocto
+>      configuration
+>      kernel-tooling
+
++1. I completely agree with this.
+
+>
+> I am still not sure how best to deal with BSPs here and BSPs in Build
+> System&  Metadata. I think We should pick one or the other as the
+> distinction between the two is non-obvious (actually I have no idea what
+> it would be).
+
+Agreed .. that this is hard. If we used 'configuration' for the kernel
+category, could the build system + meta data fall into that as well
+under BSPs ?
+
+i.e.
+
+    BSPs
+      bsps - runtime
+      bsps - configuration
+
+?
+
+Bruce
+
+>
+> Tom, Bruce: opinions on the above?
+>
+>
+> "Build System&  Metadata" and "Yocto Metadata Layers" use different
+> naming schemes for the components in the various layers products. Some
+> use meta- others do not.
+>
+>
+
 
