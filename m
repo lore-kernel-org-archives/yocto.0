@@ -1,32 +1,40 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-ey0-f176.google.com (mail-ey0-f176.google.com
-	[209.85.215.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8669BE00747
-	for <yocto@yoctoproject.org>; Fri,  1 Jun 2012 15:28:15 -0700 (PDT)
-Received: by eaab16 with SMTP id b16so750852eaa.35
-	for <yocto@yoctoproject.org>; Fri, 01 Jun 2012 15:28:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type:content-transfer-encoding;
-	bh=YG/FzmftW+/9Ma78v1sLq/fYVbbE670COfLcqossKhk=;
-	b=rOxWZc84bA9JUp3j3muiaOJNLm4NICLn4uvjoVRO1YtWmYOtai1teJwdq5Q9rCToVG
-	im6ZM4NgUAx9eEJUWBQ1ZQrljjzoXZDgVrUuRihUb2bG3hv11kJ9NKgxcDUIlymAabWe
-	5IV2byD3e1O5qDOquVcBwJfB91HC/3lBFOph845G4PkNilYeFn6DWbPrXcBlWPhvcUgv
-	fKKwAyNE2Y4TXGB5cNBBhT4xlI2ddekh3MTJdXNJmXBkTwU6HMpBbXTUuy3i+RJdpgnj
-	BnLeqPmerJdK9Ntlv8c6H089JlNb3mqKKXXWl7h1Bs7STdxraSTca/w1LjORWbcBfkDs
-	MKtQ==
-Received: by 10.14.53.76 with SMTP id f52mr2294164eec.79.1338589694199; Fri,
-	01 Jun 2012 15:28:14 -0700 (PDT)
+Return-Path: <kishore.k.bodke@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A4FF7E0044A
+	for <yocto@yoctoproject.org>; Fri,  1 Jun 2012 17:51:49 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 01 Jun 2012 17:51:48 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="150630091"
+Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
+	by azsmga001.ch.intel.com with ESMTP; 01 Jun 2012 17:51:45 -0700
+Received: from orsmsx103.amr.corp.intel.com (10.22.225.130) by
+	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Fri, 1 Jun 2012 17:51:45 -0700
+Received: from orsmsx105.amr.corp.intel.com ([169.254.4.232]) by
+	ORSMSX103.amr.corp.intel.com ([169.254.2.163]) with mapi id
+	14.01.0355.002; Fri, 1 Jun 2012 17:51:44 -0700
+From: "Bodke, Kishore K" <kishore.k.bodke@intel.com>
+To: "Hart, Darren" <darren.hart@intel.com>
+Thread-Topic: [yocto] meta-cedartrail - serial console
+Thread-Index: AQHNP0g7G3Yb1O/j10yH4rRy4+tABpbkNHnwgACKq4CAAALnAIAA/UQggAB7mAD//7cnEIAAfGKA///E5cA=
+Date: Sat, 2 Jun 2012 00:51:44 +0000
+Message-ID: <D956029D25CF204F948EA0FB515E1EE20ACB802E@ORSMSX105.amr.corp.intel.com>
+References: <4FC79837.2070309@gmail.com>
+	<D956029D25CF204F948EA0FB515E1EE20ACB7838@ORSMSX105.amr.corp.intel.com>
+	<4FC7C769.1030903@gmail.com> <4FC7C9D8.5030301@intel.com>
+	<D956029D25CF204F948EA0FB515E1EE20ACB7D5F@ORSMSX105.amr.corp.intel.com>
+	<4FC905FA.7010707@intel.com>
+	<D956029D25CF204F948EA0FB515E1EE20ACB7DD9@ORSMSX105.amr.corp.intel.com>
+	<4FC93135.1040802@intel.com>
+In-Reply-To: <4FC93135.1040802@intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.138]
 MIME-Version: 1.0
-Received: by 10.14.188.11 with HTTP; Fri, 1 Jun 2012 15:27:42 -0700 (PDT)
-In-Reply-To: <1338581348.20547.41.camel@rchatre.jf.intel.com>
-References: <1338581348.20547.41.camel@rchatre.jf.intel.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Fri, 1 Jun 2012 15:27:42 -0700
-Message-ID: <CAMKF1sqDac3uDkddZE4pHTv+R1iqHMHBjigFc-LuZFYm+bFJnw@mail.gmail.com>
-To: "Chatre, Reinette" <reinette.chatre@intel.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Building poky-tiny for ARM fails in do_compile of elfutils
+Subject: Re: meta-cedartrail - serial console
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,181 +46,145 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 01 Jun 2012 22:28:15 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Sat, 02 Jun 2012 00:51:49 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jun 1, 2012 at 1:09 PM, Chatre, Reinette
-<reinette.chatre@intel.com> wrote:
-> Hi,
->
-> I am trying to create a poky-tiny based image for ARM. This currently
-> fails in the "do_compile" task of elfutils. As a first attempt I try to
-> have things as simple as possible. Starting with a clean 7.0 Denzil
-> in /opt/poky.git on my development system and use a separate build
-> directory $HOME/poky_build that is created as:
->
-> $ cd $HOME/poky_build
-> $ . /opt/poky.git/oe-init-build-env .
->
-> I edit the $HOME/poky_build/conf/local.conf as below:
->
-> --- org/conf/local.conf 2012-06-01 10:47:49.215088985 -0700
-> +++ $HOME/poky_build/conf/local.conf =C2=A0 =C2=A02012-06-01 11:56:24.930=
-150746 -0700
-> @@ -48,7 +48,7 @@
-> =C2=A0#MACHINE ?=3D "routerstationpro"
-> =C2=A0#
-> =C2=A0# This sets the default machine to be qemux86 if no other machine i=
-s selected:
-> -MACHINE ??=3D "qemux86"
-> +MACHINE ??=3D "qemuarm"
->
-> =C2=A0#
-> =C2=A0# Where to place downloads
-> @@ -99,7 +99,7 @@ MACHINE ??=3D "qemux86"
-> =C2=A0# Ultimately when creating custom policy, people will likely end up=
- subclassing
-> =C2=A0# these defaults.
-> =C2=A0#
-> -DISTRO ?=3D "poky"
-> +DISTRO ?=3D "poky-tiny"
-> =C2=A0# As an example of a subclass there is a "bleeding" edge policy con=
-figuration
-> =C2=A0# where many versions are set to the absolute latest code from the =
-upstream
-> =C2=A0# source control systems. This is just mentioned here as an example=
-, its not
-> @@ -118,7 +118,7 @@ DISTRO ?=3D "poky"
-> =C2=A0# =C2=A0- 'package_rpm' for rpm style packages
-> =C2=A0# E.g.: PACKAGE_CLASSES ?=3D "package_rpm package_deb package_ipk"
-> =C2=A0# We default to rpm:
-> -PACKAGE_CLASSES ?=3D "package_rpm"
-> +PACKAGE_CLASSES ?=3D "package_ipk"
->
-> =C2=A0#
-> =C2=A0# SDK/ADT target architecture
-> @@ -224,3 +224,6 @@ PATCHRESOLVE =3D "noop"
-> =C2=A0# track the version of this file when it was generated. This can sa=
-fely be ignored if
-> =C2=A0# this doesn't mean anything to you.
-> =C2=A0CONF_VERSION =3D "1"
-> +
-> +#disable usage of ccache
-> +CCACHE=3D""
->
-> After the above I kick off a build with:
->
-> $ bitbake core-image-minimal
->
-> As mentioned earlier, the above fails in "do_compile" of elfutils with ou=
-tput like:
->
-> | arm-poky-linux-gnueabi-ranlib libdw_pic.a
-> | arm-poky-linux-gnueabi-gcc =C2=A0-march=3Darmv5te =C2=A0-marm -mthumb-i=
-nterwork =C2=A0-mtune=3Darm926ej-s --sysroot=3D/home/rchatre/poky_build/tmp=
-/sysroots/qemuarm -std=3Dgnu99 -Wall -Wshadow -Werror -Wunused -Wextra -fgn=
-u89-inline -Wformat=3D2 =C2=A0 =C2=A0-O2 -pipe -g -feliminate-unused-debug-=
-types =C2=A0-Wl,-O1 -Wl,--hash-style=3Dgnu -Wl,--as-needed -o libdw.so -sha=
-red -o libdw.so -Wl,--soname,libdw.so.1,-z,defs \
-> | =C2=BB------Wl,--enable-new-dtags,-rpath,/usr/lib/elfutils \
-> | =C2=BB------Wl,--version-script,libdw.map,--no-undefined \
-> | =C2=BB------Wl,--whole-archive libdw_pic.a ../libdwfl/libdwfl_pic.a ../=
-libebl/libebl.a ../libelf/libelf.so -Wl,--no-whole-archive\
-> | =C2=BB------ldl -lbz2 -lz
-> | ../libdwfl/libdwfl_pic.a(linux-kernel-modules.os): In function `dwfl_li=
-nux_kernel_report_offline':
-> | /home/rchatre/poky_build/tmp/work/armv5te-poky-linux-gnueabi/elfutils-0=
-.148-r7/elfutils-0.148/libdwfl/linux-kernel-modules.c:310: undefined refere=
-nce to `fts_open'
-> | /home/rchatre/poky_build/tmp/work/armv5te-poky-linux-gnueabi/elfutils-0=
-.148-r7/elfutils-0.148/libdwfl/linux-kernel-modules.c:320: undefined refere=
-nce to `fts_read'
-> | /home/rchatre/poky_build/tmp/work/armv5te-poky-linux-gnueabi/elfutils-0=
-.148-r7/elfutils-0.148/libdwfl/linux-kernel-modules.c:391: undefined refere=
-nce to `fts_close'
-> | /home/rchatre/poky_build/tmp/work/armv5te-poky-linux-gnueabi/elfutils-0=
-.148-r7/elfutils-0.148/libdwfl/linux-kernel-modules.c:327: undefined refere=
-nce to `fts_set'
-> | ../libdwfl/libdwfl_pic.a(linux-kernel-modules.os): In function `dwfl_li=
-nux_kernel_find_elf':
-> | /home/rchatre/poky_build/tmp/work/armv5te-poky-linux-gnueabi/elfutils-0=
-.148-r7/elfutils-0.148/libdwfl/linux-kernel-modules.c:647: undefined refere=
-nce to `fts_open'
-> | /home/rchatre/poky_build/tmp/work/armv5te-poky-linux-gnueabi/elfutils-0=
-.148-r7/elfutils-0.148/libdwfl/linux-kernel-modules.c:691: undefined refere=
-nce to `fts_read'
-> | /home/rchatre/poky_build/tmp/work/armv5te-poky-linux-gnueabi/elfutils-0=
-.148-r7/elfutils-0.148/libdwfl/linux-kernel-modules.c:691: undefined refere=
-nce to `fts_read'
-> | /home/rchatre/poky_build/tmp/work/armv5te-poky-linux-gnueabi/elfutils-0=
-.148-r7/elfutils-0.148/libdwfl/linux-kernel-modules.c:740: undefined refere=
-nce to `fts_close'
-> | /home/rchatre/poky_build/tmp/work/armv5te-poky-linux-gnueabi/elfutils-0=
-.148-r7/elfutils-0.148/libdwfl/linux-kernel-modules.c:715: undefined refere=
-nce to `fts_close'
-> | /home/rchatre/poky_build/tmp/work/armv5te-poky-linux-gnueabi/elfutils-0=
-.148-r7/elfuERROR: Function failed: do_compile (see /home/rchatre/poky_buil=
-d/tmp/work/armv5te-poky-linux-gnueabi/elfutils-0.148-r7/temp/log.do_compile=
-.25599 for further information)
-> | tils-0.148/libdwfl/linux-kernel-modules.c:698: undefined reference to `=
-fts_set'
-> | ../libdwfl/libdwfl_pic.a(linux-kernel-modules.os): In function `check_m=
-odule_notes':
-> | /home/rchatre/poky_build/tmp/work/armv5te-poky-linux-gnueabi/elfutils-0=
-.148-r7/elfutils-0.148/libdwfl/linux-kernel-modules.c:532: undefined refere=
-nce to `fts_open'
-> | /home/rchatre/poky_build/tmp/work/armv5te-poky-linux-gnueabi/elfutils-0=
-.148-r7/elfutils-0.148/libdwfl/linux-kernel-modules.c:541: undefined refere=
-nce to `fts_read'
-> | /home/rchatre/poky_build/tmp/work/armv5te-poky-linux-gnueabi/elfutils-0=
-.148-r7/elfutils-0.148/libdwfl/linux-kernel-modules.c:570: undefined refere=
-nce to `fts_close'
-> | ../libebl/libebl.a(eblwstrtab.o): In function `copystrings':
-> | /home/rchatre/poky_build/tmp/work/armv5te-poky-linux-gnueabi/elfutils-0=
-.148-r7/elfutils-0.148/libebl/eblwstrtab.c:329: undefined reference to `wme=
-mpcpy'
-> | ../libebl/libebl.a(eblwstrtab.o): In function `ebl_wstrtabadd':
-> | /home/rchatre/poky_build/tmp/work/armv5te-poky-linux-gnueabi/elfutils-0=
-.148-r7/elfutils-0.148/libebl/eblwstrtab.c:249: undefined reference to `wcs=
-len'
-> | ../libebl/libebl.a(eblwstrtab.o): In function `searchstring':
-> | /home/rchatre/poky_build/tmp/work/armv5te-poky-linux-gnueabi/elfutils-0=
-.148-r7/elfutils-0.148/libebl/eblwstrtab.c:228: undefined reference to `wme=
-mcmp'
-> | collect2: ld returned 1 exit status
-> | make[3]: *** [libdw.so] Error 1
-> | make[3]: Leaving directory `/home/rchatre/poky_build/tmp/work/armv5te-p=
-oky-linux-gnueabi/elfutils-0.148-r7/elfutils-0.148/libdw'
-> | make[2]: *** [all] Error 2
-> | make[2]: Leaving directory `/home/rchatre/poky_build/tmp/work/armv5te-p=
-oky-linux-gnueabi/elfutils-0.148-r7/elfutils-0.148/libdw'
-> | make[1]: *** [all-recursive] Error 1
-> | make[1]: Leaving directory `/home/rchatre/poky_build/tmp/work/armv5te-p=
-oky-linux-gnueabi/elfutils-0.148-r7/elfutils-0.148'
-> | make: *** [all] Error 2
-> | ERROR: oe_runmake failed
->
->
-> I would appreciate any hints on how to build a poky-tiny image for ARM.
-> I would prefer to build an image that can run in the host's qemu, not
-> needing yocto to build qemu. It seems that I will have to create a new
-> machine configuration for that but wanted to see if I can get the
-> standard items built first, which is giving the problems described
-> above.
->
 
-can you do the same exercise on master and see if you can reproduce the
-problem on master too. If the problem goes away then I think I have
-some idea what
-could be wrong.
 
-> Thank you very much
+>-----Original Message-----
+>From: Hart, Darren
+>Sent: Friday, June 01, 2012 2:17 PM
+>To: Bodke, Kishore K
+>Cc: jfabernathy; yocto@yoctoproject.org
+>Subject: Re: [yocto] meta-cedartrail - serial console
 >
-> Reinette
+>On 06/01/2012 02:02 PM, Bodke, Kishore K wrote:
+>>
+>>
+>>> -----Original Message-----
+>>> From: Hart, Darren
+>>> Sent: Friday, June 01, 2012 11:12 AM
+>>> To: Bodke, Kishore K
+>>> Cc: jfabernathy; yocto@yoctoproject.org
+>>> Subject: Re: [yocto] meta-cedartrail - serial console
+>>>
+>>> On 06/01/2012 11:03 AM, Bodke, Kishore K wrote:
+>>>>
+>>>>
+>>>>> -----Original Message-----
+>>>>> From: Hart, Darren
+>>>>> Sent: Thursday, May 31, 2012 12:43 PM
+>>>>> To: jfabernathy
+>>>>> Cc: Bodke, Kishore K; yocto@yoctoproject.org
+>>>>> Subject: Re: [yocto] meta-cedartrail - serial console
+>>>>>
+>>>>> On 05/31/2012 12:32 PM, jfabernathy wrote:
+>>>>>> On 05/31/2012 02:18 PM, Bodke, Kishore K wrote:
+>>>>>>>
+>>>>>>>> -----Original Message-----
+>>>>>>>> From: yocto-bounces@yoctoproject.org [mailto:yocto-
+>>>>>>>> bounces@yoctoproject.org] On Behalf Of jfabernathy
+>>>>>>>> Sent: Thursday, May 31, 2012 9:12 AM
+>>>>>>>> To: yocto@yoctoproject.org
+>>>>>>>> Subject: [yocto] meta-cedartrail - serial console
+>>>>>>>>
+>>>>>>>> Using a DN2800MT (Marshalltown) Intel board, I'm testing the
+>>>>>>>> meta-cedartrail using edison branch and noticed an issues with the
+>>>>>>>> serial console.
+>>>>>>>>
+>>>>>>>> The cedartrail.conf in the machine directory has the following
+>>> statements:
+>>>>>>>>
+>>>>>>>> SYSLINUX_OPTS =3D "serial 0 115200"
+>>>>>>>> SERIAL_CONSOLE =3D "115200 ttyS0"
+>>>>>>>> APPEND +=3D "console=3DttyS0,115200 console=3Dtty0"
+>>>>>>>>
+>>>>>>> I just saw that Edison branch has ttyS3 enabled.
+>>>>>>>
+>>>>>>> SYSLINUX_OPTS =3D "serial 3 115200"
+>>>>>>> SERIAL_CONSOLE =3D "115200 ttyS3"
+>>>>>>> APPEND +=3D "console=3DttyS3,115200 console=3Dtty3"
+>>>>>>>
+>>>>>>> Are you looking into right branch?
+>>>>>>>
+>>>>>>> Thanks
+>>>>>>> -Kishore.
+>>>>>>>
+>>>>>>
+>>>>>> So how do you get changes in the cedartrail.conf file to take affect=
+??
+>>>>>> I edited the file and did the bitbake again, but nothing changed.  I=
+'m
+>>>>>> guessing I need a bitbake -c cleansstate "somthing"  But I don't kno=
+w
+>>>>>> what to put there to make rebuild with ttyS0.
+>>>>>>
+>>>>>
+>>>>> Ah yes, this rebuild is a bit frustrating. I believe it is the
+>>>>> task_core* tasks you need to rebuild. bitbake -u depexp -g
+>>>>> core-image-base (whatever your image is) will allow you to view which
+>>>>> task_ tasks it is building, try cleansstate'ing those and rebuilding =
+the
+>>>>> image.
+>>>>
+>>>> I had to remove the above 3 lines from cedartrail.conf and
+>>>> SERIAL_CONSOLE ?=3D "115200 ttyS0" line from conf/machine/include/ia32=
+-
+>>> base.inc
+>>>> rebuild the image.
+>>>> It is disabled now.
+>>>
+>>> Did you try with SERIAL_CONSOLE=3D"" in cedartrail.conf ?
+>>
+>> Yes. I tried this.  It is disabled.
+>>
 >
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+>Meaning you do not have to modify ia32-base.inc?
+
+I removed the  SERIAL_CONSOLE ?=3D "115200 ttyS0" from ia32-base.inc too.
+
+>
+>> I again added back in the grub.cfg, serial console hangs.
+>
+>Added what back in grub.cfg?
+
+I added back console=3DttyS0,115200 console=3Dtty0 to the grub.cfg file and=
+ rebooted=20
+to see if I can get the serial console back, but after below boot messages =
+the serial
+console hangs.
+
+Freeing unused kernel memory: 496k freed
+udev[77]: starting version 164
+EXT3-fs: barriers not enabled
+kjournald starting.  Commit interval 5 seconds
+EXT3-fs (loop0): using internal journal
+EXT3-fs (loop0): recovery complete
+EXT3-fs (loop0): mounted filesystem with ordered data mode
+udev[487]: starting version 164
+NET: Registered protocol family 10
+ADDRCONF(NETDEV_UP): eth0: link is not ready
+ip_tables: (C) 2000-2006 Netfilter Core Team
+nf_conntrack version 0.5.0 (16384 buckets, 65536 max)
+
+>
+>I thought you were disabling the serial port...
+
+I wanted to enable and disable the serial console through grub.cfg file.
+
+Thanks
+Kishore.
+
+>
+>Where does the serial console hang? In grub? During boot? At the login
+>prompt?
+>
+>
+>
+>--
+>Darren Hart
+>Intel Open Source Technology Center
+>Yocto Project - Linux Kernel
 
