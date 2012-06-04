@@ -1,31 +1,33 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-ee0-f48.google.com (mail-ee0-f48.google.com [74.125.83.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8A50FE0044A
-	for <yocto@yoctoproject.org>; Mon,  4 Jun 2012 09:51:11 -0700 (PDT)
-Received: by eekb45 with SMTP id b45so1751392eek.35
-	for <yocto@yoctoproject.org>; Mon, 04 Jun 2012 09:51:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type:content-transfer-encoding;
-	bh=tNYNZX4iN+RDjwYha0drxLvGpf6in2qhRmMMRB62c9k=;
-	b=irTRqPBQdHp5r7akm7XerBHN/5mWtf4dx+qfyXtrNCR/15ADwhCl8krdfSbfesr0D/
-	2ecrfB8V9YxGUgcn+rcKbtkr/7AyaVUPrAg7kP3vQi3gPWZaZx8/mbtlhQZG4HIoOzpv
-	dmYUeJQx4tBqUINOOPwot82r1AqwYyceY9yeHk0lUuL+9JjOOr9w5C+uEvdVLucmEjts
-	ACfsRKlBBLWf6cX4HiBAHQczAzrunrDZhgqTw2h1LyDbWWE1XB5NRIcJGJviJayJyRsw
-	SIKidY186/+Z3rctir0bu4Wtxf9eBxv2PSQ7K4Q043QSs3AjLEWI3eatE4tyAu9Y+08K
-	fwZw==
-Received: by 10.14.188.140 with SMTP id a12mr4967249een.25.1338828670232; Mon,
-	04 Jun 2012 09:51:10 -0700 (PDT)
+Return-Path: <song.liu@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D2A36E0073F
+	for <yocto@yoctoproject.org>; Mon,  4 Jun 2012 11:17:03 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 04 Jun 2012 11:16:33 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="152506789"
+Received: from orsmsx606.amr.corp.intel.com ([10.22.226.128])
+	by orsmga002.jf.intel.com with ESMTP; 04 Jun 2012 11:15:24 -0700
+Received: from orsmsx151.amr.corp.intel.com (10.22.226.38) by
+	orsmsx606.amr.corp.intel.com (10.22.226.128) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Mon, 4 Jun 2012 11:04:10 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.121]) by
+	ORSMSX151.amr.corp.intel.com ([169.254.7.30]) with mapi id
+	14.01.0355.002; Mon, 4 Jun 2012 11:04:09 -0700
+From: "Liu, Song" <song.liu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Agenda: Yocto Project Technical Team Meeting - Tuesday, June
+	05, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+Thread-Index: AQHNQnxwWSIVEQHCMEufHK8bxipCtQ==
+Date: Mon, 4 Jun 2012 18:04:09 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A48402D1E@ORSMSX101.amr.corp.intel.com>
+References: <7E680CB2A76BB8438D08CF13C09FC53A257BE410@ORSMSX101.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.138]
 MIME-Version: 1.0
-Received: by 10.14.188.11 with HTTP; Mon, 4 Jun 2012 09:50:40 -0700 (PDT)
-In-Reply-To: <alpine.DEB.2.02.1206040421000.9995@oneiric>
-References: <alpine.DEB.2.02.1206040421000.9995@oneiric>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Mon, 4 Jun 2012 09:50:40 -0700
-Message-ID: <CAMKF1spG1h_NzENJmboHGZErPBNJ2FE4QeR_EaUi6vTL7uXhaw@mail.gmail.com>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: should yocto QS guide mention SOURCE_MIRROR_URL?
+Subject: Agenda: Yocto Project Technical Team Meeting - Tuesday, June 05, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,74 +39,129 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 04 Jun 2012 16:51:11 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Mon, 04 Jun 2012 18:17:04 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jun 4, 2012 at 1:27 AM, Robert P. J. Day <rpjday@crashcourse.ca> wr=
-ote:
->
-> =C2=A0in the current QS guide, late section "Configuring the local.conf
-> File", is the advice:
->
-> "A good deal that goes into a Yocto Project build is simply
-> downloading all of the source tarballs. Maybe you have been working
-> with another build system (OpenEmbedded, Angstrom, etc) for which
-> you've built up a sizable directory of source tarballs. Or perhaps
-> someone else has such a directory for which you have read access. If
-> so, you can save time by adding the PREMIRRORS statement to your
-> configuration file so that local directories are first checked for
-> existing tarballs before running out to the net:
->
-> =C2=A0 =C2=A0 PREMIRRORS_prepend =3D "\
-> =C2=A0 =C2=A0 git://.*/.* file:///home/you/dl/ \n \
-> =C2=A0 =C2=A0 svn://.*/.* file:///home/you/dl/ \n \
-> =C2=A0 =C2=A0 cvs://.*/.* file:///home/you/dl/ \n \
-> =C2=A0 =C2=A0 ftp://.*/.* file:///home/you/dl/ \n \
-> =C2=A0 =C2=A0 http://.*/.* file:///home/you/dl/ \n \
-> =C2=A0 =C2=A0 https://.*/.* file:///home/you/dl/ \n" =C2=A0"
->
->
-> =C2=A0should that be simplified to use SOURCE_MIRROR_URL, which is what i
-> use:
->
-> SOURCE_MIRROR_URL ?=3D "file:///home/rpjday/dl/"
-> INHERIT +=3D "own-mirrors"
-> BB_GENERATE_MIRROR_TARBALLS =3D "1"
-> # BB_NO_NETWORK =3D "1"
->
-> rday
->
-> p.s. =C2=A0does SOURCE_MIRROR_URL accept multiple URLs? =C2=A0i don't see=
- that
-> mentioned anywhere, but maybe i just missed it.
+Agenda:
+=A0
+* Opens collection - 5 min (Song)
+* 1.2.1 update - 10 min (Scott Garman)
+* 1.1.2 update - 10 min (Josh/Beth)
+* Yocto 1.3 status  - 10 min (Song/team)
+* SWAT team rotation: Paul -> Jessica
+* Opens - 5 min
+* Team sharing - 20 min
 
 
-I think it will. Since it becomes PREMIRRORS and fetcher code in
-bitbake checks for list
-of mirrors.
->
-> --
->
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> Robert P. J. Day =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 Ottawa, Ontario, CA=
-NADA
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0http://crashcourse.ca
->
-> Twitter: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 http:=
-//twitter.com/rpjday
-> LinkedIn: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 http://ca.linkedin.com/in/rpjday
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+-----Original Appointment-----
+
+
+Conference details
+Conference name:=20
+Yocto Technical Team
+Conference date/start time:=20
+Tue Jun 28, 2011 at 10:00 AM Central Daylight Time
+Participants:=20
+30
+Duration:=20
+60 minutes
+Participant passcode:=20
+49611427
+Dial-in number:=20
+1.972.995.7777
+US Toll Free number:=20
+1.877.561.6828
+BlackBerry users, click this link to join your conference as a chairperson:
+1.972.995.7777x67184230#
+BlackBerry users, click this link to join your conference as a participant:
+1.972.995.7777x49611427#
+=A0
+Depending on where you are dialing from, either your BlackBerry will pause =
+and enter the passcode automatically or you will be prompted to click again=
+ to dial the passcode.
+
+Local and Global Access Numbers=20
+
+
+Country
+Dial-in number
+Australia:=20
+1800 636 843
+Czech Republic:=20
+242 430 350
+China (Beijing):=20
+From office dial 8-9957777 or 8784277
+Beijing Out of Office dial 5878 4277
+China (Shanghai):=20
+From office dial 8-9957777 or 3073322
+Shanghai Out of Office dial 2307 3322
+China (Shenzen):=20
+From office dial 8-9957777 or 6007877
+Shenzen Out of Office dial 2600 7877
+China (Other Cities):=20
+From IP phone dial 8-9957777
+Other cities - Non IP phone dial 021-23073322
+Denmark:=20
+8060 1400
+Finland:=20
+09 41333477
+France:=20
+0497 275888
+Germany:=20
+08161 803232
+Holland:=20
+030 2417490
+India:=20
+BSNL subscribers use 1800 425 9996 (Toll Free) Airtel subscribers use 0008 =
+009 861 212 (Toll Free) From TI Campus use 89957777 Others use 2509 9555 (L=
+andline within Bangalore) or
+80 2509 9555 (Outside Bangalore)
+Israel:=20
+09 790 6715
+Italy:=20
+039 69061234 (039 is local city code not country code)
+Japan:=20
+From TI Campus use 8 995 7777
+Outside TI use 03 4331 3777
+Malaysia:=20
+From IP phone dial 2643799
+From Kuala Lumpur dial 4264 3799
+Outside Kuala Lumpur dial (03)4264 3799
+Norway:=20
+2 295 8744
+Philippines:=20
+From Baguio City use 4471177
+From Metro Manila area use 8702477
+Singapore:=20
+From IP phone dial 3894777
+Outside TI use 6389 4777
+South Korea:=20
+From IP phone dial 5606998
+From Seoul dial 5606998
+Outside Seoul dial (02)5606998
+Sweden:=20
+08 58755577
+Taiwan:=20
+From IP phone dial 1363
+From Taipei dial 2241 1363
+Outside Taipei dial (02)2241 1363
+Turkey:=20
+Landline Only dial 0811 288 0001
+then enter 877 633 1123
+UK:=20
+01604 663003
+US:=20
+972 995 7777 or 1877 561 6828
+
+Recurring conferences
+First scheduled conference:=20
+Tue Jun 28, 2011
+Recurrence frequency:=20
+Weekly - Every 1 week(s) on Tuesday
+Recurrence ends:=20
+End on Fri Jun 22, 2012, 10:40 AM CDT
+
+
 
