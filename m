@@ -1,39 +1,25 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BD614E013A6
-	for <yocto@yoctoproject.org>; Tue,  5 Jun 2012 08:01:58 -0700 (PDT)
-Received: from cpe00259c3f7b80-cm001cea397c84.cpe.net.cable.rogers.com
-	([99.246.186.249]:43967 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.77) (envelope-from <rpjday@crashcourse.ca>)
-	id 1SbvGf-0002du-99; Tue, 05 Jun 2012 11:01:57 -0400
-Date: Tue, 5 Jun 2012 11:01:50 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: "Wang, Shane" <shane.wang@intel.com>
-In-Reply-To: <3AB6CE7F274E534CAFD089D127A8A1FC23BCA9CF@SHSMSX102.ccr.corp.intel.com>
-Message-ID: <alpine.DEB.2.02.1206051100550.2774@oneiric>
-References: <alpine.DEB.2.02.1206031757260.20352@oneiric>
-	<alpine.DEB.2.02.1206040435060.9995@oneiric>
-	<3AB6CE7F274E534CAFD089D127A8A1FC23BCA4CB@SHSMSX102.ccr.corp.intel.com>
-	<CAMKF1srmT8221t=XuXJ-fReqwCK3QQb8ri2rxDjb8bHwFUbh9A@mail.gmail.com>
-	<3AB6CE7F274E534CAFD089D127A8A1FC23BCA672@SHSMSX102.ccr.corp.intel.com>
-	<alpine.DEB.2.02.1206050929001.4572@oneiric>
-	<3AB6CE7F274E534CAFD089D127A8A1FC23BCA9CF@SHSMSX102.ccr.corp.intel.com>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <mark.hatle@windriver.com>
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 94A18E013A6
+	for <yocto@yoctoproject.org>; Tue,  5 Jun 2012 08:59:26 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail1.windriver.com (8.14.3/8.14.3) with ESMTP id q55FxQvH018007
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Tue, 5 Jun 2012 08:59:26 -0700 (PDT)
+Received: from msp-dhcp45.wrs.com (172.25.34.45) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
+	Tue, 5 Jun 2012 08:59:25 -0700
+Message-ID: <4FCE2CDC.3030207@windriver.com>
+Date: Tue, 5 Jun 2012 10:59:24 -0500
+From: Mark Hatle <mark.hatle@windriver.com>
+Organization: Wind River Systems
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6;
+	rv:12.0) Gecko/20120428 Thunderbird/12.0.1
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: something about gtk+-2.24.8.tar.bz2 that requires constant downloading?
+To: <yocto@yoctoproject.org>
+References: <4FCC2833.5060508@linux.intel.com>
+In-Reply-To: <4FCC2833.5060508@linux.intel.com>
+Subject: Re: [RFC] Split and revamp distro_tracking_fields.inc
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,51 +31,124 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 05 Jun 2012 15:01:59 -0000
-Content-Type: MULTIPART/MIXED; BOUNDARY="8323329-680880399-1338908517=:2774"
+X-List-Received-Date: Tue, 05 Jun 2012 15:59:26 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
---8323329-680880399-1338908517=:2774
-Content-Type: TEXT/PLAIN; charset=utf-8
-Content-Transfer-Encoding: QUOTED-PRINTABLE
-
-On Tue, 5 Jun 2012, Wang, Shane wrote:
-
-> Robert P. J. Day wrote on=C2=A02012-06-05:
-
-> >   at this point, has the problem been identified?  or does this still
-> > require a bugzilla submission?  it would appear that the issue
-> > involves any package with a "+" in the package name which, for now,
-> > appears to be just that gtk+ package.  would any other special
-> > characters trigger this?  that's the only package i've tripped over
-> > that caused this behaviour.
-> >
-> > rday
-> >
+On 6/3/12 10:14 PM, Saul Wold wrote:
 >
-> Yes, it has been identified. If you can't submit a bug, I can do.
-> Yes, I believe other special characters will trigger that.
+> Folks,
 >
-> Just because I am not familiar with all fetch code, I can fix it for
-> gtk+ now but I am not sure whether that fix will bring any
-> regression bugs. Give me more time.
+> As this project has progressed, we have found the distro_tracking_fields
+> to become a bit cumbersome and dated, I want to therefore propose we get
+> rid of it ;-), nah that would be too easy!
+>
+> I would like to propose the following, split it into smaller files with
+> more specific meaning, and move some of the data contained in the
+> original file into the recipes directly. Some of the fields will be
+> deprecated, others renamed and finally others will be used for a burn
+> down list of things to be checked or converted to be automagically
+> generated.
+>
+> Currently the data contained in these fields is used to generate the
+> database that the Package reporting system uses and will continue to use
+> in it's new form. (https://packages.yoctoproject.org) We also use the
+> data for tracking the recipe updating to ensure we keep the system as up
+> to date as possible.
+>
+> The new split would make this data part of Poky in meta-yocto, and not
+> in oe-core (other than the modifications to the recipes). The split
+> would be as follows:
+>
+> maintainers.inc
+>    - RECIPE_MAINTAINER = "Full Name<user@example.com>"
+>    - This is the name of the person currently watching the upstream and
+>      updating the recipe and/or fixing bugs filed against, this person
+>      should also help review incoming patches for that recipe.
+>    - NOTE to REVIEWERS: I still need to better define what the Roles and
+> Responsibilities of a maintainer are for recipes!
+>
+> recipe_color.inc
+>    - RECIPE_COLOR = "green|yellow|red" - defaults to green
+>    - Burn down list of recipes that need to be checked for general issues
+>    - red means there are some issues that might be legacy or function
+>      need review
+>    - yellow means recipe needs review
+>    - once reviewed and issues resolved the recipe's entry can be removed
+>
+> upstream_tracking.inc
+>    - RECIPE_UPSTREAM_VERSION = "<version>"
+>    - RECIPE_UPSTREAM_DATE = "Mmm, dd, yyyy"
+>      - Version info from the Upstream, mostly this can be generated, but
+>        in some cases we need to track it manually, this should just be
+>        the manually tracked info, it currently contains more than that,
+>        this will be corrected over time as we can generate it
+>        automatically
+>    - RECIPE_NO_UPDATE_REASON = "Free form text"
+>      - Used by the package and update tracking to explain why a recipe
+>        should not be updated.
+>
 
-  ok, i'll leave it in your capable hands and go find something else
-to nitpick.
+No real comments on the above.. I think that is all fine.
 
-rday
+> Insert into recipe.bb or .inc files:
 
---=20
+My biggest concern with this is that any fields only get updated when the recipe 
+itself is changed in some way... package uprev or modification.  Arbitrary 
+changes to the fields will cause checksums (file and otherwise) to invalidate 
+causing reparsing and possibly even package rebuilds.  Both of which take 
+additional time....
 
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
+>    - NOTES =<free form text>
+>      - was RECIPE_COMMENTS
+>      - Information that would useful in the package reporting system, but
+>        not part of the DESCRIPTION, could be existing comments
 
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+Right now anything tricky with an uprev or comments about why it was done a 
+certain way are generally stored as comments in the recipe.  Formalizing it 
+would be nice.  Only concern with this is the word "NOTES" seems awfully generic.
 
---8323329-680880399-1338908517=:2774--
+>    - CHECK_DATE = "Mmm, dd, yyyy"
+>      - was RECIPE_MANUAL_CHECK_DATE
+>      - The date when the upstream was last checked, specifically for the
+>        Manual check process when a recipe's upstream could not be checked
+>        automagically, this should become fewer and fewer as we determine
+>        ways to check.
+
+This is a primary concern.  If this is updated each time someone checks the 
+recipes are still current and don't need modifications -- we're forcing a 
+modification into the system.  One alternative approach:
+
+Document the date when the recipe was upreved.  Then in a separate file, 
+document the check dates.  Then the check dates and the uprev dates can be 
+compared and it'll be easier to watch to see if things are being neglected or 
+let go out of date.
+
+(Note, using git, it should be possible to also discover the data of the uprev 
+as well....)
+
+>    - DISTRO_PN_ALIAS = "Distro:package alias, Distro:package alias, ..."
+>      - This is a comma separated list of mainline distros, such as
+>        Fedora, Debian, OpenSuse which also ship a similar package, but
+>        with a different name possibly.
+>      - Used by package reporting system and is fairly static
+>      - Many Commercial users would like to know that a given package is
+>        already shipping with other distributions
+
+I've not seen this requirement from any of my customers.  I can understand the 
+uses of this -- how widely used is this?  if it's not, then chances are there 
+may be licensing or functional issues with the component...  But I'm not sure if 
+this is useful, or if the OE-core contributors would want the additional work 
+involved.
+
+> Any fields not mentioned above will be deprecated.
+>
+> The first three files are ready to merged, I need to finish updating the
+> recipes for the last part.  This will not require any PR bumps as there
+> is no packaging changes, just metadata that is used by the package
+> reporting system.
+>
+>
+> Comments?
+
+
