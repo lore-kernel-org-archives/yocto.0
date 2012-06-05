@@ -1,35 +1,38 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5964BE013A6
-	for <yocto@yoctoproject.org>; Tue,  5 Jun 2012 06:32:58 -0700 (PDT)
-Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
-	([99.241.91.63]:35777 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.77) (envelope-from <rpjday@crashcourse.ca>)
-	id 1SbtsW-0005mK-4m; Tue, 05 Jun 2012 09:32:56 -0400
-Date: Tue, 5 Jun 2012 09:32:50 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: "Wang, Shane" <shane.wang@intel.com>
-In-Reply-To: <3AB6CE7F274E534CAFD089D127A8A1FC23BCA672@SHSMSX102.ccr.corp.intel.com>
-Message-ID: <alpine.DEB.2.02.1206050929001.4572@oneiric>
+Return-Path: <shane.wang@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7AF88E013A6
+	for <yocto@yoctoproject.org>; Tue,  5 Jun 2012 07:51:00 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 05 Jun 2012 07:50:59 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="151854819"
+Received: from azsmsx601.amr.corp.intel.com ([10.2.121.193])
+	by azsmga001.ch.intel.com with ESMTP; 05 Jun 2012 07:50:59 -0700
+Received: from shsmsx101.ccr.corp.intel.com (10.239.4.153) by
+	azsmsx601.amr.corp.intel.com (10.2.121.193) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Tue, 5 Jun 2012 07:50:58 -0700
+Received: from shsmsx102.ccr.corp.intel.com ([169.254.2.56]) by
+	SHSMSX101.ccr.corp.intel.com ([169.254.1.90]) with mapi id
+	14.01.0355.002; Tue, 5 Jun 2012 22:50:56 +0800
+From: "Wang, Shane" <shane.wang@intel.com>
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>
+Thread-Topic: [yocto] something about gtk+-2.24.8.tar.bz2 that requires
+	constant downloading?
+Thread-Index: AQHNQx+5ziOewFvn2E2rQLOvnGEAGpbrzg2Q
+Date: Tue, 5 Jun 2012 14:50:55 +0000
+Message-ID: <3AB6CE7F274E534CAFD089D127A8A1FC23BCA9CF@SHSMSX102.ccr.corp.intel.com>
 References: <alpine.DEB.2.02.1206031757260.20352@oneiric>
 	<alpine.DEB.2.02.1206040435060.9995@oneiric>
 	<3AB6CE7F274E534CAFD089D127A8A1FC23BCA4CB@SHSMSX102.ccr.corp.intel.com>
 	<CAMKF1srmT8221t=XuXJ-fReqwCK3QQb8ri2rxDjb8bHwFUbh9A@mail.gmail.com>
 	<3AB6CE7F274E534CAFD089D127A8A1FC23BCA672@SHSMSX102.ccr.corp.intel.com>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+	<alpine.DEB.2.02.1206050929001.4572@oneiric>
+In-Reply-To: <alpine.DEB.2.02.1206050929001.4572@oneiric>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.239.127.40]
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
 Cc: Yocto discussion list <yocto@yoctoproject.org>
 Subject: Re: something about gtk+-2.24.8.tar.bz2 that requires constant downloading?
 X-BeenThere: yocto@yoctoproject.org
@@ -43,71 +46,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 05 Jun 2012 13:32:58 -0000
-Content-Type: MULTIPART/MIXED; BOUNDARY="8323329-391115766-1338903175=:4572"
+X-List-Received-Date: Tue, 05 Jun 2012 14:51:00 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
---8323329-391115766-1338903175=:4572
-Content-Type: TEXT/PLAIN; charset=utf-8
-Content-Transfer-Encoding: QUOTED-PRINTABLE
+Um9iZXJ0IFAuIEouIERheSB3cm90ZSBvbsKgMjAxMi0wNi0wNToNCj4gICBhdCB0aGlzIHBvaW50
+LCBoYXMgdGhlIHByb2JsZW0gYmVlbiBpZGVudGlmaWVkPyAgb3IgZG9lcyB0aGlzIHN0aWxsDQo+
+IHJlcXVpcmUgYSBidWd6aWxsYSBzdWJtaXNzaW9uPyAgaXQgd291bGQgYXBwZWFyIHRoYXQgdGhl
+IGlzc3VlDQo+IGludm9sdmVzIGFueSBwYWNrYWdlIHdpdGggYSAiKyIgaW4gdGhlIHBhY2thZ2Ug
+bmFtZSB3aGljaCwgZm9yIG5vdywNCj4gYXBwZWFycyB0byBiZSBqdXN0IHRoYXQgZ3RrKyBwYWNr
+YWdlLiAgd291bGQgYW55IG90aGVyIHNwZWNpYWwNCj4gY2hhcmFjdGVycyB0cmlnZ2VyIHRoaXM/
+ICB0aGF0J3MgdGhlIG9ubHkgcGFja2FnZSBpJ3ZlIHRyaXBwZWQgb3Zlcg0KPiB0aGF0IGNhdXNl
+ZCB0aGlzIGJlaGF2aW91ci4NCj4gDQo+IHJkYXkNCj4NCg0KWWVzLCBpdCBoYXMgYmVlbiBpZGVu
+dGlmaWVkLiBJZiB5b3UgY2FuJ3Qgc3VibWl0IGEgYnVnLCBJIGNhbiBkby4NClllcywgSSBiZWxp
+ZXZlIG90aGVyIHNwZWNpYWwgY2hhcmFjdGVycyB3aWxsIHRyaWdnZXIgdGhhdC4NCg0KSnVzdCBi
+ZWNhdXNlIEkgYW0gbm90IGZhbWlsaWFyIHdpdGggYWxsIGZldGNoIGNvZGUsIEkgY2FuIGZpeCBp
+dCBmb3IgZ3RrKyBub3cgYnV0IEkgYW0gbm90IHN1cmUgd2hldGhlciB0aGF0IGZpeCB3aWxsIGJy
+aW5nIGFueSByZWdyZXNzaW9uIGJ1Z3MuDQpHaXZlIG1lIG1vcmUgdGltZS4NCg0KLS0NClNoYW5l
+DQo=
 
-On Tue, 5 Jun 2012, Wang, Shane wrote:
-
->
-> Khem Raj wrote on=C2=A02012-06-05:
->
-> > On Mon, Jun 4, 2012 at 10:04 PM, Wang, Shane <shane.wang@intel.com>
-> > wrote:
-> >> Yeah, Robert,
-> >>
-> >> You found a bug in bitbake. In the fetch code, local directory
-> >> /home/rpjday/dl/gtk+-2.24.8.tar.bz2 is decoded as
-> >> /home/rpjday/dl/gtk%2B-2.24.8.tar.bz2 by newuri =3D uri_replace(origud=
-,
-> >> find, replace, ld), which is line 480 in lib/bb/fetch2/__init__.py. An=
-d
-> >> later on it is checked whether or not existed by if not
-> >> os.path.exists(newpath) and path.find("*") =3D=3D -1:, which is line 6=
-1 in
-> >> lib/bb/fetch2/local.py.
-> >>
-> >> Actually the directory /home/rpjday/dl/gtk+-2.24.8.tar.bz2 is there, b=
-ut
-> > /home/rpjday/dl/gtk%2B-2.24.8.tar.bz2 can't be found by bitbake code. T=
-hat
-> > is the problem. Therefore, Gtk+ shouldn't be decoded as gtk%2B.
-> >>
-> >> I am not familiar with the whole fetch code and hope someone else can
-> > correct it, so can you please file a bug first?
-> >
-> > its probably due to use of urllib.unquote in decodeurl and not keeping
-> > the unquoted name for subsequent use
-> >>
-> >> --
-> >> Shane
->
-> Correct.
-
-  at this point, has the problem been identified?  or does this still
-require a bugzilla submission?  it would appear that the issue
-involves any package with a "+" in the package name which, for now,
-appears to be just that gtk+ package.  would any other special
-characters trigger this?  that's the only package i've tripped over
-that caused this behaviour.
-
-rday
-
---=20
-
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-
---8323329-391115766-1338903175=:4572--
