@@ -1,25 +1,24 @@
-Return-Path: <mark.hatle@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 94A18E013A6
-	for <yocto@yoctoproject.org>; Tue,  5 Jun 2012 08:59:26 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail1.windriver.com (8.14.3/8.14.3) with ESMTP id q55FxQvH018007
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Tue, 5 Jun 2012 08:59:26 -0700 (PDT)
-Received: from msp-dhcp45.wrs.com (172.25.34.45) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Tue, 5 Jun 2012 08:59:25 -0700
-Message-ID: <4FCE2CDC.3030207@windriver.com>
-Date: Tue, 5 Jun 2012 10:59:24 -0500
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6;
-	rv:12.0) Gecko/20120428 Thunderbird/12.0.1
+Return-Path: <josh@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8AE6EE013A6
+	for <yocto@yoctoproject.org>; Tue,  5 Jun 2012 11:59:10 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 05 Jun 2012 11:59:10 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="148570346"
+Received: from unknown (HELO [10.255.12.106]) ([10.255.12.106])
+	by orsmga001.jf.intel.com with ESMTP; 05 Jun 2012 11:59:06 -0700
+Message-ID: <4FCE56F8.5070308@linux.intel.com>
+Date: Tue, 05 Jun 2012 11:59:04 -0700
+From: Joshua Lock <josh@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:12.0) Gecko/20120430 Thunderbird/12.0.1
 MIME-Version: 1.0
-To: <yocto@yoctoproject.org>
-References: <4FCC2833.5060508@linux.intel.com>
-In-Reply-To: <4FCC2833.5060508@linux.intel.com>
-Subject: Re: [RFC] Split and revamp distro_tracking_fields.inc
+To: b19537@freescale.com
+References: <1338867148-11213-1-git-send-email-b19537@freescale.com>
+In-Reply-To: <1338867148-11213-1-git-send-email-b19537@freescale.com>
+Cc: yocto@yoctoproject.org, msm@freescale.com
+Subject: Re: [PATCH] fix the build issue of ppp
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,124 +30,95 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 05 Jun 2012 15:59:26 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+X-List-Received-Date: Tue, 05 Jun 2012 18:59:10 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 6/3/12 10:14 PM, Saul Wold wrote:
+On 04/06/12 20:32, b19537@freescale.com wrote:
+> From: Zhenhua Luo<b19537@freescale.com>
 >
-> Folks,
+>      this patch is for edison branch of poky
 >
-> As this project has progressed, we have found the distro_tracking_fields
-> to become a bit cumbersome and dated, I want to therefore propose we get
-> rid of it ;-), nah that would be too easy!
+>      fix following build issue of ppp:
+>          make[2]: Entering directory `/local/home/b19537/workspace/sdk-devel/build_p4080ds_release/tmp/work/ppce500mc-fsl-linux/ppp-2.4.5-r2/ppp-2.4.5/pppd/plugins/rp-pppoe'
+>          powerpc-fsl-linux-gcc  -m32 -mhard-float  -mcpu=e500mc  -Wl,-O1 -Wl,--hash-style=gnu -Wl,--as-needed --sysroot=/local/home/b19537/workspace/sdk-devel/build_p4080ds_release/tmp/sysroots/p4080ds -O2 -g -I../../../include '-DRP_VERSION="3.8p"' -I../../.. -c -o plugin.o -fPIC plugin.c
+>          In file included from plugin.c:53:0:
+>          /local/home/b19537/workspace/sdk-devel/build_p4080ds_release/tmp/sysroots/p4080ds/usr/include/linux/if_pppox.h:85:25: error: field 'pppol2tp' has incomplete type
+>          make[2]: *** [plugin.o] Error 1
+>          make[2]: *** Waiting for unfinished jobs....
+>          make[2]: Leaving directory `/local/home/b19537/workspace/sdk-devel/build_p4080ds_release/tmp/work/ppce500mc-fsl-linux/ppp-2.4.5-r2/ppp-2.4.5/pppd/plugins/rp-pppoe'
+
+PPP builds fine here, can you share some more information such as what 
+causes the issue and where this patch has been tested?
+
+Further, there's no header on the patch. Please see the guidelines at:
+
+https://wiki.yoctoproject.org/wiki/Contribution_Guidelines
+
+Cheers,
+Joshua
+
 >
-> I would like to propose the following, split it into smaller files with
-> more specific meaning, and move some of the data contained in the
-> original file into the recipes directly. Some of the fields will be
-> deprecated, others renamed and finally others will be used for a burn
-> down list of things to be checked or converted to be automagically
-> generated.
+> Signed-off-by: Zhenhua Luo<b19537@freescale.com>
+> ---
+>   .../ppp-fix-build-issue-of-rp-pppoe.so.patch       |   23 ++++++++++++++++++++
+>   meta/recipes-connectivity/ppp/ppp_2.4.5.bb         |    3 +-
+>   2 files changed, 25 insertions(+), 1 deletions(-)
+>   create mode 100644 meta/recipes-connectivity/ppp/ppp-2.4.5/ppp-fix-build-issue-of-rp-pppoe.so.patch
 >
-> Currently the data contained in these fields is used to generate the
-> database that the Package reporting system uses and will continue to use
-> in it's new form. (https://packages.yoctoproject.org) We also use the
-> data for tracking the recipe updating to ensure we keep the system as up
-> to date as possible.
+> diff --git a/meta/recipes-connectivity/ppp/ppp-2.4.5/ppp-fix-build-issue-of-rp-pppoe.so.patch b/meta/recipes-connectivity/ppp/ppp-2.4.5/ppp-fix-build-issue-of-rp-pppoe.so.patch
+> new file mode 100644
+> index 0000000..ed2141a
+> --- /dev/null
+> +++ b/meta/recipes-connectivity/ppp/ppp-2.4.5/ppp-fix-build-issue-of-rp-pppoe.so.patch
+> @@ -0,0 +1,23 @@
+> +--- a/include/linux/if_pppol2tp.h	2012-06-04 04:22:37.966729643 -0500
+> ++++ b/include/linux/if_pppol2tp.h	2012-06-04 04:31:04.325905458 -0500
+> +@@ -32,6 +32,20 @@
+> + 	__u16 d_tunnel, d_session;	/* For sending outgoing packets */
+> + };
+> +
+> ++/* The L2TPv3 protocol changes tunnel and session ids from 16 to 32
+> ++ * bits. So we need a different sockaddr structure.
+> ++ */
+> ++struct pppol2tpv3_addr {
+> ++       pid_t   pid;                    /* pid that owns the fd.
+> ++                                        * 0 =>  current */
+> ++       int     fd;                     /* FD of UDP or IP socket to use */
+> ++
+> ++       struct sockaddr_in addr;        /* IP address and port to send to */
+> ++
+> ++       __u32 s_tunnel, s_session;      /* For matching incoming packets */
+> ++       __u32 d_tunnel, d_session;      /* For sending outgoing packets */
+> ++};
+> ++
+> + /* Socket options:
+> +  * DEBUG	- bitmask of debug message categories
+> +  * SENDSEQ	- 0 =>  don't send packets with sequence numbers
+> diff --git a/meta/recipes-connectivity/ppp/ppp_2.4.5.bb b/meta/recipes-connectivity/ppp/ppp_2.4.5.bb
+> index 72464bf..6c4bd08 100644
+> --- a/meta/recipes-connectivity/ppp/ppp_2.4.5.bb
+> +++ b/meta/recipes-connectivity/ppp/ppp_2.4.5.bb
+> @@ -10,7 +10,7 @@ LIC_FILES_CHKSUM = "file://pppd/ccp.c;beginline=1;endline=29;md5=e2c43fe6e81ff77
+>                       file://pppd/plugins/passprompt.c;beginline=1;endline=10;md5=3bcbcdbf0e369c9a3e0b8c8275b065d8 \
+>                       file://pppd/tdb.c;beginline=1;endline=27;md5=4ca3a9991b011038d085d6675ae7c4e6 \
+>                       file://chat/chat.c;beginline=1;endline=15;md5=0d374b8545ee5c62d7aff1acbd38add2"
+> -PR = "r2"
+> +PR = "r3"
 >
-> The new split would make this data part of Poky in meta-yocto, and not
-> in oe-core (other than the modifications to the recipes). The split
-> would be as follows:
->
-> maintainers.inc
->    - RECIPE_MAINTAINER = "Full Name<user@example.com>"
->    - This is the name of the person currently watching the upstream and
->      updating the recipe and/or fixing bugs filed against, this person
->      should also help review incoming patches for that recipe.
->    - NOTE to REVIEWERS: I still need to better define what the Roles and
-> Responsibilities of a maintainer are for recipes!
->
-> recipe_color.inc
->    - RECIPE_COLOR = "green|yellow|red" - defaults to green
->    - Burn down list of recipes that need to be checked for general issues
->    - red means there are some issues that might be legacy or function
->      need review
->    - yellow means recipe needs review
->    - once reviewed and issues resolved the recipe's entry can be removed
->
-> upstream_tracking.inc
->    - RECIPE_UPSTREAM_VERSION = "<version>"
->    - RECIPE_UPSTREAM_DATE = "Mmm, dd, yyyy"
->      - Version info from the Upstream, mostly this can be generated, but
->        in some cases we need to track it manually, this should just be
->        the manually tracked info, it currently contains more than that,
->        this will be corrected over time as we can generate it
->        automatically
->    - RECIPE_NO_UPDATE_REASON = "Free form text"
->      - Used by the package and update tracking to explain why a recipe
->        should not be updated.
->
+>   SRC_URI = "http://ppp.samba.org/ftp/ppp/ppp-${PV}.tar.gz \
+>              file://makefile.patch \
+> @@ -18,6 +18,7 @@ SRC_URI = "http://ppp.samba.org/ftp/ppp/ppp-${PV}.tar.gz \
+>              file://pppd-resolv-varrun.patch \
+>              file://enable-ipv6.patch \
+>              file://makefile-remove-hard-usr-reference.patch \
+> +           file://ppp-fix-build-issue-of-rp-pppoe.so.patch \
+>              file://pon \
+>              file://poff \
+>              file://init \
 
-No real comments on the above.. I think that is all fine.
-
-> Insert into recipe.bb or .inc files:
-
-My biggest concern with this is that any fields only get updated when the recipe 
-itself is changed in some way... package uprev or modification.  Arbitrary 
-changes to the fields will cause checksums (file and otherwise) to invalidate 
-causing reparsing and possibly even package rebuilds.  Both of which take 
-additional time....
-
->    - NOTES =<free form text>
->      - was RECIPE_COMMENTS
->      - Information that would useful in the package reporting system, but
->        not part of the DESCRIPTION, could be existing comments
-
-Right now anything tricky with an uprev or comments about why it was done a 
-certain way are generally stored as comments in the recipe.  Formalizing it 
-would be nice.  Only concern with this is the word "NOTES" seems awfully generic.
-
->    - CHECK_DATE = "Mmm, dd, yyyy"
->      - was RECIPE_MANUAL_CHECK_DATE
->      - The date when the upstream was last checked, specifically for the
->        Manual check process when a recipe's upstream could not be checked
->        automagically, this should become fewer and fewer as we determine
->        ways to check.
-
-This is a primary concern.  If this is updated each time someone checks the 
-recipes are still current and don't need modifications -- we're forcing a 
-modification into the system.  One alternative approach:
-
-Document the date when the recipe was upreved.  Then in a separate file, 
-document the check dates.  Then the check dates and the uprev dates can be 
-compared and it'll be easier to watch to see if things are being neglected or 
-let go out of date.
-
-(Note, using git, it should be possible to also discover the data of the uprev 
-as well....)
-
->    - DISTRO_PN_ALIAS = "Distro:package alias, Distro:package alias, ..."
->      - This is a comma separated list of mainline distros, such as
->        Fedora, Debian, OpenSuse which also ship a similar package, but
->        with a different name possibly.
->      - Used by package reporting system and is fairly static
->      - Many Commercial users would like to know that a given package is
->        already shipping with other distributions
-
-I've not seen this requirement from any of my customers.  I can understand the 
-uses of this -- how widely used is this?  if it's not, then chances are there 
-may be licensing or functional issues with the component...  But I'm not sure if 
-this is useful, or if the OE-core contributors would want the additional work 
-involved.
-
-> Any fields not mentioned above will be deprecated.
->
-> The first three files are ready to merged, I need to finish updating the
-> recipes for the last part.  This will not require any PR bumps as there
-> is no packaging changes, just metadata that is used by the package
-> reporting system.
->
->
-> Comments?
-
+-- 
+Joshua Lock
+         Yocto Project
+         Intel Open Source Technology Centre
 
