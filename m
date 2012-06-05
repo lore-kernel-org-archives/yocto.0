@@ -1,38 +1,35 @@
-Return-Path: <shane.wang@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0335EE0044A
-	for <yocto@yoctoproject.org>; Tue,  5 Jun 2012 00:37:48 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 05 Jun 2012 00:37:48 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="151693134"
-Received: from azsmsx601.amr.corp.intel.com ([10.2.121.193])
-	by azsmga001.ch.intel.com with ESMTP; 05 Jun 2012 00:37:48 -0700
-Received: from shsmsx101.ccr.corp.intel.com (10.239.4.153) by
-	azsmsx601.amr.corp.intel.com (10.2.121.193) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Tue, 5 Jun 2012 00:37:48 -0700
-Received: from shsmsx102.ccr.corp.intel.com ([169.254.2.56]) by
-	SHSMSX101.ccr.corp.intel.com ([169.254.1.90]) with mapi id
-	14.01.0355.002; Tue, 5 Jun 2012 15:37:45 +0800
-From: "Wang, Shane" <shane.wang@intel.com>
-To: Khem Raj <raj.khem@gmail.com>
-Thread-Topic: [yocto] something about gtk+-2.24.8.tar.bz2 that requires
-	constant downloading?
-Thread-Index: AQHNQuhsFmXH7ZZOZEywa+SNSlqiOZbrVk3Q
-Date: Tue, 5 Jun 2012 07:37:45 +0000
-Message-ID: <3AB6CE7F274E534CAFD089D127A8A1FC23BCA672@SHSMSX102.ccr.corp.intel.com>
-References: <alpine.DEB.2.02.1206031757260.20352@oneiric>
-	<alpine.DEB.2.02.1206040435060.9995@oneiric>
-	<3AB6CE7F274E534CAFD089D127A8A1FC23BCA4CB@SHSMSX102.ccr.corp.intel.com>
-	<CAMKF1srmT8221t=XuXJ-fReqwCK3QQb8ri2rxDjb8bHwFUbh9A@mail.gmail.com>
-In-Reply-To: <CAMKF1srmT8221t=XuXJ-fReqwCK3QQb8ri2rxDjb8bHwFUbh9A@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.239.127.40]
+Return-Path: <navani.srivastava@gmail.com>
+Received: from mail-bk0-f48.google.com (mail-bk0-f48.google.com
+	[209.85.214.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EDEECE0073F
+	for <yocto@yoctoproject.org>; Tue,  5 Jun 2012 05:18:42 -0700 (PDT)
+Received: by bkcjf20 with SMTP id jf20so6250975bkc.35
+	for <yocto@yoctoproject.org>; Tue, 05 Jun 2012 05:18:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=Dxi2drfuzknzLgK16P0r+Qc8mv6/pupw7/IGF3CGr+s=;
+	b=ZTe0SE2yJ+7usLR32pPZxyp9omwTDxphdaJikAkg2clYUWPUWIQhJt8sLnvxH4WBC8
+	cTFXipnejLAlqaNfNVRyVY87GnnguO2Ic3rIV8U4nwzptqK6RNxGYWGYoa4R/YBaD4I0
+	EdRPgz6FkMsMm9j23sEzPw8BO6gFIzY2ekAd2Gm19yfLW6T2hCsIXwA7qf0OG2T42Qsi
+	xI0OK+h5+KdDDVo3Uzl3qHm8A5RzlCFCAlj2zEdd2RcNW4E5NQmCNHwVZhIqWS3LvUHx
+	3fCkuOUjNOxcAuVTgStR5F3MtoPm/HgGdeXheU7Jjlw6A8VzOLL8PSX1N2dURkWp9u4/
+	ZhzA==
+Received: by 10.205.33.136 with SMTP id so8mr8728589bkb.1.1338898721421; Tue,
+	05 Jun 2012 05:18:41 -0700 (PDT)
 MIME-Version: 1.0
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: something about gtk+-2.24.8.tar.bz2 that requires constant downloading?
+Received: by 10.204.232.209 with HTTP; Tue, 5 Jun 2012 05:18:21 -0700 (PDT)
+In-Reply-To: <CAMKF1spg+zYoLks6YNbFd8eXwMwdSLEeY2B2eOBLAJxTE=SODw@mail.gmail.com>
+References: <CA+Z6RkU-GBXYHygXhY8UQkxe-5vQSvj-4xqSHuueN=VnN126qA@mail.gmail.com>
+	<857BE142E5399E46B20FD45B9DB8A7BC0FDCB920@SHSMSX102.ccr.corp.intel.com>
+	<CA+Z6RkV3zeyCvfSx0ZrRQP7zhNQknchsN7q_sho1VkE2NGvFzg@mail.gmail.com>
+	<CAMKF1spg+zYoLks6YNbFd8eXwMwdSLEeY2B2eOBLAJxTE=SODw@mail.gmail.com>
+From: Navani Srivastava <navani.srivastava@gmail.com>
+Date: Tue, 5 Jun 2012 17:48:21 +0530
+Message-ID: <CA+Z6RkUEkbtpytcF93wvziDoj+LcvJZQyDQUhwD+jmVh_r-_gQ@mail.gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Broken SDK
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,29 +41,97 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 05 Jun 2012 07:37:49 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Tue, 05 Jun 2012 12:18:43 -0000
+Content-Type: multipart/alternative; boundary=bcaec51a7bceae3a3a04c1b8a685
 
-DQpLaGVtIFJhaiB3cm90ZSBvbsKgMjAxMi0wNi0wNToNCg0KPiBPbiBNb24sIEp1biA0LCAyMDEy
-IGF0IDEwOjA0IFBNLCBXYW5nLCBTaGFuZSA8c2hhbmUud2FuZ0BpbnRlbC5jb20+DQo+IHdyb3Rl
-Og0KPj4gWWVhaCwgUm9iZXJ0LA0KPj4gDQo+PiBZb3UgZm91bmQgYSBidWcgaW4gYml0YmFrZS4g
-SW4gdGhlIGZldGNoIGNvZGUsIGxvY2FsIGRpcmVjdG9yeQ0KPj4gL2hvbWUvcnBqZGF5L2RsL2d0
-aystMi4yNC44LnRhci5iejIgaXMgZGVjb2RlZCBhcw0KPj4gL2hvbWUvcnBqZGF5L2RsL2d0ayUy
-Qi0yLjI0LjgudGFyLmJ6MiBieSBuZXd1cmkgPSB1cmlfcmVwbGFjZShvcmlndWQsDQo+PiBmaW5k
-LCByZXBsYWNlLCBsZCksIHdoaWNoIGlzIGxpbmUgNDgwIGluIGxpYi9iYi9mZXRjaDIvX19pbml0
-X18ucHkuIEFuZA0KPj4gbGF0ZXIgb24gaXQgaXMgY2hlY2tlZCB3aGV0aGVyIG9yIG5vdCBleGlz
-dGVkIGJ5IGlmIG5vdA0KPj4gb3MucGF0aC5leGlzdHMobmV3cGF0aCkgYW5kIHBhdGguZmluZCgi
-KiIpID09IC0xOiwgd2hpY2ggaXMgbGluZSA2MSBpbg0KPj4gbGliL2JiL2ZldGNoMi9sb2NhbC5w
-eS4NCj4+IA0KPj4gQWN0dWFsbHkgdGhlIGRpcmVjdG9yeSAvaG9tZS9ycGpkYXkvZGwvZ3RrKy0y
-LjI0LjgudGFyLmJ6MiBpcyB0aGVyZSwgYnV0DQo+IC9ob21lL3JwamRheS9kbC9ndGslMkItMi4y
-NC44LnRhci5iejIgY2FuJ3QgYmUgZm91bmQgYnkgYml0YmFrZSBjb2RlLiBUaGF0DQo+IGlzIHRo
-ZSBwcm9ibGVtLiBUaGVyZWZvcmUsIEd0aysgc2hvdWxkbid0IGJlIGRlY29kZWQgYXMgZ3RrJTJC
-Lg0KPj4gDQo+PiBJIGFtIG5vdCBmYW1pbGlhciB3aXRoIHRoZSB3aG9sZSBmZXRjaCBjb2RlIGFu
-ZCBob3BlIHNvbWVvbmUgZWxzZSBjYW4NCj4gY29ycmVjdCBpdCwgc28gY2FuIHlvdSBwbGVhc2Ug
-ZmlsZSBhIGJ1ZyBmaXJzdD8NCj4gDQo+IGl0cyBwcm9iYWJseSBkdWUgdG8gdXNlIG9mIHVybGxp
-Yi51bnF1b3RlIGluIGRlY29kZXVybCBhbmQgbm90IGtlZXBpbmcNCj4gdGhlIHVucXVvdGVkIG5h
-bWUgZm9yIHN1YnNlcXVlbnQgdXNlDQo+PiANCj4+IC0tDQo+PiBTaGFuZQ0KDQpDb3JyZWN0Lg0K
-DQotLQ0KU2hhbmUNCg==
+--bcaec51a7bceae3a3a04c1b8a685
+Content-Type: text/plain; charset=ISO-8859-1
 
+Hi,
+
+Thanks for support. I successfully created SDK with this modification. I
+installed the same SDK and tried compiling Qt application, but got error
+mentioning
+
+"Failure to read QMAKESPEC conf file
+/opt/poky/1.0/sysroots/arm-poky-linux-gnueabi/usr/share/qtopia/mkspecs/linux-gnueabi-oe-g++/qmake.conf/qmake.conf.
+Error processing project file: /home/Qt/hello/hello.pro"
+
+I had exported path of QMAKESPEC to
+/opt/poky/1.0/sysroots/arm-poky-linux-gnueabi/usr/share/qtopia/mkspecs/linux-gnueabi-oe-g++/qmake.conf
+
+
+Any idea why I am ending up with this error ? Any reply is appreciable.
+
+Thanks
+Navani
+
+
+On Wed, May 30, 2012 at 12:36 AM, Khem Raj <raj.khem@gmail.com> wrote:
+
+> On Tue, May 29, 2012 at 2:03 AM, Navani Srivastava
+> <navani.srivastava@gmail.com> wrote:
+> >
+> > "ln -s
+> > /opt/poky/1.0/sysroots/arm-poky-linux-gnueabi/usr/share/qtopia/mkspecs
+> > mkspecs
+> > | ln: creating symbolic link `mkspecs': File exists"
+> >
+>
+> as it says it seems file is there already. So make sure the preexisting
+> file
+> is correct if so then you can check first if file exists before creating
+> symlink
+> if the file is incorrect then just use ln -sf to create the symlink
+>
+> > On commenting out
+> >  "(cd ${SDK_OUTPUT}/${QT_TOOLS_PREFIX}/..; ln -s
+> > ${SDKTARGETSYSROOT}/usr/share/qtopia/mkspecs mkspecs;)"
+>
+
+--bcaec51a7bceae3a3a04c1b8a685
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+Hi,<br><br>Thanks for support. I successfully created SDK with this modific=
+ation. I installed the same SDK and tried compiling Qt application, but got=
+ error mentioning <br><br>&quot;Failure to read QMAKESPEC conf file /opt/po=
+ky/1.0/sysroots/arm-poky-linux-gnueabi/usr/share/qtopia/mkspecs/linux-gnuea=
+bi-oe-g++/qmake.conf/qmake.conf.<br>
+
+Error processing project file: /home/Qt/hello/<a href=3D"http://hello.pro">=
+hello.pro</a>&quot;<br><br>I had exported path of QMAKESPEC to /opt/poky/1.=
+0/sysroots/arm-poky-linux-gnueabi/usr/share/qtopia/mkspecs/linux-gnueabi-oe=
+-g++/qmake.conf <br>
+
+<br>Any idea why I am ending up with this error ? Any reply is appreciable.=
+<br><br>Thanks <br>Navani <br><br><br><div class=3D"gmail_quote">On Wed, Ma=
+y 30, 2012 at 12:36 AM, Khem Raj <span dir=3D"ltr">&lt;<a href=3D"mailto:ra=
+j.khem@gmail.com" target=3D"_blank">raj.khem@gmail.com</a>&gt;</span> wrote=
+:<br>
+
+<blockquote class=3D"gmail_quote" style=3D"margin:0pt 0pt 0pt 0.8ex;border-=
+left:1px solid rgb(204,204,204);padding-left:1ex"><div class=3D"im">On Tue,=
+ May 29, 2012 at 2:03 AM, Navani Srivastava<br>
+&lt;<a href=3D"mailto:navani.srivastava@gmail.com">navani.srivastava@gmail.=
+com</a>&gt; wrote:<br>
+&gt;<br>
+&gt; &quot;ln -s<br>
+&gt; /opt/poky/1.0/sysroots/arm-poky-linux-gnueabi/usr/share/qtopia/mkspecs=
+<br>
+&gt; mkspecs<br>
+&gt; | ln: creating symbolic link `mkspecs&#39;: File exists&quot;<br>
+&gt;<br>
+<br>
+</div>as it says it seems file is there already. So make sure the preexisti=
+ng file<br>
+is correct if so then you can check first if file exists before creating sy=
+mlink<br>
+if the file is incorrect then just use ln -sf to create the symlink<br>
+<div class=3D"HOEnZb"><div class=3D"h5"><br>
+&gt; On commenting out<br>
+&gt; =A0&quot;(cd ${SDK_OUTPUT}/${QT_TOOLS_PREFIX}/..; ln -s<br>
+&gt; ${SDKTARGETSYSROOT}/usr/share/qtopia/mkspecs mkspecs;)&quot;<br>
+</div></div></blockquote></div><br>
+
+--bcaec51a7bceae3a3a04c1b8a685--
