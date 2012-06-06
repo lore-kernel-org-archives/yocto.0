@@ -1,29 +1,32 @@
-Return-Path: <opensource@keylevel.com>
-Received: from hxhsvr03.internetintuitive.net (hxhsvr03.internetintuitive.net
-	[80.254.228.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 029F8E013BB
-	for <yocto@yoctoproject.org>; Wed,  6 Jun 2012 12:57:00 -0700 (PDT)
-Received: from [109.224.129.17] (port=51693
-	helo=macbook-pro.durham.keylevel.com)
-	by hxhsvr03.internetintuitive.net with esmtpa (Exim 4.69)
-	(envelope-from <opensource@keylevel.com>) id 1ScMLh-0003dT-RV
-	for yocto@yoctoproject.org; Wed, 06 Jun 2012 20:56:57 +0100
-From: Chris Tapp <opensource@keylevel.com>
-Date: Wed, 6 Jun 2012 20:57:06 +0100
-Message-Id: <D22E2C55-3EB4-4D0B-B300-2A991D38CCD0@keylevel.com>
-To: Yocto Project <yocto@yoctoproject.org>
-Mime-Version: 1.0 (Apple Message framework v1278)
-X-Mailer: Apple Mail (2.1278)
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - hxhsvr03.internetintuitive.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: IMAGE_FSTYPES - what formats are supported?
+Return-Path: <autif.mlist@gmail.com>
+Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
+	[209.85.160.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DC5D6E00723
+	for <yocto@yoctoproject.org>; Wed,  6 Jun 2012 13:01:03 -0700 (PDT)
+Received: by pbbrq8 with SMTP id rq8so12084235pbb.35
+	for <yocto@yoctoproject.org>; Wed, 06 Jun 2012 13:01:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=s7yWBkOet2rT6Y9+OfGRWOt8E7vLyXhkgYy8fkdDtRc=;
+	b=AZa3+WxZ5MRQ98aJGf/q2eSpL39Uk3dlh1hP57Xj5ENG8c4XJDCFAR+IcTOAJms/CR
+	TQiHa865hYTG36Vo+MxZuSVhoUGKEv4vGW0zQCy89R5vJkT+b2RIINgNK0ewSAgojbvf
+	taWv0ffSD6Tz7wen52QhZisKNgRCi+HPfrCj8KnB2zWmN9Bf+cMIJ3O3GiXdjXDOUMev
+	n0b0ccwA3aNkYBFgUazXrwktpfkfxNNMqsuV7stRNAzcfEczh/WNLdx2P0BGHAM6OyDE
+	KfljpS5l9VBdazXDZil/mR0EpxiRhW1rnaP2Hp++u/5a/+8rbn3Sc0ANa9R+yj2eBtEC
+	evog==
+MIME-Version: 1.0
+Received: by 10.68.190.10 with SMTP id gm10mr15076525pbc.163.1339012861718;
+	Wed, 06 Jun 2012 13:01:01 -0700 (PDT)
+Received: by 10.68.14.166 with HTTP; Wed, 6 Jun 2012 13:01:01 -0700 (PDT)
+In-Reply-To: <D22E2C55-3EB4-4D0B-B300-2A991D38CCD0@keylevel.com>
+References: <D22E2C55-3EB4-4D0B-B300-2A991D38CCD0@keylevel.com>
+Date: Wed, 6 Jun 2012 16:01:01 -0400
+Message-ID: <CADzUK1LMibQZJAv6tqF5PF+wmQNPd785RpsnwTPgDPVMxruL5Q@mail.gmail.com>
+From: Autif Khan <autif.mlist@gmail.com>
+To: Chris Tapp <opensource@keylevel.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: IMAGE_FSTYPES - what formats are supported?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,19 +38,12 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 06 Jun 2012 19:57:00 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 06 Jun 2012 20:01:04 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-Is the list of values for IMAGE_FSTYPES documented somewhere? Searching =
-though the documentation shows references to it, but not a list of =
-values that are supported.
+> Is the list of values for IMAGE_FSTYPES documented somewhere? Searching though the documentation shows references to it, but not a list of values that are supported.
 
-Chris Tapp
+meta/classes/image_types.bbclass
 
-opensource@keylevel.com
-www.keylevel.com
-
-
-
+look for IMAGE_TYPES
 
