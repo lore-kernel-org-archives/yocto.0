@@ -1,35 +1,34 @@
-Return-Path: <ross.burton@intel.com>
-Received: from azsmga101.ch.intel.com (mga07.intel.com [143.182.124.22])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CD152E01425
-	for <yocto@yoctoproject.org>; Wed,  6 Jun 2012 05:15:21 -0700 (PDT)
-Received: from mail-qc0-f180.google.com ([209.85.216.180])
-	by mga03.intel.com with ESMTP/TLS/RC4-SHA; 06 Jun 2012 05:15:20 -0700
-Received: by qcmv28 with SMTP id v28so3119708qcm.25
-	for <yocto@yoctoproject.org>; Wed, 06 Jun 2012 05:15:19 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type:content-transfer-encoding:x-gm-message-state;
-	bh=7QS+HBvuFtfkUt593IOObAELFmhr+0t9t5F7JAEH6xA=;
-	b=Mb+s7F/EtrMRqj4zxygUd28cT0XTLhuhhA2Jx9F/ptEvq+3SkeDv9242YViLKDLI2q
-	o/RS4GiNCu1cPvi4cubWtghDGEyPc8P4x3OyJ9bUg0b0IOT3ikJSPWeG/wgHvEgDwoT8
-	tJkPZbf6D+TBpB17BlEkZ6LruogS4qRYkFjP882FuuILj72097VxkdnEQ8NuV8dph8+0
-	P5ljNze+FqcSuyG5KfkCP/Wq4fiiF9WcpEETDTwDvNbG5/AHW9PNyeTxYaw7OFZYCVq9
-	vUoKAFJa/OHebYEG28JxBKxl7kZSDs/mb4g4GOlvBeoaNNUrX11aVM7+a6m4D97dh2VG
-	y/+g==
-Received: by 10.224.174.138 with SMTP id t10mr21598312qaz.50.1338984919700;
-	Wed, 06 Jun 2012 05:15:19 -0700 (PDT)
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (hermes.mlbassoc.com [64.234.241.98])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1045AE00723
+	for <yocto@yoctoproject.org>; Wed,  6 Jun 2012 08:10:36 -0700 (PDT)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id B1A6AF81222; Wed,  6 Jun 2012 09:10:35 -0600 (MDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=unavailable version=3.3.2
+Received: from hermes.chez-thomas.org (localhost.localdomain [127.0.0.1])
+	by mail.chez-thomas.org (Postfix) with ESMTP id D4312F811DA;
+	Wed,  6 Jun 2012 09:10:34 -0600 (MDT)
+Message-ID: <4FCF72EA.3030200@mlbassoc.com>
+Date: Wed, 06 Jun 2012 09:10:34 -0600
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:12.0) Gecko/20120430 Thunderbird/12.0.1
 MIME-Version: 1.0
-Received: by 10.229.53.212 with HTTP; Wed, 6 Jun 2012 05:14:59 -0700 (PDT)
-In-Reply-To: <4FCE2CDC.3030207@windriver.com>
-References: <4FCC2833.5060508@linux.intel.com> <4FCE2CDC.3030207@windriver.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Wed, 6 Jun 2012 13:14:59 +0100
-Message-ID: <CAJTo0LbR_seK4uUsv96fc6DVUdRVZTDqN0XR41LmXDvUz5h8vQ@mail.gmail.com>
-To: Mark Hatle <mark.hatle@windriver.com>
-X-Gm-Message-State: ALoCoQlXmB5NPGS0RnjBkTIC0vyUk1WY8LSnC0yvi2ZP6IcWjrkwlb4Ro7104NrZH+Qy+4kzEG3R
-Cc: yocto@yoctoproject.org
-Subject: Re: [RFC] Split and revamp distro_tracking_fields.inc
+To: yocto@yoctoproject.org
+References: <alpine.DEB.2.02.1206031757260.20352@oneiric>
+	<alpine.DEB.2.02.1206040435060.9995@oneiric>
+	<3AB6CE7F274E534CAFD089D127A8A1FC23BCA4CB@SHSMSX102.ccr.corp.intel.com>
+	<CAMKF1srmT8221t=XuXJ-fReqwCK3QQb8ri2rxDjb8bHwFUbh9A@mail.gmail.com>
+	<3AB6CE7F274E534CAFD089D127A8A1FC23BCA672@SHSMSX102.ccr.corp.intel.com>
+	<alpine.DEB.2.02.1206050929001.4572@oneiric>
+	<3AB6CE7F274E534CAFD089D127A8A1FC23BCA9CF@SHSMSX102.ccr.corp.intel.com>
+	<alpine.DEB.2.02.1206051100550.2774@oneiric>
+In-Reply-To: <alpine.DEB.2.02.1206051100550.2774@oneiric>
+Subject: Re: something about gtk+-2.24.8.tar.bz2 that requires constant downloading?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,28 +40,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 06 Jun 2012 12:15:22 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 06 Jun 2012 15:10:36 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi,
-
-On 5 June 2012 16:59, Mark Hatle <mark.hatle@windriver.com> wrote:
-> Document the date when the recipe was upreved. =C2=A0Then in a separate f=
-ile,
-> document the check dates. =C2=A0Then the check dates and the uprev dates =
-can be
-> compared and it'll be easier to watch to see if things are being neglecte=
-d
-> or let go out of date.
+On 2012-06-05 09:01, Robert P. J. Day wrote:
+> On Tue, 5 Jun 2012, Wang, Shane wrote:
 >
-> (Note, using git, it should be possible to also discover the data of the
-> uprev as well....)
+>> Robert P. J. Day wrote on 2012-06-05:
+>
+>>>    at this point, has the problem been identified?  or does this still
+>>> require a bugzilla submission?  it would appear that the issue
+>>> involves any package with a "+" in the package name which, for now,
+>>> appears to be just that gtk+ package.  would any other special
+>>> characters trigger this?  that's the only package i've tripped over
+>>> that caused this behaviour.
+>>>
+>>> rday
+>>>
+>>
+>> Yes, it has been identified. If you can't submit a bug, I can do.
+>> Yes, I believe other special characters will trigger that.
+>>
+>> Just because I am not familiar with all fetch code, I can fix it for
+>> gtk+ now but I am not sure whether that fix will bring any
+>> regression bugs. Give me more time.
+>
+>    ok, i'll leave it in your capable hands and go find something else
+> to nitpick.
 
-Agreed, documenting the date when git can tell us when the recipe was
-last touched does seem a bit wasteful.  The counter-argument is that
-purely using the git log will result in false dates from commits like
-"all recipes: fix whitespace".
+Has someone filed a bug on this yet?  It breaks all my builds now since
+I always use BB_NO_NETWORK="1" :-(
 
-Ross
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
