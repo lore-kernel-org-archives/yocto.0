@@ -1,26 +1,28 @@
-Return-Path: <mihaix.lindner@linux.intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 36D13E01425
-	for <yocto@yoctoproject.org>; Wed,  6 Jun 2012 04:31:19 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 06 Jun 2012 04:31:18 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="175449982"
-Received: from linux.jf.intel.com (HELO linux.intel.com) ([10.23.219.25])
-	by fmsmga002.fm.intel.com with ESMTP; 06 Jun 2012 04:31:18 -0700
-Received: from moolinex.rb.intel.com (unknown [10.237.105.37])
-	by linux.intel.com (Postfix) with ESMTP id 71BA72C8001
-	for <yocto@yoctoproject.org>; Wed,  6 Jun 2012 04:31:19 -0700 (PDT)
-Message-ID: <4FCF3F85.20207@linux.intel.com>
-Date: Wed, 06 Jun 2012 14:31:17 +0300
-From: Mihai Lindner <mihaix.lindner@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:12.0) Gecko/20120420 Thunderbird/12.0
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (hermes.mlbassoc.com [64.234.241.98])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 93FD9E01425
+	for <yocto@yoctoproject.org>; Wed,  6 Jun 2012 04:37:24 -0700 (PDT)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id 185C7F81223; Wed,  6 Jun 2012 05:37:24 -0600 (MDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=unavailable version=3.3.2
+Received: from hermes.chez-thomas.org (localhost.localdomain [127.0.0.1])
+	by mail.chez-thomas.org (Postfix) with ESMTP id 1DADBF8121C;
+	Wed,  6 Jun 2012 05:37:23 -0600 (MDT)
+Message-ID: <4FCF40F3.20606@mlbassoc.com>
+Date: Wed, 06 Jun 2012 05:37:23 -0600
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:12.0) Gecko/20120430 Thunderbird/12.0.1
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
+To: yocto@yoctoproject.org, Mark Hatle <mark.hatle@windriver.com>
 References: <A5935CA1C3864E4F87CAF536E3331CBF0FD2BF13@SHSMSX102.ccr.corp.intel.com>
 	<953BC298FE16B64A865952E4C88593020FD37A2F@SHSMSX102.ccr.corp.intel.com>
-In-Reply-To: <953BC298FE16B64A865952E4C88593020FD37A2F@SHSMSX102.ccr.corp.intel.com>
+	<4FCF3F85.20207@linux.intel.com>
+In-Reply-To: <4FCF3F85.20207@linux.intel.com>
 Subject: Re: about syslog configurable
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -33,55 +35,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 06 Jun 2012 11:31:19 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 06 Jun 2012 11:37:24 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Hello,
+On 2012-06-06 05:31, Mihai Lindner wrote:
+> Hello,
+>
+> Somehow `/etc/syslog-startup.conf` ends up to be a symlink of `busybox` and, apparently, `/etc/syslog-startup.conf` is `/etc/syslog-startup.conf.busybox`.
+>
 
-Somehow `/etc/syslog-startup.conf` ends up to be a symlink of `busybox` and, apparently, `/etc/syslog-startup.conf` is `/etc/syslog-startup.conf.busybox`.
+This happened in this change:
+
+commit 92482cb4962fd79a07078f0fea372fdc200ed76c
+Author: Mark Hatle <mark.hatle@windriver.com>
+Date:   Tue May 15 18:34:17 2012 -0500
+
+     busybox: use new update-alternatives
+
+     (From OE-Core rev: fbbc96aed5086f853a1179f1478ccd252af24094)
+
+     Signed-off-by: Mark Hatle <mark.hatle@windriver.com>
+     Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
+
+Mark,
+
+Perhaps the conf file should just not be listed in the alternatives??
 
 -- 
-Mihai Lindner
-
-
-On 06/01/2012 01:26 PM, Xu, HongnaX wrote:
-> Hi all
->   QA check if syslog could be configured and run without problem on BSPs with the latest poky/master tree.
-> We found that the feature had been changed, so we could not check it, so is there anybody tell us how to check?
-> our test steps followed:
-> **********************************
-> 1.Get a Yocto image from autobuilder or local build.
-> 2.Launch image and check if syslog is started by default in background with ps command.
-> 3.Modify /etc/syslog-startup.conf, change the LOGFILE to /var/log/messages.test
-> 4.Restart syslog with command "/etc/init.d/syslog restart"
-> 5.check if syslog is started in background with ps command
-> 6.Check if there file generated under /var/log/message.test
-> ***********************************
-> 
-> Best Regards,
-> Hongna
-> 
-> -----Original Message-----
-> From: Sun, YilongX Y 
-> Sent: Friday, June 01, 2012 6:04 PM
-> To: yocto@yoctoproject.org
-> Cc: Xu, HongnaX; Xu, Jiajun; Ma, NingX
-> Subject: about syslog configurable
-> 
-> Hi all
->    Anyone who knows the feature about " syslog configurable". Now I find no syslog thread in the background.
-> The file " /etc/syslog-startup.conf " is a link file. So I don't know how to modify it. Who can help me to explain this feature.
-> Thanks in advance.
-> 
-> 
-> Best wishes
-> Yilong..Sun
->  
->  
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-> 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
