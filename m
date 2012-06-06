@@ -1,29 +1,35 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (hermes.mlbassoc.com [64.234.241.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 93FD9E01425
-	for <yocto@yoctoproject.org>; Wed,  6 Jun 2012 04:37:24 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id 185C7F81223; Wed,  6 Jun 2012 05:37:24 -0600 (MDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=unavailable version=3.3.2
-Received: from hermes.chez-thomas.org (localhost.localdomain [127.0.0.1])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 1DADBF8121C;
-	Wed,  6 Jun 2012 05:37:23 -0600 (MDT)
-Message-ID: <4FCF40F3.20606@mlbassoc.com>
-Date: Wed, 06 Jun 2012 05:37:23 -0600
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:12.0) Gecko/20120430 Thunderbird/12.0.1
+Return-Path: <ross.burton@intel.com>
+Received: from azsmga101.ch.intel.com (mga07.intel.com [143.182.124.22])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CD152E01425
+	for <yocto@yoctoproject.org>; Wed,  6 Jun 2012 05:15:21 -0700 (PDT)
+Received: from mail-qc0-f180.google.com ([209.85.216.180])
+	by mga03.intel.com with ESMTP/TLS/RC4-SHA; 06 Jun 2012 05:15:20 -0700
+Received: by qcmv28 with SMTP id v28so3119708qcm.25
+	for <yocto@yoctoproject.org>; Wed, 06 Jun 2012 05:15:19 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type:content-transfer-encoding:x-gm-message-state;
+	bh=7QS+HBvuFtfkUt593IOObAELFmhr+0t9t5F7JAEH6xA=;
+	b=Mb+s7F/EtrMRqj4zxygUd28cT0XTLhuhhA2Jx9F/ptEvq+3SkeDv9242YViLKDLI2q
+	o/RS4GiNCu1cPvi4cubWtghDGEyPc8P4x3OyJ9bUg0b0IOT3ikJSPWeG/wgHvEgDwoT8
+	tJkPZbf6D+TBpB17BlEkZ6LruogS4qRYkFjP882FuuILj72097VxkdnEQ8NuV8dph8+0
+	P5ljNze+FqcSuyG5KfkCP/Wq4fiiF9WcpEETDTwDvNbG5/AHW9PNyeTxYaw7OFZYCVq9
+	vUoKAFJa/OHebYEG28JxBKxl7kZSDs/mb4g4GOlvBeoaNNUrX11aVM7+a6m4D97dh2VG
+	y/+g==
+Received: by 10.224.174.138 with SMTP id t10mr21598312qaz.50.1338984919700;
+	Wed, 06 Jun 2012 05:15:19 -0700 (PDT)
 MIME-Version: 1.0
-To: yocto@yoctoproject.org, Mark Hatle <mark.hatle@windriver.com>
-References: <A5935CA1C3864E4F87CAF536E3331CBF0FD2BF13@SHSMSX102.ccr.corp.intel.com>
-	<953BC298FE16B64A865952E4C88593020FD37A2F@SHSMSX102.ccr.corp.intel.com>
-	<4FCF3F85.20207@linux.intel.com>
-In-Reply-To: <4FCF3F85.20207@linux.intel.com>
-Subject: Re: about syslog configurable
+Received: by 10.229.53.212 with HTTP; Wed, 6 Jun 2012 05:14:59 -0700 (PDT)
+In-Reply-To: <4FCE2CDC.3030207@windriver.com>
+References: <4FCC2833.5060508@linux.intel.com> <4FCE2CDC.3030207@windriver.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Wed, 6 Jun 2012 13:14:59 +0100
+Message-ID: <CAJTo0LbR_seK4uUsv96fc6DVUdRVZTDqN0XR41LmXDvUz5h8vQ@mail.gmail.com>
+To: Mark Hatle <mark.hatle@windriver.com>
+X-Gm-Message-State: ALoCoQlXmB5NPGS0RnjBkTIC0vyUk1WY8LSnC0yvi2ZP6IcWjrkwlb4Ro7104NrZH+Qy+4kzEG3R
+Cc: yocto@yoctoproject.org
+Subject: Re: [RFC] Split and revamp distro_tracking_fields.inc
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,36 +41,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 06 Jun 2012 11:37:24 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 06 Jun 2012 12:15:22 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On 2012-06-06 05:31, Mihai Lindner wrote:
-> Hello,
+Hi,
+
+On 5 June 2012 16:59, Mark Hatle <mark.hatle@windriver.com> wrote:
+> Document the date when the recipe was upreved. =C2=A0Then in a separate f=
+ile,
+> document the check dates. =C2=A0Then the check dates and the uprev dates =
+can be
+> compared and it'll be easier to watch to see if things are being neglecte=
+d
+> or let go out of date.
 >
-> Somehow `/etc/syslog-startup.conf` ends up to be a symlink of `busybox` and, apparently, `/etc/syslog-startup.conf` is `/etc/syslog-startup.conf.busybox`.
->
+> (Note, using git, it should be possible to also discover the data of the
+> uprev as well....)
 
-This happened in this change:
+Agreed, documenting the date when git can tell us when the recipe was
+last touched does seem a bit wasteful.  The counter-argument is that
+purely using the git log will result in false dates from commits like
+"all recipes: fix whitespace".
 
-commit 92482cb4962fd79a07078f0fea372fdc200ed76c
-Author: Mark Hatle <mark.hatle@windriver.com>
-Date:   Tue May 15 18:34:17 2012 -0500
-
-     busybox: use new update-alternatives
-
-     (From OE-Core rev: fbbc96aed5086f853a1179f1478ccd252af24094)
-
-     Signed-off-by: Mark Hatle <mark.hatle@windriver.com>
-     Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
-
-Mark,
-
-Perhaps the conf file should just not be listed in the alternatives??
-
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+Ross
 
