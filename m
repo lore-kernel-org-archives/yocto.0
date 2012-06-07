@@ -1,22 +1,21 @@
-Return-Path: <David.Nystrom@enea.com>
-Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 9EDE9E013BB
-	for <yocto@yoctoproject.org>; Thu,  7 Jun 2012 12:44:52 -0700 (PDT)
-Received: from [172.16.140.132] (172.16.140.132) by smtp.enea.com
-	(172.21.1.209) with Microsoft SMTP Server id 14.2.247.3; Thu, 7 Jun 2012
-	21:44:50 +0200
-Message-ID: <4FD104D3.6040007@enea.com>
-Date: Thu, 7 Jun 2012 21:45:23 +0200
-From: =?UTF-8?B?RGF2aWQgTnlzdHLDtm0=?= <david.nystrom@enea.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:12.0) Gecko/20120430 Thunderbird/12.0.1
-MIME-Version: 1.0
-To: <yocto@yoctoproject.org>
-References: <CAH6UwN1QU45F0AqmHZhvG+afFy22bRNsR7buL0yqTOsSEk3xQQ@mail.gmail.com>
-	<4FD0FE67.6090801@enea.com>
-In-Reply-To: <4FD0FE67.6090801@enea.com>
-X-Originating-IP: [172.16.140.132]
-Subject: Re: Recipe question - source directory of depency parent
+Return-Path: <kishore.k.bodke@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 24E6FE013BB
+	for <yocto@yoctoproject.org>; Thu,  7 Jun 2012 14:49:49 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 07 Jun 2012 14:49:48 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="153141779"
+Received: from kishore-desktop.sc.intel.com (HELO localhost) ([143.183.188.91])
+	by azsmga001.ch.intel.com with ESMTP; 07 Jun 2012 14:49:48 -0700
+From: kishore.k.bodke@intel.com
+To: yocto@yoctoproject.org,
+	tom.zanussi@intel.com,
+	nitin.a.kamble@intel.com
+Date: Thu,  7 Jun 2012 14:48:15 -0700
+Message-Id: <cover.1339105415.git.kishore.k.bodke@intel.com>
+X-Mailer: git-send-email 1.7.9.5
+Subject: [PATCH 0/1] [meta-intel] meta-cedartrail: update SRCREV
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,52 +27,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 07 Jun 2012 19:44:53 -0000
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 07 Jun 2012 21:49:49 -0000
 
-Oops,
+From: Kishore Bodke <kishore.k.bodke@intel.com>
 
-That should be ${STAGING_KERNEL_DIR}
+Removed the kernel feature set from the BSP area.
+These have been added to kernel meta branch.
+So update the SRCREV for meta to pull in these changes.
 
-Br,
-David
+Please pull into meta-intel/denzil.
 
-On 06/07/2012 09:17 PM, David Nystr=C3=B6m wrote:
-> Have a look at:=20
-> poky/meta-skeleton/recipes-kernel/hello-mod/hello-mod_0.1.bb
-> Use ${KERNEL_STAGING_DIR} to locate kernel sources.
->
-> Br,
-> David
->
-> On 06/07/2012 09:12 PM, Jim Rucker wrote:
->> I'm creating a bitbake recipe for a package that is a loadable=20
->> module, but
->> it requires the linux source directory in order to build. I added the
->> virtual/kernel package as our "DEPENDS", but when I run bitbake -e=20
->> for my
->> target I don't see an environment variable that specifies where the=20
->> source
->> is for the virtual/kernel package. Is there a way to get this, or am=20
->> doing
->> this wrong? I put the .bb recipe in the same
->> meta-ourco/recipes-kernel/linux directory that has the .bb which=20
->> builds the
->> linux kernel for our target, but in its own file, with its own=20
->> "PROVIDES"
->> variable.
->>
->>
->>
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+Thanks
+Kishore.
+
+The following changes since commit 8bc2fa135060e941bcbb4dcfb664e175a3eb871d:
+
+  meta-fri2: add video acceleration (2012-06-06 16:16:24 -0500)
+
+are available in the git repository at:
+
+  git://git.pokylinux.org/meta-intel-contrib kishore/cedartrail-update
+  http://git.pokylinux.org/cgit.cgi/meta-intel-contrib/log/?h=kishore/cedartrail-update
+
+Kishore Bodke (1):
+  meta-cedartrail: update SRCREV
+
+ .../recipes-kernel/linux/linux-yocto_3.0.bbappend  |    4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
+
+-- 
+1.7.9.5
 
 
