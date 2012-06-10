@@ -1,29 +1,26 @@
-Return-Path: <opensource@keylevel.com>
-Received: from hxhsvr03.internetintuitive.net (hxhsvr03.internetintuitive.net
-	[80.254.228.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 80E02E0122C
-	for <yocto@yoctoproject.org>; Sun, 10 Jun 2012 04:30:51 -0700 (PDT)
-Received: from [109.224.129.17] (port=19299
-	helo=macbook-pro.durham.keylevel.com)
-	by hxhsvr03.internetintuitive.net with esmtpa (Exim 4.69)
-	(envelope-from <opensource@keylevel.com>) id 1SdgM5-0004kV-2k
-	for yocto@yoctoproject.org; Sun, 10 Jun 2012 12:30:49 +0100
-From: Chris Tapp <opensource@keylevel.com>
-Date: Sun, 10 Jun 2012 12:30:47 +0100
-Message-Id: <1B44395A-0DD8-4136-83B3-FD82C9F5DDCA@keylevel.com>
-To: Yocto Project <yocto@yoctoproject.org>
-Mime-Version: 1.0 (Apple Message framework v1278)
-X-Mailer: Apple Mail (2.1278)
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - hxhsvr03.internetintuitive.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: RaspberryPi Kernel - sometimes it works, sometimes it doesn't
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 44C92E00746
+	for <yocto@yoctoproject.org>; Sun, 10 Jun 2012 15:04:30 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 10 Jun 2012 15:04:29 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="154466427"
+Received: from unknown (HELO helios.localnet) ([10.252.120.99])
+	by azsmga001.ch.intel.com with ESMTP; 10 Jun 2012 15:04:28 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Sun, 10 Jun 2012 23:04:28 +0100
+Message-ID: <2635559.9iAIfW4lGB@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.8.3 (Linux/3.2.0-24-generic-pae; KDE/4.8.3; i686; ; )
+In-Reply-To: <4FCC6DD9.50801@enea.com>
+References: <4FC74DF9.3070401@enea.com>
+	<CAEsOVNc8n1yqOxc12osvmUB1+qCAxZFo077WEk4+AnaaN6KCgg@mail.gmail.com>
+	<4FCC6DD9.50801@enea.com>
+MIME-Version: 1.0
+Cc: McClintock Matthew-B29882 <B29882@freescale.com>
+Subject: Re: PR and bbappends
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,28 +32,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 10 Jun 2012 11:30:51 -0000
-Content-Type: text/plain; charset=us-ascii
+X-List-Received-Date: Sun, 10 Jun 2012 22:04:30 -0000
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
 
-I've been building the 3.1.9 Raspberry Pi kernel under Denzil using the =
-meta layer at https://github.com/djwillis/meta-raspberrypi. This uses a =
-kernel recipe based on the git repository at =
-https://github.com/raspberrypi/linux/commits/rpi-patches.
+On Monday 04 June 2012 10:12:09 David Nystr=F6m wrote:
+> On 06/01/2012 09:32 PM, McClintock Matthew-B29882 wrote:
+> > Some based layers should not modify certain packages. Which
+> > meta-fsl-ppc is guilty of doing which I would like to cleanup. Chan=
+ges
+> > to packages should be moved up to a distro layer I believe?
+>=20
+> I don't mind BSP layers modifying packages, as long as its called for=
+.
+> It would be helpful if BSP maintainers could try to enforce
+> those bbappends only on machines in the BSP layer itself. i.e.
+>=20
+> Bugfix and other similar bbappends on generic stuff could be placed i=
+n a
+> separate directory which can be easily BBMASK:ed.
 
-Some of the kernel commit IDs (e.g. =
-94fbbc4e3988075abad0d3b32842b82c590324fc) seem to build ok, but they =
-don't always run. As in, if I -c clean and build then sometimes I end up =
-with a bootable image, sometimes I don't. I'm not changing anything else =
-in the build environment.
+If they're bugfixes that are not in any way machine-specific they reall=
+y do not=20
+belong in the BSP. They're fine for distro layers, although I would str=
+ongly=20
+encourage people to be pushing these fixes up to OE-core unless they ar=
+e=20
+specific to some distro policy.
 
-Any ideas what can cause this?
+FYI, for machine specific changes in bbappends you can still make use o=
+f a=20
+machine override to ensure that the change only applies when building f=
+or that=20
+specific machine. With a lot of variable changes that could get messy t=
+hough :/
 
-Chris Tapp
+Cheers,
+Paul
 
-opensource@keylevel.com
-www.keylevel.com
+--=20
 
-
-
+Paul Eggleton
+Intel Open Source Technology Centre
 
