@@ -1,27 +1,29 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 51EA1E0143C
-	for <yocto@yoctoproject.org>; Fri,  8 Jun 2012 16:03:26 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 08 Jun 2012 16:03:25 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="155094676"
-Received: from unknown (HELO envy.home) ([10.255.12.197])
-	by orsmga002.jf.intel.com with ESMTP; 08 Jun 2012 16:03:25 -0700
-Message-ID: <4FD28477.9020201@linux.intel.com>
-Date: Fri, 08 Jun 2012 16:02:15 -0700
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:12.0) Gecko/20120430 Thunderbird/12.0.1
-MIME-Version: 1.0
-To: Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>
-References: <cover.1339194124.git.nitin.a.kamble@intel.com>
-	<01b0f43cacd0beed93aebd108730bfe420ab2397.1339194124.git.nitin.a.kamble@intel.com>
-In-Reply-To: <01b0f43cacd0beed93aebd108730bfe420ab2397.1339194124.git.nitin.a.kamble@intel.com>
-X-Enigmail-Version: 1.4.2
-Cc: yocto@yoctoproject.org
-Subject: Re: [OE-core] [PATCH 1/1] eglibc: remove runtime dependency of perl from eglibc-mtrace
+Return-Path: <opensource@keylevel.com>
+Received: from hxhsvr03.internetintuitive.net (hxhsvr03.internetintuitive.net
+	[80.254.228.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 80E02E0122C
+	for <yocto@yoctoproject.org>; Sun, 10 Jun 2012 04:30:51 -0700 (PDT)
+Received: from [109.224.129.17] (port=19299
+	helo=macbook-pro.durham.keylevel.com)
+	by hxhsvr03.internetintuitive.net with esmtpa (Exim 4.69)
+	(envelope-from <opensource@keylevel.com>) id 1SdgM5-0004kV-2k
+	for yocto@yoctoproject.org; Sun, 10 Jun 2012 12:30:49 +0100
+From: Chris Tapp <opensource@keylevel.com>
+Date: Sun, 10 Jun 2012 12:30:47 +0100
+Message-Id: <1B44395A-0DD8-4136-83B3-FD82C9F5DDCA@keylevel.com>
+To: Yocto Project <yocto@yoctoproject.org>
+Mime-Version: 1.0 (Apple Message framework v1278)
+X-Mailer: Apple Mail (2.1278)
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - hxhsvr03.internetintuitive.net
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - keylevel.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: RaspberryPi Kernel - sometimes it works, sometimes it doesn't
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,58 +35,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 08 Jun 2012 23:03:26 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sun, 10 Jun 2012 11:30:51 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
+
+I've been building the 3.1.9 Raspberry Pi kernel under Denzil using the =
+meta layer at https://github.com/djwillis/meta-raspberrypi. This uses a =
+kernel recipe based on the git repository at =
+https://github.com/raspberrypi/linux/commits/rpi-patches.
+
+Some of the kernel commit IDs (e.g. =
+94fbbc4e3988075abad0d3b32842b82c590324fc) seem to build ok, but they =
+don't always run. As in, if I -c clean and build then sometimes I end up =
+with a bootable image, sometimes I don't. I'm not changing anything else =
+in the build environment.
+
+Any ideas what can cause this?
+
+Chris Tapp
+
+opensource@keylevel.com
+www.keylevel.com
 
 
 
-On 06/08/2012 03:23 PM, nitin.a.kamble@intel.com wrote:
-> From: Nitin A Kamble <nitin.a.kamble@intel.com>
-> 
-> perl needs eglibc to build.
-> The presence of runtime dependency of
-> perl for eglibc-mtrace caused bitbake to build perl before eglibc,
-> which causes build failure of perl with poky-tiny distro
-> 
-
-So is this a circular dependency chain?
-
-perl DEPENDS on eglibc
-eglibc (because of eglibc-mtrace) RDEPENDS on perl?
-
-If so, doesn't this solution leave eglibc-mtrace with an incomplete set
-of dependencies in it's final package meta-data?
-
-Would the correct solution be to break eglibc-mtrace out into a separate
-recipe.
-
-eglibc-mtrace.bb could then DEPENDS=eglibc and RDEPENDS=perl and
-poky-tiny would need to be able to exclude eglibc-mtrace.
-
-
->   This fixes bug: [YOCTO #2523]
-> 
-> Signed-off-by: Nitin A Kamble <nitin.a.kamble@intel.com>
-> ---
->  meta/recipes-core/eglibc/eglibc-package.inc |    1 -
->  1 files changed, 0 insertions(+), 1 deletions(-)
-> 
-> diff --git a/meta/recipes-core/eglibc/eglibc-package.inc b/meta/recipes-core/eglibc/eglibc-package.inc
-> index ce37155..423729a 100644
-> --- a/meta/recipes-core/eglibc/eglibc-package.inc
-> +++ b/meta/recipes-core/eglibc/eglibc-package.inc
-> @@ -55,7 +55,6 @@ FILES_${PN}-dbg += "${libexecdir}/*/.debug ${libdir}/audit/.debug"
->  FILES_catchsegv${PKGSUFFIX} = "${bindir}/catchsegv"
->  RDEPENDS_catchsegv${PKGSUFFIX} = "libsegfault"
->  RDEPENDS_${PN}-utils += "bash"
-> -RDEPENDS_${PN}-mtrace += "perl"
->  FILES_${PN}-pcprofile = "${base_libdir}/libpcprofile.so"
->  FILES_eglibc-thread-db${PKGSUFFIX} = "${base_libdir}/libthread_db.so.* ${base_libdir}/libthread_db-*.so"
->  RPROVIDES_${PN}-dev += "libc-dev"
-
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
 
