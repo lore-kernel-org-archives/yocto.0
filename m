@@ -1,36 +1,36 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-ey0-f176.google.com (mail-ey0-f176.google.com
-	[209.85.215.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CEB38E0044A
-	for <yocto@yoctoproject.org>; Mon, 11 Jun 2012 15:25:41 -0700 (PDT)
-Received: by eaab16 with SMTP id b16so2256849eaa.35
-	for <yocto@yoctoproject.org>; Mon, 11 Jun 2012 15:25:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=TbMLJM246FxU1OwypF8Bx1bj2uFGLev9ApNre1Paiws=;
-	b=K9GlL5KatsWIjBAn+nnP5CqcqPe3MyQwLS9cJQHTdsddkxxqvk5hHPnXhciXRW/ixO
-	OFRmhhzpOri6vwvNwr8uL27lSibUCG/eX/h5MUJIMtLfO+IAiAMKYoNVuP/epz5rQgRl
-	79dWr3tdMNdgl4Y+QGpdmjK5m9ie+D77Zqt1IBYAUjHc0I89VsX48LsipFCImIGUA+mp
-	YboQbo1KqwBmnwDKwrDfgO+Odw2q1sDC2Kgcwt+nhd4W9USkC25uLvf98psdnKLXhDqP
-	ywJjyU1/81fd2gZgNhgy3P9h8LPxJtGLKAsZ7RhBNpeYwHTHkDtzrfXjq9yCB7t61DYX
-	c0Lw==
-Received: by 10.14.188.140 with SMTP id a12mr5860906een.25.1339453540695; Mon,
-	11 Jun 2012 15:25:40 -0700 (PDT)
+Return-Path: <nitin.a.kamble@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 615BCE0044A
+	for <yocto@yoctoproject.org>; Mon, 11 Jun 2012 16:23:39 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga102.fm.intel.com with ESMTP; 11 Jun 2012 16:23:38 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="164363756"
+Received: from orsmsx606.amr.corp.intel.com ([10.22.226.128])
+	by fmsmga001.fm.intel.com with ESMTP; 11 Jun 2012 16:23:38 -0700
+Received: from orsmsx151.amr.corp.intel.com (10.22.226.38) by
+	orsmsx606.amr.corp.intel.com (10.22.226.128) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Mon, 11 Jun 2012 16:23:38 -0700
+Received: from orsmsx106.amr.corp.intel.com ([169.254.5.113]) by
+	ORSMSX151.amr.corp.intel.com ([169.254.7.37]) with mapi id
+	14.01.0355.002; Mon, 11 Jun 2012 16:23:38 -0700
+From: "Kamble, Nitin A" <nitin.a.kamble@intel.com>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
+Thread-Topic: [yocto] [PATCH 0/1] remove snb rc6 patches from v3.4 kernel
+	repository
+Thread-Index: AQHNSArG7wLGK4ILB0aLvZ0mPt0ZNpb2BFqA//+TWeA=
+Date: Mon, 11 Jun 2012 23:23:37 +0000
+Message-ID: <ADD6A3980E8C39419A432FF422031B4C03113E5D@ORSMSX106.amr.corp.intel.com>
+References: <cover.1339443379.git.nitin.a.kamble@intel.com>
+	<4FD652E3.3060209@windriver.com>
+In-Reply-To: <4FD652E3.3060209@windriver.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.139]
 MIME-Version: 1.0
-Received: by 10.14.188.11 with HTTP; Mon, 11 Jun 2012 15:25:10 -0700 (PDT)
-In-Reply-To: <4FD66C13.8010603@linux.intel.com>
-References: <cover.1339194124.git.nitin.a.kamble@intel.com>
-	<01b0f43cacd0beed93aebd108730bfe420ab2397.1339194124.git.nitin.a.kamble@intel.com>
-	<4FD28477.9020201@linux.intel.com> <4FD66C13.8010603@linux.intel.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Mon, 11 Jun 2012 15:25:10 -0700
-Message-ID: <CAMKF1sr-C5oot0TBpSJmNNGu409803qwYzK5Lw-1+R_DYoMs7Q@mail.gmail.com>
-To: Saul Wold <sgw@linux.intel.com>
-Cc: yocto@yoctoproject.org, Darren Hart <dvhart@linux.intel.com>,
-	Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>
-Subject: Re: [OE-core] [PATCH 1/1] eglibc: remove runtime dependency of perl from eglibc-mtrace
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [PATCH 0/1] remove snb rc6 patches from v3.4 kernel repository
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,31 +42,82 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 11 Jun 2012 22:25:42 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Mon, 11 Jun 2012 23:23:39 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jun 11, 2012 at 3:07 PM, Saul Wold <sgw@linux.intel.com> wrote:
->> Would the correct solution be to break eglibc-mtrace out into a separate
->> recipe.
->>
-> I am not sure if this would be more correct or have the PACKAGES contain
-> something like ${EGLIBC_PACKAGE_MTRACE}, which could the be over-ridden by
-> the yocto-tiny distro.
->
-> EGLIBC_PACKAGE_MTRACE ?= "${PN}-mtrace"
->
-> and then change ${PN}-mtrace in the PACKAGES list to
-> ${EGLIBC_PACKAGE_MTRACE}.
->
-> This exposes another "global", so I am not sure which is better.
 
-there are other tools e.g. memusage etc. which could be built in a
-second pass and IMO
-we should separate the eglibc-bin into  a separate recipe since
-everything depends on system libc
-its desirable that it should have few dependencies to build it so
-builds can be more parallel and
-eglibc wont be a bottleneck.
 
--Khem
+> -----Original Message-----
+> From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]
+> Sent: Monday, June 11, 2012 1:20 PM
+> To: Kamble, Nitin A
+> Cc: yocto@yoctoproject.org
+> Subject: Re: [yocto] [PATCH 0/1] remove snb rc6 patches from v3.4 kernel
+> repository
+>=20
+> On 12-06-11 03:38 PM, nitin.a.kamble@intel.com wrote:
+> > From: Nitin A Kamble<nitin.a.kamble@intel.com>
+> >
+> > These patches are already part of v3.4 kernel sources. So there is no
+> > need to maintain them in the yocto linux 3.4 repository.
+>=20
+> dropped. They obviously weren't reference anyway.
+>=20
+> I assume you'll be doing an associated meta-intel commit to remove the
+> reference in:
+>=20
+> ./meta-sugarbay/recipes-kernel/linux/linux-yocto_3.2.bbappend
+>=20
+
+Bruce,
+I think these rc6 patches are still needed for linux-yocto_3.2.bbappend. An=
+d they are referenced in the sugarbay bsp 3.2 Yocto kernel as you note abov=
+e. The commit I sent is for for v3.4 yocto kernel tree.=20
+Are you saying about dropping rc6 patches from the 3.2 kernel tree as well?
+
+Nitin
+
+> Cheers,
+>=20
+> Bruce
+>=20
+> >
+> > Thanks,
+> > Nitin
+> >
+> > The following changes since commit
+> 3fd089debe624c642d7b4d9363f853021d1675b2:
+> >
+> >    checkpoint dir: meta (2012-06-06 16:24:42 -0400)
+> >
+> > are available in the git repository at:
+> >    git://git.yoctoproject.org/linux-yocto-2.6.37-contrib nitin/meta
+> >
+> > http://git.yoctoproject.org/cgit.cgi/linux-yocto-2.6.37-contrib/log/?h
+> > =3Dnitin/meta
+> >
+> > Nitin A Kamble (1):
+> >    rc6: remove rc6 patches for snb
+> >
+> >   .../features/tmp/rc6/rc6-kernel-params.patch       |   81 -----------=
+---------
+> >   meta/cfg/kernel-cache/features/tmp/rc6/rc6.scc     |    5 -
+> >   .../tmp/rc6/snb-disable-rc6p-fix-precedence.patch  |   26 ------
+> >   .../features/tmp/rc6/snb-disable-rc6p.patch        |   39 ----------
+> >   .../features/tmp/rc6/snb-enable-rc6.patch          |   54 -----------=
+--
+> >   5 files changed, 0 insertions(+), 205 deletions(-)
+> >   delete mode 100644 meta/cfg/kernel-cache/features/tmp/rc6/rc6-
+> kernel-params.patch
+> >   delete mode 100644 meta/cfg/kernel-cache/features/tmp/rc6/rc6.scc
+> >   delete mode 100644 meta/cfg/kernel-cache/features/tmp/rc6/snb-
+> disable-rc6p-fix-precedence.patch
+> >   delete mode 100644 meta/cfg/kernel-cache/features/tmp/rc6/snb-
+> disable-rc6p.patch
+> >   delete mode 100644
+> > meta/cfg/kernel-cache/features/tmp/rc6/snb-enable-rc6.patch
+> >
+
 
