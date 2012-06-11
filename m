@@ -1,27 +1,34 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6C1F6E0044A
-	for <yocto@yoctoproject.org>; Mon, 11 Jun 2012 15:10:05 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 11 Jun 2012 15:10:05 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="178590422"
-Received: from unknown (HELO envy.home) ([10.255.12.84])
-	by fmsmga002.fm.intel.com with ESMTP; 11 Jun 2012 15:10:04 -0700
-Message-ID: <4FD66C72.4020303@linux.intel.com>
-Date: Mon, 11 Jun 2012 15:08:50 -0700
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:13.0) Gecko/20120605 Thunderbird/13.0
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-ey0-f176.google.com (mail-ey0-f176.google.com
+	[209.85.215.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CEB38E0044A
+	for <yocto@yoctoproject.org>; Mon, 11 Jun 2012 15:25:41 -0700 (PDT)
+Received: by eaab16 with SMTP id b16so2256849eaa.35
+	for <yocto@yoctoproject.org>; Mon, 11 Jun 2012 15:25:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=TbMLJM246FxU1OwypF8Bx1bj2uFGLev9ApNre1Paiws=;
+	b=K9GlL5KatsWIjBAn+nnP5CqcqPe3MyQwLS9cJQHTdsddkxxqvk5hHPnXhciXRW/ixO
+	OFRmhhzpOri6vwvNwr8uL27lSibUCG/eX/h5MUJIMtLfO+IAiAMKYoNVuP/epz5rQgRl
+	79dWr3tdMNdgl4Y+QGpdmjK5m9ie+D77Zqt1IBYAUjHc0I89VsX48LsipFCImIGUA+mp
+	YboQbo1KqwBmnwDKwrDfgO+Odw2q1sDC2Kgcwt+nhd4W9USkC25uLvf98psdnKLXhDqP
+	ywJjyU1/81fd2gZgNhgy3P9h8LPxJtGLKAsZ7RhBNpeYwHTHkDtzrfXjq9yCB7t61DYX
+	c0Lw==
+Received: by 10.14.188.140 with SMTP id a12mr5860906een.25.1339453540695; Mon,
+	11 Jun 2012 15:25:40 -0700 (PDT)
 MIME-Version: 1.0
-To: Saul Wold <sgw@linux.intel.com>
+Received: by 10.14.188.11 with HTTP; Mon, 11 Jun 2012 15:25:10 -0700 (PDT)
+In-Reply-To: <4FD66C13.8010603@linux.intel.com>
 References: <cover.1339194124.git.nitin.a.kamble@intel.com>
 	<01b0f43cacd0beed93aebd108730bfe420ab2397.1339194124.git.nitin.a.kamble@intel.com>
-	<4FD28477.9020201@linux.intel.com>
-	<4FD66C13.8010603@linux.intel.com>
-In-Reply-To: <4FD66C13.8010603@linux.intel.com>
-X-Enigmail-Version: 1.4.2
-Cc: yocto@yoctoproject.org, Patches and discussions about the oe-core layer
+	<4FD28477.9020201@linux.intel.com> <4FD66C13.8010603@linux.intel.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Mon, 11 Jun 2012 15:25:10 -0700
+Message-ID: <CAMKF1sr-C5oot0TBpSJmNNGu409803qwYzK5Lw-1+R_DYoMs7Q@mail.gmail.com>
+To: Saul Wold <sgw@linux.intel.com>
+Cc: yocto@yoctoproject.org, Darren Hart <dvhart@linux.intel.com>,
+	Patches and discussions about the oe-core layer
 	<openembedded-core@lists.openembedded.org>
 Subject: Re: [OE-core] [PATCH 1/1] eglibc: remove runtime dependency of perl from eglibc-mtrace
 X-BeenThere: yocto@yoctoproject.org
@@ -35,86 +42,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 11 Jun 2012 22:10:05 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 11 Jun 2012 22:25:42 -0000
+Content-Type: text/plain; charset=UTF-8
 
-
-
-On 06/11/2012 03:07 PM, Saul Wold wrote:
-> On 06/08/2012 04:02 PM, Darren Hart wrote:
->>
->>
->> On 06/08/2012 03:23 PM, nitin.a.kamble@intel.com wrote:
->>> From: Nitin A Kamble<nitin.a.kamble@intel.com>
->>>
->>> perl needs eglibc to build.
->>> The presence of runtime dependency of
->>> perl for eglibc-mtrace caused bitbake to build perl before eglibc,
->>> which causes build failure of perl with poky-tiny distro
->>>
->>
->> So is this a circular dependency chain?
->>
->> perl DEPENDS on eglibc
->> eglibc (because of eglibc-mtrace) RDEPENDS on perl?
->>
->> If so, doesn't this solution leave eglibc-mtrace with an incomplete set
->> of dependencies in it's final package meta-data?
->>
+On Mon, Jun 11, 2012 at 3:07 PM, Saul Wold <sgw@linux.intel.com> wrote:
 >> Would the correct solution be to break eglibc-mtrace out into a separate
 >> recipe.
 >>
-> I am not sure if this would be more correct or have the PACKAGES contain 
-> something like ${EGLIBC_PACKAGE_MTRACE}, which could the be over-ridden 
-> by the yocto-tiny distro.
-> 
+> I am not sure if this would be more correct or have the PACKAGES contain
+> something like ${EGLIBC_PACKAGE_MTRACE}, which could the be over-ridden by
+> the yocto-tiny distro.
+>
 > EGLIBC_PACKAGE_MTRACE ?= "${PN}-mtrace"
-> 
-> and then change ${PN}-mtrace in the PACKAGES list to 
+>
+> and then change ${PN}-mtrace in the PACKAGES list to
 > ${EGLIBC_PACKAGE_MTRACE}.
-> 
+>
 > This exposes another "global", so I am not sure which is better.
 
-This doesn't seem inconsistent with other solutions to similar sorts of
-problems. This is certainly less work and a smaller change.
+there are other tools e.g. memusage etc. which could be built in a
+second pass and IMO
+we should separate the eglibc-bin into  a separate recipe since
+everything depends on system libc
+its desirable that it should have few dependencies to build it so
+builds can be more parallel and
+eglibc wont be a bottleneck.
 
---
-Darren
-
-> 
-> Sau!
-> 
-> 
->> eglibc-mtrace.bb could then DEPENDS=eglibc and RDEPENDS=perl and
->> poky-tiny would need to be able to exclude eglibc-mtrace.
->>
->>
->>>    This fixes bug: [YOCTO #2523]
->>>
->>> Signed-off-by: Nitin A Kamble<nitin.a.kamble@intel.com>
->>> ---
->>>   meta/recipes-core/eglibc/eglibc-package.inc |    1 -
->>>   1 files changed, 0 insertions(+), 1 deletions(-)
->>>
->>> diff --git a/meta/recipes-core/eglibc/eglibc-package.inc b/meta/recipes-core/eglibc/eglibc-package.inc
->>> index ce37155..423729a 100644
->>> --- a/meta/recipes-core/eglibc/eglibc-package.inc
->>> +++ b/meta/recipes-core/eglibc/eglibc-package.inc
->>> @@ -55,7 +55,6 @@ FILES_${PN}-dbg += "${libexecdir}/*/.debug ${libdir}/audit/.debug"
->>>   FILES_catchsegv${PKGSUFFIX} = "${bindir}/catchsegv"
->>>   RDEPENDS_catchsegv${PKGSUFFIX} = "libsegfault"
->>>   RDEPENDS_${PN}-utils += "bash"
->>> -RDEPENDS_${PN}-mtrace += "perl"
->>>   FILES_${PN}-pcprofile = "${base_libdir}/libpcprofile.so"
->>>   FILES_eglibc-thread-db${PKGSUFFIX} = "${base_libdir}/libthread_db.so.* ${base_libdir}/libthread_db-*.so"
->>>   RPROVIDES_${PN}-dev += "libc-dev"
->>
-
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
-
-
+-Khem
 
