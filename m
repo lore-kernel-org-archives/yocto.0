@@ -1,31 +1,32 @@
-Return-Path: <jiajun.xu@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BD551E00746
-	for <yocto@yoctoproject.org>; Mon, 11 Jun 2012 01:08:19 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 11 Jun 2012 01:08:19 -0700
+Return-Path: <belen.barros.pena@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7FD39E00746
+	for <yocto@yoctoproject.org>; Mon, 11 Jun 2012 02:31:25 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga102.fm.intel.com with ESMTP; 11 Jun 2012 02:31:25 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="110581267"
-Received: from azsmsx601.amr.corp.intel.com ([10.2.121.193])
-	by AZSMGA002.ch.intel.com with ESMTP; 11 Jun 2012 01:08:19 -0700
-Received: from shsmsx151.ccr.corp.intel.com (10.239.6.50) by
-	azsmsx601.amr.corp.intel.com (10.2.121.193) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Mon, 11 Jun 2012 01:08:18 -0700
-Received: from shsmsx101.ccr.corp.intel.com ([169.254.1.90]) by
-	SHSMSX151.ccr.corp.intel.com ([169.254.3.231]) with mapi id
-	14.01.0355.002; Mon, 11 Jun 2012 16:08:13 +0800
-From: "Xu, Jiajun" <jiajun.xu@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Yocto weekly bug trend charts -- WW23
-Thread-Index: Ac1HqVh2tzTcALFeRVaMPpsCgOniuA==
-Date: Mon, 11 Jun 2012 08:08:12 +0000
-Message-ID: <90741FE9B50D654690EB940EDB456C8E14356C@SHSMSX101.ccr.corp.intel.com>
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="164063516"
+Received: from irsmsx101.ger.corp.intel.com ([163.33.3.153])
+	by fmsmga001.fm.intel.com with ESMTP; 11 Jun 2012 02:31:24 -0700
+Received: from irsmsx104.ger.corp.intel.com ([169.254.5.248]) by
+	IRSMSX101.ger.corp.intel.com ([169.254.1.68]) with mapi id
+	14.01.0355.002; Mon, 11 Jun 2012 10:30:52 +0100
+From: "Barros Pena, Belen" <belen.barros.pena@intel.com>
+To: Joshua Lock <josh@linux.intel.com>
+Thread-Topic: [yocto] Hob implementation: vanilla or branded?
+Thread-Index: AQHNR7TkxYgPrpNQIUKkmNG3dsoFAw==
+Date: Mon, 11 Jun 2012 09:30:51 +0000
+Message-ID: <CBFB7925.10ABF%belen.barros.pena@intel.com>
+In-Reply-To: <4FD22B4B.3050206@linux.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [10.239.127.40]
+user-agent: Microsoft-MacOutlook/14.2.2.120421
+x-originating-ip: [10.252.39.76]
 MIME-Version: 1.0
-Subject: Yocto weekly bug trend charts -- WW23
+Cc: "Lock, Joshua" <joshua.lock@intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Hob implementation: vanilla or branded?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,18 +38,64 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 11 Jun 2012 08:08:20 -0000
+X-List-Received-Date: Mon, 11 Jun 2012 09:31:25 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
+Content-ID: <1F0ADF61773352468C9ED1D3A10A9455@intel.com>
 Content-Transfer-Encoding: quoted-printable
 
-Hi all,
-	This is the weekly bug trend for WW23. The new submitted vs. fixed bug num=
-ber is 39 vs. 25. WDD number and Open Bug number increased a lot, as 1103 a=
-nd 222. Bug status of WW23 could be found on https://wiki.yoctoproject.org/=
-wiki/Yocto_Bug_Trend.
+Thanks, Joshua.
 
-Best Regards,
-Jiajun
+Belen
+
+On 08/06/2012 17:41, "Joshua Lock" <josh@linux.intel.com> wrote:
+
+>On 08/06/12 07:28, Barros Pena, Belen wrote:
+> > Vanilla 5 - branded 0 :)
+> >
+> > Shane, Dongxiao and Alex: from an implementation point of view, I guess
+> > this means eliminating any hardcoded UI-related values (button
+>colours and
+> > styles, for example). Joshua: if you have a rough idea of the things
+>that
+> > will need to be changed from the work you did before the 1.2 release,
+> > please let us know.
+>
+>I have a link to an old article that suggests techniques for getting
+>colours from the GTK+ theme:
+>
+>http://ometer.com/gtk-colors.html
+>
+>It's pretty old but I believe the GTK+2 pieces are still appropriate for
+>Hob.
+>
+>On top of that using gtk.Table is bad, using hard coded sizes for text,
+>widgets, etc. is bad.
+>
+>Pango markup supports proportional font sizes (large, larger) like CSS
+>and I'd suggest those be used.
+>
+>I think we should keep the existing icons, though.
+> > What do you think?
+>
+>I'm definitely in favour of that.
+>
+>Cheers,
+>Joshua
+>--=20
+>Joshua Lock
+>         Yocto Project
+>         Intel Open Source Technology Centre
+
+---------------------------------------------------------------------
+Intel Corporation (UK) Limited
+Registered No. 1134945 (England)
+Registered Office: Pipers Way, Swindon SN3 1RJ
+VAT No: 860 2173 47
+
+This e-mail and any attachments may contain confidential material for
+the sole use of the intended recipient(s). Any review or distribution
+by others is strictly prohibited. If you are not the intended
+recipient, please contact the sender and delete all copies.
 
 
