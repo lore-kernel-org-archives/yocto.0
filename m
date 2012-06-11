@@ -1,35 +1,30 @@
-Return-Path: <belen.barros.pena@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9D21CE00746
-	for <yocto@yoctoproject.org>; Mon, 11 Jun 2012 02:32:00 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 11 Jun 2012 02:32:00 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="156074141"
-Received: from irsmsx103.ger.corp.intel.com ([163.33.3.157])
-	by orsmga002.jf.intel.com with ESMTP; 11 Jun 2012 02:31:59 -0700
-Received: from irsmsx152.ger.corp.intel.com (163.33.192.66) by
-	IRSMSX103.ger.corp.intel.com (163.33.3.157) with Microsoft SMTP Server
-	(TLS) id 14.1.355.2; Mon, 11 Jun 2012 10:31:53 +0100
-Received: from irsmsx104.ger.corp.intel.com ([169.254.5.248]) by
-	IRSMSX152.ger.corp.intel.com ([169.254.6.206]) with mapi id
-	14.01.0355.002; Mon, 11 Jun 2012 10:31:53 +0100
-From: "Barros Pena, Belen" <belen.barros.pena@intel.com>
-To: "Burton, Ross" <ross.burton@intel.com>, Joshua Lock <josh@linux.intel.com>
-Thread-Topic: [yocto] Hob implementation: vanilla or branded?
-Thread-Index: AQHNR7UIxYgPrpNQIUKkmNG3dsoFAw==
-Date: Mon, 11 Jun 2012 09:31:52 +0000
-Message-ID: <CBFB793C.10AC0%belen.barros.pena@intel.com>
-In-Reply-To: <CAJTo0LbNaNmKMuF2gw+mUUyCRzEC+P34b6aVGX_AjYNSjQxzag@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Microsoft-MacOutlook/14.2.2.120421
-x-originating-ip: [10.252.39.76]
-MIME-Version: 1.0
-Cc: "Lock, Joshua" <joshua.lock@intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Hob implementation: vanilla or branded?
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
+	[93.97.173.237])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1E640E013D4
+	for <yocto@yoctoproject.org>; Mon, 11 Jun 2012 05:51:47 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q5BCpg4T014907;
+	Mon, 11 Jun 2012 13:51:42 +0100
+Received: from tim.rpsys.net ([127.0.0.1])
+	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
+	port 10024) with LMTP
+	id 13232-10; Mon, 11 Jun 2012 13:51:38 +0100 (BST)
+Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q5BCpWIt014900
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Mon, 11 Jun 2012 13:51:33 +0100
+Message-ID: <1339419094.30460.20.camel@ted>
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: Paul Gortmaker <paul.gortmaker@windriver.com>
+Date: Mon, 11 Jun 2012 13:51:34 +0100
+In-Reply-To: <1339171857-2776-1-git-send-email-paul.gortmaker@windriver.com>
+References: <1339171857-2776-1-git-send-email-paul.gortmaker@windriver.com>
+X-Mailer: Evolution 3.2.2- 
+Mime-Version: 1.0
+X-Virus-Scanned: amavisd-new at rpsys.net
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH] gitignore: add wildcard to match toplevel patch files
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,38 +36,20 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 11 Jun 2012 09:32:00 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <A282CCBC19FCC449886F421568676EC9@intel.com>
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 11 Jun 2012 12:51:48 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Sounds good: thanks, Ross.
+On Fri, 2012-06-08 at 12:10 -0400, Paul Gortmaker wrote:
+> To support the basic workflow of trivial patches:
+> 
+>  git format-patch HEAD~.. ; git send-email --to foo@bar.com 0001-foo.patch
+> 
+> We don't want git status reporting on patches lying in the top
+> level dir in this case.
 
-Belen
+Merged to master, thanks.
 
-On 08/06/2012 21:24, "Burton, Ross" <ross.burton@intel.com> wrote:
-
->On 8 June 2012 17:41, Joshua Lock <josh@linux.intel.com> wrote:
->>> Joshua: if you have a rough idea of the things that
->>> will need to be changed from the work you did before the 1.2 release,
->>> please let us know.
->
->I think it's fair that I take over from Joshua as "resident GTK+
->knowledge base", having written several GNOME applications and more
->importantly being on the Yocto team. :)
->
->Ross
-
----------------------------------------------------------------------
-Intel Corporation (UK) Limited
-Registered No. 1134945 (England)
-Registered Office: Pipers Way, Swindon SN3 1RJ
-VAT No: 860 2173 47
-
-This e-mail and any attachments may contain confidential material for
-the sole use of the intended recipient(s). Any review or distribution
-by others is strictly prohibited. If you are not the intended
-recipient, please contact the sender and delete all copies.
+Richard
 
 
