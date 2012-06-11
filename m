@@ -1,40 +1,21 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-pz0-f48.google.com (mail-pz0-f48.google.com
-	[209.85.210.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 92D8BE0073F
-	for <yocto@yoctoproject.org>; Mon, 11 Jun 2012 06:53:35 -0700 (PDT)
-Received: by dadz8 with SMTP id z8so6826578dad.35
-	for <yocto@yoctoproject.org>; Mon, 11 Jun 2012 06:53:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=message-id:date:from:user-agent:mime-version:to:cc:subject
-	:references:in-reply-to:x-enigmail-version:content-type
-	:content-transfer-encoding;
-	bh=SHIOyEawlWQWCp4Iyv9HcT9CEoyByaIKqhZQRiSWjSk=;
-	b=UCn263FkIUafkUFsabPP3aWLYAXx1ATN9JF8kSLTo2YSpDIUE+ghD98NgoLwsWurZb
-	kpqK2TfOb4ZtQnsK/JpHE/QTZkgCt8zsu3s4tM6BV/J8bCMclu9cnn/fvrjjYQADMbHr
-	izuoBRIK1TmhdqVUM9Y7DUyV//qYgYc8nwS5ykVHmHTSFG/tZtn74tlJjURPBsgbPFPT
-	zHabpNw7B4AbsBrj3TLx++23/yXx2/dXH89nvwB5RUKOEz/3IaDB0eVqgbL+jDiMY3h+
-	1YBcycJWDkag3AGbs7SAkRby3jm9e+mk/dwpVKfZSKMaBW4hKjCmj8w3dcacMPHxX9e5
-	q4bA==
-Received: by 10.68.131.38 with SMTP id oj6mr26906678pbb.39.1339422814906;
-	Mon, 11 Jun 2012 06:53:34 -0700 (PDT)
-Received: from [192.168.1.71] (99-57-140-209.lightspeed.sntcca.sbcglobal.net.
-	[99.57.140.209])
-	by mx.google.com with ESMTPS id sy3sm18562966pbc.18.2012.06.11.06.53.32
-	(version=SSLv3 cipher=OTHER); Mon, 11 Jun 2012 06:53:33 -0700 (PDT)
-Message-ID: <4FD5F85C.3030203@gmail.com>
-Date: Mon, 11 Jun 2012 06:53:32 -0700
-From: Khem Raj <raj.khem@gmail.com>
-User-Agent: Mozilla/5.0 (Windows NT 6.1;
-	rv:12.0) Gecko/20120428 Thunderbird/12.0.1
+Return-Path: <juergen.messerer@bbv.ch>
+Received: from owa.outnet.ch (mail.outnet.ch [80.67.146.1])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 039EAE0044A
+	for <yocto@yoctoproject.org>; Mon, 11 Jun 2012 07:12:52 -0700 (PDT)
+Received: from TKSSREX01.outnet.ch ([10.10.10.1]) by tkssrexhcu01.outnet.ch
+	([172.17.220.45]) with mapi; Mon, 11 Jun 2012 16:12:47 +0200
+From: =?iso-8859-1?Q?J=FCrgen_Messerer?= <juergen.messerer@bbv.ch>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Mon, 11 Jun 2012 16:12:46 +0200
+Thread-Topic: Grub installation
+Thread-Index: Ac1H2l8SNvXbdwJIQQ6wgId2BrI5XQ==
+Message-ID: <A7B59F6D52627C44813C136D437B0832068BC78CAB6C@TKSSREX01.outnet.ch>
+Accept-Language: en-US, de-CH
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US, de-CH
 MIME-Version: 1.0
-To: Tomas Frydrych <tf+lists.yocto@r-finger.com>
-References: <1B44395A-0DD8-4136-83B3-FD82C9F5DDCA@keylevel.com>
-	<4FD59E5D.4080008@r-finger.com>
-In-Reply-To: <4FD59E5D.4080008@r-finger.com>
-X-Enigmail-Version: 1.4.2
-Cc: yocto@yoctoproject.org
-Subject: Re: RaspberryPi Kernel - sometimes it works, sometimes it doesn't
+Subject: Grub installation
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,52 +27,133 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 11 Jun 2012 13:53:35 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 11 Jun 2012 14:12:52 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_A7B59F6D52627C44813C136D437B0832068BC78CAB6CTKSSREX01ou_"
 
------BEGIN PGP SIGNED MESSAGE-----
-Hash: SHA1
+--_000_A7B59F6D52627C44813C136D437B0832068BC78CAB6CTKSSREX01ou_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-On 6/11/2012 12:29 AM, Tomas Frydrych wrote:
-> Hi,
-> 
-> On 10/06/12 12:30, Chris Tapp wrote:
->> I've been building the 3.1.9 Raspberry Pi kernel under Denzil
->> using the meta layer at
->> https://github.com/djwillis/meta-raspberrypi. This uses a kernel
->> recipe based on the git repository at 
->> https://github.com/raspberrypi/linux/commits/rpi-patches.
->> 
->> Some of the kernel commit IDs (e.g. 
->> 94fbbc4e3988075abad0d3b32842b82c590324fc) seem to build ok, but
->> they don't always run. As in, if I -c clean and build then
->> sometimes I end up with a bootable image, sometimes I don't. I'm
->> not changing anything else in the build environment.
->> 
->> Any ideas what can cause this?
-> 
-> I find that -c clean does not work very well, afterward the package
-> gets recompiled but instead of the actual package packages being
-> rebuilt, an earlier version of the packages gets pulled out of
-> sstate into the image. I definitely saw this behaviour with Yocto
-> kernels, but I think happens with other packages as well; I always
-> do -c cleansstate now to avoid this.
+Hi
 
-yes thats the intended behavior if nothing changed that ensues a
-recompile then it will use precompiled sstate for the package
+I have the following problem. I have created with yocto a core-image-minima=
+l for x86 which I could test with qemu.
 
-> 
-> Tomas _______________________________________________ yocto mailing
-> list yocto@yoctoproject.org 
-> https://lists.yoctoproject.org/listinfo/yocto
+later I added the following lines to conf/local.conf at the end according t=
+o the manual chapter 4.2.4:
+IMAGE_INSTALL_append =3D " bash"
+IMAGE_INSTALL_append =3D " strace"
+IMAGE_INSTALL_append =3D " grub"
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.12 (MingW32)
-Comment: Using GnuPG with Mozilla - http://enigmail.mozdev.org/
+Bash and strace were installed correctly.
+In the case of grub I couldn't find the directory /boot/grub.
 
-iEYEARECAAYFAk/V+FwACgkQuwUzVZGdMxRlnwCfaIy1wo/G0gEIVbQQe0ImsKPa
-2csAoJGhol1N0xrudHfT/c7T97Hoizhf
-=l1iC
------END PGP SIGNATURE-----
+/etc/grub.d is installed also the folder /usr/lib/grub
 
+Question 1:
+Which grub recipe does yocto install from  poky-denzil-7.0/meta/recipes-bsp=
+/grub/
+I would prefer version 1.99.
+
+Questin 2:
+Will yocto not install a /boot/grub directory?
+
+I would appreciate any tips and tricks to install grub correctly in the cor=
+e-image-minimal
+
+
+Thanks a lot
+
+Best regards
+
+Juergen
+
+--_000_A7B59F6D52627C44813C136D437B0832068BC78CAB6CTKSSREX01ou_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40"><head><meta http-equiv=3DContent-Type content=
+=3D"text/html; charset=3Diso-8859-1"><meta name=3DGenerator content=3D"Micr=
+osoft Word 14 (filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 70.85pt 2.0cm 70.85pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DDE-CH link=3Dblue vli=
+nk=3Dpurple><div class=3DWordSection1><p class=3DMsoNormal><span lang=3DEN-=
+US>Hi<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US><o:p>&nb=
+sp;</o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US>I have the foll=
+owing problem. I have created with yocto a core-image-minimal for x86 which=
+ I could test with qemu.<o:p></o:p></span></p><p class=3DMsoNormal><span la=
+ng=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span lang=3DEN=
+-US>later I added the following lines to conf/local.conf at the end accordi=
+ng to the manual chapter 4.2.4:<o:p></o:p></span></p><p class=3DMsoNormal><=
+span lang=3DEN-US>IMAGE_INSTALL_append =3D &quot; bash&quot;<o:p></o:p></sp=
+an></p><p class=3DMsoNormal><span lang=3DEN-US>IMAGE_INSTALL_append =3D &qu=
+ot; strace&quot;<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-=
+US>IMAGE_INSTALL_append =3D &quot; grub&quot;<o:p></o:p></span></p><p class=
+=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoN=
+ormal><span lang=3DEN-US>Bash and strace were installed correctly. <o:p></o=
+:p></span></p><p class=3DMsoNormal><span lang=3DEN-US>In the case of grub I=
+ couldn&#8217;t find the directory /boot/grub.<o:p></o:p></span></p><p clas=
+s=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMso=
+Normal><span lang=3DEN-US>/etc/grub.d is installed also the folder /usr/lib=
+/grub<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US><o:p>&nb=
+sp;</o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US>Question 1:<o:p=
+></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US>Which grub recipe=
+ does yocto install from =A0poky-denzil-7.0/meta/recipes-bsp/grub/<o:p></o:=
+p></span></p><p class=3DMsoNormal><span lang=3DEN-US>I would prefer version=
+ 1.99.<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US><o:p>&n=
+bsp;</o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US>Questin 2:<o:p=
+></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US>Will yocto not in=
+stall a /boot/grub directory?<o:p></o:p></span></p><p class=3DMsoNormal><sp=
+an lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span lang=
+=3DEN-US>I would appreciate any tips and tricks to install grub correctly i=
+n the core-image-minimal<o:p></o:p></span></p><p class=3DMsoNormal><span la=
+ng=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span lang=3DEN=
+-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US>Tha=
+nks a lot<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US><o:p=
+>&nbsp;</o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US>Best regard=
+s<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;<=
+/o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US>Juergen<o:p></o:p><=
+/span></p></div></body></html>=
+
+--_000_A7B59F6D52627C44813C136D437B0832068BC78CAB6CTKSSREX01ou_--
