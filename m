@@ -1,33 +1,27 @@
-Return-Path: <song.liu@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CE2D0E0044A
-	for <yocto@yoctoproject.org>; Mon, 11 Jun 2012 14:48:06 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 11 Jun 2012 14:48:06 -0700
+Return-Path: <sgw@linux.intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 53698E0044A
+	for <yocto@yoctoproject.org>; Mon, 11 Jun 2012 15:07:16 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 11 Jun 2012 15:07:15 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="151571990"
-Received: from orsmsx606.amr.corp.intel.com ([10.22.226.128])
-	by orsmga001.jf.intel.com with ESMTP; 11 Jun 2012 14:48:06 -0700
-Received: from orsmsx102.amr.corp.intel.com (10.22.225.129) by
-	orsmsx606.amr.corp.intel.com (10.22.226.128) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Mon, 11 Jun 2012 14:48:05 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.60]) by
-	ORSMSX102.amr.corp.intel.com ([169.254.1.88]) with mapi id
-	14.01.0355.002; Mon, 11 Jun 2012 14:48:05 -0700
-From: "Liu, Song" <song.liu@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Agenda: Yocto Project Technical Team Meeting - Tuesday, June
-	12, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
-Thread-Index: AQHNSBviZOcczAKvekWW3qcIgmy7yQ==
-Date: Mon, 11 Jun 2012 21:48:05 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A4841FFA1@ORSMSX101.amr.corp.intel.com>
-References: <7E680CB2A76BB8438D08CF13C09FC53A257BE410@ORSMSX101.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.139]
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="154966072"
+Received: from unknown (HELO [10.255.12.133]) ([10.255.12.133])
+	by azsmga001.ch.intel.com with ESMTP; 11 Jun 2012 15:07:15 -0700
+Message-ID: <4FD66C13.8010603@linux.intel.com>
+Date: Mon, 11 Jun 2012 15:07:15 -0700
+From: Saul Wold <sgw@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:12.0) Gecko/20120430 Thunderbird/12.0.1
 MIME-Version: 1.0
-Subject: Agenda: Yocto Project Technical Team Meeting - Tuesday, June 12, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+To: Darren Hart <dvhart@linux.intel.com>
+References: <cover.1339194124.git.nitin.a.kamble@intel.com>
+	<01b0f43cacd0beed93aebd108730bfe420ab2397.1339194124.git.nitin.a.kamble@intel.com>
+	<4FD28477.9020201@linux.intel.com>
+In-Reply-To: <4FD28477.9020201@linux.intel.com>
+Cc: yocto@yoctoproject.org, Patches and discussions about the oe-core layer
+	<openembedded-core@lists.openembedded.org>
+Subject: Re: [OE-core] [PATCH 1/1] eglibc: remove runtime dependency of perl from eglibc-mtrace
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,131 +33,69 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 11 Jun 2012 21:48:06 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 11 Jun 2012 22:07:16 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Agenda:
-=A0
-* Opens collection - 5 min (Song)
-* 1.2.1 update - 5 min (ScottG)
-* 1.1.2 update - 5 min (Josh/Beth)
-* Yocto 1.3 status  - 10 min (Song/team)
-* LTSI discussion - 10 min (Sean/Bruce/team)
-* SWAT team rotation: Jessica -> Dexuan
-* Opens - 5 min
-* Team sharing - 20 min
+On 06/08/2012 04:02 PM, Darren Hart wrote:
+>
+>
+> On 06/08/2012 03:23 PM, nitin.a.kamble@intel.com wrote:
+>> From: Nitin A Kamble<nitin.a.kamble@intel.com>
+>>
+>> perl needs eglibc to build.
+>> The presence of runtime dependency of
+>> perl for eglibc-mtrace caused bitbake to build perl before eglibc,
+>> which causes build failure of perl with poky-tiny distro
+>>
+>
+> So is this a circular dependency chain?
+>
+> perl DEPENDS on eglibc
+> eglibc (because of eglibc-mtrace) RDEPENDS on perl?
+>
+> If so, doesn't this solution leave eglibc-mtrace with an incomplete set
+> of dependencies in it's final package meta-data?
+>
+> Would the correct solution be to break eglibc-mtrace out into a separate
+> recipe.
+>
+I am not sure if this would be more correct or have the PACKAGES contain 
+something like ${EGLIBC_PACKAGE_MTRACE}, which could the be over-ridden 
+by the yocto-tiny distro.
 
+EGLIBC_PACKAGE_MTRACE ?= "${PN}-mtrace"
 
------Original Appointment-----
+and then change ${PN}-mtrace in the PACKAGES list to 
+${EGLIBC_PACKAGE_MTRACE}.
 
+This exposes another "global", so I am not sure which is better.
 
-
-Conference details
-Conference name:=20
-Yocto Technical Team
-Conference date/start time:=20
-Tue Jun 28, 2011 at 10:00 AM Central Daylight Time
-Participants:=20
-30
-Duration:=20
-60 minutes
-Participant passcode:=20
-49611427
-Dial-in number:=20
-1.972.995.7777
-US Toll Free number:=20
-1.877.561.6828
-BlackBerry users, click this link to join your conference as a chairperson:
-1.972.995.7777x67184230#
-BlackBerry users, click this link to join your conference as a participant:
-1.972.995.7777x49611427#
-=A0
-Depending on where you are dialing from, either your BlackBerry will pause =
-and enter the passcode automatically or you will be prompted to click again=
- to dial the passcode.
-
-Local and Global Access Numbers=20
+Sau!
 
 
-Country
-Dial-in number
-Australia:=20
-1800 636 843
-Czech Republic:=20
-242 430 350
-China (Beijing):=20
-From office dial 8-9957777 or 8784277
-Beijing Out of Office dial 5878 4277
-China (Shanghai):=20
-From office dial 8-9957777 or 3073322
-Shanghai Out of Office dial 2307 3322
-China (Shenzen):=20
-From office dial 8-9957777 or 6007877
-Shenzen Out of Office dial 2600 7877
-China (Other Cities):=20
-From IP phone dial 8-9957777
-Other cities - Non IP phone dial 021-23073322
-Denmark:=20
-8060 1400
-Finland:=20
-09 41333477
-France:=20
-0497 275888
-Germany:=20
-08161 803232
-Holland:=20
-030 2417490
-India:=20
-BSNL subscribers use 1800 425 9996 (Toll Free) Airtel subscribers use 0008 =
-009 861 212 (Toll Free) From TI Campus use 89957777 Others use 2509 9555 (L=
-andline within Bangalore) or
-80 2509 9555 (Outside Bangalore)
-Israel:=20
-09 790 6715
-Italy:=20
-039 69061234 (039 is local city code not country code)
-Japan:=20
-From TI Campus use 8 995 7777
-Outside TI use 03 4331 3777
-Malaysia:=20
-From IP phone dial 2643799
-From Kuala Lumpur dial 4264 3799
-Outside Kuala Lumpur dial (03)4264 3799
-Norway:=20
-2 295 8744
-Philippines:=20
-From Baguio City use 4471177
-From Metro Manila area use 8702477
-Singapore:=20
-From IP phone dial 3894777
-Outside TI use 6389 4777
-South Korea:=20
-From IP phone dial 5606998
-From Seoul dial 5606998
-Outside Seoul dial (02)5606998
-Sweden:=20
-08 58755577
-Taiwan:=20
-From IP phone dial 1363
-From Taipei dial 2241 1363
-Outside Taipei dial (02)2241 1363
-Turkey:=20
-Landline Only dial 0811 288 0001
-then enter 877 633 1123
-UK:=20
-01604 663003
-US:=20
-972 995 7777 or 1877 561 6828
-
-Recurring conferences
-First scheduled conference:=20
-Tue Jun 28, 2011
-Recurrence frequency:=20
-Weekly - Every 1 week(s) on Tuesday
-Recurrence ends:=20
-End on Fri Jun 22, 2012, 10:40 AM CDT
-
-
+> eglibc-mtrace.bb could then DEPENDS=eglibc and RDEPENDS=perl and
+> poky-tiny would need to be able to exclude eglibc-mtrace.
+>
+>
+>>    This fixes bug: [YOCTO #2523]
+>>
+>> Signed-off-by: Nitin A Kamble<nitin.a.kamble@intel.com>
+>> ---
+>>   meta/recipes-core/eglibc/eglibc-package.inc |    1 -
+>>   1 files changed, 0 insertions(+), 1 deletions(-)
+>>
+>> diff --git a/meta/recipes-core/eglibc/eglibc-package.inc b/meta/recipes-core/eglibc/eglibc-package.inc
+>> index ce37155..423729a 100644
+>> --- a/meta/recipes-core/eglibc/eglibc-package.inc
+>> +++ b/meta/recipes-core/eglibc/eglibc-package.inc
+>> @@ -55,7 +55,6 @@ FILES_${PN}-dbg += "${libexecdir}/*/.debug ${libdir}/audit/.debug"
+>>   FILES_catchsegv${PKGSUFFIX} = "${bindir}/catchsegv"
+>>   RDEPENDS_catchsegv${PKGSUFFIX} = "libsegfault"
+>>   RDEPENDS_${PN}-utils += "bash"
+>> -RDEPENDS_${PN}-mtrace += "perl"
+>>   FILES_${PN}-pcprofile = "${base_libdir}/libpcprofile.so"
+>>   FILES_eglibc-thread-db${PKGSUFFIX} = "${base_libdir}/libthread_db.so.* ${base_libdir}/libthread_db-*.so"
+>>   RPROVIDES_${PN}-dev += "libc-dev"
+>
 
