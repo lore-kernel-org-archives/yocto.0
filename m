@@ -1,23 +1,26 @@
 Return-Path: <belen.barros.pena@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7FD39E00746
-	for <yocto@yoctoproject.org>; Mon, 11 Jun 2012 02:31:25 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 11 Jun 2012 02:31:25 -0700
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9D21CE00746
+	for <yocto@yoctoproject.org>; Mon, 11 Jun 2012 02:32:00 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 11 Jun 2012 02:32:00 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="164063516"
-Received: from irsmsx101.ger.corp.intel.com ([163.33.3.153])
-	by fmsmga001.fm.intel.com with ESMTP; 11 Jun 2012 02:31:24 -0700
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="156074141"
+Received: from irsmsx103.ger.corp.intel.com ([163.33.3.157])
+	by orsmga002.jf.intel.com with ESMTP; 11 Jun 2012 02:31:59 -0700
+Received: from irsmsx152.ger.corp.intel.com (163.33.192.66) by
+	IRSMSX103.ger.corp.intel.com (163.33.3.157) with Microsoft SMTP Server
+	(TLS) id 14.1.355.2; Mon, 11 Jun 2012 10:31:53 +0100
 Received: from irsmsx104.ger.corp.intel.com ([169.254.5.248]) by
-	IRSMSX101.ger.corp.intel.com ([169.254.1.68]) with mapi id
-	14.01.0355.002; Mon, 11 Jun 2012 10:30:52 +0100
+	IRSMSX152.ger.corp.intel.com ([169.254.6.206]) with mapi id
+	14.01.0355.002; Mon, 11 Jun 2012 10:31:53 +0100
 From: "Barros Pena, Belen" <belen.barros.pena@intel.com>
-To: Joshua Lock <josh@linux.intel.com>
+To: "Burton, Ross" <ross.burton@intel.com>, Joshua Lock <josh@linux.intel.com>
 Thread-Topic: [yocto] Hob implementation: vanilla or branded?
-Thread-Index: AQHNR7TkxYgPrpNQIUKkmNG3dsoFAw==
-Date: Mon, 11 Jun 2012 09:30:51 +0000
-Message-ID: <CBFB7925.10ABF%belen.barros.pena@intel.com>
-In-Reply-To: <4FD22B4B.3050206@linux.intel.com>
+Thread-Index: AQHNR7UIxYgPrpNQIUKkmNG3dsoFAw==
+Date: Mon, 11 Jun 2012 09:31:52 +0000
+Message-ID: <CBFB793C.10AC0%belen.barros.pena@intel.com>
+In-Reply-To: <CAJTo0LbNaNmKMuF2gw+mUUyCRzEC+P34b6aVGX_AjYNSjQxzag@mail.gmail.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
@@ -38,54 +41,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 11 Jun 2012 09:31:25 -0000
+X-List-Received-Date: Mon, 11 Jun 2012 09:32:00 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
-Content-ID: <1F0ADF61773352468C9ED1D3A10A9455@intel.com>
+Content-ID: <A282CCBC19FCC449886F421568676EC9@intel.com>
 Content-Transfer-Encoding: quoted-printable
 
-Thanks, Joshua.
+Sounds good: thanks, Ross.
 
 Belen
 
-On 08/06/2012 17:41, "Joshua Lock" <josh@linux.intel.com> wrote:
+On 08/06/2012 21:24, "Burton, Ross" <ross.burton@intel.com> wrote:
 
->On 08/06/12 07:28, Barros Pena, Belen wrote:
-> > Vanilla 5 - branded 0 :)
-> >
-> > Shane, Dongxiao and Alex: from an implementation point of view, I guess
-> > this means eliminating any hardcoded UI-related values (button
->colours and
-> > styles, for example). Joshua: if you have a rough idea of the things
->that
-> > will need to be changed from the work you did before the 1.2 release,
-> > please let us know.
+>On 8 June 2012 17:41, Joshua Lock <josh@linux.intel.com> wrote:
+>>> Joshua: if you have a rough idea of the things that
+>>> will need to be changed from the work you did before the 1.2 release,
+>>> please let us know.
 >
->I have a link to an old article that suggests techniques for getting
->colours from the GTK+ theme:
+>I think it's fair that I take over from Joshua as "resident GTK+
+>knowledge base", having written several GNOME applications and more
+>importantly being on the Yocto team. :)
 >
->http://ometer.com/gtk-colors.html
->
->It's pretty old but I believe the GTK+2 pieces are still appropriate for
->Hob.
->
->On top of that using gtk.Table is bad, using hard coded sizes for text,
->widgets, etc. is bad.
->
->Pango markup supports proportional font sizes (large, larger) like CSS
->and I'd suggest those be used.
->
->I think we should keep the existing icons, though.
-> > What do you think?
->
->I'm definitely in favour of that.
->
->Cheers,
->Joshua
->--=20
->Joshua Lock
->         Yocto Project
->         Intel Open Source Technology Centre
+>Ross
 
 ---------------------------------------------------------------------
 Intel Corporation (UK) Limited
