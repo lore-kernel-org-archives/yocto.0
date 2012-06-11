@@ -1,26 +1,23 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 44C92E00746
-	for <yocto@yoctoproject.org>; Sun, 10 Jun 2012 15:04:30 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 10 Jun 2012 15:04:29 -0700
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AF284E013D4
+	for <yocto@yoctoproject.org>; Sun, 10 Jun 2012 20:34:12 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 10 Jun 2012 20:34:12 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="154466427"
-Received: from unknown (HELO helios.localnet) ([10.252.120.99])
-	by azsmga001.ch.intel.com with ESMTP; 10 Jun 2012 15:04:28 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: yocto@yoctoproject.org
-Date: Sun, 10 Jun 2012 23:04:28 +0100
-Message-ID: <2635559.9iAIfW4lGB@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.8.3 (Linux/3.2.0-24-generic-pae; KDE/4.8.3; i686; ; )
-In-Reply-To: <4FCC6DD9.50801@enea.com>
-References: <4FC74DF9.3070401@enea.com>
-	<CAEsOVNc8n1yqOxc12osvmUB1+qCAxZFo077WEk4+AnaaN6KCgg@mail.gmail.com>
-	<4FCC6DD9.50801@enea.com>
-MIME-Version: 1.0
-Cc: McClintock Matthew-B29882 <B29882@freescale.com>
-Subject: Re: PR and bbappends
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="163971844"
+Received: from unknown (HELO [10.255.12.138]) ([10.255.12.138])
+	by fmsmga001.fm.intel.com with ESMTP; 10 Jun 2012 20:34:11 -0700
+From: Tom Zanussi <tom.zanussi@intel.com>
+To: kishore.k.bodke@intel.com
+In-Reply-To: <cover.1339105415.git.kishore.k.bodke@intel.com>
+References: <cover.1339105415.git.kishore.k.bodke@intel.com>
+Date: Sun, 10 Jun 2012 22:33:58 -0500
+Message-ID: <1339385638.9024.0.camel@elmorro>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.28.3 
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH 0/1] [meta-intel] meta-cedartrail: update SRCREV
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,46 +29,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 10 Jun 2012 22:04:30 -0000
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+X-List-Received-Date: Mon, 11 Jun 2012 03:34:12 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-On Monday 04 June 2012 10:12:09 David Nystr=F6m wrote:
-> On 06/01/2012 09:32 PM, McClintock Matthew-B29882 wrote:
-> > Some based layers should not modify certain packages. Which
-> > meta-fsl-ppc is guilty of doing which I would like to cleanup. Chan=
-ges
-> > to packages should be moved up to a distro layer I believe?
->=20
-> I don't mind BSP layers modifying packages, as long as its called for=
-.
-> It would be helpful if BSP maintainers could try to enforce
-> those bbappends only on machines in the BSP layer itself. i.e.
->=20
-> Bugfix and other similar bbappends on generic stuff could be placed i=
-n a
-> separate directory which can be easily BBMASK:ed.
 
-If they're bugfixes that are not in any way machine-specific they reall=
-y do not=20
-belong in the BSP. They're fine for distro layers, although I would str=
-ongly=20
-encourage people to be pushing these fixes up to OE-core unless they ar=
-e=20
-specific to some distro policy.
+On Thu, 2012-06-07 at 14:48 -0700, kishore.k.bodke@intel.com wrote:
+> From: Kishore Bodke <kishore.k.bodke@intel.com>
+> 
+> Removed the kernel feature set from the BSP area.
+> These have been added to kernel meta branch.
+> So update the SRCREV for meta to pull in these changes.
+> 
+> Please pull into meta-intel/denzil.
+> 
 
-FYI, for machine specific changes in bbappends you can still make use o=
-f a=20
-machine override to ensure that the change only applies when building f=
-or that=20
-specific machine. With a lot of variable changes that could get messy t=
-hough :/
+Pulled into meta-intel/denzil and meta-intel/master.
 
-Cheers,
-Paul
+Thanks,
 
---=20
+Tom
 
-Paul Eggleton
-Intel Open Source Technology Centre
+> Thanks
+> Kishore.
+> 
+> The following changes since commit 8bc2fa135060e941bcbb4dcfb664e175a3eb871d:
+> 
+>   meta-fri2: add video acceleration (2012-06-06 16:16:24 -0500)
+> 
+> are available in the git repository at:
+> 
+>   git://git.pokylinux.org/meta-intel-contrib kishore/cedartrail-update
+>   http://git.pokylinux.org/cgit.cgi/meta-intel-contrib/log/?h=kishore/cedartrail-update
+> 
+> Kishore Bodke (1):
+>   meta-cedartrail: update SRCREV
+> 
+>  .../recipes-kernel/linux/linux-yocto_3.0.bbappend  |    4 +---
+>  1 file changed, 1 insertion(+), 3 deletions(-)
+> 
+
+
 
