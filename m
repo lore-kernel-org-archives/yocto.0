@@ -1,33 +1,31 @@
-Return-Path: <opensource@keylevel.com>
-Received: from hxhsvr03.internetintuitive.net (hxhsvr03.internetintuitive.net
-	[80.254.228.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 37B79E00746
-	for <yocto@yoctoproject.org>; Mon, 11 Jun 2012 00:58:53 -0700 (PDT)
-Received: from [109.224.129.17] (port=60738
-	helo=macbook-pro.durham.keylevel.com)
-	by hxhsvr03.internetintuitive.net with esmtpa (Exim 4.69)
-	(envelope-from <opensource@keylevel.com>)
-	id 1SdzWW-0002Dl-3T; Mon, 11 Jun 2012 08:58:52 +0100
-Mime-Version: 1.0 (Apple Message framework v1278)
-From: Chris Tapp <opensource@keylevel.com>
-In-Reply-To: <4FD59E5D.4080008@r-finger.com>
-Date: Mon, 11 Jun 2012 08:58:50 +0100
-Message-Id: <629096E8-4870-4898-BF45-2B159715A279@keylevel.com>
-References: <1B44395A-0DD8-4136-83B3-FD82C9F5DDCA@keylevel.com>
-	<4FD59E5D.4080008@r-finger.com>
-To: Tomas Frydrych <tf+lists.yocto@r-finger.com>
-X-Mailer: Apple Mail (2.1278)
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - hxhsvr03.internetintuitive.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: yocto@yoctoproject.org
-Subject: Re: RaspberryPi Kernel - sometimes it works, sometimes it doesn't
+Return-Path: <jiajun.xu@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BD551E00746
+	for <yocto@yoctoproject.org>; Mon, 11 Jun 2012 01:08:19 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 11 Jun 2012 01:08:19 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="110581267"
+Received: from azsmsx601.amr.corp.intel.com ([10.2.121.193])
+	by AZSMGA002.ch.intel.com with ESMTP; 11 Jun 2012 01:08:19 -0700
+Received: from shsmsx151.ccr.corp.intel.com (10.239.6.50) by
+	azsmsx601.amr.corp.intel.com (10.2.121.193) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Mon, 11 Jun 2012 01:08:18 -0700
+Received: from shsmsx101.ccr.corp.intel.com ([169.254.1.90]) by
+	SHSMSX151.ccr.corp.intel.com ([169.254.3.231]) with mapi id
+	14.01.0355.002; Mon, 11 Jun 2012 16:08:13 +0800
+From: "Xu, Jiajun" <jiajun.xu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Yocto weekly bug trend charts -- WW23
+Thread-Index: Ac1HqVh2tzTcALFeRVaMPpsCgOniuA==
+Date: Mon, 11 Jun 2012 08:08:12 +0000
+Message-ID: <90741FE9B50D654690EB940EDB456C8E14356C@SHSMSX101.ccr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.239.127.40]
+MIME-Version: 1.0
+Subject: Yocto weekly bug trend charts -- WW23
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,47 +37,18 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 11 Jun 2012 07:58:53 -0000
-Content-Type: text/plain; charset=us-ascii
+X-List-Received-Date: Mon, 11 Jun 2012 08:08:20 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-On 11 Jun 2012, at 08:29, Tomas Frydrych wrote:
+Hi all,
+	This is the weekly bug trend for WW23. The new submitted vs. fixed bug num=
+ber is 39 vs. 25. WDD number and Open Bug number increased a lot, as 1103 a=
+nd 222. Bug status of WW23 could be found on https://wiki.yoctoproject.org/=
+wiki/Yocto_Bug_Trend.
 
-> Hi,
->=20
-> On 10/06/12 12:30, Chris Tapp wrote:
->> I've been building the 3.1.9 Raspberry Pi kernel under Denzil using
->> the meta layer at https://github.com/djwillis/meta-raspberrypi. This
->> uses a kernel recipe based on the git repository at
->> https://github.com/raspberrypi/linux/commits/rpi-patches.
->>=20
->> Some of the kernel commit IDs (e.g.
->> 94fbbc4e3988075abad0d3b32842b82c590324fc) seem to build ok, but they
->> don't always run. As in, if I -c clean and build then sometimes I end
->> up with a bootable image, sometimes I don't. I'm not changing
->> anything else in the build environment.
->>=20
->> Any ideas what can cause this?
->=20
-> I find that -c clean does not work very well, afterward the package =
-gets
-> recompiled but instead of the actual package packages being rebuilt, =
-an
-> earlier version of the packages gets pulled out of sstate into the
-> image. I definitely saw this behaviour with Yocto kernels, but I think
-> happens with other packages as well; I always do -c cleansstate now to
-> avoid this.
-
-
-Yes, I've seen that in the past as well. I should probably have =
-mentioned that I've also tried cleanstate and/or deleting any residual =
-sstate-cache/sstate- files for linux-raspberrypi, etc.
-
-Chris Tapp
-
-opensource@keylevel.com
-www.keylevel.com
-
-
+Best Regards,
+Jiajun
 
 
