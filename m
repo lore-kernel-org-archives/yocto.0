@@ -1,35 +1,34 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9ADF9E0070B
-	for <yocto@yoctoproject.org>; Tue, 12 Jun 2012 11:41:37 -0700 (PDT)
-Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
-	([99.241.91.63]:34671 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.77) (envelope-from <rpjday@crashcourse.ca>)
-	id 1SeW24-00061w-Dp; Tue, 12 Jun 2012 14:41:36 -0400
-Date: Tue, 12 Jun 2012 14:41:32 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Scott Garman <scott.a.garman@intel.com>
-In-Reply-To: <4FD78B83.5040102@intel.com>
-Message-ID: <alpine.DEB.2.02.1206121440550.15197@oneiric>
-References: <4FD785D2.3020603@intel.com> <4FD78713.5090909@intel.com>
-	<alpine.DEB.2.02.1206121418560.15112@oneiric>
-	<4FD78B83.5040102@intel.com>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
-MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: yocto@yoctoproject.org, "Purdie, Richard" <richard.purdie@intel.com>
-Subject: Re: denzil bug status.
+Return-Path: <gley-yocto@m.gmane.org>
+Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0C0EBE0140C
+	for <yocto@yoctoproject.org>; Tue, 12 Jun 2012 16:05:06 -0700 (PDT)
+Received: from list by plane.gmane.org with local (Exim 4.69)
+	(envelope-from <gley-yocto@m.gmane.org>) id 1Sea91-0007ic-PJ
+	for yocto@yoctoproject.org; Wed, 13 Jun 2012 01:05:04 +0200
+Received: from airbears-136-152-39-3.AirBears.Berkeley.EDU ([136.152.39.3])
+	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
+	id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Wed, 13 Jun 2012 01:05:03 +0200
+Received: from ryanjulian by airbears-136-152-39-3.AirBears.Berkeley.EDU with
+	local (Gmexim 0.1 (Debian)) id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Wed, 13 Jun 2012 01:05:03 +0200
+X-Injected-Via-Gmane: http://gmane.org/
+To: yocto@yoctoproject.org
+From: Ryan Julian <ryanjulian@berkeley.edu>
+Date: Tue, 12 Jun 2012 23:00:32 +0000 (UTC)
+Message-ID: <loom.20120613T005341-535@post.gmane.org>
+References: <4F7C1F1F.4070806@r-finger.com>
+	<CAC+thW1Vah3pUPH=CNcQCH=C4QEj2RY17DX+tDHGd_MuCsxViQ@mail.gmail.com>
+	<4F7C438D.5020800@windriver.com> <4F7C5651.60209@mlbassoc.com>
+	<4F7D2E45.2020408@r-finger.com>
+Mime-Version: 1.0
+X-Complaints-To: usenet@dough.gmane.org
+X-Gmane-NNTP-Posting-Host: sea.gmane.org
+User-Agent: Loom/3.14 (http://gmane.org/)
+X-Loom-IP: 136.152.39.3 (Mozilla/5.0 (X11;
+	Linux i686) AppleWebKit/536.5 (KHTML, like Gecko)
+	Chrome/19.0.1084.56 Safari/536.5)
+Subject: Re: Not booting on BeagleBoard xM 0x2
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,46 +40,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Jun 2012 18:41:37 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Tue, 12 Jun 2012 23:05:07 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
 
-On Tue, 12 Jun 2012, Scott Garman wrote:
+Tomas Frydrych <tf+lists.yocto@...> writes:
+> This is a different issue. I get this too with one particular MMC card,
+> but with 2.6.37 kernel, if I unplug this card and plug it back in the
+> boot resumes and completes successfully. If I do this with the 3.0.2
+> kernel, the bug I described with the associated kernel panic then kicks in.
+> 
+> Tomas
+> 
+> > 
+> > 
+> > 
+> > _______________________________________________
+> > yocto mailing list
+> > yocto@...
+> > https://lists.yoctoproject.org/listinfo/yocto
+> 
+> 
 
-> On 06/12/2012 11:20 AM, Robert P. J. Day wrote:
-> > On Tue, 12 Jun 2012, Scott Garman wrote:
-> >
-> > > Hello,
-> > >
-> > > As we are less than a week from our intended release candidate freeze
-> > > date (June 18) for the denzil point-release, I had a meeting with
-> > > Richard Purdie and Saul Wold to go over the final bug list and assess
-> > > the remaining work. Here is a summary of the results of that meeting.
-> > >
-> > > The bug numbers I'm referring to can be found on the Yocto Project
-> > > bugzilla site: https://bugzilla.yoctoproject.org
-> >
-> > ... snip ...
-> >
-> >    was someone working on a fix for downloading tarballs that contain a
-> > "+" in the filename, to prevent them from being downloaded repeatedly?
-> > recall the recent issue i reported WRT the "gtk+" tarball, which was
-> > continually downloaded despite it being in my local mirror.
->
-> Looks like bug #2546 is tracking this:
->
-> https://bugzilla.yoctoproject.org/show_bug.cgi?id=2546
+Bruce and Tomas,
+Did you ever find a solution to this issue?
 
-  ah, got it.  obviously, it's not a serious issue.
+I'm encountering the same issue on the BB-xM Rev C. I've tested on two different 
+boards from different production runs, both with an error identical to Tomas'. 
+I'd be happy to run tests/provide logs if given instructions.
 
-rday
+Thanks!
 
--- 
+-Ryan
 
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
 
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+
 
