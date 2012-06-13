@@ -1,25 +1,27 @@
-Return-Path: <juergen.messerer@bbv.ch>
-Received: from owa.outnet.ch (owa.outnet.ch [80.67.146.1])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 151A9E006D9
-	for <yocto@yoctoproject.org>; Wed, 13 Jun 2012 09:21:44 -0700 (PDT)
-Received: from TKSSREX01.outnet.ch ([10.10.10.1]) by tkssrexhcu01.outnet.ch
-	([172.17.220.45]) with mapi; Wed, 13 Jun 2012 18:21:43 +0200
-From: =?iso-8859-1?Q?J=FCrgen_Messerer?= <juergen.messerer@bbv.ch>
-To: Darren Hart <dvhart@linux.intel.com>
-Date: Wed, 13 Jun 2012 18:21:42 +0200
-Thread-Topic: [yocto] Grub installation
-Thread-Index: Ac1JfexVQJ9smPcCQiCNIYc8t7CeNgAAm2HA
-Message-ID: <A7B59F6D52627C44813C136D437B0832068BC78CAFDE@TKSSREX01.outnet.ch>
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6BFEFE0044A
+	for <yocto@yoctoproject.org>; Wed, 13 Jun 2012 09:29:40 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 13 Jun 2012 09:29:37 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="155880624"
+Received: from unknown (HELO envy.home) ([10.255.12.139])
+	by azsmga001.ch.intel.com with ESMTP; 13 Jun 2012 09:29:36 -0700
+Message-ID: <4FD8BFA6.9030405@linux.intel.com>
+Date: Wed, 13 Jun 2012 09:28:22 -0700
+From: Darren Hart <dvhart@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:13.0) Gecko/20120605 Thunderbird/13.0
+MIME-Version: 1.0
+To: =?ISO-8859-1?Q?J=FCrgen_Messerer?= <juergen.messerer@bbv.ch>
 References: <A7B59F6D52627C44813C136D437B0832068BC78CAB6C@TKSSREX01.outnet.ch>
 	<4FD5FF3E.4060303@linux.intel.com>
 	<A7B59F6D52627C44813C136D437B0832068BC78CAB91@TKSSREX01.outnet.ch>
 	<4FD8B93F.4000306@linux.intel.com>
-In-Reply-To: <4FD8B93F.4000306@linux.intel.com>
-Accept-Language: en-US, de-CH
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US, de-CH
-MIME-Version: 1.0
+	<A7B59F6D52627C44813C136D437B0832068BC78CAFDE@TKSSREX01.outnet.ch>
+In-Reply-To: <A7B59F6D52627C44813C136D437B0832068BC78CAFDE@TKSSREX01.outnet.ch>
+X-Enigmail-Version: 1.4.2
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Grub installation
 X-BeenThere: yocto@yoctoproject.org
@@ -33,145 +35,154 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 13 Jun 2012 16:21:44 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-Thanks for the tips.
-
-As far as I know is at the moment the new grub default.
-How can I configure back to the old version 0.97?
-
-Best regards
-
-Juergen
-
-
------Original Message-----
-From: Darren Hart [mailto:dvhart@linux.intel.com]=20
-Sent: Mittwoch, 13. Juni 2012 18:01
-To: J=FCrgen Messerer
-Cc: Mihai Lindner; yocto@yoctoproject.org
-Subject: Re: [yocto] Grub installation
+X-List-Received-Date: Wed, 13 Jun 2012 16:29:40 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 8bit
 
 
 
-On 06/11/2012 07:54 AM, J=FCrgen Messerer wrote:
-> Dear Mihai,
->=20
-> I would expect that grub should be installed in=20
-> core-image-minimal-qemux86.ext3 Grub couldn't be found when running the i=
-mage with runqemu.
->=20
->Any other ideas?
+On 06/13/2012 09:21 AM, Jürgen Messerer wrote:
+> Thanks for the tips.
+> 
+> As far as I know is at the moment the new grub default.
+> How can I configure back to the old version 0.97?
 
-This depends entirely on the image type. We do not install grub on the file=
-system images as that won't result in a working system. GRUB must be instal=
-led to the MBR or the VBR of a disk or partition.
+You could try with the standard PREFERRED_VERSION method, but I'm not
+sure if the installer scripts deal with that intelligently.
 
-The way this currently works is you build a live image (.hddimg) which uses=
- syslinux and provides an installer. The installer runs a script which inst=
-alls grub to the physical boot media.
-
-Improving this process is part of a larger discussion on image types and im=
-age creation tooling.
-
-If the installer method does not work for you, please articulate the reason=
-s why and what would be a better solution for your use case.
-
-Thanks,
-
-Darren
-
->=20
->=20
->=20
-> -----Original Message-----
-> From: yocto-bounces@yoctoproject.org=20
-> [mailto:yocto-bounces@yoctoproject.org] On Behalf Of Mihai Lindner
-> Sent: Montag, 11. Juni 2012 16:23
-> To: yocto@yoctoproject.org
-> Subject: Re: [yocto] Grub installation
->=20
-> On 6/11/2012 5:12 PM, J=FCrgen Messerer wrote:
->> Hi
->>
->> =20
->>
->> I have the following problem. I have created with yocto a core-image-min=
-imal for x86 which I could test with qemu.
->>
->> =20
->>
->> later I added the following lines to conf/local.conf at the end accordin=
-g to the manual chapter 4.2.4:
->>
->> IMAGE_INSTALL_append =3D " bash"
->>
->> IMAGE_INSTALL_append =3D " strace"
->>
->> IMAGE_INSTALL_append =3D " grub"
->>
->> =20
->>
->> Bash and strace were installed correctly.
->>
->> In the case of grub I couldn't find the directory /boot/grub.
->>
->> =20
->>
->> /etc/grub.d is installed also the folder /usr/lib/grub
->>
->> =20
->>
->> Question 1:
->>
->> Which grub recipe does yocto install from =20
->> poky-denzil-7.0/meta/recipes-bsp/grub/
->>
->> I would prefer version 1.99.
->>
->> =20
->>
->> Questin 2:
->>
->> Will yocto not install a /boot/grub directory?
->>
->> =20
->>
->> I would appreciate any tips and tricks to install grub correctly in=20
->> the core-image-minimal
->>
->> =20
->>
->> =20
->>
->> Thanks a lot
->>
->> =20
->>
->> Best regards
->>
->> =20
->>
->> Juergen
->>
->>
->>
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->>
->=20
-> Hello,
->=20
-> Look for /boot/grub/ in /dev/sda1
-> It should be there.
->=20
+Is there a reason you want to use the older version?
 
 --
+Darren
+
+> 
+> Best regards
+> 
+> Juergen
+> 
+> 
+> -----Original Message-----
+> From: Darren Hart [mailto:dvhart@linux.intel.com] 
+> Sent: Mittwoch, 13. Juni 2012 18:01
+> To: Jürgen Messerer
+> Cc: Mihai Lindner; yocto@yoctoproject.org
+> Subject: Re: [yocto] Grub installation
+> 
+> 
+> 
+> On 06/11/2012 07:54 AM, Jürgen Messerer wrote:
+>> Dear Mihai,
+>>
+>> I would expect that grub should be installed in 
+>> core-image-minimal-qemux86.ext3 Grub couldn't be found when running the image with runqemu.
+>>
+>> Any other ideas?
+> 
+> This depends entirely on the image type. We do not install grub on the filesystem images as that won't result in a working system. GRUB must be installed to the MBR or the VBR of a disk or partition.
+> 
+> The way this currently works is you build a live image (.hddimg) which uses syslinux and provides an installer. The installer runs a script which installs grub to the physical boot media.
+> 
+> Improving this process is part of a larger discussion on image types and image creation tooling.
+> 
+> If the installer method does not work for you, please articulate the reasons why and what would be a better solution for your use case.
+> 
+> Thanks,
+> 
+> Darren
+> 
+>>
+>>
+>>
+>> -----Original Message-----
+>> From: yocto-bounces@yoctoproject.org 
+>> [mailto:yocto-bounces@yoctoproject.org] On Behalf Of Mihai Lindner
+>> Sent: Montag, 11. Juni 2012 16:23
+>> To: yocto@yoctoproject.org
+>> Subject: Re: [yocto] Grub installation
+>>
+>> On 6/11/2012 5:12 PM, Jürgen Messerer wrote:
+>>> Hi
+>>>
+>>>  
+>>>
+>>> I have the following problem. I have created with yocto a core-image-minimal for x86 which I could test with qemu.
+>>>
+>>>  
+>>>
+>>> later I added the following lines to conf/local.conf at the end according to the manual chapter 4.2.4:
+>>>
+>>> IMAGE_INSTALL_append = " bash"
+>>>
+>>> IMAGE_INSTALL_append = " strace"
+>>>
+>>> IMAGE_INSTALL_append = " grub"
+>>>
+>>>  
+>>>
+>>> Bash and strace were installed correctly.
+>>>
+>>> In the case of grub I couldn't find the directory /boot/grub.
+>>>
+>>>  
+>>>
+>>> /etc/grub.d is installed also the folder /usr/lib/grub
+>>>
+>>>  
+>>>
+>>> Question 1:
+>>>
+>>> Which grub recipe does yocto install from  
+>>> poky-denzil-7.0/meta/recipes-bsp/grub/
+>>>
+>>> I would prefer version 1.99.
+>>>
+>>>  
+>>>
+>>> Questin 2:
+>>>
+>>> Will yocto not install a /boot/grub directory?
+>>>
+>>>  
+>>>
+>>> I would appreciate any tips and tricks to install grub correctly in 
+>>> the core-image-minimal
+>>>
+>>>  
+>>>
+>>>  
+>>>
+>>> Thanks a lot
+>>>
+>>>  
+>>>
+>>> Best regards
+>>>
+>>>  
+>>>
+>>> Juergen
+>>>
+>>>
+>>>
+>>> _______________________________________________
+>>> yocto mailing list
+>>> yocto@yoctoproject.org
+>>> https://lists.yoctoproject.org/listinfo/yocto
+>>>
+>>
+>> Hello,
+>>
+>> Look for /boot/grub/ in /dev/sda1
+>> It should be there.
+>>
+> 
+> --
+> Darren Hart
+> Intel Open Source Technology Center
+> Yocto Project - Linux Kernel
+> 
+> 
+
+-- 
 Darren Hart
 Intel Open Source Technology Center
 Yocto Project - Linux Kernel
