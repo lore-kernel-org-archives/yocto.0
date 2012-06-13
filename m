@@ -1,25 +1,27 @@
 Return-Path: <dvhart@linux.intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5BECCE0044A
-	for <yocto@yoctoproject.org>; Wed, 13 Jun 2012 08:57:57 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 13 Jun 2012 08:57:26 -0700
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AF615E0044A
+	for <yocto@yoctoproject.org>; Wed, 13 Jun 2012 09:02:18 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga101.ch.intel.com with ESMTP; 13 Jun 2012 09:02:18 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="179515889"
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="111721168"
 Received: from unknown (HELO envy.home) ([10.255.12.139])
-	by fmsmga002.fm.intel.com with ESMTP; 13 Jun 2012 08:57:26 -0700
-Message-ID: <4FD8B81C.2030603@linux.intel.com>
-Date: Wed, 13 Jun 2012 08:56:12 -0700
+	by AZSMGA002.ch.intel.com with ESMTP; 13 Jun 2012 09:02:17 -0700
+Message-ID: <4FD8B93F.4000306@linux.intel.com>
+Date: Wed, 13 Jun 2012 09:01:03 -0700
 From: Darren Hart <dvhart@linux.intel.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:13.0) Gecko/20120605 Thunderbird/13.0
 MIME-Version: 1.0
 To: =?ISO-8859-1?Q?J=FCrgen_Messerer?= <juergen.messerer@bbv.ch>
-References: <A7B59F6D52627C44813C136D437B0832068BC78CACF3@TKSSREX01.outnet.ch>
-In-Reply-To: <A7B59F6D52627C44813C136D437B0832068BC78CACF3@TKSSREX01.outnet.ch>
+References: <A7B59F6D52627C44813C136D437B0832068BC78CAB6C@TKSSREX01.outnet.ch>
+	<4FD5FF3E.4060303@linux.intel.com>
+	<A7B59F6D52627C44813C136D437B0832068BC78CAB91@TKSSREX01.outnet.ch>
+In-Reply-To: <A7B59F6D52627C44813C136D437B0832068BC78CAB91@TKSSREX01.outnet.ch>
 X-Enigmail-Version: 1.4.2
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: qemux86 Image won't boot from CF
+Subject: Re: Grub installation
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,45 +33,119 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 13 Jun 2012 15:57:57 -0000
+X-List-Received-Date: Wed, 13 Jun 2012 16:02:18 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 8bit
 
 
 
-On 06/12/2012 04:07 AM, Jürgen Messerer wrote:
-> Hi everybody.
+On 06/11/2012 07:54 AM, Jürgen Messerer wrote:
+> Dear Mihai,
 > 
->  
+> I would expect that grub should be installed in core-image-minimal-qemux86.ext3
+> Grub couldn't be found when running the image with runqemu.
 > 
-> The following problem occurs when I try to start a x86 linux system from
-> CF-Card.
-> 
->  
-> 
-> I have generate a qemux86 core-image-minimal  image with the latest pokey.
-> 
+>Any other ideas?
 
-...
+This depends entirely on the image type. We do not install grub on the
+filesystem images as that won't result in a working system. GRUB must be
+installed to the MBR or the VBR of a disk or partition.
 
-> VFS: Unable to mount root fs via NFS, trying floppy.
-> 
-> VFS: Cannot open root device "hdb1" or unknown-block(2,0)
-> 
-> Please append a correct "root=" boot option; here are the available
-> partitions:
-> 
-> VFS: Unable to mount root fs on unknown-block(2,0)
+The way this currently works is you build a live image (.hddimg) which
+uses syslinux and provides an installer. The installer runs a script
+which installs grub to the physical boot media.
 
-The kernel should list the known block devices. It isn't finding any. So
-either you don't have the driver for it installed, or it is a removable
-device. As Andrea pointed out, rootwait can help with the latter.
+Improving this process is part of a larger discussion on image types and
+image creation tooling.
 
-However, it should be noted that the qemux86 machine is intended to be
-booted under emulation, and has the drivers required for that scenario.
-If you want to boot on real hardware, you really should be creating a
-machine config and a kernel bbappend with whatever drivers you need for
-your hardware in a config fragment.
+If the installer method does not work for you, please articulate the
+reasons why and what would be a better solution for your use case.
+
+Thanks,
+
+Darren
+
+> 
+> 
+> 
+> -----Original Message-----
+> From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org] On Behalf Of Mihai Lindner
+> Sent: Montag, 11. Juni 2012 16:23
+> To: yocto@yoctoproject.org
+> Subject: Re: [yocto] Grub installation
+> 
+> On 6/11/2012 5:12 PM, Jürgen Messerer wrote:
+>> Hi
+>>
+>>  
+>>
+>> I have the following problem. I have created with yocto a core-image-minimal for x86 which I could test with qemu.
+>>
+>>  
+>>
+>> later I added the following lines to conf/local.conf at the end according to the manual chapter 4.2.4:
+>>
+>> IMAGE_INSTALL_append = " bash"
+>>
+>> IMAGE_INSTALL_append = " strace"
+>>
+>> IMAGE_INSTALL_append = " grub"
+>>
+>>  
+>>
+>> Bash and strace were installed correctly.
+>>
+>> In the case of grub I couldn't find the directory /boot/grub.
+>>
+>>  
+>>
+>> /etc/grub.d is installed also the folder /usr/lib/grub
+>>
+>>  
+>>
+>> Question 1:
+>>
+>> Which grub recipe does yocto install from  poky-denzil-7.0/meta/recipes-bsp/grub/
+>>
+>> I would prefer version 1.99.
+>>
+>>  
+>>
+>> Questin 2:
+>>
+>> Will yocto not install a /boot/grub directory?
+>>
+>>  
+>>
+>> I would appreciate any tips and tricks to install grub correctly in the core-image-minimal
+>>
+>>  
+>>
+>>  
+>>
+>> Thanks a lot
+>>
+>>  
+>>
+>> Best regards
+>>
+>>  
+>>
+>> Juergen
+>>
+>>
+>>
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>>
+> 
+> Hello,
+> 
+> Look for /boot/grub/ in /dev/sda1
+> It should be there.
+> 
 
 -- 
 Darren Hart
