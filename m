@@ -1,24 +1,25 @@
 Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 20827E01304
-	for <yocto@yoctoproject.org>; Wed, 13 Jun 2012 06:17:22 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 13 Jun 2012 06:17:21 -0700
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 46980E01304
+	for <yocto@yoctoproject.org>; Wed, 13 Jun 2012 06:22:35 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 13 Jun 2012 06:22:34 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="157076718"
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="111653363"
 Received: from unknown (HELO helios.localnet) ([10.252.120.116])
-	by orsmga002.jf.intel.com with ESMTP; 13 Jun 2012 06:17:20 -0700
+	by AZSMGA002.ch.intel.com with ESMTP; 13 Jun 2012 06:22:34 -0700
 From: Paul Eggleton <paul.eggleton@linux.intel.com>
 To: yocto@yoctoproject.org
-Date: Wed, 13 Jun 2012 14:17:20 +0100
-Message-ID: <2242461.IjNys3ksEU@helios>
+Date: Wed, 13 Jun 2012 14:22:33 +0100
+Message-ID: <3775842.SmlgDLmoTM@helios>
 Organization: Intel Corporation
 User-Agent: KMail/4.8.3 (Linux/3.2.0-24-generic-pae; KDE/4.8.3; i686; ; )
-In-Reply-To: <4FD7285A.3050701@mlbassoc.com>
-References: <1B44395A-0DD8-4136-83B3-FD82C9F5DDCA@keylevel.com>
-	<334879383.0TimNBShEg@helios> <4FD7285A.3050701@mlbassoc.com>
+In-Reply-To: <4FCF72EA.3030200@mlbassoc.com>
+References: <alpine.DEB.2.02.1206031757260.20352@oneiric>
+	<alpine.DEB.2.02.1206051100550.2774@oneiric>
+	<4FCF72EA.3030200@mlbassoc.com>
 MIME-Version: 1.0
-Subject: Re: RaspberryPi Kernel - sometimes it works, sometimes it doesn't
+Subject: Re: something about gtk+-2.24.8.tar.bz2 that requires constant downloading?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,23 +31,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 13 Jun 2012 13:17:22 -0000
+X-List-Received-Date: Wed, 13 Jun 2012 13:22:35 -0000
 Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
 
-On Tuesday 12 June 2012 05:30:34 Gary Thomas wrote:
-> On 2012-06-12 05:26, Paul Eggleton wrote:
-> > FWIW, we will be looking at fixing this exact workflow pretty soon
-> > although it may involve an extra explicit step to invalidate the stamps.
+On Wednesday 06 June 2012 09:10:34 Gary Thomas wrote:
+> On 2012-06-05 09:01, Robert P. J. Day wrote:
+> > On Tue, 5 Jun 2012, Wang, Shane wrote:
+> >> Robert P. J. Day wrote on 2012-06-05:
+> >>>    at this point, has the problem been identified?  or does this still
+> >>> 
+> >>> require a bugzilla submission?  it would appear that the issue
+> >>> involves any package with a "+" in the package name which, for now,
+> >>> appears to be just that gtk+ package.  would any other special
+> >>> characters trigger this?  that's the only package i've tripped over
+> >>> that caused this behaviour.
+> >>> 
+> >>> rday
+> >> 
+> >> Yes, it has been identified. If you can't submit a bug, I can do.
+> >> Yes, I believe other special characters will trigger that.
+> >> 
+> >> Just because I am not familiar with all fetch code, I can fix it for
+> >> gtk+ now but I am not sure whether that fix will bring any
+> >> regression bugs. Give me more time.
+> >> 
+> >    ok, i'll leave it in your capable hands and go find something else
+> > 
+> > to nitpick.
 > 
-> IMO, if you run a specific step like "-c compile -f", this should
-> automatically invalidate any stamps and sstate info for the package that
-> depend on that step. In this case, it should invalidate "install, package,
-> ..." - everything that normally happens after "compile".  This would fix
-> the observed weirdness above.
+> Has someone filed a bug on this yet?  It breaks all my builds now since
+> I always use BB_NO_NETWORK="1" :-(
 
-FYI I'm going to track/fix this under bug 2256 since that is pretty much the 
-same thing.
+For reference, Gary has filed bug 2558 to track this.
 
 Cheers,
 Paul
