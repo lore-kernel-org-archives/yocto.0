@@ -1,27 +1,25 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1A295E006D9
-	for <yocto@yoctoproject.org>; Wed, 13 Jun 2012 09:09:46 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga101.ch.intel.com with ESMTP; 13 Jun 2012 09:09:31 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="111725024"
-Received: from unknown (HELO envy.home) ([10.255.12.139])
-	by AZSMGA002.ch.intel.com with ESMTP; 13 Jun 2012 09:09:30 -0700
-Message-ID: <4FD8BAF0.5090405@linux.intel.com>
-Date: Wed, 13 Jun 2012 09:08:16 -0700
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:13.0) Gecko/20120605 Thunderbird/13.0
+Return-Path: <juergen.messerer@bbv.ch>
+Received: from owa.outnet.ch (mail.outnet.ch [80.67.146.1])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5906CE0044A
+	for <yocto@yoctoproject.org>; Wed, 13 Jun 2012 09:19:44 -0700 (PDT)
+Received: from TKSSREX01.outnet.ch ([10.10.10.1]) by tkssrexhcu01.outnet.ch
+	([172.17.220.45]) with mapi; Wed, 13 Jun 2012 18:19:43 +0200
+From: =?iso-8859-1?Q?J=FCrgen_Messerer?= <juergen.messerer@bbv.ch>
+To: Darren Hart <dvhart@linux.intel.com>
+Date: Wed, 13 Jun 2012 18:19:42 +0200
+Thread-Topic: [yocto] qemux86 Image won't boot from CF
+Thread-Index: Ac1JfT3WUpSoSBnoSgqWuH/9LQiUkwAAskCA
+Message-ID: <A7B59F6D52627C44813C136D437B0832068BC78CAFDC@TKSSREX01.outnet.ch>
+References: <A7B59F6D52627C44813C136D437B0832068BC78CACF3@TKSSREX01.outnet.ch>
+	<4FD8B81C.2030603@linux.intel.com>
+In-Reply-To: <4FD8B81C.2030603@linux.intel.com>
+Accept-Language: en-US, de-CH
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US, de-CH
 MIME-Version: 1.0
-To: Jim Kosem <jim@halfman.com>
-References: <0FABE48C74734648B69F641A84298A59190B8A98@IRSMSX104.ger.corp.intel.com>
-	<0FABE48C74734648B69F641A84298A59190B9CF9@IRSMSX104.ger.corp.intel.com>
-	<F27469E0A1C1456C807477C954225267@halfman.com>
-In-Reply-To: <F27469E0A1C1456C807477C954225267@halfman.com>
-X-Enigmail-Version: 1.4.2
-Cc: yocto@yoctoproject.org, Konstantinos Papagiannopoulos <hello@konputer.net>
-Subject: Re: Web HOB planning discussion
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: qemux86 Image won't boot from CF
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,55 +31,66 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 13 Jun 2012 16:09:46 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 13 Jun 2012 16:19:44 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+Thanks Darren for the tips.
+
+Meanwhile I realized that to that the PCMCIA is missing .
+I will follow your suggestion about writing an own machine config file.
+
+Best regards
+
+Juergen
+=20
+
+-----Original Message-----
+From: Darren Hart [mailto:dvhart@linux.intel.com]=20
+Sent: Mittwoch, 13. Juni 2012 17:56
+To: J=FCrgen Messerer
+Cc: yocto@yoctoproject.org; Andrea Adami
+Subject: Re: [yocto] qemux86 Image won't boot from CF
 
 
 
-On 06/11/2012 07:20 AM, Jim Kosem wrote:
-> Hi,
-> 
-> Here's the link to the wikipage for the design for WebHob that we've
-> been working on here at the London office.
-> 
-> https://wiki.yoctoproject.org/wiki/Yocto_1.3_Web_Hob
-> 
-> The direct link to the video screencast is here:
-> https://wiki.yoctoproject.org/wiki/images/9/9c/Yocto_webHob.1.9_screencast.0.1.mov
-> 
+On 06/12/2012 04:07 AM, J=FCrgen Messerer wrote:
+> Hi everybody.
+>=20
+> =20
+>=20
+> The following problem occurs when I try to start a x86 linux system=20
+> from CF-Card.
+>=20
+> =20
+>=20
+> I have generate a qemux86 core-image-minimal  image with the latest pokey=
+.
+>=20
 
-It's looking fantastic!
+...
 
-The group/project concept is very interesting.
+> VFS: Unable to mount root fs via NFS, trying floppy.
+>=20
+> VFS: Cannot open root device "hdb1" or unknown-block(2,0)
+>=20
+> Please append a correct "root=3D" boot option; here are the available
+> partitions:
+>=20
+> VFS: Unable to mount root fs on unknown-block(2,0)
 
-One thing I didn't see in the video, and perhaps you just couldn't cover
-it, is how do you specify settings in local.conf? LICENSE settings for
-example?
+The kernel should list the known block devices. It isn't finding any. So ei=
+ther you don't have the driver for it installed, or it is a removable devic=
+e. As Andrea pointed out, rootwait can help with the latter.
 
-As for the image writer, it really should not be limited to USB devices.
+However, it should be noted that the qemux86 machine is intended to be boot=
+ed under emulation, and has the drivers required for that scenario.
+If you want to boot on real hardware, you really should be creating a machi=
+ne config and a kernel bbappend with whatever drivers you need for your har=
+dware in a config fragment.
 
 --
-Darren
-
-> -- 
-> Jim Kosem
-> Skype: jkosem
-> GTalk: jim@halfman.com
-> Mobile: 07757 559081
-> 
-> Note: I read and reply to email only a couple of times a day. If you
-> need something quicker, please use Skype, GTalk or if its urgent call my
-> mobile.
-> 
-> 
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-> 
-
--- 
 Darren Hart
 Intel Open Source Technology Center
 Yocto Project - Linux Kernel
