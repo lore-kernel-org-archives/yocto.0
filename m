@@ -1,27 +1,33 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0AC56E006D9
-	for <yocto@yoctoproject.org>; Wed, 13 Jun 2012 14:09:59 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q5DL9vjG011903
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 13 Jun 2012 14:09:57 -0700 (PDT)
-Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Wed, 13 Jun 2012 14:09:27 -0700
-Message-ID: <4FD9017D.6050805@windriver.com>
-Date: Wed, 13 Jun 2012 17:09:17 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:12.0) Gecko/20120430 Thunderbird/12.0.1
-MIME-Version: 1.0
-To: Darren Hart <dvhart@linux.intel.com>
+Return-Path: <david.c.stewart@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C71DEE0073F
+	for <yocto@yoctoproject.org>; Wed, 13 Jun 2012 15:50:45 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 13 Jun 2012 15:50:45 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="156048061"
+Received: from orsmsx606.amr.corp.intel.com ([10.22.226.128])
+	by azsmga001.ch.intel.com with ESMTP; 13 Jun 2012 15:50:39 -0700
+Received: from orsmsx104.amr.corp.intel.com (10.22.225.131) by
+	orsmsx606.amr.corp.intel.com (10.22.226.128) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Wed, 13 Jun 2012 15:50:30 -0700
+Received: from orsmsx105.amr.corp.intel.com ([169.254.4.96]) by
+	ORSMSX104.amr.corp.intel.com ([169.254.3.184]) with mapi id
+	14.01.0355.002; Wed, 13 Jun 2012 15:50:29 -0700
+From: "Stewart, David C" <david.c.stewart@intel.com>
+To: "Burton, Ross" <ross.burton@intel.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] More useful generic-x86 machine
+Thread-Index: AQHNSaWAbq+I5+wtKkGsPGlN+0h9JJb41uGA
+Date: Wed, 13 Jun 2012 22:50:28 +0000
+Message-ID: <CDED78A957032E45B3239CDDA7642D151C848C34@ORSMSX105.amr.corp.intel.com>
 References: <21DFE0D0610B43B982449CB678019727@intel.com>
-	<4FD8FC7A.6000209@linux.intel.com>
-	<66686EEDFFCF448E9EA9D435AD58344B@intel.com>
-	<4FD8FE53.1030805@windriver.com> <4FD8FF5D.5060205@linux.intel.com>
-In-Reply-To: <4FD8FF5D.5060205@linux.intel.com>
-Cc: yocto@yoctoproject.org
+In-Reply-To: <21DFE0D0610B43B982449CB678019727@intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.140]
+MIME-Version: 1.0
 Subject: Re: More useful generic-x86 machine
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -34,68 +40,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 13 Jun 2012 21:09:59 -0000
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Wed, 13 Jun 2012 22:50:46 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 12-06-13 05:00 PM, Darren Hart wrote:
+> From: yocto-bounces@yoctoproject.org [mailto:yocto-
+> bounces@yoctoproject.org] On Behalf Of Ross Burton
+> Sent: Wednesday, June 13, 2012 1:45 PM
 >
->
-> On 06/13/2012 01:55 PM, Bruce Ashfield wrote:
->> On 12-06-13 04:52 PM, Ross Burton wrote:
->>> On Wednesday, 13 June 2012 at 21:47, Darren Hart wrote:
->>>> Seems reasonable to me. We should probably have 32b and 64b of this
->>>> machine as well.
->>>
->>> And x32… :)
->>
->>    From the kernel point of view, these are just configuration extensions
->> to a base, which is where this discussion started (the kernel, I'm
->> excluding userspace on purpose). So this should be one machine with
->> these as overlays, not three different machines.
->
-> I would have thought the three different architectures would have called
-> for three different machines. How would this work from the KMACHINE
-> meta-data perspective?
+> Hi,
+>=20
+> My current test hardware for Yocto work is a Celeron-class Sandy Bridge-
+> based micro PC. As is to be expected for a machine like this, it's got mo=
+dern
+> Intel graphics and wireless. Neither of which are supported by atom-pc, a=
+s
+> it's nominally a "generic netbook" image.
+>=20
+> Let's face it -- it's a really bad generic netbook image, it's really a A=
+sus
+> eeePC701-and-similar image. Specifically, only one wifi driver, only i915=
+ GPU
+> driver, and so on.
 
-I've had dual endian machines for ages for MIPS. This is no
-different. You use a common machine, and then just trigger fragments
-that change the few options that are different like endianess, etc.
-So there's a single KMACHINE definition with additions.
+I thought we had some Sandy Bridge BSP already?
 
-Granted, this was more important when there was a strict 1:1 branch ->
-machine mapping. But it still makes sense to keep things as small
-as possible.  We can do the same thing with three KMACHINE definitions
-that include a common base, and that's nominally three machines, but
-the slippery slope is that they start to diverge .. since they are
-described by three different top level options.
-
-I'm splitting a hair, I just wanted to point out that I wouldn't
-call word size, endianess or other ABI differences big differences
-in a machine definition.
-
-Cheers,
-
-Bruce
-
->
-> --
-> Darren
->
->>
->> Cheers,
->>
->> Bruce
->>
->>>
->>> Ross
->>>
->>>
->>> _______________________________________________
->>> yocto mailing list
->>> yocto@yoctoproject.org
->>> https://lists.yoctoproject.org/listinfo/yocto
->>
->
-
+> I'm not arguing for a true generic kernel such as Fedora maintains which
+> boots on almost everything, just a new machine with more flexibility.
+> Including both i915 and i965 GPU drivers covers everything Intel-driven f=
+rom
+> the earliest netbook to the latest Ivy Bridge[1].  Including the iwl wifi=
+ drivers
+> at least covers a good proportion of devices out there.  There are probab=
+ly a
+> few more drivers that are common and give big gains in support.  Not exac=
+tly
+> boot on everything, but certainly boot on many.
+>=20
+> Thoughts?
+>=20
+> Ross
+>=20
+> [1] Ignoring Cedar Trail, but that's already in meta-intel
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
