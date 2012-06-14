@@ -1,25 +1,31 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C6893E013BB
-	for <yocto@yoctoproject.org>; Thu, 14 Jun 2012 14:14:16 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 14 Jun 2012 14:14:16 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="157754812"
-Received: from unknown (HELO envy.home) ([10.7.199.149])
-	by orsmga002.jf.intel.com with ESMTP; 14 Jun 2012 14:14:16 -0700
-Message-ID: <4FDA53DC.8090002@linux.intel.com>
-Date: Thu, 14 Jun 2012 14:13:00 -0700
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:13.0) Gecko/20120605 Thunderbird/13.0
-MIME-Version: 1.0
-To: "Barros Pena, Belen" <belen.barros.pena@intel.com>
-References: <CBFFBD1E.11118%belen.barros.pena@intel.com>
-In-Reply-To: <CBFFBD1E.11118%belen.barros.pena@intel.com>
-X-Enigmail-Version: 1.4.2
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: live image types and qemu machines
+Return-Path: <opensource@keylevel.com>
+Received: from hxhsvr03.internetintuitive.net (hxhsvr03.internetintuitive.net
+	[80.254.228.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B190DE013BB
+	for <yocto@yoctoproject.org>; Thu, 14 Jun 2012 14:42:06 -0700 (PDT)
+Received: from [109.224.129.17] (port=10502
+	helo=macbook-pro.durham.keylevel.com)
+	by hxhsvr03.internetintuitive.net with esmtpa (Exim 4.69)
+	(envelope-from <opensource@keylevel.com>) id 1SfHnp-00009b-Rq
+	for yocto@yoctoproject.org; Thu, 14 Jun 2012 22:42:05 +0100
+Mime-Version: 1.0 (Apple Message framework v1278)
+From: Chris Tapp <opensource@keylevel.com>
+In-Reply-To: <BBB9AD1B-8D46-472C-AE84-5AC18F15B44E@keylevel.com>
+Date: Thu, 14 Jun 2012 22:42:03 +0100
+Message-Id: <3AD32D08-64C8-4F37-BF50-9D08560D0194@keylevel.com>
+References: <BBB9AD1B-8D46-472C-AE84-5AC18F15B44E@keylevel.com>
+To: Yocto Project <yocto@yoctoproject.org>
+X-Mailer: Apple Mail (2.1278)
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - hxhsvr03.internetintuitive.net
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - keylevel.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: Re: Help needed understanding do_rootfs error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,68 +37,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Jun 2012 21:14:16 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 14 Jun 2012 21:42:06 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
+On 14 Jun 2012, at 21:44, Chris Tapp wrote:
 
+> The log for do_rootfs is showing:
+> < snip >
+> error: Failed dependencies:
+> 	libGL.so.1 is needed by libglut3-7.11-r13.2.armv6
+> 	libGL.so.1 is needed by column-wallboard-1.0-r1.armv6
+> 	libGL.so.1 is needed by libglu1-7.11-r13.2.armv6
+>=20
+> libGL is showing in the work area, so I think I just need to add a =
+dependency. But what and where?
 
-On 06/14/2012 08:09 AM, Barros Pena, Belen wrote:
-> Hi all,
-> 
-> The current Hob allows you to build images for a qemu machine selecting
-> 'live' as your image type. To me (with my pitiful knowledge) this doesn't
-> make much sense: would I want to deploy an image built for a
-> virtualisation environment in a real piece of hardware?
-> 
-> So here goes a question: should we allow Hob users, who are mainly people
-> new to the Yocto project, to select the 'live' image type when building
-> images for qemu machines?
-> 
+Ah, there was an ERROR right at the start of the build saying there were =
+multiple providers for virtual/libgl (mesa-xlib, mesa-dri). How can I =
+track down the cause of this? Building virtual/libgl doesn't get this =
+error - it only shows when I build the full image.
 
-In my opinion: YES. The reason is that this allows you to test the live
-image format and the boot mechanism on virtualized hardware. This is a
-valuable development tool.
+Chris Tapp
 
---
-Darren
+opensource@keylevel.com
+www.keylevel.com
 
-> This might sound like a silly question, but it has a pretty big impact on
-> the Settings dialog and on the number of variations we need to create for
-> our 'Image details' screen, which appears after the build finishes and
-> displays logical next steps (like run the image or deploy your image to
-> external storage).
-> 
-> Any help with this would be much appreciated.
-> 
-> Thanks!
-> 
-> Belen
-> 
-> 
-> 
-> 
-> ---------------------------------------------------------------------
-> Intel Corporation (UK) Limited
-> Registered No. 1134945 (England)
-> Registered Office: Pipers Way, Swindon SN3 1RJ
-> VAT No: 860 2173 47
-> 
-> This e-mail and any attachments may contain confidential material for
-> the sole use of the intended recipient(s). Any review or distribution
-> by others is strictly prohibited. If you are not the intended
-> recipient, please contact the sender and delete all copies.
-> 
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-> 
-
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
 
 
 
