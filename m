@@ -1,41 +1,42 @@
 Return-Path: <darren@apps.dvhart.com>
-Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
-	[209.85.160.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D5E72E01408
-	for <yocto@yoctoproject.org>; Wed, 13 Jun 2012 22:19:37 -0700 (PDT)
-Received: by mail-pb0-f48.google.com with SMTP id rq8so3951251pbb.35
-	for <yocto@yoctoproject.org>; Wed, 13 Jun 2012 22:19:37 -0700 (PDT)
+Received: from mail-pz0-f48.google.com (mail-pz0-f48.google.com
+	[209.85.210.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8ACAFE0144C
+	for <yocto@yoctoproject.org>; Wed, 13 Jun 2012 22:19:39 -0700 (PDT)
+Received: by dadz8 with SMTP id z8so2264105dad.35
+	for <yocto@yoctoproject.org>; Wed, 13 Jun 2012 22:19:39 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=google.com; s=20120113;
 	h=sender:from:to:cc:subject:date:message-id:x-mailer:in-reply-to
 	:references:in-reply-to:references:x-gm-message-state;
-	bh=Dn8AW8t5/5y+JrmDWrdJHFInw8ak+MYANx6/iBMgYI8=;
-	b=BIXUWpf+mTlIYvFIPIcao8QeT6DQkxgN0RNlncwh5DLEUL3sOeet/MdoruiYFV9H0o
-	svtrNIvyBVauj4eitvjAYfxABdW3/nzkA7sRDwivucPwQAwSvqTyft/NYbHgNlfSWgQK
-	Lh3bHlQvLGv2O2cXeEoMdIMQ3lRLdGz3tVgrv0XGH26Pv+Z5s9xW3H+rj9zBwqmPLBVM
-	BefLN2AZpCf2PByNILmJ8UKt7dZvv39HJvAdmg6awL0UCgb4Fty53AP8MatJvfhUWdB5
-	ALz9K3TLIlq2Nz5IIJzVuC9D0NtPhGPMf3N8wLqGoWc7/hcVK7AbiHavN6WM3F5SOz0n
-	dZug==
-Received: by 10.68.225.6 with SMTP id rg6mr3879270pbc.100.1339651177743;
-	Wed, 13 Jun 2012 22:19:37 -0700 (PDT)
+	bh=rsn8NS1oEL2D5YQTQlGej5X89jIqsMsJenk7E2dacWY=;
+	b=U+YCsF+cPleUTXHD7HtcskkC01ClTJ1gaNXavF6YRRnlFmPsE68JObtw6orazHFhDh
+	wtq0UVZt1eV6SMFH2pQDwCVliF1ZgOvgutjcYT6mOycBseUOacrPBuSNE3sYj8g5gdLa
+	Fu210g3+09mBL5cJeewxxWjOJpEknraaMjiWx+hvE2AAFwf0UP4nKh1wb+3Cf6+5LaPy
+	RVGq0RmUeYaaX6DbLAbCxX5UfMpr4P/x10kQpDcfG1FF02Unevo+PUMB8HAuUVYWmaLu
+	ScVa8yRIMgV5Fl50LrgBKQSS36ccHxeRVJY8SHaZQSbJlQoXj1ikeQZSEEujXbbTiEu4
+	GETQ==
+Received: by 10.68.228.136 with SMTP id si8mr3694574pbc.159.1339651179173;
+	Wed, 13 Jun 2012 22:19:39 -0700 (PDT)
 Received: from localhost (static-50-53-99-101.bvtn.or.frontiernet.net.
 	[50.53.99.101])
-	by mx.google.com with ESMTPS id wi8sm8244093pbc.11.2012.06.13.22.19.36
+	by mx.google.com with ESMTPS id ol1sm8241578pbb.25.2012.06.13.22.19.38
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Wed, 13 Jun 2012 22:19:37 -0700 (PDT)
+	Wed, 13 Jun 2012 22:19:38 -0700 (PDT)
 Sender: Darren Hart <darren@apps.dvhart.com>
 From: Darren Hart <dvhart@linux.intel.com>
 To: Yocto Project <yocto@yoctoproject.org>
-Date: Wed, 13 Jun 2012 22:19:31 -0700
-Message-Id: <efd98912c20662ad17a4b6e6fb35d8673d70c52c.1339650859.git.dvhart@linux.intel.com>
+Date: Wed, 13 Jun 2012 22:19:32 -0700
+Message-Id: <3b44305edae36265295087fb5f31d22d660599b8.1339650859.git.dvhart@linux.intel.com>
 X-Mailer: git-send-email 1.7.5.4
 In-Reply-To: <cover.1339650859.git.dvhart@linux.intel.com>
 References: <cover.1339650859.git.dvhart@linux.intel.com>
 In-Reply-To: <cover.1339650859.git.dvhart@linux.intel.com>
 References: <cover.1339650859.git.dvhart@linux.intel.com>
-X-Gm-Message-State: ALoCoQkxXJChv5cEnmmohMhpmNl93EQ7hTQORpWRKVvB2VDmrS/GmpyNkjVeQI4J/vmBqwz/l9nG
-Cc: Darren Hart <dvhart@linux.intel.com>
-Subject: [PATCH 1/3] poky-tiny: Define the "tiny" DISTRO_FEATURE
+X-Gm-Message-State: ALoCoQmZCwBA5acmQ1IL/3B3kJP93iFdwUd8mO3PZTaYA2AvRfZ43LqsUkOhamQ7kmlkKzVhAAQM
+Cc: Darren Hart <dvhart@linux.intel.com>,
+	OE Core <openembedded-core@lists.openembedded.org>
+Subject: [PATCH 2/3] busybox: Add setsid and cttyhack for tiny DISTRO_FEATURE
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,40 +48,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Jun 2012 05:19:37 -0000
+X-List-Received-Date: Thu, 14 Jun 2012 05:19:39 -0000
 
-Enable recipes such as busybox to modify their configuration based on
-a DISTRO_FEATURE for tiny distributions.
+When building very small systems, it can be useful to spawn
+a shell from a simple init script, rather than a full System V Init
+process. This requires the shell be the session leader and be able to
+open the controlling terminal if it is to have job control.
+
+Enable CONFIG_CTTYHACK and CONFIG_SETSID to enable this for distros
+defining the "tiny" DISTRO_FEATURE.
 
 Signed-off-by: Darren Hart <dvhart@linux.intel.com>
+CC: OE Core <openembedded-core@lists.openembedded.org>
 ---
- meta-yocto/conf/distro/poky-tiny.conf |    6 ++----
- 1 files changed, 2 insertions(+), 4 deletions(-)
+ meta/recipes-core/busybox/busybox.inc |    2 ++
+ 1 files changed, 2 insertions(+), 0 deletions(-)
 
-diff --git a/meta-yocto/conf/distro/poky-tiny.conf b/meta-yocto/conf/distro/poky-tiny.conf
-index a34c7dc..d6295f7 100644
---- a/meta-yocto/conf/distro/poky-tiny.conf
-+++ b/meta-yocto/conf/distro/poky-tiny.conf
-@@ -31,9 +31,6 @@
- require conf/distro/poky.conf
- DISTRO = "poky-tiny"
+diff --git a/meta/recipes-core/busybox/busybox.inc b/meta/recipes-core/busybox/busybox.inc
+index 5b83d32..d07ba7e 100644
+--- a/meta/recipes-core/busybox/busybox.inc
++++ b/meta/recipes-core/busybox/busybox.inc
+@@ -57,6 +57,8 @@ def features_to_busybox_settings(d):
+ 	busybox_cfg('nls',  distro_features, 'CONFIG_LOCALE_SUPPORT', cnf, rem)
+ 	busybox_cfg('ipv4', distro_features, 'CONFIG_FEATURE_IFUPDOWN_IPV4', cnf, rem)
+ 	busybox_cfg('ipv6', distro_features, 'CONFIG_FEATURE_IFUPDOWN_IPV6', cnf, rem)
++	busybox_cfg('tiny', distro_features, 'CONFIG_SETSID', cnf, rem)
++	busybox_cfg('tiny', distro_features, 'CONFIG_CTTYHACK', cnf, rem)
+ 	return "\n".join(cnf), "\n".join(rem)
  
--# FIXME: consider adding a new "tiny" feature
--#DISTRO_FEATURES_append = " tiny"
--
- # Distro config is evaluated after the machine config, so we have to explicitly
- # set the kernel provider to override a machine config.
- PREFERRED_PROVIDER_virtual/kernel = "linux-yocto-tiny"
-@@ -84,7 +81,8 @@ DISTRO_FEATURES_USB = "usbhost"
- #DISTRO_FEATURES_USBGADGET = "usbgadget"
- #DISTRO_FEATURES_WIFI = "wifi"
- 
--DISTRO_FEATURES = "${DISTRO_FEATURES_TINY} \
-+DISTRO_FEATURES = "tiny \
-+                   ${DISTRO_FEATURES_TINY} \
-                    ${DISTRO_FEATURES_NET} \
-                    ${DISTRO_FEATURES_USB} \
-                    ${DISTRO_FEATURES_USBGADGET} \
+ # X, Y = ${@features_to_uclibc_settings(d)}
 -- 
 1.7.5.4
 
