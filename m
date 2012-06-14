@@ -1,29 +1,33 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 383D5E00723
-	for <yocto@yoctoproject.org>; Thu, 14 Jun 2012 06:57:10 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 14 Jun 2012 06:57:09 -0700
+Return-Path: <belen.barros.pena@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C9D03E00723
+	for <yocto@yoctoproject.org>; Thu, 14 Jun 2012 08:10:14 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga101.ch.intel.com with ESMTP; 14 Jun 2012 08:10:10 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="165653804"
-Received: from unknown (HELO envy.home) ([10.255.12.119])
-	by fmsmga001.fm.intel.com with ESMTP; 14 Jun 2012 06:57:09 -0700
-Message-ID: <4FD9ED69.50800@linux.intel.com>
-Date: Thu, 14 Jun 2012 06:55:53 -0700
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:13.0) Gecko/20120605 Thunderbird/13.0
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="112127260"
+Received: from irsmsx101.ger.corp.intel.com ([163.33.3.153])
+	by AZSMGA002.ch.intel.com with ESMTP; 14 Jun 2012 08:10:09 -0700
+Received: from irsmsx151.ger.corp.intel.com (163.33.192.59) by
+	IRSMSX101.ger.corp.intel.com (163.33.3.153) with Microsoft SMTP Server
+	(TLS) id 14.1.355.2; Thu, 14 Jun 2012 16:09:03 +0100
+Received: from irsmsx104.ger.corp.intel.com ([169.254.5.248]) by
+	IRSMSX151.ger.corp.intel.com ([169.254.4.175]) with mapi id
+	14.01.0355.002; Thu, 14 Jun 2012 16:09:03 +0100
+From: "Barros Pena, Belen" <belen.barros.pena@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "An, LimingX L"
+	<limingx.l.an@intel.com>
+Thread-Topic: live image types and qemu machines
+Thread-Index: AQHNSj+iyOSjoET3xkqsKkFSMg1pGg==
+Date: Thu, 14 Jun 2012 15:09:03 +0000
+Message-ID: <CBFFBD1E.11118%belen.barros.pena@intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Microsoft-MacOutlook/14.2.2.120421
+x-originating-ip: [10.252.33.230]
 MIME-Version: 1.0
-To: Phil Blundell <philb@gnu.org>
-References: <cover.1339650859.git.dvhart@linux.intel.com>
-	<3b44305edae36265295087fb5f31d22d660599b8.1339650859.git.dvhart@linux.intel.com>
-	<1339666865.14857.39.camel@phil-desktop>
-In-Reply-To: <1339666865.14857.39.camel@phil-desktop>
-X-Enigmail-Version: 1.4.2
-Cc: Yocto Project <yocto@yoctoproject.org>,
-	Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>
-Subject: Re: [OE-core] [PATCH 2/3] busybox: Add setsid and cttyhack for tiny DISTRO_FEATURE
+Subject: live image types and qemu machines
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,60 +39,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Jun 2012 13:57:10 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 14 Jun 2012 15:10:15 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <ABD4EFFB2BEA274A8991F87CAA8F15B8@intel.com>
+Content-Transfer-Encoding: quoted-printable
+
+Hi all,
+
+The current Hob allows you to build images for a qemu machine selecting
+'live' as your image type. To me (with my pitiful knowledge) this doesn't
+make much sense: would I want to deploy an image built for a
+virtualisation environment in a real piece of hardware?
+
+So here goes a question: should we allow Hob users, who are mainly people
+new to the Yocto project, to select the 'live' image type when building
+images for qemu machines?
+
+This might sound like a silly question, but it has a pretty big impact on
+the Settings dialog and on the number of variations we need to create for
+our 'Image details' screen, which appears after the build finishes and
+displays logical next steps (like run the image or deploy your image to
+external storage).
+
+Any help with this would be much appreciated.
+
+Thanks!
+
+Belen
 
 
 
-On 06/14/2012 02:41 AM, Phil Blundell wrote:
-> On Wed, 2012-06-13 at 22:19 -0700, Darren Hart wrote:
->> diff --git a/meta/recipes-core/busybox/busybox.inc b/meta/recipes-core/busybox/busybox.inc
->> index 5b83d32..d07ba7e 100644
->> --- a/meta/recipes-core/busybox/busybox.inc
->> +++ b/meta/recipes-core/busybox/busybox.inc
->> @@ -57,6 +57,8 @@ def features_to_busybox_settings(d):
->>  	busybox_cfg('nls',  distro_features, 'CONFIG_LOCALE_SUPPORT', cnf, rem)
->>  	busybox_cfg('ipv4', distro_features, 'CONFIG_FEATURE_IFUPDOWN_IPV4', cnf, rem)
->>  	busybox_cfg('ipv6', distro_features, 'CONFIG_FEATURE_IFUPDOWN_IPV6', cnf, rem)
->> +	busybox_cfg('tiny', distro_features, 'CONFIG_SETSID', cnf, rem)
->> +	busybox_cfg('tiny', distro_features, 'CONFIG_CTTYHACK', cnf, rem)
->>  	return "\n".join(cnf), "\n".join(rem)
->>  
->>  # X, Y = ${@features_to_uclibc_settings(d)}
-> 
-> What exactly is the mission of the "tiny" DISTRO_FEATURE?  It doesn't
-> seem very wholesome for it to be enabling a random grab-bag of bits in
-> busybox (or anywhere else).
 
-The idea is to avoid having to bbappend busybox and other recipes
-basically. I can see how "tiny" is different than "ipv4" as it isn't
-explicit it what it enables, making it a "grab-bag" as you put it.
+---------------------------------------------------------------------
+Intel Corporation (UK) Limited
+Registered No. 1134945 (England)
+Registered Office: Pipers Way, Swindon SN3 1RJ
+VAT No: 860 2173 47
 
-I could come up with a term that describes systems without complex init
-systems that need to be able to setup their own shells easily.
-
-Another approach would be to just consider these two features and decide
-if they shouldn't just be part of the oe-core busybox defconfig anyway.
-I don't see why setsid shouldn't be. I can see arguments against
-cttyhack (as it is a hack), but I wouldn't think either should be a huge
-deal to just include. I thought the DISTRO_FEATURE was a reasonable
-compromise between that and having to maintain a bbappend outside of
-oe-core.
-
-> 
-> If poky-tiny wants those features enabled then it can, and should, ship
-> its own configuration for busybox which turns them on.  I think that
-> would be better than further proliferation of switches in oe-core.
-> 
-
-How would you feel about just including these two features in the
-defconfig then?
-
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
-
+This e-mail and any attachments may contain confidential material for
+the sole use of the intended recipient(s). Any review or distribution
+by others is strictly prohibited. If you are not the intended
+recipient, please contact the sender and delete all copies.
 
 
