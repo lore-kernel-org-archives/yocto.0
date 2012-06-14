@@ -1,39 +1,21 @@
-Return-Path: <scott.a.garman@intel.com>
-Received: from fmsmga102.fm.intel.com (mga10.intel.com [192.55.52.92])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8D3FCE013BB
-	for <yocto@yoctoproject.org>; Thu, 14 Jun 2012 13:08:08 -0700 (PDT)
-Received: from mail-pz0-f52.google.com ([209.85.210.52])
-	by mga11.intel.com with ESMTP/TLS/RC4-MD5; 14 Jun 2012 13:08:08 -0700
-Received: by dano14 with SMTP id o14so3024742dan.25
-	for <yocto@yoctoproject.org>; Thu, 14 Jun 2012 13:08:08 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=message-id:date:from:user-agent:mime-version:to:subject:references
-	:in-reply-to:content-type:content-transfer-encoding
-	:x-gm-message-state;
-	bh=VwHG6cKGpbi5lLWzJhARYzmALlNhw3LMYffjsoJRaZM=;
-	b=OVt+C+9yhkQxhOdn0+QHmlaLUk7JO/3txYMnlYvCyEAQjCkYXrffzjt9/KOzf3dwvn
-	2+KgkTHXyexiwUhWhY8xq8MvgRw2mN7AeiOZqLa8SypbesKTTPHt/3beVvgNSOwaMV+h
-	OxvIuOFMz4a2sj6nx2r0pEo0mekVD/4twyR96Saqgw0Fx4orJuWd1fwppwwEcYq5FGMt
-	3AjXOWPo6iah20I3md1iYLDt03Uo147Yx0SS0n+NDMERttfdjuwx7/CmORf73Wc5gG2+
-	2C+85Ftv+znqVOgWn1GuZwxjzQjKtu7aTTpplX4mcGHWNecdPVM6lNEjxjaCSQiiLlrh
-	X5Lw==
-Received: by 10.68.223.35 with SMTP id qr3mr12388035pbc.83.1339704487890;
-	Thu, 14 Jun 2012 13:08:07 -0700 (PDT)
-Received: from [127.0.0.1] (masterfoo.zenlinux.com. [207.192.74.254])
-	by mx.google.com with ESMTPS id x1sm10535601pbp.50.2012.06.14.13.08.05
-	(version=SSLv3 cipher=OTHER); Thu, 14 Jun 2012 13:08:06 -0700 (PDT)
-Message-ID: <4FDA449E.7040507@intel.com>
-Date: Thu, 14 Jun 2012 13:07:58 -0700
-From: Scott Garman <scott.a.garman@intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:12.0) Gecko/20120430 Thunderbird/12.0.1
-MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <alpine.DEB.2.02.1206141400230.10611@oneiric>
-In-Reply-To: <alpine.DEB.2.02.1206141400230.10611@oneiric>
-X-Gm-Message-State: ALoCoQkvnsTYNEzRvCYUGwQqSu1IxlRmEusniDy/HDFRNEpqt5MPon+qcf/VTt5Ira5uk4FrCCeb
-Subject: Re: running my qemu images with kvm
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 04BC1E00723
+	for <yocto@yoctoproject.org>; Thu, 14 Jun 2012 13:28:30 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga101.ch.intel.com with ESMTP; 14 Jun 2012 13:28:30 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="112227385"
+Received: from unknown (HELO localhost) ([10.255.12.51])
+	by AZSMGA002.ch.intel.com with ESMTP; 14 Jun 2012 13:28:29 -0700
+From: tom.zanussi@intel.com
+To: yocto@yoctoproject.org,
+	dvhart@linux.intel.com,
+	kishore.k.bodke
+Date: Thu, 14 Jun 2012 15:28:25 -0500
+Message-Id: <cover.1339705524.git.tom.zanussi@intel.com>
+X-Mailer: git-send-email 1.7.0.4
+Subject: [PATCH 0/2] meta-intel: fix new layer warning
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,45 +27,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Jun 2012 20:08:08 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 14 Jun 2012 20:28:31 -0000
 
-On 06/14/2012 11:05 AM, Robert P. J. Day wrote:
->
->    embarrassingly, i only just noticed that if i want my
-> yocto-generated qemu images to take advantage of kvm, i should add the
-> arg "kvm" to my "runqemu" invocation, is that correct?
+From: Tom Zanussi <tom.zanussi@intel.com>
 
-Correct.
+This patchset gets rid of the new layer warning for meta-intel
+and all contained BSP layers.
 
->    if that's the case, might it be worth adding that note to the
-> standard oe-init-build-env output at the bottom?  or perhaps referring
-> the user to the output of "runqemu -h" for available run-time options?
+The following changes since commit bd00e28dd54b06a1f01f186be168d3af872f96d4:
+  Richard Purdie (1):
+        meta-emenlow: Update qt4 bbappend to 4.8.1
 
-Since the oe-init-build-env script gets invoked for many scenarios that 
-don't involve running runqemu, I'm not convinced that the info is needed 
-- it might be nice to have, but we don't want to clutter the output with 
-too much info.
+are available in the git repository at:
 
->    at the moment, it seems awfully easy to run your qemu image without
-> realizing you're not taking advantage of kvm.  or am i misreading
-> something?
+  git://git.yoctoproject.org/meta-intel.git tzanussi/layer-conf-updates
+  http://git.yoctoproject.org/cgit.cgi//log/?h=tzanussi/layer-conf-updates
 
-I've been running my QEMU sessions without kvm and it hasn't been a big 
-deal. Since we do mention its use in the runqemu usage help, IMHO it's 
-appropriately documented.
+Tom Zanussi (2):
+  meta-intel: update conf/layer.conf BBPATH/BBFILES for meta-intel
+    layer
+  meta-intel: update conf/layer.conf BBPATH/BBFILES for BSP layers
 
-I'm not sure what the status is of kvm support in the various 
-environments that Yocto is run in, so enabling kvm by default may not be 
-safe. Please correct me if I'm wrong.
+ conf/layer.conf                   |    4 ++--
+ meta-cedartrail/conf/layer.conf   |    4 ++--
+ meta-chiefriver/conf/layer.conf   |    4 ++--
+ meta-crownbay/conf/layer.conf     |    4 ++--
+ meta-emenlow/conf/layer.conf      |    4 ++--
+ meta-fishriver/conf/layer.conf    |    4 ++--
+ meta-fri2/conf/layer.conf         |    4 ++--
+ meta-jasperforest/conf/layer.conf |    4 ++--
+ meta-n450/conf/layer.conf         |    4 ++--
+ meta-romley/conf/layer.conf       |    4 ++--
+ meta-sugarbay/conf/layer.conf     |    4 ++--
+ meta-sys940x/conf/layer.conf      |    4 ++--
+ meta-tlk/conf/layer.conf          |    4 ++--
+ 13 files changed, 26 insertions(+), 26 deletions(-)
 
-Thanks for the feedback,
-
-Scott
-
--- 
-Scott Garman
-Embedded Linux Engineer - Yocto Project
-Intel Open Source Technology Center
 
