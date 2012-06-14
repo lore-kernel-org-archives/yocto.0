@@ -1,26 +1,37 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8E9FEE01408
-	for <yocto@yoctoproject.org>; Wed, 13 Jun 2012 19:56:48 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 13 Jun 2012 19:56:48 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="179758611"
-Received: from unknown (HELO envy.home) ([10.255.12.119])
-	by fmsmga002.fm.intel.com with ESMTP; 13 Jun 2012 19:56:47 -0700
-Message-ID: <4FD952A3.7080306@linux.intel.com>
-Date: Wed, 13 Jun 2012 19:55:31 -0700
+Return-Path: <darren@apps.dvhart.com>
+Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
+	[209.85.160.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D8AD8E013A6
+	for <yocto@yoctoproject.org>; Wed, 13 Jun 2012 22:19:36 -0700 (PDT)
+Received: by pbbrq8 with SMTP id rq8so3951251pbb.35
+	for <yocto@yoctoproject.org>; Wed, 13 Jun 2012 22:19:36 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=sender:from:to:cc:subject:date:message-id:x-mailer
+	:x-gm-message-state;
+	bh=It28uLEHW7l3k4k7VCzXf6/25TzDfuaRtYg2GcCyt+s=;
+	b=ejpL5+fNRzplVa9Itpqy94IBvHNLXk1vEdS6/epHUuFkiE6MNuxF9l+5i55NvRbJe4
+	KTl925OgywI1shYHCmG2qgbqWInrn/ph5lf0yjTyFJV+etH47jho4InWMoiaPV6YR8V3
+	hl+jUM2daB7iQGF88qvCqlTQXjwEX9eX5v9UrJGZNQwmPbEqrPExqsQKVSMIiahtIscM
+	7lS0K5S78oSTPKGiJit26R1JShlSnM5ePh/fL007XPsrwhBQ4q0uZ2w2P/D2ldi/uFl1
+	1n2ryh+WJmK/S7zcaBYEx3UJCtazJ65kXNOOHa4vi1ATbLSBhOdSMIFxvZtjx4fd+9hO
+	lx/g==
+Received: by 10.68.242.162 with SMTP id wr2mr3765949pbc.125.1339651176342;
+	Wed, 13 Jun 2012 22:19:36 -0700 (PDT)
+Received: from localhost (static-50-53-99-101.bvtn.or.frontiernet.net.
+	[50.53.99.101])
+	by mx.google.com with ESMTPS id sy3sm8245138pbc.18.2012.06.13.22.19.35
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Wed, 13 Jun 2012 22:19:35 -0700 (PDT)
+Sender: Darren Hart <darren@apps.dvhart.com>
 From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:13.0) Gecko/20120605 Thunderbird/13.0
-MIME-Version: 1.0
-To: Tim Bird <tim.bird@am.sony.com>
-References: <4FD93175.7070202@linux.intel.com> <4FD939BD.8090600@am.sony.com>
-	<4FD93C71.1080004@linux.intel.com>
-In-Reply-To: <4FD93C71.1080004@linux.intel.com>
-X-Enigmail-Version: 1.4.2
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: RFC: poky-tiny: init procedure
+To: Yocto Project <yocto@yoctoproject.org>
+Date: Wed, 13 Jun 2012 22:19:30 -0700
+Message-Id: <cover.1339650859.git.dvhart@linux.intel.com>
+X-Mailer: git-send-email 1.7.5.4
+X-Gm-Message-State: ALoCoQlVdDUs0QnTdmJpoLuQnYPB4oaZfG0GPnp2uw5RuxEk8eLM3/TT95zhfxv5GQ1wxvxCZBpQ
+Cc: Darren Hart <dvhart@linux.intel.com>
+Subject: [RFC PATCH 0/3] poky-tiny: Add tiny-init mechanism for poky-tiny distro
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,154 +43,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Jun 2012 02:56:48 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 14 Jun 2012 05:19:36 -0000
+
+Provide a basic functional init mechanism for poky-tiny. This defines a new
+"tiny" DISTRO_FEATURE in poky-tiny.conf, updates the busybox config based on
+this DISTRO_FEATURE, and creates a new tiny-init recipe which is made the
+default VIRTUAL-RUNTIME_init_manager for poky-tiny.
+
+The busybox changes are for oe-core to avoide a bbappend in meta-yocto. That
+one patch is CC'd to oe-core.
 
 
+The following changes since commit 7f017cab0b3e4d5a4fc356eccd8eb8429b0531d0:
 
-On 06/13/2012 06:20 PM, Darren Hart wrote:
-> 
-> 
-> On 06/13/2012 06:09 PM, Tim Bird wrote:
->> On 6/13/2012 5:33 PM, Darren Hart wrote:
->>> For those of you using poky-tiny or are interested in building very very
->>> small systems, I would appreciate your thoughts here.
->>>
->>> Currently poky-tiny images will boot and run /bin/sh, which results in
->>> error messages to the console about being unable to open the tty and job
->>> control being disabled (this is a common problem, if not commonly
->>> understood).
->>>
->>> The shell must be session leader to open the tty, and the tty must not
->>> be /dev/console (it should be a vt or a physical tty like ttyS0), the
->>> tty is required for job control (handling signals, etc.).
->>>
->>> The Problem:
->>> poky-tiny should boot to a shell without error messages and have
->>> job-control.
->>>
->>> The Vision:
->>> The goals of poky-tiny are to be an initial starting point from which to
->>> build a distribution that does what you want, and NOTHING more.
->>>
->>> The Proposal:
->>> o Do not include the standard Busybox init
->>> o Do provide a basic /init script that can be easily modified
->>> o Do provide a basic shell
->>>    o Without init, this requires setsid and cttyhack to easily find the
->>>      right device
->>> o Do not provide inittab functionality
->>>
->>> I can accomplish this by updating busybox to include:
->>> CONFIG_SETSID=y
->>> CONFIG_CTTYHACK=y
->>>
->>> And providing a basic init script as follows:
->>>
->>> #!/bin/sh
->>> mount none -t proc /proc
->>> mount none -t sysfs /sys
->>> mkdir /dev/pts
->>> mount none -t devpts /dev/pts
->>> ifup lo
->>>
->>> # Become session leader and try to find a real tty (e.g. ttyS0)
->>> setsid cttyhack sh
->>>
->>> This results in a system that boots with the virtual filesystems
->>> mounted, the local network interface up, and a shell with job control
->>> running. Nothing else.
->>>
->>> Potential Problems:
->>> Should the script be /init (for initramfs images) or /sbin/init for
->>> images on block devices. Note that the default method of running
->>> poky-tiny is with an initramfs as it doesn't support any block devices
->>> by default.
->>>
->>> Adding services like dropbear to your image will not get started on boot
->>> as their init scripts will not be run. I'm OK with documenting this
->>> behavior as part of creating your own distribution based on tiny.
->>>
->>> If the shell crashes, or you exit, the kernel panics (because init returns).
->>>
->>> Thoughts/Comments/Criticism welcome.
->>>
->>
->> This sounds like a great approach.  What I've found at Sony is that it's 
->> nice to
->> have a template for turning on individual services, that users can 
->> decide to enable or not.
->> You don't want to include everything under the sun, but it's nice to 
->> have a few basic
->> things spelled out (but disabled) so that users can easily enable them.
->>
->> How about adding something like:
->> if [ -f /etc/rc.local ] ; then
->>   exec /etc/rc.local
->> fi
->>
->> You could have this be as is, or the lines could be commented out.
->>
->> Inside /etc/rc.local you have a bunch of commented-out lines for turning on
->> services like telnetd, dropbear, mounting debugfs, starting networking 
->> (ifup eth0),
->> etc.  If the user wants any of these individual items, they uncomment the
->> appropriate lines in /etc/rc.local.
->>
->> IMHO, you DON'T want to create some fancy directory-based system like 
->> sysVinit
->> that automatically handles anything that could possibly be included.  But
->> having a couple of common cases that the user can easily enable is 
->> pretty handy.
->>
->> Alternatively, you could have these commented-out lines in the init 
->> script itself.
->> This saves you an additional file in the rootfs, as well as the fork to exec
->> /etc/rc.local.  (I suppose you could also 'source' this, to avoid the fork.)
->>
->> Just some ideas.
-> 
-> I like the rc.local idea as that makes it easily extendable without even
-> having to modify the original distro definition.
-> 
-> Excellent suggestions, thank you!
-> 
+  connman: bump PR and add some comments (2012-06-13 13:11:23 +0100)
 
-Updated init with Tim's recommendations and a loop to avoid the kernel
-panic on shell exit:
+are available in the git repository at:
+  git://git.pokylinux.org/poky-contrib dvhart/tiny
+  http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=dvhart/tiny
 
-#!/bin/sh
+Darren Hart (3):
+  poky-tiny: Define the "tiny" DISTRO_FEATURE
+  busybox: Add setsid and cttyhack for tiny DISTRO_FEATURE
+  tiny-init: Basic init mechanism for poky-tiny
 
-# Mount the Linux kernel virtual filesystems
-mount none -t proc /proc
-mount none -t sysfs /sys
-mkdir /dev/pts
-mount none -t devpts /dev/pts
-
-ifup lo
-
-# Allow for distro or local customizations
-if [ -f /etc/rc.local ] ; then
-        source /etc/rc.local
-fi
-
-# Become session leader and try to find a real tty (e.g. ttyS0)
-while true; do
-        setsid cttyhack sh
-        echo "Console sh exited with $?, respawning..."
-        sleep 1
-done
-
-
-I believe this is a reasonable set of things to expect to be working on
-ANY system built with the Yocto Project (currently poky-tiny is defined
-in meta-yocto).
+ meta-yocto/conf/distro/poky-tiny.conf              |    8 ++----
+ meta-yocto/recipes-core/tiny-init/files/init       |   21 ++++++++++++++++
+ .../recipes-core/tiny-init/files/rc.local.sample   |   23 +++++++++++++++++
+ meta-yocto/recipes-core/tiny-init/tiny-init.bb     |   26 ++++++++++++++++++++
+ meta/recipes-core/busybox/busybox.inc              |    2 +
+ 5 files changed, 75 insertions(+), 5 deletions(-)
+ create mode 100644 meta-yocto/recipes-core/tiny-init/files/init
+ create mode 100644 meta-yocto/recipes-core/tiny-init/files/rc.local.sample
+ create mode 100644 meta-yocto/recipes-core/tiny-init/tiny-init.bb
 
 -- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
-
+1.7.5.4
 
 
