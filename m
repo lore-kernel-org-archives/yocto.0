@@ -1,59 +1,34 @@
-Return-Path: <tim.bird@am.sony.com>
-Received: from va3outboundpool.messaging.microsoft.com
-	(va3ehsobe003.messaging.microsoft.com [216.32.180.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 34DFDE0044A
-	for <yocto@yoctoproject.org>; Fri, 15 Jun 2012 12:47:39 -0700 (PDT)
-Received: from mail84-va3-R.bigfish.com (10.7.14.238) by
-	VA3EHSOBE002.bigfish.com (10.7.40.22) with Microsoft SMTP Server id
-	14.1.225.23; Fri, 15 Jun 2012 19:46:28 +0000
-Received: from mail84-va3 (localhost [127.0.0.1])	by mail84-va3-R.bigfish.com
-	(Postfix) with ESMTP id 18A9CC00FF;
-	Fri, 15 Jun 2012 19:46:28 +0000 (UTC)
-X-Forefront-Antispam-Report: CIP:160.33.194.229; KIP:(null); UIP:(null);
-	IPV:NLI; H:usculsndmail02v.am.sony.com; RD:mail02.sonyusa.com;
-	EFVD:NLI
-X-SpamScore: -5
-X-BigFish: VPS-5(zzbb2dI98dI9371I1454I1432Izz1202hzzz2fh2a8h668h839h93fhd25hf0ah)
-Received-SPF: pass (mail84-va3: domain of am.sony.com designates
-	160.33.194.229 as permitted sender) client-ip=160.33.194.229;
-	envelope-from=tim.bird@am.sony.com;
-	helo=usculsndmail02v.am.sony.com ; .am.sony.com ; 
-Received: from mail84-va3 (localhost.localdomain [127.0.0.1]) by mail84-va3
-	(MessageSwitch) id 1339789586488902_16337;
-	Fri, 15 Jun 2012 19:46:26 +0000 (UTC)
-Received: from VA3EHSMHS030.bigfish.com (unknown [10.7.14.253])	by
-	mail84-va3.bigfish.com (Postfix) with ESMTP id 69E9F2E0048;
-	Fri, 15 Jun 2012 19:46:26 +0000 (UTC)
-Received: from usculsndmail02v.am.sony.com (160.33.194.229) by
-	VA3EHSMHS030.bigfish.com (10.7.99.40) with Microsoft SMTP Server (TLS)
-	id 14.1.225.23; Fri, 15 Jun 2012 19:46:25 +0000
-Received: from usculsndmail11v.am.sony.com (usculsndmail11v.am.sony.com
-	[146.215.230.102])	by usculsndmail02v.am.sony.com
-	(Sentrion-MTA-4.2.2/Sentrion-MTA-4.2.2) with ESMTP id q5FJlZRv007910
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=FAIL);
-	Fri, 15 Jun 2012 19:47:35 GMT
-Received: from mail1x.sgo.in.sel.sony.com (mail3.bc.in.sel.sony.com
-	[43.130.1.112])	by usculsndmail11v.am.sony.com
-	(Sentrion-MTA-4.2.2/Sentrion-MTA-4.2.2) with ESMTP id q5FJlXAc018756
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=FAIL);
-	Fri, 15 Jun 2012 19:47:34 GMT
-Received: from [43.135.148.222] ([43.135.148.222])	by
-	mail1x.sgo.in.sel.sony.com (Switch-3.4.2/Switch-3.4.2) with ESMTP id
-	q5FJlNRp001807;	Fri, 15 Jun 2012 19:47:23 GMT
-Message-ID: <4FDB91B1.2010706@am.sony.com>
-Date: Fri, 15 Jun 2012 12:49:05 -0700
-From: Tim Bird <tim.bird@am.sony.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:12.0) Gecko/20120430 Thunderbird/12.0.1
-MIME-Version: 1.0
+Return-Path: <opensource@keylevel.com>
+Received: from hxhsvr03.internetintuitive.net (hxhsvr03.internetintuitive.net
+	[80.254.228.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 92F08E0044A
+	for <yocto@yoctoproject.org>; Fri, 15 Jun 2012 13:09:40 -0700 (PDT)
+Received: from [109.224.129.17] (port=5996
+	helo=macbook-pro.durham.keylevel.com)
+	by hxhsvr03.internetintuitive.net with esmtpa (Exim 4.69)
+	(envelope-from <opensource@keylevel.com>)
+	id 1Sfcpu-0007KQ-LI; Fri, 15 Jun 2012 21:09:38 +0100
+Mime-Version: 1.0 (Apple Message framework v1278)
+From: Chris Tapp <opensource@keylevel.com>
+In-Reply-To: <4FDACFD5.4020808@r-finger.com>
+Date: Fri, 15 Jun 2012 21:09:36 +0100
+Message-Id: <68AE55D0-CAC7-41DB-B40C-DB5383E7FC54@keylevel.com>
+References: <BBB9AD1B-8D46-472C-AE84-5AC18F15B44E@keylevel.com>
+	<3AD32D08-64C8-4F37-BF50-9D08560D0194@keylevel.com>
+	<4FDACFD5.4020808@r-finger.com>
 To: Tomas Frydrych <tf+lists.yocto@r-finger.com>
-References: <4FD93175.7070202@linux.intel.com>
-	<4FD98EA6.1050403@r-finger.com>	<4FDA530E.3090508@linux.intel.com>
-	<4FDAD6D1.4050605@r-finger.com>
-In-Reply-To: <4FDAD6D1.4050605@r-finger.com>
-X-OriginatorOrg: am.sony.com
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: RFC: poky-tiny: init procedure
+X-Mailer: Apple Mail (2.1278)
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - hxhsvr03.internetintuitive.net
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - keylevel.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Cc: yocto@yoctoproject.org
+Subject: Re: Help needed understanding do_rootfs error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -65,74 +40,71 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Jun 2012 19:47:40 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 15 Jun 2012 20:09:41 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
-On 06/14/2012 11:31 PM, Tomas Frydrych wrote:
-> Hi Darren,
-> 
-> On 14/06/12 22:09, Darren Hart wrote:
->> This solution improves the kick-the-tires
->> experience with poky-tiny, without pulling in all of init, 
-> 
-> I think you really should quantify what 'all of init' means, without
-> this you are addressing a problem that is merely perceived. Just a quick
-> look shows that the sysvinit package is about 120KB unpacked, for that
-> you get a solution that is tested, robust, and supported across Yocto.
+On 15 Jun 2012, at 07:01, Tomas Frydrych wrote:
 
-120KB (of anything) is too much to add to a system that is targeted at
-being a minimal starting point.  The mechanism added here to support
-local customization is about 100 bytes (including the comment).
+> Hi,
+>=20
+> On 14/06/12 22:42, Chris Tapp wrote:
+>> On 14 Jun 2012, at 21:44, Chris Tapp wrote:
+>>=20
+>>> The log for do_rootfs is showing: < snip > error: Failed
+>>> dependencies: libGL.so.1 is needed by libglut3-7.11-r13.2.armv6=20
+>>> libGL.so.1 is needed by column-wallboard-1.0-r1.armv6 libGL.so.1 is
+>>> needed by libglu1-7.11-r13.2.armv6
+>>>=20
+>>> libGL is showing in the work area, so I think I just need to add a
+>>> dependency. But what and where?
+>=20
+> There should be no GL on RPI at all, the HW drivers only support =
+GLES/2,
+> so the short answer is you can't pull in packages that require GL (in
+> theory you could build mesa with the software rasterizer, but you will
+> get unacceptable performance, and in the presence of GLES2 that makes =
+no
+> sense anyway).
 
-IMHO, the whole notion of starting with a big system and
-subtracting what you don't want in order to create a minimal
-system is the wrong approach.  This doesn't scale (down),
-because Linux and distros just keep getting bigger, and
-the work required to do this subtraction effort
-to continue to hit arbitrarily small footprints is
-getting harder and harder over time.
+No, it works just fine. I had somehow got two conflicting versions =
+pulled in at the same time (sorted by hiding the one I didn't expect and =
+seeing what complained when I tried to build). Performance isn't great, =
+but using Xfbdev works as fast (by 'eye') as it does on the =
+unaccelerated hardware that the build was originally designed for. I've =
+no plans to rewrite to use GLES (at this time) as the development =
+version uses SDL with DirectFB (which is supposed to be getting ported =
+to the RPi). The SDL version already works acceptably without DirectFB.
 
-A better approach is to start as small as absolutely
-possible, and build up from there.  For really small
-system, it is less effort to add what you want to an
-essentially empty system, than to go the other direction.
+> Incidentally, the GLES libs are not currently packaged by
+> meta-raspberrypi, I submitted a pull request for this yesterday.
 
-With regard to sysVinit - it's a great system for end users,
-because it means that packages can slot their startup and
-shutdown scripts into the filesystem automatically, and
-it relieves the burden of managing this from the user.
-The scripts have to be written to deal with myriad
-interactions with other components, and they are
-somewhat bloated because of this. However, for deeply
-embedded, no such automation or bloat is desired.  For
-super-constrained systems, you want to recognize and
-control 100% of what's running on the system.
+Thanks, that will be nice. I want to look at GLES for other things. May =
+even update what I already have if it shows significant performance =
+advantages (which it should). Looks like DirectFB has some sort of GLES =
+support, so I also need to look at that.
 
-Just to give you context, I'm striving for a system that
-runs in 1MB RAM.
+>> Ah, there was an ERROR right at the start of the build saying there
+>> were multiple providers for virtual/libgl (mesa-xlib, mesa-dri). How
+>> can I track down the cause of this? Building virtual/libgl doesn't
+>> get this error - it only shows when I build the full image.
+>=20
+> In general, mesa-xlib provides a software GLX emulation, mesa-dri
+> provides glx based on the GLX extension and each machine conf needs to
+> choose a preferred provider for virtual/libgl to get rid of this =
+error.
+> However, in the RPI case, no virtual/libgl should be getting pulled =
+into
+> the images.
 
-> 
->> Again, we're talking about 14 lines of shell, so "init system" is
->> overstating it significantly.
-> 
-> Sure, but every new wheel starts exactly this way, and we are already
-> discussing how to make it do things that sysvinit does for you :-)
 
-I'm not.  If this approach doesn't work for you, then feel free to
-use sysvinit, or busybox init, or some other system that is more
-heavy-weight than this.  There are plenty of other choices.
+It gets pulled in because that's what I've asked for in my image ;-) I =
+did have a preferred provider, but, as I said above, I found an error =
+that meant it wasn't working as expected.
 
-I realize you said that with a smiley, so I'm not trying to be
-dismissive or harsh, but I do think that if you want the features
-of some other init system, then the right answer is to use them,
-and not complain about this one.
- -- Tim
+Chris Tapp
 
-=============================
-Tim Bird
-Architecture Group Chair, CE Workgroup of the Linux Foundation
-Senior Staff Engineer, Sony Network Entertainment
-=============================
+opensource@keylevel.com
+www.keylevel.com
 
 
