@@ -1,23 +1,38 @@
-Return-Path: <tf+lists.yocto@r-finger.com>
-Received: from r-finger.com (r-finger.com [178.79.160.5])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3EC1BE013EB
-	for <yocto@yoctoproject.org>; Thu, 14 Jun 2012 23:01:59 -0700 (PDT)
-Received: from [192.168.0.2] (host86-170-62-160.range86-170.btcentralplus.com
-	[86.170.62.160]) (using TLSv1 with cipher AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by r-finger.com (Postfix) with ESMTPSA id 65D779C07
-	for <yocto@yoctoproject.org>; Fri, 15 Jun 2012 07:01:58 +0100 (BST)
-Message-ID: <4FDACFD5.4020808@r-finger.com>
-Date: Fri, 15 Jun 2012 07:01:57 +0100
-From: Tomas Frydrych <tf+lists.yocto@r-finger.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:10.0.3) Gecko/20120329 Icedove/10.0.3
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-pz0-f48.google.com (mail-pz0-f48.google.com
+	[209.85.210.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 33049E013EB
+	for <yocto@yoctoproject.org>; Thu, 14 Jun 2012 23:18:17 -0700 (PDT)
+Received: by dadz8 with SMTP id z8so4133018dad.35
+	for <yocto@yoctoproject.org>; Thu, 14 Jun 2012 23:18:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=message-id:date:from:user-agent:mime-version:to:subject:references
+	:in-reply-to:x-enigmail-version:content-type
+	:content-transfer-encoding;
+	bh=UtjYsLcCPZGMDfLILmF1pW5GwH/W1WbWq8/WAyfiPxM=;
+	b=U9UbZv3Az1kLfgdorJQtHIqWOf3cJ8ELt68iWoWPTSN/Bs79PiiYmbi+6Aan3E3Pou
+	6eW9Disy6ijZC03OkBksue9aFvbL6mFq5VtABmamGoH9lKm65+KFIYJHoJEhiadc7Vs/
+	eFZOWstA3KZsvfm82RYT9LSOEFD080Hsz4N5CbZU2DycYgM5aCOgeB9qbrEQOJzFeyW7
+	WLssT4fJ32Qe6enyW4FDd6YLN7LpwFVZj0wf9iEULwKuDkcfgKdCFEz4xQDkCJ7sS9uq
+	yEJdfvJsS5CXweiSCNkA4PSApkBuc97V92hcc1/iSu0b9k1dadP4giGCm+u/7wTWC0OJ
+	xzww==
+Received: by 10.68.226.168 with SMTP id rt8mr16902028pbc.23.1339741096892;
+	Thu, 14 Jun 2012 23:18:16 -0700 (PDT)
+Received: from [192.168.1.71] (99-57-140-209.lightspeed.sntcca.sbcglobal.net.
+	[99.57.140.209])
+	by mx.google.com with ESMTPS id ip5sm12161910pbc.3.2012.06.14.23.18.15
+	(version=SSLv3 cipher=OTHER); Thu, 14 Jun 2012 23:18:16 -0700 (PDT)
+Message-ID: <4FDAD3AB.3000605@gmail.com>
+Date: Thu, 14 Jun 2012 23:18:19 -0700
+From: Khem Raj <raj.khem@gmail.com>
+User-Agent: Mozilla/5.0 (Windows NT 6.1;
+	rv:12.0) Gecko/20120428 Thunderbird/12.0.1
 MIME-Version: 1.0
 To: yocto@yoctoproject.org
-References: <BBB9AD1B-8D46-472C-AE84-5AC18F15B44E@keylevel.com>
-	<3AD32D08-64C8-4F37-BF50-9D08560D0194@keylevel.com>
-In-Reply-To: <3AD32D08-64C8-4F37-BF50-9D08560D0194@keylevel.com>
-Subject: Re: Help needed understanding do_rootfs error
+References: <CAN57a28DC3Xge0Sk8JH5fEji1q6nmxcDKxmbxTUfMPXKVU+Yeg@mail.gmail.com>
+In-Reply-To: <CAN57a28DC3Xge0Sk8JH5fEji1q6nmxcDKxmbxTUfMPXKVU+Yeg@mail.gmail.com>
+X-Enigmail-Version: 1.4.2
+Subject: Re: Setting architecture of only DEB files (arm vs armel)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,43 +44,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Jun 2012 06:01:59 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Fri, 15 Jun 2012 06:18:17 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-Hi,
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
 
-On 14/06/12 22:42, Chris Tapp wrote:
-> On 14 Jun 2012, at 21:44, Chris Tapp wrote:
+On 6/14/2012 5:17 PM, Tyler Jones wrote:
+> I am compiling a distro for my hardware using DEBs for my package 
+> management. In meta/classes/package_deb.bbclass I need DPKG_ARCH =
+> "armel" instead of TARGET_ARCH (which is "arm"). When I run dpkg on
+> my device armel is the architecture, not arm, but yocto wants my
+> TARGET_ARCH to be set to "arm". Is there a non hackish way to do
+> this from my BSP layer or config file?
 > 
->> The log for do_rootfs is showing: < snip > error: Failed
->> dependencies: libGL.so.1 is needed by libglut3-7.11-r13.2.armv6 
->> libGL.so.1 is needed by column-wallboard-1.0-r1.armv6 libGL.so.1 is
->> needed by libglu1-7.11-r13.2.armv6
->> 
->> libGL is showing in the work area, so I think I just need to add a
->> dependency. But what and where?
+> The dpkg error I get is: package architecture (arm) does not match
+> system (armel)
+> 
 
-There should be no GL on RPI at all, the HW drivers only support GLES/2,
-so the short answer is you can't pull in packages that require GL (in
-theory you could build mesa with the software rasterizer, but you will
-get unacceptable performance, and in the presence of GLES2 that makes no
-sense anyway).
+set DPKG_ARCH = "armel" in your local.conf
 
-Incidentally, the GLES libs are not currently packaged by
-meta-raspberrypi, I submitted a pull request for this yesterday.
+> -Tyler Jones
+> 
+> 
+> 
+> 
+> _______________________________________________ yocto mailing list 
+> yocto@yoctoproject.org 
+> https://lists.yoctoproject.org/listinfo/yocto
 
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.12 (MingW32)
+Comment: Using GnuPG with Mozilla - http://enigmail.mozdev.org/
 
-> Ah, there was an ERROR right at the start of the build saying there
-> were multiple providers for virtual/libgl (mesa-xlib, mesa-dri). How
-> can I track down the cause of this? Building virtual/libgl doesn't
-> get this error - it only shows when I build the full image.
-
-In general, mesa-xlib provides a software GLX emulation, mesa-dri
-provides glx based on the GLX extension and each machine conf needs to
-choose a preferred provider for virtual/libgl to get rid of this error.
-However, in the RPI case, no virtual/libgl should be getting pulled into
-the images.
-
-Tomas
+iEYEARECAAYFAk/a06sACgkQuwUzVZGdMxRBvgCeJAinKceaUDI8gQHPbvzGiOSt
+tuQAnRDOpYZvovXfg6UHji6it4YehqvR
+=7G4e
+-----END PGP SIGNATURE-----
 
