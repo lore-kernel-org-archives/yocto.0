@@ -1,25 +1,23 @@
 Return-Path: <dvhart@linux.intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 358FDE0145F
-	for <yocto@yoctoproject.org>; Fri, 15 Jun 2012 16:16:27 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 15 Jun 2012 16:16:26 -0700
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B8578E0145B
+	for <yocto@yoctoproject.org>; Fri, 15 Jun 2012 16:22:49 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 15 Jun 2012 16:22:49 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="166293354"
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="158255406"
 Received: from unknown (HELO envy.home) ([10.255.12.88])
-	by fmsmga001.fm.intel.com with ESMTP; 15 Jun 2012 16:16:26 -0700
-Message-ID: <4FDBC1FC.3050008@linux.intel.com>
-Date: Fri, 15 Jun 2012 16:15:08 -0700
+	by orsmga002.jf.intel.com with ESMTP; 15 Jun 2012 16:22:49 -0700
+Message-ID: <4FDBC37A.6060902@linux.intel.com>
+Date: Fri, 15 Jun 2012 16:21:30 -0700
 From: Darren Hart <dvhart@linux.intel.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:13.0) Gecko/20120605 Thunderbird/13.0
 MIME-Version: 1.0
-To: Tomas Frydrych <tf+lists.yocto@r-finger.com>
-References: <4FD93175.7070202@linux.intel.com>
-	<4FD98EA6.1050403@r-finger.com>	<4FDA530E.3090508@linux.intel.com>
-	<4FDAD6D1.4050605@r-finger.com> <4FDB91B1.2010706@am.sony.com>
-	<4FDBA883.8030609@r-finger.com>
-In-Reply-To: <4FDBA883.8030609@r-finger.com>
+To: Tim Bird <tim.bird@am.sony.com>
+References: <4FD93175.7070202@linux.intel.com> <4FD98EA6.1050403@r-finger.com>
+	<4FDBA4B8.8000703@am.sony.com>
+In-Reply-To: <4FDBA4B8.8000703@am.sony.com>
 X-Enigmail-Version: 1.4.2
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: RFC: poky-tiny: init procedure
@@ -34,72 +32,87 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Jun 2012 23:16:27 -0000
+X-List-Received-Date: Fri, 15 Jun 2012 23:22:49 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
 
 
-On 06/15/2012 02:26 PM, Tomas Frydrych wrote:
+On 06/15/2012 02:10 PM, Tim Bird wrote:
+> On 06/14/2012 12:11 AM, Tomas Frydrych wrote:
+>> A system that runs nothing but a shell is really not useful for anything
+>> all, everyone using it will be adding some sort of services, so the
+>> question of how the extending works (or does not work), needs to be in
+>> the forefront of the design. My main reservation is that you are
+>> suggesting to break one of the basic premisses behind the whole
+>> ecosystem, namely that if I add a package that provides a service to an
+>> image, I get that service running; 'fix by documentation' is never a fix.
 > 
-> On 15/06/12 20:49, Tim Bird wrote:
->> On 06/14/2012 11:31 PM, Tomas Frydrych wrote:
->> IMHO, the whole notion of starting with a big system and
->> subtracting what you don't want in order to create a minimal
->> system is the wrong approach.
+> I didn't address this in my other response, and I
+> think it's a valid observation.  I agree that
+> everyone will want to add something to the init,
+> and that 'fix by documentation' is, in general, a
+> poor solution.
 > 
-> At no point in this discussion was such an approach advocated by anyone.
-
-Well, that is the logical alternative. If we suggest using sysvinit now
-because it's the standard, then soon we'll say that for systemd, which
-means I'll have to include cgroups in my kernel, etc etc. I dont think
-Tim's comment was wrong there. Of course "big system" is subjective, to
-me that's anything over 4 MB of storage and 8MB of RAM, for Tim, that's
-1 MB of RAM. And for the purposes of poky-tiny, anything that adds
-functionality, complexity, storage or memory size, or runtime needs to
-be considered for the chopping block.
-
+> I don't have any good solution here (one that scales,
+> or is likely to be adopted widely.)  You don't really
+> need documentation, if you have the few lines of shell
+> script that are necessary to start a service in minimal
+> mode.  The standard init scripts handle lots of interactions
+> with other services and runtime conditions.  This is why
+> they are bloated (and the abstractions in them are
+> almost incomprehensible to read.)
 > 
+> At Sony we've tried various things - like automatically
+> stripping init scripts of uncalled branches, removing
+> conditionals that don't apply, etc.  We've also looked
+> at automatically converting init scripts to C code, to
+> speed up execution.  You still end up with gobs of code
+> that doesn't apply to your situation getting executed
+> at boot time, an overly-complicated test scenario, and a
+> certain fragility in the overall init system.
 > 
->> I realize you said that with a smiley, so I'm not trying to be
->> dismissive or harsh, but I do think that if you want the features
->> of some other init system, then the right answer is to use them,
->> and not complain about this one.
+> One of our early efforts, getting busybox
+> to not fork commands in init scripts that it had as
+> builtins, proved to be a significant feature that is still
+> valuable today to improve boot time.
 > 
-> I am not complaining, I have asked what the specific, quantifiable,
-> objective of creating the home grown init 'procedure' is, IMHO that is
-> an entirely reasonable question to an RFC, the answer to which should
-> inform the design.
-
-Agreed, a very valid question and one I am still working through the
-numbers for. We save ~3k in busybox size by using SETSID and CTTYHACK
-rather than the busybox INIT. This is less than 1% of the busybox
-binary, not a huge savings. I'll look at the rest, but it's more
-difficult to quantify as it is dependent on the number of sysvinit
-scripts used - and of course the more that are used, the more likely the
-image should be using sysvinit anyway. So... I'll look into this some more.
-
+> What we have settled on as a generic solution is basically
+> what I described in response to Darren's initial post.
+> You have a list of the short shell snippets required to start
+> commonly-used services in /etc/rc.local.  These
+> are commented out by default, but a developer or product
+> team can uncomment them to enable the associated services.
+> This keeps everything in one place and provides developers
+> the commands needed to start things.  Customization to
+> handle interactions or special cases can proceed from
+> there.  It's not ideal, in that a developer may have to
+> re-create or rediscover some configuration, setting, or
+> start sequence to handle a more complicated usage scenario.
+> But in order to hit our targets for size or boot time, it
+> has been helpful to do things this way.  The developer is
+> forced to manually enable each service, and the start
+> sequence, commands and command parameters are obvious
+> from the script.  (This is rarely true of init scripts).
 > 
-> If we are talking about targeting 1MB of RAM then it is unavoidable that
-> the system has to be hand crafted to a fair degree. It is not what I'd
-> consider the typical Poky use case, but within those constrains, I'd
-> probably be looking at eliminating shell scripts altogether in my
-> customization of whatever Poky offers.
 
-poky-tiny is looking to define a new typical use-case that differs from
-the poky use case (poky and poky-tiny the DISTROs of course). Perhaps
-you just meant Poky the project, in which case, I think the same point
-applies, we're trying to extend the typical use cases to include very
-small systems.
+Does this mean you just don't worry about respawning services? If
+the.... I dunno... ambient-light-sensor-daemon crashes, is the user
+expected to just reboot the device?
 
-Your point on eliminating shell scripts is a good one though. My
-approach here has been to make it as minimal as is practical while still
-having a somewhat usable system "out of the box". To me this means a
-shell is available, networking is supported, etc etc (see the poky
-distro definition for more specifics).
+> If anyone has good ideas or other experience for
+> the init sequence for highly customized,
+> resource-constrained products, I'd like to hear about
+> them.
 
-Your main point is of course still valid: What do I get by dropping init
-and is it worth being different for that? I'm still looking.
+So Systemd does great things for deterministic boot with clearly defined
+dependencies between services which also allows for as much parallelism
+as possible (maybe that doesn't matter for your devices). I haven't
+looked at how big systemd is what how much it would bloat my kernel to
+support it. Have you?
+
+As I understand it, it brings in things like udev and basically starts
+to make my system look like a desktop/server. systemd-tiny ftw!
 
 -- 
 Darren Hart
