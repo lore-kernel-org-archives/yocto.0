@@ -1,29 +1,25 @@
-Return-Path: <thomas.petazzoni@free-electrons.com>
-Received: from mail.free-electrons.com (mail.free-electrons.com [88.190.12.23])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 05C9BE013EB
-	for <yocto@yoctoproject.org>; Fri, 15 Jun 2012 00:05:49 -0700 (PDT)
-Received: by mail.free-electrons.com (Postfix, from userid 106)
-	id AB16A16D; Fri, 15 Jun 2012 09:05:33 +0200 (CEST)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	mail.free-electrons.com
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.3 required=5.0 tests=ALL_TRUSTED,AWL,BAYES_20
-	shortcircuit=no autolearn=ham version=3.3.1
-Received: from skate (humanoidz.org [82.247.183.72])
-	by mail.free-electrons.com (Postfix) with ESMTPSA id AD935148;
-	Fri, 15 Jun 2012 09:05:23 +0200 (CEST)
-Date: Fri, 15 Jun 2012 09:05:35 +0200
-From: Thomas Petazzoni <thomas.petazzoni@free-electrons.com>
-To: Tomas Frydrych <tf+lists.yocto@r-finger.com>
-Message-ID: <20120615090535.3516e5a5@skate>
-In-Reply-To: <4FDAD6D1.4050605@r-finger.com>
-References: <4FD93175.7070202@linux.intel.com> <4FD98EA6.1050403@r-finger.com>
-	<4FDA530E.3090508@linux.intel.com> <4FDAD6D1.4050605@r-finger.com>
-Organization: Free Electrons
-X-Mailer: Claws Mail 3.8.0 (GTK+ 2.24.10; x86_64-pc-linux-gnu)
-Mime-Version: 1.0
+Return-Path: <bjst@giant.haxx.se>
+Received: from giant.haxx.se (giant.haxx.se [80.67.6.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 627AAE013EB
+	for <yocto@yoctoproject.org>; Fri, 15 Jun 2012 01:23:31 -0700 (PDT)
+Received: from giant.haxx.se (localhost.localdomain [127.0.0.1])
+	by giant.haxx.se (8.14.4/8.14.4/Debian-2) with ESMTP id q5F8NRZR030861
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NOT);
+	Fri, 15 Jun 2012 10:23:27 +0200
+Received: (from bjst@localhost)
+	by giant.haxx.se (8.14.4/8.14.4/Submit) id q5F8NRdl030860;
+	Fri, 15 Jun 2012 10:23:27 +0200
+Date: Fri, 15 Jun 2012 10:23:27 +0200
+From: =?iso-8859-1?Q?Bj=F6rn?= Stenberg <bjst@enea.com>
+To: Frans Meulenbroeks <fransmeulenbroeks@gmail.com>
+Message-ID: <20120615082326.GA28297@giant>
+References: <20120614132601.GB29124@giant>
+	<CACW_hTYR8ceMLFg=cwhM0+ABjN6VndcddWQP8g01mfUDadU3rA@mail.gmail.com>
+MIME-Version: 1.0
+In-Reply-To: <CACW_hTYR8ceMLFg=cwhM0+ABjN6VndcddWQP8g01mfUDadU3rA@mail.gmail.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
 Cc: yocto@yoctoproject.org
-Subject: Re: RFC: poky-tiny: init procedure
+Subject: Re: Discussion: Package testing
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,37 +31,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Jun 2012 07:05:50 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 15 Jun 2012 08:23:31 -0000
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 
-Le Fri, 15 Jun 2012 07:31:45 +0100,
-Tomas Frydrych <tf+lists.yocto@r-finger.com> a =C3=A9crit :
+Frans Meulenbroeks wrote:
+> a run-all-tests.sh script is somewhat problematic as
+> different systems have different packages installed so different tests.
 
-> Hi Darren,
->=20
-> On 14/06/12 22:09, Darren Hart wrote:
-> > This solution improves the kick-the-tires
-> > experience with poky-tiny, without pulling in all of init,=20
->=20
-> I think you really should quantify what 'all of init' means, without
-> this you are addressing a problem that is merely perceived. Just a
-> quick look shows that the sysvinit package is about 120KB unpacked,
-> for that you get a solution that is tested, robust, and supported
-> across Yocto.
+The idea is that the top level run-all script looks in the /opt/ptest directory and runs all package tests that are installed there. It has no built-in knowledge of any tests.
 
-FWIW, Busybox comes with its own implementation of a very simple and
-basic init, which only takes a few KB of space inside the Busybox
-binary. That's what we use by default in Buildroot, and it works just
-fine. It's a really good trade-off between no init at all, and a
-full-blown sysvinit system.
+> I think testers are mainly interested in success (all tests give ok is
+> good, if a test fails, it would be fine with me if I would have to go to a
+> package specific place to find log files etc (or it could be written to a
+> common log file)
 
-Best regards,
+While failing tests are the most interesting during development, keeping track of both failed and successful test cases is important for regression tracking and test development over time. Therefore we want to produce an output that clearly identifies each test case ran and its result.
 
-Thomas
---=20
-Thomas Petazzoni, Free Electrons
-Kernel, drivers, real-time and embedded Linux
-development, consulting, training and support.
-http://free-electrons.com
+> The only specific point I can think of is cleaning up after a test is run.
+
+Good point, I forgot to mention that. It is the responsibility of the per-package "run-ptest" script to clean up after the test.
+
+-- 
+Björn
 
