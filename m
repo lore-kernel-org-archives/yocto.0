@@ -1,49 +1,57 @@
-Return-Path: <halstead@happypunch.com>
-Received: from mail-pz0-f48.google.com (mail-pz0-f48.google.com
-	[209.85.210.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 43AB8E0044A
-	for <yocto@yoctoproject.org>; Fri, 15 Jun 2012 14:08:23 -0700 (PDT)
-Received: by dadz8 with SMTP id z8so5262151dad.35
-	for <yocto@yoctoproject.org>; Fri, 15 Jun 2012 14:08:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=happypunch.com; s=google;
-	h=sender:message-id:date:from:user-agent:mime-version:to:subject
-	:references:in-reply-to:x-enigmail-version:content-type;
-	bh=GDeLOXnSX2VgFsXuDaGq0jRVIXiO3TfFEEtulxBKjWQ=;
-	b=V0bK4h73axehiPnSXJNR1h/43qjTiz0wyfc2EHCMyCTvOMW8oFKJdRCUp0bqyejCyK
-	nGiz1dhj1nDHHKOiihGxLyBajs3xjbu4uAxmB+p6X2Gh4hdHw/XN0fhucxDirxowChF1
-	TX0XSZpXN1NT5g8uAKeSFtFNmJEQS+nk/PNb4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=sender:message-id:date:from:user-agent:mime-version:to:subject
-	:references:in-reply-to:x-enigmail-version:content-type
-	:x-gm-message-state;
-	bh=GDeLOXnSX2VgFsXuDaGq0jRVIXiO3TfFEEtulxBKjWQ=;
-	b=EJt6q6eGsC0VgPA5Ix8usXN5sEBPyeUEGx2EhNjCF4Mb0GZBIyrOGfWWHFmTWMIQSF
-	SjSHvy77UchQ+TzNw6B26H4IMBNhISJJOpiCIPI2F+qEg15MeLNs0hQIgcdp62ZJ4s00
-	Z0kZLjNGIG/3i1Yw4wumqSYOJcCn9bdAFYI4khc9JZ2rk8R/MlmlEtfjmaaYBcrpWRsZ
-	96Nd9Rio2NpjM7VshMYq//9X9LW1wHtHCol3gajtnsJV/t4Q3EU+4RCk8/oJwxCsp9Da
-	V2MbFYzIdBdDQdoAlyFVIbbnBQHWbMwIt6BIr1NWYMS3ho9NBiTGNzRyFm7B+Q7glv2T
-	ttqA==
-Received: by 10.68.239.9 with SMTP id vo9mr18911095pbc.41.1339794502928;
-	Fri, 15 Jun 2012 14:08:22 -0700 (PDT)
-Received: from [192.168.1.74] (static-50-43-40-17.bvtn.or.frontiernet.net.
-	[50.43.40.17])
-	by mx.google.com with ESMTPS id hc7sm14394193pbc.54.2012.06.15.14.08.21
-	(version=SSLv3 cipher=OTHER); Fri, 15 Jun 2012 14:08:21 -0700 (PDT)
-Sender: Michael Halstead <halstead@happypunch.com>
-Message-ID: <4FDBA44C.1090105@yoctoproject.org>
-Date: Fri, 15 Jun 2012 14:08:28 -0700
-From: Michael Halstead <michael@yoctoproject.org>
+Return-Path: <tim.bird@am.sony.com>
+Received: from va3outboundpool.messaging.microsoft.com
+	(va3ehsobe002.messaging.microsoft.com [216.32.180.12])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B2520E0044A
+	for <yocto@yoctoproject.org>; Fri, 15 Jun 2012 14:08:52 -0700 (PDT)
+Received: from mail81-va3-R.bigfish.com (10.7.14.240) by
+	VA3EHSOBE003.bigfish.com (10.7.40.23) with Microsoft SMTP Server id
+	14.1.225.23; Fri, 15 Jun 2012 21:07:41 +0000
+Received: from mail81-va3 (localhost [127.0.0.1])	by mail81-va3-R.bigfish.com
+	(Postfix) with ESMTP id E8EF24C01E9;
+	Fri, 15 Jun 2012 21:07:40 +0000 (UTC)
+X-Forefront-Antispam-Report: CIP:160.33.194.231; KIP:(null); UIP:(null);
+	IPV:NLI; H:usculsndmail04v.am.sony.com; RD:mail04.sonyusa.com;
+	EFVD:NLI
+X-SpamScore: -3
+X-BigFish: VPS-3(zzbb2dI98dI9371Izz1202hzzz2fh2a8h668h839h93fhd25hf0ah)
+Received-SPF: pass (mail81-va3: domain of am.sony.com designates
+	160.33.194.231 as permitted sender) client-ip=160.33.194.231;
+	envelope-from=tim.bird@am.sony.com;
+	helo=usculsndmail04v.am.sony.com ; .am.sony.com ; 
+Received: from mail81-va3 (localhost.localdomain [127.0.0.1]) by mail81-va3
+	(MessageSwitch) id 1339794456613711_20867;
+	Fri, 15 Jun 2012 21:07:36 +0000 (UTC)
+Received: from VA3EHSMHS026.bigfish.com (unknown [10.7.14.236])	by
+	mail81-va3.bigfish.com (Postfix) with ESMTP id 8423F24004A;
+	Fri, 15 Jun 2012 21:07:36 +0000 (UTC)
+Received: from usculsndmail04v.am.sony.com (160.33.194.231) by
+	VA3EHSMHS026.bigfish.com (10.7.99.36) with Microsoft SMTP Server (TLS)
+	id 14.1.225.23; Fri, 15 Jun 2012 21:07:35 +0000
+Received: from usculsndmail12v.am.sony.com (usculsndmail12v.am.sony.com
+	[146.215.230.103])	by usculsndmail04v.am.sony.com
+	(Sentrion-MTA-4.2.2/Sentrion-MTA-4.2.2) with ESMTP id q5FL8jap013564
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=FAIL);
+	Fri, 15 Jun 2012 21:08:45 GMT
+Received: from mail1x.sjc.in.sel.sony.com (mail3.sjc.in.sel.sony.com
+	[43.134.1.112])	by usculsndmail12v.am.sony.com
+	(Sentrion-MTA-4.2.2/Sentrion-MTA-4.2.2) with ESMTP id q5FL8hCw012253
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=FAIL);
+	Fri, 15 Jun 2012 21:08:44 GMT
+Received: from [43.135.148.222] ([43.135.148.222])	by
+	mail1x.sjc.in.sel.sony.com (Switch-3.4.2/Switch-3.4.2) with ESMTP id
+	q5FL8Xwb027250;	Fri, 15 Jun 2012 21:08:33 GMT
+Message-ID: <4FDBA4B8.8000703@am.sony.com>
+Date: Fri, 15 Jun 2012 14:10:16 -0700
+From: Tim Bird <tim.bird@am.sony.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:12.0) Gecko/20120430 Thunderbird/12.0.1
 MIME-Version: 1.0
-To: Yocto Project Discussion <yocto@yoctoproject.org>
-References: <4FDB24A9.6060905@yoctoproject.org>
-In-Reply-To: <4FDB24A9.6060905@yoctoproject.org>
-X-Enigmail-Version: 1.5pre
-X-Gm-Message-State: ALoCoQmk+f8d6wxf618i7Ks5a/7ZZfXwUXLiq1V+uHU872UU0eWXgwBZg/IpSheVPm4mT/uuirl2
-Subject: Re: Bugzilla Reorganization
+To: Tomas Frydrych <tf+lists.yocto@r-finger.com>
+References: <4FD93175.7070202@linux.intel.com> <4FD98EA6.1050403@r-finger.com>
+In-Reply-To: <4FD98EA6.1050403@r-finger.com>
+X-OriginatorOrg: am.sony.com
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: RFC: poky-tiny: init procedure
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,117 +63,76 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Jun 2012 21:08:23 -0000
-X-Groupsio-MsgNum: 7250
-Content-Type: multipart/signed; protocol="application/pkcs7-signature";
-	micalg=sha1; boundary="------------ms000606030405090501090301"
+X-List-Received-Date: Fri, 15 Jun 2012 21:08:53 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
---------------ms000606030405090501090301
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+On 06/14/2012 12:11 AM, Tomas Frydrych wrote:
+> A system that runs nothing but a shell is really not useful for anything
+> all, everyone using it will be adding some sort of services, so the
+> question of how the extending works (or does not work), needs to be in
+> the forefront of the design. My main reservation is that you are
+> suggesting to break one of the basic premisses behind the whole
+> ecosystem, namely that if I add a package that provides a service to an
+> image, I get that service running; 'fix by documentation' is never a fix.
 
-The reorganization at https://bugzilla.yoctoproject.org/ is complete.
-Total time offline was 7 minutes. Please report any errors to me via
-e-mail or to halstead in #yocto on freenode.
+I didn't address this in my other response, and I
+think it's a valid observation.  I agree that
+everyone will want to add something to the init,
+and that 'fix by documentation' is, in general, a
+poor solution.
 
-Michael Halstead
-Yocto Project / Sys Admin
+I don't have any good solution here (one that scales,
+or is likely to be adopted widely.)  You don't really
+need documentation, if you have the few lines of shell
+script that are necessary to start a service in minimal
+mode.  The standard init scripts handle lots of interactions
+with other services and runtime conditions.  This is why
+they are bloated (and the abstractions in them are
+almost incomprehensible to read.)
+
+At Sony we've tried various things - like automatically
+stripping init scripts of uncalled branches, removing
+conditionals that don't apply, etc.  We've also looked
+at automatically converting init scripts to C code, to
+speed up execution.  You still end up with gobs of code
+that doesn't apply to your situation getting executed
+at boot time, an overly-complicated test scenario, and a
+certain fragility in the overall init system.
+
+One of our early efforts, getting busybox
+to not fork commands in init scripts that it had as
+builtins, proved to be a significant feature that is still
+valuable today to improve boot time.
+
+What we have settled on as a generic solution is basically
+what I described in response to Darren's initial post.
+You have a list of the short shell snippets required to start
+commonly-used services in /etc/rc.local.  These
+are commented out by default, but a developer or product
+team can uncomment them to enable the associated services.
+This keeps everything in one place and provides developers
+the commands needed to start things.  Customization to
+handle interactions or special cases can proceed from
+there.  It's not ideal, in that a developer may have to
+re-create or rediscover some configuration, setting, or
+start sequence to handle a more complicated usage scenario.
+But in order to hit our targets for size or boot time, it
+has been helpful to do things this way.  The developer is
+forced to manually enable each service, and the start
+sequence, commands and command parameters are obvious
+from the script.  (This is rarely true of init scripts).
+
+If anyone has good ideas or other experience for
+the init sequence for highly customized,
+resource-constrained products, I'd like to hear about
+them.
+ -- Tim
+
+=============================
+Tim Bird
+Architecture Group Chair, CE Workgroup of the Linux Foundation
+Senior Staff Engineer, Sony Network Entertainment
+=============================
 
 
-On 06/15/2012 05:03 AM, Michael Halstead wrote:
-> The reorganization of bugzilla has been refined and the new layout is
-> available for preview at https://bugzilla.yoctodev.org/. After a quick
-> review I plan to make this change live on production. Expect a short 5
-> to 10 minute downtime while the changes go live later today.
->
-> I've attached the new layout and mapping file for reference.
->
-
-
---------------ms000606030405090501090301
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
-
-MIAGCSqGSIb3DQEHAqCAMIACAQExCzAJBgUrDgMCGgUAMIAGCSqGSIb3DQEHAQAAoIINjDCCBjQw
-ggQcoAMCAQICASAwDQYJKoZIhvcNAQEFBQAwfTELMAkGA1UEBhMCSUwxFjAUBgNVBAoTDVN0YXJ0
-Q29tIEx0ZC4xKzApBgNVBAsTIlNlY3VyZSBEaWdpdGFsIENlcnRpZmljYXRlIFNpZ25pbmcxKTAn
-BgNVBAMTIFN0YXJ0Q29tIENlcnRpZmljYXRpb24gQXV0aG9yaXR5MB4XDTA3MTAyNDIxMDI1NVoX
-DTE3MTAyNDIxMDI1NVowgYwxCzAJBgNVBAYTAklMMRYwFAYDVQQKEw1TdGFydENvbSBMdGQuMSsw
-KQYDVQQLEyJTZWN1cmUgRGlnaXRhbCBDZXJ0aWZpY2F0ZSBTaWduaW5nMTgwNgYDVQQDEy9TdGFy
-dENvbSBDbGFzcyAyIFByaW1hcnkgSW50ZXJtZWRpYXRlIENsaWVudCBDQTCCASIwDQYJKoZIhvcN
-AQEBBQADggEPADCCAQoCggEBAMsohUWcASz7GfKrpTOMKqANy9BV7V0igWdGxA8IU77L3aTxErQ+
-fcxtDYZ36Z6GH0YFn7fq5RADteP0AYzrCA+EQTfi8q1+kA3m0nwtwXG94M5sIqsvs7lRP1aycBke
-/s5g9hJHryZ2acScnzczjBCAo7X1v5G3yw8MDP2m2RCye0KfgZ4nODerZJVzhAlOD9YejvAXZqHk
-sw56HzElVIoYSZ3q4+RJuPXXfIoyby+Y2m1E+YzX5iCZXBx05gk6MKAW1vaw4/v2OOLy6FZH3XHH
-tOkzUreG//CsFnB9+uaYSlR65cdGzTsmoIK8WH1ygoXhRBm98SD7Hf/r3FELNvUCAwEAAaOCAa0w
-ggGpMA8GA1UdEwEB/wQFMAMBAf8wDgYDVR0PAQH/BAQDAgEGMB0GA1UdDgQWBBSuVYNv7DHKufcd
-+q9rMfPIHeOsuzAfBgNVHSMEGDAWgBROC+8apEBbpRdphzDKNGhD0EGu8jBmBggrBgEFBQcBAQRa
-MFgwJwYIKwYBBQUHMAGGG2h0dHA6Ly9vY3NwLnN0YXJ0c3NsLmNvbS9jYTAtBggrBgEFBQcwAoYh
-aHR0cDovL3d3dy5zdGFydHNzbC5jb20vc2ZzY2EuY3J0MFsGA1UdHwRUMFIwJ6AloCOGIWh0dHA6
-Ly93d3cuc3RhcnRzc2wuY29tL3Nmc2NhLmNybDAnoCWgI4YhaHR0cDovL2NybC5zdGFydHNzbC5j
-b20vc2ZzY2EuY3JsMIGABgNVHSAEeTB3MHUGCysGAQQBgbU3AQIBMGYwLgYIKwYBBQUHAgEWImh0
-dHA6Ly93d3cuc3RhcnRzc2wuY29tL3BvbGljeS5wZGYwNAYIKwYBBQUHAgEWKGh0dHA6Ly93d3cu
-c3RhcnRzc2wuY29tL2ludGVybWVkaWF0ZS5wZGYwDQYJKoZIhvcNAQEFBQADggIBADqpJw3I07QW
-ke9plNBpxUxcffc7nUrIQpJHDci91DFG7fVhHRkMZ1J+BKg5UNUxIFJ2Z9B90Micc/NXcs7kPBRd
-n6XGO/vPc87Y6R+cWS9Nc9+fp3Enmsm94OxOwI9wn8qnr/6o3mD4noP9JphwUPTXwHovjavRnhUQ
-HLfo/i2NG0XXgTHXS2Xm0kVUozXqpYpAdumMiB/vezj1QHQJDmUdPYMcp+reg9901zkyT3fDW/iv
-JVv6pWtkh6Pw2ytZT7mvg7YhX3V50Nv860cV11mocUVcqBLv0gcT+HBDYtbuvexNftwNQKD5193A
-7zN4vG7CTYkXxytSjKuXrpEatEiFPxWgb84nVj25SU5q/r1Xhwby6mLhkbaXslkVtwEWT3Van49r
-KjlK4XrUKYYWtnfzq6aSak5u0Vpxd1rY79tWhD3EdCvOhNz/QplNa+VkIsrcp7+8ZhP1l1b2U6Ma
-xIVteuVMD3X0vziIwr7jxYae9FZjbxlpUemqXjcC0QaFfN7qI0JsQMALL7iGRBg7K0CoOBzECdD3
-fuZil5kU/LP9cr1BK31U0Uy651bFnAMMMkqhAChIbn0ei72VnbpSsrrSdF0BAGYQ8vyHae5aCg+H
-75dVCV33K6FuxZrf09yTz+Vx/PkdRUYkXmZz/OTfyJXsUOUXrym6KvI2rYpccSk5MIIHUDCCBjig
-AwIBAgICIgMwDQYJKoZIhvcNAQEFBQAwgYwxCzAJBgNVBAYTAklMMRYwFAYDVQQKEw1TdGFydENv
-bSBMdGQuMSswKQYDVQQLEyJTZWN1cmUgRGlnaXRhbCBDZXJ0aWZpY2F0ZSBTaWduaW5nMTgwNgYD
-VQQDEy9TdGFydENvbSBDbGFzcyAyIFByaW1hcnkgSW50ZXJtZWRpYXRlIENsaWVudCBDQTAeFw0x
-MjA2MTMwNDU5MjlaFw0xNDA2MTQxNjE4MzBaMIGRMRkwFwYDVQQNExBnMDFwWTYwMWJGM1BrRTY3
-MQswCQYDVQQGEwJVUzEPMA0GA1UECBMGT3JlZ29uMRIwEAYDVQQHEwlIaWxsc2Jvcm8xGTAXBgNV
-BAMTEE1pY2hhZWwgSGFsc3RlYWQxJzAlBgkqhkiG9w0BCQEWGG1pY2hhZWxAeW9jdG9wcm9qZWN0
-Lm9yZzCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMFZ+GW0VKdiyuQy3hlOvwcHxcm0
-8ZwNGGah4zipYky5wVFZO7p9LjJfyF6rvd24xdkaTluxTMmd9pfq2cOVQ6c3RsPufv1yBUbytk6F
-4Wk+qD0qEGjuHh5FfakcLIEsHiSn3nzaQZHaolS/yzx/A3coQS8pQrshZYqAF/ME5OxMyL8KDdtk
-xatt1reDPqzvI5rKYdeEbmHsTYgd9WWHvs8MfZFHidZoAXMXU+PcsKCUxEYhgP/h9NKcTApu/Mhd
-IPKn11pD+gfDM+ochGu1uxuW/t1tNJyRYDVQSDV+rpliQ7mrimSmyktIKkow02pUk4Xw3OqdYq7/
-/HpVOUs5nk8CAwEAAaOCA7MwggOvMAkGA1UdEwQCMAAwCwYDVR0PBAQDAgSwMB0GA1UdJQQWMBQG
-CCsGAQUFBwMCBggrBgEFBQcDBDAdBgNVHQ4EFgQUcZFNotb1OfDmPE6GQ6MQIBh7meUwHwYDVR0j
-BBgwFoAUrlWDb+wxyrn3HfqvazHzyB3jrLswIwYDVR0RBBwwGoEYbWljaGFlbEB5b2N0b3Byb2pl
-Y3Qub3JnMIICIQYDVR0gBIICGDCCAhQwggIQBgsrBgEEAYG1NwECAjCCAf8wLgYIKwYBBQUHAgEW
-Imh0dHA6Ly93d3cuc3RhcnRzc2wuY29tL3BvbGljeS5wZGYwNAYIKwYBBQUHAgEWKGh0dHA6Ly93
-d3cuc3RhcnRzc2wuY29tL2ludGVybWVkaWF0ZS5wZGYwgfcGCCsGAQUFBwICMIHqMCcWIFN0YXJ0
-Q29tIENlcnRpZmljYXRpb24gQXV0aG9yaXR5MAMCAQEagb5UaGlzIGNlcnRpZmljYXRlIHdhcyBp
-c3N1ZWQgYWNjb3JkaW5nIHRvIHRoZSBDbGFzcyAyIFZhbGlkYXRpb24gcmVxdWlyZW1lbnRzIG9m
-IHRoZSBTdGFydENvbSBDQSBwb2xpY3ksIHJlbGlhbmNlIG9ubHkgZm9yIHRoZSBpbnRlbmRlZCBw
-dXJwb3NlIGluIGNvbXBsaWFuY2Ugb2YgdGhlIHJlbHlpbmcgcGFydHkgb2JsaWdhdGlvbnMuMIGc
-BggrBgEFBQcCAjCBjzAnFiBTdGFydENvbSBDZXJ0aWZpY2F0aW9uIEF1dGhvcml0eTADAgECGmRM
-aWFiaWxpdHkgYW5kIHdhcnJhbnRpZXMgYXJlIGxpbWl0ZWQhIFNlZSBzZWN0aW9uICJMZWdhbCBh
-bmQgTGltaXRhdGlvbnMiIG9mIHRoZSBTdGFydENvbSBDQSBwb2xpY3kuMDYGA1UdHwQvMC0wK6Ap
-oCeGJWh0dHA6Ly9jcmwuc3RhcnRzc2wuY29tL2NydHUyLWNybC5jcmwwgY4GCCsGAQUFBwEBBIGB
-MH8wOQYIKwYBBQUHMAGGLWh0dHA6Ly9vY3NwLnN0YXJ0c3NsLmNvbS9zdWIvY2xhc3MyL2NsaWVu
-dC9jYTBCBggrBgEFBQcwAoY2aHR0cDovL2FpYS5zdGFydHNzbC5jb20vY2VydHMvc3ViLmNsYXNz
-Mi5jbGllbnQuY2EuY3J0MCMGA1UdEgQcMBqGGGh0dHA6Ly93d3cuc3RhcnRzc2wuY29tLzANBgkq
-hkiG9w0BAQUFAAOCAQEANR/d6M8GHL/rkx3Kz9ILDxYMcekmFgefaDXNQMicUHiUw5TsIl5af1pS
-Y2AvbKlA2/FZnyG8w42FuK6ZQBZJxs4/N10NW8qDmuuFTi6TyJgurj73tx9RogW50miDHMZLoMRe
-avB1h8zy99L2lRPZSebpSFkrQdYDHaGRVhYMjEcWNW9cLxhR8BaAEw/KlpERv3hUQpwGMppYOE66
-M7KJ3HpeR7DXfa4njL9W2hukTQNsskdWtzejHp5iQ65+5Mv+NXLmYP4uLJcR9AbttgNhwStc0P1b
-LxnQkElGeUzATOBq+QsVZ7Fo6sSS7kqrhpfaPibqpj83m/wSgpKVsbZJ3DGCA80wggPJAgEBMIGT
-MIGMMQswCQYDVQQGEwJJTDEWMBQGA1UEChMNU3RhcnRDb20gTHRkLjErMCkGA1UECxMiU2VjdXJl
-IERpZ2l0YWwgQ2VydGlmaWNhdGUgU2lnbmluZzE4MDYGA1UEAxMvU3RhcnRDb20gQ2xhc3MgMiBQ
-cmltYXJ5IEludGVybWVkaWF0ZSBDbGllbnQgQ0ECAiIDMAkGBSsOAwIaBQCgggIOMBgGCSqGSIb3
-DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTEyMDYxNTIxMDgyOFowIwYJKoZIhvcN
-AQkEMRYEFPR9QlbimSf0a+bsnqzB33UbmUWdMF8GCSqGSIb3DQEJDzFSMFAwCwYJYIZIAWUDBAEC
-MAoGCCqGSIb3DQMHMA4GCCqGSIb3DQMCAgIAgDANBggqhkiG9w0DAgIBQDAHBgUrDgMCBzANBggq
-hkiG9w0DAgIBKDCBpAYJKwYBBAGCNxAEMYGWMIGTMIGMMQswCQYDVQQGEwJJTDEWMBQGA1UEChMN
-U3RhcnRDb20gTHRkLjErMCkGA1UECxMiU2VjdXJlIERpZ2l0YWwgQ2VydGlmaWNhdGUgU2lnbmlu
-ZzE4MDYGA1UEAxMvU3RhcnRDb20gQ2xhc3MgMiBQcmltYXJ5IEludGVybWVkaWF0ZSBDbGllbnQg
-Q0ECAiIDMIGmBgsqhkiG9w0BCRACCzGBlqCBkzCBjDELMAkGA1UEBhMCSUwxFjAUBgNVBAoTDVN0
-YXJ0Q29tIEx0ZC4xKzApBgNVBAsTIlNlY3VyZSBEaWdpdGFsIENlcnRpZmljYXRlIFNpZ25pbmcx
-ODA2BgNVBAMTL1N0YXJ0Q29tIENsYXNzIDIgUHJpbWFyeSBJbnRlcm1lZGlhdGUgQ2xpZW50IENB
-AgIiAzANBgkqhkiG9w0BAQEFAASCAQBpu+lyIUnWSRyuSt8GnOI6XDutN38e1on1Bs/TR7fG8nBt
-ZgY6AQu0mxZChmxea2uMi4Hlkaf6IUVZfoJodST5CfNEAAqFVb2jzWQIasuhqgF4QQHwojo7Rb4K
-98y0Ljuk/9cEUOLSMhC8xXy/EejtLcHgzER9ZmjidpHunt5WepPVj1g6SrLDijGDOhTkHDNFNeJo
-Z7obI3KhxsMvTfkdOStsymZa+/VZrLofY5R+gdoYHkCJoVH4M3MW7g+hm3BwXxjt/QzJzxzbuVME
-RdKUEmZMvND+7TJuk8PIKdyJv2pJ0enjbEUW9m8BQAg4geQJvKlpUn53i1EJtPRwWgO7AAAAAAAA
-
---------------ms000606030405090501090301--
