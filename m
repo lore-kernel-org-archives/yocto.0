@@ -1,38 +1,23 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-pz0-f48.google.com (mail-pz0-f48.google.com
-	[209.85.210.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 33049E013EB
-	for <yocto@yoctoproject.org>; Thu, 14 Jun 2012 23:18:17 -0700 (PDT)
-Received: by dadz8 with SMTP id z8so4133018dad.35
-	for <yocto@yoctoproject.org>; Thu, 14 Jun 2012 23:18:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=message-id:date:from:user-agent:mime-version:to:subject:references
-	:in-reply-to:x-enigmail-version:content-type
-	:content-transfer-encoding;
-	bh=UtjYsLcCPZGMDfLILmF1pW5GwH/W1WbWq8/WAyfiPxM=;
-	b=U9UbZv3Az1kLfgdorJQtHIqWOf3cJ8ELt68iWoWPTSN/Bs79PiiYmbi+6Aan3E3Pou
-	6eW9Disy6ijZC03OkBksue9aFvbL6mFq5VtABmamGoH9lKm65+KFIYJHoJEhiadc7Vs/
-	eFZOWstA3KZsvfm82RYT9LSOEFD080Hsz4N5CbZU2DycYgM5aCOgeB9qbrEQOJzFeyW7
-	WLssT4fJ32Qe6enyW4FDd6YLN7LpwFVZj0wf9iEULwKuDkcfgKdCFEz4xQDkCJ7sS9uq
-	yEJdfvJsS5CXweiSCNkA4PSApkBuc97V92hcc1/iSu0b9k1dadP4giGCm+u/7wTWC0OJ
-	xzww==
-Received: by 10.68.226.168 with SMTP id rt8mr16902028pbc.23.1339741096892;
-	Thu, 14 Jun 2012 23:18:16 -0700 (PDT)
-Received: from [192.168.1.71] (99-57-140-209.lightspeed.sntcca.sbcglobal.net.
-	[99.57.140.209])
-	by mx.google.com with ESMTPS id ip5sm12161910pbc.3.2012.06.14.23.18.15
-	(version=SSLv3 cipher=OTHER); Thu, 14 Jun 2012 23:18:16 -0700 (PDT)
-Message-ID: <4FDAD3AB.3000605@gmail.com>
-Date: Thu, 14 Jun 2012 23:18:19 -0700
-From: Khem Raj <raj.khem@gmail.com>
-User-Agent: Mozilla/5.0 (Windows NT 6.1;
-	rv:12.0) Gecko/20120428 Thunderbird/12.0.1
+Return-Path: <tf+lists.yocto@r-finger.com>
+Received: from r-finger.com (r-finger.com [178.79.160.5])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 545A2E013EB
+	for <yocto@yoctoproject.org>; Thu, 14 Jun 2012 23:31:47 -0700 (PDT)
+Received: from [192.168.0.2] (host86-170-62-160.range86-170.btcentralplus.com
+	[86.170.62.160]) (using TLSv1 with cipher AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by r-finger.com (Postfix) with ESMTPSA id A52C89C07
+	for <yocto@yoctoproject.org>; Fri, 15 Jun 2012 07:31:46 +0100 (BST)
+Message-ID: <4FDAD6D1.4050605@r-finger.com>
+Date: Fri, 15 Jun 2012 07:31:45 +0100
+From: Tomas Frydrych <tf+lists.yocto@r-finger.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:10.0.3) Gecko/20120329 Icedove/10.0.3
 MIME-Version: 1.0
 To: yocto@yoctoproject.org
-References: <CAN57a28DC3Xge0Sk8JH5fEji1q6nmxcDKxmbxTUfMPXKVU+Yeg@mail.gmail.com>
-In-Reply-To: <CAN57a28DC3Xge0Sk8JH5fEji1q6nmxcDKxmbxTUfMPXKVU+Yeg@mail.gmail.com>
-X-Enigmail-Version: 1.4.2
-Subject: Re: Setting architecture of only DEB files (arm vs armel)
+References: <4FD93175.7070202@linux.intel.com> <4FD98EA6.1050403@r-finger.com>
+	<4FDA530E.3090508@linux.intel.com>
+In-Reply-To: <4FDA530E.3090508@linux.intel.com>
+Subject: Re: RFC: poky-tiny: init procedure
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,42 +29,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Jun 2012 06:18:17 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Fri, 15 Jun 2012 06:31:47 -0000
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
------BEGIN PGP SIGNED MESSAGE-----
-Hash: SHA1
+Hi Darren,
 
-On 6/14/2012 5:17 PM, Tyler Jones wrote:
-> I am compiling a distro for my hardware using DEBs for my package 
-> management. In meta/classes/package_deb.bbclass I need DPKG_ARCH =
-> "armel" instead of TARGET_ARCH (which is "arm"). When I run dpkg on
-> my device armel is the architecture, not arm, but yocto wants my
-> TARGET_ARCH to be set to "arm". Is there a non hackish way to do
-> this from my BSP layer or config file?
-> 
-> The dpkg error I get is: package architecture (arm) does not match
-> system (armel)
-> 
+On 14/06/12 22:09, Darren Hart wrote:
+> This solution improves the kick-the-tires
+> experience with poky-tiny, without pulling in all of init, 
 
-set DPKG_ARCH = "armel" in your local.conf
+I think you really should quantify what 'all of init' means, without
+this you are addressing a problem that is merely perceived. Just a quick
+look shows that the sysvinit package is about 120KB unpacked, for that
+you get a solution that is tested, robust, and supported across Yocto.
 
-> -Tyler Jones
-> 
-> 
-> 
-> 
-> _______________________________________________ yocto mailing list 
-> yocto@yoctoproject.org 
-> https://lists.yoctoproject.org/listinfo/yocto
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.12 (MingW32)
-Comment: Using GnuPG with Mozilla - http://enigmail.mozdev.org/
+> Again, we're talking about 14 lines of shell, so "init system" is
+> overstating it significantly.
 
-iEYEARECAAYFAk/a06sACgkQuwUzVZGdMxRBvgCeJAinKceaUDI8gQHPbvzGiOSt
-tuQAnRDOpYZvovXfg6UHji6it4YehqvR
-=7G4e
------END PGP SIGNATURE-----
+Sure, but every new wheel starts exactly this way, and we are already
+discussing how to make it do things that sysvinit does for you :-)
+
+
+Tomas
 
