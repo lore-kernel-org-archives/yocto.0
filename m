@@ -1,28 +1,37 @@
-Return-Path: <tylerjones64@gmail.com>
-Received: from mail-lb0-f176.google.com (mail-lb0-f176.google.com
-	[209.85.217.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 45935E00723
-	for <yocto@yoctoproject.org>; Thu, 14 Jun 2012 17:17:51 -0700 (PDT)
-Received: by lboj14 with SMTP id j14so3118717lbo.35
-	for <yocto@yoctoproject.org>; Thu, 14 Jun 2012 17:17:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:from:date:message-id:subject:to:content-type;
-	bh=dbQ9Slargt9cuduh6QqKktk1Z6wA69ZNtY8cXiNEF8Y=;
-	b=Emeg59RP9jcFrN5Wh1mhtRfaq1Z02SpqEb+V1g7cBd2jOZcDMiuZCWEQmcXEsuJxVL
-	xJfhSvH2shcTnu3THQ8kwMEnDwHvMUSCAUcCbX40SVzhREeXQ9CP2xrxSm70fgAL6k/L
-	zDdKOpebooxBItZAFk5SumLUmAfqYGcWL44Bvf1+qTkS5HYlrly1i4IVVc1Q+CF1DRwc
-	d3GoVL04PrI3xJnXHZo5Yqok+wv0C02CDMRb0ElXVpSzACsb5Viz84YR7WBFVIPNbQDj
-	cHKKbXXzL0jkkoOuVXWqbw0hdFbSNdg0bcv5QNVGQTzKo1/tQBn1FZ8/kh9ABXpoBqrg
-	oVpw==
-Received: by 10.152.46.232 with SMTP id y8mr3675170lam.18.1339719469802; Thu,
-	14 Jun 2012 17:17:49 -0700 (PDT)
+Return-Path: <limingx.l.an@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 387E2E013BB
+	for <yocto@yoctoproject.org>; Thu, 14 Jun 2012 19:25:15 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 14 Jun 2012 19:25:14 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="157853466"
+Received: from fmsmsx104.amr.corp.intel.com ([10.19.9.35])
+	by orsmga002.jf.intel.com with ESMTP; 14 Jun 2012 19:25:14 -0700
+Received: from fmsmsx101.amr.corp.intel.com (10.19.9.52) by
+	FMSMSX104.amr.corp.intel.com (10.19.9.35) with Microsoft SMTP Server
+	(TLS) id 14.1.355.2; Thu, 14 Jun 2012 19:25:14 -0700
+Received: from shsmsx151.ccr.corp.intel.com (10.239.6.50) by
+	FMSMSX101.amr.corp.intel.com (10.19.9.52) with Microsoft SMTP Server
+	(TLS) id 14.1.355.2; Thu, 14 Jun 2012 19:25:14 -0700
+Received: from shsmsx102.ccr.corp.intel.com ([169.254.2.56]) by
+	SHSMSX151.ccr.corp.intel.com ([169.254.3.231]) with mapi id
+	14.01.0355.002; Fri, 15 Jun 2012 10:25:13 +0800
+From: "An, LimingX L" <limingx.l.an@intel.com>
+To: "Barros Pena, Belen" <belen.barros.pena@intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: live image types and qemu machines
+Thread-Index: AQHNSj+iyOSjoET3xkqsKkFSMg1pGpb6pVNA
+Date: Fri, 15 Jun 2012 02:25:12 +0000
+Message-ID: <E5BAA81A5E0FB344B2B234D4FBAC45DC0FCEBEE7@SHSMSX102.ccr.corp.intel.com>
+References: <CBFFBD1E.11118%belen.barros.pena@intel.com>
+In-Reply-To: <CBFFBD1E.11118%belen.barros.pena@intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.239.127.40]
 MIME-Version: 1.0
-Received: by 10.112.48.10 with HTTP; Thu, 14 Jun 2012 17:17:29 -0700 (PDT)
-From: Tyler Jones <tylerjones64@gmail.com>
-Date: Thu, 14 Jun 2012 17:17:29 -0700
-Message-ID: <CAN57a28DC3Xge0Sk8JH5fEji1q6nmxcDKxmbxTUfMPXKVU+Yeg@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: Setting architecture of only DEB files (arm vs armel)
+Subject: Re: live image types and qemu machines
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,38 +43,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Jun 2012 00:17:51 -0000
-Content-Type: multipart/alternative; boundary=bcaec552420618a38504c277bf10
-
---bcaec552420618a38504c277bf10
-Content-Type: text/plain; charset=ISO-8859-1
-
-I am compiling a distro for my hardware using DEBs for my package
-management. In meta/classes/package_deb.bbclass I need DPKG_ARCH = "armel"
-instead of TARGET_ARCH (which is "arm"). When I run dpkg on my device armel
-is the architecture, not arm, but yocto wants my TARGET_ARCH to be set to
-"arm". Is there a non hackish way to do this from my BSP layer or config
-file?
-
-The dpkg error I get is:
-  package architecture (arm) does not match system (armel)
-
--Tyler Jones
-
---bcaec552420618a38504c277bf10
-Content-Type: text/html; charset=ISO-8859-1
+X-List-Received-Date: Fri, 15 Jun 2012 02:25:15 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div>I am compiling a distro for my hardware using DEBs for my package mana=
-gement. In meta/classes/package_deb.bbclass I need DPKG_ARCH =3D &quot;arme=
-l&quot; instead of TARGET_ARCH (which is &quot;arm&quot;). When I run dpkg =
-on my device armel is the architecture, not arm, but yocto wants my TARGET_=
-ARCH to be set to &quot;arm&quot;. Is there a non hackish way to do this fr=
-om my BSP layer or config file?</div>
+Hi Belen,
+
+I only know there have two variables we get from the bitbake to charge whic=
+h image is runnable, now.
+"RUNNABLE_IMAGE_TYPES" =3D ext3, ext2, "RUNNABLE_MACHINE_PATTERNS" =3D qemu=
+.
+
+Thanks!
+--
+Liming
+-----Original Message-----
+From: Barros Pena, Belen=20
+Sent: Thursday, June 14, 2012 11:09 PM
+To: yocto@yoctoproject.org; An, LimingX L
+Subject: live image types and qemu machines
+
+Hi all,
+
+The current Hob allows you to build images for a qemu machine selecting 'li=
+ve' as your image type. To me (with my pitiful knowledge) this doesn't make=
+ much sense: would I want to deploy an image built for a virtualisation env=
+ironment in a real piece of hardware?
+
+So here goes a question: should we allow Hob users, who are mainly people n=
+ew to the Yocto project, to select the 'live' image type when building imag=
+es for qemu machines?
+
+This might sound like a silly question, but it has a pretty big impact on t=
+he Settings dialog and on the number of variations we need to create for ou=
+r 'Image details' screen, which appears after the build finishes and displa=
+ys logical next steps (like run the image or deploy your image to external =
+storage).
+
+Any help with this would be much appreciated.
+
+Thanks!
+
+Belen
 
 
-<div><br></div><div>The dpkg error I get is:</div><div>=A0=A0package archit=
-ecture (arm) does not match system (armel)</div><div><br></div>-Tyler Jones=
-<br>
 
---bcaec552420618a38504c277bf10--
+
+
