@@ -1,35 +1,25 @@
-Return-Path: <belen.barros.pena@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 89118E013EB
-	for <yocto@yoctoproject.org>; Fri, 15 Jun 2012 06:05:08 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 15 Jun 2012 06:04:53 -0700
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5A39BE01426
+	for <yocto@yoctoproject.org>; Fri, 15 Jun 2012 07:28:24 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 15 Jun 2012 07:28:23 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="158045102"
-Received: from irsmsx101.ger.corp.intel.com ([163.33.3.153])
-	by orsmga002.jf.intel.com with ESMTP; 15 Jun 2012 06:04:52 -0700
-Received: from irsmsx102.ger.corp.intel.com (163.33.3.155) by
-	IRSMSX101.ger.corp.intel.com (163.33.3.153) with Microsoft SMTP Server
-	(TLS) id 14.1.355.2; Fri, 15 Jun 2012 14:04:51 +0100
-Received: from irsmsx104.ger.corp.intel.com ([169.254.5.70]) by
-	IRSMSX102.ger.corp.intel.com ([169.254.2.176]) with mapi id
-	14.01.0355.002; Fri, 15 Jun 2012 14:04:51 +0100
-From: "Barros Pena, Belen" <belen.barros.pena@intel.com>
-To: "Barros Pena, Belen" <belen.barros.pena@intel.com>, Darren Hart
-	<dvhart@linux.intel.com>
-Thread-Topic: [yocto] live image types and qemu machines
-Thread-Index: AQHNSvdy57Boc8qmFUu91F44Z5Ue6A==
-Date: Fri, 15 Jun 2012 13:04:50 +0000
-Message-ID: <CC00F101.112F8%belen.barros.pena@intel.com>
-In-Reply-To: <CC00BF10.1129B%belen.barros.pena@intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Microsoft-MacOutlook/14.2.2.120421
-x-originating-ip: [10.252.35.171]
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="166124860"
+Received: from unknown (HELO envy.home) ([10.255.12.135])
+	by fmsmga001.fm.intel.com with ESMTP; 15 Jun 2012 07:28:23 -0700
+Message-ID: <4FDB463C.6020100@linux.intel.com>
+Date: Fri, 15 Jun 2012 07:27:08 -0700
+From: Darren Hart <dvhart@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:13.0) Gecko/20120605 Thunderbird/13.0
 MIME-Version: 1.0
+To: =?windows-1252?Q?J=FCrgen_Messerer?= <juergen.messerer@bbv.ch>
+References: <A7B59F6D52627C44813C136D437B0832068BC78CB34A@TKSSREX01.outnet.ch>
+In-Reply-To: <A7B59F6D52627C44813C136D437B0832068BC78CB34A@TKSSREX01.outnet.ch>
+X-Enigmail-Version: 1.4.2
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: live image types and qemu machines
+Subject: Re: Bug 2256 - kernel menuconfig confusion with sstate
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,130 +31,61 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Jun 2012 13:05:08 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <42FDBAB21CDA064BA80D950993B3EC27@intel.com>
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 15 Jun 2012 14:28:24 -0000
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: 8bit
 
-Sorry, Darren and Liming: I have one more question about this. Liming,
-correct me if I am wrong, but you mentioned that the only files that can
-be run on the qemu emulator are ext2 and ext3. But Darren's answer seems
-to suggest that you can also run hddimg and iso files in the qemu emulator.
+Hi Juergen,
 
-Is this correct, or am I getting totally confused?
+On 06/15/2012 02:07 AM, Jürgen Messerer wrote:
+> Dear Darren
+> 
+> You suggested in Bug 2256 the following:
+> 
+> $ bitbake virtual/kernel -c cleansstate
+> 
+> $ bitbake virtual/kernel -c menuconfig
+> 
+> $ bitbake virtual/kernel -c compile -f; bitbake virtual/kernel
+> 
+> Can you tell me what the difference is between
+> 
+> “bitbake virtual/kernel -c compile –f”
+> 
+> and
+> 
+> “bitbake virtual/kernel”
 
-Thanks!!
+The -c argument specifies a specific task you want bitbake to execute,
+it accepts values from the listtasks command, compile is one of them.
+The -f argument forces the task to execute even if bitbake thinks it has
+already performed the task. This is useful when changing the sources
+manually, which bitbake can't know anything about.
 
-Belen
+Note that "bitbake -h" would have provided this information.
 
-On 15/06/2012 10:33, "Barros Pena, Belen" <belen.barros.pena@intel.com>
-wrote:
+> 
+> Shouldn’t be the last command “bitbake –c deploy virtual/kernel”?
 
->Thanks Darren and Liming.
->
->It sounds like we should keep things as they are, and that we'll need a
->screen that gives you options to both run and deploy an image when you
->have built for qemu selecting image types ext2 or ext3 and live.
->
->Belen
->
->
->
->On 14/06/2012 22:13, "Darren Hart" <dvhart@linux.intel.com> wrote:
->
->>
->>
->>On 06/14/2012 08:09 AM, Barros Pena, Belen wrote:
->>> Hi all,
->>>=20
->>> The current Hob allows you to build images for a qemu machine selecting
->>> 'live' as your image type. To me (with my pitiful knowledge) this
->>>doesn't
->>> make much sense: would I want to deploy an image built for a
->>> virtualisation environment in a real piece of hardware?
->>>=20
->>> So here goes a question: should we allow Hob users, who are mainly
->>>people
->>> new to the Yocto project, to select the 'live' image type when building
->>> images for qemu machines?
->>>=20
->>
->>In my opinion: YES. The reason is that this allows you to test the live
->>image format and the boot mechanism on virtualized hardware. This is a
->>valuable development tool.
->>
->>--
->>Darren
->>
->>> This might sound like a silly question, but it has a pretty big impact
->>>on
->>> the Settings dialog and on the number of variations we need to create
->>>for
->>> our 'Image details' screen, which appears after the build finishes and
->>> displays logical next steps (like run the image or deploy your image to
->>> external storage).
->>>=20
->>> Any help with this would be much appreciated.
->>>=20
->>> Thanks!
->>>=20
->>> Belen
->>>=20
->>>=20
->>>=20
->>>=20
->>> ---------------------------------------------------------------------
->>> Intel Corporation (UK) Limited
->>> Registered No. 1134945 (England)
->>> Registered Office: Pipers Way, Swindon SN3 1RJ
->>> VAT No: 860 2173 47
->>>=20
->>> This e-mail and any attachments may contain confidential material for
->>> the sole use of the intended recipient(s). Any review or distribution
->>> by others is strictly prohibited. If you are not the intended
->>> recipient, please contact the sender and delete all copies.
->>>=20
->>> _______________________________________________
->>> yocto mailing list
->>> yocto@yoctoproject.org
->>> https://lists.yoctoproject.org/listinfo/yocto
->>>=20
->>
->>--=20
->>Darren Hart
->>Intel Open Source Technology Center
->>Yocto Project - Linux Kernel
->>
->>
->>
->>
->
->---------------------------------------------------------------------
->Intel Corporation (UK) Limited
->Registered No. 1134945 (England)
->Registered Office: Pipers Way, Swindon SN3 1RJ
->VAT No: 860 2173 47
->
->This e-mail and any attachments may contain confidential material for
->the sole use of the intended recipient(s). Any review or distribution
->by others is strictly prohibited. If you are not the intended
->recipient, please contact the sender and delete all copies.
->
->_______________________________________________
->yocto mailing list
->yocto@yoctoproject.org
->https://lists.yoctoproject.org/listinfo/yocto
+If all you want is to get the bzImage into the tmp/deploy/images
+directory, then that will suffice. If you want it to package it up and
+complete all the tasks associated with the virtual/kernel recipe, then
+"bitbake virtual/kernel" is required.
 
----------------------------------------------------------------------
-Intel Corporation (UK) Limited
-Registered No. 1134945 (England)
-Registered Office: Pipers Way, Swindon SN3 1RJ
-VAT No: 860 2173 47
+> 
+> Thanks for the infos
 
-This e-mail and any attachments may contain confidential material for
-the sole use of the intended recipient(s). Any review or distribution
-by others is strictly prohibited. If you are not the intended
-recipient, please contact the sender and delete all copies.
+Welcome.
+
+> 
+> Regards
+> 
+> Juergen
+
+-- 
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
+
 
 
