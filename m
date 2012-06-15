@@ -1,22 +1,34 @@
-Return-Path: <juergen.messerer@bbv.ch>
-Received: from owa.outnet.ch (owa.outnet.ch [80.67.146.1])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 17A91E013EB
-	for <yocto@yoctoproject.org>; Fri, 15 Jun 2012 02:07:36 -0700 (PDT)
-Received: from TKSSREX01.outnet.ch ([10.10.10.1]) by tkssrexhcu01.outnet.ch
-	([172.17.220.45]) with mapi; Fri, 15 Jun 2012 11:07:33 +0200
-From: =?iso-8859-1?Q?J=FCrgen_Messerer?= <juergen.messerer@bbv.ch>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Fri, 15 Jun 2012 11:07:32 +0200
-Thread-Topic: Bug 2256 - kernel menuconfig confusion with sstate 
-Thread-Index: Ac1K1dJq7Qw8BbIIQMii5nfgeGL9Fg==
-Message-ID: <A7B59F6D52627C44813C136D437B0832068BC78CB34A@TKSSREX01.outnet.ch>
-Accept-Language: en-US, de-CH
+Return-Path: <belen.barros.pena@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4E50CE013EB
+	for <yocto@yoctoproject.org>; Fri, 15 Jun 2012 02:35:49 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 15 Jun 2012 02:35:28 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="157970560"
+Received: from irsmsx103.ger.corp.intel.com ([163.33.3.157])
+	by orsmga002.jf.intel.com with ESMTP; 15 Jun 2012 02:35:27 -0700
+Received: from irsmsx152.ger.corp.intel.com (163.33.192.66) by
+	IRSMSX103.ger.corp.intel.com (163.33.3.157) with Microsoft SMTP Server
+	(TLS) id 14.1.355.2; Fri, 15 Jun 2012 10:33:19 +0100
+Received: from irsmsx104.ger.corp.intel.com ([169.254.5.70]) by
+	IRSMSX152.ger.corp.intel.com ([169.254.6.185]) with mapi id
+	14.01.0355.002; Fri, 15 Jun 2012 10:33:19 +0100
+From: "Barros Pena, Belen" <belen.barros.pena@intel.com>
+To: Darren Hart <dvhart@linux.intel.com>
+Thread-Topic: [yocto] live image types and qemu machines
+Thread-Index: AQHNStlQ57Boc8qmFUu91F44Z5Ue6Jb7HhaA
+Date: Fri, 15 Jun 2012 09:33:18 +0000
+Message-ID: <CC00BF10.1129B%belen.barros.pena@intel.com>
+In-Reply-To: <4FDA53DC.8090002@linux.intel.com>
+Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-acceptlanguage: en-US, de-CH
+user-agent: Microsoft-MacOutlook/14.2.2.120421
+x-originating-ip: [10.252.35.249]
 MIME-Version: 1.0
-Cc: "Darren Hart \(dvhart@linux.intel.com\)" <dvhart@linux.intel.com>
-Subject: Bug 2256 - kernel menuconfig confusion with sstate
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: live image types and qemu machines
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,136 +40,100 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Jun 2012 09:07:36 -0000
+X-List-Received-Date: Fri, 15 Jun 2012 09:35:49 -0000
 Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_A7B59F6D52627C44813C136D437B0832068BC78CB34ATKSSREX01ou_"
-
---_000_A7B59F6D52627C44813C136D437B0832068BC78CB34ATKSSREX01ou_
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <44AFE32003600F4EAD4CC95C6875FB3B@intel.com>
 Content-Transfer-Encoding: quoted-printable
 
-Dear Darren
+Thanks Darren and Liming.
 
-You suggested in Bug 2256 the following:
+It sounds like we should keep things as they are, and that we'll need a
+screen that gives you options to both run and deploy an image when you
+have built for qemu selecting image types ext2 or ext3 and live.
 
-$ bitbake virtual/kernel -c cleansstate
-$ bitbake virtual/kernel -c menuconfig
-$ bitbake virtual/kernel -c compile -f; bitbake virtual/kernel
-
-
-Can you tell me what the difference is between
-"bitbake virtual/kernel -c compile -f"
-and
-"bitbake virtual/kernel"
-
-Shouldn't be the last command "bitbake -c deploy virtual/kernel"?
-
-Thanks for the infos
-
-Regards
-
-Juergen
+Belen
 
 
---_000_A7B59F6D52627C44813C136D437B0832068BC78CB34ATKSSREX01ou_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40"><head><meta http-equiv=3DContent-Type content=
-=3D"text/html; charset=3Diso-8859-1"><meta name=3DGenerator content=3D"Micr=
-osoft Word 14 (filtered medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-pre
-	{mso-style-priority:99;
-	mso-style-link:"HTML Preformatted Char";
-	margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:10.0pt;
-	font-family:"Courier New";}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-span.HTMLPreformattedChar
-	{mso-style-name:"HTML Preformatted Char";
-	mso-style-priority:99;
-	mso-style-link:"HTML Preformatted";
-	font-family:"Courier New";
-	mso-fareast-language:DE-CH;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri","sans-serif";
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:70.85pt 70.85pt 2.0cm 70.85pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DDE-CH link=3Dblue vli=
-nk=3Dpurple><div class=3DWordSection1><p class=3DMsoNormal><span lang=3DEN-=
-US>Dear Darren<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US=
-><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US>You su=
-ggested in Bug 2256 the following:<o:p></o:p></span></p><p class=3DMsoNorma=
-l><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span=
- lang=3DEN-US style=3D'font-size:10.0pt;font-family:"Courier New";mso-farea=
-st-language:DE-CH'>$ bitbake virtual/kernel -c cleansstate<o:p></o:p></span=
-></p><p class=3DMsoNormal><span lang=3DEN-US style=3D'font-size:10.0pt;font=
--family:"Courier New";mso-fareast-language:DE-CH'>$ bitbake virtual/kernel =
--c menuconfig<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US =
-style=3D'font-size:10.0pt;font-family:"Courier New";mso-fareast-language:DE=
--CH'>$ bitbake virtual/kernel -c compile -f; bitbake virtual/kernel<o:p></o=
-:p></span></p><p class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></sp=
-an></p><p class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p>=
-<p class=3DMsoNormal><span lang=3DEN-US>Can you tell me what the difference=
- is between <o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US s=
-tyle=3D'font-size:10.0pt;font-family:"Courier New";mso-fareast-language:DE-=
-CH'>&#8220;bitbake virtual/kernel -c compile &#8211;f&#8221;<o:p></o:p></sp=
-an></p><p class=3DMsoNormal><span lang=3DEN-US style=3D'font-size:10.0pt;fo=
-nt-family:"Courier New";mso-fareast-language:DE-CH'>and </span><span lang=
-=3DEN-US><o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US styl=
-e=3D'font-size:10.0pt;font-family:"Courier New";mso-fareast-language:DE-CH'=
->&#8220;bitbake virtual/kernel&#8221;<o:p></o:p></span></p><p class=3DMsoNo=
-rmal><span lang=3DEN-US style=3D'font-size:10.0pt;font-family:"Courier New"=
-;mso-fareast-language:DE-CH'><o:p>&nbsp;</o:p></span></p><p class=3DMsoNorm=
-al><span lang=3DEN-US style=3D'font-size:10.0pt;font-family:"Courier New";m=
-so-fareast-language:DE-CH'>Shouldn&#8217;t be the last command &#8220;bitba=
-ke &#8211;c deploy virtual/kernel&#8221;?<o:p></o:p></span></p><p class=3DM=
-soNormal><span lang=3DEN-US style=3D'font-size:10.0pt;font-family:"Courier =
-New";mso-fareast-language:DE-CH'><o:p>&nbsp;</o:p></span></p><p class=3DMso=
-Normal><span lang=3DEN-US style=3D'font-size:10.0pt;font-family:"Courier Ne=
-w";mso-fareast-language:DE-CH'>Thanks for the infos<o:p></o:p></span></p><p=
- class=3DMsoNormal><span lang=3DEN-US style=3D'font-size:10.0pt;font-family=
-:"Courier New";mso-fareast-language:DE-CH'><o:p>&nbsp;</o:p></span></p><p c=
-lass=3DMsoNormal><span lang=3DEN-US>Regards<o:p></o:p></span></p><p class=
-=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoN=
-ormal><span lang=3DEN-US>Juergen<o:p></o:p></span></p><p class=3DMsoNormal>=
-<span lang=3DEN-US><o:p>&nbsp;</o:p></span></p></div></body></html>=
+On 14/06/2012 22:13, "Darren Hart" <dvhart@linux.intel.com> wrote:
 
---_000_A7B59F6D52627C44813C136D437B0832068BC78CB34ATKSSREX01ou_--
+>
+>
+>On 06/14/2012 08:09 AM, Barros Pena, Belen wrote:
+>> Hi all,
+>>=20
+>> The current Hob allows you to build images for a qemu machine selecting
+>> 'live' as your image type. To me (with my pitiful knowledge) this
+>>doesn't
+>> make much sense: would I want to deploy an image built for a
+>> virtualisation environment in a real piece of hardware?
+>>=20
+>> So here goes a question: should we allow Hob users, who are mainly
+>>people
+>> new to the Yocto project, to select the 'live' image type when building
+>> images for qemu machines?
+>>=20
+>
+>In my opinion: YES. The reason is that this allows you to test the live
+>image format and the boot mechanism on virtualized hardware. This is a
+>valuable development tool.
+>
+>--
+>Darren
+>
+>> This might sound like a silly question, but it has a pretty big impact
+>>on
+>> the Settings dialog and on the number of variations we need to create
+>>for
+>> our 'Image details' screen, which appears after the build finishes and
+>> displays logical next steps (like run the image or deploy your image to
+>> external storage).
+>>=20
+>> Any help with this would be much appreciated.
+>>=20
+>> Thanks!
+>>=20
+>> Belen
+>>=20
+>>=20
+>>=20
+>>=20
+>> ---------------------------------------------------------------------
+>> Intel Corporation (UK) Limited
+>> Registered No. 1134945 (England)
+>> Registered Office: Pipers Way, Swindon SN3 1RJ
+>> VAT No: 860 2173 47
+>>=20
+>> This e-mail and any attachments may contain confidential material for
+>> the sole use of the intended recipient(s). Any review or distribution
+>> by others is strictly prohibited. If you are not the intended
+>> recipient, please contact the sender and delete all copies.
+>>=20
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>>=20
+>
+>--=20
+>Darren Hart
+>Intel Open Source Technology Center
+>Yocto Project - Linux Kernel
+>
+>
+>
+>
+
+---------------------------------------------------------------------
+Intel Corporation (UK) Limited
+Registered No. 1134945 (England)
+Registered Office: Pipers Way, Swindon SN3 1RJ
+VAT No: 860 2173 47
+
+This e-mail and any attachments may contain confidential material for
+the sole use of the intended recipient(s). Any review or distribution
+by others is strictly prohibited. If you are not the intended
+recipient, please contact the sender and delete all copies.
+
+
