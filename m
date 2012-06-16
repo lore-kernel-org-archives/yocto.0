@@ -1,34 +1,25 @@
-Return-Path: <martin.jansa@gmail.com>
-Received: from mail-wg0-f54.google.com (mail-wg0-f54.google.com [74.125.82.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0E947E006D9
-	for <yocto@yoctoproject.org>; Fri, 15 Jun 2012 23:35:56 -0700 (PDT)
-Received: by wgbfg15 with SMTP id fg15so2806267wgb.11
-	for <yocto@yoctoproject.org>; Fri, 15 Jun 2012 23:35:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=date:from:to:subject:message-id:references:mime-version
-	:content-type:content-disposition:in-reply-to:user-agent;
-	bh=V5PCAZBsEfBB71ItieKDAfNkmRyGhnONpz5S6eWnMd4=;
-	b=0zGBJJch1boz0ogxy7J1bDL9JTQlYC6fudAFn1CtTtYqQEWY6S7YSCP/79mcVpCD0u
-	h7rWRQa3vMHP5PhpWG9s+TQXhzKHW7sfyFBBjxmofF9j1aefc8Snr2NHt1840BzGJv+Z
-	KrPBSWLJjjAyrQh+h6plsyawcyhBMATi3wYrafMivv4BuhxEVysTKIxarhZ/58eBjqN+
-	FM7cDfdxIFT/DhvBKFrbnGHiDcoiikcQgo+cVL8sTiHD9fmwDuxPVGSbvp3ktqDWba5w
-	ei7HpPPRr3sJfQzlbHz/dBf9PRGZEkhjUtPxv281ELp4+ABuK2geaQaAYkgcASrZ6nu/
-	KxIA==
-Received: by 10.180.109.194 with SMTP id hu2mr9644782wib.0.1339828555702;
-	Fri, 15 Jun 2012 23:35:55 -0700 (PDT)
-Received: from localhost ([94.230.152.246])
-	by mx.google.com with ESMTPS id e20sm8208908wiv.7.2012.06.15.23.35.53
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Fri, 15 Jun 2012 23:35:54 -0700 (PDT)
-Date: Sat, 16 Jun 2012 08:36:15 +0200
-From: Martin Jansa <martin.jansa@gmail.com>
-To: yocto@yoctoproject.org
-Message-ID: <20120616063615.GZ3140@jama.jama.net>
-References: <cover.1338305162.git.Martin.Jansa@gmail.com>
+Return-Path: <tf+lists.yocto@r-finger.com>
+Received: from r-finger.com (r-finger.com [178.79.160.5])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DF447E006D9
+	for <yocto@yoctoproject.org>; Sat, 16 Jun 2012 01:53:31 -0700 (PDT)
+Received: from [192.168.0.2] (host86-170-69-176.range86-170.btcentralplus.com
+	[86.170.69.176]) (using TLSv1 with cipher AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by r-finger.com (Postfix) with ESMTPSA id 128739C07
+	for <yocto@yoctoproject.org>; Sat, 16 Jun 2012 09:53:30 +0100 (BST)
+Message-ID: <4FDC4985.6040405@r-finger.com>
+Date: Sat, 16 Jun 2012 09:53:25 +0100
+From: Tomas Frydrych <tf+lists.yocto@r-finger.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:10.0.3) Gecko/20120329 Icedove/10.0.3
 MIME-Version: 1.0
-In-Reply-To: <cover.1338305162.git.Martin.Jansa@gmail.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-Subject: Re: [opkg-utils][PATCH 0/2] opkg-utils fix for python-2.6 and fix for missing getopts
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <4FD93175.7070202@linux.intel.com>
+	<4FD98EA6.1050403@r-finger.com>	<4FDA530E.3090508@linux.intel.com>
+	<4FDAD6D1.4050605@r-finger.com> <4FDB91B1.2010706@am.sony.com>
+	<4FDBA883.8030609@r-finger.com> <4FDBC1FC.3050008@linux.intel.com>
+In-Reply-To: <4FDBC1FC.3050008@linux.intel.com>
+Subject: Re: RFC: poky-tiny: init procedure
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,59 +31,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 16 Jun 2012 06:35:57 -0000
-X-Groupsio-MsgNum: 7257
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="yrEcvySKR+fOA8iz"
-Content-Disposition: inline
+X-List-Received-Date: Sat, 16 Jun 2012 08:53:32 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
---yrEcvySKR+fOA8iz
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Hi Darren,
 
-On Tue, May 29, 2012 at 05:34:13PM +0200, Martin Jansa wrote:
-> The following changes since commit 44df9dd3dc411ca1255cb4b23bde7eb71aed47=
-78:
->=20
->   opkg-make-index: disable filelist by default (2012-04-26 11:39:42 +0100)
+On 16/06/12 00:15, Darren Hart wrote:
+> I dont think
+> Tim's comment was wrong there. Of course "big system" is subjective, to
+> me that's anything over 4 MB of storage and 8MB of RAM, for Tim, that's
+> 1 MB of RAM.
 
-ping?
+Indeed, I was thinking of something like the OpenRisc board
+(http://opencores.org/shop,item,9), which is a 1MB flash / 32MB RAM,
+which I now realize is a huge system by both your and Tim standards :)
 
->=20
-> are available in the git repository at:
->   git://github.com/shr-project/opkg-utils jansa/pull
->   https://github.com/shr-project/opkg-utils/tree/jansa/pull
->=20
-> Chris Diamand (1):
->   Changed call to subprocess.check_output which isn't compatible with
->     Python 2.6
->=20
-> Ondics Githubler (1):
->   Option "C" ist shown in usage() and implemented, but was missing in
->     getopts. Added "C".
->=20
->  opkg-build      |    2 +-
->  opkg-make-index |    2 +-
->  2 files changed, 2 insertions(+), 2 deletions(-)
->=20
-> --=20
-> 1.7.8.6
->=20
 
---=20
-Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
+> Your point on eliminating shell scripts is a good one though.
 
---yrEcvySKR+fOA8iz
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
+In my experience scripts tend show fairly visibly on poky bootchart,
+that's all.
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2.0.19 (GNU/Linux)
+I was thinking that for a small system, where I know exactly what I
+want, the rc.local file could probably be fairly easily replaced with a
+custom config-less spawner written in C. If done with a view to permit
+easy modification of the .c source file, it would not be any more hassle
+customizing than tweaking a shell script. But you would loose the
+ability to tweak config over ssh, which is a significant trade off for
+development / debugging, so I think the rc.local is a better default
+approach (and alternatives can always be dropped in using the
+ALTERNATIVES mechanism anyway).
 
-iEYEARECAAYFAk/cKV8ACgkQN1Ujt2V2gBxWDgCfXxx36pl0a2FL4cepxKXUprEW
-e5wAnjZcPRJ+VADUDOsomF3tlFOXybUQ
-=OdTN
------END PGP SIGNATURE-----
+I think the busybox sysvinit is probably worth experimenting with to get
+some idea what size of a system it would be a viable alternative for the
+default, and document that somewhere.
 
---yrEcvySKR+fOA8iz--
+Tomas
+
