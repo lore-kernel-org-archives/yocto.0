@@ -1,26 +1,33 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B8578E0145B
-	for <yocto@yoctoproject.org>; Fri, 15 Jun 2012 16:22:49 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 15 Jun 2012 16:22:49 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="158255406"
-Received: from unknown (HELO envy.home) ([10.255.12.88])
-	by orsmga002.jf.intel.com with ESMTP; 15 Jun 2012 16:22:49 -0700
-Message-ID: <4FDBC37A.6060902@linux.intel.com>
-Date: Fri, 15 Jun 2012 16:21:30 -0700
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:13.0) Gecko/20120605 Thunderbird/13.0
+Return-Path: <tylerjones64@gmail.com>
+Received: from mail-lpp01m010-f48.google.com (mail-lpp01m010-f48.google.com
+	[209.85.215.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 85FD0E01461
+	for <yocto@yoctoproject.org>; Fri, 15 Jun 2012 18:18:44 -0700 (PDT)
+Received: by lagz14 with SMTP id z14so2998976lag.35
+	for <yocto@yoctoproject.org>; Fri, 15 Jun 2012 18:18:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=QygCpWnC+I7qM5JGRTCbGaDFGf85bfdN2ha97qHOz+o=;
+	b=mxrkKubY7Fd6aQ3CJAQkV/qppgwucsTQ00868idaBQlt5BKHohS30FNQNhjqhtLVf5
+	lD+72t037Fw3NwFLj7d7tBtJpXkqxExY8jTDVp7+YR+PPLtsphNPCtoI8ziY0m+hUQEz
+	4vjW1W9zUtqqz/HTNR1UumqD8aomMBcwjnVLrZDAY/DIn3APklGJPb/gffsU9tL1UbDX
+	/KnpRvnsG5gjp4iEpjdbxCoava+JmXUPEUIg5rGmgh7A4iMXagI5kVC7bTLirfHYo/Qu
+	7mF+U8B7+CXZkNtDUtOrwpNpcQZ4M5Pzy2ub665v4Yok1byE28q3n2ftMxPt2FMxQCjB
+	H1Og==
+Received: by 10.152.103.11 with SMTP id fs11mr7234309lab.23.1339809523151;
+	Fri, 15 Jun 2012 18:18:43 -0700 (PDT)
 MIME-Version: 1.0
-To: Tim Bird <tim.bird@am.sony.com>
-References: <4FD93175.7070202@linux.intel.com> <4FD98EA6.1050403@r-finger.com>
-	<4FDBA4B8.8000703@am.sony.com>
-In-Reply-To: <4FDBA4B8.8000703@am.sony.com>
-X-Enigmail-Version: 1.4.2
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: RFC: poky-tiny: init procedure
+Received: by 10.112.48.10 with HTTP; Fri, 15 Jun 2012 18:18:22 -0700 (PDT)
+In-Reply-To: <4FDAD3AB.3000605@gmail.com>
+References: <CAN57a28DC3Xge0Sk8JH5fEji1q6nmxcDKxmbxTUfMPXKVU+Yeg@mail.gmail.com>
+	<4FDAD3AB.3000605@gmail.com>
+From: Tyler Jones <tylerjones64@gmail.com>
+Date: Fri, 15 Jun 2012 18:18:22 -0700
+Message-ID: <CAN57a2-f0LWnYaqg9yEPNJyzi5M64Du1JH_-yW1bzzSkuyGEQw@mail.gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: Setting architecture of only DEB files (arm vs armel)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,92 +39,147 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Jun 2012 23:22:49 -0000
+X-List-Received-Date: Sat, 16 Jun 2012 01:18:45 -0000
+Content-Type: multipart/alternative; boundary=f46d040715c5b1b44a04c28cb622
+
+--f46d040715c5b1b44a04c28cb622
 Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+
+On 14 June 2012 23:18, Khem Raj <raj.khem@gmail.com> wrote:
+
+> -----BEGIN PGP SIGNED MESSAGE-----
+> Hash: SHA1
+>
+> On 6/14/2012 5:17 PM, Tyler Jones wrote:
+> > I am compiling a distro for my hardware using DEBs for my package
+> > management. In meta/classes/package_deb.bbclass I need DPKG_ARCH =
+> > "armel" instead of TARGET_ARCH (which is "arm"). When I run dpkg on
+> > my device armel is the architecture, not arm, but yocto wants my
+> > TARGET_ARCH to be set to "arm". Is there a non hackish way to do
+> > this from my BSP layer or config file?
+> >
+> > The dpkg error I get is: package architecture (arm) does not match
+> > system (armel)
+> >
+>
+> set DPKG_ARCH = "armel" in your local.conf
+>
+> > -Tyler Jones
+> >
+> >
+> >
+> >
+> > _______________________________________________ yocto mailing list
+> > yocto@yoctoproject.org
+> > https://lists.yoctoproject.org/listinfo/yocto
+>
+> -----BEGIN PGP SIGNATURE-----
+> Version: GnuPG v1.4.12 (MingW32)
+> Comment: Using GnuPG with Mozilla - http://enigmail.mozdev.org/
+>
+> iEYEARECAAYFAk/a06sACgkQuwUzVZGdMxRBvgCeJAinKceaUDI8gQHPbvzGiOSt
+> tuQAnRDOpYZvovXfg6UHji6it4YehqvR
+> =7G4e
+> -----END PGP SIGNATURE-----
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+
+That didn't seem to work I also tried editing in the top of the
+meta/classes/package_deb.bbclass setting
+  DPKG_ARCH = "armel"
+But that did not work either.
+
+When I change:
+
+@@ -249,6 +249,7 @@ python do_package_deb () {
+         localdata.setVar('OVERRIDES', pkg)
+
+         bb.data.update_data(localdata)
++        localdata.setVar('DPKG_ARCH', 'armel')
+         basedir = os.path.join(os.path.dirname(root))
+
+         pkgoutdir = os.path.join(outdir, localdata.getVar('PACKAGE_ARCH',
+True))
+
+the packages are created properly.
+-Tyler Jones
+
+--f46d040715c5b1b44a04c28cb622
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"gmail_quote">On 14 June 2012 23:18, Khem Raj <span dir=3D"ltr=
+">&lt;<a href=3D"mailto:raj.khem@gmail.com" target=3D"_blank">raj.khem@gmai=
+l.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"m=
+argin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
 
 
+-----BEGIN PGP SIGNED MESSAGE-----<br>
+Hash: SHA1<br>
+<div><div><br>
+On 6/14/2012 5:17 PM, Tyler Jones wrote:<br>
+&gt; I am compiling a distro for my hardware using DEBs for my package<br>
+&gt; management. In meta/classes/package_deb.bbclass I need DPKG_ARCH =3D<b=
+r>
+&gt; &quot;armel&quot; instead of TARGET_ARCH (which is &quot;arm&quot;). W=
+hen I run dpkg on<br>
+&gt; my device armel is the architecture, not arm, but yocto wants my<br>
+&gt; TARGET_ARCH to be set to &quot;arm&quot;. Is there a non hackish way t=
+o do<br>
+&gt; this from my BSP layer or config file?<br>
+&gt;<br>
+&gt; The dpkg error I get is: package architecture (arm) does not match<br>
+&gt; system (armel)<br>
+&gt;<br>
+<br>
+</div></div>set DPKG_ARCH =3D &quot;armel&quot; in your local.conf<br>
+<br>
+&gt; -Tyler Jones<br>
+&gt;<br>
+&gt;<br>
+&gt;<br>
+&gt;<br>
+&gt; _______________________________________________ yocto mailing list<br>
+&gt; <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoct=
+oproject.org</a><br>
+&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_b=
+lank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+<br>
+-----BEGIN PGP SIGNATURE-----<br>
+Version: GnuPG v1.4.12 (MingW32)<br>
+Comment: Using GnuPG with Mozilla - <a href=3D"http://enigmail.mozdev.org/"=
+ target=3D"_blank">http://enigmail.mozdev.org/</a><br>
+<br>
+iEYEARECAAYFAk/a06sACgkQuwUzVZGdMxRBvgCeJAinKceaUDI8gQHPbvzGiOSt<br>
+tuQAnRDOpYZvovXfg6UHji6it4YehqvR<br>
+=3D7G4e<br>
+-----END PGP SIGNATURE-----<br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
+ect.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
+>https://lists.yoctoproject.org/listinfo/yocto</a><br>
+</blockquote></div><br><div>That didn&#39;t seem to work I also tried editi=
+ng in the top of the meta/classes/package_deb.bbclass setting</div><div>=A0=
+=A0DPKG_ARCH =3D &quot;armel&quot;</div><div>But that did not work either.<=
+/div>
 
-On 06/15/2012 02:10 PM, Tim Bird wrote:
-> On 06/14/2012 12:11 AM, Tomas Frydrych wrote:
->> A system that runs nothing but a shell is really not useful for anything
->> all, everyone using it will be adding some sort of services, so the
->> question of how the extending works (or does not work), needs to be in
->> the forefront of the design. My main reservation is that you are
->> suggesting to break one of the basic premisses behind the whole
->> ecosystem, namely that if I add a package that provides a service to an
->> image, I get that service running; 'fix by documentation' is never a fix.
-> 
-> I didn't address this in my other response, and I
-> think it's a valid observation.  I agree that
-> everyone will want to add something to the init,
-> and that 'fix by documentation' is, in general, a
-> poor solution.
-> 
-> I don't have any good solution here (one that scales,
-> or is likely to be adopted widely.)  You don't really
-> need documentation, if you have the few lines of shell
-> script that are necessary to start a service in minimal
-> mode.  The standard init scripts handle lots of interactions
-> with other services and runtime conditions.  This is why
-> they are bloated (and the abstractions in them are
-> almost incomprehensible to read.)
-> 
-> At Sony we've tried various things - like automatically
-> stripping init scripts of uncalled branches, removing
-> conditionals that don't apply, etc.  We've also looked
-> at automatically converting init scripts to C code, to
-> speed up execution.  You still end up with gobs of code
-> that doesn't apply to your situation getting executed
-> at boot time, an overly-complicated test scenario, and a
-> certain fragility in the overall init system.
-> 
-> One of our early efforts, getting busybox
-> to not fork commands in init scripts that it had as
-> builtins, proved to be a significant feature that is still
-> valuable today to improve boot time.
-> 
-> What we have settled on as a generic solution is basically
-> what I described in response to Darren's initial post.
-> You have a list of the short shell snippets required to start
-> commonly-used services in /etc/rc.local.  These
-> are commented out by default, but a developer or product
-> team can uncomment them to enable the associated services.
-> This keeps everything in one place and provides developers
-> the commands needed to start things.  Customization to
-> handle interactions or special cases can proceed from
-> there.  It's not ideal, in that a developer may have to
-> re-create or rediscover some configuration, setting, or
-> start sequence to handle a more complicated usage scenario.
-> But in order to hit our targets for size or boot time, it
-> has been helpful to do things this way.  The developer is
-> forced to manually enable each service, and the start
-> sequence, commands and command parameters are obvious
-> from the script.  (This is rarely true of init scripts).
-> 
+<div><br></div><div>When I change:</div><blockquote style=3D"margin:0 0 0 4=
+0px;border:none;padding:0px"><div>@@ -249,6 +249,7 @@ python do_package_deb=
+ () {</div><div>=A0 =A0 =A0 =A0 =A0localdata.setVar(&#39;OVERRIDES&#39;, pk=
+g)</div>
 
-Does this mean you just don't worry about respawning services? If
-the.... I dunno... ambient-light-sensor-daemon crashes, is the user
-expected to just reboot the device?
+<div>=A0</div><div>=A0 =A0 =A0 =A0 =A0bb.data.update_data(localdata)</div><=
+div>+ =A0 =A0 =A0 =A0localdata.setVar(&#39;DPKG_ARCH&#39;, &#39;armel&#39;)=
+</div><div>=A0 =A0 =A0 =A0 =A0basedir =3D os.path.join(os.path.dirname(root=
+))</div><div>=A0</div><div>=A0 =A0 =A0 =A0 =A0pkgoutdir =3D os.path.join(ou=
+tdir, localdata.getVar(&#39;PACKAGE_ARCH&#39;, True))</div>
 
-> If anyone has good ideas or other experience for
-> the init sequence for highly customized,
-> resource-constrained products, I'd like to hear about
-> them.
+</blockquote><div>the packages are created properly.<br clear=3D"all">-Tyle=
+r Jones<br></div>
 
-So Systemd does great things for deterministic boot with clearly defined
-dependencies between services which also allows for as much parallelism
-as possible (maybe that doesn't matter for your devices). I haven't
-looked at how big systemd is what how much it would bloat my kernel to
-support it. Have you?
-
-As I understand it, it brings in things like udev and basically starts
-to make my system look like a desktop/server. systemd-tiny ftw!
-
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
-
-
-
+--f46d040715c5b1b44a04c28cb622--
