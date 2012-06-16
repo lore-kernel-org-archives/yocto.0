@@ -1,25 +1,28 @@
-Return-Path: <tf+lists.yocto@r-finger.com>
-Received: from r-finger.com (r-finger.com [178.79.160.5])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EDB2EE006D9
-	for <yocto@yoctoproject.org>; Sat, 16 Jun 2012 02:09:30 -0700 (PDT)
-Received: from [192.168.0.2] (host86-170-69-176.range86-170.btcentralplus.com
-	[86.170.69.176]) (using TLSv1 with cipher AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by r-finger.com (Postfix) with ESMTPSA id 4C46A9C07
-	for <yocto@yoctoproject.org>; Sat, 16 Jun 2012 10:09:30 +0100 (BST)
-Message-ID: <4FDC4D49.9050807@r-finger.com>
-Date: Sat, 16 Jun 2012 10:09:29 +0100
-From: Tomas Frydrych <tf+lists.yocto@r-finger.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:10.0.3) Gecko/20120329 Icedove/10.0.3
+Return-Path: <anders.roxell@gmail.com>
+Received: from mail-lb0-f176.google.com (mail-lb0-f176.google.com
+	[209.85.217.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EA584E01351
+	for <yocto@yoctoproject.org>; Sat, 16 Jun 2012 09:24:16 -0700 (PDT)
+Received: by lboj14 with SMTP id j14so4331930lbo.35
+	for <yocto@yoctoproject.org>; Sat, 16 Jun 2012 09:24:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=Y8ZqS0Uhb8UDN34YYHZhlKlqlZTm5C/cO+PKXlvoK/w=;
+	b=qg0AESbg3aYu90wuBAfp+1irmVCeUAA22D1VQ/mJ2TCqgdF32GnjUYZ4ii3xBkZ8rj
+	f2YnmJoN5K5D7KUdugo0tpY1m56UbjaAukIRSeKhze2ZfASn++/I7+noTq3FtWlLBr5V
+	0HDOcMiaSlzJXVsOj/4yg8JEVShUaB2FsmHH0crDC7/FX1U3ANW/45TgEk1CD1VBAPEt
+	czbnFgyEFPun7kuepJXazUmkGnyMrQehRMGFKVHPWgtNhXrfzwbbYwqAXcGHPwoPul4N
+	4j+HP6OoJODpo7uOkok2kH1Ybv75/MbBcf4zvzSM2e2YPWJchWRduFzeHRPDNqhS6wvc
+	a1JQ==
 MIME-Version: 1.0
+Received: by 10.112.45.230 with SMTP id q6mr4075726lbm.94.1339863855399; Sat,
+	16 Jun 2012 09:24:15 -0700 (PDT)
+Received: by 10.112.116.132 with HTTP; Sat, 16 Jun 2012 09:24:15 -0700 (PDT)
+Date: Sat, 16 Jun 2012 18:24:15 +0200
+Message-ID: <CAEUf8Fv2Xi-wpgXQhc=JRZ1F+9MHDLFacx3PGMp_aAikCNayyg@mail.gmail.com>
+From: Anders Roxell <anders.roxell@gmail.com>
 To: yocto@yoctoproject.org
-References: <BBB9AD1B-8D46-472C-AE84-5AC18F15B44E@keylevel.com>
-	<3AD32D08-64C8-4F37-BF50-9D08560D0194@keylevel.com>
-	<4FDACFD5.4020808@r-finger.com>
-	<68AE55D0-CAC7-41DB-B40C-DB5383E7FC54@keylevel.com>
-In-Reply-To: <68AE55D0-CAC7-41DB-B40C-DB5383E7FC54@keylevel.com>
-Subject: Re: Help needed understanding do_rootfs error
+Subject: how do I prevent a specific package from being built/installed (e.g., bash)?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,28 +34,15 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 16 Jun 2012 09:09:31 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sat, 16 Jun 2012 16:24:17 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-Hi Chris,
+Hi,
 
-On 15/06/12 21:09, Chris Tapp wrote:
-> On 15 Jun 2012, at 07:01, Tomas Frydrych wrote:
->> Incidentally, the GLES libs are not currently packaged by 
->> meta-raspberrypi, I submitted a pull request for this yesterday.
-> 
-> Thanks, that will be nice. I want to look at GLES for other things.
-> May even update what I already have if it shows significant
-> performance advantages (which it should). Looks like DirectFB has
-> some sort of GLES support, so I also need to look at that.
+See subject.
+Is there some config-file for package-masks (like portage's
+/etc/portage/package.mask)?
 
-I am aiming to get Clutter working on the RPI, but it looks like bits of
-the graphics drivers needed by libEGL are missing :( I opened an issue
-for this in github (https://github.com/raspberrypi/firmware/issues/43),
-we will see.
-
-Tomas
-
-
+with kind regards,
+Anders
 
