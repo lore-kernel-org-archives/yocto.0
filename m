@@ -1,28 +1,22 @@
-Return-Path: <anders.roxell@gmail.com>
-Received: from mail-lb0-f176.google.com (mail-lb0-f176.google.com
-	[209.85.217.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EA584E01351
-	for <yocto@yoctoproject.org>; Sat, 16 Jun 2012 09:24:16 -0700 (PDT)
-Received: by lboj14 with SMTP id j14so4331930lbo.35
-	for <yocto@yoctoproject.org>; Sat, 16 Jun 2012 09:24:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=Y8ZqS0Uhb8UDN34YYHZhlKlqlZTm5C/cO+PKXlvoK/w=;
-	b=qg0AESbg3aYu90wuBAfp+1irmVCeUAA22D1VQ/mJ2TCqgdF32GnjUYZ4ii3xBkZ8rj
-	f2YnmJoN5K5D7KUdugo0tpY1m56UbjaAukIRSeKhze2ZfASn++/I7+noTq3FtWlLBr5V
-	0HDOcMiaSlzJXVsOj/4yg8JEVShUaB2FsmHH0crDC7/FX1U3ANW/45TgEk1CD1VBAPEt
-	czbnFgyEFPun7kuepJXazUmkGnyMrQehRMGFKVHPWgtNhXrfzwbbYwqAXcGHPwoPul4N
-	4j+HP6OoJODpo7uOkok2kH1Ybv75/MbBcf4zvzSM2e2YPWJchWRduFzeHRPDNqhS6wvc
-	a1JQ==
+Return-Path: <tf+lists.yocto@r-finger.com>
+Received: from r-finger.com (r-finger.com [178.79.160.5])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ACEB7E01351
+	for <yocto@yoctoproject.org>; Sat, 16 Jun 2012 09:37:28 -0700 (PDT)
+Received: from [192.168.0.2] (host86-170-69-176.range86-170.btcentralplus.com
+	[86.170.69.176]) (using TLSv1 with cipher AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by r-finger.com (Postfix) with ESMTPSA id 0C29E9C07
+	for <yocto@yoctoproject.org>; Sat, 16 Jun 2012 17:37:27 +0100 (BST)
+Message-ID: <4FDCB647.9080301@r-finger.com>
+Date: Sat, 16 Jun 2012 17:37:27 +0100
+From: Tomas Frydrych <tf+lists.yocto@r-finger.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:10.0.3) Gecko/20120329 Icedove/10.0.3
 MIME-Version: 1.0
-Received: by 10.112.45.230 with SMTP id q6mr4075726lbm.94.1339863855399; Sat,
-	16 Jun 2012 09:24:15 -0700 (PDT)
-Received: by 10.112.116.132 with HTTP; Sat, 16 Jun 2012 09:24:15 -0700 (PDT)
-Date: Sat, 16 Jun 2012 18:24:15 +0200
-Message-ID: <CAEUf8Fv2Xi-wpgXQhc=JRZ1F+9MHDLFacx3PGMp_aAikCNayyg@mail.gmail.com>
-From: Anders Roxell <anders.roxell@gmail.com>
 To: yocto@yoctoproject.org
-Subject: how do I prevent a specific package from being built/installed (e.g., bash)?
+References: <CAEUf8Fv2Xi-wpgXQhc=JRZ1F+9MHDLFacx3PGMp_aAikCNayyg@mail.gmail.com>
+In-Reply-To: <CAEUf8Fv2Xi-wpgXQhc=JRZ1F+9MHDLFacx3PGMp_aAikCNayyg@mail.gmail.com>
+Subject: Re: how do I prevent a specific package from being built/installed (e.g., bash)?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,15 +28,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 16 Jun 2012 16:24:17 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Sat, 16 Jun 2012 16:37:28 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
 Hi,
 
-See subject.
-Is there some config-file for package-masks (like portage's
-/etc/portage/package.mask)?
+On 16/06/12 17:24, Anders Roxell wrote:
+> See subject.
+> Is there some config-file for package-masks (like portage's
+> /etc/portage/package.mask)?
 
-with kind regards,
-Anders
+Packages are getting installed because something depends on them, so if
+you want an image that has different contents than one of the default
+images, you will need to create your own custom recipe for it.
+
+You can examine the package dependencies with 'bitbake -g -u depexp <the
+image name>'; this does not give you any runtime dependencies that are
+automatically calculated from shared library deps, but for something
+like bash it will give you enough info to know what is pulling it in.
+
+Tomas
 
