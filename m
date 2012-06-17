@@ -1,30 +1,31 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (hermes.mlbassoc.com [64.234.241.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 71F39E01429
-	for <yocto@yoctoproject.org>; Sun, 17 Jun 2012 04:06:44 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id 27660F8122E; Sun, 17 Jun 2012 05:06:44 -0600 (MDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=unavailable version=3.3.2
-Received: from hermes.chez-thomas.org (localhost.localdomain [127.0.0.1])
-	by mail.chez-thomas.org (Postfix) with ESMTP id AB88BF8122D;
-	Sun, 17 Jun 2012 05:06:31 -0600 (MDT)
-Message-ID: <4FDDBA37.40907@mlbassoc.com>
-Date: Sun, 17 Jun 2012 05:06:31 -0600
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:12.0) Gecko/20120430 Thunderbird/12.0.1
+Return-Path: <jiajun.xu@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 29C24E0070C
+	for <yocto@yoctoproject.org>; Sun, 17 Jun 2012 07:53:22 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 17 Jun 2012 07:53:21 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="181213959"
+Received: from fmsmsx105.amr.corp.intel.com ([10.19.9.36])
+	by fmsmga002.fm.intel.com with ESMTP; 17 Jun 2012 07:53:21 -0700
+Received: from shsmsx102.ccr.corp.intel.com (10.239.4.154) by
+	FMSMSX105.amr.corp.intel.com (10.19.9.36) with Microsoft SMTP Server
+	(TLS) id 14.1.355.2; Sun, 17 Jun 2012 07:53:21 -0700
+Received: from shsmsx101.ccr.corp.intel.com ([169.254.1.87]) by
+	SHSMSX102.ccr.corp.intel.com ([169.254.2.47]) with mapi id
+	14.01.0355.002; Sun, 17 Jun 2012 22:53:19 +0800
+From: "Xu, Jiajun" <jiajun.xu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Yocto weekly bug trend charts -- WW24
+Thread-Index: Ac1MmO4MLopqWoXoQseClsTVNAjKLA==
+Date: Sun, 17 Jun 2012 14:53:18 +0000
+Message-ID: <90741FE9B50D654690EB940EDB456C8E15621A@SHSMSX101.ccr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.239.127.40]
 MIME-Version: 1.0
-To: Martin Jansa <martin.jansa@gmail.com>
-References: <1339501183-16643-1-git-send-email-gary@mlbassoc.com>
-	<4FDDB218.8070704@mlbassoc.com>
-	<20120617104723.GH3178@jama.jama.net>
-In-Reply-To: <20120617104723.GH3178@jama.jama.net>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [PATCH] webkit-gtk: Apply work around for all PowerPC targets
+Subject: Yocto weekly bug trend charts -- WW24
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,85 +37,17 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 17 Jun 2012 11:06:44 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sun, 17 Jun 2012 14:53:22 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 2012-06-17 04:47, Martin Jansa wrote:
-> On Sun, Jun 17, 2012 at 04:31:52AM -0600, Gary Thomas wrote:
->> On 2012-06-12 05:39, Gary Thomas wrote:
->>> The current patch for bug #1570 only applies to qemuppc but should be
->>> applicable for all PowerPC targets.  Also update the patch so that
->>> only one language backend, either ICU or PANGO, is built.
->>>
->>> Also remove some old customizations (dependencies on darwin) as these
->>> should now be handled in a layer specific .bbappend file.
->>>
->>> Signed-off-by: Gary Thomas<gary@mlbassoc.com>
->>
->> ping??
->
-> http://git.openembedded.org/openembedded-core/commit/?id=2782caf0f07f61cab92d2981c5e82914f22bd700
->
+Hi all,
+	This is the weekly bug trend for WW24. WDD number and Open Bug number keep=
+ flat with WW23, as 1098 and 224. Bug status of WW24 could be found on http=
+s://wiki.yoctoproject.org/wiki/Yocto_Bug_Trend.
 
-Perfect, thanks
+Best Regards,
+Jiajun
 
->
->>
->>> ---
->>>    meta/recipes-sato/webkit/webkit-gtk_svn.bb |   15 +++++++++------
->>>    1 files changed, 9 insertions(+), 6 deletions(-)
->>>
->>> diff --git a/meta/recipes-sato/webkit/webkit-gtk_svn.bb b/meta/recipes-sato/webkit/webkit-gtk_svn.bb
->>> index 9381486..716afce 100644
->>> --- a/meta/recipes-sato/webkit/webkit-gtk_svn.bb
->>> +++ b/meta/recipes-sato/webkit/webkit-gtk_svn.bb
->>> @@ -7,10 +7,13 @@ LIC_FILES_CHKSUM = "file://Source/WebCore/rendering/RenderApplet.h;endline=22;md
->>>                        file://Source/WebKit/gtk/webkit/webkit.h;endline=21;md5=b4fbe9f4a944f1d071dba1d2c76b3351 \
->>>                        file://Source/JavaScriptCore/parser/Parser.h;endline=23;md5=2f3cff0ad0a9c486da5a376928973a90"
->>>
->>> -DEPENDS = "zlib enchant gnome-keyring libsoup-2.4 curl icu libxml2 cairo libxslt libxt libidn gnutls gtk+ gstreamer gst-plugins-base flex-native gperf-native perl-native-runtime sqlite3"
->>> +# Choice of language backends - icu has issues on Big Endian machines so use pango
->>> +ICU_LIB = "icu"
->>> +ICU_LIB_powerpc = "pango"
->>> +
->>> +DEPENDS = "zlib enchant gnome-keyring libsoup-2.4 curl libxml2 cairo libxslt libxt libidn gnutls \
->>> +           gtk+ gstreamer gst-plugins-base flex-native gperf-native perl-native-runtime sqlite3 ${ICU_LIB}"
->>>    DEPENDS += " ${@base_contains('DISTRO_FEATURES', 'opengl', 'virtual/libgl', '', d)}"
->>> -DEPENDS_darwin8 = "curl icu libxml2 cairo libxslt libidn gnutls gtk+ gstreamer flex-native gperf-native perl-native-runtime sqlite3"
->>> -DEPENDS_append_qemuppc += "pango"
->>>
->>>    SRCREV_FORMAT = "source"
->>>
->>> @@ -48,10 +51,10 @@ EXTRA_OECONF = "\
->>>                    UNICODE_CFLAGS=-D_REENTRANT \
->>>                   "
->>>
->>> -#default unicode backend icu breaks in cross-compile when target and host owns different endian type
->>> -EXTRA_OECONF_append_qemuppc += "--with-unicode-backend=glib"
->>> +#default unicode backend icu breaks in cross-compile when target and host are different endian type
->>> +EXTRA_OECONF_append_powerpc += "--with-unicode-backend=glib"
->>>
->>> -CPPFLAGS_append_qemuppc += "-I${STAGING_INCDIR}/pango-1.0 \
->>> +CPPFLAGS_append_powerpc += "-I${STAGING_INCDIR}/pango-1.0 \
->>>                                -I${STAGING_LIBDIR}/glib-2.0/include \
->>>                                -I${STAGING_INCDIR}/glib-2.0"
->>>
->>
->> --
->> ------------------------------------------------------------
->> Gary Thomas                 |  Consulting for the
->> MLB Associates              |    Embedded world
->> ------------------------------------------------------------
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->
-
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
 
