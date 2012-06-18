@@ -1,19 +1,30 @@
-Return-Path: <ml@communistcode.co.uk>
-Received: from tinyArch.localdomain (unknown [78.110.170.148])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BB6A5E01453
-	for <yocto@yoctoproject.org>; Mon, 18 Jun 2012 04:02:34 -0700 (PDT)
-Received: from [192.168.0.46] (unknown [195.171.99.130])
-	by tinyArch.localdomain (Postfix) with ESMTPSA id 64802608BE;
-	Mon, 18 Jun 2012 11:01:18 +0100 (BST)
-Message-ID: <4FDF0B05.4020607@communistcode.co.uk>
-Date: Mon, 18 Jun 2012 12:03:33 +0100
-From: Jack Mitchell <ml@communistcode.co.uk>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:13.0) Gecko/20120616 Thunderbird/13.0.1
-MIME-Version: 1.0
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Cc: scott.a.garman@intel.com
-Subject: sgml-common failure
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
+	[93.97.173.237])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BF972E01457
+	for <yocto@yoctoproject.org>; Mon, 18 Jun 2012 04:43:28 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q5IBhNHj004747;
+	Mon, 18 Jun 2012 12:43:23 +0100
+Received: from tim.rpsys.net ([127.0.0.1])
+	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
+	port 10024) with LMTP
+	id 17377-10; Mon, 18 Jun 2012 12:43:19 +0100 (BST)
+Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q5IBhDGe004739
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Mon, 18 Jun 2012 12:43:15 +0100
+Message-ID: <1340019794.8481.10.camel@ted>
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: =?ISO-8859-1?Q?Bj=F6rn?= Stenberg <bjst@enea.com>
+Date: Mon, 18 Jun 2012 12:43:14 +0100
+In-Reply-To: <20120614132601.GB29124@giant>
+References: <20120614132601.GB29124@giant>
+X-Mailer: Evolution 3.2.2- 
+Mime-Version: 1.0
+X-Virus-Scanned: amavisd-new at rpsys.net
+Cc: yocto@yoctoproject.org
+Subject: Re: Discussion: Package testing
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -25,204 +36,130 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 18 Jun 2012 11:02:35 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 18 Jun 2012 11:43:29 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-Trying to build poky on master and I recieve the following error with 
-sgml-common-native:
+On Thu, 2012-06-14 at 15:26 +0200, Björn Stenberg wrote:
+> Many source packages include their own package test suites. We are
+> looking at running these tests on target in a structured way, and I
+> would like a discussion about how to best fit this into the Yocto
+> framework.
+>
+> The actions that need to be performed for a package test are roughly:
+>
+> 1) Build the test suite
+> 2) Make the test suite appear on target
+> 3) Run the test suite
+> 4) Parse the results
+>
+> Each action can be done in several ways, and there are different
+> considerations for each solution.
+>
+> 1) Build the test suite
+> -----------------------
+> Many package tests are simply bash scripts that run the packaged
+> binaries in various ways, but often the test suites also include
+> binary tools that are not part of the normal package build. These
+> tools have to be built for package testing to work.
+>
+> Additionally, many packages build and run the test in a single
+> command, such as "make check", which is obviously unsuitable for
+> cross-compiled packages.
+>
+> We can solve this in different ways:
+>
+> a) Run the test build+run jobs on target. This avoids the need to
+> modify packages, but building code on target can get quite expensive
+> in terms of disk space. This in turn means many tests would require a
+> harddisk or network disk to run.
+>
+> b) Patch the makefiles to split test building and test running.
+> Patching makefiles mean we get an additional maintenance and/or
+> upstreaming burden, but we should be able to do this in ways that are
+> acceptable to upstream. This is our suggestion.
 
-ERROR: Function failed: sgml_common_sstate_postinst (see 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/work/x86_64-linux/sgml-common-native-0.6.3-r0/temp/log.do_populate_sysroot.4701 
-for further information)
-ERROR: Logfile of failure stored in: 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/work/x86_64-linux/sgml-common-native-0.6.3-r0/temp/log.do_populate_sysroot.4701
-Log data follows:
-| DEBUG: Executing python function sstate_task_prefunc
-| DEBUG: Removing manifest: 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux/usr/bin/sgmlwhich
-| DEBUG: Removing manifest: 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux/usr/bin/install-catalog
-| DEBUG: Removing manifest: 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux/usr/share/sgml/xml.dcl
-| DEBUG: Removing manifest: 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux/usr/share/sgml/xml-iso-entities-8879.1986/ISOgrk2.ent
-| DEBUG: Removing manifest: 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux/usr/share/sgml/xml-iso-entities-8879.1986/ISOgrk1.ent
-| DEBUG: Removing manifest: 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux/usr/share/sgml/xml-iso-entities-8879.1986/ISOlat1.ent
-| DEBUG: Removing manifest: 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux/usr/share/sgml/xml-iso-entities-8879.1986/ISOdia.ent
-| DEBUG: Removing manifest: 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux/usr/share/sgml/xml-iso-entities-8879.1986/ISOcyr2.ent
-| DEBUG: Removing manifest: 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux/usr/share/sgml/xml-iso-entities-8879.1986/ISOgrk3.ent
-| DEBUG: Removing manifest: 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux/usr/share/sgml/xml-iso-entities-8879.1986/ISOamsc.ent
-| DEBUG: Removing manifest: 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux/usr/share/sgml/xml-iso-entities-8879.1986/ISOlat2.ent
-| DEBUG: Removing manifest: 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux/usr/share/sgml/xml-iso-entities-8879.1986/ISOnum.ent
-| DEBUG: Removing manifest: 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux/usr/share/sgml/xml-iso-entities-8879.1986/ISOtech.ent
-| DEBUG: Removing manifest: 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux/usr/share/sgml/xml-iso-entities-8879.1986/ISOamsb.ent
-| DEBUG: Removing manifest: 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux/usr/share/sgml/xml-iso-entities-8879.1986/ISOamsr.ent
-| DEBUG: Removing manifest: 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux/usr/share/sgml/xml-iso-entities-8879.1986/ISOamso.ent
-| DEBUG: Removing manifest: 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux/usr/share/sgml/xml-iso-entities-8879.1986/ISOgrk4.ent
-| DEBUG: Removing manifest: 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux/usr/share/sgml/xml-iso-entities-8879.1986/ISOcyr1.ent
-| DEBUG: Removing manifest: 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux/usr/share/sgml/xml-iso-entities-8879.1986/ISOamsa.ent
-| DEBUG: Removing manifest: 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux/usr/share/sgml/xml-iso-entities-8879.1986/ISObox.ent
-| DEBUG: Removing manifest: 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux/usr/share/sgml/xml-iso-entities-8879.1986/ISOpub.ent
-| DEBUG: Removing manifest: 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux/usr/share/sgml/xml-iso-entities-8879.1986/ISOamsn.ent
-| DEBUG: Removing manifest: 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux/usr/share/sgml/xml-iso-entities-8879.1986/catalog
-| DEBUG: Removing manifest: 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux/usr/share/sgml/sgml-iso-entities-8879.1986/ISOgrk2.ent
-| DEBUG: Removing manifest: 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux/usr/share/sgml/sgml-iso-entities-8879.1986/ISOgrk1.ent
-| DEBUG: Removing manifest: 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux/usr/share/sgml/sgml-iso-entities-8879.1986/ISOlat1.ent
-| DEBUG: Removing manifest: 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux/usr/share/sgml/sgml-iso-entities-8879.1986/ISOdia.ent
-| DEBUG: Removing manifest: 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux/usr/share/sgml/sgml-iso-entities-8879.1986/ISOcyr2.ent
-| DEBUG: Removing manifest: 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux/usr/share/sgml/sgml-iso-entities-8879.1986/ISOgrk3.ent
-| DEBUG: Removing manifest: 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux/usr/share/sgml/sgml-iso-entities-8879.1986/ISOamsc.ent
-| DEBUG: Removing manifest: 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux/usr/share/sgml/sgml-iso-entities-8879.1986/ISOlat2.ent
-| DEBUG: Removing manifest: 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux/usr/share/sgml/sgml-iso-entities-8879.1986/ISOnum.ent
-| DEBUG: Removing manifest: 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux/usr/share/sgml/sgml-iso-entities-8879.1986/ISOtech.ent
-| DEBUG: Removing manifest: 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux/usr/share/sgml/sgml-iso-entities-8879.1986/ISOamsb.ent
-| DEBUG: Removing manifest: 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux/usr/share/sgml/sgml-iso-entities-8879.1986/ISOamsr.ent
-| DEBUG: Removing manifest: 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux/usr/share/sgml/sgml-iso-entities-8879.1986/ISOamso.ent
-| DEBUG: Removing manifest: 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux/usr/share/sgml/sgml-iso-entities-8879.1986/ISOgrk4.ent
-| DEBUG: Removing manifest: 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux/usr/share/sgml/sgml-iso-entities-8879.1986/ISOcyr1.ent
-| DEBUG: Removing manifest: 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux/usr/share/sgml/sgml-iso-entities-8879.1986/ISOamsa.ent
-| DEBUG: Removing manifest: 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux/usr/share/sgml/sgml-iso-entities-8879.1986/ISObox.ent
-| DEBUG: Removing manifest: 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux/usr/share/sgml/sgml-iso-entities-8879.1986/ISOpub.ent
-| DEBUG: Removing manifest: 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux/usr/share/sgml/sgml-iso-entities-8879.1986/ISOamsn.ent
-| DEBUG: Removing manifest: 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux/usr/share/sgml/sgml-iso-entities-8879.1986/catalog
-| DEBUG: Removing manifest: 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux/etc/sgml/sgml-ent.cat
-| DEBUG: Removing manifest: 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux/etc/sgml/sgml.conf
-| DEBUG: Removing manifest: 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux/etc/sgml/sgml-docbook.cat
-| DEBUG: Removing manifest: 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux/etc/sgml/catalog
-| DEBUG: Removing manifest: 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux/usr/share/sgml/sgml-iso-entities-8879.1986/
-| DEBUG: Removing manifest: 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux/usr/share/sgml/xml-iso-entities-8879.1986/
-| DEBUG: Removing manifest: 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux/usr/share/sgml/
-| DEBUG: Removing manifest: 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux/usr/share/
-| DEBUG: Removing manifest: 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux/etc/sgml/
-| DEBUG: Removing manifest: 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux/usr/bin/
-| DEBUG: Removing manifest: 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux/etc/
-| DEBUG: Removing manifest: 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux/usr/
-| DEBUG: Python function sstate_task_prefunc finished
-| DEBUG: Executing python function do_populate_sysroot
-| DEBUG: Executing shell function sysroot_stage_all
-| DEBUG: Shell function sysroot_stage_all finished
-| DEBUG: Executing python function relocatable_binaries_preprocess
-| DEBUG: Python function relocatable_binaries_preprocess finished
-| DEBUG: Executing shell function sgml_common_native_mangle
-| DEBUG: Shell function sgml_common_native_mangle finished
-| DEBUG: Python function do_populate_sysroot finished
-| DEBUG: Executing python function do_qa_staging
-| NOTE: QA checking staging
-| DEBUG: Python function do_qa_staging finished
-| DEBUG: Executing python function sstate_task_postfunc
-| DEBUG: Staging files from 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/work/x86_64-linux/sgml-common-native-0.6.3-r0/sysroot-destdir///home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux 
-to /home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux
-| DEBUG: Staging files from 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/work/x86_64-linux/sgml-common-native-0.6.3-r0/sysroot-destdir///home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux 
-to /home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux
-| DEBUG: Staging files from 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/work/x86_64-linux/sgml-common-native-0.6.3-r0/sysroot-destdir///home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux 
-to /home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux
-| DEBUG: Staging files from 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/work/x86_64-linux/sgml-common-native-0.6.3-r0/sysroot-destdir///home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux 
-to /home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux
-| DEBUG: Staging files from 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/work/x86_64-linux/sgml-common-native-0.6.3-r0/sysroot-destdir///home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux 
-to /home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux
-| DEBUG: Staging files from 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/work/x86_64-linux/sgml-common-native-0.6.3-r0/sysroot-destdir///home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux 
-to /home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux
-| DEBUG: Staging files from 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/work/x86_64-linux/sgml-common-native-0.6.3-r0/sysroot-destdir///home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux 
-to /home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux
-| DEBUG: Staging files from 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/work/x86_64-linux/sgml-common-native-0.6.3-r0/sysroot-destdir///home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux 
-to /home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux
-| DEBUG: Staging files from 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/work/x86_64-linux/sgml-common-native-0.6.3-r0/sysroot-destdir///home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux 
-to /home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux
-| DEBUG: Executing shell function sgml_common_sstate_postinst
-| DEBUG: Python function sstate_task_postfunc finished
-| ERROR: Function failed: sgml_common_sstate_postinst (see 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/work/x86_64-linux/sgml-common-native-0.6.3-r0/temp/log.do_populate_sysroot.4701 
-for further information)
-| install-catalog: addition of 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux/etc/sgml/sgml-docbook-dtd-3.1.cat 
-in 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux/etc/sgml/sgml-docbook.cat
-| install-catalog: addition of 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux/etc/sgml/dsssl-docbook-stylesheets.cat 
-in 
-/home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux/etc/sgml/sgml-docbook.cat
-| install-catalog: 
-"/home/jack/Projects/poky-denzil.git/r0005/tmp/sysroots/x86_64-linux/etc/sgml/sgml-docbook-dtd-4.1.cat" 
-does not exist or is empty.
-NOTE: package sgml-common-native-0.6.3-r0: task do_populate_sysroot: Failed
-ERROR: Task 2788 
-(/home/jack/Projects/poky-denzil.git/meta/recipes-devtools/sgml-common/sgml-common-native_0.6.3.bb, 
-do_populate_sysroot) failed with exit code '1'
+There are some good questions here :)
 
-Has the recipe been updated recently or have things moved? Another 
-current issue I am having is that my host distribution does not have 
-find.pl included with Perl any more due to depreciation, could it be 
-something to do with this?
+I think in general, we should be aiming for b) since that falls well
+into some of the ideas below. Upstreams should be amenable to splitting
+these into two targets (assuming "make check" just runs one after the
+other) so we shouldn't have to carry patches in most cases long term.
 
-Regards,
 
--- 
+> 2) Make the test suite appear on target
+> ---------------------------------------
+> The test suite and utilities obviously have to be executable by the
+> target system in order to run. There are a few options for this:
+>
+> a) Copy all test files to the target at test run time, from the build
+> dir, using whatever means available (scp, ftp etc). This limits
+> testing to targets/images with easy automatic file transfer abilities
+> installed.
+>
+> b) NFS mount the build dir to access the full work dir and hence the
+> test code. this limits testing to targets (and images) with network
+> +nfs support. Plus it blends the build env and runtime env in an
+> unpleasant way.
+>
+> c) Create ${PN}-ptest packages (in the model of -dev and -dbg) that
+> contain all test files and add those to the image and hence the
+> rootfs. This is our suggestion.
 
-   Jack Mitchell (jack@embed.me.uk)
-   Embedded Systems Engineer
-   http://www.embed.me.uk
+I like the idea of test packages.
 
---
+> 
+> 3) Run the test suite
+> ---------------------
+> Depending on how the test files are presented to the target, the way
+> we run them can take different shapes:
+>
+> a) (scp) A top-level run-all-tests.sh runs on the build host, copies
+> all test files from build dir to target, logs in and runs each test.
+>
+> b) (nfs) run-all-tests.sh is executed in the nfs-mounted build dir on
+> target and build-runs each test in its work dir.
+>
+> c) (-ptest) Install all test files to /opt/ptest/${PN}-${PV} (for
+> example). Make a package "ptest-runner" that has a
+> script /opt/ptest/run-all-tests to iterate over all installed tests
+> and run them. This is our suggestion.
+
+Can we suitably extract the tests out of the source code to be able to
+do this? I'm worried a little about the maintenance burden but I do like
+option c). 
+
+> 4) Parse the test results
+> -------------------------
+> Just running the tests doesn't give us much. We have to be able to
+> look at the results and make them meaningful to us on a system-global
+> level. Packages present their test results in very different ways, and
+> we need to convert that to a generic format:
+>
+> a) Patch each package test to produce a generic ptest output format.
+> This is likely difficult to get accepted upstream.
+>
+> b) Patch the test code minimally and instead use a simple per-packet
+> translate script that converts test suite output from the
+> package-specific format to a generic ptest format. This is our
+> suggestion.
+>
+> Opinions?
+> 
+I think the approach described is along the right lines. We'll probably
+have to try it and see how it goes. Over time, if upstreams see value in
+standard formats and so on, we may be able to effect some change but
+right now, we need to start somewhere!
+
+I firmly believe working on these areas will add a lot of value to the
+project and attract many more users, as well as help Linux in general so
+its something we should work on.
+
+Cheers,
+
+Richard
+
+
+
 
 
