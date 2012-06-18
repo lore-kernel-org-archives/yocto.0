@@ -1,33 +1,33 @@
-Return-Path: <scott.m.rifenbark@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E3F40E0141D
-	for <yocto@yoctoproject.org>; Mon, 18 Jun 2012 13:54:55 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 18 Jun 2012 13:54:55 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="181758921"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
-	by fmsmga002.fm.intel.com with ESMTP; 18 Jun 2012 13:54:32 -0700
-Received: from orsmsx152.amr.corp.intel.com (10.22.226.39) by
-	orsmsx603.amr.corp.intel.com (10.22.226.49) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Mon, 18 Jun 2012 13:54:31 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.59]) by
-	ORSMSX152.amr.corp.intel.com ([169.254.8.244]) with mapi id
-	14.01.0355.002; Mon, 18 Jun 2012 13:54:31 -0700
-From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>, Yocto discussion list
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] how detailed should yocto dev manual cover BSP?
-Thread-Index: AQHNTZAnxpQJ06MxokyUPg5f06cILpcAjMxQ
-Date: Mon, 18 Jun 2012 20:54:30 +0000
-Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237946A1027D@ORSMSX101.amr.corp.intel.com>
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 31669E0141D
+	for <yocto@yoctoproject.org>; Mon, 18 Jun 2012 13:57:47 -0700 (PDT)
+Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
+	([99.241.91.63]:56072 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.77) (envelope-from <rpjday@crashcourse.ca>)
+	id 1Sgj17-0006gX-I4; Mon, 18 Jun 2012 16:57:46 -0400
+Date: Mon, 18 Jun 2012 16:57:41 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB1237946A1027D@ORSMSX101.amr.corp.intel.com>
+Message-ID: <alpine.DEB.2.02.1206181657220.23310@oneiric>
 References: <alpine.DEB.2.02.1206181621120.22332@oneiric>
-In-Reply-To: <alpine.DEB.2.02.1206181621120.22332@oneiric>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
+	<41DEA4B02DBDEF40A0F3B6D0DDB1237946A1027D@ORSMSX101.amr.corp.intel.com>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Cc: Yocto discussion list <yocto@yoctoproject.org>
 Subject: Re: how detailed should yocto dev manual cover BSP?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -40,51 +40,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 18 Jun 2012 20:54:56 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 18 Jun 2012 20:57:47 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-Hey Robert,=20
+On Mon, 18 Jun 2012, Rifenbark, Scott M wrote:
 
-The BSP Guide currently is focused on the BSP layout, layers, tools, and li=
-censing.  The Development Manual covers more overall development scenarios,=
- of which the BSP is one of them.  That is the rationale at the moment. =20
+> Hey Robert,
+>
+> The BSP Guide currently is focused on the BSP layout, layers, tools,
+> and licensing.  The Development Manual covers more overall
+> development scenarios, of which the BSP is one of them.  That is the
+> rationale at the moment.
 
-Scott=20
-
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Robert P. J. Day
-Sent: Monday, June 18, 2012 1:23 PM
-To: Yocto discussion list
-Subject: [yocto] how detailed should yocto dev manual cover BSP?
-
-
-  diving back into the docs, i see that the current development manual
-claims, "The Yocto Project Development Manual, however, does provide
-detailed examples on how to create a Board Support Package (BSP)..."
-
-  but why?  there *is* a separate BSP guide.  should the reader not be
-referred to the BSP guide for that?
+  ok, i'm good with that.
 
 rday
 
---=20
+-- 
 
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+========================================================================
 Robert P. J. Day                                 Ottawa, Ontario, CANADA
                         http://crashcourse.ca
 
 Twitter:                                       http://twitter.com/rpjday
 LinkedIn:                               http://ca.linkedin.com/in/rpjday
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
+========================================================================
 
