@@ -1,31 +1,30 @@
 Return-Path: <richard.purdie@linuxfoundation.org>
 Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
 	[93.97.173.237])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 02F35E01457
-	for <yocto@yoctoproject.org>; Mon, 18 Jun 2012 04:50:17 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 48F7EE01457
+	for <yocto@yoctoproject.org>; Mon, 18 Jun 2012 05:05:13 -0700 (PDT)
 Received: from localhost (localhost [127.0.0.1])
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q5IBoEG9004823;
-	Mon, 18 Jun 2012 12:50:14 +0100
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q5IC5BPa004915;
+	Mon, 18 Jun 2012 13:05:11 +0100
 Received: from tim.rpsys.net ([127.0.0.1])
 	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
 	port 10024) with LMTP
-	id 18265-07; Mon, 18 Jun 2012 12:50:09 +0100 (BST)
+	id 04750-01; Mon, 18 Jun 2012 13:05:07 +0100 (BST)
 Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q5IBo55R004810
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q5IC528J004900
 	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
-	Mon, 18 Jun 2012 12:50:06 +0100
-Message-ID: <1340020205.8481.15.camel@ted>
+	Mon, 18 Jun 2012 13:05:04 +0100
+Message-ID: <1340021104.8481.18.camel@ted>
 From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Tim Bird <tim.bird@am.sony.com>
-Date: Mon, 18 Jun 2012 12:50:05 +0100
-In-Reply-To: <4FDBA4B8.8000703@am.sony.com>
-References: <4FD93175.7070202@linux.intel.com>
-	<4FD98EA6.1050403@r-finger.com> <4FDBA4B8.8000703@am.sony.com>
+To: Bongseo Jang <graycells@gmail.com>
+Date: Mon, 18 Jun 2012 13:05:04 +0100
+In-Reply-To: <CAKPsnf130xcvUrYE66p0BMjEFpVo48W58rtTWU_7zuLuZshP2g@mail.gmail.com>
+References: <CAKPsnf130xcvUrYE66p0BMjEFpVo48W58rtTWU_7zuLuZshP2g@mail.gmail.com>
 X-Mailer: Evolution 3.2.2- 
 Mime-Version: 1.0
 X-Virus-Scanned: amavisd-new at rpsys.net
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: RFC: poky-tiny: init procedure
+Cc: yocto@yoctoproject.org
+Subject: Re: question about devtools-native tasks
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,29 +36,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 18 Jun 2012 11:50:18 -0000
+X-List-Received-Date: Mon, 18 Jun 2012 12:05:13 -0000
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-On Fri, 2012-06-15 at 14:10 -0700, Tim Bird wrote:
-> One of our early efforts, getting busybox
-> to not fork commands in init scripts that it had as
-> builtins, proved to be a significant feature that is still
-> valuable today to improve boot time.
+On Mon, 2012-06-18 at 20:48 +0900, Bongseo Jang wrote:
+> Hi All,
+>  
+> I'm watching console output of 'bitbake minimal-core-image'
+> It starts with getting native devtools like,
+>  
+> NOTE: Running task 1 of 63 (ID:
+> 11, /home/bsjang/poky/meta/recipes-devtools/quilt/quilt-native_0.60.bb, do_fetch)
+> NOTE: Running task 2 of 63 (ID: 53,
+> virtual:native:/home/bsjang/poky/meta/recipes-devtools/gnu-config/gnu-config_20111111.bb, do_fetch)
+> NOTE: Running task 3 of 63 (ID:
+> 60, /home/bsjang/poky/meta/recipes-devtools/m4/m4-native_1.4.16.bb,
+> do_fetch)
+> NOTE: Running task 4 of 63 (ID: 32,
+> virtual:native:/home/bsjang/poky/meta/recipes-devtools/autoconf/autoconf_2.68.bb, do_fetch)
+> 
+> and then reads bblayers.conf, local.conf and so on which are
+> actually asked to be done by me, right?
+>  
+> I'm wondering 
+>      1) where the dependency on native devtools things are from
+> (source level explanation or overall yocto/poky concept are all
+> welcom) and 
+>      2) can I use native tools which are already installed in my host
+> linux distribution.(i don't want to fetch and compile the same tools
+> again)
 
-I'd add that one thing we did with Poky's init system a while ago was
-went through and for every fork we found, tried to find ways to avoid
-it. Certainly, a few years ago, we were down to about four busybox/shell
-util (grep/sed/cat) forks in the init scripts through to an X desktop.
+In general if its building it, its doing do for a reason. For autoconf
+this is because of our own patches we need, for things like python/perl,
+its because we need the exact same native version to be able to cross
+compile effectively.
 
-I've not looked at this recently but we certainly used to be pretty good
-in that area.
-
-We also source init scripts, not execute them where they have the
-extension .sh, again for performance (less exec overhead). This all
-stayed pretty much compatible with sysvinit and is what we use to this
-day. I appreciate we do need to improve, there is plenty of room for it
-and look at things like systemd.
+There are a small number of things like git-native which its probably
+safe to ASSUME_PROVIDED but those are the exception rather than the
+rule. We do this to ensure the same thing gets build regardless of which
+system its built upon for build reproducibility.
 
 Cheers,
 
