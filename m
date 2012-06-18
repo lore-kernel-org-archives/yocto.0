@@ -1,31 +1,33 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 66165E00746
-	for <yocto@yoctoproject.org>; Mon, 18 Jun 2012 14:13:16 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 18 Jun 2012 14:13:16 -0700
+Return-Path: <song.liu@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 86E18E013F7
+	for <yocto@yoctoproject.org>; Mon, 18 Jun 2012 14:13:41 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 18 Jun 2012 14:13:41 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="159188581"
-Received: from jstreic1-mobl.amr.corp.intel.com (HELO envy.home)
-	([10.7.199.154])
-	by orsmga002.jf.intel.com with ESMTP; 18 Jun 2012 14:13:16 -0700
-Message-ID: <4FDF999E.2030200@linux.intel.com>
-Date: Mon, 18 Jun 2012 14:11:58 -0700
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:13.0) Gecko/20120605 Thunderbird/13.0
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="157838378"
+Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
+	by azsmga001.ch.intel.com with ESMTP; 18 Jun 2012 14:13:41 -0700
+Received: from orsmsx153.amr.corp.intel.com (10.22.226.247) by
+	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Mon, 18 Jun 2012 14:13:40 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.59]) by
+	ORSMSX153.amr.corp.intel.com ([169.254.13.115]) with mapi id
+	14.01.0355.002; Mon, 18 Jun 2012 14:13:40 -0700
+From: "Liu, Song" <song.liu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Agenda: Yocto Project Technical Team Meeting - Tuesday, June
+	19, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+Thread-Index: AQHNTZc7cU0hws7EKUyaps6FmU/5Zw==
+Date: Mon, 18 Jun 2012 21:13:39 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A48448D3D@ORSMSX101.amr.corp.intel.com>
+References: <7E680CB2A76BB8438D08CF13C09FC53A257BE410@ORSMSX101.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.139]
 MIME-Version: 1.0
-To: Khem Raj <raj.khem@gmail.com>
-References: <cover.1340050502.git.dvhart@linux.intel.com>
-	<ca931379d2b30a750ea068558d0040647adcee75.1340050502.git.dvhart@linux.intel.com>
-	<160abe7fb477d772d5563a1b826c307630332a5d.1340050502.git.dvhart@linux.intel.com>
-	<CAMKF1somYK7Qb4kNfXMH=5wh4kaPdt2vi8s-OywAMwHT2T48WQ@mail.gmail.com>
-In-Reply-To: <CAMKF1somYK7Qb4kNfXMH=5wh4kaPdt2vi8s-OywAMwHT2T48WQ@mail.gmail.com>
-X-Enigmail-Version: 1.4.2
-Cc: Yocto Project <yocto@yoctoproject.org>,
-	Paul Eggleton <paul.eggleton@linux.intel.com>,
-	Phil Blundell <philb@gnu.org>
-Subject: Re: [PATCH 2/2] tiny-init: Basic init mechanism for poky-tiny
+Subject: Agenda: Yocto Project Technical Team Meeting - Tuesday, June 19, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,122 +39,131 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 18 Jun 2012 21:13:16 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 18 Jun 2012 21:13:41 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+Agenda:
+=A0
+* Opens collection - 5 min (Song)
+* 1.2.1 update - 5 min (ScottG)
+* 1.1.2 update - 5 min (Josh/Beth)
+* Yocto 1.3 status  - 10 min (Song/team)
+* SWAT team rotation: Dexuan -> Darren
+* Opens - 5 min
+* Team sharing - 20 min
+
+
+-----Original Appointment-----
 
 
 
-On 06/18/2012 02:06 PM, Khem Raj wrote:
->> diff --git a/meta-yocto/recipes-core/tiny-init/files/init b/meta-yocto/recipes-core/tiny-init/files/init
->> new file mode 100644
->> index 0000000..bf2817d
->> --- /dev/null
->> +++ b/meta-yocto/recipes-core/tiny-init/files/init
->> @@ -0,0 +1,21 @@
->> +#!/bin/sh
->> +
->> +# Mount the Linux kernel virtual filesystems
->> +mount none -t proc /proc
->> +mount none -t sysfs /sys
->> +mkdir /dev/pts
->> +mount none -t devpts /dev/pts
->> +
->> +ifup lo
->> +
->> +# Allow for distro or local customizations
->> +if [ -f /etc/rc.local ] ; then
->> +       source /etc/rc.local
->> +fi
->> +
->> +# Become session leader and try to find a real tty (e.g. ttyS0)
->> +while true; do
->> +       setsid cttyhack sh
->> +       echo "Console sh exited with $?, respawning..."
->> +       sleep 1
->> +done
->> diff --git a/meta-yocto/recipes-core/tiny-init/files/rc.local.sample b/meta-yocto/recipes-core/tiny-init/files/rc.local.sample
->> new file mode 100644
->> index 0000000..d9e198a
->> --- /dev/null
->> +++ b/meta-yocto/recipes-core/tiny-init/files/rc.local.sample
->> @@ -0,0 +1,23 @@
->> +#!/bin/sh
->> +
->> +# Start services and customize the boot process here.
->> +echo "Running /etc/rc.local..."
->> +
->> +# Use init scripts included with packages such as dropbear
->> +#/etc/init.d/dropbear start
->> +
->> +# Spawn a getty manually
->> +#setsid /sbin/getty 115200 ttyS2
->> +
->> +# Print a banner
->> +#echo "You are running a poky-tiny image brought to you by the Yocto Project."
->> +
->> +# Setup a debugging environment
->> +#mkdir /debugfs
->> +#mount none -t debugfs /debugfs
->> +
->> +# Load modules (note: linux-yocto-tiny does not have module support by default)
->> +#modprobe yourdriver
->> +
->> +# DO NOT run any long running tasks or loops as these will delay
->> +# the /init script and the console shell.
->> diff --git a/meta-yocto/recipes-core/tiny-init/tiny-init.bb b/meta-yocto/recipes-core/tiny-init/tiny-init.bb
->> new file mode 100644
->> index 0000000..1cf46ed
->> --- /dev/null
->> +++ b/meta-yocto/recipes-core/tiny-init/tiny-init.bb
->> @@ -0,0 +1,26 @@
->> +SUMMARY = "Poky-tiny init"
->> +DESCRIPTION = "Basic init system for poky-tiny"
->> +LICENSE = "MIT"
->> +LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
->> +
->> +PR = "r0"
->> +
->> +SRC_URI = "file://init \
->> +          file://rc.local.sample \
->> +         "
->> +
->> +do_configure() {
->> +       :
->> +}
->> +
->> +do_compile() {
->> +       :
->> +}
->> +
->> +do_install() {
->> +       install -d ${D}${sysconfdir}
->> +       install -m 0755 ${WORKDIR}/init ${D}
->> +       install -m 0755 ${WORKDIR}/rc.local.sample ${D}${sysconfdir}
->> +}
->> +
->> +FILES_${PN} = "/init ${sysconfdir}/rc.local.sample"
->> --
->> 1.7.5.4
->>
-> 
-> 
-> should this recipe rdepend on busybox ? since it uses the binaries from it.?
 
-I suppose so, I wasn't even sure how to build an image WITHOUT busybox -
-but I'm sure it's doable, and the RDEPENDS should reflect the
-dependencies accurately.
+Conference details
+Conference name:=20
+Yocto Technical Team
+Conference date/start time:=20
+Tue Jun 28, 2011 at 10:00 AM Central Daylight Time
+Participants:=20
+30
+Duration:=20
+60 minutes
+Participant passcode:=20
+49611427
+Dial-in number:=20
+1.972.995.7777
+US Toll Free number:=20
+1.877.561.6828
+BlackBerry users, click this link to join your conference as a chairperson:
+1.972.995.7777x67184230#
+BlackBerry users, click this link to join your conference as a participant:
+1.972.995.7777x49611427#
+=A0
+Depending on where you are dialing from, either your BlackBerry will pause =
+and enter the passcode automatically or you will be prompted to click again=
+ to dial the passcode.
 
-I've updated the patch in the branch:
+Local and Global Access Numbers=20
 
-http://git.yoctoproject.org/cgit.cgi/poky-contrib/commit/?h=dvhart/tiny&id=ed5ded75a66c6ae0defaef6301e333615f71d616
 
-Thanks for catching that.
+Country
+Dial-in number
+Australia:=20
+1800 636 843
+Czech Republic:=20
+242 430 350
+China (Beijing):=20
+From office dial 8-9957777 or 8784277
+Beijing Out of Office dial 5878 4277
+China (Shanghai):=20
+From office dial 8-9957777 or 3073322
+Shanghai Out of Office dial 2307 3322
+China (Shenzen):=20
+From office dial 8-9957777 or 6007877
+Shenzen Out of Office dial 2600 7877
+China (Other Cities):=20
+From IP phone dial 8-9957777
+Other cities - Non IP phone dial 021-23073322
+Denmark:=20
+8060 1400
+Finland:=20
+09 41333477
+France:=20
+0497 275888
+Germany:=20
+08161 803232
+Holland:=20
+030 2417490
+India:=20
+BSNL subscribers use 1800 425 9996 (Toll Free) Airtel subscribers use 0008 =
+009 861 212 (Toll Free) From TI Campus use 89957777 Others use 2509 9555 (L=
+andline within Bangalore) or
+80 2509 9555 (Outside Bangalore)
+Israel:=20
+09 790 6715
+Italy:=20
+039 69061234 (039 is local city code not country code)
+Japan:=20
+From TI Campus use 8 995 7777
+Outside TI use 03 4331 3777
+Malaysia:=20
+From IP phone dial 2643799
+From Kuala Lumpur dial 4264 3799
+Outside Kuala Lumpur dial (03)4264 3799
+Norway:=20
+2 295 8744
+Philippines:=20
+From Baguio City use 4471177
+From Metro Manila area use 8702477
+Singapore:=20
+From IP phone dial 3894777
+Outside TI use 6389 4777
+South Korea:=20
+From IP phone dial 5606998
+From Seoul dial 5606998
+Outside Seoul dial (02)5606998
+Sweden:=20
+08 58755577
+Taiwan:=20
+From IP phone dial 1363
+From Taipei dial 2241 1363
+Outside Taipei dial (02)2241 1363
+Turkey:=20
+Landline Only dial 0811 288 0001
+then enter 877 633 1123
+UK:=20
+01604 663003
+US:=20
+972 995 7777 or 1877 561 6828
 
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
+Recurring conferences
+First scheduled conference:=20
+Tue Jun 28, 2011
+Recurrence frequency:=20
+Weekly - Every 1 week(s) on Tuesday
+Recurrence ends:=20
+End on Fri Jun 22, 2012, 10:40 AM CDT
 
 
 
