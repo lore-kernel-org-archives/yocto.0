@@ -1,28 +1,31 @@
-Return-Path: <linux.mrjimorg@gmail.com>
-Received: from mail-gh0-f176.google.com (mail-gh0-f176.google.com
-	[209.85.160.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 25E09E0070B
-	for <yocto@yoctoproject.org>; Mon, 18 Jun 2012 11:58:04 -0700 (PDT)
-Received: by ghbz10 with SMTP id z10so4614570ghb.35
-	for <yocto@yoctoproject.org>; Mon, 18 Jun 2012 11:58:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=FZBdxEtIMkRLDG1LVWMk0HnyodTWUy6CIzFYJA+JbbY=;
-	b=kAwzBLE7eMvAHqqJVKKfNWQPkDvcYfszyK7x5qkpKV9sIVP74ey/tDhDzgyf0sKABd
-	dEJf4lkYBjJj6H3sfdPTQNQ7a2UNwQf264pJswK4kEIP+ecWca+cWCa65r6LcJJGgvSc
-	Di6/gF7OyUD1vOf3AbI8cS8MjyEbM6oHqL85B9AT0o+sa9bqkjYAkk9bHQBsPHz9UXYD
-	S8flsD9XtvKastnT5vk1IwBDcCVOXImHSEXh+gnVYo/UJjGt7U94JD2XqioFroZQKUwd
-	wt6QusrNOgptpwrLfCBMTQ4Tmwu/ussH8HF9lrJPF/nmOKzTX8ObdzkdO328TkGqchO7
-	WyNw==
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2499AE00747
+	for <yocto@yoctoproject.org>; Mon, 18 Jun 2012 13:06:19 -0700 (PDT)
+Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
+	([99.241.91.63]:54884 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.77) (envelope-from <rpjday@crashcourse.ca>)
+	id 1SgiDK-0004sc-Er
+	for yocto@yoctoproject.org; Mon, 18 Jun 2012 16:06:18 -0400
+Date: Mon, 18 Jun 2012 16:06:14 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.DEB.2.02.1206181601550.21862@oneiric>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
-Received: by 10.50.220.136 with SMTP id pw8mr9690560igc.1.1340045883331; Mon,
-	18 Jun 2012 11:58:03 -0700 (PDT)
-Received: by 10.50.170.100 with HTTP; Mon, 18 Jun 2012 11:58:03 -0700 (PDT)
-Date: Mon, 18 Jun 2012 13:58:03 -0500
-Message-ID: <CAH6UwN2LBTKk97jCgq1Z07RWhY0ko3oNVGjHg9tfGW7CkoD=HQ@mail.gmail.com>
-From: Jim Rucker <linux.mrjimorg@gmail.com>
-To: yocto@yoctoproject.org
-Subject: Dependency Tree
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: is there a summary of the proper use of all yocto-related mailing lists?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,27 +37,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 18 Jun 2012 18:58:04 -0000
-Content-Type: multipart/alternative; boundary=bcaec554dec0dbd42904c2c3bedb
+X-List-Received-Date: Mon, 18 Jun 2012 20:06:19 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
---bcaec554dec0dbd42904c2c3bedb
-Content-Type: text/plain; charset=ISO-8859-1
 
-I'm trying to build using the code sourcery external compiler and I noticed
-that it's pulling in qemu. This brings up 2 questions-
-1. Why? Qemu is not a prerequisite for building with GCC and shouldn't be a
-prerequisite for building with CS.
-2. How can I easily generate a dependency tree so I can 'fix' this?
+  given the number of mailing lists related to yocto and its
+components, is there somewhere a decent summary of what topics are
+relevant for what lists?
 
---bcaec554dec0dbd42904c2c3bedb
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+  at last count, i see at least the following lists that relate in one
+form or another to the final yocto project:
 
-I&#39;m trying to build using the code sourcery external compiler and I not=
-iced that it&#39;s pulling in qemu. This brings up 2 questions-=A0<div>1. W=
-hy? Qemu is not a prerequisite for building with GCC and shouldn&#39;t be a=
- prerequisite for building with CS.=A0</div>
-<div>2. How can I easily generate a dependency tree so I can &#39;fix&#39; =
-this?</div>
+* oe-core
+* oe-devel
+* bitbake-devel
+* poky
+* yocto
 
---bcaec554dec0dbd42904c2c3bedb--
+  is there a single page that defines the purpose for each list, and
+the general topics relevant to those lists?  i think that would be
+useful.
+
+rday
+
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
+
