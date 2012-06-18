@@ -1,25 +1,21 @@
-Return-Path: <bjst@giant.haxx.se>
-Received: from giant.haxx.se (giant.haxx.se [80.67.6.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CDDAFE0070B
-	for <yocto@yoctoproject.org>; Mon, 18 Jun 2012 08:04:36 -0700 (PDT)
-Received: from giant.haxx.se (localhost.localdomain [127.0.0.1])
-	by giant.haxx.se (8.14.4/8.14.4/Debian-2) with ESMTP id q5IF4X3X017274
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NOT);
-	Mon, 18 Jun 2012 17:04:33 +0200
-Received: (from bjst@localhost)
-	by giant.haxx.se (8.14.4/8.14.4/Submit) id q5IF4X4b017268;
-	Mon, 18 Jun 2012 17:04:33 +0200
-Date: Mon, 18 Jun 2012 17:04:33 +0200
-From: =?iso-8859-1?Q?Bj=F6rn?= Stenberg <bjst@enea.com>
-To: Richard Purdie <richard.purdie@linuxfoundation.org>
-Message-ID: <20120618150433.GC1646@giant>
-References: <20120614132601.GB29124@giant>
- <1340019794.8481.10.camel@ted>
-MIME-Version: 1.0
-In-Reply-To: <1340019794.8481.10.camel@ted>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-Cc: yocto@yoctoproject.org
-Subject: Re: Discussion: Package testing
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B35A9E0070B
+	for <yocto@yoctoproject.org>; Mon, 18 Jun 2012 10:34:55 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 18 Jun 2012 10:34:55 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="159101407"
+Received: from jstreic1-mobl.amr.corp.intel.com (HELO localhost)
+	([10.7.199.154])
+	by orsmga002.jf.intel.com with ESMTP; 18 Jun 2012 10:34:55 -0700
+From: Darren Hart <dvhart@linux.intel.com>
+To: Yocto Project <yocto@yoctoproject.org>, Tom Zanussi <tom.zanussi@intel.com>
+Date: Mon, 18 Jun 2012 10:33:32 -0700
+Message-Id: <04d35150edf5cb3197a90224fa0b19b3730a9063.1340040795.git.dvhart@linux.intel.com>
+X-Mailer: git-send-email 1.7.10.2
+Cc: Darren Hart <dvhart@linux.intel.com>
+Subject: [PATCH][meta-intel] linux-firmware: Fix FILESEXTRAPATHS typo
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,25 +27,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 18 Jun 2012 15:04:37 -0000
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 18 Jun 2012 17:34:55 -0000
 
-Richard Purdie wrote:
-> > c) (-ptest) Install all test files to /opt/ptest/${PN}-${PV} (for
-> > example). Make a package "ptest-runner" that has a
-> > script /opt/ptest/run-all-tests to iterate over all installed tests
-> > and run them. This is our suggestion.
-> 
-> Can we suitably extract the tests out of the source code to be able to
-> do this? I'm worried a little about the maintenance burden but I do like
-> option c). 
+Add a missing } in the FILESEXTRAPATHS assignment.
 
-Typically the tests don't mix production and test code, since the purpose is to test the production code. Rather the tests are isolated in separate files that we relatively easily can build and install separately from the base package.
+Signed-off-by: Darren Hart <dvhart@linux.intel.com>
+---
+ common/recipes-kernel/linux-firmware/linux-firmware_git.bbappend |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-However, this is still early in the process. We have only processed a limited number of packages yet. We wanted to involve the community early to align our goals and directions.
-
+diff --git a/common/recipes-kernel/linux-firmware/linux-firmware_git.bbappend b/common/recipes-kernel/linux-firmware/linux-firmware_git.bbappend
+index 97e64a5..23bb87f 100644
+--- a/common/recipes-kernel/linux-firmware/linux-firmware_git.bbappend
++++ b/common/recipes-kernel/linux-firmware/linux-firmware_git.bbappend
+@@ -1,4 +1,4 @@
+-FILESEXTRAPATHS_prepend := "${THISDIR/${PN}:"
++FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ 
+ # This exists in Yocto 1.1, but include it here for completeness
+ LIC_FILES_CHKSUM += "file://LICENCE.iwlwifi_firmware;md5=311cc823df5b1be4f00fbf0f17d96a6b"
 -- 
-Björn
+1.7.10.2
+
 
