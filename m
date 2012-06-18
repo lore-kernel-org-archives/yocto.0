@@ -1,33 +1,35 @@
-Return-Path: <jfabernathy@gmail.com>
-Received: from mail-gg0-f176.google.com (mail-gg0-f176.google.com
-	[209.85.161.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CE9FDE0141D
-	for <yocto@yoctoproject.org>; Mon, 18 Jun 2012 14:01:21 -0700 (PDT)
-Received: by ggnk4 with SMTP id k4so4778319ggn.35
-	for <yocto@yoctoproject.org>; Mon, 18 Jun 2012 14:01:21 -0700 (PDT)
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-ee0-f48.google.com (mail-ee0-f48.google.com [74.125.83.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1839FE00746
+	for <yocto@yoctoproject.org>; Mon, 18 Jun 2012 14:06:45 -0700 (PDT)
+Received: by eekb45 with SMTP id b45so2186286eek.35
+	for <yocto@yoctoproject.org>; Mon, 18 Jun 2012 14:06:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=message-id:date:from:user-agent:mime-version:to:subject
-	:content-type; bh=FcEZ7x3VC34STy1QFeke+ChQ8r+BEj9QRNvavFqXyTQ=;
-	b=A/HjFpLqqQxTqtSAQDvjgQYNSm1w1DYYkUpcXMOcPaNGmDkvSGHuJ4iGuby0PfECgh
-	vcZR52LlzWEtliMWAbWDJnikwE5aDERi6U5nifKyHHOTz+cTYN0GCalw9O4ZLvUohrtP
-	3nOoJRogPRcrDtRlMihDxLCRZ10h13btATBGGfeJudOIy6LkBu2pBQeaareWka8saLZD
-	5iwmazrBDBseP9o1OXL/zGJ7Xc9D2PgyfO5d45QqkAMqyJI/Tfzfgg1pKEm4d8VAWQLQ
-	eMCRJQi1VPhsB8WIWBFIizTukVH/SPnBR0zcQI3NStLbmZnmybOGQE3x6EydXJ62jKaV
-	cXJA==
-Received: by 10.101.143.14 with SMTP id v14mr6077158ann.55.1340053281084;
-	Mon, 18 Jun 2012 14:01:21 -0700 (PDT)
-Received: from [10.0.1.54] (nc-184-4-33-55.dhcp.embarqhsd.net. [184.4.33.55])
-	by mx.google.com with ESMTPS id
-	a34sm69190353yhh.0.2012.06.18.14.01.20 (version=SSLv3 cipher=OTHER);
-	Mon, 18 Jun 2012 14:01:20 -0700 (PDT)
-Message-ID: <4FDF9720.7080204@gmail.com>
-Date: Mon, 18 Jun 2012 17:01:20 -0400
-From: jfabernathy <jfabernathy@gmail.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:12.0) Gecko/20120430 Thunderbird/12.0.1
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type:content-transfer-encoding;
+	bh=iXMpuf7RJ4r1d+W446pOeq1BEO5u0+W+rOnlXXKV0D4=;
+	b=hWMoNgJWXROLPG8CAwSw3ZgzcDuulm/fRxh3tOWU/mU8U6kqS8SRe1z7bqj+1ejSWb
+	j3QSgyo1aa92fPn0y5gfZskQUUEkLPEbyYeHk/QsZtz9tSjoCoyhd88agVzex9Ou6Yjm
+	s+OnY6Q0kDr0B1jx8v7QG07raF7XpDaovREHJpq8p3+pNaCJPfGJgkzCk37XakR+KM/C
+	pHZw6V0gnbWgQaGy3hb/pjcNDgHMPo5E29/fDioeDJKAgzx8CBTFeNaw7WK5zE7wPgKl
+	GDc0iCbu83Doot0PyY/N5p+8BZxsLq4wW+1Sgv5JVyPKBqh3ZKSaz8kjJGKbB8LPHUdz
+	ilKQ==
+Received: by 10.14.187.141 with SMTP id y13mr3616837eem.79.1340053604884; Mon,
+	18 Jun 2012 14:06:44 -0700 (PDT)
 MIME-Version: 1.0
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: basic recipe building - iperf
+Received: by 10.14.188.11 with HTTP; Mon, 18 Jun 2012 14:06:14 -0700 (PDT)
+In-Reply-To: <160abe7fb477d772d5563a1b826c307630332a5d.1340050502.git.dvhart@linux.intel.com>
+References: <cover.1340050502.git.dvhart@linux.intel.com>
+	<ca931379d2b30a750ea068558d0040647adcee75.1340050502.git.dvhart@linux.intel.com>
+	<160abe7fb477d772d5563a1b826c307630332a5d.1340050502.git.dvhart@linux.intel.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Mon, 18 Jun 2012 14:06:14 -0700
+Message-ID: <CAMKF1somYK7Qb4kNfXMH=5wh4kaPdt2vi8s-OywAMwHT2T48WQ@mail.gmail.com>
+To: Darren Hart <dvhart@linux.intel.com>
+Cc: Yocto Project <yocto@yoctoproject.org>,
+	Paul Eggleton <paul.eggleton@linux.intel.com>,
+	Phil Blundell <philb@gnu.org>
+Subject: Re: [PATCH 2/2] tiny-init: Basic init mechanism for poky-tiny
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,255 +41,110 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 18 Jun 2012 21:01:22 -0000
-Content-Type: multipart/alternative;
-	boundary="------------050207040603060203050500"
+X-List-Received-Date: Mon, 18 Jun 2012 21:06:46 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
---------------050207040603060203050500
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+> diff --git a/meta-yocto/recipes-core/tiny-init/files/init b/meta-yocto/re=
+cipes-core/tiny-init/files/init
+> new file mode 100644
+> index 0000000..bf2817d
+> --- /dev/null
+> +++ b/meta-yocto/recipes-core/tiny-init/files/init
+> @@ -0,0 +1,21 @@
+> +#!/bin/sh
+> +
+> +# Mount the Linux kernel virtual filesystems
+> +mount none -t proc /proc
+> +mount none -t sysfs /sys
+> +mkdir /dev/pts
+> +mount none -t devpts /dev/pts
+> +
+> +ifup lo
+> +
+> +# Allow for distro or local customizations
+> +if [ -f /etc/rc.local ] ; then
+> + =C2=A0 =C2=A0 =C2=A0 source /etc/rc.local
+> +fi
+> +
+> +# Become session leader and try to find a real tty (e.g. ttyS0)
+> +while true; do
+> + =C2=A0 =C2=A0 =C2=A0 setsid cttyhack sh
+> + =C2=A0 =C2=A0 =C2=A0 echo "Console sh exited with $?, respawning..."
+> + =C2=A0 =C2=A0 =C2=A0 sleep 1
+> +done
+> diff --git a/meta-yocto/recipes-core/tiny-init/files/rc.local.sample b/me=
+ta-yocto/recipes-core/tiny-init/files/rc.local.sample
+> new file mode 100644
+> index 0000000..d9e198a
+> --- /dev/null
+> +++ b/meta-yocto/recipes-core/tiny-init/files/rc.local.sample
+> @@ -0,0 +1,23 @@
+> +#!/bin/sh
+> +
+> +# Start services and customize the boot process here.
+> +echo "Running /etc/rc.local..."
+> +
+> +# Use init scripts included with packages such as dropbear
+> +#/etc/init.d/dropbear start
+> +
+> +# Spawn a getty manually
+> +#setsid /sbin/getty 115200 ttyS2
+> +
+> +# Print a banner
+> +#echo "You are running a poky-tiny image brought to you by the Yocto Pro=
+ject."
+> +
+> +# Setup a debugging environment
+> +#mkdir /debugfs
+> +#mount none -t debugfs /debugfs
+> +
+> +# Load modules (note: linux-yocto-tiny does not have module support by d=
+efault)
+> +#modprobe yourdriver
+> +
+> +# DO NOT run any long running tasks or loops as these will delay
+> +# the /init script and the console shell.
+> diff --git a/meta-yocto/recipes-core/tiny-init/tiny-init.bb b/meta-yocto/=
+recipes-core/tiny-init/tiny-init.bb
+> new file mode 100644
+> index 0000000..1cf46ed
+> --- /dev/null
+> +++ b/meta-yocto/recipes-core/tiny-init/tiny-init.bb
+> @@ -0,0 +1,26 @@
+> +SUMMARY =3D "Poky-tiny init"
+> +DESCRIPTION =3D "Basic init system for poky-tiny"
+> +LICENSE =3D "MIT"
+> +LIC_FILES_CHKSUM =3D "file://${COREBASE}/meta/COPYING.MIT;md5=3D3da9cfbc=
+b788c80a0384361b4de20420"
+> +
+> +PR =3D "r0"
+> +
+> +SRC_URI =3D "file://init \
+> + =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0file://rc.local.sample \
+> + =C2=A0 =C2=A0 =C2=A0 =C2=A0 "
+> +
+> +do_configure() {
+> + =C2=A0 =C2=A0 =C2=A0 :
+> +}
+> +
+> +do_compile() {
+> + =C2=A0 =C2=A0 =C2=A0 :
+> +}
+> +
+> +do_install() {
+> + =C2=A0 =C2=A0 =C2=A0 install -d ${D}${sysconfdir}
+> + =C2=A0 =C2=A0 =C2=A0 install -m 0755 ${WORKDIR}/init ${D}
+> + =C2=A0 =C2=A0 =C2=A0 install -m 0755 ${WORKDIR}/rc.local.sample ${D}${s=
+ysconfdir}
+> +}
+> +
+> +FILES_${PN} =3D "/init ${sysconfdir}/rc.local.sample"
+> --
+> 1.7.5.4
+>
 
-I needed to do some network performance testing on a Crownbay board and 
-needed iperf in that environment.  Since I had the core-image-sato-sdk 
-image created, I just booted that and took the tarball from Sourceforge 
-and built it  per the readme file instructions:
 
-./configure
-make
-make install
+should this recipe rdepend on busybox ? since it uses the binaries from it.=
+?
 
-After I completed my test, I thought about why not put that in my list 
-of personal recipes.  I found the previous version of iperf in the 
-openembedded collection of benchmark recipes and just copied it over.  
-It built and worked fine.  There were a lot of items in the .bb that I 
-didn't understand, so I thought for fun I'd just try to build a recipe 
-for iperf 2.0.5 and see what happened.  My recipe is simple, mostly 
-taken from the openembedded 2.0.4 version had stripped down:
------------------------------
-DESCRIPTION = "Iperf is a tool to measure maximum TCP bandwidth, 
-allowing the tuning of various parameters and UDP characteristics"
-HOMEPAGE = "http://dast.nlanr.net/Projects/Iperf/"
-SECTION = "console/network"
-LICENSE = "NewBSD"
-LIC_FILES_CHKSUM = "file://COPYING;md5=e8478eae9f479e39bc34975193360298"
-
-SRC_URI = " \
-     ${SOURCEFORGE_MIRROR}/iperf/iperf-${PV}.tar.gz \
-            "
-SRC_URI[md5sum] = "44b5536b67719f4250faed632a3cd016"
-SRC_URI[sha256sum] = 
-"636b4eff0431cea80667ea85a67ce4c68698760a9837e1e9d13096d20362265b"
-
-inherit autotools*
-*
------------------------
-A lot of it worked, but I seem to have an install error on the man 
-files.  Can anyone see what is wrong based on the log below:
-
-DEBUG: SITE files ['endian-little', 'bit-32', 'ix86-common', 
-'common-linux', 'common-glibc', 'i586-linux', 'common']
-ERROR: Function failed: do_install (see 
-/build/crownbay-denzil/tmp/work/core2-poky-linux/iperf-2.0.5-r0/temp/log.do_install.12443 
-for further information)
-NOTE: make -j 8 
-DESTDIR=/build/crownbay-denzil/tmp/work/core2-poky-linux/iperf-2.0.5-r0/image 
-install
-Making install in compat
-make[1]: Entering directory 
-`/build/crownbay-denzil/tmp/work/core2-poky-linux/iperf-2.0.5-r0/iperf-2.0.5/compat'
-make[2]: Entering directory 
-`/build/crownbay-denzil/tmp/work/core2-poky-linux/iperf-2.0.5-r0/iperf-2.0.5/compat'
-make[2]: Nothing to be done for `install-exec-am'.
-make[2]: Nothing to be done for `install-data-am'.
-make[2]: Leaving directory 
-`/build/crownbay-denzil/tmp/work/core2-poky-linux/iperf-2.0.5-r0/iperf-2.0.5/compat'
-make[1]: Leaving directory 
-`/build/crownbay-denzil/tmp/work/core2-poky-linux/iperf-2.0.5-r0/iperf-2.0.5/compat'
-Making install in doc
-make[1]: Entering directory 
-`/build/crownbay-denzil/tmp/work/core2-poky-linux/iperf-2.0.5-r0/iperf-2.0.5/doc'
-make[2]: Entering directory 
-`/build/crownbay-denzil/tmp/work/core2-poky-linux/iperf-2.0.5-r0/iperf-2.0.5/doc'
-make[2]: Nothing to be done for `install-exec-am'.
-make[2]: Nothing to be done for `install-data-am'.
-make[2]: Leaving directory 
-`/build/crownbay-denzil/tmp/work/core2-poky-linux/iperf-2.0.5-r0/iperf-2.0.5/doc'
-make[1]: Leaving directory 
-`/build/crownbay-denzil/tmp/work/core2-poky-linux/iperf-2.0.5-r0/iperf-2.0.5/doc'
-Making install in include
-make[1]: Entering directory 
-`/build/crownbay-denzil/tmp/work/core2-poky-linux/iperf-2.0.5-r0/iperf-2.0.5/include'
-make[2]: Entering directory 
-`/build/crownbay-denzil/tmp/work/core2-poky-linux/iperf-2.0.5-r0/iperf-2.0.5/include'
-make[2]: Nothing to be done for `install-exec-am'.
-make[2]: Nothing to be done for `install-data-am'.
-make[2]: Leaving directory 
-`/build/crownbay-denzil/tmp/work/core2-poky-linux/iperf-2.0.5-r0/iperf-2.0.5/include'
-make[1]: Leaving directory 
-`/build/crownbay-denzil/tmp/work/core2-poky-linux/iperf-2.0.5-r0/iperf-2.0.5/include'
-Making install in src
-make[1]: Entering directory 
-`/build/crownbay-denzil/tmp/work/core2-poky-linux/iperf-2.0.5-r0/iperf-2.0.5/src'
-make[2]: Entering directory 
-`/build/crownbay-denzil/tmp/work/core2-poky-linux/iperf-2.0.5-r0/iperf-2.0.5/src'
-test -z "/usr/bin" || /bin/mkdir -p 
-"/build/crownbay-denzil/tmp/work/core2-poky-linux/iperf-2.0.5-r0/image/usr/bin"
-make[2]: Nothing to be done for `install-data-am'.
-   /usr/bin/install -c iperf 
-'/build/crownbay-denzil/tmp/work/core2-poky-linux/iperf-2.0.5-r0/image/usr/bin'
-make[2]: Leaving directory 
-`/build/crownbay-denzil/tmp/work/core2-poky-linux/iperf-2.0.5-r0/iperf-2.0.5/src'
-make[1]: Leaving directory 
-`/build/crownbay-denzil/tmp/work/core2-poky-linux/iperf-2.0.5-r0/iperf-2.0.5/src'
-Making install in man
-make[1]: Entering directory 
-`/build/crownbay-denzil/tmp/work/core2-poky-linux/iperf-2.0.5-r0/iperf-2.0.5/man'
-make[2]: Entering directory 
-`/build/crownbay-denzil/tmp/work/core2-poky-linux/iperf-2.0.5-r0/iperf-2.0.5/man'
-make[2]: Nothing to be done for `install-exec-am'.
-test -z "/usr/share/man/man1" || /bin/mkdir -p 
-"/build/crownbay-denzil/tmp/work/core2-poky-linux/iperf-2.0.5-r0/image/usr/share/man/man1"
-  /usr/bin/install -c -m 644 iperf.1 iperf.1 
-'/build/crownbay-denzil/tmp/work/core2-poky-linux/iperf-2.0.5-r0/image/usr/share/man/man1'
-*/usr/bin/install: will not overwrite just-created 
-`/build/crownbay-denzil/tmp/work/core2-poky-linux/iperf-2.0.5-r0/image/usr/share/man/man1/iperf.1' 
-with `iperf.1'
-make[2]: *** [install-man1] Error 1*
-make[2]: Leaving directory 
-`/build/crownbay-denzil/tmp/work/core2-poky-linux/iperf-2.0.5-r0/iperf-2.0.5/man'
-make[1]: *** [install-am] Error 2
-make[1]: Leaving directory 
-`/build/crownbay-denzil/tmp/work/core2-poky-linux/iperf-2.0.5-r0/iperf-2.0.5/man'
-make: *** [install-recursive] Error 1
-ERROR: oe_runmake failed
-
---------------050207040603060203050500
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
-
-<html>
-  <head>
-
-    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    I needed to do some network performance testing on a Crownbay board
-    and needed iperf in that environment.&nbsp; Since I had the
-    core-image-sato-sdk image created, I just booted that and took the
-    tarball from Sourceforge and built it&nbsp; per the readme file
-    instructions:<br>
-    <br>
-    ./configure<br>
-    make<br>
-    make install<br>
-    <br>
-    After I completed my test, I thought about why not put that in my
-    list of personal recipes.&nbsp; I found the previous version of iperf in
-    the openembedded collection of benchmark recipes and just copied it
-    over.&nbsp; It built and worked fine.&nbsp; There were a lot of items in the
-    .bb that I didn't understand, so I thought for fun I'd just try to
-    build a recipe for iperf 2.0.5 and see what happened.&nbsp; My recipe is
-    simple, mostly taken from the openembedded 2.0.4 version had
-    stripped down:<br>
-    -----------------------------<br>
-    DESCRIPTION = "Iperf is a tool to measure maximum TCP bandwidth,
-    allowing the tuning of various parameters and UDP characteristics"<br>
-    HOMEPAGE = <a class="moz-txt-link-rfc2396E" href="http://dast.nlanr.net/Projects/Iperf/">"http://dast.nlanr.net/Projects/Iperf/"</a><br>
-    SECTION = "console/network"<br>
-    LICENSE = "NewBSD"<br>
-    LIC_FILES_CHKSUM =
-    <a class="moz-txt-link-rfc2396E" href="file://COPYING;md5=e8478eae9f479e39bc34975193360298">"file://COPYING;md5=e8478eae9f479e39bc34975193360298"</a><br>
-    <br>
-    SRC_URI = " \<br>
-    &nbsp;&nbsp;&nbsp; ${SOURCEFORGE_MIRROR}/iperf/iperf-${PV}.tar.gz \<br>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; "<br>
-    SRC_URI[md5sum] = "44b5536b67719f4250faed632a3cd016"<br>
-    SRC_URI[sha256sum] =
-    "636b4eff0431cea80667ea85a67ce4c68698760a9837e1e9d13096d20362265b"<br>
-    <br>
-    inherit autotools<b><br>
-    </b><br>
-    -----------------------<br>
-    A lot of it worked, but I seem to have an install error on the man
-    files.&nbsp; Can anyone see what is wrong based on the log below:<br>
-    <br>
-    DEBUG: SITE files ['endian-little', 'bit-32', 'ix86-common',
-    'common-linux', 'common-glibc', 'i586-linux', 'common']<br>
-    ERROR: Function failed: do_install (see
-    /build/crownbay-denzil/tmp/work/core2-poky-linux/iperf-2.0.5-r0/temp/log.do_install.12443
-    for further information)<br>
-    NOTE: make -j 8
-    DESTDIR=/build/crownbay-denzil/tmp/work/core2-poky-linux/iperf-2.0.5-r0/image
-    install<br>
-    Making install in compat<br>
-    make[1]: Entering directory
-`/build/crownbay-denzil/tmp/work/core2-poky-linux/iperf-2.0.5-r0/iperf-2.0.5/compat'<br>
-    make[2]: Entering directory
-`/build/crownbay-denzil/tmp/work/core2-poky-linux/iperf-2.0.5-r0/iperf-2.0.5/compat'<br>
-    make[2]: Nothing to be done for `install-exec-am'.<br>
-    make[2]: Nothing to be done for `install-data-am'.<br>
-    make[2]: Leaving directory
-`/build/crownbay-denzil/tmp/work/core2-poky-linux/iperf-2.0.5-r0/iperf-2.0.5/compat'<br>
-    make[1]: Leaving directory
-`/build/crownbay-denzil/tmp/work/core2-poky-linux/iperf-2.0.5-r0/iperf-2.0.5/compat'<br>
-    Making install in doc<br>
-    make[1]: Entering directory
-`/build/crownbay-denzil/tmp/work/core2-poky-linux/iperf-2.0.5-r0/iperf-2.0.5/doc'<br>
-    make[2]: Entering directory
-`/build/crownbay-denzil/tmp/work/core2-poky-linux/iperf-2.0.5-r0/iperf-2.0.5/doc'<br>
-    make[2]: Nothing to be done for `install-exec-am'.<br>
-    make[2]: Nothing to be done for `install-data-am'.<br>
-    make[2]: Leaving directory
-`/build/crownbay-denzil/tmp/work/core2-poky-linux/iperf-2.0.5-r0/iperf-2.0.5/doc'<br>
-    make[1]: Leaving directory
-`/build/crownbay-denzil/tmp/work/core2-poky-linux/iperf-2.0.5-r0/iperf-2.0.5/doc'<br>
-    Making install in include<br>
-    make[1]: Entering directory
-`/build/crownbay-denzil/tmp/work/core2-poky-linux/iperf-2.0.5-r0/iperf-2.0.5/include'<br>
-    make[2]: Entering directory
-`/build/crownbay-denzil/tmp/work/core2-poky-linux/iperf-2.0.5-r0/iperf-2.0.5/include'<br>
-    make[2]: Nothing to be done for `install-exec-am'.<br>
-    make[2]: Nothing to be done for `install-data-am'.<br>
-    make[2]: Leaving directory
-`/build/crownbay-denzil/tmp/work/core2-poky-linux/iperf-2.0.5-r0/iperf-2.0.5/include'<br>
-    make[1]: Leaving directory
-`/build/crownbay-denzil/tmp/work/core2-poky-linux/iperf-2.0.5-r0/iperf-2.0.5/include'<br>
-    Making install in src<br>
-    make[1]: Entering directory
-`/build/crownbay-denzil/tmp/work/core2-poky-linux/iperf-2.0.5-r0/iperf-2.0.5/src'<br>
-    make[2]: Entering directory
-`/build/crownbay-denzil/tmp/work/core2-poky-linux/iperf-2.0.5-r0/iperf-2.0.5/src'<br>
-    test -z "/usr/bin" || /bin/mkdir -p
-"/build/crownbay-denzil/tmp/work/core2-poky-linux/iperf-2.0.5-r0/image/usr/bin"<br>
-    make[2]: Nothing to be done for `install-data-am'.<br>
-    &nbsp; /usr/bin/install -c iperf
-'/build/crownbay-denzil/tmp/work/core2-poky-linux/iperf-2.0.5-r0/image/usr/bin'<br>
-    make[2]: Leaving directory
-`/build/crownbay-denzil/tmp/work/core2-poky-linux/iperf-2.0.5-r0/iperf-2.0.5/src'<br>
-    make[1]: Leaving directory
-`/build/crownbay-denzil/tmp/work/core2-poky-linux/iperf-2.0.5-r0/iperf-2.0.5/src'<br>
-    Making install in man<br>
-    make[1]: Entering directory
-`/build/crownbay-denzil/tmp/work/core2-poky-linux/iperf-2.0.5-r0/iperf-2.0.5/man'<br>
-    make[2]: Entering directory
-`/build/crownbay-denzil/tmp/work/core2-poky-linux/iperf-2.0.5-r0/iperf-2.0.5/man'<br>
-    make[2]: Nothing to be done for `install-exec-am'.<br>
-    test -z "/usr/share/man/man1" || /bin/mkdir -p
-"/build/crownbay-denzil/tmp/work/core2-poky-linux/iperf-2.0.5-r0/image/usr/share/man/man1"<br>
-    &nbsp;/usr/bin/install -c -m 644 iperf.1 iperf.1
-'/build/crownbay-denzil/tmp/work/core2-poky-linux/iperf-2.0.5-r0/image/usr/share/man/man1'<br>
-    <b>/usr/bin/install: will not overwrite just-created
-      `/build/crownbay-denzil/tmp/work/core2-poky-linux/iperf-2.0.5-r0/image/usr/share/man/man1/iperf.1'
-      with `iperf.1'<br>
-      make[2]: *** [install-man1] Error 1</b><br>
-    make[2]: Leaving directory
-`/build/crownbay-denzil/tmp/work/core2-poky-linux/iperf-2.0.5-r0/iperf-2.0.5/man'<br>
-    make[1]: *** [install-am] Error 2<br>
-    make[1]: Leaving directory
-`/build/crownbay-denzil/tmp/work/core2-poky-linux/iperf-2.0.5-r0/iperf-2.0.5/man'<br>
-    make: *** [install-recursive] Error 1<br>
-    ERROR: oe_runmake failed<br>
-  </body>
-</html>
-
---------------050207040603060203050500--
