@@ -1,32 +1,37 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 36CB1E00746
-	for <yocto@yoctoproject.org>; Mon, 18 Jun 2012 14:25:10 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 18 Jun 2012 14:25:09 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="159192319"
-Received: from jstreic1-mobl.amr.corp.intel.com (HELO envy.home)
-	([10.7.199.154])
-	by orsmga002.jf.intel.com with ESMTP; 18 Jun 2012 14:25:09 -0700
-Message-ID: <4FDF9C68.9020803@linux.intel.com>
-Date: Mon, 18 Jun 2012 14:23:52 -0700
-From: Darren Hart <dvhart@linux.intel.com>
+Return-Path: <jfabernathy@gmail.com>
+Received: from mail-yx0-f176.google.com (mail-yx0-f176.google.com
+	[209.85.213.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2873DE013F7
+	for <yocto@yoctoproject.org>; Mon, 18 Jun 2012 14:29:47 -0700 (PDT)
+Received: by yenl5 with SMTP id l5so4301337yen.35
+	for <yocto@yoctoproject.org>; Mon, 18 Jun 2012 14:29:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=message-id:date:from:user-agent:mime-version:to:cc:subject
+	:references:in-reply-to:content-type:content-transfer-encoding;
+	bh=/bkprPXJmFaJFDGuGjTgoTXzD+r/sRJ19nxLBD+DQvA=;
+	b=ERDFGhiOzMdrq9QNte8T0LNTtUt0cURsEPQoR1mcfc6nGJUgVKqMEdxv3n28TGhxtP
+	+u7hRXWUNSRpHjI/bd8Kot5P2qppTIYr7fhEVH4Fij/F9zi4MnAhWVb//v61FW/YLly2
+	IPQQzBMgcgCxPH9k/n5nsechX3wX2s2ejgikYqKHujWtB1/H/AagbmNjnn1JUZ3tHLul
+	4sIOkMMESrZ8DyrYSSIzRJKJ8mUONHoYqUQtf0X03dcu+pE1EXmxSTYTcxXnyTvbuB1B
+	BV+6pcd8f+tO39T/MBb2vX3cVuOLWrLzRRnfugJZhBtaEVmUcq5qtFU0uUngsqsrIzlr
+	Y96A==
+Received: by 10.236.190.5 with SMTP id d5mr19848827yhn.49.1340054986562;
+	Mon, 18 Jun 2012 14:29:46 -0700 (PDT)
+Received: from [10.0.1.54] (nc-184-4-33-55.dhcp.embarqhsd.net. [184.4.33.55])
+	by mx.google.com with ESMTPS id
+	e19sm31810920ann.10.2012.06.18.14.29.45 (version=SSLv3 cipher=OTHER);
+	Mon, 18 Jun 2012 14:29:46 -0700 (PDT)
+Message-ID: <4FDF9DC9.1000805@gmail.com>
+Date: Mon, 18 Jun 2012 17:29:45 -0400
+From: jfabernathy <jfabernathy@gmail.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:13.0) Gecko/20120605 Thunderbird/13.0
+	rv:12.0) Gecko/20120430 Thunderbird/12.0.1
 MIME-Version: 1.0
-To: Martin Jansa <martin.jansa@gmail.com>
-References: <cover.1340050502.git.dvhart@linux.intel.com>
-	<ca931379d2b30a750ea068558d0040647adcee75.1340050502.git.dvhart@linux.intel.com>
-	<160abe7fb477d772d5563a1b826c307630332a5d.1340050502.git.dvhart@linux.intel.com>
-	<CAMKF1somYK7Qb4kNfXMH=5wh4kaPdt2vi8s-OywAMwHT2T48WQ@mail.gmail.com>
-	<4FDF999E.2030200@linux.intel.com>
-	<20120618211807.GM3178@jama.jama.net>
-In-Reply-To: <20120618211807.GM3178@jama.jama.net>
-X-Enigmail-Version: 1.4.2
-Cc: Yocto Project <yocto@yoctoproject.org>, Phil Blundell <philb@gnu.org>,
-	Paul Eggleton <paul.eggleton@linux.intel.com>
-Subject: Re: [PATCH 2/2] tiny-init: Basic init mechanism for poky-tiny
+To: Marc Ferland <ferlandm@sonatest.com>
+References: <4FDF9720.7080204@gmail.com> <87lijkuxir.fsf@sonatest.com>
+In-Reply-To: <87lijkuxir.fsf@sonatest.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: basic recipe building - iperf
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,112 +43,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 18 Jun 2012 21:25:10 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Mon, 18 Jun 2012 21:29:47 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
------BEGIN PGP SIGNED MESSAGE-----
-Hash: SHA1
-
-
-
-On 06/18/2012 02:18 PM, Martin Jansa wrote:
-> On Mon, Jun 18, 2012 at 02:11:58PM -0700, Darren Hart wrote:
->> 
->> 
->> On 06/18/2012 02:06 PM, Khem Raj wrote:
->>>> diff --git a/meta-yocto/recipes-core/tiny-init/files/init
->>>> b/meta-yocto/recipes-core/tiny-init/files/init new file mode
->>>> 100644 index 0000000..bf2817d --- /dev/null +++
->>>> b/meta-yocto/recipes-core/tiny-init/files/init @@ -0,0 +1,21
->>>> @@ +#!/bin/sh + +# Mount the Linux kernel virtual
->>>> filesystems +mount none -t proc /proc +mount none -t sysfs
->>>> /sys +mkdir /dev/pts +mount none -t devpts /dev/pts + +ifup
->>>> lo + +# Allow for distro or local customizations +if [ -f
->>>> /etc/rc.local ] ; then +       source /etc/rc.local +fi + +#
->>>> Become session leader and try to find a real tty (e.g.
->>>> ttyS0) +while true; do +       setsid cttyhack sh +
->>>> echo "Console sh exited with $?, respawning..." +       sleep
->>>> 1 +done diff --git
->>>> a/meta-yocto/recipes-core/tiny-init/files/rc.local.sample
->>>> b/meta-yocto/recipes-core/tiny-init/files/rc.local.sample new
->>>> file mode 100644 index 0000000..d9e198a --- /dev/null +++
->>>> b/meta-yocto/recipes-core/tiny-init/files/rc.local.sample @@
->>>> -0,0 +1,23 @@ +#!/bin/sh + +# Start services and customize
->>>> the boot process here. +echo "Running /etc/rc.local..." + +#
->>>> Use init scripts included with packages such as dropbear 
->>>> +#/etc/init.d/dropbear start + +# Spawn a getty manually 
->>>> +#setsid /sbin/getty 115200 ttyS2 + +# Print a banner +#echo
->>>> "You are running a poky-tiny image brought to you by the
->>>> Yocto Project." + +# Setup a debugging environment +#mkdir
->>>> /debugfs +#mount none -t debugfs /debugfs + +# Load modules
->>>> (note: linux-yocto-tiny does not have module support by
->>>> default) +#modprobe yourdriver + +# DO NOT run any long
->>>> running tasks or loops as these will delay +# the /init
->>>> script and the console shell. diff --git
->>>> a/meta-yocto/recipes-core/tiny-init/tiny-init.bb
->>>> b/meta-yocto/recipes-core/tiny-init/tiny-init.bb new file
->>>> mode 100644 index 0000000..1cf46ed --- /dev/null +++
->>>> b/meta-yocto/recipes-core/tiny-init/tiny-init.bb @@ -0,0
->>>> +1,26 @@ +SUMMARY = "Poky-tiny init" +DESCRIPTION = "Basic
->>>> init system for poky-tiny" +LICENSE = "MIT" +LIC_FILES_CHKSUM
->>>> =
->>>> "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
->>>>
->>>> 
-+
->>>> +PR = "r0" + +SRC_URI = "file://init \ +
->>>> file://rc.local.sample \ +         " + +do_configure() { +
->>>> : +} + +do_compile() { +       : +} + +do_install() { +
->>>> install -d ${D}${sysconfdir} +       install -m 0755
->>>> ${WORKDIR}/init ${D} +       install -m 0755
->>>> ${WORKDIR}/rc.local.sample ${D}${sysconfdir} +} + 
->>>> +FILES_${PN} = "/init ${sysconfdir}/rc.local.sample" -- 
->>>> 1.7.5.4
->>>> 
->>> 
->>> 
->>> should this recipe rdepend on busybox ? since it uses the
->>> binaries from it.?
->> 
->> I suppose so, I wasn't even sure how to build an image WITHOUT
->> busybox - but I'm sure it's doable, and the RDEPENDS should
->> reflect the dependencies accurately.
->> 
->> I've updated the patch in the branch:
->> 
->> http://git.yoctoproject.org/cgit.cgi/poky-contrib/commit/?h=dvhart/tiny&id=ed5ded75a66c6ae0defaef6301e333615f71d616
+On 06/18/2012 05:21 PM, Marc Ferland wrote:
+> jfabernathy<jfabernathy@gmail.com>  writes:
 >
->> 
-> RDEPENDS = "busybox"
-> 
-> is wrong (missing _${PN} at least) and what if someone is using
+>>     I needed to do some network performance testing on a Crownbay board and
+>>     needed iperf in that environment.  Since I had the core-image-sato-sdk
+>>     image created, I just booted that and took the tarball from Sourceforge
+>>     and built it  per the readme file instructions:
+>>     ./configure
+>>     make
+>>     make install
+>>     After I completed my test, I thought about why not put that in my list
+>>     of personal recipes.  I found the previous version of iperf in the
+>>     openembedded collection of benchmark recipes and just copied it over.
+>>     It built and worked fine.  There were a lot of items in the .bb that I
+>>     didn't understand, so I thought for fun I'd just try to build a recipe
+>>     for iperf 2.0.5 and see what happened.  My recipe is simple, mostly
+>>     taken from the openembedded 2.0.4 version had stripped down:
+> Hi JF,
+>
+> I add the same problem you had with the man page stuff, try this patch.
+>
+> Marc
+thanks, that patch fixed it from a build point of view. now I'll build 
+the image again and see what happens on the hardware.
 
-Ugh, right. Thanks :/ Fixed on the branch again, rebuilt, and tested.
+Jim A
 
-http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/commit/?h=dvhart/tiny&id=137524d2475382a700bd33b88d0e959553677ef2
-
-> tiny-init in image with coreutils/util-linux/whatever is needed to 
-> execute /init without busybox?
-
-cttyhack is a busybox specific tool.
-
-- -- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
-
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.12 (GNU/Linux)
-Comment: Using GnuPG with Mozilla - http://enigmail.mozdev.org/
-
-iQEcBAEBAgAGBQJP35xoAAoJEKbMaAwKp364gSgH/RZXbwH68BuvuVyYYSm9yoxJ
-0Hu2EwSfY+SlbfWPASVkWMO72yiyRiyv7Ly3w2KH9ncpv8ZlwIioyLoc9v8zAR3V
-tXiRVpm65xXmikCzI2iwdt2iVm+ql7ys+f+oUvYJw5QRw1uYVQbQMgKflbXr+eJO
-PBEh3noDayx9duSCfwMa9eBPJebCmgazYAtHGy4YkEsWuthlLCDTntNZR1X3yhlL
-R6txtywXfWePykVKfpch0dj4kTAU88NGq4kxrZPUIlNargQSUsanDrBZ67R4VUPv
-/F9k+gflrHbUmxhLdjMC8qcGk+98gfz4aLl1AbUAZ4+UymN3GsV5mPhz6LHcKtQ=
-=41cN
------END PGP SIGNATURE-----
 
