@@ -1,31 +1,35 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 13C95E00746
-	for <yocto@yoctoproject.org>; Tue, 19 Jun 2012 02:44:00 -0700 (PDT)
-Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
-	([99.241.91.63]:60194 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.77) (envelope-from <rpjday@crashcourse.ca>)
-	id 1Sguyd-0004nN-Fg
-	for yocto@yoctoproject.org; Tue, 19 Jun 2012 05:43:59 -0400
-Date: Tue, 19 Jun 2012 05:43:51 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.DEB.2.02.1206190542390.29025@oneiric>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <jfabernathy@gmail.com>
+Received: from mail-ob0-f176.google.com (mail-ob0-f176.google.com
+	[209.85.214.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 54144E00746
+	for <yocto@yoctoproject.org>; Tue, 19 Jun 2012 02:54:18 -0700 (PDT)
+Received: by obbwd18 with SMTP id wd18so7667683obb.35
+	for <yocto@yoctoproject.org>; Tue, 19 Jun 2012 02:54:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=rWgpKUW00w5zaj9yD5ss2OIX5GdxCTWoTnDeNhUAkv0=;
+	b=GtzoXX3UpMxJ2sOQqicOf0K3S0c+VvSSmqTCXKuMo5C0o7SoJboJ9hNwSFF7tIE7yc
+	QNhwKfmtnlzVrb8m9bqkb+jwArwZIVJh0/pHlkwmtcNkhB3FwdsLSggy3g8QkosEgcQ8
+	+bqxl2mocQrY2duLwYOb9H+opG7/6vBacCSOb9SV9ExQlnKbPXf20ua0UOPzghU8GWxB
+	/CjVPGHUjYmPGhLRaq1UQWfO82mkhVYZzzApFUtEubLEoCFHND+3+3Z6tEK9/i5Vkoue
+	hkSqXkGKioYvzGfAw9q30/F59UAnWK2QyNy2L6RxjxQAiMtGTBk+HvnWcCUyuBNuVzAA
+	MWcw==
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: [PATCH] DOCS: Development manual: Some minor typoes in first couple chapters.
+Received: by 10.60.6.132 with SMTP id b4mr18829454oea.22.1340099657616; Tue,
+	19 Jun 2012 02:54:17 -0700 (PDT)
+Received: by 10.76.166.202 with HTTP; Tue, 19 Jun 2012 02:54:17 -0700 (PDT)
+In-Reply-To: <CAMKF1sokUhf1LhfBxg_xK9R5JyvnFMswoHdB8xG7VJXT=AjDVg@mail.gmail.com>
+References: <4FDF9720.7080204@gmail.com> <87lijkuxir.fsf@sonatest.com>
+	<4FDF9DC9.1000805@gmail.com>
+	<CANFv2E=jfiY05Rxpnhkz4o6aKNatdoC3o2RD53MFbj3k7Q0yeg@mail.gmail.com>
+	<CAMKF1sokUhf1LhfBxg_xK9R5JyvnFMswoHdB8xG7VJXT=AjDVg@mail.gmail.com>
+Date: Tue, 19 Jun 2012 05:54:17 -0400
+Message-ID: <CANFv2EkVK2NbXb4XCTz2K6ja61dWtORKX3_mrF49-P9dfkQhkQ@mail.gmail.com>
+From: James Abernathy <jfabernathy@gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: basic recipe building - iperf
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,78 +41,125 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Jun 2012 09:44:00 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Tue, 19 Jun 2012 09:54:18 -0000
+Content-Type: multipart/alternative; boundary=e89a8fb1fbb40e4e9704c2d04453
 
+--e89a8fb1fbb40e4e9704c2d04453
+Content-Type: text/plain; charset=ISO-8859-1
 
-Signed-off-by: Robert P. J. Day <rpjday@crashcourse.ca>
+On Mon, Jun 18, 2012 at 10:40 PM, Khem Raj <raj.khem@gmail.com> wrote:
 
----
+>
+>
+> On Monday, June 18, 2012, James Abernathy <jfabernathy@gmail.com> wrote:
+> >
+> >
+> > On Mon, Jun 18, 2012 at 5:29 PM, jfabernathy <jfabernathy@gmail.com>
+> wrote:
+> >>
+> >> On 06/18/2012 05:21 PM, Marc Ferland wrote:
+> >>>
+> >>> jfabernathy<jfabernathy@gmail.com>  writes:
+> >>>
+> >>>>    I needed to do some network performance testing on a Crownbay
+> board and
+> >>>>    needed iperf in that environment.  Since I had the
+> core-image-sato-sdk
+> >>>>    image created, I just booted that and took the tarball from
+> Sourceforge
+> >>>>    and built it  per the readme file instructions:
+> >>>>    ./configure
+> >>>>    make
+> >>>>    make install
+> >>>>    After I completed my test, I thought about why not put that in my
+> list
+> >>>>    of personal recipes.  I found the previous version of iperf in the
+> >>>>    openembedded collection of benchmark recipes and just copied it
+> over.
+> >>>>    It built and worked fine.  There were a lot of items in the .bb
+> that I
+> >>>>    didn't understand, so I thought for fun I'd just try to build a
+> recipe
+> >>>>    for iperf 2.0.5 and see what happened.  My recipe is simple, mostly
+> >>>>    taken from the openembedded 2.0.4 version had stripped down:
+> >>>
+> >>> Hi JF,
+> >>>
+> >>> I add the same problem you had with the man page stuff, try this patch.
+> >>>
+>
+>
+> >>> Marc
+> >>
+> >> thanks, that patch fixed it from a build point of view. now I'll build
+> the image again and see what happens on the hardware.
+> >>
+> >> Jim A
+> >>
+> > As expected the new image booted and ran the iperf 2.0.5 just fine.  Are
+> there any plans to add this tool to the Yocto project??
+> >
+>
+> You could have just looked into meta-oe/recipes-benchmarks
+> > Jim A
+> >
 
-diff --git a/documentation/dev-manual/dev-manual-intro.xml b/documentation/dev-manual/dev-manual-intro.xml
-index cf5471e..c5a173f 100644
---- a/documentation/dev-manual/dev-manual-intro.xml
-+++ b/documentation/dev-manual/dev-manual-intro.xml
-@@ -23,7 +23,7 @@
+You must have missed the earlier discussion.  I first got the iperf 2.0.4
+from meta-oe, but wanted 2.0.5, so I just added it to my private collection
+of apps.
 
-         <para>
-             The Yocto Project Development Manual, however, does provide detailed examples on how to create a
--            Board Support Package (BSP), change the kernel source code, and re-configure the kernel.
-+            Board Support Package (BSP), change the kernel source code, and reconfigure the kernel.
-             You can find this information in the appendices of the manual.
-         </para>
-     </section>
-@@ -149,7 +149,7 @@
-                         <listitem><para><ulink url='&YOCTO_LISTS_URL;/listinfo/poky'></ulink> for a
-                             Yocto Project Discussions mailing list about the Poky build system.</para></listitem>
-                         <listitem><para><ulink url='&YOCTO_LISTS_URL;/listinfo/yocto-announce'></ulink>
--                            for a mailing list to receive offical Yocto Project announcements for developments and
-+                            for a mailing list to receive official Yocto Project announcements for developments and
-                             as well as Yocto Project milestones.</para></listitem>
-                     </itemizedlist></para></listitem>
-                 <listitem><para><emphasis>Internet Relay Chat (IRC):</emphasis>
-diff --git a/documentation/dev-manual/dev-manual-start.xml b/documentation/dev-manual/dev-manual-start.xml
-index 763582d..a379047 100644
---- a/documentation/dev-manual/dev-manual-start.xml
-+++ b/documentation/dev-manual/dev-manual-start.xml
-@@ -60,7 +60,7 @@
-             <listitem><para><emphasis>Packages:</emphasis>  The Yocto Project requires certain packages
-                 exist on your development system (e.g. Python 2.6 or 2.7).
-                 See "<ulink url='&YOCTO_DOCS_QS_URL;#packages'>The Packages</ulink>"
--                section in the Yocto Project Quick start for the exact package
-+                section in the Yocto Project Quick Start for the exact package
-                 requirements and the installation commands to install them
-                 for the supported distributions.</para></listitem>
-             <listitem id='local-yp-release'><para><emphasis>Yocto Project Release:</emphasis>
-@@ -272,7 +272,7 @@
-                 previous section.</para></listitem>
-             <listitem><para>Initialize the build environment by sourcing a build environment
-                 script.</para></listitem>
--            <listitem><para>Optionally ensure the <filename>/conf/local.conf</filename> configuration file,
-+            <listitem><para>Optionally ensure the <filename>conf/local.conf</filename> configuration file,
-                 which is found in the
-                 <link linkend='yocto-project-build-directory'>Yocto Project Build Directory</link>,
-                 is set up how you want it.
-@@ -370,7 +370,7 @@
-                 that runs with the root password disabled.
-                 This allows you to use standard <filename>ssh</filename> and
-                 <filename>scp</filename> commands.</para></listitem>
--            <listitem><para>The QEMU images also contain an embedded Network Files
-+            <listitem><para>The QEMU images also contain an embedded Network File
-                 System (NFS) server that exports the image's root filesystem.
-                 This allows you to make the filesystem available to the
-                 host.</para></listitem>
+Jim A
 
+--e89a8fb1fbb40e4e9704c2d04453
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-rday
+<br><br>
+<div class=3D"gmail_quote">On Mon, Jun 18, 2012 at 10:40 PM, Khem Raj <span=
+ dir=3D"ltr">&lt;<a href=3D"mailto:raj.khem@gmail.com" target=3D"_blank">ra=
+j.khem@gmail.com</a>&gt;</span> wrote:<br>
+<blockquote style=3D"BORDER-LEFT:#ccc 1px solid;MARGIN:0px 0px 0px 0.8ex;PA=
+DDING-LEFT:1ex" class=3D"gmail_quote">
+<div class=3D"HOEnZb">
+<div class=3D"h5"><br><br>On Monday, June 18, 2012, James Abernathy &lt;<a =
+href=3D"mailto:jfabernathy@gmail.com" target=3D"_blank">jfabernathy@gmail.c=
+om</a>&gt; wrote:<br>&gt;<br>&gt;<br>&gt; On Mon, Jun 18, 2012 at 5:29 PM, =
+jfabernathy &lt;<a href=3D"mailto:jfabernathy@gmail.com" target=3D"_blank">=
+jfabernathy@gmail.com</a>&gt; wrote:<br>
+&gt;&gt;<br>&gt;&gt; On 06/18/2012 05:21 PM, Marc Ferland wrote:<br>&gt;&gt=
+;&gt;<br>&gt;&gt;&gt; jfabernathy&lt;<a href=3D"mailto:jfabernathy@gmail.co=
+m" target=3D"_blank">jfabernathy@gmail.com</a>&gt; =A0writes:<br>&gt;&gt;&g=
+t;<br>
+&gt;&gt;&gt;&gt; =A0 =A0I needed to do some network performance testing on =
+a Crownbay board and<br>&gt;&gt;&gt;&gt; =A0 =A0needed iperf in that enviro=
+nment. =A0Since I had the core-image-sato-sdk<br>&gt;&gt;&gt;&gt; =A0 =A0im=
+age created, I just booted that and took the tarball from Sourceforge<br>
+&gt;&gt;&gt;&gt; =A0 =A0and built it =A0per the readme file instructions:<b=
+r>&gt;&gt;&gt;&gt; =A0 =A0./configure<br>&gt;&gt;&gt;&gt; =A0 =A0make<br>&g=
+t;&gt;&gt;&gt; =A0 =A0make install<br>&gt;&gt;&gt;&gt; =A0 =A0After I compl=
+eted my test, I thought about why not put that in my list<br>
+&gt;&gt;&gt;&gt; =A0 =A0of personal recipes. =A0I found the previous versio=
+n of iperf in the<br>&gt;&gt;&gt;&gt; =A0 =A0openembedded collection of ben=
+chmark recipes and just copied it over.<br>&gt;&gt;&gt;&gt; =A0 =A0It built=
+ and worked fine. =A0There were a lot of items in the .bb that I<br>
+&gt;&gt;&gt;&gt; =A0 =A0didn&#39;t understand, so I thought for fun I&#39;d=
+ just try to build a recipe<br>&gt;&gt;&gt;&gt; =A0 =A0for iperf 2.0.5 and =
+see what happened. =A0My recipe is simple, mostly<br>&gt;&gt;&gt;&gt; =A0 =
+=A0taken from the openembedded 2.0.4 version had stripped down:<br>
+&gt;&gt;&gt;<br>&gt;&gt;&gt; Hi JF,<br>&gt;&gt;&gt;<br>&gt;&gt;&gt; I add t=
+he same problem you had with the man page stuff, try this patch.<br>&gt;&gt=
+;&gt;<br><br><br>&gt;&gt;&gt; Marc<br>&gt;&gt;<br>&gt;&gt; thanks, that pat=
+ch fixed it from a build point of view. now I&#39;ll build the image again =
+and see what happens on the hardware.<br>
+&gt;&gt;<br>&gt;&gt; Jim A<br>&gt;&gt;<br>&gt; As expected the new image bo=
+oted and ran the iperf 2.0.5 just fine.=A0 Are there any plans to add this =
+tool to the Yocto project??<br>&gt; <br><br></div></div>You could have just=
+ looked into meta-oe/recipes-benchmarks <br>
+&gt; Jim A<br>&gt; =A0 </blockquote></div>
+<div>You must have missed the earlier discussion.=A0 I first got the iperf =
+2.0.4 from meta-oe, but wanted 2.0.5, so I just added it to my private coll=
+ection of apps.</div>
+<div>=A0</div>
+<div>Jim A<br></div>
 
--- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
-
+--e89a8fb1fbb40e4e9704c2d04453--
