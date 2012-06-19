@@ -1,31 +1,36 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9B5FDE013F7
-	for <yocto@yoctoproject.org>; Tue, 19 Jun 2012 03:27:42 -0700 (PDT)
-Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
-	([99.241.91.63]:60437 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.77) (envelope-from <rpjday@crashcourse.ca>)
-	id 1Sgvev-00065y-Qu
-	for yocto@yoctoproject.org; Tue, 19 Jun 2012 06:27:42 -0400
-Date: Tue, 19 Jun 2012 06:27:37 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.DEB.2.02.1206190626320.29371@oneiric>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <ross.burton@intel.com>
+Received: from fmsmga101.fm.intel.com (mga05.intel.com [192.55.52.89])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5E788E00746
+	for <yocto@yoctoproject.org>; Tue, 19 Jun 2012 04:24:49 -0700 (PDT)
+Received: from mail-qc0-f180.google.com ([209.85.216.180])
+	by mga01.intel.com with ESMTP/TLS/RC4-SHA; 19 Jun 2012 04:24:48 -0700
+Received: by qcmv28 with SMTP id v28so3267889qcm.25
+	for <yocto@yoctoproject.org>; Tue, 19 Jun 2012 04:24:47 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type:content-transfer-encoding:x-gm-message-state;
+	bh=dvzt/u7EdrvCB9mtfux53wPk31FElm5jIgZpLtZYpF8=;
+	b=dZ7ZPjNxopg/cQ7uu9mCaIubT5fGVqyZslWaiEzMMZuBhHE7/sFWEqIIf0DCEbemEZ
+	20H+8jWZkncdIh24CbFxuTGx9nyOlCMZA7lj8HKtAR67Q5V7bSUSZ1OV9dpLXxr+Ppbd
+	VsP3PPRv9EoFY7zWg0xN7+/ExUTKFcyfJt6ZoABJsGNyv/z74a01P6WtxgIsF3nWaB/3
+	GawX2NNU1M/ipIyLlyQIp09YDwCPgeDrr7aoInkTuxyTP8t0YPD0qtdnMn2HVqPBxQcX
+	kFO7B3VlYo7Q+M1thdsK/BppsQ8wSCBQAG203WvbmKcmqfSo7UNkDQWscVQUN9wUXUSv
+	93Wg==
+Received: by 10.224.210.198 with SMTP id gl6mr32990351qab.7.1340105087806;
+	Tue, 19 Jun 2012 04:24:47 -0700 (PDT)
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: [PATCH] Docs, Development manual: Typoes/fixes to chapter 3.
+Received: by 10.229.251.142 with HTTP; Tue, 19 Jun 2012 04:24:27 -0700 (PDT)
+In-Reply-To: <20120618150433.GC1646@giant>
+References: <20120614132601.GB29124@giant> <1340019794.8481.10.camel@ted>
+	<20120618150433.GC1646@giant>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Tue, 19 Jun 2012 12:24:27 +0100
+Message-ID: <CAJTo0LaOBdoieFvyxm-r-qRVmekB3mH5_-fAcgrTy3btc4YjtQ@mail.gmail.com>
+To: =?UTF-8?Q?Bj=C3=B6rn_Stenberg?= <bjst@enea.com>
+X-Gm-Message-State: ALoCoQmdMF42kZkC73LTxWzMDXKGJPcC4ihFddDupZlpJA8w5nxMlchTg3A0hJKk0zn2AjwvZUvU
+Cc: yocto@yoctoproject.org
+Subject: Re: Discussion: Package testing
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,75 +42,20 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Jun 2012 10:27:42 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Tue, 19 Jun 2012 11:24:49 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
+On 18 June 2012 16:04, Bj=C3=B6rn Stenberg <bjst@enea.com> wrote:
+> Typically the tests don't mix production and test code, since the purpose=
+ is to test the production code. Rather the tests are isolated in separate =
+files that we relatively easily can build and install separately from the b=
+ase package.
 
-Signed-off-by: Robert P. J. Day <rpjday@crashcourse.ca>
+The problem with that is that you can only test the external
+interfaces, not the inner state (black box vs white box).  i.e. DBus
+has test cases for each C file inside that C file, so it can exercise
+both the external API and internal state.
 
----
-
-diff --git a/documentation/dev-manual/dev-manual-newbie.xml b/documentation/dev-manual/dev-manual-newbie.xml
-index 1f41d1e..9b1636c 100644
---- a/documentation/dev-manual/dev-manual-newbie.xml
-+++ b/documentation/dev-manual/dev-manual-newbie.xml
-@@ -23,7 +23,7 @@
-         Open source philosophy is characterized by software development directed by peer production
-         and collaboration through an active community of developers.
-         Contrast this to the more standard centralized development models used by commercial software
--        companies where a finite set of developers produce a product for sale using a defined set
-+        companies where a finite set of developers produces a product for sale using a defined set
-         of procedures that ultimately result in an end product whose architecture and source material
-         are closed to the public.
-     </para>
-@@ -97,7 +97,7 @@
-     <para>
-         Most teams have many pieces of software undergoing active development at any given time.
-         You can derive large benefits by putting these pieces under the control of a source
--        control system that is compatible with the Yocto Project (i.e. Git or Subversion (SVN).
-+        control system that is compatible with the Yocto Project (i.e. Git or Subversion (SVN)).
-         You can then set the autobuilder to pull the latest revisions of the packages
-         and test the latest commits by the builds.
-         This practice quickly highlights issues.
-@@ -239,14 +239,14 @@
-                 tools and utilities that allow you to develop software for targeted architectures.
-                 This toolchain contains cross-compilers, linkers, and debuggers that are specific to
-                 an architecture.
--                You can use the Yocto Project to build cross-development toolchains in tarball form that when
--                unpacked contain the development tools you need to cross-compile and test your software.
-+                You can use the Yocto Project to build cross-development toolchains in tarball form that, when
-+                unpacked, contain the development tools you need to cross-compile and test your software.
-                 The Yocto Project ships with images that contain toolchains for supported architectures
-                 as well.
-                 Sometimes this toolchain is referred to as the meta-toolchain.</para></listitem>
-             <listitem><para><emphasis>Image:</emphasis> An image is the result produced when
-                 BitBake processes a given collection of recipes and related metadata.
--                Images are the binary output that runs on specific hardware and for specific
-+                Images are the binary output that run on specific hardware and for specific
-                 use cases.
-                 For a list of the supported image types that the Yocto Project provides, see the
-                 "<ulink url='&YOCTO_DOCS_REF_URL;#ref-images'>Reference: Images</ulink>"
-@@ -530,9 +530,9 @@
-      $ git checkout -b &DISTRO_NAME; origin/&DISTRO_NAME;
-             </literallayout>
-             In this example, the name of the top-level directory of your local Yocto Project
--            Files Git repository is <filename>poky</filename>.
--            And, the name of the local working area (or local branch) you have created and checked
--            out is named <filename>&DISTRO_NAME;</filename>.
-+            Files Git repository is <filename>poky</filename>,
-+            and the name of the local working area (or local branch) you have created and checked
-+            out is <filename>&DISTRO_NAME;</filename>.
-             The files in your repository now reflect the same files that are in the
-             <filename>&DISTRO_NAME;</filename> development branch of the Yocto Project's
-             <filename>poky</filename> repository.
-
--- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+Ross
 
