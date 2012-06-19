@@ -1,33 +1,32 @@
-Return-Path: <opensource@keylevel.com>
-Received: from hxhsvr03.internetintuitive.net (hxhsvr03.internetintuitive.net
-	[80.254.228.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 937D6E0070B
-	for <yocto@yoctoproject.org>; Tue, 19 Jun 2012 11:47:32 -0700 (PDT)
-Received: from [109.224.129.17] (port=55102
-	helo=macbook-pro.durham.keylevel.com)
-	by hxhsvr03.internetintuitive.net with esmtpa (Exim 4.69)
-	(envelope-from <opensource@keylevel.com>)
-	id 1Sh3Sa-0003WE-5K; Tue, 19 Jun 2012 19:47:28 +0100
-Mime-Version: 1.0 (Apple Message framework v1278)
-From: Chris Tapp <opensource@keylevel.com>
-In-Reply-To: <2266259.lx4CelsjGA@helios>
-Date: Tue, 19 Jun 2012 19:47:24 +0100
-Message-Id: <17553E0E-7415-401A-A91F-5406EAB6193A@keylevel.com>
-References: <alpine.DEB.2.02.1206190818420.30655@oneiric>
-	<2266259.lx4CelsjGA@helios>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-X-Mailer: Apple Mail (2.1278)
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - hxhsvr03.internetintuitive.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: yocto@yoctoproject.org
-Subject: Re: is it "IMAGE_INSTALL +=" or "IMAGE_INSTALL_append ="?
+Return-Path: <laurentiu.serban@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3D68AE0070B
+	for <yocto@yoctoproject.org>; Tue, 19 Jun 2012 12:25:45 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 19 Jun 2012 12:25:44 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; 
+	d="scan'208,217";a="113897333"
+Received: from irsmsx103.ger.corp.intel.com ([163.33.3.157])
+	by AZSMGA002.ch.intel.com with ESMTP; 19 Jun 2012 12:25:44 -0700
+Received: from irsmsx152.ger.corp.intel.com (163.33.192.66) by
+	IRSMSX103.ger.corp.intel.com (163.33.3.157) with Microsoft SMTP Server
+	(TLS) id 14.1.355.2; Tue, 19 Jun 2012 20:25:30 +0100
+Received: from irsmsx102.ger.corp.intel.com ([169.254.2.176]) by
+	IRSMSX152.ger.corp.intel.com ([169.254.6.185]) with mapi id
+	14.01.0355.002; Tue, 19 Jun 2012 20:25:30 +0100
+From: "Serban, Laurentiu" <laurentiu.serban@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: VERIFIED vs CLOSED in yocto bugzilla
+Thread-Index: Ac1OUUe01eHZ2xUEQ264PiIbIWnZ7w==
+Date: Tue, 19 Jun 2012 19:25:29 +0000
+Message-ID: <E16513A01CAAFF40B65178C63CE45EEC1914D426@IRSMSX102.ger.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [163.33.239.180]
+MIME-Version: 1.0
+Subject: VERIFIED vs CLOSED in yocto bugzilla
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,56 +38,145 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Jun 2012 18:47:32 -0000
-Content-Type: text/plain; charset=us-ascii
+X-List-Received-Date: Tue, 19 Jun 2012 19:25:45 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_E16513A01CAAFF40B65178C63CE45EEC1914D426IRSMSX102gercor_"
+
+--_000_E16513A01CAAFF40B65178C63CE45EEC1914D426IRSMSX102gercor_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-On 19 Jun 2012, at 18:52, Paul Eggleton wrote:
+Hello,
 
-> On Tuesday 19 June 2012 08:22:00 Robert P. J. Day wrote:
->>  currently, the dev manual (Section 4.2.1) proposes the use of
->>=20
->>  IMAGE_INSTALL +=3D "strace"
->>=20
->> but the poky ref manual in the variable glossary explicitly
->> discourages that form, and instead recommends
->>=20
->>  IMAGE_INSTALL_append =3D " package-name"
->>=20
->>  can we agree that the "_append" form is preferred?  thoughts?
->=20
-> The reference manual is a little unclear on what "ordering issues" =
-means. +=3D=20
-> works just fine, it's just that if you happen to use it at some point =
-before=20
-> core-image.bbclass line sets it with ?=3D (i.e. either in local.conf =
-or before=20
-> the "inherit core-image" line in your image recipe) the ?=3D line in =
-core-
-> image.bbclass will do nothing and you'll end up with much less in the=20=
+I submit to your attention the following issue related to Yocto project's b=
+ugzilla:
 
-> IMAGE_INSTALL list than you expected. If you use _append, you can have =
-that=20
-> anywhere you like and it will always work, with the caveat that if you =
-forget=20
-> to add a leading space in the value to be appended, things will break.
->=20
-> Note that the part of 4.2.1 in the dev manual you refer to is =
-specifically=20
-> talking about making a copy of an image recipe and putting the =
-IMAGE_INSTALL=20
-> +=3D at the end, which will always work and won't suffer from any =
-leading space=20
-> issues. I'm not sure what we should change to improve this...
+Which is the most appropriate end for a the lifecycle of a bugzilla issue: =
+VERIFIED or CLOSED?
+Currently the bug lifecycle final point is VERIFIED and the status CLOSED i=
+s not used. Setting a bug to CLOSED after it was VERIFIED has no impact on =
+the lifecycle itself as the bug can be reopened anyway.
 
-Is there a section that explains the order in which all these things =
-happen? i.e. items in local.conf happen before/after...
+My proposal is the following: keep VERIFIED as the final point of the bug l=
+ifecycle and use the status CLOSED for the bug only after the 1.3 release, =
+if the regression testing for the bug is ran and passed.
+So after the 1.3 release the ideal situation is that all the bugs related t=
+o it with previous status VERIFIED are CLOSED.
 
-Chris Tapp
+Waiting for your opinion on this,
+Thank you,
 
-opensource@keylevel.com
-www.keylevel.com
+Laurentiu Serban
+QA Engineer
+Open Source Technology Center
+System Software Division Romania
+Desk: +40 31 8604742
+iNET: 88451042
 
 
+--_000_E16513A01CAAFF40B65178C63CE45EEC1914D426IRSMSX102gercor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Verdana;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hello,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I submit to your attention the following issue relat=
+ed to Yocto project&#8217;s bugzilla:<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Which is the most appropriate end for a the lifecycl=
+e of a bugzilla issue: VERIFIED or CLOSED?<o:p></o:p></p>
+<p class=3D"MsoNormal">Currently the bug lifecycle final point is VERIFIED =
+and the status CLOSED is not used. Setting a bug to CLOSED after it was VER=
+IFIED has no impact on the lifecycle itself as the bug can be reopened anyw=
+ay.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">My proposal is the following: keep VERIFIED as the f=
+inal point of the bug lifecycle and use the status CLOSED for the bug only =
+after the 1.3 release,
+<b>if</b> the regression testing for the bug is ran and passed.<o:p></o:p><=
+/p>
+<p class=3D"MsoNormal">So after the 1.3 release the ideal situation is that=
+ all the bugs related to it with previous status VERIFIED are CLOSED.<o:p><=
+/o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Waiting for your opinion on this,<o:p></o:p></p>
+<p class=3D"MsoNormal">Thank you,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:9.0pt;font-family:&quot;=
+Verdana&quot;,&quot;sans-serif&quot;;color:#244061">Laurentiu Serban<o:p></=
+o:p></span></b></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:&quot;Ver=
+dana&quot;,&quot;sans-serif&quot;;color:#244061">QA Engineer
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:&quot;Ver=
+dana&quot;,&quot;sans-serif&quot;;color:#244061">Open Source Technology Cen=
+ter<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:&quot;Ver=
+dana&quot;,&quot;sans-serif&quot;;color:#1F497D">System Software Division R=
+omania</span><span style=3D"color:#1F497D"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:&quot;Ver=
+dana&quot;,&quot;sans-serif&quot;;color:#244061">Desk: &#43;40 31 8604742</=
+span><b><span style=3D"color:#244061"><o:p></o:p></span></b></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:&quot;Ver=
+dana&quot;,&quot;sans-serif&quot;;color:#244061">iNET: 88451042<o:p></o:p><=
+/span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
 
+--_000_E16513A01CAAFF40B65178C63CE45EEC1914D426IRSMSX102gercor_--
