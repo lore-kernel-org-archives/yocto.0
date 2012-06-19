@@ -1,26 +1,37 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 42BC4E0070B
-	for <yocto@yoctoproject.org>; Tue, 19 Jun 2012 08:19:11 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 19 Jun 2012 08:19:10 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="182202092"
-Received: from unknown (HELO [10.255.12.52]) ([10.255.12.52])
-	by fmsmga002.fm.intel.com with ESMTP; 19 Jun 2012 08:19:10 -0700
-Message-ID: <1340119149.1618.10.camel@trz-ThinkPad-T420>
-From: Tom Zanussi <tom.zanussi@intel.com>
-To: Dallas Clement <dallas.a.clement@gmail.com>
-Date: Tue, 19 Jun 2012 10:19:09 -0500
-In-Reply-To: <CAE9DZURnk3b+fXKiXBh+PvfCzYQAhism5WWvf=kV61-TmDXntg@mail.gmail.com>
-References: <CAE9DZUTAMXWnc2hJPvVyzwWaRPR3jWvKvxKez5cw8UHktNF9Mg@mail.gmail.com>
-	<CAE9DZUS1iRhOfFygpPnCCdr+NJsyjLg6_fU0xKSnpPs0JGERLg@mail.gmail.com>
-	<1340118223.1618.5.camel@trz-ThinkPad-T420>
-	<CAE9DZURnk3b+fXKiXBh+PvfCzYQAhism5WWvf=kV61-TmDXntg@mail.gmail.com>
-X-Mailer: Evolution 3.2.3-0ubuntu6 
-Mime-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: trouble building bsp for arm
+Return-Path: <jfabernathy@gmail.com>
+Received: from mail-gg0-f176.google.com (mail-gg0-f176.google.com
+	[209.85.161.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0C8E3E0070C
+	for <yocto@yoctoproject.org>; Tue, 19 Jun 2012 08:22:30 -0700 (PDT)
+Received: by ggnk4 with SMTP id k4so5496914ggn.35
+	for <yocto@yoctoproject.org>; Tue, 19 Jun 2012 08:22:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=wXNECSK2QpxBO1msGSLvflDodazMH0uDTPBHM7ieA+M=;
+	b=cc5DEhPkZLib+pWgLbwukuC9V68+4VIb3Qh6F5/Mk2BRoQ0H1jwyBXd7ZOCcMS76jC
+	WKNuMjy6JqkBXqZcrMdoO42gzByWtz9fO7cyNXma3Qo9SDXOATLDg0V+LEWomCcyNtLK
+	2tVUEPLrAzpZ4WHtGz74hfd6S9lXu4ysxPMJa+6VNaxHowAov8dVW9INo7iDwNoChmxG
+	y4tm+Z21Z4KHkcnKO/Pyen8OQsJokSJdz2PrT/EMinnM4p+Fk9d4rS3J4RTTDF43iejg
+	6iNeUJLBA2I8vB4uvcf0W+tBaS+cUkxdckN2Na9y0kCFWbVTW5/tE/8NILelze/Au3NB
+	tKCQ==
+MIME-Version: 1.0
+Received: by 10.60.14.9 with SMTP id l9mr20171768oec.17.1340119349348; Tue, 19
+	Jun 2012 08:22:29 -0700 (PDT)
+Received: by 10.76.166.202 with HTTP; Tue, 19 Jun 2012 08:22:29 -0700 (PDT)
+In-Reply-To: <CAMKF1somsePvLLgK3d0f0A19zdvEXsPAOCs4M-YJQFoPSYyR_A@mail.gmail.com>
+References: <4FDF9720.7080204@gmail.com> <87lijkuxir.fsf@sonatest.com>
+	<4FDF9DC9.1000805@gmail.com>
+	<CANFv2E=jfiY05Rxpnhkz4o6aKNatdoC3o2RD53MFbj3k7Q0yeg@mail.gmail.com>
+	<CAMKF1sokUhf1LhfBxg_xK9R5JyvnFMswoHdB8xG7VJXT=AjDVg@mail.gmail.com>
+	<CANFv2EkVK2NbXb4XCTz2K6ja61dWtORKX3_mrF49-P9dfkQhkQ@mail.gmail.com>
+	<CAMKF1somsePvLLgK3d0f0A19zdvEXsPAOCs4M-YJQFoPSYyR_A@mail.gmail.com>
+Date: Tue, 19 Jun 2012 11:22:29 -0400
+Message-ID: <CANFv2Em4wDjq6LeFY5=cq7yUb2t6+rc4Q3k8AU4Nbn1pXNO6ow@mail.gmail.com>
+From: James Abernathy <jfabernathy@gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: basic recipe building - iperf
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,112 +43,57 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Jun 2012 15:19:11 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 19 Jun 2012 15:22:31 -0000
+Content-Type: multipart/alternative; boundary=e89a8fb1eef8c648b904c2d4d930
 
-On Tue, 2012-06-19 at 10:13 -0500, Dallas Clement wrote:
-> Hi Tom,
-> 
-> The first thing I tried is building a minimal distro with "bitbake
-> core-image-minimal".  That completed successfully and I was able to
-> execute it with qemu.
-> 
-> Then I tried to build a bsp for ARM, which failed with errors shown
-> earlier.  I just tried now for x86_64.  It failed too with the same
-> errors.
-> 
-> I am using the latest poky tarball - poky-denzil-7.0.tar.bz2
-> 
+--e89a8fb1eef8c648b904c2d4d930
+Content-Type: text/plain; charset=ISO-8859-1
 
-OK, so what you did was successfully build a minimal image from the BSP
-tarball for x86-64, but that wasn't using a BSP generated from
-yocto-bsp, since you haven't been able to successfully generate a BSP
-using yocto-bsp yet.  If that's not the case please clarify, otherwise
-I'll try what you're doing using the denzil tarball...
+On Tue, Jun 19, 2012 at 10:20 AM, Khem Raj <raj.khem@gmail.com> wrote:
 
-Tom
+> On Tue, Jun 19, 2012 at 2:54 AM, James Abernathy <jfabernathy@gmail.com>
+> wrote:
+> > You must have missed the earlier discussion.  I first got the iperf 2.0.4
+> > from meta-oe, but wanted 2.0.5, so I just added it to my private
+> collection
+> > of apps.
+>
+> you can post the update patch for meta-oe layer
+>
 
-> Thanks,
-> 
-> Dallas
-> 
-> On Tue, Jun 19, 2012 at 10:03 AM, Tom Zanussi <tom.zanussi@intel.com> wrote:
-> > On Tue, 2012-06-19 at 09:37 -0500, Dallas Clement wrote:
-> >> Hi all,  Please bear with me as I am a newb to both yocto and building
-> >> bsp's.   I was able to run bitbake core-image-minimal for x86-64, just fine and
-> >> run it in qemu.
-> >>
-> >> Then I got gutsy and tried to build a bsp for ARM.  Didn't go so well.
-> >>  I must be missing something.
-> >>
-> >
-> > Hi,
-> >
-> > So if I read the above correctly, you were able to create a new x86-64
-> > bsp using yocto-bsp and build and boot the minimal image?
-> >
-> > If so, then the below should also work - at the point you are in the
-> > creation script, there's nothing arm-specific yet.
-> >
-> > If not, did you source oe-init-build-env first?  Or do you have some
-> > kind of network problem?
-> >
-> > I can't think of anything else - I just tried the same thing here and it
-> > worked fine.  Let me also try the same thing but using the denzil
-> > tarball (using git denzil branch), which is what I assume your using?
-> >
-> > Thanks,
-> >
-> > Tom
-> >
-> >> dallasc ~/development/yocto/poky-denzil-7.0] scripts/yocto-bsp create
-> >> marvell-armada-xp-mv78260 qemu
-> >> Which qemu architecture would you like to use? [default: i386]
-> >>        1) i386    (32-bit)
-> >>        2) x86_64  (64-bit)
-> >>        3) ARM     (32-bit)
-> >>        4) PowerPC (32-bit)
-> >>        5) MIPS    (32-bit)
-> >> 3
-> >> Would you like to use the default (3.2) kernel? (y/n) [default: y]
-> >> Do you need a new machine branch for this BSP (the alternative is to
-> >> re-use an existing branch)? [y/n] [default: y]
-> >> Getting branches from remote repo None...
-> >> Traceback (most recent call last):
-> >>  File "scripts/yocto-bsp", line 137, in <module>
-> >>    ret = main()
-> >>  File "scripts/yocto-bsp", line 132, in main
-> >>    invoke_subcommand(args, parser, yocto_bsp_help_usage, subcommands)
-> >>  File "/development/dallasc/yocto/poky-denzil-7.0/scripts/lib/bsp/help.py",
-> >> line 73, in invoke_subcommand
-> >>    subcommands.get(args[0], subcommand_error)[0](args[1:], usage)
-> >>  File "scripts/yocto-bsp", line 76, in yocto_bsp_create_subcommand
-> >>    yocto_bsp_create(machine, karch, scripts_path, bsp_output_dir,
-> >> options.codedump, options.properties_file)
-> >>  File "/development/dallasc/yocto/poky-denzil-7.0/scripts/lib/bsp/engine.py",
-> >> line 1243, in yocto_bsp_create
-> >>    run_program_lines(program_lines, codedump)
-> >> SyntaxError: function specified for 'gen' property returned nothing :
-> >> input type:"choicelist" name:"new_kbranch"
-> >> gen:"bsp.kernel.all_branches" prio:"20" msg:"Please choose a machine
-> >> branch to base this BSP on:" default:"standard/default"
-> >>
-> >> Can anyone recommend what I should do to get past this?
-> >>
-> >> Thanks,
-> >>
-> >> Dallas
-> >> _______________________________________________
-> >> yocto mailing list
-> >> yocto@yoctoproject.org
-> >> https://lists.yoctoproject.org/listinfo/yocto
-> >
-> >
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+I can pass along what I did for iperf 2.0.5 in Yocto, but I have no idea
+what to do for OE.  All the commands in their 2.0.4, which worked when
+copied to my meta-jfa directory, didn't mean much to me.  I just started
+from scratch and created a new recipe based on autotools plus the patch
+that Marc passed along.
 
+Jim A
 
+--e89a8fb1eef8c648b904c2d4d930
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
+<br><br>
+<div class=3D"gmail_quote">On Tue, Jun 19, 2012 at 10:20 AM, Khem Raj <span=
+ dir=3D"ltr">&lt;<a href=3D"mailto:raj.khem@gmail.com" target=3D"_blank">ra=
+j.khem@gmail.com</a>&gt;</span> wrote:<br>
+<blockquote style=3D"BORDER-LEFT:#ccc 1px solid;MARGIN:0px 0px 0px 0.8ex;PA=
+DDING-LEFT:1ex" class=3D"gmail_quote">
+<div class=3D"im">On Tue, Jun 19, 2012 at 2:54 AM, James Abernathy &lt;<a h=
+ref=3D"mailto:jfabernathy@gmail.com">jfabernathy@gmail.com</a>&gt; wrote:<b=
+r>&gt; You must have missed the earlier discussion.=A0 I first got the iper=
+f 2.0.4<br>
+&gt; from meta-oe, but wanted 2.0.5, so I just added it to my private colle=
+ction<br>&gt; of apps.<br><br></div>you can post the update patch for meta-=
+oe layer<br></blockquote></div>
+<div><br>I can pass along what I did for iperf 2.0.5 in Yocto, but I have n=
+o idea what to do for OE.=A0 All the commands in their 2.0.4, which worked =
+when copied to my meta-jfa directory, didn&#39;t mean much to me.=A0 I just=
+ started from scratch and created a new recipe based on autotools plus the =
+patch that Marc passed along.</div>
+
+<div>=A0</div>
+<div>Jim A</div>
+<div>=A0</div>
+
+--e89a8fb1eef8c648b904c2d4d930--
