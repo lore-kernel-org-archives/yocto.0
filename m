@@ -1,32 +1,29 @@
-Return-Path: <tylerjones64@gmail.com>
-Received: from mail-lb0-f176.google.com (mail-lb0-f176.google.com
-	[209.85.217.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8705DE0070B
-	for <yocto@yoctoproject.org>; Tue, 19 Jun 2012 10:02:37 -0700 (PDT)
-Received: by lboj14 with SMTP id j14so7385379lbo.35
-	for <yocto@yoctoproject.org>; Tue, 19 Jun 2012 10:02:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=F5Hq8ku3Vb+/qz60yr/R7/npQYliRkjL+7uCrAeU2N8=;
-	b=WztINi0qybqJavshLgMrAgHplWUBBPPb+y9OpoQ7GSYIv9HI1avemQeuJoXWSvU2Ar
-	ZyB5hodz0G+GiWjrw2PBYD8tTHn93D8zelVYSDvKczgh2NwCuNCQqVG0Q4Th/kbQsleq
-	+qyFwp4oZBr59JjttSGr4nqLK79wtGqa0/mkTjciN1zEnh+vidQTP1GmB2XfsXVTZlDS
-	L/+bwPDM6DFOMOzPt/uL5ok2/CAncfFmrJ+qFHVbdOU2SuPRo88FncjwEzvQ+G/wCFIK
-	+/zNEXZlveWnfQNUvTX32sTQCWCOYYB+ZLXUfVO2cx1pZPS9/b1ohzyaDfZLm8ol9Bfi
-	hRCg==
-Received: by 10.152.123.244 with SMTP id md20mr19291531lab.0.1340125356159;
-	Tue, 19 Jun 2012 10:02:36 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.112.48.10 with HTTP; Tue, 19 Jun 2012 10:02:16 -0700 (PDT)
-In-Reply-To: <alpine.DEB.2.02.1206190526500.28865@oneiric>
-References: <alpine.DEB.2.02.1206190526500.28865@oneiric>
-From: Tyler Jones <tylerjones64@gmail.com>
-Date: Tue, 19 Jun 2012 10:02:16 -0700
-Message-ID: <CAN57a29Jm73jiaC8xuZKjsxYXLduwcKq5z09scK5UGzxMGTC6Q@mail.gmail.com>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: why does yocto dev manual emphasize meta-intel BSP layer so much?
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C9E6BE0070B
+	for <yocto@yoctoproject.org>; Tue, 19 Jun 2012 10:17:21 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 19 Jun 2012 10:17:20 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="155558013"
+Received: from unknown (HELO [10.255.12.52]) ([10.255.12.52])
+	by orsmga001.jf.intel.com with ESMTP; 19 Jun 2012 10:17:18 -0700
+Message-ID: <1340126238.1618.21.camel@trz-ThinkPad-T420>
+From: Tom Zanussi <tom.zanussi@intel.com>
+To: Dallas Clement <dallas.a.clement@gmail.com>
+Date: Tue, 19 Jun 2012 12:17:18 -0500
+In-Reply-To: <CAE9DZUQfaJMmdo9TVMNR3XjyW+UrzoQnfKcFky_HwrTZCBJKiA@mail.gmail.com>
+References: <CAE9DZUTAMXWnc2hJPvVyzwWaRPR3jWvKvxKez5cw8UHktNF9Mg@mail.gmail.com>
+	<CAE9DZUS1iRhOfFygpPnCCdr+NJsyjLg6_fU0xKSnpPs0JGERLg@mail.gmail.com>
+	<1340118223.1618.5.camel@trz-ThinkPad-T420>
+	<CAE9DZURnk3b+fXKiXBh+PvfCzYQAhism5WWvf=kV61-TmDXntg@mail.gmail.com>
+	<1340119149.1618.10.camel@trz-ThinkPad-T420>
+	<CAE9DZUS3Mxt5dvE1j1OKRsQwjUtMo2j8n05QCMLL6Ty_0x489Q@mail.gmail.com>
+	<CAE9DZUQfaJMmdo9TVMNR3XjyW+UrzoQnfKcFky_HwrTZCBJKiA@mail.gmail.com>
+X-Mailer: Evolution 3.2.3-0ubuntu6 
+Mime-Version: 1.0
+Cc: yocto@yoctoproject.org
+Subject: Re: trouble building bsp for arm
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,117 +35,151 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Jun 2012 17:02:38 -0000
-Content-Type: multipart/alternative; boundary=f46d042f9cd8cef1bc04c2d63fa1
+X-List-Received-Date: Tue, 19 Jun 2012 17:17:21 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
---f46d042f9cd8cef1bc04c2d63fa1
-Content-Type: text/plain; charset=ISO-8859-1
+On Tue, 2012-06-19 at 10:29 -0500, Dallas Clement wrote:
+> Okay, using the git poky, I was able to build the bsp.  It seems that
+> the tarball version is not able to complete this step:
+> 
+> Getting branches from remote repo git://git.yoctoproject.org/linux-yocto-3.2...
+> 
 
-On 19 June 2012 02:29, Robert P. J. Day <rpjday@crashcourse.ca> wrote:
+OK, glad that the git poky worked for you.  I just did a download of the
+denzil tarball and wasn't able to reproduce the problem, so I'm not sure
+why the git update would work for you but tarball wouldn't.  There was a
+fix for Yocto bug 2219 as mentioned in the denzil release notes that
+would be the only difference in the yocto-bsp tool, but it doesn't sound
+like that's what you hit.
 
->
-> "Supported Board Support Packages (BSPs): The Yocto Project provides
-> a layer called meta-intel and it is maintained in its own separate Git
-> repository. The meta-intel layer contains many supported BSP
-> Layers..."
->
->  well, yes, but that makes it sound like it's the *only* BSP layer of
-> any consequence.  perhaps that could be reworded?
->
-> rday
->
-> --
->
-> ========================================================================
-> Robert P. J. Day                                 Ottawa, Ontario, CANADA
->                        http://crashcourse.ca
->
-> Twitter:                                       http://twitter.com/rpjday
-> LinkedIn:                               http://ca.linkedin.com/in/rpjday
-> ========================================================================
+Regarding master, you should note that I submitted a patch yesterday to
+fix a problem with the qemu machines and X in master, Yocto bug 2559:
+
+http://comments.gmane.org/gmane.linux.embedded.yocto.general/7087
+
+So if you have problems with X in the generated qemu bsp image, that
+should fix it (and should be pulled into poky/master soon).
+
+Thanks,
+
+Tom
+
+
+> On Tue, Jun 19, 2012 at 10:23 AM, Dallas Clement
+> <dallas.a.clement@gmail.com> wrote:
+> > That's correct.  I have not been successful with "yocto-bsp create"
+> > yet.  I'm trying with the git version of poky now.
+> >
+> > On Tue, Jun 19, 2012 at 10:19 AM, Tom Zanussi <tom.zanussi@intel.com> wrote:
+> >> On Tue, 2012-06-19 at 10:13 -0500, Dallas Clement wrote:
+> >>> Hi Tom,
+> >>>
+> >>> The first thing I tried is building a minimal distro with "bitbake
+> >>> core-image-minimal".  That completed successfully and I was able to
+> >>> execute it with qemu.
+> >>>
+> >>> Then I tried to build a bsp for ARM, which failed with errors shown
+> >>> earlier.  I just tried now for x86_64.  It failed too with the same
+> >>> errors.
+> >>>
+> >>> I am using the latest poky tarball - poky-denzil-7.0.tar.bz2
+> >>>
+> >>
+> >> OK, so what you did was successfully build a minimal image from the BSP
+> >> tarball for x86-64, but that wasn't using a BSP generated from
+> >> yocto-bsp, since you haven't been able to successfully generate a BSP
+> >> using yocto-bsp yet.  If that's not the case please clarify, otherwise
+> >> I'll try what you're doing using the denzil tarball...
+> >>
+> >> Tom
+> >>
+> >>> Thanks,
+> >>>
+> >>> Dallas
+> >>>
+> >>> On Tue, Jun 19, 2012 at 10:03 AM, Tom Zanussi <tom.zanussi@intel.com> wrote:
+> >>> > On Tue, 2012-06-19 at 09:37 -0500, Dallas Clement wrote:
+> >>> >> Hi all,  Please bear with me as I am a newb to both yocto and building
+> >>> >> bsp's.   I was able to run bitbake core-image-minimal for x86-64, just fine and
+> >>> >> run it in qemu.
+> >>> >>
+> >>> >> Then I got gutsy and tried to build a bsp for ARM.  Didn't go so well.
+> >>> >>  I must be missing something.
+> >>> >>
+> >>> >
+> >>> > Hi,
+> >>> >
+> >>> > So if I read the above correctly, you were able to create a new x86-64
+> >>> > bsp using yocto-bsp and build and boot the minimal image?
+> >>> >
+> >>> > If so, then the below should also work - at the point you are in the
+> >>> > creation script, there's nothing arm-specific yet.
+> >>> >
+> >>> > If not, did you source oe-init-build-env first?  Or do you have some
+> >>> > kind of network problem?
+> >>> >
+> >>> > I can't think of anything else - I just tried the same thing here and it
+> >>> > worked fine.  Let me also try the same thing but using the denzil
+> >>> > tarball (using git denzil branch), which is what I assume your using?
+> >>> >
+> >>> > Thanks,
+> >>> >
+> >>> > Tom
+> >>> >
+> >>> >> dallasc ~/development/yocto/poky-denzil-7.0] scripts/yocto-bsp create
+> >>> >> marvell-armada-xp-mv78260 qemu
+> >>> >> Which qemu architecture would you like to use? [default: i386]
+> >>> >>        1) i386    (32-bit)
+> >>> >>        2) x86_64  (64-bit)
+> >>> >>        3) ARM     (32-bit)
+> >>> >>        4) PowerPC (32-bit)
+> >>> >>        5) MIPS    (32-bit)
+> >>> >> 3
+> >>> >> Would you like to use the default (3.2) kernel? (y/n) [default: y]
+> >>> >> Do you need a new machine branch for this BSP (the alternative is to
+> >>> >> re-use an existing branch)? [y/n] [default: y]
+> >>> >> Getting branches from remote repo None...
+> >>> >> Traceback (most recent call last):
+> >>> >>  File "scripts/yocto-bsp", line 137, in <module>
+> >>> >>    ret = main()
+> >>> >>  File "scripts/yocto-bsp", line 132, in main
+> >>> >>    invoke_subcommand(args, parser, yocto_bsp_help_usage, subcommands)
+> >>> >>  File "/development/dallasc/yocto/poky-denzil-7.0/scripts/lib/bsp/help.py",
+> >>> >> line 73, in invoke_subcommand
+> >>> >>    subcommands.get(args[0], subcommand_error)[0](args[1:], usage)
+> >>> >>  File "scripts/yocto-bsp", line 76, in yocto_bsp_create_subcommand
+> >>> >>    yocto_bsp_create(machine, karch, scripts_path, bsp_output_dir,
+> >>> >> options.codedump, options.properties_file)
+> >>> >>  File "/development/dallasc/yocto/poky-denzil-7.0/scripts/lib/bsp/engine.py",
+> >>> >> line 1243, in yocto_bsp_create
+> >>> >>    run_program_lines(program_lines, codedump)
+> >>> >> SyntaxError: function specified for 'gen' property returned nothing :
+> >>> >> input type:"choicelist" name:"new_kbranch"
+> >>> >> gen:"bsp.kernel.all_branches" prio:"20" msg:"Please choose a machine
+> >>> >> branch to base this BSP on:" default:"standard/default"
+> >>> >>
+> >>> >> Can anyone recommend what I should do to get past this?
+> >>> >>
+> >>> >> Thanks,
+> >>> >>
+> >>> >> Dallas
+> >>> >> _______________________________________________
+> >>> >> yocto mailing list
+> >>> >> yocto@yoctoproject.org
+> >>> >> https://lists.yoctoproject.org/listinfo/yocto
+> >>> >
+> >>> >
+> >>> _______________________________________________
+> >>> yocto mailing list
+> >>> yocto@yoctoproject.org
+> >>> https://lists.yoctoproject.org/listinfo/yocto
+> >>
+> >>
 > _______________________________________________
 > yocto mailing list
 > yocto@yoctoproject.org
 > https://lists.yoctoproject.org/listinfo/yocto
->
 
-It could be reworded but you have to remember that Intel is supporting the
-Yocto Project [1].
-I recall that there is a link to the OE Layer Index [2] in the
-documentation that has many BSP layers.
-I do like how it is worded on the downloads page [3] under the BSP section,
-though I feel reference to the OE Layer Index [2] should be put on this
-page as well.
 
-[1] http://www.osnews.com/story/23963/Intel_Announces_The_Yocto_Project
-[2] http://www.openembedded.org/wiki/LayerIndex
-[3] http://www.yoctoproject.org/download
 
--Tyler Jones
-
---f46d042f9cd8cef1bc04c2d63fa1
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<div><div><div class=3D"gmail_quote">On 19 June 2012 02:29, Robert P. J. Da=
-y <span dir=3D"ltr">&lt;<a href=3D"mailto:rpjday@crashcourse.ca" target=3D"=
-_blank">rpjday@crashcourse.ca</a>&gt;</span> wrote:<br><blockquote class=3D=
-"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding=
--left:1ex">
-
-<br>
-&quot;Supported Board Support Packages (BSPs): The Yocto Project provides<b=
-r>
-a layer called meta-intel and it is maintained in its own separate Git<br>
-repository. The meta-intel layer contains many supported BSP<br>
-Layers...&quot;<br>
-<br>
- =A0well, yes, but that makes it sound like it&#39;s the *only* BSP layer o=
-f<br>
-any consequence. =A0perhaps that could be reworded?<br>
-<br>
-rday<br>
-<br>
---<br>
-<br>
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>
-Robert P. J. Day =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
-=A0 =A0 Ottawa, Ontario, CANADA<br>
- =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0<a href=3D"http://crashcour=
-se.ca" target=3D"_blank">http://crashcourse.ca</a><br>
-<br>
-Twitter: =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
-=A0 =A0 =A0 <a href=3D"http://twitter.com/rpjday" target=3D"_blank">http://=
-twitter.com/rpjday</a><br>
-LinkedIn: =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 <a hr=
-ef=3D"http://ca.linkedin.com/in/rpjday" target=3D"_blank">http://ca.linkedi=
-n.com/in/rpjday</a><br>
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
->https://lists.yoctoproject.org/listinfo/yocto</a><br>
-</blockquote></div><div><br></div>It could be reworded but you have to reme=
-mber that=A0Intel=A0is supporting the Yocto Project [1].<div>I recall that =
-there is a link to the OE Layer Index [2] in the documentation that has man=
-y BSP layers.</div>
-
-<div>I do like how it is worded on the downloads page [3] under the BSP sec=
-tion, though I feel reference to the=A0OE Layer Index [2] should be put on =
-this page as well.</div><div><div><br></div><div>[1]=A0<a href=3D"http://ww=
-w.osnews.com/story/23963/Intel_Announces_The_Yocto_Project">http://www.osne=
-ws.com/story/23963/Intel_Announces_The_Yocto_Project</a></div>
-
-<div>[2]=A0<a href=3D"http://www.openembedded.org/wiki/LayerIndex">http://w=
-ww.openembedded.org/wiki/LayerIndex</a></div><div>[3]=A0<a href=3D"http://w=
-ww.yoctoproject.org/download">http://www.yoctoproject.org/download</a></div=
-><div>
-
-<br clear=3D"all">-Tyler Jones<br></div></div></div></div>
-
---f46d042f9cd8cef1bc04c2d63fa1--
