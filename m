@@ -1,31 +1,24 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A6D7FE013F7
-	for <yocto@yoctoproject.org>; Tue, 19 Jun 2012 03:08:40 -0700 (PDT)
-Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
-	([99.241.91.63]:60319 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.77) (envelope-from <rpjday@crashcourse.ca>)
-	id 1SgvMV-0005Yb-N3
-	for yocto@yoctoproject.org; Tue, 19 Jun 2012 06:08:39 -0400
-Date: Tue, 19 Jun 2012 06:08:30 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.DEB.2.02.1206190607030.29236@oneiric>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 01CCCE00746
+	for <yocto@yoctoproject.org>; Tue, 19 Jun 2012 03:15:18 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 19 Jun 2012 03:15:07 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="155354564"
+Received: from unknown (HELO helios.localnet) ([10.252.120.167])
+	by orsmga001.jf.intel.com with ESMTP; 19 Jun 2012 03:15:06 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Jim Rucker <linux.mrjimorg@gmail.com>
+Date: Tue, 19 Jun 2012 11:15:05 +0100
+Message-ID: <1716213.rh1b8QEMi2@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.8.3 (Linux/3.2.0-25-generic-pae; KDE/4.8.3; i686; ; )
+In-Reply-To: <CAH6UwN2LBTKk97jCgq1Z07RWhY0ko3oNVGjHg9tfGW7CkoD=HQ@mail.gmail.com>
+References: <CAH6UwN2LBTKk97jCgq1Z07RWhY0ko3oNVGjHg9tfGW7CkoD=HQ@mail.gmail.com>
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: links to bitbake info throughout the docs should probably be updated
+Cc: yocto@yoctoproject.org
+Subject: Re: Dependency Tree
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,26 +30,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Jun 2012 10:08:40 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Tue, 19 Jun 2012 10:15:19 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
+On Monday 18 June 2012 13:58:03 Jim Rucker wrote:
+> I'm trying to build using the code sourcery external compiler and I noticed
+> that it's pulling in qemu. This brings up 2 questions-
+> 1. Why? Qemu is not a prerequisite for building with GCC and shouldn't be a
+> prerequisite for building with CS.
 
-  currently in dev manual, link to bitbake doc is:
+What is your MACHINE set to? If you're building for a qemu* machine then that 
+would explain it.
 
-http://bitbake.berlios.de/manual/
+> 2. How can I easily generate a dependency tree so I can 'fix' this?
 
-which as you can see is out of date.  it's probably worth scanning all
-the docs and deciding how to update links for bitbake documentation.
+As Khem mentioned you can use -g -u depexp, or alternatively just -g to output 
+dependency graphs in graphviz format which you can grep.
 
-rday
+Cheers,
+Paul
 
 -- 
 
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+Paul Eggleton
+Intel Open Source Technology Centre
 
