@@ -1,31 +1,22 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-ee0-f48.google.com (mail-ee0-f48.google.com [74.125.83.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6D8EEE01423
-	for <yocto@yoctoproject.org>; Tue, 19 Jun 2012 22:53:25 -0700 (PDT)
-Received: by eekb45 with SMTP id b45so2837338eek.35
-	for <yocto@yoctoproject.org>; Tue, 19 Jun 2012 22:53:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type:content-transfer-encoding;
-	bh=qhjSUAJmxWxiT8u6+o3s6VlDdym2smO4jlG0nWv6M90=;
-	b=vFhPO5c7Jihh7NcBIXh8VvEzkr5jL7nDv3J94iquTj2l1lUv9gzOqrPIrFQd7vNI9K
-	2EiPQhX4+7zuFexu4TE1YCw8dFd/vZTtwuya2JTm3Dqc2QFPgc8cEF/px1ND4oLGyP97
-	Jt7E4HEs/xzlkRsxo/DvLh6fB71G7GfWcKhfQP77u9aq5Pavf3Q/UquL461QFUjycyhp
-	14oGtWOpHt5HXem7o6SzxFmgTOOixlWr6RsD/M0noDSt7cn1UqjWOfcgrCLXS65uNjqe
-	BNrpOp8SSyBCaWKqanfFHG3RgiPS6UfEWE2YlMvbipAYj3uFGUSAkjqg221eTw2wXPJv
-	YKvw==
-Received: by 10.14.37.206 with SMTP id y54mr5069643eea.218.1340171604346; Tue,
-	19 Jun 2012 22:53:24 -0700 (PDT)
+Return-Path: <tf+lists.yocto@r-finger.com>
+Received: from r-finger.com (r-finger.com [178.79.160.5])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D3F9FE01423
+	for <yocto@yoctoproject.org>; Tue, 19 Jun 2012 23:04:02 -0700 (PDT)
+Received: from [192.168.0.2] (host86-170-38-202.range86-170.btcentralplus.com
+	[86.170.38.202]) (using TLSv1 with cipher AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by r-finger.com (Postfix) with ESMTPSA id D72E360E52
+	for <yocto@yoctoproject.org>; Wed, 20 Jun 2012 07:04:01 +0100 (BST)
+Message-ID: <4FE167D1.9010907@r-finger.com>
+Date: Wed, 20 Jun 2012 07:04:01 +0100
+From: Tomas Frydrych <tf+lists.yocto@r-finger.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:10.0.3) Gecko/20120329 Icedove/10.0.3
 MIME-Version: 1.0
-Received: by 10.14.219.71 with HTTP; Tue, 19 Jun 2012 22:52:54 -0700 (PDT)
-In-Reply-To: <CAE9DZURgGbWuEL5FuwvXAj3NOdq-KE2uUUGEQuq4MWK8usYCcw@mail.gmail.com>
-References: <CAE9DZURgGbWuEL5FuwvXAj3NOdq-KE2uUUGEQuq4MWK8usYCcw@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Tue, 19 Jun 2012 22:52:54 -0700
-Message-ID: <CAMKF1sr7W4tYmeC81spK+mV0myb15SsDUaZtowTeHCLfCD22SQ@mail.gmail.com>
-To: Dallas Clement <dallas.a.clement@gmail.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: using a custom pre-built toolchain
+To: yocto@yoctoproject.org
+References: <41DEA4B02DBDEF40A0F3B6D0DDB1237946A11736@ORSMSX101.amr.corp.intel.com>
+In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB1237946A11736@ORSMSX101.amr.corp.intel.com>
+Subject: Re: developing with devshell and effect of the bitbake.conf file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,23 +28,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 20 Jun 2012 05:53:25 -0000
+X-List-Received-Date: Wed, 20 Jun 2012 06:04:03 -0000
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
 
-On Tue, Jun 19, 2012 at 9:28 PM, Dallas Clement
-<dallas.a.clement@gmail.com> wrote:
-> I have a cross-toolchain supplied by an ARM SoC vendor which I need to
-> use to build my distro. =C2=A0What is required to use a toolchain like th=
-is
-> instead of one of the yocto cross-toolchain tarballs?
->
+Hi Scott,
 
-I answered this question just today for another mail thread please
-search the ml for the same.
-> Thanks
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+On 19/06/12 19:13, Rifenbark, Scott M wrote:
+> Hi, I want to throw this out for discussion.  I recently was looking
+> at a section in the YP Reference manual
+> (http://www.yoctoproject.org/docs/current/poky-ref-manual/poky-ref-manual.html#platdev-appdev-devshell)
+> where it talks about developing using devshell.  I asked Darren Hart
+> if this was a valid development model and he says it is.
+
+Absolutely, without devshell poky would be just a distro image builder,
+devshell makes into a proper development tool, e.g. devshell is by far
+the easiest way to develop/maintain patches (together with quilt) or to
+tweak applications when debugging and testing.
+
+
+> There is a
+> part of the section though that talks about the bitbake.conf file.
+> That section in the conf file does not seem to exist anymore.  And,
+> Darren (after some testing) doesn't see how what is in the
+> bitbake.conf file affects development with devshell.  Any comments
+> welcome.
+
+I think that bit of the manual is leftover from days of distant past.
+The terminal selection it mentions generally happens automatically, but
+can be forced by the OE_TERMINAL variable from local.conf, where it is
+also documented.
+
+Tomas
+
 
