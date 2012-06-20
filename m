@@ -1,24 +1,35 @@
-Return-Path: <tf+lists.yocto@r-finger.com>
-Received: from r-finger.com (r-finger.com [178.79.160.5])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 07CDDE01423
-	for <yocto@yoctoproject.org>; Tue, 19 Jun 2012 23:23:47 -0700 (PDT)
-Received: from [192.168.0.2] (host86-170-38-202.range86-170.btcentralplus.com
-	[86.170.38.202]) (using TLSv1 with cipher AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by r-finger.com (Postfix) with ESMTPSA id 5DEE460E52
-	for <yocto@yoctoproject.org>; Wed, 20 Jun 2012 07:23:46 +0100 (BST)
-Message-ID: <4FE16C71.7010407@r-finger.com>
-Date: Wed, 20 Jun 2012 07:23:45 +0100
-From: Tomas Frydrych <tf+lists.yocto@r-finger.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:10.0.3) Gecko/20120329 Icedove/10.0.3
+Return-Path: <laurentiu.serban@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CFB78E0070C
+	for <yocto@yoctoproject.org>; Wed, 20 Jun 2012 00:12:28 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 20 Jun 2012 00:12:28 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="182560380"
+Received: from irsmsx101.ger.corp.intel.com ([163.33.3.153])
+	by fmsmga002.fm.intel.com with ESMTP; 20 Jun 2012 00:12:27 -0700
+Received: from irsmsx104.ger.corp.intel.com (163.33.3.159) by
+	IRSMSX101.ger.corp.intel.com (163.33.3.153) with Microsoft SMTP Server
+	(TLS) id 14.1.355.2; Wed, 20 Jun 2012 08:12:26 +0100
+Received: from irsmsx102.ger.corp.intel.com ([169.254.2.176]) by
+	IRSMSX104.ger.corp.intel.com ([169.254.5.70]) with mapi id
+	14.01.0355.002; Wed, 20 Jun 2012 08:12:26 +0100
+From: "Serban, Laurentiu" <laurentiu.serban@intel.com>
+To: Darren Hart <dvhart@linux.intel.com>
+Thread-Topic: [yocto] VERIFIED vs CLOSED in yocto bugzilla
+Thread-Index: Ac1OUUe01eHZ2xUEQ264PiIbIWnZ7wAGMRgAABJz83A=
+Date: Wed, 20 Jun 2012 07:12:25 +0000
+Message-ID: <E16513A01CAAFF40B65178C63CE45EEC1914D60A@IRSMSX102.ger.corp.intel.com>
+References: <E16513A01CAAFF40B65178C63CE45EEC1914D426@IRSMSX102.ger.corp.intel.com>
+	<4FE109C4.1010906@linux.intel.com>
+In-Reply-To: <4FE109C4.1010906@linux.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [163.33.239.180]
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <alpine.DEB.2.02.1206190818420.30655@oneiric>
-	<2266259.lx4CelsjGA@helios>
-	<17553E0E-7415-401A-A91F-5406EAB6193A@keylevel.com>
-In-Reply-To: <17553E0E-7415-401A-A91F-5406EAB6193A@keylevel.com>
-Subject: Re: is it "IMAGE_INSTALL +=" or "IMAGE_INSTALL_append ="?
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: VERIFIED vs CLOSED in yocto bugzilla
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,28 +41,92 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 20 Jun 2012 06:23:47 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 20 Jun 2012 07:12:28 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Hi,
+The discussion was triggered in the Yocto Project Technical Team Meeting fr=
+om June 19th.
 
-On 19/06/12 19:47, Chris Tapp wrote:
-> Is there a section that explains the order in which all these things
-> happen? i.e. items in local.conf happen before/after...
 
-IIRC, the evaluation orders is:
+-----Original Message-----
+From: Darren Hart [mailto:dvhart@linux.intel.com]=20
+Sent: Wednesday, June 20, 2012 2:23 AM
+To: Serban, Laurentiu
+Cc: yocto@yoctoproject.org
+Subject: Re: [yocto] VERIFIED vs CLOSED in yocto bugzilla
 
-1. variables on the command line (e.g., 'MACHINE=beagleboard bitbake
-myimage') are evaluated first,
 
-2. variables in local.conf,
 
-3. Rest depends on the order of things in bblayers.conf *and* how any
-given layer.conf is implemented (some layers preppend their stuff to the
-BBPATH and some layers append; from memory the Yocto layers prepend, but
-layers from OE usually append, and this inconsistency makes for lot of
-fun when combining layers into custom distro).
+On 06/19/2012 12:25 PM, Serban, Laurentiu wrote:
+> Hello,
+>=20
+> =20
+>=20
+> I submit to your attention the following issue related to Yocto=20
+> project's bugzilla:
+>=20
+> =20
+>=20
+> Which is the most appropriate end for a the lifecycle of a bugzilla
+> issue: VERIFIED or CLOSED?
+>=20
+> Currently the bug lifecycle final point is VERIFIED and the status=20
+> CLOSED is not used. Setting a bug to CLOSED after it was VERIFIED has=20
+> no impact on the lifecycle itself as the bug can be reopened anyway.
+>=20
+> =20
+>=20
+> My proposal is the following: keep VERIFIED as the final point of the=20
+> bug lifecycle and use the status CLOSED for the bug only after the 1.3=20
+> release, *if* the regression testing for the bug is ran and passed.
+>=20
+> So after the 1.3 release the ideal situation is that all the bugs=20
+> related to it with previous status VERIFIED are CLOSED.
 
-Tomas
+What is the reasoning driving this change? What does CLOSED indicate that V=
+ERIFIED does not already convey?
+
+Thanks,
+
+Darren
+
+>=20
+> =20
+>=20
+> Waiting for your opinion on this,
+>=20
+> Thank you,
+>=20
+> =20
+>=20
+> *Laurentiu Serban*
+>=20
+> QA Engineer
+>=20
+> Open Source Technology Center
+>=20
+> System Software Division Romania
+>=20
+> Desk: +40 31 8604742**
+>=20
+> iNET: 88451042
+>=20
+> =20
+>=20
+>=20
+>=20
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>=20
+
+--
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
+
+
 
