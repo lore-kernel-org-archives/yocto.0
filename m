@@ -1,34 +1,24 @@
-Return-Path: <jfabernathy@gmail.com>
-Received: from mail-gg0-f176.google.com (mail-gg0-f176.google.com
-	[209.85.161.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4FD9EE01422
-	for <yocto@yoctoproject.org>; Thu, 21 Jun 2012 07:49:03 -0700 (PDT)
-Received: by ggnk4 with SMTP id k4so581258ggn.35
-	for <yocto@yoctoproject.org>; Thu, 21 Jun 2012 07:49:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=message-id:date:from:user-agent:mime-version:to:subject
-	:content-type:content-transfer-encoding;
-	bh=Xy8JT4bV4wgXpDNBtCcgherUddCSr6Eoa00AARgt/oc=;
-	b=QbH/6E8BjkMrTBsm8KK7ERd5uWWR3J6h02KST0vtIkm1iWAx/2iJAEiRLKCqSYa6nZ
-	DAccOe0GIoA8H1d/Jb2xAwUesypwp82YQvMyMczZoENhmZaoXPFSnO+NdHBNsHp8YynF
-	mkr0qIaihzhlVgH7JTgB59pXRHSgo0iuvjgvvac+kxHJmr5M3VdmjFyRXnN6pBGk0J0X
-	DPAp5QRiZ+QqxAsyyAqXpiUnNPW832jl6tlYcq3606Jo2sCylOPxg+D1R6bsYfxEhufJ
-	QOaDG/1KjB2oP2YdDLgNjZQDFiQqzDeYp51os7njpZdNsqtlKLSTJOOIZnWdzA6fScT6
-	HsNg==
-Received: by 10.236.46.195 with SMTP id r43mr32282427yhb.86.1340290142587;
-	Thu, 21 Jun 2012 07:49:02 -0700 (PDT)
-Received: from [10.0.1.54] (nc-184-4-33-55.dhcp.embarqhsd.net. [184.4.33.55])
-	by mx.google.com with ESMTPS id
-	p3sm45390560ano.11.2012.06.21.07.49.01 (version=SSLv3 cipher=OTHER);
-	Thu, 21 Jun 2012 07:49:02 -0700 (PDT)
-Message-ID: <4FE3345E.1000202@gmail.com>
-Date: Thu, 21 Jun 2012 10:49:02 -0400
-From: jfabernathy <jfabernathy@gmail.com>
+Return-Path: <sgw@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 66641E00723
+	for <yocto@yoctoproject.org>; Thu, 21 Jun 2012 08:22:32 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 21 Jun 2012 08:22:30 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="156751823"
+Received: from unknown (HELO [10.255.12.124]) ([10.255.12.124])
+	by orsmga001.jf.intel.com with ESMTP; 21 Jun 2012 08:22:29 -0700
+Message-ID: <4FE33C34.9060904@linux.intel.com>
+Date: Thu, 21 Jun 2012 08:22:28 -0700
+From: Saul Wold <sgw@linux.intel.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:12.0) Gecko/20120430 Thunderbird/12.0.1
 MIME-Version: 1.0
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Hob - proper way to select machine and customer layers
+To: "Barros Pena, Belen" <belen.barros.pena@intel.com>
+References: <CC08AFF0.11AC2%belen.barros.pena@intel.com>
+In-Reply-To: <CC08AFF0.11AC2%belen.barros.pena@intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: self-hosted image vs. build appliance
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,35 +30,69 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Jun 2012 14:49:03 -0000
+X-List-Received-Date: Thu, 21 Jun 2012 15:22:32 -0000
 Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-So I thought I'd give hob a test. Basically, I wanted to do what I could 
-already do with the command line.
+On 06/21/2012 03:30 AM, Barros Pena, Belen wrote:
+> Hi Saul,
+>
+> Thanks for explaining. But I must say: to an outsider, the existing naming
+> does not explain how these 2 things relate to each other.
+>
+> We are adding a description of the 'self-hosted-image' to Hob, including a
+> link to the Build Appliance page in the Yocto Project website. But I am
+> not sure it will be enough to fully explain the relationship between both.
+> Is there any reason why the recipe and the ovf file need to have different
+> names?
+>
+How about build-appliance-image and building a Build Appliance ovf
 
-Normally, after I set the environment variables, I edit the local.conf 
-to change my machine type and parallel processing options. Then I point 
-the download directory to a centralized one on my system, and add some 
-License statements and some CORE-IMAGE-EXTRA-INSTALL statements for 
-extra packages. Then I edit the bblayer.conf to had the path to my layer 
-and the meta-intel layers.
+Sau!
 
-To use Hob, I set my environment variable and the just ran hob.  It was 
-very slow going through the first 63 packages. I think this is because 
-parallel options had not been set and the packages were all being 
-downloaded again.  But after I got to the UI of hob, I got errors adding 
-my layers to get to the meta-intel layers I wanted.  So I started over 
-and edited local.conf and bblayer.conf prior to launching hob.  Now I 
-could see my machine from meta-intel, but I could not add my layer in. 
-Parsing errors.
 
-Before I report an error, I wanted to see if I have the hob startup 
-process right. The issues is around the right way to add 
-meta-intel/meta-cedartrail and my personal layer in my home directory.
-
-Any advice?
-
-JIm A
-
+> Cheers
+>
+> Belen
+>
+>
+>
+> On 20/06/2012 17:44, "Saul Wold"<sgw@linux.intel.com>  wrote:
+>
+>> On 06/20/2012 09:23 AM, Barros Pena, Belen wrote:
+>>> Does anybody know why are we calling it 'self-hosted-image' in Hob and
+>>> 'build-appliance' in the Yocto Project website? Wouldn't it be easier if
+>>> we used the same name everywhere? Which one should be used?
+>>>
+>> They are slightly different.  The self-hosted-image is the recipe name
+>> that generates the image.  The build-appliance is the VMware OVF file
+>> and bits needed to use VMPlayer or VMWorkstation.  The self-hosted-image
+>> is the underlying disk image used in the Build Appliance
+>>
+>> Sau!
+>>
+>>> Thanks!
+>>>
+>>> Belen
+>>>
+>>> ---------------------------------------------------------------------
+>>> Intel Corporation (UK) Limited
+>>> Registered No. 1134945 (England)
+>>> Registered Office: Pipers Way, Swindon SN3 1RJ
+>>> VAT No: 860 2173 47
+>>>
+>>> This e-mail and any attachments may contain confidential material for
+>>> the sole use of the intended recipient(s). Any review or distribution
+>>> by others is strictly prohibited. If you are not the intended
+>>> recipient, please contact the sender and delete all copies.
+>>>
+>>> _______________________________________________
+>>> yocto mailing list
+>>> yocto@yoctoproject.org
+>>> https://lists.yoctoproject.org/listinfo/yocto
+>>>
+>>>
+>
+>
+>
 
