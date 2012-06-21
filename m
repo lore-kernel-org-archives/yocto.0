@@ -1,32 +1,32 @@
 Return-Path: <omprakash.pal@stericsson.com>
-Received: from eu1sys200aog115.obsmtp.com (eu1sys200aog115.obsmtp.com
-	[207.126.144.139])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ACF1FE0070B
-	for <yocto@yoctoproject.org>; Thu, 21 Jun 2012 05:27:38 -0700 (PDT)
-Received: from beta.dmz-ap.st.com ([138.198.100.35]) (using TLSv1) by
-	eu1sys200aob115.postini.com ([207.126.147.11]) with SMTP
-	ID DSNKT+MTM+KlJ8BCLwZ8uLjqebK48EeUei0k@postini.com;
-	Thu, 21 Jun 2012 12:27:39 UTC
-Received: from zeta.dmz-ap.st.com (ns6.st.com [138.198.234.13])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id CD134C6;
-	Thu, 21 Jun 2012 12:19:07 +0000 (GMT)
-Received: from relay1.stm.gmessaging.net (unknown [10.230.100.17])
-	by zeta.dmz-ap.st.com (STMicroelectronics) with ESMTP id BBC99133B;
-	Thu, 21 Jun 2012 12:27:25 +0000 (GMT)
-Received: from exdcvycastm003.EQ1STM.local (alteon-source-exch [10.230.100.61])
+Received: from eu1sys200aog111.obsmtp.com (eu1sys200aog111.obsmtp.com
+	[207.126.144.131])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EA148E0070B
+	for <yocto@yoctoproject.org>; Thu, 21 Jun 2012 05:43:57 -0700 (PDT)
+Received: from beta.dmz-eu.st.com ([164.129.1.35]) (using TLSv1) by
+	eu1sys200aob111.postini.com ([207.126.147.11]) with SMTP
+	ID DSNKT+MXAA6uAwyReVXr7kDR2QYxOK26zA0e@postini.com;
+	Thu, 21 Jun 2012 12:43:58 UTC
+Received: from zeta.dmz-eu.st.com (zeta.dmz-eu.st.com [164.129.230.9])
+	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 0FB59133;
+	Thu, 21 Jun 2012 12:43:28 +0000 (GMT)
+Received: from relay2.stm.gmessaging.net (unknown [10.230.100.18])
+	by zeta.dmz-eu.st.com (STMicroelectronics) with ESMTP id AFFA72D3F;
+	Thu, 21 Jun 2012 12:43:28 +0000 (GMT)
+Received: from exdcvycastm004.EQ1STM.local (alteon-source-exch [10.230.100.61])
 	(using TLSv1 with cipher RC4-MD5 (128/128 bits))
-	(Client CN "exdcvycastm003", Issuer "exdcvycastm003" (not verified))
-	by relay1.stm.gmessaging.net (Postfix) with ESMTPS id 8773424C2F7;
-	Thu, 21 Jun 2012 14:27:14 +0200 (CEST)
+	(Client CN "exdcvycastm004", Issuer "exdcvycastm004" (not verified))
+	by relay2.stm.gmessaging.net (Postfix) with ESMTPS id 22215A8094;
+	Thu, 21 Jun 2012 14:43:23 +0200 (CEST)
 Received: from EXDCVYMBSTM006.EQ1STM.local ([10.230.100.3]) by
-	exdcvycastm003.EQ1STM.local ([10.230.100.1]) with mapi; Thu, 21 Jun 2012
-	14:27:21 +0200
+	exdcvycastm004.EQ1STM.local ([10.230.100.2]) with mapi; Thu, 21 Jun 2012
+	14:43:28 +0200
 From: Om Prakash PAL <omprakash.pal@stericsson.com>
-To: Darren Hart <darren.hart@intel.com>
-Date: Thu, 21 Jun 2012 14:27:20 +0200
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
+Date: Thu, 21 Jun 2012 14:43:27 +0200
 Thread-Topic: [yocto] Porting of specific Kernel/Driver into yocto.
-Thread-Index: Ac05EFpoxK/pq3xWQ5ers9nZ1w77TgWmAeNc
-Message-ID: <3ED83A9DB3B6D94CA68BF7C03F2981D35B1897B1D3@EXDCVYMBSTM006.EQ1STM.local>
+Thread-Index: Ac08+wquXcS3OqEISqKIYj9OeN4MTASrjTKv
+Message-ID: <3ED83A9DB3B6D94CA68BF7C03F2981D35B1897B1D4@EXDCVYMBSTM006.EQ1STM.local>
 References: <3ED83A9DB3B6D94CA68BF7C03F2981D35A844F357F@EXDCVYMBSTM006.EQ1STM.local>
 	<4F7C42E5.8000301@windriver.com>
 	<3ED83A9DB3B6D94CA68BF7C03F2981D35AE63C1B66@EXDCVYMBSTM006.EQ1STM.local>
@@ -41,8 +41,8 @@ References: <3ED83A9DB3B6D94CA68BF7C03F2981D35A844F357F@EXDCVYMBSTM006.EQ1STM.lo
 	<3ED83A9DB3B6D94CA68BF7C03F2981D35B042416D3@EXDCVYMBSTM006.EQ1STM.local>,
 	<4FA66F02.3080107@windriver.com>
 	<3ED83A9DB3B6D94CA68BF7C03F2981D35B1897B1D2@EXDCVYMBSTM006.EQ1STM.local>,
-	<4FBD2998.5060407@intel.com>
-In-Reply-To: <4FBD2998.5060407@intel.com>
+	<4FC3BBF8.4020901@windriver.com>
+In-Reply-To: <4FC3BBF8.4020901@windriver.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
@@ -62,19 +62,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Jun 2012 12:27:40 -0000
+X-List-Received-Date: Thu, 21 Jun 2012 12:43:59 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
 ________________________________________
-From: Darren Hart [darren.hart@intel.com]
-Sent: Wednesday, May 23, 2012 11:46 PM
+From: Bruce Ashfield [bruce.ashfield@windriver.com]
+Sent: Monday, May 28, 2012 11:25 PM
 To: Om Prakash PAL
 Cc: Bruce Ashfield; yocto@yoctoproject.org; Richard Purdie
 Subject: Re: [yocto] Porting of specific Kernel/Driver into yocto.
 
-On 05/23/2012 05:39 AM, Om Prakash PAL wrote:
+On 12-05-23 08:39 AM, Om Prakash PAL wrote:
 > Hi Bruce,
 >
 > [ I am using "poky-edison-6.0" ]
@@ -101,10 +101,6 @@ a mode
 > Fri May 11 11:29:00 UTC 2012
 > Running postinst /etc/rpm-postinsts/*.sh...
 > ERROR: postinst /etc/rpm-postinsts/*.sh failed.
-
-Does this error repeat if you reboot?
-Yes, every time.
-
 > INIT: Entering runlevel: 5
 > Starting syslogd/klogd: done
 > Stopping Bootlog daemon: bootlogd.
@@ -114,27 +110,35 @@ Yes, every time.
 =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
 =3D=3D=3D=3D=3D=3D=3D=3D
 > and after that it got stuck, I am not getting console.
-
-How long do you let it sit?
-
-after some time(around 10mins) got this msg;
-INIT: Id "1" respawning too fast: disabled for 5 minutes
-INIT: no more processes left in this runlevel
-
-and then console got  stuck.
 >
 > I am building rootfs/uImage with default toolchain used in yocto.
 > Is it problem of toolchain?.
+
+
+>I'm just back from vacation. Is this still an ongoing investigation ? As
+>Darren mentioned, nothing in that error log indicates a toolchain problem.
+>You'd typically end up with silent boot death, or far more catastrophic
+>errors if the toolchain was really at fault here.
+
+>It does sound like startup script issues, but without knowing the exact
+>makeup of your rootfs, it's hard to say more.
+
+=3D=3D=3D>I am just using makeup of "Yocto default rootfs" I am not using m=
+y own makeup of rootfs.
+
+>Even when the board is stuck, is the networking stack up and responding ?
+>i.e. can you ping, or even ssh into the box ?
+
+No, Nothing,
+we can not do anyhting. it just got stuck.
+any help/idea will be appreciable.
+
+Best Regards,
+Om Prakash Pal
+
+>Bruce
+
 > Should I build with our toolchain( we use CodeSourcery)?.
-
-Nothing above suggests a toolchain problem. You have an error running
-the postinst scripts from the various rpm packages. Some instrumentation
-in those scripts (and the parent script) would help narrow down where it
-is failing.
-
---
-Darren
-
 >
 > Best Regards,
 > Om Prakash Pal
@@ -265,68 +269,68 @@ hed,
 >>> On 12-04-30 6:34 AM, Om Prakash PAL wrote:
 >>>>> On 12-04-29 5:58 AM, Om Prakash PAL wrote:
 >>>>
->>>>       >    Hi Bruce,
->>>>        >for porting of our local kernel,we have created an BSP layer a=
-nd to change the the
->>>>        >kernel,  we have created an linux-yocto_3.0.bbappend file insi=
-de
->>>>        >meta<BSP>/recipes-kernel/linux/
->>>>        >like this:-
+>>>>        >     Hi Bruce,
+>>>>         >for porting of our local kernel,we have created an BSP layer =
+and to change the the
+>>>>         >kernel,  we have created an linux-yocto_3.0.bbappend file ins=
+ide
+>>>>         >meta<BSP>/recipes-kernel/linux/
+>>>>         >like this:-
 >>>>
->>>>        >FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
+>>>>         >FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
 >>>>
->>>>       >    COMPATIBLE_MACHINE_<BSP_name>     =3D "BSP_name"
+>>>>        >     COMPATIBLE_MACHINE_<BSP_name>      =3D "BSP_name"
 >>>>
->>>>        ># KMACHINE is the branch to build
->>>>        >KMACHINE_<BSP_name>     =3D "local_branch"
+>>>>         ># KMACHINE is the branch to build
+>>>>         >KMACHINE_<BSP_name>      =3D "local_branch"
 >>>>
->>>>       >    SRCREV_machine_pn_linux-yocto_<BSP_name>     ?=3D "XXXXXXXX=
-" (here we have assign
->>>>        >top commit ID of our local kernel)
->>>>
->>>>
->>>>        ># KSRC_linux_yocto to point to your local clone as appropriate=
-.
->>>>        >KSRC_linux_yocto ?=3D "/path/to/local/kernel"
->>>>
->>>>        >SRC_URI =3D
->>>>        >"git://${KSRC_linux_yocto};protocol=3Dfile;nocheckout=3D1;bran=
-ch=3D${KBRANCH};name=3Dmachine
->>>>         >\
->>>>           >                 file://defconfig"
+>>>>        >     SRCREV_machine_pn_linux-yocto_<BSP_name>      ?=3D "XXXXX=
+XXX" (here we have assign
+>>>>         >top commit ID of our local kernel)
 >>>>
 >>>>
->>>>        >KERNEL_REVISION_CHECKING=3D""
->>>>        >SRCREV=3D"${AUTOREV}"
->>>>        >#BB_LOCALCOUNT_OVERRIDE =3D "1"
->>>>        >LOCALCOUNT =3D "0"
+>>>>         ># KSRC_linux_yocto to point to your local clone as appropriat=
+e.
+>>>>         >KSRC_linux_yocto ?=3D "/path/to/local/kernel"
+>>>>
+>>>>         >SRC_URI =3D
+>>>>         >"git://${KSRC_linux_yocto};protocol=3Dfile;nocheckout=3D1;bra=
+nch=3D${KBRANCH};name=3Dmachine
+>>>>          >\
+>>>>            >                  file://defconfig"
 >>>>
 >>>>
->>>>        >while building we are getting following Error:
->>>>
->>>>        >NOTE: Executing RunQueue Tasks
->>>>        >NOTE: Running task 1341 of 1710 (ID: 513,
->>>>        >/home/apallan/yocto/poky-edison-6.0/meta/recipes-kernel/linux/=
-linux-yocto_3.0.bb,
->>>>         >do_validate_branches)
->>>>        >NOTE: package
->>>>        >linux-yocto-3.0.4+git1+6b2c7d65b844e686eae7d5cccb9b638887afe28=
-e-r2: task
->>>>        >do_validate_branches: Started
->>>>        >ERROR: Function 'do_validate_branches' failed (see
->>>>        >/home/apallan/yocto/hello_build/tmp/work/u8500-poky-linux-gnue=
-abi/linux-yocto-3.0.4+git1+6b2c7d65b844e686eae7d5cccb9b638887afe28e-r2/temp=
-/log.do_validate_branches.16792
->>>>         >for further information)
+>>>>         >KERNEL_REVISION_CHECKING=3D""
+>>>>         >SRCREV=3D"${AUTOREV}"
+>>>>         >#BB_LOCALCOUNT_OVERRIDE =3D "1"
+>>>>         >LOCALCOUNT =3D "0"
 >>>>
 >>>>
->>>>        >please tell me what we have done wrong?.
->>>>        >is there anything else we need to modify in .bbappend file or =
-some other
->>>>        >variable?.
+>>>>         >while building we are getting following Error:
+>>>>
+>>>>         >NOTE: Executing RunQueue Tasks
+>>>>         >NOTE: Running task 1341 of 1710 (ID: 513,
+>>>>         >/home/apallan/yocto/poky-edison-6.0/meta/recipes-kernel/linux=
+/linux-yocto_3.0.bb,
+>>>>          >do_validate_branches)
+>>>>         >NOTE: package
+>>>>         >linux-yocto-3.0.4+git1+6b2c7d65b844e686eae7d5cccb9b638887afe2=
+8e-r2: task
+>>>>         >do_validate_branches: Started
+>>>>         >ERROR: Function 'do_validate_branches' failed (see
+>>>>         >/home/apallan/yocto/hello_build/tmp/work/u8500-poky-linux-gnu=
+eabi/linux-yocto-3.0.4+git1+6b2c7d65b844e686eae7d5cccb9b638887afe28e-r2/tem=
+p/log.do_validate_branches.16792
+>>>>          >for further information)
+>>>>
+>>>>
+>>>>         >please tell me what we have done wrong?.
+>>>>         >is there anything else we need to modify in .bbappend file or=
+ some other
+>>>>         >variable?.
 >>>>
 >>>>> Which release are you using again ?
->>>>      I am using 6.0.0 Edision
+>>>>       I am using 6.0.0 Edision
 >>>>
 >>>>> The diagnostics out of validate branches are about to get better in m=
 aster,
@@ -425,13 +429,13 @@ de meta<BSP>/recipes-kernel/linux/
 >>>>
 >>>> FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
 >>>>
->>>> COMPATIBLE_MACHINE_<BSP_name>    =3D "BSP_name"
+>>>> COMPATIBLE_MACHINE_<BSP_name>     =3D "BSP_name"
 >>>>
 >>>> # KMACHINE is the branch to build
->>>> KMACHINE_<BSP_name>    =3D "local_branch"
+>>>> KMACHINE_<BSP_name>     =3D "local_branch"
 >>>>
->>>> SRCREV_machine_pn_linux-yocto_<BSP_name>    ?=3D "XXXXXXXX" (here we h=
-ave assign top commit ID of our local kernel)
+>>>> SRCREV_machine_pn_linux-yocto_<BSP_name>     ?=3D "XXXXXXXX" (here we =
+have assign top commit ID of our local kernel)
 >>>>
 >>>>
 >>>> # KSRC_linux_yocto to point to your local clone as appropriate.
@@ -439,7 +443,7 @@ ave assign top commit ID of our local kernel)
 >>>>
 >>>> SRC_URI =3D "git://${KSRC_linux_yocto};protocol=3Dfile;nocheckout=3D1;=
 branch=3D${KBRANCH};name=3Dmachine \
->>>>                    file://defconfig"
+>>>>                     file://defconfig"
 >>>>
 >>>>
 >>>> KERNEL_REVISION_CHECKING=3D""
@@ -475,7 +479,7 @@ er variable?.
 >>>> Subject: Re: [yocto] Porting of specific Kernel/Driver into yocto.
 >>>>
 >>>> On Mon, Apr 9, 2012 at 12:31 PM, Om Prakash PAL
->>>> <omprakash.pal@stericsson.com>    wrote:
+>>>> <omprakash.pal@stericsson.com>     wrote:
 >>>>> Hi Bruce,
 >>>>> Thanks for you help.
 >>>>> As you have mentioned, its working properly.
@@ -485,9 +489,9 @@ y scenario ?:
 >>>>> We have development branch where we write/modify our kernel/driver co=
 de i.e. thats our local kernel repository(git rep)
 >>>>> and lots of driver/files being modified everyday-->so I have to take =
-the same effect into yocto kernel also---->    so except  creating patches =
-for all modified drivers and creating .bbappend files, is there any better =
-way of doing same thing .
+the same effect into yocto kernel also---->     so except  creating patches=
+ for all modified drivers and creating .bbappend files, is there any better=
+ way of doing same thing .
 >>>>
 >>>> Aha. Missed that.
 >>>>
@@ -572,8 +576,8 @@ king
 >>>>> is with the kernel git repository. So you can simply commit your
 >>>>> changes, and generate patches.
 >>>>>
->>>>>       git format-patch -o<your directory>    HEAD^ (or however many c=
-ommits
+>>>>>        git format-patch -o<your directory>     HEAD^ (or however many=
+ commits
 >>>>> you have)
 >>>>>
 >>>>> Take those patches, create a layer with a bbappend and add them like
@@ -640,14 +644,5 @@ s
 >>>
 >>
 >
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
 
-
---
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
 
