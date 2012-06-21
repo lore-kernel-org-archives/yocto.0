@@ -1,24 +1,33 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (hermes.mlbassoc.com [64.234.241.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3ED04E01304
-	for <yocto@yoctoproject.org>; Thu, 21 Jun 2012 05:48:03 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id 99B4EF8122C; Thu, 21 Jun 2012 06:48:02 -0600 (MDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=unavailable version=3.3.2
-Received: from hermes.chez-thomas.org (localhost.localdomain [127.0.0.1])
-	by mail.chez-thomas.org (Postfix) with ESMTP id CF78EF811E3;
-	Thu, 21 Jun 2012 06:47:49 -0600 (MDT)
-Message-ID: <4FE317F5.1000400@mlbassoc.com>
-Date: Thu, 21 Jun 2012 06:47:49 -0600
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:12.0) Gecko/20120430 Thunderbird/12.0.1
-MIME-Version: 1.0
-To: yocto@yoctoproject.org
+Return-Path: <omprakash.pal@stericsson.com>
+Received: from eu1sys200aog101.obsmtp.com (eu1sys200aog101.obsmtp.com
+	[207.126.144.111])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A7FC8E01422
+	for <yocto@yoctoproject.org>; Thu, 21 Jun 2012 07:16:39 -0700 (PDT)
+Received: from beta.dmz-ap.st.com ([138.198.100.35]) (using TLSv1) by
+	eu1sys200aob101.postini.com ([207.126.147.11]) with SMTP
+	ID DSNKT+MsxPe8ieo4K1tiJfdxYStqJh6MjRmB@postini.com;
+	Thu, 21 Jun 2012 14:16:40 UTC
+Received: from zeta.dmz-ap.st.com (ns6.st.com [138.198.234.13])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id C2479B1;
+	Thu, 21 Jun 2012 14:08:11 +0000 (GMT)
+Received: from relay2.stm.gmessaging.net (unknown [10.230.100.18])
+	by zeta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 56DD413BA;
+	Thu, 21 Jun 2012 14:16:30 +0000 (GMT)
+Received: from exdcvycastm004.EQ1STM.local (alteon-source-exch [10.230.100.61])
+	(using TLSv1 with cipher RC4-MD5 (128/128 bits))
+	(Client CN "exdcvycastm004", Issuer "exdcvycastm004" (not verified))
+	by relay2.stm.gmessaging.net (Postfix) with ESMTPS id 7399EA8065;
+	Thu, 21 Jun 2012 16:16:23 +0200 (CEST)
+Received: from EXDCVYMBSTM006.EQ1STM.local ([10.230.100.3]) by
+	exdcvycastm004.EQ1STM.local ([10.230.100.2]) with mapi; Thu, 21 Jun 2012
+	16:16:29 +0200
+From: Om Prakash PAL <omprakash.pal@stericsson.com>
+To: Gary Thomas <gary@mlbassoc.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Thu, 21 Jun 2012 16:16:23 +0200
+Thread-Topic: [yocto] Porting of specific Kernel/Driver into yocto.
+Thread-Index: Ac1PrB335O15JEJqRWGooox8zBne2wACx2eg
+Message-ID: <3ED83A9DB3B6D94CA68BF7C03F2981D35B18D9EC2E@EXDCVYMBSTM006.EQ1STM.local>
 References: <3ED83A9DB3B6D94CA68BF7C03F2981D35A844F357F@EXDCVYMBSTM006.EQ1STM.local>
 	<4F7C42E5.8000301@windriver.com>
 	<3ED83A9DB3B6D94CA68BF7C03F2981D35AE63C1B66@EXDCVYMBSTM006.EQ1STM.local>
@@ -35,7 +44,21 @@ References: <3ED83A9DB3B6D94CA68BF7C03F2981D35A844F357F@EXDCVYMBSTM006.EQ1STM.lo
 	<3ED83A9DB3B6D94CA68BF7C03F2981D35B1897B1D2@EXDCVYMBSTM006.EQ1STM.local>,
 	<4FBD2998.5060407@intel.com>
 	<3ED83A9DB3B6D94CA68BF7C03F2981D35B1897B1D3@EXDCVYMBSTM006.EQ1STM.local>
-In-Reply-To: <3ED83A9DB3B6D94CA68BF7C03F2981D35B1897B1D3@EXDCVYMBSTM006.EQ1STM.local>
+	<4FE317F5.1000400@mlbassoc.com>
+In-Reply-To: <4FE317F5.1000400@mlbassoc.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-cr-puzzleid: {92CD60E1-41F4-43E5-AD69-E9AEAE07299D}
+x-cr-hashedpuzzle: APcQ F5KG H3XK IGbN KMLL OOwL OPE9 PqPY RQeq SbXg Sc9q
+	TAHl TQ3N UDK+ U56Z VC9R; 2;
+	ZwBhAHIAeQBAAG0AbABiAGEAcwBzAG8AYwAuAGMAbwBtADsAeQBvAGMAdABvAEAAeQBvAGMAdABvAHAAcgBvAGoAZQBjAHQALgBvAHIAZwA=;
+	Sosha1_v1; 7; {92CD60E1-41F4-43E5-AD69-E9AEAE07299D};
+	bwBtAHAAcgBhAGsAYQBzAGgALgBwAGEAbABAAHMAdABlAHIAaQBjAHMAcwBvAG4ALgBjAG8AbQA=;
+	Thu, 21 Jun 2012 14:16:23 GMT;
+	UgBFADoAIABbAHkAbwBjAHQAbwBdACAAUABvAHIAdABpAG4AZwAgAG8AZgAgAHMAcABlAGMAaQBmAGkAYwAgAEsAZQByAG4AZQBsAC8ARAByAGkAdgBlAHIAIABpAG4AdABvACAAeQBvAGMAdABvAC4A
+acceptlanguage: en-US
+MIME-Version: 1.0
 Subject: Re: Porting of specific Kernel/Driver into yocto.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -48,9 +71,17 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Jun 2012 12:48:03 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 21 Jun 2012 14:16:42 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+----Original Message-----
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Gary Thomas
+Sent: Thursday, June 21, 2012 6:18 PM
+To: yocto@yoctoproject.org
+Subject: Re: [yocto] Porting of specific Kernel/Driver into yocto.
 
 On 2012-06-21 06:27, Om Prakash PAL wrote:
 > ________________________________________
@@ -64,12 +95,16 @@ On 2012-06-21 06:27, Om Prakash PAL wrote:
 >> Hi Bruce,
 >>
 >> [ I am using "poky-edison-6.0" ]
->> I am able to create my rootfs and uImage but when I flashed these on my board,
+>> I am able to create my rootfs and uImage but when I flashed these on my =
+board,
 >> while booting I am getting below Error and console get blocked.
 >>
->> =========================================================
+>> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D
 >> [    3.575805] EXT3-fs (mmcblk0p1): using internal journal
->> [    3.581054] EXT3-fs (mmcblk0p1): mounted filesystem with writeback data mode
+>> [    3.581054] EXT3-fs (mmcblk0p1): mounted filesystem with writeback da=
+ta mode
 >> [    3.588165] VFS: Mounted root (ext3 filesystem) on device 179:1.
 >> [    3.594268] Freeing init memory: 312K
 >> INIT: version 2.88 booting
@@ -87,9 +122,14 @@ On 2012-06-21 06:27, Om Prakash PAL wrote:
 > Does this error repeat if you reboot?
 > Yes, every time.
 
-What image is being used?  I've seen this with core-image-minimal, but it
-goes away when the image is more complex, e.g. core-image-sato.  I believe
-the init script is always present even if there are no postinst scripts to run.
+>What image is being used?  I've seen this with core-image-minimal, but it
+>goes away when the image is more complex, e.g. core-image-sato.  I believe
+>the init script is always present even if there are no postinst scripts to=
+ run.
+
+I am also building core-image-minimal.
+Is there any problem with this?.
+Should I build core-image-sato?.
 
 >
 >> INIT: Entering runlevel: 5
@@ -97,7 +137,9 @@ the init script is always present even if there are no postinst scripts to run.
 >> Stopping Bootlog daemon: bootlogd.
 >> [    9.737091] av8100_hdmi av8100_hdmi.3: HDMI display probed
 >>
->> =========================================================
+>> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D
 >> and after that it got stuck, I am not getting console.
 >
 > How long do you let it sit?
@@ -108,8 +150,10 @@ the init script is always present even if there are no postinst scripts to run.
 >
 > and then console got  stuck.
 
-What do you have SERIAL_CONSOLE set to in your configuration?
+>What do you have SERIAL_CONSOLE set to in your configuration?
 
+I have set SERIAL_CONSOLE=3D"115200 ttyAMA2". As we are using ttyAMA2 for c=
+onsole.
 >>
 >> I am building rootfs/uImage with default toolchain used in yocto.
 >> Is it problem of toolchain?.
@@ -137,42 +181,46 @@ What do you have SERIAL_CONSOLE set to in your configuration?
 >>> Hi Bruce,
 >>> I am getting some problem in do_install:
 >>>
->>> NOTE: Running task 1535 of 1710 (ID: 517, /home/apallan/yocto/poky-edison-6.0/meta-u8500/recipes-kernel/linux/linux-u8500.bb, do_install)
->>> NOTE: package linux-u8500-3.2+git1+0a81a5eaa7a5c1216cbd087bec5ec7cd8a448383-r10: task do_install: Started
+>>> NOTE: Running task 1535 of 1710 (ID: 517, /home/apallan/yocto/poky-edis=
+on-6.0/meta-u8500/recipes-kernel/linux/linux-u8500.bb, do_install)
+>>> NOTE: package linux-u8500-3.2+git1+0a81a5eaa7a5c1216cbd087bec5ec7cd8a44=
+8383-r10: task do_install: Started
 >>>
->>> and I waited for ~15hr to complete task do_install: but not completed and i am not getting any Errors/warnings.
+>>> and I waited for ~15hr to complete task do_install: but not completed a=
+nd i am not getting any Errors/warnings.
 >>> Is there any problem?.
->>> I have checked that my vmlinux/uImage/zImage has been created successfully but rootfs has not been created till now.
+>>> I have checked that my vmlinux/uImage/zImage has been created successfu=
+lly but rootfs has not been created till now.
 >>>
 >>> here is my .bb file that is building my local_kernel.
 >>>
 >>> inherit kernel
 >>> require recipes-kernel/linux/linux-yocto.inc
 >>>
->>> KMACHINE = "dev"
->>> YOCTO_KERNEL_EXTERNAL_BRANCH ?= "dev"
+>>> KMACHINE =3D "dev"
+>>> YOCTO_KERNEL_EXTERNAL_BRANCH ?=3D "dev"
 >>>
->>> KBRANCH = "${KMACHINE}"
->>> KMETA = "meta"
+>>> KBRANCH =3D "${KMACHINE}"
+>>> KMETA =3D "meta"
 >>>
->>> KSRC_linux_yocto ?= "/home/apallan/yocto/kernel/"
+>>> KSRC_linux_yocto ?=3D "/home/apallan/yocto/kernel/"
 >>>
->>> SRC_URI = "git://${KSRC_linux_yocto};protocol=file;nocheckout=1"
->>> SRC_URI +="file://defconfig"
+>>> SRC_URI =3D "git://${KSRC_linux_yocto};protocol=3Dfile;nocheckout=3D1"
+>>> SRC_URI +=3D"file://defconfig"
 >>>
->>> SRCREV="${AUTOREV}"
->>> SRCREV_pn-linux-u8500 ="0a81a5eaa7a5c1216cbd087bec5ec7cd8a448383"
+>>> SRCREV=3D"${AUTOREV}"
+>>> SRCREV_pn-linux-u8500 =3D"0a81a5eaa7a5c1216cbd087bec5ec7cd8a448383"
 >>>
->>> LINUX_VERSION ?= "3.2"
->>> LINUX_VERSION_EXTENSION = "-yoctized-${LINUX_KERNEL_TYPE}"
->>> PR = "r10"
->>> PV = "${LINUX_VERSION}+git${SRCPV}"
+>>> LINUX_VERSION ?=3D "3.2"
+>>> LINUX_VERSION_EXTENSION =3D "-yoctized-${LINUX_KERNEL_TYPE}"
+>>> PR =3D "r10"
+>>> PV =3D "${LINUX_VERSION}+git${SRCPV}"
 >>>
->>> COMPATIBLE_MACHINE = "(u8500|qemuarm)"
+>>> COMPATIBLE_MACHINE =3D "(u8500|qemuarm)"
 >>>
 >>> # Functionality flags
->>> KERNEL_REVISION_CHECKING=""
->>> YOCTO_KERNEL_META_DATA=""
+>>> KERNEL_REVISION_CHECKING=3D""
+>>> YOCTO_KERNEL_META_DATA=3D""
 >>>
 >>> require recipes-kernel/linux/linux-tools.inc
 >>>
@@ -189,7 +237,8 @@ What do you have SERIAL_CONSOLE set to in your configuration?
 >> things that could impact performance (but not really 15 hours worth of
 >> issues).
 >>
->> Are there any hints in the host system logs, or in the kernels do_install
+>> Are there any hints in the host system logs, or in the kernels do_instal=
+l
 >> log ?
 >>
 >> Bruce
@@ -216,14 +265,16 @@ What do you have SERIAL_CONSOLE set to in your configuration?
 >>>> bitbake -c mencuconfig virtual/kernel
 >>>>
 >>>> then from which location it will take the config file?.
->>>> and if I want to buiild my own specific defconfig file then How can do it?.
+>>>> and if I want to buiild my own specific defconfig file then How can do=
+ it?.
 >>>
 >>> It will use the .config in the build directory ${B}, which if you
 >>> are using a linux-yocto recipe would be your
 >>> linux-$MACHINE-$KERNELTYPE-build
 >>> directory.
 >>>
->>> The dependencies of menuconfig will ensure that the kernel has been fetched,
+>>> The dependencies of menuconfig will ensure that the kernel has been fet=
+ched,
 >>> unpacked and configured before it runs. Which means a defconfig will
 >>> have already been used (if specified) to construct the .config.
 >>>
@@ -248,75 +299,99 @@ What do you have SERIAL_CONSOLE set to in your configuration?
 >>>>>> On 12-04-29 5:58 AM, Om Prakash PAL wrote:
 >>>>>
 >>>>>        >     Hi Bruce,
->>>>>         >for porting of our local kernel,we have created an BSP layer and to change the the
->>>>>         >kernel,  we have created an linux-yocto_3.0.bbappend file inside
+>>>>>         >for porting of our local kernel,we have created an BSP layer=
+ and to change the the
+>>>>>         >kernel,  we have created an linux-yocto_3.0.bbappend file in=
+side
 >>>>>         >meta<BSP>/recipes-kernel/linux/
 >>>>>         >like this:-
 >>>>>
->>>>>         >FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+>>>>>         >FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
 >>>>>
->>>>>        >     COMPATIBLE_MACHINE_<BSP_name>      = "BSP_name"
+>>>>>        >     COMPATIBLE_MACHINE_<BSP_name>      =3D "BSP_name"
 >>>>>
 >>>>>         ># KMACHINE is the branch to build
->>>>>         >KMACHINE_<BSP_name>      = "local_branch"
+>>>>>         >KMACHINE_<BSP_name>      =3D "local_branch"
 >>>>>
->>>>>        >     SRCREV_machine_pn_linux-yocto_<BSP_name>      ?= "XXXXXXXX" (here we have assign
+>>>>>        >     SRCREV_machine_pn_linux-yocto_<BSP_name>      ?=3D "XXXX=
+XXXX" (here we have assign
 >>>>>         >top commit ID of our local kernel)
 >>>>>
 >>>>>
->>>>>         ># KSRC_linux_yocto to point to your local clone as appropriate.
->>>>>         >KSRC_linux_yocto ?= "/path/to/local/kernel"
+>>>>>         ># KSRC_linux_yocto to point to your local clone as appropria=
+te.
+>>>>>         >KSRC_linux_yocto ?=3D "/path/to/local/kernel"
 >>>>>
->>>>>         >SRC_URI =
->>>>>         >"git://${KSRC_linux_yocto};protocol=file;nocheckout=1;branch=${KBRANCH};name=machine
+>>>>>         >SRC_URI =3D
+>>>>>         >"git://${KSRC_linux_yocto};protocol=3Dfile;nocheckout=3D1;br=
+anch=3D${KBRANCH};name=3Dmachine
 >>>>>          >\
 >>>>>            >                  file://defconfig"
 >>>>>
 >>>>>
->>>>>         >KERNEL_REVISION_CHECKING=""
->>>>>         >SRCREV="${AUTOREV}"
->>>>>         >#BB_LOCALCOUNT_OVERRIDE = "1"
->>>>>         >LOCALCOUNT = "0"
+>>>>>         >KERNEL_REVISION_CHECKING=3D""
+>>>>>         >SRCREV=3D"${AUTOREV}"
+>>>>>         >#BB_LOCALCOUNT_OVERRIDE =3D "1"
+>>>>>         >LOCALCOUNT =3D "0"
 >>>>>
 >>>>>
 >>>>>         >while building we are getting following Error:
 >>>>>
 >>>>>         >NOTE: Executing RunQueue Tasks
 >>>>>         >NOTE: Running task 1341 of 1710 (ID: 513,
->>>>>         >/home/apallan/yocto/poky-edison-6.0/meta/recipes-kernel/linux/linux-yocto_3.0.bb,
+>>>>>         >/home/apallan/yocto/poky-edison-6.0/meta/recipes-kernel/linu=
+x/linux-yocto_3.0.bb,
 >>>>>          >do_validate_branches)
 >>>>>         >NOTE: package
->>>>>         >linux-yocto-3.0.4+git1+6b2c7d65b844e686eae7d5cccb9b638887afe28e-r2: task
+>>>>>         >linux-yocto-3.0.4+git1+6b2c7d65b844e686eae7d5cccb9b638887afe=
+28e-r2: task
 >>>>>         >do_validate_branches: Started
 >>>>>         >ERROR: Function 'do_validate_branches' failed (see
->>>>>         >/home/apallan/yocto/hello_build/tmp/work/u8500-poky-linux-gnueabi/linux-yocto-3.0.4+git1+6b2c7d65b844e686eae7d5cccb9b638887afe28e-r2/temp/log.do_validate_branches.16792
+>>>>>         >/home/apallan/yocto/hello_build/tmp/work/u8500-poky-linux-gn=
+ueabi/linux-yocto-3.0.4+git1+6b2c7d65b844e686eae7d5cccb9b638887afe28e-r2/te=
+mp/log.do_validate_branches.16792
 >>>>>          >for further information)
 >>>>>
 >>>>>
 >>>>>         >please tell me what we have done wrong?.
->>>>>         >is there anything else we need to modify in .bbappend file or some other
+>>>>>         >is there anything else we need to modify in .bbappend file o=
+r some other
 >>>>>         >variable?.
 >>>>>
 >>>>>> Which release are you using again ?
 >>>>>       I am using 6.0.0 Edision
 >>>>>
->>>>>> The diagnostics out of validate branches are about to get better in master,
+>>>>>> The diagnostics out of validate branches are about to get better in =
+master,
 >>>>>> but they are coupled with some other tools changes that couldn't go
 >>>>>> into yocto 1.2.
 >>>>>
 >>>>>> Is there anything extra in the log file, or just what you saw on the
 >>>>>> build log ?.
->>>>> actually I have set YOCTO_KERNEL_EXTERNAL_BRANCH ="dev";(dev is my local brach)
+>>>>> actually I have set YOCTO_KERNEL_EXTERNAL_BRANCH =3D"dev";(dev is my =
+local brach)
 >>>>> Now this Error has gone and now I am getting
 >>>>>
->>>>> ERROR: Function 'do_patch' failed (see /home/apallan/yocto/hello_build/tmp/work/u8500-poky-linux-gnueabi/linux-yocto-3.0.4+git2+0a81a5eaa7a5c1216cbd087bec5ec7cd8a448383-r3/temp/log.do_patch.22008 for further information)
->>>>> ERROR: Logfile of failure stored in: /home/apallan/yocto/hello_build/tmp/work/u8500-poky-linux-gnueabi/linux-yocto-3.0.4+git2+0a81a5eaa7a5c1216cbd087bec5ec7cd8a448383-r3/temp/log.do_patch.22008
+>>>>> ERROR: Function 'do_patch' failed (see /home/apallan/yocto/hello_buil=
+d/tmp/work/u8500-poky-linux-gnueabi/linux-yocto-3.0.4+git2+0a81a5eaa7a5c121=
+6cbd087bec5ec7cd8a448383-r3/temp/log.do_patch.22008 for further information=
+)
+>>>>> ERROR: Logfile of failure stored in: /home/apallan/yocto/hello_build/=
+tmp/work/u8500-poky-linux-gnueabi/linux-yocto-3.0.4+git2+0a81a5eaa7a5c1216c=
+bd087bec5ec7cd8a448383-r3/temp/log.do_patch.22008
 >>>>> Log data follows:
->>>>> | ERROR. meta data not found, check upstream repo for tags and branches
->>>>> | ERROR: Function 'do_patch' failed (see /home/apallan/yocto/hello_build/tmp/work/u8500-poky-linux-gnueabi/linux-yocto-3.0.4+git2+0a81a5eaa7a5c1216cbd087bec5ec7cd8a448383-r3/temp/log.do_patch.22008 for further information)
->>>>> NOTE: package linux-yocto-3.0.4+git2+0a81a5eaa7a5c1216cbd087bec5ec7cd8a448383-r3: task do_patch: Failed
->>>>> ERROR: Task 516 (/home/apallan/yocto/poky-edison-6.0/meta/recipes-kernel/linux/linux-yocto_3.0.bb, do_patch) failed with exit code '1'
->>>>> ERROR: '/home/apallan/yocto/poky-edison-6.0/meta/recipes-kernel/linux/linux-yocto_3.0.bb' failed
+>>>>> | ERROR. meta data not found, check upstream repo for tags and branch=
+es
+>>>>> | ERROR: Function 'do_patch' failed (see /home/apallan/yocto/hello_bu=
+ild/tmp/work/u8500-poky-linux-gnueabi/linux-yocto-3.0.4+git2+0a81a5eaa7a5c1=
+216cbd087bec5ec7cd8a448383-r3/temp/log.do_patch.22008 for further informati=
+on)
+>>>>> NOTE: package linux-yocto-3.0.4+git2+0a81a5eaa7a5c1216cbd087bec5ec7cd=
+8a448383-r3: task do_patch: Failed
+>>>>> ERROR: Task 516 (/home/apallan/yocto/poky-edison-6.0/meta/recipes-ker=
+nel/linux/linux-yocto_3.0.bb, do_patch) failed with exit code '1'
+>>>>> ERROR: '/home/apallan/yocto/poky-edison-6.0/meta/recipes-kernel/linux=
+/linux-yocto_3.0.bb' failed
 >>>>>
 >>>>
 >>>> This is what I was saying a few weeks ago. If you aren't using
@@ -331,15 +406,18 @@ What do you have SERIAL_CONSOLE set to in your configuration?
 >>>>
 >>>> What you re being told in this particular error is that you don't have
 >>>> a meta branch in the tree, or not one that the tools can recognize.
->>>> You can prevent this by setting YOCTO_KERNEL_META_DATA="" in your
+>>>> You can prevent this by setting YOCTO_KERNEL_META_DATA=3D"" in your
 >>>> recipe (see the korg recipe as an example). (and FYI: this will no
 >>>> longer be required in 1.3, but it is for any previous release.
 >>>>>
->>>>>> Validate branches fails like this when you've provided a bad branch or
->>>>>> SRCREV (vs a SRCREV that is simply not the tip of the branch .. it fixes
+>>>>>> Validate branches fails like this when you've provided a bad branch =
+or
+>>>>>> SRCREV (vs a SRCREV that is simply not the tip of the branch .. it f=
+ixes
 >>>>>> hat scenario) and the fetcher or another git command aborts.
 >>>>>
->>>>>> You've output some example text from the bbappend, but what were the real
+>>>>>> You've output some example text from the bbappend, but what were the=
+ real
 >>>>>> values in your situation ? i.e. what are KMACHINE/KBRANCH set to ?.
 >>>>>
 >>>>> I have not set the value of KBRANCH?. what it should be ?.
@@ -354,8 +432,10 @@ What do you have SERIAL_CONSOLE set to in your configuration?
 >>>> Bruce
 >>>>
 >>>>>
->>>>>> There are some flags you can set to exit the branch validation early, but
->>>>>> I don't think setting them is the right course of action yet, since the
+>>>>>> There are some flags you can set to exit the branch validation early=
+, but
+>>>>>> I don't think setting them is the right course of action yet, since =
+the
 >>>>>> error you are seeing is likely hiding some other mis configuration.
 >>>>>
 >>>>>> Cheers,
@@ -372,42 +452,53 @@ What do you have SERIAL_CONSOLE set to in your configuration?
 >>>>> Subject: RE: [yocto] Porting of specific Kernel/Driver into yocto.
 >>>>>
 >>>>> Hi Bruce,
->>>>> for porting of our local kernel,we have created an BSP layer and to change the the kernel,  we have created an linux-yocto_3.0.bbappend file inside meta<BSP>/recipes-kernel/linux/
+>>>>> for porting of our local kernel,we have created an BSP layer and to c=
+hange the the kernel,  we have created an linux-yocto_3.0.bbappend file ins=
+ide meta<BSP>/recipes-kernel/linux/
 >>>>> like this:-
 >>>>>
->>>>> FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+>>>>> FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
 >>>>>
->>>>> COMPATIBLE_MACHINE_<BSP_name>     = "BSP_name"
+>>>>> COMPATIBLE_MACHINE_<BSP_name>     =3D "BSP_name"
 >>>>>
 >>>>> # KMACHINE is the branch to build
->>>>> KMACHINE_<BSP_name>     = "local_branch"
+>>>>> KMACHINE_<BSP_name>     =3D "local_branch"
 >>>>>
->>>>> SRCREV_machine_pn_linux-yocto_<BSP_name>     ?= "XXXXXXXX" (here we have assign top commit ID of our local kernel)
+>>>>> SRCREV_machine_pn_linux-yocto_<BSP_name>     ?=3D "XXXXXXXX" (here we=
+ have assign top commit ID of our local kernel)
 >>>>>
 >>>>>
 >>>>> # KSRC_linux_yocto to point to your local clone as appropriate.
->>>>> KSRC_linux_yocto ?= "/path/to/local/kernel"
+>>>>> KSRC_linux_yocto ?=3D "/path/to/local/kernel"
 >>>>>
->>>>> SRC_URI = "git://${KSRC_linux_yocto};protocol=file;nocheckout=1;branch=${KBRANCH};name=machine \
+>>>>> SRC_URI =3D "git://${KSRC_linux_yocto};protocol=3Dfile;nocheckout=3D1=
+;branch=3D${KBRANCH};name=3Dmachine \
 >>>>>                     file://defconfig"
 >>>>>
 >>>>>
->>>>> KERNEL_REVISION_CHECKING=""
->>>>> SRCREV="${AUTOREV}"
->>>>> #BB_LOCALCOUNT_OVERRIDE = "1"
->>>>> LOCALCOUNT = "0"
+>>>>> KERNEL_REVISION_CHECKING=3D""
+>>>>> SRCREV=3D"${AUTOREV}"
+>>>>> #BB_LOCALCOUNT_OVERRIDE =3D "1"
+>>>>> LOCALCOUNT =3D "0"
 >>>>>
 >>>>>
 >>>>> while building we are getting following Error:
 >>>>>
 >>>>> NOTE: Executing RunQueue Tasks
->>>>> NOTE: Running task 1341 of 1710 (ID: 513, /home/apallan/yocto/poky-edison-6.0/meta/recipes-kernel/linux/linux-yocto_3.0.bb, do_validate_branches)
->>>>> NOTE: package linux-yocto-3.0.4+git1+6b2c7d65b844e686eae7d5cccb9b638887afe28e-r2: task do_validate_branches: Started
->>>>> ERROR: Function 'do_validate_branches' failed (see /home/apallan/yocto/hello_build/tmp/work/u8500-poky-linux-gnueabi/linux-yocto-3.0.4+git1+6b2c7d65b844e686eae7d5cccb9b638887afe28e-r2/temp/log.do_validate_branches.16792 for further information)
+>>>>> NOTE: Running task 1341 of 1710 (ID: 513, /home/apallan/yocto/poky-ed=
+ison-6.0/meta/recipes-kernel/linux/linux-yocto_3.0.bb, do_validate_branches=
+)
+>>>>> NOTE: package linux-yocto-3.0.4+git1+6b2c7d65b844e686eae7d5cccb9b6388=
+87afe28e-r2: task do_validate_branches: Started
+>>>>> ERROR: Function 'do_validate_branches' failed (see /home/apallan/yoct=
+o/hello_build/tmp/work/u8500-poky-linux-gnueabi/linux-yocto-3.0.4+git1+6b2c=
+7d65b844e686eae7d5cccb9b638887afe28e-r2/temp/log.do_validate_branches.16792=
+ for further information)
 >>>>>
 >>>>>
 >>>>> please tell me what we have done wrong?.
->>>>> is there anything else we need to modify in .bbappend file or some other variable?.
+>>>>> is there anything else we need to modify in .bbappend file or some ot=
+her variable?.
 >>>>>
 >>>>> Best Regards,
 >>>>> Om Prakash Pal
@@ -423,35 +514,49 @@ What do you have SERIAL_CONSOLE set to in your configuration?
 >>>>>> Hi Bruce,
 >>>>>> Thanks for you help.
 >>>>>> As you have mentioned, its working properly.
->>>>>> I want to know that is there any better way of doing same thing for my scenario ?:
+>>>>>> I want to know that is there any better way of doing same thing for =
+my scenario ?:
 >>>>>> here is my scenario:
->>>>>> We have development branch where we write/modify our kernel/driver code i.e. thats our local kernel repository(git rep)
->>>>>> and lots of driver/files being modified everyday-->so I have to take the same effect into yocto kernel also---->     so except  creating patches for all modified drivers and creating .bbappend files, is there any better way of doing same thing .
+>>>>>> We have development branch where we write/modify our kernel/driver c=
+ode i.e. thats our local kernel repository(git rep)
+>>>>>> and lots of driver/files being modified everyday-->so I have to take=
+ the same effect into yocto kernel also---->     so except  creating patche=
+s for all modified drivers and creating .bbappend files, is there any bette=
+r way of doing same thing .
 >>>>>
 >>>>> Aha. Missed that.
 >>>>>
->>>>> Just create a simple recipe that points at your git repository in the SRC_URI.
+>>>>> Just create a simple recipe that points at your git repository in the=
+ SRC_URI.
 >>>>> If all the changes are in the tree, and you have a defconfig and you
 >>>>> are building
->>>>> the master branch. Then pretty much everything you need can be specified in
+>>>>> the master branch. Then pretty much everything you need can be specif=
+ied in
 >>>>> the SRC_URI .. and that's the entire recipe.
 >>>>>
 >>>>> If you look in oe-classic, meta-ti or any one of a number of other
 >>>>> layers, you'll
 >>>>> find recipes that do just that.
 >>>>>
->>>>> The meta-kernel-dev (in the poky extras) layer has an example of using the
->>>>> kernel.org tree with the yocto kern tools, and once yocto 1.3 opens up for
->>>>> submissions, I have a set of changes prep'd that make it relatively simple to
+>>>>> The meta-kernel-dev (in the poky extras) layer has an example of usin=
+g the
+>>>>> kernel.org tree with the yocto kern tools, and once yocto 1.3 opens u=
+p for
+>>>>> submissions, I have a set of changes prep'd that make it relatively s=
+imple to
 >>>>> use the yocto kern tools against different types of repository.
 >>>>>
->>>>> So the summary is: Depending on the type of tooling you need, and what baseline
+>>>>> So the summary is: Depending on the type of tooling you need, and wha=
+t baseline
 >>>>> you need for your work .. there are a number of ways to do things.
 >>>>>
 >>>>>>
->>>>>> Is there anyway that  instead of using yocto-kernel tree,  can we use our local kernel-tree for building images?. (should  I create separate BSP ?)
+>>>>>> Is there anyway that  instead of using yocto-kernel tree,  can we us=
+e our local kernel-tree for building images?. (should  I create separate BS=
+P ?)
 >>>>>
->>>>> You should definitely create a BSP, that way you can tune the system specific
+>>>>> You should definitely create a BSP, that way you can tune the system =
+specific
 >>>>> to your board,
 >>>>>
 >>>>> Cheers,
@@ -473,35 +578,49 @@ What do you have SERIAL_CONSOLE set to in your configuration?
 >>>>>>> Hi Bruce,
 >>>>>>> Thanks for your reply.
 >>>>>>> I am totally new to Yocto.
->>>>>>> I have gone through the section BSP/Linux kernel configuration and if I am not wrong then it explains how can we configure the kernel, not the how we can add/replace a  component(driver etc).
->>>>>>> lets take the example of UART driver, I want to add my own UART driver code.
+>>>>>>> I have gone through the section BSP/Linux kernel configuration and =
+if I am not wrong then it explains how can we configure the kernel, not the=
+ how we can add/replace a  component(driver etc).
+>>>>>>> lets take the example of UART driver, I want to add my own UART dri=
+ver code.
 >>>>>>> Should I write a separate recipe file (.bb) for UART Driver?.
->>>>>>> if yes then I have to write the recipe files for all my drivers that will be very time consuming.
->>>>>>> Is there any other way that I can port all my desired drivers into Yocto kernel?.
+>>>>>>> if yes then I have to write the recipe files for all my drivers tha=
+t will be very time consuming.
+>>>>>>> Is there any other way that I can port all my desired drivers into =
+Yocto kernel?.
 >>>>>>
 >>>>>> No recipes are required per-driver, unless you are building them all
 >>>>>> as out of tree modules.
 >>>>>>
->>>>>> The typical way this is done is to simply work in the extracted linux
->>>>>> src tree (build/tmp/work/<your board>/linux-yocto-<hashes>/linux), manually
->>>>>> patch, or copy your drivers into the tree. At this point, you'll port
->>>>>> the drivers, doing test builds (bitbake -f -c compile linux-yocto) to
->>>>>> ensure that your port is working. When you've completed the build phase,
+>>>>>> The typical way this is done is to simply work in the extracted linu=
+x
+>>>>>> src tree (build/tmp/work/<your board>/linux-yocto-<hashes>/linux), m=
+anually
+>>>>>> patch, or copy your drivers into the tree. At this point, you'll por=
+t
+>>>>>> the drivers, doing test builds (bitbake -f -c compile linux-yocto) t=
+o
+>>>>>> ensure that your port is working. When you've completed the build ph=
+ase,
 >>>>>> boot tests would be in order. (Do not do a 'clean' or you'll lose in
 >>>>>> progress changes).
 >>>>>>
->>>>>> When you are happy with the changes, the directory where you were working
+>>>>>> When you are happy with the changes, the directory where you were wo=
+rking
 >>>>>> is with the kernel git repository. So you can simply commit your
 >>>>>> changes, and generate patches.
 >>>>>>
->>>>>>        git format-patch -o<your directory>     HEAD^ (or however many commits
+>>>>>>        git format-patch -o<your directory>     HEAD^ (or however man=
+y commits
 >>>>>> you have)
 >>>>>>
 >>>>>> Take those patches, create a layer with a bbappend and add them like
->>>>>> any other patch to any package. They'll be applied to subsequent builds
+>>>>>> any other patch to any package. They'll be applied to subsequent bui=
+lds
 >>>>>> of the kernel.
 >>>>>>
->>>>>> I'm skipping a lot of detail there, but it is all found in the various
+>>>>>> I'm skipping a lot of detail there, but it is all found in the vario=
+us
 >>>>>> manuals, and I don't want to repeat it here.
 >>>>>>
 >>>>>> Cheers,
@@ -528,7 +647,8 @@ What do you have SERIAL_CONSOLE set to in your configuration?
 >>>>>>>
 >>>>>>> The BSP developer guides show how to extend the yocto kernels, and
 >>>>>>> also have sections on custom/different kernel versions. Have you
->>>>>>> seen that doc yet ? Or have you seen it, and have specific questions ?
+>>>>>>> seen that doc yet ? Or have you seen it, and have specific question=
+s ?
 >>>>>>>
 >>>>>>> Bruce
 >>>>>>>
@@ -573,9 +693,17 @@ What do you have SERIAL_CONSOLE set to in your configuration?
 > yocto@yoctoproject.org
 > https://lists.yoctoproject.org/listinfo/yocto
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+>--
+>------------------------------------------------------------
+>Gary Thomas                 |  Consulting for the
+>MLB Associates              |    Embedded world
+>------------------------------------------------------------
+>_______________________________________________
+>yocto mailing list
+>yocto@yoctoproject.org
+>https://lists.yoctoproject.org/listinfo/yocto
+
+
+Best Regards,
+Om Prakash Pal
 
