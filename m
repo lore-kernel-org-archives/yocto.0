@@ -1,22 +1,35 @@
-Return-Path: <bruce.ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 77344E006D9;
-	Fri, 22 Jun 2012 08:54:46 -0700 (PDT)
-Received: from localhost.localdomain (yow-bashfiel-d2.wrs.com
-	[128.224.146.167])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q5MFsWU1003308;
-	Fri, 22 Jun 2012 08:54:33 -0700 (PDT)
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-To: richard.purdie@linuxfoundation.org
-Date: Fri, 22 Jun 2012 12:04:45 -0400
-Message-Id: <96fccea8afdcd006eedaa4d7d05ef8e787bd63f1.1340380930.git.bruce.ashfield@windriver.com>
-X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <cover.1340380930.git.bruce.ashfield@windriver.com>
-References: <cover.1340380930.git.bruce.ashfield@windriver.com>
-In-Reply-To: <cover.1340380930.git.bruce.ashfield@windriver.com>
-References: <cover.1340380930.git.bruce.ashfield@windriver.com>
-Cc: yocto@yoctoproject.org, poky@yoctoproject.org, saul.wold@intel.com
-Subject: [PATCH 1/2] linux-libc-headers-yocto: use kernel-arch to set ARCH
+Return-Path: <elvis.dowson@gmail.com>
+Received: from mail-pz0-f48.google.com (mail-pz0-f48.google.com
+	[209.85.210.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B2C2BE0070B
+	for <yocto@yoctoproject.org>; Fri, 22 Jun 2012 12:39:15 -0700 (PDT)
+Received: by dadz8 with SMTP id z8so3266132dad.35
+	for <yocto@yoctoproject.org>; Fri, 22 Jun 2012 12:39:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=content-type:mime-version:subject:from:in-reply-to:date
+	:content-transfer-encoding:message-id:references:to:x-mailer;
+	bh=noQ+po6XUQVskBGdLUU9dT7cgee955+3HSVj35xoZS8=;
+	b=NWLp5els/fxca3qxg+Fe8uPhfBCo+pDL4h2/cVXw4kDjsIyeUDT+uPuwPc/+3mIMbo
+	iZ8CWrQLG2Kj05V8x6kXlMX2a7oDY2wlohwcIfI8q5hCLAAa5R/pBQuPrnEw8yS0VLuU
+	fRPDdE8CWcjLueNXm+2mwSH1oOwk0IVqmA0gPK5IWcqRaSJp5OLdWoiMuGqVBxVxOoqP
+	mMYUIjOuJPNODXSSB5i+Tup79J7ehDl6uTIzFu+f+KNMjstmnbK51Gmhw1zPVDtLg3xp
+	eS6zwPr4gV/aUYCxak1r4pZJl024UDx33BR1tN7WxjehRjgTQ4iB1Qbr71Uusk8mw3rj
+	IPgg==
+Received: by 10.68.136.229 with SMTP id qd5mr13792380pbb.2.1340393955471;
+	Fri, 22 Jun 2012 12:39:15 -0700 (PDT)
+Received: from [192.168.1.102] ([94.205.109.242])
+	by mx.google.com with ESMTPS id ms1sm39786115pbb.63.2012.06.22.12.39.13
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Fri, 22 Jun 2012 12:39:14 -0700 (PDT)
+Mime-Version: 1.0 (Apple Message framework v1278)
+From: Elvis Dowson <elvis.dowson@gmail.com>
+In-Reply-To: <A8AE73E3-EC64-4E7F-9209-489762F48CFA@gmail.com>
+Date: Fri, 22 Jun 2012 23:39:10 +0400
+Message-Id: <3DE355D9-B6B2-4EE0-9AF9-E3073B59036D@gmail.com>
+References: <A8AE73E3-EC64-4E7F-9209-489762F48CFA@gmail.com>
+To: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+X-Mailer: Apple Mail (2.1278)
+Subject: Re: linux-xilinx: SRCPV, SRCREV, LINUX_VERSION and the actually generated kernel version
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,51 +41,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 22 Jun 2012 15:54:46 -0000
+X-List-Received-Date: Fri, 22 Jun 2012 19:39:15 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
-The arch mapping done in kernel-arch should be used instead of
-recipe local mapping. Inheriting kernel-arch consolidates the
-code and simplifies the libc-header recipe.
+Hi,
+      Even though I specify a specific value for SRCREV, as follows, =
+SRCPV is always set to the latest commit it. The generated package =
+folder gets the latest commit id appended because of SRCPV. So what =
+should I do, append SRCREV or SRCPV for recipes that fetch from a git =
+repository?
 
-Signed-off-by: Bruce Ashfield <bruce.ashfield@windriver.com>
----
- .../linux-libc-headers-yocto_git.bb                |   17 +++--------------
- 1 files changed, 3 insertions(+), 14 deletions(-)
+For example, for the linux-xilinx_git.bb recipe, I have the following
 
-diff --git a/meta-yocto/recipes-kernel/linux-libc-headers/linux-libc-headers-yocto_git.bb b/meta-yocto/recipes-kernel/linux-libc-headers/linux-libc-headers-yocto_git.bb
-index 756b596..831e452 100644
---- a/meta-yocto/recipes-kernel/linux-libc-headers/linux-libc-headers-yocto_git.bb
-+++ b/meta-yocto/recipes-kernel/linux-libc-headers/linux-libc-headers-yocto_git.bb
-@@ -20,25 +20,14 @@ SRC_URI = "git://git.yoctoproject.org/linux-yocto-3.2;protocol=git;nocheckout=1;
- # building a device tree as part of kern headers
- KERNEL_DEVICETREE = ""
- 
--set_arch() {
--	case ${TARGET_ARCH} in
--		arm*)     ARCH=arm ;;
--		i*86*)    ARCH=i386 ;;
--		ia64*)    ARCH=ia64 ;;
--		mips*)    ARCH=mips ;;
--		powerpc*) ARCH=powerpc ;;
--		x86_64*)  ARCH=x86_64 ;;
--	esac
--}
-+inherit kernel-arch
- 
- do_configure() {
--	set_arch
--	oe_runmake allnoconfig ARCH=$ARCH
-+	oe_runmake allnoconfig
- }
- 
- do_install() {
--	set_arch
--	oe_runmake headers_install INSTALL_HDR_PATH=${D}${exec_prefix} ARCH=$ARCH
-+	oe_runmake headers_install INSTALL_HDR_PATH=${D}${exec_prefix}
- 
-         # The ..install.cmd conflicts between various configure runs
-         find ${D}${includedir} -name ..install.cmd | xargs rm -f
--- 
-1.7.0.4
+SRCREV =3D "a5556fb251253ccb674bd22d9703c37f6f8807a8"
 
+SRC_URI =3D =
+"git://git.xilinx.com/linux-xlnx.git;protocol=3Dgit;branch=3D${KBRANCH} =
+\
+           file://defconfig"
+
+LINUX_VERSION =3D "2.6.37"
+
+PR =3D "r17"
+PV =3D "${LINUX_VERSION}+git${SRCPV}"
+     =20
+NOTE: package =
+linux-xilinx-2.6.37+git1+ed63a4d76efadcb68f5776e4244766ffea226cc4-r17: =
+task do_fetch: Started
+
+The package folder name that gets generated is as follows (SRCPV). I =
+notice that nearly all the recipes that fetch from git use SRCPV. In my =
+specific case, should I be using SRCREV instead? I would like to know =
+when to use SRCPV and SRCREV, while working with recipes that fetch from =
+git repositories.
+
+Best regards,
+
+Elvis Dowson=
 
