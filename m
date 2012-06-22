@@ -1,31 +1,20 @@
-Return-Path: <jim@halfman.com>
-Received: from mail-vc0-f176.google.com (mail-vc0-f176.google.com
-	[209.85.220.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 94E22E006D9
-	for <yocto@yoctoproject.org>; Fri, 22 Jun 2012 07:16:38 -0700 (PDT)
-Received: by vcbfo14 with SMTP id fo14so1133486vcb.35
-	for <yocto@yoctoproject.org>; Fri, 22 Jun 2012 07:16:37 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:from:date:message-id:subject:to:content-type
-	:x-gm-message-state;
-	bh=p6o9piMvi6eAR0XjKuSuknCoYywCrfv6G4FolCklRo0=;
-	b=NbwbQSQ/fCIckv6Psw4Vv1jkF5H0qvFKoqO4dYwJ4BwVt8rCssj97kDrbY/yVpCXhR
-	AVM9uSfGqCB4HiSytxLafSXtEI+dCibAVzJBXMtkPwW1zWKtNUndKeIB7s2elEUq536X
-	vfFoVJaxE4tovFMVlFOb0C4/f7pM55b0ndPVe2086njltsHJmuoMOGbv41DEQRSXIWI7
-	t7jEIpnJMyHssoOzrAkccLrCPs7Px4NOdN9KNt/vsex/rF5vtDFedpg7S38o6iOmgBpl
-	nZ/qbku8mv1lrqghzArSFiY1wCoZlgtO69Ny/cNev13HyNqKez78n4CKp6y55RywFNOd
-	9YZw==
-Received: by 10.52.240.228 with SMTP id wd4mr1001586vdc.95.1340374597749; Fri,
-	22 Jun 2012 07:16:37 -0700 (PDT)
+Return-Path: <ml@communistcode.co.uk>
+Received: from tinyArch.localdomain (unknown [78.110.170.148])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 563EFE006D9
+	for <yocto@yoctoproject.org>; Fri, 22 Jun 2012 07:58:50 -0700 (PDT)
+Received: from [192.168.0.46] (unknown [195.171.99.130])
+	by tinyArch.localdomain (Postfix) with ESMTPSA id AD509600CA
+	for <yocto@yoctoproject.org>; Fri, 22 Jun 2012 15:58:05 +0100 (BST)
+Message-ID: <4FE48866.5040600@communistcode.co.uk>
+Date: Fri, 22 Jun 2012 15:59:50 +0100
+From: Jack Mitchell <ml@communistcode.co.uk>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:13.0) Gecko/20120616 Thunderbird/13.0.1
 MIME-Version: 1.0
-Received: by 10.52.114.65 with HTTP; Fri, 22 Jun 2012 07:16:17 -0700 (PDT)
-From: Jim Kosem <jim@halfman.com>
-Date: Fri, 22 Jun 2012 15:16:17 +0100
-Message-ID: <CAG+EMXg1Gu3UbAeD6p7cpVy_cjhez60jTD6uBeLgVobsrE1aJQ@mail.gmail.com>
 To: yocto@yoctoproject.org
-X-Gm-Message-State: ALoCoQlYGvWXSGBHxwv1XQXR09+F785HQ4arfnrsWuuOy4sThveKFPOG9jTREECvmAh412SuRNjr
-Subject: Web Hob design update
+References: <CAG+EMXg1Gu3UbAeD6p7cpVy_cjhez60jTD6uBeLgVobsrE1aJQ@mail.gmail.com>
+In-Reply-To: <CAG+EMXg1Gu3UbAeD6p7cpVy_cjhez60jTD6uBeLgVobsrE1aJQ@mail.gmail.com>
+Subject: Re: Web Hob design update
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,49 +26,61 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 22 Jun 2012 14:16:38 -0000
-Content-Type: multipart/alternative; boundary=20cf307d008ac3ca3804c3104714
+X-List-Received-Date: Fri, 22 Jun 2012 14:58:50 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
---20cf307d008ac3ca3804c3104714
-Content-Type: text/plain; charset=UTF-8
+On 22/06/12 15:16, Jim Kosem wrote:
+> Hi,
+>
+> The update of the WebHob design is up on the wiki
+> https://wiki.yoctoproject.org/wiki/Yocto_Web_Hob_Design
+>
+> There's a PDF of all the screens of the latest version (v.1.9) of the 
+> application 
+> <https://wiki.yoctoproject.org/wiki/images/0/01/Webhob.1.pdf>, a link 
+> to the GitHub <https://github.com/jkosem/Yocto-WebHob-Design> we have 
+> setup for the HTML5 prototype development and a screencast of the 
+> v.1.8 
+> <https://wiki.yoctoproject.org/wiki/images/c/cb/Yocto_webHob.1.9_screencast.0.2.mov> 
+> showing our design thinking around WebHob and our vision for how it 
+> will work.
+>
+> As always, feedback is welcome. Thanks.
+>
+> -- 
+> Jim Kosem
+>
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-Hi,
+I like the design screens in the PDF, however it looks like it will be a 
+LOT of work! Just one question, how is it intended that this will be 
+setup? Will it be a standalone application with included web server 
+(twisted-web? I assume it will be python based...).
 
-The update of the WebHob design is up on the wiki
-https://wiki.yoctoproject.org/wiki/Yocto_Web_Hob_Design
+Are you intending to use Twitter's bootstrap (as that is what the design 
+screens resemble)? How about initial implementation, will it be using 
+websockets or event driven AJAX? What happens when two people try to 
+edit things at the same time? Is there going to be a separate 
+database/configuration files or will it be editing config files directly?
 
-There's a PDF of all the screens of the latest version (v.1.9) of the
-application <https://wiki.yoctoproject.org/wiki/images/0/01/Webhob.1.pdf>,
-a link to the GitHub <https://github.com/jkosem/Yocto-WebHob-Design> we
-have setup for the HTML5 prototype development and a screencast of the
-v.1.8<https://wiki.yoctoproject.org/wiki/images/c/cb/Yocto_webHob.1.9_screencast.0.2.mov>showing
-our design thinking around WebHob and our vision for how it will
-work.
+I'm not being awkward here, it's just the project I've been working on 
+the last 6 months is using some very similar technology and these are 
+some of the design decisions I've made (and still attempting to make!), 
+so it's more interest and understanding design decisions than anything else.
 
-As always, feedback is welcome. Thanks.
+Regards,
+
+-- 
+
+   Jack Mitchell (jack@embed.me.uk)
+   Embedded Systems Engineer
+   http://www.embed.me.uk
 
 --
-Jim Kosem
 
---20cf307d008ac3ca3804c3104714
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
 
-Hi,<div><br></div><div>The update of the WebHob design is up on the wiki</d=
-iv><div><a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_Web_Hob_Design"=
->https://wiki.yoctoproject.org/wiki/Yocto_Web_Hob_Design</a></div><div><br>
-
-</div><div>There&#39;s a <a href=3D"https://wiki.yoctoproject.org/wiki/imag=
-es/0/01/Webhob.1.pdf">PDF of all the screens of the latest version (v.1.9) =
-of the application</a>, a link to the <a href=3D"https://github.com/jkosem/=
-Yocto-WebHob-Design">GitHub</a> we have setup for the HTML5 prototype devel=
-opment and a <a href=3D"https://wiki.yoctoproject.org/wiki/images/c/cb/Yoct=
-o_webHob.1.9_screencast.0.2.mov">screencast of the v.1.8</a> showing our de=
-sign thinking around WebHob and our vision for how it will work.<br clear=
-=3D"all">
-
-<div><br></div><div>As always, feedback is welcome. Thanks.</div><div><br><=
-/div>--<div>Jim Kosem</div>
-</div>
-
---20cf307d008ac3ca3804c3104714--
