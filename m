@@ -1,33 +1,37 @@
 Return-Path: <elvis.dowson@gmail.com>
-Received: from mail-pz0-f48.google.com (mail-pz0-f48.google.com
-	[209.85.210.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DB2B9E01425
-	for <yocto@yoctoproject.org>; Thu, 21 Jun 2012 21:08:27 -0700 (PDT)
-Received: by dadz8 with SMTP id z8so2141811dad.35
-	for <yocto@yoctoproject.org>; Thu, 21 Jun 2012 21:08:27 -0700 (PDT)
+Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
+	[209.85.160.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3DAC4E01425
+	for <yocto@yoctoproject.org>; Thu, 21 Jun 2012 21:22:55 -0700 (PDT)
+Received: by pbbrq8 with SMTP id rq8so3645446pbb.35
+	for <yocto@yoctoproject.org>; Thu, 21 Jun 2012 21:22:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:content-type:content-transfer-encoding:subject:date:message-id
-	:to:mime-version:x-mailer;
-	bh=BKYAkjStIjdGX8YvetaMwhxjZCynQb+v7rywOV/mp6E=;
-	b=H+v1v6+z1iWdssg9aOeyPgH1Ooh4chIcz8Uuc4331Vbcka1JmaIQYerEnQmU5d/YBw
-	Ef8cgVkP3r14yyhFDaMLWeIx7q9uqgABYkLy2Yldi2agjBSjZTPLBYv+nJMjAQAQ7OAB
-	BqAhOG0MBk91sqvj9OUng6jvwPvi1LXS8yKRtqg0EwTOuaT0ikkqK0TalB+Evvhv+rss
-	6lmdesy5QteB2uhv5I8yMOAKMPaG9yGzl1cGW0j/Mokrb62HK6Nmr8ZtOwL/xSruOWP7
-	BFdbicSevbR2FZa3u//SJm0ib6EDXM+NRh7gppykWoL3h2o/PBCHCliyTOgaVIODkzR6
-	/ghg==
-Received: by 10.68.194.6 with SMTP id hs6mr5394930pbc.133.1340338107548;
-	Thu, 21 Jun 2012 21:08:27 -0700 (PDT)
+	h=subject:mime-version:content-type:from:in-reply-to:date:cc
+	:content-transfer-encoding:message-id:references:to:x-mailer;
+	bh=YLj/6E4RIIi2s0ApnU2Ttt7BDLxnwQC9qlSYyLcoNzk=;
+	b=tWmw742rJIZVXLGIxwJWE6dh1KC42Ho+SOiRtqvwjKnqE1egLdmuQK87chhit37FvN
+	iVKdM151ESw6/3wX7VQiu3YLTPlOeK4jkrdCqbNz24aGPY74jh/aGnIluT5X8JYxmeYj
+	b8ZAkDZ9B3NL1WFXPyb8L4Ny2owBve3ZIrIlhmj1a/IHhKuSRf/du4f1vQC4R1ugqas3
+	ziX5bK19pA0f9hic78NJjhs6V6BQ5WAOjSIHzXgHoaElqmVlr4dx7+GXpOV4qwUBf+1g
+	EPWcYFGt+vxAjS8E85PU0UDcwzl84PvitSN9maMpQo0l1vlPP5PML3gj4ufJkiMw9V/A
+	QElQ==
+Received: by 10.68.222.163 with SMTP id qn3mr5372224pbc.135.1340338974984;
+	Thu, 21 Jun 2012 21:22:54 -0700 (PDT)
 Received: from [192.168.1.102] ([94.205.109.242])
-	by mx.google.com with ESMTPS id io2sm37680715pbc.24.2012.06.21.21.08.25
+	by mx.google.com with ESMTPS id jz4sm37718259pbc.17.2012.06.21.21.22.52
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Thu, 21 Jun 2012 21:08:26 -0700 (PDT)
-From: Elvis Dowson <elvis.dowson@gmail.com>
-Date: Fri, 22 Jun 2012 08:08:21 +0400
-Message-Id: <B58FC6F3-7803-4BC2-B0E9-06EA850F9998@gmail.com>
-To: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+	Thu, 21 Jun 2012 21:22:53 -0700 (PDT)
 Mime-Version: 1.0 (Apple Message framework v1278)
+From: Elvis Dowson <elvis.dowson@gmail.com>
+In-Reply-To: <CAMKF1sozLtK1GP_vMn2UtAmi_+H12z5UOKaicxkjvNWQjBJUsg@mail.gmail.com>
+Date: Fri, 22 Jun 2012 08:22:48 +0400
+Message-Id: <406C76A0-84D0-4B18-8B35-9B375A34E17C@gmail.com>
+References: <A932C833-018B-430E-874B-2281A3B80E64@gmail.com>
+	<CAMKF1sozLtK1GP_vMn2UtAmi_+H12z5UOKaicxkjvNWQjBJUsg@mail.gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
 X-Mailer: Apple Mail (2.1278)
-Subject: python-numpy SRC_URI warnings
+Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+Subject: Re: Error: PATH contains '.' or '', which will break the build, please remove this.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,54 +43,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 22 Jun 2012 04:08:28 -0000
+X-List-Received-Date: Fri, 22 Jun 2012 04:22:55 -0000
 Content-Type: text/plain; charset=us-ascii
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
-      What should I do to get rid of the following python-numpy SRC_URI =
-warnings:
+Hi Khem,
+                   I noticed that my PATH variable had an extra colon :  =
+, once I fixed that, bitbake starts to work.
 
-WARNING: Unable to get checksum for python-numpy SRC_URI entry config.h: =
-file could not be found
-WARNING: Unable to get checksum for python-numpy SRC_URI entry =
-numpyconfig.h: file could not be found
+However, I still get the following warnings:
 
-if I look in the =
-meta-openembedded/meta-oe/recipes-devtools/python/python-numpy folder, =
-the config.f and numpyconfig.h files have been moved to an architecture =
-specific folder (e.g. arm, mipsel).=20
+WARNING: BBPATH references the current directory, either through an =
+empty entry, or a '.'.
+	 This is unsafe and means your layer configuration is adding =
+empty elements to BBPATH.
+	 Please check your layer.conf files and other BBPATH settings to =
+remove the current working directory references.
 
-However the python-numpy_1.4.1.bb recipe has not been updated to take =
-the target CPU architecture specific file locations into account:
+How can I fix this?
 
-SRC_URI =3D "${SOURCEFORGE_MIRROR}/numpy/numpy-${PV}.tar.gz \
-	   file://config.h \
-	   file://numpyconfig.h \
-	  "
+The output of the following command is empty
 
-Is there a variable that I can use for the target CPU architecture? I =
-tried the following modifications but it didn't work
+$ bitbake -e core-image-minimal | grep -e "^BBPATH=3D"
 
-SRC_URI =3D "${SOURCEFORGE_MIRROR}/numpy/numpy-${PV}.tar.gz \
-	   file://${TARGET_CPU}/config.h \
-	   file://${TARGET_CPU}/numpyconfig.h \
-	  "
+$
 
-Is the only alternative to do something like this (which works, btw):
-
-SRC_URI =3D "${SOURCEFORGE_MIRROR}/numpy/numpy-${PV}.tar.gz \
-	  "
-SRC_URI_arm +=3D " \	  =20
-           file://arm/config.h \
-	   file://arm/numpyconfig.h \
-	  "
-SRC_URI_mipsel +=3D " \	  =20
-           file://mipsel/config.h \
-	   file://mipsel/numpyconfig.h \
-	  "
+I don't know what to do, to diagnose the problem and get rid of the =
+warning.
 
 Best regards,
 
-Elvis Dowson=
+Elvis Dowson
+
 
