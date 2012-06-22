@@ -1,35 +1,39 @@
-Return-Path: <elvis.dowson@gmail.com>
-Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
-	[209.85.160.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3DAC4E01425
-	for <yocto@yoctoproject.org>; Thu, 21 Jun 2012 21:22:55 -0700 (PDT)
-Received: by pbbrq8 with SMTP id rq8so3645446pbb.35
-	for <yocto@yoctoproject.org>; Thu, 21 Jun 2012 21:22:55 -0700 (PDT)
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-pz0-f48.google.com (mail-pz0-f48.google.com
+	[209.85.210.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 71B87E01425
+	for <yocto@yoctoproject.org>; Thu, 21 Jun 2012 21:25:31 -0700 (PDT)
+Received: by dadz8 with SMTP id z8so2160284dad.35
+	for <yocto@yoctoproject.org>; Thu, 21 Jun 2012 21:25:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=subject:mime-version:content-type:from:in-reply-to:date:cc
-	:content-transfer-encoding:message-id:references:to:x-mailer;
-	bh=YLj/6E4RIIi2s0ApnU2Ttt7BDLxnwQC9qlSYyLcoNzk=;
-	b=tWmw742rJIZVXLGIxwJWE6dh1KC42Ho+SOiRtqvwjKnqE1egLdmuQK87chhit37FvN
-	iVKdM151ESw6/3wX7VQiu3YLTPlOeK4jkrdCqbNz24aGPY74jh/aGnIluT5X8JYxmeYj
-	b8ZAkDZ9B3NL1WFXPyb8L4Ny2owBve3ZIrIlhmj1a/IHhKuSRf/du4f1vQC4R1ugqas3
-	ziX5bK19pA0f9hic78NJjhs6V6BQ5WAOjSIHzXgHoaElqmVlr4dx7+GXpOV4qwUBf+1g
-	EPWcYFGt+vxAjS8E85PU0UDcwzl84PvitSN9maMpQo0l1vlPP5PML3gj4ufJkiMw9V/A
-	QElQ==
-Received: by 10.68.222.163 with SMTP id qn3mr5372224pbc.135.1340338974984;
-	Thu, 21 Jun 2012 21:22:54 -0700 (PDT)
-Received: from [192.168.1.102] ([94.205.109.242])
-	by mx.google.com with ESMTPS id jz4sm37718259pbc.17.2012.06.21.21.22.52
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Thu, 21 Jun 2012 21:22:53 -0700 (PDT)
-Mime-Version: 1.0 (Apple Message framework v1278)
-From: Elvis Dowson <elvis.dowson@gmail.com>
-In-Reply-To: <CAMKF1sozLtK1GP_vMn2UtAmi_+H12z5UOKaicxkjvNWQjBJUsg@mail.gmail.com>
-Date: Fri, 22 Jun 2012 08:22:48 +0400
-Message-Id: <406C76A0-84D0-4B18-8B35-9B375A34E17C@gmail.com>
+	h=message-id:date:from:user-agent:mime-version:to:cc:subject
+	:references:in-reply-to:x-enigmail-version:content-type
+	:content-transfer-encoding;
+	bh=RV9eNOgV4gQ23Q+Zq5/yE1ZSA56FE2Pht2QMC756Kuc=;
+	b=FEBLJUOouvZSHr6LefY/ZZiX6ks8yAI/Wtl7dQq0i+4SZUJbOh/Bbbwlsk3CD1OY7w
+	Au4EeoNiVjPZU+DF4B0AOn+xC0qKIpqL9JaFfrHNKe07EDqZX8jjYwr9VX8AGEmfpf5V
+	RbWIK8+GCRU5X6yNYHYIhEEGyQbj7glgu+xigodG/etPWZuSPPiFlht/TNaCfUozBaKs
+	P3I7C8OMoIxSxFW44trOnPwjt/1mixxnqFA08o+lexqWzLWgZ1PcHp/1dTwEqN49/ksX
+	iAre25wf2Cb2nTCg57XK4S0SH6uPJ8U6uSgUUmrgVNjUy5Lq4r7IGjwypqhoRsKr8xly
+	Lmyg==
+Received: by 10.68.226.168 with SMTP id rt8mr6148386pbc.23.1340339131204;
+	Thu, 21 Jun 2012 21:25:31 -0700 (PDT)
+Received: from [192.168.1.71] (99-57-140-209.lightspeed.sntcca.sbcglobal.net.
+	[99.57.140.209])
+	by mx.google.com with ESMTPS id tq4sm15495525pbc.11.2012.06.21.21.25.29
+	(version=SSLv3 cipher=OTHER); Thu, 21 Jun 2012 21:25:30 -0700 (PDT)
+Message-ID: <4FE3F3BE.902@gmail.com>
+Date: Thu, 21 Jun 2012 21:25:34 -0700
+From: Khem Raj <raj.khem@gmail.com>
+User-Agent: Mozilla/5.0 (Windows NT 6.1;
+	rv:13.0) Gecko/20120614 Thunderbird/13.0.1
+MIME-Version: 1.0
+To: Elvis Dowson <elvis.dowson@gmail.com>
 References: <A932C833-018B-430E-874B-2281A3B80E64@gmail.com>
 	<CAMKF1sozLtK1GP_vMn2UtAmi_+H12z5UOKaicxkjvNWQjBJUsg@mail.gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
-X-Mailer: Apple Mail (2.1278)
+	<A1C33720-9A94-4B6B-A211-65D25E3B2161@gmail.com>
+In-Reply-To: <A1C33720-9A94-4B6B-A211-65D25E3B2161@gmail.com>
+X-Enigmail-Version: 1.4.2
 Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
 Subject: Re: Error: PATH contains '.' or '', which will break the build, please remove this.
 X-BeenThere: yocto@yoctoproject.org
@@ -43,36 +47,79 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 22 Jun 2012 04:22:55 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 22 Jun 2012 04:25:31 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-Hi Khem,
-                   I noticed that my PATH variable had an extra colon :  =
-, once I fixed that, bitbake starts to work.
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
 
-However, I still get the following warnings:
+On 6/21/2012 8:05 PM, Elvis Dowson wrote:
+> Hi Khem,
+> 
+> On Jun 21, 2012, at 8:09 PM, Khem Raj wrote:
+> 
+>> On Thu, Jun 21, 2012 at 8:25 AM, Elvis Dowson
+>> <elvis.dowson@gmail.com> wrote:
+>>> BBFILES ?= "" BBLAYERS ?= " \ /tool/yocto/poky/meta \ 
+>>> /tool/yocto/poky/meta-yocto \ 
+>>> /tool/yocto/meta-openembedded/meta-oe \ /tool/yocto/meta-xilinx
+>>> \ "
+>>> 
+>> what does
+>> 
+>> bitbake -e <image> | grep -e "^BBPATH="
+>> 
+>> show
+> 
+> It shows the following:
+> 
+> BBPATH="/tool/yocto/poky/meta-yocto::/tool/yocto/poky/meta:/tool/yocto/meta-openembedded/meta-oe:/tool/yocto/meta-xilinx"
+>
+>  There is an extra colon : , how can I remove it?
+> 
 
-WARNING: BBPATH references the current directory, either through an =
-empty entry, or a '.'.
-	 This is unsafe and means your layer configuration is adding =
-empty elements to BBPATH.
-	 Please check your layer.conf files and other BBPATH settings to =
-remove the current working directory references.
+BBLAYERS above meta appears before meta-yocto but in BBPATH meta-yocto
+appears before meta. I think meta-yocto/conf/layer.conf has
 
-How can I fix this?
+BBPATH := "${LAYERDIR}:${BBPATH}"
 
-The output of the following command is empty
+change it to
 
-$ bitbake -e core-image-minimal | grep -e "^BBPATH=3D"
+BBPATH .= ":${LAYERDIR}"
 
-$
+and if you want meta-yocto to appear before meta then rearrange
+BBLAYERS above to
 
-I don't know what to do, to diagnose the problem and get rid of the =
-warning.
+BBLAYERS ?= " \
+ /tool/yocto/poky/meta-yocto \
+ /tool/yocto/poky/meta \
+ /tool/yocto/meta-openembedded/meta-oe \
+ /tool/yocto/meta-xilinx \
+ "
 
-Best regards,
+but that may not solve the problem too since now you will get
 
-Elvis Dowson
+BBPATH=":/tool/yocto/poky/meta-yocto:/tool/yocto/poky/meta:/tool/yocto/meta-openembedded/meta-oe:/tool/yocto/meta-xilinx"
 
+and it will whine about : at the beginning since that will present and
+empty BBPATH when it separates them out for sanity checks.
+
+The fix would be to see if you have : at beginning or end of BBPATH
+(_after_ it has been populated) and strip it out.
+
+> Best regards,
+> 
+> Elvis Dowson
+> 
+
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.12 (MingW32)
+Comment: Using GnuPG with Mozilla - http://enigmail.mozdev.org/
+
+iEYEARECAAYFAk/j874ACgkQuwUzVZGdMxSgUQCfTMT+9+YaJK3cUuCGhGjr6V/J
+0TwAnR3rjGAwIDs2Fg1zGYiculK4BfkP
+=EkD0
+-----END PGP SIGNATURE-----
 
