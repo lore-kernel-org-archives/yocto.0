@@ -1,35 +1,36 @@
-Return-Path: <ramana.gollamudi@huawei.com>
-Received: from szxga01-in.huawei.com (szxga01-in.huawei.com [119.145.14.64])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D9AD4E01426
-	for <yocto@yoctoproject.org>; Fri, 22 Jun 2012 06:10:53 -0700 (PDT)
-Received: from 172.24.2.119 (EHLO szxeml213-edg.china.huawei.com)
-	([172.24.2.119])
-	by szxrg01-dlp.huawei.com (MOS 4.1.9-GA FastPath queued)
-	with ESMTP id AKO20826; Fri, 22 Jun 2012 21:06:39 +0800 (CST)
-Received: from SZXEML406-HUB.china.huawei.com (10.82.67.93) by
-	szxeml213-edg.china.huawei.com (172.24.2.30) with Microsoft SMTP Server
-	(TLS) id 14.1.323.3; Fri, 22 Jun 2012 21:03:46 +0800
-Received: from SZXEML534-MBX.china.huawei.com ([169.254.2.36]) by
-	szxeml406-hub.china.huawei.com ([10.82.67.93]) with mapi id
-	14.01.0323.003; Fri, 22 Jun 2012 21:03:40 +0800
-From: Venkata ramana gollamudi <ramana.gollamudi@huawei.com>
-To: "Liu, Song" <song.liu@intel.com>, Richard Purdie
-	<richard.purdie@linuxfoundation.org>
-Thread-Topic: Problem in downloading linux-yocto source behind proxy 
-Thread-Index: AQHNUHYbWO41FZ8Ss0GbETNSeByFAJcGS18I
-Date: Fri, 22 Jun 2012 13:03:39 +0000
-Message-ID: <36ED13F3654AE54CA763E6821D93A5711045A318@szxeml534-mbx.china.huawei.com>
-References: <OFDE9D2D78.BF935E29-ON65257A25.00448DED-65257A25.0046DCF2@notesmail.huawei.com.cn>
-In-Reply-To: <OFDE9D2D78.BF935E29-ON65257A25.00448DED-65257A25.0046DCF2@notesmail.huawei.com.cn>
-Accept-Language: en-US, zh-CN
+Return-Path: <scott.m.rifenbark@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AFF01E006D9
+	for <yocto@yoctoproject.org>; Fri, 22 Jun 2012 06:44:08 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 22 Jun 2012 06:44:08 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="183700248"
+Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
+	by fmsmga002.fm.intel.com with ESMTP; 22 Jun 2012 06:44:08 -0700
+Received: from orsmsx104.amr.corp.intel.com (10.22.225.131) by
+	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Fri, 22 Jun 2012 06:44:07 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.59]) by
+	ORSMSX104.amr.corp.intel.com ([169.254.3.217]) with mapi id
+	14.01.0355.002; Fri, 22 Jun 2012 06:44:07 -0700
+From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+To: "Barros Pena, Belen" <belen.barros.pena@intel.com>, Saul Wold
+	<sgw@linux.intel.com>
+Thread-Topic: [yocto] self-hosted image vs. build appliance
+Thread-Index: AQHNTwEW/XWUxllnjUKGJL2YlOIOiJcD31eAgAEp4wCAAFFyAIABIxWA///ePxA=
+Date: Fri, 22 Jun 2012 13:44:06 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237946A12453@ORSMSX101.amr.corp.intel.com>
+References: <4FE33C34.9060904@linux.intel.com>
+	<CC09EE59.11C4A%belen.barros.pena@intel.com>
+In-Reply-To: <CC09EE59.11C4A%belen.barros.pena@intel.com>
+Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [10.18.96.93]
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-X-CFilter-Loop: Reflected
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Sanil kumar <sanil.kumar@huawei.com>
-Subject: Problem in downloading linux-yocto source behind proxy
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: self-hosted image vs. build appliance
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,115 +42,128 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 22 Jun 2012 13:10:54 -0000
+X-List-Received-Date: Fri, 22 Jun 2012 13:44:08 -0000
 Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_36ED13F3654AE54CA763E6821D93A5711045A318szxeml534mbxchi_"
-
---_000_36ED13F3654AE54CA763E6821D93A5711045A318szxeml534mbxchi_
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+The term "self-hosted image" will need to be expunged from the docs.  This =
+should be mentioned in the bug as well.
 
-        We tried to build yocto release downloaded from autobuilder
-                http://autobuilder.yoctoproject.org/pub/nightly/20120621-3/=
-yocto.tar.bz2
+Scott
 
-        We work behind a http proxy and firewall setup from office network.
+-----Original Message-----
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Barros Pena, Belen
+Sent: Friday, June 22, 2012 1:44 AM
+To: Saul Wold
+Cc: yocto@yoctoproject.org
+Subject: Re: [yocto] self-hosted image vs. build appliance
 
-        Previously we used to build by setting PREMIRRORS to
-                git://.*/.*   http://downloads.yoctoproject.org/mirror/sour=
-ces/ \n \
-        as all the source is available in the above mentioned mirror path f=
-or every RC release.
+Dave Stewart has suggested to use Build Appliance everywhere unless
+someone comes up with something better. I think build-appliance-image is
+definitely better than self-hosted-image, so I'll ask that to be changed
+in Hob as part of bug 2636.
 
-        1) But now we couldnot find linux-yocto source at (for 1.3M1RC1 or =
-RC2 release)
-                i.e http://downloads.yoctoproject.org/mirror/sources/git2_g=
-it.yoctoproject.org.linux-yocto-3.4.git.tar.gz
+About the description, this is what Scott has suggested:
 
-        2) I remember that there was a discussion to enable readonly way of=
- accessing git through http.
-                Is it currently available?
+'An image you can run using the Yocto Project Build Appliance. It boots
+from VMware Player or VMware Workstation. For more details, visit the
+Yocto Project Website.'
 
-        Please suggest some alternative mechanism.
-
-Regards,
-Ramana
+'visit the Yocto Project Website' would be a link to
+http://www.yoctoproject.org/documentation/build-appliance
 
 
---_000_36ED13F3654AE54CA763E6821D93A5711045A318szxeml534mbxchi_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Any thoughts?
 
-<html dir=3D"ltr">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style id=3D"owaParaStyle">P {
-	MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px
-}
-</style>
-</head>
-<body fPStyle=3D"1" ocsi=3D"0">
-<div style=3D"direction: ltr;font-family: Tahoma;color: #000000;font-size: =
-10pt;">
-<p><font size=3D"2" face=3D"sans-serif">Hi,</font> <br>
-<br>
-<font size=3D"2" face=3D"sans-serif">&nbsp; &nbsp; &nbsp; &nbsp; We tried t=
-o build yocto release downloaded from autobuilder
-</font><br>
-<font size=3D"2" face=3D"sans-serif">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; http://autobuilder.yoctoproject.org/pub/nightly/20120621-=
-3/yocto.tar.bz2</font>
-<br>
-<br>
-<font size=3D"2" face=3D"sans-serif">&nbsp; &nbsp; &nbsp; &nbsp; We work be=
-hind a http proxy and firewall setup from office network.</font>
-<br>
-<br>
-<font size=3D"2" face=3D"sans-serif">&nbsp; &nbsp; &nbsp; &nbsp; Previously=
- we used to build by setting PREMIRRORS to
-</font><br>
-<font size=3D"2" face=3D"sans-serif">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; git://.*/.* &nbsp; http://downloads.yoctoproject.org/mirr=
-or/sources/ \n \</font>
-<br>
-<font size=3D"2" face=3D"sans-serif">&nbsp; &nbsp; &nbsp; &nbsp; as all the=
- source is available in the above mentioned mirror path for every RC releas=
-e.</font>
-<br>
-<br>
-<font size=3D"2" face=3D"sans-serif">&nbsp; &nbsp; &nbsp; &nbsp; 1) But now=
- we couldnot find linux-yocto source at (for 1.3M1RC1 or RC2 release)</font=
+Thanks!
+
+Belen
+
+On 21/06/2012 16:22, "Saul Wold" <sgw@linux.intel.com> wrote:
+
+>On 06/21/2012 03:30 AM, Barros Pena, Belen wrote:
+>> Hi Saul,
+>>
+>> Thanks for explaining. But I must say: to an outsider, the existing
+>>naming
+>> does not explain how these 2 things relate to each other.
+>>
+>> We are adding a description of the 'self-hosted-image' to Hob,
+>>including a
+>> link to the Build Appliance page in the Yocto Project website. But I am
+>> not sure it will be enough to fully explain the relationship between
+>>both.
+>> Is there any reason why the recipe and the ovf file need to have
+>>different
+>> names?
+>>
+>How about build-appliance-image and building a Build Appliance ovf
 >
-<br>
-<font size=3D"2" face=3D"sans-serif">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; i.e http://downloads.yoctoproject.org/mirror/sources/git2=
-_git.yoctoproject.org.linux-yocto-3.4.git.tar.gz &nbsp; &nbsp; &nbsp; &nbsp=
-;</font>
-<br>
-<br>
-<font size=3D"2" face=3D"sans-serif">&nbsp; &nbsp; &nbsp; &nbsp; 2) I remem=
-ber that there was a discussion to enable readonly way of accessing git thr=
-ough http. &nbsp; &nbsp; &nbsp; &nbsp;</font>
-<br>
-<font size=3D"2" face=3D"sans-serif">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; Is it currently available? &nbsp; &nbsp; &nbsp; &nbsp;</f=
-ont>
-<br>
-<br>
-<font size=3D"2" face=3D"sans-serif">&nbsp; &nbsp; &nbsp; &nbsp; Please sug=
-gest some alternative mechanism. &nbsp; &nbsp; &nbsp; &nbsp;</font>
-<br>
-<br>
-<font size=3D"2" face=3D"sans-serif">Regards,</font> <br>
-<font size=3D"2" face=3D"sans-serif">Ramana</font> <br>
-<br>
-</p>
-</div>
-</body>
-</html>
+>Sau!
+>
+>
+>> Cheers
+>>
+>> Belen
+>>
+>>
+>>
+>> On 20/06/2012 17:44, "Saul Wold"<sgw@linux.intel.com>  wrote:
+>>
+>>> On 06/20/2012 09:23 AM, Barros Pena, Belen wrote:
+>>>> Does anybody know why are we calling it 'self-hosted-image' in Hob and
+>>>> 'build-appliance' in the Yocto Project website? Wouldn't it be easier
+>>>>if
+>>>> we used the same name everywhere? Which one should be used?
+>>>>
+>>> They are slightly different.  The self-hosted-image is the recipe name
+>>> that generates the image.  The build-appliance is the VMware OVF file
+>>> and bits needed to use VMPlayer or VMWorkstation.  The
+>>>self-hosted-image
+>>> is the underlying disk image used in the Build Appliance
+>>>
+>>> Sau!
+>>>
+>>>> Thanks!
+>>>>
+>>>> Belen
+>>>>
+>>>> ---------------------------------------------------------------------
+>>>> Intel Corporation (UK) Limited
+>>>> Registered No. 1134945 (England)
+>>>> Registered Office: Pipers Way, Swindon SN3 1RJ
+>>>> VAT No: 860 2173 47
+>>>>
+>>>> This e-mail and any attachments may contain confidential material for
+>>>> the sole use of the intended recipient(s). Any review or distribution
+>>>> by others is strictly prohibited. If you are not the intended
+>>>> recipient, please contact the sender and delete all copies.
+>>>>
+>>>> _______________________________________________
+>>>> yocto mailing list
+>>>> yocto@yoctoproject.org
+>>>> https://lists.yoctoproject.org/listinfo/yocto
+>>>>
+>>>>
+>>
+>>
+>>
 
---_000_36ED13F3654AE54CA763E6821D93A5711045A318szxeml534mbxchi_--
+---------------------------------------------------------------------
+Intel Corporation (UK) Limited
+Registered No. 1134945 (England)
+Registered Office: Pipers Way, Swindon SN3 1RJ
+VAT No: 860 2173 47
+
+This e-mail and any attachments may contain confidential material for
+the sole use of the intended recipient(s). Any review or distribution
+by others is strictly prohibited. If you are not the intended
+recipient, please contact the sender and delete all copies.
+
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
+
