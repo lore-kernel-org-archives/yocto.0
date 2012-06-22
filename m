@@ -1,27 +1,18 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3FC12E006D9
-	for <yocto@yoctoproject.org>; Fri, 22 Jun 2012 08:40:58 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 22 Jun 2012 08:40:54 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="161301798"
-Received: from unknown (HELO envy.home) ([10.7.199.60])
-	by orsmga002.jf.intel.com with ESMTP; 22 Jun 2012 08:40:54 -0700
-Message-ID: <4FE491B1.3020200@linux.intel.com>
-Date: Fri, 22 Jun 2012 08:39:29 -0700
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:13.0) Gecko/20120605 Thunderbird/13.0
-MIME-Version: 1.0
-To: Javeir Arantes <japier_07@hotmail.com>
-References: <D956029D25CF204F948EA0FB515E1EE20ACDE589@ORSMSX105.amr.corp.intel.com>
-	<4FDFA7A0.9040904@intel.com>
-	<loom.20120621T053913-245@post.gmane.org>
-In-Reply-To: <loom.20120621T053913-245@post.gmane.org>
-X-Enigmail-Version: 1.4.2
-Cc: yocto@yoctoproject.org
-Subject: Re: grub-efi-native_1.99.bb fails in master branch
+Return-Path: <bruce.ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 22CE9E006D9;
+	Fri, 22 Jun 2012 08:54:46 -0700 (PDT)
+Received: from localhost.localdomain (yow-bashfiel-d2.wrs.com
+	[128.224.146.167])
+	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q5MFsWU0003308;
+	Fri, 22 Jun 2012 08:54:32 -0700 (PDT)
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+To: richard.purdie@linuxfoundation.org
+Date: Fri, 22 Jun 2012 12:04:44 -0400
+Message-Id: <cover.1340380930.git.bruce.ashfield@windriver.com>
+X-Mailer: git-send-email 1.7.0.4
+Cc: yocto@yoctoproject.org, poky@yoctoproject.org, saul.wold@intel.com
+Subject: [PATCH 0/2] linux-libc-headers-yocto: 3.4 and cleanups
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,31 +24,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 22 Jun 2012 15:40:58 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 22 Jun 2012 15:54:46 -0000
 
+Richard/Saul,
 
+There aren't that many users of this recipe, but for those cases
+that we need it .. this needed a bit of love. I've made the same
+fix that went into the oe-core libc-headers and then bumped this
+recipe to the 3.4 standard/base for headers. With recent updates
+to the tools, there were parts of this recipe that could be removed,
+and they are now gone!
 
-On 06/20/2012 08:43 PM, Javeir Arantes wrote:
-> 
-> 
-> Yep it's the same but what is the solution?? anything just wait for somebody 
-> solved it??
-> I need another solution plase :S Need to compile the meta-intel layer
+Cheers,
 
-For the time being, I suggest building meta-intel with the 1.2 release.
+Bruce
 
-Alternatively, if you don't need EFI, you can remove it from the
-MACHINE_FEATURES and grub-efi won't be built.
+The following changes since commit b876f42821383bf0069ee49b607ba06614417fba:
+  Bogdan Marinescu (1):
+        guile: fix compilation on MIPS/PPC
 
-Otherwise, it's just a matter of time (and/or effort) until this is fixed.
+are available in the git repository at:
 
+  git://git.pokylinux.org/poky-contrib zedd/libc-headers
+  http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=zedd/libc-headers
 
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
+Bruce Ashfield (2):
+  linux-libc-headers-yocto: use kernel-arch to set ARCH
+  linux-libc-headers-yocto: update to v3.4 and remove unecessary code
 
+ .../linux-libc-headers-yocto_git.bb                |   45 ++++----------------
+ 1 files changed, 8 insertions(+), 37 deletions(-)
 
 
