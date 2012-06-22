@@ -1,60 +1,35 @@
-Return-Path: <omprakash.pal@stericsson.com>
-Received: from eu1sys200aog120.obsmtp.com (eu1sys200aog120.obsmtp.com
-	[207.126.144.149])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 848DDE01443
-	for <yocto@yoctoproject.org>; Fri, 22 Jun 2012 05:41:58 -0700 (PDT)
-Received: from beta.dmz-eu.st.com ([164.129.1.35]) (using TLSv1) by
-	eu1sys200aob120.postini.com ([207.126.147.11]) with SMTP
-	ID DSNKT+RoE/MfHhdXfwUpLuXPJpO8DCN3Zy3B@postini.com;
-	Fri, 22 Jun 2012 12:41:58 UTC
-Received: from zeta.dmz-eu.st.com (zeta.dmz-eu.st.com [164.129.230.9])
-	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 5E365146;
-	Fri, 22 Jun 2012 12:41:43 +0000 (GMT)
-Received: from relay2.stm.gmessaging.net (unknown [10.230.100.18])
-	by zeta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 0436E44B9;
-	Fri, 22 Jun 2012 12:41:43 +0000 (GMT)
-Received: from exdcvycastm003.EQ1STM.local (alteon-source-exch [10.230.100.61])
-	(using TLSv1 with cipher RC4-MD5 (128/128 bits))
-	(Client CN "exdcvycastm003", Issuer "exdcvycastm003" (not verified))
-	by relay2.stm.gmessaging.net (Postfix) with ESMTPS id 6E2BDA809C;
-	Fri, 22 Jun 2012 14:41:37 +0200 (CEST)
-Received: from EXDCVYMBSTM006.EQ1STM.local ([10.230.100.3]) by
-	exdcvycastm003.EQ1STM.local ([10.230.100.1]) with mapi; Fri, 22 Jun 2012
-	14:41:42 +0200
-From: Om Prakash PAL <omprakash.pal@stericsson.com>
-To: Khem Raj <raj.khem@gmail.com>
-Date: Fri, 22 Jun 2012 14:38:56 +0200
-Thread-Topic: [yocto] Porting of specific Kernel/Driver into yocto.
-Thread-Index: Ac1QOrPcxeLJnHqWQ3qgWgwNz7SyQQAHf/p3AAbSfxc=
-Message-ID: <3ED83A9DB3B6D94CA68BF7C03F2981D35B1897B1D6@EXDCVYMBSTM006.EQ1STM.local>
-References: <3ED83A9DB3B6D94CA68BF7C03F2981D35A844F357F@EXDCVYMBSTM006.EQ1STM.local>
-	<4F825F65.4040706@windriver.com>
-	<3ED83A9DB3B6D94CA68BF7C03F2981D35AE63C1B69@EXDCVYMBSTM006.EQ1STM.local>
-	<CADkTA4PnNWTbtpzVu=Qhegg87Ai=XNXgH5VD6c7mCK=BYj3dgg@mail.gmail.com>
-	<3ED83A9DB3B6D94CA68BF7C03F2981D35B042416CC@EXDCVYMBSTM006.EQ1STM.local>
-	<3ED83A9DB3B6D94CA68BF7C03F2981D35B042416CF@EXDCVYMBSTM006.EQ1STM.local>
-	<4F9E9DD5.5080601@windriver.com>
-	<3ED83A9DB3B6D94CA68BF7C03F2981D35B042416D2@EXDCVYMBSTM006.EQ1STM.local>
-	<4FA27A40.6080506@windriver.com>
-	<3ED83A9DB3B6D94CA68BF7C03F2981D35B042416D3@EXDCVYMBSTM006.EQ1STM.local>
-	<4FA66F02.3080107@windriver.com>
-	<3ED83A9DB3B6D94CA68BF7C03F2981D35B1897B1D2@EXDCVYMBSTM006.EQ1STM.local>
-	<4FBD2998.5060407@intel.com>
-	<3ED83A9DB3B6D94CA68BF7C03F2981D35B1897B1D3@EXDCVYMBSTM006.EQ1STM.local>
-	<4FE317F5.1000400@mlbassoc.com>
-	<3ED83A9DB3B6D94CA68BF7C03F2981D35B18D9EC2E@EXDCVYMBSTM006.EQ1STM.local>
-	<4FE32F95.8000801@mlbassoc.com>
-	<3ED83A9DB3B6D94CA68BF7C03F2981D35B18D9EDE8@EXDCVYMBSTM006.EQ1STM.local>,
-	<CAMKF1sosEk23cc=GKxH7KinhPUNwhsdhPKkFHjYybPezZJrmSQ@mail.gmail.com>,
-	<3ED83A9DB3B6D94CA68BF7C03F2981D35B1897B1D5@EXDCVYMBSTM006.EQ1STM.local>
-In-Reply-To: <3ED83A9DB3B6D94CA68BF7C03F2981D35B1897B1D5@EXDCVYMBSTM006.EQ1STM.local>
-Accept-Language: en-US
+Return-Path: <ramana.gollamudi@huawei.com>
+Received: from szxga01-in.huawei.com (szxga01-in.huawei.com [119.145.14.64])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D9AD4E01426
+	for <yocto@yoctoproject.org>; Fri, 22 Jun 2012 06:10:53 -0700 (PDT)
+Received: from 172.24.2.119 (EHLO szxeml213-edg.china.huawei.com)
+	([172.24.2.119])
+	by szxrg01-dlp.huawei.com (MOS 4.1.9-GA FastPath queued)
+	with ESMTP id AKO20826; Fri, 22 Jun 2012 21:06:39 +0800 (CST)
+Received: from SZXEML406-HUB.china.huawei.com (10.82.67.93) by
+	szxeml213-edg.china.huawei.com (172.24.2.30) with Microsoft SMTP Server
+	(TLS) id 14.1.323.3; Fri, 22 Jun 2012 21:03:46 +0800
+Received: from SZXEML534-MBX.china.huawei.com ([169.254.2.36]) by
+	szxeml406-hub.china.huawei.com ([10.82.67.93]) with mapi id
+	14.01.0323.003; Fri, 22 Jun 2012 21:03:40 +0800
+From: Venkata ramana gollamudi <ramana.gollamudi@huawei.com>
+To: "Liu, Song" <song.liu@intel.com>, Richard Purdie
+	<richard.purdie@linuxfoundation.org>
+Thread-Topic: Problem in downloading linux-yocto source behind proxy 
+Thread-Index: AQHNUHYbWO41FZ8Ss0GbETNSeByFAJcGS18I
+Date: Fri, 22 Jun 2012 13:03:39 +0000
+Message-ID: <36ED13F3654AE54CA763E6821D93A5711045A318@szxeml534-mbx.china.huawei.com>
+References: <OFDE9D2D78.BF935E29-ON65257A25.00448DED-65257A25.0046DCF2@notesmail.huawei.com.cn>
+In-Reply-To: <OFDE9D2D78.BF935E29-ON65257A25.00448DED-65257A25.0046DCF2@notesmail.huawei.com.cn>
+Accept-Language: en-US, zh-CN
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+x-originating-ip: [10.18.96.93]
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Porting of specific Kernel/Driver into yocto.
+X-CFilter-Loop: Reflected
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	Sanil kumar <sanil.kumar@huawei.com>
+Subject: Problem in downloading linux-yocto source behind proxy
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,86 +41,115 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 22 Jun 2012 12:41:59 -0000
+X-List-Received-Date: Fri, 22 Jun 2012 13:10:54 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: multipart/alternative;
+	boundary="_000_36ED13F3654AE54CA763E6821D93A5711045A318szxeml534mbxchi_"
+
+--_000_36ED13F3654AE54CA763E6821D93A5711045A318szxeml534mbxchi_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
+Hi,
 
-________________________________________
-From: Om Prakash PAL
-Sent: Friday, June 22, 2012 2:59 PM
-To: Khem Raj
-Cc: Gary Thomas; yocto@yoctoproject.org
-Subject: RE: [yocto] Porting of specific Kernel/Driver into yocto.
+        We tried to build yocto release downloaded from autobuilder
+                http://autobuilder.yoctoproject.org/pub/nightly/20120621-3/=
+yocto.tar.bz2
 
-________________________________________
-From: Khem Raj [raj.khem@gmail.com]
-Sent: Friday, June 22, 2012 11:18 AM
-To: Om Prakash PAL
-Cc: Gary Thomas; yocto@yoctoproject.org
-Subject: Re: [yocto] Porting of specific Kernel/Driver into yocto.
+        We work behind a http proxy and firewall setup from office network.
 
-On Thu, Jun 21, 2012 at 10:37 PM, Om Prakash PAL
-<omprakash.pal@stericsson.com> wrote:
+        Previously we used to build by setting PREMIRRORS to
+                git://.*/.*   http://downloads.yoctoproject.org/mirror/sour=
+ces/ \n \
+        as all the source is available in the above mentioned mirror path f=
+or every RC release.
+
+        1) But now we couldnot find linux-yocto source at (for 1.3M1RC1 or =
+RC2 release)
+                i.e http://downloads.yoctoproject.org/mirror/sources/git2_g=
+it.yoctoproject.org.linux-yocto-3.4.git.tar.gz
+
+        2) I remember that there was a discussion to enable readonly way of=
+ accessing git through http.
+                Is it currently available?
+
+        Please suggest some alternative mechanism.
+
+Regards,
+Ramana
+
+
+--_000_36ED13F3654AE54CA763E6821D93A5711045A318szxeml534mbxchi_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html dir=3D"ltr">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style id=3D"owaParaStyle">P {
+	MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px
+}
+</style>
+</head>
+<body fPStyle=3D"1" ocsi=3D"0">
+<div style=3D"direction: ltr;font-family: Tahoma;color: #000000;font-size: =
+10pt;">
+<p><font size=3D"2" face=3D"sans-serif">Hi,</font> <br>
+<br>
+<font size=3D"2" face=3D"sans-serif">&nbsp; &nbsp; &nbsp; &nbsp; We tried t=
+o build yocto release downloaded from autobuilder
+</font><br>
+<font size=3D"2" face=3D"sans-serif">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
+sp; &nbsp; &nbsp; http://autobuilder.yoctoproject.org/pub/nightly/20120621-=
+3/yocto.tar.bz2</font>
+<br>
+<br>
+<font size=3D"2" face=3D"sans-serif">&nbsp; &nbsp; &nbsp; &nbsp; We work be=
+hind a http proxy and firewall setup from office network.</font>
+<br>
+<br>
+<font size=3D"2" face=3D"sans-serif">&nbsp; &nbsp; &nbsp; &nbsp; Previously=
+ we used to build by setting PREMIRRORS to
+</font><br>
+<font size=3D"2" face=3D"sans-serif">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
+sp; &nbsp; &nbsp; git://.*/.* &nbsp; http://downloads.yoctoproject.org/mirr=
+or/sources/ \n \</font>
+<br>
+<font size=3D"2" face=3D"sans-serif">&nbsp; &nbsp; &nbsp; &nbsp; as all the=
+ source is available in the above mentioned mirror path for every RC releas=
+e.</font>
+<br>
+<br>
+<font size=3D"2" face=3D"sans-serif">&nbsp; &nbsp; &nbsp; &nbsp; 1) But now=
+ we couldnot find linux-yocto source at (for 1.3M1RC1 or RC2 release)</font=
 >
->>> and then console got  stuck.
->>
->>> What do you have SERIAL_CONSOLE set to in your configuration?
->>
->> I have set SERIAL_CONSOLE=3D"115200 ttyAMA2". As we are using ttyAMA2 fo=
-r console.
->
->>What is your target device?  Do you really have /dev/ttyAMA2 serial port?=
-?.
->
-> Yes, I have /dev/ttyAMA2 serial port.
+<br>
+<font size=3D"2" face=3D"sans-serif">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
+sp; &nbsp; &nbsp; i.e http://downloads.yoctoproject.org/mirror/sources/git2=
+_git.yoctoproject.org.linux-yocto-3.4.git.tar.gz &nbsp; &nbsp; &nbsp; &nbsp=
+;</font>
+<br>
+<br>
+<font size=3D"2" face=3D"sans-serif">&nbsp; &nbsp; &nbsp; &nbsp; 2) I remem=
+ber that there was a discussion to enable readonly way of accessing git thr=
+ough http. &nbsp; &nbsp; &nbsp; &nbsp;</font>
+<br>
+<font size=3D"2" face=3D"sans-serif">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
+sp; &nbsp; &nbsp; Is it currently available? &nbsp; &nbsp; &nbsp; &nbsp;</f=
+ont>
+<br>
+<br>
+<font size=3D"2" face=3D"sans-serif">&nbsp; &nbsp; &nbsp; &nbsp; Please sug=
+gest some alternative mechanism. &nbsp; &nbsp; &nbsp; &nbsp;</font>
+<br>
+<br>
+<font size=3D"2" face=3D"sans-serif">Regards,</font> <br>
+<font size=3D"2" face=3D"sans-serif">Ramana</font> <br>
+<br>
+</p>
+</div>
+</body>
+</html>
 
->Can you try using say poky/master and generate root file system and
->try that out ?
->another option is to try core-image-core
-
->While building core-image-core
->$bitbake core-image-core
-
->I am getting folowwing Error:
-
- >checking for perl... /usr/bin/perl
-| checking for perl >=3D 5.8.1... 5.12.4
-| checking for XML::Parser... configure: error: XML::Parser perl module is =
-required for intltool
-| + bbfatal 'oe_runconf failed'
-| + echo 'ERROR: oe_runconf failed'
-| ERROR: oe_runconf failed
-| + exit 1
-|
-| checking for gmsgfmt... /home/apallan/yocto/hello_build/tmp/sysroots/i686=
--linux/usr/bin/msgfmt
-| checking for perl... /usr/bin/perl
-| checking for perl >=3D 5.8.1... 5.12.4
-| checking for XML::Parser... configure: error: XML::Parser perl module is =
-required for intltool
-| + bbfatal 'oe_runconf failed'
-| + echo 'ERROR: oe_runconf failed'
-| ERROR: oe_runconf failed
-| + exit 1
-| ERROR: Function 'do_configure' failed (see /home/apallan/yocto/hello_buil=
-d/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/shared-mime-info-0.90-r0/temp=
-/log.do_configure.31201 for further information)
->NOTE: package shared-mime-info-0.90-r0: task do_configure: Failed
->ERROR: Task 2799 (/home/apallan/yocto/poky-edison-6.0/meta/recipes-support=
-/shared-mime-info/shared-mime-info_0.90.bb, do_configure) failed with exit =
-code '1'
->ERROR: '/home/apallan/yocto/poky-edison-6.0/meta/recipes-support/shared-mi=
-me-info/shared-mime-info_0.90.bb' failed
-
->Any idea why is it failing and how can I resolve it?.
-
-Actaully I solved this by modifying:
-meta/recipes-support/shared-mime-info/shared-mime-info.inc :
-                      -inherit autotools pkgconfig gettext
-                     +inherit autotools pkgconfig gettext perlnative
-
-Best Regards,
-Om Prakash Pal
-
+--_000_36ED13F3654AE54CA763E6821D93A5711045A318szxeml534mbxchi_--
