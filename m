@@ -1,20 +1,27 @@
-Return-Path: <ml@communistcode.co.uk>
-Received: from tinyArch.localdomain (unknown [78.110.170.148])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 563EFE006D9
-	for <yocto@yoctoproject.org>; Fri, 22 Jun 2012 07:58:50 -0700 (PDT)
-Received: from [192.168.0.46] (unknown [195.171.99.130])
-	by tinyArch.localdomain (Postfix) with ESMTPSA id AD509600CA
-	for <yocto@yoctoproject.org>; Fri, 22 Jun 2012 15:58:05 +0100 (BST)
-Message-ID: <4FE48866.5040600@communistcode.co.uk>
-Date: Fri, 22 Jun 2012 15:59:50 +0100
-From: Jack Mitchell <ml@communistcode.co.uk>
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3FC12E006D9
+	for <yocto@yoctoproject.org>; Fri, 22 Jun 2012 08:40:58 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 22 Jun 2012 08:40:54 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="161301798"
+Received: from unknown (HELO envy.home) ([10.7.199.60])
+	by orsmga002.jf.intel.com with ESMTP; 22 Jun 2012 08:40:54 -0700
+Message-ID: <4FE491B1.3020200@linux.intel.com>
+Date: Fri, 22 Jun 2012 08:39:29 -0700
+From: Darren Hart <dvhart@linux.intel.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:13.0) Gecko/20120616 Thunderbird/13.0.1
+	rv:13.0) Gecko/20120605 Thunderbird/13.0
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <CAG+EMXg1Gu3UbAeD6p7cpVy_cjhez60jTD6uBeLgVobsrE1aJQ@mail.gmail.com>
-In-Reply-To: <CAG+EMXg1Gu3UbAeD6p7cpVy_cjhez60jTD6uBeLgVobsrE1aJQ@mail.gmail.com>
-Subject: Re: Web Hob design update
+To: Javeir Arantes <japier_07@hotmail.com>
+References: <D956029D25CF204F948EA0FB515E1EE20ACDE589@ORSMSX105.amr.corp.intel.com>
+	<4FDFA7A0.9040904@intel.com>
+	<loom.20120621T053913-245@post.gmane.org>
+In-Reply-To: <loom.20120621T053913-245@post.gmane.org>
+X-Enigmail-Version: 1.4.2
+Cc: yocto@yoctoproject.org
+Subject: Re: grub-efi-native_1.99.bb fails in master branch
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -26,61 +33,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 22 Jun 2012 14:58:50 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+X-List-Received-Date: Fri, 22 Jun 2012 15:40:58 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-On 22/06/12 15:16, Jim Kosem wrote:
-> Hi,
->
-> The update of the WebHob design is up on the wiki
-> https://wiki.yoctoproject.org/wiki/Yocto_Web_Hob_Design
->
-> There's a PDF of all the screens of the latest version (v.1.9) of the 
-> application 
-> <https://wiki.yoctoproject.org/wiki/images/0/01/Webhob.1.pdf>, a link 
-> to the GitHub <https://github.com/jkosem/Yocto-WebHob-Design> we have 
-> setup for the HTML5 prototype development and a screencast of the 
-> v.1.8 
-> <https://wiki.yoctoproject.org/wiki/images/c/cb/Yocto_webHob.1.9_screencast.0.2.mov> 
-> showing our design thinking around WebHob and our vision for how it 
-> will work.
->
-> As always, feedback is welcome. Thanks.
->
-> -- 
-> Jim Kosem
->
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
 
-I like the design screens in the PDF, however it looks like it will be a 
-LOT of work! Just one question, how is it intended that this will be 
-setup? Will it be a standalone application with included web server 
-(twisted-web? I assume it will be python based...).
 
-Are you intending to use Twitter's bootstrap (as that is what the design 
-screens resemble)? How about initial implementation, will it be using 
-websockets or event driven AJAX? What happens when two people try to 
-edit things at the same time? Is there going to be a separate 
-database/configuration files or will it be editing config files directly?
+On 06/20/2012 08:43 PM, Javeir Arantes wrote:
+> 
+> 
+> Yep it's the same but what is the solution?? anything just wait for somebody 
+> solved it??
+> I need another solution plase :S Need to compile the meta-intel layer
 
-I'm not being awkward here, it's just the project I've been working on 
-the last 6 months is using some very similar technology and these are 
-some of the design decisions I've made (and still attempting to make!), 
-so it's more interest and understanding design decisions than anything else.
+For the time being, I suggest building meta-intel with the 1.2 release.
 
-Regards,
+Alternatively, if you don't need EFI, you can remove it from the
+MACHINE_FEATURES and grub-efi won't be built.
+
+Otherwise, it's just a matter of time (and/or effort) until this is fixed.
+
 
 -- 
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
-   Jack Mitchell (jack@embed.me.uk)
-   Embedded Systems Engineer
-   http://www.embed.me.uk
-
---
 
 
