@@ -1,22 +1,35 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3A814E006D9
-	for <yocto@yoctoproject.org>; Fri, 22 Jun 2012 22:50:26 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 22 Jun 2012 22:50:23 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="161570884"
-Received: from unknown (HELO envy.home) ([10.255.12.184])
-	by orsmga002.jf.intel.com with ESMTP; 22 Jun 2012 22:50:23 -0700
-Message-ID: <4FE558CA.20308@linux.intel.com>
-Date: Fri, 22 Jun 2012 22:48:58 -0700
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:13.0) Gecko/20120605 Thunderbird/13.0
-MIME-Version: 1.0
-To: Yocto Project <yocto@yoctoproject.org>
-X-Enigmail-Version: 1.4.2
-Subject: No provider for update-modules-nativesdk
+Return-Path: <elvis.dowson@gmail.com>
+Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
+	[209.85.160.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 09788E006D9
+	for <yocto@yoctoproject.org>; Fri, 22 Jun 2012 23:16:33 -0700 (PDT)
+Received: by pbbrq8 with SMTP id rq8so5320921pbb.35
+	for <yocto@yoctoproject.org>; Fri, 22 Jun 2012 23:16:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=content-type:mime-version:subject:from:in-reply-to:date
+	:content-transfer-encoding:message-id:references:to:x-mailer;
+	bh=o8giSWOju4ZHZnFafNiiaehZ27kl60PJ9SzgfHD/VIs=;
+	b=EPdloRRtcDZp8iB7WjTffLjDuH6+Rl32IfZ67envB7NHsqDWx5pn9cTAtwgQFZdLD/
+	a4hK9l9vw5+f34fmWyTIu8bjBAYBiCW3cNwtOZosfT7E2grzDExkA+HyYQqJvt6I38cr
+	dps+/vIxCTE4ykZk5hQnW31fy35b3JoZgoMouVa62cdcKg43SrPXxYnxfYbTB8zQJbxe
+	NK5FD/pJlSnJBvuNKtctalGOQkC8vu02WJ9iRkgjQ+1pH9u6LTKrJ/iCtU9oyNlr3nDT
+	naaNGS3p1OTjUGIbRp/mUVc0SDXUzIbi2T4vH7BPhyCqHeWU1tztCl4Cnilxl0a1PbFi
+	4rFw==
+Received: by 10.68.191.106 with SMTP id gx10mr17768507pbc.37.1340432192709;
+	Fri, 22 Jun 2012 23:16:32 -0700 (PDT)
+Received: from [192.168.1.102] ([94.205.109.242])
+	by mx.google.com with ESMTPS id gg10sm1419014pbc.51.2012.06.22.23.16.30
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Fri, 22 Jun 2012 23:16:32 -0700 (PDT)
+Mime-Version: 1.0 (Apple Message framework v1278)
+From: Elvis Dowson <elvis.dowson@gmail.com>
+In-Reply-To: <2E8A3DA3-EC31-4CE7-979D-E842AFFAB8CA@gmail.com>
+Date: Sat, 23 Jun 2012 10:16:27 +0400
+Message-Id: <42D532F4-5629-4BE6-B8AD-3E28A192327D@gmail.com>
+References: <2E8A3DA3-EC31-4CE7-979D-E842AFFAB8CA@gmail.com>
+To: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+X-Mailer: Apple Mail (2.1278)
+Subject: Re: SRCREV spec not working for kernel git recipes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,49 +41,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 23 Jun 2012 05:50:26 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sat, 23 Jun 2012 06:16:33 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
-Has anyone else hit this? I'm running poky master as of the this afternoon:
+Hi,
+        I found out that if I specify SRCREV_pn-${PN}, it works and =
+picks up the correct commit id, as follows:
 
-$ bitbake core-image-base
+SRCREV_pn-${PN} =3D "a5556fb251253ccb674bd22d9703c37f6f8807a8"
 
-ERROR: Nothing PROVIDES 'update-modules-nativesdk' (but
-virtual:nativesdk:/home/dvhart/source/poky/meta-yocto/recipes-kernel/linux-libc-headers/linux-libc-headers-yocto_git.bb
-DEPENDS on or otherwise requires it)
+However, if you simply specifying SRCREV =3D  =
+"a5556fb251253ccb674bd22d9703c37f6f8807a8", it has no effect and it =
+always picks up the latest commit from the git repository.
 
-...
+It would be great if someone could please explain why this is so, =
+because I search through the Yocto documentation and it isn't mentioned =
+anywhere. The OE classic way of doing things, it used to pick up the =
+correct commit by just specifying SRCREV. Now I find that you have to =
+specify SRCREV_pn-${PN} to get it to work.=20
 
-Build Configuration:
-BB_VERSION        = "1.15.2"
-TARGET_ARCH       = "i586"
-TARGET_OS         = "linux"
-MACHINE           = "qemux86"
-DISTRO            = "poky"
-DISTRO_VERSION    = "1.2+snapshot-20120623"
-TUNE_FEATURES     = "m32 i586"
-TARGET_FPU        = ""
-meta
-meta-yocto        =
-"dvhart/modules:ea185e892344c997c6d9019c2f7d9e2d4f3e106f"
-meta-intel        = "denzil:3867f2a35323cbe5dd50023e127678325a984e11"
-meta-kernel-dev   = "master:97bcab41c14b0d1faec6877fe2aece0f3f059edc"
-meta-yocto
-meta              =
-"dvhart/modules:ea185e892344c997c6d9019c2f7d9e2d4f3e106f"
+Is this documented somewhere?
 
-...
+Best regards,
 
-Trying to track down the dependency also had a surprising result.
-
-$ bitbake core-image-minimal -u depexp -g
-/home/dvhart/source/poky/scripts/bitbake: line 159: 12526 Segmentation
-fault      $BITBAKE $@
-
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
-
+Elvis Dowson=
 
