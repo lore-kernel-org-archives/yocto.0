@@ -1,34 +1,31 @@
-Return-Path: <elvis.dowson@gmail.com>
-Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
-	[209.85.160.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 09788E006D9
-	for <yocto@yoctoproject.org>; Fri, 22 Jun 2012 23:16:33 -0700 (PDT)
-Received: by pbbrq8 with SMTP id rq8so5320921pbb.35
-	for <yocto@yoctoproject.org>; Fri, 22 Jun 2012 23:16:32 -0700 (PDT)
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-ee0-f48.google.com (mail-ee0-f48.google.com [74.125.83.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2BC11E006D9
+	for <yocto@yoctoproject.org>; Sat, 23 Jun 2012 00:29:57 -0700 (PDT)
+Received: by eekb45 with SMTP id b45so1021469eek.35
+	for <yocto@yoctoproject.org>; Sat, 23 Jun 2012 00:29:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=content-type:mime-version:subject:from:in-reply-to:date
-	:content-transfer-encoding:message-id:references:to:x-mailer;
-	bh=o8giSWOju4ZHZnFafNiiaehZ27kl60PJ9SzgfHD/VIs=;
-	b=EPdloRRtcDZp8iB7WjTffLjDuH6+Rl32IfZ67envB7NHsqDWx5pn9cTAtwgQFZdLD/
-	a4hK9l9vw5+f34fmWyTIu8bjBAYBiCW3cNwtOZosfT7E2grzDExkA+HyYQqJvt6I38cr
-	dps+/vIxCTE4ykZk5hQnW31fy35b3JoZgoMouVa62cdcKg43SrPXxYnxfYbTB8zQJbxe
-	NK5FD/pJlSnJBvuNKtctalGOQkC8vu02WJ9iRkgjQ+1pH9u6LTKrJ/iCtU9oyNlr3nDT
-	naaNGS3p1OTjUGIbRp/mUVc0SDXUzIbi2T4vH7BPhyCqHeWU1tztCl4Cnilxl0a1PbFi
-	4rFw==
-Received: by 10.68.191.106 with SMTP id gx10mr17768507pbc.37.1340432192709;
-	Fri, 22 Jun 2012 23:16:32 -0700 (PDT)
-Received: from [192.168.1.102] ([94.205.109.242])
-	by mx.google.com with ESMTPS id gg10sm1419014pbc.51.2012.06.22.23.16.30
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Fri, 22 Jun 2012 23:16:32 -0700 (PDT)
-Mime-Version: 1.0 (Apple Message framework v1278)
-From: Elvis Dowson <elvis.dowson@gmail.com>
-In-Reply-To: <2E8A3DA3-EC31-4CE7-979D-E842AFFAB8CA@gmail.com>
-Date: Sat, 23 Jun 2012 10:16:27 +0400
-Message-Id: <42D532F4-5629-4BE6-B8AD-3E28A192327D@gmail.com>
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type:content-transfer-encoding;
+	bh=iVadKQMyUHNDxNaRHVt8eSio7W4X4d4kQUbyXITs9rQ=;
+	b=s0Llp9EkaW9kg6epG8wQUhSCY82XgxaOBfxVR8rKRM+v5pZlnbybME/k+hzZuwV0xn
+	j8qov2fMuLXN/mao0KNdN5yxSX7exK2JS5Li/uhEtpCRxHcG1W84mbqgA0PqrVRxlYTF
+	iRkyb0PYEtgf3rqNNf+vteTRvi5r/579Mx/3VM5O4PSyX7KUY+YW/mCABRjHpuSbi5lB
+	fVtMOoD4Ki4qKQx7Bo1tujEmF9hMJhBG5/Ii5o2P7ooU5RA321VPZ3Un5YXHY/rYFHea
+	ANhqLVnSjrdPwjA+/ph6AXpvYnzUvPuzqzwF5PptiMAPFwcEs/gqmIvGQZVZdPh4wIbQ
+	7bdQ==
+Received: by 10.14.37.206 with SMTP id y54mr1014006eea.218.1340436596655; Sat,
+	23 Jun 2012 00:29:56 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.14.219.71 with HTTP; Sat, 23 Jun 2012 00:29:26 -0700 (PDT)
+In-Reply-To: <42D532F4-5629-4BE6-B8AD-3E28A192327D@gmail.com>
 References: <2E8A3DA3-EC31-4CE7-979D-E842AFFAB8CA@gmail.com>
-To: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-X-Mailer: Apple Mail (2.1278)
+	<42D532F4-5629-4BE6-B8AD-3E28A192327D@gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Sat, 23 Jun 2012 00:29:26 -0700
+Message-ID: <CAMKF1srTFrW4VwF5ApQFW+oNs_4CiRiEvnZn6EiVCWBC_7DNTQ@mail.gmail.com>
+To: Elvis Dowson <elvis.dowson@gmail.com>
+Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
 Subject: Re: SRCREV spec not working for kernel git recipes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -41,29 +38,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 23 Jun 2012 06:16:33 -0000
-Content-Type: text/plain; charset=us-ascii
+X-List-Received-Date: Sat, 23 Jun 2012 07:29:58 -0000
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
-        I found out that if I specify SRCREV_pn-${PN}, it works and =
-picks up the correct commit id, as follows:
+On Fri, Jun 22, 2012 at 11:16 PM, Elvis Dowson <elvis.dowson@gmail.com> wro=
+te:
+> Hi,
+> =C2=A0 =C2=A0 =C2=A0 =C2=A0I found out that if I specify SRCREV_pn-${PN},=
+ it works and picks up the correct commit id, as follows:
+>
+> SRCREV_pn-${PN} =3D "a5556fb251253ccb674bd22d9703c37f6f8807a8"
+>
+> However, if you simply specifying SRCREV =3D =C2=A0"a5556fb251253ccb674bd=
+22d9703c37f6f8807a8", it has no effect and it always picks up the latest co=
+mmit from the git repository.
+>
+> It would be great if someone could please explain why this is so, because=
+ I search through the Yocto documentation and it isn't mentioned anywhere. =
+The OE classic way of doing things, it used to pick up the correct commit b=
+y just specifying SRCREV. Now I find that you have to specify SRCREV_pn-${P=
+N} to get it to work.
+>
+> Is this documented somewhere?
 
-SRCREV_pn-${PN} =3D "a5556fb251253ccb674bd22d9703c37f6f8807a8"
-
-However, if you simply specifying SRCREV =3D  =
-"a5556fb251253ccb674bd22d9703c37f6f8807a8", it has no effect and it =
-always picks up the latest commit from the git repository.
-
-It would be great if someone could please explain why this is so, =
-because I search through the Yocto documentation and it isn't mentioned =
-anywhere. The OE classic way of doing things, it used to pick up the =
-correct commit by just specifying SRCREV. Now I find that you have to =
-specify SRCREV_pn-${PN} to get it to work.=20
-
-Is this documented somewhere?
-
-Best regards,
-
-Elvis Dowson=
+?
+can you port bitbake -e virtual/kernel output with and without change
+somewhere ?
+>
+> Best regards,
+>
+> Elvis Dowson
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
