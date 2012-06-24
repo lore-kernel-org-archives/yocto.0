@@ -1,37 +1,28 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-ey0-f176.google.com (mail-ey0-f176.google.com
-	[209.85.215.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 022A1E00739
-	for <yocto@yoctoproject.org>; Sat, 23 Jun 2012 11:27:07 -0700 (PDT)
-Received: by eaab16 with SMTP id b16so1114661eaa.35
-	for <yocto@yoctoproject.org>; Sat, 23 Jun 2012 11:27:06 -0700 (PDT)
+Return-Path: <jfabernathy@gmail.com>
+Received: from mail-ob0-f176.google.com (mail-ob0-f176.google.com
+	[209.85.214.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 330C8E01408
+	for <yocto@yoctoproject.org>; Sun, 24 Jun 2012 04:34:35 -0700 (PDT)
+Received: by obbwd18 with SMTP id wd18so5932977obb.35
+	for <yocto@yoctoproject.org>; Sun, 24 Jun 2012 04:34:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=q6T4oLqF+C0bkDp79cSUAzxHGyZyX7GeXtZMw0k4erw=;
-	b=FwIuy+WcDeBzvB+iLiDu9k8OttbMKBoAl3USZ/2UMvFAkuHwIie/Et57LIf3xBin4d
-	j6ZgyMYyX9ZLpiqeUsMZ+8/ImFZ1OaN8cM7rhyZxbRcQuREMX5z3KjGRynlT82eULYug
-	SdqGTM2vQfG4dVOqq28BZS4HI0b7zXnfmplFwU+VbTbPpyqpeANt4JkMpJAfczNzJCAb
-	hEM1dLw9R20OiLajzrmn5zHmOZBKqQ6JrMME32vaP4nd2bwooW+2bRvzoEOVT+EOe3pS
-	WKKcMeCutmVfnr1Q1+Pl4KITAMBNhqjIYlirwesBzqGQLVb/4HXBcAImOnefy6dVWBjX
-	s7vQ==
-Received: by 10.14.37.76 with SMTP id x52mr1305318eea.102.1340476026717; Sat,
-	23 Jun 2012 11:27:06 -0700 (PDT)
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=+83klgFn8uPwcOmcEyQf9YPiOMbD0isnhM5fuS5L9Pk=;
+	b=xCctCFrl3SpGwQQQ+DoZxNqzQ6rmXFhVdKAKKx7FU4p16S6zk1MbuoaqhhbYvoqewk
+	euidW2MqyjWA5eFvl5R+HdQpTrzxhrPk+fnO1Tz3trA2kIoB+FU/6TgFyfUh3N8bKEtt
+	L6/tc9wTmmKj9YfRn9SCH+S3iTam8aAHLX5kIXgUuv4kGPndRD9AvY8LgnLGiIK5bact
+	tJ7cfBIoljeFHTf5V1R2HE5L9alv7c/cwS9N6/VgzWGbnaGLbTByhgIdPP/NmQ4HYaZJ
+	0iK4jiTag16lP7EhNojm2OS1blWGWN0PbH55ljOEIIGicmgGVM2P1LPu4soMNWfBRR02
+	qdJw==
 MIME-Version: 1.0
-Received: by 10.14.219.71 with HTTP; Sat, 23 Jun 2012 11:26:36 -0700 (PDT)
-In-Reply-To: <883800F1-AD79-4AD7-AF0B-2E72E5235DE3@gmail.com>
-References: <2E8A3DA3-EC31-4CE7-979D-E842AFFAB8CA@gmail.com>
-	<42D532F4-5629-4BE6-B8AD-3E28A192327D@gmail.com>
-	<CAMKF1srTFrW4VwF5ApQFW+oNs_4CiRiEvnZn6EiVCWBC_7DNTQ@mail.gmail.com>
-	<6C530CF7-A92F-495A-8472-B2D46EBBDFCD@gmail.com>
-	<4FE5DDF2.8040908@gmail.com>
-	<883800F1-AD79-4AD7-AF0B-2E72E5235DE3@gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Sat, 23 Jun 2012 11:26:36 -0700
-Message-ID: <CAMKF1srA=tQ4zm4Vbeb-B+YG9mopeMRjx5p693sOqiVo5ZM16g@mail.gmail.com>
-To: Elvis Dowson <elvis.dowson@gmail.com>
-Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-Subject: Re: SRCREV spec not working for kernel git recipes
+Received: by 10.182.5.232 with SMTP id v8mr8631992obv.72.1340537674482; Sun,
+	24 Jun 2012 04:34:34 -0700 (PDT)
+Received: by 10.76.166.202 with HTTP; Sun, 24 Jun 2012 04:34:34 -0700 (PDT)
+Date: Sun, 24 Jun 2012 07:34:34 -0400
+Message-ID: <CANFv2Em3fCOEfUPoL1F5OnnRx_wXF32qTOVESme=7-Zdqvzu=A@mail.gmail.com>
+From: James Abernathy <jfabernathy@gmail.com>
+To: yocto@yoctoproject.org
+Subject: use of build appliance
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,15 +34,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 23 Jun 2012 18:27:08 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Sun, 24 Jun 2012 11:34:35 -0000
+Content-Type: multipart/alternative; boundary=f46d0447a0b1e544dd04c3363f4b
 
-On Sat, Jun 23, 2012 at 9:04 AM, Elvis Dowson <elvis.dowson@gmail.com> wrote:
->
-> What do you recommend I do?
+--f46d0447a0b1e544dd04c3363f4b
+Content-Type: text/plain; charset=ISO-8859-1
 
-well I think redefining overridden value is right if you dont want to
-modify the layer policy
+with the recent discussion on this mailing list on Build Appliance, I
+thought I'd see what the heck Build Appliance was all about.  I quickly
+realized that I couldn't use it because I have a Macbook Pro as my portable
+PC and not a Windows PC. A Core i7 Ubuntu desktop is my main development
+tool.
 
-SRCREV_pn-${PN} is the way to go with this layer then
+What I do is run VirtualBox on my Mac with a virtual machine for Ubuntu
+10.4 LTS.  I can run Hob, or any other part of poky-bitbake, etc.
 
+What am I missing by doing my solution vs. the Build appliance??
+
+Jim A
+
+--f46d0447a0b1e544dd04c3363f4b
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+with the recent discussion on this mailing list on Build Appliance, I thoug=
+ht I&#39;d see what the heck Build Appliance was all about.=A0 I quickly re=
+alized that I couldn&#39;t use it because I have a Macbook Pro as my portab=
+le PC and not a Windows PC. A Core i7 Ubuntu desktop is my main development=
+ tool.<br>
+<br>What I do is run VirtualBox on my Mac with a virtual machine for Ubuntu=
+ 10.4 LTS.=A0 I can run Hob, or any other part of poky-bitbake, etc.<br><br=
+>What am I missing by doing my solution vs. the Build appliance??<br><br>
+Jim A<br><br>
+
+--f46d0447a0b1e544dd04c3363f4b--
