@@ -1,24 +1,34 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D3E94E013E5
-	for <yocto@yoctoproject.org>; Sun, 24 Jun 2012 08:25:15 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 24 Jun 2012 08:25:15 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="184298604"
-Received: from unknown (HELO helios.localnet) ([10.252.120.173])
-	by fmsmga002.fm.intel.com with ESMTP; 24 Jun 2012 08:25:14 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Chris Tapp <opensource@keylevel.com>
-Date: Sun, 24 Jun 2012 16:25:11 +0100
-Message-ID: <1743594.b4UxPuuKdH@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.8.3 (Linux/3.2.0-25-generic-pae; KDE/4.8.3; i686; ; )
-In-Reply-To: <DCA17C0A-86FA-4EE3-8D86-83348F6DCF36@keylevel.com>
-References: <DCA17C0A-86FA-4EE3-8D86-83348F6DCF36@keylevel.com>
+Return-Path: <jfabernathy@gmail.com>
+Received: from mail-yx0-f176.google.com (mail-yx0-f176.google.com
+	[209.85.213.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 825B5E013E5
+	for <yocto@yoctoproject.org>; Sun, 24 Jun 2012 09:06:17 -0700 (PDT)
+Received: by yenl5 with SMTP id l5so2713589yen.35
+	for <yocto@yoctoproject.org>; Sun, 24 Jun 2012 09:06:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=message-id:date:from:user-agent:mime-version:to:subject
+	:content-type:content-transfer-encoding;
+	bh=BINjEZaHzHcWieuqXI2b4UnWSW5Qb44kyngjicyxQTE=;
+	b=ZzojA28OrHijMzkP2gyPBHU8Ea7pmV0VqtPqSKhz93zkR2AMfCu3o6hvdlzMignLwm
+	Mfk25VGLkVyZ5/XUK2ajRG2jgYkKURKHlf9SaGGABPkLpH4/42FoSlODY6whmH2qBg/i
+	sDyk6gDw+yAIwm6EKIsrjzHqSMNVeBn+sMokNAlPcplXgnV9wdWjsbey9i55xkM24HCm
+	2x6WSvg9KEhyfwd3Y6E111fT9ypvRFHNBcrCjTymIqNt6BAH/noYomg0UiZkCYJtJMeD
+	52GNi+prNEzigL5+vDZMjMTLos7TntPOJZ//kCz+qOTb4MTx3mWwV5rt7PjW9BTNfVHA
+	1eeA==
+Received: by 10.236.146.104 with SMTP id q68mr4249236yhj.28.1340553976841;
+	Sun, 24 Jun 2012 09:06:16 -0700 (PDT)
+Received: from [10.0.1.54] (nc-184-4-33-55.dhcp.embarqhsd.net. [184.4.33.55])
+	by mx.google.com with ESMTPS id
+	q10sm6753074anm.16.2012.06.24.09.06.16 (version=SSLv3 cipher=OTHER);
+	Sun, 24 Jun 2012 09:06:16 -0700 (PDT)
+Message-ID: <4FE73AF6.2060008@gmail.com>
+Date: Sun, 24 Jun 2012 12:06:14 -0400
+From: jfabernathy <jfabernathy@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:13.0) Gecko/20120615 Thunderbird/13.0.1
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: RaspberryPi Kernel - Fails to boot when sound driver is a built-in
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: prerequisite tools for making documentation
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,35 +40,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 24 Jun 2012 15:25:16 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Sun, 24 Jun 2012 16:06:17 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Monday 18 June 2012 22:16:44 Chris Tapp wrote:
-> If I build the RPi kernel (SRCREV 3fc65f9f291fb19cad434968a4a0f66ab749e637)
-> then the board boots as expected.
-> 
-> However, if a modify the .config (either manually after -c configure, or by
-> -c menuconfig) so that CONFIG_SND, CONFIG_SND_TIMER, CONFIG_SND_PCM and
-> CONFIG_BCM2835 are set to 'y' (i.e. changed from modules) then the kernel
-> no longer boots.
-> 
-> Has anyone else tried to do this? I'm trying to get a kernel that has ALSA
-> working out-of-the-box.
+I had a need to look at the bitbake manual in the 
+poky/bitbake/doc/manual directory and tried to make pdf.  I had all the 
+prerequisites listed in the QS guide.  However, I found the make failed 
+due to a number of xml related tools being missing.  I installed those 
+and got the pdf manual generated.
 
-Well, FWIW I can't even get a kernel with the default configuration built from 
-meta-raspberrypi to boot - I even tried copying it to a Debian SD-card and it 
-doesn't boot there either. All I get is a black screen or with the newer 
-firmware I get the four-colour display which apparently indicates it couldn't 
-load the kernel.
+Should we add those xml tools to the prerequisites?  BTW, I'm using 
+denzil branch and referring to the QS guide 1.2.
 
-Any suggestions would be welcome...
+Jim A
 
-Cheers,
-Paul
-
--- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
 
