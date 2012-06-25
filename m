@@ -1,34 +1,39 @@
-Return-Path: <david.c.stewart@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ABBF8E01452
-	for <yocto@yoctoproject.org>; Sun, 24 Jun 2012 16:30:16 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 24 Jun 2012 16:30:16 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="160173976"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
-	by azsmga001.ch.intel.com with ESMTP; 24 Jun 2012 16:30:16 -0700
-Received: from orsmsx153.amr.corp.intel.com (10.22.226.247) by
-	orsmsx603.amr.corp.intel.com (10.22.226.49) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Sun, 24 Jun 2012 16:30:15 -0700
-Received: from orsmsx105.amr.corp.intel.com ([169.254.4.138]) by
-	ORSMSX153.amr.corp.intel.com ([169.254.13.115]) with mapi id
-	14.01.0355.002; Sun, 24 Jun 2012 16:30:14 -0700
-From: "Stewart, David C" <david.c.stewart@intel.com>
-To: James Abernathy <jfabernathy@gmail.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] use of build appliance
-Thread-Index: AQHNUf1vI2hzbgq6REyaJuRi2UbSvZcKHBqQ
-Date: Sun, 24 Jun 2012 23:30:14 +0000
-Message-ID: <CDED78A957032E45B3239CDDA7642D151C8638BE@ORSMSX105.amr.corp.intel.com>
-References: <CANFv2Em3fCOEfUPoL1F5OnnRx_wXF32qTOVESme=7-Zdqvzu=A@mail.gmail.com>
-In-Reply-To: <CANFv2Em3fCOEfUPoL1F5OnnRx_wXF32qTOVESme=7-Zdqvzu=A@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.138]
-MIME-Version: 1.0
-Subject: Re: use of build appliance
+Return-Path: <josh@hipro.co.in>
+Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
+	[209.85.160.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 502C0E01452
+	for <yocto@yoctoproject.org>; Sun, 24 Jun 2012 23:18:41 -0700 (PDT)
+Received: by pbbrq8 with SMTP id rq8so7257237pbb.35
+	for <yocto@yoctoproject.org>; Sun, 24 Jun 2012 23:18:40 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=message-id:subject:from:to:cc:date:in-reply-to:references
+	:organization:content-type:x-mailer:mime-version:x-gm-message-state;
+	bh=uERL601hD/mgbz+0YHY9HfSMyiViBK+l7Imtq/BNg5U=;
+	b=mOeGUCreuDbecwonBAjysBKL8jvo0RiPoI6enaOyKozwd8tJuUn1oi1dNxoS+b0ELu
+	0VmQBx+NllZXBr3ua7uHEfM548phKOspur0SdzWre3HivzZ/WfJeIy4QScm/7aKAapTZ
+	gLvzZhpbZu/bTTZgxr/NMTzmjJAWvQhxnWh4BxFWc30GYqGp0uS/OXYYHu681/5YoxmT
+	PjlhicxqdjiKGs3C5qSDfuvS9MY4tFfFgTomInuO+mQiQCpJKl+1eEoLWnUtCJFfzk9j
+	D4JZflUeKw3ZhjrHBdMynzAnRt9wq7C75qHthRpwjzC3SAnxtOxmKXXs8nBFRZL3aZ7A
+	FhHA==
+Received: by 10.68.223.35 with SMTP id qr3mr37675670pbc.83.1340605120867;
+	Sun, 24 Jun 2012 23:18:40 -0700 (PDT)
+Received: from [192.168.10.211] ([59.99.251.45])
+	by mx.google.com with ESMTPS id ms1sm7527568pbb.63.2012.06.24.23.18.36
+	(version=SSLv3 cipher=OTHER); Sun, 24 Jun 2012 23:18:39 -0700 (PDT)
+Message-ID: <1340605104.4089.12.camel@babel.joshhome>
+From: Joshua Immanuel <josh@hipro.co.in>
+To: Chris Larson <clarson@kergoth.com>
+Date: Mon, 25 Jun 2012 11:48:24 +0530
+In-Reply-To: <CABcZANmax+eu__f2vkyDrOZ=G_zX4XCMCfCO6cas7UfN6u_W1g@mail.gmail.com>
+References: <1340207171.3727.0.camel@babel.joshhome>
+	<CABcZANmax+eu__f2vkyDrOZ=G_zX4XCMCfCO6cas7UfN6u_W1g@mail.gmail.com>
+Organization: HiPro IT Solutions Private Limited
+X-Mailer: Evolution 3.2.2-1+b1
+Mime-Version: 1.0
+X-Gm-Message-State: ALoCoQm/z+QjXvQ58P4BSd5zZJc7Jz+TWkG5Flj9a5ff+OfatdVuMIrIeIUYtCoNYDiRwcRx6iwq
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: default variables in a python task/function
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,54 +45,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 24 Jun 2012 23:30:16 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
+X-List-Received-Date: Mon, 25 Jun 2012 06:18:41 -0000
+X-Groupsio-MsgNum: 7423
+Content-Type: multipart/signed; micalg="pgp-sha1";
+	protocol="application/pgp-signature"; 
+	boundary="=-qw8NwZBwtNyAX8Km28y1"
+
+--=-qw8NwZBwtNyAX8Km28y1
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
->From: yocto-bounces@yoctoproject.org [mailto:yocto-
->bounces@yoctoproject.org] On Behalf Of James Abernathy
->Sent: Sunday, June 24, 2012 4:35 AM
->
->with the recent discussion on this mailing list on Build Appliance, I thou=
-ght I'd
->see what the heck Build Appliance was all about.=A0 I quickly realized tha=
-t I
->couldn't use it because I have a Macbook Pro as my portable PC and not a
->Windows PC. A Core i7 Ubuntu desktop is my main development tool.
->
->What I do is run VirtualBox on my Mac with a virtual machine for Ubuntu 10=
-.4
->LTS.=A0 I can run Hob, or any other part of poky-bitbake, etc.
->
->What am I missing by doing my solution vs. the Build appliance??
->
->Jim A
+Hello Chris,
 
-You are not missing a thing, because I don't think you are the target user =
-for the Build Appliance. :-)
+On Fri, 2012-06-22 at 18:28 -0700, Chris Larson wrote:
+> 'bb' and 'os' are always imported, automatically, by bitbake itself,
+> and as such are available in all python contexts. 'd' is available in
+> python tasks and anonymous python functions and in inline python
+> snippets, but *not* in event handlers. event handlers get their event
+> passed as 'e'.
+>  ...
+> Unlike 'bb' and 'os', 'd' is not available in def'd python functions,
+> only in tasks and anonymous functions and in inline python snippets.
+> As such, it needs to be passed in by the caller.
+>=20
+> E.g.
+>=20
+> def foo(d):
+>     # do something with d
+>=20
+> FOO =3D "${@foo(d)}"=20
 
-What I did find is that there are a number of *very* smart people who were =
-failing at doing a build with the Yocto Project. This was because they eith=
-er had:
+Thanks for your detailed explanation.
 
-* an outdated distro (like Fedora 6 in one case).
+IMHO, this information should be added in the main documentation. It
+would be definitely helpful for others too.
 
-* lacked certain packages
+Regards
+--=20
+Joshua Immanuel
+HiPro IT Solutions Private Limited
+http://hipro.co.in
 
-* were behind a firewall and didn't have sufficient proxies set up.
+--=-qw8NwZBwtNyAX8Km28y1
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
 
-As a result, they had a very bad first experience with YP because they coul=
-dn't get things going right away and it might not have been obvious why.  T=
-he Build Appliance is an attempt to solve most of these by assuming that a =
-power user could get VMWare installed and then install and boot one guest a=
-nd be up and running their first build without problems.
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.12 (GNU/Linux)
 
-So far, I don't have a lot of feedback as to whether this assumption is tru=
-e or not. By the way, I would have preferred using Virtual Box, because I l=
-ove the fact that it's open source and really easy to use. But my first att=
-empt to do a multi-threaded build in Virtual Box 2 years ago resulted in di=
-saster, so I have shied away from it ever since.
+iEYEABECAAYFAk/oArAACgkQWw85XwuSFMJY4gCggh1hhCpQfb4i0qfHZzaOkgL0
+/RkAmQFhgUizphugjNxoaBCplqMUb2Aa
+=uYgm
+-----END PGP SIGNATURE-----
 
-Dave
-
+--=-qw8NwZBwtNyAX8Km28y1--
