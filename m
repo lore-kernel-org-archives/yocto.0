@@ -1,35 +1,26 @@
-Return-Path: <andrei@gherzan.ro>
-Received: from mail-gh0-f176.google.com (mail-gh0-f176.google.com
-	[209.85.160.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1D34EE01452
-	for <yocto@yoctoproject.org>; Mon, 25 Jun 2012 01:45:50 -0700 (PDT)
-Received: by ghbz10 with SMTP id z10so2974388ghb.35
-	for <yocto@yoctoproject.org>; Mon, 25 Jun 2012 01:45:49 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:x-originating-ip:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type:x-gm-message-state;
-	bh=JPWG5JWKF/ecTJJEtnPIcBIJGTFW5c+f2vOtPWLAIXU=;
-	b=OAWFWiZMNIwr+1KLENANMmOpVcs1hrDl/+pxOdWAZKHSug42DkMM0pvtPMGc6hfdxU
-	BQOFiypC8MY0GGku4oMQ4SIg8tcCYgpgdqt4mgaRigN+IXMQVC1G/wZoE1P2YvNYi3uv
-	24xiFELX92TkRv1mQ9gbpaluOJWSVZsVIHV8qciYz7g8PhSfg8bDVLIvBE4j801GRcby
-	1obIZKBwYBZUlW8GyVuuD4kVbUHpqCihegh0ZTXl6pO1rL/v7X9S1o9lNSOzKU19t8wA
-	yy88uLyVb1cGFLvISJWjX+NhLV3Y/calQCBo+pgGoG2/sFYHT4Skfmq0NWXs6HSdYmHc
-	M8+g==
-Received: by 10.50.171.105 with SMTP id at9mr7382211igc.28.1340613948984; Mon,
-	25 Jun 2012 01:45:48 -0700 (PDT)
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 61785E01452
+	for <yocto@yoctoproject.org>; Mon, 25 Jun 2012 02:26:05 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 25 Jun 2012 02:25:45 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="157833263"
+Received: from unknown (HELO helios.localnet) ([10.252.120.191])
+	by orsmga001.jf.intel.com with ESMTP; 25 Jun 2012 02:25:44 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Chris Tapp <opensource@keylevel.com>
+Date: Mon, 25 Jun 2012 10:25:41 +0100
+Message-ID: <1944502.CqnIyhTMp1@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.8.3 (Linux/3.2.0-25-generic-pae; KDE/4.8.3; i686; ; )
+In-Reply-To: <A3AB967E-1604-4206-B37F-7B2FA4FDFA77@keylevel.com>
+References: <DCA17C0A-86FA-4EE3-8D86-83348F6DCF36@keylevel.com>
+	<1743594.b4UxPuuKdH@helios>
+	<A3AB967E-1604-4206-B37F-7B2FA4FDFA77@keylevel.com>
 MIME-Version: 1.0
-Received: by 10.64.10.161 with HTTP; Mon, 25 Jun 2012 01:45:28 -0700 (PDT)
-X-Originating-IP: [79.117.46.157]
-In-Reply-To: <4FE73AF6.2060008@gmail.com>
-References: <4FE73AF6.2060008@gmail.com>
-From: Andrei Gherzan <andrei@gherzan.ro>
-Date: Mon, 25 Jun 2012 11:45:28 +0300
-Message-ID: <CAK18fxFc6AhKnviHNfYrVmH5EwR8AAuwHtU7U_O_y1w4vnhoLg@mail.gmail.com>
-To: jfabernathy <jfabernathy@gmail.com>
-X-Gm-Message-State: ALoCoQlXKmCA3ttFH+g+JI4g0WtQNcBRqTE0BAW6wOT54bl9zbwZVfLwz0RIC0tzoOryvdkw/qK6
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: prerequisite tools for making documentation
+Cc: yocto@yoctoproject.org
+Subject: Re: RaspberryPi Kernel - Fails to boot when sound driver is a built-in
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,68 +32,63 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 25 Jun 2012 08:45:50 -0000
-Content-Type: multipart/alternative; boundary=e89a8f3b9fb535cf2504c348027e
+X-List-Received-Date: Mon, 25 Jun 2012 09:26:05 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
---e89a8f3b9fb535cf2504c348027e
-Content-Type: text/plain; charset=ISO-8859-1
+On Sunday 24 June 2012 21:31:41 Chris Tapp wrote:
+> On 24 Jun 2012, at 16:25, Paul Eggleton wrote:
+> > Well, FWIW I can't even get a kernel with the default configuration built
+> > from meta-raspberrypi to boot - I even tried copying it to a Debian
+> > SD-card and it doesn't boot there either. All I get is a black screen or
+> > with the newer firmware I get the four-colour display which apparently
+> > indicates it couldn't load the kernel.
+> 
+> Firstly:
+> 1) Are you using the SRCREVs as supplied, or have you updated them?
+> 2) Which version of the bootfiles are you using?
+> 
+> Everything is in such a state of flux at the moment that it does seem to be
+> difficult to be sure what works one day will work if you upgrade anything
+> to use the latest versions. I can get some combinations to work, the most
+> up-to-date being:
+> 
+> 1) Use the bootfiles with SRCREV =
+> "9308c7ed387e5422883753f7fb71a75506abd1f8" 2) Build the kernel using SRCREV
+> = "3fc65f9f291fb19cad434968a4a0f66ab749e637"
 
-That would be a good idea in my opinion too as i tried to make doc last
-week and i ended up dropping this task as i didn't have the time to search
-for those xml deps.
+So far I've tried the following:
 
-@g
+1) The current default in meta-raspberrypi - bootfiles at 
+56cd7ffb3f7244017c8eb3b492ea37592c678506 and kernel 
+0ec4154d64ebba48ca2446cde60a90546311defc
 
-On Sun, Jun 24, 2012 at 7:06 PM, jfabernathy <jfabernathy@gmail.com> wrote:
+2) The above kernel with known-good bootfiles from a Debian SD card
 
-> I had a need to look at the bitbake manual in the poky/bitbake/doc/manual
-> directory and tried to make pdf.  I had all the prerequisites listed in the
-> QS guide.  However, I found the make failed due to a number of xml related
-> tools being missing.  I installed those and got the pdf manual generated.
->
-> Should we add those xml tools to the prerequisites?  BTW, I'm using denzil
-> branch and referring to the QS guide 1.2.
->
-> Jim A
->
-> ______________________________**_________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.**org/listinfo/yocto<https://lists.yoctoproject.org/listinfo/yocto>
->
+3) The above kernel *on* the known-good Debian SD card
 
---e89a8f3b9fb535cf2504c348027e
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+4) Known good kernel with the above bootfiles
 
-That would be a good idea in my opinion too as i tried to make doc last wee=
-k and i ended up dropping this task as i didn&#39;t have the time to search=
- for those xml deps.<br>
-<br>@g<br><br><div class=3D"gmail_quote">On Sun, Jun 24, 2012 at 7:06 PM, j=
-fabernathy <span dir=3D"ltr">&lt;<a href=3D"mailto:jfabernathy@gmail.com" t=
-arget=3D"_blank">jfabernathy@gmail.com</a>&gt;</span> wrote:<br><blockquote=
- class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc soli=
-d;padding-left:1ex">
+5) The combination you suggested above
 
-I had a need to look at the bitbake manual in the poky/bitbake/doc/manual d=
-irectory and tried to make pdf. =A0I had all the prerequisites listed in th=
-e QS guide. =A0However, I found the make failed due to a number of xml rela=
-ted tools being missing. =A0I installed those and got the pdf manual genera=
-ted.<br>
+6) The latest available kernel + bootfiles
 
+Of those, only option 4 sort-of worked.
 
-<br>
-Should we add those xml tools to the prerequisites? =A0BTW, I&#39;m using d=
-enzil branch and referring to the QS guide 1.2.<br>
-<br>
-Jim A<br>
-<br>
-______________________________<u></u>_________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
->https://lists.yoctoproject.<u></u>org/listinfo/yocto</a><br>
-</blockquote></div><br>
+> BTW - you need to update the .conf file for the machine to use ttyAMA0 if
+> you want to use the serial port for kernel debug.
 
---e89a8f3b9fb535cf2504c348027e--
+I did that, however it's not going to be much help as I don't yet have a 
+serial cable (I have one on order).
+ 
+I'm beginning to wonder if it's something about the way the kernel is being 
+built. Are you using denzil or master of Poky?/OE-core?
+
+Cheers,
+Paul
+
+-- 
+
+Paul Eggleton
+Intel Open Source Technology Centre
+
