@@ -1,22 +1,24 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E2C5CE00739
-	for <yocto@yoctoproject.org>; Mon, 25 Jun 2012 09:09:04 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 25 Jun 2012 09:09:04 -0700
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 21126E006D9
+	for <yocto@yoctoproject.org>; Mon, 25 Jun 2012 09:44:11 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 25 Jun 2012 09:44:09 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="184666053"
-Received: from unknown (HELO [10.255.12.155]) ([10.255.12.155])
-	by fmsmga002.fm.intel.com with ESMTP; 25 Jun 2012 09:09:04 -0700
-Message-ID: <1340640531.24723.0.camel@trz-ThinkPad-T420>
-From: Tom Zanussi <tom.zanussi@intel.com>
-To: yocto@yoctoproject.org
-Date: Mon, 25 Jun 2012 11:08:51 -0500
-In-Reply-To: <cover.1340052437.git.tom.zanussi@intel.com>
-References: <cover.1340052437.git.tom.zanussi@intel.com>
-X-Mailer: Evolution 3.2.3-0ubuntu6 
-Mime-Version: 1.0
-Subject: Re: [PATCH 0/2] yocto-bsp: template fixes
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="162364404"
+Received: from unknown (HELO envy.home) ([10.7.199.60])
+	by orsmga002.jf.intel.com with ESMTP; 25 Jun 2012 09:44:09 -0700
+Message-ID: <4FE89505.1070203@linux.intel.com>
+Date: Mon, 25 Jun 2012 09:42:45 -0700
+From: Darren Hart <dvhart@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:13.0) Gecko/20120615 Thunderbird/13.0.1
+MIME-Version: 1.0
+To: Yocto Project <yocto@yoctoproject.org>
+References: <4FE558CA.20308@linux.intel.com>
+In-Reply-To: <4FE558CA.20308@linux.intel.com>
+X-Enigmail-Version: 1.4.2
+Subject: Re: No provider for update-modules-nativesdk
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,39 +30,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 25 Jun 2012 16:09:05 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Mon, 25 Jun 2012 16:44:11 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-ping?
 
-On Mon, 2012-06-18 at 15:52 -0500, tom.zanussi@intel.com wrote:
-> From: Tom Zanussi <tom.zanussi@intel.com>
+
+On 06/22/2012 10:48 PM, Darren Hart wrote:
+> Has anyone else hit this? I'm running poky master as of the this afternoon:
 > 
-> This updates some Yocto BSP templates to fix some recent metadata changes
-> that caused the problems seen in YOCTO #2559.
+> $ bitbake core-image-base
 > 
-> Please pull into poky/master.
-> 
-> The following changes since commit 4ff6160d909e2a39e357c8a51f37d803dab64d5d:
->   Richard Purdie (1):
->         methodpool: Improve method already seen error message
-> 
-> are available in the git repository at:
-> 
->   git://git.yoctoproject.org/poky-contrib.git tzanussi/yocto-bugfix-2559
->   http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/log/?h=tzanussi/yocto-bugfix-2559
-> 
-> Tom Zanussi (2):
->   yocto-bsp: update yocto-bsp machine.conf template
->   yocto-bsp: update yocto-bsp xorg.conf templates
-> 
->  .../arch/qemu/conf/machine/{{=machine}}.conf       |    7 +++++--
->  .../xserver-xf86-config/{{=machine}}/xorg.conf     |    8 ++++++++
->  ..."x86_64\": }} xserver-xf86-config_0.1.bbappend" |    2 --
->  3 files changed, 13 insertions(+), 4 deletions(-)
->  delete mode 100644 "scripts/lib/bsp/substrate/target/arch/qemu/recipes-graphics/xorg-xserver/{{ if qemuarch == \"i386\" or qemuarch == \"x86_64\": }} xserver-xf86-config_0.1.bbappend"
-> 
+> ERROR: Nothing PROVIDES 'update-modules-nativesdk' (but
+> virtual:nativesdk:/home/dvhart/source/poky/meta-yocto/recipes-kernel/linux-libc-headers/linux-libc-headers-yocto_git.bb
+> DEPENDS on or otherwise requires it)
+
+This is my own doing while trying to simplify the linux-yocto class
+inclusions.
+
+-- 
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
 
 
