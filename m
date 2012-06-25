@@ -1,31 +1,23 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BD01CE006D9
-	for <yocto@yoctoproject.org>; Mon, 25 Jun 2012 15:37:29 -0700 (PDT)
-Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
-	([99.241.91.63]:35824 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.77) (envelope-from <rpjday@crashcourse.ca>)
-	id 1SjHuS-0002YR-Py
-	for yocto@yoctoproject.org; Mon, 25 Jun 2012 18:37:28 -0400
-Date: Mon, 25 Jun 2012 18:37:25 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.DEB.2.02.1206251834180.11764@oneiric>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 82077E006D9
+	for <yocto@yoctoproject.org>; Mon, 25 Jun 2012 15:39:00 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 25 Jun 2012 15:39:00 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="162510488"
+Received: from unknown (HELO envy.home) ([10.255.12.249])
+	by orsmga002.jf.intel.com with ESMTP; 25 Jun 2012 15:38:59 -0700
+Message-ID: <4FE8E830.4040303@linux.intel.com>
+Date: Mon, 25 Jun 2012 15:37:36 -0700
+From: Darren Hart <dvhart@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:13.0) Gecko/20120615 Thunderbird/13.0.1
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: i assume there's no problem installing multiple toolchain tarballs
+To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+X-Enigmail-Version: 1.4.2
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Required packages for Hob
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,32 +29,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 25 Jun 2012 22:37:29 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Mon, 25 Jun 2012 22:39:00 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
+Hi Scott,
 
-  as part of an experiment, i'm installing both the arm and mips
-toolchain tarballs (under the requisite /opt/poky directory).  i
-notice that, in the midst of the toolchain contents, there are common
-directories at some locations, but they look identical, being
-x86_64-flavoured.
+Khem found he was missing some packages necessary to run Hob. Blurb from
+IRC:
 
-  eg., /opt/poky/1.2/sysroots/x86_64-pokysdk-linux are identical
-within both toolchains, but i'm assuming they'll be identical across
-the toolchains, yes?
+<khem> what is prerequisites for hob
+<khem> is it documented some where ?
+<khem> I am looking for kubuntu
+...
+<khem> sudo apt-get install python-gobject-2-dev python-gtk2-dev
+<khem> may be it should be mentioned in some FAQ
+<dvhart> khem, it most definitely should
 
-  just making absolutely sure multiple toolchains won't conflict with
-one another.  thanks.
+Scott, do we have an appropriate faq for this? If not, perhaps the
+quick-start-guide should include them (it does not currently). The
+packages Khem lists are for Ubuntu.
 
-rday
+Khem, which version of Ubuntu?
 
 -- 
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
 
