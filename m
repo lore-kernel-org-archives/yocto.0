@@ -1,35 +1,33 @@
 Return-Path: <omprakash.pal@stericsson.com>
-Received: from eu1sys200aog104.obsmtp.com (eu1sys200aog104.obsmtp.com
-	[207.126.144.117])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8B592E0141D
-	for <yocto@yoctoproject.org>; Mon, 25 Jun 2012 07:09:49 -0700 (PDT)
-Received: from beta.dmz-eu.st.com ([164.129.1.35]) (using TLSv1) by
-	eu1sys200aob104.postini.com ([207.126.147.11]) with SMTP
-	ID DSNKT+hxK7zTf/bYP4wX3E8b2njrbmvjEMoa@postini.com;
-	Mon, 25 Jun 2012 14:09:49 UTC
-Received: from zeta.dmz-eu.st.com (zeta.dmz-eu.st.com [164.129.230.9])
-	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id DA4B711B;
-	Mon, 25 Jun 2012 14:09:26 +0000 (GMT)
-Received: from relay1.stm.gmessaging.net (unknown [10.230.100.17])
-	by zeta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 36FDB4B0E;
-	Mon, 25 Jun 2012 14:09:25 +0000 (GMT)
-Received: from exdcvycastm003.EQ1STM.local (alteon-source-exch [10.230.100.61])
+Received: from eu1sys200aog111.obsmtp.com (eu1sys200aog111.obsmtp.com
+	[207.126.144.131])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 80560E013F7
+	for <yocto@yoctoproject.org>; Mon, 25 Jun 2012 07:13:01 -0700 (PDT)
+Received: from beta.dmz-us.st.com ([167.4.1.35]) (using TLSv1) by
+	eu1sys200aob111.postini.com ([207.126.147.11]) with SMTP
+	ID DSNKT+hx6lEv/Fiko9i1LNNG5KJ6g5+DpYwq@postini.com;
+	Mon, 25 Jun 2012 14:13:01 UTC
+Received: from zeta.dmz-us.st.com (ns4.st.com [167.4.16.71])
+	by beta.dmz-us.st.com (STMicroelectronics) with ESMTP id 6E1CC3F;
+	Mon, 25 Jun 2012 14:12:35 +0000 (GMT)
+Received: from relay2.stm.gmessaging.net (unknown [10.230.100.18])
+	by zeta.dmz-us.st.com (STMicroelectronics) with ESMTP id E8D164E;
+	Mon, 25 Jun 2012 11:14:36 +0000 (GMT)
+Received: from exdcvycastm004.EQ1STM.local (alteon-source-exch [10.230.100.61])
 	(using TLSv1 with cipher RC4-MD5 (128/128 bits))
-	(Client CN "exdcvycastm003", Issuer "exdcvycastm003" (not verified))
-	by relay1.stm.gmessaging.net (Postfix) with ESMTPS id 57FE324C07C;
-	Mon, 25 Jun 2012 16:09:17 +0200 (CEST)
+	(Client CN "exdcvycastm004", Issuer "exdcvycastm004" (not verified))
+	by relay2.stm.gmessaging.net (Postfix) with ESMTPS id 0E4BCA8072;
+	Mon, 25 Jun 2012 16:12:50 +0200 (CEST)
 Received: from EXDCVYMBSTM006.EQ1STM.local ([10.230.100.3]) by
-	exdcvycastm003.EQ1STM.local ([10.230.100.1]) with mapi; Mon, 25 Jun 2012
-	16:09:24 +0200
+	exdcvycastm004.EQ1STM.local ([10.230.100.2]) with mapi; Mon, 25 Jun 2012
+	16:12:55 +0200
 From: Om Prakash PAL <omprakash.pal@stericsson.com>
-To: Gary Thomas <gary@mlbassoc.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Mon, 25 Jun 2012 16:09:22 +0200
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
+Date: Mon, 25 Jun 2012 16:12:52 +0200
 Thread-Topic: [yocto] Porting of specific Kernel/Driver into yocto.
-Thread-Index: Ac1S1CumVCPzNfYQRnGoXUEKMqVn2AAB4pAQ
-Message-ID: <3ED83A9DB3B6D94CA68BF7C03F2981D35B18D9F717@EXDCVYMBSTM006.EQ1STM.local>
+Thread-Index: Ac1S3BNpRLUDdFKITJqzyWX+bHq+XwAADyHA
+Message-ID: <3ED83A9DB3B6D94CA68BF7C03F2981D35B18D9F71C@EXDCVYMBSTM006.EQ1STM.local>
 References: <3ED83A9DB3B6D94CA68BF7C03F2981D35A844F357F@EXDCVYMBSTM006.EQ1STM.local>
-	<3ED83A9DB3B6D94CA68BF7C03F2981D35B042416CF@EXDCVYMBSTM006.EQ1STM.local>
 	<4F9E9DD5.5080601@windriver.com>
 	<3ED83A9DB3B6D94CA68BF7C03F2981D35B042416D2@EXDCVYMBSTM006.EQ1STM.local>
 	<4FA27A40.6080506@windriver.com>
@@ -44,13 +42,16 @@ References: <3ED83A9DB3B6D94CA68BF7C03F2981D35A844F357F@EXDCVYMBSTM006.EQ1STM.lo
 	<3ED83A9DB3B6D94CA68BF7C03F2981D35B18D9EDE8@EXDCVYMBSTM006.EQ1STM.local>,
 	<CAMKF1sosEk23cc=GKxH7KinhPUNwhsdhPKkFHjYybPezZJrmSQ@mail.gmail.com>
 	<3ED83A9DB3B6D94CA68BF7C03F2981D35B1897B1D8@EXDCVYMBSTM006.EQ1STM.local>
-	<4FE862BE.2020307@windriver.com> <4FE863AF.7030204@mlbassoc.com>
-In-Reply-To: <4FE863AF.7030204@mlbassoc.com>
+	<4FE862BE.2020307@windriver.com>
+	<3ED83A9DB3B6D94CA68BF7C03F2981D35B18D9F70F@EXDCVYMBSTM006.EQ1STM.local>
+	<4FE870EB.1040907@windriver.com>
+In-Reply-To: <4FE870EB.1040907@windriver.com>
 Accept-Language: en-US
 X-MS-Has-Attach: yes
 X-MS-TNEF-Correlator: 
 acceptlanguage: en-US
 MIME-Version: 1.0
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Porting of specific Kernel/Driver into yocto.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -63,41 +64,66 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 25 Jun 2012 14:09:51 -0000
-X-Groupsio-MsgNum: 7435
+X-List-Received-Date: Mon, 25 Jun 2012 14:13:03 -0000
+X-Groupsio-MsgNum: 7436
 Content-Language: en-US
 Content-Type: multipart/mixed;
-	boundary="_002_3ED83A9DB3B6D94CA68BF7C03F2981D35B18D9F717EXDCVYMBSTM00_"
+	boundary="_002_3ED83A9DB3B6D94CA68BF7C03F2981D35B18D9F71CEXDCVYMBSTM00_"
 
---_002_3ED83A9DB3B6D94CA68BF7C03F2981D35B18D9F717EXDCVYMBSTM00_
+--_002_3ED83A9DB3B6D94CA68BF7C03F2981D35B18D9F71CEXDCVYMBSTM00_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Gary,
-Please find the attached log.
-In bootargs, you can check it 'console=3DttyAMA2'
+Hi Bruce,
+You can check the attached log.
+
+It does not contain /dev/tty0..its /dev/ttyAMA2.
+I am not able to get why is it opening /dev/tty0?.
 
 Best Regards,
 Om Prakash Pal
 
 -----Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Gary Thomas
-Sent: Monday, June 25, 2012 6:42 PM
-To: yocto@yoctoproject.org
+From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]=20
+Sent: Monday, June 25, 2012 7:39 PM
+To: Om Prakash PAL
+Cc: Khem Raj; yocto@yoctoproject.org
 Subject: Re: [yocto] Porting of specific Kernel/Driver into yocto.
 
-On 2012-06-25 07:08, Bruce Ashfield wrote:
+On 12-06-25 10:06 AM, Om Prakash PAL wrote:
+> Hi Bruce,
+> Yes,its arm board.
+> Yes, I have verified and kernel bootline is properly passed to the kernel=
+ by bootloader.
+
+And does it (the bootline) contain /dev/tty0 ? .. because if things are
+properly configured, it really shouldn't be trying to open it.
+
+Cheers,
+
+Bruce
+
+>
+> Best Regards,
+> Om Prakash Pal
+>
+> -----Original Message-----
+> From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]
+> Sent: Monday, June 25, 2012 6:38 PM
+> To: Om Prakash PAL
+> Cc: Khem Raj; yocto@yoctoproject.org
+> Subject: Re: [yocto] Porting of specific Kernel/Driver into yocto.
+>
 > On 12-06-25 08:53 AM, Om Prakash PAL wrote:
 >> Hi Khem,
 >> I have build core-image-core. but still this Error:
 >> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
 =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
 =3D=3D=3D=3D=3D>
->> 11.165466] EXT3-fs (mmcblk0p1): mounted filesystem with writeback data m=
-ode
->> [ 11.172668] VFS: Mounted root (ext3 filesystem) on device 179:1.
->> [ 11.179260] Freeing init memory: 316K
+>>      11.165466] EXT3-fs (mmcblk0p1): mounted filesystem with writeback d=
+ata mode
+>> [   11.172668] VFS: Mounted root (ext3 filesystem) on device 179:1.
+>> [   11.179260] Freeing init memory: 316K
 >> INIT: version 2.88 booting
 >> Error Cannot open /dev/tty0: No such device or address
 >> mknod: /dev/console: File exists
@@ -106,8 +132,8 @@ ode
 =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
 =3D=3D=3D=3D=3D=3D=3D=3D>
 >>
->> I have set SERIAL_CONSOLE=3D"115200 ttyAMA2" then why its taking /dev/tt=
-y0 ?.
+>> I have set SERIAL_CONSOLE=3D"115200 ttyAMA2"  then why its taking /dev/t=
+ty0 ?.
 >
 > I've lost some of the context on the board you are working with, but
 > from ttyAMA2, I'm assuming it is an arm board. Have you verified that you=
@@ -117,17 +143,11 @@ r
 > modify your configuration to have a built in command line with your
 > configuration, you may be able to get better setup to debug the
 > problem.
-
-Note: if you (Om Prakash PAL) could send the entire boot log, we could make=
- more
-sense of your issues.  For example, the actual name(s) of serial devices su=
-pported
-by the kernel will be listed there.
-
-Also, I seem to recall that you had 'console=3Dtty0' in your bootargs.
-
-Send the complete log...
-
+>
+> Cheers,
+>
+> Bruce
+>
 >> please help.
 >>
 >> Best Regards,
@@ -140,17 +160,17 @@ Send the complete log...
 >> Subject: Re: [yocto] Porting of specific Kernel/Driver into yocto.
 >>
 >> On Thu, Jun 21, 2012 at 10:37 PM, Om Prakash PAL
->> <omprakash.pal@stericsson.com> wrote:
+>> <omprakash.pal@stericsson.com>   wrote:
 >>>
->>>>> and then console got stuck.
+>>>>> and then console got  stuck.
 >>>>
 >>>>> What do you have SERIAL_CONSOLE set to in your configuration?
 >>>>
 >>>> I have set SERIAL_CONSOLE=3D"115200 ttyAMA2". As we are using ttyAMA2 =
 for console.
 >>>
->>>> What is your target device? Do you really have /dev/ttyAMA2 serial por=
-t??.
+>>>> What is your target device?  Do you really have /dev/ttyAMA2 serial po=
+rt??.
 >>>
 >>> Yes, I have /dev/ttyAMA2 serial port.
 >>
@@ -162,26 +182,13 @@ t??.
 >> yocto@yoctoproject.org
 >> https://lists.yoctoproject.org/listinfo/yocto
 >
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
 
---=20
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
 
---_002_3ED83A9DB3B6D94CA68BF7C03F2981D35B18D9F717EXDCVYMBSTM00_
+--_002_3ED83A9DB3B6D94CA68BF7C03F2981D35B18D9F71CEXDCVYMBSTM00_
 Content-Type: text/plain; name="log.txt"
 Content-Description: log.txt
 Content-Disposition: attachment; filename="log.txt"; size=41748;
-	creation-date="Mon, 25 Jun 2012 16:07:26 GMT";
+	creation-date="Mon, 25 Jun 2012 16:11:20 GMT";
 	modification-date="Mon, 25 Jun 2012 15:18:43 GMT"
 Content-Transfer-Encoding: base64
 
@@ -919,4 +926,4 @@ ZGlzYWJsZWQgZm9yIDUgbWludXRlcw0KSU5JVDogSWQgIjEiIHJlc3Bhd25pbmcgdG9vIGZhc3Q6
 IGRpc2FibGVkIGZvciA1IG1pbnV0ZXMNCklOSVQ6IElkICIxIiByZXNwYXduaW5nIHRvbyBmYXN0
 OiBkaXNhYmxlZCBmb3IgNSBtaW51dGVz
 
---_002_3ED83A9DB3B6D94CA68BF7C03F2981D35B18D9F717EXDCVYMBSTM00_--
+--_002_3ED83A9DB3B6D94CA68BF7C03F2981D35B18D9F71CEXDCVYMBSTM00_--
