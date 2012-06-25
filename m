@@ -1,32 +1,34 @@
-Return-Path: <opensource@keylevel.com>
-Received: from hxhsvr03.internetintuitive.net (hxhsvr03.internetintuitive.net
-	[80.254.228.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B1A0EE006D9
-	for <yocto@yoctoproject.org>; Mon, 25 Jun 2012 14:37:37 -0700 (PDT)
-Received: from [109.224.129.17] (helo=macbook-pro.durham.keylevel.com)
-	by hxhsvr03.internetintuitive.net with esmtpa (Exim 4.69)
-	(envelope-from <opensource@keylevel.com>)
-	id 1SjGyW-0002As-SN; Mon, 25 Jun 2012 22:37:36 +0100
-Mime-Version: 1.0 (Apple Message framework v1278)
-From: Chris Tapp <opensource@keylevel.com>
-In-Reply-To: <CAMKF1spcBzJFt0qrLgCc2MpUj7r0t5W3Ng=5XZAFgvHOxEr0xQ@mail.gmail.com>
-Date: Mon, 25 Jun 2012 22:37:33 +0100
-Message-Id: <6C75CBD3-D4CF-431A-92DB-9B1C58FD4F6E@keylevel.com>
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-ey0-f176.google.com (mail-ey0-f176.google.com
+	[209.85.215.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E2489E00739
+	for <yocto@yoctoproject.org>; Mon, 25 Jun 2012 14:41:45 -0700 (PDT)
+Received: by eaab16 with SMTP id b16so1824503eaa.35
+	for <yocto@yoctoproject.org>; Mon, 25 Jun 2012 14:41:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=qUnm44fz3vvylfHJEaHuSK7IsFXo7Ue/QKylnwNAbFo=;
+	b=e6Yz/jsTgKu0FetZX1dGU3bsHvDdWQcQCiEeVHPULfPNPfcXWzGqXobHarAdC04pEy
+	czhqVh0aRQ7UxpoPO+h8T80zK90lIJas4kGm6mDS7O1XNU/PI64W+xskGLvAjxb2NWOo
+	HFfPwi1oGT6QOlQtddvEble9n5pqk/3YPgdlRULT0AMSMhbOVqUlxzw1K62P4aHKgAXj
+	EkdG6nPlfYAB0BHBRw4njR7eiyrWDNz+JTZc+otDbzkRkhRZxWTsB5Y3KSeRcuPXZL0Y
+	On6SG59CSDv1wutb8nz/CnDno5hXQ7iLOqAZ55kIn9Elubd9N/NX/3s6uiYGjiS8rEjA
+	btPw==
+Received: by 10.14.97.16 with SMTP id s16mr2473925eef.117.1340660505004; Mon,
+	25 Jun 2012 14:41:45 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.14.219.71 with HTTP; Mon, 25 Jun 2012 14:41:14 -0700 (PDT)
+In-Reply-To: <6C75CBD3-D4CF-431A-92DB-9B1C58FD4F6E@keylevel.com>
 References: <A8122A0F-A18D-45A7-BE32-433494D888B4@keylevel.com>
 	<CAMKF1sqfGsPs_2rvsnwBcqYCha1dp47WvaDv2-WNPubpjWbnQw@mail.gmail.com>
 	<68462E41-30CB-44B1-92CF-C178AC9844DF@keylevel.com>
 	<CAMKF1spcBzJFt0qrLgCc2MpUj7r0t5W3Ng=5XZAFgvHOxEr0xQ@mail.gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
-X-Mailer: Apple Mail (2.1278)
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - hxhsvr03.internetintuitive.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+	<6C75CBD3-D4CF-431A-92DB-9B1C58FD4F6E@keylevel.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Mon, 25 Jun 2012 14:41:14 -0700
+Message-ID: <CAMKF1soot0iQ-nfZKAbnEEYieW+_H6YPWnrxcFQMSQiz_XPFjg@mail.gmail.com>
+To: Chris Tapp <opensource@keylevel.com>
 Cc: Yocto Project <yocto@yoctoproject.org>
 Subject: Re: Selecting gcc version
 X-BeenThere: yocto@yoctoproject.org
@@ -40,51 +42,13 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 25 Jun 2012 21:37:38 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 25 Jun 2012 21:41:46 -0000
+Content-Type: text/plain; charset=UTF-8
 
+On Mon, Jun 25, 2012 at 2:37 PM, Chris Tapp <opensource@keylevel.com> wrote:
+> It's the rpi-patches branch at https://github.com/raspberrypi/linux.
+>
 
-On 25 Jun 2012, at 22:29, Khem Raj wrote:
-
-> On Mon, Jun 25, 2012 at 2:24 PM, Chris Tapp <opensource@keylevel.com> =
-wrote:
->>=20
->> On 25 Jun 2012, at 22:16, Khem Raj wrote:
->>=20
->>> On Mon, Jun 25, 2012 at 12:56 PM, Chris Tapp =
-<opensource@keylevel.com> wrote:
->>>> I'm having some issues building a working kernel for the RPi under =
-Denzil, which is using gcc 4.6.3. The 'official' kernel uses gcc 4.5.1.
->>>=20
->>> Do you have issues building it with 4.6.3 ?
->>=20
->>=20
->> Not sure. All I know is some of the kernel SRVREVs run with 4.6.3, =
-some don't. The ones that don't will run if I build them will run using =
-the download of the corresponding kernel image from the repository - =
-these were built from the same source under 4.5.1. I thought it would be =
-worth trying with another version.
->>=20
->> 4.5.1 would be the best bet, but that's not in Denzil. The BSP =
-doesn't work with Edison, which does have 4.5.1. Not sure if the best =
-bet is to modify the BSP or migrate 4.5.1 to Denzil (unfortunately not =
-as easy as just copying the files).
->=20
-> well either way you have work to do. I think making kernel work with
-> 4.6+ is forward looking and will be beneficial in future too. It would
-> be nice to know
-> whats the gcc 4.5 dependency, which version of kernel are we talking =
-about ?
-
-
-It's the rpi-patches branch at https://github.com/raspberrypi/linux.
-
-Chris Tapp
-
-opensource@keylevel.com
-www.keylevel.com
-
-
-
+looks like 3.1.x
+should be OK to compile with 4.6 I guess ..
 
