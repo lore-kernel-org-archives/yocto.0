@@ -1,51 +1,52 @@
-Return-Path: <B29882@freescale.com>
-Received: from ch1outboundpool.messaging.microsoft.com
-	(ch1ehsobe003.messaging.microsoft.com [216.32.181.183])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7233FE006D9
-	for <yocto@yoctoproject.org>; Mon, 25 Jun 2012 08:10:33 -0700 (PDT)
-Received: from mail146-ch1-R.bigfish.com (10.43.68.249) by
-	CH1EHSOBE011.bigfish.com (10.43.70.61) with Microsoft SMTP Server id
-	14.1.225.23; Mon, 25 Jun 2012 15:08:55 +0000
-Received: from mail146-ch1 (localhost [127.0.0.1])	by
-	mail146-ch1-R.bigfish.com (Postfix) with ESMTP id 659111002B8;
-	Mon, 25 Jun 2012 15:08:54 +0000 (UTC)
-X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null); IPV:NLI;
-	H:mail.freescale.net; RD:none; EFVD:NLI
-X-SpamScore: -3
-X-BigFish: VS-3(zz709fI98dI9371I1432Izz1202hzz8275bh8275dhz2dh2a8h668h839h8e2h8e3hf0ahbe9i)
-Received: from mail146-ch1 (localhost.localdomain [127.0.0.1]) by mail146-ch1
-	(MessageSwitch) id 1340636931859105_19266;
-	Mon, 25 Jun 2012 15:08:51 +0000 (UTC)
-Received: from CH1EHSMHS013.bigfish.com (snatpool2.int.messaging.microsoft.com
-	[10.43.68.230])	by mail146-ch1.bigfish.com (Postfix) with ESMTP id
-	CFA802A0043;	Mon, 25 Jun 2012 15:08:51 +0000 (UTC)
-Received: from mail.freescale.net (70.37.183.190) by CH1EHSMHS013.bigfish.com
-	(10.43.70.13) with Microsoft SMTP Server (TLS) id 14.1.225.23;
-	Mon, 25 Jun 2012 15:08:51 +0000
-Received: from 039-SN1MPN1-001.039d.mgd.msft.net ([169.254.1.135]) by
-	039-SN1MMR1-002.039d.mgd.msft.net ([10.84.1.15]) with mapi id
-	14.02.0298.005; Mon, 25 Jun 2012 10:10:28 -0500
-From: McClintock Matthew-B29882 <B29882@freescale.com>
-To: Elvis Dowson <elvis.dowson@gmail.com>
-Thread-Topic: [yocto] Sourcing a shell script within a bbclass
-Thread-Index: AQHNUuSnjylpH/eUkECJxwom/sAqbA==
-Date: Mon, 25 Jun 2012 15:10:27 +0000
-Message-ID: <CAEsOVNe2SUJUGvLWRBCqNkQXUiq2D6-1WtQzO_9Si2AMcUCJoA@mail.gmail.com>
-References: <4CCCB628-7F57-4669-877F-751C2F35E1C7@gmail.com>
-	<E9D68096-46E9-4B11-B097-8A217D28B07F@gmail.com>
-In-Reply-To: <E9D68096-46E9-4B11-B097-8A217D28B07F@gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [70.112.201.132]
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-ee0-f48.google.com (mail-ee0-f48.google.com [74.125.83.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2017CE006D9
+	for <yocto@yoctoproject.org>; Mon, 25 Jun 2012 08:14:05 -0700 (PDT)
+Received: by eekb45 with SMTP id b45so1665797eek.35
+	for <yocto@yoctoproject.org>; Mon, 25 Jun 2012 08:14:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type:content-transfer-encoding;
+	bh=BYOAuyAjNsoJUc4qBE0rI0ZYwsova0hwz9vkQp3YGWc=;
+	b=uE3+Xwhf5mvjIUugKyYORe8dtyNQbG5FJGWBi/bQgWVGhyY/zWymBUnpcbzcyFp8bA
+	KB9xc7gieVhqW1jqiudbvrk5yU/E9aenJK5PzcNpuMxG00EZG8E9pvGVTS0sny8b22/V
+	54bbzAgrofJbfdW5XuTLnBTbl0IElYj7nAfen7NHMdLLjXHjg6aP6oKEFYd7+Tt6UUgN
+	CLI6D6f0CQG7PmfI75NZfv32fCCL+6I1k2zhr06oDZ2o8WCR3TrwWwAeK7FN7lFd0IJs
+	Qk9x4NWKki32i82bbkYOcw9eG3FCb8cSCnUaKdjykIacxVH8TA13AbfdIb659/RRLS5o
+	RfPw==
+Received: by 10.14.97.16 with SMTP id s16mr2264153eef.117.1340637244732; Mon,
+	25 Jun 2012 08:14:04 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: freescale.com
-Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-Subject: Re: Sourcing a shell script within a bbclass
+Received: by 10.14.219.71 with HTTP; Mon, 25 Jun 2012 08:13:34 -0700 (PDT)
+In-Reply-To: <3ED83A9DB3B6D94CA68BF7C03F2981D35B18D9F71C@EXDCVYMBSTM006.EQ1STM.local>
+References: <3ED83A9DB3B6D94CA68BF7C03F2981D35A844F357F@EXDCVYMBSTM006.EQ1STM.local>
+	<4F9E9DD5.5080601@windriver.com>
+	<3ED83A9DB3B6D94CA68BF7C03F2981D35B042416D2@EXDCVYMBSTM006.EQ1STM.local>
+	<4FA27A40.6080506@windriver.com>
+	<3ED83A9DB3B6D94CA68BF7C03F2981D35B042416D3@EXDCVYMBSTM006.EQ1STM.local>
+	<4FA66F02.3080107@windriver.com>
+	<3ED83A9DB3B6D94CA68BF7C03F2981D35B1897B1D2@EXDCVYMBSTM006.EQ1STM.local>
+	<4FBD2998.5060407@intel.com>
+	<3ED83A9DB3B6D94CA68BF7C03F2981D35B1897B1D3@EXDCVYMBSTM006.EQ1STM.local>
+	<4FE317F5.1000400@mlbassoc.com>
+	<3ED83A9DB3B6D94CA68BF7C03F2981D35B18D9EC2E@EXDCVYMBSTM006.EQ1STM.local>
+	<4FE32F95.8000801@mlbassoc.com>
+	<3ED83A9DB3B6D94CA68BF7C03F2981D35B18D9EDE8@EXDCVYMBSTM006.EQ1STM.local>
+	<CAMKF1sosEk23cc=GKxH7KinhPUNwhsdhPKkFHjYybPezZJrmSQ@mail.gmail.com>
+	<3ED83A9DB3B6D94CA68BF7C03F2981D35B1897B1D8@EXDCVYMBSTM006.EQ1STM.local>
+	<4FE862BE.2020307@windriver.com>
+	<3ED83A9DB3B6D94CA68BF7C03F2981D35B18D9F70F@EXDCVYMBSTM006.EQ1STM.local>
+	<4FE870EB.1040907@windriver.com>
+	<3ED83A9DB3B6D94CA68BF7C03F2981D35B18D9F71C@EXDCVYMBSTM006.EQ1STM.local>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Mon, 25 Jun 2012 08:13:34 -0700
+Message-ID: <CAMKF1sq9ZKQ5KZk2Dav41qSPB19LfonK_aJj64k9ZpbB4vAUjA@mail.gmail.com>
+To: Om Prakash PAL <omprakash.pal@stericsson.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Porting of specific Kernel/Driver into yocto.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: McClintock Matthew-B29882 <B29882@freescale.com>
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -54,127 +55,122 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 25 Jun 2012 15:10:33 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-ID: <B1ED07C8797E2A49B44971436B7AC079@mgd.freescale.com>
+X-List-Received-Date: Mon, 25 Jun 2012 15:14:06 -0000
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-On Sun, Jun 24, 2012 at 10:20 AM, Elvis Dowson <elvis.dowson@gmail.com> wro=
-te:
-> Hi,
+On Mon, Jun 25, 2012 at 7:12 AM, Om Prakash PAL
+<omprakash.pal@stericsson.com> wrote:
+> Hi Bruce,
+> You can check the attached log.
 >
-> On Jun 24, 2012, at 6:24 PM, Elvis Dowson wrote:
->
-> How can I source a shell script within a bbclass? For example, in
-> meta-xilinx/classes/xilinx-boot.bbclass, I need to source a script file
-> called settings64.sh, which setups the environment variables for the Xili=
-nx
-> ISE 14.1 design tools, in order to generate a system ace image file.
->
-> For the following code snippet:
->
-> if =A0 [ "${XILINX_VER}" \> "14" ]; then
-> bbnote "XILINX_VER ${XILINX_VER}, script location
-> ${XILINX_LOC}/${EDK_SCRIPT}"
-> source ${XILINX_LOC}/${EDK_SCRIPT} ${XILINX_LOC}
-> fi
+> It does not contain /dev/tty0..its /dev/ttyAMA2.
+> I am not able to get why is it opening /dev/tty0?.
 
-ubuntu likes the . operator
-
-> . ${XILINX_LOC}/${EDK_SCRIPT} ${XILINX_LOC}
-
--M
-
+whats there in /etc/securetty on target rfs ?
 >
-> I get the following error:
+> Best Regards,
+> Om Prakash Pal
 >
-> DEBUG: Executing python function sstate_task_prefunc
-> DEBUG: Python function sstate_task_prefunc finished
-> DEBUG: Executing shell function do_deploy
-> ERROR: Function failed: do_deploy (see
-> /tool/yocto/poky/build/tmp/work/ppc440-poky-linux/u-boot-xilinx-v2012.04.=
-01-r16/temp/log.do_deploy.15616
-> for further information)
-> NOTE: Deploying uboot elf image to /project/xilinx-ml507
-> NOTE: Xilinx design tools installed in /tool/xilinx/14.1/ISE_DS
-> NOTE: Generate system ace image
-> NOTE: EDK_SCRIPT settings64.sh
-> NOTE: XILINX_VER 14.1, script location
-> /tool/xilinx/14.1/ISE_DS/settings64.sh
-> /tool/yocto/poky/build/tmp/work/ppc440-poky-linux/u-boot-xilinx-v2012.04.=
-01-r16/temp/run.do_deploy.15616:
-> 129:
-> /tool/yocto/poky/build/tmp/work/ppc440-poky-linux/u-boot-xilinx-v2012.04.=
-01-r16/temp/run.do_deploy.15616:
-> source: not found
+> -----Original Message-----
+> From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]
+> Sent: Monday, June 25, 2012 7:39 PM
+> To: Om Prakash PAL
+> Cc: Khem Raj; yocto@yoctoproject.org
+> Subject: Re: [yocto] Porting of specific Kernel/Driver into yocto.
 >
-> if I replace the source keyword with a . (dot)
+> On 12-06-25 10:06 AM, Om Prakash PAL wrote:
+>> Hi Bruce,
+>> Yes,its arm board.
+>> Yes, I have verified and kernel bootline is properly passed to the kerne=
+l by bootloader.
 >
-> if =A0 [ "${XILINX_VER}" \> "14" ]; then
-> bbnote "XILINX_VER ${XILINX_VER}, script location
-> ${XILINX_LOC}/${EDK_SCRIPT}"
-> . ${XILINX_LOC}/${EDK_SCRIPT} ${XILINX_LOC}
-> fi
+> And does it (the bootline) contain /dev/tty0 ? .. because if things are
+> properly configured, it really shouldn't be trying to open it.
 >
-> it executes the scripts but gives the following error:
+> Cheers,
 >
-> NOTE: XILINX_VER 14.1, script location
-> /tool/xilinx/14.1/ISE_DS/settings64.sh
-> /tool/yocto/poky/build/tmp/work/ppc440-poky-linux/u-boot-xilinx-v2012.04.=
-01-r16/temp/run.do_deploy.7879:
-> 12: [:
-> /tool/yocto/poky/build/tmp/work/ppc440-poky-linux/u-boot-xilinx-v2012.04.=
-01-r16/temp/run.do_deploy.7879:
-> unexpected operator
-> . /tool/xilinx/14.1/ISE_DS/common/.settings64.sh
-> /tool/xilinx/14.1/ISE_DS/common
-> . /tool/xilinx/14.1/ISE_DS/EDK/.settings64.sh /tool/xilinx/14.1/ISE_DS/ED=
-K
-> . /tool/xilinx/14.1/ISE_DS/common/CodeSourcery/.settings64.sh
-> /tool/xilinx/14.1/ISE_DS/common/CodeSourcery
-> . /tool/xilinx/14.1/ISE_DS/PlanAhead/.settings64.sh
-> /tool/xilinx/14.1/ISE_DS/PlanAhead
-> . /tool/xilinx/14.1/ISE_DS/../../Vivado/2012.1/.settings64.sh
-> /tool/xilinx/14.1/ISE_DS/../../Vivado/2012.1
-> . /tool/xilinx/14.1/ISE_DS/ISE/.settings64.sh /tool/xilinx/14.1/ISE_DS/IS=
-E
-> . /tool/xilinx/14.1/ISE_DS/SysGen/.settings64.sh
-> /tool/xilinx/14.1/ISE_DS/SysGen
+> Bruce
 >
+>>
+>> Best Regards,
+>> Om Prakash Pal
+>>
+>> -----Original Message-----
+>> From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]
+>> Sent: Monday, June 25, 2012 6:38 PM
+>> To: Om Prakash PAL
+>> Cc: Khem Raj; yocto@yoctoproject.org
+>> Subject: Re: [yocto] Porting of specific Kernel/Driver into yocto.
+>>
+>> On 12-06-25 08:53 AM, Om Prakash PAL wrote:
+>>> Hi Khem,
+>>> I have build core-image-core. but still this Error:
+>>> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D>
+>>> =C2=A0 =C2=A0 =C2=A011.165466] EXT3-fs (mmcblk0p1): mounted filesystem =
+with writeback data mode
+>>> [ =C2=A0 11.172668] VFS: Mounted root (ext3 filesystem) on device 179:1=
+.
+>>> [ =C2=A0 11.179260] Freeing init memory: 316K
+>>> INIT: version 2.88 booting
+>>> Error Cannot open /dev/tty0: No such device or address
+>>> mknod: /dev/console: File exists
+>>>
+>>> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D>
+>>>
+>>> I have set SERIAL_CONSOLE=3D"115200 ttyAMA2" =C2=A0then why its taking =
+/dev/tty0 ?.
+>>
+>> I've lost some of the context on the board you are working with, but
+>> from ttyAMA2, I'm assuming it is an arm board. Have you verified that yo=
+ur
+>> bootloader can pass the kernel bootline properly to the kernel ? It is
+>> (unfortunately) fairly common that it isn't properly passed. If you
+>> modify your configuration to have a built in command line with your
+>> configuration, you may be able to get better setup to debug the
+>> problem.
+>>
+>> Cheers,
+>>
+>> Bruce
+>>
+>>> please help.
+>>>
+>>> Best Regards,
+>>> Om Prakash Pal
+>>> _______________________________________
+>>> From: Khem Raj [raj.khem@gmail.com]
+>>> Sent: Friday, June 22, 2012 11:18 AM
+>>> To: Om Prakash PAL
+>>> Cc: Gary Thomas; yocto@yoctoproject.org
+>>> Subject: Re: [yocto] Porting of specific Kernel/Driver into yocto.
+>>>
+>>> On Thu, Jun 21, 2012 at 10:37 PM, Om Prakash PAL
+>>> <omprakash.pal@stericsson.com> =C2=A0 wrote:
+>>>>
+>>>>>> and then console got =C2=A0stuck.
+>>>>>
+>>>>>> What do you have SERIAL_CONSOLE set to in your configuration?
+>>>>>
+>>>>> I have set SERIAL_CONSOLE=3D"115200 ttyAMA2". As we are using ttyAMA2=
+ for console.
+>>>>
+>>>>> What is your target device? =C2=A0Do you really have /dev/ttyAMA2 ser=
+ial port??.
+>>>>
+>>>> Yes, I have /dev/ttyAMA2 serial port.
+>>>
+>>> Can you try using say poky/master and generate root file system and
+>>> try that out ?
+>>> another option is to try core-image-core
+>>> _______________________________________________
+>>> yocto mailing list
+>>> yocto@yoctoproject.org
+>>> https://lists.yoctoproject.org/listinfo/yocto
+>>
 >
-> What should I do to source the settings64.sh file properly within the
-> bbclass?
->
->
-> The problem was because of Ubuntu 12.04 shell being configured by default=
- to
-> use dash, instead of bash.
->
-> After I reconfigured the shell to use bash using the command:
->
-> $ sudo dpkg-reconfigure dash
->
-> everything works fine. However, Yocto 1.2 defaults or assumes that the us=
-er
-> will use dash.
->
-> Is there anyway I can fix this issue, so that the bbclass works for both
-> dash and bash. Using the . (dot) to source the script doesn't seem to wor=
-k,
-> so I was wondering if there are any other workarounds that I can use to
-> emulate bash's sourcing behaviour in dash.
->
-> Best regards,
->
-> Elvis Dowson
->
->
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->=
-
 
