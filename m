@@ -1,49 +1,37 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-ee0-f48.google.com (mail-ee0-f48.google.com [74.125.83.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2017CE006D9
-	for <yocto@yoctoproject.org>; Mon, 25 Jun 2012 08:14:05 -0700 (PDT)
-Received: by eekb45 with SMTP id b45so1665797eek.35
-	for <yocto@yoctoproject.org>; Mon, 25 Jun 2012 08:14:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type:content-transfer-encoding;
-	bh=BYOAuyAjNsoJUc4qBE0rI0ZYwsova0hwz9vkQp3YGWc=;
-	b=uE3+Xwhf5mvjIUugKyYORe8dtyNQbG5FJGWBi/bQgWVGhyY/zWymBUnpcbzcyFp8bA
-	KB9xc7gieVhqW1jqiudbvrk5yU/E9aenJK5PzcNpuMxG00EZG8E9pvGVTS0sny8b22/V
-	54bbzAgrofJbfdW5XuTLnBTbl0IElYj7nAfen7NHMdLLjXHjg6aP6oKEFYd7+Tt6UUgN
-	CLI6D6f0CQG7PmfI75NZfv32fCCL+6I1k2zhr06oDZ2o8WCR3TrwWwAeK7FN7lFd0IJs
-	Qk9x4NWKki32i82bbkYOcw9eG3FCb8cSCnUaKdjykIacxVH8TA13AbfdIb659/RRLS5o
-	RfPw==
-Received: by 10.14.97.16 with SMTP id s16mr2264153eef.117.1340637244732; Mon,
-	25 Jun 2012 08:14:04 -0700 (PDT)
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from azsmga102.ch.intel.com (mga12.intel.com [143.182.124.36])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A04CBE006D9
+	for <yocto@yoctoproject.org>; Mon, 25 Jun 2012 08:17:23 -0700 (PDT)
+Received: from mail-ee0-f52.google.com ([74.125.83.52])
+	by mga14.intel.com with ESMTP/TLS/RC4-SHA; 25 Jun 2012 08:17:22 -0700
+Received: by eeke53 with SMTP id e53so1116294eek.25
+	for <yocto@yoctoproject.org>; Mon, 25 Jun 2012 08:17:21 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type:x-gm-message-state;
+	bh=o3JDcSRW4/8Tv47fvVngVkrQltQdmlE09CgnYbeOFvY=;
+	b=g6CclE7e4Ev+mCYkkRvPuLPMpEgao+LS6dlDyIrjDjmcDneq/129WeX/cL5MbFPmwH
+	1BFTkslzYv2v/336eFS2HFjSnP+5c07IScuiOpR9JXh0ZN4GhjQ4X+c5VuB9YIFniRN7
+	QAvxNrFkSdNKg5ZhcNbClnMM3JJ2tz8zh5zH2UxDtdhkwwjwtL2rgxJD6j7v37Vj7quB
+	69UO5FRZDYLUEHWGe6f0lASo0XiOuIkH4rPOqocHBhGeYEyj/WZW/WmlJrSVbzqUfkbk
+	mlgVHcuW4H2YJadkCkzxK0hZXHML2SE1oKwrXkshHsfFNYkQ7YWHKvIancPl5MzqC0qG
+	wVyg==
 MIME-Version: 1.0
-Received: by 10.14.219.71 with HTTP; Mon, 25 Jun 2012 08:13:34 -0700 (PDT)
-In-Reply-To: <3ED83A9DB3B6D94CA68BF7C03F2981D35B18D9F71C@EXDCVYMBSTM006.EQ1STM.local>
-References: <3ED83A9DB3B6D94CA68BF7C03F2981D35A844F357F@EXDCVYMBSTM006.EQ1STM.local>
-	<4F9E9DD5.5080601@windriver.com>
-	<3ED83A9DB3B6D94CA68BF7C03F2981D35B042416D2@EXDCVYMBSTM006.EQ1STM.local>
-	<4FA27A40.6080506@windriver.com>
-	<3ED83A9DB3B6D94CA68BF7C03F2981D35B042416D3@EXDCVYMBSTM006.EQ1STM.local>
-	<4FA66F02.3080107@windriver.com>
-	<3ED83A9DB3B6D94CA68BF7C03F2981D35B1897B1D2@EXDCVYMBSTM006.EQ1STM.local>
-	<4FBD2998.5060407@intel.com>
-	<3ED83A9DB3B6D94CA68BF7C03F2981D35B1897B1D3@EXDCVYMBSTM006.EQ1STM.local>
-	<4FE317F5.1000400@mlbassoc.com>
-	<3ED83A9DB3B6D94CA68BF7C03F2981D35B18D9EC2E@EXDCVYMBSTM006.EQ1STM.local>
-	<4FE32F95.8000801@mlbassoc.com>
-	<3ED83A9DB3B6D94CA68BF7C03F2981D35B18D9EDE8@EXDCVYMBSTM006.EQ1STM.local>
-	<CAMKF1sosEk23cc=GKxH7KinhPUNwhsdhPKkFHjYybPezZJrmSQ@mail.gmail.com>
-	<3ED83A9DB3B6D94CA68BF7C03F2981D35B1897B1D8@EXDCVYMBSTM006.EQ1STM.local>
-	<4FE862BE.2020307@windriver.com>
-	<3ED83A9DB3B6D94CA68BF7C03F2981D35B18D9F70F@EXDCVYMBSTM006.EQ1STM.local>
-	<4FE870EB.1040907@windriver.com>
-	<3ED83A9DB3B6D94CA68BF7C03F2981D35B18D9F71C@EXDCVYMBSTM006.EQ1STM.local>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Mon, 25 Jun 2012 08:13:34 -0700
-Message-ID: <CAMKF1sq9ZKQ5KZk2Dav41qSPB19LfonK_aJj64k9ZpbB4vAUjA@mail.gmail.com>
-To: Om Prakash PAL <omprakash.pal@stericsson.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Porting of specific Kernel/Driver into yocto.
+Received: by 10.152.135.200 with SMTP id pu8mr12464365lab.8.1340637440779;
+	Mon, 25 Jun 2012 08:17:20 -0700 (PDT)
+Received: by 10.112.1.227 with HTTP; Mon, 25 Jun 2012 08:17:20 -0700 (PDT)
+In-Reply-To: <36ED13F3654AE54CA763E6821D93A5711045A318@szxeml534-mbx.china.huawei.com>
+References: <OFDE9D2D78.BF935E29-ON65257A25.00448DED-65257A25.0046DCF2@notesmail.huawei.com.cn>
+	<36ED13F3654AE54CA763E6821D93A5711045A318@szxeml534-mbx.china.huawei.com>
+Date: Mon, 25 Jun 2012 08:17:20 -0700
+Message-ID: <CAPhnLPBHnanMmyfYRRYpa+yvVy-rfXYo_Q6TMpvDnkuqGNNPmQ@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: Venkata ramana gollamudi <ramana.gollamudi@huawei.com>
+X-Gm-Message-State: ALoCoQmg7dPA4Q0+vFW68j8phnKvQgZv/hBk8WyWlulhOgMpsWw4XCVn+WRYyLdgO9DWWjC8MgPv
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	Sanil kumar <sanil.kumar@huawei.com>
+Subject: Re: Problem in downloading linux-yocto source behind proxy
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,122 +43,143 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 25 Jun 2012 15:14:06 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Mon, 25 Jun 2012 15:17:23 -0000
+Content-Type: multipart/alternative; boundary=f46d043745476e256804c34d7a2b
+
+--f46d043745476e256804c34d7a2b
+Content-Type: text/plain; charset=ISO-8859-1
+
+On Fri, Jun 22, 2012 at 6:03 AM, Venkata ramana gollamudi <
+ramana.gollamudi@huawei.com> wrote:
+
+>  Hi,
+>
+>         We tried to build yocto release downloaded from autobuilder
+>
+> http://autobuilder.yoctoproject.org/pub/nightly/20120621-3/yocto.tar.bz2
+>
+>         We work behind a http proxy and firewall setup from office network.
+>
+>         Previously we used to build by setting PREMIRRORS to
+>                 git://.*/.*
+> http://downloads.yoctoproject.org/mirror/sources/ \n \
+>         as all the source is available in the above mentioned mirror path
+> for every RC release.
+>
+>         1) But now we couldnot find linux-yocto source at (for 1.3M1RC1 or
+> RC2 release)
+>                 i.e
+> http://downloads.yoctoproject.org/mirror/sources/git2_git.yoctoproject.org.linux-yocto-3.4.git.tar.gz
+>
+> This should be correct now. Please let me know if you have any further
+issues.
+
+
+
+>         2) I remember that there was a discussion to enable readonly way
+> of accessing git through http.
+>                 Is it currently available?
+>
+>         Please suggest some alternative mechanism.
+>
+> Regards,
+> Ramana
+>
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
+
+
+-- 
+Elizabeth Flanagan
+Yocto Project
+Build and Release
+
+--f46d043745476e256804c34d7a2b
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jun 25, 2012 at 7:12 AM, Om Prakash PAL
-<omprakash.pal@stericsson.com> wrote:
-> Hi Bruce,
-> You can check the attached log.
->
-> It does not contain /dev/tty0..its /dev/ttyAMA2.
-> I am not able to get why is it opening /dev/tty0?.
+<br><br><div class=3D"gmail_quote">On Fri, Jun 22, 2012 at 6:03 AM, Venkata=
+ ramana gollamudi <span dir=3D"ltr">&lt;<a href=3D"mailto:ramana.gollamudi@=
+huawei.com" target=3D"_blank">ramana.gollamudi@huawei.com</a>&gt;</span> wr=
+ote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
 
-whats there in /etc/securetty on target rfs ?
->
-> Best Regards,
-> Om Prakash Pal
->
-> -----Original Message-----
-> From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]
-> Sent: Monday, June 25, 2012 7:39 PM
-> To: Om Prakash PAL
-> Cc: Khem Raj; yocto@yoctoproject.org
-> Subject: Re: [yocto] Porting of specific Kernel/Driver into yocto.
->
-> On 12-06-25 10:06 AM, Om Prakash PAL wrote:
->> Hi Bruce,
->> Yes,its arm board.
->> Yes, I have verified and kernel bootline is properly passed to the kerne=
-l by bootloader.
->
-> And does it (the bootline) contain /dev/tty0 ? .. because if things are
-> properly configured, it really shouldn't be trying to open it.
->
-> Cheers,
->
-> Bruce
->
->>
->> Best Regards,
->> Om Prakash Pal
->>
->> -----Original Message-----
->> From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]
->> Sent: Monday, June 25, 2012 6:38 PM
->> To: Om Prakash PAL
->> Cc: Khem Raj; yocto@yoctoproject.org
->> Subject: Re: [yocto] Porting of specific Kernel/Driver into yocto.
->>
->> On 12-06-25 08:53 AM, Om Prakash PAL wrote:
->>> Hi Khem,
->>> I have build core-image-core. but still this Error:
->>> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D>
->>> =C2=A0 =C2=A0 =C2=A011.165466] EXT3-fs (mmcblk0p1): mounted filesystem =
-with writeback data mode
->>> [ =C2=A0 11.172668] VFS: Mounted root (ext3 filesystem) on device 179:1=
-.
->>> [ =C2=A0 11.179260] Freeing init memory: 316K
->>> INIT: version 2.88 booting
->>> Error Cannot open /dev/tty0: No such device or address
->>> mknod: /dev/console: File exists
->>>
->>> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D>
->>>
->>> I have set SERIAL_CONSOLE=3D"115200 ttyAMA2" =C2=A0then why its taking =
-/dev/tty0 ?.
->>
->> I've lost some of the context on the board you are working with, but
->> from ttyAMA2, I'm assuming it is an arm board. Have you verified that yo=
-ur
->> bootloader can pass the kernel bootline properly to the kernel ? It is
->> (unfortunately) fairly common that it isn't properly passed. If you
->> modify your configuration to have a built in command line with your
->> configuration, you may be able to get better setup to debug the
->> problem.
->>
->> Cheers,
->>
->> Bruce
->>
->>> please help.
->>>
->>> Best Regards,
->>> Om Prakash Pal
->>> _______________________________________
->>> From: Khem Raj [raj.khem@gmail.com]
->>> Sent: Friday, June 22, 2012 11:18 AM
->>> To: Om Prakash PAL
->>> Cc: Gary Thomas; yocto@yoctoproject.org
->>> Subject: Re: [yocto] Porting of specific Kernel/Driver into yocto.
->>>
->>> On Thu, Jun 21, 2012 at 10:37 PM, Om Prakash PAL
->>> <omprakash.pal@stericsson.com> =C2=A0 wrote:
->>>>
->>>>>> and then console got =C2=A0stuck.
->>>>>
->>>>>> What do you have SERIAL_CONSOLE set to in your configuration?
->>>>>
->>>>> I have set SERIAL_CONSOLE=3D"115200 ttyAMA2". As we are using ttyAMA2=
- for console.
->>>>
->>>>> What is your target device? =C2=A0Do you really have /dev/ttyAMA2 ser=
-ial port??.
->>>>
->>>> Yes, I have /dev/ttyAMA2 serial port.
->>>
->>> Can you try using say poky/master and generate root file system and
->>> try that out ?
->>> another option is to try core-image-core
->>> _______________________________________________
->>> yocto mailing list
->>> yocto@yoctoproject.org
->>> https://lists.yoctoproject.org/listinfo/yocto
->>
->
 
+
+
+<div>
+<div style=3D"direction:ltr;font-size:10pt;font-family:Tahoma">
+<p><font face=3D"sans-serif">Hi,</font> <br>
+<br>
+<font face=3D"sans-serif">=A0 =A0 =A0 =A0 We tried to build yocto release d=
+ownloaded from autobuilder
+</font><br>
+<font face=3D"sans-serif">=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 <a href=3D"http:/=
+/autobuilder.yoctoproject.org/pub/nightly/20120621-3/yocto.tar.bz2" target=
+=3D"_blank">http://autobuilder.yoctoproject.org/pub/nightly/20120621-3/yoct=
+o.tar.bz2</a></font>
+<br>
+<br>
+<font face=3D"sans-serif">=A0 =A0 =A0 =A0 We work behind a http proxy and f=
+irewall setup from office network.</font>
+<br>
+<br>
+<font face=3D"sans-serif">=A0 =A0 =A0 =A0 Previously we used to build by se=
+tting PREMIRRORS to
+</font><br>
+<font face=3D"sans-serif">=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 git://.*/.* =A0 <=
+a href=3D"http://downloads.yoctoproject.org/mirror/sources/" target=3D"_bla=
+nk">http://downloads.yoctoproject.org/mirror/sources/</a> \n \</font>
+<br>
+<font face=3D"sans-serif">=A0 =A0 =A0 =A0 as all the source is available in=
+ the above mentioned mirror path for every RC release.</font>
+<br>
+<br>
+<font face=3D"sans-serif">=A0 =A0 =A0 =A0 1) But now we couldnot find linux=
+-yocto source at (for 1.3M1RC1 or RC2 release)</font>
+<br>
+<font face=3D"sans-serif">=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 i.e <a href=3D"ht=
+tp://downloads.yoctoproject.org/mirror/sources/git2_git.yoctoproject.org.li=
+nux-yocto-3.4.git.tar.gz" target=3D"_blank">http://downloads.yoctoproject.o=
+rg/mirror/sources/git2_git.yoctoproject.org.linux-yocto-3.4.git.tar.gz</a> =
+=A0 =A0 =A0 =A0</font>
+<br>
+<br></p></div></div></blockquote><div>This should be correct now. Please le=
+t me know if you have any further issues.<br><br>=A0</div><blockquote class=
+=3D"gmail_quote" style=3D"margin:0pt 0pt 0pt 0.8ex;border-left:1px solid rg=
+b(204,204,204);padding-left:1ex">
+<div><div style=3D"direction:ltr;font-size:10pt;font-family:Tahoma"><p>
+<font face=3D"sans-serif">=A0 =A0 =A0 =A0 2) I remember that there was a di=
+scussion to enable readonly way of accessing git through http. =A0 =A0 =A0 =
+=A0</font>
+<br>
+<font face=3D"sans-serif">=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 Is it currently a=
+vailable? =A0 =A0 =A0 =A0</font>
+<br>
+<br>
+<font face=3D"sans-serif">=A0 =A0 =A0 =A0 Please suggest some alternative m=
+echanism. =A0 =A0 =A0 =A0</font>
+<br>
+<br>
+<font face=3D"sans-serif">Regards,</font> <br>
+<font face=3D"sans-serif">Ramana</font> <br>
+<br>
+</p>
+</div>
+</div>
+
+<br>_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
+>https://lists.yoctoproject.org/listinfo/yocto</a><br>
+<br></blockquote></div><br><br clear=3D"all"><br>-- <br>Elizabeth Flanagan<=
+br>Yocto Project<br>Build and Release<br>
+
+--f46d043745476e256804c34d7a2b--
