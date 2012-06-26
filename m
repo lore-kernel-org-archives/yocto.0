@@ -1,32 +1,26 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-ey0-f176.google.com (mail-ey0-f176.google.com
-	[209.85.215.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4F091E0070C
-	for <yocto@yoctoproject.org>; Tue, 26 Jun 2012 08:47:07 -0700 (PDT)
-Received: by eaab16 with SMTP id b16so42174eaa.35
-	for <yocto@yoctoproject.org>; Tue, 26 Jun 2012 08:47:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type:content-transfer-encoding;
-	bh=Z7poWpgbqPazs1gbUnmvhEw9n/B5sk7TDEoPkF45x7U=;
-	b=BYiOk9lAW1MY3KHZdVlVG8F/TC7XKsb/eWqicLJjmPeX8BHz3nhBnJyRITj4GLTXhr
-	IYX0ri4OeSmP6HkblkcfBilmHS2Cw3AFnO/5ZnyDFJWCukRCJ2Ke5dkOoeHoN472o+Wm
-	ce3LPO1+qSWrnHKjsAxJ8a9eEuXz54UYVVA7X8uwfksCFPYh0XjIxfu7muKXcOqVv17k
-	F3dbMCFFqZZf6j0Bxg3oVD4mnGc6Vi7cT0wz93a4gXf7K3TwP23AGMdBHgDdsqPLX0R/
-	0L4bD1sVk4PpHhz6OpdQDJ0hdmOnqiihDJFcw86Rqp2G36LXjmmbBggixd9C55dTNdNE
-	FXig==
-Received: by 10.14.97.16 with SMTP id s16mr3053165eef.117.1340725626058; Tue,
-	26 Jun 2012 08:47:06 -0700 (PDT)
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6F671E0070C
+	for <yocto@yoctoproject.org>; Tue, 26 Jun 2012 08:48:10 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 26 Jun 2012 08:48:10 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="158407619"
+Received: from unknown (HELO envy.home) ([10.255.12.246])
+	by orsmga001.jf.intel.com with ESMTP; 26 Jun 2012 08:48:09 -0700
+Message-ID: <4FE9D965.4070906@linux.intel.com>
+Date: Tue, 26 Jun 2012 08:46:45 -0700
+From: Darren Hart <dvhart@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:13.0) Gecko/20120615 Thunderbird/13.0.1
 MIME-Version: 1.0
-Received: by 10.14.219.71 with HTTP; Tue, 26 Jun 2012 08:46:35 -0700 (PDT)
-In-Reply-To: <alpine.DEB.2.02.1206260410060.21539@oneiric>
-References: <alpine.DEB.2.02.1206260410060.21539@oneiric>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Tue, 26 Jun 2012 08:46:35 -0700
-Message-ID: <CAMKF1soE6k2nn1TyTU_z_CZFiU2C-BFb3DQo6NacyHRwELpFtA@mail.gmail.com>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: how many meta-toolchain-* targets are there?
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+References: <alpine.DEB.2.02.1206260459040.8547@oneiric>
+	<10398861.esnekvBoZU@helios>
+In-Reply-To: <10398861.esnekvBoZU@helios>
+X-Enigmail-Version: 1.4.2
+Cc: yocto@yoctoproject.org
+Subject: Re: <rant>the current yocto FAQ is pretty much valueless</rant>
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,58 +32,56 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 26 Jun 2012 15:47:07 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-On Tue, Jun 26, 2012 at 1:15 AM, Robert P. J. Day <rpjday@crashcourse.ca> w=
-rote:
->
-> =C2=A0something that could be cleared up a bit in the docs ... how many
-> toolchain-related targets are there?
->
-> =C2=A0for instance, running bitbake suggests that common targets include
-> meta-toolchain and meta-toolchain-sdk. =C2=A0on the other hand, the ADT
-> manual makes no reference to meta-toolchain-sdk but *does* mention
-> meta-toolchain-gmae (without explaining to the reader what that
-> represents but nonetheless recommends to the reader that if he needs
-> GMAE, he should build that, whereupon the poor reader is left
-> wondering what the heck GMAE is and whether it's important).
->
-> =C2=A0and a search of the source shows a meta-toolchain-qte, for which i
-> can see no mention whatever in *any* of the docs.
->
-> =C2=A0thoughts?
+X-List-Received-Date: Tue, 26 Jun 2012 15:48:10 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
 
-they should be documented I agree. meta-toolchain-gmae and
-meta-toolchain-sdk are synonymous.
+
+On 06/26/2012 03:09 AM, Paul Eggleton wrote:
+> On Tuesday 26 June 2012 05:09:34 Robert P. J. Day wrote:
+>>   in other words, a *good* FAQ might be:
+>>
+>> "how can i use the yocto prebuilt toolchains to save build time?"
+>>
+>>   a *bad* FAQ would be:
+>>
+>> "Does the Yocto Project have a special governance model, or is it
+>> managed as an open source project?"
+>>
+>>   the kicker is that that last question is, in fact, in the yocto FAQ,
+>> along with a number of other questions that have never been asked by
+>> anyone in the history of the planet.  i chat about yocto with people
+>> on a regular basis, and i can assure you, not a single one of them has
+>> ever asked, "hey, rob, can you explain yocto's governance model?"
+>>
+>>   no, what they ask is, "hey, rob, how can i add a single package to
+>> an existing target?"  a question that, i should point out, is not
+>> answered definitively in the existing docs *anywhere*.
+> 
+> You bring up a valid point, but I think it might be worth mentioning that the 
+> current FAQ evolved from a much less technically-oriented version that was 
+> produced when the project launched. At that time some people *were* asking the 
+> kind of questions that you're deriding. I think there's still a section of the 
+> *non-technical* audience who are interested in answers to those questions.
+> 
+> I suggested to Scott R previously that it might be worth having a project FAQ 
+> (i.e., what is this project about, what is it intended to be used for etc.) 
+> and a separate technical FAQ which answers the kind of questions you are 
+> expecting and that we see often on the mailing list. I think one of the 
+> reasons that hasn't been done is that we're hoping to introduce a Q&A function 
+> on the website similar to StackOverflow, where everyone can participate but the 
+> most appropriate answers bubble up to the top. As yet this has not been 
+> implemented and I'm not sure when it will be, so it may still be worth looking 
+> into a static technical FAQ on the wiki until it is.
+
+Is "technical FAQ" == "How-Do-I pages" ?
 
 
->
-> rday
->
-> --
->
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> Robert P. J. Day =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 Ottawa, Ontario, CA=
-NADA
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0http://crashcourse.ca
->
-> Twitter: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 http:=
-//twitter.com/rpjday
-> LinkedIn: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 http://ca.linkedin.com/in/rpjday
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+-- 
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
+
+
 
