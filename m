@@ -1,31 +1,28 @@
-Return-Path: <jiajun.xu@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 90FEAE00746
-	for <yocto@yoctoproject.org>; Mon, 25 Jun 2012 21:32:37 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 25 Jun 2012 21:32:37 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="162658837"
-Received: from fmsmsx105.amr.corp.intel.com ([10.19.9.36])
-	by orsmga002.jf.intel.com with ESMTP; 25 Jun 2012 21:32:37 -0700
-Received: from shsmsx151.ccr.corp.intel.com (10.239.6.50) by
-	FMSMSX105.amr.corp.intel.com (10.19.9.36) with Microsoft SMTP Server
-	(TLS) id 14.1.355.2; Mon, 25 Jun 2012 21:32:36 -0700
-Received: from shsmsx101.ccr.corp.intel.com ([169.254.1.87]) by
-	SHSMSX151.ccr.corp.intel.com ([169.254.3.126]) with mapi id
-	14.01.0355.002; Tue, 26 Jun 2012 12:32:34 +0800
-From: "Xu, Jiajun" <jiajun.xu@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Yocto weekly bug trend charts -- WW25
-Thread-Index: Ac1TVLTsHm61chDyT+CrO1U9pTuIKA==
-Date: Tue, 26 Jun 2012 04:32:34 +0000
-Message-ID: <90741FE9B50D654690EB940EDB456C8E1626B0@SHSMSX101.ccr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.239.127.40]
+Return-Path: <graycells@gmail.com>
+Received: from mail-lb0-f176.google.com (mail-lb0-f176.google.com
+	[209.85.217.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 42D5AE00746
+	for <yocto@yoctoproject.org>; Mon, 25 Jun 2012 21:48:10 -0700 (PDT)
+Received: by lboj14 with SMTP id j14so8671104lbo.35
+	for <yocto@yoctoproject.org>; Mon, 25 Jun 2012 21:48:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=hf12qmjgRo0jtUV2Q6EoQs0ZzqDJVU3go/hKX5DQ5SA=;
+	b=Xe5wE2BPlBFsUQKpMTw1OACOPEs2YnGnA/MeNi456W8vxlYgMU8AKU3+FNMt+D9CNk
+	bkqnC9yATGc1sbYLejw09fJjvxNGOX9F7Uu6vvCvGfv3bF7KvMl243FMH2j3CYXPyahx
+	n+8bRpElVuPoAIDzom14tJrc+FCe1v4BYPjniD5H8bU+5FEDXhuXTWDY2sPCrz5/L940
+	Ek+O7ELh0eBpYDLPxxvGdOfqi2z13C5CoBkLT//k7PyuTSM7NOaNEq0Kf/ZYt4Vc5id9
+	+rQMlAEP8L9OKTKQcOfQBAZ99CcmhE+MgfkRR5FtqXjf+Rn7gja+CLqynxIevAoWif3J
+	bfEA==
 MIME-Version: 1.0
-Subject: Yocto weekly bug trend charts -- WW25
+Received: by 10.152.148.1 with SMTP id to1mr14544011lab.34.1340686088718; Mon,
+	25 Jun 2012 21:48:08 -0700 (PDT)
+Received: by 10.112.6.35 with HTTP; Mon, 25 Jun 2012 21:48:08 -0700 (PDT)
+Date: Tue, 26 Jun 2012 13:48:08 +0900
+Message-ID: <CAKPsnf3YG1uRHgD9uE0NMP39hQJ4CsXZZAHffPdzBcTXWHMBdQ@mail.gmail.com>
+From: Bongseo Jang <graycells@gmail.com>
+To: yocto@yoctoproject.org
+Subject: possible to replace octeon mips64 SDK with yocto mips64 SDK?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,18 +34,75 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 26 Jun 2012 04:32:37 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Tue, 26 Jun 2012 04:48:10 -0000
+Content-Type: multipart/alternative; boundary=e89a8f22c34f12c8b704c358cee7
+
+--e89a8f22c34f12c8b704c358cee7
+Content-Type: text/plain; charset=UTF-8
+
+Hi, All.
+
+I've built several yocto meta-toolchain's so far and now working on
+replacing Cavium's official octeon mips64 SDK with yocto/oe mips64 SDK.
+I really want to replace the Cavium-provided one because that is old and
+drags product's development.
+
+It seems possible because I think
+  1) mips64 ISA is well-defined(and assuming Cavium never added extension)
+  2) mips64-linux ABI is well-defined(and assuming Cavium never tweaked it)
+  3) kernel will deal with everything about hardware, and we have the
+kernel which Cavium provided to us
+
+I started with copying qemumips.conf to qemumips64.conf, changed it like
+below
+and... 'bitbake meta-toolchain' has just finished.
+
+ require conf/machine/include/qemu.inc
+-require conf/machine/include/tune-mips32.inc
++require conf/machine/include/tune-mips64.inc
+
+Do you think I've got a right SDK which replace the official SDK? And how
+can I assure it?
+(I have no idea about what the company like Cavium or other embedded
+product companys do to their SDK)
+I fear that my assumptions are questinable and misleading.
+
+Thaks
+
+-- 
+Regards,
+Jang.
+
+ a sound mind in a sound body
+
+--e89a8f22c34f12c8b704c358cee7
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Hi all,
-	This is the weekly bug trend for WW25. WDD number and Open Bug number keep=
- flat with WW24, as 1101 and 225. Bug status of WW25 could be found on http=
-s://wiki.yoctoproject.org/wiki/Yocto_Bug_Trend.
+<div>Hi, All.</div><div>=C2=A0</div><div>I&#39;ve=C2=A0built several yocto =
+meta-toolchain&#39;s so far and now working on replacing Cavium&#39;s offic=
+ial octeon mips64=C2=A0SDK with yocto/oe mips64 SDK.</div><div><div>I reall=
+y want to replace=C2=A0the Cavium-provided one because that is old and drag=
+s product&#39;s development.</div>
+<div>=C2=A0</div></div><div>It seems possible because I think </div><div>=
+=C2=A0 1) mips64 ISA is well-defined(and assuming=C2=A0Cavium never added e=
+xtension)</div><div>=C2=A0 2) mips64-linux ABI is well-defined(and assuming=
+ Cavium never tweaked it)</div>
+<div>=C2=A0 3) kernel will deal with everything about hardware, and we have=
+ the kernel which Cavium provided to us</div><div>=C2=A0</div><div>I starte=
+d with copying qemumips.conf to qemumips64.conf, changed it like below </di=
+v><div>
+and... &#39;bitbake meta-toolchain&#39; has just=C2=A0finished.</div><div>=
+=C2=A0</div><div>=C2=A0require conf/machine/include/qemu.inc</div><div>-req=
+uire conf/machine/include/tune-mips32.inc<br>+require conf/machine/include/=
+tune-mips64.inc</div>
+<div>=C2=A0</div><div>Do=C2=A0you think I&#39;ve got a=C2=A0right=C2=A0SDK =
+which replace the official SDK?=C2=A0And how can I=C2=A0assure it?</div><di=
+v>(I have no idea about what the company like Cavium or=C2=A0other embedded=
+ product companys do to their SDK)</div>
+<div>I fear that my assumptions=C2=A0are questinable and misleading.</div><=
+div>=C2=A0</div><div>Thaks</div><div><br>-- <br>Regards, <br>Jang.<br><br>=
+=C2=A0a sound mind in a sound body<br>
+</div>
 
-Best Regards,
-Jiajun
-
-
-
+--e89a8f22c34f12c8b704c358cee7--
