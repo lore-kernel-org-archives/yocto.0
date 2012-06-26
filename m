@@ -1,28 +1,28 @@
 Return-Path: <jfabernathy@gmail.com>
-Received: from mail-vc0-f176.google.com (mail-vc0-f176.google.com
-	[209.85.220.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 67CDFE006D9
-	for <yocto@yoctoproject.org>; Tue, 26 Jun 2012 12:22:53 -0700 (PDT)
-Received: by vcbfo14 with SMTP id fo14so247811vcb.35
-	for <yocto@yoctoproject.org>; Tue, 26 Jun 2012 12:22:52 -0700 (PDT)
+Received: from mail-vb0-f48.google.com (mail-vb0-f48.google.com
+	[209.85.212.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5B52AE006D9
+	for <yocto@yoctoproject.org>; Tue, 26 Jun 2012 12:49:59 -0700 (PDT)
+Received: by vbjk17 with SMTP id k17so264296vbj.35
+	for <yocto@yoctoproject.org>; Tue, 26 Jun 2012 12:49:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=message-id:date:from:user-agent:mime-version:to:subject:references
 	:in-reply-to:content-type:content-transfer-encoding;
-	bh=5k20kJ2eF+OXoIsHRf0oNdVX6SEN/cAHub1VmUoKrq4=;
-	b=omO+ZxvDrpLx7snfVFBHWm0B/IvbdvefGVwM0mhdDEUGscYwPUE01dWqAgzhkvOPte
-	leJzIko5eShamBKRiTpJfa741gl9PtyND3rYm6qpMKyr/ptFLCS3MXnROyrPIHL0dG/4
-	ZKrWqA+RXnCsGUCbQzJtHSR0wQ+jvhfdRxf/oYN3ADbVXu5SlEAa5vpXwwN/tKsYaJFq
-	42mV47qq72oI3WuqLTnlcfoTu0eaPN7MTkEZVwg1LHR97NzOWvjfGuKXVT82BDrdhjyW
-	osj7muSAOac0bVrlq6a+ddpSSiNK0qdEKZ9ouX9ufCWcNDFv+w+xf5NCdSfpmP+Ut3jL
-	d3PA==
-Received: by 10.52.24.179 with SMTP id v19mr10146986vdf.127.1340738572656;
-	Tue, 26 Jun 2012 12:22:52 -0700 (PDT)
+	bh=gHdygIlvjEFzNtektnyYG6i/lwwzvT5hm4oyvASoyEw=;
+	b=bzGYLHhHcQoyfhhl/7h9eU9xt4GlXw4nw5guN18HXY0h/hsL09YlLEAbx/U7w/fqBk
+	yyWK1XcEWiyNbxPulDNC6xQJpIARXEDFcbpNRd3xXC2sC/G7tAyYOOo4UXzo7dcc1+8j
+	5ic6gp6m9VYI9/qhnyhZffAD6ab/PaMjudnPy3fOt9vcS8OP38m1BI6glkVxF5yicbp6
+	66sr1b4up4m1g/1wMJ0Lqtx+GDYtRAYIQSSAnLg2b846DjxAwoRWpEVSacQ/7dCnkbaY
+	tA1CA+D0zdScQkIO80197xtS0Gw8d1lbNu6gjCCmt3+5xIOBprPnjxqNtycapTN6aPPZ
+	S/kw==
+Received: by 10.52.174.37 with SMTP id bp5mr9902206vdc.114.1340740198705;
+	Tue, 26 Jun 2012 12:49:58 -0700 (PDT)
 Received: from [10.0.1.54] (nc-184-4-33-55.dhcp.embarqhsd.net. [184.4.33.55])
 	by mx.google.com with ESMTPS id
-	by2sm56067544vdb.22.2012.06.26.12.22.51 (version=SSLv3 cipher=OTHER);
-	Tue, 26 Jun 2012 12:22:52 -0700 (PDT)
-Message-ID: <4FEA0C0D.5030809@gmail.com>
-Date: Tue, 26 Jun 2012 15:22:53 -0400
+	bn5sm47906847vdb.19.2012.06.26.12.49.56 (version=SSLv3 cipher=OTHER);
+	Tue, 26 Jun 2012 12:49:56 -0700 (PDT)
+Message-ID: <4FEA1265.1050408@gmail.com>
+Date: Tue, 26 Jun 2012 15:49:57 -0400
 From: jfabernathy <jfabernathy@gmail.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:13.0) Gecko/20120615 Thunderbird/13.0.1
@@ -51,7 +51,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 26 Jun 2012 19:22:53 -0000
+X-List-Received-Date: Tue, 26 Jun 2012 19:49:59 -0000
 Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
@@ -69,13 +69,9 @@ On 06/26/2012 02:07 PM, Rifenbark, Scott M wrote:
 >
 > I am on task 1507 of 1606 of a minimal build (from the example).  No issues so far.
 
-I just finished testing with Denzil branch on poky and poky-extra. I 
-made the Hello printk mods and used the new bbappend that Bruce setup in 
-poky-extra for denzil.  I think he had already uncommented the SRC_URI 
-and all I had to do was put in the statement from the Appendix B about 
-KSRC. and mod the bblayer.conf to include poky-extra.
-
-Everything compiled and worked as expected.
+So now that Denzil has a branch in poky-extra, the only doc change is to 
+add the checkout -b denzil statement for the poky-extra directory. 
+Everything else is correct.
 
 Jim A
 
