@@ -1,33 +1,32 @@
-Return-Path: <david.c.stewart@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E3FD2E006D9
-	for <yocto@yoctoproject.org>; Tue, 26 Jun 2012 13:10:48 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 26 Jun 2012 13:10:48 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="116285386"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
-	by AZSMGA002.ch.intel.com with ESMTP; 26 Jun 2012 13:10:48 -0700
-Received: from orsmsx101.amr.corp.intel.com (10.22.225.128) by
-	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Tue, 26 Jun 2012 13:10:45 -0700
-Received: from orsmsx105.amr.corp.intel.com ([169.254.4.138]) by
-	ORSMSX101.amr.corp.intel.com ([169.254.8.59]) with mapi id
-	14.01.0355.002; Tue, 26 Jun 2012 13:10:45 -0700
-From: "Stewart, David C" <david.c.stewart@intel.com>
-To: Dallas Clement <dallas.a.clement@gmail.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] How to clean
-Thread-Index: AQHNU9DtGFEixNS0SkilORuapSNdw5cNB63A
-Date: Tue, 26 Jun 2012 20:10:44 +0000
-Message-ID: <CDED78A957032E45B3239CDDA7642D151C866D8D@ORSMSX105.amr.corp.intel.com>
-References: <CAE9DZURiOqQg+djPTxz4S9h=uRrmYoce9uGrN1QjzG1ccsoFNQ@mail.gmail.com>
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 37113E006D9
+	for <yocto@yoctoproject.org>; Tue, 26 Jun 2012 13:14:11 -0700 (PDT)
+Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
+	([99.241.91.63]:41920 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.77) (envelope-from <rpjday@crashcourse.ca>)
+	id 1Sjc9F-0004ZR-7U; Tue, 26 Jun 2012 16:14:05 -0400
+Date: Tue, 26 Jun 2012 16:14:00 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: Dallas Clement <dallas.a.clement@gmail.com>
 In-Reply-To: <CAE9DZURiOqQg+djPTxz4S9h=uRrmYoce9uGrN1QjzG1ccsoFNQ@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.138]
+Message-ID: <alpine.DEB.2.02.1206261612200.12718@oneiric>
+References: <CAE9DZURiOqQg+djPTxz4S9h=uRrmYoce9uGrN1QjzG1ccsoFNQ@mail.gmail.com>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Cc: yocto@yoctoproject.org
 Subject: Re: How to clean
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -40,26 +39,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 26 Jun 2012 20:10:49 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 26 Jun 2012 20:14:11 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
->From: yocto-bounces@yoctoproject.org [mailto:yocto-
->bounces@yoctoproject.org] On Behalf Of Dallas Clement
->Sent: Tuesday, June 26, 2012 12:21 PM
->
->I'd like to clean all of my build output so that I can rebuild with a
->different toolchain.  What is the best way to clean without having to
->redownload all of my source packages again?
->
->I can see that something like this
->
->$ bitbake -c cleanall linux-yocto
->
->can clean the kernel or an individual package.  I want to clean everything=
-.
+On Tue, 26 Jun 2012, Dallas Clement wrote:
 
-I just delete the tmp directory and that seems to get the result I want - r=
-emove all the binaries but doesn't delete the sources.
+> I'd like to clean all of my build output so that I can rebuild with a
+> different toolchain.  What is the best way to clean without having to
+> redownload all of my source packages again?
+>
+> I can see that something like this
+>
+> $ bitbake -c cleanall linux-yocto
+>
+> can clean the kernel or an individual package.  I want to clean everything.
+
+  hey, there's an FAQ entry for that! :-)  well, sort of ... if you
+want to avoid all that source downloading:
+
+http://www.crashcourse.ca/wiki/index.php/Yocto_FAQ#How_can_I_set_up_a_local_mirror_of_tarballs_to_save_download_time.3F
+
+rday
+
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
