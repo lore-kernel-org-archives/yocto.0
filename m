@@ -1,35 +1,24 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1D315E0070C
-	for <yocto@yoctoproject.org>; Tue, 26 Jun 2012 10:14:14 -0700 (PDT)
-Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
-	([99.241.91.63]:40124 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.77) (envelope-from <rpjday@crashcourse.ca>)
-	id 1SjZLB-000877-HL; Tue, 26 Jun 2012 13:14:13 -0400
-Date: Tue, 26 Jun 2012 13:14:09 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-In-Reply-To: <1447441.xnbSj4QHNd@helios>
-Message-ID: <alpine.DEB.2.02.1206261313120.6097@oneiric>
-References: <alpine.DEB.2.02.1206260459040.8547@oneiric>
-	<7137339.IoCmExdDEI@helios>
-	<alpine.DEB.2.02.1206261304290.6025@oneiric>
-	<1447441.xnbSj4QHNd@helios>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <tf+lists.yocto@r-finger.com>
+Received: from r-finger.com (r-finger.com [178.79.160.5])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8989FE0070C
+	for <yocto@yoctoproject.org>; Tue, 26 Jun 2012 10:18:47 -0700 (PDT)
+Received: from [192.168.0.2] (host86-170-68-253.range86-170.btcentralplus.com
+	[86.170.68.253]) (using TLSv1 with cipher AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by r-finger.com (Postfix) with ESMTPSA id D7A3A9C07
+	for <yocto@yoctoproject.org>; Tue, 26 Jun 2012 18:18:46 +0100 (BST)
+Message-ID: <4FE9EEF6.7050001@r-finger.com>
+Date: Tue, 26 Jun 2012 18:18:46 +0100
+From: Tomas Frydrych <tf+lists.yocto@r-finger.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:10.0.3) Gecko/20120329 Icedove/10.0.3
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: yocto@yoctoproject.org
+To: yocto@yoctoproject.org
+References: <alpine.DEB.2.02.1206260459040.8547@oneiric>
+	<10398861.esnekvBoZU@helios> <4FE9D965.4070906@linux.intel.com>
+	<3153041.1FMPtSpq0x@helios> <4FE9E58C.9020408@r-finger.com>
+	<alpine.DEB.2.02.1206261252060.5948@oneiric>
+In-Reply-To: <alpine.DEB.2.02.1206261252060.5948@oneiric>
 Subject: Re: <rant>the current yocto FAQ is pretty much valueless</rant>
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -42,53 +31,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 26 Jun 2012 17:14:14 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Tue, 26 Jun 2012 17:18:47 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Tue, 26 Jun 2012, Paul Eggleton wrote:
+On 26/06/12 17:53, Robert P. J. Day wrote:
+>   and if you want major industry players to take yocto seriously, the
+> last thing you want to do is answer their heartfelt pleas for
+> assistance with, "i'm sorry, that's technically not a yocto question,
+> you should try another mailing list."
 
-> On Tuesday 26 June 2012 13:05:21 Robert P. J. Day wrote:
-> > On Tue, 26 Jun 2012, Paul Eggleton wrote:
-> > > On Tuesday 26 June 2012 12:51:15 Robert P. J. Day wrote:
-> > > >   ok, that makes sense.  but would it also make sense for bitbake to
-> > > > perhaps support another option that *does* allow personal content to,
-> > > > say, be effectively appended to one's local.conf.  for instance, every
-> > > > single local.conf i create immediately gets this added to the end:
-> > > >
-> > > > SOURCE_MIRROR_URL ?= "file:///home/rpjday/dl/"
-> > > > INHERIT += "own-mirrors"
-> > > > BB_GENERATE_MIRROR_TARBALLS = "1"
-> > > > # BB_NO_NETWORK = "1"
-> > >
-> > > OK, looking at the settings you've listed, I think these are the
-> > > kinds of things that site.conf was invented for - stuff that is
-> > > specific not to the builds you are doing but to the host machine /
-> > > site. You can simply put these settings in a file called site.conf
-> > > next to local.conf and they'll be read from there; for new build
-> > > directories you can just copy it in or symlink it from some common
-> > > location.
-> >
-> >   that still requires just a touch of user intervention.  no totally
-> > automatic way to do that, then?  it's at least an improvement over
-> > manual copying, thanks.
->
-> I have thought about this - it would be great if oe-init-build-env could
-> copy/symlink your customised version from somewhere automatically every time;
-> however the question would be how would it know where to copy it from? I'm not
-> sure an added command-line option would be much better than just getting
-> people to copy/symlink it in manually.
+That's never been case on this list as far as I recall, folk here are
+pretty responsive to questions being asked.
 
-  that's fine, i'll at least note this shortcut.
+At the same time, OE/Poky/Yocto is a fairly complex framework and nobody
+should expect that the necessary expertize to build a commercial grade
+products with it can be acquired by simply reading a FAQ, no matter how
+well written, or by just endlessly asking questions on a mailing list.
+As a commercial player you are either prepared to make the in house
+investment that is necessary to acquire that expertize (reading the
+documentation and studying the source code, etc.), or you you can buy
+the expertize on commercial basis from someone who has it.
 
-rday
-
--- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+Tomas
 
