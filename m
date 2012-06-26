@@ -1,38 +1,26 @@
-Return-Path: <scott.m.rifenbark@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A79AEE0070C
-	for <yocto@yoctoproject.org>; Tue, 26 Jun 2012 08:50:11 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 26 Jun 2012 08:50:07 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="170229549"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
-	by fmsmga001.fm.intel.com with ESMTP; 26 Jun 2012 08:50:07 -0700
-Received: from orsmsx106.amr.corp.intel.com (10.22.225.133) by
-	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Tue, 26 Jun 2012 08:50:07 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.59]) by
-	ORSMSX106.amr.corp.intel.com ([169.254.5.167]) with mapi id
-	14.01.0355.002; Tue, 26 Jun 2012 08:50:06 -0700
-From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>
-Thread-Topic: [yocto] <rant>the current yocto FAQ is pretty much
-	valueless</rant>
-Thread-Index: AQHNU7LRW6FhQMNbxkyJZ4HGnlsuVJcMvwjQ
-Date: Tue, 26 Jun 2012 15:50:06 +0000
-Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237946A1310B@ORSMSX101.amr.corp.intel.com>
-References: <alpine.DEB.2.02.1206260459040.8547@oneiric>
-	<8AEAB326-0A04-4916-80FE-556EEFDBA8DD@dominion.thruhere.net>
-	<41DEA4B02DBDEF40A0F3B6D0DDB1237946A1307E@ORSMSX101.amr.corp.intel.com>
-	<alpine.DEB.2.02.1206261139290.5553@oneiric>
-In-Reply-To: <alpine.DEB.2.02.1206261139290.5553@oneiric>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 81319E006D9
+	for <yocto@yoctoproject.org>; Tue, 26 Jun 2012 08:53:49 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail1.windriver.com (8.14.3/8.14.3) with ESMTP id q5QFrllr027776
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Tue, 26 Jun 2012 08:53:47 -0700 (PDT)
+Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
+	Tue, 26 Jun 2012 08:53:47 -0700
+Message-ID: <4FE9DAFD.6000600@windriver.com>
+Date: Tue, 26 Jun 2012 11:53:33 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:12.0) Gecko/20120430 Thunderbird/12.0.1
 MIME-Version: 1.0
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: <rant>the current yocto FAQ is pretty much valueless</rant>
+To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+References: <4FE9CCAD.7080003@gmail.com> <4FE9CD04.60604@windriver.com>
+	<41DEA4B02DBDEF40A0F3B6D0DDB1237946A130B2@ORSMSX101.amr.corp.intel.com>
+In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB1237946A130B2@ORSMSX101.amr.corp.intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Yocto Development Manual Appendix B question
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,70 +32,75 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 26 Jun 2012 15:50:11 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 26 Jun 2012 15:53:49 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Great!  Thanks Robert.
-
------Original Message-----
-From: Robert P. J. Day [mailto:rpjday@crashcourse.ca]=20
-Sent: Tuesday, June 26, 2012 8:46 AM
-To: Rifenbark, Scott M
-Cc: Koen Kooi; Yocto discussion list
-Subject: RE: [yocto] <rant>the current yocto FAQ is pretty much valueless</=
-rant>
-
-On Tue, 26 Jun 2012, Rifenbark, Scott M wrote:
-
-> Thanks all - I enjoyed the rant.  The obvious point is that the FAQ
-> needs attention.  A good thing to do would be if you have a question
-> that you would like included in a "good" FAQ, such as the one
-> mentioned by Robert about how to add a single package, put the
-> question up on this list or actually submit a patch to the list.
-> As this little discussion thread noted, the FAQ was initially
-> created when the project launched and I think much of it revolved
-> around trying to answer the general "What the hell is Yocto anyway"
-> question.  I think we have moved into a "how do I do this" type of
-> phase now and the FAQ should have more of those types of entries.
-> That is not to say that questions about the Yocto Project in general
-> should be deleted.
+On 12-06-26 10:56 AM, Rifenbark, Scott M wrote:
+> Bruce,
 >
-> I will put some attention on the FAQ to try and inject a bit of
-> value into it.
+> Should the example note this?  Would it be best to specifically say to uncomment that SRC_URI line?
 
-  since the ubiquitous reaction to complaining about something is
-always, "don't just whine, do something about it," i'm doing that.
-i've started a personal yocto FAQ, based on questions either i've
-asked myself, or colleagues or clients have asked me, and i'm posting
-them here (obviously a work in progress, typed in over the last hour):
+It's worth noting, and I can make sure that the comments in the
+recipes reflect this as well. My comments within the individual
+bbappends may not be noticed, or may be less obvious when you look
+at the recipes-kernel as a whole.
 
-http://www.crashcourse.ca/wiki/index.php/Yocto_FAQ
+Cheers,
 
-  i'm collecting questions that clearly belong in a "how do i do X?"
-FAQ and, even if i don't know the answer, i'm still going to add the
-question to remind me to *find* the answer.
+Bruce
 
-  if you want to add a question and answer (or even just a question
-because you *want* to know the answer), drop me a note -- that wiki is
-not world-writable and never will be.
+>
+> Scott
+>
+> -----Original Message-----
+> From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org] On Behalf Of Bruce Ashfield
+> Sent: Tuesday, June 26, 2012 7:54 AM
+> To: jfabernathy
+> Cc: yocto@yoctoproject.org
+> Subject: Re: [yocto] Yocto Development Manual Appendix B question
+>
+> On 12-06-26 10:52 AM, jfabernathy wrote:
+>> In the example in The Developement Manual v1.2 in Appendix B Section
+>> B.1.7, it states that you need to put in the statement:
+>>
+>> KSRC_linux_yocto_3_2 ?="/home/scottrif/linux-yocto-3.2.git"
+>>
+>> into the appropriate .bbappend file way now in the poky-extra directory
+>> structure. If I look at that file, |linux-yocto_3.2.bbappend| , I seen a
+>> SRC_URI line, immediately after our inserted KSRC statement, that is
+>> commented out:
+>>
+>> # SRC_URI =
+>> "git://${KSRC_linux_yocto_3_2};protocol=file;nocheckout=1;branch=${KBRANCH},meta;name=machine,meta"
+>>
+>> Should that line be uncommented or is the SRC_URI already defaulted
+>> somewhere to use the newly defined KSRC_linux_yocto_3_2 variable?
+>
+> It should be uncommented. I commented them by default, since the extras
+> repository is a bit of a collection ground. If they are uncommented, and
+> combined with the AUTOREV also set in the file, you are forced to fix
+> all files, versus just the one you want.
+>
+> Cheers,
+>
+> Bruce
+>
+>>
+>> Jim A
+>>
+>>
+>>
+>>
+>>
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-  anyway, back to work ...
-
-rday
-
---=20
-
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
 
