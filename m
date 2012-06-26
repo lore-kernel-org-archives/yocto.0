@@ -1,29 +1,30 @@
-Return-Path: <bruce.ashfield@gmail.com>
-Received: from mail-qc0-f182.google.com (mail-qc0-f182.google.com
-	[209.85.216.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 68739E006D9
-	for <yocto@yoctoproject.org>; Tue, 26 Jun 2012 13:57:26 -0700 (PDT)
-Received: by qcsg15 with SMTP id g15so223994qcs.13
-	for <yocto@yoctoproject.org>; Tue, 26 Jun 2012 13:57:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type:content-transfer-encoding;
-	bh=sZT93mVom0i/K/MxXtgHu86pFSj6l5+eXDgaYKBDVuI=;
-	b=P9GloNxhxtP+CWwYQSbigwoEBMEZAPU+FiCOhC5PB16/lM7eWBfjC1CLJjJdPJIgL7
-	8ckrldI7DLnTbfaMbBCBud6ukcah+wQwuYv5fIARlm7kureAIwkX7d9dX2sqlA8UsvCZ
-	At3xdsa911UNDR9Z1yfzzqkePZByWYx0qlmzXd0/edUOgFzbjum88lCjYPyJb0iz+gpX
-	9RkpGeremgEIAVj98QMChEuMMx0DlZnzkgtOxayWU7zCOi9NA+pbi9aGIn0pTb0dk8os
-	gE98+/gVDBSp35BLYAOfS/RxDt34d3IGl2pa+pKpV//rgLKtXyFvi3HmIvE34BcU/Hwm
-	9PYA==
-MIME-Version: 1.0
-Received: by 10.224.18.146 with SMTP id w18mr26864792qaa.96.1340744245778;
-	Tue, 26 Jun 2012 13:57:25 -0700 (PDT)
-Received: by 10.229.41.5 with HTTP; Tue, 26 Jun 2012 13:57:25 -0700 (PDT)
-In-Reply-To: <4FEA1E25.9080103@gmail.com>
-References: <4FE9CCAD.7080003@gmail.com> <4FE9CD04.60604@windriver.com>
+Return-Path: <scott.m.rifenbark@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 71C8EE006D9
+	for <yocto@yoctoproject.org>; Tue, 26 Jun 2012 14:15:28 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga102.fm.intel.com with ESMTP; 26 Jun 2012 14:15:28 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="170352525"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
+	by fmsmga001.fm.intel.com with ESMTP; 26 Jun 2012 14:15:28 -0700
+Received: from orsmsx103.amr.corp.intel.com (10.22.225.130) by
+	orsmsx603.amr.corp.intel.com (10.22.226.49) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Tue, 26 Jun 2012 14:15:25 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.59]) by
+	ORSMSX103.amr.corp.intel.com ([169.254.2.73]) with mapi id
+	14.01.0355.002; Tue, 26 Jun 2012 14:15:24 -0700
+From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+To: Bruce Ashfield <bruce.ashfield@gmail.com>, jfabernathy
+	<jfabernathy@gmail.com>
+Thread-Topic: [yocto] Yocto Development Manual Appendix B question
+Thread-Index: AQHNU6tX5HKMCOJfWU226Ph+u+uRAJcNJQcA//+LH1CAAId2gIAAARCAgAACEoCAAAOEAP//i0OwgAB1xID//4tbcAARLnqAAA6hmFAAHHb4UP/+yt+AgABs2/D//6EngIAABNiAgABwgaA=
+Date: Tue, 26 Jun 2012 21:15:24 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237946A13361@ORSMSX101.amr.corp.intel.com>
+References: <4FE9CCAD.7080003@gmail.com>	<4FE9CD04.60604@windriver.com>
 	<41DEA4B02DBDEF40A0F3B6D0DDB1237946A130B2@ORSMSX101.amr.corp.intel.com>
-	<4FE9DC9B.2090104@gmail.com> <4FE9DD7F.2090402@windriver.com>
-	<4FE9DF3B.8010104@gmail.com> <4FE9E22E.8080305@windriver.com>
+	<4FE9DC9B.2090104@gmail.com>	<4FE9DD7F.2090402@windriver.com>
+	<4FE9DF3B.8010104@gmail.com>	<4FE9E22E.8080305@windriver.com>
 	<41DEA4B02DBDEF40A0F3B6D0DDB1237946A131AA@ORSMSX101.amr.corp.intel.com>
 	<4FE9E30B.9080903@windriver.com>
 	<41DEA4B02DBDEF40A0F3B6D0DDB1237946A131CC@ORSMSX101.amr.corp.intel.com>
@@ -33,10 +34,13 @@ References: <4FE9CCAD.7080003@gmail.com> <4FE9CD04.60604@windriver.com>
 	<4FEA1265.1050408@gmail.com>
 	<41DEA4B02DBDEF40A0F3B6D0DDB1237946A13317@ORSMSX101.amr.corp.intel.com>
 	<4FEA1E25.9080103@gmail.com>
-Date: Tue, 26 Jun 2012 16:57:25 -0400
-Message-ID: <CADkTA4OGU-+BGefAVh_sWvoMkZu=g8Ma6H5_F=kMGsUSMYvWEQ@mail.gmail.com>
-From: Bruce Ashfield <bruce.ashfield@gmail.com>
-To: jfabernathy <jfabernathy@gmail.com>
+	<CADkTA4OGU-+BGefAVh_sWvoMkZu=g8Ma6H5_F=kMGsUSMYvWEQ@mail.gmail.com>
+In-Reply-To: <CADkTA4OGU-+BGefAVh_sWvoMkZu=g8Ma6H5_F=kMGsUSMYvWEQ@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.140]
+MIME-Version: 1.0
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Yocto Development Manual Appendix B question
 X-BeenThere: yocto@yoctoproject.org
@@ -50,9 +54,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 26 Jun 2012 20:57:26 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Tue, 26 Jun 2012 21:15:28 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
+
+Yes - looking more closely this is not the bug issue but standard warnings.=
+  I got these also.  I can put a note in the example explaining the situati=
+on.=20
+
+Scott
+
+-----Original Message-----
+From: Bruce Ashfield [mailto:bruce.ashfield@gmail.com]=20
+Sent: Tuesday, June 26, 2012 1:57 PM
+To: jfabernathy
+Cc: Rifenbark, Scott M; yocto@yoctoproject.org
+Subject: Re: [yocto] Yocto Development Manual Appendix B question
 
 On Tue, Jun 26, 2012 at 4:40 PM, jfabernathy <jfabernathy@gmail.com> wrote:
 > On 06/26/2012 04:21 PM, Rifenbark, Scott M wrote:
