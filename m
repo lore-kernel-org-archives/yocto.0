@@ -1,23 +1,22 @@
 Return-Path: <rpjday@crashcourse.ca>
 Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
 	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 24122E006D9
-	for <yocto@yoctoproject.org>; Tue, 26 Jun 2012 09:51:20 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 440FFE0070C
+	for <yocto@yoctoproject.org>; Tue, 26 Jun 2012 09:53:56 -0700 (PDT)
 Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
-	([99.241.91.63]:39957 helo=crashcourse.ca)
+	([99.241.91.63]:39971 helo=crashcourse.ca)
 	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
 	(Exim 4.77) (envelope-from <rpjday@crashcourse.ca>)
-	id 1SjYz1-0006Aw-Fe; Tue, 26 Jun 2012 12:51:19 -0400
-Date: Tue, 26 Jun 2012 12:51:15 -0400 (EDT)
+	id 1SjZ1X-0006Q1-HD; Tue, 26 Jun 2012 12:53:55 -0400
+Date: Tue, 26 Jun 2012 12:53:51 -0400 (EDT)
 From: "Robert P. J. Day" <rpjday@crashcourse.ca>
 X-X-Sender: rpjday@oneiric
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-In-Reply-To: <3228700.TZNO2vyRAD@helios>
-Message-ID: <alpine.DEB.2.02.1206261247100.5915@oneiric>
+To: Tomas Frydrych <tf+lists.yocto@r-finger.com>
+In-Reply-To: <4FE9E58C.9020408@r-finger.com>
+Message-ID: <alpine.DEB.2.02.1206261252060.5948@oneiric>
 References: <alpine.DEB.2.02.1206260459040.8547@oneiric>
-	<2725324.4uKQHqG1Nb@helios>
-	<alpine.DEB.2.02.1206261224520.5797@oneiric>
-	<3228700.TZNO2vyRAD@helios>
+	<10398861.esnekvBoZU@helios> <4FE9D965.4070906@linux.intel.com>
+	<3153041.1FMPtSpq0x@helios> <4FE9E58C.9020408@r-finger.com>
 User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
 X-AntiAbuse: This header was added to track abuse,
@@ -42,39 +41,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 26 Jun 2012 16:51:20 -0000
+X-List-Received-Date: Tue, 26 Jun 2012 16:53:56 -0000
 Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-On Tue, 26 Jun 2012, Paul Eggleton wrote:
+On Tue, 26 Jun 2012, Tomas Frydrych wrote:
 
-> On Tuesday 26 June 2012 12:26:28 Robert P. J. Day wrote:
-> >   i thought that was the technique for centralizing personal config
-> > preferences that you *didn't* want to manually copy into every
-> > local.conf file you created.  if you add that personal content into
-> > each local.conf, then of course you don't need those options.
->
-> I guess it depends on what you mean by "personal content". Certain
-> settings are really part of distro policy and if you're finding that
-> you're setting them all the time for all of the builds that you're
-> doing, it would make more sense to create a distro layer that sets
-> them - then it's simply a matter of ensuring that layer is added to
-> your bblayers.conf and you set DISTRO as appropriate.
->
-> AFAIK the command line options in question were added to allow
-> frontends to inject configuration into bitbake rather than something
-> the user would normally use directly.
+> Kooen's cheeky point is worth keeping in mind though; the Yocto
+> naming semantics is not very helpful ;-) Specifically most of the
+> questions being asked on the Yocto list are about Poky, not Yocto,
+> followed by questions about meta-yocto, not Yocto-project. Many of
+> the questions being asked on the list are readily answered by
+> googling for 'Poky Manual', but clearly very few people understand
+> the Yocto project semantics enough to do this ...
 
-  ok, that makes sense.  but would it also make sense for bitbake to
-perhaps support another option that *does* allow personal content to,
-say, be effectively appended to one's local.conf.  for instance, every
-single local.conf i create immediately gets this added to the end:
+  and if you want major industry players to take yocto seriously, the
+last thing you want to do is answer their heartfelt pleas for
+assistance with, "i'm sorry, that's technically not a yocto question,
+you should try another mailing list."
 
-SOURCE_MIRROR_URL ?= "file:///home/rpjday/dl/"
-INHERIT += "own-mirrors"
-BB_GENERATE_MIRROR_TARBALLS = "1"
-# BB_NO_NETWORK = "1"
-
-  is there a simpler way to do that?
+  even if you're technically correct, that sort of conversation is not
+going to end well.
 
 rday
 
