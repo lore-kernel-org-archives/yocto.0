@@ -1,61 +1,33 @@
-Return-Path: <tim.bird@am.sony.com>
-Received: from db3outboundpool.messaging.microsoft.com
-	(db3ehsobe004.messaging.microsoft.com [213.199.154.142])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2D77FE006D9
-	for <yocto@yoctoproject.org>; Tue, 26 Jun 2012 11:51:07 -0700 (PDT)
-Received: from mail82-db3-R.bigfish.com (10.3.81.237) by
-	DB3EHSOBE005.bigfish.com (10.3.84.25) with Microsoft SMTP Server id
-	14.1.225.23; Tue, 26 Jun 2012 18:49:24 +0000
-Received: from mail82-db3 (localhost [127.0.0.1])	by mail82-db3-R.bigfish.com
-	(Postfix) with ESMTP id 5A9BF4402F4;
-	Tue, 26 Jun 2012 18:49:24 +0000 (UTC)
-X-Forefront-Antispam-Report: CIP:160.33.194.228; KIP:(null); UIP:(null);
-	IPV:NLI; H:usculsndmail01v.am.sony.com; RD:mail01.sonyusa.com;
-	EFVD:NLI
-X-SpamScore: -4
-X-BigFish: VPS-4(zzbb2dI98dI9371I1432Izz1202hzzz2fh2a8h668h839h93fhd25hf0ah)
-Received-SPF: pass (mail82-db3: domain of am.sony.com designates
-	160.33.194.228 as permitted sender) client-ip=160.33.194.228;
-	envelope-from=tim.bird@am.sony.com;
-	helo=usculsndmail01v.am.sony.com ; .am.sony.com ; 
-Received: from mail82-db3 (localhost.localdomain [127.0.0.1]) by mail82-db3
-	(MessageSwitch) id 1340736562400536_21571;
-	Tue, 26 Jun 2012 18:49:22 +0000 (UTC)
-Received: from DB3EHSMHS002.bigfish.com (unknown [10.3.81.243])	by
-	mail82-db3.bigfish.com (Postfix) with ESMTP id 5DC433A0233;
-	Tue, 26 Jun 2012 18:49:22 +0000 (UTC)
-Received: from usculsndmail01v.am.sony.com (160.33.194.228) by
-	DB3EHSMHS002.bigfish.com (10.3.87.102) with Microsoft SMTP Server (TLS)
-	id 14.1.225.23; Tue, 26 Jun 2012 18:49:21 +0000
-Received: from usculsndmail12v.am.sony.com (usculsndmail12v.am.sony.com
-	[146.215.230.103])	by usculsndmail01v.am.sony.com
-	(Sentrion-MTA-4.2.2/Sentrion-MTA-4.2.2) with ESMTP id q5QIp10r032494
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=FAIL);
-	Tue, 26 Jun 2012 18:51:01 GMT
-Received: from mail1x.sgo.in.sel.sony.com (mail2.bc.in.sel.sony.com
-	[43.130.1.112])	by usculsndmail12v.am.sony.com
-	(Sentrion-MTA-4.2.2/Sentrion-MTA-4.2.2) with ESMTP id q5QIox9h004369
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=FAIL);
-	Tue, 26 Jun 2012 18:51:00 GMT
-Received: from [43.135.148.222] ([43.135.148.222])	by
-	mail1x.sgo.in.sel.sony.com (Switch-3.4.2/Switch-3.4.2) with ESMTP id
-	q5QIonRW018479;	Tue, 26 Jun 2012 18:50:49 GMT
-Message-ID: <4FEA0505.6010108@am.sony.com>
-Date: Tue, 26 Jun 2012 11:52:53 -0700
-From: Tim Bird <tim.bird@am.sony.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:12.0) Gecko/20120430 Thunderbird/12.0.1
+Return-Path: <song.liu@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7130DE006D9
+	for <yocto@yoctoproject.org>; Tue, 26 Jun 2012 11:59:38 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 26 Jun 2012 11:59:36 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="163012188"
+Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
+	by orsmga002.jf.intel.com with ESMTP; 26 Jun 2012 11:59:36 -0700
+Received: from orsmsx153.amr.corp.intel.com (10.22.226.247) by
+	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Tue, 26 Jun 2012 11:59:36 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.59]) by
+	ORSMSX153.amr.corp.intel.com ([169.254.13.115]) with mapi id
+	14.01.0355.002; Tue, 26 Jun 2012 11:59:35 -0700
+From: "Liu, Song" <song.liu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Minutes: Yocto Project Technical Team Meeting - Tuesday, June
+	26, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+Thread-Index: AQHNU83Uc9b1dMWeW0aFCZSWqTb3Fw==
+Date: Tue, 26 Jun 2012 18:59:35 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A48452A23@ORSMSX101.amr.corp.intel.com>
+References: <7E680CB2A76BB8438D08CF13C09FC53A4844CAD5@ORSMSX101.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.139]
 MIME-Version: 1.0
-To: Tomas Frydrych <tf+lists.yocto@r-finger.com>
-References: <alpine.DEB.2.02.1206260459040.8547@oneiric>
-	<10398861.esnekvBoZU@helios> <4FE9D965.4070906@linux.intel.com>
-	<3153041.1FMPtSpq0x@helios> <4FE9E58C.9020408@r-finger.com>
-	<alpine.DEB.2.02.1206261252060.5948@oneiric>
-	<4FE9EEF6.7050001@r-finger.com>
-In-Reply-To: <4FE9EEF6.7050001@r-finger.com>
-X-OriginatorOrg: am.sony.com
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: <rant>the current yocto FAQ is pretty much valueless</rant>
+Subject: Minutes: Yocto Project Technical Team Meeting - Tuesday, June 26, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,74 +39,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 26 Jun 2012 18:51:07 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 26 Jun 2012 18:59:38 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-On 06/26/2012 10:18 AM, Tomas Frydrych wrote:
-> On 26/06/12 17:53, Robert P. J. Day wrote:
->>   and if you want major industry players to take yocto seriously, the
->> last thing you want to do is answer their heartfelt pleas for
->> assistance with, "i'm sorry, that's technically not a yocto question,
->> you should try another mailing list."
-> 
-> That's never been case on this list as far as I recall, folk here are
-> pretty responsive to questions being asked.
-> 
-> At the same time, OE/Poky/Yocto is a fairly complex framework and nobody
-> should expect that the necessary expertize to build a commercial grade
-> products with it can be acquired by simply reading a FAQ, no matter how
-> well written, or by just endlessly asking questions on a mailing list.
-> As a commercial player you are either prepared to make the in house
-> investment that is necessary to acquire that expertize (reading the
-> documentation and studying the source code, etc.), or you you can buy
-> the expertize on commercial basis from someone who has it.
-
-Well, granted that OE/Poky/Yocto is fairly complex.  I've followed
-OE for years (though never successfully built anything with it).
-I had my first successful build of (Poky?, Yocto?) just recently,
-with a build image I got from Dave Stewart at LinuxCon Japan.
-(Thanks very much Dave!).
-
-However, complexity is no excuse for terrible FAQs.  And the FAQ
-on the wiki is pretty bad.  For example, after reading various FAQs
-I still have no idea what kind of thing "Poky" is.  I know
-that bitbake is a build tool.  I know that OE is a package
-meta-information project.  Yocto Project is an umbrella project
-for a lot of tools and technologies (Poky among them).  But is
-Poky a distro (sample/reference or otherwise?) or something else?
-
-When I ran my recently-built image, my target /etc/issue had this content:
-"Yocto (Built by Poky 7.0) 1.2"
-
-Is Poky a build system?  A distro? a managed set of package sources
-and build information?
-
-I don't even know what to make of this.  And this is from a developer
-pushing Yocto inside my company (where we are making the "in-house
-investment" that is claimed to be needed to do something with this.)
-
-Now, here's my disclaimer: I read the manuals in the past
-and found them hard to follow, and thus finding my desire to
-read them again somewhat diminished, I haven't done so lately.
-Also, I don't mean to pick on "Poky" - that's just the thing du-jour
-that I'm not clear about within the Yocto Project.
-Maybe the definition of Poky is crystal clear somewhere in the docs.
-If so, sorry for the rant.
-
-But yeah, a FAQ cleanup and build-out would be good.  I think one
-problem is that various people who are qualified to make FAQ entries
-are so close to the project that certain features and terminology
-are second-nature to them, and go unspoken or unclarified in the
-entries. I'm not in this category, so if I find some time I'll
-try to make a few FAQ entries that address the points of
-confusion I've seen.
- -- Tim
-
-=============================
-Tim Bird
-Architecture Group Chair, CE Workgroup of the Linux Foundation
-Senior Staff Engineer, Sony Network Entertainment
-=============================
+Attendees:
+LaurentiuP, Jefro, Richard, Bruce, Michael, Ross, Mark, Sean, Jeff, Tom, Da=
+rren, Gilbert, Denys, Jessica, ScottR, Saul, Paul, Jim, Ciby, Alex, Song
+=A0
+Gilbert is from mentor Graphics, working with Sean.
+=A0
+Agenda:
+=A0
+* Opens collection - 5 min (Song)
+* 1.3 M1 release readiness - 10 min (community)
+  - The community agreed on releasing M1 RC1. For details, please see: http=
+s://wiki.yoctoproject.org/wiki/Yocto_Project_v1.3_Status#Milestone_1=20
+* 1.2.1 update - 5 min (ScottG)
+  - Ross did a fix for 1.2.1, Saul is going to pull and merge. We will have=
+ a build this week.
+* 1.1.2 update - 5 min (Josh/Beth)
+  - Beth did a rebuild, the build is ready for QA to test.
+  - QA is busy with 1.2 meta-intel BSP testing now. Will complete in a coup=
+le more days.
+* Yocto 1.3 status  - 10 min (Song/team)
+  - Reviewed all P1 items left on 'scheduled' stage.=20
+  - Actions:
+    1) Darren/Bruce will get back to Song on 1649 and 1919. They may have t=
+o be rescheduled.=20
+    2) 2390/2401: development completed, waiting for Juno release.
+    3) Song to follow up on all other P1's still in 'scheduled' stage for M=
+2.
+* SWAT team rotation: Nitin -> Beth
+* Opens - 5 min
+  - None
+=A0
+* Team sharing - 20 min
+  Mark: working on ability to generate SDK/tool chain based on an image. Wi=
+ll have preliminary patches out to oe-core mailing list sometime this week.
+  LaurentiuP: Working on 1.3 items. Has discussion on Bjorn last week, will=
+ follow up with him offline.=20
+  Michael: last week worked on testopia, release training with Beth, packag=
+e reporting system, more autobuilder setup. Had some downtime on yoctoproje=
+ct.org, worked to restore, will monitor it more closely. This coming week w=
+ill be on bugzilla stats.=20
+  Jim: we have design update for web hob. Screen cast, PDF, etc. more feedb=
+ack is appreciated. The URL is in the mailing list (last Friday).
+  Darren: working on building kernel modules on target. Running into some i=
+ssue (Post install scripts?), any idea or thoughts, let me know. The issue =
+is bug 1614 in Bugzilla.
 
 
