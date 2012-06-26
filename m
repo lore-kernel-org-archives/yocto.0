@@ -1,43 +1,61 @@
-Return-Path: <scott.m.rifenbark@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 58E51E006D9
-	for <yocto@yoctoproject.org>; Tue, 26 Jun 2012 11:07:43 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 26 Jun 2012 11:07:43 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="170289954"
-Received: from orsmsx606.amr.corp.intel.com ([10.22.226.128])
-	by fmsmga001.fm.intel.com with ESMTP; 26 Jun 2012 11:07:42 -0700
-Received: from orsmsx151.amr.corp.intel.com (10.22.226.38) by
-	orsmsx606.amr.corp.intel.com (10.22.226.128) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Tue, 26 Jun 2012 11:07:42 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.59]) by
-	ORSMSX151.amr.corp.intel.com ([169.254.7.154]) with mapi id
-	14.01.0355.002; Tue, 26 Jun 2012 11:07:42 -0700
-From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>, Bruce Ashfield
-	<bruce.ashfield@windriver.com>
-Thread-Topic: [yocto] Yocto Development Manual Appendix B question
-Thread-Index: AQHNU6tX5HKMCOJfWU226Ph+u+uRAJcNJQcA//+LH1CAAId2gIAAARCAgAACEoCAAAOEAP//i0OwgAB1xID//4tbcAARLnqAAA6hmFAAHHb4UA==
-Date: Tue, 26 Jun 2012 18:07:41 +0000
-Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237946A132A5@ORSMSX101.amr.corp.intel.com>
-References: <4FE9CCAD.7080003@gmail.com> <4FE9CD04.60604@windriver.com>
-	<41DEA4B02DBDEF40A0F3B6D0DDB1237946A130B2@ORSMSX101.amr.corp.intel.com>
-	<4FE9DC9B.2090104@gmail.com> <4FE9DD7F.2090402@windriver.com>
-	<4FE9DF3B.8010104@gmail.com> <4FE9E22E.8080305@windriver.com>
-	<41DEA4B02DBDEF40A0F3B6D0DDB1237946A131AA@ORSMSX101.amr.corp.intel.com>
-	<4FE9E30B.9080903@windriver.com>
-	<41DEA4B02DBDEF40A0F3B6D0DDB1237946A131CC@ORSMSX101.amr.corp.intel.com>
-	<4FE9F47F.80306@windriver.com>
-	<41DEA4B02DBDEF40A0F3B6D0DDB1237946A13288@ORSMSX101.amr.corp.intel.com>
-In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB1237946A13288@ORSMSX101.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
+Return-Path: <tim.bird@am.sony.com>
+Received: from db3outboundpool.messaging.microsoft.com
+	(db3ehsobe004.messaging.microsoft.com [213.199.154.142])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2D77FE006D9
+	for <yocto@yoctoproject.org>; Tue, 26 Jun 2012 11:51:07 -0700 (PDT)
+Received: from mail82-db3-R.bigfish.com (10.3.81.237) by
+	DB3EHSOBE005.bigfish.com (10.3.84.25) with Microsoft SMTP Server id
+	14.1.225.23; Tue, 26 Jun 2012 18:49:24 +0000
+Received: from mail82-db3 (localhost [127.0.0.1])	by mail82-db3-R.bigfish.com
+	(Postfix) with ESMTP id 5A9BF4402F4;
+	Tue, 26 Jun 2012 18:49:24 +0000 (UTC)
+X-Forefront-Antispam-Report: CIP:160.33.194.228; KIP:(null); UIP:(null);
+	IPV:NLI; H:usculsndmail01v.am.sony.com; RD:mail01.sonyusa.com;
+	EFVD:NLI
+X-SpamScore: -4
+X-BigFish: VPS-4(zzbb2dI98dI9371I1432Izz1202hzzz2fh2a8h668h839h93fhd25hf0ah)
+Received-SPF: pass (mail82-db3: domain of am.sony.com designates
+	160.33.194.228 as permitted sender) client-ip=160.33.194.228;
+	envelope-from=tim.bird@am.sony.com;
+	helo=usculsndmail01v.am.sony.com ; .am.sony.com ; 
+Received: from mail82-db3 (localhost.localdomain [127.0.0.1]) by mail82-db3
+	(MessageSwitch) id 1340736562400536_21571;
+	Tue, 26 Jun 2012 18:49:22 +0000 (UTC)
+Received: from DB3EHSMHS002.bigfish.com (unknown [10.3.81.243])	by
+	mail82-db3.bigfish.com (Postfix) with ESMTP id 5DC433A0233;
+	Tue, 26 Jun 2012 18:49:22 +0000 (UTC)
+Received: from usculsndmail01v.am.sony.com (160.33.194.228) by
+	DB3EHSMHS002.bigfish.com (10.3.87.102) with Microsoft SMTP Server (TLS)
+	id 14.1.225.23; Tue, 26 Jun 2012 18:49:21 +0000
+Received: from usculsndmail12v.am.sony.com (usculsndmail12v.am.sony.com
+	[146.215.230.103])	by usculsndmail01v.am.sony.com
+	(Sentrion-MTA-4.2.2/Sentrion-MTA-4.2.2) with ESMTP id q5QIp10r032494
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=FAIL);
+	Tue, 26 Jun 2012 18:51:01 GMT
+Received: from mail1x.sgo.in.sel.sony.com (mail2.bc.in.sel.sony.com
+	[43.130.1.112])	by usculsndmail12v.am.sony.com
+	(Sentrion-MTA-4.2.2/Sentrion-MTA-4.2.2) with ESMTP id q5QIox9h004369
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=FAIL);
+	Tue, 26 Jun 2012 18:51:00 GMT
+Received: from [43.135.148.222] ([43.135.148.222])	by
+	mail1x.sgo.in.sel.sony.com (Switch-3.4.2/Switch-3.4.2) with ESMTP id
+	q5QIonRW018479;	Tue, 26 Jun 2012 18:50:49 GMT
+Message-ID: <4FEA0505.6010108@am.sony.com>
+Date: Tue, 26 Jun 2012 11:52:53 -0700
+From: Tim Bird <tim.bird@am.sony.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:12.0) Gecko/20120430 Thunderbird/12.0.1
 MIME-Version: 1.0
+To: Tomas Frydrych <tf+lists.yocto@r-finger.com>
+References: <alpine.DEB.2.02.1206260459040.8547@oneiric>
+	<10398861.esnekvBoZU@helios> <4FE9D965.4070906@linux.intel.com>
+	<3153041.1FMPtSpq0x@helios> <4FE9E58C.9020408@r-finger.com>
+	<alpine.DEB.2.02.1206261252060.5948@oneiric>
+	<4FE9EEF6.7050001@r-finger.com>
+In-Reply-To: <4FE9EEF6.7050001@r-finger.com>
+X-OriginatorOrg: am.sony.com
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Yocto Development Manual Appendix B question
+Subject: Re: <rant>the current yocto FAQ is pretty much valueless</rant>
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,212 +67,74 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 26 Jun 2012 18:07:43 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 26 Jun 2012 18:51:07 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-When I attempted to rebuild minimal I hit the same error you did Jim regard=
-ing kern-tools-native.  This would be expected as Bruce pointed out that pr=
-oblem is alive in denzil.  I am going to set the poky-extras branch to 'den=
-zil' and retry that part of the example.
+On 06/26/2012 10:18 AM, Tomas Frydrych wrote:
+> On 26/06/12 17:53, Robert P. J. Day wrote:
+>>   and if you want major industry players to take yocto seriously, the
+>> last thing you want to do is answer their heartfelt pleas for
+>> assistance with, "i'm sorry, that's technically not a yocto question,
+>> you should try another mailing list."
+> 
+> That's never been case on this list as far as I recall, folk here are
+> pretty responsive to questions being asked.
+> 
+> At the same time, OE/Poky/Yocto is a fairly complex framework and nobody
+> should expect that the necessary expertize to build a commercial grade
+> products with it can be acquired by simply reading a FAQ, no matter how
+> well written, or by just endlessly asking questions on a mailing list.
+> As a commercial player you are either prepared to make the in house
+> investment that is necessary to acquire that expertize (reading the
+> documentation and studying the source code, etc.), or you you can buy
+> the expertize on commercial basis from someone who has it.
 
-Scott
+Well, granted that OE/Poky/Yocto is fairly complex.  I've followed
+OE for years (though never successfully built anything with it).
+I had my first successful build of (Poky?, Yocto?) just recently,
+with a build image I got from Dave Stewart at LinuxCon Japan.
+(Thanks very much Dave!).
 
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Rifenbark, Scott M
-Sent: Tuesday, June 26, 2012 10:44 AM
-To: Bruce Ashfield
-Cc: yocto@yoctoproject.org
-Subject: Re: [yocto] Yocto Development Manual Appendix B question
+However, complexity is no excuse for terrible FAQs.  And the FAQ
+on the wiki is pretty bad.  For example, after reading various FAQs
+I still have no idea what kind of thing "Poky" is.  I know
+that bitbake is a build tool.  I know that OE is a package
+meta-information project.  Yocto Project is an umbrella project
+for a lot of tools and technologies (Poky among them).  But is
+Poky a distro (sample/reference or otherwise?) or something else?
 
-I am on task 1507 of 1606 of a minimal build (from the example).  No issues=
- so far.
+When I ran my recently-built image, my target /etc/issue had this content:
+"Yocto (Built by Poky 7.0) 1.2"
 
------Original Message-----
-From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]=20
-Sent: Tuesday, June 26, 2012 10:42 AM
-To: Rifenbark, Scott M
-Cc: jfabernathy; yocto@yoctoproject.org
-Subject: Re: [yocto] Yocto Development Manual Appendix B question
+Is Poky a build system?  A distro? a managed set of package sources
+and build information?
 
-On 12-06-26 12:30 PM, Rifenbark, Scott M wrote:
-> I am going to run through the B.1 example verbatim from the "current" ver=
-sion of the manual and see what happens.
+I don't even know what to make of this.  And this is from a developer
+pushing Yocto inside my company (where we are making the "in-house
+investment" that is claimed to be needed to do something with this.)
 
-Fixing the license check was just a matter of me locking the SRCREV
-for the tools to a value that works for denzil. I just pushed a denzil
-branch to poky-extras that built and booted the yocto kernel for
-me.
+Now, here's my disclaimer: I read the manuals in the past
+and found them hard to follow, and thus finding my desire to
+read them again somewhat diminished, I haven't done so lately.
+Also, I don't mean to pick on "Poky" - that's just the thing du-jour
+that I'm not clear about within the Yocto Project.
+Maybe the definition of Poky is crystal clear somewhere in the docs.
+If so, sorry for the rant.
 
-Cheers,
+But yeah, a FAQ cleanup and build-out would be good.  I think one
+problem is that various people who are qualified to make FAQ entries
+are so close to the project that certain features and terminology
+are second-nature to them, and go unspoken or unclarified in the
+entries. I'm not in this category, so if I find some time I'll
+try to make a few FAQ entries that address the points of
+confusion I've seen.
+ -- Tim
 
-Bruce
+=============================
+Tim Bird
+Architecture Group Chair, CE Workgroup of the Linux Foundation
+Senior Staff Engineer, Sony Network Entertainment
+=============================
 
->
-> Scott
->
-> -----Original Message-----
-> From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]
-> Sent: Tuesday, June 26, 2012 9:28 AM
-> To: Rifenbark, Scott M
-> Cc: jfabernathy; yocto@yoctoproject.org
-> Subject: Re: [yocto] Yocto Development Manual Appendix B question
->
-> On 12-06-26 12:26 PM, Rifenbark, Scott M wrote:
->> This is a good point.  In looking at the example it does not say what br=
-anch you should be dealing with for poky-extras.
->
-> And I'm configuring a test right now and will create a denzil
-> branch, once I see it works.
->
-> Cheers,
->
-> Bruce
->
->>
->> -----Original Message-----
->> From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]
->> Sent: Tuesday, June 26, 2012 9:24 AM
->> To: jfabernathy
->> Cc: Rifenbark, Scott M; yocto@yoctoproject.org
->> Subject: Re: [yocto] Yocto Development Manual Appendix B question
->>
->> On 12-06-26 12:11 PM, jfabernathy wrote:
->>> On 06/26/2012 12:04 PM, Bruce Ashfield wrote:
->>>> On 12-06-26 12:00 PM, jfabernathy wrote:
->>>>> On 06/26/2012 10:56 AM, Rifenbark, Scott M wrote:
->>>>>> Bruce,
->>>>>>
->>>>>> Should the example note this? Would it be best to specifically say t=
-o
->>>>>> uncomment that SRC_URI line?
->>>>>>
->>>>>> Scott
->>>>> I think some text needs to be added. I uncommented the SRC_URI line a=
-nd
->>>>> I still fail building the image. The failure is related to kernel too=
-ls:
->>>>>
->>>>> ERROR: kern-tools-native: md5 data is not matching for
->>>>> file://git/tools/kgit;beginline=3D5;endline=3D9;md5=3De2bf4415f3d843f=
-43d2e22b0d91a6fee
->>>>>
->>>>>
->>>>> ERROR: kern-tools-native: The new md5 checksum is
->>>>> d8d1d729a70cd5f52972f8884b80743d
->>>>> ERROR: kern-tools-native: Check if the license information has
->>>>> changed in
->>>>> ERROR: Licensing Error: LIC_FILES_CHKSUM does not match, please fix
->>>>> ERROR: Function failed: do_qa_configure
->>>>
->>>> This one is actually fixed on master, but poky-extras .. is just that
->>>> 'extra', so this may still be alive in that repo.
->>>>
->>>> This wouldn't need to be documented, since it's a bug/issue, and not
->>>> something that would persist.
->>>>
->>>> What release are you pairing poky extras with ? I can always create a
->>>> branch to make sure they are consistent.
->>>>
->>>
->>> I was using Denzil because the snapshot noted in the example does not
->>> exist. So there is another doc issue.
->>
->> Aha. In this case, we could note that the poky-extras repo branch should
->> match the main repository branch .. and I could ensure that meta-kernel-=
-dev
->> works in that configuration.
->>
->> That's likely the right solution, rather than forcing you to switch to
->> master (unless you want to :)
->>
->> Cheers,
->>
->> Bruce
->>
->>>
->>> I can always test on Master, but the docs need to be update to reflect
->>> something that will work to completion without errors, IMHO.
->>>
->>> Jim A
->>>
->>>> Cheers,
->>>>
->>>> Bruce
->>>>
->>>>>
->>>>>
->>>>> Jim A
->>>>>
->>>>>> -----Original Message-----
->>>>>> From: yocto-bounces@yoctoproject.org
->>>>>> [mailto:yocto-bounces@yoctoproject.org] On Behalf Of Bruce Ashfield
->>>>>> Sent: Tuesday, June 26, 2012 7:54 AM
->>>>>> To: jfabernathy
->>>>>> Cc: yocto@yoctoproject.org
->>>>>> Subject: Re: [yocto] Yocto Development Manual Appendix B question
->>>>>>
->>>>>> On 12-06-26 10:52 AM, jfabernathy wrote:
->>>>>>> In the example in The Developement Manual v1.2 in Appendix B Sectio=
-n
->>>>>>> B.1.7, it states that you need to put in the statement:
->>>>>>>
->>>>>>> KSRC_linux_yocto_3_2 ?=3D"/home/scottrif/linux-yocto-3.2.git"
->>>>>>>
->>>>>>> into the appropriate .bbappend file way now in the poky-extra
->>>>>>> directory
->>>>>>> structure. If I look at that file, |linux-yocto_3.2.bbappend| , I
->>>>>>> seen a
->>>>>>> SRC_URI line, immediately after our inserted KSRC statement, that i=
-s
->>>>>>> commented out:
->>>>>>>
->>>>>>> # SRC_URI =3D
->>>>>>> "git://${KSRC_linux_yocto_3_2};protocol=3Dfile;nocheckout=3D1;branc=
-h=3D${KBRANCH},meta;name=3Dmachine,meta"
->>>>>>>
->>>>>>>
->>>>>>>
->>>>>>> Should that line be uncommented or is the SRC_URI already defaulted
->>>>>>> somewhere to use the newly defined KSRC_linux_yocto_3_2 variable?
->>>>>> It should be uncommented. I commented them by default, since the ext=
-ras
->>>>>> repository is a bit of a collection ground. If they are uncommented,
->>>>>> and
->>>>>> combined with the AUTOREV also set in the file, you are forced to fi=
-x
->>>>>> all files, versus just the one you want.
->>>>>>
->>>>>> Cheers,
->>>>>>
->>>>>> Bruce
->>>>>>
->>>>>>> Jim A
->>>>>>>
->>>>>>>
->>>>>>>
->>>>>>>
->>>>>>>
->>>>>>> _______________________________________________
->>>>>>> yocto mailing list
->>>>>>> yocto@yoctoproject.org
->>>>>>> https://lists.yoctoproject.org/listinfo/yocto
->>>>>> _______________________________________________
->>>>>> yocto mailing list
->>>>>> yocto@yoctoproject.org
->>>>>> https://lists.yoctoproject.org/listinfo/yocto
->>>>>
->>>>>
->>>>
->>>
->>>
->>
->
-
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
 
