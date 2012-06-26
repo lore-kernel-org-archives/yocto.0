@@ -1,15 +1,17 @@
-Return-Path: <ml@communistcode.co.uk>
-Received: from tinyArch.localdomain (unknown [78.110.170.148])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 34EFEE0141D
-	for <yocto@yoctoproject.org>; Tue, 26 Jun 2012 02:34:46 -0700 (PDT)
-Received: from [192.168.0.49] (unknown [195.171.99.130])
-	by tinyArch.localdomain (Postfix) with ESMTPSA id 3CC366005D
-	for <yocto@yoctoproject.org>; Tue, 26 Jun 2012 10:21:26 +0100 (BST)
-Message-ID: <4FE98271.9020704@communistcode.co.uk>
-Date: Tue, 26 Jun 2012 10:35:45 +0100
-From: Jack Mitchell <ml@communistcode.co.uk>
+Return-Path: <tf+lists.yocto@r-finger.com>
+Received: from r-finger.com (r-finger.com [178.79.160.5])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 55FF4E0141D
+	for <yocto@yoctoproject.org>; Tue, 26 Jun 2012 02:55:54 -0700 (PDT)
+Received: from [192.168.0.2] (host86-170-68-253.range86-170.btcentralplus.com
+	[86.170.68.253]) (using TLSv1 with cipher AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by r-finger.com (Postfix) with ESMTPSA id 471109C07
+	for <yocto@yoctoproject.org>; Tue, 26 Jun 2012 10:55:53 +0100 (BST)
+Message-ID: <4FE98728.5040201@r-finger.com>
+Date: Tue, 26 Jun 2012 10:55:52 +0100
+From: Tomas Frydrych <tf+lists.yocto@r-finger.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:13.0) Gecko/20120616 Thunderbird/13.0.1
+	rv:10.0.3) Gecko/20120329 Icedove/10.0.3
 MIME-Version: 1.0
 To: yocto@yoctoproject.org
 References: <alpine.DEB.2.02.1206260459040.8547@oneiric>
@@ -26,63 +28,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 26 Jun 2012 09:34:46 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+X-List-Received-Date: Tue, 26 Jun 2012 09:55:54 -0000
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 26/06/12 10:09, Robert P. J. Day wrote:
->
->    snip...
+> A bad Frequently Asked Questions (FAQ) sheet is one that is composed
+> not of the questions people actually ask, but of the questions the
+> FAQ's author wishes people would ask. Perhaps you've seen the type
+> before:
 
->
->
->    in other words, a *good* FAQ might be:
->
+Nice quote, but unfortunately based on the literal meaning the acronym
+rather then insight into the function of a FAQ; asking the right
+questions is far more important than finding answers ... ;-)
+
+
 > "how can i use the yocto prebuilt toolchains to save build time?"
->
->    a *bad* FAQ would be:
->
+
+Perhaps your question is not asked frequently enough to merit inclusion
+in a FAQ, or perhaps it's an a far too advanced topic for a FAQ?
+
+
+>   a *bad* FAQ would be:
+> 
 > "Does the Yocto Project have a special governance model, or is it
 > managed as an open source project?"
->
->    the kicker is that that last question is, in fact, in the yocto FAQ,
-> along with a number of other questions that have never been asked by
-> anyone in the history of the planet.  i chat about yocto with people
-> on a regular basis, and i can assure you, not a single one of them has
-> ever asked, "hey, rob, can you explain yocto's governance model?"
->
->    no, what they ask is, "hey, rob, how can i add a single package to
+
+Just because you are not interested in the answer does not make it a
+question you should think about ...
+
+
+>   no, what they ask is, "hey, rob, how can i add a single package to
 > an existing target?"  a question that, i should point out, is not
 > answered definitively in the existing docs *anywhere*.
 
-I would go as far as saying this is the most asked question on the list 
-and definitely a good candidate for the FAQ.
+There are two correct answers to this: the first one is RTFM; the second
+one is that if you want an explicit link to the section of the manual
+that explains it to be included in the FAQ, you should write the
+appropriate entry for the FAQ and contribute it instead of ranting on
+the list.
 
-Along with:
-
-Why does package XYZ get built when XYZ has nothing to do with the image 
-I imagine I am building.
-
->
->
->    anyway, coffee is ready so i'm going to pour a cup and get back to
-> work.  you're now free to yell at me.
->
-> rday
->
->
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
--- 
-
-   Jack Mitchell (jack@embed.me.uk)
-   Embedded Systems Engineer
-   http://www.embed.me.uk
-
---
-
+Tomas
 
