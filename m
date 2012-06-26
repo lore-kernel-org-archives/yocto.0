@@ -1,32 +1,32 @@
 Return-Path: <omprakash.pal@stericsson.com>
-Received: from eu1sys200aog117.obsmtp.com (eu1sys200aog117.obsmtp.com
-	[207.126.144.143])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1F66BE01402
-	for <yocto@yoctoproject.org>; Tue, 26 Jun 2012 00:53:54 -0700 (PDT)
-Received: from beta.dmz-ap.st.com ([138.198.100.35]) (using TLSv1) by
-	eu1sys200aob117.postini.com ([207.126.147.11]) with SMTP
-	ID DSNKT+lqkLdAlobiWl7rJvbnKu1dCiNbk84H@postini.com;
-	Tue, 26 Jun 2012 07:53:55 UTC
-Received: from zeta.dmz-ap.st.com (ns6.st.com [138.198.234.13])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 1D485D2;
-	Tue, 26 Jun 2012 07:45:30 +0000 (GMT)
-Received: from relay1.stm.gmessaging.net (unknown [10.230.100.17])
-	by zeta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 9E9BE1893;
-	Tue, 26 Jun 2012 07:53:47 +0000 (GMT)
+Received: from eu1sys200aog106.obsmtp.com (eu1sys200aog106.obsmtp.com
+	[207.126.144.121])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0368AE0141D
+	for <yocto@yoctoproject.org>; Tue, 26 Jun 2012 00:57:33 -0700 (PDT)
+Received: from beta.dmz-eu.st.com ([164.129.1.35]) (using TLSv1) by
+	eu1sys200aob106.postini.com ([207.126.147.11]) with SMTP
+	ID DSNKT+lrbAgFMweg0Wg70w9CjphBqwBSuhvp@postini.com;
+	Tue, 26 Jun 2012 07:57:34 UTC
+Received: from zeta.dmz-eu.st.com (zeta.dmz-eu.st.com [164.129.230.9])
+	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 49A5711E;
+	Tue, 26 Jun 2012 07:57:09 +0000 (GMT)
+Received: from relay2.stm.gmessaging.net (unknown [10.230.100.18])
+	by zeta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 094F528CD;
+	Tue, 26 Jun 2012 07:57:09 +0000 (GMT)
 Received: from exdcvycastm022.EQ1STM.local (alteon-source-exch [10.230.100.61])
 	(using TLSv1 with cipher RC4-MD5 (128/128 bits))
 	(Client CN "exdcvycastm022", Issuer "exdcvycastm022" (not verified))
-	by relay1.stm.gmessaging.net (Postfix) with ESMTPS id F40E724C2F7;
-	Tue, 26 Jun 2012 09:53:41 +0200 (CEST)
+	by relay2.stm.gmessaging.net (Postfix) with ESMTPS id 26842A809C;
+	Tue, 26 Jun 2012 09:57:05 +0200 (CEST)
 Received: from EXDCVYMBSTM006.EQ1STM.local ([10.230.100.3]) by
 	exdcvycastm022.EQ1STM.local ([10.230.100.30]) with mapi;
-	Tue, 26 Jun 2012 09:53:47 +0200
+	Tue, 26 Jun 2012 09:57:09 +0200
 From: Om Prakash PAL <omprakash.pal@stericsson.com>
 To: Chris Tapp <opensource@keylevel.com>
-Date: Tue, 26 Jun 2012 09:53:45 +0200
+Date: Tue, 26 Jun 2012 09:56:11 +0200
 Thread-Topic: [yocto] Porting of specific Kernel/Driver into yocto.
-Thread-Index: Ac1TbIP+AejN98n7QouqeGyyaXvbkQAA2Dxv
-Message-ID: <3ED83A9DB3B6D94CA68BF7C03F2981D35B1897B1DC@EXDCVYMBSTM006.EQ1STM.local>
+Thread-Index: Ac1TbIP+AejN98n7QouqeGyyaXvbkQABKM/3
+Message-ID: <3ED83A9DB3B6D94CA68BF7C03F2981D35B1897B1DE@EXDCVYMBSTM006.EQ1STM.local>
 References: <3ED83A9DB3B6D94CA68BF7C03F2981D35A844F357F@EXDCVYMBSTM006.EQ1STM.local>
 	<4F9E9DD5.5080601@windriver.com>
 	<3ED83A9DB3B6D94CA68BF7C03F2981D35B042416D2@EXDCVYMBSTM006.EQ1STM.local>
@@ -51,7 +51,7 @@ References: <3ED83A9DB3B6D94CA68BF7C03F2981D35A844F357F@EXDCVYMBSTM006.EQ1STM.lo
 	<31C034C4-45BF-467C-9FD9-866893AFF732@keylevel.com>
 In-Reply-To: <31C034C4-45BF-467C-9FD9-866893AFF732@keylevel.com>
 Accept-Language: en-US
-X-MS-Has-Attach: yes
+X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 acceptlanguage: en-US
 MIME-Version: 1.0
@@ -68,25 +68,17 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 26 Jun 2012 07:53:56 -0000
-X-Groupsio-MsgNum: 7467
+X-List-Received-Date: Tue, 26 Jun 2012 07:57:34 -0000
 Content-Language: en-US
-Content-Type: multipart/mixed;
-	boundary="_002_3ED83A9DB3B6D94CA68BF7C03F2981D35B1897B1DCEXDCVYMBSTM00_"
-
---_002_3ED83A9DB3B6D94CA68BF7C03F2981D35B1897B1DCEXDCVYMBSTM00_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
 Hi Chris,
-No, /etc/initab does not contain any reference to inittab.
-please find the attched /etc/initab file for more information.
+No, /etc/initab does not contain any reference to tty0(wrong typed in last =
+mail).
 
 Best Regards,
 Om Prakash Pal
-
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D>
 ________________________________________
 From: Chris Tapp [opensource@keylevel.com]
 Sent: Tuesday, June 26, 2012 12:52 PM
@@ -236,32 +228,3 @@ www.keylevel.com
 
 
 
---_002_3ED83A9DB3B6D94CA68BF7C03F2981D35B1897B1DCEXDCVYMBSTM00_
-Content-Type: application/octet-stream; name="inittab"
-Content-Description: inittab
-Content-Disposition: attachment; filename="inittab"; size=1033;
-	creation-date="Tue, 26 Jun 2012 09:53:33 GMT";
-	modification-date="Tue, 26 Jun 2012 09:53:33 GMT"
-Content-Transfer-Encoding: base64
-
-IyAvZXRjL2luaXR0YWI6IGluaXQoOCkgY29uZmlndXJhdGlvbi4KIyAkSWQ6IGluaXR0YWIsdiAx
-LjkxIDIwMDIvMDEvMjUgMTM6MzU6MjEgbWlxdWVscyBFeHAgJAoKIyBUaGUgZGVmYXVsdCBydW5s
-ZXZlbC4KaWQ6NTppbml0ZGVmYXVsdDoKCiMgQm9vdC10aW1lIHN5c3RlbSBjb25maWd1cmF0aW9u
-L2luaXRpYWxpemF0aW9uIHNjcmlwdC4KIyBUaGlzIGlzIHJ1biBmaXJzdCBleGNlcHQgd2hlbiBi
-b290aW5nIGluIGVtZXJnZW5jeSAoLWIpIG1vZGUuCnNpOjpzeXNpbml0Oi9ldGMvaW5pdC5kL3Jj
-UwoKIyBXaGF0IHRvIGRvIGluIHNpbmdsZS11c2VyIG1vZGUuCn5+OlM6d2FpdDovc2Jpbi9zdWxv
-Z2luCgojIC9ldGMvaW5pdC5kIGV4ZWN1dGVzIHRoZSBTIGFuZCBLIHNjcmlwdHMgdXBvbiBjaGFu
-Z2UKIyBvZiBydW5sZXZlbC4KIwojIFJ1bmxldmVsIDAgaXMgaGFsdC4KIyBSdW5sZXZlbCAxIGlz
-IHNpbmdsZS11c2VyLgojIFJ1bmxldmVscyAyLTUgYXJlIG11bHRpLXVzZXIuCiMgUnVubGV2ZWwg
-NiBpcyByZWJvb3QuCgpsMDowOndhaXQ6L2V0Yy9pbml0LmQvcmMgMApsMToxOndhaXQ6L2V0Yy9p
-bml0LmQvcmMgMQpsMjoyOndhaXQ6L2V0Yy9pbml0LmQvcmMgMgpsMzozOndhaXQ6L2V0Yy9pbml0
-LmQvcmMgMwpsNDo0OndhaXQ6L2V0Yy9pbml0LmQvcmMgNApsNTo1OndhaXQ6L2V0Yy9pbml0LmQv
-cmMgNQpsNjo2OndhaXQ6L2V0Yy9pbml0LmQvcmMgNgojIE5vcm1hbGx5IG5vdCByZWFjaGVkLCBi
-dXQgZmFsbHRocm91Z2ggaW4gY2FzZSBvZiBlbWVyZ2VuY3kuCno2OjY6cmVzcGF3bjovc2Jpbi9z
-dWxvZ2luCiMgL3NiaW4vZ2V0dHkgaW52b2NhdGlvbnMgZm9yIHRoZSBydW5sZXZlbHMuCiMKIyBU
-aGUgImlkIiBmaWVsZCBNVVNUIGJlIHRoZSBzYW1lIGFzIHRoZSBsYXN0CiMgY2hhcmFjdGVycyBv
-ZiB0aGUgZGV2aWNlIChhZnRlciAidHR5IikuCiMKIyBGb3JtYXQ6CiMgIDxpZD46PHJ1bmxldmVs
-cz46PGFjdGlvbj46PHByb2Nlc3M+CiMKCjE6MjM0NTpyZXNwYXduOi9zYmluL2dldHR5IDM4NDAw
-IHR0eTEKCg==
-
---_002_3ED83A9DB3B6D94CA68BF7C03F2981D35B1897B1DCEXDCVYMBSTM00_--
