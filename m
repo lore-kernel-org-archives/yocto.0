@@ -1,21 +1,23 @@
-Return-Path: <tf+lists.yocto@r-finger.com>
-Received: from r-finger.com (r-finger.com [178.79.160.5])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 55FF4E0141D
-	for <yocto@yoctoproject.org>; Tue, 26 Jun 2012 02:55:54 -0700 (PDT)
-Received: from [192.168.0.2] (host86-170-68-253.range86-170.btcentralplus.com
-	[86.170.68.253]) (using TLSv1 with cipher AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by r-finger.com (Postfix) with ESMTPSA id 471109C07
-	for <yocto@yoctoproject.org>; Tue, 26 Jun 2012 10:55:53 +0100 (BST)
-Message-ID: <4FE98728.5040201@r-finger.com>
-Date: Tue, 26 Jun 2012 10:55:52 +0100
-From: Tomas Frydrych <tf+lists.yocto@r-finger.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:10.0.3) Gecko/20120329 Icedove/10.0.3
-MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <alpine.DEB.2.02.1206260459040.8547@oneiric>
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AEDB4E0141D
+	for <yocto@yoctoproject.org>; Tue, 26 Jun 2012 03:09:47 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 26 Jun 2012 03:09:47 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="160792027"
+Received: from unknown (HELO helios.localnet) ([10.252.120.190])
+	by azsmga001.ch.intel.com with ESMTP; 26 Jun 2012 03:09:46 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>
+Date: Tue, 26 Jun 2012 11:09:45 +0100
+Message-ID: <10398861.esnekvBoZU@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.8.3 (Linux/3.2.0-25-generic-pae; KDE/4.8.3; i686; ; )
 In-Reply-To: <alpine.DEB.2.02.1206260459040.8547@oneiric>
+References: <alpine.DEB.2.02.1206260459040.8547@oneiric>
+MIME-Version: 1.0
+Cc: yocto@yoctoproject.org
 Subject: Re: <rant>the current yocto FAQ is pretty much valueless</rant>
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -28,45 +30,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 26 Jun 2012 09:55:54 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 26 Jun 2012 10:09:47 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On 26/06/12 10:09, Robert P. J. Day wrote:
-> A bad Frequently Asked Questions (FAQ) sheet is one that is composed
-> not of the questions people actually ask, but of the questions the
-> FAQ's author wishes people would ask. Perhaps you've seen the type
-> before:
-
-Nice quote, but unfortunately based on the literal meaning the acronym
-rather then insight into the function of a FAQ; asking the right
-questions is far more important than finding answers ... ;-)
-
-
+On Tuesday 26 June 2012 05:09:34 Robert P. J. Day wrote:
+>   in other words, a *good* FAQ might be:
+> 
 > "how can i use the yocto prebuilt toolchains to save build time?"
-
-Perhaps your question is not asked frequently enough to merit inclusion
-in a FAQ, or perhaps it's an a far too advanced topic for a FAQ?
-
-
+> 
 >   a *bad* FAQ would be:
 > 
 > "Does the Yocto Project have a special governance model, or is it
 > managed as an open source project?"
-
-Just because you are not interested in the answer does not make it a
-question you should think about ...
-
-
+> 
+>   the kicker is that that last question is, in fact, in the yocto FAQ,
+> along with a number of other questions that have never been asked by
+> anyone in the history of the planet.  i chat about yocto with people
+> on a regular basis, and i can assure you, not a single one of them has
+> ever asked, "hey, rob, can you explain yocto's governance model?"
+> 
 >   no, what they ask is, "hey, rob, how can i add a single package to
 > an existing target?"  a question that, i should point out, is not
 > answered definitively in the existing docs *anywhere*.
 
-There are two correct answers to this: the first one is RTFM; the second
-one is that if you want an explicit link to the section of the manual
-that explains it to be included in the FAQ, you should write the
-appropriate entry for the FAQ and contribute it instead of ranting on
-the list.
+You bring up a valid point, but I think it might be worth mentioning that the 
+current FAQ evolved from a much less technically-oriented version that was 
+produced when the project launched. At that time some people *were* asking the 
+kind of questions that you're deriding. I think there's still a section of the 
+*non-technical* audience who are interested in answers to those questions.
 
-Tomas
+I suggested to Scott R previously that it might be worth having a project FAQ 
+(i.e., what is this project about, what is it intended to be used for etc.) 
+and a separate technical FAQ which answers the kind of questions you are 
+expecting and that we see often on the mailing list. I think one of the 
+reasons that hasn't been done is that we're hoping to introduce a Q&A function 
+on the website similar to StackOverflow, where everyone can participate but the 
+most appropriate answers bubble up to the top. As yet this has not been 
+implemented and I'm not sure when it will be, so it may still be worth looking 
+into a static technical FAQ on the wiki until it is.
+
+Scott, what do you think?
+
+Cheers,
+Paul
+
+-- 
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
