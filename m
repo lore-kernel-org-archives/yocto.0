@@ -1,34 +1,38 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C103BE0070C
-	for <yocto@yoctoproject.org>; Tue, 26 Jun 2012 08:48:46 -0700 (PDT)
-Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
-	([99.241.91.63]:39226 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.77) (envelope-from <rpjday@crashcourse.ca>)
-	id 1SjY0T-00014S-Uy; Tue, 26 Jun 2012 11:48:46 -0400
-Date: Tue, 26 Jun 2012 11:48:42 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <CAMKF1soE6k2nn1TyTU_z_CZFiU2C-BFb3DQo6NacyHRwELpFtA@mail.gmail.com>
-Message-ID: <alpine.DEB.2.02.1206261147580.5602@oneiric>
-References: <alpine.DEB.2.02.1206260410060.21539@oneiric>
-	<CAMKF1soE6k2nn1TyTU_z_CZFiU2C-BFb3DQo6NacyHRwELpFtA@mail.gmail.com>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <scott.m.rifenbark@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A79AEE0070C
+	for <yocto@yoctoproject.org>; Tue, 26 Jun 2012 08:50:11 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 26 Jun 2012 08:50:07 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="170229549"
+Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
+	by fmsmga001.fm.intel.com with ESMTP; 26 Jun 2012 08:50:07 -0700
+Received: from orsmsx106.amr.corp.intel.com (10.22.225.133) by
+	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Tue, 26 Jun 2012 08:50:07 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.59]) by
+	ORSMSX106.amr.corp.intel.com ([169.254.5.167]) with mapi id
+	14.01.0355.002; Tue, 26 Jun 2012 08:50:06 -0700
+From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>
+Thread-Topic: [yocto] <rant>the current yocto FAQ is pretty much
+	valueless</rant>
+Thread-Index: AQHNU7LRW6FhQMNbxkyJZ4HGnlsuVJcMvwjQ
+Date: Tue, 26 Jun 2012 15:50:06 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237946A1310B@ORSMSX101.amr.corp.intel.com>
+References: <alpine.DEB.2.02.1206260459040.8547@oneiric>
+	<8AEAB326-0A04-4916-80FE-556EEFDBA8DD@dominion.thruhere.net>
+	<41DEA4B02DBDEF40A0F3B6D0DDB1237946A1307E@ORSMSX101.amr.corp.intel.com>
+	<alpine.DEB.2.02.1206261139290.5553@oneiric>
+In-Reply-To: <alpine.DEB.2.02.1206261139290.5553@oneiric>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
 Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: how many meta-toolchain-* targets are there?
+Subject: Re: <rant>the current yocto FAQ is pretty much valueless</rant>
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,40 +44,56 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 26 Jun 2012 15:48:47 -0000
-Content-Type: MULTIPART/MIXED; BOUNDARY="8323329-1179255540-1340725724=:5602"
+X-List-Received-Date: Tue, 26 Jun 2012 15:50:11 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
---8323329-1179255540-1340725724=:5602
-Content-Type: TEXT/PLAIN; charset=UTF-8
-Content-Transfer-Encoding: QUOTED-PRINTABLE
+Great!  Thanks Robert.
 
-On Tue, 26 Jun 2012, Khem Raj wrote:
+-----Original Message-----
+From: Robert P. J. Day [mailto:rpjday@crashcourse.ca]=20
+Sent: Tuesday, June 26, 2012 8:46 AM
+To: Rifenbark, Scott M
+Cc: Koen Kooi; Yocto discussion list
+Subject: RE: [yocto] <rant>the current yocto FAQ is pretty much valueless</=
+rant>
 
-> On Tue, Jun 26, 2012 at 1:15 AM, Robert P. J. Day <rpjday@crashcourse.ca>=
- wrote:
-> >
-> > =C2=A0something that could be cleared up a bit in the docs ... how many
-> > toolchain-related targets are there?
-> >
-> > =C2=A0for instance, running bitbake suggests that common targets includ=
-e
-> > meta-toolchain and meta-toolchain-sdk. =C2=A0on the other hand, the ADT
-> > manual makes no reference to meta-toolchain-sdk but *does* mention
-> > meta-toolchain-gmae (without explaining to the reader what that
-> > represents but nonetheless recommends to the reader that if he needs
-> > GMAE, he should build that, whereupon the poor reader is left
-> > wondering what the heck GMAE is and whether it's important).
-> >
-> > =C2=A0and a search of the source shows a meta-toolchain-qte, for which =
-i
-> > can see no mention whatever in *any* of the docs.
-> >
-> > =C2=A0thoughts?
+On Tue, 26 Jun 2012, Rifenbark, Scott M wrote:
+
+> Thanks all - I enjoyed the rant.  The obvious point is that the FAQ
+> needs attention.  A good thing to do would be if you have a question
+> that you would like included in a "good" FAQ, such as the one
+> mentioned by Robert about how to add a single package, put the
+> question up on this list or actually submit a patch to the list.
+> As this little discussion thread noted, the FAQ was initially
+> created when the project launched and I think much of it revolved
+> around trying to answer the general "What the hell is Yocto anyway"
+> question.  I think we have moved into a "how do I do this" type of
+> phase now and the FAQ should have more of those types of entries.
+> That is not to say that questions about the Yocto Project in general
+> should be deleted.
 >
-> they should be documented I agree. meta-toolchain-gmae and
-> meta-toolchain-sdk are synonymous.
+> I will put some attention on the FAQ to try and inject a bit of
+> value into it.
 
-  i was about to make that very point.  :-)
+  since the ubiquitous reaction to complaining about something is
+always, "don't just whine, do something about it," i'm doing that.
+i've started a personal yocto FAQ, based on questions either i've
+asked myself, or colleagues or clients have asked me, and i'm posting
+them here (obviously a work in progress, typed in over the last hour):
+
+http://www.crashcourse.ca/wiki/index.php/Yocto_FAQ
+
+  i'm collecting questions that clearly belong in a "how do i do X?"
+FAQ and, even if i don't know the answer, i'm still going to add the
+question to remind me to *find* the answer.
+
+  if you want to add a question and answer (or even just a question
+because you *want* to know the answer), drop me a note -- that wiki is
+not world-writable and never will be.
+
+  anyway, back to work ...
 
 rday
 
@@ -91,4 +111,3 @@ LinkedIn:                               http://ca.linkedin.com/in/rpjday
 =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
 =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
 
---8323329-1179255540-1340725724=:5602--
