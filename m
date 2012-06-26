@@ -1,34 +1,28 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EDF97E0070C
-	for <yocto@yoctoproject.org>; Tue, 26 Jun 2012 13:21:48 -0700 (PDT)
-Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
-	([99.241.91.63]:41940 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.77) (envelope-from <rpjday@crashcourse.ca>)
-	id 1SjcGc-0005LM-D8; Tue, 26 Jun 2012 16:21:42 -0400
-Date: Tue, 26 Jun 2012 16:21:38 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: "Stewart, David C" <david.c.stewart@intel.com>
-In-Reply-To: <CDED78A957032E45B3239CDDA7642D151C866D8D@ORSMSX105.amr.corp.intel.com>
-Message-ID: <alpine.DEB.2.02.1206261620350.15185@oneiric>
-References: <CAE9DZURiOqQg+djPTxz4S9h=uRrmYoce9uGrN1QjzG1ccsoFNQ@mail.gmail.com>
-	<CDED78A957032E45B3239CDDA7642D151C866D8D@ORSMSX105.amr.corp.intel.com>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
-MIME-Version: 1.0
+Return-Path: <opensource@keylevel.com>
+Received: from hxhsvr03.internetintuitive.net (hxhsvr03.internetintuitive.net
+	[80.254.228.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1F135E006D9
+	for <yocto@yoctoproject.org>; Tue, 26 Jun 2012 13:33:02 -0700 (PDT)
+Received: from [109.224.129.17] (helo=macbook-pro.durham.keylevel.com)
+	by hxhsvr03.internetintuitive.net with esmtpa (Exim 4.69)
+	(envelope-from <opensource@keylevel.com>) id 1SjcRX-0003pu-H5
+	for yocto@yoctoproject.org; Tue, 26 Jun 2012 21:32:59 +0100
+From: Chris Tapp <opensource@keylevel.com>
+Date: Tue, 26 Jun 2012 21:32:57 +0100
+Message-Id: <D127AB75-8B96-4FEF-965C-CFBFBCA61404@keylevel.com>
+To: "yocto@yoctoproject.org Project" <yocto@yoctoproject.org>
+Mime-Version: 1.0 (Apple Message framework v1278)
+X-Mailer: Apple Mail (2.1278)
 X-AntiAbuse: This header was added to track abuse,
 	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Primary Hostname - hxhsvr03.internetintuitive.net
 X-AntiAbuse: Original Domain - yoctoproject.org
 X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-AntiAbuse: Sender Address Domain - keylevel.com
 X-Source: 
 X-Source-Args: 
 X-Source-Dir: 
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: How to clean
+Subject: meta-raspberrypi - Latest kernels won't run (summary)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,41 +34,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 26 Jun 2012 20:21:49 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Tue, 26 Jun 2012 20:33:02 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, 26 Jun 2012, Stewart, David C wrote:
+I've updated the SRCREVs:
 
-> >From: yocto-bounces@yoctoproject.org [mailto:yocto-
-> >bounces@yoctoproject.org] On Behalf Of Dallas Clement
-> >Sent: Tuesday, June 26, 2012 12:21 PM
-> >
-> >I'd like to clean all of my build output so that I can rebuild with a
-> >different toolchain.  What is the best way to clean without having to
-> >redownload all of my source packages again?
-> >
-> >I can see that something like this
-> >
-> >$ bitbake -c cleanall linux-yocto
-> >
-> >can clean the kernel or an individual package.  I want to clean everything.
->
-> I just delete the tmp directory and that seems to get the result I
-> want - remove all the binaries but doesn't delete the sources.
+bootfiles : 542ee2c3a5aea50377b97ec0308eb884900512ca
+kernel    : f679f0534867d64a3672108d73bed5d349728f73
 
-  ok, better answer than mine, and added to the FAQ.
+This build ok, but the kernel doesn't boot (screen shows the =
+'four-colours' kernel boot error). The bootfiles seem to be good as they =
+will work with older kernels and the corresponding 'official' kernel =
+image.
 
-http://www.crashcourse.ca/wiki/index.php/Yocto_FAQ#How_can_I_remove_all_of_the_build_output_so_I_can_start_over.3F
+It seems as if:
 
-rday
+1) Nothing works if it's built with master / GCC 4.7.0 (reported by Paul =
+Eggleton);
+2) Earlier images work with Denzil / GCC 4.6.4;
+3) Building with Edison / GCC 4.5.1 didn't seem to help.
 
--- 
+Notes:
 
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
+1) The built kernel is about 50% the size of the official one;
+2) I've seen references to a change in the (default) enable state of the =
+L2 cache (it's now on by default).
+3) Is the RPi toolchain patched? It's reported as GCC 4.5.1 (Broadcom =
+2708) in /proc/version. I've asked where the source is, but have not =
+heard anything yet.
+4) Khem Raj has noted that there are changes in .config that may be an =
+issue.
+5) Nothing comes out of the serial console when an image fails.
 
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+Has anyone got any ideas how to get the latest kernel to work?
+
+Chris Tapp
+
+opensource@keylevel.com
+www.keylevel.com
+
+
+
 
