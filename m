@@ -1,24 +1,23 @@
 Return-Path: <rpjday@crashcourse.ca>
 Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
 	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EEBE6E0070C
-	for <yocto@yoctoproject.org>; Tue, 26 Jun 2012 10:12:54 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1D315E0070C
+	for <yocto@yoctoproject.org>; Tue, 26 Jun 2012 10:14:14 -0700 (PDT)
 Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
-	([99.241.91.63]:40114 helo=crashcourse.ca)
+	([99.241.91.63]:40124 helo=crashcourse.ca)
 	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
 	(Exim 4.77) (envelope-from <rpjday@crashcourse.ca>)
-	id 1SjZJt-00081G-CJ; Tue, 26 Jun 2012 13:12:53 -0400
-Date: Tue, 26 Jun 2012 13:12:49 -0400 (EDT)
+	id 1SjZLB-000877-HL; Tue, 26 Jun 2012 13:14:13 -0400
+Date: Tue, 26 Jun 2012 13:14:09 -0400 (EDT)
 From: "Robert P. J. Day" <rpjday@crashcourse.ca>
 X-X-Sender: rpjday@oneiric
-To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB1237946A1323A@ORSMSX101.amr.corp.intel.com>
-Message-ID: <alpine.DEB.2.02.1206261310400.6052@oneiric>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+In-Reply-To: <1447441.xnbSj4QHNd@helios>
+Message-ID: <alpine.DEB.2.02.1206261313120.6097@oneiric>
 References: <alpine.DEB.2.02.1206260459040.8547@oneiric>
-	<3228700.TZNO2vyRAD@helios>
-	<alpine.DEB.2.02.1206261247100.5915@oneiric>
 	<7137339.IoCmExdDEI@helios>
-	<41DEA4B02DBDEF40A0F3B6D0DDB1237946A1323A@ORSMSX101.amr.corp.intel.com>
+	<alpine.DEB.2.02.1206261304290.6025@oneiric>
+	<1447441.xnbSj4QHNd@helios>
 User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
 X-AntiAbuse: This header was added to track abuse,
@@ -30,8 +29,7 @@ X-AntiAbuse: Sender Address Domain - crashcourse.ca
 X-Source: 
 X-Source-Args: 
 X-Source-Dir: 
-Cc: Paul Eggleton <paul.eggleton@linux.intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Cc: yocto@yoctoproject.org
 Subject: Re: <rant>the current yocto FAQ is pretty much valueless</rant>
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -44,36 +42,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 26 Jun 2012 17:12:55 -0000
+X-List-Received-Date: Tue, 26 Jun 2012 17:14:14 -0000
 Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-On Tue, 26 Jun 2012, Rifenbark, Scott M wrote:
+On Tue, 26 Jun 2012, Paul Eggleton wrote:
 
-> So this situation might lend itself to a nice FAQ question....
-> Something like "How do I isolate site and machine specific
-> information during a build?"  And the solution can tell them how to
-> use a site.conf file.
+> On Tuesday 26 June 2012 13:05:21 Robert P. J. Day wrote:
+> > On Tue, 26 Jun 2012, Paul Eggleton wrote:
+> > > On Tuesday 26 June 2012 12:51:15 Robert P. J. Day wrote:
+> > > >   ok, that makes sense.  but would it also make sense for bitbake to
+> > > > perhaps support another option that *does* allow personal content to,
+> > > > say, be effectively appended to one's local.conf.  for instance, every
+> > > > single local.conf i create immediately gets this added to the end:
+> > > >
+> > > > SOURCE_MIRROR_URL ?= "file:///home/rpjday/dl/"
+> > > > INHERIT += "own-mirrors"
+> > > > BB_GENERATE_MIRROR_TARBALLS = "1"
+> > > > # BB_NO_NETWORK = "1"
+> > >
+> > > OK, looking at the settings you've listed, I think these are the
+> > > kinds of things that site.conf was invented for - stuff that is
+> > > specific not to the builds you are doing but to the host machine /
+> > > site. You can simply put these settings in a file called site.conf
+> > > next to local.conf and they'll be read from there; for new build
+> > > directories you can just copy it in or symlink it from some common
+> > > location.
+> >
+> >   that still requires just a touch of user intervention.  no totally
+> > automatic way to do that, then?  it's at least an improvement over
+> > manual copying, thanks.
+>
+> I have thought about this - it would be great if oe-init-build-env could
+> copy/symlink your customised version from somewhere automatically every time;
+> however the question would be how would it know where to copy it from? I'm not
+> sure an added command-line option would be much better than just getting
+> people to copy/symlink it in manually.
 
-  yes, but it would also need information on ordering of consultation.
-from bitbake.conf:
-
-require conf/abi_version.conf
-include conf/site.conf
-include conf/auto.conf
-include conf/local.conf
-include conf/build/${BUILD_SYS}.conf
-include conf/target/${TARGET_SYS}.conf
-include conf/machine/${MACHINE}.conf
-include conf/machine-sdk/${SDKMACHINE}.conf
-include conf/distro/${DISTRO}.conf
-include conf/distro/defaultsetup.conf
-include conf/documentation.conf
-require conf/sanity.conf
-
-  is it safe to assume that the ordering there is important, and that
-files are consulted top down?  if that's the case, it's useful to
-explain that the site.conf file would be consulted before one's
-local.conf file (if that's in fact the case).
+  that's fine, i'll at least note this shortcut.
 
 rday
 
