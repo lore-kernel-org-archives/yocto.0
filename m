@@ -1,30 +1,33 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-ee0-f48.google.com (mail-ee0-f48.google.com [74.125.83.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 35B4BE00739
-	for <yocto@yoctoproject.org>; Tue, 26 Jun 2012 12:50:22 -0700 (PDT)
-Received: by eekb45 with SMTP id b45so145311eek.35
-	for <yocto@yoctoproject.org>; Tue, 26 Jun 2012 12:50:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type:content-transfer-encoding;
-	bh=wjZiGnTDnOznKXiDt8xOxzFAhx7vKB69ZtguFhxU3uY=;
-	b=XFZLT6ndnA0tX3mZMo8WSF+BZOQVkViEWvZGQPs9cMmVsVM1ZVYhG/bOVgUrevKzsh
-	lMDXy3DKPebxBKRtzpdqSs67u2s+jA55FszGjg8+ujSsNOzNuJluwhgRcmJvCdzpX7cE
-	BO5IydxMfy2PTTsXUZkmM44NgH3UydX4CmiLj8QJfk76e8tK7XxvEyZQ+vcIhZfqMEiO
-	90q4ZPjCz3/sbYI8OG3oPUITFbqWl0wa9toPs+VccP7JP7pJ+Qv9O1Klc0gPGWKMSKq9
-	m9JF837+F2F6+zQHuNE0bLVyTYBwHFEZiPnqR8Re5fg4efsQ994nltmwM4Ig+i0E0YRX
-	QoWg==
-Received: by 10.14.185.137 with SMTP id u9mr3654076eem.220.1340740221117; Tue,
-	26 Jun 2012 12:50:21 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.14.219.71 with HTTP; Tue, 26 Jun 2012 12:49:50 -0700 (PDT)
-In-Reply-To: <CAE9DZURiOqQg+djPTxz4S9h=uRrmYoce9uGrN1QjzG1ccsoFNQ@mail.gmail.com>
+Return-Path: <david.c.stewart@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E3FD2E006D9
+	for <yocto@yoctoproject.org>; Tue, 26 Jun 2012 13:10:48 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 26 Jun 2012 13:10:48 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="116285386"
+Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
+	by AZSMGA002.ch.intel.com with ESMTP; 26 Jun 2012 13:10:48 -0700
+Received: from orsmsx101.amr.corp.intel.com (10.22.225.128) by
+	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Tue, 26 Jun 2012 13:10:45 -0700
+Received: from orsmsx105.amr.corp.intel.com ([169.254.4.138]) by
+	ORSMSX101.amr.corp.intel.com ([169.254.8.59]) with mapi id
+	14.01.0355.002; Tue, 26 Jun 2012 13:10:45 -0700
+From: "Stewart, David C" <david.c.stewart@intel.com>
+To: Dallas Clement <dallas.a.clement@gmail.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] How to clean
+Thread-Index: AQHNU9DtGFEixNS0SkilORuapSNdw5cNB63A
+Date: Tue, 26 Jun 2012 20:10:44 +0000
+Message-ID: <CDED78A957032E45B3239CDDA7642D151C866D8D@ORSMSX105.amr.corp.intel.com>
 References: <CAE9DZURiOqQg+djPTxz4S9h=uRrmYoce9uGrN1QjzG1ccsoFNQ@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Tue, 26 Jun 2012 12:49:50 -0700
-Message-ID: <CAMKF1sra7GZWPwVFCAWeEOo1pFz4v8K-68+mnLh1AY8DxwVfSQ@mail.gmail.com>
-To: Dallas Clement <dallas.a.clement@gmail.com>
-Cc: yocto@yoctoproject.org
+In-Reply-To: <CAE9DZURiOqQg+djPTxz4S9h=uRrmYoce9uGrN1QjzG1ccsoFNQ@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.138]
+MIME-Version: 1.0
 Subject: Re: How to clean
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -37,16 +40,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 26 Jun 2012 19:50:22 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Tue, 26 Jun 2012 20:10:49 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Jun 26, 2012 at 12:21 PM, Dallas Clement
-<dallas.a.clement@gmail.com> wrote:
+>From: yocto-bounces@yoctoproject.org [mailto:yocto-
+>bounces@yoctoproject.org] On Behalf Of Dallas Clement
+>Sent: Tuesday, June 26, 2012 12:21 PM
 >
+>I'd like to clean all of my build output so that I can rebuild with a
+>different toolchain.  What is the best way to clean without having to
+>redownload all of my source packages again?
 >
-> can clean the kernel or an individual package. =C2=A0I want to clean ever=
-ything.
+>I can see that something like this
+>
+>$ bitbake -c cleanall linux-yocto
+>
+>can clean the kernel or an individual package.  I want to clean everything=
+.
 
-by default DL_DIR lives outside TMPDIR so you can delete the TMPDIR
+I just delete the tmp directory and that seems to get the result I want - r=
+emove all the binaries but doesn't delete the sources.
 
