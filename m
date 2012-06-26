@@ -1,26 +1,34 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6F671E0070C
-	for <yocto@yoctoproject.org>; Tue, 26 Jun 2012 08:48:10 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 26 Jun 2012 08:48:10 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="158407619"
-Received: from unknown (HELO envy.home) ([10.255.12.246])
-	by orsmga001.jf.intel.com with ESMTP; 26 Jun 2012 08:48:09 -0700
-Message-ID: <4FE9D965.4070906@linux.intel.com>
-Date: Tue, 26 Jun 2012 08:46:45 -0700
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:13.0) Gecko/20120615 Thunderbird/13.0.1
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C103BE0070C
+	for <yocto@yoctoproject.org>; Tue, 26 Jun 2012 08:48:46 -0700 (PDT)
+Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
+	([99.241.91.63]:39226 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.77) (envelope-from <rpjday@crashcourse.ca>)
+	id 1SjY0T-00014S-Uy; Tue, 26 Jun 2012 11:48:46 -0400
+Date: Tue, 26 Jun 2012 11:48:42 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: Khem Raj <raj.khem@gmail.com>
+In-Reply-To: <CAMKF1soE6k2nn1TyTU_z_CZFiU2C-BFb3DQo6NacyHRwELpFtA@mail.gmail.com>
+Message-ID: <alpine.DEB.2.02.1206261147580.5602@oneiric>
+References: <alpine.DEB.2.02.1206260410060.21539@oneiric>
+	<CAMKF1soE6k2nn1TyTU_z_CZFiU2C-BFb3DQo6NacyHRwELpFtA@mail.gmail.com>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-References: <alpine.DEB.2.02.1206260459040.8547@oneiric>
-	<10398861.esnekvBoZU@helios>
-In-Reply-To: <10398861.esnekvBoZU@helios>
-X-Enigmail-Version: 1.4.2
-Cc: yocto@yoctoproject.org
-Subject: Re: <rant>the current yocto FAQ is pretty much valueless</rant>
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: how many meta-toolchain-* targets are there?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,56 +40,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 26 Jun 2012 15:48:10 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 26 Jun 2012 15:48:47 -0000
+Content-Type: MULTIPART/MIXED; BOUNDARY="8323329-1179255540-1340725724=:5602"
 
+--8323329-1179255540-1340725724=:5602
+Content-Type: TEXT/PLAIN; charset=UTF-8
+Content-Transfer-Encoding: QUOTED-PRINTABLE
 
+On Tue, 26 Jun 2012, Khem Raj wrote:
 
-On 06/26/2012 03:09 AM, Paul Eggleton wrote:
-> On Tuesday 26 June 2012 05:09:34 Robert P. J. Day wrote:
->>   in other words, a *good* FAQ might be:
->>
->> "how can i use the yocto prebuilt toolchains to save build time?"
->>
->>   a *bad* FAQ would be:
->>
->> "Does the Yocto Project have a special governance model, or is it
->> managed as an open source project?"
->>
->>   the kicker is that that last question is, in fact, in the yocto FAQ,
->> along with a number of other questions that have never been asked by
->> anyone in the history of the planet.  i chat about yocto with people
->> on a regular basis, and i can assure you, not a single one of them has
->> ever asked, "hey, rob, can you explain yocto's governance model?"
->>
->>   no, what they ask is, "hey, rob, how can i add a single package to
->> an existing target?"  a question that, i should point out, is not
->> answered definitively in the existing docs *anywhere*.
-> 
-> You bring up a valid point, but I think it might be worth mentioning that the 
-> current FAQ evolved from a much less technically-oriented version that was 
-> produced when the project launched. At that time some people *were* asking the 
-> kind of questions that you're deriding. I think there's still a section of the 
-> *non-technical* audience who are interested in answers to those questions.
-> 
-> I suggested to Scott R previously that it might be worth having a project FAQ 
-> (i.e., what is this project about, what is it intended to be used for etc.) 
-> and a separate technical FAQ which answers the kind of questions you are 
-> expecting and that we see often on the mailing list. I think one of the 
-> reasons that hasn't been done is that we're hoping to introduce a Q&A function 
-> on the website similar to StackOverflow, where everyone can participate but the 
-> most appropriate answers bubble up to the top. As yet this has not been 
-> implemented and I'm not sure when it will be, so it may still be worth looking 
-> into a static technical FAQ on the wiki until it is.
+> On Tue, Jun 26, 2012 at 1:15 AM, Robert P. J. Day <rpjday@crashcourse.ca>=
+ wrote:
+> >
+> > =C2=A0something that could be cleared up a bit in the docs ... how many
+> > toolchain-related targets are there?
+> >
+> > =C2=A0for instance, running bitbake suggests that common targets includ=
+e
+> > meta-toolchain and meta-toolchain-sdk. =C2=A0on the other hand, the ADT
+> > manual makes no reference to meta-toolchain-sdk but *does* mention
+> > meta-toolchain-gmae (without explaining to the reader what that
+> > represents but nonetheless recommends to the reader that if he needs
+> > GMAE, he should build that, whereupon the poor reader is left
+> > wondering what the heck GMAE is and whether it's important).
+> >
+> > =C2=A0and a search of the source shows a meta-toolchain-qte, for which =
+i
+> > can see no mention whatever in *any* of the docs.
+> >
+> > =C2=A0thoughts?
+>
+> they should be documented I agree. meta-toolchain-gmae and
+> meta-toolchain-sdk are synonymous.
 
-Is "technical FAQ" == "How-Do-I pages" ?
+  i was about to make that very point.  :-)
 
+rday
 
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
+--=20
 
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
 
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
 
+--8323329-1179255540-1340725724=:5602--
