@@ -1,60 +1,31 @@
-Return-Path: <omprakash.pal@stericsson.com>
-Received: from eu1sys200aog113.obsmtp.com (eu1sys200aog113.obsmtp.com
-	[207.126.144.135])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F1F26E00746
-	for <yocto@yoctoproject.org>; Mon, 25 Jun 2012 22:36:52 -0700 (PDT)
-Received: from beta.dmz-ap.st.com ([138.198.100.35]) (using TLSv1) by
-	eu1sys200aob113.postini.com ([207.126.147.11]) with SMTP
-	ID DSNKT+lKcBGu4WP3TeTWyd/rWjutgWlyH7s5@postini.com;
-	Tue, 26 Jun 2012 05:36:53 UTC
-Received: from zeta.dmz-ap.st.com (ns6.st.com [138.198.234.13])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 906FEB4;
-	Tue, 26 Jun 2012 05:28:27 +0000 (GMT)
-Received: from relay1.stm.gmessaging.net (unknown [10.230.100.17])
-	by zeta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 250251827;
-	Tue, 26 Jun 2012 05:36:45 +0000 (GMT)
-Received: from exdcvycastm004.EQ1STM.local (alteon-source-exch [10.230.100.61])
-	(using TLSv1 with cipher RC4-MD5 (128/128 bits))
-	(Client CN "exdcvycastm004", Issuer "exdcvycastm004" (not verified))
-	by relay1.stm.gmessaging.net (Postfix) with ESMTPS id A594224C07D;
-	Tue, 26 Jun 2012 07:36:40 +0200 (CEST)
-Received: from EXDCVYMBSTM006.EQ1STM.local ([10.230.100.3]) by
-	exdcvycastm004.EQ1STM.local ([10.230.100.2]) with mapi; Tue, 26 Jun 2012
-	07:36:44 +0200
-From: Om Prakash PAL <omprakash.pal@stericsson.com>
-To: Khem Raj <raj.khem@gmail.com>
-Date: Tue, 26 Jun 2012 07:33:22 +0200
-Thread-Topic: [yocto] Porting of specific Kernel/Driver into yocto.
-Thread-Index: Ac1S5SnaSoca8BXDRCqHFGZ5iM1VcQAeAoHz
-Message-ID: <3ED83A9DB3B6D94CA68BF7C03F2981D35B1897B1DB@EXDCVYMBSTM006.EQ1STM.local>
-References: <3ED83A9DB3B6D94CA68BF7C03F2981D35A844F357F@EXDCVYMBSTM006.EQ1STM.local>
-	<4F9E9DD5.5080601@windriver.com>
-	<3ED83A9DB3B6D94CA68BF7C03F2981D35B042416D2@EXDCVYMBSTM006.EQ1STM.local>
-	<4FA27A40.6080506@windriver.com>
-	<3ED83A9DB3B6D94CA68BF7C03F2981D35B042416D3@EXDCVYMBSTM006.EQ1STM.local>
-	<4FA66F02.3080107@windriver.com>
-	<3ED83A9DB3B6D94CA68BF7C03F2981D35B1897B1D2@EXDCVYMBSTM006.EQ1STM.local>
-	<4FBD2998.5060407@intel.com>
-	<3ED83A9DB3B6D94CA68BF7C03F2981D35B1897B1D3@EXDCVYMBSTM006.EQ1STM.local>
-	<4FE317F5.1000400@mlbassoc.com>
-	<3ED83A9DB3B6D94CA68BF7C03F2981D35B18D9EC2E@EXDCVYMBSTM006.EQ1STM.local>
-	<4FE32F95.8000801@mlbassoc.com>
-	<3ED83A9DB3B6D94CA68BF7C03F2981D35B18D9EDE8@EXDCVYMBSTM006.EQ1STM.local>
-	<CAMKF1sosEk23cc=GKxH7KinhPUNwhsdhPKkFHjYybPezZJrmSQ@mail.gmail.com>
-	<3ED83A9DB3B6D94CA68BF7C03F2981D35B1897B1D8@EXDCVYMBSTM006.EQ1STM.local>
-	<4FE862BE.2020307@windriver.com>
-	<3ED83A9DB3B6D94CA68BF7C03F2981D35B18D9F70F@EXDCVYMBSTM006.EQ1STM.local>
-	<4FE870EB.1040907@windriver.com>
-	<3ED83A9DB3B6D94CA68BF7C03F2981D35B18D9F71C@EXDCVYMBSTM006.EQ1STM.local>,
-	<CAMKF1sq9ZKQ5KZk2Dav41qSPB19LfonK_aJj64k9ZpbB4vAUjA@mail.gmail.com>
-In-Reply-To: <CAMKF1sq9ZKQ5KZk2Dav41qSPB19LfonK_aJj64k9ZpbB4vAUjA@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-ee0-f48.google.com (mail-ee0-f48.google.com [74.125.83.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9182EE00746
+	for <yocto@yoctoproject.org>; Mon, 25 Jun 2012 23:00:08 -0700 (PDT)
+Received: by eekb45 with SMTP id b45so1911117eek.35
+	for <yocto@yoctoproject.org>; Mon, 25 Jun 2012 23:00:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type:content-transfer-encoding;
+	bh=cGaPpXaG/VVZB+rc+gmBME2GytfEZf4oqVo5F1r4pw4=;
+	b=XrfllM+3foXxLihMBzVTPoN3I00e1cM37guE7Tz/JLyowRBM6/e6Nj7QS2q7ZYQ6AS
+	Q2Oax+oPZhFdxsByTbgPd+rSQyf89mrJ05HS+34Ht0C0yoPWqjO4vDvuC5Id0uzohUIY
+	nX304FjUZvhKaFztf3CN9FjWaSeCVoEGpdG6WLHCyH6D0oYknYHs8+lH+fhKfrnOeMZ9
+	/QNymXumg4DCRCnPpSe4NP3LYY7wpw0usnyHZpVECi9XlljC1VpxniHl0e5FmYSAMRew
+	CRI+v02VQ+FryF+x64ZhNb4GY5Naasoj9g10LaUMxcwIEQeuOu5PPuU4J1L1PG/RMxi5
+	2bkA==
+Received: by 10.14.53.4 with SMTP id f4mr2961214eec.93.1340690407186; Mon, 25
+	Jun 2012 23:00:07 -0700 (PDT)
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Porting of specific Kernel/Driver into yocto.
+Received: by 10.14.219.71 with HTTP; Mon, 25 Jun 2012 22:59:36 -0700 (PDT)
+In-Reply-To: <CAKPsnf3YG1uRHgD9uE0NMP39hQJ4CsXZZAHffPdzBcTXWHMBdQ@mail.gmail.com>
+References: <CAKPsnf3YG1uRHgD9uE0NMP39hQJ4CsXZZAHffPdzBcTXWHMBdQ@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Mon, 25 Jun 2012 22:59:36 -0700
+Message-ID: <CAMKF1sp-vF62xkrWkQ9FOk_M2gvMQUGWUZugCX0xK9uM2yBUdg@mail.gmail.com>
+To: Bongseo Jang <graycells@gmail.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: possible to replace octeon mips64 SDK with yocto mips64 SDK?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,134 +37,73 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 26 Jun 2012 05:36:54 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Tue, 26 Jun 2012 06:00:08 -0000
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Hi khem,
-on target, etc/ does not contain securetty.
+On Mon, Jun 25, 2012 at 9:48 PM, Bongseo Jang <graycells@gmail.com> wrote:
+> Hi, All.
+>
+> I've=C2=A0built several yocto meta-toolchain's so far and now working on
+> replacing Cavium's official octeon mips64=C2=A0SDK with yocto/oe mips64 S=
+DK.
+> I really want to replace=C2=A0the Cavium-provided one because that is old=
+ and
+> drags product's development.
+>
+> It seems possible because I think
+> =C2=A0 1) mips64 ISA is well-defined(and assuming=C2=A0Cavium never added=
+ extension)
+> =C2=A0 2) mips64-linux ABI is well-defined(and assuming Cavium never twea=
+ked it)
+> =C2=A0 3) kernel will deal with everything about hardware, and we have th=
+e kernel
+> which Cavium provided to us
+>
+> I started with copying qemumips.conf to qemumips64.conf, changed it like
+> below
+> and... 'bitbake meta-toolchain' has just=C2=A0finished.
+>
+> =C2=A0require conf/machine/include/qemu.inc
+> -require conf/machine/include/tune-mips32.inc
+> +require conf/machine/include/tune-mips64.inc
+>
+> Do=C2=A0you think I've got a=C2=A0right=C2=A0SDK which replace the offici=
+al SDK?=C2=A0And how
+> can I=C2=A0assure it?
+> (I have no idea about what the company like Cavium or=C2=A0other embedded=
+ product
+> companys do to their SDK)
+> I fear that my assumptions=C2=A0are questinable and misleading.
 
-Best Regards,
-Om Prakash Pal
-________________________________________
-From: Khem Raj [raj.khem@gmail.com]
-Sent: Monday, June 25, 2012 8:43 PM
-To: Om Prakash PAL
-Cc: Bruce Ashfield; yocto@yoctoproject.org
-Subject: Re: [yocto] Porting of specific Kernel/Driver into yocto.
+well we did mips64 work recently
+but there is no sample machine for mips64 yet. what you did is fine
+otherwise you can also see the patch
 
-On Mon, Jun 25, 2012 at 7:12 AM, Om Prakash PAL
-<omprakash.pal@stericsson.com> wrote:
-> Hi Bruce,
-> You can check the attached log.
->
-> It does not contain /dev/tty0..its /dev/ttyAMA2.
-> I am not able to get why is it opening /dev/tty0?.
+http://git.openembedded.org/openembedded-core-contrib/commit/?h=3Dkraj/misc=
+&id=3D5d9d9798133d27169c7251639cdf7a2ff97a9d30
 
-whats there in /etc/securetty on target rfs ?
+and this will add a qemumips64 machine and then you can do
+
+MACHINE=3Dqemumips64 bitbake meta-toolchain
+
+to generate mips64 SDK
+
+Be aware that mips64 support N64 ABI only at the moment in OE-Core
+
+
 >
-> Best Regards,
-> Om Prakash Pal
+> Thaks
 >
-> -----Original Message-----
-> From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]
-> Sent: Monday, June 25, 2012 7:39 PM
-> To: Om Prakash PAL
-> Cc: Khem Raj; yocto@yoctoproject.org
-> Subject: Re: [yocto] Porting of specific Kernel/Driver into yocto.
+> --
+> Regards,
+> Jang.
 >
-> On 12-06-25 10:06 AM, Om Prakash PAL wrote:
->> Hi Bruce,
->> Yes,its arm board.
->> Yes, I have verified and kernel bootline is properly passed to the kerne=
-l by bootloader.
+> =C2=A0a sound mind in a sound body
 >
-> And does it (the bootline) contain /dev/tty0 ? .. because if things are
-> properly configured, it really shouldn't be trying to open it.
->
-> Cheers,
->
-> Bruce
->
->>
->> Best Regards,
->> Om Prakash Pal
->>
->> -----Original Message-----
->> From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]
->> Sent: Monday, June 25, 2012 6:38 PM
->> To: Om Prakash PAL
->> Cc: Khem Raj; yocto@yoctoproject.org
->> Subject: Re: [yocto] Porting of specific Kernel/Driver into yocto.
->>
->> On 12-06-25 08:53 AM, Om Prakash PAL wrote:
->>> Hi Khem,
->>> I have build core-image-core. but still this Error:
->>> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D>
->>>      11.165466] EXT3-fs (mmcblk0p1): mounted filesystem with writeback =
-data mode
->>> [   11.172668] VFS: Mounted root (ext3 filesystem) on device 179:1.
->>> [   11.179260] Freeing init memory: 316K
->>> INIT: version 2.88 booting
->>> Error Cannot open /dev/tty0: No such device or address
->>> mknod: /dev/console: File exists
->>>
->>> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D>
->>>
->>> I have set SERIAL_CONSOLE=3D"115200 ttyAMA2"  then why its taking /dev/=
-tty0 ?.
->>
->> I've lost some of the context on the board you are working with, but
->> from ttyAMA2, I'm assuming it is an arm board. Have you verified that yo=
-ur
->> bootloader can pass the kernel bootline properly to the kernel ? It is
->> (unfortunately) fairly common that it isn't properly passed. If you
->> modify your configuration to have a built in command line with your
->> configuration, you may be able to get better setup to debug the
->> problem.
->>
->> Cheers,
->>
->> Bruce
->>
->>> please help.
->>>
->>> Best Regards,
->>> Om Prakash Pal
->>> _______________________________________
->>> From: Khem Raj [raj.khem@gmail.com]
->>> Sent: Friday, June 22, 2012 11:18 AM
->>> To: Om Prakash PAL
->>> Cc: Gary Thomas; yocto@yoctoproject.org
->>> Subject: Re: [yocto] Porting of specific Kernel/Driver into yocto.
->>>
->>> On Thu, Jun 21, 2012 at 10:37 PM, Om Prakash PAL
->>> <omprakash.pal@stericsson.com>   wrote:
->>>>
->>>>>> and then console got  stuck.
->>>>>
->>>>>> What do you have SERIAL_CONSOLE set to in your configuration?
->>>>>
->>>>> I have set SERIAL_CONSOLE=3D"115200 ttyAMA2". As we are using ttyAMA2=
- for console.
->>>>
->>>>> What is your target device?  Do you really have /dev/ttyAMA2 serial p=
-ort??.
->>>>
->>>> Yes, I have /dev/ttyAMA2 serial port.
->>>
->>> Can you try using say poky/master and generate root file system and
->>> try that out ?
->>> another option is to try core-image-core
->>> _______________________________________________
->>> yocto mailing list
->>> yocto@yoctoproject.org
->>> https://lists.yoctoproject.org/listinfo/yocto
->>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 >
 
