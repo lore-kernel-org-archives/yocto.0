@@ -1,19 +1,31 @@
-Return-Path: <ml@communistcode.co.uk>
-Received: from tinyArch.localdomain (unknown [78.110.170.148])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 37F80E01304
-	for <yocto@yoctoproject.org>; Wed, 27 Jun 2012 08:21:15 -0700 (PDT)
-Received: from [192.168.0.49] (unknown [195.171.99.130])
-	by tinyArch.localdomain (Postfix) with ESMTPSA id BDD0B600CA
-	for <yocto@yoctoproject.org>; Wed, 27 Jun 2012 16:03:47 +0100 (BST)
-Message-ID: <4FEB2521.3020203@communistcode.co.uk>
-Date: Wed, 27 Jun 2012 16:22:09 +0100
-From: Jack Mitchell <ml@communistcode.co.uk>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:13.0) Gecko/20120616 Thunderbird/13.0.1
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-ee0-f48.google.com (mail-ee0-f48.google.com [74.125.83.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 89668E0073F
+	for <yocto@yoctoproject.org>; Wed, 27 Jun 2012 08:49:54 -0700 (PDT)
+Received: by eekb45 with SMTP id b45so542373eek.35
+	for <yocto@yoctoproject.org>; Wed, 27 Jun 2012 08:49:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=N0VqvGnNvobFeHerOc1CPO9nzQfRpHSp6aXf+0Ah/Wc=;
+	b=yg49vuoRejWz+iioBCEAuZOJiR2MAO14nHy1LVSBK4T4DVTvYiVtq+a8pOsMyo9/4+
+	57bEgCiHE673O8T8CHoLCWjItkqta++tDvAu3C5Gy52E1mW0fSn0ZLbJGg7vJu79tTCj
+	z88W4I0q4baHP6uQ18XoHqnX/UZrIXWxNMW0Eoojuk2KxNGDXr1Q8vAkSqAFiCd/PGQj
+	beG7cCJQzP+AGo0d4Mcxx4B+zh1c/DijtrpwLaGaNOM1Z8FqWQoVnjcxVVHQjlcTYeMn
+	H+kf5+fQ+kSMvHzzyrfI0zuimxaG0ZaWoCSyYcu7ADQS6Posk36jVtX4GkXPSw//Vnb9
+	STrQ==
+Received: by 10.14.119.202 with SMTP id n50mr4124179eeh.33.1340812193313; Wed,
+	27 Jun 2012 08:49:53 -0700 (PDT)
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <20317992.tBZ1YY1I5v@helios>
+Received: by 10.14.219.71 with HTTP; Wed, 27 Jun 2012 08:49:22 -0700 (PDT)
 In-Reply-To: <20317992.tBZ1YY1I5v@helios>
+References: <20317992.tBZ1YY1I5v@helios>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Wed, 27 Jun 2012 08:49:22 -0700
+Message-ID: <CAMKF1spB5Q3BHhbbnf6ARfJBZ=si-LE-7wYw07w=_ODSG4dPOA@mail.gmail.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Cc: yocto@yoctoproject.org, openembedded-devel@lists.openembedded.org,
+	joe.macdonald@windriver.com
 Subject: Re: LAMP layer
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -26,11 +38,11 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 27 Jun 2012 15:21:15 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 27 Jun 2012 15:49:54 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On 27/06/12 15:05, Paul Eggleton wrote:
+On Wed, Jun 27, 2012 at 7:05 AM, Paul Eggleton
+<paul.eggleton@linux.intel.com> wrote:
 > Hi all,
 >
 > In conjunction with the folks at Wind River I'm currently in the process of
@@ -66,54 +78,21 @@ On 27/06/12 15:05, Paul Eggleton wrote:
 >
 > Thoughts?
 >
+
+I think PHP probably is common enough to be part
+of meta-oe or core. instead of lamp call it something else may be
+meta-webservers or something
+and more alternatives can also be put in there
 > Cheers,
 > Paul
 >
 >
-
-Hi Paul,
-
-I think this is a fantastic idea in general and if I remember correctly 
-someone from Linaro was attempting to do something similar to this the 
-other day - so I can't only be me who would appreciate something like this.
-
-The one issue I have (initially) is why should it be limited to the 
-Apache web server? There are a couple of good web servers out there 
-which lend themselves much more to an embedded style development than 
-(IMO) the bloat that is Apache.
-
-For example:
-
-Lighttpd (already in core)
-nginx
-Hiawatha (my personal favourite - I have a recipe I already use in 
-conjunction with PHP)
-
-I also remember someone from WindRiver posted recently regarding a 
-meta-networking layer, which I also thought was a great idea if not only 
-for (in my use case) tftp/net-snmp support all rolled up and supported. 
-Maybe this could be a layer with that "section"?
-
-i.e.
-
-meta-networking
-     meta-webserver (meta-l*mp?)
-         recipes-*
-         recipes-*
-     meta-*
-         ....
-         ....
-
-I'm sure you get the idea...
-
-Regards,
-
--- 
-
-   Jack Mitchell (jack@embed.me.uk)
-   Embedded Systems Engineer
-   http://www.embed.me.uk
-
---
-
+> --
+>
+> Paul Eggleton
+> Intel Open Source Technology Centre
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
