@@ -1,35 +1,28 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C2114E0073F
-	for <yocto@yoctoproject.org>; Wed, 27 Jun 2012 13:06:06 -0700 (PDT)
-Received: from cpe78cd8ec96008-cm78cd8ec96005.cpe.net.cable.rogers.com
-	([173.32.31.66]:33530 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.77) (envelope-from <rpjday@crashcourse.ca>)
-	id 1SjyV3-0006pg-Pm; Wed, 27 Jun 2012 16:06:05 -0400
-Date: Wed, 27 Jun 2012 16:06:03 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB1237946A138B8@ORSMSX101.amr.corp.intel.com>
-Message-ID: <alpine.DEB.2.02.1206271604580.4118@oneiric>
-References: <alpine.DEB.2.02.1206271335320.24547@oneiric>
-	<alpine.DEB.2.02.1206271546060.4074@oneiric>
-	<41DEA4B02DBDEF40A0F3B6D0DDB1237946A138B8@ORSMSX101.amr.corp.intel.com>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <tf+lists.yocto@r-finger.com>
+Received: from r-finger.com (r-finger.com [178.79.160.5])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9BF0DE01304
+	for <yocto@yoctoproject.org>; Wed, 27 Jun 2012 13:14:52 -0700 (PDT)
+Received: from [192.168.0.2] (host86-170-68-253.range86-170.btcentralplus.com
+	[86.170.68.253]) (using TLSv1 with cipher AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by r-finger.com (Postfix) with ESMTPSA id E4B7D9C07
+	for <yocto@yoctoproject.org>; Wed, 27 Jun 2012 21:14:51 +0100 (BST)
+Message-ID: <4FEB69BB.2080906@r-finger.com>
+Date: Wed, 27 Jun 2012 21:14:51 +0100
+From: Tomas Frydrych <tf+lists.yocto@r-finger.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:10.0.3) Gecko/20120329 Icedove/10.0.3
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: making PDF docs, error in fop step, "Can't load standard profile: sRGB.pf"
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <alpine.DEB.2.02.1206260459040.8547@oneiric>
+	<10398861.esnekvBoZU@helios> <4FE9D965.4070906@linux.intel.com>
+	<3153041.1FMPtSpq0x@helios> <4FE9E58C.9020408@r-finger.com>
+	<alpine.DEB.2.02.1206261252060.5948@oneiric>
+	<4FE9EEF6.7050001@r-finger.com> <4FEA0505.6010108@am.sony.com>
+	<4FEACDE6.7040701@r-finger.com>
+	<83905E03-FF88-48EC-9336-273B02FB9FB1@beagleboard.org>
+In-Reply-To: <83905E03-FF88-48EC-9336-273B02FB9FB1@beagleboard.org>
+Subject: Re: <rant>the current yocto FAQ is pretty much valueless</rant>
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,29 +34,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 27 Jun 2012 20:06:06 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Wed, 27 Jun 2012 20:14:52 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Wed, 27 Jun 2012, Rifenbark, Scott M wrote:
+Hi Koen,
 
-> Robert,
->
-> So you do think it is a carry-over of that openjdk-6 error?  I
-> thought the error output was very similar.
+On 27/06/12 15:59, Koen Kooi wrote:
+> Yocto is NOT a distro. 
 
-  i'm digging into it now - that bug report implied that it had been
-addressed back in openjdk-6, so it's clearly returned under some
-circumstances.
+Is that so? :-), meta-yocto distro.conf:
 
-rday
+DISTRO = "poky"
+DISTRO_NAME = "Yocto (Built by Poky 7.0)"
+DISTRO_VERSION = "1.2"
 
--- 
+I am well aware that textual meaning is pretty much constructed by the
+reader, and that authorial intent is an elusive concept, but I am ready
+to argue that the conventional understanding of the above is that Poky
+is a build tool, and Yocto is the public name of the distro that you
+build if you use meta-yocto. To read that as 'Yocto is NOT a distro' I
+think requires a definite pre-understanding that Yocto is not a distro,
+which would need to come from some other source (or perhaps it is an
+axiom of faith; myself, I tend hold firmly to the authority of the
+source code alone). I shall not deny you the right to hold to such a
+reading, but I do reserve the right to deconstruct it. :-)
 
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
 
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+> This thread highlights the reason the oe folks have been pushing to get rid of the 'poky' name completely
+
+Perhaps one of the reasons; but then the erasure of Poky would mean that
+you could no longer say 'Yocto is a NOT a distro', which I suspect would
+achieve the very opposite of what you seek (and, perhaps more
+importantly, might cost Dave and Saul a lunch or two). Personally, I
+think much better solution would be if the distro was simply called Poky
+v7.0, then we could all say 'Yocto is NOT a distro!' with conviction.
+Plus Poky is such a lovely name, don't you think? ;-)
+
+Tomas
 
