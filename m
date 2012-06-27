@@ -1,31 +1,33 @@
-Return-Path: <david.c.stewart@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 55D9FE0073F
-	for <yocto@yoctoproject.org>; Wed, 27 Jun 2012 12:17:42 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 27 Jun 2012 12:17:41 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="161438492"
-Received: from orsmsx606.amr.corp.intel.com ([10.22.226.128])
-	by azsmga001.ch.intel.com with ESMTP; 27 Jun 2012 12:17:41 -0700
-Received: from orsmsx106.amr.corp.intel.com (10.22.225.133) by
-	orsmsx606.amr.corp.intel.com (10.22.226.128) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Wed, 27 Jun 2012 12:17:41 -0700
-Received: from orsmsx105.amr.corp.intel.com ([169.254.4.138]) by
-	ORSMSX106.amr.corp.intel.com ([169.254.5.167]) with mapi id
-	14.01.0355.002; Wed, 27 Jun 2012 12:17:41 -0700
-From: "Stewart, David C" <david.c.stewart@intel.com>
-To: yocto <yocto@yoctoproject.org>
-Thread-Topic: Web Hob - two additional design ideas
-Thread-Index: Ac1UmYVDulg/pOv2RD+l0gUO2DP0gA==
-Date: Wed, 27 Jun 2012 19:17:41 +0000
-Message-ID: <CDED78A957032E45B3239CDDA7642D151C8681AA@ORSMSX105.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.138]
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 115D7E0073F
+	for <yocto@yoctoproject.org>; Wed, 27 Jun 2012 12:47:39 -0700 (PDT)
+Received: from cpe78cd8ec96008-cm78cd8ec96005.cpe.net.cable.rogers.com
+	([173.32.31.66]:33481 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.77) (envelope-from <rpjday@crashcourse.ca>)
+	id 1SjyDC-0005gu-DW
+	for yocto@yoctoproject.org; Wed, 27 Jun 2012 15:47:38 -0400
+Date: Wed, 27 Jun 2012 15:47:32 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: Yocto discussion list <yocto@yoctoproject.org>
+In-Reply-To: <alpine.DEB.2.02.1206271335320.24547@oneiric>
+Message-ID: <alpine.DEB.2.02.1206271546060.4074@oneiric>
+References: <alpine.DEB.2.02.1206271335320.24547@oneiric>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
-Subject: Web Hob - two additional design ideas
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: Re: making PDF docs, error in fop step, "Can't load standard profile: sRGB.pf"
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,50 +39,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 27 Jun 2012 19:17:42 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 27 Jun 2012 19:47:39 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-Gang - there are a couple of ideas for Web Hob that we have talked about. I=
- don't remember seeing them in the various movies and documents. So I'm goi=
-ng to throw them out there to get your feedback and hopefully get them in t=
-he design.
+On Wed, 27 Jun 2012, Robert P. J. Day wrote:
 
-* Visualizing the image
+>
+>   for the first time in a while, i tried to build the PDF docs, and
+> every attempt ends with a java exception on my 64-bit ubuntu system
+> containing the diagnostic:
+>
+> java.lang.IllegalArgumentException: Can't load standard profile: sRGB.pf
+>
+>   i've isolated it to the "fop" invocation in poky-docbook-to-pdf.
+> i'm using openjdk-7, and it appears that i do have that file installed
+> on my system.
+>
+>   i have to bolt for the airport to pick someone up so i can't dig any
+> deeper right this minute, but if anyone else has seen this and has an
+> answer, i'd appreciate it.  can anyone else at least verify that they
+> get the same error if they try it on a similar system?  thanks.
 
-One of the things which frustrates me about GUI tools which build Linux ima=
-ges is that you usually get a long list of packages to choose from, but no =
-real guidance. I think there are a couple of interesting ways to visualize =
-what is in the image.
+  it *seems* fairly clear that this is what's happening to me:
 
-One would be to add more visual information about what makes up the image, =
-maybe like a pie chart or linear chart which shows the breakdown between ke=
-rnel, libraries, commands; perhaps with some drill down into these categori=
-es to show which libraries, for example.  This could be extremely useful fo=
-r tuning a poky-tiny image for its footprint size.
+http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=641530
 
-I find I'm also struggling with figuring out how to add a whole subsystem, =
-rather than picking out the packages.  This goes beyond the scroll list of =
-packages to add higher-level groups of packages. This might be already pres=
-ent in how we present Tasks to select, so it might already be there.
+when i try to generate yocto docs in PDF format on my ubuntu 12.04
+system using openjdk.  and on that note, i'm going back to my beer and
+wings.
 
-* Finalizing your device's source offer
+rday
 
-One of the things the Project has been praised on is our support for buildi=
-ng license compliant embedded distributions. This turns out to be one of th=
-e biggest challenges when people use Linux for their embedded devices - oft=
-en the Linux gets shipped out on the embedded device, but the sources are n=
-ot made available as specified in the GPL.  Through our tracking and valida=
-ting of source licenses in recipes, the logic in the build system to restri=
-ct licenses used, and the source manifests generated in the build, I think =
-we have a world class solution. This really needs to be supported well in W=
-eb Hob.
+-- 
 
-So the requirement here is that when a build is completed, you not only get=
- access to the image (and kernel) but maybe also a tar file of the sources =
-and scripts used to build the image, for purposes of GPL license compliance=
-.
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
 
-
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
