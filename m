@@ -1,38 +1,32 @@
-Return-Path: <jefro.net@gmail.com>
-Received: from mail-gg0-f176.google.com (mail-gg0-f176.google.com
-	[209.85.161.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4BF94E01426
-	for <yocto@yoctoproject.org>; Thu, 28 Jun 2012 09:07:01 -0700 (PDT)
-Received: by ggnk4 with SMTP id k4so2300163ggn.35
-	for <yocto@yoctoproject.org>; Thu, 28 Jun 2012 09:07:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:date
-	:x-google-sender-auth:message-id:subject:from:to:cc:content-type
-	:content-transfer-encoding;
-	bh=AfznqqWNJQSMiDMUdULktJXtW7AUphttIo8c6KADISo=;
-	b=WzUNB2g+SjwXKjp3GmiP/NsrL66tT7eanGUmBFtLkRW3U+J5LVkzvd/2o/6bTHxkyp
-	YFYhwdK6Z7xf/xUBX6B1HMVkrUgGGrCFvVXK2CTIETOiekw5ZjrAMfeGx5qnEMvamwzx
-	O985gvP6QVxriAnYYNDI/EtRacpMz7Y6+1fnrlcNk06Sy/NUIiIeNtldlR1wSO2FhlQ5
-	FGTZr2G1vN2JTp00ztK57jtTYylm5uNwWTdv/Voe+xvH2LHBEmL6k9j3DlhpxcApOU3w
-	Xsihw8tNY6DtXpMEA4zC7J50kWDh17kDHXMz06tejimnVCZKQiQBVJeBmyPvSop/EBaQ
-	H9DA==
+Return-Path: <fnognn@unife.it>
+Received: from mail-lb0-f176.google.com (mail-lb0-f176.google.com
+	[209.85.217.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E8E48E006D9
+	for <yocto@yoctoproject.org>; Wed, 27 Jun 2012 01:14:21 -0700 (PDT)
+Received: by lboj14 with SMTP id j14so1534914lbo.35
+	for <yocto@yoctoproject.org>; Wed, 27 Jun 2012 01:14:20 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:from:date:message-id:subject:to:content-type
+	:x-gm-message-state;
+	bh=AO86VYCIUSE0Ydt6+dLuz9vzDSgFVjz43l2VoQrUp3Y=;
+	b=IzZDToWvaFCkIZJAWADyEJwbUWWG0DZwNwyaC2JLMDQA7Y7Zj2lauKZ6CyNew7r4zV
+	krDz1gabFucBS+KYE2fmuLOok4sWrSemwP10P8iY6ssAxGEa8ckbDLvrkrGAUuF6PSic
+	0r2b8UnaiLXjG8I5fk7kvE7rNpA3/vHJ1h39qOEaseTXpg32vlMc23+NfYDtYXqy5kE+
+	1UMIT8k7KKEhrlb6F8pzI9OPxA3CZcyJB1P3BPj90wd61TQDTEobEkoIzyAR6auK9R++
+	IjZmcqfO+mj+uen3kJa4bwk8WQKfhC3dMyqt5MCHd8S5i75n77+Pmj/qqH/e7oWKHFp+
+	b5OA==
+Received: by 10.152.125.116 with SMTP id mp20mr19305338lab.19.1340784860240;
+	Wed, 27 Jun 2012 01:14:20 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.50.188.131 with SMTP id ga3mr284251igc.54.1340899620109; Thu,
-	28 Jun 2012 09:07:00 -0700 (PDT)
-Sender: jefro.net@gmail.com
-Received: by 10.64.90.98 with HTTP; Thu, 28 Jun 2012 09:07:00 -0700 (PDT)
-In-Reply-To: <CAN57a29TZXffxL-+ec_WSvUst3EdLHyrRdeN-x0ej5zqYBxCwA@mail.gmail.com>
-References: <alpine.DEB.2.02.1206181601550.21862@oneiric>
-	<CAN57a2-+S1nnxkbxP6_ZcuAd=0piVPomvCyLMBV8Vyr-W0Edgw@mail.gmail.com>
-	<alpine.DEB.2.02.1206190444080.27776@oneiric>
-	<CAN57a29TZXffxL-+ec_WSvUst3EdLHyrRdeN-x0ej5zqYBxCwA@mail.gmail.com>
-Date: Thu, 28 Jun 2012 09:07:00 -0700
-X-Google-Sender-Auth: TjKqfyJKazphYR3TRFnZOPE8TaM
-Message-ID: <CA+YB3raE55=K8rtBcDTZWGGB+HhX=2rSNrx=njNmQGRrMLNqGA@mail.gmail.com>
-From: Jeff Osier-Mixon <jefro@jefro.net>
-To: Tyler Jones <tylerjones64@gmail.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: is there a summary of the proper use of all yocto-related mailing lists?
+Received: by 10.112.96.35 with HTTP; Wed, 27 Jun 2012 01:14:00 -0700 (PDT)
+From: Giovanni Foiani <fnognn@unife.it>
+Date: Wed, 27 Jun 2012 10:14:00 +0200
+Message-ID: <CANsUPaP4h2OUz_4McKQ8jmfm_grv_cCGCMfxZQaGMs7ty8Bf1A@mail.gmail.com>
+To: yocto@yoctoproject.org
+X-Gm-Message-State: ALoCoQnKo77rmKyhluPHb2lvZeOvtsv+zSit1JKF7U8kpqsu6UFREolyuayzx/m6x7NK8TrGEgDK
+X-Mailman-Approved-At: Thu, 28 Jun 2012 10:57:29 -0700
+Subject: Yocto and Qt embedded
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,44 +38,62 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 28 Jun 2012 16:07:01 -0000
+X-List-Received-Date: Wed, 27 Jun 2012 08:14:22 -0000
+Content-Type: multipart/alternative; boundary=f46d0435be6e509ba904c36fcd8a
+
+--f46d0435be6e509ba904c36fcd8a
 Content-Type: text/plain; charset=ISO-8859-1
+
+Hi,
+
+This is my first post on this mailing list and I'm quite new to Yocto.
+I successfully built a distro using the latest release of hob, including Qt
+embedded (without X11).
+I wrote a Qt application and cross compiled for ARM on my host machine but
+when I deploy it on the device (a Freescale iMX53) I get and error because
+the application looks for libraries like libQtGui but on the distro all Qt
+libraries are named like libQtGuiE (ending with E which I suppose it stands
+for Embedded).
+Is the problem due to a wrong distro configuration or a compile problem?
+(I'm using a default ARM toolchain from Ubuntu repos)
+
+Thanks
+
+Giovanni
+--
+
+Dott. Ing. Giovanni Foiani
+
+Cell:        +39-349-3577515
+Phone:    +39-0532-97-4106
+mail:        giovanni.foiani@unife.it
+CenTec - Corso Guercino, 47 - 44042 Cento (FE)
+
+--f46d0435be6e509ba904c36fcd8a
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-I do track the bitbake and oe-core mailing lists, but the Yocto
-Project does not host them. I can address this on the community page:
-http://www.yoctoproject.org/community/mailing-lists - that page should
-point to them.
+Hi,<div><br></div><div>This is my first post on this mailing list and I&#39=
+;m quite new to Yocto.</div><div>I successfully built a distro using the la=
+test release of hob, including Qt embedded (without X11).</div><div>I wrote=
+ a Qt application and cross compiled for ARM on my host machine but when I =
+deploy it on the device (a Freescale iMX53) I get and error because the app=
+lication looks for libraries like libQtGui but on the distro all Qt librari=
+es are named like libQtGuiE (ending with E which I suppose it stands for Em=
+bedded).</div>
 
+<div>Is the problem due to a wrong distro configuration or a compile proble=
+m? (I&#39;m using a default ARM toolchain from Ubuntu repos)</div><div><br>=
+</div><div>Thanks</div><div><br></div><div>Giovanni</div><div>
+<div>--<br><br>Dott. Ing. Giovanni Foiani<br><font face=3D"arial, sans-seri=
+f"><span style=3D"border-collapse:collapse"><br></span></font></div><div>Ce=
+ll:=A0 =A0 =A0 =A0 +39-349-3577515<br>Phone: =A0=A0 +39-0532-97-4106<br>mai=
+l:=A0 =A0 =A0 =A0 <a href=3D"mailto:giovanni.foiani@unife.it" target=3D"_bl=
+ank">giovanni.foiani@unife.it</a></div>
 
-On Tue, Jun 19, 2012 at 9:26 AM, Tyler Jones <tylerjones64@gmail.com> wrote=
-:
-> OE and bitbake are tools provided by Yocto Project in Poky. The mailing
-> lists are not provided or maintained by the Yocto Project thus them not
-> being on the Yocto Project's site. You could make a wiki
-> page,=A0https://wiki.yoctoproject.org/wiki/Mailing_Lists, with the mailin=
-g
-> lists and their description, but I feel they do not belong on the Yocto
-> Project's site.
->
-> -Tyler Jones
->
->
-> On 19 June 2012 01:44, Robert P. J. Day <rpjday@crashcourse.ca> wrote:
->>
->> OE
->
->
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+<div><span style=3D"font-family:arial,helvetica,sans-serif;font-size:13px;l=
+ine-height:13px">CenTec - Corso Guercino, 47 - 44042 Cento (FE)</span></div=
+><br>
+</div>
 
-
-
---=20
-Jeff Osier-Mixon http://jefro.net/blog
-Yocto Project Community Manager @Intel http://yoctoproject.org
-
+--f46d0435be6e509ba904c36fcd8a--
