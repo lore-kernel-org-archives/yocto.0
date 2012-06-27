@@ -1,25 +1,20 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6551BE0073F
-	for <yocto@yoctoproject.org>; Wed, 27 Jun 2012 08:17:26 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q5RFHLIV015794
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 27 Jun 2012 08:17:21 -0700 (PDT)
-Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Wed, 27 Jun 2012 08:17:21 -0700
-Message-ID: <4FEB23F3.6070408@windriver.com>
-Date: Wed, 27 Jun 2012 11:17:07 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
+Return-Path: <ml@communistcode.co.uk>
+Received: from tinyArch.localdomain (unknown [78.110.170.148])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 37F80E01304
+	for <yocto@yoctoproject.org>; Wed, 27 Jun 2012 08:21:15 -0700 (PDT)
+Received: from [192.168.0.49] (unknown [195.171.99.130])
+	by tinyArch.localdomain (Postfix) with ESMTPSA id BDD0B600CA
+	for <yocto@yoctoproject.org>; Wed, 27 Jun 2012 16:03:47 +0100 (BST)
+Message-ID: <4FEB2521.3020203@communistcode.co.uk>
+Date: Wed, 27 Jun 2012 16:22:09 +0100
+From: Jack Mitchell <ml@communistcode.co.uk>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:12.0) Gecko/20120430 Thunderbird/12.0.1
+	rv:13.0) Gecko/20120616 Thunderbird/13.0.1
 MIME-Version: 1.0
-To: "Dennis.Yxun" <dennis.yxun@gmail.com>
-References: <CAF1ZMEcMxTQUhyHdmMWV_PA6TY=RTz9rq-EahKU0p=DFFPw+Ew@mail.gmail.com>
-In-Reply-To: <CAF1ZMEcMxTQUhyHdmMWV_PA6TY=RTz9rq-EahKU0p=DFFPw+Ew@mail.gmail.com>
-Cc: yocto@yoctoproject.org, openembedded-core@lists.openembedded.org
-Subject: Re: bring mipsel support (little endian mode)
+To: yocto@yoctoproject.org
+References: <20317992.tBZ1YY1I5v@helios>
+In-Reply-To: <20317992.tBZ1YY1I5v@helios>
+Subject: Re: LAMP layer
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,67 +26,94 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 27 Jun 2012 15:17:26 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+X-List-Received-Date: Wed, 27 Jun 2012 15:21:15 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 12-06-27 02:25 AM, Dennis.Yxun wrote:
-> HI ALL:
->     Sorry for crossing post, but I'm quite new here, so if I did
-> something wrong, please point me the right direction. thanks
->     I'm using oe-core, and notice that mipsel support(o32, little
-> endian mode) is missing (current available choose is: qemumips,
-> qemumips64, qemumips64el).
->     So, here I'm trying to bring up qemumipsel support . My first
-> attempt would just make qemumipsel work,
-> further would make it running on real board, thus maybe mips4kec,
-> mips24k, mips74k chips.
->     What I achieved here current:
->    1) toolchain/basic libs, utilities should works ,only one changes,
-> see my patch [a]
->     for mipsel we also have to filter out -march=mips32, previously we
-> only handle mips (the big endian?)
->     don't have the error message now, but if you request, I can provide.
->    2) attempt to  compile kernel to support qemumipsel, unfortunately it fail.
-> The point here is linux-yocto doesn't support qemumipsel, but merely
-> support those other three mips arches,
-> So here is my attempt patch [b], and the fail log [c], complied out
-> binary still big endian.
-
-Since it was easy enough to do, and doesn't imply any sort of full
-support (since I can't declare that), I did the tweak to the mips
-board descriptions and qemumipsel works without any machine mapping
-in the linux-yocto recipes.
-
-I pushed the change to the linux-yocto-3.4 meta branch, and staged a
-commit for it locally.
-
-You can see that commit here:
-
-http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/log/?h=zedd/mipsel
-
-  .. stacked on top of my other pending 3.4 commits.
-
-Note: I didn't update machine compatibility in that commit on purpose,
-and I wasn't able to complete a full core-image-minimal build due to
-QA issues. I'm probably just not building with a complete machine.conf ..
-since I grabbed one quickly this morning to check the kernel parts.
-
-Cheers,
-
-Bruce
-
+On 27/06/12 15:05, Paul Eggleton wrote:
+> Hi all,
 >
->     Could my patch [a] be accepted? or should I send with another mail
-> for better review?
->     Is it better to request a ticket in yocto's bugzilla? or just
-> report here, I'm not quite sure.
+> In conjunction with the folks at Wind River I'm currently in the process of
+> putting together a layer to support the traditional LAMP stack, and wanted to
+> solicit some opinions on how this might be structured/named/etc.
 >
-> Dennis
+> I think we have the "L" pretty much covered ;) and we have MySQL in meta-oe
+> (I'm not convinced that's where it should stay, although perhaps it need not
+> be tied to this layer either). So the layer would at the very least be adding
+> Apache and PHP, with the possibility of web-related python and perl recipes
+> being added at a later date.
 >
-> [a] 0001-eglibc-support-mipsel-little-endian-filter-out-march.patch
-> [b] 0002-qemu-attempt-to-add-mipsel-little-endian-support-but.patch
-> [c] build_log.txt
-> [d] log.do_package
+> Some of the other things I'm looking at adding more immediately:
+>
+> * collectd
+> * mysql-connector-odbc
+> * phpMyAdmin
+> * unixODBC
+> * xdebug
+>
+> The question of how this should all be structured is still not fully
+> determined. I'm thinking this ought to be at least one additional layer (i.e.
+> meta-lamp, or some other name), even in the face of the proposed meta-
+> networking, since the number of recipes in the LAMP layer is likely to grow
+> over time and it's a specific set of functionality that people would explicitly
+> select.
+>
+> I now have updated apache and modphp recipes building and working reasonably
+> well, although further testing will be needed. Initially I'm prepared to
+> maintain these recipes, however if not immediately at some point in the near
+> future it would be good to see a maintainer step forward with more specific
+> knowledge of these particular pieces of software.
+>
+> Thoughts?
+>
+> Cheers,
+> Paul
+>
+>
+
+Hi Paul,
+
+I think this is a fantastic idea in general and if I remember correctly 
+someone from Linaro was attempting to do something similar to this the 
+other day - so I can't only be me who would appreciate something like this.
+
+The one issue I have (initially) is why should it be limited to the 
+Apache web server? There are a couple of good web servers out there 
+which lend themselves much more to an embedded style development than 
+(IMO) the bloat that is Apache.
+
+For example:
+
+Lighttpd (already in core)
+nginx
+Hiawatha (my personal favourite - I have a recipe I already use in 
+conjunction with PHP)
+
+I also remember someone from WindRiver posted recently regarding a 
+meta-networking layer, which I also thought was a great idea if not only 
+for (in my use case) tftp/net-snmp support all rolled up and supported. 
+Maybe this could be a layer with that "section"?
+
+i.e.
+
+meta-networking
+     meta-webserver (meta-l*mp?)
+         recipes-*
+         recipes-*
+     meta-*
+         ....
+         ....
+
+I'm sure you get the idea...
+
+Regards,
+
+-- 
+
+   Jack Mitchell (jack@embed.me.uk)
+   Embedded Systems Engineer
+   http://www.embed.me.uk
+
+--
 
 
