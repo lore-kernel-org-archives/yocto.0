@@ -1,31 +1,27 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D17B0E0073F
-	for <yocto@yoctoproject.org>; Wed, 27 Jun 2012 10:39:58 -0700 (PDT)
-Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
-	([99.241.91.63]:49700 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.77) (envelope-from <rpjday@crashcourse.ca>)
-	id 1SjwDe-0006en-4o
-	for yocto@yoctoproject.org; Wed, 27 Jun 2012 13:39:58 -0400
-Date: Wed, 27 Jun 2012 13:39:53 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.DEB.2.02.1206271335320.24547@oneiric>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9ECC1E0073F
+	for <yocto@yoctoproject.org>; Wed, 27 Jun 2012 10:52:43 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 27 Jun 2012 10:52:23 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="158888887"
+Received: from unknown (HELO envy.home) ([10.7.199.154])
+	by orsmga001.jf.intel.com with ESMTP; 27 Jun 2012 10:52:23 -0700
+Message-ID: <4FEB47FD.4040301@linux.intel.com>
+Date: Wed, 27 Jun 2012 10:50:53 -0700
+From: Darren Hart <dvhart@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:13.0) Gecko/20120615 Thunderbird/13.0.1
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: making PDF docs, error in fop step, "Can't load standard profile: sRGB.pf"
+To: "Bodke, Kishore K" <kishore.k.bodke@intel.com>
+References: <D956029D25CF204F948EA0FB515E1EE20ACE4833@ORSMSX105.amr.corp.intel.com>
+	<CAMKF1spxgo3B2WxsRg=75Nhi8za6rHWejkjihiOoK_uro=8Ojw@mail.gmail.com>
+	<D956029D25CF204F948EA0FB515E1EE20ACE5A89@ORSMSX105.amr.corp.intel.com>
+In-Reply-To: <D956029D25CF204F948EA0FB515E1EE20ACE5A89@ORSMSX105.amr.corp.intel.com>
+X-Enigmail-Version: 1.4.2
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Display issue with EFI BOOTING
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,34 +33,69 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 27 Jun 2012 17:39:59 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Wed, 27 Jun 2012 17:52:43 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
 
-  for the first time in a while, i tried to build the PDF docs, and
-every attempt ends with a java exception on my 64-bit ubuntu system
-containing the diagnostic:
 
-java.lang.IllegalArgumentException: Can't load standard profile: sRGB.pf
+On 06/27/2012 09:21 AM, Bodke, Kishore K wrote:
+> 
+> 
+>> -----Original Message-----
+>> From: Khem Raj [mailto:raj.khem@gmail.com]
+>> Sent: Friday, June 22, 2012 5:06 PM
+>> To: Bodke, Kishore K
+>> Cc: yocto@yoctoproject.org; Darren Hart (dvhart@linux.intel.com)
+>> Subject: Re: [yocto] Display issue with EFI BOOTING
+>>
+>> On Fri, Jun 22, 2012 at 3:28 PM, Bodke, Kishore K
+>> <kishore.k.bodke@intel.com> wrote:
+>>> Hi,
+>>>
+>>>
+>>>
+>>> Yocto logo displays fines when booted with BIOS.
+>>>
+>>> But I see the Logo Display issue when booted with EFI.
+>>>
+>>> Attached are the screen shot.
+>>>
+>>> Any Idea why?
+>>>
+>>>
+>>
+>> may be screen refresh rate ? just shooting in dark here
+> 
+> Hi Darren,
+> 
+> Do you also see the Yocto logo distorted while booting with EFI?
+> I don't see this distorted logo with BIOS.
 
-  i've isolated it to the "fop" invocation in poky-docbook-to-pdf.
-i'm using openjdk-7, and it appears that i do have that file installed
-on my system.
+No, it works as expected for me on the FRI2 BSP.
 
-  i have to bolt for the airport to pick someone up so i can't dig any
-deeper right this minute, but if anyone else has seen this and has an
-answer, i'd appreciate it.  can anyone else at least verify that they
-get the same error if they try it on a similar system?  thanks.
+--
+Darren
 
-rday
+> 
+> Thanks
+> Kishore.
+>>>
+>>> Thanks
+>>>
+>>> Kishore.
+>>>
+>>>
+>>> _______________________________________________
+>>> yocto mailing list
+>>> yocto@yoctoproject.org
+>>> https://lists.yoctoproject.org/listinfo/yocto
+>>>
 
 -- 
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
 
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
 
