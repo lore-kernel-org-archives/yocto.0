@@ -1,15 +1,15 @@
 Return-Path: <philip@balister.org>
 Received: from sanddollar.geekisp.com (sanddollar.geekisp.com
 	[216.168.135.167])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E02E9E0073F
-	for <yocto@yoctoproject.org>; Wed, 27 Jun 2012 14:14:17 -0700 (PDT)
-Received: (qmail 6264 invoked by uid 1003); 27 Jun 2012 21:14:16 -0000
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5D027E0073F
+	for <yocto@yoctoproject.org>; Wed, 27 Jun 2012 14:51:14 -0700 (PDT)
+Received: (qmail 2524 invoked by uid 1003); 27 Jun 2012 21:51:13 -0000
 Received: from unknown (HELO ?192.168.43.231?)
 	(philip@opensdr.com@32.144.103.169)
 	by mail.geekisp.com with (DHE-RSA-AES256-SHA encrypted) SMTP;
-	27 Jun 2012 21:14:16 -0000
-Message-ID: <4FEB77A4.3000204@balister.org>
-Date: Wed, 27 Jun 2012 17:14:12 -0400
+	27 Jun 2012 21:51:12 -0000
+Message-ID: <4FEB804C.1000106@balister.org>
+Date: Wed, 27 Jun 2012 17:51:08 -0400
 From: Philip Balister <philip@balister.org>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:13.0) Gecko/20120615 Thunderbird/13.0.1
@@ -32,7 +32,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 27 Jun 2012 21:14:18 -0000
+X-List-Received-Date: Wed, 27 Jun 2012 21:51:14 -0000
 Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
