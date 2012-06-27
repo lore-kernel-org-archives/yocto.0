@@ -1,46 +1,31 @@
-Return-Path: <maniacbug@ymail.com>
-Received: from nm24-vm2.bullet.mail.ne1.yahoo.com
-	(nm24-vm2.bullet.mail.ne1.yahoo.com [98.138.91.212])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 14489E0070C
-	for <yocto@yoctoproject.org>; Tue, 26 Jun 2012 19:22:21 -0700 (PDT)
-Received: from [98.138.90.48] by nm24.bullet.mail.ne1.yahoo.com with NNFMP;
-	27 Jun 2012 02:22:20 -0000
-Received: from [98.138.88.237] by tm1.bullet.mail.ne1.yahoo.com with NNFMP;
-	27 Jun 2012 02:22:20 -0000
-Received: from [127.0.0.1] by omp1037.mail.ne1.yahoo.com with NNFMP;
-	27 Jun 2012 02:22:20 -0000
-X-Yahoo-Newman-Property: ymail-3
-X-Yahoo-Newman-Id: 535877.84972.bm@omp1037.mail.ne1.yahoo.com
-Received: (qmail 44233 invoked by uid 60001); 27 Jun 2012 02:22:20 -0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ymail.com; s=s1024;
-	t=1340763740; bh=VnS6RgNMOBlxnk8zXgEPPs7hE/WHzxzzS/q3DYPcsY8=;
-	h=X-YMail-OSG:Received:X-Mailer:Message-ID:Date:From:Reply-To:Subject:To:MIME-Version:Content-Type;
-	b=1XrhA3anQTUOjyHS+ErXb484lso94Q0jFZHppeYVsefDMhnyPEp+tULyJR71cf+8Ea11fynudhJG56vu12t36JZXKmIcLVeTABQkYcHiKsp5ikDnHAqtjKOHoA0lnrioeAROdoP9cdbwlVxB5n1NAm0CfhVJL7z7LDBQhPciLtU=
-DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=s1024; d=ymail.com;
-	h=X-YMail-OSG:Received:X-Mailer:Message-ID:Date:From:Reply-To:Subject:To:MIME-Version:Content-Type;
-	b=FH0/5D2RRmyBff1sD1iaoEzRvEE8pmmH2gPni6wWzzeLOef89EKvOIIqR8IkIWSIVulM3SHhcRHZKQQE6XS7pwrye7bjnmEAcPgEV118aiNYkwncSABtAaD2AuAqP0Zw+l84P3T2ko8vTAC23EANXPycKaROt3pyKJ/KohwCQqg=;
-X-YMail-OSG: MhUxO1EVM1ka6GvDkg9gxHvtTNOAiTElM7.L8vGdpG6A5Ek
-	fQV_xMmaHzBtcpvRLyNeQ80Ug8fkNfRw2zcLyugSfVUDwN1kX7BSDfQH9yLt
-	6cdxhWu4fOMR5CL5w45pcDZ8JTHKwj97EKkQoahUKAGQnwqSO8F5Xs_m0TzF
-	XCLEWAmezygs.vDwKa5ObyPU7Kom3MjKcK97VI_0vaVAKNG.Xu0tPrYEJ2yZ
-	GOHJiPYdth4lMvo7ry.nW6C6FowyQgmoos8Zqpy0oyAtTxHVkuYX7g.9GQbx
-	.669BoLCvfJCES4oH.xYKd1yeX4tQ.W8lCx.BB7qtWIeyZ2VGmM3o7Bd7I0H
-	7FFw_wrC9C1pwo.TMPCnMl1nMHd__3AOQMsgzUl.Q5VGBU7034UlgaoFVA0z
-	qthXrFWV.yOiEBKO9AUBvSqt8Gu9ytwWJyV_SnSGe_NFm3Y0f5lUPaQBEO4Q
-	penhiVwilBDf99.sWvXIoj_0_6grK5XcOudZj
-Received: from [50.135.220.100] by web121605.mail.ne1.yahoo.com via HTTP;
-	Tue, 26 Jun 2012 19:22:20 PDT
-X-Mailer: YahooMailWebService/0.8.118.349524
-Message-ID: <1340763740.43451.YahooMailNeo@web121605.mail.ne1.yahoo.com>
-Date: Tue, 26 Jun 2012 19:22:20 -0700 (PDT)
-From: maniacbug <maniacbug@ymail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Return-Path: <navani.srivastava@gmail.com>
+Received: from mail-bk0-f48.google.com (mail-bk0-f48.google.com
+	[209.85.214.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 519FAE0070C
+	for <yocto@yoctoproject.org>; Tue, 26 Jun 2012 21:05:52 -0700 (PDT)
+Received: by bkcjf20 with SMTP id jf20so712013bkc.35
+	for <yocto@yoctoproject.org>; Tue, 26 Jun 2012 21:05:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:from:date:message-id:subject:to:content-type;
+	bh=LnVGdhcDpaRj6Sf3hkvzElv6i357Au0F9N5gLmYZdIw=;
+	b=cfdeja3NBC9IqSdqbEL5bwJzcWHeVy+Dw4ORbUmgEV9e5XTc7JrjTPFf0Hizyo8WDl
+	EChopXKN3G/fGZfjTzIbzCQP8TUY0B8pmPB73oQf1YOddF4dkd9j6uOb9AHonrjHnwkS
+	oJIXJFSKrfEhbPBpURbT3HZmZ/drCjvMpxSCENda8GaFoUTs5diRL0IFy48g2hK5D48p
+	6nYbeidI5D1jbBD45zmLUVh3pOsLHf4HUIhK349Qea28+h65UTXdJRIJxcbeikXRXFeU
+	FRmIzTcnTdZv5M1tRRxtE4yuzZkOYufgaQk7dIeRQDPS2QecmIzjLCz7LKV6g2VP7Q/0
+	TAag==
+Received: by 10.204.149.208 with SMTP id u16mr6594045bkv.81.1340769950800;
+	Tue, 26 Jun 2012 21:05:50 -0700 (PDT)
 MIME-Version: 1.0
-Subject: How to include libstdc++ in an image?
+Received: by 10.204.112.193 with HTTP; Tue, 26 Jun 2012 21:05:30 -0700 (PDT)
+From: Navani Srivastava <navani.srivastava@gmail.com>
+Date: Wed, 27 Jun 2012 09:35:30 +0530
+Message-ID: <CA+Z6RkXWwWu6+pPyL9x7dkitwQaxChMMWLdjbrUJH=exzyTAYw@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: 'check_sanity_eventhandler' failed
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: maniacbug <maniacbug@ymail.com>
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -49,49 +34,77 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 27 Jun 2012 02:22:21 -0000
-Content-Type: multipart/alternative;
-	boundary="2053635335-467224406-1340763740=:43451"
+X-List-Received-Date: Wed, 27 Jun 2012 04:05:52 -0000
+Content-Type: multipart/alternative; boundary=0015175df052a49cb104c36c54e0
 
---2053635335-467224406-1340763740=:43451
-Content-Type: text/plain; charset=iso-8859-1
+--0015175df052a49cb104c36c54e0
+Content-Type: text/plain; charset=ISO-8859-1
+
+Hi,
+
+We are using poky-denzil-7.0. I am trying to create SDK by running "bitbake
+-v meta-toolchain-qte" . But it is getting failed at the earlier phase
+throwing an error
+
+"DEBUG: Fetcher accessed the network with the command git ls-remote git://
+git.yoctoproject.org/yocto-firewall-test HEAD
+DEBUG: Running export HOME="/home/navani"; export SSH_AGENT_PID="17197";
+export SSH_AUTH_SOCK="/tmp/keyring-2GniDe/ssh"; export
+GIT_CONFIG="/home/navani/Poky-7.0/poky-denzil-7.0/build/tmp/sysroots/i686-linux/etc/gitconfig";
+export
+PATH="/home/navani/Poky-7.0/poky-denzil-7.0/bitbake/bin/:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/home/navani/Poky-7.0/poky-denzil-7.0/scripts";
+git ls-remote git://git.yoctoproject.org/yocto-firewall-test HEAD
+ERROR:  OE-core's config sanity checker detected a potential
+misconfiguration.
+    Either fix the cause of this error or at your own risk disable the
+checker (see sanity.conf).
+    Following is the list of potential problems / advisories:
+
+    Failed to fetch test data from the network. Please ensure your network
+is configured correctly.
+
+ERROR: Execution of event handler 'check_sanity_eventhandler' failed"
+
+Network is working fine still I am facing this error. Can anyone please
+confirm if any modification need to be done for sanity.conf. I am using
+same class and configuration file for sanity as is there in meta layer.
+
+Thanks and Regards
+Navani Kamal Srivastava
+
+--0015175df052a49cb104c36c54e0
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-Hi.  I am using denzil, trying to build a core-image-minimal with =0Alibstd=
-c++ installed.  I want to cross-develop in c++, and run the =0Aresulting ap=
-ps on the image.  For now, I am using qemu-arm as the =0Amachine.  I've bee=
-n able to build and run core-image-minimal out of the =0Abox. build the cro=
-ss tools, and build apps using the cross tools (and =0Aeven add ssh to the =
-image).  What I cannot figure out how to do is get =0Alibstdc++ (and libgcc=
-1 and libc6) onto the target machine. =0A=0AThe task-core-standalone-sdk-ta=
-rget looks super promising, =0Aseeming to contain the exact pieces I need. =
- I thought I could add this =0Ato the IMAGE_INSTALL line in core-image-mini=
-mal.bb, and have the libs =0Ashow up.  This didn't happen, so clearly I hav=
-e some more to learn about poky. =0A=0ACan anyone advise the appropriate wa=
-y to inject libsdtc++ (and its dependencies) into a poky image?=A0 Please n=
-ote that I do not need to compile/link apps on the target, only run them.=
-=0A=0A=0AThanks!=0A
+Hi,<br><br>We are using poky-denzil-7.0. I am trying to create SDK by runni=
+ng &quot;bitbake -v meta-toolchain-qte&quot; . But it is getting failed at =
+the earlier phase throwing an error <br>=A0<br>&quot;DEBUG: Fetcher accesse=
+d the network with the command git ls-remote git://<a href=3D"http://git.yo=
+ctoproject.org/yocto-firewall-test">git.yoctoproject.org/yocto-firewall-tes=
+t</a> HEAD<br>
 
---2053635335-467224406-1340763740=:43451
-Content-Type: text/html; charset=iso-8859-1
-Content-Transfer-Encoding: quoted-printable
+DEBUG: Running export HOME=3D&quot;/home/navani&quot;; export SSH_AGENT_PID=
+=3D&quot;17197&quot;; export SSH_AUTH_SOCK=3D&quot;/tmp/keyring-2GniDe/ssh&=
+quot;; export GIT_CONFIG=3D&quot;/home/navani/Poky-7.0/poky-denzil-7.0/buil=
+d/tmp/sysroots/i686-linux/etc/gitconfig&quot;; export PATH=3D&quot;/home/na=
+vani/Poky-7.0/poky-denzil-7.0/bitbake/bin/:/usr/lib/lightdm/lightdm:/usr/lo=
+cal/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/home/nava=
+ni/Poky-7.0/poky-denzil-7.0/scripts&quot;; git ls-remote git://<a href=3D"h=
+ttp://git.yoctoproject.org/yocto-firewall-test">git.yoctoproject.org/yocto-=
+firewall-test</a> HEAD<br>
 
-<html><body><div style=3D"color:#000; background-color:#fff; font-family:ta=
-homa, new york, times, serif;font-size:12pt"><div>Hi.  I am using denzil, t=
-rying to build a core-image-minimal with =0Alibstdc++ installed.  I want to=
- cross-develop in c++, and run the =0Aresulting apps on the image.  For now=
-, I am using qemu-arm as the =0Amachine.  I've been able to build and run c=
-ore-image-minimal out of the =0Abox. build the cross tools, and build apps =
-using the cross tools (and =0Aeven add ssh to the image).  What I cannot fi=
-gure out how to do is get =0Alibstdc++ (and libgcc1 and libc6) onto the tar=
-get machine.=0A</div><div><br></div><div>The task-core-standalone-sdk-targe=
-t looks super promising, =0Aseeming to contain the exact pieces I need.  I =
-thought I could add this =0Ato the IMAGE_INSTALL line in core-image-minimal=
-.bb, and have the libs =0Ashow up.  This didn't happen, so clearly I have s=
-ome more to learn about=0A poky.=0A</div><div><br></div><div>Can anyone adv=
-ise the appropriate way to inject libsdtc++ (and its dependencies) into a p=
-oky image?&nbsp; Please note that I do not need to compile/link apps on the=
- target, only run them.<br></div><div><br></div><div>Thanks!<br></div></div=
-></body></html>
+ERROR:=A0 OE-core&#39;s config sanity checker detected a potential misconfi=
+guration.<br>=A0=A0=A0 Either fix the cause of this error or at your own ri=
+sk disable the checker (see sanity.conf).<br>=A0=A0=A0 Following is the lis=
+t of potential problems / advisories:<br>
 
---2053635335-467224406-1340763740=:43451--
+<br>=A0=A0=A0 Failed to fetch test data from the network. Please ensure you=
+r network is configured correctly.<br><br>ERROR: Execution of event handler=
+ &#39;check_sanity_eventhandler&#39; failed&quot;<br><br>Network is working=
+ fine still I am facing this error. Can anyone please confirm if any modifi=
+cation need to be done for sanity.conf. I am using same class and configura=
+tion file for sanity as is there in meta layer.<br>
+
+<br>Thanks and Regards<br>Navani Kamal Srivastava<br><br><br>
+
+--0015175df052a49cb104c36c54e0--
