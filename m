@@ -1,34 +1,26 @@
-Return-Path: <dennis.yxun@gmail.com>
-Received: from mail-ob0-f176.google.com (mail-ob0-f176.google.com
-	[209.85.214.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EEE70E006D9
-	for <yocto@yoctoproject.org>; Wed, 27 Jun 2012 00:00:13 -0700 (PDT)
-Received: by obbwd18 with SMTP id wd18so1344057obb.35
-	for <yocto@yoctoproject.org>; Wed, 27 Jun 2012 00:00:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type:content-transfer-encoding;
-	bh=upw+uGe2JiFE4ctF5NU+p/6qZIEts5R2+e//dpkNW6I=;
-	b=ilDqMZhMHeCU7xU2bZFBvfLoirMPpUGxZtCF9mhbgef3FPNzQSYGcIDPU7oEIJHVPz
-	hSvoY6uwO+Jq9+4CUS9d7y2Ob4Wg5LBVCaeyMxcGHSLkjhi0N8RfDSmuCq/mU5axF4ZF
-	AAvSEQJihQc2gque8Vex++IzYs3053uZvKh4xzLLuIgrysJsMhKnRDacgARiOkSa3sw4
-	u7RWamtJz1K3AvJ4ZUnnpJU1lqvsdXA+q7vOL5vbW5+3Pa7GoXUimHj1zBtXhOQf3nQt
-	xtzMvZ1p0CQQzwr0Bxs0/ryPmQhSxB/mwJ+jUbgguidhTaQTutcbcHc5dJQH7Mh8d9zH
-	MjQg==
+Return-Path: <tf+lists.yocto@r-finger.com>
+Received: from r-finger.com (r-finger.com [178.79.160.5])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4EA13E0070C
+	for <yocto@yoctoproject.org>; Wed, 27 Jun 2012 02:10:00 -0700 (PDT)
+Received: from [192.168.0.2] (host86-170-68-253.range86-170.btcentralplus.com
+	[86.170.68.253]) (using TLSv1 with cipher AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by r-finger.com (Postfix) with ESMTPSA id 7724D9C07
+	for <yocto@yoctoproject.org>; Wed, 27 Jun 2012 10:09:59 +0100 (BST)
+Message-ID: <4FEACDE6.7040701@r-finger.com>
+Date: Wed, 27 Jun 2012 10:09:58 +0100
+From: Tomas Frydrych <tf+lists.yocto@r-finger.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:10.0.3) Gecko/20120329 Icedove/10.0.3
 MIME-Version: 1.0
-Received: by 10.182.72.42 with SMTP id a10mr18960565obv.22.1340780413317; Wed,
-	27 Jun 2012 00:00:13 -0700 (PDT)
-Received: by 10.182.37.134 with HTTP; Wed, 27 Jun 2012 00:00:13 -0700 (PDT)
-In-Reply-To: <CAMKF1srKXavMswBxM+E_-HHGXdDphYuPfNKbXHAZf4=w1nsMUw@mail.gmail.com>
-References: <CAF1ZMEcMxTQUhyHdmMWV_PA6TY=RTz9rq-EahKU0p=DFFPw+Ew@mail.gmail.com>
-	<CAMKF1srKXavMswBxM+E_-HHGXdDphYuPfNKbXHAZf4=w1nsMUw@mail.gmail.com>
-Date: Wed, 27 Jun 2012 15:00:13 +0800
-Message-ID: <CAF1ZMEeRi6a=pmRkHwy0yLDCJume6nCv-YAV1BcAeBWgXhaefA@mail.gmail.com>
-From: "Dennis.Yxun" <dennis.yxun@gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
-Cc: yocto@yoctoproject.org, Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>
-Subject: Re: [OE-core] bring mipsel support (little endian mode)
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <alpine.DEB.2.02.1206260459040.8547@oneiric>
+	<10398861.esnekvBoZU@helios> <4FE9D965.4070906@linux.intel.com>
+	<3153041.1FMPtSpq0x@helios> <4FE9E58C.9020408@r-finger.com>
+	<alpine.DEB.2.02.1206261252060.5948@oneiric>
+	<4FE9EEF6.7050001@r-finger.com> <4FEA0505.6010108@am.sony.com>
+In-Reply-To: <4FEA0505.6010108@am.sony.com>
+Subject: Re: <rant>the current yocto FAQ is pretty much valueless</rant>
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,71 +32,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 27 Jun 2012 07:00:14 -0000
+X-List-Received-Date: Wed, 27 Jun 2012 09:10:00 -0000
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
 
-hi Raj:
+Hi Tim,
 
-On Wed, Jun 27, 2012 at 2:40 PM, Khem Raj <raj.khem@gmail.com> wrote:
-> On Tue, Jun 26, 2012 at 11:25 PM, Dennis.Yxun <dennis.yxun@gmail.com> wro=
-te:
->> HI ALL:
->> =C2=A0 Sorry for crossing post, but I'm quite new here, so if I did
->> something wrong, please point me the right direction. thanks
->> =C2=A0 I'm using oe-core, and notice that mipsel support(o32, little
->> endian mode) is missing (current available choose is: qemumips,
->> qemumips64, qemumips64el).
->> =C2=A0 So, here I'm trying to bring up qemumipsel support . My first
->> attempt would just make qemumipsel work,
->> further would make it running on real board, thus maybe mips4kec,
->> mips24k, mips74k chips.
->> =C2=A0 What I achieved here current:
->> =C2=A01) toolchain/basic libs, utilities should works ,only one changes,
->> see my patch [a]
->> =C2=A0 for mipsel we also have to filter out -march=3Dmips32, previously=
- we
->> only handle mips (the big endian?)
->> =C2=A0 don't have the error message now, but if you request, I can provi=
-de.
->> =C2=A02) attempt to =C2=A0compile kernel to support qemumipsel, unfortun=
-ately it fail.
->> The point here is linux-yocto doesn't support qemumipsel, but merely
->> support those other three mips arches,
->> So here is my attempt patch [b], and the fail log [c], complied out
->> binary still big endian.
->>
->> =C2=A0 Could my patch [a] be accepted? or should I send with another mai=
-l
->> for better review?
->> =C2=A0 Is it better to request a ticket in yocto's bugzilla? or just
->> report here, I'm not quite sure.
->>
->> Dennis
->>
->> [a] 0001-eglibc-support-mipsel-little-endian-filter-out-march.patch
->
-> This patch is appropriate for OE-Core, I will add it to my tree.
->
->> [b] 0002-qemu-attempt-to-add-mipsel-little-endian-support-but.patch
->
-> This looks good to me but I will leave it to Bruce to decide.
->
->> [c] build_log.txt
->> [d] log.do_package
->>
->> _______________________________________________
->> Openembedded-core mailing list
->> Openembedded-core@lists.openembedded.org
->> http://lists.linuxtogo.org/cgi-bin/mailman/listinfo/openembedded-core
->>
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+On 26/06/12 19:52, Tim Bird wrote:
+> On 06/26/2012 10:18 AM, Tomas Frydrych wrote:
+> For example, after reading various FAQs
+> I still have no idea what kind of thing "Poky" is.  I know
+> that bitbake is a build tool.  I know that OE is a package
+> meta-information project.  Yocto Project is an umbrella project
+> for a lot of tools and technologies (Poky among them).  But is
+> Poky a distro (sample/reference or otherwise?) or something else?
 
-I'm quite confident with patch [a], but not sure with patch [b], since
-it should point to a sanity SRCREV which works for "qemumipsel" -
-little endian side, but here I'm simply duplicate from qemumips (the
-big endian port). should confirm?!
+For those of us who have been around Poky well before Yocto came around,
+we know what Poky used to be, have some inkling what it is, but we are
+not always entirely clear what Yocto is. :-)
+
+
+> When I ran my recently-built image, my target /etc/issue had this content:
+> "Yocto (Built by Poky 7.0) 1.2"
+
+My understanding (with the above disclaimer!) is that Poky is a build
+system, Yocto is a distro, so I read the above 'Yocto v1.2 image built
+by the Poky v7.0 tool'. I think the point of maintaining the distinction
+is that you can use Poky without the Yocto Distro (/meta-yocto).
+
+Tomas
 
