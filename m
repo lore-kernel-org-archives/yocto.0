@@ -1,34 +1,31 @@
-Return-Path: <bruce.ashfield@gmail.com>
-Received: from mail-qc0-f182.google.com (mail-qc0-f182.google.com
-	[209.85.216.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7FBBFE013E5
-	for <yocto@yoctoproject.org>; Wed, 27 Jun 2012 05:49:57 -0700 (PDT)
-Received: by qcsg15 with SMTP id g15so563545qcs.13
-	for <yocto@yoctoproject.org>; Wed, 27 Jun 2012 05:49:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type:content-transfer-encoding;
-	bh=DbJK3DdmS6CxtkZdSamfDGGRwHyDwRpHGxMDb/3VQ/Q=;
-	b=EZSB4xj+LkWf/rexrf7MinvdvweYbeDS/fGsD2iRiyniplEN69Kt3WnVJYnuediPpK
-	8wv2m6hkhfjw5zaOA/s2/cjVKTS/EWRSTw6iWicHgmonT3H2OdxeYEiR3GxmB4l0e2tK
-	xoQIZBJHOTW3t4ehdleTZqrG+sFwqb24KFnnvh/mINEvYkIKgENXx9+Lud6GTVAjzOPD
-	FiBvjifC620vz7SnPEbx8+GwoczcdNeFpde8K/q4OcUbSHTo+/g7GiDzXtrVmLubu7js
-	uUnE1VJj8MCKE3nq8iMyZk3PQPHN/J+5Vos8/pMSrqqQM9FgP94Y2VvsTCpWetXfaxtZ
-	K6aw==
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 72320E013E5
+	for <yocto@yoctoproject.org>; Wed, 27 Jun 2012 06:16:36 -0700 (PDT)
+Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
+	([99.241.91.63]:46103 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.77) (envelope-from <rpjday@crashcourse.ca>)
+	id 1Sjs6l-0000LD-Ly
+	for yocto@yoctoproject.org; Wed, 27 Jun 2012 09:16:35 -0400
+Date: Wed, 27 Jun 2012 09:16:30 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.DEB.2.02.1206270911310.18328@oneiric>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
-Received: by 10.224.45.8 with SMTP id c8mr10713638qaf.29.1340801396714; Wed,
-	27 Jun 2012 05:49:56 -0700 (PDT)
-Received: by 10.229.41.5 with HTTP; Wed, 27 Jun 2012 05:49:56 -0700 (PDT)
-In-Reply-To: <CAMKF1srKXavMswBxM+E_-HHGXdDphYuPfNKbXHAZf4=w1nsMUw@mail.gmail.com>
-References: <CAF1ZMEcMxTQUhyHdmMWV_PA6TY=RTz9rq-EahKU0p=DFFPw+Ew@mail.gmail.com>
-	<CAMKF1srKXavMswBxM+E_-HHGXdDphYuPfNKbXHAZf4=w1nsMUw@mail.gmail.com>
-Date: Wed, 27 Jun 2012 08:49:56 -0400
-Message-ID: <CADkTA4P0LCRS7STDMr7uG6mg-85SGiixfzX_iso_i664Q9ftKQ@mail.gmail.com>
-From: Bruce Ashfield <bruce.ashfield@gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
-Cc: yocto@yoctoproject.org, Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>
-Subject: Re: [OE-core] bring mipsel support (little endian mode)
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: using a local premirror suddenly doesn't find local tarballs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,92 +37,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 27 Jun 2012 12:49:57 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-On Wed, Jun 27, 2012 at 2:40 AM, Khem Raj <raj.khem@gmail.com> wrote:
-> On Tue, Jun 26, 2012 at 11:25 PM, Dennis.Yxun <dennis.yxun@gmail.com> wro=
-te:
->> HI ALL:
->> =A0 Sorry for crossing post, but I'm quite new here, so if I did
->> something wrong, please point me the right direction. thanks
->> =A0 I'm using oe-core, and notice that mipsel support(o32, little
->> endian mode) is missing (current available choose is: qemumips,
->> qemumips64, qemumips64el).
->> =A0 So, here I'm trying to bring up qemumipsel support . My first
->> attempt would just make qemumipsel work,
->> further would make it running on real board, thus maybe mips4kec,
->> mips24k, mips74k chips.
->> =A0 What I achieved here current:
->> =A01) toolchain/basic libs, utilities should works ,only one changes,
->> see my patch [a]
->> =A0 for mipsel we also have to filter out -march=3Dmips32, previously we
->> only handle mips (the big endian?)
->> =A0 don't have the error message now, but if you request, I can provide.
->> =A02) attempt to =A0compile kernel to support qemumipsel, unfortunately =
-it fail.
->> The point here is linux-yocto doesn't support qemumipsel, but merely
->> support those other three mips arches,
->> So here is my attempt patch [b], and the fail log [c], complied out
->> binary still big endian.
->>
->> =A0 Could my patch [a] be accepted? or should I send with another mail
->> for better review?
->> =A0 Is it better to request a ticket in yocto's bugzilla? or just
->> report here, I'm not quite sure.
->>
->> Dennis
->>
->> [a] 0001-eglibc-support-mipsel-little-endian-filter-out-march.patch
->
-> This patch is appropriate for OE-Core, I will add it to my tree.
->
->> [b] 0002-qemu-attempt-to-add-mipsel-little-endian-support-but.patch
->
-> This looks good to me but I will leave it to Bruce to decide.
-
-I've always had latent support for mipsel in the kernel tree, since it is
-just a minor switch to the configs for the mti.
-
-We'd also sent the KMACHINE to mti-malta32-le to pickup the le
-configuration switches from the kernel .. or alternatively, I'll just updat=
-e
-the description to match on qemumipsel.
-
-I'd want to do some build and boot testing myself first though, Phil seemed
-to indicate that patch a) wasn't required. I'll start my own build and see =
-if
-my results match.
-
-So if there's a desire to get this into oe-core, I can take care of the ker=
-nel
-tweaks (and then carry it), but I'd expect Richard has an opinion on this, =
-since
-it really should be something that we then build and minimally test
-on a regular basis.
-
-Cheers,
-
-Bruce
-
->
->> [c] build_log.txt
->> [d] log.do_package
->>
->> _______________________________________________
->> Openembedded-core mailing list
->> Openembedded-core@lists.openembedded.org
->> http://lists.linuxtogo.org/cgi-bin/mailman/listinfo/openembedded-core
->>
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+X-List-Received-Date: Wed, 27 Jun 2012 13:16:36 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
 
+  suddenly, even though i've defined my local mirror the same way i
+have for months:
 
---=20
-"Thou shalt not follow the NULL pointer, for chaos and madness await
-thee at its end"
+CONF_VERSION = "1"
+SOURCE_MIRROR_URL ?= "file:///home/rpjday/dl/"
+INHERIT += "own-mirrors"
+BB_GENERATE_MIRROR_TARBALLS = "1"
+
+doing a simple
+
+  $ bitbake -c fetchall core-image-minimal
+
+insists on downloading *numerous* tarballs that are quite clearly in
+my download directory.  this just started this morning.  thoughts?
+
+  i'm using the dev version of yocto, latest "git pull".
+
+rday
+
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
