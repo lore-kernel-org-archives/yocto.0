@@ -1,28 +1,23 @@
-Return-Path: <tf+lists.yocto@r-finger.com>
-Received: from r-finger.com (r-finger.com [178.79.160.5])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9BF0DE01304
-	for <yocto@yoctoproject.org>; Wed, 27 Jun 2012 13:14:52 -0700 (PDT)
-Received: from [192.168.0.2] (host86-170-68-253.range86-170.btcentralplus.com
-	[86.170.68.253]) (using TLSv1 with cipher AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by r-finger.com (Postfix) with ESMTPSA id E4B7D9C07
-	for <yocto@yoctoproject.org>; Wed, 27 Jun 2012 21:14:51 +0100 (BST)
-Message-ID: <4FEB69BB.2080906@r-finger.com>
-Date: Wed, 27 Jun 2012 21:14:51 +0100
-From: Tomas Frydrych <tf+lists.yocto@r-finger.com>
+Return-Path: <sgw@linux.intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6FB67E0073F
+	for <yocto@yoctoproject.org>; Wed, 27 Jun 2012 14:03:44 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 27 Jun 2012 14:03:30 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="170812697"
+Received: from unknown (HELO [10.255.12.182]) ([10.255.12.182])
+	by fmsmga001.fm.intel.com with ESMTP; 27 Jun 2012 14:03:30 -0700
+Message-ID: <4FEB7522.5080202@linux.intel.com>
+Date: Wed, 27 Jun 2012 14:03:30 -0700
+From: Saul Wold <sgw@linux.intel.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:10.0.3) Gecko/20120329 Icedove/10.0.3
+	rv:12.0) Gecko/20120430 Thunderbird/12.0.1
 MIME-Version: 1.0
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-References: <alpine.DEB.2.02.1206260459040.8547@oneiric>
-	<10398861.esnekvBoZU@helios> <4FE9D965.4070906@linux.intel.com>
-	<3153041.1FMPtSpq0x@helios> <4FE9E58C.9020408@r-finger.com>
-	<alpine.DEB.2.02.1206261252060.5948@oneiric>
-	<4FE9EEF6.7050001@r-finger.com> <4FEA0505.6010108@am.sony.com>
-	<4FEACDE6.7040701@r-finger.com>
-	<83905E03-FF88-48EC-9336-273B02FB9FB1@beagleboard.org>
-In-Reply-To: <83905E03-FF88-48EC-9336-273B02FB9FB1@beagleboard.org>
-Subject: Re: <rant>the current yocto FAQ is pretty much valueless</rant>
+To: yocto <yocto@yoctoproject.org>
+References: <CDED78A957032E45B3239CDDA7642D151C8681AA@ORSMSX105.amr.corp.intel.com>
+In-Reply-To: <CDED78A957032E45B3239CDDA7642D151C8681AA@ORSMSX105.amr.corp.intel.com>
+Subject: Re: Web Hob - two additional design ideas
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,42 +29,56 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 27 Jun 2012 20:14:52 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 27 Jun 2012 21:03:44 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Hi Koen,
+On 06/27/2012 12:17 PM, Stewart, David C wrote:
+> Gang - there are a couple of ideas for Web Hob that we have talked about. I don't remember seeing them in the various movies and documents. So I'm going to throw them out there to get your feedback and hopefully get them in the design.
+>
+> * Visualizing the image
+>
+> One of the things which frustrates me about GUI tools which build Linux images is that you usually get a long list of packages to choose from, but no real guidance. I think there are a couple of interesting ways to visualize what is in the image.
+>
+> One would be to add more visual information about what makes up the image, maybe like a pie chart or linear chart which shows the breakdown between kernel, libraries, commands; perhaps with some drill down into these categories to show which libraries, for example.  This could be extremely useful for tuning a poky-tiny image for its footprint size.
+>
+This could be interesting for larger images where we could make use the 
+the "SECTION" metadata, but might be more of a challenge for a meta-tiny 
+where all you really have is libc (of some flavor) and busybox.
 
-On 27/06/12 15:59, Koen Kooi wrote:
-> Yocto is NOT a distro. 
+There may be additional metadata to help with the drill down further 
+than maybe 1 level.
 
-Is that so? :-), meta-yocto distro.conf:
+> I find I'm also struggling with figuring out how to add a whole subsystem, rather than picking out the packages.  This goes beyond the scroll list of packages to add higher-level groups of packages. This might be already present in how we present Tasks to select, so it might already be there.
+>
+We need to work on renaming the existing task-* recipes to make it more 
+understood as package grouping or <pick your descriptive name here>
 
-DISTRO = "poky"
-DISTRO_NAME = "Yocto (Built by Poky 7.0)"
-DISTRO_VERSION = "1.2"
+> * Finalizing your device's source offer
+>
+> One of the things the Project has been praised on is our support for building license compliant embedded distributions. This turns out to be one of the biggest challenges when people use Linux for their embedded devices - often the Linux gets shipped out on the embedded device, but the sources are not made available as specified in the GPL.  Through our tracking and validating of source licenses in recipes, the logic in the build system to restrict licenses used, and the source manifests generated in the build, I think we have a world class solution. This really needs to be supported well in Web Hob.
+>
+> So the requirement here is that when a build is completed, you not only get access to the image (and kernel) but maybe also a tar file of the sources and scripts used to build the image, for purposes of GPL license compliance.
+>
+I want to point out to the designers and implementers that there already 
+exists a mechanism to archive various levels of source, source with 
+logs, source with logs and scripts, ...  Please review the 
+archiver.bbclass so we do not re-invent the wheels for the underlying 
+implementation of what Dave is asking for.  We just need to inherit that 
+class and set the appropriate flags for what level of archiving.
 
-I am well aware that textual meaning is pretty much constructed by the
-reader, and that authorial intent is an elusive concept, but I am ready
-to argue that the conventional understanding of the above is that Poky
-is a build tool, and Yocto is the public name of the distro that you
-build if you use meta-yocto. To read that as 'Yocto is NOT a distro' I
-think requires a definite pre-understanding that Yocto is not a distro,
-which would need to come from some other source (or perhaps it is an
-axiom of faith; myself, I tend hold firmly to the authority of the
-source code alone). I shall not deny you the right to hold to such a
-reading, but I do reserve the right to deconstruct it. :-)
+This should also include a License Manifest of some sort that could be 
+suitable for posting on a website, I am not sure if this is something 
+Beth already has plans for in her license work.
+
+Sau!
 
 
-> This thread highlights the reason the oe folks have been pushing to get rid of the 'poky' name completely
-
-Perhaps one of the reasons; but then the erasure of Poky would mean that
-you could no longer say 'Yocto is a NOT a distro', which I suspect would
-achieve the very opposite of what you seek (and, perhaps more
-importantly, might cost Dave and Saul a lunch or two). Personally, I
-think much better solution would be if the distro was simply called Poky
-v7.0, then we could all say 'Yocto is NOT a distro!' with conviction.
-Plus Poky is such a lovely name, don't you think? ;-)
-
-Tomas
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
 
