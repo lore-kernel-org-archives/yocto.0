@@ -1,32 +1,31 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-ee0-f48.google.com (mail-ee0-f48.google.com [74.125.83.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B2745E0073F
-	for <yocto@yoctoproject.org>; Wed, 27 Jun 2012 11:01:40 -0700 (PDT)
-Received: by eekb45 with SMTP id b45so611418eek.35
-	for <yocto@yoctoproject.org>; Wed, 27 Jun 2012 11:01:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=r6r4l35ompIANcC9oL9Yb/X5hjR/cVl3W5FXdS6zAyo=;
-	b=zY98Mt/lZPzGAnKiOcrMUyoudVHHYNgTdbvxUUh4V6CwfTNrUpWWga3IIXe8J6vp/g
-	9X4kYW9LVg1vDKTqYycvtFWkwMFeUmoK3v3YFyHt6VMZkPseWe89+Ryewo3bGaafLqCs
-	Y/OT2K9k0x/o+9BU1X0PgjQv9KGzkR/u5TOWMGSseZSD74y5NSYz//O9RHmHtPxeEwyG
-	vEHmtB8rrmuSoryeov3KVZg4HPKJWEaBgMECWmAXSufHbhbcyWmFG7nGrqRG9vKsd8gX
-	G0trSLGSzN9oVs3NAESrVUWZoEPgDUbe5APLrdF9i5JtnRMvI9jRttdoYDLwIMBsnnmn
-	Qc4A==
-Received: by 10.14.37.132 with SMTP id y4mr3982805eea.142.1340820099493; Wed,
-	27 Jun 2012 11:01:39 -0700 (PDT)
+Return-Path: <david.c.stewart@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 55D9FE0073F
+	for <yocto@yoctoproject.org>; Wed, 27 Jun 2012 12:17:42 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 27 Jun 2012 12:17:41 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="161438492"
+Received: from orsmsx606.amr.corp.intel.com ([10.22.226.128])
+	by azsmga001.ch.intel.com with ESMTP; 27 Jun 2012 12:17:41 -0700
+Received: from orsmsx106.amr.corp.intel.com (10.22.225.133) by
+	orsmsx606.amr.corp.intel.com (10.22.226.128) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Wed, 27 Jun 2012 12:17:41 -0700
+Received: from orsmsx105.amr.corp.intel.com ([169.254.4.138]) by
+	ORSMSX106.amr.corp.intel.com ([169.254.5.167]) with mapi id
+	14.01.0355.002; Wed, 27 Jun 2012 12:17:41 -0700
+From: "Stewart, David C" <david.c.stewart@intel.com>
+To: yocto <yocto@yoctoproject.org>
+Thread-Topic: Web Hob - two additional design ideas
+Thread-Index: Ac1UmYVDulg/pOv2RD+l0gUO2DP0gA==
+Date: Wed, 27 Jun 2012 19:17:41 +0000
+Message-ID: <CDED78A957032E45B3239CDDA7642D151C8681AA@ORSMSX105.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.138]
 MIME-Version: 1.0
-Received: by 10.14.219.71 with HTTP; Wed, 27 Jun 2012 11:01:09 -0700 (PDT)
-In-Reply-To: <1849604.yJORxvhzRh@helios>
-References: <20317992.tBZ1YY1I5v@helios> <4427881.ZDyEgbkgV4@helios>
-	<4FEB378C.9050307@communistcode.co.uk> <1849604.yJORxvhzRh@helios>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Wed, 27 Jun 2012 11:01:09 -0700
-Message-ID: <CAMKF1srYsORnfcvaTh5H3LEf=rGWHv3JWPpvsFpW=8FjuwWaKg@mail.gmail.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: LAMP layer
+Subject: Web Hob - two additional design ideas
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,22 +37,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 27 Jun 2012 18:01:41 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 27 Jun 2012 19:17:42 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jun 27, 2012 at 9:49 AM, Paul Eggleton
-<paul.eggleton@linux.intel.com> wrote:
->
-> It's something I've been discussing with Joe MacDonald already. I think it's
-> an either-or situation - the recipes will not need to be in both layers.
-> People who want recipes from either or both layers should be able to include
-> the layers as needed.
+Gang - there are a couple of ideas for Web Hob that we have talked about. I=
+ don't remember seeing them in the various movies and documents. So I'm goi=
+ng to throw them out there to get your feedback and hopefully get them in t=
+he design.
 
-from my experience of deploying layers for others. Its quite a talk
-for folks to get it and on top if you have overlapping recipes they
-are not making life any
-easier. if we start using this kind of method, it sure will fume into
-chaos. I think layers should have some wholeness to them but at the
-same time they should
-be leveraging other layers to get functionality they need.
+* Visualizing the image
+
+One of the things which frustrates me about GUI tools which build Linux ima=
+ges is that you usually get a long list of packages to choose from, but no =
+real guidance. I think there are a couple of interesting ways to visualize =
+what is in the image.
+
+One would be to add more visual information about what makes up the image, =
+maybe like a pie chart or linear chart which shows the breakdown between ke=
+rnel, libraries, commands; perhaps with some drill down into these categori=
+es to show which libraries, for example.  This could be extremely useful fo=
+r tuning a poky-tiny image for its footprint size.
+
+I find I'm also struggling with figuring out how to add a whole subsystem, =
+rather than picking out the packages.  This goes beyond the scroll list of =
+packages to add higher-level groups of packages. This might be already pres=
+ent in how we present Tasks to select, so it might already be there.
+
+* Finalizing your device's source offer
+
+One of the things the Project has been praised on is our support for buildi=
+ng license compliant embedded distributions. This turns out to be one of th=
+e biggest challenges when people use Linux for their embedded devices - oft=
+en the Linux gets shipped out on the embedded device, but the sources are n=
+ot made available as specified in the GPL.  Through our tracking and valida=
+ting of source licenses in recipes, the logic in the build system to restri=
+ct licenses used, and the source manifests generated in the build, I think =
+we have a world class solution. This really needs to be supported well in W=
+eb Hob.
+
+So the requirement here is that when a build is completed, you not only get=
+ access to the image (and kernel) but maybe also a tar file of the sources =
+and scripts used to build the image, for purposes of GPL license compliance=
+.
+
+
 
