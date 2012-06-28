@@ -1,38 +1,49 @@
-Return-Path: <jessica.zhang@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6AFA8E006D9
-	for <yocto@yoctoproject.org>; Thu, 28 Jun 2012 11:20:57 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 28 Jun 2012 11:20:57 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="171222747"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
-	by fmsmga001.fm.intel.com with ESMTP; 28 Jun 2012 11:20:56 -0700
-Received: from orsmsx103.amr.corp.intel.com (10.22.225.130) by
-	orsmsx603.amr.corp.intel.com (10.22.226.49) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Thu, 28 Jun 2012 11:20:56 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.59]) by
-	ORSMSX103.amr.corp.intel.com ([169.254.2.73]) with mapi id
-	14.01.0355.002; Thu, 28 Jun 2012 11:20:53 -0700
-From: "Zhang, Jessica" <jessica.zhang@intel.com>
-To: Wolfgang Denk <wd@denx.de>, Giovanni Foiani <fnognn@unife.it>
-Thread-Topic: [yocto] Yocto and Qt embedded
-Thread-Index: AQHNVVeE6+GEBbAcbEK6a88MRU73RJcQfcAA//+MI+A=
-Date: Thu, 28 Jun 2012 18:20:55 +0000
-Message-ID: <C6510F6D410BB64A8C15398EDC6B847C46A79CD8@ORSMSX101.amr.corp.intel.com>
-References: <CANsUPaP4h2OUz_4McKQ8jmfm_grv_cCGCMfxZQaGMs7ty8Bf1A@mail.gmail.com>
-	<20120628181214.7ACD02026AB@gemini.denx.de>
-In-Reply-To: <20120628181214.7ACD02026AB@gemini.denx.de>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.139]
+Return-Path: <maniacbug@ymail.com>
+Received: from nm10-vm4.bullet.mail.ne1.yahoo.com
+	(nm10-vm4.bullet.mail.ne1.yahoo.com [98.138.91.170])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id 6F673E006D9
+	for <yocto@yoctoproject.org>; Thu, 28 Jun 2012 11:50:50 -0700 (PDT)
+Received: from [98.138.90.52] by nm10.bullet.mail.ne1.yahoo.com with NNFMP;
+	28 Jun 2012 18:50:49 -0000
+Received: from [98.138.89.249] by tm5.bullet.mail.ne1.yahoo.com with NNFMP;
+	28 Jun 2012 18:50:49 -0000
+Received: from [127.0.0.1] by omp1041.mail.ne1.yahoo.com with NNFMP;
+	28 Jun 2012 18:50:49 -0000
+X-Yahoo-Newman-Property: ymail-3
+X-Yahoo-Newman-Id: 666736.47398.bm@omp1041.mail.ne1.yahoo.com
+Received: (qmail 4452 invoked by uid 60001); 28 Jun 2012 18:50:49 -0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ymail.com; s=s1024;
+	t=1340909449; bh=5ekUhOIiXqZ0MrX/gq2XQH5/P/LBUcMfP7GrUaPi1yY=;
+	h=X-YMail-OSG:Received:X-Mailer:References:Message-ID:Date:From:Reply-To:Subject:To:Cc:In-Reply-To:MIME-Version:Content-Type:Content-Transfer-Encoding;
+	b=Zt1vswL4g9yLCUvXZRLkFKGsykmGsxMfNnJLY7W3qh3vAEZ7qSoT9skdil0ADqjxIYNOV/CTzjlXXm+N8hpvRxhDNIpYoq2AR6LReEWDJPx6lTLJXVzfoxGKDM5fN5MWfwp+8vRQ+qUzJBaODGtNz91GSykYVFq3880kN0TQVAs=
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=s1024; d=ymail.com;
+	h=X-YMail-OSG:Received:X-Mailer:References:Message-ID:Date:From:Reply-To:Subject:To:Cc:In-Reply-To:MIME-Version:Content-Type:Content-Transfer-Encoding;
+	b=qeXJm5VPzbbzYMxEk4bk3mTAHnJit9reVQMz1l4KE81fYj0YL/of4twm3/V52sUcriiAe4hwMk1jOxkN6YJdd0pZvfPcqftmoxStS+SCIFYNnU9tPbCUKl8hgXCfdNJzgRETybjgWQ5fMsxmynB+C7vc3q1rAPDxZFNLGgQ7eVk=;
+X-YMail-OSG: llTPUJMVM1laHn5mP.M7KlVVgcAN2MFnZD4yE02r92Hweea
+	JUa6dYbAk5uFbptFuQ61yrknHVrXNzwROtYxo2HhsqvGQ3AzwN7mF3saGiDq
+	4uRtgG4GESoBg4isaRrIsvIzAP5PlQOA9JrnKbAr5h1MDoU8bR8DWWOWkxaL
+	HQnzMCxncJE_jGkTqcD7sSsxxhtfdHKQFtMdXeYxUhKkV1Bbq87wrcVLq5wE
+	JWHKFdBsdGGJf68nmYGXKNnWvA1teTacCwtaB785acJFwwtlmpDtRzTS78a6
+	3x1CVTzToPL0QsdhLq.8VxK8_OCm0JyIh2SChTW6Hg4VD4Yvn.KlWu8UT30v
+	1nDpXVArY00hLV6LgK3sETPo7dzXuMLs_LChrKZicH3YPTo_MsA8gsK6HkDa
+	f6sax.UsT6uvb3hIrxqas6_8Pw1K.N04Pbs.6
+Received: from [131.107.0.119] by web121601.mail.ne1.yahoo.com via HTTP;
+	Thu, 28 Jun 2012 11:50:49 PDT
+X-Mailer: YahooMailWebService/0.8.118.349524
+References: <1340763740.43451.YahooMailNeo@web121605.mail.ne1.yahoo.com>
+	<4370319.CbK9Nk4c9m@helios>
+Message-ID: <1340909449.2269.YahooMailNeo@web121601.mail.ne1.yahoo.com>
+Date: Thu, 28 Jun 2012 11:50:49 -0700 (PDT)
+From: maniacbug <maniacbug@ymail.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+In-Reply-To: <4370319.CbK9Nk4c9m@helios>
 MIME-Version: 1.0
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Yocto and Qt embedded
+Subject: Re: How to include libstdc++ in an image?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: maniacbug <maniacbug@ymail.com>
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -41,64 +52,21 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 28 Jun 2012 18:20:57 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Thu, 28 Jun 2012 18:50:50 -0000
+Content-Type: text/plain; charset=iso-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-Hi Giovanni,
-
-You need to build a matching toolchain.  Either from command line do "bitba=
-ke meta-toolchain-qte or through hob, under Settings, please make sure chec=
-k "Build Toolchain".
-
-Thanks,
-Jessica
-
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Wolfgang Denk
-Sent: Thursday, June 28, 2012 11:12 AM
-To: Giovanni Foiani
-Cc: yocto@yoctoproject.org
-Subject: Re: [yocto] Yocto and Qt embedded
-
-Dear Giovanni,
-
-In message <CANsUPaP4h2OUz_4McKQ8jmfm_grv_cCGCMfxZQaGMs7ty8Bf1A@mail.gmail.=
-com> you wrote:
->
-> This is my first post on this mailing list and I'm quite new to Yocto.
-> I successfully built a distro using the latest release of hob,
-> including Qt embedded (without X11).
-> I wrote a Qt application and cross compiled for ARM on my host machine
-> but when I deploy it on the device (a Freescale iMX53) I get and error
-> because the application looks for libraries like libQtGui but on the
-> distro all Qt libraries are named like libQtGuiE (ending with E which
-> I suppose it stands for Embedded).
-
-These names are OK for the Qt Embedded libraries, and they should match wha=
-t your cross development tools are using.  Which tool chain did you use for=
- compiling and linking your application - the one from meta-toolchain-qte ?
-
-When I build meta-toolchain-qte, this also includes, for example,
-
-.../sysroots/armv6-vfp-linux-gnueabi/usr/lib/libQtGuiE.so.4.8.2
-
-so cross tool chain and native systems work together without problems.
-
-
-Best regards,
-
-Wolfgang Denk
-
---
-DENX Software Engineering GmbH,     MD: Wolfgang Denk & Detlev Zundel
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-Phone: (+49)-8142-66989-10 Fax: (+49)-8142-66989-80 Email: wd@denx.de It's =
-hard to make a program foolproof because fools are so ingenious.
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
+=0A>> Can anyone advise the appropriate way to inject libsdtc++ (and its=0A=
+>> dependencies) into a poky image?=A0 Please note that I do not need to=0A=
+>> compile/link apps on the target, only run them.=0A=0A> Adding libstdc++ =
+to IMAGE_INSTALL should work - in fact I just tried it and it =0A> worked h=
+ere (although I used the alternative of adding it to =0A> CORE_IMAGE_EXTRA_=
+INSTALL in local.conf, but the result should be the same). =0A=0AThanks!=0A=
+=A0=0ATurns out this was user error.=A0 libstdc++/libgcc were in fact inclu=
+ded in the image, so it is correct that=A0 task-core-standalone-sdk-target =
+did the job.=A0 I just had to remove the -dev packages to avoid balooning m=
+y image, so now I have a minimal image with ssh and libstdc++ < 10M.=A0 Hap=
+piness.=0A=A0=0AAlso handy to know that it works to just add package recipe=
+s=A0directly to IMAGE_INSTALL.=A0 Still learning bitbake, so it's not clear=
+ what goes there versus IMAGE_FEATURES, etc.
 
