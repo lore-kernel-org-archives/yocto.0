@@ -1,21 +1,25 @@
-Return-Path: <ml@communistcode.co.uk>
-Received: from tinyArch.localdomain (unknown [78.110.170.148])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8B68BE01304
-	for <yocto@yoctoproject.org>; Thu, 28 Jun 2012 13:27:34 -0700 (PDT)
-Received: from [192.168.1.113]
-	(cpc2-cmbg15-2-0-cust171.5-4.cable.virginmedia.com [86.26.12.172])
-	by tinyArch.localdomain (Postfix) with ESMTPSA id 2A979600C5
-	for <yocto@yoctoproject.org>; Thu, 28 Jun 2012 21:06:04 +0100 (BST)
-Message-ID: <4FECBE32.5090203@communistcode.co.uk>
-Date: Thu, 28 Jun 2012 21:27:30 +0100
-From: Jack Mitchell <ml@communistcode.co.uk>
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
-	rv:13.0) Gecko/20120614 Thunderbird/13.0.1
-MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <1340911677.44429.YahooMailNeo@web121601.mail.ne1.yahoo.com>
-In-Reply-To: <1340911677.44429.YahooMailNeo@web121601.mail.ne1.yahoo.com>
-Subject: Re: Beagleboard BSP on BeagleBone?
+Return-Path: <kishore.k.bodke@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ED85BE01304
+	for <yocto@yoctoproject.org>; Thu, 28 Jun 2012 15:28:00 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 28 Jun 2012 15:28:00 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="161987700"
+Received: from rsaxena-rosecity.sc.intel.com (HELO localhost)
+	([143.183.188.83])
+	by azsmga001.ch.intel.com with ESMTP; 28 Jun 2012 15:28:00 -0700
+From: rahul.saxena@intel.com
+To: yocto@yoctoproject.org, tom.zanussi@intel.com, nitin.a.kamble.com,
+	kishore.k.bodke@intel.com
+Date: Thu, 28 Jun 2012 15:17:21 -0700
+Message-Id: <79d44540a20a3a7f6207a0b03dd8d54831f6fd41.1340920814.git.rahul.saxena@intel.com>
+X-Mailer: git-send-email 1.7.4.1
+In-Reply-To: <cover.1340920814.git.rahul.saxena@intel.com>
+References: <cover.1340920814.git.rahul.saxena@intel.com>
+In-Reply-To: <cover.1340920814.git.rahul.saxena@intel.com>
+References: <cover.1340920814.git.rahul.saxena@intel.com>
+Subject: [PATCH 1/1] meta-cedartrail: add gstreamer-vaapi support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,23 +31,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 28 Jun 2012 20:27:34 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 28 Jun 2012 22:28:01 -0000
 
-On 28/06/2012 20:27, maniacbug wrote:
-> Apologies if this is the wrong list, should it be on meta-ti?
->   
-> Does anyone here know if the yocto 'beagleboard' BSP works on the BeagleBone board?
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+From: Rahul Saxena <rahul.saxena@intel.com>
 
-You should use the Beaglebone BSP by adding the meta-ti layer and 
-following the instructions in the meta-ti readme.
+enable gstreamer with vaapi based hardware acceleration
 
-Regards,
-Jack.
+Signed-off-by: Rahul Saxena <rahul.saxena@intel.com>
+---
+ meta-cedartrail/conf/machine/cedartrail.conf |    4 ++++
+ 1 files changed, 4 insertions(+), 0 deletions(-)
+
+diff --git a/meta-cedartrail/conf/machine/cedartrail.conf b/meta-cedartrail/conf/machine/cedartrail.conf
+index dbd7d95..4c676f4 100644
+--- a/meta-cedartrail/conf/machine/cedartrail.conf
++++ b/meta-cedartrail/conf/machine/cedartrail.conf
+@@ -7,8 +7,12 @@
+ require conf/machine/include/tune-atom.inc
+ require conf/machine/include/ia32-base.inc
+ 
++VA_FEATURES ?= "gst-va-intel va-intel"
++
+ MACHINE_FEATURES += "pcbios efi"
+ 
++MACHINE_EXTRA_RRECOMMENDS += "${VA_FEATURES}"
++
+ XSERVER ?= "${XSERVER_IA32_BASE} \
+            ${XSERVER_IA32_EXT} \
+            cdv-pvr-driver \
+-- 
+1.7.4.1
 
 
