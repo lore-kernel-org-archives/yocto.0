@@ -1,28 +1,19 @@
-Return-Path: <koen@beagleboard.org>
-Received: from mail-ee0-f48.google.com (mail-ee0-f48.google.com [74.125.83.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 281E0E0073F
-	for <yocto@yoctoproject.org>; Wed, 27 Jun 2012 14:59:00 -0700 (PDT)
-Received: by eekb45 with SMTP id b45so683627eek.35
-	for <yocto@yoctoproject.org>; Wed, 27 Jun 2012 14:59:00 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=references:in-reply-to:mime-version:content-transfer-encoding
-	:content-type:message-id:cc:x-mailer:from:subject:date:to
-	:x-gm-message-state;
-	bh=N4eKY89piiwVwFtSn25LBAG/QdUb9txxdMzz6ni8/Zk=;
-	b=kZIjfzNrJV0XWQxYNotEuLppIpmY91b6+bu99rk/aKakcVxyeOweE3DNACgNsvtN1K
-	5ec7zUJJDg2PyVxZWNk7usGjRwIbWX4w4iOE6LFHreP5Zkk2EwIWhsdug6Rw/f/42hTv
-	8guH0rmtGt0REjwCG06LYKyh31bTwV+H6+GwEADE2X0eV3RoLiVRhljb0GqK15wvQWUp
-	o87/f+LVCglwk5VN8XTFL512g6p1NXVgBHHZjfKixonsFAadiDQ1gIC54G32pFVVKND6
-	8r5kaWnvH8UbbUfmQ/PA5/zlu2lZNOfYpks662zgiwcZhSL2vh/shsC5h9J4GXLHrDp8
-	tTqA==
-Received: by 10.14.97.10 with SMTP id s10mr3471120eef.90.1340834339892;
-	Wed, 27 Jun 2012 14:58:59 -0700 (PDT)
-Received: from [172.20.1.20] (ip545070eb.adsl-surfen.hetnet.nl.
-	[84.80.112.235])
-	by mx.google.com with ESMTPS id z5sm163094346eem.3.2012.06.27.14.58.58
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Wed, 27 Jun 2012 14:58:59 -0700 (PDT)
+Return-Path: <tf+lists.yocto@r-finger.com>
+Received: from r-finger.com (r-finger.com [178.79.160.5])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0E8CFE0073F
+	for <yocto@yoctoproject.org>; Thu, 28 Jun 2012 00:44:39 -0700 (PDT)
+Received: from [192.168.0.2] (host86-170-12-169.range86-170.btcentralplus.com
+	[86.170.12.169]) (using TLSv1 with cipher AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by r-finger.com (Postfix) with ESMTPSA id 31AB09C07
+	for <yocto@yoctoproject.org>; Thu, 28 Jun 2012 08:44:37 +0100 (BST)
+Message-ID: <4FEC0B65.5060104@r-finger.com>
+Date: Thu, 28 Jun 2012 08:44:37 +0100
+From: Tomas Frydrych <tf+lists.yocto@r-finger.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:10.0.3) Gecko/20120329 Icedove/10.0.3
+MIME-Version: 1.0
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 References: <alpine.DEB.2.02.1206260459040.8547@oneiric>
 	<10398861.esnekvBoZU@helios> <4FE9D965.4070906@linux.intel.com>
 	<3153041.1FMPtSpq0x@helios> <4FE9E58C.9020408@r-finger.com>
@@ -31,15 +22,8 @@ References: <alpine.DEB.2.02.1206260459040.8547@oneiric>
 	<4FEACDE6.7040701@r-finger.com>
 	<83905E03-FF88-48EC-9336-273B02FB9FB1@beagleboard.org>
 	<4FEB69BB.2080906@r-finger.com>
-In-Reply-To: <4FEB69BB.2080906@r-finger.com>
-Mime-Version: 1.0 (1.0)
-Message-Id: <02DD1E77-2FBE-413A-B852-6DC3EEC6A7E2@beagleboard.org>
-X-Mailer: iPhone Mail (9B206)
-From: Koen Kooi <koen@beagleboard.org>
-Date: Wed, 27 Jun 2012 23:58:56 +0200
-To: Tomas Frydrych <tf+lists.yocto@r-finger.com>
-X-Gm-Message-State: ALoCoQmTinkqpHTtIS+b7CbOVKK0XmD3cL1yH8VQLeZm51mBPG/IJE86JfeEk7oISsgkt3Hbjgac
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+	<02DD1E77-2FBE-413A-B852-6DC3EEC6A7E2@beagleboard.org>
+In-Reply-To: <02DD1E77-2FBE-413A-B852-6DC3EEC6A7E2@beagleboard.org>
 Subject: Re: <rant>the current yocto FAQ is pretty much valueless</rant>
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -52,64 +36,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 27 Jun 2012 21:59:01 -0000
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=us-ascii
+X-List-Received-Date: Thu, 28 Jun 2012 07:44:39 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
+Hi Koen,
 
+On 27/06/12 22:58, Koen Kooi wrote:
+> I have no problem with poky-the-distro, I have a problem with
+> poky-the-buildsystem. I warned mallum about this confusion years ago,
+> but you know how stubborn he can be :)
 
-Op 27 jun. 2012 om 22:14 heeft Tomas Frydrych <tf+lists.yocto@r-finger.com> h=
-et volgende geschreven:
+The Yocto naming confusion is entirely of Yocto making, nothing at all
+to do with days of yore. There was never any confusion about what Poky
+was before Yocto, just unhappiness of some that Poky was not just a
+distro. :)
 
-> Hi Koen,
->=20
-> On 27/06/12 15:59, Koen Kooi wrote:
->> Yocto is NOT a distro.=20
->=20
-> Is that so? :-), meta-yocto distro.conf:
->=20
-> DISTRO =3D "poky"
-> DISTRO_NAME =3D "Yocto (Built by Poky 7.0)"
-> DISTRO_VERSION =3D "1.2"
->=20
-> I am well aware that textual meaning is pretty much constructed by the
-> reader, and that authorial intent is an elusive concept, but I am ready
-> to argue that the conventional understanding of the above is that Poky
-> is a build tool, and Yocto is the public name of the distro that you
-> build if you use meta-yocto. To read that as 'Yocto is NOT a distro' I
-> think requires a definite pre-understanding that Yocto is not a distro,
-> which would need to come from some other source (or perhaps it is an
-> axiom of faith; myself, I tend hold firmly to the authority of the
-> source code alone). I shall not deny you the right to hold to such a
-> reading, but I do reserve the right to deconstruct it. :-)
+Poky-the-buildsystem was simply necessary. OE-the-buildsystem is a
+wonderful, rich, community project, but one in a constant and
+unpredictable flux. This is great for tinkering, but PITA when trying to
+develop and long term maintain a product (much bigger problem than what
+sparked this thread for sure). In the absence of a clearly defined
+process for the OE-the-buildsystem Poky had to bring sanity to the
+buildsystem itself and could not be just a distro. It introduced QA,
+releases, it focused on facilitating customization and manageable
+upgrade paths (and even provided some documentation!).
 
-It's actually the catchphrase on the official slides: It's not a distro, it b=
-uilds you one
+Yocto is based on Poky; if it was not, it would need to create something
+just like Poky (the alternative would be asserting complete control over
+OE as a whole, not good I think). OE has benefited from the Poky effort
+over the last seven years, and it is a better ecosystem for it. At the
+same time, the OE systemd situation (a major system level change without
+adequate consideration of the upgrade path) suggests to me that the need
+for a sanitized OE-derivative remains.
 
+I shut up now. Really. Maybe. :-)
 
+(Perhaps I should add that I am not formally affiliated with the Yocto
+project in any way, my opinions are really my own, not someone else's or
+driven by a policy, I have a long history with Poky, so I am definitely
+biased in a particular way, I work with Poky on daily basis, and I
+tinker with Poky after hours.)
 
->  thread highlights the reason the oe folks have been pushing to get rid of=
- the 'poky' name completely
->=20
-> Perhaps one of the reasons; but then the erasure of Poky would mean that
-> you could no longer say 'Yocto is a NOT a distro', which I suspect would
-> achieve the very opposite of what you seek (and, perhaps more
-> importantly, might cost Dave and Saul a lunch or two). Personally, I
-> think much better solution would be if the distro was simply called Poky
-> v7.0, then we could all say 'Yocto is NOT a distro!' with conviction.
-> Plus Poky is such a lovely name, don't you think? ;-)
-
-I have no problem with poky-the-distro, I have a problem with poky-the-build=
-system. I warned mallum about this confusion years ago, but you know how stu=
-bborn he can be :)
-
-
-
->=20
-> Tomas
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+Tomas
 
