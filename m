@@ -1,47 +1,31 @@
-Return-Path: <mhubig@imko.de>
-Received: from mail-we0-f176.google.com (mail-we0-f176.google.com
-	[74.125.82.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 535C6E0070B
-	for <yocto@yoctoproject.org>; Fri, 29 Jun 2012 08:08:41 -0700 (PDT)
-Received: by were53 with SMTP id e53so67515wer.35
-	for <yocto@yoctoproject.org>; Fri, 29 Jun 2012 08:08:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=imko.de; s=google;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:content-type:content-transfer-encoding;
-	bh=m6IwP1zxKyVM4opgQN6p+IxHLMRCgcl5KJBkl5VaSSQ=;
-	b=ZQheliU0A/nzx3rSZeoWRzPz/D2+xBfbgwhL3FAMKfFA4Xbs6UBzve7F4YdX0MNp0U
-	4dn0BquKvQM1WBRV3OGh8V5g8Qfn3/E3zHlDLicO6OjYwXdUG4xLWYOtuSazMU/kwXaa
-	Em4IwwpGKJ+tTyONmhWSJVWv8lUzDxO3TZs8E=
+Return-Path: <jim@halfman.com>
+Received: from mail-vc0-f176.google.com (mail-vc0-f176.google.com
+	[209.85.220.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 465BFE0070B
+	for <yocto@yoctoproject.org>; Fri, 29 Jun 2012 08:28:06 -0700 (PDT)
+Received: by vcbfo14 with SMTP id fo14so2934777vcb.35
+	for <yocto@yoctoproject.org>; Fri, 29 Jun 2012 08:28:05 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=google.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:content-type:content-transfer-encoding:x-gm-message-state;
-	bh=m6IwP1zxKyVM4opgQN6p+IxHLMRCgcl5KJBkl5VaSSQ=;
-	b=ia+UrA9lHwkx7Rwej77gq5F7jgOAFlKU1NX/Mo56aFxNtEkr+47d5zElj9Dvv8XPD9
-	9ioG/5jIsFPuiVGmBUN2ORCfUC4L2t98eP79/qHrOWsIFyCRiUxvlEgxiQCcWN1FwXTl
-	VmHTnBFPwiJdjYFYZQDjkP/tE6uQWEgbUkJ+nV0N1HDVaDnGZtGWfRl/jzAmew8sH1+C
-	e1kV/exfF1C+xJKifMcp7m6Z14sRUHjcuLf1jF1fatxTXFPMGWjI8kzsJtXYz6zqfmsn
-	LOIb4kGN4GbJ3YsmJylOglRo8CeVwksu7QzfHP1Kyr79ItPhcpPapJNcZu/ap5akrBci
-	UgWg==
+	h=mime-version:from:date:message-id:subject:to:cc:content-type
+	:x-gm-message-state;
+	bh=57p9fns/QbT7hfdt1WmGpE5w4sqQg9H4Nq0AHVpGb/c=;
+	b=n/OEJBVFVZ7cCpYmARwRn4+6WAyylJt2JbaJWzCGpLs/YT1NkSGySgTarNfemR0na/
+	YMjFqG2R/2at5tyFliAs5vdJEs01QA/TROoDXLdH4Z2Tc25g1CLhB1YIh/GgeLcjMa8+
+	6tEWTB/OaVYKgVuXo4bZNxKdTt+jJABjzhW4fDheY/yzg9f44NDmYjcCJh1i0b+bGOUS
+	l93TARqXkE9haFXB5kMCnDsBL7v9a9fldLOjn1sejMchEcAzaVHbkucErtwJmEcghtZ1
+	RV7I726Hn2jCxa1B1vPTEFLREbGOTG1WY/h8huiQR0OmyevfbtPA+En3vu1Z8lpLI1o5
+	Skbg==
+Received: by 10.52.72.79 with SMTP id b15mr1087642vdv.13.1340983685357; Fri,
+	29 Jun 2012 08:28:05 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.180.106.97 with SMTP id gt1mr5397679wib.5.1340982520485; Fri,
-	29 Jun 2012 08:08:40 -0700 (PDT)
-Received: by 10.180.94.194 with HTTP; Fri, 29 Jun 2012 08:08:40 -0700 (PDT)
-In-Reply-To: <4FEDB1DA.1040504@windriver.com>
-References: <CAGws1TuNe+=5YzBOMJv30KgY7o+N9_1kqryRPKpB+27Un0=CZQ@mail.gmail.com>
-	<4FE9B6EE.4010901@windriver.com>
-	<CAGws1TsrdgjaOfi80PXNadBDmYuzV75P7gdGJJQ3tUVokWiRpA@mail.gmail.com>
-	<4FE9C097.60400@windriver.com>
-	<CAGws1TtBH8wvXAL9KDaA1EAE_hb-Lxv32EkpgPyem1fyP5U2ZA@mail.gmail.com>
-	<4FE9D6CB.1080800@windriver.com>
-	<CAGws1Tt-UuLbVt0gqwV_v9H0oxWhe26tEG73y5w6TY1WE8VRgg@mail.gmail.com>
-	<4FEDB1DA.1040504@windriver.com>
-Date: Fri, 29 Jun 2012 17:08:40 +0200
-Message-ID: <CAGws1TtREZg6Fa2+KKcshRHP-XJz372NkYMZ2jWM5m7vxoVrfg@mail.gmail.com>
-From: Markus Hubig <mhubig@imko.de>
-To: Yocto Project Mailing List <yocto@yoctoproject.org>
-X-Gm-Message-State: ALoCoQkSCgj5dRycPRz/gDbrP4v6tKxa8JkIcyRzSPMjbky+8BktQZ2joDqOb8LWi9nle0f3yjKp
-Subject: Re: BSP for taskit stamp9g20
+Received: by 10.52.114.65 with HTTP; Fri, 29 Jun 2012 08:27:45 -0700 (PDT)
+From: Jim Kosem <jim@halfman.com>
+Date: Fri, 29 Jun 2012 16:27:45 +0100
+Message-ID: <CAG+EMXgLqJa2CbQS_CeB6rQkpJSAc_hX4kBzD0E4VysZPv0A4w@mail.gmail.com>
+To: yocto@yoctoproject.org
+X-Gm-Message-State: ALoCoQmOwak6v0JbK/rD0OPipCpWSmVKfcPU5vj//qgpvJVFOmNDRA1gV1PebTuO8WwFkr57w4Lg
+Subject: Yocto WebHob design weekly update from London
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,86 +37,102 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 29 Jun 2012 15:08:42 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Fri, 29 Jun 2012 15:28:06 -0000
+Content-Type: multipart/alternative; boundary=20cf307f362e37202d04c39e183e
+
+--20cf307f362e37202d04c39e183e
+Content-Type: text/plain; charset=UTF-8
+
+Hi everyone,
+
+Here's the latest update from the London team on the WebHob design
+
+https://wiki.yoctoproject.org/wiki/Yocto_Web_Hob_Design
+
+There's a PDF of all the screens of the latest version (v.1.9) of the
+application <https://wiki.yoctoproject.org/wiki/images/0/01/Webhob.1.pdf>,
+a link to the GitHub <https://github.com/jkosem/Yocto-WebHob-Design> we
+have setup for the HTML5 prototype development and a screencast of the
+v.1.8<https://wiki.yoctoproject.org/wiki/images/c/cb/Yocto_webHob.1.9_screencast.0.2.mov>
+showing
+our design thinking around WebHob and our vision for how it will work.
+
+You'll also notice all the graphic work we've been doing as well.
+
+As always everything is on GitHub<https://github.com/jkosem/Yocto-WebHob-Design>
+ and feedback is very welcome. Thanks.
+
+--
+Jim Kosem
+
+Skype: jkosem
+Gtalk: jim@halfman.com
+Mobile: +44 7757 559081
+
+Note: I read and reply to email only a couple of times a day. If you need
+something quicker, please use Skype, GTalk or if its urgent call my mobile.
+
+--20cf307f362e37202d04c39e183e
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jun 29, 2012 at 3:47 PM, Bruce Ashfield
-<bruce.ashfield@windriver.com> wrote:
->
-> On 12-06-29 09:34 AM, Markus Hubig wrote:
->>
->> I guess the config variables inside features_not_found.txt are the one
->> I need to include into
->> the stamp9g20.cfg, stamp9g20-non_hardware.cfg files? (Ok except the
->> ones that get enabled
->
-> I wouldn't say that, was your input .config a minimal defconfig ?
+<div><span style=3D"color:rgb(34,34,34);font-size:13px;font-family:arial,sa=
+ns-serif">Hi everyone,</span></div><div><div style=3D"color:rgb(34,34,34);f=
+ont-size:13px;font-family:arial,sans-serif">
+<br></div><div style=3D"color:rgb(34,34,34);font-size:13px;font-family:aria=
+l,sans-serif">Here&#39;s the latest update from the London team on the WebH=
+ob design</div><div style=3D"color:rgb(34,34,34);font-size:13px;font-family=
+:arial,sans-serif">
 
-Hmm yes (or no) it's the .config file that gets created with
-make ARCH=3Darm stamp9g20_defconfig. I doubt this is minimal,
-but that's the only reference I have.
 
-Uhh, I found something more minimal:
+<br></div><div style=3D"color:rgb(34,34,34);font-size:13px;font-family:aria=
+l,sans-serif"><a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_Web_Hob_D=
+esign" style=3D"color:rgb(17,85,204)" target=3D"_blank">https://wiki.yoctop=
+roject.org/wiki/Yocto_Web_Hob_Design</a></div>
 
-linux-yocto-3.2-work/arch/arm/configs/stamp9g20_defconfig
 
-maybe this is what I need? (just 129 lines ;-)
+<div style=3D"color:rgb(34,34,34);font-size:13px;font-family:arial,sans-ser=
+if"><br></div><div style=3D"color:rgb(34,34,34);font-size:13px;font-family:=
+arial,sans-serif">
+There&#39;s a=C2=A0<a href=3D"https://wiki.yoctoproject.org/wiki/images/0/0=
+1/Webhob.1.pdf" style=3D"color:rgb(17,85,204)" target=3D"_blank">PDF of all=
+ the screens of the latest version (v.1.9) of the application</a>, a link t=
+o the=C2=A0<a href=3D"https://github.com/jkosem/Yocto-WebHob-Design" style=
+=3D"color:rgb(17,85,204)" target=3D"_blank"><span style=3D"background-color=
+:rgb(255,255,204);color:rgb(34,34,34);background-repeat:initial initial">Gi=
+tHub</span></a>=C2=A0we have setup for the HTML5 prototype development and =
+a=C2=A0<a href=3D"https://wiki.yoctoproject.org/wiki/images/c/cb/Yocto_webH=
+ob.1.9_screencast.0.2.mov" style=3D"color:rgb(17,85,204)" target=3D"_blank"=
+>screencast of the v.1.8</a>=C2=A0showing our design thinking around WebHob=
+ and our vision for how it will work.</div>
 
-> You really don't need to list option in your BSPs configuration that
-> are not already defined, are not hardware and are the default
-> selection of the kernel already.
 
-Hmm ok ... I'll put my BSP repo online later today and maybe you can
-take a quick look if it's ok? This would be really helpfull! ;-)
+<div style=3D"color:rgb(34,34,34);font-size:13px;font-family:arial,sans-ser=
+if"><br></div><div style=3D"color:rgb(34,34,34);font-size:13px;font-family:=
+arial,sans-serif">
+You&#39;ll also notice all the graphic work we&#39;ve been doing as well.<b=
+r clear=3D"all"><div><br></div><div>As always everything is on=C2=A0<span s=
+tyle=3D"color:rgb(34,34,34);background-color:rgb(255,255,204)"><a href=3D"h=
+ttps://github.com/jkosem/Yocto-WebHob-Design" style=3D"color:rgb(17,85,204)=
+" target=3D"_blank">GitHub</a>=C2=A0and</span>=C2=A0feedback is very welcom=
+e. Thanks.</div>
 
-> There are also the on-target scripts and techniques for streamling
-> your configuration that can result in a smaller input .config that you'd
-> feed to any process for streamlining a board's configuration.
->
->> by some kernel dependency stuff ... but how to figure out this?)
->>
->> Is there a better way to go? Maybe one where you don't have to have
->> magical powers? ;-)
->
-> There are few things that can help here:
->
-> =A0- I've just revived a script that takes a defconfig that has been
-> =A0 =A0fed to the kernel auditing subsystem and breaks it apart into the
-> =A0 =A0options that you really do or don't need in your BSP config
 
-Oh I would really like to try this! This would be really helpful for me,
-and I think there are a lot of people out there who have a working
-kernel .config file (like I do) and are looking for an easy way to
-include this into a BSP. And the most relevant information one needs
-to do so are (IMHO):
+</div></div><div><br></div>--<div>Jim Kosem</div><div><br></div><div>Skype:=
+ jkosem</div><div>Gtalk: <a href=3D"mailto:jim@halfman.com" target=3D"_blan=
+k">jim@halfman.com</a></div><div>Mobile: <a href=3D"tel:%2B44%207757%205590=
+81" value=3D"+447757559081" target=3D"_blank">+44 7757 559081</a></div>
 
-1. What config options can I ignore because there are handled by yocto.
-2. What config options can I ignore because there are set by dependencies.
-3. What config options do I absolutely have to set.
+<div>
 
-> =A0- A lot of work on kernel configuration updating and policy has
-> =A0 =A0happened in the 3.4 kernel, and will be part of yocto 1.3. As part
-> =A0 =A0of that, the policy options (what you inherit), will be clear, or
-> =A0 =A0discoverable by script, as will optional and hardware configuratio=
-n
-> =A0 =A0items.
 
-I wish I could have this now ... looking forward to it!
 
-> =A0- there is a kernel-features.rc file that is part of the meta branch
-> =A0 =A0that will be further exposed. It lists all of the configuration
-> =A0 =A0fragments, with a description and whether or not they can be
-> =A0 =A0optionally included.
->
-> The end goal is that a developer / BSP that wants a quick bootstrap on
-> top of the existing configuration can just focus on the options that
-> make their board work and initially not be concerned with those software/
-> policy option .. until you get into a tuning phase on a BSP. Having
-> visibility and some scripts around this is part of the implementation
-> of that goal.
 
-Thank you for this explanation!
 
-- Markus
 
+
+<p>Note: I read and reply to email only a couple of times a day. If you nee=
+d something quicker, please use Skype, GTalk or if its urgent call my mobil=
+e.</p></div><br>
+
+--20cf307f362e37202d04c39e183e--
