@@ -1,36 +1,46 @@
-Return-Path: <david.c.stewart@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 88DC9E006D9
-	for <yocto@yoctoproject.org>; Fri, 29 Jun 2012 09:23:37 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 29 Jun 2012 09:23:37 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="162294287"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
-	by azsmga001.ch.intel.com with ESMTP; 29 Jun 2012 09:23:36 -0700
-Received: from orsmsx151.amr.corp.intel.com (10.22.226.38) by
-	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Fri, 29 Jun 2012 09:23:36 -0700
-Received: from orsmsx105.amr.corp.intel.com ([169.254.4.138]) by
-	ORSMSX151.amr.corp.intel.com ([169.254.7.154]) with mapi id
-	14.01.0355.002; Fri, 29 Jun 2012 09:23:35 -0700
-From: "Stewart, David C" <david.c.stewart@intel.com>
-To: "Wang, Shane" <shane.wang@intel.com>, Yocto discussion list
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] FW: Revised arch design of web hob with addition of
-	web	service part
-Thread-Index: Ac1VtZDqbuZb26X5SGidz6lrT8ROXgAFK1ZQABJb5sA=
-Date: Fri, 29 Jun 2012 16:23:35 +0000
-Message-ID: <CDED78A957032E45B3239CDDA7642D151C86A522@ORSMSX105.amr.corp.intel.com>
-References: <3AB6CE7F274E534CAFD089D127A8A1FC23C0C63D@SHSMSX102.ccr.corp.intel.com>
-In-Reply-To: <3AB6CE7F274E534CAFD089D127A8A1FC23C0C63D@SHSMSX102.ccr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
+Return-Path: <mhubig@imko.de>
+Received: from mail-wg0-f42.google.com (mail-wg0-f42.google.com [74.125.82.42])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 23835E006D9
+	for <yocto@yoctoproject.org>; Fri, 29 Jun 2012 10:19:17 -0700 (PDT)
+Received: by wgbds11 with SMTP id ds11so1041696wgb.5
+	for <yocto@yoctoproject.org>; Fri, 29 Jun 2012 10:19:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=imko.de; s=google;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:content-type; bh=/34qpz3C91q8d/fuTb8HMGojnkj7759d1/z7FgA4e4I=;
+	b=uvK1OliQiobSAJLfe0FD1Cr57yEE5Aditns5r8lE0Hpa77+kPhvMn3OkB03p0ZIpkE
+	LBgoZ3WoNQNBOtSvSoX/rqu3z0i7Md/5MGu7HvpOXNTkSzmKpXtLJ62JwA+WbKFpVVIg
+	f+yh1sTn+ijqRPOlCGQlZNZvHNqzEpd7DNXDs=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:content-type:x-gm-message-state;
+	bh=/34qpz3C91q8d/fuTb8HMGojnkj7759d1/z7FgA4e4I=;
+	b=eQ7RJ4EPooFXLedOwzQYGvfQlKM4t5vRjbsmH2bjkl0zsafPODr1+RBuDDeqy1K3l/
+	hs81lfbQQEgjehni+tsMLmyYCwpX1TNBgD/ul9XRCMc5ZxxEw2sfgF5xeIynfpA+Wpwo
+	lpK8HatkzABX6uhjVdXL90OqUbR4aWW8ma0oWSuK7G6O3gLNa+PMmu0EkwOfAdtxdBek
+	xSYTgyZ5b7DZBvL/7OOATb4xHUhZOYAYWhqXm999TdJKdcDTfpRhgk6USSF2etMfrktx
+	Q5ZdtpSis2z+IZ+5LZHos2yvI6ajcy3k0p88Sg4Gyz7JDfNfZ7Egl8I4n+K0BtHVI+8w
+	ZyIA==
 MIME-Version: 1.0
-Cc: "Liu, UrielX" <urielx.liu@intel.com>
-Subject: Re: FW: Revised arch design of web hob with addition of web	service part
+Received: by 10.216.194.23 with SMTP id l23mr1182720wen.121.1340990356711;
+	Fri, 29 Jun 2012 10:19:16 -0700 (PDT)
+Received: by 10.180.94.194 with HTTP; Fri, 29 Jun 2012 10:19:16 -0700 (PDT)
+In-Reply-To: <CAGws1TtREZg6Fa2+KKcshRHP-XJz372NkYMZ2jWM5m7vxoVrfg@mail.gmail.com>
+References: <CAGws1TuNe+=5YzBOMJv30KgY7o+N9_1kqryRPKpB+27Un0=CZQ@mail.gmail.com>
+	<4FE9B6EE.4010901@windriver.com>
+	<CAGws1TsrdgjaOfi80PXNadBDmYuzV75P7gdGJJQ3tUVokWiRpA@mail.gmail.com>
+	<4FE9C097.60400@windriver.com>
+	<CAGws1TtBH8wvXAL9KDaA1EAE_hb-Lxv32EkpgPyem1fyP5U2ZA@mail.gmail.com>
+	<4FE9D6CB.1080800@windriver.com>
+	<CAGws1Tt-UuLbVt0gqwV_v9H0oxWhe26tEG73y5w6TY1WE8VRgg@mail.gmail.com>
+	<4FEDB1DA.1040504@windriver.com>
+	<CAGws1TtREZg6Fa2+KKcshRHP-XJz372NkYMZ2jWM5m7vxoVrfg@mail.gmail.com>
+Date: Fri, 29 Jun 2012 19:19:16 +0200
+Message-ID: <CAGws1TudcY2VMD+WvMDiWNPCpgwdfNVhL=yirANRZzqnKTs-mQ@mail.gmail.com>
+From: Markus Hubig <mhubig@imko.de>
+To: Yocto Project Mailing List <yocto@yoctoproject.org>
+X-Gm-Message-State: ALoCoQl9sq1HTw/QeyWSh4MvE/RyQ3EiEqs6Z/B5QoRqfzbOGXCQXCIV0W311QaRdTUUgUcfrFBV
+Subject: Re: BSP for taskit stamp9g20
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,43 +52,16 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 29 Jun 2012 16:23:37 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 29 Jun 2012 17:19:18 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
+Hello @all, hello Bruce!
 
-> From: yocto-bounces@yoctoproject.org [mailto:yocto-
-> bounces@yoctoproject.org] On Behalf Of Wang, Shane
-> Sent: Friday, June 29, 2012 12:40 AM
->=20
-> On behalf of Uriel:
->=20
-> Please find the enclosure for the revised web hob design with the additio=
-n of
-> web service part. Thank you.
->=20
-> Sincerely Yours,
-> Uriel Liu
+https://bitbucket.org/imko/meta-stamp9g20
 
-Guys - thanks for the update, this explains things better for me. Questions=
-:
+here you can find my first attempt of a BSP for the taskit stamp9g20 and
+portuxg20 Board. Until now there is only the kernel part. Please have a look
+and give comments.
 
-1. So you will be communicating with the bitbake server using SOAP rather t=
-han REST?  Can we just call it SOAP (the specific implementation) rather th=
-an Web Service (which seems pretty generic)?
-
-2. Slide 5 - still shows REST, should this be fixed with "Web service" or b=
-etter with SOAP?
-
-3. What is the license for the Django server? At some point we will need to=
- analyze licensing of all the components we want to use, but just in genera=
-l if you can let us know what we're dealing with.
-
-4. Based on the above, would we be able to release all of the server-side s=
-oftware with the core Yocto Project release?
-
-Thanks
-
-Dave
+Thanks, Markus
 
