@@ -1,24 +1,34 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C04C2E0146A
-	for <yocto@yoctoproject.org>; Sat, 30 Jun 2012 15:29:26 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 30 Jun 2012 15:29:26 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="187028567"
-Received: from unknown (HELO helios.localnet) ([10.252.120.207])
-	by fmsmga002.fm.intel.com with ESMTP; 30 Jun 2012 15:29:25 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: yocto@yoctoproject.org
-Date: Sat, 30 Jun 2012 23:29:24 +0100
-Message-ID: <1917420.7HU16QZsXx@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.8.3 (Linux/3.2.0-26-generic-pae; KDE/4.8.3; i686; ; )
-In-Reply-To: <EA4EED0E-61CA-415E-AA6E-E708D7859323@dominion.thruhere.net>
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-ey0-f176.google.com (mail-ey0-f176.google.com
+	[209.85.215.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7DE71E0146A
+	for <yocto@yoctoproject.org>; Sat, 30 Jun 2012 15:34:36 -0700 (PDT)
+Received: by eaab16 with SMTP id b16so2130558eaa.35
+	for <yocto@yoctoproject.org>; Sat, 30 Jun 2012 15:34:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=nzWNMk092eRwXSh04VB6dlumm3Q60N/ygfJq+7XsUWM=;
+	b=PbRqsSAipF9E0cfgDwIqm+8owtPAU6LVrgFg5S8wvuoI7mXGrLaWemlyrXbLig8Zq5
+	DRit3UFvts03//bK8DbpMWwsBDOmnbkQxctf2rFEbYClfyGrM8zhs/3p/pcqfod/5GAk
+	UUEjtxqbW6NjbNrrJfyYhOa2t9hff7aBiq4fqfOfiA/YsuGEPelWPobP5ZWBCBJ+TELy
+	YA/n6O5po0nm23rv+X1DV3NL+OUSjeYbCxixn42nySvIUbyBT+cOcyRPOGIso2vapOQf
+	I84ChFewNO7+/Z4kKFhN5Hsd1o6+Eh9HVts/7PSWvCKknH3j+7a5pnFCc/wCN7yIFpjl
+	nFiQ==
+Received: by 10.14.37.76 with SMTP id x52mr1892817eea.102.1341095674673; Sat,
+	30 Jun 2012 15:34:34 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.14.210.199 with HTTP; Sat, 30 Jun 2012 15:34:04 -0700 (PDT)
+In-Reply-To: <1917420.7HU16QZsXx@helios>
 References: <1340763740.43451.YahooMailNeo@web121605.mail.ne1.yahoo.com>
 	<4370319.CbK9Nk4c9m@helios>
 	<EA4EED0E-61CA-415E-AA6E-E708D7859323@dominion.thruhere.net>
-MIME-Version: 1.0
+	<1917420.7HU16QZsXx@helios>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Sat, 30 Jun 2012 15:34:04 -0700
+Message-ID: <CAMKF1sqcVzwXKtW42MiV2OPvDUv6bz1f-2qeb5ZsOR1A-G1BxQ@mail.gmail.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Cc: yocto@yoctoproject.org
 Subject: Re: How to include libstdc++ in an image?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -31,20 +41,13 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 30 Jun 2012 22:29:26 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Sat, 30 Jun 2012 22:34:36 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On Saturday 30 June 2012 23:56:18 Koen Kooi wrote:
-> But do note that if you ship libstdc++ without anything linking to it you
-> forego on the linking exception to the GPL. That is general is a Very Bad
-> Thing(TM), so ship a helloword.cpp binary to keep the fsf happy. As an
-> added bonus the helloworld will drag in the lib automatically.
+On Sat, Jun 30, 2012 at 3:29 PM, Paul Eggleton
+<paul.eggleton@linux.intel.com> wrote:
+>
+> [citation needed]
 
-[citation needed]
-
--- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
+this is an interpretation of GPL-3, I dont have citations to hand here though.
 
