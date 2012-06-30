@@ -1,30 +1,33 @@
-Return-Path: <caterwaul@163.com>
-Received: from m13-96.163.com (m13-96.163.com [220.181.13.96])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DEC71E01396
-	for <yocto@yoctoproject.org>; Fri, 29 Jun 2012 21:25:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=Received:Date:From:To:Subject:Content-Type:
-	MIME-Version:Message-ID; bh=f9RsLpz0KDWZE0JiAXjKyF3P2xh0H21r6MRn
-	yW0NdWM=; b=AKPfRcw+ROasH0Xlx/RgFfPSns2olOb0Rve9Sao4C8J1pBxdF0lY
-	lazi702tTgMs49M7+zXa289nNqwSqa5WYGKqhhT2SIFIsj3/raT6VTcnpgs/1k6S
-	FmDGmO7bFiq6rRMCv2jYKGHZfhv8boulNfUyaDLZzpbHG/GLuE9janI=
-Received: from caterwaul$163.com ( [121.18.126.248] ) by
-	ajax-webmail-wmsvr96 (Coremail) ; Sat, 30 Jun 2012 12:25:32 +0800 (CST)
-X-Originating-IP: [121.18.126.248]
-Date: Sat, 30 Jun 2012 12:25:32 +0800 (CST)
-From: caterwaul <caterwaul@163.com>
-To: yocto <yocto@yoctoproject.org>
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version SP_ntes V3.5 build
-	20120507(18390.4657.4663) Copyright (c) 2002-2012 www.mailtech.cn
-	163com
-X-CM-CTRLDATA: s/sc42Zvb3Rlcl9odG09NTY2Ojgx
-MIME-Version: 1.0
-Message-ID: <5f5341fd.15538.1383ba2fa0d.Coremail.caterwaul@163.com>
-X-CM-TRANSID: YMGowEB5kEC9f+5Pg_tmAA--.17466W
-X-CM-SenderInfo: pfdwv2hzdxzqqrwthudrp/xtbBogHdJE9orsOp7wABsX
-X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
-Subject: kernel-modules problem
+Return-Path: <elvis.dowson@gmail.com>
+Received: from mail-pz0-f48.google.com (mail-pz0-f48.google.com
+	[209.85.210.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B8A1AE006D9
+	for <yocto@yoctoproject.org>; Fri, 29 Jun 2012 23:17:21 -0700 (PDT)
+Received: by dadz8 with SMTP id z8so6334166dad.35
+	for <yocto@yoctoproject.org>; Fri, 29 Jun 2012 23:17:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:content-type:content-transfer-encoding:subject:date:message-id
+	:to:mime-version:x-mailer;
+	bh=7Una46ZmZxYxr3jw9TZE290hZfduacMfUn5zAGG9wLU=;
+	b=EP/g5HBKF7fn3dDqjpANe5syBNfM3vjzME0P7nGsVuBIEs3as8PrFZ1M58KDyJEB7v
+	o2maU4G0GVA/BXdgDfY00lUwh2yl+J2L01NgLutanzbTIWpe8V9si4hdoNNI4ayePKuK
+	uLJL0f1FGvmnmri/XaoZZMt7P6lm5CeO3YnQgeEJe+CHIcu9s3tFHZHfAsUquCW4x3hY
+	T8yTz1ztwZOZAY55+WwcFDIcDnv7j0vaIfGKCTox0d4rQF6nK0NaRoW7CvIEFBLHfOtX
+	hrm47jtLIiyQDVEQ2riun0jiZxbUNHscnXYTslcV0cPYDmVXmlL5Xl2RG1tjgfPKsG1+
+	1O8g==
+Received: by 10.68.237.106 with SMTP id vb10mr12774164pbc.148.1341037041241;
+	Fri, 29 Jun 2012 23:17:21 -0700 (PDT)
+Received: from [192.168.1.102] ([94.205.109.242])
+	by mx.google.com with ESMTPS id rs4sm7521182pbc.0.2012.06.29.23.17.19
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Fri, 29 Jun 2012 23:17:20 -0700 (PDT)
+From: Elvis Dowson <elvis.dowson@gmail.com>
+Date: Sat, 30 Jun 2012 10:17:15 +0400
+Message-Id: <A44F3AEF-22D3-4C66-A9AC-15DE9D355ECE@gmail.com>
+To: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+Mime-Version: 1.0 (Apple Message framework v1278)
+X-Mailer: Apple Mail (2.1278)
+Subject: linux-xilinx: uImage.dtb files not being generated anymore
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,23 +39,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 30 Jun 2012 04:25:37 -0000
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_231578_1450915820.1341030332940"
+X-List-Received-Date: Sat, 30 Jun 2012 06:17:21 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
-------=_Part_231578_1450915820.1341030332940
-Content-Type: text/plain; charset=GBK
-Content-Transfer-Encoding: 7bit
+Hi,
+      About a week ago, my linux-xilinx builds used to correctly =
+generate the *.dtb files, required for the PowerPC440 processor on my =
+Xilinx ML-507 development board. After having recently updated poky, I =
+find that the required *.dtb files are not generated anymore.
 
-Hi friends,
+Would someone be able to tell me which file I should take a look at to =
+restore this functionality?
+
+My build configuration is as follows:
+
+Build Configuration:
+BB_VERSION        =3D "1.15.2"
+TARGET_ARCH       =3D "powerpc"
+TARGET_OS         =3D "linux"
+MACHINE           =3D "virtex5"
+DISTRO            =3D "poky"
+DISTRO_VERSION    =3D "1.2+snapshot-20120630"
+TUNE_FEATURES     =3D "m32 fpu-soft ppc440"
+TARGET_FPU        =3D "soft"
+meta             =20
+meta-yocto        =3D "master:4d48398798c898c5db08294ba64d9bfc7daca19c"
+meta-oe           =3D "master:3eb5f6eecf6faf7b2701f94b12cf779350d31acc"
+meta-xilinx       =3D "master:c977270d6f0608cc5fa83f57254202713af37be0"
 
 
-I wanted to include mtd_tests modules into my rootfs. To do this, I configed the kernel and added kernel-modules in IMAGE_INSTALL in my image bb file. After build I could find all ko files I wanted at tmp/work/myboard-linux/linux-qoriq-sdk-3.0.6-r2/git/drivers/mtd/tests/. But I could NOT find ko files in the tmp/deploy/images/myboard.rootfs.tar.gz and modules-3.0.6-r2-myboard.tgz. Why? Could anyone help me? Thank you.
+Best regards,
 
-------=_Part_231578_1450915820.1341030332940
-Content-Type: text/html; charset=GBK
-Content-Transfer-Encoding: 7bit
+Elvis Dowson=
 
-<div style="line-height:1.7;color:#000000;font-size:14px;font-family:arial">Hi friends,<div><br></div><div>I wanted to include mtd_tests modules into my rootfs. To do this, I configed the kernel and added kernel-modules in IMAGE_INSTALL in my image bb file. After build I could find all ko files I wanted at&nbsp;<i>tmp/work/myboard-linux/linux-qoriq-sdk-3.0.6-r2/git/drivers/mtd/tests/</i>. But I could NOT find ko files in the<i> tmp/deploy/images/myboard.rootfs.tar.gz</i> and <i>modules-3.0.6-r2-myboard.tgz</i>. Why? Could anyone help me? Thank you.</div></div><br><br><span title="neteasefooter"><span id="netease_mail_footer"></span></span>
-
-------=_Part_231578_1450915820.1341030332940--
