@@ -1,33 +1,30 @@
-Return-Path: <elvis.dowson@gmail.com>
-Received: from mail-pz0-f48.google.com (mail-pz0-f48.google.com
-	[209.85.210.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B8A1AE006D9
-	for <yocto@yoctoproject.org>; Fri, 29 Jun 2012 23:17:21 -0700 (PDT)
-Received: by dadz8 with SMTP id z8so6334166dad.35
-	for <yocto@yoctoproject.org>; Fri, 29 Jun 2012 23:17:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:content-type:content-transfer-encoding:subject:date:message-id
-	:to:mime-version:x-mailer;
-	bh=7Una46ZmZxYxr3jw9TZE290hZfduacMfUn5zAGG9wLU=;
-	b=EP/g5HBKF7fn3dDqjpANe5syBNfM3vjzME0P7nGsVuBIEs3as8PrFZ1M58KDyJEB7v
-	o2maU4G0GVA/BXdgDfY00lUwh2yl+J2L01NgLutanzbTIWpe8V9si4hdoNNI4ayePKuK
-	uLJL0f1FGvmnmri/XaoZZMt7P6lm5CeO3YnQgeEJe+CHIcu9s3tFHZHfAsUquCW4x3hY
-	T8yTz1ztwZOZAY55+WwcFDIcDnv7j0vaIfGKCTox0d4rQF6nK0NaRoW7CvIEFBLHfOtX
-	hrm47jtLIiyQDVEQ2riun0jiZxbUNHscnXYTslcV0cPYDmVXmlL5Xl2RG1tjgfPKsG1+
-	1O8g==
-Received: by 10.68.237.106 with SMTP id vb10mr12774164pbc.148.1341037041241;
-	Fri, 29 Jun 2012 23:17:21 -0700 (PDT)
-Received: from [192.168.1.102] ([94.205.109.242])
-	by mx.google.com with ESMTPS id rs4sm7521182pbc.0.2012.06.29.23.17.19
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Fri, 29 Jun 2012 23:17:20 -0700 (PDT)
-From: Elvis Dowson <elvis.dowson@gmail.com>
-Date: Sat, 30 Jun 2012 10:17:15 +0400
-Message-Id: <A44F3AEF-22D3-4C66-A9AC-15DE9D355ECE@gmail.com>
-To: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-Mime-Version: 1.0 (Apple Message framework v1278)
-X-Mailer: Apple Mail (2.1278)
-Subject: linux-xilinx: uImage.dtb files not being generated anymore
+Return-Path: <caterwaul@163.com>
+Received: from m13-96.163.com (m13-96.163.com [220.181.13.96])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0E836E0070C
+	for <yocto@yoctoproject.org>; Sat, 30 Jun 2012 02:37:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=Received:Date:From:To:Subject:Content-Type:
+	MIME-Version:Message-ID; bh=jpUDs01x78lJ5JAOndGyWuTagkU5lXa2h74Y
+	8KB0WQI=; b=MMUNMNew+08jCCCoIS6bJ+72iTnMRH6YEdnZK36w4FnAqvSJEekm
+	PwddXjDWk3MUVnCl0+MRxXMpB3NY57zrUSxPAdevN3H9xOh8oiH+l1zYKjFZdOKn
+	H+42k+jv6g4Qs75O2519zcRR8oxlWOBwL4Igik5s5/mr6paAKqjf4Sg=
+Received: from caterwaul$163.com ( [121.18.126.248] ) by
+	ajax-webmail-wmsvr96 (Coremail) ; Sat, 30 Jun 2012 17:37:01 +0800 (CST)
+X-Originating-IP: [121.18.126.248]
+Date: Sat, 30 Jun 2012 17:37:01 +0800 (CST)
+From: caterwaul <caterwaul@163.com>
+To: yocto <yocto@yoctoproject.org>
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version SP_ntes V3.5 build
+	20120507(18390.4657.4663) Copyright (c) 2002-2012 www.mailtech.cn
+	163com
+X-CM-CTRLDATA: 5XFeXmZvb3Rlcl9odG09MTQyNTo4MQ==
+MIME-Version: 1.0
+Message-ID: <50a56b0.18d41.1383cc022e4.Coremail.caterwaul@163.com>
+X-CM-TRANSID: YMGowEAp9UK9yO5PoVBnAA--.7891W
+X-CM-SenderInfo: pfdwv2hzdxzqqrwthudrp/1tbiKATdJE9oz+UijwABs0
+X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
+Subject: Kconfig depend problem
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,37 +36,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 30 Jun 2012 06:17:21 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Sat, 30 Jun 2012 09:37:05 -0000
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_270408_744743510.1341049021156"
 
-Hi,
-      About a week ago, my linux-xilinx builds used to correctly =
-generate the *.dtb files, required for the PowerPC440 processor on my =
-Xilinx ML-507 development board. After having recently updated poky, I =
-find that the required *.dtb files are not generated anymore.
+------=_Part_270408_744743510.1341049021156
+Content-Type: text/plain; charset=GBK
+Content-Transfer-Encoding: 7bit
 
-Would someone be able to tell me which file I should take a look at to =
-restore this functionality?
-
-My build configuration is as follows:
-
-Build Configuration:
-BB_VERSION        =3D "1.15.2"
-TARGET_ARCH       =3D "powerpc"
-TARGET_OS         =3D "linux"
-MACHINE           =3D "virtex5"
-DISTRO            =3D "poky"
-DISTRO_VERSION    =3D "1.2+snapshot-20120630"
-TUNE_FEATURES     =3D "m32 fpu-soft ppc440"
-TARGET_FPU        =3D "soft"
-meta             =20
-meta-yocto        =3D "master:4d48398798c898c5db08294ba64d9bfc7daca19c"
-meta-oe           =3D "master:3eb5f6eecf6faf7b2701f94b12cf779350d31acc"
-meta-xilinx       =3D "master:c977270d6f0608cc5fa83f57254202713af37be0"
+Hi Friends,
 
 
-Best regards,
+I failed to merge "MTD_TESTS=m" into my final .config file. I noticed MTD_TESTS depend <choice> as following pasted. But I didn't find any choice definition in that Kconfig. What does that <choice> mean? Did I miss something?
 
-Elvis Dowson=
 
+IN menuconfig menu:
+Symbol: MTD_TESTS [=m]
+Type  : tristate
+    Prompt: MTD tests support
+  Defined at drivers/mtd/Kconfig:28
+      Depends on: MTD [=y] && m && <choice>
+  Location:
+      -> Device Drivers
+         -> Memory Technology Device (MTD) support (MTD [=y])
+
+
+IN drivers/mtd/Kconfig:
+config MTD_TESTS
+        tristate "MTD tests support"
+        depends on m
+        help
+          This option includes various MTD tests into compilation. The tests
+          should normally be compiled as kernel modules. The modules perform
+          various checks and verifications when loaded.
+
+------=_Part_270408_744743510.1341049021156
+Content-Type: text/html; charset=GBK
+Content-Transfer-Encoding: 7bit
+
+<div style="line-height:1.7;color:#000000;font-size:14px;font-family:arial">Hi Friends,<div><br></div><div>I failed to merge "MTD_TESTS=m" into my final .config file. I noticed MTD_TESTS depend &lt;choice&gt; as following pasted. But I didn't find any choice definition in that Kconfig. What does that &lt;choice&gt; mean? Did I miss something?</div><div><br></div><div><b>IN menuconfig menu:</b></div><div><div>Symbol: MTD_TESTS [=m]</div><div>Type &nbsp;: tristate</div><div>&nbsp; &nbsp; Prompt: MTD tests support</div><div>&nbsp; Defined at drivers/mtd/Kconfig:28</div><div>&nbsp; &nbsp; &nbsp; Depends on: MTD [=y] &amp;&amp; m &amp;&amp; &lt;choice&gt;</div><div>&nbsp; Location:</div><div>&nbsp; &nbsp; &nbsp; -&gt; Device Drivers</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;-&gt; Memory Technology Device (MTD) support (MTD [=y])</div></div><div><br></div><div><b>IN drivers/mtd/Kconfig:</b></div><div><div>config MTD_TESTS</div><div>&nbsp; &nbsp; &nbsp; &nbsp; tristate "MTD tests support"</div><div>&nbsp; &nbsp; &nbsp; &nbsp; depends on m</div><div>&nbsp; &nbsp; &nbsp; &nbsp; help</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; This option includes various MTD tests into compilation. The tests</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; should normally be compiled as kernel modules. The modules perform</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; various checks and verifications when loaded.</div></div></div><br><br><span title="neteasefooter"><span id="netease_mail_footer"></span></span>
+
+------=_Part_270408_744743510.1341049021156--
