@@ -1,35 +1,30 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-ey0-f176.google.com (mail-ey0-f176.google.com
-	[209.85.215.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7DE71E0146A
-	for <yocto@yoctoproject.org>; Sat, 30 Jun 2012 15:34:36 -0700 (PDT)
-Received: by eaab16 with SMTP id b16so2130558eaa.35
-	for <yocto@yoctoproject.org>; Sat, 30 Jun 2012 15:34:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=nzWNMk092eRwXSh04VB6dlumm3Q60N/ygfJq+7XsUWM=;
-	b=PbRqsSAipF9E0cfgDwIqm+8owtPAU6LVrgFg5S8wvuoI7mXGrLaWemlyrXbLig8Zq5
-	DRit3UFvts03//bK8DbpMWwsBDOmnbkQxctf2rFEbYClfyGrM8zhs/3p/pcqfod/5GAk
-	UUEjtxqbW6NjbNrrJfyYhOa2t9hff7aBiq4fqfOfiA/YsuGEPelWPobP5ZWBCBJ+TELy
-	YA/n6O5po0nm23rv+X1DV3NL+OUSjeYbCxixn42nySvIUbyBT+cOcyRPOGIso2vapOQf
-	I84ChFewNO7+/Z4kKFhN5Hsd1o6+Eh9HVts/7PSWvCKknH3j+7a5pnFCc/wCN7yIFpjl
-	nFiQ==
-Received: by 10.14.37.76 with SMTP id x52mr1892817eea.102.1341095674673; Sat,
-	30 Jun 2012 15:34:34 -0700 (PDT)
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0E1D7E01473
+	for <yocto@yoctoproject.org>; Sun,  1 Jul 2012 02:53:31 -0700 (PDT)
+Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
+	([99.241.91.63]:41408 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.77) (envelope-from <rpjday@crashcourse.ca>)
+	id 1SlGqQ-00031U-3W; Sun, 01 Jul 2012 05:53:30 -0400
+Date: Sun, 1 Jul 2012 05:53:27 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.DEB.2.02.1207010542550.12323@oneiric>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
-Received: by 10.14.210.199 with HTTP; Sat, 30 Jun 2012 15:34:04 -0700 (PDT)
-In-Reply-To: <1917420.7HU16QZsXx@helios>
-References: <1340763740.43451.YahooMailNeo@web121605.mail.ne1.yahoo.com>
-	<4370319.CbK9Nk4c9m@helios>
-	<EA4EED0E-61CA-415E-AA6E-E708D7859323@dominion.thruhere.net>
-	<1917420.7HU16QZsXx@helios>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Sat, 30 Jun 2012 15:34:04 -0700
-Message-ID: <CAMKF1sqcVzwXKtW42MiV2OPvDUv6bz1f-2qeb5ZsOR1A-G1BxQ@mail.gmail.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: How to include libstdc++ in an image?
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: brief observations on poky ref manual
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,13 +36,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 30 Jun 2012 22:34:36 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Sun, 01 Jul 2012 09:53:32 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-On Sat, Jun 30, 2012 at 3:29 PM, Paul Eggleton
-<paul.eggleton@linux.intel.com> wrote:
->
-> [citation needed]
 
-this is an interpretation of GPL-3, I dont have citations to hand here though.
+  some potential fixes for poky reference manual, i'll graciously
+allow scott rifenbark to do all the work.  :-)
+
+  working in appendix F (variable glossary):
+
+* INITSCRIPT_PACKAGES: it seems that it's not only if there are
+multiple packages that you'll need to append the package names to
+subsequent INITSCRIPT_* variables, it's also if there's just a single
+package but it's not equal to ${PN}, as in:
+
+meta/recipes-connectivity/openssh/openssh_6.0p1.bb:INITSCRIPT_PACKAGES = "${PN}-sshd"
+meta/recipes-connectivity/openssh/openssh_6.0p1.bb:INITSCRIPT_NAME_${PN}-sshd = "sshd"
+meta/recipes-connectivity/openssh/openssh_6.0p1.bb:INITSCRIPT_PARAMS_${PN}-sshd = "defaults 9"
+
+  in the above, there's only one initscript package related to
+openssh, but since its name differs from ${PN}, you need to be
+explicit, yes?  the current glossary entry doesn't make that clear.
+
+
+* just below that, INITSCRIPT_PARAMS is listed as "mandatory".  not
+really -- its assigned a default value of "defaults" in
+meta/classes/update-rc.d.bbclass, so if that's fine for your recipe,
+there's no need to assign anything.  (in fact, there's a small number
+of recipes that unnecessarily set that value.)
+
+  and in appendix G.2.1, AUTHOR is listed as a required variable --
+i'm pretty sure that's not true as numerous recipes have no listed
+author.  on the other hand, there's no mention of other recipe-level
+variables, such as SUMMARY.
+
+rday
+
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
