@@ -1,36 +1,45 @@
-Return-Path: <philip@balister.org>
-Received: from sanddollar.geekisp.com (sanddollar.geekisp.com
-	[216.168.135.167])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 83412E013D4
-	for <yocto@yoctoproject.org>; Sun,  1 Jul 2012 09:23:06 -0700 (PDT)
-Received: (qmail 24465 invoked by uid 1003); 1 Jul 2012 16:23:05 -0000
-Received: from unknown (HELO ?192.168.1.114?)
-	(philip@opensdr.com@96.240.167.50)
-	by mail.geekisp.com with (DHE-RSA-AES256-SHA encrypted) SMTP;
-	1 Jul 2012 16:23:05 -0000
-Message-ID: <4FF07968.8040103@balister.org>
-Date: Sun, 01 Jul 2012 12:23:04 -0400
-From: Philip Balister <philip@balister.org>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:13.0) Gecko/20120615 Thunderbird/13.0.1
+Return-Path: <maniacbug@ymail.com>
+Received: from nm22.bullet.mail.ne1.yahoo.com (nm22.bullet.mail.ne1.yahoo.com
+	[98.138.90.85])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id CEF9CE0148A
+	for <yocto@yoctoproject.org>; Sun,  1 Jul 2012 20:44:32 -0700 (PDT)
+Received: from [98.138.90.56] by nm22.bullet.mail.ne1.yahoo.com with NNFMP;
+	02 Jul 2012 03:44:32 -0000
+Received: from [98.138.88.233] by tm9.bullet.mail.ne1.yahoo.com with NNFMP;
+	02 Jul 2012 03:44:32 -0000
+Received: from [127.0.0.1] by omp1033.mail.ne1.yahoo.com with NNFMP;
+	02 Jul 2012 03:44:32 -0000
+X-Yahoo-Newman-Property: ymail-3
+X-Yahoo-Newman-Id: 203834.39523.bm@omp1033.mail.ne1.yahoo.com
+Received: (qmail 86580 invoked by uid 60001); 2 Jul 2012 03:44:32 -0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ymail.com; s=s1024;
+	t=1341200672; bh=/dHd/qgn9PVeQcd8xXs2E6nddgGCMDkDtbsBz7WTAYA=;
+	h=X-YMail-OSG:Received:X-Mailer:Message-ID:Date:From:Reply-To:Subject:To:MIME-Version:Content-Type:Content-Transfer-Encoding;
+	b=HrJ+2PEF0Dh+eSToGD44W+JHvthx5nl0orfluujpckbXphTytOYxVYaPcjXFJZZX4Xu2Bz9kXgFqbNZb/Nb/hjxzvXm6YzegxDIPtjUlZOZthur3QpV3L37jr6QHUQhpps8kgVI2OH4A8TRR5NvCO1VgiSQ4qIpJHJ6MCc+Csw8=
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=s1024; d=ymail.com;
+	h=X-YMail-OSG:Received:X-Mailer:Message-ID:Date:From:Reply-To:Subject:To:MIME-Version:Content-Type:Content-Transfer-Encoding;
+	b=gdhFyCrs9btsTosli5UFifIJhAaypAKHxphEVLXUvxwJyvy1swT2NO4u5u3xHeP7gezzesmDBdcBNIENek7FFYHOcT6heQ5PMtHako7v3VvZTtrhUo+2vDX+AdWOexojIvmq8imOFAKGqHqnAgDbcDVCmUd7HWpENN2vDWN3ZwM=;
+X-YMail-OSG: 2JJ_HxAVM1nDYZ0w_QlSfc6z_jrmxLjuCa5A3Q2tkbQ8NVb
+	Et6smM8osuuFccaTlKXrvGzlytK1.p8qlIFwInCb3CCdS7nzFHuxzT1JjcN7
+	1u0CS9YYCwqMnqJ8.gFbLXO9dSAg.UTa7A16.NruuKfdzk6w3_niGDaPWcRy
+	VnhoqoI9rPmfRyvW.jlYf4lM.ZaS1SYB6Wj_rxgobHCnp8oyeesmXjimSZKF
+	pEGY01B3N3DZBf8EBloRWF5gWjm8czd.rP8CorYX5eubt.YLDRE18YWAjWuw
+	or2db_d842rEn_SUauCm3yIpfGnJkM9.ekcNgGP3ZaAyjSUMYnNW7XFmCO5u
+	Un5dS8qICqthhvJ2Rb54L9BvJDYID1yKZMyk2rSkkciMg6YK1Hrr0QIt7e7x
+	SaiQ_t5HumrHD2AQ-
+Received: from [50.135.220.100] by web121606.mail.ne1.yahoo.com via HTTP;
+	Sun, 01 Jul 2012 20:44:31 PDT
+X-Mailer: YahooMailWebService/0.8.118.349524
+Message-ID: <1341200671.38042.YahooMailNeo@web121606.mail.ne1.yahoo.com>
+Date: Sun, 1 Jul 2012 20:44:31 -0700 (PDT)
+From: maniacbug <maniacbug@ymail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 MIME-Version: 1.0
-To: Tomas Frydrych <tf+lists.yocto@r-finger.com>
-References: <alpine.DEB.2.02.1206260459040.8547@oneiric>
-	<10398861.esnekvBoZU@helios> <4FE9D965.4070906@linux.intel.com>
-	<3153041.1FMPtSpq0x@helios> <4FE9E58C.9020408@r-finger.com>
-	<alpine.DEB.2.02.1206261252060.5948@oneiric>
-	<4FE9EEF6.7050001@r-finger.com> <4FEA0505.6010108@am.sony.com>
-	<4FEACDE6.7040701@r-finger.com>
-	<83905E03-FF88-48EC-9336-273B02FB9FB1@beagleboard.org>
-	<4FEB69BB.2080906@r-finger.com>
-	<02DD1E77-2FBE-413A-B852-6DC3EEC6A7E2@beagleboard.org>
-	<4FEC0B65.5060104@r-finger.com>
-In-Reply-To: <4FEC0B65.5060104@r-finger.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: <rant>the current yocto FAQ is pretty much valueless</rant>
+Subject: Beagleboard on Qemu, anyone?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: maniacbug <maniacbug@ymail.com>
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -39,65 +48,15 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 01 Jul 2012 16:23:06 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 02 Jul 2012 03:44:33 -0000
+Content-Type: text/plain; charset=iso-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-On 06/28/2012 03:44 AM, Tomas Frydrych wrote:
-> Hi Koen,
->
-> On 27/06/12 22:58, Koen Kooi wrote:
->> I have no problem with poky-the-distro, I have a problem with
->> poky-the-buildsystem. I warned mallum about this confusion years ago,
->> but you know how stubborn he can be :)
->
-> The Yocto naming confusion is entirely of Yocto making, nothing at all
-> to do with days of yore. There was never any confusion about what Poky
-> was before Yocto, just unhappiness of some that Poky was not just a
-> distro. :)
->
-> Poky-the-buildsystem was simply necessary. OE-the-buildsystem is a
-> wonderful, rich, community project, but one in a constant and
-> unpredictable flux. This is great for tinkering, but PITA when trying to
-> develop and long term maintain a product (much bigger problem than what
-> sparked this thread for sure). In the absence of a clearly defined
-> process for the OE-the-buildsystem Poky had to bring sanity to the
-> buildsystem itself and could not be just a distro. It introduced QA,
-> releases, it focused on facilitating customization and manageable
-> upgrade paths (and even provided some documentation!).
-
-Poky used to be a build system + distro based on OpenEmbedded. Anything 
-else is marketing :) Poky is now a distribution built with Yocto Project 
-tooling.
-
-The Yocto Project is a project to help you create a distribution based 
-on OpenEmbedded Core + some other things.
-
-I think this is the most accurate description possible.
-
-Philip
->
-> Yocto is based on Poky; if it was not, it would need to create something
-> just like Poky (the alternative would be asserting complete control over
-> OE as a whole, not good I think). OE has benefited from the Poky effort
-> over the last seven years, and it is a better ecosystem for it. At the
-> same time, the OE systemd situation (a major system level change without
-> adequate consideration of the upgrade path) suggests to me that the need
-> for a sanitized OE-derivative remains.
->
-> I shut up now. Really. Maybe. :-)
->
-> (Perhaps I should add that I am not formally affiliated with the Yocto
-> project in any way, my opinions are really my own, not someone else's or
-> driven by a policy, I have a long history with Poky, so I am definitely
-> biased in a particular way, I work with Poky on daily basis, and I
-> tinker with Poky after hours.)
->
-> Tomas
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
-
+Just curious if anyone here has run yocto images using MACHINE=3Dbeagleboar=
+d on qemu.=A0 And if so, did you get networking working?=0A=0ARight now I'm=
+ just working with the stock denzil release, not the meta-ti layer yet.=A0 =
+I did manage to get this running on Qemu (from what I can tell from web sea=
+rch, this is not a common use case to say the least :) ).=A0 Can't get the =
+network adapter to come up.=A0 I'll figure it out sooner or later, but I th=
+ought I'd ask on the list to see if anyone else has been down this path.=0A
 
