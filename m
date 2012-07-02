@@ -1,26 +1,27 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6537EE01489
-	for <yocto@yoctoproject.org>; Mon,  2 Jul 2012 09:08:52 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga101.ch.intel.com with ESMTP; 02 Jul 2012 09:08:51 -0700
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3E56CE01443
+	for <yocto@yoctoproject.org>; Mon,  2 Jul 2012 09:45:45 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 02 Jul 2012 09:45:44 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="118149065"
-Received: from unknown (HELO helios.localnet) ([10.252.120.232])
-	by AZSMGA002.ch.intel.com with ESMTP; 02 Jul 2012 09:08:51 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Darren Hart <dvhart@linux.intel.com>
-Date: Mon, 02 Jul 2012 17:08:49 +0100
-Message-ID: <3340911.JsQ6iRqCQu@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.8.3 (Linux/3.2.0-26-generic-pae; KDE/4.8.3; i686; ; )
-In-Reply-To: <4FF1C475.9090502@linux.intel.com>
-References: <cover.1341222778.git.paul.eggleton@linux.intel.com>
-	<140b0d7e96a6b852346e415b91d26f1d41ac88ea.1341222778.git.paul.eggleton@linux.intel.com>
-	<4FF1C475.9090502@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="160598414"
+Received: from btwarden-mobl1.amr.corp.intel.com (HELO envy.home)
+	([10.7.199.162])
+	by orsmga001.jf.intel.com with ESMTP; 02 Jul 2012 09:45:44 -0700
+Message-ID: <4FF1CFE0.1080801@linux.intel.com>
+Date: Mon, 02 Jul 2012 09:44:16 -0700
+From: Darren Hart <dvhart@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:13.0) Gecko/20120615 Thunderbird/13.0.1
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: [yocto-docs] [PATCH 2/5] dev-manual: tidy up "How to Submit a Change" section
+To: Chris Larson <clarson@kergoth.com>
+References: <CAGws1Tum5GZuXam-Cbo4tk3YBreetpvSy2LzcAUB4dV8BWqdKQ@mail.gmail.com>
+	<CABcZANmYT+_+o2TiSs_KvFOo9Pv3m0rtNbvz=8BcjZXUwOs6Ug@mail.gmail.com>
+In-Reply-To: <CABcZANmYT+_+o2TiSs_KvFOo9Pv3m0rtNbvz=8BcjZXUwOs6Ug@mail.gmail.com>
+X-Enigmail-Version: 1.4.2
+Cc: Yocto Project Mailing List <yocto@yoctoproject.org>
+Subject: Re: How to use PRINC
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,29 +33,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 Jul 2012 16:08:52 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Mon, 02 Jul 2012 16:45:45 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-On Monday 02 July 2012 08:55:33 Darren Hart wrote:
-> On 07/02/2012 02:54 AM, Paul Eggleton wrote:
-> > * Change some of the language and patch submission directions to
-> > 
-> >   correctly represent how we work together with OpenEmbedded (this
-> >   changed with the introduction of OE-Core a few releases ago).
-> > 
-> > * Correct --help option to -h for pull request scripts
+
+
+On 07/02/2012 09:05 AM, Chris Larson wrote:
+> On Mon, Jul 2, 2012 at 9:00 AM, Markus Hubig <mhubig@imko.de> wrote:
+>> PRINC := "${@int(PRINC) + 2}"
 > 
-> That fixes Bug 2671, consider adding the tag to the commit header.
+> This is the correct method to use in a bbappend. Start with 1,
+> obviously, and bump it each time the bbappend changes.
+> 
 
-Ah yes, I forgot there was a bug open for this. I've updated the branch to 
-include the bug reference.
-
-Thanks,
-Paul
+Scott, I believe this need updating in the dev-manual section "4.1.4.
+Using .bbappend Files".
 
 -- 
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
-Paul Eggleton
-Intel Open Source Technology Centre
+
 
