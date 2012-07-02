@@ -1,23 +1,24 @@
 Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0AA61E01473
-	for <yocto@yoctoproject.org>; Mon,  2 Jul 2012 02:54:32 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 02 Jul 2012 02:54:31 -0700
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7B9F7E006D9
+	for <yocto@yoctoproject.org>; Mon,  2 Jul 2012 03:17:57 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 02 Jul 2012 03:17:57 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="187435200"
-Received: from unknown (HELO helios.ger.corp.intel.com) ([10.252.120.227])
-	by fmsmga002.fm.intel.com with ESMTP; 02 Jul 2012 02:54:31 -0700
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="172456824"
+Received: from unknown (HELO helios.localnet) ([10.252.120.227])
+	by fmsmga001.fm.intel.com with ESMTP; 02 Jul 2012 03:17:56 -0700
 From: Paul Eggleton <paul.eggleton@linux.intel.com>
 To: yocto@yoctoproject.org
-Date: Mon,  2 Jul 2012 10:54:24 +0100
-Message-Id: <293805125a8471e83788f8b0ac38cc74c3a1015f.1341222778.git.paul.eggleton@linux.intel.com>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <cover.1341222778.git.paul.eggleton@linux.intel.com>
+Date: Mon, 02 Jul 2012 11:17:55 +0100
+Message-ID: <1394349.HRmptkkxdr@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.8.3 (Linux/3.2.0-26-generic-pae; KDE/4.8.3; i686; ; )
+In-Reply-To: <f9c41faea89d83a6d0bd4de8564b6150bd6f07e0.1341222778.git.paul.eggleton@linux.intel.com>
 References: <cover.1341222778.git.paul.eggleton@linux.intel.com>
-In-Reply-To: <cover.1341222778.git.paul.eggleton@linux.intel.com>
-References: <cover.1341222778.git.paul.eggleton@linux.intel.com>
-Subject: [yocto-docs] [PATCH 5/5] dev-manual: menuconfig now works properly
+	<f9c41faea89d83a6d0bd4de8564b6150bd6f07e0.1341222778.git.paul.eggleton@linux.intel.com>
+MIME-Version: 1.0
+Subject: Re: [yocto-docs] [PATCH 1/5] poky-ref-manual: update mailing list info in ref manual
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,49 +30,22 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 Jul 2012 09:54:32 -0000
+X-List-Received-Date: Mon, 02 Jul 2012 10:17:57 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Bug 2256 is now fixed in master and the fix will be in the next release,
-so update the documentation accordingly.
+On Monday 02 July 2012 10:54:20 Paul Eggleton wrote:
+> +        </itemizedlist></para></listitem>
+>      </para>
 
-Signed-off-by: Paul Eggleton <paul.eggleton@linux.intel.com>
----
- .../dev-manual/dev-manual-kernel-appendix.xml      |   11 +----------
- 1 file changed, 1 insertion(+), 10 deletions(-)
+Whoops, that's a stray </para></listitem> in there. I've pushed a fixed version 
+to the same contrib branch.
 
-diff --git a/documentation/dev-manual/dev-manual-kernel-appendix.xml b/documentation/dev-manual/dev-manual-kernel-appendix.xml
-index b4c6328..1a1c8a7 100644
---- a/documentation/dev-manual/dev-manual-kernel-appendix.xml
-+++ b/documentation/dev-manual/dev-manual-kernel-appendix.xml
-@@ -700,16 +700,8 @@
-                 <ulink url='&YOCTO_DOCS_REF_URL;#var-WORKDIR'><filename>WORKDIR</filename></ulink>
-                 directory and then builds and launches <filename>menuconfig</filename>:
-                 <literallayout class='monospaced'>
--     $ bitbake linux-yocto -c cleansstate
-      $ bitbake linux-yocto -c menuconfig
-                 </literallayout>
--                <note>
--                    Due to a bug in the release, it is necessary to clean the shared state memory
--                    in order for configurations made using <filename>menuconfig</filename> to take
--                    effect.
--                    For information on the bug, see
--                    <ulink url='https://bugzilla.yoctoproject.org/show_bug.cgi?id=2256'></ulink>
--                </note>
-             </para>
-                   
-             <para>
-@@ -773,9 +765,8 @@
- 
-             <para>
-                 At this point, you are ready to recompile your kernel image with 
--                the new setting in effect using the BitBake commands below:
-+                the new setting in effect using the BitBake command below:
-                 <literallayout class='monospaced'>
--     $ bitbake linux-yocto -c compile -f
-      $ bitbake linux-yocto
-                 </literallayout>
-             </para>
+Cheers,
+Paul
+
 -- 
-1.7.9.5
 
+Paul Eggleton
+Intel Open Source Technology Centre
 
