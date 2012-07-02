@@ -1,27 +1,32 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3E56CE01443
-	for <yocto@yoctoproject.org>; Mon,  2 Jul 2012 09:45:45 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 02 Jul 2012 09:45:44 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="160598414"
-Received: from btwarden-mobl1.amr.corp.intel.com (HELO envy.home)
-	([10.7.199.162])
-	by orsmga001.jf.intel.com with ESMTP; 02 Jul 2012 09:45:44 -0700
-Message-ID: <4FF1CFE0.1080801@linux.intel.com>
-Date: Mon, 02 Jul 2012 09:44:16 -0700
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:13.0) Gecko/20120615 Thunderbird/13.0.1
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-ey0-f176.google.com (mail-ey0-f176.google.com
+	[209.85.215.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B3304E01489
+	for <yocto@yoctoproject.org>; Mon,  2 Jul 2012 09:54:12 -0700 (PDT)
+Received: by eaab16 with SMTP id b16so2651129eaa.35
+	for <yocto@yoctoproject.org>; Mon, 02 Jul 2012 09:54:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=q++9Xpf4R3m+khsvZyhY0drbMyp4VbJ9hNTvNKw64y4=;
+	b=Mc4xQxjl8/c/sHUuo7sMieWxQEjf8ClVc50qXk4cCv+5IkXH9Rsrzb17anCea3TtG/
+	Gjhyu3mAoUD2wgtHeBw8x4pLQhvzNbKDbf2LnCPebY78yUXC76uSJiBOQfIYvdLpmLYP
+	INzjO2hv4Fj+hamcDoPzaBfxJ1+2Mx0WQ4UUSK+3RTs/2FcvjZMJqvlDxgn2wp/v90Od
+	VhqpixZUYtuMT2cGPsLThsp4n95y1CUAleUKvWRmj0Fp12UYbJXjlNiLHAXEYSxdCaSo
+	9KSMhJU5PuVcntR4B591ftlQKZm6HYGsMW8a5px6cdZIFcTQKQvrhE0K43pQuU+J3pGn
+	tqIQ==
+Received: by 10.14.37.76 with SMTP id x52mr3481312eea.102.1341248051592; Mon,
+	02 Jul 2012 09:54:11 -0700 (PDT)
 MIME-Version: 1.0
-To: Chris Larson <clarson@kergoth.com>
-References: <CAGws1Tum5GZuXam-Cbo4tk3YBreetpvSy2LzcAUB4dV8BWqdKQ@mail.gmail.com>
-	<CABcZANmYT+_+o2TiSs_KvFOo9Pv3m0rtNbvz=8BcjZXUwOs6Ug@mail.gmail.com>
-In-Reply-To: <CABcZANmYT+_+o2TiSs_KvFOo9Pv3m0rtNbvz=8BcjZXUwOs6Ug@mail.gmail.com>
-X-Enigmail-Version: 1.4.2
-Cc: Yocto Project Mailing List <yocto@yoctoproject.org>
-Subject: Re: How to use PRINC
+Received: by 10.14.210.199 with HTTP; Mon, 2 Jul 2012 09:53:41 -0700 (PDT)
+In-Reply-To: <CC17853F.12600%belen.barros.pena@intel.com>
+References: <CC17853F.12600%belen.barros.pena@intel.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Mon, 2 Jul 2012 09:53:41 -0700
+Message-ID: <CAMKF1spFRf6C3YmFGq8GRmFvPxCn1UQEL8s7dNNCeDzHwR6Z+g@mail.gmail.com>
+To: "Barros Pena, Belen" <belen.barros.pena@intel.com>
+Cc: yocto <yocto@yoctoproject.org>
+Subject: Re: Hob question: meta-yocto layer and 'defaultsetup' distro option
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,27 +38,16 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 Jul 2012 16:45:45 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 02 Jul 2012 16:54:13 -0000
+Content-Type: text/plain; charset=UTF-8
 
+On Mon, Jul 2, 2012 at 9:05 AM, Barros Pena, Belen
+<belen.barros.pena@intel.com> wrote:
+>
+> If I delete the meta-yocto layer, am I supposed to provide the distro to
+> be used via a layer or some other means?
 
-
-On 07/02/2012 09:05 AM, Chris Larson wrote:
-> On Mon, Jul 2, 2012 at 9:00 AM, Markus Hubig <mhubig@imko.de> wrote:
->> PRINC := "${@int(PRINC) + 2}"
-> 
-> This is the correct method to use in a bbappend. Start with 1,
-> obviously, and bump it each time the bbappend changes.
-> 
-
-Scott, I believe this need updating in the dev-manual section "4.1.4.
-Using .bbappend Files".
-
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
-
-
+OE-Core has reference distro policies which are enough to generate
+images by just using OE-Core and that is what happens when you drop
+meta-yocto its testing the reference distro setup from OE-Core
 
