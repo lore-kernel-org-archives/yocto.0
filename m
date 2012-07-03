@@ -1,22 +1,20 @@
 Return-Path: <tom.zanussi@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4D637E006EA
-	for <yocto@yoctoproject.org>; Tue,  3 Jul 2012 11:08:49 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 03 Jul 2012 11:08:35 -0700
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0BB03E006EA
+	for <yocto@yoctoproject.org>; Tue,  3 Jul 2012 11:09:25 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 03 Jul 2012 11:09:24 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="166452629"
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="161052938"
 Received: from unknown (HELO localhost) ([10.255.12.166])
-	by orsmga002.jf.intel.com with ESMTP; 03 Jul 2012 11:08:34 -0700
+	by orsmga001.jf.intel.com with ESMTP; 03 Jul 2012 11:09:23 -0700
 From: tom.zanussi@intel.com
 To: yocto@yoctoproject.org,
 	bruce.ashfield@windriver.com
-Date: Tue,  3 Jul 2012 13:08:33 -0500
-Message-Id: <66245e0954d6beb960575ae2d63ded51cea326cb.1341337852.git.tom.zanussi@intel.com>
+Date: Tue,  3 Jul 2012 13:09:21 -0500
+Message-Id: <cover.1341337418.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <cover.1341337852.git.tom.zanussi@intel.com>
-References: <cover.1341337852.git.tom.zanussi@intel.com>
-Subject: [PATCH 1/1] features/ftrace: enable FTRACE_SYSCALLS
+Subject: [PATCH 0/4] linux-yocto-3.2/standard/base: perf scripting updates
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,26 +26,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Jul 2012 18:08:49 -0000
+X-List-Received-Date: Tue, 03 Jul 2012 18:09:25 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-Add support for generic syscall entry/exit tracing.
+This patchset comprises the kernel side of the modifications needed to
+enable the Perl and Python bindings for perf scripting.
 
-Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
----
- meta/cfg/kernel-cache/features/ftrace/ftrace.cfg |    1 +
- 1 files changed, 1 insertions(+), 0 deletions(-)
+Please pull into linux-yocto-3.2 standard/base.
 
-diff --git a/meta/cfg/kernel-cache/features/ftrace/ftrace.cfg b/meta/cfg/kernel-cache/features/ftrace/ftrace.cfg
-index bab800c..692dffe 100644
---- a/meta/cfg/kernel-cache/features/ftrace/ftrace.cfg
-+++ b/meta/cfg/kernel-cache/features/ftrace/ftrace.cfg
-@@ -1,2 +1,3 @@
- CONFIG_FUNCTION_TRACER=y
- CONFIG_FUNCTION_GRAPH_TRACER=y
-+CONFIG_FTRACE_SYSCALLS=y
--- 
-1.7.0.4
+Thanks,
+
+Tom
+
+The following changes are available in the git repository at:
+
+  git://git.yoctoproject.org/linux-yocto-2.6.37-contrib.git tzanussi/3.2-perf-scripting-standard-base
+  http://git.yoctoproject.org/cgit/cgit.cgi/linux-yocto-2.6.37-contrib/log/?h=tzanussi/3.2-perf-scripting-standard-base
+
+Tom Zanussi (4):
+  Revert "perf: hard-code NO_LIBPERL/NO_LIBPYTHON"
+  perf: use pkg-config instead of python-config
+  perf: add 'libperl not found' warning
+  perf: change --root to --prefix for python install
+
+ tools/perf/Makefile |   90 +++++++++++++++++++++++++++++++++++++++++++++++++--
+ 1 files changed, 87 insertions(+), 3 deletions(-)
 
 
