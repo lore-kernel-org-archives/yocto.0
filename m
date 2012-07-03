@@ -1,34 +1,35 @@
-Return-Path: <jiajun.xu@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F210EE0145B
-	for <yocto@yoctoproject.org>; Mon,  2 Jul 2012 20:11:05 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga101.ch.intel.com with ESMTP; 02 Jul 2012 20:11:05 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="118322520"
-Received: from fmsmsx108.amr.corp.intel.com ([10.19.9.228])
-	by AZSMGA002.ch.intel.com with ESMTP; 02 Jul 2012 20:11:05 -0700
-Received: from FMSMSX109.amr.corp.intel.com (10.19.9.28) by
-	FMSMSX108.amr.corp.intel.com (10.19.9.228) with Microsoft SMTP Server
-	(TLS) id 14.1.355.2; Mon, 2 Jul 2012 20:11:05 -0700
-Received: from shsmsx151.ccr.corp.intel.com (10.239.6.50) by
-	fmsmsx109.amr.corp.intel.com (10.19.9.28) with Microsoft SMTP Server
-	(TLS) id 14.1.355.2; Mon, 2 Jul 2012 20:11:05 -0700
-Received: from shsmsx101.ccr.corp.intel.com ([169.254.1.220]) by
-	SHSMSX151.ccr.corp.intel.com ([10.239.6.50]) with mapi id
-	14.01.0355.002; Tue, 3 Jul 2012 11:11:03 +0800
-From: "Xu, Jiajun" <jiajun.xu@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Yocto weekly bug trend charts -- WW26
-Thread-Index: Ac1YyXkPVvkvGGYsQfamZ6ycb1PAXQ==
-Date: Tue, 3 Jul 2012 03:11:02 +0000
-Message-ID: <90741FE9B50D654690EB940EDB456C8E18D26C@SHSMSX101.ccr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.239.127.40]
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3F983E006EA
+	for <yocto@yoctoproject.org>; Tue,  3 Jul 2012 02:52:03 -0700 (PDT)
+Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
+	([99.241.91.63]:58446 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.77) (envelope-from <rpjday@crashcourse.ca>)
+	id 1Slzm4-0004mp-Ug; Tue, 03 Jul 2012 05:52:01 -0400
+Date: Tue, 3 Jul 2012 05:51:53 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: "Zhang, Jessica" <jessica.zhang@intel.com>
+In-Reply-To: <C6510F6D410BB64A8C15398EDC6B847C46A874F6@ORSMSX101.amr.corp.intel.com>
+Message-ID: <alpine.DEB.2.02.1207030547210.29271@oneiric>
+References: <alpine.DEB.2.02.1206260424590.22400@oneiric>
+	<CAKSdS8JfwcMZpXej0jykpquWvAN8vPyJPrmq3u_Y6i47iYdzZA@mail.gmail.com>
+	<C6510F6D410BB64A8C15398EDC6B847C46A874F6@ORSMSX101.amr.corp.intel.com>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
-Subject: Yocto weekly bug trend charts -- WW26
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: how does one use a prebuilt toolchain from the toolchain/ directory?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,18 +41,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Jul 2012 03:11:06 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 03 Jul 2012 09:52:03 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-Hi all,
-	This is the weekly bug trend for WW26. WDD number and Open Bug number keep=
- flat with WW25, as 1097 and 224. Bug status of WW26 could be found on http=
-s://wiki.yoctoproject.org/wiki/Yocto_Bug_Trend.
+On Mon, 2 Jul 2012, Zhang, Jessica wrote:
 
-Best Regards,
-Jiajun
+> On Tue, Jun 26, 2012 at 4:51 AM, Robert P. J. Day <rpjday@crashcourse.ca> wrote:
 
+... snip ...
 
+> > 4) once i install a toolchain, how do i use it?  say i install the arm
+> > toolchain, and want to build a beagleboard image.  at what point do i
+> > source the arm toolchain environment setup file?  is that all it
+> > takes?  will the bitbake build process automatically recognize what
+> > i've done and use that toolchain?
+>
+> [JZ] Please note this toolchain is meant to be used by application
+> developers not image builders.  This toolchain is meant for cross
+> development that allows you to develop target application on your
+> host machines.  Once you source the environment-setup script, it'll
+> setup your path correctly that makes it able to find all the cross
+> development tools, e.g.
+> /opt/poky/1.2/sysroots/i686-pokysdk-linux/usr/bin/i586-poky-linux/i586-poky-linux-gcc
+> will be used for compiling your programs.
+
+  ah, i wasn't aware that the prebuilt toolchains were meant primarily
+for *app* development, not *image* development.  i already knew how to
+use them for app development, that's fairly straightforward.
+
+  which brings me back to my original curiosity -- how can i use the
+same toolchain across a number of different *image* builds?  under
+what circumstances does that make sense, and how would i do that?
+
+  say i want to configure and build images for a number of
+beagleboards, and a beaglebone, and a pandaboard, etc., all of which
+require an ARM toolchain.  if these builds can share the same
+toolchain, how can i build it once, then not have to build it over and
+over for the remaining builds?
+
+rday
+
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
