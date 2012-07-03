@@ -1,53 +1,41 @@
-Return-Path: <B29882@freescale.com>
-Received: from va3outboundpool.messaging.microsoft.com
-	(va3ehsobe003.messaging.microsoft.com [216.32.180.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 234D4E006B1
-	for <yocto@yoctoproject.org>; Tue,  3 Jul 2012 12:39:28 -0700 (PDT)
-Received: from mail120-va3-R.bigfish.com (10.7.14.236) by
-	VA3EHSOBE003.bigfish.com (10.7.40.23) with Microsoft SMTP Server id
-	14.1.225.23; Tue, 3 Jul 2012 19:37:26 +0000
-Received: from mail120-va3 (localhost [127.0.0.1])	by
-	mail120-va3-R.bigfish.com (Postfix) with ESMTP id 1C6ACA0777;
-	Tue,  3 Jul 2012 19:32:13 +0000 (UTC)
-X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null); IPV:NLI;
-	H:mail.freescale.net; RD:none; EFVD:NLI
-X-SpamScore: -2
-X-BigFish: VS-2(zz98dI9371I1432Izz1202hzz8275bh8275dhz2dh2a8h668h839h8e2h8e3hf0ahbe9i)
-Received: from mail120-va3 (localhost.localdomain [127.0.0.1]) by mail120-va3
-	(MessageSwitch) id 1341343930480348_3180;
-	Tue,  3 Jul 2012 19:32:10 +0000 (UTC)
-Received: from VA3EHSMHS032.bigfish.com (unknown [10.7.14.250])	by
-	mail120-va3.bigfish.com (Postfix) with ESMTP id 6C4501E021A;
-	Tue,  3 Jul 2012 19:32:10 +0000 (UTC)
-Received: from mail.freescale.net (70.37.183.190) by VA3EHSMHS032.bigfish.com
-	(10.7.99.42) with Microsoft SMTP Server (TLS) id 14.1.225.23;
-	Tue, 3 Jul 2012 19:32:01 +0000
-Received: from 039-SN1MPN1-003.039d.mgd.msft.net ([169.254.3.163]) by
-	039-SN1MMR1-001.039d.mgd.msft.net ([10.84.1.13]) with mapi id
-	14.02.0298.005; Tue, 3 Jul 2012 14:25:04 -0500
-From: McClintock Matthew-B29882 <B29882@freescale.com>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>
+Return-Path: <scott.m.rifenbark@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 31378E01428
+	for <yocto@yoctoproject.org>; Tue,  3 Jul 2012 12:53:14 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga102.fm.intel.com with ESMTP; 03 Jul 2012 12:53:00 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; 
+	d="scan'208,217";a="173080775"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
+	by fmsmga001.fm.intel.com with ESMTP; 03 Jul 2012 12:53:00 -0700
+Received: from orsmsx102.amr.corp.intel.com (10.22.225.129) by
+	orsmsx603.amr.corp.intel.com (10.22.226.49) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Tue, 3 Jul 2012 12:53:00 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.125]) by
+	ORSMSX102.amr.corp.intel.com ([169.254.1.101]) with mapi id
+	14.01.0355.002; Tue, 3 Jul 2012 12:52:59 -0700
+From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+To: jfabernathy <jfabernathy@gmail.com>, Chris Hallinan <challinan@gmail.com>
 Thread-Topic: [yocto] prerequisite tools for making documentation
-Thread-Index: AQHNWVGMStjHgLM6pEypnx8/ZEbiyA==
-Date: Tue, 3 Jul 2012 19:25:04 +0000
-Message-ID: <CAEsOVNc81L1AnwMoED_mm+vF_+d6cX-rjBVpfKYo5=NGBT_jdA@mail.gmail.com>
+Thread-Index: AQHNWU24eedYOHPtFE2c6WYw49ejmJcYXncA//+ZS2A=
+Date: Tue, 3 Jul 2012 19:52:59 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237946A1FAE2@ORSMSX101.amr.corp.intel.com>
 References: <4FE73AF6.2060008@gmail.com>
 	<41DEA4B02DBDEF40A0F3B6D0DDB1237946A1FA2E@ORSMSX101.amr.corp.intel.com>
 	<CAME0jBRJS_zxENDxB8_-rhgwCR49B_wM-x=g-kZw=ggpWNbUcA@mail.gmail.com>
-	<alpine.DEB.2.02.1207031505370.1660@oneiric>
-In-Reply-To: <alpine.DEB.2.02.1207031505370.1660@oneiric>
+	<4FF340E2.5030500@gmail.com>
+In-Reply-To: <4FF340E2.5030500@gmail.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [70.112.201.132]
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-X-OriginatorOrg: freescale.com
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: prerequisite tools for making documentation
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: McClintock Matthew-B29882 <B29882@freescale.com>
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -56,67 +44,244 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Jul 2012 19:39:28 -0000
+X-List-Received-Date: Tue, 03 Jul 2012 19:53:14 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-ID: <6AD22645A991754D991CB912EEBA77D4@mgd.freescale.com>
+Content-Type: multipart/alternative;
+	boundary="_000_41DEA4B02DBDEF40A0F3B6D0DDB1237946A1FAE2ORSMSX101amrcor_"
+
+--_000_41DEA4B02DBDEF40A0F3B6D0DDB1237946A1FAE2ORSMSX101amrcor_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-I went through this trying to fix the docs build on a machine and my
-build script has some clues about what I needed to do:
+Jim - thanks for the list for Ubuntu.  If anyone has knowledge of building =
+the BitBake documentation on Fedora, CentOS, and openSUSE and the packages =
+needed that are not in the QS, please post.
 
-export PATH=3D/opt/fop-1.0:$PATH
-export PATH=3D/usr/local/bin:$PATH
+Thanks,
+Scott
 
-which xsltproc
+From: jfabernathy [mailto:jfabernathy@gmail.com]
+Sent: Tuesday, July 03, 2012 11:59 AM
+To: Chris Hallinan
+Cc: Rifenbark, Scott M; yocto@yoctoproject.org
+Subject: Re: [yocto] prerequisite tools for making documentation
 
-cd documentation
+On 07/03/2012 02:57 PM, Chris Hallinan wrote:
+On Tue, Jul 3, 2012 at 2:25 PM, Rifenbark, Scott M <scott.m.rifenbark@intel=
+.com<mailto:scott.m.rifenbark@intel.com>> wrote:
+Jim,
 
-for i in adt-manual dev-manual yocto-project-qs bsp-guide
-kernel-manual poky-ref-manual; do
-    make pdf html DOC=3D$i BRANCH=3Dedison
-done
+Do you have a list of what you had to install?  I can add this to the QS "P=
+ackages" section.
 
-I think I needed a new 'fop' and a new 'xsltproc' - this was on an old
-build machine (CentOS 5.X) though so things could be different.
+Scott
 
--M
+-----Original Message-----
+From: yocto-bounces@yoctoproject.org<mailto:yocto-bounces@yoctoproject.org>=
+ [mailto:yocto-bounces@yoctoproject.org<mailto:yocto-bounces@yoctoproject.o=
+rg>] On Behalf Of jfabernathy
+Sent: Sunday, June 24, 2012 9:06 AM
+To: yocto@yoctoproject.org<mailto:yocto@yoctoproject.org>
+Subject: [yocto] prerequisite tools for making documentation
 
-On Tue, Jul 3, 2012 at 2:07 PM, Robert P. J. Day <rpjday@crashcourse.ca> wr=
-ote:
-> On Tue, 3 Jul 2012, Chris Hallinan wrote:
+I had a need to look at the bitbake manual in the
+poky/bitbake/doc/manual directory and tried to make pdf.  I had all the
+prerequisites listed in the QS guide.  However, I found the make failed
+due to a number of xml related tools being missing.  I installed those
+and got the pdf manual generated.
+
+Should we add those xml tools to the prerequisites?  BTW, I'm using
+denzil branch and referring to the QS guide 1.2.
+
+I'd also be interested in knowing what host you built it on, as several of =
+us (including myself) have had difficulty building docs.
+
+
+I'm running Ubuntu 12.04 LTS.
+
+Jim A
+
+Thanks,
+
+Chris
+
+--
+Life is like Linux - it never stands still.
+
+
+
+--_000_41DEA4B02DBDEF40A0F3B6D0DDB1237946A1FAE2ORSMSX101amrcor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
 >
->> I'd also be interested in knowing what host you built it on, as
->> several of us (including myself) have had difficulty building docs.
+<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";
+	color:black;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-reply;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body bgcolor=3D"white" lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Jim &#8211; thanks for th=
+e list for Ubuntu.&nbsp; If anyone has knowledge of building the BitBake do=
+cumentation on Fedora, CentOS, and openSUSE and the packages needed
+ that are not in the QS, please post.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
+/p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Thanks,
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Scott<o:p></o:p></span></=
+p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
+/p>
+<div>
+<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
+0in 0in">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Tahoma&quot;,&quot;sans-serif&quot;;color:windowtext">From:</span></b><spa=
+n style=3D"font-size:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif=
+&quot;;color:windowtext"> jfabernathy [mailto:jfabernathy@gmail.com]
+<br>
+<b>Sent:</b> Tuesday, July 03, 2012 11:59 AM<br>
+<b>To:</b> Chris Hallinan<br>
+<b>Cc:</b> Rifenbark, Scott M; yocto@yoctoproject.org<br>
+<b>Subject:</b> Re: [yocto] prerequisite tools for making documentation<o:p=
+></o:p></span></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<div>
+<p class=3D"MsoNormal">On 07/03/2012 02:57 PM, Chris Hallinan wrote:<o:p></=
+o:p></p>
+</div>
+<blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
+<p class=3D"MsoNormal">On Tue, Jul 3, 2012 at 2:25 PM, Rifenbark, Scott M &=
+lt;<a href=3D"mailto:scott.m.rifenbark@intel.com" target=3D"_blank">scott.m=
+.rifenbark@intel.com</a>&gt; wrote:<o:p></o:p></p>
+<div>
+<blockquote style=3D"border:none;border-left:solid #CCCCCC 1.0pt;padding:0i=
+n 0in 0in 6.0pt;margin-left:4.8pt;margin-right:0in">
+<p class=3D"MsoNormal">Jim,<br>
+<br>
+Do you have a list of what you had to install? &nbsp;I can add this to the =
+QS &quot;Packages&quot; section.<br>
+<br>
+Scott<br>
+<br>
+-----Original Message-----<br>
+From: <a href=3D"mailto:yocto-bounces@yoctoproject.org">yocto-bounces@yocto=
+project.org</a> [mailto:<a href=3D"mailto:yocto-bounces@yoctoproject.org">y=
+octo-bounces@yoctoproject.org</a>] On Behalf Of jfabernathy<br>
+Sent: Sunday, June 24, 2012 9:06 AM<br>
+To: <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br=
 >
->   just recently, i whined incessantly about the issue i was having
-> building PDF docs on my ubuntu 12.04 system,
+Subject: [yocto] prerequisite tools for making documentation<br>
+<br>
+I had a need to look at the bitbake manual in the<br>
+poky/bitbake/doc/manual directory and tried to make pdf. &nbsp;I had all th=
+e<br>
+prerequisites listed in the QS guide. &nbsp;However, I found the make faile=
+d<br>
+due to a number of xml related tools being missing. &nbsp;I installed those=
+<br>
+and got the pdf manual generated.<br>
+<br>
+Should we add those xml tools to the prerequisites? &nbsp;BTW, I'm using<br=
 >
-> http://ubuntu.5.n6.nabble.com/quot-Cannot-open-file-sRGB-pf-quot-when-usi=
-ng-quot-fop-quot-to-generate-PDF-td4981668.html
->
-> anyone have a suggestion?  should i switch javas?  if anyone is
-> getting PDFs to build on their ubuntu system, i'd be interested in
-> knowing their setup and package list.
->
-> rday
->
-> --
->
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> Robert P. J. Day                                 Ottawa, Ontario, CANADA
->                         http://crashcourse.ca
->
-> Twitter:                                       http://twitter.com/rpjday
-> LinkedIn:                               http://ca.linkedin.com/in/rpjday
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto=
+denzil branch and referring to the QS guide 1.2.<o:p></o:p></p>
+</blockquote>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">I'd also be interested in knowing what host you buil=
+t it on, as several of us (including myself) have had difficulty building d=
+ocs.<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</div>
+</blockquote>
+<p class=3D"MsoNormal"><br>
+I'm running Ubuntu 12.04 LTS.<br>
+<br>
+Jim A<br>
+<br>
+<o:p></o:p></p>
+<div>
+<div>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Chris<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">&nbsp;<o:p></o:p></p>
+</div>
+</div>
+<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt">-- <br>
+Life is like Linux - it never stands still.<br>
+<br>
+<o:p></o:p></p>
+<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
 
-
+--_000_41DEA4B02DBDEF40A0F3B6D0DDB1237946A1FAE2ORSMSX101amrcor_--
