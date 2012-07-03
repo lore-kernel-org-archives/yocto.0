@@ -1,31 +1,35 @@
-Return-Path: <challinan@gmail.com>
-Received: from mail-vb0-f48.google.com (mail-vb0-f48.google.com
-	[209.85.212.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 536DAE006B1
-	for <yocto@yoctoproject.org>; Tue,  3 Jul 2012 11:57:39 -0700 (PDT)
-Received: by vbjk17 with SMTP id k17so5603881vbj.35
-	for <yocto@yoctoproject.org>; Tue, 03 Jul 2012 11:57:38 -0700 (PDT)
+Return-Path: <jfabernathy@gmail.com>
+Received: from mail-yw0-f48.google.com (mail-yw0-f48.google.com
+	[209.85.213.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7CDD8E006B1
+	for <yocto@yoctoproject.org>; Tue,  3 Jul 2012 11:57:57 -0700 (PDT)
+Received: by yhfq46 with SMTP id q46so5852404yhf.35
+	for <yocto@yoctoproject.org>; Tue, 03 Jul 2012 11:57:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=inc1DUNwhBJ2Qi9jIHDcXneKqe/FrjkGUgTRGjUTt4M=;
-	b=pAqvVIUI/sRcKPwbE/kSfGN4i23gWCUr4CxBsgVw8ptMiwkO7q+W/DJ1OX16dqxj2y
-	zjj2gp+Y3J+Q68G/aJTwtbnZXQXg0etYZTztwnTgUeROmz0m1izlMfvya1W92przgn1k
-	e7RhzfXCAryt/sguuUvHglWWfbRFbW/LCggzRxuUUfhHIAsxLvEMIS3SePX9inryfNcP
-	xqfJXo5X9Suun5CDVhzlK0GApxp6ZSLMHvlcP/mhNMRgR5zuMLqfCyu/WwwYV8CnDlCL
-	Jd4S+61qcNf5MhktfnIXp8DNwffAEw6zwwn49H22IUUmP8aBTRGQohwQmCUEiRc9jW85
-	tHIQ==
+	h=message-id:date:from:user-agent:mime-version:to:cc:subject
+	:references:in-reply-to:content-type;
+	bh=h4BknHU8v+c27IWUicJajHarrl+UF2VCa6gNVjbsbvE=;
+	b=rIPQtZ7pPfBUtd5+49jjS6GU13sS/8QuBWrRHE3aLL3ZBBbaIRZo9XUADDr5ApBQ98
+	BGPirEcIWjb8Owafv3OMCjLIeJ/WZGUexyj9nxXvzeha/F2yxx6HsDsALIKq5S+AcsaO
+	vm0HlT1CQ1NmHFmEW7dW70c+wos7fY8z2M8Ih/NTPjQPxYj7hEESgPZSGR5GflKmOcLK
+	8hLLhSJEmQQrONOijfeTWRjjUbH78QcmuUwsC9Yy1IxfvkF0ie8OmSZZYs1s3yrOJIq3
+	xRMPsQvjv37Y0VUFVMHI0vx3aOsAcpxnWJWJqGnSLUptNnSsbIHLWikNcTQ4wRSPr5RK
+	UdNg==
+Received: by 10.236.190.5 with SMTP id d5mr21917563yhn.49.1341341876446;
+	Tue, 03 Jul 2012 11:57:56 -0700 (PDT)
+Received: from [10.0.1.54] (nc-184-4-39-191.dhcp.embarqhsd.net. [184.4.39.191])
+	by mx.google.com with ESMTPS id a79sm2776635yhk.16.2012.07.03.11.57.55
+	(version=SSLv3 cipher=OTHER); Tue, 03 Jul 2012 11:57:56 -0700 (PDT)
+Message-ID: <4FF340B3.6090106@gmail.com>
+Date: Tue, 03 Jul 2012 14:57:55 -0400
+From: jfabernathy <jfabernathy@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:13.0) Gecko/20120615 Thunderbird/13.0.1
 MIME-Version: 1.0
-Received: by 10.52.24.179 with SMTP id v19mr7406254vdf.127.1341341858523; Tue,
-	03 Jul 2012 11:57:38 -0700 (PDT)
-Received: by 10.52.70.241 with HTTP; Tue, 3 Jul 2012 11:57:38 -0700 (PDT)
-In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB1237946A1FA2E@ORSMSX101.amr.corp.intel.com>
+To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
 References: <4FE73AF6.2060008@gmail.com>
 	<41DEA4B02DBDEF40A0F3B6D0DDB1237946A1FA2E@ORSMSX101.amr.corp.intel.com>
-Date: Tue, 3 Jul 2012 14:57:38 -0400
-Message-ID: <CAME0jBRJS_zxENDxB8_-rhgwCR49B_wM-x=g-kZw=ggpWNbUcA@mail.gmail.com>
-From: Chris Hallinan <challinan@gmail.com>
-To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB1237946A1FA2E@ORSMSX101.amr.corp.intel.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: prerequisite tools for making documentation
 X-BeenThere: yocto@yoctoproject.org
@@ -39,90 +43,152 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Jul 2012 18:57:39 -0000
-Content-Type: multipart/alternative; boundary=bcaec5015e7bffe89904c3f17ca4
+X-List-Received-Date: Tue, 03 Jul 2012 18:57:57 -0000
+Content-Type: multipart/alternative;
+	boundary="------------090507030209050800080506"
 
---bcaec5015e7bffe89904c3f17ca4
-Content-Type: text/plain; charset=ISO-8859-1
+--------------090507030209050800080506
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Tue, Jul 3, 2012 at 2:25 PM, Rifenbark, Scott M <
-scott.m.rifenbark@intel.com> wrote:
-
+On 07/03/2012 02:25 PM, Rifenbark, Scott M wrote:
 > Jim,
 >
-> Do you have a list of what you had to install?  I can add this to the QS
-> "Packages" section.
+> Do you have a list of what you had to install?  I can add this to the QS "Packages" section.
 >
 > Scott
->
-> -----Original Message-----
-> From: yocto-bounces@yoctoproject.org [mailto:
-> yocto-bounces@yoctoproject.org] On Behalf Of jfabernathy
-> Sent: Sunday, June 24, 2012 9:06 AM
-> To: yocto@yoctoproject.org
-> Subject: [yocto] prerequisite tools for making documentation
->
-> I had a need to look at the bitbake manual in the
-> poky/bitbake/doc/manual directory and tried to make pdf.  I had all the
-> prerequisites listed in the QS guide.  However, I found the make failed
-> due to a number of xml related tools being missing.  I installed those
-> and got the pdf manual generated.
->
-> Should we add those xml tools to the prerequisites?  BTW, I'm using
-> denzil branch and referring to the QS guide 1.2.
->
+*Scott,
 
-I'd also be interested in knowing what host you built it on, as several of
-us (including myself) have had difficulty building docs.
+I had to go thru the apt log for the day I posted this issues. Below are 
+the packages.  I imagine that texlive brought in the last 8 or so.
 
-Thanks,
+Jim A
 
-Chris
+Selecting previously unselected package libxml2-utils.
 
--- 
-Life is like Linux - it never stands still.
+Selecting previously unselected package docbook-xsl.
 
---bcaec5015e7bffe89904c3f17ca4
+Selecting previously unselected package xmlto.
+
+Selecting previously unselected package xmltex.
+
+Selecting previously unselected package texlive.
+Selecting previously unselected package texlive-bibtex-extra.
+Selecting previously unselected package preview-latex-style.
+Selecting previously unselected package texlive-pictures.
+Selecting previously unselected package texlive-latex-extra.
+Selecting previously unselected package texlive-math-extra.
+Selecting previously unselected package dblatex.
+Selecting previously unselected package texlive-latex-extra-doc.
+Selecting previously unselected package texlive-pictures-doc. *
+
+
+
+-----Original Message----- From: yocto-bounces@yoctoproject.org 
+[mailto:yocto-bounces@yoctoproject.org] On Behalf Of jfabernathy Sent: 
+Sunday, June 24, 2012 9:06 AM To: yocto@yoctoproject.org Subject: 
+[yocto] prerequisite tools for making documentation I had a need to look 
+at the bitbake manual in the poky/bitbake/doc/manual directory and tried 
+to make pdf. I had all the prerequisites listed in the QS guide. 
+However, I found the make failed due to a number of xml related tools 
+being missing. I installed those and got the pdf manual generated. 
+Should we add those xml tools to the prerequisites? BTW, I'm using 
+denzil branch and referring to the QS guide 1.2. Jim A 
+_______________________________________________ yocto mailing list 
+yocto@yoctoproject.org https://lists.yoctoproject.org/listinfo/yocto
+
+
+
+--------------090507030209050800080506
 Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
 
-On Tue, Jul 3, 2012 at 2:25 PM, Rifenbark, Scott M <span dir=3D"ltr">&lt;<a=
- href=3D"mailto:scott.m.rifenbark@intel.com" target=3D"_blank">scott.m.rife=
-nbark@intel.com</a>&gt;</span> wrote:<br><div class=3D"gmail_quote"><blockq=
-uote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc =
-solid;padding-left:1ex">
-Jim,<br>
-<br>
-Do you have a list of what you had to install? =A0I can add this to the QS =
-&quot;Packages&quot; section.<br>
-<br>
-Scott<br>
-<br>
------Original Message-----<br>
-From: <a href=3D"mailto:yocto-bounces@yoctoproject.org">yocto-bounces@yocto=
-project.org</a> [mailto:<a href=3D"mailto:yocto-bounces@yoctoproject.org">y=
-octo-bounces@yoctoproject.org</a>] On Behalf Of jfabernathy<br>
-Sent: Sunday, June 24, 2012 9:06 AM<br>
-To: <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br=
->
-Subject: [yocto] prerequisite tools for making documentation<br>
-<br>
-I had a need to look at the bitbake manual in the<br>
-poky/bitbake/doc/manual directory and tried to make pdf. =A0I had all the<b=
-r>
-prerequisites listed in the QS guide. =A0However, I found the make failed<b=
-r>
-due to a number of xml related tools being missing. =A0I installed those<br=
->
-and got the pdf manual generated.<br>
-<br>
-Should we add those xml tools to the prerequisites? =A0BTW, I&#39;m using<b=
-r>
-denzil branch and referring to the QS guide 1.2.<br></blockquote><div><br><=
-/div><div>I&#39;d also be interested in knowing what host you built it on, =
-as several of us (including myself) have had difficulty building docs.</div=
->
-<div><br></div><div>Thanks,</div><div><br></div><div>Chris</div><div>=A0</d=
-iv></div>-- <br>Life is like Linux - it never stands still.<br><br><br>
+<html>
+  <head>
+    <meta content="text/html; charset=ISO-8859-1"
+      http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">On 07/03/2012 02:25 PM, Rifenbark,
+      Scott M wrote:<br>
+    </div>
+    <blockquote
+cite="mid:41DEA4B02DBDEF40A0F3B6D0DDB1237946A1FA2E@ORSMSX101.amr.corp.intel.com"
+      type="cite">
+      <pre wrap="">Jim, 
 
---bcaec5015e7bffe89904c3f17ca4--
+Do you have a list of what you had to install?  I can add this to the QS "Packages" section.
+
+Scott
+</pre>
+    </blockquote>
+    <b>Scott,<br>
+      <br>
+      I had to go thru the apt log for the day I posted this issues.&nbsp;
+      Below are the packages.&nbsp; I imagine that texlive brought in the
+      last 8 or so.<br>
+      <br>
+      Jim A<br>
+      <br>
+      Selecting previously unselected package libxml2-utils.
+<br>
+      <br>
+      Selecting previously unselected package docbook-xsl.
+<br>
+      <br>
+      Selecting previously unselected package xmlto.
+<br>
+      <br>
+      Selecting previously unselected package xmltex.
+<br>
+      <br>
+      Selecting previously unselected package texlive.
+<br>
+      Selecting previously unselected package texlive-bibtex-extra.
+<br>
+      Selecting previously unselected package preview-latex-style.
+<br>
+      Selecting previously unselected package texlive-pictures.
+<br>
+      Selecting previously unselected package texlive-latex-extra.
+<br>
+      Selecting previously unselected package texlive-math-extra.
+<br>
+      Selecting previously unselected package dblatex.
+<br>
+      Selecting previously unselected package texlive-latex-extra-doc.
+<br>
+      Selecting previously unselected package texlive-pictures-doc.
+</b>
+    <br>
+    <br>
+    <br>
+    <br>
+    -----Original Message-----
+    From: <a class="moz-txt-link-abbreviated" href="mailto:yocto-bounces@yoctoproject.org">yocto-bounces@yoctoproject.org</a>
+    [<a class="moz-txt-link-freetext" href="mailto:yocto-bounces@yoctoproject.org">mailto:yocto-bounces@yoctoproject.org</a>] On Behalf Of jfabernathy
+    Sent: Sunday, June 24, 2012 9:06 AM
+    To: <a class="moz-txt-link-abbreviated" href="mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a>
+    Subject: [yocto] prerequisite tools for making documentation
+    I had a need to look at the bitbake manual in the
+    poky/bitbake/doc/manual directory and tried to make pdf. I had all
+    the prerequisites listed in the QS guide. However, I found the make
+    failed due to a number of xml related tools being missing. I
+    installed those and got the pdf manual generated.
+    Should we add those xml tools to the prerequisites? BTW, I'm using
+    denzil branch and referring to the QS guide 1.2.
+    Jim A
+    _______________________________________________
+    yocto mailing list
+    <a class="moz-txt-link-abbreviated" href="mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a>
+    <a class="moz-txt-link-freetext" href="https://lists.yoctoproject.org/listinfo/yocto">https://lists.yoctoproject.org/listinfo/yocto</a>
+    <blockquote
+cite="mid:41DEA4B02DBDEF40A0F3B6D0DDB1237946A1FA2E@ORSMSX101.amr.corp.intel.com"
+      type="cite">
+    </blockquote>
+    <br>
+    <br>
+  </body>
+</html>
+
+--------------090507030209050800080506--
