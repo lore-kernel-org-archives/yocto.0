@@ -1,33 +1,34 @@
-Return-Path: <song.liu@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9FD44E006B1
-	for <yocto@yoctoproject.org>; Mon,  2 Jul 2012 13:27:10 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 02 Jul 2012 13:27:10 -0700
+Return-Path: <jiajun.xu@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F210EE0145B
+	for <yocto@yoctoproject.org>; Mon,  2 Jul 2012 20:11:05 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga101.ch.intel.com with ESMTP; 02 Jul 2012 20:11:05 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="160672384"
-Received: from orsmsx606.amr.corp.intel.com ([10.22.226.128])
-	by orsmga001.jf.intel.com with ESMTP; 02 Jul 2012 13:27:10 -0700
-Received: from orsmsx102.amr.corp.intel.com (10.22.225.129) by
-	orsmsx606.amr.corp.intel.com (10.22.226.128) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Mon, 2 Jul 2012 13:27:10 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.125]) by
-	ORSMSX102.amr.corp.intel.com ([169.254.1.211]) with mapi id
-	14.01.0355.002; Mon, 2 Jul 2012 13:27:09 -0700
-From: "Liu, Song" <song.liu@intel.com>
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="118322520"
+Received: from fmsmsx108.amr.corp.intel.com ([10.19.9.228])
+	by AZSMGA002.ch.intel.com with ESMTP; 02 Jul 2012 20:11:05 -0700
+Received: from FMSMSX109.amr.corp.intel.com (10.19.9.28) by
+	FMSMSX108.amr.corp.intel.com (10.19.9.228) with Microsoft SMTP Server
+	(TLS) id 14.1.355.2; Mon, 2 Jul 2012 20:11:05 -0700
+Received: from shsmsx151.ccr.corp.intel.com (10.239.6.50) by
+	fmsmsx109.amr.corp.intel.com (10.19.9.28) with Microsoft SMTP Server
+	(TLS) id 14.1.355.2; Mon, 2 Jul 2012 20:11:05 -0700
+Received: from shsmsx101.ccr.corp.intel.com ([169.254.1.220]) by
+	SHSMSX151.ccr.corp.intel.com ([10.239.6.50]) with mapi id
+	14.01.0355.002; Tue, 3 Jul 2012 11:11:03 +0800
+From: "Xu, Jiajun" <jiajun.xu@intel.com>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Agenda: Yocto Project Technical Team Meeting - Tuesday, July
-	03, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
-Thread-Index: AQHNWJEOZs97Zt6QdU2yW5LYEfZBFA==
-Date: Mon, 2 Jul 2012 20:27:09 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A4846ED41@ORSMSX101.amr.corp.intel.com>
-References: <7E680CB2A76BB8438D08CF13C09FC53A4844CAD5@ORSMSX101.amr.corp.intel.com>
+Thread-Topic: Yocto weekly bug trend charts -- WW26
+Thread-Index: Ac1YyXkPVvkvGGYsQfamZ6ycb1PAXQ==
+Date: Tue, 3 Jul 2012 03:11:02 +0000
+Message-ID: <90741FE9B50D654690EB940EDB456C8E18D26C@SHSMSX101.ccr.corp.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
+x-originating-ip: [10.239.127.40]
 MIME-Version: 1.0
-Subject: Agenda: Yocto Project Technical Team Meeting - Tuesday, July 03, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+Subject: Yocto weekly bug trend charts -- WW26
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,130 +40,18 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 Jul 2012 20:27:10 -0000
+X-List-Received-Date: Tue, 03 Jul 2012 03:11:06 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Agenda:
+Hi all,
+	This is the weekly bug trend for WW26. WDD number and Open Bug number keep=
+ flat with WW25, as 1097 and 224. Bug status of WW26 could be found on http=
+s://wiki.yoctoproject.org/wiki/Yocto_Bug_Trend.
 
-* Opens collection - 5 min (Song)
-* 1.2.1 update - 5 min (ScottG)
-* 1.1.2 update - 5 min (Josh/Beth)
-* Yocto 1.3 status  - 10 min (Song/team)
-* SWAT team rotation: Beth -> Paul
-* Opens - 5 min
-* Team sharing - 20 min
-
-
------Original Appointment-----
-
-
-
-Conference details=20
-Conference name:=20
-Yocto Technical Team
-Conference date/start time:=20
-Tue Jun 26, 2012 at 10:00 AM Central Daylight Time=20
-Participants:=20
-30
-Duration:=20
-60 minutes=20
-Participant passcode:=20
-76994298
-Dial-in number:=20
-1.972.995.7777=20
-US Toll Free number:=20
-1.877.561.6828=20
-BlackBerry users, click this link to join your conference as a participant:
-1.972.995.7777x76994298#
-=A0
-Depending on where you are dialing from, either your BlackBerry will pause =
-and enter the passcode automatically or you will be prompted to click again=
- to dial the passcode.
-
-Local and Global Access Numbers=20
-
-
-Country=20
-Dial-in number
-Australia:=20
-1800 636 843
-Czech Republic:=20
-242 430 350
-China (Beijing):=20
-From office dial 8-9957777 or 8784277=20
-Beijing Out of Office dial 5878 4277
-China (Shanghai):=20
-From office dial 8-9957777 or 3073322=20
-Shanghai Out of Office dial 2307 3322
-China (Shenzen):=20
-From office dial 8-9957777 or 6007877=20
-Shenzen Out of Office dial 2600 7877
-China (Other Cities):=20
-From IP phone dial 8-9957777=20
-Other cities - Non IP phone dial 021-23073322
-Denmark:=20
-8060 1400
-Finland:=20
-09 41333477
-France:=20
-0497 275888
-Germany:=20
-08161 803232
-Holland:=20
-030 2417490
-India:=20
-BSNL subscribers use 1800 425 9996 (Toll Free)
-Airtel subscribers use 0008 009 861 212 (Toll Free)
-From TI Campus use 89957777
-Others use 2509 9555 (Landline within Bangalore) or
-80 2509 9555 (Outside Bangalore)
-Israel:=20
-09 790 6715
-Italy:=20
-039 69061234 (039 is local city code not country code)
-Japan:=20
-From TI Campus use 8 995 7777=20
-Outside TI use 03 4331 3777
-Malaysia:=20
-From IP phone dial 2643799=20
-From Kuala Lumpur dial 4264 3799=20
-Outside Kuala Lumpur dial (03)4264 3799
-Norway:=20
-2 295 8744
-Philippines:=20
-From Baguio City use 4471177=20
-From Metro Manila area use 8702477
-Singapore:=20
-From IP phone dial 3894777=20
-Outside TI use 6389 4777
-South Korea:=20
-From IP phone dial 5606998=20
-From Seoul dial 5606998=20
-Outside Seoul dial (02)5606998
-Sweden:=20
-08 58755577
-Taiwan:=20
-From IP phone dial 1363=20
-From Taipei dial 2241 1363=20
-Outside Taipei dial (02)2241 1363
-Turkey:=20
-Landline Only dial 0811 288 0001=20
-then enter 877 633 1123=20
-UK:=20
-01604 663003
-US:=20
-972 995 7777 or 1877 561 6828
-
-Recurring conferences=20
-First scheduled conference:=20
-Tue Jun 26, 2012
-Recurrence frequency:=20
-Weekly - Every 1 week(s) on Tuesday
-Recurrence ends:=20
-End on Fri Jun 21, 2013, 10:40 AM CDT
-
+Best Regards,
+Jiajun
 
 
 
