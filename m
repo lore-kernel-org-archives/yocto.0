@@ -1,35 +1,20 @@
-Return-Path: <belen.barros.pena@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 85394E006B1
-	for <yocto@yoctoproject.org>; Tue,  3 Jul 2012 08:57:29 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 03 Jul 2012 08:57:18 -0700
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 94CEDE006EA
+	for <yocto@yoctoproject.org>; Tue,  3 Jul 2012 11:07:48 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga102.fm.intel.com with ESMTP; 03 Jul 2012 11:07:48 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="118533678"
-Received: from irsmsx101.ger.corp.intel.com ([163.33.3.153])
-	by AZSMGA002.ch.intel.com with ESMTP; 03 Jul 2012 08:57:17 -0700
-Received: from irsmsx152.ger.corp.intel.com (163.33.192.66) by
-	IRSMSX101.ger.corp.intel.com (163.33.3.153) with Microsoft SMTP Server
-	(TLS) id 14.1.355.2; Tue, 3 Jul 2012 16:56:32 +0100
-Received: from irsmsx104.ger.corp.intel.com ([169.254.5.70]) by
-	IRSMSX152.ger.corp.intel.com ([169.254.6.185]) with mapi id
-	14.01.0355.002; Tue, 3 Jul 2012 16:56:32 +0100
-From: "Barros Pena, Belen" <belen.barros.pena@intel.com>
-To: yocto <yocto@yoctoproject.org>, "Liu, Song" <song.liu@intel.com>, Darren
-	Hart <dvhart@linux.intel.com>, Richard Purdie
-	<richard.purdie@linuxfoundation.org>, "Popa, Valentin"
-	<valentin.popa@intel.com>, "Wang, Shane" <shane.wang@intel.com>
-Thread-Topic: Bug 2162 - work in progress
-Thread-Index: AQHNWTRql6NIGZKvtkeVQDyzu88n4A==
-Date: Tue, 3 Jul 2012 15:56:31 +0000
-Message-ID: <CC18D4BE.128A3%belen.barros.pena@intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Microsoft-MacOutlook/14.2.2.120421
-x-originating-ip: [10.252.48.244]
-MIME-Version: 1.0
-Subject: Bug 2162 - work in progress
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="173048590"
+Received: from unknown (HELO localhost) ([10.255.12.166])
+	by fmsmga001.fm.intel.com with ESMTP; 03 Jul 2012 11:07:47 -0700
+From: tom.zanussi@intel.com
+To: yocto@yoctoproject.org,
+	bruce.ashfield@windriver.com
+Date: Tue,  3 Jul 2012 13:07:46 -0500
+Message-Id: <cover.1341329269.git.tom.zanussi@intel.com>
+X-Mailer: git-send-email 1.7.0.4
+Subject: [PATCH 0/4] linux-yocto-3.4/standard/base: perf scripting updates
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,32 +26,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Jul 2012 15:57:29 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <BA134F4A8FC0B145A233B8D38426C3FF@intel.com>
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 03 Jul 2012 18:07:48 -0000
 
-I know some of you have been asking about designs for bug 2162. I am not
-done yet (those settings are quite complicated), but I've uploaded to
-Bugzilla what I've done so far:
+From: Tom Zanussi <tom.zanussi@intel.com>
 
-https://bugzilla.yoctoproject.org/attachment.cgi?id=3D619
+This patchset comprises the kernel side of the modifications needed to
+enable the Perl and Python bindings for perf scripting.
 
+Please pull into linux-yocto-3.4 standard/base.
 
-Let me know what you think.
+Thanks,
 
-Belen
+Tom
 
----------------------------------------------------------------------
-Intel Corporation (UK) Limited
-Registered No. 1134945 (England)
-Registered Office: Pipers Way, Swindon SN3 1RJ
-VAT No: 860 2173 47
+The following changes since commit a8291fa6f723b0182d2b7033b5d59f412ba7cf72:
+  Bruce Ashfield (1):
+        yaffs2: update to 2012-05-29 development head
 
-This e-mail and any attachments may contain confidential material for
-the sole use of the intended recipient(s). Any review or distribution
-by others is strictly prohibited. If you are not the intended
-recipient, please contact the sender and delete all copies.
+are available in the git repository at:
+
+  git://git.yoctoproject.org/linux-yocto-2.6.37-contrib.git tzanussi/3.4-perf-scripting-standard-base
+  http://git.yoctoproject.org/cgit/cgit.cgi/linux-yocto-2.6.37-contrib/log/?h=tzanussi/3.4-perf-scripting-standard-base
+
+Tom Zanussi (4):
+  Revert "perf: hard-code NO_LIBPERL/NO_LIBPYTHON"
+  perf: use pkg-config instead of python-config
+  perf: add 'libperl not found' warning
+  perf: change --root to --prefix for python install
+
+ tools/perf/Makefile |   90 +++++++++++++++++++++++++++++++++++++++++++++++++--
+ 1 files changed, 87 insertions(+), 3 deletions(-)
 
 
