@@ -1,31 +1,32 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 63ACDE01304
-	for <yocto@yoctoproject.org>; Thu,  5 Jul 2012 05:55:05 -0700 (PDT)
-Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
-	([99.241.91.63]:56286 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.77) (envelope-from <rpjday@crashcourse.ca>)
-	id 1SmlaK-0007xZ-Ns
-	for yocto@yoctoproject.org; Thu, 05 Jul 2012 08:55:04 -0400
-Date: Thu, 5 Jul 2012 08:54:56 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.DEB.2.02.1207050848330.28606@oneiric>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <kenneth.solbjerg@moveinnovation.dk>
+Received: from mail-ob0-f176.google.com (mail-ob0-f176.google.com
+	[209.85.214.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 23BE9E006B1
+	for <yocto@yoctoproject.org>; Thu,  5 Jul 2012 04:12:13 -0700 (PDT)
+Received: by obbtb18 with SMTP id tb18so5969077obb.35
+	for <yocto@yoctoproject.org>; Thu, 05 Jul 2012 04:12:13 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type
+	:x-gm-message-state;
+	bh=Iaal92QzmXFwxK6QYZD4FyYnctLcRdaf4gi0sp6kytU=;
+	b=g/e9aC6+xlF4fmpPCKzJp97f0a4QRMH53r2+WCiOaIvORI3ecjrOT4ADuhZ5H0g61I
+	3IsYvWU/5FxfPhZjIoO1ctAsLzIIzUo5ygeGGHT8ERtks636cRRdZEdLZR/6IXbKcAap
+	p6B5wuwz4MajEKXJBoCT99JBFwvtHc7yQ799FotEAjnq+BnV273j6aHlVVAHFVoe3fSz
+	giVooWXV3RB6hA4xt2mGKKAaO3dSPsTlPtLREayomel2XuIeROTQkR++MHrW1KA+5tym
+	YPOL3rJisDDStOoDoiAYSRJsNEX1oKDr+s/Gi2W4U8Ahr2NTU4ONPCFxXqUrIkothpcD
+	GswQ==
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: brief notes on current yocto reference manual
+Received: by 10.182.111.74 with SMTP id ig10mr20409136obb.14.1341486733163;
+	Thu, 05 Jul 2012 04:12:13 -0700 (PDT)
+Received: by 10.182.167.101 with HTTP; Thu, 5 Jul 2012 04:12:12 -0700 (PDT)
+Date: Thu, 5 Jul 2012 13:12:12 +0200
+Message-ID: <CADEYsmEN9mhJ_Yh5RJzRBtrMSc+w1NaUC3GxNfZmbd0O5uP1RQ@mail.gmail.com>
+From: Kenneth Solbjerg <kenneth.solbjerg@moveinnovation.dk>
+To: yocto@yoctoproject.org
+X-Gm-Message-State: ALoCoQnuWkCn08MvxiZuXNV5aCvtfKoF7FefXp3a2dL3SsUUFD7oxqysSu/g82kZLP40tKYdxxdL
+X-Mailman-Approved-At: Thu, 05 Jul 2012 07:03:17 -0700
+Subject: [PATCH 1/1] run-postinsts does not run any scripts
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,42 +38,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 05 Jul 2012 12:55:05 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Thu, 05 Jul 2012 11:12:14 -0000
+Content-Type: text/plain; charset=UTF-8
+
+Hi
+
+Sorry for any mistakes, but this is my first patch...
+
+On my system (core-image-base, .deb package files), run-postinsts does
+not run any scripts due to a failed test in run-postinsts.awk.
+As dpkg is not actually installed on target, opkg is identified as the
+pkgdir and that is not right...
 
 
-  (i suspect scott has already gotten to some of these but here's the
-list i've got so far.)
+Index: poky-denzil-7.0/meta/recipes-devtools/dpkg/run-postinsts/run-postinsts.awk
+===================================================================
+--- poky-denzil-7.0.orig/meta/recipes-devtools/dpkg/run-postinsts/run-postinsts.awk	2012-07-05
+13:00:23.026519188 +0200
++++ poky-denzil-7.0/meta/recipes-devtools/dpkg/run-postinsts/run-postinsts.awk	2012-07-05
+13:00:48.054519384 +0200
+@@ -7,7 +7,7 @@
+ #
 
-* 2.3.3:  refers to generated .dot files "depends.dot" and
-"task-depends.dot".  in my build, i got three files:
+ BEGIN {
+-  rc=system("test -d /usr/dpkg/info/")
++  rc=system("test -d /var/lib/dpkg/info/")
+   if (rc==0)
+     pkgdir="/var/lib/dpkg/info"
+   else
 
-  * pn-depends.dot
-  * package-depends.dot
-  * task-depends.dot
 
-A.1.1: The "bitbake" executable run by the user is not found in
-bitbake/bin, it's found as the wrapper in "scripts/".
+--
+Med venlig hilsen / Best regards
 
-A.2: no mention of tmp/deploy/licenses directory
+Kenneth Solbjerg
+Software Specialist
 
-A.2.17:   I didn't get a build/tmp/log directory as part of my build.
-Should I have?
-
-A.3.14:  No mention of meta/recipes-rt/ directory.
-
-  that's all i have for now but i still have quite a bit of manual to
-read.
-
-rday
-
--- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+Move Innovation
+Web : http://www.moveinnovation.dk
 
