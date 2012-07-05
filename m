@@ -1,24 +1,35 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 88E66E006EA
-	for <yocto@yoctoproject.org>; Thu,  5 Jul 2012 05:34:36 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 05 Jul 2012 05:34:36 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="167299848"
-Received: from unknown (HELO helios.localnet) ([10.252.120.245])
-	by orsmga002.jf.intel.com with ESMTP; 05 Jul 2012 05:34:35 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: yocto@yoctoproject.org
-Date: Thu, 05 Jul 2012 13:34:34 +0100
-Message-ID: <2358190.ylKVMdlT53@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.8.4 (Linux/3.2.0-26-generic-pae; KDE/4.8.4; i686; ; )
-In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB1237946A1FE4C@ORSMSX101.amr.corp.intel.com>
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AF3F0E01304
+	for <yocto@yoctoproject.org>; Thu,  5 Jul 2012 05:47:16 -0700 (PDT)
+Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
+	([99.241.91.63]:56274 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.77) (envelope-from <rpjday@crashcourse.ca>)
+	id 1SmlSl-0007bX-JR; Thu, 05 Jul 2012 08:47:15 -0400
+Date: Thu, 5 Jul 2012 08:47:06 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+In-Reply-To: <2358190.ylKVMdlT53@helios>
+Message-ID: <alpine.DEB.2.02.1207050844280.8171@oneiric>
 References: <alpine.DEB.2.02.1207050822050.13544@oneiric>
 	<41DEA4B02DBDEF40A0F3B6D0DDB1237946A1FE4C@ORSMSX101.amr.corp.intel.com>
+	<2358190.ylKVMdlT53@helios>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
-Subject: Re: where should i make observations about poky reference	manual?
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Cc: yocto@yoctoproject.org
+Subject: Re: where should i make observations about poky reference manual?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,23 +41,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 05 Jul 2012 12:34:36 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Thu, 05 Jul 2012 12:47:16 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-On Thursday 05 July 2012 12:31:01 Rifenbark, Scott M wrote:
-> I would suggest putting them up on the list here Robert.  I don't believe
-> anyone is maintaining the Poky Reference Manual.  Any oddities, comments,
-> or corrections to the YP docs though post to this list.
+On Thu, 5 Jul 2012, Paul Eggleton wrote:
 
-I presume Robert is referring to what is now called the Yocto Project 
-Reference Manual (which is maintained)...?
+> On Thursday 05 July 2012 12:31:01 Rifenbark, Scott M wrote:
+> > I would suggest putting them up on the list here Robert.  I don't believe
+> > anyone is maintaining the Poky Reference Manual.  Any oddities, comments,
+> > or corrections to the YP docs though post to this list.
+>
+> I presume Robert is referring to what is now called the Yocto
+> Project Reference Manual (which is maintained)...?
 
-Cheers,
-Paul
- 
+  ah, i called it "poky" since its URL remains
+http://www.yoctoproject.org/docs/current/poky-ref-manual/poky-ref-manual.html
+
+and there are definitely remnants of the older naming:
+
+http://www.yoctoproject.org/docs/1.0/poky-ref-manual/poky-ref-manual.html
+
+rday
+
 -- 
 
-Paul Eggleton
-Intel Open Source Technology Centre
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
