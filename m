@@ -1,32 +1,35 @@
-Return-Path: <kenneth.solbjerg@moveinnovation.dk>
-Received: from mail-ob0-f176.google.com (mail-ob0-f176.google.com
-	[209.85.214.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 23BE9E006B1
-	for <yocto@yoctoproject.org>; Thu,  5 Jul 2012 04:12:13 -0700 (PDT)
-Received: by obbtb18 with SMTP id tb18so5969077obb.35
-	for <yocto@yoctoproject.org>; Thu, 05 Jul 2012 04:12:13 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type
-	:x-gm-message-state;
-	bh=Iaal92QzmXFwxK6QYZD4FyYnctLcRdaf4gi0sp6kytU=;
-	b=g/e9aC6+xlF4fmpPCKzJp97f0a4QRMH53r2+WCiOaIvORI3ecjrOT4ADuhZ5H0g61I
-	3IsYvWU/5FxfPhZjIoO1ctAsLzIIzUo5ygeGGHT8ERtks636cRRdZEdLZR/6IXbKcAap
-	p6B5wuwz4MajEKXJBoCT99JBFwvtHc7yQ799FotEAjnq+BnV273j6aHlVVAHFVoe3fSz
-	giVooWXV3RB6hA4xt2mGKKAaO3dSPsTlPtLREayomel2XuIeROTQkR++MHrW1KA+5tym
-	YPOL3rJisDDStOoDoiAYSRJsNEX1oKDr+s/Gi2W4U8Ahr2NTU4ONPCFxXqUrIkothpcD
-	GswQ==
+Return-Path: <scott.m.rifenbark@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 90BA7E006AD
+	for <yocto@yoctoproject.org>; Thu,  5 Jul 2012 08:10:05 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 05 Jul 2012 08:10:05 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="173745755"
+Received: from orsmsx606.amr.corp.intel.com ([10.22.226.128])
+	by fmsmga001.fm.intel.com with ESMTP; 05 Jul 2012 08:10:05 -0700
+Received: from orsmsx102.amr.corp.intel.com (10.22.225.129) by
+	orsmsx606.amr.corp.intel.com (10.22.226.128) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Thu, 5 Jul 2012 08:10:04 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.125]) by
+	ORSMSX102.amr.corp.intel.com ([169.254.1.101]) with mapi id
+	14.01.0355.002; Thu, 5 Jul 2012 08:10:04 -0700
+From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>, Yocto discussion list
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] poky/yocto ref manual gives wrong PATH location for
+	"bitbake"
+Thread-Index: AQHNWhVvmeirgpZvYU6FGDsbrxpCQpcay+iw
+Date: Thu, 5 Jul 2012 15:10:03 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237946A2012B@ORSMSX101.amr.corp.intel.com>
+References: <alpine.DEB.2.02.1207041443590.13087@oneiric>
+In-Reply-To: <alpine.DEB.2.02.1207041443590.13087@oneiric>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-Received: by 10.182.111.74 with SMTP id ig10mr20409136obb.14.1341486733163;
-	Thu, 05 Jul 2012 04:12:13 -0700 (PDT)
-Received: by 10.182.167.101 with HTTP; Thu, 5 Jul 2012 04:12:12 -0700 (PDT)
-Date: Thu, 5 Jul 2012 13:12:12 +0200
-Message-ID: <CADEYsmEN9mhJ_Yh5RJzRBtrMSc+w1NaUC3GxNfZmbd0O5uP1RQ@mail.gmail.com>
-From: Kenneth Solbjerg <kenneth.solbjerg@moveinnovation.dk>
-To: yocto@yoctoproject.org
-X-Gm-Message-State: ALoCoQnuWkCn08MvxiZuXNV5aCvtfKoF7FefXp3a2dL3SsUUFD7oxqysSu/g82kZLP40tKYdxxdL
-X-Mailman-Approved-At: Thu, 05 Jul 2012 07:03:17 -0700
-Subject: [PATCH 1/1] run-postinsts does not run any scripts
+Subject: Re: poky/yocto ref manual gives wrong PATH location for	"bitbake"
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,42 +41,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 05 Jul 2012 11:12:14 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 05 Jul 2012 15:10:05 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Hi
+I corrected this section.  See http://www.yoctoproject.org/docs/latest/poky=
+-ref-manual/poky-ref-manual.html#structure-core-bitbake
 
-Sorry for any mistakes, but this is my first patch...
+Thanks,=20
+Scott
 
-On my system (core-image-base, .deb package files), run-postinsts does
-not run any scripts due to a failed test in run-postinsts.awk.
-As dpkg is not actually installed on target, opkg is identified as the
-pkgdir and that is not right...
-
-
-Index: poky-denzil-7.0/meta/recipes-devtools/dpkg/run-postinsts/run-postinsts.awk
-===================================================================
---- poky-denzil-7.0.orig/meta/recipes-devtools/dpkg/run-postinsts/run-postinsts.awk	2012-07-05
-13:00:23.026519188 +0200
-+++ poky-denzil-7.0/meta/recipes-devtools/dpkg/run-postinsts/run-postinsts.awk	2012-07-05
-13:00:48.054519384 +0200
-@@ -7,7 +7,7 @@
- #
-
- BEGIN {
--  rc=system("test -d /usr/dpkg/info/")
-+  rc=system("test -d /var/lib/dpkg/info/")
-   if (rc==0)
-     pkgdir="/var/lib/dpkg/info"
-   else
+-----Original Message-----
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Robert P. J. Day
+Sent: Wednesday, July 04, 2012 11:46 AM
+To: Yocto discussion list
+Subject: [yocto] poky/yocto ref manual gives wrong PATH location for "bitba=
+ke"
 
 
---
-Med venlig hilsen / Best regards
+  poky ref manual, app A.1.1 suggests that PATH will be set to find
+bitbake at "bitbake/bin/".  pretty sure that's not true, won't it be
+found in "scripts/" as a wrapper?
 
-Kenneth Solbjerg
-Software Specialist
+rday
 
-Move Innovation
-Web : http://www.moveinnovation.dk
+--=20
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
 
