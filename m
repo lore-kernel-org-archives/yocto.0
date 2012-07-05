@@ -1,34 +1,25 @@
-Return-Path: <jessica.zhang@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4A35EE006AD
-	for <yocto@yoctoproject.org>; Thu,  5 Jul 2012 14:29:36 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 05 Jul 2012 14:29:35 -0700
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4928CE006AD
+	for <yocto@yoctoproject.org>; Thu,  5 Jul 2012 15:20:27 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 05 Jul 2012 15:20:27 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="173888388"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
-	by fmsmga001.fm.intel.com with ESMTP; 05 Jul 2012 14:29:35 -0700
-Received: from orsmsx152.amr.corp.intel.com (10.22.226.39) by
-	orsmsx603.amr.corp.intel.com (10.22.226.49) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Thu, 5 Jul 2012 14:29:35 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.125]) by
-	ORSMSX152.amr.corp.intel.com ([169.254.8.235]) with mapi id
-	14.01.0355.002; Thu, 5 Jul 2012 14:29:35 -0700
-From: "Zhang, Jessica" <jessica.zhang@intel.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] Some questions about the webhob design
-Thread-Index: Ac1ZFOdFGM6SyguyTo+eIH9a2sio8AButnyAAAOjafA=
-Date: Thu, 5 Jul 2012 21:29:35 +0000
-Message-ID: <C6510F6D410BB64A8C15398EDC6B847C46A8C089@ORSMSX101.amr.corp.intel.com>
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="161878974"
+Received: from unknown (HELO helios.localnet) ([10.252.120.228])
+	by orsmga001.jf.intel.com with ESMTP; 05 Jul 2012 15:20:26 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: "Zhang, Jessica" <jessica.zhang@intel.com>
+Date: Thu, 05 Jul 2012 23:20:25 +0100
+Message-ID: <1609342.c99bAcXVHq@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.8.4 (Linux/3.2.0-26-generic-pae; KDE/4.8.4; i686; ; )
+In-Reply-To: <C6510F6D410BB64A8C15398EDC6B847C46A8C089@ORSMSX101.amr.corp.intel.com>
 References: <40776A41FC278F40B59438AD47D147A90FDC7F83@SHSMSX102.ccr.corp.intel.com>
 	<1652708.uFroLZqztD@helios>
-In-Reply-To: <1652708.uFroLZqztD@helios>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.138]
+	<C6510F6D410BB64A8C15398EDC6B847C46A8C089@ORSMSX101.amr.corp.intel.com>
 MIME-Version: 1.0
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Some questions about the webhob design
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -41,122 +32,97 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 05 Jul 2012 21:29:36 -0000
-Content-Language: en-US
+X-List-Received-Date: Thu, 05 Jul 2012 22:20:27 -0000
+Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
 
-Please see my comments/questions below...
+On Thursday 05 July 2012 21:29:35 Zhang, Jessica wrote:
+> So firstly, in the design, any change to a project made by a user that
+> occurs while another user is also configuring a build on that same project
+> should be reflected in real-time in the other user's interface, and will be
+> accompanied by a notification that a change has been made.
+> 
+> <JZ> Can we clarify some definition here, when we talk about project build
+> configuration, are they the same as in current hob's saved template? So, if
+> a user configure a build for the project and want to preserve the changes,
+> he/she will achieve so through save template? And we only allow one build
+> configuration per project? </JZ>
 
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Paul Eggleton
-Sent: Thursday, July 05, 2012 3:01 AM
-To: yocto@yoctoproject.org
-Subject: Re: [yocto] Some questions about the webhob design
+Templates are for starting new projects from scratch, as in the current hob 
+they are for starting new builds from scratch. Changes to a project's 
+configuration are saved to the project itself immediately - there's no need to 
+hit "save" anywhere; that's why it has to be reflected in real-time for other 
+logged-in users. If you close the browser in the middle of configuring the 
+project then some time later re-log in, the project's configuration will be 
+exactly how you left it (assuming nobody else has changed it in the mean 
+time).
 
-On Tuesday 03 July 2012 12:10:57 Xu, Dongxiao wrote:
-> Today Jessica and PRC team had a discussion of the webhob tasks listed
-> in the wiki page, and about the "Group" and "Project" concept, we
-> still have some questions.
+> When more than one user is working on a project, it is expected that they
+> would all be working towards the same goal. Creating separate projects for
+> separate work efforts that may have different needs is intended to be easy.
+> 
+> <JZ> Agreed overall, but let's look at some particular cases to flesh out
+> the rule further.  Say we have a project webhobtesting. For user A he set
+> the package system as RPM, where user B wants to use deb.  So should we 1)
+> create 2 projects webhobtesting-rpm and webhobtesting-ipk; 2)one
+> webhobtesting project, but depends on who made the modification last, the
+> package system will be set as the last user's preference? This will be what
+> Dongxiao's talking about in the original question.  After user A configure
+> as RPM and told TME to open the project and run the build.  In the
+> meantime, user B switch it to deb.  So the TME's build output will not
+> match what he'd expected that user A has set it to.  Also, we can't expect
+> that user A is also login to receive the notification that his
+> configuration has been changed; 3) we allow multiple configuration files
+> against same project, which requires a project level configuration
+> management mechanism. </JZ>
 
-Let's be clear though from the below, we're talking about projects only.
- [JZ] Yeah, let's focus on project's configuration for this thread.
+So leaving aside that this specific example is completely artificial, user B has 
+failed to exercise discipline in editing a shared resource which in this case 
+appears to have some business value. If user B has access rights to modify 
+this shared project, then they are presumably trusted to know when it's 
+appropriate to make changes to that project. It's the same situation as a 
+"rogue" developer with access to commit to a source code repository making an 
+ill-considered commit to the release branch the day before a release build.
 
-> Say user A and user B are privileged users, who have the right to
-> customize images, while user C is normal user (Say a TME) and only "build=
-ing image"
-> is allowed.
->
-> 1) If user A customized an image with certain configurations, and he
-> told user C that the environment is ready, and user C can build his
-> demo image there. However, before user C starts to build, user B
-> changed some configurations, making the final output not the expected ver=
-sion.
+I don't think we should move to a #3 state at this stage because not only does 
+it add an extra level of configuration selections, it also means we will likely 
+have to provide the ability to compare and merge separate configurations which 
+is yet more complex functionality both to implement and to present to the 
+user.
 
-So firstly, in the design, any change to a project made by a user that occu=
-rs while another user is also configuring a build on that same project shou=
-ld be reflected in real-time in the other user's interface, and will be acc=
-ompanied by a notification that a change has been made.
+>  If a user does want to do some experimenting on a project in isolation, the
+> design provides for the ability to duplicate the project which can then be
+> modified privately without affecting the original project.
+> 
+> <JZ> So this means we will allow each individual user to create his/her own
+> sandbox which I agree.  Then we'll need to design the mechanism to
+> distinguish the real project build configuration and user private ones. And
+> the implication of that </JZ>
 
+The design already covers this although it is not explicit - a "user private" 
+project is simply a project where only one user has permission to view/edit 
+it; so we shouldn't need any extra functionality here.
 
-<JZ> Can we clarify some definition here, when we talk about project build =
-configuration, are they the same as in current hob's saved template? So, if=
- a user configure a build for the project and want to preserve the changes,=
- he/she will achieve so through save template? And we only allow one build =
-configuration per project? </JZ>
+> > 2) Another issue may be how to avoid global project changes happened
+> > together? For example user A and user B change the setting in the same
+> > time?
+> 
+> At the implementation level, with the usual database-level locking there
+> must be a "winner" and a "loser" in this situation. The "winner" in our
+> case should be whoever made the change last. As above there will be
+> notifications shown to both users.
+> 
+> <JZ> But if we are really talking about concurrency here, isn't committing
+> the change will be protected by a critical section and whoever got the lock
+> wins?</JZ>
 
+That's what I mean, yes.
 
-When more than one user is working on a project, it is expected that they w=
-ould all be working towards the same goal. Creating separate projects for s=
-eparate work efforts that may have different needs is intended to be easy.
-
-<JZ> Agreed overall, but let's look at some particular cases to flesh out t=
-he rule further.  Say we have a project webhobtesting. For user A he set th=
-e package system as RPM, where user B wants to use deb.  So should we 1) cr=
-eate 2 projects webhobtesting-rpm and webhobtesting-ipk; 2)one webhobtestin=
-g project, but depends on who made the modification last, the package syste=
-m will be set as the last user's preference? This will be what Dongxiao's t=
-alking about in the original question.  After user A configure as RPM and t=
-old TME to open the project and run the build.  In the meantime, user B swi=
-tch it to deb.  So the TME's build output will not match what he'd expected=
- that user A has set it to.  Also, we can't expect that user A is also logi=
-n to receive the notification that his configuration has been changed; 3) w=
-e allow multiple configuration files against same project, which requires a=
- project level configuration management mechanism. </JZ>
-
- If a user does want to do some experimenting on a project in isolation, th=
-e design provides for the ability to duplicate the project which can then b=
-e modified privately without affecting the original project.
-
-<JZ> So this means we will allow each individual user to create his/her own=
- sandbox which I agree.  Then we'll need to design the mechanism to disting=
-uish the real project build configuration and user private ones. And the im=
-plication of that </JZ>
-
-It's also a similar situation to working with any other shared resource suc=
-h as a source code repository or a shared document - some discipline is req=
-uired, and there's a limit to how much the tool can enforce in terms of peo=
-ple not messing up other people's work (other than providing a permissions =
-framework, of course).
-
-> 2) Another issue may be how to avoid global project changes happened
-> together? For example user A and user B change the setting in the same
-> time?
-
-At the implementation level, with the usual database-level locking there mu=
-st be a "winner" and a "loser" in this situation. The "winner" in our case =
-should be whoever made the change last. As above there will be notification=
-s shown to both users.
-
-<JZ> But if we are really talking about concurrency here, isn't committing =
-the change will be protected by a critical section and whoever got the lock=
- wins?</JZ>
-
-> 3) If user A changes the global project setting, what's the impact to
-> the user B who already kicked off a build based on the original setting?
-
-Once the build has started it should be isolated from the configuration wit=
-hin the interface, i.e. any subsequent changes should not affect it. Intern=
-ally in the implementation I would recommend taking a lock on the project s=
-ettings as soon as the user requests the build to start, which shortly afte=
-rwards can be released once the build has actually started - but this is no=
-t something that should be visible at a user level, except as a minor delay=
-. In case user B goes back in to view the settings that are now different t=
-o what is being used for the build, the system should be able to fairly eas=
-ily show a note within the configuration screen that the settings shown hav=
-e been changed since the currently executing build was started.
-
-<JZ> Agreed </JZ>
 Cheers,
 Paul
 
---
+-- 
 
 Paul Eggleton
 Intel Open Source Technology Centre
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
 
