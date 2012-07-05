@@ -1,23 +1,35 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4928CE006AD
-	for <yocto@yoctoproject.org>; Thu,  5 Jul 2012 15:20:27 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 05 Jul 2012 15:20:27 -0700
+Return-Path: <david.c.stewart@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 885DDE006AD
+	for <yocto@yoctoproject.org>; Thu,  5 Jul 2012 16:00:19 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 05 Jul 2012 16:00:18 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="161878974"
-Received: from unknown (HELO helios.localnet) ([10.252.120.228])
-	by orsmga001.jf.intel.com with ESMTP; 05 Jul 2012 15:20:26 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: "Zhang, Jessica" <jessica.zhang@intel.com>
-Date: Thu, 05 Jul 2012 23:20:25 +0100
-Message-ID: <1609342.c99bAcXVHq@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.8.4 (Linux/3.2.0-26-generic-pae; KDE/4.8.4; i686; ; )
-In-Reply-To: <C6510F6D410BB64A8C15398EDC6B847C46A8C089@ORSMSX101.amr.corp.intel.com>
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="164557108"
+Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
+	by azsmga001.ch.intel.com with ESMTP; 05 Jul 2012 16:00:18 -0700
+Received: from orsmsx106.amr.corp.intel.com (10.22.225.133) by
+	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Thu, 5 Jul 2012 16:00:17 -0700
+Received: from orsmsx105.amr.corp.intel.com ([169.254.4.133]) by
+	ORSMSX106.amr.corp.intel.com ([169.254.5.39]) with mapi id
+	14.01.0355.002; Thu, 5 Jul 2012 16:00:17 -0700
+From: "Stewart, David C" <david.c.stewart@intel.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>, "Zhang, Jessica"
+	<jessica.zhang@intel.com>
+Thread-Topic: [yocto] Some questions about the webhob design
+Thread-Index: Ac1ZFOdFGM6SyguyTo+eIH9a2sio8AButnyAAAOjafAAFi9XgAANgOmg
+Date: Thu, 5 Jul 2012 23:00:17 +0000
+Message-ID: <CDED78A957032E45B3239CDDA7642D151C8977DE@ORSMSX105.amr.corp.intel.com>
 References: <40776A41FC278F40B59438AD47D147A90FDC7F83@SHSMSX102.ccr.corp.intel.com>
 	<1652708.uFroLZqztD@helios>
 	<C6510F6D410BB64A8C15398EDC6B847C46A8C089@ORSMSX101.amr.corp.intel.com>
+	<1609342.c99bAcXVHq@helios>
+In-Reply-To: <1609342.c99bAcXVHq@helios>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Some questions about the webhob design
@@ -32,97 +44,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 05 Jul 2012 22:20:27 -0000
-Content-Transfer-Encoding: 7Bit
+X-List-Received-Date: Thu, 05 Jul 2012 23:00:19 -0000
+Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On Thursday 05 July 2012 21:29:35 Zhang, Jessica wrote:
-> So firstly, in the design, any change to a project made by a user that
-> occurs while another user is also configuring a build on that same project
-> should be reflected in real-time in the other user's interface, and will be
-> accompanied by a notification that a change has been made.
-> 
-> <JZ> Can we clarify some definition here, when we talk about project build
-> configuration, are they the same as in current hob's saved template? So, if
-> a user configure a build for the project and want to preserve the changes,
-> he/she will achieve so through save template? And we only allow one build
-> configuration per project? </JZ>
+>From: yocto-bounces@yoctoproject.org [mailto:yocto-
+>bounces@yoctoproject.org] On Behalf Of Paul Eggleton
+>Sent: Thursday, July 05, 2012 3:20 PM
+>
 
-Templates are for starting new projects from scratch, as in the current hob 
-they are for starting new builds from scratch. Changes to a project's 
-configuration are saved to the project itself immediately - there's no need to 
-hit "save" anywhere; that's why it has to be reflected in real-time for other 
-logged-in users. If you close the browser in the middle of configuring the 
-project then some time later re-log in, the project's configuration will be 
-exactly how you left it (assuming nobody else has changed it in the mean 
-time).
+>Templates are for starting new projects from scratch, as in the current ho=
+b
+>they are for starting new builds from scratch. Changes to a project's
+>configuration are saved to the project itself immediately - there's no nee=
+d to
+>hit "save" anywhere; that's why it has to be reflected in real-time for ot=
+her
+>logged-in users. If you close the browser in the middle of configuring the
+>project then some time later re-log in, the project's configuration will b=
+e
+>exactly how you left it (assuming nobody else has changed it in the mean
+>time).
 
-> When more than one user is working on a project, it is expected that they
-> would all be working towards the same goal. Creating separate projects for
-> separate work efforts that may have different needs is intended to be easy.
-> 
-> <JZ> Agreed overall, but let's look at some particular cases to flesh out
-> the rule further.  Say we have a project webhobtesting. For user A he set
-> the package system as RPM, where user B wants to use deb.  So should we 1)
-> create 2 projects webhobtesting-rpm and webhobtesting-ipk; 2)one
-> webhobtesting project, but depends on who made the modification last, the
-> package system will be set as the last user's preference? This will be what
-> Dongxiao's talking about in the original question.  After user A configure
-> as RPM and told TME to open the project and run the build.  In the
-> meantime, user B switch it to deb.  So the TME's build output will not
-> match what he'd expected that user A has set it to.  Also, we can't expect
-> that user A is also login to receive the notification that his
-> configuration has been changed; 3) we allow multiple configuration files
-> against same project, which requires a project level configuration
-> management mechanism. </JZ>
+Guys - I'm really struggling with this overall concept of concurrency.
 
-So leaving aside that this specific example is completely artificial, user B has 
-failed to exercise discipline in editing a shared resource which in this case 
-appears to have some business value. If user B has access rights to modify 
-this shared project, then they are presumably trusted to know when it's 
-appropriate to make changes to that project. It's the same situation as a 
-"rogue" developer with access to commit to a source code repository making an 
-ill-considered commit to the release branch the day before a release build.
+It implies that if Paul and I are sharing the same project and I make a cha=
+nge to a .bb file to experiment with something (assuming we have the abilit=
+y to do that, refer to my last email) and my change breaks my build, it wil=
+l break everyone else's build as well.  But the beauty thing is that it bre=
+aks it silently, because the configuration silently changed for everyone on=
+ the project.
 
-I don't think we should move to a #3 state at this stage because not only does 
-it add an extra level of configuration selections, it also means we will likely 
-have to provide the ability to compare and merge separate configurations which 
-is yet more complex functionality both to implement and to present to the 
-user.
+If you are saying that it won't happen because people won't share a project=
+ under active development, then I don't understand the value of sharing a p=
+roject. Is it to share the package repo? The images? There are all kinds of=
+ ways of doing that.
 
->  If a user does want to do some experimenting on a project in isolation, the
-> design provides for the ability to duplicate the project which can then be
-> modified privately without affecting the original project.
-> 
-> <JZ> So this means we will allow each individual user to create his/her own
-> sandbox which I agree.  Then we'll need to design the mechanism to
-> distinguish the real project build configuration and user private ones. And
-> the implication of that </JZ>
-
-The design already covers this although it is not explicit - a "user private" 
-project is simply a project where only one user has permission to view/edit 
-it; so we shouldn't need any extra functionality here.
-
-> > 2) Another issue may be how to avoid global project changes happened
-> > together? For example user A and user B change the setting in the same
-> > time?
-> 
-> At the implementation level, with the usual database-level locking there
-> must be a "winner" and a "loser" in this situation. The "winner" in our
-> case should be whoever made the change last. As above there will be
-> notifications shown to both users.
-> 
-> <JZ> But if we are really talking about concurrency here, isn't committing
-> the change will be protected by a critical section and whoever got the lock
-> wins?</JZ>
-
-That's what I mean, yes.
-
-Cheers,
-Paul
-
--- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
+I think someone needs to sit down and write out the *complete* user stories=
+ for how people use the system.=20
 
