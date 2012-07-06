@@ -1,27 +1,27 @@
 Return-Path: <jfabernathy@gmail.com>
-Received: from mail-gg0-f176.google.com (mail-gg0-f176.google.com
-	[209.85.161.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 42777E006AD
-	for <yocto@yoctoproject.org>; Fri,  6 Jul 2012 10:36:16 -0700 (PDT)
-Received: by ggnk4 with SMTP id k4so10050181ggn.35
-	for <yocto@yoctoproject.org>; Fri, 06 Jul 2012 10:36:15 -0700 (PDT)
+Received: from mail-yw0-f48.google.com (mail-yw0-f48.google.com
+	[209.85.213.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 20987E006AD
+	for <yocto@yoctoproject.org>; Fri,  6 Jul 2012 11:30:53 -0700 (PDT)
+Received: by yhfq46 with SMTP id q46so9491799yhf.35
+	for <yocto@yoctoproject.org>; Fri, 06 Jul 2012 11:30:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=message-id:date:from:user-agent:mime-version:to:cc:subject
 	:references:in-reply-to:content-type:content-transfer-encoding;
-	bh=B0g4YGMKr+9XSRTp7x28PgP1mzHJi5DSmS1KLfkPTdQ=;
-	b=0CZRNpyIUpZ3Q2FGtbBVy8BsvstbbpcHSRYQmnQYplrEqvAApG6DQfiRA3p8LdX2An
-	qELMBIdcBC5qaepzXPk9c4q98LfP4vaaLZTXBDZYsuuoEOTykYQ7A0yzTrZqalo2ZbWF
-	tf6MgV+I738qgYEuuWXn03UOAuX7GJyXXsTYAQ466uEJd1ND1oCLyOK53wPn8E+624lO
-	VqVTytd2rXqiCs+c4TBmBbaYAHlRE0JWVYVH+E8lqtvgcRpzESQDIiMKRNI+nx6gb6Np
-	GGdatKEFzI9dlS16yUCKcJIyTETm26SXrUPpFsQbEkdr/PbTxhmpsnmoA7i+RBZbj7ta
-	HKAQ==
-Received: by 10.236.87.194 with SMTP id y42mr28001550yhe.81.1341596175693;
-	Fri, 06 Jul 2012 10:36:15 -0700 (PDT)
+	bh=07pKgPcel7Ei1+VTPMO2U6w8uPmyjCx9xM5mwijs0Rw=;
+	b=PeapjIrzSOg/7sh28OJXoQMNHka1X4jcy2VzYeJPsStSo7WwvEQvt7ovruE8qB8C3O
+	P1pUAhVwJvSwK84LxBsIT+v1cH/uNG+9rj/nrjrTLl2Vy/ph/m3eaM1zpmV2yecNtXlJ
+	ojhouFosbPjrerHX0hxFKJ4WqiJ3tRWra7nsRXcy2seoAgZWuVJEl54I5Ce74lTerxD9
+	y5KjiGvnjbTcRqjPvya2dL8tykKtVqK5GDs41N4CozxwhXzYh/b8WMe0ynbQ7erStGBT
+	xXYrbh33j7F6uJHyjFpFV63PTgrUo7HjC6mm71KrT5w2VrfYE1Z1isCZRTJJGJ4XzZu2
+	DG9Q==
+Received: by 10.236.126.133 with SMTP id b5mr36853546yhi.50.1341599452424;
+	Fri, 06 Jul 2012 11:30:52 -0700 (PDT)
 Received: from [10.0.1.54] (nc-184-4-39-191.dhcp.embarqhsd.net. [184.4.39.191])
-	by mx.google.com with ESMTPS id z3sm21227139anj.17.2012.07.06.10.36.14
-	(version=SSLv3 cipher=OTHER); Fri, 06 Jul 2012 10:36:15 -0700 (PDT)
-Message-ID: <4FF7220E.6030306@gmail.com>
-Date: Fri, 06 Jul 2012 13:36:14 -0400
+	by mx.google.com with ESMTPS id j13sm6145148anl.5.2012.07.06.11.30.51
+	(version=SSLv3 cipher=OTHER); Fri, 06 Jul 2012 11:30:51 -0700 (PDT)
+Message-ID: <4FF72EDB.2000407@gmail.com>
+Date: Fri, 06 Jul 2012 14:30:51 -0400
 From: jfabernathy <jfabernathy@gmail.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:13.0) Gecko/20120615 Thunderbird/13.0.1
@@ -45,7 +45,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 06 Jul 2012 17:36:16 -0000
+X-List-Received-Date: Fri, 06 Jul 2012 18:30:53 -0000
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
@@ -77,14 +77,18 @@ On 07/06/2012 10:59 AM, Tom Zanussi wrote:
 > SRCREV_meta_pn-linux-yocto_n450 ?= 	ee78519365bdb25287703bbc31c06b193263c654
 >
 > This is exactly the reason it's not good to use floating kernel SRCREVs.
-So this fixes the issue, but I just want to know how you knew which 
-commit strings to use is this case?  I finally found them, but not sure 
-why you pick these particular ones.
+>
+> Tom
+
+I've also been seeing a number of build failures related to this error:
+
+libperl not found, disables Perl scripting support. Please install 
+libperl-dev or perl-devel
+
+Is this part of the patches that are in transition?
 
 Jim A
 
-> Tom
->
 >> Jim A
 >>
 >>>> I got an error compiling the kernel.  It didn't fail yesterday early,
