@@ -1,25 +1,28 @@
-Return-Path: <josh@linux.intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4F00EE006B1
-	for <yocto@yoctoproject.org>; Fri,  6 Jul 2012 14:56:16 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 06 Jul 2012 14:56:15 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="189376871"
-Received: from unknown (HELO [10.255.12.180]) ([10.255.12.180])
-	by fmsmga002.fm.intel.com with ESMTP; 06 Jul 2012 14:56:15 -0700
-Message-ID: <4FF75EFF.7060404@linux.intel.com>
-Date: Fri, 06 Jul 2012 14:56:15 -0700
-From: Joshua Lock <josh@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:13.0) Gecko/20120615 Thunderbird/13.0.1
+Return-Path: <David.Nystrom@enea.com>
+Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id 7013EE006B1
+	for <yocto@yoctoproject.org>; Fri,  6 Jul 2012 15:35:40 -0700 (PDT)
+Received: from SESTOEX05.enea.se ([fe80::41cb:8d2e:2e90:a183]) by
+	SESTOEX08.enea.se ([fe80::fda4:d8b2:80c9:b320%24]) with mapi id
+	14.02.0298.004; Sat, 7 Jul 2012 00:35:37 +0200
+From: =?iso-8859-1?Q?David_Nystr=F6m?= <David.Nystrom@enea.com>
+To: "B29882@freescale.com" <B29882@freescale.com>
+Thread-Topic: [yocto] [meta-fsl-ppc][PATCH 2/2] fsl.conf: Let
+	linux-qoriq-sdk-headers-nativesdk provide linux-libc-headers-nativesdk
+Thread-Index: AQHNW469IN1XsfTurE+0d5K0GuhwCpcc2DXg
+Date: Fri, 6 Jul 2012 22:35:36 +0000
+Message-ID: <88701C38B5D07249817D428430999C910EAC7B39@sestoex05.enea.se>
+References: <1341550315-9795-1-git-send-email-raj.khem@gmail.com>
+	<1341550315-9795-2-git-send-email-raj.khem@gmail.com>
+	<88701C38B5D07249817D428430999C910EAC7607@sestoex05.enea.se>,
+	<CAEsOVNe=+W0XLdYr1cZ_YFzkbASFCEio+yQ40Ojip_nq5FC=wQ@mail.gmail.com>
+In-Reply-To: <CAEsOVNe=+W0XLdYr1cZ_YFzkbASFCEio+yQ40Ojip_nq5FC=wQ@mail.gmail.com>
+Accept-Language: en-US, sv-SE
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
 MIME-Version: 1.0
-To: "Stewart, David C" <david.c.stewart@intel.com>
-References: <CAG+EMXjTVrkmZfxzFHHugQarOGan3EXY_JjDZ0_96DDnR5BmvA@mail.gmail.com>
-	<CDED78A957032E45B3239CDDA7642D151C8983FA@ORSMSX105.amr.corp.intel.com>
-In-Reply-To: <CDED78A957032E45B3239CDDA7642D151C8983FA@ORSMSX105.amr.corp.intel.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Yocto WebHob update
+Subject: Re: [meta-fsl-ppc][PATCH 2/2] fsl.conf: Let linux-qoriq-sdk-headers-nativesdk provide linux-libc-headers-nativesdk
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,27 +34,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 06 Jul 2012 21:56:16 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Fri, 06 Jul 2012 22:35:40 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-On 06/07/12 09:17, Stewart, David C wrote:
-> Nice update!  I particularly like the availability of the sources and
-> source manifest.
->
-> Not sure how we will be able to do the “test” feature on page 28 across
-> the web.
-
-
-Suse Studio does it (iirc) by installing a VNC server onto the image, 
-running that image in a VM on their servers and running a VNC Viewer 
-Java applet in the users browser.
-
-Joshua
--- 
-Joshua Lock
-         Yocto Project
-         Intel Open Source Technology Centre
+Yes this was my suggestion, since you might not want to change the nativesd=
+k kernel headers for all machines in all BSP layers, if the distro is using=
+ multiple BSP layers, which it probably should be able to do.
+Setting this  with machine overrides in distro.conf  is possible but quite =
+ messy IMHO.
+Furthermore , the nativesdk is set by ?=3D in machine.conf, any distro.conf=
+  wanting to alter this to a global setting can easily override with  =3D
 
 
+Sent from Android
+
+
+-----Original Message-----
+From: McClintock Matthew-B29882 [B29882@freescale.com]
+Received: Friday, 06 Jul 2012, 17:48
+To: David Nystr=F6m [David.Nystrom@enea.com]
+CC: yocto@yoctoproject.org [yocto@yoctoproject.org]; raj.khem@gmail.com [ra=
+j.khem@gmail.com]
+Subject: Re: [yocto] [meta-fsl-ppc][PATCH 2/2] fsl.conf: Let linux-qoriq-sd=
+k-headers-nativesdk provide linux-libc-headers-nativesdk
+
+
+
+On Fri, Jul 6, 2012 at 5:49 AM, David Nystr=F6m <David.Nystrom@enea.com> wr=
+ote:
+> So that about a disto refusing this and possibly other BSP layers ?
+> Should the disto.conf  select of nativesdk be made machine specific on al=
+l machines in meta-fsl-ppc ? And one added target after a meta-fsl-ppc reba=
+se would break stuff, I guess.
+
+I don't quite follow... you are suggesting we have
+
+PREFERRED_PROVIDER_linux-libc-headers-nativesdk ?=3D
+"linux-qoriq-sdk-headers-nativesdk"
+
+in the machine.conf files instead?
+
+-M
 
