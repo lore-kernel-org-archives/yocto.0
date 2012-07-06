@@ -1,25 +1,31 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 49B1EE0070C
-	for <yocto@yoctoproject.org>; Fri,  6 Jul 2012 07:59:23 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 06 Jul 2012 07:59:23 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="167942728"
-Received: from unknown (HELO [10.255.13.33]) ([10.255.13.33])
-	by orsmga002.jf.intel.com with ESMTP; 06 Jul 2012 07:59:22 -0700
-Message-ID: <1341586756.6761.124.camel@trz-ThinkPad-T420>
-From: Tom Zanussi <tom.zanussi@intel.com>
-To: jfabernathy <jfabernathy@gmail.com>
-Date: Fri, 06 Jul 2012 09:59:16 -0500
-In-Reply-To: <4FF6FA72.3030101@gmail.com>
-References: <4FF6F44B.6090605@gmail.com>
-	<1341585872.6761.118.camel@trz-ThinkPad-T420>
-	<4FF6FA72.3030101@gmail.com>
-X-Mailer: Evolution 3.2.3-0ubuntu6 
-Mime-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: build failure on denzil - n450
+Return-Path: <jim@halfman.com>
+Received: from mail-vb0-f48.google.com (mail-vb0-f48.google.com
+	[209.85.212.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C9295E0070C
+	for <yocto@yoctoproject.org>; Fri,  6 Jul 2012 08:44:48 -0700 (PDT)
+Received: by vbjk17 with SMTP id k17so7784937vbj.35
+	for <yocto@yoctoproject.org>; Fri, 06 Jul 2012 08:44:48 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:from:date:message-id:subject:to:content-type
+	:x-gm-message-state;
+	bh=BfMSdy0yjRwSy4Dcy1Ozwr8J9kHCQr3f/M+7qHYyy7c=;
+	b=HG3LLinDg53jW20h0Nm5uHded4eiWjsESXYfRczy2gOpzRCYgwOJcWbq9MAOJBCWNF
+	74Rz/HYbJpEBG0Q1tP8y62Hg1JORL9sauKB060atSVeII0dakkJ+qE5GfbwWMtX8G2Em
+	XeNWJHOJPhUe/rSUzQnak9K+cVf4RGwHIHVFKtgFH2vVGBk8ey2LysD3XMfNPAZlxrl5
+	aX540x07HO848SOX9k34PSAqvdiNx9HyPW9vsaHNn5OwU6vjpNYytjEwcDmYQXszdVFd
+	gY8/F/QjXKlzkidtOY7eMXFCzK+BvCG6m6StvQz2GlrfE5cvYzF+rQl4tPXyp+Hi5uNw
+	Z1Jg==
+Received: by 10.52.94.109 with SMTP id db13mr12408195vdb.4.1341589487955; Fri,
+	06 Jul 2012 08:44:47 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.52.91.7 with HTTP; Fri, 6 Jul 2012 08:44:27 -0700 (PDT)
+From: Jim Kosem <jim@halfman.com>
+Date: Fri, 6 Jul 2012 16:44:27 +0100
+Message-ID: <CAG+EMXjTVrkmZfxzFHHugQarOGan3EXY_JjDZ0_96DDnR5BmvA@mail.gmail.com>
+To: yocto@yoctoproject.org
+X-Gm-Message-State: ALoCoQmmr0F4bIBq7vyrZNFsbjiIVH2hAY+RMPt0lxdDS2XEYkmzmNo47KhzLknt4eTVkME3jD5o
+Subject: Yocto WebHob update
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,182 +37,94 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 06 Jul 2012 14:59:23 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 06 Jul 2012 15:44:49 -0000
+Content-Type: multipart/alternative; boundary=20cf307abe69dd2fe304c42b2489
 
-On Fri, 2012-07-06 at 10:47 -0400, jfabernathy wrote:
-> On 07/06/2012 10:44 AM, Tom Zanussi wrote:
-> > On Fri, 2012-07-06 at 10:20 -0400, jfabernathy wrote:
-> >> Something has changes very recently.  I was building with a fresh clone
-> >> of poky and meta-intel.  checked out Denzil on both. only modified to
-> >> support the meta-n450 layer, the parallel options and the local download
-> >> directory.
-> >>
-> > Are you using a local clone of the kernel i.e. using AUTOREV?  There are
-> > currently a few patches that you'd only get with AUTOREV that the
-> > offical SRCREVs in the recipe prevent from getting into normal builds at
-> > the moment.
-> >
-> > Tom
-> I have local kernels on the system, but I hope I'm not using them. The 
-> last good build I did used a local kernel.  However, I started by 
-> blowing away the poky dir and the /build dir.  I did a new clone of poky 
-> and meta-intel and checkout the denzil branch in both (not tag)
-> 
+--20cf307abe69dd2fe304c42b2489
+Content-Type: text/plain; charset=UTF-8
 
-Oh, I see now, 450 doesn't specify a kernel SRCREV like the other BSPs.
-You can fix that locally by changing the empty SRCREVs in the n450
-kernel recipe e.g.
+Hi everyone,
 
-SRCREV_machine_pn-linux-yocto_n450 = 9d32bb075e349cc69c7af42b60f6715c5d8c972e
-SRCREV_meta_pn-linux-yocto_n450 ?= 	ee78519365bdb25287703bbc31c06b193263c654
+Here's the latest update (2.0) from the London team on the WebHob design
 
-This is exactly the reason it's not good to use floating kernel SRCREVs.
+https://wiki.yoctoproject.org/wiki/Yocto_Web_Hob_Design
 
-Tom
+There's a PDF of all the screens of the latest version (v.2.0) of the
+application <https://wiki.yoctoproject.org/wiki/images/8/8b/Webhob.2.0.pdf>,
+a link to the GitHub <https://github.com/jkosem/Yocto-WebHob-Design> we
+have setup for the HTML5 prototype development and a screencast of the
+v.1.8<https://wiki.yoctoproject.org/wiki/images/c/cb/Yocto_webHob.1.9_screencast.0.2.mov>
+showing
+our design thinking around WebHob and our vision for how it will work.
 
-> Jim A
-> 
-> >> I got an error compiling the kernel.  It didn't fail yesterday early,
-> >> but now I get the same failure on Ubuntu 12.04 and Fedora 16.
-> >>
-> >> Jim A
-> >>
-> >>
-> >> NOTE: make -C
-> >> /build/n450-denzil/tmp/work/n450-poky-linux/linux-yocto-3.2.18+git1+49f931bc294d5b6be60502bbd448cff5aa766235_1+8b8cfaaab2b8d79ac56e8c9a85bad9ae7bca399c-r1/linux/tools/perf
-> >> CC=i586-poky-linux-gcc  -m32    -march=core2 -msse3 -mtune=generic
-> >> -mfpmath=sse --sysroot=/build/n450-denzil/tmp/sysroots/n450
-> >> LD=i586-poky-linux-ld --sysroot=/build/n450-denzil/tmp/sysroots/n450
-> >> prefix=/usr NO_NEWT=1 NO_DWARF=1
-> >> make: Entering directory
-> >> `/build/n450-denzil/tmp/work/n450-poky-linux/linux-yocto-3.2.18+git1+49f931bc294d5b6be60502bbd448cff5aa766235_1+8b8cfaaab2b8d79ac56e8c9a85bad9ae7bca399c-r1/linux/tools/perf'
-> >> Makefile:493: libperl not found, disables Perl scripting support. Please
-> >> install libperl-dev or perl-devel
-> >> PERF_VERSION = 3.2.11.629.g382eda3
-> >> make: Leaving directory
-> >> `/build/n450-denzil/tmp/work/n450-poky-linux/linux-yocto-3.2.18+git1+49f931bc294d5b6be60502bbd448cff5aa766235_1+8b8cfaaab2b8d79ac56e8c9a85bad9ae7bca399c-r1/linux/tools/perf'
-> >> make: Entering directory
-> >> `/build/n450-denzil/tmp/work/n450-poky-linux/linux-yocto-3.2.18+git1+49f931bc294d5b6be60502bbd448cff5aa766235_1+8b8cfaaab2b8d79ac56e8c9a85bad9ae7bca399c-r1/linux/tools/perf'
-> >> Makefile:493: libperl not found, disables Perl scripting support. Please
-> >> install libperl-dev or perl-devel
-> >>       GEN common-cmds.h
-> >>       * new build flags or prefix
-> >>       CC perf.o
-> >>       CC builtin-annotate.o
-> >>       CC builtin-bench.o
-> >>       CC bench/sched-messaging.o
-> >>       CC bench/sched-pipe.o
-> >>       CC bench/mem-memcpy.o
-> >>       CC builtin-diff.o
-> >>       CC builtin-evlist.o
-> >>       CC builtin-help.o
-> >>       CC builtin-sched.o
-> >>       CC builtin-buildid-list.o
-> >>       CC builtin-buildid-cache.o
-> >>       CC builtin-list.o
-> >>       CC builtin-record.o
-> >>       CC builtin-report.o
-> >>       CC builtin-stat.o
-> >>       CC builtin-timechart.o
-> >>       CC builtin-top.o
-> >>       CC builtin-script.o
-> >>       CC builtin-probe.o
-> >>       CC builtin-kmem.o
-> >>       CC builtin-lock.o
-> >>       CC builtin-kvm.o
-> >>       CC builtin-test.o
-> >>       CC builtin-inject.o
-> >>       CC util/abspath.o
-> >>       CC util/alias.o
-> >>       CC util/annotate.o
-> >>       CC util/build-id.o
-> >>       CC util/config.o
-> >>       CC util/ctype.o
-> >>       CC util/debugfs.o
-> >>       CC util/environment.o
-> >>       CC util/event.o
-> >>       CC util/evlist.o
-> >>       CC util/evsel.o
-> >>       CC util/exec_cmd.o
-> >>       CC util/help.o
-> >>       CC util/levenshtein.o
-> >>       CC util/parse-options.o
-> >>       CC util/parse-events.o
-> >>       CC util/path.o
-> >>       CC util/rbtree.o
-> >>       CC util/bitmap.o
-> >>       CC util/hweight.o
-> >>       CC util/run-command.o
-> >>       CC util/quote.o
-> >>       CC util/strbuf.o
-> >>       CC util/string.o
-> >>       CC util/strlist.o
-> >>       CC util/strfilter.o
-> >>       CC util/top.o
-> >>       CC util/usage.o
-> >>       CC util/wrapper.o
-> >>       CC util/sigchain.o
-> >>       CC util/symbol.o
-> >>       CC util/color.o
-> >>       CC util/pager.o
-> >>       CC util/header.o
-> >>       CC util/callchain.o
-> >>       CC util/values.o
-> >>       CC util/debug.o
-> >>       CC util/map.o
-> >>       CC util/pstack.o
-> >>       CC util/session.o
-> >>       CC util/thread.o
-> >>       CC util/thread_map.o
-> >>       CC util/trace-event-parse.o
-> >>       CC util/trace-event-read.o
-> >>       CC util/trace-event-info.o
-> >>       CC util/trace-event-scripting.o
-> >>       CC util/svghelper.o
-> >>       CC util/sort.o
-> >>       CC util/hist.o
-> >>       CC util/probe-event.o
-> >>       CC util/util.o
-> >>       CC util/xyarray.o
-> >>       CC util/cpumap.o
-> >>       CC util/cgroup.o
-> >>       CC arch/x86/util/header.o
-> >>       CC util/scripting-engines/trace-event-python.o
-> >>       CC scripts/python/Perf-Trace-Util/Context.o
-> >>       AR libperf.a
-> >>       LINK perf
-> >>       GEN perf-archive
-> >>       GEN python/perf.so
-> >> Traceback (most recent call last):
-> >>     File "util/setup.py", line 6, in <module>
-> >>       from distutils.command.build_ext   import build_ext   as _build_ext
-> >>     File
-> >> "/build/n450-denzil/tmp/sysroots/x86_64-linux/usr/lib/python2.7/distutils/command/build_ext.py",
-> >> line 16, in <module>
-> >>       from distutils.sysconfig import customize_compiler, get_python_version
-> >>     File
-> >> "/build/n450-denzil/tmp/sysroots/x86_64-linux/usr/lib/python2.7/distutils/sysconfig.py",
-> >> line 22, in <module>
-> >>       PREFIX = os.path.normpath(sys.prefix).replace(
-> >> os.getenv("BUILD_SYS"), os.getenv("HOST_SYS") )
-> >> TypeError: expected a character buffer object
-> >> cp: cannot stat `python_ext_build/lib/perf.so': No such file or directory
-> >> make: *** [python/perf.so] Error 1
-> >> make: Leaving directory `/build/n450-denziERROR: Function failed:
-> >> do_compile_perf (see
-> >> /build/n450-denzil/tmp/work/n450-poky-linux/linux-yocto-3.2.18+git1+49f931bc294d5b6be60502bbd448cff5aa766235_1+8b8cfaaab2b8d79ac56e8c9a85bad9ae7bca399c-r1/temp/log.do_compile_perf.7739
-> >> for further information)
-> >> l/tmp/work/n450-poky-linux/linux-yocto-3.2.18+git1+49f931bc294d5b6be60502bbd448cff5aa766235_1+8b8cfaaab2b8d79ac56e8c9a85bad9ae7bca399c-r1/linux/tools/perf'
-> >> ERROR: oe_runmake failed
-> >> _______________________________________________
-> >> yocto mailing list
-> >> yocto@yoctoproject.org
-> >> https://lists.yoctoproject.org/listinfo/yocto
-> >
-> 
-> 
+This past week we've been working on integrating the CSS, HTML fixes and
+some Javascript work on the front end.
+
+You'll also notice all the graphic work we've been doing as well.
+
+As always everything is on GitHub<https://github.com/jkosem/Yocto-WebHob-Design>
+ and feedback is very welcome. Thanks.
+
+--
+Jim Kosem
+
+Skype: jkosem
+Gtalk: jim@halfman.com
+Mobile: +44 7757 559081
+
+Note: I read and reply to email only a couple of times a day. If you need
+something quicker, please use Skype, GTalk or if its urgent call my mobile.
+
+--20cf307abe69dd2fe304c42b2489
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:13=
+px;background-color:rgb(255,255,255)">Hi everyone,</div><div style=3D"color=
+:rgb(34,34,34);font-family:arial,sans-serif;font-size:13px;background-color=
+:rgb(255,255,255)">
+
+<div><br></div><div>Here&#39;s the latest=C2=A0<span class=3D"il" style=3D"=
+background-color:rgb(255,255,204)">update (2.0)</span>=C2=A0from the London=
+ team on the WebHob design</div><div><br></div><div><a href=3D"https://wiki=
+.yoctoproject.org/wiki/Yocto_Web_Hob_Design" target=3D"_blank" style=3D"col=
+or:rgb(17,85,204)">https://wiki.yoctoproject.org/wiki/Yocto_Web_Hob_Design<=
+/a></div>
+
+<div><br></div><div>There&#39;s a=C2=A0<a href=3D"https://wiki.yoctoproject=
+.org/wiki/images/8/8b/Webhob.2.0.pdf" target=3D"_blank" style=3D"color:rgb(=
+17,85,204)">PDF of all the screens of the latest version (v.2.0) of the app=
+lication</a>, a link to the=C2=A0<a href=3D"https://github.com/jkosem/Yocto=
+-WebHob-Design" target=3D"_blank" style=3D"color:rgb(17,85,204)"><span styl=
+e=3D"background-color:rgb(255,255,204);color:rgb(34,34,34)">GitHub</span></=
+a>=C2=A0we have setup for the HTML5 prototype development and a=C2=A0<a hre=
+f=3D"https://wiki.yoctoproject.org/wiki/images/c/cb/Yocto_webHob.1.9_screen=
+cast.0.2.mov" target=3D"_blank" style=3D"color:rgb(17,85,204)">screencast o=
+f the v.1.8</a>=C2=A0showing our design thinking around WebHob and our visi=
+on for how it will work.</div>
+
+<div><br></div><div>This past week we&#39;ve been working on integrating th=
+e CSS, HTML fixes and some Javascript work on the front end.</div><div><br>=
+</div><div>You&#39;ll also notice all the graphic work we&#39;ve been doing=
+ as well.<br clear=3D"all">
+
+<div><br></div><div>As always everything is on=C2=A0<span style=3D"backgrou=
+nd-color:rgb(255,255,204)"><a href=3D"https://github.com/jkosem/Yocto-WebHo=
+b-Design" target=3D"_blank" style=3D"color:rgb(17,85,204)">GitHub</a>=C2=A0=
+and</span>=C2=A0feedback is very welcome. Thanks.</div>
+
+</div></div><div><br></div>--<div>Jim Kosem</div><div><br></div><div>Skype:=
+ jkosem</div><div>Gtalk: <a href=3D"mailto:jim@halfman.com" target=3D"_blan=
+k">jim@halfman.com</a></div><div>Mobile: +44 7757 559081</div><div>
 
 
 
+
+
+
+
+<p>Note: I read and reply to email only a couple of times a day. If you nee=
+d something quicker, please use Skype, GTalk or if its urgent call my mobil=
+e.</p></div><br>
+
+--20cf307abe69dd2fe304c42b2489--
