@@ -1,26 +1,26 @@
-Return-Path: <David.Nystrom@enea.com>
-Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 27932E0142D
-	for <yocto@yoctoproject.org>; Fri,  6 Jul 2012 03:49:07 -0700 (PDT)
-Received: from SESTOEX05.enea.se ([fe80::41cb:8d2e:2e90:a183]) by
-	SESTOEX03.enea.se ([fe80::6ce7:7b51:1edf:e245%21]) with mapi id
-	14.02.0247.003; Fri, 6 Jul 2012 12:49:04 +0200
-From: =?iso-8859-1?Q?David_Nystr=F6m?= <David.Nystrom@enea.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "raj.khem@gmail.com"
-	<raj.khem@gmail.com>
-Thread-Topic: [yocto] [meta-fsl-ppc][PATCH 2/2] fsl.conf: Let
-	linux-qoriq-sdk-headers-nativesdk provide	linux-libc-headers-nativesdk
-Thread-Index: AQHNWzMwsJadeH3pL023w1axJu+5aJccE4WA
-Date: Fri, 6 Jul 2012 10:49:03 +0000
-Message-ID: <88701C38B5D07249817D428430999C910EAC7607@sestoex05.enea.se>
-References: <1341550315-9795-1-git-send-email-raj.khem@gmail.com>,
-	<1341550315-9795-2-git-send-email-raj.khem@gmail.com>
-In-Reply-To: <1341550315-9795-2-git-send-email-raj.khem@gmail.com>
-Accept-Language: en-US, sv-SE
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2D1DCE0142D
+	for <yocto@yoctoproject.org>; Fri,  6 Jul 2012 04:22:40 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 06 Jul 2012 04:22:39 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="164762963"
+Received: from unknown (HELO helios.localnet) ([10.252.120.217])
+	by azsmga001.ch.intel.com with ESMTP; 06 Jul 2012 04:22:38 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: "Stewart, David C" <david.c.stewart@intel.com>
+Date: Fri, 06 Jul 2012 12:22:37 +0100
+Message-ID: <63888840.0N6Y68VfOI@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.8.4 (Linux/3.2.0-26-generic-pae; KDE/4.8.4; i686; ; )
+In-Reply-To: <CDED78A957032E45B3239CDDA7642D151C8977DE@ORSMSX105.amr.corp.intel.com>
+References: <40776A41FC278F40B59438AD47D147A90FDC7F83@SHSMSX102.ccr.corp.intel.com>
+	<1609342.c99bAcXVHq@helios>
+	<CDED78A957032E45B3239CDDA7642D151C8977DE@ORSMSX105.amr.corp.intel.com>
 MIME-Version: 1.0
-Subject: Re: [meta-fsl-ppc][PATCH 2/2] fsl.conf: Let	linux-qoriq-sdk-headers-nativesdk provide	linux-libc-headers-nativesdk
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Some questions about the webhob design
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,58 +32,59 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 06 Jul 2012 10:49:08 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 06 Jul 2012 11:22:40 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-So that about a disto refusing this and possibly other BSP layers ?
-Should the disto.conf  select of nativesdk be made machine specific on all =
-machines in meta-fsl-ppc ? And one added target after a meta-fsl-ppc rebase=
- would break stuff, I guess.
+On Thursday 05 July 2012 23:00:17 Stewart, David C wrote:
+> Guys - I'm really struggling with this overall concept of concurrency.
+> 
+> It implies that if Paul and I are sharing the same project and I make a
+> change to a .bb file to experiment with something (assuming we have the
+> ability to do that, refer to my last email) and my change breaks my build,
+> it will break everyone else's build as well.  But the beauty thing is that
+> it breaks it silently, because the configuration silently changed for
+> everyone on the project.
 
+The key word there I think is "experiment". Is it reasonable to expect to 
+handle people making experimental changes to something that others are relying 
+upon? It seems to me that whether experimental changes are likely and whether 
+or not it will seriously impact other users depends on what development stage 
+the particular project is at.
 
-Br
-David
+We're providing an avenue for the user to make a copy of the project that they 
+can play with. We also aren't completely managing all of the metadata and 
+source code through this tool - that's something git and other version control 
+tools do pretty well. So it's perfectly possible to have the shared project 
+operating from master or some release branch of a layer, and my copy of that 
+project which pulls the layer from my personal branch of the layer; there I 
+can make whatever changes to the metadata I like and when they're ready I can 
+use my normal development processes to get that change from my branch into the 
+branch being used for the shared project.
 
-Sent from Android
+> If you are saying that it won't happen because people won't share a project
+> under active development, then I don't understand the value of sharing a
+> project. Is it to share the package repo? The images? There are all kinds
+> of ways of doing that.
 
+I'm expecting people will share a project under active development; they just 
+might not put changes into it until they've tested them elsewhere (i.e. their 
+own copy of the project) first.
 
------Original Message-----
-From: Khem Raj [raj.khem@gmail.com]
-Received: Friday, 06 Jul 2012, 6:52
-To: yocto@yoctoproject.org [yocto@yoctoproject.org]
-Subject: [yocto] [meta-fsl-ppc][PATCH 2/2] fsl.conf: Let        linux-qoriq=
--sdk-headers-nativesdk provide       linux-libc-headers-nativesdk
+The project will share the built packages and shared state cache (assuming 
+that isn't shared at a higher level) between users of the project, but the 
+main point is providing an avenue for users to collaborate where it makes 
+sense on the *configuration* and not encouraging the opposite, which is people 
+off building their separate OS images in their own sandboxes. Ultimately if 
+you're working on an OS for a product you have to eventually arrive at the 
+same configuration (and by extension, the same metadata and therefore the same 
+source code).
 
+Cheers,
+Paul
 
+-- 
 
-If not set by user then let distro policy be to use
-linux-qoriq-sdk-headers-nativesdk for linux-libc-headers-nativesdk
-
-Signed-off-by: Khem Raj <raj.khem@gmail.com>
----
- conf/distro/fsl.conf |    1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/conf/distro/fsl.conf b/conf/distro/fsl.conf
-index 6d4dc34..8bfb272 100644
---- a/conf/distro/fsl.conf
-+++ b/conf/distro/fsl.conf
-@@ -83,6 +83,7 @@ IMAGE_CLASSES =3D "image_types_uboot"
-
- PREFERRED_VERSION_u-boot-mkimage-native_powerpc =3D "2011.06"
- PREFERRED_PROVIDER_virtual/libx11 =3D "libx11"
-+PREFERRED_PROVIDER_linux-libc-headers-nativesdk ?=3D "linux-qoriq-sdk-head=
-ers-nativesdk"
-
- SYSVINIT_ENABLED_GETTYS =3D ""
- USE_VT =3D ""
---
-1.7.9.5
-
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
+Paul Eggleton
+Intel Open Source Technology Centre
 
