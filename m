@@ -1,27 +1,27 @@
 Return-Path: <jfabernathy@gmail.com>
-Received: from mail-yw0-f48.google.com (mail-yw0-f48.google.com
-	[209.85.213.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DE71FE006AD
-	for <yocto@yoctoproject.org>; Fri,  6 Jul 2012 12:00:55 -0700 (PDT)
-Received: by yhfq46 with SMTP id q46so9526100yhf.35
-	for <yocto@yoctoproject.org>; Fri, 06 Jul 2012 12:00:55 -0700 (PDT)
+Received: from mail-gg0-f176.google.com (mail-gg0-f176.google.com
+	[209.85.161.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5F2A9E006AD
+	for <yocto@yoctoproject.org>; Fri,  6 Jul 2012 12:48:23 -0700 (PDT)
+Received: by ggnk4 with SMTP id k4so10204254ggn.35
+	for <yocto@yoctoproject.org>; Fri, 06 Jul 2012 12:48:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=message-id:date:from:user-agent:mime-version:to:cc:subject
 	:references:in-reply-to:content-type:content-transfer-encoding;
-	bh=JfmFc/I3fvGnp9c/2mxMJCBVhPheChcJALPm3Bvv3eU=;
-	b=cbFWJJHcqv58h6KyMxJcMfVfP4RZY2mskvoqSck5FiEdWLC7XfebVEKupEni/wIUqi
-	GfYKmFACYSy/8itfRLu+lqzDRq1Wlin4sHhypw+FUwFvGPhZ2C8dnqifEhXhSYgC4yqQ
-	2ilAwOO9jjFWoQ7NINTlCZ9dLnelSJGGQaAqh7te83w5CpxcWpDtoiN9t6jZsTUEaFJr
-	RQGRKUmp+6swV4JLJiZyPMdySh4qdCIk3DG0mwWle9+2dJHKrgosADz3TB9zHsAyP1Lw
-	5EB2SFyrQdzOah/q/r3h7RJf3D527/7TURGVB9g1SkRPzJ6XUHc7W0/0WFjCCfEGIk6G
-	L2Lg==
-Received: by 10.236.182.7 with SMTP id n7mr36944888yhm.61.1341601255404;
-	Fri, 06 Jul 2012 12:00:55 -0700 (PDT)
+	bh=u+rCnlDGLSHt73V+FOl8h4mqZ0EVZ8W++UU1hIVA29U=;
+	b=Jb9dqPxBEZURKh/PXxsscV9B2PnB1FCCC2pnGBZDaH7O7lKlRttsd40UGJtk+wkh/G
+	GzvDbm03I+bysEXeXLbvPlQOO1zgiDW4H7TUNsQJKUt3gvesuxEzcREPQhm4uuGmbapX
+	Et8MV8hs46QrxUj7InbwzdaDMWzpk19fcIeedRUBaVLO1jPSGB/s1GEovtv3ZYq+uZYJ
+	DYghtE/09XxeTHiZ5dSioqMmstfNR8eyG4vWrxuQFr5w2hcNVU1nQVv1QKKBILnxOxhc
+	xQA02s31/UAfYY4sNO11R8hQEEP7H7LlfvSi6yzPrHmlXurhoh269SWxUidX/l0Hh3/A
+	LfMQ==
+Received: by 10.236.77.164 with SMTP id d24mr38272250yhe.129.1341604102849;
+	Fri, 06 Jul 2012 12:48:22 -0700 (PDT)
 Received: from [10.0.1.54] (nc-184-4-39-191.dhcp.embarqhsd.net. [184.4.39.191])
-	by mx.google.com with ESMTPS id t22sm23264855anh.20.2012.07.06.12.00.54
-	(version=SSLv3 cipher=OTHER); Fri, 06 Jul 2012 12:00:55 -0700 (PDT)
-Message-ID: <4FF735E6.3060803@gmail.com>
-Date: Fri, 06 Jul 2012 15:00:54 -0400
+	by mx.google.com with ESMTPS id r8sm23373604ani.9.2012.07.06.12.48.21
+	(version=SSLv3 cipher=OTHER); Fri, 06 Jul 2012 12:48:22 -0700 (PDT)
+Message-ID: <4FF74105.5030906@gmail.com>
+Date: Fri, 06 Jul 2012 15:48:21 -0400
 From: jfabernathy <jfabernathy@gmail.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:13.0) Gecko/20120615 Thunderbird/13.0.1
@@ -49,7 +49,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 06 Jul 2012 19:00:56 -0000
+X-List-Received-Date: Fri, 06 Jul 2012 19:48:23 -0000
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
@@ -121,10 +121,13 @@ On 07/06/2012 02:57 PM, Tom Zanussi wrote:
 >
 > Tom
 >
-
-Okay, for my experiment, I can just use the BSP tarballs. Thanks,
+So you're really not going to like hearing this :-)  I ran the default 
+n450 build from the tarball BSPs same libperl error.  I'm going to blow 
+everything away including my download directory and start from the 
+beginning of time.
 
 Jim A
+
 
 >> Jim A
 >>
