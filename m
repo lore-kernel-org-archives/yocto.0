@@ -1,23 +1,28 @@
-Return-Path: <nitin.a.kamble@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 54678E01459
-	for <yocto@yoctoproject.org>; Fri,  6 Jul 2012 05:39:48 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 06 Jul 2012 05:39:48 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="119509614"
-Received: from yocto-hm1.jf.intel.com ([10.23.232.32])
-	by AZSMGA002.ch.intel.com with ESMTP; 06 Jul 2012 05:39:48 -0700
-From: nitin.a.kamble@intel.com
-To: yocto@yoctoproject.org
-Date: Fri,  6 Jul 2012 05:38:45 -0700
-Message-Id: <ec28e362f7b2afff100c2603d2878f4b5949643e.1341578164.git.nitin.a.kamble@intel.com>
-X-Mailer: git-send-email 1.7.3.4
-In-Reply-To: <561b7f1cb73c2c11a1fff56ff415b91bae0f0bd3.1341578164.git.nitin.a.kamble@intel.com>
-References: <561b7f1cb73c2c11a1fff56ff415b91bae0f0bd3.1341578164.git.nitin.a.kamble@intel.com>
-In-Reply-To: <cover.1341578164.git.nitin.a.kamble@intel.com>
-References: <cover.1341578164.git.nitin.a.kamble@intel.com>
-Subject: [PATCH 7/7] crownbay: add recipe extention for linux-yocto-3.4
+Return-Path: <David.Nystrom@enea.com>
+Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id 124D9E01451
+	for <yocto@yoctoproject.org>; Fri,  6 Jul 2012 05:52:45 -0700 (PDT)
+Received: from SESTOEX05.enea.se ([fe80::41cb:8d2e:2e90:a183]) by
+	SESTOEX08.enea.se ([fe80::fda4:d8b2:80c9:b320%24]) with mapi id
+	14.02.0298.004; Fri, 6 Jul 2012 14:52:44 +0200
+From: =?iso-8859-1?Q?David_Nystr=F6m?= <David.Nystrom@enea.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "raj.khem@gmail.com"
+	<raj.khem@gmail.com>, =?iso-8859-1?Q?David_Nystr=F6m?=
+	<David.Nystrom@enea.com>
+Thread-Topic: [yocto] [meta-fsl-ppc][PATCH 2/2] fsl.conf:	Let
+	linux-qoriq-sdk-headers-nativesdk	provide	linux-libc-headers-nativesdk
+Thread-Index: AQHNW2UDpVdjo/zLOU6+G1JhVxjYL5ccNa3A
+Date: Fri, 6 Jul 2012 12:52:43 +0000
+Message-ID: <88701C38B5D07249817D428430999C910EAC773F@sestoex05.enea.se>
+References: <1341550315-9795-1-git-send-email-raj.khem@gmail.com>,
+	<1341550315-9795-2-git-send-email-raj.khem@gmail.com>,
+	<88701C38B5D07249817D428430999C910EAC7607@sestoex05.enea.se>
+In-Reply-To: <88701C38B5D07249817D428430999C910EAC7607@sestoex05.enea.se>
+Accept-Language: en-US, sv-SE
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+MIME-Version: 1.0
+Subject: Re: [meta-fsl-ppc][PATCH 2/2] fsl.conf:	Let	linux-qoriq-sdk-headers-nativesdk	provide	linux-libc-headers-nativesdk
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,41 +34,75 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 06 Jul 2012 12:39:48 -0000
+X-List-Received-Date: Fri, 06 Jul 2012 12:52:46 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-From: Nitin A Kamble <nitin.a.kamble@intel.com>
+typo refusing =3D reusing.
 
-In testing on the crownbay hardware found that, X is failing due to missing emgd driver.
-Hence the v3.4 kernel is not made the default kernel for crownbay bsps yet.
 
-Signed-off-by: Nitin A Kamble <nitin.a.kamble@intel.com>
+-----Original Message-----
+From: David Nystr=F6m [David.Nystrom@enea.com]
+Received: Friday, 06 Jul 2012, 12:49
+To: yocto@yoctoproject.org [yocto@yoctoproject.org]; raj.khem@gmail.com [ra=
+j.khem@gmail.com]
+Subject: Re: [yocto] [meta-fsl-ppc][PATCH 2/2] fsl.conf:        Let     lin=
+ux-qoriq-sdk-headers-nativesdk       provide linux-libc-headers-nativesdk
+
+
+
+So that about a disto refusing this and possibly other BSP layers ?
+Should the disto.conf  select of nativesdk be made machine specific on all =
+machines in meta-fsl-ppc ? And one added target after a meta-fsl-ppc rebase=
+ would break stuff, I guess.
+
+
+Br
+David
+
+Sent from Android
+
+
+-----Original Message-----
+From: Khem Raj [raj.khem@gmail.com]
+Received: Friday, 06 Jul 2012, 6:52
+To: yocto@yoctoproject.org [yocto@yoctoproject.org]
+Subject: [yocto] [meta-fsl-ppc][PATCH 2/2] fsl.conf: Let        linux-qoriq=
+-sdk-headers-nativesdk provide       linux-libc-headers-nativesdk
+
+
+
+If not set by user then let distro policy be to use
+linux-qoriq-sdk-headers-nativesdk for linux-libc-headers-nativesdk
+
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
 ---
- .../recipes-kernel/linux/linux-yocto_3.4.bbappend  |   15 +++++++++++++++
- 1 files changed, 15 insertions(+), 0 deletions(-)
- create mode 100644 meta-crownbay/recipes-kernel/linux/linux-yocto_3.4.bbappend
+ conf/distro/fsl.conf |    1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/meta-crownbay/recipes-kernel/linux/linux-yocto_3.4.bbappend b/meta-crownbay/recipes-kernel/linux/linux-yocto_3.4.bbappend
-new file mode 100644
-index 0000000..60c1a0c
---- /dev/null
-+++ b/meta-crownbay/recipes-kernel/linux/linux-yocto_3.4.bbappend
-@@ -0,0 +1,15 @@
-+FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-+
-+COMPATIBLE_MACHINE_crownbay = "crownbay"
-+KMACHINE_crownbay  = "crownbay"
-+KBRANCH_crownbay  = "standard/default/crownbay"
-+
-+COMPATIBLE_MACHINE_crownbay-noemgd = "crownbay-noemgd"
-+KMACHINE_crownbay-noemgd  = "crownbay"
-+KBRANCH_crownbay-noemgd  = "standard/crownbay"
-+
-+SRCREV_machine_pn-linux-yocto_crownbay ?= "49f1599b2ce0288599805b5364b895f5a9febb3e"
-+SRCREV_meta_pn-linux-yocto_crownbay ?= "a8cf77018b0faa0d29f1483ff4e5a2034dc8edd5"
-+
-+SRCREV_machine_pn-linux-yocto_crownbay-noemgd ?= "49f1599b2ce0288599805b5364b895f5a9febb3e"
-+SRCREV_meta_pn-linux-yocto_crownbay-noemgd ?= "a8cf77018b0faa0d29f1483ff4e5a2034dc8edd5"
--- 
-1.7.3.4
+diff --git a/conf/distro/fsl.conf b/conf/distro/fsl.conf
+index 6d4dc34..8bfb272 100644
+--- a/conf/distro/fsl.conf
++++ b/conf/distro/fsl.conf
+@@ -83,6 +83,7 @@ IMAGE_CLASSES =3D "image_types_uboot"
 
+ PREFERRED_VERSION_u-boot-mkimage-native_powerpc =3D "2011.06"
+ PREFERRED_PROVIDER_virtual/libx11 =3D "libx11"
++PREFERRED_PROVIDER_linux-libc-headers-nativesdk ?=3D "linux-qoriq-sdk-head=
+ers-nativesdk"
+
+ SYSVINIT_ENABLED_GETTYS =3D ""
+ USE_VT =3D ""
+--
+1.7.9.5
+
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
 
