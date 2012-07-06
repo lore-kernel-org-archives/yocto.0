@@ -1,23 +1,23 @@
 Return-Path: <tom.zanussi@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 62E19E0142D
-	for <yocto@yoctoproject.org>; Fri,  6 Jul 2012 11:34:11 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 06 Jul 2012 11:34:11 -0700
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0241DE006AD
+	for <yocto@yoctoproject.org>; Fri,  6 Jul 2012 11:36:03 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 06 Jul 2012 11:36:03 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="162241459"
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="164910040"
 Received: from unknown (HELO [10.255.13.33]) ([10.255.13.33])
-	by orsmga001.jf.intel.com with ESMTP; 06 Jul 2012 11:34:10 -0700
-Message-ID: <1341599644.6761.130.camel@trz-ThinkPad-T420>
+	by azsmga001.ch.intel.com with ESMTP; 06 Jul 2012 11:36:02 -0700
+Message-ID: <1341599756.6761.132.camel@trz-ThinkPad-T420>
 From: Tom Zanussi <tom.zanussi@intel.com>
 To: jfabernathy <jfabernathy@gmail.com>
-Date: Fri, 06 Jul 2012 13:34:04 -0500
-In-Reply-To: <4FF72EDB.2000407@gmail.com>
+Date: Fri, 06 Jul 2012 13:35:56 -0500
+In-Reply-To: <4FF7220E.6030306@gmail.com>
 References: <4FF6F44B.6090605@gmail.com>
 	<1341585872.6761.118.camel@trz-ThinkPad-T420>
 	<4FF6FA72.3030101@gmail.com>
 	<1341586756.6761.124.camel@trz-ThinkPad-T420>
-	<4FF72EDB.2000407@gmail.com>
+	<4FF7220E.6030306@gmail.com>
 X-Mailer: Evolution 3.2.3-0ubuntu6 
 Mime-Version: 1.0
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
@@ -33,11 +33,11 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 06 Jul 2012 18:34:11 -0000
+X-List-Received-Date: Fri, 06 Jul 2012 18:36:04 -0000
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-On Fri, 2012-07-06 at 14:30 -0400, jfabernathy wrote:
+On Fri, 2012-07-06 at 13:36 -0400, jfabernathy wrote:
 > On 07/06/2012 10:59 AM, Tom Zanussi wrote:
 > > On Fri, 2012-07-06 at 10:47 -0400, jfabernathy wrote:
 > >> On 07/06/2012 10:44 AM, Tom Zanussi wrote:
@@ -66,27 +66,25 @@ On Fri, 2012-07-06 at 14:30 -0400, jfabernathy wrote:
 > > SRCREV_meta_pn-linux-yocto_n450 ?= 	ee78519365bdb25287703bbc31c06b193263c654
 > >
 > > This is exactly the reason it's not good to use floating kernel SRCREVs.
-> >
-> > Tom
-> 
-> I've also been seeing a number of build failures related to this error:
-> 
-> libperl not found, disables Perl scripting support. Please install 
-> libperl-dev or perl-devel
-> 
+> So this fixes the issue, but I just want to know how you knew which 
+> commit strings to use is this case?  I finally found them, but not sure 
+> why you pick these particular ones.
 
-Yes, this is the same error you see below, isn't it?
+Well, it's kind of a long story already.  Basically, there was a
+patchset yesterday that got partially pulled in, and part of that was a
+set of changes to the kernel.  If you have a hard-coded SRCREV, this
+isn't a problem, for the n450 that's not the case.
 
-> Is this part of the patches that are in transition?
-
-Yes, and you should only be seeing it with n450 or if using
-meta-kernel-dev.
+So how I figured out which ones to use was that I looked at the n450
+machine branch and the meta branch and picked out the SRCREVs
+immediately preceding those changes.
 
 Tom
 
-> 
 > Jim A
 > 
+> > Tom
+> >
 > >> Jim A
 > >>
 > >>>> I got an error compiling the kernel.  It didn't fail yesterday early,
