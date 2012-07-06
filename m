@@ -1,26 +1,19 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <nitin.a.kamble@intel.com>
 Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2D1DCE0142D
-	for <yocto@yoctoproject.org>; Fri,  6 Jul 2012 04:22:40 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 06 Jul 2012 04:22:39 -0700
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B7718E01444
+	for <yocto@yoctoproject.org>; Fri,  6 Jul 2012 05:39:44 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 06 Jul 2012 05:39:44 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="164762963"
-Received: from unknown (HELO helios.localnet) ([10.252.120.217])
-	by azsmga001.ch.intel.com with ESMTP; 06 Jul 2012 04:22:38 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: "Stewart, David C" <david.c.stewart@intel.com>
-Date: Fri, 06 Jul 2012 12:22:37 +0100
-Message-ID: <63888840.0N6Y68VfOI@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.8.4 (Linux/3.2.0-26-generic-pae; KDE/4.8.4; i686; ; )
-In-Reply-To: <CDED78A957032E45B3239CDDA7642D151C8977DE@ORSMSX105.amr.corp.intel.com>
-References: <40776A41FC278F40B59438AD47D147A90FDC7F83@SHSMSX102.ccr.corp.intel.com>
-	<1609342.c99bAcXVHq@helios>
-	<CDED78A957032E45B3239CDDA7642D151C8977DE@ORSMSX105.amr.corp.intel.com>
-MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Some questions about the webhob design
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="119509597"
+Received: from yocto-hm1.jf.intel.com ([10.23.232.32])
+	by AZSMGA002.ch.intel.com with ESMTP; 06 Jul 2012 05:39:44 -0700
+From: nitin.a.kamble@intel.com
+To: yocto@yoctoproject.org
+Date: Fri,  6 Jul 2012 05:38:37 -0700
+Message-Id: <cover.1341578164.git.nitin.a.kamble@intel.com>
+X-Mailer: git-send-email 1.7.3.4
+Subject: [PATCH 0/7] move intel bsps to v3.4 kernel
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,59 +25,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 06 Jul 2012 11:22:40 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Fri, 06 Jul 2012 12:39:44 -0000
 
-On Thursday 05 July 2012 23:00:17 Stewart, David C wrote:
-> Guys - I'm really struggling with this overall concept of concurrency.
-> 
-> It implies that if Paul and I are sharing the same project and I make a
-> change to a .bb file to experiment with something (assuming we have the
-> ability to do that, refer to my last email) and my change breaks my build,
-> it will break everyone else's build as well.  But the beauty thing is that
-> it breaks it silently, because the configuration silently changed for
-> everyone on the project.
+From: Nitin A Kamble <nitin.a.kamble@intel.com>
 
-The key word there I think is "experiment". Is it reasonable to expect to 
-handle people making experimental changes to something that others are relying 
-upon? It seems to me that whether experimental changes are likely and whether 
-or not it will seriously impact other users depends on what development stage 
-the particular project is at.
+These commits move Intel BSPs to v3.4 kernel.
+The crownbay v3.4 kernel is not quet ready yet, so for crown bay the default kerenl is still v3.2
 
-We're providing an avenue for the user to make a copy of the project that they 
-can play with. We also aren't completely managing all of the metadata and 
-source code through this tool - that's something git and other version control 
-tools do pretty well. So it's perfectly possible to have the shared project 
-operating from master or some release branch of a layer, and my copy of that 
-project which pulls the layer from my personal branch of the layer; there I 
-can make whatever changes to the metadata I like and when they're ready I can 
-use my normal development processes to get that change from my branch into the 
-branch being used for the shared project.
+The following changes since commit f5dcebe57832551219da048945237a7cf7bda369:
 
-> If you are saying that it won't happen because people won't share a project
-> under active development, then I don't understand the value of sharing a
-> project. Is it to share the package repo? The images? There are all kinds
-> of ways of doing that.
+  linux-firmware: Fix FILESEXTRAPATHS typo (2012-06-20 13:12:12 -0700)
 
-I'm expecting people will share a project under active development; they just 
-might not put changes into it until they've tested them elsewhere (i.e. their 
-own copy of the project) first.
+are available in the git repository at:
+  git://git.yoctoproject.org/meta-intel-contrib nitin/work
+  http://git.yoctoproject.org/cgit.cgi/meta-intel-contrib/log/?h=nitin/work
 
-The project will share the built packages and shared state cache (assuming 
-that isn't shared at a higher level) between users of the project, but the 
-main point is providing an avenue for users to collaborate where it makes 
-sense on the *configuration* and not encouraging the opposite, which is people 
-off building their separate OS images in their own sandboxes. Ultimately if 
-you're working on an OS for a product you have to eventually arrive at the 
-same configuration (and by extension, the same metadata and therefore the same 
-source code).
+Nitin A Kamble (7):
+  FishRiver: add recipe extention for linux-yocto_3.4
+  FishRiver: set v3.4 as the default kernel recipe version
+  emenlow: add recipe extention for linux-yocto_3.4
+  emenlow: set v3.4 as the default kernel recipe version
+  sugarbay: add recipe extention for linux-yocto_3.4
+  sugarbay: set v3.4 as the default kernel recipe version
+  crownbay: add recipe extention for linux-yocto-3.4
 
-Cheers,
-Paul
+ .../recipes-kernel/linux/linux-yocto_3.4.bbappend  |   15 +++++++++++++++
+ meta-emenlow/conf/machine/emenlow.conf             |    2 +-
+ .../recipes-kernel/linux/linux-yocto_3.4.bbappend  |    8 ++++++++
+ meta-fishriver/conf/machine/fishriver.conf         |    2 +-
+ .../recipes-kernel/linux/linux-yocto_3.4.bbappend  |    8 ++++++++
+ meta-sugarbay/conf/machine/sugarbay.conf           |    2 +-
+ .../recipes-kernel/linux/linux-yocto_3.4.bbappend  |    9 +++++++++
+ 7 files changed, 43 insertions(+), 3 deletions(-)
+ create mode 100644 meta-crownbay/recipes-kernel/linux/linux-yocto_3.4.bbappend
+ create mode 100644 meta-emenlow/recipes-kernel/linux/linux-yocto_3.4.bbappend
+ create mode 100644 meta-fishriver/recipes-kernel/linux/linux-yocto_3.4.bbappend
+ create mode 100644 meta-sugarbay/recipes-kernel/linux/linux-yocto_3.4.bbappend
 
 -- 
+1.7.3.4
 
-Paul Eggleton
-Intel Open Source Technology Centre
 
