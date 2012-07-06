@@ -1,34 +1,53 @@
-Return-Path: <jim@halfman.com>
-Received: from mail-vb0-f48.google.com (mail-vb0-f48.google.com
-	[209.85.212.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C9295E0070C
-	for <yocto@yoctoproject.org>; Fri,  6 Jul 2012 08:44:48 -0700 (PDT)
-Received: by vbjk17 with SMTP id k17so7784937vbj.35
-	for <yocto@yoctoproject.org>; Fri, 06 Jul 2012 08:44:48 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:from:date:message-id:subject:to:content-type
-	:x-gm-message-state;
-	bh=BfMSdy0yjRwSy4Dcy1Ozwr8J9kHCQr3f/M+7qHYyy7c=;
-	b=HG3LLinDg53jW20h0Nm5uHded4eiWjsESXYfRczy2gOpzRCYgwOJcWbq9MAOJBCWNF
-	74Rz/HYbJpEBG0Q1tP8y62Hg1JORL9sauKB060atSVeII0dakkJ+qE5GfbwWMtX8G2Em
-	XeNWJHOJPhUe/rSUzQnak9K+cVf4RGwHIHVFKtgFH2vVGBk8ey2LysD3XMfNPAZlxrl5
-	aX540x07HO848SOX9k34PSAqvdiNx9HyPW9vsaHNn5OwU6vjpNYytjEwcDmYQXszdVFd
-	gY8/F/QjXKlzkidtOY7eMXFCzK+BvCG6m6StvQz2GlrfE5cvYzF+rQl4tPXyp+Hi5uNw
-	Z1Jg==
-Received: by 10.52.94.109 with SMTP id db13mr12408195vdb.4.1341589487955; Fri,
-	06 Jul 2012 08:44:47 -0700 (PDT)
+Return-Path: <B29882@freescale.com>
+Received: from va3outboundpool.messaging.microsoft.com
+	(va3ehsobe002.messaging.microsoft.com [216.32.180.12])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 09E13E01396
+	for <yocto@yoctoproject.org>; Fri,  6 Jul 2012 08:48:06 -0700 (PDT)
+Received: from mail236-va3-R.bigfish.com (10.7.14.250) by
+	VA3EHSOBE007.bigfish.com (10.7.40.11) with Microsoft SMTP Server id
+	14.1.225.23; Fri, 6 Jul 2012 15:45:57 +0000
+Received: from mail236-va3 (localhost [127.0.0.1])	by
+	mail236-va3-R.bigfish.com (Postfix) with ESMTP id D88B9900079;
+	Fri,  6 Jul 2012 15:45:56 +0000 (UTC)
+X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null); IPV:NLI;
+	H:mail.freescale.net; RD:none; EFVD:NLI
+X-SpamScore: 5
+X-BigFish: VS5(z1725nz98dI9371Ic89bhzz1202hzz8275bhz2dh2a8h668h839h8e2h8e3hf0ah107ahbe9i)
+Received: from mail236-va3 (localhost.localdomain [127.0.0.1]) by mail236-va3
+	(MessageSwitch) id 1341589554941422_24432;
+	Fri,  6 Jul 2012 15:45:54 +0000 (UTC)
+Received: from VA3EHSMHS021.bigfish.com (unknown [10.7.14.247])	by
+	mail236-va3.bigfish.com (Postfix) with ESMTP id E3E17600048;
+	Fri,  6 Jul 2012 15:45:54 +0000 (UTC)
+Received: from mail.freescale.net (70.37.183.190) by VA3EHSMHS021.bigfish.com
+	(10.7.99.31) with Microsoft SMTP Server (TLS) id 14.1.225.23;
+	Fri, 6 Jul 2012 15:45:50 +0000
+Received: from 039-SN1MPN1-003.039d.mgd.msft.net ([169.254.3.163]) by
+	039-SN1MMR1-001.039d.mgd.msft.net ([10.84.1.13]) with mapi id
+	14.02.0298.005; Fri, 6 Jul 2012 10:47:58 -0500
+From: McClintock Matthew-B29882 <B29882@freescale.com>
+To: =?iso-8859-1?Q?David_Nystr=F6m?= <David.Nystrom@enea.com>
+Thread-Topic: [yocto] [meta-fsl-ppc][PATCH 2/2] fsl.conf: Let
+	linux-qoriq-sdk-headers-nativesdk provide linux-libc-headers-nativesdk
+Thread-Index: AQHNW462266JlnvN2UumT9YN8fdDrw==
+Date: Fri, 6 Jul 2012 15:47:57 +0000
+Message-ID: <CAEsOVNe=+W0XLdYr1cZ_YFzkbASFCEio+yQ40Ojip_nq5FC=wQ@mail.gmail.com>
+References: <1341550315-9795-1-git-send-email-raj.khem@gmail.com>
+	<1341550315-9795-2-git-send-email-raj.khem@gmail.com>
+	<88701C38B5D07249817D428430999C910EAC7607@sestoex05.enea.se>
+In-Reply-To: <88701C38B5D07249817D428430999C910EAC7607@sestoex05.enea.se>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [70.112.201.132]
 MIME-Version: 1.0
-Received: by 10.52.91.7 with HTTP; Fri, 6 Jul 2012 08:44:27 -0700 (PDT)
-From: Jim Kosem <jim@halfman.com>
-Date: Fri, 6 Jul 2012 16:44:27 +0100
-Message-ID: <CAG+EMXjTVrkmZfxzFHHugQarOGan3EXY_JjDZ0_96DDnR5BmvA@mail.gmail.com>
-To: yocto@yoctoproject.org
-X-Gm-Message-State: ALoCoQmmr0F4bIBq7vyrZNFsbjiIVH2hAY+RMPt0lxdDS2XEYkmzmNo47KhzLknt4eTVkME3jD5o
-Subject: Yocto WebHob update
+X-OriginatorOrg: freescale.com
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [meta-fsl-ppc][PATCH 2/2] fsl.conf: Let linux-qoriq-sdk-headers-nativesdk provide linux-libc-headers-nativesdk
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: McClintock Matthew-B29882 <B29882@freescale.com>
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -37,94 +56,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 06 Jul 2012 15:44:49 -0000
-Content-Type: multipart/alternative; boundary=20cf307abe69dd2fe304c42b2489
-
---20cf307abe69dd2fe304c42b2489
-Content-Type: text/plain; charset=UTF-8
-
-Hi everyone,
-
-Here's the latest update (2.0) from the London team on the WebHob design
-
-https://wiki.yoctoproject.org/wiki/Yocto_Web_Hob_Design
-
-There's a PDF of all the screens of the latest version (v.2.0) of the
-application <https://wiki.yoctoproject.org/wiki/images/8/8b/Webhob.2.0.pdf>,
-a link to the GitHub <https://github.com/jkosem/Yocto-WebHob-Design> we
-have setup for the HTML5 prototype development and a screencast of the
-v.1.8<https://wiki.yoctoproject.org/wiki/images/c/cb/Yocto_webHob.1.9_screencast.0.2.mov>
-showing
-our design thinking around WebHob and our vision for how it will work.
-
-This past week we've been working on integrating the CSS, HTML fixes and
-some Javascript work on the front end.
-
-You'll also notice all the graphic work we've been doing as well.
-
-As always everything is on GitHub<https://github.com/jkosem/Yocto-WebHob-Design>
- and feedback is very welcome. Thanks.
-
---
-Jim Kosem
-
-Skype: jkosem
-Gtalk: jim@halfman.com
-Mobile: +44 7757 559081
-
-Note: I read and reply to email only a couple of times a day. If you need
-something quicker, please use Skype, GTalk or if its urgent call my mobile.
-
---20cf307abe69dd2fe304c42b2489
-Content-Type: text/html; charset=UTF-8
+X-List-Received-Date: Fri, 06 Jul 2012 15:48:06 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-ID: <D37741825933EF46B00E66D4E71AE3E1@mgd.freescale.com>
 Content-Transfer-Encoding: quoted-printable
 
-<div style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:13=
-px;background-color:rgb(255,255,255)">Hi everyone,</div><div style=3D"color=
-:rgb(34,34,34);font-family:arial,sans-serif;font-size:13px;background-color=
-:rgb(255,255,255)">
+On Fri, Jul 6, 2012 at 5:49 AM, David Nystr=F6m <David.Nystrom@enea.com> wr=
+ote:
+> So that about a disto refusing this and possibly other BSP layers ?
+> Should the disto.conf  select of nativesdk be made machine specific on al=
+l machines in meta-fsl-ppc ? And one added target after a meta-fsl-ppc reba=
+se would break stuff, I guess.
 
-<div><br></div><div>Here&#39;s the latest=C2=A0<span class=3D"il" style=3D"=
-background-color:rgb(255,255,204)">update (2.0)</span>=C2=A0from the London=
- team on the WebHob design</div><div><br></div><div><a href=3D"https://wiki=
-.yoctoproject.org/wiki/Yocto_Web_Hob_Design" target=3D"_blank" style=3D"col=
-or:rgb(17,85,204)">https://wiki.yoctoproject.org/wiki/Yocto_Web_Hob_Design<=
-/a></div>
+I don't quite follow... you are suggesting we have
 
-<div><br></div><div>There&#39;s a=C2=A0<a href=3D"https://wiki.yoctoproject=
-.org/wiki/images/8/8b/Webhob.2.0.pdf" target=3D"_blank" style=3D"color:rgb(=
-17,85,204)">PDF of all the screens of the latest version (v.2.0) of the app=
-lication</a>, a link to the=C2=A0<a href=3D"https://github.com/jkosem/Yocto=
--WebHob-Design" target=3D"_blank" style=3D"color:rgb(17,85,204)"><span styl=
-e=3D"background-color:rgb(255,255,204);color:rgb(34,34,34)">GitHub</span></=
-a>=C2=A0we have setup for the HTML5 prototype development and a=C2=A0<a hre=
-f=3D"https://wiki.yoctoproject.org/wiki/images/c/cb/Yocto_webHob.1.9_screen=
-cast.0.2.mov" target=3D"_blank" style=3D"color:rgb(17,85,204)">screencast o=
-f the v.1.8</a>=C2=A0showing our design thinking around WebHob and our visi=
-on for how it will work.</div>
+PREFERRED_PROVIDER_linux-libc-headers-nativesdk ?=3D
+"linux-qoriq-sdk-headers-nativesdk"
 
-<div><br></div><div>This past week we&#39;ve been working on integrating th=
-e CSS, HTML fixes and some Javascript work on the front end.</div><div><br>=
-</div><div>You&#39;ll also notice all the graphic work we&#39;ve been doing=
- as well.<br clear=3D"all">
+in the machine.conf files instead?
 
-<div><br></div><div>As always everything is on=C2=A0<span style=3D"backgrou=
-nd-color:rgb(255,255,204)"><a href=3D"https://github.com/jkosem/Yocto-WebHo=
-b-Design" target=3D"_blank" style=3D"color:rgb(17,85,204)">GitHub</a>=C2=A0=
-and</span>=C2=A0feedback is very welcome. Thanks.</div>
-
-</div></div><div><br></div>--<div>Jim Kosem</div><div><br></div><div>Skype:=
- jkosem</div><div>Gtalk: <a href=3D"mailto:jim@halfman.com" target=3D"_blan=
-k">jim@halfman.com</a></div><div>Mobile: +44 7757 559081</div><div>
+-M=
 
 
-
-
-
-
-
-<p>Note: I read and reply to email only a couple of times a day. If you nee=
-d something quicker, please use Skype, GTalk or if its urgent call my mobil=
-e.</p></div><br>
-
---20cf307abe69dd2fe304c42b2489--
