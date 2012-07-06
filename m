@@ -1,19 +1,21 @@
 Return-Path: <nitin.a.kamble@intel.com>
 Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B7718E01444
-	for <yocto@yoctoproject.org>; Fri,  6 Jul 2012 05:39:44 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1B32DE01459
+	for <yocto@yoctoproject.org>; Fri,  6 Jul 2012 05:39:47 -0700 (PDT)
 Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 06 Jul 2012 05:39:44 -0700
+	by azsmga102.ch.intel.com with ESMTP; 06 Jul 2012 05:39:46 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="119509597"
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="119509604"
 Received: from yocto-hm1.jf.intel.com ([10.23.232.32])
-	by AZSMGA002.ch.intel.com with ESMTP; 06 Jul 2012 05:39:44 -0700
+	by AZSMGA002.ch.intel.com with ESMTP; 06 Jul 2012 05:39:46 -0700
 From: nitin.a.kamble@intel.com
 To: yocto@yoctoproject.org
-Date: Fri,  6 Jul 2012 05:38:37 -0700
-Message-Id: <cover.1341578164.git.nitin.a.kamble@intel.com>
+Date: Fri,  6 Jul 2012 05:38:39 -0700
+Message-Id: <561b7f1cb73c2c11a1fff56ff415b91bae0f0bd3.1341578164.git.nitin.a.kamble@intel.com>
 X-Mailer: git-send-email 1.7.3.4
-Subject: [PATCH 0/7] move intel bsps to v3.4 kernel
+In-Reply-To: <cover.1341578164.git.nitin.a.kamble@intel.com>
+References: <cover.1341578164.git.nitin.a.kamble@intel.com>
+Subject: [PATCH 1/7] FishRiver: add recipe extention for linux-yocto_3.4
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -25,43 +27,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 06 Jul 2012 12:39:44 -0000
+X-List-Received-Date: Fri, 06 Jul 2012 12:39:47 -0000
 
 From: Nitin A Kamble <nitin.a.kamble@intel.com>
 
-These commits move Intel BSPs to v3.4 kernel.
-The crownbay v3.4 kernel is not quet ready yet, so for crown bay the default kerenl is still v3.2
+Tested this on FishRiver hardware, and it works as expected.
 
-The following changes since commit f5dcebe57832551219da048945237a7cf7bda369:
-
-  linux-firmware: Fix FILESEXTRAPATHS typo (2012-06-20 13:12:12 -0700)
-
-are available in the git repository at:
-  git://git.yoctoproject.org/meta-intel-contrib nitin/work
-  http://git.yoctoproject.org/cgit.cgi/meta-intel-contrib/log/?h=nitin/work
-
-Nitin A Kamble (7):
-  FishRiver: add recipe extention for linux-yocto_3.4
-  FishRiver: set v3.4 as the default kernel recipe version
-  emenlow: add recipe extention for linux-yocto_3.4
-  emenlow: set v3.4 as the default kernel recipe version
-  sugarbay: add recipe extention for linux-yocto_3.4
-  sugarbay: set v3.4 as the default kernel recipe version
-  crownbay: add recipe extention for linux-yocto-3.4
-
- .../recipes-kernel/linux/linux-yocto_3.4.bbappend  |   15 +++++++++++++++
- meta-emenlow/conf/machine/emenlow.conf             |    2 +-
+Signed-off-by: Nitin A Kamble <nitin.a.kamble@intel.com>
+---
  .../recipes-kernel/linux/linux-yocto_3.4.bbappend  |    8 ++++++++
- meta-fishriver/conf/machine/fishriver.conf         |    2 +-
- .../recipes-kernel/linux/linux-yocto_3.4.bbappend  |    8 ++++++++
- meta-sugarbay/conf/machine/sugarbay.conf           |    2 +-
- .../recipes-kernel/linux/linux-yocto_3.4.bbappend  |    9 +++++++++
- 7 files changed, 43 insertions(+), 3 deletions(-)
- create mode 100644 meta-crownbay/recipes-kernel/linux/linux-yocto_3.4.bbappend
- create mode 100644 meta-emenlow/recipes-kernel/linux/linux-yocto_3.4.bbappend
+ 1 files changed, 8 insertions(+), 0 deletions(-)
  create mode 100644 meta-fishriver/recipes-kernel/linux/linux-yocto_3.4.bbappend
- create mode 100644 meta-sugarbay/recipes-kernel/linux/linux-yocto_3.4.bbappend
 
+diff --git a/meta-fishriver/recipes-kernel/linux/linux-yocto_3.4.bbappend b/meta-fishriver/recipes-kernel/linux/linux-yocto_3.4.bbappend
+new file mode 100644
+index 0000000..eaa6229
+--- /dev/null
++++ b/meta-fishriver/recipes-kernel/linux/linux-yocto_3.4.bbappend
+@@ -0,0 +1,8 @@
++FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
++
++COMPATIBLE_MACHINE_fishriver = "fishriver"
++KMACHINE_fishriver  = "fishriver"
++KBRANCH_fishriver  = "standard/fishriver"
++
++SRCREV_machine_pn-linux-yocto_fishriver ?= "49f1599b2ce0288599805b5364b895f5a9febb3e"
++SRCREV_meta_pn-linux-yocto_fishriver ?= "a8cf77018b0faa0d29f1483ff4e5a2034dc8edd5"
 -- 
 1.7.3.4
 
