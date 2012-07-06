@@ -1,34 +1,23 @@
-Return-Path: <david.c.stewart@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A209EE006AD
-	for <yocto@yoctoproject.org>; Fri,  6 Jul 2012 10:13:46 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 06 Jul 2012 10:13:46 -0700
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C26C5E006AD
+	for <yocto@yoctoproject.org>; Fri,  6 Jul 2012 10:29:45 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga101.ch.intel.com with ESMTP; 06 Jul 2012 10:29:45 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="162210089"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
-	by orsmga001.jf.intel.com with ESMTP; 06 Jul 2012 10:13:46 -0700
-Received: from orsmsx101.amr.corp.intel.com (10.22.225.128) by
-	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Fri, 6 Jul 2012 10:13:46 -0700
-Received: from orsmsx105.amr.corp.intel.com ([169.254.4.133]) by
-	ORSMSX101.amr.corp.intel.com ([169.254.8.125]) with mapi id
-	14.01.0355.002; Fri, 6 Jul 2012 10:13:45 -0700
-From: "Stewart, David C" <david.c.stewart@intel.com>
-To: 'Paul Eggleton' <paul.eggleton@linux.intel.com>
-Thread-Topic: [yocto] Some questions about the webhob design
-Thread-Index: Ac1ZFOdFGM6SyguyTo+eIH9a2sio8AButnyAAAOjafAAFi9XgAANgOmgAA3QgYAAAkr5UA==
-Date: Fri, 6 Jul 2012 17:13:45 +0000
-Message-ID: <CDED78A957032E45B3239CDDA7642D151C8985E5@ORSMSX105.amr.corp.intel.com>
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="119594528"
+Received: from unknown (HELO helios.localnet) ([10.252.120.217])
+	by AZSMGA002.ch.intel.com with ESMTP; 06 Jul 2012 10:29:44 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: "Stewart, David C" <david.c.stewart@intel.com>
+Date: Fri, 06 Jul 2012 18:29:42 +0100
+Message-ID: <1658624.ZVpO79IcDh@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.8.4 (Linux/3.2.0-26-generic-pae; KDE/4.8.4; i686; ; )
+In-Reply-To: <CDED78A957032E45B3239CDDA7642D151C8985E5@ORSMSX105.amr.corp.intel.com>
 References: <40776A41FC278F40B59438AD47D147A90FDC7F83@SHSMSX102.ccr.corp.intel.com>
-	<1609342.c99bAcXVHq@helios>
-	<CDED78A957032E45B3239CDDA7642D151C8977DE@ORSMSX105.amr.corp.intel.com>
 	<63888840.0N6Y68VfOI@helios>
-In-Reply-To: <63888840.0N6Y68VfOI@helios>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
+	<CDED78A957032E45B3239CDDA7642D151C8985E5@ORSMSX105.amr.corp.intel.com>
 MIME-Version: 1.0
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Some questions about the webhob design
@@ -43,42 +32,68 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 06 Jul 2012 17:13:46 -0000
-Content-Language: en-US
+X-List-Received-Date: Fri, 06 Jul 2012 17:29:45 -0000
+Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
 
+On Friday 06 July 2012 17:13:45 Stewart, David C wrote:
+> > From: Paul Eggleton [mailto:paul.eggleton@linux.intel.com]
+> > Sent: Friday, July 06, 2012 4:23 AM
+> > To: Stewart, David C
+> > 
+> > On Thursday 05 July 2012 23:00:17 Stewart, David C wrote:
+> > > Guys - I'm really struggling with this overall concept of concurrency.
+> > > 
+> > > It implies that if Paul and I are sharing the same project and I make
+> > > a change to a .bb file to experiment with something (assuming we have
+> > > the ability to do that, refer to my last email) and my change breaks
+> > > my build, it will break everyone else's build as well.  But the beauty
+> > > thing is that it breaks it silently, because the configuration
+> > > silently changed for everyone on the project.
+> > 
+> > The key word there I think is "experiment". Is it reasonable to expect to
+> > handle people making experimental changes to something that others are
+> > relying upon? It seems to me that whether experimental changes are likely
+> > and whether or not it will seriously impact other users depends on what
+> > development stage the particular project is at.
+> 
+> Whether it is reasonable or not, if it's possible for people to shoot
+> themselves in the foot, they will.  Even with safety guards on a circular
+> saw, I have seen people routinely disable them, so there you go.
 
-> From: Paul Eggleton [mailto:paul.eggleton@linux.intel.com]
-> Sent: Friday, July 06, 2012 4:23 AM
-> To: Stewart, David C
->=20
-> On Thursday 05 July 2012 23:00:17 Stewart, David C wrote:
-> > Guys - I'm really struggling with this overall concept of concurrency.
-> >
-> > It implies that if Paul and I are sharing the same project and I make
-> > a change to a .bb file to experiment with something (assuming we have
-> > the ability to do that, refer to my last email) and my change breaks
-> > my build, it will break everyone else's build as well.  But the beauty
-> > thing is that it breaks it silently, because the configuration
-> > silently changed for everyone on the project.
->=20
-> The key word there I think is "experiment". Is it reasonable to expect to
-> handle people making experimental changes to something that others are
-> relying upon? It seems to me that whether experimental changes are likely
-> and whether or not it will seriously impact other users depends on what
-> development stage the particular project is at.
+Right, and the logical extension from this is that no matter what safeguards 
+we put in, there will be users that find a way shoot themselves in the foot. Of 
+course we should try to make it harder to do the wrong thing, but there's a 
+limit to what we can do. Despite this however I'm still convinced it's 
+important to offer the ability for people to work on the same thing.
 
-Whether it is reasonable or not, if it's possible for people to shoot thems=
-elves in the foot, they will.  Even with safety guards on a circular saw, I=
- have seen people routinely disable them, so there you go.
+> How about a strongly visible warning on the Projects page that simultaneous
+> user changes will affect all users of the project's files? How about an
+> asynchronous notification to users on the main screen that some files have
+> changed since their last build (and maybe list them).
 
-How about a strongly visible warning on the Projects page that simultaneous=
- user changes will affect all users of the project's files? How about an as=
-ynchronous notification to users on the main screen that some files have ch=
-anged since their last build (and maybe list them).
+I'm not opposed to a warning, but the thing is the scenario presented earlier 
+wasn't strictly speaking a case of simultaneous user changes (which I think we 
+have pretty well covered in the design in terms of showing real-time warnings 
+to go together with real-time changes to the project) - in the scenario one 
+user set up the project, and some time later another user attempted to use 
+that project, and in the mean time someone broke it while neither of the other 
+two users were logged in. A warning to help in that case could only be along 
+the lines of "This project is shared with other users, so please take care 
+when making changes."
 
-Again, writing a user story is what I'm looking for. I would do it myself, =
-but I'm still struggling. :-)
+> Again, writing a user story is what I'm looking for. I would do it myself,
+> but I'm still struggling. :-)
 
+I spoke to Jim about this and he's going to put something together, but it's 
+likely that if what you're after is a full explanation of the workflow that 
+it's a significant exercise.
+
+Cheers,
+Paul
+
+-- 
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
