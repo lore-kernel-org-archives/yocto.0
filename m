@@ -1,28 +1,33 @@
-Return-Path: <linuxinme@gmail.com>
-Received: from mail-we0-f176.google.com (mail-we0-f176.google.com
-	[74.125.82.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 31A3BE006B1
-	for <yocto@yoctoproject.org>; Sat,  7 Jul 2012 00:54:27 -0700 (PDT)
-Received: by werc12 with SMTP id c12so3251298wer.35
-	for <yocto@yoctoproject.org>; Sat, 07 Jul 2012 00:54:26 -0700 (PDT)
+Return-Path: <jfabernathy@gmail.com>
+Received: from mail-yx0-f176.google.com (mail-yx0-f176.google.com
+	[209.85.213.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EF21FE01456
+	for <yocto@yoctoproject.org>; Sat,  7 Jul 2012 08:59:52 -0700 (PDT)
+Received: by yenl5 with SMTP id l5so10581990yen.35
+	for <yocto@yoctoproject.org>; Sat, 07 Jul 2012 08:59:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=V4uJTv7595L3NyilTEQGtA7CLBoZu2Oeez8Y975njvg=;
-	b=bRqDoiKsJSH7hqJW6dnC9h6yGWemmOLR/zJP1+WDWGZOHO9WlabOaRnay4MIZssP0J
-	np+sSFGXnNrJbU+zja2hwKbNjko81Yy4DsSmMOoAJxkxbJ1SPF3k2HyDA8yN15DGrwb3
-	BMQMHWs6uycN1dqiiIasrz7cXzZJbHKtSm4ktjeTbtnSuSfSlbCtH3oIaxm7SYlKke13
-	mNUc3AHwMFX0UxUsFu2yYIgjfAtS/CmiJfpFRntzue80YcQ8zbeEcgBXBL9EqoyCj8oW
-	LArz731lCZTQwuNHhGJCvP1spYC0amMK/jA/+MPRpAfJQN5AcIvlF6F/oY0mDhDbmV17
-	glyQ==
+	h=message-id:date:from:user-agent:mime-version:to:subject
+	:content-type:content-transfer-encoding;
+	bh=q4fYuoRWCweqazEoI6YzEhFk7Sy3rz2uhcWtI5nrzuw=;
+	b=ea0IMMsl79otM9c5r/WRV85WxDxCn4Jr7SbrOJvgVVJDnBYz8DS4xogSyGFeyfiJ49
+	7z3WxQ4k8prKmo7CDeqFN8GOHc0vgc5vX1y3rWq+SIIt+/3eA/osJqUF6+jzEc2VJ7JC
+	0q3M3Ug0LD1aDJZEnYcR4yicdTi9E0rL9I1oP8Uter/AMOTdV8Ui22pG4UcVJafmjm9Q
+	4InaOqDVnDXX/IBdPpFrutd26IUzqyAPyjbBNE+/iJmG3gZ1vXVmJ2kh3b4aHKej6L2A
+	+vB4iFIpIWJAauYDvn9SPl1cEINAJEYoLH216JFwtlX0vSwFvx/WeEzC5oOMc46rpLxw
+	vJcQ==
+Received: by 10.101.175.1 with SMTP id c1mr11503197anp.10.1341676792192;
+	Sat, 07 Jul 2012 08:59:52 -0700 (PDT)
+Received: from [10.0.1.54] (nc-184-4-39-191.dhcp.embarqhsd.net. [184.4.39.191])
+	by mx.google.com with ESMTPS id w61sm53442880yhi.5.2012.07.07.08.59.48
+	(version=SSLv3 cipher=OTHER); Sat, 07 Jul 2012 08:59:51 -0700 (PDT)
+Message-ID: <4FF85CF1.6040900@gmail.com>
+Date: Sat, 07 Jul 2012 11:59:45 -0400
+From: jfabernathy <jfabernathy@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:13.0) Gecko/20120615 Thunderbird/13.0.1
 MIME-Version: 1.0
-Received: by 10.180.104.168 with SMTP id gf8mr13500338wib.12.1341647666335;
-	Sat, 07 Jul 2012 00:54:26 -0700 (PDT)
-Received: by 10.216.16.37 with HTTP; Sat, 7 Jul 2012 00:54:26 -0700 (PDT)
-Date: Sat, 7 Jul 2012 13:24:26 +0530
-Message-ID: <CAFP0WUHEnfRK4fGK=h6cFwf6DwbiVu+rX8n70vSjpEZ=dCVJ6g@mail.gmail.com>
-From: kishore sheik ahamed <linuxinme@gmail.com>
-To: yocto@yoctoproject.org
-Subject: Help: Yocto build error
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: build failure on denzil-7.0 n450 part 2
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,135 +39,154 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 07 Jul 2012 07:54:27 -0000
-Content-Type: multipart/alternative; boundary=f46d044283fe90d13904c438b090
+X-List-Received-Date: Sat, 07 Jul 2012 15:59:53 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
---f46d044283fe90d13904c438b090
-Content-Type: text/plain; charset=ISO-8859-1
+Since I started over on my build from the long thread on this subject, I 
+thought I'd start another thread on the issue.
 
-Hello there
+I took the tarball for poky-denzil-7.0 and extracted it into my home 
+directory.  After cd'ing into poky-denzil-7.0, I extracted the 
+n450-denzil-7.0 tarball.
 
-I am trying to build Yocto on ubuntu 10.10
-I get the following error.
-Could someone help me?
+I setup to run a standard default n450 core-image-sato, only changing 
+the linux-yocto_3.2.bbappend by adding in:
 
-Making all in ERROR: Function failed: do_compile (see
-/home/kishore/project/yocto/
-poky-denzil-7.0-build/tmp/work/i686-linux/elfutils-native-0.148-r7/temp/log.do_compile.21021
+SRCREV_machine_pn-linux-yocto_n450 = 
+"9d32bb075e349cc69c7af42b60f6715c5d8c972e"
+SRCREV_meta_pn-linux-yocto_n450 ?= 
+"ee78519365bdb25287703bbc31c06b193263c654"
+
+I still get build errors similar to the ones I got with the git 
+repository cloned poky.  Log file below:
+
+
+NOTE: make -C 
+/build/n450-denzil/tmp/work/n450-poky-linux/linux-yocto-3.2.11+git1+ee78519365bdb25287703bbc31c06b193263c654_1+9d32bb075e349cc69c7af42b60f6715c5d8c972e-r1/linux/tools/perf 
+CC=i586-poky-linux-gcc  -m32    -march=core2 -msse3 -mtune=generic 
+-mfpmath=sse --sysroot=/build/n450-denzil/tmp/sysroots/n450 
+LD=i586-poky-linux-ld --sysroot=/build/n450-denzil/tmp/sysroots/n450   
+prefix=/usr NO_NEWT=1 NO_DWARF=1
+make: Entering directory 
+`/build/n450-denzil/tmp/work/n450-poky-linux/linux-yocto-3.2.11+git1+ee78519365bdb25287703bbc31c06b193263c654_1+9d32bb075e349cc69c7af42b60f6715c5d8c972e-r1/linux/tools/perf'
+Makefile:493: libperl not found, disables Perl scripting support. Please 
+install libperl-dev or perl-devel
+PERF_VERSION = 3.2.11.629.g382eda3
+make: Leaving directory 
+`/build/n450-denzil/tmp/work/n450-poky-linux/linux-yocto-3.2.11+git1+ee78519365bdb25287703bbc31c06b193263c654_1+9d32bb075e349cc69c7af42b60f6715c5d8c972e-r1/linux/tools/perf'
+make: Entering directory 
+`/build/n450-denzil/tmp/work/n450-poky-linux/linux-yocto-3.2.11+git1+ee78519365bdb25287703bbc31c06b193263c654_1+9d32bb075e349cc69c7af42b60f6715c5d8c972e-r1/linux/tools/perf'
+Makefile:493: libperl not found, disables Perl scripting support. Please 
+install libperl-dev or perl-devel
+     GEN common-cmds.h
+     * new build flags or prefix
+     CC perf.o
+     CC builtin-annotate.o
+     CC builtin-bench.o
+     CC bench/sched-messaging.o
+     CC bench/sched-pipe.o
+     CC bench/mem-memcpy.o
+     CC builtin-diff.o
+     CC builtin-evlist.o
+     CC builtin-help.o
+     CC builtin-sched.o
+     CC builtin-buildid-list.o
+     CC builtin-buildid-cache.o
+     CC builtin-list.o
+     CC builtin-record.o
+     CC builtin-report.o
+     CC builtin-stat.o
+     CC builtin-timechart.o
+     CC builtin-top.o
+     CC builtin-script.o
+     CC builtin-probe.o
+     CC builtin-kmem.o
+     CC builtin-lock.o
+     CC builtin-kvm.o
+     CC builtin-test.o
+     CC builtin-inject.o
+     CC util/abspath.o
+     CC util/alias.o
+     CC util/annotate.o
+     CC util/build-id.o
+     CC util/config.o
+     CC util/ctype.o
+     CC util/debugfs.o
+     CC util/environment.o
+     CC util/event.o
+     CC util/evlist.o
+     CC util/evsel.o
+     CC util/exec_cmd.o
+     CC util/help.o
+     CC util/levenshtein.o
+     CC util/parse-options.o
+     CC util/parse-events.o
+     CC util/path.o
+     CC util/rbtree.o
+     CC util/bitmap.o
+     CC util/hweight.o
+     CC util/run-command.o
+     CC util/quote.o
+     CC util/strbuf.o
+     CC util/string.o
+     CC util/strlist.o
+     CC util/strfilter.o
+     CC util/top.o
+     CC util/usage.o
+     CC util/wrapper.o
+     CC util/sigchain.o
+     CC util/symbol.o
+     CC util/color.o
+     CC util/pager.o
+     CC util/header.o
+     CC util/callchain.o
+     CC util/values.o
+     CC util/debug.o
+     CC util/map.o
+     CC util/pstack.o
+     CC util/session.o
+     CC util/thread.o
+     CC util/thread_map.o
+     CC util/trace-event-parse.o
+     CC util/trace-event-read.o
+     CC util/trace-event-info.o
+     CC util/trace-event-scripting.o
+     CC util/svghelper.o
+     CC util/sort.o
+     CC util/hist.o
+     CC util/probe-event.o
+     CC util/util.o
+     CC util/xyarray.o
+     CC util/cpumap.o
+     CC util/cgroup.o
+     CC arch/x86/util/header.o
+     CC util/scripting-engines/trace-event-python.o
+     CC scripts/python/Perf-Trace-Util/Context.o
+     AR libperf.a
+     LINK perf
+     GEN perf-archive
+     GEN python/perf.so
+Traceback (most recent call last):
+   File "util/setup.py", line 6, in <module>
+     from distutils.command.build_ext   import build_ext   as _build_ext
+   File 
+"/build/n450-denzil/tmp/sysroots/x86_64-linux/usr/lib/python2.7/distutils/command/build_ext.py", 
+line 16, in <module>
+     from distutils.sysconfig import customize_compiler, get_python_version
+   File 
+"/build/n450-denzil/tmp/sysroots/x86_64-linux/usr/lib/python2.7/distutils/sysconfig.py", 
+line 22, in <module>
+     PREFIX = os.path.normpath(sys.prefix).replace( 
+os.getenv("BUILD_SYS"), os.getenv("HOST_SYS") )
+TypeError: expected a character buffer object
+cp: cannot stat `python_ext_build/lib/perf.so': No such file or directory
+make: *** [python/perf.so] Error 1
+make: Leaving directory `/build/n450-denziERROR: Function failed: 
+do_compile_perf (see 
+/build/n450-denzil/tmp/work/n450-poky-linux/linux-yocto-3.2.11+git1+ee78519365bdb25287703bbc31c06b193263c654_1+9d32bb075e349cc69c7af42b60f6715c5d8c972e-r1/temp/log.do_compile_perf.11461 
 for further information)
-| src
-| make[2]: Entering directory
-`/home/kishore/project/yocto/poky-denzil-7.0-build/tmp/work/i686-linux/elfutils-native-0.148-r7/elfutils-0.148/src'
-| gcc -std=gnu99 -Wall -Wshadow -Werror -Wunused -Wextra -fgnu89-inline
--Wformat=2
--isystem/home/kishore/project/yocto/poky-denzil-7.0-build/tmp/sysroots/i686-linux/usr/include
--O2 -pipe -Wl,-rpath-link,../libelf:../libdw
--L/home/kishore/project/yocto/poky-denzil-7.0-build/tmp/sysroots/i686-linux/usr/lib
--L/home/kishore/project/yocto/poky-denzil-7.0-build/tmp/sysroots/i686-linux/lib
--Wl,-rpath-link,/home/kishore/project/yocto/poky-denzil-7.0-build/tmp/sysroots/i686-linux/usr/lib
--Wl,-rpath-link,/home/kishore/project/yocto/poky-denzil-7.0-build/tmp/sysroots/i686-linux/lib
--Wl,-rpath,/home/kishore/project/yocto/poky-denzil-7.0-build/tmp/sysroots/i686-linux/usr/lib
--Wl,-rpath,/home/kishore/project/yocto/poky-denzil-7.0-build/tmp/sysroots/i686-linux/lib
--Wl,-O1 -o elflint elflint.o ../libebl/libebl.a ../libelf/libelf.so
-../lib/libeu.a  -ldl
-| ./ld: unknown option `-z relro'
-| ./ld: invalid option -- 'p'
-| Try `ld --help' or `ld --usage' for more information.
-| collect2: ld returned 64 exit status
-| make[2]: *** [elflint] Error 1
-| make[2]: Leaving directory
-`/home/kishore/project/yocto/poky-denzil-7.0-build/tmp/work/i686-linux/elfutils-native-0.148-r7/elfutils-0.148/src'
-| make[1]: *** [all-recursive] Error 1
-| make[1]: Leaving directory
-`/home/kishore/project/yocto/poky-denzil-7.0-build/tmp/work/i686-linux/elfutils-native-0.148-r7/elfutils-0.148'
-| make: *** [all] Error 2
-| ERROR: oe_runmake failed
-NOTE: package elfutils-native-0.148-r7: task do_compile: Failed
-ERROR: Task 335
-(virtual:native:/home/kishore/project/yocto/poky-denzil-7.0/meta/recipes-devtools/elfutils/
-elfutils_0.148.bb, do_compile) failed with exit code '1'
-NOTE: Running noexec task 1088 of 1606 (ID: 9,
-/home/kishore/project/yocto/poky-denzil-7.0/meta/recipes-core/images/
-core-image-minimal.bb, do_package_write)
-NOTE: Tasks Summary: Attempted 1089 tasks of which 1086 didn't need to be
-rerun and 2 failed.
-
-Summary: 2 tasks failed:
-  /home/kishore/project/yocto/poky-denzil-7.0/meta/recipes-devtools/gcc/
-gcc-cross-initial_4.6.bb, do_configure
-
-virtual:native:/home/kishore/project/yocto/poky-denzil-7.0/meta/recipes-devtools/elfutils/
-elfutils_0.148.bb, do_compile
-Summary: There was 1 WARNING message shown.
-Summary: There were 2 ERROR messages shown, returning a non-zero exit code.
-kishore@kishore-workststion:~/project/yocto/poky-denzil-7.0-build$ gvim
-/home/kishore/project/yocto/poky-denzil-7.0-build/tmp/work/i686-linux/elfutils-native-0.148-r7/temp/log.do_compile.21021
+l/tmp/work/n450-poky-linux/linux-yocto-3.2.11+git1+ee78519365bdb25287703bbc31c06b193263c654_1+9d32bb075e349cc69c7af42b60f6715c5d8c972e-r1/linux/tools/perf'
+ERROR: oe_runmake failed
 
 
-Regards
-Kishore
-
---f46d044283fe90d13904c438b090
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-Hello there<br><br>I am trying to build Yocto on ubuntu 10.10 <br>I get the=
- following error.<br>Could someone help me?<br><br>Making all in ERROR: Fun=
-ction failed: do_compile (see /home/kishore/project/yocto/<div id=3D":1p3">
-poky-denzil-7.0-build/tmp/work/i686-linux/elfutils-native-0.148-r7/temp/log=
-.do_compile.21021 for further information)<br>
-| src<br>| make[2]: Entering directory `/home/kishore/project/yocto/poky-de=
-nzil-7.0-build/tmp/work/i686-linux/elfutils-native-0.148-r7/elfutils-0.148/=
-src&#39;<br>| gcc -std=3Dgnu99 -Wall -Wshadow -Werror -Wunused -Wextra -fgn=
-u89-inline -Wformat=3D2=A0=A0 -isystem/home/kishore/project/yocto/poky-denz=
-il-7.0-build/tmp/sysroots/i686-linux/usr/include -O2 -pipe -Wl,-rpath-link,=
-../libelf:../libdw -L/home/kishore/project/yocto/poky-denzil-7.0-build/tmp/=
-sysroots/i686-linux/usr/lib -L/home/kishore/project/yocto/poky-denzil-7.0-b=
-uild/tmp/sysroots/i686-linux/lib -Wl,-rpath-link,/home/kishore/project/yoct=
-o/poky-denzil-7.0-build/tmp/sysroots/i686-linux/usr/lib -Wl,-rpath-link,/ho=
-me/kishore/project/yocto/poky-denzil-7.0-build/tmp/sysroots/i686-linux/lib =
--Wl,-rpath,/home/kishore/project/yocto/poky-denzil-7.0-build/tmp/sysroots/i=
-686-linux/usr/lib -Wl,-rpath,/home/kishore/project/yocto/poky-denzil-7.0-bu=
-ild/tmp/sysroots/i686-linux/lib -Wl,-O1 -o elflint elflint.o ../libebl/libe=
-bl.a ../libelf/libelf.so ../lib/libeu.a=A0 -ldl<br>
-
-| ./ld: unknown option `-z relro&#39;<br>| ./ld: invalid option -- &#39;p&#=
-39;<br>| Try `ld --help&#39; or `ld --usage&#39; for more information.<br>|=
- collect2: ld returned 64 exit status<br>| make[2]: *** [elflint] Error 1<b=
-r>
-
-| make[2]: Leaving directory `/home/kishore/project/yocto/poky-denzil-7.0-b=
-uild/tmp/work/i686-linux/elfutils-native-0.148-r7/elfutils-0.148/src&#39;<b=
-r>| make[1]: *** [all-recursive] Error 1<br>| make[1]: Leaving directory `/=
-home/kishore/project/yocto/poky-denzil-7.0-build/tmp/work/i686-linux/elfuti=
-ls-native-0.148-r7/elfutils-0.148&#39;<br>
-
-| make: *** [all] Error 2<br>| ERROR: oe_runmake failed<br>NOTE: package el=
-futils-native-0.148-r7: task do_compile: Failed<br>ERROR: Task 335 (virtual=
-:native:/home/kishore/project/yocto/poky-denzil-7.0/meta/recipes-devtools/e=
-lfutils/<a href=3D"http://elfutils_0.148.bb/" target=3D"_blank">elfutils_0.=
-148.bb</a>, do_compile) failed with exit code &#39;1&#39;<br>
-
-NOTE: Running noexec task 1088 of 1606 (ID: 9, /home/kishore/project/yocto/=
-poky-denzil-7.0/meta/recipes-core/images/<a href=3D"http://core-image-minim=
-al.bb/" target=3D"_blank">core-image-minimal.bb</a>, do_package_write)<br>
-NOTE: Tasks Summary: Attempted 1089 tasks of which 1086 didn&#39;t need to =
-be rerun and 2 failed.<br>
-<br>Summary: 2 tasks failed:<br>=A0 /home/kishore/project/yocto/poky-denzil=
--7.0/meta/recipes-devtools/gcc/<a href=3D"http://gcc-cross-initial_4.6.bb/"=
- target=3D"_blank">gcc-cross-initial_4.6.bb</a>, do_configure<br>=A0 virtua=
-l:native:/home/kishore/project/yocto/poky-denzil-7.0/meta/recipes-devtools/=
-elfutils/<a href=3D"http://elfutils_0.148.bb/" target=3D"_blank">elfutils_0=
-.148.bb</a>, do_compile<br>
-
-Summary: There was 1 WARNING message shown.<br>Summary: There were 2 ERROR =
-messages shown, returning a non-zero exit code.<br>kishore@kishore-workstst=
-ion:~/project/yocto/poky-denzil-7.0-build$ gvim /home/kishore/project/yocto=
-/poky-denzil-7.0-build/tmp/work/i686-linux/elfutils-native-0.148-r7/temp/lo=
-g.do_compile.21021<br>
-
-<br><br>Regards<div class=3D"yj6qo ajU"><div id=3D":1qo" class=3D"ajR" tabi=
-ndex=3D"0"><img class=3D"ajT" src=3D"images/cleardot.gif">Kishore</div></di=
-v></div>
-
---f46d044283fe90d13904c438b090--
