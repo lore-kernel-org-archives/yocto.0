@@ -1,35 +1,37 @@
 Return-Path: <andrei@gherzan.ro>
-Received: from mail-yw0-f48.google.com (mail-yw0-f48.google.com
-	[209.85.213.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B60D9E01454
-	for <yocto@yoctoproject.org>; Mon,  9 Jul 2012 03:42:40 -0700 (PDT)
-Received: by yhfq46 with SMTP id q46so10560036yhf.35
-	for <yocto@yoctoproject.org>; Mon, 09 Jul 2012 03:42:40 -0700 (PDT)
+Received: from mail-yx0-f176.google.com (mail-yx0-f176.google.com
+	[209.85.213.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1E4A1E01443
+	for <yocto@yoctoproject.org>; Mon,  9 Jul 2012 03:54:39 -0700 (PDT)
+Received: by yenl5 with SMTP id l5so11187313yen.35
+	for <yocto@yoctoproject.org>; Mon, 09 Jul 2012 03:54:38 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=google.com; s=20120113;
 	h=mime-version:x-originating-ip:in-reply-to:references:from:date
 	:message-id:subject:to:cc:content-type:x-gm-message-state;
-	bh=QnIQflbHtAD4FqoDIEfV9Q5yXYyUZrpEXua3/PTthZc=;
-	b=L33oy4DWCAQJ26S1yIrMaDG3N2WklE5frDXMY7mF1cDeOdEyjez+cjQUP3hKP091t4
-	vIE+9Zc/1qTL5R3UPkxL9r2LTSGxWCNcFfyiJrE0EAvIJ397VYyJL6KaYgcFkfT/m0/5
-	pj6WR+1QxjFA5Yc70KUP+CDxaHf2Ol1X1z9t5oRUXWJ8qtyrMpPQl7FITeywqHOJO12i
-	EDSdnEZBA3yGX20JcOtPug1clQTsCfeFMDPP7gkPB/YEJL2iVCFXEu90ySs7DPzx1AJj
-	mIHwlA8FkCaco/9pDGCDWyewPoM8nMng4iovfWuAwbv4mYBoJ1ZHyTyb2iDd2LFUbuZM
-	Q3Ag==
-Received: by 10.50.40.193 with SMTP id z1mr8113800igk.0.1341830559930; Mon, 09
-	Jul 2012 03:42:39 -0700 (PDT)
+	bh=Emc4wP7Wb0v0Bso7Y2dTCahSxSA5VWVPvWPS5MmSzhQ=;
+	b=EfmGPjCOK7iluRpl5OcUS+hn5uqy/OOiOJ1D7EDm5NporMKtXg1e7Q1BLtPwumls+2
+	Y3H5LpFHQihHk5tW5GH0R+w4GytlJY42cqgdtaRRwVd5o6A7A3glBQae4K8/2jpzSBmM
+	dCKurx80kZPTPUfo1VR1z2hQcOsSUd3cM9oPmmLsqgfpt4W3W5730gZ+V8wcHk+Y6wtG
+	Y5rK8OqkQtYEm3S0full/BbpA23ZRNdaMQrVZCgCdiJohgRwZh2JSNJxoLFNSXNQTLaE
+	ERKdFCxtjyTevOrQdkqiqWZxauzlTb1U9bhaCyVPExwP5J10tdrNlGU57+ozI+BbAiWL
+	dIRg==
+Received: by 10.50.159.196 with SMTP id xe4mr7937134igb.43.1341831278271; Mon,
+	09 Jul 2012 03:54:38 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.64.98.162 with HTTP; Mon, 9 Jul 2012 03:42:19 -0700 (PDT)
+Received: by 10.64.98.162 with HTTP; Mon, 9 Jul 2012 03:54:18 -0700 (PDT)
 X-Originating-IP: [89.121.200.106]
-In-Reply-To: <43492210-601B-467E-8BC2-8CDD691669A4@gmail.com>
-References: <43492210-601B-467E-8BC2-8CDD691669A4@gmail.com>
+In-Reply-To: <CAFP0WUFmMWJs-hmWpYiaVEYibzD9d3LF9mYCF9CCTLLXD=k5Nw@mail.gmail.com>
+References: <CAFP0WUHEnfRK4fGK=h6cFwf6DwbiVu+rX8n70vSjpEZ=dCVJ6g@mail.gmail.com>
+	<CAK18fxEiH-p_TQH2+rZtqCLu7Ppb1qSMWKRsd=CgphQV_T=5mA@mail.gmail.com>
+	<CAFP0WUFmMWJs-hmWpYiaVEYibzD9d3LF9mYCF9CCTLLXD=k5Nw@mail.gmail.com>
 From: Andrei Gherzan <andrei@gherzan.ro>
-Date: Mon, 9 Jul 2012 13:42:19 +0300
-Message-ID: <CAK18fxGJzFanh5UY-nrj_hVReCGeGSVv5c7=PaH_KRXhZ2BNwA@mail.gmail.com>
-To: James Abernathy <jfabernathy@gmail.com>
-X-Gm-Message-State: ALoCoQn5u6hcFRfnEY2XYOkpNmWBtu8JXyIE0VRbKE5eSaebf02uc2Z3l8/x56t8RN+8Wk+hOAJS
+Date: Mon, 9 Jul 2012 13:54:18 +0300
+Message-ID: <CAK18fxFGZmT7UNMU_=WTVBknr_PNzyvo11TFxn=fYQ9SoKeoLQ@mail.gmail.com>
+To: kishore sheik ahamed <linuxinme@gmail.com>
+X-Gm-Message-State: ALoCoQlURiTEYRMDTOLybTMGp2kGKrHIJFV0mpCRPiZIsvEzUH5YHqNmhmGTD4p0tktaFjYsnYPe
 Cc: yocto@yoctoproject.org
-Subject: Re: menuconfig vs. config fragments?
+Subject: Re: Help: Yocto build error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,73 +43,114 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 09 Jul 2012 10:42:41 -0000
-Content-Type: multipart/alternative; boundary=14dae9340c41df991404c46345de
+X-List-Received-Date: Mon, 09 Jul 2012 10:54:39 -0000
+Content-Type: multipart/alternative; boundary=14dae934059bb09d1a04c4637028
 
---14dae9340c41df991404c46345de
+--14dae934059bb09d1a04c4637028
 Content-Type: text/plain; charset=ISO-8859-1
 
-On Mon, Jul 9, 2012 at 1:39 PM, James Abernathy <jfabernathy@gmail.com>wrote:
+On Mon, Jul 9, 2012 at 1:22 PM, kishore sheik ahamed <linuxinme@gmail.com>wrote:
 
-> my goal of this test was to see if I could use the n450 BSP as a starting
-> point for a BSP to support my Acer Aspire One n450 based netbook.  The
-> core-image-sato will boot from USB key on the netbook if I use the ZIP
-> drive format for the USB key, but the current n450 BSP doesn't include the
-> drivers for the networking hardware in the netbook.
 >
-> I found by testing, using the menuconfig option documented in the
-> Developer Manual Appendix B example, that I needed to add 2 parameters to
-> the .config:
+> On Mon, Jul 9, 2012 at 3:03 PM, Andrei Gherzan <andrei@gherzan.ro> wrote:
 >
-> CONFIG_ATH9K_PCI
-> CONFIG_ATL1C
+>> On Sat, Jul 7, 2012 at 10:54 AM, kishore sheik ahamed <
+>> linuxinme@gmail.com> wrote:
+>>
+>>> Hello there
+>>>
+>>> I am trying to build Yocto on ubuntu 10.10
+>>> I get the following error.
+>>> Could someone help me?
+>>>
+>>> Do you have all the needed packages for you Linux distribution?
+>>
+>> http://www.yoctoproject.org/docs/current/yocto-project-qs/yocto-project-qs.html
+>>
+>>
+>> Ubuntu
+>> The packages you need for a supported Ubuntu distribution are shown in
+>> the following command:
+>>
+>>      $ sudo apt-get install sed wget subversion git-core coreutils \
+>>      unzip texi2html texinfo libsdl1.2-dev docbook-utils fop gawk \
+>>      python-pysqlite2 diffstat make gcc build-essential xsltproc \
+>>      g++ desktop-file-utils chrpath libgl1-mesa-dev libglu1-mesa-dev \
+>>      autoconf automake groff libtool xterm libxml-parser-perl
+>>
 >
-> To make this change easier to manage and more permanent, I thought about
-> creating a config fragment.  I put the config parameters in a file,
-> myconfig, in the linux-yocto directory at the same level as the
-> linux-yocto_3.2.bbappend file, where I added:
+> I have all the packages installed, it seems a linker error of ld not
+> supporting -z switch. I have the 2.20.51.20100908-0ubuntu2 version of
+> binutils package installed. How should I proceed
 >
-> SRC_URI += "file//myconfig"
->
->
-Try to use myconfig.cfg.
 
+I have Version: 2.21.53.20110810-0ubuntu5.1 and everything seems to be ok.
 @g
 
---14dae9340c41df991404c46345de
+--14dae934059bb09d1a04c4637028
 Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-<div class=3D"gmail_quote">On Mon, Jul 9, 2012 at 1:39 PM, James Abernathy =
-<span dir=3D"ltr">&lt;<a href=3D"mailto:jfabernathy@gmail.com" target=3D"_b=
-lank">jfabernathy@gmail.com</a>&gt;</span> wrote:<br><blockquote class=3D"g=
-mail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-l=
-eft:1ex">
+<div class=3D"gmail_quote">On Mon, Jul 9, 2012 at 1:22 PM, kishore sheik ah=
+amed <span dir=3D"ltr">&lt;<a href=3D"mailto:linuxinme@gmail.com" target=3D=
+"_blank">linuxinme@gmail.com</a>&gt;</span> wrote:<br><blockquote class=3D"=
+gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-=
+left:1ex">
 
-my goal of this test was to see if I could use the n450 BSP as a starting p=
-oint for a BSP to support my Acer Aspire One n450 based netbook. =A0The cor=
-e-image-sato will boot from USB key on the netbook if I use the ZIP drive f=
-ormat for the USB key, but the current n450 BSP doesn&#39;t include the dri=
-vers for the networking hardware in the netbook.<br>
-
-
-<br>
-I found by testing, using the menuconfig option documented in the Developer=
- Manual Appendix B example, that I needed to add 2 parameters to the .confi=
-g:<br>
-<br>
-CONFIG_ATH9K_PCI<br>
-CONFIG_ATL1C<br>
-<br>
-To make this change easier to manage and more permanent, I thought about cr=
-eating a config fragment. =A0I put the config parameters in a file, myconfi=
-g, in the linux-yocto directory at the same level as the linux-yocto_3.2.bb=
-append file, where I added:<br>
+<br><div class=3D"gmail_quote">On Mon, Jul 9, 2012 at 3:03 PM, Andrei Gherz=
+an <span dir=3D"ltr">&lt;<a href=3D"mailto:andrei@gherzan.ro" target=3D"_bl=
+ank">andrei@gherzan.ro</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_=
+quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1=
+ex">
 
 
-<br>
-SRC_URI +=3D &quot;file//myconfig&quot;<br>
-<br></blockquote><div><br></div><div>Try to use myconfig.cfg.</div><div><br=
-></div><div>@g</div></div>
+<div class=3D"gmail_quote"><div>On Sat, Jul 7, 2012 at 10:54 AM, kishore sh=
+eik ahamed <span dir=3D"ltr">&lt;<a href=3D"mailto:linuxinme@gmail.com" tar=
+get=3D"_blank">linuxinme@gmail.com</a>&gt;</span> wrote:<br><blockquote cla=
+ss=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;pa=
+dding-left:1ex">
 
---14dae9340c41df991404c46345de--
+
+
+
+
+Hello there<br><br>I am trying to build Yocto on ubuntu 10.10 <br>I get the=
+ following error.<br>Could someone help me?<br><br></blockquote></div><div>=
+Do you have all the needed packages for you Linux=A0distribution?</div><div=
+>
+
+
+<a href=3D"http://www.yoctoproject.org/docs/current/yocto-project-qs/yocto-=
+project-qs.html" target=3D"_blank">http://www.yoctoproject.org/docs/current=
+/yocto-project-qs/yocto-project-qs.html</a>=A0</div>
+
+
+<div><br></div><div><div>Ubuntu</div><div>The packages you need for a suppo=
+rted Ubuntu distribution are shown in the following command:</div><div><br>=
+</div><div>=A0 =A0 =A0$ sudo apt-get install sed wget subversion git-core c=
+oreutils \</div>
+
+
+
+
+
+<div>=A0 =A0 =A0unzip texi2html texinfo libsdl1.2-dev docbook-utils fop gaw=
+k \</div><div>=A0 =A0 =A0python-pysqlite2 diffstat make gcc build-essential=
+ xsltproc \</div><div>=A0 =A0 =A0g++ desktop-file-utils chrpath libgl1-mesa=
+-dev libglu1-mesa-dev \</div>
+
+
+
+
+
+<div>=A0 =A0 =A0autoconf automake groff libtool xterm libxml-parser-perl</d=
+iv></div></div></blockquote><div>=A0</div></div>I have all the packages ins=
+talled, it seems a linker error of ld not supporting -z switch. I have the =
+2.20.51.20100908-0ubuntu2 version of binutils package installed. How should=
+ I proceed<br>
+
+</blockquote><div><br></div><div>I have=A0Version: 2.21.53.20110810-0ubuntu=
+5.1 and=A0everything=A0seems to be ok.</div><div>@g</div><div><br></div><di=
+v>=A0</div></div><br>
+
+--14dae934059bb09d1a04c4637028--
