@@ -1,42 +1,36 @@
-Return-Path: <jack.mitchell@eumx.net>
-Received: from eumx.net (eumx.net [91.82.101.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A9490E0145D
-	for <yocto@yoctoproject.org>; Mon,  9 Jul 2012 08:02:22 -0700 (PDT)
-Received: from localhost ([127.0.0.1]:57630 helo=eumx.net)
-	by eumx.net with esmtp (Exim 4.72)
-	(envelope-from <jack.mitchell@eumx.net>) id 1SoFTh-0005Qk-Rf
-	for yocto@yoctoproject.org; Mon, 09 Jul 2012 15:02:21 +0000
-DKIM-Signature: v=1; a=rsa-sha1; c=relaxed; d=eumx.net; h=message-id
-	:date:from:mime-version:cc:subject:references:in-reply-to
-	:content-type:content-transfer-encoding; s=default; bh=KAAKU9NLe
-	PBCjp8dTZmEfaEzIuw=; b=uscXn1Rg6Xaaqdx/taPOA55kCfymifvzeDWPt/rLU
-	Xfyd2bmRASiDCvDaDuBZeTy56C11CAv4ynNi9N0RCHqXvTlo7spItxIeumwscrze
-	wGZa1yXUjxpksu/UD8oLEketa4HZBD2Ily3gaGM6T6CtIgTETZakag54LKp+ySs+
-	ow=
-DomainKey-Signature: a=rsa-sha1; c=nofws; d=eumx.net; h=message-id:date
-	:from:mime-version:cc:subject:references:in-reply-to
-	:content-type:content-transfer-encoding; q=dns; s=default; b=vO6
-	CM7qhD1XTulFRbpk8CgqhnXg71QJ4NBMlYjirPFKkxoia96iy+tcacSipOFBBubc
-	utMSxJaEsFFENWSJ260jSZLbMhwPfzn+TYrdFA4mfdI7nlgxpXNNQLGGFsv+C4yg
-	31ormqQaprAq4g7lLHknVD4hE+Jm7OsOCMBw4oMk=
-Received: from [195.171.99.130] (port=28944 helo=[192.168.0.54])
-	by eumx.net with esmtpa (Exim 4.72)
-	(envelope-from <jack.mitchell@eumx.net>) id 1SoFOr-0005FM-Kb
-	for yocto@yoctoproject.org; Mon, 09 Jul 2012 14:57:21 +0000
-Message-ID: <4FFAF198.20005@eumx.net>
-Date: Mon, 09 Jul 2012 15:58:32 +0100
-From: Jack Mitchell <jack.mitchell@eumx.net>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:13.0) Gecko/20120616 Thunderbird/13.0.1
+Return-Path: <andrei@gherzan.ro>
+Received: from mail-yw0-f48.google.com (mail-yw0-f48.google.com
+	[209.85.213.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9C3D5E006AD
+	for <yocto@yoctoproject.org>; Mon,  9 Jul 2012 09:46:56 -0700 (PDT)
+Received: by yhfq46 with SMTP id q46so11000886yhf.35
+	for <yocto@yoctoproject.org>; Mon, 09 Jul 2012 09:46:56 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:x-originating-ip:in-reply-to:references:date
+	:message-id:subject:from:to:cc:content-type:x-gm-message-state;
+	bh=rZZjC/4W5gm0IxXcSC1xfT9rjkdNdh6P7uGHlISiSPM=;
+	b=NnLxKbr74QqQRyI3Ti98WnpA+pIl08i4k2Im1wsPqm606lIAx+/OoNmZU3u4A74tEo
+	6wOcI6OOY3MGUyX7+gaQy7+qeVMrYe4QLcxXyCht2sJrvH6Ecd2+d3wUtxWSUmF8RSgh
+	tlSUAZ9pnlhv6GQ8gaiU5cpjcEaty9oSOZjA8ejrxMxTxwynSVu/K0pTrelS4JvxqTuJ
+	lLaxSbBxf1IbOLFWUtY9HRPVRnqUv7Y9P9Bhs+wSdgcfwk3drey18xugAmJ4vZWYaXHi
+	maW59FC9YrLNr6ftphqOS0hl9SpLewxbdyM08q27ZzL9ppnNg2vPcka9IkrtzjNw40mg
+	iGtw==
 MIME-Version: 1.0
-CC: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-References: <4FFAEBFC.2090603@communistcode.co.uk>
-	<20120709143736.GE6308@jama.jama.net>
-	<4FFAEFE7.4000303@communistcode.co.uk>
-	<20120709145320.GF6308@jama.jama.net>
-In-Reply-To: <20120709145320.GF6308@jama.jama.net>
-X-Mailman-Approved-At: Mon, 09 Jul 2012 08:33:13 -0700
-Subject: Re: m4 build failure - master && denzil branch
+Received: by 10.50.91.233 with SMTP id ch9mr8898526igb.8.1341852415539; Mon,
+	09 Jul 2012 09:46:55 -0700 (PDT)
+Received: by 10.64.98.162 with HTTP; Mon, 9 Jul 2012 09:46:55 -0700 (PDT)
+X-Originating-IP: [89.121.200.106]
+Received: by 10.64.98.162 with HTTP; Mon, 9 Jul 2012 09:46:55 -0700 (PDT)
+In-Reply-To: <038FDF66-7E05-42E1-9B22-EA8486BC8AC4@keylevel.com>
+References: <038FDF66-7E05-42E1-9B22-EA8486BC8AC4@keylevel.com>
+Date: Mon, 9 Jul 2012 19:46:55 +0300
+Message-ID: <CAK18fxG5etcbQqNRqpgAjKwpxEHbOpYwOW123VFW1mUKp9HhoA@mail.gmail.com>
+From: Andrei Gherzan <andrei@gherzan.ro>
+To: Chris Tapp <opensource@keylevel.com>
+X-Gm-Message-State: ALoCoQkIzgopM88Ni6Fk0QJuaeS+cHjDQcq5DAAp0cpxud+oETLg5IFmMpr78nuiGtS1tX58u+rK
+Cc: "yocto@yoctoproject.org Project" <yocto@yoctoproject.org>
+Subject: Re: Git fetcher error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,50 +42,71 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 09 Jul 2012 15:02:22 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 09 Jul 2012 16:46:56 -0000
+Content-Type: multipart/alternative; boundary=e89a8f3ba0d991bad204c4685ce5
 
-On 09/07/12 15:53, Martin Jansa wrote:
-> On Mon, Jul 09, 2012 at 03:51:19PM +0100, Jack Mitchell wrote:
->> On 09/07/12 15:37, Martin Jansa wrote:
->>> On Mon, Jul 09, 2012 at 03:34:36PM +0100, Jack Mitchell wrote:
->>>> So, I'm fairly sure this is a real build failure this time, again on the
->>>> poky master and denzil branch.
->>>>
->>>> Please see attached file as the log is too big to paste.
->>>
->>> does your host use (e)glibc-2.16?
->>>
->>> if it's so, then you need this patch for m4
->>> http://patchwork.openembedded.org/patch/31377/
->>>
->>> Cheers,
->>>
->>
->> Yes it does, I saw this issue when building for the Rapsberry Pi the
->> other day and I pulled your patches in which worked. I had assumed it
+--e89a8f3ba0d991bad204c4685ce5
+Content-Type: text/plain; charset=ISO-8859-1
+
+I tried now to fetch it and it works ok...
+
+@g
+On Jun 27, 2012 12:47 AM, "Chris Tapp" <opensource@keylevel.com> wrote:
+
+> I'm trying to use git://github.com/bootc/linux.git in a recipe, but
+> 'do_fetch' is failing.
 >
-> Those are Khem's patches..
-
-Apologies.
-
+> If I fetch manually, then it takes a long, long time to go through
+> 'remote: counting objects' and 'remote: compressing object'. Is this
+> causing a timeout in the fetcher? If so, can I do anything to allow the
+> fetch to run longer?
+>
+> Chris Tapp
+>
+> opensource@keylevel.com
+> www.keylevel.com
 >
 >
->> was eglibc 2.16 on target that was causing issues not eglibc 2.16 on the
->> host - hence my confusion to why the Denzil branch not building. I
->> wonder if Saul looking into pulling these in soon?
 >
-> Well -native packages are using host libs.. so target recipes are fine
-> until you manually switch to eglibc-2.16, but -native are affected
-> immediately when your host distro upgrades (e)glibc.
-
-Thanks!
-
->
->
-> Cheers,
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 >
 
+--e89a8f3ba0d991bad204c4685ce5
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
+<p>I tried now to fetch it and it works ok... </p>
+<p>@g</p>
+<div class=3D"gmail_quote">On Jun 27, 2012 12:47 AM, &quot;Chris Tapp&quot;=
+ &lt;<a href=3D"mailto:opensource@keylevel.com">opensource@keylevel.com</a>=
+&gt; wrote:<br type=3D"attribution"><blockquote class=3D"gmail_quote" style=
+=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
+I&#39;m trying to use git://<a href=3D"http://github.com/bootc/linux.git" t=
+arget=3D"_blank">github.com/bootc/linux.git</a> in a recipe, but &#39;do_fe=
+tch&#39; is failing.<br>
+<br>
+If I fetch manually, then it takes a long, long time to go through &#39;rem=
+ote: counting objects&#39; and &#39;remote: compressing object&#39;. Is thi=
+s causing a timeout in the fetcher? If so, can I do anything to allow the f=
+etch to run longer?<br>
 
+<br>
+Chris Tapp<br>
+<br>
+<a href=3D"mailto:opensource@keylevel.com">opensource@keylevel.com</a><br>
+<a href=3D"http://www.keylevel.com" target=3D"_blank">www.keylevel.com</a><=
+br>
+<br>
+<br>
+<br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
+>https://lists.yoctoproject.org/listinfo/yocto</a><br>
+</blockquote></div>
+
+--e89a8f3ba0d991bad204c4685ce5--
