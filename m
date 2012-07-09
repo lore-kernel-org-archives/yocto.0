@@ -1,31 +1,29 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F029BE013D3
-	for <yocto@yoctoproject.org>; Sun,  8 Jul 2012 11:21:12 -0700 (PDT)
-Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
-	([99.241.91.63]:49654 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.77) (envelope-from <rpjday@crashcourse.ca>)
-	id 1Snw6Z-0002it-Cs
-	for yocto@yoctoproject.org; Sun, 08 Jul 2012 14:21:11 -0400
-Date: Sun, 8 Jul 2012 14:21:00 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.DEB.2.02.1207081418590.28552@oneiric>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <pcjegan@gmail.com>
+Received: from mail-wi0-f176.google.com (mail-wi0-f176.google.com
+	[209.85.212.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AAD7CE006EA;
+	Sun,  8 Jul 2012 22:45:30 -0700 (PDT)
+Received: by wibhn17 with SMTP id hn17so2150230wib.11
+	for <multiple recipients>; Sun, 08 Jul 2012 22:45:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:from:date:message-id:subject:to:cc:content-type;
+	bh=SMzSFA+JL1oIbOAtPXbmu2VYcg8UGU6yRvPmVGQdKTU=;
+	b=fQGbsLqSNnqrsTUSLK/OwDr/aV+UaBmQPEO9ItCPsqUDRIfdeO8pAMR2MUnGQ3qpPa
+	f8vo6YkcLGVurTF1syya5x8gnFaouA/I8ane9T7ejPzyRuKzW3/Ojx4ebKDhKMkUoEKl
+	j6Md3oGcgnu1TxUsTlc9P/YzVAHEALj1K4wQdAncjX8WIEy0JIAzIFXSk3aCjMpNT/nn
+	IIPDQ7FKXqY4n1zv/K696JRXsLcZ6pdgyAF+twCL+WQNDpuN5owOsQbsqDodMaBaoyq2
+	RbB2xnsok0SS3NBAsmpbQHoZwssoFELZdrdn0PzRcEiy2+yp1GaNB4g/VdNwSMNEy1zf
+	TCUg==
+Received: by 10.180.20.239 with SMTP id q15mr26516953wie.13.1341812729248;
+	Sun, 08 Jul 2012 22:45:29 -0700 (PDT)
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: what's the preferred way of creating images for a classic beagle rev C4?
+Received: by 10.217.1.131 with HTTP; Sun, 8 Jul 2012 22:45:09 -0700 (PDT)
+From: Jegan Chandru <pcjegan@gmail.com>
+Date: Mon, 9 Jul 2012 11:15:09 +0530
+Message-ID: <CAAA4K6LKt0Lqmsp0BLwnQbKmgChN4jE2D53Y0TaietxXux1iZQ@mail.gmail.com>
+To: yocto@yoctoproject.org
+Cc: poky-request@yoctoproject.org
+Subject: meta-toolchain - python not populated properly in sdk
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,25 +35,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 08 Jul 2012 18:21:13 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Mon, 09 Jul 2012 05:45:31 -0000
+Content-Type: multipart/alternative; boundary=bcaec53d5ac914fb5304c45f1f3e
 
+--bcaec53d5ac914fb5304c45f1f3e
+Content-Type: text/plain; charset=ISO-8859-1
 
-  is it adequate to use the canonical beagleboard support in yocto, or
-should i take advantage of the developments in the meta-ti layer?
-this is for a training course so i don't need production-level
-reliability so much as i want access to as many features as i can get
-for educational purposes.  thanks.
+Hi,
 
-rday
+I have a little trouble while building meta-toolchain for my distro. This
+is for arm architecture on 64 bit ubuntu 12.04 machine. I use default
+"bitbake meta-toolchain" to create sdk. It created ok, but when I check for
+python, it doesnt include everything from build dir. I tried to execute
+some scripts using this sdk, but it fails due to some modules missing like
+shutils, optparser etc.. I checked the build dir, its all there but not
+populated in sdk. I tried to add those by some methods, one of those being
+defining my own meta-toolchain-mydistro, but couldnt get full python to get
+populated in sdk. Any help with this will deeply appreciated.  what am i
+missing?
 
--- 
+JC
 
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
+--bcaec53d5ac914fb5304c45f1f3e
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+Hi,
+<div><br></div><div>I have a little trouble while building meta-toolchain f=
+or my distro. This is for arm architecture on 64 bit ubuntu 12.04 machine. =
+I use default &quot;bitbake meta-toolchain&quot; to create sdk. It created =
+ok, but when I check for python, it doesnt include everything from build di=
+r. I tried to execute some scripts using this sdk, but it fails due to some=
+ modules missing like shutils, optparser etc.. I checked the build dir, its=
+ all there but not populated in sdk. I tried to add those by some methods, =
+one of those being defining my own meta-toolchain-mydistro, but couldnt get=
+ full python to get populated in sdk. Any help with this will deeply apprec=
+iated. =A0what am i missing?</div>
 
+<div><br></div><div>JC</div>
+
+--bcaec53d5ac914fb5304c45f1f3e--
