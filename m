@@ -1,28 +1,22 @@
-Return-Path: <r10kindsofpeople@gmail.com>
-Received: from mail-gg0-f176.google.com (mail-gg0-f176.google.com
-	[209.85.161.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 137F1E013DB
-	for <yocto@yoctoproject.org>; Mon,  9 Jul 2012 07:44:49 -0700 (PDT)
-Received: by ggnk4 with SMTP id k4so11451547ggn.35
-	for <yocto@yoctoproject.org>; Mon, 09 Jul 2012 07:44:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=rOhrGQG6xN4sPur/1R1n86RpQvtLwVt6Q1MURl4Jwaw=;
-	b=j9nWRf5ryZZDz69Ltkxsc3m2DL6obCkp9a5wlUTsqb59WKD0SljOq+DDMBn3xEcm2Y
-	URyXiR+tiG+pzbgY/87+GF6qZWVDkCb6CDQshcwb+s/2Mfi696/xe8dng9Ebq4DLfn1b
-	r+OTfihG45M9Gc2eq437KnR4FpeOp9Xykkl0IaKFKD9VgUs6RM237keXRKdVxOzaluAX
-	QZUFc8F6v9Zqo90OJxQrbZX01T2KuwJ3K42ZXgZxUc5oBF3C5Me25Abtagbmq3oCefsJ
-	agwOeQwbhA5q62tovdF0ZH9KNxonmHfXtdnedSfWA6zgCWJcPJXFMsbCnYxdtlZxII2h
-	idBg==
+Return-Path: <ml@communistcode.co.uk>
+Received: from tinyArch.localdomain (unknown [78.110.170.148])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 95A2EE013D4
+	for <yocto@yoctoproject.org>; Mon,  9 Jul 2012 07:50:08 -0700 (PDT)
+Received: from [192.168.0.54] (unknown [195.171.99.130])
+	by tinyArch.localdomain (Postfix) with ESMTPSA id ED28B440D7;
+	Mon,  9 Jul 2012 15:45:56 +0100 (BST)
+Message-ID: <4FFAEFE7.4000303@communistcode.co.uk>
+Date: Mon, 09 Jul 2012 15:51:19 +0100
+From: Jack Mitchell <ml@communistcode.co.uk>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:13.0) Gecko/20120616 Thunderbird/13.0.1
 MIME-Version: 1.0
-Received: by 10.60.2.161 with SMTP id 1mr42727382oev.48.1341845089225; Mon, 09
-	Jul 2012 07:44:49 -0700 (PDT)
-Received: by 10.182.42.4 with HTTP; Mon, 9 Jul 2012 07:44:49 -0700 (PDT)
-Date: Mon, 9 Jul 2012 10:44:49 -0400
-Message-ID: <CAE8H0+Wurdc2aHZZ=MEgW1UioSfbnR7jzKQ__ZKfS=CyjqXmoA@mail.gmail.com>
-From: r10kindsofpeople <r10kindsofpeople@gmail.com>
-To: yocto@yoctoproject.org
-Subject: Raspberry Pi mailing list?
+To: sgw@linux.intel.com
+References: <4FFAEBFC.2090603@communistcode.co.uk>
+	<20120709143736.GE6308@jama.jama.net>
+In-Reply-To: <20120709143736.GE6308@jama.jama.net>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: m4 build failure - master && denzil branch
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,14 +28,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 09 Jul 2012 14:44:50 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Mon, 09 Jul 2012 14:50:08 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-There was some discussion of setting up a mailing list for Raspberry
-PI back in May...did anything come of this?
+On 09/07/12 15:37, Martin Jansa wrote:
+> On Mon, Jul 09, 2012 at 03:34:36PM +0100, Jack Mitchell wrote:
+>> So, I'm fairly sure this is a real build failure this time, again on the
+>> poky master and denzil branch.
+>>
+>> Please see attached file as the log is too big to paste.
+>
+> does your host use (e)glibc-2.16?
+>
+> if it's so, then you need this patch for m4
+> http://patchwork.openembedded.org/patch/31377/
+>
+> Cheers,
+>
 
-Or is this [Yocto] the best place to post build questions regarding
-meta-raspberrypi ?
+Yes it does, I saw this issue when building for the Rapsberry Pi the 
+other day and I pulled your patches in which worked. I had assumed it 
+was eglibc 2.16 on target that was causing issues not eglibc 2.16 on the 
+host - hence my confusion to why the Denzil branch not building. I 
+wonder if Saul looking into pulling these in soon?
 
-John
+Thanks for the explanation Martin!
+
+Cc: sgw@linux.intel.com
+
+Regards,
+
+-- 
+
+   Jack Mitchell (jack@embed.me.uk)
+   Embedded Systems Engineer
+   http://www.embed.me.uk
+
+--
+
 
