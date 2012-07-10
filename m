@@ -1,24 +1,33 @@
-Return-Path: <mark.hatle@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E36E8E00280
-	for <yocto@yoctoproject.org>; Tue, 10 Jul 2012 13:44:03 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.3/8.14.3) with ESMTP id q6AKhxGd000522
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Tue, 10 Jul 2012 13:43:59 -0700 (PDT)
-Received: from localhost.localdomain (172.25.34.61) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.1.255.0;
-	Tue, 10 Jul 2012 13:43:59 -0700
-From: Mark Hatle <mark.hatle@windriver.com>
-To: <yocto@yoctoproject.org>, <openembedded-core@lists.openembedded.org>
-Date: Tue, 10 Jul 2012 15:54:38 -0500
-Message-ID: <a5c0682f85ac03ea09346d504843d362ab153911.1341953258.git.mark.hatle@windriver.com>
-X-Mailer: git-send-email 1.7.3.4
-In-Reply-To: <cover.1341953258.git.mark.hatle@windriver.com>
-References: <cover.1341953258.git.mark.hatle@windriver.com>
+Return-Path: <song.liu@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F19CCE0027E
+	for <yocto@yoctoproject.org>; Tue, 10 Jul 2012 15:52:06 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 10 Jul 2012 15:52:06 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="163996482"
+Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
+	by orsmga001.jf.intel.com with ESMTP; 10 Jul 2012 15:52:06 -0700
+Received: from orsmsx105.amr.corp.intel.com (10.22.225.132) by
+	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Tue, 10 Jul 2012 15:52:06 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.125]) by
+	ORSMSX105.amr.corp.intel.com ([169.254.4.138]) with mapi id
+	14.01.0355.002; Tue, 10 Jul 2012 15:52:06 -0700
+From: "Liu, Song" <song.liu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Minutes: Yocto Project Technical Team Meeting - Tuesday, July
+	10, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+Thread-Index: AQHNXu6hvL8lTuBPF0ODHKERhiMtcg==
+Date: Tue, 10 Jul 2012 22:52:05 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A48479F34@ORSMSX101.amr.corp.intel.com>
+References: <7E680CB2A76BB8438D08CF13C09FC53A4844CAD5@ORSMSX101.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.138]
 MIME-Version: 1.0
-X-Originating-IP: [172.25.34.61]
-Subject: RFC: [PATCH 1/1] toolchain-scripts: Sync the SDK/ADT values to the build system
+Subject: Minutes: Yocto Project Technical Team Meeting - Tuesday, July 10, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,133 +39,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Jul 2012 20:44:04 -0000
-Content-Type: text/plain
+X-List-Received-Date: Tue, 10 Jul 2012 22:52:07 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-The build system passes specific TUNE (fundamental) flag values to various
-tools instead of using a shell wrapper or similar.  It is important that the
-build system and ADT/SDK match the behaviors exactly, or we are likely to
-have differences in the way build-system and external components are built
-leading to configuration, compilation and/or run-time problems.
-
-Signed-off-by: Mark Hatle <mark.hatle@windriver.com>
----
- meta/classes/toolchain-scripts.bbclass |   63 +++++++++++++++++++++++---------
- 1 files changed, 45 insertions(+), 18 deletions(-)
-
-diff --git a/meta/classes/toolchain-scripts.bbclass b/meta/classes/toolchain-scripts.bbclass
-index bedcd61..bf37ec9 100644
---- a/meta/classes/toolchain-scripts.bbclass
-+++ b/meta/classes/toolchain-scripts.bbclass
-@@ -14,9 +14,18 @@ toolchain_create_sdk_env_script () {
- 	echo 'export PKG_CONFIG_SYSROOT_DIR=${SDKTARGETSYSROOT}' >> $script
- 	echo 'export PKG_CONFIG_PATH=${SDKTARGETSYSROOT}${libdir}/pkgconfig' >> $script
- 	echo 'export CONFIG_SITE=${SDKPATH}/site-config-${REAL_MULTIMACH_TARGET_SYS}' >> $script
--	echo 'export CC=${TARGET_PREFIX}gcc' >> $script
--	echo 'export CXX=${TARGET_PREFIX}g++' >> $script
-+	echo 'export CC="${TARGET_PREFIX}gcc ${TARGET_CC_ARCH} --sysroot=${SDKTARGETSYSROOT}"' >> $script
-+	echo 'export CXX="${TARGET_PREFIX}g++ ${TARGET_CC_ARCH} --sysroot=${SDKTARGETSYSROOT}"' >> $script
-+	echo 'export CPP="${TARGET_PREFIX}gcc -E ${TARGET_CC_ARCH} --sysroot=${SDKTARGETSYSROOT}"' >> $script
-+	echo 'export AS="${TARGET_PREFIX}as ${TARGET_AS_ARCH}"' >> $script
-+	echo 'export LD="${TARGET_PREFIX}ld ${TARGET_LD_ARCH} --sysroot=${SDKTARGETSYSROOT}"' >> $script
- 	echo 'export GDB=${TARGET_PREFIX}gdb' >> $script
-+	echo 'export STRIP=${TARGET_PREFIX}strip' >> $script
-+	echo 'export RANLIB=${TARGET_PREFIX}ranlib' >> $script
-+	echo 'export OBJCOPY=${TARGET_PREFIX}objcopy' >> $script
-+	echo 'export OBJDUMP=${TARGET_PREFIX}objdump' >> $script
-+	echo 'export AR=${TARGET_PREFIX}-ar' >> $script
-+	echo 'export NM=${TARGET_PREFIX}-nm' >> $script
- 	echo 'export TARGET_PREFIX=${TARGET_PREFIX}' >> $script
- 	echo 'export CONFIGURE_FLAGS="--target=${TARGET_SYS} --host=${TARGET_SYS} --build=${SDK_ARCH}-linux --with-libtool-sysroot=${SDKTARGETSYSROOT}"' >> $script
- 	if [ "${TARGET_OS}" = "darwin8" ]; then
-@@ -26,10 +35,10 @@ toolchain_create_sdk_env_script () {
- 		cd ${SDK_OUTPUT}${SDKTARGETSYSROOT}/usr
- 		ln -s /usr/local local
- 	fi
--	echo 'export CFLAGS="${TARGET_CC_ARCH} --sysroot=${SDKTARGETSYSROOT}"' >> $script
--	echo 'export CXXFLAGS="${TARGET_CC_ARCH} --sysroot=${SDKTARGETSYSROOT}"' >> $script
--	echo 'export LDFLAGS="${TARGET_LD_ARCH} --sysroot=${SDKTARGETSYSROOT}"' >> $script
--	echo 'export CPPFLAGS="${TARGET_CC_ARCH} --sysroot=${SDKTARGETSYSROOT}"' >> $script
-+	echo 'export CFLAGS="${TARGET_CFLAGS}"' >> $script
-+	echo 'export CXXFLAGS="${TARGET_CXXFLAGS}"' >> $script
-+	echo 'export LDFLAGS="${TARGET_LDFLAGS}"' >> $script
-+	echo 'export CPPFLAGS="${TARGET_CPPFLAGS}"' >> $script
- 	echo 'export OECORE_NATIVE_SYSROOT="${SDKPATHNATIVE}"' >> $script
- 	echo 'export OECORE_TARGET_SYSROOT="${SDKTARGETSYSROOT}"' >> $script
- 	echo 'export OECORE_ACLOCAL_OPTS="-I ${SDKPATHNATIVE}/usr/share/aclocal"' >> $script
-@@ -49,9 +58,18 @@ toolchain_create_tree_env_script () {
- 
- 	echo 'export CONFIG_SITE="${@siteinfo_get_files(d)}"' >> $script
- 
--	echo 'export CC=${TARGET_PREFIX}gcc' >> $script
--	echo 'export CXX=${TARGET_PREFIX}g++' >> $script
-+	echo 'export CC="${TARGET_PREFIX}gcc ${TARGET_CC_ARCH} --sysroot=${STAGING_DIR_TARGET}"' >> $script
-+	echo 'export CXX="${TARGET_PREFIX}g++ ${TARGET_CC_ARCH} --sysroot=${STAGING_DIR_TARGET}"' >> $script
-+	echo 'export CPP="${TARGET_PREFIX}gcc -E ${TARGET_CC_ARCH} --sysroot=${STAGING_DIR_TARGET}"' >> $script
-+	echo 'export AS="${TARGET_PREFIX}as ${TARGET_AS_ARCH}"' >> $script
-+	echo 'export LD="${TARGET_PREFIX}ld ${TARGET_LD_ARCH} --sysroot=${STAGING_DIR_TARGET}"' >> $script
- 	echo 'export GDB=${TARGET_PREFIX}gdb' >> $script
-+	echo 'export STRIP=${TARGET_PREFIX}strip' >> $script
-+	echo 'export RANLIB=${TARGET_PREFIX}ranlib' >> $script
-+	echo 'export OBJCOPY=${TARGET_PREFIX}objcopy' >> $script
-+	echo 'export OBJDUMP=${TARGET_PREFIX}objdump' >> $script
-+	echo 'export AR=${TARGET_PREFIX}-ar' >> $script
-+	echo 'export NM=${TARGET_PREFIX}-nm' >> $script
- 	echo 'export TARGET_PREFIX=${TARGET_PREFIX}' >> $script
- 	echo 'export CONFIGURE_FLAGS="--target=${TARGET_SYS} --host=${TARGET_SYS} --build=${BUILD_SYS} --with-libtool-sysroot=${STAGING_DIR_TARGET}"' >> $script
- 	if [ "${TARGET_OS}" = "darwin8" ]; then
-@@ -61,10 +79,10 @@ toolchain_create_tree_env_script () {
- 		cd ${SDK_OUTPUT}${SDKTARGETSYSROOT}/usr
- 		ln -s /usr/local local
- 	fi
--	echo 'export CFLAGS="${TARGET_CC_ARCH} --sysroot=${STAGING_DIR_TARGET}"' >> $script
--	echo 'export CXXFLAGS="${TARGET_CC_ARCH} --sysroot=${STAGING_DIR_TARGET}"' >> $script
--	echo 'export LDFLAGS="${TARGET_LD_ARCH} --sysroot=${STAGING_DIR_TARGET}"' >> $script
--	echo 'export CPPFLAGS="${TARGET_CC_ARCH} --sysroot=${STAGING_DIR_TARGET}"' >> $script
-+	echo 'export CFLAGS="${TARGET_CFLAGS}"' >> $script
-+	echo 'export CXXFLAGS="${TARGET_CXXFLAGS}"' >> $script
-+	echo 'export LDFLAGS="${TARGET_LDFLAGS}"' >> $script
-+	echo 'export CPPFLAGS="${TARGET_CPPFLAGS}"' >> $script
- 	echo 'export OECORE_NATIVE_SYSROOT="${STAGING_DIR_NATIVE}"' >> $script
- 	echo 'export OECORE_TARGET_SYSROOT="${STAGING_DIR_TARGET}"' >> $script
- 	echo 'export OECORE_ACLOCAL_OPTS="-I ${STAGING_DIR_NATIVE}/usr/share/aclocal"' >> $script
-@@ -83,9 +101,18 @@ toolchain_create_sdk_env_script_for_installer () {
- 	echo 'export PKG_CONFIG_SYSROOT_DIR=##SDKTARGETSYSROOT##' >> $script
- 	echo 'export PKG_CONFIG_PATH=##SDKTARGETSYSROOT##${target_libdir}/pkgconfig' >> $script
- 	echo 'export CONFIG_SITE=${SDKPATH}/site-config-'"${multimach_target_sys}" >> $script
--	echo 'export CC=${TARGET_PREFIX}gcc' >> $script
--	echo 'export CXX=${TARGET_PREFIX}g++' >> $script
-+	echo 'export CC="${TARGET_PREFIX}gcc ${TARGET_CC_ARCH} --sysroot=##SDKTARGETSYSROOT##"' >> $script
-+	echo 'export CXX="${TARGET_PREFIX}g++ ${TARGET_CC_ARCH} --sysroot=##SDKTARGETSYSROOT##"' >> $script
-+	echo 'export CPP="${TARGET_PREFIX}gcc -E ${TARGET_CC_ARCH} --sysroot=##SDKTARGETSYSROOT##"' >> $script
-+	echo 'export AS="${TARGET_PREFIX}as ${TARGET_AS_ARCH}"' >> $script
-+	echo 'export LD="${TARGET_PREFIX}ld ${TARGET_LD_ARCH} --sysroot=##SDKTARGETSYSROOT##"' >> $script
- 	echo 'export GDB=${TARGET_PREFIX}gdb' >> $script
-+	echo 'export STRIP=${TARGET_PREFIX}strip' >> $script
-+	echo 'export RANLIB=${TARGET_PREFIX}ranlib' >> $script
-+	echo 'export OBJCOPY=${TARGET_PREFIX}objcopy' >> $script
-+	echo 'export OBJDUMP=${TARGET_PREFIX}objdump' >> $script
-+	echo 'export AR=${TARGET_PREFIX}-ar' >> $script
-+	echo 'export NM=${TARGET_PREFIX}-nm' >> $script
- 	echo 'export TARGET_PREFIX=${TARGET_PREFIX}' >> $script
- 	echo 'export CONFIGURE_FLAGS="--target=${TARGET_SYS} --host=${TARGET_SYS} --build=${SDK_ARCH}-linux --with-libtool-sysroot=##SDKTARGETSYSROOT##"' >> $script
- 	if [ "${TARGET_OS}" = "darwin8" ]; then
-@@ -95,10 +122,10 @@ toolchain_create_sdk_env_script_for_installer () {
- 		cd ${SDK_OUTPUT}${SDKTARGETSYSROOT}/usr
- 		ln -s /usr/local local
- 	fi
--	echo 'export CFLAGS="${TARGET_CC_ARCH} --sysroot=##SDKTARGETSYSROOT##"' >> $script
--	echo 'export CXXFLAGS="${TARGET_CC_ARCH} --sysroot=##SDKTARGETSYSROOT##"' >> $script
--	echo 'export LDFLAGS="${TARGET_LD_ARCH} --sysroot=##SDKTARGETSYSROOT##"' >> $script
--	echo 'export CPPFLAGS="${TARGET_CC_ARCH} --sysroot=##SDKTARGETSYSROOT##"' >> $script
-+	echo 'export CFLAGS="${TARGET_CFLAGS}"' >> $script
-+	echo 'export CXXFLAGS="${TARGET_CXXFLAGS}"' >> $script
-+	echo 'export LDFLAGS="${TARGET_LDFLAGS}"' >> $script
-+	echo 'export CPPFLAGS="${TARGET_CPPFLAGS}"' >> $script
- 	echo 'export OECORE_NATIVE_SYSROOT="${SDKPATHNATIVE}"' >> $script
- 	echo 'export OECORE_TARGET_SYSROOT="##SDKTARGETSYSROOT##"' >> $script
-         echo 'export OECORE_ACLOCAL_OPTS="-I ${SDKPATHNATIVE}/usr/share/aclocal"' >> $script
--- 
-1.7.3.4
+Attendees:
+Dave, MichaelH, RP, Paul, Jim, Beth, Ross, Tom, Saul, Jefro, ScottG, Lauren=
+tiu, Nitin, Jessica, Michael (from Dell), Cristian, Jeff, Sean, Song
+=A0
+Agenda:
+=A0
+* Opens collection - 5 min (Song)
+* 1.2.1 update - 5 min (ScottG)
+  - We have the full pass QA report on RC1 now. Scott will work with Richar=
+d and Saul to look through.
+  - There is some issues with meta-intel BSPs. But we are not releasing any=
+ BSPs. The QA on BSPs are to make sure BSP compatibility.=20
+  - the other issue is related to the new eglibc release.
+  - Will send out an email later today on the status after reviewing the bu=
+gs.=20
+* 1.1.2 update - 5 min (Josh/Beth)
+  - Bugs opened are things we fixed in 1.2.
+  - Laurentiu: will have the test report tomorrow.
+  - FRI II: Saul will build the BSP image.=20
+  - ADT: Beth will generate the repository.
+* Yocto 1.3 status  - 10 min (Song/team)
+  - P1 items review:=20
+    - Risky P1 features that may have to be moved to next milestone: 1991, =
+1649, 2396, 2606
+    - Risky P1 bugs: 2675, 1919, 2679, 2706, 2531, 2595, 2707
+  - M3 release criteria review: will be pretty much the same as M2. As we a=
+re merging the priority for bugs and features. Our release criteria will be=
+ completing all high bugs and features targeted for the milestone.
+  - master status: There has been a lot changes. We got fixes in a few area=
+ such as RPM, multi-lib. Trying to take more patches.=20
+  - RP: we are looking for more people to help on the SWAT team meeting.=20
+=A0
+* SWAT team rotation: Jessica - > Paul
+=A0
+* Opens - 10 min
+=A0
+* Team sharing - 20 min
+  - Michael H: moved eglibc to the target server, working on autobuilders g=
+etting to these and rotate them in. Updating on documentation, statics on b=
+ugzilla and downloads.
 
 
