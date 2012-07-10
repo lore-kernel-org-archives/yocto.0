@@ -1,22 +1,25 @@
-Return-Path: <tf+lists.yocto@r-finger.com>
-Received: from r-finger.com (r-finger.com [178.79.160.5])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 26F46E00280
-	for <yocto@yoctoproject.org>; Tue, 10 Jul 2012 02:08:24 -0700 (PDT)
-Received: from [192.168.0.2] (host86-170-26-151.range86-170.btcentralplus.com
-	[86.170.26.151]) (using TLSv1 with cipher AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by r-finger.com (Postfix) with ESMTPSA id 714579C07
-	for <yocto@yoctoproject.org>; Tue, 10 Jul 2012 10:08:22 +0100 (BST)
-Message-ID: <4FFBF105.4030807@r-finger.com>
-Date: Tue, 10 Jul 2012 10:08:21 +0100
-From: Tomas Frydrych <tf+lists.yocto@r-finger.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:10.0.3) Gecko/20120329 Icedove/10.0.3
-MIME-Version: 1.0
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B60ADE00280
+	for <yocto@yoctoproject.org>; Tue, 10 Jul 2012 02:35:03 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 10 Jul 2012 02:35:02 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="166164548"
+Received: from unknown (HELO helios.localnet) ([10.252.121.11])
+	by azsmga001.ch.intel.com with ESMTP; 10 Jul 2012 02:35:01 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
 To: yocto@yoctoproject.org
-References: <alpine.DEB.2.02.1207081418590.28552@oneiric>
-In-Reply-To: <alpine.DEB.2.02.1207081418590.28552@oneiric>
-Subject: Re: what's the preferred way of creating images for a classic beagle rev C4?
+Date: Tue, 10 Jul 2012 10:35 +0100
+Message-ID: <2286431.Uqbs7UEu3k@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.8.4 (Linux/3.2.0-26-generic-pae; KDE/4.8.4; i686; ; )
+In-Reply-To: <BFDF841C-B14F-4690-B53B-996F47C9CC74@keylevel.com>
+References: <CAE8H0+Wurdc2aHZZ=MEgW1UioSfbnR7jzKQ__ZKfS=CyjqXmoA@mail.gmail.com>
+	<CAE8H0+X2QfEQ9jT8LOWHQPnMq5RMpLM=naXGSnPdAmHngwAdjA@mail.gmail.com>
+	<BFDF841C-B14F-4690-B53B-996F47C9CC74@keylevel.com>
+MIME-Version: 1.0
+Subject: Re: Raspberry Pi mailing list?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,29 +31,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Jul 2012 09:08:24 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 10 Jul 2012 09:35:03 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Hi,
+On Monday 09 July 2012 20:21:32 Chris Tapp wrote:
+> > The first sign of trouble was an error message saying there were no
+> > recipes for netbase-4.7 (for which meta-raspberrypi had a .bbappend).
+> > Noting that meta was at netbase-5.0 and that the .bbappend at a glance
+> > did not look to be version specific, I renamed the meta-raspberrypi
+> > recipe and directory to netbase-5.0, and the build was off and
+> > running.
+> 
+> Sounds reasonable. 4.7 is the version that's in 'Denzil'.
 
-On 08/07/12 19:21, Robert P. J. Day wrote:
->   is it adequate to use the canonical beagleboard support in yocto, or
-> should i take advantage of the developments in the meta-ti layer?
-> this is for a training course so i don't need production-level
-> reliability so much as i want access to as many features as i can get
-> for educational purposes.  thanks.
+FYI Andrei has now created a denzil branch in meta-raspberrypi which will 
+match up with denzil in OE-Core/Poky. I'm not sure if the problem is still 
+there but there may still be an issue building a kernel for the RPi with the 
+toolchain in master - Chris and I have been sticking to denzil for the moment 
+for that reason.
+ 
+Cheers,
+Paul
 
-Yocto alone should give you working Sato images; I am fairly certain
-that works with Denzil.
+-- 
 
-If you want/need stuff like accelerated graphics, you have to use
-meta-ti, but meta-ti does not play very well with Yocto, so expect to
-have to do some tweaking to get things to build. Beyond that, my
-experience is that actually getting the meta-ti accelerated video work
-is a rather time consuming miss and hit exercise without any guaranteed
-results at the end -- if you do not need this for your purposes, then
-I'd say don't bother.
-
-Tomas
+Paul Eggleton
+Intel Open Source Technology Centre
 
