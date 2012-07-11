@@ -1,38 +1,22 @@
-Return-Path: <scott.a.garman@intel.com>
-Received: from azsmga101.ch.intel.com (mga07.intel.com [143.182.124.22])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 77326E00282
-	for <yocto@yoctoproject.org>; Tue, 10 Jul 2012 21:41:58 -0700 (PDT)
-Received: from mail-pb0-f52.google.com ([209.85.160.52])
-	by mga03.intel.com with ESMTP/TLS/RC4-SHA; 10 Jul 2012 21:41:57 -0700
-Received: by pbbro8 with SMTP id ro8so1386620pbb.25
-	for <yocto@yoctoproject.org>; Tue, 10 Jul 2012 21:41:57 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=message-id:date:from:user-agent:mime-version:to:cc:subject
-	:content-type:content-transfer-encoding:x-gm-message-state;
-	bh=yNBs1AjYwnYvBqIB98PrWOxvSUYdHdVHUsxOuSvB3OI=;
-	b=UWrIaLsUv3bLzeix5NCv67vZNCDMYYH6vjubtsGAAamigAWdIleJbYUfVuarIKcyLz
-	SsiT+WCFD9i0XRlxWx+6BEj3yi3gDNh9CFpvx8yUi3W13m1TSbe+OS8hEWiiEFBgP3JO
-	3X9PLE4f4Mr27BD1RtYuO1eQCJSM//3D6B5rfeDvih3VkT37IIp6HPZ8QF/EYSAu86SN
-	Vdm7c4DHPYvpW1NwRLn67+h0ucUlU02hIN6ZaKJxo6wM2d2jJdZkKh2F964O+Emn3RSi
-	G4tA8SPocsUIXZbOa+tLGS3R7i9ph7OJRZ96E6vEnuHJaMemQ8mah8mHAAl5VFhobNhB
-	xQFw==
-Received: by 10.68.221.38 with SMTP id qb6mr74555500pbc.144.1341981717281;
-	Tue, 10 Jul 2012 21:41:57 -0700 (PDT)
-Received: from [192.168.1.12] (c-76-105-137-48.hsd1.or.comcast.net.
-	[76.105.137.48])
-	by mx.google.com with ESMTPS id mt9sm909936pbb.14.2012.07.10.21.41.55
-	(version=SSLv3 cipher=OTHER); Tue, 10 Jul 2012 21:41:55 -0700 (PDT)
-Message-ID: <4FFD0425.7040004@intel.com>
-Date: Tue, 10 Jul 2012 21:42:13 -0700
-From: Scott Garman <scott.a.garman@intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:13.0) Gecko/20120615 Thunderbird/13.0.1
-MIME-Version: 1.0
-To: openembedded-core@lists.openembedded.org
-X-Gm-Message-State: ALoCoQnl9lAwlVjzBo4XlITa/4c/jD2u5F4ZpduXYWpMfDR5R0+lILTaWxywuFxgp00E7jGaz8rb
-Cc: yocto@yoctoproject.org, poky@yoctoproject.org
-Subject: Upcoming Yocto 1.2.1 "denzil" release this week.
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1F24EE002A8
+	for <yocto@yoctoproject.org>; Tue, 10 Jul 2012 22:29:06 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 10 Jul 2012 22:29:05 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="164111208"
+Received: from unknown (HELO localhost) ([10.255.12.200])
+	by orsmga001.jf.intel.com with ESMTP; 10 Jul 2012 22:29:04 -0700
+From: tom.zanussi@intel.com
+To: yocto@yoctoproject.org, bruce.ashfield@windriver.com,
+	richard.purdie@linuxfoundation.org, saul.wold@intel.com
+Date: Wed, 11 Jul 2012 00:28:58 -0500
+Message-Id: <7fb5dd9589b3c47b7fb2098ac68e3ddc4ec7fcf6.1341983825.git.tom.zanussi@intel.com>
+X-Mailer: git-send-email 1.7.0.4
+In-Reply-To: <cover.1341983825.git.tom.zanussi@intel.com>
+References: <cover.1341983825.git.tom.zanussi@intel.com>
+Subject: [PATCH 1/6] Revert "perf: hard-code NO_LIBPERL/NO_LIBPYTHON"
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,31 +28,119 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Jul 2012 04:41:58 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 11 Jul 2012 05:29:06 -0000
 
-Hello,
+From: Tom Zanussi <tom.zanussi@intel.com>
 
-After a review of the QA full pass test report for Yocto 1.2.1, the 
-release team has agreed to submit this release candidate as our final 
-release for 1.2.1. Song Liu will organize the release readiness 
-decision, and I expect Beth Flanagan will be able to perform the 
-official release by the end of this week.
+This reverts commit 3216e7d5c3cada16161481826cdb39c930457587.
 
-Unfortunately the timing of this is such that I will be out of the 
-office for the rest of this week. Saul Wold can handle any 
-questions/concerns in my absence.
+LIBPERL and LIBPYTHON can now be enabled using the 'perf-scripting'
+feature.
+---
+ tools/perf/Makefile |   82 +++++++++++++++++++++++++++++++++++++++++++++++++-
+ 1 files changed, 80 insertions(+), 2 deletions(-)
 
-Thanks so much to everyone who contributed work that went into 1.2.1! We 
-now have 35 bugfixes and a few further enhancements to denzil since 1.2 
-to share with our users.
-
-Scott
-
+diff --git a/tools/perf/Makefile b/tools/perf/Makefile
+index e3eb19e..c168366 100644
+--- a/tools/perf/Makefile
++++ b/tools/perf/Makefile
+@@ -471,8 +471,31 @@ else
+ 	endif
+ endif
+ 
+-BASIC_CFLAGS += -DNO_LIBPERL
+-BASIC_CFLAGS += -DNO_LIBPYTHON
++ifdef NO_LIBPERL
++	BASIC_CFLAGS += -DNO_LIBPERL
++else
++       PERL_EMBED_LDOPTS = $(shell perl -MExtUtils::Embed -e ldopts 2>/dev/null)
++       PERL_EMBED_LDFLAGS = $(call strip-libs,$(PERL_EMBED_LDOPTS))
++       PERL_EMBED_LIBADD = $(call grep-libs,$(PERL_EMBED_LDOPTS))
++	PERL_EMBED_CCOPTS = `perl -MExtUtils::Embed -e ccopts 2>/dev/null`
++	FLAGS_PERL_EMBED=$(PERL_EMBED_CCOPTS) $(PERL_EMBED_LDOPTS)
++
++	ifneq ($(call try-cc,$(SOURCE_PERL_EMBED),$(FLAGS_PERL_EMBED)),y)
++		BASIC_CFLAGS += -DNO_LIBPERL
++	else
++               ALL_LDFLAGS += $(PERL_EMBED_LDFLAGS)
++               EXTLIBS += $(PERL_EMBED_LIBADD)
++		LIB_OBJS += $(OUTPUT)util/scripting-engines/trace-event-perl.o
++		LIB_OBJS += $(OUTPUT)scripts/perl/Perf-Trace-Util/Context.o
++	endif
++endif
++
++disable-python = $(eval $(disable-python_code))
++define disable-python_code
++  BASIC_CFLAGS += -DNO_LIBPYTHON
++  $(if $(1),$(warning No $(1) was found))
++  $(warning Python support won't be built)
++endef
+ 
+ override PYTHON := \
+   $(call get-executable-or-default,PYTHON,python)
+@@ -480,6 +503,61 @@ override PYTHON := \
+ ifndef PYTHON
+   $(call disable-python,python interpreter)
+   python-clean :=
++else
++
++  PYTHON_WORD := $(call shell-wordify,$(PYTHON))
++
++  python-clean := $(PYTHON_WORD) util/setup.py clean \
++    --build-lib='$(OUTPUT)python' \
++    --build-temp='$(OUTPUT)python/temp'
++
++  ifdef NO_LIBPYTHON
++    $(call disable-python)
++  else
++
++    override PYTHON_CONFIG := \
++      $(call get-executable-or-default,PYTHON_CONFIG,$(PYTHON)-config)
++
++    ifndef PYTHON_CONFIG
++      $(call disable-python,python-config tool)
++    else
++
++      PYTHON_CONFIG_SQ := $(call shell-sq,$(PYTHON_CONFIG))
++
++      PYTHON_EMBED_LDOPTS := $(shell $(PYTHON_CONFIG_SQ) --ldflags 2>/dev/null)
++      PYTHON_EMBED_LDFLAGS := $(call strip-libs,$(PYTHON_EMBED_LDOPTS))
++      PYTHON_EMBED_LIBADD := $(call grep-libs,$(PYTHON_EMBED_LDOPTS))
++      PYTHON_EMBED_CCOPTS := $(shell $(PYTHON_CONFIG_SQ) --cflags 2>/dev/null)
++      FLAGS_PYTHON_EMBED := $(PYTHON_EMBED_CCOPTS) $(PYTHON_EMBED_LDOPTS)
++
++      ifneq ($(call try-cc,$(SOURCE_PYTHON_EMBED),$(FLAGS_PYTHON_EMBED)),y)
++        $(call disable-python,Python.h (for Python 2.x))
++      else
++
++        ifneq ($(call try-cc,$(SOURCE_PYTHON_VERSION),$(FLAGS_PYTHON_EMBED)),y)
++          $(warning Python 3 is not yet supported; please set)
++          $(warning PYTHON and/or PYTHON_CONFIG appropriately.)
++          $(warning If you also have Python 2 installed, then)
++          $(warning try something like:)
++          $(warning $(and ,))
++          $(warning $(and ,)  make PYTHON=python2)
++          $(warning $(and ,))
++          $(warning Otherwise, disable Python support entirely:)
++          $(warning $(and ,))
++          $(warning $(and ,)  make NO_LIBPYTHON=1)
++          $(warning $(and ,))
++          $(error   $(and ,))
++        else
++          ALL_LDFLAGS += $(PYTHON_EMBED_LDFLAGS)
++          EXTLIBS += $(PYTHON_EMBED_LIBADD)
++          LIB_OBJS += $(OUTPUT)util/scripting-engines/trace-event-python.o
++          LIB_OBJS += $(OUTPUT)scripts/python/Perf-Trace-Util/Context.o
++          LANG_BINDINGS += $(OUTPUT)python/perf.so
++        endif
++
++      endif
++    endif
++  endif
+ endif
+ 
+ ifdef NO_DEMANGLE
 -- 
-Scott Garman
-Embedded Linux Engineer - Yocto Project
-Intel Open Source Technology Center
+1.7.0.4
 
 
