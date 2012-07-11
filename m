@@ -1,19 +1,32 @@
-Return-Path: <kevin.strasser@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 95E6EE00344
-	for <yocto@yoctoproject.org>; Wed, 11 Jul 2012 10:44:06 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 11 Jul 2012 10:43:48 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="170589369"
-Received: from wrk.jf.intel.com ([10.7.202.71])
-	by orsmga002.jf.intel.com with ESMTP; 11 Jul 2012 10:43:48 -0700
-From: Kevin Strasser <kevin.strasser@linux.intel.com>
-To: yocto@yoctoproject.org
-Date: Wed, 11 Jul 2012 10:44:46 -0700
-Message-Id: <1342028686-8159-1-git-send-email-kevin.strasser@linux.intel.com>
-X-Mailer: git-send-email 1.7.9.5
-Subject: [PATCH] meta-baryon: add build documentation
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3D351E00345
+	for <yocto@yoctoproject.org>; Wed, 11 Jul 2012 10:46:16 -0700 (PDT)
+Received: from [192.75.139.250] (port=49932 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.77) (envelope-from <rpjday@crashcourse.ca>)
+	id 1Sp0zP-00047I-60; Wed, 11 Jul 2012 13:46:15 -0400
+Date: Wed, 11 Jul 2012 13:46:12 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: Kevin Strasser <kevin.strasser@linux.intel.com>
+In-Reply-To: <1342028686-8159-1-git-send-email-kevin.strasser@linux.intel.com>
+Message-ID: <alpine.DEB.2.02.1207111345550.3756@oneiric>
+References: <1342028686-8159-1-git-send-email-kevin.strasser@linux.intel.com>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+MIME-Version: 1.0
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH] meta-baryon: add build documentation
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -25,49 +38,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Jul 2012 17:44:06 -0000
+X-List-Received-Date: Wed, 11 Jul 2012 17:46:16 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-Signed-off-by: Kevin Strasser <kevin.strasser@linux.intel.com>
----
- README |   24 ++++++++++++++++++++++++
- 1 file changed, 24 insertions(+)
+On Wed, 11 Jul 2012, Kevin Strasser wrote:
 
-diff --git a/README b/README
-index 2a9c77d..698d403 100644
---- a/README
-+++ b/README
-@@ -27,6 +27,30 @@ to yocto@yoctoproject.org with '[meta-baryon]' in the subject.
- 
- 
- 
-+Building the meta-baryon layer
-+------------------------------
-+
-+After you download meta-baryon, be sure add its location to bblayers.conf.
-+
-+The meta-baryon layer uses the 'lame' package, which has a license that
-+must be whitelisted by adding the string "commercial" to the
-+LICENSE_FLAGS_WHITELIST variable in your local.conf. For example:
-+
-+  LICENSE_FLAGS_WHITELIST = "commercial"
-+
-+Optionally, you can set the DISTRO flag to both identify the image as Baryon 
-+and cut down DISTRO_FEATURES to something more appropriate for a headless NAS 
-+type device. For example:
-+
-+  DISTRO = "baryon"
-+
-+You should then be able to build the image as such:
-+
-+  $ source oe-init-build-env
-+  $ bitbake baryon-image
-+
-+
-+
- License
- -------
- 
--- 
-1.7.9.5
+> Signed-off-by: Kevin Strasser <kevin.strasser@linux.intel.com>
+> ---
+>  README |   24 ++++++++++++++++++++++++
+>  1 file changed, 24 insertions(+)
+>
+> diff --git a/README b/README
+> index 2a9c77d..698d403 100644
+> --- a/README
+> +++ b/README
+> @@ -27,6 +27,30 @@ to yocto@yoctoproject.org with '[meta-baryon]' in the subject.
+>
+>
+>
+> +Building the meta-baryon layer
+> +------------------------------
+> +
+> +After you download meta-baryon, be sure add its location to bblayers.conf.
+                                           ^to?
 
+rday
 
