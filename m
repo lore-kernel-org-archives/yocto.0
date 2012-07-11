@@ -1,32 +1,19 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3D351E00345
-	for <yocto@yoctoproject.org>; Wed, 11 Jul 2012 10:46:16 -0700 (PDT)
-Received: from [192.75.139.250] (port=49932 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.77) (envelope-from <rpjday@crashcourse.ca>)
-	id 1Sp0zP-00047I-60; Wed, 11 Jul 2012 13:46:15 -0400
-Date: Wed, 11 Jul 2012 13:46:12 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Kevin Strasser <kevin.strasser@linux.intel.com>
-In-Reply-To: <1342028686-8159-1-git-send-email-kevin.strasser@linux.intel.com>
-Message-ID: <alpine.DEB.2.02.1207111345550.3756@oneiric>
-References: <1342028686-8159-1-git-send-email-kevin.strasser@linux.intel.com>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
-MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH] meta-baryon: add build documentation
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 548D0E00345
+	for <yocto@yoctoproject.org>; Wed, 11 Jul 2012 10:52:05 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 11 Jul 2012 10:52:05 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="191364473"
+Received: from unknown (HELO helios.ger.corp.intel.com) ([10.252.120.253])
+	by fmsmga002.fm.intel.com with ESMTP; 11 Jul 2012 10:52:04 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Wed, 11 Jul 2012 18:51:56 +0100
+Message-Id: <cover.1342029029.git.paul.eggleton@linux.intel.com>
+X-Mailer: git-send-email 1.7.9.5
+Subject: [meta-baryon] [PATCH 0/4] Baryon build fixes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,29 +25,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Jul 2012 17:46:16 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Wed, 11 Jul 2012 17:52:05 -0000
 
-On Wed, 11 Jul 2012, Kevin Strasser wrote:
+Some fixes for issues preventing successful builds with master and
+edison. It includes a sync of the samba recipe with the current version
+in meta-oe - it's still not completely in sync, hopefully that can be
+done as a separate exercise in the near future.
 
-> Signed-off-by: Kevin Strasser <kevin.strasser@linux.intel.com>
-> ---
->  README |   24 ++++++++++++++++++++++++
->  1 file changed, 24 insertions(+)
->
-> diff --git a/README b/README
-> index 2a9c77d..698d403 100644
-> --- a/README
-> +++ b/README
-> @@ -27,6 +27,30 @@ to yocto@yoctoproject.org with '[meta-baryon]' in the subject.
->
->
->
-> +Building the meta-baryon layer
-> +------------------------------
-> +
-> +After you download meta-baryon, be sure add its location to bblayers.conf.
-                                           ^to?
 
-rday
+The following changes since commit 1784e3a18f8e5b56568d971fcce0521172007f90:
+
+  meta-baryon: update proftpd SRC_URI (2012-07-10 18:37:44 +0100)
+
+are available in the git repository at:
+
+  git://git.yoctoproject.org/poky-contrib paule/baryon-fixes1
+  http://git.yoctoproject.org/cgit.cgi/poky-contrib/log/?h=paule/baryon-fixes1
+
+Paul Eggleton (4):
+  faad2: split out staticdev files
+  faac: split out staticdev files
+  samba: merge with meta-oe
+  baryon-image: use IMAGE_INSTALL instead of CORE_IMAGE_EXTRA_INSTALL
+
+ recipes-connectivity/samba/samba-basic.inc |   12 ++++--------
+ recipes-connectivity/samba/samba_3.5.6.bb  |   18 +++++++-----------
+ recipes-extended/images/baryon-image.bb    |    5 +++--
+ recipes-multimedia/faac/faac_1.24.bb       |    5 +++--
+ recipes-multimedia/faad2/faad2_2.7.bb      |   10 ++++++----
+ 5 files changed, 23 insertions(+), 27 deletions(-)
+
+-- 
+1.7.9.5
+
 
