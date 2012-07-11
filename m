@@ -1,25 +1,19 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <kevin.strasser@linux.intel.com>
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B7690E00344
-	for <yocto@yoctoproject.org>; Wed, 11 Jul 2012 10:42:11 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 11 Jul 2012 10:42:11 -0700
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 95E6EE00344
+	for <yocto@yoctoproject.org>; Wed, 11 Jul 2012 10:44:06 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 11 Jul 2012 10:43:48 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="164390517"
-Received: from unknown (HELO helios.localnet) ([10.252.120.253])
-	by orsmga001.jf.intel.com with ESMTP; 11 Jul 2012 10:42:10 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Jim Abernathy <jfabernathy@gmail.com>
-Date: Wed, 11 Jul 2012 18:42:09 +0100
-Message-ID: <35320765.Si4aS1H0Ml@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.8.4 (Linux/3.2.0-26-generic-pae; KDE/4.8.4; i686; ; )
-In-Reply-To: <4FFDB177.4000208@gmail.com>
-References: <4FFC86E1.9020402@gmail.com> <4FFDAEAA.7060303@gmail.com>
-	<4FFDB177.4000208@gmail.com>
-MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: meta-baryon
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="170589369"
+Received: from wrk.jf.intel.com ([10.7.202.71])
+	by orsmga002.jf.intel.com with ESMTP; 11 Jul 2012 10:43:48 -0700
+From: Kevin Strasser <kevin.strasser@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Wed, 11 Jul 2012 10:44:46 -0700
+Message-Id: <1342028686-8159-1-git-send-email-kevin.strasser@linux.intel.com>
+X-Mailer: git-send-email 1.7.9.5
+Subject: [PATCH] meta-baryon: add build documentation
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,40 +25,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Jul 2012 17:42:11 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Wed, 11 Jul 2012 17:44:06 -0000
 
-On Wednesday 11 July 2012 13:01:43 Jim Abernathy wrote:
-> On 07/11/2012 12:49 PM, Jim Abernathy wrote:
-> > When you do have time, let me know if my assumptions above were
-> > correct.  I must be missing something because I can't find any
-> > evidence of webmin in the file system.  So while my board boots Yocto,
-> > I can't see any of the baryon layer.  Could a CORE-IMAGE-EXTRA-INSTALL
-> > or something be needed to force the inclusion into the file system??
-> 
-> Never mind.  Because baryon is on master and poky is on edison, there
-> are some issues like:
-> 
-> 1.  the baryon-image.bb uses CORE_IMAGE_EXTRA_INSTALL instead of what
-> edison needed,which was POKY_EXTRA_INSTALL
+Signed-off-by: Kevin Strasser <kevin.strasser@linux.intel.com>
+---
+ README |   24 ++++++++++++++++++++++++
+ 1 file changed, 24 insertions(+)
 
-Ah, well spotted - actually it should not really be using that variable. I 
-have a fix which I'll send out to use IMAGE_INSTALL instead.
-
-> 2.  ffmpeg needs COMMERCIAL_LICENSE = yes instead of
-> LICENSE_FLAGS_WHITELIST += "commercial"
-
-It seems we really need an edison branch where the documentation can say the 
-right thing for each branch (and we can avoid introducing any future 
-incompatibilities). Once the above fix is merged I'll create an edison branch 
-so we can do this.
-
-Cheers,
-Paul
-
+diff --git a/README b/README
+index 2a9c77d..698d403 100644
+--- a/README
++++ b/README
+@@ -27,6 +27,30 @@ to yocto@yoctoproject.org with '[meta-baryon]' in the subject.
+ 
+ 
+ 
++Building the meta-baryon layer
++------------------------------
++
++After you download meta-baryon, be sure add its location to bblayers.conf.
++
++The meta-baryon layer uses the 'lame' package, which has a license that
++must be whitelisted by adding the string "commercial" to the
++LICENSE_FLAGS_WHITELIST variable in your local.conf. For example:
++
++  LICENSE_FLAGS_WHITELIST = "commercial"
++
++Optionally, you can set the DISTRO flag to both identify the image as Baryon 
++and cut down DISTRO_FEATURES to something more appropriate for a headless NAS 
++type device. For example:
++
++  DISTRO = "baryon"
++
++You should then be able to build the image as such:
++
++  $ source oe-init-build-env
++  $ bitbake baryon-image
++
++
++
+ License
+ -------
+ 
 -- 
+1.7.9.5
 
-Paul Eggleton
-Intel Open Source Technology Centre
 
