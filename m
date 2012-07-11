@@ -1,28 +1,41 @@
-Return-Path: <navani.srivastava@gmail.com>
-Received: from mail-bk0-f48.google.com (mail-bk0-f48.google.com
-	[209.85.214.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7E692E002A8
-	for <yocto@yoctoproject.org>; Wed, 11 Jul 2012 05:28:38 -0700 (PDT)
-Received: by bkty5 with SMTP id y5so958313bkt.35
-	for <yocto@yoctoproject.org>; Wed, 11 Jul 2012 05:28:37 -0700 (PDT)
+Return-Path: <marc.ferland@gmail.com>
+Received: from mail-qa0-f41.google.com (mail-qa0-f41.google.com
+	[209.85.216.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 57C23E002A8
+	for <yocto@yoctoproject.org>; Wed, 11 Jul 2012 06:00:23 -0700 (PDT)
+Received: by qabg27 with SMTP id g27so3243947qab.14
+	for <yocto@yoctoproject.org>; Wed, 11 Jul 2012 06:00:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:from:date:message-id:subject:to:content-type;
-	bh=gUgtrTpTO3jXwOwLfg0xBn8/pRo9BS2Z4bLfjjOoLFg=;
-	b=CYVXXvBnZHTqUSoZgw1pXz+JjugUxk7+t+DOB+JOxuX9mcsb0m6mlTSJeMy6yVNroz
-	aOq28SJ/1FcWrKce2Ltn4XI0UNDevDT+x4uvnZ/Gm5QuG3Ly+EeVsFQvzIWaCiQ4fUOg
-	99ar5wtLwDZugr28lwBJ4Fl7CejuQk9R1csP9RNf9GDXwwofN3HcBWyaQBJKPCPdyWAY
-	FOQC9t5/Aqr9ELbezQidj7+pNjrXCO56Y5Ef0UY0LCBgywQhFP5x8ugCW0FrN42X1TTZ
-	tyLbB39SGKFj+hH9PQzUbdJjiVaUpVrlA63mlutay+z2b6+utlbPEsAPtVKqbmouCVT9
-	SwIQ==
-Received: by 10.205.119.208 with SMTP id fv16mr9439289bkc.100.1342009716828;
-	Wed, 11 Jul 2012 05:28:36 -0700 (PDT)
+	h=sender:from:to:cc:subject:references:date:in-reply-to:message-id
+	:user-agent:mime-version:content-type;
+	bh=gtjPJdTu2S6z/3j9AtudBQMRYZfzLi47mURhnMIhIdQ=;
+	b=isRGx6PicfCnrCbORCDFV6RUxSoMVY3sBRQi1rfTRxlxSRKSt+FEv45Ao/A6u4rQup
+	Fo3YXSHZngqfMgRZ9yVsI6MCt0hri0a6f0VY3m0KUKEWNlJK0gfZJv1Dei7E8dk4DaOc
+	cbZwtl6GqUk01kUQGCz2JQGaKA0vDHS9n0MLJsRXL80uvOs6drUDJ9kZAGwm2Q0eciMQ
+	eGG62Jdk9XrIaYQ5zCm+ATz/feRVLV06JNyHqfscLuycDErZhHLDasyHObfTYBVmwrYu
+	rhH85fDESCYhWJjVXdlMjs9LjPmeM0fBTleqwvn+9QOYnV4Gwqvhp6JQVvZehYPZqmPR
+	z35g==
+Received: by 10.224.101.73 with SMTP id b9mr58681297qao.42.1342011623044;
+	Wed, 11 Jul 2012 06:00:23 -0700 (PDT)
+Received: from ferlandm@sonatest.com
+	(modemcable066.15-37-24.static.videotron.ca. [24.37.15.66])
+	by mx.google.com with ESMTPS id cg7sm3136990qab.19.2012.07.11.06.00.19
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Wed, 11 Jul 2012 06:00:22 -0700 (PDT)
+Sender: Marc Ferland <marc.ferland@gmail.com>
+Received: by ferlandm@sonatest.com (sSMTP sendmail emulation);
+	Wed, 11 Jul 2012 09:00:21 -0400
+From: Marc Ferland <ferlandm@sonatest.com>
+To: "Murugayah\, Kanapathy" <kanapathy.murugayah@intel.com>
+References: <DF15BBD5E5DF5B4CA9E6CE4A20BC420A2252C876@PGSMSX101.gar.corp.intel.com>
+Date: Wed, 11 Jul 2012 09:00:21 -0400
+In-Reply-To: <DF15BBD5E5DF5B4CA9E6CE4A20BC420A2252C876@PGSMSX101.gar.corp.intel.com>
+	(Kanapathy Murugayah's message of "Wed, 11 Jul 2012 08:05:09 +0000")
+Message-ID: <874npexxju.fsf@sonatest.com>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/24.1 (gnu/linux)
 MIME-Version: 1.0
-Received: by 10.205.34.4 with HTTP; Wed, 11 Jul 2012 05:28:16 -0700 (PDT)
-From: Navani Srivastava <navani.srivastava@gmail.com>
-Date: Wed, 11 Jul 2012 17:58:16 +0530
-Message-ID: <CA+Z6RkUQy_rcRPe8OAKek+aNs-LG106C3aXfXTwS1_0ZbZB-kw@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: Error while adding a new recipe
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: FW: Unable to start X on Yocto 1.2
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,72 +47,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Jul 2012 12:28:38 -0000
-Content-Type: multipart/alternative; boundary=00151759355c74ec2104c48cfceb
+X-List-Received-Date: Wed, 11 Jul 2012 13:00:24 -0000
+Content-Type: text/plain
 
---00151759355c74ec2104c48cfceb
-Content-Type: text/plain; charset=ISO-8859-1
+"Murugayah, Kanapathy" <kanapathy.murugayah@intel.com> writes:
 
-Hi,
+> Hi I am having some issues with Yocto 1.2 on Crownbay. 
+>
+> After building an image (core-image-sato) with crownbay bsp + emgd, it
+> fails to startx. 
+>
+Your problem is surely related to this:
+[1442948.073] (II) LoadModule: "emgd"
+[1442948.075] (WW) Warning, couldn't open module emgd
+[1442948.075] (II) UnloadModule: "emgd"
+[1442948.075] (EE) Failed to load module "emgd" (module does not exist,
+0)
 
-I am working on poky-denzil-1.0 and I have added a recipe to copy pre-built
-binaries and some documents to specified path of rootfs. I am able to copy
-documents in rootfs successfully but while copying binaries to rootfs, I am
-getting following error -
+Looks like the module is absent from your image. Check that you
+correctly selected "crownbay" and not "crownbay-noemgd" in your
+local.conf.
 
-NOTE: package colorado-1.0-r0: task do_package: Started
-ERROR: runstrip: ''arm-poky-linux-gnueabi-strip' --remove-section=.comment
---remove-section=.note
-'/home/navani/poky_test/build/tmp/work/armv6-vfp-poky-linux-gnueabi/colorado-1.0-r0/package/home/Leica/Bin/colorado_gui_bk''
-strip command failed
-ERROR: QA Issue: Architecture did not match (40 to 3) on
-/work/armv6-vfp-poky-linux-gnueabi/colorado-1.0-r0/packages-split/colorado/home/Leica/Bin/colorado_gui_bk
-ERROR: QA run found fatal errors. Please consider fixing them.
-ERROR: Function failed: do_package_qa
-ERROR: Logfile of failure stored in:
-/home/navani/poky_test/build/tmp/work/armv6-vfp-poky-linux-gnueabi/colorado-1.0-r0/temp/log.do_package.29705
-NOTE: package colorado-1.0-r0: task do_package: Failed
-ERROR: Task 151 (/home/navani/poky_test/meta-EB/recipes-colorado/colorado/
-colorado_1.0.bb, do_package) failed with exit code '1'
-NOTE: Tasks Summary: Attempted 1127 tasks of which 1119 didn't need to be
-rerun and 1 failed.
+Marc
 
-Any help is appreciable.
-
-Thanks and Regards
-Navani Kamal Srivastava
-
---00151759355c74ec2104c48cfceb
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-Hi,<br><br>I am working on poky-denzil-1.0 and I have added a recipe to cop=
-y pre-built binaries and some documents to specified path of rootfs. I am a=
-ble to copy documents in rootfs successfully but while copying binaries to =
-rootfs, I am getting following error -<br>
-
-<br>NOTE: package colorado-1.0-r0: task do_package: Started<br>ERROR: runst=
-rip: &#39;&#39;arm-poky-linux-gnueabi-strip&#39; --remove-section=3D.commen=
-t --remove-section=3D.note &#39;/home/navani/poky_test/build/tmp/work/armv6=
--vfp-poky-linux-gnueabi/colorado-1.0-r0/package/home/Leica/Bin/colorado_gui=
-_bk&#39;&#39; strip command failed<br>
-
-ERROR: QA Issue: Architecture did not match (40 to 3) on /work/armv6-vfp-po=
-ky-linux-gnueabi/colorado-1.0-r0/packages-split/colorado/home/Leica/Bin/col=
-orado_gui_bk<br>ERROR: QA run found fatal errors. Please consider fixing th=
-em.<br>
-
-ERROR: Function failed: do_package_qa<br>ERROR: Logfile of failure stored i=
-n: /home/navani/poky_test/build/tmp/work/armv6-vfp-poky-linux-gnueabi/color=
-ado-1.0-r0/temp/log.do_package.29705<br>NOTE: package colorado-1.0-r0: task=
- do_package: Failed<br>
-
-ERROR: Task 151 (/home/navani/poky_test/meta-EB/recipes-colorado/colorado/<=
-a href=3D"http://colorado_1.0.bb">colorado_1.0.bb</a>, do_package) failed w=
-ith exit code &#39;1&#39;<br>NOTE: Tasks Summary: Attempted 1127 tasks of w=
-hich 1119 didn&#39;t need to be rerun and 1 failed.<br>
-
-<br>Any help is appreciable.<br><br>Thanks and Regards<br>Navani Kamal Sriv=
-astava<br><br>
-
---00151759355c74ec2104c48cfceb--
