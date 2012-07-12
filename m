@@ -1,19 +1,20 @@
-Return-Path: <kevin.strasser@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5A4B1E00347
-	for <yocto@yoctoproject.org>; Wed, 11 Jul 2012 14:42:43 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 11 Jul 2012 14:42:43 -0700
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DF3DBE00346
+	for <yocto@yoctoproject.org>; Wed, 11 Jul 2012 17:22:02 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 11 Jul 2012 17:22:02 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="170675491"
-Received: from wrk.jf.intel.com ([10.7.202.71])
-	by orsmga002.jf.intel.com with ESMTP; 11 Jul 2012 14:42:43 -0700
-From: Kevin Strasser <kevin.strasser@linux.intel.com>
-To: yocto@yoctoproject.org
-Date: Wed, 11 Jul 2012 14:43:46 -0700
-Message-Id: <1342043026-7382-1-git-send-email-kevin.strasser@linux.intel.com>
-X-Mailer: git-send-email 1.7.9.5
-Subject: [meta-baryon] add build documentation
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="121370474"
+Received: from unknown (HELO localhost) ([10.255.12.200])
+	by AZSMGA002.ch.intel.com with ESMTP; 11 Jul 2012 17:22:01 -0700
+From: tom.zanussi@intel.com
+To: dvhart@linux.intel.com,
+	yocto@yoctoproject.org
+Date: Wed, 11 Jul 2012 19:21:59 -0500
+Message-Id: <cover.1342052377.git.tom.zanussi@intel.com>
+X-Mailer: git-send-email 1.7.0.4
+Subject: [PATCH 0/1] meta-intel: linux-firmware license update
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -25,49 +26,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Jul 2012 21:42:43 -0000
+X-List-Received-Date: Thu, 12 Jul 2012 00:22:03 -0000
 
-Signed-off-by: Kevin Strasser <kevin.strasser@linux.intel.com>
----
- README |   24 ++++++++++++++++++++++++
- 1 file changed, 24 insertions(+)
+From: Tom Zanussi <tom.zanussi@intel.com>
 
-diff --git a/README b/README
-index 2a9c77d..10a338a 100644
---- a/README
-+++ b/README
-@@ -27,6 +27,30 @@ to yocto@yoctoproject.org with '[meta-baryon]' in the subject.
- 
- 
- 
-+Building the meta-baryon layer
-+------------------------------
-+
-+After you download meta-baryon, be sure to add its location to bblayers.conf.
-+
-+The meta-baryon layer uses the 'lame' package, which has a license that
-+must be whitelisted by adding the string "commercial" to the
-+LICENSE_FLAGS_WHITELIST variable in your local.conf. For example:
-+
-+  LICENSE_FLAGS_WHITELIST = "commercial"
-+
-+Optionally, you can set the DISTRO flag to both identify the image as Baryon 
-+and cut down DISTRO_FEATURES to something more appropriate for a headless NAS 
-+type device. For example:
-+
-+  DISTRO = "baryon"
-+
-+You should then be able to build the image as such:
-+
-+  $ . ./oe-init-build-env
-+  $ bitbake baryon-image
-+
-+
-+
- License
- -------
- 
--- 
-1.7.9.5
+This updates the license checksum used in the recipe, which
+trivially changed, but caused build failures for fri2 and fri2-noemgd.
+
+The following changes since commit bf067c332c65ef6e8200e0c0b1d0226dc8300c85:
+  Richard Purdie (1):
+        meta-sys940x: Catch up with netbase 4.47 -> 5.0 upgrade
+
+are available in the git repository at:
+
+  git://git.yoctoproject.org/meta-intel.git tzanussi/linux-firmware-lic-chksum-fix
+  http://git.yoctoproject.org/cgit.cgi//log/?h=tzanussi/linux-firmware-lic-chksum-fix
+
+Tom Zanussi (1):
+  linux-firmware: update md5sum for LICENCE.iwlwifi_firmware
+
+ .../linux-firmware/linux-firmware_git.bbappend     |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
 
 
