@@ -1,21 +1,23 @@
-Return-Path: <nitin.a.kamble@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B2523E00347
-	for <yocto@yoctoproject.org>; Thu, 12 Jul 2012 02:37:10 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 12 Jul 2012 02:37:10 -0700
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5302AE00344
+	for <yocto@yoctoproject.org>; Thu, 12 Jul 2012 03:49:35 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 12 Jul 2012 03:49:34 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="164795607"
-Received: from yocto-hm1.jf.intel.com ([10.23.232.32])
-	by orsmga001.jf.intel.com with ESMTP; 12 Jul 2012 02:37:10 -0700
-From: nitin.a.kamble@intel.com
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="191681715"
+Received: from unknown (HELO helios.localnet) ([10.252.121.24])
+	by fmsmga002.fm.intel.com with ESMTP; 12 Jul 2012 03:49:34 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
 To: yocto@yoctoproject.org
-Date: Thu, 12 Jul 2012 02:35:54 -0700
-Message-Id: <8a1dbb15a9e7ce0b9ef651ac01ff93a1996edc71.1342085510.git.nitin.a.kamble@intel.com>
-X-Mailer: git-send-email 1.7.3.4
-In-Reply-To: <cover.1342085510.git.nitin.a.kamble@intel.com>
-References: <cover.1342085510.git.nitin.a.kamble@intel.com>
-Subject: [PATCH 1/1] ia32-base.inc: also take -dev package of emgd
+Date: Thu, 12 Jul 2012 11:49:33 +0100
+Message-ID: <2591725.ClqI3bH3Yi@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.8.4 (Linux/3.2.0-26-generic-pae; KDE/4.8.4; i686; ; )
+In-Reply-To: <1342043026-7382-1-git-send-email-kevin.strasser@linux.intel.com>
+References: <1342043026-7382-1-git-send-email-kevin.strasser@linux.intel.com>
+MIME-Version: 1.0
+Subject: Re: [meta-baryon] add build documentation
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,33 +29,59 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Jul 2012 09:37:10 -0000
+X-List-Received-Date: Thu, 12 Jul 2012 10:49:35 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-From: Nitin A Kamble <nitin.a.kamble@intel.com>
+On Wednesday 11 July 2012 14:43:46 Kevin Strasser wrote:
+> Signed-off-by: Kevin Strasser <kevin.strasser@linux.intel.com>
+> ---
+>  README |   24 ++++++++++++++++++++++++
+>  1 file changed, 24 insertions(+)
+> 
+> diff --git a/README b/README
+> index 2a9c77d..10a338a 100644
+> --- a/README
+> +++ b/README
+> @@ -27,6 +27,30 @@ to yocto@yoctoproject.org with '[meta-baryon]' in the subject.
+>  
+>  
+>  
+> +Building the meta-baryon layer
+> +------------------------------
+> +
+> +After you download meta-baryon, be sure to add its location to bblayers.conf.
+> +
+> +The meta-baryon layer uses the 'lame' package, which has a license that
+> +must be whitelisted by adding the string "commercial" to the
+> +LICENSE_FLAGS_WHITELIST variable in your local.conf. For example:
+> +
+> +  LICENSE_FLAGS_WHITELIST = "commercial"
+> +
+> +Optionally, you can set the DISTRO flag to both identify the image as Baryon 
+> +and cut down DISTRO_FEATURES to something more appropriate for a headless NAS 
+> +type device. For example:
+> +
+> +  DISTRO = "baryon"
+> +
+> +You should then be able to build the image as such:
+> +
+> +  $ . ./oe-init-build-env
+> +  $ bitbake baryon-image
+> +
+> +
+> +
+>  License
+>  -------
 
-emgd-driver-bin recipe provides emgd-driver-bin, emgd-driver-bin-dev
-& emgd-driver-bin-dbg packages. For emgd driver to work it also need
-library files from emgd-driver-bin-dev package. This change makes sure
-this -dev package is also added for emgd driver.
 
-Signed-off-by: Nitin A Kamble <nitin.a.kamble@intel.com>
----
- conf/machine/include/ia32-base.inc |    1 +
- 1 files changed, 1 insertions(+), 0 deletions(-)
+Merged to meta-baryon master, thanks.
 
-diff --git a/conf/machine/include/ia32-base.inc b/conf/machine/include/ia32-base.inc
-index 99ac352..7d9413a 100644
---- a/conf/machine/include/ia32-base.inc
-+++ b/conf/machine/include/ia32-base.inc
-@@ -57,6 +57,7 @@ XSERVER_IA32_I965 = "xf86-video-intel \
-            "
- 
- XSERVER_IA32_EMGD = "emgd-driver-bin \
-+                     emgd-driver-bin-dev \
-            "
- 
- XSERVER_IA32_VESA = "xf86-video-vesa"
+Cheers,
+Paul
+
 -- 
-1.7.3.4
 
+Paul Eggleton
+Intel Open Source Technology Centre
 
