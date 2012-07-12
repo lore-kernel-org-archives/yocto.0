@@ -1,38 +1,48 @@
-Return-Path: <kergoth@gmail.com>
-Received: from mail-lb0-f176.google.com (mail-lb0-f176.google.com
-	[209.85.217.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5B3ACE00347
-	for <yocto@yoctoproject.org>; Thu, 12 Jul 2012 10:19:45 -0700 (PDT)
-Received: by lboj14 with SMTP id j14so4124183lbo.35
-	for <yocto@yoctoproject.org>; Thu, 12 Jul 2012 10:19:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:from:date
-	:x-google-sender-auth:message-id:subject:to:cc:content-type;
-	bh=luvC4hFj1LsR0vFYbLf2NE/Ly3sMjAN9fEycbgGwM+g=;
-	b=XYXu4ou9NQ/iCKxQcDvI5ckcJL1uqsPYTR1g+EDl8k4Ae4cJwbywBnaVJmaSrO/bV5
-	xtOKa/44kV+eKogJt13zcaQgklODglKNWXB+GK4fE+yy245zJY+gFTR0gHe7Apt71bNR
-	adQqCkacxdsgcKap+0jtIvidt3QMid7hUdfxoygv5yq7f2msWRa4La91kvz4jeQWxXPI
-	I84b68FLmehniAkagfk2U/2oSXgMIdiUVE/btmSGVslwK7k3jBIp6FE/uNTsJo6cNmOz
-	QC9d7czL7r9g8Ubzsl5Yfow1OZakjgyAYISM3ymS3XJsDEWU7oZhc2Ak4PJpv9th//R/
-	Q1Eg==
-Received: by 10.152.146.101 with SMTP id tb5mr37670035lab.0.1342113583862;
-	Thu, 12 Jul 2012 10:19:43 -0700 (PDT)
+Return-Path: <B29882@freescale.com>
+Received: from va3outboundpool.messaging.microsoft.com
+	(va3ehsobe001.messaging.microsoft.com [216.32.180.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2A408E00347
+	for <yocto@yoctoproject.org>; Thu, 12 Jul 2012 10:43:28 -0700 (PDT)
+Received: from mail214-va3-R.bigfish.com (10.7.14.237) by
+	VA3EHSOBE013.bigfish.com (10.7.40.63) with Microsoft SMTP Server id
+	14.1.225.23; Thu, 12 Jul 2012 17:43:25 +0000
+Received: from mail214-va3 (localhost [127.0.0.1])	by
+	mail214-va3-R.bigfish.com (Postfix) with ESMTP id 35468A0028B;
+	Thu, 12 Jul 2012 17:43:25 +0000 (UTC)
+X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null); IPV:NLI;
+	H:mail.freescale.net; RD:none; EFVD:NLI
+X-SpamScore: 1
+X-BigFish: VS1(zzzz1202hzz8275dhz2dh2a8h668h839h8e2h8e3hf0ah107ahbe9i)
+Received: from mail214-va3 (localhost.localdomain [127.0.0.1]) by mail214-va3
+	(MessageSwitch) id 1342115003740370_13461;
+	Thu, 12 Jul 2012 17:43:23 +0000 (UTC)
+Received: from VA3EHSMHS010.bigfish.com (unknown [10.7.14.236])	by
+	mail214-va3.bigfish.com (Postfix) with ESMTP id A91F21A0045;
+	Thu, 12 Jul 2012 17:43:23 +0000 (UTC)
+Received: from mail.freescale.net (70.37.183.190) by VA3EHSMHS010.bigfish.com
+	(10.7.99.20) with Microsoft SMTP Server (TLS) id 14.1.225.23;
+	Thu, 12 Jul 2012 17:43:20 +0000
+Received: from 039-SN1MPN1-002.039d.mgd.msft.net ([169.254.2.109]) by
+	039-SN1MMR1-001.039d.mgd.msft.net ([10.84.1.13]) with mapi id
+	14.02.0298.005; Thu, 12 Jul 2012 12:43:21 -0500
+From: McClintock Matthew-B29882 <B29882@freescale.com>
+To: Joshua Lock <josh@linux.intel.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: edison/denzil patches (post-1.1.2 and 1.2.1)
+Thread-Index: AQHNYFXTv0q7KdYirke7XkZ8aY+u/A==
+Date: Thu, 12 Jul 2012 17:43:20 +0000
+Message-ID: <CAEsOVNehMk8dmo2O+MpOfs0JM9OPARB2Jd+dzTFw0g93SHYcyA@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [70.112.201.132]
 MIME-Version: 1.0
-Sender: kergoth@gmail.com
-Received: by 10.114.64.180 with HTTP; Thu, 12 Jul 2012 10:19:23 -0700 (PDT)
-In-Reply-To: <8a1dbb15a9e7ce0b9ef651ac01ff93a1996edc71.1342085510.git.nitin.a.kamble@intel.com>
-References: <cover.1342085510.git.nitin.a.kamble@intel.com>
-	<8a1dbb15a9e7ce0b9ef651ac01ff93a1996edc71.1342085510.git.nitin.a.kamble@intel.com>
-From: Chris Larson <clarson@kergoth.com>
-Date: Thu, 12 Jul 2012 10:19:23 -0700
-X-Google-Sender-Auth: u39E21RA25xOffcFFiV8dD_xMSA
-Message-ID: <CABcZAN=Wa3drqpkDrX+YH4hejrLmUPPHMbT1FgNzU0Yjww7rgg@mail.gmail.com>
-To: nitin.a.kamble@intel.com
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 1/1] ia32-base.inc: also take -dev package of emgd
+X-OriginatorOrg: freescale.com
+Subject: edison/denzil patches (post-1.1.2 and 1.2.1)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: McClintock Matthew-B29882 <B29882@freescale.com>
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -41,19 +51,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Jul 2012 17:19:45 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 12 Jul 2012 17:43:28 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-ID: <2CEA17A1DFF9624A86E3104A8F0053D7@mgd.freescale.com>
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jul 12, 2012 at 2:35 AM,  <nitin.a.kamble@intel.com> wrote:
-> From: Nitin A Kamble <nitin.a.kamble@intel.com>
->
-> emgd-driver-bin recipe provides emgd-driver-bin, emgd-driver-bin-dev
-> & emgd-driver-bin-dbg packages. For emgd driver to work it also need
-> library files from emgd-driver-bin-dev package. This change makes sure
-> this -dev package is also added for emgd driver.
+Josh, Scott:
 
-This seems questionable. If the driver requires those libraries, they
-should probably be moved out of -dev, no?
--- 
-Christopher Larson
+I've pushed a set of patches for edison/denzil branch - and I may push
+a few more still to:
+
+http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/log/?h=3Dmattsm/edis=
+on
+http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/log/?h=3Dmattsm/denz=
+il
+
+These are all cherry-pick's and most applied cleanly and a few had
+some minor cleanups. Please consider these for after the point
+releases. I will continue to push to these branches and rebase these
+branches off the official upstream trees as well.
+
+-M=
+
 
