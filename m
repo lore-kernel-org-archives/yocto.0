@@ -1,24 +1,37 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7E08FE0034C
-	for <yocto@yoctoproject.org>; Fri, 13 Jul 2012 06:57:27 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 13 Jul 2012 06:57:27 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="167716536"
-Received: from unknown (HELO helios.localnet) ([10.252.121.15])
-	by azsmga001.ch.intel.com with ESMTP; 13 Jul 2012 06:57:25 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Kevin Strasser <kevin.strasser@linux.intel.com>
-Date: Fri, 13 Jul 2012 14:57:24 +0100
-Message-ID: <1961969.6JloXzyBcB@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.8.4 (Linux/3.2.0-26-generic-pae; KDE/4.8.4; i686; ; )
-In-Reply-To: <1342132831-4596-1-git-send-email-kevin.strasser@linux.intel.com>
-References: <1342132831-4596-1-git-send-email-kevin.strasser@linux.intel.com>
+Return-Path: <fnognn@unife.it>
+Received: from mail-lb0-f176.google.com (mail-lb0-f176.google.com
+	[209.85.217.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D8164E00280
+	for <yocto@yoctoproject.org>; Wed, 11 Jul 2012 23:45:30 -0700 (PDT)
+Received: by lboj14 with SMTP id j14so3324801lbo.35
+	for <yocto@yoctoproject.org>; Wed, 11 Jul 2012 23:45:28 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type:x-gm-message-state;
+	bh=OIrrHCL2dU2d3MAISnxnKwMh5ClEnl8HXBcPl/K4tOI=;
+	b=cljWVYGOP/puL5pnFVSUnxT6oF/6gLZBVEWcO7UJy7P0t1K/E7E0SmKK67Pk2FBYCu
+	dF8nHp+XQmkQKazbFHZY7ktGKbra9r3ydkDC3gl1VNTRa4iKzs15vUJZtpVeX5z27rk7
+	49x/ypCk5MnQUb1Bb0pYOZWBs7lD66fYyqWg0pMKLXkXGrSKrBVzx0zs/BZvtJFHOCX1
+	Nf8TcRk6kcUGk8glBL+nVfPO21nr8bBX2ZVn6ZgoyMP3MVG9y5D3RiKAvFaPeiMg7I/l
+	yI3PP0VzdWzxBOTkjb2oBfIMFC8m04QtEMwnJ1jvOQf8F2h/+JZFnwYYdHueEpHyh6vU
+	ip3Q==
+Received: by 10.152.103.11 with SMTP id fs11mr46889290lab.23.1342075528645;
+	Wed, 11 Jul 2012 23:45:28 -0700 (PDT)
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-baryon][PATCH] ffmpeg: ensure libjpeg dependency is included
+Received: by 10.112.96.35 with HTTP; Wed, 11 Jul 2012 23:45:08 -0700 (PDT)
+In-Reply-To: <C6510F6D410BB64A8C15398EDC6B847C46A79CD8@ORSMSX101.amr.corp.intel.com>
+References: <CANsUPaP4h2OUz_4McKQ8jmfm_grv_cCGCMfxZQaGMs7ty8Bf1A@mail.gmail.com>
+	<20120628181214.7ACD02026AB@gemini.denx.de>
+	<C6510F6D410BB64A8C15398EDC6B847C46A79CD8@ORSMSX101.amr.corp.intel.com>
+From: Giovanni Foiani <fnognn@unife.it>
+Date: Thu, 12 Jul 2012 08:45:08 +0200
+Message-ID: <CANsUPaNSy0Me580w0odN76bcHvJZ1-gXFdWadhdnpNR3Q_EEtQ@mail.gmail.com>
+To: "Zhang, Jessica" <jessica.zhang@intel.com>
+X-Gm-Message-State: ALoCoQnhzoh7nRbYVznT5wGcRuOydTPLMaLiTyoq7vwIOcnwoYRD6IfzGYgW40gnj/cVft/eIRmm
+X-Mailman-Approved-At: Fri, 13 Jul 2012 07:30:59 -0700
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Yocto and Qt embedded
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,57 +43,212 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 13 Jul 2012 13:57:27 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Thu, 12 Jul 2012 06:45:31 -0000
+Content-Type: multipart/alternative; boundary=f46d040715c5258dcc04c49c4f27
 
-Hi Kevin,
+--f46d040715c5258dcc04c49c4f27
+Content-Type: text/plain; charset=ISO-8859-1
 
-On Thursday 12 July 2012 15:40:31 Kevin Strasser wrote:
-> Signed-off-by: Kevin Strasser <kevin.strasser@linux.intel.com>
-> ---
->  recipes-core/base-files/base-files_3.0.14.bbappend |    2 +-
->  .../ffmpeg/ffmpegthumbnailer_2.0.7.bb              |    2 +-
->  2 files changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/recipes-core/base-files/base-files_3.0.14.bbappend b/recipes-core/base-files/base-files_3.0.14.bbappend
-> index 593a37c..33217fb 100644
-> --- a/recipes-core/base-files/base-files_3.0.14.bbappend
-> +++ b/recipes-core/base-files/base-files_3.0.14.bbappend
-> @@ -1,4 +1,4 @@
->  # Set a hostname
->  hostname_baryon = "baryon"
->  
-> -PRINC = "2"
-> +PRINC = "3"
-> diff --git a/recipes-multimedia/ffmpeg/ffmpegthumbnailer_2.0.7.bb b/recipes-multimedia/ffmpeg/ffmpegthumbnailer_2.0.7.bb
-> index ec6d625..4f70ab8 100644
-> --- a/recipes-multimedia/ffmpeg/ffmpegthumbnailer_2.0.7.bb
-> +++ b/recipes-multimedia/ffmpeg/ffmpegthumbnailer_2.0.7.bb
-> @@ -6,7 +6,7 @@ LICENSE = "GPLv2"
->  LIC_FILES_CHKSUM = "file://COPYING;md5=393a5ca445f6965873eca0259a17f833"
->  SRC_URI = "http://ffmpegthumbnailer.googlecode.com/files/${PN}-${PV}.tar.gz"
->  
-> -DEPENDS = "ffmpeg libpng"
-> +DEPENDS = "ffmpeg jpeg libpng"
->  
->  SRC_URI[md5sum] = "2b5726894792ef484793dce9568a065a"
->  SRC_URI[sha256sum] = "a71155339d17201a13fc3ebb649b0d00c7ab2d5a8880da071c8157a69c6f612b"
-> 
+Hi Jessica,
 
-A couple of things:
+I built separately the qte toolchain running:
 
-1) You've bumped PRINC on base-files, I think what you need to do instead is
-bump PR on ffmpegthumbnailer.
 
-2) The subject line (shortlog) should refer to ffmpegthumbnailer rather than 
-ffmpeg.
+   - bitbake meta-toolchain-qte
 
-Cheers,
-Paul
+and the qte demo image (without toolchain) using Hob.
+Now I need to integrate Yocto SDK and Qt Creator IDE.
+I'm trying to configure Qt Creator to recognize Poky toolchain and Qt
+Creator asks for the compiler path inside Poky SDK.
+Where is the compiler located inside Poky SDK built from meta-toolchain-qte?
 
--- 
+Thanks
 
-Paul Eggleton
-Intel Open Source Technology Centre
+Giovanni
 
+--
+
+Dott. Ing. Giovanni Foiani
+
+Cell:        +39-349-3577515
+Phone:    +39-0532-97-4106
+mail:        giovanni.foiani@unife.it
+CenTec - Corso Guercino, 47 - 44042 Cento (FE)
+
+
+
+On Thu, Jun 28, 2012 at 8:20 PM, Zhang, Jessica <jessica.zhang@intel.com>wrote:
+
+> Hi Giovanni,
+>
+> You need to build a matching toolchain.  Either from command line do
+> "bitbake meta-toolchain-qte or through hob, under Settings, please make
+> sure check "Build Toolchain".
+>
+> Thanks,
+> Jessica
+>
+> -----Original Message-----
+> From: yocto-bounces@yoctoproject.org [mailto:
+> yocto-bounces@yoctoproject.org] On Behalf Of Wolfgang Denk
+> Sent: Thursday, June 28, 2012 11:12 AM
+> To: Giovanni Foiani
+> Cc: yocto@yoctoproject.org
+> Subject: Re: [yocto] Yocto and Qt embedded
+>
+> Dear Giovanni,
+>
+> In message <
+> CANsUPaP4h2OUz_4McKQ8jmfm_grv_cCGCMfxZQaGMs7ty8Bf1A@mail.gmail.com> you
+> wrote:
+> >
+> > This is my first post on this mailing list and I'm quite new to Yocto.
+> > I successfully built a distro using the latest release of hob,
+> > including Qt embedded (without X11).
+> > I wrote a Qt application and cross compiled for ARM on my host machine
+> > but when I deploy it on the device (a Freescale iMX53) I get and error
+> > because the application looks for libraries like libQtGui but on the
+> > distro all Qt libraries are named like libQtGuiE (ending with E which
+> > I suppose it stands for Embedded).
+>
+> These names are OK for the Qt Embedded libraries, and they should match
+> what your cross development tools are using.  Which tool chain did you use
+> for compiling and linking your application - the one from
+> meta-toolchain-qte ?
+>
+> When I build meta-toolchain-qte, this also includes, for example,
+>
+> .../sysroots/armv6-vfp-linux-gnueabi/usr/lib/libQtGuiE.so.4.8.2
+>
+> so cross tool chain and native systems work together without problems.
+>
+>
+> Best regards,
+>
+> Wolfgang Denk
+>
+> --
+> DENX Software Engineering GmbH,     MD: Wolfgang Denk & Detlev Zundel
+> HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+> Phone: (+49)-8142-66989-10 Fax: (+49)-8142-66989-80 Email: wd@denx.deIt's hard to make a program foolproof because fools are so ingenious.
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+
+--f46d040715c5258dcc04c49c4f27
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+Hi Jessica,<div><br></div><div>I built separately the qte toolchain running=
+:</div><div><br></div><div><ul><li>bitbake meta-toolchain-qte</li></ul><div=
+>and the qte demo image (without toolchain) using Hob.</div><div>Now I need=
+ to integrate Yocto SDK and Qt Creator IDE.=A0</div>
+
+<div>I&#39;m trying to configure Qt Creator to recognize Poky toolchain and=
+ Qt Creator asks for the compiler path inside Poky SDK.</div><div>Where is =
+the compiler located inside Poky SDK built from=A0meta-toolchain-qte?</div>
+
+<div><br></div><div>Thanks=A0</div><div><br></div><div>Giovanni</div><div><=
+br></div>
+<div>--<br><br>Dott. Ing. Giovanni Foiani<br><font face=3D"arial, sans-seri=
+f"><span style=3D"border-collapse:collapse"><br></span></font></div><div>Ce=
+ll:=A0 =A0 =A0 =A0 +39-349-3577515<br>Phone: =A0=A0 +39-0532-97-4106<br>mai=
+l:=A0 =A0 =A0 =A0 <a href=3D"mailto:giovanni.foiani@unife.it" target=3D"_bl=
+ank">giovanni.foiani@unife.it</a></div>
+
+<div><span style=3D"font-family:arial,helvetica,sans-serif;font-size:13px;l=
+ine-height:13px">CenTec - Corso Guercino, 47 - 44042 Cento (FE)</span></div=
+><br>
+<br><br><div class=3D"gmail_quote">On Thu, Jun 28, 2012 at 8:20 PM, Zhang, =
+Jessica <span dir=3D"ltr">&lt;<a href=3D"mailto:jessica.zhang@intel.com" ta=
+rget=3D"_blank">jessica.zhang@intel.com</a>&gt;</span> wrote:<br><blockquot=
+e class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc sol=
+id;padding-left:1ex">
+
+Hi Giovanni,<br>
+<br>
+You need to build a matching toolchain. =A0Either from command line do &quo=
+t;bitbake meta-toolchain-qte or through hob, under Settings, please make su=
+re check &quot;Build Toolchain&quot;.<br>
+<br>
+Thanks,<br>
+Jessica<br>
+<div><div class=3D"h5"><br>
+-----Original Message-----<br>
+From: <a href=3D"mailto:yocto-bounces@yoctoproject.org">yocto-bounces@yocto=
+project.org</a> [mailto:<a href=3D"mailto:yocto-bounces@yoctoproject.org">y=
+octo-bounces@yoctoproject.org</a>] On Behalf Of Wolfgang Denk<br>
+Sent: Thursday, June 28, 2012 11:12 AM<br>
+To: Giovanni Foiani<br>
+Cc: <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br=
+>
+Subject: Re: [yocto] Yocto and Qt embedded<br>
+<br>
+Dear Giovanni,<br>
+<br>
+In message &lt;<a href=3D"mailto:CANsUPaP4h2OUz_4McKQ8jmfm_grv_cCGCMfxZQaGM=
+s7ty8Bf1A@mail.gmail.com">CANsUPaP4h2OUz_4McKQ8jmfm_grv_cCGCMfxZQaGMs7ty8Bf=
+1A@mail.gmail.com</a>&gt; you wrote:<br>
+&gt;<br>
+&gt; This is my first post on this mailing list and I&#39;m quite new to Yo=
+cto.<br>
+&gt; I successfully built a distro using the latest release of hob,<br>
+&gt; including Qt embedded (without X11).<br>
+&gt; I wrote a Qt application and cross compiled for ARM on my host machine=
+<br>
+&gt; but when I deploy it on the device (a Freescale iMX53) I get and error=
+<br>
+&gt; because the application looks for libraries like libQtGui but on the<b=
+r>
+&gt; distro all Qt libraries are named like libQtGuiE (ending with E which<=
+br>
+&gt; I suppose it stands for Embedded).<br>
+<br>
+These names are OK for the Qt Embedded libraries, and they should match wha=
+t your cross development tools are using. =A0Which tool chain did you use f=
+or compiling and linking your application - the one from meta-toolchain-qte=
+ ?<br>
+
+
+<br>
+When I build meta-toolchain-qte, this also includes, for example,<br>
+<br>
+.../sysroots/armv6-vfp-linux-gnueabi/usr/lib/libQtGuiE.so.4.8.2<br>
+<br>
+so cross tool chain and native systems work together without problems.<br>
+<br>
+<br>
+Best regards,<br>
+<br>
+Wolfgang Denk<br>
+<br>
+--<br>
+DENX Software Engineering GmbH, =A0 =A0 MD: Wolfgang Denk &amp; Detlev Zund=
+el<br>
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany<br>
+Phone: <a href=3D"tel:%28%2B49%29-8142-66989-10" value=3D"+4981426698910">(=
++49)-8142-66989-10</a> Fax: <a href=3D"tel:%28%2B49%29-8142-66989-80" value=
+=3D"+4981426698980">(+49)-8142-66989-80</a> Email: <a href=3D"mailto:wd@den=
+x.de">wd@denx.de</a> It&#39;s hard to make a program foolproof because fool=
+s are so ingenious.<br>
+
+
+</div></div>_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
+>https://lists.yoctoproject.org/listinfo/yocto</a><br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
+>https://lists.yoctoproject.org/listinfo/yocto</a><br>
+</blockquote></div><br></div>
+
+--f46d040715c5258dcc04c49c4f27--
