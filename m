@@ -1,50 +1,30 @@
-Return-Path: <B29882@freescale.com>
-Received: from co1outboundpool.messaging.microsoft.com
-	(co1ehsobe002.messaging.microsoft.com [216.32.180.185])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 97107E00347
-	for <yocto@yoctoproject.org>; Thu, 12 Jul 2012 11:55:38 -0700 (PDT)
-Received: from mail17-co1-R.bigfish.com (10.243.78.237) by
-	CO1EHSOBE013.bigfish.com (10.243.66.76) with Microsoft SMTP Server id
-	14.1.225.23; Thu, 12 Jul 2012 18:55:35 +0000
-Received: from mail17-co1 (localhost [127.0.0.1])	by mail17-co1-R.bigfish.com
-	(Postfix) with ESMTP id 9D01D9405E5;
-	Thu, 12 Jul 2012 18:55:35 +0000 (UTC)
-X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null); IPV:NLI;
-	H:mail.freescale.net; RD:none; EFVD:NLI
-X-SpamScore: -2
-X-BigFish: VS-2(zz98dI9371I1432Izz1202hzz8275bh8275dhz2dh2a8h668h839h8e2h8e3hf0ah107ahbe9i)
-Received: from mail17-co1 (localhost.localdomain [127.0.0.1]) by mail17-co1
-	(MessageSwitch) id 1342119319302693_15345;
-	Thu, 12 Jul 2012 18:55:19 +0000 (UTC)
-Received: from CO1EHSMHS024.bigfish.com (unknown [10.243.78.239])	by
-	mail17-co1.bigfish.com (Postfix) with ESMTP id 47FED440066;
-	Thu, 12 Jul 2012 18:55:19 +0000 (UTC)
-Received: from mail.freescale.net (70.37.183.190) by CO1EHSMHS024.bigfish.com
-	(10.243.66.34) with Microsoft SMTP Server (TLS) id 14.1.225.23;
-	Thu, 12 Jul 2012 18:55:19 +0000
-Received: from 039-SN1MPN1-002.039d.mgd.msft.net ([169.254.2.109]) by
-	039-SN1MMR1-003.039d.mgd.msft.net ([10.84.1.16]) with mapi id
-	14.02.0298.005; Thu, 12 Jul 2012 13:55:20 -0500
-From: McClintock Matthew-B29882 <B29882@freescale.com>
-To: Joshua Lock <josh@linux.intel.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>, Scott Garman <scott.a.garman@intel.com>
-Thread-Topic: edison/denzil patches (post-1.1.2 and 1.2.1)
-Thread-Index: AQHNYFXTv0q7KdYirke7XkZ8aY+u/JcmUtAA
-Date: Thu, 12 Jul 2012 18:55:19 +0000
-Message-ID: <CAEsOVNen0aiiH6ZevOcs6bvOOtraU22ic6nNvNx-m+-vX6Eokw@mail.gmail.com>
-References: <CAEsOVNehMk8dmo2O+MpOfs0JM9OPARB2Jd+dzTFw0g93SHYcyA@mail.gmail.com>
-In-Reply-To: <CAEsOVNehMk8dmo2O+MpOfs0JM9OPARB2Jd+dzTFw0g93SHYcyA@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [70.112.201.132]
+Return-Path: <dallas.a.clement@gmail.com>
+Received: from mail-wg0-f47.google.com (mail-wg0-f47.google.com [74.125.82.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1B2E9E00347
+	for <yocto@yoctoproject.org>; Thu, 12 Jul 2012 12:20:59 -0700 (PDT)
+Received: by wgbfa7 with SMTP id fa7so1866625wgb.28
+	for <yocto@yoctoproject.org>; Thu, 12 Jul 2012 12:20:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=uW6v9oQBGeYvne+IS2qmCFaEX9A+axOFWFlyjkgHZGQ=;
+	b=DKB3Sv4+QzaqOYw+FPTNrTbwSQYpHUHTW/6bJtOSthsZy7ijuHv+dBV4sh8eeOT+Cd
+	GmMYZ1O11u3oUg/Hx+Lct1islf777yqkqQEMPF+NLLW2/wgL0jXaqgRkqz9JLJtiYU7C
+	zba4O5JZ1vf3vtrZb/3me5VBQE4ixrJFsn6sWrhyzTD4LkfTeY9H77zd1iM94Ue68546
+	Lvl2gz/tRAZbjNy1g+hAfM6JN8t5pT4CbU/4U2J536C24P0MnE10jUjIr8zsFsn8Gb4V
+	6ChWO/o52p97bxlK2S4AMgoH3Cc5daFIgJtDPT9lp9BWosNOKSW+x0EhZkI+JdNuZ8Bl
+	3yFw==
 MIME-Version: 1.0
-X-OriginatorOrg: freescale.com
-Subject: Re: edison/denzil patches (post-1.1.2 and 1.2.1)
+Received: by 10.216.61.77 with SMTP id v55mr2387829wec.160.1342120858452; Thu,
+	12 Jul 2012 12:20:58 -0700 (PDT)
+Received: by 10.180.109.162 with HTTP; Thu, 12 Jul 2012 12:20:58 -0700 (PDT)
+Date: Thu, 12 Jul 2012 14:20:58 -0500
+Message-ID: <CAE9DZUS20851zBEYJOM65QufJCx0gHCLnhgfb=7VXbpdkeq4eA@mail.gmail.com>
+From: Dallas Clement <dallas.a.clement@gmail.com>
+To: yocto@yoctoproject.org
+Subject: external toolchain
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: McClintock Matthew-B29882 <B29882@freescale.com>
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -53,31 +33,63 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Jul 2012 18:55:38 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-ID: <0934B5A51471E24DAB13042C078D1EC9@mgd.freescale.com>
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 12 Jul 2012 19:21:00 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-Adding Scott...
+I'm trying to use an external pre-built toolchain to build my distro.
+I added a "TCMODE ?= "external-sourcery" to my local.conf and modified
+the external-sourcery include file as follows:
 
-On Thu, Jul 12, 2012 at 12:43 PM, Matthew McClintock <msm@freescale.com> wr=
-ote:
-> Josh, Scott:
->
-> I've pushed a set of patches for edison/denzil branch - and I may push
-> a few more still to:
->
-> http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/log/?h=3Dmattsm/ed=
-ison
-> http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/log/?h=3Dmattsm/de=
-nzil
->
-> These are all cherry-pick's and most applied cleanly and a few had
-> some minor cleanups. Please consider these for after the point
-> releases. I will continue to push to these branches and rebase these
-> branches off the official upstream trees as well.
->
-> -M=
+diff --git a/meta/conf/distro/include/tcmode-external-sourcery.inc
+b/meta/conf/distro/include/tcmode-external-source
+index 1635eec..3ba564a 100644
+--- a/meta/conf/distro/include/tcmode-external-sourcery.inc
++++ b/meta/conf/distro/include/tcmode-external-sourcery.inc
+@@ -2,14 +2,16 @@
+ # Configuration to use external Sourcery G++ toolchain
+ #
 
+-EXTERNAL_TOOLCHAIN ?= "/usr/local/csl/${TARGET_ARCH}"
++#EXTERNAL_TOOLCHAIN ?= "/usr/local/csl/${TARGET_ARCH}"
++EXTERNAL_TOOLCHAIN ?=
+"/opt/armada-sdk-5.0-64k/armv7-marvell-linux-gnueabi-softfp"
+
+ TOOLCHAIN_PATH_ADD = "${EXTERNAL_TOOLCHAIN}/bin:"
+ PATH =. "${TOOLCHAIN_PATH_ADD}"
+
+ CSL_TARGET_SYS_powerpc ?= "powerpc-linux-gnu"
+ CSL_TARGET_SYS_powerpc64 ?= "powerpc-linux-gnu"
+-CSL_TARGET_SYS_arm ?= "arm-none-linux-gnueabi"
++#CSL_TARGET_SYS_arm ?= "arm-none-linux-gnueabi"
++CSL_TARGET_SYS_arm ?= "arm-marvell-linux-gnueabi"
+ CSL_TARGET_SYS_mips ?= "mips-linux-gnu"
+ CSL_TARGET_SYS_mipsel ?= "mips-linux-gnu"
+ CSL_TARGET_SYS_mips64 ?= "mips-linux-gnu"
+
+bitbake is able to find my toolchain, but it eventually fails trying
+to install the external sourcery toolchain for arm.
+
+ERROR: Function failed: do_install (see
+/development/dallasc/yocto/poky/build/tmp/work/armv5te-poky-linux-gnueabi/external-sourcery-toolchain-201111-0.-r7/temp/log.do_install.4466
+for further information)
+ERROR: Logfile of failure stored in:
+/development/dallasc/yocto/poky/build/tmp/work/armv5te-poky-linux-gnueabi/external-sourcery-toolchain-201111-0.-r7/temp/log.do_install.4466
+Log data follows:
+| DEBUG: Executing shell function do_install
+| ERROR: Function failed: do_install (see
+/development/dallasc/yocto/poky/build/tmp/work/armv5te-poky-linux-gnueabi/external-sourcery-toolchain-201111-0.-r7/temp/log.do_install.4466
+for further information)
+| mv: cannot stat
+`/development/dallasc/yocto/poky/build/tmp/work/armv5te-poky-linux-gnueabi/external-sourcery-toolchain-201111-0.-r7/image/usr/lib/bin/*':
+No such file or directory
+NOTE: package external-sourcery-toolchain-201111-0.-r7: task do_install: Failed
+ERROR: Task 422
+(/development/dallasc/yocto/poky/meta/recipes-core/meta/external-sourcery-toolchain.bb,
+do_install) failed with exit code '1'
+
+Should I be modifying this external-sourcery-toolchain recipe to point
+to my toolchain sysroot area?  Just not sure what all needs to be done
+to use my own toolchain.
+
+Thanks
 
