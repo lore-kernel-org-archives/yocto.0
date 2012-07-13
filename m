@@ -1,35 +1,27 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-ey0-f176.google.com (mail-ey0-f176.google.com
-	[209.85.215.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 07CEBE0027D
-	for <yocto@yoctoproject.org>; Fri, 13 Jul 2012 12:04:33 -0700 (PDT)
-Received: by eaab16 with SMTP id b16so1327629eaa.35
-	for <yocto@yoctoproject.org>; Fri, 13 Jul 2012 12:04:32 -0700 (PDT)
+Return-Path: <dallas.a.clement@gmail.com>
+Received: from mail-wg0-f54.google.com (mail-wg0-f54.google.com [74.125.82.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 923E2E0027D
+	for <yocto@yoctoproject.org>; Fri, 13 Jul 2012 12:44:42 -0700 (PDT)
+Received: by wgbgn7 with SMTP id gn7so1638972wgb.11
+	for <yocto@yoctoproject.org>; Fri, 13 Jul 2012 12:44:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=Cpj3XIq6ddaElwCCeyh1Avm8tdRegGujNrxTtP4Lm+M=;
-	b=D2vcPKSqSTsx7fq8DpMrxZJ0sK+M6bAf/ylviTLky6MuYV5R7Uz0isnf874PfupgsL
-	jJCee45lqijpQ3uHPWy7BqigzzMv7A2y1Zd2DYYimGG31ibYVwKhYAQLZnW755rCOs3i
-	TZtmmrKPDyZt9YI9ONYgNaI0W8Ahw5GF3fvIV81/M2Lo2Fx8kSe9HsOXL/+GihIPR0rv
-	UIAv5f0o4+wlBp6Bq1FviH7SqD+H7NFtmKsnLuu1ixUO+3RmOko3mQt0BHaaFA8eRkLW
-	bsg5rpS2y/3yWnfLiVNjsZoNq589v7OAq+RjB3MBZzZBkS+Zzfg3axYVhhaRcUKd4LLn
-	Re1A==
-Received: by 10.14.53.4 with SMTP id f4mr597608eec.93.1342206272467; Fri, 13
-	Jul 2012 12:04:32 -0700 (PDT)
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=5WMDCJze9igYPnu+Ik+Y+FH95Q5DbTHG799idYDUWFM=;
+	b=jrILzUrMNTd0iG7K8lgcXrcEGuM0ppQ0L6u9efZmypDMURjYNfvcA7H9s7sAQGGKq4
+	Y0qGJDJwLfhNI0hbf9ftLfeFaekhvAnqJBcbutEI8vK07CSG7btp2uf9yBICv+SkDxT3
+	/nGxhIBoxawQRplM3dEmRXBt8zw+aBYBbtjltzP7sxCVXpRZD9PeJBYaB8rUQtvIBc1p
+	Pk6Ag/GXlnGwDwY+AbtgC/zHqseItXybaP8f3jKh+kRmyvQX7j8iFknUxts24j3njyTz
+	Q9XtwQg9/nLn3VOyUllUsLA0ObVZigqGEFpHvfJKr77/v+PYpELMRyQ5c9q5eNGuQsFw
+	wEDg==
 MIME-Version: 1.0
-Received: by 10.14.210.199 with HTTP; Fri, 13 Jul 2012 12:04:02 -0700 (PDT)
-In-Reply-To: <CANsUPaNSy0Me580w0odN76bcHvJZ1-gXFdWadhdnpNR3Q_EEtQ@mail.gmail.com>
-References: <CANsUPaP4h2OUz_4McKQ8jmfm_grv_cCGCMfxZQaGMs7ty8Bf1A@mail.gmail.com>
-	<20120628181214.7ACD02026AB@gemini.denx.de>
-	<C6510F6D410BB64A8C15398EDC6B847C46A79CD8@ORSMSX101.amr.corp.intel.com>
-	<CANsUPaNSy0Me580w0odN76bcHvJZ1-gXFdWadhdnpNR3Q_EEtQ@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Fri, 13 Jul 2012 12:04:02 -0700
-Message-ID: <CAMKF1sqwu1ZsyMyWoY4nfCh0fpWEV+Sw8oORt4iJ+TGAn_mXJw@mail.gmail.com>
-To: Giovanni Foiani <fnognn@unife.it>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Yocto and Qt embedded
+Received: by 10.216.61.77 with SMTP id v55mr1231370wec.160.1342208681137; Fri,
+	13 Jul 2012 12:44:41 -0700 (PDT)
+Received: by 10.180.109.162 with HTTP; Fri, 13 Jul 2012 12:44:41 -0700 (PDT)
+Date: Fri, 13 Jul 2012 14:44:41 -0500
+Message-ID: <CAE9DZUR_W2vDPL+UjAqn_5A-2xig7x9GUx_JKQEd_R0HrrRyzQ@mail.gmail.com>
+From: Dallas Clement <dallas.a.clement@gmail.com>
+To: yocto@yoctoproject.org
+Subject: sysroot / external toolchain
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,13 +33,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 13 Jul 2012 19:04:34 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Fri, 13 Jul 2012 19:44:43 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On Wed, Jul 11, 2012 at 11:45 PM, Giovanni Foiani <fnognn@unife.it> wrote:
-> Where is the compiler located inside Poky SDK built from meta-toolchain-qte?
+I'm using an external toolchain for my project.  What is the proper
+way to include my external toolchain libc files in the sysroot?
 
-somewhere like below is mine for x86_64
+Currently I have
 
-/opt/poky/1.2+snapshot/sysroots/x86_64-pokysdk-linux/usr/bin/x86_64-poky-linux/
+TOOLCHAIN_OPTIONS = " --sysroot=${STAGING_DIR_HOST}"
+
+and
+
+EXTERNAL_TOOLCHAIN_SYSROOT_CMD = "${TARGET_PREFIX}gcc
+${TARGET_CC_ARCH} -print-sysroot"
+EXTERNAL_TOOLCHAIN_SYSROOT ??= "${@exttc_run(d,
+EXTERNAL_TOOLCHAIN_SYSROOT_CMD)}"
+
+which resolves to
+/opt/armada-sdk-5.0-64k/armv7-marvell-linux-gnueabi-softfp/arm-marvell-linux-gnueabi/libc/
+
+I also have a recipe for my external toolchain which includes the following:
+
+do_install() {
+        # Use optimized files if available
+        sysroot="${EXTERNAL_TOOLCHAIN_SYSROOT}"
+}
+
+The EXTERNAL_TOOLCHAIN_SYSROOT doesn't seem to have any effect.  My
+libc header files are not visible during compilation. It looks like I
+may have to copy them to the staging dir or setup some symlinks.  Is
+this the right approach?
+
+Thanks
 
