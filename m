@@ -1,28 +1,24 @@
-Return-Path: <opensource@keylevel.com>
-Received: from hxhsvr03.internetintuitive.net (hxhsvr03.internetintuitive.net
-	[80.254.228.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B5454E00349
-	for <yocto@yoctoproject.org>; Fri, 13 Jul 2012 05:10:31 -0700 (PDT)
-Received: from [109.224.129.17] (helo=macbook-pro.durham.keylevel.com)
-	by hxhsvr03.internetintuitive.net with esmtpa (Exim 4.69)
-	(envelope-from <opensource@keylevel.com>) id 1SpehY-0006qC-Ns
-	for yocto@yoctoproject.org; Fri, 13 Jul 2012 13:10:28 +0100
-From: Chris Tapp <opensource@keylevel.com>
-Date: Fri, 13 Jul 2012 13:10:27 +0100
-Message-Id: <1363BCCF-4C02-4997-8B0B-787649E292FC@keylevel.com>
-To: "yocto@yoctoproject.org Project" <yocto@yoctoproject.org>
-Mime-Version: 1.0 (Apple Message framework v1278)
-X-Mailer: Apple Mail (2.1278)
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - hxhsvr03.internetintuitive.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: Why does my kernel fail to boot (LX800 system)?
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7E08FE0034C
+	for <yocto@yoctoproject.org>; Fri, 13 Jul 2012 06:57:27 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 13 Jul 2012 06:57:27 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="167716536"
+Received: from unknown (HELO helios.localnet) ([10.252.121.15])
+	by azsmga001.ch.intel.com with ESMTP; 13 Jul 2012 06:57:25 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Kevin Strasser <kevin.strasser@linux.intel.com>
+Date: Fri, 13 Jul 2012 14:57:24 +0100
+Message-ID: <1961969.6JloXzyBcB@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.8.4 (Linux/3.2.0-26-generic-pae; KDE/4.8.4; i686; ; )
+In-Reply-To: <1342132831-4596-1-git-send-email-kevin.strasser@linux.intel.com>
+References: <1342132831-4596-1-git-send-email-kevin.strasser@linux.intel.com>
+MIME-Version: 1.0
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-baryon][PATCH] ffmpeg: ensure libjpeg dependency is included
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,35 +30,57 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 13 Jul 2012 12:10:31 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 13 Jul 2012 13:57:27 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-I really don't understand what's going on here...
+Hi Kevin,
 
-1) I've got an ALIX 3D3 system with an AMD Geode LX800;
-2) I've found a 3.2.17 kernel that boots (from Voyage Linux);
-3) I've used the config for the above to build linux-yocto_3.2 under =
-'Denzil'.
+On Thursday 12 July 2012 15:40:31 Kevin Strasser wrote:
+> Signed-off-by: Kevin Strasser <kevin.strasser@linux.intel.com>
+> ---
+>  recipes-core/base-files/base-files_3.0.14.bbappend |    2 +-
+>  .../ffmpeg/ffmpegthumbnailer_2.0.7.bb              |    2 +-
+>  2 files changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/recipes-core/base-files/base-files_3.0.14.bbappend b/recipes-core/base-files/base-files_3.0.14.bbappend
+> index 593a37c..33217fb 100644
+> --- a/recipes-core/base-files/base-files_3.0.14.bbappend
+> +++ b/recipes-core/base-files/base-files_3.0.14.bbappend
+> @@ -1,4 +1,4 @@
+>  # Set a hostname
+>  hostname_baryon = "baryon"
+>  
+> -PRINC = "2"
+> +PRINC = "3"
+> diff --git a/recipes-multimedia/ffmpeg/ffmpegthumbnailer_2.0.7.bb b/recipes-multimedia/ffmpeg/ffmpegthumbnailer_2.0.7.bb
+> index ec6d625..4f70ab8 100644
+> --- a/recipes-multimedia/ffmpeg/ffmpegthumbnailer_2.0.7.bb
+> +++ b/recipes-multimedia/ffmpeg/ffmpegthumbnailer_2.0.7.bb
+> @@ -6,7 +6,7 @@ LICENSE = "GPLv2"
+>  LIC_FILES_CHKSUM = "file://COPYING;md5=393a5ca445f6965873eca0259a17f833"
+>  SRC_URI = "http://ffmpegthumbnailer.googlecode.com/files/${PN}-${PV}.tar.gz"
+>  
+> -DEPENDS = "ffmpeg libpng"
+> +DEPENDS = "ffmpeg jpeg libpng"
+>  
+>  SRC_URI[md5sum] = "2b5726894792ef484793dce9568a065a"
+>  SRC_URI[sha256sum] = "a71155339d17201a13fc3ebb649b0d00c7ab2d5a8880da071c8157a69c6f612b"
+> 
 
-This is done using a BSP with a bbappend for the kernel that does =
-nothing other than specify the BSP as a COMPATIBLE_MACHINE and point to =
-a defconfig for 3), above. Is this valid? I think it is as I'm supplying =
-a full kernel config via the defconfig.
+A couple of things:
 
-Kernel builds ok, but when I try to boot there is a short delay and then =
-the screen fills up with random characters (including solid color =
-blocks, bits that flash) which looks like the video memory has been =
-overwritten. Nothing comes out of the serial port to show that the =
-kernel is even trying to boot.
+1) You've bumped PRINC on base-files, I think what you need to do instead is
+bump PR on ffmpegthumbnailer.
 
-Any pointers to things to check would be much appreciated !
+2) The subject line (shortlog) should refer to ffmpegthumbnailer rather than 
+ffmpeg.
 
-Chris Tapp
+Cheers,
+Paul
 
-opensource@keylevel.com
-www.keylevel.com
+-- 
 
-
-
+Paul Eggleton
+Intel Open Source Technology Centre
 
