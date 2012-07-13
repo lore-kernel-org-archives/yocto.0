@@ -1,23 +1,39 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 75AA9E00280
-	for <yocto@yoctoproject.org>; Fri, 13 Jul 2012 09:33:09 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 13 Jul 2012 09:32:55 -0700
+Return-Path: <scott.m.rifenbark@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8C788E00280
+	for <yocto@yoctoproject.org>; Fri, 13 Jul 2012 09:51:15 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga101.ch.intel.com with ESMTP; 13 Jul 2012 09:51:14 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="167778374"
-Received: from unknown (HELO helios.localnet) ([10.252.121.15])
-	by azsmga001.ch.intel.com with ESMTP; 13 Jul 2012 09:32:53 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: yocto@yoctoproject.org
-Date: Fri, 13 Jul 2012 17:32:52 +0100
-Message-ID: <4250030.cc4L1r78V2@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.8.4 (Linux/3.2.0-26-generic-pae; KDE/4.8.4; i686; ; )
-In-Reply-To: <cover.1342029029.git.paul.eggleton@linux.intel.com>
-References: <cover.1342029029.git.paul.eggleton@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; 
+	d="scan'208,217";a="122036786"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
+	by AZSMGA002.ch.intel.com with ESMTP; 13 Jul 2012 09:51:14 -0700
+Received: from orsmsx152.amr.corp.intel.com (10.22.226.39) by
+	orsmsx603.amr.corp.intel.com (10.22.226.49) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Fri, 13 Jul 2012 09:51:14 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.93]) by
+	ORSMSX152.amr.corp.intel.com ([169.254.8.165]) with mapi id
+	14.01.0355.002; Fri, 13 Jul 2012 09:51:13 -0700
+From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>, jfabernathy
+	<jfabernathy@gmail.com>
+Thread-Topic: [yocto] prerequisite tools for  making documentation
+Thread-Index: AQHNUiNaFxq6gUJ8aE+tg/YhTtPoQJcX7hFQgAB+g4D//5xwkIAPgd8g
+Date: Fri, 13 Jul 2012 16:51:13 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237946A3BE6D@ORSMSX101.amr.corp.intel.com>
+References: <4FE73AF6.2060008@gmail.com>
+	<41DEA4B02DBDEF40A0F3B6D0DDB1237946A1FA2E@ORSMSX101.amr.corp.intel.com>
+	<4FF340B3.6090106@gmail.com>
+	<41DEA4B02DBDEF40A0F3B6D0DDB1237946A1FAF9@ORSMSX101.amr.corp.intel.com>
+In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB1237946A1FAF9@ORSMSX101.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.138]
 MIME-Version: 1.0
-Subject: Re: [meta-baryon] [PATCH 0/4] Baryon build fixes
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: prerequisite tools for making documentation
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,49 +45,295 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 13 Jul 2012 16:33:09 -0000
-Content-Transfer-Encoding: 7Bit
+X-List-Received-Date: Fri, 13 Jul 2012 16:51:15 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_41DEA4B02DBDEF40A0F3B6D0DDB1237946A3BE6DORSMSX101amrcor_"
+
+--_000_41DEA4B02DBDEF40A0F3B6D0DDB1237946A3BE6DORSMSX101amrcor_
 Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On Wednesday 11 July 2012 18:51:56 Paul Eggleton wrote:
-> Some fixes for issues preventing successful builds with master and
-> edison. It includes a sync of the samba recipe with the current version
-> in meta-oe - it's still not completely in sync, hopefully that can be
-> done as a separate exercise in the near future.
-> 
-> 
-> The following changes since commit 1784e3a18f8e5b56568d971fcce0521172007f90:
-> 
->   meta-baryon: update proftpd SRC_URI (2012-07-10 18:37:44 +0100)
-> 
-> are available in the git repository at:
-> 
->   git://git.yoctoproject.org/poky-contrib paule/baryon-fixes1
->  
-> http://git.yoctoproject.org/cgit.cgi/poky-contrib/log/?h=paule/baryon-fixes
-> 1
-> 
-> Paul Eggleton (4):
->   faad2: split out staticdev files
->   faac: split out staticdev files
->   samba: merge with meta-oe
->   baryon-image: use IMAGE_INSTALL instead of CORE_IMAGE_EXTRA_INSTALL
-> 
->  recipes-connectivity/samba/samba-basic.inc |   12 ++++--------
->  recipes-connectivity/samba/samba_3.5.6.bb  |   18 +++++++-----------
->  recipes-extended/images/baryon-image.bb    |    5 +++--
->  recipes-multimedia/faac/faac_1.24.bb       |    5 +++--
->  recipes-multimedia/faad2/faad2_2.7.bb      |   10 ++++++----
->  5 files changed, 23 insertions(+), 27 deletions(-)
+I added dblatex to Ubuntu, Fedora, openSUSE, and CentOS package lists in th=
+e YP Quick Start.
 
-I've merged these along with a trivial patch to remove PRIORITY from all 
-recipes that still had it.
+Scott
 
-Cheers,
-Paul
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Rifenbark, Scott M
+Sent: Tuesday, July 03, 2012 1:03 PM
+To: jfabernathy
+Cc: yocto@yoctoproject.org
+Subject: Re: [yocto] prerequisite tools for making documentation
 
--- 
+For Ubuntu 10.04 I installed dblatex and that installed everything in Jim's=
+ list from texlive down (inclusive).  I was able to make the BitBake docume=
+nts after installing dblatex.
 
-Paul Eggleton
-Intel Open Source Technology Centre
+Scott
 
+From: jfabernathy [mailto:jfabernathy@gmail.com]
+Sent: Tuesday, July 03, 2012 11:58 AM
+To: Rifenbark, Scott M
+Cc: yocto@yoctoproject.org
+Subject: Re: [yocto] prerequisite tools for making documentation
+
+On 07/03/2012 02:25 PM, Rifenbark, Scott M wrote:
+
+Jim,
+
+
+
+Do you have a list of what you had to install?  I can add this to the QS "P=
+ackages" section.
+
+
+
+Scott
+Scott,
+
+I had to go thru the apt log for the day I posted this issues.  Below are t=
+he packages.  I imagine that texlive brought in the last 8 or so.
+
+Jim A
+
+Selecting previously unselected package libxml2-utils.
+
+Selecting previously unselected package docbook-xsl.
+
+Selecting previously unselected package xmlto.
+
+Selecting previously unselected package xmltex.
+
+Selecting previously unselected package texlive.
+Selecting previously unselected package texlive-bibtex-extra.
+Selecting previously unselected package preview-latex-style.
+Selecting previously unselected package texlive-pictures.
+Selecting previously unselected package texlive-latex-extra.
+Selecting previously unselected package texlive-math-extra.
+Selecting previously unselected package dblatex.
+Selecting previously unselected package texlive-latex-extra-doc.
+Selecting previously unselected package texlive-pictures-doc.
+
+
+
+-----Original Message----- From: yocto-bounces@yoctoproject.org<mailto:yoct=
+o-bounces@yoctoproject.org> [mailto:yocto-bounces@yoctoproject.org] On Beha=
+lf Of jfabernathy Sent: Sunday, June 24, 2012 9:06 AM To: yocto@yoctoprojec=
+t.org<mailto:yocto@yoctoproject.org> Subject: [yocto] prerequisite tools fo=
+r making documentation I had a need to look at the bitbake manual in the po=
+ky/bitbake/doc/manual directory and tried to make pdf. I had all the prereq=
+uisites listed in the QS guide. However, I found the make failed due to a n=
+umber of xml related tools being missing. I installed those and got the pdf=
+ manual generated. Should we add those xml tools to the prerequisites? BTW,=
+ I'm using denzil branch and referring to the QS guide 1.2. Jim A _________=
+______________________________________ yocto mailing list yocto@yoctoprojec=
+t.org<mailto:yocto@yoctoproject.org> https://lists.yoctoproject.org/listinf=
+o/yocto
+
+
+--_000_41DEA4B02DBDEF40A0F3B6D0DDB1237946A3BE6DORSMSX101amrcor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:dt=3D"uuid:C2F41010-65B3-11d1-A29F-00AA00C14882" xmlns:m=3D"http://sc=
+hemas.microsoft.com/office/2004/12/omml" xmlns=3D"http://www.w3.org/TR/REC-=
+html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:Consolas;
+	panose-1:2 11 6 9 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";
+	color:black;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+pre
+	{mso-style-priority:99;
+	mso-style-link:"HTML Preformatted Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Courier New";
+	color:black;}
+span.HTMLPreformattedChar
+	{mso-style-name:"HTML Preformatted Char";
+	mso-style-priority:99;
+	mso-style-link:"HTML Preformatted";
+	font-family:Consolas;
+	color:black;}
+span.EmailStyle19
+	{mso-style-type:personal;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
+span.EmailStyle20
+	{mso-style-type:personal-reply;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body bgcolor=3D"white" lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">I added dblatex to Ubuntu=
+, Fedora, openSUSE, and CentOS package lists in the YP Quick Start.<o:p></o=
+:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
+/p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Scott<o:p></o:p></span></=
+p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
+/p>
+<div>
+<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
+0in 0in">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Tahoma&quot;,&quot;sans-serif&quot;;color:windowtext">From:</span></b><spa=
+n style=3D"font-size:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif=
+&quot;;color:windowtext"> yocto-bounces@yoctoproject.org [mailto:yocto-boun=
+ces@yoctoproject.org]
+<b>On Behalf Of </b>Rifenbark, Scott M<br>
+<b>Sent:</b> Tuesday, July 03, 2012 1:03 PM<br>
+<b>To:</b> jfabernathy<br>
+<b>Cc:</b> yocto@yoctoproject.org<br>
+<b>Subject:</b> Re: [yocto] prerequisite tools for making documentation<o:p=
+></o:p></span></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">For Ubuntu 10.04 I instal=
+led dblatex and that installed everything in Jim&#8217;s list from texlive =
+down (inclusive).&nbsp; I was able to make the BitBake documents after
+ installing dblatex.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
+/p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Scott<o:p></o:p></span></=
+p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
+/p>
+<div>
+<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
+0in 0in">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Tahoma&quot;,&quot;sans-serif&quot;;color:windowtext">From:</span></b><spa=
+n style=3D"font-size:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif=
+&quot;;color:windowtext"> jfabernathy [mailto:jfabernathy@gmail.com]
+<br>
+<b>Sent:</b> Tuesday, July 03, 2012 11:58 AM<br>
+<b>To:</b> Rifenbark, Scott M<br>
+<b>Cc:</b> yocto@yoctoproject.org<br>
+<b>Subject:</b> Re: [yocto] prerequisite tools for making documentation<o:p=
+></o:p></span></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<div>
+<p class=3D"MsoNormal">On 07/03/2012 02:25 PM, Rifenbark, Scott M wrote:<o:=
+p></o:p></p>
+</div>
+<blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
+<pre>Jim, <o:p></o:p></pre>
+<pre><o:p>&nbsp;</o:p></pre>
+<pre>Do you have a list of what you had to install?&nbsp; I can add this to=
+ the QS &quot;Packages&quot; section.<o:p></o:p></pre>
+<pre><o:p>&nbsp;</o:p></pre>
+<pre>Scott<o:p></o:p></pre>
+</blockquote>
+<p class=3D"MsoNormal"><b>Scott,<br>
+<br>
+I had to go thru the apt log for the day I posted this issues.&nbsp; Below =
+are the packages.&nbsp; I imagine that texlive brought in the last 8 or so.=
+<br>
+<br>
+Jim A<br>
+<br>
+Selecting previously unselected package libxml2-utils. <br>
+<br>
+Selecting previously unselected package docbook-xsl. <br>
+<br>
+Selecting previously unselected package xmlto. <br>
+<br>
+Selecting previously unselected package xmltex. <br>
+<br>
+Selecting previously unselected package texlive. <br>
+Selecting previously unselected package texlive-bibtex-extra. <br>
+Selecting previously unselected package preview-latex-style. <br>
+Selecting previously unselected package texlive-pictures. <br>
+Selecting previously unselected package texlive-latex-extra. <br>
+Selecting previously unselected package texlive-math-extra. <br>
+Selecting previously unselected package dblatex. <br>
+Selecting previously unselected package texlive-latex-extra-doc. <br>
+Selecting previously unselected package texlive-pictures-doc. </b><br>
+<br>
+<br>
+<br>
+-----Original Message----- From: <a href=3D"mailto:yocto-bounces@yoctoproje=
+ct.org">
+yocto-bounces@yoctoproject.org</a> [<a href=3D"mailto:yocto-bounces@yoctopr=
+oject.org">mailto:yocto-bounces@yoctoproject.org</a>] On Behalf Of jfaberna=
+thy Sent: Sunday, June 24, 2012 9:06 AM To:
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a> Subjec=
+t: [yocto] prerequisite tools for making documentation I had a need to look=
+ at the bitbake manual in the poky/bitbake/doc/manual directory and tried t=
+o make pdf. I had all the prerequisites
+ listed in the QS guide. However, I found the make failed due to a number o=
+f xml related tools being missing. I installed those and got the pdf manual=
+ generated. Should we add those xml tools to the prerequisites? BTW, I'm us=
+ing denzil branch and referring
+ to the QS guide 1.2. Jim A _______________________________________________=
+ yocto mailing list
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a> <a hre=
+f=3D"https://lists.yoctoproject.org/listinfo/yocto">
+https://lists.yoctoproject.org/listinfo/yocto</a> <o:p></o:p></p>
+<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
+
+--_000_41DEA4B02DBDEF40A0F3B6D0DDB1237946A3BE6DORSMSX101amrcor_--
