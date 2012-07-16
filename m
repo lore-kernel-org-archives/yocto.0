@@ -1,18 +1,27 @@
-Return-Path: <packages@autobuilder.yoctoproject.org>
-Received: from autobuilder.yoctoproject.org (autobuilder.yoctoproject.org
-	[172.17.193.118])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B5251E0034D
-	for <yocto@yoctoproject.org>; Mon, 16 Jul 2012 11:09:40 -0700 (PDT)
-Received: by autobuilder.yoctoproject.org (Postfix, from userid 802)
-	id AA91B40CDD; Mon, 16 Jul 2012 18:09:40 +0000 (UTC)
-Date: Mon, 16 Jul 2012 18:09:40 +0000
-From: Yocto Project Package Report System <package-reporting@yoctoproject.org>
-To: yocto@yoctoproject.org
-Message-ID: <20120716180940.GA5291@ab01.i.yoctoproject.org>
-MIME-Version: 1.0
-User-Agent: Mutt/1.5.20 (2009-12-10)
-X-Mailman-Approved-At: Mon, 16 Jul 2012 11:27:58 -0700
-Subject: [Package Report System]Manual check recipes name list
+Return-Path: <josh@linux.intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B829EE00283
+	for <yocto@yoctoproject.org>; Mon, 16 Jul 2012 11:33:00 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 16 Jul 2012 11:33:00 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="172784487"
+Received: from vorpal.jf.intel.com (HELO [10.7.198.168]) ([10.7.198.168])
+	by orsmga002.jf.intel.com with ESMTP; 16 Jul 2012 11:33:00 -0700
+Message-ID: <1342456456.4156.2.camel@vorpal>
+From: Joshua Lock <josh@linux.intel.com>
+To: McClintock Matthew-B29882 <B29882@freescale.com>
+Date: Mon, 16 Jul 2012 09:34:16 -0700
+In-Reply-To: <CAEsOVNf-_+hca=qhXGjBiOYRn77-duCYoiTVj5HrYyGTzYZYHQ@mail.gmail.com>
+References: <CAEsOVNehMk8dmo2O+MpOfs0JM9OPARB2Jd+dzTFw0g93SHYcyA@mail.gmail.com>
+	<50042C06.70900@linux.intel.com>
+	<CAEsOVNfEw9sDfLVGCAM6AwQjzGrVNxuvrL4vcS=1kDEMaePK3g@mail.gmail.com>
+	<50043429.4070204@linux.intel.com>
+	<CAEsOVNf-_+hca=qhXGjBiOYRn77-duCYoiTVj5HrYyGTzYZYHQ@mail.gmail.com>
+X-Mailer: Evolution 3.2.3-0ubuntu6 
+Mime-Version: 1.0
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: edison/denzil patches (post-1.1.2 and 1.2.1)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -24,83 +33,124 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 16 Jul 2012 18:09:40 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Mon, 16 Jul 2012 18:33:00 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-This mail was sent out by Package Report System.
-It will list all the recipes which can't check upstream version by script, and will show how long it is since their last mannual version check.
-You can check the detail information at http://packages.yoctoproject.org/manuallychkinfo
+On Mon, 2012-07-16 at 16:01 +0000, McClintock Matthew-B29882 wrote:
+> On Mon, Jul 16, 2012 at 10:32 AM, Joshua Lock <josh@linux.intel.com> wrote:
+> > On 16/07/12 08:10, McClintock Matthew-B29882 wrote:
+> >>
+> >> On Mon, Jul 16, 2012 at 9:58 AM, Joshua Lock <josh@linux.intel.com> wrote:
+> >>>
+> >>> On 12/07/12 10:43, McClintock Matthew-B29882 wrote:
+> >>>>
+> >>>>
+> >>>> Josh, Scott:
+> >>>>
+> >>>> I've pushed a set of patches for edison/denzil branch - and I may push
+> >>>> a few more still to:
+> >>>>
+> >>>>
+> >>>>
+> >>>> http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/log/?h=mattsm/edison
+> >>>>
+> >>>>
+> >>>> http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/log/?h=mattsm/denzil
+> >>>>
+> >>>> These are all cherry-pick's and most applied cleanly and a few had
+> >>>> some minor cleanups. Please consider these for after the point
+> >>>> releases. I will continue to push to these branches and rebase these
+> >>>> branches off the official upstream trees as well.
+> >>>
+> >>>
+> >>>
+> >>> I don't know how much work will be done on Edison after the 1.1.2
+> >>> release. I
+> >>> personally will no longer be working on it and I don't think the team
+> >>> here
+> >>> as enough resources to maintain it perpetually.
+> >>
+> >>
+> >> OK.
+> >>
+> >>> I assume that these changes are predominantly to further improve PPC
+> >>> support?
+> >>
+> >>
+> >> Yes.
+> >>
+> >>> In general your branch has several types of changes that have generally
+> >>> been
+> >>> considered inappropriate for a point release (such as recipe upgrades,
+> >>> new
+> >>> functionality, etc).
+> >>
+> >>
+> >> I see very little of this, the valgrind series and/or the a few other
+> >> image generation bits.
+> >
+> >
+> > Indeed, that's likely the sum of it but the changes in isolation don't offer
+> > any context as to why they're required for PPC so my gut reaction is to
+> > reject them as they violate the suggested guidelines for stable releases.
+> 
+> I'm fine to have some of them rejected, such is how things work ;)
+> 
+> >>> Personally I'm not very keen on the idea of pushing them all and
+> >>> advocating
+> >>> their inclusion. I'd strongly encourage adoption of this release series
+> >>> if
+> >>> it's to continue to be relevant to your work.
+> >>
+> >>
+> >> So is poky edison dead now? How do I support folks that still want to
+> >> use it? I understand that *you* may not have time but is there a
+> >> process for someone that cares about this release still to do work? If
+> >> a fork is required is there a way to point folks at this fork? Such as
+> >> if you want this to work use this other version?
+> >
+> >
+> > I certainly can't see why one would need to fork.
+> >
+> > I would like to see Edison live on, which is why I sent an email suggesting
+> > it be adopted, *I* just don't have time to work on it any more.
+> 
+> I know what you mean ;)
+> 
+> > I'm sure Saul and/or David can help work out a process, as I don't have a
+> > clear understanding of it (I am but one cog in the engine). I can't imagine
+> > why it would be hugely different from the way it's been maintained thus far.
+> >
+> > Much of that work you've already been doing with the branch you have
+> > submitted.
+> 
+> Yep, I've made my best effort to only backport commits already upstream.
+> 
+> > In addition there are a different set of requirements for just getting
+> > changes into the branch vs. having some kind of release which includes those
+> > changes.
+> >
+> > The latter would require QA, build/release engineering, release readiness,
+> > etc.
+> 
+> I understand. I'm fine with adding stuff to the edison branch for now
+> and we can worry about another official release sometime in the future
+> (or never). I'm mostly wanting a place I can tell people to get the
+> (working) code from for our targets. And ideally it's on
+> yoctoproject.org and not github.com or git.fsl.com
 
+Great, the best thing would be to submit a pull request against the
+edison branch with a suitable subject.
 
-PackageName              Version             LastChkVersion      LastChkTime              Maintainer                              NoUpgradeReason               
-lsb                      1.4                 1.4                 89 days                  Yi Zhao <yi.zhao@windriver.co...        1.4 is fixed version of LSB Te...
-mingetty                 1.08                1.08                186 day                  Xiaofeng.Yan <xiaofeng@windri...        No data                       
-freetype                 2.4.9               2.4.10              10 days                  Valentin Popa <valentin.popa@...        No data                       
-menu-cache               0.3.3               0.3.3               41104 d                  Valentin Popa <valentin.popa@...        No data                       
-libfm                    0.1.17              0.1.17              10 days                  Valentin Popa <valentin.popa@...        No data                       
-pcmanfm                  0.9.10              0.9.10              10 days                  Valentin Popa <valentin.popa@...        No data                       
-webkit-gtk               1.7.2+svnr101...    1.8.1               10 days                  Valentin Popa <valentin.popa@...        No data                       
-gtkhtml2                 2.11.0+svnr11...    2.11.1              41104 d                  Valentin Popa <valentin.popa@...        No data                       
-e2fsprogs                1.42.1              1.42.4              11 days                  Scott Garman <scott.a.garman@...        No data                       
-chrpath                  0.14                0.14                11 days                  Scott Garman <scott.a.garman@...        No data                       
-opensp                   1.5.2               1.5.2               11 days                  Scott Garman <scott.a.garman@...        No data                       
-expat                    2.1.0               2.0.1               11 days                  Scott Garman <scott.a.garman@...        No data                       
-nfs-utils                1.2.3               1.2.6               11 days                  Scott Garman <scott.a.garman@...        No data                       
-libpng                   1.2.49              1.5.11              11 days                  Scott Garman <scott.a.garman@...        1.4.3 and later changes the AP...
-cracklib                 2.8.19              2.8.19              11 days                  Saul Wold <sgw@linux.intel.co...        No data                       
-psmisc                   22.19               22.19               11 days                  Saul Wold <sgw@linux.intel.co...        No data                       
-sysstat                  10.0.5              10.0.5              11 days                  Saul Wold <sgw@linux.intel.co...        No data                       
-less                     444                 444                 11 days                  Saul Wold <sgw@linux.intel.co...        No data                       
-glew                     1.7.0               1.7.0               11 days                  Saul Wold <sgw@linux.intel.co...        No data                       
-libcap                   2.22                2.22                11 days                  Saul Wold <sgw@linux.intel.co...        No data                       
-libexif                  0.6.20              0.6.20              11 days                  Saul Wold <sgw@linux.intel.co...        No data                       
-sqlite3                  3.7.13              3.7.13              11 days                  Saul Wold <sgw@linux.intel.co...        No data                       
-boost                    1.49.0              1.50.0              11 days                  Saul Wold <sgw@linux.intel.co...        No data                       
-libcheck                 0.9.8               0.9.8               11 days                  Saul Wold <sgw@linux.intel.co...        No data                       
-sysfsutils               2.1.0               2.1.0               11 days                  Saul Wold <sgw@linux.intel.co...        No data                       
-console-tools            0.3.2               0.3.2               11 days                  Saul Wold <sgw@linux.intel.co...        No data                       
-libmad                   0.15.1b             0.15.1b             11 days                  Saul Wold <sgw@linux.intel.co...        No data                       
-tzdata                   2012c               2012c               10 days                  Radu Moisan <radu.moisan@inte...        No data                       
-zip                      3.0                 3.0                 10 days                  Radu Moisan <radu.moisan@inte...        No data                       
-watchdog                 5.11                5.12                10 days                  Radu Moisan <radu.moisan@inte...        No data                       
-hdparm                   9.39                9.39                10 days                  Radu Moisan <radu.moisan@inte...        No data                       
-tslib                    1.0                 1.0                 10 days                  Radu Moisan <radu.moisan@inte...        No data                       
-unzip                    6.0                 6.0                 10 days                  Radu Moisan <radu.moisan@inte...        No data                       
-beecrypt                 4.2.1               4.2.1               10 days                  Radu Moisan <radu.moisan@inte...        No data                       
-setserial                2.17                2.17                82 days                  Radu Moisan <radu.moisan@inte...        No data                       
-acpid                    1.0.10              1.0.10              10 days                  Radu Moisan <radu.moisan@inte...        No data                       
-squashfs-tools           4.2                 4.2                 10 days                  Radu Moisan <radu.moisan@inte...        No data                       
-ubootchart               0.0+r12             0.0+r12             41104 d                  Radu Moisan <radu.moisan@inte...        No data                       
-opkg                     0.1.8+svnr633...    0.1.8               10 days                  Radu Moisan <radu.moisan@inte...        No data                       
-kmod                     8                   N/A                 41104 d                  Radu Moisan <radu.moisan@inte...        No data                       
-tinylogin                1.4                 1.4                 205 day                  Radu Moisan <radu.moisan@inte...        No data                       
-lame                     3.99.5              3.99.5              10 days                  Radu Moisan <radu.moisan@inte...        No data                       
-ltp                      20120401            20120401            125 day                  Mihai Lindner <mihaix.lindner...        No data                       
-prelink                  1.0+git1+7b47...    1.0+git1+9552...    185 day                  Mark Hatle <mark.hatle@windri...        No data                       
-x11vnc                   0.9.13              0.9.13              10 days                  Laurentiu Palcu <laurentiu.pa...        No data                       
-adt-installer            0.1.8+svnr596...    1.1                 41104 d                  Jessica Zhang <jessica.zhang@...        No data                       
-cwautomacros             20110201            20110201            10 days                  Cristian Iorga <cristian.iorg...        No data                       
-quota                    4.00                4.00                10 days                  Cristian Iorga <cristian.iorg...        No data                       
-libtirpc                 0.2.2               0.2.2               10 days                  Cristian Iorga <cristian.iorg...        No data                       
-rpcbind                  0.2.0               0.2.0               10 days                  Cristian Iorga <cristian.iorg...        No data                       
-minicom                  2.6.1               2.6.1               10 days                  Cristian Iorga <cristian.iorg...        No data                       
-libical                  0.48                0.48                10 days                  Cristian Iorga <cristian.iorg...        No data                       
-eggdbus                  0.6                 0.6                 10 days                  Cristian Iorga <cristian.iorg...        No data                       
-wireless-tools           29                  29                  10 days                  Cristian Iorga <cristian.iorg...        No data                       
-irda-utils               0.9.18              0.9.18              10 days                  Cristian Iorga <cristian.iorg...        No data                       
-flac                     1.2.1               1.2.1               10 days                  Cristian Iorga <cristian.iorg...        No data                       
-libomxil                 0.9.3               0.9.3               10 days                  Cristian Iorga <cristian.iorg...        No data                       
-libsamplerate0           0.1.8               0.1.8               10 days                  Cristian Iorga <cristian.iorg...        No data                       
-libpcre                  8.30                8.30                10 days                  Bogdan Marinescu <bogdan.a.ma...        No data                       
-mpfr                     3.1.0               3.1.1               10 days                  Bogdan Marinescu <bogdan.a.ma...        No data                       
-python-scons             2.1.0               N/A                 41104 d                  Bogdan Marinescu <bogdan.a.ma...        No data                       
-flex                     2.5.35              2.5.35              10 days                  Bogdan Marinescu <bogdan.a.ma...        No data                       
-strace                   4.7                 4.7                 10 days                  Bogdan Marinescu <bogdan.a.ma...        No data                       
-tcl                      8.5.11              8.5.11              10 days                  Bogdan Marinescu <bogdan.a.ma...        No data                       
-oprofile                 0.9.7               0.9.7               10 days                  Bogdan Marinescu <bogdan.a.ma...        No data                       
-eglibc                   2.15                git:16540           197 day                  Bogdan Marinescu <bogdan.a.ma...        No data                       
-Manual Check Count: 66
-Manual Need Check Count: 13
-Any problem, please contact Saul Wold <sgw@linux.intel.com> 
+> 
+> Just for some more context, we just release our SDK off of edison and
+> I expect plenty of activity around bugfixes and back porting commits.
+> I would like this work to be available to all attempting to build
+> edison as well.
+
+Congratulations! I appreciate your effort in sharing this work.
+
+Joshua
+
 
