@@ -1,43 +1,51 @@
-Return-Path: <scott.a.garman@intel.com>
-Received: from azsmga101.ch.intel.com (mga07.intel.com [143.182.124.22])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 918A2E00348
-	for <yocto@yoctoproject.org>; Mon, 16 Jul 2012 09:22:33 -0700 (PDT)
-Received: from mail-pb0-f52.google.com ([209.85.160.52])
-	by mga03.intel.com with ESMTP/TLS/RC4-SHA; 16 Jul 2012 09:22:32 -0700
-Received: by pbbro8 with SMTP id ro8so10463106pbb.25
-	for <yocto@yoctoproject.org>; Mon, 16 Jul 2012 09:22:32 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=message-id:date:from:user-agent:mime-version:to:subject:references
-	:in-reply-to:content-type:content-transfer-encoding
-	:x-gm-message-state;
-	bh=y8ZBvDjBUufE4/zxIvOtEx+aQItoHIXnzEuBMxdO5AU=;
-	b=J3hdrnRBBUMMJrn3b0X7W0jwoGI6KTsVCy99zZBa5q0Liy8r2ku0prQGRObyqGirPJ
-	aiawA5eih6i6aKytSaqQ1S+qL4XxEUP/0H5Qvw80XLnhaeLGpuxsg20+/P6XBfkiWyuL
-	+6kbFgInpqijXWnatJN4tzmD4x7pHTYVN4PnHezX2RboJItgRjnxfBFgTOjg+swJ3nk1
-	+03ZIkOel+qEoHuhNtpMFUp4Qf8lcbwJ3JnJlVRjY+o1uFgZ4q3Hgs8ndAxkCKZi0V/0
-	PqpNjKacOkYhVWgM11YvOzE1qa817cSgmx7DwCcAG+ZnueU91ycKsGeD6hm4cjA0lnvL
-	vzLQ==
-Received: by 10.68.231.10 with SMTP id tc10mr27664889pbc.107.1342455752055;
-	Mon, 16 Jul 2012 09:22:32 -0700 (PDT)
-Received: from [10.1.10.192] (c-50-137-42-92.hsd1.or.comcast.net.
-	[50.137.42.92])
-	by mx.google.com with ESMTPS id tq4sm12170672pbc.11.2012.07.16.09.22.29
-	(version=SSLv3 cipher=OTHER); Mon, 16 Jul 2012 09:22:30 -0700 (PDT)
-Message-ID: <50043FC4.3040800@intel.com>
-Date: Mon, 16 Jul 2012 09:22:28 -0700
-From: Scott Garman <scott.a.garman@intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:13.0) Gecko/20120615 Thunderbird/13.0.1
-MIME-Version: 1.0
-To: yocto@yoctoproject.org
+Return-Path: <B29882@freescale.com>
+Received: from va3outboundpool.messaging.microsoft.com
+	(va3ehsobe003.messaging.microsoft.com [216.32.180.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 71D4CE0034D
+	for <yocto@yoctoproject.org>; Mon, 16 Jul 2012 09:25:40 -0700 (PDT)
+Received: from mail100-va3-R.bigfish.com (10.7.14.253) by
+	VA3EHSOBE007.bigfish.com (10.7.40.11) with Microsoft SMTP Server id
+	14.1.225.23; Mon, 16 Jul 2012 16:25:39 +0000
+Received: from mail100-va3 (localhost [127.0.0.1])	by
+	mail100-va3-R.bigfish.com (Postfix) with ESMTP id 691D6A006A;
+	Mon, 16 Jul 2012 16:25:39 +0000 (UTC)
+X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null); IPV:NLI;
+	H:mail.freescale.net; RD:none; EFVD:NLI
+X-SpamScore: -5
+X-BigFish: VS-5(zzbb2dI98dI9371I1454I1432I4015Izz1202hzz8275bh8275dhz2dh2a8h668h839h8e2h8e3hf0ah107ahbe9i)
+Received: from mail100-va3 (localhost.localdomain [127.0.0.1]) by mail100-va3
+	(MessageSwitch) id 1342455937783081_6194;
+	Mon, 16 Jul 2012 16:25:37 +0000 (UTC)
+Received: from VA3EHSMHS011.bigfish.com (unknown [10.7.14.243])	by
+	mail100-va3.bigfish.com (Postfix) with ESMTP id BC0CA360044;
+	Mon, 16 Jul 2012 16:25:37 +0000 (UTC)
+Received: from mail.freescale.net (70.37.183.190) by VA3EHSMHS011.bigfish.com
+	(10.7.99.21) with Microsoft SMTP Server (TLS) id 14.1.225.23;
+	Mon, 16 Jul 2012 16:25:37 +0000
+Received: from 039-SN1MPN1-002.039d.mgd.msft.net ([169.254.2.109]) by
+	039-SN1MMR1-003.039d.mgd.msft.net ([10.84.1.16]) with mapi id
+	14.02.0298.005; Mon, 16 Jul 2012 11:25:37 -0500
+From: McClintock Matthew-B29882 <B29882@freescale.com>
+To: Scott Garman <scott.a.garman@intel.com>
+Thread-Topic: [yocto] edison/denzil patches (post-1.1.2 and 1.2.1)
+Thread-Index: AQHNYFXTv0q7KdYirke7XkZ8aY+u/A==
+Date: Mon, 16 Jul 2012 16:25:36 +0000
+Message-ID: <CAEsOVNe48LR37qWJNnv=Hmk=Y3_M7qjLY+WfoOTXepcVcXehUg@mail.gmail.com>
 References: <CAEsOVNehMk8dmo2O+MpOfs0JM9OPARB2Jd+dzTFw0g93SHYcyA@mail.gmail.com>
-In-Reply-To: <CAEsOVNehMk8dmo2O+MpOfs0JM9OPARB2Jd+dzTFw0g93SHYcyA@mail.gmail.com>
-X-Gm-Message-State: ALoCoQn2boGM8xGICiaTJmm2bYrZOCwE6H1/BwuWjK22lGgSYLc2cCUnKDgY71Bpy/2mnma/O5tI
+	<50043FC4.3040800@intel.com>
+In-Reply-To: <50043FC4.3040800@intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [70.112.201.132]
+MIME-Version: 1.0
+X-OriginatorOrg: freescale.com
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: edison/denzil patches (post-1.1.2 and 1.2.1)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: McClintock Matthew-B29882 <B29882@freescale.com>
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -46,41 +54,68 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 16 Jul 2012 16:22:33 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 16 Jul 2012 16:25:40 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-ID: <7013CAE621ED7B43A8B99CCDC4ABEC85@mgd.freescale.com>
+Content-Transfer-Encoding: quoted-printable
 
-On 07/12/2012 10:43 AM, McClintock Matthew-B29882 wrote:
-> Josh, Scott:
+On Mon, Jul 16, 2012 at 11:22 AM, Scott Garman <scott.a.garman@intel.com> w=
+rote:
+> On 07/12/2012 10:43 AM, McClintock Matthew-B29882 wrote:
+>>
+>> Josh, Scott:
+>>
+>> I've pushed a set of patches for edison/denzil branch - and I may push
+>> a few more still to:
+>>
+>>
+>> http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/log/?h=3Dmattsm/e=
+dison
+>>
+>> http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/log/?h=3Dmattsm/d=
+enzil
+>>
+>> These are all cherry-pick's and most applied cleanly and a few had
+>> some minor cleanups. Please consider these for after the point
+>> releases. I will continue to push to these branches and rebase these
+>> branches off the official upstream trees as well.
 >
-> I've pushed a set of patches for edison/denzil branch - and I may push
-> a few more still to:
 >
-> http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/log/?h=mattsm/edison
-> http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/log/?h=mattsm/denzil
+> Cool, this is a fairly convenient way for me to merge in these commits. L=
+ike
+> Joshua has pointed out, as long as they are bugfixes and don't introduce
+> significant feature additions or create backward compatibility problems, =
+we
+> are likely to accept them.
 >
-> These are all cherry-pick's and most applied cleanly and a few had
-> some minor cleanups. Please consider these for after the point
-> releases. I will continue to push to these branches and rebase these
-> branches off the official upstream trees as well.
+> I'm back from vacation and am catching up on a massive email backlog. Ple=
+ase
+> feel free to ping me in a few days if you don't see these merged into my
+> sgarman/denzil-next-1.2.2 branch.
 
-Cool, this is a fairly convenient way for me to merge in these commits. 
-Like Joshua has pointed out, as long as they are bugfixes and don't 
-introduce significant feature additions or create backward compatibility 
-problems, we are likely to accept them.
+Thanks Scott,
 
-I'm back from vacation and am catching up on a massive email backlog. 
-Please feel free to ping me in a few days if you don't see these merged 
-into my sgarman/denzil-next-1.2.2 branch.
+I'm closing up on the edison branch changes and testing and I will be
+adding more to the denzil branch soon.
 
-Thanks,
+-M
 
-Scott
-
--- 
-Scott Garman
-Embedded Linux Engineer - Yocto Project
-Intel Open Source Technology Center
-
+>
+> Thanks,
+>
+> Scott
+>
+> --
+> Scott Garman
+> Embedded Linux Engineer - Yocto Project
+> Intel Open Source Technology Center
+>
+>
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto=
 
 
