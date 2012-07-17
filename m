@@ -1,38 +1,39 @@
 Return-Path: <B29882@freescale.com>
-Received: from co1outboundpool.messaging.microsoft.com
-	(co1ehsobe001.messaging.microsoft.com [216.32.180.184])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A8048E00282
-	for <yocto@yoctoproject.org>; Mon, 16 Jul 2012 20:56:35 -0700 (PDT)
-Received: from mail130-co1-R.bigfish.com (10.243.78.249) by
-	CO1EHSOBE013.bigfish.com (10.243.66.76) with Microsoft SMTP Server id
-	14.1.225.23; Tue, 17 Jul 2012 03:56:34 +0000
-Received: from mail130-co1 (localhost [127.0.0.1])	by
-	mail130-co1-R.bigfish.com (Postfix) with ESMTP id 885DD62034F	for
-	<yocto@yoctoproject.org>; Tue, 17 Jul 2012 03:56:34 +0000 (UTC)
+Received: from ch1outboundpool.messaging.microsoft.com
+	(ch1ehsobe006.messaging.microsoft.com [216.32.181.186])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9EF54E00282
+	for <yocto@yoctoproject.org>; Mon, 16 Jul 2012 22:31:14 -0700 (PDT)
+Received: from mail216-ch1-R.bigfish.com (10.43.68.247) by
+	CH1EHSOBE012.bigfish.com (10.43.70.62) with Microsoft SMTP Server id
+	14.1.225.23; Tue, 17 Jul 2012 05:31:13 +0000
+Received: from mail216-ch1 (localhost [127.0.0.1])	by
+	mail216-ch1-R.bigfish.com (Postfix) with ESMTP id 4667E2600C3;
+	Tue, 17 Jul 2012 05:31:13 +0000 (UTC)
 X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null); IPV:NLI;
 	H:mail.freescale.net; RD:none; EFVD:NLI
-X-SpamScore: -4
-X-BigFish: VS-4(zz98dI9371I1432I4015I14ffIzz1202hzz8275bh8275dhz2dh2a8h668h839h8e2h8e3hf0ah107ah10d2hbe9i)
-Received: from mail130-co1 (localhost.localdomain [127.0.0.1]) by mail130-co1
-	(MessageSwitch) id 1342497392688443_23430;
-	Tue, 17 Jul 2012 03:56:32 +0000 (UTC)
-Received: from CO1EHSMHS032.bigfish.com (unknown [10.243.78.228])	by
-	mail130-co1.bigfish.com (Postfix) with ESMTP id A5D4634004A;
-	Tue, 17 Jul 2012 03:56:32 +0000 (UTC)
-Received: from mail.freescale.net (70.37.183.190) by CO1EHSMHS032.bigfish.com
-	(10.243.66.42) with Microsoft SMTP Server (TLS) id 14.1.225.23;
-	Tue, 17 Jul 2012 03:56:33 +0000
+X-SpamScore: -2
+X-BigFish: VS-2(zz98dI9371I1432Izz1202hzz8275bh8275dhz2dh2a8h668h839h8e2h8e3h946hf0ah107ah10d2hbe9i)
+Received: from mail216-ch1 (localhost.localdomain [127.0.0.1]) by mail216-ch1
+	(MessageSwitch) id 1342503072140508_12895;
+	Tue, 17 Jul 2012 05:31:12 +0000 (UTC)
+Received: from CH1EHSMHS003.bigfish.com (snatpool3.int.messaging.microsoft.com
+	[10.43.68.228])	by mail216-ch1.bigfish.com (Postfix) with ESMTP id
+	1F9EAA0048;	Tue, 17 Jul 2012 05:31:12 +0000 (UTC)
+Received: from mail.freescale.net (70.37.183.190) by CH1EHSMHS003.bigfish.com
+	(10.43.70.3) with Microsoft SMTP Server (TLS) id 14.1.225.23;
+	Tue, 17 Jul 2012 05:31:12 +0000
 Received: from 039-SN1MPN1-002.039d.mgd.msft.net ([169.254.2.109]) by
 	039-SN1MMR1-001.039d.mgd.msft.net ([10.84.1.13]) with mapi id
-	14.02.0298.005; Mon, 16 Jul 2012 22:56:31 -0500
+	14.02.0298.005; Tue, 17 Jul 2012 00:31:03 -0500
 From: McClintock Matthew-B29882 <B29882@freescale.com>
-To: Tim Bird <tim.bird@am.sony.com>
-Thread-Topic: [yocto] denzil firewall problems
-Thread-Index: AQHNY9AmgLLm1y/5DkmtecHGE9B2kg==
-Date: Tue, 17 Jul 2012 03:56:31 +0000
-Message-ID: <CAEsOVNfN90wh4Mfn_gYC5B0Q7LVDQYANboJ72QVZvSxaRNhZQw@mail.gmail.com>
-References: <5004AA76.9010404@am.sony.com>
-In-Reply-To: <5004AA76.9010404@am.sony.com>
+To: "Serban, Laurentiu" <laurentiu.serban@intel.com>
+Thread-Topic: [yocto] 1.1.2 Full Pass consolidated Test Report
+Thread-Index: AQHNY5/hbr5cKoixskGHFMBAm7dmyJctRywA
+Date: Tue, 17 Jul 2012 05:31:01 +0000
+Message-ID: <CAEsOVNcas4rN6sRaZSOLjy-xNTONdRXaepTiANkpjVh9jr0P_A@mail.gmail.com>
+References: <E16513A01CAAFF40B65178C63CE45EEC19154E26@IRSMSX102.ger.corp.intel.com>
+	<CAEsOVNdtHsAaJX9NdtiWSa70aRcK+Q+dvUgV7FWXu_tEkSEQYg@mail.gmail.com>
+In-Reply-To: <CAEsOVNdtHsAaJX9NdtiWSa70aRcK+Q+dvUgV7FWXu_tEkSEQYg@mail.gmail.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
@@ -40,7 +41,7 @@ x-originating-ip: [70.112.201.132]
 MIME-Version: 1.0
 X-OriginatorOrg: freescale.com
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: denzil firewall problems
+Subject: Re: 1.1.2 Full Pass consolidated Test Report
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,128 +54,662 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 17 Jul 2012 03:56:35 -0000
+X-List-Received-Date: Tue, 17 Jul 2012 05:31:15 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-ID: <645338AC15F9FE4ABFB644F63F89B5A2@mgd.freescale.com>
+Content-Type: text/plain; charset="Windows-1252"
+Content-ID: <65CF0F39F5CF5B42BBDBD6D48FE75349@mgd.freescale.com>
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jul 16, 2012 at 6:57 PM, Tim Bird <tim.bird@am.sony.com> wrote:
-> Hi all,
+On Mon, Jul 16, 2012 at 5:10 PM, Matthew McClintock <msm@freescale.com> wro=
+te:
+> Comment on 1.1.2 - I'm seeing the following issue on a CentOS 5.8 box
+> - do you do any QA tests on such a distribution?
 >
-> I'm trying to take Denzil out for a spin, and when I do bitbake, from ins=
-ide
-> Sony (behind our corporate firewall) I get this:
->
-> (I was doing 'bitbake poky-image-sato')
-> -------------
-> ...
-> ERROR:  OE-core's config sanity checker detected a potential misconfigura=
-tion.
->     Either fix the cause of this error or at your own risk disable the ch=
-ecker (see sanity.conf).
->     Following is the list of potential problems / advisories:
->
->     Failed to fetch test data from the network. Please ensure your networ=
-k is configured correctly.
->
-> ERROR: Execution of event handler 'check_sanity_eventhandler' failed
-> -------------
->
-> I tried to follow the instructions at:
-> https://wiki.yoctoproject.org/wiki/Working_Behind_a_Network_Proxy
-> but nothing worked.  These look like instructions for SOCKS proxies.
-> I only have access to HTTP proxies.
->
-> Here's what I got from 'bitbake -DDD -v poky-image-sato', after configuri=
-ng an 'nc'-based git-proxy:
-> -------------
-> DEBUG: Fetcher accessed the network with the command git ls-remote git://=
-git.yoctoproject.org/yocto-firewall-test HEAD
-> DEBUG: Running export HOME=3D"/a/home/tbird"; export SSH_AGENT_PID=3D"182=
-2"; export SSH_AUTH_SOCK=3D"/tmp/keyring-9qrJm0/ssh"; export no_proxy=3D"lo=
-calhost,127.0.0.0/8"; export
-> ftp_proxy=3D"http://www-west.sony.com:80"; export http_proxy=3D"http://ww=
-w-west.sony.com:80"; export GIT_CONFIG=3D"/a/home/tbird/work/yocto/poky-7.0=
--build/tmp/sysroots/x86_64-linux/etc/gitconfig"; export
-> GIT_PROXY_COMMAND=3D"/usr/local/bin/git-proxy"; export
-> PATH=3D"/a/home/tbird/work/yocto/poky-denzil-7.0/bitbake/bin/:/a/home/tbi=
-rd/bin:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/u=
-sr/bin:/sbin:/bin:/usr/games:/a/home/tbird/bin/:/a/home/tbird/work/yocto/po=
-ky-denzil-7.0/scripts";
-> git ls-remote git://git.yoctoproject.org/yocto-firewall-test HEAD
+> | DEBUG: Staging files from
+> /home/mattsm/git/poky/build-edison-old/tmp/work/ppc603e-poky-linux/eglibc=
+-locale-2.13-r16/pkgdata
+> to /home/mattsm/git/poky/build-edison-old/tmp/pkgdata/ppc603e-poky-linux
+> | DEBUG: Staging files from
+> /home/mattsm/git/poky/build-edison-old/tmp/work/ppc603e-poky-linux/eglibc=
+-locale-2.13-r16/pkgdata
+> to /home/mattsm/git/poky/build-edison-old/tmp/pkgdata/ppc603e-poky-linux
+> | DEBUG: Staging files from
+> /home/mattsm/git/poky/build-edison-old/tmp/work/ppc603e-poky-linux/eglibc=
+-locale-2.13-r16/shlibs
+> to /home/mattsm/git/poky/build-edison-old/tmp/sysroots/mpc8315e-rdb/shlib=
+s
+> | DEBUG: Preparing tree
+> /home/mattsm/git/poky/build-edison-old/tmp/work/ppc603e-poky-linux/eglibc=
+-locale-2.13-r16/pkgdata
+> for packaging at
+> /home/mattsm/git/poky/build-edison-old/tmp/work/ppc603e-poky-linux/eglibc=
+-locale-2.13-r16/sstate-build-package/pkgdata
+> | DEBUG: Preparing tree
+> /home/mattsm/git/poky/build-edison-old/tmp/work/ppc603e-poky-linux/eglibc=
+-locale-2.13-r16/shlibs
+> for packaging at
+> /home/mattsm/git/poky/build-edison-old/tmp/work/ppc603e-poky-linux/eglibc=
+-locale-2.13-r16/sstate-build-package/shlibs
+> | /home/mattsm/git/poky/build-edison-old/tmp/work/ppc603e-poky-linux/egli=
+bc-locale-2.13-r16/temp/run.sstate_create_package.16637:
+> line 83:  7735 Segmentation fault      rm -rf
+> /home/mattsm/git/poky/build-edison-old/tmp/work/ppc603e-poky-linux/eglibc=
+-locale-2.13-r16/sstate-build-package/
+> | ERROR: Function 'sstate_create_package' failed (see
+> /home/mattsm/git/poky/build-edison-old/tmp/work/ppc603e-poky-linux/eglibc=
+-locale-2.13-r16/temp/log.do_package.16637
+> for further information)
+> NOTE: package eglibc-locale-2.13-r16: task do_package: Failed
+> ERROR: Task 9 (/home/mattsm/git/poky/meta/recipes-core/eglibc/eglibc-loca=
+le_2.13.bb,
+> do_package) failed with exit code '1'
+> ERROR: '/home/mattsm/git/poky/meta/recipes-core/eglibc/eglibc-locale_2.13=
+.bb'
+> failed
 
-Tim,
+Some more follow up... the following seems to "hide" my issue. Does
+anyone have any ideas?
 
-Can you run that command outside of the yocto build and it works OK?
+diff --git a/meta/classes/sstate.bbclass b/meta/classes/sstate.bbclass
+index d2a45c3..9a739d1 100644
+--- a/meta/classes/sstate.bbclass
++++ b/meta/classes/sstate.bbclass
+@@ -463,7 +463,7 @@ sstate_create_package () {
+        mv $TFILE ${SSTATE_PKG}
 
-Did you set GIT_PROXY_COMMAND in your local.conf? I recall that
-git-proxy script on the wiki page not working all that well. (I've
-gone through all the same problems with our proxy as well). There is a
-connect-proxy utility available on most distros, and then I've been
-using this script:
+        cd ${WORKDIR}
+-       rm -rf ${SSTATE_BUILDDIR}
++       strace rm -rf ${SSTATE_BUILDDIR}
+ }
 
-$ cat ../scripts/git-proxy
-#!/bin/sh
-
-if [[ "$@" =3D~ "$GIT_PROXY_IGNORE" ]]
-then
-	nc $@
-else
-	/usr/bin/connect-proxy -S wwwgate0.freescale.net:1090 $@
-fi
-
-Not 100% sure how it evolved to this point though.
+ #
 
 -M
 
-
-
-
-> ERROR:  OE-core's config sanity checker detected a potential misconfigura=
-tion.
->     Either fix the cause of this error or at your own risk disable the ch=
-ecker (see sanity.conf).
->     Following is the list of potential problems / advisories:
 >
->     Failed to fetch test data from the network. Please ensure your networ=
-k is configured correctly.
->
-> ERROR: Execution of event handler 'check_sanity_eventhandler' failed
-> --------------
->
-> I seem to recall in previous Yocto versions a mechanism to point the
-> package fetcher to a mirror.  Is this still available?  If so, where woul=
+> On Fri, Jul 13, 2012 at 3:52 PM, Serban, Laurentiu
+> <laurentiu.serban@intel.com> wrote:
+>>
+>> Hello,
+>>
+>> Here are the results for the full pass testing on 1.1.2 release.
+>>
+>>
+>>
+>> Issues:
+>>
+>> Crownbay image was copied to the wrong folder which we didn=92t find and=
+ had no response from anybody, so all cases on crownbay are blocked. LTP on=
+ sugarbay is still running.
+>>
+>>                 FRI2 sato image was not created so FRI2 tests were block=
+ed.
+>>
+>>
+>>
+>> Summary:
+>>
+>> There were 5 open bugs, three of them  were for core build system , they=
+ are lib64 sato image build failed due to non-existent tasks, core-image-sa=
+to ipk build failed due to dependency of lib32-ofono and mklibs-native fail=
+ed to compile fedora17 64bit.  one issue for ADT, qemu launch failed due to=
+ not finding GLIBC_2.14, reported as bug 2748 and another is Ioatdma error =
+found in dmesg log on Jasperforest. All these 5 bugs are also in Yocto 1.2 =
+ test cycle. For build performance, one qemux86 sato build on a Core i7 mac=
+hine takes 115 minutes.
+>>
+>> For non-intel platforms there is a new bug found for build image with PA=
+M support, reported as bug 2743. This issue has been fixed in master branch=
+ but the patches aren't merged into edison.
+>>
+>>
+>>
+>> Commit information
+>>
+>> --------------------------------
+>>
+>> Tree/Branch: poky/edison
+>>
+>> Poky Commit: 8886aee5b9741c05886994967d9ecf420331c600
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>> Critical bugs, more than 50% test cases are blocked
+>>
+>>
+>>
+>> Only Normal, Minor or Enhancement bugs, or less than 10% test cases fail=
+ed
+>>
+>>
+>>
+>> Normal, Major and Critical bugs, and more than 10% test cases failed
+>>
+>>
+>>
+>>
+>>
+>> Test Result Summary
+>>
+>> Component
+>>
+>> Target
+>>
+>> Status
+>>
+>> Comments
+>>
+>> BSP
+>>
+>> Beagleboard
+>>
+>> GOOD
+>>
+>> Everything runs well
+>>
+>> Routerstationpro
+>>
+>> GOOD
+>>
+>> Everything runs well
+>>
+>> Mpc8315e-rdb
+>>
+>> GOOD
+>>
+>> Everything runs well
+>>
+>> eMenlow
+>>
+>> GOOD
+>>
+>> Vnc server issue (2700)
+>>
+>> Blacksand
+>>
+>> GOOD
+>>
+>> syslog is not started by default in background on bsps
+>>
+>> Crownbay-emgd
+>>
+>> BLOCK
+>>
+>> No image
+>>
+>> Sugarbay
+>>
+>> GOOD
+>>
+>> Everything runs well
+>>
+>> FRI2-sato-sdk
+>>
+>> BLOCK
+>>
+>> No image
+>>
+>> HuronRiver-sato-sdk
+>>
+>> GOOD
+>>
+>> Everything runs well
+>>
+>> Jasperforest-lsb
+>>
+>> GOOD
+>>
+>> Bug 2742 =96 system dmesg log check issue
+>>
+>> QEMU
+>>
+>> qemuarm
+>>
+>> GOOD
+>>
+>> Everything runs well
+>>
+>> qemuppc
+>>
+>> GOOD
+>>
+>> Everything runs well
+>>
+>> qemumips
+>>
+>> GOOD
+>>
+>> Everything runs well
+>>
+>> qemux86
+>>
+>> BUGGY
+>>
+>> Zypper issue (2694)
+>>
+>> qemux86-64
+>>
+>> BUGGY
+>>
+>> Zypper issue (2694)
+>>
+>> Core build system
+>>
+>>
+>>
+>> BUGGY
+>>
+>> Build image with PAM support failed.
+>>
+>> Multilib issues (2744, 2747), mklibs compile failure (2746)
+>>
+>> HOB
+>>
+>>
+>>
+>> GOOD
+>>
+>> Everything runs well
+>>
+>> Compliance
+>>
+>> GOOD
+>>
+>> LTP result: https://wiki.pokylinux.org/wiki/LTP_result
+>> POSIX result: https://wiki.pokylinux.org/wiki/Posix_result
+>>
+>> Stress
+>>
+>> GOOD
+>>
+>> Everything runs well
+>>
+>> Distribution Support
+>>
+>> GOOD
+>>
+>> beecrypt-native failed to compile on Fedora17(final) 64bit
+>>
+>> ADT
+>>
+>>
+>>
+>> BUGGY
+>>
+>> 2748 (qemu launch failure)
+>>
+>>
+>>
+>>
+>>
+>> Detailed Test Result for each component
+>>
+>> Target
+>>
+>> Total TCs
+>>
+>> Not Run
+>>
+>> Passed
+>>
+>> Failed
+>>
+>> Not testable (Blocked)
+>>
+>> Beagleboard Sato-SDK
+>>
+>> 40
+>>
+>> 0
+>>
+>> 40
+>>
+>> 0
+>>
+>> 0
+>>
+>> Routerstationpro Sato-SDK
+>>
+>> 33
+>>
+>> 0
+>>
+>> 33
+>>
+>> 0
+>>
+>> 0
+>>
+>> Mpc8315e-rdb Sato-SDK
+>>
+>> 36
+>>
+>> 0
+>>
+>> 36
+>>
+>> 0
+>>
+>> 0
+>>
+>> eMenlow Sato-SDK
+>>
+>> 67
+>>
+>> 0
+>>
+>> 66
+>>
+>> 1(bug 2700)
+>>
+>> 0
+>>
+>> n450 Sato-SDK
+>>
+>> 71
+>>
+>> 0
+>>
+>> 70
+>>
+>> 1 (bug 2646)
+>>
+>> 0
+>>
+>> Crownbay-Sato-SDK
+>>
+>> 67
+>>
+>> 0
+>>
+>> 0
+>>
+>> 0
+>>
+>> 67
+>>
+>> FRI2 Sato-SDK
+>>
+>> 86
+>>
+>> 0
+>>
+>> 0
+>>
+>> 0
+>>
+>> 86 (bug 2527)
+>>
+>> HuronRiver Sato-SDK
+>>
+>> 61
+>>
+>> 0
+>>
+>> 61
+>>
+>> 0
+>>
+>> 0
+>>
+>> Sugarbay Sato-SDK
+>>
+>> 68
+>>
+>> 0
+>>
+>> 68
+>>
+>> 0
+>>
+>> 0
+>>
+>> Jasperforest lsb-SDK
+>>
+>> 32
+>>
+>> 0
+>>
+>> 31
+>>
+>> 1 (2742)
+>>
+>> 0
+>>
+>> Qemuarm Sato
+>>
+>> 30
+>>
+>> 0
+>>
+>> 30
+>>
+>> 0
+>>
+>> 0
+>>
+>> Qemuarm Sato-SDK
+>>
+>> 35
+>>
+>> 0
+>>
+>> 35
+>>
+>> 0
+>>
+>> 0
+>>
+>> Qemumips Sato
+>>
+>> 30
+>>
+>> 0
+>>
+>> 30
+>>
+>> 0
+>>
+>> 0
+>>
+>> Qemumips Sato-SDK
+>>
+>> 35
+>>
+>> 0
+>>
+>> 35
+>>
+>> 0
+>>
+>> 0
+>>
+>> Qemuppc Sato
+>>
+>> 30
+>>
+>> 0
+>>
+>> 30
+>>
+>> 0
+>>
+>> 0
+>>
+>> Qemuppc Sato-SDK
+>>
+>> 35
+>>
+>> 0
+>>
+>> 35
+>>
+>> 0
+>>
+>> 0
+>>
+>> Qemux86-64 Sato
+>>
+>> 37
+>>
+>> 0
+>>
+>> 31
+>>
+>> 5 (bug 2694)
+>>
+>> 1 (2694)
+>>
+>> Qemux86-64 Sato-SDK
+>>
+>> 37
+>>
+>> 0
+>>
+>> 31
+>>
+>> 5 (bug 2694)
+>>
+>> 1 (2694)
+>>
+>> Qemux86 Sato
+>>
+>> 37
+>>
+>> 0
+>>
+>> 31
+>>
+>> 5 (bug 2694)
+>>
+>> 1 (2694)
+>>
+>> Qemux86 Sato-SDK
+>>
+>> 37
+>>
+>> 0
+>>
+>> 31
+>>
+>> 5 (bug 2694)
+>>
+>> 1 (2694)
+>>
+>> Core build system
+>>
+>> 20
+>>
+>> 0
+>>
+>> 17
+>>
+>> 3 (2746, 2744, 2747)
+>>
+>> 0
+>>
+>> HOB
+>>
+>> 26
+>>
+>> 0
+>>
+>> 26
+>>
+>> 0
+>>
+>> 0
+>>
+>> ADT
+>>
+>> 6
+>>
+>> 0
+>>
+>> 5
+>>
+>> 1 (2748)
+>>
+>> 0
+>>
+>> Total
+>>
+>> 956
+>>
+>>
+>>
+>> 839
+>>
+>> 27
+>>
+>> 90
+>>
+>>
+>>
+>>
+>>
+>> Component
+>>
+>> Bug Number
+>>
+>> Target Milestone
+>>
+>> System & Core OS
+>>
+>> System Usage
+>>
+>> Bug 2694 [QEMU-X86_64]zypper refresh fail
+>>
+>> Bug 2700 cannot reconnect to x11vnc
+>>
+>> Bug 2742 ioatdma error happened on jasperforest platform with edison bra=
+nch
+>>
+>> Bug 2646 Windows switching failure
+>>
+>> Core build system
+>>
+>> Bug 2747  core-image-sato ipk build failed due to dependency of lib32-bl=
+uez4/lib32-bluez4/lib32-bluez4
+>>
+>> Bug 2746 mklibs-native failed to compile fedora17-X86_64
+>>
+>> Bug 2744  lib64 sato image build failed due to nonexistant task
+>>
+>> Bug 2743 Useradd command fails after 10 retries with 1.1.2 20120630 buil=
 d
-> I find instructions for this?
->
-> Alternatively, I have a builder image for denzil.  Is there a way to use =
-the
-> material in that image as a source mirror snapshot?
->
-> Any help would be appreciated.
->
-> Thanks,
->  -- Tim
->
-> P.S. With regards to disabling the checker (as a possible workaround for
-> the problem), I found sanity.conf at poky-denzil-7.0/meta/conf/sanity.con=
-f.
-> I looked at it (and meta/classes/sanity.bbclass) but it's not obvious
-> to me how I would disable it.
->
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D
-> Tim Bird
-> Architecture Group Chair, CE Workgroup of the Linux Foundation
-> Senior Staff Engineer, Sony Network Entertainment
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D
->
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto=
+>>
+>> ADT
+>>
+>> Bug 2748 qemu cannot be started
+>>
+>>
+>>
+>>
+>>
+>> Laurentiu Serban
+>>
+>> QA Engineer
+>>
+>> Open Source Technology Center
+>>
+>> System Software Division Romania
+>>
+>> Desk: +40 31 8604742
+>>
+>> iNET: 88451042
+>>
+>>
+>>
+>>
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>>=
 
 
