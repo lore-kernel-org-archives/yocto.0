@@ -1,58 +1,33 @@
-Return-Path: <tim.bird@am.sony.com>
-Received: from co1outboundpool.messaging.microsoft.com
-	(co1ehsobe004.messaging.microsoft.com [216.32.180.187])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DC2C4E00283
-	for <yocto@yoctoproject.org>; Tue, 17 Jul 2012 10:43:41 -0700 (PDT)
-Received: from mail188-co1-R.bigfish.com (10.243.78.231) by
-	CO1EHSOBE011.bigfish.com (10.243.66.74) with Microsoft SMTP Server id
-	14.1.225.23; Tue, 17 Jul 2012 17:43:42 +0000
-Received: from mail188-co1 (localhost [127.0.0.1])	by
-	mail188-co1-R.bigfish.com (Postfix) with ESMTP id 7229B3C0270	for
-	<yocto@yoctoproject.org>; Tue, 17 Jul 2012 17:43:41 +0000 (UTC)
-X-Forefront-Antispam-Report: CIP:160.33.194.228; KIP:(null); UIP:(null);
-	IPV:NLI; H:usculsndmail01v.am.sony.com; RD:mail.sonyusa.com;
-	EFVD:NLI
-X-SpamScore: -6
-X-BigFish: VPS-6(zzbb2dI98dI9371I1432I1447I14ffIzz1202hzz8275bh8275dhz2fh2a8h668h839h93fhd25hf0ah107ah)
-Received-SPF: pass (mail188-co1: domain of am.sony.com designates
-	160.33.194.228 as permitted sender) client-ip=160.33.194.228;
-	envelope-from=tim.bird@am.sony.com;
-	helo=usculsndmail01v.am.sony.com ; .am.sony.com ; 
-Received: from mail188-co1 (localhost.localdomain [127.0.0.1]) by mail188-co1
-	(MessageSwitch) id 1342547020478774_28483;
-	Tue, 17 Jul 2012 17:43:40 +0000 (UTC)
-Received: from CO1EHSMHS005.bigfish.com (unknown [10.243.78.228])	by
-	mail188-co1.bigfish.com (Postfix) with ESMTP id 72AC74C004A;
-	Tue, 17 Jul 2012 17:43:40 +0000 (UTC)
-Received: from usculsndmail01v.am.sony.com (160.33.194.228) by
-	CO1EHSMHS005.bigfish.com (10.243.66.15) with Microsoft SMTP Server
-	(TLS) id 14.1.225.23; Tue, 17 Jul 2012 17:43:40 +0000
-Received: from usculsndmail14v.am.sony.com (usculsndmail14v.am.sony.com
-	[146.215.230.105])	by usculsndmail01v.am.sony.com
-	(Sentrion-MTA-4.2.2/Sentrion-MTA-4.2.2) with ESMTP id q6HHhcPd026184
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=FAIL);
-	Tue, 17 Jul 2012 17:43:39 GMT
-Received: from mail1x.sjc.in.sel.sony.com (mail2.sjc.in.sel.sony.com
-	[43.134.1.112])	by usculsndmail14v.am.sony.com
-	(Sentrion-MTA-4.2.2/Sentrion-MTA-4.2.2) with ESMTP id q6HHhbLG031686
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=FAIL);
-	Tue, 17 Jul 2012 17:43:38 GMT
-Received: from [43.135.148.222] ([43.135.148.222])	by
-	mail1x.sjc.in.sel.sony.com (Switch-3.4.2/Switch-3.4.2) with ESMTP id
-	q6HHhQlJ005236;	Tue, 17 Jul 2012 17:43:27 GMT
-Message-ID: <5005A4C6.9000007@am.sony.com>
-Date: Tue, 17 Jul 2012 10:45:42 -0700
-From: Tim Bird <tim.bird@am.sony.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:13.0) Gecko/20120615 Thunderbird/13.0.1
+Return-Path: <song.liu@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6A239E00282
+	for <yocto@yoctoproject.org>; Tue, 17 Jul 2012 10:50:14 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 17 Jul 2012 10:50:14 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="178928783"
+Received: from orsmsx606.amr.corp.intel.com ([10.22.226.128])
+	by fmsmga001.fm.intel.com with ESMTP; 17 Jul 2012 10:50:14 -0700
+Received: from orsmsx103.amr.corp.intel.com (10.22.225.130) by
+	orsmsx606.amr.corp.intel.com (10.22.226.128) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Tue, 17 Jul 2012 10:50:13 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.93]) by
+	ORSMSX103.amr.corp.intel.com ([169.254.2.235]) with mapi id
+	14.01.0355.002; Tue, 17 Jul 2012 10:50:13 -0700
+From: "Liu, Song" <song.liu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Minutes: Yocto Project Technical Team Meeting - Tuesday, July
+	17, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+Thread-Index: AQHNZESdQCPx5E5ee0WmwvBufglIkw==
+Date: Tue, 17 Jul 2012 17:50:13 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A484C60BC@ORSMSX101.amr.corp.intel.com>
+References: <7E680CB2A76BB8438D08CF13C09FC53A4844CAD5@ORSMSX101.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-To: McClintock Matthew-B29882 <B29882@freescale.com>
-References: <5004AA76.9010404@am.sony.com>
-	<CAEsOVNfN90wh4Mfn_gYC5B0Q7LVDQYANboJ72QVZvSxaRNhZQw@mail.gmail.com>
-In-Reply-To: <CAEsOVNfN90wh4Mfn_gYC5B0Q7LVDQYANboJ72QVZvSxaRNhZQw@mail.gmail.com>
-X-OriginatorOrg: am.sony.com
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: denzil firewall problems
+Subject: Minutes: Yocto Project Technical Team Meeting - Tuesday, July 17, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -64,85 +39,61 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 17 Jul 2012 17:43:42 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 17 Jul 2012 17:50:14 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-On 07/16/2012 08:56 PM, McClintock Matthew-B29882 wrote:
-> On Mon, Jul 16, 2012 at 6:57 PM, Tim Bird <tim.bird@am.sony.com> wrote:
->> Hi all,
->>
->> I'm trying to take Denzil out for a spin, and when I do bitbake, from inside
->> Sony (behind our corporate firewall) I get this:
->>
->> (I was doing 'bitbake poky-image-sato')
->> -------------
->> ...
->> ERROR:  OE-core's config sanity checker detected a potential misconfiguration.
->>     Either fix the cause of this error or at your own risk disable the checker (see sanity.conf).
->>     Following is the list of potential problems / advisories:
->>
->>     Failed to fetch test data from the network. Please ensure your network is configured correctly.
->>
->> ERROR: Execution of event handler 'check_sanity_eventhandler' failed
->> -------------
->>
->> I tried to follow the instructions at:
->> https://wiki.yoctoproject.org/wiki/Working_Behind_a_Network_Proxy
->> but nothing worked.  These look like instructions for SOCKS proxies.
->> I only have access to HTTP proxies.
->>
->> Here's what I got from 'bitbake -DDD -v poky-image-sato', after configuring an 'nc'-based git-proxy:
->> -------------
->> DEBUG: Fetcher accessed the network with the command git ls-remote git://git.yoctoproject.org/yocto-firewall-test HEAD
->> DEBUG: Running export HOME="/a/home/tbird"; export SSH_AGENT_PID="1822"; export SSH_AUTH_SOCK="/tmp/keyring-9qrJm0/ssh"; export no_proxy="localhost,127.0.0.0/8"; export
->> ftp_proxy="http://www-west.sony.com:80"; export http_proxy="http://www-west.sony.com:80"; export GIT_CONFIG="/a/home/tbird/work/yocto/poky-7.0-build/tmp/sysroots/x86_64-linux/etc/gitconfig"; export
->> GIT_PROXY_COMMAND="/usr/local/bin/git-proxy"; export
->> PATH="/a/home/tbird/work/yocto/poky-denzil-7.0/bitbake/bin/:/a/home/tbird/bin:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/a/home/tbird/bin/:/a/home/tbird/work/yocto/poky-denzil-7.0/scripts";
->> git ls-remote git://git.yoctoproject.org/yocto-firewall-test HEAD
->  
-> Can you run that command outside of the yocto build and it works OK?
-No.  Both inside and outside of yocto build the 'git ls-remote ...' fails.
-
-Note that git using http: URL for a project works.
-
-> 
-> Did you set GIT_PROXY_COMMAND in your local.conf? I recall that
-> git-proxy script on the wiki page not working all that well. (I've
-> gone through all the same problems with our proxy as well). There is a
-> connect-proxy utility available on most distros, and then I've been
-> using this script:
-> 
-> $ cat ../scripts/git-proxy
-> #!/bin/sh
-> 
-> if [[ "$@" =~ "$GIT_PROXY_IGNORE" ]]
-> then
-> 	nc $@
-> else
-> 	/usr/bin/connect-proxy -S wwwgate0.freescale.net:1090 $@
-> fi
-> 
-> Not 100% sure how it evolved to this point though.
-
-I tried this, and it didn't work for me.  I used it with
-a couple of different http proxies and got:
-
-$ git ls-remote git://git.yoctoproject.org/yocto-firewall-test HEAD
-FATAL: failed to begin relaying via HTTP.
-fatal: The remote end hung up unexpectedly
-
-Thanks for the help, but I don't know if it's going to work.
-
-Does anyone have a yocto mirror that's accessible via http?
- -- Tim
-
-=============================
-Tim Bird
-Architecture Group Chair, CE Workgroup of the Linux Foundation
-Senior Staff Engineer, Sony Network Entertainment
-=============================
-
+Attendees:
+Cristian, Laurentiu, Ciby, Bogdan, ScottR, ScottG, Mark, Russ, Saul, Denys,=
+ Paul, Tom, Gilbert, Richard, MichaelH, BruceA, Josh, Sean, Jessica, Nitin,=
+ Darren, Song
+=A0
+Agenda:
+=A0
+* Opens collection - 5 min (Song)
+* 1.2.1 release readiness - 10 min (ScottG)
+  - The release build has passed full pass QA test. All bugs have been revi=
+ewed and no release blocker found. We are ready to release pending CCB appr=
+oval.
+  - Asked community feedback on release readiness. No objection from the co=
+mmunity.
+  - Decision: will release after CCB approval.
+* 1.1.2 release readiness - 10 min (Josh/Beth)
+  - Full pass QA report is out, few issues are reported with distribution u=
+pdate. Fedora 17 added something new and causing one issue. Fixing the issu=
+e will probably take more than this point release can take. Matthew reporte=
+d another issue yesterday. Josh will follow up with Matthew on those issues=
+ and try to find solution.
+  - Other than those, we are ready to release.
+  - Decision: will ask CCB approval to release after following up with Matt=
+hew.
+* Yocto 1.3 status  - 10 min (Song/team)
+  https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.3_Status =20
+  - M2 RC1 is under QA full pass testing. Report is expected tomorrow.=20
+  - Bug counts is a little higher this week. Our speed of fixing bugs has b=
+een lagging the speed of opening bugs a bit. The team need to focus more on=
+ this to bring the bug count down.=20
+  - Planning: M2 schedule is cleaned up. We got CCB approval and moved abou=
+t 6 feature and 9 bugs (all P1) from M2 to M3. There are still planning to =
+do for the Romania team and kernel team this week.
+  - Master status: Saul: Will run a build on master today, master is open a=
+nd ready.
+  - Package update: Saul sent an email to oe-core with a list of packages w=
+e need to update for M3, we targeted 80% for that list. That's our goal for=
+ M3. If there are people interested in helping that please get in touch wit=
+h maintainers.=20
+=A0
+* SWAT team rotation: Paul -> Ross
+=A0
+* Opens - 10 min
+* Team sharing - 20 min
+ - Paul: working on early phase construction (2614), some patches ready. mi=
+ght need to talk to Mark about that. Working on web server (LAMP) layer.
+ - Michael: spent time on tricky NFS issues. ID map server with shared stat=
+es, causing time out, etc. All of that have been solved. Was pretty challen=
+ging. Tagged 1.1.2 release, worked with Josh. Coming week will be in OSCON,=
+ will work on documentation, autobuilder rotation, etc.
 
 
 
