@@ -1,39 +1,24 @@
-Return-Path: <marc.ferland@gmail.com>
-Received: from mail-gg0-f176.google.com (mail-gg0-f176.google.com
-	[209.85.161.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4DC11E013D4
-	for <yocto@yoctoproject.org>; Tue, 17 Jul 2012 06:22:41 -0700 (PDT)
-Received: by ggnk4 with SMTP id k4so384762ggn.35
-	for <yocto@yoctoproject.org>; Tue, 17 Jul 2012 06:22:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=sender:from:to:subject:references:date:in-reply-to:message-id
-	:user-agent:mime-version:content-type;
-	bh=HlZszI4alywAF92S0jb2QhSxkLP5nILKg/LKfQjZIJ8=;
-	b=R8SitW+Zhwp7jfD7EGfw+vLhSMkMANpGuqwLhgMCE/kpBoFc+fNZwAFKmIXzxBXJ4w
-	TFOCZtkmemz/amyF69YicR8wSC0nqqiKcZRhwRfCYxQznPJx//VSBWNFzWF31rcpBdZD
-	J2MEj7akivHm9DJV/Le/hk3qbH4/bb4NyceDpMYLaaFHTwo46WUfA3czDhSRA2zr0nT4
-	db60htw+owGpegDNr/6KDwFZzwFg6qvvkSXoXZWeZVkGkpIVXxtaq9uDqrbeerQBsFE0
-	2AWkPHw/dXSjWM+A1pqTKU73IyL2JgKfOX9PWvPzX0m1LTJpAiC+Hv/ffknsbyc9m+7W
-	I4EQ==
-Received: by 10.50.202.8 with SMTP id ke8mr1320592igc.6.1342531360174;
-	Tue, 17 Jul 2012 06:22:40 -0700 (PDT)
-Received: from ferlandm@sonatest.com
-	(modemcable066.15-37-24.static.videotron.ca. [24.37.15.66])
-	by mx.google.com with ESMTPS id ua2sm19527015igb.7.2012.07.17.06.22.29
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Tue, 17 Jul 2012 06:22:31 -0700 (PDT)
-Sender: Marc Ferland <marc.ferland@gmail.com>
-Received: by ferlandm@sonatest.com (sSMTP sendmail emulation);
-	Tue, 17 Jul 2012 09:22:43 -0400
-From: Marc Ferland <ferlandm@sonatest.com>
-To: yocto@yoctoproject.org
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5CE94E013D4
+	for <yocto@yoctoproject.org>; Tue, 17 Jul 2012 06:47:00 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 17 Jul 2012 06:46:59 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="178754904"
+Received: from unknown (HELO helios.localnet) ([10.252.121.35])
+	by fmsmga001.fm.intel.com with ESMTP; 17 Jul 2012 06:46:59 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Marc Ferland <ferlandm@sonatest.com>
+Date: Tue, 17 Jul 2012 14:46:58 +0100
+Message-ID: <4993370.uo3sKWOC4t@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.8.4 (Linux/3.2.0-26-generic-pae; KDE/4.8.4; i686; ; )
+In-Reply-To: <87ipdmikt8.fsf@sonatest.com>
 References: <87sjcrio8r.fsf@sonatest.com> <50050DB5.9060107@linux.intel.com>
-Date: Tue, 17 Jul 2012 09:22:43 -0400
-In-Reply-To: <50050DB5.9060107@linux.intel.com> (Laurentiu Palcu's message of
-	"Tue, 17 Jul 2012 10:01:09 +0300")
-Message-ID: <87ipdmikt8.fsf@sonatest.com>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/24.1 (gnu/linux)
+	<87ipdmikt8.fsf@sonatest.com>
 MIME-Version: 1.0
+Cc: yocto@yoctoproject.org
 Subject: Re: xserver-xorg
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -46,23 +31,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 17 Jul 2012 13:22:41 -0000
-Content-Type: text/plain
+X-List-Received-Date: Tue, 17 Jul 2012 13:47:00 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Laurentiu Palcu <laurentiu.palcu@linux.intel.com> writes:
+On Tuesday 17 July 2012 09:22:43 Marc Ferland wrote:
+> Laurentiu Palcu <laurentiu.palcu@linux.intel.com> writes:
+> > Apparently, these tests were removed upstream. As we are going to
+> > upgrade xserver-xorg package to 1.12.3, those fixes will be included
+> > too. However, if you need the fix now, I attached the patch.
+> 
+> Just in case someone else stumbles on this issue, setting the preferred
+> version of xserver-xorg to 1.11.2 in the machine.conf also solves the
+> issue.
+> 
+> PREFERRED_VERSION_xserver-xorg ?= "1.11.2"
 
-> Hi Marc,
->
-> Apparently, these tests were removed upstream. As we are going to
-> upgrade xserver-xorg package to 1.12.3, those fixes will be included
-> too. However, if you need the fix now, I attached the patch.
->
+FWIW, setting this kind of thing in the machine config is discouraged. This is 
+really distro policy which is something that belongs in your distro 
+configuration (or local configuration if it's temporary).
 
-Just in case someone else stumbles on this issue, setting the preferred
-version of xserver-xorg to 1.11.2 in the machine.conf also solves the
-issue.
+Cheers,
+Paul
 
-PREFERRED_VERSION_xserver-xorg ?= "1.11.2"
+-- 
 
-Marc
+Paul Eggleton
+Intel Open Source Technology Centre
 
