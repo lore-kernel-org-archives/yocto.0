@@ -1,23 +1,23 @@
 Return-Path: <nitin.a.kamble@intel.com>
 Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C2E79E00349
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 055C2E00349
 	for <yocto@yoctoproject.org>; Thu, 19 Jul 2012 07:49:49 -0700 (PDT)
 Received: from azsmga001.ch.intel.com ([10.2.17.19])
 	by azsmga101.ch.intel.com with ESMTP; 19 Jul 2012 07:49:49 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="170406887"
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="170406891"
 Received: from yocto-hm1.jf.intel.com ([10.23.232.32])
-	by azsmga001.ch.intel.com with ESMTP; 19 Jul 2012 07:49:48 -0700
+	by azsmga001.ch.intel.com with ESMTP; 19 Jul 2012 07:49:49 -0700
 From: nitin.a.kamble@intel.com
 To: yocto@yoctoproject.org, bruce.ashfield@windriver.com, tom.zanussi@intel.com
-Date: Wed, 18 Jul 2012 07:49:19 -0700
-Message-Id: <49e01dfa9dd21b4acd41b4e397cd3544e8f3e7e6.1342622602.git.nitin.a.kamble@intel.com>
+Date: Wed, 18 Jul 2012 07:49:20 -0700
+Message-Id: <7bc69e44bb3b97f8a30868e938f4b29a801ee4e9.1342622602.git.nitin.a.kamble@intel.com>
 X-Mailer: git-send-email 1.7.3.4
 In-Reply-To: <2675de6e815486b6609b3ec9c8492dbf806e2c49.1342622602.git.nitin.a.kamble@intel.com>
 References: <2675de6e815486b6609b3ec9c8492dbf806e2c49.1342622602.git.nitin.a.kamble@intel.com>
 In-Reply-To: <cover.1342622602.git.nitin.a.kamble@intel.com>
 References: <cover.1342622602.git.nitin.a.kamble@intel.com>
-Subject: [PATCH 4/7] crownbay: update emgd driver version in the README
+Subject: [PATCH 5/7] crownbay: add recipe extension for linux-yocto-3.4
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,50 +29,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 19 Jul 2012 14:49:49 -0000
+X-List-Received-Date: Thu, 19 Jul 2012 14:49:50 -0000
 
 From: Nitin A Kamble <nitin.a.kamble@intel.com>
 
 Signed-off-by: Nitin A Kamble <nitin.a.kamble@intel.com>
 ---
- meta-crownbay/README |    8 ++++----
- 1 files changed, 4 insertions(+), 4 deletions(-)
+ .../recipes-kernel/linux/linux-yocto_3.4.bbappend  |   26 ++++++++++++++++++++
+ 1 files changed, 26 insertions(+), 0 deletions(-)
+ create mode 100644 meta-crownbay/recipes-kernel/linux/linux-yocto_3.4.bbappend
 
-diff --git a/meta-crownbay/README b/meta-crownbay/README
-index b56c79a..2521432 100644
---- a/meta-crownbay/README
-+++ b/meta-crownbay/README
-@@ -6,7 +6,7 @@ The Crown Bay platform consists of the Intel Atom Z6xx processor,
- plus the Intel EG20T Platform Controller Hub (Tunnel Creek + Topcliff).
- 
- It also supports the E6xx embedded on-chip graphics via the Intel
--Embedded Media and Graphics Driver (EMGD) 1.10 Driver.
-+Embedded Media and Graphics Driver (EMGD) 1.14 Driver.
- 
- 
- Dependencies
-@@ -63,7 +63,7 @@ common metadata shared between BSPs) e.g.:
- The meta-crownbay layer contains support for two different machine
- configurations. These configurations are identical except for the fact
- that the one prefixed with 'crownbay' makes use of the
--Intel-proprietary EMGD 1.10 graphics driver, while the one prefixed
-+Intel-proprietary EMGD 1.14 graphics driver, while the one prefixed
- with 'crownbay-noemgd' does not.
- 
- If you want to enable the layer that supports EMGD graphics add the
-@@ -73,10 +73,10 @@ following to the local.conf file:
- 
- The 'crownbay' machine includes the emgd-driver-bin package, which has
- a proprietary license that must be whitelisted by adding the string
--"license_emgd-driver-bin_1.10" to the LICENSE_FLAGS_WHITELIST variable
-+"license_emgd-driver-bin_1.14" to the LICENSE_FLAGS_WHITELIST variable
- in your local.conf.  For example:
- 
--  LICENSE_FLAGS_WHITELIST = "license_emgd-driver-bin_1.10"
-+  LICENSE_FLAGS_WHITELIST = "license_emgd-driver-bin_1.14"
- 
- If you want to enable the layer that does not support EMGD graphics
- add the following to the local.conf file:
+diff --git a/meta-crownbay/recipes-kernel/linux/linux-yocto_3.4.bbappend b/meta-crownbay/recipes-kernel/linux/linux-yocto_3.4.bbappend
+new file mode 100644
+index 0000000..86f8c79
+--- /dev/null
++++ b/meta-crownbay/recipes-kernel/linux/linux-yocto_3.4.bbappend
+@@ -0,0 +1,26 @@
++FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
++
++COMPATIBLE_MACHINE_crownbay = "crownbay"
++KMACHINE_crownbay  = "crownbay"
++KBRANCH_crownbay  = "standard/default/crownbay"
++
++COMPATIBLE_MACHINE_crownbay-noemgd = "crownbay-noemgd"
++KMACHINE_crownbay-noemgd  = "crownbay"
++KBRANCH_crownbay-noemgd  = "standard/crownbay"
++
++SRCREV_machine_pn-linux-yocto_crownbay ?= "6297e4c1d57e1063bfce297c2e12392348598559"
++SRCREV_meta_pn-linux-yocto_crownbay ?= "31f082cd1ad3f52d0ec07526084199fe8eb76a1b"
++
++SRCREV_machine_pn-linux-yocto_crownbay-noemgd ?= "6297e4c1d57e1063bfce297c2e12392348598559"
++SRCREV_meta_pn-linux-yocto_crownbay-noemgd ?= "31f082cd1ad3f52d0ec07526084199fe8eb76a1b"
++
++# It is often nice to have a local clone of the kernel repos, to
++# allow patches to be staged, branches created, etc. Modify
++
++# KSRC_linux_yocto_3_4 to point to your local clone as appropriate.
++KSRC_linux_yocto_3_4 ?= "/srv/home/nitin/prj/linux-yocto-3.4.git"
++SRC_URI = "git://${KSRC_linux_yocto_3_4};protocol=file;nocheckout=1;branch=${KBRANCH},meta;name=machine,meta"
++
++#SRCREV_machine_${MACHINE}="${AUTOREV}"
++#SRCREV_meta="${AUTOREV}"
++LOCALCOUNT = "0"
 -- 
 1.7.3.4
 
