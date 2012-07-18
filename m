@@ -1,19 +1,21 @@
 Return-Path: <nitin.a.kamble@intel.com>
 Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 71725E00288
-	for <yocto@yoctoproject.org>; Thu, 19 Jul 2012 07:49:46 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 92D5CE002AC
+	for <yocto@yoctoproject.org>; Thu, 19 Jul 2012 07:49:48 -0700 (PDT)
 Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 19 Jul 2012 07:49:46 -0700
+	by azsmga101.ch.intel.com with ESMTP; 19 Jul 2012 07:49:48 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="170406856"
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="170406875"
 Received: from yocto-hm1.jf.intel.com ([10.23.232.32])
-	by azsmga001.ch.intel.com with ESMTP; 19 Jul 2012 07:49:45 -0700
+	by azsmga001.ch.intel.com with ESMTP; 19 Jul 2012 07:49:48 -0700
 From: nitin.a.kamble@intel.com
 To: yocto@yoctoproject.org, bruce.ashfield@windriver.com, tom.zanussi@intel.com
-Date: Wed, 18 Jul 2012 07:49:15 -0700
-Message-Id: <cover.1342622602.git.nitin.a.kamble@intel.com>
+Date: Wed, 18 Jul 2012 07:49:16 -0700
+Message-Id: <2675de6e815486b6609b3ec9c8492dbf806e2c49.1342622602.git.nitin.a.kamble@intel.com>
 X-Mailer: git-send-email 1.7.3.4
-Subject: [PATCH 0/7] meta-intel userland changes for corwnbay & emgd 1.14
+In-Reply-To: <cover.1342622602.git.nitin.a.kamble@intel.com>
+References: <cover.1342622602.git.nitin.a.kamble@intel.com>
+Subject: [PATCH 1/7] crownbay: customize the xorg.conf for the flat panel on the corwnbay kit
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -25,49 +27,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 19 Jul 2012 14:49:46 -0000
+X-List-Received-Date: Thu, 19 Jul 2012 14:49:48 -0000
 
 From: Nitin A Kamble <nitin.a.kamble@intel.com>
 
-These commits emable crownbay bsp with v3.4 kernel and emgd 1.14 graphics driver.
-the last SRC_REV commit need updating to reflect upstream commit-ids. And that commit
-can be used to do any testing before pulling these commits.
+The kit has Auo 800x600 LCD screen. Configuring Xorg for it.
 
-These commit work along with the emgd-1.14 kenrel repo commit sent before. so for testing
-take both sets of commits for the v3.4 kernel repo & meta-intel repo.
+Signed-off-by: Nitin A Kamble <nitin.a.kamble@intel.com>
+---
+ .../xserver-xf86-config/crownbay/xorg.conf         |   14 ++++++++++++++
+ 1 files changed, 14 insertions(+), 0 deletions(-)
 
-Thanks,
-Nitin
-
-The following changes since commit ae18053df8d2b176b4f714bc5a826276f3fcbfad:
-
-  linux-firmware: update md5sum for LICENCE.iwlwifi_firmware (2012-07-11 19:06:58 -0500)
-
-are available in the git repository at:
-  git://git.yoctoproject.org/meta-intel-contrib nitin/work-crownbay
-  http://git.yoctoproject.org/cgit.cgi/meta-intel-contrib/log/?h=nitin/work-crownbay
-
-Nitin A Kamble (7):
-  crownbay: customize the xorg.conf for the flat panel on the corwnbay
-    kit
-  ia32-base.inc: also take -dev package of emgd
-  emgd-driver-bin: upgrade from 1.10 to 1.14
-  crownbay: update emgd driver version in the README
-  crownbay: add recipe extension for linux-yocto-3.4
-  crownbay: make v3.4 the default kernel
-  crownbay: update kernel meta SRC_REV
-
- ...-driver-bin_1.10.bb => emgd-driver-bin_1.14.bb} |   13 +++++----
- conf/machine/include/ia32-base.inc                 |    1 +
- meta-crownbay/README                               |    8 +++---
- meta-crownbay/conf/machine/crownbay-noemgd.conf    |    2 +-
- meta-crownbay/conf/machine/crownbay.conf           |    2 +-
- .../xserver-xf86-config/crownbay/xorg.conf         |   14 ++++++++++
- .../recipes-kernel/linux/linux-yocto_3.4.bbappend  |   26 ++++++++++++++++++++
- 7 files changed, 54 insertions(+), 12 deletions(-)
- rename common/recipes-graphics/xorg-xserver/{emgd-driver-bin_1.10.bb => emgd-driver-bin_1.14.bb} (92%)
- create mode 100644 meta-crownbay/recipes-kernel/linux/linux-yocto_3.4.bbappend
-
+diff --git a/meta-crownbay/recipes-graphics/xorg-xserver/xserver-xf86-config/crownbay/xorg.conf b/meta-crownbay/recipes-graphics/xorg-xserver/xserver-xf86-config/crownbay/xorg.conf
+index 662f60f..f81b466 100644
+--- a/meta-crownbay/recipes-graphics/xorg-xserver/xserver-xf86-config/crownbay/xorg.conf
++++ b/meta-crownbay/recipes-graphics/xorg-xserver/xserver-xf86-config/crownbay/xorg.conf
+@@ -4,12 +4,26 @@
+ ## DriverVer=
+ ##
+ 
++# AUO G084SN05 V8 lcd flat panel
++Section "Monitor"
++    Identifier     "Monitor0"
++    VendorName     "Auo"
++    HorizSync       33.6 - 48.3
++    VertRefresh     60.0 - 60.0
++    Option         "DPMS"
++EndSection
++
+ Section "Screen"
+     Identifier    "Screen0"
+     Device        "IntelEMGD-0"
+     Monitor       "Monitor0"
++
++    # for the AUO flat screen
+     SubSection    "Display"
++        Depth      24
++        Modes      "800x600"
+     EndSubSection
++
+ EndSection
+ 
+ # Primary (First/only) display
 -- 
 1.7.3.4
 
