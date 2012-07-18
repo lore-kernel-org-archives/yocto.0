@@ -1,38 +1,35 @@
-Return-Path: <ross.burton@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 50A97E00283
-	for <yocto@yoctoproject.org>; Wed, 18 Jul 2012 04:55:36 -0700 (PDT)
-Received: from mail-qa0-f45.google.com ([209.85.216.45])
-	by mga09.intel.com with ESMTP/TLS/RC4-SHA; 18 Jul 2012 04:55:35 -0700
-Received: by qaeb19 with SMTP id b19so2716463qae.4
-	for <yocto@yoctoproject.org>; Wed, 18 Jul 2012 04:55:35 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type:x-gm-message-state;
-	bh=jXioUSPVhR7F0uVIdjWG7s8AELr7qJ6GezE4TFPnhos=;
-	b=dQ3YDxxIuzqd7nV/xRbAV3NPAIfIf6f4mj7ZnJmzJDs728DB2NuapsdVGBxbJUZI1O
-	O7Eh44m796mDXogz51w9r4GVQBYEvbutAOXhrJ9JzBOzM/ZQ4hTa/bHv8iWV0jc+M3Lv
-	2spjxBNFpPJi4Jc5jVNMrOVbaJsoeM6SPw/TQj58W1blllajaYJzzjxZWS+kO4ogvD8d
-	+qPY9A0ptzShuaDvVwPUlhKSKDm9h0KxLL0iTH+wWNSOuK7sfWL0xcYDOSlbDbzDx5/e
-	lbBNGf4n8+TlxF7VzNpdBAd2y11AHYf3bklgb6SE/8sFVbDPVVkQiMk4nIsgkv0IQ4dw
-	RZcg==
-Received: by 10.224.177.1 with SMTP id bg1mr5365220qab.68.1342612534878; Wed,
-	18 Jul 2012 04:55:34 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.229.82.74 with HTTP; Wed, 18 Jul 2012 04:55:14 -0700 (PDT)
-In-Reply-To: <5006A190.6090508@freenet.de>
-References: <5006A190.6090508@freenet.de>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Wed, 18 Jul 2012 12:55:14 +0100
-Message-ID: <CAJTo0La+k3hNQ_xDJO7ZXAxAdkQtyXqgNFi+Sv7eeGs2s=HXRw@mail.gmail.com>
-To: Axel Beierlein <belatronix@freenet.de>
-X-Gm-Message-State: ALoCoQmA/WHR+BQ8DqSsz98lYsYnf/g6C1buZ7Nc/U49eDVTX72IdFjejOM8tO41o4uJ6LNHSPcO
-Cc: yocto@yoctoproject.org
-Subject: Re: Error: PATH contains '.' or '', which will break the build, please remove this.
+Return-Path: <gley-yocto@m.gmane.org>
+Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EC474E00283
+	for <yocto@yoctoproject.org>; Wed, 18 Jul 2012 04:56:00 -0700 (PDT)
+Received: from list by plane.gmane.org with local (Exim 4.69)
+	(envelope-from <gley-yocto@m.gmane.org>) id 1SrSrF-0000UR-NO
+	for yocto@yoctoproject.org; Wed, 18 Jul 2012 13:55:57 +0200
+Received: from 134.191.244.18 ([134.191.244.18])
+	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
+	id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Wed, 18 Jul 2012 13:55:57 +0200
+Received: from gmane by 134.191.244.18 with local (Gmexim 0.1 (Debian))
+	id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Wed, 18 Jul 2012 13:55:57 +0200
+X-Injected-Via-Gmane: http://gmane.org/
+To: yocto@yoctoproject.org
+From: Robert Berger <gmane@reliableembeddedsystems.com>
+Date: Wed, 18 Jul 2012 14:55:46 +0300
+Organization: Reliable Embedded Systems
+Message-ID: <ju6882$edr$1@dough.gmane.org>
+References: <CANwz6nzm8mpMAhKBfHOcxvQdy-=xOnnS6Y5R3rw70TsTnOhLkg@mail.gmail.com>
+Mime-Version: 1.0
+X-Complaints-To: usenet@dough.gmane.org
+X-Gmane-NNTP-Posting-Host: 134.191.244.18
+User-Agent: Mozilla/5.0 (X11; U; Linux x86_64; en-US;
+	rv:1.9.2.24) Gecko/20111108 Thunderbird/3.1.16
+In-Reply-To: <CANwz6nzm8mpMAhKBfHOcxvQdy-=xOnnS6Y5R3rw70TsTnOhLkg@mail.gmail.com>
+Subject: Re: beagleboard not booting
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: gmane@reliableembeddedsystems.com
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -41,26 +38,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 18 Jul 2012 11:55:36 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 18 Jul 2012 11:56:01 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-On 18 July 2012 12:44, Axel Beierlein <belatronix@freenet.de> wrote:
+On 07/18/2012 02:27 PM, Edward Vidal wrote:
 > Hello,
->
-> when i start bitbake core-image-minimal i get the Error
-> "PATH contains '.' or '', which will break the build, please remove this."
->
-> But there is definitly no '' a whitespace or a point in my PATH.
+> Close to the USB I see a C and close to speaker XM I am assuming the
+> This is XM-C
 
-That error could be phrased better...
+OK
 
-If you don't have a . element, you probably have an empty element
-(which is what the '' is trying to say).  For example:
+> What would be the process to use
+> 
+> 3.4.x kernel and a mainline u-boot.
+> I am new to poky and don't know much about bit bake and openembedded.
+> 
+> Can you suggest where to read about using a different kernel.
+> Thanks every thing helps.
+> 
 
-/usr/bin:/bin::/home/ross/bin
+I know people here will beat me up for my suggestion, but just use the
+toolchain you get with Yocto/Poky and build kernel/u-boot as ususal
+without it.
 
-The :: after /bin is bad, and it's this which needs to be removed.
-This is normally due to bad concatenation when extending $PATH.
+Regards,
 
-Ross
+Robert
+..."Rules of Optimization: Rule1: Don't do it. Rule 2 (for experts
+only): Don't do it yet." - M.A. Jackson (not the singer)
+
+My public pgp key is available at:
+http://pgp.mit.edu:11371/pks/lookup?op=get&search=0x90320BF1
+
+
 
