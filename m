@@ -1,38 +1,56 @@
-Return-Path: <jessica.zhang@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 44C0FE00348
-	for <yocto@yoctoproject.org>; Wed, 18 Jul 2012 10:36:10 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 18 Jul 2012 10:36:09 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="169949829"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
-	by azsmga001.ch.intel.com with ESMTP; 18 Jul 2012 10:36:09 -0700
-Received: from orsmsx106.amr.corp.intel.com (10.22.225.133) by
-	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Wed, 18 Jul 2012 10:36:08 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.93]) by
-	ORSMSX106.amr.corp.intel.com ([169.254.5.44]) with mapi id
-	14.01.0355.002; Wed, 18 Jul 2012 10:36:08 -0700
-From: "Zhang, Jessica" <jessica.zhang@intel.com>
-To: "mail@timomueller.eu" <mail@timomueller.eu>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] [RFC 0/8] Integrate yocto documentation into eclipse
-Thread-Index: AQHNZOWzp4jsU1ECeEGi/XdoRhnTmpcvTRXQ
-Date: Wed, 18 Jul 2012 17:36:07 +0000
-Message-ID: <C6510F6D410BB64A8C15398EDC6B847C46AB747F@ORSMSX101.amr.corp.intel.com>
-References: <cover.1342614895.git.timo.mueller@bmw-carit.de>
-In-Reply-To: <cover.1342614895.git.timo.mueller@bmw-carit.de>
+Return-Path: <B29882@freescale.com>
+Received: from db3outboundpool.messaging.microsoft.com
+	(db3ehsobe003.messaging.microsoft.com [213.199.154.141])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CB5E4E00348
+	for <yocto@yoctoproject.org>; Wed, 18 Jul 2012 11:51:18 -0700 (PDT)
+Received: from mail69-db3-R.bigfish.com (10.3.81.254) by
+	DB3EHSOBE002.bigfish.com (10.3.84.22) with Microsoft SMTP Server id
+	14.1.225.23; Wed, 18 Jul 2012 18:51:17 +0000
+Received: from mail69-db3 (localhost [127.0.0.1])	by mail69-db3-R.bigfish.com
+	(Postfix) with ESMTP id 6F1E03E0491;
+	Wed, 18 Jul 2012 18:51:17 +0000 (UTC)
+X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null); IPV:NLI;
+	H:mail.freescale.net; RD:none; EFVD:NLI
+X-SpamScore: -7
+X-BigFish: VS-7(zz98dI9371I154dM1432Izz1202hzz8275bh8275dhz2dh2a8h668h839h8e2h8e3hf0ah107ah10d2hbe9i)
+Received: from mail69-db3 (localhost.localdomain [127.0.0.1]) by mail69-db3
+	(MessageSwitch) id 1342637475234479_10443;
+	Wed, 18 Jul 2012 18:51:15 +0000 (UTC)
+Received: from DB3EHSMHS010.bigfish.com (unknown [10.3.81.226])	by
+	mail69-db3.bigfish.com (Postfix) with ESMTP id 350D43C00BC;
+	Wed, 18 Jul 2012 18:51:15 +0000 (UTC)
+Received: from mail.freescale.net (70.37.183.190) by DB3EHSMHS010.bigfish.com
+	(10.3.87.110) with Microsoft SMTP Server (TLS) id 14.1.225.23;
+	Wed, 18 Jul 2012 18:51:15 +0000
+Received: from 039-SN1MPN1-002.039d.mgd.msft.net ([169.254.2.109]) by
+	039-SN1MMR1-003.039d.mgd.msft.net ([10.84.1.16]) with mapi id
+	14.02.0298.005; Wed, 18 Jul 2012 13:51:13 -0500
+From: McClintock Matthew-B29882 <B29882@freescale.com>
+To: Khem Raj <raj.khem@gmail.com>
+Thread-Topic: [yocto] 1.1.2 Full Pass consolidated Test Report
+Thread-Index: AQHNY5/hbr5cKoixskGHFMBAm7dmyJctRywAgAAF0YCAAJiNgIAALCQAgAGnZIA=
+Date: Wed, 18 Jul 2012 18:51:13 +0000
+Message-ID: <CAEsOVNfXzA_ox9qeRFdzNmbvgSObjKJyMRsnBTxsD4kJHzBukw@mail.gmail.com>
+References: <E16513A01CAAFF40B65178C63CE45EEC19154E26@IRSMSX102.ger.corp.intel.com>
+	<CAEsOVNdtHsAaJX9NdtiWSa70aRcK+Q+dvUgV7FWXu_tEkSEQYg@mail.gmail.com>
+	<CAEsOVNcas4rN6sRaZSOLjy-xNTONdRXaepTiANkpjVh9jr0P_A@mail.gmail.com>
+	<CAMKF1srAY+iyR+oRTsCfWqEsHaBKV4OTFFhHQr7Reaha6p_--A@mail.gmail.com>
+	<CAEsOVNcY1xBk83MeYaXLdjE+V4Bp1EruOR9LVTs=jAcWjHa8HQ@mail.gmail.com>
+	<CAEsOVNdz3oBUP0pee9fecN4Yk4vUQEZFyMbmyeY75vM66UKfXQ@mail.gmail.com>
+In-Reply-To: <CAEsOVNdz3oBUP0pee9fecN4Yk4vUQEZFyMbmyeY75vM66UKfXQ@mail.gmail.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.138]
+x-originating-ip: [70.112.201.132]
 MIME-Version: 1.0
-Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: Re: [RFC 0/8] Integrate yocto documentation into eclipse
+X-OriginatorOrg: freescale.com
+Cc: McClintock Matthew-B29882 <B29882@freescale.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: 1.1.2 Full Pass consolidated Test Report
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: McClintock Matthew-B29882 <B29882@freescale.com>
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -41,183 +59,132 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 18 Jul 2012 17:36:10 -0000
+X-List-Received-Date: Wed, 18 Jul 2012 18:51:20 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset="iso-8859-1"
+Content-ID: <3996A7ADECEF66419E36E28C98DBC773@mgd.freescale.com>
 Content-Transfer-Encoding: quoted-printable
 
-Hi Timo,
+Ok, so I've found downgrading coreutils package to the last working
+version (from CentOS 5.6) makes this issue go away:
 
-Can you send me the link to the branch that I can take a look at this new p=
-lug-in?
+$ wget http://vault.centos.org/5.6/os/x86_64/CentOS/coreutils-5.97-23.el5_4=
+.2.x86_64.rpm
+$ sudo rpm -Uvh --oldpackage coreutils-5.97-23.el5_4.2.x86_64.rpm
 
-Thanks,
-Jessica
+I've looked at the changelog of coreutils package for centos and
+nothing stands out as causing the issue. The most likely candiate is:
+https://bugzilla.redhat.com/show_bug.cgi?id=3D523923
 
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of mail@timomueller.eu
-Sent: Wednesday, July 18, 2012 6:03 AM
-To: yocto@yoctoproject.org
-Cc: Timo Mueller
-Subject: [yocto] [RFC 0/8] Integrate yocto documentation into eclipse
+$ rpm -q --changelog coreutils
+* Wed Mar 14 2012 Ondrej Vasik <ovasik@redhat.com> 5.97-34.1
+- fix backup of the individual files (broken by backupdir
+  patch - #803356)
 
-From: Timo Mueller <timo.mueller@bmw-carit.de>
+* Wed May 11 2011 Ondrej Vasik <ovasik@redhat.com> 5.97-34
+- su: fix shell suspend in tcsh (#681598)
 
-Hi,
+* Fri Apr 29 2011 Ondrej Vasik <ovasik@redhat.com> 5.97-33
+- workaround wrong workarounds for the runcon argument
+  reordering (related #628953)
 
-the documentation of the yocto project can currently be viewed online or as=
- a separate pdf. When using the eclipse ide to develop software on base of =
-a yocto sysroot and toolchain it would be convenient to access the relevant=
- parts of the documentation from within the ide.
+* Tue Apr 19 2011 Ondrej Vasik <ovasik@redhat.com> 5.97-32
+- fix descriptor leak in fts tight cycle fix (#537463)
 
-In order to achieve this, I've generated eclipse help from yocto's document=
-ation (adt-manual, yocto-project-qs). I have intergrated this documentation=
- in the ide and it can now be accessed through the eclipse help center (Hel=
-p -> Help Contents). Please let me know what you think about it?
+* Thu Apr 14 2011 Ondrej Vasik <ovasik@redhat.com> 5.97-31
+- improve error chmod handling in ro xattrs fix (#525199)
 
-Yocto's documentation is licensed under the Creative Commons Attribution-Sh=
-are Alike 2.0 UK: England & Wales (CCA-SA), which is incompatible to the Ec=
-lipse Public License 1.0. Thus I've created a standalone feature to simply =
-redistribute the documentation avoiding licensing issues. Do you agree on t=
-he way this is structured?
+* Thu Mar 31 2011 Ondrej Vasik <ovasik@redhat.com> 5.97-30
+- improve the fix for preserving xattrs in read only mode
+  (#525199)
 
-Cheers,
-  Timo
+* Fri Mar 25 2011 Ondrej Vasik <ovasik@redhat.com> 5.97-28
+- fix incorrect output of ls -1U with more than one
+  argument(#515499)
+- runuser documentation improved (#524805)
+- cp/mv: preserving xattrs should work on read only
+  files too (#525199)
+- fix failure of rmdir --ignore-fail-on-non-empty on vxfs
+  filesystem (#664895)
+- mv: fix confusing 'subdirectory of itself' error message
+  (#658839)
+- don't reorder runcon arguments (#628953)
+- clarify mkdir --mode behaviour in info documentation
+  (#610559)
+- improve escaping in colorls scriptlets(#586957)
+- add info documentation for chcon and runcon(#660186)
+- document that groups are not reflecting changes within
+  existing login session (#584802)
+- pwd: add support for -P (physical) and -L (logical) (#582774)
+- cp/mv: do not inform about ACL preserving failure, when
+  preserving not explicitely requested (#513153)
+- du using ghosted automounted directory no longer
+  results in 'No such file or directory' (#537463)
+- fix segfault in sort if LC_TIME differs from the rest
+  of locales(#684249)
+- speed up deleting many files (#523923)
+- allow mv backups for directories (#627285)
 
-Timo Mueller (8):
-  plugins/sdk.doc.user: Added plugin for the yocto project
-    documentation
-  plugins/sdk.doc.user: Added empty table of contents
-  feature/sdk.doc: Added feature containing yocto documentation plugins
-  feature/sdk.doc: Added org.yocto.sdk.doc.user plugin
-  plugins/sdk.doc.user: Added yocto quick start guide
-  feature/sdk: Added org.yocto.sdk.doc feature.
-  features/sdk.site: Added eclipse help feature to update site
-  plugins/sdk.doc.user: Added yocto adt manual
+* Wed Jan 26 2011 Ondrej Vasik <ovasik@redhat.com> 5.97-27
+- fix exit status of terminated child processes in su with
+  pam(#559098)
 
- features/org.yocto.sdk.doc/.project                |   17 +
- features/org.yocto.sdk.doc/build.properties        |    5 +
- features/org.yocto.sdk.doc/feature.properties      |  208 ++++++
- features/org.yocto.sdk.doc/feature.xml             |   40 ++
- features/org.yocto.sdk.doc/license.html            |  237 +++++++
- .../sourceTemplateFeature/feature.properties       |  208 ++++++
- .../sourceTemplateFeature/license.html             |  237 +++++++
- features/org.yocto.sdk.site/category.xml           |    6 +
- features/org.yocto.sdk.site/site.xml               |    3 +
- features/org.yocto.sdk/feature.xml                 |    5 +
- plugins/org.yocto.sdk.doc.user/.classpath          |    6 +
- plugins/org.yocto.sdk.doc.user/.project            |   28 +
- .../.settings/org.eclipse.jdt.core.prefs           |    8 +
- .../org.yocto.sdk.doc.user/META-INF/MANIFEST.MF    |    8 +
- .../OSGI-INF/l10n/bundle.properties                |    3 +
- plugins/org.yocto.sdk.doc.user/about.html          |   82 +++
- plugins/org.yocto.sdk.doc.user/adt-manual-toc.xml  |   61 ++
- plugins/org.yocto.sdk.doc.user/build.properties    |   14 +
- .../html/adt-manual/ch01.html                      |   90 +++
- .../html/adt-manual/ch01s02.html                   |  166 +++++
- .../html/adt-manual/ch02.html                      |  450 +++++++++++++
- .../html/adt-manual/ch02s02.html                   |   56 ++
- .../html/adt-manual/ch02s03.html                   |  182 ++++++
- .../html/adt-manual/ch03.html                      |   97 +++
- .../html/adt-manual/ch03s02.html                   |   78 +++
- .../html/adt-manual/ch04.html                      |  675 ++++++++++++++++=
-++++
- .../html/adt-manual/ch04s02.html                   |   94 +++
- .../html/adt-manual/ch04s03.html                   |   77 +++
- .../html/adt-manual/ch04s04.html                   |   37 ++
- .../html/adt-manual/ch04s05.html                   |   65 ++
- .../html/adt-manual/ch04s06.html                   |  100 +++
- .../html/adt-manual/ch04s07.html                   |  161 +++++
- .../html/adt-manual/ch04s08.html                   |  184 ++++++
- .../html/adt-manual/ch05.html                      |  112 ++++
- .../html/adt-manual/ch05s02.html                   |   41 ++
- .../html/adt-manual/index.html                     |  260 ++++++++
- plugins/org.yocto.sdk.doc.user/html/book.css       |    1 +
- .../yocto-project-qs/figures/building-an-image.png |  Bin 0 -> 14891 bytes
- .../figures/using-a-pre-built-image.png            |  Bin 0 -> 12733 bytes
- .../yocto-project-qs/figures/yocto-environment.png |  Bin 0 -> 73095 bytes
- .../figures/yocto-project-transp.png               |  Bin 0 -> 8626 bytes
- .../html/yocto-project-qs/index.html               |  542 ++++++++++++++++
- plugins/org.yocto.sdk.doc.user/plugin.xml          |   19 +
- plugins/org.yocto.sdk.doc.user/toc.xml             |    9 +
- .../yocto-project-qs-toc.xml                       |   32 +
- 45 files changed, 4704 insertions(+), 0 deletions(-)  create mode 100644 f=
-eatures/org.yocto.sdk.doc/.project
- create mode 100644 features/org.yocto.sdk.doc/build.properties
- create mode 100644 features/org.yocto.sdk.doc/feature.properties
- create mode 100644 features/org.yocto.sdk.doc/feature.xml
- create mode 100644 features/org.yocto.sdk.doc/license.html
- create mode 100644 features/org.yocto.sdk.doc/sourceTemplateFeature/featur=
-e.properties
- create mode 100644 features/org.yocto.sdk.doc/sourceTemplateFeature/licens=
-e.html
- create mode 100644 plugins/org.yocto.sdk.doc.user/.classpath
- create mode 100644 plugins/org.yocto.sdk.doc.user/.project
- create mode 100644 plugins/org.yocto.sdk.doc.user/.settings/org.eclipse.jd=
-t.core.prefs
- create mode 100644 plugins/org.yocto.sdk.doc.user/META-INF/MANIFEST.MF
- create mode 100644 plugins/org.yocto.sdk.doc.user/OSGI-INF/l10n/bundle.pro=
-perties
- create mode 100644 plugins/org.yocto.sdk.doc.user/about.html
- create mode 100644 plugins/org.yocto.sdk.doc.user/adt-manual-toc.xml
- create mode 100644 plugins/org.yocto.sdk.doc.user/build.properties
- create mode 100644 plugins/org.yocto.sdk.doc.user/html/adt-manual/ch01.htm=
-l
- create mode 100644 plugins/org.yocto.sdk.doc.user/html/adt-manual/ch01s02.=
-html
- create mode 100644 plugins/org.yocto.sdk.doc.user/html/adt-manual/ch02.htm=
-l
- create mode 100644 plugins/org.yocto.sdk.doc.user/html/adt-manual/ch02s02.=
-html
- create mode 100644 plugins/org.yocto.sdk.doc.user/html/adt-manual/ch02s03.=
-html
- create mode 100644 plugins/org.yocto.sdk.doc.user/html/adt-manual/ch03.htm=
-l
- create mode 100644 plugins/org.yocto.sdk.doc.user/html/adt-manual/ch03s02.=
-html
- create mode 100644 plugins/org.yocto.sdk.doc.user/html/adt-manual/ch04.htm=
-l
- create mode 100644 plugins/org.yocto.sdk.doc.user/html/adt-manual/ch04s02.=
-html
- create mode 100644 plugins/org.yocto.sdk.doc.user/html/adt-manual/ch04s03.=
-html
- create mode 100644 plugins/org.yocto.sdk.doc.user/html/adt-manual/ch04s04.=
-html
- create mode 100644 plugins/org.yocto.sdk.doc.user/html/adt-manual/ch04s05.=
-html
- create mode 100644 plugins/org.yocto.sdk.doc.user/html/adt-manual/ch04s06.=
-html
- create mode 100644 plugins/org.yocto.sdk.doc.user/html/adt-manual/ch04s07.=
-html
- create mode 100644 plugins/org.yocto.sdk.doc.user/html/adt-manual/ch04s08.=
-html
- create mode 100644 plugins/org.yocto.sdk.doc.user/html/adt-manual/ch05.htm=
-l
- create mode 100644 plugins/org.yocto.sdk.doc.user/html/adt-manual/ch05s02.=
-html
- create mode 100644 plugins/org.yocto.sdk.doc.user/html/adt-manual/index.ht=
-ml
- create mode 100644 plugins/org.yocto.sdk.doc.user/html/book.css
- create mode 100755 plugins/org.yocto.sdk.doc.user/html/yocto-project-qs/fi=
-gures/building-an-image.png
- create mode 100644 plugins/org.yocto.sdk.doc.user/html/yocto-project-qs/fi=
-gures/using-a-pre-built-image.png
- create mode 100644 plugins/org.yocto.sdk.doc.user/html/yocto-project-qs/fi=
-gures/yocto-environment.png
- create mode 100755 plugins/org.yocto.sdk.doc.user/html/yocto-project-qs/fi=
-gures/yocto-project-transp.png
- create mode 100644 plugins/org.yocto.sdk.doc.user/html/yocto-project-qs/in=
-dex.html
- create mode 100644 plugins/org.yocto.sdk.doc.user/plugin.xml
- create mode 100644 plugins/org.yocto.sdk.doc.user/toc.xml
- create mode 100644 plugins/org.yocto.sdk.doc.user/yocto-project-qs-toc.xml
+* Mon Jan 10 2011 Ondrej Vasik <ovasik@redhat.com> 5.97-26
+- add support for iflag=3Dfullblock in dd (#668247)
+- fix the build with gettext-0.17
 
---
-1.7.7.6
+* Mon Feb 22 2010 Ondrej Vasik <ovasik@redhat.com> 5.97-25
+- readlink cannot handle recursive symlinks(#510809)
 
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
+* Mon Oct 12 2009 Ondrej Vasik <ovasik@redhat.com> 5.97-24
+- fixed regression where df -l <device> as regular user
+  cause "Permission denied" (#520630, introduced by fix for
+  rhbz #497830)
+
+On Tue, Jul 17, 2012 at 12:35 PM, Matthew McClintock <msm@freescale.com> wr=
+ote:
+> On Tue, Jul 17, 2012 at 9:57 AM, Matthew McClintock <msm@freescale.com> w=
+rote:
+>> On Tue, Jul 17, 2012 at 12:51 AM, Khem Raj <raj.khem@gmail.com> wrote:
+>>> On Mon, Jul 16, 2012 at 10:31 PM, McClintock Matthew-B29882
+>>> <B29882@freescale.com> wrote:
+>>>> }
+>>>> -       rm -rf ${SSTATE_BUILDDIR}
+>>>> +       strace rm -rf ${SSTATE_BUILDDIR}
+>>>
+>>> strace is probably eating the return value
+>>
+>> And you would be right....
+>>
+>> I want to point out running the
+>> ./tmp/work/ppc603e-poky-linux/eglibc-locale-2.13-r16/temp/run.sstate_cre=
+ate_package.17463
+>> generated script directly does not fail (without the strace
+>> modification)
+>
+> Also, the follow does work:
+>
+> diff --git a/meta/classes/sstate.bbclass b/meta/classes/sstate.bbclass
+> index d2a45c3..92a1e4d 100644
+> --- a/meta/classes/sstate.bbclass
+> +++ b/meta/classes/sstate.bbclass
+> @@ -463,7 +463,14 @@ sstate_create_package () {
+>         mv $TFILE ${SSTATE_PKG}
+>
+>         cd ${WORKDIR}
+> -       rm -rf ${SSTATE_BUILDDIR}
+> +       for i in `find ${SSTATE_BUILDDIR} -type f`; do
+> +               bbnote "deleting $i"
+> +               rm -rf $i
+> +       done
+> +       for i in `find ${SSTATE_BUILDDIR} -type d -depth`; do
+> +               bbnote "rmdir $i"
+> +               rmdir $i
+> +       done
+>  }
+>
+> Still debugging....
+>
+> -M=
+
 
