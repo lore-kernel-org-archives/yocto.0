@@ -1,57 +1,24 @@
-Return-Path: <tim.bird@am.sony.com>
-Received: from am1outboundpool.messaging.microsoft.com
-	(am1ehsobe006.messaging.microsoft.com [213.199.154.209])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C80B2E00348
-	for <yocto@yoctoproject.org>; Wed, 18 Jul 2012 16:48:01 -0700 (PDT)
-Received: from mail119-am1-R.bigfish.com (10.3.201.251) by
-	AM1EHSOBE003.bigfish.com (10.3.204.23) with Microsoft SMTP Server id
-	14.1.225.23; Wed, 18 Jul 2012 23:47:59 +0000
-Received: from mail119-am1 (localhost [127.0.0.1])	by
-	mail119-am1-R.bigfish.com (Postfix) with ESMTP id D9FC7402FA	for
-	<yocto@yoctoproject.org>; Wed, 18 Jul 2012 23:47:59 +0000 (UTC)
-X-Forefront-Antispam-Report: CIP:160.33.194.228; KIP:(null); UIP:(null);
-	IPV:NLI; H:usculsndmail01v.am.sony.com; RD:mail01.sonyusa.com;
-	EFVD:NLI
-X-SpamScore: -1
-X-BigFish: VPS-1(zz14ffIzz1202hzzz2fh2a8h668h839hd25hf0ah107ah)
-Received-SPF: pass (mail119-am1: domain of am.sony.com designates
-	160.33.194.228 as permitted sender) client-ip=160.33.194.228;
-	envelope-from=tim.bird@am.sony.com;
-	helo=usculsndmail01v.am.sony.com ; .am.sony.com ; 
-Received: from mail119-am1 (localhost.localdomain [127.0.0.1]) by mail119-am1
-	(MessageSwitch) id 1342655277723733_23847;
-	Wed, 18 Jul 2012 23:47:57 +0000 (UTC)
-Received: from AM1EHSMHS007.bigfish.com (unknown [10.3.201.231])	by
-	mail119-am1.bigfish.com (Postfix) with ESMTP id ADE8B4A00D2	for
-	<yocto@yoctoproject.org>; Wed, 18 Jul 2012 23:47:57 +0000 (UTC)
-Received: from usculsndmail01v.am.sony.com (160.33.194.228) by
-	AM1EHSMHS007.bigfish.com (10.3.207.107) with Microsoft SMTP Server
-	(TLS) id 14.1.225.23; Wed, 18 Jul 2012 23:47:56 +0000
-Received: from usculsndmail12v.am.sony.com (usculsndmail12v.am.sony.com
-	[146.215.230.103])	by usculsndmail01v.am.sony.com
-	(Sentrion-MTA-4.2.2/Sentrion-MTA-4.2.2) with ESMTP id q6INlsZj032174
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256
-	verify=FAIL)	for
-	<yocto@yoctoproject.org>; Wed, 18 Jul 2012 23:47:55 GMT
-Received: from mail1x.sgo.in.sel.sony.com (mail.sgo.in.sel.sony.com
-	[43.130.1.112])	by usculsndmail12v.am.sony.com
-	(Sentrion-MTA-4.2.2/Sentrion-MTA-4.2.2) with ESMTP id q6INlrqL018912
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256
-	verify=FAIL)	for
-	<yocto@yoctoproject.org>; Wed, 18 Jul 2012 23:47:54 GMT
-Received: from [43.135.148.222] ([43.135.148.222])	by
-	mail1x.sgo.in.sel.sony.com (Switch-3.4.2/Switch-3.4.2) with ESMTP id
-	q6INlh7I011383	for <yocto@yoctoproject.org>;
-	Wed, 18 Jul 2012 23:47:43 GMT
-Message-ID: <50074BA9.5050506@am.sony.com>
-Date: Wed, 18 Jul 2012 16:50:01 -0700
-From: Tim Bird <tim.bird@am.sony.com>
+Return-Path: <sgw@linux.intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BDAE5E0070B
+	for <yocto@yoctoproject.org>; Wed, 18 Jul 2012 17:22:09 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga102.fm.intel.com with ESMTP; 18 Jul 2012 17:22:09 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="180065525"
+Received: from unknown (HELO [10.255.12.217]) ([10.255.12.217])
+	by fmsmga001.fm.intel.com with ESMTP; 18 Jul 2012 17:22:09 -0700
+Message-ID: <50075331.9010007@linux.intel.com>
+Date: Wed, 18 Jul 2012 17:22:09 -0700
+From: Saul Wold <sgw@linux.intel.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:13.0) Gecko/20120615 Thunderbird/13.0.1
 MIME-Version: 1.0
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-X-OriginatorOrg: am.sony.com
-Subject: Manually fetching files (and disabling the sanity-checker)
+To: Tim Bird <tim.bird@am.sony.com>
+References: <50074BA9.5050506@am.sony.com>
+In-Reply-To: <50074BA9.5050506@am.sony.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Manually fetching files (and disabling the sanity-checker)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -63,34 +30,64 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 18 Jul 2012 23:48:02 -0000
-Content-Type: text/plain; charset="ISO-8859-1"
+X-List-Received-Date: Thu, 19 Jul 2012 00:22:09 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Hi all,
+On 07/18/2012 04:50 PM, Tim Bird wrote:
+> Hi all,
+>
+> I've given up trying to work around Sony's firewall.  After repeated attempts
+> I still can't get any 'git:'-based URLS to work through the firewall.
+>
+> I vaguely recall the last time I worked on this (about 5.0 timeframe) there
+> was a mirror where tarballs could be downloaded, if the git fetch didn't work.
+>
+> Is this mirror still available?  If not, is there any way to disable
+> the sanity-checker, and have bitbake tell me what repositories it's
+> looking for, so I can manually construct a local mirror for yoctoproject
+> to work off of?
+>
+To disable the sanity check you can set CONNECTIVITY_CHECK_URIS to "" 
+and that will cause it to be skipped.
 
-I've given up trying to work around Sony's firewall.  After repeated attempts
-I still can't get any 'git:'-based URLS to work through the firewall.
+Regarding the mirroring, have you tried to just set the PREMIRRORS to 
+use only http* and ftp in your local.conf:
+PREMIRRORS = "\
+ftp://.*/.*      http://downloads.yoctoproject.org/mirror/sources/ \n \
+http://.*/.*     http://downloads.yoctoproject.org/mirror/sources/ \n \
+https://.*/.*    http://downloads.yoctoproject.org/mirror/sources/ \n"
 
-I vaguely recall the last time I worked on this (about 5.0 timeframe) there
-was a mirror where tarballs could be downloaded, if the git fetch didn't work.
+I am not sure, but this might force protocols. You could try a "bitbake 
+-c fetchall universe"
 
-Is this mirror still available?  If not, is there any way to disable
-the sanity-checker, and have bitbake tell me what repositories it's
-looking for, so I can manually construct a local mirror for yoctoproject
-to work off of?
+I am going have Michael H. get you the information about where the the 
+Downloads are.
 
-Is there any way to extract the tarballs from a build appliance image?
+Let me know how it goes.
 
-Any advice or pointers would be appreciated.
 
- -- Tim
+Sau!
 
-=============================
-Tim Bird
-Architecture Group Chair, CE Workgroup of the Linux Foundation
-Senior Staff Engineer, Sony Network Entertainment
-=============================
 
+> Is there any way to extract the tarballs from a build appliance image?
+>
+> Any advice or pointers would be appreciated.
+>
+>   -- Tim
+>
+> =============================
+> Tim Bird
+> Architecture Group Chair, CE Workgroup of the Linux Foundation
+> Senior Staff Engineer, Sony Network Entertainment
+> =============================
+>
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
 
 
