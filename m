@@ -1,33 +1,23 @@
-Return-Path: <nitin.a.kamble@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 348B5E00739
-	for <yocto@yoctoproject.org>; Wed, 18 Jul 2012 19:58:47 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 18 Jul 2012 19:58:46 -0700
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 34D12E00739
+	for <yocto@yoctoproject.org>; Wed, 18 Jul 2012 20:26:45 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 18 Jul 2012 20:26:44 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="194800407"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
-	by fmsmga002.fm.intel.com with ESMTP; 18 Jul 2012 19:58:46 -0700
-Received: from orsmsx102.amr.corp.intel.com (10.22.225.129) by
-	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Wed, 18 Jul 2012 19:58:46 -0700
-Received: from orsmsx106.amr.corp.intel.com ([169.254.5.44]) by
-	ORSMSX102.amr.corp.intel.com ([169.254.1.166]) with mapi id
-	14.01.0355.002; Wed, 18 Jul 2012 19:58:46 -0700
-From: "Kamble, Nitin A" <nitin.a.kamble@intel.com>
-To: "Zanussi, Tom" <tom.zanussi@intel.com>
-Thread-Topic: [PATCH 0/1] meta: update crownbay.scc for newer emgd driver
-Thread-Index: AQHNZKpNsY4FWoQDWUKwIg8ki89qS5cvivyAgABfOtA=
-Date: Thu, 19 Jul 2012 02:58:45 +0000
-Message-ID: <ADD6A3980E8C39419A432FF422031B4C03188C9C@ORSMSX106.amr.corp.intel.com>
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="174052226"
+Received: from unknown (HELO [10.255.12.184]) ([10.255.12.184])
+	by orsmga002.jf.intel.com with ESMTP; 18 Jul 2012 20:26:44 -0700
+Message-ID: <1342668398.2338.227.camel@trz-ThinkPad-T420>
+From: Tom Zanussi <tom.zanussi@intel.com>
+To: "Kamble, Nitin A" <nitin.a.kamble@intel.com>
+Date: Wed, 18 Jul 2012 22:26:38 -0500
+In-Reply-To: <ADD6A3980E8C39419A432FF422031B4C03188C9C@ORSMSX106.amr.corp.intel.com>
 References: <cover.1342504457.git.nitin.a.kamble@intel.com>
 	<1342620801.2338.160.camel@trz-ThinkPad-T420>
-In-Reply-To: <1342620801.2338.160.camel@trz-ThinkPad-T420>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.139]
-MIME-Version: 1.0
+	<ADD6A3980E8C39419A432FF422031B4C03188C9C@ORSMSX106.amr.corp.intel.com>
+X-Mailer: Evolution 3.2.3-0ubuntu6 
+Mime-Version: 1.0
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: [PATCH 0/1] meta: update crownbay.scc for newer emgd driver
 X-BeenThere: yocto@yoctoproject.org
@@ -41,26 +31,64 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 19 Jul 2012 02:58:47 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Thu, 19 Jul 2012 03:26:45 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogWmFudXNzaSwgVG9tDQo+
-IFNlbnQ6IFdlZG5lc2RheSwgSnVseSAxOCwgMjAxMiA3OjQzIFBNDQo+IFRvOiBLYW1ibGUsIE5p
-dGluIEENCj4gQ2M6IHlvY3RvQHlvY3RvcHJvamVjdC5vcmc7IGJydWNlLmFzaGZpZWxkQHdpbmRy
-aXZlci5jb20NCj4gU3ViamVjdDogUmU6IFtQQVRDSCAwLzFdIG1ldGE6IHVwZGF0ZSBjcm93bmJh
-eS5zY2MgZm9yIG5ld2VyIGVtZ2QgZHJpdmVyDQo+IA0KPiBPbiBNb24sIDIwMTItMDctMTYgYXQg
-MjI6NTcgLTA3MDAsIG5pdGluLmEua2FtYmxlQGludGVsLmNvbSB3cm90ZToNCj4gPiBGcm9tOiBO
-aXRpbiBBIEthbWJsZSA8bml0aW4uYS5rYW1ibGVAaW50ZWwuY29tPg0KPiA+DQo+ID4gVGhpcyBj
-b21taXQgY2hhbmdlcyBlbWdkIGtlcm5lbCBkcml2ZXIgZm9yIGNyb3duYmF5IGJzcCB0byB0aGUg
-ZW1nZC0NCj4gMS4xNC4NCj4gPg0KPiANCj4gTml0aW4sDQo+IA0KPiBEb2Vzbid0IHN3aXRjaGlu
-ZyB0aGlzIG92ZXIgaW4gdGhlIGtlbnJuZWwgcmVxdWlyZSBlbWdkLTEuMTQgdXNlcnNwYWNlDQo+
-IHJlY2lwZSB1cGRhdGVzIHRvIHdvcms/ICBEaWQgSSBtaXNzIHRob3NlPw0KPiANCj4gVG9tDQo+
-IA0KVG9tLA0KICAgIEkgYW0gaG9sZGluZyB0aGUgZW1nZCAxLjE0IHVzZXJzcGFjZSBjb21taXRz
-IHVudGlsIHRoZSBrZXJuZWwgcmVwb3NpdG9yeSBjaGFuZ2UgZ29lcyB1cHN0cmVhbS4gVGhlIGtl
-cm5lbCByZWNpcGUgd2lsbCBuZWVkIG5ldyBTUkNSRVYgKHdpdGggZW1nZCAxLjE0IGtlcm5lbCBw
-YXJ0cykgZm9yIHRoZSB1c2VyIGxldmVsIGVtZ2QgMS4xNCBwYXJ0cyB0byB3b3JrLiBBbmQgdGhh
-dCBkZXBlbmRlbmN5IHdpbGwgZ2V0IHNhdGlzZmllZCBvbmNlIHRoaXMgY29tbWl0IGlzIGluLg0K
-DQpOaXRpbg0KDQo=
+On Wed, 2012-07-18 at 19:58 -0700, Kamble, Nitin A wrote:
+> 
+> > -----Original Message-----
+> > From: Zanussi, Tom
+> > Sent: Wednesday, July 18, 2012 7:43 PM
+> > To: Kamble, Nitin A
+> > Cc: yocto@yoctoproject.org; bruce.ashfield@windriver.com
+> > Subject: Re: [PATCH 0/1] meta: update crownbay.scc for newer emgd driver
+> > 
+> > On Mon, 2012-07-16 at 22:57 -0700, nitin.a.kamble@intel.com wrote:
+> > > From: Nitin A Kamble <nitin.a.kamble@intel.com>
+> > >
+> > > This commit changes emgd kernel driver for crownbay bsp to the emgd-
+> > 1.14.
+> > >
+> > 
+> > Nitin,
+> > 
+> > Doesn't switching this over in the kenrnel require emgd-1.14 userspace
+> > recipe updates to work?  Did I miss those?
+> > 
+> > Tom
+> > 
+> Tom,
+>     I am holding the emgd 1.14 userspace commits until the kernel repository change goes upstream. The kernel recipe will need new SRCREV (with emgd 1.14 kernel parts) for the user level emgd 1.14 parts to work. And that dependency will get satisfied once this commit is in.
+> 
+
+Yeah, I understand, the crownbay is typically the most complicated
+update for all of those reasons - simultaneous new kernel
+version/recipe, new emgd branch, and new emgd userspace recipe all at
+the same time.
+
+In the past I've submitted them all at the same time for simultaneous
+review and some coordination with Bruce - once the kernel parts are in,
+the kernel recipe and the userspace parts can then be pulled in along
+with a simple follow-on patch to update the SRCREVs Bruce give us.
+
+The thing is that if Bruce pulls in the patch to switch to emgd-1.14 and
+only at that point do you post the userspace recipe, and it ends up
+needing some rework, in the meantime the graphics remain non-functional
+(I know, they already are, thanks to the package re-ordering patches
+breaking the current recipe, but hopefully the 1.14 changes will be in
+and we don't have to worry about it any more.).
+
+Does that make sense, and can you just post the userspace and kernel
+recipe parts before we give Bruce the go-ahead in making the kernel
+changes?  (I'd also like to try it out myself as well...).
+
+Thanks,
+
+Tom 
+
+> Nitin
+> 
+
+
 
