@@ -1,30 +1,19 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
-	[209.85.160.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7F731E002AB
-	for <yocto@yoctoproject.org>; Thu, 19 Jul 2012 19:53:27 -0700 (PDT)
-Received: by pbbrq8 with SMTP id rq8so6447824pbb.35
-	for <yocto@yoctoproject.org>; Thu, 19 Jul 2012 19:53:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id:x-mailer;
-	bh=f5kJRL72Sic9yQ8kvJcF5k4ffA9yy6UHbZTkSFRXmtI=;
-	b=mQ8o/TsEefZ+M/tlXRKXESSmrfiJ8OEEi7o3SlnBSMCPgImk/RvxEcKIn7XLAeh0UB
-	GgMMULv37Wh+7OUtjKvPKnBEqbs3VHiaCnbLg8gT6bz0OTLC7vOAtnYmyrhFqmfUN2q1
-	tjieTNBi/uwyrU8HHVrh/UZymfmyzm9indFl1pvI5uD9YuTWgdVA5SSOl6hm3foGWtuU
-	2rf1Hu2neKI0sVLhtm1tp/UrdMnvimMgpFFCYKCaSddWZteZ/YIM10bjGednUXyKWpiU
-	GlvenRzAdOgKWF/EZIVIbohj1/jbG/s4l9AhM+RYBpPrms8Tqv1ZVJWQcTCRyklnHMuX
-	8Ezw==
-Received: by 10.68.116.203 with SMTP id jy11mr9847374pbb.129.1342752807140;
-	Thu, 19 Jul 2012 19:53:27 -0700 (PDT)
-Received: from kraj-lnx.juniper.net (natint3.juniper.net. [66.129.224.36])
-	by mx.google.com with ESMTPS id sh3sm2971279pbc.16.2012.07.19.19.53.24
-	(version=SSLv3 cipher=OTHER); Thu, 19 Jul 2012 19:53:25 -0700 (PDT)
-From: Khem Raj <raj.khem@gmail.com>
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F1BC9E002A5
+	for <yocto@yoctoproject.org>; Thu, 19 Jul 2012 21:40:51 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 19 Jul 2012 21:40:51 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="170673533"
+Received: from unknown (HELO localhost) ([10.255.12.244])
+	by azsmga001.ch.intel.com with ESMTP; 19 Jul 2012 21:40:50 -0700
+From: tom.zanussi@intel.com
 To: yocto@yoctoproject.org
-Date: Thu, 19 Jul 2012 19:53:24 -0700
-Message-Id: <1342752804-18293-1-git-send-email-raj.khem@gmail.com>
-X-Mailer: git-send-email 1.7.9.5
-Subject: [meta-intel][PATCH] va-intel.bb: Add compatible host x86/x86_64
+Date: Thu, 19 Jul 2012 23:40:48 -0500
+Message-Id: <cover.1342759135.git.tom.zanussi@intel.com>
+X-Mailer: git-send-email 1.7.0.4
+Subject: [PATCH 0/3] meta-intel: some linux-yocto-3.4 updates
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,26 +25,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 20 Jul 2012 02:53:27 -0000
+X-List-Received-Date: Fri, 20 Jul 2012 04:40:52 -0000
 
-This lets meta-intel to play well in multi-bsp
-setup
+From: Tom Zanussi <tom.zanussi@intel.com>
 
-Signed-off-by: Khem Raj <raj.khem@gmail.com>
----
- common/recipes-multimedia/libva/va-intel.bb |    1 +
- 1 files changed, 1 insertions(+), 0 deletions(-)
+This switches the chiefriver and jasperforest BSPs to linux-yocto-3.4
+and removes the jasperforest linux-yocto-3.0 support.
 
-diff --git a/common/recipes-multimedia/libva/va-intel.bb b/common/recipes-multimedia/libva/va-intel.bb
-index 3ce857a..69633aa 100644
---- a/common/recipes-multimedia/libva/va-intel.bb
-+++ b/common/recipes-multimedia/libva/va-intel.bb
-@@ -18,3 +18,4 @@ ALLOW_EMPTY = "1"
- RDEPENDS_va-intel = " \
-     ${VA_IMPL} \
-     "
-+COMPATIBLE_HOST = '(i.86|x86_64).*-linux*'
--- 
-1.7.5.4
+The following changes since commit a944332ecfa59247cc0787c55d79a6392e3218bd:
+  Tom Zanussi (1):
+        meta-n450: explicitly specify KBRANCH we expect to use
+
+are available in the git repository at:
+
+  git://git.yoctoproject.org/meta-intel.git tzanussi/3.4-updates
+  http://git.yoctoproject.org/cgit.cgi//log/?h=tzanussi/3.4-updates
+
+Tom Zanussi (3):
+  meta-chiefriver: switch to linux-yocto-3.4 kernel
+  meta-jasperforest: switch to linux-yocto-3.4 kernel
+  jasperforest: retire linux-yocto-3.0
+
+ meta-chiefriver/conf/machine/chiefriver.conf       |    2 +-
+ .../linux/linux-yocto-rt_3.4.bbappend              |    8 ++++++++
+ .../recipes-kernel/linux/linux-yocto_3.4.bbappend  |   10 ++++++++++
+ meta-jasperforest/conf/machine/jasperforest.conf   |    3 ++-
+ ...rt_3.0.bbappend => linux-yocto-rt_3.4.bbappend} |    2 +-
+ .../recipes-kernel/linux/linux-yocto_3.0.bbappend  |    9 ---------
+ .../recipes-kernel/linux/linux-yocto_3.4.bbappend  |    9 +++++++++
+ 7 files changed, 31 insertions(+), 12 deletions(-)
+ create mode 100644 meta-chiefriver/recipes-kernel/linux/linux-yocto-rt_3.4.bbappend
+ create mode 100644 meta-chiefriver/recipes-kernel/linux/linux-yocto_3.4.bbappend
+ rename meta-jasperforest/recipes-kernel/linux/{linux-yocto-rt_3.0.bbappend => linux-yocto-rt_3.4.bbappend} (84%)
+ delete mode 100644 meta-jasperforest/recipes-kernel/linux/linux-yocto_3.0.bbappend
+ create mode 100644 meta-jasperforest/recipes-kernel/linux/linux-yocto_3.4.bbappend
 
 
