@@ -1,23 +1,31 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F2714E002AB
-	for <yocto@yoctoproject.org>; Thu, 19 Jul 2012 21:40:58 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 19 Jul 2012 21:40:58 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="181056196"
-Received: from unknown (HELO localhost) ([10.255.12.244])
-	by fmsmga001.fm.intel.com with ESMTP; 19 Jul 2012 21:40:58 -0700
-From: tom.zanussi@intel.com
-To: yocto@yoctoproject.org
-Date: Thu, 19 Jul 2012 23:40:51 -0500
-Message-Id: <b779667233666e068a4bc668bfc3ca41af4cb711.1342759135.git.tom.zanussi@intel.com>
-X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <5d0c08cd8bb3f3ce8d23b4ae8b844bba15278049.1342759135.git.tom.zanussi@intel.com>
-References: <5d0c08cd8bb3f3ce8d23b4ae8b844bba15278049.1342759135.git.tom.zanussi@intel.com>
-In-Reply-To: <cover.1342759135.git.tom.zanussi@intel.com>
-References: <cover.1342759135.git.tom.zanussi@intel.com>
-Subject: [PATCH 3/3] jasperforest: retire linux-yocto-3.0
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 67EBAE002AB
+	for <yocto@yoctoproject.org>; Thu, 19 Jul 2012 21:53:16 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id q6K4rFO1020711
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Thu, 19 Jul 2012 21:53:15 -0700 (PDT)
+Received: from bruce-ashfields-macbook.local (128.224.22.164) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
+	14.1.255.0; Thu, 19 Jul 2012 21:53:14 -0700
+Message-ID: <5008E439.1050204@windriver.com>
+Date: Fri, 20 Jul 2012 00:53:13 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7;
+	rv:9.0) Gecko/20111222 Thunderbird/9.0.1
+MIME-Version: 1.0
+To: "Kamble, Nitin A" <nitin.a.kamble@intel.com>
+References: <cover.1342504457.git.nitin.a.kamble@intel.com>
+	<1342620801.2338.160.camel@trz-ThinkPad-T420>
+	<ADD6A3980E8C39419A432FF422031B4C03188C9C@ORSMSX106.amr.corp.intel.com>
+	<1342668398.2338.227.camel@trz-ThinkPad-T420>
+	<ADD6A3980E8C39419A432FF422031B4C03188F51@ORSMSX106.amr.corp.intel.com>
+	<1342709843.2338.233.camel@trz-ThinkPad-T420>
+	<ADD6A3980E8C39419A432FF422031B4C03188FCC@ORSMSX106.amr.corp.intel.com>
+In-Reply-To: <ADD6A3980E8C39419A432FF422031B4C03188FCC@ORSMSX106.amr.corp.intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [PATCH 0/1] meta: update crownbay.scc for newer emgd driver
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,66 +37,127 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 20 Jul 2012 04:40:59 -0000
+X-List-Received-Date: Fri, 20 Jul 2012 04:53:16 -0000
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: Tom Zanussi <tom.zanussi@intel.com>
+On 12-07-19 11:25 AM, Kamble, Nitin A wrote:
+>
+>
+>> -----Original Message-----
+>> From: Zanussi, Tom
+>> Sent: Thursday, July 19, 2012 8:27 PM
+>> To: Kamble, Nitin A
+>> Cc: yocto@yoctoproject.org; bruce.ashfield@windriver.com
+>> Subject: RE: [PATCH 0/1] meta: update crownbay.scc for newer emgd driver
+>>
+>> On Thu, 2012-07-19 at 07:39 -0700, Kamble, Nitin A wrote:
+>>>
+>>>> -----Original Message-----
+>>>> From: Zanussi, Tom
+>>>> Sent: Thursday, July 19, 2012 8:57 AM
+>>>> To: Kamble, Nitin A
+>>>> Cc: yocto@yoctoproject.org; bruce.ashfield@windriver.com
+>>>> Subject: RE: [PATCH 0/1] meta: update crownbay.scc for newer emgd
+>>>> driver
+>>>>
+>>>> On Wed, 2012-07-18 at 19:58 -0700, Kamble, Nitin A wrote:
+>>>>>
+>>>>>> -----Original Message-----
+>>>>>> From: Zanussi, Tom
+>>>>>> Sent: Wednesday, July 18, 2012 7:43 PM
+>>>>>> To: Kamble, Nitin A
+>>>>>> Cc: yocto@yoctoproject.org; bruce.ashfield@windriver.com
+>>>>>> Subject: Re: [PATCH 0/1] meta: update crownbay.scc for newer
+>>>>>> emgd driver
+>>>>>>
+>>>>>> On Mon, 2012-07-16 at 22:57 -0700, nitin.a.kamble@intel.com wrote:
+>>>>>>> From: Nitin A Kamble<nitin.a.kamble@intel.com>
+>>>>>>>
+>>>>>>> This commit changes emgd kernel driver for crownbay bsp to the
+>>>>>>> emgd-
+>>>>>> 1.14.
+>>>>>>>
+>>>>>>
+>>>>>> Nitin,
+>>>>>>
+>>>>>> Doesn't switching this over in the kenrnel require emgd-1.14
+>>>>>> userspace recipe updates to work?  Did I miss those?
+>>>>>>
+>>>>>> Tom
+>>>>>>
+>>>>> Tom,
+>>>>>      I am holding the emgd 1.14 userspace commits until the kernel
+>>>>> repository
+>>>> change goes upstream. The kernel recipe will need new SRCREV (with
+>>>> emgd
+>>>> 1.14 kernel parts) for the user level emgd 1.14 parts to work. And
+>>>> that dependency will get satisfied once this commit is in.
+>>>>>
+>>>>
+>>>> Yeah, I understand, the crownbay is typically the most complicated
+>>>> update for all of those reasons - simultaneous new kernel
+>>>> version/recipe, new emgd branch, and new emgd userspace recipe all at
+>> the same time.
+>>>>
+>>>> In the past I've submitted them all at the same time for
+>>>> simultaneous review and some coordination with Bruce - once the
+>>>> kernel parts are in, the kernel recipe and the userspace parts can
+>>>> then be pulled in along with a simple follow-on patch to update the
+>> SRCREVs Bruce give us.
+>>>>
+>>>> The thing is that if Bruce pulls in the patch to switch to emgd-1.14
+>>>> and only at that point do you post the userspace recipe, and it ends
+>>>> up needing some rework, in the meantime the graphics remain
+>>>> non-functional (I know, they already are, thanks to the package
+>>>> re-ordering patches breaking the current recipe, but hopefully the
+>>>> 1.14 changes will be in and we don't have to worry about it any more.).
+>>>>
+>>>> Does that make sense, and can you just post the userspace and kernel
+>>>> recipe parts before we give Bruce the go-ahead in making the kernel
+>>>> changes?  (I'd also like to try it out myself as well...).
+>>>>
+>>> Tom,
+>>>    Until the crownbay bsp's Linux-yocto kernel recipe's meta SRCREV is
+>> updated, these kernel repo changes have no effect in the build process.
+>> Right ? So as I see, this commit does not make anything worst (or better).
+>>> I am sending the userland recipe commits anyway; So that you can also test
+>> it out.
+>>>
+>>
+>> Right, but what if we have to update the meta SRCREV for a different reason
+>> in the meantime (like we did last week for instance).  We're then forced to
+>> take the emgd commit as well.
+>
+> I see the issue now. And I don't see a perfect solution to the issue. Because of commits in two different repos there always going to be this kind of a sync issue. The best is pull the commits in both repositories at the same time.
 
-With the move to linux-yocto-3.4, linux-yocto-3.0 support can be
-removed.
+FYI: everything is staged and I have a SRCREV commit prepared for this.
 
-Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
----
- meta-jasperforest/conf/machine/jasperforest.conf   |    3 ++-
- .../linux/linux-yocto-rt_3.0.bbappend              |    8 --------
- .../recipes-kernel/linux/linux-yocto_3.0.bbappend  |    9 ---------
- 3 files changed, 2 insertions(+), 18 deletions(-)
- delete mode 100644 meta-jasperforest/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
- delete mode 100644 meta-jasperforest/recipes-kernel/linux/linux-yocto_3.0.bbappend
+When I hear a clear "yes" on the userspace changes, I can send the pull
+request immediately.
 
-diff --git a/meta-jasperforest/conf/machine/jasperforest.conf b/meta-jasperforest/conf/machine/jasperforest.conf
-index d661f7b..9a47b9a 100644
---- a/meta-jasperforest/conf/machine/jasperforest.conf
-+++ b/meta-jasperforest/conf/machine/jasperforest.conf
-@@ -4,7 +4,8 @@
- #@DESCRIPTION: Machine configuration for Jasper Forest Picket Post
- # systems i.e. Xeon C5500/C3500 + Intel 3420 chipset (Ibex Peak)
- 
--PREFERRED_VERSION_linux-yocto ?= "3.4%"
-+PREFERRED_PROVIDER_virtual/kernel = "linux-yocto-rt"
-+PREFERRED_VERSION_linux-yocto-rt ?= "3.2%"
- 
- require conf/machine/include/tune-x86_64.inc
- require conf/machine/include/ia32-base.inc
-diff --git a/meta-jasperforest/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend b/meta-jasperforest/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
-deleted file mode 100644
-index 1ddc78f..0000000
---- a/meta-jasperforest/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
-+++ /dev/null
-@@ -1,8 +0,0 @@
--FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
--COMPATIBLE_MACHINE_jasperforest = "jasperforest"
--KMACHINE_jasperforest  = "jasperforest"
--
--# Update the following to use a different BSP branch or meta SRCREV
--#KBRANCH_jasperforest  = "yocto/standard/preempt-rt/base"
--#SRCREV_machine_pn-linux-yocto-rt_jasperforest ?= ${AUTOREV}
--#SRCREV_meta_pn-linux-yocto-rt_jasperforest ?= ${AUTOREV}
-diff --git a/meta-jasperforest/recipes-kernel/linux/linux-yocto_3.0.bbappend b/meta-jasperforest/recipes-kernel/linux/linux-yocto_3.0.bbappend
-deleted file mode 100644
-index 1cc7f56..0000000
---- a/meta-jasperforest/recipes-kernel/linux/linux-yocto_3.0.bbappend
-+++ /dev/null
-@@ -1,9 +0,0 @@
--FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
--
--COMPATIBLE_MACHINE_jasperforest = "jasperforest"
--
--KMACHINE_jasperforest  = "jasperforest"
--KBRANCH_jasperforest  = "yocto/standard/common-pc-64/jasperforest"
--
--SRCREV_machine_pn-linux-yocto_jasperforest ?= "fc10a49bed173ade9c6c076241a448639fe50aa8"
--SRCREV_meta_pn-linux-yocto_jasperforest ?= "59314a3523e360796419d76d78c6f7d8c5ef2593"
--- 
-1.7.0.4
+Cheers,
+
+Bruce
+
+>
+> Thanks,
+> Nitin
+>
+>>
+>> In any case, it's your BSP so it's up to you how you want to manage it, I'm just
+>> trying to save you and the users some headaches.  It always made sense to
+>> me to do it all at the same time, all else being equal...
+>>
+>> Tom
+>>
+>>>
+>>> Thanks,
+>>> Nitin
+>>>
+>>>
+>>>
+>>
+>
 
 
