@@ -1,21 +1,23 @@
 Return-Path: <tom.zanussi@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 69140E002A7
-	for <yocto@yoctoproject.org>; Fri, 20 Jul 2012 10:02:56 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 20 Jul 2012 10:02:56 -0700
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3DD01E00282
+	for <yocto@yoctoproject.org>; Fri, 20 Jul 2012 10:04:04 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga102.fm.intel.com with ESMTP; 20 Jul 2012 10:04:04 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="174829879"
-Received: from unknown (HELO localhost) ([10.255.12.244])
-	by orsmga002.jf.intel.com with ESMTP; 20 Jul 2012 10:02:55 -0700
-From: tom.zanussi@intel.com
-To: yocto@yoctoproject.org
-Date: Fri, 20 Jul 2012 12:02:54 -0500
-Message-Id: <961f835e4f5dd2d02b34b7fce13316ec7b0bf1c4.1342803443.git.tom.zanussi@intel.com>
-X-Mailer: git-send-email 1.7.0.4
-In-Reply-To: <cover.1342803443.git.tom.zanussi@intel.com>
-References: <cover.1342803443.git.tom.zanussi@intel.com>
-Subject: [PATCH 1/1] emgd-driver-bin: remove FILES_${PN}-dev addition
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="181488833"
+Received: from unknown (HELO [10.255.12.215]) ([10.255.12.215])
+	by fmsmga001.fm.intel.com with ESMTP; 20 Jul 2012 10:04:03 -0700
+Message-ID: <1342803841.2330.11.camel@trz-ThinkPad-T420>
+From: Tom Zanussi <tom.zanussi@intel.com>
+To: Khem Raj <raj.khem@gmail.com>
+Date: Fri, 20 Jul 2012 12:04:01 -0500
+In-Reply-To: <1342752804-18293-1-git-send-email-raj.khem@gmail.com>
+References: <1342752804-18293-1-git-send-email-raj.khem@gmail.com>
+X-Mailer: Evolution 3.2.3-0ubuntu6 
+Mime-Version: 1.0
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-intel][PATCH] va-intel.bb: Add compatible host x86/x86_64
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,41 +29,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 20 Jul 2012 17:02:56 -0000
+X-List-Received-Date: Fri, 20 Jul 2012 17:04:04 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-From: Tom Zanussi <tom.zanussi@intel.com>
+On Thu, 2012-07-19 at 19:53 -0700, Khem Raj wrote:
+> This lets meta-intel to play well in multi-bsp
+> setup
+> 
 
-The package reordering patches exposed a problem in that the files
-specified in the FILES_${PN}-dev shouldn't really be put in the -dev
-package in the first place - this removes them.
+Pulled into meta-intel/master, thanks!
 
-Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
----
- .../xorg-xserver/emgd-driver-bin_1.10.bb           |    3 +--
- 1 files changed, 1 insertions(+), 2 deletions(-)
+Tom
 
-diff --git a/common/recipes-graphics/xorg-xserver/emgd-driver-bin_1.10.bb b/common/recipes-graphics/xorg-xserver/emgd-driver-bin_1.10.bb
-index 53a43cd..5779e5d 100644
---- a/common/recipes-graphics/xorg-xserver/emgd-driver-bin_1.10.bb
-+++ b/common/recipes-graphics/xorg-xserver/emgd-driver-bin_1.10.bb
-@@ -7,7 +7,7 @@ to LICENSE_FLAGS_WHITELIST += \"License_emgd-driver-bin_1.10\" to your \
- local.conf in order to enable it in a build."
- LICENSE = "Intel-binary-only"
- LICENSE_FLAGS = "license_${PN}_${PV}"
--PR = "r0"
-+PR = "r1"
- 
- EMGD_LIC_DIR = "IEMGD_HEAD_Linux/License"
- EMGD_RPM_DIR = "IEMGD_HEAD_Linux/MeeGo1.2"
-@@ -26,7 +26,6 @@ SRC_URI[sha256sum] = "acea5f0f93a31553553428623c007d7ed0c604cf715fd87dfe075751da
- INSANE_SKIP_${PN} = "ldflags"
- 
- FILES_${PN} += "${libdir}/dri ${libdir}/gstreamer-0.10 ${libdir}/xorg/modules/drivers"
--FILES_${PN}-dev += "${libdir}/dri ${libdir}/xorg/modules/drivers"
- FILES_${PN}-dbg += "${libdir}/xorg/modules/drivers/.debug ${libdir}/dri/.debug"
- 
- S = "${WORKDIR}/${EMGD_RPM_DIR}"
--- 
-1.7.0.4
+> Signed-off-by: Khem Raj <raj.khem@gmail.com>
+> ---
+>  common/recipes-multimedia/libva/va-intel.bb |    1 +
+>  1 files changed, 1 insertions(+), 0 deletions(-)
+> 
+> diff --git a/common/recipes-multimedia/libva/va-intel.bb b/common/recipes-multimedia/libva/va-intel.bb
+> index 3ce857a..69633aa 100644
+> --- a/common/recipes-multimedia/libva/va-intel.bb
+> +++ b/common/recipes-multimedia/libva/va-intel.bb
+> @@ -18,3 +18,4 @@ ALLOW_EMPTY = "1"
+>  RDEPENDS_va-intel = " \
+>      ${VA_IMPL} \
+>      "
+> +COMPATIBLE_HOST = '(i.86|x86_64).*-linux*'
+
 
 
