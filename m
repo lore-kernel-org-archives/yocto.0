@@ -1,23 +1,21 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 10429E002A5
-	for <yocto@yoctoproject.org>; Thu, 19 Jul 2012 15:52:14 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 19 Jul 2012 15:52:13 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="168689826"
-Received: from srifenb-mobl.amr.corp.intel.com (HELO envy.home)
-	([10.7.199.145])
-	by orsmga001.jf.intel.com with ESMTP; 19 Jul 2012 15:52:13 -0700
-Message-ID: <50088F3C.5060500@linux.intel.com>
-Date: Thu, 19 Jul 2012 15:50:36 -0700
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:13.0) Gecko/20120615 Thunderbird/13.0.1
+Return-Path: <Paul.Gortmaker@windriver.com>
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6AA44E002A5
+	for <yocto@yoctoproject.org>; Thu, 19 Jul 2012 17:02:07 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id q6K027KV017144
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Thu, 19 Jul 2012 17:02:07 -0700 (PDT)
+Received: from yow-pgortmak-d2.corp.ad.wrs.com (128.224.146.165) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
+	14.1.255.0; Thu, 19 Jul 2012 17:02:06 -0700
+From: Paul Gortmaker <paul.gortmaker@windriver.com>
+To: <yocto@yoctoproject.org>
+Date: Thu, 19 Jul 2012 20:01:55 -0400
+Message-ID: <1342742515-29091-1-git-send-email-paul.gortmaker@windriver.com>
+X-Mailer: git-send-email 1.7.9.7
 MIME-Version: 1.0
-To: Yocto Project <yocto@yoctoproject.org>
-X-Enigmail-Version: 1.4.3
-Subject: New development mailing list for the linux-yocto kernel repository
+Subject: [PATCH] mpc8315: build u-boot v2012.04 by default.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,43 +27,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 19 Jul 2012 22:52:14 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 20 Jul 2012 00:02:07 -0000
+Content-Type: text/plain
 
-The linux-yocto git repositories contain both Linux kernel sources as
-well as the meta-data used to prepare the BSP specific source branches
-and assemble the kernel config file. Much of this development has only
-been visible when the SRCREV update request is sent to update the
-various recipes.
+Validated on real hardware:
 
-In an effort to make this process more transparent, we decided all such
-changes should hit a mailing list for review. However, we didn't feel it
-was appropriate to use any of the existing lists as there is potential
-for a large number of small patches, especially for meta-data cleanup
-and reorganization, that will be of little interest to most of the
-subscribers. As the sources are inherently different from any
-recipe-based repositories, we created a new list:
+   U-Boot 2012.04.01 (Jun 29 2012 - 13:48:03)MPC83XX
 
-https://lists.yoctoproject.org/listinfo/linux-yocto
+   Reset Status: Software Hard, External/Internal Soft, External/Internal Hard
 
-"Development list for the linux-yocto git repositories. Patches for the
-various KTYPE and BSP branches as well as meta-data should be sent to
-this list for review and discussion."
+   CPU:   e300c3, MPC8315E, Rev: 1.2 at 400 MHz, CSB: 133.333 MHz
+   Board: Freescale MPC8315ERDB Rev 1.0
+   I2C:   ready
+   DRAM:  128 MiB (DDR2, 32-bit, ECC off, 266.667 MHz)
+   Flash: 8 MiB
+   NAND:  32 MiB
+   PCIE0: No link
+   PCIE1: No link
+   In:    serial
+   Out:   serial
+   Err:   serial
+   Net:   eTSEC0, eTSEC1
+   Hit any key to stop autoboot:  0
 
-If you are an active contributor to any of the linux-yocto*.git
-repositories, please submit your patches there.
+[YOCTO #943]
 
-Please note that this is NOT for the linux-yocto recipes and classes
-that are part of oe-core. Development discussions and patches for those
-should remain on the oe-core mailing list as they deal with recipes that
-are hosted in that repository.
+Signed-off-by: Paul Gortmaker <paul.gortmaker@windriver.com>
+---
 
-Thanks,
+[Resending, since the OE core changes this depended on are now in,
+ and having an old u-boot _may_ also be the cause of YOCTO #2775 ]
 
+diff --git a/meta-yocto/conf/machine/mpc8315e-rdb.conf b/meta-yocto/conf/machine/mpc8315e-rdb.conf
+index fe4612a..aa1e5c3 100644
+--- a/meta-yocto/conf/machine/mpc8315e-rdb.conf
++++ b/meta-yocto/conf/machine/mpc8315e-rdb.conf
+@@ -7,6 +7,9 @@ require conf/machine/include/tune-ppc603e.inc
+ 
+ KERNEL_IMAGETYPE = "uImage"
+ 
++EXTRA_IMAGEDEPENDS += "u-boot"
++UBOOT_MACHINE_mpc8315e-rdb = "MPC8315ERDB_config"
++
+ SERIAL_CONSOLE = "115200 ttyS0"
+ 
+ MACHINE_FEATURES = "keyboard pci ext2 ext3 serial"
+@@ -17,6 +20,7 @@ PREFERRED_PROVIDER_virtual/kernel = "linux-yocto"
+ PREFERRED_PROVIDER_virtual/xserver = "xserver-kdrive"
+ XSERVER = "xserver-kdrive-fbdev"
+ 
++PREFERRED_VERSION_u-boot ?= "v2012.04%"
+ UBOOT_ENTRYPOINT = "0x00000000"
+ 
+ KERNEL_DEVICETREE = "${S}/arch/powerpc/boot/dts/mpc8315erdb.dts"
 -- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
+1.7.9.7
 
 
