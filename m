@@ -1,21 +1,30 @@
-Return-Path: <Paul.Gortmaker@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6AA44E002A5
-	for <yocto@yoctoproject.org>; Thu, 19 Jul 2012 17:02:07 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id q6K027KV017144
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Thu, 19 Jul 2012 17:02:07 -0700 (PDT)
-Received: from yow-pgortmak-d2.corp.ad.wrs.com (128.224.146.165) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.1.255.0; Thu, 19 Jul 2012 17:02:06 -0700
-From: Paul Gortmaker <paul.gortmaker@windriver.com>
-To: <yocto@yoctoproject.org>
-Date: Thu, 19 Jul 2012 20:01:55 -0400
-Message-ID: <1342742515-29091-1-git-send-email-paul.gortmaker@windriver.com>
-X-Mailer: git-send-email 1.7.9.7
-MIME-Version: 1.0
-Subject: [PATCH] mpc8315: build u-boot v2012.04 by default.
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
+	[209.85.160.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7F731E002AB
+	for <yocto@yoctoproject.org>; Thu, 19 Jul 2012 19:53:27 -0700 (PDT)
+Received: by pbbrq8 with SMTP id rq8so6447824pbb.35
+	for <yocto@yoctoproject.org>; Thu, 19 Jul 2012 19:53:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:cc:subject:date:message-id:x-mailer;
+	bh=f5kJRL72Sic9yQ8kvJcF5k4ffA9yy6UHbZTkSFRXmtI=;
+	b=mQ8o/TsEefZ+M/tlXRKXESSmrfiJ8OEEi7o3SlnBSMCPgImk/RvxEcKIn7XLAeh0UB
+	GgMMULv37Wh+7OUtjKvPKnBEqbs3VHiaCnbLg8gT6bz0OTLC7vOAtnYmyrhFqmfUN2q1
+	tjieTNBi/uwyrU8HHVrh/UZymfmyzm9indFl1pvI5uD9YuTWgdVA5SSOl6hm3foGWtuU
+	2rf1Hu2neKI0sVLhtm1tp/UrdMnvimMgpFFCYKCaSddWZteZ/YIM10bjGednUXyKWpiU
+	GlvenRzAdOgKWF/EZIVIbohj1/jbG/s4l9AhM+RYBpPrms8Tqv1ZVJWQcTCRyklnHMuX
+	8Ezw==
+Received: by 10.68.116.203 with SMTP id jy11mr9847374pbb.129.1342752807140;
+	Thu, 19 Jul 2012 19:53:27 -0700 (PDT)
+Received: from kraj-lnx.juniper.net (natint3.juniper.net. [66.129.224.36])
+	by mx.google.com with ESMTPS id sh3sm2971279pbc.16.2012.07.19.19.53.24
+	(version=SSLv3 cipher=OTHER); Thu, 19 Jul 2012 19:53:25 -0700 (PDT)
+From: Khem Raj <raj.khem@gmail.com>
+To: yocto@yoctoproject.org
+Date: Thu, 19 Jul 2012 19:53:24 -0700
+Message-Id: <1342752804-18293-1-git-send-email-raj.khem@gmail.com>
+X-Mailer: git-send-email 1.7.9.5
+Subject: [meta-intel][PATCH] va-intel.bb: Add compatible host x86/x86_64
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,60 +36,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 20 Jul 2012 00:02:07 -0000
-Content-Type: text/plain
+X-List-Received-Date: Fri, 20 Jul 2012 02:53:27 -0000
 
-Validated on real hardware:
+This lets meta-intel to play well in multi-bsp
+setup
 
-   U-Boot 2012.04.01 (Jun 29 2012 - 13:48:03)MPC83XX
-
-   Reset Status: Software Hard, External/Internal Soft, External/Internal Hard
-
-   CPU:   e300c3, MPC8315E, Rev: 1.2 at 400 MHz, CSB: 133.333 MHz
-   Board: Freescale MPC8315ERDB Rev 1.0
-   I2C:   ready
-   DRAM:  128 MiB (DDR2, 32-bit, ECC off, 266.667 MHz)
-   Flash: 8 MiB
-   NAND:  32 MiB
-   PCIE0: No link
-   PCIE1: No link
-   In:    serial
-   Out:   serial
-   Err:   serial
-   Net:   eTSEC0, eTSEC1
-   Hit any key to stop autoboot:  0
-
-[YOCTO #943]
-
-Signed-off-by: Paul Gortmaker <paul.gortmaker@windriver.com>
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
 ---
+ common/recipes-multimedia/libva/va-intel.bb |    1 +
+ 1 files changed, 1 insertions(+), 0 deletions(-)
 
-[Resending, since the OE core changes this depended on are now in,
- and having an old u-boot _may_ also be the cause of YOCTO #2775 ]
-
-diff --git a/meta-yocto/conf/machine/mpc8315e-rdb.conf b/meta-yocto/conf/machine/mpc8315e-rdb.conf
-index fe4612a..aa1e5c3 100644
---- a/meta-yocto/conf/machine/mpc8315e-rdb.conf
-+++ b/meta-yocto/conf/machine/mpc8315e-rdb.conf
-@@ -7,6 +7,9 @@ require conf/machine/include/tune-ppc603e.inc
- 
- KERNEL_IMAGETYPE = "uImage"
- 
-+EXTRA_IMAGEDEPENDS += "u-boot"
-+UBOOT_MACHINE_mpc8315e-rdb = "MPC8315ERDB_config"
-+
- SERIAL_CONSOLE = "115200 ttyS0"
- 
- MACHINE_FEATURES = "keyboard pci ext2 ext3 serial"
-@@ -17,6 +20,7 @@ PREFERRED_PROVIDER_virtual/kernel = "linux-yocto"
- PREFERRED_PROVIDER_virtual/xserver = "xserver-kdrive"
- XSERVER = "xserver-kdrive-fbdev"
- 
-+PREFERRED_VERSION_u-boot ?= "v2012.04%"
- UBOOT_ENTRYPOINT = "0x00000000"
- 
- KERNEL_DEVICETREE = "${S}/arch/powerpc/boot/dts/mpc8315erdb.dts"
+diff --git a/common/recipes-multimedia/libva/va-intel.bb b/common/recipes-multimedia/libva/va-intel.bb
+index 3ce857a..69633aa 100644
+--- a/common/recipes-multimedia/libva/va-intel.bb
++++ b/common/recipes-multimedia/libva/va-intel.bb
+@@ -18,3 +18,4 @@ ALLOW_EMPTY = "1"
+ RDEPENDS_va-intel = " \
+     ${VA_IMPL} \
+     "
++COMPATIBLE_HOST = '(i.86|x86_64).*-linux*'
 -- 
-1.7.9.7
+1.7.5.4
 
 
