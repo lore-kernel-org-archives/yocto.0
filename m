@@ -1,25 +1,26 @@
 Return-Path: <tom.zanussi@intel.com>
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 13BB9E00288
-	for <yocto@yoctoproject.org>; Fri, 20 Jul 2012 19:31:40 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 20 Jul 2012 19:31:39 -0700
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 64A5BE00288
+	for <yocto@yoctoproject.org>; Fri, 20 Jul 2012 21:06:25 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 20 Jul 2012 21:06:25 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="175016470"
-Received: from unknown (HELO [10.255.12.249]) ([10.255.12.249])
-	by orsmga002.jf.intel.com with ESMTP; 20 Jul 2012 19:31:39 -0700
-Message-ID: <1342837898.2274.26.camel@trz-ThinkPad-T420>
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="169225538"
+Received: from unknown (HELO [10.255.13.4]) ([10.255.13.4])
+	by orsmga001.jf.intel.com with ESMTP; 20 Jul 2012 21:06:24 -0700
+Message-ID: <1342843583.6230.3.camel@trz-ThinkPad-T420>
 From: Tom Zanussi <tom.zanussi@intel.com>
-To: nitin.a.kamble@intel.com
-Date: Fri, 20 Jul 2012 21:31:38 -0500
-In-Reply-To: <1342711727.2338.244.camel@trz-ThinkPad-T420>
-References: <cover.1342622602.git.nitin.a.kamble@intel.com>
-	<a17ec412dccf6b7b68bcf9865d78e06822b1dfab.1342622602.git.nitin.a.kamble@intel.com>
-	<1342711727.2338.244.camel@trz-ThinkPad-T420>
+To: Jim Abernathy <jfabernathy@gmail.com>
+Date: Fri, 20 Jul 2012 23:06:23 -0500
+In-Reply-To: <1342821334.2274.13.camel@trz-ThinkPad-T420>
+References: <5009BB61.5010605@gmail.com> <5009BFAB.9040801@intel.com>
+	<5009C119.3070801@gmail.com>
+	<1342816760.2274.2.camel@trz-ThinkPad-T420>
+	<1342821334.2274.13.camel@trz-ThinkPad-T420>
 X-Mailer: Evolution 3.2.3-0ubuntu6 
 Mime-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 2/7] ia32-base.inc: also take -dev package of emgd
+Cc: yocto@yoctoproject.org, Darren Hart <dvhart@linux.intel.com>
+Subject: Re: nothing building under denzil-7.0.1
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,99 +32,84 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 21 Jul 2012 02:31:40 -0000
+X-List-Received-Date: Sat, 21 Jul 2012 04:06:25 -0000
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-On Thu, 2012-07-19 at 10:28 -0500, Tom Zanussi wrote:
-> On Wed, 2012-07-18 at 07:49 -0700, nitin.a.kamble@intel.com wrote:
-> > From: Nitin A Kamble <nitin.a.kamble@intel.com>
+On Fri, 2012-07-20 at 16:55 -0500, Tom Zanussi wrote:
+> On Fri, 2012-07-20 at 15:39 -0500, Tom Zanussi wrote:
+> > On Fri, 2012-07-20 at 16:35 -0400, Jim Abernathy wrote:
+> > > On 07/20/2012 04:29 PM, Scott Garman wrote:
+> > > > On 07/20/2012 01:11 PM, Jim Abernathy wrote:
+> > > >> There must be some basic thing I'm missing.  Nothing that I used to
+> > > >> build under denzil 7.0 will now build under denzil 7.0.1 or tracking the
+> > > >> denzil branch.  Are all the BSPs required to be updated to 7.0.1 before
+> > > >> you can run?
+> > > >>
+> > > >> I'd thought I'd check before I post a bunch of log files.
+> > > >>
+> > > >> I just downloaded the poky 7.0.1 tarball and cd'ed to that untarred
+> > > >> directory and untarred the 7.0 Intel BSPs.
+> > > >>
+> > > >> There must be a step I'm missing.  otherwise this would not have gotten
+> > > >> thru testing before deployment.
+> > > >>
+> > > >> Jim A
+> > > >
+> > > > Hi Jim,
+> > > >
+> > > > We need more specific information about the error(s) you're seeing. 
+> > > > We've done extensive QA with 7.0.1 and meta-intel, so I imagine there 
+> > > > must be a step you've forgotten.
+> > > >
+> > > > For example, you are using the denzil branch of meta-intel, right?
+> > > >
+> > > > Scott
+> > > >
+> > > 
+> > > I think it maybe that old problem with the n450 SRCREC being blank in 
+> > > the linux-yocto bbappend file.  Obviously that BSP didn't get fixed 
+> > > before 7.0.1 was deployed.  I'll put in the ones I used to patch in and 
+> > > see if it works.
+> > > 
 > > 
-> > emgd-driver-bin recipe provides emgd-driver-bin, emgd-driver-bin-dev
-> > & emgd-driver-bin-dbg packages. For emgd driver to work it also need
-> > library files from emgd-driver-bin-dev package. This change makes sure
-> > this -dev package is also added for emgd driver.
+> > I updated the n450 in both the denzil and master meta-intel branches,
+> > but the tarball still needs to be updated with that fix.
 > > 
-> > Signed-off-by: Nitin A Kamble <nitin.a.kamble@intel.com>
-> > ---
-> >  conf/machine/include/ia32-base.inc |    1 +
-> >  1 files changed, 1 insertions(+), 0 deletions(-)
+> > Is this the problem you're seeing, or are there other problems you're
+> > seeing with this and/or the other meta-intel BSPs?
 > > 
-> > diff --git a/conf/machine/include/ia32-base.inc b/conf/machine/include/ia32-base.inc
-> > index 99ac352..7d9413a 100644
-> > --- a/conf/machine/include/ia32-base.inc
-> > +++ b/conf/machine/include/ia32-base.inc
-> > @@ -57,6 +57,7 @@ XSERVER_IA32_I965 = "xf86-video-intel \
-> >             "
-> >  
-> >  XSERVER_IA32_EMGD = "emgd-driver-bin \
-> > +                     emgd-driver-bin-dev \
-> >             "
-> >  
 > 
-> I think this is the same problem as 1.10 - you shouldn't have to pull in
-> the -dev package to get those two .so files, which are in the
-> emgd-bin-2443-1.10.i586.rpm and not the -dev rpm:
-> 
-> /usr/lib/dri/emgd_dri.so
-> /usr/lib/dri/emgd_drv_video.so
-> /usr/lib/libEGL.so.1.5.15.3226
-> /usr/lib/libEMGD2d.so.1.5.15.3226
-> /usr/lib/libEMGDOGL.so.1.5.15.3226
-> /usr/lib/libEMGDScopeServices.so.1.5.15.3226
-> /usr/lib/libEMGDegl.so.1.5.15.3226
-> /usr/lib/libGLES_CM.so.1.5.15.3226
-> /usr/lib/libGLESv2.so.1.5.15.3226
-> /usr/lib/libOpenVG.so.1.5.15.3226
-> /usr/lib/libOpenVGU.so.1.5.15.3226
-> /usr/lib/libPVRScopeServices.so
-> /usr/lib/libemgdPVR2D_DRIWSEGL.so.1.5.15.3226
-> /usr/lib/libemgdglslcompiler.so.1.5.15.3226
-> /usr/lib/libemgdsrv_init.so.1.5.15.3226
-> /usr/lib/libemgdsrv_um.so.1.5.15.3226
-> /usr/lib/xorg/modules/drivers/emgd_drv.so
-> /usr/share/doc/emgd/emgd-cb.conf
-> /usr/share/doc/emgd/emgd-rv.conf
-> /usr/share/doc/emgd/license.txt
-> /usr/share/doc/emgd/readme.txt
-> /usr/share/man/man4/emgd.4.gz
-> 
-> So those two .so files are now going into the -dev package when before
-> they weren't.  I think the package reordering changes are what broke the
-> current recipe:
-> 
-> commit f68cbf56d8f2a45ce44a59d0411cdda8ec7e2c36
-> Author: Saul Wold <sgw@linux.intel.com>
-> Date:   Tue Jun 5 04:52:21 2012 -0700
-> 
->     bitbake.conf: reorder PACKAGES list
->     
->     This change re-orders the PACKAGES list to move PN to the end of the
-> list
->     this will ensure that base package gets the final bits since the
-> packaging
->     is greedy. We can then have -dev and other package get bits first.
-> 
-> And probably some similar fix to the bunch of 'clean up FILE after
-> PACKAGE reorder' commits would get things back to how they were.  Should
-> I file a bug for this?
+> As a sanity check, I just now downloaded the denzil-7.0.1 tarball and
+> the denzil sugarbay tarball and built successfully without any problems.
 > 
 
-I pushed the fix for this to meta-intel/master, which you should be able
-to reuse for emgd 1.14.
+Also did a fresh clone of meta-intel, checked out meta-intel/denzil and
+successfully built n450 with the denzil-7.0.1 tarball here with no
+problems.
 
 Tom
 
+
 > Tom
->  
-> 
-> >  XSERVER_IA32_VESA = "xf86-video-vesa"
 > 
 > 
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+> > Tom
+> > 
+> > > Jim A
+> > > 
+> > > 
+> > > _______________________________________________
+> > > yocto mailing list
+> > > yocto@yoctoproject.org
+> > > https://lists.yoctoproject.org/listinfo/yocto
+> > 
+> > 
+> > _______________________________________________
+> > yocto mailing list
+> > yocto@yoctoproject.org
+> > https://lists.yoctoproject.org/listinfo/yocto
+> 
 
 
 
