@@ -1,41 +1,23 @@
-Return-Path: <jfabernathy@gmail.com>
-Received: from mail-vb0-f48.google.com (mail-vb0-f48.google.com
-	[209.85.212.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DD361E00282
-	for <yocto@yoctoproject.org>; Fri, 20 Jul 2012 18:08:26 -0700 (PDT)
-Received: by vbjk17 with SMTP id k17so4399499vbj.35
-	for <yocto@yoctoproject.org>; Fri, 20 Jul 2012 18:08:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=message-id:date:from:user-agent:mime-version:to:cc:subject
-	:references:in-reply-to:content-type:content-transfer-encoding;
-	bh=1zPYBbPwynlK6OzgCRNQ2vMIjyqNWXyzct0SbWacRUk=;
-	b=xQcw66N8wM+1tAT2S1bPG5HKznNle+YL4xfHSC/XIMR0e+WHpPLL5w5Ga9/SGuCeNB
-	o7JFTwxqz/u8YgtCNrX9ulhztXQQoxoWTIWhT/LxRLz9ip/7MSBqGhcMlubEPFiVCvZ5
-	a7WwGbGnbYVt/OJ7lO4WmjR4GJ0xNm2AYKLkHcJDxl8v2qqw5xAPioQejVCKouFHeFlS
-	R/AoApBheYeIsYZEu5+qTBzwOhdF84akrUaIlstmwL7zCeUxEys53ncBWZA1VNRMFmJ9
-	5l/+CU7KyMANfoKN3DjuEAwFGPkEx9J9MjpIGWiLcYUEsvmnxXgXqZj/oT7jupwY5ARZ
-	UzUQ==
-Received: by 10.52.21.99 with SMTP id u3mr5403936vde.56.1342832905911;
-	Fri, 20 Jul 2012 18:08:25 -0700 (PDT)
-Received: from [10.0.1.54] (nc-184-4-39-191.dhcp.embarqhsd.net. [184.4.39.191])
-	by mx.google.com with ESMTPS id bn5sm4388346vdb.19.2012.07.20.18.08.24
-	(version=SSLv3 cipher=OTHER); Fri, 20 Jul 2012 18:08:25 -0700 (PDT)
-Message-ID: <500A0108.9040908@gmail.com>
-Date: Fri, 20 Jul 2012 21:08:24 -0400
-From: Jim Abernathy <jfabernathy@gmail.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:14.0) Gecko/20120714 Thunderbird/14.0
-MIME-Version: 1.0
-To: Darren Hart <dvhart@linux.intel.com>
-References: <5009BB61.5010605@gmail.com> <5009BFAB.9040801@intel.com>
-	<5009C119.3070801@gmail.com>
-	<1342816760.2274.2.camel@trz-ThinkPad-T420>
-	<5009C2A5.5050802@gmail.com>
-	<1342817332.2274.8.camel@trz-ThinkPad-T420>
-	<5009D7E2.4070904@gmail.com> <5009E3A2.9020904@linux.intel.com>
-In-Reply-To: <5009E3A2.9020904@linux.intel.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: nothing building under denzil-7.0.1
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4AF5FE00288
+	for <yocto@yoctoproject.org>; Fri, 20 Jul 2012 19:20:29 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 20 Jul 2012 19:20:28 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="171062588"
+Received: from unknown (HELO [10.255.12.249]) ([10.255.12.249])
+	by azsmga001.ch.intel.com with ESMTP; 20 Jul 2012 19:20:27 -0700
+Message-ID: <1342837226.2274.24.camel@trz-ThinkPad-T420>
+From: Tom Zanussi <tom.zanussi@intel.com>
+To: "Saxena, Rahul" <rahul.saxena@intel.com>
+Date: Fri, 20 Jul 2012 21:20:26 -0500
+In-Reply-To: <63ECFF2A2302B44093D7CE9E9962C490032E3CB9@ORSMSX103.amr.corp.intel.com>
+References: <63ECFF2A2302B44093D7CE9E9962C490032E3CB9@ORSMSX103.amr.corp.intel.com>
+X-Mailer: Evolution 3.2.3-0ubuntu6 
+Mime-Version: 1.0
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: ERROR: Function failed: do_install_perf
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,62 +29,266 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 21 Jul 2012 01:08:27 -0000
-Content-Type: text/plain; charset=UTF-8; format=flowed
+X-List-Received-Date: Sat, 21 Jul 2012 02:20:29 -0000
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-On 07/20/2012 07:02 PM, Darren Hart wrote:
-> On 07/20/2012 03:12 PM, Jim Abernathy wrote:
->> git://git.yoctoproject.org/linux-yocto-3.2 could not be run:
->> None
->> ERROR: Function failed: Fetcher failure for URL:
->> 'git://git.yoctoproject.org/linux-yocto-3.2;protocol=git;bareclone=1;branch=standard/default/common-pc/atom-pc,meta;name=machine,meta'.
->> Unable to fetch URL from any source.
-> Can you clone this from the shell?
->
-Okay, I blew away my poky and build directories, but keep my download 
-central directory.
+On Sat, 2012-07-21 at 00:02 +0000, Saxena, Rahul wrote:
+> Hi,
+> 
+>  
+> 
+> I suddenly started to get the following error when  running bitbake. I
+> am using Denzil branches of poky, meta-intel and poky-extras. I
+> installed libper-dev as suggested by the error message, but it made no
+> difference.
+> 
+>  
+> 
+> Any suggestions ?
+> 
+I think the meta-kernel-dev with denzil is causing the problem i.e the
+AUTOREV is causing the tip of linux-yocto-3.0 to get picked up.  So just
+removing poky-extras from your layers should fix the problem.
 
-Here are the steps.
+Using the meta-kernel-dev AUTOREV with master should be fine though, and
+in fact I did update the cedartrail SRCREVs in master to catch the perf
+updates in linux-yocto-3.0, so advancing them won't hurt anything.  I
+guess master is where you want to make new kernel changes anyway...
 
-git clone git://git.yoctoproject.org/poky
-cd poky
-git clone git://git.yoctoproject.org/meta-intel.git
-git checkout -b denzil origin/denzil
-cd meta-intel
-git checkout -b denzil origin/denzil
-cd ..
-. oe-init-build-env /build/n450-new
-(edit local.conf for parallel options, machine= n450, and DL_DIR)
-(edit bblayer.conf for meta-intel and meta-intel/meta-n450 layer)
-bitbake core-image-sato
+Tom 
 
-Error console:
+>  
+> 
+> Thanks
+> 
+> Rahul
+> 
+>  
+> 
+> ERROR: Function failed: do_install_perf
+> (see /home/rsaxena/YoctoWork3x/cedartraiv12p/tmp/work/cedartrail-poky-linux/linux-yocto-3.0.32+git1+46e8fc2bbbe73514e8d99101adaaa373f760ffa7_1+81fd8c307997aff37916828dc8b4ef72f5d35a94-r4/temp/log.do_install_perf.69672 for further information)
+> 
+> NOTE: make
+> -C /home/rsaxena/YoctoWork3x/cedartraiv12p/tmp/work/cedartrail-poky-linux/linux-yocto-3.0.32+git1+46e8fc2bbbe73514e8d99101adaaa373f760ffa7_1+81fd8c307997aff37916828dc8b4ef72f5d35a94-r4/linux/tools/perf CC=i586-poky-linux-gcc  -m32    -march=core2 -msse3 -mtune=generic -mfpmath=sse --sysroot=/home/rsaxena/YoctoWork3x/cedartraiv12p/tmp/sysroots/cedartrail LD=i586-poky-linux-ld --sysroot=/home/rsaxena/YoctoWork3x/cedartraiv12p/tmp/sysroots/cedartrail   prefix=/usr DESTDIR=/home/rsaxena/YoctoWork3x/cedartraiv12p/tmp/work/cedartrail-poky-linux/linux-yocto-3.0.32+git1+46e8fc2bbbe73514e8d99101adaaa373f760ffa7_1+81fd8c307997aff37916828dc8b4ef72f5d35a94-r4/image install NO_NEWT=1 NO_DWARF=1
+> 
+> make: Entering directory
+> `/home/rsaxena/YoctoWork3x/cedartraiv12p/tmp/work/cedartrail-poky-linux/linux-yocto-3.0.32+git1+46e8fc2bbbe73514e8d99101adaaa373f760ffa7_1+81fd8c307997aff37916828dc8b4ef72f5d35a94-r4/linux/tools/perf'
+> 
+> Makefile:484: libperl not found, disables Perl scripting support.
+> Please install libperl-dev or perl-devel
+> 
+>     * new build flags or prefix
+> 
+>     CC perf.o
+> 
+>     CC builtin-annotate.o
+> 
+>     CC builtin-bench.o
+> 
+>     CC bench/sched-messaging.o
+> 
+>     CC bench/sched-pipe.o
+> 
+>     CC bench/mem-memcpy.o
+> 
+>     CC builtin-diff.o
+> 
+>     CC builtin-evlist.o
+> 
+>     CC builtin-help.o
+> 
+>     CC builtin-sched.o
+> 
+>     CC builtin-buildid-list.o
+> 
+>     CC builtin-buildid-cache.o
+> 
+>     CC builtin-list.o
+> 
+>     CC builtin-record.o
+> 
+>     CC builtin-report.o
+> 
+>     CC builtin-stat.o
+> 
+>     CC builtin-timechart.o
+> 
+>     CC builtin-top.o
+> 
+>     CC builtin-script.o
+> 
+>     CC builtin-probe.o
+> 
+>     CC builtin-kmem.o
+> 
+>     CC builtin-lock.o
+> 
+>     CC builtin-kvm.o
+> 
+>     CC builtin-test.o
+> 
+>     CC builtin-inject.o
+> 
+>     CC util/abspath.o
+> 
+>     CC util/alias.o
+> 
+>     CC util/annotate.o
+> 
+>     CC util/build-id.o
+> 
+>     CC util/config.o
+> 
+>     CC util/ctype.o
+> 
+>     CC util/debugfs.o
+> 
+>     CC util/environment.o
+> 
+>     CC util/event.o
+> 
+>     CC util/evlist.o
+> 
+>     CC util/evsel.o
+> 
+>     CC util/exec_cmd.o
+> 
+>     CC util/help.o
+> 
+>     CC util/levenshtein.o
+> 
+>     CC util/parse-options.o
+> 
+>     CC util/parse-events.o
+> 
+>     CC util/path.o
+> 
+>     CC util/rbtree.o
+> 
+>     CC util/bitmap.o
+> 
+>     CC util/hweight.o
+> 
+>     CC util/run-command.o
+> 
+>     CC util/quote.o
+> 
+>     CC util/strbuf.o
+> 
+>     CC util/string.o
+> 
+>     CC util/strlist.o
+> 
+>     CC util/strfilter.o
+> 
+>     CC util/top.o
+> 
+>     CC util/usage.o
+> 
+>     CC util/wrapper.o
+> 
+>     CC util/sigchain.o
+> 
+>     CC util/symbol.o
+> 
+>     CC util/color.o
+> 
+>     CC util/pager.o
+> 
+>     CC util/header.o
+> 
+>     CC util/callchain.o
+> 
+>     CC util/values.o
+> 
+>     CC util/debug.o
+> 
+>     CC util/map.o
+> 
+>     CC util/pstack.o
+> 
+>     CC util/session.o
+> 
+>     CC util/thread.o
+> 
+>     CC util/thread_map.o
+> 
+>     CC util/trace-event-parse.o
+> 
+>     CC util/trace-event-read.o
+> 
+>     CC util/trace-event-info.o
+> 
+>     CC util/trace-event-scripting.o
+> 
+>     CC util/svghelper.o
+> 
+>     CC util/sort.o
+> 
+>     CC util/hist.o
+> 
+>     CC util/probe-event.o
+> 
+>     CC util/util.o
+> 
+>     CC util/xyarray.o
+> 
+>     CC util/cpumap.o
+> 
+>     CC util/cgroup.o
+> 
+>     CC util/scripting-engines/trace-event-python.o
+> 
+>     CC scripts/python/Perf-Trace-Util/Context.o
+> 
+>     AR libperf.a
+> 
+>     LINK perf
+> 
+>     GEN python/perf.so
+> 
+> Traceback (most recent call last):
+> 
+>   File "util/setup.py", line 6, in <module>
+> 
+>     from distutils.command.build_ext   import build_ext   as
+> _build_ext
+> 
+>   File
+> "/home/rsaxena/YoctoWork3x/cedartraiv12p/tmp/sysroots/x86_64-linux/usr/lib/python2.7/distutils/command/build_ext.py", line 16, in <module>
+> 
+>     from distutils.sysconfig import customize_compiler,
+> get_python_version
+> 
+>   File
+> "/home/rsaxena/YoctoWork3x/cedartraiv12p/tmp/sysroots/x86_64-linux/usr/lib/python2.7/distutils/sysconfig.py", line 22, in <module>
+> 
+>     PREFIX =
+> os.path.normpath(sys.prefix).replace( os.getenv("BUILD_SYS"),
+> os.getenv("HOST_SYS") )
+> 
+> TypeError: expected a character buffer object
+> 
+> cp: cannot stat `python_ext_build/lib/perf.so': No such file or
+> directory
+> 
+> make: *** [python/perf.so] Error 1
+> 
+> make: Leaving directory
+> `/home/rsaxena/YoctoWork3x/cedartraiv12p/tmp/work/cedartrail-poky-linux/linux-yocto-3.0.32+git1+46e8fc2bbbe73514e8d99101adaaa373f760ffa7_1+81fd8c307997aff37916828dc8b4ef72f5d35a94-r4/linux/tools/perf'
+> 
+> ERROR: oe_runmake failed
+> 
+>  
+> 
+>  
+> 
+> 
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-NOTE: Running task 687 of 4920 (ID: 69, 
-virtual:native:/home/jim/poky/meta/recipes-devtools/prelink/prelink_git.bb, 
-do_unpack)
-WARNING: Failed to fetch URL 
-git://git.yoctoproject.org/linux-yocto-3.2;protocol=git;bareclone=1;branch=standard/default/common-pc/atom-pc,meta;name=machine,meta
-ERROR: Fetcher failure: Fetch command export HOME="/home/jim"; export 
-SSH_AGENT_PID="1456"; export SSH_AUTH_SOCK="/tmp/keyring-aKbQKk/ssh"; 
-export 
-GIT_CONFIG="/build/n450-new/tmp/sysroots/x86_64-linux/etc/gitconfig"; 
-export 
-PATH="/build/n450-new/tmp/sysroots/x86_64-linux/usr/bin/core2-poky-linux:/build/n450-new/tmp/sysroots/n450/usr/bin/crossscripts:/build/n450-new/tmp/sysroots/x86_64-linux/usr/sbin:/build/n450-new/tmp/sysroots/x86_64-linux/usr/bin:/build/n450-new/tmp/sysroots/x86_64-linux/sbin:/build/n450-new/tmp/sysroots/x86_64-linux//bin:/home/jim/poky/scripts:/home/jim/poky/bitbake/bin/:/home/jim/poky/scripts:/home/jim/poky/bitbake/bin/:/home/jim/poky/scripts:/home/jim/poky/bitbake/bin/:/home/jim/poky-denzil-7.0.1/scripts:/home/jim/poky-denzil-7.0.1/bitbake/bin/:/home/jim/poky-denzil-7.0.1/scripts:/home/jim/poky-denzil-7.0.1/bitbake/bin/:/home/jim/poky-denzil-7.0.1/scripts:/home/jim/poky-denzil-7.0.1/bitbake/bin/:/home/jim/poky/scripts:/home/jim/poky/bitbake/bin/:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/home/jim/poky/scripts"; 
-git remote add --mirror=fetch origin 
-git://git.yoctoproject.org/linux-yocto-3.2 could not be run:
-None
-ERROR: Function failed: Fetcher failure for URL: 
-'git://git.yoctoproject.org/linux-yocto-3.2;protocol=git;bareclone=1;branch=standard/default/common-pc/atom-pc,meta;name=machine,meta'. 
-Unable to fetch URL from any source.
-ERROR: Logfile of failure stored in: 
-/build/n450-new/tmp/work/n450-poky-linux/linux-yocto-3.2.18+git1+49f931bc294d5b6be60502bbd448cff5aa766235_1+8b8cfaaab2b8d79ac56e8c9a85bad9ae7bca399c-r1/temp/log.do_fetch.12200
-NOTE: package 
-linux-yocto-3.2.18+git1+49f931bc294d5b6be60502bbd448cff5aa766235_1+8b8cfaaab2b8d79ac56e8c9a85bad9ae7bca399c-r1: 
-task do_fetch: Failed
-ERROR: Task 705 
-(/home/jim/poky/meta/recipes-kernel/linux/linux-yocto_3.2.bb, do_fetch) 
-failed with exit code '1'
 
 
