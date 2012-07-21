@@ -1,38 +1,42 @@
-Return-Path: <elvis.dowson@gmail.com>
-Received: from mail-yw0-f48.google.com (mail-yw0-f48.google.com
-	[209.85.213.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 60E7DE013F7
-	for <yocto@yoctoproject.org>; Sat, 21 Jul 2012 12:19:57 -0700 (PDT)
-Received: by yhfq46 with SMTP id q46so5652063yhf.35
-	for <yocto@yoctoproject.org>; Sat, 21 Jul 2012 12:19:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=references:in-reply-to:mime-version:content-transfer-encoding
-	:content-type:message-id:cc:x-mailer:from:subject:date:to;
-	bh=5trZtN9zP0bq3UPYjE1UyGK347ZW3I3CHkm9umqH9fA=;
-	b=w6/YCoku3pVotocZeYP4NK2hOFt1aY/g8gl54X20xrVTn/It3917aqy1mgiMLFiy/m
-	3mCauUeR7wANyYjE7j70FDt3VcA/QBJf3XF1u4IFhuu3/wEGspWe9hQd99X3tsVFjc2z
-	g8vn1Qhk44HJHJ1gjeQUV5uEYxRU/YkR0ukrY5u0JIrbdxc78B5DjR76ifZhDUCWGDbZ
-	MBCios/1JyZPCwE2KTiwCYn6/phvT3J4rfJc+yhXvCcnx2EEyu5UhUJoGafCQdWT0kFk
-	YAuff3HmuuIZCCB45d5nZBIDki13uTf83lE4VIYmm0DR1kJrlXMJFgcj9GQNCA57nxx/
-	PuMg==
-Received: by 10.236.165.1 with SMTP id d1mr9523770yhl.26.1342898396453;
-	Sat, 21 Jul 2012 12:19:56 -0700 (PDT)
-Received: from ?IPv6:2002:5ecd:6ca2::15b5:3bcf:853:b711?
-	([2002:5ecd:6ca2:0:15b5:3bcf:853:b711])
-	by mx.google.com with ESMTPS id x3sm4719524yhd.9.2012.07.21.12.19.53
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Sat, 21 Jul 2012 12:19:56 -0700 (PDT)
+Return-Path: <ross.burton@intel.com>
+Received: from orsmga101.jf.intel.com (mga06.intel.com [134.134.136.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B53C8E003BF
+	for <yocto@yoctoproject.org>; Sat, 21 Jul 2012 12:54:47 -0700 (PDT)
+Received: from mail-wg0-f44.google.com ([74.125.82.44])
+	by mga02.intel.com with ESMTP/TLS/RC4-SHA; 21 Jul 2012 12:54:46 -0700
+Received: by wgbdr13 with SMTP id dr13so3299845wgb.13
+	for <yocto@yoctoproject.org>; Sat, 21 Jul 2012 12:54:45 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=date:from:to:cc:message-id:in-reply-to:references:subject:x-mailer
+	:mime-version:content-type:content-transfer-encoding
+	:content-disposition:x-gm-message-state;
+	bh=DQOO8ykhFBmjz9KMLch377QsodidnZBooyi3QcBvnMk=;
+	b=PTpc93ZmOWEZgfqbkeY5pHQF0L4dH2R/Zc+7jkwOM7uH4cPVgCG93HP/zDoNBekn9u
+	BroPS5q+S/I6noN7tlxMQIUNYTX3XpxZo4L/zNT2i6YNDoznbEuEyS6TADuz0mRNiotE
+	FkEIGHMV42ARhjj6YRnYbb5Vql9lGLy5jA69s4A5ghSgBV+NFLzriXs6PA1zLFlWjoR+
+	qqE1JuhoFZ2g7TJCH2ztS6tceZ/fmecIhTTRnU7ZNnG9MxQLvPkXOQR76lNH+oL8TODY
+	G3tDqzS5AMv5NCaIZE+DZJhg+5v/iMk0j0VYFNVnqXqwl9Of95sngIFZCKUD5hS10HuR
+	glLw==
+Received: by 10.180.81.165 with SMTP id b5mr35604660wiy.17.1342900485082;
+	Sat, 21 Jul 2012 12:54:45 -0700 (PDT)
+Received: from [192.168.1.12] (35.106.2.81.in-addr.arpa. [81.2.106.35])
+	by mx.google.com with ESMTPS id w7sm6297519wiz.0.2012.07.21.12.54.43
+	(version=SSLv3 cipher=OTHER); Sat, 21 Jul 2012 12:54:44 -0700 (PDT)
+Date: Sat, 21 Jul 2012 20:54:45 +0100
+From: Ross Burton <ross.burton@intel.com>
+To: Elvis Dowson <elvis.dowson@gmail.com>
+Message-ID: <ADFC5DCD3FAB494FAC4EE59C0ED44525@intel.com>
+In-Reply-To: <CF0BA2D7-A20C-4048-8EA0-5BF6E300F8D3@gmail.com>
 References: <CDD20590-77F2-4644-9FD5-E9A58494A86E@gmail.com>
 	<BFE7DC64-D5FD-4E82-9495-2BE230C4FD3F@gmail.com>
 	<CAEsOVNesi=gbZ4vF4uaxJR=xOXmNzX5fUMOB+a+9Mm5E88MQsg@mail.gmail.com>
-In-Reply-To: <CAEsOVNesi=gbZ4vF4uaxJR=xOXmNzX5fUMOB+a+9Mm5E88MQsg@mail.gmail.com>
-Mime-Version: 1.0 (1.0)
-Message-Id: <CF0BA2D7-A20C-4048-8EA0-5BF6E300F8D3@gmail.com>
-X-Mailer: iPhone Mail (9B206)
-From: Elvis Dowson <elvis.dowson@gmail.com>
-Date: Sat, 21 Jul 2012 23:15:49 +0400
-To: McClintock Matthew-B29882 <B29882@freescale.com>
-Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+	<CF0BA2D7-A20C-4048-8EA0-5BF6E300F8D3@gmail.com>
+X-Mailer: sparrow 1.6.2 (build 1143.6)
+MIME-Version: 1.0
+X-Gm-Message-State: ALoCoQkM70IHKRPz5NTPMgUuhrDJ6iiadyE5r6Nx8btdFQgsbjEFTe4C0MUQEhJeBYhW4S1gxowc
+Cc: McClintock Matthew-B29882 <B29882@freescale.com>,
+	Yocto Discussion Mailing List <yocto@yoctoproject.org>
 Subject: Re: poky git pull merge failures
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -45,100 +49,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 21 Jul 2012 19:19:57 -0000
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=us-ascii
+X-List-Received-Date: Sat, 21 Jul 2012 19:54:47 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
-I guess I have to reset the meta-openembedded layer as well.
+On Saturday, 21 July 2012 at 20:15, Elvis Dowson wrote:
+> I guess I have to reset the meta-openembedded layer as well.
 
-Elvis
-On Jul 21, 2012, at 23:14, McClintock Matthew-B29882 <B29882@freescale.com=
-> wrote:
+Yes:
 
-> On Sat, Jul 21, 2012 at 2:01 PM, Elvis Dowson <elvis.dowson@gmail.com> w=
-rote:
->> Hi,
->>       I just deleted my entire poky folder, cloned again, and I still f=
-ind a whole bunch of errors, while trying to build core-image-sato.
->>=20
->> Someone is just messing up the whole yocto repository, to the point tha=
-t it's starting to become unreliable just like OpenEmbedded was. When I fir=
-st started using Yocto for the first few months, updates were reliable, and=
- things would build. But recently, someone's been messing things up so badl=
-y. I just hope it isn't the same guy that's been messing up OpenEmbedded, a=
-nd decided to join the Yocto bandwagon, and continue messing up this build =
-system as well.
->>=20
->> ERROR: ParseError at /tool/yocto/meta-openembedded/meta-oe/recipes-conn=
-ectivity/networkmanager/networkmanager_0.9.2.0.bb:60: unparsed line: '<<<<<=
-<< HEAD'
->=20
-> You clearly has some remaining merge conflicts in your tree. Try a
-> 'git clean -qxfd' to clean out your tree.
->=20
-> -M
->=20
->=20
->> ERROR: No recipes available for:
->>  /tool/yocto/poky/meta-yocto/recipes-core/uclibc/uclibc_git.bbappend
->>  /tool/yocto/poky/meta-yocto/recipes-kernel/linux/linux-yocto_3.2.bbapp=
-end
->>  /tool/yocto/poky/meta-yocto/recipes-bsp/formfactor/formfactor_0.0.bbap=
-pend
->>  /tool/yocto/poky/meta-yocto/recipes-core/netbase/netbase_5.0.bbappend
->>  /tool/yocto/poky/meta-yocto/recipes-graphics/mesa/mesa-dri_7.11.bbappe=
-nd
->>  /tool/yocto/poky/meta-yocto/recipes-kernel/linux/linux-yocto-rt_3.0.bb=
-append
->>  /tool/yocto/poky/meta-yocto/recipes-qt/qt4/qt4-x11-free_4.8.1.bbappend
->>  /tool/yocto/meta-openembedded/meta-oe/recipes-qt/qt4/qt4-x11-free_4.8.=
-1.bbappend
->>  /tool/yocto/poky/meta-yocto/recipes-bsp/alsa-state/alsa-state.bbappend
->>  /tool/yocto/poky/meta-yocto/recipes-core/psplash/psplash_git.bbappend
->>  /tool/yocto/poky/meta-yocto/recipes-gnome/tasks/task-core-sdk-gmae.bba=
-ppend
->>  /tool/yocto/poky/meta-yocto/recipes-kernel/linux/linux-yocto_3.0.bbapp=
-end
->>  /tool/yocto/meta-openembedded/meta-oe/recipes-qt/tasks/task-qte-toolch=
-ain-target.bbappend
->>  /tool/yocto/meta-openembedded/meta-oe/recipes-qt/qt4/qt4-embedded_4.8.=
-1.bbappend
->>  /tool/yocto/meta-openembedded/meta-oe/recipes-multimedia/gstreamer/gst=
--ffmpeg_0.10.13.bbappend
->>  /tool/yocto/poky/meta-yocto/recipes-core/tasks/task-core-tools-profile=
-.bbappend
->>  /tool/yocto/poky/meta-yocto/recipes-graphics/xorg-xserver/xserver-xf86=
--config_0.1.bbappend
->>  /tool/yocto/meta-xilinx/recipes-core/initscripts/initscripts_1.0.bbapp=
-end
->>  /tool/yocto/meta-openembedded/meta-oe/recipes-extended/polkit/polkit_0=
-.104.bbappend
->>  /tool/yocto/meta-openembedded/meta-oe/recipes-graphics/xorg-lib/pixman=
-_0.26.2.bbappend
->>  /tool/yocto/poky/meta-yocto/recipes-kernel/linux/linux-yocto_3.4.bbapp=
-end
->>  /tool/yocto/poky/meta-yocto/recipes-gnome/tasks/task-core-standalone-g=
-mae-sdk-target.bbappend
->>  /tool/yocto/meta-xilinx/recipes-core/util-linux/util-linux_2.21.2.bbap=
-pend
->>  /tool/yocto/poky/meta-yocto/recipes-graphics/mesa/mesa-dri_git.bbappen=
-d
->>  /tool/yocto/poky/meta-yocto/recipes-core/busybox/busybox_1.19.4.bbappe=
-nd
->>  /tool/yocto/meta-openembedded/meta-oe/recipes-core/busybox/busybox_1.1=
-9.4.bbappend
->>  /tool/yocto/meta-openembedded/meta-oe/recipes-connectivity/wpa-supplic=
-ant/wpa-supplicant_1.0.bbappend
->> ERROR: Command execution failed: Exited with 1
->>=20
->> Summary: There were 3 ERROR messages shown, returning a non-zero exit c=
-ode.
->>=20
->>=20
->> Elvis Dowson
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
+ERROR: ParseError at /tool/yocto/meta-openembedded/meta-oe/recipes-connectivity/networkmanager/networkmanager_0.9.2.0.bb:60: unparsed line: '<<<<<<< HEAD'
+
+That's a merge conflict marker in a meta-oe file.
+
+"git pull" giving merge problems is user error: you pulled into a branch that diverged from upstream.  If you hack on your local master, then do a git fetch and inspect the diff before merging origin/master.  A better solution (imho) is to leave local master as pristine, and branch it for any changes.
+
+Ross 
+
+
 
