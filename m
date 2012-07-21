@@ -1,36 +1,36 @@
 Return-Path: <elvis.dowson@gmail.com>
-Received: from mail-gg0-f176.google.com (mail-gg0-f176.google.com
-	[209.85.161.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2DE9BE013DB
-	for <yocto@yoctoproject.org>; Sat, 21 Jul 2012 12:19:00 -0700 (PDT)
-Received: by ggnk4 with SMTP id k4so5650980ggn.35
-	for <yocto@yoctoproject.org>; Sat, 21 Jul 2012 12:18:59 -0700 (PDT)
+Received: from mail-yw0-f48.google.com (mail-yw0-f48.google.com
+	[209.85.213.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 60E7DE013F7
+	for <yocto@yoctoproject.org>; Sat, 21 Jul 2012 12:19:57 -0700 (PDT)
+Received: by yhfq46 with SMTP id q46so5652063yhf.35
+	for <yocto@yoctoproject.org>; Sat, 21 Jul 2012 12:19:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=references:in-reply-to:mime-version:content-transfer-encoding
 	:content-type:message-id:cc:x-mailer:from:subject:date:to;
-	bh=xGXxQIvX1l2XaCJ+3E/thuBiEm2gPm5SHpk4eSw7sf8=;
-	b=tIjGwIKKHngkWVA5KsY7RbndKxM9JwZSNhZTzbnvJPO8yU3QOvR++FXCu2j0TFQ6d1
-	n6xXOzqWE27c/xyULD/BMTxO0bxuUd6J2PVPQS++wgCCJzvRJRgYs1lwIZnuWxwLWwe3
-	PDj/qmepWyrIaFkn0T2/n62fcuvaZ7XbO9sMwIuiLb4DkCuYjpDwk+dfu/JAF3MoflNu
-	ATJosodrbs0ZPHs4iCHCuYJXVe9w3jltwUAD9LSwFi5tS54DRrqM/6zh8ihlsNm3VHK0
-	tNzqKXrswsUr9pfkbu8RTYE1iRakAZVsfe2uOnkcs+jIv1VwK/JQ0m8SbpoQKWmi2A1P
-	flxw==
-Received: by 10.236.109.225 with SMTP id s61mr9818924yhg.5.1342898339506;
-	Sat, 21 Jul 2012 12:18:59 -0700 (PDT)
+	bh=5trZtN9zP0bq3UPYjE1UyGK347ZW3I3CHkm9umqH9fA=;
+	b=w6/YCoku3pVotocZeYP4NK2hOFt1aY/g8gl54X20xrVTn/It3917aqy1mgiMLFiy/m
+	3mCauUeR7wANyYjE7j70FDt3VcA/QBJf3XF1u4IFhuu3/wEGspWe9hQd99X3tsVFjc2z
+	g8vn1Qhk44HJHJ1gjeQUV5uEYxRU/YkR0ukrY5u0JIrbdxc78B5DjR76ifZhDUCWGDbZ
+	MBCios/1JyZPCwE2KTiwCYn6/phvT3J4rfJc+yhXvCcnx2EEyu5UhUJoGafCQdWT0kFk
+	YAuff3HmuuIZCCB45d5nZBIDki13uTf83lE4VIYmm0DR1kJrlXMJFgcj9GQNCA57nxx/
+	PuMg==
+Received: by 10.236.165.1 with SMTP id d1mr9523770yhl.26.1342898396453;
+	Sat, 21 Jul 2012 12:19:56 -0700 (PDT)
 Received: from ?IPv6:2002:5ecd:6ca2::15b5:3bcf:853:b711?
 	([2002:5ecd:6ca2:0:15b5:3bcf:853:b711])
-	by mx.google.com with ESMTPS id x3sm4719524yhd.9.2012.07.21.12.18.55
+	by mx.google.com with ESMTPS id x3sm4719524yhd.9.2012.07.21.12.19.53
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Sat, 21 Jul 2012 12:18:58 -0700 (PDT)
+	Sat, 21 Jul 2012 12:19:56 -0700 (PDT)
 References: <CDD20590-77F2-4644-9FD5-E9A58494A86E@gmail.com>
 	<BFE7DC64-D5FD-4E82-9495-2BE230C4FD3F@gmail.com>
 	<CAEsOVNesi=gbZ4vF4uaxJR=xOXmNzX5fUMOB+a+9Mm5E88MQsg@mail.gmail.com>
 In-Reply-To: <CAEsOVNesi=gbZ4vF4uaxJR=xOXmNzX5fUMOB+a+9Mm5E88MQsg@mail.gmail.com>
 Mime-Version: 1.0 (1.0)
-Message-Id: <6728D90B-84E9-4FFD-BA26-463D144B8BD0@gmail.com>
+Message-Id: <CF0BA2D7-A20C-4048-8EA0-5BF6E300F8D3@gmail.com>
 X-Mailer: iPhone Mail (9B206)
 From: Elvis Dowson <elvis.dowson@gmail.com>
-Date: Sat, 21 Jul 2012 23:14:49 +0400
+Date: Sat, 21 Jul 2012 23:15:49 +0400
 To: McClintock Matthew-B29882 <B29882@freescale.com>
 Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
 Subject: Re: poky git pull merge failures
@@ -45,12 +45,12 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 21 Jul 2012 19:19:00 -0000
+X-List-Received-Date: Sat, 21 Jul 2012 19:19:57 -0000
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain;
 	charset=us-ascii
 
-I fully wiped out my entire poky repo and repeated the process.=20
+I guess I have to reset the meta-openembedded layer as well.
 
 Elvis
 On Jul 21, 2012, at 23:14, McClintock Matthew-B29882 <B29882@freescale.com=
