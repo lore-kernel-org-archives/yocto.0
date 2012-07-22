@@ -1,37 +1,35 @@
-Return-Path: <elvis.dowson@gmail.com>
-Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
-	[209.85.160.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 98298E00342
-	for <yocto@yoctoproject.org>; Sun, 22 Jul 2012 06:38:25 -0700 (PDT)
-Received: by pbbrq8 with SMTP id rq8so11152118pbb.35
-	for <yocto@yoctoproject.org>; Sun, 22 Jul 2012 06:38:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:mime-version:content-type:subject:date:in-reply-to:to
-	:references:message-id:x-mailer;
-	bh=a/EJ5EC/V4w7qdTqE2CwXxlelBQ2EOh5BnDD3kaM9qw=;
-	b=yyK2Qds5pTGSbmMr+dBk9p4jBou1320dVonYZmCdCtGS2OxNB4P58aMJw8pyuaGHNm
-	cFPnMLtNEkzJ82iYDYt0G0rycxV756Zz76TB0wnULX5lACHO4eNrufxelfxjsUylN7Jr
-	2+ReMbHb2K3JfMf6Mcn7vhDMpicn40GJQdZ8koh+BJFPRRr//3rrwTqgAwys9XOppPkv
-	/dYFxPNq/p4v2GycXLaYmNo7DS5MIezlLcfWDHJuxOqYriDEEKSGWK9L/4ch9J2lnboL
-	sNAaPBk+F0sLuVU3dQ0Q64C63FXFK0+QgiPoagsWB5Bg+u2CnEtKyOPDcCnoU+w+UX4i
-	/Ang==
-Received: by 10.68.217.226 with SMTP id pb2mr27770483pbc.105.1342964305358;
-	Sun, 22 Jul 2012 06:38:25 -0700 (PDT)
-Received: from [192.168.1.101] ([94.205.108.162])
-	by mx.google.com with ESMTPS id oi5sm7941189pbb.39.2012.07.22.06.38.23
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Sun, 22 Jul 2012 06:38:24 -0700 (PDT)
-From: Elvis Dowson <elvis.dowson@gmail.com>
-Mime-Version: 1.0 (Apple Message framework v1278)
-Date: Sun, 22 Jul 2012 17:38:19 +0400
-In-Reply-To: <6CD04095-FB33-40CA-9417-CF4208642BDC@gmail.com>
-To: Yocto Discussion Mailing List <yocto@yoctoproject.org>,
-	OpenEmbedded Developer Mailing List
-	<openembedded-devel@lists.openembedded.org>
-References: <6CD04095-FB33-40CA-9417-CF4208642BDC@gmail.com>
-Message-Id: <36A04E8C-1673-4B9A-BA52-8486937FDD5D@gmail.com>
-X-Mailer: Apple Mail (2.1278)
-Subject: Re: cmake-native-2.8.5-r2.1 compile error
+Return-Path: <jessica.zhang@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 246F1E00342
+	for <yocto@yoctoproject.org>; Sun, 22 Jul 2012 11:26:28 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 22 Jul 2012 11:26:27 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="169800786"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
+	by orsmga001.jf.intel.com with ESMTP; 22 Jul 2012 11:26:27 -0700
+Received: from orsmsx152.amr.corp.intel.com (10.22.226.39) by
+	orsmsx603.amr.corp.intel.com (10.22.226.49) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Sun, 22 Jul 2012 11:26:27 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.93]) by
+	ORSMSX152.amr.corp.intel.com ([169.254.8.30]) with mapi id
+	14.01.0355.002; Sun, 22 Jul 2012 11:26:27 -0700
+From: "Zhang, Jessica" <jessica.zhang@intel.com>
+To: "mail@timomueller.eu" <mail@timomueller.eu>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] [RFC 0/8] Integrate yocto documentation into eclipse
+Thread-Index: AQHNZOWzp4jsU1ECeEGi/XdoRhnTmpc1n6Mw
+Date: Sun, 22 Jul 2012 18:26:26 +0000
+Message-ID: <C6510F6D410BB64A8C15398EDC6B847C46AB9B61@ORSMSX101.amr.corp.intel.com>
+References: <cover.1342614895.git.timo.mueller@bmw-carit.de>
+In-Reply-To: <cover.1342614895.git.timo.mueller@bmw-carit.de>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.138]
+MIME-Version: 1.0
+Cc: Timo Mueller <timo.mueller@bmw-carit.de>
+Subject: Re: [RFC 0/8] Integrate yocto documentation into eclipse
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,76 +41,200 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 22 Jul 2012 13:38:25 -0000
-Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_E1BF31B7-F054-4429-9382-AB15DCB40E73"
-
---Apple-Mail=_E1BF31B7-F054-4429-9382-AB15DCB40E73
+X-List-Received-Date: Sun, 22 Jul 2012 18:26:28 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=us-ascii
+
+Hi Timo,
+
+Overall, I think this is very nice enhancement to Yocto Eclipse plug-in and=
+ thanks for the RFC. Couple comments/questions:
+1st.  I'd think if we add this feature, it'll probably make sense for the u=
+pcoming 1.3 release in the Oct. timeframe.  We just ported our plug-in to E=
+clipse Juno release.  Can you verify it works for Juno?
+
+2nd. We need to figure out the process to generate the content for this doc=
+ plug-in since normally the content will be finalized toward the end of a r=
+elease.  So is there an automated way to generate the content that ScottR (=
+our tech writer) can use to generate the content once he's done his writing=
+.  Or he needs to inform you to create it and send the pull request?
+
+3rd. We have autobuilder that use our eclipse plug-in headless build to bui=
+ld the plugin and put on the download site for update/installating.  So hav=
+e you verified the doc plug-in works with our existing headless build?
+
+4th.  I need to double check with our License expert regarding CCA-SA and E=
+PL and your proposed approach and will work with you pending his comments.
+
+
+Thanks,
+Jessica
+
+-----Original Message-----
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of mail@timomueller.eu
+Sent: Wednesday, July 18, 2012 6:03 AM
+To: yocto@yoctoproject.org
+Cc: Timo Mueller
+Subject: [yocto] [RFC 0/8] Integrate yocto documentation into eclipse
+
+From: Timo Mueller <timo.mueller@bmw-carit.de>
 
 Hi,
 
-On Jul 22, 2012, at 6:32 AM, Elvis Dowson wrote:
+the documentation of the yocto project can currently be viewed online or as=
+ a separate pdf. When using the eclipse ide to develop software on base of =
+a yocto sysroot and toolchain it would be convenient to access the relevant=
+ parts of the documentation from within the ide.
 
-> With the latest update to the yocto repos, as of today, I get a =
-compile error for cmake-native-2.8.5-r2.1, when trying to bitbake =
-core-image-sato.=20
->=20
-> This had also happened yesterday, when I tried to build =
-core-image-sato, from the master branch, which was updated 2 to 3 weeks =
-ago. I tried with the latest updates, and still the error persists.=20
->=20
->=20
-<snip>
-> ERROR: oe_runmake failed
-> ERROR: Function failed: do_compile (see =
-/tool/yocto/poky/build/tmp/work/x86_64-linux/cmake-native-2.8.5-r2.1/temp/=
-log.do_compile.60499 for further information)
+In order to achieve this, I've generated eclipse help from yocto's document=
+ation (adt-manual, yocto-project-qs). I have intergrated this documentation=
+ in the ide and it can now be accessed through the eclipse help center (Hel=
+p -> Help Contents). Please let me know what you think about it?
 
-After updating the cmake and cmake-native recipes to v2.8.8, it compiles =
-cleanly on Ubuntu 12.04 LTS 64-bit. I've sent patches to the =
-openembedded developer mailing list.
+Yocto's documentation is licensed under the Creative Commons Attribution-Sh=
+are Alike 2.0 UK: England & Wales (CCA-SA), which is incompatible to the Ec=
+lipse Public License 1.0. Thus I've created a standalone feature to simply =
+redistribute the documentation avoiding licensing issues. Do you agree on t=
+he way this is structured?
 
+Cheers,
+  Timo
 
-Best regards,
+Timo Mueller (8):
+  plugins/sdk.doc.user: Added plugin for the yocto project
+    documentation
+  plugins/sdk.doc.user: Added empty table of contents
+  feature/sdk.doc: Added feature containing yocto documentation plugins
+  feature/sdk.doc: Added org.yocto.sdk.doc.user plugin
+  plugins/sdk.doc.user: Added yocto quick start guide
+  feature/sdk: Added org.yocto.sdk.doc feature.
+  features/sdk.site: Added eclipse help feature to update site
+  plugins/sdk.doc.user: Added yocto adt manual
 
-Elvis Dowson=
+ features/org.yocto.sdk.doc/.project                |   17 +
+ features/org.yocto.sdk.doc/build.properties        |    5 +
+ features/org.yocto.sdk.doc/feature.properties      |  208 ++++++
+ features/org.yocto.sdk.doc/feature.xml             |   40 ++
+ features/org.yocto.sdk.doc/license.html            |  237 +++++++
+ .../sourceTemplateFeature/feature.properties       |  208 ++++++
+ .../sourceTemplateFeature/license.html             |  237 +++++++
+ features/org.yocto.sdk.site/category.xml           |    6 +
+ features/org.yocto.sdk.site/site.xml               |    3 +
+ features/org.yocto.sdk/feature.xml                 |    5 +
+ plugins/org.yocto.sdk.doc.user/.classpath          |    6 +
+ plugins/org.yocto.sdk.doc.user/.project            |   28 +
+ .../.settings/org.eclipse.jdt.core.prefs           |    8 +
+ .../org.yocto.sdk.doc.user/META-INF/MANIFEST.MF    |    8 +
+ .../OSGI-INF/l10n/bundle.properties                |    3 +
+ plugins/org.yocto.sdk.doc.user/about.html          |   82 +++
+ plugins/org.yocto.sdk.doc.user/adt-manual-toc.xml  |   61 ++
+ plugins/org.yocto.sdk.doc.user/build.properties    |   14 +
+ .../html/adt-manual/ch01.html                      |   90 +++
+ .../html/adt-manual/ch01s02.html                   |  166 +++++
+ .../html/adt-manual/ch02.html                      |  450 +++++++++++++
+ .../html/adt-manual/ch02s02.html                   |   56 ++
+ .../html/adt-manual/ch02s03.html                   |  182 ++++++
+ .../html/adt-manual/ch03.html                      |   97 +++
+ .../html/adt-manual/ch03s02.html                   |   78 +++
+ .../html/adt-manual/ch04.html                      |  675 ++++++++++++++++=
+++++
+ .../html/adt-manual/ch04s02.html                   |   94 +++
+ .../html/adt-manual/ch04s03.html                   |   77 +++
+ .../html/adt-manual/ch04s04.html                   |   37 ++
+ .../html/adt-manual/ch04s05.html                   |   65 ++
+ .../html/adt-manual/ch04s06.html                   |  100 +++
+ .../html/adt-manual/ch04s07.html                   |  161 +++++
+ .../html/adt-manual/ch04s08.html                   |  184 ++++++
+ .../html/adt-manual/ch05.html                      |  112 ++++
+ .../html/adt-manual/ch05s02.html                   |   41 ++
+ .../html/adt-manual/index.html                     |  260 ++++++++
+ plugins/org.yocto.sdk.doc.user/html/book.css       |    1 +
+ .../yocto-project-qs/figures/building-an-image.png |  Bin 0 -> 14891 bytes
+ .../figures/using-a-pre-built-image.png            |  Bin 0 -> 12733 bytes
+ .../yocto-project-qs/figures/yocto-environment.png |  Bin 0 -> 73095 bytes
+ .../figures/yocto-project-transp.png               |  Bin 0 -> 8626 bytes
+ .../html/yocto-project-qs/index.html               |  542 ++++++++++++++++
+ plugins/org.yocto.sdk.doc.user/plugin.xml          |   19 +
+ plugins/org.yocto.sdk.doc.user/toc.xml             |    9 +
+ .../yocto-project-qs-toc.xml                       |   32 +
+ 45 files changed, 4704 insertions(+), 0 deletions(-)  create mode 100644 f=
+eatures/org.yocto.sdk.doc/.project
+ create mode 100644 features/org.yocto.sdk.doc/build.properties
+ create mode 100644 features/org.yocto.sdk.doc/feature.properties
+ create mode 100644 features/org.yocto.sdk.doc/feature.xml
+ create mode 100644 features/org.yocto.sdk.doc/license.html
+ create mode 100644 features/org.yocto.sdk.doc/sourceTemplateFeature/featur=
+e.properties
+ create mode 100644 features/org.yocto.sdk.doc/sourceTemplateFeature/licens=
+e.html
+ create mode 100644 plugins/org.yocto.sdk.doc.user/.classpath
+ create mode 100644 plugins/org.yocto.sdk.doc.user/.project
+ create mode 100644 plugins/org.yocto.sdk.doc.user/.settings/org.eclipse.jd=
+t.core.prefs
+ create mode 100644 plugins/org.yocto.sdk.doc.user/META-INF/MANIFEST.MF
+ create mode 100644 plugins/org.yocto.sdk.doc.user/OSGI-INF/l10n/bundle.pro=
+perties
+ create mode 100644 plugins/org.yocto.sdk.doc.user/about.html
+ create mode 100644 plugins/org.yocto.sdk.doc.user/adt-manual-toc.xml
+ create mode 100644 plugins/org.yocto.sdk.doc.user/build.properties
+ create mode 100644 plugins/org.yocto.sdk.doc.user/html/adt-manual/ch01.htm=
+l
+ create mode 100644 plugins/org.yocto.sdk.doc.user/html/adt-manual/ch01s02.=
+html
+ create mode 100644 plugins/org.yocto.sdk.doc.user/html/adt-manual/ch02.htm=
+l
+ create mode 100644 plugins/org.yocto.sdk.doc.user/html/adt-manual/ch02s02.=
+html
+ create mode 100644 plugins/org.yocto.sdk.doc.user/html/adt-manual/ch02s03.=
+html
+ create mode 100644 plugins/org.yocto.sdk.doc.user/html/adt-manual/ch03.htm=
+l
+ create mode 100644 plugins/org.yocto.sdk.doc.user/html/adt-manual/ch03s02.=
+html
+ create mode 100644 plugins/org.yocto.sdk.doc.user/html/adt-manual/ch04.htm=
+l
+ create mode 100644 plugins/org.yocto.sdk.doc.user/html/adt-manual/ch04s02.=
+html
+ create mode 100644 plugins/org.yocto.sdk.doc.user/html/adt-manual/ch04s03.=
+html
+ create mode 100644 plugins/org.yocto.sdk.doc.user/html/adt-manual/ch04s04.=
+html
+ create mode 100644 plugins/org.yocto.sdk.doc.user/html/adt-manual/ch04s05.=
+html
+ create mode 100644 plugins/org.yocto.sdk.doc.user/html/adt-manual/ch04s06.=
+html
+ create mode 100644 plugins/org.yocto.sdk.doc.user/html/adt-manual/ch04s07.=
+html
+ create mode 100644 plugins/org.yocto.sdk.doc.user/html/adt-manual/ch04s08.=
+html
+ create mode 100644 plugins/org.yocto.sdk.doc.user/html/adt-manual/ch05.htm=
+l
+ create mode 100644 plugins/org.yocto.sdk.doc.user/html/adt-manual/ch05s02.=
+html
+ create mode 100644 plugins/org.yocto.sdk.doc.user/html/adt-manual/index.ht=
+ml
+ create mode 100644 plugins/org.yocto.sdk.doc.user/html/book.css
+ create mode 100755 plugins/org.yocto.sdk.doc.user/html/yocto-project-qs/fi=
+gures/building-an-image.png
+ create mode 100644 plugins/org.yocto.sdk.doc.user/html/yocto-project-qs/fi=
+gures/using-a-pre-built-image.png
+ create mode 100644 plugins/org.yocto.sdk.doc.user/html/yocto-project-qs/fi=
+gures/yocto-environment.png
+ create mode 100755 plugins/org.yocto.sdk.doc.user/html/yocto-project-qs/fi=
+gures/yocto-project-transp.png
+ create mode 100644 plugins/org.yocto.sdk.doc.user/html/yocto-project-qs/in=
+dex.html
+ create mode 100644 plugins/org.yocto.sdk.doc.user/plugin.xml
+ create mode 100644 plugins/org.yocto.sdk.doc.user/toc.xml
+ create mode 100644 plugins/org.yocto.sdk.doc.user/yocto-project-qs-toc.xml
 
---Apple-Mail=_E1BF31B7-F054-4429-9382-AB15DCB40E73
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html;
-	charset=us-ascii
+--
+1.7.7.6
 
-<html><head></head><body style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; -webkit-line-break: after-white-space; =
-">Hi,<div><br><div><div>On Jul 22, 2012, at 6:32 AM, Elvis Dowson =
-wrote:</div><br class=3D"Apple-interchange-newline"><blockquote =
-type=3D"cite"><div style=3D"word-wrap: break-word; -webkit-nbsp-mode: =
-space; -webkit-line-break: after-white-space; "><div>With the latest =
-update to the yocto repos, as of today, I get a compile error =
-for&nbsp;cmake-native-2.8.5-r2.1, when trying to bitbake =
-core-image-sato.&nbsp;</div><div><br></div><div>This had also happened =
-yesterday, when I tried to build core-image-sato, from the master =
-branch, which was updated 2 to 3 weeks ago. I tried with the latest =
-updates, and still the error =
-persists.&nbsp;</div><div><br></div><div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" =
-size=3D"2"><br></font></div></div></div></blockquote>&lt;snip&gt;<br><bloc=
-kquote type=3D"cite"><div style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; -webkit-line-break: after-white-space; =
-"><div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
-size=3D"2">ERROR: oe_runmake failed</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">ERROR: Function =
-failed: do_compile (see =
-/tool/yocto/poky/build/tmp/work/x86_64-linux/cmake-native-2.8.5-r2.1/temp/=
-log.do_compile.60499 for further =
-information)</font></div></div></div></blockquote><br></div><div>After =
-updating the cmake and cmake-native recipes to v2.8.8, it compiles =
-cleanly on Ubuntu 12.04 LTS 64-bit. I've sent patches to the =
-openembedded developer mailing =
-list.</div></div><div><br></div><div><br></div><div>Best =
-regards,</div><div><br></div><div>Elvis Dowson</div></body></html>=
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
 
---Apple-Mail=_E1BF31B7-F054-4429-9382-AB15DCB40E73--
