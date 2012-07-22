@@ -1,25 +1,28 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F28BFE002A5
-	for <yocto@yoctoproject.org>; Sat, 21 Jul 2012 17:00:51 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 21 Jul 2012 17:00:51 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="169528402"
-Received: from unknown (HELO [10.255.13.14]) ([10.255.13.14])
-	by orsmga001.jf.intel.com with ESMTP; 21 Jul 2012 17:00:51 -0700
-Message-ID: <1342915247.6963.12.camel@trz-ThinkPad-T420>
-From: Tom Zanussi <tom.zanussi@intel.com>
-To: "Bodke, Kishore K" <kishore.k.bodke@intel.com>
-Date: Sat, 21 Jul 2012 19:00:47 -0500
-In-Reply-To: <D956029D25CF204F948EA0FB515E1EE20AD3C237@ORSMSX105.amr.corp.intel.com>
-References: <63ECFF2A2302B44093D7CE9E9962C490032E3CB9@ORSMSX103.amr.corp.intel.com>
-	<1342837226.2274.24.camel@trz-ThinkPad-T420>
-	<D956029D25CF204F948EA0FB515E1EE20AD3C237@ORSMSX105.amr.corp.intel.com>
-X-Mailer: Evolution 3.2.3-0ubuntu6 
-Mime-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: ERROR: Function failed: do_install_perf
+Return-Path: <dallas.a.clement@gmail.com>
+Received: from mail-vb0-f48.google.com (mail-vb0-f48.google.com
+	[209.85.212.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 14E38E002A5
+	for <yocto@yoctoproject.org>; Sat, 21 Jul 2012 18:37:39 -0700 (PDT)
+Received: by vbjk17 with SMTP id k17so4940210vbj.35
+	for <yocto@yoctoproject.org>; Sat, 21 Jul 2012 18:37:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=aP9Sv7WgzstPS+9sNAvZT/bsf9OSvJprNyOmCBlZo0s=;
+	b=G/ybHrj387+L0jv7vR6ZZfR+IOEcxKxNdPZGxnWNcnHMqSqNlPOQe2hlSRWDvh2cJi
+	EuanWMmLy9Hafd6hdd0OIKEdEHml6edrA2lsFquYUfzgVsG6FecerWUA4LGGzTfEUOQh
+	4l2Ov4njodnzVSl75YpmTOxXvgcpo4P2KvUyJglLzjpb0cyNZTJeN3Ie9OJ+zSolORWM
+	OIOlgSNJCc/cqRk/e+QVUmP6NrS79aMn6xYdnhU7uQsGUW5Hzf6BJ+0Tg3Whpxt+9lSb
+	Rwdy6FfcYYwXnri4TjAgRJa8jfnc6dppunZh8Lnzn0i46JQhZWDhq+8LnzLGk4oTXBaQ
+	vO2A==
+MIME-Version: 1.0
+Received: by 10.220.153.7 with SMTP id i7mr8045483vcw.34.1342921059113; Sat,
+	21 Jul 2012 18:37:39 -0700 (PDT)
+Received: by 10.59.8.136 with HTTP; Sat, 21 Jul 2012 18:37:39 -0700 (PDT)
+Date: Sat, 21 Jul 2012 20:37:39 -0500
+Message-ID: <CAE9DZUS+GYwRGALSeEGgokvXEgccyx5pqhZd9SV40DC0_XJtLw@mail.gmail.com>
+From: Dallas Clement <dallas.a.clement@gmail.com>
+To: yocto@yoctoproject.org
+Subject: cannot compute suffix of object files
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,332 +34,239 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 22 Jul 2012 00:00:52 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sun, 22 Jul 2012 01:37:40 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On Sat, 2012-07-21 at 15:01 -0700, Bodke, Kishore K wrote:
-> 
-> >-----Original Message-----
-> >From: yocto-bounces@yoctoproject.org [mailto:yocto-
-> >bounces@yoctoproject.org] On Behalf Of Tom Zanussi
-> >Sent: Friday, July 20, 2012 7:20 PM
-> >To: Saxena, Rahul
-> >Cc: yocto@yoctoproject.org
-> >Subject: Re: [yocto] ERROR: Function failed: do_install_perf
-> >
-> >On Sat, 2012-07-21 at 00:02 +0000, Saxena, Rahul wrote:
-> >> Hi,
-> >>
-> >>
-> >>
-> >> I suddenly started to get the following error when  running bitbake. I
-> >> am using Denzil branches of poky, meta-intel and poky-extras. I
-> >> installed libper-dev as suggested by the error message, but it made no
-> >> difference.
-> >>
-> >>
-> >>
-> >> Any suggestions ?
-> >>
-> >I think the meta-kernel-dev with denzil is causing the problem i.e the
-> >AUTOREV is causing the tip of linux-yocto-3.0 to get picked up.  So just
-> >removing poky-extras from your layers should fix the problem.
-> 
-> Is there any work around if we want to use meta-kernel-dev with denzil?
-> I see the same issue now with these combination on Linux-yocto-3.2 as well.
-> 
-
-One workaround would be to revert the perf commits in the cedartrail
-branch of whatever kernel you're using e.g.:
-
-perf: add sgidefs.h to for mips builds
-perf: change --root to --prefix for python install
-perf: add 'libperl not found' warning
-perf: use pkg-config instead of python-config
-perf tools: Add support to install perf python extension
-Revert "perf: hard-code NO_LIBPERL/NO_LIBPYTHON"
-
-Or create a new cedartrail branch e.g. cedartrail-denzil with those
-commits lopped off and use that instead...
-
-Or use master...
-
-Tom
-
-> Thanks
-> Kishore.
-> 
-> >
-> >Using the meta-kernel-dev AUTOREV with master should be fine though, and
-> >in fact I did update the cedartrail SRCREVs in master to catch the perf
-> >updates in linux-yocto-3.0, so advancing them won't hurt anything.  I
-> >guess master is where you want to make new kernel changes anyway...
-> >
-> >Tom
-> >
-> >>
-> >>
-> >> Thanks
-> >>
-> >> Rahul
-> >>
-> >>
-> >>
-> >> ERROR: Function failed: do_install_perf
-> >> (see /home/rsaxena/YoctoWork3x/cedartraiv12p/tmp/work/cedartrail-
-> >poky-linux/linux-yocto-
-> >3.0.32+git1+46e8fc2bbbe73514e8d99101adaaa373f760ffa7_1+81fd8c307997aff
-> >37916828dc8b4ef72f5d35a94-r4/temp/log.do_install_perf.69672 for further
-> >information)
-> >>
-> >> NOTE: make
-> >> -C /home/rsaxena/YoctoWork3x/cedartraiv12p/tmp/work/cedartrail-poky-
-> >linux/linux-yocto-
-> >3.0.32+git1+46e8fc2bbbe73514e8d99101adaaa373f760ffa7_1+81fd8c307997aff
-> >37916828dc8b4ef72f5d35a94-r4/linux/tools/perf CC=i586-poky-linux-gcc  -m32
-> >-march=core2 -msse3 -mtune=generic -mfpmath=sse --
-> >sysroot=/home/rsaxena/YoctoWork3x/cedartraiv12p/tmp/sysroots/cedartrail
-> >LD=i586-poky-linux-ld --
-> >sysroot=/home/rsaxena/YoctoWork3x/cedartraiv12p/tmp/sysroots/cedartrail
-> >prefix=/usr
-> >DESTDIR=/home/rsaxena/YoctoWork3x/cedartraiv12p/tmp/work/cedartrail-
-> >poky-linux/linux-yocto-
-> >3.0.32+git1+46e8fc2bbbe73514e8d99101adaaa373f760ffa7_1+81fd8c307997aff
-> >37916828dc8b4ef72f5d35a94-r4/image install NO_NEWT=1 NO_DWARF=1
-> >>
-> >> make: Entering directory
-> >> `/home/rsaxena/YoctoWork3x/cedartraiv12p/tmp/work/cedartrail-poky-
-> >linux/linux-yocto-
-> >3.0.32+git1+46e8fc2bbbe73514e8d99101adaaa373f760ffa7_1+81fd8c307997aff
-> >37916828dc8b4ef72f5d35a94-r4/linux/tools/perf'
-> >>
-> >> Makefile:484: libperl not found, disables Perl scripting support.
-> >> Please install libperl-dev or perl-devel
-> >>
-> >>     * new build flags or prefix
-> >>
-> >>     CC perf.o
-> >>
-> >>     CC builtin-annotate.o
-> >>
-> >>     CC builtin-bench.o
-> >>
-> >>     CC bench/sched-messaging.o
-> >>
-> >>     CC bench/sched-pipe.o
-> >>
-> >>     CC bench/mem-memcpy.o
-> >>
-> >>     CC builtin-diff.o
-> >>
-> >>     CC builtin-evlist.o
-> >>
-> >>     CC builtin-help.o
-> >>
-> >>     CC builtin-sched.o
-> >>
-> >>     CC builtin-buildid-list.o
-> >>
-> >>     CC builtin-buildid-cache.o
-> >>
-> >>     CC builtin-list.o
-> >>
-> >>     CC builtin-record.o
-> >>
-> >>     CC builtin-report.o
-> >>
-> >>     CC builtin-stat.o
-> >>
-> >>     CC builtin-timechart.o
-> >>
-> >>     CC builtin-top.o
-> >>
-> >>     CC builtin-script.o
-> >>
-> >>     CC builtin-probe.o
-> >>
-> >>     CC builtin-kmem.o
-> >>
-> >>     CC builtin-lock.o
-> >>
-> >>     CC builtin-kvm.o
-> >>
-> >>     CC builtin-test.o
-> >>
-> >>     CC builtin-inject.o
-> >>
-> >>     CC util/abspath.o
-> >>
-> >>     CC util/alias.o
-> >>
-> >>     CC util/annotate.o
-> >>
-> >>     CC util/build-id.o
-> >>
-> >>     CC util/config.o
-> >>
-> >>     CC util/ctype.o
-> >>
-> >>     CC util/debugfs.o
-> >>
-> >>     CC util/environment.o
-> >>
-> >>     CC util/event.o
-> >>
-> >>     CC util/evlist.o
-> >>
-> >>     CC util/evsel.o
-> >>
-> >>     CC util/exec_cmd.o
-> >>
-> >>     CC util/help.o
-> >>
-> >>     CC util/levenshtein.o
-> >>
-> >>     CC util/parse-options.o
-> >>
-> >>     CC util/parse-events.o
-> >>
-> >>     CC util/path.o
-> >>
-> >>     CC util/rbtree.o
-> >>
-> >>     CC util/bitmap.o
-> >>
-> >>     CC util/hweight.o
-> >>
-> >>     CC util/run-command.o
-> >>
-> >>     CC util/quote.o
-> >>
-> >>     CC util/strbuf.o
-> >>
-> >>     CC util/string.o
-> >>
-> >>     CC util/strlist.o
-> >>
-> >>     CC util/strfilter.o
-> >>
-> >>     CC util/top.o
-> >>
-> >>     CC util/usage.o
-> >>
-> >>     CC util/wrapper.o
-> >>
-> >>     CC util/sigchain.o
-> >>
-> >>     CC util/symbol.o
-> >>
-> >>     CC util/color.o
-> >>
-> >>     CC util/pager.o
-> >>
-> >>     CC util/header.o
-> >>
-> >>     CC util/callchain.o
-> >>
-> >>     CC util/values.o
-> >>
-> >>     CC util/debug.o
-> >>
-> >>     CC util/map.o
-> >>
-> >>     CC util/pstack.o
-> >>
-> >>     CC util/session.o
-> >>
-> >>     CC util/thread.o
-> >>
-> >>     CC util/thread_map.o
-> >>
-> >>     CC util/trace-event-parse.o
-> >>
-> >>     CC util/trace-event-read.o
-> >>
-> >>     CC util/trace-event-info.o
-> >>
-> >>     CC util/trace-event-scripting.o
-> >>
-> >>     CC util/svghelper.o
-> >>
-> >>     CC util/sort.o
-> >>
-> >>     CC util/hist.o
-> >>
-> >>     CC util/probe-event.o
-> >>
-> >>     CC util/util.o
-> >>
-> >>     CC util/xyarray.o
-> >>
-> >>     CC util/cpumap.o
-> >>
-> >>     CC util/cgroup.o
-> >>
-> >>     CC util/scripting-engines/trace-event-python.o
-> >>
-> >>     CC scripts/python/Perf-Trace-Util/Context.o
-> >>
-> >>     AR libperf.a
-> >>
-> >>     LINK perf
-> >>
-> >>     GEN python/perf.so
-> >>
-> >> Traceback (most recent call last):
-> >>
-> >>   File "util/setup.py", line 6, in <module>
-> >>
-> >>     from distutils.command.build_ext   import build_ext   as
-> >> _build_ext
-> >>
-> >>   File
-> >> "/home/rsaxena/YoctoWork3x/cedartraiv12p/tmp/sysroots/x86_64-
-> >linux/usr/lib/python2.7/distutils/command/build_ext.py", line 16, in
-> ><module>
-> >>
-> >>     from distutils.sysconfig import customize_compiler,
-> >> get_python_version
-> >>
-> >>   File
-> >> "/home/rsaxena/YoctoWork3x/cedartraiv12p/tmp/sysroots/x86_64-
-> >linux/usr/lib/python2.7/distutils/sysconfig.py", line 22, in <module>
-> >>
-> >>     PREFIX =
-> >> os.path.normpath(sys.prefix).replace( os.getenv("BUILD_SYS"),
-> >> os.getenv("HOST_SYS") )
-> >>
-> >> TypeError: expected a character buffer object
-> >>
-> >> cp: cannot stat `python_ext_build/lib/perf.so': No such file or
-> >> directory
-> >>
-> >> make: *** [python/perf.so] Error 1
-> >>
-> >> make: Leaving directory
-> >> `/home/rsaxena/YoctoWork3x/cedartraiv12p/tmp/work/cedartrail-poky-
-> >linux/linux-yocto-
-> >3.0.32+git1+46e8fc2bbbe73514e8d99101adaaa373f760ffa7_1+81fd8c307997aff
-> >37916828dc8b4ef72f5d35a94-r4/linux/tools/perf'
-> >>
-> >> ERROR: oe_runmake failed
-> >>
-> >>
-> >>
-> >>
-> >>
-> >>
-> >> _______________________________________________
-> >> yocto mailing list
-> >> yocto@yoctoproject.org
-> >> https://lists.yoctoproject.org/listinfo/yocto
-> >
-> >
-> >_______________________________________________
-> >yocto mailing list
-> >yocto@yoctoproject.org
-> >https://lists.yoctoproject.org/listinfo/yocto
+I'm using a pre-compiled toolchain to build my distro.  When I execute
+"bitbake core-image-minimal", things fail in eglibc.
 
 
+DEBUG: SITE files ['endian-little', 'bit-32', 'arm-common',
+'common-linux', 'common-glibc', 'arm-linux', 'arm-linux-gnueabi',
+'common']
+ERROR: Function failed: do_configure (see
+/home/dallas/git-repos/projects/yocto/poky/build/tmp/work/armv7-vfp-marvell-linux-gnueabi/eglibc-2.15-r7+svnr17386/temp/log.do_configure.14611
+for further information)
+NOTE: Running /home/dallas/git-repos/projects/yocto/poky/build/tmp/work/armv7-vfp-marvell-linux-gnueabi/eglibc-2.15-r7+svnr17386/eglibc-2_15/libc/configure
+ --build=x86_64-linux                 --host=arm-marvell-linux-gnueabi
+               --target=arm-marvell-linux-gnueabi
+--prefix=/usr                   --exec_prefix=/usr
+--bindir=/usr/bin               --sbindir=/usr/sbin
+--libexecdir=/usr/libexec               --datadir=/usr/share
+ --sysconfdir=/etc               --sharedstatedir=/com
+  --localstatedir=/var            --libdir=/usr/lib
+--includedir=/usr/include               --oldincludedir=/usr/include
+         --infodir=/usr/share/info
+--mandir=/usr/share/man                 --disable-silent-rules
+         --disable-dependency-tracking
+--with-libtool-sysroot=/home/dallas/git-repos/projects/yocto/poky/build/tmp/sysroots/qemuarmada-xp
+--enable-kernel=2.6.16                 --without-cvs --disable-profile
+--disable-debug --without-gd                 --enable-clocale=gnu
+           --enable-add-ons=ports,nptl,libidn,ports
+--with-headers=/home/dallas/git-repos/projects/yocto/poky/build/tmp/sysroots/qemuarmada-xp/usr/include
+                --without-selinux
+checking build system type... x86_64-pc-linux-gnu
+checking host system type... arm-marvell-linux-gnueabi
+checking for arm-marvell-linux-gnueabi-gcc...
+arm-marvell-linux-gnueabi-gcc  -march=armv7 -fno-tree-vectorize
+-mthumb-interwork -mfloat-abi=softfp  -mtune=arm7
+--sysroot=/home/dallas/git-repos/projects/yocto/poky/build/tmp/sysroots/qemuarmada-xp-tcbootstrap
+checking for suffix of object files... configure: error: in
+`/home/dallas/git-repos/projects/yocto/poky/build/tmp/work/armv7-vfp-marvell-linux-gnueabi/eglibc-2.15-r7+svnr17386/build-arm-marvell-linux-gnueabi':
+configure: error: cannot compute suffix of object files: cannot compile
+See `config.log' for more details.
+ERROR: oe_runconf failed
+
+I can't tell where this "cannot compute suffix of object files" is
+coming from.  Oddly, if I execute the above configure command
+interactively, it works just fine.  Any ideas for me?
+
+
+
+dallas@bertha:~/git-repos/projects/yocto/poky/build$
+/home/dallas/git-repos/projects/yocto/poky/build/tmp/work/armv7-vfp-marvell-linux-gnueabi/eglibc-2.15-r7+svnr17386/eglibc-2_15/libc/configure
+ --build=x86_64-linux   --host=arm-marvell-linux-gnueabi
+--target=arm-marvell-linux-gnueabi   --prefix=/usr
+--exec_prefix=/usr   --bindir=/usr/bin   --sbindir=/usr/sbin
+--libexecdir=/usr/libexec   --datadir=/usr/share   --sysconfdir=/etc
+--sharedstatedir=/com   --localstatedir=/var   --libdir=/usr/lib
+--includedir=/usr/include   --oldincludedir=/usr/include
+--infodir=/usr/share/info   --mandir=/usr/share/man
+--disable-silent-rules   --disable-dependency-tracking
+--with-libtool-sysroot=/home/dallas/git-repos/projects/yocto/poky/build/tmp/sysroots/qemuarmada-xp
+--enable-kernel=2.6.16                 --without-cvs --disable-profile
+--disable-debug --without-gd                 --enable-clocale=gnu
+           --enable-add-ons=ports,nptl,libidn,ports
+--with-headers=/home/dallas/git-repos/projects/yocto/poky/build/tmp/sysroots/qemuarmada-xp/usr/include
+                --without-selinux
+checking build system type... x86_64-pc-linux-gnu
+checking host system type... arm-marvell-linux-gnueabi
+checking for arm-marvell-linux-gnueabi-gcc... arm-marvell-linux-gnueabi-gcc
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether arm-marvell-linux-gnueabi-gcc accepts -g... yes
+checking for arm-marvell-linux-gnueabi-gcc option to accept ISO C89...
+none needed
+checking for gcc... gcc
+checking how to run the C preprocessor... arm-marvell-linux-gnueabi-gcc -E
+checking for arm-marvell-linux-gnueabi-g++... arm-marvell-linux-gnueabi-g++
+checking whether we are using the GNU C++ compiler... yes
+checking whether arm-marvell-linux-gnueabi-g++ accepts -g... yes
+checking add-on ports for preconfigure fragments... alpha am33 arm
+Found compiler is configured for armv7
+hppa m68k mips powerpc tile
+configure: running configure fragment for add-on nptl
+configure: running configure fragment for add-on libidn
+checking add-on ports for preconfigure fragments... alpha am33 arm
+Found compiler is configured for armv7
+hppa m68k mips powerpc tile
+checking for assembler gnu_indirect_function symbol type support... yes
+checking whether .text pseudo-op must be used... yes
+checking for assembler global-symbol directive... .globl
+checking for assembler .type directive prefix... %
+checking sysdep dirs... ports/sysdeps/arm/elf
+ports/sysdeps/unix/sysv/linux/arm/eabi/nptl
+ports/sysdeps/unix/sysv/linux/arm/eabi
+ports/sysdeps/unix/sysv/linux/arm/nptl
+ports/sysdeps/unix/sysv/linux/arm ports/sysdeps/unix/sysv/linux
+nptl/sysdeps/unix/sysv/linux nptl/sysdeps/pthread sysdeps/pthread
+sysdeps/unix/sysv/linux sysdeps/gnu sysdeps/unix/common
+sysdeps/unix/mman sysdeps/unix/inet ports/sysdeps/unix/sysv
+nptl/sysdeps/unix/sysv sysdeps/unix/sysv ports/sysdeps/unix/arm
+ports/sysdeps/unix nptl/sysdeps/unix sysdeps/unix sysdeps/posix
+ports/sysdeps/arm/eabi/armv7 ports/sysdeps/arm/eabi/armv6t2
+ports/sysdeps/arm/eabi ports/sysdeps/arm/fpu ports/sysdeps/arm/nptl
+ports/sysdeps/arm sysdeps/wordsize-32 sysdeps/ieee754/flt-32
+sysdeps/ieee754/dbl-64 sysdeps/ieee754 sysdeps/generic/elf
+sysdeps/generic
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether ln -s works... yes
+checking whether
+/opt/armv7-marvell-linux-gnueabi-softfp/bin/../lib/gcc/arm-marvell-linux-gnueabi/4.4.5/../../../../arm-marvell-linux-gnueabi/bin/as
+is GNU as... yes
+checking whether
+/opt/armv7-marvell-linux-gnueabi-softfp/bin/../lib/gcc/arm-marvell-linux-gnueabi/4.4.5/../../../../arm-marvell-linux-gnueabi/bin/ld
+is GNU ld... yes
+checking for /opt/armv7-marvell-linux-gnueabi-softfp/bin/../lib/gcc/arm-marvell-linux-gnueabi/4.4.5/../../../../arm-marvell-linux-gnueabi/bin/as...
+/opt/armv7-marvell-linux-gnueabi-softfp/bin/../lib/gcc/arm-marvell-linux-gnueabi/4.4.5/../../../../arm-marvell-linux-gnueabi/bin/as
+checking version of
+/opt/armv7-marvell-linux-gnueabi-softfp/bin/../lib/gcc/arm-marvell-linux-gnueabi/4.4.5/../../../../arm-marvell-linux-gnueabi/bin/as...
+2.20.51.0.7.20100318, ok
+checking for /opt/armv7-marvell-linux-gnueabi-softfp/bin/../lib/gcc/arm-marvell-linux-gnueabi/4.4.5/../../../../arm-marvell-linux-gnueabi/bin/ld...
+/opt/armv7-marvell-linux-gnueabi-softfp/bin/../lib/gcc/arm-marvell-linux-gnueabi/4.4.5/../../../../arm-marvell-linux-gnueabi/bin/ld
+checking version of
+/opt/armv7-marvell-linux-gnueabi-softfp/bin/../lib/gcc/arm-marvell-linux-gnueabi/4.4.5/../../../../arm-marvell-linux-gnueabi/bin/ld...
+2.20.51.0.7.20100318, ok
+checking for pwd... /bin/pwd
+checking for arm-marvell-linux-gnueabi-gcc... (cached)
+arm-marvell-linux-gnueabi-gcc
+checking version of arm-marvell-linux-gnueabi-gcc... 4.4.5, ok
+checking for gnumake... no
+checking for gmake... no
+checking for make... make
+checking version of make... 3.81, ok
+checking for gnumsgfmt... no
+checking for gmsgfmt... no
+checking for msgfmt... no
+checking for makeinfo... makeinfo
+checking version of makeinfo... 4.13, ok
+checking for sed... sed
+checking version of sed... 4.2.1, ok
+checking for arm-marvell-linux-gnueabi-readelf...
+arm-marvell-linux-gnueabi-readelf
+checking for autoconf... no
+configure: WARNING:
+*** These auxiliary programs are missing or incompatible versions:
+msgfmt autoconf
+*** some features will be disabled.
+*** Check the INSTALL file for required versions.
+checking LD_LIBRARY_PATH variable... ok
+checking whether GCC supports -static-libgcc... -static-libgcc
+checking for bash... /bin/bash
+checking for gawk... gawk
+checking for perl... /usr/bin/perl
+checking for install-info... /usr/bin/install-info
+checking for bison... no
+checking for signed size_t type... no
+checking for libc-friendly stddef.h... yes
+checking whether we need to use -P to assemble .S files... no
+checking for .set assembler directive... yes
+checking for assembler gnu_unique_object symbol type... yes
+checking for .symver assembler directive... yes
+checking for ld --version-script... yes
+checking for .previous assembler directive... yes
+checking for .protected and .hidden assembler directive... yes
+checking whether __attribute__((visibility())) is supported... yes
+checking for broken __attribute__((visibility()))... no
+checking for broken __attribute__((alias()))... no
+checking whether to put _rtld_local into .sdata section... no
+checking for .preinit_array/.init_array/.fini_array support... yes
+checking whether to use .ctors/.dtors header and trailer... no
+checking for libunwind-support in compiler... no
+checking for -z nodelete option... yes
+checking for -z nodlopen option... yes
+checking for -z initfirst option... yes
+configure: WARNING: missing architecture parameter to check for working -z relro
+checking for -Bgroup option... yes
+checking for libgcc_s suffix...
+checking for --as-needed option... yes
+checking whether --noexecstack is desirable for .S files... yes
+checking for -z combreloc... yes
+checking for -z execstack... yes
+checking for --hash-style option... yes
+checking for sufficient default -shared layout... no
+checking linker output format... unknown
+checking for -fno-toplevel-reorder -fno-section-anchors... yes
+checking for -fstack-protector... no
+checking for -fgnu89-inline... yes
+checking whether cc puts quotes around section names... no
+checking for assembler .weak directive... yes
+checking whether CFI directives are supported... yes
+checking for ld --no-whole-archive... yes
+checking for gcc -fexceptions... yes
+checking for __builtin_expect... yes
+checking for __builtin_memset... no
+checking for redirection of built-in functions... yes
+checking for __thread... yes
+checking for tls_model attribute... yes
+checking for libgd... no
+checking for grep that handles long lines and -e... /bin/grep
+checking for egrep... /bin/grep -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking size of long double... 8
+running configure fragment for ports/sysdeps/arm/elf
+checking for ARM TLS support... yes
+running configure fragment for ports/sysdeps/unix/sysv/linux/arm/eabi/nptl
+running configure fragment for ports/sysdeps/unix/sysv/linux/arm/eabi
+running configure fragment for nptl/sysdeps/pthread
+running configure fragment for sysdeps/pthread
+running configure fragment for sysdeps/unix/sysv/linux
+checking for grep that handles long lines and -e... (cached) /bin/grep
+checking for egrep... (cached) /bin/grep -E
+checking installed Linux kernel header files... 2.0.10 or later
+checking for kernel header at least 2.6.16... ok
+running configure fragment for ports/sysdeps/arm
+checking whether the CFI directive .cfi_sections is supported... yes
+checking for old glibc 2.0.x headers... no
+checking whether -fPIC is default... no
+configure: creating ./config.status
+config.status: creating config.make
+config.status: creating Makefile
+config.status: creating config.h
+config.status: executing default commands
+
+dallas@bertha:~/git-repos/projects/yocto/poky/build$ echo $?
+0
+
+Perhaps the problem has something to do with incompatible versions of
+the msgfmt autoconf on my host system which is Debian squeeze.
 
