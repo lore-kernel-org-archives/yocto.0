@@ -1,32 +1,25 @@
-Return-Path: <elvis.dowson@gmail.com>
-Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
-	[209.85.160.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 04293E0142A
-	for <yocto@yoctoproject.org>; Sat, 21 Jul 2012 19:32:07 -0700 (PDT)
-Received: by pbbrq8 with SMTP id rq8so10426614pbb.35
-	for <yocto@yoctoproject.org>; Sat, 21 Jul 2012 19:32:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:content-type:subject:date:message-id:to:mime-version:x-mailer;
-	bh=RttXrtMhRhHG1j09apombkeCVgTvHFaSetqnnbWabnM=;
-	b=nxjYkYKylGp5BwXadZssY9+L6LVLXI7vFHxtLllXn0xzeaZPuRF6Al4ZbvbRnHF/D2
-	p/BCQut6swrFUqyDNrY+suWHOWAjp8kXJ2SbKKyr/3l2K2aKZS2lDky4zGoISvFivTza
-	oqqUcZcaA6Ig3LFQRt0SDAEKin6P9xkF7fo0LOYtM8g23LZ8iEJGliOgqGSZ158Y4lYr
-	w7+7DVgqf+ZDP5OkY4qt8Dh3dKvFf5hMR9ddhbfyN3NNuOhNEw3mawQ9rwFB7uU1tu/x
-	a2xlIMpShaFPZBakJLV2Qf1cOUtW8yci3muaid++RfmnC3ALERob0C4fYlzajlRMMICJ
-	IGng==
-Received: by 10.68.130.163 with SMTP id of3mr25626219pbb.108.1342924327625;
-	Sat, 21 Jul 2012 19:32:07 -0700 (PDT)
-Received: from [192.168.1.101] ([94.205.108.162])
-	by mx.google.com with ESMTPS id iw10sm6449416pbc.55.2012.07.21.19.32.04
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Sat, 21 Jul 2012 19:32:06 -0700 (PDT)
-From: Elvis Dowson <elvis.dowson@gmail.com>
-Date: Sun, 22 Jul 2012 06:32:01 +0400
-Message-Id: <6CD04095-FB33-40CA-9417-CF4208642BDC@gmail.com>
-To: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-Mime-Version: 1.0 (Apple Message framework v1278)
-X-Mailer: Apple Mail (2.1278)
-Subject: cmake-native-2.8.5-r2.1 compile error
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 86A69E0142A
+	for <yocto@yoctoproject.org>; Sat, 21 Jul 2012 19:40:17 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id q6M2eEEd020889
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Sat, 21 Jul 2012 19:40:14 -0700 (PDT)
+Received: from bruce-ashfields-macbook.local (128.224.22.133) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
+	14.1.255.0; Sat, 21 Jul 2012 19:40:13 -0700
+Message-ID: <500B680C.5000908@windriver.com>
+Date: Sat, 21 Jul 2012 22:40:12 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7;
+	rv:9.0) Gecko/20111222 Thunderbird/9.0.1
+MIME-Version: 1.0
+To: Edward Vidal <vidal.develone@gmail.com>
+References: <CANwz6nwKcy7-TeR3W8MnAQxer-yhO3wzWUjm3nsfhuwNLGSHHg@mail.gmail.com>
+In-Reply-To: <CANwz6nwKcy7-TeR3W8MnAQxer-yhO3wzWUjm3nsfhuwNLGSHHg@mail.gmail.com>
+Cc: yocto@yoctoproject.org, "Wold, Saul" <saul.wold@intel.com>
+Subject: Re: beagleboard not booting yacto1.2.1
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,467 +31,220 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 22 Jul 2012 02:32:08 -0000
-Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_421CAEE8-0190-4A49-898C-D2DC68A0908D"
+X-List-Received-Date: Sun, 22 Jul 2012 02:40:17 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
---Apple-Mail=_421CAEE8-0190-4A49-898C-D2DC68A0908D
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=us-ascii
+On 12-07-21 11:58 AM, Edward Vidal wrote:
+> hello,
+>
+> verifing that this is ver poky-1.2.1
+> The post by Elizabeth Flanagan Wed Jul 18 14:20:41 PDT 2012
+> Yocto 1.2.1 Released
+> Flanagan, Elizabeth elizabeth.flanagan at intel.com <http://intel.com>
+> Commit Information:
+> Tree/Branch: denzil
+> Commit id: 73cdebf60df225ee10f2eb215935be3b61e1b831
+> git clone -b denzil git://git.yoctoproject.org/poky.git
+> <http://git.yoctoproject.org/poky.git>
+> cd poky
+> git log
+> commit 73cdebf60df225ee10f2eb215935be3b61e1b831
+> I tried the default kernel 3.0 this would get a kernel panic could not
+> mount the mmc
+>
+> Modified the file meta-yocto/conf/machine/beagleboard.conf
+>
+> PREFERRED_VERSION_linux-yocto ?= "3.0%" -->
+> PREFERRED_VERSION_linux-yocto ?= "3.4%"
+> In this version there is no
+> /home/vidal/poky/meta-yocto/recipes-kernel/linux/linux-yocto_3.4.bbappend as
+> in version poky-1.2.0
+> so the kernel was Image Name: Linux-3.2.9-yocto-standard
+> git status
+> # On branch denzil
+> # Changes not staged for commit:
+> # (use "git add <file>..." to update what will be committed)
+> # (use "git checkout -- <file>..." to discard changes in working directory)
+> #
+> # modified: meta-yocto/conf/machine/beagleboard.conf
+> #
+> # Untracked files:
+> # (use "git add <file>..." to include in what will be committed)
+> #
+> # build/
+> no changes added to commit (use "git add" and/or "git commit -a")
+>
+> -rw-r--r--. 1 vidal users 57409536 Jul 20 16:29
+> core-image-sato-beagleboard-20120720200156.rootfs.jffs2
+> -rw-r--r--. 1 vidal users 42607308 Jul 20 16:28
+> core-image-sato-beagleboard-20120720200156.rootfs.tar.bz2
+> -rw-r--r--. 1 vidal users 57409536 Jul 21 08:06
+> core-image-sato-beagleboard-20120721135125.rootfs.jffs2
+> -rw-r--r--. 1 vidal users 42612264 Jul 21 08:05
+> core-image-sato-beagleboard-20120721135125.rootfs.tar.bz2
+> lrwxrwxrwx. 1 vidal users 55 Jul 21 08:06
+> core-image-sato-beagleboard.jffs2 ->
+> core-image-sato-beagleboard-20120721135125.rootfs.jffs2
+> lrwxrwxrwx. 1 vidal users 57 Jul 21 08:05
+> core-image-sato-beagleboard.tar.bz2 ->
+> core-image-sato-beagleboard-20120721135125.rootfs.tar.bz2
+> -rw-r--r--. 1 vidal users 205521920 Jul 20 18:50
+> core-image-sato-qemuarm-20120720223121.rootfs.ext3
+> -rw-r--r--. 1 vidal users 37671422 Jul 20 18:50
+> core-image-sato-qemuarm-20120720223121.rootfs.tar.bz2
+> lrwxrwxrwx. 1 vidal users 50 Jul 20 18:50 core-image-sato-qemuarm.ext3
+> -> core-image-sato-qemuarm-20120720223121.rootfs.ext3
+> lrwxrwxrwx. 1 vidal users 53 Jul 20 18:50
+> core-image-sato-qemuarm.tar.bz2 ->
+> core-image-sato-qemuarm-20120720223121.rootfs.tar.bz2
+> lrwxrwxrwx. 1 vidal users 70 Jul 20 16:04 MLO-beagleboard ->
+> MLO-beagleboard-1.5.0+git1+9f94c6577e3a018b6b75cbe39f32bb331871f915-r0
+> -rwxr-xr-x. 1 vidal users 22388 Jul 20 16:04
+> MLO-beagleboard-1.5.0+git1+9f94c6577e3a018b6b75cbe39f32bb331871f915-r0
+> -rw-r--r--. 1 vidal users 33114370 Jul 20 18:26
+> modules-3.2.18-yocto-standard-r1-qemuarm.tgz
+> -rw-r--r--. 1 vidal users 35180410 Jul 20 16:04
+> modules-3.2.9-yocto-standard-r1-beagleboard.tgz
+> -rw-r--r--. 1 vidal users 294 Jul 21 07:54
+> README_-_DO_NOT_DELETE_FILES_IN_THIS_DIRECTORY.txt
+> lrwxrwxrwx. 1 vidal users 81 Jul 21 07:54 u-boot-beagleboard.bin ->
+> u-boot-beagleboard-v2011.06+git12+b1af6f532e0d348b153d5c148369229d24af361a-r1.bin
+> -rwxr-xr-x. 1 vidal users 316348 Jul 21 07:54
+> u-boot-beagleboard-v2011.06+git12+b1af6f532e0d348b153d5c148369229d24af361a-r1.bin
+> -rw-r--r--. 1 vidal users 3375864 Jul 20 16:04
+> uImage-3.2.18+git1+49f931bc294d5b6be60502bbd448cff5aa766235_1+90e3138c5a2a390dd6ddf2ed84fe5a9756d43397-r1-beagleboard-20120720200156.bin
+> lrwxrwxrwx. 1 vidal users 136 Jul 20 16:04 uImage-beagleboard.bin ->
+> uImage-3.2.18+git1+49f931bc294d5b6be60502bbd448cff5aa766235_1+90e3138c5a2a390dd6ddf2ed84fe5a9756d43397-r1-beagleboard-20120720200156.bin
+> -rwxr-xr-x. 1 vidal users 22388 Jul 20 16:04
+> x-load-beagleboard-1.5.0+git1+9f94c6577e3a018b6b75cbe39f32bb331871f915-r0.bin.ift
+> lrwxrwxrwx. 1 vidal users 81 Jul 20 16:04 x-load-beagleboard.bin.ift ->
+> x-load-beagleboard-1.5.0+git1+9f94c6577e3a018b6b75cbe39f32bb331871f915-r0.bin.ift
+> -rw-r--r--. 1 vidal users 3034248 Jul 20 18:26
+> zImage-3.2.18+git1+49f931bc294d5b6be60502bbd448cff5aa766235_1+259cff0813417d16baaaaf44b00a9f75103ebfcb-r1-qemuarm-20120720223121.bin
+> lrwxrwxrwx. 1 vidal users 132 Jul 20 18:26 zImage-qemuarm.bin ->
+> zImage-3.2.18+git1+49f931bc294d5b6be60502bbd448cff5aa766235_1+259cff0813417d16baaaaf44b00a9f75103ebfcb-r1-qemuarm-20120720223121.bin
+> cp
+> MLO-beagleboard-1.5.0+git1+9f94c6577e3a018b6b75cbe39f32bb331871f915-r0
+> /run/media/vidal/boot/MLO
+> cp
+> u-boot-beagleboard-v2011.06+git12+b1af6f532e0d348b153d5c148369229d24af361a-r1.bin
+> /run/media/vidal/boot/u-boot.bin
+> cp
+> uImage-3.2.18+git1+49f931bc294d5b6be60502bbd448cff5aa766235_1+90e3138c5a2a390dd6ddf2ed84fe5a9756d43397-r1-beagleboard-20120720200156.bin
+> /run/media/vidal/boot/uImage
+> cp /home/vidal/uEnv.txt /run/media/vidal/boot/
+> ls /run/media/vidal/boot/
+> MLO u-boot.bin uEnv.txt uImage
+>
+> cd /run/media/vidal/rootfs/
+> tar jxf
+> /home/vidal/poky/build/tmp/deploy/images/core-image-sato-beagleboard-20120721135125.rootfs.tar.bz2
+>
+> cd ~/
+> umount /run/media/vidal/boot
+> umount /run/media/vidal/rootfs
+> sync
+>
+> Texas Instruments X-Loader 1.5.0 (Jul 19 2012 - 17:05:29)
+> Beagle xM
+> Reading boot sector
+> Loading u-boot.bin from mmc
+>
+>
+> U-Boot 2011.06 (Jul 19 2012 - 21:25:33)
+>
+> OMAP3630/3730-GP ES2.1, CPU-OPP2, L3-165MHz, Max CPU Clock 1 Ghz
+> OMAP3 Beagle board + LPDDR/NAND
+> I2C: ready
+> DRAM: 512 MiB
+> NAND: 0 MiB
+> MMC: OMAP SD/MMC: 0
+> *** Warning - readenv() failed, using default environment
+>
+> In: serial
+> Out: serial
+> Err: serial
+> Beagle unknown 0x02
+> No EEPROM on expansion board
+> Die ID #158000029ff800000160a7450b02602d
+> Hit any key to stop autoboot: 10 9 8 7 6 5 4 3 2 1 0
+> SD/MMC found on device 0
+> reading uEnv.txt
+>
+> 130 bytes read
+> Importing environment from mmc ...
+> reading uImage
+>
+> 3375856 bytes read
+> Booting from mmc ...
+> ## Booting kernel from Legacy Image at 82000000 ...
+> Image Name: Linux-3.2.9-yocto-standard
+> Image Type: ARM Linux Kernel Image (uncompressed)
+> Data Size: 3375792 Bytes = 3.2 MiB
+> Load Address: 80008000
+> Entry Point: 80008000
+> Verifying Checksum ... OK
+> Loading Kernel Image ... OK
+> OK
+>
+> Starting kernel ...
+>
+> Uncompressing Linux... done, booting the kernel.
+> This ver finds the mmc but does not
+> get to login screen on serial port or display
+> nothing displayed on beagleboard monitor expection sato display.
+> smsc95xx 1-2.1:1.0: eth0: link up, 100Mbps, full-duplex, lpa 0x45E1 but
+> no IP assigned.
+>
+> The lines below just keep repeating.
+>
+> Mouse] on usb-ehci-omap.0-2.5/input0
+> usb 1-2.5: USB disconnect, device number 65
+> usb 1-2.5: new low-speed USB device number 66 using ehci-omap
+> input: PixArt USB Optical Mouse as
+> /devices/platform/usbhs-omap.0/ehci-omap.0/us
+> b1/1-2/1-2.5/1-2.5:1.0/input/input63
+> generic-usb 0003:093A:2510.0040: input: USB HID v1.11 Mouse [PixArt USB
+> Optical
+> Mouse] on usb-ehci-omap.0-2.5/input0
+> usb 1-2.5: USB disconnect, device number 66
+> usb 1-2.5: new low-speed USB device number 67 using ehci-omap
+> input: PixArt USB Optical Mouse as
+> /devices/platform/usbhs-omap.0/ehci-omap.0/us
+> b1/1-2/1-2.5/1-2.5:1.0/input/input64
+> generic-usb 0003:093A:2510.0041: input: USB HID v1.11 Mouse [PixArt USB
+> Optical
+> Mouse] on usb-ehci-omap.0-2.5/input0
+> usb 1-2.5: USB disconnect, device number 67
+> usb 1-2.5: new low-speed USB device number 68 using ehci-omap
+> input: PixArt USB Optical Mouse as
+> /devices/platform/usbhs-omap.0/ehci-omap.0/us
+> b1/1-2/1-2.5/1-2.5:1.0/input/input65
+> generic-usb 0003:093A:2510.0042: input: USB HID v1.11 Mouse [PixArt USB
+> Optical
+> Mouse] on usb-ehci-omap.0-2.5/input0
+>
+> Is there any other information that I can provide?
 
-Hi,
-      With the latest update to the yocto repos, as of today, I get a =
-compile error for cmake-native-2.8.5-r2.1, when trying to bitbake =
-core-image-sato.=20
+This should be enough .. What we still need is a comment from the QA
+folks that are reporting green builds and boots for the beagleboard.
 
-This had also happened yesterday, when I tried to build core-image-sato, =
-from the master branch, which was updated 2 to 3 weeks ago. I tried with =
-the latest updates, and still the error persists.=20
+Saul: Do you know who the contact for that is ? I've lost track of who
+it should be ..
 
-DEBUG: Executing shell function do_compile
-NOTE: make -j 6
-Scanning dependencies of target cmsys_c
-Scanning dependencies of target cmzlib
-[  0%] Scanning dependencies of target cmcompress
-Building C object Source/kwsys/CMakeFiles/cmsys_c.dir/ProcessUNIX.c.o
-Scanning dependencies of target cmsys
-Scanning dependencies of target cmbzip2
-[  0%] Building C object =
-Utilities/cmzlib/CMakeFiles/cmzlib.dir/adler32.c.o
-[  0%] [  0%] Building C object =
-Utilities/cmcompress/CMakeFiles/cmcompress.dir/cmcompress.c.o
-[  0%] Building C object =
-Utilities/cmbzip2/CMakeFiles/cmbzip2.dir/blocksort.c.o
-Building C object Source/kwsys/CMakeFiles/cmsys.dir/ProcessUNIX.c.o
-[  0%] Building C object =
-Utilities/cmzlib/CMakeFiles/cmzlib.dir/compress.c.o
-Linking C static library libcmcompress.a
-[  0%] Built target cmcompress
-[  1%] Scanning dependencies of target cmlibarchive
-Building C object Utilities/cmbzip2/CMakeFiles/cmbzip2.dir/huffman.c.o
-[  2%] Building C object =
-Utilities/cmzlib/CMakeFiles/cmzlib.dir/crc32.c.o
-[  2%] Building C object =
-Utilities/cmlibarchive/libarchive/CMakeFiles/cmlibarchive.dir/archive_chec=
-k_magic.c.o
-In file included from =
-/tool/yocto/poky/build/tmp/work/x86_64-linux/cmake-native-2.8.5-r2.1/cmake=
--2.8.5/Utilities/cmlibarchive/libarchive/archive_private.h:35:0,
-                 from =
-/tool/yocto/poky/build/tmp/work/x86_64-linux/cmake-native-2.8.5-r2.1/cmake=
--2.8.5/Utilities/cmlibarchive/libarchive/archive_check_magic.c:48:
-=
-/tool/yocto/poky/build/tmp/work/x86_64-linux/cmake-native-2.8.5-r2.1/cmake=
--2.8.5/Utilities/cmlibarchive/libarchive/archive.h:369:63: error: =
-unknown type name 'FILE'
-=
-/tool/yocto/poky/build/tmp/work/x86_64-linux/cmake-native-2.8.5-r2.1/cmake=
--2.8.5/Utilities/cmlibarchive/libarchive/archive.h:555:64: error: =
-unknown type name 'FILE'
-In file included from =
-/tool/yocto/poky/build/tmp/work/x86_64-linux/cmake-native-2.8.5-r2.1/cmake=
--2.8.5/Utilities/cmlibarchive/libarchive/archive_string.h:44:0,
-                 from =
-/tool/yocto/poky/build/tmp/work/x86_64-linux/cmake-native-2.8.5-r2.1/cmake=
--2.8.5/Utilities/cmlibarchive/libarchive/archive_private.h:36,
-                 from =
-/tool/yocto/poky/build/tmp/work/x86_64-linux/cmake-native-2.8.5-r2.1/cmake=
--2.8.5/Utilities/cmlibarchive/libarchive/archive_check_magic.c:48:
-/usr/include/wchar.h:577:1: error: unknown type name '__FILE'
-/usr/include/wchar.h:584:19: error: unknown type name '__FILE'
-/usr/include/wchar.h:591:22: error: unknown type name '__FILE'
-/usr/include/wchar.h:609:23: error: unknown type name '__FILE'
-/usr/include/wchar.h:632:21: error: unknown type name '__FILE'
-/usr/include/wchar.h:653:12: error: unknown type name '__FILE'
-/usr/include/wchar.h:686:22: error: unknown type name '__FILE'
-/usr/include/wchar.h:707:12: error: unknown type name '__FILE'
-/usr/include/wchar.h:742:23: error: unknown type name '__FILE'
-/usr/include/wchar.h:743:22: error: unknown type name '__FILE'
-/usr/include/wchar.h:756:37: error: unknown type name '__FILE'
-/usr/include/wchar.h:757:36: error: unknown type name '__FILE'
-/usr/include/wchar.h:772:4: error: unknown type name '__FILE'
-/usr/include/wchar.h:779:6: error: unknown type name '__FILE'
-/usr/include/wchar.h:786:37: error: unknown type name '__FILE'
-In file included from /usr/include/wchar.h:881:0,
-                 from =
-/tool/yocto/poky/build/tmp/work/x86_64-linux/cmake-native-2.8.5-r2.1/cmake=
--2.8.5/Utilities/cmlibarchive/libarchive/archive_string.h:44,
-                 from =
-/tool/yocto/poky/build/tmp/work/x86_64-linux/cmake-native-2.8.5-r2.1/cmake=
--2.8.5/Utilities/cmlibarchive/libarchive/archive_private.h:36,
-                 from =
-/tool/yocto/poky/build/tmp/work/x86_64-linux/cmake-native-2.8.5-r2.1/cmake=
--2.8.5/Utilities/cmlibarchive/libarchive/archive_check_magic.c:48:
-/usr/include/x86_64-linux-gnu/bits/wchar2.h:328:28: error: unknown type =
-name '__FILE'
-/usr/include/x86_64-linux-gnu/bits/wchar2.h:332:29: error: unknown type =
-name '__FILE'
-/usr/include/x86_64-linux-gnu/bits/wchar2.h:346:11: error: unknown type =
-name '__FILE'
-/usr/include/x86_64-linux-gnu/bits/wchar2.h:365:12: error: unknown type =
-name '__FILE'
-/usr/include/x86_64-linux-gnu/bits/wchar2.h:374:10: error: unknown type =
-name '__FILE'
-/usr/include/x86_64-linux-gnu/bits/wchar2.h:375:17: error: unknown type =
-name '__FILE'
-/usr/include/x86_64-linux-gnu/bits/wchar2.h:378:17: error: unknown type =
-name '__FILE'
-/usr/include/x86_64-linux-gnu/bits/wchar2.h:385:43: error: unknown type =
-name '__FILE'
-make[2]: *** =
-[Utilities/cmlibarchive/libarchive/CMakeFiles/cmlibarchive.dir/archive_che=
-ck_magic.c.o] Error 1
-make[1]: *** =
-[Utilities/cmlibarchive/libarchive/CMakeFiles/cmlibarchive.dir/all] =
-Error 2
-make[1]: *** Waiting for unfinished jobs....
-[  2%] Building C object =
-Utilities/cmzlib/CMakeFiles/cmzlib.dir/deflate.c.o
-[  2%] [  2%] Building C object =
-Utilities/cmzlib/CMakeFiles/cmzlib.dir/gzio.c.o
-Building C object Utilities/cmbzip2/CMakeFiles/cmbzip2.dir/crctable.c.o
-[  2%] Building C object =
-Utilities/cmbzip2/CMakeFiles/cmbzip2.dir/randtable.c.o
-[  3%] Building C object =
-Utilities/cmbzip2/CMakeFiles/cmbzip2.dir/compress.c.o
-[  4%] Building C object Source/kwsys/CMakeFiles/cmsys_c.dir/Base64.c.o
-[  4%] [  5%] Building C object =
-Source/kwsys/CMakeFiles/cmsys.dir/Base64.c.o
-Building C object =
-Utilities/cmbzip2/CMakeFiles/cmbzip2.dir/decompress.c.o
-[  5%] Building C object Source/kwsys/CMakeFiles/cmsys_c.dir/MD5.c.o
-[  5%] Building C object Source/kwsys/CMakeFiles/cmsys.dir/MD5.c.o
-[  5%] Building C object =
-Source/kwsys/CMakeFiles/cmsys_c.dir/Terminal.c.o
-[  5%] Building C object =
-Utilities/cmzlib/CMakeFiles/cmzlib.dir/inffast.c.o
-[  6%] [  6%] Building C object =
-Source/kwsys/CMakeFiles/cmsys_c.dir/System.c.o
-Building C object Source/kwsys/CMakeFiles/cmsys_c.dir/String.c.o
-[  7%] Building C object =
-Utilities/cmzlib/CMakeFiles/cmzlib.dir/inflate.c.o
-[  7%] Building C object Source/kwsys/CMakeFiles/cmsys.dir/Terminal.c.o
-[  7%] Building C object Source/kwsys/CMakeFiles/cmsys.dir/System.c.o
-[  7%] Building C object =
-Utilities/cmzlib/CMakeFiles/cmzlib.dir/inftrees.c.o
-[  8%] Building C object Source/kwsys/CMakeFiles/cmsys.dir/String.c.o
-Linking C static library libcmsys_c.a
-[  8%] Building CXX object =
-Source/kwsys/CMakeFiles/cmsys.dir/Directory.cxx.o
-[  8%] Built target cmsys_c
-[  8%] Building C object =
-Utilities/cmbzip2/CMakeFiles/cmbzip2.dir/bzlib.c.o
-[  8%] Building CXX object =
-Source/kwsys/CMakeFiles/cmsys.dir/DynamicLoader.cxx.o
-[  8%] Building CXX object Source/kwsys/CMakeFiles/cmsys.dir/Glob.cxx.o
-[  9%] Building CXX object =
-Source/kwsys/CMakeFiles/cmsys.dir/RegularExpression.cxx.o
-[  9%] Building C object =
-Utilities/cmzlib/CMakeFiles/cmzlib.dir/trees.c.o
-[  9%] Building C object =
-Utilities/cmzlib/CMakeFiles/cmzlib.dir/uncompr.c.o
-[ 10%] Building C object =
-Utilities/cmzlib/CMakeFiles/cmzlib.dir/zutil.c.o
-[ 10%] Building CXX object =
-Source/kwsys/CMakeFiles/cmsys.dir/SystemTools.cxx.o
-[ 10%] Building CXX object =
-Source/kwsys/CMakeFiles/cmsys.dir/CommandLineArguments.cxx.o
-Linking C static library libcmbzip2.a
-[ 10%] Linking C static library libcmzlib.a
-Building CXX object Source/kwsys/CMakeFiles/cmsys.dir/Registry.cxx.o
-[ 10%] Built target cmbzip2
-[ 11%] Building CXX object =
-Source/kwsys/CMakeFiles/cmsys.dir/IOStream.cxx.o
-[ 11%] Building CXX object =
-Source/kwsys/CMakeFiles/cmsys.dir/SystemInformation.cxx.o
-[ 11%] Built target cmzlib
-Linking CXX static library libcmsys.a
-[ 11%] Built target cmsys
-make: *** [all] Error 2
-ERROR: oe_runmake failed
-ERROR: Function failed: do_compile (see =
-/tool/yocto/poky/build/tmp/work/x86_64-linux/cmake-native-2.8.5-r2.1/temp/=
-log.do_compile.60499 for further information)
+Cheers,
 
-Elvis Dowson=
+Bruce
 
---Apple-Mail=_421CAEE8-0190-4A49-898C-D2DC68A0908D
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html;
-	charset=us-ascii
 
-<html><head></head><body style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; -webkit-line-break: after-white-space; =
-">Hi,<div>&nbsp; &nbsp; &nbsp; With the latest update to the yocto =
-repos, as of today, I get a compile error =
-for&nbsp;cmake-native-2.8.5-r2.1, when trying to bitbake =
-core-image-sato.&nbsp;</div><div><br></div><div>This had also happened =
-yesterday, when I tried to build core-image-sato, from the master =
-branch, which was updated 2 to 3 weeks ago. I tried with the latest =
-updates, and still the error =
-persists.&nbsp;</div><div><br></div><div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">DEBUG: Executing =
-shell function do_compile</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">NOTE: make -j =
-6</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
-size=3D"2">Scanning dependencies of target =
-cmsys_c</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
-size=3D"2">Scanning dependencies of target cmzlib</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">[ &nbsp;0%] =
-Scanning dependencies of target cmcompress</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">Building C object =
-Source/kwsys/CMakeFiles/cmsys_c.dir/ProcessUNIX.c.o</font></div><div><font=
- class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">Scanning =
-dependencies of target cmsys</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">Scanning =
-dependencies of target cmbzip2</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">[ &nbsp;0%] =
-Building C object =
-Utilities/cmzlib/CMakeFiles/cmzlib.dir/adler32.c.o</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">[ &nbsp;0%] [ =
-&nbsp;0%] Building C object =
-Utilities/cmcompress/CMakeFiles/cmcompress.dir/cmcompress.c.o</font></div>=
-<div><font class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">[ =
-&nbsp;0%] Building C object =
-Utilities/cmbzip2/CMakeFiles/cmbzip2.dir/blocksort.c.o</font></div><div><f=
-ont class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">Building C =
-object =
-Source/kwsys/CMakeFiles/cmsys.dir/ProcessUNIX.c.o</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">[ &nbsp;0%] =
-Building C object =
-Utilities/cmzlib/CMakeFiles/cmzlib.dir/compress.c.o</font></div><div><font=
- class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">Linking C static =
-library libcmcompress.a</font></div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2">[ &nbsp;0%] Built target =
-cmcompress</font></div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2">[ &nbsp;1%] Scanning dependencies of target =
-cmlibarchive</font></div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2">Building C object =
-Utilities/cmbzip2/CMakeFiles/cmbzip2.dir/huffman.c.o</font></div><div><fon=
-t class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">[ &nbsp;2%] =
-Building C object =
-Utilities/cmzlib/CMakeFiles/cmzlib.dir/crc32.c.o</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">[ &nbsp;2%] =
-Building C object =
-Utilities/cmlibarchive/libarchive/CMakeFiles/cmlibarchive.dir/archive_chec=
-k_magic.c.o</font></div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2">In file included from =
-/tool/yocto/poky/build/tmp/work/x86_64-linux/cmake-native-2.8.5-r2.1/cmake=
--2.8.5/Utilities/cmlibarchive/libarchive/archive_private.h:35:0,</font></d=
-iv><div><font class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">&nbsp;=
- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;from =
-/tool/yocto/poky/build/tmp/work/x86_64-linux/cmake-native-2.8.5-r2.1/cmake=
--2.8.5/Utilities/cmlibarchive/libarchive/archive_check_magic.c:48:</font><=
-/div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
-size=3D"2">/tool/yocto/poky/build/tmp/work/x86_64-linux/cmake-native-2.8.5=
--r2.1/cmake-2.8.5/Utilities/cmlibarchive/libarchive/archive.h:369:63: =
-error: unknown type name 'FILE'</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" =
-size=3D"2">/tool/yocto/poky/build/tmp/work/x86_64-linux/cmake-native-2.8.5=
--r2.1/cmake-2.8.5/Utilities/cmlibarchive/libarchive/archive.h:555:64: =
-error: unknown type name 'FILE'</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">In file included =
-from =
-/tool/yocto/poky/build/tmp/work/x86_64-linux/cmake-native-2.8.5-r2.1/cmake=
--2.8.5/Utilities/cmlibarchive/libarchive/archive_string.h:44:0,</font></di=
-v><div><font class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">&nbsp; =
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;from =
-/tool/yocto/poky/build/tmp/work/x86_64-linux/cmake-native-2.8.5-r2.1/cmake=
--2.8.5/Utilities/cmlibarchive/libarchive/archive_private.h:36,</font></div=
-><div><font class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">&nbsp; =
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;from =
-/tool/yocto/poky/build/tmp/work/x86_64-linux/cmake-native-2.8.5-r2.1/cmake=
--2.8.5/Utilities/cmlibarchive/libarchive/archive_check_magic.c:48:</font><=
-/div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
-size=3D"2">/usr/include/wchar.h:577:1: error: unknown type name =
-'__FILE'</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco"=
- size=3D"2">/usr/include/wchar.h:584:19: error: unknown type name =
-'__FILE'</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco"=
- size=3D"2">/usr/include/wchar.h:591:22: error: unknown type name =
-'__FILE'</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco"=
- size=3D"2">/usr/include/wchar.h:609:23: error: unknown type name =
-'__FILE'</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco"=
- size=3D"2">/usr/include/wchar.h:632:21: error: unknown type name =
-'__FILE'</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco"=
- size=3D"2">/usr/include/wchar.h:653:12: error: unknown type name =
-'__FILE'</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco"=
- size=3D"2">/usr/include/wchar.h:686:22: error: unknown type name =
-'__FILE'</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco"=
- size=3D"2">/usr/include/wchar.h:707:12: error: unknown type name =
-'__FILE'</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco"=
- size=3D"2">/usr/include/wchar.h:742:23: error: unknown type name =
-'__FILE'</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco"=
- size=3D"2">/usr/include/wchar.h:743:22: error: unknown type name =
-'__FILE'</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco"=
- size=3D"2">/usr/include/wchar.h:756:37: error: unknown type name =
-'__FILE'</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco"=
- size=3D"2">/usr/include/wchar.h:757:36: error: unknown type name =
-'__FILE'</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco"=
- size=3D"2">/usr/include/wchar.h:772:4: error: unknown type name =
-'__FILE'</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco"=
- size=3D"2">/usr/include/wchar.h:779:6: error: unknown type name =
-'__FILE'</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco"=
- size=3D"2">/usr/include/wchar.h:786:37: error: unknown type name =
-'__FILE'</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco"=
- size=3D"2">In file included from =
-/usr/include/wchar.h:881:0,</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">&nbsp; &nbsp; =
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;from =
-/tool/yocto/poky/build/tmp/work/x86_64-linux/cmake-native-2.8.5-r2.1/cmake=
--2.8.5/Utilities/cmlibarchive/libarchive/archive_string.h:44,</font></div>=
-<div><font class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">&nbsp; =
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;from =
-/tool/yocto/poky/build/tmp/work/x86_64-linux/cmake-native-2.8.5-r2.1/cmake=
--2.8.5/Utilities/cmlibarchive/libarchive/archive_private.h:36,</font></div=
-><div><font class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">&nbsp; =
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;from =
-/tool/yocto/poky/build/tmp/work/x86_64-linux/cmake-native-2.8.5-r2.1/cmake=
--2.8.5/Utilities/cmlibarchive/libarchive/archive_check_magic.c:48:</font><=
-/div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
-size=3D"2">/usr/include/x86_64-linux-gnu/bits/wchar2.h:328:28: error: =
-unknown type name '__FILE'</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" =
-size=3D"2">/usr/include/x86_64-linux-gnu/bits/wchar2.h:332:29: error: =
-unknown type name '__FILE'</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" =
-size=3D"2">/usr/include/x86_64-linux-gnu/bits/wchar2.h:346:11: error: =
-unknown type name '__FILE'</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" =
-size=3D"2">/usr/include/x86_64-linux-gnu/bits/wchar2.h:365:12: error: =
-unknown type name '__FILE'</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" =
-size=3D"2">/usr/include/x86_64-linux-gnu/bits/wchar2.h:374:10: error: =
-unknown type name '__FILE'</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" =
-size=3D"2">/usr/include/x86_64-linux-gnu/bits/wchar2.h:375:17: error: =
-unknown type name '__FILE'</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" =
-size=3D"2">/usr/include/x86_64-linux-gnu/bits/wchar2.h:378:17: error: =
-unknown type name '__FILE'</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" =
-size=3D"2">/usr/include/x86_64-linux-gnu/bits/wchar2.h:385:43: error: =
-unknown type name '__FILE'</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">make[2]: *** =
-[Utilities/cmlibarchive/libarchive/CMakeFiles/cmlibarchive.dir/archive_che=
-ck_magic.c.o] Error 1</font></div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2">make[1]: *** =
-[Utilities/cmlibarchive/libarchive/CMakeFiles/cmlibarchive.dir/all] =
-Error 2</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
-size=3D"2">make[1]: *** Waiting for unfinished =
-jobs....</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco"=
- size=3D"2">[ &nbsp;2%] Building C object =
-Utilities/cmzlib/CMakeFiles/cmzlib.dir/deflate.c.o</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">[ &nbsp;2%] [ =
-&nbsp;2%] Building C object =
-Utilities/cmzlib/CMakeFiles/cmzlib.dir/gzio.c.o</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">Building C object =
-Utilities/cmbzip2/CMakeFiles/cmbzip2.dir/crctable.c.o</font></div><div><fo=
-nt class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">[ &nbsp;2%] =
-Building C object =
-Utilities/cmbzip2/CMakeFiles/cmbzip2.dir/randtable.c.o</font></div><div><f=
-ont class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">[ &nbsp;3%] =
-Building C object =
-Utilities/cmbzip2/CMakeFiles/cmbzip2.dir/compress.c.o</font></div><div><fo=
-nt class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">[ &nbsp;4%] =
-Building C object =
-Source/kwsys/CMakeFiles/cmsys_c.dir/Base64.c.o</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">[ &nbsp;4%] [ =
-&nbsp;5%] Building C object =
-Source/kwsys/CMakeFiles/cmsys.dir/Base64.c.o</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">Building C object =
-Utilities/cmbzip2/CMakeFiles/cmbzip2.dir/decompress.c.o</font></div><div><=
-font class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">[ &nbsp;5%] =
-Building C object =
-Source/kwsys/CMakeFiles/cmsys_c.dir/MD5.c.o</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">[ &nbsp;5%] =
-Building C object =
-Source/kwsys/CMakeFiles/cmsys.dir/MD5.c.o</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">[ &nbsp;5%] =
-Building C object =
-Source/kwsys/CMakeFiles/cmsys_c.dir/Terminal.c.o</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">[ &nbsp;5%] =
-Building C object =
-Utilities/cmzlib/CMakeFiles/cmzlib.dir/inffast.c.o</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">[ &nbsp;6%] [ =
-&nbsp;6%] Building C object =
-Source/kwsys/CMakeFiles/cmsys_c.dir/System.c.o</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">Building C object =
-Source/kwsys/CMakeFiles/cmsys_c.dir/String.c.o</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">[ &nbsp;7%] =
-Building C object =
-Utilities/cmzlib/CMakeFiles/cmzlib.dir/inflate.c.o</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">[ &nbsp;7%] =
-Building C object =
-Source/kwsys/CMakeFiles/cmsys.dir/Terminal.c.o</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">[ &nbsp;7%] =
-Building C object =
-Source/kwsys/CMakeFiles/cmsys.dir/System.c.o</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">[ &nbsp;7%] =
-Building C object =
-Utilities/cmzlib/CMakeFiles/cmzlib.dir/inftrees.c.o</font></div><div><font=
- class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">[ &nbsp;8%] =
-Building C object =
-Source/kwsys/CMakeFiles/cmsys.dir/String.c.o</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">Linking C static =
-library libcmsys_c.a</font></div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2">[ &nbsp;8%] Building CXX object =
-Source/kwsys/CMakeFiles/cmsys.dir/Directory.cxx.o</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">[ &nbsp;8%] Built =
-target cmsys_c</font></div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2">[ &nbsp;8%] Building C object =
-Utilities/cmbzip2/CMakeFiles/cmbzip2.dir/bzlib.c.o</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">[ &nbsp;8%] =
-Building CXX object =
-Source/kwsys/CMakeFiles/cmsys.dir/DynamicLoader.cxx.o</font></div><div><fo=
-nt class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">[ &nbsp;8%] =
-Building CXX object =
-Source/kwsys/CMakeFiles/cmsys.dir/Glob.cxx.o</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">[ &nbsp;9%] =
-Building CXX object =
-Source/kwsys/CMakeFiles/cmsys.dir/RegularExpression.cxx.o</font></div><div=
-><font class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">[ &nbsp;9%] =
-Building C object =
-Utilities/cmzlib/CMakeFiles/cmzlib.dir/trees.c.o</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">[ &nbsp;9%] =
-Building C object =
-Utilities/cmzlib/CMakeFiles/cmzlib.dir/uncompr.c.o</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">[ 10%] Building C =
-object =
-Utilities/cmzlib/CMakeFiles/cmzlib.dir/zutil.c.o</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">[ 10%] Building =
-CXX object =
-Source/kwsys/CMakeFiles/cmsys.dir/SystemTools.cxx.o</font></div><div><font=
- class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">[ 10%] Building =
-CXX object =
-Source/kwsys/CMakeFiles/cmsys.dir/CommandLineArguments.cxx.o</font></div><=
-div><font class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">Linking =
-C static library libcmbzip2.a</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">[ 10%] Linking C =
-static library libcmzlib.a</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">Building CXX =
-object =
-Source/kwsys/CMakeFiles/cmsys.dir/Registry.cxx.o</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">[ 10%] Built =
-target cmbzip2</font></div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2">[ 11%] Building CXX object =
-Source/kwsys/CMakeFiles/cmsys.dir/IOStream.cxx.o</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">[ 11%] Building =
-CXX object =
-Source/kwsys/CMakeFiles/cmsys.dir/SystemInformation.cxx.o</font></div><div=
-><font class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">[ 11%] =
-Built target cmzlib</font></div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2">Linking CXX static library =
-libcmsys.a</font></div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2">[ 11%] Built target =
-cmsys</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
-size=3D"2">make: *** [all] Error 2</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">ERROR: oe_runmake =
-failed</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
-size=3D"2">ERROR: Function failed: do_compile (see =
-/tool/yocto/poky/build/tmp/work/x86_64-linux/cmake-native-2.8.5-r2.1/temp/=
-log.do_compile.60499 for further =
-information)</font></div></div><div><br></div><div>Elvis =
-Dowson</div></body></html>=
+> Any help will be appreciated
+> Regards
+>
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
---Apple-Mail=_421CAEE8-0190-4A49-898C-D2DC68A0908D--
+
