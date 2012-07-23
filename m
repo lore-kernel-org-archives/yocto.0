@@ -1,27 +1,28 @@
-Return-Path: <mail@timomueller.eu>
-Received: from h1954115.stratoserver.net (h1954115.stratoserver.net
-	[85.214.246.27])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B9207E0027D
-	for <yocto@yoctoproject.org>; Mon, 23 Jul 2012 08:55:25 -0700 (PDT)
-X-No-Relay: not in my network
-X-No-Relay: not in my network
-X-No-Relay: not in my network
-Received: from [192.168.101.53] (mail.bmw-carit.de [62.245.222.98])
-	by h1954115.stratoserver.net (Postfix) with ESMTPSA id 4E992109893E;
-	Mon, 23 Jul 2012 17:55:22 +0200 (CEST)
-Message-ID: <500D73E4.1050409@timomueller.eu>
-Date: Mon, 23 Jul 2012 17:55:16 +0200
-From: =?ISO-8859-1?Q?Timo_M=FCller?= <mail@timomueller.eu>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:13.0) Gecko/20120605 Thunderbird/13.0
+Return-Path: <dallas.a.clement@gmail.com>
+Received: from mail-vb0-f48.google.com (mail-vb0-f48.google.com
+	[209.85.212.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E2310E0027D
+	for <yocto@yoctoproject.org>; Mon, 23 Jul 2012 09:15:20 -0700 (PDT)
+Received: by vbjk17 with SMTP id k17so6106939vbj.35
+	for <yocto@yoctoproject.org>; Mon, 23 Jul 2012 09:15:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=GzekCtCOKYi645im4t7/TVXUzYma+UJ+fCknqlY66/I=;
+	b=z2ezhr8s1I+W39qKQrWINhr65wkYf2QbPc1EfxZvTBAms3GohMmIZ50WlOnN5WFgVP
+	8Y7UYepZcwI1iDPQE3Ra6+tYMzPENP4RwwGgJ6kk2mDgB/1z/fGBxIUOngjpbuulanUm
+	y9ayXHkDSSdfNvV4qOaK89zdcmoR7cJiwqMzPOH395Fbi5rVxgDnKEc3rYoFWF659ECl
+	OSDYtRGpSA7P1230ztFt0n70qlVuG8Y+6Ii6jEH8bZN6rhaDwtZEjFU2gK4FslAketD8
+	7ADDOg1BCx1sVfR1pKNHSTOGew1ZUH4DU8oE8SASRBHVPmJ/kvcj2czmjOMaE/6NZUE+
+	ZGNQ==
 MIME-Version: 1.0
-To: "Zhang, Jessica" <jessica.zhang@intel.com>
-References: <cover.1342614895.git.timo.mueller@bmw-carit.de>
-	<C6510F6D410BB64A8C15398EDC6B847C46AB9B61@ORSMSX101.amr.corp.intel.com>
-In-Reply-To: <C6510F6D410BB64A8C15398EDC6B847C46AB9B61@ORSMSX101.amr.corp.intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: Re: [RFC 0/8] Integrate yocto documentation into eclipse
+Received: by 10.220.150.138 with SMTP id y10mr12893719vcv.73.1343060119965;
+	Mon, 23 Jul 2012 09:15:19 -0700 (PDT)
+Received: by 10.59.8.136 with HTTP; Mon, 23 Jul 2012 09:15:19 -0700 (PDT)
+Date: Mon, 23 Jul 2012 11:15:19 -0500
+Message-ID: <CAE9DZUTW7NajfX=vgsRY5b7FiLnx6fsYibv01x=WyAVD0xU2BA@mail.gmail.com>
+From: Dallas Clement <dallas.a.clement@gmail.com>
+To: yocto@yoctoproject.org
+Subject: do_rootfs fails, dpkg host dependency
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,112 +34,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 23 Jul 2012 15:55:26 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 23 Jul 2012 16:15:21 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-Hi Jessica,
+do_rootfs is failing when I try to build core-image-minimal on a
+debian squeeze box.  I am surprised it is trying to do something that
+requires root privilege on the host.  Any ideas on how to get past
+this?
 
-Zhang, Jessica wrote, On 22.07.2012 20:26:
-> Hi Timo,
->
-> Overall, I think this is very nice enhancement to Yocto Eclipse
-> plug-in and thanks for the RFC. Couple comments/questions:
- >
- > 1st.  I'd
-> think if we add this feature, it'll probably make sense for the
-> upcoming 1.3 release in the Oct. timeframe.  We just ported our
-> plug-in to Eclipse Juno release.  Can you verify it works for Juno?
-
-I've tested the patches with the current Juno release (origin/master, 
-commit: 4989ec8ba8760bf12def6990e91f3d8881af6e25). The plugin works fine 
-within eclipse Juno as well.
-
->
-> 2nd. We need to figure out the process to generate the content for
-> this doc plug-in since normally the content will be finalized toward
-> the end of a release.  So is there an automated way to generate the
-> content that ScottR (our tech writer) can use to generate the content
-> once he's done his writing.  Or he needs to inform you to create it
-> and send the pull request?
-
-I simply converted the docbook documents to eclipse help using the 
-eclipse stylesheet provided by docbook itself. I could either provide 
-the exact xslt call or generate the documentation as you proposed.
-
-To do this in an automated way the calls could be added directly to the 
-documentation build system, so the eclipse help can be generated along 
-with the rest of the documentation output.
-
-As the CCA-SA hasn't been approved here at my company I'm struggeling to 
-propose patches to the doc build system and integrate the eclipse help 
-generation.
-I would be happy to contribute under the BSD license, if the "Code 
-Submissions" clause (which would be BSD license, 
-http://www.yoctoproject.org/about/terms-service) applies to the build 
-system. I've already asked about this on the mailing list. I messed up 
-with the subject ([yocto] Documentation question: How are the), but 
-until now nobody knew if the "Code Submissions" clause really applies here.
-
->
-> 3rd. We have autobuilder that use our eclipse plug-in headless build
-> to build the plugin and put on the download site for
-> update/installating.  So have you verified the doc plug-in works with
-> our existing headless build?
-
-Yes, I have used the build.sh in the scripts folder to build the archive 
-and the update site and it built without errors (and can also be 
-installed from the generated update site).
-By the way is there any way to specify that the script shall use a local 
-clone of the repository? I've been changing the GIT_URL in the script to 
-actually achieve this.
-
->
-> 4th.  I need to double check with our License expert regarding CCA-SA
-> and EPL and your proposed approach and will work with you pending his
-> comments.
-
-OK. Feedback is very welcome.
-
->
->
-> Thanks, Jessica
->
-> -----Original Message----- From: yocto-bounces@yoctoproject.org
-> [mailto:yocto-bounces@yoctoproject.org] On Behalf Of
-> mail@timomueller.eu Sent: Wednesday, July 18, 2012 6:03 AM To:
-> yocto@yoctoproject.org Cc: Timo Mueller Subject: [yocto] [RFC 0/8]
-> Integrate yocto documentation into eclipse
->
-> From: Timo Mueller <timo.mueller@bmw-carit.de>
->
-> Hi,
->
-> the documentation of the yocto project can currently be viewed online
-> or as a separate pdf. When using the eclipse ide to develop software
-> on base of a yocto sysroot and toolchain it would be convenient to
-> access the relevant parts of the documentation from within the ide.
->
-> In order to achieve this, I've generated eclipse help from yocto's
-> documentation (adt-manual, yocto-project-qs). I have intergrated this
-> documentation in the ide and it can now be accessed through the
-> eclipse help center (Help -> Help Contents). Please let me know what
-> you think about it?
->
-> Yocto's documentation is licensed under the Creative Commons
-> Attribution-Share Alike 2.0 UK: England & Wales (CCA-SA), which is
-> incompatible to the Eclipse Public License 1.0. Thus I've created a
-> standalone feature to simply redistribute the documentation avoiding
-> licensing issues. Do you agree on the way this is structured?
->
-> Cheers, Timo
->
-
-<snip>
-
-Thank you for the feedback,
-Timo
-
-
-
+NOTE: package core-image-minimal-1.0-r0: task do_rootfs: Started
+ERROR: Function failed: do_rootfs (see
+/development/dallasc/yocto/poky/build/tmp/work/qemuarmada_xp-marvell-linux-gnueabi/core-image-minimal-1.0-r0/temp/log.do_rootfs.9196
+for further information)
+ERROR: Logfile of failure stored in:
+/development/dallasc/yocto/poky/build/tmp/work/qemuarmada_xp-marvell-linux-gnueabi/core-image-minimal-1.0-r0/temp/log.do_rootfs.9196
+Log data follows:
+| ERROR: Function failed: do_rootfs (see
+/development/dallasc/yocto/poky/build/tmp/work/qemuarmada_xp-marvell-linux-gnueabi/core-image-minimal-1.0-r0/temp/log.do_rootfs.9196
+for further information)
+| dpkg-scanpackages: info: Wrote 7 entries to output Packages file.
+| dpkg-scanpackages: info: Wrote 1306 entries to output Packages file.
+| dpkg-scanpackages: info: Wrote 21 entries to output Packages file.
+| dpkg-scanpackages: info: Wrote 7 entries to output Packages file.
+| cat: /development/dallasc/yocto/poky/build/tmp/sysroots/x86_64-linux/etc/apt/apt.conf.sample:
+No such file or directory
+| E: Could not open lock file /var/lib/apt/lists/lock - open (13
+Permission denied)
+| E: Unable to lock the list directory
+| E: Could not open lock file /var/lib/dpkg/lock - open (13 Permission denied)
+| E: Unable to lock the administration directory (/var/lib/dpkg/), are you root?
+NOTE: package core-image-minimal-1.0-r0: task do_rootfs: Failed
+ERROR: Task 8 (/home/dallasc/development/yocto/poky/meta/recipes-core/images/core-image-minimal.bb,
+do_rootfs) failed with exit code '1'
 
