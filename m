@@ -1,23 +1,23 @@
 Return-Path: <nitin.a.kamble@intel.com>
 Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 92119E013D4
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 05A8AE013DB
 	for <yocto@yoctoproject.org>; Tue, 24 Jul 2012 03:07:19 -0700 (PDT)
 Received: from azsmga001.ch.intel.com ([10.2.17.19])
 	by azsmga102.ch.intel.com with ESMTP; 24 Jul 2012 03:07:19 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="172433677"
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="172433682"
 Received: from yocto-hm1.jf.intel.com ([10.23.232.32])
 	by azsmga001.ch.intel.com with ESMTP; 24 Jul 2012 03:07:19 -0700
 From: nitin.a.kamble@intel.com
 To: yocto@yoctoproject.org, bruce.ashfield@windriver.com, tom.zanussi@intel.com
-Date: Mon, 23 Jul 2012 03:06:11 -0700
-Message-Id: <118e9c4c78b61e5debac285efa420486c145993b.1343037893.git.nitin.a.kamble@intel.com>
+Date: Mon, 23 Jul 2012 03:06:12 -0700
+Message-Id: <e68290eaee882eb1a333c42486adb6f9b999787d.1343037893.git.nitin.a.kamble@intel.com>
 X-Mailer: git-send-email 1.7.3.4
 In-Reply-To: <c24a8e51027f36cb1c0395ca0c90cbd54b685100.1343037893.git.nitin.a.kamble@intel.com>
 References: <c24a8e51027f36cb1c0395ca0c90cbd54b685100.1343037893.git.nitin.a.kamble@intel.com>
 In-Reply-To: <cover.1343037893.git.nitin.a.kamble@intel.com>
 References: <cover.1343037893.git.nitin.a.kamble@intel.com>
-Subject: [PATCH 2/6] crownbay: customize the xorg.conf for the flat panel on the corwnbay kit
+Subject: [PATCH 3/6] crownbay: update emgd driver version in the README
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,48 +29,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 24 Jul 2012 10:07:19 -0000
+X-List-Received-Date: Tue, 24 Jul 2012 10:07:20 -0000
 
 From: Nitin A Kamble <nitin.a.kamble@intel.com>
 
-The kit has Auo 800x600 LCD screen. Configuring Xorg for it.
-
 Signed-off-by: Nitin A Kamble <nitin.a.kamble@intel.com>
 ---
- .../xserver-xf86-config/crownbay/xorg.conf         |   14 ++++++++++++++
- 1 files changed, 14 insertions(+), 0 deletions(-)
+ meta-crownbay/README |    8 ++++----
+ 1 files changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/meta-crownbay/recipes-graphics/xorg-xserver/xserver-xf86-config/crownbay/xorg.conf b/meta-crownbay/recipes-graphics/xorg-xserver/xserver-xf86-config/crownbay/xorg.conf
-index 662f60f..d71173c 100644
---- a/meta-crownbay/recipes-graphics/xorg-xserver/xserver-xf86-config/crownbay/xorg.conf
-+++ b/meta-crownbay/recipes-graphics/xorg-xserver/xserver-xf86-config/crownbay/xorg.conf
-@@ -4,12 +4,26 @@
- ## DriverVer=
- ##
+diff --git a/meta-crownbay/README b/meta-crownbay/README
+index b56c79a..2521432 100644
+--- a/meta-crownbay/README
++++ b/meta-crownbay/README
+@@ -6,7 +6,7 @@ The Crown Bay platform consists of the Intel Atom Z6xx processor,
+ plus the Intel EG20T Platform Controller Hub (Tunnel Creek + Topcliff).
  
-+# AUO G084SN05 V8 lcd flat panel
-+Section "Monitor"
-+    Identifier     "Monitor0"
-+    VendorName     "Auo"
-+#    HorizSync       33.6 - 48.3
-+#    VertRefresh     60.0 - 60.0
-+    Option         "DPMS"
-+EndSection
-+
- Section "Screen"
-     Identifier    "Screen0"
-     Device        "IntelEMGD-0"
-     Monitor       "Monitor0"
-+
-+    # for the AUO flat screen
-     SubSection    "Display"
-+        Depth      24
-+        Modes      "800x600"
-     EndSubSection
-+
- EndSection
+ It also supports the E6xx embedded on-chip graphics via the Intel
+-Embedded Media and Graphics Driver (EMGD) 1.10 Driver.
++Embedded Media and Graphics Driver (EMGD) 1.14 Driver.
  
- # Primary (First/only) display
+ 
+ Dependencies
+@@ -63,7 +63,7 @@ common metadata shared between BSPs) e.g.:
+ The meta-crownbay layer contains support for two different machine
+ configurations. These configurations are identical except for the fact
+ that the one prefixed with 'crownbay' makes use of the
+-Intel-proprietary EMGD 1.10 graphics driver, while the one prefixed
++Intel-proprietary EMGD 1.14 graphics driver, while the one prefixed
+ with 'crownbay-noemgd' does not.
+ 
+ If you want to enable the layer that supports EMGD graphics add the
+@@ -73,10 +73,10 @@ following to the local.conf file:
+ 
+ The 'crownbay' machine includes the emgd-driver-bin package, which has
+ a proprietary license that must be whitelisted by adding the string
+-"license_emgd-driver-bin_1.10" to the LICENSE_FLAGS_WHITELIST variable
++"license_emgd-driver-bin_1.14" to the LICENSE_FLAGS_WHITELIST variable
+ in your local.conf.  For example:
+ 
+-  LICENSE_FLAGS_WHITELIST = "license_emgd-driver-bin_1.10"
++  LICENSE_FLAGS_WHITELIST = "license_emgd-driver-bin_1.14"
+ 
+ If you want to enable the layer that does not support EMGD graphics
+ add the following to the local.conf file:
 -- 
 1.7.3.4
 
