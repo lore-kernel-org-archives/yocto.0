@@ -1,32 +1,37 @@
-Return-Path: <laurentiu.serban@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 472CDE00283
-	for <yocto@yoctoproject.org>; Tue, 24 Jul 2012 12:26:30 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 24 Jul 2012 12:26:29 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; 
-	d="scan'208,217";a="176940390"
-Received: from irsmsx101.ger.corp.intel.com ([163.33.3.153])
-	by orsmga002.jf.intel.com with ESMTP; 24 Jul 2012 12:26:29 -0700
-Received: from irsmsx104.ger.corp.intel.com (163.33.3.159) by
-	IRSMSX101.ger.corp.intel.com (163.33.3.153) with Microsoft SMTP Server
-	(TLS) id 14.1.355.2; Tue, 24 Jul 2012 20:26:28 +0100
-Received: from irsmsx102.ger.corp.intel.com ([169.254.2.176]) by
-	IRSMSX104.ger.corp.intel.com ([169.254.5.248]) with mapi id
-	14.01.0355.002; Tue, 24 Jul 2012 20:26:27 +0100
-From: "Serban, Laurentiu" <laurentiu.serban@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Yocto weekly bug trend charts -- WW29
-Thread-Index: Ac1p0jgKsqoVucicSnWMehkZLpEZLg==
-Date: Tue, 24 Jul 2012 19:26:27 +0000
-Message-ID: <E16513A01CAAFF40B65178C63CE45EEC19160608@IRSMSX102.ger.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [163.33.239.182]
-MIME-Version: 1.0
-Subject: Yocto weekly bug trend charts -- WW29
+Return-Path: <elvis.dowson@gmail.com>
+Received: from mail-gg0-f176.google.com (mail-gg0-f176.google.com
+	[209.85.161.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C0541E00280
+	for <yocto@yoctoproject.org>; Tue, 24 Jul 2012 12:36:34 -0700 (PDT)
+Received: by ggnk4 with SMTP id k4so8280032ggn.35
+	for <yocto@yoctoproject.org>; Tue, 24 Jul 2012 12:36:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=references:in-reply-to:mime-version:content-transfer-encoding
+	:content-type:message-id:cc:x-mailer:from:subject:date:to;
+	bh=gGE5tn+JU3hjozoIfdAUl3qdpMiw+aKLdhcH/UF206w=;
+	b=xFBu/vJ5BGq3M1HlK0/Lcw84KYflL1hKaSsDAvZ2c4VifxrbqIV/pzaan6z6cIKyur
+	t+tFWRNcANXLsGIVylsb4LAAk3GoGmaE4O1VsMiyxFoXOEhadvwgkDH56GXsnfOelV3a
+	Xaztvnj46s/HtPRfYMd6WEHJOnb4sG4Cqf7VomOnIUGT2eWhDfrBZlruJPSMkXb58H53
+	cyGwLdcFtdpzcWGenHbhcJsXo6n0jXZ2qYdcBQAo6D6RvSebmSKifB+FyYKNTtzi4zRT
+	wuHy25kyzgj4xZ6ZCyUoDyiRRgfvANWjc0g1HyXO0jsH+T0LUe7CTZLkF3LlJnN4VoGc
+	WnvA==
+Received: by 10.66.87.66 with SMTP id v2mr6945066paz.71.1343158593561;
+	Tue, 24 Jul 2012 12:36:33 -0700 (PDT)
+Received: from [192.168.1.120] ([94.205.108.162])
+	by mx.google.com with ESMTPS id hx9sm1660172pbc.68.2012.07.24.12.36.30
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Tue, 24 Jul 2012 12:36:32 -0700 (PDT)
+References: <3E35CC86-5BD8-4B88-99EE-F7C8A5742F50@gmail.com>
+	<CAEsOVNegFwoe+83-n88-XVAEh13cbXaX1dsY4gM9rEeuvgytCg@mail.gmail.com>
+In-Reply-To: <CAEsOVNegFwoe+83-n88-XVAEh13cbXaX1dsY4gM9rEeuvgytCg@mail.gmail.com>
+Mime-Version: 1.0 (1.0)
+Message-Id: <2D733773-9752-489E-BB14-46E2F8025356@gmail.com>
+X-Mailer: iPad Mail (9B206)
+From: Elvis Dowson <elvis.dowson@gmail.com>
+Date: Tue, 24 Jul 2012 23:36:28 +0400
+To: McClintock Matthew-B29882 <B29882@freescale.com>
+Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+Subject: Re: Unable to get login prompt for Xilinx ML507 PowerPC440 target development board
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,121 +43,95 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 24 Jul 2012 19:26:30 -0000
-Content-Language: en-US
+X-List-Received-Date: Tue, 24 Jul 2012 19:36:35 -0000
+Content-Transfer-Encoding: 7bit
 Content-Type: multipart/alternative;
-	boundary="_000_E16513A01CAAFF40B65178C63CE45EEC19160608IRSMSX102gercor_"
+	boundary=Apple-Mail-226019C5-A13A-48C7-A4E8-4559388F4139
 
---_000_E16513A01CAAFF40B65178C63CE45EEC19160608IRSMSX102gercor_
-Content-Type: text/plain; charset="us-ascii"
+--Apple-Mail-226019C5-A13A-48C7-A4E8-4559388F4139
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=us-ascii
 
-Hello,
+Hi,
 
-This is the weekly bug trend updated for ww29. WDD decreased since ww28 (af=
-ter a steep increase against ww27 values). There is also an important decre=
-ase in aging bugs.
+On Jul 24, 2012, at 11:15 PM, McClintock Matthew-B29882 <B29882@freescale.co=
+m> wrote:
 
-https://wiki.yoctoproject.org/wiki/Yocto_Bug_Trend
-
+> On Tue, Jul 24, 2012 at 12:03 PM, Elvis Dowson <elvis.dowson@gmail.com> wr=
+ote:
+>> Hi,
+>>      I have progressed somewhat further with getting Yocto to build a
+>> kernel image and rootfilesystem for the Xilinx ML507 PowerPC440 target
+>> development board.
+>>=20
+>> For some reason, I'm unable to get a login prompt. The serial console dev=
+ice
+>> is ttyUL0. If someone could help me figure out what's going wrong, it wou=
+ld
+>> be great. I have checked /etc/securetty and it does contain an entry for
+>> ttyUL0.
+>=20
+> You don't use /etc/inittab to spawn consoles?
+>=20
+=20
+It is set as follows:
+0:2345:respawn:/sbin/agetty 115200 ttyUL0
 Best regards,
-Laurentiu Serban
-QA Engineer
-Open Source Technology Center
-System Software Division Romania
-Desk: +40 31 8604742
-iNET: 88451042
 
+Elvis=
 
---_000_E16513A01CAAFF40B65178C63CE45EEC19160608IRSMSX102gercor_
-Content-Type: text/html; charset="us-ascii"
+--Apple-Mail-226019C5-A13A-48C7-A4E8-4559388F4139
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=utf-8
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Verdana;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hello,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">This is the weekly bug trend updated for ww29. WDD d=
-ecreased since ww28 (after a steep increase against ww27 values). There is =
-also an important decrease in aging bugs.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_=
-Bug_Trend">https://wiki.yoctoproject.org/wiki/Yocto_Bug_Trend</a><o:p></o:p=
-></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Best regards,<o:p></o:p></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:9.0pt;font-family:&quot;=
-Verdana&quot;,&quot;sans-serif&quot;;color:#244061">Laurentiu Serban<o:p></=
-o:p></span></b></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:&quot;Ver=
-dana&quot;,&quot;sans-serif&quot;;color:#244061">QA Engineer
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:&quot;Ver=
-dana&quot;,&quot;sans-serif&quot;;color:#244061">Open Source Technology Cen=
-ter<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:&quot;Ver=
-dana&quot;,&quot;sans-serif&quot;;color:#1F497D">System Software Division R=
-omania</span><span style=3D"color:#1F497D"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:&quot;Ver=
-dana&quot;,&quot;sans-serif&quot;;color:#244061">Desk: &#43;40 31 8604742</=
-span><b><span style=3D"color:#244061"><o:p></o:p></span></b></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:&quot;Ver=
-dana&quot;,&quot;sans-serif&quot;;color:#244061">iNET: 88451042<o:p></o:p><=
-/span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
+<html><head></head><body bgcolor=3D"#FFFFFF"><div>Hi,</div><div><br></div><d=
+iv>On Jul 24, 2012, at 11:15 PM, McClintock Matthew-B29882 &lt;<a href=3D"ma=
+ilto:B29882@freescale.com">B29882@freescale.com</a>&gt; wrote:<br><br></div>=
+<div></div><blockquote type=3D"cite"><div><span>On Tue, Jul 24, 2012 at 12:0=
+3 PM, Elvis Dowson &lt;<a href=3D"mailto:elvis.dowson@gmail.com">elvis.dowso=
+n@gmail.com</a>&gt; wrote:</span><br><blockquote type=3D"cite"><span>Hi,</sp=
+an><br></blockquote><blockquote type=3D"cite"><span> &nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;I have progressed somewhat further with getting Yocto to build a</spa=
+n><br></blockquote><blockquote type=3D"cite"><span>kernel image and rootfile=
+system for the Xilinx ML507 PowerPC440 target</span><br></blockquote><blockq=
+uote type=3D"cite"><span>development board.</span><br></blockquote><blockquo=
+te type=3D"cite"><span></span><br></blockquote><blockquote type=3D"cite"><sp=
+an>For some reason, I'm unable to get a login prompt. The serial console dev=
+ice</span><br></blockquote><blockquote type=3D"cite"><span>is ttyUL0. If som=
+eone could help me figure out what's going wrong, it would</span><br></block=
+quote><blockquote type=3D"cite"><span>be great. I have checked /etc/securett=
+y and it does contain an entry for</span><br></blockquote><blockquote type=3D=
+"cite"><span>ttyUL0.</span><br></blockquote><span></span><br><span>You don't=
+ use /etc/inittab to spawn consoles?</span><br><br><blockquote type=3D"cite"=
+><span></span></blockquote><blockquote type=3D"cite"><span></span></blockquo=
+te><blockquote type=3D"cite"><span></span></blockquote></div></blockquote>&n=
+bsp;<div>It is set as follows:<br><pre style=3D"padding-top: 1em; padding-ri=
+ght: 1em; padding-bottom: 1em; padding-left: 1em; border-top-width: 1px; bor=
+der-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; bord=
+er-top-style: solid; border-right-style: solid; border-bottom-style: solid; b=
+order-left-style: solid; border-top-color: rgb(187, 204, 221); border-right-=
+color: rgb(187, 204, 221); border-bottom-color: rgb(187, 204, 221); border-l=
+eft-color: rgb(187, 204, 221); background-color: rgb(235, 241, 245); overflo=
+w-x: auto; overflow-y: auto; "><font class=3D"Apple-style-span" face=3D"Helv=
+etica"><span class=3D"Apple-style-span" style=3D"white-space: normal;">0:234=
+5:respawn:/sbin/agetty 115200 ttyUL0</span></font><span class=3D"Apple-style=
+-span" style=3D"color: rgb(34, 34, 34); font-family: monospace; font-size: 1=
+3px; line-height: 1.1em; -webkit-tap-highlight-color: rgba(26, 26, 26, 0.292=
+969); -webkit-composition-fill-color: rgba(175, 192, 227, 0.230469); -webkit=
+-composition-frame-color: rgba(77, 128, 180, 0.230469); ">
+</span></pre><div style=3D"font-family: sans-serif; font-size: 13px; line-he=
+ight: 19px; -webkit-tap-highlight-color: rgba(26, 26, 26, 0.292969); -webkit=
+-composition-fill-color: rgba(175, 192, 227, 0.230469); -webkit-composition-=
+frame-color: rgba(77, 128, 180, 0.230469); ">Best regards,</div><div style=3D=
+"font-family: sans-serif; font-size: 13px; line-height: 19px; -webkit-tap-hi=
+ghlight-color: rgba(26, 26, 26, 0.292969); -webkit-composition-fill-color: r=
+gba(175, 192, 227, 0.230469); -webkit-composition-frame-color: rgba(77, 128,=
+ 180, 0.230469); "><br></div><div style=3D"font-family: sans-serif; font-siz=
+e: 13px; line-height: 19px; -webkit-tap-highlight-color: rgba(26, 26, 26, 0.=
+292969); -webkit-composition-fill-color: rgba(175, 192, 227, 0.230469); -web=
+kit-composition-frame-color: rgba(77, 128, 180, 0.230469); ">Elvis</div></di=
+v></body></html>=
 
---_000_E16513A01CAAFF40B65178C63CE45EEC19160608IRSMSX102gercor_--
+--Apple-Mail-226019C5-A13A-48C7-A4E8-4559388F4139--
