@@ -1,28 +1,31 @@
-Return-Path: <dallas.a.clement@gmail.com>
-Received: from mail-vc0-f176.google.com (mail-vc0-f176.google.com
-	[209.85.220.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 471D2E00280
-	for <yocto@yoctoproject.org>; Tue, 24 Jul 2012 13:48:45 -0700 (PDT)
-Received: by vcbfl11 with SMTP id fl11so7547105vcb.35
-	for <yocto@yoctoproject.org>; Tue, 24 Jul 2012 13:48:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=OQixvYDen5RbUGaeTApVoL8jOo0nv9x/5TRW2kK7x8w=;
-	b=Jr8SNEASyoRRrlbxhCKzOaWbl5X99rz1EYXx/NKjOBv3NJjDt2HZGXNJ1pmQB13hnp
-	KhiXHyG6A7TkXSYwCtxrkjROx6C5aiulQWDgsUKxT2EtPSSiBlvE5qUHnZzq7b0IZSK4
-	WZGxUZh1yl1sWaFPabw3f7m994FO98O1Cj8gIAHQAX5mp5+dmvgRNBaPc4zv1Cyu6cc7
-	DwwSzomEuQCKeMA1CMsws/losfhV3wQxU6w2LyqKMgcSgqRvxjc4h9rXc33rXVkdgrgq
-	NzuPP01d6brJLH7jSbI3ZpXzWTJgfB+0W+z6h8N0eamI32DoTMaif7uvxzVMQ9Q0wzgI
-	k97w==
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B2C5AE00280
+	for <yocto@yoctoproject.org>; Tue, 24 Jul 2012 14:21:58 -0700 (PDT)
+Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
+	([174.115.5.73]:44291 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.77) (envelope-from <rpjday@crashcourse.ca>)
+	id 1StmYH-0002C5-LB
+	for yocto@yoctoproject.org; Tue, 24 Jul 2012 17:21:57 -0400
+Date: Tue, 24 Jul 2012 17:21:54 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.DEB.2.02.1207241719300.4602@oneiric>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
-Received: by 10.52.240.228 with SMTP id wd4mr1411251vdc.95.1343162924633; Tue,
-	24 Jul 2012 13:48:44 -0700 (PDT)
-Received: by 10.59.8.136 with HTTP; Tue, 24 Jul 2012 13:48:44 -0700 (PDT)
-Date: Tue, 24 Jul 2012 15:48:44 -0500
-Message-ID: <CAE9DZUT2PQ4pnzVuJmBfMbQaaHegb+xNN_kCoFpXuesw+fjBHw@mail.gmail.com>
-From: Dallas Clement <dallas.a.clement@gmail.com>
-To: yocto@yoctoproject.org
-Subject: busybox-static how to?
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: does a BSP layer *require* a README file?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,40 +37,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 24 Jul 2012 20:48:45 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Tue, 24 Jul 2012 21:21:58 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-I'm trying to get the core-image-minimal distro to boot in qemu for an
-ARM Cortex A9 system.  It boots the kernel fine, but croaks when it
-tries to run init.
 
-kjournald starting.  Commit interval 5 seconds
-EXT3-fs (sda): using internal journal
-EXT3-fs (sda): recovery complete
-EXT3-fs (sda): mounted filesystem with ordered data mode
-VFS: Mounted root (ext3 filesystem) on device 8:0.
-devtmpfs: mounted
-Freeing init memory: 216K
-Kernel panic - not syncing: Attempted to kill init!
-[<c0015b34>] (unwind_backtrace+0x0/0x100) from [<c04343dc>]
-(dump_stack+0x20/0x24)
-[<c04343dc>] (dump_stack+0x20/0x24) from [<c0434450>] (panic+0x70/0x1a8)
-[<c0434450>] (panic+0x70/0x1a8) from [<c002fbb8>] (do_exit+0x6a0/0x7b8)
-[<c002fbb8>] (do_exit+0x6a0/0x7b8) from [<c002fd28>] (do_group_exit+0x58/0xe0)
-[<c002fd28>] (do_group_exit+0x58/0xe0) from [<c0040d40>]
-(get_signal_to_deliver+0x230/0x61c)
-[<c0040d40>] (get_signal_to_deliver+0x230/0x61c) from [<c001135c>]
-(do_signal+0xa0/0x5b8)
-[<c001135c>] (do_signal+0xa0/0x5b8) from [<c00118e4>]
-(do_notify_resume+0x70/0x7c)
-[<c00118e4>] (do_notify_resume+0x70/0x7c) from [<c000e894>]
-(work_pending+0x24/0x28)
+  currently, the BSP guide seems quite adamant that a BSP layer *must*
+have a top-level README file, but at least a couple of the meta-intel
+sublayers (meta-tlk, meta-n450) have no such file.  so should that
+alleged requirement be, you know, dropped?
 
-I'd like to configure core-image-minimal to use a statically built
-busybox so that I can determine if this is a shared lib problem.
-However, I'm not sure how to do this with yocto.  Unfortunately I'm
-unable to use hob on my system either.  Is there a config file I can
-edit to choose busybox-static for core-image-minimal?
+rday
 
-Thanks
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
