@@ -1,39 +1,32 @@
-Return-Path: <ross.burton@intel.com>
-Received: from fmsmga101.fm.intel.com (mga05.intel.com [192.55.52.89])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0E0B8E00283
-	for <yocto@yoctoproject.org>; Wed, 25 Jul 2012 03:08:42 -0700 (PDT)
-Received: from mail-gh0-f180.google.com ([209.85.160.180])
-	by mga01.intel.com with ESMTP/TLS/RC4-SHA; 25 Jul 2012 03:08:41 -0700
-Received: by ghbz12 with SMTP id z12so464959ghb.25
-	for <yocto@yoctoproject.org>; Wed, 25 Jul 2012 03:08:40 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type:x-gm-message-state;
-	bh=8eghlyS3RynjIfrK4LK6oI8JL5hUQtIGGJ4Kf3N1Has=;
-	b=XtJW5SbQB8TOJ841Jo4+b6Uhz8J2g1AunrvX5GN1LPBUaETgFWb8RDMmUn724a+m5r
-	12G7WhhshRxgcO28zNwHB2j6DQTSNB2V6vT3b3g0ZDoJWxqQKh+M0hn2uN34sAPBa4MT
-	ClmJENwlYRyfJBxgl6N36MRWcBiZmgtTp+gpvwM3UeN9Pn00UMqsDW4DSZh1z1prlnwz
-	Il6Pgzi+wso47X5jcTwX+TWJdElPKqGaOkx/vhD+N247RuqDZ2u61/+WIXSvYXr2515C
-	8op+u1824gPall9JS59o8PitOn0ndGZkiUKTRCb3fWRyXDBOPDfm9Vb/hU46RdkK0Sxb
-	cE9w==
-Received: by 10.43.92.71 with SMTP id bp7mr23482036icc.52.1343210920573; Wed,
-	25 Jul 2012 03:08:40 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.64.70.229 with HTTP; Wed, 25 Jul 2012 03:08:20 -0700 (PDT)
-In-Reply-To: <CANsUPaPE6C7qAmNMNkKMDpU46OHys2xcK2H0z+TigKqYe=GhcA@mail.gmail.com>
-References: <CANsUPaOukMiAGQSZPJQ6ZrpZX4=or2DCesr8bC6hEmQyiZobYA@mail.gmail.com>
-	<CAJTo0LbPVx7GKzk3CcrdG9-tG31E7cr9OHVChpxLi678etuCeQ@mail.gmail.com>
-	<CANsUPaOa11_oTJf46kCa5RjBL=JJehby1y+k5QtmHCAU5xsEbg@mail.gmail.com>
-	<CAJTo0LZFbrD0e5SjBQYu6KnSmG+_K9shWdq1fNBC7tP+TyCQ3g@mail.gmail.com>
-	<CANsUPaPE6C7qAmNMNkKMDpU46OHys2xcK2H0z+TigKqYe=GhcA@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Wed, 25 Jul 2012 11:08:20 +0100
-Message-ID: <CAJTo0LaradKKdy5UGc1qEVKUKgXSZD0R2Lw0h3+gaZxRpGJc2A@mail.gmail.com>
-To: Giovanni Foiani <fnognn@unife.it>
-X-Gm-Message-State: ALoCoQmBliDrmj7NC9a0wPDSdhkVN818bI5V2OAFXVujRBRAbypeNtH9hVDIVM7N7EvBEr9LbBPP
-Cc: yocto@yoctoproject.org
-Subject: Re: Yocto and Google Protocol Buffers
+Return-Path: <gley-yocto@m.gmane.org>
+Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C799BE00280
+	for <yocto@yoctoproject.org>; Wed, 25 Jul 2012 03:30:13 -0700 (PDT)
+Received: from list by plane.gmane.org with local (Exim 4.69)
+	(envelope-from <gley-yocto@m.gmane.org>) id 1Styr5-00026f-J8
+	for yocto@yoctoproject.org; Wed, 25 Jul 2012 12:30:11 +0200
+Received: from 202.80.51.114 ([202.80.51.114])
+	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
+	id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Wed, 25 Jul 2012 12:30:11 +0200
+Received: from sreekanth.nandakumar by 202.80.51.114 with local (Gmexim 0.1
+	(Debian)) id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Wed, 25 Jul 2012 12:30:11 +0200
+X-Injected-Via-Gmane: http://gmane.org/
+To: yocto@yoctoproject.org
+From: Sree <sreekanth.nandakumar@csr.com>
+Date: Wed, 25 Jul 2012 10:20:13 +0000 (UTC)
+Message-ID: <loom.20120725T121305-737@post.gmane.org>
+References: <CAPhrxTpxKd=UutkKUuU1hcE=JN3nObzh0aot9x=B4EBJPr3oYw@mail.gmail.com>
+	<CABcZANm125goVF54Lg4Exy4yaOs8Bevq-sTYcZ1bHy7HViykxA@mail.gmail.com>
+Mime-Version: 1.0
+X-Complaints-To: usenet@dough.gmane.org
+X-Gmane-NNTP-Posting-Host: sea.gmane.org
+User-Agent: Loom/3.14 (http://gmane.org/)
+X-Loom-IP: 202.80.51.114 (Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1;
+	InfoPath.2; .NET CLR 2.0.50727; .NET CLR 3.0.4506.2152;
+	.NET CLR 3.5.30729; .NET4.0C; .NET4.0E; AskTbWBG/5.15.4.23821))
+Subject: Re: Help with configuring Yocto with an external toolchain
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,26 +38,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 25 Jul 2012 10:08:42 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 25 Jul 2012 10:30:14 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
 
-On 25 July 2012 11:04, Giovanni Foiani <fnognn@unife.it> wrote:
-> Can I do this overriding do_configure task? Like this:
->
-> do_configure() {
->     ./configure --with-protoc=/path/to/sysroot/i686-linux/usr/bin/protoc
-> }
->
-> I tried this way but I got a "permission denied" error..
->
-> /bin/bash: line 8: ../-libtool: Permission denied
-> | make[3]: *** [install-libLTLIBRARIES] Error 126
+Chris Larson <clarson@...> writes:
 
-By explicitly calling configure you've thrown away all the special
-options that are required to cross-compile.  Delete  your
-do_configure() block and just set EXTRA_OECONF = "
---with-protoc=protoc" (as the sysroot is in your PATH, and you can't
-predict where sysroot is).
+> 
+> On Tue, May 8, 2012 at 2:39 AM, Radha Krishna Srimanthula
+> <srimanthula.radhakrishna@...> wrote:
+> > I have an armv5tej platform for which I need put in place, a toolchain and 
+a
+> > build system. It is in this regard that I need some help:
+> >
+> > Can Yocto use an external toolchain (we use CodeSourcery)? If so, how do I
+> > configure Yocto to use the external toolchain? I went through the 
+developers
+> > and user manuals of Yocto - am not too sure how to go about doing this. Can
+> > you please help me with this?
+> 
+> TCMODE = "external-csl"
+> EXTERNAL_TOOLCHAIN = "/path/to/sourcery/toolchain"
 
-Ross
+
+Hi
+
+I have added TCMODE?= "external-csl" in local.conf &  EXTERNAL_TOOLCHAIN 
+= "/path/to/sourcery/toolchain"(pre-built tool chain) in tcmode-external-
+csl.inc i get an error when i try to build.
+
+ERROR: Execution of event handler 'csl_version_handler' failed
+Traceback (most recent call last):
+  File "csl_version_handler(e)", line 12, in csl_version_handler
+(e=<bb.event.ConfigParsed object at 0x87807cc>)
+  File "csl-versions.inc", line 4, in csl_get_gdb_version
+(d=<bb.data_smart.DataSmart object at 0x8af1e2c>)
+NameError: global name 'CmdError' is not defined
+
+Can you let me know how to rectify this error
+
+
 
