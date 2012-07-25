@@ -1,35 +1,32 @@
-Return-Path: <scott.m.rifenbark@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 78B65E00655
-	for <yocto@yoctoproject.org>; Wed, 25 Jul 2012 10:16:34 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 25 Jul 2012 10:16:34 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="186049300"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
-	by fmsmga001.fm.intel.com with ESMTP; 25 Jul 2012 10:16:34 -0700
-Received: from orsmsx152.amr.corp.intel.com (10.22.226.39) by
-	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Wed, 25 Jul 2012 10:16:33 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.93]) by
-	ORSMSX152.amr.corp.intel.com ([169.254.8.30]) with mapi id
-	14.01.0355.002; Wed, 25 Jul 2012 10:16:33 -0700
-From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>, Yocto discussion list
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] was there a decision on duplicating existing docs in
-	the poky ref manual?
-Thread-Index: AQHNalu1Pv+RRyhPuEahv8x2hqInhpc6PGPg
-Date: Wed, 25 Jul 2012 17:16:32 +0000
-Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237946A4663E@ORSMSX101.amr.corp.intel.com>
-References: <alpine.DEB.2.02.1207250748240.8073@oneiric>
-In-Reply-To: <alpine.DEB.2.02.1207250748240.8073@oneiric>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
+Return-Path: <andrei@gherzan.ro>
+Received: from mail-yx0-f176.google.com (mail-yx0-f176.google.com
+	[209.85.213.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3343AE00739
+	for <yocto@yoctoproject.org>; Wed, 25 Jul 2012 11:59:04 -0700 (PDT)
+Received: by yenl5 with SMTP id l5so1257582yen.35
+	for <yocto@yoctoproject.org>; Wed, 25 Jul 2012 11:59:03 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:x-originating-ip:from:date:message-id:subject:to
+	:content-type:x-gm-message-state;
+	bh=ryBfBGKhMYQ+XnmdlpbSVuxproPmrMk9dQkHOgA0KOM=;
+	b=J31VzqzwFDMjmip7hPuiTGQmQpHFCgOJ9ihFbWUkJZMEzcQ1ZiX9YexXP4rb9ex2/n
+	7g8W5A1HWxWK9MrBrR8fqgPDEIg/mAqrneNlTv2NYoxqUYp+gc7UbQSuHj6FU6h8rcBF
+	oUFEZdoYIKTlcecp3c7DliG9Q0WinSnrU0H94/k/L63hFQitLznEEDTGULLRc0vsdiAY
+	2UMgATmKfz2w27Kj1mLmAE17BM5c8Cz0JAIdMGWIVz5ogcdES5if32qXwFxwxt0j9mn6
+	4mnCOZbnNabI7WGUEXlcJTlb7TBEpqp0amRCIqfHfaZKEVa1R+UW+kO3zZIk3VIyJpgh
+	RlRw==
+Received: by 10.42.255.68 with SMTP id nh4mr26639360icb.38.1343242743251; Wed,
+	25 Jul 2012 11:59:03 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Re: was there a decision on duplicating existing docs in the poky ref manual?
+Received: by 10.64.139.164 with HTTP; Wed, 25 Jul 2012 11:53:26 -0700 (PDT)
+X-Originating-IP: [79.117.115.156]
+From: Andrei Gherzan <andrei@gherzan.ro>
+Date: Wed, 25 Jul 2012 21:53:26 +0300
+Message-ID: <CAK18fxEgmH_vMXtvXfO5JEVMWizcA5kwf6+WJi7+rPxDNsMAYA@mail.gmail.com>
+To: Yocto Project <yocto@yoctoproject.org>
+X-Gm-Message-State: ALoCoQm3TgF4/4uAV6bztGZSysZ3gGdxITwRqoBkujtQiwQo3W4GBWPSPBltjRdhkmYyoHkKqJtK
+Subject: Fail to rm a 4G file...
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,53 +38,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 25 Jul 2012 17:16:34 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Wed, 25 Jul 2012 18:59:04 -0000
+Content-Type: multipart/alternative; boundary=bcaec50148c18f017f04c5ac12a2
+
+--bcaec50148c18f017f04c5ac12a2
+Content-Type: text/plain; charset=ISO-8859-1
+
+Anybody faced this error before and can save me from searching the roots of
+the problem?
+
+| 53135360 bytes (53 MB) copied, 1.21693 s, 43.7 MB/s
+| rm: cannot remove `<img-name>.sdimg': Value too large for defined data
+type
+| ERROR: Function failed: do_rootfs
+
+P.S. Using yocto master + rpi layer.
+
+Thank you,
+
+ag
+
+--bcaec50148c18f017f04c5ac12a2
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-I am going to remove the BSP chapter (guide) from the YP Reference Manual. =
- Recent discussions have resulted in a decision to create a "super-manual" =
-that will be one HTML file that contains all separate YP docs.  This will b=
-e created automatically and should not result in double-maintaining any doc=
-umentation.  Various links will need to be programmatically altered from th=
-eir individual manual states.  So, since we will be providing a single manu=
-al (in addition to the individual manuals) with all individual docs inside =
-it, wondering whether to include the BSP Guide in the YP Reference Guide is=
- moot.
+<div>Anybody faced this error before and can save me from=A0searching=A0the=
+ roots of the problem?</div><div><br></div><div>| 53135360 bytes (53 MB) co=
+pied, 1.21693 s, 43.7 MB/s</div><div>| rm: cannot remove `&lt;img-name&gt;.=
+sdimg&#39;: Value too large for defined data type</div>
 
-Scott
+<div>| ERROR: Function failed: do_rootfs</div><div><br></div><div>P.S. Usin=
+g yocto master + rpi layer.</div><div><br></div><div>Thank you,</div><div><=
+br></div><div>ag</div>
 
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Robert P. J. Day
-Sent: Wednesday, July 25, 2012 4:50 AM
-To: Yocto discussion list
-Subject: [yocto] was there a decision on duplicating existing docs in the p=
-oky ref manual?
-
-
-  at the moment, there's an independent BSP guide, which is also
-"xi:include"d from the poky reference manual.  is there still a reason
-for that?
-
-rday
-
---=20
-
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
-
+--bcaec50148c18f017f04c5ac12a2--
