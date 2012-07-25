@@ -1,34 +1,31 @@
-Return-Path: <cristian.iorga@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0CFBFE00280
-	for <yocto@yoctoproject.org>; Tue, 24 Jul 2012 23:25:25 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 24 Jul 2012 23:25:25 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="126614950"
-Received: from irsmsx101.ger.corp.intel.com ([163.33.3.153])
-	by AZSMGA002.ch.intel.com with ESMTP; 24 Jul 2012 23:25:24 -0700
-Received: from irsmsx151.ger.corp.intel.com (163.33.192.59) by
-	IRSMSX101.ger.corp.intel.com (163.33.3.153) with Microsoft SMTP Server
-	(TLS) id 14.1.355.2; Wed, 25 Jul 2012 07:25:23 +0100
-Received: from irsmsx102.ger.corp.intel.com ([169.254.2.176]) by
-	IRSMSX151.ger.corp.intel.com ([169.254.4.108]) with mapi id
-	14.01.0355.002; Wed, 25 Jul 2012 07:25:23 +0100
-From: "Iorga, Cristian" <cristian.iorga@intel.com>
-To: Dallas Clement <dallas.a.clement@gmail.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] hob issues
-Thread-Index: AQHNadyDOOz/1K/fBUeTBuxHcusn/pc5iGUQ
-Date: Wed, 25 Jul 2012 06:25:22 +0000
-Message-ID: <969F26A8BAB325438E7EB80D3C3134FB16174C3D@IRSMSX102.ger.corp.intel.com>
-References: <CAE9DZURnyoa3MxRnq=ByFdcwjTyfGg1CRGW8r=kPTzYXfxTjaw@mail.gmail.com>
-In-Reply-To: <CAE9DZURnyoa3MxRnq=ByFdcwjTyfGg1CRGW8r=kPTzYXfxTjaw@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [163.33.239.181]
-MIME-Version: 1.0
-Subject: Re: hob issues
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-gg0-f176.google.com (mail-gg0-f176.google.com
+	[209.85.161.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 02C15E00280
+	for <yocto@yoctoproject.org>; Wed, 25 Jul 2012 00:31:31 -0700 (PDT)
+Received: by ggnk4 with SMTP id k4so426537ggn.35
+	for <yocto@yoctoproject.org>; Wed, 25 Jul 2012 00:31:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:cc:subject:date:message-id:x-mailer;
+	bh=QWcl3ThtDVUfp7+Bea3eqGRAS7TTMOJvBUGlGV8YXi4=;
+	b=QfKwcNBHutKZqys5IxYcCbjN2W/KXovehlpa46CwWulkHXIjkIKC639tnA3VfOQTs4
+	h3bzQZ28/1l3sz73cEc6qZlhcnrF21oF4oYDHKD4kKzuUjDnBc5aIeUyJFk325Gq6swd
+	lHwv+zMiCVkROxVVkwJ4D60j0z/u/2CfLS4wcV6Z6O1pyB5SjnkVpfz+qUWUVCruMXCj
+	gpb6vFSNsiJTszllwGZB2U9EwNlzKlTRrSrs+g1KADA9aYq0DDMZUdLlCkGafDxfuK9P
+	bXRsBDWBgCUSkSQOv5niJoduuXxPXuOq7NjlIJjsYq4HQ2Cu/MUhdutnBr9IlFrpBtOW
+	zy4Q==
+Received: by 10.66.87.2 with SMTP id t2mr10654720paz.22.1343201490697;
+	Wed, 25 Jul 2012 00:31:30 -0700 (PDT)
+Received: from kraj-lnx.juniper.net (natint3.juniper.net. [66.129.224.36])
+	by mx.google.com with ESMTPS id
+	op10sm13829557pbc.75.2012.07.25.00.31.28
+	(version=SSLv3 cipher=OTHER); Wed, 25 Jul 2012 00:31:29 -0700 (PDT)
+From: Khem Raj <raj.khem@gmail.com>
+To: yocto@yoctoproject.org
+Date: Wed, 25 Jul 2012 00:31:18 -0700
+Message-Id: <1343201478-14259-1-git-send-email-raj.khem@gmail.com>
+X-Mailer: git-send-email 1.7.9.5
+Subject: [meta-intel][PATCH] gnu-efi_3.0m.bb: Fix tabs with spaces in python snippet
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,40 +37,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 25 Jul 2012 06:25:26 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 25 Jul 2012 07:31:32 -0000
 
-Hello Dallas,
+This shuts up new bitbake otherwise it warns about this
+always
 
-After installing libcanberra-gtk3-0, hob still gives the same error message=
- while starting? (i.e. Gtk-Message: Failed to load module "canberra-gtk-mod=
-ule")
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
+---
+ common/recipes-bsp/gnu-efi/gnu-efi_3.0m.bb |   10 +++++-----
+ 1 files changed, 5 insertions(+), 5 deletions(-)
 
-Regards,
-Cristian
+diff --git a/common/recipes-bsp/gnu-efi/gnu-efi_3.0m.bb b/common/recipes-bsp/gnu-efi/gnu-efi_3.0m.bb
+index 252d49a..a0d5823 100644
+--- a/common/recipes-bsp/gnu-efi/gnu-efi_3.0m.bb
++++ b/common/recipes-bsp/gnu-efi/gnu-efi_3.0m.bb
+@@ -17,11 +17,11 @@ SRC_URI[md5sum] = "d0a21125aee56c0c7291ad260e916cb3"
+ S = "${WORKDIR}/gnu-efi-3.0"
+ 
+ def gnu_efi_arch(d):
+-	import re
+-	tarch = d.getVar("TARGET_ARCH", True)
+-	if re.match("i[3456789]86", tarch):
+-		return "ia32"
+-	return tarch
++    import re
++    tarch = d.getVar("TARGET_ARCH", True)
++    if re.match("i[3456789]86", tarch):
++        return "ia32"
++    return tarch
+ 
+ EXTRA_OEMAKE = "'ARCH=${@gnu_efi_arch(d)}' 'CC=${CC}' 'AS=${AS}' 'LD=${LD}' 'AR=${AR}' \
+                 'RANLIB=${RANLIB}' 'OBJCOPY=${OBJCOPY}' \
+-- 
+1.7.5.4
 
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Dallas Clement
-Sent: Tuesday, July 24, 2012 11:39 PM
-To: yocto@yoctoproject.org
-Subject: [yocto] hob issues
-
-I've having some difficulty running hob on Debian "wheezy/sid".  When I ent=
-er "hob" from the command line, an X-window opens, but none of the controls=
- have any text labels.  Also, none of the drop-down lists are populated.
-
-I also see this message on the command prompt:
-
-Gtk-Message: Failed to load module "canberra-gtk-module"
-
-I installed libcanberra-gtk3-0, which didn't make any difference.
-
-Is there anything else I should try?
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
 
