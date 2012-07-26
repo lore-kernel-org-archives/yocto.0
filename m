@@ -1,24 +1,24 @@
 Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7D167E002A8
-	for <yocto@yoctoproject.org>; Thu, 26 Jul 2012 08:05:00 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 26 Jul 2012 08:04:58 -0700
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EEBE7E002A8
+	for <yocto@yoctoproject.org>; Thu, 26 Jul 2012 08:29:43 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 26 Jul 2012 08:29:36 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="186839453"
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="173521571"
 Received: from unknown (HELO helios.localnet) ([10.252.121.37])
-	by fmsmga001.fm.intel.com with ESMTP; 26 Jul 2012 08:04:58 -0700
+	by azsmga001.ch.intel.com with ESMTP; 26 Jul 2012 08:29:35 -0700
 From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Edward Vidal <vidal.develone@gmail.com>
-Date: Thu, 26 Jul 2012 16:04:57 +0100
-Message-ID: <5419222.ETlGt6EkV3@helios>
+To: Kevin Strasser <kevin.strasser@linux.intel.com>
+Date: Thu, 26 Jul 2012 16:29:34 +0100
+Message-ID: <1667209.y2xKaOcnIW@helios>
 Organization: Intel Corporation
 User-Agent: KMail/4.8.4 (Linux/3.2.0-27-generic-pae; KDE/4.8.4; i686; ; )
-In-Reply-To: <CANwz6nwrd79VHuA93vO8DiC83K8eT9W2Y8DWAeGffonHnJ_o8w@mail.gmail.com>
-References: <CANwz6nwrd79VHuA93vO8DiC83K8eT9W2Y8DWAeGffonHnJ_o8w@mail.gmail.com>
+In-Reply-To: <1343254783-2974-1-git-send-email-kevin.strasser@linux.intel.com>
+References: <1343254783-2974-1-git-send-email-kevin.strasser@linux.intel.com>
 MIME-Version: 1.0
 Cc: yocto@yoctoproject.org
-Subject: Re: beagleboard core-image-sato boots to serial port poky 1.3_M2
+Subject: Re: [meta-baryon][PATCH] webmin: fixed nfs exports configuration
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,39 +30,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 26 Jul 2012 15:05:00 -0000
+X-List-Received-Date: Thu, 26 Jul 2012 15:29:44 -0000
 Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
 
-On Thursday 26 July 2012 08:52:55 Edward Vidal wrote:
-> I added the line below to uEnv.txt based on Yi Zhao message.
-> bootcmd="mmc rescan 0; fatload mmc 0:1 0x80300000 uImage; bootm 0x80300000"
-> Now uEnv.txt is the following
-> mpurate=auto
+On Wednesday 25 July 2012 15:19:43 Kevin Strasser wrote:
+> No longer attempting to kill any rpc.nfsd processes. Also, fixed a
+> reference to the nfsserver init script.
 > 
-> bootcmd="mmc rescan 0; fatload mmc 0:1 0x80300000 uImage; bootm 0x80300000"
-> dvimode="hd720 omapfb.vram=0:8M,1:4M,2:4M"
-> vram=16M
-> optargs="consoleblank=0"
-> console="tty0 console=ttyO2,115200n8"
-> The system boots and with the network setup i can ssh into the beagleboard.
-> checking dmesg I see the following.
+> Signed-off-by: Kevin Strasser <kevin.strasser@linux.intel.com>
+> ---
+>  recipes-extended/webmin/webmin_1.570.bb |    5 +++--
+>  1 file changed, 3 insertions(+), 2 deletions(-)
 > 
-> Unable to get DVI reset GPIO
->  omap-mcbsp.2: alias fck already exists
->  omap-mcbsp.3: alias fck already exists
-> OMAP DMA hardware revision 5.0
+> diff --git a/recipes-extended/webmin/webmin_1.570.bb
+> b/recipes-extended/webmin/webmin_1.570.bb index d787324..c30b050 100644
+> --- a/recipes-extended/webmin/webmin_1.570.bb
+> +++ b/recipes-extended/webmin/webmin_1.570.bb
+> @@ -9,7 +9,7 @@ RDEPENDS_${PN} += "perl-module-warnings
+> perl-module-warnings-register perl-modul RDEPENDS_${PN} +=
+> "perl-module-fcntl perl-module-tie-hash perl-module-vars
+> perl-module-time-local perl-module-config perl-module-constant"
+> RDEPENDS_${PN} += "perl-module-file perl-module-file-glob
+> perl-module-file-copy perl-module-sdbm perl-module-sdbm-file
+> perl-module-timelocal perl-module-feature"
 > 
-> I tried id:3:initdefault still no display on beagleboard display.
-> Thanks any help will be appreciated :
+> -PR = "r9"
+> +PR = "r10"
+> 
+>  SRC_URI = "${SOURCEFORGE_MIRROR}/webadmin/webmin-${PV}.tar.gz \
+>            file://setup.sh \
+> @@ -50,7 +50,8 @@ do_configure() {
+>      echo "excludefs=devpts,devtmpfs,usbdevfs,proc,tmpfs,sysfs" >>
+> mount/config-generic-linux
+> 
+>      mv exports/config-debian-linux exports/config-generic-linux
+> -    sed -i "s/netstd_nfs/nfsserver/" exports/config-generic-linux
+> +    sed -i "s/killall -HUP rpc.nfsd && //" exports/config-generic-linux
+> +    sed -i "s/netstd_nfs/nfsserver/g" exports/config-generic-linux
+> 
+>      # Fix insane naming that causes problems at packaging time (must be
+> done before deleting below) find . -name "*\**" | while read from
 
-Edward, 
+Merged to meta-baryon master, thanks.
 
-Unfortunately I can't help much with your problem at this point, sorry about 
-that - but could I ask you to keep this discussion as part of a single thread? 
-It would make the discussion easier to follow.
-
-Thanks,
+Cheers,
 Paul
 
 -- 
