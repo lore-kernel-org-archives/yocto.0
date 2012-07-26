@@ -1,23 +1,30 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 668A4E002A8
-	for <yocto@yoctoproject.org>; Thu, 26 Jul 2012 11:45:34 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id q6QIjX9e022391
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 26 Jul 2012 11:45:33 -0700 (PDT)
-Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.1.255.0;
-	Thu, 26 Jul 2012 11:45:32 -0700
-Message-ID: <50119037.4000406@windriver.com>
-Date: Thu, 26 Jul 2012 14:45:11 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:12.0) Gecko/20120430 Thunderbird/12.0.1
-MIME-Version: 1.0
-To: "Saxena, Rahul" <rahul.saxena@intel.com>
+Return-Path: <rahul.saxena@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A24A4E002A8
+	for <yocto@yoctoproject.org>; Thu, 26 Jul 2012 11:59:00 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga102.fm.intel.com with ESMTP; 26 Jul 2012 11:59:00 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="186995390"
+Received: from fmsmsx106.amr.corp.intel.com ([10.19.9.37])
+	by fmsmga001.fm.intel.com with ESMTP; 26 Jul 2012 11:59:00 -0700
+Received: from fmsmsx151.amr.corp.intel.com ([169.254.6.160]) by
+	FMSMSX106.amr.corp.intel.com ([169.254.6.114]) with mapi id
+	14.01.0355.002; Thu, 26 Jul 2012 11:59:00 -0700
+From: "Saxena, Rahul" <rahul.saxena@intel.com>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
+Thread-Topic: [yocto] ERROR: QA Issue: Architecture did not match (62 to 3)
+Thread-Index: AQHNa17h2u/xezPCBkuBvGQtbIQdiZc75yYA
+Date: Thu, 26 Jul 2012 18:58:59 +0000
+Message-ID: <63ECFF2A2302B44093D7CE9E9962C490032EE91A@FMSMSX151.amr.corp.intel.com>
 References: <63ECFF2A2302B44093D7CE9E9962C490032EE8F0@FMSMSX151.amr.corp.intel.com>
-In-Reply-To: <63ECFF2A2302B44093D7CE9E9962C490032EE8F0@FMSMSX151.amr.corp.intel.com>
+	<50119037.4000406@windriver.com>
+In-Reply-To: <50119037.4000406@windriver.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.138]
+MIME-Version: 1.0
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: ERROR: QA Issue: Architecture did not match (62 to 3)
 X-BeenThere: yocto@yoctoproject.org
@@ -31,15 +38,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 26 Jul 2012 18:45:34 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 26 Jul 2012 18:59:00 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+Hmm OK..but not sure what I did wrong.=20
+
+I  just started a new BSP (meta-rangley) by copying over meta-sugarbay (thi=
+s is a 64-bit bsp) to new=20
+layer meta-rangley, renamed all files and variables etc from "sugarbay" to =
+"rangley".=20
+Created  new machine standard/common-pc-64 branch in my local clone  of lin=
+ux-yocto-3.4 and also new meta branch in it.
+
+In short I have just copied over all sugarbay stuff to start a new rangley =
+bsp without making any real changes yet.
+So it seems surprising to get this error message.
+
+
+Rahul
+
+-----Original Message-----
+From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]=20
+Sent: Thursday, July 26, 2012 11:45 AM
+To: Saxena, Rahul
+Cc: yocto@yoctoproject.org
+Subject: Re: [yocto] ERROR: QA Issue: Architecture did not match (62 to 3)
 
 On 12-07-26 02:37 PM, Saxena, Rahul wrote:
 > I get the following error:
 >
-> ERROR: QA Issue: Architecture did not match (62 to 3) on
-> /work/rangeley-poky-linux/linux-yocto-3.4.4+git1+a8cf77018b0faa0d29f1483ff4e5a2034dc8edd5_1+6297e4c1d57e1063bfce297c2e12392348598559-r4.0/packages-split/kernel-vmlinux/boot/vmlinux-3.4.4-yocto-standard
+> ERROR: QA Issue: Architecture did not match (62 to 3) on=20
+> /work/rangeley-poky-linux/linux-yocto-3.4.4+git1+a8cf77018b0faa0d29f14
+> 83ff4e5a2034dc8edd5_1+6297e4c1d57e1063bfce297c2e12392348598559-r4.0/pa
+> ckages-split/kernel-vmlinux/boot/vmlinux-3.4.4-yocto-standard
 >
 > What does it mean ?
 
@@ -71,7 +104,9 @@ Bruce
 > DEBUG: Python function fixup_perms finished
 > DEBUG: Executing python function populate_packages
 > ERROR: could not open directory
-> /home/rsaxena/YoctoWork2/rangeley1/tmp/work/rangeley-poky-linux/linux-yocto-3.4.4+git1+a8cf77018b0faa0d29f1483ff4e5a2034dc8edd5_1+6297e4c1d57e1063bfce297c2e12392348598559-r4.0/package/lib/modules/3.4.4-yocto-standard:
+> /home/rsaxena/YoctoWork2/rangeley1/tmp/work/rangeley-poky-linux/linux-yoc=
+to-3.4.4+git1+a8cf77018b0faa0d29f1483ff4e5a2034dc8edd5_1+6297e4c1d57e1063bf=
+ce297c2e12392348598559-r4.0/package/lib/modules/3.4.4-yocto-standard:
 > No such file or directory
 > FATAL: could not search modules: No such file or directory
 > DEBUG: Executing python function package_name_hook
@@ -89,64 +124,84 @@ Bruce
 > DEBUG: Python function populate_packages finished
 > DEBUG: Executing python function package_do_filedeps
 > error: Couldn't exec
-> /home/rsaxena/YoctoWork2/rangeley1/tmp/sysroots/x86_64-linux/usr/lib/rpm/pythoneggs.py:
+> /home/rsaxena/YoctoWork2/rangeley1/tmp/sysroots/x86_64-linux/usr/lib/rpm/=
+pythoneggs.py:
 > No such file or directory
 > error: Couldn't exec
-> /home/rsaxena/YoctoWork2/rangeley1/tmp/sysroots/x86_64-linux/usr/lib/rpm/pythoneggs.py:
+> /home/rsaxena/YoctoWork2/rangeley1/tmp/sysroots/x86_64-linux/usr/lib/rpm/=
+pythoneggs.py:
 > No such file or directory
 > error: Couldn't exec
-> /home/rsaxena/YoctoWork2/rangeley1/tmp/sysroots/x86_64-linux/usr/lib/rpm/pythoneggs.py:
+> /home/rsaxena/YoctoWork2/rangeley1/tmp/sysroots/x86_64-linux/usr/lib/rpm/=
+pythoneggs.py:
 > No such file or directory
 > error: Couldn't exec
-> /home/rsaxena/YoctoWork2/rangeley1/tmp/sysroots/x86_64-linux/usr/lib/rpm/pythoneggs.py:
+> /home/rsaxena/YoctoWork2/rangeley1/tmp/sysroots/x86_64-linux/usr/lib/rpm/=
+pythoneggs.py:
 > No such file or directory
 > error: Couldn't exec
-> /home/rsaxena/YoctoWork2/rangeley1/tmp/sysroots/x86_64-linux/usr/lib/rpm/pythoneggs.py:
+> /home/rsaxena/YoctoWork2/rangeley1/tmp/sysroots/x86_64-linux/usr/lib/rpm/=
+pythoneggs.py:
 > No such file or directory
 > error: Couldn't exec
-> /home/rsaxena/YoctoWork2/rangeley1/tmp/sysroots/x86_64-linux/usr/lib/rpm/pythoneggs.py:
+> /home/rsaxena/YoctoWork2/rangeley1/tmp/sysroots/x86_64-linux/usr/lib/rpm/=
+pythoneggs.py:
 > No such file or directory
 > error: Couldn't exec
-> /home/rsaxena/YoctoWork2/rangeley1/tmp/sysroots/x86_64-linux/usr/lib/rpm/pythoneggs.py:
+> /home/rsaxena/YoctoWork2/rangeley1/tmp/sysroots/x86_64-linux/usr/lib/rpm/=
+pythoneggs.py:
 > No such file or directory
 > error: Couldn't exec
-> /home/rsaxena/YoctoWork2/rangeley1/tmp/sysroots/x86_64-linux/usr/lib/rpm/pythoneggs.py:
+> /home/rsaxena/YoctoWork2/rangeley1/tmp/sysroots/x86_64-linux/usr/lib/rpm/=
+pythoneggs.py:
 > No such file or directory
 > error: Couldn't exec
-> /home/rsaxena/YoctoWork2/rangeley1/tmp/sysroots/x86_64-linux/usr/lib/rpm/pythoneggs.py:
+> /home/rsaxena/YoctoWork2/rangeley1/tmp/sysroots/x86_64-linux/usr/lib/rpm/=
+pythoneggs.py:
 > No such file or directory
 > error: Couldn't exec
-> /home/rsaxena/YoctoWork2/rangeley1/tmp/sysroots/x86_64-linux/usr/lib/rpm/pythoneggs.py:
+> /home/rsaxena/YoctoWork2/rangeley1/tmp/sysroots/x86_64-linux/usr/lib/rpm/=
+pythoneggs.py:
 > No such file or directory
 > error: Couldn't exec
-> /home/rsaxena/YoctoWork2/rangeley1/tmp/sysroots/x86_64-linux/usr/lib/rpm/pythoneggs.py:
+> /home/rsaxena/YoctoWork2/rangeley1/tmp/sysroots/x86_64-linux/usr/lib/rpm/=
+pythoneggs.py:
 > No such file or directory
 > error: Couldn't exec
-> /home/rsaxena/YoctoWork2/rangeley1/tmp/sysroots/x86_64-linux/usr/lib/rpm/pythoneggs.py:
+> /home/rsaxena/YoctoWork2/rangeley1/tmp/sysroots/x86_64-linux/usr/lib/rpm/=
+pythoneggs.py:
 > No such file or directory
 > error: Couldn't exec
-> /home/rsaxena/YoctoWork2/rangeley1/tmp/sysroots/x86_64-linux/usr/lib/rpm/pythoneggs.py:
+> /home/rsaxena/YoctoWork2/rangeley1/tmp/sysroots/x86_64-linux/usr/lib/rpm/=
+pythoneggs.py:
 > No such file or directory
 > error: Couldn't exec
-> /home/rsaxena/YoctoWork2/rangeley1/tmp/sysroots/x86_64-linux/usr/lib/rpm/pythoneggs.py:
+> /home/rsaxena/YoctoWork2/rangeley1/tmp/sysroots/x86_64-linux/usr/lib/rpm/=
+pythoneggs.py:
 > No such file or directory
 > error: Couldn't exec
-> /home/rsaxena/YoctoWork2/rangeley1/tmp/sysroots/x86_64-linux/usr/lib/rpm/pythoneggs.py:
+> /home/rsaxena/YoctoWork2/rangeley1/tmp/sysroots/x86_64-linux/usr/lib/rpm/=
+pythoneggs.py:
 > No such file or directory
 > error: Couldn't exec
-> /home/rsaxena/YoctoWork2/rangeley1/tmp/sysroots/x86_64-linux/usr/lib/rpm/pythoneggs.py:
+> /home/rsaxena/YoctoWork2/rangeley1/tmp/sysroots/x86_64-linux/usr/lib/rpm/=
+pythoneggs.py:
 > No such file or directory
 > error: Couldn't exec
-> /home/rsaxena/YoctoWork2/rangeley1/tmp/sysroots/x86_64-linux/usr/lib/rpm/pythoneggs.py:
+> /home/rsaxena/YoctoWork2/rangeley1/tmp/sysroots/x86_64-linux/usr/lib/rpm/=
+pythoneggs.py:
 > No such file or directory
 > error: Couldn't exec
-> /home/rsaxena/YoctoWork2/rangeley1/tmp/sysroots/x86_64-linux/usr/lib/rpm/pythoneggs.py:
+> /home/rsaxena/YoctoWork2/rangeley1/tmp/sysroots/x86_64-linux/usr/lib/rpm/=
+pythoneggs.py:
 > No such file or directory
 > error: Couldn't exec
-> /home/rsaxena/YoctoWork2/rangeley1/tmp/sysroots/x86_64-linux/usr/lib/rpm/pythoneggs.py:
+> /home/rsaxena/YoctoWork2/rangeley1/tmp/sysroots/x86_64-linux/usr/lib/rpm/=
+pythoneggs.py:
 > No such file or directory
 > error: Couldn't exec
-> /home/rsaxena/YoctoWork2/rangeley1/tmp/sysroots/x86_64-linux/usr/lib/rpm/pythoneggs.py:
+> /home/rsaxena/YoctoWork2/rangeley1/tmp/sysroots/x86_64-linux/usr/lib/rpm/=
+pythoneggs.py:
 > No such file or directory
 > DEBUG: Python function package_do_filedeps finished
 > DEBUG: Executing python function package_do_shlibs
@@ -176,8 +231,10 @@ Bruce
 > NOTE: Checking Package: kernel
 > NOTE: Checking Package: kernel-base
 > NOTE: Checking Package: kernel-vmlinux
-> ERROR: QA Issue: Architecture did not match (62 to 3) on
-> /work/rangeley-poky-linux/linux-yocto-3.4.4+git1+a8cf77018b0faa0d29f1483ff4e5a2034dc8edd5_1+6297e4c1d57e1063bfce297c2e12392348598559-r4.0/packages-split/kernel-vmlinux/boot/vmlinux-3.4.4-yocto-standard
+> ERROR: QA Issue: Architecture did not match (62 to 3) on=20
+> /work/rangeley-poky-linux/linux-yocto-3.4.4+git1+a8cf77018b0faa0d29f14
+> 83ff4e5a2034dc8edd5_1+6297e4c1d57e1063bfce297c2e12392348598559-r4.0/pa
+> ckages-split/kernel-vmlinux/boot/vmlinux-3.4.4-yocto-standard
 > NOTE: Checking Package: kernel-image
 > NOTE: Checking Package: kernel-dev
 > NOTE: Checking Package: kernel-modules
