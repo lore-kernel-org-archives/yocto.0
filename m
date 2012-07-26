@@ -1,28 +1,48 @@
-Return-Path: <vidal.develone@gmail.com>
-Received: from mail-yx0-f176.google.com (mail-yx0-f176.google.com
-	[209.85.213.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1A687E002A8
-	for <yocto@yoctoproject.org>; Thu, 26 Jul 2012 07:52:57 -0700 (PDT)
-Received: by yenl5 with SMTP id l5so2355697yen.35
-	for <yocto@yoctoproject.org>; Thu, 26 Jul 2012 07:52:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=9fITYeRN3KB1uC4D3PiwMW1I+HkHbclRVqOqzFzNW6Q=;
-	b=aUJoE4/4vkxHVXIStn7gpFKstbcY4lErf0bUUHCTX6ReclBv/n+0CAAQ/mrCc96VhW
-	tpMjcvi5RK36uQ+sdBXOz+wEeMr10f9lHg9w10HFfCJBW6127Doan8l8nWWFMkzJeh2p
-	8iJRestrqzZDrhRAIsZ1OTTe+fR36Tn61I8I+Lcpn/RInoXPLlBa3zHBx476wu+DXkwm
-	NzYJbHZPRWnX6NG1qIe5HGIcoc8Y18kfUwLloID3ESJKYfo0GCwT6yGEUgKyGLun1phd
-	LGtItXWKwq/3PFesAgjwJVBXCr0ELUNUvFn7+KWlYJ/hl/7ji3ZrNEK/ixiT0YQXQ2pq
-	BYMg==
+Return-Path: <wd@denx.de>
+Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4520FE002AA
+	for <yocto@yoctoproject.org>; Thu, 26 Jul 2012 07:54:52 -0700 (PDT)
+Received: from frontend1.mail.m-online.net (unknown [192.168.8.180])
+	by mail-out.m-online.net (Postfix) with ESMTP id 3Wjbty5R25z4KK7r;
+	Thu, 26 Jul 2012 16:54:50 +0200 (CEST)
+Received: from localhost (dynscan1.mnet-online.de [192.168.6.68])
+	by mail.m-online.net (Postfix) with ESMTP id 3Wjbty5H2VzbbjV;
+	Thu, 26 Jul 2012 16:54:50 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at mnet-online.de
+Received: from smtp-auth.mnet-online.de ([192.168.8.180])
+	by localhost (dynscan1.mail.m-online.net [192.168.6.68]) (amavisd-new,
+	port 10024)
+	with ESMTP id JG41ftfQI8lH; Thu, 26 Jul 2012 16:54:43 +0200 (CEST)
+X-Auth-Info: sODEstkQbFkTCRUbCqKK5nETcR3eXlFWUaBM1HrA+Fo=
+Received: from diddl.denx.de (host-80-81-18-216.customer.m-online.net
+	[80.81.18.216]) by smtp-auth.mnet-online.de (Postfix) with ESMTPA;
+	Thu, 26 Jul 2012 16:54:43 +0200 (CEST)
+Received: from gemini.denx.de (gemini.denx.de [10.0.0.2])
+	by diddl.denx.de (Postfix) with ESMTP id 554DF1A2104;
+	Thu, 26 Jul 2012 16:54:43 +0200 (CEST)
+Received: from gemini.denx.de (localhost [127.0.0.1])
+	by gemini.denx.de (Postfix) with ESMTP id 142B5203A89;
+	Thu, 26 Jul 2012 16:54:42 +0200 (CEST)
+To: Giovanni Foiani <fnognn@unife.it>
+From: Wolfgang Denk <wd@denx.de>
 MIME-Version: 1.0
-Received: by 10.68.241.41 with SMTP id wf9mr6060656pbc.41.1343314375948; Thu,
-	26 Jul 2012 07:52:55 -0700 (PDT)
-Received: by 10.68.21.167 with HTTP; Thu, 26 Jul 2012 07:52:55 -0700 (PDT)
-Date: Thu, 26 Jul 2012 08:52:55 -0600
-Message-ID: <CANwz6nwrd79VHuA93vO8DiC83K8eT9W2Y8DWAeGffonHnJ_o8w@mail.gmail.com>
-From: Edward Vidal <vidal.develone@gmail.com>
-To: yocto@yoctoproject.org
-Subject: beagleboard core-image-sato boots to serial port poky 1.3_M2
+In-reply-to: <CANsUPaP8K__YAZngRW88ogh8Pk2xfNQfgkj_378oc+8cmFqhJQ@mail.gmail.com>
+References: <CANsUPaP4h2OUz_4McKQ8jmfm_grv_cCGCMfxZQaGMs7ty8Bf1A@mail.gmail.com>
+	<20120628181214.7ACD02026AB@gemini.denx.de>
+	<C6510F6D410BB64A8C15398EDC6B847C46A79CD8@ORSMSX101.amr.corp.intel.com>
+	<CANsUPaNSy0Me580w0odN76bcHvJZ1-gXFdWadhdnpNR3Q_EEtQ@mail.gmail.com>
+	<CAMKF1sqwu1ZsyMyWoY4nfCh0fpWEV+Sw8oORt4iJ+TGAn_mXJw@mail.gmail.com>
+	<CANsUPaOzw1Vqw4iDCf2GWtK8Ji-JY9Dg0EfHcdW6KweLt=Gf9A@mail.gmail.com>
+	<CAMKF1sqrXQ9PGH-S9tttBd3KRvSffwDmxv3dZSWFKuDe9e7UNQ@mail.gmail.com>
+	<CANsUPaNJZpm5AQ4R0O9E2szAvciUYA9hGST7Mb7C9Z4zovhxrQ@mail.gmail.com>
+	<CANsUPaMPqaAv-3XwcJWYuJVo0s5tUF3Zum4wQVESX2oKr=e1Mw@mail.gmail.com>
+	<CANsUPaP8K__YAZngRW88ogh8Pk2xfNQfgkj_378oc+8cmFqhJQ@mail.gmail.com>
+Comments: In-reply-to Giovanni Foiani <fnognn@unife.it>
+	message dated "Thu, 26 Jul 2012 16:48:11 +0200."
+Date: Thu, 26 Jul 2012 16:54:42 +0200
+Message-Id: <20120726145442.142B5203A89@gemini.denx.de>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Yocto and Qt embedded
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,51 +54,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 26 Jul 2012 14:52:57 -0000
-Content-Type: multipart/alternative; boundary=047d7b339c7f33388604c5bcc099
+X-List-Received-Date: Thu, 26 Jul 2012 14:54:52 -0000
+Content-type: text/plain; charset=UTF-8
+Content-transfer-encoding: 8bit
 
---047d7b339c7f33388604c5bcc099
-Content-Type: text/plain; charset=ISO-8859-1
+Dear Giovanni,
 
-hello,
-I added the line below to uEnv.txt based on Yi Zhao message.
-bootcmd="mmc rescan 0; fatload mmc 0:1 0x80300000 uImage; bootm 0x80300000"
-Now uEnv.txt is the following
-mpurate=auto
+In message <CANsUPaP8K__YAZngRW88ogh8Pk2xfNQfgkj_378oc+8cmFqhJQ@mail.gmail.com> you wrote:
+> 
+> I solved adding in my setup-environment script all enviroment variable
+> related to Qt (I used paths generated by meta-toolchain-qte).
+....
+> I still can't configure the environment to run using qt creator...
 
-bootcmd="mmc rescan 0; fatload mmc 0:1 0x80300000 uImage; bootm 0x80300000"
-dvimode="hd720 omapfb.vram=0:8M,1:4M,2:4M"
-vram=16M
-optargs="consoleblank=0"
-console="tty0 console=ttyO2,115200n8"
-The system boots and with the network setup i can ssh into the beagleboard.
-checking dmesg I see the following.
+Did you read this:
 
-Unable to get DVI reset GPIO
- omap-mcbsp.2: alias fck already exists
- omap-mcbsp.3: alias fck already exists
-OMAP DMA hardware revision 5.0
+http://www.denx.de/wiki/view/ELDK-5/FrequentlyAskedQuestionsAndAnswers#How_can_I_use_the_QtEmbedded_tar
 
-I tried id:3:initdefault still no display on beagleboard display.
-Thanks any help will be appreciated :
+Does it help?
 
---047d7b339c7f33388604c5bcc099
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+Best regards,
 
-hello,<br>I added the line below to uEnv.txt based on Yi Zhao message.<br>b=
-ootcmd=3D&quot;mmc rescan 0; fatload mmc 0:1 0x80300000 uImage; bootm 0x803=
-00000&quot;<br>Now uEnv.txt is the following <br>mpurate=3Dauto<br><br>boot=
-cmd=3D&quot;mmc rescan 0; fatload mmc 0:1 0x80300000 uImage; bootm 0x803000=
-00&quot;<br>
-dvimode=3D&quot;hd720 omapfb.vram=3D0:8M,1:4M,2:4M&quot;<br>vram=3D16M<br>o=
-ptargs=3D&quot;consoleblank=3D0&quot;<br>console=3D&quot;tty0 console=3Dtty=
-O2,115200n8&quot;<br>The system boots and with the network setup i can ssh =
-into the beagleboard.<br>
-checking dmesg I see the following.<br><br>Unable to get DVI reset GPIO<br>=
-=A0omap-mcbsp.2: alias fck already exists<br>=A0omap-mcbsp.3: alias fck alr=
-eady exists<br>OMAP DMA hardware revision 5.0<br><br>I tried id:3:initdefau=
-lt still no display on beagleboard display.<br>
-Thanks any help will be appreciated :<br><br>
+Wolfgang Denk
 
---047d7b339c7f33388604c5bcc099--
+-- 
+DENX Software Engineering GmbH,     MD: Wolfgang Denk & Detlev Zundel
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+Phone: (+49)-8142-66989-10 Fax: (+49)-8142-66989-80 Email: wd@denx.de
+If the facts don't fit the theory, change the facts.
+                                                   -- Albert Einstein
+
