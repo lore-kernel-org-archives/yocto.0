@@ -1,30 +1,27 @@
 Return-Path: <rahul.saxena@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7E676E002AA
-	for <yocto@yoctoproject.org>; Thu, 26 Jul 2012 15:49:06 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 26 Jul 2012 15:48:46 -0700
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8ABF0E002AA
+	for <yocto@yoctoproject.org>; Thu, 26 Jul 2012 15:50:25 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 26 Jul 2012 15:50:25 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="171954068"
-Received: from fmsmsx106.amr.corp.intel.com ([10.19.9.37])
-	by orsmga001.jf.intel.com with ESMTP; 26 Jul 2012 15:48:44 -0700
-Received: from fmsmsx101.amr.corp.intel.com (10.19.9.52) by
-	FMSMSX106.amr.corp.intel.com (10.19.9.37) with Microsoft SMTP Server
-	(TLS) id 14.1.355.2; Thu, 26 Jul 2012 15:48:44 -0700
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="187152845"
+Received: from fmsmsx108.amr.corp.intel.com ([10.19.9.228])
+	by fmsmga001.fm.intel.com with ESMTP; 26 Jul 2012 15:50:25 -0700
 Received: from fmsmsx151.amr.corp.intel.com ([169.254.6.160]) by
-	FMSMSX101.amr.corp.intel.com ([169.254.1.136]) with mapi id
-	14.01.0355.002; Thu, 26 Jul 2012 15:48:44 -0700
+	FMSMSX108.amr.corp.intel.com ([169.254.10.138]) with mapi id
+	14.01.0355.002; Thu, 26 Jul 2012 15:50:24 -0700
 From: "Saxena, Rahul" <rahul.saxena@intel.com>
-To: Bruce Ashfield <bruce.ashfield@windriver.com>
+To: "Saxena, Rahul" <rahul.saxena@intel.com>, Bruce Ashfield
+	<bruce.ashfield@windriver.com>
 Thread-Topic: [yocto] ERROR: QA Issue: Architecture did not match (62 to 3)
-Thread-Index: AQHNa17h2u/xezPCBkuBvGQtbIQdiZc75yYAgAB7SgD//8Y94A==
-Date: Thu, 26 Jul 2012 22:48:44 +0000
-Message-ID: <63ECFF2A2302B44093D7CE9E9962C490032EE9AE@FMSMSX151.amr.corp.intel.com>
+Thread-Index: AQHNa17h2u/xezPCBkuBvGQtbIQdiZc75yYAgAB7SgD//8Y94IAAAnZw
+Date: Thu, 26 Jul 2012 22:50:24 +0000
+Message-ID: <63ECFF2A2302B44093D7CE9E9962C490032EE9BE@FMSMSX151.amr.corp.intel.com>
 References: <63ECFF2A2302B44093D7CE9E9962C490032EE8F0@FMSMSX151.amr.corp.intel.com>
 	<50119037.4000406@windriver.com>
 	<63ECFF2A2302B44093D7CE9E9962C490032EE91A@FMSMSX151.amr.corp.intel.com>
-	<50119578.9050702@windriver.com>
-In-Reply-To: <50119578.9050702@windriver.com>
+	<50119578.9050702@windriver.com> 
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
@@ -43,10 +40,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 26 Jul 2012 22:49:06 -0000
+X-List-Received-Date: Thu, 26 Jul 2012 22:50:25 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
+
+Fixing typo..The warning message is actually;
+
+WARNING: Looked at meta/cfg/standard/rangeley/hdw_frags.txt and meta/cfg/st=
+andard/Rangeley/required_frags.txt in
+Directory: meta/cfg/standard/rangeley
+
+-----Original Message-----
+From: Saxena, Rahul=20
+Sent: Thursday, July 26, 2012 3:49 PM
+To: 'Bruce Ashfield'
+Cc: yocto@yoctoproject.org
+Subject: RE: [yocto] ERROR: QA Issue: Architecture did not match (62 to 3)
 
 Hi Bruce,
 
@@ -57,8 +67,8 @@ andard/Rangeley/required_frags.txt in
 Directory: meta/cfg/standard.rangeley
 
 However I do find my kernel configuration .cfg and .scc files to be pulled =
-into the build area in tmp/work/rangeley-poky-linux/
-linux-yocto-3.4.4+git2+cxxx.../linux/meta/cfg/kernel-cache/bsp/rangley dir
+into the build area in tmp/work/rangeley-poky-linux/ linux-yocto-3.4.4+git2=
++cxxx.../linux/meta/cfg/kernel-cache/bsp/rangley dir
 
 Hence I am not sure why exactly is the above WARNING occurring..
 
@@ -67,7 +77,7 @@ Hence I am not sure why exactly is the above WARNING occurring..
 Rahul
 
 -----Original Message-----
-From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]=20
+From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]
 Sent: Thursday, July 26, 2012 12:08 PM
 To: Saxena, Rahul
 Cc: yocto@yoctoproject.org
@@ -111,7 +121,7 @@ Bruce
 >>
 >> ERROR: QA Issue: Architecture did not match (62 to 3) on
 >> /work/rangeley-poky-linux/linux-yocto-3.4.4+git1+a8cf77018b0faa0d29f1
->> 4=20
+>> 4
 >> 83ff4e5a2034dc8edd5_1+6297e4c1d57e1063bfce297c2e12392348598559-r4.0/p
 >> a ckages-split/kernel-vmlinux/boot/vmlinux-3.4.4-yocto-standard
 >>
@@ -274,7 +284,7 @@ fce297c2e12392348598559-r4.0/package/lib/modules/3.4.4-yocto-standard:
 >> NOTE: Checking Package: kernel-vmlinux
 >> ERROR: QA Issue: Architecture did not match (62 to 3) on
 >> /work/rangeley-poky-linux/linux-yocto-3.4.4+git1+a8cf77018b0faa0d29f1
->> 4=20
+>> 4
 >> 83ff4e5a2034dc8edd5_1+6297e4c1d57e1063bfce297c2e12392348598559-r4.0/p
 >> a ckages-split/kernel-vmlinux/boot/vmlinux-3.4.4-yocto-standard
 >> NOTE: Checking Package: kernel-image
