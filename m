@@ -1,31 +1,40 @@
-Return-Path: <fnognn@unife.it>
-Received: from mail-ob0-f176.google.com (mail-ob0-f176.google.com
-	[209.85.214.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A9C51E0027D
-	for <yocto@yoctoproject.org>; Fri, 27 Jul 2012 10:25:10 -0700 (PDT)
-Received: by obbtb18 with SMTP id tb18so5893716obb.35
-	for <yocto@yoctoproject.org>; Fri, 27 Jul 2012 10:25:10 -0700 (PDT)
+Return-Path: <scott.a.garman@intel.com>
+Received: from orsmga101.jf.intel.com (mga06.intel.com [134.134.136.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 84AC6E0027D
+	for <yocto@yoctoproject.org>; Fri, 27 Jul 2012 10:41:56 -0700 (PDT)
+Received: from mail-pb0-f52.google.com ([209.85.160.52])
+	by mga02.intel.com with ESMTP/TLS/RC4-SHA; 27 Jul 2012 10:41:56 -0700
+Received: by pbbro8 with SMTP id ro8so5381615pbb.25
+	for <yocto@yoctoproject.org>; Fri, 27 Jul 2012 10:41:55 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=google.com; s=20120113;
-	h=mime-version:from:date:message-id:subject:to:content-type
+	h=message-id:date:from:user-agent:mime-version:to:subject:references
+	:in-reply-to:content-type:content-transfer-encoding
 	:x-gm-message-state;
-	bh=ZQx6Ptj+pw8Z05AMFRYrMdhIVH4kotqPNnRyJp4y3xM=;
-	b=jmB5jO1PvciTFQye0yYVDCdZktokfk4bAjUvox5SAtxRBeR/NjEOPjOrlXlWlpK3gk
-	l4xUjOSAfGjzoP+4ObmwvmyMFyqELrer+k092W3nQsdhoiEy8S3oEulUL4kehYLvrvnz
-	RjkmOpP8EzG1Qd4PJ/ZZJxLCdF04klfVzxxOtDcx7oZ0l7OzKelLI/c2Vbns2Ml0hynr
-	TGGbN7LqW18XaHzAc1MXMUTSNW58NA02LoIhQCETKYp3tM8Ae7dQ18dnxp7HfCYTBO/O
-	vw6uhp+5w9fRwPbfnVHD9vw7S6qclSAbwlw6qQLSaXV4ZAbFnzpP3967hyDk20xrC24K
-	LMtg==
-Received: by 10.60.3.202 with SMTP id e10mr4550453oee.52.1343409909897; Fri,
-	27 Jul 2012 10:25:09 -0700 (PDT)
+	bh=6Iu83YbmJjChNoIS6CUW/5pKJt+AOHwwWdDEhpsx5SQ=;
+	b=YVMYFActHxJnVkQXG65kRMDEITI2Qkp+/3saHFFgsOBbU/ZeVKs6AwIT1aShv0/Yph
+	IxoKZv3X8n8BpltWiZgWDbzU+oH2hGw/1ohyIHSYQX4Zu+T5UXi1xMDlsgC4kkBcrMgE
+	+mNVwiBToch2XCtwWG8tV7+SKzrx3rrf65rXmTdbPOSt36mwS85A7dZneyq0eID08FgJ
+	KYTaIzvcPHtNvyqaKxuZC6RV++s+ge18HHCb8b61i/pSeoVMYoAHys9RfjsJNqHdHa2R
+	9go1miag6k73YMsKoSkNHCXZbtBB3A0owcRepG/8EIDyCrFiYlfRRpTC6DciF0Q/Fvk4
+	guRA==
+Received: by 10.68.222.163 with SMTP id qn3mr15483772pbc.135.1343410915559;
+	Fri, 27 Jul 2012 10:41:55 -0700 (PDT)
+Received: from [10.1.10.192] (c-50-137-42-92.hsd1.or.comcast.net.
+	[50.137.42.92])
+	by mx.google.com with ESMTPS id ms9sm2291435pbb.43.2012.07.27.10.41.52
+	(version=SSLv3 cipher=OTHER); Fri, 27 Jul 2012 10:41:54 -0700 (PDT)
+Message-ID: <5012D204.9010101@intel.com>
+Date: Fri, 27 Jul 2012 10:38:12 -0700
+From: Scott Garman <scott.a.garman@intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:14.0) Gecko/20120714 Thunderbird/14.0
 MIME-Version: 1.0
-Received: by 10.76.3.141 with HTTP; Fri, 27 Jul 2012 10:24:49 -0700 (PDT)
-From: Giovanni Foiani <fnognn@unife.it>
-Date: Fri, 27 Jul 2012 19:24:49 +0200
-Message-ID: <CANsUPaO-pu_u_m7yR17-vMn=8DSaWp55XdE-njFTBYZkOQxX+A@mail.gmail.com>
 To: yocto@yoctoproject.org
-X-Gm-Message-State: ALoCoQmLLdRgm4EcOEmgGEFKClBBBVfcSJLTIMj2m53NA0eXkXK1K4EaF+ysJ8RWDUdhynyZuvBI
-Subject: Usb-serial device support
+References: <alpine.DEB.2.02.1207271016320.15452@oneiric>
+In-Reply-To: <alpine.DEB.2.02.1207271016320.15452@oneiric>
+X-Gm-Message-State: ALoCoQm56hloPnX61MCEErykjTZunpXmqsdnvBNhvaXOLi8TvYjSUkxzxx3S9m7WNjd/7d9foXq0
+Subject: Re: do QEMU images really come with dropbear and an nfs server?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,116 +46,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 27 Jul 2012 17:25:10 -0000
-Content-Type: multipart/alternative; boundary=e89a8ff1ce4c779af804c5d2fef4
+X-List-Received-Date: Fri, 27 Jul 2012 17:41:56 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
---e89a8ff1ce4c779af804c5d2fef4
-Content-Type: text/plain; charset=ISO-8859-1
+On 07/27/2012 07:18 AM, Robert P. J. Day wrote:
+>
+>    the yocto dev manual currently suggests that QEMU images come with
+> both dropbear and an nfs server:
+>
+> http://www.yoctoproject.org/docs/latest/dev-manual/dev-manual.html#using-pre-built-binaries-and-qemu
+>
+> i don't have a QEMU image in front of me to test, but the definition
+> of the basic QEMU images doesn't seem to suggest that that's true.
+>
+>    i can see it's easy to add them, but the manual suggests they're
+> there by default.  or am i misreading something?
 
-Hi,
+It looks like we may need a manual tweak here.
 
-I built a distribution for iMX53 QSB with kernel 2.6.35-3 and I need
-support for USB-serial devices.
-When I plug the usb-serial converter I get this error..
+core-image-minimal does not come with any ssh server. core-image-lsb 
+should have openssh instead of dropbear. So unless something changed 
+very recently, core-image-sato is the only one that has dropbear in it 
+by default.
 
-*usb wakeup is here
+Also, the manual states "The QEMU images also contain an embedded 
+Network File System (NFS) server that exports the image's root 
+filesystem." This isn't strictly true - instead we offer a native tool 
+which runs a userspace NFS server and if some prep work is done by the 
+user (extracting a rootfs tarball with runqemu-extract-sdk), you can 
+then point the runqemu script to that directory instead of a rootfs 
+image file.
 
-                        *
-*otg host Remote wakeup
+Someone please correct me if I'm wrong.
 
-                                         *
-*usb 1-1: new full speed USB device using fsl-ehci and address 3
+Scott
 
-                                          *
-*usb 1-1: device v067b p2303 is not supported *
+-- 
+Scott Garman
+Embedded Linux Engineer - Yocto Project
+Intel Open Source Technology Center
 
-I tried to recompile linux-imx kernel adding support for USB-serial
-devices, I run:
-
-   - bibake linux-imx -c menuconfig
-   - added support for usb-serial devices in menuconfig
-   - bitbake -f -c compile linux-imx
-   - bitbake linux-imx
-
-..but it didn't work..
-
-Any suggestions?
-
-Thanks
-
-Giovanni
---
-
-Dott. Ing. Giovanni Foiani
-
-Cell:        +39-349-3577515
-Phone:    +39-0532-97-4106
-mail:        giovanni.foiani@unife.it
-CenTec - Corso Guercino, 47 - 44042 Cento (FE)
-
---e89a8ff1ce4c779af804c5d2fef4
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<span style=3D"color:rgb(34,34,34);font-size:13px;font-family:arial,sans-se=
-rif">Hi,</span><div style=3D"color:rgb(34,34,34);font-size:13px;font-family=
-:arial,sans-serif">
-<br></div><div style=3D"color:rgb(34,34,34);font-size:13px;font-family:aria=
-l,sans-serif">I built a distribution for iMX53 QSB with kernel 2.6.35-3 and=
- I need support for USB-serial devices.=A0</div>
-<div style=3D"color:rgb(34,34,34);font-size:13px;font-family:arial,sans-ser=
-if">When I plug the usb-serial converter I get this error..</div><div style=
-=3D"color:rgb(34,34,34);font-size:13px;font-family:arial,sans-serif">
-<br></div><div style=3D"color:rgb(34,34,34);font-size:13px;font-family:aria=
-l,sans-serif"><div><i>usb wakeup is here =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
-=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0=
- =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
-=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0=
- =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0=A0</i></div>
-
-
-
-<div><i>otg host Remote wakeup =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
-=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0=
- =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
-=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0=
- =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0</i=
-></div><div><i>usb 1-1: new full speed USB device using fsl-ehci and addres=
-s 3 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0=
- =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
-=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0=
- =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0=A0</i></div>
-
-
-
-<div><i>usb 1-1: device v067b p2303 is not supported=A0</i></div><div><br><=
-/div><div>I tried to recompile linux-imx kernel adding support for USB-seri=
-al devices, I run:</div><div><ul><li style=3D"margin-left:15px">bibake linu=
-x-imx -c menuconfig</li>
-
-
-
-<li style=3D"margin-left:15px">added support for usb-serial devices in menu=
-config</li><li style=3D"margin-left:15px">bitbake -f -c compile linux-imx</=
-li><li style=3D"margin-left:15px">bitbake linux-imx</li></ul><div>..but it =
-didn&#39;t work..</div>
-
-
-
-</div><div><br></div><div>Any suggestions?</div><div><br></div><div>Thanks<=
-/div><div><br></div><div>Giovanni</div></div>
-<div>--<br><br>Dott. Ing. Giovanni Foiani<br><font face=3D"arial, sans-seri=
-f"><span style=3D"border-collapse:collapse"><br></span></font></div><div>Ce=
-ll:=A0 =A0 =A0 =A0 <a href=3D"tel:%2B39-349-3577515" value=3D"+393493577515=
-" target=3D"_blank">+39-349-3577515</a><br>
-
-
-Phone: =A0=A0 <a href=3D"tel:%2B39-0532-97-4106" value=3D"+390532974106" ta=
-rget=3D"_blank">+39-0532-97-4106</a><br>mail:=A0 =A0 =A0 =A0 <a href=3D"mai=
-lto:giovanni.foiani@unife.it" target=3D"_blank">giovanni.foiani@unife.it</a=
-></div>
-<div><span style=3D"font-family:arial,helvetica,sans-serif;font-size:13px;l=
-ine-height:13px">CenTec - Corso Guercino, 47 - 44042 Cento (FE)</span></div=
-><br>
-
---e89a8ff1ce4c779af804c5d2fef4--
