@@ -1,32 +1,42 @@
-Return-Path: <andrei@gherzan.ro>
-Received: from mail-ob0-f176.google.com (mail-ob0-f176.google.com
-	[209.85.214.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A5E08E0027D
-	for <yocto@yoctoproject.org>; Fri, 27 Jul 2012 11:40:47 -0700 (PDT)
-Received: by obbtb18 with SMTP id tb18so6013156obb.35
-	for <yocto@yoctoproject.org>; Fri, 27 Jul 2012 11:40:47 -0700 (PDT)
+Return-Path: <scott.a.garman@intel.com>
+Received: from fmsmga102.fm.intel.com (mga10.intel.com [192.55.52.92])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3E942E0027D
+	for <yocto@yoctoproject.org>; Fri, 27 Jul 2012 11:41:13 -0700 (PDT)
+Received: from mail-pb0-f52.google.com ([209.85.160.52])
+	by mga11.intel.com with ESMTP/TLS/RC4-SHA; 27 Jul 2012 11:41:12 -0700
+Received: by pbbro8 with SMTP id ro8so5446514pbb.25
+	for <yocto@yoctoproject.org>; Fri, 27 Jul 2012 11:41:12 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=google.com; s=20120113;
-	h=mime-version:x-originating-ip:from:date:message-id:subject:to
-	:content-type:x-gm-message-state;
-	bh=+X0UyKLcAToPd/1Ptheze6Wb7zYv8FnQHOT8I+bNthE=;
-	b=c6Uin3Z+JfRXWHMxdtu0JcwKKFK/FFhWZtkZ6CNvnabvkT/Zm15sVG4HCbSiyr+zSO
-	M6+AH8iOgOJYm3KX/eM250IBEK9sNXRNjCrajoJNdelgrt4yn36UEMAMyrRRDmp9ooB5
-	jyWeTFEuGK/RzokyxmH0BvMoX3pDsSxHligna7nfxau3RihnrRLhJaYk5lE7hPsvMWJh
-	o+MRhHMaSQ3wBDKRmGjFeLDyHd3AbOsMlkEj2AdU5Qk+pfCcW9Aw8mSp+jPEk86tRr9G
-	28+v77szWyY6gMET7DGeeO/jLxriBI/HFBle3dz2JRCeqvsqYRDyni0da55PKvtfL/o8
-	Z6Yw==
-Received: by 10.182.98.108 with SMTP id eh12mr4949803obb.6.1343414447117; Fri,
-	27 Jul 2012 11:40:47 -0700 (PDT)
+	h=message-id:date:from:user-agent:mime-version:to:subject:references
+	:in-reply-to:content-type:content-transfer-encoding
+	:x-gm-message-state;
+	bh=04/QXy1PzAkSXo/35sb6Y3jw6mkRF86rCr3Tr7tlbbA=;
+	b=AF5kTy+wWmG8xtoW9S2aj2npkPbjElAFFUqj05yabOZryQainO/OsVE3u8ey2SbNxb
+	wuQ6o6rwubnw3kcvy0svwf8CSmU+pN7NaqIU9gvxULXKnOP32+PPPRO+JQ8INImDdTWO
+	tpLGdulG2LFRp6phq9omYg3RI85POSwFp43TrGIsStJbPUY9ekroXU2JjlMLnCei2aue
+	nCMSsfWsjhXsFxE+3mdb0OM671tGSgo+qV1DFWSLUOZTLX3hPJwVZ7w6Ra8nRVCmPtzw
+	uH+cUyuKNuwL7BbqGxNJxPBLwvplVlwfjup2Wt2Gl63+7WFnrcQKWmgMplgAbTUS2WYr
+	9w7Q==
+Received: by 10.68.136.233 with SMTP id qd9mr16292951pbb.166.1343414472464;
+	Fri, 27 Jul 2012 11:41:12 -0700 (PDT)
+Received: from [10.1.10.192] (c-50-137-42-92.hsd1.or.comcast.net.
+	[50.137.42.92])
+	by mx.google.com with ESMTPS id oy8sm2370701pbc.52.2012.07.27.11.41.11
+	(version=SSLv3 cipher=OTHER); Fri, 27 Jul 2012 11:41:11 -0700 (PDT)
+Message-ID: <5012E0C6.40200@intel.com>
+Date: Fri, 27 Jul 2012 11:41:10 -0700
+From: Scott Garman <scott.a.garman@intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:14.0) Gecko/20120714 Thunderbird/14.0
 MIME-Version: 1.0
-Received: by 10.76.81.37 with HTTP; Fri, 27 Jul 2012 11:40:26 -0700 (PDT)
-X-Originating-IP: [89.121.200.106]
-From: Andrei Gherzan <andrei@gherzan.ro>
-Date: Fri, 27 Jul 2012 21:40:26 +0300
-Message-ID: <CAK18fxHKL=LDO3rb4pwabnsHH7XRdxfepDh4-_66WWgv8JegsQ@mail.gmail.com>
-To: Yocto Project <yocto@yoctoproject.org>
-X-Gm-Message-State: ALoCoQkYa6i3qrjPR2DjGtlDOd3TmjT7iXT2NYWSQoejLHNSlHisTWz6cEzdYfIE0ssEGe9iXWQQ
-Subject: http://downloads.yoctoproject.org down?
+To: yocto@yoctoproject.org
+References: <alpine.DEB.2.02.1207271016320.15452@oneiric>
+	<5012D204.9010101@intel.com>
+	<alpine.DEB.2.02.1207271402470.18695@oneiric>
+In-Reply-To: <alpine.DEB.2.02.1207271402470.18695@oneiric>
+X-Gm-Message-State: ALoCoQmGIaIKlrLTs0Ya5ppexa1Qhl4uTeK2RafXomTtdfCzcVEOfvSvKut/W3RK/9jCoGrklN/h
+Subject: Re: do QEMU images really come with dropbear and an nfs server?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,33 +48,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 27 Jul 2012 18:40:47 -0000
-Content-Type: multipart/alternative; boundary=14dae93a15cde815cf04c5d40cf1
+X-List-Received-Date: Fri, 27 Jul 2012 18:41:13 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
---14dae93a15cde815cf04c5d40cf1
-Content-Type: text/plain; charset=ISO-8859-1
+On 07/27/2012 11:04 AM, Robert P. J. Day wrote:
+> On Fri, 27 Jul 2012, Scott Garman wrote:
+>
+>> On 07/27/2012 07:18 AM, Robert P. J. Day wrote:
+>>>
+>>>     the yocto dev manual currently suggests that QEMU images come with
+>>> both dropbear and an nfs server:
+>>>
+>>> http://www.yoctoproject.org/docs/latest/dev-manual/dev-manual.html#using-pre-built-binaries-and-qemu
+>>>
+>>> i don't have a QEMU image in front of me to test, but the definition
+>>> of the basic QEMU images doesn't seem to suggest that that's true.
+>>>
+>>>     i can see it's easy to add them, but the manual suggests they're
+>>> there by default.  or am i misreading something?
+>>
+>> It looks like we may need a manual tweak here.
+>>
+>> core-image-minimal does not come with any ssh server. core-image-lsb
+>> should have openssh instead of dropbear. So unless something changed
+>> very recently, core-image-sato is the only one that has dropbear in
+>> it by default.
+>>
+>> Also, the manual states "The QEMU images also contain an embedded
+>> Network File System (NFS) server that exports the image's root
+>> filesystem." This isn't strictly true - instead we offer a native
+>> tool which runs a userspace NFS server and if some prep work is done
+>> by the user (extracting a rootfs tarball with runqemu-extract-sdk),
+>> you can then point the runqemu script to that directory instead of a
+>> rootfs image file.
+>
+>    rather than a simple manual tweak, what about actually adding one or
+> both of those features to even the smaller core images, then updating
+> the docs accordingly?  just a thought.
 
-ERROR: Function failed: Fetcher failure for URL: '
-http://downloads.yoctoproject.org/releases/gnu-config/gnu-config-yocto-20111111.tgz'.
-Unable to fetch URL from any source.
+Well, in the case of core-image-minimal, I don't think we want to add 
+additional bloat.
 
+Also, when I teach classes on how to create custom image recipes, my 
+exercise is typically to take core-image-minimal, and modify it to 
+include an ssh server (dropbear or openssh) and psplash (which gives 
+students a nice visual change to notice when booting the new image). As 
+a fellow instructor, you may find that useful.
 
-*ag*
+Scott
 
---14dae93a15cde815cf04c5d40cf1
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+-- 
+Scott Garman
+Embedded Linux Engineer - Yocto Project
+Intel Open Source Technology Center
 
-ERROR: Function failed: Fetcher failure for URL: &#39;<a href=3D"http://dow=
-nloads.yoctoproject.org/releases/gnu-config/gnu-config-yocto-20111111.tgz">=
-http://downloads.yoctoproject.org/releases/gnu-config/gnu-config-yocto-2011=
-1111.tgz</a>&#39;. Unable to fetch URL from any source.<br clear=3D"all">
-
-<div style=3D"text-align:center"></div><div style=3D"text-align:center"><di=
-v align=3D"left" style=3D"font-family:&#39;Times New Roman&#39;;font-size:m=
-edium"><font face=3D"Arial" color=3D"#333333" size=3D"-1"><br><br><b>ag</b>=
-</font></div>
-
-</div><br>
-
---14dae93a15cde815cf04c5d40cf1--
