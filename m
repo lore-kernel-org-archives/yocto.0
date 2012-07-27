@@ -1,21 +1,31 @@
-Return-Path: <Paul.Gortmaker@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 799D0E0027D
-	for <yocto@yoctoproject.org>; Fri, 27 Jul 2012 10:11:04 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id q6RHB3JM006627
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Fri, 27 Jul 2012 10:11:04 -0700 (PDT)
-Received: from yow-pgortmak-d2.corp.ad.wrs.com (128.224.146.165) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.1.255.0; Fri, 27 Jul 2012 10:11:03 -0700
-From: Paul Gortmaker <paul.gortmaker@windriver.com>
-To: <yocto@yoctoproject.org>
-Date: Fri, 27 Jul 2012 13:10:56 -0400
-Message-ID: <1343409056-6235-1-git-send-email-paul.gortmaker@windriver.com>
-X-Mailer: git-send-email 1.7.11.1
+Return-Path: <fnognn@unife.it>
+Received: from mail-ob0-f176.google.com (mail-ob0-f176.google.com
+	[209.85.214.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A9C51E0027D
+	for <yocto@yoctoproject.org>; Fri, 27 Jul 2012 10:25:10 -0700 (PDT)
+Received: by obbtb18 with SMTP id tb18so5893716obb.35
+	for <yocto@yoctoproject.org>; Fri, 27 Jul 2012 10:25:10 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:from:date:message-id:subject:to:content-type
+	:x-gm-message-state;
+	bh=ZQx6Ptj+pw8Z05AMFRYrMdhIVH4kotqPNnRyJp4y3xM=;
+	b=jmB5jO1PvciTFQye0yYVDCdZktokfk4bAjUvox5SAtxRBeR/NjEOPjOrlXlWlpK3gk
+	l4xUjOSAfGjzoP+4ObmwvmyMFyqELrer+k092W3nQsdhoiEy8S3oEulUL4kehYLvrvnz
+	RjkmOpP8EzG1Qd4PJ/ZZJxLCdF04klfVzxxOtDcx7oZ0l7OzKelLI/c2Vbns2Ml0hynr
+	TGGbN7LqW18XaHzAc1MXMUTSNW58NA02LoIhQCETKYp3tM8Ae7dQ18dnxp7HfCYTBO/O
+	vw6uhp+5w9fRwPbfnVHD9vw7S6qclSAbwlw6qQLSaXV4ZAbFnzpP3967hyDk20xrC24K
+	LMtg==
+Received: by 10.60.3.202 with SMTP id e10mr4550453oee.52.1343409909897; Fri,
+	27 Jul 2012 10:25:09 -0700 (PDT)
 MIME-Version: 1.0
-Subject: [PATCH] routerstationpro: move board off 3.0 and onto the 3.4 kernel
+Received: by 10.76.3.141 with HTTP; Fri, 27 Jul 2012 10:24:49 -0700 (PDT)
+From: Giovanni Foiani <fnognn@unife.it>
+Date: Fri, 27 Jul 2012 19:24:49 +0200
+Message-ID: <CANsUPaO-pu_u_m7yR17-vMn=8DSaWp55XdE-njFTBYZkOQxX+A@mail.gmail.com>
+To: yocto@yoctoproject.org
+X-Gm-Message-State: ALoCoQmLLdRgm4EcOEmgGEFKClBBBVfcSJLTIMj2m53NA0eXkXK1K4EaF+ysJ8RWDUdhynyZuvBI
+Subject: Usb-serial device support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,49 +37,116 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 27 Jul 2012 17:11:04 -0000
-Content-Type: text/plain
+X-List-Received-Date: Fri, 27 Jul 2012 17:25:10 -0000
+Content-Type: multipart/alternative; boundary=e89a8ff1ce4c779af804c5d2fef4
 
-The updated patch series to support this target is in place
-on the BSP specific branch in the 3.4 kernel tree now[1], so
-we can move it ahead off of the old 3.0 kernel.
+--e89a8ff1ce4c779af804c5d2fef4
+Content-Type: text/plain; charset=ISO-8859-1
 
-[1] https://lists.yoctoproject.org/pipermail/linux-yocto/2012-July/000023.html
+Hi,
 
-Signed-off-by: Paul Gortmaker <paul.gortmaker@windriver.com>
+I built a distribution for iMX53 QSB with kernel 2.6.35-3 and I need
+support for USB-serial devices.
+When I plug the usb-serial converter I get this error..
 
-diff --git a/meta-yocto/conf/machine/routerstationpro.conf b/meta-yocto/conf/machine/routerstationpro.conf
-index 3c2f56f..adf36a9 100644
---- a/meta-yocto/conf/machine/routerstationpro.conf
-+++ b/meta-yocto/conf/machine/routerstationpro.conf
-@@ -10,7 +10,7 @@ KERNEL_IMAGETYPE = "vmlinux"
- KERNEL_ALT_IMAGETYPE = "vmlinux.bin"
- 
- PREFERRED_PROVIDER_virtual/kernel ?= "linux-yocto"
--PREFERRED_VERSION_linux-yocto ?= "3.0%"
-+PREFERRED_VERSION_linux-yocto ?= "3.4%"
- PREFERRED_PROVIDER_virtual/xserver = "xserver-kdrive"
- XSERVER = "xserver-kdrive-fbdev"
- 
-diff --git a/meta-yocto/recipes-kernel/linux/linux-yocto_3.4.bbappend b/meta-yocto/recipes-kernel/linux/linux-yocto_3.4.bbappend
-index 2ff467b..1c8d26a 100644
---- a/meta-yocto/recipes-kernel/linux/linux-yocto_3.4.bbappend
-+++ b/meta-yocto/recipes-kernel/linux/linux-yocto_3.4.bbappend
-@@ -4,11 +4,11 @@ KBRANCH_mpc8315e-rdb = "standard/fsl-mpc8315e-rdb"
- KBRANCH_beagleboard = "standard/beagleboard"
- 
- SRCREV_machine_atom-pc ?= "a8291fa6f723b0182d2b7033b5d59f412ba7cf72"
--SRCREV_machine_routerstationpro ?= "a8291fa6f723b0182d2b7033b5d59f412ba7cf72"
-+SRCREV_machine_routerstationpro ?= "27019633ccdaa88dc55101615d936d1d74db9a1e"
- SRCREV_machine_mpc8315e-rdb ?= "47d3076aa7e2a640a1dab8d663529a784709f697"
- SRCREV_machine_beagleboard ?= "a8291fa6f723b0182d2b7033b5d59f412ba7cf72"
- 
- COMPATIBLE_MACHINE_mpc8315e-rdb = "mpc8315e-rdb"
--# COMPATIBLE_MACHINE_routerstationpro = "routerstationpro"
-+COMPATIBLE_MACHINE_routerstationpro = "routerstationpro"
- # COMPATIBLE_MACHINE_beagleboard = "beagleboard"
- COMPATIBLE_MACHINE_atom-pc = "atom-pc"
--- 
-1.7.11.1
+*usb wakeup is here
+
+                        *
+*otg host Remote wakeup
+
+                                         *
+*usb 1-1: new full speed USB device using fsl-ehci and address 3
+
+                                          *
+*usb 1-1: device v067b p2303 is not supported *
+
+I tried to recompile linux-imx kernel adding support for USB-serial
+devices, I run:
+
+   - bibake linux-imx -c menuconfig
+   - added support for usb-serial devices in menuconfig
+   - bitbake -f -c compile linux-imx
+   - bitbake linux-imx
+
+..but it didn't work..
+
+Any suggestions?
+
+Thanks
+
+Giovanni
+--
+
+Dott. Ing. Giovanni Foiani
+
+Cell:        +39-349-3577515
+Phone:    +39-0532-97-4106
+mail:        giovanni.foiani@unife.it
+CenTec - Corso Guercino, 47 - 44042 Cento (FE)
+
+--e89a8ff1ce4c779af804c5d2fef4
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<span style=3D"color:rgb(34,34,34);font-size:13px;font-family:arial,sans-se=
+rif">Hi,</span><div style=3D"color:rgb(34,34,34);font-size:13px;font-family=
+:arial,sans-serif">
+<br></div><div style=3D"color:rgb(34,34,34);font-size:13px;font-family:aria=
+l,sans-serif">I built a distribution for iMX53 QSB with kernel 2.6.35-3 and=
+ I need support for USB-serial devices.=A0</div>
+<div style=3D"color:rgb(34,34,34);font-size:13px;font-family:arial,sans-ser=
+if">When I plug the usb-serial converter I get this error..</div><div style=
+=3D"color:rgb(34,34,34);font-size:13px;font-family:arial,sans-serif">
+<br></div><div style=3D"color:rgb(34,34,34);font-size:13px;font-family:aria=
+l,sans-serif"><div><i>usb wakeup is here =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
+=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0=
+ =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
+=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0=
+ =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0=A0</i></div>
 
 
+
+<div><i>otg host Remote wakeup =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
+=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0=
+ =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
+=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0=
+ =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0</i=
+></div><div><i>usb 1-1: new full speed USB device using fsl-ehci and addres=
+s 3 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0=
+ =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
+=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0=
+ =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0=A0</i></div>
+
+
+
+<div><i>usb 1-1: device v067b p2303 is not supported=A0</i></div><div><br><=
+/div><div>I tried to recompile linux-imx kernel adding support for USB-seri=
+al devices, I run:</div><div><ul><li style=3D"margin-left:15px">bibake linu=
+x-imx -c menuconfig</li>
+
+
+
+<li style=3D"margin-left:15px">added support for usb-serial devices in menu=
+config</li><li style=3D"margin-left:15px">bitbake -f -c compile linux-imx</=
+li><li style=3D"margin-left:15px">bitbake linux-imx</li></ul><div>..but it =
+didn&#39;t work..</div>
+
+
+
+</div><div><br></div><div>Any suggestions?</div><div><br></div><div>Thanks<=
+/div><div><br></div><div>Giovanni</div></div>
+<div>--<br><br>Dott. Ing. Giovanni Foiani<br><font face=3D"arial, sans-seri=
+f"><span style=3D"border-collapse:collapse"><br></span></font></div><div>Ce=
+ll:=A0 =A0 =A0 =A0 <a href=3D"tel:%2B39-349-3577515" value=3D"+393493577515=
+" target=3D"_blank">+39-349-3577515</a><br>
+
+
+Phone: =A0=A0 <a href=3D"tel:%2B39-0532-97-4106" value=3D"+390532974106" ta=
+rget=3D"_blank">+39-0532-97-4106</a><br>mail:=A0 =A0 =A0 =A0 <a href=3D"mai=
+lto:giovanni.foiani@unife.it" target=3D"_blank">giovanni.foiani@unife.it</a=
+></div>
+<div><span style=3D"font-family:arial,helvetica,sans-serif;font-size:13px;l=
+ine-height:13px">CenTec - Corso Guercino, 47 - 44042 Cento (FE)</span></div=
+><br>
+
+--e89a8ff1ce4c779af804c5d2fef4--
