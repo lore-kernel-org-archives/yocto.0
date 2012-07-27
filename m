@@ -1,25 +1,48 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9AD19E0027D
-	for <yocto@yoctoproject.org>; Fri, 27 Jul 2012 15:26:20 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 27 Jul 2012 15:26:20 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="188027276"
-Received: from unknown (HELO envy.home) ([10.255.12.238])
-	by fmsmga001.fm.intel.com with ESMTP; 27 Jul 2012 15:26:20 -0700
-Message-ID: <50131526.1030708@linux.intel.com>
-Date: Fri, 27 Jul 2012 15:24:38 -0700
-From: Darren Hart <dvhart@linux.intel.com>
+Return-Path: <halstead@happypunch.com>
+Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
+	[209.85.160.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6C39DE00280
+	for <yocto@yoctoproject.org>; Fri, 27 Jul 2012 16:02:13 -0700 (PDT)
+Received: by pbbrq8 with SMTP id rq8so6692026pbb.35
+	for <yocto@yoctoproject.org>; Fri, 27 Jul 2012 16:02:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=happypunch.com; s=google;
+	h=sender:message-id:date:from:user-agent:mime-version:to:subject
+	:x-enigmail-version:content-type:content-transfer-encoding;
+	bh=QYljg+zgdUQuJDUb0BCK4Vraf6YYaUg1DGUHJS8N3o0=;
+	b=H9lYjT4N6CEw4icJ5DQyaV5EdAXyKPQYDCFdQV7mUB5iZagoYzWbjXjIDkK/scs6xr
+	/WZ6IA/EnYpexAeBty4g4kNtRtXdHikRneg90Cw2mmLFpQTikf/lP1NkRGNU/iG60HBq
+	GhTOAPqGwfMAvPV72tqYwQzzcFo5AbFZlfjhw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=sender:message-id:date:from:user-agent:mime-version:to:subject
+	:x-enigmail-version:content-type:content-transfer-encoding
+	:x-gm-message-state;
+	bh=QYljg+zgdUQuJDUb0BCK4Vraf6YYaUg1DGUHJS8N3o0=;
+	b=KaInQvE7IYvf7rsi9cN3uhY+rdo0I868OwEOUJtJJ0tzN3i778F179xx2mKMaQh+V4
+	0L3URaAegs2DKUIoksXL2v4p3F4+ctb6Q8S3MhGIJWcB/utTShsXLEmGtzH1Pvq5cXa7
+	8w5LAqlMf0fl3kbbadkCDaMkIDZhtPATUa1Jdu/+b49qvlybT++S3NRmX4GkQuHyyCG0
+	NqVjQCpyt+oJsZhi9spg0q1hPz8aoD+TOaTqwt1nhyReUzh7zV91JVb3FUBo9hwLdqqL
+	i8u4T4xVJ65jjWysFhMxD69e04cz3hb5Uuuajv/bWF+hBzg/z7abk+4zlykzH9rbVT4/
+	ZYPA==
+Received: by 10.68.220.163 with SMTP id px3mr17363623pbc.167.1343430133015;
+	Fri, 27 Jul 2012 16:02:13 -0700 (PDT)
+Received: from [192.168.1.57] (static-50-43-56-179.bvtn.or.frontiernet.net.
+	[50.43.56.179])
+	by mx.google.com with ESMTPS id kh1sm2728281pbc.23.2012.07.27.16.02.11
+	(version=SSLv3 cipher=OTHER); Fri, 27 Jul 2012 16:02:12 -0700 (PDT)
+Sender: Michael Halstead <halstead@happypunch.com>
+Message-ID: <50131DF3.5070302@yoctoproject.org>
+Date: Fri, 27 Jul 2012 16:02:11 -0700
+From: Michael Halstead <michael@yoctoproject.org>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:14.0) Gecko/20120717 Thunderbird/14.0
+	rv:14.0) Gecko/20120714 Thunderbird/14.0
 MIME-Version: 1.0
-To: Paul Gortmaker <paul.gortmaker@windriver.com>
-References: <1343409056-6235-1-git-send-email-paul.gortmaker@windriver.com>
-In-Reply-To: <1343409056-6235-1-git-send-email-paul.gortmaker@windriver.com>
-X-Enigmail-Version: 1.4.3
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH] routerstationpro: move board off 3.0 and onto the 3.4 kernel
+To: yocto-announce@yoctoproject.org, 
+	Yocto Project Discussion <yocto@yoctoproject.org>
+X-Enigmail-Version: 1.5a1pre
+X-Gm-Message-State: ALoCoQlbM6Q1zbXvvudYRAJ7cLJ0qrwcfmbHdzrEPbAUUtsyuzKbi/DALTRz97rkCdmBQuda44yv
+Subject: [ANNOUNCEMENT] Yocto 1.1.2 Released
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,59 +54,131 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 27 Jul 2012 22:26:20 -0000
+X-List-Received-Date: Fri, 27 Jul 2012 23:02:13 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+Hello,
+
+We are pleased to announce the new Yocto Project "Edison" point release
+1.1.2.
+
+The full test report for this release is available at
+https://wiki.yoctoproject.org/wiki/Yocto_1.1.2_Test_Report
 
 
-On 07/27/2012 10:10 AM, Paul Gortmaker wrote:
-> The updated patch series to support this target is in place
-> on the BSP specific branch in the 3.4 kernel tree now[1], so
-> we can move it ahead off of the old 3.0 kernel.
-> 
-> [1] https://lists.yoctoproject.org/pipermail/linux-yocto/2012-July/000023.html
-> 
-> Signed-off-by: Paul Gortmaker <paul.gortmaker@windriver.com>
+You can download this release from either the main Yocto Project download
+site:
 
-Acked-by: Darren Hart <dvhart@linux.intel.com>
+http://downloads.yoctoproject.org/releases/yocto/yocto-1.1.2/poky-edison-6.0.2.tar.bz2
 
-> 
-> diff --git a/meta-yocto/conf/machine/routerstationpro.conf b/meta-yocto/conf/machine/routerstationpro.conf
-> index 3c2f56f..adf36a9 100644
-> --- a/meta-yocto/conf/machine/routerstationpro.conf
-> +++ b/meta-yocto/conf/machine/routerstationpro.conf
-> @@ -10,7 +10,7 @@ KERNEL_IMAGETYPE = "vmlinux"
->  KERNEL_ALT_IMAGETYPE = "vmlinux.bin"
->  
->  PREFERRED_PROVIDER_virtual/kernel ?= "linux-yocto"
-> -PREFERRED_VERSION_linux-yocto ?= "3.0%"
-> +PREFERRED_VERSION_linux-yocto ?= "3.4%"
->  PREFERRED_PROVIDER_virtual/xserver = "xserver-kdrive"
->  XSERVER = "xserver-kdrive-fbdev"
->  
-> diff --git a/meta-yocto/recipes-kernel/linux/linux-yocto_3.4.bbappend b/meta-yocto/recipes-kernel/linux/linux-yocto_3.4.bbappend
-> index 2ff467b..1c8d26a 100644
-> --- a/meta-yocto/recipes-kernel/linux/linux-yocto_3.4.bbappend
-> +++ b/meta-yocto/recipes-kernel/linux/linux-yocto_3.4.bbappend
-> @@ -4,11 +4,11 @@ KBRANCH_mpc8315e-rdb = "standard/fsl-mpc8315e-rdb"
->  KBRANCH_beagleboard = "standard/beagleboard"
->  
->  SRCREV_machine_atom-pc ?= "a8291fa6f723b0182d2b7033b5d59f412ba7cf72"
-> -SRCREV_machine_routerstationpro ?= "a8291fa6f723b0182d2b7033b5d59f412ba7cf72"
-> +SRCREV_machine_routerstationpro ?= "27019633ccdaa88dc55101615d936d1d74db9a1e"
->  SRCREV_machine_mpc8315e-rdb ?= "47d3076aa7e2a640a1dab8d663529a784709f697"
->  SRCREV_machine_beagleboard ?= "a8291fa6f723b0182d2b7033b5d59f412ba7cf72"
->  
->  COMPATIBLE_MACHINE_mpc8315e-rdb = "mpc8315e-rdb"
-> -# COMPATIBLE_MACHINE_routerstationpro = "routerstationpro"
-> +COMPATIBLE_MACHINE_routerstationpro = "routerstationpro"
->  # COMPATIBLE_MACHINE_beagleboard = "beagleboard"
->  COMPATIBLE_MACHINE_atom-pc = "atom-pc"
-> 
+or the kernel.org mirror:
 
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Technical Lead - Linux Kernel
+http://mirrors.kernel.org/yocto/yocto/yocto-1.1.2/poky-edison-6.0.2.tar.bz2
+
+Git tags gpg key information is available at:
+http://pgp.mit.edu:11371/pks/lookup?op=vindex&search=0x4C8AF84FCC12440F
+
+Thank you everyone, especially the 1.1.2 maintainer Joshua Lock, for all
+their hard work!
+
+Michael Halstead
+Yocto Project Systems Administrator
+<michael@yoctoproject.org>
+
+
+- --------------------
+edison-6.0.2 Errata
+- --------------------
+
+Release Name: eclipse-poky-edison-6.0.2 
+Branch:  edison
+Tag:  edison-6.0.2
+Hash:  826e8b3bd14d945fafef3073884524a04bfa7f7c
+md5:  f462da45012d59d2e2948e2e6a6906e2  eclipse-poky-edison-6.0.2.tar.bz2
+Download Locations:
+ 
+http://downloads.yoctoproject.org/releases/yocto/yocto-1.1.2/eclipse-poky-edison-6.0.2.tar.bz2
+ 
+http://mirrors.kernel.org/yocto/yocto/yocto-1.1.2/eclipse-poky-edison-6.0.2.tar.bz2
+
+
+
+Release Name: meta-qt3-edison-6.0.2 
+Branch:  edison
+Tag:  edison-6.0.2
+Hash:  0c3153242344e5113a50002939d36a2b739cc497
+md5:  3a6dd4f556db5ca3ff55be09d4937b46  meta-qt3-edison-6.0.2.tar.bz2
+Download Locations:
+ 
+http://downloads.yoctoproject.org/releases/yocto/yocto-1.1.2/meta-qt3-edison-6.0.2.tar.bz2
+ 
+http://mirrors.kernel.org/yocto/yocto/yocto-1.1.2/meta-qt3-edison-6.0.2.tar.bz2
+
+
+
+Release Name: poky-edison-6.0.2 
+Branch:  edison
+Tag:  edison-6.0.2
+Hash:  8886aee5b9741c05886994967d9ecf420331c600
+md5:  9974cb0751268b2fc14b6a27461c7d15  poky-edison-6.0.2.tar.bz2
+Download Locations:
+ 
+http://downloads.yoctoproject.org/releases/yocto/yocto-1.1.2/poky-edison-6.0.2.tar.bz2
+ 
+http://mirrors.kernel.org/yocto/yocto/yocto-1.1.2/poky-edison-6.0.2.tar.bz2
+
+
+
+- --------------------
+Features
+- --------------------
+
+* Enhanced useradd class including fixes for the following issues:
+  - Ensure -native recipes don't depend on target recipes
+  - Fixes for useradd recipes when using shared state
+  - Retry commands to avoid races around lock contention
+* Improved download reliability by adding checksums to several recipes
+* More robust image creation include:
+  - Fixed creation of large (>1GB) live images [YOCTO #2138]
+  - Account for FAT fs overhead in image size [YOCTO #1852]
+  - Ensure rootfs generation dependencies are built for live images
+[YOCTO #2246]
+* Several fixes for running on new distributions, inc:
+  - Support building on 3.3 and newer kernel version [YOCTO #2236]
+  - Handle new location of sys/time.h on Debian based systems
+  - Support building apt-native with modern toolchains for deb based systems
+  - Distributions with GCC 4.7 or newer will not be supported for Poky
+Edison
+
+- --------------------
+Known Issues
+- --------------------
+
+    Bug 2015 - [emenlow]X is black when resume from S3 standby mode
+    Bug 2742 - ioatdma error happened on jasperforest platform with
+edison branch
+    Bug 2748 - launch qemu failed due to can not find GLIBC_2.14 with
+edison branch
+    Bug 2694 - [QEMU-X86_64]zypper refresh fail
+    Bug 2746 - mklibs-native failed to compile fedora17-X86_64
+
+    ** In general host OS's with GCC 4.7 won't be able to build Edison
+
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2.0.14 (GNU/Linux)
+
+iQEcBAEBAgAGBQJQEbk9AAoJEEyK+E/MEkQPV3UIAJb4JQQ4ckPqFgNpyHzpBiGX
+vgGHU/5CgH8O+lAFaMp32E2Mw6hspo4w8qhKeh0bn6U+isDIR3+eO/qiRZmGizT7
+e8Qw49oZmyTwj8n9tvLbDnQAM8469FmukYiq2ML/JUxHdbCjRpSVRXDqJGhSZNDF
+BpTtVgccNO8H5UGRjz0LW8TyCTbes3KFtEQ4cQZNtoHi6dBNOLFwGncCyDW+MW9+
+uIqCNDCdRvoDCOYbfNzQkgRe3TNyhrxfZofBZkLRATlS8mMSk09lkbR39XsHHjPl
+/AqWwWTFQU8mEHo2lLPqduTkbKB8xg1ma3xQguA4V8TVyhjrefEj5wJCmMPU4KQ=
+=CqgW
+-----END PGP SIGNATURE-----
+
 
