@@ -1,27 +1,33 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5F877E00280
-	for <yocto@yoctoproject.org>; Fri, 27 Jul 2012 11:49:58 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id E9CC4F81226; Fri, 27 Jul 2012 12:49:57 -0600 (MDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=unavailable version=3.3.2
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id D608EF81222;
-	Fri, 27 Jul 2012 12:49:56 -0600 (MDT)
-Message-ID: <5012E2D4.10201@mlbassoc.com>
-Date: Fri, 27 Jul 2012 12:49:56 -0600
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:14.0) Gecko/20120714 Thunderbird/14.0
-MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <CAK18fxHKL=LDO3rb4pwabnsHH7XRdxfepDh4-_66WWgv8JegsQ@mail.gmail.com>
-In-Reply-To: <CAK18fxHKL=LDO3rb4pwabnsHH7XRdxfepDh4-_66WWgv8JegsQ@mail.gmail.com>
-Subject: Re: http://downloads.yoctoproject.org down?
+Return-Path: <elvis.dowson@gmail.com>
+Received: from mail-gh0-f176.google.com (mail-gh0-f176.google.com
+	[209.85.160.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 74D5BE0027D
+	for <yocto@yoctoproject.org>; Fri, 27 Jul 2012 12:50:11 -0700 (PDT)
+Received: by ghbz10 with SMTP id z10so4186746ghb.35
+	for <yocto@yoctoproject.org>; Fri, 27 Jul 2012 12:50:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:content-type:content-transfer-encoding:subject:date:message-id
+	:to:mime-version:x-mailer;
+	bh=SMbnHFi9HUYdA7qsH0WYF54ZPP2WzwvNjVbaMkCSgLY=;
+	b=Z2RTH4L01YKm40w6pRua0A/NyhGCUSp3rN6AX/wxCx8hlIFGEI1myO6eDfKX9YXCjC
+	XzUGYD7Tsie6Xy02o9b6ybMwQhjUVSZZ7II6AjXwp7KmI0Ckn7pORC7MHEkrlYfMtYQp
+	bhsZl0nVrIqhzMDIh1Y3brGhmbVBOU9rBqppTEJccaHqlnHWclAslK0Gt3rJGcIZc7ks
+	TTY7D+wLAcUp3NZQeFgMVfkVQSeDMNNeZdliKaHupc56uAuxhSqMu1MBROhnvawz0LGm
+	QOQabvKapoVspM5Fa1+WM0pUOWQh8hTWe97UsA8dXetLkg5w7HjSTsa8cG++upO77aP0
+	yuQg==
+Received: by 10.66.73.98 with SMTP id k2mr7638400pav.73.1343418610072;
+	Fri, 27 Jul 2012 12:50:10 -0700 (PDT)
+Received: from [192.168.1.101] ([94.205.108.162])
+	by mx.google.com with ESMTPS id qp9sm2475097pbc.9.2012.07.27.12.50.08
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Fri, 27 Jul 2012 12:50:09 -0700 (PDT)
+From: Elvis Dowson <elvis.dowson@gmail.com>
+Date: Fri, 27 Jul 2012 23:50:04 +0400
+Message-Id: <993F5528-427A-4642-B338-F990106111C4@gmail.com>
+To: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+Mime-Version: 1.0 (Apple Message framework v1278)
+X-Mailer: Apple Mail (2.1278)
+Subject: Generate a powerpc ramdisk file for the linux kernel
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,18 +39,15 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 27 Jul 2012 18:49:58 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 27 Jul 2012 19:50:11 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
-On 2012-07-27 12:40, Andrei Gherzan wrote:
-> ERROR: Function failed: Fetcher failure for URL: 'http://downloads.yoctoproject.org/releases/gnu-config/gnu-config-yocto-20111111.tgz'. Unable to fetch URL from any source.
+Hi,
+       How can I generate a powerpc ramdisk file for the linux kernel =
+using yocto?
 
-Working for me from the US
+Best regards,
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+Elvis Dowson=
 
