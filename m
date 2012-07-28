@@ -1,48 +1,41 @@
-Return-Path: <halstead@happypunch.com>
-Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
-	[209.85.160.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6C39DE00280
-	for <yocto@yoctoproject.org>; Fri, 27 Jul 2012 16:02:13 -0700 (PDT)
-Received: by pbbrq8 with SMTP id rq8so6692026pbb.35
-	for <yocto@yoctoproject.org>; Fri, 27 Jul 2012 16:02:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=happypunch.com; s=google;
-	h=sender:message-id:date:from:user-agent:mime-version:to:subject
-	:x-enigmail-version:content-type:content-transfer-encoding;
-	bh=QYljg+zgdUQuJDUb0BCK4Vraf6YYaUg1DGUHJS8N3o0=;
-	b=H9lYjT4N6CEw4icJ5DQyaV5EdAXyKPQYDCFdQV7mUB5iZagoYzWbjXjIDkK/scs6xr
-	/WZ6IA/EnYpexAeBty4g4kNtRtXdHikRneg90Cw2mmLFpQTikf/lP1NkRGNU/iG60HBq
-	GhTOAPqGwfMAvPV72tqYwQzzcFo5AbFZlfjhw=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=sender:message-id:date:from:user-agent:mime-version:to:subject
-	:x-enigmail-version:content-type:content-transfer-encoding
-	:x-gm-message-state;
-	bh=QYljg+zgdUQuJDUb0BCK4Vraf6YYaUg1DGUHJS8N3o0=;
-	b=KaInQvE7IYvf7rsi9cN3uhY+rdo0I868OwEOUJtJJ0tzN3i778F179xx2mKMaQh+V4
-	0L3URaAegs2DKUIoksXL2v4p3F4+ctb6Q8S3MhGIJWcB/utTShsXLEmGtzH1Pvq5cXa7
-	8w5LAqlMf0fl3kbbadkCDaMkIDZhtPATUa1Jdu/+b49qvlybT++S3NRmX4GkQuHyyCG0
-	NqVjQCpyt+oJsZhi9spg0q1hPz8aoD+TOaTqwt1nhyReUzh7zV91JVb3FUBo9hwLdqqL
-	i8u4T4xVJ65jjWysFhMxD69e04cz3hb5Uuuajv/bWF+hBzg/z7abk+4zlykzH9rbVT4/
-	ZYPA==
-Received: by 10.68.220.163 with SMTP id px3mr17363623pbc.167.1343430133015;
-	Fri, 27 Jul 2012 16:02:13 -0700 (PDT)
-Received: from [192.168.1.57] (static-50-43-56-179.bvtn.or.frontiernet.net.
-	[50.43.56.179])
-	by mx.google.com with ESMTPS id kh1sm2728281pbc.23.2012.07.27.16.02.11
-	(version=SSLv3 cipher=OTHER); Fri, 27 Jul 2012 16:02:12 -0700 (PDT)
-Sender: Michael Halstead <halstead@happypunch.com>
-Message-ID: <50131DF3.5070302@yoctoproject.org>
-Date: Fri, 27 Jul 2012 16:02:11 -0700
-From: Michael Halstead <michael@yoctoproject.org>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:14.0) Gecko/20120714 Thunderbird/14.0
+Return-Path: <rahul.saxena@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B30E5E002AA
+	for <yocto@yoctoproject.org>; Fri, 27 Jul 2012 17:22:45 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 27 Jul 2012 17:22:45 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="127775187"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
+	by AZSMGA002.ch.intel.com with ESMTP; 27 Jul 2012 17:22:44 -0700
+Received: from orsmsx153.amr.corp.intel.com (10.22.226.247) by
+	orsmsx603.amr.corp.intel.com (10.22.226.49) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Fri, 27 Jul 2012 17:22:44 -0700
+Received: from orsmsx103.amr.corp.intel.com ([169.254.2.113]) by
+	ORSMSX153.amr.corp.intel.com ([169.254.13.187]) with mapi id
+	14.01.0355.002; Fri, 27 Jul 2012 17:22:43 -0700
+From: "Saxena, Rahul" <rahul.saxena@intel.com>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
+Thread-Topic: [yocto] ERROR: QA Issue: Architecture did not match (62 to 3)
+Thread-Index: AQHNa17h2u/xezPCBkuBvGQtbIQdiZc75yYAgAB7SgD//8Y94IAAqueA//+8EkCAARLTgIAANDqg
+Date: Sat, 28 Jul 2012 00:22:43 +0000
+Message-ID: <63ECFF2A2302B44093D7CE9E9962C490032F44E5@ORSMSX103.amr.corp.intel.com>
+References: <63ECFF2A2302B44093D7CE9E9962C490032EE8F0@FMSMSX151.amr.corp.intel.com>
+	<50119037.4000406@windriver.com>
+	<63ECFF2A2302B44093D7CE9E9962C490032EE91A@FMSMSX151.amr.corp.intel.com>
+	<50119578.9050702@windriver.com>
+	<63ECFF2A2302B44093D7CE9E9962C490032EE9AE@FMSMSX151.amr.corp.intel.com>
+	<CADkTA4PMC9XjM3zznmcOn72QKj2HTwnZ0tJ6UNqdt-=M=3bzZg@mail.gmail.com>
+	<63ECFF2A2302B44093D7CE9E9962C490032EEA2C@FMSMSX151.amr.corp.intel.com>
+	<5012A1EF.80806@windriver.com>
+In-Reply-To: <5012A1EF.80806@windriver.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.138]
 MIME-Version: 1.0
-To: yocto-announce@yoctoproject.org, 
-	Yocto Project Discussion <yocto@yoctoproject.org>
-X-Enigmail-Version: 1.5a1pre
-X-Gm-Message-State: ALoCoQlbM6Q1zbXvvudYRAJ7cLJ0qrwcfmbHdzrEPbAUUtsyuzKbi/DALTRz97rkCdmBQuda44yv
-Subject: [ANNOUNCEMENT] Yocto 1.1.2 Released
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: ERROR: QA Issue: Architecture did not match (62 to 3)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,131 +47,333 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 27 Jul 2012 23:02:13 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sat, 28 Jul 2012 00:22:46 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
------BEGIN PGP SIGNED MESSAGE-----
-Hash: SHA1
+-----Original Message-----
+From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]=20
+Sent: Friday, July 27, 2012 7:13 AM
+To: Saxena, Rahul
+Cc: Bruce Ashfield; yocto@yoctoproject.org
+Subject: Re: [yocto] ERROR: QA Issue: Architecture did not match (62 to 3)
 
-Hello,
+On 12-07-27 12:51 AM, Saxena, Rahul wrote:
+>
+>
+> -----Original Message-----
+> From: Bruce Ashfield [mailto:bruce.ashfield@gmail.com]
+> Sent: Thursday, July 26, 2012 6:53 PM
+> To: Saxena, Rahul
+> Cc: yocto@yoctoproject.org
+> Subject: Re: [yocto] ERROR: QA Issue: Architecture did not match (62=20
+> to 3)
+>
+> On Thu, Jul 26, 2012 at 6:48 PM, Saxena, Rahul<rahul.saxena@intel.com>  w=
+rote:
+>> Hi Bruce,
+>>
+>> I think you are right. I do get following warning message:
+>>
+>> WARNING: Looked at meta/cfg/standard/rangeley/hdw_frags.txt and=20
+>> meta/cfg/standard/Rangeley/required_frags.txt in
+>> Directory: meta/cfg/standard.rangeley
+>>
+>> However I do find my kernel configuration .cfg and .scc files to be=20
+>> pulled into the build area in tmp/work/rangeley-poky-linux/=20
+>> linux-yocto-3.4.4+git2+cxxx.../linux/meta/cfg/kernel-cache/bsp/rangle
+>> y
+>> dir
+>>
+>> Hence I am not sure why exactly is the above WARNING occurring..
+>
+> It may not be finding the new BSP definition, and an automatic one was ge=
+nerated, which means you built a defconfig .. which was 32 bit.
+>
+> If you cat linux-yocto-3.4.4+git2+cxxx.../linux/meta/top_tgt .. what do y=
+ou see ?
+>
+> Bruce
+>
+> top_tgt has following:
+>
+> meta/cfg/scratch/obj/rangeley-standard.scc
 
-We are pleased to announce the new Yocto Project "Edison" point release
-1.1.2.
+And if it is found in scratch/obj, that does mean that the system generated=
+ that on your behalf.
 
-The full test report for this release is available at
-https://wiki.yoctoproject.org/wiki/Yocto_1.1.2_Test_Report
+If this is a new BSP, have you already defined your own board description (=
+rangeley-standard.scc) with the matching KMACHINE, KARCH, KTYPE as you are =
+trying to build ?
 
+Cheers,
 
-You can download this release from either the main Yocto Project download
-site:
-
-http://downloads.yoctoproject.org/releases/yocto/yocto-1.1.2/poky-edison-6.0.2.tar.bz2
-
-or the kernel.org mirror:
-
-http://mirrors.kernel.org/yocto/yocto/yocto-1.1.2/poky-edison-6.0.2.tar.bz2
-
-Git tags gpg key information is available at:
-http://pgp.mit.edu:11371/pks/lookup?op=vindex&search=0x4C8AF84FCC12440F
-
-Thank you everyone, especially the 1.1.2 maintainer Joshua Lock, for all
-their hard work!
-
-Michael Halstead
-Yocto Project Systems Administrator
-<michael@yoctoproject.org>
-
-
-- --------------------
-edison-6.0.2 Errata
-- --------------------
-
-Release Name: eclipse-poky-edison-6.0.2 
-Branch:  edison
-Tag:  edison-6.0.2
-Hash:  826e8b3bd14d945fafef3073884524a04bfa7f7c
-md5:  f462da45012d59d2e2948e2e6a6906e2  eclipse-poky-edison-6.0.2.tar.bz2
-Download Locations:
- 
-http://downloads.yoctoproject.org/releases/yocto/yocto-1.1.2/eclipse-poky-edison-6.0.2.tar.bz2
- 
-http://mirrors.kernel.org/yocto/yocto/yocto-1.1.2/eclipse-poky-edison-6.0.2.tar.bz2
-
-
-
-Release Name: meta-qt3-edison-6.0.2 
-Branch:  edison
-Tag:  edison-6.0.2
-Hash:  0c3153242344e5113a50002939d36a2b739cc497
-md5:  3a6dd4f556db5ca3ff55be09d4937b46  meta-qt3-edison-6.0.2.tar.bz2
-Download Locations:
- 
-http://downloads.yoctoproject.org/releases/yocto/yocto-1.1.2/meta-qt3-edison-6.0.2.tar.bz2
- 
-http://mirrors.kernel.org/yocto/yocto/yocto-1.1.2/meta-qt3-edison-6.0.2.tar.bz2
-
-
-
-Release Name: poky-edison-6.0.2 
-Branch:  edison
-Tag:  edison-6.0.2
-Hash:  8886aee5b9741c05886994967d9ecf420331c600
-md5:  9974cb0751268b2fc14b6a27461c7d15  poky-edison-6.0.2.tar.bz2
-Download Locations:
- 
-http://downloads.yoctoproject.org/releases/yocto/yocto-1.1.2/poky-edison-6.0.2.tar.bz2
- 
-http://mirrors.kernel.org/yocto/yocto/yocto-1.1.2/poky-edison-6.0.2.tar.bz2
+Bruce
 
 
+=20
+Yes, my KYTPYE had a mistake.  Fixed it and it seems to be working now. Tha=
+nks for your help !
 
-- --------------------
-Features
-- --------------------
-
-* Enhanced useradd class including fixes for the following issues:
-  - Ensure -native recipes don't depend on target recipes
-  - Fixes for useradd recipes when using shared state
-  - Retry commands to avoid races around lock contention
-* Improved download reliability by adding checksums to several recipes
-* More robust image creation include:
-  - Fixed creation of large (>1GB) live images [YOCTO #2138]
-  - Account for FAT fs overhead in image size [YOCTO #1852]
-  - Ensure rootfs generation dependencies are built for live images
-[YOCTO #2246]
-* Several fixes for running on new distributions, inc:
-  - Support building on 3.3 and newer kernel version [YOCTO #2236]
-  - Handle new location of sys/time.h on Debian based systems
-  - Support building apt-native with modern toolchains for deb based systems
-  - Distributions with GCC 4.7 or newer will not be supported for Poky
-Edison
-
-- --------------------
-Known Issues
-- --------------------
-
-    Bug 2015 - [emenlow]X is black when resume from S3 standby mode
-    Bug 2742 - ioatdma error happened on jasperforest platform with
-edison branch
-    Bug 2748 - launch qemu failed due to can not find GLIBC_2.14 with
-edison branch
-    Bug 2694 - [QEMU-X86_64]zypper refresh fail
-    Bug 2746 - mklibs-native failed to compile fedora17-X86_64
-
-    ** In general host OS's with GCC 4.7 won't be able to build Edison
+Rahul
 
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2.0.14 (GNU/Linux)
-
-iQEcBAEBAgAGBQJQEbk9AAoJEEyK+E/MEkQPV3UIAJb4JQQ4ckPqFgNpyHzpBiGX
-vgGHU/5CgH8O+lAFaMp32E2Mw6hspo4w8qhKeh0bn6U+isDIR3+eO/qiRZmGizT7
-e8Qw49oZmyTwj8n9tvLbDnQAM8469FmukYiq2ML/JUxHdbCjRpSVRXDqJGhSZNDF
-BpTtVgccNO8H5UGRjz0LW8TyCTbes3KFtEQ4cQZNtoHi6dBNOLFwGncCyDW+MW9+
-uIqCNDCdRvoDCOYbfNzQkgRe3TNyhrxfZofBZkLRATlS8mMSk09lkbR39XsHHjPl
-/AqWwWTFQU8mEHo2lLPqduTkbKB8xg1ma3xQguA4V8TVyhjrefEj5wJCmMPU4KQ=
-=CqgW
------END PGP SIGNATURE-----
+>
+>
+> Rahul
+>
+>>
+>>   I am using the master branch.
+>>
+>> Rahul
+>>
+>> -----Original Message-----
+>> From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]
+>> Sent: Thursday, July 26, 2012 12:08 PM
+>> To: Saxena, Rahul
+>> Cc: yocto@yoctoproject.org
+>> Subject: Re: [yocto] ERROR: QA Issue: Architecture did not match (62=20
+>> to 3)
+>>
+>> On 12-07-26 02:58 PM, Saxena, Rahul wrote:
+>>> Hmm OK..but not sure what I did wrong.
+>>>
+>>> I  just started a new BSP (meta-rangley) by copying over=20
+>>> meta-sugarbay (this is a 64-bit bsp) to new layer meta-rangley, renamed=
+ all files and variables etc from "sugarbay" to "rangley".
+>>> Created  new machine standard/common-pc-64 branch in my local clone  of=
+ linux-yocto-3.4 and also new meta branch in it.
+>>>
+>>> In short I have just copied over all sugarbay stuff to start a new rang=
+ley bsp without making any real changes yet.
+>>> So it seems surprising to get this error message.
+>>
+>> If something was dropped from your kernel config when you were working o=
+n the BSP, it may have build a default 32 bit, and that could cause the QA =
+error.
+>>
+>> Cheers,
+>>
+>> Bruce
+>>
+>>>
+>>>
+>>> Rahul
+>>>
+>>> -----Original Message-----
+>>> From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]
+>>> Sent: Thursday, July 26, 2012 11:45 AM
+>>> To: Saxena, Rahul
+>>> Cc: yocto@yoctoproject.org
+>>> Subject: Re: [yocto] ERROR: QA Issue: Architecture did not match (62=20
+>>> to 3)
+>>>
+>>> On 12-07-26 02:37 PM, Saxena, Rahul wrote:
+>>>> I get the following error:
+>>>>
+>>>> ERROR: QA Issue: Architecture did not match (62 to 3) on=20
+>>>> /work/rangeley-poky-linux/linux-yocto-3.4.4+git1+a8cf77018b0faa0d29
+>>>> f
+>>>> 1
+>>>> 4
+>>>> 83ff4e5a2034dc8edd5_1+6297e4c1d57e1063bfce297c2e12392348598559-r4.0
+>>>> / p a ckages-split/kernel-vmlinux/boot/vmlinux-3.4.4-yocto-standard
+>>>>
+>>>> What does it mean ?
+>>>
+>>> You've ended up with a mix of 64 bit and 32 bit objects in a build.
+>>> So you've got a 64 bit kernel in a 32 bit userspace, or vise versa.
+>>>
+>>> Only the x32 kernel has an exception in the QA checker for this.
+>>>
+>>> Cheers,
+>>>
+>>> Bruce
+>>>
+>>>>
+>>>> I have copied the failure logfile below:
+>>>>
+>>>> DEBUG: Executing python function sstate_task_prefunc
+>>>> DEBUG: Python function sstate_task_prefunc finished
+>>>> DEBUG: Executing python function do_package
+>>>> DEBUG: Executing python function package_get_auto_pr
+>>>> DEBUG: Python function package_get_auto_pr finished
+>>>> DEBUG: Executing python function perform_packagecopy
+>>>> DEBUG: Python function perform_packagecopy finished
+>>>> DEBUG: Executing python function package_do_split_locales
+>>>> DEBUG: No locale files in this package
+>>>> DEBUG: Python function package_do_split_locales finished
+>>>> DEBUG: Executing python function split_and_strip_files
+>>>> DEBUG: Python function split_and_strip_files finished
+>>>> DEBUG: Executing python function fixup_perms
+>>>> DEBUG: Python function fixup_perms finished
+>>>> DEBUG: Executing python function populate_packages
+>>>> ERROR: could not open directory
+>>>> /home/rsaxena/YoctoWork2/rangeley1/tmp/work/rangeley-poky-linux/linux-=
+yocto-3.4.4+git1+a8cf77018b0faa0d29f1483ff4e5a2034dc8edd5_1+6297e4c1d57e106=
+3bfce297c2e12392348598559-r4.0/package/lib/modules/3.4.4-yocto-standard:
+>>>> No such file or directory
+>>>> FATAL: could not search modules: No such file or directory
+>>>> DEBUG: Executing python function package_name_hook
+>>>> DEBUG: Executing python function debian_package_name_hook
+>>>> DEBUG: LIBNAMES: pkg kernel-vmlinux libs 0 bins 0 sonames []
+>>>> DEBUG: LIBNAMES: pkg kernel-modules libs 0 bins 0 sonames []
+>>>> DEBUG: LIBNAMES: pkg kernel-image libs 0 bins 0 sonames []
+>>>> DEBUG: LIBNAMES: pkg kernel-dev libs 1 bins 1 sonames []
+>>>> DEBUG: LIBNAMES: pkg kernel-base libs 0 bins 0 sonames []
+>>>> DEBUG: LIBNAMES: pkg kernel libs 0 bins 0 sonames []
+>>>> DEBUG: Python function debian_package_name_hook finished
+>>>> DEBUG: Python function package_name_hook finished
+>>>> DEBUG: kernel-dev contains dangling link /usr/src/kernel/vmlinux
+>>>> NOTE: kernel-dev contains dangling symlink to=20
+>>>> /usr/src/kernel/vmlinux
+>>>> DEBUG: Python function populate_packages finished
+>>>> DEBUG: Executing python function package_do_filedeps
+>>>> error: Couldn't exec
+>>>> /home/rsaxena/YoctoWork2/rangeley1/tmp/sysroots/x86_64-linux/usr/lib/r=
+pm/pythoneggs.py:
+>>>> No such file or directory
+>>>> error: Couldn't exec
+>>>> /home/rsaxena/YoctoWork2/rangeley1/tmp/sysroots/x86_64-linux/usr/lib/r=
+pm/pythoneggs.py:
+>>>> No such file or directory
+>>>> error: Couldn't exec
+>>>> /home/rsaxena/YoctoWork2/rangeley1/tmp/sysroots/x86_64-linux/usr/lib/r=
+pm/pythoneggs.py:
+>>>> No such file or directory
+>>>> error: Couldn't exec
+>>>> /home/rsaxena/YoctoWork2/rangeley1/tmp/sysroots/x86_64-linux/usr/lib/r=
+pm/pythoneggs.py:
+>>>> No such file or directory
+>>>> error: Couldn't exec
+>>>> /home/rsaxena/YoctoWork2/rangeley1/tmp/sysroots/x86_64-linux/usr/lib/r=
+pm/pythoneggs.py:
+>>>> No such file or directory
+>>>> error: Couldn't exec
+>>>> /home/rsaxena/YoctoWork2/rangeley1/tmp/sysroots/x86_64-linux/usr/lib/r=
+pm/pythoneggs.py:
+>>>> No such file or directory
+>>>> error: Couldn't exec
+>>>> /home/rsaxena/YoctoWork2/rangeley1/tmp/sysroots/x86_64-linux/usr/lib/r=
+pm/pythoneggs.py:
+>>>> No such file or directory
+>>>> error: Couldn't exec
+>>>> /home/rsaxena/YoctoWork2/rangeley1/tmp/sysroots/x86_64-linux/usr/lib/r=
+pm/pythoneggs.py:
+>>>> No such file or directory
+>>>> error: Couldn't exec
+>>>> /home/rsaxena/YoctoWork2/rangeley1/tmp/sysroots/x86_64-linux/usr/lib/r=
+pm/pythoneggs.py:
+>>>> No such file or directory
+>>>> error: Couldn't exec
+>>>> /home/rsaxena/YoctoWork2/rangeley1/tmp/sysroots/x86_64-linux/usr/lib/r=
+pm/pythoneggs.py:
+>>>> No such file or directory
+>>>> error: Couldn't exec
+>>>> /home/rsaxena/YoctoWork2/rangeley1/tmp/sysroots/x86_64-linux/usr/lib/r=
+pm/pythoneggs.py:
+>>>> No such file or directory
+>>>> error: Couldn't exec
+>>>> /home/rsaxena/YoctoWork2/rangeley1/tmp/sysroots/x86_64-linux/usr/lib/r=
+pm/pythoneggs.py:
+>>>> No such file or directory
+>>>> error: Couldn't exec
+>>>> /home/rsaxena/YoctoWork2/rangeley1/tmp/sysroots/x86_64-linux/usr/lib/r=
+pm/pythoneggs.py:
+>>>> No such file or directory
+>>>> error: Couldn't exec
+>>>> /home/rsaxena/YoctoWork2/rangeley1/tmp/sysroots/x86_64-linux/usr/lib/r=
+pm/pythoneggs.py:
+>>>> No such file or directory
+>>>> error: Couldn't exec
+>>>> /home/rsaxena/YoctoWork2/rangeley1/tmp/sysroots/x86_64-linux/usr/lib/r=
+pm/pythoneggs.py:
+>>>> No such file or directory
+>>>> error: Couldn't exec
+>>>> /home/rsaxena/YoctoWork2/rangeley1/tmp/sysroots/x86_64-linux/usr/lib/r=
+pm/pythoneggs.py:
+>>>> No such file or directory
+>>>> error: Couldn't exec
+>>>> /home/rsaxena/YoctoWork2/rangeley1/tmp/sysroots/x86_64-linux/usr/lib/r=
+pm/pythoneggs.py:
+>>>> No such file or directory
+>>>> error: Couldn't exec
+>>>> /home/rsaxena/YoctoWork2/rangeley1/tmp/sysroots/x86_64-linux/usr/lib/r=
+pm/pythoneggs.py:
+>>>> No such file or directory
+>>>> error: Couldn't exec
+>>>> /home/rsaxena/YoctoWork2/rangeley1/tmp/sysroots/x86_64-linux/usr/lib/r=
+pm/pythoneggs.py:
+>>>> No such file or directory
+>>>> error: Couldn't exec
+>>>> /home/rsaxena/YoctoWork2/rangeley1/tmp/sysroots/x86_64-linux/usr/lib/r=
+pm/pythoneggs.py:
+>>>> No such file or directory
+>>>> DEBUG: Python function package_do_filedeps finished
+>>>> DEBUG: Executing python function package_do_shlibs
+>>>> DEBUG: calculating shlib provides for kernel
+>>>> DEBUG: calculating shlib provides for kernel-base
+>>>> DEBUG: calculating shlib provides for kernel-vmlinux
+>>>> DEBUG: calculating shlib provides for kernel-image
+>>>> DEBUG: calculating shlib provides for kernel-dev
+>>>> DEBUG: calculating shlib provides for kernel-modules
+>>>> DEBUG: calculating shlib requirements for kernel
+>>>> DEBUG: calculating shlib requirements for kernel-base
+>>>> DEBUG: calculating shlib requirements for kernel-vmlinux
+>>>> DEBUG: calculating shlib requirements for kernel-image
+>>>> DEBUG: calculating shlib requirements for kernel-dev
+>>>> DEBUG: calculating shlib requirements for kernel-modules
+>>>> DEBUG: Python function package_do_shlibs finished
+>>>> DEBUG: Executing python function package_do_pkgconfig
+>>>> DEBUG: Python function package_do_pkgconfig finished
+>>>> DEBUG: Executing python function read_shlibdeps
+>>>> DEBUG: Python function read_shlibdeps finished
+>>>> DEBUG: Executing python function package_depchains
+>>>> DEBUG: Python function package_depchains finished
+>>>> DEBUG: Executing python function emit_pkgdata
+>>>> DEBUG: Python function emit_pkgdata finished
+>>>> DEBUG: Executing python function do_package_qa
+>>>> NOTE: DO PACKAGE QA
+>>>> NOTE: Checking Package: kernel
+>>>> NOTE: Checking Package: kernel-base
+>>>> NOTE: Checking Package: kernel-vmlinux
+>>>> ERROR: QA Issue: Architecture did not match (62 to 3) on=20
+>>>> /work/rangeley-poky-linux/linux-yocto-3.4.4+git1+a8cf77018b0faa0d29
+>>>> f
+>>>> 1
+>>>> 4
+>>>> 83ff4e5a2034dc8edd5_1+6297e4c1d57e1063bfce297c2e12392348598559-r4.0
+>>>> / p a ckages-split/kernel-vmlinux/boot/vmlinux-3.4.4-yocto-standard
+>>>> NOTE: Checking Package: kernel-image
+>>>> NOTE: Checking Package: kernel-dev
+>>>> NOTE: Checking Package: kernel-modules
+>>>> ERROR: QA run found fatal errors. Please consider fixing them.
+>>>> DEBUG: Python function do_package_qa finished
+>>>> DEBUG: Python function do_package finished
+>>>> ERROR: Function failed: do_package_qa
+>>>>
+>>>>
+>>>>
+>>>> _______________________________________________
+>>>> yocto mailing list
+>>>> yocto@yoctoproject.org
+>>>> https://lists.yoctoproject.org/listinfo/yocto
+>>>
+>>
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
+>
+> --
+> "Thou shalt not follow the NULL pointer, for chaos and madness await thee=
+ at its end"
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
 
