@@ -1,24 +1,35 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DF2A5E00346
-	for <yocto@yoctoproject.org>; Mon, 30 Jul 2012 07:42:50 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 30 Jul 2012 07:42:50 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="174857406"
-Received: from unknown (HELO helios.localnet) ([10.252.121.40])
-	by azsmga001.ch.intel.com with ESMTP; 30 Jul 2012 07:42:49 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Giovanni Foiani <fnognn@unife.it>
-Date: Mon, 30 Jul 2012 15:42:48 +0100
-Message-ID: <103362898.T6h1MoqcIn@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.8.4 (Linux/3.2.0-27-generic-pae; KDE/4.8.4; i686; ; )
-In-Reply-To: <CANsUPaMnm2UdcbmdHkQoRD3sgvG+bkOqezMopS8DcuoK=31B2A@mail.gmail.com>
-References: <CANsUPaMnm2UdcbmdHkQoRD3sgvG+bkOqezMopS8DcuoK=31B2A@mail.gmail.com>
-MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: Delete unused hob images
+Return-Path: <leon.woestenberg@gmail.com>
+Received: from mail-ey0-f176.google.com (mail-ey0-f176.google.com
+	[209.85.215.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B82E2E002AB
+	for <yocto@yoctoproject.org>; Sat, 28 Jul 2012 06:45:33 -0700 (PDT)
+Received: by eaab14 with SMTP id b14so820114eaa.35
+	for <yocto@yoctoproject.org>; Sat, 28 Jul 2012 06:45:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:cc:subject:date:message-id:x-mailer;
+	bh=1SQyDr9T6gnFDpHqULm/4lwKdijBuNtWiJ3ckcE74Nw=;
+	b=JQn2dJ2RSygs4rFIDR3uI0qGLSSXdXgQ8e8NFifcyHuk35/pydkNN1GKsJfxpuLRPy
+	QJN8MY91VHENcVQKFkeAkhHzT3cXopLE85MImamwcrnE09lw/S5lbPgthpRqI/s01srQ
+	5EuO3ls1MmHylZtUYCJZODrb6XvBHXaWVwlCglLTCtak1s4xUrp3/cA4g6bxT3lu8Gkb
+	2PbKVkiBXOu7ueP+VCzO7E2CMpOxWQjEcb8eNyJWNH6j/aAJ6y5+vIx4dQa5KCIa2+aJ
+	owVF4jrVz+rAKFAFwYsEuUO5RKvk1KWC71/8EejSBtvlGvLwZ/hnoUq2w1EsmAEHqzrM
+	exaQ==
+Received: by 10.14.178.131 with SMTP id f3mr5987066eem.38.1343483132296;
+	Sat, 28 Jul 2012 06:45:32 -0700 (PDT)
+Received: from localhost.localdomain (203-158-ftth.onsneteindhoven.nl.
+	[88.159.158.203])
+	by mx.google.com with ESMTPS id s8sm13701033eeo.8.2012.07.28.06.45.30
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Sat, 28 Jul 2012 06:45:30 -0700 (PDT)
+From: Leon Woestenberg <leon.woestenberg@gmail.com>
+To: yocto@yoctoproject.org
+Date: Sat, 28 Jul 2012 15:45:25 +0200
+Message-Id: <1343483125-26065-1-git-send-email-sidebranch.openembedded@gmail.com>
+X-Mailer: git-send-email 1.7.0.4
+X-Mailman-Approved-At: Mon, 30 Jul 2012 08:01:29 -0700
+Cc: Leon Woestenberg <leon@sidebranch.com>,
+	Scott Garman <scott.a.garman@intel.com>
+Subject: [PATCH] kernel.bbclass: Iff exists, copy bounds.h for external module building.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,54 +41,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 30 Jul 2012 14:42:51 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Sat, 28 Jul 2012 13:45:34 -0000
 
-On Monday 30 July 2012 15:18:37 Giovanni Foiani wrote:
-> I read this section in Poky Reference manual:
-> 
-> *A.2.13. build/tmp/deploy/images/*
-> *
-> *
-> *This directory receives complete filesystem images. If you want to flash
-> the resulting image from a build onto a device, look here for the image.*
-> *
-> *
-> *Note, you should not remove any files from this directory by hand in an
-> attempt to rebuild an image. If you want to clean out the cache, re-run the
-> build using the following BitBake command: *
-> *     $ bitbake -c cleanall <target>*
-> 
-> I built many images using hob and in my *build/tmp/deploy/images/ *folder
-> there are a lot of rootfs images (like
-> hob-image-imx53qsb-<timestamp>.rootfs.ext3 etc..) and I want to remove the
-> unused ones to free some space..
-> 
-> I tried tp run:
-> 
-> *bitbake -c cleanall * hob-image-imx53qsb-<timestamp>
-> 
-> but I got:
-> ERROR: Nothing PROVIDES 'hob-image-imx53qsb-<timestamp>'
+From: Leon Woestenberg <leon@sidebranch.com>
 
-I'm not sure where this came from originally, but it is not correct. I'll talk 
-to Scott R about fixing this part of the manual.
+Signed-off-by: Leon Woestenberg <leon@sidebranch.com>
+---
+ meta/classes/kernel.bbclass |    6 ++++++
+ 1 files changed, 6 insertions(+), 0 deletions(-)
 
-> Can I safely remove these files by hand?
-
-The hob-image-*, yes. In fact any actual image files in deploy/images are OK to 
-delete (excluding *zImage*, *uImage*, etc. - those are kernels). All the 
-warnings are trying to prevent is people deleting the entire contents of 
-deploy/images and then wondering why the kernel, bootloader etc. that get 
-produced as part of the process of building an image but are not part of the 
-image itself aren't re-created when they build the image again afterwards.
-
-Cheers,
-Paul
-
+diff --git a/meta/classes/kernel.bbclass b/meta/classes/kernel.bbclass
+index c21ab96..bd3e335 100644
+--- a/meta/classes/kernel.bbclass
++++ b/meta/classes/kernel.bbclass
+@@ -183,6 +183,12 @@ kernel_do_install() {
+ 		cp arch/powerpc/lib/crtsavres.o $kerneldir/arch/powerpc/lib/crtsavres.o
+ 	fi
+ 
++	# make -C $kerneldir _mrproper_scripts deleted this file, but we need it for
++	# building external modules like compat-wireless.
++	if [ -f include/generated/bounds.h ]; then
++		cp include/generated/bounds.h $kerneldir/include/generated/bounds.h
++	fi
++
+ 	# Remove the following binaries which cause strip errors
+ 	# during do_package for cross-compiled platforms
+ 	bin_files="arch/powerpc/boot/addnote arch/powerpc/boot/hack-coff \
 -- 
+1.7.0.4
 
-Paul Eggleton
-Intel Open Source Technology Centre
 
