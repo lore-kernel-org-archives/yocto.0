@@ -1,21 +1,23 @@
 Return-Path: <nitin.a.kamble@intel.com>
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C1940E006AD
-	for <yocto@yoctoproject.org>; Mon, 30 Jul 2012 07:02:14 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5EF47E0143A
+	for <yocto@yoctoproject.org>; Mon, 30 Jul 2012 07:02:19 -0700 (PDT)
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 30 Jul 2012 07:01:56 -0700
+	by fmsmga102.fm.intel.com with ESMTP; 30 Jul 2012 07:02:15 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="190281011"
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="190281182"
 Received: from yocto-hm1.jf.intel.com ([10.23.232.32])
 	by fmsmga001.fm.intel.com with ESMTP; 30 Jul 2012 07:01:56 -0700
 From: nitin.a.kamble@intel.com
 To: yocto@yoctoproject.org, tom.zanussi@intel.com, bruce.ashfield@windriver.com
-Date: Sun, 29 Jul 2012 07:00:00 -0700
-Message-Id: <cb97bb55ba60e1fa47e8a7f5c6393f97b9ad283f.1343570184.git.nitin.a.kamble@intel.com>
+Date: Sun, 29 Jul 2012 07:00:02 -0700
+Message-Id: <e1a052c7ac71afd2ff23fce3aece3ce5e333dd28.1343570184.git.nitin.a.kamble@intel.com>
 X-Mailer: git-send-email 1.7.3.4
+In-Reply-To: <cb97bb55ba60e1fa47e8a7f5c6393f97b9ad283f.1343570184.git.nitin.a.kamble@intel.com>
+References: <cb97bb55ba60e1fa47e8a7f5c6393f97b9ad283f.1343570184.git.nitin.a.kamble@intel.com>
 In-Reply-To: <cover.1343570184.git.nitin.a.kamble@intel.com>
 References: <cover.1343570184.git.nitin.a.kamble@intel.com>
-Subject: [PATCH 1/4] emgd-driver-bin: upgrade from 1.10 to 1.14
+Subject: [PATCH 3/4] crownbay: add recipe extension for linux-yocto-3.4
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,118 +29,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 30 Jul 2012 14:02:14 -0000
+X-List-Received-Date: Mon, 30 Jul 2012 14:02:19 -0000
 
 From: Nitin A Kamble <nitin.a.kamble@intel.com>
 
-1.14 is the latest released driver for emgd. This change is tested on
-crownbay machine.
+Add emgd branch info in git src_uri
 
-Add runtime dependency to libxcb-dri2
-
-Otherwise the libxcb-dri2.so is not getting installed, and video
-acceleration of emgd does not work. It is dynamic dependency of
-emgd_drv_video.so
-
-put files in gstreamer-0.10/.debug directory to the debug package.
-It avoids debug files packaging warnings.
-
-add downloadfilename param to SRC_URI
-
-As the url does not have the filename of the tarball, specify it here
-so that updated wget bitbake fetcher can save the downloaded file
-accordingly.
-BTW now EDC has also published another download URL on our request:
-http://edc.intel.com/App_Shared/Downloads/LIN_IEMGD_1_14_GOLD_2443.tgz
-
-And update emgd driver version in the README.
+At build time, the emgd-1.14 branch is merged with the crownbay bsp
+kernel source branch to get emgd kernel driver's support.
+  Reference it in the src_uri, and its commit-id to be used, so that
+any changes in the emgd branch will not affect build unknowingly.
 
 Signed-off-by: Nitin A Kamble <nitin.a.kamble@intel.com>
 ---
- ...-driver-bin_1.10.bb => emgd-driver-bin_1.14.bb} |   17 +++++++++--------
- meta-crownbay/README                               |    8 ++++----
- 2 files changed, 13 insertions(+), 12 deletions(-)
- rename common/recipes-graphics/xorg-xserver/{emgd-driver-bin_1.10.bb => emgd-driver-bin_1.14.bb} (88%)
+ .../recipes-kernel/linux/linux-yocto_3.4.bbappend  |   20 ++++++++++++++++++++
+ 1 files changed, 20 insertions(+), 0 deletions(-)
+ create mode 100644 meta-crownbay/recipes-kernel/linux/linux-yocto_3.4.bbappend
 
-diff --git a/common/recipes-graphics/xorg-xserver/emgd-driver-bin_1.10.bb b/common/recipes-graphics/xorg-xserver/emgd-driver-bin_1.14.bb
-similarity index 88%
-rename from common/recipes-graphics/xorg-xserver/emgd-driver-bin_1.10.bb
-rename to common/recipes-graphics/xorg-xserver/emgd-driver-bin_1.14.bb
-index 5779e5d..b1ba1b8 100644
---- a/common/recipes-graphics/xorg-xserver/emgd-driver-bin_1.10.bb
-+++ b/common/recipes-graphics/xorg-xserver/emgd-driver-bin_1.14.bb
-@@ -1,9 +1,9 @@
--SUMMARY = "EMGD 1.10 xserver binaries"
--DESCRIPTION = "EMGD 1.10 includes some userspace binaries that use non-free \
-+SUMMARY = "EMGD 1.14 xserver binaries"
-+DESCRIPTION = "EMGD 1.14 includes some userspace binaries that use non-free \
- licensing, which are now available via a non-click-through downloadable \
- tarball, and is what this recipe now uses.  Since it is a non-free license, \
--this recipe is marked as 'License_emgd-driver-bin_1.10' and you need to add \
--to LICENSE_FLAGS_WHITELIST += \"License_emgd-driver-bin_1.10\" to your \
-+this recipe is marked as 'License_emgd-driver-bin_1.14' and you need to add \
-+to LICENSE_FLAGS_WHITELIST += \"License_emgd-driver-bin_1.14\" to your \
- local.conf in order to enable it in a build."
- LICENSE = "Intel-binary-only"
- LICENSE_FLAGS = "license_${PN}_${PV}"
-@@ -16,17 +16,18 @@ EMGD_VIDEO_PLUGIN_DIR = "../common/video_plugin"
- LIC_FILES_CHKSUM = "file://${WORKDIR}/${EMGD_LIC_DIR}/License.txt;md5=b54f01caaf8483b3cb60c0c40f2bf22d"
- 
- DEPENDS = "rpm-native xz-native"
-+RDEPENDS = "libxcb-dri2"
- 
--SRC_URI = "https://edc.intel.com/App_Shared/Downloads/LIN_EMGD_1_10_RC_2209.tgz"
-+SRC_URI = "https://edc.intel.com/Download.aspx?id=6190;downloadfilename=LIN_IEMGD_1_14_GOLD_2443.tgz"
- 
--SRC_URI[md5sum] = "e4a38d9efa0b086ae21b68145c4db4e9"
--SRC_URI[sha256sum] = "acea5f0f93a31553553428623c007d7ed0c604cf715fd87dfe075751da4be548"
-+SRC_URI[md5sum] = "733a7f237ffce21238ce2c9956df4fd6"
-+SRC_URI[sha256sum] = "bcdc333b5edbda7c746a83ef821ded4a0ca55ead30980e4e3680cdb6469f45a2"
- 
- # These are closed binaries generated elsewhere so don't check ldflags
- INSANE_SKIP_${PN} = "ldflags"
- 
- FILES_${PN} += "${libdir}/dri ${libdir}/gstreamer-0.10 ${libdir}/xorg/modules/drivers"
--FILES_${PN}-dbg += "${libdir}/xorg/modules/drivers/.debug ${libdir}/dri/.debug"
-+FILES_${PN}-dbg += "${libdir}/xorg/modules/drivers/.debug ${libdir}/dri/.debug ${libdir}/gstreamer-0.10/.debug"
- 
- S = "${WORKDIR}/${EMGD_RPM_DIR}"
- 
-diff --git a/meta-crownbay/README b/meta-crownbay/README
-index b56c79a..2521432 100644
---- a/meta-crownbay/README
-+++ b/meta-crownbay/README
-@@ -6,7 +6,7 @@ The Crown Bay platform consists of the Intel Atom Z6xx processor,
- plus the Intel EG20T Platform Controller Hub (Tunnel Creek + Topcliff).
- 
- It also supports the E6xx embedded on-chip graphics via the Intel
--Embedded Media and Graphics Driver (EMGD) 1.10 Driver.
-+Embedded Media and Graphics Driver (EMGD) 1.14 Driver.
- 
- 
- Dependencies
-@@ -63,7 +63,7 @@ common metadata shared between BSPs) e.g.:
- The meta-crownbay layer contains support for two different machine
- configurations. These configurations are identical except for the fact
- that the one prefixed with 'crownbay' makes use of the
--Intel-proprietary EMGD 1.10 graphics driver, while the one prefixed
-+Intel-proprietary EMGD 1.14 graphics driver, while the one prefixed
- with 'crownbay-noemgd' does not.
- 
- If you want to enable the layer that supports EMGD graphics add the
-@@ -73,10 +73,10 @@ following to the local.conf file:
- 
- The 'crownbay' machine includes the emgd-driver-bin package, which has
- a proprietary license that must be whitelisted by adding the string
--"license_emgd-driver-bin_1.10" to the LICENSE_FLAGS_WHITELIST variable
-+"license_emgd-driver-bin_1.14" to the LICENSE_FLAGS_WHITELIST variable
- in your local.conf.  For example:
- 
--  LICENSE_FLAGS_WHITELIST = "license_emgd-driver-bin_1.10"
-+  LICENSE_FLAGS_WHITELIST = "license_emgd-driver-bin_1.14"
- 
- If you want to enable the layer that does not support EMGD graphics
- add the following to the local.conf file:
+diff --git a/meta-crownbay/recipes-kernel/linux/linux-yocto_3.4.bbappend b/meta-crownbay/recipes-kernel/linux/linux-yocto_3.4.bbappend
+new file mode 100644
+index 0000000..4f9dd70
+--- /dev/null
++++ b/meta-crownbay/recipes-kernel/linux/linux-yocto_3.4.bbappend
+@@ -0,0 +1,20 @@
++FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
++
++COMPATIBLE_MACHINE_crownbay = "crownbay"
++KMACHINE_crownbay  = "crownbay"
++KBRANCH_crownbay  = "standard/default/crownbay"
++
++COMPATIBLE_MACHINE_crownbay-noemgd = "crownbay-noemgd"
++KMACHINE_crownbay-noemgd  = "crownbay"
++KBRANCH_crownbay-noemgd  = "standard/crownbay"
++
++SRCREV_machine_pn-linux-yocto_crownbay ?= "19f7e43b54aef08d58135ed2a897d77b624b320a"
++SRCREV_meta_pn-linux-yocto_crownbay ?= "d7a96809a585e06933d8c08adb9b9f66b21efb4c"
++SRCREV_emgd_pn-linux-yocto_crownbay ?= "86643bdd8cbad616a161ab91f51108cf0da827bc"
++
++SRCREV_machine_pn-linux-yocto_crownbay-noemgd ?= "19f7e43b54aef08d58135ed2a897d77b624b320a"
++SRCREV_meta_pn-linux-yocto_crownbay-noemgd ?= "d7a96809a585e06933d8c08adb9b9f66b21efb4c"
++
++KSRC_linux_yocto_3_4 ?= "git.yoctoproject.org/linux-yocto-3.4.git"
++SRC_URI_crownbay = "git://git.yoctoproject.org/linux-yocto-3.4.git;protocol=git;nocheckout=1;branch=${KBRANCH},meta,emgd-1.14;name=machine,meta,emgd"
++SRC_URI_crownbay-noemgd = "git://git.yoctoproject.org/linux-yocto-3.4.git;protocol=git;nocheckout=1;branch=${KBRANCH},meta;name=machine,meta"
 -- 
 1.7.3.4
 
