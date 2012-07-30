@@ -1,37 +1,30 @@
-Return-Path: <elvis.dowson@gmail.com>
-Received: from mail-yw0-f48.google.com (mail-yw0-f48.google.com
-	[209.85.213.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 40A1FE00280
-	for <yocto@yoctoproject.org>; Mon, 30 Jul 2012 09:55:57 -0700 (PDT)
-Received: by yhfq46 with SMTP id q46so5744228yhf.35
-	for <yocto@yoctoproject.org>; Mon, 30 Jul 2012 09:55:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=subject:mime-version:content-type:from:in-reply-to:date:cc
-	:content-transfer-encoding:message-id:references:to:x-mailer;
-	bh=IIbrwjsQjEVdpaEH0b9/jtqcKnuh8pi3rvqR7QF/Ocs=;
-	b=U+mNvAKtTeh9OtHhH5QCFI5JvIbVwakwCoaG1xUH3FEdTYSjLFpQ0qSbRB1lbj0KLy
-	vyoYJkSoHoW1Vqqx1XdH5JN5oQKjnOoFWpjbyfiJUkenJYgAbV+WX2IwrOlCLSQfSe4P
-	cyIO8FgHTer76DpC1lx9gbB3cpYokg52yi7D1GQcUVbc2r4drW9o/P1adOM2ZyRIAg5b
-	dQev8bIhciT3MAiH9H8Slul0KVR4FDH6ODxdN3fgn4ROLlCQ0imK0x5ksFgOX23MAxPN
-	k+ACAYhiU6uz42GONIJWQ4PHgVxa3dq+9MFIzh1Wj5hd4A58UBpL9J877MIBUYaQ9MpQ
-	RQQA==
-Received: by 10.66.83.6 with SMTP id m6mr25998548pay.29.1343667356443;
-	Mon, 30 Jul 2012 09:55:56 -0700 (PDT)
-Received: from [192.168.1.101] ([94.205.108.162])
-	by mx.google.com with ESMTPS id wh7sm4629617pbc.33.2012.07.30.09.55.53
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Mon, 30 Jul 2012 09:55:55 -0700 (PDT)
-Mime-Version: 1.0 (Apple Message framework v1278)
-From: Elvis Dowson <elvis.dowson@gmail.com>
-In-Reply-To: <20120730164845.GM3261@jama.jama.net>
-Date: Mon, 30 Jul 2012 20:55:50 +0400
-Message-Id: <E9F44A50-97D0-4CBE-A9AF-36084B1E263C@gmail.com>
-References: <2C433563-B7CA-458C-B27F-68E3D5D2408C@gmail.com>
-	<20120730164845.GM3261@jama.jama.net>
-To: Martin Jansa <martin.jansa@gmail.com>
-X-Mailer: Apple Mail (2.1278)
-Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-Subject: Re: ERROR: Task 7 (/tool/yocto/poky/meta/recipes-core/meta/meta-toolchain.bb, do_populate_sdk) failed with exit code '1'
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4B5F8E00280
+	for <yocto@yoctoproject.org>; Mon, 30 Jul 2012 09:57:52 -0700 (PDT)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id F3C42F81231; Mon, 30 Jul 2012 10:57:51 -0600 (MDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=ham version=3.3.2
+Received: from [192.168.1.114] (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id 5CCC2F8122D;
+	Mon, 30 Jul 2012 10:57:51 -0600 (MDT)
+Message-ID: <5016BD14.1020807@mlbassoc.com>
+Date: Mon, 30 Jul 2012 10:57:56 -0600
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:14.0) Gecko/20120714 Thunderbird/14.0
+MIME-Version: 1.0
+To: yocto@yoctoproject.org
+References: <501683DE.5030904@gmail.com> <50168905.4090608@mlbassoc.com>
+	<501690C7.9030605@gmail.com> <50169277.1090400@mlbassoc.com>
+	<5016960E.9060305@gmail.com> <5016985D.7010805@mlbassoc.com>
+	<5016BB44.8070202@gmail.com>
+In-Reply-To: <5016BB44.8070202@gmail.com>
+Subject: Re: build error pandaboard on master
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,56 +36,89 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 30 Jul 2012 16:55:57 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 30 Jul 2012 16:57:52 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Martin,
+On 2012-07-30 10:50, Jim Abernathy wrote:
+> On 07/30/2012 10:21 AM, Gary Thomas wrote:
+>> On 2012-07-30 08:11, Jim Abernathy wrote:
+>>> On 07/30/2012 09:56 AM, Gary Thomas wrote:
+>>>> On 2012-07-30 07:48, Jim Abernathy wrote:
+>>>>> On 07/30/2012 09:15 AM, Gary Thomas wrote:
+>>>>>> On 2012-07-30 06:53, Jim Abernathy wrote:
+>>>>>>> I'm on master branch trying to build core-image-minimal for the machine "pandaboard". Besides the basics, I put in a license statement for cloud9 into local.conf.
+>>>>>>>
+>>>>>>> My bblayer.conf is as follows:
+>>>>>>>
+>>>>>>> # LAYER_CONF_VERSION is increased each time build/conf/bblayers.conf
+>>>>>>> # changes incompatibly
+>>>>>>> LCONF_VERSION = "5"
+>>>>>>>
+>>>>>>> BBPATH = "${TOPDIR}"
+>>>>>>> BBFILES ?= ""
+>>>>>>>
+>>>>>>> BBLAYERS ?= " \
+>>>>>>>    /home/jim/poky/meta \
+>>>>>>>    /home/jim/poky/meta-yocto \
+>>>>>>>    /home/jim/meta-openembedded/meta-oe \
+>>>>>>>    /home/jim/meta-ti \
+>>>>>>>    "
+>>>>>>>
+>>>>>>> The error I'm getting is:
+>>>>>>>
+>>>>>>> ERROR: ParseError at /home/jim/meta-ti/recipes-misc/payload/bonescript.bb:5: Could not inherit file classes/systemd.bbclass
+>>>>>>>
+>>>>>>> Build Configuration:
+>>>>>>> BB_VERSION        = "1.15.3"
+>>>>>>> TARGET_ARCH       = "arm"
+>>>>>>> TARGET_OS         = "linux-gnueabi"
+>>>>>>> MACHINE           = "pandaboard"
+>>>>>>> DISTRO            = "poky"
+>>>>>>> DISTRO_VERSION    = "1.2+snapshot-20120730"
+>>>>>>> TUNE_FEATURES     = "armv7a vfp neon cortexa9"
+>>>>>>> TARGET_FPU        = "vfp-neon"
+>>>>>>> meta
+>>>>>>> meta-yocto        = "master:7411158e1f980cd71c432026fa2f68ab80e3541e"
+>>>>>>> meta-oe           = "master:9afc488a1b97bfc5378f139ba04a7a5297b15fdb"
+>>>>>>> meta-ti           = "master:9bc77dff5f84578e259f8225bfa0656d94a2a60a"
+>>>>>>>
+>>>>>>> ERROR: Nothing PROVIDES 'pseudo-native'
+>>>>>>
+>>>>>> Try adding this in local.conf:
+>>>>>>   BBMASK ?= ".*/meta-ti/recipes-(misc|bsp/formfactor)/"
+>>>>>>
+>>>>> BBMASK by itself didn't solve my particular problem.  I'll try the other suggestions and report back.
+>>>>
+>>>> What other problem do you have?  That BBMASK should keep bitbake from
+>>>> trying to parse the recipe mentioned above.
+>>>>
+>>>> Note: I use these layers with Yocto all the time with that mask...
+>>>>
+>>>
+>>> When I just used the statement:
+>>>
+>>> BBMASK ?= ".*/meta-ti/recipes-(misc|bsp/formfactor)/"
+>>>
+>>> I got the same error as my original post.
+>>
+>> The only way you could get that same error is if you already have a BBMASK
+>> statement somewhere and this one is being ignored because of the ?= assignment.
+>>
+> So I started with a clean build again. This time I only added the BBMASK statement you suggested.  I got the following error:
+>
+> ERROR: No recipes available for:
+> /home/jim/meta-openembedded/meta-systemd/meta-gnome/recipes-gnome/gdm/gdm_2.32.2.bbappend
+> /home/jim/meta-openembedded/meta-systemd/meta-efl/recipes-efl/efl/elsa_svn.bbappend
+> ERROR: Command execution failed: Exited with 1
+>
+> I'm guessing the BBMASK needs to call out meta-openembedded/meta-systemd/meta-gnome and meta-efl?
 
-On Jul 30, 2012, at 8:48 PM, Martin Jansa wrote:
+Or don't include those layers - meta-systemd isn't needed by your yocto build.
 
-> Attach log.do_populate_sdk.25279
-
-Here is the log
-
-DEBUG: Executing python function do_populate_sdk
-DEBUG: Executing shell function populate_sdk_image
-Generating solve db for /tool/yocto/poky/build/tmp/deploy/rpm/ppc440...
-   total:               1      0.000000 MB     15.378123 secs
-   fingerprint:      7383      0.071586 MB      0.795094 secs
-   install:          2461      0.000000 MB      3.924927 secs
-   digest:           4922     17.539986 MB      0.071979 secs
-   signature:        4922      0.000000 MB      5.635336 secs
-   dbadd:            2461      0.000000 MB      3.867947 secs
-   dbget:           24358      0.000000 MB      0.044111 secs
-   dbput:            2461     11.232764 MB      2.458966 secs
-   readhdr:         24611     22.422706 MB      2.833783 secs
-   hdrload:         15847     48.317258 MB      0.063320 secs
-   hdrget:         451910      0.000000 MB      0.314565 secs
-Generating solve db for =
-/tool/yocto/poky/build/tmp/deploy/rpm/x86_64-nativesdk...
-   total:               1      0.000000 MB      4.420427 secs
-   fingerprint:      1698      0.056604 MB      0.353290 secs
-   install:           566      0.000000 MB      1.192211 secs
-   digest:           1132      9.261982 MB      0.035940 secs
-   signature:        1132      0.000000 MB      1.325190 secs
-   dbadd:             566      0.000000 MB      1.176382 secs
-   dbget:           21453      0.000000 MB      0.022157 secs
-   dbput:             566      5.223256 MB      0.825451 secs
-   readhdr:          5661     10.385022 MB      0.950751 secs
-   hdrload:          3049     16.903506 MB      0.013520 secs
-   hdrget:         107862      0.000000 MB      0.088460 secs
-Processing task-core-standalone-sdk-target-dbg...
-Processing task-core-standalone-sdk-target...
-=
-/tool/yocto/poky/build/tmp/work/ppc440-poky-linux/meta-toolchain-1.0-r7/te=
-mp/run.populate_sdk_image.25279: line 675: rpmresolve: command not found
-DEBUG: Python function do_populate_sdk finished
-ERROR: Function failed: populate_sdk_image (see =
-/tool/yocto/poky/build/tmp/work/ppc440-poky-linux/meta-toolchain-1.0-r7/te=
-mp/log.do_populate_sdk.25279 for further information)
-
-Best regards,
-
-Elvis Dowson=
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
