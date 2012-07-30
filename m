@@ -1,32 +1,24 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 02C23E0027D
-	for <yocto@yoctoproject.org>; Mon, 30 Jul 2012 12:11:50 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id AB80BF81230; Mon, 30 Jul 2012 13:11:49 -0600 (MDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=ham version=3.3.2
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 5148CF8122D;
-	Mon, 30 Jul 2012 13:11:48 -0600 (MDT)
-Message-ID: <5016DC74.4040204@mlbassoc.com>
-Date: Mon, 30 Jul 2012 13:11:48 -0600
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:14.0) Gecko/20120714 Thunderbird/14.0
-MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <501683DE.5030904@gmail.com> <50168905.4090608@mlbassoc.com>
-	<501690C7.9030605@gmail.com> <50169277.1090400@mlbassoc.com>
-	<5016960E.9060305@gmail.com> <5016985D.7010805@mlbassoc.com>
-	<5016BB44.8070202@gmail.com> <5016BD14.1020807@mlbassoc.com>
-	<5016BFC4.8060307@gmail.com> <5016C18B.60200@mlbassoc.com>
-	<5016D732.3000305@gmail.com>
-In-Reply-To: <5016D732.3000305@gmail.com>
-Subject: Re: build error pandaboard on master
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 89AC5E0027D
+	for <yocto@yoctoproject.org>; Mon, 30 Jul 2012 12:43:23 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 30 Jul 2012 12:43:23 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="128548753"
+Received: from unknown (HELO [10.255.12.188]) ([10.255.12.188])
+	by AZSMGA002.ch.intel.com with ESMTP; 30 Jul 2012 12:43:22 -0700
+Message-ID: <1343677400.21025.41.camel@trz-ThinkPad-T420>
+From: Tom Zanussi <tom.zanussi@intel.com>
+To: nitin.a.kamble@intel.com
+Date: Mon, 30 Jul 2012 14:43:20 -0500
+In-Reply-To: <cb97bb55ba60e1fa47e8a7f5c6393f97b9ad283f.1343570184.git.nitin.a.kamble@intel.com>
+References: <cover.1343570184.git.nitin.a.kamble@intel.com>
+	<cb97bb55ba60e1fa47e8a7f5c6393f97b9ad283f.1343570184.git.nitin.a.kamble@intel.com>
+X-Mailer: Evolution 3.2.3-0ubuntu6 
+Mime-Version: 1.0
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH 1/4] emgd-driver-bin: upgrade from 1.10 to 1.14
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,156 +30,133 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 30 Jul 2012 19:11:50 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+X-List-Received-Date: Mon, 30 Jul 2012 19:43:23 -0000
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-On 2012-07-30 12:49, Jim Abernathy wrote:
-> On 07/30/2012 01:16 PM, Gary Thomas wrote:
->> On 2012-07-30 11:09, Jim Abernathy wrote:
->>> On 07/30/2012 12:57 PM, Gary Thomas wrote:
->>>> On 2012-07-30 10:50, Jim Abernathy wrote:
->>>>> On 07/30/2012 10:21 AM, Gary Thomas wrote:
->>>>>> On 2012-07-30 08:11, Jim Abernathy wrote:
->>>>>>> On 07/30/2012 09:56 AM, Gary Thomas wrote:
->>>>>>>> On 2012-07-30 07:48, Jim Abernathy wrote:
->>>>>>>>> On 07/30/2012 09:15 AM, Gary Thomas wrote:
->>>>>>>>>> On 2012-07-30 06:53, Jim Abernathy wrote:
->>>>>>>>>>> I'm on master branch trying to build core-image-minimal for the machine "pandaboard". Besides the basics, I put in a license statement for cloud9 into local.conf.
->>>>>>>>>>>
->>>>>>>>>>> My bblayer.conf is as follows:
->>>>>>>>>>>
->>>>>>>>>>> # LAYER_CONF_VERSION is increased each time build/conf/bblayers.conf
->>>>>>>>>>> # changes incompatibly
->>>>>>>>>>> LCONF_VERSION = "5"
->>>>>>>>>>>
->>>>>>>>>>> BBPATH = "${TOPDIR}"
->>>>>>>>>>> BBFILES ?= ""
->>>>>>>>>>>
->>>>>>>>>>> BBLAYERS ?= " \
->>>>>>>>>>>    /home/jim/poky/meta \
->>>>>>>>>>>    /home/jim/poky/meta-yocto \
->>>>>>>>>>>    /home/jim/meta-openembedded/meta-oe \
->>>>>>>>>>>    /home/jim/meta-ti \
->>>>>>>>>>>    "
->>>>>>>>>>>
->>>>>>>>>>> The error I'm getting is:
->>>>>>>>>>>
->>>>>>>>>>> ERROR: ParseError at /home/jim/meta-ti/recipes-misc/payload/bonescript.bb:5: Could not inherit file classes/systemd.bbclass
->>>>>>>>>>>
->>>>>>>>>>> Build Configuration:
->>>>>>>>>>> BB_VERSION        = "1.15.3"
->>>>>>>>>>> TARGET_ARCH       = "arm"
->>>>>>>>>>> TARGET_OS         = "linux-gnueabi"
->>>>>>>>>>> MACHINE           = "pandaboard"
->>>>>>>>>>> DISTRO            = "poky"
->>>>>>>>>>> DISTRO_VERSION    = "1.2+snapshot-20120730"
->>>>>>>>>>> TUNE_FEATURES     = "armv7a vfp neon cortexa9"
->>>>>>>>>>> TARGET_FPU        = "vfp-neon"
->>>>>>>>>>> meta
->>>>>>>>>>> meta-yocto        = "master:7411158e1f980cd71c432026fa2f68ab80e3541e"
->>>>>>>>>>> meta-oe           = "master:9afc488a1b97bfc5378f139ba04a7a5297b15fdb"
->>>>>>>>>>> meta-ti           = "master:9bc77dff5f84578e259f8225bfa0656d94a2a60a"
->>>>>>>>>>>
->>>>>>>>>>> ERROR: Nothing PROVIDES 'pseudo-native'
->>>>>>>>>>
->>>>>>>>>> Try adding this in local.conf:
->>>>>>>>>>   BBMASK ?= ".*/meta-ti/recipes-(misc|bsp/formfactor)/"
->>>>>>>>>>
->>>>>>>>> BBMASK by itself didn't solve my particular problem. I'll try the other suggestions and report back.
->>>>>>>>
->>>>>>>> What other problem do you have?  That BBMASK should keep bitbake from
->>>>>>>> trying to parse the recipe mentioned above.
->>>>>>>>
->>>>>>>> Note: I use these layers with Yocto all the time with that mask...
->>>>>>>>
->>>>>>>
->>>>>>> When I just used the statement:
->>>>>>>
->>>>>>> BBMASK ?= ".*/meta-ti/recipes-(misc|bsp/formfactor)/"
->>>>>>>
->>>>>>> I got the same error as my original post.
->>>>>>
->>>>>> The only way you could get that same error is if you already have a BBMASK
->>>>>> statement somewhere and this one is being ignored because of the ?= assignment.
->>>>>>
->>>>> So I started with a clean build again. This time I only added the BBMASK statement you suggested.  I got the following error:
->>>>>
->>>>> ERROR: No recipes available for:
->>>>> /home/jim/meta-openembedded/meta-systemd/meta-gnome/recipes-gnome/gdm/gdm_2.32.2.bbappend
->>>>> /home/jim/meta-openembedded/meta-systemd/meta-efl/recipes-efl/efl/elsa_svn.bbappend
->>>>> ERROR: Command execution failed: Exited with 1
->>>>>
->>>>> I'm guessing the BBMASK needs to call out meta-openembedded/meta-systemd/meta-gnome and meta-efl?
->>>>
->>>> Or don't include those layers - meta-systemd isn't needed by your yocto build.
->>>>
->>> Thanks, that makes more sense now.  I removed the layer meta-systemd from bblayers.conf and used the
->>>
->>> BBMASK ?= ".*/meta-ti/recipes-(misc|bsp/formfactor)/"
->>>
->>> statement in local.conf to solves the problem.
->>>
->>> What is really causing the problem?  Without it dependencies on meta-systemd are there, but the mask removes that??  Why can you remove a dependency?
->>
->> The dependency on systemd comes from this recipe: meta-ti/recipes-misc/payload/bonescript.bb
->> The BBMASK is making bitbake ignore that recipe (you don't need it), hence no dependency.
->>
-> I got core-image-minimal built without errors, Thanks, now I need to ask some questions about booting that image.  I'm assuming that I can follow the instructions on pandaboard.org
-> for creating the SD card format and just copy the deploy/image/ u-boot, MLO, uImage, and rootfs to the right places and boot the sdcard in the pandaboard. Anyway, that's what I
-> tried.  I'm connected to the panadboard via serial port and the U-Boot works and the uImage seems to be found, but I don't get a login console on the serial port:
->
-> U-Boot SPL 2011.12-dirty (Jul 30 2012 - 13:44:03)
-> Texas Instruments OMAP4430 ES2.1
-> OMAP SD/MMC: 0
-> reading u-boot.img
-> reading u-boot.img
->
->
-> U-Boot 2011.12-dirty (Jul 30 2012 - 13:44:03)
->
-> CPU  : OMAP4430 ES2.1
-> Board: OMAP4 Panda
-> I2C:   ready
-> DRAM:  1 GiB
-> MMC:   OMAP SD/MMC: 0
-> Using default environment
->
-> In:    serial
-> Out:   serial
-> Err:   serial
-> Hit any key to stop autoboot:  0
-> reading boot.scr
->
-> ** Unable to read "boot.scr" from mmc 0:1 **
-> reading uImage
->
-> 4176404 bytes read
-> Booting from mmc0 ...
-> ## Booting kernel from Legacy Image at 82000000 ...
->     Image Name:   Linux-3.1.0
->     Image Type:   ARM Linux Kernel Image (uncompressed)
->     Data Size:    4176340 Bytes = 4 MiB
->     Load Address: 80008000
->     Entry Point:  80008000
->     Verifying Checksum ... OK
->     Loading Kernel Image ... OK
-> OK
->
-> Starting kernel ...
->
-> Uncompressing Linux... done, booting the kernel.
+On Sun, 2012-07-29 at 07:00 -0700, nitin.a.kamble@intel.com wrote:
+> From: Nitin A Kamble <nitin.a.kamble@intel.com>
+> 
+> 1.14 is the latest released driver for emgd. This change is tested on
+> crownbay machine.
+> 
+> Add runtime dependency to libxcb-dri2
+> 
 
-Start with the obvious - check the bootparams in U-Boot.  Break into
-the boot process and run the 'printenv' command.  What's the value of
-the "console" variable?
+Hi Nitin,
 
-n.b. I've not tried this exact setup on the PandaBoard.  I may have time
-later today to do so.
+When building, I'm seeing this:
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+NOTE: Resolving any missing task queue dependencies
+NOTE: multiple providers are available for runtime libxcb-dri2
+(libxcb-nativesdk, libxcb)
+NOTE: consider defining a PREFERRED_PROVIDER entry to match libxcb-dri2
+
+Tom
+
+> Otherwise the libxcb-dri2.so is not getting installed, and video
+> acceleration of emgd does not work. It is dynamic dependency of
+> emgd_drv_video.so
+> 
+> put files in gstreamer-0.10/.debug directory to the debug package.
+> It avoids debug files packaging warnings.
+> 
+> add downloadfilename param to SRC_URI
+> 
+> As the url does not have the filename of the tarball, specify it here
+> so that updated wget bitbake fetcher can save the downloaded file
+> accordingly.
+> BTW now EDC has also published another download URL on our request:
+> http://edc.intel.com/App_Shared/Downloads/LIN_IEMGD_1_14_GOLD_2443.tgz
+> 
+> And update emgd driver version in the README.
+> 
+> Signed-off-by: Nitin A Kamble <nitin.a.kamble@intel.com>
+> ---
+>  ...-driver-bin_1.10.bb => emgd-driver-bin_1.14.bb} |   17 +++++++++--------
+>  meta-crownbay/README                               |    8 ++++----
+>  2 files changed, 13 insertions(+), 12 deletions(-)
+>  rename common/recipes-graphics/xorg-xserver/{emgd-driver-bin_1.10.bb => emgd-driver-bin_1.14.bb} (88%)
+> 
+> diff --git a/common/recipes-graphics/xorg-xserver/emgd-driver-bin_1.10.bb b/common/recipes-graphics/xorg-xserver/emgd-driver-bin_1.14.bb
+> similarity index 88%
+> rename from common/recipes-graphics/xorg-xserver/emgd-driver-bin_1.10.bb
+> rename to common/recipes-graphics/xorg-xserver/emgd-driver-bin_1.14.bb
+> index 5779e5d..b1ba1b8 100644
+> --- a/common/recipes-graphics/xorg-xserver/emgd-driver-bin_1.10.bb
+> +++ b/common/recipes-graphics/xorg-xserver/emgd-driver-bin_1.14.bb
+> @@ -1,9 +1,9 @@
+> -SUMMARY = "EMGD 1.10 xserver binaries"
+> -DESCRIPTION = "EMGD 1.10 includes some userspace binaries that use non-free \
+> +SUMMARY = "EMGD 1.14 xserver binaries"
+> +DESCRIPTION = "EMGD 1.14 includes some userspace binaries that use non-free \
+>  licensing, which are now available via a non-click-through downloadable \
+>  tarball, and is what this recipe now uses.  Since it is a non-free license, \
+> -this recipe is marked as 'License_emgd-driver-bin_1.10' and you need to add \
+> -to LICENSE_FLAGS_WHITELIST += \"License_emgd-driver-bin_1.10\" to your \
+> +this recipe is marked as 'License_emgd-driver-bin_1.14' and you need to add \
+> +to LICENSE_FLAGS_WHITELIST += \"License_emgd-driver-bin_1.14\" to your \
+>  local.conf in order to enable it in a build."
+>  LICENSE = "Intel-binary-only"
+>  LICENSE_FLAGS = "license_${PN}_${PV}"
+> @@ -16,17 +16,18 @@ EMGD_VIDEO_PLUGIN_DIR = "../common/video_plugin"
+>  LIC_FILES_CHKSUM = "file://${WORKDIR}/${EMGD_LIC_DIR}/License.txt;md5=b54f01caaf8483b3cb60c0c40f2bf22d"
+>  
+>  DEPENDS = "rpm-native xz-native"
+> +RDEPENDS = "libxcb-dri2"
+>  
+> -SRC_URI = "https://edc.intel.com/App_Shared/Downloads/LIN_EMGD_1_10_RC_2209.tgz"
+> +SRC_URI = "https://edc.intel.com/Download.aspx?id=6190;downloadfilename=LIN_IEMGD_1_14_GOLD_2443.tgz"
+>  
+> -SRC_URI[md5sum] = "e4a38d9efa0b086ae21b68145c4db4e9"
+> -SRC_URI[sha256sum] = "acea5f0f93a31553553428623c007d7ed0c604cf715fd87dfe075751da4be548"
+> +SRC_URI[md5sum] = "733a7f237ffce21238ce2c9956df4fd6"
+> +SRC_URI[sha256sum] = "bcdc333b5edbda7c746a83ef821ded4a0ca55ead30980e4e3680cdb6469f45a2"
+>  
+>  # These are closed binaries generated elsewhere so don't check ldflags
+>  INSANE_SKIP_${PN} = "ldflags"
+>  
+>  FILES_${PN} += "${libdir}/dri ${libdir}/gstreamer-0.10 ${libdir}/xorg/modules/drivers"
+> -FILES_${PN}-dbg += "${libdir}/xorg/modules/drivers/.debug ${libdir}/dri/.debug"
+> +FILES_${PN}-dbg += "${libdir}/xorg/modules/drivers/.debug ${libdir}/dri/.debug ${libdir}/gstreamer-0.10/.debug"
+>  
+>  S = "${WORKDIR}/${EMGD_RPM_DIR}"
+>  
+> diff --git a/meta-crownbay/README b/meta-crownbay/README
+> index b56c79a..2521432 100644
+> --- a/meta-crownbay/README
+> +++ b/meta-crownbay/README
+> @@ -6,7 +6,7 @@ The Crown Bay platform consists of the Intel Atom Z6xx processor,
+>  plus the Intel EG20T Platform Controller Hub (Tunnel Creek + Topcliff).
+>  
+>  It also supports the E6xx embedded on-chip graphics via the Intel
+> -Embedded Media and Graphics Driver (EMGD) 1.10 Driver.
+> +Embedded Media and Graphics Driver (EMGD) 1.14 Driver.
+>  
+> 
+>  Dependencies
+> @@ -63,7 +63,7 @@ common metadata shared between BSPs) e.g.:
+>  The meta-crownbay layer contains support for two different machine
+>  configurations. These configurations are identical except for the fact
+>  that the one prefixed with 'crownbay' makes use of the
+> -Intel-proprietary EMGD 1.10 graphics driver, while the one prefixed
+> +Intel-proprietary EMGD 1.14 graphics driver, while the one prefixed
+>  with 'crownbay-noemgd' does not.
+>  
+>  If you want to enable the layer that supports EMGD graphics add the
+> @@ -73,10 +73,10 @@ following to the local.conf file:
+>  
+>  The 'crownbay' machine includes the emgd-driver-bin package, which has
+>  a proprietary license that must be whitelisted by adding the string
+> -"license_emgd-driver-bin_1.10" to the LICENSE_FLAGS_WHITELIST variable
+> +"license_emgd-driver-bin_1.14" to the LICENSE_FLAGS_WHITELIST variable
+>  in your local.conf.  For example:
+>  
+> -  LICENSE_FLAGS_WHITELIST = "license_emgd-driver-bin_1.10"
+> +  LICENSE_FLAGS_WHITELIST = "license_emgd-driver-bin_1.14"
+>  
+>  If you want to enable the layer that does not support EMGD graphics
+>  add the following to the local.conf file:
+
+
 
