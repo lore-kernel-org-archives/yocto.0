@@ -1,39 +1,38 @@
-Return-Path: <elvis.dowson@gmail.com>
-Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
-	[209.85.160.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CC70DE0027D
-	for <yocto@yoctoproject.org>; Mon, 30 Jul 2012 10:09:00 -0700 (PDT)
-Received: by pbbrq8 with SMTP id rq8so11935628pbb.35
-	for <yocto@yoctoproject.org>; Mon, 30 Jul 2012 10:09:00 -0700 (PDT)
+Return-Path: <jfabernathy@gmail.com>
+Received: from mail-gg0-f176.google.com (mail-gg0-f176.google.com
+	[209.85.161.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E45E7E00280
+	for <yocto@yoctoproject.org>; Mon, 30 Jul 2012 10:09:26 -0700 (PDT)
+Received: by ggnk4 with SMTP id k4so5720806ggn.35
+	for <yocto@yoctoproject.org>; Mon, 30 Jul 2012 10:09:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=subject:mime-version:content-type:from:in-reply-to:date:cc
-	:content-transfer-encoding:message-id:references:to:x-mailer;
-	bh=lVklK8s+P6zmsNibj9YVvFQGLneVCAfoykPpYUQhN9Q=;
-	b=mSqtH+KDURABOEdh4KdpCp+4q6pWzXFe3PsDJX5LUGqGzsgX8RtnXRFv/u0Wte8jqR
-	+jnnzdFK/bc7tlnWbOFp7ItIVUd3P2aE9Mx1BMapNR0akdPmeqQ9dA37CV0LkkVcDwqM
-	oa8b//UT41fnMAiYzBFqUIXiy9NRsFpIaAR9jOJBlcRVY5CMxwB1C6JBPGJTiCullsrq
-	Zo4wrPGGXDOzaVJzGtKfpURJNND2imMGjLU6bcsj2Ne0aOSd0JR76moNIdQEi/dJmEcA
-	BLPEW7SxP+dU9lLuexqHeCuqZCrUUDKlcB+fi5XAkEXK8OqKpwAss4ucL3PhkARXCbsZ
-	H7lw==
-Received: by 10.68.242.228 with SMTP id wt4mr14608798pbc.89.1343668140670;
-	Mon, 30 Jul 2012 10:09:00 -0700 (PDT)
-Received: from [192.168.1.101] ([94.205.108.162])
-	by mx.google.com with ESMTPS id kh1sm8264251pbc.23.2012.07.30.10.08.58
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Mon, 30 Jul 2012 10:08:59 -0700 (PDT)
-Mime-Version: 1.0 (Apple Message framework v1278)
-From: Elvis Dowson <elvis.dowson@gmail.com>
-In-Reply-To: <1441563.jsPnjQvs5m@helios>
-Date: Mon, 30 Jul 2012 21:08:54 +0400
-Message-Id: <02EF9496-6BB6-473A-8C55-0BB42CA96FFC@gmail.com>
-References: <2C433563-B7CA-458C-B27F-68E3D5D2408C@gmail.com>
-	<20120730164845.GM3261@jama.jama.net>
-	<E9F44A50-97D0-4CBE-A9AF-36084B1E263C@gmail.com>
-	<1441563.jsPnjQvs5m@helios>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-X-Mailer: Apple Mail (2.1278)
-Cc: yocto@yoctoproject.org
-Subject: Re: ERROR: Task 7 (/tool/yocto/poky/meta/recipes-core/meta/meta-toolchain.bb, do_populate_sdk) failed with exit code '1'
+	h=message-id:date:from:user-agent:mime-version:to:subject:references
+	:in-reply-to:content-type:content-transfer-encoding;
+	bh=XdQuZ4e7sgquhHe+uct2kTtf9CWL1R8ml/wxxx8PCfI=;
+	b=ZI081rlMwuLsvJOAWiQrMuGFP7qomfpsCXPH4CbbFdSLLLNc+lM9nSBDLh7H+rW6B8
+	gPZAmE2aZk90zjkW9tHjFq2ZYZcNh3XXzPTRJmUgbwUtEd8zYZBN/zHTKGZcXxw663Ai
+	nlwmsfdwG3QmGkYjOGy4UVcFd7jqG/NdbFtI1Xj554A29z3d7cMNAwK+qRa7F5+oROfd
+	4Xh9dIwGFSUjyMyZx+CjV/8e6tTgG+SwwLZhI5FLwMszMeMZOM6CIWfFVbNemOBiQuR5
+	ChFkgczKk/6fMfpvRC0KLq6lOFmmFdDeixlb8GlUSYIh0KY60G/XKFVeQQjXOwYdIFlH
+	gNNg==
+Received: by 10.236.200.132 with SMTP id z4mr10809341yhn.93.1343668166296;
+	Mon, 30 Jul 2012 10:09:26 -0700 (PDT)
+Received: from [10.0.1.54] (nc-184-4-39-191.dhcp.embarqhsd.net. [184.4.39.191])
+	by mx.google.com with ESMTPS id o25sm20394088yhm.14.2012.07.30.10.09.25
+	(version=SSLv3 cipher=OTHER); Mon, 30 Jul 2012 10:09:25 -0700 (PDT)
+Message-ID: <5016BFC4.8060307@gmail.com>
+Date: Mon, 30 Jul 2012 13:09:24 -0400
+From: Jim Abernathy <jfabernathy@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:14.0) Gecko/20120714 Thunderbird/14.0
+MIME-Version: 1.0
+To: yocto@yoctoproject.org
+References: <501683DE.5030904@gmail.com> <50168905.4090608@mlbassoc.com>
+	<501690C7.9030605@gmail.com> <50169277.1090400@mlbassoc.com>
+	<5016960E.9060305@gmail.com> <5016985D.7010805@mlbassoc.com>
+	<5016BB44.8070202@gmail.com> <5016BD14.1020807@mlbassoc.com>
+In-Reply-To: <5016BD14.1020807@mlbassoc.com>
+Subject: Re: build error pandaboard on master
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,45 +44,116 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 30 Jul 2012 17:09:00 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 30 Jul 2012 17:09:27 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Paul,
+On 07/30/2012 12:57 PM, Gary Thomas wrote:
+> On 2012-07-30 10:50, Jim Abernathy wrote:
+>> On 07/30/2012 10:21 AM, Gary Thomas wrote:
+>>> On 2012-07-30 08:11, Jim Abernathy wrote:
+>>>> On 07/30/2012 09:56 AM, Gary Thomas wrote:
+>>>>> On 2012-07-30 07:48, Jim Abernathy wrote:
+>>>>>> On 07/30/2012 09:15 AM, Gary Thomas wrote:
+>>>>>>> On 2012-07-30 06:53, Jim Abernathy wrote:
+>>>>>>>> I'm on master branch trying to build core-image-minimal for the 
+>>>>>>>> machine "pandaboard". Besides the basics, I put in a license 
+>>>>>>>> statement for cloud9 into local.conf.
+>>>>>>>>
+>>>>>>>> My bblayer.conf is as follows:
+>>>>>>>>
+>>>>>>>> # LAYER_CONF_VERSION is increased each time 
+>>>>>>>> build/conf/bblayers.conf
+>>>>>>>> # changes incompatibly
+>>>>>>>> LCONF_VERSION = "5"
+>>>>>>>>
+>>>>>>>> BBPATH = "${TOPDIR}"
+>>>>>>>> BBFILES ?= ""
+>>>>>>>>
+>>>>>>>> BBLAYERS ?= " \
+>>>>>>>>    /home/jim/poky/meta \
+>>>>>>>>    /home/jim/poky/meta-yocto \
+>>>>>>>>    /home/jim/meta-openembedded/meta-oe \
+>>>>>>>>    /home/jim/meta-ti \
+>>>>>>>>    "
+>>>>>>>>
+>>>>>>>> The error I'm getting is:
+>>>>>>>>
+>>>>>>>> ERROR: ParseError at 
+>>>>>>>> /home/jim/meta-ti/recipes-misc/payload/bonescript.bb:5: Could 
+>>>>>>>> not inherit file classes/systemd.bbclass
+>>>>>>>>
+>>>>>>>> Build Configuration:
+>>>>>>>> BB_VERSION        = "1.15.3"
+>>>>>>>> TARGET_ARCH       = "arm"
+>>>>>>>> TARGET_OS         = "linux-gnueabi"
+>>>>>>>> MACHINE           = "pandaboard"
+>>>>>>>> DISTRO            = "poky"
+>>>>>>>> DISTRO_VERSION    = "1.2+snapshot-20120730"
+>>>>>>>> TUNE_FEATURES     = "armv7a vfp neon cortexa9"
+>>>>>>>> TARGET_FPU        = "vfp-neon"
+>>>>>>>> meta
+>>>>>>>> meta-yocto        = 
+>>>>>>>> "master:7411158e1f980cd71c432026fa2f68ab80e3541e"
+>>>>>>>> meta-oe           = 
+>>>>>>>> "master:9afc488a1b97bfc5378f139ba04a7a5297b15fdb"
+>>>>>>>> meta-ti           = 
+>>>>>>>> "master:9bc77dff5f84578e259f8225bfa0656d94a2a60a"
+>>>>>>>>
+>>>>>>>> ERROR: Nothing PROVIDES 'pseudo-native'
+>>>>>>>
+>>>>>>> Try adding this in local.conf:
+>>>>>>>   BBMASK ?= ".*/meta-ti/recipes-(misc|bsp/formfactor)/"
+>>>>>>>
+>>>>>> BBMASK by itself didn't solve my particular problem. I'll try the 
+>>>>>> other suggestions and report back.
+>>>>>
+>>>>> What other problem do you have?  That BBMASK should keep bitbake from
+>>>>> trying to parse the recipe mentioned above.
+>>>>>
+>>>>> Note: I use these layers with Yocto all the time with that mask...
+>>>>>
+>>>>
+>>>> When I just used the statement:
+>>>>
+>>>> BBMASK ?= ".*/meta-ti/recipes-(misc|bsp/formfactor)/"
+>>>>
+>>>> I got the same error as my original post.
+>>>
+>>> The only way you could get that same error is if you already have a 
+>>> BBMASK
+>>> statement somewhere and this one is being ignored because of the ?= 
+>>> assignment.
+>>>
+>> So I started with a clean build again. This time I only added the 
+>> BBMASK statement you suggested.  I got the following error:
+>>
+>> ERROR: No recipes available for:
+>> /home/jim/meta-openembedded/meta-systemd/meta-gnome/recipes-gnome/gdm/gdm_2.32.2.bbappend 
+>>
+>> /home/jim/meta-openembedded/meta-systemd/meta-efl/recipes-efl/efl/elsa_svn.bbappend 
+>>
+>> ERROR: Command execution failed: Exited with 1
+>>
+>> I'm guessing the BBMASK needs to call out 
+>> meta-openembedded/meta-systemd/meta-gnome and meta-efl?
+>
+> Or don't include those layers - meta-systemd isn't needed by your 
+> yocto build.
+>
+Thanks, that makes more sense now.  I removed the layer meta-systemd 
+from bblayers.conf and used the
 
-On Jul 30, 2012, at 8:58 PM, Paul Eggleton wrote:
->=20
-> This is my fault - I'll put together a patch right now. As a =
-workaround you=20
-> can "bitbake rpmresolve-native" first and you won't get the error =
-anymore.
+BBMASK ?= ".*/meta-ti/recipes-(misc|bsp/formfactor)/"
 
-Thanks for the workaround! It worked.
+statement in local.conf to solves the problem.
 
-It would be good if all changes to the master were run through an =
-automated build test on an internal git repository, prior to being =
-pushed out to the public git repository. This way, you would be able to =
-ensure that breaks in the build do not get propagated to all users.
+What is really causing the problem?  Without it dependencies on 
+meta-systemd are there, but the mask removes that??  Why can you remove 
+a dependency?
 
-FYI, I refresh my yocto repos every two weeks and always perform a clean =
-build, after deleting my tmp and sstate-cache folders.=20
+Jim A
 
-It take around 2 hours to build meta-toolchain, and another hour to =
-build core-image-minimal, on my machine configuration, which is a =
-MacBook Pro 15", 8GB RAM, 2.3GHz Core i7, running Ubuntu 12.04 LTS =
-64-bit using VMware Fusion 5.0.0 with 8 CPU core configured, and 4GB RAM =
-allocated to the VM.
 
-I usually have the following layers setup for each build
 
-BBLAYERS ?=3D " \
-  /tool/yocto/poky/meta \
-  /tool/yocto/poky/meta-yocto \
-  /tool/yocto/meta-openembedded/meta-oe \
-  /tool/yocto/meta-xilinx \
-  "
-
-Best regards,
-
-Elvis Dowson=
 
