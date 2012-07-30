@@ -1,32 +1,36 @@
-Return-Path: <bruce.ashfield@gmail.com>
-Received: from mail-qc0-f176.google.com (mail-qc0-f176.google.com
-	[209.85.216.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8B94BE01439
-	for <yocto@yoctoproject.org>; Mon, 30 Jul 2012 05:54:23 -0700 (PDT)
-Received: by qcsc21 with SMTP id c21so3164634qcs.35
-	for <yocto@yoctoproject.org>; Mon, 30 Jul 2012 05:54:23 -0700 (PDT)
+Return-Path: <martin.jansa@gmail.com>
+Received: from mail-wi0-f176.google.com (mail-wi0-f176.google.com
+	[209.85.212.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 68F68E0143A
+	for <yocto@yoctoproject.org>; Mon, 30 Jul 2012 06:00:17 -0700 (PDT)
+Received: by wibhn17 with SMTP id hn17so1438829wib.11
+	for <yocto@yoctoproject.org>; Mon, 30 Jul 2012 06:00:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=A/f1LNizg7kIqPd12RMA6HVZEsMamIOcDduVavtq1mk=;
-	b=PDex8iuMR1bg0c5RzyKxHYYKnlZJXRuqtl/q0AG7gARhRoWZbKlwMRgWIjUPbxXdbu
-	TsD1jFM02sMPK6GppwrviGrUdWqTN4hPuZ5IPkYAqA8M0XDu6URmAPJr0zaSbtCMkRoW
-	kGp+4o6hlM4sILnVDSQFS99aqGRMWHFZaCT3Ixe9/5+QKrQvMDv4QrL6SNwiHBbdDwJ3
-	MzvVy/57mXDBPb79dOnBtnu50sUXBaOft766wJBncz+G0iSpiCp/+s9OkbTpJ4H7sHYR
-	hsY71xCO97gJ/EFlDQis2I8leqtuNtGDpehTMgSDYZuSUHkLq3ez1gtz3X9LmilfTe6J
-	CmJQ==
+	h=date:from:to:cc:subject:message-id:references:mime-version
+	:content-type:content-disposition:in-reply-to:user-agent;
+	bh=D60Haxa3O16qFdL+r1byOFZ6BX3iuFOYPv3LU8zPYZw=;
+	b=STRiCHLk5UXg4qOnJtlo5gZRjBraLJ0AA+EWC4LF3MJQBANeYP1Z4izHKhcUO0oeDB
+	oyyf4LiP4OKcJheThZd6GIqJm7wRg8NydDKgjX/4rTSgI3p+7FMZGiTRzKIk8D6PLCFR
+	ImWCYmOX8KlPCSb/SVys6h7K4gjtqhhqZ0aoCdWZViUlD6U3VZuYldatOnw6MGtcnF5+
+	eQSuJTOCQDaN8OOgSyLL7kKQ1NuRKhpvSced/zWvFdnxmBv7AqJpOCp+AD9xvuggZN1T
+	J+G0GZ7AdkzF3+RLqsj0ZSP6Q1M2Holvt4YCa+Sq5lROLgw+CDJS9JBhWsOqcAkCIZOO
+	Mlcg==
+Received: by 10.216.255.146 with SMTP id j18mr5429317wes.163.1343653215767;
+	Mon, 30 Jul 2012 06:00:15 -0700 (PDT)
+Received: from localhost ([94.230.152.246])
+	by mx.google.com with ESMTPS id cl8sm16405927wib.10.2012.07.30.06.00.14
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Mon, 30 Jul 2012 06:00:14 -0700 (PDT)
+Date: Mon, 30 Jul 2012 15:00:10 +0200
+From: Martin Jansa <martin.jansa@gmail.com>
+To: Jim Abernathy <jfabernathy@gmail.com>
+Message-ID: <20120730130010.GH3261@jama.jama.net>
+References: <501683DE.5030904@gmail.com>
 MIME-Version: 1.0
-Received: by 10.224.106.138 with SMTP id x10mr23568293qao.1.1343652863051;
-	Mon, 30 Jul 2012 05:54:23 -0700 (PDT)
-Received: by 10.229.247.198 with HTTP; Mon, 30 Jul 2012 05:54:23 -0700 (PDT)
-In-Reply-To: <CACW_hTZwzZUyWmmvDaFqaqt7do=_WfXOzA2ytAcs5CD1UmS0kA@mail.gmail.com>
-References: <CACW_hTZwzZUyWmmvDaFqaqt7do=_WfXOzA2ytAcs5CD1UmS0kA@mail.gmail.com>
-Date: Mon, 30 Jul 2012 08:54:23 -0400
-Message-ID: <CADkTA4Pm=bFeA9FpBeZ7usqAo+c1cS+mqaM7b=1Zcm6RnErRhQ@mail.gmail.com>
-From: Bruce Ashfield <bruce.ashfield@gmail.com>
-To: Frans Meulenbroeks <fransmeulenbroeks@gmail.com>
+In-Reply-To: <501683DE.5030904@gmail.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
 Cc: yocto@yoctoproject.org
-Subject: Re: denzil kernel build issues
+Subject: Re: build error pandaboard on master
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,234 +42,83 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 30 Jul 2012 12:54:23 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Mon, 30 Jul 2012 13:00:17 -0000
+X-Groupsio-MsgNum: 8243
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="KscVNZbUup0vZz0f"
+Content-Disposition: inline
 
-On Mon, Jul 30, 2012 at 7:33 AM, Frans Meulenbroeks
-<fransmeulenbroeks@gmail.com> wrote:
-> Dear all,
->
-> I finally managed to find time to pick up porting my project to denzil and
-> did encounter two issues that I wanted to report back:
->
-> First is that I could not find what the preferred way was to disable a
-> kernel option in my bsp.
-> (the option concerned is CONFIG_PM).
-> Of course I can sed it out in do_configure but I'd hoped it could be simpler
-> (I have tried:
-> CONFIG_PM=n
-> in my config snippet)
+--KscVNZbUup0vZz0f
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Putting:
+On Mon, Jul 30, 2012 at 08:53:50AM -0400, Jim Abernathy wrote:
+> I'm on master branch trying to build core-image-minimal for the machine=
+=20
+> "pandaboard". Besides the basics, I put in a license statement for=20
+> cloud9 into local.conf.
+>=20
+> My bblayer.conf is as follows:
+>=20
+> # LAYER_CONF_VERSION is increased each time build/conf/bblayers.conf
+> # changes incompatibly
+> LCONF_VERSION =3D "5"
+>=20
+> BBPATH =3D "${TOPDIR}"
+> BBFILES ?=3D ""
+>=20
+> BBLAYERS ?=3D " \
+>    /home/jim/poky/meta \
+>    /home/jim/poky/meta-yocto \
+>    /home/jim/meta-openembedded/meta-oe \
+>    /home/jim/meta-ti \
+>    "
+>=20
+> The error I'm getting is:
+>=20
+> ERROR: ParseError at=20
+> /home/jim/meta-ti/recipes-misc/payload/bonescript.bb:5: Could not=20
+> inherit file classes/systemd.bbclass
 
-# CONFIG_PM is not set
+add meta-openembedded/meta-systemd to your BBLAYERS
 
-in your configuration fragment will turn off an option, the BSP guide has a
-"# CONFIG_SMP is not set" as an example for this.
-
->
-> Secondly a patch of mine does not seem to apply properly the first time, but
-> it does apply a second time.
-> This suggests a race between do_kernel_checkout and do_patch
-
-There shouldn't be any race ..  if this doesn't work:
-
-   addtask kernel_checkout before do_patch after do_unpack
-
-Then there are some serious problems with bitbake's task scheduling.
-
-If you didn't do a clean between the two runs, the second is
-attempting to continue
-the patching and you still aren't getting what you want.
-
-Without seeing what you've ported, or a work in progress I can't say exactly
-what is wrong, but your meta data is somehow wrong or completely missing.
-Have you set any meta or BSP SRCREVs explicitly ?
-
-Cheers,
-
-Bruce
-
->
-> Below is a log that illustrates this and demonstrates that things are ok the
-> 2nd time.
-> (btw I am also a little bit concerned on the command not found messages).
-> And of course any sugguestion for a fix is greatly appreciated.
->
-> Best regards, Frans
->
-> frans@frans-desktop:~/poky-denzil-7.0-build$ bitbake virtual/kernel
-> Parsing recipes: 100%
-> |######################################################################################################################|
-> Time: 00:00:30
-> Parsing of 829 .bb files complete (0 cached, 829 parsed). 1105 targets, 35
-> skipped, 0 masked, 0 errors.
->
-> OE Build Configuration:
-> BB_VERSION        = "1.15.1"
-> TARGET_ARCH       = "powerpc"
-> TARGET_OS         = "linux-uclibc"
-> MACHINE           = "syrcxx"
-> DISTRO            = "poky"
-> DISTRO_VERSION    = "1.2"
-> TUNE_FEATURES     = "m32 fpu-hard ppce300c3"
-> TARGET_FPU        = ""
+> Build Configuration:
+> BB_VERSION        =3D "1.15.3"
+> TARGET_ARCH       =3D "arm"
+> TARGET_OS         =3D "linux-gnueabi"
+> MACHINE           =3D "pandaboard"
+> DISTRO            =3D "poky"
+> DISTRO_VERSION    =3D "1.2+snapshot-20120730"
+> TUNE_FEATURES     =3D "armv7a vfp neon cortexa9"
+> TARGET_FPU        =3D "vfp-neon"
 > meta
-> meta-yocto
-> meta-syrcxx       = "<unknown>:<unknown>"
->
-> NOTE: Resolving any missing task queue dependencies
-> NOTE: Preparing runqueue
-> NOTE: Executing SetScene Tasks
-> NOTE: Executing RunQueue Tasks
-> NOTE: Running task 162 of 664 (ID: 6,
-> /home/frans/poky-denzil-7.0/meta/recipes-kernel/linux/linux-yocto_3.2.bb,
-> do_fetch)
-> NOTE: package
-> linux-yocto-3.2.11+git1+b14a08f5c7b469a5077c10942f4e1aec171faa9d_1+01e948c2bdf7f5ad9f2b30047a8d3493a1a2880a-r1.81:
-> task do_fetch: Started
-> NOTE: package
-> linux-yocto-3.2.11+git1+b14a08f5c7b469a5077c10942f4e1aec171faa9d_1+01e948c2bdf7f5ad9f2b30047a8d3493a1a2880a-r1.81:
-> task do_fetch: Succeeded
-> NOTE: Running task 644 of 664 (ID: 2,
-> /home/frans/poky-denzil-7.0/meta/recipes-kernel/linux/linux-yocto_3.2.bb,
-> do_unpack)
-> NOTE: package
-> linux-yocto-3.2.11+git1+b14a08f5c7b469a5077c10942f4e1aec171faa9d_1+01e948c2bdf7f5ad9f2b30047a8d3493a1a2880a-r1.81:
-> task do_unpack: Started
-> NOTE: package
-> linux-yocto-3.2.11+git1+b14a08f5c7b469a5077c10942f4e1aec171faa9d_1+01e948c2bdf7f5ad9f2b30047a8d3493a1a2880a-r1.81:
-> task do_unpack: Succeeded
-> NOTE: Running task 645 of 664 (ID: 1,
-> /home/frans/poky-denzil-7.0/meta/recipes-kernel/linux/linux-yocto_3.2.bb,
-> do_kernel_checkout)
-> NOTE: package
-> linux-yocto-3.2.11+git1+b14a08f5c7b469a5077c10942f4e1aec171faa9d_1+01e948c2bdf7f5ad9f2b30047a8d3493a1a2880a-r1.81:
-> task do_kernel_checkout: Started
-> NOTE: package
-> linux-yocto-3.2.11+git1+b14a08f5c7b469a5077c10942f4e1aec171faa9d_1+01e948c2bdf7f5ad9f2b30047a8d3493a1a2880a-r1.81:
-> task do_kernel_checkout: Succeeded
-> NOTE: Running task 646 of 664 (ID: 0,
-> /home/frans/poky-denzil-7.0/meta/recipes-kernel/linux/linux-yocto_3.2.bb,
-> do_validate_branches)
-> NOTE: package
-> linux-yocto-3.2.11+git1+b14a08f5c7b469a5077c10942f4e1aec171faa9d_1+01e948c2bdf7f5ad9f2b30047a8d3493a1a2880a-r1.81:
-> task do_validate_branches: Started
-> NOTE: package
-> linux-yocto-3.2.11+git1+b14a08f5c7b469a5077c10942f4e1aec171faa9d_1+01e948c2bdf7f5ad9f2b30047a8d3493a1a2880a-r1.81:
-> task do_validate_branches: Succeeded
-> NOTE: Running task 647 of 664 (ID: 3,
-> /home/frans/poky-denzil-7.0/meta/recipes-kernel/linux/linux-yocto_3.2.bb,
-> do_patch)
-> NOTE: package
-> linux-yocto-3.2.11+git1+b14a08f5c7b469a5077c10942f4e1aec171faa9d_1+01e948c2bdf7f5ad9f2b30047a8d3493a1a2880a-r1.81:
-> task do_patch: Started
-> ERROR: Function failed: do_patch (see
-> /home/frans/poky-denzil-7.0-build/tmp/work/syrcxx-poky-linux-uclibc/linux-yocto-3.2.11+git1+b14a08f5c7b469a5077c10942f4e1aec171faa9d_1+01e948c2bdf7f5ad9f2b30047a8d3493a1a2880a-r1.81/temp/log.do_patch.27211
-> for further information)
-> ERROR: Logfile of failure stored in:
-> /home/frans/poky-denzil-7.0-build/tmp/work/syrcxx-poky-linux-uclibc/linux-yocto-3.2.11+git1+b14a08f5c7b469a5077c10942f4e1aec171faa9d_1+01e948c2bdf7f5ad9f2b30047a8d3493a1a2880a-r1.81/temp/log.do_patch.27211
-> Log data follows:
-> | Branch meta-temp set up to track remote branch meta from origin.
-> | Deleted branch meta-temp (was 3499d64).
-> | warning: could not find (or was already included):
-> cfg/dmaengine/dmaengine.scc
-> | warning: could not find (or was already included):
-> cfg/usb-mass-storage.scc
-> | warning: could not find (or was already included): cfg/vfat.scc
-> | warning: could not find (or was already included):
-> cfg/dmaengine/dmaengine.scc
-> | warning: could not find (or was already included): user-patches.scc
-> | ./2-syrcxx-215ef69425ed902858630c959dabd5ce.sco: line 21:
-> dmaengine_68b329da9893e34099c7d8ad5cb9c940: command not found
-> | ./2-syrcxx-215ef69425ed902858630c959dabd5ce.sco: line 21:
-> dmaengine_68b329da9893e34099c7d8ad5cb9c940: command not found
-> | [INFO] validating against known patches  (syrcxx-fsl-mpc8313e-rdb-meta)
-> Branch standard/default/syrcxx set up to track remote branch
-> standard/default/base from origin.
->   [##################################ERROR: Function failed: do_patch (see
-> /home/frans/poky-denzil-7.0-build/tmp/work/syrcxx-poky-linux-uclibc/linux-yocto-3.2.11+git1+b14a08f5c7b469a5077c10942f4e1aec171faa9d_1+01e948c2bdf7f5ad9f2b30047a8d3493a1a2880a-r1.81/temp/log.do_patch.27211
-> for further information)
-> error: patch failed: drivers/gpio/Makefile:41        ] (-)(76 %)
-> | error: drivers/gpio/Makefile: patch does not apply
-> | To force apply this patch, use 'guilt push -f'
-> | [ERROR] unable to complete push
-> | pending patches are:
-> | Patches directory doesn't exist, try guilt-init
-> | ERROR. could not update git tree
-> | ERROR. Could not modify standard/default/fsl-mpc8313e-rdb/syrcxx
-> NOTE: package
-> linux-yocto-3.2.11+git1+b14a08f5c7b469a5077c10942f4e1aec171faa9d_1+01e948c2bdf7f5ad9f2b30047a8d3493a1a2880a-r1.81:
-> task do_patch: Failed
-> ERROR: Task 3
-> (/home/frans/poky-denzil-7.0/meta/recipes-kernel/linux/linux-yocto_3.2.bb,
-> do_patch) failed with exit code '1'
-> NOTE: Tasks Summary: Attempted 647 tasks of which 642 didn't need to be
-> rerun and 1 failed.
->
-> Summary: 1 task failed:
->   /home/frans/poky-denzil-7.0/meta/recipes-kernel/linux/linux-yocto_3.2.bb,
-> do_patch
-> Summary: There was 1 ERROR message shown, returning a non-zero exit code.
-> frans@frans-desktop:~/poky-denzil-7.0-build$ ls -l
-> /home/frans/poky-denzil-7.0-build/tmp/work/syrcxx-poky-linux-uclibc/linux-yocto-3.2.11+git1+b14a08f5c7b469a5077c10942f4e1aec171faa9d_1+01e948c2bdf7f5ad9f2b30047a8d3493a1a2880a-r1.81/linux/drivers/gpio/Makefile
-> -rw-r--r-- 1 frans frans 2663 2012-07-30 12:27
-> /home/frans/poky-denzil-7.0-build/tmp/work/syrcxx-poky-linux-uclibc/linux-yocto-3.2.11+git1+b14a08f5c7b469a5077c10942f4e1aec171faa9d_1+01e948c2bdf7f5ad9f2b30047a8d3493a1a2880a-r1.81/linux/drivers/gpio/Makefile
-> frans@frans-desktop:~/poky-denzil-7.0-build$ bitbake virtual/kernel
-> Loading cache: 100%
-> |########################################################################################################################|
-> ETA:  00:00:00
-> Loaded 1106 entries from dependency cache.
->
-> OE Build Configuration:
-> BB_VERSION        = "1.15.1"
-> TARGET_ARCH       = "powerpc"
-> TARGET_OS         = "linux-uclibc"
-> MACHINE           = "syrcxx"
-> DISTRO            = "poky"
-> DISTRO_VERSION    = "1.2"
-> TUNE_FEATURES     = "m32 fpu-hard ppce300c3"
-> TARGET_FPU        = ""
-> meta
-> meta-yocto
-> meta-syrcxx       = "<unknown>:<unknown>"
->
-> NOTE: Resolving any missing task queue dependencies
-> NOTE: Preparing runqueue
-> NOTE: Executing SetScene Tasks
-> NOTE: Executing RunQueue Tasks
-> NOTE: Running task 241 of 664 (ID: 3,
-> /home/frans/poky-denzil-7.0/meta/recipes-kernel/linux/linux-yocto_3.2.bb,
-> do_patch)
-> NOTE: package
-> linux-yocto-3.2.11+git1+b14a08f5c7b469a5077c10942f4e1aec171faa9d_1+01e948c2bdf7f5ad9f2b30047a8d3493a1a2880a-r1.81:
-> task do_patch: Started
-> NOTE: package
-> linux-yocto-3.2.11+git1+b14a08f5c7b469a5077c10942f4e1aec171faa9d_1+01e948c2bdf7f5ad9f2b30047a8d3493a1a2880a-r1.81:
-> task do_patch: Succeeded
-> NOTE: Running task 648 of 664 (ID: 8,
-> /home/frans/poky-denzil-7.0/meta/recipes-kernel/linux/linux-yocto_3.2.bb,
-> do_kernel_configme)
-> NOTE: Running task 649 of 664 (ID: 20,
-> /home/frans/poky-denzil-7.0/meta/recipes-kernel/linux/linux-yocto_3.2.bb,
-> do_populate_lic)
-> NOTE: package
-> linux-yocto-3.2.11+git1+b14a08f5c7b469a5077c10942f4e1aec171faa9d_1+01e948c2bdf7f5ad9f2b30047a8d3493a1a2880a-r1.81:
-> task do_populate_lic: Started
-> NOTE: package
-> linux-yocto-3.2.11+git1+b14a08f5c7b469a5077c10942f4e1aec171faa9d_1+01e948c2bdf7f5ad9f2b30047a8d3493a1a2880a-r1.81:
-> task do_kernel_configme: Started
->
->
+> meta-yocto        =3D "master:7411158e1f980cd71c432026fa2f68ab80e3541e"
+> meta-oe           =3D "master:9afc488a1b97bfc5378f139ba04a7a5297b15fdb"
+> meta-ti           =3D "master:9bc77dff5f84578e259f8225bfa0656d94a2a60a"
+>=20
+> ERROR: Nothing PROVIDES 'pseudo-native'
+>=20
+>=20
+>=20
 > _______________________________________________
 > yocto mailing list
 > yocto@yoctoproject.org
 > https://lists.yoctoproject.org/listinfo/yocto
->
 
+--=20
+Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
 
+--KscVNZbUup0vZz0f
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
 
--- 
-"Thou shalt not follow the NULL pointer, for chaos and madness await
-thee at its end"
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2.0.19 (GNU/Linux)
 
+iEYEARECAAYFAlAWhVoACgkQN1Ujt2V2gBygSACeKCmI6QtLMuRM+AJkM0l19O0M
+65QAnRT82G0RIJ+VwodwwColjtNQ5kir
+=0UGv
+-----END PGP SIGNATURE-----
+
+--KscVNZbUup0vZz0f--
