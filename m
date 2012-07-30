@@ -1,31 +1,41 @@
-Return-Path: <fnognn@unife.it>
-Received: from mail-lb0-f176.google.com (mail-lb0-f176.google.com
-	[209.85.217.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EC25DE0142E
-	for <yocto@yoctoproject.org>; Mon, 30 Jul 2012 01:48:39 -0700 (PDT)
-Received: by lboj14 with SMTP id j14so3774112lbo.35
-	for <yocto@yoctoproject.org>; Mon, 30 Jul 2012 01:48:38 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:from:date:message-id:subject:to:content-type
-	:x-gm-message-state;
-	bh=gBHBbId6SjUUxRpGer/5vc22uurl9sJ3WFNW04uEn6M=;
-	b=YKCSKcfKLoV0thxOcI30Vco8ZC4En8QrwK8SYax3S04VoCF7AVedQGuVfeMwuFlNVg
-	IW1GKkSvU/Cal84rxvk8js0ZE6vtd/wfydhMbeTMw85CqtSVxkmqpxnbIquqLqMD/NnD
-	y+DvxCJv+UFXfHM/OMTavi2wZIQ79Qty36Kl9XrXBGe4J0/j8Z1ebjmNz2jj8FWkkI61
-	ujYpfdMHqySuZMpyLHiIk2fGc375O6nfmId/BJgUf73GEt/wtx7YS5r8kMuKTCQXObC7
-	zUvtzxOlKzXdp6NjgevqztyIO5Iq2rtWY9uMy2BHu3uIj9ENxvg4OgfJ/58LLJxveB5n
-	dYZw==
-Received: by 10.112.99.98 with SMTP id ep2mr5111824lbb.45.1343638118455; Mon,
-	30 Jul 2012 01:48:38 -0700 (PDT)
+Return-Path: <nitin.a.kamble@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 85433E0142E
+	for <yocto@yoctoproject.org>; Mon, 30 Jul 2012 02:50:24 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 30 Jul 2012 02:50:24 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="179247224"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
+	by orsmga002.jf.intel.com with ESMTP; 30 Jul 2012 02:50:24 -0700
+Received: from orsmsx107.amr.corp.intel.com (10.22.225.80) by
+	orsmsx603.amr.corp.intel.com (10.22.226.49) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Mon, 30 Jul 2012 02:50:23 -0700
+Received: from orsmsx106.amr.corp.intel.com ([169.254.5.44]) by
+	ORSMSX107.amr.corp.intel.com ([10.22.225.80]) with mapi id
+	14.01.0355.002; Mon, 30 Jul 2012 02:50:23 -0700
+From: "Kamble, Nitin A" <nitin.a.kamble@intel.com>
+To: Darren Hart <dvhart@linux.intel.com>
+Thread-Topic: [yocto] [PATCH 2/6] crownbay: customize the xorg.conf for the
+	flat panel on the corwnbay kit
+Thread-Index: AQHNa2r9XwwvdBFLnUeifBa0FZ6xkpc8gU0wgAB2mwD//5z/gIABjyEAgAN1YZA=
+Date: Mon, 30 Jul 2012 09:50:22 +0000
+Message-ID: <ADD6A3980E8C39419A432FF422031B4C0318F3FC@ORSMSX106.amr.corp.intel.com>
+References: <c24a8e51027f36cb1c0395ca0c90cbd54b685100.1343037893.git.nitin.a.kamble@intel.com>
+	<118e9c4c78b61e5debac285efa420486c145993b.1343037893.git.nitin.a.kamble@intel.com>
+	<5011A43F.50904@linux.intel.com>
+	<ADD6A3980E8C39419A432FF422031B4C0318E9CE@ORSMSX106.amr.corp.intel.com>
+	<501212EE.8030507@linux.intel.com>
+	<ADD6A3980E8C39419A432FF422031B4C0318EA3C@ORSMSX106.amr.corp.intel.com>
+	<50130EB2.7010300@linux.intel.com>
+In-Reply-To: <50130EB2.7010300@linux.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.139]
 MIME-Version: 1.0
-Received: by 10.112.96.35 with HTTP; Mon, 30 Jul 2012 01:48:18 -0700 (PDT)
-From: Giovanni Foiani <fnognn@unife.it>
-Date: Mon, 30 Jul 2012 10:48:18 +0200
-Message-ID: <CANsUPaOtNG=xQkccMg10T=4Hf-eJmP1UMJ=KRviPQ-kb270=2Q@mail.gmail.com>
-To: yocto@yoctoproject.org
-X-Gm-Message-State: ALoCoQlUzVex5fXiRU9AocltVU0nrQcg3vcVzGIsM4Jc7iBi4Bla9wpN90Zja03GM6UinHYmWEsg
-Subject: Usb-serial device support
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [PATCH 2/6] crownbay: customize the xorg.conf for the flat panel on the corwnbay kit
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,116 +47,89 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 30 Jul 2012 08:48:40 -0000
-Content-Type: multipart/alternative; boundary=f46d0401fde1c1d9c004c608207b
-
---f46d0401fde1c1d9c004c608207b
-Content-Type: text/plain; charset=ISO-8859-1
-
-Hi,
-
-I built a distribution for iMX53 QSB with kernel 2.6.35-3 and I need
-support for USB-serial devices.
-When I plug the usb-serial converter I get this error..
-
-*usb wakeup is here
-
-                        *
-*otg host Remote wakeup
-
-                                         *
-*usb 1-1: new full speed USB device using fsl-ehci and address 3
-
-                                          *
-*usb 1-1: device v067b p2303 is not supported *
-
-I tried to recompile linux-imx kernel adding support for USB-serial
-devices, I run:
-
-   - bibake linux-imx -c menuconfig
-   - added support for usb-serial devices in menuconfig
-   - bitbake -f -c compile linux-imx
-   - bitbake linux-imx
-
-..but it didn't work..
-
-Any suggestions?
-
-Thanks
-
-Giovanni
---
-
-Dott. Ing. Giovanni Foiani
-
-Cell:        +39-349-3577515
-Phone:    +39-0532-97-4106
-mail:        giovanni.foiani@unife.it
-CenTec - Corso Guercino, 47 - 44042 Cento (FE)
-
---f46d0401fde1c1d9c004c608207b
-Content-Type: text/html; charset=ISO-8859-1
+X-List-Received-Date: Mon, 30 Jul 2012 09:50:24 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<span style=3D"color:rgb(34,34,34);font-size:13px;font-family:arial,sans-se=
-rif">Hi,</span><div style=3D"color:rgb(34,34,34);font-size:13px;font-family=
-:arial,sans-serif">
-<br></div><div style=3D"color:rgb(34,34,34);font-size:13px;font-family:aria=
-l,sans-serif">I built a distribution for iMX53 QSB with kernel 2.6.35-3 and=
- I need support for USB-serial devices.=A0</div>
-<div style=3D"color:rgb(34,34,34);font-size:13px;font-family:arial,sans-ser=
-if">When I plug the usb-serial converter I get this error..</div><div style=
-=3D"color:rgb(34,34,34);font-size:13px;font-family:arial,sans-serif">
-<br></div><div style=3D"color:rgb(34,34,34);font-size:13px;font-family:aria=
-l,sans-serif"><div><i>usb wakeup is here =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
-=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0=
- =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
-=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0=
- =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0=A0</i></div>
+
+
+> -----Original Message-----
+> From: Darren Hart [mailto:dvhart@linux.intel.com]
+> Sent: Saturday, July 28, 2012 3:27 AM
+> To: Kamble, Nitin A
+> Cc: yocto@yoctoproject.org; bruce.ashfield@windriver.com; Zanussi, Tom
+> Subject: Re: [yocto] [PATCH 2/6] crownbay: customize the xorg.conf for th=
+e
+> flat panel on the corwnbay kit
+>=20
+>=20
+>=20
+> On 07/26/2012 10:31 PM, Kamble, Nitin A wrote:
+> >>>> On 07/23/2012 03:06 AM, nitin.a.kamble@intel.com wrote:
+> >>>>> From: Nitin A Kamble <nitin.a.kamble@intel.com>
+> >>>>>
+> >>>>> The kit has Auo 800x600 LCD screen. Configuring Xorg for it.
+> >>>>
+> >>>> I presume the crownbay has additional display options? how does
+> >>>> this impact those?
+> >>>>
+> >>> This change sets the resolution of the screen to 800x600. And this
+> >>> is applicable to LCD screen on the kit as well as external monitor.
+> >>> I will add a note about it in the log.
+> >>
+> >> I presume that without this change it was able to detect the
+> >> appropriate resolution of the connected monitor, but not of the LCD?
+> >>
+> >> If so, this change effectively breaks that autodetection and forces
+> >> everything to the 800x600 display which is arguably very
+> >> low-resolution by today's standards. Why should this be the default?
+> >> When you refer to "the kit", what exactly are you referring to?
+> >>
+> >> Also, is this a discussion you have already had with Tom? I don't
+> >> want to contradict what he has said regarding this BSP.
+> >
+> >
+> > EMGD driver on crownbay gives few resolutions as options. By default
+> > it tries to set 1366x768 resolution for both LCD and external monitor.
+> > The Crownbay kit is a suitcase kind of box, which has builtin LCD
+> > screen of resolution 800x600. This LCD screen shows only
+> > 800x600 of the default 1366x768 area. So The LCD is not able to show
+> > all the screen, and IMO it is a functional issue.
+> >
+> > For my Dell 1704FPTi monitor which has 1280x1024 native resolution;
+> > When connected to the crownbay,  X cannot find a working mode for this
+> > monitor. But if I set 800x600 in the xorg.conf as this commit does,
+> > then both LCD & external monitor can show the X screen without any
+> > issues.
+>=20
+> This seems like a bug to me. The driver should be able to probe the displ=
+ay
+> and use the optimal resolution without it being specified in the Xorg.con=
+f. So
+> far as I know we don't specify resolution in any of the meta-intel BSPs:
+>=20
+> dvhart@envy:~/source/poky/layers/meta-intel [denzil] $ find . -name
+> xorg.conf | xargs grep -i Modes
+>=20
+> So while I agree the kit screen should work out of the box, the fact that=
+ even
+> your dell lcd monitor doesn't work is cause for concern. Is there anythin=
+g in
+> the Xorg log that indicates why it isn't able to get the EDID data?
+>=20
+> --
+> Darren
+>=20
+
+In the xorg log I do not see any useful EDID information. Either these disp=
+lays do not support EDID, or the EDID support in the EMGD driver is not wor=
+king well with these devices. And the EMGD driver is closed source. So we c=
+an't fix it. So IMO keeping the resolution to 800x600 is the best possible =
+solution for crownbay BSP.
+
+Nitin
 
 
 
-<div><i>otg host Remote wakeup =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
-=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0=
- =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
-=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0=
- =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0</i=
-></div><div><i>usb 1-1: new full speed USB device using fsl-ehci and addres=
-s 3 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0=
- =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
-=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0=
- =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0=A0</i></div>
 
-
-
-<div><i>usb 1-1: device v067b p2303 is not supported=A0</i></div><div><br><=
-/div><div>I tried to recompile linux-imx kernel adding support for USB-seri=
-al devices, I run:</div><div><ul><li style=3D"margin-left:15px">bibake linu=
-x-imx -c menuconfig</li>
-
-
-
-<li style=3D"margin-left:15px">added support for usb-serial devices in menu=
-config</li><li style=3D"margin-left:15px">bitbake -f -c compile linux-imx</=
-li><li style=3D"margin-left:15px">bitbake linux-imx</li></ul><div>..but it =
-didn&#39;t work..</div>
-
-
-
-</div><div><br></div><div>Any suggestions?</div><div><br></div><div>Thanks<=
-/div><div><br></div><div>Giovanni</div></div>
-<div>--<br><br>Dott. Ing. Giovanni Foiani<br><font face=3D"arial, sans-seri=
-f"><span style=3D"border-collapse:collapse"><br></span></font></div><div>Ce=
-ll:=A0 =A0 =A0 =A0 <a href=3D"tel:%2B39-349-3577515" value=3D"+393493577515=
-" target=3D"_blank">+39-349-3577515</a><br>
-
-
-Phone: =A0=A0 <a href=3D"tel:%2B39-0532-97-4106" value=3D"+390532974106" ta=
-rget=3D"_blank">+39-0532-97-4106</a><br>mail:=A0 =A0 =A0 =A0 <a href=3D"mai=
-lto:giovanni.foiani@unife.it" target=3D"_blank">giovanni.foiani@unife.it</a=
-></div>
-<div><span style=3D"font-family:arial,helvetica,sans-serif;font-size:13px;l=
-ine-height:13px">CenTec - Corso Guercino, 47 - 44042 Cento (FE)</span></div=
-><br>
-
---f46d0401fde1c1d9c004c608207b--
