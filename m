@@ -1,24 +1,37 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 42F44E00280
-	for <yocto@yoctoproject.org>; Mon, 30 Jul 2012 09:58:47 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 30 Jul 2012 09:58:47 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="190366258"
-Received: from unknown (HELO helios.localnet) ([10.252.121.57])
-	by fmsmga001.fm.intel.com with ESMTP; 30 Jul 2012 09:58:46 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Elvis Dowson <elvis.dowson@gmail.com>
-Date: Mon, 30 Jul 2012 17:58:45 +0100
-Message-ID: <1441563.jsPnjQvs5m@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.8.4 (Linux/3.2.0-27-generic-pae; KDE/4.8.4; i686; ; )
-In-Reply-To: <E9F44A50-97D0-4CBE-A9AF-36084B1E263C@gmail.com>
+Return-Path: <elvis.dowson@gmail.com>
+Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
+	[209.85.160.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CC70DE0027D
+	for <yocto@yoctoproject.org>; Mon, 30 Jul 2012 10:09:00 -0700 (PDT)
+Received: by pbbrq8 with SMTP id rq8so11935628pbb.35
+	for <yocto@yoctoproject.org>; Mon, 30 Jul 2012 10:09:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=subject:mime-version:content-type:from:in-reply-to:date:cc
+	:content-transfer-encoding:message-id:references:to:x-mailer;
+	bh=lVklK8s+P6zmsNibj9YVvFQGLneVCAfoykPpYUQhN9Q=;
+	b=mSqtH+KDURABOEdh4KdpCp+4q6pWzXFe3PsDJX5LUGqGzsgX8RtnXRFv/u0Wte8jqR
+	+jnnzdFK/bc7tlnWbOFp7ItIVUd3P2aE9Mx1BMapNR0akdPmeqQ9dA37CV0LkkVcDwqM
+	oa8b//UT41fnMAiYzBFqUIXiy9NRsFpIaAR9jOJBlcRVY5CMxwB1C6JBPGJTiCullsrq
+	Zo4wrPGGXDOzaVJzGtKfpURJNND2imMGjLU6bcsj2Ne0aOSd0JR76moNIdQEi/dJmEcA
+	BLPEW7SxP+dU9lLuexqHeCuqZCrUUDKlcB+fi5XAkEXK8OqKpwAss4ucL3PhkARXCbsZ
+	H7lw==
+Received: by 10.68.242.228 with SMTP id wt4mr14608798pbc.89.1343668140670;
+	Mon, 30 Jul 2012 10:09:00 -0700 (PDT)
+Received: from [192.168.1.101] ([94.205.108.162])
+	by mx.google.com with ESMTPS id kh1sm8264251pbc.23.2012.07.30.10.08.58
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Mon, 30 Jul 2012 10:08:59 -0700 (PDT)
+Mime-Version: 1.0 (Apple Message framework v1278)
+From: Elvis Dowson <elvis.dowson@gmail.com>
+In-Reply-To: <1441563.jsPnjQvs5m@helios>
+Date: Mon, 30 Jul 2012 21:08:54 +0400
+Message-Id: <02EF9496-6BB6-473A-8C55-0BB42CA96FFC@gmail.com>
 References: <2C433563-B7CA-458C-B27F-68E3D5D2408C@gmail.com>
 	<20120730164845.GM3261@jama.jama.net>
 	<E9F44A50-97D0-4CBE-A9AF-36084B1E263C@gmail.com>
-MIME-Version: 1.0
+	<1441563.jsPnjQvs5m@helios>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+X-Mailer: Apple Mail (2.1278)
 Cc: yocto@yoctoproject.org
 Subject: Re: ERROR: Task 7 (/tool/yocto/poky/meta/recipes-core/meta/meta-toolchain.bb, do_populate_sdk) failed with exit code '1'
 X-BeenThere: yocto@yoctoproject.org
@@ -32,62 +45,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 30 Jul 2012 16:58:47 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Mon, 30 Jul 2012 17:09:00 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
-On Monday 30 July 2012 20:55:50 Elvis Dowson wrote:
-> Hi Martin,
-> 
-> On Jul 30, 2012, at 8:48 PM, Martin Jansa wrote:
-> > Attach log.do_populate_sdk.25279
-> 
-> Here is the log
-> 
-> DEBUG: Executing python function do_populate_sdk
-> DEBUG: Executing shell function populate_sdk_image
-> Generating solve db for /tool/yocto/poky/build/tmp/deploy/rpm/ppc440...
->    total:               1      0.000000 MB     15.378123 secs
->    fingerprint:      7383      0.071586 MB      0.795094 secs
->    install:          2461      0.000000 MB      3.924927 secs
->    digest:           4922     17.539986 MB      0.071979 secs
->    signature:        4922      0.000000 MB      5.635336 secs
->    dbadd:            2461      0.000000 MB      3.867947 secs
->    dbget:           24358      0.000000 MB      0.044111 secs
->    dbput:            2461     11.232764 MB      2.458966 secs
->    readhdr:         24611     22.422706 MB      2.833783 secs
->    hdrload:         15847     48.317258 MB      0.063320 secs
->    hdrget:         451910      0.000000 MB      0.314565 secs
-> Generating solve db for
-> /tool/yocto/poky/build/tmp/deploy/rpm/x86_64-nativesdk... total:           
->    1      0.000000 MB      4.420427 secs
->    fingerprint:      1698      0.056604 MB      0.353290 secs
->    install:           566      0.000000 MB      1.192211 secs
->    digest:           1132      9.261982 MB      0.035940 secs
->    signature:        1132      0.000000 MB      1.325190 secs
->    dbadd:             566      0.000000 MB      1.176382 secs
->    dbget:           21453      0.000000 MB      0.022157 secs
->    dbput:             566      5.223256 MB      0.825451 secs
->    readhdr:          5661     10.385022 MB      0.950751 secs
->    hdrload:          3049     16.903506 MB      0.013520 secs
->    hdrget:         107862      0.000000 MB      0.088460 secs
-> Processing task-core-standalone-sdk-target-dbg...
-> Processing task-core-standalone-sdk-target...
-> /tool/yocto/poky/build/tmp/work/ppc440-poky-linux/meta-toolchain-1.0-r7/temp
-> /run.populate_sdk_image.25279: line 675: rpmresolve: command not found
-> DEBUG: Python function do_populate_sdk finished
-> ERROR: Function failed: populate_sdk_image (see
-> /tool/yocto/poky/build/tmp/work/ppc440-poky-linux/meta-toolchain-1.0-r7/tem
-> p/log.do_populate_sdk.25279 for further information)
+Hi Paul,
 
-This is my fault - I'll put together a patch right now. As a workaround you 
-can "bitbake rpmresolve-native" first and you won't get the error anymore.
+On Jul 30, 2012, at 8:58 PM, Paul Eggleton wrote:
+>=20
+> This is my fault - I'll put together a patch right now. As a =
+workaround you=20
+> can "bitbake rpmresolve-native" first and you won't get the error =
+anymore.
 
-Cheers,
-Paul
+Thanks for the workaround! It worked.
 
--- 
+It would be good if all changes to the master were run through an =
+automated build test on an internal git repository, prior to being =
+pushed out to the public git repository. This way, you would be able to =
+ensure that breaks in the build do not get propagated to all users.
 
-Paul Eggleton
-Intel Open Source Technology Centre
+FYI, I refresh my yocto repos every two weeks and always perform a clean =
+build, after deleting my tmp and sstate-cache folders.=20
+
+It take around 2 hours to build meta-toolchain, and another hour to =
+build core-image-minimal, on my machine configuration, which is a =
+MacBook Pro 15", 8GB RAM, 2.3GHz Core i7, running Ubuntu 12.04 LTS =
+64-bit using VMware Fusion 5.0.0 with 8 CPU core configured, and 4GB RAM =
+allocated to the VM.
+
+I usually have the following layers setup for each build
+
+BBLAYERS ?=3D " \
+  /tool/yocto/poky/meta \
+  /tool/yocto/poky/meta-yocto \
+  /tool/yocto/meta-openembedded/meta-oe \
+  /tool/yocto/meta-xilinx \
+  "
+
+Best regards,
+
+Elvis Dowson=
 
