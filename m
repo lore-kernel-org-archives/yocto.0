@@ -1,33 +1,36 @@
-Return-Path: <elvis.dowson@gmail.com>
-Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
-	[209.85.160.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2DF44E0027D
-	for <yocto@yoctoproject.org>; Mon, 30 Jul 2012 09:43:40 -0700 (PDT)
-Received: by pbbrq8 with SMTP id rq8so11897800pbb.35
-	for <yocto@yoctoproject.org>; Mon, 30 Jul 2012 09:43:40 -0700 (PDT)
+Return-Path: <martin.jansa@gmail.com>
+Received: from mail-we0-f176.google.com (mail-we0-f176.google.com
+	[74.125.82.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6AF31E0027D
+	for <yocto@yoctoproject.org>; Mon, 30 Jul 2012 09:48:52 -0700 (PDT)
+Received: by weyu3 with SMTP id u3so4213187wey.35
+	for <yocto@yoctoproject.org>; Mon, 30 Jul 2012 09:48:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:content-type:content-transfer-encoding:subject:date:message-id
-	:to:mime-version:x-mailer;
-	bh=1FUjDNDRC0ND99FF37r761m+wOmKz9Njodg7gkOgYL8=;
-	b=TvFJ9DvE/v2h5xxNf3C7xoezGZg3WyBf90XUqdcKqOUvUQlTu1lVELEZeVuVoROH/+
-	OcWLp1c/vvZ0KDwsf4j04CfUf8cvDFYs/Ue1GlDe+SDXjwk/zd/NK+9L9jzhW9bmja1/
-	/3V2RuncEwHEk7b0+7fXcX1u0Gk/0f2bIakY/mqXKsTqVfMdDytK9nodOx8WXfONJG82
-	GtCtlFJRbY/0V36PgRAtNyTXQ5z9N3Gr58ZtUpnKWiCdrjXxAzT9di44HjsMF5tSU7KY
-	6FwA1pSmo5deFQn4v4SOXC2mr3oVxIuVwJuGfm+1qA4zuW6+BPpN60KZCST9aIWLnEQ4
-	UPSg==
-Received: by 10.68.217.40 with SMTP id ov8mr36190924pbc.131.1343666619907;
-	Mon, 30 Jul 2012 09:43:39 -0700 (PDT)
-Received: from [192.168.1.101] ([94.205.108.162])
-	by mx.google.com with ESMTPS id of1sm8230330pbb.15.2012.07.30.09.43.37
+	h=date:from:to:cc:subject:message-id:references:mime-version
+	:content-type:content-disposition:in-reply-to:user-agent;
+	bh=gQOrQ9RLyKC+1i3vYxMO6mhaGoswvgg9hXjYeYf2cZo=;
+	b=xrm2GjMUZGKD5Xdsk+lIhsdapXYNuxHxYnMyy5vWJ1l6vgPmCNHFXaf7L/A8a0x6Qs
+	znst4muLhbECZI2228iS3isUBhnNvxO2VDRuWl9G7PpMqWQ1qByRLjdAIlrRsYt78J4F
+	carXtkZKORV/KyJbQY9UOoRSi0MhwGUeigPA5x7+4bVPaUdVw7lAQ0FFIViKIyjZzZkY
+	tnWde1Ljt8hw4yYo5M5SbSmkjCeRJC8IEzlghflu5a+rreLcHhwU1S4N15CjaXa7Bgpd
+	2tWMBpSw0BPVyWSIqn1gj1nFMrWMlO+O+/7D7/J89FoHhdxiCWNx6VcnKFYfN95Wq2iW
+	HE8A==
+Received: by 10.180.78.2 with SMTP id x2mr27975658wiw.10.1343666930653;
+	Mon, 30 Jul 2012 09:48:50 -0700 (PDT)
+Received: from localhost ([94.230.152.246])
+	by mx.google.com with ESMTPS id t8sm17283139wiy.3.2012.07.30.09.48.49
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Mon, 30 Jul 2012 09:43:39 -0700 (PDT)
-From: Elvis Dowson <elvis.dowson@gmail.com>
-Date: Mon, 30 Jul 2012 20:43:33 +0400
-Message-Id: <2C433563-B7CA-458C-B27F-68E3D5D2408C@gmail.com>
-To: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-Mime-Version: 1.0 (Apple Message framework v1278)
-X-Mailer: Apple Mail (2.1278)
-Subject: ERROR: Task 7 (/tool/yocto/poky/meta/recipes-core/meta/meta-toolchain.bb, do_populate_sdk) failed with exit code '1'
+	Mon, 30 Jul 2012 09:48:49 -0700 (PDT)
+Date: Mon, 30 Jul 2012 18:48:45 +0200
+From: Martin Jansa <martin.jansa@gmail.com>
+To: Elvis Dowson <elvis.dowson@gmail.com>
+Message-ID: <20120730164845.GM3261@jama.jama.net>
+References: <2C433563-B7CA-458C-B27F-68E3D5D2408C@gmail.com>
+MIME-Version: 1.0
+In-Reply-To: <2C433563-B7CA-458C-B27F-68E3D5D2408C@gmail.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+Subject: Re: ERROR: Task 7 (/tool/yocto/poky/meta/recipes-core/meta/meta-toolchain.bb, do_populate_sdk) failed with exit code '1'
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,34 +42,59 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 30 Jul 2012 16:43:40 -0000
+X-List-Received-Date: Mon, 30 Jul 2012 16:48:52 -0000
+X-Groupsio-MsgNum: 8270
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="aiCxlS1GuupXjEh3"
+Content-Disposition: inline
+
+--aiCxlS1GuupXjEh3
 Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
-      I just updated my yocto repositories and ran into the following =
-error:
-
-| ERROR: Function failed: populate_sdk_image (see =
-/tool/yocto/poky/build/tmp/work/ppc440-poky-linux/meta-toolchain-1.0-r7/te=
-mp/log.do_populate_sdk.25279 for further information)
-NOTE: package meta-toolchain-1.0-r7: task do_populate_sdk: Failed
-ERROR: Task 7 =
-(/tool/yocto/poky/meta/recipes-core/meta/meta-toolchain.bb, =
-do_populate_sdk) failed with exit code '1'
-NOTE: Tasks Summary: Attempted 1878 tasks of which 236 didn't need to be =
+On Mon, Jul 30, 2012 at 08:43:33PM +0400, Elvis Dowson wrote:
+> Hi,
+>       I just updated my yocto repositories and ran into the following err=
+or:
+>=20
+> | ERROR: Function failed: populate_sdk_image (see /tool/yocto/poky/build/=
+tmp/work/ppc440-poky-linux/meta-toolchain-1.0-r7/temp/log.do_populate_sdk.2=
+5279 for further information)
+> NOTE: package meta-toolchain-1.0-r7: task do_populate_sdk: Failed
+> ERROR: Task 7 (/tool/yocto/poky/meta/recipes-core/meta/meta-toolchain.bb,=
+ do_populate_sdk) failed with exit code '1'
+> NOTE: Tasks Summary: Attempted 1878 tasks of which 236 didn't need to be =
 rerun and 1 failed.
-ERROR: An uncaught exception occured in runqueue, please see the failure =
+> ERROR: An uncaught exception occured in runqueue, please see the failure =
 below:
+>=20
+> Summary: 1 task failed:
+>   /tool/yocto/poky/meta/recipes-core/meta/meta-toolchain.bb, do_populate_=
+sdk
+> Summary: There were 3 WARNING messages shown.
+> Summary: There were 2 ERROR messages shown, returning a non-zero exit cod=
+e.
+>=20
+> Is there a fix for this?=20
 
-Summary: 1 task failed:
-  /tool/yocto/poky/meta/recipes-core/meta/meta-toolchain.bb, =
-do_populate_sdk
-Summary: There were 3 WARNING messages shown.
-Summary: There were 2 ERROR messages shown, returning a non-zero exit =
-code.
+Attach log.do_populate_sdk.25279
 
-Is there a fix for this?=20
+Cheers,
 
-Elvis Dowson=
+--=20
+Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
 
+--aiCxlS1GuupXjEh3
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2.0.19 (GNU/Linux)
+
+iEYEARECAAYFAlAWuu0ACgkQN1Ujt2V2gBzp6gCguEhinTAsBntBAeduUqQtcLHx
+QPAAn2vWoiMeXOu4nMasaAbsOqUKE6W/
+=qXoz
+-----END PGP SIGNATURE-----
+
+--aiCxlS1GuupXjEh3--
