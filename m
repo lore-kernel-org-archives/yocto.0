@@ -1,35 +1,32 @@
-Return-Path: <sidebranch.openembedded@gmail.com>
-Received: from mail-lpp01m010-f48.google.com (mail-lpp01m010-f48.google.com
-	[209.85.215.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 79714E00280
-	for <yocto@yoctoproject.org>; Mon, 30 Jul 2012 08:17:41 -0700 (PDT)
-Received: by lagz14 with SMTP id z14so3876554lag.35
-	for <yocto@yoctoproject.org>; Mon, 30 Jul 2012 08:17:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=j5gyH0rs70zt2QgdURbp7iM+KaM6bHx0PzXPD29Azto=;
-	b=MSsQnUV1buLqteWPtcE3ubPzHs2+BtfX/Nur1e08ZxRCOq4epZLVoSe+n2Hs8kUgNw
-	b17S2ofepEfOqriA7uBaeiXl6ljR14XfIq9IbtrrnqJa3zL1NPy03wnCfEPzoHFs/8Q4
-	5eI5jdoOYZcFknPoPVOv13gg1nJaHPEhvASlQy0EoLQM2lTUSGQ215eJxiw0er8Jxlhu
-	WP91r7Wh5s2S5x1i6W7/G41rtROBwNmnEEe+EKjlYYhis1Ak3fjhH4TKLBWgjtZUh+J7
-	CmWw/zzT+G08Xu/KyZvjvh9Qzo9mQqYQdoQfGi9Ys+tTBC5qwebbHqKl5AO41WD0vvF5
-	FiwA==
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B60C3E0027D
+	for <yocto@yoctoproject.org>; Mon, 30 Jul 2012 08:29:51 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 30 Jul 2012 08:29:51 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="174876878"
+Received: from unknown (HELO envy.home) ([10.255.12.237])
+	by azsmga001.ch.intel.com with ESMTP; 30 Jul 2012 08:29:50 -0700
+Message-ID: <5016A805.4050807@linux.intel.com>
+Date: Mon, 30 Jul 2012 08:28:05 -0700
+From: Darren Hart <dvhart@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:14.0) Gecko/20120717 Thunderbird/14.0
 MIME-Version: 1.0
-Received: by 10.152.148.169 with SMTP id tt9mr11638251lab.49.1343661460388;
-	Mon, 30 Jul 2012 08:17:40 -0700 (PDT)
-Received: by 10.112.37.225 with HTTP; Mon, 30 Jul 2012 08:17:40 -0700 (PDT)
-In-Reply-To: <5016A39C.50003@windriver.com>
-References: <1343483125-26065-1-git-send-email-sidebranch.openembedded@gmail.com>
-	<5016A34B.5000406@windriver.com> <5016A39C.50003@windriver.com>
-Date: Mon, 30 Jul 2012 17:17:40 +0200
-Message-ID: <CAMvUbCyaQVTkE5qhZggwoB=o-8OHpmQYJ9ozT5fo=WrQB5A3uA@mail.gmail.com>
-From: Leon Woestenberg <sidebranch.openembedded@gmail.com>
-To: Bruce Ashfield <bruce.ashfield@windriver.com>
-Cc: Leon Woestenberg <leon.woestenberg@gmail.com>, yocto@yoctoproject.org,
-	Scott Garman <scott.a.garman@intel.com>,
-	Leon Woestenberg <leon@sidebranch.com>
-Subject: Re: [PATCH] kernel.bbclass: Iff exists, copy bounds.h for external module building.
+To: "Kamble, Nitin A" <nitin.a.kamble@intel.com>
+References: <c24a8e51027f36cb1c0395ca0c90cbd54b685100.1343037893.git.nitin.a.kamble@intel.com>
+	<118e9c4c78b61e5debac285efa420486c145993b.1343037893.git.nitin.a.kamble@intel.com>
+	<5011A43F.50904@linux.intel.com>
+	<ADD6A3980E8C39419A432FF422031B4C0318E9CE@ORSMSX106.amr.corp.intel.com>
+	<501212EE.8030507@linux.intel.com>
+	<ADD6A3980E8C39419A432FF422031B4C0318EA3C@ORSMSX106.amr.corp.intel.com>
+	<50130EB2.7010300@linux.intel.com>
+	<ADD6A3980E8C39419A432FF422031B4C0318F3FC@ORSMSX106.amr.corp.intel.com>
+In-Reply-To: <ADD6A3980E8C39419A432FF422031B4C0318F3FC@ORSMSX106.amr.corp.intel.com>
+X-Enigmail-Version: 1.4.3
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [PATCH 2/6] crownbay: customize the xorg.conf for the flat panel on the corwnbay kit
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,53 +38,95 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 30 Jul 2012 15:17:41 -0000
-Content-Type: multipart/alternative; boundary=e89a8f23455d0b7b3604c60d904c
-
---e89a8f23455d0b7b3604c60d904c
+X-List-Received-Date: Mon, 30 Jul 2012 15:29:51 -0000
 Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-Hello Bruce, Scott,
 
-On Mon, Jul 30, 2012 at 5:09 PM, Bruce Ashfield <
-bruce.ashfield@windriver.com> wrote:
 
-> On 12-07-30 11:07 AM, Bruce Ashfield wrote:
->
->> On 12-07-28 09:45 AM, Leon Woestenberg wrote:
->>
->>> From: Leon Woestenberg<leon@sidebranch.**com <leon@sidebranch.com>>
->>>
->>>
-> Aha. And now I see that Scott G was copied. If this was for 1.2.x of yocto,
-> that needs to be clearly in the subject .. otherwise it is just
-> confusing.
->
->
-Correct, my intention was for Denzil. Agreed, the full fix should be first
-proposed for HEAD, and I should first fix my GIT script foo setup. This
-went wrong in several ways.
+On 07/30/2012 02:50 AM, Kamble, Nitin A wrote:
+> 
+> 
+>> -----Original Message----- From: Darren Hart
+>> [mailto:dvhart@linux.intel.com] Sent: Saturday, July 28, 2012 3:27
+>> AM To: Kamble, Nitin A Cc: yocto@yoctoproject.org;
+>> bruce.ashfield@windriver.com; Zanussi, Tom Subject: Re: [yocto]
+>> [PATCH 2/6] crownbay: customize the xorg.conf for the flat panel on
+>> the corwnbay kit
+>> 
+>> 
+>> 
+>> On 07/26/2012 10:31 PM, Kamble, Nitin A wrote:
+>>>>>> On 07/23/2012 03:06 AM, nitin.a.kamble@intel.com wrote:
+>>>>>>> From: Nitin A Kamble <nitin.a.kamble@intel.com>
+>>>>>>> 
+>>>>>>> The kit has Auo 800x600 LCD screen. Configuring Xorg for
+>>>>>>> it.
+>>>>>> 
+>>>>>> I presume the crownbay has additional display options? how
+>>>>>> does this impact those?
+>>>>>> 
+>>>>> This change sets the resolution of the screen to 800x600. And
+>>>>> this is applicable to LCD screen on the kit as well as
+>>>>> external monitor. I will add a note about it in the log.
+>>>> 
+>>>> I presume that without this change it was able to detect the 
+>>>> appropriate resolution of the connected monitor, but not of the
+>>>> LCD?
+>>>> 
+>>>> If so, this change effectively breaks that autodetection and
+>>>> forces everything to the 800x600 display which is arguably
+>>>> very low-resolution by today's standards. Why should this be
+>>>> the default? When you refer to "the kit", what exactly are you
+>>>> referring to?
+>>>> 
+>>>> Also, is this a discussion you have already had with Tom? I
+>>>> don't want to contradict what he has said regarding this BSP.
+>>> 
+>>> 
+>>> EMGD driver on crownbay gives few resolutions as options. By
+>>> default it tries to set 1366x768 resolution for both LCD and
+>>> external monitor. The Crownbay kit is a suitcase kind of box,
+>>> which has builtin LCD screen of resolution 800x600. This LCD
+>>> screen shows only 800x600 of the default 1366x768 area. So The
+>>> LCD is not able to show all the screen, and IMO it is a
+>>> functional issue.
+>>> 
+>>> For my Dell 1704FPTi monitor which has 1280x1024 native
+>>> resolution; When connected to the crownbay,  X cannot find a
+>>> working mode for this monitor. But if I set 800x600 in the
+>>> xorg.conf as this commit does, then both LCD & external monitor
+>>> can show the X screen without any issues.
+>> 
+>> This seems like a bug to me. The driver should be able to probe the
+>> display and use the optimal resolution without it being specified
+>> in the Xorg.conf. So far as I know we don't specify resolution in
+>> any of the meta-intel BSPs:
+>> 
+>> dvhart@envy:~/source/poky/layers/meta-intel [denzil] $ find .
+>> -name xorg.conf | xargs grep -i Modes
+>> 
+>> So while I agree the kit screen should work out of the box, the
+>> fact that even your dell lcd monitor doesn't work is cause for
+>> concern. Is there anything in the Xorg log that indicates why it
+>> isn't able to get the EDID data?
+>> 
+>> -- Darren
+>> 
+> 
+> In the xorg log I do not see any useful EDID information. Either
+> these displays do not support EDID, or the EDID support in the EMGD
+> driver is not working well with these devices. And the EMGD driver is
+> closed source. So we can't fix it. So IMO keeping the resolution to
+> 800x600 is the best possible solution for crownbay BSP.
 
-Regards,
+Tom,
 
-Leon.
+I've never booted a crownbay machine. What has your experience been with
+the displays on this board?
 
---e89a8f23455d0b7b3604c60d904c
-Content-Type: text/html; charset=ISO-8859-1
+-- 
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Technical Lead - Linux Kernel
 
-Hello Bruce, Scott,<br><br><div class="gmail_quote">On Mon, Jul 30, 2012 at 5:09 PM, Bruce Ashfield <span dir="ltr">&lt;<a href="mailto:bruce.ashfield@windriver.com" target="_blank">bruce.ashfield@windriver.com</a>&gt;</span> wrote:<br>
-<blockquote class="gmail_quote" style="margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div class="im">On 12-07-30 11:07 AM, Bruce Ashfield wrote:<br>
-<blockquote class="gmail_quote" style="margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
-On 12-07-28 09:45 AM, Leon Woestenberg wrote:<br>
-<blockquote class="gmail_quote" style="margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
-From: Leon Woestenberg&lt;<a href="mailto:leon@sidebranch.com" target="_blank">leon@sidebranch.<u></u>com</a>&gt;<br>
-<br>
-</blockquote></blockquote>
-<br></div>
-Aha. And now I see that Scott G was copied. If this was for 1.2.x of yocto,<br>
-that needs to be clearly in the subject .. otherwise it is just<br>
-confusing.<br>
-<br></blockquote></div><br>Correct, my intention was for Denzil. Agreed, the full fix should be first proposed for HEAD, and I should first fix my GIT script foo setup. This went wrong in several ways.<br><br>Regards,<br>
-<br>Leon.<br><br><br><br><br>
-
---e89a8f23455d0b7b3604c60d904c--
