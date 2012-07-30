@@ -1,27 +1,32 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3AF47E0027D
-	for <yocto@yoctoproject.org>; Mon, 30 Jul 2012 10:42:27 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id q6UHgPMV027080
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Mon, 30 Jul 2012 10:42:25 -0700 (PDT)
-Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.2.309.2;
-	Mon, 30 Jul 2012 10:42:26 -0700
-Message-ID: <5016C780.5060400@windriver.com>
-Date: Mon, 30 Jul 2012 13:42:24 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:12.0) Gecko/20120430 Thunderbird/12.0.1
+Return-Path: <sidebranch.openembedded@gmail.com>
+Received: from mail-lb0-f176.google.com (mail-lb0-f176.google.com
+	[209.85.217.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 97D48E0027D
+	for <yocto@yoctoproject.org>; Mon, 30 Jul 2012 11:47:40 -0700 (PDT)
+Received: by lboj14 with SMTP id j14so4151432lbo.35
+	for <yocto@yoctoproject.org>; Mon, 30 Jul 2012 11:47:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=xBiPPul5ezROffBssUCtA99LMVDbVYwWef0i79U0FiM=;
+	b=goCDX8qvJg3UmJtt+lEDb75Y2UsOdAV5ik73zS6aKIJobNN0pMd9vnwj0GUbJLazbM
+	sTOKKolrRZ+1wRMvGE1ywvJNTuFaABfVy0gb+jAM7yvp5nhgi0AiIRKUhZdSMqgH7aBS
+	mjBKeI0I+OFObkQyVLI2VDp94FKah5T86ru3DxAHpcu79rBu+K+3740HL1o4Zv6yESUc
+	MQ8Q4eaXiwbURR6CohNzcMM18LafyHjST12HP1ItXfCGgMa/kUaVzXynVJu9swmCVanT
+	16PXtYYqTlsrVYGkq2GjHfp4a5W4Etb7rlR5hIZHU5U/W4q/OEDoy64mD4ZgRih/+yWa
+	jJcQ==
 MIME-Version: 1.0
-To: Frans Meulenbroeks <fransmeulenbroeks@gmail.com>
-References: <CACW_hTZwzZUyWmmvDaFqaqt7do=_WfXOzA2ytAcs5CD1UmS0kA@mail.gmail.com>
-	<CADkTA4Pm=bFeA9FpBeZ7usqAo+c1cS+mqaM7b=1Zcm6RnErRhQ@mail.gmail.com>
-	<CACW_hTZOt=e8sWjarwip27qLJ8rY-c7cRRKttUUCtvFsmu5fag@mail.gmail.com>
-In-Reply-To: <CACW_hTZOt=e8sWjarwip27qLJ8rY-c7cRRKttUUCtvFsmu5fag@mail.gmail.com>
+Received: by 10.112.84.65 with SMTP id w1mr5709358lby.40.1343674058786; Mon,
+	30 Jul 2012 11:47:38 -0700 (PDT)
+Received: by 10.112.37.225 with HTTP; Mon, 30 Jul 2012 11:47:38 -0700 (PDT)
+In-Reply-To: <CANsUPaOtNG=xQkccMg10T=4Hf-eJmP1UMJ=KRviPQ-kb270=2Q@mail.gmail.com>
+References: <CANsUPaOtNG=xQkccMg10T=4Hf-eJmP1UMJ=KRviPQ-kb270=2Q@mail.gmail.com>
+Date: Mon, 30 Jul 2012 20:47:38 +0200
+Message-ID: <CAMvUbCzugf07XABmUfHvSqcCMhN=hew0B_TMKAncVLt4bDUK7w@mail.gmail.com>
+From: Leon Woestenberg <sidebranch.openembedded@gmail.com>
+To: Giovanni Foiani <fnognn@unife.it>
 Cc: yocto@yoctoproject.org
-Subject: Re: denzil kernel build issues
+Subject: Re: Usb-serial device support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,362 +38,160 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 30 Jul 2012 17:42:27 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 30 Jul 2012 18:47:41 -0000
+Content-Type: multipart/alternative; boundary=f46d0401696df7c7b004c6107e3e
 
-On 12-07-30 10:20 AM, Frans Meulenbroeks wrote:
-> Hi Bruce,
->
-> Thanks for your support.
-> See below
->
-> 2012/7/30 Bruce Ashfield <bruce.ashfield@gmail.com
-> <mailto:bruce.ashfield@gmail.com>>
->
->     On Mon, Jul 30, 2012 at 7:33 AM, Frans Meulenbroeks
->     <fransmeulenbroeks@gmail.com <mailto:fransmeulenbroeks@gmail.com>>
->     wrote:
->      > Dear all,
->      >
->      > I finally managed to find time to pick up porting my project to
->     denzil and
->      > did encounter two issues that I wanted to report back:
->      >
->      > First is that I could not find what the preferred way was to
->     disable a
->      > kernel option in my bsp.
->      > (the option concerned is CONFIG_PM).
->      > Of course I can sed it out in do_configure but I'd hoped it could
->     be simpler
->      > (I have tried:
->      > CONFIG_PM=n
->      > in my config snippet)
->
->     Putting:
->
->     # CONFIG_PM is not set
->
->     in your configuration fragment will turn off an option, the BSP
->     guide has a
->     "# CONFIG_SMP is not set" as an example for this.
->
->
-> i thought it would and I have had this in my config too, but still it
-> get switched on. Guess there is something else in my config that sets this.
-> Will dive into this.
->
->
->      >
->      > Secondly a patch of mine does not seem to apply properly the
->     first time, but
->      > it does apply a second time.
->      > This suggests a race between do_kernel_checkout and do_patch
->
->     There shouldn't be any race .. if this doesn't work:
->
->     addtask kernel_checkout before do_patch after do_unpack
->
->     Then there are some serious problems with bitbake's task scheduling.
->
->     If you didn't do a clean between the two runs, the second is
->     attempting to continue
->     the patching and you still aren't getting what you want.
->
->
-> I did not do a clean inbetween. I figured patch would reattempt to patch
-> and, since the file is there it would continue.
->
-> The addtask line is there in one of the bitbake files.
->
-> The odd thing is that the exact same thing builds fine under 3.0.
-> Actually I was trying to move from 3.0 to 3.2 while stumbling on this.
->
->
->
->     Without seeing what you've ported, or a work in progress I can't say
->     exactly
->     what is wrong, but your meta data is somehow wrong or completely
->     missing.
->     Have you set any meta or BSP SRCREVs explicitly ?
->
->
-> I have put my work-in-progress in:
->
-> https://www.dropbox.com/s/h58h6pq5b0f4u2s/patchproblem.tar.gz vi
->
-> you might want to edit conf/layer.conf as it has hardcoded paths.
-> If I go to meta-syrcxx/conf/machine/syrcxx.conf and set the preferred
-> kernel version to 3.0 things build fine.
-> Then I did set to 3.2 and it fails.
+--f46d0401696df7c7b004c6107e3e
+Content-Type: text/plain; charset=ISO-8859-1
 
-I'll give this a try, sounds like a typical patch/meta issue, so I should
-see it quickly.
+Giovanni,
 
-> Note that apart from a PR bump the files
-> meta-syrcxx/recipes-kernel/linux/linux-yocto_3.2.bbappend
-> meta-syrcxx/recipes-kernel/linux/linux-yocto_3.0.bbappend
-> are identical (and I am just using files; so the same patches apply.
->
-> BTW our board is a powerpc 8313e based board (modeled after mpc8313e-rds)
->
-> One other thing I noticed; do_install seems to take quite some time; not
-> sure why this is (haven't investigated).
+On Mon, Jul 30, 2012 at 10:48 AM, Giovanni Foiani <fnognn@unife.it> wrote:
 
-hmm. normally that means some sort of rpm issue (or maybe you are
-using ipk), but it can take a significant time.
+> I built a distribution for iMX53 QSB with kernel 2.6.35-3 and I need
+> support for USB-serial devices.
+> When I plug the usb-serial converter I get this error..
+>
+> *usb wakeup is here
+>
+>                           *
+> *otg host Remote wakeup
+>
+>                                            *
+> *usb 1-1: new full speed USB device using fsl-ehci and address 3
+>
+>                                             *
+> *usb 1-1: device v067b p2303 is not supported *
+>
+> I tried to recompile linux-imx kernel adding support for USB-serial
+> devices, I run:
+>
+>    - bibake linux-imx -c menuconfig
+>    - added support for usb-serial devices in menuconfig
+>    - bitbake -f -c compile linux-imx
+>    - bitbake linux-imx
+>
+> ..but it didn't work..
+>
+> Any suggestions?
+>
+> Did you see the install and deploy steps being performed? There are some
+versions of OE/Yocto where those steps are not depended upon, even if you
+ran -c compile -f.
 
-Cheers,
+For example, on Denzil, I have to run the compile, install and deploy steps
+forcefully.
 
-Bruce
+Regards,
 
+Leon.
+
+> Giovanni
+> --
 >
-> Best regards, Frans
+> Dott. Ing. Giovanni Foiani
 >
->
->     Cheers,
->
->     Bruce
->
->      >
->      > Below is a log that illustrates this and demonstrates that things
->     are ok the
->      > 2nd time.
->      > (btw I am also a little bit concerned on the command not found
->     messages).
->      > And of course any sugguestion for a fix is greatly appreciated.
->      >
->      > Best regards, Frans
->      >
->      > frans@frans-desktop:~/poky-denzil-7.0-build$ bitbake virtual/kernel
->      > Parsing recipes: 100%
->      >
->     |######################################################################################################################|
->      > Time: 00:00:30
->      > Parsing of 829 .bb files complete (0 cached, 829 parsed). 1105
->     targets, 35
->      > skipped, 0 masked, 0 errors.
->      >
->      > OE Build Configuration:
->      > BB_VERSION = "1.15.1"
->      > TARGET_ARCH = "powerpc"
->      > TARGET_OS = "linux-uclibc"
->      > MACHINE = "syrcxx"
->      > DISTRO = "poky"
->      > DISTRO_VERSION = "1.2"
->      > TUNE_FEATURES = "m32 fpu-hard ppce300c3"
->      > TARGET_FPU = ""
->      > meta
->      > meta-yocto
->      > meta-syrcxx = "<unknown>:<unknown>"
->      >
->      > NOTE: Resolving any missing task queue dependencies
->      > NOTE: Preparing runqueue
->      > NOTE: Executing SetScene Tasks
->      > NOTE: Executing RunQueue Tasks
->      > NOTE: Running task 162 of 664 (ID: 6,
->      >
->     /home/frans/poky-denzil-7.0/meta/recipes-kernel/linux/linux-yocto_3.2.bb
->     <http://linux-yocto_3.2.bb>,
->      > do_fetch)
->      > NOTE: package
->      >
->     linux-yocto-3.2.11+git1+b14a08f5c7b469a5077c10942f4e1aec171faa9d_1+01e948c2bdf7f5ad9f2b30047a8d3493a1a2880a-r1.81:
->      > task do_fetch: Started
->      > NOTE: package
->      >
->     linux-yocto-3.2.11+git1+b14a08f5c7b469a5077c10942f4e1aec171faa9d_1+01e948c2bdf7f5ad9f2b30047a8d3493a1a2880a-r1.81:
->      > task do_fetch: Succeeded
->      > NOTE: Running task 644 of 664 (ID: 2,
->      >
->     /home/frans/poky-denzil-7.0/meta/recipes-kernel/linux/linux-yocto_3.2.bb
->     <http://linux-yocto_3.2.bb>,
->      > do_unpack)
->      > NOTE: package
->      >
->     linux-yocto-3.2.11+git1+b14a08f5c7b469a5077c10942f4e1aec171faa9d_1+01e948c2bdf7f5ad9f2b30047a8d3493a1a2880a-r1.81:
->      > task do_unpack: Started
->      > NOTE: package
->      >
->     linux-yocto-3.2.11+git1+b14a08f5c7b469a5077c10942f4e1aec171faa9d_1+01e948c2bdf7f5ad9f2b30047a8d3493a1a2880a-r1.81:
->      > task do_unpack: Succeeded
->      > Nmeta-syrcxx/recipes-kernel/linux/linux-yocto_3.2.bbappend
->     meta-syrcxx/recipes-kernel/linux/linux-yocto_3.0.bbappendOTE:
->     Running task 645 of 664 (ID: 1,
->      >
->     /home/frans/poky-denzil-7.0/meta/recipes-kernel/linux/linux-yocto_3.2.bb
->     <http://linux-yocto_3.2.bb>,
->      > do_kernel_checkout)
->      > NOTE: package
->      >
->     linux-yocto-3.2.11+git1+b14a08f5c7b469a5077c10942f4e1aec171faa9d_1+01e948c2bdf7f5ad9f2b30047a8d3493a1a2880a-r1.81:
->      > task do_kernel_checkout: Started
->      > NOTE: package
->      >
->     linux-yocto-3.2.11+git1+b14a08f5c7b469a5077c10942f4e1aec171faa9d_1+01e948c2bdf7f5ad9f2b30047a8d3493a1a2880a-r1.81:
->      > task do_kernel_checkout: Succeeded
->      > NOTE: Running task 646 of 664 (ID: 0,
->      >
->     /home/frans/poky-denzil-7.0/meta/recipes-kernel/linux/linux-yocto_3.2.bb
->     <http://linux-yocto_3.2.bb>,
->      > do_validate_branches)
->      > NOTE: package
->      >
->     linux-yocto-3.2.11+git1+b14a08f5c7b469a5077c10942f4e1aec171faa9d_1+01e948c2bdf7f5ad9f2b30047a8d3493a1a2880a-r1.81:
->      > task do_validate_branches: Started
->      > NOTE: package
->      >
->     linux-yocto-3.2.11+git1+b14a08f5c7b469a5077c10942f4e1aec171faa9d_1+01e948c2bdf7f5ad9f2b30047a8d3493a1a2880a-r1.81:
->      > task do_validate_branches: Succeeded
->      > NOTE: Running task 647 of 664 (ID: 3,
->      >
->     /home/frans/poky-denzil-7.0/meta/recipes-kernel/linux/linux-yocto_3.2.bb
->     <http://linux-yocto_3.2.bb>,
->      > do_patch)
->      > NOTE: package
->      >
->     linux-yocto-3.2.11+git1+b14a08f5c7b469a5077c10942f4e1aec171faa9d_1+01e948c2bdf7f5ad9f2b30047a8d3493a1a2880a-r1.81:
->      > task do_patch: Started
->      > ERROR: Function failed: do_patch (see
->      >
->     /home/frans/poky-denzil-7.0-build/tmp/work/syrcxx-poky-linux-uclibc/linux-yocto-3.2.11+git1+b14a08f5c7b469a5077c10942f4e1aec171faa9d_1+01e948c2bdf7f5ad9f2b30047a8d3493a1a2880a-r1.81/temp/log.do_patch.27211
->      > for further information)
->      > ERROR: Logfile of failure stored in:
->      >
->     /home/frans/poky-denzil-7.0-build/tmp/work/syrcxx-poky-linux-uclibc/linux-yocto-3.2.11+git1+b14a08f5c7b469a5077c10942f4e1aec171faa9d_1+01e948c2bdf7f5ad9f2b30047a8d3493a1a2880a-r1.81/temp/log.do_patch.27211
->      > Log data follows:
->      > | Branch meta-temp set up to track remote branch meta from origin.
->      > | Deleted branch meta-temp (was 3499d64).
->      > | warning: could not find (or was already included):
->      > cfg/dmaengine/dmaengine.scc
->      > | warning: could not find (or was already included):
->      > cfg/usb-mass-storage.scc
->      > | warning: could not find (or was already included): cfg/vfat.scc
->      > | warning: could not find (or was already included):
->      > cfg/dmaengine/dmaengine.scc
->      > | warning: could not find (or was already included): user-patches.scc
->      > | ./2-syrcxx-215ef69425ed902858630c959dabd5ce.sco: line 21:
->      > dmaengine_68b329da9893e34099c7d8ad5cb9c940: command not found
->      > | ./2-syrcxx-215ef69425ed902858630c959dabd5ce.sco: line 21:
->      > dmaengine_68b329da9893e34099c7d8ad5cb9c940: command not found
->      > | [INFO] validating against known patches
->     (syrcxx-fsl-mpc8313e-rdb-meta)
->      > Branch standard/default/syrcxx set up to track remote branch
->      > standard/default/base from origin.
->      > [##################################ERROR: Function failed:
->     do_patch (see
->      >
->     /home/frans/poky-denzil-7.0-build/tmp/work/syrcxx-poky-linux-uclibc/linux-yocto-3.2.11+git1+b14a08f5c7b469a5077c10942f4e1aec171faa9d_1+01e948c2bdf7f5ad9f2b30047a8d3493a1a2880a-r1.81/temp/log.do_patch.27211
->      > for further information)
->      > error: patch failed: drivers/gpio/Makefile:41 ] (-)(76 %)
->      > | error: drivers/gpio/Makefile: patch does not apply
->      > | To force apply this patch, use 'guilt push -f'
->      > | [ERROR] unable to complete push
->      > | pending patches are:
->      > | Patches directory doesn't exist, try guilt-init
->      > | ERROR. could not update git tree
->      > | ERROR. Could not modify standard/default/fsl-mpc8313e-rdb/syrcxx
->      > NOTE: package
->      >
->     linux-yocto-3.2.11+git1+b14a08f5c7b469a5077c10942f4e1aec171faa9d_1+01e948c2bdf7f5ad9f2b30047a8d3493a1a2880a-r1.81:
->      > task do_patch: Failed
->      > ERROR: Task 3
->      >
->     (/home/frans/poky-denzil-7.0/meta/recipes-kernel/linux/linux-yocto_3.2.bb
->     <http://linux-yocto_3.2.bb>,
->      > do_patch) failed with exit code '1'
->      > NOTE: Tasks Summary: Attempted 647 tasks of which 642 didn't need
->     to be
->      > rerun and 1 failed.
->      >
->      > Summary: 1 task failed:
->      >
->     /home/frans/poky-denzil-7.0/meta/recipes-kernel/linux/linux-yocto_3.2.bb
->     <http://linux-yocto_3.2.bb>,
->      > do_patch
->      > Summary: There was 1 ERROR message shown, returning a non-zero
->     exit code.
->      > frans@frans-desktop:~/poky-denzil-7.0-build$ ls -l
->      >
->     /home/frans/poky-denzil-7.0-build/tmp/work/syrcxx-poky-linux-uclibc/linux-yocto-3.2.11+git1+b14a08f5c7b469a5077c10942f4e1aec171faa9d_1+01e948c2bdf7f5ad9f2b30047a8d3493a1a2880a-r1.81/linux/drivers/gpio/Makefile
->      > -rw-r--r-- 1 frans frans 2663 2012-07-30 12:27
->      >
->     /home/frans/poky-denzil-7.0-build/tmp/work/syrcxx-poky-linux-uclibc/linux-yocto-3.2.11+git1+b14a08f5c7b469a5077c10942f4e1aec171faa9d_1+01e948c2bdf7f5ad9f2b30047a8d3493a1a2880a-r1.81/linux/drivers/gpio/Makefile
->      > frans@frans-desktop:~/poky-denzil-7.0-build$ bitbake virtual/kernel
->      > Loading cache: 100%
->      >
->     |########################################################################################################################|
->      > ETA: 00:00:00
->      > Loaded 1106 entries from dependency cache.
->      >
->      > OE Build Configuration:
->      > BB_VERSION = "1.15.1"
->      > TARGET_ARCH = "powerpc"
->      > TARGET_OS = "linux-uclibc"
->      > MACHINE = "syrcxx"
->      > DISTRO = "poky"
->      > DISTRO_VERSION = "1.2"
->      > TUNE_FEATURES = "m32 fpu-hard ppce300c3"
->      > TARGET_FPU = ""
->      > meta
->      > meta-yocto
->      > meta-syrcxx = "<unknown>:<unknown>"
->      >
->      > NOTE: Resolving any missing task queue dependencies
->      > NOTE: Preparing runqueue
->      > NOTE: Executing SetScene Tasks
->      > NOTE: Executing RunQueue Tasks
->      > NOTE: Running task 241 of 664 (ID: 3,
->      >
->     /home/frans/poky-denzil-7.0/meta/recipes-kernel/linux/linux-yocto_3.2.bb
->     <http://linux-yocto_3.2.bb>,
->      > do_patch)
->      > NOTE: package
->      >
->     linux-yocto-3.2.11+git1+b14a08f5c7b469a5077c10942f4e1aec171faa9d_1+01e948c2bdf7f5ad9f2b30047a8d3493a1a2880a-r1.81:
->      > task do_patch: Started
->      > NOTE: package
->      >
->     linux-yocto-3.2.11+git1+b14a08f5c7b469a5077c10942f4e1aec171faa9d_1+01e948c2bdf7f5ad9f2b30047a8d3493a1a2880a-r1.81:
->      > task do_patch: Succeeded
->      > NOTE: Running task 648 of 664 (ID: 8,
->      >
->     /home/frans/poky-denzil-7.0/meta/recipes-kernel/linux/linux-yocto_3.2.bb
->     <http://linux-yocto_3.2.bb>,
->      > do_kernel_configme)
->      > NOTE: Running task 649 of 664 (ID: 20,
->      >
->     /home/frans/poky-denzil-7.0/meta/recipes-kernel/linux/linux-yocto_3.2.bb
->     <http://linux-yocto_3.2.bb>,
->      > do_populate_lic)
->      > NOTE: package
->      >
->     linux-yocto-3.2.11+git1+b14a08f5c7b469a5077c10942f4e1aec171faa9d_1+01e948c2bdf7f5ad9f2b30047a8d3493a1a2880a-r1.81:
->      > task do_populate_lic: Started
->      > NOTE: package
->      >
->     linux-yocto-3.2.11+git1+b14a08f5c7b469a5077c10942f4e1aec171faa9d_1+01e948c2bdf7f5ad9f2b30047a8d3493a1a2880a-r1.81:
->      > task do_kernel_configme: Started
->      >
->      >
->      > _______________________________________________
->      > yocto mailing list
->      > yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
->      > https://lists.yoctoproject.org/listinfo/yocto
->      >
->
->
->
->     --
->     "Thou shalt not follow the NULL pointer, for chaos and madness await
->     thee at its end"
->
->
+> Cell:        +39-349-3577515
+> Phone:    +39-0532-97-4106
+> mail:        giovanni.foiani@unife.it
+> CenTec - Corso Guercino, 47 - 44042 Cento (FE)
 >
 >
 > _______________________________________________
 > yocto mailing list
 > yocto@yoctoproject.org
 > https://lists.yoctoproject.org/listinfo/yocto
+>
+>
+
+--f46d0401696df7c7b004c6107e3e
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+Giovanni,<br><br><div class=3D"gmail_quote">On Mon, Jul 30, 2012 at 10:48 A=
+M, Giovanni Foiani <span dir=3D"ltr">&lt;<a href=3D"mailto:fnognn@unife.it"=
+ target=3D"_blank">fnognn@unife.it</a>&gt;</span> wrote:<br><blockquote cla=
+ss=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;pa=
+dding-left:1ex">
+<span style=3D"color:rgb(34,34,34);font-size:13px;font-family:arial,sans-se=
+rif"></span><div style=3D"color:rgb(34,34,34);font-size:13px;font-family:ar=
+ial,sans-serif">I built a distribution for iMX53 QSB with kernel 2.6.35-3 a=
+nd I need support for USB-serial devices.=A0</div>
+
+<div style=3D"color:rgb(34,34,34);font-size:13px;font-family:arial,sans-ser=
+if">When I plug the usb-serial converter I get this error..</div><div style=
+=3D"color:rgb(34,34,34);font-size:13px;font-family:arial,sans-serif">
+<br></div><div style=3D"color:rgb(34,34,34);font-size:13px;font-family:aria=
+l,sans-serif"><div><i>usb
+ wakeup is here =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0=
+ =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0
+ =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
+=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0
+ =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0=A0</i></div>
 
 
+
+<div><i>otg host Remote wakeup =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
+=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0
+ =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
+=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0
+ =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
+=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0</i></div><div><i>usb
+ 1-1: new full speed USB device using fsl-ehci and address 3 =A0 =A0 =A0 =
+=A0 =A0 =A0
+ =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
+=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0
+ =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
+=A0 =A0 =A0 =A0=A0</i></div>
+
+
+
+<div><i>usb 1-1: device v067b p2303 is not supported=A0</i></div><div><br><=
+/div><div>I tried to recompile linux-imx kernel adding support for USB-seri=
+al devices, I run:</div><div><ul><li style=3D"margin-left:15px">bibake linu=
+x-imx -c menuconfig</li>
+<li style=3D"margin-left:15px">added support for usb-serial devices in menu=
+config</li><li style=3D"margin-left:15px">bitbake -f -c compile linux-imx</=
+li><li style=3D"margin-left:15px">bitbake linux-imx</li></ul><div>..but it =
+didn&#39;t work..</div>
+
+
+
+
+</div><div><br></div><div>Any suggestions?</div><br>
+</div></blockquote></div>Did you see the install and deploy steps being=20
+performed? There are some versions of OE/Yocto where those steps are not
+ depended upon, even if you ran -c compile -f.<br>
+<br>
+For example, on Denzil, I have to run the compile, install and deploy steps=
+ forcefully.<br>
+<br>
+Regards,<br>
+<br>
+Leon.<div class=3D"gmail_quote"><blockquote class=3D"gmail_quote" style=3D"=
+margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div style=
+=3D"color:rgb(34,34,34);font-size:13px;font-family:arial,sans-serif"><div>G=
+iovanni</div>
+</div>
+<div>--<br><br>Dott. Ing. Giovanni Foiani<br><font face=3D"arial, sans-seri=
+f"><span style=3D"border-collapse:collapse"><br></span></font></div><div>Ce=
+ll:=A0 =A0 =A0 =A0 <a href=3D"tel:%2B39-349-3577515" value=3D"+393493577515=
+" target=3D"_blank">+39-349-3577515</a><br>
+
+
+
+Phone: =A0=A0 <a href=3D"tel:%2B39-0532-97-4106" value=3D"+390532974106" ta=
+rget=3D"_blank">+39-0532-97-4106</a><br>mail:=A0 =A0 =A0 =A0 <a href=3D"mai=
+lto:giovanni.foiani@unife.it" target=3D"_blank">giovanni.foiani@unife.it</a=
+></div>
+<div><span style=3D"font-family:arial,helvetica,sans-serif;font-size:13px;l=
+ine-height:13px">CenTec - Corso Guercino, 47 - 44042 Cento (FE)</span></div=
+><br>
+<br>_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
+>https://lists.yoctoproject.org/listinfo/yocto</a><br>
+<br></blockquote></div><br>
+
+--f46d0401696df7c7b004c6107e3e--
