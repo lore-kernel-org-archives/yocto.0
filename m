@@ -1,42 +1,24 @@
-Return-Path: <jfabernathy@gmail.com>
-Received: from mail-yx0-f176.google.com (mail-yx0-f176.google.com
-	[209.85.213.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 597C5E00283
-	for <yocto@yoctoproject.org>; Tue, 31 Jul 2012 06:33:06 -0700 (PDT)
-Received: by yenl5 with SMTP id l5so6860977yen.35
-	for <yocto@yoctoproject.org>; Tue, 31 Jul 2012 06:33:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=message-id:date:from:user-agent:mime-version:to:subject:references
-	:in-reply-to:content-type:content-transfer-encoding;
-	bh=9uOc0Haq86bo3gcZJukESzmpB8kJmRoBpZNdesI99tg=;
-	b=cXvjz3VYM/1Zj+K7PV8NSOu0F402m4xZOT1GujSMXbkmgOgjb6cDERANmyhSc4rMqo
-	q2bcZCmEY7nazz2585eblbh2NLfqbqrT8UEiVzm3DpsNTdJU9delwapWV0ceutcmhelI
-	LI1oMxAZVEqjIbp0Yf8ClDIqusm1CpCYPidJPWwisarKOgGmEsbpwcHQ/Kb1QPgcpIvY
-	rrnni4DFMSBIVCEVW+N1lDxvjT9oRk714AALo7j4ipAnPRU38zb1ItCcT3huczqKoNrf
-	gcuuRsB/dfwqc1PNsNKbo+QzrMfb5gQEC+HXv/YzGHVcXxX564mtHw4f7972oyNjqrq8
-	WoMQ==
-Received: by 10.101.151.7 with SMTP id d7mr93082ano.40.1343741585706;
-	Tue, 31 Jul 2012 06:33:05 -0700 (PDT)
-Received: from [10.0.1.54] (nc-184-4-39-191.dhcp.embarqhsd.net. [184.4.39.191])
-	by mx.google.com with ESMTPS id h15sm105376ank.1.2012.07.31.06.33.04
-	(version=SSLv3 cipher=OTHER); Tue, 31 Jul 2012 06:33:04 -0700 (PDT)
-Message-ID: <5017DE90.6030801@gmail.com>
-Date: Tue, 31 Jul 2012 09:33:04 -0400
-From: Jim Abernathy <jfabernathy@gmail.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:14.0) Gecko/20120714 Thunderbird/14.0
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EA7A5E00283
+	for <yocto@yoctoproject.org>; Tue, 31 Jul 2012 08:06:28 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga102.fm.intel.com with ESMTP; 31 Jul 2012 08:06:28 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="191193102"
+Received: from unknown (HELO helios.localnet) ([10.252.121.64])
+	by fmsmga001.fm.intel.com with ESMTP; 31 Jul 2012 08:06:27 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>
+Date: Tue, 31 Jul 2012 16:06:26 +0100
+Message-ID: <3380776.1Rc0Bx5NFy@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.8.4 (Linux/3.2.0-27-generic-pae; KDE/4.8.4; i686; ; )
+In-Reply-To: <alpine.DEB.2.02.1207310639500.15163@oneiric>
+References: <alpine.DEB.2.02.1207310639500.15163@oneiric>
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <5016960E.9060305@gmail.com> <5016985D.7010805@mlbassoc.com>
-	<5016BB44.8070202@gmail.com> <5016BD14.1020807@mlbassoc.com>
-	<5016BFC4.8060307@gmail.com> <5016C18B.60200@mlbassoc.com>
-	<5016D732.3000305@gmail.com> <5016DC74.4040204@mlbassoc.com>
-	<5017C0BB.7050304@mlbassoc.com> <5017C5D6.5080603@gmail.com>
-	<20120731114935.GU3261@jama.jama.net>
-	<5017C728.6030102@mlbassoc.com> <5017C8CE.6030809@gmail.com>
-	<5017CC39.8010908@mlbassoc.com>
-In-Reply-To: <5017CC39.8010908@mlbassoc.com>
-Subject: Re: build error pandaboard on master
+Cc: yocto@yoctoproject.org
+Subject: Re: what's the state of building for a (OMAP4460) pandaboard ES?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,276 +30,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 31 Jul 2012 13:33:06 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 31 Jul 2012 15:06:29 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On 07/31/2012 08:14 AM, Gary Thomas wrote:
-> On 2012-07-31 06:00, Jim Abernathy wrote:
->> On 07/31/2012 07:53 AM, Gary Thomas wrote:
->>> On 2012-07-31 05:49, Martin Jansa wrote:
->>>> On Tue, Jul 31, 2012 at 07:47:34AM -0400, Jim Abernathy wrote:
->>>>> On 07/31/2012 07:25 AM, Gary Thomas wrote:
->>>>>> On 2012-07-30 13:11, Gary Thomas wrote:
->>>>>>> On 2012-07-30 12:49, Jim Abernathy wrote:
->>>>>>>> On 07/30/2012 01:16 PM, Gary Thomas wrote:
->>>>>>>>> On 2012-07-30 11:09, Jim Abernathy wrote:
->>>>>>>>>> On 07/30/2012 12:57 PM, Gary Thomas wrote:
->>>>>>>>>>> On 2012-07-30 10:50, Jim Abernathy wrote:
->>>>>>>>>>>> On 07/30/2012 10:21 AM, Gary Thomas wrote:
->>>>>>>>>>>>> On 2012-07-30 08:11, Jim Abernathy wrote:
->>>>>>>>>>>>>> On 07/30/2012 09:56 AM, Gary Thomas wrote:
->>>>>>>>>>>>>>> On 2012-07-30 07:48, Jim Abernathy wrote:
->>>>>>>>>>>>>>>> On 07/30/2012 09:15 AM, Gary Thomas wrote:
->>>>>>>>>>>>>>>>> On 2012-07-30 06:53, Jim Abernathy wrote:
->>>>>>>>>>>>>>>>>> I'm on master branch trying to build core-image-minimal
->>>>>>>>>>>>>>>>>> for the machine "pandaboard". Besides the basics, I 
->>>>>>>>>>>>>>>>>> put in
->>>>>>>>>>>>>>>>>> a license statement for cloud9 into local.conf.
->>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>> My bblayer.conf is as follows:
->>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>> # LAYER_CONF_VERSION is increased each time
->>>>>>>>>>>>>>>>>> build/conf/bblayers.conf
->>>>>>>>>>>>>>>>>> # changes incompatibly
->>>>>>>>>>>>>>>>>> LCONF_VERSION = "5"
->>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>> BBPATH = "${TOPDIR}"
->>>>>>>>>>>>>>>>>> BBFILES ?= ""
->>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>> BBLAYERS ?= " \
->>>>>>>>>>>>>>>>>>     /home/jim/poky/meta \
->>>>>>>>>>>>>>>>>>     /home/jim/poky/meta-yocto \
->>>>>>>>>>>>>>>>>> /home/jim/meta-openembedded/meta-oe \
->>>>>>>>>>>>>>>>>>     /home/jim/meta-ti \
->>>>>>>>>>>>>>>>>>     "
->>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>> The error I'm getting is:
->>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>> ERROR: ParseError at
->>>>>>>>>>>>>>>>>> /home/jim/meta-ti/recipes-misc/payload/bonescript.bb:5:
->>>>>>>>>>>>>>>>>> Could not inherit file classes/systemd.bbclass
->>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>> Build Configuration:
->>>>>>>>>>>>>>>>>> BB_VERSION        = "1.15.3"
->>>>>>>>>>>>>>>>>> TARGET_ARCH       = "arm"
->>>>>>>>>>>>>>>>>> TARGET_OS         = "linux-gnueabi"
->>>>>>>>>>>>>>>>>> MACHINE           = "pandaboard"
->>>>>>>>>>>>>>>>>> DISTRO            = "poky"
->>>>>>>>>>>>>>>>>> DISTRO_VERSION    = "1.2+snapshot-20120730"
->>>>>>>>>>>>>>>>>> TUNE_FEATURES     = "armv7a vfp neon cortexa9"
->>>>>>>>>>>>>>>>>> TARGET_FPU        = "vfp-neon"
->>>>>>>>>>>>>>>>>> meta
->>>>>>>>>>>>>>>>>> meta-yocto        =
->>>>>>>>>>>>>>>>>> "master:7411158e1f980cd71c432026fa2f68ab80e3541e"
->>>>>>>>>>>>>>>>>> meta-oe           =
->>>>>>>>>>>>>>>>>> "master:9afc488a1b97bfc5378f139ba04a7a5297b15fdb"
->>>>>>>>>>>>>>>>>> meta-ti           =
->>>>>>>>>>>>>>>>>> "master:9bc77dff5f84578e259f8225bfa0656d94a2a60a"
->>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>> ERROR: Nothing PROVIDES 'pseudo-native'
->>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>> Try adding this in local.conf:
->>>>>>>>>>>>>>>>>    BBMASK ?= ".*/meta-ti/recipes-(misc|bsp/formfactor)/"
->>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>> BBMASK by itself didn't solve my particular problem. I'll
->>>>>>>>>>>>>>>> try the other suggestions and report back.
->>>>>>>>>>>>>>>
->>>>>>>>>>>>>>> What other problem do you have?  That BBMASK should keep
->>>>>>>>>>>>>>> bitbake from
->>>>>>>>>>>>>>> trying to parse the recipe mentioned above.
->>>>>>>>>>>>>>>
->>>>>>>>>>>>>>> Note: I use these layers with Yocto all the time with that
->>>>>>>>>>>>>>> mask...
->>>>>>>>>>>>>>>
->>>>>>>>>>>>>>
->>>>>>>>>>>>>> When I just used the statement:
->>>>>>>>>>>>>>
->>>>>>>>>>>>>> BBMASK ?= ".*/meta-ti/recipes-(misc|bsp/formfactor)/"
->>>>>>>>>>>>>>
->>>>>>>>>>>>>> I got the same error as my original post.
->>>>>>>>>>>>>
->>>>>>>>>>>>> The only way you could get that same error is if you already
->>>>>>>>>>>>> have a BBMASK
->>>>>>>>>>>>> statement somewhere and this one is being ignored because of
->>>>>>>>>>>>> the ?= assignment.
->>>>>>>>>>>>>
->>>>>>>>>>>> So I started with a clean build again. This time I only added
->>>>>>>>>>>> the BBMASK statement you suggested.  I got the following 
->>>>>>>>>>>> error:
->>>>>>>>>>>>
->>>>>>>>>>>> ERROR: No recipes available for:
->>>>>>>>>>>> /home/jim/meta-openembedded/meta-systemd/meta-gnome/recipes-gnome/gdm/gdm_2.32.2.bbappend 
->>>>>>>>>>>>
->>>>>>>>>>>>
->>>>>>>>>>>> /home/jim/meta-openembedded/meta-systemd/meta-efl/recipes-efl/efl/elsa_svn.bbappend 
->>>>>>>>>>>>
->>>>>>>>>>>>
->>>>>>>>>>>> ERROR: Command execution failed: Exited with 1
->>>>>>>>>>>>
->>>>>>>>>>>> I'm guessing the BBMASK needs to call out
->>>>>>>>>>>> meta-openembedded/meta-systemd/meta-gnome and meta-efl?
->>>>>>>>>>>
->>>>>>>>>>> Or don't include those layers - meta-systemd isn't needed by 
->>>>>>>>>>> your
->>>>>>>>>>> yocto build.
->>>>>>>>>>>
->>>>>>>>>> Thanks, that makes more sense now.  I removed the layer
->>>>>>>>>> meta-systemd from bblayers.conf and used the
->>>>>>>>>>
->>>>>>>>>> BBMASK ?= ".*/meta-ti/recipes-(misc|bsp/formfactor)/"
->>>>>>>>>>
->>>>>>>>>> statement in local.conf to solves the problem.
->>>>>>>>>>
->>>>>>>>>> What is really causing the problem?  Without it dependencies on
->>>>>>>>>> meta-systemd are there, but the mask removes that?? Why can you
->>>>>>>>>> remove a dependency?
->>>>>>>>>
->>>>>>>>> The dependency on systemd comes from this recipe:
->>>>>>>>> meta-ti/recipes-misc/payload/bonescript.bb
->>>>>>>>> The BBMASK is making bitbake ignore that recipe (you don't need
->>>>>>>>> it), hence no dependency.
->>>>>>>>>
->>>>>>>> I got core-image-minimal built without errors, Thanks, now I 
->>>>>>>> need to
->>>>>>>> ask some questions about booting that image.  I'm assuming that I
->>>>>>>> can follow the instructions on pandaboard.org
->>>>>>>> for creating the SD card format and just copy the deploy/image/
->>>>>>>> u-boot, MLO, uImage, and rootfs to the right places and boot the
->>>>>>>> sdcard in the pandaboard. Anyway, that's what I
->>>>>>>> tried.  I'm connected to the panadboard via serial port and the
->>>>>>>> U-Boot works and the uImage seems to be found, but I don't get a
->>>>>>>> login console on the serial port:
->>>>>>>>
->>>>>>>> U-Boot SPL 2011.12-dirty (Jul 30 2012 - 13:44:03)
->>>>>>>> Texas Instruments OMAP4430 ES2.1
->>>>>>>> OMAP SD/MMC: 0
->>>>>>>> reading u-boot.img
->>>>>>>> reading u-boot.img
->>>>>>>>
->>>>>>>>
->>>>>>>> U-Boot 2011.12-dirty (Jul 30 2012 - 13:44:03)
->>>>>>>>
->>>>>>>> CPU  : OMAP4430 ES2.1
->>>>>>>> Board: OMAP4 Panda
->>>>>>>> I2C:   ready
->>>>>>>> DRAM:  1 GiB
->>>>>>>> MMC:   OMAP SD/MMC: 0
->>>>>>>> Using default environment
->>>>>>>>
->>>>>>>> In:    serial
->>>>>>>> Out:   serial
->>>>>>>> Err:   serial
->>>>>>>> Hit any key to stop autoboot:  0
->>>>>>>> reading boot.scr
->>>>>>>>
->>>>>>>> ** Unable to read "boot.scr" from mmc 0:1 **
->>>>>>>> reading uImage
->>>>>>>>
->>>>>>>> 4176404 bytes read
->>>>>>>> Booting from mmc0 ...
->>>>>>>> ## Booting kernel from Legacy Image at 82000000 ...
->>>>>>>>      Image Name:   Linux-3.1.0
->>>>>>>>      Image Type:   ARM Linux Kernel Image (uncompressed)
->>>>>>>>      Data Size:    4176340 Bytes = 4 MiB
->>>>>>>>      Load Address: 80008000
->>>>>>>>      Entry Point:  80008000
->>>>>>>>      Verifying Checksum ... OK
->>>>>>>>      Loading Kernel Image ... OK
->>>>>>>> OK
->>>>>>>>
->>>>>>>> Starting kernel ...
->>>>>>>>
->>>>>>>> Uncompressing Linux... done, booting the kernel.
->>>>>>>
->>>>>>> Start with the obvious - check the bootparams in U-Boot. Break into
->>>>>>> the boot process and run the 'printenv' command. What's the 
->>>>>>> value of
->>>>>>> the "console" variable?
->>>>>>>
->>>>>>> n.b. I've not tried this exact setup on the PandaBoard.  I may 
->>>>>>> have time
->>>>>>> later today to do so.
->>>>>>>
->>>>>>
->>>>>> I've just verified that this does fail when using yocto:master 
->>>>>> I'm pretty
->>>>>> sure that the problem is related to the use of GCC 4.7.1 - I've had
->>>>>> similar
->>>>>> problems with ARM kernels & GCC 4.7.1 in the past.
->>>>>>
->>>>>> I did build yocto:denzil for the PandaBoard and it comes up and 
->>>>>> mostly
->>>>>> works.
->>>>>> I've not done extensive checking on this image though.
->>>>> This problem that I have on denzil with pandaboard is I get the
->>>>> following error:
->>>>>
->>>>> ERROR: ParseError at
->>>>> /home/jim/meta-openembedded/meta-oe/recipes-navigation/gpsd/gpsd_git.bb:28: 
->>>>>
->>>>> Could not inherit file classes/pythonnative.bbclass
->>>>> ERROR: Command execution failed: Traceback (most recent call last):
->>>>>     File "/home/jim/poky/bitbake/lib/bb/command.py", line 84, in
->>>>> runAsyncCommand
->>>>>       self.cooker.updateCache()
->>>>>     File "/home/jim/poky/bitbake/lib/bb/cooker.py", line 1202, in 
->>>>> updateCache
->>>>>       if not self.parser.parse_next():
->>>>>     File "/home/jim/poky/bitbake/lib/bb/cooker.py", line 1669, in 
->>>>> parse_next
->>>>>       self.virtuals += len(result)
->>>>> UnboundLocalError: local variable 'result' referenced before 
->>>>> assignment
->>>>>
->>>>> Summary: There were 2 ERROR messages shown, returning a non-zero 
->>>>> exit code.
->>>>>
->>>>> I already have a BBMASK statement in local.conf:
->>>>>
->>>>> BBMASK ?= ".*/meta-ti/recipes-(misc|bsp/formfactor)/"
->>>>>
->>>>> I'm not sure how I add a second statement like:
->>>>>
->>>>> BBMASK ?= ".*/meta-openembedded/meta-oe//recipes-navigation/"
->>>>>
->>>>> Do I use += in both or what???
->>>>
->>>> use meta-oe denzil branch if you have oe-core denzil branch
->>>
->>> Or leave out the meta-oe layer since it's not needed for yocto core 
->>> images.
->>> I did not have that layer in any of my builds.
->>>
->> So I switched my meta-openembedded to denzil and that got by the 
->> meta-openembedded errors but then produced and error out of meta-ti.  
->> I also tried removing the
->> meta-openembedded/meta-oe layer and got the same error:
->>
->> ERROR: No recipes available for:
->>    /home/jim/meta-ti/recipes-core/netbase/netbase_5.0.bbappend
->>
->> This is like one of those puzzles that if you pull the wrong piece it 
->> all falls apart :-)
->
-> Yes, this is a rather touch ball of twine with all these layers - they 
-> have to
-> be properly aligned to get something that builds.
->
-> Work arounds:
->   * You could checkout meta-ti to something that matches denzil
->     Revision 30fb40ebc13614a74c2e237927c60ac43e01d1bc works for me.
->   * Rename home/jim/meta-ti/recipes-core/netbase/netbase_5.0.bbappend 
-> to be
->     home/jim/meta-ti/recipes-core/netbase/netbase_4.47.bbappend
->   * Add BB_DANGLINGAPPENDS_WARNONLY to your local.conf
->
-Thanks, your 1st work around of checking out a meta-ti that matches 
-denzil worked for core-image-minimal.  How in the world you knew how to 
-find that commit number is the part that amazes me, but a lot of things 
-amaze me. When I started programming we only has to worry about whether 
-to use an 026 or 029 model IBM keypunch machine. :-)
+On Tuesday 31 July 2012 06:43:17 Robert P. J. Day wrote:
+>   i notice that the current meta-ti layer has a pandaboard.conf file
+> that refers specifically to the OMAP 4430 -- the original panda.
+> this weekend, i'd like to build, say, a core-image-minimal for my ES.
+> is there a writeup anywhere that documents what issues i might run
+> into regarding the panda versus the panda ES?  thanks.
 
-Jim A
+I'm not sure but I think you probably need to direct this question to the 
+meta-ti mailing list.
 
+https://lists.yoctoproject.org/listinfo/meta-ti
+
+Cheers,
+Paul
+
+-- 
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
