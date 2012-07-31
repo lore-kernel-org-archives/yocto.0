@@ -1,36 +1,23 @@
-Return-Path: <nitin.a.kamble@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 85CA1E00288
-	for <yocto@yoctoproject.org>; Mon, 30 Jul 2012 22:48:39 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 30 Jul 2012 22:48:33 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="190860245"
-Received: from orsmsx606.amr.corp.intel.com ([10.22.226.128])
-	by fmsmga001.fm.intel.com with ESMTP; 30 Jul 2012 22:48:33 -0700
-Received: from orsmsx103.amr.corp.intel.com (10.22.225.130) by
-	orsmsx606.amr.corp.intel.com (10.22.226.128) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Mon, 30 Jul 2012 22:48:33 -0700
-Received: from orsmsx106.amr.corp.intel.com ([169.254.5.44]) by
-	ORSMSX103.amr.corp.intel.com ([169.254.2.113]) with mapi id
-	14.01.0355.002; Mon, 30 Jul 2012 22:48:32 -0700
-From: "Kamble, Nitin A" <nitin.a.kamble@intel.com>
-To: "Zanussi, Tom" <tom.zanussi@intel.com>
-Thread-Topic: [PATCH 1/4] emgd-driver-bin: upgrade from 1.10 to 1.14
-Thread-Index: AQHNbouURcI/8J1HSka99R7Kb3VJBpdC4uow
-Date: Tue, 31 Jul 2012 05:48:31 +0000
-Message-ID: <ADD6A3980E8C39419A432FF422031B4C0318F897@ORSMSX106.amr.corp.intel.com>
-References: <cover.1343570184.git.nitin.a.kamble@intel.com>
-	<cb97bb55ba60e1fa47e8a7f5c6393f97b9ad283f.1343570184.git.nitin.a.kamble@intel.com>
-	<1343677400.21025.41.camel@trz-ThinkPad-T420>
-In-Reply-To: <1343677400.21025.41.camel@trz-ThinkPad-T420>
+Return-Path: <Tim.Verstraete@medecbenelux.be>
+Received: from mail.medecbenelux.be (mail.medecbenelux.be [81.83.14.242])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 65D4EE00288
+	for <yocto@yoctoproject.org>; Tue, 31 Jul 2012 02:15:32 -0700 (PDT)
+Received: from SBS-MEDEC.medecbenelux.local ([fe80::1b66:a66e:3778:1407]) by
+	SBS-MEDEC.medecbenelux.local ([fe80::1b66:a66e:3778:1407%10]) with mapi
+	id 14.01.0355.002; Tue, 31 Jul 2012 11:15:29 +0200
+From: Tim Verstraete <Tim.Verstraete@medecbenelux.be>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [Yocto] general question about how certain features get
+	processed into packages
+Thread-Index: Ac1u/GuTncsv5cZuQK+q3zrD6TQ7rg==
+Date: Tue, 31 Jul 2012 09:15:28 +0000
+Message-ID: <4439C3C0562087488F139C696CD862A72C1827@SBS-MEDEC.medecbenelux.local>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
+x-originating-ip: [2002:5153:ef2:0:812:67e5:2c33:1a19]
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [PATCH 1/4] emgd-driver-bin: upgrade from 1.10 to 1.14
+Subject: general question about how certain features get processed into packages
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,125 +29,291 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 31 Jul 2012 05:48:39 -0000
+X-List-Received-Date: Tue, 31 Jul 2012 09:15:33 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/alternative;
+	boundary="_000_4439C3C0562087488F139C696CD862A72C1827SBSMEDECmedecbene_"
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogWmFudXNzaSwgVG9tDQo+
-IFNlbnQ6IFR1ZXNkYXksIEp1bHkgMzEsIDIwMTIgMToxMyBBTQ0KPiBUbzogS2FtYmxlLCBOaXRp
-biBBDQo+IENjOiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnOyBicnVjZS5hc2hmaWVsZEB3aW5kcml2
-ZXIuY29tDQo+IFN1YmplY3Q6IFJlOiBbUEFUQ0ggMS80XSBlbWdkLWRyaXZlci1iaW46IHVwZ3Jh
-ZGUgZnJvbSAxLjEwIHRvIDEuMTQNCj4gDQo+IE9uIFN1biwgMjAxMi0wNy0yOSBhdCAwNzowMCAt
-MDcwMCwgbml0aW4uYS5rYW1ibGVAaW50ZWwuY29tIHdyb3RlOg0KPiA+IEZyb206IE5pdGluIEEg
-S2FtYmxlIDxuaXRpbi5hLmthbWJsZUBpbnRlbC5jb20+DQo+ID4NCj4gPiAxLjE0IGlzIHRoZSBs
-YXRlc3QgcmVsZWFzZWQgZHJpdmVyIGZvciBlbWdkLiBUaGlzIGNoYW5nZSBpcyB0ZXN0ZWQgb24N
-Cj4gPiBjcm93bmJheSBtYWNoaW5lLg0KPiA+DQo+ID4gQWRkIHJ1bnRpbWUgZGVwZW5kZW5jeSB0
-byBsaWJ4Y2ItZHJpMg0KPiA+DQo+IA0KPiBIaSBOaXRpbiwNCj4gDQo+IFdoZW4gYnVpbGRpbmcs
-IEknbSBzZWVpbmcgdGhpczoNCj4gDQo+IE5PVEU6IFJlc29sdmluZyBhbnkgbWlzc2luZyB0YXNr
-IHF1ZXVlIGRlcGVuZGVuY2llcw0KPiBOT1RFOiBtdWx0aXBsZSBwcm92aWRlcnMgYXJlIGF2YWls
-YWJsZSBmb3IgcnVudGltZSBsaWJ4Y2ItZHJpMiAobGlieGNiLQ0KPiBuYXRpdmVzZGssIGxpYnhj
-YikNCj4gTk9URTogY29uc2lkZXIgZGVmaW5pbmcgYSBQUkVGRVJSRURfUFJPVklERVIgZW50cnkg
-dG8gbWF0Y2ggbGlieGNiLWRyaTINCj4gDQo+IFRvbQ0KDQpUaGlzIGlzIGlzc3VlIHdpdGggdGhl
-IGxpYnhjYiByZWNpcGUuIEkgaGF2ZSBzZW50IGEgZml4IGZvciB0aGF0IHRvIG9lY29yZSBtYWls
-aW5nIGxpc3QuDQoNCk5pdGluDQoNCj4gDQo+ID4gT3RoZXJ3aXNlIHRoZSBsaWJ4Y2ItZHJpMi5z
-byBpcyBub3QgZ2V0dGluZyBpbnN0YWxsZWQsIGFuZCB2aWRlbw0KPiA+IGFjY2VsZXJhdGlvbiBv
-ZiBlbWdkIGRvZXMgbm90IHdvcmsuIEl0IGlzIGR5bmFtaWMgZGVwZW5kZW5jeSBvZg0KPiA+IGVt
-Z2RfZHJ2X3ZpZGVvLnNvDQo+ID4NCj4gPiBwdXQgZmlsZXMgaW4gZ3N0cmVhbWVyLTAuMTAvLmRl
-YnVnIGRpcmVjdG9yeSB0byB0aGUgZGVidWcgcGFja2FnZS4NCj4gPiBJdCBhdm9pZHMgZGVidWcg
-ZmlsZXMgcGFja2FnaW5nIHdhcm5pbmdzLg0KPiA+DQo+ID4gYWRkIGRvd25sb2FkZmlsZW5hbWUg
-cGFyYW0gdG8gU1JDX1VSSQ0KPiA+DQo+ID4gQXMgdGhlIHVybCBkb2VzIG5vdCBoYXZlIHRoZSBm
-aWxlbmFtZSBvZiB0aGUgdGFyYmFsbCwgc3BlY2lmeSBpdCBoZXJlDQo+ID4gc28gdGhhdCB1cGRh
-dGVkIHdnZXQgYml0YmFrZSBmZXRjaGVyIGNhbiBzYXZlIHRoZSBkb3dubG9hZGVkIGZpbGUNCj4g
-PiBhY2NvcmRpbmdseS4NCj4gPiBCVFcgbm93IEVEQyBoYXMgYWxzbyBwdWJsaXNoZWQgYW5vdGhl
-ciBkb3dubG9hZCBVUkwgb24gb3VyIHJlcXVlc3Q6DQo+ID4NCj4gaHR0cDovL2VkYy5pbnRlbC5j
-b20vQXBwX1NoYXJlZC9Eb3dubG9hZHMvTElOX0lFTUdEXzFfMTRfR09MRF8yNDQNCj4gMy50Z3oN
-Cj4gPg0KPiA+IEFuZCB1cGRhdGUgZW1nZCBkcml2ZXIgdmVyc2lvbiBpbiB0aGUgUkVBRE1FLg0K
-PiA+DQo+ID4gU2lnbmVkLW9mZi1ieTogTml0aW4gQSBLYW1ibGUgPG5pdGluLmEua2FtYmxlQGlu
-dGVsLmNvbT4NCj4gPiAtLS0NCj4gPiAgLi4uLWRyaXZlci1iaW5fMS4xMC5iYiA9PiBlbWdkLWRy
-aXZlci1iaW5fMS4xNC5iYn0gfCAgIDE3ICsrKysrKysrKy0tLS0tLS0NCj4gLQ0KPiA+ICBtZXRh
-LWNyb3duYmF5L1JFQURNRSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB8ICAgIDggKysr
-Ky0tLS0NCj4gPiAgMiBmaWxlcyBjaGFuZ2VkLCAxMyBpbnNlcnRpb25zKCspLCAxMiBkZWxldGlv
-bnMoLSkgIHJlbmFtZQ0KPiA+IGNvbW1vbi9yZWNpcGVzLWdyYXBoaWNzL3hvcmcteHNlcnZlci97
-ZW1nZC1kcml2ZXItYmluXzEuMTAuYmIgPT4NCj4gPiBlbWdkLWRyaXZlci1iaW5fMS4xNC5iYn0g
-KDg4JSkNCj4gPg0KPiA+IGRpZmYgLS1naXQNCj4gPiBhL2NvbW1vbi9yZWNpcGVzLWdyYXBoaWNz
-L3hvcmcteHNlcnZlci9lbWdkLWRyaXZlci1iaW5fMS4xMC5iYg0KPiA+IGIvY29tbW9uL3JlY2lw
-ZXMtZ3JhcGhpY3MveG9yZy14c2VydmVyL2VtZ2QtZHJpdmVyLWJpbl8xLjE0LmJiDQo+ID4gc2lt
-aWxhcml0eSBpbmRleCA4OCUNCj4gPiByZW5hbWUgZnJvbQ0KPiA+IGNvbW1vbi9yZWNpcGVzLWdy
-YXBoaWNzL3hvcmcteHNlcnZlci9lbWdkLWRyaXZlci1iaW5fMS4xMC5iYg0KPiA+IHJlbmFtZSB0
-byBjb21tb24vcmVjaXBlcy1ncmFwaGljcy94b3JnLXhzZXJ2ZXIvZW1nZC1kcml2ZXItDQo+IGJp
-bl8xLjE0LmJiDQo+ID4gaW5kZXggNTc3OWU1ZC4uYjFiYTFiOCAxMDA2NDQNCj4gPiAtLS0gYS9j
-b21tb24vcmVjaXBlcy1ncmFwaGljcy94b3JnLXhzZXJ2ZXIvZW1nZC1kcml2ZXItYmluXzEuMTAu
-YmINCj4gPiArKysgYi9jb21tb24vcmVjaXBlcy1ncmFwaGljcy94b3JnLXhzZXJ2ZXIvZW1nZC1k
-cml2ZXItYmluXzEuMTQuYmINCj4gPiBAQCAtMSw5ICsxLDkgQEANCj4gPiAtU1VNTUFSWSA9ICJF
-TUdEIDEuMTAgeHNlcnZlciBiaW5hcmllcyINCj4gPiAtREVTQ1JJUFRJT04gPSAiRU1HRCAxLjEw
-IGluY2x1ZGVzIHNvbWUgdXNlcnNwYWNlIGJpbmFyaWVzIHRoYXQgdXNlDQo+ID4gbm9uLWZyZWUg
-XA0KPiA+ICtTVU1NQVJZID0gIkVNR0QgMS4xNCB4c2VydmVyIGJpbmFyaWVzIg0KPiA+ICtERVND
-UklQVElPTiA9ICJFTUdEIDEuMTQgaW5jbHVkZXMgc29tZSB1c2Vyc3BhY2UgYmluYXJpZXMgdGhh
-dCB1c2UNCj4gPiArbm9uLWZyZWUgXA0KPiA+ICBsaWNlbnNpbmcsIHdoaWNoIGFyZSBub3cgYXZh
-aWxhYmxlIHZpYSBhIG5vbi1jbGljay10aHJvdWdoDQo+ID4gZG93bmxvYWRhYmxlIFwgIHRhcmJh
-bGwsIGFuZCBpcyB3aGF0IHRoaXMgcmVjaXBlIG5vdyB1c2VzLiAgU2luY2UgaXQNCj4gPiBpcyBh
-IG5vbi1mcmVlIGxpY2Vuc2UsIFwgLXRoaXMgcmVjaXBlIGlzIG1hcmtlZCBhcw0KPiA+ICdMaWNl
-bnNlX2VtZ2QtZHJpdmVyLWJpbl8xLjEwJyBhbmQgeW91IG5lZWQgdG8gYWRkIFwgLXRvDQo+ID4g
-TElDRU5TRV9GTEFHU19XSElURUxJU1QgKz0gXCJMaWNlbnNlX2VtZ2QtZHJpdmVyLWJpbl8xLjEw
-XCIgdG8geW91ciBcDQo+ID4gK3RoaXMgcmVjaXBlIGlzIG1hcmtlZCBhcyAnTGljZW5zZV9lbWdk
-LWRyaXZlci1iaW5fMS4xNCcgYW5kIHlvdSBuZWVkDQo+ID4gK3RvIGFkZCBcIHRvIExJQ0VOU0Vf
-RkxBR1NfV0hJVEVMSVNUICs9DQo+ID4gK1wiTGljZW5zZV9lbWdkLWRyaXZlci1iaW5fMS4xNFwi
-IHRvIHlvdXIgXA0KPiA+ICBsb2NhbC5jb25mIGluIG9yZGVyIHRvIGVuYWJsZSBpdCBpbiBhIGJ1
-aWxkLiINCj4gPiAgTElDRU5TRSA9ICJJbnRlbC1iaW5hcnktb25seSINCj4gPiAgTElDRU5TRV9G
-TEFHUyA9ICJsaWNlbnNlXyR7UE59XyR7UFZ9Ig0KPiA+IEBAIC0xNiwxNyArMTYsMTggQEAgRU1H
-RF9WSURFT19QTFVHSU5fRElSID0NCj4gIi4uL2NvbW1vbi92aWRlb19wbHVnaW4iDQo+ID4gIExJ
-Q19GSUxFU19DSEtTVU0gPQ0KPiAiZmlsZTovLyR7V09SS0RJUn0vJHtFTUdEX0xJQ19ESVJ9L0xp
-Y2Vuc2UudHh0O21kNT1iNTRmMDFjYWFmODQ4M2IzY2INCj4gNjBjMGM0MGYyYmYyMmQiDQo+ID4N
-Cj4gPiAgREVQRU5EUyA9ICJycG0tbmF0aXZlIHh6LW5hdGl2ZSINCj4gPiArUkRFUEVORFMgPSAi
-bGlieGNiLWRyaTIiDQo+ID4NCj4gPiAtU1JDX1VSSSA9DQo+ICJodHRwczovL2VkYy5pbnRlbC5j
-b20vQXBwX1NoYXJlZC9Eb3dubG9hZHMvTElOX0VNR0RfMV8xMF9SQ18yMjA5Lg0KPiB0Z3oiDQo+
-ID4gK1NSQ19VUkkgPQ0KPiAiaHR0cHM6Ly9lZGMuaW50ZWwuY29tL0Rvd25sb2FkLmFzcHg/aWQ9
-NjE5MDtkb3dubG9hZGZpbGVuYW1lPUxJTl9JRU0NCj4gR0RfMV8xNF9HT0xEXzI0NDMudGd6Ig0K
-PiA+DQo+ID4gLVNSQ19VUklbbWQ1c3VtXSA9ICJlNGEzOGQ5ZWZhMGIwODZhZTIxYjY4MTQ1YzRk
-YjRlOSINCj4gPiAtU1JDX1VSSVtzaGEyNTZzdW1dID0NCj4gImFjZWE1ZjBmOTNhMzE1NTM1NTM0
-Mjg2MjNjMDA3ZDdlZDBjNjA0Y2Y3MTVmZDg3ZGZlMDc1NzUxZGE0YmU1NDgiDQo+ID4gK1NSQ19V
-UklbbWQ1c3VtXSA9ICI3MzNhN2YyMzdmZmNlMjEyMzhjZTJjOTk1NmRmNGZkNiINCj4gPiArU1JD
-X1VSSVtzaGEyNTZzdW1dID0NCj4gImJjZGMzMzNiNWVkYmRhN2M3NDZhODNlZjgyMWRlZDRhMGNh
-NTVlYWQzMDk4MGU0ZTM2ODBjZGI2NDY5ZjQ1YTIiDQo+ID4NCj4gPiAgIyBUaGVzZSBhcmUgY2xv
-c2VkIGJpbmFyaWVzIGdlbmVyYXRlZCBlbHNld2hlcmUgc28gZG9uJ3QgY2hlY2sNCj4gPiBsZGZs
-YWdzICBJTlNBTkVfU0tJUF8ke1BOfSA9ICJsZGZsYWdzIg0KPiA+DQo+ID4gIEZJTEVTXyR7UE59
-ICs9ICIke2xpYmRpcn0vZHJpICR7bGliZGlyfS9nc3RyZWFtZXItMC4xMA0KPiAke2xpYmRpcn0v
-eG9yZy9tb2R1bGVzL2RyaXZlcnMiDQo+ID4gLUZJTEVTXyR7UE59LWRiZyArPSAiJHtsaWJkaXJ9
-L3hvcmcvbW9kdWxlcy9kcml2ZXJzLy5kZWJ1Zw0KPiAke2xpYmRpcn0vZHJpLy5kZWJ1ZyINCj4g
-PiArRklMRVNfJHtQTn0tZGJnICs9ICIke2xpYmRpcn0veG9yZy9tb2R1bGVzL2RyaXZlcnMvLmRl
-YnVnDQo+ICR7bGliZGlyfS9kcmkvLmRlYnVnICR7bGliZGlyfS9nc3RyZWFtZXItMC4xMC8uZGVi
-dWciDQo+ID4NCj4gPiAgUyA9ICIke1dPUktESVJ9LyR7RU1HRF9SUE1fRElSfSINCj4gPg0KPiA+
-IGRpZmYgLS1naXQgYS9tZXRhLWNyb3duYmF5L1JFQURNRSBiL21ldGEtY3Jvd25iYXkvUkVBRE1F
-IGluZGV4DQo+ID4gYjU2Yzc5YS4uMjUyMTQzMiAxMDA2NDQNCj4gPiAtLS0gYS9tZXRhLWNyb3du
-YmF5L1JFQURNRQ0KPiA+ICsrKyBiL21ldGEtY3Jvd25iYXkvUkVBRE1FDQo+ID4gQEAgLTYsNyAr
-Niw3IEBAIFRoZSBDcm93biBCYXkgcGxhdGZvcm0gY29uc2lzdHMgb2YgdGhlIEludGVsIEF0b20g
-WjZ4eA0KPiA+IHByb2Nlc3NvciwgIHBsdXMgdGhlIEludGVsIEVHMjBUIFBsYXRmb3JtIENvbnRy
-b2xsZXIgSHViIChUdW5uZWwgQ3JlZWsgKw0KPiBUb3BjbGlmZikuDQo+ID4NCj4gPiAgSXQgYWxz
-byBzdXBwb3J0cyB0aGUgRTZ4eCBlbWJlZGRlZCBvbi1jaGlwIGdyYXBoaWNzIHZpYSB0aGUgSW50
-ZWwNCj4gPiAtRW1iZWRkZWQgTWVkaWEgYW5kIEdyYXBoaWNzIERyaXZlciAoRU1HRCkgMS4xMCBE
-cml2ZXIuDQo+ID4gK0VtYmVkZGVkIE1lZGlhIGFuZCBHcmFwaGljcyBEcml2ZXIgKEVNR0QpIDEu
-MTQgRHJpdmVyLg0KPiA+DQo+ID4NCj4gPiAgRGVwZW5kZW5jaWVzDQo+ID4gQEAgLTYzLDcgKzYz
-LDcgQEAgY29tbW9uIG1ldGFkYXRhIHNoYXJlZCBiZXR3ZWVuIEJTUHMpIGUuZy46DQo+ID4gIFRo
-ZSBtZXRhLWNyb3duYmF5IGxheWVyIGNvbnRhaW5zIHN1cHBvcnQgZm9yIHR3byBkaWZmZXJlbnQg
-bWFjaGluZQ0KPiA+IGNvbmZpZ3VyYXRpb25zLiBUaGVzZSBjb25maWd1cmF0aW9ucyBhcmUgaWRl
-bnRpY2FsIGV4Y2VwdCBmb3IgdGhlIGZhY3QNCj4gPiB0aGF0IHRoZSBvbmUgcHJlZml4ZWQgd2l0
-aCAnY3Jvd25iYXknIG1ha2VzIHVzZSBvZiB0aGUNCj4gPiAtSW50ZWwtcHJvcHJpZXRhcnkgRU1H
-RCAxLjEwIGdyYXBoaWNzIGRyaXZlciwgd2hpbGUgdGhlIG9uZSBwcmVmaXhlZA0KPiA+ICtJbnRl
-bC1wcm9wcmlldGFyeSBFTUdEIDEuMTQgZ3JhcGhpY3MgZHJpdmVyLCB3aGlsZSB0aGUgb25lIHBy
-ZWZpeGVkDQo+ID4gIHdpdGggJ2Nyb3duYmF5LW5vZW1nZCcgZG9lcyBub3QuDQo+ID4NCj4gPiAg
-SWYgeW91IHdhbnQgdG8gZW5hYmxlIHRoZSBsYXllciB0aGF0IHN1cHBvcnRzIEVNR0QgZ3JhcGhp
-Y3MgYWRkIHRoZQ0KPiA+IEBAIC03MywxMCArNzMsMTAgQEAgZm9sbG93aW5nIHRvIHRoZSBsb2Nh
-bC5jb25mIGZpbGU6DQo+ID4NCj4gPiAgVGhlICdjcm93bmJheScgbWFjaGluZSBpbmNsdWRlcyB0
-aGUgZW1nZC1kcml2ZXItYmluIHBhY2thZ2UsIHdoaWNoDQo+ID4gaGFzICBhIHByb3ByaWV0YXJ5
-IGxpY2Vuc2UgdGhhdCBtdXN0IGJlIHdoaXRlbGlzdGVkIGJ5IGFkZGluZyB0aGUNCj4gPiBzdHJp
-bmcgLSJsaWNlbnNlX2VtZ2QtZHJpdmVyLWJpbl8xLjEwIiB0byB0aGUgTElDRU5TRV9GTEFHU19X
-SElURUxJU1QNCj4gPiB2YXJpYWJsZQ0KPiA+ICsibGljZW5zZV9lbWdkLWRyaXZlci1iaW5fMS4x
-NCIgdG8gdGhlIExJQ0VOU0VfRkxBR1NfV0hJVEVMSVNUDQo+ID4gK3ZhcmlhYmxlDQo+ID4gIGlu
-IHlvdXIgbG9jYWwuY29uZi4gIEZvciBleGFtcGxlOg0KPiA+DQo+ID4gLSAgTElDRU5TRV9GTEFH
-U19XSElURUxJU1QgPSAibGljZW5zZV9lbWdkLWRyaXZlci1iaW5fMS4xMCINCj4gPiArICBMSUNF
-TlNFX0ZMQUdTX1dISVRFTElTVCA9ICJsaWNlbnNlX2VtZ2QtZHJpdmVyLWJpbl8xLjE0Ig0KPiA+
-DQo+ID4gIElmIHlvdSB3YW50IHRvIGVuYWJsZSB0aGUgbGF5ZXIgdGhhdCBkb2VzIG5vdCBzdXBw
-b3J0IEVNR0QgZ3JhcGhpY3MNCj4gPiBhZGQgdGhlIGZvbGxvd2luZyB0byB0aGUgbG9jYWwuY29u
-ZiBmaWxlOg0KPiANCg0K
+--_000_4439C3C0562087488F139C696CD862A72C1827SBSMEDECmedecbene_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
+Hi,
+
+This might be a newbie question but i have not yet found the answer in the =
+documentation.
+
+So let's say I want to know what core-image-core has as packages ... then I=
+ found the following trace back:
+
+-        Core-image-core.bb uses core-image-base.bb with X11 variables =3D=
+=3D> both use core-image.bbclass
+
+-        Core-image.bbclass defines the tasks that needs to be done for cor=
+e-image-core.bb
+
+o   Task-core-apps-console
+
+o   Task-core-x11-base
+
+o   Apps-x11-core =3D=3D> task-core-apps-x11-core
+
+o   Package management =3D=3D> ...
+
+o   Task-core-boot
+
+o   Task-base-extended
+
+o   Use image.bbclass
+
+Now my question is, where can I find what for example task-core-apps-consol=
+e exactly is as package collection? Since this is a core task list I though=
+t I would find it in /meta/recipes-core/tasks but no luck, I did find task-=
+core-boot there but that is it ...
+
+Thanks in advance,
+
+Kind regards,
+
+Tim
+
+--_000_4439C3C0562087488F139C696CD862A72C1827SBSMEDECmedecbene_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{mso-style-priority:34;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:36.0pt;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 70.85pt 70.85pt 70.85pt;}
+div.WordSection1
+	{page:WordSection1;}
+/* List Definitions */
+@list l0
+	{mso-list-id:506142150;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1367887850 -2100151302 68354051 68354053 68354049 68=
+354051 68354053 68354049 68354051 68354053;}
+@list l0:level1
+	{mso-level-start-at:0;
+	mso-level-number-format:bullet;
+	mso-level-text:-;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-font-family:Calibri;}
+@list l0:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:"Courier New";}
+@list l0:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Wingdings;}
+@list l0:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Symbol;}
+@list l0:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:"Courier New";}
+@list l0:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Wingdings;}
+@list l0:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Symbol;}
+@list l0:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:"Courier New";}
+@list l0:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Wingdings;}
+ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"NL" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Hi,<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">This might be a newbie question=
+ but i have not yet found the answer in the documentation.<o:p></o:p></span=
+></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">So let&#8217;s say I want to kn=
+ow what core-image-core has as packages &#8230; then I found the following =
+trace back:<o:p></o:p></span></p>
+<p class=3D"MsoListParagraph" style=3D"text-indent:-18.0pt;mso-list:l0 leve=
+l1 lfo1"><![if !supportLists]><span lang=3D"EN-US"><span style=3D"mso-list:=
+Ignore">-<span style=3D"font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=3D"EN-US">Core-image-core.bb uses=
+ core-image-base.bb with X11 variables
+</span><span lang=3D"EN-US" style=3D"font-family:Wingdings">=E8</span><span=
+ lang=3D"EN-US"> both use core-image.bbclass
+<o:p></o:p></span></p>
+<p class=3D"MsoListParagraph" style=3D"text-indent:-18.0pt;mso-list:l0 leve=
+l1 lfo1"><![if !supportLists]><span lang=3D"EN-US"><span style=3D"mso-list:=
+Ignore">-<span style=3D"font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=3D"EN-US">Core-image.bbclass defi=
+nes the tasks that needs to be done for core-image-core.bb<o:p></o:p></span=
+></p>
+<p class=3D"MsoListParagraph" style=3D"margin-left:72.0pt;text-indent:-18.0=
+pt;mso-list:l0 level2 lfo1">
+<![if !supportLists]><span lang=3D"EN-US" style=3D"font-family:&quot;Courie=
+r New&quot;"><span style=3D"mso-list:Ignore">o<span style=3D"font:7.0pt &qu=
+ot;Times New Roman&quot;">&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=3D"EN-US">Task-core-apps-console<=
+o:p></o:p></span></p>
+<p class=3D"MsoListParagraph" style=3D"margin-left:72.0pt;text-indent:-18.0=
+pt;mso-list:l0 level2 lfo1">
+<![if !supportLists]><span lang=3D"EN-US" style=3D"font-family:&quot;Courie=
+r New&quot;"><span style=3D"mso-list:Ignore">o<span style=3D"font:7.0pt &qu=
+ot;Times New Roman&quot;">&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=3D"EN-US">Task-core-x11-base<o:p>=
+</o:p></span></p>
+<p class=3D"MsoListParagraph" style=3D"margin-left:72.0pt;text-indent:-18.0=
+pt;mso-list:l0 level2 lfo1">
+<![if !supportLists]><span lang=3D"EN-US" style=3D"font-family:&quot;Courie=
+r New&quot;"><span style=3D"mso-list:Ignore">o<span style=3D"font:7.0pt &qu=
+ot;Times New Roman&quot;">&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=3D"EN-US">Apps-x11-core </span><s=
+pan lang=3D"EN-US" style=3D"font-family:Wingdings">=E8</span><span lang=3D"=
+EN-US"> task-core-apps-x11-core<o:p></o:p></span></p>
+<p class=3D"MsoListParagraph" style=3D"margin-left:72.0pt;text-indent:-18.0=
+pt;mso-list:l0 level2 lfo1">
+<![if !supportLists]><span lang=3D"EN-US" style=3D"font-family:&quot;Courie=
+r New&quot;"><span style=3D"mso-list:Ignore">o<span style=3D"font:7.0pt &qu=
+ot;Times New Roman&quot;">&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=3D"EN-US">Package management </sp=
+an><span lang=3D"EN-US" style=3D"font-family:Wingdings">=E8</span><span lan=
+g=3D"EN-US"> &#8230;<o:p></o:p></span></p>
+<p class=3D"MsoListParagraph" style=3D"margin-left:72.0pt;text-indent:-18.0=
+pt;mso-list:l0 level2 lfo1">
+<![if !supportLists]><span lang=3D"EN-US" style=3D"font-family:&quot;Courie=
+r New&quot;"><span style=3D"mso-list:Ignore">o<span style=3D"font:7.0pt &qu=
+ot;Times New Roman&quot;">&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=3D"EN-US">Task-core-boot<o:p></o:=
+p></span></p>
+<p class=3D"MsoListParagraph" style=3D"margin-left:72.0pt;text-indent:-18.0=
+pt;mso-list:l0 level2 lfo1">
+<![if !supportLists]><span lang=3D"EN-US" style=3D"font-family:&quot;Courie=
+r New&quot;"><span style=3D"mso-list:Ignore">o<span style=3D"font:7.0pt &qu=
+ot;Times New Roman&quot;">&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=3D"EN-US">Task-base-extended<o:p>=
+</o:p></span></p>
+<p class=3D"MsoListParagraph" style=3D"margin-left:72.0pt;text-indent:-18.0=
+pt;mso-list:l0 level2 lfo1">
+<![if !supportLists]><span lang=3D"EN-US" style=3D"font-family:&quot;Courie=
+r New&quot;"><span style=3D"mso-list:Ignore">o<span style=3D"font:7.0pt &qu=
+ot;Times New Roman&quot;">&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=3D"EN-US">Use image.bbclass<o:p><=
+/o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Now my question is, where can I=
+ find what for example task-core-apps-console exactly is as package collect=
+ion? Since this is a core task list I thought I would find it in /meta/reci=
+pes-core/tasks but no luck, I did find
+ task-core-boot there but that is it &#8230;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Thanks in advance,<o:p></o:p></=
+span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Kind regards,<o:p></o:p></span>=
+</p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Tim<o:p></o:p></span></p>
+</div>
+</body>
+</html>
+
+--_000_4439C3C0562087488F139C696CD862A72C1827SBSMEDECmedecbene_--
