@@ -1,32 +1,26 @@
 Return-Path: <dvhart@linux.intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 809AAE01351
-	for <yocto@yoctoproject.org>; Wed,  1 Aug 2012 15:37:23 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 01 Aug 2012 15:37:23 -0700
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A6E8CE01351
+	for <yocto@yoctoproject.org>; Wed,  1 Aug 2012 15:59:47 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga101.ch.intel.com with ESMTP; 01 Aug 2012 15:59:46 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="201149980"
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="129407236"
 Received: from unknown (HELO envy.home) ([10.255.13.51])
-	by fmsmga002.fm.intel.com with ESMTP; 01 Aug 2012 15:37:23 -0700
-Message-ID: <5019AF37.4040406@linux.intel.com>
-Date: Wed, 01 Aug 2012 15:35:35 -0700
+	by AZSMGA002.ch.intel.com with ESMTP; 01 Aug 2012 15:59:46 -0700
+Message-ID: <5019B476.8080709@linux.intel.com>
+Date: Wed, 01 Aug 2012 15:57:58 -0700
 From: Darren Hart <dvhart@linux.intel.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:14.0) Gecko/20120717 Thunderbird/14.0
 MIME-Version: 1.0
-To: Khem Raj <raj.khem@gmail.com>
-References: <50189888.3020103@linux.intel.com>
-	<C4B37B65-466E-4F99-8904-C12877973E20@gmail.com>
-	<5018A6E3.1020704@linux.intel.com>
-	<20120801061552.GB15199@jama.jama.net>
-	<501957C4.7010401@linux.intel.com>
-	<CAMKF1soAoCiihcn7OGMfQS29L80zLLvoAWkc2D9AV37ku98idw@mail.gmail.com>
-	<50196467.50903@linux.intel.com>
-	<80F8A591-0E46-404A-AAC0-59546ACB1ADC@gmail.com>
-In-Reply-To: <80F8A591-0E46-404A-AAC0-59546ACB1ADC@gmail.com>
+To: kishore.k.bodke@intel.com
+References: <cover.1343847920.git.kishore.k.bodke@intel.com>
+	<21e6c2bcd419609619b45491918f9bfc5fa6d4a7.1343847920.git.kishore.k.bodke@intel.com>
+In-Reply-To: <21e6c2bcd419609619b45491918f9bfc5fa6d4a7.1343847920.git.kishore.k.bodke@intel.com>
 X-Enigmail-Version: 1.4.3
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: Debug with gdbserver
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH 1/1] [KERNEL] meta: Crystal Forest Machine Created.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,41 +32,181 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 01 Aug 2012 22:37:23 -0000
+X-List-Received-Date: Wed, 01 Aug 2012 22:59:47 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
+Hi Kishore,
 
-
-On 08/01/2012 03:34 PM, Khem Raj wrote:
+On 08/01/2012 12:15 PM, kishore.k.bodke@intel.com wrote:
+> From: Kishore Bodke <kishore.k.bodke@intel.com>
 > 
-> On Aug 1, 2012, at 10:16 AM, Darren Hart <dvhart@linux.intel.com> wrote:
+> Initial checkin for the new Crystal Forest Machine Branch.
 > 
->>
->>
->> On 08/01/2012 10:09 AM, Khem Raj wrote:
->>> On Wed, Aug 1, 2012 at 9:22 AM, Darren Hart <dvhart@linux.intel.com> wrote:
->>>> (gdb) target extended-remote 127.0.0.1:1234
->>>
->>> this should be ip of target which in your case is qemu prolly
->>> something like 192.168.7.2 or somesuch
->>>
->>
->> I was trying to use the "redir" feature of qemu which supposedly allows
->> you to connect to 1234 on the host instead. After looking at this for a
->> bit and not making any progress, I setup tun/tap networking with qemu
->> and easily connected using the target IP as you mention above. I'd like
->> to understand why redir didn't work - as debugging without a full
->> network on the client would be nice - but for now, I'm moving along.
->>
+> Signed-off-by: Kishore Bodke <kishore.k.bodke@intel.com>
+> ---
+>  .../bsp/crystalforest/crystalforest-preempt-rt.scc |   15 +++++
+>  .../bsp/crystalforest/crystalforest-standard.scc   |   10 ++++
+>  .../bsp/crystalforest/crystalforest.cfg            |   63 ++++++++++++++++++++
+>  .../bsp/crystalforest/crystalforest.scc            |   14 +++++
+>  4 files changed, 102 insertions(+)
+>  create mode 100644 meta/cfg/kernel-cache/bsp/crystalforest/crystalforest-preempt-rt.scc
+>  create mode 100644 meta/cfg/kernel-cache/bsp/crystalforest/crystalforest-standard.scc
+>  create mode 100644 meta/cfg/kernel-cache/bsp/crystalforest/crystalforest.cfg
+>  create mode 100644 meta/cfg/kernel-cache/bsp/crystalforest/crystalforest.scc
 > 
-> well redir is visible to qemu gdb stub not to the software stack that qemu is running
-> in your case. although you can use that to debug kernel using qemu. Pass -s option 
-> and qemu will boot kernel using gdb stub and you can debug the kernel from address 0
-> kind of JTAG debugger for poor :)
+> diff --git a/meta/cfg/kernel-cache/bsp/crystalforest/crystalforest-preempt-rt.scc b/meta/cfg/kernel-cache/bsp/crystalforest/crystalforest-preempt-rt.scc
+> new file mode 100644
+> index 0000000..6c250af
+> --- /dev/null
+> +++ b/meta/cfg/kernel-cache/bsp/crystalforest/crystalforest-preempt-rt.scc
+> @@ -0,0 +1,15 @@
+> +define KMACHINE crystalforest
+> +define KTYPE preempt-rt
+> +define KARCH x86_64
+> +
+> +# no new branch required, re-use the ktypes/preempt-rt branch
+> +include ktypes/preempt-rt
+> +include bsp/common-pc-64/common-pc-64.scc
+> +
+> +include crystalforest.scc
+> +
+> +# default policy for preempt-rt kernels
+> +include cfg/usb-mass-storage.scc
+> +include cfg/boot-live.scc
+> +include features/latencytop/latencytop.scc
+> +include features/profiling/profiling.scc
+> diff --git a/meta/cfg/kernel-cache/bsp/crystalforest/crystalforest-standard.scc b/meta/cfg/kernel-cache/bsp/crystalforest/crystalforest-standard.scc
+> new file mode 100644
+> index 0000000..9d24c76
+> --- /dev/null
+> +++ b/meta/cfg/kernel-cache/bsp/crystalforest/crystalforest-standard.scc
+> @@ -0,0 +1,10 @@
+> +define KMACHINE crystalforest
+> +define KTYPE standard
+> +define KARCH x86_64
+> +
+> +include bsp/common-pc-64/common-pc-64-standard
+> +branch crystalforest
+> +
+> +include crystalforest.scc
+> +
+> +# default policy for standard kernels
+> diff --git a/meta/cfg/kernel-cache/bsp/crystalforest/crystalforest.cfg b/meta/cfg/kernel-cache/bsp/crystalforest/crystalforest.cfg
+> new file mode 100644
+> index 0000000..341cc20
+> --- /dev/null
+> +++ b/meta/cfg/kernel-cache/bsp/crystalforest/crystalforest.cfg
+> @@ -0,0 +1,63 @@
+> +CONFIG_PRINTK=y
+> +
+> +# Basic hardware support for the box - network, USB, PCI, sound
+> +CONFIG_NETDEVICES=y
+> +CONFIG_ATA=y
+> +CONFIG_ATA_GENERIC=y
+> +CONFIG_ATA_SFF=y
+> +CONFIG_PCI=y
+> +CONFIG_MMC=y
+> +CONFIG_MMC_SDHCI=y
+> +CONFIG_USB_SUPPORT=y
+> +CONFIG_USB=y
 
+USB support should be pulled in using the various usb scc files Tom
+created relatively recently.
 
-Oh. Duh. :-)
+> +CONFIG_USB_ARCH_HAS_EHCI=y
+> +CONFIG_R8169=y
+> +CONFIG_PATA_SCH=y
+> +CONFIG_MMC_SDHCI_PCI=y
+> +CONFIG_USB_EHCI_HCD=y
+> +CONFIG_PCIEPORTBUS=y
+> +CONFIG_NET=y
+> +CONFIG_USB_UHCI_HCD=y
+> +CONFIG_BLK_DEV_SD=y
+> +CONFIG_CHR_DEV_SG=y
+> +CONFIG_SOUND=y
+> +CONFIG_SND=y
+> +CONFIG_SND_HDA_INTEL=y
+> +
+> +# Make sure these are on, otherwise the bootup won't be fun
+> +CONFIG_UNIX=y
+> +CONFIG_INET=y
+> +CONFIG_MODULES=y
+> +CONFIG_SHMEM=y
+> +CONFIG_TMPFS=y
+> +CONFIG_PACKET=y
+> +
+> +# These are needed for the Poulsbo kernel modules
+> +CONFIG_I2C=y
+> +CONFIG_AGP=y
+> +CONFIG_VFAT_FS=y
+
+VFAT_FS is required for Poulsbo kernel modules?
+
+This would make more sense as a poulsbo.scc and .cfg file.
+
+> +CONFIG_PM=y
+> +CONFIG_FB=y
+> +CONFIG_BACKLIGHT_LCD_SUPPORT=y
+> +CONFIG_BACKLIGHT_CLASS_DEVICE=y
+> +CONFIG_INPUT=y
+> +CONFIG_VIDEO_V4L2=y
+> +CONFIG_VIDEO_IVTV=y
+> +CONFIG_MEDIA_SUPPORT=y
+> +CONFIG_VIDEO_CAPTURE_DRIVERS=y
+> +CONFIG_VIDEO_DEV=y
+> +CONFIG_VIDEO_V4L2_COMMON=y
+> +CONFIG_I2C_ALGOBIT=y
+> +CONFIG_FB_CFB_COPYAREA=y
+> +CONFIG_FB_CFB_IMAGEBLIT=y
+> +CONFIG_FB_CFB_FILLRECT=y
+> +CONFIG_VIDEO_FB_IVTV=y
+> +
+> +# Needed for booting (and using) USB memory sticks
+> +CONFIG_USB_STORAGE=y
+> +CONFIG_BLK_DEV_RAM=y
+> +CONFIG_BLK_DEV_LOOP=y
+> +CONFIG_BLK_DEV_INITRD=y
+> +CONFIG_RD_GZIP=y
+> +CONFIG_NLS_CODEPAGE_437=y
+> +CONFIG_NLS_ISO8859_1=y
+
+All this is taken care of with the:
+
+> +include cfg/usb-mass-storage.scc
+> +include cfg/boot-live.scc
+
+lines which are missing from your non-preempt-rt bsp file.
+
+> diff --git a/meta/cfg/kernel-cache/bsp/crystalforest/crystalforest.scc b/meta/cfg/kernel-cache/bsp/crystalforest/crystalforest.scc
+> new file mode 100644
+> index 0000000..ff45107
+> --- /dev/null
+> +++ b/meta/cfg/kernel-cache/bsp/crystalforest/crystalforest.scc
+> @@ -0,0 +1,14 @@
+> +kconf hardware crystalforest.cfg
+> +
+> +include features/i915/i915.scc
+
+Sorry, are Poulsbo and i915 the same thing?
+
+> +include cfg/8250.scc
+> +include cfg/x86_64.scc
+> +include features/uio/uio.scc
+> +include features/hugetlb/hugetlb.scc
+> +include features/ixgbe/ixgbe.scc
+> +include features/igb/igb.scc
+> +include features/power/intel.scc
+> +
+
+Insert usb-mass-storage and boot-live here...
+
+> +include features/latencytop/latencytop.scc
+> +include features/profiling/profiling.scc
+> +
+> 
+
+Thanks,
 
 -- 
 Darren Hart
