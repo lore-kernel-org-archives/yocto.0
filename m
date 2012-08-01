@@ -1,31 +1,29 @@
-Return-Path: <sidebranch.openembedded@gmail.com>
-Received: from mail-lb0-f176.google.com (mail-lb0-f176.google.com
-	[209.85.217.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 61E5BE002A8
-	for <yocto@yoctoproject.org>; Wed,  1 Aug 2012 02:08:18 -0700 (PDT)
-Received: by lboj14 with SMTP id j14so246015lbo.35
-	for <yocto@yoctoproject.org>; Wed, 01 Aug 2012 02:08:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:content-type; bh=CJ6VDfIdsE4hcFjZXFcm0j83Hbrb8LSottkFFShS6k4=;
-	b=BamyJiIDO7PuXWCpnMyjzdp/3RZ3UwmolxWEaNZCWc3qbXNnE6ZU+2ZC/uItKn27O3
-	uKY/MvM8D6+D7To/AAYeSFYzpWxT4miVx0inACCAZOi6h9XmFV/wwnps/u9CYJIwrkwM
-	SGYHBeGVmFPg46bh3wRGOuvBAJDPwCEcVKczESm3L3AjOgKa4/wh4QkEfzS0An1CuPgt
-	JyOoWved1+dfTMWPW5Ah8WQu1VEfinKSo36ssrQYFD/phEJlve2phqbFIYEpU/V6aeyq
-	ABwxW16gZ8q1NzjRO+t+IhLGhP/XYRDMoK2uDLAprxGur5CMSE6PjjTZHumsnBncFsGL
-	QR4g==
+Return-Path: <Tim.Verstraete@medecbenelux.be>
+Received: from mail.medecbenelux.be (mail.medecbenelux.be [81.83.14.242])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D943FE0044A;
+	Wed,  1 Aug 2012 03:52:14 -0700 (PDT)
+Received: from SBS-MEDEC.medecbenelux.local ([fe80::1b66:a66e:3778:1407]) by
+	SBS-MEDEC.medecbenelux.local ([fe80::1b66:a66e:3778:1407%10]) with mapi
+	id 14.01.0355.002; Wed, 1 Aug 2012 12:52:12 +0200
+From: Tim Verstraete <Tim.Verstraete@medecbenelux.be>
+To: "Iorga, Cristian" <cristian.iorga@intel.com>, Denys Dmytriyenko
+	<denys@ti.com>
+Thread-Topic: [SPAM] - RE: [meta-ti] [HOB] issue - Email found in subject
+Thread-Index: AQHNb7zFHa2h+DpMHE2Sa3w+/uQ77JdEx7LQ
+Date: Wed, 1 Aug 2012 10:52:11 +0000
+Message-ID: <4439C3C0562087488F139C696CD862A72C1973@SBS-MEDEC.medecbenelux.local>
+References: <4439C3C0562087488F139C696CD862A72C188D@SBS-MEDEC.medecbenelux.local><20120731201047.GB21245@edge>
+	<4439C3C0562087488F139C696CD862A72C194B@SBS-MEDEC.medecbenelux.local>
+	<969F26A8BAB325438E7EB80D3C3134FB161773A6@IRSMSX102.ger.corp.intel.com>
+In-Reply-To: <969F26A8BAB325438E7EB80D3C3134FB161773A6@IRSMSX102.ger.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [2002:5153:ef2:0:4cfb:295e:12ae:b5bc]
 MIME-Version: 1.0
-Received: by 10.152.148.169 with SMTP id tt9mr17328696lab.49.1343812097170;
-	Wed, 01 Aug 2012 02:08:17 -0700 (PDT)
-Received: by 10.112.37.225 with HTTP; Wed, 1 Aug 2012 02:08:17 -0700 (PDT)
-In-Reply-To: <74172ECC-6F8E-46A7-9336-C3D92046107C@dominion.thruhere.net>
-References: <1343766958-5092-1-git-send-email-sidebranch.openembedded@gmail.com>
-	<74172ECC-6F8E-46A7-9336-C3D92046107C@dominion.thruhere.net>
-Date: Wed, 1 Aug 2012 11:08:17 +0200
-Message-ID: <CAMvUbCwZEiOQU=r5YYLtbbn7V1acgyYNN1i8ySJgRSSVSp8+mA@mail.gmail.com>
-From: Leon Woestenberg <sidebranch.openembedded@gmail.com>
-To: yocto@yoctoproject.org
-Subject: Re: [for denzil] kernel.bbclass: Copy bounds.h only if it exists, needed for 2.6.x.
+Cc: "meta-ti@yoctoproject.org" <meta-ti@yoctoproject.org>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [SPAM] - RE: [meta-ti] [HOB] issue - Email found in subject
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,45 +35,93 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 01 Aug 2012 09:08:18 -0000
-Content-Type: multipart/alternative; boundary=e89a8f23455db25bbc04c630a2af
+X-List-Received-Date: Wed, 01 Aug 2012 10:52:15 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
---e89a8f23455db25bbc04c630a2af
-Content-Type: text/plain; charset=ISO-8859-1
+OK. Where can I find the log file to add to the bugzilla ...
 
-Hello Koen,
+Kind regards,
 
-On 08/01/2012 08:55 AM, Koen Kooi wrote:
+Tim
 
-Shouldn't this be sent to the oe-core list?!?!?
 
-It was intended for the denzil branch ([for denzil]) of Yocto, that's why I
-sent it to yocto@yoctoproject.org.
+-----Original Message-----
+From: Iorga, Cristian [mailto:cristian.iorga@intel.com]=20
+Sent: woensdag 1 augustus 2012 10:08
+To: Tim Verstraete; Denys Dmytriyenko
+Cc: meta-ti@yoctoproject.org; yocto@yoctoproject.org
+Subject: [SPAM] - RE: [meta-ti] [HOB] issue - Email found in subject
 
-If that was wrong reasoning, let me know, I would be glad to change
-workflow if I know why.
+Hello Tim,
 
-Cheers,
+Please fill in a bug report at bugzilla.yoctoproject.org It will be investi=
+gated later on.
 
-Leon.
+Regards,
+Cristian Iorga
 
---e89a8f23455db25bbc04c630a2af
-Content-Type: text/html; charset=ISO-8859-1
+-----Original Message-----
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Tim Verstraete
+Sent: Wednesday, August 01, 2012 9:29 AM
+To: Denys Dmytriyenko
+Cc: meta-ti@yoctoproject.org; yocto@yoctoproject.org
+Subject: Re: [yocto] [meta-ti] [HOB] issue
 
-Hello Koen,
-<br>
-<br>On 08/01/2012 08:55 AM, Koen Kooi wrote:
-<br><blockquote type="cite" style="color:#000000">Shouldn&#39;t this be sent to the oe-core list?!?!?
-<br>
-<br></blockquote>It was intended for the denzil branch ([for denzil]) of Yocto, that&#39;s 
-why I sent it to <a class="moz-txt-link-abbreviated" href="mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a>.
-<br>
-<br>If that was wrong reasoning, let me know, I would be glad to change 
-workflow if I know why.
-<br>
-<br>Cheers,
-<br>
-<br>Leon.
-<br>
+ Hi,
+=20
+ When i use the HOB functionality in yocto with the meta-ti, I get an  erro=
+r message after about 5% with no error message in it. I can only press clos=
+e.
+=20
+ I use the default layers but I do see that HOB re-arranges them into:
+ Poky/meta
+ Poky/meta-hob
+ Poky/meta-ti
+ Poky/meta-yocto
+=20
+ I see that I can build using the command line so it has to be  something w=
+ith HOB and not necessary something in yocto.
 
---e89a8f23455db25bbc04c630a2af--
+Thanks in advance,
+
+Kind regards,
+
+Tim
+
+-----Original Message-----
+From: Denys Dmytriyenko [mailto:denys@ti.com]
+Sent: dinsdag 31 juli 2012 22:11
+To: Tim Verstraete
+Cc: meta-ti@yoctoproject.org
+Subject: Re: [meta-ti] [HOB] issue
+
+On Tue, Jul 31, 2012 at 12:04:37PM +0000, Tim Verstraete wrote:
+> Hi,
+>=20
+> When i use the HOB functionality in yocto with the meta-ti, I get an=20
+> error message after about 5% with no error message in it. I can only pres=
+s close.
+>=20
+> I use the default layers but I do see that HOB re-arranges them into:
+> Poky/meta
+> Poky/meta-hob
+> Poky/meta-ti
+> Poky/meta-yocto
+>=20
+> I see that I can build using the command line so it has to be=20
+> something with HOB and not necessary something in yocto.
+
+Well, HOB _is_ part of Yocto anyway. While meta-ti may be triggering the is=
+sue in HOB, you better off reporting it to the main yocto mailing list - fe=
+el free to copy meta-ti as well.
+
+--
+Denys
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
+
