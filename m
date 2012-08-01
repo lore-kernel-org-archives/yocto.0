@@ -1,26 +1,23 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 66046E00288
-	for <yocto@yoctoproject.org>; Tue, 31 Jul 2012 20:49:36 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 31 Jul 2012 20:49:35 -0700
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 25DE3E00283
+	for <yocto@yoctoproject.org>; Tue, 31 Jul 2012 21:21:57 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 31 Jul 2012 21:21:56 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="175548203"
-Received: from unknown (HELO envy.home) ([10.255.13.49])
-	by azsmga001.ch.intel.com with ESMTP; 31 Jul 2012 20:49:35 -0700
-Message-ID: <5018A6E3.1020704@linux.intel.com>
-Date: Tue, 31 Jul 2012 20:47:47 -0700
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:14.0) Gecko/20120717 Thunderbird/14.0
-MIME-Version: 1.0
-To: Khem Raj <raj.khem@gmail.com>
-References: <50189888.3020103@linux.intel.com>
-	<C4B37B65-466E-4F99-8904-C12877973E20@gmail.com>
-In-Reply-To: <C4B37B65-466E-4F99-8904-C12877973E20@gmail.com>
-X-Enigmail-Version: 1.4.3
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: Debug with gdbserver
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="173915155"
+Received: from unknown (HELO [10.255.12.108]) ([10.255.12.108])
+	by orsmga001.jf.intel.com with ESMTP; 31 Jul 2012 21:21:56 -0700
+Message-ID: <1343794913.2353.41.camel@trz-ThinkPad-T420>
+From: Tom Zanussi <tom.zanussi@intel.com>
+To: nitin.a.kamble@intel.com
+Date: Tue, 31 Jul 2012 23:21:53 -0500
+In-Reply-To: <cover.1343570184.git.nitin.a.kamble@intel.com>
+References: <cover.1343570184.git.nitin.a.kamble@intel.com>
+X-Mailer: Evolution 3.2.3-0ubuntu6 
+Mime-Version: 1.0
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH 0/4] update emgd driver recipe and yocto-kernel for crownbay BSP
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,56 +29,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 01 Aug 2012 03:49:36 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Wed, 01 Aug 2012 04:21:57 -0000
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-
-
-On 07/31/2012 08:13 PM, Khem Raj wrote:
+On Sun, 2012-07-29 at 06:59 -0700, nitin.a.kamble@intel.com wrote:
+> From: Nitin A Kamble <nitin.a.kamble@intel.com>
 > 
-> On Jul 31, 2012, at 7:46 PM, Darren Hart <dvhart@linux.intel.com> wrote:
+> The following changes since commit 7bd163e41f6b861448ab19a13ded4b7c48e16641:
 > 
->> I am trying to debug a userpsace application that misbehaves under
->> poky-tiny. My current approach is use gdbserver on the target and attach
->> to the offending process, then connect to it on the client using the
->> yocto-built native gdb for the target.
->>
->> I can easily add gdbserver to the target image, and can successfully
->> connect it to the process:
->>
->> # From the target (qemux86) root shell:
->> # dropbearkey -t rsa -f ./rsa
->> # dropbear -r ./rsa
->> # DBPID=$(ps | grep dropbear | head -n1 | cut -f4 -d ' ')
->> # gdbserver 127.0.0.1:1234 --attach $DBPID
->>
->> Now on the host machine (amd64) I want to:
->> $ gdb????
->> (gdb) target extended-remote 127.0.0.1:1234
->>
->> Which package do I need to build to get the appropriate gdb for the host
->> to remote debug processes on the target?
+>   gnu-efi_3.0m.bb: Fix tabs with spaces in python snippet (2012-07-27 11:41:17 -0700)
 > 
-> bake cross-gdb for your arch and use it same way as above
-
-ERROR: Nothing PROVIDES 'cross-gdb'
-
-gdb-cross maybe?
-
-Ah that gets a lot farther... and then do_compile fails.
-
-| libgdb.a(python.o): In function `gdbpy_target_wide_charset':
-| python.c:(.text+0x1c7): undefined reference to `PyUnicodeUCS4_Decode'
-
-And a lot more similar to that. I'm doing this on poky-tiny (so a
-minimal target libc... shouldn't impact native bits though right?
+> are available in the git repository at:
+>   git://git.yoctoproject.org/meta-intel-contrib nitin/work
+>   http://git.yoctoproject.org/cgit.cgi/meta-intel-contrib/log/?h=nitin/work
+> 
+> Nitin A Kamble (4):
+>   emgd-driver-bin: upgrade from 1.10 to 1.14
+>   crownbay: customize the xorg.conf for the flat panel on the kit
+>   crownbay: add recipe extension for linux-yocto-3.4
+>   crownbay: make v3.4 the default kernel
 
 
-Will beat on it some more in the morning.
+Build- and runtime-tested (2d, 3d graphics and video all work well).
 
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Technical Lead - Linux Kernel
+All except the xorg.conf patch merged into meta-intel/master, thanks.
+
+Tom
+
+>  ...-driver-bin_1.10.bb => emgd-driver-bin_1.14.bb} |   17 +++++++++--------
+>  meta-crownbay/README                               |    8 ++++----
+>  meta-crownbay/conf/machine/crownbay-noemgd.conf    |    2 +-
+>  meta-crownbay/conf/machine/crownbay.conf           |    2 +-
+>  .../xserver-xf86-config/crownbay/xorg.conf         |   14 ++++++++++++++
+>  .../recipes-kernel/linux/linux-yocto_3.4.bbappend  |   20 ++++++++++++++++++++
+>  6 files changed, 49 insertions(+), 14 deletions(-)
+>  rename common/recipes-graphics/xorg-xserver/{emgd-driver-bin_1.10.bb => emgd-driver-bin_1.14.bb} (88%)
+>  create mode 100644 meta-crownbay/recipes-kernel/linux/linux-yocto_3.4.bbappend
+> 
+
+
 
