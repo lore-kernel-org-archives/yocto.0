@@ -1,38 +1,27 @@
-Return-Path: <martin.jansa@gmail.com>
-Received: from mail-we0-f176.google.com (mail-we0-f176.google.com
-	[74.125.82.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8C31AE00283
-	for <yocto@yoctoproject.org>; Tue, 31 Jul 2012 23:15:58 -0700 (PDT)
-Received: by weyu3 with SMTP id u3so5567081wey.35
-	for <yocto@yoctoproject.org>; Tue, 31 Jul 2012 23:15:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:content-disposition:in-reply-to:user-agent;
-	bh=YrpbHPJKlR0Fgu0WoTCJDie0LnOGjhZLDl2ytrvsu1M=;
-	b=b1Lm2psO+jqnyYh65L6sTDa/WOhEs0nOtRfZeCRmPkL8E4VDJDCsSw92Gaz510/p/t
-	5uu9gPbxwdP5rBiNNVVH+cR9fyqllh2JL9gErt7Z66svjBFLPRESat02bQaC9Jxmv4PF
-	DbqyUATVNxmnbAXRq4vuSXT1vUQ0zw7E+QXYCXJdMAiyGiXiBLkP/y66YpfC2zezVl3e
-	mp2kksSRXASrww8WSGJCx+TkuoYFD/alh1ehg5f56ErSWSbCze9mtRbE9gBnKdPqdYHH
-	lGH3GvKYhU9jWtcrB0qh9+3b+Tm9jQRG7+i3nXiaqmV/HajUbmHnIEwH34aMyeAU3QD8
-	zknQ==
-Received: by 10.217.1.197 with SMTP id n47mr7998357wes.27.1343801757013;
-	Tue, 31 Jul 2012 23:15:57 -0700 (PDT)
-Received: from localhost ([94.230.152.246])
-	by mx.google.com with ESMTPS id z11sm6239729wiv.10.2012.07.31.23.15.55
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Tue, 31 Jul 2012 23:15:56 -0700 (PDT)
-Date: Wed, 1 Aug 2012 08:15:52 +0200
-From: Martin Jansa <martin.jansa@gmail.com>
-To: Darren Hart <dvhart@linux.intel.com>
-Message-ID: <20120801061552.GB15199@jama.jama.net>
-References: <50189888.3020103@linux.intel.com>
-	<C4B37B65-466E-4F99-8904-C12877973E20@gmail.com>
-	<5018A6E3.1020704@linux.intel.com>
+Return-Path: <Tim.Verstraete@medecbenelux.be>
+Received: from mail.medecbenelux.be (mail.medecbenelux.be [81.83.14.242])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D77D0E00283;
+	Tue, 31 Jul 2012 23:28:41 -0700 (PDT)
+Received: from SBS-MEDEC.medecbenelux.local ([fe80::1b66:a66e:3778:1407]) by
+	SBS-MEDEC.medecbenelux.local ([fe80::1b66:a66e:3778:1407%10]) with mapi
+	id 14.01.0355.002; Wed, 1 Aug 2012 08:28:39 +0200
+From: Tim Verstraete <Tim.Verstraete@medecbenelux.be>
+To: Denys Dmytriyenko <denys@ti.com>
+Thread-Topic: [meta-ti] [HOB] issue
+Thread-Index: Ac1vFF0H3bLUIUMsSkuFiw7DqWQ7qwAM3H6AABm8qbA=
+Date: Wed, 1 Aug 2012 06:28:39 +0000
+Message-ID: <4439C3C0562087488F139C696CD862A72C194B@SBS-MEDEC.medecbenelux.local>
+References: <4439C3C0562087488F139C696CD862A72C188D@SBS-MEDEC.medecbenelux.local>
+	<20120731201047.GB21245@edge>
+In-Reply-To: <20120731201047.GB21245@edge>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [2002:5153:ef2:0:4cfb:295e:12ae:b5bc]
 MIME-Version: 1.0
-In-Reply-To: <5018A6E3.1020704@linux.intel.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: Debug with gdbserver
+Cc: "meta-ti@yoctoproject.org" <meta-ti@yoctoproject.org>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [meta-ti] [HOB] issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,77 +33,59 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 01 Aug 2012 06:15:58 -0000
-X-Groupsio-MsgNum: 8319
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="WhfpMioaduB5tiZL"
-Content-Disposition: inline
-
---WhfpMioaduB5tiZL
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Wed, 01 Aug 2012 06:28:42 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Jul 31, 2012 at 08:47:47PM -0700, Darren Hart wrote:
->=20
->=20
-> On 07/31/2012 08:13 PM, Khem Raj wrote:
-> >=20
-> > On Jul 31, 2012, at 7:46 PM, Darren Hart <dvhart@linux.intel.com> wrote:
-> >=20
-> >> I am trying to debug a userpsace application that misbehaves under
-> >> poky-tiny. My current approach is use gdbserver on the target and atta=
-ch
-> >> to the offending process, then connect to it on the client using the
-> >> yocto-built native gdb for the target.
-> >>
-> >> I can easily add gdbserver to the target image, and can successfully
-> >> connect it to the process:
-> >>
-> >> # From the target (qemux86) root shell:
-> >> # dropbearkey -t rsa -f ./rsa
-> >> # dropbear -r ./rsa
-> >> # DBPID=3D$(ps | grep dropbear | head -n1 | cut -f4 -d ' ')
-> >> # gdbserver 127.0.0.1:1234 --attach $DBPID
-> >>
-> >> Now on the host machine (amd64) I want to:
-> >> $ gdb????
-> >> (gdb) target extended-remote 127.0.0.1:1234
-> >>
-> >> Which package do I need to build to get the appropriate gdb for the ho=
-st
-> >> to remote debug processes on the target?
-> >=20
-> > bake cross-gdb for your arch and use it same way as above
->=20
-> ERROR: Nothing PROVIDES 'cross-gdb'
->=20
-> gdb-cross maybe?
->=20
-> Ah that gets a lot farther... and then do_compile fails.
->=20
-> | libgdb.a(python.o): In function `gdbpy_target_wide_charset':
-> | python.c:(.text+0x1c7): undefined reference to `PyUnicodeUCS4_Decode'
->=20
-> And a lot more similar to that. I'm doing this on poky-tiny (so a
-> minimal target libc... shouldn't impact native bits though right?
+ Hi,
+=20
+ When i use the HOB functionality in yocto with the meta-ti, I get an=20
+ error message after about 5% with no error message in it. I can only press=
+ close.
+=20
+ I use the default layers but I do see that HOB re-arranges them into:
+ Poky/meta
+ Poky/meta-hob
+ Poky/meta-ti
+ Poky/meta-yocto
+=20
+ I see that I can build using the command line so it has to be=20
+ something with HOB and not necessary something in yocto.
 
-http://patchwork.openembedded.org/patch/33345/
+Thanks in advance,
 
-Cheers,
---=20
-Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
+Kind regards,
 
---WhfpMioaduB5tiZL
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
+Tim
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2.0.19 (GNU/Linux)
+-----Original Message-----
+From: Denys Dmytriyenko [mailto:denys@ti.com]=20
+Sent: dinsdag 31 juli 2012 22:11
+To: Tim Verstraete
+Cc: meta-ti@yoctoproject.org
+Subject: Re: [meta-ti] [HOB] issue
 
-iEYEARECAAYFAlAYyZgACgkQN1Ujt2V2gBzpPgCgrWtF2sZLV+r00DT4Ni8IrfGO
-v8kAn2aKbnUFF0AKYLhjOFnPAHr9XS0Z
-=AH06
------END PGP SIGNATURE-----
+On Tue, Jul 31, 2012 at 12:04:37PM +0000, Tim Verstraete wrote:
+> Hi,
+>=20
+> When i use the HOB functionality in yocto with the meta-ti, I get an=20
+> error message after about 5% with no error message in it. I can only pres=
+s close.
+>=20
+> I use the default layers but I do see that HOB re-arranges them into:
+> Poky/meta
+> Poky/meta-hob
+> Poky/meta-ti
+> Poky/meta-yocto
+>=20
+> I see that I can build using the command line so it has to be=20
+> something with HOB and not necessary something in yocto.
 
---WhfpMioaduB5tiZL--
+Well, HOB _is_ part of Yocto anyway. While meta-ti may be triggering the is=
+sue in HOB, you better off reporting it to the main yocto mailing list - fe=
+el free to copy meta-ti as well.
+
+--
+Denys
+
