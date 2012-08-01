@@ -1,27 +1,39 @@
-Return-Path: <Tim.Verstraete@medecbenelux.be>
-Received: from mail.medecbenelux.be (mail.medecbenelux.be [81.83.14.242])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D77D0E00283;
-	Tue, 31 Jul 2012 23:28:41 -0700 (PDT)
-Received: from SBS-MEDEC.medecbenelux.local ([fe80::1b66:a66e:3778:1407]) by
-	SBS-MEDEC.medecbenelux.local ([fe80::1b66:a66e:3778:1407%10]) with mapi
-	id 14.01.0355.002; Wed, 1 Aug 2012 08:28:39 +0200
-From: Tim Verstraete <Tim.Verstraete@medecbenelux.be>
-To: Denys Dmytriyenko <denys@ti.com>
-Thread-Topic: [meta-ti] [HOB] issue
-Thread-Index: Ac1vFF0H3bLUIUMsSkuFiw7DqWQ7qwAM3H6AABm8qbA=
-Date: Wed, 1 Aug 2012 06:28:39 +0000
-Message-ID: <4439C3C0562087488F139C696CD862A72C194B@SBS-MEDEC.medecbenelux.local>
-References: <4439C3C0562087488F139C696CD862A72C188D@SBS-MEDEC.medecbenelux.local>
-	<20120731201047.GB21245@edge>
-In-Reply-To: <20120731201047.GB21245@edge>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [2002:5153:ef2:0:4cfb:295e:12ae:b5bc]
-MIME-Version: 1.0
-Cc: "meta-ti@yoctoproject.org" <meta-ti@yoctoproject.org>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-ti] [HOB] issue
+Return-Path: <koen@dominion.thruhere.net>
+Received: from mail-ee0-f48.google.com (mail-ee0-f48.google.com [74.125.83.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 28860E00288
+	for <yocto@yoctoproject.org>; Tue, 31 Jul 2012 23:55:25 -0700 (PDT)
+Received: by eekd41 with SMTP id d41so1994078eek.35
+	for <yocto@yoctoproject.org>; Tue, 31 Jul 2012 23:55:24 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=content-type:mime-version:subject:from:in-reply-to:date:cc
+	:content-transfer-encoding:message-id:references:to:x-mailer
+	:x-gm-message-state;
+	bh=DVzREMCavfB2ThCu/PiLNxRzWiNzy5EG5knUuWq8Xcc=;
+	b=O2uGh8Fdk5JyV8nUkJDgygkfxZdx41U8zIoCRQP8fH7BIJJjIx8SQbbRIPVcrIkDVH
+	yvqFs39aV4UA/DRlrr7fdFyidwbeV6RabNJ9GklEVIZRxKOEct7Dlg9DaR/61E0SQlhZ
+	TTt7PcbOTtdY5kC9GpPd8T1Kd/2Ds1SJrfeoaYxpGD33p3A8gJPLdq9uRU3s5byN0YrZ
+	phBFsBdgLqr2EiAq5rMsc6yKfev+HKprt7scTmLroXiigLYbmf5ecp0Rqr2ulTjSvaff
+	zTF//kMUSMWNHAWco4+lasI05KaYvILrCUCSd301vb+76za96CDKiludmaHiIJjidRkV
+	Abfw==
+Received: by 10.14.210.194 with SMTP id u42mr21309299eeo.11.1343804124812;
+	Tue, 31 Jul 2012 23:55:24 -0700 (PDT)
+Received: from ?IPv6:2001:610:612::a1b9:594:e8d9:e8db?
+	([2001:610:612:0:a1b9:594:e8d9:e8db])
+	by mx.google.com with ESMTPS id q3sm2892487eeo.4.2012.07.31.23.55.22
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Tue, 31 Jul 2012 23:55:23 -0700 (PDT)
+Mime-Version: 1.0 (Mac OS X Mail 6.0 \(1485\))
+From: Koen Kooi <koen@dominion.thruhere.net>
+In-Reply-To: <1343766958-5092-1-git-send-email-sidebranch.openembedded@gmail.com>
+Date: Wed, 1 Aug 2012 08:55:28 +0200
+Message-Id: <74172ECC-6F8E-46A7-9336-C3D92046107C@dominion.thruhere.net>
+References: <1343766958-5092-1-git-send-email-sidebranch.openembedded@gmail.com>
+To: sidebranch.openembedded@gmail.com
+X-Mailer: Apple Mail (2.1485)
+X-Gm-Message-State: ALoCoQlpUr34TR0473it8Il/IYpb+36zEdVnik/TAgWS6khPyoSij9nLaOWomHrz5GWLwOLaZC/2
+Cc: yocto@yoctoproject.org, Leon Woestenberg <leon@sidebranch.com>
+Subject: Re: [for denzil] kernel.bbclass: Copy bounds.h only if it exists, needed for 2.6.x.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,59 +45,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 01 Aug 2012 06:28:42 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Wed, 01 Aug 2012 06:55:26 -0000
+Content-Type: text/plain; charset=us-ascii
 Content-Transfer-Encoding: quoted-printable
 
- Hi,
-=20
- When i use the HOB functionality in yocto with the meta-ti, I get an=20
- error message after about 5% with no error message in it. I can only press=
- close.
-=20
- I use the default layers but I do see that HOB re-arranges them into:
- Poky/meta
- Poky/meta-hob
- Poky/meta-ti
- Poky/meta-yocto
-=20
- I see that I can build using the command line so it has to be=20
- something with HOB and not necessary something in yocto.
+Shouldn't this be sent to the oe-core list?!?!?
 
-Thanks in advance,
+Op 31 jul. 2012, om 22:35 heeft sidebranch.openembedded@gmail.com het =
+volgende geschreven:
 
-Kind regards,
-
-Tim
-
------Original Message-----
-From: Denys Dmytriyenko [mailto:denys@ti.com]=20
-Sent: dinsdag 31 juli 2012 22:11
-To: Tim Verstraete
-Cc: meta-ti@yoctoproject.org
-Subject: Re: [meta-ti] [HOB] issue
-
-On Tue, Jul 31, 2012 at 12:04:37PM +0000, Tim Verstraete wrote:
-> Hi,
+> From: Leon Woestenberg <leon@sidebranch.com>
 >=20
-> When i use the HOB functionality in yocto with the meta-ti, I get an=20
-> error message after about 5% with no error message in it. I can only pres=
-s close.
+> Linux 2.6.x kernels did not (all) have the bounds.h file, so copy
+> only iff exists.
 >=20
-> I use the default layers but I do see that HOB re-arranges them into:
-> Poky/meta
-> Poky/meta-hob
-> Poky/meta-ti
-> Poky/meta-yocto
+> (See OE-Core 02ac0d1b65389e1779d5f95047f761d7a82ef7a4)
 >=20
-> I see that I can build using the command line so it has to be=20
-> something with HOB and not necessary something in yocto.
+> Signed-off-by: Leon Woestenberg <leon@sidebranch.com>
+> ---
+> meta/classes/kernel.bbclass |    5 +++++
+> 1 files changed, 5 insertions(+), 0 deletions(-)
+>=20
+> diff --git a/meta/classes/kernel.bbclass b/meta/classes/kernel.bbclass
+> index c21ab96..5f6ff66 100644
+> --- a/meta/classes/kernel.bbclass
+> +++ b/meta/classes/kernel.bbclass
+> @@ -183,6 +183,11 @@ kernel_do_install() {
+> 		cp arch/powerpc/lib/crtsavres.o =
+$kerneldir/arch/powerpc/lib/crtsavres.o
+> 	fi
+>=20
+> +	# Necessary for building modules like compat-wireless.
+> +	if [ -f include/generated/bounds.h ]; then
+> +		cp include/generated/bounds.h =
+$kerneldir/include/generated/bounds.h
+> +	fi
+> +
+> 	# Remove the following binaries which cause strip errors
+> 	# during do_package for cross-compiled platforms
+> 	bin_files=3D"arch/powerpc/boot/addnote =
+arch/powerpc/boot/hack-coff \
+> --=20
+> 1.7.0.4
+>=20
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-Well, HOB _is_ part of Yocto anyway. While meta-ti may be triggering the is=
-sue in HOB, you better off reporting it to the main yocto mailing list - fe=
-el free to copy meta-ti as well.
-
---
-Denys
 
