@@ -1,55 +1,45 @@
-Return-Path: <B29882@freescale.com>
-Received: from db3outboundpool.messaging.microsoft.com
-	(db3ehsobe003.messaging.microsoft.com [213.199.154.141])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B1F48E013BB
-	for <yocto@yoctoproject.org>; Wed,  1 Aug 2012 11:05:32 -0700 (PDT)
-Received: from mail21-db3-R.bigfish.com (10.3.81.232) by
-	DB3EHSOBE003.bigfish.com (10.3.84.23) with Microsoft SMTP Server id
-	14.1.225.23; Wed, 1 Aug 2012 18:05:31 +0000
-Received: from mail21-db3 (localhost [127.0.0.1])	by mail21-db3-R.bigfish.com
-	(Postfix) with ESMTP id 2B9EF60180;
-	Wed,  1 Aug 2012 18:05:31 +0000 (UTC)
-X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null); IPV:NLI;
-	H:mail.freescale.net; RD:none; EFVD:NLI
-X-SpamScore: -4
-X-BigFish: VS-4(zzbb2dI98dI9371I148cI1432Izz1202hzz8275bhz2dh2a8h668h839h8e2h8e3hf0ah107ah10d2hbe9i)
-Received: from mail21-db3 (localhost.localdomain [127.0.0.1]) by mail21-db3
-	(MessageSwitch) id 1343844329779938_28654;
-	Wed,  1 Aug 2012 18:05:29 +0000 (UTC)
-Received: from DB3EHSMHS002.bigfish.com (unknown [10.3.81.238])	by
-	mail21-db3.bigfish.com (Postfix) with ESMTP id B1BA94A0045;
-	Wed,  1 Aug 2012 18:05:29 +0000 (UTC)
-Received: from mail.freescale.net (70.37.183.190) by DB3EHSMHS002.bigfish.com
-	(10.3.87.102) with Microsoft SMTP Server (TLS) id 14.1.225.23;
-	Wed, 1 Aug 2012 18:05:28 +0000
-Received: from 039-SN1MPN1-002.039d.mgd.msft.net ([169.254.2.109]) by
-	039-SN1MMR1-003.039d.mgd.msft.net ([10.84.1.16]) with mapi id
-	14.02.0298.005; Wed, 1 Aug 2012 13:05:27 -0500
-From: McClintock Matthew-B29882 <B29882@freescale.com>
-To: Scott Garman <scott.a.garman@intel.com>
-Thread-Topic: [yocto] [denzil-next BREAKAGE] Silent breakage in denzil-next
-	--- uImage*.dts no longer generated
-Thread-Index: AQHNcAao+Tdn/T3/8UmMqL0rFXO/1JdFlB2A
-Date: Wed, 1 Aug 2012 18:05:25 +0000
-Message-ID: <CAEsOVNe=De6ff5hhKvDrO0QEqwL_kHe1A-ukVHdu+3+6bFvMuw@mail.gmail.com>
-References: <CAMvUbCwjZ8gRmGEJ4LkHAiKEmMZSWSZGVrg-jwxPRW8r=ePn7w@mail.gmail.com>
-	<CAMvUbCyh0LPs-s9ShTG7UexGC_f0s16_6WfFhbhGbNsxpjvRaw@mail.gmail.com>
-	<50195FCF.1030004@intel.com>
-In-Reply-To: <50195FCF.1030004@intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [70.112.201.132]
+Return-Path: <maniacbug@ymail.com>
+Received: from nm38-vm4.bullet.mail.ne1.yahoo.com
+	(nm38-vm4.bullet.mail.ne1.yahoo.com [98.138.229.148])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id E17ADE01351
+	for <yocto@yoctoproject.org>; Wed,  1 Aug 2012 11:59:54 -0700 (PDT)
+Received: from [98.138.90.52] by nm38.bullet.mail.ne1.yahoo.com with NNFMP;
+	01 Aug 2012 18:59:54 -0000
+Received: from [98.138.88.238] by tm5.bullet.mail.ne1.yahoo.com with NNFMP;
+	01 Aug 2012 18:59:54 -0000
+Received: from [127.0.0.1] by omp1038.mail.ne1.yahoo.com with NNFMP;
+	01 Aug 2012 18:59:53 -0000
+X-Yahoo-Newman-Property: ymail-3
+X-Yahoo-Newman-Id: 989565.12740.bm@omp1038.mail.ne1.yahoo.com
+Received: (qmail 23839 invoked by uid 60001); 1 Aug 2012 18:59:53 -0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ymail.com; s=s1024;
+	t=1343847593; bh=f9ThPf8Y+XSxhAFL44f7C8p2jlKWw6TZO0+kTX8REsY=;
+	h=X-YMail-OSG:Received:X-Mailer:Message-ID:Date:From:Reply-To:Subject:To:MIME-Version:Content-Type:Content-Transfer-Encoding;
+	b=t0DjT8/yoOOwp64MavpBUA1fowKXB7bYaIzRHI5p3kw3PqFRaoskFc9fl2CicW2r3zWj0c2F+daWpJ1rJBFwpuzd4ScM1/evPjjycedu5+ErzSPf05JUxiPgN2i2HTpyUGZfSzcbuxCuTn22tJU09AP0GNytgUmuR+SwLaW3IQI=
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=s1024; d=ymail.com;
+	h=X-YMail-OSG:Received:X-Mailer:Message-ID:Date:From:Reply-To:Subject:To:MIME-Version:Content-Type:Content-Transfer-Encoding;
+	b=MVcMHlr7GbjWtO+57at6HzEfC5sjTtGyoHIt4/i5yOyQxPZY+Dzsgb0EELfQZ50yjYwKmmnznFS9FLiHjQbL1EDwfcWaY6nwknuQp4k+9/I/Bhl8mFVktk9d/2eDQhO921BjKb5qzCDyKM5LNFJeT6OQDLp4vmY52aU2AULXmgA=;
+X-YMail-OSG: 9vpfOWkVM1l7vzoO6c3GHFf6L8WnbCgsfES5T8.DGXMTgoe
+	zUqPugguzYsIJpLtv7ArSJ3MQ.ED1vzLKWD99cHQg.0R2qhjRqvoNAI6278P
+	npG1hjORc84O45eYBYN_dyWlHl4cMIkcFlWsufktARAhci3rJaDWcuwKhtN6
+	lgJDEBNrFgoA58Q6BtSqZ3kyLaqRT8rw5sfPYaKSqgwa.ijpcCzEQCZaxz4g
+	FCWMVmPknv3AEHFmL3PCAyumIfJEZqx6POgOQ5IF3ROwuHfRs3x9vl9dWzry
+	tm7SF5zCDG5J3lxChNI.bQAPXGLVCX16FNkvtFIy18FZ3coOQt5eVSUlR0Wd
+	QrFKBO4jJbBMUYl_Aga_bEmqQ.yxhn.h9K1BBo55XS3d6z_Mvwwf5jBnCqjB
+	8e5QDWVOePwdzM0g47WBF86Ym8e50IMI-
+Received: from [50.135.220.100] by web121606.mail.ne1.yahoo.com via HTTP;
+	Wed, 01 Aug 2012 11:59:53 PDT
+X-Mailer: YahooMailWebService/0.8.120.356233
+Message-ID: <1343847593.30566.YahooMailNeo@web121606.mail.ne1.yahoo.com>
+Date: Wed, 1 Aug 2012 11:59:53 -0700 (PDT)
+From: maniacbug <maniacbug@ymail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 MIME-Version: 1.0
-X-OriginatorOrg: freescale.com
-Cc: McClintock Matthew-B29882 <B29882@freescale.com>,
-	Yocto Project <yocto@yoctoproject.org>, "Purdie,
-	Richard" <richard.purdie@intel.com>
-Subject: Re: [denzil-next BREAKAGE] Silent breakage in denzil-next --- uImage*.dts no longer generated
+Subject: Re: build error pandaboard on master
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: McClintock Matthew-B29882 <B29882@freescale.com>
+Reply-To: maniacbug <maniacbug@ymail.com>
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -58,63 +48,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 01 Aug 2012 18:05:33 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-ID: <9F7FB714D644F3489A67D15445B6A800@mgd.freescale.com>
+X-List-Received-Date: Wed, 01 Aug 2012 18:59:55 -0000
+Content-Type: text/plain; charset=iso-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Aug 1, 2012 at 11:56 AM, Scott Garman <scott.a.garman@intel.com> wr=
-ote:
-> On 08/01/2012 07:50 AM, Leon Woestenberg wrote:
->>
->> Hello Scott, all,
->>
->> On Wed, Aug 1, 2012 at 4:31 PM, Leon Woestenberg
->> <sidebranch.openembedded@gmail.com
->> <mailto:sidebranch.openembedded@gmail.com>> wrote:
->>
->>     Hello Scott,
->>
->>     I tested your denzil-next branch but found breakage that will not
->>     fail the (auto) build.
->>
->>     I'm hitting the "Warning: ${DTS_FILE} is not available!" case.
->>
->> Disregard the breakage.  Local user error; my KERNEL_DEVICETREE missed
->> the "${S}" prefix.
->>
->> However, that being said, should we silently fail with a warning of the
->> specified device tree (DTS) is missing?  This is clearly a change of
->> behaviour that makes the build prone to user errors, as I just
->> demonstrated.
->>
->> I rather have the build fail.
->
->
-> Hi Leon,
->
-> Thanks for bringing this up. I believe Matthew made the original request =
-for
-> this commit (linux-dtb: add multi-dtb build support,
-> a40d795ee97d8ada6a0b76c9741a8653fd646893). I'm cc:'ing him on this email =
-as
-> well as Richard Purdie, who has yet to review the new commits in my
-> denzil-next branch and may also have some input on this issue.
->
-> The question in my mind right now is whether this change is too
-> risky/change-inducing for a point-release.
-
-I think the was made this way for people using different Linux tree's
-(and Linux versions) specifically which lacked specific device trees
-so switching between them causing problems for specific device tree
-definitions so with this we could just list them all. For example
-p1022ds -> (p1022ds_32b and p1022ds_36b). I could be convinced the
-make this an error or at the very least a bb.warn instead of just an
-echo since it does seem problematic.
-
-Any change should go through master -> denzil
-
--M=
-
+Yup, I can verify that denzil builds and runs on Pandaboard with meta-ti 30=
+fb40ebc13614a74c2e237927c60ac43e01d1bc.=A0 Haven't tried master, but don't =
+see a need if denzil is going to work.=A0 BTW, I did not find it necessary =
+to use meta-oe.=0A=0A=0ABoth core-image-base and core-image-sato are workin=
+g swell, except for sound.=A0 Though the latest omap4 kernel has lots of im=
+provements in that area, so I'm in the midst of upgrading it to see if that=
+find helps.=0A=0A=0A> Yes, this is a rather touch ball of twine with all th=
+ese layers - they =0A> have to=0A> be properly aligned to get something tha=
+t builds.=0A=0AWow, try it WITHOUT Yocto/Poky.=A0 Yocto project seems to ad=
+d stabilization and documentation to OE, which is about the only thing that=
+ makes it possible to get started at all :)=0A=0A> Work arounds:=0A>=A0  * =
+You could checkout meta-ti to something that matches denzil=0A>=A0 =A0  Rev=
+ision 30fb40ebc13614a74c2e237927c60ac43e01d1bc works for me.=0A=0A=0AI woul=
+d actually call this the CORRECT solution, not just a workaround.=A0 meta-t=
+i should create a denzil-tracking branch from this commit.=0A> How in the w=
+orld you knew how to find that commit number is the part that amazes me=0A=
+=0AThis commit was identified and discussed on the meta-ti list as the poin=
+t of departure from denzil, that's how I found it, myself.=0A=0Am.b
 
