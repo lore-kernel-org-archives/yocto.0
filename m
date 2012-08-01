@@ -1,23 +1,39 @@
-Return-Path: <kishore.k.bodke@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9E696E01404
-	for <yocto@yoctoproject.org>; Wed,  1 Aug 2012 12:15:25 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 01 Aug 2012 12:15:25 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="201080063"
-Received: from kishore-desktop.sc.intel.com (HELO localhost)
-	([143.183.188.174])
-	by fmsmga002.fm.intel.com with ESMTP; 01 Aug 2012 12:15:25 -0700
-From: kishore.k.bodke@intel.com
-To: yocto@yoctoproject.org, bruce.ashfield@windriver.com,
-	dvhart@linux.intel.com
-Date: Wed,  1 Aug 2012 12:15:10 -0700
-Message-Id: <21e6c2bcd419609619b45491918f9bfc5fa6d4a7.1343847920.git.kishore.k.bodke@intel.com>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <cover.1343847920.git.kishore.k.bodke@intel.com>
-References: <cover.1343847920.git.kishore.k.bodke@intel.com>
-Subject: [PATCH 1/1] [KERNEL] meta: Crystal Forest Machine Created.
+Return-Path: <scott.a.garman@intel.com>
+Received: from fmsmga102.fm.intel.com (mga10.intel.com [192.55.52.92])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4C87DE00282
+	for <yocto@yoctoproject.org>; Wed,  1 Aug 2012 13:32:55 -0700 (PDT)
+Received: from mail-pb0-f52.google.com ([209.85.160.52])
+	by mga11.intel.com with ESMTP/TLS/RC4-SHA; 01 Aug 2012 13:32:54 -0700
+Received: by pbcwz12 with SMTP id wz12so1633301pbc.25
+	for <yocto@yoctoproject.org>; Wed, 01 Aug 2012 13:32:54 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=message-id:date:from:user-agent:mime-version:to:cc:subject
+	:content-type:content-transfer-encoding:x-gm-message-state;
+	bh=wR6cvsZGgcR7V7g8Lq1lxZm7VYvhh6jxWO+he1LSJ64=;
+	b=lZULlzIaDt0Jek4XnNDzSNVJ0pm68VbIvvs5i0t9HxF6k8ohjbIVAvG1BZNI49bmma
+	hNXK+RdqkoIs0+4fp33jL8Os7qQzmrWb+Ah3CQdSjTNxtWBzImjK9nnp5MaG8HVAlIcB
+	IHqGaIzEo0YuCYPOb8oQ41f4+w4xPMwGqQshKaMk7p9i3b4yrOnKk+q4wg6p5agZH4Lg
+	wctBF0IAB7kg+yke32PvpuBPckZCUOEgLrUKrjZI4EEhKiExMFAQjTROl+oN3xLkG82p
+	szhJQQihGjKjq1wkPDAHneJlDMRbQelegEet7gGENPaaCp5+VGWdEx428OAIH9kiFyb3
+	yQZw==
+Received: by 10.68.194.201 with SMTP id hy9mr54476552pbc.69.1343853174526;
+	Wed, 01 Aug 2012 13:32:54 -0700 (PDT)
+Received: from [192.168.1.12] (c-76-105-137-48.hsd1.or.comcast.net.
+	[76.105.137.48])
+	by mx.google.com with ESMTPS id og7sm2841032pbb.62.2012.08.01.13.32.53
+	(version=SSLv3 cipher=OTHER); Wed, 01 Aug 2012 13:32:54 -0700 (PDT)
+Message-ID: <50199278.9040407@intel.com>
+Date: Wed, 01 Aug 2012 13:32:56 -0700
+From: Scott Garman <scott.a.garman@intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:14.0) Gecko/20120714 Thunderbird/14.0
+MIME-Version: 1.0
+To: Patches and discussions about the oe-core layer
+	<openembedded-core@lists.openembedded.org>
+X-Gm-Message-State: ALoCoQn4mvIbx/ajIrOtYsrYt9dsQehIj4/CwBHsX26GSRu25JOKVM1FalnYVmbqCSa8uEdF7KES
+Cc: yocto@yoctoproject.org, "poky@yoctoproject.org" <poky@yoctoproject.org>
+Subject: denzil-next (1.2.2) staging branch change
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,151 +45,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 01 Aug 2012 19:15:25 -0000
+X-List-Received-Date: Wed, 01 Aug 2012 20:32:55 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: Kishore Bodke <kishore.k.bodke@intel.com>
+Hello,
 
-Initial checkin for the new Crystal Forest Machine Branch.
+I just wanted to make a short announcement that I've just renamed my 
+sgarman/denzil-next-1.2.2 staging branches to simply sgarman/denzil-next.
 
-Signed-off-by: Kishore Bodke <kishore.k.bodke@intel.com>
----
- .../bsp/crystalforest/crystalforest-preempt-rt.scc |   15 +++++
- .../bsp/crystalforest/crystalforest-standard.scc   |   10 ++++
- .../bsp/crystalforest/crystalforest.cfg            |   63 ++++++++++++++++++++
- .../bsp/crystalforest/crystalforest.scc            |   14 +++++
- 4 files changed, 102 insertions(+)
- create mode 100644 meta/cfg/kernel-cache/bsp/crystalforest/crystalforest-preempt-rt.scc
- create mode 100644 meta/cfg/kernel-cache/bsp/crystalforest/crystalforest-standard.scc
- create mode 100644 meta/cfg/kernel-cache/bsp/crystalforest/crystalforest.cfg
- create mode 100644 meta/cfg/kernel-cache/bsp/crystalforest/crystalforest.scc
+oe-core based:
+http://git.openembedded.org/openembedded-core-contrib/log/?h=sgarman/denzil-next
 
-diff --git a/meta/cfg/kernel-cache/bsp/crystalforest/crystalforest-preempt-rt.scc b/meta/cfg/kernel-cache/bsp/crystalforest/crystalforest-preempt-rt.scc
-new file mode 100644
-index 0000000..6c250af
---- /dev/null
-+++ b/meta/cfg/kernel-cache/bsp/crystalforest/crystalforest-preempt-rt.scc
-@@ -0,0 +1,15 @@
-+define KMACHINE crystalforest
-+define KTYPE preempt-rt
-+define KARCH x86_64
-+
-+# no new branch required, re-use the ktypes/preempt-rt branch
-+include ktypes/preempt-rt
-+include bsp/common-pc-64/common-pc-64.scc
-+
-+include crystalforest.scc
-+
-+# default policy for preempt-rt kernels
-+include cfg/usb-mass-storage.scc
-+include cfg/boot-live.scc
-+include features/latencytop/latencytop.scc
-+include features/profiling/profiling.scc
-diff --git a/meta/cfg/kernel-cache/bsp/crystalforest/crystalforest-standard.scc b/meta/cfg/kernel-cache/bsp/crystalforest/crystalforest-standard.scc
-new file mode 100644
-index 0000000..9d24c76
---- /dev/null
-+++ b/meta/cfg/kernel-cache/bsp/crystalforest/crystalforest-standard.scc
-@@ -0,0 +1,10 @@
-+define KMACHINE crystalforest
-+define KTYPE standard
-+define KARCH x86_64
-+
-+include bsp/common-pc-64/common-pc-64-standard
-+branch crystalforest
-+
-+include crystalforest.scc
-+
-+# default policy for standard kernels
-diff --git a/meta/cfg/kernel-cache/bsp/crystalforest/crystalforest.cfg b/meta/cfg/kernel-cache/bsp/crystalforest/crystalforest.cfg
-new file mode 100644
-index 0000000..341cc20
---- /dev/null
-+++ b/meta/cfg/kernel-cache/bsp/crystalforest/crystalforest.cfg
-@@ -0,0 +1,63 @@
-+CONFIG_PRINTK=y
-+
-+# Basic hardware support for the box - network, USB, PCI, sound
-+CONFIG_NETDEVICES=y
-+CONFIG_ATA=y
-+CONFIG_ATA_GENERIC=y
-+CONFIG_ATA_SFF=y
-+CONFIG_PCI=y
-+CONFIG_MMC=y
-+CONFIG_MMC_SDHCI=y
-+CONFIG_USB_SUPPORT=y
-+CONFIG_USB=y
-+CONFIG_USB_ARCH_HAS_EHCI=y
-+CONFIG_R8169=y
-+CONFIG_PATA_SCH=y
-+CONFIG_MMC_SDHCI_PCI=y
-+CONFIG_USB_EHCI_HCD=y
-+CONFIG_PCIEPORTBUS=y
-+CONFIG_NET=y
-+CONFIG_USB_UHCI_HCD=y
-+CONFIG_BLK_DEV_SD=y
-+CONFIG_CHR_DEV_SG=y
-+CONFIG_SOUND=y
-+CONFIG_SND=y
-+CONFIG_SND_HDA_INTEL=y
-+
-+# Make sure these are on, otherwise the bootup won't be fun
-+CONFIG_UNIX=y
-+CONFIG_INET=y
-+CONFIG_MODULES=y
-+CONFIG_SHMEM=y
-+CONFIG_TMPFS=y
-+CONFIG_PACKET=y
-+
-+# These are needed for the Poulsbo kernel modules
-+CONFIG_I2C=y
-+CONFIG_AGP=y
-+CONFIG_VFAT_FS=y
-+CONFIG_PM=y
-+CONFIG_FB=y
-+CONFIG_BACKLIGHT_LCD_SUPPORT=y
-+CONFIG_BACKLIGHT_CLASS_DEVICE=y
-+CONFIG_INPUT=y
-+CONFIG_VIDEO_V4L2=y
-+CONFIG_VIDEO_IVTV=y
-+CONFIG_MEDIA_SUPPORT=y
-+CONFIG_VIDEO_CAPTURE_DRIVERS=y
-+CONFIG_VIDEO_DEV=y
-+CONFIG_VIDEO_V4L2_COMMON=y
-+CONFIG_I2C_ALGOBIT=y
-+CONFIG_FB_CFB_COPYAREA=y
-+CONFIG_FB_CFB_IMAGEBLIT=y
-+CONFIG_FB_CFB_FILLRECT=y
-+CONFIG_VIDEO_FB_IVTV=y
-+
-+# Needed for booting (and using) USB memory sticks
-+CONFIG_USB_STORAGE=y
-+CONFIG_BLK_DEV_RAM=y
-+CONFIG_BLK_DEV_LOOP=y
-+CONFIG_BLK_DEV_INITRD=y
-+CONFIG_RD_GZIP=y
-+CONFIG_NLS_CODEPAGE_437=y
-+CONFIG_NLS_ISO8859_1=y
-diff --git a/meta/cfg/kernel-cache/bsp/crystalforest/crystalforest.scc b/meta/cfg/kernel-cache/bsp/crystalforest/crystalforest.scc
-new file mode 100644
-index 0000000..ff45107
---- /dev/null
-+++ b/meta/cfg/kernel-cache/bsp/crystalforest/crystalforest.scc
-@@ -0,0 +1,14 @@
-+kconf hardware crystalforest.cfg
-+
-+include features/i915/i915.scc
-+include cfg/8250.scc
-+include cfg/x86_64.scc
-+include features/uio/uio.scc
-+include features/hugetlb/hugetlb.scc
-+include features/ixgbe/ixgbe.scc
-+include features/igb/igb.scc
-+include features/power/intel.scc
-+
-+include features/latencytop/latencytop.scc
-+include features/profiling/profiling.scc
-+
+poky based:
+http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/log/?h=sgarman/denzil-next
+
+I created the -1.2.2 branches because at the time the Yocto Project 
+1.2.1 release was still being finalized and I needed to start tracking 
+patches for the next denzil point release. Now that 1.2.1 is out, the 
+meaning of denzil-next is no longer ambiguous.
+
+Again, the workflow I'm using is I pull in community requests for denzil 
+commits into my sgarman/denzil-next branches, run some tests on them, 
+and then submit a pull request to the appropriate mailing lists so 
+Richard can then approve and merge them into the official denzil branches.
+
+Scott
+
 -- 
-1.7.9.5
-
+Scott Garman
+Embedded Linux Engineer - Yocto Project
+Intel Open Source Technology Center
 
