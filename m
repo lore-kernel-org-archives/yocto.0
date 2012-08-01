@@ -1,21 +1,42 @@
-Return-Path: <kevin.strasser@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 10726E0140A
-	for <yocto@yoctoproject.org>; Wed,  1 Aug 2012 14:24:42 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 01 Aug 2012 14:24:41 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="174295434"
-Received: from wrk.jf.intel.com ([10.7.202.71])
-	by orsmga001.jf.intel.com with ESMTP; 01 Aug 2012 14:24:41 -0700
-From: Kevin Strasser <kevin.strasser@linux.intel.com>
-To: yocto@yoctoproject.org
-Date: Wed,  1 Aug 2012 14:25:02 -0700
-Message-Id: <1343856302-23468-2-git-send-email-kevin.strasser@linux.intel.com>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <1343856302-23468-1-git-send-email-kevin.strasser@linux.intel.com>
-References: <1343856302-23468-1-git-send-email-kevin.strasser@linux.intel.com>
-Subject: [meta-baryon][PATCH 2/2] webmin: remove nfsd check from exports-lib.pl
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
+	[209.85.160.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 40FA4E01351
+	for <yocto@yoctoproject.org>; Wed,  1 Aug 2012 15:34:55 -0700 (PDT)
+Received: by pbbrq8 with SMTP id rq8so2093514pbb.35
+	for <yocto@yoctoproject.org>; Wed, 01 Aug 2012 15:34:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=content-type:mime-version:subject:from:in-reply-to:date:cc
+	:content-transfer-encoding:message-id:references:to:x-mailer;
+	bh=SXaHGfLfqwDB5qQQeii4rzEsyj6Z2paEwcMM7GrTwX4=;
+	b=XWW+VS/6PxMUmFDEadn937PbAvFecccwPC/VchgJ407Q0nP/sHfY3OeOtfi++gIk/6
+	1AJ9dOTqe3qhHZ9qeidXaI9gIDBBxvXEJhS66gG1c7ecGC0zTnR3I7HxktkECHaJdqfU
+	E76dP+5JoEXzGXbEp9ROuQju0hVgCuW2A5lvo7IfHf5CqOaNcTw6Cny8tgur4uIcrolQ
+	p6N+PuwLdizD4tM8UTFbPbgHQWzHpo3xF/3o7soyNhs2Mlxs4jcrWdm4zIY13LV/zVXb
+	OCh1VwAxa44SKWdMHNHMwigYFLOlJFIDlgY+t7tqt1hQRt4DxHGNEdKyauFHxvhmkC8Z
+	nEHA==
+Received: by 10.68.235.68 with SMTP id uk4mr54583779pbc.52.1343860494915;
+	Wed, 01 Aug 2012 15:34:54 -0700 (PDT)
+Received: from [10.11.81.126] (corp.force10networks.com. [64.186.164.204])
+	by mx.google.com with ESMTPS id kh1sm3404425pbc.23.2012.08.01.15.34.53
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Wed, 01 Aug 2012 15:34:54 -0700 (PDT)
+Mime-Version: 1.0 (Mac OS X Mail 6.0 \(1485\))
+From: Khem Raj <raj.khem@gmail.com>
+In-Reply-To: <50196467.50903@linux.intel.com>
+Date: Wed, 1 Aug 2012 15:34:51 -0700
+Message-Id: <80F8A591-0E46-404A-AAC0-59546ACB1ADC@gmail.com>
+References: <50189888.3020103@linux.intel.com>
+	<C4B37B65-466E-4F99-8904-C12877973E20@gmail.com>
+	<5018A6E3.1020704@linux.intel.com>
+	<20120801061552.GB15199@jama.jama.net>
+	<501957C4.7010401@linux.intel.com>
+	<CAMKF1soAoCiihcn7OGMfQS29L80zLLvoAWkc2D9AV37ku98idw@mail.gmail.com>
+	<50196467.50903@linux.intel.com>
+To: Darren Hart <dvhart@linux.intel.com>
+X-Mailer: Apple Mail (2.1485)
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: Debug with gdbserver
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,82 +48,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 01 Aug 2012 21:24:42 -0000
+X-List-Received-Date: Wed, 01 Aug 2012 22:34:55 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
-YOCTO #1719: Webmin expects the userspace version of nsfd and
-attempts to find its pid when applying a new set of nfs exports.
-This check fails because baryon is configured to install the
-kernelspace version. In result the command that is assigned to
-apply_cmd will never be executed, and the contents of /exports
-are not successfully exported.
 
-Signed-off-by: Kevin Strasser <kevin.strasser@linux.intel.com>
----
- recipes-extended/webmin/files/exports-lib.pl.patch |   32 ++++++++++++++++++++
- recipes-extended/webmin/webmin_1.570.bb            |    3 +-
- 2 files changed, 34 insertions(+), 1 deletion(-)
- create mode 100644 recipes-extended/webmin/files/exports-lib.pl.patch
+On Aug 1, 2012, at 10:16 AM, Darren Hart <dvhart@linux.intel.com> wrote:
 
-diff --git a/recipes-extended/webmin/files/exports-lib.pl.patch b/recipes-extended/webmin/files/exports-lib.pl.patch
-new file mode 100644
-index 0000000..cdee355
---- /dev/null
-+++ b/recipes-extended/webmin/files/exports-lib.pl.patch
-@@ -0,0 +1,32 @@
-+From 7eba4c98c6953fa6ea76c1620d19524bcfa3a576 Mon Sep 17 00:00:00 2001
-+From: Kevin Strasser <kevin.strasser@linux.intel.com>
-+Date: Wed, 1 Aug 2012 11:51:26 -0700
-+Subject: [PATCH] nfs export: remove nfsd check
-+
-+nfsd runs as a kernel process and does not have a pid. This means
-+that the command assigned to apply_cmd will never be executed when
-+the user tries to apply changes to nfs exports.
-+
-+Upstream-Status: Not appropriate [config]
-+
-+Signed-off-by: Kevin Strasser <kevin.strasser@linux.intel.com>
-+---
-+ exports/exports-lib.pl |    2 +-
-+ 1 file changed, 1 insertion(+), 1 deletion(-)
-+
-+diff --git a/exports/exports-lib.pl b/exports/exports-lib.pl
-+index 22891c0..1c67494 100755
-+--- a/exports/exports-lib.pl
-++++ b/exports/exports-lib.pl
-+@@ -273,7 +273,7 @@ return !&has_command("rpc.nfsd") && !&has_command("nfsd") &&
-+ sub restart_mountd
-+ {
-+ # Try exportfs -r first
-+-if ($config{'apply_cmd'} && &find_byname("nfsd") && &find_byname("mountd")) {
-++if ($config{'apply_cmd'} && &find_byname("mountd")) {
-+ 	local $out = &backquote_logged("$config{'apply_cmd'} 2>&1 </dev/null");
-+ 	if (!$? && $out !~ /invalid|error|failed/i) {
-+ 		# Looks like it worked!
-+-- 
-+1.7.9.5
-+
-diff --git a/recipes-extended/webmin/webmin_1.570.bb b/recipes-extended/webmin/webmin_1.570.bb
-index b6c4965..8cda8f0 100644
---- a/recipes-extended/webmin/webmin_1.570.bb
-+++ b/recipes-extended/webmin/webmin_1.570.bb
-@@ -9,7 +9,7 @@ RDEPENDS_${PN} += "perl-module-warnings perl-module-warnings-register perl-modul
- RDEPENDS_${PN} += "perl-module-fcntl perl-module-tie-hash perl-module-vars perl-module-time-local perl-module-config perl-module-constant"
- RDEPENDS_${PN} += "perl-module-file perl-module-file-glob perl-module-file-copy perl-module-sdbm perl-module-sdbm-file perl-module-timelocal perl-module-feature"
- 
--PR = "r11"
-+PR = "r12"
- 
- SRC_URI = "${SOURCEFORGE_MIRROR}/webadmin/webmin-${PV}.tar.gz \
-           file://setup.sh \
-@@ -19,6 +19,7 @@ SRC_URI = "${SOURCEFORGE_MIRROR}/webadmin/webmin-${PV}.tar.gz \
-           file://remove-startup-option.patch \
-           file://disable-version-check.patch \
-           file://nfs-export.patch \
-+          file://exports-lib.pl.patch \
-           file://mount-excludefs.patch \
-           file://samba-config-fix.patch \
-           file://proftpd-config-fix.patch \
--- 
-1.7.9.5
+>=20
+>=20
+> On 08/01/2012 10:09 AM, Khem Raj wrote:
+>> On Wed, Aug 1, 2012 at 9:22 AM, Darren Hart <dvhart@linux.intel.com> =
+wrote:
+>>> (gdb) target extended-remote 127.0.0.1:1234
+>>=20
+>> this should be ip of target which in your case is qemu prolly
+>> something like 192.168.7.2 or somesuch
+>>=20
+>=20
+> I was trying to use the "redir" feature of qemu which supposedly =
+allows
+> you to connect to 1234 on the host instead. After looking at this for =
+a
+> bit and not making any progress, I setup tun/tap networking with qemu
+> and easily connected using the target IP as you mention above. I'd =
+like
+> to understand why redir didn't work - as debugging without a full
+> network on the client would be nice - but for now, I'm moving along.
+>=20
+
+well redir is visible to qemu gdb stub not to the software stack that =
+qemu is running
+in your case. although you can use that to debug kernel using qemu. Pass =
+-s option=20
+and qemu will boot kernel using gdb stub and you can debug the kernel =
+from address 0
+kind of JTAG debugger for poor :)
+
+> Thanks,
+>=20
+>=20
+> --=20
+> Darren Hart
+> Intel Open Source Technology Center
+> Yocto Project - Technical Lead - Linux Kernel
 
 
