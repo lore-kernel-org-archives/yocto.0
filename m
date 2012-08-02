@@ -1,37 +1,38 @@
-Return-Path: <sidebranch.openembedded@gmail.com>
-Received: from mail-lpp01m010-f48.google.com (mail-lpp01m010-f48.google.com
-	[209.85.215.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2D13EE01430
-	for <yocto@yoctoproject.org>; Thu,  2 Aug 2012 03:42:00 -0700 (PDT)
-Received: by lagz14 with SMTP id z14so5887930lag.35
-	for <yocto@yoctoproject.org>; Thu, 02 Aug 2012 03:42:00 -0700 (PDT)
+Return-Path: <elvis.dowson@gmail.com>
+Received: from mail-wg0-f54.google.com (mail-wg0-f54.google.com [74.125.82.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 078AEE01430
+	for <yocto@yoctoproject.org>; Thu,  2 Aug 2012 03:48:42 -0700 (PDT)
+Received: by wgx1 with SMTP id 1so6011983wgx.11
+	for <yocto@yoctoproject.org>; Thu, 02 Aug 2012 03:48:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=UZxnsT6QowvAQfH/z9Ti0eYTLBfCkDoych6Aw8W8xWQ=;
-	b=OXp9EexVJ/h8qdJYLKPW5iN9WBHhe/GjS/HM/eRztimmQWxPI0uszn1yUsTY5jsc2Y
-	Qo43i+EwddthxsEHonLULh62XL5jdYzEj12mfzpB8Xlylch4Q/G9QE0AGsYyO3tY6tOO
-	BFLBZIkZLaCGjUgnbS2cjcg0mrOFeVLBY8lP9snwTvCtMNdTu8I/6JeB7++Xp54LOFRm
-	h+2/QPxVbK7z6V/StS40S/sm7dV0lf4+AiQ347vnWNPZxaVCZwmz1ZeNmBSYC+uK94Mm
-	2Vt6cT2FS6ZS9oNSFOYyMPsLHNnqeh2Laxg4+UQVxHI1AGQ1nGasWYu2AAB46PYnSqP9
-	vMqg==
-MIME-Version: 1.0
-Received: by 10.152.111.71 with SMTP id ig7mr21022313lab.28.1343904119937;
-	Thu, 02 Aug 2012 03:41:59 -0700 (PDT)
-Received: by 10.112.37.225 with HTTP; Thu, 2 Aug 2012 03:41:59 -0700 (PDT)
-In-Reply-To: <CAEsOVNe=De6ff5hhKvDrO0QEqwL_kHe1A-ukVHdu+3+6bFvMuw@mail.gmail.com>
-References: <CAMvUbCwjZ8gRmGEJ4LkHAiKEmMZSWSZGVrg-jwxPRW8r=ePn7w@mail.gmail.com>
-	<CAMvUbCyh0LPs-s9ShTG7UexGC_f0s16_6WfFhbhGbNsxpjvRaw@mail.gmail.com>
-	<50195FCF.1030004@intel.com>
-	<CAEsOVNe=De6ff5hhKvDrO0QEqwL_kHe1A-ukVHdu+3+6bFvMuw@mail.gmail.com>
-Date: Thu, 2 Aug 2012 12:41:59 +0200
-Message-ID: <CAMvUbCzvay+NDZzRtOgt=fdUsVxQftthauVpd+jQAsiFmXgC5Q@mail.gmail.com>
-From: Leon Woestenberg <sidebranch.openembedded@gmail.com>
-To: McClintock Matthew-B29882 <B29882@freescale.com>
-Cc: Yocto Project <yocto@yoctoproject.org>, "Purdie,
-	Richard" <richard.purdie@intel.com>,
-	Scott Garman <scott.a.garman@intel.com>
-Subject: Re: [denzil-next BREAKAGE] Silent breakage in denzil-next --- uImage*.dts no longer generated
+	h=references:in-reply-to:mime-version:content-transfer-encoding
+	:content-type:message-id:cc:x-mailer:from:subject:date:to;
+	bh=/xt4NrBUThZ/l1MNsvE5Qc9k4bHvZIEG1epA8d054ZE=;
+	b=XKOcSlOOqn3un3KR+nJPjZFstwTcy4iNlWN8Rc+zBEqUmHaf1sq4sax2EI138KJsnG
+	ynqFtYa9+3DF8k+oeJXgkrVDqUv4gChgdJjAqDGCE5/cEk1ViJDI0VAKiDC9EGWZyr8d
+	Ugs8MOURkjW00fr8Ef/GrZJIi+flZrI7HfFsKKjXYdl9qVP7spv1RmQX8Q1z+hGwWp7I
+	mgZsnbhtufly4P8Kz9q+qMv0Pp0lpHr3EU32Wf51aYqwnlwN/1q2PZ103w1ZOrY1hIbm
+	8NXHBBivee6p0jg1VqWnQZgqGVyNDIdgT56zDua4z4h3c+rab7rlSq9B5e8M8wbb8HgL
+	Bnog==
+Received: by 10.180.85.167 with SMTP id i7mr3697444wiz.8.1343904521719;
+	Thu, 02 Aug 2012 03:48:41 -0700 (PDT)
+Received: from [94.58.145.229] ([94.58.145.229])
+	by mx.google.com with ESMTPS id fr4sm16346158wib.8.2012.08.02.03.48.38
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Thu, 02 Aug 2012 03:48:40 -0700 (PDT)
+References: <C8B6E7F6-81CE-4DC0-A928-3D021DF1B8AA@gmail.com>
+	<A278F391-405E-4AE7-A49D-E614A7E1D26C@gmail.com>
+	<7033B489-BD0B-4347-BCB2-0A819E99C7A3@gmail.com>
+	<782B7761-8D06-489C-B712-49BF9EE27A51@gmail.com>
+In-Reply-To: <782B7761-8D06-489C-B712-49BF9EE27A51@gmail.com>
+Mime-Version: 1.0 (1.0)
+Message-Id: <CB5175DB-66C7-403D-BD90-89D7AFB410BB@gmail.com>
+X-Mailer: iPhone Mail (9B206)
+From: Elvis Dowson <elvis.dowson@gmail.com>
+Date: Thu, 2 Aug 2012 14:44:12 +0400
+To: Khem Raj <raj.khem@gmail.com>
+Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+Subject: Re: GLIBCTARGETOS ?= "linux-gnueabi" for PowerPC 440 targets
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,115 +44,74 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 02 Aug 2012 10:42:01 -0000
-Content-Type: multipart/alternative; boundary=f46d04088fadae5a2204c6460f1e
-
---f46d04088fadae5a2204c6460f1e
-Content-Type: text/plain; charset=ISO-8859-1
-
-Hello,
-
-On Wed, Aug 1, 2012 at 8:05 PM, McClintock Matthew-B29882 <
-B29882@freescale.com> wrote:
-
-> On Wed, Aug 1, 2012 at 11:56 AM, Scott Garman <scott.a.garman@intel.com>
-> wrote:
-> > On 08/01/2012 07:50 AM, Leon Woestenberg wrote:
-> >> Disregard the breakage.  Local user error; my KERNEL_DEVICETREE missed
-> >> the "${S}" prefix.
-> >>
->
-
-To summarize the change of behaviour of the patch:
-
-1. Previously (before this patch) the "dtc" compiler was run from the ${S}
-directory (linux/git) rather than the ${WORKDIR} directory (linux/),
-so a missing ${S} in the KERNEL_DEVICETREE did not break it from compiling.
-
-2. OpenEmbedded did not require the ${S} in KERNEL_DEVICETREE, and custom
-device layers (people converting from OE Classic to Core or Poky/Yocto) may
-still use it.
-
-3. With this patch, not finding the DTS becomes a silent warning, instead
-of an error.
-
-
-> >
-> > The question in my mind right now is whether this change is too
-> > risky/change-inducing for a point-release.
->
-> I think the was made this way for people using different Linux tree's
-> (and Linux versions) specifically which lacked specific device trees
-> so switching between them causing problems for specific device tree
-> definitions so with this we could just list them all. For example
-> p1022ds -> (p1022ds_32b and p1022ds_36b). I could be convinced the
-> make this an error or at the very least a bb.warn instead of just an
-> echo since it does seem problematic.
->
-> Any change should go through master -> denzil
->
->
-OK, I get the rationale. My proposal is a solution where the build should
-fail if KERNEL_DEVICETREE was specified, but no dts was compiled at all (in
-the for loop).
-
-Warn if the dts specified was not an exact match.
-Error out if no dts was compiled at all (in the for loop).
-
-Regards,
-
-Leon.
-
---f46d04088fadae5a2204c6460f1e
-Content-Type: text/html; charset=ISO-8859-1
+X-List-Received-Date: Thu, 02 Aug 2012 10:48:43 -0000
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=us-ascii
 
-Hello,<br><br><div class=3D"gmail_quote">On Wed, Aug 1, 2012 at 8:05 PM, Mc=
-Clintock Matthew-B29882 <span dir=3D"ltr">&lt;<a href=3D"mailto:B29882@free=
-scale.com" target=3D"_blank">B29882@freescale.com</a>&gt;</span> wrote:<br>=
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">
-<div class=3D"HOEnZb"><div class=3D"h5">On Wed, Aug 1, 2012 at 11:56 AM, Sc=
-ott Garman &lt;<a href=3D"mailto:scott.a.garman@intel.com">scott.a.garman@i=
-ntel.com</a>&gt; wrote:<br>
-&gt; On 08/01/2012 07:50 AM, Leon Woestenberg wrote:<br>
-&gt;&gt; Disregard the breakage. =A0Local user error; my KERNEL_DEVICETREE =
-missed<br>
-&gt;&gt; the &quot;${S}&quot; prefix.<br>
-&gt;&gt;<br></div></div></blockquote><div><br>To summarize the change of be=
-haviour of the patch:<br><br>1. Previously (before this patch) the &quot;dt=
-c&quot; compiler was run from the ${S} directory (linux/git) rather than th=
-e ${WORKDIR} directory (linux/),<br>
-so a missing ${S} in the KERNEL_DEVICETREE did not break it from compiling.=
-<br><br>2. OpenEmbedded did not require the ${S} in KERNEL_DEVICETREE, and =
-custom device layers (people converting from OE Classic to Core or Poky/Yoc=
-to) may still use it.<br>
-<br>3. With this patch, not finding the DTS becomes a silent warning, inste=
-ad of an error.<br><br></div><blockquote class=3D"gmail_quote" style=3D"mar=
-gin:0pt 0pt 0pt 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1=
-ex">
-<div class=3D"HOEnZb"><div class=3D"h5">
-<br>
-&gt;<br>
-&gt; The question in my mind right now is whether this change is too<br>
-&gt; risky/change-inducing for a point-release.<br>
-<br>
-</div></div>I think the was made this way for people using different Linux =
-tree&#39;s<br>
-(and Linux versions) specifically which lacked specific device trees<br>
-so switching between them causing problems for specific device tree<br>
-definitions so with this we could just list them all. For example<br>
-p1022ds -&gt; (p1022ds_32b and p1022ds_36b). I could be convinced the<br>
-make this an error or at the very least a bb.warn instead of just an<br>
-echo since it does seem problematic.<br>
-<br>
-Any change should go through master -&gt; denzil<br>
-<span class=3D"HOEnZb"><font color=3D"#888888"><br>
-</font></span></blockquote><br>OK, I get the rationale. My proposal is a so=
-lution where the build should fail if KERNEL_DEVICETREE was specified, but =
-no dts was compiled at all (in the for loop).<br><br>Warn if the dts specif=
-ied was not an exact match.<br>
-Error out if no dts was compiled at all (in the for loop).<br><br>Regards,<=
-br><br>Leon.<br></div>
+Hi,
 
---f46d04088fadae5a2204c6460f1e--
+On Aug 2, 2012, at 10:09, Khem Raj <raj.khem@gmail.com> wrote:
+
+>=20
+> On Aug 1, 2012, at 7:44 PM, Elvis Dowson <elvis.dowson@gmail.com> wrote:
+>=20
+>> Hi Khem,
+>>=20
+>> On Aug 2, 2012, at 2:37 AM, Khem Raj wrote:
+>>=20
+>>> On Aug 1, 2012, at 9:18 AM, Elvis Dowson <elvis.dowson@gmail.com> wrote:=
+
+>>>=20
+>>>> Hi,
+>>>>    Perhaps the reason none of my root file system binaries are not work=
+ing or running is because there is no
+>>>>=20
+>>>> GLIBCTARGETOS ?=3D "linux-gnueabi"
+>>>>=20
+>>>> in my machine/virtex5.conf or local.conf file?=20
+>>>=20
+>>> you don't need to set it. it should be automatically computed based on l=
+ibc and arch
+>>> your problem seems more like console related. Probably you don't have co=
+nsole params
+>>> set correctly or securetty does not know about your console device.
+>>=20
+>> You're right. After rebuilding it, with that variable set, it made no dif=
+ference in the generated
+>> binaries, (e.g. generate a tool chain powerpc-poky-linux-gnueabi-gcc) nor=
+ did it=20
+>> change the situation with my having no console login or bash prompt.
+>>=20
+>> The serial port that I am using is ttyS0. There is an entry for ttyS0 und=
+er /dev in my ramdisk
+>> , and my /etc/device_table also has an entry for ttyS.=20
+>>=20
+>> I have also checked that my securetty has an entry for ttyS0.
+>>=20
+>> I have tried all possible option, e.g. try to get inittab running first w=
+ith=20
+>>=20
+>> S:2345:respawn:/sbin/getty 9600 ttyS0
+>>=20
+>> then with
+>>=20
+>> S:2345:respawn:/bin/sh 9600 ttyS0
+>=20
+> well. When I look into virtext configuration then I see
+>=20
+> SERIAL_CONSOLE ?=3D "115200 ttyUL0"
+>=20
+> I wonder if you have tried that configuration for serial console.
+>=20
+>=20
+
+I'm working with my local repo so, I have made the changes locally to ttyS0.=
+ As soon as I get something working, I send it to Adrian to commit to the re=
+po.
+
+The problem I have with ttyS0 also happens with ttyUL0. I've tried with both=
+.
+
+Elvis=
+
