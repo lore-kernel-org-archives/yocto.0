@@ -1,45 +1,22 @@
-Return-Path: <maniacbug@ymail.com>
-Received: from nm18-vm4.bullet.mail.ne1.yahoo.com
-	(nm18-vm4.bullet.mail.ne1.yahoo.com [98.138.91.178])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id D2CB6E002A9
-	for <yocto@yoctoproject.org>; Thu,  2 Aug 2012 10:07:20 -0700 (PDT)
-Received: from [98.138.90.48] by nm18.bullet.mail.ne1.yahoo.com with NNFMP;
-	02 Aug 2012 17:07:20 -0000
-Received: from [98.138.226.165] by tm1.bullet.mail.ne1.yahoo.com with NNFMP;
-	02 Aug 2012 17:07:20 -0000
-Received: from [127.0.0.1] by omp1066.mail.ne1.yahoo.com with NNFMP;
-	02 Aug 2012 17:07:20 -0000
-X-Yahoo-Newman-Property: ymail-3
-X-Yahoo-Newman-Id: 134046.23173.bm@omp1066.mail.ne1.yahoo.com
-Received: (qmail 31800 invoked by uid 60001); 2 Aug 2012 17:07:20 -0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ymail.com; s=s1024;
-	t=1343927239; bh=mJ3cngf/Cu3cv/Pn3gMyL0HhG0TU+s/dbZVrRxHl03Q=;
-	h=X-YMail-OSG:Received:X-Mailer:Message-ID:Date:From:Reply-To:Subject:To:MIME-Version:Content-Type:Content-Transfer-Encoding;
-	b=RlEwenvfqYyyrozXfeLdm76u3r07YXJW6CE+R1eVRnxWo09ctg4YEDK8FRNLa2jHKEVtajNVeRtYEx2huoZlf+0g+HcW+5VniysDzcch/wYydzeJDXuHZ5/E9TlZBFgXwt7A4ZdKIbK8kccOi+ef8qNocPHX1dFbo037+eitD78=
-DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=s1024; d=ymail.com;
-	h=X-YMail-OSG:Received:X-Mailer:Message-ID:Date:From:Reply-To:Subject:To:MIME-Version:Content-Type:Content-Transfer-Encoding;
-	b=Ir8c82lq/nqQ6xiWgbdd16qFlOWG+VIP5An1lp8KoNlR87dV0owgSl1aSRFnHInasl3ALIwqq/d1wGSfLKp3VijFuDzvDJgyCWwwcopQ114KCi9c8fVqfIRDOmPlHxm4GEkqWZDaDL07K1lP6Ngb7buAFeHxSwYoHOp4GVsL2kc=;
-X-YMail-OSG: tBUk_5sVM1mf9MVBS1R28kKpsoK2DLnpwbzR1PQmyf8QzAR
-	6Ly2XrsvwHf1.zDFEoRYRHe5rZFSKzct45Z6IS84Or7OuNFBR1S3k1MJ3Xtz
-	3mHZuzwCf8kLQAi1YS1IELWFadBS0yskdz2EONQj3nnPV9_nr9VVklnOLjz7
-	YpjIRyNrxe2doxRx_8le4PbMJVZ7ZhfE4wgADZUfWK9xhnBAuNsvdnxvR36k
-	YfGLbTJDkf.nK5p6BnKBq7Nk8Bf2zKSoOOVw3QjgCAnhucO.W0Ks60SRggJy
-	Hx9j.4zdQV_f247x_iuxkarrsIGPaNnoH2ZqqqO.7ZPfaYSow4xPwiA_7WFP
-	pc_0uATsrbu3YnAJLDoCFlA1qNvDOlCQwLjtAa9IxP4jH52jnVhpkGIS9XsL
-	LV2ZXGRcfTXmpBegoRdsCmutkiCGFqQ--
-Received: from [70.99.141.242] by web121603.mail.ne1.yahoo.com via HTTP;
-	Thu, 02 Aug 2012 10:07:19 PDT
-X-Mailer: YahooMailWebService/0.8.120.356233
-Message-ID: <1343927239.27054.YahooMailNeo@web121603.mail.ne1.yahoo.com>
-Date: Thu, 2 Aug 2012 10:07:19 -0700 (PDT)
-From: maniacbug <maniacbug@ymail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-MIME-Version: 1.0
-Subject: Re: build error pandaboard on master
+Return-Path: <kevin.strasser@linux.intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4BC25E002A9
+	for <yocto@yoctoproject.org>; Thu,  2 Aug 2012 10:20:34 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 02 Aug 2012 10:19:24 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="174781901"
+Received: from wrk.jf.intel.com ([10.7.202.146])
+	by orsmga001.jf.intel.com with ESMTP; 02 Aug 2012 10:19:23 -0700
+From: Kevin Strasser <kevin.strasser@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Thu,  2 Aug 2012 10:20:13 -0700
+Message-Id: <1343928013-3514-1-git-send-email-kevin.strasser@linux.intel.com>
+X-Mailer: git-send-email 1.7.9.5
+Subject: [PATCH] webmin: remove nfsd check from exports-lib.pl
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: maniacbug <maniacbug@ymail.com>
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -48,26 +25,84 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 02 Aug 2012 17:07:21 -0000
-Content-Type: text/plain; charset=iso-8859-1
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 02 Aug 2012 17:20:34 -0000
 
-> Got around this issue by checking out the denzil branch on meta-ti and =
-=0A> poky.=A0 then my core-image-sato builds and boots.=0A=0A=0ARight, that=
- is what I was going to suggest.=0A=0A=0AOne of us should fix the pulseaudi=
-o issue on master and send in a patch.=0A=0A=0A> Anyone know how to get the=
- wireless and HW accelerated video playback to =0A> work with the pandaboar=
-d and Yocto? maybe a different image?=0A=0Ameta-ti list is probably going t=
-o be the place to find this out. Or at least find clues. Unfortunately, it =
-seems that there is not a pandaboard expert in the Yocto house.=0A=0AThe me=
-ta-ti layer has been extracted from Angstrom, so there seem to be plenty de=
-pendencies directly on OE. Often when building more hardware-specific recip=
-ies, these dependencies crop up. So Yocto on Pandaboard is definitely still=
- a work in progress.=0A=0A=0AI have gotten video to work by porting the lib=
-av recipe from OE. Happy to send it to you if you want to try. There is no =
-evidence to suggest this is hardware-accellerated.=A0 HOWEVER, it does play=
- 2Mbps video without stuttering. So from my perspective, whether it's hw ac=
-cellerated is not important :)=0A=0AThe downside is that AUDIO is working h=
-ardly at all. This is my current challenge, and I'll definitely report prog=
-ress to the meta-ti list.=0A
+Webmin expects the userspace version of nsfd and attempts to
+find its pid when applying a new set of nfs exports. This check
+fails because baryon is configured to install the kernelspace
+version. In result the command that is assigned to apply_cmd
+will never be executed, and the contents of /exports are not
+successfully exported.
+
+Fixes [YOCTO #1719]
+
+Signed-off-by: Kevin Strasser <kevin.strasser@linux.intel.com>
+---
+ recipes-extended/webmin/files/exports-lib.pl.patch |   32 ++++++++++++++++++++
+ recipes-extended/webmin/webmin_1.570.bb            |    3 +-
+ 2 files changed, 34 insertions(+), 1 deletion(-)
+ create mode 100644 recipes-extended/webmin/files/exports-lib.pl.patch
+
+diff --git a/recipes-extended/webmin/files/exports-lib.pl.patch b/recipes-extended/webmin/files/exports-lib.pl.patch
+new file mode 100644
+index 0000000..140ae7e
+--- /dev/null
++++ b/recipes-extended/webmin/files/exports-lib.pl.patch
+@@ -0,0 +1,32 @@
++From 7eba4c98c6953fa6ea76c1620d19524bcfa3a576 Mon Sep 17 00:00:00 2001
++From: Kevin Strasser <kevin.strasser@linux.intel.com>
++Date: Wed, 1 Aug 2012 11:51:26 -0700
++Subject: [PATCH] nfs export: remove nfsd check
++
++nfsd runs as a kernel process and does not have a pid. This means
++that the command assigned to apply_cmd will never be executed when
++the user tries to apply changes to nfs exports.
++
++Upstream-Status: Inappropriate [config]
++
++Signed-off-by: Kevin Strasser <kevin.strasser@linux.intel.com>
++---
++ exports/exports-lib.pl |    2 +-
++ 1 file changed, 1 insertion(+), 1 deletion(-)
++
++diff --git a/exports/exports-lib.pl b/exports/exports-lib.pl
++index 22891c0..1c67494 100755
++--- a/exports/exports-lib.pl
+++++ b/exports/exports-lib.pl
++@@ -273,7 +273,7 @@ return !&has_command("rpc.nfsd") && !&has_command("nfsd") &&
++ sub restart_mountd
++ {
++ # Try exportfs -r first
++-if ($config{'apply_cmd'} && &find_byname("nfsd") && &find_byname("mountd")) {
+++if ($config{'apply_cmd'} && &find_byname("mountd")) {
++ 	local $out = &backquote_logged("$config{'apply_cmd'} 2>&1 </dev/null");
++ 	if (!$? && $out !~ /invalid|error|failed/i) {
++ 		# Looks like it worked!
++-- 
++1.7.9.5
++
+diff --git a/recipes-extended/webmin/webmin_1.570.bb b/recipes-extended/webmin/webmin_1.570.bb
+index b6c4965..8cda8f0 100644
+--- a/recipes-extended/webmin/webmin_1.570.bb
++++ b/recipes-extended/webmin/webmin_1.570.bb
+@@ -9,7 +9,7 @@ RDEPENDS_${PN} += "perl-module-warnings perl-module-warnings-register perl-modul
+ RDEPENDS_${PN} += "perl-module-fcntl perl-module-tie-hash perl-module-vars perl-module-time-local perl-module-config perl-module-constant"
+ RDEPENDS_${PN} += "perl-module-file perl-module-file-glob perl-module-file-copy perl-module-sdbm perl-module-sdbm-file perl-module-timelocal perl-module-feature"
+ 
+-PR = "r11"
++PR = "r12"
+ 
+ SRC_URI = "${SOURCEFORGE_MIRROR}/webadmin/webmin-${PV}.tar.gz \
+           file://setup.sh \
+@@ -19,6 +19,7 @@ SRC_URI = "${SOURCEFORGE_MIRROR}/webadmin/webmin-${PV}.tar.gz \
+           file://remove-startup-option.patch \
+           file://disable-version-check.patch \
+           file://nfs-export.patch \
++          file://exports-lib.pl.patch \
+           file://mount-excludefs.patch \
+           file://samba-config-fix.patch \
+           file://proftpd-config-fix.patch \
+-- 
+1.7.9.5
+
 
