@@ -1,35 +1,25 @@
-Return-Path: <jfabernathy@gmail.com>
-Received: from mail-yx0-f176.google.com (mail-yx0-f176.google.com
-	[209.85.213.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 25977E01404
-	for <yocto@yoctoproject.org>; Thu,  2 Aug 2012 05:48:02 -0700 (PDT)
-Received: by yenl5 with SMTP id l5so9977887yen.35
-	for <yocto@yoctoproject.org>; Thu, 02 Aug 2012 05:48:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=message-id:date:from:user-agent:mime-version:to:subject:references
-	:in-reply-to:content-type:content-transfer-encoding;
-	bh=4g6J0U8sDFKj0yun0Fz3dkja8+W1tCFeuPtLFQ3dGqQ=;
-	b=fxIyQPIFWlBz7uBgCp4GNGaLG1SUiQxtcwNymwNv+yOoyHp3+mLqJ06M3UdlJmihI/
-	8tyJMyBaXv8TW/ooGjS/USfKI59fFpM6txFVS7uL04dObG09OgPUJvpnTvHqlq4yLf4K
-	EKj9/IuBwmjlqFeQiU20/DTBF5IUdojQ+gOBo4B66pXabSLfA8F/DX1rSUREnyvmbL7y
-	S5ija2lWROHuItO7hfW8+FqovOCc2v4twcjKzEByZ/keY94cXpGfpLMt8Vala+h/f9HY
-	K6nw5wQVCsjECCov6+9XYyRi+geGs995BYgJ+P9WObW4jc4TUPHtows2Mferz3ylhwRF
-	TOBQ==
-Received: by 10.236.114.72 with SMTP id b48mr12460666yhh.7.1343911681697;
-	Thu, 02 Aug 2012 05:48:01 -0700 (PDT)
-Received: from [10.0.1.54] (nc-184-4-39-191.dhcp.embarqhsd.net. [184.4.39.191])
-	by mx.google.com with ESMTPS id a4sm10770689yhj.11.2012.08.02.05.48.00
-	(version=SSLv3 cipher=OTHER); Thu, 02 Aug 2012 05:48:00 -0700 (PDT)
-Message-ID: <501A76FF.20102@gmail.com>
-Date: Thu, 02 Aug 2012 08:47:59 -0400
-From: Jim Abernathy <jfabernathy@gmail.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:14.0) Gecko/20120714 Thunderbird/14.0
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 047BAE01404
+	for <yocto@yoctoproject.org>; Thu,  2 Aug 2012 06:25:33 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 02 Aug 2012 06:25:21 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="176176679"
+Received: from unknown (HELO helios.localnet) ([10.252.121.75])
+	by azsmga001.ch.intel.com with ESMTP; 02 Aug 2012 06:25:20 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Kevin Strasser <kevin.strasser@linux.intel.com>
+Date: Thu, 02 Aug 2012 14:25:19 +0100
+Message-ID: <149326656.Onma7Cj5xD@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.8.4 (Linux/3.2.0-27-generic-pae; KDE/4.8.4; i686; ; )
+In-Reply-To: <1343856302-23468-2-git-send-email-kevin.strasser@linux.intel.com>
+References: <1343856302-23468-1-git-send-email-kevin.strasser@linux.intel.com>
+	<1343856302-23468-2-git-send-email-kevin.strasser@linux.intel.com>
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <1343847593.30566.YahooMailNeo@web121606.mail.ne1.yahoo.com>
-In-Reply-To: <1343847593.30566.YahooMailNeo@web121606.mail.ne1.yahoo.com>
-Subject: Re: build error pandaboard on master
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-baryon][PATCH 2/2] webmin: remove nfsd check from exports-lib.pl
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,38 +31,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 02 Aug 2012 12:48:02 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 02 Aug 2012 13:25:34 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On 08/01/2012 02:59 PM, maniacbug wrote:
-> Yup, I can verify that denzil builds and runs on Pandaboard with meta-ti 30fb40ebc13614a74c2e237927c60ac43e01d1bc.  Haven't tried master, but don't see a need if denzil is going to work.  BTW, I did not find it necessary to use meta-oe.
->
->
-> Both core-image-base and core-image-sato are working swell, except for sound.  Though the latest omap4 kernel has lots of improvements in that area, so I'm in the midst of upgrading it to see if thatfind helps.
->
-I got core-image-minimal to build and boot, but not core-image-sato.  
-pulseaudio issues/ couln't build at all.
+Hi Kevin,
 
-Jim A
+Thanks for tracking this one down! A couple of minor stylistic issues though:
 
->> Yes, this is a rather touch ball of twine with all these layers - they
->> have to
->> be properly aligned to get something that builds.
-> Wow, try it WITHOUT Yocto/Poky.  Yocto project seems to add stabilization and documentation to OE, which is about the only thing that makes it possible to get started at all :)
->
->> Work arounds:
->>     * You could checkout meta-ti to something that matches denzil
->>       Revision 30fb40ebc13614a74c2e237927c60ac43e01d1bc works for me.
->
-> I would actually call this the CORRECT solution, not just a workaround.  meta-ti should create a denzil-tracking branch from this commit.
->> How in the world you knew how to find that commit number is the part that amazes me
-> This commit was identified and discussed on the meta-ti list as the point of departure from denzil, that's how I found it, myself.
->
-> m.b
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+On Wednesday 01 August 2012 14:25:02 Kevin Strasser wrote:
+> YOCTO #1719: Webmin expects the userspace version of nsfd and
+> attempts to find its pid when applying a new set of nfs exports.
+> This check fails because baryon is configured to install the
+> kernelspace version. In result the command that is assigned to
+> apply_cmd will never be executed, and the contents of /exports
+> are not successfully exported.
 
+The bug reference needs to be in square brackets i.e. [YOCTO #1719], and 
+typically (at least the way I use it) appears after the main body of the 
+commit message.
+
+> Signed-off-by: Kevin Strasser <kevin.strasser@linux.intel.com>
+> ---
+>  recipes-extended/webmin/files/exports-lib.pl.patch |   32
+> ++++++++++++++++++++ recipes-extended/webmin/webmin_1.570.bb            |  
+>  3 +-
+>  2 files changed, 34 insertions(+), 1 deletion(-)
+>  create mode 100644 recipes-extended/webmin/files/exports-lib.pl.patch
+> 
+> diff --git a/recipes-extended/webmin/files/exports-lib.pl.patch
+> b/recipes-extended/webmin/files/exports-lib.pl.patch new file mode 100644
+> index 0000000..cdee355
+> --- /dev/null
+> +++ b/recipes-extended/webmin/files/exports-lib.pl.patch
+> @@ -0,0 +1,32 @@
+> +From 7eba4c98c6953fa6ea76c1620d19524bcfa3a576 Mon Sep 17 00:00:00 2001
+> +From: Kevin Strasser <kevin.strasser@linux.intel.com>
+> +Date: Wed, 1 Aug 2012 11:51:26 -0700
+> +Subject: [PATCH] nfs export: remove nfsd check
+> +
+> +nfsd runs as a kernel process and does not have a pid. This means
+> +that the command assigned to apply_cmd will never be executed when
+> +the user tries to apply changes to nfs exports.
+> +
+> +Upstream-Status: Not appropriate [config]
+
+Technically this should be "Inappropriate [config]".
+
+Cheers,
+Paul
+
+-- 
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
