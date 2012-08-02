@@ -1,40 +1,29 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-gg0-f176.google.com (mail-gg0-f176.google.com
-	[209.85.161.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 30B06E01351
-	for <yocto@yoctoproject.org>; Wed,  1 Aug 2012 23:21:39 -0700 (PDT)
-Received: by ggcs6 with SMTP id s6so2201565ggc.35
-	for <yocto@yoctoproject.org>; Wed, 01 Aug 2012 23:21:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=content-type:mime-version:subject:from:in-reply-to:date:cc
-	:content-transfer-encoding:message-id:references:to:x-mailer;
-	bh=YlZUqn9+bkIPZVukZN4WqOyEmGXSxKCu7b/G8CqqV0U=;
-	b=rUXhu2moEj5IKy+7OC/o6OWQgSazAcO3z4y2/h8GKRv0Tw1/Og0sJ+QJupAXe8tpMg
-	1x5BTdg2UREOQfKSJoh/6Z/qq+fQv4TNCXNhtFUC4p22yhiN7pobo3CSOUDtyd9oGOe1
-	5K26zr0lawMnZAkYbDYeHF58Wt7hC0+PFh5TlhqPgnHIEvM/9Vk3yN9plB65Klb/6I15
-	DRcdZHW8cjYIm7RzL1wQgaFt03Fr1HdqBAcbI8mEPVTCoVOu8/tRLMsfDbIO3KrSt9Df
-	1iEUtUeTMxHp4lWe6QEG+/cllWu2yUZn7Zfgbz7hLT4dKHII7VQI3OLQMQMaRmirqCDS
-	/Pcw==
-Received: by 10.50.94.228 with SMTP id df4mr1508787igb.34.1343888498402;
-	Wed, 01 Aug 2012 23:21:38 -0700 (PDT)
-Received: from [192.168.1.67] (99-57-140-209.lightspeed.sntcca.sbcglobal.net.
-	[99.57.140.209])
-	by mx.google.com with ESMTPS id q1sm10740995igj.15.2012.08.01.23.21.36
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Wed, 01 Aug 2012 23:21:37 -0700 (PDT)
-Mime-Version: 1.0 (Mac OS X Mail 6.0 \(1485\))
-From: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <CAEsOVNeU6pz6Pkciymxu+2-JgcEuj=zc7-D+5xCXsjpg7fRuXw@mail.gmail.com>
-Date: Wed, 1 Aug 2012 23:21:34 -0700
-Message-Id: <6913CD3A-3504-405D-9315-8C8D8D47502C@gmail.com>
-References: <C8B6E7F6-81CE-4DC0-A928-3D021DF1B8AA@gmail.com>
-	<A278F391-405E-4AE7-A49D-E614A7E1D26C@gmail.com>
-	<7033B489-BD0B-4347-BCB2-0A819E99C7A3@gmail.com>
-	<CAEsOVNeU6pz6Pkciymxu+2-JgcEuj=zc7-D+5xCXsjpg7fRuXw@mail.gmail.com>
-To: McClintock Matthew-B29882 <B29882@freescale.com>
-X-Mailer: Apple Mail (2.1485)
-Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-Subject: Re: GLIBCTARGETOS ?= "linux-gnueabi" for PowerPC 440 targets
+Return-Path: <Tim.Verstraete@medecbenelux.be>
+Received: from mail.medecbenelux.be (mail.medecbenelux.be [81.83.14.242])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4211AE01351;
+	Wed,  1 Aug 2012 23:35:23 -0700 (PDT)
+Received: from SBS-MEDEC.medecbenelux.local ([fe80::1b66:a66e:3778:1407]) by
+	SBS-MEDEC.medecbenelux.local ([fe80::1b66:a66e:3778:1407%10]) with mapi
+	id 14.01.0355.002; Thu, 2 Aug 2012 08:35:20 +0200
+From: Tim Verstraete <Tim.Verstraete@medecbenelux.be>
+To: "Iorga, Cristian" <cristian.iorga@intel.com>, Denys Dmytriyenko
+	<denys@ti.com>
+Thread-Topic: [SPAM] - RE: [meta-ti] [HOB] issue - Email found in subject
+Thread-Index: AQHNb7zFHa2h+DpMHE2Sa3w+/uQ77JdGEnNQ
+Date: Thu, 2 Aug 2012 06:35:18 +0000
+Message-ID: <4439C3C0562087488F139C696CD862A72C1A1F@SBS-MEDEC.medecbenelux.local>
+References: <4439C3C0562087488F139C696CD862A72C188D@SBS-MEDEC.medecbenelux.local><20120731201047.GB21245@edge>
+	<4439C3C0562087488F139C696CD862A72C194B@SBS-MEDEC.medecbenelux.local>
+	<969F26A8BAB325438E7EB80D3C3134FB161773A6@IRSMSX102.ger.corp.intel.com>
+In-Reply-To: <969F26A8BAB325438E7EB80D3C3134FB161773A6@IRSMSX102.ger.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [2002:5153:ef2:0:ec9a:306f:a428:4749]
+MIME-Version: 1.0
+Cc: "meta-ti@yoctoproject.org" <meta-ti@yoctoproject.org>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [SPAM] - RE: [meta-ti] [HOB] issue - Email found in subject
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,19 +35,89 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 02 Aug 2012 06:21:39 -0000
-Content-Type: text/plain; charset=iso-8859-1
+X-List-Received-Date: Thu, 02 Aug 2012 06:35:23 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
+I filed a bug report: https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D2=
+875=20
 
-On Aug 1, 2012, at 8:50 PM, McClintock Matthew-B29882 =
-<B29882@freescale.com> wrote:
+-----Original Message-----
+From: Iorga, Cristian [mailto:cristian.iorga@intel.com]=20
+Sent: woensdag 1 augustus 2012 10:08
+To: Tim Verstraete; Denys Dmytriyenko
+Cc: meta-ti@yoctoproject.org; yocto@yoctoproject.org
+Subject: [SPAM] - RE: [meta-ti] [HOB] issue - Email found in subject
 
-> Are you running with prelinking? You might try disabling that. It's in
-> local.conf under IMAGE_CLASSES I believe.
+Hello Tim,
+
+Please fill in a bug report at bugzilla.yoctoproject.org It will be investi=
+gated later on.
+
+Regards,
+Cristian Iorga
+
+-----Original Message-----
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Tim Verstraete
+Sent: Wednesday, August 01, 2012 9:29 AM
+To: Denys Dmytriyenko
+Cc: meta-ti@yoctoproject.org; yocto@yoctoproject.org
+Subject: Re: [yocto] [meta-ti] [HOB] issue
+
+ Hi,
+=20
+ When i use the HOB functionality in yocto with the meta-ti, I get an  erro=
+r message after about 5% with no error message in it. I can only press clos=
+e.
+=20
+ I use the default layers but I do see that HOB re-arranges them into:
+ Poky/meta
+ Poky/meta-hob
+ Poky/meta-ti
+ Poky/meta-yocto
+=20
+ I see that I can build using the command line so it has to be  something w=
+ith HOB and not necessary something in yocto.
+
+Thanks in advance,
+
+Kind regards,
+
+Tim
+
+-----Original Message-----
+From: Denys Dmytriyenko [mailto:denys@ti.com]
+Sent: dinsdag 31 juli 2012 22:11
+To: Tim Verstraete
+Cc: meta-ti@yoctoproject.org
+Subject: Re: [meta-ti] [HOB] issue
+
+On Tue, Jul 31, 2012 at 12:04:37PM +0000, Tim Verstraete wrote:
+> Hi,
 >=20
+> When i use the HOB functionality in yocto with the meta-ti, I get an=20
+> error message after about 5% with no error message in it. I can only pres=
+s close.
+>=20
+> I use the default layers but I do see that HOB re-arranges them into:
+> Poky/meta
+> Poky/meta-hob
+> Poky/meta-ti
+> Poky/meta-yocto
+>=20
+> I see that I can build using the command line so it has to be=20
+> something with HOB and not necessary something in yocto.
 
-FWIW I have seen issues with prelink + ppc64 that said ppc32 + prelink =
-has worked well for me
+Well, HOB _is_ part of Yocto anyway. While meta-ti may be triggering the is=
+sue in HOB, you better off reporting it to the main yocto mailing list - fe=
+el free to copy meta-ti as well.
 
+--
+Denys
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
 
