@@ -1,26 +1,37 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A6E8CE01351
-	for <yocto@yoctoproject.org>; Wed,  1 Aug 2012 15:59:47 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga101.ch.intel.com with ESMTP; 01 Aug 2012 15:59:46 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.71,315,1320652800"; d="scan'208";a="129407236"
-Received: from unknown (HELO envy.home) ([10.255.13.51])
-	by AZSMGA002.ch.intel.com with ESMTP; 01 Aug 2012 15:59:46 -0700
-Message-ID: <5019B476.8080709@linux.intel.com>
-Date: Wed, 01 Aug 2012 15:57:58 -0700
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:14.0) Gecko/20120717 Thunderbird/14.0
-MIME-Version: 1.0
-To: kishore.k.bodke@intel.com
-References: <cover.1343847920.git.kishore.k.bodke@intel.com>
-	<21e6c2bcd419609619b45491918f9bfc5fa6d4a7.1343847920.git.kishore.k.bodke@intel.com>
-In-Reply-To: <21e6c2bcd419609619b45491918f9bfc5fa6d4a7.1343847920.git.kishore.k.bodke@intel.com>
-X-Enigmail-Version: 1.4.3
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 1/1] [KERNEL] meta: Crystal Forest Machine Created.
+Return-Path: <elvis.dowson@gmail.com>
+Received: from mail-gg0-f176.google.com (mail-gg0-f176.google.com
+	[209.85.161.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 51266E01404
+	for <yocto@yoctoproject.org>; Wed,  1 Aug 2012 19:44:20 -0700 (PDT)
+Received: by ggcs6 with SMTP id s6so2003090ggc.35
+	for <yocto@yoctoproject.org>; Wed, 01 Aug 2012 19:44:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=subject:mime-version:content-type:from:in-reply-to:date:cc
+	:content-transfer-encoding:message-id:references:to:x-mailer;
+	bh=yo8SZc5fKTBIXWK2o9e7eEdrc2qxBungV+ncRxDTsAg=;
+	b=cQStHex+VGoHHP6dO4aWWM/F7Zqze49yjwhL06Sn5JSNc7Xdd8IoHFIBw3pZnl+dBK
+	jTrjwrAgugG61dJ3SQYlnRDTS4ERlwmIqAGPBIUhJrMW8EeGjDsrXVvfZS/eY3nzBf+X
+	fre2YEkiv56aT33swhM5gatgezrKlrHRBw8iyAHtRSMZ39uPGatTfoV3Hr+AtqpqeFny
+	38XvSN+bh8OEWXMd3JeqXNy5thhh17FKOSIB9uuFWePgJfA9hWCrjKwkgZXrblOf1hiS
+	d+Ko55DcOmGNnIeE4RESdOndRH62DiWg2ezNxuyFxFynmWWQEhooyChzSA6v1Mmnr29b
+	F8tw==
+Received: by 10.50.41.201 with SMTP id h9mr550759igl.37.1343875458965;
+	Wed, 01 Aug 2012 19:44:18 -0700 (PDT)
+Received: from [192.168.1.101] ([94.205.108.162])
+	by mx.google.com with ESMTPS id pp4sm9503695igb.5.2012.08.01.19.44.16
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Wed, 01 Aug 2012 19:44:18 -0700 (PDT)
+Mime-Version: 1.0 (Apple Message framework v1278)
+From: Elvis Dowson <elvis.dowson@gmail.com>
+In-Reply-To: <A278F391-405E-4AE7-A49D-E614A7E1D26C@gmail.com>
+Date: Thu, 2 Aug 2012 06:44:13 +0400
+Message-Id: <7033B489-BD0B-4347-BCB2-0A819E99C7A3@gmail.com>
+References: <C8B6E7F6-81CE-4DC0-A928-3D021DF1B8AA@gmail.com>
+	<A278F391-405E-4AE7-A49D-E614A7E1D26C@gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
+X-Mailer: Apple Mail (2.1278)
+Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+Subject: Re: GLIBCTARGETOS ?= "linux-gnueabi" for PowerPC 440 targets
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,184 +43,71 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 01 Aug 2012 22:59:47 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 02 Aug 2012 02:44:20 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
-Hi Kishore,
+Hi Khem,
 
-On 08/01/2012 12:15 PM, kishore.k.bodke@intel.com wrote:
-> From: Kishore Bodke <kishore.k.bodke@intel.com>
-> 
-> Initial checkin for the new Crystal Forest Machine Branch.
-> 
-> Signed-off-by: Kishore Bodke <kishore.k.bodke@intel.com>
-> ---
->  .../bsp/crystalforest/crystalforest-preempt-rt.scc |   15 +++++
->  .../bsp/crystalforest/crystalforest-standard.scc   |   10 ++++
->  .../bsp/crystalforest/crystalforest.cfg            |   63 ++++++++++++++++++++
->  .../bsp/crystalforest/crystalforest.scc            |   14 +++++
->  4 files changed, 102 insertions(+)
->  create mode 100644 meta/cfg/kernel-cache/bsp/crystalforest/crystalforest-preempt-rt.scc
->  create mode 100644 meta/cfg/kernel-cache/bsp/crystalforest/crystalforest-standard.scc
->  create mode 100644 meta/cfg/kernel-cache/bsp/crystalforest/crystalforest.cfg
->  create mode 100644 meta/cfg/kernel-cache/bsp/crystalforest/crystalforest.scc
-> 
-> diff --git a/meta/cfg/kernel-cache/bsp/crystalforest/crystalforest-preempt-rt.scc b/meta/cfg/kernel-cache/bsp/crystalforest/crystalforest-preempt-rt.scc
-> new file mode 100644
-> index 0000000..6c250af
-> --- /dev/null
-> +++ b/meta/cfg/kernel-cache/bsp/crystalforest/crystalforest-preempt-rt.scc
-> @@ -0,0 +1,15 @@
-> +define KMACHINE crystalforest
-> +define KTYPE preempt-rt
-> +define KARCH x86_64
-> +
-> +# no new branch required, re-use the ktypes/preempt-rt branch
-> +include ktypes/preempt-rt
-> +include bsp/common-pc-64/common-pc-64.scc
-> +
-> +include crystalforest.scc
-> +
-> +# default policy for preempt-rt kernels
-> +include cfg/usb-mass-storage.scc
-> +include cfg/boot-live.scc
-> +include features/latencytop/latencytop.scc
-> +include features/profiling/profiling.scc
-> diff --git a/meta/cfg/kernel-cache/bsp/crystalforest/crystalforest-standard.scc b/meta/cfg/kernel-cache/bsp/crystalforest/crystalforest-standard.scc
-> new file mode 100644
-> index 0000000..9d24c76
-> --- /dev/null
-> +++ b/meta/cfg/kernel-cache/bsp/crystalforest/crystalforest-standard.scc
-> @@ -0,0 +1,10 @@
-> +define KMACHINE crystalforest
-> +define KTYPE standard
-> +define KARCH x86_64
-> +
-> +include bsp/common-pc-64/common-pc-64-standard
-> +branch crystalforest
-> +
-> +include crystalforest.scc
-> +
-> +# default policy for standard kernels
-> diff --git a/meta/cfg/kernel-cache/bsp/crystalforest/crystalforest.cfg b/meta/cfg/kernel-cache/bsp/crystalforest/crystalforest.cfg
-> new file mode 100644
-> index 0000000..341cc20
-> --- /dev/null
-> +++ b/meta/cfg/kernel-cache/bsp/crystalforest/crystalforest.cfg
-> @@ -0,0 +1,63 @@
-> +CONFIG_PRINTK=y
-> +
-> +# Basic hardware support for the box - network, USB, PCI, sound
-> +CONFIG_NETDEVICES=y
-> +CONFIG_ATA=y
-> +CONFIG_ATA_GENERIC=y
-> +CONFIG_ATA_SFF=y
-> +CONFIG_PCI=y
-> +CONFIG_MMC=y
-> +CONFIG_MMC_SDHCI=y
-> +CONFIG_USB_SUPPORT=y
-> +CONFIG_USB=y
+On Aug 2, 2012, at 2:37 AM, Khem Raj wrote:
 
-USB support should be pulled in using the various usb scc files Tom
-created relatively recently.
+> On Aug 1, 2012, at 9:18 AM, Elvis Dowson <elvis.dowson@gmail.com> =
+wrote:
+>=20
+>> Hi,
+>>      Perhaps the reason none of my root file system binaries are not =
+working or running is because there is no
+>>=20
+>> GLIBCTARGETOS ?=3D "linux-gnueabi"
+>>=20
+>> in my machine/virtex5.conf or local.conf file?=20
+>=20
+> you don't need to set it. it should be automatically computed based on =
+libc and arch
+> your problem seems more like console related. Probably you don't have =
+console params
+> set correctly or securetty does not know about your console device.
 
-> +CONFIG_USB_ARCH_HAS_EHCI=y
-> +CONFIG_R8169=y
-> +CONFIG_PATA_SCH=y
-> +CONFIG_MMC_SDHCI_PCI=y
-> +CONFIG_USB_EHCI_HCD=y
-> +CONFIG_PCIEPORTBUS=y
-> +CONFIG_NET=y
-> +CONFIG_USB_UHCI_HCD=y
-> +CONFIG_BLK_DEV_SD=y
-> +CONFIG_CHR_DEV_SG=y
-> +CONFIG_SOUND=y
-> +CONFIG_SND=y
-> +CONFIG_SND_HDA_INTEL=y
-> +
-> +# Make sure these are on, otherwise the bootup won't be fun
-> +CONFIG_UNIX=y
-> +CONFIG_INET=y
-> +CONFIG_MODULES=y
-> +CONFIG_SHMEM=y
-> +CONFIG_TMPFS=y
-> +CONFIG_PACKET=y
-> +
-> +# These are needed for the Poulsbo kernel modules
-> +CONFIG_I2C=y
-> +CONFIG_AGP=y
-> +CONFIG_VFAT_FS=y
+You're right. After rebuilding it, with that variable set, it made no =
+difference in the generated
+binaries, (e.g. generate a tool chain powerpc-poky-linux-gnueabi-gcc) =
+nor did it=20
+change the situation with my having no console login or bash prompt.
 
-VFAT_FS is required for Poulsbo kernel modules?
+The serial port that I am using is ttyS0. There is an entry for ttyS0 =
+under /dev in my ramdisk
+, and my /etc/device_table also has an entry for ttyS.=20
 
-This would make more sense as a poulsbo.scc and .cfg file.
+I have also checked that my securetty has an entry for ttyS0.
 
-> +CONFIG_PM=y
-> +CONFIG_FB=y
-> +CONFIG_BACKLIGHT_LCD_SUPPORT=y
-> +CONFIG_BACKLIGHT_CLASS_DEVICE=y
-> +CONFIG_INPUT=y
-> +CONFIG_VIDEO_V4L2=y
-> +CONFIG_VIDEO_IVTV=y
-> +CONFIG_MEDIA_SUPPORT=y
-> +CONFIG_VIDEO_CAPTURE_DRIVERS=y
-> +CONFIG_VIDEO_DEV=y
-> +CONFIG_VIDEO_V4L2_COMMON=y
-> +CONFIG_I2C_ALGOBIT=y
-> +CONFIG_FB_CFB_COPYAREA=y
-> +CONFIG_FB_CFB_IMAGEBLIT=y
-> +CONFIG_FB_CFB_FILLRECT=y
-> +CONFIG_VIDEO_FB_IVTV=y
-> +
-> +# Needed for booting (and using) USB memory sticks
-> +CONFIG_USB_STORAGE=y
-> +CONFIG_BLK_DEV_RAM=y
-> +CONFIG_BLK_DEV_LOOP=y
-> +CONFIG_BLK_DEV_INITRD=y
-> +CONFIG_RD_GZIP=y
-> +CONFIG_NLS_CODEPAGE_437=y
-> +CONFIG_NLS_ISO8859_1=y
+I have tried all possible option, e.g. try to get inittab running first =
+with=20
 
-All this is taken care of with the:
+S:2345:respawn:/sbin/getty 9600 ttyS0
 
-> +include cfg/usb-mass-storage.scc
-> +include cfg/boot-live.scc
+then with
 
-lines which are missing from your non-preempt-rt bsp file.
+S:2345:respawn:/bin/sh 9600 ttyS0
 
-> diff --git a/meta/cfg/kernel-cache/bsp/crystalforest/crystalforest.scc b/meta/cfg/kernel-cache/bsp/crystalforest/crystalforest.scc
-> new file mode 100644
-> index 0000000..ff45107
-> --- /dev/null
-> +++ b/meta/cfg/kernel-cache/bsp/crystalforest/crystalforest.scc
-> @@ -0,0 +1,14 @@
-> +kconf hardware crystalforest.cfg
-> +
-> +include features/i915/i915.scc
+and then after that didn't work, tried kernel bootargs with init=3D/bin/sh=
+ or init=3D/sbin/getty
 
-Sorry, are Poulsbo and i915 the same thing?
+I have even enabled verbose kernel driver debug messages and it appears =
+to be correctly registering the driver, and doing everything correct at =
+the kernel level, but the moment it hits init, it doesn't display =
+anything on the console. This appear to work fine, displaying output on =
+the ttyS0 console, as specified in the device tree upto the point just =
+before it attempts to run init. As soon as init runs, I get no output on =
+the console, in terms of a login prompt or a bash prompt.
 
-> +include cfg/8250.scc
-> +include cfg/x86_64.scc
-> +include features/uio/uio.scc
-> +include features/hugetlb/hugetlb.scc
-> +include features/ixgbe/ixgbe.scc
-> +include features/igb/igb.scc
-> +include features/power/intel.scc
-> +
+You can see detailed kernel bootlogs output from gdb here:
 
-Insert usb-mass-storage and boot-live here...
+=
+http://forums.xilinx.com/t5/Embedded-Linux/PowerPC-kernel-fails-to-boot-wi=
+th-linux-3-3-0-using-xps/td-p/251194/page/2
 
-> +include features/latencytop/latencytop.scc
-> +include features/profiling/profiling.scc
-> +
-> 
+Best regards,
 
-Thanks,
+Elvis Dowson
 
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Technical Lead - Linux Kernel
 
