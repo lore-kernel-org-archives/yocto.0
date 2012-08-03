@@ -1,39 +1,35 @@
 Return-Path: <elvis.dowson@gmail.com>
 Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
 	[209.85.160.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6E9D9E0144F
-	for <yocto@yoctoproject.org>; Fri,  3 Aug 2012 13:41:22 -0700 (PDT)
-Received: by pbbrq8 with SMTP id rq8so2229703pbb.35
-	for <yocto@yoctoproject.org>; Fri, 03 Aug 2012 13:41:22 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B7667E0144B
+	for <yocto@yoctoproject.org>; Fri,  3 Aug 2012 13:59:44 -0700 (PDT)
+Received: by pbbrq8 with SMTP id rq8so2255400pbb.35
+	for <yocto@yoctoproject.org>; Fri, 03 Aug 2012 13:59:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=subject:mime-version:content-type:from:in-reply-to:date:cc
 	:message-id:references:to:x-mailer;
-	bh=fbxvnNg++dVfvjYKaq3VsnBvJuYvXj28R9KvQxO+nVY=;
-	b=U4CsAaxLLO8URSUPHJLs5Tm8CHtU9vG9nWYBxRDluMs+KL9AT+mLEMsICW3YzlkcI6
-	5G0O+wlex+chRFOqy46RJ2Iqtv0ctreHRvYdGiGUPL02dDfoxNRoE01bLT2mjgRVwr7e
-	D0FMrxEcCqKrIJEaNQxi/p2sw1L8gWNKZ0aVnbGvPper0UiPJpeWItROPcH7Wn/e52OR
-	92l4T9TL2SY/f5lJbw08CfQ5RxY1oU2aHiIqkTs+AZLigCK6XPo2pGpDOZGvGsTvdKZA
-	lqkou7MAJ8bCKIAt/IQFLb9nCGuQCUlg4gHQxW8J/KWExhl2WfSNqSOldp8spkg1Vp8x
-	/6CA==
-Received: by 10.68.203.98 with SMTP id kp2mr303670pbc.132.1344026482296;
-	Fri, 03 Aug 2012 13:41:22 -0700 (PDT)
+	bh=Un6WULIXywF+W9LHi5CbPOyFcilwpGieOWtsx2PiigA=;
+	b=hx1eCSq8yzbAy/B1XktR7D0auewgvCcKinzyE9OI5HOe8ReFugrw3+5tSUFxTEIylm
+	Gnnh/6+ZbFfVipIXX8f5KkdIXRfx4nyJB0rfrL1zJn6htM6juMC6h8mS+SK67R7YWQG3
+	k7pvukYUx/0fBzKOCbzKto8bAtFuUrczj091AWObS7Iew1c40neSQZVV4pdWzuXtNgdT
+	y8Z9jBFbB2tfVaUO9OVp4wIuXIc8gruAy7RL0IdGAwnNlds2T2fysUnrPXX69JQ/N6Ss
+	JDfaG1ZaMdqQ53qKw8kRBNg5zJLrIB8CenjHtBIM3eDBAmxUX5+fiMCvEsPo0Iijokbh
+	hEZQ==
+Received: by 10.68.225.231 with SMTP id rn7mr386787pbc.13.1344027584396;
+	Fri, 03 Aug 2012 13:59:44 -0700 (PDT)
 Received: from [192.168.1.101] ([94.205.108.162])
-	by mx.google.com with ESMTPS id rz10sm3562075pbc.32.2012.08.03.13.41.19
+	by mx.google.com with ESMTPS id og4sm3581720pbb.48.2012.08.03.13.59.41
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Fri, 03 Aug 2012 13:41:21 -0700 (PDT)
+	Fri, 03 Aug 2012 13:59:43 -0700 (PDT)
 Mime-Version: 1.0 (Apple Message framework v1278)
 From: Elvis Dowson <elvis.dowson@gmail.com>
-In-Reply-To: <BF2DA1C6-07F9-400C-B50D-1D79F5C41FBC@gmail.com>
-Date: Sat, 4 Aug 2012 00:41:14 +0400
-Message-Id: <273333E6-A5E5-4D9E-B272-9B70417E457A@gmail.com>
-References: <1070990E-BAFD-408C-8EB8-37F29ADB87EB@gmail.com>
-	<CB6BA0F1-3C99-4A6A-84F6-6EFE4CCADAA4@gmail.com>
-	<9CE15441-360F-4C37-919A-7677FF4FAF40@gmail.com>
-	<BF2DA1C6-07F9-400C-B50D-1D79F5C41FBC@gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
+In-Reply-To: <F1A84E50-21BF-4E9B-BC38-545D72F59A70@gmail.com>
+Date: Sat, 4 Aug 2012 00:59:37 +0400
+Message-Id: <654A270B-9C72-4BEA-B51D-79E4C6441594@gmail.com>
+References: <F1A84E50-21BF-4E9B-BC38-545D72F59A70@gmail.com>
+To: Yocto Discussion Mailing List <yocto@yoctoproject.org>
 X-Mailer: Apple Mail (2.1278)
-Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-Subject: Re: meta-toolchain error with latest gcc commit: rpm-createsolvedb.py: command not found
+Subject: Re: Unable to get serial console login prompt - PowerPC 440 Virtex 5 processor
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,90 +41,207 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 03 Aug 2012 20:41:22 -0000
+X-List-Received-Date: Fri, 03 Aug 2012 20:59:44 -0000
 Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_55785409-4FEA-4187-89DA-C4B7D533E456"
+	boundary="Apple-Mail=_92A57BC5-7079-406D-A981-B74EA784C034"
 
---Apple-Mail=_55785409-4FEA-4187-89DA-C4B7D533E456
+--Apple-Mail=_92A57BC5-7079-406D-A981-B74EA784C034
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain;
 	charset=us-ascii
 
 Hi,
 
-On Aug 4, 2012, at 12:35 AM, Khem Raj wrote:
+On Jul 31, 2012, at 9:27 PM, Elvis Dowson wrote:
 
->=20
-> On Aug 3, 2012, at 1:25 PM, Elvis Dowson <elvis.dowson@gmail.com> =
-wrote:
->=20
->> The following patch appears to attempt to fix this issue. I think it =
-should be included into oe-core master branch.=20
->>=20
->> =
-http://lists.linuxtogo.org/pipermail/openembedded-core/2012-August/026949.=
-html
->=20
-> on the contrary it creates the problem. Did you read my last reply
+> I am unable to get a serial console login prompt using yocto generate =
+rootfilesystem (core-image-minimal), for a PowerPC 440 target.=20
 
-Sorry, I probably didn't read it in the correct order. I jumped to the =
-previous message by mistake on the webpage.=20
+I'm now starting the process of debugging the init process step by step.=20=
 
-Paul Eggleton's patch would probably fix it. If you run =
-core-image-minimal and then meta-toolchain, we won't get the problem.
 
-=
-http://git.openembedded.org/openembedded-core/commit/meta/classes/populate=
-_sdk_rpm.bbclass?id=3D8a71c1a507289d38a0f675584ab206abfa9aad9a
+I've just updated to the latest gcc-4.7.2 commit, as of today
+
+SRCREV =3D "1653160670db186c6243997447ecbe6ce5056648"
+
+I've created a simple hello world program, and used that as init, and I =
+get an output as expected:
+
+zImage starting: loaded at 0x00800000 (sp: 0x00d7bfb0)                   =
+ =20
+Allocating 0x540e0c bytes for kernel ...                                 =
+ =20
+gunzipping (0x00000000 <- 0x0080f000:0x00a17dda)...done 0x4235c0 bytes
+Attached initrd image at 0x00a18000-0x00d7a3e1
+initrd head: 0x1f8b0808
+
+Linux/PowerPC load: console=3DttyS0,9600n8 ip=3Doff root=3D/dev/ram rw =
+rootwait init=3D/init
+Finalizing device tree... flat tree at 0xd880e0
+ PM: Adding info for No Bus:ttyv9
+[    0.476678] Serial: 8250/16550 driver, 4 ports, IRQ sharing disabled
+[    0.481983] 83e00000.serial: ttyS0 at MMIO 0x83e01003 (irq =3D 20) is =
+a 16550
+[    0.677477] console [ttyS0] enabled
+[    0.741448] brd: module loaded
+[    0.788283] loop: module loaded
+[    0.825575] xsysace 83600000.sysace: Xilinx SystemACE revision 1.0.12
+[    0.902300] xsysace 83600000.sysace: No CF in slot
+[    0.961302] Xilinx SystemACE device driver, major=3D254
+[    1.022246] xilinx_emaclite 81000000.ethernet: Device Tree Probing
+[    1.095778] xilinx_emaclite 81000000.ethernet: error registering MDIO =
+bus
+[    1.176850] xilinx_emaclite 81000000.ethernet: MAC address is now =
+00:0a:35:b7:78:00
+[    1.270544] xilinx_emaclite 81000000.ethernet: Xilinx EmacLite at =
+0x81000000 mapped to 0xD10A0000, irq=3D17
+[    1.385416] xilinx_ps2 81480000.ps2: Device Tree Probing 'ps2'
+[    1.454651] xilinx_ps2 81480000.ps2: Xilinx PS2 at 0x81480000 mapped =
+to 0xd1036000, irq=3D22
+[    1.554024] xilinx_ps2 81481000.ps2: Device Tree Probing 'ps2'
+[    1.623705] xilinx_ps2 81481000.ps2: Xilinx PS2 at 0x81481000 mapped =
+to 0xd1038000, irq=3D23
+[    1.724252] mousedev: PS/2 mouse device common for all mice
+[    1.791648] i2c /dev entries driver
+[    1.833441] Device Tree Probing 'i2c'
+[    1.877646] xilinx-iic #0 at 0x81600000 mapped to 0xD10C0000, irq=3D18
+[    1.955298] TCP cubic registered
+[    1.993143] NET: Registered protocol family 17
+[    2.790356] atkbd serio0: keyboard reset failed on xilinxps2/serio at =
+81480000
+[    3.274628] RAMDISK: gzip image found at block 0
+[    3.798553] input: AT Raw Set 2 keyboard as =
+/devices/plb.0/xps-ps2.1/81481000.ps2/serio1/input/input0
+[    4.178791] VFS: Mounted root (ext2 filesystem) on device 1:0.
+[    4.248993] Freeing unused kernel memory: 152k freed
+
+Hello world from myinit.c!
+
+Inside the ramdisk, I just have a /dev folder, and it has nodes for =
+console and ttyS0. So this means that the Xilinx hardware project using =
+xps_uart16550_v3_00_a and the kernel drivers, etc, are all working.
+
+Now to try to debug the init process.
+
+Best regards,
 
 Elvis Dowson=
 
---Apple-Mail=_55785409-4FEA-4187-89DA-C4B7D533E456
+--Apple-Mail=_92A57BC5-7079-406D-A981-B74EA784C034
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/html;
 	charset=us-ascii
 
 <html><head></head><body style=3D"word-wrap: break-word; =
 -webkit-nbsp-mode: space; -webkit-line-break: after-white-space; =
-">Hi,<div><br><div><div>On Aug 4, 2012, at 12:35 AM, Khem Raj =
+">Hi,<div><br><div><div>On Jul 31, 2012, at 9:27 PM, Elvis Dowson =
 wrote:</div><br class=3D"Apple-interchange-newline"><blockquote =
-type=3D"cite"><meta http-equiv=3D"Content-Type" content=3D"text/html =
-charset=3Dus-ascii"><div style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; -webkit-line-break: after-white-space; =
-"><br><div><div>On Aug 3, 2012, at 1:25 PM, Elvis Dowson &lt;<a =
-href=3D"mailto:elvis.dowson@gmail.com">elvis.dowson@gmail.com</a>&gt; =
-wrote:</div><br class=3D"Apple-interchange-newline"><blockquote =
-type=3D"cite"><div style=3D"font-family: Helvetica; font-size: medium; =
-font-style: normal; font-variant: normal; font-weight: normal; =
-letter-spacing: normal; line-height: normal; orphans: 2; text-align: =
--webkit-auto; text-indent: 0px; text-transform: none; white-space: =
-normal; widows: 2; word-spacing: 0px; -webkit-text-size-adjust: auto; =
--webkit-text-stroke-width: 0px; ">The following patch appears to attempt =
-to fix this issue. I think it should be included into oe-core master =
-branch.&nbsp;</div><div style=3D"font-family: Helvetica; font-size: =
-medium; font-style: normal; font-variant: normal; font-weight: normal; =
-letter-spacing: normal; line-height: normal; orphans: 2; text-align: =
--webkit-auto; text-indent: 0px; text-transform: none; white-space: =
-normal; widows: 2; word-spacing: 0px; -webkit-text-size-adjust: auto; =
--webkit-text-stroke-width: 0px; "><br></div><div style=3D"font-family: =
-Helvetica; font-size: medium; font-style: normal; font-variant: normal; =
-font-weight: normal; letter-spacing: normal; line-height: normal; =
-orphans: 2; text-align: -webkit-auto; text-indent: 0px; text-transform: =
-none; white-space: normal; widows: 2; word-spacing: 0px; =
--webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; "><a =
-href=3D"http://lists.linuxtogo.org/pipermail/openembedded-core/2012-August=
-/026949.html">http://lists.linuxtogo.org/pipermail/openembedded-core/2012-=
-August/026949.html</a></div></blockquote></div><br><div>on the contrary =
-it creates the problem. Did you read my last =
-reply</div></div></blockquote></div><br><div>Sorry, I probably didn't =
-read it in the correct order. I jumped to the previous message by =
-mistake on the webpage.&nbsp;</div><div><br></div><div>Paul Eggleton's =
-patch would probably fix it. If you run core-image-minimal and then =
-meta-toolchain, we won't get the problem.</div><div><br></div><div><a =
-href=3D"http://git.openembedded.org/openembedded-core/commit/meta/classes/=
-populate_sdk_rpm.bbclass?id=3D8a71c1a507289d38a0f675584ab206abfa9aad9a">ht=
-tp://git.openembedded.org/openembedded-core/commit/meta/classes/populate_s=
-dk_rpm.bbclass?id=3D8a71c1a507289d38a0f675584ab206abfa9aad9a</a></div><div=
-><br></div><div>Elvis Dowson</div></div></body></html>=
+type=3D"cite"><div style=3D"word-wrap: break-word; -webkit-nbsp-mode: =
+space; -webkit-line-break: after-white-space; "><div>I am unable to get =
+a serial console login prompt using yocto generate rootfilesystem =
+(core-image-minimal), for a PowerPC 440 =
+target.&nbsp;</div></div></blockquote><br></div><div>I'm now starting =
+the process of debugging the init process step by =
+step.&nbsp;</div><div><br></div><div>I've just updated to the latest =
+gcc-4.7.2 commit, as of today</div></div><div><br></div><div><span =
+class=3D"Apple-style-span" style=3D"font-family: Monaco; font-size: =
+small; ">SRCREV =3D =
+"1653160670db186c6243997447ecbe6ce5056648"</span></div><div><span =
+class=3D"Apple-style-span" style=3D"font-family: Monaco; font-size: =
+small; "><br></span></div><div>I've created a simple hello world =
+program, and used that as init, and I get an output as =
+expected:</div><div><br></div><div><div><font class=3D"Apple-style-span" =
+face=3D"Monaco" size=3D"2">zImage starting: loaded at 0x00800000 (sp: =
+0x00d7bfb0) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
+&nbsp; &nbsp;&nbsp;</font></div><div><font class=3D"Apple-style-span" =
+face=3D"Monaco" size=3D"2">Allocating 0x540e0c bytes for kernel ... =
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
+&nbsp;&nbsp;</font></div><div><font class=3D"Apple-style-span" =
+face=3D"Monaco" size=3D"2">gunzipping (0x00000000 &lt;- =
+0x0080f000:0x00a17dda)...done 0x4235c0 bytes</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">Attached initrd =
+image at 0x00a18000-0x00d7a3e1</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">initrd head: =
+0x1f8b0808</font></div><div><font class=3D"Apple-style-span" =
+face=3D"Monaco" size=3D"2"><br></font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">Linux/PowerPC =
+load: console=3DttyS0,9600n8 ip=3Doff root=3D/dev/ram rw rootwait =
+init=3D/init</font></div><div><font class=3D"Apple-style-span" =
+face=3D"Monaco" size=3D"2">Finalizing device tree... flat tree at =
+0xd880e0</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco"=
+ size=3D"2">&nbsp;PM: Adding info for No =
+Bus:ttyv9</font></div><div><font class=3D"Apple-style-span" =
+face=3D"Monaco" size=3D"2">[ &nbsp; &nbsp;0.476678] Serial: 8250/16550 =
+driver, 4 ports, IRQ sharing disabled</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">[ &nbsp; =
+&nbsp;0.481983] 83e00000.serial: ttyS0 at MMIO 0x83e01003 (irq =3D 20) =
+is a 16550</font></div><div><font class=3D"Apple-style-span" =
+face=3D"Monaco" size=3D"2">[ &nbsp; &nbsp;0.677477] console [ttyS0] =
+enabled</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
+size=3D"2">[ &nbsp; &nbsp;0.741448] brd: module =
+loaded</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
+size=3D"2">[ &nbsp; &nbsp;0.788283] loop: module =
+loaded</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
+size=3D"2">[ &nbsp; &nbsp;0.825575] xsysace 83600000.sysace: Xilinx =
+SystemACE revision 1.0.12</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">[ &nbsp; =
+&nbsp;0.902300] xsysace 83600000.sysace: No CF in =
+slot</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
+size=3D"2">[ &nbsp; &nbsp;0.961302] Xilinx SystemACE device driver, =
+major=3D254</font></div><div><font class=3D"Apple-style-span" =
+face=3D"Monaco" size=3D"2">[ &nbsp; &nbsp;1.022246] xilinx_emaclite =
+81000000.ethernet: Device Tree Probing</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">[ &nbsp; =
+&nbsp;1.095778] xilinx_emaclite 81000000.ethernet: error registering =
+MDIO bus</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco"=
+ size=3D"2">[ &nbsp; &nbsp;1.176850] xilinx_emaclite 81000000.ethernet: =
+MAC address is now 00:0a:35:b7:78:00</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">[ &nbsp; =
+&nbsp;1.270544] xilinx_emaclite 81000000.ethernet: Xilinx EmacLite at =
+0x81000000 mapped to 0xD10A0000, irq=3D17</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">[ &nbsp; =
+&nbsp;1.385416] xilinx_ps2 81480000.ps2: Device Tree Probing =
+'ps2'</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
+size=3D"2">[ &nbsp; &nbsp;1.454651] xilinx_ps2 81480000.ps2: Xilinx PS2 =
+at 0x81480000 mapped to 0xd1036000, irq=3D22</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">[ &nbsp; =
+&nbsp;1.554024] xilinx_ps2 81481000.ps2: Device Tree Probing =
+'ps2'</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
+size=3D"2">[ &nbsp; &nbsp;1.623705] xilinx_ps2 81481000.ps2: Xilinx PS2 =
+at 0x81481000 mapped to 0xd1038000, irq=3D23</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">[ &nbsp; =
+&nbsp;1.724252] mousedev: PS/2 mouse device common for all =
+mice</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
+size=3D"2">[ &nbsp; &nbsp;1.791648] i2c /dev entries =
+driver</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
+size=3D"2">[ &nbsp; &nbsp;1.833441] Device Tree Probing =
+'i2c'</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
+size=3D"2">[ &nbsp; &nbsp;1.877646] xilinx-iic #0 at 0x81600000 mapped =
+to 0xD10C0000, irq=3D18</font></div><div><font class=3D"Apple-style-span" =
+face=3D"Monaco" size=3D"2">[ &nbsp; &nbsp;1.955298] TCP cubic =
+registered</font></div><div><font class=3D"Apple-style-span" =
+face=3D"Monaco" size=3D"2">[ &nbsp; &nbsp;1.993143] NET: Registered =
+protocol family 17</font></div><div><font class=3D"Apple-style-span" =
+face=3D"Monaco" size=3D"2">[ &nbsp; &nbsp;2.790356] atkbd serio0: =
+keyboard reset failed on xilinxps2/serio at =
+81480000</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco"=
+ size=3D"2">[ &nbsp; &nbsp;3.274628] RAMDISK: gzip image found at block =
+0</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
+size=3D"2">[ &nbsp; &nbsp;3.798553] input: AT Raw Set 2 keyboard as =
+/devices/plb.0/xps-ps2.1/81481000.ps2/serio1/input/input0</font></div><div=
+><font class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">[ &nbsp; =
+&nbsp;4.178791] VFS: Mounted root (ext2 filesystem) on device =
+1:0.</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
+size=3D"2">[ &nbsp; &nbsp;4.248993] Freeing unused kernel memory: 152k =
+freed</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
+size=3D"2"><br></font></div><div><font class=3D"Apple-style-span" =
+face=3D"Monaco" size=3D"2">Hello world from =
+myinit.c!</font></div><div><br></div></div><div>Inside the ramdisk, I =
+just have a /dev folder, and it has nodes for console and ttyS0. So this =
+means that the Xilinx hardware project using xps_uart16550_v3_00_a and =
+the kernel drivers, etc, are all working.</div><div><br></div><div>Now =
+to try to debug the init process.</div><div><br></div><div>Best =
+regards,</div><div><br></div><div>Elvis Dowson</div></body></html>=
 
---Apple-Mail=_55785409-4FEA-4187-89DA-C4B7D533E456--
+--Apple-Mail=_92A57BC5-7079-406D-A981-B74EA784C034--
