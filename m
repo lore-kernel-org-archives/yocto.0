@@ -1,35 +1,35 @@
-Return-Path: <martin.jansa@gmail.com>
-Received: from mail-wi0-f182.google.com (mail-wi0-f182.google.com
-	[209.85.212.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 918B4E0144F
-	for <yocto@yoctoproject.org>; Fri,  3 Aug 2012 13:25:05 -0700 (PDT)
-Received: by wibhq12 with SMTP id hq12so820263wib.11
-	for <yocto@yoctoproject.org>; Fri, 03 Aug 2012 13:25:04 -0700 (PDT)
+Return-Path: <elvis.dowson@gmail.com>
+Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
+	[209.85.160.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 66370E0144F
+	for <yocto@yoctoproject.org>; Fri,  3 Aug 2012 13:25:50 -0700 (PDT)
+Received: by pbbrq8 with SMTP id rq8so2208211pbb.35
+	for <yocto@yoctoproject.org>; Fri, 03 Aug 2012 13:25:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:content-disposition:in-reply-to:user-agent;
-	bh=BqP5Wp0YB5USrhyxcemn8kdhsmDPEVi+DC63x4HOnpo=;
-	b=TA9hI5Tbs8Q+4ryRfd6JmDxc4Q7JZyZvAFleOxNhcWoOmcBx4KUQ4nFNuNzQK2n0Fh
-	OqN5wqUSPdLh5hEa8WpH2k7oe2SUBTbLdzl6s2c2JlLc7QEzBR22mL21aLon3cBiC1le
-	OD2Ii1TnuMzbGK0Zwk1GIDXijpN3KLRjkONnB9jMaQ451dXtNCabUDghTmVw8WKTrc/W
-	TYB+54wn2yFWaksRGAg1DmkNgcuAiLi+st/jlrTCiLVrA9qDmSb2n3fmXUULXQ9KDgEH
-	YBsTHnEson/t6ltIShpH4XQrLC+hFBE6O26aZAjCjr3IutJ25n2jaI5l9FYZjFTLjOrK
-	ddtw==
-Received: by 10.180.81.38 with SMTP id w6mr6967717wix.10.1344025504281;
-	Fri, 03 Aug 2012 13:25:04 -0700 (PDT)
-Received: from localhost ([94.230.152.246])
-	by mx.google.com with ESMTPS id z11sm28671584wiv.10.2012.08.03.13.25.02
+	h=subject:mime-version:content-type:from:in-reply-to:date:cc
+	:message-id:references:to:x-mailer;
+	bh=6yxWk8Ne6lvveBaI1Ptp2kwRIWeJ2iHvBqAcizs6x/A=;
+	b=WRrdlUv9TfUuYxhYh0MYFT4mwDmAiAHjyuuoTJlyUgq3bCHzlFGMznL0Y1ieEfn6Um
+	mQin/IGl2ofCYrUNjAq9le83dg5m+o+dZVpgGCJrUUtDEU1C6iRf18fBynCGf2hNVfw1
+	CsBn7z7fuu1Ao/ao2VxuLwHg6e1z+2cNGjjq9HdJSWGsXCJWq/h9HnJoNnyG74W3lAIs
+	DjOSngbKbQjLPZW8hn/Bl2dHqbKH3yBHbAki8GnGgkCfwwwVtQIklUjm5ylKQVNOKigF
+	qckn9dqK7qn9sprYpcSz9B2ffLgdx99gfGAlbU1QNVNJKFB5tlJ4sfCkGWyxJg2JXQn8
+	4hhg==
+Received: by 10.68.233.134 with SMTP id tw6mr233305pbc.111.1344025550121;
+	Fri, 03 Aug 2012 13:25:50 -0700 (PDT)
+Received: from [192.168.1.101] ([94.205.108.162])
+	by mx.google.com with ESMTPS id tq4sm119726pbc.11.2012.08.03.13.25.47
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Fri, 03 Aug 2012 13:25:03 -0700 (PDT)
-Date: Fri, 3 Aug 2012 22:25:02 +0200
-From: Martin Jansa <martin.jansa@gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
-Message-ID: <20120803202502.GE30148@jama.jama.net>
+	Fri, 03 Aug 2012 13:25:49 -0700 (PDT)
+Mime-Version: 1.0 (Apple Message framework v1278)
+From: Elvis Dowson <elvis.dowson@gmail.com>
+In-Reply-To: <CB6BA0F1-3C99-4A6A-84F6-6EFE4CCADAA4@gmail.com>
+Date: Sat, 4 Aug 2012 00:25:44 +0400
+Message-Id: <9CE15441-360F-4C37-919A-7677FF4FAF40@gmail.com>
 References: <1070990E-BAFD-408C-8EB8-37F29ADB87EB@gmail.com>
 	<CB6BA0F1-3C99-4A6A-84F6-6EFE4CCADAA4@gmail.com>
-MIME-Version: 1.0
-In-Reply-To: <CB6BA0F1-3C99-4A6A-84F6-6EFE4CCADAA4@gmail.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
+To: Khem Raj <raj.khem@gmail.com>
+X-Mailer: Apple Mail (2.1278)
 Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
 Subject: Re: meta-toolchain error with latest gcc commit: rpm-createsolvedb.py: command not found
 X-BeenThere: yocto@yoctoproject.org
@@ -43,51 +43,85 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 03 Aug 2012 20:25:06 -0000
-X-Groupsio-MsgNum: 8395
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="hwvH6HDNit2nSK4j"
-Content-Disposition: inline
+X-List-Received-Date: Fri, 03 Aug 2012 20:25:50 -0000
+Content-Type: multipart/alternative;
+	boundary="Apple-Mail=_FA3D2BE5-FE64-4AE7-B55C-A1CDABD4B4D9"
 
---hwvH6HDNit2nSK4j
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+--Apple-Mail=_FA3D2BE5-FE64-4AE7-B55C-A1CDABD4B4D9
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=us-ascii
 
-On Fri, Aug 03, 2012 at 01:15:32PM -0700, Khem Raj wrote:
+Hi,
+
+On Aug 4, 2012, at 12:15 AM, Khem Raj wrote:
+
 >=20
-> On Aug 3, 2012, at 12:07 PM, Elvis Dowson <elvis.dowson@gmail.com> wrote:
+> On Aug 3, 2012, at 12:07 PM, Elvis Dowson <elvis.dowson@gmail.com> =
+wrote:
 >=20
-> >=20
-> > When I run bitbake meta-toolchain, I get the following error: rpm-creat=
-esolvedb.py: command not found
-> >=20
-> >=20
+>> When I run bitbake meta-toolchain, I get the following error: =
+rpm-createsolvedb.py: command not found
 >=20
 >=20
 > yes I have similar problems. see
 >=20
-> http://lists.linuxtogo.org/pipermail/openembedded-core/2012-August/027214=
-=2Ehtml
+> =
+http://lists.linuxtogo.org/pipermail/openembedded-core/2012-August/027214.=
+html
 
-Maybe something like
-http://git.openembedded.org/openembedded-core/commit/meta/classes/populate_=
-sdk_rpm.bbclass?id=3D8a71c1a507289d38a0f675584ab206abfa9aad9a
-is needed?
+The following patch appears to attempt to fix this issue. I think it =
+should be included into oe-core master branch.=20
 
---=20
-Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
+=
+http://lists.linuxtogo.org/pipermail/openembedded-core/2012-August/026949.=
+html
 
---hwvH6HDNit2nSK4j
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
+How does the process work, e.g. is there some way to track priority =
+patches that fix broken builds, to make sure it gets committed quickly? =
+I know it wouldn't manifest until the gcc-4.7.2 recipe is updated, but =
+still it should be included.
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2.0.19 (GNU/Linux)
+Elvis Dowson
 
-iEYEARECAAYFAlAcM54ACgkQN1Ujt2V2gBwjigCePsLa0aYDyChy4k6NjahzmWxt
-fHAAoKm6fqZjycF8XVKVjFd0KwJJQGus
-=Jcn0
------END PGP SIGNATURE-----
 
---hwvH6HDNit2nSK4j--
+--Apple-Mail=_FA3D2BE5-FE64-4AE7-B55C-A1CDABD4B4D9
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=us-ascii
+
+<html><head></head><body style=3D"word-wrap: break-word; =
+-webkit-nbsp-mode: space; -webkit-line-break: after-white-space; =
+">Hi,<div><br><div><div>On Aug 4, 2012, at 12:15 AM, Khem Raj =
+wrote:</div><br class=3D"Apple-interchange-newline"><blockquote =
+type=3D"cite"><meta http-equiv=3D"Content-Type" content=3D"text/html =
+charset=3Dus-ascii"><div style=3D"word-wrap: break-word; =
+-webkit-nbsp-mode: space; -webkit-line-break: after-white-space; =
+"><br><div><div>On Aug 3, 2012, at 12:07 PM, Elvis Dowson &lt;<a =
+href=3D"mailto:elvis.dowson@gmail.com">elvis.dowson@gmail.com</a>&gt; =
+wrote:</div><br class=3D"Apple-interchange-newline"><blockquote =
+type=3D"cite"><div style=3D"font-family: Helvetica; font-size: medium; =
+font-style: normal; font-variant: normal; font-weight: normal; =
+letter-spacing: normal; line-height: normal; orphans: 2; text-align: =
+-webkit-auto; text-indent: 0px; text-transform: none; white-space: =
+normal; widows: 2; word-spacing: 0px; -webkit-text-size-adjust: auto; =
+-webkit-text-stroke-width: 0px; ">When I run bitbake meta-toolchain, I =
+get the following error:&nbsp;rpm-createsolvedb.py: command not =
+found</div></blockquote></div><div><br></div><div>yes I have similar =
+problems. see</div><div><br></div><div><a =
+href=3D"http://lists.linuxtogo.org/pipermail/openembedded-core/2012-August=
+/027214.html">http://lists.linuxtogo.org/pipermail/openembedded-core/2012-=
+August/027214.html</a></div></div></blockquote><br></div><div>The =
+following patch appears to attempt to fix this issue. I think it should =
+be included into oe-core master =
+branch.&nbsp;</div><div><br></div><div><a =
+href=3D"http://lists.linuxtogo.org/pipermail/openembedded-core/2012-August=
+/026949.html">http://lists.linuxtogo.org/pipermail/openembedded-core/2012-=
+August/026949.html</a></div><div><br></div><div>How does the process =
+work, e.g. is there some way to track priority patches that fix broken =
+builds, to make sure it gets committed quickly? I know it wouldn't =
+manifest until the gcc-4.7.2 recipe is updated, but still it should be =
+included.</div><div><br></div><div>Elvis =
+Dowson</div><br></div></body></html>=
+
+--Apple-Mail=_FA3D2BE5-FE64-4AE7-B55C-A1CDABD4B4D9--
