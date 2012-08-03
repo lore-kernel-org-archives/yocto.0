@@ -1,28 +1,27 @@
-Return-Path: <vidal.develone@gmail.com>
-Received: from mail-gh0-f176.google.com (mail-gh0-f176.google.com
-	[209.85.160.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6146CE01447
-	for <yocto@yoctoproject.org>; Fri,  3 Aug 2012 06:19:25 -0700 (PDT)
-Received: by ghbz10 with SMTP id z10so949756ghb.35
-	for <yocto@yoctoproject.org>; Fri, 03 Aug 2012 06:19:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=YnmN2PzhD4gt852npwm89kOBKF/0sL1FjjyjH6O/sO4=;
-	b=Uwfh+nvX6xGGXrZqqgtOq8AjzwOP5IxCr4BrXB7VOLHgT/Q4q5Vvnz6/gYRz5HZ7Fe
-	puFct2Ohg+MFb1am5foZw9Ry0CzSTpEoauB1h2j3jrhTOGwN2GadfNbpJxrdKWNVjQwB
-	Grz4Q+JGHPtFiqyhkfk9TFR9XGk4a1eu1ksxJcYnUhL7ln8PPjBM7T1y67mTTkAT+2vW
-	4Nfd45dUIoOMxRg+cSzsdH5piggDjW8rifiq7ZH9KGT279kFim2Kggb9HhHGRxX6XU+L
-	JCykF4PBb+pNKVR/HmwG2hNI0oDkzmb6RoEHVcC1Vq2p415nIvmVYaWtybBh3BvJx+Ei
-	YPHg==
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C15E3E01447
+	for <yocto@yoctoproject.org>; Fri,  3 Aug 2012 06:24:49 -0700 (PDT)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id 23DA9F81213; Fri,  3 Aug 2012 07:24:49 -0600 (MDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=unavailable version=3.3.2
+Received: from [192.168.1.114] (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id 80D5CF8120B;
+	Fri,  3 Aug 2012 07:24:47 -0600 (MDT)
+Message-ID: <501BD126.5060100@mlbassoc.com>
+Date: Fri, 03 Aug 2012 07:24:54 -0600
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:14.0) Gecko/20120714 Thunderbird/14.0
 MIME-Version: 1.0
-Received: by 10.50.236.4 with SMTP id uq4mr3502447igc.18.1343999964411; Fri,
-	03 Aug 2012 06:19:24 -0700 (PDT)
-Received: by 10.64.39.39 with HTTP; Fri, 3 Aug 2012 06:19:24 -0700 (PDT)
-Date: Fri, 3 Aug 2012 07:19:24 -0600
-Message-ID: <CANwz6nwYGvD2Mn9grjTDp2D9BpD7Uv218-noNtRTMYLQSA4EKQ@mail.gmail.com>
-From: Edward Vidal <vidal.develone@gmail.com>
 To: yocto@yoctoproject.org
-Subject: build error pandaboard on master
+References: <CANwz6nwYGvD2Mn9grjTDp2D9BpD7Uv218-noNtRTMYLQSA4EKQ@mail.gmail.com>
+In-Reply-To: <CANwz6nwYGvD2Mn9grjTDp2D9BpD7Uv218-noNtRTMYLQSA4EKQ@mail.gmail.com>
+Subject: Re: build error pandaboard on master
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,59 +33,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 03 Aug 2012 13:19:25 -0000
-Content-Type: multipart/alternative; boundary=14dae9340e0f74f74404c65c602e
+X-List-Received-Date: Fri, 03 Aug 2012 13:24:49 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
---14dae9340e0f74f74404c65c602e
-Content-Type: text/plain; charset=ISO-8859-1
+On 2012-08-03 07:19, Edward Vidal wrote:
+> Hello,
+> I too am interested in the pandaboard with yacto.
+> I added meta-ti to conf/bblayes.conf
+> I have tried master and git branch 30fb40.
+> Did you have to make any changes to meta-ti?
+> I get the following
+>   MACHINE=pandaboard bitbake -v core-image-sato
+> Pseudo is not present but is required, building this first before the main build
+> DEBUG: Removed the following variables from the environment: LESSOPEN, CVS_RSH, XDG_SEAT, XDG_VTNR, CCACHE_HASHDIR, SHLVL, HISTSIZE, BBFETCH2, XDG_RUNTIME_DIR,
+> QT_GRAPHICSSYSTEM_CHECKED, XDG_SESSION_ID, BUILDDIR, HOSTNAME, HISTCONTROL, MAIL, LS_COLORS
+> DEBUG: Found bblayers.conf (/home/ame/poky/build/conf/bblayers.conf)
+> DEBUG: LOAD /home/ame/poky/build/conf/bblayers.conf
+> DEBUG: Adding layer /home/vidal/poky/meta
+> DEBUG: LOAD /home/vidal/poky/meta/conf/layer.conf
+> DEBUG: Adding layer /home/vidal/poky/meta-yocto
+> DEBUG: LOAD /home/vidal/poky/meta-yocto/conf/layer.conf
+> DEBUG: Adding layer /home/vidal/poky/meta-ti
+> DEBUG: LOAD /home/vidal/poky/meta-ti/conf/layer.conf
+> ERROR: Unable to parse /home/vidal/poky/meta-ti/conf/layer.conf: [Errno 2] No such file or directory: '/home/vidal/poky/meta-ti/conf/layer.conf'
+> Any help will be appreciated.
+> thanks
 
-Hello,
-I too am interested in the pandaboard with yacto.
-I added meta-ti to conf/bblayes.conf
-I have tried master and git branch 30fb40.
-Did you have to make any changes to meta-ti?
-I get the following
- MACHINE=pandaboard bitbake -v core-image-sato
-Pseudo is not present but is required, building this first before the main
-build
-DEBUG: Removed the following variables from the environment: LESSOPEN,
-CVS_RSH, XDG_SEAT, XDG_VTNR, CCACHE_HASHDIR, SHLVL, HISTSIZE, BBFETCH2,
-XDG_RUNTIME_DIR, QT_GRAPHICSSYSTEM_CHECKED, XDG_SESSION_ID, BUILDDIR,
-HOSTNAME, HISTCONTROL, MAIL, LS_COLORS
-DEBUG: Found bblayers.conf (/home/ame/poky/build/conf/bblayers.conf)
-DEBUG: LOAD /home/ame/poky/build/conf/bblayers.conf
-DEBUG: Adding layer /home/vidal/poky/meta
-DEBUG: LOAD /home/vidal/poky/meta/conf/layer.conf
-DEBUG: Adding layer /home/vidal/poky/meta-yocto
-DEBUG: LOAD /home/vidal/poky/meta-yocto/conf/layer.conf
-DEBUG: Adding layer /home/vidal/poky/meta-ti
-DEBUG: LOAD /home/vidal/poky/meta-ti/conf/layer.conf
-ERROR: Unable to parse /home/vidal/poky/meta-ti/conf/layer.conf: [Errno 2]
-No such file or directory: '/home/vidal/poky/meta-ti/conf/layer.conf'
-Any help will be appreciated.
-thanks
+Did you actually download meta-ti into your /home/vidal/poky tree?
 
---14dae9340e0f74f74404c65c602e
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
-Hello,<br>I too am interested in the pandaboard with yacto.<br>I added meta=
--ti to conf/bblayes.conf<br>I have tried master and git branch 30fb40.<br>D=
-id you have to make any changes to meta-ti?<br>I get the following<br>=A0MA=
-CHINE=3Dpandaboard bitbake -v core-image-sato<br>
-Pseudo is not present but is required, building this first before the main =
-build<br>DEBUG: Removed the following variables from the environment: LESSO=
-PEN, CVS_RSH, XDG_SEAT, XDG_VTNR, CCACHE_HASHDIR, SHLVL, HISTSIZE, BBFETCH2=
-, XDG_RUNTIME_DIR, QT_GRAPHICSSYSTEM_CHECKED, XDG_SESSION_ID, BUILDDIR, HOS=
-TNAME, HISTCONTROL, MAIL, LS_COLORS<br>
-DEBUG: Found bblayers.conf (/home/ame/poky/build/conf/bblayers.conf)<br>DEB=
-UG: LOAD /home/ame/poky/build/conf/bblayers.conf<br>DEBUG: Adding layer /ho=
-me/vidal/poky/meta<br>DEBUG: LOAD /home/vidal/poky/meta/conf/layer.conf<br>
-DEBUG: Adding layer /home/vidal/poky/meta-yocto<br>DEBUG: LOAD /home/vidal/=
-poky/meta-yocto/conf/layer.conf<br>DEBUG: Adding layer /home/vidal/poky/met=
-a-ti<br>DEBUG: LOAD /home/vidal/poky/meta-ti/conf/layer.conf<br>ERROR: Unab=
-le to parse /home/vidal/poky/meta-ti/conf/layer.conf: [Errno 2] No such fil=
-e or directory: &#39;/home/vidal/poky/meta-ti/conf/layer.conf&#39;<br>
-Any help will be appreciated.<br>thanks <br><br>
-
---14dae9340e0f74f74404c65c602e--
