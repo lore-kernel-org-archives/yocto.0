@@ -1,47 +1,36 @@
-Return-Path: <maniacbug@ymail.com>
-Received: from nm5-vm1.bullet.mail.ne1.yahoo.com
-	(nm5-vm1.bullet.mail.ne1.yahoo.com [98.138.91.32])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 09426E01443
-	for <yocto@yoctoproject.org>; Thu,  2 Aug 2012 20:17:46 -0700 (PDT)
-Received: from [98.138.90.54] by nm5.bullet.mail.ne1.yahoo.com with NNFMP;
-	03 Aug 2012 03:17:46 -0000
-Received: from [98.138.89.160] by tm7.bullet.mail.ne1.yahoo.com with NNFMP;
-	03 Aug 2012 03:17:46 -0000
-Received: from [127.0.0.1] by omp1016.mail.ne1.yahoo.com with NNFMP;
-	03 Aug 2012 03:17:46 -0000
-X-Yahoo-Newman-Property: ymail-3
-X-Yahoo-Newman-Id: 255145.26480.bm@omp1016.mail.ne1.yahoo.com
-Received: (qmail 25765 invoked by uid 60001); 3 Aug 2012 03:17:46 -0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ymail.com; s=s1024;
-	t=1343963866; bh=2ORc5fablmFFfUyMi+SJd34XQZmn6CPuMZxGAJ4F8+4=;
-	h=X-YMail-OSG:Received:X-Mailer:Message-ID:Date:From:Reply-To:Subject:To:MIME-Version:Content-Type;
-	b=H5mOW2vCHcNcXKXmbm50zm/ssYA59x8iRj1PQmb9aZpgVQX6t6SDx7Pc37iRuHmGHW1DckG9qvJ78L/qxvO8z2PWLo5SoRrEawPKO4/cyvr4O+jBiYSFi8JRozKAGMLWx4ZMvidONbLpc9+/qD/d/xZRZSIy1rfsXQWRe74LK7s=
-DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=s1024; d=ymail.com;
-	h=X-YMail-OSG:Received:X-Mailer:Message-ID:Date:From:Reply-To:Subject:To:MIME-Version:Content-Type;
-	b=SB/2kW16fy4fl09n8j+mxcBj0Q5xRlgs1UW4Aav/czmvATBfht5dCWy2YTv/mI/xH3p6nYq8C/48jDJ9CE4HSLFhr8xXQ5qC7p2mhtXe4MVw/SuiLtu7YC9NEc34Rl59yvMtnKZvY0TnQyFUoGi1YgRfiJFnLHYD2tvDl7aJp+o=;
-X-YMail-OSG: IIYI3bAVM1n9Nr3DXDKWy23amO8OT..pbDXYINWOuSf3MiB
-	nTjq3UZ7ChYEkqduljOZZsYjM5UFYFeHuuVddfIc9e2dBiY8LeX2FiRZfvPF
-	gs6OJgcZaxnIrGmf9PW_Y6tDRmmoflGaVlxbkwwjCLEmUvHvNnn6Lh1jX._u
-	y3Gyg6_VPFv7HqSelj22V23owZ.NWNdpqHrIKXp_6_dyDW6y5JO0Mf47AxJK
-	pYGYcty4gSpNKI9SoL922It_.yR2sIeYUpFunYDOB1PMOiKVrVo_B2FanFJl
-	NS2s.RNk1VSK6lR1JaBbzB1KetbvMdnvEEUHbagfWNavIEdRwAoKKZ3coj9B
-	ajeimVCu2PseAf_veS.uP.bzR9CEp.nzkxlKwtbdPXV6mbhdY72G6sT1Bk5h
-	_vTR9dIea2i684w2EIK2KNBOmGDg5gKJXO2TvBQ_1HIbuYMCeC5Je5aRKj.4
-	oP093bm9dBtDctHvUzNvCf9S2wzfFP3TdozUwQh9iiETPmV3QjsiBT9SCsaZ
-	yV2BAxdoKUJBC85.mJxEoOQLYu8fAL_jf
-Received: from [50.135.220.100] by web121605.mail.ne1.yahoo.com via HTTP;
-	Thu, 02 Aug 2012 20:17:46 PDT
-X-Mailer: YahooMailWebService/0.8.120.356233
-Message-ID: <1343963866.24115.YahooMailNeo@web121605.mail.ne1.yahoo.com>
-Date: Thu, 2 Aug 2012 20:17:46 -0700 (PDT)
-From: maniacbug <maniacbug@ymail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-MIME-Version: 1.0
-Subject: Pandaboard indeed does not boot on master
+Return-Path: <elvis.dowson@gmail.com>
+Received: from mail-gh0-f176.google.com (mail-gh0-f176.google.com
+	[209.85.160.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 91DA2E0141D
+	for <yocto@yoctoproject.org>; Thu,  2 Aug 2012 23:37:08 -0700 (PDT)
+Received: by ghbz10 with SMTP id z10so523855ghb.35
+	for <yocto@yoctoproject.org>; Thu, 02 Aug 2012 23:37:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:content-type:content-transfer-encoding:subject:date:message-id
+	:to:mime-version:x-mailer;
+	bh=oRF7bd5/zXWZnT00ioRYqdM44uWBN24BPqi6xJp48U0=;
+	b=R6B+6Ks6VKpf8hV/wm/wQ6LhHuXXLR3tKfe0C8CoR8d+MWCgkjkJlaQiNYwPUIHsPN
+	555MSrY9rpv2CCJCUJNQ73nE5F/GTOTqaLpls/bL7wAomeH29zQ/F8xvCjZE3c3EohrE
+	YyHnNFQh6U/ee4v6XCCJy/nU6K6ksPvRquGhWdyqCztkTwxQe03rNL6jg6WQHoBZZ+cr
+	5P55VioV4UoWIP3PBZgii1E3D3D1WhFeamldX19GOf7GYnY95O8gScsfnp1B2zh1Huz6
+	65Ht1Reb+/p0+zg1L5bP4A9L+fBE1/lr5UgQulg8miuJFY6If2wDOxuHtZioJxuhEkqr
+	tYMA==
+Received: by 10.50.154.225 with SMTP id vr1mr8362933igb.70.1343975827599;
+	Thu, 02 Aug 2012 23:37:07 -0700 (PDT)
+Received: from [192.168.1.101] ([94.205.108.162])
+	by mx.google.com with ESMTPS id y5sm19128075igb.11.2012.08.02.23.37.05
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Thu, 02 Aug 2012 23:37:07 -0700 (PDT)
+From: Elvis Dowson <elvis.dowson@gmail.com>
+Date: Fri, 3 Aug 2012 10:37:01 +0400
+Message-Id: <6F91EA1C-23C7-4706-978F-C08C8CAEA0FA@gmail.com>
+To: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+Mime-Version: 1.0 (Apple Message framework v1278)
+X-Mailer: Apple Mail (2.1278)
+Subject: Switching between stable gcc versions
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: maniacbug <maniacbug@ymail.com>
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -50,15 +39,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 03 Aug 2012 03:17:47 -0000
+X-List-Received-Date: Fri, 03 Aug 2012 06:37:08 -0000
 Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
-As discussed in a previous thread (https://lists.yoctoproject.org/pipermail/yocto/2012-July/010540.html), pandaboard images fail to 
-boot now.  I also verified this.  Releases after denzil will drop support for pandaboard in the current state.
+Hi,
+      In poky master, the current version of gcc is 4.7.2. If I have a =
+situation, where I need to revert back to using gcc-4.5.1, how can I do =
+this cleanly?=20
 
-I filed a bug, 2884 (https://bugzilla.yoctoproject.org/show_bug.cgi?id=2884) against this issue.  It would be great to see 
-a fix.  Looks like the suggestion is to use an earlier GCC version for this hardware.
+Perhaps some of the issues that I'm facing with getting my root =
+filesystem image booting on my Xilinx ML507 development board (Virtex 5 =
+PowerPC 440 processor) might be related the new gcc-4.7.2 release.
 
-m.b
+At the moment, I've had to delete my entire build, switch to the =
+bernard-5.0.2 tag, and then attempt to try and build a new =
+rootfilesystem. Others have successfully built and got linux running on =
+my target board, with bernard-5.0, about a year ago.
 
+So, if it does indeed turn out that I need to use an older version of =
+gcc, for my target, what should I do, to continue working with the poky =
+master repo, but only use the older gcc-4.5.1 release?
+
+Some options that I can think of are:
+
+a. Reintroduce the older gcc-4.5.1 recipes in a local branch, but that =
+would mean others would not be able to reproduce my work on their =
+machines.
+
+b. Use bernard-5.0.2 to build the toolchain, and set things up so that =
+it uses that as an external toolchain.
+
+I don't think both the options are elegant, so if someone could offer =
+any suggestions it would be great.=20
+
+Best regards,
+
+Elvis Dowson=
 
