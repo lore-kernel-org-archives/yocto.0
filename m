@@ -1,37 +1,28 @@
-Return-Path: <elvis.dowson@gmail.com>
-Received: from mail-gg0-f176.google.com (mail-gg0-f176.google.com
-	[209.85.161.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AC773E0141D
-	for <yocto@yoctoproject.org>; Fri,  3 Aug 2012 03:25:48 -0700 (PDT)
-Received: by ggcs6 with SMTP id s6so742431ggc.35
-	for <yocto@yoctoproject.org>; Fri, 03 Aug 2012 03:25:48 -0700 (PDT)
+Return-Path: <vidal.develone@gmail.com>
+Received: from mail-gh0-f176.google.com (mail-gh0-f176.google.com
+	[209.85.160.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6146CE01447
+	for <yocto@yoctoproject.org>; Fri,  3 Aug 2012 06:19:25 -0700 (PDT)
+Received: by ghbz10 with SMTP id z10so949756ghb.35
+	for <yocto@yoctoproject.org>; Fri, 03 Aug 2012 06:19:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=subject:mime-version:content-type:from:in-reply-to:date:cc
-	:content-transfer-encoding:message-id:references:to:x-mailer;
-	bh=H6F+iz7/ACYb0Zt6Cr5gQxEgmQvOUkc2lIjOSVv2xJY=;
-	b=MWNOWr1KDlTlM3clEcl7pxJJdJwhqaGwNffnC/c3fZCIiUD3+tMgTMqZwFN1yiq3VY
-	aiWpK095ZGOJtRo4gNAlSZZv7lsd0KyFQZ0Y2HhwwAuBsBzzinb2CwspwxT3SRC1nFl/
-	g4Ev9Y3SaErmlR4CIrnWjOo2nAZn/jDJQzdwGzjvv8LHxudKPU4YDfP46QRmEwp4vewR
-	VZThBvWuFBnvgaTl240E/3LlXA8QhVZojOxQ99ixGIY8IzDmo9+mTrJTBkkTek3oNPKj
-	y7nrlgAVvsGz6c4d62p7tcPg1Z9E+Z9fCXUg5Ql+hXPjMP9OjOqPglUUAwkDtC57Gezw
-	beNw==
-Received: by 10.42.61.16 with SMTP id s16mr2076969ich.7.1343989547658;
-	Fri, 03 Aug 2012 03:25:47 -0700 (PDT)
-Received: from [192.168.1.101] ([94.205.108.162])
-	by mx.google.com with ESMTPS id rd8sm20525554igb.3.2012.08.03.03.25.45
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Fri, 03 Aug 2012 03:25:47 -0700 (PDT)
-Mime-Version: 1.0 (Apple Message framework v1278)
-From: Elvis Dowson <elvis.dowson@gmail.com>
-In-Reply-To: <9B26BBE3-825F-4B27-AD6C-B7C6330218E8@gmail.com>
-Date: Fri, 3 Aug 2012 14:25:41 +0400
-Message-Id: <5EAD2C42-085D-4A86-AB2C-AD40A6FFE0EC@gmail.com>
-References: <6F91EA1C-23C7-4706-978F-C08C8CAEA0FA@gmail.com>
-	<9B26BBE3-825F-4B27-AD6C-B7C6330218E8@gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
-X-Mailer: Apple Mail (2.1278)
-Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-Subject: Re: Switching between stable gcc versions
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=YnmN2PzhD4gt852npwm89kOBKF/0sL1FjjyjH6O/sO4=;
+	b=Uwfh+nvX6xGGXrZqqgtOq8AjzwOP5IxCr4BrXB7VOLHgT/Q4q5Vvnz6/gYRz5HZ7Fe
+	puFct2Ohg+MFb1am5foZw9Ry0CzSTpEoauB1h2j3jrhTOGwN2GadfNbpJxrdKWNVjQwB
+	Grz4Q+JGHPtFiqyhkfk9TFR9XGk4a1eu1ksxJcYnUhL7ln8PPjBM7T1y67mTTkAT+2vW
+	4Nfd45dUIoOMxRg+cSzsdH5piggDjW8rifiq7ZH9KGT279kFim2Kggb9HhHGRxX6XU+L
+	JCykF4PBb+pNKVR/HmwG2hNI0oDkzmb6RoEHVcC1Vq2p415nIvmVYaWtybBh3BvJx+Ei
+	YPHg==
+MIME-Version: 1.0
+Received: by 10.50.236.4 with SMTP id uq4mr3502447igc.18.1343999964411; Fri,
+	03 Aug 2012 06:19:24 -0700 (PDT)
+Received: by 10.64.39.39 with HTTP; Fri, 3 Aug 2012 06:19:24 -0700 (PDT)
+Date: Fri, 3 Aug 2012 07:19:24 -0600
+Message-ID: <CANwz6nwYGvD2Mn9grjTDp2D9BpD7Uv218-noNtRTMYLQSA4EKQ@mail.gmail.com>
+From: Edward Vidal <vidal.develone@gmail.com>
+To: yocto@yoctoproject.org
+Subject: build error pandaboard on master
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,47 +34,59 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 03 Aug 2012 10:25:48 -0000
-Content-Type: text/plain; charset=us-ascii
+X-List-Received-Date: Fri, 03 Aug 2012 13:19:25 -0000
+Content-Type: multipart/alternative; boundary=14dae9340e0f74f74404c65c602e
+
+--14dae9340e0f74f74404c65c602e
+Content-Type: text/plain; charset=ISO-8859-1
+
+Hello,
+I too am interested in the pandaboard with yacto.
+I added meta-ti to conf/bblayes.conf
+I have tried master and git branch 30fb40.
+Did you have to make any changes to meta-ti?
+I get the following
+ MACHINE=pandaboard bitbake -v core-image-sato
+Pseudo is not present but is required, building this first before the main
+build
+DEBUG: Removed the following variables from the environment: LESSOPEN,
+CVS_RSH, XDG_SEAT, XDG_VTNR, CCACHE_HASHDIR, SHLVL, HISTSIZE, BBFETCH2,
+XDG_RUNTIME_DIR, QT_GRAPHICSSYSTEM_CHECKED, XDG_SESSION_ID, BUILDDIR,
+HOSTNAME, HISTCONTROL, MAIL, LS_COLORS
+DEBUG: Found bblayers.conf (/home/ame/poky/build/conf/bblayers.conf)
+DEBUG: LOAD /home/ame/poky/build/conf/bblayers.conf
+DEBUG: Adding layer /home/vidal/poky/meta
+DEBUG: LOAD /home/vidal/poky/meta/conf/layer.conf
+DEBUG: Adding layer /home/vidal/poky/meta-yocto
+DEBUG: LOAD /home/vidal/poky/meta-yocto/conf/layer.conf
+DEBUG: Adding layer /home/vidal/poky/meta-ti
+DEBUG: LOAD /home/vidal/poky/meta-ti/conf/layer.conf
+ERROR: Unable to parse /home/vidal/poky/meta-ti/conf/layer.conf: [Errno 2]
+No such file or directory: '/home/vidal/poky/meta-ti/conf/layer.conf'
+Any help will be appreciated.
+thanks
+
+--14dae9340e0f74f74404c65c602e
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+Hello,<br>I too am interested in the pandaboard with yacto.<br>I added meta=
+-ti to conf/bblayes.conf<br>I have tried master and git branch 30fb40.<br>D=
+id you have to make any changes to meta-ti?<br>I get the following<br>=A0MA=
+CHINE=3Dpandaboard bitbake -v core-image-sato<br>
+Pseudo is not present but is required, building this first before the main =
+build<br>DEBUG: Removed the following variables from the environment: LESSO=
+PEN, CVS_RSH, XDG_SEAT, XDG_VTNR, CCACHE_HASHDIR, SHLVL, HISTSIZE, BBFETCH2=
+, XDG_RUNTIME_DIR, QT_GRAPHICSSYSTEM_CHECKED, XDG_SESSION_ID, BUILDDIR, HOS=
+TNAME, HISTCONTROL, MAIL, LS_COLORS<br>
+DEBUG: Found bblayers.conf (/home/ame/poky/build/conf/bblayers.conf)<br>DEB=
+UG: LOAD /home/ame/poky/build/conf/bblayers.conf<br>DEBUG: Adding layer /ho=
+me/vidal/poky/meta<br>DEBUG: LOAD /home/vidal/poky/meta/conf/layer.conf<br>
+DEBUG: Adding layer /home/vidal/poky/meta-yocto<br>DEBUG: LOAD /home/vidal/=
+poky/meta-yocto/conf/layer.conf<br>DEBUG: Adding layer /home/vidal/poky/met=
+a-ti<br>DEBUG: LOAD /home/vidal/poky/meta-ti/conf/layer.conf<br>ERROR: Unab=
+le to parse /home/vidal/poky/meta-ti/conf/layer.conf: [Errno 2] No such fil=
+e or directory: &#39;/home/vidal/poky/meta-ti/conf/layer.conf&#39;<br>
+Any help will be appreciated.<br>thanks <br><br>
 
-On Aug 3, 2012, at 2:19 PM, Khem Raj wrote:
-
->=20
-> On Aug 2, 2012, at 11:37 PM, Elvis Dowson <elvis.dowson@gmail.com> =
-wrote:
->=20
->> Hi,
->>     In poky master, the current version of gcc is 4.7.2. If I have a =
-situation, where I need to revert back to using gcc-4.5.1, how can I do =
-this cleanly?=20
->>=20
->> Perhaps some of the issues that I'm facing with getting my root =
-filesystem image booting on my Xilinx ML507 development board (Virtex 5 =
-PowerPC 440 processor) might be related the new gcc-4.7.2 release.
->=20
->=20
-> I think you should really debug it. such statements are very coarse =
-grained.
-> you have to add debug messages to various stages and see where is it =
-hanging.
-> may be build a static bash and use that as init and debug the init =
-sequence from there.
-
-I think this might be the best course of action. Perhaps first start =
-with a simple helloworld program, as an kernel boot argument for =
-init=3D/hello, just to make sure it gets running, and then put =
-init=3D/bin/sh, and then add some printk statements to see where it is =
-progressing. Or add kgdb support into the kernel and try the eclipse ADT =
-plugin and continue from there.=20
-
-I guess that might be the best way forward for the long term. Ok, will =
-give that a shot.
-
-Best regards,
-
-Elvis Dowson
-
-
+--14dae9340e0f74f74404c65c602e--
