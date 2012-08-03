@@ -1,34 +1,35 @@
-Return-Path: <elvis.dowson@gmail.com>
+Return-Path: <raj.khem@gmail.com>
 Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
 	[209.85.160.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7BDBDE0144B
-	for <yocto@yoctoproject.org>; Fri,  3 Aug 2012 13:15:04 -0700 (PDT)
-Received: by pbbrq8 with SMTP id rq8so2193034pbb.35
-	for <yocto@yoctoproject.org>; Fri, 03 Aug 2012 13:15:03 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A9FB3E0144B
+	for <yocto@yoctoproject.org>; Fri,  3 Aug 2012 13:15:35 -0700 (PDT)
+Received: by pbbrq8 with SMTP id rq8so2193764pbb.35
+	for <yocto@yoctoproject.org>; Fri, 03 Aug 2012 13:15:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:mime-version:content-type:subject:date:in-reply-to:to
-	:references:message-id:x-mailer;
-	bh=ryNlL41KXzE3RX1MbLUrv3i1hlD3AdTq+3zruH6bNaU=;
-	b=u4iHj6YHmZHla7Seq5LtBEzk/PEjMHFGLZG7s0iVOAiU8dcQkOHwCrmJOYQBQpBDa3
-	jvSAvGME65/TjU67XtWrXcTRlaByZ5iMm9Y1uo7EYvbmUFIbciahJPZWvljIDj8s2TrW
-	9kA1EQVzMDCG/gEIAhw+u+NTMxnDBls6EJhn6JGxrzzvbee+FDQS40dAlCfHCcGa2T4k
-	pahMmdIPnfir0NG+AEfnZuyMKKlUxYKd7xPjYc05HxWvJhXzS0rfSwfzNNeBfRbWf4Uy
-	tMu29TtplfeelyMg0YAk6pOaA05IjimUMtTkynDvfKnMlgq5Td3EyR9J2sOOR7lDeSpG
-	n7Jw==
-Received: by 10.68.225.231 with SMTP id rn7mr177521pbc.13.1344024903576;
-	Fri, 03 Aug 2012 13:15:03 -0700 (PDT)
-Received: from [192.168.1.101] ([94.205.108.162])
-	by mx.google.com with ESMTPS id ku7sm3528695pbc.31.2012.08.03.13.15.01
+	h=content-type:mime-version:subject:from:in-reply-to:date:cc
+	:message-id:references:to:x-mailer;
+	bh=MmKPTiX3BNVxjHs1s2X4RjscvgKnzsA9kOi2GLymxzs=;
+	b=lYL6+1RVkbIQUCPHti81Dc4dQdlNSv95RaVH0gTbiid++fu4yaUbr92jCwmxRJQC6b
+	JOWP9FHndwJ0dZosIE0/MpW1tGjdOS6JhndIvpj9NnfrehXnAGGRhIdpM/SPrgKRwThq
+	toyGXIftLJwvW7bwTES7JzSqw1S9iN0ykwdt2ri1vXTRhA5Fo1RdiOnf04W0fop4h9Ul
+	s4Rpc5cPr8H98mzfZnjgno6CyPpqtYwqw9bS8QbulcMSeH6Mg4yW/mMuQdlwKB5xExfp
+	ZLNfeaNZ5PIslUZr3A5VpWACSLe0vpes7FLXo43e8slEmUjiAUUivCZsmgA9UBnGie2X
+	mfdg==
+Received: by 10.68.232.103 with SMTP id tn7mr180052pbc.86.1344024935439;
+	Fri, 03 Aug 2012 13:15:35 -0700 (PDT)
+Received: from kraj-sslvpn-nc.jnpr.net (natint3.juniper.net. [66.129.224.36])
+	by mx.google.com with ESMTPS id tq4sm106556pbc.11.2012.08.03.13.15.33
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Fri, 03 Aug 2012 13:15:02 -0700 (PDT)
-From: Elvis Dowson <elvis.dowson@gmail.com>
-Mime-Version: 1.0 (Apple Message framework v1278)
-Date: Sat, 4 Aug 2012 00:14:57 +0400
+	Fri, 03 Aug 2012 13:15:34 -0700 (PDT)
+Mime-Version: 1.0 (Mac OS X Mail 6.0 \(1485\))
+From: Khem Raj <raj.khem@gmail.com>
 In-Reply-To: <1070990E-BAFD-408C-8EB8-37F29ADB87EB@gmail.com>
-To: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+Date: Fri, 3 Aug 2012 13:15:32 -0700
+Message-Id: <CB6BA0F1-3C99-4A6A-84F6-6EFE4CCADAA4@gmail.com>
 References: <1070990E-BAFD-408C-8EB8-37F29ADB87EB@gmail.com>
-Message-Id: <F4872568-00C0-4C3A-AEEF-28DED9500EE0@gmail.com>
-X-Mailer: Apple Mail (2.1278)
+To: Elvis Dowson <elvis.dowson@gmail.com>
+X-Mailer: Apple Mail (2.1485)
+Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
 Subject: Re: meta-toolchain error with latest gcc commit: rpm-createsolvedb.py: command not found
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -41,174 +42,66 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 03 Aug 2012 20:15:04 -0000
+X-List-Received-Date: Fri, 03 Aug 2012 20:15:35 -0000
 Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_CFB0F4C0-C518-4D3F-B2B9-E98EB56F87F3"
+	boundary="Apple-Mail=_B981211C-217E-4A07-827A-F93DA9B8E39E"
 
---Apple-Mail=_CFB0F4C0-C518-4D3F-B2B9-E98EB56F87F3
+--Apple-Mail=_B981211C-217E-4A07-827A-F93DA9B8E39E
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain;
 	charset=us-ascii
 
-Hi,
 
-On Aug 3, 2012, at 11:07 PM, Elvis Dowson wrote:
+On Aug 3, 2012, at 12:07 PM, Elvis Dowson <elvis.dowson@gmail.com> =
+wrote:
 
+>=20
 > When I run bitbake meta-toolchain, I get the following error: =
 rpm-createsolvedb.py: command not found
 >=20
-> NOTE: Running task 2060 of 2061 (ID: 7, =
-/tool/yocto/poky/meta/recipes-core/meta/meta-toolchain.bb, =
-do_populate_sdk)
-> NOTE: package meta-toolchain-1.0-r7: task do_populate_sdk: Started
-> ERROR: Function failed: populate_sdk_image (see =
-/tool/yocto/poky/build/tmp/work/ppc440-poky-linux/meta-toolchain-1.0-r7/te=
-mp/log.do_populate_sdk.48334 for further information)
-> ERROR: Logfile of failure stored in: =
-/tool/yocto/poky/build/tmp/work/ppc440-poky-linux/meta-toolchain-1.0-r7/te=
-mp/log.do_populate_sdk.48334
-> Log data follows:
-> | DEBUG: Executing python function do_populate_sdk
-> | DEBUG: Executing shell function populate_sdk_image
-> | Generating solve db for =
-/tool/yocto/poky/build/tmp/deploy/rpm/ppc440...
-> | =
-/tool/yocto/poky/build/tmp/work/ppc440-poky-linux/meta-toolchain-1.0-r7/te=
-mp/run.populate_sdk_image.48334: line 610: rpm-createsolvedb.py: command =
-not found
-> | DEBUG: Python function do_populate_sdk finished
-> | ERROR: Function failed: populate_sdk_image (see =
-/tool/yocto/poky/build/tmp/work/ppc440-poky-linux/meta-toolchain-1.0-r7/te=
-mp/log.do_populate_sdk.48334 for further information)
-> NOTE: package meta-toolchain-1.0-r7: task do_populate_sdk: Failed
-> ERROR: Task 7 =
-(/tool/yocto/poky/meta/recipes-core/meta/meta-toolchain.bb, =
-do_populate_sdk) failed with exit code '1'
-> NOTE: Tasks Summary: Attempted 2060 tasks of which 1293 didn't need to =
-be rerun and 1 failed.
->=20
-> Summary: 1 task failed:
->   /tool/yocto/poky/meta/recipes-core/meta/meta-toolchain.bb, =
-do_populate_sdk
-> Summary: There was 1 WARNING message shown.
-> Summary: There was 1 ERROR message shown, returning a non-zero exit =
-code.
->=20
->=20
-> the log is=20
->=20
-> DEBUG: Executing python function do_populate_sdk
-> DEBUG: Executing shell function populate_sdk_image
-> Generating solve db for =
-/tool/yocto/poky/build/tmp/deploy/rpm/ppc440...
-> =
-/tool/yocto/poky/build/tmp/work/ppc440-poky-linux/meta-toolchain-1.0-r7/te=
-mp/run.populate_sdk_image.48334: line 610: rpm-createsolvedb.py: command =
-not found
-> DEBUG: Python function do_populate_sdk finished
-> ERROR: Function failed: populate_sdk_image (see =
-/tool/yocto/poky/build/tmp/work/ppc440-poky-linux/meta-toolchain-1.0-r7/te=
-mp/log.do_populate_sdk.48334 for further information)
 >=20
 
-I also notice that if I run=20
 
-bitbake core-image-minimal first, and then run bitbake meta-toolchain, I =
-don't get an error.=20
+yes I have similar problems. see
 
-What should be done to fix this, so that it runs correctly the first =
-time, if I run bitbake meta-toolchain from a clean build?
+=
+http://lists.linuxtogo.org/pipermail/openembedded-core/2012-August/027214.=
+html=
 
-Elvis Dowson
-
-
---Apple-Mail=_CFB0F4C0-C518-4D3F-B2B9-E98EB56F87F3
+--Apple-Mail=_B981211C-217E-4A07-827A-F93DA9B8E39E
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/html;
 	charset=us-ascii
 
-<html><head></head><body style=3D"word-wrap: break-word; =
+<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
+charset=3Dus-ascii"></head><body style=3D"word-wrap: break-word; =
 -webkit-nbsp-mode: space; -webkit-line-break: after-white-space; =
-">Hi,<div><br><div><div>On Aug 3, 2012, at 11:07 PM, Elvis Dowson =
+"><br><div><div>On Aug 3, 2012, at 12:07 PM, Elvis Dowson &lt;<a =
+href=3D"mailto:elvis.dowson@gmail.com">elvis.dowson@gmail.com</a>&gt; =
 wrote:</div><br class=3D"Apple-interchange-newline"><blockquote =
-type=3D"cite"><div style=3D"word-wrap: break-word; -webkit-nbsp-mode: =
-space; -webkit-line-break: after-white-space; "><div>When I run bitbake =
-meta-toolchain, I get the following error:&nbsp;rpm-createsolvedb.py: =
-command not found</div><div><br></div><div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">NOTE: Running task =
-2060 of 2061 (ID: 7, =
-/tool/yocto/poky/meta/recipes-core/meta/meta-toolchain.bb, =
-do_populate_sdk)</font></div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2">NOTE: package meta-toolchain-1.0-r7: task =
-do_populate_sdk: Started</font></div><div><font class=3D"Apple-style-span"=
- face=3D"Monaco" size=3D"2">ERROR: Function failed: populate_sdk_image =
-(see =
-/tool/yocto/poky/build/tmp/work/ppc440-poky-linux/meta-toolchain-1.0-r7/te=
-mp/log.do_populate_sdk.48334 for further =
-information)</font></div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2">ERROR: Logfile of failure stored in: =
-/tool/yocto/poky/build/tmp/work/ppc440-poky-linux/meta-toolchain-1.0-r7/te=
-mp/log.do_populate_sdk.48334</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">Log data =
-follows:</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco"=
- size=3D"2">| DEBUG: Executing python function =
-do_populate_sdk</font></div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2">| DEBUG: Executing shell function =
-populate_sdk_image</font></div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2">| Generating solve db for =
-/tool/yocto/poky/build/tmp/deploy/rpm/ppc440...</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">| =
-/tool/yocto/poky/build/tmp/work/ppc440-poky-linux/meta-toolchain-1.0-r7/te=
-mp/run.populate_sdk_image.48334: line 610: rpm-createsolvedb.py: command =
-not found</font></div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2">| DEBUG: Python function do_populate_sdk =
-finished</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco"=
- size=3D"2">| ERROR: Function failed: populate_sdk_image (see =
-/tool/yocto/poky/build/tmp/work/ppc440-poky-linux/meta-toolchain-1.0-r7/te=
-mp/log.do_populate_sdk.48334 for further =
-information)</font></div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2">NOTE: package meta-toolchain-1.0-r7: task =
-do_populate_sdk: Failed</font></div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2">ERROR: Task 7 =
-(/tool/yocto/poky/meta/recipes-core/meta/meta-toolchain.bb, =
-do_populate_sdk) failed with exit code '1'</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">NOTE: Tasks =
-Summary: Attempted 2060 tasks of which 1293 didn't need to be rerun and =
-1 failed.</font></div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2"><br></font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">Summary: 1 task =
-failed:</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
-size=3D"2">&nbsp; =
-/tool/yocto/poky/meta/recipes-core/meta/meta-toolchain.bb, =
-do_populate_sdk</font></div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2">Summary: There was 1 WARNING message =
-shown.</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
-size=3D"2">Summary: There was 1 ERROR message shown, returning a =
-non-zero exit =
-code.</font></div></div><div><br></div><div><br></div><div>the log =
-is&nbsp;</div><div><br></div><div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2">DEBUG: Executing python function =
-do_populate_sdk</font></div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2">DEBUG: Executing shell function =
-populate_sdk_image</font></div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2">Generating solve db for =
-/tool/yocto/poky/build/tmp/deploy/rpm/ppc440...</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" =
-size=3D"2">/tool/yocto/poky/build/tmp/work/ppc440-poky-linux/meta-toolchai=
-n-1.0-r7/temp/run.populate_sdk_image.48334: line 610: =
-rpm-createsolvedb.py: command not found</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">DEBUG: Python =
-function do_populate_sdk finished</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">ERROR: Function =
-failed: populate_sdk_image (see =
-/tool/yocto/poky/build/tmp/work/ppc440-poky-linux/meta-toolchain-1.0-r7/te=
-mp/log.do_populate_sdk.48334 for further =
-information)</font></div></div><div><br></div></div></blockquote><br></div=
-><div>I also notice that if I run&nbsp;</div><div><br></div><div>bitbake =
-core-image-minimal first, and then run bitbake meta-toolchain, I don't =
-get an error.&nbsp;</div><div><br></div><div>What should be done to fix =
-this, so that it runs correctly the first time, if I run bitbake =
-meta-toolchain from a clean build?</div><div><br></div><div>Elvis =
-Dowson</div><br></div></body></html>=
+type=3D"cite"><div style=3D"font-family: Helvetica; font-size: medium; =
+font-style: normal; font-variant: normal; font-weight: normal; =
+letter-spacing: normal; line-height: normal; orphans: 2; text-align: =
+-webkit-auto; text-indent: 0px; text-transform: none; white-space: =
+normal; widows: 2; word-spacing: 0px; -webkit-text-size-adjust: auto; =
+-webkit-text-stroke-width: 0px; "><br =
+class=3D"Apple-interchange-newline">When I run bitbake meta-toolchain, I =
+get the following error:&nbsp;rpm-createsolvedb.py: command not =
+found</div><div style=3D"font-family: Helvetica; font-size: medium; =
+font-style: normal; font-variant: normal; font-weight: normal; =
+letter-spacing: normal; line-height: normal; orphans: 2; text-align: =
+-webkit-auto; text-indent: 0px; text-transform: none; white-space: =
+normal; widows: 2; word-spacing: 0px; -webkit-text-size-adjust: auto; =
+-webkit-text-stroke-width: 0px; "><br></div><div style=3D"font-family: =
+Helvetica; font-size: medium; font-style: normal; font-variant: normal; =
+font-weight: normal; letter-spacing: normal; line-height: normal; =
+orphans: 2; text-align: -webkit-auto; text-indent: 0px; text-transform: =
+none; white-space: normal; widows: 2; word-spacing: 0px; =
+-webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; "><br =
+class=3D"Apple-interchange-newline"></div></blockquote></div><br><div><br>=
+</div><div>yes I have similar problems. see</div><div><br></div><div><a =
+href=3D"http://lists.linuxtogo.org/pipermail/openembedded-core/2012-August=
+/027214.html">http://lists.linuxtogo.org/pipermail/openembedded-core/2012-=
+August/027214.html</a></div></body></html>=
 
---Apple-Mail=_CFB0F4C0-C518-4D3F-B2B9-E98EB56F87F3--
+--Apple-Mail=_B981211C-217E-4A07-827A-F93DA9B8E39E--
