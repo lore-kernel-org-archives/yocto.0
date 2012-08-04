@@ -1,24 +1,31 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-ee0-f48.google.com (mail-ee0-f48.google.com [74.125.83.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E2278E01454
-	for <yocto@yoctoproject.org>; Sat,  4 Aug 2012 10:13:28 -0700 (PDT)
-Received: by eekd41 with SMTP id d41so503307eek.35
-	for <yocto@yoctoproject.org>; Sat, 04 Aug 2012 10:13:27 -0700 (PDT)
+Return-Path: <elvis.dowson@gmail.com>
+Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
+	[209.85.160.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A87E0E01454
+	for <yocto@yoctoproject.org>; Sat,  4 Aug 2012 12:16:38 -0700 (PDT)
+Received: by pbbrq8 with SMTP id rq8so3853385pbb.35
+	for <yocto@yoctoproject.org>; Sat, 04 Aug 2012 12:16:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=g3XSHxSHDH/fmSRwwD/n2uiMA4NcNuAbFnDPAE0FKiE=;
-	b=lZPT84nQnrEjESTgtKxe7t+rkDcUi9nbbLeeCDzDk50jYcHRXZDQl9M7C4Al7VLhpg
-	dn0lLuoHNiCpvkzZFI/yrcupLLLoNJKcIrzI79nT4v1K7/KwRrS4TB1KPjFrnnS2g9ps
-	b/hd5iA0jaPh5CMgDUD8dRStuvQUGPO8PvQUjeLhpwDzw9A8CXm3LxNFDQJEngkSnCyy
-	X7Zsa1AfzSd9lOhzMXxyMLV5scdDynp2zCsbes3WbY6MeZTUv+YQP+aIwyQpb4XZGg3B
-	ijJvVgL/quk23JepLTTQDkvnbigSzAaWavR5p/chNB1TQXru9+4KJOkIyI5BIOhiNkg4
-	5pEw==
-Received: by 10.14.213.137 with SMTP id a9mr6634838eep.38.1344100407925; Sat,
-	04 Aug 2012 10:13:27 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.14.97.141 with HTTP; Sat, 4 Aug 2012 10:12:57 -0700 (PDT)
-In-Reply-To: <5EE8E4F2-1FD4-47B7-A2A1-94BFBC4A46F8@gmail.com>
+	h=subject:mime-version:content-type:from:in-reply-to:date:cc
+	:content-transfer-encoding:message-id:references:to:x-mailer;
+	bh=64SNG4rouvMsZcCijs3VDVHazkm7eT8NPKdPSAaSdcE=;
+	b=pI0OLu8RRNCIp0oAW2iRzMLqQlPnyObFzJs6e/4ADfeSLOS+T1MEwseByNj1cfqgAO
+	LxwAPFg8qZTF65/FPKXHqWePE8pnCFGG5Fett70JNflNJL3mQn8nLslmKuUfa+uYwOaK
+	c545gnwCoAHGz0AUvvRtN2mVnUSAFWryaUZN9i651fBWm/I2PuUCOm8LqQ825MDNGMy/
+	a7HaMlBwEGFaMgufRo6cmYLs65ePLqiiN6CKFkNkUAJcxnQ7x4fSey07vtv8m63zXlJR
+	waBy3QcYYiUPubIcRLo/XsDu8KAE7Z1+/NzM6K9hq2rGX6nKCmfLK8I9fVc9tPEUm97O
+	NaJA==
+Received: by 10.66.73.132 with SMTP id l4mr7264602pav.30.1344107798448;
+	Sat, 04 Aug 2012 12:16:38 -0700 (PDT)
+Received: from [192.168.1.101] ([94.205.108.162])
+	by mx.google.com with ESMTPS id pq1sm5461244pbb.3.2012.08.04.12.16.36
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Sat, 04 Aug 2012 12:16:37 -0700 (PDT)
+Mime-Version: 1.0 (Apple Message framework v1278)
+From: Elvis Dowson <elvis.dowson@gmail.com>
+In-Reply-To: <CAMKF1spzF44X-iKuz2UCaXfX8Dbf59BSJcG=0nodqvRUpQnmFw@mail.gmail.com>
+Date: Sat, 4 Aug 2012 23:16:32 +0400
+Message-Id: <C72B7149-B2B8-46D6-A270-23BB55DFC733@gmail.com>
 References: <F1A84E50-21BF-4E9B-BC38-545D72F59A70@gmail.com>
 	<654A270B-9C72-4BEA-B51D-79E4C6441594@gmail.com>
 	<15982971-CA6D-4E45-833F-AC4E5AA95331@gmail.com>
@@ -28,10 +35,9 @@ References: <F1A84E50-21BF-4E9B-BC38-545D72F59A70@gmail.com>
 	<299D147C-2889-4DE7-9972-A81315B5AC3B@gmail.com>
 	<CAMKF1sq1AkaPnTqfijxH4MtN2_YKsHMLQ0rVdX_ObEBxVkS3tQ@mail.gmail.com>
 	<5EE8E4F2-1FD4-47B7-A2A1-94BFBC4A46F8@gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Sat, 4 Aug 2012 10:12:57 -0700
-Message-ID: <CAMKF1spzF44X-iKuz2UCaXfX8Dbf59BSJcG=0nodqvRUpQnmFw@mail.gmail.com>
-To: Elvis Dowson <elvis.dowson@gmail.com>
+	<CAMKF1spzF44X-iKuz2UCaXfX8Dbf59BSJcG=0nodqvRUpQnmFw@mail.gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
+X-Mailer: Apple Mail (2.1278)
 Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
 Subject: Re: Unable to get serial console login prompt - PowerPC 440 Virtex 5 processor
 X-BeenThere: yocto@yoctoproject.org
@@ -45,32 +51,17 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 04 Aug 2012 17:13:29 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Sat, 04 Aug 2012 19:16:38 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
 
-On Sat, Aug 4, 2012 at 9:53 AM, Elvis Dowson <elvis.dowson@gmail.com> wrote:
-> Hi,
->
-> On Aug 4, 2012, at 8:31 PM, Khem Raj wrote:
->
->> On Sat, Aug 4, 2012 at 8:12 AM, Elvis Dowson <elvis.dowson@gmail.com> wrote:
->>> /lib/ld.so.1
->>
->> does this file exist on target ?
->
-> Yes, it does. It is a soft link to /lib/ld-2.16.so (136.4kb)
->
-> Both files exist on the target.
->
-> What should I do next?
->
+Hi Khem,
 
-Try to see if /lib/ld.so.1 runs ok ?
+On Aug 4, 2012, at 9:12 PM, Khem Raj wrote:
 
-Then try
+> Try to see if /lib/ld.so.1 runs ok ?
 
-LD_DEBUG=all /lib/ld.so.1 ./helloworlddynamic
-and see how far it goes.
+How can I run /lib/ld.so.1?
 
-> Elvis Dowson
+Elvis Dowson
 
