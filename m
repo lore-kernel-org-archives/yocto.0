@@ -1,27 +1,50 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ECA64E0027F
-	for <yocto@yoctoproject.org>; Mon,  6 Aug 2012 11:05:40 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 06 Aug 2012 11:05:40 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,352,1309762800"; d="scan'208";a="176636609"
-Received: from unknown (HELO helios.localnet) ([10.252.121.59])
-	by orsmga001.jf.intel.com with ESMTP; 06 Aug 2012 11:05:39 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Kevin Strasser <kevin.strasser@linux.intel.com>
-Date: Mon, 06 Aug 2012 19:05:39 +0100
-Message-ID: <1785460.8y8G3QQZyM@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.9 (Linux/3.2.0-27-generic-pae; KDE/4.9.0; i686; ; )
-In-Reply-To: <1343928013-3514-1-git-send-email-kevin.strasser@linux.intel.com>
-References: <1343928013-3514-1-git-send-email-kevin.strasser@linux.intel.com>
+Return-Path: <B29882@freescale.com>
+Received: from ch1outboundpool.messaging.microsoft.com
+	(ch1ehsobe006.messaging.microsoft.com [216.32.181.186])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A1E2BE002A6
+	for <yocto@yoctoproject.org>; Mon,  6 Aug 2012 12:45:08 -0700 (PDT)
+Received: from mail4-ch1-R.bigfish.com (10.43.68.226) by
+	CH1EHSOBE004.bigfish.com (10.43.70.54) with Microsoft SMTP Server id
+	14.1.225.23; Mon, 6 Aug 2012 19:45:07 +0000
+Received: from mail4-ch1 (localhost [127.0.0.1])	by mail4-ch1-R.bigfish.com
+	(Postfix) with ESMTP id D8CB732048D;
+	Mon,  6 Aug 2012 19:45:07 +0000 (UTC)
+X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null); IPV:NLI;
+	H:mail.freescale.net; RD:none; EFVD:NLI
+X-SpamScore: -4
+X-BigFish: VS-4(zz98dI9371I1be0I1443I1432Izz1202hzz8275dhz2dh2a8h668h839h8e2h8e3h946hf0ah107ah10d2hbe9i)
+Received: from mail4-ch1 (localhost.localdomain [127.0.0.1]) by mail4-ch1
+	(MessageSwitch) id 1344282306238654_9776;
+	Mon,  6 Aug 2012 19:45:06 +0000 (UTC)
+Received: from CH1EHSMHS009.bigfish.com (snatpool2.int.messaging.microsoft.com
+	[10.43.68.234])	by mail4-ch1.bigfish.com (Postfix) with ESMTP id
+	2ED88300047; Mon,  6 Aug 2012 19:45:06 +0000 (UTC)
+Received: from mail.freescale.net (70.37.183.190) by CH1EHSMHS009.bigfish.com
+	(10.43.70.9) with Microsoft SMTP Server (TLS) id 14.1.225.23;
+	Mon, 6 Aug 2012 19:45:05 +0000
+Received: from 039-SN1MPN1-001.039d.mgd.msft.net ([169.254.1.41]) by
+	039-SN1MMR1-005.039d.mgd.msft.net ([::1]) with mapi id 14.02.0298.005;
+	Mon, 6 Aug 2012 14:45:04 -0500
+From: McClintock Matthew-B29882 <B29882@freescale.com>
+To: Tim Verstraete <Tim.Verstraete@medecbenelux.be>
+Thread-Topic: [yocto] image recipe gives error: has no buildable providers
+Thread-Index: AQHNdAv5hzqRQbaRFkinn+cBPgZwWQ==
+Date: Mon, 6 Aug 2012 19:45:03 +0000
+Message-ID: <CAEsOVNewE-5HUwwe5euHztTLq1piN8fCbnh03gO4CeUFeQaQKA@mail.gmail.com>
+References: <4439C3C0562087488F139C696CD862A72C1CD6@SBS-MEDEC.medecbenelux.local>
+In-Reply-To: <4439C3C0562087488F139C696CD862A72C1CD6@SBS-MEDEC.medecbenelux.local>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [70.112.201.132]
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH] webmin: remove nfsd check from exports-lib.pl
+X-OriginatorOrg: freescale.com
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: image recipe gives error: has no buildable providers
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: McClintock Matthew-B29882 <B29882@freescale.com>
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -30,102 +53,161 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 06 Aug 2012 18:05:41 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Mon, 06 Aug 2012 19:45:08 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="Windows-1252"
+Content-ID: <07275ACD03DAC14C960A26C55B202282@mgd.freescale.com>
+Content-Transfer-Encoding: quoted-printable
 
-On Thursday 02 August 2012 10:20:13 Kevin Strasser wrote:
-> Webmin expects the userspace version of nsfd and attempts to
-> find its pid when applying a new set of nfs exports. This check
-> fails because baryon is configured to install the kernelspace
-> version. In result the command that is assigned to apply_cmd
-> will never be executed, and the contents of /exports are not
-> successfully exported.
-> 
-> Fixes [YOCTO #1719]
-> 
-> Signed-off-by: Kevin Strasser <kevin.strasser@linux.intel.com>
-> ---
->  recipes-extended/webmin/files/exports-lib.pl.patch |   32
-> ++++++++++++++++++++ recipes-extended/webmin/webmin_1.570.bb            |  
->  3 +-
->  2 files changed, 34 insertions(+), 1 deletion(-)
->  create mode 100644 recipes-extended/webmin/files/exports-lib.pl.patch
-> 
-> diff --git a/recipes-extended/webmin/files/exports-lib.pl.patch
-> b/recipes-extended/webmin/files/exports-lib.pl.patch new file mode 100644
-> index 0000000..140ae7e
-> --- /dev/null
-> +++ b/recipes-extended/webmin/files/exports-lib.pl.patch
-> @@ -0,0 +1,32 @@
-> +From 7eba4c98c6953fa6ea76c1620d19524bcfa3a576 Mon Sep 17 00:00:00 2001
-> +From: Kevin Strasser <kevin.strasser@linux.intel.com>
-> +Date: Wed, 1 Aug 2012 11:51:26 -0700
-> +Subject: [PATCH] nfs export: remove nfsd check
-> +
-> +nfsd runs as a kernel process and does not have a pid. This means
-> +that the command assigned to apply_cmd will never be executed when
-> +the user tries to apply changes to nfs exports.
-> +
-> +Upstream-Status: Inappropriate [config]
-> +
-> +Signed-off-by: Kevin Strasser <kevin.strasser@linux.intel.com>
-> +---
-> + exports/exports-lib.pl |    2 +-
-> + 1 file changed, 1 insertion(+), 1 deletion(-)
-> +
-> +diff --git a/exports/exports-lib.pl b/exports/exports-lib.pl
-> +index 22891c0..1c67494 100755
-> +--- a/exports/exports-lib.pl
-> ++++ b/exports/exports-lib.pl
-> +@@ -273,7 +273,7 @@ return !&has_command("rpc.nfsd") &&
-> !&has_command("nfsd") && + sub restart_mountd
-> + {
-> + # Try exportfs -r first
-> +-if ($config{'apply_cmd'} && &find_byname("nfsd") &&
-> &find_byname("mountd")) { ++if ($config{'apply_cmd'} &&
-> &find_byname("mountd")) {
-> + 	local $out = &backquote_logged("$config{'apply_cmd'} 2>&1 </dev/null");
-> + 	if (!$? && $out !~ /invalid|error|failed/i) {
-> + 		# Looks like it worked!
-> +--
-> +1.7.9.5
-> +
-> diff --git a/recipes-extended/webmin/webmin_1.570.bb
-> b/recipes-extended/webmin/webmin_1.570.bb index b6c4965..8cda8f0 100644
-> --- a/recipes-extended/webmin/webmin_1.570.bb
-> +++ b/recipes-extended/webmin/webmin_1.570.bb
-> @@ -9,7 +9,7 @@ RDEPENDS_${PN} += "perl-module-warnings
-> perl-module-warnings-register perl-modul RDEPENDS_${PN} +=
-> "perl-module-fcntl perl-module-tie-hash perl-module-vars
-> perl-module-time-local perl-module-config perl-module-constant"
-> RDEPENDS_${PN} += "perl-module-file perl-module-file-glob
-> perl-module-file-copy perl-module-sdbm perl-module-sdbm-file
-> perl-module-timelocal perl-module-feature"
-> 
-> -PR = "r11"
-> +PR = "r12"
-> 
->  SRC_URI = "${SOURCEFORGE_MIRROR}/webadmin/webmin-${PV}.tar.gz \
->            file://setup.sh \
-> @@ -19,6 +19,7 @@ SRC_URI =
-> "${SOURCEFORGE_MIRROR}/webadmin/webmin-${PV}.tar.gz \
-> file://remove-startup-option.patch \
->            file://disable-version-check.patch \
->            file://nfs-export.patch \
-> +          file://exports-lib.pl.patch \
->            file://mount-excludefs.patch \
->            file://samba-config-fix.patch \
->            file://proftpd-config-fix.patch \
+On Mon, Aug 6, 2012 at 5:47 AM, Tim Verstraete
+<Tim.Verstraete@medecbenelux.be> wrote:
+> Hi,
+>
+>
+>
+> I am making my own recipe for an image based on core-image-core and has b=
+een
+> generated by HOB.
+>
+>
+>
+> So after I have made HOB selection (to try it out) I saved the HOB files =
+and
+> created my own BSP.
+>
+>
+>
+> I went to yocto-bsp create test arm and got a BSP directory. I adapted th=
+e
+> machine file, placed the bb file from HOB in the recipe-bsp directory wit=
+h
+> export image_basename =3D =93test-image=94 and made a project directory t=
+hat calls
+> that machine.
+>
+>
+>
+> So I did the following:
+>
+> Step1: create my package selection with HOB + save template
+>
+> Step2: create BSP and put bb file in recipe-bsp
+>
+> Step3: create a project with my bsp added in bblayers.conf
+>
+> Step4: try to build my image
+>
+>
+>
+> I then want to run bitbake test-image.bb and get the following error: Err=
+or:
+> Required build target =91test-image=92 has no buildable providers. Missin=
+g or
+> unbuildable dependency chain was: [test-image]
+>
+>
+>
+> No what does that error message mean and what am I missing to complete th=
+is.
 
-Merged to meta-baryon (with a typo fix nsfd -> nfsd in the commit message), 
-thanks.
+Seems probably that bitbake is not finding / parsing your recipe.
+There are some items in the layer conf that tell bitbake what
+directories to look for recipes in.. is test-image in one of these?
 
-Cheers,
-Paul
+-M
 
--- 
+>
+>
+>
+> Thanks in advance,
+>
+>
+>
+> Kind regards,
+>
+>
+>
+> Tim
+>
+>
+>
+> P.S. this is the bb file I use for the image generation:
+>
+>
+>
+> inherit core-image
+>
+>
+>
+> DEPENDS =3D "speex busybox libproxy matchbox-desktop pth perl xf86miscpro=
+to
+> kbd sysvinit liberation-fonts libxtst librsvg file popt gdbm shadow libic=
+e
+> systemd libxdmcp vte kbproto gcc-runtime libdaemon xset fontconfig
+> gdk-pixbuf rgb consolekit module-init-tools-cross tiff libxt pixman
+> libxcursor tinylogin freetype randrproto xf86-input-keyboard libusb-compa=
+t
+> gnome-common python python-dbus xterm trapproto ocf-linux liboil libdrm
+> damageproto jpeg lzo gcc-cross gnutls pango util-linux apmd glproto xprot=
+o
+> libxcalibrate pointercal-xinput libpciaccess matchbox-session dbus libcro=
+co
+> xf86dgaproto libxcomposite fbset opkg libvorbis directfb libsm
+> shared-mime-info gstreamer mysql5 augeas libnss-mdns xhost udev
+> sato-screenshot libzypp eglibc libgcc font-alias tcp-wrappers encodings
+> xextproto libxxf86misc python-pycairo libxaw libxau kmod
+> modutils-initscripts matchbox-keyboard xdpyinfo renderproto elfutils evie=
+ext
+> mkfontscale libgpg-error binutils-cross libxp linux-libc-headers-imx
+> libcgroup libxv libpng tslib gcc-cross-intermediate libxext boost
+> xserver-common formfactor xinput bluez-hcidump update-rc.d x11-common
+> xcb-proto leafpad oh-puzzles gconf tremor libxft matchbox-wm libgcrypt ba=
+sh
+> shadow-securetty postgresql bigreqsproto polkit fbset-modes openssl
+> matchbox-terminal videoproto xmodmap matchbox-panel-2 xf86-video-fbdev
+> libogg gtk+ libxxf86vm task-core-boot libtool-cross psplash xtscal
+> eglibc-initial xcmiscproto libusb1 hicolor-icon-theme pkgconfig xz
+> libatomics-ops xkeyboard-config libsndfile1 libxcb glib-2.0 rpm
+> gst-plugins-base eggdbus xserver-xorg-lite zip dbus-wait qt4-embedded
+> startup-notification libxfixes gcc-cross-initial resourceproto libxpm
+> libxinerama cairo libpcre libxrandr netbase libsamplerate0 libdmx printpr=
+oto
+> xinput-calibrator ncurses libxi pulseaudio zypper fontcacheproto portmap
+> font-util libxfontcache xkbcomp flac sysfsutils xcb-util libowl
+> sysvinit-inittab libtheora recordproto libxsettings-client attr util-macr=
+os
+> eglibc-locale zlib libtasn1 menu-cache bluez4 initscripts libfm libxrende=
+r
+> xf86-input-evdev libfontenc libjson avahi procps xineramaproto
+> xf86-input-mouse sqlite pointercal libassuan libxml2 xauth task-core-cons=
+ole
+> calibrateproto sat-solver atk scrnsaverproto xserver-xf86-config
+> shadow-sysroot base-files curl acl dbus-glib libmatchbox bzip2
+> libpthread-stubs opkg-config-base alsa-lib pcmanfm gettext libxfont sqlit=
+e3
+> libcap libxdamage xserver-nodm-init libfakekey linux-imx task-core-x11
+> update-modules libcheck inputproto fixesproto db libxmu xtrans xrandr
+> libtool libffi readline compositeproto xf86vidmodeproto xinit xf86rushpro=
+to
+> libxxf86dga dmxproto xf86bigfontproto fontsproto systemd-serialgetty
+> usbutils expat base-passwd libxkbfile e2fsprogs module-init-tools gnupg
+> mkfontdir gzip libksba libx11-trim"
+>
+>
+>
+> IMAGE_INSTALL =3D "locale-base-en-gb locale-base-en-us libnss-mdns rpm
+> psplash-default task-core-boot task-core-x11-base task-core-apps-x11-core
+> task-core-apps-console zypper"
+>
+>
+>
+> export IMAGE_BASENAME =3D "test-image"
+>
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>=
 
-Paul Eggleton
-Intel Open Source Technology Centre
 
