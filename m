@@ -1,46 +1,46 @@
 Return-Path: <B29882@freescale.com>
-Received: from ch1outboundpool.messaging.microsoft.com
-	(ch1ehsobe006.messaging.microsoft.com [216.32.181.186])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A1E2BE002A6
-	for <yocto@yoctoproject.org>; Mon,  6 Aug 2012 12:45:08 -0700 (PDT)
-Received: from mail4-ch1-R.bigfish.com (10.43.68.226) by
-	CH1EHSOBE004.bigfish.com (10.43.70.54) with Microsoft SMTP Server id
-	14.1.225.23; Mon, 6 Aug 2012 19:45:07 +0000
-Received: from mail4-ch1 (localhost [127.0.0.1])	by mail4-ch1-R.bigfish.com
-	(Postfix) with ESMTP id D8CB732048D;
-	Mon,  6 Aug 2012 19:45:07 +0000 (UTC)
+Received: from va3outboundpool.messaging.microsoft.com
+	(va3ehsobe006.messaging.microsoft.com [216.32.180.16])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A1039E002A6
+	for <yocto@yoctoproject.org>; Mon,  6 Aug 2012 12:47:35 -0700 (PDT)
+Received: from mail209-va3-R.bigfish.com (10.7.14.248) by
+	VA3EHSOBE014.bigfish.com (10.7.40.64) with Microsoft SMTP Server id
+	14.1.225.23; Mon, 6 Aug 2012 19:47:34 +0000
+Received: from mail209-va3 (localhost [127.0.0.1])	by
+	mail209-va3-R.bigfish.com (Postfix) with ESMTP id A75624201C1;
+	Mon,  6 Aug 2012 19:47:34 +0000 (UTC)
 X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null); IPV:NLI;
 	H:mail.freescale.net; RD:none; EFVD:NLI
-X-SpamScore: -4
-X-BigFish: VS-4(zz98dI9371I1be0I1443I1432Izz1202hzz8275dhz2dh2a8h668h839h8e2h8e3h946hf0ah107ah10d2hbe9i)
-Received: from mail4-ch1 (localhost.localdomain [127.0.0.1]) by mail4-ch1
-	(MessageSwitch) id 1344282306238654_9776;
-	Mon,  6 Aug 2012 19:45:06 +0000 (UTC)
-Received: from CH1EHSMHS009.bigfish.com (snatpool2.int.messaging.microsoft.com
-	[10.43.68.234])	by mail4-ch1.bigfish.com (Postfix) with ESMTP id
-	2ED88300047; Mon,  6 Aug 2012 19:45:06 +0000 (UTC)
-Received: from mail.freescale.net (70.37.183.190) by CH1EHSMHS009.bigfish.com
-	(10.43.70.9) with Microsoft SMTP Server (TLS) id 14.1.225.23;
-	Mon, 6 Aug 2012 19:45:05 +0000
+X-SpamScore: -2
+X-BigFish: VS-2(zz98dI9371I1432Izz1202hzz8275bh8275dhz2dh2a8h668h839h8e2h8e3hf0ah107ah10d2hbe9i)
+Received: from mail209-va3 (localhost.localdomain [127.0.0.1]) by mail209-va3
+	(MessageSwitch) id 1344282452808598_4491;
+	Mon,  6 Aug 2012 19:47:32 +0000 (UTC)
+Received: from VA3EHSMHS030.bigfish.com (unknown [10.7.14.244])	by
+	mail209-va3.bigfish.com (Postfix) with ESMTP id B9B7F8C004B;
+	Mon,  6 Aug 2012 19:47:32 +0000 (UTC)
+Received: from mail.freescale.net (70.37.183.190) by VA3EHSMHS030.bigfish.com
+	(10.7.99.40) with Microsoft SMTP Server (TLS) id 14.1.225.23;
+	Mon, 6 Aug 2012 19:47:32 +0000
 Received: from 039-SN1MPN1-001.039d.mgd.msft.net ([169.254.1.41]) by
-	039-SN1MMR1-005.039d.mgd.msft.net ([::1]) with mapi id 14.02.0298.005;
-	Mon, 6 Aug 2012 14:45:04 -0500
+	039-SN1MMR1-001.039d.mgd.msft.net ([10.84.1.13]) with mapi id
+	14.02.0298.005; Mon, 6 Aug 2012 14:47:31 -0500
 From: McClintock Matthew-B29882 <B29882@freescale.com>
-To: Tim Verstraete <Tim.Verstraete@medecbenelux.be>
-Thread-Topic: [yocto] image recipe gives error: has no buildable providers
-Thread-Index: AQHNdAv5hzqRQbaRFkinn+cBPgZwWQ==
-Date: Mon, 6 Aug 2012 19:45:03 +0000
-Message-ID: <CAEsOVNewE-5HUwwe5euHztTLq1piN8fCbnh03gO4CeUFeQaQKA@mail.gmail.com>
-References: <4439C3C0562087488F139C696CD862A72C1CD6@SBS-MEDEC.medecbenelux.local>
-In-Reply-To: <4439C3C0562087488F139C696CD862A72C1CD6@SBS-MEDEC.medecbenelux.local>
+To: Elvis Dowson <elvis.dowson@gmail.com>
+Thread-Topic: [yocto] Adding gcc-4.5.4 release back into oe-core
+Thread-Index: AQHNdAxQeagCpJ6cvEOqPyA6FVpUGg==
+Date: Mon, 6 Aug 2012 19:47:31 +0000
+Message-ID: <CAEsOVNdz80Jt=N3JQ5Y=Zr4ie3OgOn=iLWr3WLXMmYRWbrHC2g@mail.gmail.com>
+References: <EFFDC90A-1BC0-4513-ADC8-A39F03309AD5@gmail.com>
+In-Reply-To: <EFFDC90A-1BC0-4513-ADC8-A39F03309AD5@gmail.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [70.112.201.132]
 MIME-Version: 1.0
 X-OriginatorOrg: freescale.com
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: image recipe gives error: has no buildable providers
+Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+Subject: Re: Adding gcc-4.5.4 release back into oe-core
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,161 +53,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 06 Aug 2012 19:45:08 -0000
+X-List-Received-Date: Mon, 06 Aug 2012 19:47:35 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="Windows-1252"
-Content-ID: <07275ACD03DAC14C960A26C55B202282@mgd.freescale.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-ID: <508B919295BE8A4B9AB7EB7363B7E8A8@mgd.freescale.com>
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Aug 6, 2012 at 5:47 AM, Tim Verstraete
-<Tim.Verstraete@medecbenelux.be> wrote:
-> Hi,
->
->
->
-> I am making my own recipe for an image based on core-image-core and has b=
-een
-> generated by HOB.
->
->
->
-> So after I have made HOB selection (to try it out) I saved the HOB files =
-and
-> created my own BSP.
->
->
->
-> I went to yocto-bsp create test arm and got a BSP directory. I adapted th=
-e
-> machine file, placed the bb file from HOB in the recipe-bsp directory wit=
-h
-> export image_basename =3D =93test-image=94 and made a project directory t=
-hat calls
-> that machine.
->
->
->
-> So I did the following:
->
-> Step1: create my package selection with HOB + save template
->
-> Step2: create BSP and put bb file in recipe-bsp
->
-> Step3: create a project with my bsp added in bblayers.conf
->
-> Step4: try to build my image
->
->
->
-> I then want to run bitbake test-image.bb and get the following error: Err=
-or:
-> Required build target =91test-image=92 has no buildable providers. Missin=
-g or
-> unbuildable dependency chain was: [test-image]
->
->
->
-> No what does that error message mean and what am I missing to complete th=
-is.
+On Sat, Aug 4, 2012 at 2:19 PM, Elvis Dowson <elvis.dowson@gmail.com> wrote=
+:
+> Hi Khem,
+>                   Do you think it makes sense to add gcc-4.5.4 back into =
+oe-core, if it turns out that gcc-4.7.2 is causing a lot of issues for some=
+ targets?
 
-Seems probably that bitbake is not finding / parsing your recipe.
-There are some items in the layer conf that tell bitbake what
-directories to look for recipes in.. is test-image in one of these?
+You can add it to your layer. Although that might be a lot more work
+than you bargained for.
 
 -M
 
 >
->
->
-> Thanks in advance,
->
->
->
-> Kind regards,
->
->
->
-> Tim
->
->
->
-> P.S. this is the bb file I use for the image generation:
->
->
->
-> inherit core-image
->
->
->
-> DEPENDS =3D "speex busybox libproxy matchbox-desktop pth perl xf86miscpro=
-to
-> kbd sysvinit liberation-fonts libxtst librsvg file popt gdbm shadow libic=
-e
-> systemd libxdmcp vte kbproto gcc-runtime libdaemon xset fontconfig
-> gdk-pixbuf rgb consolekit module-init-tools-cross tiff libxt pixman
-> libxcursor tinylogin freetype randrproto xf86-input-keyboard libusb-compa=
-t
-> gnome-common python python-dbus xterm trapproto ocf-linux liboil libdrm
-> damageproto jpeg lzo gcc-cross gnutls pango util-linux apmd glproto xprot=
-o
-> libxcalibrate pointercal-xinput libpciaccess matchbox-session dbus libcro=
-co
-> xf86dgaproto libxcomposite fbset opkg libvorbis directfb libsm
-> shared-mime-info gstreamer mysql5 augeas libnss-mdns xhost udev
-> sato-screenshot libzypp eglibc libgcc font-alias tcp-wrappers encodings
-> xextproto libxxf86misc python-pycairo libxaw libxau kmod
-> modutils-initscripts matchbox-keyboard xdpyinfo renderproto elfutils evie=
-ext
-> mkfontscale libgpg-error binutils-cross libxp linux-libc-headers-imx
-> libcgroup libxv libpng tslib gcc-cross-intermediate libxext boost
-> xserver-common formfactor xinput bluez-hcidump update-rc.d x11-common
-> xcb-proto leafpad oh-puzzles gconf tremor libxft matchbox-wm libgcrypt ba=
-sh
-> shadow-securetty postgresql bigreqsproto polkit fbset-modes openssl
-> matchbox-terminal videoproto xmodmap matchbox-panel-2 xf86-video-fbdev
-> libogg gtk+ libxxf86vm task-core-boot libtool-cross psplash xtscal
-> eglibc-initial xcmiscproto libusb1 hicolor-icon-theme pkgconfig xz
-> libatomics-ops xkeyboard-config libsndfile1 libxcb glib-2.0 rpm
-> gst-plugins-base eggdbus xserver-xorg-lite zip dbus-wait qt4-embedded
-> startup-notification libxfixes gcc-cross-initial resourceproto libxpm
-> libxinerama cairo libpcre libxrandr netbase libsamplerate0 libdmx printpr=
-oto
-> xinput-calibrator ncurses libxi pulseaudio zypper fontcacheproto portmap
-> font-util libxfontcache xkbcomp flac sysfsutils xcb-util libowl
-> sysvinit-inittab libtheora recordproto libxsettings-client attr util-macr=
-os
-> eglibc-locale zlib libtasn1 menu-cache bluez4 initscripts libfm libxrende=
-r
-> xf86-input-evdev libfontenc libjson avahi procps xineramaproto
-> xf86-input-mouse sqlite pointercal libassuan libxml2 xauth task-core-cons=
-ole
-> calibrateproto sat-solver atk scrnsaverproto xserver-xf86-config
-> shadow-sysroot base-files curl acl dbus-glib libmatchbox bzip2
-> libpthread-stubs opkg-config-base alsa-lib pcmanfm gettext libxfont sqlit=
-e3
-> libcap libxdamage xserver-nodm-init libfakekey linux-imx task-core-x11
-> update-modules libcheck inputproto fixesproto db libxmu xtrans xrandr
-> libtool libffi readline compositeproto xf86vidmodeproto xinit xf86rushpro=
-to
-> libxxf86dga dmxproto xf86bigfontproto fontsproto systemd-serialgetty
-> usbutils expat base-passwd libxkbfile e2fsprogs module-init-tools gnupg
-> mkfontdir gzip libksba libx11-trim"
->
->
->
-> IMAGE_INSTALL =3D "locale-base-en-gb locale-base-en-us libnss-mdns rpm
-> psplash-default task-core-boot task-core-x11-base task-core-apps-x11-core
-> task-core-apps-console zypper"
->
->
->
-> export IMAGE_BASENAME =3D "test-image"
->
->
+> Elvis Dowson
 > _______________________________________________
 > yocto mailing list
 > yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->=
+> https://lists.yoctoproject.org/listinfo/yocto=
 
 
