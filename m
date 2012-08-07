@@ -1,25 +1,26 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-ey0-f176.google.com (mail-ey0-f176.google.com
-	[209.85.215.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0CD66E013B2
-	for <yocto@yoctoproject.org>; Tue,  7 Aug 2012 13:31:27 -0700 (PDT)
-Received: by eabd1 with SMTP id d1so8277eab.35
-	for <yocto@yoctoproject.org>; Tue, 07 Aug 2012 13:31:27 -0700 (PDT)
+Return-Path: <elvis.dowson@gmail.com>
+Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
+	[209.85.160.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B6D5CE013B2
+	for <yocto@yoctoproject.org>; Tue,  7 Aug 2012 13:38:01 -0700 (PDT)
+Received: by pbbrq8 with SMTP id rq8so253382pbb.35
+	for <yocto@yoctoproject.org>; Tue, 07 Aug 2012 13:38:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=e8T+1X7N0utzQ6UY9z5Pp1Cej3cMcuwGP0WcsIA6xr8=;
-	b=w8AyMx/61LnEEx4ll4jEnI+aRS+s3pGd2AbkyWuWoCvEcFC1HtYbEPUdfCAh0pOoMe
-	HCaO0h3bOS6pm/BU/ZzYJEGV6+03PeEL3tNoSwvUFuV9InpqpKqXepmms/p/GhJDT0UA
-	78oayauf7G8eV97a2rGfcO5R15y0izPDl4sGjWQoGqHmLsqqrtlxhnzB6idGkLlRVRiG
-	pOWJlY2Ihi2mMAGLbnFr+mnapcIA4l8XM+zT/D2JFvDessw4AcSiWzf2RX1a8GA9US7q
-	LUhXgt7hza0ABuFx6jKPpWC4PRMmvwHYfdD4MnTgHXLdDk610viJdgY4oX+R+ewH7fsw
-	CDSQ==
-Received: by 10.14.194.198 with SMTP id m46mr19233047een.13.1344371487255;
-	Tue, 07 Aug 2012 13:31:27 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.14.97.141 with HTTP; Tue, 7 Aug 2012 13:30:57 -0700 (PDT)
-In-Reply-To: <AB2E7680-C057-47B0-91FD-62BD6BAC8170@gmail.com>
+	h=references:in-reply-to:mime-version:content-transfer-encoding
+	:content-type:message-id:cc:x-mailer:from:subject:date:to;
+	bh=K3I1zC+6SfJ6N/y/Us7eYu5FrAR7hgnHKKqlvAXAsNQ=;
+	b=JfxYrInfVjpeY9ZxrpmSdUJRJxZhwsl4W5dcQsVWH+Wu3utrMVLMHrAAg/A/sKbca+
+	bAWyDkHgv/1APFyU332dfUNHlEkjLCWrObzsqAA6ZzeoUiUJlhvNey03azdDSkYsUlBT
+	i8iaCtcjSyOn8Ca6mYwv28Tcegbx5grAbuLBqYC7spqu3dTDCM6vR94f3aWkP9ifaGJk
+	gbdkRPy+52iJqWEOP6N0Ie4vVPupfL8zsnb5FsMFkSJIHWe9gWhTsG9Q+xBAOavRyNSa
+	smzTaT2W6GNy9IrhH5Tka714BJa412tcU41T8jCUNNmT2dx/4T0DIDwaPIoDB4RXCrAi
+	8IAA==
+Received: by 10.68.239.103 with SMTP id vr7mr31116210pbc.0.1344371881458;
+	Tue, 07 Aug 2012 13:38:01 -0700 (PDT)
+Received: from [192.168.1.102] ([94.205.108.162])
+	by mx.google.com with ESMTPS id oj8sm8381856pbb.54.2012.08.07.13.37.58
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Tue, 07 Aug 2012 13:37:59 -0700 (PDT)
 References: <F1A84E50-21BF-4E9B-BC38-545D72F59A70@gmail.com>
 	<654A270B-9C72-4BEA-B51D-79E4C6441594@gmail.com>
 	<15982971-CA6D-4E45-833F-AC4E5AA95331@gmail.com>
@@ -35,10 +36,14 @@ References: <F1A84E50-21BF-4E9B-BC38-545D72F59A70@gmail.com>
 	<931ADA5B-6471-40DB-8943-D7D6CA564C35@gmail.com>
 	<CAMKF1sr-=FLVGMZnW_X63YRnT=ms8eCLhhUkcoHujubM_1f5Ow@mail.gmail.com>
 	<AB2E7680-C057-47B0-91FD-62BD6BAC8170@gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Tue, 7 Aug 2012 13:30:57 -0700
-Message-ID: <CAMKF1sowWjF4DYUyWus7A1p5qQbJ3qPhRDEGfeZBOeohG6012g@mail.gmail.com>
-To: Elvis Dowson <elvis.dowson@gmail.com>
+	<CAMKF1sowWjF4DYUyWus7A1p5qQbJ3qPhRDEGfeZBOeohG6012g@mail.gmail.com>
+In-Reply-To: <CAMKF1sowWjF4DYUyWus7A1p5qQbJ3qPhRDEGfeZBOeohG6012g@mail.gmail.com>
+Mime-Version: 1.0 (1.0)
+Message-Id: <D7F9D339-CE6F-4F5B-81BC-C6F55C315012@gmail.com>
+X-Mailer: iPhone Mail (9B206)
+From: Elvis Dowson <elvis.dowson@gmail.com>
+Date: Wed, 8 Aug 2012 00:33:27 +0400
+To: Khem Raj <raj.khem@gmail.com>
 Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
 Subject: Re: Unable to get serial console login prompt - PowerPC 440 Virtex 5 processor
 X-BeenThere: yocto@yoctoproject.org
@@ -52,15 +57,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 07 Aug 2012 20:31:28 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Tue, 07 Aug 2012 20:38:01 -0000
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=us-ascii
 
-On Tue, Aug 7, 2012 at 1:24 PM, Elvis Dowson <elvis.dowson@gmail.com> wrote:
->
-> Is there something that I can disable to get static bash to run to the
-> prompt, with the core-image-minimal image?
+Hi,
 
-well compile bash or dash as static and copy it manually into the
-rootfile system
-nfs root works well for such experiments. Do you have that option ?
+On Aug 8, 2012, at 0:30, Khem Raj <raj.khem@gmail.com> wrote:
+
+> On Tue, Aug 7, 2012 at 1:24 PM, Elvis Dowson <elvis.dowson@gmail.com> wrot=
+e:
+>>=20
+>> Is there something that I can disable to get static bash to run to the
+>> prompt, with the core-image-minimal image?
+>=20
+> well compile bash or dash as static and copy it manually into the
+> rootfile system
+> nfs root works well for such experiments. Do you have that option ?
+
+I tired manually copying the static bash binary 8mb, over to the ramdisk roo=
+t folder. The problem still manifests, if there is no other file other than t=
+he static bash file, it displays the prompt. If the core-minimal-console ima=
+ge exists, along with the static bash binary in the root location, it gives t=
+he kernel panic, as shown above.
+
+Best regards,
+
+Elvis=
 
