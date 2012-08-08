@@ -1,28 +1,31 @@
-Return-Path: <Tim.Verstraete@medecbenelux.be>
-Received: from mail.medecbenelux.be (mail.medecbenelux.be [81.83.14.242])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8D48EE00346
-	for <yocto@yoctoproject.org>; Wed,  8 Aug 2012 08:01:58 -0700 (PDT)
-Received: from SBS-MEDEC.medecbenelux.local ([fe80::1b66:a66e:3778:1407]) by
-	SBS-MEDEC.medecbenelux.local ([fe80::1b66:a66e:3778:1407%10]) with mapi
-	id 14.01.0355.002; Wed, 8 Aug 2012 17:01:50 +0200
-From: Tim Verstraete <Tim.Verstraete@medecbenelux.be>
-To: McClintock Matthew-B29882 <B29882@freescale.com>
-Thread-Topic: [yocto] image recipe gives error: has no buildable providers
-Thread-Index: Ac1zv2TNmHq3fTfQSm2x8m585ct4lgAO9BiAAFMz0qAAB2MogAAEQXnA
-Date: Wed, 8 Aug 2012 15:01:47 +0000
-Message-ID: <4439C3C0562087488F139C696CD862A72C1F99@SBS-MEDEC.medecbenelux.local>
-References: <4439C3C0562087488F139C696CD862A72C1CD6@SBS-MEDEC.medecbenelux.local>
-	<CAEsOVNewE-5HUwwe5euHztTLq1piN8fCbnh03gO4CeUFeQaQKA@mail.gmail.com>
-	<4439C3C0562087488F139C696CD862A72C1F5D@SBS-MEDEC.medecbenelux.local>
-	<CAEsOVNe6V2_DY9ZCCYu0qVWc=19OEZzVa=i+0qBeR-sDHnLS5Q@mail.gmail.com>
-In-Reply-To: <CAEsOVNe6V2_DY9ZCCYu0qVWc=19OEZzVa=i+0qBeR-sDHnLS5Q@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [2002:5153:ef2:0:f4df:b227:47f1:52a1]
+Return-Path: <fnognn@unife.it>
+Received: from mail-lpp01m010-f48.google.com (mail-lpp01m010-f48.google.com
+	[209.85.215.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C77D1E00346
+	for <yocto@yoctoproject.org>; Wed,  8 Aug 2012 08:14:15 -0700 (PDT)
+Received: by lagr15 with SMTP id r15so516021lag.35
+	for <yocto@yoctoproject.org>; Wed, 08 Aug 2012 08:14:14 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:from:date:message-id:subject:to:content-type
+	:x-gm-message-state;
+	bh=Bij+pSM4/wXCQWoqBehjbNtc6n5N2ljj2aKl/HlaRB8=;
+	b=d1mYu4FQSUDGloB6r/xbIR2zbKZu0lhhklpQ0FCd4USBHtRlsa+yiJdre3a9PH27nJ
+	yon/5jwkWqLFbUFn+bFAzFlHvtzZGJNR6qcwUSY88Fx3Tke+h/COwMI3E/utCoS+oant
+	J6mdlkHrj8nkbq/F4uardRqXtoW+jX3qqIf9OercSnJqRdswRJTrRk7DQweWHeHu553r
+	MFvhaTmW97Uqm5ZiGQjyUl6P6+n2TmD4jK52bHjfw1ws0HW2KPvcl4c0U49ftecVcbBa
+	Gyhmc8v6rl+cJjzY26Xh3hJucop+lOpmSVAbhBD2l+ORCtn7xXv81vM5siF0iXedYUhg
+	k76A==
+Received: by 10.152.122.9 with SMTP id lo9mr507081lab.41.1344438854545; Wed,
+	08 Aug 2012 08:14:14 -0700 (PDT)
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: image recipe gives error: has no buildable providers
+Received: by 10.112.46.42 with HTTP; Wed, 8 Aug 2012 08:13:54 -0700 (PDT)
+From: Giovanni Foiani <fnognn@unife.it>
+Date: Wed, 8 Aug 2012 17:13:54 +0200
+Message-ID: <CANsUPaNSFsapsHbjxcBvjDi4Yo-8eJ1trLDvycKLBX9m4RDNSg@mail.gmail.com>
+To: yocto@yoctoproject.org
+X-Gm-Message-State: ALoCoQmDIQT2I8CcThuF2I8fjba71qlmFt8b3ibD8fBjMkl1vdq2Q+9sclHfNC3zFiVJpJVvFlcW
+Subject: Custom splash screen using psplash
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,184 +37,67 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Aug 2012 15:01:59 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 08 Aug 2012 15:14:16 -0000
+Content-Type: multipart/alternative; boundary=f46d043bd6fa58ef1104c6c290f5
+
+--f46d043bd6fa58ef1104c6c290f5
+Content-Type: text/plain; charset=ISO-8859-1
 
 Hi,
 
-What i see is that when i do bitbake-layers show_layers that it shows the c=
-orrect layers and the correct priority of the layers.
+I need to setup a custom splash screen replacing the Yocto logo with a
+custom image.
+I generated my logo using make-image script into psplash screen and
+replaced the previous one in meta/recipes-core/psplash/files folder.
+Then I run
 
-The layers.conf is the following
 
-# We have a conf and classes directory, add to BBPATH BBPATH :=3D=20
-"${BBPATH}:${LAYERDIR}"
+   - bitbake psplash -c cleansstate
+   - bitbake psplash
 
-# We have a recipes directory, add to BBFILES BBFILES :=3D "${BBFILES}=20
-${LAYERDIR}/recipes-*/*/*.bb \
-        ${LAYERDIR}/recipes-*/*/*.bbappend"
+and then generate a new image, but during boot I still see the Yocto logo.
+Which is the right procedure?
+Does the my custom logo (a png image) have some requirements (i.e. size,
+colors, etc..)?
 
- BBFILE_COLLECTIONS +=3D "test-test1"
- BBFILE_PATTERN_ test-test1:=3D "^${LAYERDIR}/"
- BBFILE_PRIORITY_ test-test1 =3D "25"
+Thanks
 
- LAYERDEPENDS_medec-imx6 =3D "test"
+Giovanni
+--
 
- And indeed when I check for example by putting a u-boot recipe in my layer=
- (which also exists in the meta-ti layer) it takes the meta-ti layer u-boot=
- and not mine ... what could be the reason because the test-test1 layer has=
- priority 25 and ti layer has priority 10? This would mean that it does not=
- find the uboot in test-test1 layer...
+Dott. Ing. Giovanni Foiani
 
-Thanks in advance,
+Cell:        +39-349-3577515
+Phone:    +39-0532-97-4106
+mail:        giovanni.foiani@unife.it
+CenTec - Corso Guercino, 47 - 44042 Cento (FE)
 
-Kind regards,
+--f46d043bd6fa58ef1104c6c290f5
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-Tim
-> -----Original Message-----
-> From: McClintock Matthew-B29882 [mailto:B29882@freescale.com]
-> Sent: maandag 6 augustus 2012 21:45
-> To: Tim Verstraete
-> Cc: yocto@yoctoproject.org
-> Subject: Re: [yocto] image recipe gives error: has no buildable=20
-> providers
->
-> On Mon, Aug 6, 2012 at 5:47 AM, Tim Verstraete <Tim.Verstraete@medecbenel=
-ux.be> wrote:
->> Hi,
->>
->>
->>
->> I am making my own recipe for an image based on core-image-core and=20
->> has been generated by HOB.
->>
->>
->>
->> So after I have made HOB selection (to try it out) I saved the HOB=20
->> files and created my own BSP.
->>
->>
->>
->> I went to yocto-bsp create test arm and got a BSP directory. I=20
->> adapted the machine file, placed the bb file from HOB in the=20
->> recipe-bsp directory with export image_basename =3D "test-image" and=20
->> made a project directory that calls that machine.
->>
->>
->>
->> So I did the following:
->>
->> Step1: create my package selection with HOB + save template
->>
->> Step2: create BSP and put bb file in recipe-bsp
->>
->> Step3: create a project with my bsp added in bblayers.conf
->>
->> Step4: try to build my image
->>
->>
->>
->> I then want to run bitbake test-image.bb and get the following error: Er=
-ror:
->> Required build target 'test-image' has no buildable providers.=20
->> Missing or unbuildable dependency chain was: [test-image]
->>
->>
->>
->> No what does that error message mean and what am I missing to complete t=
-his.
->
-> Seems probably that bitbake is not finding / parsing your recipe.
-> There are some items in the layer conf that tell bitbake what directories=
- to look for recipes in.. is test-image in one of these?
->
-> -M
->
->>
->>
->>
->> Thanks in advance,
->>
->>
->>
->> Kind regards,
->>
->>
->>
->> Tim
->>
->>
->>
->> P.S. this is the bb file I use for the image generation:
->>
->>
->>
->> inherit core-image
->>
->>
->>
->> DEPENDS =3D "speex busybox libproxy matchbox-desktop pth perl=20
->> xf86miscproto kbd sysvinit liberation-fonts libxtst librsvg file popt=20
->> gdbm shadow libice systemd libxdmcp vte kbproto gcc-runtime libdaemon=20
->> xset fontconfig gdk-pixbuf rgb consolekit module-init-tools-cross=20
->> tiff libxt pixman libxcursor tinylogin freetype randrproto=20
->> xf86-input-keyboard libusb-compat gnome-common python python-dbus=20
->> xterm trapproto ocf-linux liboil libdrm damageproto jpeg lzo=20
->> gcc-cross gnutls pango util-linux apmd glproto xproto libxcalibrate=20
->> pointercal-xinput libpciaccess matchbox-session dbus libcroco=20
->> xf86dgaproto libxcomposite fbset opkg libvorbis directfb libsm=20
->> shared-mime-info gstreamer mysql5 augeas libnss-mdns xhost udev=20
->> sato-screenshot libzypp eglibc libgcc font-alias tcp-wrappers=20
->> encodings xextproto libxxf86misc python-pycairo libxaw libxau kmod=20
->> modutils-initscripts matchbox-keyboard xdpyinfo renderproto elfutils=20
->> evieext mkfontscale libgpg-error binutils-cross libxp=20
->> linux-libc-headers-imx libcgroup libxv libpng tslib=20
->> gcc-cross-intermediate libxext boost xserver-common formfactor xinput=20
->> bluez-hcidump update-rc.d x11-common xcb-proto leafpad oh-puzzles=20
->> gconf tremor libxft matchbox-wm libgcrypt bash shadow-securetty=20
->> postgresql bigreqsproto polkit fbset-modes openssl matchbox-terminal=20
->> videoproto xmodmap matchbox-panel-2 xf86-video-fbdev libogg gtk+=20
->> libxxf86vm task-core-boot libtool-cross psplash xtscal eglibc-initial=20
->> xcmiscproto libusb1 hicolor-icon-theme pkgconfig xz libatomics-ops=20
->> xkeyboard-config libsndfile1 libxcb glib-2.0 rpm gst-plugins-base=20
->> eggdbus xserver-xorg-lite zip dbus-wait qt4-embedded=20
->> startup-notification libxfixes gcc-cross-initial resourceproto libxpm=20
->> libxinerama cairo libpcre libxrandr netbase libsamplerate0 libdmx=20
->> printproto xinput-calibrator ncurses libxi pulseaudio zypper=20
->> fontcacheproto portmap font-util libxfontcache xkbcomp flac=20
->> sysfsutils xcb-util libowl sysvinit-inittab libtheora recordproto=20
->> libxsettings-client attr util-macros eglibc-locale zlib libtasn1=20
->> menu-cache bluez4 initscripts libfm libxrender xf86-input-evdev=20
->> libfontenc libjson avahi procps xineramaproto xf86-input-mouse sqlite=20
->> pointercal libassuan libxml2 xauth task-core-console calibrateproto=20
->> sat-solver atk scrnsaverproto xserver-xf86-config shadow-sysroot=20
->> base-files curl acl dbus-glib libmatchbox bzip2 libpthread-stubs=20
->> opkg-config-base alsa-lib pcmanfm gettext libxfont sqlite3 libcap=20
->> libxdamage xserver-nodm-init libfakekey linux-imx task-core-x11=20
->> update-modules libcheck inputproto fixesproto db libxmu xtrans xrandr=20
->> libtool libffi readline compositeproto xf86vidmodeproto xinit xf86rushpr=
-oto libxxf86dga dmxproto xf86bigfontproto fontsproto systemd-serialgetty us=
-butils expat base-passwd libxkbfile e2fsprogs module-init-tools gnupg mkfon=
-tdir gzip libksba libx11-trim"
+Hi,<div><br></div><div>I need to setup a custom splash screen replacing the=
+ Yocto logo with a custom image.</div><div>I generated my logo using make-i=
+mage script into psplash screen and replaced the previous one in=A0meta/rec=
+ipes-core/psplash/files folder.</div>
 
->>
->>
->>
->> IMAGE_INSTALL =3D "locale-base-en-gb locale-base-en-us libnss-mdns rpm=20
->> psplash-default task-core-boot task-core-x11-base=20
->> task-core-apps-x11-core task-core-apps-console zypper"
->>
->>
->>
->> export IMAGE_BASENAME =3D "test-image"
->>
->>
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->>
->
+<div>Then I run=A0</div><div><br></div><div><ul><li>bitbake psplash -c clea=
+nsstate</li><li>bitbake psplash</li></ul><div>and then generate a new image=
+, but during boot I still see the Yocto logo.</div><div>Which is the right =
+procedure?</div>
 
+<div>Does the my custom logo (a png image) have some requirements (i.e. siz=
+e, colors, etc..)?</div><div><br></div><div>Thanks</div><div><br></div><div=
+>Giovanni</div>
+<div>--<br><br>Dott. Ing. Giovanni Foiani<br><font face=3D"arial, sans-seri=
+f"><span style=3D"border-collapse:collapse"><br></span></font></div><div>Ce=
+ll:=A0 =A0 =A0 =A0 +39-349-3577515<br>Phone: =A0=A0 +39-0532-97-4106<br>mai=
+l:=A0 =A0 =A0 =A0 <a href=3D"mailto:giovanni.foiani@unife.it" target=3D"_bl=
+ank">giovanni.foiani@unife.it</a></div>
+
+<div><span style=3D"font-family:arial,helvetica,sans-serif;font-size:13px;l=
+ine-height:13px">CenTec - Corso Guercino, 47 - 44042 Cento (FE)</span></div=
+><br>
+</div>
+
+--f46d043bd6fa58ef1104c6c290f5--
