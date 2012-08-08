@@ -1,27 +1,40 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A66E4E00346
-	for <yocto@yoctoproject.org>; Wed,  8 Aug 2012 11:34:06 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 08 Aug 2012 11:34:06 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.77,734,1336374000"; d="scan'208";a="178439199"
-Received: from unknown (HELO envy.home) ([10.255.12.217])
-	by azsmga001.ch.intel.com with ESMTP; 08 Aug 2012 11:34:05 -0700
-Message-ID: <5022B0B1.1050008@linux.intel.com>
-Date: Wed, 08 Aug 2012 11:32:17 -0700
-From: Darren Hart <dvhart@linux.intel.com>
+Return-Path: <scott.a.garman@intel.com>
+Received: from orsmga101.jf.intel.com (mga06.intel.com [134.134.136.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2D3C1E00346
+	for <yocto@yoctoproject.org>; Wed,  8 Aug 2012 11:39:53 -0700 (PDT)
+Received: from mail-pb0-f52.google.com ([209.85.160.52])
+	by mga02.intel.com with ESMTP/TLS/RC4-SHA; 08 Aug 2012 11:39:52 -0700
+Received: by pbcxa7 with SMTP id xa7so1870233pbc.25
+	for <yocto@yoctoproject.org>; Wed, 08 Aug 2012 11:39:52 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=message-id:date:from:user-agent:mime-version:to:subject:references
+	:in-reply-to:content-type:content-transfer-encoding
+	:x-gm-message-state;
+	bh=uhAi6XtqOU/LlgWiUkVaeBmLUoYNYYI/k0Ovej1wxJM=;
+	b=hCeuaTBN3aG0Q9pKgcLu1HPjVO7120nHNWlt+naQTS/azLNMb2fnJ+IRVo7T5THnSl
+	HAh6cVfvIWm6uzQO4TgZlQggq6dVwYn++AVJZ5+AFq3teNAoVXJAEbu102mOVKN1zlbh
+	9uqAfaARFEI1ZWVIi/SDCDB2X1/XTHWPqgPnu4cYjf/VL/unvilk/QkfLz0WmTLm0M6k
+	GOj+HBzrwwOnb2D7Nlc86k+AL1byz/tjZHiwwTGsH2W/tZeSdQotAuv9rJ8rJa/hD6AQ
+	g7fhNKz3pj1kuFqld5cJ7m4MC5wHFkYvOWhDe6FM/5wZY2OvAAcNgZQdCRIK340GSNNv
+	ex2w==
+Received: by 10.68.236.102 with SMTP id ut6mr38341046pbc.113.1344451192687;
+	Wed, 08 Aug 2012 11:39:52 -0700 (PDT)
+Received: from [10.1.10.192] (c-50-137-42-92.hsd1.or.comcast.net.
+	[50.137.42.92])
+	by mx.google.com with ESMTPS id vc5sm10440832pbc.2.2012.08.08.11.39.51
+	(version=SSLv3 cipher=OTHER); Wed, 08 Aug 2012 11:39:52 -0700 (PDT)
+Message-ID: <5022B276.7000104@intel.com>
+Date: Wed, 08 Aug 2012 11:39:50 -0700
+From: Scott Garman <scott.a.garman@intel.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:14.0) Gecko/20120717 Thunderbird/14.0
+	rv:14.0) Gecko/20120714 Thunderbird/14.0
 MIME-Version: 1.0
-To: "Bodke, Kishore K" <kishore.k.bodke@intel.com>
-References: <cover.1344448245.git.kishore.k.bodke@intel.com>
-	<5022AC56.7080109@linux.intel.com>
-	<D956029D25CF204F948EA0FB515E1EE20AD45DC1@ORSMSX105.amr.corp.intel.com>
-In-Reply-To: <D956029D25CF204F948EA0FB515E1EE20AD45DC1@ORSMSX105.amr.corp.intel.com>
-X-Enigmail-Version: 1.4.3
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [PATCH 0/1] [KERNEL] meta: New Crystal Forest Machine Branch
+To: yocto@yoctoproject.org
+References: <22F5AB9F-5063-4443-97B6-B88EA9DAE877@gmail.com>
+In-Reply-To: <22F5AB9F-5063-4443-97B6-B88EA9DAE877@gmail.com>
+X-Gm-Message-State: ALoCoQm+1GD1IYd55Obc8FfNrG+dO2laaMi/k/wJM/skJlIEGX1K+6zoC3kQTHj4rSf8Pb9hjEQb
+Subject: Re: Maintenance on older branches, e.g. bernard
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,73 +46,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Aug 2012 18:34:06 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Wed, 08 Aug 2012 18:39:53 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
+On 08/08/2012 11:20 AM, Elvis Dowson wrote:
+> Hi, I just noticed that if one were to try switching to an older poky
+> branch, say bernard, there are a few errors:
+>
+> e.g. meta-yocto layer doesn't have a conf folder.
+>
+> Also if you use one of the tags, e.g. bernard-5.0, bernard-5.0.1,
+> bernard-5.0.2, you can run into build failures.
+>
+> I think at the very least, one should be able to build successfully
+> off one of the older branches, and perhaps it should be part of the
+> regular regression tests?
 
+When you say "build successfully", how do you define that? Building 
+core-image-minimal? -sato? -lsb? For which machines? On how many host 
+distros?
 
-On 08/08/2012 11:28 AM, Bodke, Kishore K wrote:
-> 
-> 
->> -----Original Message-----
->> From: Darren Hart [mailto:dvhart@linux.intel.com]
->> Sent: Wednesday, August 08, 2012 11:14 AM
->> To: Bodke, Kishore K
->> Cc: yocto@yoctoproject.org; bruce.ashfield@windriver.com
->> Subject: Re: [PATCH 0/1] [KERNEL] meta: New Crystal Forest Machine Branch
->>
->> n 08/08/2012 10:56 AM, kishore.k.bodke@intel.com wrote:
->>> From: Kishore Bodke <kishore.k.bodke@intel.com>
->>>
->>> Hi,
->>>
->>> This is a revised patch set is for creating the new Crystal Forest Machine.
->>> Crystal Forest Machine is Sandybridge CPU with Cave Creek Chipset.
->>>
->>> This machine is based on standard/default/common-pc-64.
->>>
->>> Please create a new branch called standard/default/common-pc-
->> 64/crystalforest
->>> for linux-yocto-3.4 kernel and pull this new meta branch.
->>>
->>> Thanks
->>> Kishore.
->>
->> Hi Kishore, please note that as these patches are for the linux-yocto
->> sources, they should be sent to the linux-yocto mailing list:
->>
->> https://lists.yoctoproject.org/listinfo/linux-yocto
->>
->> This is a relatively new list, please keep it in mind for the future.
-> 
-> Hi Darren,
-> 
-> Thanks for letting me know this.
-> A quick question.
-> Do we need to send all the kernel related patches only to Linux-yocto mailing list or to both Linux-yocto and Yocto mailing list too?
+We have a problem of scale here which is why bernard (now three stable 
+releases old) is no longer undergoing active maintenance or regression 
+testing by the core team.
 
-If the patches are against a linux-yocto*.git repository, they go to
-linux-yocto. If they are against the oe-core meta-data, they should go
-to the openembedded-core mailing list. If they are to meta-yocto, they
-should go to the poky mailing list (this one is rather confusing
-unfortunately). The only patches that should go to the "yocto" mailing
-list are for related projects, such as meta-intel, that are not part of
-oe-core, poky, linux-yocto, and do not have their own lists (such as
-bitbake-devel).
+This is where the community or a partner organization with a financial 
+interest in supporting that release for their customers needs to step 
+in. As time goes on, we're seeing more commercial adoption our releases 
+and I think we'll see more of this for the recent releases (edison and 
+denzil in particular, but bernard came out when the Yocto Project was 
+still fairly new).
 
-For the work you are doing:
+IMO,
 
-Patches to meta-intel go here, to the yocto mailing list.
-Patches to linux-yocto*git go to the linux-yocto mailing list.
-Patches to poky/meta/recipes-kernel/linux/* should go to the
-openembedded-core mailing list.
-
-Clear as mud? :-)
-
+Scott
 
 -- 
-Darren Hart
+Scott Garman
+Embedded Linux Engineer - Yocto Project
 Intel Open Source Technology Center
-Yocto Project - Technical Lead - Linux Kernel
 
