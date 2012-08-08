@@ -1,23 +1,23 @@
 Return-Path: <tom.zanussi@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D34ABE00283
-	for <yocto@yoctoproject.org>; Wed,  8 Aug 2012 13:44:17 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 08 Aug 2012 13:44:17 -0700
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AAB4FE0141D
+	for <yocto@yoctoproject.org>; Wed,  8 Aug 2012 13:44:19 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 08 Aug 2012 13:44:19 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.77,734,1336374000"; d="scan'208";a="178478614"
+X-IronPort-AV: E=Sophos;i="4.77,734,1336374000"; d="scan'208";a="205159269"
 Received: from unknown (HELO localhost) ([10.255.12.213])
-	by azsmga001.ch.intel.com with ESMTP; 08 Aug 2012 13:44:16 -0700
+	by fmsmga002.fm.intel.com with ESMTP; 08 Aug 2012 13:44:18 -0700
 From: tom.zanussi@intel.com
 To: yocto@yoctoproject.org
-Date: Wed,  8 Aug 2012 15:43:47 -0500
-Message-Id: <68bd68c89ca6c72d985b06a3ed80347e257fa5bf.1344458451.git.tom.zanussi@intel.com>
+Date: Wed,  8 Aug 2012 15:43:48 -0500
+Message-Id: <bca84c2296f5a7ca35a21fc4c5219d04c05096d0.1344458451.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.4.1
 In-Reply-To: <c2f8f4743b9369476fd0cb7fb6a7bf0ada2b7c13.1344458451.git.tom.zanussi@intel.com>
 References: <c2f8f4743b9369476fd0cb7fb6a7bf0ada2b7c13.1344458451.git.tom.zanussi@intel.com>
 In-Reply-To: <cover.1344458451.git.tom.zanussi@intel.com>
 References: <cover.1344458451.git.tom.zanussi@intel.com>
-Subject: [PATCH 09/17] yocto-bsp: remove 'branch' statements in .scc if reusing branch
+Subject: [PATCH 10/17] yocto-bsp: add some standard policy
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,132 +29,80 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Aug 2012 20:44:18 -0000
+X-List-Received-Date: Wed, 08 Aug 2012 20:44:19 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-If reusing a branch (need_new_branch == 'n') we don't need to branch
-in the .scc, so make it conditional on need_new_branch.
+Add some useful default options to to the i386 and x86_64 templates.
 
 Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
 ---
- .../linux/files/{{=machine}}-standard.scc          |    1 +
- .../linux/files/{{=machine}}-standard.scc          |    1 +
- .../linux/files/{{=machine}}-standard.scc          |    1 +
- .../linux/files/{{=machine}}-standard.scc          |    1 +
- .../linux/files/{{=machine}}-preempt-rt.scc        |    5 +----
- .../linux/files/{{=machine}}-standard.scc          |    5 +----
- .../linux/files/{{=machine}}-standard.scc          |    1 +
- 7 files changed, 7 insertions(+), 8 deletions(-)
+ .../linux/files/{{=machine}}-preempt-rt.scc        |    7 +++++++
+ .../linux/files/{{=machine}}-standard.scc          |    7 +++++++
+ .../linux/files/{{=machine}}-preempt-rt.scc        |    7 +++++++
+ .../linux/files/{{=machine}}-standard.scc          |    7 +++++++
+ 4 files changed, 28 insertions(+), 0 deletions(-)
 
-diff --git a/scripts/lib/bsp/substrate/target/arch/arm/recipes-kernel/linux/files/{{=machine}}-standard.scc b/scripts/lib/bsp/substrate/target/arch/arm/recipes-kernel/linux/files/{{=machine}}-standard.scc
-index cd8fa9c..d131678 100644
---- a/scripts/lib/bsp/substrate/target/arch/arm/recipes-kernel/linux/files/{{=machine}}-standard.scc
-+++ b/scripts/lib/bsp/substrate/target/arch/arm/recipes-kernel/linux/files/{{=machine}}-standard.scc
-@@ -3,6 +3,7 @@ define KTYPE standard
- define KARCH arm
- 
- include ktypes/standard
-+{{ if need_new_kbranch == "y": }}
- branch {{=machine}}
+diff --git a/scripts/lib/bsp/substrate/target/arch/i386/recipes-kernel/linux/files/{{=machine}}-preempt-rt.scc b/scripts/lib/bsp/substrate/target/arch/i386/recipes-kernel/linux/files/{{=machine}}-preempt-rt.scc
+index 9fb8002..6ee1c93 100644
+--- a/scripts/lib/bsp/substrate/target/arch/i386/recipes-kernel/linux/files/{{=machine}}-preempt-rt.scc
++++ b/scripts/lib/bsp/substrate/target/arch/i386/recipes-kernel/linux/files/{{=machine}}-preempt-rt.scc
+@@ -6,3 +6,10 @@ define KARCH i386
+ include ktypes/preempt-rt
  
  include {{=machine}}.scc
++
++# default policy for preempt-rt kernels
++include cfg/usb-mass-storage.scc
++include cfg/boot-live.scc
++include features/logbuf/size-normal.scc
++include features/latencytop/latencytop.scc
++include features/profiling/profiling.scc
 diff --git a/scripts/lib/bsp/substrate/target/arch/i386/recipes-kernel/linux/files/{{=machine}}-standard.scc b/scripts/lib/bsp/substrate/target/arch/i386/recipes-kernel/linux/files/{{=machine}}-standard.scc
-index c7ba1fb..a241b29 100644
+index a241b29..2c16efa 100644
 --- a/scripts/lib/bsp/substrate/target/arch/i386/recipes-kernel/linux/files/{{=machine}}-standard.scc
 +++ b/scripts/lib/bsp/substrate/target/arch/i386/recipes-kernel/linux/files/{{=machine}}-standard.scc
-@@ -3,6 +3,7 @@ define KTYPE standard
- define KARCH i386
- 
- include {{=map_standard_kbranch(need_new_kbranch, new_kbranch, existing_kbranch)}}
-+{{ if need_new_kbranch == "y": }}
+@@ -7,3 +7,10 @@ include {{=map_standard_kbranch(need_new_kbranch, new_kbranch, existing_kbranch)
  branch {{=machine}}
  
  include {{=machine}}.scc
-diff --git a/scripts/lib/bsp/substrate/target/arch/mips/recipes-kernel/linux/files/{{=machine}}-standard.scc b/scripts/lib/bsp/substrate/target/arch/mips/recipes-kernel/linux/files/{{=machine}}-standard.scc
-index c6139f0..3b916b4 100644
---- a/scripts/lib/bsp/substrate/target/arch/mips/recipes-kernel/linux/files/{{=machine}}-standard.scc
-+++ b/scripts/lib/bsp/substrate/target/arch/mips/recipes-kernel/linux/files/{{=machine}}-standard.scc
-@@ -3,6 +3,7 @@ define KTYPE standard
- define KARCH mips
- 
- include ktypes/standard
-+{{ if need_new_kbranch == "y": }}
- branch {{=machine}}
- 
- include {{=machine}}.scc
-diff --git a/scripts/lib/bsp/substrate/target/arch/powerpc/recipes-kernel/linux/files/{{=machine}}-standard.scc b/scripts/lib/bsp/substrate/target/arch/powerpc/recipes-kernel/linux/files/{{=machine}}-standard.scc
-index 1213e61..a521874 100644
---- a/scripts/lib/bsp/substrate/target/arch/powerpc/recipes-kernel/linux/files/{{=machine}}-standard.scc
-+++ b/scripts/lib/bsp/substrate/target/arch/powerpc/recipes-kernel/linux/files/{{=machine}}-standard.scc
-@@ -3,6 +3,7 @@ define KTYPE standard
- define KARCH powerpc
- 
- include ktypes/standard
-+{{ if need_new_kbranch == "y": }}
- branch {{=machine}}
++
++# default policy for standard kernels
++include cfg/usb-mass-storage.scc
++include cfg/boot-live.scc
++include features/logbuf/size-normal.scc
++include features/latencytop/latencytop.scc
++include features/profiling/profiling.scc
+diff --git a/scripts/lib/bsp/substrate/target/arch/x86_64/recipes-kernel/linux/files/{{=machine}}-preempt-rt.scc b/scripts/lib/bsp/substrate/target/arch/x86_64/recipes-kernel/linux/files/{{=machine}}-preempt-rt.scc
+index ecb0f01..5819dce 100644
+--- a/scripts/lib/bsp/substrate/target/arch/x86_64/recipes-kernel/linux/files/{{=machine}}-preempt-rt.scc
++++ b/scripts/lib/bsp/substrate/target/arch/x86_64/recipes-kernel/linux/files/{{=machine}}-preempt-rt.scc
+@@ -6,3 +6,10 @@ define KARCH x86_64
+ include ktypes/preempt-rt
  
  include {{=machine}}.scc
-diff --git a/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/files/{{=machine}}-preempt-rt.scc b/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/files/{{=machine}}-preempt-rt.scc
-index 6399a4b..0f5a582 100644
---- a/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/files/{{=machine}}-preempt-rt.scc
-+++ b/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/files/{{=machine}}-preempt-rt.scc
-@@ -13,18 +13,15 @@ define KARCH mips
- 
- {{ if qemuarch == "i386": }}
- include bsp/common-pc/common-pc-preempt-rt
--branch {{=machine}}
- {{ if qemuarch == "x86_64": }}
- include bsp/common-pc-64/common-pc-64-preempt-rt
--branch {{=machine}}
- {{ if qemuarch == "arm": }}
- include bsp/arm-versatile-926ejs/arm-versatile-926ejs-preempt-rt
--branch {{=machine}}
- {{ if qemuarch == "powerpc": }}
- include bsp/qemu-ppc32/qemu-ppc32-rt
--branch {{=machine}}
- {{ if qemuarch == "mips": }}
- include bsp/mti-malta32/mti-malta32-be-preempt-rt
-+{{ if need_new_kbranch == "y": }}
- branch {{=machine}}
- 
- include {{=machine}}.scc
-diff --git a/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/files/{{=machine}}-standard.scc b/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/files/{{=machine}}-standard.scc
-index 4def04a..04a3620 100644
---- a/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/files/{{=machine}}-standard.scc
-+++ b/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/files/{{=machine}}-standard.scc
-@@ -13,18 +13,15 @@ define KARCH mips
- 
- {{ if qemuarch == "i386": }}
- include {{=map_standard_kbranch(need_new_kbranch, new_kbranch, existing_kbranch)}}
--branch {{=machine}}
- {{ if qemuarch == "x86_64": }}
- include {{=map_standard_kbranch(need_new_kbranch, new_kbranch, existing_kbranch)}}
--branch {{=machine}}
- {{ if qemuarch == "arm": }}
- include bsp/arm-versatile-926ejs/arm-versatile-926ejs-standard
--branch {{=machine}}
- {{ if qemuarch == "powerpc": }}
- include bsp/qemu-ppc32/qemu-ppc32-standard
--branch {{=machine}}
- {{ if qemuarch == "mips": }}
- include bsp/mti-malta32/mti-malta32-be-standard
-+{{ if need_new_kbranch == "y": }}
- branch {{=machine}}
- 
- include {{=machine}}.scc
++
++# default policy for preempt-rt kernels
++include cfg/usb-mass-storage.scc
++include cfg/boot-live.scc
++include features/logbuf/size-normal.scc
++include features/latencytop/latencytop.scc
++include features/profiling/profiling.scc
 diff --git a/scripts/lib/bsp/substrate/target/arch/x86_64/recipes-kernel/linux/files/{{=machine}}-standard.scc b/scripts/lib/bsp/substrate/target/arch/x86_64/recipes-kernel/linux/files/{{=machine}}-standard.scc
-index 4a034fa..3253133 100644
+index 3253133..9e5cf13 100644
 --- a/scripts/lib/bsp/substrate/target/arch/x86_64/recipes-kernel/linux/files/{{=machine}}-standard.scc
 +++ b/scripts/lib/bsp/substrate/target/arch/x86_64/recipes-kernel/linux/files/{{=machine}}-standard.scc
-@@ -3,6 +3,7 @@ define KTYPE standard
- define KARCH x86_64
- 
- include {{=map_standard_kbranch(need_new_kbranch, new_kbranch, existing_kbranch)}}
-+{{ if need_new_kbranch == "y": }}
+@@ -7,3 +7,10 @@ include {{=map_standard_kbranch(need_new_kbranch, new_kbranch, existing_kbranch)
  branch {{=machine}}
  
  include {{=machine}}.scc
++
++# default policy for standard kernels
++include cfg/usb-mass-storage.scc
++include cfg/boot-live.scc
++include features/logbuf/size-normal.scc
++include features/latencytop/latencytop.scc
++include features/profiling/profiling.scc
 -- 
 1.7.4.1
 
