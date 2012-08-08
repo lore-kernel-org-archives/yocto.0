@@ -1,21 +1,23 @@
 Return-Path: <kishore.k.bodke@intel.com>
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2F12EE002A5
-	for <yocto@yoctoproject.org>; Wed,  8 Aug 2012 10:56:59 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CA0D4E00346
+	for <yocto@yoctoproject.org>; Wed,  8 Aug 2012 10:57:00 -0700 (PDT)
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 08 Aug 2012 10:56:58 -0700
+	by orsmga101.jf.intel.com with ESMTP; 08 Aug 2012 10:57:00 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.77,734,1336374000"; d="scan'208";a="183252616"
+X-IronPort-AV: E=Sophos;i="4.77,734,1336374000"; d="scan'208";a="183252627"
 Received: from kishore-desktop.sc.intel.com (HELO localhost)
 	([143.183.188.174])
-	by orsmga002.jf.intel.com with ESMTP; 08 Aug 2012 10:56:58 -0700
+	by orsmga002.jf.intel.com with ESMTP; 08 Aug 2012 10:57:00 -0700
 From: kishore.k.bodke@intel.com
 To: yocto@yoctoproject.org, bruce.ashfield@windriver.com,
 	dvhart@linux.intel.com
-Date: Wed,  8 Aug 2012 10:56:55 -0700
-Message-Id: <cover.1344448245.git.kishore.k.bodke@intel.com>
+Date: Wed,  8 Aug 2012 10:56:58 -0700
+Message-Id: <441e6ea85e52df1a7d14c83246a08e84874edc0a.1344448245.git.kishore.k.bodke@intel.com>
 X-Mailer: git-send-email 1.7.9.5
-Subject: [PATCH 0/1] [KERNEL] meta: New Crystal Forest Machine Branch
+In-Reply-To: <cover.1344448245.git.kishore.k.bodke@intel.com>
+References: <cover.1344448245.git.kishore.k.bodke@intel.com>
+Subject: [PATCH 1/1] [KERNEL] meta: Crystal Forest Machine Created.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,35 +29,15 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Aug 2012 17:56:59 -0000
+X-List-Received-Date: Wed, 08 Aug 2012 17:57:00 -0000
 
 From: Kishore Bodke <kishore.k.bodke@intel.com>
 
-Hi,
+Initial checkin for the new Crystal Forest Machine Branch.
+This Machine is based on Sandybridge CPU and Cave Creek Chipset.
 
-This is a revised patch set is for creating the new Crystal Forest Machine.
-Crystal Forest Machine is Sandybridge CPU with Cave Creek Chipset.
-
-This machine is based on standard/default/common-pc-64.
-
-Please create a new branch called standard/default/common-pc-64/crystalforest
-for linux-yocto-3.4 kernel and pull this new meta branch.
-
-Thanks
-Kishore.
-
-The following changes since commit 459165c1dd61c4e843c36e6a1abeb30949a20ba7:
-
-  kconf: add 8250 Kconfig to hardware listing audit (2012-07-26 16:23:26 -0400)
-
-are available in the git repository at:
-
-  git://git.pokylinux.org/linux-yocto-2.6.37-contrib kishore/meta-crystalforest
-  http://git.pokylinux.org/cgit.cgi/linux-yocto-2.6.37-contrib/log/?h=kishore/meta-crystalforest
-
-Kishore Bodke (1):
-  meta: Crystal Forest Machine Created.
-
+Signed-off-by: Kishore Bodke <kishore.k.bodke@intel.com>
+---
  .../bsp/crystalforest/crystalforest-preempt-rt.scc |    9 ++++++
  .../bsp/crystalforest/crystalforest-standard.scc   |    8 +++++
  .../bsp/crystalforest/crystalforest.cfg            |   32 ++++++++++++++++++++
@@ -66,6 +48,100 @@ Kishore Bodke (1):
  create mode 100644 meta/cfg/kernel-cache/bsp/crystalforest/crystalforest.cfg
  create mode 100644 meta/cfg/kernel-cache/bsp/crystalforest/crystalforest.scc
 
+diff --git a/meta/cfg/kernel-cache/bsp/crystalforest/crystalforest-preempt-rt.scc b/meta/cfg/kernel-cache/bsp/crystalforest/crystalforest-preempt-rt.scc
+new file mode 100644
+index 0000000..88e9b1a
+--- /dev/null
++++ b/meta/cfg/kernel-cache/bsp/crystalforest/crystalforest-preempt-rt.scc
+@@ -0,0 +1,9 @@
++define KMACHINE crystalforest
++define KTYPE preempt-rt
++define KARCH x86_64
++
++# no new branch required, re-use the ktypes/preempt-rt branch
++include ktypes/preempt-rt
++include bsp/common-pc-64/common-pc-64.scc
++
++include crystalforest.scc
+diff --git a/meta/cfg/kernel-cache/bsp/crystalforest/crystalforest-standard.scc b/meta/cfg/kernel-cache/bsp/crystalforest/crystalforest-standard.scc
+new file mode 100644
+index 0000000..2935387
+--- /dev/null
++++ b/meta/cfg/kernel-cache/bsp/crystalforest/crystalforest-standard.scc
+@@ -0,0 +1,8 @@
++define KMACHINE crystalforest
++define KTYPE standard
++define KARCH x86_64
++
++include bsp/common-pc-64/common-pc-64-standard
++branch crystalforest
++
++include crystalforest.scc
+diff --git a/meta/cfg/kernel-cache/bsp/crystalforest/crystalforest.cfg b/meta/cfg/kernel-cache/bsp/crystalforest/crystalforest.cfg
+new file mode 100644
+index 0000000..542f600
+--- /dev/null
++++ b/meta/cfg/kernel-cache/bsp/crystalforest/crystalforest.cfg
+@@ -0,0 +1,32 @@
++CONFIG_PRINTK=y
++
++# Basic hardware support for the box - network, PCI, sound
++CONFIG_NETDEVICES=y
++CONFIG_ATA=y
++CONFIG_ATA_GENERIC=y
++CONFIG_ATA_SFF=y
++CONFIG_PCI=y
++CONFIG_MMC=y
++CONFIG_MMC_SDHCI=y
++CONFIG_R8169=y
++CONFIG_PATA_SCH=y
++CONFIG_MMC_SDHCI_PCI=y
++CONFIG_PCIEPORTBUS=y
++CONFIG_NET=y
++CONFIG_CHR_DEV_SG=y
++CONFIG_SOUND=y
++CONFIG_SND=y
++CONFIG_SND_HDA_INTEL=y
++
++# Make sure these are on, otherwise the bootup won't be fun
++CONFIG_UNIX=y
++CONFIG_INET=y
++CONFIG_MODULES=y
++CONFIG_SHMEM=y
++CONFIG_TMPFS=y
++CONFIG_PACKET=y
++
++CONFIG_I2C=y
++CONFIG_AGP=y
++CONFIG_PM=y
++CONFIG_INPUT=y
+diff --git a/meta/cfg/kernel-cache/bsp/crystalforest/crystalforest.scc b/meta/cfg/kernel-cache/bsp/crystalforest/crystalforest.scc
+new file mode 100644
+index 0000000..3e3aa56
+--- /dev/null
++++ b/meta/cfg/kernel-cache/bsp/crystalforest/crystalforest.scc
+@@ -0,0 +1,21 @@
++kconf hardware crystalforest.cfg
++
++include cfg/x86_64.scc
++include cfg/8250.scc
++
++include features/power/intel.scc
++
++#These are required features for Intel DPDK Support
++include features/uio/uio.scc
++include features/hugetlb/hugetlb.scc
++include features/ixgbe/ixgbe.scc
++include features/igb/igb.scc
++
++
++include features/latencytop/latencytop.scc
++include features/profiling/profiling.scc
++include features/usb/xhci-hcd.scc
++include features/usb/ehci-hcd.scc
++include features/usb/ohci-hcd.scc
++include cfg/usb-mass-storage.scc
++include cfg/boot-live.scc
 -- 
 1.7.9.5
 
