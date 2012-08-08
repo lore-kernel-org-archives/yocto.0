@@ -1,28 +1,32 @@
-Return-Path: <anders.roxell@gmail.com>
-Received: from mail-yx0-f176.google.com (mail-yx0-f176.google.com
-	[209.85.213.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4D528E00346
-	for <yocto@yoctoproject.org>; Wed,  8 Aug 2012 08:39:36 -0700 (PDT)
-Received: by yenm12 with SMTP id m12so494962yen.35
-	for <yocto@yoctoproject.org>; Wed, 08 Aug 2012 08:39:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=ZJ1jxnJj1lwoRIRg+8PBTvVCU9bE0W4Q1iPMV+XnrV0=;
-	b=UXN6FbkgQpJz7+JCK6qeqouoH7DckXibbg10NGjpkc/tyZa964BW1mro+5AsOxfGbh
-	Ly/TG4OMo+TTc6oykljocwcxiToRxB0edp5mZyG7nsndqrNPM3HV79BWobMNuCDNHOy7
-	YRyCj5/PnWXEQv5EYKtfgGqpB3pDrpWJSOeAqWHt1UXm9OCXJhnc/G+/jTdGFJDGy7fu
-	MWAUU/IkfNjEpmYY9SsgPxGi8TkmYMXc9VJs+qAhuHx7+/sgIUWpSdWJadVjUQfK8l/F
-	h/nIVWGyU53Mn0IDkLscs2fX4Q8YepTayQBgL+MNDgzr+tH7KSid2Parh+GnCvb/FzvY
-	h0FA==
+Return-Path: <Tim.Verstraete@medecbenelux.be>
+Received: from mail.medecbenelux.be (mail.medecbenelux.be [81.83.14.242])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 060B2E00346
+	for <yocto@yoctoproject.org>; Wed,  8 Aug 2012 08:50:45 -0700 (PDT)
+Received: from SBS-MEDEC.medecbenelux.local ([fe80::1b66:a66e:3778:1407]) by
+	SBS-MEDEC.medecbenelux.local ([fe80::1b66:a66e:3778:1407%10]) with mapi
+	id 14.01.0355.002; Wed, 8 Aug 2012 17:50:43 +0200
+From: Tim Verstraete <Tim.Verstraete@medecbenelux.be>
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>
+Thread-Topic: [SPAM] - Re: [yocto] image recipe gives error: has no
+	buildable providers - Email found in subject
+Thread-Index: AQHNdXjj3V//dNyWu06tvZUZ/XhJipdQD/qg
+Date: Wed, 8 Aug 2012 15:50:43 +0000
+Message-ID: <4439C3C0562087488F139C696CD862A72C1FCE@SBS-MEDEC.medecbenelux.local>
+References: <4439C3C0562087488F139C696CD862A72C1CD6@SBS-MEDEC.medecbenelux.local>
+	<CAEsOVNewE-5HUwwe5euHztTLq1piN8fCbnh03gO4CeUFeQaQKA@mail.gmail.com>
+	<4439C3C0562087488F139C696CD862A72C1F5D@SBS-MEDEC.medecbenelux.local>
+	<CAEsOVNe6V2_DY9ZCCYu0qVWc=19OEZzVa=i+0qBeR-sDHnLS5Q@mail.gmail.com>
+	<4439C3C0562087488F139C696CD862A72C1F99@SBS-MEDEC.medecbenelux.local>
+	<alpine.DEB.2.02.1208081115390.12423@oneiric>
+In-Reply-To: <alpine.DEB.2.02.1208081115390.12423@oneiric>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [2002:5153:ef2:0:f4df:b227:47f1:52a1]
 MIME-Version: 1.0
-Received: by 10.60.14.227 with SMTP id s3mr1016835oec.36.1344440375383; Wed,
-	08 Aug 2012 08:39:35 -0700 (PDT)
-Received: by 10.182.116.3 with HTTP; Wed, 8 Aug 2012 08:39:35 -0700 (PDT)
-Date: Wed, 8 Aug 2012 17:39:35 +0200
-Message-ID: <CAEUf8FuMUNFAuGfqSq_yFpx2355OiKOca9Oun=pG2OyK41MBUg@mail.gmail.com>
-From: Anders Roxell <anders.roxell@gmail.com>
-To: yocto@yoctoproject.org
-Subject: Is there a way to order to kernel_do_configure_prepend?
+Cc: McClintock Matthew-B29882 <B29882@freescale.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [SPAM] - Re: image recipe gives error: has no buildable providers - Email found in subject
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,28 +38,57 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Aug 2012 15:39:36 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Wed, 08 Aug 2012 15:50:45 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Hello,
+Yes, this was automatically generate yocto-bsp create test-test1 arm
 
-I'm trying to build a p2041rdb i use the meta-fsl-ppc and poky release 1.2.
-I've created my own meta-layer where I add my own cfg kernel config so
-I added my own bbappend on the linux-qoriq-sdk.bb.
-In the linux-qoriq-sdk.bb file they have added a
-kernel_do_configure_prepend and I did my own
-kernel_do_configure_prepend in my linux-qoriq-sdk.bbappend file to add
-the kernel config that I need.
-I have set BBFILE_PRIORITY (BBFILE_PRIORITY_mylayer="5").
+-----Original Message-----
+From: Robert P. J. Day [mailto:rpjday@crashcourse.ca]=20
+Sent: woensdag 8 augustus 2012 17:17
+To: Tim Verstraete
+Cc: McClintock Matthew-B29882; yocto@yoctoproject.org
+Subject: [SPAM] - Re: [yocto] image recipe gives error: has no buildable pr=
+oviders - Email found in subject
 
-my problem is that my kernel_do_configure_prepend is applied before
-the fsl-ppc's kernel_do_configure_prepend and that is a problem
-because fsl-ppc's kernel_do_configure_prepend over writes the .config
-file (so my .config get over written).
+On Wed, 8 Aug 2012, Tim Verstraete wrote:
 
-does anyone have any idea how I can change the order of
-kernel_do_configure_prepend?
+> Hi,
+>
+> What i see is that when i do bitbake-layers show_layers that it shows the=
+ correct layers and the correct priority of the layers.
+>
+> The layers.conf is the following
+>
+> # We have a conf and classes directory, add to BBPATH=20
+> BBPATH :=3D "${BBPATH}:${LAYERDIR}"
+>
+> # We have a recipes directory, add to BBFILES BBFILES :=3D "${BBFILES}=20
+> ${LAYERDIR}/recipes-*/*/*.bb \
+>         ${LAYERDIR}/recipes-*/*/*.bbappend"
+>
+>  BBFILE_COLLECTIONS +=3D "test-test1"
+>  BBFILE_PATTERN_ test-test1:=3D "^${LAYERDIR}/"
+>  BBFILE_PRIORITY_ test-test1 =3D "25"
+                   ^ space?
 
-with kind regards,
-Anders
+  did you seriously copy and paste the above?  because it's just wrong.
+
+rday
+
+--=20
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
 
