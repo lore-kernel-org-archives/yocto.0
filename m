@@ -1,36 +1,46 @@
-Return-Path: <song.liu@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C684EE013DB
-	for <yocto@yoctoproject.org>; Tue,  7 Aug 2012 21:20:20 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 07 Aug 2012 21:20:20 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="182972253"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
-	by orsmga002.jf.intel.com with ESMTP; 07 Aug 2012 21:20:20 -0700
-Received: from orsmsx152.amr.corp.intel.com (10.22.226.39) by
-	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Tue, 7 Aug 2012 21:20:19 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.106]) by
-	ORSMSX152.amr.corp.intel.com ([169.254.8.180]) with mapi id
-	14.01.0355.002; Tue, 7 Aug 2012 21:20:19 -0700
-From: "Liu, Song" <song.liu@intel.com>
+Return-Path: <yesyanus@yahoo.com>
+Received: from nm22-vm3.bullet.mail.ne1.yahoo.com
+	(nm22-vm3.bullet.mail.ne1.yahoo.com [98.138.91.152])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id E23DCE0027F
+	for <yocto@yoctoproject.org>; Wed,  8 Aug 2012 05:59:20 -0700 (PDT)
+Received: from [98.138.90.57] by nm22.bullet.mail.ne1.yahoo.com with NNFMP;
+	08 Aug 2012 12:59:20 -0000
+Received: from [98.138.88.235] by tm10.bullet.mail.ne1.yahoo.com with NNFMP;
+	08 Aug 2012 12:59:20 -0000
+Received: from [127.0.0.1] by omp1035.mail.ne1.yahoo.com with NNFMP;
+	08 Aug 2012 12:59:20 -0000
+X-Yahoo-Newman-Property: ymail-3
+X-Yahoo-Newman-Id: 203585.69288.bm@omp1035.mail.ne1.yahoo.com
+Received: (qmail 87181 invoked by uid 60001); 8 Aug 2012 12:59:20 -0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s1024;
+	t=1344430760; bh=meTjytFZO1NZhvD+Z49xrQEVKv8SHrjttbSI7S6LsD8=;
+	h=X-YMail-OSG:Received:X-Mailer:Message-ID:Date:From:Reply-To:Subject:To:MIME-Version:Content-Type;
+	b=k4mRpKfAq4kRu2UPXWfir+W7nniHDFms5QfJ5w9PjNSXbOVF5CuLmMBfvuMfCyyDA9/vx4hHWKuNbajDzhsxVqJbkiTzYHKsWsG3NvVmcdp1YjN+HOJrfRMHgXoQCuL2SfdZAcebAex+A85kRWs8qYVmHETVKNPp3g8nS+WQg6w=
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=s1024; d=yahoo.com;
+	h=X-YMail-OSG:Received:X-Mailer:Message-ID:Date:From:Reply-To:Subject:To:MIME-Version:Content-Type;
+	b=ZAepIwMd5ay2tBxUYSQfU7jBcDGUx86Rwn56bgEYkOzNxf7N7bVblPUsAaEExvPj4CWSRC0coRL/xrfz13rp0kvobr6FFTHWVMBcP1HsvM3PbnXDnUPW3Jp5WhBseadjDIcSncqMSPlb+lAM4C5bMdL7nCjc7FyeOtDJqtoCHsc=;
+X-YMail-OSG: F_KPpc8VM1lKkbeKIkiA1IU9jwfoKcC6xLgX0_EOL93BOpL
+	vekSpir0VWww6FlVpo66NF5NBdVDYVLHrKXRyv5xxvheoe699bzlpbpwU6Sg
+	0enyMe2YQx4YTczH3K6DRYgBnzALA6PMO9YQuK1i1CIjUihBRnadxntUKeSD
+	9kTeGCZMqvStNzjWVnvM3Na54PXlKl9iYTxZMnabAMaBBoxqglUMbZRIJeMQ
+	moBber6aAfvDVaAQgHi9geES7uNTh_h34L1LuSQSc2SAE35ZNXaQ6ABveGh0
+	DdrU67qF4l6frA8D3Eb9IU0990c4k9yq2R2MckHfvNUpOpRiB1Lg63jluD6S
+	hzFLf_wJ_VfUuNtYyikDTLAFXdkC._KAi6.9g0sqUrw0N1xy4En9bUyB6Xzq
+	VHx8R6VWH7jx252AdiFixJMNdF8wG7VT2ZDvpeLnmrWpCDicfYn20XISBlsM
+	kx6mTDSXBl4dVmBU6wbKXhJudHjXsHdnB403U8HeKqQ--
+Received: from [110.232.35.192] by web121502.mail.ne1.yahoo.com via HTTP;
+	Wed, 08 Aug 2012 05:59:19 PDT
+X-Mailer: YahooMailWebService/0.8.120.356233
+Message-ID: <1344430759.60259.YahooMailNeo@web121502.mail.ne1.yahoo.com>
+Date: Wed, 8 Aug 2012 05:59:19 -0700 (PDT)
+From: Yes Yanus <yesyanus@yahoo.com>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Minutes: Yocto Project Technical Team Meeting - Tuesday,
-	August 07, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
-Thread-Index: AQHNdR0ekAGBv1igeki+0H1LMxcg/A==
-Date: Wed, 8 Aug 2012 04:20:19 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A484FB303@ORSMSX101.amr.corp.intel.com>
-References: <7E680CB2A76BB8438D08CF13C09FC53A4844CAD5@ORSMSX101.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-Subject: Minutes: Yocto Project Technical Team Meeting - Tuesday, August 07, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+Subject: a question about multilib
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: Yes Yanus <yesyanus@yahoo.com>
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -39,115 +49,61 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Aug 2012 04:20:20 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
+X-List-Received-Date: Wed, 08 Aug 2012 12:59:21 -0000
+Content-Type: multipart/alternative;
+	boundary="1319493512-1447898103-1344430759=:60259"
+
+--1319493512-1447898103-1344430759=:60259
+Content-Type: text/plain; charset=iso-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-Attendees:
-LaurentiuP, Bogdan, Jessica, Jason, LaurentiuS, Paul, Jeff, Kevin, Richard,=
- Bjorn, Nitin, Tom, Mark, Michael, Beth, JasonK, Cristian, Bruce, Song
-=A0
-Agenda:
-=A0
-* Opens collection - 5 min (Song)
-* Announcement about the priority merge:
-  - categories: high, medium+, medium, low
-  - The team will be changing P1-P4 to new priorities in Bugzilla in the ne=
-xt 2 weeks. Before that's done, please still refer to the priority column a=
-nd the white board in Bugzilla.
-=A0
-* Yocto 1.3 status  - 10 min (Song/team)
-  https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.3_Status =20
-=A0
-    - Reminder: 1.3 feature complete coming 9/2/2012
-    - Thanks to Richard, Ross, Paul Eggleton, Paul Gortmaker, Darren/Bruce,=
- Shane/Liming, and everyone else who completed their high items for M3.
-    - The following high's will have to be rescheduled. LTSI one may have t=
-o be off the 1.3 release. Getting CCB approval for this
-=A0
-61=A0=A0=A0=A0=A0=A0=A0=A0nor=A0=A0=A0=A0=A0=A0=A0=A0[Performance] Generate=
- fontconfig cache when building image=A0=A0=A0=A0=A0=A0=A0=A03.0=A0=A0=A0=
-=A0=A0=A0=A0=A0laurentiu.palcu@intel.com=A0=A0=A0=A0=A0=A0=A0=A0Medium=A0=
-=A0=A0=A0=A0=A0=A0=A0ACCE=A0=A0=A0=A0=A0=A0=A0=A0(P1)(Scheduled)
-1369=A0=A0=A0=A0=A0=A0=A0=A0nor=A0=A0=A0=A0=A0=A0=A0=A0[Multilib] On-target=
- gcc enhancement=A0=A0=A0=A0=A0=A0=A0=A05.0=A0=A0=A0=A0=A0=A0=A0=A0bogdan.a=
-.marinescu@intel.com=A0=A0=A0=A0=A0=A0=A0=A0Medium=A0=A0=A0=A0=A0=A0=A0=A0A=
-CCE=A0=A0=A0=A0=A0=A0=A0=A0(P1)(Scheduled)
-2010=A0=A0=A0=A0=A0=A0=A0=A0nor=A0=A0=A0=A0=A0=A0=A0=A0Some unnecessary pac=
-kages installed cause AutoBuilder built failed=A0=A0=A0=A0=A0=A0=A0=A00.5=
-=A0=A0=A0=A0=A0=A0=A0=A0michael@yoctoproject.org=A0=A0=A0=A0=A0=A0=A0=A0Med=
-ium=A0=A0=A0=A0=A0=A0=A0=A0ACCE=A0=A0=A0=A0=A0=A0=A0=A0(P1) (Development) S=
-tatus: Tested. Estimate: 4 hours
-2038=A0=A0=A0=A0=A0=A0=A0=A0enh=A0=A0=A0=A0=A0=A0=A0=A0[multilib] Add scrip=
-ts to sanity check for multilib libraries in the build directory=A0=A0=A0=
-=A0=A0=A0=A0=A04.0=A0=A0=A0=A0=A0=A0=A0=A0bogdan.a.marinescu@intel.com=A0=
-=A0=A0=A0=A0=A0=A0=A0Medium=A0=A0=A0=A0=A0=A0=A0=A0ACCE=A0=A0=A0=A0=A0=A0=
-=A0=A0(P1)(patch review)
-2162=A0=A0=A0=A0=A0=A0=A0=A0maj=A0=A0=A0=A0=A0=A0=A0=A0[Hob2] Implement 'Se=
-ttings' dialogue as designed=A0=A0=A0=A0=A0=A0=A0=A05.0=A0=A0=A0=A0=A0=A0=
-=A0=A0valentin.popa@intel.com=A0=A0=A0=A0=A0=A0=A0=A0Medium=A0=A0=A0=A0=A0=
-=A0=A0=A0ACCE=A0=A0=A0=A0=A0=A0=A0=A0(P1)(scheduled)
-2165=A0=A0=A0=A0=A0=A0=A0=A0enh=A0=A0=A0=A0=A0=A0=A0=A0[Hob2] Change action=
-s in the 'Recipes' screen to: 'Build image' (primary action) and 'Build pac=
-kages' (secondary action).=A0=A0=A0=A0=A0=A0=A0=A015.0=A0=A0=A0=A0=A0=A0=A0=
-=A0cristian.iorga@intel.com=A0=A0=A0=A0=A0=A0=A0=A0Medium=A0=A0=A0=A0=A0=A0=
-=A0=A0ACCE=A0=A0=A0=A0=A0=A0=A0=A0(P1) (Scheduled)
-1621=A0=A0=A0=A0=A0=A0=A0=A0enh=A0=A0=A0=A0=A0=A0=A0=A0[Performance] Runnin=
-g post installs at rootfs gen time=A0=A0=A0=A0=A0=A0=A0=A07.0=A0=A0=A0=A0=
-=A0=A0=A0=A0laurentiu.palcu@intel.com=A0=A0=A0=A0=A0=A0=A0=A0Low=A0=A0=A0=
-=A0=A0=A0=A0=A0ACCE=A0=A0=A0=A0=A0=A0=A0=A0(P1)(No QA Needed) (Design Revie=
-w)(post 1.2) Feb 20, 2012
-2396=A0=A0=A0=A0=A0=A0=A0=A0enh=A0=A0=A0=A0=A0=A0=A0=A0Integrate LTSI into =
-linux-yocto-dev=A0=A0=A0=A0=A0=A0=A0=A010.0=A0=A0=A0=A0=A0=A0=A0=A0bruce.as=
-hfield@windriver.com=A0=A0=A0=A0=A0=A0=A0=A0Medium=A0=A0=A0=A0=A0=A0=A0=A0A=
-CCE=A0=A0=A0=A0=A0=A0=A0=A0(P1)(blocked)
-=A0
-    - Bugs trend is going up. See the status wiki page: https://wiki.yoctop=
-roject.org/wiki/Yocto_Project_v1.3_Status=20
-=A0
-    - M3 status:=20
-      . Laurentiu/QA: doing full pass testing on last week's weekly build, =
-we still have issues: x32, multi-lib, x86-64, HOB (related to dead package)=
- , and we have bugs open.
-      . Richard: master status, things are bumpy at the moment, ongoing bui=
-ld issues for kernel build, there are quite some patches in yesterday, intr=
-oduced 9 failures, we got solutions for most of them, there is still troubl=
-e going on. RP will be on vacation, M3 is at a little bit of risk. Saul wil=
-l help after Richard is gone on vacation.
-    - Review of the M4 release criteria:  https://wiki.yoctoproject.org/wik=
-i/Yocto_Project_v1.3_Status#Milestone_4=20
-=A0
-* SWAT team rotation: Beth -> Paul
-* Opens - 10 min
-=A0
-  - Mark: I have one minor issue around LSB/FHS:
-Involved in IVI work, someone forwarded an email discussing requirement for=
- their internal work. There are concerns that YP does not conform to basic =
-Linux requirement (LSB/FHS). We are doing the LSB testing, there are bugs a=
-nd we are fixing bugs. No compliance is not intentional. We are getting bet=
-ter on this.=20
-=A0
-  - Michael: Open, Public IP address space change.=20
-Firming up some details on ISP, change will happen this Thursday morning at=
- 4am. There could be some connectivity problems for 10 minutes. Will send e=
-mail to the list before that to warn everyone. There will be 300 seconds fo=
-r old DNS entries. Once we are done, we will be separated from other LF ser=
-vers. Attack on those servers will not affect YP anymore after that.=20
-=A0
-  - Beth: Minor AB downtime: there are some recent issues identified for AB=
-, would like to get this fixed this week. Do need schedule some downtime, v=
-ery short (half an hour).
-=A0
-* Team sharing - 20 min
-=A0
-  - Michael: got the new AB's online,  issueshave been fixed. Web hob desig=
-n docs. Laurentiu and I have been working on bugzilla statistic data.
-  - Bruce: outside of M3, perf mess, updating other BSPs. Do have some test=
- trees. Delaying merging them now to avoid destabilize master.
-  - Mark: Sent the RFC out about the Image generation and deployment to OE-=
-core mailing list.. no feedback..=20
+Hi everyone,=0A=A0I=A0have a question about multilib. I have a layer which =
+is Independent of meta. this layer include some bb files and some of them a=
+re same with bb files in meta. for example, ncurses_5.7.bb in my layer and =
+ncurses_5.9.bb in meta. but when I run command bitbake lib32-ncurses the bb=
+ file in meta is called. I have set the priority in my layer. the prority i=
+s higher than layer in meta. why bb files in my layer can't be called ?=0Aa=
+nd if I run bitbake ncurses then bb files in my layer can be called.=0A=0AW=
+ho can tell me the cause and how to solve the question?=0A=0AThanks=0Ayes=
+=0A
 
+--1319493512-1447898103-1344430759=:60259
+Content-Type: text/html; charset=iso-8859-1
+Content-Transfer-Encoding: quoted-printable
 
+<html><body><div style=3D"color:#000; background-color:#fff; font-family:ti=
+mes new roman, new york, times, serif;font-size:14pt"><div><div class=3D"li=
+nestyle1 colourline" style=3D"font-family: Consolas, 'Lucida Console', mono=
+space; text-indent: -7px; padding-left: 7px; word-wrap: break-word; font-si=
+ze: 13px; ">Hi everyone,</div><div class=3D"linestyle1 colourline" style=3D=
+"font-family: Consolas, 'Lucida Console', monospace; text-indent: -7px; pad=
+ding-left: 7px; word-wrap: break-word; font-size: 13px; ">&nbsp;I&nbsp;have=
+ a question about multilib. I have a layer which is Independent of meta. th=
+is layer include some bb files and some of them are same with bb files in m=
+eta. for example, ncurses_5.7.bb in my layer and ncurses_5.9.bb in meta. bu=
+t when I run command bitbake lib32-ncurses the bb file in meta is called. I=
+ have set the priority in my layer. the prority is higher than layer in met=
+a. why bb files in my layer can't be called ?</div><div class=3D"linestyle2
+ colourline" style=3D"font-family: Consolas, 'Lucida Console', monospace; t=
+ext-indent: -7px; padding-left: 7px; word-wrap: break-word; font-size: 13px=
+; ">and if I run bitbake ncurses then bb files in my layer can be called.</=
+div><div class=3D"linestyle2 colourline" style=3D"font-family: Consolas, 'L=
+ucida Console', monospace; text-indent: -7px; padding-left: 7px; word-wrap:=
+ break-word; font-size: 13px; "><br></div><div class=3D"linestyle2 colourli=
+ne" style=3D"font-family: Consolas, 'Lucida Console', monospace; text-inden=
+t: -7px; padding-left: 7px; word-wrap: break-word; font-size: 13px; ">Who c=
+an tell me the cause and how to solve the question?</div><div class=3D"line=
+style2 colourline" style=3D"font-family: Consolas, 'Lucida Console', monosp=
+ace; text-indent: -7px; padding-left: 7px; word-wrap: break-word; font-size=
+: 13px; "><br></div><div class=3D"linestyle2 colourline" style=3D"font-fami=
+ly: Consolas, 'Lucida Console', monospace; text-indent: -7px; padding-left:=
+ 7px;
+ word-wrap: break-word; font-size: 13px; ">Thanks</div><div class=3D"linest=
+yle2 colourline" style=3D"font-family: Consolas, 'Lucida Console', monospac=
+e; text-indent: -7px; padding-left: 7px; word-wrap: break-word; font-size: =
+13px; ">yes</div><div class=3D"linestyle2 colourline" style=3D"font-family:=
+ Consolas, 'Lucida Console', monospace; text-indent: -7px; padding-left: 7p=
+x; word-wrap: break-word; font-size: 13px; "><br></div></div></div></body><=
+/html>
 
-
+--1319493512-1447898103-1344430759=:60259--
