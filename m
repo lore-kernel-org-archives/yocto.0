@@ -1,24 +1,21 @@
-Return-Path: <yocto@mindchasers.com>
-Received: from smtp.webfaction.com (mail6.webfaction.com [74.55.86.74])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A9752E002A5
-	for <yocto@yoctoproject.org>; Wed,  8 Aug 2012 13:35:59 -0700 (PDT)
-Received: from [192.168.1.3] (c-68-46-169-75.hsd1.nj.comcast.net
-	[68.46.169.75])
-	by smtp.webfaction.com (Postfix) with ESMTP id D0EA1213E9DD;
-	Wed,  8 Aug 2012 15:35:58 -0500 (CDT)
-Message-ID: <5022CDAD.5020309@mindchasers.com>
-Date: Wed, 08 Aug 2012 16:35:57 -0400
-From: Bob Cochran <yocto@mindchasers.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:14.0) Gecko/20120714 Thunderbird/14.0
-MIME-Version: 1.0
-To: McClintock Matthew-B29882 <B29882@freescale.com>
-References: <F1A84E50-21BF-4E9B-BC38-545D72F59A70@gmail.com>
-	<50226D44.3070503@mindchasers.com>
-	<CAEsOVNcYoCPaT-uRFw1tzggABncZAKL+U17fYkbi_fOgdJ5CtQ@mail.gmail.com>
-In-Reply-To: <CAEsOVNcYoCPaT-uRFw1tzggABncZAKL+U17fYkbi_fOgdJ5CtQ@mail.gmail.com>
-Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-Subject: Re: Unable to get serial console login prompt - PowerPC 440 Virtex 5 processor
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C6250E00283
+	for <yocto@yoctoproject.org>; Wed,  8 Aug 2012 13:43:59 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 08 Aug 2012 13:43:59 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.77,734,1336374000"; d="scan'208";a="177687305"
+Received: from unknown (HELO localhost) ([10.255.12.213])
+	by orsmga001.jf.intel.com with ESMTP; 08 Aug 2012 13:43:58 -0700
+From: tom.zanussi@intel.com
+To: yocto@yoctoproject.org
+Date: Wed,  8 Aug 2012 15:43:39 -0500
+Message-Id: <c2f8f4743b9369476fd0cb7fb6a7bf0ada2b7c13.1344458451.git.tom.zanussi@intel.com>
+X-Mailer: git-send-email 1.7.4.1
+In-Reply-To: <cover.1344458451.git.tom.zanussi@intel.com>
+References: <cover.1344458451.git.tom.zanussi@intel.com>
+Subject: [PATCH 01/17] yocto-bsp: add new strip_base() function
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,37 +27,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Aug 2012 20:35:59 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 08 Aug 2012 20:43:59 -0000
 
-On 08/08/2012 03:05 PM, McClintock Matthew-B29882 wrote:
-> These seem like quite different issues, code generation vs. some
-> inittab foo... are you seeing this issues with upstream? I've recently
-> gotten some inittab cleanups into oe-core for master / denzil / my own
-> edison branch + meta-fsl-ppc...
+From: Tom Zanussi <tom.zanussi@intel.com>
 
-On 08/08/2012 03:05 PM, McClintock Matthew-B29882 wrote:> These seem 
-like quite different issues, code generation vs. some
- > inittab foo... are you seeing this issues with upstream? I've recently
- > gotten some inittab cleanups into oe-core for master / denzil / my own
- > edison branch + meta-fsl-ppc...
+Add a strip_base() function to remove '/base' from the branch names
+presented to the user.
 
-Thanks Matthew.   I need to sort this out with some regression testing. 
-  The latest master branches of poky & meta-fsl-ppc provides a kernel 
-that oops while it's probing flash during boot.
+Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
+---
+ scripts/lib/bsp/engine.py |   10 ++++++++++
+ 1 files changed, 10 insertions(+), 0 deletions(-)
 
-With the latest fsl-image-minimal rootfs and a mainline kernel, I get an 
-init that hangs when it tries to exec getty.
-
-I see that the the "serial8250: too much work for irq42" message comes 
-from "drivers/tty/serial/8250/8250.c" and that there have been plenty of 
-patches to this file this year.
-
-I'll chime in again later.
-
-Bob
-
-
+diff --git a/scripts/lib/bsp/engine.py b/scripts/lib/bsp/engine.py
+index 8e53f00..cda1d14 100644
+--- a/scripts/lib/bsp/engine.py
++++ b/scripts/lib/bsp/engine.py
+@@ -449,6 +449,16 @@ def boolean(input_str, name):
+         return name
+ 
+ 
++def strip_base(input_str):
++    """
++    strip '/base' off the end of input_str, so we can use 'base' in
++    the branch names we present to the user.
++    """
++    if input_str and input_str.endswith("/base"):
++        return input_str[:-len("/base")]
++    return input_str.strip()
++
++
+ deferred_choices = {}
+ 
+ def gen_choices_defer(input_line, context, checklist = False):
+-- 
+1.7.4.1
 
 
