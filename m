@@ -1,48 +1,46 @@
 Return-Path: <B29882@freescale.com>
-Received: from va3outboundpool.messaging.microsoft.com
-	(va3ehsobe005.messaging.microsoft.com [216.32.180.31])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 150A8E002A5
-	for <yocto@yoctoproject.org>; Wed,  8 Aug 2012 12:05:09 -0700 (PDT)
-Received: from mail198-va3-R.bigfish.com (10.7.14.242) by
-	VA3EHSOBE006.bigfish.com (10.7.40.26) with Microsoft SMTP Server id
-	14.1.225.23; Wed, 8 Aug 2012 19:05:08 +0000
-Received: from mail198-va3 (localhost [127.0.0.1])	by
-	mail198-va3-R.bigfish.com (Postfix) with ESMTP id 5464E801F0;
-	Wed,  8 Aug 2012 19:05:08 +0000 (UTC)
+Received: from co1outboundpool.messaging.microsoft.com
+	(co1ehsobe002.messaging.microsoft.com [216.32.180.185])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 468E1E00347
+	for <yocto@yoctoproject.org>; Wed,  8 Aug 2012 12:06:07 -0700 (PDT)
+Received: from mail145-co1-R.bigfish.com (10.243.78.242) by
+	CO1EHSOBE016.bigfish.com (10.243.66.79) with Microsoft SMTP Server id
+	14.1.225.23; Wed, 8 Aug 2012 19:06:04 +0000
+Received: from mail145-co1 (localhost [127.0.0.1])	by
+	mail145-co1-R.bigfish.com (Postfix) with ESMTP id 054172803FF;
+	Wed,  8 Aug 2012 19:06:05 +0000 (UTC)
 X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null); IPV:NLI;
 	H:mail.freescale.net; RD:none; EFVD:NLI
 X-SpamScore: -3
-X-BigFish: VS-3(zzbb2dI98dI9371I1432Izz1202hzz8275bh8275dhz2dh2a8h668h839h8e2h8e3hf0ah107ah10d2hbe9i)
-Received: from mail198-va3 (localhost.localdomain [127.0.0.1]) by mail198-va3
-	(MessageSwitch) id 1344452706828363_5355;
-	Wed,  8 Aug 2012 19:05:06 +0000 (UTC)
-Received: from VA3EHSMHS033.bigfish.com (unknown [10.7.14.238])	by
-	mail198-va3.bigfish.com (Postfix) with ESMTP id C6DB848004D;
-	Wed,  8 Aug 2012 19:05:06 +0000 (UTC)
-Received: from mail.freescale.net (70.37.183.190) by VA3EHSMHS033.bigfish.com
-	(10.7.99.43) with Microsoft SMTP Server (TLS) id 14.1.225.23;
-	Wed, 8 Aug 2012 19:05:05 +0000
+X-BigFish: VS-3(zz98dI9371I1432I14ffIzz1202hzz8275bh8275dhz2dh2a8h668h839h8e2h8e3hf0ah107ah10d2hbe9i)
+Received: from mail145-co1 (localhost.localdomain [127.0.0.1]) by mail145-co1
+	(MessageSwitch) id 1344452762500772_22180;
+	Wed,  8 Aug 2012 19:06:02 +0000 (UTC)
+Received: from CO1EHSMHS012.bigfish.com (unknown [10.243.78.252])	by
+	mail145-co1.bigfish.com (Postfix) with ESMTP id 7633658004D;
+	Wed,  8 Aug 2012 19:06:02 +0000 (UTC)
+Received: from mail.freescale.net (70.37.183.190) by CO1EHSMHS012.bigfish.com
+	(10.243.66.22) with Microsoft SMTP Server (TLS) id 14.1.225.23;
+	Wed, 8 Aug 2012 19:06:01 +0000
 Received: from 039-SN1MPN1-001.039d.mgd.msft.net ([169.254.1.41]) by
-	039-SN1MMR1-001.039d.mgd.msft.net ([10.84.1.13]) with mapi id
-	14.02.0298.005; Wed, 8 Aug 2012 14:05:04 -0500
+	039-SN1MMR1-002.039d.mgd.msft.net ([10.84.1.15]) with mapi id
+	14.02.0298.005; Wed, 8 Aug 2012 14:06:01 -0500
 From: McClintock Matthew-B29882 <B29882@freescale.com>
-To: Bob Cochran <yocto@mindchasers.com>
-Thread-Topic: [yocto] Unable to get serial console login prompt - PowerPC
-	440 Virtex 5 processor
-Thread-Index: AQHNdZi3oGd8ijeWekai0UYGejeGdA==
-Date: Wed, 8 Aug 2012 19:05:03 +0000
-Message-ID: <CAEsOVNcYoCPaT-uRFw1tzggABncZAKL+U17fYkbi_fOgdJ5CtQ@mail.gmail.com>
-References: <F1A84E50-21BF-4E9B-BC38-545D72F59A70@gmail.com>
-	<50226D44.3070503@mindchasers.com>
-In-Reply-To: <50226D44.3070503@mindchasers.com>
+To: Yes Yanus <yesyanus@yahoo.com>
+Thread-Topic: [yocto] a question about multilib
+Thread-Index: AQHNdZjZicEzcDDqMkSXOfFG1yXNxA==
+Date: Wed, 8 Aug 2012 19:05:59 +0000
+Message-ID: <CAEsOVNfuY8ZSXqLghvjo7GnOz+F-WqLEgFPZZiVG1VDz7X7eRA@mail.gmail.com>
+References: <1344430759.60259.YahooMailNeo@web121502.mail.ne1.yahoo.com>
+In-Reply-To: <1344430759.60259.YahooMailNeo@web121502.mail.ne1.yahoo.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [70.112.201.132]
 MIME-Version: 1.0
 X-OriginatorOrg: freescale.com
-Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-Subject: Re: Unable to get serial console login prompt - PowerPC 440 Virtex 5 processor
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: a question about multilib
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,54 +53,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Aug 2012 19:05:10 -0000
+X-List-Received-Date: Wed, 08 Aug 2012 19:06:07 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="iso-8859-1"
-Content-ID: <E55E0BBD5DAFCA47B4A42888C912804F@mgd.freescale.com>
+Content-ID: <304E52E70F651E4E961E7AB467F906BA@mgd.freescale.com>
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Aug 8, 2012 at 8:44 AM, Bob Cochran <yocto@mindchasers.com> wrote:
-> On 07/31/2012 01:27 PM, Elvis Dowson wrote:
->>
->> Is serial console login prompt broken on yocto for targets other than
->> Intel? Does it work on ARM or PowerPC at the moment, with the latest
->> yocto updates as of today?
+On Wed, Aug 8, 2012 at 7:59 AM, Yes Yanus <yesyanus@yahoo.com> wrote:
+> Hi everyone,
+>  I have a question about multilib. I have a layer which is Independent of
+> meta. this layer include some bb files and some of them are same with bb
+> files in meta. for example, ncurses_5.7.bb in my layer and ncurses_5.9.bb=
+ in
+> meta. but when I run command bitbake lib32-ncurses the bb file in meta is
+> called. I have set the priority in my layer. the prority is higher than
+> layer in meta. why bb files in my layer can't be called ?
+> and if I run bitbake ncurses then bb files in my layer can be called.
 >
->
-> Hi Elvis,
->
-> For my Freescale QorIQ e500v2 target, the use of getty inside init / init=
-tab
-> has been broken for awhile.  I used to get the hangs you're reporting, bu=
-t
-> now I also see the following at the conclusion of init:
->
-> serial8250: too much work for irq42
->
->
-> I'm glad you're working this issue, and I'll try to jump in this week.
->
->
-> My workaround has been a hack to inittab to replace getty with /bin/sh -
-> most of my work is done across the network via ssh to the target, so I
-> didn't mind ignoring the problem.
+> Who can tell me the cause and how to solve the question?
 
-These seem like quite different issues, code generation vs. some
-inittab foo... are you seeing this issues with upstream? I've recently
-gotten some inittab cleanups into oe-core for master / denzil / my own
-edison branch + meta-fsl-ppc...
+Perhaps
+
+PREFERRED_VERSION_ncurses =3D "5.7"
+
+?
 
 -M
 
 >
->
-> Bob
->
+> Thanks
+> yes
 >
 >
 > _______________________________________________
 > yocto mailing list
 > yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto=
+> https://lists.yoctoproject.org/listinfo/yocto
+>=
 
 
