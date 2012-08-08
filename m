@@ -1,47 +1,33 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-ee0-f48.google.com (mail-ee0-f48.google.com [74.125.83.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3F809E013E5
-	for <yocto@yoctoproject.org>; Tue,  7 Aug 2012 19:47:47 -0700 (PDT)
-Received: by eekd41 with SMTP id d41so73240eek.35
-	for <yocto@yoctoproject.org>; Tue, 07 Aug 2012 19:47:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type:content-transfer-encoding;
-	bh=xXK1PX/PmWQTLJ4MqqbaqiR7hBCwic9xpaLPHicU/Ro=;
-	b=qF0Jg0zYpmS7e+c33LJKRLjB9pLvBbFciab2sx5uYNLSkXud2DAtoQQ98pnYo6l5aQ
-	6wmzKP68IR5S2JEpnfvCf+9rwpOKJJNZTy04ymRI3WYGkyJFrwu4IsoWR3i8oO44hUaI
-	Pzkw1K/1tLOjCd/GA1tpi0NaGK739WrChEPnTXXHB3pnwfTcTXwbB8ZSAMrShnPS9j80
-	QK2PkjOB3nyoZXs0E6puMp+pxvmt/ZOHAf0Guz9Wvrnb5T1Okk+fa3RaQsO5Cp+Bz8XB
-	OqSZqE+15q1gd0Ow5PBvEvDQoOFqVPX/Z7RTMxT3h7K0fui7QC8SxTYPRK/kdg3QUdNV
-	XaYA==
-Received: by 10.14.175.7 with SMTP id y7mr20219051eel.29.1344394066406; Tue,
-	07 Aug 2012 19:47:46 -0700 (PDT)
+Return-Path: <song.liu@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C684EE013DB
+	for <yocto@yoctoproject.org>; Tue,  7 Aug 2012 21:20:20 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 07 Aug 2012 21:20:20 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.67,351,1309762800"; d="scan'208";a="182972253"
+Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
+	by orsmga002.jf.intel.com with ESMTP; 07 Aug 2012 21:20:20 -0700
+Received: from orsmsx152.amr.corp.intel.com (10.22.226.39) by
+	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Tue, 7 Aug 2012 21:20:19 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.106]) by
+	ORSMSX152.amr.corp.intel.com ([169.254.8.180]) with mapi id
+	14.01.0355.002; Tue, 7 Aug 2012 21:20:19 -0700
+From: "Liu, Song" <song.liu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Minutes: Yocto Project Technical Team Meeting - Tuesday,
+	August 07, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+Thread-Index: AQHNdR0ekAGBv1igeki+0H1LMxcg/A==
+Date: Wed, 8 Aug 2012 04:20:19 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A484FB303@ORSMSX101.amr.corp.intel.com>
+References: <7E680CB2A76BB8438D08CF13C09FC53A4844CAD5@ORSMSX101.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-Received: by 10.14.97.141 with HTTP; Tue, 7 Aug 2012 19:47:16 -0700 (PDT)
-In-Reply-To: <D7F9D339-CE6F-4F5B-81BC-C6F55C315012@gmail.com>
-References: <F1A84E50-21BF-4E9B-BC38-545D72F59A70@gmail.com>
-	<654A270B-9C72-4BEA-B51D-79E4C6441594@gmail.com>
-	<15982971-CA6D-4E45-833F-AC4E5AA95331@gmail.com>
-	<8FA59113-59B4-4F16-B5D5-40CB3011BDE6@gmail.com>
-	<73D923A6-DA97-45D8-88FD-8629055D72AD@gmail.com>
-	<8E8CFCED-8C1A-48E8-B9E3-C6AB27CD9750@gmail.com>
-	<299D147C-2889-4DE7-9972-A81315B5AC3B@gmail.com>
-	<CAMKF1sq1AkaPnTqfijxH4MtN2_YKsHMLQ0rVdX_ObEBxVkS3tQ@mail.gmail.com>
-	<5EE8E4F2-1FD4-47B7-A2A1-94BFBC4A46F8@gmail.com>
-	<CAMKF1spzF44X-iKuz2UCaXfX8Dbf59BSJcG=0nodqvRUpQnmFw@mail.gmail.com>
-	<C72B7149-B2B8-46D6-A270-23BB55DFC733@gmail.com>
-	<CAMKF1sqiFrHqg6HNvRwX_1Wg=Nfq8_141-XaJ=E2qFQyUsSJEA@mail.gmail.com>
-	<931ADA5B-6471-40DB-8943-D7D6CA564C35@gmail.com>
-	<CAMKF1sr-=FLVGMZnW_X63YRnT=ms8eCLhhUkcoHujubM_1f5Ow@mail.gmail.com>
-	<AB2E7680-C057-47B0-91FD-62BD6BAC8170@gmail.com>
-	<CAMKF1sowWjF4DYUyWus7A1p5qQbJ3qPhRDEGfeZBOeohG6012g@mail.gmail.com>
-	<D7F9D339-CE6F-4F5B-81BC-C6F55C315012@gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Tue, 7 Aug 2012 19:47:16 -0700
-Message-ID: <CAMKF1sp6hdREYhkANLM2HSVmboNh0vkijqGyJr_JSGsd20G_RQ@mail.gmail.com>
-To: Elvis Dowson <elvis.dowson@gmail.com>
-Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-Subject: Re: Unable to get serial console login prompt - PowerPC 440 Virtex 5 processor
+Subject: Minutes: Yocto Project Technical Team Meeting - Tuesday, August 07, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,25 +39,115 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Aug 2012 02:47:47 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 08 Aug 2012 04:20:20 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Aug 7, 2012 at 1:33 PM, Elvis Dowson <elvis.dowson@gmail.com> wrote=
-:
-> I tired manually copying the static bash binary 8mb, over to the ramdisk =
-root folder. The problem still manifests, if there is no other file other t=
-han the static bash file, it displays the prompt. If the core-minimal-conso=
-le image exists, along with the static bash binary in the root location, it=
- gives the kernel panic, as shown above.
+Attendees:
+LaurentiuP, Bogdan, Jessica, Jason, LaurentiuS, Paul, Jeff, Kevin, Richard,=
+ Bjorn, Nitin, Tom, Mark, Michael, Beth, JasonK, Cristian, Bruce, Song
+=A0
+Agenda:
+=A0
+* Opens collection - 5 min (Song)
+* Announcement about the priority merge:
+  - categories: high, medium+, medium, low
+  - The team will be changing P1-P4 to new priorities in Bugzilla in the ne=
+xt 2 weeks. Before that's done, please still refer to the priority column a=
+nd the white board in Bugzilla.
+=A0
+* Yocto 1.3 status  - 10 min (Song/team)
+  https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.3_Status =20
+=A0
+    - Reminder: 1.3 feature complete coming 9/2/2012
+    - Thanks to Richard, Ross, Paul Eggleton, Paul Gortmaker, Darren/Bruce,=
+ Shane/Liming, and everyone else who completed their high items for M3.
+    - The following high's will have to be rescheduled. LTSI one may have t=
+o be off the 1.3 release. Getting CCB approval for this
+=A0
+61=A0=A0=A0=A0=A0=A0=A0=A0nor=A0=A0=A0=A0=A0=A0=A0=A0[Performance] Generate=
+ fontconfig cache when building image=A0=A0=A0=A0=A0=A0=A0=A03.0=A0=A0=A0=
+=A0=A0=A0=A0=A0laurentiu.palcu@intel.com=A0=A0=A0=A0=A0=A0=A0=A0Medium=A0=
+=A0=A0=A0=A0=A0=A0=A0ACCE=A0=A0=A0=A0=A0=A0=A0=A0(P1)(Scheduled)
+1369=A0=A0=A0=A0=A0=A0=A0=A0nor=A0=A0=A0=A0=A0=A0=A0=A0[Multilib] On-target=
+ gcc enhancement=A0=A0=A0=A0=A0=A0=A0=A05.0=A0=A0=A0=A0=A0=A0=A0=A0bogdan.a=
+.marinescu@intel.com=A0=A0=A0=A0=A0=A0=A0=A0Medium=A0=A0=A0=A0=A0=A0=A0=A0A=
+CCE=A0=A0=A0=A0=A0=A0=A0=A0(P1)(Scheduled)
+2010=A0=A0=A0=A0=A0=A0=A0=A0nor=A0=A0=A0=A0=A0=A0=A0=A0Some unnecessary pac=
+kages installed cause AutoBuilder built failed=A0=A0=A0=A0=A0=A0=A0=A00.5=
+=A0=A0=A0=A0=A0=A0=A0=A0michael@yoctoproject.org=A0=A0=A0=A0=A0=A0=A0=A0Med=
+ium=A0=A0=A0=A0=A0=A0=A0=A0ACCE=A0=A0=A0=A0=A0=A0=A0=A0(P1) (Development) S=
+tatus: Tested. Estimate: 4 hours
+2038=A0=A0=A0=A0=A0=A0=A0=A0enh=A0=A0=A0=A0=A0=A0=A0=A0[multilib] Add scrip=
+ts to sanity check for multilib libraries in the build directory=A0=A0=A0=
+=A0=A0=A0=A0=A04.0=A0=A0=A0=A0=A0=A0=A0=A0bogdan.a.marinescu@intel.com=A0=
+=A0=A0=A0=A0=A0=A0=A0Medium=A0=A0=A0=A0=A0=A0=A0=A0ACCE=A0=A0=A0=A0=A0=A0=
+=A0=A0(P1)(patch review)
+2162=A0=A0=A0=A0=A0=A0=A0=A0maj=A0=A0=A0=A0=A0=A0=A0=A0[Hob2] Implement 'Se=
+ttings' dialogue as designed=A0=A0=A0=A0=A0=A0=A0=A05.0=A0=A0=A0=A0=A0=A0=
+=A0=A0valentin.popa@intel.com=A0=A0=A0=A0=A0=A0=A0=A0Medium=A0=A0=A0=A0=A0=
+=A0=A0=A0ACCE=A0=A0=A0=A0=A0=A0=A0=A0(P1)(scheduled)
+2165=A0=A0=A0=A0=A0=A0=A0=A0enh=A0=A0=A0=A0=A0=A0=A0=A0[Hob2] Change action=
+s in the 'Recipes' screen to: 'Build image' (primary action) and 'Build pac=
+kages' (secondary action).=A0=A0=A0=A0=A0=A0=A0=A015.0=A0=A0=A0=A0=A0=A0=A0=
+=A0cristian.iorga@intel.com=A0=A0=A0=A0=A0=A0=A0=A0Medium=A0=A0=A0=A0=A0=A0=
+=A0=A0ACCE=A0=A0=A0=A0=A0=A0=A0=A0(P1) (Scheduled)
+1621=A0=A0=A0=A0=A0=A0=A0=A0enh=A0=A0=A0=A0=A0=A0=A0=A0[Performance] Runnin=
+g post installs at rootfs gen time=A0=A0=A0=A0=A0=A0=A0=A07.0=A0=A0=A0=A0=
+=A0=A0=A0=A0laurentiu.palcu@intel.com=A0=A0=A0=A0=A0=A0=A0=A0Low=A0=A0=A0=
+=A0=A0=A0=A0=A0ACCE=A0=A0=A0=A0=A0=A0=A0=A0(P1)(No QA Needed) (Design Revie=
+w)(post 1.2) Feb 20, 2012
+2396=A0=A0=A0=A0=A0=A0=A0=A0enh=A0=A0=A0=A0=A0=A0=A0=A0Integrate LTSI into =
+linux-yocto-dev=A0=A0=A0=A0=A0=A0=A0=A010.0=A0=A0=A0=A0=A0=A0=A0=A0bruce.as=
+hfield@windriver.com=A0=A0=A0=A0=A0=A0=A0=A0Medium=A0=A0=A0=A0=A0=A0=A0=A0A=
+CCE=A0=A0=A0=A0=A0=A0=A0=A0(P1)(blocked)
+=A0
+    - Bugs trend is going up. See the status wiki page: https://wiki.yoctop=
+roject.org/wiki/Yocto_Project_v1.3_Status=20
+=A0
+    - M3 status:=20
+      . Laurentiu/QA: doing full pass testing on last week's weekly build, =
+we still have issues: x32, multi-lib, x86-64, HOB (related to dead package)=
+ , and we have bugs open.
+      . Richard: master status, things are bumpy at the moment, ongoing bui=
+ld issues for kernel build, there are quite some patches in yesterday, intr=
+oduced 9 failures, we got solutions for most of them, there is still troubl=
+e going on. RP will be on vacation, M3 is at a little bit of risk. Saul wil=
+l help after Richard is gone on vacation.
+    - Review of the M4 release criteria:  https://wiki.yoctoproject.org/wik=
+i/Yocto_Project_v1.3_Status#Milestone_4=20
+=A0
+* SWAT team rotation: Beth -> Paul
+* Opens - 10 min
+=A0
+  - Mark: I have one minor issue around LSB/FHS:
+Involved in IVI work, someone forwarded an email discussing requirement for=
+ their internal work. There are concerns that YP does not conform to basic =
+Linux requirement (LSB/FHS). We are doing the LSB testing, there are bugs a=
+nd we are fixing bugs. No compliance is not intentional. We are getting bet=
+ter on this.=20
+=A0
+  - Michael: Open, Public IP address space change.=20
+Firming up some details on ISP, change will happen this Thursday morning at=
+ 4am. There could be some connectivity problems for 10 minutes. Will send e=
+mail to the list before that to warn everyone. There will be 300 seconds fo=
+r old DNS entries. Once we are done, we will be separated from other LF ser=
+vers. Attack on those servers will not affect YP anymore after that.=20
+=A0
+  - Beth: Minor AB downtime: there are some recent issues identified for AB=
+, would like to get this fixed this week. Do need schedule some downtime, v=
+ery short (half an hour).
+=A0
+* Team sharing - 20 min
+=A0
+  - Michael: got the new AB's online,  issueshave been fixed. Web hob desig=
+n docs. Laurentiu and I have been working on bugzilla statistic data.
+  - Bruce: outside of M3, perf mess, updating other BSPs. Do have some test=
+ trees. Delaying merging them now to avoid destabilize master.
+  - Mark: Sent the RFC out about the Image generation and deployment to OE-=
+core mailing list.. no feedback..=20
 
-I dont understand why it would boot when the rfs is just static bash
-and not when you bundle it along with rest of file system and setting
-init=3D/bin/bash you should get same results imo unless
-there are some conflicts in the latter case where /bin/bash is not static
 
-OK, another approach I could suggest is to use chroot. So boot
-the system into a known root file system. Then untar the new root file
-system under /opt or somewhere then chroot into it and try
-to run any dynamically linked program and see if that works.
+
 
