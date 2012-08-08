@@ -1,32 +1,24 @@
-Return-Path: <elvis.dowson@gmail.com>
-Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
-	[209.85.160.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 78A99E013DB
-	for <yocto@yoctoproject.org>; Tue,  7 Aug 2012 19:36:35 -0700 (PDT)
-Received: by pbbrq8 with SMTP id rq8so792051pbb.35
-	for <yocto@yoctoproject.org>; Tue, 07 Aug 2012 19:36:35 -0700 (PDT)
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-ee0-f48.google.com (mail-ee0-f48.google.com [74.125.83.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A4CC7E013DB
+	for <yocto@yoctoproject.org>; Tue,  7 Aug 2012 19:41:05 -0700 (PDT)
+Received: by eekd41 with SMTP id d41so72175eek.35
+	for <yocto@yoctoproject.org>; Tue, 07 Aug 2012 19:41:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:mime-version:content-type:subject:date:in-reply-to:to
-	:references:message-id:x-mailer;
-	bh=TNzo2KRiNZ81TZ3+xo5ymejFJa1KAI+00IVQ1am8594=;
-	b=N2KvWzDt+k5GIXQg2DDbWikAm7t6WtlGloDVDjGgMu5siEC0D0jfLhwxWxGzicS0gn
-	kIIzoGFeSsvLYa+AJdi2rzJ9ZmKNaxhc0NS2lv6NZdakJRfPJ1H20UNWWPMLcNCdAOkb
-	qpUtqlvi0bk6RRE/ZyLBPebSvF5B7jCvJmzIcunvD3s+8qQZ7yc8Zh3y6OONPfw0cUU5
-	i42DwudGmvOOONBk15LzxslV7aEshWURerepYQBVr7gKYzBRGsr+WHFkc+Dv23sJNWNI
-	h9fcHAN+Rn0VJ51QEsgfR1FsAh2ItfyglCg/8+zJQL5E9Juks9ZDtv7wo423IVykCG2i
-	VOfw==
-Received: by 10.68.189.104 with SMTP id gh8mr32425155pbc.152.1344393395177;
-	Tue, 07 Aug 2012 19:36:35 -0700 (PDT)
-Received: from [192.168.1.101] ([94.205.108.162])
-	by mx.google.com with ESMTPS id
-	gj10sm12343800pbc.18.2012.08.07.19.36.33
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Tue, 07 Aug 2012 19:36:34 -0700 (PDT)
-From: Elvis Dowson <elvis.dowson@gmail.com>
-Mime-Version: 1.0 (Apple Message framework v1278)
-Date: Wed, 8 Aug 2012 06:36:28 +0400
-In-Reply-To: <AB2E7680-C057-47B0-91FD-62BD6BAC8170@gmail.com>
-To: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=xtNFFpCauwdCRZ01FaV0uwtMLX8dzEm23jRlaiQIOrM=;
+	b=iNmjizPO1rrlYDwx13ttcWKiuZYh75SIzm4uu+SbqaRjsNS7KJkrF8RTUUv0KjIfIU
+	v57AClfLQ/lFUYBiUl5VfEy/gAbrVm5TD7p/OPlzn8jdGFgrNDZT2SSkWmxiu8+95Awx
+	EEFgHvbAjhHE8hsyT412RFwgZL9j6BY36kX23l3reWgTZLtya51LgSVbuHkpa2krlMrA
+	ZgweR6fzESMSrdW2lP2EgwRjJ1cAhQKxxUbG6htJLb4zyX37LoJ/+4Zr1739kpkVeQDQ
+	xurL6sdN9GchLfgZ6MhB2xU73pM22xZ+RGueCMjfw3g/J7bjLQ9SsEwBp4fAaIZzVxHk
+	uFDA==
+Received: by 10.14.175.7 with SMTP id y7mr20206632eel.29.1344393664582; Tue,
+	07 Aug 2012 19:41:04 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.14.97.141 with HTTP; Tue, 7 Aug 2012 19:40:33 -0700 (PDT)
+In-Reply-To: <E8DAEBDF-739C-4EEF-B0CA-D7A74A9C3ACB@gmail.com>
 References: <F1A84E50-21BF-4E9B-BC38-545D72F59A70@gmail.com>
 	<654A270B-9C72-4BEA-B51D-79E4C6441594@gmail.com>
 	<15982971-CA6D-4E45-833F-AC4E5AA95331@gmail.com>
@@ -42,8 +34,12 @@ References: <F1A84E50-21BF-4E9B-BC38-545D72F59A70@gmail.com>
 	<931ADA5B-6471-40DB-8943-D7D6CA564C35@gmail.com>
 	<CAMKF1sr-=FLVGMZnW_X63YRnT=ms8eCLhhUkcoHujubM_1f5Ow@mail.gmail.com>
 	<AB2E7680-C057-47B0-91FD-62BD6BAC8170@gmail.com>
-Message-Id: <E8DAEBDF-739C-4EEF-B0CA-D7A74A9C3ACB@gmail.com>
-X-Mailer: Apple Mail (2.1278)
+	<E8DAEBDF-739C-4EEF-B0CA-D7A74A9C3ACB@gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Tue, 7 Aug 2012 19:40:33 -0700
+Message-ID: <CAMKF1sovME6hMkVLfJs8bV7zZ5zYaXbkQT5A8_s+9Mz1QM32BQ@mail.gmail.com>
+To: Elvis Dowson <elvis.dowson@gmail.com>
+Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
 Subject: Re: Unable to get serial console login prompt - PowerPC 440 Virtex 5 processor
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -56,51 +52,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Aug 2012 02:36:35 -0000
-Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_E8AA6C59-D4C3-47AD-88BB-F2B7A68A5CA5"
+X-List-Received-Date: Wed, 08 Aug 2012 02:41:06 -0000
+Content-Type: text/plain; charset=UTF-8
 
---Apple-Mail=_E8AA6C59-D4C3-47AD-88BB-F2B7A68A5CA5
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=us-ascii
+On Tue, Aug 7, 2012 at 7:36 PM, Elvis Dowson <elvis.dowson@gmail.com> wrote:
+> Hi,
+>       I was just going through the recipes-devtools/gcc/gcc-common.inc file,
+> and noticed the following snippet:
+>
+> def get_gcc_multiarch_setting(bb, d):
+>     target_arch = d.getVar('TRANSLATED_TARGET_ARCH', True)
+>     multiarch_options = {
+>         "i586":    "--enable-targets=all",
+>         "powerpc": "--enable-targets=powerpc64",
+>         "sparc":   "--enable-targets=all",
+>     }
+>
+> My target is a 32-bit ppc440 cpu. What is the impact of an incorrectly set
+> multiarch_options for powerpc to  powerpc64 on the final build?
+>
 
-Hi,
-      I was just going through the recipes-devtools/gcc/gcc-common.inc =
-file, and noticed the following snippet:
 
-def get_gcc_multiarch_setting(bb, d):
-    target_arch =3D d.getVar('TRANSLATED_TARGET_ARCH', True)
-    multiarch_options =3D {
-        "i586":    "--enable-targets=3Dall",
-        "powerpc": "--enable-targets=3Dpowerpc64",
-        "sparc":   "--enable-targets=3Dall",
-    }
+thats not a issue.
 
-My target is a 32-bit ppc440 cpu. What is the impact of an incorrectly =
-set multiarch_options for powerpc to  powerpc64 on the final build?=20
+> Elvis Dowson
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
-Elvis Dowson=
-
---Apple-Mail=_E8AA6C59-D4C3-47AD-88BB-F2B7A68A5CA5
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html;
-	charset=us-ascii
-
-<html><body style=3D"word-wrap: break-word; -webkit-nbsp-mode: space; =
--webkit-line-break: after-white-space; ">Hi,<div>&nbsp; &nbsp; &nbsp; I =
-was just going through the recipes-devtools/gcc/gcc-common.inc file, and =
-noticed the following snippet:</div><div><br></div><div><div>def =
-get_gcc_multiarch_setting(bb, d):</div><div>&nbsp; &nbsp; target_arch =3D =
-d.getVar('TRANSLATED_TARGET_ARCH', True)</div><div>&nbsp; &nbsp; =
-multiarch_options =3D {</div><div>&nbsp; &nbsp; &nbsp; &nbsp; "i586": =
-&nbsp; &nbsp;"--enable-targets=3Dall",</div><div>&nbsp; &nbsp; &nbsp; =
-&nbsp; "powerpc": "--enable-targets=3D<font class=3D"Apple-style-span" =
-color=3D"#ff2a1a">powerpc64</font>",</div><div>&nbsp; &nbsp; &nbsp; =
-&nbsp; "sparc": &nbsp; "--enable-targets=3Dall",</div><div>&nbsp; &nbsp; =
-}</div></div><div><br></div><div>My target is a 32-bit ppc440 cpu. What =
-is the impact of an incorrectly set multiarch_options for powerpc to =
-&nbsp;powerpc64&nbsp;on the final =
-build?&nbsp;</div><div><br></div><div>Elvis Dowson</div></body></html>=
-
---Apple-Mail=_E8AA6C59-D4C3-47AD-88BB-F2B7A68A5CA5--
