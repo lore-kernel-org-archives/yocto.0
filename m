@@ -1,23 +1,23 @@
 Return-Path: <tom.zanussi@intel.com>
 Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 33376E00283
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6A2F4E00283
 	for <yocto@yoctoproject.org>; Wed,  8 Aug 2012 13:44:28 -0700 (PDT)
 Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 08 Aug 2012 13:44:24 -0700
+	by azsmga102.ch.intel.com with ESMTP; 08 Aug 2012 13:44:27 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.77,734,1336374000"; d="scan'208";a="178478671"
+X-IronPort-AV: E=Sophos;i="4.77,734,1336374000"; d="scan'208";a="178478689"
 Received: from unknown (HELO localhost) ([10.255.12.213])
-	by azsmga001.ch.intel.com with ESMTP; 08 Aug 2012 13:44:23 -0700
+	by azsmga001.ch.intel.com with ESMTP; 08 Aug 2012 13:44:26 -0700
 From: tom.zanussi@intel.com
 To: yocto@yoctoproject.org
-Date: Wed,  8 Aug 2012 15:43:50 -0500
-Message-Id: <495bffe7d1e5178cbe7b571c6e99a4ec07051b18.1344458451.git.tom.zanussi@intel.com>
+Date: Wed,  8 Aug 2012 15:43:51 -0500
+Message-Id: <1fdb7e33c8dc99d8a2b9c6c716b7f60065c0a678.1344458451.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.4.1
 In-Reply-To: <c2f8f4743b9369476fd0cb7fb6a7bf0ada2b7c13.1344458451.git.tom.zanussi@intel.com>
 References: <c2f8f4743b9369476fd0cb7fb6a7bf0ada2b7c13.1344458451.git.tom.zanussi@intel.com>
 In-Reply-To: <cover.1344458451.git.tom.zanussi@intel.com>
 References: <cover.1344458451.git.tom.zanussi@intel.com>
-Subject: [PATCH 12/17] yocto-bsp: use emgd 1.10 for i386 template
+Subject: [PATCH 13/17] yocto-bsp: generate default properties even if json specified
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,74 +33,33 @@ X-List-Received-Date: Wed, 08 Aug 2012 20:44:28 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-Make i386 template use emgd 1.10 for denzil, along with associated
-changes.
+Users seem to want to specify incomplete property sets when using json
+input.  Allow this by generating default properties before the
+user-specified properties are applied; the user will then get the
+defaults for any unspecified values, and avoid cryptic backtraces.
 
 Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
 ---
- .../arch/i386/conf/machine/{{=machine}}.conf       |    7 ++++---
- .../linux/files/{{=machine}}-standard.scc          |    4 ++++
- .../recipes-kernel/linux/files/{{=machine}}.scc    |    2 +-
- 3 files changed, 9 insertions(+), 4 deletions(-)
+ scripts/lib/bsp/engine.py |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/scripts/lib/bsp/substrate/target/arch/i386/conf/machine/{{=machine}}.conf b/scripts/lib/bsp/substrate/target/arch/i386/conf/machine/{{=machine}}.conf
-index 100c68c..2c109af 100644
---- a/scripts/lib/bsp/substrate/target/arch/i386/conf/machine/{{=machine}}.conf
-+++ b/scripts/lib/bsp/substrate/target/arch/i386/conf/machine/{{=machine}}.conf
-@@ -23,13 +23,14 @@ require conf/machine/include/ia32-base.inc
+diff --git a/scripts/lib/bsp/engine.py b/scripts/lib/bsp/engine.py
+index af90e91..9d16b19 100644
+--- a/scripts/lib/bsp/engine.py
++++ b/scripts/lib/bsp/engine.py
+@@ -1245,10 +1245,10 @@ def yocto_bsp_create(machine, arch, scripts_path, bsp_output_dir, codedump, prop
  
- {{ input type:"boolean" name:"xserver" prio:"50" msg:"Do you need support for X? (y/n)" default:"y" }}
+     gen_program_header_lines(program_lines)
  
--{{ if xserver == "y": }}
-+{{ if xserver == "y" and kernel_choice == "linux-yocto_3.2": }}
- {{ input type:"choicelist" name:"xserver_choice" prio:"50" msg:"Please select an xserver for this machine:" default:"xserver_i915" }}
--
- {{ input type:"choice" val:"xserver_vesa" msg:"VESA xserver support" }}
- {{ input type:"choice" val:"xserver_emgd" msg:"EMGD xserver support (proprietary)" }}
- {{ input type:"choice" val:"xserver_i915" msg:"i915 xserver support" }}
- 
-+{{ if xserver == "y" and kernel_choice != "linux-yocto_3.2": xserver_choice = "xserver_i915" }}
++    gen_initial_property_vals(input_lines, program_lines)
 +
- {{ if xserver == "y": }}
- XSERVER ?= "${XSERVER_IA32_BASE} \
-            ${XSERVER_IA32_EXT} \
-@@ -45,7 +46,7 @@ XSERVER ?= "${XSERVER_IA32_BASE} \
- {{ if xserver == "y" and xserver_choice == "xserver_emgd": }}
- PREFERRED_VERSION_xserver-xorg ?= "1.9.3"
- PREFERRED_VERSION_mesa-dri ?= "7.11"
--PREFERRED_VERSION_emgd-driver-bin ?= "1.8"
-+PREFERRED_VERSION_emgd-driver-bin ?= "1.10"
+     if properties:
+         gen_supplied_property_vals(properties, program_lines)
+-    else:
+-        gen_initial_property_vals(input_lines, program_lines)
  
- {{ if xserver == "y" and xserver_choice == "xserver_vesa" or xserver_choice == "xserver_emgd": }}
- APPEND += "video=vesafb vga=0x318"
-diff --git a/scripts/lib/bsp/substrate/target/arch/i386/recipes-kernel/linux/files/{{=machine}}-standard.scc b/scripts/lib/bsp/substrate/target/arch/i386/recipes-kernel/linux/files/{{=machine}}-standard.scc
-index 2c16efa..024af30 100644
---- a/scripts/lib/bsp/substrate/target/arch/i386/recipes-kernel/linux/files/{{=machine}}-standard.scc
-+++ b/scripts/lib/bsp/substrate/target/arch/i386/recipes-kernel/linux/files/{{=machine}}-standard.scc
-@@ -6,6 +6,10 @@ include {{=map_standard_kbranch(need_new_kbranch, new_kbranch, existing_kbranch)
- {{ if need_new_kbranch == "y": }}
- branch {{=machine}}
+     gen_program_machine_lines(machine, program_lines)
  
-+{{ if xserver == "y" and xserver_choice == "xserver_emgd": }}
-+include features/emgd/emgd-1.10.scc
-+git merge emgd-1.10
-+
- include {{=machine}}.scc
- 
- # default policy for standard kernels
-diff --git a/scripts/lib/bsp/substrate/target/arch/i386/recipes-kernel/linux/files/{{=machine}}.scc b/scripts/lib/bsp/substrate/target/arch/i386/recipes-kernel/linux/files/{{=machine}}.scc
-index 309f25d..15bda3c 100644
---- a/scripts/lib/bsp/substrate/target/arch/i386/recipes-kernel/linux/files/{{=machine}}.scc
-+++ b/scripts/lib/bsp/substrate/target/arch/i386/recipes-kernel/linux/files/{{=machine}}.scc
-@@ -15,7 +15,7 @@ include features/hpet/hpet.scc
- include features/ericsson-3g/f5521gw.scc
- 
- {{ if xserver == "y" and xserver_choice == "xserver_vesa" or xserver_choice == "xserver_emgd": }}
--include features/framebuffer/vesafb.scc
-+include cfg/vesafb.scc
- 
- include cfg/usb-mass-storage.scc
- include cfg/boot-live.scc
 -- 
 1.7.4.1
 
