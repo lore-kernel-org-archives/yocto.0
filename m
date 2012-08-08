@@ -1,23 +1,19 @@
 Return-Path: <tom.zanussi@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8F632E01404
-	for <yocto@yoctoproject.org>; Wed,  8 Aug 2012 13:44:08 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 08 Aug 2012 13:44:08 -0700
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 761DFE002A5
+	for <yocto@yoctoproject.org>; Wed,  8 Aug 2012 13:44:09 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 08 Aug 2012 13:43:57 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.77,734,1336374000"; d="scan'208";a="177687359"
+X-IronPort-AV: E=Sophos;i="4.77,734,1336374000"; d="scan'208";a="194794299"
 Received: from unknown (HELO localhost) ([10.255.12.213])
-	by orsmga001.jf.intel.com with ESMTP; 08 Aug 2012 13:44:06 -0700
+	by fmsmga001.fm.intel.com with ESMTP; 08 Aug 2012 13:43:56 -0700
 From: tom.zanussi@intel.com
 To: yocto@yoctoproject.org
-Date: Wed,  8 Aug 2012 15:43:42 -0500
-Message-Id: <1bcdf028722a4e7a9970c47dfe9f62bc097276b6.1344458451.git.tom.zanussi@intel.com>
+Date: Wed,  8 Aug 2012 15:43:52 -0500
+Message-Id: <cover.1344458451.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.4.1
-In-Reply-To: <c2f8f4743b9369476fd0cb7fb6a7bf0ada2b7c13.1344458451.git.tom.zanussi@intel.com>
-References: <c2f8f4743b9369476fd0cb7fb6a7bf0ada2b7c13.1344458451.git.tom.zanussi@intel.com>
-In-Reply-To: <cover.1344458451.git.tom.zanussi@intel.com>
-References: <cover.1344458451.git.tom.zanussi@intel.com>
-Subject: [PATCH 04/17] yocto-bsp: allow branch display filtering
+Subject: [PATCH 00/17] yocto-bsp updates for master
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,81 +25,104 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Aug 2012 20:44:08 -0000
+X-List-Received-Date: Wed, 08 Aug 2012 20:44:09 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-Add a "branches_base" property that can be used to allow only matching
-branches to be returned from all_branches().
+This patchset fixes yocto bugs [YOCTO #2693] and [YOCTO #2587], and
+fixes some other minor usability problems reported by users.
 
-Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
----
- scripts/lib/bsp/engine.py |    7 +++++++
- scripts/lib/bsp/kernel.py |   19 +++++++++++++++++++
- 2 files changed, 26 insertions(+), 0 deletions(-)
+Please pull into poky/master.
 
-diff --git a/scripts/lib/bsp/engine.py b/scripts/lib/bsp/engine.py
-index cda1d14..8b05809 100644
---- a/scripts/lib/bsp/engine.py
-+++ b/scripts/lib/bsp/engine.py
-@@ -473,6 +473,11 @@ def gen_choices_defer(input_line, context, checklist = False):
-     except KeyError:
-         nameappend = ""
- 
-+    try:
-+        branches_base = input_line.props["branches_base"]
-+    except KeyError:
-+        branches_base = ""
-+
-     filename = input_line.props["filename"]
- 
-     closetag_start = filename.find(CLOSE_TAG)
-@@ -488,6 +493,8 @@ def gen_choices_defer(input_line, context, checklist = False):
-     captured_context["filename"] = filename
-     context["nameappend"] = nameappend
-     captured_context["nameappend"] = nameappend
-+    context["branches_base"] = branches_base
-+    captured_context["branches_base"] = branches_base
- 
-     deferred_choice = (input_line, captured_context, checklist)
-     key = name + "_" + filename + "_" + nameappend
-diff --git a/scripts/lib/bsp/kernel.py b/scripts/lib/bsp/kernel.py
-index 7c6da4e..d4bdc4c 100644
---- a/scripts/lib/bsp/kernel.py
-+++ b/scripts/lib/bsp/kernel.py
-@@ -713,6 +713,17 @@ def all_branches(context):
- 
-     branches = []
- 
-+    base_prefixes = None
-+
-+    try:
-+        branches_base = context["branches_base"]
-+        if branches_base:
-+            base_prefixes = branches_base.split(":")
-+    except KeyError:
-+        pass
-+
-+    arch = context["arch"]
-+
-     if tmp:
-         tmpline = tmp.split("\n")
-         for line in tmpline:
-@@ -720,6 +731,14 @@ def all_branches(context):
-                 break;
-             idx = line.find("refs/heads/")
-             kbranch = line[idx + len("refs/heads/"):]
-+            kbranch_prefix = kbranch.rsplit("/", 1)[0]
-+
-+            if base_prefixes:
-+                for base_prefix in base_prefixes:
-+                    if kbranch_prefix == base_prefix:
-+                        branches.append(kbranch)
-+                continue
-+
-             if (kbranch.find("/") != -1 and
-                 (kbranch.find("standard") != -1 or kbranch.find("base") != -1) or
-                 kbranch == "base"):
+The following changes since commit 2dec760b79bb7e2e79c33c5127fa64685bd86a18:
+
+  foomatic: fix perl path for target (2012-08-08 10:06:00 +0100)
+
+are available in the git repository at:
+  git://git.yoctoproject.org/poky-contrib.git tzanussi/yocto-bsp-master-update
+  http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/log/?h=tzanussi/yocto-bsp-master-update
+
+Tom Zanussi (17):
+  yocto-bsp: add new strip_base() function
+  yocto-bsp: strip '/base' from kernel branches in templates
+  yocto-bsp: update default branch names
+  yocto-bsp: allow branch display filtering
+  yocto-bsp: use branches_base
+  yocto-bsp: add standard branch mapping
+  yocto-bsp: use standard branch mapping in bsp templates
+  yocto-bsp: use rstrip() for assignment lines
+  yocto-bsp: remove 'branch' statements in .scc if reusing branch
+  yocto-bsp: add some standard policy
+  yocto-bsp: add i586 option for i386
+  yocto-bsp: use emgd 1.10 for i386 template
+  yocto-bsp: generate default properties even if json specified
+  yocto-bsp: add 3.4/remove 3.0 kernel from templates
+  yocto-bsp: update standard branch mapping
+  yocto-bsp: use emgd 1.14 for i386 template
+  yocto-bsp: remove YOCTO_KERNEL_EXTERNAL_BRANCH usage
+
+ scripts/lib/bsp/engine.py                          |   44 ++++++++++++++++++-
+ scripts/lib/bsp/kernel.py                          |   19 ++++++++
+ .../linux/files/{{=machine}}-standard.scc          |    1 +
+ .../arm/recipes-kernel/linux/kernel-list.noinstall |    4 +-
+ ...yocto-rt_3.2\": }} linux-yocto-rt_3.2.bbappend" |   12 +++---
+ ...yocto-rt_3.4\": }} linux-yocto-rt_3.4.bbappend" |   13 ++----
+ ...linux-yocto_3.2\": }} linux-yocto_3.2.bbappend" |   12 +++---
+ ...linux-yocto_3.4\": }} linux-yocto_3.4.bbappend" |   15 ++----
+ .../arch/i386/conf/machine/{{=machine}}.conf       |   14 ++++--
+ .../linux/files/{{=machine}}-preempt-rt.scc        |    7 +++
+ .../linux/files/{{=machine}}-standard.scc          |   14 ++++++-
+ .../recipes-kernel/linux/files/{{=machine}}.scc    |    2 +-
+ .../recipes-kernel/linux/kernel-list.noinstall     |    4 +-
+ ...yocto-rt_3.2\": }} linux-yocto-rt_3.2.bbappend" |    8 ++--
+ ...yocto-rt_3.4\": }} linux-yocto-rt_3.4.bbappend" |   12 +++---
+ ...linux-yocto_3.2\": }} linux-yocto_3.2.bbappend" |    8 ++--
+ ...linux-yocto_3.4\": }} linux-yocto_3.4.bbappend" |   12 +++---
+ .../linux/files/{{=machine}}-standard.scc          |    1 +
+ .../recipes-kernel/linux/kernel-list.noinstall     |    4 +-
+ ...yocto-rt_3.2\": }} linux-yocto-rt_3.2.bbappend" |    8 ++--
+ ...yocto-rt_3.4\": }} linux-yocto-rt_3.4.bbappend" |   12 +++---
+ ...linux-yocto_3.2\": }} linux-yocto_3.2.bbappend" |    8 ++--
+ ...linux-yocto_3.4\": }} linux-yocto_3.4.bbappend" |   12 +++---
+ .../linux/files/{{=machine}}-standard.scc          |    1 +
+ .../recipes-kernel/linux/files/{{=machine}}.scc    |    3 -
+ .../recipes-kernel/linux/kernel-list.noinstall     |    4 +-
+ ...yocto-rt_3.2\": }} linux-yocto-rt_3.2.bbappend" |    8 ++--
+ ...yocto-rt_3.4\": }} linux-yocto-rt_3.4.bbappend" |   12 +++---
+ ...linux-yocto_3.2\": }} linux-yocto_3.2.bbappend" |    8 ++--
+ ...linux-yocto_3.4\": }} linux-yocto_3.4.bbappend" |   12 +++---
+ .../linux/files/{{=machine}}-preempt-rt.scc        |    5 +--
+ .../linux/files/{{=machine}}-standard.scc          |    9 +---
+ .../recipes-kernel/linux/kernel-list.noinstall     |    4 +-
+ ...yocto-rt_3.2\": }} linux-yocto-rt_3.2.bbappend" |   25 +++++------
+ ...yocto-rt_3.4\": }} linux-yocto-rt_3.4.bbappend" |   29 ++++++-------
+ ...linux-yocto_3.2\": }} linux-yocto_3.2.bbappend" |   25 +++++------
+ ...linux-yocto_3.4\": }} linux-yocto_3.4.bbappend" |   29 ++++++-------
+ .../linux/files/{{=machine}}-preempt-rt.scc        |    7 +++
+ .../linux/files/{{=machine}}-standard.scc          |   10 ++++-
+ .../recipes-kernel/linux/kernel-list.noinstall     |    4 +-
+ ...yocto-rt_3.0\": }} linux-yocto-rt_3.0.bbappend" |   39 -----------------
+ ...yocto-rt_3.2\": }} linux-yocto-rt_3.2.bbappend" |    8 ++--
+ ...yocto-rt_3.4\": }} linux-yocto-rt_3.4.bbappend" |   12 +++---
+ ...linux-yocto_3.0\": }} linux-yocto_3.0.bbappend" |   41 ------------------
+ ...linux-yocto_3.2\": }} linux-yocto_3.2.bbappend" |    8 ++--
+ ...linux-yocto_3.4\": }} linux-yocto_3.4.bbappend" |   12 +++---
+ 46 files changed, 275 insertions(+), 286 deletions(-)
+ copy "scripts/lib/bsp/substrate/target/arch/arm/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.0\": }} linux-yocto-rt_3.0.bbappend" => "scripts/lib/bsp/substrate/target/arch/arm/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.4\": }} linux-yocto-rt_3.4.bbappend" (66%)
+ copy "scripts/lib/bsp/substrate/target/arch/mips/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.0\": }} linux-yocto_3.0.bbappend" => "scripts/lib/bsp/substrate/target/arch/arm/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.4\": }} linux-yocto_3.4.bbappend" (63%)
+ rename "scripts/lib/bsp/substrate/target/arch/mips/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.0\": }} linux-yocto-rt_3.0.bbappend" => "scripts/lib/bsp/substrate/target/arch/i386/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.4\": }} linux-yocto-rt_3.4.bbappend" (65%)
+ rename "scripts/lib/bsp/substrate/target/arch/powerpc/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.0\": }} linux-yocto_3.0.bbappend" => "scripts/lib/bsp/substrate/target/arch/i386/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.4\": }} linux-yocto_3.4.bbappend" (67%)
+ rename "scripts/lib/bsp/substrate/target/arch/i386/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.0\": }} linux-yocto-rt_3.0.bbappend" => "scripts/lib/bsp/substrate/target/arch/mips/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.4\": }} linux-yocto-rt_3.4.bbappend" (65%)
+ rename "scripts/lib/bsp/substrate/target/arch/mips/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.0\": }} linux-yocto_3.0.bbappend" => "scripts/lib/bsp/substrate/target/arch/mips/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.4\": }} linux-yocto_3.4.bbappend" (68%)
+ rename "scripts/lib/bsp/substrate/target/arch/powerpc/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.0\": }} linux-yocto-rt_3.0.bbappend" => "scripts/lib/bsp/substrate/target/arch/powerpc/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.4\": }} linux-yocto-rt_3.4.bbappend" (65%)
+ rename "scripts/lib/bsp/substrate/target/arch/arm/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.0\": }} linux-yocto_3.0.bbappend" => "scripts/lib/bsp/substrate/target/arch/powerpc/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.4\": }} linux-yocto_3.4.bbappend" (68%)
+ rename "scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.0\": }} linux-yocto-rt_3.0.bbappend" => "scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.4\": }} linux-yocto-rt_3.4.bbappend" (51%)
+ rename "scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.0\": }} linux-yocto_3.0.bbappend" => "scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.4\": }} linux-yocto_3.4.bbappend" (53%)
+ delete mode 100644 "scripts/lib/bsp/substrate/target/arch/x86_64/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.0\": }} linux-yocto-rt_3.0.bbappend"
+ rename "scripts/lib/bsp/substrate/target/arch/arm/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.0\": }} linux-yocto-rt_3.0.bbappend" => "scripts/lib/bsp/substrate/target/arch/x86_64/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.4\": }} linux-yocto-rt_3.4.bbappend" (65%)
+ delete mode 100644 "scripts/lib/bsp/substrate/target/arch/x86_64/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.0\": }} linux-yocto_3.0.bbappend"
+ rename "scripts/lib/bsp/substrate/target/arch/i386/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.0\": }} linux-yocto_3.0.bbappend" => "scripts/lib/bsp/substrate/target/arch/x86_64/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.4\": }} linux-yocto_3.4.bbappend" (66%)
+
 -- 
 1.7.4.1
 
