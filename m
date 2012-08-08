@@ -1,50 +1,48 @@
-Return-Path: <B29882@freescale.com>
-Received: from co1outboundpool.messaging.microsoft.com
-	(co1ehsobe002.messaging.microsoft.com [216.32.180.185])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 468E1E00347
-	for <yocto@yoctoproject.org>; Wed,  8 Aug 2012 12:06:07 -0700 (PDT)
-Received: from mail145-co1-R.bigfish.com (10.243.78.242) by
-	CO1EHSOBE016.bigfish.com (10.243.66.79) with Microsoft SMTP Server id
-	14.1.225.23; Wed, 8 Aug 2012 19:06:04 +0000
-Received: from mail145-co1 (localhost [127.0.0.1])	by
-	mail145-co1-R.bigfish.com (Postfix) with ESMTP id 054172803FF;
-	Wed,  8 Aug 2012 19:06:05 +0000 (UTC)
-X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null); IPV:NLI;
-	H:mail.freescale.net; RD:none; EFVD:NLI
-X-SpamScore: -3
-X-BigFish: VS-3(zz98dI9371I1432I14ffIzz1202hzz8275bh8275dhz2dh2a8h668h839h8e2h8e3hf0ah107ah10d2hbe9i)
-Received: from mail145-co1 (localhost.localdomain [127.0.0.1]) by mail145-co1
-	(MessageSwitch) id 1344452762500772_22180;
-	Wed,  8 Aug 2012 19:06:02 +0000 (UTC)
-Received: from CO1EHSMHS012.bigfish.com (unknown [10.243.78.252])	by
-	mail145-co1.bigfish.com (Postfix) with ESMTP id 7633658004D;
-	Wed,  8 Aug 2012 19:06:02 +0000 (UTC)
-Received: from mail.freescale.net (70.37.183.190) by CO1EHSMHS012.bigfish.com
-	(10.243.66.22) with Microsoft SMTP Server (TLS) id 14.1.225.23;
-	Wed, 8 Aug 2012 19:06:01 +0000
-Received: from 039-SN1MPN1-001.039d.mgd.msft.net ([169.254.1.41]) by
-	039-SN1MMR1-002.039d.mgd.msft.net ([10.84.1.15]) with mapi id
-	14.02.0298.005; Wed, 8 Aug 2012 14:06:01 -0500
-From: McClintock Matthew-B29882 <B29882@freescale.com>
-To: Yes Yanus <yesyanus@yahoo.com>
-Thread-Topic: [yocto] a question about multilib
-Thread-Index: AQHNdZjZicEzcDDqMkSXOfFG1yXNxA==
-Date: Wed, 8 Aug 2012 19:05:59 +0000
-Message-ID: <CAEsOVNfuY8ZSXqLghvjo7GnOz+F-WqLEgFPZZiVG1VDz7X7eRA@mail.gmail.com>
-References: <1344430759.60259.YahooMailNeo@web121502.mail.ne1.yahoo.com>
-In-Reply-To: <1344430759.60259.YahooMailNeo@web121502.mail.ne1.yahoo.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [70.112.201.132]
+Return-Path: <mhubig@imko.de>
+Received: from mail-bk0-f48.google.com (mail-bk0-f48.google.com
+	[209.85.214.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8B29AE00283
+	for <yocto@yoctoproject.org>; Wed,  8 Aug 2012 12:35:35 -0700 (PDT)
+Received: by bkty5 with SMTP id y5so518344bkt.35
+	for <yocto@yoctoproject.org>; Wed, 08 Aug 2012 12:35:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=imko.de; s=google;
+	h=date:from:to:subject:message-id:mail-followup-to:mime-version
+	:content-type:content-disposition:user-agent;
+	bh=G/r+K49dSbm+FtpNUYrza+MIsqoolB8A4O/cJk6Im1I=;
+	b=aUntuXOv9p+1INOasNN7ygIq7v42xDPo2K7yztu/tOxKswHmJQa2e0z8StI+PRAtS9
+	+IpM2UHyYGGJdmzfuBV1WFZyY1/hAmllrW/fMoADhmsSikqLzePo8GG4YSHOeRUMh2Te
+	XOsDYt5nNmOSwYUjGceHutjZC+7ReGVOZkGqI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=date:from:to:subject:message-id:mail-followup-to:mime-version
+	:content-type:content-disposition:user-agent:x-gm-message-state;
+	bh=G/r+K49dSbm+FtpNUYrza+MIsqoolB8A4O/cJk6Im1I=;
+	b=IcrsVUHSCdK64yLgdXtLMXdcZAC7tEaqh/AP7k64RfvsSoILUeUNBOo+1EOruC1hof
+	SeF+JKjfIIUEKDZf7Lvxb935OiQt57tpGIuv7+XjgzYMefZveEKqQf6hJAApG1e/bcGm
+	+MDjPSVC4JY8LUcYbB5k4PqK/VIgmZzf9aFnBCtlR8j5S4PayCDXsSmo0rTqwQjdY8lE
+	BA1hO4CThlBOSC3ku/z5AnFgW8GelmcKREAdtGCHbAgfxZFvCh1+ycNQ++K+q2E+uuwH
+	i/BiHWZKQ4q8T7wpKF76Yf7P3bTYz6NzDc1/VXJ0fkOZUQ4mwFK5QF3fjMo9DEjLgiC8
+	Y/Cg==
+Received: by 10.205.127.77 with SMTP id gz13mr8044220bkc.17.1344454534172;
+	Wed, 08 Aug 2012 12:35:34 -0700 (PDT)
+Received: from imko.de (business-092-079-181-094.static.arcor-ip.net.
+	[92.79.181.94])
+	by mx.google.com with ESMTPS id hg13sm10806811bkc.7.2012.08.08.12.35.32
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Wed, 08 Aug 2012 12:35:33 -0700 (PDT)
+Date: Wed, 8 Aug 2012 21:35:28 +0200
+From: Markus Hubig <mhubig@imko.de>
+To: Yocto Project Mailing List <yocto@yoctoproject.org>
+Message-ID: <20120808193528.GA20546@imko.de>
+Mail-Followup-To: Yocto Project Mailing List <yocto@yoctoproject.org>
 MIME-Version: 1.0
-X-OriginatorOrg: freescale.com
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: a question about multilib
+Received: by 10.76.76.167 with HTTP; Wed, 8 Aug 2012 12:07:12 -0700 (PDT)
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Gm-Message-State: ALoCoQkn9/ApQRYp0KexKOSaORu1/YxL2t9V0IErJsaYmzMVJBBf2JxbOaDTRnI2UkzRuxB5KzV0
+Subject: Strange WARNING while do_kernel_configcheck()
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: McClintock Matthew-B29882 <B29882@freescale.com>
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -53,42 +51,85 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Aug 2012 19:06:07 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-ID: <304E52E70F651E4E961E7AB467F906BA@mgd.freescale.com>
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 08 Aug 2012 19:35:36 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-On Wed, Aug 8, 2012 at 7:59 AM, Yes Yanus <yesyanus@yahoo.com> wrote:
-> Hi everyone,
->  I have a question about multilib. I have a layer which is Independent of
-> meta. this layer include some bb files and some of them are same with bb
-> files in meta. for example, ncurses_5.7.bb in my layer and ncurses_5.9.bb=
- in
-> meta. but when I run command bitbake lib32-ncurses the bb file in meta is
-> called. I have set the priority in my layer. the prority is higher than
-> layer in meta. why bb files in my layer can't be called ?
-> and if I run bitbake ncurses then bb files in my layer can be called.
->
-> Who can tell me the cause and how to solve the question?
+Hello @all,
 
-Perhaps
+I'm working on a bsp vor the taskit stamp9g20 cpu module.
 
-PREFERRED_VERSION_ncurses =3D "5.7"
+I have a bbappend file for the linux-yocto_3.2 kernel which was ones working
+but now (after updating the denzil branch from 7.0 to 7.0.1) I get a strange
+error while building the kernel.
 
-?
+I managed to track the problem down to a warning at the do_kernel_configcheck
+task ... 
 
--M
+The warning I get is:
 
->
-> Thanks
-> yes
->
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->=
+| NOTE: validating kernel configuration
+| WARNING: Can't find any BSP hardware or required configuration fragments.
+| WARNING: Looked at 
+|  <snip>/linux/meta/cfg/standard/default/arm-versatile-926ejs/hdw_frags.txt
+| and
+|  <snip>/linux/meta/cfg/standard/default/arm-versatile-926ejs/required_frags.txt
+| in directory:
+|  <snip>/linux/meta/cfg/standard/default/arm-versatile-926ejs
 
+Which seems to be the wrong path to look, course there is no such path like
+
+<snip>/linux/meta/cfg/standard/default/arm-versatile-926ejs
+
+the whole stuff is in:
+
+<snip>/linux/meta/cfg/standard/default/stamp9g20
+
+maybe I made a mistake in my linux-yocto_3.2.bbappend file?
+
+| 1| FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+| 2| 
+| 3| PR := "${PR}.1"
+| 4| 
+| 5| COMPATIBLE_MACHINE_stamp9g20 = "stamp9g20"
+| 6| KBRANCH_stamp9g20  = "standard/default/arm-versatile-926ejs"
+| 7| KMACHINE_stamp9g20  = "stamp9g20"
+| 8| 
+| 9| COMPATIBLE_MACHINE_portuxg20 = "portuxg20"
+|10| KBRANCH_portuxg20  = "standard/default/arm-versatile-926ejs"
+|11| KMACHINE_portux9g20  = "portuxg20"
+|12| 
+|13| SRC_URI += "file://hardware.cfg                  \
+|14|             file://non-hardware.cfg              \
+|15|            "
+|16| 
+|17| SRC_URI_append_stamp9g20 = "file://portuxg20.cfg \
+|18|             file://portuxg20-preempt-rt.scc      \
+|19|             file://portuxg20.scc                 \
+|20|             file://portuxg20-standard.scc        \
+|21|             "
+|22| 
+|23| SRC_URI_append_portuxg20 = "file://stamp9g20.cfg \
+|24|             file://stamp9g20-preempt-rt.scc      \
+|25|             file://stamp9g20.scc                 \
+|26|             file://stamp9g20-standard.scc        \
+|27|            "
+
+The code which is -generating- responsible for this warning is:
+
+(from "meta/classes/kernel-yocto.bbclass")
+
+| 1| python do_kernel_configcheck() {
+| 2|     import bb, re, string, sys, commands
+| 3| 
+| 4|     bb.plain("NOTE: validating kernel configuration")
+| 5| 
+| 6|     pathprefix = "export PATH=%s:%s; " % (d.getVar('PATH', True), "${S}/scripts/util/")
+| 7|     cmd = d.expand("cd ${B}/..; kconf_check -config- ${B} ${S} ${B} ${KBRANCH}")
+| 8|     ret, result = commands.getstatusoutput("%s%s" % (pathprefix, cmd))
+| 9| 
+|10|     bb.plain( "%s" % result )
+|11| }
+
+Cheers, Markus
 
