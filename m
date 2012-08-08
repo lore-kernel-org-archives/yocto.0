@@ -1,30 +1,40 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B40C7E00346
-	for <yocto@yoctoproject.org>; Wed,  8 Aug 2012 09:18:58 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 08 Aug 2012 09:18:44 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.77,733,1336374000"; d="scan'208";a="194689161"
-Received: from unknown (HELO [10.255.12.201]) ([10.255.12.201])
-	by fmsmga001.fm.intel.com with ESMTP; 08 Aug 2012 09:18:43 -0700
-Message-ID: <1344442723.20775.2.camel@trz-ThinkPad-T420>
-From: Tom Zanussi <tom.zanussi@intel.com>
-To: Tim Verstraete <Tim.Verstraete@medecbenelux.be>
-Date: Wed, 08 Aug 2012 11:18:43 -0500
-In-Reply-To: <4439C3C0562087488F139C696CD862A72C1FCE@SBS-MEDEC.medecbenelux.local>
-References: <4439C3C0562087488F139C696CD862A72C1CD6@SBS-MEDEC.medecbenelux.local>
-	<CAEsOVNewE-5HUwwe5euHztTLq1piN8fCbnh03gO4CeUFeQaQKA@mail.gmail.com>
-	<4439C3C0562087488F139C696CD862A72C1F5D@SBS-MEDEC.medecbenelux.local>
-	<CAEsOVNe6V2_DY9ZCCYu0qVWc=19OEZzVa=i+0qBeR-sDHnLS5Q@mail.gmail.com>
-	<4439C3C0562087488F139C696CD862A72C1F99@SBS-MEDEC.medecbenelux.local>
-	<alpine.DEB.2.02.1208081115390.12423@oneiric>
-	<4439C3C0562087488F139C696CD862A72C1FCE@SBS-MEDEC.medecbenelux.local>
-X-Mailer: Evolution 3.2.3-0ubuntu6 
-Mime-Version: 1.0
-Cc: McClintock Matthew-B29882 <B29882@freescale.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [SPAM] - Re: image recipe gives error: has no buildable providers - Email found in subject
+Return-Path: <scott.a.garman@intel.com>
+Received: from azsmga102.ch.intel.com (mga12.intel.com [143.182.124.36])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3EE0CE00283
+	for <yocto@yoctoproject.org>; Wed,  8 Aug 2012 10:10:17 -0700 (PDT)
+Received: from mail-pb0-f52.google.com ([209.85.160.52])
+	by mga14.intel.com with ESMTP/TLS/RC4-SHA; 08 Aug 2012 10:10:09 -0700
+Received: by pbcxa7 with SMTP id xa7so1772299pbc.25
+	for <yocto@yoctoproject.org>; Wed, 08 Aug 2012 10:10:09 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=message-id:date:from:user-agent:mime-version:to:subject:references
+	:in-reply-to:content-type:content-transfer-encoding
+	:x-gm-message-state;
+	bh=YHdEUXPojgZJO6xfri1IrVmeUE0sJbgUfIBLjk1XGNU=;
+	b=X90YiCoOLln54P1pa7vLJdTrx1AHR2yhtQgRfmfEJYvE+6A85dq4sBBl3t8cetwB03
+	aWylmrOhNZ5KSZ8tw6LzhfgZLBscGaSrE4IFSF1e52elS4DAvB1/1XUHh2eRNyN91vIV
+	Z+Gxh73BASkH48MnI75Psvpjm6h1BBgWz5+RsFFGrn+2+jYqR0eTcoTNM1NiM03w3iNF
+	Qi1Fuwim/z5IryyCERYg793hqX67/7P2mzg9MteiVpwHbOcl2QiEi+F45Uo3YG9imwmT
+	ebjTlDJcM7xCWodgryfCyeflxOU/nk0soy86OpCzBuJdE10wsUFYs1O12/aU4yFKNcsX
+	gfOg==
+Received: by 10.68.226.6 with SMTP id ro6mr23202123pbc.115.1344445809069;
+	Wed, 08 Aug 2012 10:10:09 -0700 (PDT)
+Received: from [10.1.10.192] (c-50-137-42-92.hsd1.or.comcast.net.
+	[50.137.42.92])
+	by mx.google.com with ESMTPS id vd4sm10312912pbc.41.2012.08.08.10.10.08
+	(version=SSLv3 cipher=OTHER); Wed, 08 Aug 2012 10:10:08 -0700 (PDT)
+Message-ID: <50229D6F.8010801@intel.com>
+Date: Wed, 08 Aug 2012 10:10:07 -0700
+From: Scott Garman <scott.a.garman@intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:14.0) Gecko/20120714 Thunderbird/14.0
+MIME-Version: 1.0
+To: yocto@yoctoproject.org
+References: <CANsUPaNSFsapsHbjxcBvjDi4Yo-8eJ1trLDvycKLBX9m4RDNSg@mail.gmail.com>
+In-Reply-To: <CANsUPaNSFsapsHbjxcBvjDi4Yo-8eJ1trLDvycKLBX9m4RDNSg@mail.gmail.com>
+X-Gm-Message-State: ALoCoQkpBmtFsupb7GHj6EkJ+zCzh0czFLKBCz60okeT3MdFC2yz7O98d5Oka75g8fUekWaHYkEk
+Subject: Re: Custom splash screen using psplash
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,64 +46,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Aug 2012 16:18:58 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Wed, 08 Aug 2012 17:10:17 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On Wed, 2012-08-08 at 15:50 +0000, Tim Verstraete wrote:
-> Yes, this was automatically generate yocto-bsp create test-test1 arm
-> 
+On 08/08/2012 08:13 AM, Giovanni Foiani wrote:
+> Hi,
+>
+> I need to setup a custom splash screen replacing the Yocto logo with a
+> custom image.
+> I generated my logo using make-image script into psplash screen and
+> replaced the previous one in meta/recipes-core/psplash/files folder.
+> Then I run
+>
+>   * bitbake psplash -c cleansstate
+>   * bitbake psplash
+>
+> and then generate a new image, but during boot I still see the Yocto logo.
+> Which is the right procedure?
+> Does the my custom logo (a png image) have some requirements (i.e. size,
+> colors, etc..)?
 
-Nah, yocto-bsp doesn't output things like what you have in your version
-e.g. priority 25, missing spaces after the PATTERN variable, and yes,
-the extra spaces in the middle of variables.  Somehow those things got
-into your version, randomly or otherwise.  Here's what I get using the
-above:
+Did you re-generate the image too?
 
-$ yocto-bsp create test-test1 arm
+Scott
 
-# We have a conf and classes directory, add to BBPATH                                                                                
-BBPATH := "${BBPATH}:${LAYERDIR}"
-
-# We have a recipes directory, add to BBFILES                                                                                        
-BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \                                                                                
-        ${LAYERDIR}/recipes-*/*/*.bbappend"
-
-BBFILE_COLLECTIONS += "test-test1"
-BBFILE_PATTERN_test-test1 := "^${LAYERDIR}/"
-BBFILE_PRIORITY_test-test1 = "6"
-
-> -----Original Message-----
-> From: Robert P. J. Day [mailto:rpjday@crashcourse.ca] 
-> Sent: woensdag 8 augustus 2012 17:17
-> To: Tim Verstraete
-> Cc: McClintock Matthew-B29882; yocto@yoctoproject.org
-> Subject: [SPAM] - Re: [yocto] image recipe gives error: has no buildable providers - Email found in subject
-> 
-> On Wed, 8 Aug 2012, Tim Verstraete wrote:
-> 
-> > Hi,
-> >
-> > What i see is that when i do bitbake-layers show_layers that it shows the correct layers and the correct priority of the layers.
-> >
-> > The layers.conf is the following
-> >
-> > # We have a conf and classes directory, add to BBPATH 
-> > BBPATH := "${BBPATH}:${LAYERDIR}"
-> >
-> > # We have a recipes directory, add to BBFILES BBFILES := "${BBFILES} 
-> > ${LAYERDIR}/recipes-*/*/*.bb \
-> >         ${LAYERDIR}/recipes-*/*/*.bbappend"
-> >
-> >  BBFILE_COLLECTIONS += "test-test1"
-> >  BBFILE_PATTERN_ test-test1:= "^${LAYERDIR}/"
-> >  BBFILE_PRIORITY_ test-test1 = "25"
->                    ^ space?
-> 
->   did you seriously copy and paste the above?  because it's just wrong.
-> 
-> rday
-> 
-
-
+-- 
+Scott Garman
+Embedded Linux Engineer - Yocto Project
+Intel Open Source Technology Center
 
