@@ -1,23 +1,23 @@
 Return-Path: <tom.zanussi@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B99EEE00283
-	for <yocto@yoctoproject.org>; Wed,  8 Aug 2012 13:44:15 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 08 Aug 2012 13:44:15 -0700
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D34ABE00283
+	for <yocto@yoctoproject.org>; Wed,  8 Aug 2012 13:44:17 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 08 Aug 2012 13:44:17 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.77,734,1336374000"; d="scan'208";a="183310967"
+X-IronPort-AV: E=Sophos;i="4.77,734,1336374000"; d="scan'208";a="178478614"
 Received: from unknown (HELO localhost) ([10.255.12.213])
-	by orsmga002.jf.intel.com with ESMTP; 08 Aug 2012 13:44:14 -0700
+	by azsmga001.ch.intel.com with ESMTP; 08 Aug 2012 13:44:16 -0700
 From: tom.zanussi@intel.com
 To: yocto@yoctoproject.org
-Date: Wed,  8 Aug 2012 15:43:46 -0500
-Message-Id: <374f755bbf3ee823f7c936a7bc5e05194609a904.1344458451.git.tom.zanussi@intel.com>
+Date: Wed,  8 Aug 2012 15:43:47 -0500
+Message-Id: <68bd68c89ca6c72d985b06a3ed80347e257fa5bf.1344458451.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.4.1
 In-Reply-To: <c2f8f4743b9369476fd0cb7fb6a7bf0ada2b7c13.1344458451.git.tom.zanussi@intel.com>
 References: <c2f8f4743b9369476fd0cb7fb6a7bf0ada2b7c13.1344458451.git.tom.zanussi@intel.com>
 In-Reply-To: <cover.1344458451.git.tom.zanussi@intel.com>
 References: <cover.1344458451.git.tom.zanussi@intel.com>
-Subject: [PATCH 08/17] yocto-bsp: use rstrip() for assignment lines
+Subject: [PATCH 09/17] yocto-bsp: remove 'branch' statements in .scc if reusing branch
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,32 +29,132 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Aug 2012 20:44:15 -0000
+X-List-Received-Date: Wed, 08 Aug 2012 20:44:18 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-strip() isn't necessary and causes unintended formatting changes in
-the output; rstrip() remove the trailing newlines as intended while
-leaving indenting whitespace intact.
+If reusing a branch (need_new_branch == 'n') we don't need to branch
+in the .scc, so make it conditional on need_new_branch.
 
 Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
 ---
- scripts/lib/bsp/engine.py |    2 +-
- 1 files changed, 1 insertions(+), 1 deletions(-)
+ .../linux/files/{{=machine}}-standard.scc          |    1 +
+ .../linux/files/{{=machine}}-standard.scc          |    1 +
+ .../linux/files/{{=machine}}-standard.scc          |    1 +
+ .../linux/files/{{=machine}}-standard.scc          |    1 +
+ .../linux/files/{{=machine}}-preempt-rt.scc        |    5 +----
+ .../linux/files/{{=machine}}-standard.scc          |    5 +----
+ .../linux/files/{{=machine}}-standard.scc          |    1 +
+ 7 files changed, 7 insertions(+), 8 deletions(-)
 
-diff --git a/scripts/lib/bsp/engine.py b/scripts/lib/bsp/engine.py
-index 756b882..af90e91 100644
---- a/scripts/lib/bsp/engine.py
-+++ b/scripts/lib/bsp/engine.py
-@@ -668,7 +668,7 @@ class SubstrateBase(object):
-         """
-         Expand all tags in a line.
-         """
--        expanded_line = AssignmentLine(line.strip())
-+        expanded_line = AssignmentLine(line.rstrip())
+diff --git a/scripts/lib/bsp/substrate/target/arch/arm/recipes-kernel/linux/files/{{=machine}}-standard.scc b/scripts/lib/bsp/substrate/target/arch/arm/recipes-kernel/linux/files/{{=machine}}-standard.scc
+index cd8fa9c..d131678 100644
+--- a/scripts/lib/bsp/substrate/target/arch/arm/recipes-kernel/linux/files/{{=machine}}-standard.scc
++++ b/scripts/lib/bsp/substrate/target/arch/arm/recipes-kernel/linux/files/{{=machine}}-standard.scc
+@@ -3,6 +3,7 @@ define KTYPE standard
+ define KARCH arm
  
-         while start != -1:
-             end = line.find(CLOSE_TAG, start)
+ include ktypes/standard
++{{ if need_new_kbranch == "y": }}
+ branch {{=machine}}
+ 
+ include {{=machine}}.scc
+diff --git a/scripts/lib/bsp/substrate/target/arch/i386/recipes-kernel/linux/files/{{=machine}}-standard.scc b/scripts/lib/bsp/substrate/target/arch/i386/recipes-kernel/linux/files/{{=machine}}-standard.scc
+index c7ba1fb..a241b29 100644
+--- a/scripts/lib/bsp/substrate/target/arch/i386/recipes-kernel/linux/files/{{=machine}}-standard.scc
++++ b/scripts/lib/bsp/substrate/target/arch/i386/recipes-kernel/linux/files/{{=machine}}-standard.scc
+@@ -3,6 +3,7 @@ define KTYPE standard
+ define KARCH i386
+ 
+ include {{=map_standard_kbranch(need_new_kbranch, new_kbranch, existing_kbranch)}}
++{{ if need_new_kbranch == "y": }}
+ branch {{=machine}}
+ 
+ include {{=machine}}.scc
+diff --git a/scripts/lib/bsp/substrate/target/arch/mips/recipes-kernel/linux/files/{{=machine}}-standard.scc b/scripts/lib/bsp/substrate/target/arch/mips/recipes-kernel/linux/files/{{=machine}}-standard.scc
+index c6139f0..3b916b4 100644
+--- a/scripts/lib/bsp/substrate/target/arch/mips/recipes-kernel/linux/files/{{=machine}}-standard.scc
++++ b/scripts/lib/bsp/substrate/target/arch/mips/recipes-kernel/linux/files/{{=machine}}-standard.scc
+@@ -3,6 +3,7 @@ define KTYPE standard
+ define KARCH mips
+ 
+ include ktypes/standard
++{{ if need_new_kbranch == "y": }}
+ branch {{=machine}}
+ 
+ include {{=machine}}.scc
+diff --git a/scripts/lib/bsp/substrate/target/arch/powerpc/recipes-kernel/linux/files/{{=machine}}-standard.scc b/scripts/lib/bsp/substrate/target/arch/powerpc/recipes-kernel/linux/files/{{=machine}}-standard.scc
+index 1213e61..a521874 100644
+--- a/scripts/lib/bsp/substrate/target/arch/powerpc/recipes-kernel/linux/files/{{=machine}}-standard.scc
++++ b/scripts/lib/bsp/substrate/target/arch/powerpc/recipes-kernel/linux/files/{{=machine}}-standard.scc
+@@ -3,6 +3,7 @@ define KTYPE standard
+ define KARCH powerpc
+ 
+ include ktypes/standard
++{{ if need_new_kbranch == "y": }}
+ branch {{=machine}}
+ 
+ include {{=machine}}.scc
+diff --git a/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/files/{{=machine}}-preempt-rt.scc b/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/files/{{=machine}}-preempt-rt.scc
+index 6399a4b..0f5a582 100644
+--- a/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/files/{{=machine}}-preempt-rt.scc
++++ b/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/files/{{=machine}}-preempt-rt.scc
+@@ -13,18 +13,15 @@ define KARCH mips
+ 
+ {{ if qemuarch == "i386": }}
+ include bsp/common-pc/common-pc-preempt-rt
+-branch {{=machine}}
+ {{ if qemuarch == "x86_64": }}
+ include bsp/common-pc-64/common-pc-64-preempt-rt
+-branch {{=machine}}
+ {{ if qemuarch == "arm": }}
+ include bsp/arm-versatile-926ejs/arm-versatile-926ejs-preempt-rt
+-branch {{=machine}}
+ {{ if qemuarch == "powerpc": }}
+ include bsp/qemu-ppc32/qemu-ppc32-rt
+-branch {{=machine}}
+ {{ if qemuarch == "mips": }}
+ include bsp/mti-malta32/mti-malta32-be-preempt-rt
++{{ if need_new_kbranch == "y": }}
+ branch {{=machine}}
+ 
+ include {{=machine}}.scc
+diff --git a/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/files/{{=machine}}-standard.scc b/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/files/{{=machine}}-standard.scc
+index 4def04a..04a3620 100644
+--- a/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/files/{{=machine}}-standard.scc
++++ b/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/files/{{=machine}}-standard.scc
+@@ -13,18 +13,15 @@ define KARCH mips
+ 
+ {{ if qemuarch == "i386": }}
+ include {{=map_standard_kbranch(need_new_kbranch, new_kbranch, existing_kbranch)}}
+-branch {{=machine}}
+ {{ if qemuarch == "x86_64": }}
+ include {{=map_standard_kbranch(need_new_kbranch, new_kbranch, existing_kbranch)}}
+-branch {{=machine}}
+ {{ if qemuarch == "arm": }}
+ include bsp/arm-versatile-926ejs/arm-versatile-926ejs-standard
+-branch {{=machine}}
+ {{ if qemuarch == "powerpc": }}
+ include bsp/qemu-ppc32/qemu-ppc32-standard
+-branch {{=machine}}
+ {{ if qemuarch == "mips": }}
+ include bsp/mti-malta32/mti-malta32-be-standard
++{{ if need_new_kbranch == "y": }}
+ branch {{=machine}}
+ 
+ include {{=machine}}.scc
+diff --git a/scripts/lib/bsp/substrate/target/arch/x86_64/recipes-kernel/linux/files/{{=machine}}-standard.scc b/scripts/lib/bsp/substrate/target/arch/x86_64/recipes-kernel/linux/files/{{=machine}}-standard.scc
+index 4a034fa..3253133 100644
+--- a/scripts/lib/bsp/substrate/target/arch/x86_64/recipes-kernel/linux/files/{{=machine}}-standard.scc
++++ b/scripts/lib/bsp/substrate/target/arch/x86_64/recipes-kernel/linux/files/{{=machine}}-standard.scc
+@@ -3,6 +3,7 @@ define KTYPE standard
+ define KARCH x86_64
+ 
+ include {{=map_standard_kbranch(need_new_kbranch, new_kbranch, existing_kbranch)}}
++{{ if need_new_kbranch == "y": }}
+ branch {{=machine}}
+ 
+ include {{=machine}}.scc
 -- 
 1.7.4.1
 
