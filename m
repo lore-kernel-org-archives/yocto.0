@@ -1,24 +1,24 @@
 Return-Path: <tom.zanussi@intel.com>
 Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2C6FFE0142C
-	for <yocto@yoctoproject.org>; Wed,  8 Aug 2012 13:22:17 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A2EEAE0144D
+	for <yocto@yoctoproject.org>; Wed,  8 Aug 2012 13:22:18 -0700 (PDT)
 Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga101.ch.intel.com with ESMTP; 08 Aug 2012 13:22:16 -0700
+	by azsmga101.ch.intel.com with ESMTP; 08 Aug 2012 13:22:18 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.77,734,1336374000"; d="scan'208";a="131703839"
+X-IronPort-AV: E=Sophos;i="4.77,734,1336374000"; d="scan'208";a="131703852"
 Received: from unknown (HELO localhost) ([10.255.12.213])
-	by AZSMGA002.ch.intel.com with ESMTP; 08 Aug 2012 13:22:07 -0700
+	by AZSMGA002.ch.intel.com with ESMTP; 08 Aug 2012 13:22:11 -0700
 From: tom.zanussi@intel.com
 To: scott.a.garman@intel.com,
 	yocto@yoctoproject.org
-Date: Wed,  8 Aug 2012 15:21:40 -0500
-Message-Id: <a175d6fdb0105c4d365d00a128d5b70b36a238bc.1344456875.git.tom.zanussi@intel.com>
+Date: Wed,  8 Aug 2012 15:21:42 -0500
+Message-Id: <ff6481e424a0d332541e0fc8b5b5ebe0fd6b4f50.1344456875.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.4.1
 In-Reply-To: <c6411c0bc1db4ef705f918f80efc139042d46d55.1344456875.git.tom.zanussi@intel.com>
 References: <c6411c0bc1db4ef705f918f80efc139042d46d55.1344456875.git.tom.zanussi@intel.com>
 In-Reply-To: <cover.1344456875.git.tom.zanussi@intel.com>
 References: <cover.1344456875.git.tom.zanussi@intel.com>
-Subject: [PATCH 09/13] yocto-bsp: remove 'branch' statements in .scc if reusing branch
+Subject: [PATCH 11/13] yocto-bsp: add i586 option for i386
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,132 +30,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Aug 2012 20:22:17 -0000
+X-List-Received-Date: Wed, 08 Aug 2012 20:22:18 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-If reusing a branch (need_new_branch == 'n') we don't need to branch
-in the .scc, so make it conditional on need_new_branch.
-
 Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
 ---
- .../linux/files/{{=machine}}-standard.scc          |    1 +
- .../linux/files/{{=machine}}-standard.scc          |    1 +
- .../linux/files/{{=machine}}-standard.scc          |    1 +
- .../linux/files/{{=machine}}-standard.scc          |    1 +
- .../linux/files/{{=machine}}-preempt-rt.scc        |    5 +----
- .../linux/files/{{=machine}}-standard.scc          |    5 +----
- .../linux/files/{{=machine}}-standard.scc          |    1 +
- 7 files changed, 7 insertions(+), 8 deletions(-)
+ .../arch/i386/conf/machine/{{=machine}}.conf       |    7 +++++--
+ 1 files changed, 5 insertions(+), 2 deletions(-)
 
-diff --git a/scripts/lib/bsp/substrate/target/arch/arm/recipes-kernel/linux/files/{{=machine}}-standard.scc b/scripts/lib/bsp/substrate/target/arch/arm/recipes-kernel/linux/files/{{=machine}}-standard.scc
-index cd8fa9c..d131678 100644
---- a/scripts/lib/bsp/substrate/target/arch/arm/recipes-kernel/linux/files/{{=machine}}-standard.scc
-+++ b/scripts/lib/bsp/substrate/target/arch/arm/recipes-kernel/linux/files/{{=machine}}-standard.scc
-@@ -3,6 +3,7 @@ define KTYPE standard
- define KARCH arm
+diff --git a/scripts/lib/bsp/substrate/target/arch/i386/conf/machine/{{=machine}}.conf b/scripts/lib/bsp/substrate/target/arch/i386/conf/machine/{{=machine}}.conf
+index ab491b2..100c68c 100644
+--- a/scripts/lib/bsp/substrate/target/arch/i386/conf/machine/{{=machine}}.conf
++++ b/scripts/lib/bsp/substrate/target/arch/i386/conf/machine/{{=machine}}.conf
+@@ -9,12 +9,15 @@ PREFERRED_PROVIDER_virtual/kernel ?= "{{=preferred_kernel}}"
+ PREFERRED_VERSION_{{=preferred_kernel}} ?= "{{=preferred_kernel_version}}%"
  
- include ktypes/standard
-+{{ if need_new_kbranch == "y": }}
- branch {{=machine}}
+ {{ input type:"choicelist" name:"tunefile" prio:"40" msg:"Which machine tuning would you like to use?" default:"tune_core2" }}
++{{ input type:"choice" val:"tune_i586" msg:"i586 tuning optimizations" }}
+ {{ input type:"choice" val:"tune_atom" msg:"Atom tuning optimizations" }}
+ {{ input type:"choice" val:"tune_core2" msg:"Core2 tuning optimizations" }}
++{{ if tunefile == "tune_i586": }}
++require conf/machine/include/tune-i586.inc
+ {{ if tunefile == "tune_atom": }}
+-include conf/machine/include/tune-atom.inc
++require conf/machine/include/tune-atom.inc
+ {{ if tunefile == "tune_core2": }}
+-include conf/machine/include/tune-core2.inc
++require conf/machine/include/tune-core2.inc
  
- include {{=machine}}.scc
-diff --git a/scripts/lib/bsp/substrate/target/arch/i386/recipes-kernel/linux/files/{{=machine}}-standard.scc b/scripts/lib/bsp/substrate/target/arch/i386/recipes-kernel/linux/files/{{=machine}}-standard.scc
-index c7ba1fb..a241b29 100644
---- a/scripts/lib/bsp/substrate/target/arch/i386/recipes-kernel/linux/files/{{=machine}}-standard.scc
-+++ b/scripts/lib/bsp/substrate/target/arch/i386/recipes-kernel/linux/files/{{=machine}}-standard.scc
-@@ -3,6 +3,7 @@ define KTYPE standard
- define KARCH i386
+ require conf/machine/include/ia32-base.inc
  
- include {{=map_standard_kbranch(need_new_kbranch, new_kbranch, existing_kbranch)}}
-+{{ if need_new_kbranch == "y": }}
- branch {{=machine}}
- 
- include {{=machine}}.scc
-diff --git a/scripts/lib/bsp/substrate/target/arch/mips/recipes-kernel/linux/files/{{=machine}}-standard.scc b/scripts/lib/bsp/substrate/target/arch/mips/recipes-kernel/linux/files/{{=machine}}-standard.scc
-index c6139f0..3b916b4 100644
---- a/scripts/lib/bsp/substrate/target/arch/mips/recipes-kernel/linux/files/{{=machine}}-standard.scc
-+++ b/scripts/lib/bsp/substrate/target/arch/mips/recipes-kernel/linux/files/{{=machine}}-standard.scc
-@@ -3,6 +3,7 @@ define KTYPE standard
- define KARCH mips
- 
- include ktypes/standard
-+{{ if need_new_kbranch == "y": }}
- branch {{=machine}}
- 
- include {{=machine}}.scc
-diff --git a/scripts/lib/bsp/substrate/target/arch/powerpc/recipes-kernel/linux/files/{{=machine}}-standard.scc b/scripts/lib/bsp/substrate/target/arch/powerpc/recipes-kernel/linux/files/{{=machine}}-standard.scc
-index 1213e61..a521874 100644
---- a/scripts/lib/bsp/substrate/target/arch/powerpc/recipes-kernel/linux/files/{{=machine}}-standard.scc
-+++ b/scripts/lib/bsp/substrate/target/arch/powerpc/recipes-kernel/linux/files/{{=machine}}-standard.scc
-@@ -3,6 +3,7 @@ define KTYPE standard
- define KARCH powerpc
- 
- include ktypes/standard
-+{{ if need_new_kbranch == "y": }}
- branch {{=machine}}
- 
- include {{=machine}}.scc
-diff --git a/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/files/{{=machine}}-preempt-rt.scc b/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/files/{{=machine}}-preempt-rt.scc
-index 6399a4b..0f5a582 100644
---- a/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/files/{{=machine}}-preempt-rt.scc
-+++ b/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/files/{{=machine}}-preempt-rt.scc
-@@ -13,18 +13,15 @@ define KARCH mips
- 
- {{ if qemuarch == "i386": }}
- include bsp/common-pc/common-pc-preempt-rt
--branch {{=machine}}
- {{ if qemuarch == "x86_64": }}
- include bsp/common-pc-64/common-pc-64-preempt-rt
--branch {{=machine}}
- {{ if qemuarch == "arm": }}
- include bsp/arm-versatile-926ejs/arm-versatile-926ejs-preempt-rt
--branch {{=machine}}
- {{ if qemuarch == "powerpc": }}
- include bsp/qemu-ppc32/qemu-ppc32-rt
--branch {{=machine}}
- {{ if qemuarch == "mips": }}
- include bsp/mti-malta32/mti-malta32-be-preempt-rt
-+{{ if need_new_kbranch == "y": }}
- branch {{=machine}}
- 
- include {{=machine}}.scc
-diff --git a/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/files/{{=machine}}-standard.scc b/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/files/{{=machine}}-standard.scc
-index 4def04a..04a3620 100644
---- a/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/files/{{=machine}}-standard.scc
-+++ b/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/files/{{=machine}}-standard.scc
-@@ -13,18 +13,15 @@ define KARCH mips
- 
- {{ if qemuarch == "i386": }}
- include {{=map_standard_kbranch(need_new_kbranch, new_kbranch, existing_kbranch)}}
--branch {{=machine}}
- {{ if qemuarch == "x86_64": }}
- include {{=map_standard_kbranch(need_new_kbranch, new_kbranch, existing_kbranch)}}
--branch {{=machine}}
- {{ if qemuarch == "arm": }}
- include bsp/arm-versatile-926ejs/arm-versatile-926ejs-standard
--branch {{=machine}}
- {{ if qemuarch == "powerpc": }}
- include bsp/qemu-ppc32/qemu-ppc32-standard
--branch {{=machine}}
- {{ if qemuarch == "mips": }}
- include bsp/mti-malta32/mti-malta32-be-standard
-+{{ if need_new_kbranch == "y": }}
- branch {{=machine}}
- 
- include {{=machine}}.scc
-diff --git a/scripts/lib/bsp/substrate/target/arch/x86_64/recipes-kernel/linux/files/{{=machine}}-standard.scc b/scripts/lib/bsp/substrate/target/arch/x86_64/recipes-kernel/linux/files/{{=machine}}-standard.scc
-index 4a034fa..3253133 100644
---- a/scripts/lib/bsp/substrate/target/arch/x86_64/recipes-kernel/linux/files/{{=machine}}-standard.scc
-+++ b/scripts/lib/bsp/substrate/target/arch/x86_64/recipes-kernel/linux/files/{{=machine}}-standard.scc
-@@ -3,6 +3,7 @@ define KTYPE standard
- define KARCH x86_64
- 
- include {{=map_standard_kbranch(need_new_kbranch, new_kbranch, existing_kbranch)}}
-+{{ if need_new_kbranch == "y": }}
- branch {{=machine}}
- 
- include {{=machine}}.scc
 -- 
 1.7.4.1
 
