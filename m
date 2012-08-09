@@ -1,32 +1,25 @@
-Return-Path: <elvis.dowson@gmail.com>
-Received: from mail-yw0-f48.google.com (mail-yw0-f48.google.com
-	[209.85.213.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 863DAE013B2
-	for <yocto@yoctoproject.org>; Thu,  9 Aug 2012 07:48:47 -0700 (PDT)
-Received: by yhfq46 with SMTP id q46so582979yhf.35
-	for <yocto@yoctoproject.org>; Thu, 09 Aug 2012 07:48:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:content-type:subject:date:message-id:to:mime-version:x-mailer;
-	bh=utdfQ517yT3eteVv2w/oLbn0kvhuEdMqx6wJQwGZcJk=;
-	b=Qn6f9KGL2ejHx4L/qPj9Vbn/8c2F3UXNkwVgZvBm1EehoLk9BqOGL5EKOAMnFNRxRc
-	zvDumu0/cLwY56e3kUOLxXs13SL6WQyM0W+u/UNa+9SDZmTZWjFlYSqri/tMldErO8P3
-	g36yv8e5bKBHqCTZ1ONna0/zM+hjVhRx//5CoKo/SggrF+4FyrY7Kai/blJqbFKLUG+Q
-	ynxq8jwt0Yi9AgMV5YFP1uIc4eSC4oH3poIJJMnd7d3bqZC5X0WrARMzWEiKn++Bdi4B
-	jONaTbqAKsn8UoColTrF1PleFTDzkfjIfAN4u+arboOGXcANdtgOBTP5FYlMNwJM5vpB
-	kqZA==
-Received: by 10.66.83.161 with SMTP id r1mr42263933pay.69.1344523726648;
-	Thu, 09 Aug 2012 07:48:46 -0700 (PDT)
-Received: from [192.168.1.101] ([94.205.108.162])
-	by mx.google.com with ESMTPS id rz10sm1277469pbc.32.2012.08.09.07.48.44
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Thu, 09 Aug 2012 07:48:45 -0700 (PDT)
-From: Elvis Dowson <elvis.dowson@gmail.com>
-Date: Thu, 9 Aug 2012 18:48:40 +0400
-Message-Id: <B35EAA35-E64A-42AE-A168-1F60424BE999@gmail.com>
-To: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-Mime-Version: 1.0 (Apple Message framework v1278)
-X-Mailer: Apple Mail (2.1278)
-Subject: Incorrect warning: preferred version linux-libc-headers_3.3 of linux-libc-headers not available (for item linux-libc-headers)
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CA43EE013A6
+	for <yocto@yoctoproject.org>; Thu,  9 Aug 2012 07:50:48 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id q79EolDS027233
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Thu, 9 Aug 2012 07:50:47 -0700 (PDT)
+Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.2.309.2;
+	Thu, 9 Aug 2012 07:50:47 -0700
+Message-ID: <5023CE44.4060406@windriver.com>
+Date: Thu, 9 Aug 2012 10:50:44 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:12.0) Gecko/20120430 Thunderbird/12.0.1
+MIME-Version: 1.0
+To: Elvis Dowson <elvis.dowson@gmail.com>
+References: <B35EAA35-E64A-42AE-A168-1F60424BE999@gmail.com>
+In-Reply-To: <B35EAA35-E64A-42AE-A168-1F60424BE999@gmail.com>
+Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+Subject: Re: Incorrect warning: preferred version linux-libc-headers_3.3 of linux-libc-headers not available (for item linux-libc-headers)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,84 +31,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 Aug 2012 14:48:47 -0000
-Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_0B70F5B9-4507-4543-A102-4C5BD0A716F7"
+X-List-Received-Date: Thu, 09 Aug 2012 14:50:48 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
---Apple-Mail=_0B70F5B9-4507-4543-A102-4C5BD0A716F7
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=us-ascii
+On 12-08-09 10:48 AM, Elvis Dowson wrote:
+> Hi,
+>
+> In my local.conf I have set the following variable
+>
+> PREFERRED_VERSION_linux-libc-headers = "linux-libc-headers_3.3"
 
-Hi,
+Have you tried dropping the "linux-libc-headers" ?
 
-In my local.conf I have set the following variable
+i.e. PREFERRED_VERSION_linux-libc-headers = "3.3"
 
-PREFERRED_VERSION_linux-libc-headers =3D "linux-libc-headers_3.3"
+Bruce
 
-However, when I run bitbake linux-libc-headers -c fetchall, it complains =
-that the preferred version is not available, even though I've created a  =
-linux-libc-headers_3.3.bb recipe and set the preferred version in my =
-local.conf
+>
+> However, when I run bitbake linux-libc-headers -c fetchall, it complains
+> that the preferred version is not available, even though I've created a
+> linux-libc-headers_3.3.bb recipe and set the preferred version in my
+> local.conf
+>
+> NOTE: preferred version linux-libc-headers_3.3 of linux-libc-headers not
+> available (for item linux-libc-headers)
+> NOTE: versions of linux-libc-headers available: 3.0.8 3.2 3.3 3.4.3
+> NOTE: Resolving any missing task queue dependencies
+> NOTE: preferred version linux-libc-headers_3.3 of linux-libc-headers not
+> available (for item linux-libc-headers-dev)
+> NOTE: versions of linux-libc-headers available: 3.0.8 3.2 3.3 3.4.3
+> NOTE: Preparing runqueue
+> NOTE: Executing RunQueue Tasks
+> NOTE: Running task 2 of 3 (ID: 0,
+> /tool/yocto/poky/meta/recipes-kernel/linux-libc-headers/linux-libc-headers_3.3.bb,
+> do_fetch)
+> NOTE: package linux-libc-headers-3.3-r0: task do_fetch: Started
+>
+> Why is this so?
+>
+> Best regards,
+>
+> Elvis Dowson
+>
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-NOTE: preferred version linux-libc-headers_3.3 of linux-libc-headers not =
-available (for item linux-libc-headers)
-NOTE: versions of linux-libc-headers available: 3.0.8 3.2 3.3 3.4.3
-NOTE: Resolving any missing task queue dependencies
-NOTE: preferred version linux-libc-headers_3.3 of linux-libc-headers not =
-available (for item linux-libc-headers-dev)
-NOTE: versions of linux-libc-headers available: 3.0.8 3.2 3.3 3.4.3
-NOTE: Preparing runqueue
-NOTE: Executing RunQueue Tasks
-NOTE: Running task 2 of 3 (ID: 0, =
-/tool/yocto/poky/meta/recipes-kernel/linux-libc-headers/linux-libc-headers=
-_3.3.bb, do_fetch)
-NOTE: package linux-libc-headers-3.3-r0: task do_fetch: Started
 
-Why is this so?
-
-Best regards,
-
-Elvis Dowson=
-
---Apple-Mail=_0B70F5B9-4507-4543-A102-4C5BD0A716F7
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html;
-	charset=us-ascii
-
-<html><head></head><body style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; -webkit-line-break: after-white-space; =
-"><div>Hi,</div><div><br></div><div>In my local.conf I have set the =
-following variable</div><div><br></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" =
-size=3D"2">PREFERRED_VERSION_linux-libc-headers =3D =
-"linux-libc-headers_3.3"</font></div><div><br></div><div>However, when I =
-run bitbake&nbsp;linux-libc-headers -c fetchall, it complains that the =
-preferred version is not available, even though I've created =
-a&nbsp;&nbsp;linux-libc-headers_3.3.bb recipe and set the preferred =
-version in my local.conf</div><div><br></div><div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">NOTE: preferred =
-version linux-libc-headers_3.3 of linux-libc-headers not available (for =
-item linux-libc-headers)</font></div><div><font class=3D"Apple-style-span"=
- face=3D"Monaco" size=3D"2">NOTE: versions of linux-libc-headers =
-available: 3.0.8 3.2 3.3 3.4.3</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">NOTE: Resolving =
-any missing task queue dependencies</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">NOTE: preferred =
-version linux-libc-headers_3.3 of linux-libc-headers not available (for =
-item linux-libc-headers-dev)</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">NOTE: versions of =
-linux-libc-headers available: 3.0.8 3.2 3.3 3.4.3</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">NOTE: Preparing =
-runqueue</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco"=
- size=3D"2">NOTE: Executing RunQueue Tasks</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">NOTE: Running task =
-2 of 3 (ID: 0, =
-/tool/yocto/poky/meta/recipes-kernel/linux-libc-headers/linux-libc-headers=
-_3.3.bb, do_fetch)</font></div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2">NOTE: package linux-libc-headers-3.3-r0: task =
-do_fetch: Started</font></div></div><div><br></div><div>Why is this =
-so?</div><div><br></div><div>Best =
-regards,</div><div><br></div><div>Elvis Dowson</div></body></html>=
-
---Apple-Mail=_0B70F5B9-4507-4543-A102-4C5BD0A716F7--
