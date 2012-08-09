@@ -1,20 +1,22 @@
 Return-Path: <tom.zanussi@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3EEF1E013B2
-	for <yocto@yoctoproject.org>; Thu,  9 Aug 2012 14:01:09 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 09 Aug 2012 14:01:07 -0700
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B6865E013D3
+	for <yocto@yoctoproject.org>; Thu,  9 Aug 2012 14:01:10 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 09 Aug 2012 14:01:10 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.77,742,1336374000"; d="scan'208";a="195744305"
+X-IronPort-AV: E=Sophos;i="4.77,742,1336374000"; d="scan'208";a="183794299"
 Received: from unknown (HELO localhost) ([10.255.12.213])
-	by fmsmga001.fm.intel.com with ESMTP; 09 Aug 2012 14:01:06 -0700
+	by orsmga002.jf.intel.com with ESMTP; 09 Aug 2012 14:01:09 -0700
 From: tom.zanussi@intel.com
 To: yocto@yoctoproject.org,
 	scott.a.garman@intel.com
-Date: Thu,  9 Aug 2012 16:01:00 -0500
-Message-Id: <cover.1344545782.git.tom.zanussi@intel.com>
+Date: Thu,  9 Aug 2012 16:00:51 -0500
+Message-Id: <24bc7bda6a0a13a71fe9e638db5a9c3052574ca2.1344545782.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.4.1
-Subject: [PATCH 00/14][denzil] yocto-bsp updates for denzil, v2
+In-Reply-To: <cover.1344545782.git.tom.zanussi@intel.com>
+References: <cover.1344545782.git.tom.zanussi@intel.com>
+Subject: [PATCH 01/14] yocto-bsp: add new strip_base() function
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -26,81 +28,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 Aug 2012 21:01:09 -0000
+X-List-Received-Date: Thu, 09 Aug 2012 21:01:10 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-This patchset fixes yocto bugs [YOCTO #2693] and [YOCTO #2587], and
-fixes some other minor usability problems reported by users.
+Add a strip_base() function to remove '/base' from the branch names
+presented to the user.
 
-Please pull into the current poky/denzil point release branch.
+Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
+---
+ scripts/lib/bsp/engine.py |   10 ++++++++++
+ 1 files changed, 10 insertions(+), 0 deletions(-)
 
-v2: This is the same patchset as the previous one, but an additional
-patch fixing problems found in testing has been tacked on.
-
-The following changes since commit 73cdebf60df225ee10f2eb215935be3b61e1b831:
-
-  documentation/dev-manual/dev-manual-kernel-appendix.xml: Add note about conflict (2012-06-29 15:54:26 +0100)
-
-are available in the git repository at:
-  git://git.yoctoproject.org/poky-contrib.git tzanussi/yocto-bsp-denzil-update
-  http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/log/?h=tzanussi/yocto-bsp-denzil-update
-
-Tom Zanussi (14):
-  yocto-bsp: add new strip_base() function
-  yocto-bsp: strip '/base' from kernel branches in templates
-  yocto-bsp: update default branch names
-  yocto-bsp: allow branch display filtering
-  yocto-bsp: use branches_base
-  yocto-bsp: add standard branch mapping
-  yocto-bsp: use standard branch mapping in bsp templates
-  yocto-bsp: use rstrip() for assignment lines
-  yocto-bsp: remove 'branch' statements in .scc if reusing branch
-  yocto-bsp: add some standard policy
-  yocto-bsp: add i586 option for i386
-  yocto-bsp: use emgd 1.10 for i386 template
-  yocto-bsp: generate default properties even if json specified
-  yocto-bsp: use base branches for qemu 'newbranch' case
-
- scripts/lib/bsp/engine.py                          |   44 ++++++++++++++++++-
- scripts/lib/bsp/kernel.py                          |   18 ++++++++
- .../linux/files/{{=machine}}-standard.scc          |    1 +
- ...yocto-rt_3.0\": }} linux-yocto-rt_3.0.bbappend" |    8 ++--
- ...yocto-rt_3.2\": }} linux-yocto-rt_3.2.bbappend" |    8 ++--
- ...linux-yocto_3.0\": }} linux-yocto_3.0.bbappend" |    8 ++--
- ...linux-yocto_3.2\": }} linux-yocto_3.2.bbappend" |    8 ++--
- .../arch/i386/conf/machine/{{=machine}}.conf       |   14 ++++--
- .../linux/files/{{=machine}}-preempt-rt.scc        |    7 +++
- .../linux/files/{{=machine}}-standard.scc          |   14 ++++++-
- .../recipes-kernel/linux/files/{{=machine}}.scc    |    2 +-
- ...yocto-rt_3.0\": }} linux-yocto-rt_3.0.bbappend" |    8 ++--
- ...yocto-rt_3.2\": }} linux-yocto-rt_3.2.bbappend" |    8 ++--
- ...linux-yocto_3.0\": }} linux-yocto_3.0.bbappend" |    8 ++--
- ...linux-yocto_3.2\": }} linux-yocto_3.2.bbappend" |    8 ++--
- .../linux/files/{{=machine}}-standard.scc          |    1 +
- ...yocto-rt_3.0\": }} linux-yocto-rt_3.0.bbappend" |    8 ++--
- ...yocto-rt_3.2\": }} linux-yocto-rt_3.2.bbappend" |    8 ++--
- ...linux-yocto_3.0\": }} linux-yocto_3.0.bbappend" |    8 ++--
- ...linux-yocto_3.2\": }} linux-yocto_3.2.bbappend" |    8 ++--
- .../linux/files/{{=machine}}-standard.scc          |    1 +
- ...yocto-rt_3.0\": }} linux-yocto-rt_3.0.bbappend" |    8 ++--
- ...yocto-rt_3.2\": }} linux-yocto-rt_3.2.bbappend" |    8 ++--
- ...linux-yocto_3.0\": }} linux-yocto_3.0.bbappend" |    8 ++--
- ...linux-yocto_3.2\": }} linux-yocto_3.2.bbappend" |    8 ++--
- .../linux/files/{{=machine}}-preempt-rt.scc        |    5 +--
- .../linux/files/{{=machine}}-standard.scc          |    9 +---
- ...yocto-rt_3.0\": }} linux-yocto-rt_3.0.bbappend" |   24 +++++-----
- ...yocto-rt_3.2\": }} linux-yocto-rt_3.2.bbappend" |   24 +++++-----
- ...linux-yocto_3.0\": }} linux-yocto_3.0.bbappend" |   24 +++++-----
- ...linux-yocto_3.2\": }} linux-yocto_3.2.bbappend" |   24 +++++-----
- .../linux/files/{{=machine}}-preempt-rt.scc        |    7 +++
- .../linux/files/{{=machine}}-standard.scc          |   10 ++++-
- ...yocto-rt_3.0\": }} linux-yocto-rt_3.0.bbappend" |    8 ++--
- ...yocto-rt_3.2\": }} linux-yocto-rt_3.2.bbappend" |    8 ++--
- ...linux-yocto_3.0\": }} linux-yocto_3.0.bbappend" |    8 ++--
- ...linux-yocto_3.2\": }} linux-yocto_3.2.bbappend" |    8 ++--
- 37 files changed, 240 insertions(+), 149 deletions(-)
-
+diff --git a/scripts/lib/bsp/engine.py b/scripts/lib/bsp/engine.py
+index 8e53f00..cda1d14 100644
+--- a/scripts/lib/bsp/engine.py
++++ b/scripts/lib/bsp/engine.py
+@@ -449,6 +449,16 @@ def boolean(input_str, name):
+         return name
+ 
+ 
++def strip_base(input_str):
++    """
++    strip '/base' off the end of input_str, so we can use 'base' in
++    the branch names we present to the user.
++    """
++    if input_str and input_str.endswith("/base"):
++        return input_str[:-len("/base")]
++    return input_str.strip()
++
++
+ deferred_choices = {}
+ 
+ def gen_choices_defer(input_line, context, checklist = False):
 -- 
 1.7.4.1
 
