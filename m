@@ -1,34 +1,44 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-ey0-f176.google.com (mail-ey0-f176.google.com
-	[209.85.215.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 65987E013A6
-	for <yocto@yoctoproject.org>; Thu,  9 Aug 2012 07:34:30 -0700 (PDT)
-Received: by eabd1 with SMTP id d1so182373eab.35
-	for <yocto@yoctoproject.org>; Thu, 09 Aug 2012 07:34:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=htIyJl98CsgEXd9PTgjFvcFWduItCvKXUHGCC4T+AtM=;
-	b=UOnr9C8oSPrZs5xgyr2GMsU7nk5nfE19DVnzw47auHiU8vkxclMBqyt+PVB1zMqjCn
-	vLg3py0iAE7hmgGXd94ZBs64uZCV0kJOB2cvArAzXrmXVmEHGfoT7GNcQA0V8QXOZnN1
-	89K2doTIXLY+SXxKTR/sXninXM+lsvEoKAHNccUrXqkC0/RtCuj96Gn76K4EUzxAbbIg
-	H4KVxfwKN5M6texT/ZP0h1MFDRpKRHi7yM1NOpok6zbXdEcdUEZnBHnc53tjvUK/zw5i
-	imnEh/B9f+69oAJ+OPIUVxGYWjL6QgrSTzSxOKZWaHXYx6g7XZGxCFrs7NwbQX+DTVcA
-	/MHQ==
-Received: by 10.14.213.137 with SMTP id a9mr5461063eep.38.1344522868426; Thu,
-	09 Aug 2012 07:34:28 -0700 (PDT)
+Return-Path: <mhubig@imko.de>
+Received: from mail-bk0-f48.google.com (mail-bk0-f48.google.com
+	[209.85.214.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EF215E013A6
+	for <yocto@yoctoproject.org>; Thu,  9 Aug 2012 07:46:13 -0700 (PDT)
+Received: by bkty5 with SMTP id y5so233089bkt.35
+	for <yocto@yoctoproject.org>; Thu, 09 Aug 2012 07:46:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=imko.de; s=google;
+	h=date:from:to:subject:message-id:mail-followup-to:mime-version
+	:content-type:content-disposition:user-agent;
+	bh=U4maCl3Sn8OBExEc7Jsu7VmAjB9PsiBXS1njdULYkHY=;
+	b=mCif/smkhVF2ZsBS3q1iGloeyxEyyCh0HbZ2a4T+6EpUeN9bQmJ7jTyVu+u09BgVTN
+	ztUDRfnArTikjC0QK7olElBYVaGRqH6pAc5qS4AXg906MMZFuWat0nePaKJzRKf7JBIV
+	7OyAWzUULc+U9wFsLELMSHsYmBcqNzwXJo08Y=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=date:from:to:subject:message-id:mail-followup-to:mime-version
+	:content-type:content-disposition:user-agent:x-gm-message-state;
+	bh=U4maCl3Sn8OBExEc7Jsu7VmAjB9PsiBXS1njdULYkHY=;
+	b=g5G5JKzx1QO5SDMOsV2iQtaptB2HprBHymkZ5E5GLZ1UWvAyQR+zAUoa7VaBZWKTel
+	S05/6x6j7rKAVoqX5GHYdTgU77tRxzzNvyNP1huAgxjApvCM+HZ6Q7LhyVBVJ5CIj4zT
+	cY16Z+TcHJ9TYtMR/2NKvjiHbxa+jInxpD1aaGpaWLh9XoNn9BTMM3vCPQqB5DIz3ymf
+	U1dWcNPfI9OSdYC0nveDW0hNW3RIuDBkE5W0TjnhOBqlwdscwhhWwgsVCqmVvJ7dyEhc
+	o7qGXY5b+CUnF+LAdFzl8F1rFUYtXYwX5s5eARoWqytg/gQtZa5/T8JkXbTIlED+1Pfk
+	8KOg==
+Received: by 10.204.143.138 with SMTP id v10mr9376780bku.114.1344523572622;
+	Thu, 09 Aug 2012 07:46:12 -0700 (PDT)
+Received: from imko.de (business-092-079-181-094.static.arcor-ip.net.
+	[92.79.181.94])
+	by mx.google.com with ESMTPS id n17sm792872bks.6.2012.08.09.07.46.10
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Thu, 09 Aug 2012 07:46:11 -0700 (PDT)
+Date: Thu, 9 Aug 2012 16:46:05 +0200
+From: Markus Hubig <mhubig@imko.de>
+To: Yocto Project Mailing List <yocto@yoctoproject.org>
+Message-ID: <20120809155747.983f9270-e6b9-49c4-ae24-aff577803480.mhubig@imko.de>
+Mail-Followup-To: Yocto Project Mailing List <yocto@yoctoproject.org>
 MIME-Version: 1.0
-Received: by 10.14.97.141 with HTTP; Thu, 9 Aug 2012 07:33:58 -0700 (PDT)
-In-Reply-To: <AE1E9C2D-94D8-4AF6-B652-8AC3800BBACB@gmail.com>
-References: <735CD356-A6DB-4939-9C39-EDB0A15D7343@gmail.com>
-	<CAMKF1sogsUv1ahoYdTBFoM8oVq0u410Wi8Ghv5WRT+uN4FgK+Q@mail.gmail.com>
-	<AE1E9C2D-94D8-4AF6-B652-8AC3800BBACB@gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Thu, 9 Aug 2012 07:33:58 -0700
-Message-ID: <CAMKF1sqJRNm40+tyc6gnWV8RSHjZ64ZQ4aNux3ZSuUiNYY3V=Q@mail.gmail.com>
-To: Elvis Dowson <elvis.dowson@gmail.com>
-Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-Subject: Re: poky/bernard: gcc-4.5.1 configure: error: cannot compute suffix of object files: cannot compile
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Gm-Message-State: ALoCoQl63J6ZVhGAXStH1co9vIQpoEJ61YwIXnykZ4LyrTC14bVHED6EQzWZF/1gD+S21MpVnD/P
+Subject: Problem with BSP supporting different machines
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,11 +50,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 Aug 2012 14:34:30 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 09 Aug 2012 14:46:14 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-On Thu, Aug 9, 2012 at 6:31 AM, Elvis Dowson <elvis.dowson@gmail.com> wrote:
-> Should I ensure that the version of the kernel and the linux-libc-headers match, by creating a linux-libc-headers_3.3.0.bb recipe and setting the preferred_versions accordingly? Would this mismatch cause issues?
+Hi @all,
 
-You could.
+I'm having some trouble building a BSP supporting two different machines.
+The machines in question are the Stamp9g20 and PortuxG20 from taskit. These
+machines are just slightly different course the PortuxG20 is basically just
+a small SBC built around the Stamp9G20.
+
+You can have a look at my BSP here: http://bitbucket.org/imko/meta-stamp9g20
+but take attention that you're selecting the denzil branch...
+
+If I set MACHINE = stamp9g20 in local.conf all went fine, but with
+MACHINE = portuxg20 I get a kernel for common-pc instead of
+arm-versatile-926ejs ...
+
+Comparing the output of "bitbake -e linux-yocto" for both MACHINE settings
+I notice that for stamp9g20 KMACHINE is "stamp9g20" but for portuxg20 it's
+"common-pc", which results in these "updateme" command:
+
+| updateme --branch standard/default/arm-versatile-926ejs -DKDESC=common-pc:standard
+|  --feature features/netfilter --feature features/taskstats arm common-pc
+|  poky/meta-stamp9g20/recipes-kernel/linux/files/hardware.cfg
+|  poky/meta-stamp9g20/recipes-kernel/linux/files/non-hardware.cfg
+|  poky/meta-stamp9g20/recipes-kernel/linux/files/portuxg20/portuxg20.cfg
+|  poky/meta-stamp9g20/recipes-kernel/linux/files/portuxg20/portuxg20-preempt-rt.scc
+|  poky/meta-stamp9g20/recipes-kernel/linux/files/portuxg20/portuxg20.scc
+|  poky/meta-stamp9g20/recipes-kernel/linux/files/portuxg20/portuxg20-standard.scc
+
+Which again (I think ...) leads to a kernel compile error ...
+
+Unfortunately I was not able to find out why the KMACHINE variable is not setup
+correctly with my BSP for PortuxG20 ...
+
+Please can someone have a look? ;-)
+
+Cheers, Markus
 
