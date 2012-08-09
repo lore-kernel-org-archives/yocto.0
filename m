@@ -1,47 +1,35 @@
-Return-Path: <halstead@happypunch.com>
-Received: from mail-gh0-f176.google.com (mail-gh0-f176.google.com
-	[209.85.160.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 255DBE0044A
-	for <yocto@yoctoproject.org>; Wed,  8 Aug 2012 20:11:09 -0700 (PDT)
-Received: by ghbz10 with SMTP id z10so1837892ghb.35
-	for <yocto@yoctoproject.org>; Wed, 08 Aug 2012 20:11:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=happypunch.com; s=google;
-	h=sender:message-id:date:from:user-agent:mime-version:to:subject
-	:x-enigmail-version:content-type;
-	bh=z0W3wd7aryDUBD7RdGMzJ87v3DlB4xjWc6/NnLZ1pHY=;
-	b=U6PNLM1s1iUry1FTVvA7UsBvolU5BeuklJo3qar0h3UN6gzIzKVp7cWAzS+to/x5rH
-	5r8TWwd+Qu96Iknt+/jzlAn/r3dd0cKctsLLwJgYcXr5L24cA+5qb/h+8YInwpGNmdRr
-	jNGaLw0BnnIGtyeC2wdD1dgg6bUyrYhoeJ8Xo=
+Return-Path: <fnognn@unife.it>
+Received: from mail-lpp01m010-f48.google.com (mail-lpp01m010-f48.google.com
+	[209.85.215.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3DA2FE0044A
+	for <yocto@yoctoproject.org>; Thu,  9 Aug 2012 00:31:31 -0700 (PDT)
+Received: by lagr15 with SMTP id r15so80251lag.35
+	for <yocto@yoctoproject.org>; Thu, 09 Aug 2012 00:31:30 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=google.com; s=20120113;
-	h=sender:message-id:date:from:user-agent:mime-version:to:subject
-	:x-enigmail-version:content-type:x-gm-message-state;
-	bh=z0W3wd7aryDUBD7RdGMzJ87v3DlB4xjWc6/NnLZ1pHY=;
-	b=Ame41YAmNZhN8yLto0m+EDuUe07c7kViIH+5BcvWK+Xobdqde9/+XQOQmypWXCeftC
-	ZF3fSSOR6iJMVbdus1bnNiUE+Qosu7yQpKHcEo6l0IS07YWtd0otJruzHBp1Tk0T0Dw3
-	bgLQ7V6i2J0fWXb5QO0thv8whhewYNVULvUa6DeCK7HvjaMg1lrVFDfw2FoTbPZmKcI6
-	51arITQnQeKO/1c8D9rb7HURs25SP6CYjES+6N1DTyHyslnsGzZRq3Pz2ojo6hTIetJI
-	2KkJ2iyXDX0a41F/dUJvSDQySwwhSSSoADN/eATudhdbe3fci8faB7OWbhMh9l0ngKKN
-	TY0w==
-Received: by 10.66.87.227 with SMTP id bb3mr4485998pab.3.1344481867903;
-	Wed, 08 Aug 2012 20:11:07 -0700 (PDT)
-Received: from pride.incitedev.com (184-76-95-119.war.clearwire-wmx.net.
-	[184.76.95.119])
-	by mx.google.com with ESMTPS id wi6sm178519pbc.35.2012.08.08.20.11.04
-	(version=SSLv3 cipher=OTHER); Wed, 08 Aug 2012 20:11:05 -0700 (PDT)
-Sender: Michael Halstead <halstead@happypunch.com>
-Message-ID: <50232A47.5070304@yoctoproject.org>
-Date: Wed, 08 Aug 2012 20:11:03 -0700
-From: Michael Halstead <michael@yoctoproject.org>
-User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:14.0) Gecko/20120714 Thunderbird/14.0
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type:x-gm-message-state;
+	bh=N2Vp7HyZYGmmoSVQ3hI6xPNv4LwWB3CLFZT2xFTcYSk=;
+	b=kCY6CVu48h7BT/dJZueoaOV/GdpMSZE76M4Gnrq3lINW736POMSLsWYhclak/QKJpE
+	PdX+amFj7OVu7yB26jvrxJZ/vKVMmGPtkPTyEhHn/7KBgwJAXmB8POQ1I5v55JpxgVLo
+	85E9+Ec45J/YQ+a7hbdJsp6YGlAgnVkQVQsldb+Rj5dWPdyLXdhyIYM7tBB4RN3kum5X
+	13dMHAbpPVqIDdegMrUC2q2UQecjrfmvaueo+sNkWW8EGWHyrX2f6Y+AuLPhmdY4C8Cw
+	gG74CY6+H4WTQL9ZuJ+C4e+2dJJWYey3Xk1iSoll78aeigzlyzpRUx6D1gDXdB2U09F9
+	z1ww==
+Received: by 10.112.51.174 with SMTP id l14mr364405lbo.24.1344497490298; Thu,
+	09 Aug 2012 00:31:30 -0700 (PDT)
 MIME-Version: 1.0
-To: Yocto Project Discussion <yocto@yoctoproject.org>, 
-	yocto-infrastructure@yoctoproject.org
-X-Enigmail-Version: 1.5a1pre
-X-Gm-Message-State: ALoCoQlfNdzS4uVdOQr6og58duGCHFqdejg6OdZGobw8/iS1BCuI25pwDjAOk8AvYVzJniQvLL9l
-Subject: [Infra] Downtime Thursday August 9th at 11:00 AM UTC
+Received: by 10.112.46.42 with HTTP; Thu, 9 Aug 2012 00:31:10 -0700 (PDT)
+In-Reply-To: <50229DAA.3000307@intel.com>
+References: <CANsUPaNSFsapsHbjxcBvjDi4Yo-8eJ1trLDvycKLBX9m4RDNSg@mail.gmail.com>
+	<50229D6F.8010801@intel.com> <50229DAA.3000307@intel.com>
+From: Giovanni Foiani <fnognn@unife.it>
+Date: Thu, 9 Aug 2012 09:31:10 +0200
+Message-ID: <CANsUPaOm-=mczLeKX3NsYhNiuEEKQ--fb=0REuvy3c86bH6+Tw@mail.gmail.com>
+To: Scott Garman <scott.a.garman@intel.com>
+X-Gm-Message-State: ALoCoQlgvIViM4HbwBXfbAJ4YA8dYXZo/mGw/UlgNFumX7tC39F9ti+ywlYfa0bf2s6ysbIX4BsQ
+Cc: yocto@yoctoproject.org
+Subject: Re: Custom splash screen using psplash
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,122 +41,154 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 Aug 2012 03:11:09 -0000
-X-Groupsio-MsgNum: 8503
-Content-Type: multipart/signed; protocol="application/pkcs7-signature";
-	micalg=sha1; boundary="------------ms030707030603070809070705"
+X-List-Received-Date: Thu, 09 Aug 2012 07:31:32 -0000
+Content-Type: multipart/alternative; boundary=f46d0401fb694f890f04c6d03725
 
---------------ms030707030603070809070705
+--f46d0401fb694f890f04c6d03725
 Content-Type: text/plain; charset=ISO-8859-1
+
+Hi Scott,
+
+I copied the psplash directory (and replaced the logo with mine) into my
+own layer but when I run:
+
+   - bitbake psplash -c cleansstate
+   - bitbake psplash
+
+it still builds the sources located into meta-yocto directory and not
+sources that are into my own layer directory.
+How can I build a package pointing to a specific folder path ?
+
+Thanks
+
+Giovanni
+--
+
+Dott. Ing. Giovanni Foiani
+
+Cell:        +39-349-3577515
+Phone:    +39-0532-97-4106
+mail:        giovanni.foiani@unife.it
+CenTec - Corso Guercino, 47 - 44042 Cento (FE)
+
+
+
+On Wed, Aug 8, 2012 at 7:11 PM, Scott Garman <scott.a.garman@intel.com>wrote:
+
+> On 08/08/2012 10:10 AM, Scott Garman wrote:
+>
+>> On 08/08/2012 08:13 AM, Giovanni Foiani wrote:
+>>
+>>> Hi,
+>>>
+>>> I need to setup a custom splash screen replacing the Yocto logo with a
+>>> custom image.
+>>> I generated my logo using make-image script into psplash screen and
+>>> replaced the previous one in meta/recipes-core/psplash/**files folder.
+>>> Then I run
+>>>
+>>>   * bitbake psplash -c cleansstate
+>>>   * bitbake psplash
+>>>
+>>> and then generate a new image, but during boot I still see the Yocto
+>>> logo.
+>>> Which is the right procedure?
+>>> Does the my custom logo (a png image) have some requirements (i.e. size,
+>>> colors, etc..)?
+>>>
+>>
+>> Did you re-generate the image too?
+>>
+>
+> Sorry, apparently I can't read this morning.
+>
+>
+> Scott
+>
+> --
+> Scott Garman
+> Embedded Linux Engineer - Yocto Project
+> Intel Open Source Technology Center
+> ______________________________**_________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.**org/listinfo/yocto<https://lists.yoctoproject.org/listinfo/yocto>
+>
+
+--f46d0401fb694f890f04c6d03725
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-Thursday August 9th from 11:00 UTC to 13:00 UTC all of our IP addresses
-are changing. (4am to 6am PDT)
+Hi Scott,<div><br></div><div>I copied the psplash directory (and replaced t=
+he logo with mine) into my own layer but when I run:</div><div><ul><li><spa=
+n style=3D"font-family:arial,sans-serif;font-size:13px;background-color:rgb=
+(255,255,255)">bitbake psplash -c cleansstate</span></li>
 
-During the move Yocto Project services including web, bugtracking,
-e-mail, mailing lists, autobuilders, and git as well as others will be
-unavailable. We plan for the actual outage to last 30 minutes within
-this window but it may take longer.
+<li>bitbake psplash</li></ul><div>it still builds the=A0sources located int=
+o meta-yocto directory and not sources that are into my own layer directory=
+.</div><div>How can I build a package pointing to a specific folder path ?<=
+/div>
 
-Since IP addresses are changing we also need to update DNS. After
-service is restored cached DNS entries may cause services to be
-unreachable for up to 3 hours afterwards. We are doing what we can to
-avoid DNS caching issues but some providers may still cache longer than
-expected. Most providers will have the new addresses within 10 minutes.
+<div><br></div><div>Thanks</div><div><br></div><div>Giovanni</div>
+<div>--<br><br>Dott. Ing. Giovanni Foiani<br><font face=3D"arial, sans-seri=
+f"><span style=3D"border-collapse:collapse"><br></span></font></div><div>Ce=
+ll:=A0 =A0 =A0 =A0 +39-349-3577515<br>Phone: =A0=A0 +39-0532-97-4106<br>mai=
+l:=A0 =A0 =A0 =A0 <a href=3D"mailto:giovanni.foiani@unife.it" target=3D"_bl=
+ank">giovanni.foiani@unife.it</a></div>
 
-I will provide real time status updates at #yocto on
-http://freenode.net/ IRC. Please direct questions via e-mail to
-michael@yoctoproject.org.
+<div><span style=3D"font-family:arial,helvetica,sans-serif;font-size:13px;l=
+ine-height:13px">CenTec - Corso Guercino, 47 - 44042 Cento (FE)</span></div=
+><br>
+<br><br><div class=3D"gmail_quote">On Wed, Aug 8, 2012 at 7:11 PM, Scott Ga=
+rman <span dir=3D"ltr">&lt;<a href=3D"mailto:scott.a.garman@intel.com" targ=
+et=3D"_blank">scott.a.garman@intel.com</a>&gt;</span> wrote:<br><blockquote=
+ class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc soli=
+d;padding-left:1ex">
 
-Michael Halstead
-Yocto Project / Sys Admin
+<div class=3D"im">On 08/08/2012 10:10 AM, Scott Garman wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
+On 08/08/2012 08:13 AM, Giovanni Foiani wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
+Hi,<br>
+<br>
+I need to setup a custom splash screen replacing the Yocto logo with a<br>
+custom image.<br>
+I generated my logo using make-image script into psplash screen and<br>
+replaced the previous one in meta/recipes-core/psplash/<u></u>files folder.=
+<br>
+Then I run<br>
+<br>
+=A0 * bitbake psplash -c cleansstate<br>
+=A0 * bitbake psplash<br>
+<br>
+and then generate a new image, but during boot I still see the Yocto<br>
+logo.<br>
+Which is the right procedure?<br>
+Does the my custom logo (a png image) have some requirements (i.e. size,<br=
+>
+colors, etc..)?<br>
+</blockquote>
+<br>
+Did you re-generate the image too?<br>
+</blockquote>
+<br></div>
+Sorry, apparently I can&#39;t read this morning.<div class=3D"HOEnZb"><div =
+class=3D"h5"><br>
+<br>
+Scott<br>
+<br>
+-- <br>
+Scott Garman<br>
+Embedded Linux Engineer - Yocto Project<br>
+Intel Open Source Technology Center<br>
+______________________________<u></u>_________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
+ect.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
+>https://lists.yoctoproject.<u></u>org/listinfo/yocto</a><br>
+</div></div></blockquote></div><br></div>
 
-
---------------ms030707030603070809070705
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
-
-MIAGCSqGSIb3DQEHAqCAMIACAQExCzAJBgUrDgMCGgUAMIAGCSqGSIb3DQEHAQAAoIINjDCCBjQw
-ggQcoAMCAQICASAwDQYJKoZIhvcNAQEFBQAwfTELMAkGA1UEBhMCSUwxFjAUBgNVBAoTDVN0YXJ0
-Q29tIEx0ZC4xKzApBgNVBAsTIlNlY3VyZSBEaWdpdGFsIENlcnRpZmljYXRlIFNpZ25pbmcxKTAn
-BgNVBAMTIFN0YXJ0Q29tIENlcnRpZmljYXRpb24gQXV0aG9yaXR5MB4XDTA3MTAyNDIxMDI1NVoX
-DTE3MTAyNDIxMDI1NVowgYwxCzAJBgNVBAYTAklMMRYwFAYDVQQKEw1TdGFydENvbSBMdGQuMSsw
-KQYDVQQLEyJTZWN1cmUgRGlnaXRhbCBDZXJ0aWZpY2F0ZSBTaWduaW5nMTgwNgYDVQQDEy9TdGFy
-dENvbSBDbGFzcyAyIFByaW1hcnkgSW50ZXJtZWRpYXRlIENsaWVudCBDQTCCASIwDQYJKoZIhvcN
-AQEBBQADggEPADCCAQoCggEBAMsohUWcASz7GfKrpTOMKqANy9BV7V0igWdGxA8IU77L3aTxErQ+
-fcxtDYZ36Z6GH0YFn7fq5RADteP0AYzrCA+EQTfi8q1+kA3m0nwtwXG94M5sIqsvs7lRP1aycBke
-/s5g9hJHryZ2acScnzczjBCAo7X1v5G3yw8MDP2m2RCye0KfgZ4nODerZJVzhAlOD9YejvAXZqHk
-sw56HzElVIoYSZ3q4+RJuPXXfIoyby+Y2m1E+YzX5iCZXBx05gk6MKAW1vaw4/v2OOLy6FZH3XHH
-tOkzUreG//CsFnB9+uaYSlR65cdGzTsmoIK8WH1ygoXhRBm98SD7Hf/r3FELNvUCAwEAAaOCAa0w
-ggGpMA8GA1UdEwEB/wQFMAMBAf8wDgYDVR0PAQH/BAQDAgEGMB0GA1UdDgQWBBSuVYNv7DHKufcd
-+q9rMfPIHeOsuzAfBgNVHSMEGDAWgBROC+8apEBbpRdphzDKNGhD0EGu8jBmBggrBgEFBQcBAQRa
-MFgwJwYIKwYBBQUHMAGGG2h0dHA6Ly9vY3NwLnN0YXJ0c3NsLmNvbS9jYTAtBggrBgEFBQcwAoYh
-aHR0cDovL3d3dy5zdGFydHNzbC5jb20vc2ZzY2EuY3J0MFsGA1UdHwRUMFIwJ6AloCOGIWh0dHA6
-Ly93d3cuc3RhcnRzc2wuY29tL3Nmc2NhLmNybDAnoCWgI4YhaHR0cDovL2NybC5zdGFydHNzbC5j
-b20vc2ZzY2EuY3JsMIGABgNVHSAEeTB3MHUGCysGAQQBgbU3AQIBMGYwLgYIKwYBBQUHAgEWImh0
-dHA6Ly93d3cuc3RhcnRzc2wuY29tL3BvbGljeS5wZGYwNAYIKwYBBQUHAgEWKGh0dHA6Ly93d3cu
-c3RhcnRzc2wuY29tL2ludGVybWVkaWF0ZS5wZGYwDQYJKoZIhvcNAQEFBQADggIBADqpJw3I07QW
-ke9plNBpxUxcffc7nUrIQpJHDci91DFG7fVhHRkMZ1J+BKg5UNUxIFJ2Z9B90Micc/NXcs7kPBRd
-n6XGO/vPc87Y6R+cWS9Nc9+fp3Enmsm94OxOwI9wn8qnr/6o3mD4noP9JphwUPTXwHovjavRnhUQ
-HLfo/i2NG0XXgTHXS2Xm0kVUozXqpYpAdumMiB/vezj1QHQJDmUdPYMcp+reg9901zkyT3fDW/iv
-JVv6pWtkh6Pw2ytZT7mvg7YhX3V50Nv860cV11mocUVcqBLv0gcT+HBDYtbuvexNftwNQKD5193A
-7zN4vG7CTYkXxytSjKuXrpEatEiFPxWgb84nVj25SU5q/r1Xhwby6mLhkbaXslkVtwEWT3Van49r
-KjlK4XrUKYYWtnfzq6aSak5u0Vpxd1rY79tWhD3EdCvOhNz/QplNa+VkIsrcp7+8ZhP1l1b2U6Ma
-xIVteuVMD3X0vziIwr7jxYae9FZjbxlpUemqXjcC0QaFfN7qI0JsQMALL7iGRBg7K0CoOBzECdD3
-fuZil5kU/LP9cr1BK31U0Uy651bFnAMMMkqhAChIbn0ei72VnbpSsrrSdF0BAGYQ8vyHae5aCg+H
-75dVCV33K6FuxZrf09yTz+Vx/PkdRUYkXmZz/OTfyJXsUOUXrym6KvI2rYpccSk5MIIHUDCCBjig
-AwIBAgICIgMwDQYJKoZIhvcNAQEFBQAwgYwxCzAJBgNVBAYTAklMMRYwFAYDVQQKEw1TdGFydENv
-bSBMdGQuMSswKQYDVQQLEyJTZWN1cmUgRGlnaXRhbCBDZXJ0aWZpY2F0ZSBTaWduaW5nMTgwNgYD
-VQQDEy9TdGFydENvbSBDbGFzcyAyIFByaW1hcnkgSW50ZXJtZWRpYXRlIENsaWVudCBDQTAeFw0x
-MjA2MTMwNDU5MjlaFw0xNDA2MTQxNjE4MzBaMIGRMRkwFwYDVQQNExBnMDFwWTYwMWJGM1BrRTY3
-MQswCQYDVQQGEwJVUzEPMA0GA1UECBMGT3JlZ29uMRIwEAYDVQQHEwlIaWxsc2Jvcm8xGTAXBgNV
-BAMTEE1pY2hhZWwgSGFsc3RlYWQxJzAlBgkqhkiG9w0BCQEWGG1pY2hhZWxAeW9jdG9wcm9qZWN0
-Lm9yZzCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMFZ+GW0VKdiyuQy3hlOvwcHxcm0
-8ZwNGGah4zipYky5wVFZO7p9LjJfyF6rvd24xdkaTluxTMmd9pfq2cOVQ6c3RsPufv1yBUbytk6F
-4Wk+qD0qEGjuHh5FfakcLIEsHiSn3nzaQZHaolS/yzx/A3coQS8pQrshZYqAF/ME5OxMyL8KDdtk
-xatt1reDPqzvI5rKYdeEbmHsTYgd9WWHvs8MfZFHidZoAXMXU+PcsKCUxEYhgP/h9NKcTApu/Mhd
-IPKn11pD+gfDM+ochGu1uxuW/t1tNJyRYDVQSDV+rpliQ7mrimSmyktIKkow02pUk4Xw3OqdYq7/
-/HpVOUs5nk8CAwEAAaOCA7MwggOvMAkGA1UdEwQCMAAwCwYDVR0PBAQDAgSwMB0GA1UdJQQWMBQG
-CCsGAQUFBwMCBggrBgEFBQcDBDAdBgNVHQ4EFgQUcZFNotb1OfDmPE6GQ6MQIBh7meUwHwYDVR0j
-BBgwFoAUrlWDb+wxyrn3HfqvazHzyB3jrLswIwYDVR0RBBwwGoEYbWljaGFlbEB5b2N0b3Byb2pl
-Y3Qub3JnMIICIQYDVR0gBIICGDCCAhQwggIQBgsrBgEEAYG1NwECAjCCAf8wLgYIKwYBBQUHAgEW
-Imh0dHA6Ly93d3cuc3RhcnRzc2wuY29tL3BvbGljeS5wZGYwNAYIKwYBBQUHAgEWKGh0dHA6Ly93
-d3cuc3RhcnRzc2wuY29tL2ludGVybWVkaWF0ZS5wZGYwgfcGCCsGAQUFBwICMIHqMCcWIFN0YXJ0
-Q29tIENlcnRpZmljYXRpb24gQXV0aG9yaXR5MAMCAQEagb5UaGlzIGNlcnRpZmljYXRlIHdhcyBp
-c3N1ZWQgYWNjb3JkaW5nIHRvIHRoZSBDbGFzcyAyIFZhbGlkYXRpb24gcmVxdWlyZW1lbnRzIG9m
-IHRoZSBTdGFydENvbSBDQSBwb2xpY3ksIHJlbGlhbmNlIG9ubHkgZm9yIHRoZSBpbnRlbmRlZCBw
-dXJwb3NlIGluIGNvbXBsaWFuY2Ugb2YgdGhlIHJlbHlpbmcgcGFydHkgb2JsaWdhdGlvbnMuMIGc
-BggrBgEFBQcCAjCBjzAnFiBTdGFydENvbSBDZXJ0aWZpY2F0aW9uIEF1dGhvcml0eTADAgECGmRM
-aWFiaWxpdHkgYW5kIHdhcnJhbnRpZXMgYXJlIGxpbWl0ZWQhIFNlZSBzZWN0aW9uICJMZWdhbCBh
-bmQgTGltaXRhdGlvbnMiIG9mIHRoZSBTdGFydENvbSBDQSBwb2xpY3kuMDYGA1UdHwQvMC0wK6Ap
-oCeGJWh0dHA6Ly9jcmwuc3RhcnRzc2wuY29tL2NydHUyLWNybC5jcmwwgY4GCCsGAQUFBwEBBIGB
-MH8wOQYIKwYBBQUHMAGGLWh0dHA6Ly9vY3NwLnN0YXJ0c3NsLmNvbS9zdWIvY2xhc3MyL2NsaWVu
-dC9jYTBCBggrBgEFBQcwAoY2aHR0cDovL2FpYS5zdGFydHNzbC5jb20vY2VydHMvc3ViLmNsYXNz
-Mi5jbGllbnQuY2EuY3J0MCMGA1UdEgQcMBqGGGh0dHA6Ly93d3cuc3RhcnRzc2wuY29tLzANBgkq
-hkiG9w0BAQUFAAOCAQEANR/d6M8GHL/rkx3Kz9ILDxYMcekmFgefaDXNQMicUHiUw5TsIl5af1pS
-Y2AvbKlA2/FZnyG8w42FuK6ZQBZJxs4/N10NW8qDmuuFTi6TyJgurj73tx9RogW50miDHMZLoMRe
-avB1h8zy99L2lRPZSebpSFkrQdYDHaGRVhYMjEcWNW9cLxhR8BaAEw/KlpERv3hUQpwGMppYOE66
-M7KJ3HpeR7DXfa4njL9W2hukTQNsskdWtzejHp5iQ65+5Mv+NXLmYP4uLJcR9AbttgNhwStc0P1b
-LxnQkElGeUzATOBq+QsVZ7Fo6sSS7kqrhpfaPibqpj83m/wSgpKVsbZJ3DGCA9owggPWAgEBMIGT
-MIGMMQswCQYDVQQGEwJJTDEWMBQGA1UEChMNU3RhcnRDb20gTHRkLjErMCkGA1UECxMiU2VjdXJl
-IERpZ2l0YWwgQ2VydGlmaWNhdGUgU2lnbmluZzE4MDYGA1UEAxMvU3RhcnRDb20gQ2xhc3MgMiBQ
-cmltYXJ5IEludGVybWVkaWF0ZSBDbGllbnQgQ0ECAiIDMAkGBSsOAwIaBQCgggIbMBgGCSqGSIb3
-DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTEyMDgwOTAzMTEwM1owIwYJKoZIhvcN
-AQkEMRYEFGummsN9m+RREjTnN687q0w/kuz9MGwGCSqGSIb3DQEJDzFfMF0wCwYJYIZIAWUDBAEq
-MAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzAOBggqhkiG9w0DAgICAIAwDQYIKoZIhvcNAwICAUAw
-BwYFKw4DAgcwDQYIKoZIhvcNAwICASgwgaQGCSsGAQQBgjcQBDGBljCBkzCBjDELMAkGA1UEBhMC
-SUwxFjAUBgNVBAoTDVN0YXJ0Q29tIEx0ZC4xKzApBgNVBAsTIlNlY3VyZSBEaWdpdGFsIENlcnRp
-ZmljYXRlIFNpZ25pbmcxODA2BgNVBAMTL1N0YXJ0Q29tIENsYXNzIDIgUHJpbWFyeSBJbnRlcm1l
-ZGlhdGUgQ2xpZW50IENBAgIiAzCBpgYLKoZIhvcNAQkQAgsxgZaggZMwgYwxCzAJBgNVBAYTAklM
-MRYwFAYDVQQKEw1TdGFydENvbSBMdGQuMSswKQYDVQQLEyJTZWN1cmUgRGlnaXRhbCBDZXJ0aWZp
-Y2F0ZSBTaWduaW5nMTgwNgYDVQQDEy9TdGFydENvbSBDbGFzcyAyIFByaW1hcnkgSW50ZXJtZWRp
-YXRlIENsaWVudCBDQQICIgMwDQYJKoZIhvcNAQEBBQAEggEAnnFXDM/nXz9T483dPnEhbSjdFOop
-8Y5wRmIa7XUDEJCUDMCEfLYQJrd9mxw6eung8x7qZvcMG9btMPmdIYL4x/HcBi0zgEBoda/NLD4I
-Wdz7svTQqTBzkayKsnR5HdQy9U2ot/Oy7ro/MTwo7RQIruejqw/YCsVIfRzyX3gfL0fxx9qFir8x
-unW7Wz6txvmYoNkHYwfWzQuO4F2FOr5TEGXht71jCe+xQbEANTwmqQH+h62SDhMO+QO/no/wnpm0
-5T7TeM1mlMpexph4AjYG8YIkSlzNAZDvW6VBoQC/UnnLTXrlSPceXiPW3UJ2hbKYsDFZ+J1KlyPW
-KARD7FJqUgAAAAAAAA==
-
---------------ms030707030603070809070705--
+--f46d0401fb694f890f04c6d03725--
