@@ -1,32 +1,47 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-ey0-f176.google.com (mail-ey0-f176.google.com
-	[209.85.215.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5405BE002A5
-	for <yocto@yoctoproject.org>; Wed,  8 Aug 2012 14:24:07 -0700 (PDT)
-Received: by eabd1 with SMTP id d1so405728eab.35
-	for <yocto@yoctoproject.org>; Wed, 08 Aug 2012 14:24:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=FfhYaKGT+iXJb5NyI10qtGPyIToFOReCzcSQT/rO3IA=;
-	b=J4NskiLI41xn9B6M9CQo/32Ro840QBlrsqK7fk5uDqr6AJ2O9UNVUckcwvFK68Hseg
-	PgSKPNXZON8MtWjnXA+Y19r/0Yd7AYGWNddefXwtaodKFY9o7UaZtx8qLUJKPW+yQ1DW
-	XnV/h1EdBElhBf5fg4m5yKhJCa+L7Flrt18tS8Ws9poa0WalYyAGU9W3wdVF76liX7+z
-	FW/y7EGw972tiINxcPPtsep9p9hSt6Hp+O+PNLRIdZIUtcfPBMK/O8Wmjjp3Kw/kg+k/
-	oZ+VSZLIbxR+s1vFJmBKFC+HKtcs9za/p7Lw8vXwTDL1lCNQF0LJSvRR35lELyoDnfSK
-	JvGA==
-Received: by 10.14.194.198 with SMTP id m46mr24034441een.13.1344461046094;
-	Wed, 08 Aug 2012 14:24:06 -0700 (PDT)
+Return-Path: <halstead@happypunch.com>
+Received: from mail-gh0-f176.google.com (mail-gh0-f176.google.com
+	[209.85.160.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 255DBE0044A
+	for <yocto@yoctoproject.org>; Wed,  8 Aug 2012 20:11:09 -0700 (PDT)
+Received: by ghbz10 with SMTP id z10so1837892ghb.35
+	for <yocto@yoctoproject.org>; Wed, 08 Aug 2012 20:11:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=happypunch.com; s=google;
+	h=sender:message-id:date:from:user-agent:mime-version:to:subject
+	:x-enigmail-version:content-type;
+	bh=z0W3wd7aryDUBD7RdGMzJ87v3DlB4xjWc6/NnLZ1pHY=;
+	b=U6PNLM1s1iUry1FTVvA7UsBvolU5BeuklJo3qar0h3UN6gzIzKVp7cWAzS+to/x5rH
+	5r8TWwd+Qu96Iknt+/jzlAn/r3dd0cKctsLLwJgYcXr5L24cA+5qb/h+8YInwpGNmdRr
+	jNGaLw0BnnIGtyeC2wdD1dgg6bUyrYhoeJ8Xo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=sender:message-id:date:from:user-agent:mime-version:to:subject
+	:x-enigmail-version:content-type:x-gm-message-state;
+	bh=z0W3wd7aryDUBD7RdGMzJ87v3DlB4xjWc6/NnLZ1pHY=;
+	b=Ame41YAmNZhN8yLto0m+EDuUe07c7kViIH+5BcvWK+Xobdqde9/+XQOQmypWXCeftC
+	ZF3fSSOR6iJMVbdus1bnNiUE+Qosu7yQpKHcEo6l0IS07YWtd0otJruzHBp1Tk0T0Dw3
+	bgLQ7V6i2J0fWXb5QO0thv8whhewYNVULvUa6DeCK7HvjaMg1lrVFDfw2FoTbPZmKcI6
+	51arITQnQeKO/1c8D9rb7HURs25SP6CYjES+6N1DTyHyslnsGzZRq3Pz2ojo6hTIetJI
+	2KkJ2iyXDX0a41F/dUJvSDQySwwhSSSoADN/eATudhdbe3fci8faB7OWbhMh9l0ngKKN
+	TY0w==
+Received: by 10.66.87.227 with SMTP id bb3mr4485998pab.3.1344481867903;
+	Wed, 08 Aug 2012 20:11:07 -0700 (PDT)
+Received: from pride.incitedev.com (184-76-95-119.war.clearwire-wmx.net.
+	[184.76.95.119])
+	by mx.google.com with ESMTPS id wi6sm178519pbc.35.2012.08.08.20.11.04
+	(version=SSLv3 cipher=OTHER); Wed, 08 Aug 2012 20:11:05 -0700 (PDT)
+Sender: Michael Halstead <halstead@happypunch.com>
+Message-ID: <50232A47.5070304@yoctoproject.org>
+Date: Wed, 08 Aug 2012 20:11:03 -0700
+From: Michael Halstead <michael@yoctoproject.org>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:14.0) Gecko/20120714 Thunderbird/14.0
 MIME-Version: 1.0
-Received: by 10.14.97.141 with HTTP; Wed, 8 Aug 2012 14:23:35 -0700 (PDT)
-In-Reply-To: <735CD356-A6DB-4939-9C39-EDB0A15D7343@gmail.com>
-References: <735CD356-A6DB-4939-9C39-EDB0A15D7343@gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Wed, 8 Aug 2012 14:23:35 -0700
-Message-ID: <CAMKF1sogsUv1ahoYdTBFoM8oVq0u410Wi8Ghv5WRT+uN4FgK+Q@mail.gmail.com>
-To: Elvis Dowson <elvis.dowson@gmail.com>
-Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-Subject: Re: poky/bernard: gcc-4.5.1 configure: error: cannot compute suffix of object files: cannot compile
+To: Yocto Project Discussion <yocto@yoctoproject.org>, 
+	yocto-infrastructure@yoctoproject.org
+X-Enigmail-Version: 1.5a1pre
+X-Gm-Message-State: ALoCoQlfNdzS4uVdOQr6og58duGCHFqdejg6OdZGobw8/iS1BCuI25pwDjAOk8AvYVzJniQvLL9l
+Subject: [Infra] Downtime Thursday August 9th at 11:00 AM UTC
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,171 +53,122 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Aug 2012 21:24:07 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 09 Aug 2012 03:11:09 -0000
+X-Groupsio-MsgNum: 8503
+Content-Type: multipart/signed; protocol="application/pkcs7-signature";
+	micalg=sha1; boundary="------------ms030707030603070809070705"
 
-Elvis
+--------------ms030707030603070809070705
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-I think gcc 4.6 is retired in toolchain-layer in meta-openembedded
-repo. I think first thing
-I would suggest is use that layer and use gcc 4.6 this might work
-better. I think 4.6 should still
-work with master or we can kind of fix it if need be.
+Thursday August 9th from 11:00 UTC to 13:00 UTC all of our IP addresses
+are changing. (4am to 6am PDT)
 
-Then if you are still unlucky then use 4.5.1
+During the move Yocto Project services including web, bugtracking,
+e-mail, mailing lists, autobuilders, and git as well as others will be
+unavailable. We plan for the actual outage to last 30 minutes within
+this window but it may take longer.
 
-Thanks
--Khem
+Since IP addresses are changing we also need to update DNS. After
+service is restored cached DNS entries may cause services to be
+unreachable for up to 3 hours afterwards. We are doing what we can to
+avoid DNS caching issues but some providers may still cache longer than
+expected. Most providers will have the new addresses within 10 minutes.
 
-On Wed, Aug 8, 2012 at 1:24 PM, Elvis Dowson <elvis.dowson@gmail.com> wrote:
-> Hi,
->       I'm trying to get build using the bernard branch, for a PowerPC440
-> target, and I get a build failure for gcc-4.5.1:
->
-> NOTE: Running task 500 of 1502 (ID: 590,
-> virtual:native:/tool/yocto/poky/meta/recipes-core/readline/readline_6.1.bb,
-> do_install)
-> ERROR: Function 'do_compile' failed (see
-> /tool/yocto/poky/build/tmp/work/ppc440-poky-linux/gcc-cross-initial-4.5.1-r4/temp/log.do_compile.9332
-> for further information)
-> ERROR: Logfile of failure stored in:
-> /tool/yocto/poky/build/tmp/work/ppc440-poky-linux/gcc-cross-initial-4.5.1-r4/temp/log.do_compile.9332
-> Log data follows:
-> | NOTE: make -j 6 ARCH_FLAGS_FOR_TARGET=-m32 -mcpu=440  -mfpu-soft
-> -isystem/tool/yocto/poky/build/tmp/sysroots/virtex5/usr/include
-> | make[1]: Entering directory
-> `/tool/yocto/poky/build/tmp/work/ppc440-poky-linux/gcc-cross-initial-4.5.1-r4/gcc-4.5.1/build.x86_64-linux.powerpc-poky-linux'
-> | make[2]: Entering directory
-> `/tool/yocto/poky/build/tmp/work/ppc440-poky-linux/gcc-cross-initial-4.5.1-r4/gcc-4.5.1/build.x86_64-linux.powerpc-poky-linux/libdecnumber'
-> | make[2]: Nothing to be done for `all'.
-> | make[2]: Leaving directory
-> `/tool/yocto/poky/build/tmp/work/ppc440-poky-linux/gcc-cross-initial-4.5.1-r4/gcc-4.5.1/build.x86_64-linux.powerpc-poky-linux/libdecnumber'
-> | make[2]: Entering directory
-> `/tool/yocto/poky/build/tmp/work/ppc440-poky-linux/gcc-cross-initial-4.5.1-r4/gcc-4.5.1/build.x86_64-linux.powerpc-poky-linux/zlib'
-> | true "AR_FLAGS=rc" "CC_FOR_BUILD=gcc"
-> "CFLAGS=-isystem/tool/yocto/poky/build/tmp/sysroots/x86_64-linux/usr/include
-> -O2"
-> "CXXFLAGS=-isystem/tool/yocto/poky/build/tmp/sysroots/x86_64-linux/usr/include
-> -O2"
-> "CFLAGS_FOR_BUILD=-isystem/tool/yocto/poky/build/tmp/sysroots/x86_64-linux/usr/include
-> -O2" "CFLAGS_FOR_TARGET=-g
-> -isystem/tool/yocto/poky/build/tmp/sysroots/x86_64-linux/usr/include -O2"
-> "INSTALL=/usr/bin/install -c" "INSTALL_DATA=/usr/bin/install -c -m 644"
-> "INSTALL_PROGRAM=/usr/bin/install -c" "INSTALL_SCRIPT=/usr/bin/install -c"
-> "LDFLAGS=-L/tool/yocto/poky/build/tmp/sysroots/x86_64-linux/usr/lib
-> -Wl,-rpath-link,/tool/yocto/poky/build/tmp/sysroots/x86_64-linux/usr/lib
-> -Wl,-rpath,/tool/yocto/poky/build/tmp/sysroots/x86_64-linux/usr/lib -Wl,-O1"
-> "LIBCFLAGS=-isystem/tool/yocto/poky/build/tmp/sysroots/x86_64-linux/usr/include
-> -O2" "LIBCFLAGS_FOR_TARGET=-g
-> -isystem/tool/yocto/poky/build/tmp/sysroots/x86_64-linux/usr/include -O2"
-> "MAKE=make" "MAKEINFO=makeinfo --split-size=5000000 --split-size=5000000 "
-> "PICFLAG=" "PICFLAG_FOR_TARGET=" "SHELL=/bin/sh" "EXPECT=expect"
-> "RUNTEST=runtest" "RUNTESTFLAGS="
-> "exec_prefix=/tool/yocto/poky/build/tmp/sysroots/x86_64-linux/usr"
-> "infodir=/tool/yocto/poky/build/tmp/sysroots/x86_64-linux/usr/share/info"
-> "libdir=/tool/yocto/poky/build/tmp/sysroots/x86_64-linux/usr/lib/ppc440-poky-linux.gcc-cross-initial"
-> "prefix=/tool/yocto/poky/build/tmp/sysroots/x86_64-linux/usr"
-> "tooldir=/tool/yocto/poky/build/tmp/sysroots/x86_64-linux/usr/powerpc-poky-linux"
-> "AR=ar" "AS=as" "CC=gcc" "CXX=g++" "LD=ld"
-> "LIBCFLAGS=-isystem/tool/yocto/poky/build/tmp/sysroots/x86_64-linux/usr/include
-> -O2" "NM=nm" "PICFLAG=" "RANLIB=ranlib" "DESTDIR=" DO=all multi-do # make
-> | make[2]: Leaving directory
-> `/tool/yocto/poky/build/tmp/work/ppc440-poky-linux/gcc-cross-initial-4.5.1-r4/gcc-4.5.1/build.x86_64-linux.powerpc-poky-linux/zlib'
-> | make[2]: Entering directory
-> `/tool/yocto/poky/build/tmp/work/ppc440-poky-linux/gcc-cross-initial-4.5.1-r4/gcc-4.5.1/build.x86_64-linux.powerpc-poky-linux/libiberty'
-> | make[2]: Entering directory
-> `/tool/yocto/poky/build/tmp/work/ppc440-poky-linux/gcc-cross-initial-4.5.1-r4/gcc-4.5.1/build.x86_64-linux.powerpc-poky-linux/intl'
-> | make[2]: Nothing to be done for `all'.
-> | make[2]: Leaving directory
-> `/tool/yocto/poky/build/tmp/work/ppc440-poky-linux/gcc-cross-initial-4.5.1-r4/gcc-4.5.1/build.x86_64-linux.powerpc-poky-linux/intl'
-> | make[2]: Entering directory
-> `/tool/yocto/poky/build/tmp/work/ppc440-poky-linux/gcc-cross-initial-4.5.1-r4/gcc-4.5.1/build.x86_64-linux.powerpc-poky-linux/build-x86_64-linux/libiberty'
-> | make[3]: Entering directory
-> `/tool/yocto/poky/build/tmp/work/ppc440-poky-linux/gcc-cross-initial-4.5.1-r4/gcc-4.5.1/build.x86_64-linux.powerpc-poky-linux/build-x86_64-linux/libiberty/testsuite'
-> | make[3]: Nothing to be done for `all'.
-> | make[3]: Leaving directory
-> `/tool/yocto/poky/build/tmp/work/ppc440-poky-linux/gcc-cross-initial-4.5.1-r4/gcc-4.5.1/build.x86_64-linux.powerpc-poky-linux/build-x86_64-linux/libiberty/testsuite'
-> | make[2]: Leaving directory
-> `/tool/yocto/poky/build/tmp/work/ppc440-poky-linux/gcc-cross-initial-4.5.1-r4/gcc-4.5.1/build.x86_64-linux.powerpc-poky-linux/build-x86_64-linux/libiberty'
-> | make[3]: Entering directory
-> `/tool/yocto/poky/build/tmp/work/ppc440-poky-linux/gcc-cross-initial-4.5.1-r4/gcc-4.5.1/build.x86_64-linux.powerpc-poky-linux/libiberty/testsuite'
-> | make[3]: Nothing to be done for `all'.
-> | make[3]: Leaving directory
-> `/tool/yocto/poky/build/tmp/work/ppc440-poky-linux/gcc-cross-initial-4.5.1-r4/gcc-4.5.1/build.x86_64-linux.powerpc-poky-linux/libiberty/testsuite'
-> | make[2]: Leaving directory
-> `/tool/yocto/poky/build/tmp/work/ppc440-poky-linux/gcc-cross-initial-4.5.1-r4/gcc-4.5.1/build.x86_64-linux.powerpc-poky-linux/libiberty'
-> | make[2]: Entering directory
-> `/tool/yocto/poky/build/tmp/work/ppc440-poky-linux/gcc-cross-initial-4.5.1-r4/gcc-4.5.1/build.x86_64-linux.powerpc-poky-linux/build-x86_64-linux/fixincludes'
-> | make[2]: Nothing to be done for `all'.
-> | make[2]: Leaving directory
-> `/tool/yocto/poky/build/tmp/work/ppc440-poky-linux/gcc-cross-initial-4.5.1-r4/gcc-4.5.1/build.x86_64-linux.powerpc-poky-linux/build-x86_64-linux/fixincludes'
-> | make[2]: Entering directory
-> `/tool/yocto/poky/build/tmp/work/ppc440-poky-linux/gcc-cross-initial-4.5.1-r4/gcc-4.5.1/build.x86_64-linux.powerpc-poky-linux/libcpp'
-> | test -f config.h || (rm -f stamp-h1 && make stamp-h1)
-> | make[2]: Leaving directory
-> `/tool/yocto/poky/build/tmp/work/ppc440-poky-linux/gcc-cross-initial-4.5.1-r4/gcc-4.5.1/build.x86_64-linux.powerpc-poky-linux/libcpp'
-> | make[2]: Entering directory
-> `/tool/yocto/poky/build/tmp/work/ppc440-poky-linux/gcc-cross-initial-4.5.1-r4/gcc-4.5.1/build.x86_64-linux.powerpc-poky-linux/fixincludes'
-> | make[2]: Nothing to be done for `all'.
-> | make[2]: Leaving directory
-> `/tool/yocto/poky/build/tmp/work/ppc440-poky-linux/gcc-cross-initial-4.5.1-r4/gcc-4.5.1/build.x86_64-linux.powerpc-poky-linux/fixincludes'
-> | make[2]: Entering directory
-> `/tool/yocto/poky/build/tmp/work/ppc440-poky-linux/gcc-cross-initial-4.5.1-r4/gcc-4.5.1/build.x86_64-linux.powerpc-poky-linux/gcc'
-> | make[2]: Leaving directory
-> `/tool/yocto/poky/build/tmp/work/ppc440-poky-linux/gcc-cross-initial-4.5.1-r4/gcc-4.5.1/build.x86_64-linux.powerpc-poky-linux/gcc'
-> | Checking multilib configuration for libgcc...
-> | Configuring in powerpc-poky-linux/libgcc
-> | configure: loading cache ./config.cache
-> | checking for --enable-version-specific-runtime-libs... no
-> | checking for a BSD-compatible install... /usr/bin/install -c
-> | checking for gawk... gawk
-> | checking build system type... x86_64-pc-linux-gnu
-> | checking host system type... powerpc-poky-linux-gnu
-> | checking for powerpc-poky-linux-ar... powerpc-poky-linux-ar
-> | checking for powerpc-poky-linux-lipo... powerpc-poky-linux-lipo
-> | checking for powerpc-poky-linux-nm...
-> /tool/yocto/poky/build/tmp/work/ppc440-poky-linux/gcc-cross-initial-4.5.1-r4/gcc-4.5.1/build.x86_64-linux.powerpc-poky-linux/./gcc/nm
-> | checking for powerpc-poky-linux-ranlib... powerpc-poky-linux-ranlib
-> | checking for powerpc-poky-linux-strip... powerpc-poky-linux-strip
-> | checking whether ln -s works... yes
-> | checking for powerpc-poky-linux-gcc...
-> /tool/yocto/poky/build/tmp/work/ppc440-poky-linux/gcc-cross-initial-4.5.1-r4/gcc-4.5.1/build.x86_64-linux.powerpc-poky-linux/./gcc/xgcc
-> -B/tool/yocto/poky/build/tmp/work/ppc440-poky-linux/gcc-cross-initial-4.5.1-r4/gcc-4.5.1/build.x86_64-linux.powerpc-poky-linux/./gcc/
-> -m32 -mcpu=440  -mfpu-soft
-> -isystem/tool/yocto/poky/build/tmp/sysroots/virtex5/usr/include
-> -B/tool/yocto/poky/build/tmp/sysroots/x86_64-linux/usr/powerpc-poky-linux/bin/
-> -B/tool/yocto/poky/build/tmp/sysroots/x86_64-linux/usr/powerpc-poky-linux/lib/
-> -isystem
-> /tool/yocto/poky/build/tmp/sysroots/x86_64-linux/usr/powerpc-poky-linux/include
-> -isystem
-> /tool/yocto/poky/build/tmp/sysroots/x86_64-linux/usr/powerpc-poky-linux/sys-include
-> --sysroot=/tool/yocto/poky/build/tmp/sysroots/virtex5
-> | checking for suffix of object files... configure: error: in
-> `/tool/yocto/poky/build/tmp/work/ppc440-poky-linux/gcc-cross-initial-4.5.1-r4/gcc-4.5.1/build.x86_64-linux.powerpc-poky-linux/powerpc-poky-linux/libgcc':
-> | configure: error: cannot compute suffix of object files: cannot compile
-> | See `config.log' for more details.
-> | make[1]: *** [configure-target-libgcc] Error 1
-> | make[1]: Leaving directory
-> `/tool/yocto/poky/build/tmp/work/ppc440-poky-linux/gcc-cross-initial-4.5.1-r4/gcc-4.5.1/build.x86_64-linux.powerpc-poky-linux'
-> | make: *** [all] Error 2
-> | FATAL: oe_runmake failed
-> | ERROR: Function 'do_compile' failed (see
-> /tool/yocto/poky/build/tmp/work/ppc440-poky-linux/gcc-cross-initial-4.5.1-r4/temp/log.do_compile.9332
-> for further information)
-> NOTE: package gcc-cross-initial-4.5.1-r4: task do_compile: Failed
-> ERROR: Task 1112
-> (/tool/yocto/poky/meta/recipes-devtools/gcc/gcc-cross-initial_4.5.1.bb,
-> do_compile) failed with exit code '1'
->
-> What should I do to get past this error?
->
-> Best regards,
->
-> Elvis Dowson
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+I will provide real time status updates at #yocto on
+http://freenode.net/ IRC. Please direct questions via e-mail to
+michael@yoctoproject.org.
 
+Michael Halstead
+Yocto Project / Sys Admin
+
+
+--------------ms030707030603070809070705
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: S/MIME Cryptographic Signature
+
+MIAGCSqGSIb3DQEHAqCAMIACAQExCzAJBgUrDgMCGgUAMIAGCSqGSIb3DQEHAQAAoIINjDCCBjQw
+ggQcoAMCAQICASAwDQYJKoZIhvcNAQEFBQAwfTELMAkGA1UEBhMCSUwxFjAUBgNVBAoTDVN0YXJ0
+Q29tIEx0ZC4xKzApBgNVBAsTIlNlY3VyZSBEaWdpdGFsIENlcnRpZmljYXRlIFNpZ25pbmcxKTAn
+BgNVBAMTIFN0YXJ0Q29tIENlcnRpZmljYXRpb24gQXV0aG9yaXR5MB4XDTA3MTAyNDIxMDI1NVoX
+DTE3MTAyNDIxMDI1NVowgYwxCzAJBgNVBAYTAklMMRYwFAYDVQQKEw1TdGFydENvbSBMdGQuMSsw
+KQYDVQQLEyJTZWN1cmUgRGlnaXRhbCBDZXJ0aWZpY2F0ZSBTaWduaW5nMTgwNgYDVQQDEy9TdGFy
+dENvbSBDbGFzcyAyIFByaW1hcnkgSW50ZXJtZWRpYXRlIENsaWVudCBDQTCCASIwDQYJKoZIhvcN
+AQEBBQADggEPADCCAQoCggEBAMsohUWcASz7GfKrpTOMKqANy9BV7V0igWdGxA8IU77L3aTxErQ+
+fcxtDYZ36Z6GH0YFn7fq5RADteP0AYzrCA+EQTfi8q1+kA3m0nwtwXG94M5sIqsvs7lRP1aycBke
+/s5g9hJHryZ2acScnzczjBCAo7X1v5G3yw8MDP2m2RCye0KfgZ4nODerZJVzhAlOD9YejvAXZqHk
+sw56HzElVIoYSZ3q4+RJuPXXfIoyby+Y2m1E+YzX5iCZXBx05gk6MKAW1vaw4/v2OOLy6FZH3XHH
+tOkzUreG//CsFnB9+uaYSlR65cdGzTsmoIK8WH1ygoXhRBm98SD7Hf/r3FELNvUCAwEAAaOCAa0w
+ggGpMA8GA1UdEwEB/wQFMAMBAf8wDgYDVR0PAQH/BAQDAgEGMB0GA1UdDgQWBBSuVYNv7DHKufcd
++q9rMfPIHeOsuzAfBgNVHSMEGDAWgBROC+8apEBbpRdphzDKNGhD0EGu8jBmBggrBgEFBQcBAQRa
+MFgwJwYIKwYBBQUHMAGGG2h0dHA6Ly9vY3NwLnN0YXJ0c3NsLmNvbS9jYTAtBggrBgEFBQcwAoYh
+aHR0cDovL3d3dy5zdGFydHNzbC5jb20vc2ZzY2EuY3J0MFsGA1UdHwRUMFIwJ6AloCOGIWh0dHA6
+Ly93d3cuc3RhcnRzc2wuY29tL3Nmc2NhLmNybDAnoCWgI4YhaHR0cDovL2NybC5zdGFydHNzbC5j
+b20vc2ZzY2EuY3JsMIGABgNVHSAEeTB3MHUGCysGAQQBgbU3AQIBMGYwLgYIKwYBBQUHAgEWImh0
+dHA6Ly93d3cuc3RhcnRzc2wuY29tL3BvbGljeS5wZGYwNAYIKwYBBQUHAgEWKGh0dHA6Ly93d3cu
+c3RhcnRzc2wuY29tL2ludGVybWVkaWF0ZS5wZGYwDQYJKoZIhvcNAQEFBQADggIBADqpJw3I07QW
+ke9plNBpxUxcffc7nUrIQpJHDci91DFG7fVhHRkMZ1J+BKg5UNUxIFJ2Z9B90Micc/NXcs7kPBRd
+n6XGO/vPc87Y6R+cWS9Nc9+fp3Enmsm94OxOwI9wn8qnr/6o3mD4noP9JphwUPTXwHovjavRnhUQ
+HLfo/i2NG0XXgTHXS2Xm0kVUozXqpYpAdumMiB/vezj1QHQJDmUdPYMcp+reg9901zkyT3fDW/iv
+JVv6pWtkh6Pw2ytZT7mvg7YhX3V50Nv860cV11mocUVcqBLv0gcT+HBDYtbuvexNftwNQKD5193A
+7zN4vG7CTYkXxytSjKuXrpEatEiFPxWgb84nVj25SU5q/r1Xhwby6mLhkbaXslkVtwEWT3Van49r
+KjlK4XrUKYYWtnfzq6aSak5u0Vpxd1rY79tWhD3EdCvOhNz/QplNa+VkIsrcp7+8ZhP1l1b2U6Ma
+xIVteuVMD3X0vziIwr7jxYae9FZjbxlpUemqXjcC0QaFfN7qI0JsQMALL7iGRBg7K0CoOBzECdD3
+fuZil5kU/LP9cr1BK31U0Uy651bFnAMMMkqhAChIbn0ei72VnbpSsrrSdF0BAGYQ8vyHae5aCg+H
+75dVCV33K6FuxZrf09yTz+Vx/PkdRUYkXmZz/OTfyJXsUOUXrym6KvI2rYpccSk5MIIHUDCCBjig
+AwIBAgICIgMwDQYJKoZIhvcNAQEFBQAwgYwxCzAJBgNVBAYTAklMMRYwFAYDVQQKEw1TdGFydENv
+bSBMdGQuMSswKQYDVQQLEyJTZWN1cmUgRGlnaXRhbCBDZXJ0aWZpY2F0ZSBTaWduaW5nMTgwNgYD
+VQQDEy9TdGFydENvbSBDbGFzcyAyIFByaW1hcnkgSW50ZXJtZWRpYXRlIENsaWVudCBDQTAeFw0x
+MjA2MTMwNDU5MjlaFw0xNDA2MTQxNjE4MzBaMIGRMRkwFwYDVQQNExBnMDFwWTYwMWJGM1BrRTY3
+MQswCQYDVQQGEwJVUzEPMA0GA1UECBMGT3JlZ29uMRIwEAYDVQQHEwlIaWxsc2Jvcm8xGTAXBgNV
+BAMTEE1pY2hhZWwgSGFsc3RlYWQxJzAlBgkqhkiG9w0BCQEWGG1pY2hhZWxAeW9jdG9wcm9qZWN0
+Lm9yZzCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMFZ+GW0VKdiyuQy3hlOvwcHxcm0
+8ZwNGGah4zipYky5wVFZO7p9LjJfyF6rvd24xdkaTluxTMmd9pfq2cOVQ6c3RsPufv1yBUbytk6F
+4Wk+qD0qEGjuHh5FfakcLIEsHiSn3nzaQZHaolS/yzx/A3coQS8pQrshZYqAF/ME5OxMyL8KDdtk
+xatt1reDPqzvI5rKYdeEbmHsTYgd9WWHvs8MfZFHidZoAXMXU+PcsKCUxEYhgP/h9NKcTApu/Mhd
+IPKn11pD+gfDM+ochGu1uxuW/t1tNJyRYDVQSDV+rpliQ7mrimSmyktIKkow02pUk4Xw3OqdYq7/
+/HpVOUs5nk8CAwEAAaOCA7MwggOvMAkGA1UdEwQCMAAwCwYDVR0PBAQDAgSwMB0GA1UdJQQWMBQG
+CCsGAQUFBwMCBggrBgEFBQcDBDAdBgNVHQ4EFgQUcZFNotb1OfDmPE6GQ6MQIBh7meUwHwYDVR0j
+BBgwFoAUrlWDb+wxyrn3HfqvazHzyB3jrLswIwYDVR0RBBwwGoEYbWljaGFlbEB5b2N0b3Byb2pl
+Y3Qub3JnMIICIQYDVR0gBIICGDCCAhQwggIQBgsrBgEEAYG1NwECAjCCAf8wLgYIKwYBBQUHAgEW
+Imh0dHA6Ly93d3cuc3RhcnRzc2wuY29tL3BvbGljeS5wZGYwNAYIKwYBBQUHAgEWKGh0dHA6Ly93
+d3cuc3RhcnRzc2wuY29tL2ludGVybWVkaWF0ZS5wZGYwgfcGCCsGAQUFBwICMIHqMCcWIFN0YXJ0
+Q29tIENlcnRpZmljYXRpb24gQXV0aG9yaXR5MAMCAQEagb5UaGlzIGNlcnRpZmljYXRlIHdhcyBp
+c3N1ZWQgYWNjb3JkaW5nIHRvIHRoZSBDbGFzcyAyIFZhbGlkYXRpb24gcmVxdWlyZW1lbnRzIG9m
+IHRoZSBTdGFydENvbSBDQSBwb2xpY3ksIHJlbGlhbmNlIG9ubHkgZm9yIHRoZSBpbnRlbmRlZCBw
+dXJwb3NlIGluIGNvbXBsaWFuY2Ugb2YgdGhlIHJlbHlpbmcgcGFydHkgb2JsaWdhdGlvbnMuMIGc
+BggrBgEFBQcCAjCBjzAnFiBTdGFydENvbSBDZXJ0aWZpY2F0aW9uIEF1dGhvcml0eTADAgECGmRM
+aWFiaWxpdHkgYW5kIHdhcnJhbnRpZXMgYXJlIGxpbWl0ZWQhIFNlZSBzZWN0aW9uICJMZWdhbCBh
+bmQgTGltaXRhdGlvbnMiIG9mIHRoZSBTdGFydENvbSBDQSBwb2xpY3kuMDYGA1UdHwQvMC0wK6Ap
+oCeGJWh0dHA6Ly9jcmwuc3RhcnRzc2wuY29tL2NydHUyLWNybC5jcmwwgY4GCCsGAQUFBwEBBIGB
+MH8wOQYIKwYBBQUHMAGGLWh0dHA6Ly9vY3NwLnN0YXJ0c3NsLmNvbS9zdWIvY2xhc3MyL2NsaWVu
+dC9jYTBCBggrBgEFBQcwAoY2aHR0cDovL2FpYS5zdGFydHNzbC5jb20vY2VydHMvc3ViLmNsYXNz
+Mi5jbGllbnQuY2EuY3J0MCMGA1UdEgQcMBqGGGh0dHA6Ly93d3cuc3RhcnRzc2wuY29tLzANBgkq
+hkiG9w0BAQUFAAOCAQEANR/d6M8GHL/rkx3Kz9ILDxYMcekmFgefaDXNQMicUHiUw5TsIl5af1pS
+Y2AvbKlA2/FZnyG8w42FuK6ZQBZJxs4/N10NW8qDmuuFTi6TyJgurj73tx9RogW50miDHMZLoMRe
+avB1h8zy99L2lRPZSebpSFkrQdYDHaGRVhYMjEcWNW9cLxhR8BaAEw/KlpERv3hUQpwGMppYOE66
+M7KJ3HpeR7DXfa4njL9W2hukTQNsskdWtzejHp5iQ65+5Mv+NXLmYP4uLJcR9AbttgNhwStc0P1b
+LxnQkElGeUzATOBq+QsVZ7Fo6sSS7kqrhpfaPibqpj83m/wSgpKVsbZJ3DGCA9owggPWAgEBMIGT
+MIGMMQswCQYDVQQGEwJJTDEWMBQGA1UEChMNU3RhcnRDb20gTHRkLjErMCkGA1UECxMiU2VjdXJl
+IERpZ2l0YWwgQ2VydGlmaWNhdGUgU2lnbmluZzE4MDYGA1UEAxMvU3RhcnRDb20gQ2xhc3MgMiBQ
+cmltYXJ5IEludGVybWVkaWF0ZSBDbGllbnQgQ0ECAiIDMAkGBSsOAwIaBQCgggIbMBgGCSqGSIb3
+DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTEyMDgwOTAzMTEwM1owIwYJKoZIhvcN
+AQkEMRYEFGummsN9m+RREjTnN687q0w/kuz9MGwGCSqGSIb3DQEJDzFfMF0wCwYJYIZIAWUDBAEq
+MAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzAOBggqhkiG9w0DAgICAIAwDQYIKoZIhvcNAwICAUAw
+BwYFKw4DAgcwDQYIKoZIhvcNAwICASgwgaQGCSsGAQQBgjcQBDGBljCBkzCBjDELMAkGA1UEBhMC
+SUwxFjAUBgNVBAoTDVN0YXJ0Q29tIEx0ZC4xKzApBgNVBAsTIlNlY3VyZSBEaWdpdGFsIENlcnRp
+ZmljYXRlIFNpZ25pbmcxODA2BgNVBAMTL1N0YXJ0Q29tIENsYXNzIDIgUHJpbWFyeSBJbnRlcm1l
+ZGlhdGUgQ2xpZW50IENBAgIiAzCBpgYLKoZIhvcNAQkQAgsxgZaggZMwgYwxCzAJBgNVBAYTAklM
+MRYwFAYDVQQKEw1TdGFydENvbSBMdGQuMSswKQYDVQQLEyJTZWN1cmUgRGlnaXRhbCBDZXJ0aWZp
+Y2F0ZSBTaWduaW5nMTgwNgYDVQQDEy9TdGFydENvbSBDbGFzcyAyIFByaW1hcnkgSW50ZXJtZWRp
+YXRlIENsaWVudCBDQQICIgMwDQYJKoZIhvcNAQEBBQAEggEAnnFXDM/nXz9T483dPnEhbSjdFOop
+8Y5wRmIa7XUDEJCUDMCEfLYQJrd9mxw6eung8x7qZvcMG9btMPmdIYL4x/HcBi0zgEBoda/NLD4I
+Wdz7svTQqTBzkayKsnR5HdQy9U2ot/Oy7ro/MTwo7RQIruejqw/YCsVIfRzyX3gfL0fxx9qFir8x
+unW7Wz6txvmYoNkHYwfWzQuO4F2FOr5TEGXht71jCe+xQbEANTwmqQH+h62SDhMO+QO/no/wnpm0
+5T7TeM1mlMpexph4AjYG8YIkSlzNAZDvW6VBoQC/UnnLTXrlSPceXiPW3UJ2hbKYsDFZ+J1KlyPW
+KARD7FJqUgAAAAAAAA==
+
+--------------ms030707030603070809070705--
