@@ -1,32 +1,51 @@
-Return-Path: <elvis.dowson@gmail.com>
-Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
-	[209.85.160.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A222CE0034A
-	for <yocto@yoctoproject.org>; Fri, 10 Aug 2012 11:09:43 -0700 (PDT)
-Received: by pbbrp16 with SMTP id rp16so2514020pbb.35
-	for <yocto@yoctoproject.org>; Fri, 10 Aug 2012 11:09:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:content-type:subject:date:message-id:to:mime-version:x-mailer;
-	bh=YwAJu9L9m9garC4NK46+m9gA5JNk5IpWeUIratE5uIA=;
-	b=LgEWWfU6kP5uEjxgavsETkQWggN+YRqutWeH89zUj7CvQy/D8wuRFNSHI9CuMv/Rwj
-	U59tFr5V6cXzffdXKY1AwJm24G3w3FitKH/Pmr/SVTB+2RiKyT3tSZ8CGkPD3nLSJd62
-	QAgbopWGBT24Vb2ePR/2CkzVj+adrnVNCxEEEnG2LswTfUSmXZsD+oSXRQZNDa0xnmbq
-	GRgWpoQbExj0UuQ7u66xkTlLj4cCyGkBsmXye3tPItfvi9SzZ6azX5UvwtR4kRR1AEMm
-	2mfFSv1QeqN7y1jHuCiFd+N0tLtIBBdD23ag0eMKU7czaluQpKUuOWh25Ob4yEGvYXtS
-	ODNg==
-Received: by 10.68.221.3 with SMTP id qa3mr14699904pbc.42.1344622183398;
-	Fri, 10 Aug 2012 11:09:43 -0700 (PDT)
-Received: from [192.168.1.101] ([94.205.108.162])
-	by mx.google.com with ESMTPS id sh10sm3776921pbc.29.2012.08.10.11.09.40
+Return-Path: <mhubig@imko.de>
+Received: from mail-ey0-f176.google.com (mail-ey0-f176.google.com
+	[209.85.215.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AEB42E0034A
+	for <yocto@yoctoproject.org>; Fri, 10 Aug 2012 11:20:13 -0700 (PDT)
+Received: by eabd1 with SMTP id d1so558630eab.35
+	for <yocto@yoctoproject.org>; Fri, 10 Aug 2012 11:20:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=imko.de; s=google;
+	h=date:from:to:subject:message-id:mail-followup-to:references
+	:mime-version:content-type:content-disposition:in-reply-to
+	:user-agent; bh=ugHP0gEP2wUNf64Ih7kcHudRepgK/wcn4hATqdT2aBM=;
+	b=gjC6RqFBOBq0U1fTXDWW2GWL3xJ0SmZ7NuBA0fxPVTzHKhyuWcqwCbdH48MDPjWfN2
+	YECxat+HUZOV5NgyoHrfm+pS2yZz3hRZMGxrGLmHRRRBg0W94M+oZ8arGEDaSFgaZq2+
+	WYFpSJs7sToXz5Dce3jj7gcM+RHikV5NucWrE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=date:from:to:subject:message-id:mail-followup-to:references
+	:mime-version:content-type:content-disposition:in-reply-to
+	:user-agent:x-gm-message-state;
+	bh=ugHP0gEP2wUNf64Ih7kcHudRepgK/wcn4hATqdT2aBM=;
+	b=n/i2m347NFNgrHPkN2SV1P8Pth8h+g0aylrIILgCLWt3LOzH0+Bdbd1+C6B4ofwSH8
+	sQji7QtuKIbNIzqe55M0mCcvGYscAKmYGDnCS3/gGYQrVo7wwBYqVJo0SYKDRLS5oUJO
+	s/Hmu4OHX0UwcP74mvSUGlTgnjjqpFdnlMsiPBQO0gd8//sQsk0Yzn0GyXBoYrMcyQ0r
+	8/CASkFoVoFW5Wj35ZVJXdTG9w5WeOpd6++/PTGU+K0brvz0INgU3m77Lnn3H4l3F6NP
+	1Iranhnt460mhgf2I3MhgVO/Nw4Q78/g/p4ckgG/Su7PuKhY9xkMNItCfMh7q+nh7grg
+	s+tw==
+Received: by 10.14.223.72 with SMTP id u48mr116481eep.37.1344622812398;
+	Fri, 10 Aug 2012 11:20:12 -0700 (PDT)
+Received: from mh.fritz.box ([2a01:1e8:e100:8289:8541:ea1e:64f9:c990])
+	by mx.google.com with ESMTPS id 9sm13141797eei.12.2012.08.10.11.20.10
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Fri, 10 Aug 2012 11:09:42 -0700 (PDT)
-From: Elvis Dowson <elvis.dowson@gmail.com>
-Date: Fri, 10 Aug 2012 22:09:37 +0400
-Message-Id: <9C539FF3-34FD-4EE0-96DA-B4476B2EB410@gmail.com>
-To: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-Mime-Version: 1.0 (Apple Message framework v1278)
-X-Mailer: Apple Mail (2.1278)
-Subject: external-sourcery-toolchain: do_compile failed for sqlite3-3.7.13
+	Fri, 10 Aug 2012 11:20:11 -0700 (PDT)
+Date: Fri, 10 Aug 2012 20:20:06 +0200
+From: Markus Hubig <mhubig@imko.de>
+To: yocto@yoctoproject.org
+Message-ID: <20120810201121.87EECD0B-13FC-41CC-AEDE-9E0954A3D458.mhubig@imko.de>
+Mail-Followup-To: yocto@yoctoproject.org
+References: <20120809155747.983f9270-e6b9-49c4-ae24-aff577803480.mhubig@imko.de>
+	<CADkTA4PeF+pjmC=72NtxXq5odMUfsyhUa2-s+Az0zgbXh81cMA@mail.gmail.com>
+	<20120809171242.f3f42cd3-3ca6-4924-88b1-a982a4bfe7e1.mhubig@imko.de>
+	<5023F236.6030503@windriver.com> <50240B2C.1060801@windriver.com>
+	<20120810113828.e2312ea9-e24a-4026-b7b4-e581d18a927a.mhubig@imko.de>
+	<CADkTA4MG66kBHHPFiKUgr_bhEnFJVCg+S5=mgDg=U+f1dzz56w@mail.gmail.com>
+MIME-Version: 1.0
+In-Reply-To: <CADkTA4MG66kBHHPFiKUgr_bhEnFJVCg+S5=mgDg=U+f1dzz56w@mail.gmail.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Gm-Message-State: ALoCoQm+293UvU3B3d1ZeQmvgtvmpiWSNQOhCuFtner0bvKyMcDmR9t0AgFXF9wpRZ2fiOker0LD
+Subject: Re: Problem with BSP supporting different machines
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,336 +57,114 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 10 Aug 2012 18:09:43 -0000
-Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_004F32D1-65C2-4526-A875-7B2E2E8DDFAE"
+X-List-Received-Date: Fri, 10 Aug 2012 18:20:14 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
---Apple-Mail=_004F32D1-65C2-4526-A875-7B2E2E8DDFAE
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=us-ascii
+On Fri, Aug 10, 2012 at 12:50:00PM -0400, Bruce Ashfield wrote:
+> On Fri, Aug 10, 2012 at 11:01 AM, Markus Hubig <mhubig@imko.de> wrote:
+> > On Thu, Aug 09, 2012 at 03:10:36PM -0400, Bruce Ashfield wrote:
+> >> On 12-08-09 01:24 PM, Bruce Ashfield wrote:
+> >> >On 12-08-09 12:32 PM, Markus Hubig wrote:
+> >> >>On Thu, Aug 09, 2012 at 10:48:30AM -0400, Bruce Ashfield wrote:
+> >> >>>On Thu, Aug 9, 2012 at 10:46 AM, Markus Hubig<mhubig@imko.de> wrote:
+> >
+> > Hmm just switching to the 1.3_M3 branch doesn't solve the warning, instead
+> > the kernel build failed with error:
+> >
+> > | DEBUG: Executing shell function do_kernel_configme
+> > | [INFO] doing kernel configme
+> > | [INFO] Configuring target/machine combo: "standard/portuxg20"
+> > | [INFO] collecting configs in ./meta/meta-series
+> > |   [##################################################]  (completed in 4 seconds)
+> > | ERROR: could not sanitize configuration fragments
+> > |    errors are logged in meta/cfg/standard/portuxg20/config.log
+> > | ERROR: Function failed: do_kernel_configme (see poky/build/tmp/work/\
+> > |  portuxg20-poky-linux-gnueabi/linux-yocto-3.2.18+git1+ \
+> > |  486f7aec824b4127e91ef53228823e996b3696f0_1+\
+> > |  7cc31a952f78b8f8e8469eed93c23e9675a8eeb5-r4.0.1/temp/ \
+> > |  log.do_kernel_configme.12375 for further information)
+> >
+> > I checked at meta/cfg/standard/portuxg20/config.log and found this:
+> >
+> > | ...
+> > | [INFO] Sanitizing meta/cfg/kernel-cache/features/fuse/fuse.cfg
+> > | [INFO] Sanitizing meta/cfg/kernel-cache/ktypes/standard/standard.cfg
+> > | [INFO] Sanitizing meta/cfg/kernel-cache/cfg/devtmpfs.cfg
+> > | [INFO] Sanitizing meta/cfg/kernel-cache/cfg/debugfs.cfg
+> > | [INFO] Sanitizing meta/cfgportuxg20
+> > | [ERROR] Kern frag  does not exist
+> >
+> > Hmm strange ... Now I cloned the tzanussi/yocto-bsp-master-update branch
+> > from pocky-contrib (since I read the patch request from tzanussi on the ML)
+> > and looked what his yocto-bsp script did.
+> 
+> That is interesting. I means something was detected as a configuration
+> fragment ...
 
-Hi,
-      I get a build failure for sqlite3-3.7.13 with =
-external-sourcery-toolchain =
-mentor-2012.03-71-powerpc-mentor-linux-gnu.bin:
+| [INFO] Sanitizing meta/cfgportuxg20
+                    ^^^^^^^^^^^^^^^^^
+              Something get's crippled here!
 
+> that wasn't, or didn't get migrated to the source tree. I can
+> reproduce this with the layer that you provided before ?
 
-ERROR: Function failed: do_compile (see =
-/tool/yocto/poky/build/tmp/work/ppc440-poky-linux/sqlite3-3.7.13-r0/temp/l=
-og.do_compile.48315 for further information)
-ERROR: Logfile of failure stored in: =
-/tool/yocto/poky/build/tmp/work/ppc440-poky-linux/sqlite3-3.7.13-r0/temp/l=
-og.do_compile.48315
-Log data follows:
-| DEBUG: SITE files ['endian-big', 'bit-32', 'powerpc-common', =
-'common-linux', 'common-glibc', 'powerpc32-linux', 'powerpc-linux', =
-'common']
-| DEBUG: Executing shell function do_compile
-| NOTE: make -j 6
-| ./powerpc-poky-linux-libtool --tag=3DCC   --mode=3Dcompile =
-powerpc-mentor-linux-gnu-gcc  -m32  -msoft-float -mcpu=3D440 =
--msoft-float --sysroot=3D/tool/yocto/poky/build/tmp/sysroots/virtex5 =
--DPACKAGE_NAME=3D\"sqlite\" -DPACKAGE_TARNAME=3D\"sqlite\" =
--DPACKAGE_VERSION=3D\"3.7.13\" -DPACKAGE_STRING=3D\"sqlite\ 3.7.13\" =
--DPACKAGE_BUGREPORT=3D\"http://www.sqlite.org\" -DPACKAGE_URL=3D\"\" =
--DPACKAGE=3D\"sqlite\" -DVERSION=3D\"3.7.13\" -D_FILE_OFFSET_BITS=3D64 =
--DSTDC_HEADERS=3D1 -DHAVE_SYS_TYPES_H=3D1 -DHAVE_SYS_STAT_H=3D1 =
--DHAVE_STDLIB_H=3D1 -DHAVE_STRING_H=3D1 -DHAVE_MEMORY_H=3D1 =
--DHAVE_STRINGS_H=3D1 -DHAVE_INTTYPES_H=3D1 -DHAVE_STDINT_H=3D1 =
--DHAVE_UNISTD_H=3D1 -DHAVE_DLFCN_H=3D1 -DLT_OBJDIR=3D\".libs/\" =
--DHAVE_FDATASYNC=3D1 -DHAVE_USLEEP=3D1 -DHAVE_LOCALTIME_R=3D1 =
--DHAVE_GMTIME_R=3D1 -DHAVE_DECL_STRERROR_R=3D1 -DHAVE_STRERROR_R=3D1 =
--DHAVE_READLINE=3D1 -DHAVE_POSIX_FALLOCATE=3D1 -I.    -D_REENTRANT=3D1 =
--DSQLITE_THREADSAFE=3D1  -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_RTREE -O2 =
--pipe -g -feliminate-unused-debug-types -c -o sqlite3.lo sqlite3.c
-| powerpc-mentor-linux-gnu-gcc  -m32  -msoft-float -mcpu=3D440 =
--msoft-float --sysroot=3D/tool/yocto/poky/build/tmp/sysroots/virtex5 =
--DPACKAGE_NAME=3D\"sqlite\" -DPACKAGE_TARNAME=3D\"sqlite\" =
--DPACKAGE_VERSION=3D\"3.7.13\" -DPACKAGE_STRING=3D\"sqlite\ 3.7.13\" =
--DPACKAGE_BUGREPORT=3D\"http://www.sqlite.org\" -DPACKAGE_URL=3D\"\" =
--DPACKAGE=3D\"sqlite\" -DVERSION=3D\"3.7.13\" -D_FILE_OFFSET_BITS=3D64 =
--DSTDC_HEADERS=3D1 -DHAVE_SYS_TYPES_H=3D1 -DHAVE_SYS_STAT_H=3D1 =
--DHAVE_STDLIB_H=3D1 -DHAVE_STRING_H=3D1 -DHAVE_MEMORY_H=3D1 =
--DHAVE_STRINGS_H=3D1 -DHAVE_INTTYPES_H=3D1 -DHAVE_STDINT_H=3D1 =
--DHAVE_UNISTD_H=3D1 -DHAVE_DLFCN_H=3D1 -DLT_OBJDIR=3D\".libs/\" =
--DHAVE_FDATASYNC=3D1 -DHAVE_USLEEP=3D1 -DHAVE_LOCALTIME_R=3D1 =
--DHAVE_GMTIME_R=3D1 -DHAVE_DECL_STRERROR_R=3D1 -DHAVE_STRERROR_R=3D1 =
--DHAVE_READLINE=3D1 -DHAVE_POSIX_FALLOCATE=3D1 -I.    -D_REENTRANT=3D1 =
--DSQLITE_THREADSAFE=3D1  -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_RTREE -O2 =
--pipe -g -feliminate-unused-debug-types -c shell.c
-| powerpc-poky-linux-libtool: compile:  powerpc-mentor-linux-gnu-gcc =
--m32 -msoft-float -mcpu=3D440 -msoft-float =
---sysroot=3D/tool/yocto/poky/build/tmp/sysroots/virtex5 =
--DPACKAGE_NAME=3D\"sqlite\" -DPACKAGE_TARNAME=3D\"sqlite\" =
--DPACKAGE_VERSION=3D\"3.7.13\" "-DPACKAGE_STRING=3D\"sqlite 3.7.13\"" =
--DPACKAGE_BUGREPORT=3D\"http://www.sqlite.org\" -DPACKAGE_URL=3D\"\" =
--DPACKAGE=3D\"sqlite\" -DVERSION=3D\"3.7.13\" -D_FILE_OFFSET_BITS=3D64 =
--DSTDC_HEADERS=3D1 -DHAVE_SYS_TYPES_H=3D1 -DHAVE_SYS_STAT_H=3D1 =
--DHAVE_STDLIB_H=3D1 -DHAVE_STRING_H=3D1 -DHAVE_MEMORY_H=3D1 =
--DHAVE_STRINGS_H=3D1 -DHAVE_INTTYPES_H=3D1 -DHAVE_STDINT_H=3D1 =
--DHAVE_UNISTD_H=3D1 -DHAVE_DLFCN_H=3D1 -DLT_OBJDIR=3D\".libs/\" =
--DHAVE_FDATASYNC=3D1 -DHAVE_USLEEP=3D1 -DHAVE_LOCALTIME_R=3D1 =
--DHAVE_GMTIME_R=3D1 -DHAVE_DECL_STRERROR_R=3D1 -DHAVE_STRERROR_R=3D1 =
--DHAVE_READLINE=3D1 -DHAVE_POSIX_FALLOCATE=3D1 -I. -D_REENTRANT=3D1 =
--DSQLITE_THREADSAFE=3D1 -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_RTREE -O2 =
--pipe -g -feliminate-unused-debug-types -c sqlite3.c  -fPIC -DPIC -o =
-.libs/sqlite3.o
-| powerpc-poky-linux-libtool: compile:  powerpc-mentor-linux-gnu-gcc =
--m32 -msoft-float -mcpu=3D440 -msoft-float =
---sysroot=3D/tool/yocto/poky/build/tmp/sysroots/virtex5 =
--DPACKAGE_NAME=3D\"sqlite\" -DPACKAGE_TARNAME=3D\"sqlite\" =
--DPACKAGE_VERSION=3D\"3.7.13\" "-DPACKAGE_STRING=3D\"sqlite 3.7.13\"" =
--DPACKAGE_BUGREPORT=3D\"http://www.sqlite.org\" -DPACKAGE_URL=3D\"\" =
--DPACKAGE=3D\"sqlite\" -DVERSION=3D\"3.7.13\" -D_FILE_OFFSET_BITS=3D64 =
--DSTDC_HEADERS=3D1 -DHAVE_SYS_TYPES_H=3D1 -DHAVE_SYS_STAT_H=3D1 =
--DHAVE_STDLIB_H=3D1 -DHAVE_STRING_H=3D1 -DHAVE_MEMORY_H=3D1 =
--DHAVE_STRINGS_H=3D1 -DHAVE_INTTYPES_H=3D1 -DHAVE_STDINT_H=3D1 =
--DHAVE_UNISTD_H=3D1 -DHAVE_DLFCN_H=3D1 -DLT_OBJDIR=3D\".libs/\" =
--DHAVE_FDATASYNC=3D1 -DHAVE_USLEEP=3D1 -DHAVE_LOCALTIME_R=3D1 =
--DHAVE_GMTIME_R=3D1 -DHAVE_DECL_STRERROR_R=3D1 -DHAVE_STRERROR_R=3D1 =
--DHAVE_READLINE=3D1 -DHAVE_POSIX_FALLOCATE=3D1 -I. -D_REENTRANT=3D1 =
--DSQLITE_THREADSAFE=3D1 -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_RTREE -O2 =
--pipe -g -feliminate-unused-debug-types -c sqlite3.c -o sqlite3.o =
->/dev/null 2>&1
-| ./powerpc-poky-linux-libtool --tag=3DCC   --mode=3Dlink =
-powerpc-mentor-linux-gnu-gcc  -m32  -msoft-float -mcpu=3D440 =
--msoft-float --sysroot=3D/tool/yocto/poky/build/tmp/sysroots/virtex5 =
--D_REENTRANT=3D1 -DSQLITE_THREADSAFE=3D1  -DSQLITE_ENABLE_FTS3 =
--DSQLITE_ENABLE_RTREE -O2 -pipe -g -feliminate-unused-debug-types =
--no-undefined -version-info 8:6:8 -Wl,-O1 -Wl,--hash-style=3Dgnu -o =
-libsqlite3.la -rpath /usr/lib sqlite3.lo  -ldl -lpthread
-| powerpc-poky-linux-libtool: link: powerpc-mentor-linux-gnu-gcc  -m32  =
--msoft-float -mcpu=3D440 -msoft-float =
---sysroot=3D/tool/yocto/poky/build/tmp/sysroots/virtex5 -shared  -fPIC =
--DPIC  .libs/sqlite3.o   -ldl -lpthread  -m32 -msoft-float -mcpu=3D440 =
--msoft-float --sysroot=3D/tool/yocto/poky/build/tmp/sysroots/virtex5 -O2 =
--Wl,-O1 -Wl,--hash-style=3Dgnu   -Wl,-soname -Wl,libsqlite3.so.0 -o =
-.libs/libsqlite3.so.0.8.6
-| powerpc-poky-linux-libtool: link: (cd ".libs" && rm -f =
-"libsqlite3.so.0" && ln -s "libsqlite3.so.0.8.6" "libsqlite3.so.0")
-| powerpc-poky-linux-libtool: link: (cd ".libs" && rm -f "libsqlite3.so" =
-&& ln -s "libsqlite3.so.0.8.6" "libsqlite3.so")
-| powerpc-poky-linux-libtool: link: powerpc-mentor-linux-gnu-ar cru =
-.libs/libsqlite3.a  sqlite3.o
-| powerpc-poky-linux-libtool: link: powerpc-mentor-linux-gnu-ranlib =
-.libs/libsqlite3.a
-| powerpc-poky-linux-libtool: link: ( cd ".libs" && rm -f =
-"libsqlite3.la" && ln -s "../libsqlite3.la" "libsqlite3.la" )
-| ./powerpc-poky-linux-libtool --tag=3DCC   --mode=3Dlink =
-powerpc-mentor-linux-gnu-gcc  -m32  -msoft-float -mcpu=3D440 =
--msoft-float --sysroot=3D/tool/yocto/poky/build/tmp/sysroots/virtex5 =
--D_REENTRANT=3D1 -DSQLITE_THREADSAFE=3D1  -DSQLITE_ENABLE_FTS3 =
--DSQLITE_ENABLE_RTREE -O2 -pipe -g -feliminate-unused-debug-types  =
--Wl,-O1 -Wl,--hash-style=3Dgnu -o sqlite3 shell.o ./libsqlite3.la =
--lreadline -lcurses  -ldl -lpthread
-| powerpc-poky-linux-libtool: link: powerpc-mentor-linux-gnu-gcc -m32 =
--msoft-float -mcpu=3D440 -msoft-float =
---sysroot=3D/tool/yocto/poky/build/tmp/sysroots/virtex5 -D_REENTRANT=3D1 =
--DSQLITE_THREADSAFE=3D1 -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_RTREE -O2 =
--pipe -g -feliminate-unused-debug-types -Wl,-O1 -Wl,--hash-style=3Dgnu =
--o .libs/sqlite3 shell.o  ./.libs/libsqlite3.so -lreadline -lcurses -ldl =
--lpthread
-| ./.libs/libsqlite3.so: undefined reference to `__gcc_qtod'
-| ./.libs/libsqlite3.so: undefined reference to `__gcc_qneg'
-| ./.libs/libsqlite3.so: undefined reference to `__gcc_qge'
-| ./.libs/libsqlite3.so: undefined reference to `__gcc_qlt'
-| ./.libs/libsqlite3.so: undefined reference to `__gcc_itoq'
-| ./.libs/libsqlite3.so: undefined reference to `__gcc_qtoi'
-| ./.libs/libsqlite3.so: undefined reference to `__gcc_qgt'
-| ./.libs/libsqlite3.so: undefined reference to `__gcc_dtoq'
-| collect2: ld returned 1 exit status
-| make: *** [sqlite3] Error 1
-| ERROR: oe_runmake failed
-| ERROR: Function failed: do_compile (see =
-/tool/yocto/poky/build/tmp/work/ppc440-poky-linux/sqlite3-3.7.13-r0/temp/l=
-og.do_compile.48315 for further information)
-NOTE: package sqlite3-3.7.13-r0: task do_compile: Failed
+Yes, but please pull bevor. I have two branches now 1.3_M3 and denzil.
+I got this error with 1.3_M3 (both poky and my bsp) and linux 3.2 & 3.4.
 
+> >
+> > The main difference I spotted was in stamp9g20-standard.scc
+> >
+> > | define KMACHINE stamp9g20
+> > | define KTYPE standard
+> > | define KARCH arm
+> > |
+> > | include ktypes/standard
+> > |-branch stamp9g20
+> > |
+> > | include stamp9g20.scc
+> >
+> > But removing the branch statement didn't change the error (on the 1.3_M3
+> > branch) so I switched to using the shine new 3.4 kernel.
+> >
+> > But -> same error! OK maybe the 1.3_M3 is not that stable at all, so back
+> > to denzil and 3.2. But with the branch statement removed ...
+> 
+> That really is strange, Tom and I have both tested this recently. I'll need to
+> take another look.
+>
+> > Damn now I hit another strange error:
+> >
+> > | arm-poky-linux-gnueabi-ld: cannot find -lgcc
+> > | make: *** [u-boot] Error 1
+> > | ERROR: oe_runmake failed
+> >
+> > See https://bitbucket.org/imko/meta-stamp9g20/changeset/ebf8f19ea1932e1b6ed33e549023be44618481e7
+> > for further details ...
+> >
+> > And the warnings 'still stays on' ...
+> >
+> >> If you were to use a completely new branch (versus the re-use), the
+> >> warning would also go a way (versus my current suggestion of
+> >> ignoring it).
+> >
+> > To do this I had to make some modification to my linux-yocto_3.2.bbappend
+> > file, like this, right?
+> >
+> > |  COMPATIBLE_MACHINE_stamp9g20 = "stamp9g20"
+> > | -KBRANCH_stamp9g20  = "standard/default/arm-versatile-926ejs"
+> > | +KBRANCH_stamp9g20  = "standard/default/arm-versatile-926ejs/stamp9g20"
+> > | +YOCTO_KERNEL_EXTERNAL_BRANCH_stamp9g20  = "standard/default/arm-versatile-926ejs/stamp9g20"
+> > |  KMACHINE_stamp9g20  = "stamp9g20"
+> >
+> > But do I need to set a YOCTO_KERNEL_EXTERNAL_BRANCH_stamp9g20?
+> 
+> In 3.2 you would. I'm out of the office today, but you shouldn't still
+> be seeing errors with master or with 3.2.
+> 
+> I'll do a complete build of your machine to see if bugs crept in.
 
-Elvis Dowson
+Nice, Thanks!
 
+Cheers, Markus
 
---Apple-Mail=_004F32D1-65C2-4526-A875-7B2E2E8DDFAE
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html;
-	charset=us-ascii
-
-<html><head></head><body style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; -webkit-line-break: after-white-space; =
-"><div>Hi,</div><div>&nbsp; &nbsp; &nbsp; I get a build failure =
-for&nbsp;sqlite3-3.7.13 with external-sourcery-toolchain <a =
-href=3D"http://sourcery.mentor.com/public/gnu_toolchain/powerpc-mentor-lin=
-ux-gnu/mentor-2012.03-71-powerpc-mentor-linux-gnu.bin">mentor-2012.03-71-p=
-owerpc-mentor-linux-gnu.bin</a>:</div><div><br></div><div><br></div><div><=
-div><font class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">ERROR: =
-Function failed: do_compile (see =
-/tool/yocto/poky/build/tmp/work/ppc440-poky-linux/sqlite3-3.7.13-r0/temp/l=
-og.do_compile.48315 for further information)</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">ERROR: Logfile of =
-failure stored in: =
-/tool/yocto/poky/build/tmp/work/ppc440-poky-linux/sqlite3-3.7.13-r0/temp/l=
-og.do_compile.48315</font></div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2">Log data follows:</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">| DEBUG: SITE =
-files ['endian-big', 'bit-32', 'powerpc-common', 'common-linux', =
-'common-glibc', 'powerpc32-linux', 'powerpc-linux', =
-'common']</font></div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2">| DEBUG: Executing shell function =
-do_compile</font></div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2">| NOTE: make -j 6</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">| =
-./powerpc-poky-linux-libtool --tag=3DCC &nbsp; --mode=3Dcompile =
-powerpc-mentor-linux-gnu-gcc &nbsp;-m32 &nbsp;-msoft-float -mcpu=3D440 =
--msoft-float --sysroot=3D/tool/yocto/poky/build/tmp/sysroots/virtex5 =
--DPACKAGE_NAME=3D\"sqlite\" -DPACKAGE_TARNAME=3D\"sqlite\" =
--DPACKAGE_VERSION=3D\"3.7.13\" -DPACKAGE_STRING=3D\"sqlite\ 3.7.13\" =
--DPACKAGE_BUGREPORT=3D\"<a =
-href=3D"http://www.sqlite.org\">http://www.sqlite.org\</a>" =
--DPACKAGE_URL=3D\"\" -DPACKAGE=3D\"sqlite\" -DVERSION=3D\"3.7.13\" =
--D_FILE_OFFSET_BITS=3D64 -DSTDC_HEADERS=3D1 -DHAVE_SYS_TYPES_H=3D1 =
--DHAVE_SYS_STAT_H=3D1 -DHAVE_STDLIB_H=3D1 -DHAVE_STRING_H=3D1 =
--DHAVE_MEMORY_H=3D1 -DHAVE_STRINGS_H=3D1 -DHAVE_INTTYPES_H=3D1 =
--DHAVE_STDINT_H=3D1 -DHAVE_UNISTD_H=3D1 -DHAVE_DLFCN_H=3D1 =
--DLT_OBJDIR=3D\".libs/\" -DHAVE_FDATASYNC=3D1 -DHAVE_USLEEP=3D1 =
--DHAVE_LOCALTIME_R=3D1 -DHAVE_GMTIME_R=3D1 -DHAVE_DECL_STRERROR_R=3D1 =
--DHAVE_STRERROR_R=3D1 -DHAVE_READLINE=3D1 -DHAVE_POSIX_FALLOCATE=3D1 -I. =
-&nbsp; &nbsp;-D_REENTRANT=3D1 -DSQLITE_THREADSAFE=3D1 =
-&nbsp;-DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_RTREE -O2 -pipe -g =
--feliminate-unused-debug-types -c -o sqlite3.lo =
-sqlite3.c</font></div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2">| powerpc-mentor-linux-gnu-gcc &nbsp;-m32 =
-&nbsp;-msoft-float -mcpu=3D440 -msoft-float =
---sysroot=3D/tool/yocto/poky/build/tmp/sysroots/virtex5 =
--DPACKAGE_NAME=3D\"sqlite\" -DPACKAGE_TARNAME=3D\"sqlite\" =
--DPACKAGE_VERSION=3D\"3.7.13\" -DPACKAGE_STRING=3D\"sqlite\ 3.7.13\" =
--DPACKAGE_BUGREPORT=3D\"<a =
-href=3D"http://www.sqlite.org\">http://www.sqlite.org\</a>" =
--DPACKAGE_URL=3D\"\" -DPACKAGE=3D\"sqlite\" -DVERSION=3D\"3.7.13\" =
--D_FILE_OFFSET_BITS=3D64 -DSTDC_HEADERS=3D1 -DHAVE_SYS_TYPES_H=3D1 =
--DHAVE_SYS_STAT_H=3D1 -DHAVE_STDLIB_H=3D1 -DHAVE_STRING_H=3D1 =
--DHAVE_MEMORY_H=3D1 -DHAVE_STRINGS_H=3D1 -DHAVE_INTTYPES_H=3D1 =
--DHAVE_STDINT_H=3D1 -DHAVE_UNISTD_H=3D1 -DHAVE_DLFCN_H=3D1 =
--DLT_OBJDIR=3D\".libs/\" -DHAVE_FDATASYNC=3D1 -DHAVE_USLEEP=3D1 =
--DHAVE_LOCALTIME_R=3D1 -DHAVE_GMTIME_R=3D1 -DHAVE_DECL_STRERROR_R=3D1 =
--DHAVE_STRERROR_R=3D1 -DHAVE_READLINE=3D1 -DHAVE_POSIX_FALLOCATE=3D1 -I. =
-&nbsp; &nbsp;-D_REENTRANT=3D1 -DSQLITE_THREADSAFE=3D1 =
-&nbsp;-DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_RTREE -O2 -pipe -g =
--feliminate-unused-debug-types -c shell.c</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">| =
-powerpc-poky-linux-libtool: compile: &nbsp;powerpc-mentor-linux-gnu-gcc =
--m32 -msoft-float -mcpu=3D440 -msoft-float =
---sysroot=3D/tool/yocto/poky/build/tmp/sysroots/virtex5 =
--DPACKAGE_NAME=3D\"sqlite\" -DPACKAGE_TARNAME=3D\"sqlite\" =
--DPACKAGE_VERSION=3D\"3.7.13\" "-DPACKAGE_STRING=3D\"sqlite 3.7.13\"" =
--DPACKAGE_BUGREPORT=3D\"<a =
-href=3D"http://www.sqlite.org\">http://www.sqlite.org\</a>" =
--DPACKAGE_URL=3D\"\" -DPACKAGE=3D\"sqlite\" -DVERSION=3D\"3.7.13\" =
--D_FILE_OFFSET_BITS=3D64 -DSTDC_HEADERS=3D1 -DHAVE_SYS_TYPES_H=3D1 =
--DHAVE_SYS_STAT_H=3D1 -DHAVE_STDLIB_H=3D1 -DHAVE_STRING_H=3D1 =
--DHAVE_MEMORY_H=3D1 -DHAVE_STRINGS_H=3D1 -DHAVE_INTTYPES_H=3D1 =
--DHAVE_STDINT_H=3D1 -DHAVE_UNISTD_H=3D1 -DHAVE_DLFCN_H=3D1 =
--DLT_OBJDIR=3D\".libs/\" -DHAVE_FDATASYNC=3D1 -DHAVE_USLEEP=3D1 =
--DHAVE_LOCALTIME_R=3D1 -DHAVE_GMTIME_R=3D1 -DHAVE_DECL_STRERROR_R=3D1 =
--DHAVE_STRERROR_R=3D1 -DHAVE_READLINE=3D1 -DHAVE_POSIX_FALLOCATE=3D1 -I. =
--D_REENTRANT=3D1 -DSQLITE_THREADSAFE=3D1 -DSQLITE_ENABLE_FTS3 =
--DSQLITE_ENABLE_RTREE -O2 -pipe -g -feliminate-unused-debug-types -c =
-sqlite3.c &nbsp;-fPIC -DPIC -o .libs/sqlite3.o</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">| =
-powerpc-poky-linux-libtool: compile: &nbsp;powerpc-mentor-linux-gnu-gcc =
--m32 -msoft-float -mcpu=3D440 -msoft-float =
---sysroot=3D/tool/yocto/poky/build/tmp/sysroots/virtex5 =
--DPACKAGE_NAME=3D\"sqlite\" -DPACKAGE_TARNAME=3D\"sqlite\" =
--DPACKAGE_VERSION=3D\"3.7.13\" "-DPACKAGE_STRING=3D\"sqlite 3.7.13\"" =
--DPACKAGE_BUGREPORT=3D\"<a =
-href=3D"http://www.sqlite.org\">http://www.sqlite.org\</a>" =
--DPACKAGE_URL=3D\"\" -DPACKAGE=3D\"sqlite\" -DVERSION=3D\"3.7.13\" =
--D_FILE_OFFSET_BITS=3D64 -DSTDC_HEADERS=3D1 -DHAVE_SYS_TYPES_H=3D1 =
--DHAVE_SYS_STAT_H=3D1 -DHAVE_STDLIB_H=3D1 -DHAVE_STRING_H=3D1 =
--DHAVE_MEMORY_H=3D1 -DHAVE_STRINGS_H=3D1 -DHAVE_INTTYPES_H=3D1 =
--DHAVE_STDINT_H=3D1 -DHAVE_UNISTD_H=3D1 -DHAVE_DLFCN_H=3D1 =
--DLT_OBJDIR=3D\".libs/\" -DHAVE_FDATASYNC=3D1 -DHAVE_USLEEP=3D1 =
--DHAVE_LOCALTIME_R=3D1 -DHAVE_GMTIME_R=3D1 -DHAVE_DECL_STRERROR_R=3D1 =
--DHAVE_STRERROR_R=3D1 -DHAVE_READLINE=3D1 -DHAVE_POSIX_FALLOCATE=3D1 -I. =
--D_REENTRANT=3D1 -DSQLITE_THREADSAFE=3D1 -DSQLITE_ENABLE_FTS3 =
--DSQLITE_ENABLE_RTREE -O2 -pipe -g -feliminate-unused-debug-types -c =
-sqlite3.c -o sqlite3.o &gt;/dev/null 2&gt;&amp;1</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">| =
-./powerpc-poky-linux-libtool --tag=3DCC &nbsp; --mode=3Dlink =
-powerpc-mentor-linux-gnu-gcc &nbsp;-m32 &nbsp;-msoft-float -mcpu=3D440 =
--msoft-float --sysroot=3D/tool/yocto/poky/build/tmp/sysroots/virtex5 =
--D_REENTRANT=3D1 -DSQLITE_THREADSAFE=3D1 &nbsp;-DSQLITE_ENABLE_FTS3 =
--DSQLITE_ENABLE_RTREE -O2 -pipe -g -feliminate-unused-debug-types =
--no-undefined -version-info 8:6:8 -Wl,-O1 -Wl,--hash-style=3Dgnu -o =
-libsqlite3.la -rpath /usr/lib sqlite3.lo &nbsp;-ldl =
--lpthread</font></div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2">| powerpc-poky-linux-libtool: link: =
-powerpc-mentor-linux-gnu-gcc &nbsp;-m32 &nbsp;-msoft-float -mcpu=3D440 =
--msoft-float --sysroot=3D/tool/yocto/poky/build/tmp/sysroots/virtex5 =
--shared &nbsp;-fPIC -DPIC &nbsp;.libs/sqlite3.o &nbsp; -ldl -lpthread =
-&nbsp;-m32 -msoft-float -mcpu=3D440 -msoft-float =
---sysroot=3D/tool/yocto/poky/build/tmp/sysroots/virtex5 -O2 -Wl,-O1 =
--Wl,--hash-style=3Dgnu &nbsp; -Wl,-soname -Wl,libsqlite3.so.0 -o =
-.libs/libsqlite3.so.0.8.6</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">| =
-powerpc-poky-linux-libtool: link: (cd ".libs" &amp;&amp; rm -f =
-"libsqlite3.so.0" &amp;&amp; ln -s "libsqlite3.so.0.8.6" =
-"libsqlite3.so.0")</font></div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2">| powerpc-poky-linux-libtool: link: (cd =
-".libs" &amp;&amp; rm -f "libsqlite3.so" &amp;&amp; ln -s =
-"libsqlite3.so.0.8.6" "libsqlite3.so")</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">| =
-powerpc-poky-linux-libtool: link: powerpc-mentor-linux-gnu-ar cru =
-.libs/libsqlite3.a &nbsp;sqlite3.o</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">| =
-powerpc-poky-linux-libtool: link: powerpc-mentor-linux-gnu-ranlib =
-.libs/libsqlite3.a</font></div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2">| powerpc-poky-linux-libtool: link: ( cd =
-".libs" &amp;&amp; rm -f "libsqlite3.la" &amp;&amp; ln -s =
-"../libsqlite3.la" "libsqlite3.la" )</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">| =
-./powerpc-poky-linux-libtool --tag=3DCC &nbsp; --mode=3Dlink =
-powerpc-mentor-linux-gnu-gcc &nbsp;-m32 &nbsp;-msoft-float -mcpu=3D440 =
--msoft-float --sysroot=3D/tool/yocto/poky/build/tmp/sysroots/virtex5 =
--D_REENTRANT=3D1 -DSQLITE_THREADSAFE=3D1 &nbsp;-DSQLITE_ENABLE_FTS3 =
--DSQLITE_ENABLE_RTREE -O2 -pipe -g -feliminate-unused-debug-types =
-&nbsp;-Wl,-O1 -Wl,--hash-style=3Dgnu -o sqlite3 shell.o ./libsqlite3.la =
--lreadline -lcurses &nbsp;-ldl -lpthread</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">| =
-powerpc-poky-linux-libtool: link: powerpc-mentor-linux-gnu-gcc -m32 =
--msoft-float -mcpu=3D440 -msoft-float =
---sysroot=3D/tool/yocto/poky/build/tmp/sysroots/virtex5 -D_REENTRANT=3D1 =
--DSQLITE_THREADSAFE=3D1 -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_RTREE -O2 =
--pipe -g -feliminate-unused-debug-types -Wl,-O1 -Wl,--hash-style=3Dgnu =
--o .libs/sqlite3 shell.o &nbsp;./.libs/libsqlite3.so -lreadline -lcurses =
--ldl -lpthread</font></div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2">| ./.libs/libsqlite3.so: undefined reference =
-to `__gcc_qtod'</font></div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2">| ./.libs/libsqlite3.so: undefined reference =
-to `__gcc_qneg'</font></div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2">| ./.libs/libsqlite3.so: undefined reference =
-to `__gcc_qge'</font></div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2">| ./.libs/libsqlite3.so: undefined reference =
-to `__gcc_qlt'</font></div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2">| ./.libs/libsqlite3.so: undefined reference =
-to `__gcc_itoq'</font></div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2">| ./.libs/libsqlite3.so: undefined reference =
-to `__gcc_qtoi'</font></div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2">| ./.libs/libsqlite3.so: undefined reference =
-to `__gcc_qgt'</font></div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2">| ./.libs/libsqlite3.so: undefined reference =
-to `__gcc_dtoq'</font></div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2">| collect2: ld returned 1 exit =
-status</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
-size=3D"2">| make: *** [sqlite3] Error 1</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">| ERROR: =
-oe_runmake failed</font></div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2">| ERROR: Function failed: do_compile (see =
-/tool/yocto/poky/build/tmp/work/ppc440-poky-linux/sqlite3-3.7.13-r0/temp/l=
-og.do_compile.48315 for further information)</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">NOTE: package =
-sqlite3-3.7.13-r0: task do_compile: =
-Failed</font></div></div><div><br></div><div><br></div><div>Elvis =
-Dowson</div><div><br></div></body></html>=
-
---Apple-Mail=_004F32D1-65C2-4526-A875-7B2E2E8DDFAE--
