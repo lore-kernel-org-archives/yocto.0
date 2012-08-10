@@ -1,22 +1,28 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 70CA2E0144D
-	for <yocto@yoctoproject.org>; Fri, 10 Aug 2012 12:07:52 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 10 Aug 2012 12:07:52 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.77,747,1336374000"; d="scan'208";a="184762630"
-Received: from unknown (HELO [10.255.12.203]) ([10.255.12.203])
-	by orsmga002.jf.intel.com with ESMTP; 10 Aug 2012 12:07:51 -0700
-Message-ID: <1344625670.2808.0.camel@trz-ThinkPad-T420>
-From: Tom Zanussi <tom.zanussi@intel.com>
+Return-Path: <linux.mrjimorg@gmail.com>
+Received: from mail-yw0-f48.google.com (mail-yw0-f48.google.com
+	[209.85.213.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 257D8E003C8
+	for <yocto@yoctoproject.org>; Fri, 10 Aug 2012 13:03:43 -0700 (PDT)
+Received: by yhfq46 with SMTP id q46so2379452yhf.35
+	for <yocto@yoctoproject.org>; Fri, 10 Aug 2012 13:03:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=CzHFdWjvEQ2a/HWT1G1IN1I+fpnoOEDtvVW75LEBfvo=;
+	b=R/xljR71pzVG9vyomOYIRd0DhPdDmOyXxuFk7l13GV1dQ0XycZJ4J3L6v53eUGc77r
+	ORhfqZQhknLDhc9OaPF+8sx8UMhw9pZgMgO3RWGqTKF9IRJIcq//m1FoyWSwj1o/CwTD
+	vzLzWMqGPLPu/pgfwdCC2AMsDvFE4FDNZGUoJaHsz7MmRxtABpSNycYv/jPrmpuSI81U
+	2eRcQWp6WrZiYxT/eXVe0n004Sr9LkNsC3JyejzDPdZKNyTMqO3wTYj/FHwdfnqmYW8l
+	054CW1qRXPzlwV2MB6A7JAmqjyS7ixpvak1ROg0vUSKPCPdOyCTiF3vfr1cnwZ5RlqZD
+	jAYQ==
+MIME-Version: 1.0
+Received: by 10.50.222.231 with SMTP id qp7mr2016363igc.40.1344629022044; Fri,
+	10 Aug 2012 13:03:42 -0700 (PDT)
+Received: by 10.50.53.206 with HTTP; Fri, 10 Aug 2012 13:03:41 -0700 (PDT)
+Date: Fri, 10 Aug 2012 15:03:41 -0500
+Message-ID: <CAH6UwN19VfGzj-kig80cCuwk-SWBsnkcOWacFVHpG3kJdyeqVg@mail.gmail.com>
+From: Jim Rucker <linux.mrjimorg@gmail.com>
 To: yocto@yoctoproject.org
-Date: Fri, 10 Aug 2012 14:07:50 -0500
-In-Reply-To: <cover.1344623733.git.tom.zanussi@intel.com>
-References: <cover.1344623733.git.tom.zanussi@intel.com>
-X-Mailer: Evolution 3.2.3-0ubuntu6 
-Mime-Version: 1.0
-Subject: Re: [PATCH 00/19] yocto-bsp updates for master, v2
+Subject: do_deploy[sstate-inputdirs]
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,123 +34,59 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 10 Aug 2012 19:07:52 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 10 Aug 2012 20:03:43 -0000
+Content-Type: multipart/alternative; boundary=14dae934089f36b2d704c6eed78d
 
-Oops, had wrong version for this, resending a new version to avoid
-confusion...
+--14dae934089f36b2d704c6eed78d
+Content-Type: text/plain; charset=ISO-8859-1
 
-Tom
+I've been trying to figure out why I've had such trouble getting my
+tmp/deploy/uImage files to update after performing a "bitbake -f -c compile
+virtual/kernel", and I've come across something I I don't understand. In
+deploy.bbclass, we have:
 
-On Fri, 2012-08-10 at 14:03 -0500, tom.zanussi@intel.com wrote:
-> From: Tom Zanussi <tom.zanussi@intel.com>
-> 
-> This patchset fixes yocto bugs [YOCTO #2693] and [YOCTO #2587], and
-> fixes some other minor usability problems reported by users.
-> 
-> Please pull into poky/master.
-> 
-> v2: This is the same patchset as the previous one, but an additional
-> couple of patches fixing problems found in testing has been tacked on.
-> 
-> v3: This removes all instances of YOCTO_KERNEL_EXTERNAL_BRANCH usage
->  - some were missed the last time around.
-> 
-> The following changes since commit 2dec760b79bb7e2e79c33c5127fa64685bd86a18:
-> 
->   foomatic: fix perl path for target (2012-08-08 10:06:00 +0100)
-> 
-> are available in the git repository at:
-> 
->   git://git.yoctoproject.org/poky-contrib.git tzanussi/yocto-bsp-master-update.v3
->   http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/log/?h=tzanussi/yocto-bsp-master-update.v3
-> 
-> Tom Zanussi (19):
->   yocto-bsp: add new strip_base() function
->   yocto-bsp: strip '/base' from kernel branches in templates
->   yocto-bsp: update default branch names
->   yocto-bsp: allow branch display filtering
->   yocto-bsp: use branches_base
->   yocto-bsp: add standard branch mapping
->   yocto-bsp: use standard branch mapping in bsp templates
->   yocto-bsp: use rstrip() for assignment lines
->   yocto-bsp: remove 'branch' statements in .scc if reusing branch
->   yocto-bsp: add some standard policy
->   yocto-bsp: add i586 option for i386
->   yocto-bsp: use emgd 1.10 for i386 template
->   yocto-bsp: generate default properties even if json specified
->   yocto-bsp: add 3.4/remove 3.0 kernel from templates
->   yocto-bsp: update standard branch mapping
->   yocto-bsp: use emgd 1.14 for i386 template
->   yocto-bsp: remove YOCTO_KERNEL_EXTERNAL_BRANCH usage
->   yocto-bsp: use base branches for qemu 'newbranch' case
->   yocto-bsp: add missing xserver-xf86-config .bbappend for qemu
-> 
->  scripts/lib/bsp/engine.py                          |   44 ++++++++++++++++++--
->  scripts/lib/bsp/kernel.py                          |   19 +++++++++
->  .../linux/files/{{=machine}}-standard.scc          |    1 +
->  .../arm/recipes-kernel/linux/kernel-list.noinstall |    4 +-
->  ...yocto-rt_3.2\": }} linux-yocto-rt_3.2.bbappend" |   13 +++---
->  ...yocto-rt_3.4\": }} linux-yocto-rt_3.4.bbappend" |   13 +++---
->  ...linux-yocto_3.2\": }} linux-yocto_3.2.bbappend" |   13 +++---
->  ...linux-yocto_3.4\": }} linux-yocto_3.4.bbappend" |   15 +++----
->  .../arch/i386/conf/machine/{{=machine}}.conf       |   14 ++++---
->  .../linux/files/{{=machine}}-preempt-rt.scc        |    7 ++++
->  .../linux/files/{{=machine}}-standard.scc          |   14 ++++++-
->  .../recipes-kernel/linux/files/{{=machine}}.scc    |    2 +-
->  .../recipes-kernel/linux/kernel-list.noinstall     |    4 +-
->  ...yocto-rt_3.2\": }} linux-yocto-rt_3.2.bbappend" |    9 ++--
->  ...yocto-rt_3.4\": }} linux-yocto-rt_3.4.bbappend" |   13 +++---
->  ...linux-yocto_3.2\": }} linux-yocto_3.2.bbappend" |    9 ++--
->  ...linux-yocto_3.4\": }} linux-yocto_3.4.bbappend" |   15 +++----
->  .../linux/files/{{=machine}}-standard.scc          |    1 +
->  .../recipes-kernel/linux/kernel-list.noinstall     |    4 +-
->  ...yocto-rt_3.2\": }} linux-yocto-rt_3.2.bbappend" |    9 ++--
->  ...yocto-rt_3.4\": }} linux-yocto-rt_3.4.bbappend" |   13 +++---
->  ...linux-yocto_3.2\": }} linux-yocto_3.2.bbappend" |    9 ++--
->  ...linux-yocto_3.4\": }} linux-yocto_3.4.bbappend" |   15 +++----
->  .../linux/files/{{=machine}}-standard.scc          |    1 +
->  .../recipes-kernel/linux/files/{{=machine}}.scc    |    3 --
->  .../recipes-kernel/linux/kernel-list.noinstall     |    4 +-
->  ...yocto-rt_3.2\": }} linux-yocto-rt_3.2.bbappend" |    9 ++--
->  ...yocto-rt_3.4\": }} linux-yocto-rt_3.4.bbappend" |   13 +++---
->  ...linux-yocto_3.2\": }} linux-yocto_3.2.bbappend" |    9 ++--
->  ...linux-yocto_3.4\": }} linux-yocto_3.4.bbappend" |   15 +++----
->  .../xorg-xserver/xserver-xf86-config_0.1.bbappend  |    2 +
->  .../linux/files/{{=machine}}-preempt-rt.scc        |    5 +--
->  .../linux/files/{{=machine}}-standard.scc          |    9 ++--
->  .../recipes-kernel/linux/kernel-list.noinstall     |    4 +-
->  ...yocto-rt_3.2\": }} linux-yocto-rt_3.2.bbappend" |   25 +++++------
->  ...yocto-rt_3.4\": }} linux-yocto-rt_3.4.bbappend" |   29 ++++++-------
->  ...linux-yocto_3.2\": }} linux-yocto_3.2.bbappend" |   25 +++++------
->  ...linux-yocto_3.4\": }} linux-yocto_3.4.bbappend" |   29 ++++++-------
->  .../linux/files/{{=machine}}-preempt-rt.scc        |    7 ++++
->  .../linux/files/{{=machine}}-standard.scc          |   10 ++++-
->  .../recipes-kernel/linux/kernel-list.noinstall     |    4 +-
->  ...yocto-rt_3.0\": }} linux-yocto-rt_3.0.bbappend" |   39 -----------------
->  ...yocto-rt_3.2\": }} linux-yocto-rt_3.2.bbappend" |    9 ++--
->  ...yocto-rt_3.4\": }} linux-yocto-rt_3.4.bbappend" |   36 ++++++++++++++++
->  ...linux-yocto_3.0\": }} linux-yocto_3.0.bbappend" |   41 ------------------
->  ...linux-yocto_3.2\": }} linux-yocto_3.2.bbappend" |    9 ++--
->  ...linux-yocto_3.4\": }} linux-yocto_3.4.bbappend" |   36 ++++++++++++++++
->  47 files changed, 321 insertions(+), 312 deletions(-)
->  rename "scripts/lib/bsp/substrate/target/arch/arm/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.0\": }} linux-yocto-rt_3.0.bbappend" => "scripts/lib/bsp/substrate/target/arch/arm/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.4\": }} linux-yocto-rt_3.4.bbappend" (66%)
->  rename "scripts/lib/bsp/substrate/target/arch/mips/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.0\": }} linux-yocto_3.0.bbappend" => "scripts/lib/bsp/substrate/target/arch/arm/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.4\": }} linux-yocto_3.4.bbappend" (63%)
->  rename "scripts/lib/bsp/substrate/target/arch/powerpc/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.0\": }} linux-yocto-rt_3.0.bbappend" => "scripts/lib/bsp/substrate/target/arch/i386/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.4\": }} linux-yocto-rt_3.4.bbappend" (66%)
->  rename "scripts/lib/bsp/substrate/target/arch/arm/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.0\": }} linux-yocto_3.0.bbappend" => "scripts/lib/bsp/substrate/target/arch/i386/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.4\": }} linux-yocto_3.4.bbappend" (63%)
->  rename "scripts/lib/bsp/substrate/target/arch/i386/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.0\": }} linux-yocto-rt_3.0.bbappend" => "scripts/lib/bsp/substrate/target/arch/mips/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.4\": }} linux-yocto-rt_3.4.bbappend" (66%)
->  rename "scripts/lib/bsp/substrate/target/arch/powerpc/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.0\": }} linux-yocto_3.0.bbappend" => "scripts/lib/bsp/substrate/target/arch/mips/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.4\": }} linux-yocto_3.4.bbappend" (63%)
->  rename "scripts/lib/bsp/substrate/target/arch/mips/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.0\": }} linux-yocto-rt_3.0.bbappend" => "scripts/lib/bsp/substrate/target/arch/powerpc/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.4\": }} linux-yocto-rt_3.4.bbappend" (66%)
->  rename "scripts/lib/bsp/substrate/target/arch/i386/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.0\": }} linux-yocto_3.0.bbappend" => "scripts/lib/bsp/substrate/target/arch/powerpc/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.4\": }} linux-yocto_3.4.bbappend" (63%)
->  create mode 100644 scripts/lib/bsp/substrate/target/arch/qemu/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend
->  rename "scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.0\": }} linux-yocto-rt_3.0.bbappend" => "scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.4\": }} linux-yocto-rt_3.4.bbappend" (51%)
->  rename "scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.0\": }} linux-yocto_3.0.bbappend" => "scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.4\": }} linux-yocto_3.4.bbappend" (53%)
->  delete mode 100644 "scripts/lib/bsp/substrate/target/arch/x86_64/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.0\": }} linux-yocto-rt_3.0.bbappend"
->  create mode 100644 "scripts/lib/bsp/substrate/target/arch/x86_64/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.4\": }} linux-yocto-rt_3.4.bbappend"
->  delete mode 100644 "scripts/lib/bsp/substrate/target/arch/x86_64/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.0\": }} linux-yocto_3.0.bbappend"
->  create mode 100644 "scripts/lib/bsp/substrate/target/arch/x86_64/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.4\": }} linux-yocto_3.4.bbappend"
-> 
+*do_deploy[sstate-inputdirs] = "${DEPLOYDIR}"*
 
+However, the only place DEPLOYDIR is ever used is as a install
+*destination* within
+the kernel_do_deploy functions. Therefore, from what I can tell, DEPLOYDIR
+is never updated and therefore do_deploy is never called - even if you run
+"bitbake -f -c deploy virtual/kernel" (note that I'm using the 6.0.2 poky
+release, not top of tree). From what I understand, the best way to fix this
+is to make the following changes:
 
+kernel.bbclass:
+OUTPUTDIR ?= "arch/${ARCH}/boot
+KERNEL_OUTPUT ?= "${OUTPUTDIR}/${KERNEL_IMAGETYPE}
 
+deploy.bblass
+do_deploy[sstate-inputdirs] = "${OUTPUT_DIR}"
+do_deploy[sstate-outputdirs] = "${DEPLOYDIR}
+
+Am I barking up the right or wrong tree here?
+
+--14dae934089f36b2d704c6eed78d
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+I&#39;ve been trying to figure out why I&#39;ve had such trouble getting my=
+ tmp/deploy/uImage files to update after performing a &quot;bitbake -f -c c=
+ompile virtual/kernel&quot;, and I&#39;ve come across something I I don&#39=
+;t understand. In deploy.bbclass, we have:<div>
+<br></div><div><b>do_deploy[sstate-inputdirs] =3D &quot;${DEPLOYDIR}&quot;<=
+/b></div><div><br></div><div>However, the only place DEPLOYDIR is ever used=
+ is as a=A0install=A0<b>destination</b>=A0within the kernel_do_deploy funct=
+ions. Therefore, from what I can tell, DEPLOYDIR is never updated and there=
+fore do_deploy is never called - even if you run &quot;bitbake -f -c deploy=
+ virtual/kernel&quot; (note that I&#39;m using the 6.0.2 poky release, not =
+top of tree). From what I understand, the best way to fix this is to make t=
+he following changes:</div>
+<div><br></div><div>kernel.bbclass:</div><div>OUTPUTDIR ?=3D &quot;arch/${A=
+RCH}/boot</div><div>KERNEL_OUTPUT ?=3D &quot;${OUTPUTDIR}/${KERNEL_IMAGETYP=
+E}</div><div><br></div><div>deploy.bblass</div><div>do_deploy[sstate-inputd=
+irs] =3D &quot;${OUTPUT_DIR}&quot;</div>
+<div>do_deploy[sstate-outputdirs] =3D &quot;${DEPLOYDIR}</div><div><br></di=
+v><div>Am I barking up the right or wrong tree here?</div><br class=3D"Appl=
+e-interchange-newline">
+
+--14dae934089f36b2d704c6eed78d--
