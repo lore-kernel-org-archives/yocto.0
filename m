@@ -1,26 +1,35 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E81B9E013B2
-	for <yocto@yoctoproject.org>; Thu,  9 Aug 2012 21:30:55 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 09 Aug 2012 21:30:55 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.77,744,1336374000"; d="scan'208";a="132251054"
-Received: from unknown (HELO [10.255.12.213]) ([10.255.12.213])
-	by AZSMGA002.ch.intel.com with ESMTP; 09 Aug 2012 21:30:54 -0700
-Message-ID: <1344573053.7235.51.camel@trz-ThinkPad-T420>
-From: Tom Zanussi <tom.zanussi@intel.com>
-To: Bruce Ashfield <bruce.ashfield@windriver.com>
-Date: Thu, 09 Aug 2012 23:30:53 -0500
-In-Reply-To: <50248968.501@windriver.com>
-References: <cover.1344545782.git.tom.zanussi@intel.com>
-	<50247A30.7000805@windriver.com>
-	<1344571618.7235.50.camel@trz-ThinkPad-T420>
-	<50248968.501@windriver.com>
-X-Mailer: Evolution 3.2.3-0ubuntu6 
-Mime-Version: 1.0
-Cc: yocto@yoctoproject.org, scott.a.garman@intel.com
-Subject: Re: [PATCH 00/14][denzil] yocto-bsp updates for denzil, v2
+Return-Path: <Tim.Verstraete@medecbenelux.be>
+Received: from mail.medecbenelux.be (mail.medecbenelux.be [81.83.14.242])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 307F4E013D4
+	for <yocto@yoctoproject.org>; Fri, 10 Aug 2012 01:36:30 -0700 (PDT)
+Received: from SBS-MEDEC.medecbenelux.local ([fe80::1b66:a66e:3778:1407]) by
+	SBS-MEDEC.medecbenelux.local ([fe80::1b66:a66e:3778:1407%10]) with mapi
+	id 14.01.0355.002; Fri, 10 Aug 2012 10:36:28 +0200
+From: Tim Verstraete <Tim.Verstraete@medecbenelux.be>
+To: Tom Zanussi <tom.zanussi@intel.com>
+Thread-Topic: [SPAM] - Re: [yocto] [SPAM] - Re: image recipe gives error:
+	has no buildable providers - Email found in subject - Email found in
+	subject
+Thread-Index: AQHNdYF9NSjQqqJtIUORwslZxkcsqZdSuwfQ
+Date: Fri, 10 Aug 2012 08:36:27 +0000
+Message-ID: <4439C3C0562087488F139C696CD862A713213551@SBS-MEDEC.medecbenelux.local>
+References: <4439C3C0562087488F139C696CD862A72C1CD6@SBS-MEDEC.medecbenelux.local>
+	<CAEsOVNewE-5HUwwe5euHztTLq1piN8fCbnh03gO4CeUFeQaQKA@mail.gmail.com>
+	<4439C3C0562087488F139C696CD862A72C1F5D@SBS-MEDEC.medecbenelux.local>
+	<CAEsOVNe6V2_DY9ZCCYu0qVWc=19OEZzVa=i+0qBeR-sDHnLS5Q@mail.gmail.com>
+	<4439C3C0562087488F139C696CD862A72C1F99@SBS-MEDEC.medecbenelux.local>
+	<alpine.DEB.2.02.1208081115390.12423@oneiric>
+	<4439C3C0562087488F139C696CD862A72C1FCE@SBS-MEDEC.medecbenelux.local>
+	<1344442723.20775.2.camel@trz-ThinkPad-T420>
+In-Reply-To: <1344442723.20775.2.camel@trz-ThinkPad-T420>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [2002:5153:ef2:0:8194:a0c6:23da:d964]
+MIME-Version: 1.0
+Cc: McClintock Matthew-B29882 <B29882@freescale.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [SPAM] - Re: [SPAM] - Re: image recipe gives error: has no buildable providers - Email found in subject - Email found in subject
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,129 +41,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 10 Aug 2012 04:30:56 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 10 Aug 2012 08:36:30 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-On Fri, 2012-08-10 at 00:09 -0400, Bruce Ashfield wrote:
-> On 12-08-10 12:06 AM, Tom Zanussi wrote:
-> > On Thu, 2012-08-09 at 23:04 -0400, Bruce Ashfield wrote:
-> >> On 12-08-09 5:01 PM, tom.zanussi@intel.com wrote:
-> >>> From: Tom Zanussi<tom.zanussi@intel.com>
-> >>>
-> >>> This patchset fixes yocto bugs [YOCTO #2693] and [YOCTO #2587], and
-> >>> fixes some other minor usability problems reported by users.
-> >>>
-> >>> Please pull into the current poky/denzil point release branch.
-> >>>
-> >>> v2: This is the same patchset as the previous one, but an additional
-> >>> patch fixing problems found in testing has been tacked on.
-> >>
-> >> Tom,
-> >>
-> >> Do you also need the upcoming master branch validate_branches backported
-> >> to denzil to support your use cases ? I can arrange to do that next week,
-> >> if you've tested with it, and it meets your needs (I know it works for the
-> >> other use cases).
-> >>
-> >
-> > Yeah, I've done all my denzil testing for this patchset with the
-> > following patch in place:
-> >
-> > http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/commit/?h=tzanussi/kern-tools-denzil-update-from-bruce&id=63aca78351c7065c6671ee7296a8ac191465d882
-> >
-> > I can't say I've tested every use case (were there any that come to mind
-> > that it might break?), but I have done quite a few and not seen any
-> > problems so far (and conversely lots of problems without it).
-> 
-> Nothing comes to mind that will break, and it has performed well here.
-> I'll send it out as a follow up to Scott this weekend or early next
-> week, so it'll be in place by the time it is needed.
-> 
-
-OK, great, thanks, Bruce.
-
-Tom
-
-> Cheers,
-> 
-> Bruce
-> 
-> >
-> > Tom
-> >
-> >> Cheers,
-> >>
-> >> Bruce
-> >>
-> >>>
-> >>> The following changes since commit 73cdebf60df225ee10f2eb215935be3b61e1b831:
-> >>>
-> >>>     documentation/dev-manual/dev-manual-kernel-appendix.xml: Add note about conflict (2012-06-29 15:54:26 +0100)
-> >>>
-> >>> are available in the git repository at:
-> >>>     git://git.yoctoproject.org/poky-contrib.git tzanussi/yocto-bsp-denzil-update
-> >>>     http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/log/?h=tzanussi/yocto-bsp-denzil-update
-> >>>
-> >>> Tom Zanussi (14):
-> >>>     yocto-bsp: add new strip_base() function
-> >>>     yocto-bsp: strip '/base' from kernel branches in templates
-> >>>     yocto-bsp: update default branch names
-> >>>     yocto-bsp: allow branch display filtering
-> >>>     yocto-bsp: use branches_base
-> >>>     yocto-bsp: add standard branch mapping
-> >>>     yocto-bsp: use standard branch mapping in bsp templates
-> >>>     yocto-bsp: use rstrip() for assignment lines
-> >>>     yocto-bsp: remove 'branch' statements in .scc if reusing branch
-> >>>     yocto-bsp: add some standard policy
-> >>>     yocto-bsp: add i586 option for i386
-> >>>     yocto-bsp: use emgd 1.10 for i386 template
-> >>>     yocto-bsp: generate default properties even if json specified
-> >>>     yocto-bsp: use base branches for qemu 'newbranch' case
-> >>>
-> >>>    scripts/lib/bsp/engine.py                          |   44 ++++++++++++++++++-
-> >>>    scripts/lib/bsp/kernel.py                          |   18 ++++++++
-> >>>    .../linux/files/{{=machine}}-standard.scc          |    1 +
-> >>>    ...yocto-rt_3.0\": }} linux-yocto-rt_3.0.bbappend" |    8 ++--
-> >>>    ...yocto-rt_3.2\": }} linux-yocto-rt_3.2.bbappend" |    8 ++--
-> >>>    ...linux-yocto_3.0\": }} linux-yocto_3.0.bbappend" |    8 ++--
-> >>>    ...linux-yocto_3.2\": }} linux-yocto_3.2.bbappend" |    8 ++--
-> >>>    .../arch/i386/conf/machine/{{=machine}}.conf       |   14 ++++--
-> >>>    .../linux/files/{{=machine}}-preempt-rt.scc        |    7 +++
-> >>>    .../linux/files/{{=machine}}-standard.scc          |   14 ++++++-
-> >>>    .../recipes-kernel/linux/files/{{=machine}}.scc    |    2 +-
-> >>>    ...yocto-rt_3.0\": }} linux-yocto-rt_3.0.bbappend" |    8 ++--
-> >>>    ...yocto-rt_3.2\": }} linux-yocto-rt_3.2.bbappend" |    8 ++--
-> >>>    ...linux-yocto_3.0\": }} linux-yocto_3.0.bbappend" |    8 ++--
-> >>>    ...linux-yocto_3.2\": }} linux-yocto_3.2.bbappend" |    8 ++--
-> >>>    .../linux/files/{{=machine}}-standard.scc          |    1 +
-> >>>    ...yocto-rt_3.0\": }} linux-yocto-rt_3.0.bbappend" |    8 ++--
-> >>>    ...yocto-rt_3.2\": }} linux-yocto-rt_3.2.bbappend" |    8 ++--
-> >>>    ...linux-yocto_3.0\": }} linux-yocto_3.0.bbappend" |    8 ++--
-> >>>    ...linux-yocto_3.2\": }} linux-yocto_3.2.bbappend" |    8 ++--
-> >>>    .../linux/files/{{=machine}}-standard.scc          |    1 +
-> >>>    ...yocto-rt_3.0\": }} linux-yocto-rt_3.0.bbappend" |    8 ++--
-> >>>    ...yocto-rt_3.2\": }} linux-yocto-rt_3.2.bbappend" |    8 ++--
-> >>>    ...linux-yocto_3.0\": }} linux-yocto_3.0.bbappend" |    8 ++--
-> >>>    ...linux-yocto_3.2\": }} linux-yocto_3.2.bbappend" |    8 ++--
-> >>>    .../linux/files/{{=machine}}-preempt-rt.scc        |    5 +--
-> >>>    .../linux/files/{{=machine}}-standard.scc          |    9 +---
-> >>>    ...yocto-rt_3.0\": }} linux-yocto-rt_3.0.bbappend" |   24 +++++-----
-> >>>    ...yocto-rt_3.2\": }} linux-yocto-rt_3.2.bbappend" |   24 +++++-----
-> >>>    ...linux-yocto_3.0\": }} linux-yocto_3.0.bbappend" |   24 +++++-----
-> >>>    ...linux-yocto_3.2\": }} linux-yocto_3.2.bbappend" |   24 +++++-----
-> >>>    .../linux/files/{{=machine}}-preempt-rt.scc        |    7 +++
-> >>>    .../linux/files/{{=machine}}-standard.scc          |   10 ++++-
-> >>>    ...yocto-rt_3.0\": }} linux-yocto-rt_3.0.bbappend" |    8 ++--
-> >>>    ...yocto-rt_3.2\": }} linux-yocto-rt_3.2.bbappend" |    8 ++--
-> >>>    ...linux-yocto_3.0\": }} linux-yocto_3.0.bbappend" |    8 ++--
-> >>>    ...linux-yocto_3.2\": }} linux-yocto_3.2.bbappend" |    8 ++--
-> >>>    37 files changed, 240 insertions(+), 149 deletions(-)
-> >>>
-> >>
-> >
-> >
-> 
-
-
+SW4gZmFjdCB0aGUgZW1haWwgaGFzIHB1dCB0aGUgc3RyYW5nZSBzcGFjZXMgYW5kIHNvIG9uIGlu
+IGJldHdlZW4gdGhlIHRleHQgYXBwYXJlbnRseSAuLi4gSSBoYXZlIHJlZG9uZSB0aGUgeW9jdG8t
+YnNwIGNyZWF0ZSBhbmQgbm93IGl0IHNlZW1zIHRvIHdvcmsuIA0KDQpUaGFua3MgZm9yIHRoZSBm
+ZWVkYmFjaywNCg0KS2luZCByZWdhcmRzLA0KDQpUaW0NCg0KDQotLS0tLU9yaWdpbmFsIE1lc3Nh
+Z2UtLS0tLQ0KRnJvbTogVG9tIFphbnVzc2kgW21haWx0bzp0b20uemFudXNzaUBpbnRlbC5jb21d
+IA0KU2VudDogd29lbnNkYWcgOCBhdWd1c3R1cyAyMDEyIDE4OjE5DQpUbzogVGltIFZlcnN0cmFl
+dGUNCkNjOiBSb2JlcnQgUC4gSi4gRGF5OyBNY0NsaW50b2NrIE1hdHRoZXctQjI5ODgyOyB5b2N0
+b0B5b2N0b3Byb2plY3Qub3JnDQpTdWJqZWN0OiBbU1BBTV0gLSBSZTogW3lvY3RvXSBbU1BBTV0g
+LSBSZTogaW1hZ2UgcmVjaXBlIGdpdmVzIGVycm9yOiBoYXMgbm8gYnVpbGRhYmxlIHByb3ZpZGVy
+cyAtIEVtYWlsIGZvdW5kIGluIHN1YmplY3QgLSBFbWFpbCBmb3VuZCBpbiBzdWJqZWN0DQoNCk9u
+IFdlZCwgMjAxMi0wOC0wOCBhdCAxNTo1MCArMDAwMCwgVGltIFZlcnN0cmFldGUgd3JvdGU6DQo+
+IFllcywgdGhpcyB3YXMgYXV0b21hdGljYWxseSBnZW5lcmF0ZSB5b2N0by1ic3AgY3JlYXRlIHRl
+c3QtdGVzdDEgYXJtDQo+IA0KDQpOYWgsIHlvY3RvLWJzcCBkb2Vzbid0IG91dHB1dCB0aGluZ3Mg
+bGlrZSB3aGF0IHlvdSBoYXZlIGluIHlvdXIgdmVyc2lvbiBlLmcuIHByaW9yaXR5IDI1LCBtaXNz
+aW5nIHNwYWNlcyBhZnRlciB0aGUgUEFUVEVSTiB2YXJpYWJsZSwgYW5kIHllcywgdGhlIGV4dHJh
+IHNwYWNlcyBpbiB0aGUgbWlkZGxlIG9mIHZhcmlhYmxlcy4gIFNvbWVob3cgdGhvc2UgdGhpbmdz
+IGdvdCBpbnRvIHlvdXIgdmVyc2lvbiwgcmFuZG9tbHkgb3Igb3RoZXJ3aXNlLiAgSGVyZSdzIHdo
+YXQgSSBnZXQgdXNpbmcgdGhlDQphYm92ZToNCg0KJCB5b2N0by1ic3AgY3JlYXRlIHRlc3QtdGVz
+dDEgYXJtDQoNCiMgV2UgaGF2ZSBhIGNvbmYgYW5kIGNsYXNzZXMgZGlyZWN0b3J5LCBhZGQgdG8g
+QkJQQVRIICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICANCkJCUEFUSCA6PSAiJHtCQlBBVEh9OiR7TEFZ
+RVJESVJ9Ig0KDQojIFdlIGhhdmUgYSByZWNpcGVzIGRpcmVjdG9yeSwgYWRkIHRvIEJCRklMRVMg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgDQpCQkZJTEVTIDo9ICIke0JCRklMRVN9ICR7
+TEFZRVJESVJ9L3JlY2lwZXMtKi8qLyouYmIgXCAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgDQogICAg
+ICAgICR7TEFZRVJESVJ9L3JlY2lwZXMtKi8qLyouYmJhcHBlbmQiDQoNCkJCRklMRV9DT0xMRUNU
+SU9OUyArPSAidGVzdC10ZXN0MSINCkJCRklMRV9QQVRURVJOX3Rlc3QtdGVzdDEgOj0gIl4ke0xB
+WUVSRElSfS8iDQpCQkZJTEVfUFJJT1JJVFlfdGVzdC10ZXN0MSA9ICI2Ig0KDQo+IC0tLS0tT3Jp
+Z2luYWwgTWVzc2FnZS0tLS0tDQo+IEZyb206IFJvYmVydCBQLiBKLiBEYXkgW21haWx0bzpycGpk
+YXlAY3Jhc2hjb3Vyc2UuY2FdDQo+IFNlbnQ6IHdvZW5zZGFnIDggYXVndXN0dXMgMjAxMiAxNzox
+Nw0KPiBUbzogVGltIFZlcnN0cmFldGUNCj4gQ2M6IE1jQ2xpbnRvY2sgTWF0dGhldy1CMjk4ODI7
+IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcNCj4gU3ViamVjdDogW1NQQU1dIC0gUmU6IFt5b2N0b10g
+aW1hZ2UgcmVjaXBlIGdpdmVzIGVycm9yOiBoYXMgbm8gDQo+IGJ1aWxkYWJsZSBwcm92aWRlcnMg
+LSBFbWFpbCBmb3VuZCBpbiBzdWJqZWN0DQo+IA0KPiBPbiBXZWQsIDggQXVnIDIwMTIsIFRpbSBW
+ZXJzdHJhZXRlIHdyb3RlOg0KPiANCj4gPiBIaSwNCj4gPg0KPiA+IFdoYXQgaSBzZWUgaXMgdGhh
+dCB3aGVuIGkgZG8gYml0YmFrZS1sYXllcnMgc2hvd19sYXllcnMgdGhhdCBpdCBzaG93cyB0aGUg
+Y29ycmVjdCBsYXllcnMgYW5kIHRoZSBjb3JyZWN0IHByaW9yaXR5IG9mIHRoZSBsYXllcnMuDQo+
+ID4NCj4gPiBUaGUgbGF5ZXJzLmNvbmYgaXMgdGhlIGZvbGxvd2luZw0KPiA+DQo+ID4gIyBXZSBo
+YXZlIGEgY29uZiBhbmQgY2xhc3NlcyBkaXJlY3RvcnksIGFkZCB0byBCQlBBVEggQkJQQVRIIDo9
+IA0KPiA+ICIke0JCUEFUSH06JHtMQVlFUkRJUn0iDQo+ID4NCj4gPiAjIFdlIGhhdmUgYSByZWNp
+cGVzIGRpcmVjdG9yeSwgYWRkIHRvIEJCRklMRVMgQkJGSUxFUyA6PSAiJHtCQkZJTEVTfSANCj4g
+PiAke0xBWUVSRElSfS9yZWNpcGVzLSovKi8qLmJiIFwNCj4gPiAgICAgICAgICR7TEFZRVJESVJ9
+L3JlY2lwZXMtKi8qLyouYmJhcHBlbmQiDQo+ID4NCj4gPiAgQkJGSUxFX0NPTExFQ1RJT05TICs9
+ICJ0ZXN0LXRlc3QxIg0KPiA+ICBCQkZJTEVfUEFUVEVSTl8gdGVzdC10ZXN0MTo9ICJeJHtMQVlF
+UkRJUn0vIg0KPiA+ICBCQkZJTEVfUFJJT1JJVFlfIHRlc3QtdGVzdDEgPSAiMjUiDQo+ICAgICAg
+ICAgICAgICAgICAgICBeIHNwYWNlPw0KPiANCj4gICBkaWQgeW91IHNlcmlvdXNseSBjb3B5IGFu
+ZCBwYXN0ZSB0aGUgYWJvdmU/ICBiZWNhdXNlIGl0J3MganVzdCB3cm9uZy4NCj4gDQo+IHJkYXkN
+Cj4gDQoNCg0K
 
