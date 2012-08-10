@@ -1,23 +1,23 @@
 Return-Path: <tom.zanussi@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 634C6E01450
-	for <yocto@yoctoproject.org>; Fri, 10 Aug 2012 12:03:54 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 10 Aug 2012 12:03:54 -0700
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2C3C4E0141D
+	for <yocto@yoctoproject.org>; Fri, 10 Aug 2012 12:03:56 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 10 Aug 2012 12:03:36 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.77,747,1336374000"; d="scan'208";a="179521504"
+X-IronPort-AV: E=Sophos;i="4.77,747,1336374000"; d="scan'208";a="179104971"
 Received: from unknown (HELO localhost) ([10.255.12.203])
-	by azsmga001.ch.intel.com with ESMTP; 10 Aug 2012 12:03:53 -0700
+	by orsmga001.jf.intel.com with ESMTP; 10 Aug 2012 12:03:30 -0700
 From: tom.zanussi@intel.com
 To: yocto@yoctoproject.org
-Date: Fri, 10 Aug 2012 14:03:04 -0500
-Message-Id: <a7152bc305ec329edb76a33d8fd735d4bf2ead17.1344623733.git.tom.zanussi@intel.com>
+Date: Fri, 10 Aug 2012 14:02:57 -0500
+Message-Id: <9a5c28d9ee62da92efe664a4fd8c0b0425d3de16.1344623733.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.9.5
 In-Reply-To: <c157f1f265310327265af210da4e9af4b23c67d3.1344623733.git.tom.zanussi@intel.com>
 References: <c157f1f265310327265af210da4e9af4b23c67d3.1344623733.git.tom.zanussi@intel.com>
 In-Reply-To: <cover.1344623733.git.tom.zanussi@intel.com>
 References: <cover.1344623733.git.tom.zanussi@intel.com>
-Subject: [PATCH 15/19] yocto-bsp: update standard branch mapping
+Subject: [PATCH 08/19] yocto-bsp: use rstrip() for assignment lines
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,43 +29,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 10 Aug 2012 19:03:54 -0000
+X-List-Received-Date: Fri, 10 Aug 2012 19:03:56 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-Remove mapping for 3.0 and add mapping for 3.4.
+strip() isn't necessary and causes unintended formatting changes in
+the output; rstrip() remove the trailing newlines as intended while
+leaving indenting whitespace intact.
 
 Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
 ---
- scripts/lib/bsp/engine.py |    6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ scripts/lib/bsp/engine.py |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/scripts/lib/bsp/engine.py b/scripts/lib/bsp/engine.py
-index 9d16b19..ac5058c 100644
+index 756b882..af90e91 100644
 --- a/scripts/lib/bsp/engine.py
 +++ b/scripts/lib/bsp/engine.py
-@@ -1508,7 +1508,7 @@ def yocto_bsp_list(args, scripts_path, properties_file):
- def map_standard_kbranch(need_new_kbranch, new_kbranch, existing_kbranch):
-     """
-     Return the linux-yocto bsp branch to use with the specified
--    kbranch.  This handles the -standard variants for 3.0 and 3.2; the
-+    kbranch.  This handles the -standard variants for 3.2 and 3.4; the
-     other variants don't need mappings.
-     """
-     if need_new_kbranch == "y":
-@@ -1517,10 +1517,10 @@ def map_standard_kbranch(need_new_kbranch, new_kbranch, existing_kbranch):
-         kbranch = existing_kbranch
+@@ -668,7 +668,7 @@ class SubstrateBase(object):
+         """
+         Expand all tags in a line.
+         """
+-        expanded_line = AssignmentLine(line.strip())
++        expanded_line = AssignmentLine(line.rstrip())
  
-     if (kbranch.startswith("standard/default/common-pc-64") or
--        kbranch.startswith("yocto/standard/common-pc-64")):
-+        kbranch.startswith("standard/common-pc-64")):
-         return "bsp/common-pc-64/common-pc-64-standard"
-     if (kbranch.startswith("standard/default/common-pc") or
--        kbranch.startswith("yocto/standard/common-pc")):
-+        kbranch.startswith("standard/common-pc")):
-         return "bsp/common-pc/common-pc-standard"
-     else:
-         return "ktypes/standard"
+         while start != -1:
+             end = line.find(CLOSE_TAG, start)
 -- 
 1.7.9.5
 
