@@ -1,26 +1,19 @@
-Return-Path: <kishore.k.bodke@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A28EBE0141D
-	for <yocto@yoctoproject.org>; Fri, 10 Aug 2012 12:02:32 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 10 Aug 2012 12:02:32 -0700
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7D3E2E013F7
+	for <yocto@yoctoproject.org>; Fri, 10 Aug 2012 12:03:08 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 10 Aug 2012 12:03:08 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.77,747,1336374000"; d="scan'208";a="179104631"
-Received: from kishore-desktop.sc.intel.com (HELO localhost)
-	([143.183.188.174])
-	by orsmga001.jf.intel.com with ESMTP; 10 Aug 2012 12:02:32 -0700
-From: kishore.k.bodke@intel.com
-To: yocto@yoctoproject.org,
-	nitin.a.kamble@intel.com,
-	tom.zanussi@intel.com
-Date: Fri, 10 Aug 2012 12:02:31 -0700
-Message-Id: <47b0300f39752656476722d8b3efe263ab553f41.1344624483.git.kishore.k.bodke@intel.com>
+X-IronPort-AV: E=Sophos;i="4.77,747,1336374000"; d="scan'208";a="197063091"
+Received: from unknown (HELO localhost) ([10.255.12.203])
+	by fmsmga001.fm.intel.com with ESMTP; 10 Aug 2012 12:03:07 -0700
+From: tom.zanussi@intel.com
+To: yocto@yoctoproject.org
+Date: Fri, 10 Aug 2012 14:03:05 -0500
+Message-Id: <cover.1344623733.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <10661fc3a8ea84d0f912c3ab1baa660369cb4e52.1344624483.git.kishore.k.bodke@intel.com>
-References: <10661fc3a8ea84d0f912c3ab1baa660369cb4e52.1344624483.git.kishore.k.bodke@intel.com>
-In-Reply-To: <cover.1344624483.git.kishore.k.bodke@intel.com>
-References: <cover.1344624483.git.kishore.k.bodke@intel.com>
-Subject: [PATCH 3/3] [meta-intel] meta-romley: Add Matrox MGA variable to romley.conf
+Subject: [PATCH 00/19] yocto-bsp updates for master, v2
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,30 +25,115 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 10 Aug 2012 19:02:32 -0000
+X-List-Received-Date: Fri, 10 Aug 2012 19:03:08 -0000
 
-From: Kishore Bodke <kishore.k.bodke@intel.com>
+From: Tom Zanussi <tom.zanussi@intel.com>
 
-Since Matrox MGA recipe is moved to common, include
-the Matrox MGA varialbe to romley.conf.
+This patchset fixes yocto bugs [YOCTO #2693] and [YOCTO #2587], and
+fixes some other minor usability problems reported by users.
 
-Signed-off-by: Kishore Bodke <kishore.k.bodke@intel.com>
----
- meta-romley/conf/machine/romley.conf |    3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+Please pull into poky/master.
 
-diff --git a/meta-romley/conf/machine/romley.conf b/meta-romley/conf/machine/romley.conf
-index e6a755b..f7cfa18 100644
---- a/meta-romley/conf/machine/romley.conf
-+++ b/meta-romley/conf/machine/romley.conf
-@@ -12,6 +12,5 @@ require conf/machine/include/ia32-base.inc
- 
- XSERVER ?= "${XSERVER_IA32_BASE} \
-            ${XSERVER_IA32_EXT} \
--           xserver-xorg-module-xaa \
--	   xf86-video-mga \
-+	   ${XSERVER_IA32_MATROX_MGA} \
-            "
+v2: This is the same patchset as the previous one, but an additional
+couple of patches fixing problems found in testing has been tacked on.
+
+v3: This removes all instances of YOCTO_KERNEL_EXTERNAL_BRANCH usage
+ - some were missed the last time around.
+
+The following changes since commit 2dec760b79bb7e2e79c33c5127fa64685bd86a18:
+
+  foomatic: fix perl path for target (2012-08-08 10:06:00 +0100)
+
+are available in the git repository at:
+
+  git://git.yoctoproject.org/poky-contrib.git tzanussi/yocto-bsp-master-update.v3
+  http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/log/?h=tzanussi/yocto-bsp-master-update.v3
+
+Tom Zanussi (19):
+  yocto-bsp: add new strip_base() function
+  yocto-bsp: strip '/base' from kernel branches in templates
+  yocto-bsp: update default branch names
+  yocto-bsp: allow branch display filtering
+  yocto-bsp: use branches_base
+  yocto-bsp: add standard branch mapping
+  yocto-bsp: use standard branch mapping in bsp templates
+  yocto-bsp: use rstrip() for assignment lines
+  yocto-bsp: remove 'branch' statements in .scc if reusing branch
+  yocto-bsp: add some standard policy
+  yocto-bsp: add i586 option for i386
+  yocto-bsp: use emgd 1.10 for i386 template
+  yocto-bsp: generate default properties even if json specified
+  yocto-bsp: add 3.4/remove 3.0 kernel from templates
+  yocto-bsp: update standard branch mapping
+  yocto-bsp: use emgd 1.14 for i386 template
+  yocto-bsp: remove YOCTO_KERNEL_EXTERNAL_BRANCH usage
+  yocto-bsp: use base branches for qemu 'newbranch' case
+  yocto-bsp: add missing xserver-xf86-config .bbappend for qemu
+
+ scripts/lib/bsp/engine.py                          |   44 ++++++++++++++++++--
+ scripts/lib/bsp/kernel.py                          |   19 +++++++++
+ .../linux/files/{{=machine}}-standard.scc          |    1 +
+ .../arm/recipes-kernel/linux/kernel-list.noinstall |    4 +-
+ ...yocto-rt_3.2\": }} linux-yocto-rt_3.2.bbappend" |   13 +++---
+ ...yocto-rt_3.4\": }} linux-yocto-rt_3.4.bbappend" |   13 +++---
+ ...linux-yocto_3.2\": }} linux-yocto_3.2.bbappend" |   13 +++---
+ ...linux-yocto_3.4\": }} linux-yocto_3.4.bbappend" |   15 +++----
+ .../arch/i386/conf/machine/{{=machine}}.conf       |   14 ++++---
+ .../linux/files/{{=machine}}-preempt-rt.scc        |    7 ++++
+ .../linux/files/{{=machine}}-standard.scc          |   14 ++++++-
+ .../recipes-kernel/linux/files/{{=machine}}.scc    |    2 +-
+ .../recipes-kernel/linux/kernel-list.noinstall     |    4 +-
+ ...yocto-rt_3.2\": }} linux-yocto-rt_3.2.bbappend" |    9 ++--
+ ...yocto-rt_3.4\": }} linux-yocto-rt_3.4.bbappend" |   13 +++---
+ ...linux-yocto_3.2\": }} linux-yocto_3.2.bbappend" |    9 ++--
+ ...linux-yocto_3.4\": }} linux-yocto_3.4.bbappend" |   15 +++----
+ .../linux/files/{{=machine}}-standard.scc          |    1 +
+ .../recipes-kernel/linux/kernel-list.noinstall     |    4 +-
+ ...yocto-rt_3.2\": }} linux-yocto-rt_3.2.bbappend" |    9 ++--
+ ...yocto-rt_3.4\": }} linux-yocto-rt_3.4.bbappend" |   13 +++---
+ ...linux-yocto_3.2\": }} linux-yocto_3.2.bbappend" |    9 ++--
+ ...linux-yocto_3.4\": }} linux-yocto_3.4.bbappend" |   15 +++----
+ .../linux/files/{{=machine}}-standard.scc          |    1 +
+ .../recipes-kernel/linux/files/{{=machine}}.scc    |    3 --
+ .../recipes-kernel/linux/kernel-list.noinstall     |    4 +-
+ ...yocto-rt_3.2\": }} linux-yocto-rt_3.2.bbappend" |    9 ++--
+ ...yocto-rt_3.4\": }} linux-yocto-rt_3.4.bbappend" |   13 +++---
+ ...linux-yocto_3.2\": }} linux-yocto_3.2.bbappend" |    9 ++--
+ ...linux-yocto_3.4\": }} linux-yocto_3.4.bbappend" |   15 +++----
+ .../xorg-xserver/xserver-xf86-config_0.1.bbappend  |    2 +
+ .../linux/files/{{=machine}}-preempt-rt.scc        |    5 +--
+ .../linux/files/{{=machine}}-standard.scc          |    9 ++--
+ .../recipes-kernel/linux/kernel-list.noinstall     |    4 +-
+ ...yocto-rt_3.2\": }} linux-yocto-rt_3.2.bbappend" |   25 +++++------
+ ...yocto-rt_3.4\": }} linux-yocto-rt_3.4.bbappend" |   29 ++++++-------
+ ...linux-yocto_3.2\": }} linux-yocto_3.2.bbappend" |   25 +++++------
+ ...linux-yocto_3.4\": }} linux-yocto_3.4.bbappend" |   29 ++++++-------
+ .../linux/files/{{=machine}}-preempt-rt.scc        |    7 ++++
+ .../linux/files/{{=machine}}-standard.scc          |   10 ++++-
+ .../recipes-kernel/linux/kernel-list.noinstall     |    4 +-
+ ...yocto-rt_3.0\": }} linux-yocto-rt_3.0.bbappend" |   39 -----------------
+ ...yocto-rt_3.2\": }} linux-yocto-rt_3.2.bbappend" |    9 ++--
+ ...yocto-rt_3.4\": }} linux-yocto-rt_3.4.bbappend" |   36 ++++++++++++++++
+ ...linux-yocto_3.0\": }} linux-yocto_3.0.bbappend" |   41 ------------------
+ ...linux-yocto_3.2\": }} linux-yocto_3.2.bbappend" |    9 ++--
+ ...linux-yocto_3.4\": }} linux-yocto_3.4.bbappend" |   36 ++++++++++++++++
+ 47 files changed, 321 insertions(+), 312 deletions(-)
+ rename "scripts/lib/bsp/substrate/target/arch/arm/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.0\": }} linux-yocto-rt_3.0.bbappend" => "scripts/lib/bsp/substrate/target/arch/arm/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.4\": }} linux-yocto-rt_3.4.bbappend" (66%)
+ rename "scripts/lib/bsp/substrate/target/arch/mips/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.0\": }} linux-yocto_3.0.bbappend" => "scripts/lib/bsp/substrate/target/arch/arm/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.4\": }} linux-yocto_3.4.bbappend" (63%)
+ rename "scripts/lib/bsp/substrate/target/arch/powerpc/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.0\": }} linux-yocto-rt_3.0.bbappend" => "scripts/lib/bsp/substrate/target/arch/i386/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.4\": }} linux-yocto-rt_3.4.bbappend" (66%)
+ rename "scripts/lib/bsp/substrate/target/arch/arm/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.0\": }} linux-yocto_3.0.bbappend" => "scripts/lib/bsp/substrate/target/arch/i386/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.4\": }} linux-yocto_3.4.bbappend" (63%)
+ rename "scripts/lib/bsp/substrate/target/arch/i386/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.0\": }} linux-yocto-rt_3.0.bbappend" => "scripts/lib/bsp/substrate/target/arch/mips/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.4\": }} linux-yocto-rt_3.4.bbappend" (66%)
+ rename "scripts/lib/bsp/substrate/target/arch/powerpc/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.0\": }} linux-yocto_3.0.bbappend" => "scripts/lib/bsp/substrate/target/arch/mips/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.4\": }} linux-yocto_3.4.bbappend" (63%)
+ rename "scripts/lib/bsp/substrate/target/arch/mips/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.0\": }} linux-yocto-rt_3.0.bbappend" => "scripts/lib/bsp/substrate/target/arch/powerpc/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.4\": }} linux-yocto-rt_3.4.bbappend" (66%)
+ rename "scripts/lib/bsp/substrate/target/arch/i386/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.0\": }} linux-yocto_3.0.bbappend" => "scripts/lib/bsp/substrate/target/arch/powerpc/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.4\": }} linux-yocto_3.4.bbappend" (63%)
+ create mode 100644 scripts/lib/bsp/substrate/target/arch/qemu/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend
+ rename "scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.0\": }} linux-yocto-rt_3.0.bbappend" => "scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.4\": }} linux-yocto-rt_3.4.bbappend" (51%)
+ rename "scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.0\": }} linux-yocto_3.0.bbappend" => "scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.4\": }} linux-yocto_3.4.bbappend" (53%)
+ delete mode 100644 "scripts/lib/bsp/substrate/target/arch/x86_64/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.0\": }} linux-yocto-rt_3.0.bbappend"
+ create mode 100644 "scripts/lib/bsp/substrate/target/arch/x86_64/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto-rt_3.4\": }} linux-yocto-rt_3.4.bbappend"
+ delete mode 100644 "scripts/lib/bsp/substrate/target/arch/x86_64/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.0\": }} linux-yocto_3.0.bbappend"
+ create mode 100644 "scripts/lib/bsp/substrate/target/arch/x86_64/recipes-kernel/linux/{{ if kernel_choice == \"linux-yocto_3.4\": }} linux-yocto_3.4.bbappend"
+
 -- 
 1.7.9.5
 
