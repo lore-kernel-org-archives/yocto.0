@@ -1,34 +1,23 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CC878E013F7
-	for <yocto@yoctoproject.org>; Fri, 10 Aug 2012 13:17:03 -0700 (PDT)
-Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
-	([174.115.5.73]:34276 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.77) (envelope-from <rpjday@crashcourse.ca>)
-	id 1Szvdm-0000t7-4J; Fri, 10 Aug 2012 16:17:02 -0400
-Date: Fri, 10 Aug 2012 16:16:59 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Jim Rucker <linux.mrjimorg@gmail.com>
-In-Reply-To: <alpine.DEB.2.02.1208101615450.13805@oneiric>
-Message-ID: <alpine.DEB.2.02.1208101616430.13938@oneiric>
-References: <CAH6UwN19VfGzj-kig80cCuwk-SWBsnkcOWacFVHpG3kJdyeqVg@mail.gmail.com>
-	<alpine.DEB.2.02.1208101615450.13805@oneiric>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
-MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D11A9E003C8
+	for <yocto@yoctoproject.org>; Fri, 10 Aug 2012 13:46:18 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 10 Aug 2012 13:46:18 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.77,748,1336374000"; d="scan'208";a="206562040"
+Received: from unknown (HELO [10.255.12.203]) ([10.255.12.203])
+	by fmsmga002.fm.intel.com with ESMTP; 10 Aug 2012 13:46:17 -0700
+Message-ID: <1344631576.2808.2.camel@trz-ThinkPad-T420>
+From: Tom Zanussi <tom.zanussi@intel.com>
+To: kishore.k.bodke@intel.com
+Date: Fri, 10 Aug 2012 15:46:16 -0500
+In-Reply-To: <cover.1344624483.git.kishore.k.bodke@intel.com>
+References: <cover.1344624483.git.kishore.k.bodke@intel.com>
+X-Mailer: Evolution 3.2.3-0ubuntu6 
+Mime-Version: 1.0
 Cc: yocto@yoctoproject.org
-Subject: Re: do_deploy[sstate-inputdirs]
+Subject: Re: [PATCH 0/3] [meta-intel] Move Matrox MGA Xorg driver to common
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,63 +29,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 10 Aug 2012 20:17:04 -0000
-Content-Type: MULTIPART/MIXED; BOUNDARY="8323329-1200086045-1344629822=:13938"
+X-List-Received-Date: Fri, 10 Aug 2012 20:46:18 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
---8323329-1200086045-1344629822=:13938
-Content-Type: TEXT/PLAIN; charset=ISO-8859-1
-Content-Transfer-Encoding: QUOTED-PRINTABLE
+On Fri, 2012-08-10 at 12:02 -0700, kishore.k.bodke@intel.com wrote:
+> From: Kishore Bodke <kishore.k.bodke@intel.com>
+> 
+> Hi,
+> 
+> These patches are for moving the Matrox MGA Xorg driver from
+> meta-romley to meta-intel/common and adding a variable to 
+> include the mga recipe in the respective BSPs which uses them.
+> 
+> Romley BSP has been successfully booted with sato desktop.
+> 
+> Please pull into meta-intel/master.
+> 
 
-On Fri, 10 Aug 2012, Robert P. J. Day wrote:
+Thanks for making those changes, Kishore.
 
-> On Fri, 10 Aug 2012, Jim Rucker wrote:
->
-> > I've been trying to figure out why I've had such trouble getting my tmp=
-/deploy/uImage files to
-> > update after performing a "bitbake -f -c compile virtual/kernel", and I=
-'ve come across something I I
-> > don't understand. In deploy.bbclass, we have:
-> > do_deploy[sstate-inputdirs] =3D "${DEPLOYDIR}"
-> >
-> > However, the only place DEPLOYDIR is ever used is as a=A0install=A0dest=
-ination=A0within the
-> > kernel_do_deploy functions. Therefore, from what I can tell, DEPLOYDIR =
-is never updated and
-> > therefore do_deploy is never called - even if you run "bitbake -f -c de=
-ploy virtual/kernel" (note
-> > that I'm using the 6.0.2 poky release, not top of tree). From what I un=
-derstand, the best way to fix
-> > this is to make the following changes:
-> >
-> > kernel.bbclass:
-> > OUTPUTDIR ?=3D "arch/${ARCH}/boot
-> > KERNEL_OUTPUT ?=3D "${OUTPUTDIR}/${KERNEL_IMAGETYPE}
-> >
-> > deploy.bblass
-> > do_deploy[sstate-inputdirs] =3D "${OUTPUT_DIR}"
-> > do_deploy[sstate-outputdirs] =3D "${DEPLOYDIR}
-> >
-> > Am I barking up the right or wrong tree here?
->
->   i'm sort of sure that what you're after is the "do_uboot_mkimage"
-> task.
+Pulled into meta-intel/master.
 
-  oh, crap, never mind, i just misread that.
+Tom
 
-rday
+> Thanks
+> Kishore.
+> 
+> The following changes since commit ff7fdafba88a5b7676f601b3d16a97ce7d48c4a9:
+> 
+>   crownbay: make v3.4 the default kernel (2012-07-31 23:08:05 -0500)
+> 
+> are available in the git repository at:
+> 
+>   git://git.pokylinux.org/meta-intel-contrib kishore/matrox-mga
+>   http://git.pokylinux.org/cgit.cgi/meta-intel-contrib/log/?h=kishore/matrox-mga
+> 
+> Kishore Bodke (3):
+>   meta-romley: Move Matrox MGA Xorg driver to meta-intel/common
+>   meta-intel:Add a MATROX MGA variable to ia32-base.inc
+>   meta-romley: Add Matrox MGA variable to romley.conf
+> 
+>  .../xorg-driver/xf86-video-mga_1.4.13.bb           |    0
+>  conf/machine/include/ia32-base.inc                 |    4 ++++
+>  meta-romley/conf/machine/romley.conf               |    3 +--
+>  3 files changed, 5 insertions(+), 2 deletions(-)
+>  rename {meta-romley => common}/recipes-graphics/xorg-driver/xf86-video-mga_1.4.13.bb (100%)
+> 
 
---=20
 
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
 
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-
---8323329-1200086045-1344629822=:13938--
