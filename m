@@ -1,33 +1,32 @@
-Return-Path: <jessica.zhang@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 718C0E01404
-	for <yocto@yoctoproject.org>; Fri, 10 Aug 2012 15:56:04 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 10 Aug 2012 15:56:04 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.77,748,1336374000"; d="scan'208";a="179169617"
-Received: from orsmsx606.amr.corp.intel.com ([10.22.226.128])
-	by orsmga001.jf.intel.com with ESMTP; 10 Aug 2012 15:56:03 -0700
-Received: from orsmsx105.amr.corp.intel.com (10.22.225.132) by
-	orsmsx606.amr.corp.intel.com (10.22.226.128) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Fri, 10 Aug 2012 15:56:03 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.106]) by
-	ORSMSX105.amr.corp.intel.com ([169.254.4.231]) with mapi id
-	14.01.0355.002; Fri, 10 Aug 2012 15:56:03 -0700
-From: "Zhang, Jessica" <jessica.zhang@intel.com>
-To: Trevor Woerner <twoerner@gmail.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] Hob workflow
-Thread-Index: AQHNdjGnK31vHS/7uUGv/3lbpB9ijpdTqB/Q
-Date: Fri, 10 Aug 2012 22:56:01 +0000
-Message-ID: <C6510F6D410BB64A8C15398EDC6B847C46ACEEE4@ORSMSX101.amr.corp.intel.com>
-References: <CAHUNapTBvghatM8xxnuCMPSkFZzS4_ssiU1b3TXvWk1SR74Qug@mail.gmail.com>
-In-Reply-To: <CAHUNapTBvghatM8xxnuCMPSkFZzS4_ssiU1b3TXvWk1SR74Qug@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.139]
+Return-Path: <twoerner@gmail.com>
+Received: from mail-lpp01m010-f48.google.com (mail-lpp01m010-f48.google.com
+	[209.85.215.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 45DFAE003C8
+	for <yocto@yoctoproject.org>; Fri, 10 Aug 2012 16:39:31 -0700 (PDT)
+Received: by lagr15 with SMTP id r15so1289127lag.35
+	for <yocto@yoctoproject.org>; Fri, 10 Aug 2012 16:39:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=O5t/jctdKqy4Q2x53bnkNXeylKpWTByr3FynczWo0M4=;
+	b=UYZ8W0HXxSBu8czkbQI9D7M43Ra/022qnut9S+T2WjZi8b3YldWoUeCBZYnQWBVekU
+	3I+NYm0FFpqpU5lZMObaFEXCXYXDGA5FZKGzOqm9ukxT/vc3EZz2C9yme8UXMBihB9eu
+	s1yqD/V0BGqeQxy/sELSRwheS+/ugwYVv3w0QyDmxvH6/jDOUCaPpNVqKFrqirLJOGTZ
+	e0jy3fyxL5OGy8xMQHCOGzbIx9ae5xESkLxEzsPpqpDn47AMZJKPbCWRGeydu6yYf2eQ
+	JbbbFFK2HSsC2qiG7meb7E2Pt8bIYKxOmr66mVhqjvteFPojOgX54eTurInU+syUEhS1
+	LqiA==
 MIME-Version: 1.0
+Received: by 10.152.105.173 with SMTP id gn13mr4497287lab.20.1344641969944;
+	Fri, 10 Aug 2012 16:39:29 -0700 (PDT)
+Received: by 10.112.21.9 with HTTP; Fri, 10 Aug 2012 16:39:29 -0700 (PDT)
+In-Reply-To: <C6510F6D410BB64A8C15398EDC6B847C46ACEEE4@ORSMSX101.amr.corp.intel.com>
+References: <CAHUNapTBvghatM8xxnuCMPSkFZzS4_ssiU1b3TXvWk1SR74Qug@mail.gmail.com>
+	<C6510F6D410BB64A8C15398EDC6B847C46ACEEE4@ORSMSX101.amr.corp.intel.com>
+Date: Fri, 10 Aug 2012 19:39:29 -0400
+Message-ID: <CAHUNapTmQSJPESzrrf=DR4uwhmTBWXm=+8Zw0P7Yqgsx3Bqq9Q@mail.gmail.com>
+From: Trevor Woerner <twoerner@gmail.com>
+To: "Zhang, Jessica" <jessica.zhang@intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Hob workflow
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -40,126 +39,70 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 10 Aug 2012 22:56:04 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 10 Aug 2012 23:39:31 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-Hi Trevor,
+Hi Jessica,
 
-Thanks for using hob and provide your valuable feedbacks, I'm trying to sum=
-marize your desired behavior/usage of hob as:
+Thanks so much for considering my feedback :-)
+I do tend to be "wordy", don't I? :-)
 
-1. hob should save the customization into the project's configuration, inst=
-ead of using its own configuration saving mechanism.  In this way, people w=
-ill be able to achieve same customized build result from command line or us=
-ing hob.
-2. Current "Save template" wording is confusing.
+On Fri, Aug 10, 2012 at 6:56 PM, Zhang, Jessica <jessica.zhang@intel.com> wrote:
+> Am I missing any point that you're also trying to make here?
 
-Am I missing any point that you're also trying to make here?  I think these=
- are valid points, could you file enhancement bugs for them in Yocto projec=
-t bugzilla for us to track them and plan the future work for them according=
-ly?
+No, I think you've captured everything quite succinctly.
 
-Thanks,
-Jessica
+Expanding on point 1 a little bit:
 
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Trevor Woerner
-Sent: Thursday, August 09, 2012 6:16 AM
-To: yocto@yoctoproject.org
-Subject: [yocto] Hob workflow
+> 1. hob should save the customization into the project's configuration, instead of using its own configuration saving mechanism.  In this way, people will be able to achieve same customized build result from command line or using hob.
 
-Hi everyone,
+Due to the fact you have to be "in a project build" (i.e. you have to
+have already sourced oe-init-build-env) in order to run Hob I thought
+the configurations I was performing in Hob were changing the
+configurations of the project from which Hob was started. So I was
+really confused that I couldn't find any of the changes anywhere. But
+what is even more confusing is that when Hob starts it begins by
+taking your project's base configuration. I feel Hob sort of "sits on
+the fence" in the way it starts with the project's configuration, but
+then doesn't update it (back again) as it goes along. Since I was
+hoping to use Hob, and then look through the project's configuration
+to see how my Hob changes were changing the underlying configuration
+files I was getting a bit of a run-around since none of the changes
+from Hob were showing up anywhere I could find.
 
-I've been using Hob lately and I'm completely blown away by how useful it i=
-s! Kudos to everyone: from those insisting there exist such a tool to those=
- working on it :-)
+If someone wanted to say "Hob is independent of the project from which
+it is started" I would be okay with that, but in that case Hob
+shouldn't start with the given project's configuration and shouldn't
+need to be run after sourcing a particular project's oe-init-build-env
+file.
 
-While using it, however, I must admit it took me quite a while to get my he=
-ad around some workflow issues and I was wondering if others felt the same =
-way or if it's just me. (At this point I must to point out that I'm still o=
-nly working my way through the Yocto Developer Manual and have not yet read=
- the Hob documentation.)
+In fact I was originally going to send an email asking where Hob's
+configuration changes were being saved until I started playing with
+the "save as template" thing.
 
-I do my Yocto work in ~/devel/yocto. Under ~/devel/yocto I have:
+With respect to number 2:
+> 2. Current "Save template" wording is confusing.
 
-1) git-method/
-        which contains some bare yocto kernels
-        various build directories for builds using the latest git
-        a poky/ directory with all the yocto git goodness
+On the one hand I would prefer to be able to save the configuration as
+I go along. It looks like the only time I can save a given
+configuration is after I have successfully built an image (?). Perhaps
+I take a long time to sift through the available packages, maybe I
+don't complete that all in one step. So I'd like to be able to save as
+I go along. Then, after building my packages, perhaps I then take more
+time to sift through the build artifacts to determine which I want in
+my image. Again this step can take quite a while and I'd prefer to be
+able to save intermediate configurations as I go along (just in case
+of a crash or whatever).
 
-2) releases/
-        which contains various yocto project releases, which in turn contai=
-n various directories of builds
+On the other hand I can't help think that if Hob could be saving the
+configuration to the current project's configuration files as I go
+along then having an explicit "save template/configuration" wouldn't
+even be required. If one instance of Hob is meant to work with only
+one given project then what to save and where to save it would become
+explicit, so perhaps Hob could just save with every click as I go
+along?
 
-Let's say I decided I wanted to work on a PPC image and I decided I wanted =
-to use the latest git from which to work. I would go to ~/devel/yocto/git-m=
-ethod and run:
+> I think these are valid points, could you file enhancement bugs for them in Yocto project bugzilla for us to track them and plan the future work for them accordingly?
 
-    $ source poky/oe-init-build-env ppc-image
-
-I would then find myself in ~/devel/yocto/git-method/ppc-image from which I=
- could start my work. Now, if I was a yocto guru (like everyone else is) I =
-could just start tweaking and playing around with various configuration fil=
-es by hand (e.g. conf/local.conf) and then invoke "bitbake <image>" on the =
-cmdline. If, however, I'm still learning and/or simply prefer not to tweak =
-configuration files by hand, it would seem natural to assume I could, inste=
-ad, invoke "hob" and start working on my PPC image using the GUI. This assu=
-mption, however, turns out to be not entirely correct.
-
-If, before invoking "hob", I edit conf/local.conf then any changes there wi=
-ll show up in the hob configuration (i.e. DL_DIR or number of threads). But=
- (and this is the really confusing part for me) any changes I make to those=
- parameters while in Hob are not reflected in the relevant configuration fi=
-les! If I quit Hob and then restarted, any changes made while in Hob would =
-be lost; unless I clicked on "Save" explicitly, but even then any changes a=
-re only saved to a ~/devel/yocto/git-method/ppc-image/.hob directory, not i=
-n this project's configuration files themselves. Then, when I am done confi=
-guring and building an image just the way I want it, none of my changes are=
- saved to any of the ~/devel/yocto/git-method/ppc-image
-configuration files... unless I click on "save template".
-
-As a native english speaker I find the use of the term "template" to be inc=
-orrect. I wasn't interested in saving a template of my work I wanted to sav=
-e my current configuration. For days I was frustrated that any tweaks I mad=
-e to my configuration would be lost when I quit Hob. A "template", to me, i=
-mplies some of the data will not be saved, which is distinct from the idea =
-of saving my full, current, configuration (which is what "save template" is=
- doing).
-
-As a further example, while working on my PPC image let's say I also wanted=
- to use Hob to work on an ARM image. In that case I'd go to ~/devel/yocto/g=
-it-method and run "poky/oe-init-build-env arm-image", find myself in ~/deve=
-l/yocto/git-method/arm-image, and then invoke "hob". I now would have two i=
-nstances of Hob running, but there is nothing to say that the Hob I invoked=
- from the ARM project directory is modifying the ARM project and that the H=
-ob invoked from the PPC project is modifying the PPC project. I could use t=
-he Hob invoked from the ARM project to "save as a template" for the PPC wor=
-k.
-
-It just seems more natural to me that if I started Hob from a given project=
- directory (which is required since it needs bitbake), and if this instance=
- of Hob is smart enough to start by using various configuration items from =
-said project directory, that any changes or images made using this instance=
- of Hob should be reflected back to the same configuration files and should=
- tweak the project's configuration files based on the changes made while ru=
-nning Hob without having to explicitly save the configuration or "save as a=
- template" any of the work that is done. In other words, given the same pro=
-ject, if I do some configurations by hand and then invoke "bitbake" or use =
-Hob to perform other configurations and click "build image" I would end up =
-with two completely different builds and this doesn't seem right. It would =
-seem natural that Hob should be a different path (gui) to working with the =
-same given project since Hob can only be invoked within a project, not that=
- Hob is off working on its own, almost completely unrelated, project.
-
-Thoughts?
-
-Best regards,
-    Trevor
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
+Yes, thank you.
 
