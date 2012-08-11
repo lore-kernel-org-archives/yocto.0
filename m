@@ -1,32 +1,31 @@
-Return-Path: <elvis.dowson@gmail.com>
-Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
-	[209.85.160.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3FD51E0049A
-	for <yocto@yoctoproject.org>; Sat, 11 Aug 2012 09:42:59 -0700 (PDT)
-Received: by pbbrp16 with SMTP id rp16so4400076pbb.35
-	for <yocto@yoctoproject.org>; Sat, 11 Aug 2012 09:42:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:content-type:subject:date:message-id:to:mime-version:x-mailer;
-	bh=vLWj4iHI5xRGKBy5Sg2BmicaalV5Briu/JsPGfiNzo8=;
-	b=Ty9i9aPYyeYofnUFj7SH+Uh3CNahRdx06mQn9eRYwH8jGXpZ5z/HFkUSAwujy6uCKN
-	Y5e6WWcoQK7uLRR0U26mwzGY6ucSzuE9K9w1pofw/s1ZnL2CTdMgn4DhS677Og8As8jg
-	nH5pGnAc1/FWofd6+oio9HUvvy4pQ4Q5GvNNjtqAMa4mfWAqlv0+tIuLAHafm8kGmoDi
-	XD2xg6ipY6CO0QqLZpsM//dkICVbuwx/UKu/I6vhtPdRA6Wt0pXjzQKTOSxYy5i72agh
-	ffelITnbU3zlCA2bipKlxm9RDE2W0Dteh1K4uTtY6eCGnBZzsA+Y/U8gcXv4UqYQzpoM
-	JuLA==
-Received: by 10.68.197.168 with SMTP id iv8mr6649398pbc.61.1344703378299;
-	Sat, 11 Aug 2012 09:42:58 -0700 (PDT)
-Received: from [192.168.1.101] ([94.205.108.162])
-	by mx.google.com with ESMTPS id st6sm1662882pbc.58.2012.08.11.09.42.54
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Sat, 11 Aug 2012 09:42:57 -0700 (PDT)
-From: Elvis Dowson <elvis.dowson@gmail.com>
-Date: Sat, 11 Aug 2012 20:42:49 +0400
-Message-Id: <979CA88D-E2FD-4F71-B41B-D7F71934DC7C@gmail.com>
-To: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-Mime-Version: 1.0 (Apple Message framework v1278)
-X-Mailer: Apple Mail (2.1278)
-Subject: gnutls_2.12.20: Incorrect location for header file
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DC081E0049A
+	for <yocto@yoctoproject.org>; Sat, 11 Aug 2012 10:03:13 -0700 (PDT)
+Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
+	([174.115.5.73]:45107 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.77) (envelope-from <rpjday@crashcourse.ca>)
+	id 1T0F5k-0003yo-04
+	for yocto@yoctoproject.org; Sat, 11 Aug 2012 13:03:12 -0400
+Date: Sat, 11 Aug 2012 13:03:08 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.DEB.2.02.1208111301170.5438@oneiric>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+MIME-Version: 1.0
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: under what circumstances is BBCLASSEXTEND = "native" required in a recipe?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,70 +37,59 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 11 Aug 2012 16:42:59 -0000
-Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_C65AB76E-FB62-4E21-B283-B2A67D01330B"
+X-List-Received-Date: Sat, 11 Aug 2012 17:03:14 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
---Apple-Mail=_C65AB76E-FB62-4E21-B283-B2A67D01330B
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=us-ascii
 
-Hi,
-      While trying to build gnutls_2.12.20.bb recipe, with gcc-4.5, =
-using the current poky master, I get the following error:
+[aside:  i just tried to post to oe-core list but it bounced, and
+since this involves the yocto QS guide, i figured i'd use the yocto
+list as plan B.]
 
-| In file included from gnutlsxx.cpp:5:0:
-| ./includes/gnutls/gnutlsxx.h:4:21: fatal error: exception: No such =
-file or directory
+  kind of a followup from my earlier (oe-core) post but i'm a bit
+puzzled as to the *necessity* of a recipe including the line:
 
-The header file is located under the following folder
+  BBCLASSEXTEND = "native"
 
-=
-/tool/yocto/poky/build/tmp/work/ppc440-poky-linux/gnutls-2.12.20-r8.3/gnut=
-ls-2.12.20/lib/includes/gnutls
+my original understanding (which could be wildly inaccurate) was that
+this line meant that that recipe had support for being built natively;
+as in, it was required on the build host.  so far, so good?
 
-how do I modify the recipe, so that it prefixes the lib folder, to the =
-patch so that it can properly locate it under
+  but in the yocto quick start guide:
 
-./lib/includes/gnutls/
+http://www.yoctoproject.org/docs/latest/yocto-project-qs/yocto-project-qs.html
 
-instead of=20
+you read about "The Packages", which allegedly represents the packages
+the developer is *required* to have on his development host, based on
+the developer *installing* those packages, which is what leads to my
+confusion.
 
-./includes/gnutls/
+  for example, the QS guide claims that "chrpath" is required, and
+that one is expected to install that command using whatever
+distro-specific command is necessary.  that command is listed in
+in meta/classes/sanity.bbclass in SANITY_REQUIRED_UTILITIES, so that
+seems reasonable.
 
-Best regards,
+  however, the "chrpath" command is not listed in bitbake as part of
+ASSUME_PROVIDED, and its recipe includes the line
 
-Elvis Dowson=
+  BBCLASSEXTEND = "native"
 
---Apple-Mail=_C65AB76E-FB62-4E21-B283-B2A67D01330B
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html;
-	charset=us-ascii
+that's what's confusing -- if the QS guide demands that the user
+install "chrpath" manually, what is the subsequent value of its recipe
+dictating that it be natively buildable?
 
-<html><head></head><body style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; -webkit-line-break: after-white-space; =
-">Hi,<div>&nbsp; &nbsp; &nbsp; While trying to build gnutls_2.12.20.bb =
-recipe, with gcc-4.5, using the current poky master, I get the following =
-error:</div><div><br></div><div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2">| In file included from =
-gnutlsxx.cpp:5:0:</font></div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2">| ./includes/gnutls/gnutlsxx.h:4:21: fatal =
-error: exception: No such file or =
-directory</font></div></div><div><br></div><div>The header file is =
-located under the following folder</div><div><br></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" =
-size=3D"2">/tool/yocto/poky/build/tmp/work/ppc440-poky-linux/gnutls-2.12.2=
-0-r8.3/gnutls-2.12.20/lib/includes/gnutls</font></div><div><br></div><div>=
-how do I modify the recipe, so that it prefixes the <font =
-class=3D"Apple-style-span" color=3D"#ff221b">lib</font> folder, to the =
-patch so that it can properly locate it =
-under</div><div><br></div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2">./<font class=3D"Apple-style-span" =
-color=3D"#ff221b">lib</font>/includes/gnutls/</font></div><div><br></div><=
-div>instead of&nbsp;</div><div><br></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" =
-size=3D"2">./includes/gnutls/</font></div><div><br></div><div>Best =
-regards,</div><div><br></div><div>Elvis Dowson</div></body></html>=
+  clarification, please?
 
---Apple-Mail=_C65AB76E-FB62-4E21-B283-B2A67D01330B--
+rday
+
+
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
+
