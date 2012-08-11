@@ -1,35 +1,32 @@
 Return-Path: <elvis.dowson@gmail.com>
 Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
 	[209.85.160.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BC6A6E0049A
-	for <yocto@yoctoproject.org>; Sat, 11 Aug 2012 06:58:46 -0700 (PDT)
-Received: by pbbrp16 with SMTP id rp16so4171561pbb.35
-	for <yocto@yoctoproject.org>; Sat, 11 Aug 2012 06:58:46 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3FD51E0049A
+	for <yocto@yoctoproject.org>; Sat, 11 Aug 2012 09:42:59 -0700 (PDT)
+Received: by pbbrp16 with SMTP id rp16so4400076pbb.35
+	for <yocto@yoctoproject.org>; Sat, 11 Aug 2012 09:42:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:mime-version:content-type:subject:date:in-reply-to:to
-	:references:message-id:x-mailer;
-	bh=9NDQDh58q1OK6w3WSpgX1ePYyYZLBuaYcY0pHqvQxNE=;
-	b=tWwzahQvSi5cvx66oaQhN1xAOBObe/xWF6y/UrBTYbOKS+3EYLwiirvrkYYz0nrhcp
-	4yA9KeqDqGYjbA1fkH71+cpYEO1KderilmZLUXdS3lDsGq2USAFCwIwMxWPlMM7eJftE
-	61SldYSxUluPkWm+Ze195itFhfr17Qen1xikXlVzrNceJM62me39CAvBkb2CMi+44pSn
-	vk8nz2lX07SBCOITKWIuEG4H4VH6eUjHgTMJx2susrET5Oqf+RJu252h6fPxkd1UDdPU
-	dlBEvK53dtz/bTfAQzmk9Z7Sxb6PQvuXMgaM1CJT21oiUKU6JdJCLEm8YPWkyfdx6VdS
-	yFbw==
-Received: by 10.68.224.70 with SMTP id ra6mr20679120pbc.11.1344693526360;
-	Sat, 11 Aug 2012 06:58:46 -0700 (PDT)
+	h=from:content-type:subject:date:message-id:to:mime-version:x-mailer;
+	bh=vLWj4iHI5xRGKBy5Sg2BmicaalV5Briu/JsPGfiNzo8=;
+	b=Ty9i9aPYyeYofnUFj7SH+Uh3CNahRdx06mQn9eRYwH8jGXpZ5z/HFkUSAwujy6uCKN
+	Y5e6WWcoQK7uLRR0U26mwzGY6ucSzuE9K9w1pofw/s1ZnL2CTdMgn4DhS677Og8As8jg
+	nH5pGnAc1/FWofd6+oio9HUvvy4pQ4Q5GvNNjtqAMa4mfWAqlv0+tIuLAHafm8kGmoDi
+	XD2xg6ipY6CO0QqLZpsM//dkICVbuwx/UKu/I6vhtPdRA6Wt0pXjzQKTOSxYy5i72agh
+	ffelITnbU3zlCA2bipKlxm9RDE2W0Dteh1K4uTtY6eCGnBZzsA+Y/U8gcXv4UqYQzpoM
+	JuLA==
+Received: by 10.68.197.168 with SMTP id iv8mr6649398pbc.61.1344703378299;
+	Sat, 11 Aug 2012 09:42:58 -0700 (PDT)
 Received: from [192.168.1.101] ([94.205.108.162])
-	by mx.google.com with ESMTPS id ka9sm1435424pbb.59.2012.08.11.06.58.43
+	by mx.google.com with ESMTPS id st6sm1662882pbc.58.2012.08.11.09.42.54
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Sat, 11 Aug 2012 06:58:45 -0700 (PDT)
+	Sat, 11 Aug 2012 09:42:57 -0700 (PDT)
 From: Elvis Dowson <elvis.dowson@gmail.com>
-Mime-Version: 1.0 (Apple Message framework v1278)
-Date: Sat, 11 Aug 2012 17:58:39 +0400
-In-Reply-To: <69899E75-819B-481C-BEDD-949A5490F1E4@gmail.com>
+Date: Sat, 11 Aug 2012 20:42:49 +0400
+Message-Id: <979CA88D-E2FD-4F71-B41B-D7F71934DC7C@gmail.com>
 To: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-References: <69899E75-819B-481C-BEDD-949A5490F1E4@gmail.com>
-Message-Id: <96DDFE0F-EA2B-475D-A29F-A7328A0A7D29@gmail.com>
+Mime-Version: 1.0 (Apple Message framework v1278)
 X-Mailer: Apple Mail (2.1278)
-Subject: Re: gcc virtual provider settings
+Subject: gnutls_2.12.20: Incorrect location for header file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,137 +38,70 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 11 Aug 2012 13:58:46 -0000
+X-List-Received-Date: Sat, 11 Aug 2012 16:42:59 -0000
 Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_165BA026-443C-4119-89E6-3D9BD4FA442D"
+	boundary="Apple-Mail=_C65AB76E-FB62-4E21-B283-B2A67D01330B"
 
---Apple-Mail=_165BA026-443C-4119-89E6-3D9BD4FA442D
+--Apple-Mail=_C65AB76E-FB62-4E21-B283-B2A67D01330B
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain;
 	charset=us-ascii
 
 Hi,
+      While trying to build gnutls_2.12.20.bb recipe, with gcc-4.5, =
+using the current poky master, I get the following error:
 
-On Aug 11, 2012, at 2:42 PM, Elvis Dowson wrote:
+| In file included from gnutlsxx.cpp:5:0:
+| ./includes/gnutls/gnutlsxx.h:4:21: fatal error: exception: No such =
+file or directory
 
-> Where can I find the "virtual provides" for gcc?
->=20
-> I'd like to properly fill the following values in my local.conf file, =
-to point it to a locally created gcc_4.5.bb recipe, along with rest, for =
-gcc-cross_4.5.bb, gcc-cross-canadian_4.5.bb, etc.
->=20
-> PREFERRED_PROVIDER_virtual/${TARGET_PREFIX}gcc =3D ""
-> PREFERRED_PROVIDER_virtual/${TARGET_PREFIX}gcc-initial =3D ""
-> PREFERRED_PROVIDER_virtual/${TARGET_PREFIX}gcc-intermediate =3D ""
-> PREFERRED_PROVIDER_virtual/${TARGET_PREFIX}g++ =3D ""
-> PREFERRED_PROVIDER_virtual/${TARGET_PREFIX}binutils =3D ""
-> PREFERRED_PROVIDER_virtual/${TARGET_PREFIX}libc-for-gcc =3D ""
-> PREFERRED_PROVIDER_virtual/${TARGET_PREFIX}compilerlibs =3D ""
-> PREFERRED_PROVIDER_libgcc =3D ""
-> PREFERRED_PROVIDER_eglibc =3D ""
-> PREFERRED_PROVIDER_virtual/libc =3D ""
-> PREFERRED_PROVIDER_virtual/libintl =3D ""
-> PREFERRED_PROVIDER_virtual/libiconv =3D ""
-> PREFERRED_PROVIDER_gdbserver =3D ""
-> PREFERRED_PROVIDER_virtual/gettext =3D ""
->=20
+The header file is located under the following folder
 
-I found the solution for this one.=20
+=
+/tool/yocto/poky/build/tmp/work/ppc440-poky-linux/gnutls-2.12.20-r8.3/gnut=
+ls-2.12.20/lib/includes/gnutls
 
-The defaults are specified in the =
-poky/meta/conf/distro/include/tcmode-default.inc file.
+how do I modify the recipe, so that it prefixes the lib folder, to the =
+patch so that it can properly locate it under
 
-What was happening is that when I set a couple of virual providers =
-explicitly, I always ended up missing a couple, and it was taking the =
-gcc-4.7.1 related recipes, because the over-rides weren't complete. the =
-tcmode-default.inc file has the full list of virtual providers for the =
-toolchain, and the best way to set up for an older version of the gcc =
-compiler is to specify just a few variables in the local.conf file as =
-follows:
+./lib/includes/gnutls/
 
-# Set the gcc toolchain version.
-# Use wildcards %, to match the actual versions.
-GCCVERSION =3D "4.5%"
-SDKGCCVERSION =3D "${GCCVERSION}"
-BINUVERSION =3D "2.22"
-EGLIBCVERSION =3D "2.16"
-UCLIBCVERSION =3D "0.9.33"
-LINUXLIBCVERSION =3D "3.3.3"
+instead of=20
+
+./includes/gnutls/
 
 Best regards,
 
-Elvis Dowson
+Elvis Dowson=
 
-
---Apple-Mail=_165BA026-443C-4119-89E6-3D9BD4FA442D
+--Apple-Mail=_C65AB76E-FB62-4E21-B283-B2A67D01330B
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/html;
 	charset=us-ascii
 
 <html><head></head><body style=3D"word-wrap: break-word; =
 -webkit-nbsp-mode: space; -webkit-line-break: after-white-space; =
-">Hi,<div><br><div><div>On Aug 11, 2012, at 2:42 PM, Elvis Dowson =
-wrote:</div><br class=3D"Apple-interchange-newline"><blockquote =
-type=3D"cite"><div style=3D"word-wrap: break-word; -webkit-nbsp-mode: =
-space; -webkit-line-break: after-white-space; "><div>Where can I find =
-the "virtual provides" for gcc?</div><div><br></div><div>I'd like to =
-properly fill the following values in my local.conf file, to point it to =
-a locally created gcc_4.5.bb recipe, along with rest, for =
-gcc-cross_4.5.bb, gcc-cross-canadian_4.5.bb, =
-etc.</div><div><br></div><div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2">PREFERRED_PROVIDER_virtual/${TARGET_PREFIX}gcc =
-=3D ""</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
-size=3D"2">PREFERRED_PROVIDER_virtual/${TARGET_PREFIX}gcc-initial =3D =
-""</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
-size=3D"2">PREFERRED_PROVIDER_virtual/${TARGET_PREFIX}gcc-intermediate =3D=
- ""</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
-size=3D"2">PREFERRED_PROVIDER_virtual/${TARGET_PREFIX}g++ =3D =
-""</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
-size=3D"2">PREFERRED_PROVIDER_virtual/${TARGET_PREFIX}binutils =3D =
-""</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
-size=3D"2">PREFERRED_PROVIDER_virtual/${TARGET_PREFIX}libc-for-gcc =3D =
-""</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
-size=3D"2">PREFERRED_PROVIDER_virtual/${TARGET_PREFIX}compilerlibs =3D =
-""</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
-size=3D"2">PREFERRED_PROVIDER_libgcc =3D ""</font></div><div><font =
+">Hi,<div>&nbsp; &nbsp; &nbsp; While trying to build gnutls_2.12.20.bb =
+recipe, with gcc-4.5, using the current poky master, I get the following =
+error:</div><div><br></div><div><div><font class=3D"Apple-style-span" =
+face=3D"Monaco" size=3D"2">| In file included from =
+gnutlsxx.cpp:5:0:</font></div><div><font class=3D"Apple-style-span" =
+face=3D"Monaco" size=3D"2">| ./includes/gnutls/gnutlsxx.h:4:21: fatal =
+error: exception: No such file or =
+directory</font></div></div><div><br></div><div>The header file is =
+located under the following folder</div><div><br></div><div><font =
 class=3D"Apple-style-span" face=3D"Monaco" =
-size=3D"2">PREFERRED_PROVIDER_eglibc =3D ""</font></div><div><font =
+size=3D"2">/tool/yocto/poky/build/tmp/work/ppc440-poky-linux/gnutls-2.12.2=
+0-r8.3/gnutls-2.12.20/lib/includes/gnutls</font></div><div><br></div><div>=
+how do I modify the recipe, so that it prefixes the <font =
+class=3D"Apple-style-span" color=3D"#ff221b">lib</font> folder, to the =
+patch so that it can properly locate it =
+under</div><div><br></div><div><font class=3D"Apple-style-span" =
+face=3D"Monaco" size=3D"2">./<font class=3D"Apple-style-span" =
+color=3D"#ff221b">lib</font>/includes/gnutls/</font></div><div><br></div><=
+div>instead of&nbsp;</div><div><br></div><div><font =
 class=3D"Apple-style-span" face=3D"Monaco" =
-size=3D"2">PREFERRED_PROVIDER_virtual/libc =3D ""</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" =
-size=3D"2">PREFERRED_PROVIDER_virtual/libintl =3D =
-""</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
-size=3D"2">PREFERRED_PROVIDER_virtual/libiconv =3D =
-""</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
-size=3D"2">PREFERRED_PROVIDER_gdbserver =3D ""</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" =
-size=3D"2">PREFERRED_PROVIDER_virtual/gettext =3D =
-""</font></div></div><div><br></div></div></blockquote><br></div><div>I =
-found the solution for this one.&nbsp;</div><div><br></div><div>The =
-defaults are specified in the =
-poky/meta/conf/distro/include/tcmode-default.inc =
-file.</div><div><br></div><div>What was happening is that when I set a =
-couple of virual providers explicitly, I always ended up missing a =
-couple, and it was taking the gcc-4.7.1 related recipes, because the =
-over-rides weren't complete. the tcmode-default.inc file has the full =
-list of virtual providers for the toolchain, and the best way to set up =
-for an older version of the gcc compiler is to specify just a few =
-variables in the local.conf file as =
-follows:</div><div><br></div><div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2"># Set the gcc toolchain =
-version.</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco"=
- size=3D"2"># Use wildcards %, to match the actual =
-versions.</font></div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2">GCCVERSION =3D "4.5%"</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">SDKGCCVERSION =3D =
-"${GCCVERSION}"</font></div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2">BINUVERSION =3D "2.22"</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">EGLIBCVERSION =3D =
-"2.16"</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
-size=3D"2">UCLIBCVERSION =3D "0.9.33"</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">LINUXLIBCVERSION =3D=
- "3.3.3"</font></div></div><div><br></div><div>Best =
-regards,</div><div><br></div><div>Elvis =
-Dowson</div><br></div></body></html>=
+size=3D"2">./includes/gnutls/</font></div><div><br></div><div>Best =
+regards,</div><div><br></div><div>Elvis Dowson</div></body></html>=
 
---Apple-Mail=_165BA026-443C-4119-89E6-3D9BD4FA442D--
+--Apple-Mail=_C65AB76E-FB62-4E21-B283-B2A67D01330B--
