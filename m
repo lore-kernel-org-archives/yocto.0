@@ -1,32 +1,33 @@
-Return-Path: <elvis.dowson@gmail.com>
-Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
-	[209.85.160.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AFF18E013F7
-	for <yocto@yoctoproject.org>; Sat, 11 Aug 2012 03:42:10 -0700 (PDT)
-Received: by pbbrp16 with SMTP id rp16so3920010pbb.35
-	for <yocto@yoctoproject.org>; Sat, 11 Aug 2012 03:42:10 -0700 (PDT)
+Return-Path: <twoerner@gmail.com>
+Received: from mail-lb0-f176.google.com (mail-lb0-f176.google.com
+	[209.85.217.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DBF96E013F7
+	for <yocto@yoctoproject.org>; Sat, 11 Aug 2012 06:10:04 -0700 (PDT)
+Received: by lboi15 with SMTP id i15so1516798lbo.35
+	for <yocto@yoctoproject.org>; Sat, 11 Aug 2012 06:10:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:content-type:subject:date:message-id:to:mime-version:x-mailer;
-	bh=xQEcWJkXLRFdIzOFoDuSjBJeHWjtPfE9RzHZgGABQl8=;
-	b=Rpl8nVSC/ENPF4EsNgssTK/OY/3fRaBeslMtH9rXRbRn9ICjrMbLN0hT9+iHbFp5Dk
-	gwssiQN98RxpIC3Ok84Azj3WMPnejvCfwECYhMKB4S+DimRnDk3mZeMS8Tt7kciZkHFR
-	AOhAfLb8bBLruI3xeXWzwXhmeGD3Do/RsvBSvxtzyNeLUE8ojG0DUOW2ClKrR2ktqJSR
-	Mgy5Ty3q4cPMMauCcjigmG7Dp2V7WfPfmdfrB3LsDUT+6Yls2A4D/QAj3u6PydN/gGQT
-	C+3akb9HaZJlroa79mec32bOG0wWH8DqyniBXkD1C+QWe75+vhwazZQCKFFD5SgQ7XKL
-	3Xfg==
-Received: by 10.68.226.193 with SMTP id ru1mr4903152pbc.157.1344681730378;
-	Sat, 11 Aug 2012 03:42:10 -0700 (PDT)
-Received: from [192.168.1.101] ([94.205.108.162])
-	by mx.google.com with ESMTPS id op10sm1168971pbc.75.2012.08.11.03.42.08
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Sat, 11 Aug 2012 03:42:09 -0700 (PDT)
-From: Elvis Dowson <elvis.dowson@gmail.com>
-Date: Sat, 11 Aug 2012 14:42:05 +0400
-Message-Id: <69899E75-819B-481C-BEDD-949A5490F1E4@gmail.com>
-To: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-Mime-Version: 1.0 (Apple Message framework v1278)
-X-Mailer: Apple Mail (2.1278)
-Subject: gcc virtual provider settings
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=kdb63TxcAamaAkQRdqtWabsT1RUJPQ5Rc+cE6VJJU/Q=;
+	b=CZp/rYveoFtPpsCFNLvCCF0GQSADlXuMt4BVZQ85L2flMnir4qJsVWcZws091xUwQn
+	jSZnBvnU+cyAOsQmnaNXjaU7ksMa9hknnuX5Vz5gq2yWH0uW1yFayBe0aBBnqAahqpgg
+	qtz/TBYZP1gS+bxAm8bgQE+Gc1ngcYsMszIOhoAKA1dwwwwM3bxsvFq/0Fitj8enPP6S
+	0ogTRGPT8VUsr2x4eoJhmR1JxVPxFww2rllFYmsAcWB10hQnKNFs8t47zyg9xc8b5YlA
+	s0GMMhFarZr8FdPy1GOiY/i4aXCyN+NnnejJanu4Sy0Sv6tAEVSELNaCRiUjTa0uTBfv
+	TGbw==
+MIME-Version: 1.0
+Received: by 10.112.88.106 with SMTP id bf10mr3780397lbb.43.1344690602925;
+	Sat, 11 Aug 2012 06:10:02 -0700 (PDT)
+Received: by 10.112.21.9 with HTTP; Sat, 11 Aug 2012 06:10:02 -0700 (PDT)
+In-Reply-To: <C6510F6D410BB64A8C15398EDC6B847C46ACEEE4@ORSMSX101.amr.corp.intel.com>
+References: <CAHUNapTBvghatM8xxnuCMPSkFZzS4_ssiU1b3TXvWk1SR74Qug@mail.gmail.com>
+	<C6510F6D410BB64A8C15398EDC6B847C46ACEEE4@ORSMSX101.amr.corp.intel.com>
+Date: Sat, 11 Aug 2012 09:10:02 -0400
+Message-ID: <CAHUNapTvHqMAQEh75V+dMDNGWaqa5WWme9S3e1UAeV5B4Hp6ug@mail.gmail.com>
+From: Trevor Woerner <twoerner@gmail.com>
+To: "Zhang, Jessica" <jessica.zhang@intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Hob workflow
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,82 +39,15 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 11 Aug 2012 10:42:10 -0000
-Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_33F526CF-85ED-4A29-AFC0-05A036392297"
+X-List-Received-Date: Sat, 11 Aug 2012 13:10:05 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
---Apple-Mail=_33F526CF-85ED-4A29-AFC0-05A036392297
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=us-ascii
+On Fri, Aug 10, 2012 at 6:56 PM, Zhang, Jessica <jessica.zhang@intel.com> wrote:
+> 1. hob should save the customization into the project's configuration, instead of using its own configuration saving mechanism.  In this way, people will be able to achieve same customized build result from command line or using hob.
 
-Hi,
-       Where can I find the "virtual provides" for gcc?
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=2934
 
-I'd like to properly fill the following values in my local.conf file, to =
-point it to a locally created gcc_4.5.bb recipe, along with rest, for =
-gcc-cross_4.5.bb, gcc-cross-canadian_4.5.bb, etc.
+> 2. Current "Save template" wording is confusing.
 
-PREFERRED_PROVIDER_virtual/${TARGET_PREFIX}gcc =3D ""
-PREFERRED_PROVIDER_virtual/${TARGET_PREFIX}gcc-initial =3D ""
-PREFERRED_PROVIDER_virtual/${TARGET_PREFIX}gcc-intermediate =3D ""
-PREFERRED_PROVIDER_virtual/${TARGET_PREFIX}g++ =3D ""
-PREFERRED_PROVIDER_virtual/${TARGET_PREFIX}binutils =3D ""
-PREFERRED_PROVIDER_virtual/${TARGET_PREFIX}libc-for-gcc =3D ""
-PREFERRED_PROVIDER_virtual/${TARGET_PREFIX}compilerlibs =3D ""
-PREFERRED_PROVIDER_libgcc =3D ""
-PREFERRED_PROVIDER_eglibc =3D ""
-PREFERRED_PROVIDER_virtual/libc =3D ""
-PREFERRED_PROVIDER_virtual/libintl =3D ""
-PREFERRED_PROVIDER_virtual/libiconv =3D ""
-PREFERRED_PROVIDER_gdbserver =3D ""
-PREFERRED_PROVIDER_virtual/gettext =3D ""
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=2935
 
-Best regards,
-
-Elvis=
-
---Apple-Mail=_33F526CF-85ED-4A29-AFC0-05A036392297
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html;
-	charset=us-ascii
-
-<html><head></head><body style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; -webkit-line-break: after-white-space; =
-">Hi,<div>&nbsp; &nbsp; &nbsp; &nbsp;Where can I find the "virtual =
-provides" for gcc?</div><div><br></div><div>I'd like to properly fill =
-the following values in my local.conf file, to point it to a locally =
-created gcc_4.5.bb recipe, along with rest, for gcc-cross_4.5.bb, =
-gcc-cross-canadian_4.5.bb, etc.</div><div><br></div><div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" =
-size=3D"2">PREFERRED_PROVIDER_virtual/${TARGET_PREFIX}gcc =3D =
-""</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
-size=3D"2">PREFERRED_PROVIDER_virtual/${TARGET_PREFIX}gcc-initial =3D =
-""</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
-size=3D"2">PREFERRED_PROVIDER_virtual/${TARGET_PREFIX}gcc-intermediate =3D=
- ""</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
-size=3D"2">PREFERRED_PROVIDER_virtual/${TARGET_PREFIX}g++ =3D =
-""</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
-size=3D"2">PREFERRED_PROVIDER_virtual/${TARGET_PREFIX}binutils =3D =
-""</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
-size=3D"2">PREFERRED_PROVIDER_virtual/${TARGET_PREFIX}libc-for-gcc =3D =
-""</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
-size=3D"2">PREFERRED_PROVIDER_virtual/${TARGET_PREFIX}compilerlibs =3D =
-""</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
-size=3D"2">PREFERRED_PROVIDER_libgcc =3D ""</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" =
-size=3D"2">PREFERRED_PROVIDER_eglibc =3D ""</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" =
-size=3D"2">PREFERRED_PROVIDER_virtual/libc =3D ""</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" =
-size=3D"2">PREFERRED_PROVIDER_virtual/libintl =3D =
-""</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
-size=3D"2">PREFERRED_PROVIDER_virtual/libiconv =3D =
-""</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
-size=3D"2">PREFERRED_PROVIDER_gdbserver =3D ""</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" =
-size=3D"2">PREFERRED_PROVIDER_virtual/gettext =3D =
-""</font></div></div><div><br></div><div>Best =
-regards,</div><div><br></div><div>Elvis</div></body></html>=
-
---Apple-Mail=_33F526CF-85ED-4A29-AFC0-05A036392297--
