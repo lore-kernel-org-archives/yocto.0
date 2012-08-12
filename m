@@ -1,24 +1,34 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 225BAE0049A
-	for <yocto@yoctoproject.org>; Sun, 12 Aug 2012 06:13:44 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 12 Aug 2012 06:13:42 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.77,756,1336374000"; d="scan'208";a="179950799"
-Received: from unknown (HELO helios.localnet) ([10.252.121.82])
-	by azsmga001.ch.intel.com with ESMTP; 12 Aug 2012 06:13:41 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Trevor Woerner <twoerner@gmail.com>
-Date: Sun, 12 Aug 2012 14:13:40 +0100
-Message-ID: <6260373.pzVKEde8kG@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.9 (Linux/3.2.0-27-generic-pae; KDE/4.9.0; i686; ; )
-In-Reply-To: <CAHUNapRfzWsj1ZzFTZr9-dGCUXbsy+uwvC=J_iC-VnX0dy6ntQ@mail.gmail.com>
-References: <CAHUNapRfzWsj1ZzFTZr9-dGCUXbsy+uwvC=J_iC-VnX0dy6ntQ@mail.gmail.com>
+Return-Path: <kergoth@gmail.com>
+Received: from mail-lpp01m010-f48.google.com (mail-lpp01m010-f48.google.com
+	[209.85.215.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9AAF7E01304
+	for <yocto@yoctoproject.org>; Sun, 12 Aug 2012 09:15:05 -0700 (PDT)
+Received: by lagr15 with SMTP id r15so1827681lag.35
+	for <yocto@yoctoproject.org>; Sun, 12 Aug 2012 09:15:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:sender:in-reply-to:references:from:date
+	:x-google-sender-auth:message-id:subject:to:cc:content-type;
+	bh=2GlnwkjkyXXVJuvhnyzVQKrkWVrd0AYr4Y1R/fqmv38=;
+	b=v79Vp2DPgVoUQlFtRBYPCIslrX0Xhyo+fDZMtZ+4npF+oiaZDzEqVl9ryXyABIWFm+
+	j3ANVg7ezsHCFmh494hpOmQdoZKsYSZ+NTwQ/FodP57o6OqaRvEUtX/V+8OgrpchZI9g
+	JdehHUKkPFVbEV1IUQIqbv02Kel6RplARmzKmewzJGr75At1N4inQTurJyHhhV/3+k3u
+	XvGF3cq65AtWxotQflRzwk1Tu8IkLnHDHvzzgwOQJCnVWTaUPvDqXPsKeR7GPMwhKx1O
+	/iJnS0GfBIbwqvSJmkQBwvwZyypNHwXTx2ouNwMaZEl761lr1pz102b9NPMhELZhu2cP
+	Xnew==
+Received: by 10.112.83.229 with SMTP id t5mr5165831lby.8.1344788104091; Sun,
+	12 Aug 2012 09:15:04 -0700 (PDT)
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: layer.conf: "packages" directory
+Sender: kergoth@gmail.com
+Received: by 10.114.5.104 with HTTP; Sun, 12 Aug 2012 09:14:43 -0700 (PDT)
+In-Reply-To: <194A260C-67A5-4EE5-8F9F-D5DBFB38C2F1@gmail.com>
+References: <194A260C-67A5-4EE5-8F9F-D5DBFB38C2F1@gmail.com>
+From: Chris Larson <clarson@kergoth.com>
+Date: Sun, 12 Aug 2012 09:14:43 -0700
+X-Google-Sender-Auth: LJZqeFPoCYdTApsrwtRtpP43bZU
+Message-ID: <CABcZANkH8v44cc-ecnvOihGBe3v4BWKiosFvuCjAUwui014kzA@mail.gmail.com>
+To: Elvis Dowson <elvis.dowson@gmail.com>
+Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+Subject: Re: Over-riding insane LDFLAGS check
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,45 +40,17 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 12 Aug 2012 13:13:44 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Sun, 12 Aug 2012 16:15:06 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On Sunday 12 August 2012 08:34:36 Trevor Woerner wrote:
-> Hi,
-> 
-> In the Yocto Project Development Manual, section 4.1.2 "Creating Your
-> Own Layer" it shows an example layer.conf file. In this example, right
-> before adding the recipes to BBFILES, appears the comment: "We have a
-> packages directory". The problem is, I can't find a directory named
-> "packages" anywhere. Is this a historical left-over? Are "packages"
-> and "recipes" synonymous in Yocto parlance?
-> 
-> Many other layer.conf files also contain this wording too:
-> 
-> meta/conf/layer.conf
-> meta-fsl-arm/conf/layer.conf
-> meta-hob/conf/layer.conf
-> meta-intel/meta-n450/conf/layer.conf
-> meta-intel/meta-emenlow/conf/layer.conf
-> meta-intel/meta-tlk/conf/layer.conf
-> meta-intel/conf/layer.conf
-> meta-skeleton/conf/layer.conf
-> meta-xilinx/conf/layer.conf
-> meta-yocto/conf/layer.conf
-> poky-extras/meta-kernel-dev/conf/layer.conf
+On Sun, Aug 12, 2012 at 4:45 AM, Elvis Dowson <elvis.dowson@gmail.com> wrote:
+>        Is there anyway I can over-ride the insane LDFLAGS check for
+> GNU_HASH?
 
-That comment is quite out-of-date it would seem - "packages" was what the 
-"recipes" directory was called (which was subsequently split out into multiple 
-recipes-* directories).
-
-We really ought to fix up these comments, especially in examples.
-
-Cheers,
-Paul
-
+Remove it from ERROR_QA and (optionally) add it to WARN_QA instead. If
+you're using an external toolchain, see what I did at
+https://github.com/MentorEmbedded/meta-sourcery/blob/master/conf/distro/include/tcmode-external-sourcery.inc#L91-98
+for this one.
 -- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
+Christopher Larson
 
