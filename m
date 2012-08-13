@@ -1,29 +1,35 @@
-Return-Path: <David.Nystrom@enea.com>
-Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 124CBE002AB
-	for <yocto@yoctoproject.org>; Mon, 13 Aug 2012 06:41:53 -0700 (PDT)
-Received: from [172.16.140.132] (172.16.140.132) by smtp.enea.com
-	(172.21.1.209) with Microsoft SMTP Server id 14.2.298.4;
-	Mon, 13 Aug 2012 15:41:51 +0200
-Message-ID: <50290485.8020205@enea.com>
-Date: Mon, 13 Aug 2012 15:43:33 +0200
-From: =?UTF-8?B?RGF2aWQgTnlzdHLDtm0=?= <david.nystrom@enea.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:14.0) Gecko/20120714 Thunderbird/14.0
+Return-Path: <andrei@gherzan.ro>
+Received: from mail-gh0-f176.google.com (mail-gh0-f176.google.com
+	[209.85.160.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7CEBAE002AB
+	for <yocto@yoctoproject.org>; Mon, 13 Aug 2012 06:51:39 -0700 (PDT)
+Received: by ghbz10 with SMTP id z10so3470759ghb.35
+	for <yocto@yoctoproject.org>; Mon, 13 Aug 2012 06:51:38 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:x-originating-ip:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type:x-gm-message-state;
+	bh=z4sJNWR1yBgdwwCY/B8+HskcLeQ3dSHcKmxKgkzf+KU=;
+	b=IA/VVA9H/B+Vmg8JAJBze6h3F9Lkg84TRczannvsLHIL9lj0/M+rR4774bJWhhcjNd
+	wz1ZxdYCQpoN2VSPIQcXyGmnuUw+zLvtpMJZ7MNiW+qYoKOHt9y03YhROlGx8svWmHWY
+	wrDRKTQQrH0btt+AJIpj4Lc3+SxITzieRXdvOG7B4gGemBfgHsXyqL19PNYQEcW/047D
+	TY8xSzwvkkDHOpR9hoExS8WoLNXlFN7TFJL+rJTBPvj65/o6BamPHS4gvlnh5SOp6ZSL
+	GTxDjzdyPV6Fuw9nGIYoAOQn0Gvbw8VNEDF3ioPk9uGFfjy49Ui8puTAoq3GGc8JDqEO
+	VsuA==
+Received: by 10.42.97.70 with SMTP id m6mr4598857icn.27.1344865898640; Mon, 13
+	Aug 2012 06:51:38 -0700 (PDT)
 MIME-Version: 1.0
-To: <yocto@yoctoproject.org>
-References: <CAEsOVNehMk8dmo2O+MpOfs0JM9OPARB2Jd+dzTFw0g93SHYcyA@mail.gmail.com>
-	<50042C06.70900@linux.intel.com>
-	<CAEsOVNfEw9sDfLVGCAM6AwQjzGrVNxuvrL4vcS=1kDEMaePK3g@mail.gmail.com>
-	<50043429.4070204@linux.intel.com>
-	<CAEsOVNf-_+hca=qhXGjBiOYRn77-duCYoiTVj5HrYyGTzYZYHQ@mail.gmail.com>
-	<CDED78A957032E45B3239CDDA7642D151C8BF274@ORSMSX105.amr.corp.intel.com>
-	<CAEsOVNfa=eM0FsGp=6EiizOOgz6y4+uKM7dq0Sr41xR4DprcsQ@mail.gmail.com>
-	<5005D6D1.4010006@ti.com>
-	<CAEsOVNfivJYXpHOkby07M+iw2mSoseuYY2eTrdzh=4gZEic4jw@mail.gmail.com>
-In-Reply-To: <CAEsOVNfivJYXpHOkby07M+iw2mSoseuYY2eTrdzh=4gZEic4jw@mail.gmail.com>
-X-Originating-IP: [172.16.140.132]
-Subject: Re: edison/denzil patches (post-1.1.2 and 1.2.1)
+Received: by 10.64.63.50 with HTTP; Mon, 13 Aug 2012 06:51:18 -0700 (PDT)
+X-Originating-IP: [89.121.200.106]
+In-Reply-To: <5029026B.90602@communistcode.co.uk>
+References: <5029026B.90602@communistcode.co.uk>
+From: Andrei Gherzan <andrei@gherzan.ro>
+Date: Mon, 13 Aug 2012 16:51:18 +0300
+Message-ID: <CAK18fxEWCkDGeG=TWnS-YKUQdwp+bQLkFGDD3cPwWp96ghRt6w@mail.gmail.com>
+To: ml@communistcode.co.uk
+X-Gm-Message-State: ALoCoQm8Lhk/AeVnlG1wV8zAWeEQqP0KLrXMiZjmS8K3ws24WJLlvGah9SbUgYHlm1UuzbbrLO2u
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Raspberry Pi do_fetch failure
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,120 +41,87 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 13 Aug 2012 13:41:54 -0000
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 13 Aug 2012 13:51:39 -0000
+Content-Type: multipart/alternative; boundary=20cf303bfbe028b46104c725feee
 
-On 07/23/2012 09:59 PM, McClintock Matthew-B29882 wrote:
-> On Tue, Jul 17, 2012 at 4:19 PM, William Mills <wmills@ti.com> wrote:
->>
->> On 07/17/2012 04:43 PM, McClintock Matthew-B29882 wrote:
->>> On Tue, Jul 17, 2012 at 3:18 PM, Stewart, David C
->>> <david.c.stewart@intel.com>  wrote:
->>>> Hey Matthew -
->>>>
->>>>> From: yocto-bounces@yoctoproject.org [mailto:yocto-
->>>>> bounces@yoctoproject.org] On Behalf Of McClintock Matthew-B29882
->>>>> Sent: Monday, July 16, 2012 9:01 AM
->>>>> I understand. I'm fine with adding stuff to the edison branch for now
->>>>> and we can worry about another official release sometime in the future
->>>>> (or never). I'm mostly wanting a place I can tell people to get the
->>>>> (working) code from for our targets. And ideally it's on
->>>>> yoctoproject.org and not github.com or git.fsl.com
->>>> This comes down to a resource trade-off, which is why I'm replying. :-)
->>>>
->>>> As an open source project and not a product, we have to set some
->>>> boundaries on how long we will put effort on a given release. It also seems
->>>> prudent to treat our release branches consistently as well. Besides tagging
->>>> branches when we release them, I think we want to leave the head of the
->>>> release branches in some known good state. That known good state has always
->>>> been "passed our release criteria" which includes QA, release notes, etc.
->>> This is coming up on a year old, and we released our SDK based off
->>> edison late too so that eats up some of the time that this release was
->>> officially supported. But I would encourage us to support releases for
->>> more than 1 year given the typical embedded product development life
->>> cycle - and support can be arbitrary, I'm not 100% sure it should mean
->>> it's been through a full QA process... but maybe it does too. Maybe we
->>> should time the releases too so they are 4 and 8 months after the
->>> release to get max overlap for that full year.
->>>
->>>> So what if we create a separate branch off of edison, something like
->>>> edison-fsl? Then you could base your patches against it, but we leave edison
->>>> in the known good state?
->>> That's perfectly fine with me. See my other suggestion below too.
->>
->> Each company/group still using an old release could create its own branch as
->> you suggest.  However, it might make sense to create a generic branch of
->> branch so any remaining stranglers could attempt to cooperate even w/o
->> official yocto-project resources.
->>
->> e.g. edison-community-maint
->>
->>
->>
->>>>> Just for some more context, we just release our SDK off of edison and
->>>>> I expect plenty of activity around bugfixes and back porting commits.
->>>>> I would like this work to be available to all attempting to build
->>>>> edison as well.
->>>> I know... I'm in agony that we have run out of resources to continue to
->>>> put effort into edison (or "Eddie" as I call him now). Hopefully the above
->>>> compromise serves your needs and keeps our resource commitment and known
->>>> good state assumptions in check.
->>>>
->>>> Whatcha think?
->>> I know resources are tight, I also see the appeal of having the head
->>> of edison point at the last release, but... edison proper will miss
->>> out on all our fixes we backport over the next few months as this is
->>> our primary SDK until our next release based off denzil. This does not
->>> seem to be as big as an issue for edison since I don't think many
->>> (any?) others have based an SDK/BSP off this release.
->>>
->>> It may become more prudent for denzil if we have multiple interested
->>> parties in maintaining these older releases for longer... I know I
->>> would like to pull in others fixes for denzil for as long as possible.
->>> But how do these other interested parties initiate a QA cycle within
->>> Yocto? Obviously having done their own QA for their own stuff and the
->>> other interested parties did more QA on the others work but never the
->>> full official Yocto QA cycle?
->>>
->>> Maybe an official strategy for a staging to release branches is in order?
->>>
->>> edison-{staging,experimental,next}
->>>
->> This is another good approach.  However I think after yp has moved on, I
->> doubt there is any resources to promote from the last stage to the
->> "official".
->>
->>
->>> Then folks can possibly see some potential fixes for their issues in
->>> the experimental branch?
->>>
->>> Just sharing my thoughts, I'm not insisting on any particular method
->>> but I would like my edison fixes available somehow on yp.org.
->>>
->>> -M
->>
->> I think Matthew's current need will not be unique.  It would be good to
->> think this through and have a published stand-down policy.
-> Any more comments?
+--20cf303bfbe028b46104c725feee
+Content-Type: text/plain; charset=ISO-8859-1
+
+On Mon, Aug 13, 2012 at 4:34 PM, Jack Mitchell <ml@communistcode.co.uk>wrote:
+
+> Good afternoon everyone,
 >
-> I'm fine with a edison-community branch.
-I think there has to be a common community maint branch, as discussed 
-above, otherwise the good intentions around the layer structure will
-fall apart if (in a worst case scenario) a Yocto OSV has one poky 
-repo/branch per BSP provider. Possibly with conflicting patchsets.
+> I am trying (yet again) to get yocto to build for the Raspberry Pi and I
+> am falling at the do_fetch hurdle on the RasPi kernel.
+>
+>    ERROR: Fetcher failure: Fetch command export HOME="/home/jack";
+>    export SSH_AGENT_PID="1350"; export
+>    SSH_AUTH_SOCK="/home/jack/.**cache/keyring-fjEm9a/ssh"; export
+>    GIT_CONFIG="/home/jack/**Projects/poky-rasp/raspberry/**
+> tmp/sysroots/x86_64-linux/etc/**gitconfig";
+>    export
+>    PATH="/home/jack/Projects/**poky-rasp/scripts:/home/jack/**
+> Projects/poky-rasp/raspberry/**tmp/sysroots/x86_64-linux/usr/**
+> bin/armv6-vfp-poky-linux-**gnueabi:/home/jack/Projects/**
+> poky-rasp/raspberry/tmp/**sysroots/raspberrypi/usr/bin/**
+> crossscripts:/home/jack/**Projects/poky-rasp/raspberry/**
+> tmp/sysroots/x86_64-linux/usr/**sbin:/home/jack/Projects/poky-**
+> rasp/raspberry/tmp/sysroots/**x86_64-linux/usr/bin:/home/**
+> jack/Projects/poky-rasp/**raspberry/tmp/sysroots/x86_64-**
+> linux/sbin:/home/jack/**Projects/poky-rasp/raspberry/**
+> tmp/sysroots/x86_64-linux//**bin:/home/jack/Projects/poky-**
+> rasp/scripts:/home/jack/**Projects/poky-rasp/bitbake/**
+> bin/:/usr/local/bin:/usr/bin:/**bin:/usr/local/sbin:/usr/sbin:**
+> /sbin:/usr/bin/core_perl";
+>    git clone --bare --mirror git://github.com/raspberrypi/**linux.git<http://github.com/raspberrypi/linux.git>
 
-Regarding maintenence resources, I think there are many interested 
-parties to assume maintenance of old community maintained branches in 
-which OSV:s has commitments towards customers against.
 
-Br,
-David
+Does this work in a shell? Just try to clone it on your computer.
 
-> -M
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+ag
+
+--20cf303bfbe028b46104c725feee
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<br><div class=3D"gmail_quote">On Mon, Aug 13, 2012 at 4:34 PM, Jack Mitche=
+ll <span dir=3D"ltr">&lt;<a href=3D"mailto:ml@communistcode.co.uk" target=
+=3D"_blank">ml@communistcode.co.uk</a>&gt;</span> wrote:<br><blockquote cla=
+ss=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;pa=
+dding-left:1ex">
+
+Good afternoon everyone,<br>
+<br>
+I am trying (yet again) to get yocto to build for the Raspberry Pi and I am=
+ falling at the do_fetch hurdle on the RasPi kernel.<br>
+<br>
+=A0 =A0ERROR: Fetcher failure: Fetch command export HOME=3D&quot;/home/jack=
+&quot;;<br>
+=A0 =A0export SSH_AGENT_PID=3D&quot;1350&quot;; export<br>
+=A0 =A0SSH_AUTH_SOCK=3D&quot;/home/jack/.<u></u>cache/keyring-fjEm9a/ssh&qu=
+ot;; export<br>
+=A0 =A0GIT_CONFIG=3D&quot;/home/jack/<u></u>Projects/poky-rasp/raspberry/<u=
+></u>tmp/sysroots/x86_64-linux/etc/<u></u>gitconfig&quot;;<br>
+=A0 =A0export<br>
+=A0 =A0PATH=3D&quot;/home/jack/Projects/<u></u>poky-rasp/scripts:/home/jack=
+/<u></u>Projects/poky-rasp/raspberry/<u></u>tmp/sysroots/x86_64-linux/usr/<=
+u></u>bin/armv6-vfp-poky-linux-<u></u>gnueabi:/home/jack/Projects/<u></u>po=
+ky-rasp/raspberry/tmp/<u></u>sysroots/raspberrypi/usr/bin/<u></u>crossscrip=
+ts:/home/jack/<u></u>Projects/poky-rasp/raspberry/<u></u>tmp/sysroots/x86_6=
+4-linux/usr/<u></u>sbin:/home/jack/Projects/poky-<u></u>rasp/raspberry/tmp/=
+sysroots/<u></u>x86_64-linux/usr/bin:/home/<u></u>jack/Projects/poky-rasp/<=
+u></u>raspberry/tmp/sysroots/x86_64-<u></u>linux/sbin:/home/jack/<u></u>Pro=
+jects/poky-rasp/raspberry/<u></u>tmp/sysroots/x86_64-linux//<u></u>bin:/hom=
+e/jack/Projects/poky-<u></u>rasp/scripts:/home/jack/<u></u>Projects/poky-ra=
+sp/bitbake/<u></u>bin/:/usr/local/bin:/usr/bin:/<u></u>bin:/usr/local/sbin:=
+/usr/sbin:<u></u>/sbin:/usr/bin/core_perl&quot;;<br>
 
 
+=A0 =A0git clone --bare --mirror git://<a href=3D"http://github.com/raspber=
+rypi/linux.git" target=3D"_blank">github.com/raspberrypi/<u></u>linux.git</=
+a></blockquote><div><br></div><div>Does this work in a shell? Just try to c=
+lone it on your computer.=A0</div>
+
+<div><br></div><div>ag</div></div>
+
+--20cf303bfbe028b46104c725feee--
