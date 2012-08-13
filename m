@@ -1,24 +1,35 @@
-Return-Path: <treebody@embedstudy.com>
-Received: from smtpbg56.qq.com (smtpbg56.qq.com [64.71.138.45])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 29923E00283
-	for <yocto@yoctoproject.org>; Mon, 13 Aug 2012 02:42:32 -0700 (PDT)
-X-QQ-SSF: 00000000000000F000000000000000G
-X-HAS-ATTACH: no
-X-QQ-BUSINESS-ORIGIN: 2
-X-Originating-IP: 222.92.156.26
-X-QQ-STYLE: 
-X-QQ-mid: webmail635t1344850944t1313366
-From: "=?gb18030?B?oe7Qx7/Voe4=?=" <treebody@embedstudy.com>
-To: "=?gb18030?B?eW9jdG8=?=" <yocto@yoctoproject.org>
-Mime-Version: 1.0
-Date: Mon, 13 Aug 2012 17:42:24 +0800
-X-Priority: 3
-Message-ID: <tencent_497A3759751BDA08386799DD@qq.com>
-X-QQ-MIME: TCMime 1.0 by Tencent
-X-Mailer: QQMail 2.x
-X-QQ-Mailer: QQMail 2.x
-X-Mailman-Approved-At: Mon, 13 Aug 2012 08:01:23 -0700
-Subject: Question about dependency graphs of building busybox
+Return-Path: <scott.m.rifenbark@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 71B61E0027E
+	for <yocto@yoctoproject.org>; Mon, 13 Aug 2012 08:10:41 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 13 Aug 2012 08:10:40 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.77,761,1336374000"; d="scan'208";a="207666169"
+Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
+	by fmsmga002.fm.intel.com with ESMTP; 13 Aug 2012 08:10:40 -0700
+Received: from orsmsx153.amr.corp.intel.com (10.22.226.247) by
+	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Mon, 13 Aug 2012 08:10:39 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.106]) by
+	ORSMSX153.amr.corp.intel.com ([169.254.13.187]) with mapi id
+	14.01.0355.002; Mon, 13 Aug 2012 08:10:39 -0700
+From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>, Yocto discussion list
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] plans to update yocto dev manual to reflect SSH status
+	in qemu images?
+Thread-Index: AQHNdkgL0z/AOjwIgk+HkXRnE8B8aZdX3m9w
+Date: Mon, 13 Aug 2012 15:10:38 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237946A537E4@ORSMSX101.amr.corp.intel.com>
+References: <alpine.DEB.2.02.1208091156570.3277@oneiric>
+In-Reply-To: <alpine.DEB.2.02.1208091156570.3277@oneiric>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.140]
+MIME-Version: 1.0
+Subject: Re: plans to update yocto dev manual to reflect SSH status in qemu images?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,54 +41,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 13 Aug 2012 09:42:34 -0000
-Content-Type: multipart/alternative;
-	boundary="----=_NextPart_5028CC00_D489B890_310B23FB"
-Content-Transfer-Encoding: 8Bit
+X-List-Received-Date: Mon, 13 Aug 2012 15:10:41 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-------=_NextPart_5028CC00_D489B890_310B23FB
-Content-Type: text/plain;
-	charset="gb18030"
-Content-Transfer-Encoding: base64
+See http://www.yoctoproject.org/docs/latest/dev-manual/dev-manual.html#usin=
+g-pre-built-binaries-and-qemu for some updates that talk about what images =
+use Dropbear.  I need to get some more information from Scott Garman before=
+ fixing the bit about NFS referenced in your archived email discussion.
 
-SGkgYWxsLA0KICAgICBSZWNlbnRseSBJIGFtIGxlYXJuaW5nIHRvIHNlZSBob3cgdGhlIHBv
-a3kgYnVpbGQgYnVzeWJveC5CZWNhdXNlIHRoZXJlIGV4aXN0cyB0b28gbWFueSByZWNpcGVz
-IGFuZCBmaWxlcyByZWxhdGVkLEkgd2FudCB0byBmaW5kIG91dCB0aGUgZGV0YWlsIHByb2Nl
-c3Mgb3IgZGVwZW5kZW5jeSBncmFwaHMgb2YgYnVpbGRpbmcgYnVzeWJveC5BbmQgbm93IEkg
-dXNlICJiaXRiYWtlIC1nIC11IGRlcGV4cCBidXN5Ym94IiAgdG8gc2VlIHRoZSBwcm9jZXNz
-LGJ1dCBpdCBmYWlsZWQgd2hlbiBJIGV4ZWN1dGUgdGhlIGNvbW1hbmQuIEZvbGxvd2luZyBp
-cyB0aGUgbWVzc2FnZSBjb25zb2xlIG91dHB1dCA6DQogIA0KICoqIChiaXRiYWtlOjI0NTQp
-OiBXQVJOSU5HICoqOiBDb21tYW5kIGxpbmUgYGRidXMtbGF1bmNoIC0tYXV0b2xhdW5jaD02
-ODZjMGVjMTZkYTEyNWYxNTY4ZjVkOTkwMDAwMDAwYSAtLWJpbmFyeS1zeW50YXggLS1jbG9z
-ZS1zdGRlcnInIGV4aXRlZCB3aXRoIG5vbi16ZXJvIGV4aXQgDQogICBzdGF0dXMgMTogQXV0
-b2xhdW5jaCBlcnJvcjogWDExIGluaXRpYWxpemF0aW9uIGZhaWxlZC5cbg0KU2VnbWVudGF0
-aW9uIGZhdWx0IChjb3JlIGR1bXBlZCkNCiAgDQogICAgSSB3YW50IHRvIGtvbncgaG93IHRv
-IHNvbHZlIHRoaXMgcHJvYmxlbS5JcyB0aGVyZSBhbnkgZ29vZCBzdWdnZXN0aW9uIHRvIGhl
-bHAgbWUgbGVhcm4gdGhlIGRldGFpbCBwcm9jZXNzIG9mIGJ1aWxkaW5nDQogYnVzeWJveCA/
-DQogICAgVGhhbmtzLA0KICAgICBZdSBMaXU=
+ScottR
 
-------=_NextPart_5028CC00_D489B890_310B23FB
-Content-Type: text/html;
-	charset="gb18030"
-Content-Transfer-Encoding: base64
+-----Original Message-----
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Robert P. J. Day
+Sent: Thursday, August 09, 2012 8:59 AM
+To: Yocto discussion list
+Subject: [yocto] plans to update yocto dev manual to reflect SSH status in =
+qemu images?
 
-PERJVj5IaSBhbGwsPC9ESVY+DQo8RElWPiZuYnNwOyZuYnNwOyZuYnNwOyBSZWNlbnRseSBJ
-IGFtIGxlYXJuaW5nIHRvJm5ic3A7c2VlIGhvdyB0aGUgcG9reSBidWlsZCBidXN5Ym94LkJl
-Y2F1c2UgdGhlcmUgZXhpc3RzIHRvbyBtYW55IHJlY2lwZXMgYW5kIGZpbGVzIHJlbGF0ZWQs
-SSB3YW50IHRvIGZpbmQgb3V0IHRoZSBkZXRhaWwgcHJvY2VzcyBvciBkZXBlbmRlbmN5IGdy
-YXBocyBvZiBidWlsZGluZyBidXN5Ym94LkFuZCBub3cgSSB1c2UgImJpdGJha2UgLWcgLXUg
-ZGVwZXhwIGJ1c3lib3giJm5ic3A7IHRvIHNlZSB0aGUgcHJvY2VzcyxidXQgaXQgZmFpbGVk
-IHdoZW4gSSBleGVjdXRlIHRoZSBjb21tYW5kLiZuYnNwO0ZvbGxvd2luZyZuYnNwO2lzIHRo
-ZSBtZXNzYWdlIGNvbnNvbGUgb3V0cHV0IDo8L0RJVj4NCjxESVY+Jm5ic3A7PC9ESVY+DQo8
-RElWPioqIChiaXRiYWtlOjI0NTQpOiBXQVJOSU5HICoqOiBDb21tYW5kIGxpbmUgYGRidXMt
-bGF1bmNoIC0tYXV0b2xhdW5jaD02ODZjMGVjMTZkYTEyNWYxNTY4ZjVkOTkwMDAwMDAwYSAt
-LWJpbmFyeS1zeW50YXggLS1jbG9zZS1zdGRlcnInIGV4aXRlZCB3aXRoIG5vbi16ZXJvIGV4
-aXQgPC9ESVY+DQo8RElWPiZuYnNwOyBzdGF0dXMgMTogQXV0b2xhdW5jaCBlcnJvcjogWDEx
-IGluaXRpYWxpemF0aW9uIGZhaWxlZC5cbjxCUj5TZWdtZW50YXRpb24gZmF1bHQgKGNvcmUg
-ZHVtcGVkKTwvRElWPg0KPERJVj4mbmJzcDs8L0RJVj4NCjxESVY+Jm5ic3A7Jm5ic3A7IEkg
-d2FudCB0byBrb253IGhvdyB0byBzb2x2ZSB0aGlzIHByb2JsZW0uSXMgdGhlcmUgYW55IGdv
-b2Qgc3VnZ2VzdGlvbiB0byBoZWxwIG1lIGxlYXJuIHRoZSBkZXRhaWwgcHJvY2VzcyBvZiBi
-dWlsZGluZzwvRElWPg0KPERJVj5idXN5Ym94ID88L0RJVj4NCjxESVY+Jm5ic3A7Jm5ic3A7
-IFRoYW5rcyw8L0RJVj4NCjxESVY+Jm5ic3A7Jm5ic3A7Jm5ic3A7IFl1IExpdTwvRElWPg==
 
-------=_NextPart_5028CC00_D489B890_310B23FB--
+  back here:
+
+http://www.mail-archive.com/yocto@yoctoproject.org/msg07820.html
+
+i pointed out that the dev manual doesn't accurately reflect the
+situation with SSH servers in qemu images.  i don't see that anyone's
+updated the manual so i thought i'd be annoying and mention it again.
+
+rday
+
+--=20
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
+
