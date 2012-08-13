@@ -1,37 +1,31 @@
-Return-Path: <ml@communistcode.co.uk>
-Received: from eumx.net (eumx.net [91.82.101.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 740F1E002AC
-	for <yocto@yoctoproject.org>; Mon, 13 Aug 2012 06:59:19 -0700 (PDT)
-Received: from localhost ([127.0.0.1]:41787 helo=eumx.net)
-	by eumx.net with esmtp (Exim 4.72)
-	(envelope-from <ml@communistcode.co.uk>) id 1T0vAs-0002ga-Dn
-	for yocto@yoctoproject.org; Mon, 13 Aug 2012 13:59:18 +0000
-DKIM-Signature: v=1; a=rsa-sha1; c=relaxed; d=eumx.net; h=message-id
-	:date:from:reply-to:mime-version:to:subject:references
-	:in-reply-to:content-type:content-transfer-encoding; s=default;
-	bh=lGhBgTlLeAGspNIIQPCxPjVLqVI=; b=jUeQJnuh3KqMzL+3S0gJSs99W3Rv
-	Il3uiDMYTJ19zC3wrWNyzBB4s0xZsR3JLNlWxCXK8QXzSzTIfPqTFRCm88Vc9XGZ
-	cgs7CUyEBfUejzWle5CMXO16nslo08a38EZDWq3PNOAoxMWcuoGhLksej40bgDzj
-	vaau1nXHf8fHRSQ=
-Received: from [195.171.99.130] (port=54265 helo=[192.168.0.47])
-	by eumx.net with esmtpa (Exim 4.72)
-	(envelope-from <ml@communistcode.co.uk>) id 1T0vAs-0002gW-7L
-	for yocto@yoctoproject.org; Mon, 13 Aug 2012 13:59:18 +0000
-Message-ID: <5029088A.4030909@communistcode.co.uk>
-Date: Mon, 13 Aug 2012 15:00:42 +0100
-From: Jack Mitchell <ml@communistcode.co.uk>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:14.0) Gecko/20120717 Thunderbird/14.0
+Return-Path: <r10kindsofpeople@gmail.com>
+Received: from mail-vb0-f48.google.com (mail-vb0-f48.google.com
+	[209.85.212.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 92A7FE002AC
+	for <yocto@yoctoproject.org>; Mon, 13 Aug 2012 06:59:48 -0700 (PDT)
+Received: by vbme21 with SMTP id e21so4268040vbm.35
+	for <yocto@yoctoproject.org>; Mon, 13 Aug 2012 06:59:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=rg8HwPmaQz3ME1nyj8MM1m6wpO/72WKjKySB8m/0qf8=;
+	b=jUP1+bnDoObkdZhHwkLljB1IL5kE6en1bCmxA3Uw7BFnDrPTS0tMKF4RhOFE3MqPMc
+	UBle5mLFW/8eYk6r3a02nda2dKc/9SlsxLurjeL/g7djeGynvaqKPwcPXpV8PVN4fP+K
+	dygvhw7BzUfxh2CjQHiyv8CGxnCkebNGrPtSSwwh2+LH6XnxtdCkWSVq7PbG5ivm4t58
+	ie+3XVsrNZFBkHnAbVLChIOOFMkqqzIPul4tdni1rBQJC8Z3UNLJfZAS9iyVz5zXCYm5
+	XkoO10GdvzVjZoaLGR1HMmwTPh7OwNuuP2zMpz7F45mNH9YkHvFLeTijWL550aCDw8eh
+	CYsQ==
 MIME-Version: 1.0
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-References: <5029026B.90602@communistcode.co.uk>
-	<CAK18fxEWCkDGeG=TWnS-YKUQdwp+bQLkFGDD3cPwWp96ghRt6w@mail.gmail.com>
-In-Reply-To: <CAK18fxEWCkDGeG=TWnS-YKUQdwp+bQLkFGDD3cPwWp96ghRt6w@mail.gmail.com>
-Subject: Re: Raspberry Pi do_fetch failure
+Received: by 10.52.64.242 with SMTP id r18mr4885872vds.90.1344866387604; Mon,
+	13 Aug 2012 06:59:47 -0700 (PDT)
+Received: by 10.58.64.114 with HTTP; Mon, 13 Aug 2012 06:59:47 -0700 (PDT)
+Date: Mon, 13 Aug 2012 09:59:47 -0400
+Message-ID: <CAE8H0+U_iEesW05u26pMgZX7Tjk=xSuSjcKTefw6e2trOGWZhQ@mail.gmail.com>
+From: r10kindsofpeople <r10kindsofpeople@gmail.com>
+To: yocto@yoctoproject.org
+Subject: core-image-minimal: no valid shadow password
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: ml@communistcode.co.uk
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -40,48 +34,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 13 Aug 2012 13:59:19 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 13 Aug 2012 13:59:48 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On 13/08/12 14:51, Andrei Gherzan wrote:
->
-> On Mon, Aug 13, 2012 at 4:34 PM, Jack Mitchell <ml@communistcode.co.uk 
-> <mailto:ml@communistcode.co.uk>> wrote:
->
->     Good afternoon everyone,
->
->     I am trying (yet again) to get yocto to build for the Raspberry Pi
->     and I am falling at the do_fetch hurdle on the RasPi kernel.
->
->        ERROR: Fetcher failure: Fetch command export HOME="/home/jack";
->        export SSH_AGENT_PID="1350"; export
->        SSH_AUTH_SOCK="/home/jack/.cache/keyring-fjEm9a/ssh"; export
->      
->      GIT_CONFIG="/home/jack/Projects/poky-rasp/raspberry/tmp/sysroots/x86_64-linux/etc/gitconfig";
->        export
->      
->      PATH="/home/jack/Projects/poky-rasp/scripts:/home/jack/Projects/poky-rasp/raspberry/tmp/sysroots/x86_64-linux/usr/bin/armv6-vfp-poky-linux-gnueabi:/home/jack/Projects/poky-rasp/raspberry/tmp/sysroots/raspberrypi/usr/bin/crossscripts:/home/jack/Projects/poky-rasp/raspberry/tmp/sysroots/x86_64-linux/usr/sbin:/home/jack/Projects/poky-rasp/raspberry/tmp/sysroots/x86_64-linux/usr/bin:/home/jack/Projects/poky-rasp/raspberry/tmp/sysroots/x86_64-linux/sbin:/home/jack/Projects/poky-rasp/raspberry/tmp/sysroots/x86_64-linux//bin:/home/jack/Projects/poky-rasp/scripts:/home/jack/Projects/poky-rasp/bitbake/bin/:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/bin/core_perl";
->        git clone --bare --mirror
->     git://github.com/raspberrypi/linux.git
->     <http://github.com/raspberrypi/linux.git>
->
->
-> Does this work in a shell? Just try to clone it on your computer.
->
-> ag
+I've found that if I take core-image-minimal and add a single package
+(iproute2), I can no longer log in as root, getting the message
+"login: no valid shadow password".  Adding the shadow packages didn't
+seem to help.  Sounds like someone else encountered this back in May,
+but there was no published resolution that I could find.
 
-Yes, cloning it now without issues - it took a while to get going and 
-someone has suggested that it might be timing out within bitbake...
+First tried under a Yocto Git master that is getting pretty old at
+this point, then re-tried with a new download of 7.0.1 with the same
+result.  Building for crownbay-noemgd.  Initially built
+core-image-minimal using bitbake command line, and then added the
+package(s) using hob, build package, build image.  Booting off an SDHC
+card, if that matters.
 
-Regards,
+Any suggestions?
 
--- 
-
-   Jack Mitchell (jack@embed.me.uk)
-   Embedded Systems Engineer
-   http://www.embed.me.uk
-
---
-
+John
 
