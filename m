@@ -1,28 +1,36 @@
-Return-Path: <r10kindsofpeople@gmail.com>
-Received: from mail-vb0-f48.google.com (mail-vb0-f48.google.com
-	[209.85.212.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 92A7FE002AC
-	for <yocto@yoctoproject.org>; Mon, 13 Aug 2012 06:59:48 -0700 (PDT)
-Received: by vbme21 with SMTP id e21so4268040vbm.35
-	for <yocto@yoctoproject.org>; Mon, 13 Aug 2012 06:59:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=rg8HwPmaQz3ME1nyj8MM1m6wpO/72WKjKySB8m/0qf8=;
-	b=jUP1+bnDoObkdZhHwkLljB1IL5kE6en1bCmxA3Uw7BFnDrPTS0tMKF4RhOFE3MqPMc
-	UBle5mLFW/8eYk6r3a02nda2dKc/9SlsxLurjeL/g7djeGynvaqKPwcPXpV8PVN4fP+K
-	dygvhw7BzUfxh2CjQHiyv8CGxnCkebNGrPtSSwwh2+LH6XnxtdCkWSVq7PbG5ivm4t58
-	ie+3XVsrNZFBkHnAbVLChIOOFMkqqzIPul4tdni1rBQJC8Z3UNLJfZAS9iyVz5zXCYm5
-	XkoO10GdvzVjZoaLGR1HMmwTPh7OwNuuP2zMpz7F45mNH9YkHvFLeTijWL550aCDw8eh
-	CYsQ==
+Return-Path: <scott.m.rifenbark@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 961D1E002AB
+	for <yocto@yoctoproject.org>; Mon, 13 Aug 2012 07:13:52 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 13 Aug 2012 07:13:52 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.77,759,1336374000"; d="scan'208";a="180010255"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
+	by orsmga001.jf.intel.com with ESMTP; 13 Aug 2012 07:13:52 -0700
+Received: from orsmsx104.amr.corp.intel.com (10.22.225.131) by
+	orsmsx603.amr.corp.intel.com (10.22.226.49) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Mon, 13 Aug 2012 07:13:52 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.106]) by
+	ORSMSX104.amr.corp.intel.com ([169.254.3.210]) with mapi id
+	14.01.0355.002; Mon, 13 Aug 2012 07:13:51 -0700
+From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>, Trevor Woerner
+	<twoerner@gmail.com>
+Thread-Topic: [yocto] layer.conf: "packages" directory
+Thread-Index: AQHNeIbeIvJ1y95mK0aaaKNhw6wznJdWnN8AgAEti9A=
+Date: Mon, 13 Aug 2012 14:13:50 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237946A524E3@ORSMSX101.amr.corp.intel.com>
+References: <CAHUNapRfzWsj1ZzFTZr9-dGCUXbsy+uwvC=J_iC-VnX0dy6ntQ@mail.gmail.com>
+	<6260373.pzVKEde8kG@helios>
+In-Reply-To: <6260373.pzVKEde8kG@helios>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-Received: by 10.52.64.242 with SMTP id r18mr4885872vds.90.1344866387604; Mon,
-	13 Aug 2012 06:59:47 -0700 (PDT)
-Received: by 10.58.64.114 with HTTP; Mon, 13 Aug 2012 06:59:47 -0700 (PDT)
-Date: Mon, 13 Aug 2012 09:59:47 -0400
-Message-ID: <CAE8H0+U_iEesW05u26pMgZX7Tjk=xSuSjcKTefw6e2trOGWZhQ@mail.gmail.com>
-From: r10kindsofpeople <r10kindsofpeople@gmail.com>
-To: yocto@yoctoproject.org
-Subject: core-image-minimal: no valid shadow password
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: layer.conf: "packages" directory
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,23 +42,67 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 13 Aug 2012 13:59:48 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Mon, 13 Aug 2012 14:13:52 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-I've found that if I take core-image-minimal and add a single package
-(iproute2), I can no longer log in as root, getting the message
-"login: no valid shadow password".  Adding the shadow packages didn't
-seem to help.  Sounds like someone else encountered this back in May,
-but there was no published resolution that I could find.
+Paul,=20
 
-First tried under a Yocto Git master that is getting pretty old at
-this point, then re-tried with a new download of 7.0.1 with the same
-result.  Building for crownbay-noemgd.  Initially built
-core-image-minimal using bitbake command line, and then added the
-package(s) using hob, build package, build image.  Booting off an SDHC
-card, if that matters.
+I can fix the manual to say something like this...
 
-Any suggestions?
+"# We have recipe-* directories, add to BBFILES"
 
-John
+Will that work?
+
+-----Original Message-----
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Paul Eggleton
+Sent: Sunday, August 12, 2012 6:14 AM
+To: Trevor Woerner
+Cc: yocto@yoctoproject.org
+Subject: Re: [yocto] layer.conf: "packages" directory
+
+On Sunday 12 August 2012 08:34:36 Trevor Woerner wrote:
+> Hi,
+>=20
+> In the Yocto Project Development Manual, section 4.1.2 "Creating Your
+> Own Layer" it shows an example layer.conf file. In this example, right
+> before adding the recipes to BBFILES, appears the comment: "We have a
+> packages directory". The problem is, I can't find a directory named
+> "packages" anywhere. Is this a historical left-over? Are "packages"
+> and "recipes" synonymous in Yocto parlance?
+>=20
+> Many other layer.conf files also contain this wording too:
+>=20
+> meta/conf/layer.conf
+> meta-fsl-arm/conf/layer.conf
+> meta-hob/conf/layer.conf
+> meta-intel/meta-n450/conf/layer.conf
+> meta-intel/meta-emenlow/conf/layer.conf
+> meta-intel/meta-tlk/conf/layer.conf
+> meta-intel/conf/layer.conf
+> meta-skeleton/conf/layer.conf
+> meta-xilinx/conf/layer.conf
+> meta-yocto/conf/layer.conf
+> poky-extras/meta-kernel-dev/conf/layer.conf
+
+That comment is quite out-of-date it would seem - "packages" was what the=20
+"recipes" directory was called (which was subsequently split out into multi=
+ple=20
+recipes-* directories).
+
+We really ought to fix up these comments, especially in examples.
+
+Cheers,
+Paul
+
+--=20
+
+Paul Eggleton
+Intel Open Source Technology Centre
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
 
