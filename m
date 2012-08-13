@@ -1,38 +1,47 @@
-Return-Path: <andrei@gherzan.ro>
+Return-Path: <elvis.dowson@gmail.com>
 Received: from mail-yw0-f48.google.com (mail-yw0-f48.google.com
 	[209.85.213.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 693F6E002AB
-	for <yocto@yoctoproject.org>; Mon, 13 Aug 2012 11:59:13 -0700 (PDT)
-Received: by yhfq46 with SMTP id q46so4167202yhf.35
-	for <yocto@yoctoproject.org>; Mon, 13 Aug 2012 11:59:12 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:x-originating-ip:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type:x-gm-message-state;
-	bh=5a8Sis7iWHREJh61R62vmbi5MI+tEHJS4AYLCkIHgqc=;
-	b=IvBj5CXbdgDGkVF16YsnHdh/V9NRaRQ00iSMigdV0IN172DWiuOlWxVrKZFtJxZcZY
-	W9XW9KpjSnskjfYFue8LG1/2KcMUBTdSJ1IxOYsYNtH0tc7bSqi2yMZL8Nt42Stb9oN5
-	MSDthGk2IcbQqTO6rVMyAdT/QO4pBVQ7uL6DqhMHbijxKKQsL7/kbjU1tsEbScl2R+Ln
-	YmBmyGtJdU1jgSr2Th17DEOfxCA6p8mOLve+RWAxt2o4xqb6IBUAQuqN3i/op44To3V7
-	ixGggkWl09hTh/4zM1IJhDn/R5e990UYzows71rMOsjSPGRl706oyd9nswiNQMZ3rajA
-	ZMXQ==
-Received: by 10.50.46.232 with SMTP id y8mr6813291igm.57.1344884352516; Mon,
-	13 Aug 2012 11:59:12 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.64.63.50 with HTTP; Mon, 13 Aug 2012 11:58:52 -0700 (PDT)
-X-Originating-IP: [89.121.200.106]
-In-Reply-To: <7CF86E24-B6F0-4B99-BBB2-7E9BB4C96F0B@keylevel.com>
-References: <5029026B.90602@communistcode.co.uk>
-	<CAK18fxEWCkDGeG=TWnS-YKUQdwp+bQLkFGDD3cPwWp96ghRt6w@mail.gmail.com>
-	<5029088A.4030909@communistcode.co.uk>
-	<7CF86E24-B6F0-4B99-BBB2-7E9BB4C96F0B@keylevel.com>
-From: Andrei Gherzan <andrei@gherzan.ro>
-Date: Mon, 13 Aug 2012 21:58:52 +0300
-Message-ID: <CAK18fxHooAxhXxLBgytn5RuyxT2_UqoVoyMk6v+3uO73_xBrwg@mail.gmail.com>
-To: Chris Tapp <opensource@keylevel.com>
-X-Gm-Message-State: ALoCoQlJcNfJEY6mSmsuZ/+nc7hlzfH8Wlh08C22N1oVBvwK4YXXziOzZjWaZLWZYyngk3ZpCdoM
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Raspberry Pi do_fetch failure
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 94EB5E003C8
+	for <yocto@yoctoproject.org>; Mon, 13 Aug 2012 13:16:51 -0700 (PDT)
+Received: by yhfq46 with SMTP id q46so4288876yhf.35
+	for <yocto@yoctoproject.org>; Mon, 13 Aug 2012 13:16:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=subject:mime-version:content-type:from:in-reply-to:date:cc
+	:message-id:references:to:x-mailer;
+	bh=uyp+o7XVXBaCB/y39fWABVdz0xyP5pQW9FY7uiWN9Ls=;
+	b=C6tbSvKAnZuYjhZU6Cp4sgt+3oozvO8FqKhV2TlaqFW0VZYuxd1TPqsNsi82r8TklT
+	jbV6nVv+giW91+7grBQ8OpiCBSpotn3dd5kl0xa9zU/lazjaL4xisRo1oKVb/rHgD4My
+	Ix9lFHbju/H9VSfjt+kMElHNLP03UiyAyIz7zlp4hHaVG3WnMUBqsTSaOKdFpReXDoBB
+	Vg+huzll4F+m9W9hsifjb1TDe6B9dlz5ni0jCsFhGluDN9vaGSFiuTMNgG76rU60P9tU
+	/llTm2lqTTrIbZ2mZpHZ6gyt9KlbVt6F9S3Ok/57pbl+NNxGXZgukQs2ki/Ar0zkRrDi
+	uRsw==
+Received: by 10.66.76.231 with SMTP id n7mr19434200paw.68.1344889010571;
+	Mon, 13 Aug 2012 13:16:50 -0700 (PDT)
+Received: from [192.168.1.101] ([94.205.108.162])
+	by mx.google.com with ESMTPS id pq1sm145182pbb.3.2012.08.13.13.16.47
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Mon, 13 Aug 2012 13:16:49 -0700 (PDT)
+Mime-Version: 1.0 (Apple Message framework v1278)
+From: Elvis Dowson <elvis.dowson@gmail.com>
+In-Reply-To: <CAMKF1sp5hQKC3fEd4TnXHnPMjPyEsCmWHOUuHdd4RLMZMZZb0w@mail.gmail.com>
+Date: Tue, 14 Aug 2012 00:16:19 +0400
+Message-Id: <50739671-4885-4C82-9360-C3376960B165@gmail.com>
+References: <F1A84E50-21BF-4E9B-BC38-545D72F59A70@gmail.com>
+	<50226D44.3070503@mindchasers.com>
+	<CAEsOVNcYoCPaT-uRFw1tzggABncZAKL+U17fYkbi_fOgdJ5CtQ@mail.gmail.com>
+	<5022CDAD.5020309@mindchasers.com>
+	<CAEsOVNeyn9OQQvk-Z8V0eax5sjSSwHCkuDgd3yLu60VTsSqNSA@mail.gmail.com>
+	<ADE9BE2D-CF83-4389-9262-B628780B1DD4@gmail.com>
+	<AE25B08B-9B55-4EBA-B39B-2BE263109AA7@gmail.com>
+	<E1905E17-0DE0-46BD-B6CF-CD5B87BE816C@gmail.com>
+	<D5CC2FFB-E56B-41B1-BC70-9DFC41F54988@gmail.com>
+	<CAMKF1soVRDxAQ86HPpPMEB9WL142HCWkOHVqXhGQSN9b4290UQ@mail.gmail.com>
+	<651EC518-2C02-4A13-8AE7-0D118BCB3719@gmail.com>
+	<CAMKF1sp5hQKC3fEd4TnXHnPMjPyEsCmWHOUuHdd4RLMZMZZb0w@mail.gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
+X-Mailer: Apple Mail (2.1278)
+Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+Subject: Re: Unable to get serial console login prompt - PowerPC 440 Virtex 5 processor
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,143 +53,214 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 13 Aug 2012 18:59:13 -0000
-Content-Type: multipart/alternative; boundary=14dae9340cbb18824504c72a4a7c
+X-List-Received-Date: Mon, 13 Aug 2012 20:16:51 -0000
+Content-Type: multipart/alternative;
+	boundary="Apple-Mail=_1DDCEBB6-87A6-4ACD-A7E1-A461FE732A84"
 
---14dae9340cbb18824504c72a4a7c
-Content-Type: text/plain; charset=ISO-8859-1
+--Apple-Mail=_1DDCEBB6-87A6-4ACD-A7E1-A461FE732A84
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=us-ascii
 
-On Mon, Aug 13, 2012 at 7:38 PM, Chris Tapp <opensource@keylevel.com> wrote=
-:
+Hi Khem,
 
-> On 13 Aug 2012, at 15:00, Jack Mitchell wrote:
->
-> > On 13/08/12 14:51, Andrei Gherzan wrote:
-> >>
-> >> On Mon, Aug 13, 2012 at 4:34 PM, Jack Mitchell <ml@communistcode.co.uk=
-<mailto:
-> ml@communistcode.co.uk>> wrote:
-> >>
-> >>    Good afternoon everyone,
-> >>
-> >>    I am trying (yet again) to get yocto to build for the Raspberry Pi
-> >>    and I am falling at the do_fetch hurdle on the RasPi kernel.
-> >>
-> >>       ERROR: Fetcher failure: Fetch command export HOME=3D"/home/jack"=
-;
-> >>       export SSH_AGENT_PID=3D"1350"; export
-> >>       SSH_AUTH_SOCK=3D"/home/jack/.cache/keyring-fjEm9a/ssh"; export
-> >>
->  GIT_CONFIG=3D"/home/jack/Projects/poky-rasp/raspberry/tmp/sysroots/x86_6=
-4-linux/etc/gitconfig";
-> >>       export
-> >>
->  PATH=3D"/home/jack/Projects/poky-rasp/scripts:/home/jack/Projects/poky-r=
-asp/raspberry/tmp/sysroots/x86_64-linux/usr/bin/armv6-vfp-poky-linux-gnueab=
-i:/home/jack/Projects/poky-rasp/raspberry/tmp/sysroots/raspberrypi/usr/bin/=
-crossscripts:/home/jack/Projects/poky-rasp/raspberry/tmp/sysroots/x86_64-li=
-nux/usr/sbin:/home/jack/Projects/poky-rasp/raspberry/tmp/sysroots/x86_64-li=
-nux/usr/bin:/home/jack/Projects/poky-rasp/raspberry/tmp/sysroots/x86_64-lin=
-ux/sbin:/home/jack/Projects/poky-rasp/raspberry/tmp/sysroots/x86_64-linux//=
-bin:/home/jack/Projects/poky-rasp/scripts:/home/jack/Projects/poky-rasp/bit=
-bake/bin/:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr=
-/bin/core_perl";
-> >>       git clone --bare --mirror
-> >>    git://github.com/raspberrypi/linux.git
-> >>    <http://github.com/raspberrypi/linux.git>
-> >>
-> >>
-> >> Does this work in a shell? Just try to clone it on your computer.
-> >>
-> >> ag
-> >
-> > Yes, cloning it now without issues - it took a while to get going and
-> someone has suggested that it might be timing out within bitbake...
->
->
-> I've had similar issues in the past that seemed to be caused by Github. I=
-f
-> I ran a manual fetch I could see errors relating to compressed folders (I
-> think - was a while back) that couldn't be found. It sorted itself after =
-a
-> day or so.
->
->
-I sent an email to github. Will keep you posted.
+On Aug 13, 2012, at 9:01 PM, Khem Raj wrote:
 
-ag
+>> Success, at last!! :-) I switch to eglib 2.13, and everything works =
+fine!!
+>> The problem was with eglibc 2.16. It is broken for powerpc 440 soft =
+float,
+>> not sure if the same situation manifests for other target =
+architectures as
+>> well.
+>=20
+> OK good. Now we should find what broke eglibc. Did you try 2.15 as
+> well ? Want to make sure how far back it goes.
 
---14dae9340cbb18824504c72a4a7c
-Content-Type: text/html; charset=ISO-8859-1
+I tried with eglibc-2.15 and it's broken for PowerPC 440 soft-float.
+
+zImage starting: loaded at 0x00800000 (sp: 0x017e4fa0)                   =
+ =20
+Allocating 0x54cf4c bytes for kernel ...                                 =
+ =20
+gunzipping (0x00000000 <- 0x0080f000:0x00a1aee0)...done 0x42f600 bytes
+Attached initrd image at 0x00a1b000-0x017e33c3
+initrd head: 0x1f8b0808
+
+Linux/PowerPC load: console=3DttyS0,9600n8 ip=3Doff root=3D/dev/ram rw =
+rootwait init=3D/bin/sh
+Finalizing device tree... flat tree at 0x17f10e0
+ PM: Adding info for No Bus:ttyv9
+[    0.582882] Serial: 8250/16550 driver, 4 ports, IRQ sharing disabled
+[    0.588508] 83e00000.serial: ttyS0 at MMIO 0x83e01003 (irq =3D 20) is =
+a 16550
+[    0.784008] console [ttyS0] enabled
+[    0.829401] brd: module loaded
+[    0.876027] loop: module loaded
+[    0.913302] xsysace 83600000.sysace: Xilinx SystemACE revision 1.0.12
+[    0.990015] xsysace 83600000.sysace: No CF in slot
+[    1.049035] Xilinx SystemACE device driver, major=3D254
+[    1.109979] xilinx_emaclite 81000000.ethernet: Device Tree Probing
+[    1.183493] xilinx_emaclite 81000000.ethernet: error registering MDIO =
+bus
+[    1.264571] xilinx_emaclite 81000000.ethernet: MAC address is now =
+00:0a:35:b7:78:00
+[    1.358238] xilinx_emaclite 81000000.ethernet: Xilinx EmacLite at =
+0x81000000 mapped to 0xD10A0000, irq=3D17
+[    1.473224] xilinx_ps2 81480000.ps2: Device Tree Probing 'ps2'
+[    1.542456] xilinx_ps2 81480000.ps2: Xilinx PS2 at 0x81480000 mapped =
+to 0xd1036000, irq=3D22
+[    1.641839] xilinx_ps2 81481000.ps2: Device Tree Probing 'ps2'
+[    1.711543] xilinx_ps2 81481000.ps2: Xilinx PS2 at 0x81481000 mapped =
+to 0xd1038000, irq=3D23
+[    1.812133] mousedev: PS/2 mouse device common for all mice
+[    1.879716] i2c /dev entries driver
+[    1.921305] Device Tree Probing 'i2c'
+[    1.965584] xilinx-iic #0 at 0x81600000 mapped to 0xD10C0000, irq=3D18
+[    2.043255] TCP cubic registered
+[    2.081065] NET: Registered protocol family 17
+[    2.875069] atkbd serio0: keyboard reset failed on xilinxps2/serio at =
+81480000
+[    3.359365] RAMDISK: gzip image found at block 0
+[    3.883298] input: AT Raw Set 2 keyboard as =
+/devices/plb.0/xps-ps2.1/81481000.ps2/serio1/input/input0
+[    6.351431] EXT2-fs (ram0): warning: mounting unchecked fs, running =
+e2fsck is recommended
+[    6.448811] VFS: Mounted root (ext2 filesystem) on device 1:0.
+[    6.519375] Freeing unused kernel memory: 160k freed
+
+
+I get no login prompt. Therefore, both eglibc-2.15 and 2.16 are broken =
+for PowerPC.=20
+
+At the moment, only eglibc-2.13 works.=20
+
+Has anyone else reported issues with getting a boot or login prompt for =
+other=20
+architectures, like ARM Cortex-A8, etc?
+
+How do you plan on isolating the cause for this issue, for eglibc-2.15?
+
+Best regards,
+
+Elvis Dowson=
+
+--Apple-Mail=_1DDCEBB6-87A6-4ACD-A7E1-A461FE732A84
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=us-ascii
 
-<br><div class=3D"gmail_quote">On Mon, Aug 13, 2012 at 7:38 PM, Chris Tapp =
-<span dir=3D"ltr">&lt;<a href=3D"mailto:opensource@keylevel.com" target=3D"=
-_blank">opensource@keylevel.com</a>&gt;</span> wrote:<br><blockquote class=
-=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padd=
-ing-left:1ex">
+<html><head></head><body style=3D"word-wrap: break-word; =
+-webkit-nbsp-mode: space; -webkit-line-break: after-white-space; ">Hi =
+Khem,<div><br><div><div>On Aug 13, 2012, at 9:01 PM, Khem Raj =
+wrote:</div><br class=3D"Apple-interchange-newline"><blockquote =
+type=3D"cite"><div><blockquote type=3D"cite">Success, at last!! :-) I =
+switch to eglib 2.13, and everything works =
+fine!!<br></blockquote><blockquote type=3D"cite">The problem was with =
+eglibc 2.16. It is broken for powerpc 440 soft =
+float,<br></blockquote><blockquote type=3D"cite">not sure if the same =
+situation manifests for other target architectures =
+as<br></blockquote><blockquote type=3D"cite">well.<br></blockquote><br>OK =
+good. Now we should find what broke eglibc. Did you try 2.15 as<br>well =
+? Want to make sure how far back it =
+goes.<br></div></blockquote></div><br><div>I tried with eglibc-2.15 and =
+it's broken for PowerPC 440 =
+soft-float.</div><div><br></div><div><div><font class=3D"Apple-style-span"=
+ face=3D"Monaco" size=3D"2">zImage starting: loaded at 0x00800000 (sp: =
+0x017e4fa0) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
+&nbsp; &nbsp;&nbsp;</font></div><div><font class=3D"Apple-style-span" =
+face=3D"Monaco" size=3D"2">Allocating 0x54cf4c bytes for kernel ... =
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
+&nbsp;&nbsp;</font></div><div><font class=3D"Apple-style-span" =
+face=3D"Monaco" size=3D"2">gunzipping (0x00000000 &lt;- =
+0x0080f000:0x00a1aee0)...done 0x42f600 bytes</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">Attached initrd =
+image at 0x00a1b000-0x017e33c3</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">initrd head: =
+0x1f8b0808</font></div><div><font class=3D"Apple-style-span" =
+face=3D"Monaco" size=3D"2"><br></font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">Linux/PowerPC =
+load: console=3DttyS0,9600n8 ip=3Doff root=3D/dev/ram rw rootwait =
+init=3D/bin/sh</font></div><div><font class=3D"Apple-style-span" =
+face=3D"Monaco" size=3D"2">Finalizing device tree... flat tree at =
+0x17f10e0</font></div><div><font class=3D"Apple-style-span" =
+face=3D"Monaco" size=3D"2">&nbsp;PM: Adding info for No =
+Bus:ttyv9</font></div><div><font class=3D"Apple-style-span" =
+face=3D"Monaco" size=3D"2">[ &nbsp; &nbsp;0.582882] Serial: 8250/16550 =
+driver, 4 ports, IRQ sharing disabled</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">[ &nbsp; =
+&nbsp;0.588508] 83e00000.serial: ttyS0 at MMIO 0x83e01003 (irq =3D 20) =
+is a 16550</font></div><div><font class=3D"Apple-style-span" =
+face=3D"Monaco" size=3D"2">[ &nbsp; &nbsp;0.784008] console [ttyS0] =
+enabled</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
+size=3D"2">[ &nbsp; &nbsp;0.829401] brd: module =
+loaded</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
+size=3D"2">[ &nbsp; &nbsp;0.876027] loop: module =
+loaded</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
+size=3D"2">[ &nbsp; &nbsp;0.913302] xsysace 83600000.sysace: Xilinx =
+SystemACE revision 1.0.12</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">[ &nbsp; =
+&nbsp;0.990015] xsysace 83600000.sysace: No CF in =
+slot</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
+size=3D"2">[ &nbsp; &nbsp;1.049035] Xilinx SystemACE device driver, =
+major=3D254</font></div><div><font class=3D"Apple-style-span" =
+face=3D"Monaco" size=3D"2">[ &nbsp; &nbsp;1.109979] xilinx_emaclite =
+81000000.ethernet: Device Tree Probing</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">[ &nbsp; =
+&nbsp;1.183493] xilinx_emaclite 81000000.ethernet: error registering =
+MDIO bus</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco"=
+ size=3D"2">[ &nbsp; &nbsp;1.264571] xilinx_emaclite 81000000.ethernet: =
+MAC address is now 00:0a:35:b7:78:00</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">[ &nbsp; =
+&nbsp;1.358238] xilinx_emaclite 81000000.ethernet: Xilinx EmacLite at =
+0x81000000 mapped to 0xD10A0000, irq=3D17</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">[ &nbsp; =
+&nbsp;1.473224] xilinx_ps2 81480000.ps2: Device Tree Probing =
+'ps2'</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
+size=3D"2">[ &nbsp; &nbsp;1.542456] xilinx_ps2 81480000.ps2: Xilinx PS2 =
+at 0x81480000 mapped to 0xd1036000, irq=3D22</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">[ &nbsp; =
+&nbsp;1.641839] xilinx_ps2 81481000.ps2: Device Tree Probing =
+'ps2'</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
+size=3D"2">[ &nbsp; &nbsp;1.711543] xilinx_ps2 81481000.ps2: Xilinx PS2 =
+at 0x81481000 mapped to 0xd1038000, irq=3D23</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">[ &nbsp; =
+&nbsp;1.812133] mousedev: PS/2 mouse device common for all =
+mice</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
+size=3D"2">[ &nbsp; &nbsp;1.879716] i2c /dev entries =
+driver</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
+size=3D"2">[ &nbsp; &nbsp;1.921305] Device Tree Probing =
+'i2c'</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
+size=3D"2">[ &nbsp; &nbsp;1.965584] xilinx-iic #0 at 0x81600000 mapped =
+to 0xD10C0000, irq=3D18</font></div><div><font class=3D"Apple-style-span" =
+face=3D"Monaco" size=3D"2">[ &nbsp; &nbsp;2.043255] TCP cubic =
+registered</font></div><div><font class=3D"Apple-style-span" =
+face=3D"Monaco" size=3D"2">[ &nbsp; &nbsp;2.081065] NET: Registered =
+protocol family 17</font></div><div><font class=3D"Apple-style-span" =
+face=3D"Monaco" size=3D"2">[ &nbsp; &nbsp;2.875069] atkbd serio0: =
+keyboard reset failed on xilinxps2/serio at =
+81480000</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco"=
+ size=3D"2">[ &nbsp; &nbsp;3.359365] RAMDISK: gzip image found at block =
+0</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
+size=3D"2">[ &nbsp; &nbsp;3.883298] input: AT Raw Set 2 keyboard as =
+/devices/plb.0/xps-ps2.1/81481000.ps2/serio1/input/input0</font></div><div=
+><font class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">[ &nbsp; =
+&nbsp;6.351431] EXT2-fs (ram0): warning: mounting unchecked fs, running =
+e2fsck is recommended</font></div><div><font class=3D"Apple-style-span" =
+face=3D"Monaco" size=3D"2">[ &nbsp; &nbsp;6.448811] VFS: Mounted root =
+(ext2 filesystem) on device 1:0.</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">[ &nbsp; =
+&nbsp;6.519375] Freeing unused kernel memory: 160k =
+freed</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
+size=3D"2"><br></font></div><div><br></div></div><div>I get no login =
+prompt. Therefore, both eglibc-2.15 and 2.16 are broken for =
+PowerPC.&nbsp;</div><div><br></div><div>At&nbsp;the moment, only =
+eglibc-2.13 works.&nbsp;</div></div><div><br></div><div>Has anyone else =
+reported&nbsp;issues with getting a boot or login prompt for =
+other&nbsp;</div><div>architectures, like ARM&nbsp;Cortex-A8, =
+etc?</div><div><br></div><div>How do you plan on isolating the cause for =
+this issue, for eglibc-2.15?</div><div><br></div><div>Best =
+regards,</div><div><br></div><div>Elvis Dowson</div></body></html>=
 
-<div class=3D"im">On 13 Aug 2012, at 15:00, Jack Mitchell wrote:<br>
-<br>
-&gt; On 13/08/12 14:51, Andrei Gherzan wrote:<br>
-&gt;&gt;<br>
-&gt;&gt; On Mon, Aug 13, 2012 at 4:34 PM, Jack Mitchell &lt;<a href=3D"mail=
-to:ml@communistcode.co.uk">ml@communistcode.co.uk</a> &lt;mailto:<a href=3D=
-"mailto:ml@communistcode.co.uk">ml@communistcode.co.uk</a>&gt;&gt; wrote:<b=
-r>
-
-
-&gt;&gt;<br>
-&gt;&gt; =A0 =A0Good afternoon everyone,<br>
-&gt;&gt;<br>
-&gt;&gt; =A0 =A0I am trying (yet again) to get yocto to build for the Raspb=
-erry Pi<br>
-&gt;&gt; =A0 =A0and I am falling at the do_fetch hurdle on the RasPi kernel=
-.<br>
-&gt;&gt;<br>
-&gt;&gt; =A0 =A0 =A0 ERROR: Fetcher failure: Fetch command export HOME=3D&q=
-uot;/home/jack&quot;;<br>
-&gt;&gt; =A0 =A0 =A0 export SSH_AGENT_PID=3D&quot;1350&quot;; export<br>
-&gt;&gt; =A0 =A0 =A0 SSH_AUTH_SOCK=3D&quot;/home/jack/.cache/keyring-fjEm9a=
-/ssh&quot;; export<br>
-&gt;&gt; =A0 =A0 =A0 =A0 =A0GIT_CONFIG=3D&quot;/home/jack/Projects/poky-ras=
-p/raspberry/tmp/sysroots/x86_64-linux/etc/gitconfig&quot;;<br>
-&gt;&gt; =A0 =A0 =A0 export<br>
-&gt;&gt; =A0 =A0 =A0 =A0 =A0PATH=3D&quot;/home/jack/Projects/poky-rasp/scri=
-pts:/home/jack/Projects/poky-rasp/raspberry/tmp/sysroots/x86_64-linux/usr/b=
-in/armv6-vfp-poky-linux-gnueabi:/home/jack/Projects/poky-rasp/raspberry/tmp=
-/sysroots/raspberrypi/usr/bin/crossscripts:/home/jack/Projects/poky-rasp/ra=
-spberry/tmp/sysroots/x86_64-linux/usr/sbin:/home/jack/Projects/poky-rasp/ra=
-spberry/tmp/sysroots/x86_64-linux/usr/bin:/home/jack/Projects/poky-rasp/ras=
-pberry/tmp/sysroots/x86_64-linux/sbin:/home/jack/Projects/poky-rasp/raspber=
-ry/tmp/sysroots/x86_64-linux//bin:/home/jack/Projects/poky-rasp/scripts:/ho=
-me/jack/Projects/poky-rasp/bitbake/bin/:/usr/local/bin:/usr/bin:/bin:/usr/l=
-ocal/sbin:/usr/sbin:/sbin:/usr/bin/core_perl&quot;;<br>
-
-
-&gt;&gt; =A0 =A0 =A0 git clone --bare --mirror<br>
-&gt;&gt; =A0 =A0git://<a href=3D"http://github.com/raspberrypi/linux.git" t=
-arget=3D"_blank">github.com/raspberrypi/linux.git</a><br>
-&gt;&gt; =A0 =A0&lt;<a href=3D"http://github.com/raspberrypi/linux.git" tar=
-get=3D"_blank">http://github.com/raspberrypi/linux.git</a>&gt;<br>
-&gt;&gt;<br>
-&gt;&gt;<br>
-&gt;&gt; Does this work in a shell? Just try to clone it on your computer.<=
-br>
-&gt;&gt;<br>
-&gt;&gt; ag<br>
-&gt;<br>
-&gt; Yes, cloning it now without issues - it took a while to get going and =
-someone has suggested that it might be timing out within bitbake...<br>
-<br>
-<br>
-</div>I&#39;ve had similar issues in the past that seemed to be caused by G=
-ithub. If I ran a manual fetch I could see errors relating to compressed fo=
-lders (I think - was a while back) that couldn&#39;t be found. It sorted it=
-self after a day or so.<br>
-
-<br></blockquote><div>=A0</div><div>I sent an email to github. Will keep yo=
-u posted.=A0</div><div><br></div><div>ag</div></div>
-
---14dae9340cbb18824504c72a4a7c--
+--Apple-Mail=_1DDCEBB6-87A6-4ACD-A7E1-A461FE732A84--
