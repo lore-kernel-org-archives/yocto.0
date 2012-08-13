@@ -1,51 +1,36 @@
-Return-Path: <B29882@freescale.com>
-Received: from ch1outboundpool.messaging.microsoft.com
-	(ch1ehsobe003.messaging.microsoft.com [216.32.181.183])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EF136E00346
-	for <yocto@yoctoproject.org>; Mon, 13 Aug 2012 15:24:42 -0700 (PDT)
-Received: from mail34-ch1-R.bigfish.com (10.43.68.230) by
-	CH1EHSOBE011.bigfish.com (10.43.70.61) with Microsoft SMTP Server id
-	14.1.225.23; Mon, 13 Aug 2012 22:24:42 +0000
-Received: from mail34-ch1 (localhost [127.0.0.1])	by mail34-ch1-R.bigfish.com
-	(Postfix) with ESMTP id 2EE223603F2;
-	Mon, 13 Aug 2012 22:24:42 +0000 (UTC)
-X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null); IPV:NLI;
-	H:mail.freescale.net; RD:none; EFVD:NLI
-X-SpamScore: -3
-X-BigFish: VS-3(zz98dI9371I1432I4015Izz1202hzz8275bh8275dhz2dh2a8h668h839h8e2h8e3hf0ah107ah10d2hbe9i)
-Received: from mail34-ch1 (localhost.localdomain [127.0.0.1]) by mail34-ch1
-	(MessageSwitch) id 1344896680931753_26173;
-	Mon, 13 Aug 2012 22:24:40 +0000 (UTC)
-Received: from CH1EHSMHS016.bigfish.com (snatpool3.int.messaging.microsoft.com
-	[10.43.68.227])	by mail34-ch1.bigfish.com (Postfix) with ESMTP id
-	E13A52007D; Mon, 13 Aug 2012 22:24:40 +0000 (UTC)
-Received: from mail.freescale.net (70.37.183.190) by CH1EHSMHS016.bigfish.com
-	(10.43.70.16) with Microsoft SMTP Server (TLS) id 14.1.225.23;
-	Mon, 13 Aug 2012 22:24:40 +0000
-Received: from 039-SN1MPN1-001.039d.mgd.msft.net ([169.254.1.41]) by
-	039-SN1MMR1-005.039d.mgd.msft.net ([::1]) with mapi id 14.02.0298.005;
-	Mon, 13 Aug 2012 17:24:39 -0500
-From: McClintock Matthew-B29882 <B29882@freescale.com>
-To: Vladimir Zapolskiy <vladimir_zapolskiy@mentor.com>
-Thread-Topic: [yocto] [meta-fsl-ppc][PATCH] u-boot: correct path to config
-	files
-Thread-Index: AQHNd0pQ2Rbq5VxZqEWhP91hHCa0eZdYqf2A
-Date: Mon, 13 Aug 2012 22:24:39 +0000
-Message-ID: <CAEsOVNcBRw1YfVd_NB7dWv9n_10pOESwW9OO_a7Msi2Uh-USFQ@mail.gmail.com>
-References: <1344638917-31571-1-git-send-email-vladimir_zapolskiy@mentor.com>
-In-Reply-To: <1344638917-31571-1-git-send-email-vladimir_zapolskiy@mentor.com>
+Return-Path: <song.liu@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4AEDFE00346
+	for <yocto@yoctoproject.org>; Mon, 13 Aug 2012 15:39:58 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 13 Aug 2012 15:39:57 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.77,763,1336374000"; d="scan'208";a="180208397"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
+	by orsmga001.jf.intel.com with ESMTP; 13 Aug 2012 15:39:55 -0700
+Received: from orsmsx152.amr.corp.intel.com (10.22.226.39) by
+	orsmsx603.amr.corp.intel.com (10.22.226.49) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Mon, 13 Aug 2012 15:39:54 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.106]) by
+	ORSMSX152.amr.corp.intel.com ([169.254.8.180]) with mapi id
+	14.01.0355.002; Mon, 13 Aug 2012 15:39:54 -0700
+From: "Liu, Song" <song.liu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Agenda: Yocto Project Technical Team Meeting - Tuesday, August
+	14, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+Thread-Index: AQHNeaSPauzkpYbsBEi6z7R4uJcLSQ==
+Date: Mon, 13 Aug 2012 22:39:54 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A484FF07C@ORSMSX101.amr.corp.intel.com>
+References: <7E680CB2A76BB8438D08CF13C09FC53A4844CAD5@ORSMSX101.amr.corp.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [70.112.201.132]
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-X-OriginatorOrg: freescale.com
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-fsl-ppc][PATCH] u-boot: correct path to config files
+Subject: Agenda: Yocto Project Technical Team Meeting - Tuesday, August 14, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: McClintock Matthew-B29882 <B29882@freescale.com>
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -54,54 +39,133 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 13 Aug 2012 22:24:43 -0000
+X-List-Received-Date: Mon, 13 Aug 2012 22:39:58 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="iso-8859-1"
-Content-ID: <7EA787561628074F8D4071E1F48E22D4@mgd.freescale.com>
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Aug 10, 2012 at 5:48 PM, Vladimir Zapolskiy
-<vladimir_zapolskiy@mentor.com> wrote:
-> The trivial change fixes u-boot compilation task, boot_format utility ins=
-talls
-> board configuration files into a subdirectory of STAGING_DATADIR_NATIVE.
+Agenda:
+=A0
+* Opens collection - 5 min (Song)
+* Yocto 1.3 status  - 10 min (Song/team)
+  https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.3_Status
+* SWAT team rotation: Paul -> Jessica
+* Opens - 10 min
+* Team sharing - 20 min
 
-Applied to meta-fsl-ppc edison, denzil, and master branch.
 
-Thanks,
--M
+-----Original Appointment-----
 
->
-> Signed-off-by: Vladimir Zapolskiy <vladimir_zapolskiy@mentor.com>
-> Cc: Matthew McClintock <msm@freescale.com>
-> ---
->  recipes-kernel/u-boot/u-boot_git.bb |    2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/recipes-kernel/u-boot/u-boot_git.bb b/recipes-kernel/u-boot/=
-u-boot_git.bb
-> index 8ced122..4dfb723 100644
-> --- a/recipes-kernel/u-boot/u-boot_git.bb
-> +++ b/recipes-kernel/u-boot/u-boot_git.bb
-> @@ -59,7 +59,7 @@ do_compile () {
->                                 cp ${S}/${board}/u-boot.bin  ${S}/${board=
-}/${UBOOT_TARGET}.bin
->                         else
->                                 ${STAGING_BINDIR_NATIVE}/boot_format \
-> -                                       ${STAGING_DATADIR_NATIVE}/${BOOTF=
-ORMAT_CONFIG} \
-> +                                       ${STAGING_DATADIR_NATIVE}/boot_fo=
-rmat/${BOOTFORMAT_CONFIG} \
->                                         ${S}/${board}/u-boot.bin -spi ${S=
-}/${board}/${UBOOT_TARGET}.bin
->                         fi
->                 fi
-> --
-> 1.7.10.4
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto=
+
+We encourage people attending the meeting to logon the Yocto IRC chancel du=
+ring the meeting (optional):
+
+Yocto IRC: http://webchat.freenode.net/?channels=3D#yocto
+IRC Tutorial: http://www.irchelp.org/irchelp/irctutorial.html=20
+
+Conference details
+Conference name:=20
+Yocto Technical Team
+Conference date/start time:=20
+Tue Jun 26, 2012 at 10:00 AM Central Daylight Time
+Participants:=20
+30
+Duration:=20
+60 minutes
+Participant passcode:=20
+76994298
+Dial-in number:=20
+1.972.995.7777
+US Toll Free number:=20
+1.877.561.6828
+BlackBerry users, click this link to join your conference as a participant:
+1.972.995.7777x76994298#
+=A0
+Depending on where you are dialing from, either your BlackBerry will pause =
+and enter the passcode automatically or you will be prompted to click again=
+ to dial the passcode.
+
+Local and Global Access Numbers=20
+
+
+Country
+Dial-in number
+Australia:=20
+1800 636 843
+Czech Republic:=20
+242 430 350
+China (Beijing):=20
+From office dial 8-9957777 or 8784277
+Beijing Out of Office dial 5878 4277
+China (Shanghai):=20
+From office dial 8-9957777 or 3073322
+Shanghai Out of Office dial 2307 3322
+China (Shenzen):=20
+From office dial 8-9957777 or 6007877
+Shenzen Out of Office dial 2600 7877
+China (Other Cities):=20
+From IP phone dial 8-9957777
+Other cities - Non IP phone dial 021-23073322
+Denmark:=20
+8060 1400
+Finland:=20
+09 41333477
+France:=20
+0497 275888
+Germany:=20
+08161 803232
+Holland:=20
+030 2417490
+India:=20
+BSNL subscribers use 1800 425 9996 (Toll Free) Airtel subscribers use 0008 =
+009 861 212 (Toll Free) From TI Campus use 89957777 Others use 2509 9555 (L=
+andline within Bangalore) or
+80 2509 9555 (Outside Bangalore)
+Israel:=20
+09 790 6715
+Italy:=20
+039 69061234 (039 is local city code not country code)
+Japan:=20
+From TI Campus use 8 995 7777
+Outside TI use 03 4331 3777
+Malaysia:=20
+From IP phone dial 2643799
+From Kuala Lumpur dial 4264 3799
+Outside Kuala Lumpur dial (03)4264 3799
+Norway:=20
+2 295 8744
+Philippines:=20
+From Baguio City use 4471177
+From Metro Manila area use 8702477
+Singapore:=20
+From IP phone dial 3894777
+Outside TI use 6389 4777
+South Korea:=20
+From IP phone dial 5606998
+From Seoul dial 5606998
+Outside Seoul dial (02)5606998
+Sweden:=20
+08 58755577
+Taiwan:=20
+From IP phone dial 1363
+From Taipei dial 2241 1363
+Outside Taipei dial (02)2241 1363
+Turkey:=20
+Landline Only dial 0811 288 0001
+then enter 877 633 1123
+UK:=20
+01604 663003
+US:=20
+972 995 7777 or 1877 561 6828
+
+Recurring conferences
+First scheduled conference:=20
+Tue Jun 26, 2012
+Recurrence frequency:=20
+Weekly - Every 1 week(s) on Tuesday
+Recurrence ends:=20
+End on Fri Jun 21, 2013, 10:40 AM CDT
+
+
 
 
