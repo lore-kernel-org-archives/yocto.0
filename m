@@ -1,31 +1,24 @@
-Return-Path: <elvis.dowson@gmail.com>
-Received: from mail-yx0-f176.google.com (mail-yx0-f176.google.com
-	[209.85.213.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1DE1CE00346
-	for <yocto@yoctoproject.org>; Mon, 13 Aug 2012 20:24:11 -0700 (PDT)
-Received: by yenm12 with SMTP id m12so4807170yen.35
-	for <yocto@yoctoproject.org>; Mon, 13 Aug 2012 20:24:10 -0700 (PDT)
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-ee0-f48.google.com (mail-ee0-f48.google.com [74.125.83.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E1D39E00346
+	for <yocto@yoctoproject.org>; Mon, 13 Aug 2012 20:52:37 -0700 (PDT)
+Received: by eekd41 with SMTP id d41so1349894eek.35
+	for <yocto@yoctoproject.org>; Mon, 13 Aug 2012 20:52:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=subject:mime-version:content-type:from:in-reply-to:date:cc
-	:content-transfer-encoding:message-id:references:to:x-mailer;
-	bh=TDZzk5i6KufctB/CFb++vMwJmolx7BlQpn6Dg6Q35HA=;
-	b=0eFRe4S5fQZyR3YidZGHgiQSi5sXjavjqqxUHRfZ4aDL1h+0BSXCU7ovkOjrb15hJ1
-	XX/7cji+yr0jWmlxv5oVsuguGfaGhTTVRCjzW+MZpVDHRPQNsvUFSIIECR3zoy1eoLxi
-	xB7kOiz83TOeKPmihhkznST2N0B7gFJG1kHM33yNKT9fPo2AX/RnExY1gAyzJ/vPLi9B
-	Zzi1jO5vwbWvB58j3na4Jwy5Rk+MymzhD2/O52nfyjGgao+66YNqaPg/Ay8483AkCWO5
-	y9i7X6EDUVH7l1BsmXKOwtSMKrXJaFMjU//ix/Xx72mS8D+EaEkdNCAzu/xAub6+FJ+d
-	Wmbg==
-Received: by 10.66.76.9 with SMTP id g9mr27209182paw.62.1344914650104;
-	Mon, 13 Aug 2012 20:24:10 -0700 (PDT)
-Received: from [192.168.1.101] ([94.205.108.162])
-	by mx.google.com with ESMTPS id nk3sm401998pbc.27.2012.08.13.20.24.07
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Mon, 13 Aug 2012 20:24:09 -0700 (PDT)
-Mime-Version: 1.0 (Apple Message framework v1278)
-From: Elvis Dowson <elvis.dowson@gmail.com>
-In-Reply-To: <50739671-4885-4C82-9360-C3376960B165@gmail.com>
-Date: Tue, 14 Aug 2012 07:24:04 +0400
-Message-Id: <3E8B6BA0-C1A9-4861-B1A1-F15BAAB7B3ED@gmail.com>
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=iV+x6k6OwOEJ0Al3ZIY6oQOnywGy1IP7oFOk/XFk76E=;
+	b=kF9TX1hA6WO8OTl9tmfzYu7BzeiQWppwzg6RRZOH8xgYnw3k8zioegRxTGqz/CrXct
+	iY4iFy8+BVBMqR2DyTMNpjDNT3OEJdtszVnNDO67eNIqxtwwh7IvchteIJjisMERhTwJ
+	Z1wLnjT4ka3BXXn8afq+URBJG3yDzFHBF0E6pe8Qm4G/JWNnsyzS0M3nwS/S6DO8Airl
+	nTo1yr0ljVQPUBpnusL9SuEA9DSAWFXOh2b4iqU1YXrGwwc1rLRwFFNQIDtMzwXYdbZC
+	ReHTLusGTOIy8ZUDIW/jP20IQ9HOfxXc0hc2ScwndmB4CplY1V6KULadRBfpATumY8m9
+	WXOg==
+Received: by 10.14.4.201 with SMTP id 49mr7772783eej.0.1344916355939; Mon, 13
+	Aug 2012 20:52:35 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.14.225.6 with HTTP; Mon, 13 Aug 2012 20:52:05 -0700 (PDT)
+In-Reply-To: <3E8B6BA0-C1A9-4861-B1A1-F15BAAB7B3ED@gmail.com>
 References: <F1A84E50-21BF-4E9B-BC38-545D72F59A70@gmail.com>
 	<50226D44.3070503@mindchasers.com>
 	<CAEsOVNcYoCPaT-uRFw1tzggABncZAKL+U17fYkbi_fOgdJ5CtQ@mail.gmail.com>
@@ -39,8 +32,11 @@ References: <F1A84E50-21BF-4E9B-BC38-545D72F59A70@gmail.com>
 	<651EC518-2C02-4A13-8AE7-0D118BCB3719@gmail.com>
 	<CAMKF1sp5hQKC3fEd4TnXHnPMjPyEsCmWHOUuHdd4RLMZMZZb0w@mail.gmail.com>
 	<50739671-4885-4C82-9360-C3376960B165@gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
-X-Mailer: Apple Mail (2.1278)
+	<3E8B6BA0-C1A9-4861-B1A1-F15BAAB7B3ED@gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Mon, 13 Aug 2012 20:52:05 -0700
+Message-ID: <CAMKF1soQ3o7E6h86xbD9Wh8jCGzHEKmvzpwpYXKjePGcQe-+Yg@mail.gmail.com>
+To: Elvis Dowson <elvis.dowson@gmail.com>
 Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
 Subject: Re: Unable to get serial console login prompt - PowerPC 440 Virtex 5 processor
 X-BeenThere: yocto@yoctoproject.org
@@ -54,28 +50,18 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 14 Aug 2012 03:24:11 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 14 Aug 2012 03:52:38 -0000
+Content-Type: text/plain; charset=UTF-8
 
+On Mon, Aug 13, 2012 at 8:24 PM, Elvis Dowson <elvis.dowson@gmail.com> wrote:
+>
+> I tried eglibc-2.13 with the current gcc-4.7 recipe, and that combination doesn't work.
+>
+> I do know that the Denx ELDK used eglibc-2.13 and the gcc-4.6 recipe. The ELDK
+> is based off poky/denzil branch. Only the poky/master branch contains the updated
+> gcc-4.7 & eglibc-2.15 & 2.16 recipes, which are right now broken for powerpc440
+> soft float.
 
-On Aug 14, 2012, at 12:16 AM, Elvis Dowson wrote:
-
-> I get no login prompt. Therefore, both eglibc-2.15 and 2.16 are broken =
-for PowerPC.=20
->=20
-> At the moment, only eglibc-2.13 works.=20
-
-I tried eglibc-2.13 with the current gcc-4.7 recipe, and that =
-combination doesn't work.
-
-I do know that the Denx ELDK used eglibc-2.13 and the gcc-4.6 recipe. =
-The ELDK
-is based off poky/denzil branch. Only the poky/master branch contains =
-the updated
-gcc-4.7 & eglibc-2.15 & 2.16 recipes, which are right now broken for =
-powerpc440=20
-soft float.
-
-Elvis Dowson=
+and how about gcc 4.5 + eglibc 2.16 did you try that ?
+I am not yet sure if we have narrowed it down to one component.
 
