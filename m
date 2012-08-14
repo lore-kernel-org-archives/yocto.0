@@ -1,30 +1,30 @@
 Return-Path: <>
 Received: from mail-gg0-f176.google.com (mail-gg0-f176.google.com
 	[209.85.161.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B05E8E002AC
-	for <yocto@yoctoproject.org>; Mon, 13 Aug 2012 18:50:03 -0700 (PDT)
-Received: by ggke5 with SMTP id e5so3419298ggk.35
-	for <yocto@yoctoproject.org>; Mon, 13 Aug 2012 18:50:03 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 05606E00718
+	for <yocto@yoctoproject.org>; Mon, 13 Aug 2012 18:50:26 -0700 (PDT)
+Received: by mail-gg0-f176.google.com with SMTP id e5so3419298ggk.35
+	for <yocto@yoctoproject.org>; Mon, 13 Aug 2012 18:50:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=from:to:cc:subject:date:message-id:x-mailer;
-	bh=CXcQ7KY5eEdLVGjhNe6nmBFqGoOGsurbsjqbFby3jCQ=;
-	b=Fx7Zc68IhFeCYWaSP5B9DgrJqhTjazxLb8lxxO+GRZsqqVKb7RHlr2XLR859czgYWD
-	jOV9+R1tLJhu3/ErVqGgEwbI6puTTgAQ/wGnPo+40BG7iwYUVvaGW5CBzboljWvnRzGE
-	0m30UIBN2PkvUKE5pbm8nkhNn3PN/4KE0EmI/OtGsnXajLTxU6Q2z2+PTvAJcXqZ71MR
-	oSV6BCu/s3rVaHVa0MBUZtoRSpLU3H3m7we/uep3L5WJl38JEE9q/XHMerkIKBfZertT
-	OOB3+JeD7F4aO9+9hJ8atiSRmJbb6wyI8pmi2sZyk++AkY19mII9H/w27mBh/c9uJ22Q
-	k42Q==
-Received: by 10.101.6.24 with SMTP id j24mr4188715ani.5.1344909003036;
-	Mon, 13 Aug 2012 18:50:03 -0700 (PDT)
+	bh=9hjNF1U4rzKFmsnannpSzG6Agj83fevPDU7SWPYwvxA=;
+	b=rpYKH+zYVOaoxfZSag8zam/7HnpYk17RKvzJAk5UT68t/1oIeCz7O12qbrFbXIt3QJ
+	BdRbk+W2qwoA1zzNKlE+aH7kFo1wI49T9uh3y0hQNGw3tDSUuq3lb1W8D1av9tyrjGXs
+	JN8MZsz9ypbsy4JSHrKujgY2HbPyt6vL1ndJDBH3ZkENYgABqBaySzVWGB7XOllfQ9V4
+	mHWZB1f2zVNOAs4OmlZ6k6gYzdAopmX/Qpr921ob3y+hPbmXbqyYslH9Iln3xaGyHkoW
+	67sZRsvwve9Pbc4QPxdhljpbr1kEHDLr+cgzBgfopkkL+7uE+ISzydwlDKH+nGV9FxyK
+	slMA==
+Received: by 10.236.149.162 with SMTP id x22mr13422546yhj.92.1344909026846;
+	Mon, 13 Aug 2012 18:50:26 -0700 (PDT)
 Received: from localhost.localdomain (dsl-67-55-9-50.acanac.net. [67.55.9.50])
-	by mx.google.com with ESMTPS id t57sm2373324yhg.0.2012.08.13.18.50.00
-	(version=SSLv3 cipher=OTHER); Mon, 13 Aug 2012 18:50:02 -0700 (PDT)
+	by mx.google.com with ESMTPS id h8sm1362835ank.9.2012.08.13.18.50.25
+	(version=SSLv3 cipher=OTHER); Mon, 13 Aug 2012 18:50:26 -0700 (PDT)
 From: Trevor Woerner <twoerner@gmail.com>
 To: yocto@yoctoproject.org
-Date: Mon, 13 Aug 2012 21:49:40 -0400
-Message-Id: <1344908980-5598-1-git-send-email-twoerner@gmail.com>
+Date: Mon, 13 Aug 2012 21:50:19 -0400
+Message-Id: <1344909019-5708-1-git-send-email-twoerner@gmail.com>
 X-Mailer: git-send-email 1.7.10-rc3
-Subject: [PATCH poky] layer.conf: clarify comments
+Subject: [PATCH poky-extras] layer.conf: clarify comments
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,7 +36,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 14 Aug 2012 01:50:03 -0000
+X-List-Received-Date: Tue, 14 Aug 2012 01:50:27 -0000
 
 From: Trevor Woerner <twoerner@gmail.com>
 
@@ -45,77 +45,22 @@ under recipes-*.
 
 Signed-off-by: Trevor Woerner <twoerner@gmail.com>
 ---
- documentation/dev-manual/dev-manual-common-tasks.xml |    2 +-
- meta-hob/conf/layer.conf                             |    2 +-
- meta-skeleton/conf/layer.conf                        |    2 +-
- meta-yocto/conf/layer.conf                           |    2 +-
- meta/conf/layer.conf                                 |    2 +-
- 5 files changed, 5 insertions(+), 5 deletions(-)
+ meta-kernel-dev/conf/layer.conf |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/documentation/dev-manual/dev-manual-common-tasks.xml b/documentation/dev-manual/dev-manual-common-tasks.xml
-index b8708ff..c2b0f7c 100644
---- a/documentation/dev-manual/dev-manual-common-tasks.xml
-+++ b/documentation/dev-manual/dev-manual-common-tasks.xml
-@@ -99,7 +99,7 @@
-      # We have a conf and classes directory, add to BBPATH
-      BBPATH := "${LAYERDIR}:${BBPATH}"
- 
--     # We have a packages directory, add to BBFILES
-+     # We have recipes-* directories, add to BBFILES
-      BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
-                  ${LAYERDIR}/recipes-*/*/*.bbappend"
- 
-diff --git a/meta-hob/conf/layer.conf b/meta-hob/conf/layer.conf
-index 5f5eb82..2f32f53 100644
---- a/meta-hob/conf/layer.conf
-+++ b/meta-hob/conf/layer.conf
-@@ -1,7 +1,7 @@
+diff --git a/meta-kernel-dev/conf/layer.conf b/meta-kernel-dev/conf/layer.conf
+index ea889e8..642d485 100644
+--- a/meta-kernel-dev/conf/layer.conf
++++ b/meta-kernel-dev/conf/layer.conf
+@@ -5,7 +5,7 @@ BB_DANGLINGAPPENDS_WARNONLY ?= "true"
  # We have a conf and classes directory, add to BBPATH
  BBPATH := "${BBPATH}:${LAYERDIR}"
- 
--# We have a packages directory, add to BBFILES
-+# We have recipes-* directories, add to BBFILES
- BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb"
- 
- BBFILE_COLLECTIONS += "hob"
-diff --git a/meta-skeleton/conf/layer.conf b/meta-skeleton/conf/layer.conf
-index edb31dd..ad702b6 100644
---- a/meta-skeleton/conf/layer.conf
-+++ b/meta-skeleton/conf/layer.conf
-@@ -1,7 +1,7 @@
- # We have a conf and classes directory, add to BBPATH
- BBPATH := "${BBPATH}:${LAYERDIR}"
- 
--# We have a packages directory, add to BBFILES
-+# We have recipes-* directories, add to BBFILES
- BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb"
- 
- BBFILE_COLLECTIONS += "skeleton"
-diff --git a/meta-yocto/conf/layer.conf b/meta-yocto/conf/layer.conf
-index 7917962..a44eac8 100644
---- a/meta-yocto/conf/layer.conf
-+++ b/meta-yocto/conf/layer.conf
-@@ -1,7 +1,7 @@
- # We have a conf and classes directory, add to BBPATH
- BBPATH := "${LAYERDIR}:${BBPATH}"
  
 -# We have a packages directory, add to BBFILES
 +# We have recipes-* directories, add to BBFILES
  BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
              ${LAYERDIR}/recipes-*/*/*.bbappend"
  
-diff --git a/meta/conf/layer.conf b/meta/conf/layer.conf
-index 090c8e2..a1d75a3 100644
---- a/meta/conf/layer.conf
-+++ b/meta/conf/layer.conf
-@@ -1,6 +1,6 @@
- # We have a conf and classes directory, add to BBPATH
- BBPATH .= ":${LAYERDIR}"
--# We have a packages directory, add to BBFILES
-+# We have recipes-* directories, add to BBFILES
- BBFILES += "${LAYERDIR}/recipes-*/*/*.bb"
- 
- BBFILE_COLLECTIONS += "normal"
 -- 
 1.7.10-rc3
 
