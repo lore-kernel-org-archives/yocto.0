@@ -1,33 +1,30 @@
-Return-Path: <song.liu@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4AEDFE00346
-	for <yocto@yoctoproject.org>; Mon, 13 Aug 2012 15:39:58 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 13 Aug 2012 15:39:57 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.77,763,1336374000"; d="scan'208";a="180208397"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
-	by orsmga001.jf.intel.com with ESMTP; 13 Aug 2012 15:39:55 -0700
-Received: from orsmsx152.amr.corp.intel.com (10.22.226.39) by
-	orsmsx603.amr.corp.intel.com (10.22.226.49) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Mon, 13 Aug 2012 15:39:54 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.106]) by
-	ORSMSX152.amr.corp.intel.com ([169.254.8.180]) with mapi id
-	14.01.0355.002; Mon, 13 Aug 2012 15:39:54 -0700
-From: "Liu, Song" <song.liu@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Agenda: Yocto Project Technical Team Meeting - Tuesday, August
-	14, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
-Thread-Index: AQHNeaSPauzkpYbsBEi6z7R4uJcLSQ==
-Date: Mon, 13 Aug 2012 22:39:54 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A484FF07C@ORSMSX101.amr.corp.intel.com>
-References: <7E680CB2A76BB8438D08CF13C09FC53A4844CAD5@ORSMSX101.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
-MIME-Version: 1.0
-Subject: Agenda: Yocto Project Technical Team Meeting - Tuesday, August 14, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+Return-Path: <>
+Received: from mail-gg0-f176.google.com (mail-gg0-f176.google.com
+	[209.85.161.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B05E8E002AC
+	for <yocto@yoctoproject.org>; Mon, 13 Aug 2012 18:50:03 -0700 (PDT)
+Received: by ggke5 with SMTP id e5so3419298ggk.35
+	for <yocto@yoctoproject.org>; Mon, 13 Aug 2012 18:50:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:cc:subject:date:message-id:x-mailer;
+	bh=CXcQ7KY5eEdLVGjhNe6nmBFqGoOGsurbsjqbFby3jCQ=;
+	b=Fx7Zc68IhFeCYWaSP5B9DgrJqhTjazxLb8lxxO+GRZsqqVKb7RHlr2XLR859czgYWD
+	jOV9+R1tLJhu3/ErVqGgEwbI6puTTgAQ/wGnPo+40BG7iwYUVvaGW5CBzboljWvnRzGE
+	0m30UIBN2PkvUKE5pbm8nkhNn3PN/4KE0EmI/OtGsnXajLTxU6Q2z2+PTvAJcXqZ71MR
+	oSV6BCu/s3rVaHVa0MBUZtoRSpLU3H3m7we/uep3L5WJl38JEE9q/XHMerkIKBfZertT
+	OOB3+JeD7F4aO9+9hJ8atiSRmJbb6wyI8pmi2sZyk++AkY19mII9H/w27mBh/c9uJ22Q
+	k42Q==
+Received: by 10.101.6.24 with SMTP id j24mr4188715ani.5.1344909003036;
+	Mon, 13 Aug 2012 18:50:03 -0700 (PDT)
+Received: from localhost.localdomain (dsl-67-55-9-50.acanac.net. [67.55.9.50])
+	by mx.google.com with ESMTPS id t57sm2373324yhg.0.2012.08.13.18.50.00
+	(version=SSLv3 cipher=OTHER); Mon, 13 Aug 2012 18:50:02 -0700 (PDT)
+From: Trevor Woerner <twoerner@gmail.com>
+To: yocto@yoctoproject.org
+Date: Mon, 13 Aug 2012 21:49:40 -0400
+Message-Id: <1344908980-5598-1-git-send-email-twoerner@gmail.com>
+X-Mailer: git-send-email 1.7.10-rc3
+Subject: [PATCH poky] layer.conf: clarify comments
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,133 +36,87 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 13 Aug 2012 22:39:58 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 14 Aug 2012 01:50:03 -0000
 
-Agenda:
-=A0
-* Opens collection - 5 min (Song)
-* Yocto 1.3 status  - 10 min (Song/team)
-  https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.3_Status
-* SWAT team rotation: Paul -> Jessica
-* Opens - 10 min
-* Team sharing - 20 min
+From: Trevor Woerner <twoerner@gmail.com>
 
+The recipes are no longer stored in a "packages" directory but in directories
+under recipes-*.
 
------Original Appointment-----
+Signed-off-by: Trevor Woerner <twoerner@gmail.com>
+---
+ documentation/dev-manual/dev-manual-common-tasks.xml |    2 +-
+ meta-hob/conf/layer.conf                             |    2 +-
+ meta-skeleton/conf/layer.conf                        |    2 +-
+ meta-yocto/conf/layer.conf                           |    2 +-
+ meta/conf/layer.conf                                 |    2 +-
+ 5 files changed, 5 insertions(+), 5 deletions(-)
 
-
-We encourage people attending the meeting to logon the Yocto IRC chancel du=
-ring the meeting (optional):
-
-Yocto IRC: http://webchat.freenode.net/?channels=3D#yocto
-IRC Tutorial: http://www.irchelp.org/irchelp/irctutorial.html=20
-
-Conference details
-Conference name:=20
-Yocto Technical Team
-Conference date/start time:=20
-Tue Jun 26, 2012 at 10:00 AM Central Daylight Time
-Participants:=20
-30
-Duration:=20
-60 minutes
-Participant passcode:=20
-76994298
-Dial-in number:=20
-1.972.995.7777
-US Toll Free number:=20
-1.877.561.6828
-BlackBerry users, click this link to join your conference as a participant:
-1.972.995.7777x76994298#
-=A0
-Depending on where you are dialing from, either your BlackBerry will pause =
-and enter the passcode automatically or you will be prompted to click again=
- to dial the passcode.
-
-Local and Global Access Numbers=20
-
-
-Country
-Dial-in number
-Australia:=20
-1800 636 843
-Czech Republic:=20
-242 430 350
-China (Beijing):=20
-From office dial 8-9957777 or 8784277
-Beijing Out of Office dial 5878 4277
-China (Shanghai):=20
-From office dial 8-9957777 or 3073322
-Shanghai Out of Office dial 2307 3322
-China (Shenzen):=20
-From office dial 8-9957777 or 6007877
-Shenzen Out of Office dial 2600 7877
-China (Other Cities):=20
-From IP phone dial 8-9957777
-Other cities - Non IP phone dial 021-23073322
-Denmark:=20
-8060 1400
-Finland:=20
-09 41333477
-France:=20
-0497 275888
-Germany:=20
-08161 803232
-Holland:=20
-030 2417490
-India:=20
-BSNL subscribers use 1800 425 9996 (Toll Free) Airtel subscribers use 0008 =
-009 861 212 (Toll Free) From TI Campus use 89957777 Others use 2509 9555 (L=
-andline within Bangalore) or
-80 2509 9555 (Outside Bangalore)
-Israel:=20
-09 790 6715
-Italy:=20
-039 69061234 (039 is local city code not country code)
-Japan:=20
-From TI Campus use 8 995 7777
-Outside TI use 03 4331 3777
-Malaysia:=20
-From IP phone dial 2643799
-From Kuala Lumpur dial 4264 3799
-Outside Kuala Lumpur dial (03)4264 3799
-Norway:=20
-2 295 8744
-Philippines:=20
-From Baguio City use 4471177
-From Metro Manila area use 8702477
-Singapore:=20
-From IP phone dial 3894777
-Outside TI use 6389 4777
-South Korea:=20
-From IP phone dial 5606998
-From Seoul dial 5606998
-Outside Seoul dial (02)5606998
-Sweden:=20
-08 58755577
-Taiwan:=20
-From IP phone dial 1363
-From Taipei dial 2241 1363
-Outside Taipei dial (02)2241 1363
-Turkey:=20
-Landline Only dial 0811 288 0001
-then enter 877 633 1123
-UK:=20
-01604 663003
-US:=20
-972 995 7777 or 1877 561 6828
-
-Recurring conferences
-First scheduled conference:=20
-Tue Jun 26, 2012
-Recurrence frequency:=20
-Weekly - Every 1 week(s) on Tuesday
-Recurrence ends:=20
-End on Fri Jun 21, 2013, 10:40 AM CDT
-
-
+diff --git a/documentation/dev-manual/dev-manual-common-tasks.xml b/documentation/dev-manual/dev-manual-common-tasks.xml
+index b8708ff..c2b0f7c 100644
+--- a/documentation/dev-manual/dev-manual-common-tasks.xml
++++ b/documentation/dev-manual/dev-manual-common-tasks.xml
+@@ -99,7 +99,7 @@
+      # We have a conf and classes directory, add to BBPATH
+      BBPATH := "${LAYERDIR}:${BBPATH}"
+ 
+-     # We have a packages directory, add to BBFILES
++     # We have recipes-* directories, add to BBFILES
+      BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
+                  ${LAYERDIR}/recipes-*/*/*.bbappend"
+ 
+diff --git a/meta-hob/conf/layer.conf b/meta-hob/conf/layer.conf
+index 5f5eb82..2f32f53 100644
+--- a/meta-hob/conf/layer.conf
++++ b/meta-hob/conf/layer.conf
+@@ -1,7 +1,7 @@
+ # We have a conf and classes directory, add to BBPATH
+ BBPATH := "${BBPATH}:${LAYERDIR}"
+ 
+-# We have a packages directory, add to BBFILES
++# We have recipes-* directories, add to BBFILES
+ BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb"
+ 
+ BBFILE_COLLECTIONS += "hob"
+diff --git a/meta-skeleton/conf/layer.conf b/meta-skeleton/conf/layer.conf
+index edb31dd..ad702b6 100644
+--- a/meta-skeleton/conf/layer.conf
++++ b/meta-skeleton/conf/layer.conf
+@@ -1,7 +1,7 @@
+ # We have a conf and classes directory, add to BBPATH
+ BBPATH := "${BBPATH}:${LAYERDIR}"
+ 
+-# We have a packages directory, add to BBFILES
++# We have recipes-* directories, add to BBFILES
+ BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb"
+ 
+ BBFILE_COLLECTIONS += "skeleton"
+diff --git a/meta-yocto/conf/layer.conf b/meta-yocto/conf/layer.conf
+index 7917962..a44eac8 100644
+--- a/meta-yocto/conf/layer.conf
++++ b/meta-yocto/conf/layer.conf
+@@ -1,7 +1,7 @@
+ # We have a conf and classes directory, add to BBPATH
+ BBPATH := "${LAYERDIR}:${BBPATH}"
+ 
+-# We have a packages directory, add to BBFILES
++# We have recipes-* directories, add to BBFILES
+ BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
+             ${LAYERDIR}/recipes-*/*/*.bbappend"
+ 
+diff --git a/meta/conf/layer.conf b/meta/conf/layer.conf
+index 090c8e2..a1d75a3 100644
+--- a/meta/conf/layer.conf
++++ b/meta/conf/layer.conf
+@@ -1,6 +1,6 @@
+ # We have a conf and classes directory, add to BBPATH
+ BBPATH .= ":${LAYERDIR}"
+-# We have a packages directory, add to BBFILES
++# We have recipes-* directories, add to BBFILES
+ BBFILES += "${LAYERDIR}/recipes-*/*/*.bb"
+ 
+ BBFILE_COLLECTIONS += "normal"
+-- 
+1.7.10-rc3
 
 
