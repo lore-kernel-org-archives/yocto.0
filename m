@@ -1,26 +1,25 @@
 Return-Path: <dvhart@linux.intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C683CE00769
-	for <yocto@yoctoproject.org>; Wed, 15 Aug 2012 14:25:12 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 15 Aug 2012 14:25:12 -0700
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 88D92E00769
+	for <yocto@yoctoproject.org>; Wed, 15 Aug 2012 15:47:11 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 15 Aug 2012 15:47:09 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.77,774,1336374000"; d="scan'208";a="202058424"
+X-IronPort-AV: E=Sophos;i="4.77,775,1336374000"; d="scan'208";a="134753176"
 Received: from unknown (HELO envy.home) ([10.255.13.30])
-	by fmsmga001.fm.intel.com with ESMTP; 15 Aug 2012 14:25:11 -0700
-Message-ID: <502C1343.4010604@linux.intel.com>
-Date: Wed, 15 Aug 2012 14:23:15 -0700
+	by AZSMGA002.ch.intel.com with ESMTP; 15 Aug 2012 15:47:09 -0700
+Message-ID: <502C2679.1060302@linux.intel.com>
+Date: Wed, 15 Aug 2012 15:45:13 -0700
 From: Darren Hart <dvhart@linux.intel.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:14.0) Gecko/20120717 Thunderbird/14.0
 MIME-Version: 1.0
-To: Paul Gortmaker <paul.gortmaker@windriver.com>
-References: <1343409056-6235-1-git-send-email-paul.gortmaker@windriver.com>
-	<50131526.1030708@linux.intel.com> <502C040D.8000402@windriver.com>
-In-Reply-To: <502C040D.8000402@windriver.com>
+To: Trevor Woerner <twoerner@gmail.com>
+References: <1344909037-5812-1-git-send-email-twoerner@gmail.com>
+In-Reply-To: <1344909037-5812-1-git-send-email-twoerner@gmail.com>
 X-Enigmail-Version: 1.4.3
-Cc: yocto@yoctoproject.org, "Wold, Saul" <saul.wold@intel.com>
-Subject: Re: [PATCH] routerstationpro: move board off 3.0 and onto the 3.4 kernel
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH meta-intel] layer.conf: clarify comments
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,35 +31,20 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 15 Aug 2012 21:25:12 -0000
+X-List-Received-Date: Wed, 15 Aug 2012 22:47:11 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-On 08/15/2012 01:18 PM, Paul Gortmaker wrote:
-> On 12-07-27 06:24 PM, Darren Hart wrote:
->>
->>
->> On 07/27/2012 10:10 AM, Paul Gortmaker wrote:
->>> The updated patch series to support this target is in place
->>> on the BSP specific branch in the 3.4 kernel tree now[1], so
->>> we can move it ahead off of the old 3.0 kernel.
->>>
->>> [1] https://lists.yoctoproject.org/pipermail/linux-yocto/2012-July/000023.html
->>>
->>> Signed-off-by: Paul Gortmaker <paul.gortmaker@windriver.com>
->>
->> Acked-by: Darren Hart <dvhart@linux.intel.com>
+On 08/13/2012 06:50 PM, Trevor Woerner wrote:
+> From: Trevor Woerner <twoerner@gmail.com>
 > 
-> Hi All,
+> The recipes are no longer stored in a "packages" directory but in directories
+> under recipes-*.
 > 
-> Just checking this didn't fall through the cracks since it has
-> been two weeks.
+> Signed-off-by: Trevor Woerner <twoerner@gmail.com>
 
-(Always funny, this time with Saul and RP actually CC'd)
 
-Saul, RP, can one of you pull this in?
-
-Thanks,
+Merged with a minor subject change for clarity, thanks.
 
 -- 
 Darren Hart
