@@ -1,32 +1,32 @@
-Return-Path: <scott.m.rifenbark@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B2CF5E01449
-	for <yocto@yoctoproject.org>; Wed, 15 Aug 2012 13:29:48 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 15 Aug 2012 13:29:48 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.77,774,1336374000"; 
-	d="scan'208,217";a="134709155"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
-	by AZSMGA002.ch.intel.com with ESMTP; 15 Aug 2012 13:29:24 -0700
-Received: from orsmsx103.amr.corp.intel.com (10.22.225.130) by
-	orsmsx603.amr.corp.intel.com (10.22.226.49) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Wed, 15 Aug 2012 13:29:22 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.152]) by
-	ORSMSX103.amr.corp.intel.com ([169.254.2.138]) with mapi id
-	14.01.0355.002; Wed, 15 Aug 2012 13:29:21 -0700
-From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-To: Yocto discussion list <yocto@yoctoproject.org>
-Thread-Topic: Terminology Question for Kernels
-Thread-Index: Ac17JKa6NWhfGICiTM2yiIhmbRJXlw==
-Date: Wed, 15 Aug 2012 20:29:21 +0000
-Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237946A5DAAD@ORSMSX101.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
-MIME-Version: 1.0
-Subject: Terminology Question for Kernels
+Return-Path: <elvis.dowson@gmail.com>
+Received: from mail-yx0-f176.google.com (mail-yx0-f176.google.com
+	[209.85.213.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EA0BAE0144B
+	for <yocto@yoctoproject.org>; Wed, 15 Aug 2012 13:30:23 -0700 (PDT)
+Received: by yenm12 with SMTP id m12so2829924yen.35
+	for <yocto@yoctoproject.org>; Wed, 15 Aug 2012 13:30:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:content-type:subject:date:message-id:to:mime-version:x-mailer;
+	bh=E8694MYar/BwaZAyDzDL9vZ28M7/HKEvzzargWEOfLY=;
+	b=A4HRhk9lJM6hEu7iGwmRvfAewdW3uM2FAPSB758OgNphgFwKyV/Ktdlvjp50UmFtQW
+	CKMbXJrTNAZ6U/v06tfHkVHQ8zGVnujzIZWAtz02WA/PpYUE0rYZcnIsBH88HyuZtvDt
+	L5EIe+YOfQST4lwgJggfBKAW2jKxrWOYb4JYmNgKGVdwbk1PJmqLj7pyDRLWCwEd/4wl
+	2LhOOohPlx8+qFI7ECuP8FZw7z1F3FBk3dlzfHhrHipE62gZhGTx0oiwYgYkXv+U04Yk
+	FGnVAm40buu9wNmmPEyL7mlDZRAoCkIUggbebLPc/BpTKJMYVIf9oD+GDWv74y/Hj5s4
+	QhPg==
+Received: by 10.66.76.231 with SMTP id n7mr27217833paw.68.1345062622411;
+	Wed, 15 Aug 2012 13:30:22 -0700 (PDT)
+Received: from [192.168.1.101] ([94.205.108.162])
+	by mx.google.com with ESMTPS id kt8sm1067420pbc.1.2012.08.15.13.30.20
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Wed, 15 Aug 2012 13:30:21 -0700 (PDT)
+From: Elvis Dowson <elvis.dowson@gmail.com>
+Date: Thu, 16 Aug 2012 00:30:15 +0400
+Message-Id: <1CA12C40-FBBD-4CC7-B45A-5867AB64490A@gmail.com>
+To: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+Mime-Version: 1.0 (Apple Message framework v1278)
+X-Mailer: Apple Mail (2.1278)
+Subject: Procedure to setup icecc for performing a distributed build
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,125 +38,354 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 15 Aug 2012 20:29:48 -0000
-Content-Language: en-US
+X-List-Received-Date: Wed, 15 Aug 2012 20:30:24 -0000
 Content-Type: multipart/alternative;
-	boundary="_000_41DEA4B02DBDEF40A0F3B6D0DDB1237946A5DAADORSMSX101amrcor_"
+	boundary="Apple-Mail=_D1FF4E5C-DDA1-4E15-AE55-0E7D24FB143F"
 
---_000_41DEA4B02DBDEF40A0F3B6D0DDB1237946A5DAADORSMSX101amrcor_
-Content-Type: text/plain; charset="us-ascii"
+--Apple-Mail=_D1FF4E5C-DDA1-4E15-AE55-0E7D24FB143F
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=us-ascii
 
 Hi,
+      I followed these steps to setup and configure icecc and yocto, for =
+performing a distributed build between two Ubuntu 12.04 64-bit machines, =
+with one machine configured as the scheduler and daemon, and the other =
+with only the icecc daemon.
 
-Need some opinions here.... What is the best way to generically refer to on=
-e of our kernels in the source repository area. Right now, they are all gro=
-uped under the heading "Yocto Linux Kernel." They are individually named li=
-nux-yocto-xxxx. In the kernel manual, we refer to them collectively as a "Y=
-octo Project Kernel." I would like to have a single way to reference these =
-kernels we deliver.
+I run a bitbake core-image-minimal, but get no tasks running on the =
+second machine. Processor and CPU utilization is nearly zero, and both =
+machines iceccd.log and icecc_scheduler.log are zero bytes.
 
-Thanks,
-Scott
+Nothing happens when I run the yocto build, and no compilation tasks get =
+distributed to the second machine in the build cluster. I am able to =
+ping them both, however.
 
-Scott Rifenbark
-Intel Corporation
-Yocto Project Documentation
-503.712.2702
-503.341.0418 (cell)
+Step 01.00: Install required packages for performing a distributed =
+build.
+
+Step 01.01: Install icecc on all the machines.
+
+$ sudo apt-get install icecc
+
+On the scheduler machine, type the following commands:
+
+$ sudo gedit /etc/default/icecc
+
+# Defaults for icecc initscript
+# sourced by /etc/init.d/icecc
+START_ICECC=3D"true"
+START_ICECC_SCHEDULER=3D"true"
+
+Configure the build network name:
+
+$ sudo /etc/init.d/icecc stop
+
+$ sudo gedit /etc/init.d/icecc.conf
+
+#
+# Identification for the network the scheduler and daemon run on.
+# You can have several distinct icecc networks in the same LAN
+# for whatever reason.
+#
+# ICECC_NETNAME=3D""
+ICECC_NETNAME=3D"YoctoBuildNetwork"
+
+#
+# If the daemon can't find the scheduler by broadcast (e.g. because
+# of a firewall) you can specify it.
+#
+# ICECC_SCHEDULER_HOST=3D""
+ICECC_SCHEDULER_HOST=3D"eos"
 
 
---_000_41DEA4B02DBDEF40A0F3B6D0DDB1237946A5DAADORSMSX101amrcor_
-Content-Type: text/html; charset="us-ascii"
+Start the scheduler with:
+
+$ sudo /etc/init.d/icecc start
+
+Make sure the service starts at boot time:
+
+$ sudo update-rc.d icecc defaults
+
+Step 02.00: Configure yocto for distributed compilation.
+
+Step 02.01: Modify local.conf
+
+#
+# Parallelism Options
+#
+# These two options control how much parallelism BitBake should use. The =
+first=20
+# option determines how many tasks bitbake should run in parallel:
+#
+BB_NUMBER_THREADS =3D "8"
+#=20
+# The second option controls how many processes make should run in =
+parallel when
+# running compile tasks:
+#
+PARALLEL_MAKE =3D "-j 14"
+
+# Setup yocto to use icecc for distributed compilation.
+INHERIT +=3D "icecc"
+ICECC_PATH =3D "/usr/bin/icecc"
+ICECC_ENV_EXEC =3D =
+"/tool/yocto/poky/build/tmp/work/x86_64-linux/icecc-create-env-native-0.1-=
+r2/icecc-create-env"
+ICECC_USER_CLASS_BL =3D " native"
+
+Copy the icecc-create-env script to the build output staging folder, by =
+running the  icecc-create-env-native.bb recipe.
+
+$ cd /tool/yocto/poky;source oe-init-build-env build
+$ bitbake icecc-create-env-native
+
+The icecc-create-env script will automatically be copied to the build =
+output staging folder.
+
+Step 02.02: Start a bit bake build.
+
+$ bitbake core-image-minimal
+
+
+Best regards,
+
+Elvis Dowson=
+
+--Apple-Mail=_D1FF4E5C-DDA1-4E15-AE55-0E7D24FB143F
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=us-ascii
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi, <o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
-mes New Roman&quot;,&quot;serif&quot;">Need some opinions here.... What is =
-the best way to generically refer to one of our kernels in the source repos=
-itory area. Right now, they are all grouped under the heading
- &quot;Yocto Linux Kernel.&quot; They are individually named linux-yocto-xx=
-xx. In the kernel manual, we refer to them collectively as a &quot;Yocto Pr=
-oject Kernel.&quot; I would like to have a single way to reference these ke=
-rnels we deliver.
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks, <o:p></o:p></p>
-<p class=3D"MsoNormal">Scott<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
-;Arial&quot;,&quot;sans-serif&quot;;color:blue">Scott Rifenbark</span></b><=
-b><span style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-=
-serif&quot;;color:blue"><o:p></o:p></span></b></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:7.5pt;font-family:&quot;Ari=
-al&quot;,&quot;sans-serif&quot;;color:blue">Intel Corporation</span><span s=
-tyle=3D"font-size:7.5pt;font-family:&quot;Times New Roman&quot;,&quot;serif=
-&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:7.5pt;font-family:&quot;Ari=
-al&quot;,&quot;sans-serif&quot;;color:blue">Yocto Project Documentation<o:p=
-></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:7.5pt;font-family:&quot;Ari=
-al&quot;,&quot;sans-serif&quot;;color:blue">503.712.2702</span><span style=
-=3D"font-size:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&qu=
-ot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:7.5pt;font-family:&quot;Ari=
-al&quot;,&quot;sans-serif&quot;;color:blue">503.341.0418 (cell)</span><span=
- style=3D"font-size:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;se=
-rif&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
+<html><head></head><body style=3D"word-wrap: break-word; =
+-webkit-nbsp-mode: space; -webkit-line-break: after-white-space; =
+">Hi,<div>&nbsp; &nbsp; &nbsp; I followed these steps to setup and =
+configure icecc and yocto, for performing a distributed build between =
+two Ubuntu 12.04 64-bit machines, with one machine configured as the =
+scheduler and daemon, and the other with only the icecc =
+daemon.</div><div><br></div><div>I run a bitbake core-image-minimal, but =
+get no tasks running on the second machine. Processor and CPU =
+utilization is nearly zero, and both machines iceccd.log and =
+icecc_scheduler.log are zero bytes.</div><div><br></div><div>Nothing =
+happens when I run the yocto build, and no compilation tasks get =
+distributed to the second machine in the build cluster. I am able to =
+ping them both, however.</div><div><br></div><div><div =
+style=3D"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; =
+margin-left: 0px; font: normal normal normal 12px/normal 'Lucida =
+Grande'; "><b>Step 01.00: Install required packages for performing a =
+distributed build.</b></div><div style=3D"margin-top: 0px; margin-right: =
+0px; margin-bottom: 0px; margin-left: 0px; font: normal normal normal =
+12px/normal 'Lucida Grande'; min-height: 15px; "><br></div><div =
+style=3D"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; =
+margin-left: 0px; font: normal normal normal 12px/normal 'Lucida =
+Grande'; ">Step 01.01: Install icecc on all the machines.</div><div =
+style=3D"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; =
+margin-left: 0px; font: normal normal normal 12px/normal 'Lucida =
+Grande'; min-height: 15px; "><br></div><div style=3D"margin-top: 0px; =
+margin-right: 0px; margin-bottom: 0px; margin-left: 0px; font: normal =
+normal normal 10px/normal Monaco; ">$ sudo apt-get install =
+icecc</div><div style=3D"margin-top: 0px; margin-right: 0px; =
+margin-bottom: 0px; margin-left: 0px; font: normal normal normal =
+12px/normal 'Lucida Grande'; min-height: 15px; "><br></div><div =
+style=3D"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; =
+margin-left: 0px; font: normal normal normal 12px/normal 'Lucida =
+Grande'; ">On the scheduler machine, type the following =
+commands:</div><div style=3D"margin-top: 0px; margin-right: 0px; =
+margin-bottom: 0px; margin-left: 0px; font: normal normal normal =
+12px/normal 'Lucida Grande'; min-height: 15px; "><br></div><div =
+style=3D"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; =
+margin-left: 0px; font: normal normal normal 10px/normal Monaco; ">$ =
+sudo gedit /etc/default/icecc</div><div style=3D"margin-top: 0px; =
+margin-right: 0px; margin-bottom: 0px; margin-left: 0px; font: normal =
+normal normal 10px/normal Monaco; min-height: 14px; "><br></div><div =
+style=3D"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; =
+margin-left: 0px; font: normal normal normal 10px/normal Monaco; "># =
+Defaults for icecc initscript</div><div style=3D"margin-top: 0px; =
+margin-right: 0px; margin-bottom: 0px; margin-left: 0px; font: normal =
+normal normal 10px/normal Monaco; "># sourced by =
+/etc/init.d/icecc</div><div style=3D"margin-top: 0px; margin-right: 0px; =
+margin-bottom: 0px; margin-left: 0px; font: normal normal normal =
+10px/normal Monaco; ">START_ICECC=3D"true"</div><div style=3D"margin-top: =
+0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; font: =
+normal normal normal 10px/normal Monaco; =
+">START_ICECC_SCHEDULER=3D"true"</div><div style=3D"margin-top: 0px; =
+margin-right: 0px; margin-bottom: 0px; margin-left: 0px; font: normal =
+normal normal 10px/normal Monaco; min-height: 14px; "><br></div><div =
+style=3D"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; =
+margin-left: 0px; font: normal normal normal 12px/normal 'Lucida =
+Grande'; ">Configure the build network name:</div><div =
+style=3D"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; =
+margin-left: 0px; font: normal normal normal 10px/normal Monaco; =
+min-height: 14px; "><br></div><div style=3D"margin-top: 0px; =
+margin-right: 0px; margin-bottom: 0px; margin-left: 0px; font: normal =
+normal normal 10px/normal Monaco; ">$ sudo /etc/init.d/icecc =
+stop</div><div style=3D"margin-top: 0px; margin-right: 0px; =
+margin-bottom: 0px; margin-left: 0px; font: normal normal normal =
+10px/normal Monaco; min-height: 14px; "><br></div><div =
+style=3D"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; =
+margin-left: 0px; font: normal normal normal 10px/normal Monaco; ">$ =
+sudo gedit /etc/init.d/icecc.conf</div><div style=3D"margin-top: 0px; =
+margin-right: 0px; margin-bottom: 0px; margin-left: 0px; font: normal =
+normal normal 10px/normal Monaco; min-height: 14px; "><br></div><div =
+style=3D"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; =
+margin-left: 0px; font: normal normal normal 10px/normal Monaco; =
+">#</div><div style=3D"margin-top: 0px; margin-right: 0px; =
+margin-bottom: 0px; margin-left: 0px; font: normal normal normal =
+10px/normal Monaco; "># Identification for the network the scheduler and =
+daemon run on.</div><div style=3D"margin-top: 0px; margin-right: 0px; =
+margin-bottom: 0px; margin-left: 0px; font: normal normal normal =
+10px/normal Monaco; "># You can have several distinct icecc networks in =
+the same LAN</div><div style=3D"margin-top: 0px; margin-right: 0px; =
+margin-bottom: 0px; margin-left: 0px; font: normal normal normal =
+10px/normal Monaco; "># for whatever reason.</div><div =
+style=3D"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; =
+margin-left: 0px; font: normal normal normal 10px/normal Monaco; =
+">#</div><div style=3D"margin-top: 0px; margin-right: 0px; =
+margin-bottom: 0px; margin-left: 0px; font: normal normal normal =
+10px/normal Monaco; "># ICECC_NETNAME=3D""</div><div style=3D"margin-top: =
+0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; font: =
+normal normal normal 10px/normal Monaco; =
+">ICECC_NETNAME=3D"YoctoBuildNetwork"</div><div style=3D"margin-top: =
+0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; font: =
+normal normal normal 10px/normal Monaco; min-height: 14px; =
+"><br></div><div style=3D"margin-top: 0px; margin-right: 0px; =
+margin-bottom: 0px; margin-left: 0px; font: normal normal normal =
+10px/normal Monaco; ">#</div><div style=3D"margin-top: 0px; =
+margin-right: 0px; margin-bottom: 0px; margin-left: 0px; font: normal =
+normal normal 10px/normal Monaco; "># If the daemon can't find the =
+scheduler by broadcast (e.g. because</div><div style=3D"margin-top: 0px; =
+margin-right: 0px; margin-bottom: 0px; margin-left: 0px; font: normal =
+normal normal 10px/normal Monaco; "># of a firewall) you can specify =
+it.</div><div style=3D"margin-top: 0px; margin-right: 0px; =
+margin-bottom: 0px; margin-left: 0px; font: normal normal normal =
+10px/normal Monaco; ">#</div><div style=3D"margin-top: 0px; =
+margin-right: 0px; margin-bottom: 0px; margin-left: 0px; font: normal =
+normal normal 10px/normal Monaco; "># ICECC_SCHEDULER_HOST=3D""</div><div =
+style=3D"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; =
+margin-left: 0px; font: normal normal normal 10px/normal Monaco; =
+">ICECC_SCHEDULER_HOST=3D"eos"</div><div style=3D"margin-top: 0px; =
+margin-right: 0px; margin-bottom: 0px; margin-left: 0px; font: normal =
+normal normal 10px/normal Monaco; min-height: 14px; "><br></div><div =
+style=3D"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; =
+margin-left: 0px; font: normal normal normal 12px/normal 'Lucida =
+Grande'; min-height: 15px; "><br></div><div style=3D"margin-top: 0px; =
+margin-right: 0px; margin-bottom: 0px; margin-left: 0px; font: normal =
+normal normal 12px/normal 'Lucida Grande'; ">Start the scheduler =
+with:</div><div style=3D"margin-top: 0px; margin-right: 0px; =
+margin-bottom: 0px; margin-left: 0px; font: normal normal normal =
+12px/normal 'Lucida Grande'; min-height: 15px; "><br></div><div =
+style=3D"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; =
+margin-left: 0px; font: normal normal normal 10px/normal Monaco; ">$ =
+sudo /etc/init.d/icecc start</div><div style=3D"margin-top: 0px; =
+margin-right: 0px; margin-bottom: 0px; margin-left: 0px; font: normal =
+normal normal 12px/normal 'Lucida Grande'; min-height: 15px; =
+"><br></div><div style=3D"margin-top: 0px; margin-right: 0px; =
+margin-bottom: 0px; margin-left: 0px; font: normal normal normal =
+12px/normal 'Lucida Grande'; ">Make sure the service starts at boot =
+time:</div><div style=3D"margin-top: 0px; margin-right: 0px; =
+margin-bottom: 0px; margin-left: 0px; font: normal normal normal =
+12px/normal 'Lucida Grande'; min-height: 15px; "><br></div><div =
+style=3D"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; =
+margin-left: 0px; font: normal normal normal 10px/normal Monaco; ">$ =
+sudo update-rc.d icecc defaults</div><div style=3D"margin-top: 0px; =
+margin-right: 0px; margin-bottom: 0px; margin-left: 0px; font: normal =
+normal normal 12px/normal 'Lucida Grande'; min-height: 15px; =
+"><br></div><div style=3D"margin-top: 0px; margin-right: 0px; =
+margin-bottom: 0px; margin-left: 0px; font: normal normal normal =
+12px/normal 'Lucida Grande'; "><b>Step 02.00: Configure yocto for =
+distributed compilation.</b></div><div style=3D"margin-top: 0px; =
+margin-right: 0px; margin-bottom: 0px; margin-left: 0px; font: normal =
+normal normal 12px/normal 'Lucida Grande'; min-height: 15px; =
+"><br></div><div style=3D"margin-top: 0px; margin-right: 0px; =
+margin-bottom: 0px; margin-left: 0px; font: normal normal normal =
+12px/normal 'Lucida Grande'; ">Step 02.01: Modify local.conf</div><div =
+style=3D"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; =
+margin-left: 0px; font: normal normal normal 12px/normal 'Lucida =
+Grande'; min-height: 15px; "><br></div><div style=3D"margin-top: 0px; =
+margin-right: 0px; margin-bottom: 0px; margin-left: 0px; font: normal =
+normal normal 10px/normal Monaco; ">#</div><div style=3D"margin-top: =
+0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; font: =
+normal normal normal 10px/normal Monaco; "># Parallelism =
+Options</div><div style=3D"margin-top: 0px; margin-right: 0px; =
+margin-bottom: 0px; margin-left: 0px; font: normal normal normal =
+10px/normal Monaco; ">#</div><div style=3D"margin-top: 0px; =
+margin-right: 0px; margin-bottom: 0px; margin-left: 0px; font: normal =
+normal normal 10px/normal Monaco; "># These two options control how much =
+parallelism BitBake should use. The first&nbsp;</div><div =
+style=3D"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; =
+margin-left: 0px; font: normal normal normal 10px/normal Monaco; "># =
+option determines how many tasks bitbake should run in =
+parallel:</div><div style=3D"margin-top: 0px; margin-right: 0px; =
+margin-bottom: 0px; margin-left: 0px; font: normal normal normal =
+10px/normal Monaco; ">#</div><div style=3D"margin-top: 0px; =
+margin-right: 0px; margin-bottom: 0px; margin-left: 0px; font: normal =
+normal normal 10px/normal Monaco; ">BB_NUMBER_THREADS =3D "8"</div><div =
+style=3D"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; =
+margin-left: 0px; font: normal normal normal 10px/normal Monaco; =
+">#&nbsp;</div><div style=3D"margin-top: 0px; margin-right: 0px; =
+margin-bottom: 0px; margin-left: 0px; font: normal normal normal =
+10px/normal Monaco; "># The second option controls how many processes =
+make should run in parallel when</div><div style=3D"margin-top: 0px; =
+margin-right: 0px; margin-bottom: 0px; margin-left: 0px; font: normal =
+normal normal 10px/normal Monaco; "># running compile tasks:</div><div =
+style=3D"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; =
+margin-left: 0px; font: normal normal normal 10px/normal Monaco; =
+">#</div><div style=3D"margin-top: 0px; margin-right: 0px; =
+margin-bottom: 0px; margin-left: 0px; font: normal normal normal =
+10px/normal Monaco; ">PARALLEL_MAKE =3D "-j 14"</div><div =
+style=3D"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; =
+margin-left: 0px; font: normal normal normal 10px/normal Monaco; =
+min-height: 14px; "><br></div><div style=3D"margin-top: 0px; =
+margin-right: 0px; margin-bottom: 0px; margin-left: 0px; font: normal =
+normal normal 10px/normal Monaco; "># Setup yocto to use icecc for =
+distributed compilation.</div><div style=3D"margin-top: 0px; =
+margin-right: 0px; margin-bottom: 0px; margin-left: 0px; font: normal =
+normal normal 10px/normal Monaco; ">INHERIT +=3D "icecc"</div><div =
+style=3D"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; =
+margin-left: 0px; font: normal normal normal 10px/normal Monaco; =
+">ICECC_PATH =3D "/usr/bin/icecc"</div><div style=3D"margin-top: 0px; =
+margin-right: 0px; margin-bottom: 0px; margin-left: 0px; font: normal =
+normal normal 10px/normal Monaco; ">ICECC_ENV_EXEC =3D =
+"/tool/yocto/poky/build/tmp/work/x86_64-linux/icecc-create-env-native-0.1-=
+r2/icecc-create-env"</div><div style=3D"margin-top: 0px; margin-right: =
+0px; margin-bottom: 0px; margin-left: 0px; font: normal normal normal =
+10px/normal Monaco; ">ICECC_USER_CLASS_BL =3D " native"</div><div =
+style=3D"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; =
+margin-left: 0px; font: normal normal normal 12px/normal 'Lucida =
+Grande'; min-height: 15px; "><br></div><div style=3D"margin-top: 0px; =
+margin-right: 0px; margin-bottom: 0px; margin-left: 0px; font: normal =
+normal normal 12px/normal 'Lucida Grande'; ">Copy the icecc-create-env =
+script to the build output staging folder, by running the&nbsp; =
+icecc-create-env-native.bb recipe.</div><div style=3D"margin-top: 0px; =
+margin-right: 0px; margin-bottom: 0px; margin-left: 0px; font: normal =
+normal normal 12px/normal 'Lucida Grande'; min-height: 15px; =
+"><br></div><div style=3D"margin-top: 0px; margin-right: 0px; =
+margin-bottom: 0px; margin-left: 0px; font: normal normal normal =
+10px/normal Monaco; ">$ cd /tool/yocto/poky;source oe-init-build-env =
+build</div><div style=3D"margin-top: 0px; margin-right: 0px; =
+margin-bottom: 0px; margin-left: 0px; font: normal normal normal =
+10px/normal Monaco; ">$ bitbake icecc-create-env-native</div><div =
+style=3D"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; =
+margin-left: 0px; font: normal normal normal 12px/normal 'Lucida =
+Grande'; min-height: 15px; "><br></div><div style=3D"margin-top: 0px; =
+margin-right: 0px; margin-bottom: 0px; margin-left: 0px; font: normal =
+normal normal 12px/normal 'Lucida Grande'; ">The icecc-create-env script =
+will automatically be copied to the build output staging =
+folder.</div><div style=3D"margin-top: 0px; margin-right: 0px; =
+margin-bottom: 0px; margin-left: 0px; font: normal normal normal =
+12px/normal 'Lucida Grande'; min-height: 15px; "><br></div><div =
+style=3D"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; =
+margin-left: 0px; font: normal normal normal 12px/normal 'Lucida =
+Grande'; ">Step 02.02: Start a bit bake build.</div><div =
+style=3D"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; =
+margin-left: 0px; font: normal normal normal 12px/normal 'Lucida =
+Grande'; min-height: 15px; "><br></div><div style=3D"margin-top: 0px; =
+margin-right: 0px; margin-bottom: 0px; margin-left: 0px; font: normal =
+normal normal 10px/normal Monaco; ">$ bitbake =
+core-image-minimal</div><div style=3D"margin-top: 0px; margin-right: =
+0px; margin-bottom: 0px; margin-left: 0px; font: normal normal normal =
+12px/normal 'Lucida Grande'; min-height: 15px; =
+"><br></div></div><div><br></div><div>Best =
+regards,</div><div><br></div><div>Elvis Dowson</div></body></html>=
 
---_000_41DEA4B02DBDEF40A0F3B6D0DDB1237946A5DAADORSMSX101amrcor_--
+--Apple-Mail=_D1FF4E5C-DDA1-4E15-AE55-0E7D24FB143F--
