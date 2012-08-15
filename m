@@ -1,37 +1,28 @@
-Return-Path: <elvis.dowson@gmail.com>
-Received: from mail-yw0-f48.google.com (mail-yw0-f48.google.com
-	[209.85.213.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9E7B6E01400
-	for <yocto@yoctoproject.org>; Wed, 15 Aug 2012 12:16:13 -0700 (PDT)
-Received: by yhfq46 with SMTP id q46so2703021yhf.35
-	for <yocto@yoctoproject.org>; Wed, 15 Aug 2012 12:16:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=subject:mime-version:content-type:from:in-reply-to:date:cc
-	:message-id:references:to:x-mailer;
-	bh=7QjNt6/bPLPi9n6CQhpk4lMZ3EcuIbPWdZu/keWyuBI=;
-	b=Qu7NkQASRwOONK4WGHx3z7dhUFfJYAMvJ9Ed7qv7RC+V5OAos0dCLO7G2f1le0af8C
-	PI1mHNZ1iZMgXq1ISunqJFyoI0HuvsXW0WTYKfYbiFD/iIU3u7J7e3NQxk0/sf0wP7J3
-	WUBFZzbdcwF7ogIFCucmFAjp8ffNxznF52BeC1jBc+2fJsJyU97tQyyqp+omBHQuBrq2
-	PtQuq3XvWfpFtfVetgzG8OlP/Sg37UmVanZJC1bdU/QsdQBY+IhixF0z/DAbpR11AJX7
-	/W597eM0LDVloexZycOwN2/oPQGLwCJtBtYrhMu7gEXgr3B+Mew9WyFMn0ngOv/CGAVP
-	to/w==
-Received: by 10.66.77.7 with SMTP id o7mr33705158paw.37.1345058172581;
-	Wed, 15 Aug 2012 12:16:12 -0700 (PDT)
-Received: from [192.168.1.101] ([94.205.108.162])
-	by mx.google.com with ESMTPS id oa5sm962166pbb.14.2012.08.15.12.16.09
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Wed, 15 Aug 2012 12:16:10 -0700 (PDT)
+Return-Path: <opensource@keylevel.com>
+Received: from hxhsvr03.internetintuitive.net (hxhsvr03.internetintuitive.net
+	[80.254.228.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 77FC4E00769
+	for <yocto@yoctoproject.org>; Wed, 15 Aug 2012 13:06:39 -0700 (PDT)
+Received: from [109.224.129.17] (helo=macbook-pro.durham.keylevel.com)
+	by hxhsvr03.internetintuitive.net with esmtpa (Exim 4.69)
+	(envelope-from <opensource@keylevel.com>) id 1T1jrR-0003D8-TW
+	for yocto@yoctoproject.org; Wed, 15 Aug 2012 21:06:37 +0100
+From: Chris Tapp <opensource@keylevel.com>
+Date: Wed, 15 Aug 2012 21:06:36 +0100
+Message-Id: <073A7998-3D05-4835-AA03-113960D00553@keylevel.com>
+To: "yocto@yoctoproject.org Project" <yocto@yoctoproject.org>
 Mime-Version: 1.0 (Apple Message framework v1278)
-From: Elvis Dowson <elvis.dowson@gmail.com>
-In-Reply-To: <4FA581F0.50205@gmail.com>
-Date: Wed, 15 Aug 2012 23:16:05 +0400
-Message-Id: <5BAF8FDA-CC45-4F6C-B64A-C226F8240F56@gmail.com>
-References: <9EE240ED-602E-4E08-817E-1DA7D2831D5F@gmail.com>
-	<4FA581F0.50205@gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
 X-Mailer: Apple Mail (2.1278)
-Cc: yocto@yoctoproject.org
-Subject: Re: Using distcc with poky
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - hxhsvr03.internetintuitive.net
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - keylevel.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: yocto-bsp create
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,38 +34,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 15 Aug 2012 19:16:13 -0000
-Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_572484A1-C867-4EC9-9CBA-7CD044D4CE4D"
-
---Apple-Mail=_572484A1-C867-4EC9-9CBA-7CD044D4CE4D
+X-List-Received-Date: Wed, 15 Aug 2012 20:06:39 -0000
+Content-Type: text/plain; charset=us-ascii
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=us-ascii
 
-Hi Khem.
+I've been looking at using yocto-bsp to create a BSP. Good job! Looks =
+like it's going to be much easier to do it this way :-)
 
-On May 5, 2012, at 11:39 PM, Khem Raj wrote:
+I've got a few questions/comments:
 
-> On 05/05/2012 10:35 AM, Elvis Dowson wrote:
->> Hi, Is it possible to tell poky to use distcc, to perform a
->> distributed build across two ubuntu 12.04 machines on a netwrok?
->>=20
->=20
-> there is icecc have a look at meta/classes/icecc.bbclass
+1) The documentation (7.0.1) says that the machine branch defaults to =
+standard/default, but that is not an option that gets presented when I =
+created a BSP. Should that be standard/base, standard/default/base, or =
+something else? Master shows this as standard/default/common-pc, but =
+that still isn't one of the listed options =
+(standard/default/common-pc/base ?).
 
-How do I setup yocto to use icecc? I've setup icecc on two ubuntu 12.04 =
-machines.
+2) What are these machine branches anyway? As in, how do I decide which =
+one I should choose? For an ALIX 3D3 system I used =
+standard/default/common-pc/base. Is that reasonable?
 
-Best regards,
+3) I selected core2 as the tune option and then had to change this in =
+the created meta-data as I needed i586 tuning and this was not given as =
+a tune option. Should all available tunes be offered?
 
-Elvis Dowson=
+4) Is there any way to select the kernel CPU (I got MATOM but needed =
+MGEODE_LX - easily changed in the <mybsp>.cfg file)?
 
---Apple-Mail=_572484A1-C867-4EC9-9CBA-7CD044D4CE4D
-Content-Transfer-Encoding: 7bit
-Content-Type: text/html;
-	charset=us-ascii
+5) The created BSP refers to various feature/x/y.scc files. Are these =
+documented somewhere so that they can be easily re-used, or am I better =
+off simply producing a complete defconfig? A pointer to the =
+documentation for the whole kernel meta data structure would also be =
+helpful.
 
-<html><head></head><body style="word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-line-break: after-white-space; ">Hi Khem.<div><br><div><div>On May 5, 2012, at 11:39 PM, Khem Raj wrote:</div><br class="Apple-interchange-newline"><blockquote type="cite"><div>On 05/05/2012 10:35 AM, Elvis Dowson wrote:<br><blockquote type="cite">Hi, Is it possible to tell poky to use distcc, to perform a<br></blockquote><blockquote type="cite">distributed build across two ubuntu 12.04 machines on a netwrok?<br></blockquote><blockquote type="cite"><br></blockquote><br>there is icecc have a look at meta/classes/icecc.bbclass<font class="Apple-style-span" color="#00721e"><br></font></div></blockquote><br></div><div>How do I setup yocto to use icecc? I've setup icecc on two ubuntu 12.04 machines.</div></div><div><br></div><div>Best regards,</div><div><br></div><div>Elvis Dowson</div></body></html>
+Chris Tapp
 
---Apple-Mail=_572484A1-C867-4EC9-9CBA-7CD044D4CE4D--
+opensource@keylevel.com
+www.keylevel.com
+
+
+
+
