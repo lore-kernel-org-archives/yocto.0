@@ -1,25 +1,34 @@
-Return-Path: <mark.hatle@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A6E64E004AB
-	for <yocto@yoctoproject.org>; Wed, 15 Aug 2012 11:01:41 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id q7FI1a1Q017150
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 15 Aug 2012 11:01:36 -0700 (PDT)
-Received: from msp-dhcp58.wrs.com (172.25.34.58) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.2.309.2;
-	Wed, 15 Aug 2012 11:01:35 -0700
-Message-ID: <502BE40A.5060303@windriver.com>
-Date: Wed, 15 Aug 2012 13:01:46 -0500
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8;
-	rv:14.0) Gecko/20120713 Thunderbird/14.0
+Return-Path: <kergoth@gmail.com>
+Received: from mail-lb0-f176.google.com (mail-lb0-f176.google.com
+	[209.85.217.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CB884E00769
+	for <yocto@yoctoproject.org>; Wed, 15 Aug 2012 12:15:43 -0700 (PDT)
+Received: by lboi15 with SMTP id i15so1212766lbo.35
+	for <yocto@yoctoproject.org>; Wed, 15 Aug 2012 12:15:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:sender:in-reply-to:references:from:date
+	:x-google-sender-auth:message-id:subject:to:cc:content-type;
+	bh=o8zbYJpCeycQcDLH183azT2cEtCDnme4She47POZbl4=;
+	b=E7iuOhBwD148+YawdtbxaxP0bswGiXWFTZLlFQLq4Y56YumZQeJk9clmt+P33DJqie
+	L2PSV9pdcjQfTNDpBvs1Xf/KcGb7EbF36G5Owtcx3St07aNizGQ5Pyn3/22rI3DnBvQP
+	0lVpDKuuSZPA1ZQgsChn2xFJkxtJ/6OvPVdoC3Yp10TajezHR2LYYBDM7qgJSUtLBIEZ
+	nNWinmqeGjhOefOG5dRyG6spcLJFsEaNHI3MEqaEps28lJ5qMjaBpJAndwEpmPnc/X9a
+	nITQJTPzzD6nXaaUBH85gAAlzfR10iCa2Yv6p0EsA6J0XnhtYtr0/6vsLPcih8kkg2nh
+	UOWQ==
+Received: by 10.112.28.226 with SMTP id e2mr9904811lbh.96.1345058142277; Wed,
+	15 Aug 2012 12:15:42 -0700 (PDT)
 MIME-Version: 1.0
-To: <yocto@yoctoproject.org>, <openembedded-core@www.linuxtogo.org>,
-	<openembedded-devel@www.linuxtogo.org>
-References: <2404459.dJBf5OQotX@helios>
-In-Reply-To: <2404459.dJBf5OQotX@helios>
+Sender: kergoth@gmail.com
+Received: by 10.114.5.104 with HTTP; Wed, 15 Aug 2012 12:15:22 -0700 (PDT)
+In-Reply-To: <502BE40A.5060303@windriver.com>
+References: <2404459.dJBf5OQotX@helios> <502BE40A.5060303@windriver.com>
+From: Chris Larson <clarson@kergoth.com>
+Date: Wed, 15 Aug 2012 12:15:22 -0700
+X-Google-Sender-Auth: jCEIZgnIih0LSykM3bMvG04W_N0
+Message-ID: <CABcZAN=A6VFvRfPY7gc4ZLjW9FiKJtrrh1+oeacryyuAy58=rw@mail.gmail.com>
+To: Mark Hatle <mark.hatle@windriver.com>
+Cc: yocto@yoctoproject.org, openembedded-devel@www.linuxtogo.org,
+	openembedded-core@www.linuxtogo.org
 Subject: Re: RFC: OE-Core task rework
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -32,139 +41,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 15 Aug 2012 18:01:41 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 15 Aug 2012 19:15:44 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On 8/15/12 4:46 AM, Paul Eggleton wrote:
-> Hi all,
+On Wed, Aug 15, 2012 at 11:01 AM, Mark Hatle <mark.hatle@windriver.com> wrote:
+>> if we rename tasks to package groups, and there's a question as to how
+>> IMAGE_FEATURES scales - should every task be represented in there or only
+>> a
+>> select list? Would we be better off not trying to bring any tasks in via
+>> IMAGE_FEATURES at all and mostly leave that to control post-processing
+>> (e.g.
+>> package-management, debug-tweaks, etc.)?
 >
-> There have been a few requests to review the task recipes (i.e. package
-> groups) provided by OE-Core, and indeed these have not really been looked at
-> seriously since OE-Core was created. Ideally I think we want them to be useful
-> to a wide audience and provide useful units of functionality that can be added
-> to an image without the person doing the selection having to manually select
-> too many individual packages. Imagine presenting the list of tasks to someone
-> in a UI for assembling images (such as Hob or Narcissus) and you can start to
-> see that we have some work to do in this area.
 >
-> I know various distros and users of OE-Core have created their own tasks or
-> resurrected tasks from OE-Classic, and this is an opportunity to perhaps look
-> at bringing some of these (or at least, parts of them) into the core. It is
-> true that tasks will often be an expression of distro policy, and we also
-> can't have any tasks in OE-Core that refer to packages that don't exist in OE-
-> Core; thus distros will always be extending the base tasks or adding their own
-> - and that's fine. However, with some thought I believe we can come up with a
-> set of tasks that are generally useful to most people using OE-Core.
->
-> For reference, I've compiled a list on the wiki of the current tasks in OE-
-> Core with links to the recipes and some notes:
->
->    http://www.openembedded.org/wiki/OE-Core_Task_Rework
->
-> Some of the things I think we ought to consider/address as part of this
-> exercise:
->
-> 1) Do we rename "task" to something a little more understandable to the
-> uninitiated, such as "package group"? The word "task" is already used in a
-> much more natural sense within bitbake as a unit of work. Historically I
-> believe we picked up this term from Debian but I'm not aware of significant use
-> by other mainstream distributions.
+> I'd certainly prefer that images were limited to selecting software from
+> task (group) recipes only, and not providing their own.  An image should be
+> able to change the selection based on an "image feature" or similar
+> configuration, but the underlying tasks/groups, recipes, etc should all be
+> 'generic' to a given distribution configuration.
 
-"group" or "packagegroup" or "package-group" is my suggestion for the existing 
-'task' recipes.  From what I've seen, it should be a rename opportunity -- we 
-can even provide/rprovide the old names....
+The package groups which can be added in IMAGE_FEATURES don't have to
+be (and I'd argue against it anyway) defined in the image. For Mentor,
+we define them in our distro configuration.
 
-> 2) Look at the existing tasks and:
->   * evaluate their usefulness
->   * remove any that are obsolete
->   * adjust existing contents if needed
->   * look for useful groups of packages that might be added
->
->   We need to pay particular attention to task-core-boot and task-base as these
-> are pulled in by default in any image that inherits from core-image.bbclass -
-> if these are not generally working for people that are creating their own
-> images, we need to change them such that they are.
-
-During the pre-oe-core Yocto Project development, a design was generated to 
-roughly group the packages into functional areas.  For the most part, this 
-design (as well as legacy elements) still exist.
-
-I think the boot, base and others need to be evaluated for usefulness... but my 
-feeling is most of them are close to being correct.
-
-The original design attempted to group things into functionality, so that OE 
-could be an "additive" distribution.  I.e., you don't start with a big blob of 
-packages and remove them as necessary, but instead you start with small 
-functional blocks and put them together to construct a system.  The tasks seemed 
-to be the logical blocks, and the contents of these blocks were based on the 
-early design.
-
-Very roughly speaking the early design was:
-
-filesystem
-|        \
-libc    libstdcxx
-|           \
-small cli    \
-(busybox)     \
-|              \
-basic commands  python -- perl
-|                 |         |
-initscripts       |         |
-multiuser         |         |
-system services --+---------+
-|
-LSB functionality
-
-(Lines indicate implicit dependencies)
-
-The goal was that if you include a specific group, such as "multiuser" support, 
-you would get all of the recipes necessary to enable multiuser support on the 
-system.  I think this is a reasonable theory to consider when evaluating the 
-existing groupings.
-
-> 3) Ensure all task recipes follow reasonable patterns:
->   *  Fix recipe DESCRIPTIONs to make sense (and not contain Poky references)
->   *  Ensure all individual packages have a decent SUMMARY/DESCRIPTION
->   *  Try to make each task have a reasonable name - there are some current uses
-> of "core" and "base" that don't actually convey any meaning; LSB specific tasks
-> should be named as such, etc.
-
-Yup, there is a logical grouping for the lsb specific tasks, as for others.  The 
-naming needs to be made clear as to why it's there, and what it represents. 
-Same with the summary and descriptions -- they should list the functionality 
-provided by this group of components.
-
->   *  Make all tasks inherit task.bbclass so that they get proper dbg/dev
-> packages and any other common task functionality
->
-> 4) Consider the usefulness of the existing PACKAGE_GROUP_ structure which
-> converts some IMAGE_FEATURES into the addition of tasks to be installed (see
-> classes/core-image.bbclass). At the very least we should probably rename this
-> if we rename tasks to package groups, and there's a question as to how
-> IMAGE_FEATURES scales - should every task be represented in there or only a
-> select list? Would we be better off not trying to bring any tasks in via
-> IMAGE_FEATURES at all and mostly leave that to control post-processing (e.g.
-> package-management, debug-tweaks, etc.)?
-
-I'd certainly prefer that images were limited to selecting software from task 
-(group) recipes only, and not providing their own.  An image should be able to 
-change the selection based on an "image feature" or similar configuration, but 
-the underlying tasks/groups, recipes, etc should all be 'generic' to a given 
-distribution configuration.
-
-I think if you go through the images today, a lot of that stuff is either old, 
-or could be simplified by creating appropriate tasks/groups.
-
---Mark
-
-> Please reply with your thoughts. Once we've come to a consensus on the things
-> we want to do (allowing plenty of time for discussion), I'll look at putting
-> together a set of patches that makes the appropriate changes.
->
-> Thanks,
-> Paul
->
-
+That said, what we use them for is basically the same thing the tasks
+in oe-core/meta-oe already provide, so we're looking to transition
+away from that method to what upstream is using (tasks, or whatever we
+end up using at the end of this discussion).
+-- 
+Christopher Larson
+clarson at kergoth dot com
+Founder - BitBake, OpenEmbedded, OpenZaurus
+Maintainer - Tslib
+Senior Software Engineer, Mentor Graphics
 
