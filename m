@@ -1,15 +1,15 @@
 Return-Path: <dvhart@linux.intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 37981E00769
-	for <yocto@yoctoproject.org>; Wed, 15 Aug 2012 14:24:24 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 15 Aug 2012 14:24:23 -0700
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C683CE00769
+	for <yocto@yoctoproject.org>; Wed, 15 Aug 2012 14:25:12 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 15 Aug 2012 14:25:12 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.77,774,1336374000"; d="scan'208";a="181506160"
+X-IronPort-AV: E=Sophos;i="4.77,774,1336374000"; d="scan'208";a="202058424"
 Received: from unknown (HELO envy.home) ([10.255.13.30])
-	by azsmga001.ch.intel.com with ESMTP; 15 Aug 2012 14:24:23 -0700
-Message-ID: <502C1313.2060300@linux.intel.com>
-Date: Wed, 15 Aug 2012 14:22:27 -0700
+	by fmsmga001.fm.intel.com with ESMTP; 15 Aug 2012 14:25:11 -0700
+Message-ID: <502C1343.4010604@linux.intel.com>
+Date: Wed, 15 Aug 2012 14:23:15 -0700
 From: Darren Hart <dvhart@linux.intel.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:14.0) Gecko/20120717 Thunderbird/14.0
@@ -19,7 +19,7 @@ References: <1343409056-6235-1-git-send-email-paul.gortmaker@windriver.com>
 	<50131526.1030708@linux.intel.com> <502C040D.8000402@windriver.com>
 In-Reply-To: <502C040D.8000402@windriver.com>
 X-Enigmail-Version: 1.4.3
-Cc: yocto@yoctoproject.org
+Cc: yocto@yoctoproject.org, "Wold, Saul" <saul.wold@intel.com>
 Subject: Re: [PATCH] routerstationpro: move board off 3.0 and onto the 3.4 kernel
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -32,7 +32,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 15 Aug 2012 21:24:24 -0000
+X-List-Received-Date: Wed, 15 Aug 2012 21:25:12 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
@@ -55,6 +55,8 @@ On 08/15/2012 01:18 PM, Paul Gortmaker wrote:
 > 
 > Just checking this didn't fall through the cracks since it has
 > been two weeks.
+
+(Always funny, this time with Saul and RP actually CC'd)
 
 Saul, RP, can one of you pull this in?
 
