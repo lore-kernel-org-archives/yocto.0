@@ -1,27 +1,32 @@
-Return-Path: <Paul.Gortmaker@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 90FD9E01400
-	for <yocto@yoctoproject.org>; Wed, 15 Aug 2012 13:18:23 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id q7FKINFq014060
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 15 Aug 2012 13:18:23 -0700 (PDT)
-Received: from [128.224.146.65] (128.224.146.65) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.2.309.2;
-	Wed, 15 Aug 2012 13:18:22 -0700
-Message-ID: <502C040D.8000402@windriver.com>
-Date: Wed, 15 Aug 2012 16:18:21 -0400
-From: Paul Gortmaker <paul.gortmaker@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:14.0) Gecko/20120714 Thunderbird/14.0
+Return-Path: <scott.m.rifenbark@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B2CF5E01449
+	for <yocto@yoctoproject.org>; Wed, 15 Aug 2012 13:29:48 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 15 Aug 2012 13:29:48 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.77,774,1336374000"; 
+	d="scan'208,217";a="134709155"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
+	by AZSMGA002.ch.intel.com with ESMTP; 15 Aug 2012 13:29:24 -0700
+Received: from orsmsx103.amr.corp.intel.com (10.22.225.130) by
+	orsmsx603.amr.corp.intel.com (10.22.226.49) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Wed, 15 Aug 2012 13:29:22 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.152]) by
+	ORSMSX103.amr.corp.intel.com ([169.254.2.138]) with mapi id
+	14.01.0355.002; Wed, 15 Aug 2012 13:29:21 -0700
+From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+To: Yocto discussion list <yocto@yoctoproject.org>
+Thread-Topic: Terminology Question for Kernels
+Thread-Index: Ac17JKa6NWhfGICiTM2yiIhmbRJXlw==
+Date: Wed, 15 Aug 2012 20:29:21 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237946A5DAAD@ORSMSX101.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-To: <yocto@yoctoproject.org>
-References: <1343409056-6235-1-git-send-email-paul.gortmaker@windriver.com>
-	<50131526.1030708@linux.intel.com>
-In-Reply-To: <50131526.1030708@linux.intel.com>
-X-Originating-IP: [128.224.146.65]
-Cc: Darren Hart <dvhart@linux.intel.com>
-Subject: Re: [PATCH] routerstationpro: move board off 3.0 and onto the 3.4 kernel
+Subject: Terminology Question for Kernels
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,66 +38,125 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 15 Aug 2012 20:18:23 -0000
-Content-Type: text/plain; charset="ISO-8859-1"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 15 Aug 2012 20:29:48 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_41DEA4B02DBDEF40A0F3B6D0DDB1237946A5DAADORSMSX101amrcor_"
 
-On 12-07-27 06:24 PM, Darren Hart wrote:
-> 
-> 
-> On 07/27/2012 10:10 AM, Paul Gortmaker wrote:
->> The updated patch series to support this target is in place
->> on the BSP specific branch in the 3.4 kernel tree now[1], so
->> we can move it ahead off of the old 3.0 kernel.
->>
->> [1] https://lists.yoctoproject.org/pipermail/linux-yocto/2012-July/000023.html
->>
->> Signed-off-by: Paul Gortmaker <paul.gortmaker@windriver.com>
-> 
-> Acked-by: Darren Hart <dvhart@linux.intel.com>
+--_000_41DEA4B02DBDEF40A0F3B6D0DDB1237946A5DAADORSMSX101amrcor_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Hi All,
+Hi,
 
-Just checking this didn't fall through the cracks since it has
-been two weeks.
+Need some opinions here.... What is the best way to generically refer to on=
+e of our kernels in the source repository area. Right now, they are all gro=
+uped under the heading "Yocto Linux Kernel." They are individually named li=
+nux-yocto-xxxx. In the kernel manual, we refer to them collectively as a "Y=
+octo Project Kernel." I would like to have a single way to reference these =
+kernels we deliver.
 
 Thanks,
-Paul.
---
+Scott
 
-> 
->>
->> diff --git a/meta-yocto/conf/machine/routerstationpro.conf b/meta-yocto/conf/machine/routerstationpro.conf
->> index 3c2f56f..adf36a9 100644
->> --- a/meta-yocto/conf/machine/routerstationpro.conf
->> +++ b/meta-yocto/conf/machine/routerstationpro.conf
->> @@ -10,7 +10,7 @@ KERNEL_IMAGETYPE = "vmlinux"
->>  KERNEL_ALT_IMAGETYPE = "vmlinux.bin"
->>  
->>  PREFERRED_PROVIDER_virtual/kernel ?= "linux-yocto"
->> -PREFERRED_VERSION_linux-yocto ?= "3.0%"
->> +PREFERRED_VERSION_linux-yocto ?= "3.4%"
->>  PREFERRED_PROVIDER_virtual/xserver = "xserver-kdrive"
->>  XSERVER = "xserver-kdrive-fbdev"
->>  
->> diff --git a/meta-yocto/recipes-kernel/linux/linux-yocto_3.4.bbappend b/meta-yocto/recipes-kernel/linux/linux-yocto_3.4.bbappend
->> index 2ff467b..1c8d26a 100644
->> --- a/meta-yocto/recipes-kernel/linux/linux-yocto_3.4.bbappend
->> +++ b/meta-yocto/recipes-kernel/linux/linux-yocto_3.4.bbappend
->> @@ -4,11 +4,11 @@ KBRANCH_mpc8315e-rdb = "standard/fsl-mpc8315e-rdb"
->>  KBRANCH_beagleboard = "standard/beagleboard"
->>  
->>  SRCREV_machine_atom-pc ?= "a8291fa6f723b0182d2b7033b5d59f412ba7cf72"
->> -SRCREV_machine_routerstationpro ?= "a8291fa6f723b0182d2b7033b5d59f412ba7cf72"
->> +SRCREV_machine_routerstationpro ?= "27019633ccdaa88dc55101615d936d1d74db9a1e"
->>  SRCREV_machine_mpc8315e-rdb ?= "47d3076aa7e2a640a1dab8d663529a784709f697"
->>  SRCREV_machine_beagleboard ?= "a8291fa6f723b0182d2b7033b5d59f412ba7cf72"
->>  
->>  COMPATIBLE_MACHINE_mpc8315e-rdb = "mpc8315e-rdb"
->> -# COMPATIBLE_MACHINE_routerstationpro = "routerstationpro"
->> +COMPATIBLE_MACHINE_routerstationpro = "routerstationpro"
->>  # COMPATIBLE_MACHINE_beagleboard = "beagleboard"
->>  COMPATIBLE_MACHINE_atom-pc = "atom-pc"
->>
-> 
+Scott Rifenbark
+Intel Corporation
+Yocto Project Documentation
+503.712.2702
+503.341.0418 (cell)
 
+
+--_000_41DEA4B02DBDEF40A0F3B6D0DDB1237946A5DAADORSMSX101amrcor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hi, <o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
+mes New Roman&quot;,&quot;serif&quot;">Need some opinions here.... What is =
+the best way to generically refer to one of our kernels in the source repos=
+itory area. Right now, they are all grouped under the heading
+ &quot;Yocto Linux Kernel.&quot; They are individually named linux-yocto-xx=
+xx. In the kernel manual, we refer to them collectively as a &quot;Yocto Pr=
+oject Kernel.&quot; I would like to have a single way to reference these ke=
+rnels we deliver.
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks, <o:p></o:p></p>
+<p class=3D"MsoNormal">Scott<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Arial&quot;,&quot;sans-serif&quot;;color:blue">Scott Rifenbark</span></b><=
+b><span style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-=
+serif&quot;;color:blue"><o:p></o:p></span></b></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:7.5pt;font-family:&quot;Ari=
+al&quot;,&quot;sans-serif&quot;;color:blue">Intel Corporation</span><span s=
+tyle=3D"font-size:7.5pt;font-family:&quot;Times New Roman&quot;,&quot;serif=
+&quot;"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:7.5pt;font-family:&quot;Ari=
+al&quot;,&quot;sans-serif&quot;;color:blue">Yocto Project Documentation<o:p=
+></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:7.5pt;font-family:&quot;Ari=
+al&quot;,&quot;sans-serif&quot;;color:blue">503.712.2702</span><span style=
+=3D"font-size:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&qu=
+ot;"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:7.5pt;font-family:&quot;Ari=
+al&quot;,&quot;sans-serif&quot;;color:blue">503.341.0418 (cell)</span><span=
+ style=3D"font-size:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;se=
+rif&quot;"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
+
+--_000_41DEA4B02DBDEF40A0F3B6D0DDB1237946A5DAADORSMSX101amrcor_--
