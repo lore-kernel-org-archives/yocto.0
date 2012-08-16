@@ -1,37 +1,32 @@
-Return-Path: <munoz0raul@gmail.com>
-Received: from mail-lb0-f176.google.com (mail-lb0-f176.google.com
-	[209.85.217.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F2275E002AB
-	for <yocto@yoctoproject.org>; Thu, 16 Aug 2012 12:49:44 -0700 (PDT)
-Received: by lboi15 with SMTP id i15so1960951lbo.35
-	for <yocto@yoctoproject.org>; Thu, 16 Aug 2012 12:49:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=ecmhaiIQ+u4N1o47T7i2EZkEUdsPVwW+SMsJgb6FRoY=;
-	b=vWSmEIWVjFUZkzbPLrqrh51H2ifvlRPdUYc5TNtwHfQaeYJGn6WBHcDjJ5OOKzAatT
-	Y7rmQd61aUYUe+y0o4rJwvNLvw64X13dRkXI0i8nU0xi37XWv0LWTpLaNhStmC7pT+0H
-	esrHKVNJ1CJ/tU/BqmBUs5vEKAvMIXMGn6A4mSnmSmYOsLfSGxKnRUyXk4+s6/36NSad
-	N01VEidfl5aYa6E4k9+kL/eI6RR6gZdpMPkgc6pwlHbymlSn/kt25Gzgd9i45KTz9yn+
-	y7rw1ylUQLvAmGh96es2aPjEVIwVC55tL5RQtcJhb/vl3QHCzlbYv1sIPVTyQm0iUuHu
-	D2uA==
-MIME-Version: 1.0
-Received: by 10.152.114.3 with SMTP id jc3mr2440536lab.11.1345146583599; Thu,
-	16 Aug 2012 12:49:43 -0700 (PDT)
-Received: by 10.112.21.194 with HTTP; Thu, 16 Aug 2012 12:49:43 -0700 (PDT)
-In-Reply-To: <CAEsOVNccf=Xh5xax=9G-D0cGai=q=GYMVy4CyDD+QWLks_yjNw@mail.gmail.com>
-References: <CANmVirjvYNf0kedcpWP1zhNuu9_4_f-Zr-LR8aQS=1JBpUPJLQ@mail.gmail.com>
-	<CAEsOVNdLwWySAnOc9J8umOU75oV1S8f-9RWJFxHV2n1e4Q=MqA@mail.gmail.com>
-	<CANmViri9CS7CHj_p9emS8dFTZNOXeKDLYxLaznsLasX+sb_FBg@mail.gmail.com>
-	<CAEsOVNfRQeD24cqyPGJh7G_fLRVrj+bWmKmm0K6ORy=Gaek7KQ@mail.gmail.com>
-	<CANmVirgEXgjqcPggzic7oepx3H+tETPUzQz9oNG8CLfWpDP-rA@mail.gmail.com>
-	<CAEsOVNccf=Xh5xax=9G-D0cGai=q=GYMVy4CyDD+QWLks_yjNw@mail.gmail.com>
-Date: Thu, 16 Aug 2012 16:49:43 -0300
-Message-ID: <CANmVirhPS-ZfBZn9JrYtOW5r-5sYWe+HGcduKHhV5G+jnm5qRw@mail.gmail.com>
-From: Raul Rosetto Munoz <munoz0raul@gmail.com>
-To: McClintock Matthew-B29882 <B29882@freescale.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Re-Build virtual/kernel
+Return-Path: <opensource@keylevel.com>
+Received: from hxhsvr03.internetintuitive.net (hxhsvr03.internetintuitive.net
+	[80.254.228.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2E645E002AB
+	for <yocto@yoctoproject.org>; Thu, 16 Aug 2012 13:26:20 -0700 (PDT)
+Received: from [109.224.129.17] (helo=macbook-pro.durham.keylevel.com)
+	by hxhsvr03.internetintuitive.net with esmtpa (Exim 4.69)
+	(envelope-from <opensource@keylevel.com>)
+	id 1T26dz-0001JI-AZ; Thu, 16 Aug 2012 21:26:15 +0100
+Mime-Version: 1.0 (Apple Message framework v1278)
+From: Chris Tapp <opensource@keylevel.com>
+In-Reply-To: <502C0312.2080905@windriver.com>
+Date: Thu, 16 Aug 2012 21:26:13 +0100
+Message-Id: <EDAB51DE-EE48-4C30-AD1B-20E7C6B01EF6@keylevel.com>
+References: <073A7998-3D05-4835-AA03-113960D00553@keylevel.com>
+	<502C0312.2080905@windriver.com>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
+X-Mailer: Apple Mail (2.1278)
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - hxhsvr03.internetintuitive.net
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - keylevel.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Cc: "yocto@yoctoproject.org Project" <yocto@yoctoproject.org>
+Subject: Re: yocto-bsp create
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,323 +38,165 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 16 Aug 2012 19:49:45 -0000
-Content-Type: multipart/alternative; boundary=f46d04088c7f494b5704c767583d
-
---f46d04088c7f494b5704c767583d
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Thu, 16 Aug 2012 20:26:20 -0000
+Content-Type: text/plain; charset=iso-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-All the time before loking at tmp/deploy/image/
+On 15 Aug 2012, at 21:14, Bruce Ashfield wrote:
 
-I did bitbake core-image-minimal.
-
-Maybe the .sdcard use the correct uImage and this image is not the uImage
-in deploy/image path!
-
-How can I see the .sdcard using the uImage?
-
-Thanks for Help
-
-2012/8/16 McClintock Matthew-B29882 <B29882@freescale.com>
-
-> You have to also run a target that deploy's the kernel or at least run
-> the deploy command manuall
->
-> bitbake core-image-minimal
->
-> or
->
-> bitbake virtual/kernel -c deploy
->
-> -M
->
-> On Thu, Aug 16, 2012 at 2:11 PM, Raul Rosetto Munoz
-> <munoz0raul@gmail.com> wrote:
-> > don't work.....
-> >
-> >
-> >
-> >
-> > 2012/8/16 McClintock Matthew-B29882 <B29882@freescale.com>
-> >>
-> >> What about the -f?
-> >>
-> >> -M
-> >>
-> >> On Thu, Aug 16, 2012 at 2:02 PM, Raul Rosetto Munoz
-> >> <munoz0raul@gmail.com> wrote:
-> >> > I did all de comands with -c and do not work!
-> >> >
-> >> > Some one no some thing that I can try to update de uImage file?
-> >> >
-> >> > Thanks for the sugestion.
-> >> >
-> >> >
-> >> >
-> >> > 2012/8/16 McClintock Matthew-B29882 <B29882@freescale.com>
-> >> >>
-> >> >> On Thu, Aug 16, 2012 at 7:11 AM, Raul Rosetto Munoz
-> >> >> <munoz0raul@gmail.com> wrote:
-> >> >> > Hello All,
-> >> >> >
-> >> >> > I'm use yocto to create a linux for imx28, with meta-fsl-arm and
-> >> >> > meta-openembedded.
-> >> >> >
-> >> >> > Until now, every thing is ok, I Have a
-> >> >> > core-image-minimal-imx28evk.sdcard
-> >> >> > that working in the machine.
-> >> >> >
-> >> >> > My problem is that when I try to add some things in the kernel
-> >> >> > configuration, I feel like the system build dont generate a new
-> >> >> > uImage
-> >> >> > file
-> >> >> > or the thing that I selected in the Kernel dont be atached in the
-> >> >> > core-image-minimal-imx28evk.sdcard!
-> >> >> >
-> >> >> > What I did is:
-> >> >> >
-> >> >> > ...tmp/deploy/images$ ls
-> >> >> > -rw-r--r--  1 raul raul   2511696 2012-08-15 16:23
-> >> >> > uImage-2.6.35.3-r24-imx28evk-20120815191927.bin
-> >> >> > lrwxrwxrwx  1 raul raul        47 2012-08-15 16:23
-> >> >> > uImage-imx28evk.bin
-> >> >> > ->
-> >> >> > uImage-2.6.35.3-r24-imx28evk-20120815191927.bin
-> >> >> >
-> >> >> > then:
-> >> >> >
-> >> >> > bitbake -c menuconfig virtual/kernel
-> >> >> > bitbake -c patch virtual/kernel
-> >> >> > bitbake -c compile virtual/kernel
-> >> >> > bitbake  virtual/kernel
-> >> >>
-> >> >> Try
-> >> >>
-> >> >> bitbake -c compile virtual/kernel -f
-> >> >>
-> >> >> -M
-> >> >>
-> >> >> >
-> >> >> > and I'm looking again:
-> >> >> >
-> >> >> > ...tmp/deploy/images$ ls
-> >> >> > -rw-r--r--  1 raul raul   2511696 2012-08-15 16:23
-> >> >> > uImage-2.6.35.3-r24-imx28evk-20120815191927.bin
-> >> >> > lrwxrwxrwx  1 raul raul        47 2012-08-15 16:23
-> >> >> > uImage-imx28evk.bin
-> >> >> > ->
-> >> >> > uImage-2.6.35.3-r24-imx28evk-20120815191927.bin
-> >> >> >
-> >> >> > Some One can explain to me what is the correct way to re-build th=
-e
-> >> >> > virtual/kenel target?
-> >> >> >
-> >> >> > Thanks for all Help!
-> >> >> >
-> >> >> > --
-> >> >> > Raul Rosetto Mu=F1oz
-> >> >> >
-> >> >> > _______________________________________________
-> >> >> > yocto mailing list
-> >> >> > yocto@yoctoproject.org
-> >> >> > https://lists.yoctoproject.org/listinfo/yocto
-> >> >> >
-> >> >
-> >> >
-> >> >
-> >> >
-> >> > --
-> >> > Raul Rosetto Mu=F1oz
-> >> >
-> >> > _______________________________________________
-> >> > yocto mailing list
-> >> > yocto@yoctoproject.org
-> >> > https://lists.yoctoproject.org/listinfo/yocto
-> >> >
-> >
-> >
-> >
-> >
-> > --
-> > Raul Rosetto Mu=F1oz
-> >
-> > _______________________________________________
-> > yocto mailing list
-> > yocto@yoctoproject.org
-> > https://lists.yoctoproject.org/listinfo/yocto
-> >
->
+> On 12-08-15 04:06 PM, Chris Tapp wrote:
+>> I've been looking at using yocto-bsp to create a BSP. Good job! Looks =
+like it's going to be much easier to do it this way :-)
+>=20
+> You really want TomZ to answer, but I'll throw in a few comments
+> here, since I'm currently reviewing a batch of code from Tom.
+>=20
+>>=20
+>> I've got a few questions/comments:
+>>=20
+>> 1) The documentation (7.0.1) says that the machine branch defaults to =
+standard/default, but that is not an option that gets presented when I =
+created a BSP. Should that be standard/base, standard/default/base, or =
+something else? Master shows this as standard/default/common-pc, but =
+that still isn't one of the listed options =
+(standard/default/common-pc/base ?).
+>=20
+> For the 3.2 tree, it is standard/default/base, which is a name that we
+> quickly determined was not optimal, and in the 3.4 kernel tree it is =
+standard/base.
+> So the answer is, it depends on the kernel you are using, but the =
+tools
+> know and have the right defaults.
+>=20
+>>=20
+>> 2) What are these machine branches anyway? As in, how do I decide =
+which one I should choose? For an ALIX 3D3 system I used =
+standard/default/common-pc/base. Is that reasonable?
+>=20
+> They are collections of functionality and configuration. So if you are
+> working on a new machine that is close to something that is already
+> in tree, you'd start from the existing machine branch. If you want to
+> do something new, standard/base, if you want the preempt-rt kernel,
+> standard/preempt-rt/base, etc.
+>=20
+>>=20
+>> 3) I selected core2 as the tune option and then had to change this in =
+the created meta-data as I needed i586 tuning and this was not given as =
+a tune option. Should all available tunes be offered?
+>>=20
+>> 4) Is there any way to select the kernel CPU (I got MATOM but needed =
+MGEODE_LX - easily changed in the<mybsp>.cfg file)?
+>=20
+> AFAIK, no. Since that would imply that all the kernel tunings were =
+parsed
+> and made available. Adding it to your .cfg is the right thing. If
+> there is a BSP that already falls into your class, and you inherit
+> it, you'd get the right tuning by default.
+>=20
+>>=20
+>> 5) The created BSP refers to various feature/x/y.scc files. Are these =
+documented somewhere so that they can be easily re-used, or am I better =
+off simply producing a complete defconfig? A pointer to the =
+documentation for the whole kernel meta data structure would also be =
+helpful.
+>=20
+> Tom and I were working on a way to dump these, I'm not sure if that
+> ever completed. The meta branch of the kernel repo has all the =
+details,
+> with short descriptions in the .scc files.
+>=20
+> As with anything, documenting a moving source code target is hard, so
+> I suggest looking at the branch.
+>=20
+> Have a look at the 3.4 kernel tree, meta branch, there's a README with
+> details about the categories, and contents.
 
 
+Thanks, that's got me going in the right direction.
 
---=20
-*Raul Rosetto Mu=F1oz*
+However, I've just recreated the BSP (to use standard/default/base) and =
+I'm now getting an error when I build the kernel:
 
---f46d04088c7f494b5704c767583d
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+ERROR: Function failed: do_patch (see... /log.do_patch.31458 for further =
+information)
+ERROR: Logfile of failure stored in: ... /log.do_patch.31458
+Log data follows:
+| ERROR: Function failed: do_patch (see ... /log.do_patch.31458 for =
+further information)
+| checkpoint is already restored, nothing to do
+| error: 'refs/heads/standard/default/base' exists; cannot create =
+'refs/heads/standard/default/base/LX800'
+| fatal: Failed to lock ref for update: Not a directory
+| warning: could not find (or was already included): =
+features/dmaengine/dmaengine.scc
+| warning: could not find (or was already included): =
+features/framebuffer/vesafb.scc
+| warning: could not find (or was already included): =
+features/intel-e1xxxx/intel-e100.scc
+| warning: could not find (or was already included): =
+features/intel-e1xxxx/intel-e1xxxx.scc
+| warning: could not find (or was already included): =
+features/dmaengine/dmaengine.scc
+| warning: could not find (or was already included): =
+features/serial/8250.scc
+| warning: could not find (or was already included): =
+features/hpet/hpet.scc
+| warning: could not find (or was already included): =
+features/ericsson-3g/f5521gw.scc
+| warning: could not find (or was already included): =
+features/framebuffer/vesafb.scc
+| warning: could not find (or was already included): =
+cfg/usb-mass-storage.scc
+| warning: could not find (or was already included): cfg/boot-live.scc
+| warning: could not find (or was already included): =
+features/power/intel.scc
+| warning: could not find (or was already included): =
+features/logbuf/size-normal.scc
+| warning: could not find (or was already included): =
+features/latencytop/latencytop.scc
+| warning: could not find (or was already included): =
+features/profiling/profiling.scc
+| warning: could not find (or was already included): user-patches.scc
+| ./2-LX800-9dbd5e3915bb4ed4d3809d315087c405.sco: line 21: =
+dmaengine_68b329da9893e34099c7d8ad5cb9c940: command not found
+| ./2-LX800-9dbd5e3915bb4ed4d3809d315087c405.sco: line 33: =
+vesafb_68b329da9893e34099c7d8ad5cb9c940: command not found
+| ./2-LX800-9dbd5e3915bb4ed4d3809d315087c405.sco: line 21: =
+dmaengine_68b329da9893e34099c7d8ad5cb9c940: command not found
+| ./2-LX800-9dbd5e3915bb4ed4d3809d315087c405.sco: line 33: =
+vesafb_68b329da9893e34099c7d8ad5cb9c940: command not found
+| [INFO] validating against known patches  (LX800-base-meta)
+| error: Your local changes to the following files would be overwritten =
+by checkout:
+| 	Makefile
+| 	drivers/tty/serial/pch_uart.c
+| 	drivers/usb/host/pci-quirks.c
+| 	fs/namei.c
+| 	fs/nfs/super.c
+| 	fs/splice.c
+| 	include/linux/nfs_xdr.h
+| 	kernel/time/ntp.c
+| 	net/ipv4/arp.c
+| 	scripts/mod/modpost.c
+| Please, commit your changes or stash them before you can switch =
+branches.
+| Aborting
+| ERROR: could not checkout branch base
+| ERROR. could not update git tree
+| ERROR. Could not modify standard/default/base/LX800
+NOTE: package =
+linux-yocto-3.2.18+git1+49f931bc294d5b6be60502bbd448cff5aa766235_1+8b8cfaa=
+ab2b8d79ac56e8c9a85bad9ae7bca399c-r1.1: task do_patch: Failed
 
-<div>All the time before loking at tmp/deploy/image/</div><div><br></div><d=
-iv>I did=A0bitbake core-image-minimal.</div><div><br></div><div>Maybe the .=
-sdcard use the correct uImage and this image is not the uImage in deploy/im=
-age path!</div>
-<div><br></div><div>How can I see the .sdcard using the uImage?</div><div><=
-br></div><div>Thanks for Help</div><div><br><div class=3D"gmail_quote">2012=
-/8/16 McClintock Matthew-B29882 <span dir=3D"ltr">&lt;<a href=3D"mailto:B29=
-882@freescale.com" target=3D"_blank">B29882@freescale.com</a>&gt;</span><br=
->
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">You have to also run a target that deploy&#3=
-9;s the kernel or at least run<br>
-the deploy command manuall<br>
-<br>
-bitbake core-image-minimal<br>
-<br>
-or<br>
-<br>
-bitbake virtual/kernel -c deploy<br>
-<br>
--M<br>
-<br>
-On Thu, Aug 16, 2012 at 2:11 PM, Raul Rosetto Munoz<br>
-<div class=3D"HOEnZb"><div class=3D"h5">&lt;<a href=3D"mailto:munoz0raul@gm=
-ail.com">munoz0raul@gmail.com</a>&gt; wrote:<br>
-&gt; don&#39;t work.....<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt; 2012/8/16 McClintock Matthew-B29882 &lt;<a href=3D"mailto:B29882@frees=
-cale.com">B29882@freescale.com</a>&gt;<br>
-&gt;&gt;<br>
-&gt;&gt; What about the -f?<br>
-&gt;&gt;<br>
-&gt;&gt; -M<br>
-&gt;&gt;<br>
-&gt;&gt; On Thu, Aug 16, 2012 at 2:02 PM, Raul Rosetto Munoz<br>
-&gt;&gt; &lt;<a href=3D"mailto:munoz0raul@gmail.com">munoz0raul@gmail.com</=
-a>&gt; wrote:<br>
-&gt;&gt; &gt; I did all de comands with -c and do not work!<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; Some one no some thing that I can try to update de uImage fil=
-e?<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; Thanks for the sugestion.<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; 2012/8/16 McClintock Matthew-B29882 &lt;<a href=3D"mailto:B29=
-882@freescale.com">B29882@freescale.com</a>&gt;<br>
-&gt;&gt; &gt;&gt;<br>
-&gt;&gt; &gt;&gt; On Thu, Aug 16, 2012 at 7:11 AM, Raul Rosetto Munoz<br>
-&gt;&gt; &gt;&gt; &lt;<a href=3D"mailto:munoz0raul@gmail.com">munoz0raul@gm=
-ail.com</a>&gt; wrote:<br>
-&gt;&gt; &gt;&gt; &gt; Hello All,<br>
-&gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt; &gt;&gt; &gt; I&#39;m use yocto to create a linux for imx28, with =
-meta-fsl-arm and<br>
-&gt;&gt; &gt;&gt; &gt; meta-openembedded.<br>
-&gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt; &gt;&gt; &gt; Until now, every thing is ok, I Have a<br>
-&gt;&gt; &gt;&gt; &gt; core-image-minimal-imx28evk.sdcard<br>
-&gt;&gt; &gt;&gt; &gt; that working in the machine.<br>
-&gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt; &gt;&gt; &gt; My problem is that when I try to add some things in =
-the kernel<br>
-&gt;&gt; &gt;&gt; &gt; configuration, I feel like the system build dont gen=
-erate a new<br>
-&gt;&gt; &gt;&gt; &gt; uImage<br>
-&gt;&gt; &gt;&gt; &gt; file<br>
-&gt;&gt; &gt;&gt; &gt; or the thing that I selected in the Kernel dont be a=
-tached in the<br>
-&gt;&gt; &gt;&gt; &gt; core-image-minimal-imx28evk.sdcard!<br>
-&gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt; &gt;&gt; &gt; What I did is:<br>
-&gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt; &gt;&gt; &gt; ...tmp/deploy/images$ ls<br>
-&gt;&gt; &gt;&gt; &gt; -rw-r--r-- =A01 raul raul =A0 2511696 2012-08-15 16:=
-23<br>
-&gt;&gt; &gt;&gt; &gt; uImage-2.6.35.3-r24-imx28evk-20120815191927.bin<br>
-&gt;&gt; &gt;&gt; &gt; lrwxrwxrwx =A01 raul raul =A0 =A0 =A0 =A047 2012-08-=
-15 16:23<br>
-&gt;&gt; &gt;&gt; &gt; uImage-imx28evk.bin<br>
-&gt;&gt; &gt;&gt; &gt; -&gt;<br>
-&gt;&gt; &gt;&gt; &gt; uImage-2.6.35.3-r24-imx28evk-20120815191927.bin<br>
-&gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt; &gt;&gt; &gt; then:<br>
-&gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt; &gt;&gt; &gt; bitbake -c menuconfig virtual/kernel<br>
-&gt;&gt; &gt;&gt; &gt; bitbake -c patch virtual/kernel<br>
-&gt;&gt; &gt;&gt; &gt; bitbake -c compile virtual/kernel<br>
-&gt;&gt; &gt;&gt; &gt; bitbake =A0virtual/kernel<br>
-&gt;&gt; &gt;&gt;<br>
-&gt;&gt; &gt;&gt; Try<br>
-&gt;&gt; &gt;&gt;<br>
-&gt;&gt; &gt;&gt; bitbake -c compile virtual/kernel -f<br>
-&gt;&gt; &gt;&gt;<br>
-&gt;&gt; &gt;&gt; -M<br>
-&gt;&gt; &gt;&gt;<br>
-&gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt; &gt;&gt; &gt; and I&#39;m looking again:<br>
-&gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt; &gt;&gt; &gt; ...tmp/deploy/images$ ls<br>
-&gt;&gt; &gt;&gt; &gt; -rw-r--r-- =A01 raul raul =A0 2511696 2012-08-15 16:=
-23<br>
-&gt;&gt; &gt;&gt; &gt; uImage-2.6.35.3-r24-imx28evk-20120815191927.bin<br>
-&gt;&gt; &gt;&gt; &gt; lrwxrwxrwx =A01 raul raul =A0 =A0 =A0 =A047 2012-08-=
-15 16:23<br>
-&gt;&gt; &gt;&gt; &gt; uImage-imx28evk.bin<br>
-&gt;&gt; &gt;&gt; &gt; -&gt;<br>
-&gt;&gt; &gt;&gt; &gt; uImage-2.6.35.3-r24-imx28evk-20120815191927.bin<br>
-&gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt; &gt;&gt; &gt; Some One can explain to me what is the correct way t=
-o re-build the<br>
-&gt;&gt; &gt;&gt; &gt; virtual/kenel target?<br>
-&gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt; &gt;&gt; &gt; Thanks for all Help!<br>
-&gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt; &gt;&gt; &gt; --<br>
-&gt;&gt; &gt;&gt; &gt; Raul Rosetto Mu=F1oz<br>
-&gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt; &gt;&gt; &gt; _______________________________________________<br>
-&gt;&gt; &gt;&gt; &gt; yocto mailing list<br>
-&gt;&gt; &gt;&gt; &gt; <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoct=
-oproject.org</a><br>
-&gt;&gt; &gt;&gt; &gt; <a href=3D"https://lists.yoctoproject.org/listinfo/y=
-octo" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><b=
-r>
-&gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; --<br>
-&gt;&gt; &gt; Raul Rosetto Mu=F1oz<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; _______________________________________________<br>
-&gt;&gt; &gt; yocto mailing list<br>
-&gt;&gt; &gt; <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.=
-org</a><br>
-&gt;&gt; &gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" tar=
-get=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-&gt;&gt; &gt;<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt; --<br>
-&gt; Raul Rosetto Mu=F1oz<br>
-&gt;<br>
-&gt; _______________________________________________<br>
-&gt; yocto mailing list<br>
-&gt; <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><b=
-r>
-&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_b=
-lank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-&gt;<br>
-</div></div></blockquote></div><br><br clear=3D"all"><div><br></div>-- <br>=
-<b>Raul Rosetto Mu=F1oz</b><br>
-</div>
+I'm guessing this is related to using the same BSP name when I recreated =
+it? What do I need to do to get back to something that builds (which it =
+did before)?
 
---f46d04088c7f494b5704c767583d--
+Chris Tapp
+
+opensource@keylevel.com
+www.keylevel.com
+
+
+
+
