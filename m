@@ -1,37 +1,33 @@
-Return-Path: <rahul.saxena@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 32999E002AB
-	for <yocto@yoctoproject.org>; Thu, 16 Aug 2012 11:56:03 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 16 Aug 2012 11:56:02 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.77,780,1336374000"; d="scan'208";a="209483870"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
-	by fmsmga002.fm.intel.com with ESMTP; 16 Aug 2012 11:56:02 -0700
-Received: from orsmsx151.amr.corp.intel.com (10.22.226.38) by
-	orsmsx603.amr.corp.intel.com (10.22.226.49) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Thu, 16 Aug 2012 11:56:02 -0700
-Received: from orsmsx103.amr.corp.intel.com ([169.254.2.138]) by
-	ORSMSX151.amr.corp.intel.com ([169.254.7.3]) with mapi id
-	14.01.0355.002; Thu, 16 Aug 2012 11:56:01 -0700
-From: "Saxena, Rahul" <rahul.saxena@intel.com>
-To: "Saxena, Rahul" <rahul.saxena@intel.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>, "Zanussi, Tom" <tom.zanussi@intel.com>,
-	"bruce.ashfield@windriver.com" <bruce.ashfield@windriver.com>, "Bodke, 
-	Kishore K" <kishore.k.bodke@intel.com>
-Thread-Topic: [yocto] [PATCH 0/1][meta-intel] Cover letter to upgrade
-	meta-cedartrail pvr driver to v1.0.2
-Thread-Index: AQHNe9/14BEiLHNMsUWB1SMlkeQMj5dcyQSg
-Date: Thu, 16 Aug 2012 18:56:01 +0000
-Message-ID: <63ECFF2A2302B44093D7CE9E9962C49003311678@ORSMSX103.amr.corp.intel.com>
-References: <cover.1345077384.git.rahul.saxena@intel.com>
-In-Reply-To: <cover.1345077384.git.rahul.saxena@intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.139]
+Return-Path: <munoz0raul@gmail.com>
+Received: from mail-lpp01m010-f48.google.com (mail-lpp01m010-f48.google.com
+	[209.85.215.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 50268E002AB
+	for <yocto@yoctoproject.org>; Thu, 16 Aug 2012 12:02:02 -0700 (PDT)
+Received: by lagr15 with SMTP id r15so1887296lag.35
+	for <yocto@yoctoproject.org>; Thu, 16 Aug 2012 12:02:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=K51uN0/gtIJhFRUkJscKvdtJEx6eOuQfyVm3L3fHY5I=;
+	b=DGp5vM07W0kG7Jyal55x3/h9QnIklYhBnMw8TQkrXBr2cIW4GyGHiex7eqVkbQvQDa
+	K5wYUOBsiodupAE18Nan11ahzJu87Jj5y7Kk7+FY2QZLvp+sUc+O2tacaq5InBzZZDm4
+	xwaE4FdCeGj+7BB6MTC45z0mA8lI7z2e3VdDvcfl+fK9fLkDV3PQXmjO8wFDtbb6tK+u
+	NgevUl59f/gt7V24lhArQlayaRa9OZCwWAaSGZZsBUwEBiOANWN632krP+q7QpB9fO1P
+	j82fAf1P9OvqDYhJlRPCs3+X+q+ZQAJucioNDQWD5vjS6VSs7AK0NnuytKy92qxrJ6jm
+	tvvg==
 MIME-Version: 1.0
-Subject: Re: [PATCH 0/1][meta-intel] Cover letter to upgrade	meta-cedartrail pvr driver to v1.0.2
+Received: by 10.112.9.68 with SMTP id x4mr1137937lba.46.1345143720977; Thu, 16
+	Aug 2012 12:02:00 -0700 (PDT)
+Received: by 10.112.21.194 with HTTP; Thu, 16 Aug 2012 12:02:00 -0700 (PDT)
+In-Reply-To: <CAEsOVNdLwWySAnOc9J8umOU75oV1S8f-9RWJFxHV2n1e4Q=MqA@mail.gmail.com>
+References: <CANmVirjvYNf0kedcpWP1zhNuu9_4_f-Zr-LR8aQS=1JBpUPJLQ@mail.gmail.com>
+	<CAEsOVNdLwWySAnOc9J8umOU75oV1S8f-9RWJFxHV2n1e4Q=MqA@mail.gmail.com>
+Date: Thu, 16 Aug 2012 16:02:00 -0300
+Message-ID: <CANmViri9CS7CHj_p9emS8dFTZNOXeKDLYxLaznsLasX+sb_FBg@mail.gmail.com>
+From: Raul Rosetto Munoz <munoz0raul@gmail.com>
+To: McClintock Matthew-B29882 <B29882@freescale.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Re-Build virtual/kernel
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,67 +39,172 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 16 Aug 2012 18:56:03 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Thu, 16 Aug 2012 19:02:02 -0000
+Content-Type: multipart/alternative; boundary=485b390f7ae4a9247904c766ad74
+
+--485b390f7ae4a9247904c766ad74
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-The patch is for denzil branch of meta-intel.
+I did all de comands with -c and do not work!
 
-Thanks
-Rahul
+Some one no some thing that I can try to update de uImage file?
 
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of rahul.saxena@intel.com
-Sent: Thursday, August 16, 2012 11:36 AM
-To: yocto@yoctoproject.org; Zanussi, Tom; bruce.ashfield@windriver.com; Bod=
-ke, Kishore K
-Subject: [yocto] [PATCH 0/1][meta-intel] Cover letter to upgrade meta-cedar=
-trail pvr driver to v1.0.2
+Thanks for the sugestion.
 
-From: Rahul Saxena <rahul.saxena@intel.com>
 
-Cover letter to upgrade meta-cedartrail pvr driver to v1.0.2
-   =20
-This update of the driver enables support for B3 stepping of Cedarview proc=
-essor and also support for DP/eDP ports.
-   =20
-Signed-off-by: Rahul Saxena <rahul.saxena@intel.com>
---
-The following changes since commit 2552a046878e4352595f6e081ad371538cceda10=
-:
 
-  meta-n450: explicitly specify KBRANCH we expect to use (2012-07-12 16:32:=
-58 -0500)
+2012/8/16 McClintock Matthew-B29882 <B29882@freescale.com>
 
-are available in the git repository at:
-  git://git.pokylinux.org/meta-intel-contrib denzelv102checkin15augOK
-  http://git.pokylinux.org/cgit.cgi/meta-intel-contrib/log/?h=3Ddenzelv102c=
-heckin15augOK
+> On Thu, Aug 16, 2012 at 7:11 AM, Raul Rosetto Munoz
+> <munoz0raul@gmail.com> wrote:
+> > Hello All,
+> >
+> > I'm use yocto to create a linux for imx28, with meta-fsl-arm and
+> > meta-openembedded.
+> >
+> > Until now, every thing is ok, I Have a core-image-minimal-imx28evk.sdca=
+rd
+> > that working in the machine.
+> >
+> > My problem is that when I try to add some things in the kernel
+> > configuration, I feel like the system build dont generate a new uImage
+> file
+> > or the thing that I selected in the Kernel dont be atached in the
+> > core-image-minimal-imx28evk.sdcard!
+> >
+> > What I did is:
+> >
+> > ...tmp/deploy/images$ ls
+> > -rw-r--r--  1 raul raul   2511696 2012-08-15 16:23
+> > uImage-2.6.35.3-r24-imx28evk-20120815191927.bin
+> > lrwxrwxrwx  1 raul raul        47 2012-08-15 16:23 uImage-imx28evk.bin =
+->
+> > uImage-2.6.35.3-r24-imx28evk-20120815191927.bin
+> >
+> > then:
+> >
+> > bitbake -c menuconfig virtual/kernel
+> > bitbake -c patch virtual/kernel
+> > bitbake -c compile virtual/kernel
+> > bitbake  virtual/kernel
+>
+> Try
+>
+> bitbake -c compile virtual/kernel -f
+>
+> -M
+>
+> >
+> > and I'm looking again:
+> >
+> > ...tmp/deploy/images$ ls
+> > -rw-r--r--  1 raul raul   2511696 2012-08-15 16:23
+> > uImage-2.6.35.3-r24-imx28evk-20120815191927.bin
+> > lrwxrwxrwx  1 raul raul        47 2012-08-15 16:23 uImage-imx28evk.bin =
+->
+> > uImage-2.6.35.3-r24-imx28evk-20120815191927.bin
+> >
+> > Some One can explain to me what is the correct way to re-build the
+> > virtual/kenel target?
+> >
+> > Thanks for all Help!
+> >
+> > --
+> > Raul Rosetto Mu=F1oz
+> >
+> > _______________________________________________
+> > yocto mailing list
+> > yocto@yoctoproject.org
+> > https://lists.yoctoproject.org/listinfo/yocto
+> >
+>
 
-Rahul Saxena (1):
-  meta-cedartrail: update PVR graphics driver to version 1.0.2
 
- meta-cedartrail/README                             |    2 +-
- meta-cedartrail/conf/machine/cedartrail.conf       |    2 +-
- .../xorg-driver/cdv-pvr-driver.inc                 |   37 -----
- .../xorg-driver/cdv-pvr-driver_1.0.2.bb            |  143 ++++++++++++++++=
-++++
- .../xorg-driver/cdv-pvr-driver_1.0.bb              |   99 --------------
- .../recipes-kernel/linux/linux-yocto_3.0.bbappend  |    6 +-
- 6 files changed, 148 insertions(+), 141 deletions(-)  delete mode 100644 m=
-eta-cedartrail/recipes-graphics/xorg-driver/cdv-pvr-driver.inc
- create mode 100644 meta-cedartrail/recipes-graphics/xorg-driver/cdv-pvr-dr=
-iver_1.0.2.bb
- delete mode 100644 meta-cedartrail/recipes-graphics/xorg-driver/cdv-pvr-dr=
-iver_1.0.bb
 
---
-1.7.4.1
+--=20
+*Raul Rosetto Mu=F1oz*
 
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
+--485b390f7ae4a9247904c766ad74
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
+I did all de comands with -c and do not work!<div><br></div><div>Some one n=
+o some thing that I can try to update de uImage file?</div><div><br></div><=
+div>Thanks for the sugestion.</div><div><br></div><div><br><br><div class=
+=3D"gmail_quote">
+2012/8/16 McClintock Matthew-B29882 <span dir=3D"ltr">&lt;<a href=3D"mailto=
+:B29882@freescale.com" target=3D"_blank">B29882@freescale.com</a>&gt;</span=
+><br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-le=
+ft:1px #ccc solid;padding-left:1ex">
+<div class=3D"im">On Thu, Aug 16, 2012 at 7:11 AM, Raul Rosetto Munoz<br>
+&lt;<a href=3D"mailto:munoz0raul@gmail.com">munoz0raul@gmail.com</a>&gt; wr=
+ote:<br>
+&gt; Hello All,<br>
+&gt;<br>
+&gt; I&#39;m use yocto to create a linux for imx28, with meta-fsl-arm and<b=
+r>
+&gt; meta-openembedded.<br>
+&gt;<br>
+&gt; Until now, every thing is ok, I Have a core-image-minimal-imx28evk.sdc=
+ard<br>
+&gt; that working in the machine.<br>
+&gt;<br>
+&gt; My problem is that when I try to add some things in the kernel<br>
+&gt; configuration, I feel like the system build dont generate a new uImage=
+ file<br>
+&gt; or the thing that I selected in the Kernel dont be atached in the<br>
+&gt; core-image-minimal-imx28evk.sdcard!<br>
+&gt;<br>
+&gt; What I did is:<br>
+&gt;<br>
+&gt; ...tmp/deploy/images$ ls<br>
+&gt; -rw-r--r-- =A01 raul raul =A0 2511696 2012-08-15 16:23<br>
+&gt; uImage-2.6.35.3-r24-imx28evk-20120815191927.bin<br>
+&gt; lrwxrwxrwx =A01 raul raul =A0 =A0 =A0 =A047 2012-08-15 16:23 uImage-im=
+x28evk.bin -&gt;<br>
+&gt; uImage-2.6.35.3-r24-imx28evk-20120815191927.bin<br>
+&gt;<br>
+&gt; then:<br>
+&gt;<br>
+&gt; bitbake -c menuconfig virtual/kernel<br>
+&gt; bitbake -c patch virtual/kernel<br>
+&gt; bitbake -c compile virtual/kernel<br>
+&gt; bitbake =A0virtual/kernel<br>
+<br>
+</div>Try<br>
+<br>
+bitbake -c compile virtual/kernel -f<br>
+<br>
+-M<br>
+<div class=3D"im"><br>
+&gt;<br>
+&gt; and I&#39;m looking again:<br>
+&gt;<br>
+&gt; ...tmp/deploy/images$ ls<br>
+&gt; -rw-r--r-- =A01 raul raul =A0 2511696 2012-08-15 16:23<br>
+&gt; uImage-2.6.35.3-r24-imx28evk-20120815191927.bin<br>
+&gt; lrwxrwxrwx =A01 raul raul =A0 =A0 =A0 =A047 2012-08-15 16:23 uImage-im=
+x28evk.bin -&gt;<br>
+&gt; uImage-2.6.35.3-r24-imx28evk-20120815191927.bin<br>
+&gt;<br>
+&gt; Some One can explain to me what is the correct way to re-build the<br>
+&gt; virtual/kenel target?<br>
+&gt;<br>
+&gt; Thanks for all Help!<br>
+&gt;<br>
+&gt; --<br>
+&gt; Raul Rosetto Mu=F1oz<br>
+&gt;<br>
+</div>&gt; _______________________________________________<br>
+&gt; yocto mailing list<br>
+&gt; <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><b=
+r>
+&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_b=
+lank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+&gt;<br>
+</blockquote></div><br><br clear=3D"all"><div><br></div>-- <br><b>Raul Rose=
+tto Mu=F1oz</b><br>
+</div>
+
+--485b390f7ae4a9247904c766ad74--
