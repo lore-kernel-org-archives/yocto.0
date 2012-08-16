@@ -1,32 +1,28 @@
-Return-Path: <song.liu@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1087BE00769
-	for <yocto@yoctoproject.org>; Wed, 15 Aug 2012 17:02:12 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 15 Aug 2012 17:02:11 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.77,775,1336374000"; 
-	d="scan'208,217";a="181247937"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
-	by orsmga001.jf.intel.com with ESMTP; 15 Aug 2012 17:02:11 -0700
-Received: from orsmsx104.amr.corp.intel.com (10.22.225.131) by
-	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Wed, 15 Aug 2012 17:02:10 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.152]) by
-	ORSMSX104.amr.corp.intel.com ([169.254.3.52]) with mapi id
-	14.01.0355.002; Wed, 15 Aug 2012 17:02:10 -0700
-From: "Liu, Song" <song.liu@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Yocto Project 1.3 Beta Program
-Thread-Index: Ac17QmGVuAuwoNWSSeSwM2S9owJc9A==
-Date: Thu, 16 Aug 2012 00:02:10 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A485167B1@ORSMSX101.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
+Return-Path: <munoz0raul@gmail.com>
+Received: from mail-lpp01m010-f48.google.com (mail-lpp01m010-f48.google.com
+	[209.85.215.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BEAA4E013E5
+	for <yocto@yoctoproject.org>; Thu, 16 Aug 2012 05:11:23 -0700 (PDT)
+Received: by lagr15 with SMTP id r15so1594581lag.35
+	for <yocto@yoctoproject.org>; Thu, 16 Aug 2012 05:11:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=IG2j09BKlBkLZdLHASBQ0R8GFhNqThcCZSFC9SvMyUc=;
+	b=A5L7/+FLUtlVhQuIPlXN0iiKP6z3kJwGdz2xb/JZfSsKY0eEgAjbY1iVBOVb2sDb+e
+	AYZ8SoTRyFKEYbAPQNtj9T1swsZwoMT3A0bNY7HT/4MdzcHmQwt4SQ2ZX3Xifqq4sfPg
+	6y+Db5Xd0fgROvsBfCvYYQz6HATf7x4NwHtV3TSgFaBi/d2sZgyCTRCy9RRmbxbT9RU+
+	1wN6FAfFSoNHnRmH4+RYbXFVOykRJNiLh/pu/xhNSdFyJAcTdYxEVTIDe1a5/JwFhJVk
+	syulpyTInkF8o5Bg0GUJ4cHqKV+LEmwvXFnDbbYd8vI7f4loqcWJtp7DlqloaI50RROo
+	YwEg==
 MIME-Version: 1.0
-Subject: Yocto Project 1.3 Beta Program
+Received: by 10.112.9.68 with SMTP id x4mr604725lba.46.1345119081986; Thu, 16
+	Aug 2012 05:11:21 -0700 (PDT)
+Received: by 10.112.21.194 with HTTP; Thu, 16 Aug 2012 05:11:21 -0700 (PDT)
+Date: Thu, 16 Aug 2012 09:11:21 -0300
+Message-ID: <CANmVirjvYNf0kedcpWP1zhNuu9_4_f-Zr-LR8aQS=1JBpUPJLQ@mail.gmail.com>
+From: Raul Rosetto Munoz <munoz0raul@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Re-Build virtual/kernel
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,230 +34,97 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 16 Aug 2012 00:02:12 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_7E680CB2A76BB8438D08CF13C09FC53A485167B1ORSMSX101amrcor_"
+X-List-Received-Date: Thu, 16 Aug 2012 12:11:24 -0000
+Content-Type: multipart/alternative; boundary=485b390f7ae40ffbff04c760f171
 
---_000_7E680CB2A76BB8438D08CF13C09FC53A485167B1ORSMSX101amrcor_
-Content-Type: text/plain; charset="us-ascii"
+--485b390f7ae40ffbff04c760f171
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-Hi all,
+Hello All,
 
+I'm use yocto to create a linux for imx28, with meta-fsl-arm and
+meta-openembedded.
 
+Until now, every thing is ok, I Have a core-image-minimal-imx28evk.sdcard
+that working in the machine.
 
-We are starting the Beta program for the Yocto Project 1.3 release and look=
-ing for Beta users again. Please sign up if you are interested. This releas=
-e focuses on continued improvement, refreshment and stabilization of the Yo=
-cto Project. Please check the following links for what we have in 1.3 relea=
-se:
+My problem is that when I try to add some things in the kernel
+configuration, I feel like the system build dont generate a new uImage file
+or the thing that I selected in the Kernel dont be atached in the
+core-image-minimal-imx28evk.sdcard!
 
+What I did is:
 
+*...tmp/deploy/images$ ls *
+*-rw-r--r--  1 raul raul   2511696 2012-08-15 16:23
+uImage-2.6.35.3-r24-imx28evk-20120815191927.bin*
+*lrwxrwxrwx  1 raul raul        47 2012-08-15 16:23 uImage-imx28evk.bin ->
+uImage-2.6.35.3-r24-imx28evk-20120815191927.bin*
 
-https://wiki.yoctoproject.org/wiki/Yocto_1.3_Features#Yocto_Project_1.3_The=
-mes
+then:
 
-https://wiki.yoctoproject.org/wiki/Yocto_1.3_Schedule
+*bitbake -c menuconfig virtual/kernel*
+*bitbake -c patch virtual/kernel*
+*bitbake -c compile virtual/kernel*
+*bitbake  virtual/kernel*
 
+and I'm looking again:
 
+*...tmp/deploy/images$ ls *
+*-rw-r--r--  1 raul raul   2511696 2012-08-15 16:23
+uImage-2.6.35.3-r24-imx28evk-20120815191927.bin*
+*lrwxrwxrwx  1 raul raul        47 2012-08-15 16:23 uImage-imx28evk.bin ->
+uImage-2.6.35.3-r24-imx28evk-20120815191927.bin*
 
-This time, besides basic build testing, we would like to ask you to focus o=
-n the following features in 1.3 if you are interested:
+Some One can explain to me what is the correct way to re-build the
+virtual/kenel target?
 
+Thanks for all Help!
 
+--=20
+*Raul Rosetto Mu=F1oz*
 
-1.  Adjusted HOB workflow: we changed the workflow for users to build an im=
-age with HOB and also fixed a lot of HOB bugs as well. Hopefully you can fi=
-nd the new HOB easier and more intuitive. We would love your feedback.
-
-2.  Bitbake command UI change: this change replaces knotty with knotty-2.
-
-3.  Relocatable SDKs: now the SDKs can be put anywhere instead of the fixed=
- location.
-
-4.  Yocto-bsp tool and its Eclipse plugin. We made more improvement to this=
- wonderful tool in 1.3 and it's definitely more stable.
-
-
-
-
-
-If you or anyone else in your department or group is interested in this pro=
-gram, please send me the name and email. Anyone who is interested in the Yo=
-cto Project and/or has some technical background in embedded Linux area sho=
-uld be just fine. I will send out specific instructions to Beta users signe=
-d up in the next couple of weeks.
-
-
-
-We have sent T-shirts for 1.2 Beta users who gave us feedback. Due to restr=
-ictions on textile shipment to certain countries including Italy, Germany, =
-Brazil and Malaysia, some T-shirts got returned. We apologize for this and =
-are thinking about some alternatives. For 1.3 Beta users, we will send Yoct=
-o T-shirts again. Like I said, we will try to figure something out if we ca=
-nnot send T-shirts.
-
-
-
-Thank you!
-
-Song
-
-
---_000_7E680CB2A76BB8438D08CF13C09FC53A485167B1ORSMSX101amrcor_
-Content-Type: text/html; charset="us-ascii"
+--485b390f7ae40ffbff04c760f171
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:dt=3D"uuid:C2F41010-65B3-11d1-A29F-00AA00C14882" xmlns:m=3D"http://sc=
-hemas.microsoft.com/office/2004/12/omml" xmlns=3D"http://www.w3.org/TR/REC-=
-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Consolas;
-	panose-1:2 11 6 9 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
-	{mso-style-priority:99;
-	mso-style-link:"Plain Text Char";
-	margin:0in;
-	margin-bottom:.0001pt;
-	font-size:10.5pt;
-	font-family:Consolas;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-span.PlainTextChar
-	{mso-style-name:"Plain Text Char";
-	mso-style-priority:99;
-	mso-style-link:"Plain Text";
-	font-family:Consolas;}
-.MsoChpDefault
-	{mso-style-type:export-only;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
-/* List Definitions */
-@list l0
-	{mso-list-id:1409305707;
-	mso-list-type:hybrid;
-	mso-list-template-ids:-641796988 67698703 67698713 67698715 67698703 67698=
-713 67698715 67698703 67698713 67698715;}
-@list l0:level1
-	{mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-ol
-	{margin-bottom:0in;}
-ul
-	{margin-bottom:0in;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoPlainText">Hi all,<o:p></o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText">We are starting the Beta program for the Yocto Pr=
-oject 1.3 release and looking for Beta users again. Please sign up if you a=
-re interested. This release focuses on continued improvement, refreshment a=
-nd stabilization of the Yocto Project.
- Please check the following links for what we have in 1.3 release:<o:p></o:=
-p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoc=
-to_1.3_Features#Yocto_Project_1.3_Themes">https://wiki.yoctoproject.org/wik=
-i/Yocto_1.3_Features#Yocto_Project_1.3_Themes</a><o:p></o:p></p>
-<p class=3D"MsoPlainText"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoc=
-to_1.3_Schedule">https://wiki.yoctoproject.org/wiki/Yocto_1.3_Schedule</a><=
-o:p></o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText">This time, besides basic build testing, we would =
-like to ask you to focus on the following features in 1.3 if you are intere=
-sted:<o:p></o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText" style=3D"margin-left:.5in;text-indent:-.25in;mso-=
-list:l0 level1 lfo1">
-<![if !supportLists]><span style=3D"mso-list:Ignore">1.<span style=3D"font:=
-7.0pt &quot;Times New Roman&quot;">&nbsp;
-</span></span><![endif]>Adjusted HOB workflow: we changed the workflow for =
-users to build an image with HOB and also fixed a lot of HOB bugs as well. =
-Hopefully you can find the new HOB easier and more intuitive. We would love=
- your feedback.<o:p></o:p></p>
-<p class=3D"MsoPlainText" style=3D"margin-left:.5in;text-indent:-.25in;mso-=
-list:l0 level1 lfo1">
-<![if !supportLists]><span style=3D"mso-list:Ignore">2.<span style=3D"font:=
-7.0pt &quot;Times New Roman&quot;">&nbsp;
-</span></span><![endif]>Bitbake command UI change: this change replaces kno=
-tty with knotty-2.<o:p></o:p></p>
-<p class=3D"MsoPlainText" style=3D"margin-left:.5in;text-indent:-.25in;mso-=
-list:l0 level1 lfo1">
-<![if !supportLists]><span style=3D"mso-list:Ignore">3.<span style=3D"font:=
-7.0pt &quot;Times New Roman&quot;">&nbsp;
-</span></span><![endif]>Relocatable SDKs: now the SDKs can be put anywhere =
-instead of the fixed location.<o:p></o:p></p>
-<p class=3D"MsoPlainText" style=3D"margin-left:.5in;text-indent:-.25in;mso-=
-list:l0 level1 lfo1">
-<![if !supportLists]><span style=3D"mso-list:Ignore">4.<span style=3D"font:=
-7.0pt &quot;Times New Roman&quot;">&nbsp;
-</span></span><![endif]>Yocto-bsp tool and its Eclipse plugin. We made more=
- improvement to this wonderful tool in 1.3 and it&#8217;s definitely more s=
-table.<o:p></o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText">If you or anyone else in your department or group=
- is interested in this program, please send me the name and email. Anyone w=
-ho is interested in the Yocto Project and/or has some technical background =
-in embedded Linux area should be just
- fine. I will send out specific instructions to Beta users signed up in the=
- next couple of weeks.<o:p></o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText">We have sent T-shirts for 1.2 Beta users who gave=
- us feedback. Due to restrictions on textile shipment to certain countries =
-including Italy, Germany, Brazil and Malaysia, some T-shirts got returned. =
-We apologize for this and are thinking
- about some alternatives. For 1.3 Beta users, we will send Yocto T-shirts a=
-gain. Like I said, we will try to figure something out if we cannot send T-=
-shirts.<o:p></o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText">Thank you!<o:p></o:p></p>
-<p class=3D"MsoPlainText">Song<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<div><div>Hello All,</div><div><br></div><div>I&#39;m use yocto to create a=
+ linux for imx28, with meta-fsl-arm and meta-openembedded.</div><div><br></=
+div><div>Until now, every thing is ok, I Have a core-image-minimal-imx28evk=
+.sdcard that working in the machine.</div>
+<div><br></div><div>My problem is that when I try to add some things in the=
+ kernel configuration, I feel like the system build dont generate a new uIm=
+age file or the thing that I selected in the Kernel dont be atached in the =
+core-image-minimal-imx28evk.sdcard!</div>
+<div><br></div><div>What I did is:</div><div><br></div><div><font face=3D"&=
+#39;courier new&#39;, monospace"><b>...tmp/deploy/images$ ls=A0</b></font><=
+/div><div><font face=3D"&#39;courier new&#39;, monospace"><b>-rw-r--r-- =A0=
+1 raul raul =A0 2511696 2012-08-15 16:23 uImage-2.6.35.3-r24-imx28evk-20120=
+815191927.bin</b></font></div>
+<div><font face=3D"&#39;courier new&#39;, monospace"><b>lrwxrwxrwx =A01 rau=
+l raul =A0 =A0 =A0 =A047 2012-08-15 16:23 uImage-imx28evk.bin -&gt; uImage-=
+2.6.35.3-r24-imx28evk-20120815191927.bin</b></font></div><div><br></div><di=
+v>then:</div>
+<div><br></div><div><b><font face=3D"&#39;courier new&#39;, monospace">bitb=
+ake -c menuconfig virtual/kernel</font></b></div><div><b><font face=3D"&#39=
+;courier new&#39;, monospace">bitbake -c patch virtual/kernel</font></b></d=
+iv>
+<div><b><font face=3D"&#39;courier new&#39;, monospace">bitbake -c compile =
+virtual/kernel</font></b></div><div><b><font face=3D"&#39;courier new&#39;,=
+ monospace">bitbake =A0virtual/kernel</font></b></div><div><br></div><div>a=
+nd I&#39;m looking again:</div>
+<div><br></div><div><font face=3D"&#39;courier new&#39;, monospace"><b>...t=
+mp/deploy/images$ ls=A0</b></font></div><div><font face=3D"&#39;courier new=
+&#39;, monospace"><b>-rw-r--r-- =A01 raul raul =A0 2511696 2012-08-15 16:23=
+ uImage-2.6.35.3-r24-imx28evk-20120815191927.bin</b></font></div>
+<div><font face=3D"&#39;courier new&#39;, monospace"><b>lrwxrwxrwx =A01 rau=
+l raul =A0 =A0 =A0 =A047 2012-08-15 16:23 uImage-imx28evk.bin -&gt; uImage-=
+2.6.35.3-r24-imx28evk-20120815191927.bin</b></font></div><div><br></div><di=
+v>Some One can explain to me what is the correct way to re-build the virtua=
+l/kenel target?</div>
+<div><br></div><div>Thanks for all Help!</div></div><div><br></div><div>-- =
+<br><b>Raul Rosetto Mu=F1oz</b><br>
 </div>
-</body>
-</html>
 
---_000_7E680CB2A76BB8438D08CF13C09FC53A485167B1ORSMSX101amrcor_--
+--485b390f7ae40ffbff04c760f171--
