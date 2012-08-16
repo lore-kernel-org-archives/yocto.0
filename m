@@ -1,33 +1,26 @@
-Return-Path: <elvis.dowson@gmail.com>
-Received: from mail-gh0-f176.google.com (mail-gh0-f176.google.com
-	[209.85.160.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C3880E002AB
-	for <yocto@yoctoproject.org>; Thu, 16 Aug 2012 10:33:36 -0700 (PDT)
-Received: by ghbz10 with SMTP id z10so3998784ghb.35
-	for <yocto@yoctoproject.org>; Thu, 16 Aug 2012 10:33:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:content-type:content-transfer-encoding:subject:date:message-id
-	:to:mime-version:x-mailer;
-	bh=b2CiL3Ovahp6+rkLMR6RXvLVYI/H6uLz7Muqgb4/dgw=;
-	b=ryVHRy6U0czqQj9zE0ZBCSOxzUpmlIMEc6HATOCE8K6fwuxpHHHFVdqbb+coF9JrQ+
-	xqYeXi20kEN9IQUa9acaCC9cH9ymxLqZMlgUpIzOMa2prZ6GROAV3QsiWIEFlKTXpzw7
-	ZtVBMH7vhL5+mmWsr5ArWkDRWTjpBALz1omWuE3EGJJSWqXbCUzkkUtqqljReUMZSA8b
-	v8toK3vqDrBs/FOdK4UKQmyuLVALSONDTP9aDMK2NDU9aTQf0C+wl00WTJ8a/aydsQFk
-	Tni4+0CeTGDjxK/Hb6k0A52T6B3qogXLUg4EzbJwBugYiorMwGTpFPd8MjdlEkyyocoJ
-	AjoQ==
-Received: by 10.66.88.39 with SMTP id bd7mr3540614pab.50.1345138415769;
-	Thu, 16 Aug 2012 10:33:35 -0700 (PDT)
-Received: from [192.168.1.101] ([94.205.108.162])
-	by mx.google.com with ESMTPS id to2sm668929pbc.61.2012.08.16.10.33.33
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Thu, 16 Aug 2012 10:33:35 -0700 (PDT)
-From: Elvis Dowson <elvis.dowson@gmail.com>
-Date: Thu, 16 Aug 2012 21:33:29 +0400
-Message-Id: <06877BBA-15AF-4B46-B76B-47240652CC29@gmail.com>
-To: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-Mime-Version: 1.0 (Apple Message framework v1278)
-X-Mailer: Apple Mail (2.1278)
-Subject: IMX 6 quad core development kit
+Return-Path: <sgw@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B3CECE002AB
+	for <yocto@yoctoproject.org>; Thu, 16 Aug 2012 10:42:59 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 16 Aug 2012 10:42:56 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.77,780,1336374000"; d="scan'208";a="187330629"
+Received: from unknown (HELO [10.255.12.253]) ([10.255.12.253])
+	by orsmga002.jf.intel.com with ESMTP; 16 Aug 2012 10:42:55 -0700
+Message-ID: <502D311F.7010707@linux.intel.com>
+Date: Thu, 16 Aug 2012 10:42:55 -0700
+From: Saul Wold <sgw@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:14.0) Gecko/20120717 Thunderbird/14.0
+MIME-Version: 1.0
+To: Kenneth Solbjerg <kenneth.solbjerg@moveinnovation.dk>
+References: <CADEYsmEN9mhJ_Yh5RJzRBtrMSc+w1NaUC3GxNfZmbd0O5uP1RQ@mail.gmail.com>
+	<CADEYsmEwNHNPQaRRwdPP1ej0xg16hyO7=K-pxgifzcVZEeA9ig@mail.gmail.com>
+In-Reply-To: <CADEYsmEwNHNPQaRRwdPP1ej0xg16hyO7=K-pxgifzcVZEeA9ig@mail.gmail.com>
+Cc: yocto@yoctoproject.org, 'Patches and discussions about the oe-core layer'
+	<openembedded-core@lists.openembedded.org>
+Subject: Re: [PATCH 1/1] run-postinsts does not run any scripts
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,15 +32,57 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 16 Aug 2012 17:33:37 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 16 Aug 2012 17:42:59 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi,
-       Any suggestions for an IMX 6 quad core development kit? Has Yocto =
-been tested on the IMX 6 ARM processor?
+On 07/09/2012 05:19 AM, Kenneth Solbjerg wrote:
+> Hi
+>
+> Sorry for any mistakes, but this is my first patch...
+>
+> On my system (core-image-base, .deb package files), run-postinsts does
+> not run any scripts due to a failed test in run-postinsts.awk.
+> As dpkg is not actually installed on target, opkg is identified as the
+> pkgdir and that is not right...
+>
+>
+> Index: poky-denzil-7.0/meta/recipes-devtools/dpkg/run-postinsts/run-postinsts.awk
+> ===================================================================
+> --- poky-denzil-7.0.orig/meta/recipes-devtools/dpkg/run-postinsts/run-postinsts.awk
+>      2012-07-05
+> 13:00:23.026519188 +0200
+> +++ poky-denzil-7.0/meta/recipes-devtools/dpkg/run-postinsts/run-postinsts.awk
+>   2012-07-05
+> 13:00:48.054519384 +0200
+> @@ -7,7 +7,7 @@
+>   #
+>
+>   BEGIN {
+> -  rc=system("test -d /usr/dpkg/info/")
+> +  rc=system("test -d /var/lib/dpkg/info/")
+>     if (rc==0)
+>       pkgdir="/var/lib/dpkg/info"
+>     else
+>
+>
+Merged into OE-Core
 
-Best regards,
+Thanks
+	Sau!
 
-Elvis Dowson=
+> --
+> Med venlig hilsen / Best regards
+>
+> Kenneth Solbjerg
+> Software Specialist
+>
+> Move Innovation
+> Web : http://www.moveinnovation.dk
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
 
