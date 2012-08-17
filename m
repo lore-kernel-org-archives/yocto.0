@@ -1,33 +1,24 @@
-Return-Path: <alexandru.damian@intel.com>
-Received: from azsmga101.ch.intel.com (mga07.intel.com [143.182.124.22])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6A88EE0076A
-	for <yocto@yoctoproject.org>; Fri, 17 Aug 2012 07:01:17 -0700 (PDT)
-Received: from mail-qa0-f45.google.com ([209.85.216.45])
-	by mga03.intel.com with ESMTP/TLS/RC4-SHA; 17 Aug 2012 07:01:15 -0700
-Received: by qadc10 with SMTP id c10so1429960qad.4
-	for <yocto@yoctoproject.org>; Fri, 17 Aug 2012 07:01:14 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type
-	:x-gm-message-state;
-	bh=SR4E/NupqmxENj1x+4DZKTaFLw+ir9ncGk4KS06GSO4=;
-	b=i6AVNUnii5XvOMiIMOhKJJJhnLVaFZMww3I7QVzg3LW57W4DwlKPxC7sG7o81mk3XY
-	aqd7btrZDvVqdtlENwsU1hkzD+V1QmCH4Gc1yTPiJS+Gh3h9C9RnIjbPU3sfyd1rJaG5
-	kBnrcqNnukY1JTznLK/6PenP3hjogdCeehK03ntIWeOc+aV8LyMap6l7AHb/OUI0Icb1
-	XNJohWt6sOrQ0RLRBi35YDLEoraX8umQdWhmzYfJKcay7iO6E59eDNnFoGOGgxTGt/Oe
-	ddBdtmUi6AgZBRZ8oSMdV1BEvLT86UJNYBMG6H8Aaipg5z21X8lEEgOuM6lOffFVic7C
-	Xa9Q==
+Return-Path: <Paul.Gortmaker@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1015AE0027E;
+	Fri, 17 Aug 2012 08:24:34 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id q7HFOXBU004825
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Fri, 17 Aug 2012 08:24:33 -0700 (PDT)
+Received: from yow-pgortmak-d2.corp.ad.wrs.com (128.224.146.165) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
+	14.2.309.2; Fri, 17 Aug 2012 08:24:32 -0700
+From: Paul Gortmaker <paul.gortmaker@windriver.com>
+To: <poky@yoctoproject.org>
+Date: Fri, 17 Aug 2012 11:24:19 -0400
+Message-ID: <1345217059-10448-1-git-send-email-paul.gortmaker@windriver.com>
+X-Mailer: git-send-email 1.7.12.rc2
+In-Reply-To: <502D73D4.6090408@linux.intel.com>
+References: <502D73D4.6090408@linux.intel.com>
 MIME-Version: 1.0
-Received: by 10.229.136.14 with SMTP id p14mr3758595qct.93.1345212074266; Fri,
-	17 Aug 2012 07:01:14 -0700 (PDT)
-Received: by 10.229.204.142 with HTTP; Fri, 17 Aug 2012 07:01:14 -0700 (PDT)
-Date: Fri, 17 Aug 2012 17:01:14 +0300
-Message-ID: <CAJ2CSBtt85SZBo9MoGvjEbvCcNp7+v9CaJjbM-tBf7_mOHFLbg@mail.gmail.com>
-From: "Damian, Alexandru" <alexandru.damian@intel.com>
-To: Yocto Project Discussions <yocto@linux.intel.com>, 
-	Yocto Project Discussion <yocto@yoctoproject.org>
-X-Gm-Message-State: ALoCoQmFZmONon+r6LDUdSIvAPQq8asLgTYF8RMsI5hWBbl6abwyZJvo7kBfOPy0ZlNPZgYRqmi9
-Subject: [offtopic] a hack to better view pipermail archives
+Cc: yocto@yoctoproject.org, Darren Hart <dvhart@linux.intel.com>
+Subject: [PATCH v2] routerstationpro: move board off 3.0 and onto the 3.4 kernel
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,60 +30,61 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 17 Aug 2012 14:01:17 -0000
-Content-Type: multipart/alternative; boundary=00248c711847d5911204c776970e
+X-List-Received-Date: Fri, 17 Aug 2012 15:24:34 -0000
+Content-Type: text/plain
 
---00248c711847d5911204c776970e
-Content-Type: text/plain; charset=ISO-8859-1
+The updated patch series to support this target is in place
+on the BSP specific branch in the 3.4 kernel tree now[1], so
+we can move it ahead off of the old 3.0 kernel.
 
-Hi guys,
+[1] https://lists.yoctoproject.org/pipermail/linux-yocto/2012-July/000023.html
 
-Getting frustrated by the deluge of list emails in my inbox, I decided I a
-better way to view/search the web archives.
-So I hacked away this User Script that hijacks the "Thread" view in the
-mail archives, and allows panel-view (like in Thunderbird),
-and text filtering on the mail index.
+Cc: Bruce Ashfield <bruce.ashfield@windriver.com>
+Cc: Saul Wold <sgw@linux.intel.com>
+Acked-by: Darren Hart <dvhart@linux.intel.com>
+Signed-off-by: Paul Gortmaker <paul.gortmaker@windriver.com>
+---
 
-How to use:
-1. Use Firefox (Chrome untested)
+[v2: update to the SRCREV-of-the-day.  Note that if anyone sees
+ build failures with this, you are also missing the meta SRCREV
+ update in linux-yocto_3.4.bb from Bruce.  Yay SRCREV. ]
 
-2. Install GreaseMonkey
-https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/
+ meta-yocto/conf/machine/routerstationpro.conf            | 2 +-
+ meta-yocto/recipes-kernel/linux/linux-yocto_3.4.bbappend | 4 ++--
+ 2 files changed, 3 insertions(+), 3 deletions(-)
 
-3. Install http://adamian-desktop.rb.intel.com/PiperMailViewer.user.js
-(click on it after GreaseMonkey is installed).
+diff --git a/meta-yocto/conf/machine/routerstationpro.conf b/meta-yocto/conf/machine/routerstationpro.conf
+index 3c2f56f..adf36a9 100644
+--- a/meta-yocto/conf/machine/routerstationpro.conf
++++ b/meta-yocto/conf/machine/routerstationpro.conf
+@@ -10,7 +10,7 @@ KERNEL_IMAGETYPE = "vmlinux"
+ KERNEL_ALT_IMAGETYPE = "vmlinux.bin"
+ 
+ PREFERRED_PROVIDER_virtual/kernel ?= "linux-yocto"
+-PREFERRED_VERSION_linux-yocto ?= "3.0%"
++PREFERRED_VERSION_linux-yocto ?= "3.4%"
+ PREFERRED_PROVIDER_virtual/xserver = "xserver-kdrive"
+ XSERVER = "xserver-kdrive-fbdev"
+ 
+diff --git a/meta-yocto/recipes-kernel/linux/linux-yocto_3.4.bbappend b/meta-yocto/recipes-kernel/linux/linux-yocto_3.4.bbappend
+index 2ff467b..fe8e97c 100644
+--- a/meta-yocto/recipes-kernel/linux/linux-yocto_3.4.bbappend
++++ b/meta-yocto/recipes-kernel/linux/linux-yocto_3.4.bbappend
+@@ -4,11 +4,11 @@ KBRANCH_mpc8315e-rdb = "standard/fsl-mpc8315e-rdb"
+ KBRANCH_beagleboard = "standard/beagleboard"
+ 
+ SRCREV_machine_atom-pc ?= "a8291fa6f723b0182d2b7033b5d59f412ba7cf72"
+-SRCREV_machine_routerstationpro ?= "a8291fa6f723b0182d2b7033b5d59f412ba7cf72"
++SRCREV_machine_routerstationpro ?= "2c4707476e4295ee58c3e7963b9028ab98bf41e5"
+ SRCREV_machine_mpc8315e-rdb ?= "47d3076aa7e2a640a1dab8d663529a784709f697"
+ SRCREV_machine_beagleboard ?= "a8291fa6f723b0182d2b7033b5d59f412ba7cf72"
+ 
+ COMPATIBLE_MACHINE_mpc8315e-rdb = "mpc8315e-rdb"
+-# COMPATIBLE_MACHINE_routerstationpro = "routerstationpro"
++COMPATIBLE_MACHINE_routerstationpro = "routerstationpro"
+ # COMPATIBLE_MACHINE_beagleboard = "beagleboard"
+ COMPATIBLE_MACHINE_atom-pc = "atom-pc"
+-- 
+1.7.12.rc2
 
-4. Open
-https://lists.yoctoproject.org/pipermail/yocto/2012-August/thread.html and
-use the new view.
 
-5. ???
-
-6. Report bugs and feature requests to this thread.
-
-
-Happy list reading,
-Alex
-
---00248c711847d5911204c776970e
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-Hi guys,<br><br>Getting frustrated by the deluge of list emails in my inbox=
-, I decided I a better way to view/search the web archives.<br>So I hacked =
-away this User Script that hijacks the &quot;Thread&quot; view in the mail =
-archives, and allows panel-view (like in Thunderbird),<br>
-and text filtering on the mail index.<br><br>How to use:<br>1. Use Firefox =
-(Chrome untested)<br><br>2. Install GreaseMonkey <a href=3D"https://addons.=
-mozilla.org/en-US/firefox/addon/greasemonkey/">https://addons.mozilla.org/e=
-n-US/firefox/addon/greasemonkey/</a><br>
-<br>3. Install <a href=3D"http://adamian-desktop.rb.intel.com/PiperMailView=
-er.user.js">http://adamian-desktop.rb.intel.com/PiperMailViewer.user.js</a>=
-=A0 (click on it after GreaseMonkey is installed).<br><br>4. Open <a href=
-=3D"https://lists.yoctoproject.org/pipermail/yocto/2012-August/thread.html"=
->https://lists.yoctoproject.org/pipermail/yocto/2012-August/thread.html</a>=
- and use the new view.<br>
-<br>5. ???<br><br>6. Report bugs and feature requests to this thread.<br><b=
-r><br>Happy list reading,<br>Alex<br>
-
---00248c711847d5911204c776970e--
