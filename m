@@ -1,55 +1,20 @@
-Return-Path: <elvis.dowson@gmail.com>
-Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
-	[209.85.160.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1B943E0027E
-	for <yocto@yoctoproject.org>; Fri, 17 Aug 2012 00:21:31 -0700 (PDT)
-Received: by pbbrp16 with SMTP id rp16so3594717pbb.35
-	for <yocto@yoctoproject.org>; Fri, 17 Aug 2012 00:21:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=subject:mime-version:content-type:from:in-reply-to:date:cc
-	:content-transfer-encoding:message-id:references:to:x-mailer;
-	bh=un36h7QKoNG2yDVxl75GCiEQL4JrvuNz5yehpJTe8mc=;
-	b=Ycloz5XEZhtbqPgJPsq8jm86FsmKIw9Mvz49RSk8SMp7siuvbLUtHyuJV43whsm7tg
-	6xS7vq70bcPO2QhRAO4acCGJ5XzhJD7r134J9VjQfyp5xRx1xDyAf719jUnwlAXdXNRP
-	AN7fQG2WKFCi6yyz648r+jhPp2HWGroQYgEavmvKRYN2S6bDrUw5XGRt0whAqQZIrfq3
-	MRFbFNZ6kWswgIz71fp8d67S6nUHi33wSONQI94RcuSRaz9oHedMFEfmlcKcojy/kxH6
-	1x+krsjWQbOm/X8roCMKFxnusJuK8Bu/E7h7GJKuYuT4eHhjpHFUrBeFQeK/f00eOT+s
-	wipw==
-Received: by 10.68.213.167 with SMTP id nt7mr9189302pbc.127.1345188090112;
-	Fri, 17 Aug 2012 00:21:30 -0700 (PDT)
-Received: from [192.168.1.101] ([94.205.108.162])
-	by mx.google.com with ESMTPS id uu6sm346967pbc.70.2012.08.17.00.21.27
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Fri, 17 Aug 2012 00:21:29 -0700 (PDT)
-Mime-Version: 1.0 (Apple Message framework v1278)
-From: Elvis Dowson <elvis.dowson@gmail.com>
-In-Reply-To: <CAMKF1sp19QKejvTx-qGQ0XpWomS67p-6D2ZS5NGe_L1hJ8Mz+w@mail.gmail.com>
-Date: Fri, 17 Aug 2012 11:21:24 +0400
-Message-Id: <0D6E7DCB-4EA2-4B9B-A915-5E9CB57E153D@gmail.com>
-References: <F1A84E50-21BF-4E9B-BC38-545D72F59A70@gmail.com>
-	<50226D44.3070503@mindchasers.com>
-	<CAEsOVNcYoCPaT-uRFw1tzggABncZAKL+U17fYkbi_fOgdJ5CtQ@mail.gmail.com>
-	<5022CDAD.5020309@mindchasers.com>
-	<CAEsOVNeyn9OQQvk-Z8V0eax5sjSSwHCkuDgd3yLu60VTsSqNSA@mail.gmail.com>
-	<ADE9BE2D-CF83-4389-9262-B628780B1DD4@gmail.com>
-	<AE25B08B-9B55-4EBA-B39B-2BE263109AA7@gmail.com>
-	<E1905E17-0DE0-46BD-B6CF-CD5B87BE816C@gmail.com>
-	<D5CC2FFB-E56B-41B1-BC70-9DFC41F54988@gmail.com>
-	<CAMKF1soVRDxAQ86HPpPMEB9WL142HCWkOHVqXhGQSN9b4290UQ@mail.gmail.com>
-	<651EC518-2C02-4A13-8AE7-0D118BCB3719@gmail.com>
-	<CAMKF1sp5hQKC3fEd4TnXHnPMjPyEsCmWHOUuHdd4RLMZMZZb0w@mail.gmail.com>
-	<50739671-4885-4C82-9360-C3376960B165@gmail.com>
-	<3E8B6BA0-C1A9-4861-B1A1-F15BAAB7B3ED@gmail.com>
-	<CAMKF1soQ3o7E6h86xbD9Wh8jCGzHEKmvzpwpYXKjePGcQe-+Yg@mail.gmail.com>
-	<6047F1EE-6246-490D-BEC3-EE93F40439FE@gmail.com>
-	<4A5B27D0-AF2F-4FBE-B1DC-FEB002F80B76@gmail.com>
-	<B3DEA1FA-A170-46D6-9BCA-82555C89523C@gmail.com>
-	<4855B040-2194-4E0F-8B88-6C10385DBE8F@gmail.com>
-	<CAMKF1sp19QKejvTx-qGQ0XpWomS67p-6D2ZS5NGe_L1hJ8Mz+w@mail.gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
-X-Mailer: Apple Mail (2.1278)
-Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-Subject: Re: Unable to get serial console login prompt - PowerPC 440 Virtex 5 processor
+Return-Path: <ioanax.grigoropol@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CDE0CE002A6
+	for <yocto@yoctoproject.org>; Fri, 17 Aug 2012 01:49:44 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 17 Aug 2012 01:49:44 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.77,783,1336374000"; d="scan'208";a="182134219"
+Received: from ideapad (HELO localhost.localdomain) ([10.237.105.40])
+	by azsmga001.ch.intel.com with ESMTP; 17 Aug 2012 01:49:42 -0700
+From: Ioana Grigoropol <ioanax.grigoropol@intel.com>
+To: yocto@yoctoproject.org
+Date: Fri, 17 Aug 2012 11:48:09 +0300
+Message-Id: <1345193289-3536-1-git-send-email-ioanax.grigoropol@intel.com>
+X-Mailer: git-send-email 1.7.9.5
+Cc: Ioana Grigoropol <ioanax.grigoropol@intel.com>
+Subject: [PATCH 1/3 v2] - Code clean-up & refactoring on Yocto-BSP pages & wizards
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -61,41 +26,667 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 17 Aug 2012 07:21:31 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 17 Aug 2012 08:49:45 -0000
 
-Hi Khem,
+Signed-off-by: Ioana Grigoropol <ioanax.grigoropol@intel.com>
+---
+ .../sdk/remotetools/wizards/bsp/MainPage.java      |  261 +++++++++++---------
+ .../remotetools/wizards/bsp/PropertiesPage.java    |   26 +-
+ .../remotetools/wizards/bsp/YoctoBSPWizard.java    |   33 +--
+ 3 files changed, 152 insertions(+), 168 deletions(-)
 
-On Aug 17, 2012, at 9:48 AM, Khem Raj wrote:
+diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/wizards/bsp/MainPage.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/wizards/bsp/MainPage.java
+index d80dd75..b729ad1 100644
+--- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/wizards/bsp/MainPage.java
++++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/wizards/bsp/MainPage.java
+@@ -20,24 +20,21 @@ import org.eclipse.core.runtime.IStatus;
+ import org.eclipse.core.runtime.Status;
+ import org.eclipse.jface.wizard.WizardPage;
+ import org.eclipse.swt.SWT;
+-import org.eclipse.swt.widgets.Event;
+ import org.eclipse.swt.events.ModifyEvent;
+ import org.eclipse.swt.events.ModifyListener;
+ import org.eclipse.swt.events.SelectionAdapter;
+ import org.eclipse.swt.events.SelectionEvent;
+ import org.eclipse.swt.layout.GridData;
+ import org.eclipse.swt.layout.GridLayout;
+-import org.eclipse.swt.widgets.Widget;
+ import org.eclipse.swt.widgets.Button;
+ import org.eclipse.swt.widgets.Combo;
+ import org.eclipse.swt.widgets.Composite;
+ import org.eclipse.swt.widgets.Control;
+ import org.eclipse.swt.widgets.DirectoryDialog;
+-
++import org.eclipse.swt.widgets.Event;
+ import org.eclipse.swt.widgets.Label;
+ import org.eclipse.swt.widgets.Text;
+-
+-
++import org.eclipse.swt.widgets.Widget;
+ import org.yocto.sdk.remotetools.YoctoBspElement;
+ 
+ /**
+@@ -47,10 +44,7 @@ import org.yocto.sdk.remotetools.YoctoBspElement;
+  * @author jzhang
+  */
+ public class MainPage extends WizardPage {
+-	public static final String PAGE_NAME = "Main";
+-	private static final String META_DATA_LOC = "MetadataLoc";
+-	private static final String BSP_OUT_LOC = "BspOutLoc";
+-	private static final String BUILD_DIR_LOC = "BuilddirLoc";
++	public static  final String  PAGE_NAME = "Main";
+ 	private static final String KARCH_CMD = "yocto-bsp list karch";
+ 	private static final String QARCH_CMD = "yocto-bsp list qemu property qemuarch";
+ 	private static final String BSP_SCRIPT = "yocto-bsp";
+@@ -59,27 +53,31 @@ public class MainPage extends WizardPage {
+ 	private static final String PROPERTIES_FILE = "/tmp/properties.json";
+ 
+ 	private Button btnMetadataLoc;
+-	private Button btnBspOutLoc;
+-	private Button btnBuilddirLoc;
+ 	private Text textMetadataLoc;
++	private Label labelMetadata;
++	
++	private Button btnBspOutputLoc;
++	private Text textBspOutputLoc;
++	private Label labelBspOutput;
++	
++	private Button btnBuildLoc;
++	private Text textBuildLoc;
++	private Label labelBuildLoc;
++	
+ 	private Text textBspName;
+-	private Text textBspOutLoc;
+-	private Text textBuilddirLoc;
+-	private Combo karchCombo;
+-	private Combo qarchCombo;
+-	private Label metadata_label;
+-	private Label builddir_label;
+-	private Label bspname_label;
+-	private Label bspout_label;
+-	private Label karch_label;
+-	private Label qarch_label;
++	private Label labelBspName;
++	
++	private Combo comboKArch;
++	private Label labelKArch;
++
++	private Combo comboQArch;
++	private Label labelQArch;
+ 	
+ 	private YoctoBspElement bspElem;
+ 	
+ 	public MainPage(YoctoBspElement element) {
+ 		super(PAGE_NAME, "yocto-bsp main page", null);
+ 
+-		//setTitle("Yocto-bsp main page");
+ 		setMessage("Enter the required fields(with *) to create new Yocto Project BSP!");
+ 		this.bspElem = element;
+ 	}
+@@ -91,74 +89,98 @@ public class MainPage extends WizardPage {
+ 		GridLayout layout = new GridLayout(2, false);
+ 		composite.setLayout(layout);
+ 
+-		gd.horizontalSpan= 2;
++		gd.horizontalSpan = 2;
+ 		composite.setLayoutData(gd);	
+ 		
+-		metadata_label = new Label(composite, SWT.NONE);
+-		metadata_label.setText("Meta_data location*: ");
++		labelMetadata = new Label(composite, SWT.NONE);
++		labelMetadata.setText("Meta_data location*: ");
+ 		Composite textContainer = new Composite(composite, SWT.NONE);
+ 		textContainer.setLayout(new GridLayout(2, false));
+ 		textContainer.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
+-		textMetadataLoc = (Text)addTextControl(textContainer,META_DATA_LOC, "");
++		textMetadataLoc = (Text)addTextControl(textContainer, "");
+ 		textMetadataLoc.setEnabled(false);
+ 		textMetadataLoc.addModifyListener(new ModifyListener() {
+ 			public void modifyText(ModifyEvent e) {
+ 				controlChanged(e.widget);
+ 			}
+ 		});
+-		btnMetadataLoc = addFileSelectButton(textContainer, textMetadataLoc);
++		setBtnMetadataLoc(addFileSelectButton(textContainer, textMetadataLoc));
++		
++		labelBuildLoc = new Label(composite, SWT.NONE);
++		labelBuildLoc.setText("Build location: ");
++		
++		textContainer = new Composite(composite, SWT.NONE);
++		textContainer.setLayout(new GridLayout(2, false));
++		textContainer.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
++		
++		textBuildLoc = (Text)addTextControl(textContainer, "");
++		textBuildLoc.addModifyListener(new ModifyListener() {
++			public void modifyText(ModifyEvent e) {
++				controlChanged(e.widget);
++			}
++		});
++		
++		setBtnBuilddirLoc(addFileSelectButton(textContainer, textBuildLoc));
++		
++		labelBspName = new Label(composite, SWT.NONE);
++		labelBspName.setText("BSP Name*: ");
+ 		
+-		builddir_label = new Label(composite, SWT.NONE);
+-		builddir_label.setText("Build location: ");
+ 		textContainer = new Composite(composite, SWT.NONE);
+ 		textContainer.setLayout(new GridLayout(2, false));
+ 		textContainer.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
+-		textBuilddirLoc = (Text)addTextControl(textContainer, BUILD_DIR_LOC, "");
+-		btnBuilddirLoc = addFileSelectButton(textContainer, textBuilddirLoc);
+ 		
+-		bspname_label = new Label(composite, SWT.NONE);
+-		bspname_label.setText("BSP Name*: ");
+-		textBspName = new Text(composite, SWT.BORDER | SWT.SINGLE);
+-		gd = new GridData(GridData.FILL_HORIZONTAL);
+-		textBspName.setLayoutData(gd);
++		textBspName = (Text)addTextControl(textContainer, "");
+ 		textBspName.addModifyListener(new ModifyListener() {
+ 			public void modifyText(ModifyEvent e) {
+ 				controlChanged(e.widget);
+ 			}
+ 		});
+ 		
+-		bspout_label = new Label(composite, SWT.NONE);
+-		bspout_label.setText("Bsp output location: ");
++		labelBspOutput = new Label(composite, SWT.NONE);
++		labelBspOutput.setText("Bsp output location: ");
++		
+ 		textContainer = new Composite(composite, SWT.NONE);
+ 		textContainer.setLayout(new GridLayout(2, false));
+ 		textContainer.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
+-		textBspOutLoc = (Text)addTextControl(textContainer, BSP_OUT_LOC, "");
+-		textBspOutLoc.addModifyListener(new ModifyListener() {
++		
++		textBspOutputLoc = (Text)addTextControl(textContainer, "");
++		textBspOutputLoc.addModifyListener(new ModifyListener() {
+ 			public void modifyText(ModifyEvent e) {
+ 				controlChanged(e.widget);
+ 			}
+ 		});
+-		btnBspOutLoc = addFileSelectButton(textContainer, textBspOutLoc);
+-		karch_label= new Label(composite, SWT.NONE);
+-		karch_label.setText("kernel Architecture*: ");
+-		karchCombo= new Combo(composite, SWT.READ_ONLY);
+-		karchCombo.setLayout(new GridLayout(2, false));
+-		karchCombo.setLayoutData(new GridData(SWT.FILL, SWT.LEFT, true, false));
+-		karchCombo.setEnabled(false);
+-		karchCombo.addModifyListener(new ModifyListener() {
++		setBtnBspOutLoc(addFileSelectButton(textContainer, textBspOutputLoc));
++		
++		labelKArch= new Label(composite, SWT.NONE);
++		labelKArch.setText("kernel Architecture*: ");
++		
++		textContainer = new Composite(composite, SWT.NONE);
++		textContainer.setLayout(new GridLayout(2, false));
++		textContainer.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
++		
++		comboKArch= new Combo(textContainer, SWT.READ_ONLY);
++		comboKArch.setLayout(new GridLayout(2, false));
++		comboKArch.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
++		comboKArch.setEnabled(false);
++		comboKArch.addModifyListener(new ModifyListener() {
+ 			public void modifyText(ModifyEvent e) {
+ 				controlChanged(e.widget);
+ 			}
+ 		});
+ 		
+-		qarch_label = new Label(composite, SWT.NONE);
+-		qarch_label.setText("Qemu Architecture(* for karch as qemu): ");
+-		qarch_label.setEnabled(false);
+-		qarchCombo = new Combo(composite, SWT.READ_ONLY);
+-		qarchCombo.setLayout(new GridLayout(2, false));
+-		qarchCombo.setLayoutData(new GridData(SWT.FILL, SWT.LEFT, true, false));
+-		qarchCombo.setEnabled(false);
+-		qarchCombo.addModifyListener(new ModifyListener() {
++		labelQArch = new Label(composite, SWT.NONE);
++		labelQArch.setText("Qemu Architecture(* for karch as qemu): ");
++		labelQArch.setEnabled(false);
++		
++		textContainer = new Composite(composite, SWT.NONE);
++		textContainer.setLayout(new GridLayout(2, false));
++		textContainer.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
++		
++		comboQArch = new Combo(textContainer, SWT.READ_ONLY);
++		comboQArch.setLayout(new GridLayout(2, false));
++		comboQArch.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
++		comboQArch.setEnabled(false);
++		comboQArch.addModifyListener(new ModifyListener() {
+ 			public void modifyText(ModifyEvent e) {
+ 				controlChanged(e.widget);
+ 			}
+@@ -168,7 +190,7 @@ public class MainPage extends WizardPage {
+ 		validatePage();
+ 	}
+ 
+-	private Control addTextControl(final Composite parent, String key, String value) {
++	private Control addTextControl(final Composite parent, String value) {
+ 		final Text text;
+ 
+ 		text = new Text(parent, SWT.SINGLE | SWT.LEAD | SWT.BORDER);
+@@ -197,45 +219,44 @@ public class MainPage extends WizardPage {
+ 	private void controlChanged(Widget widget) {
+ 		 Status status = new Status(IStatus.OK, "not_used", 0, "", null);
+ 		 setErrorMessage(null);
+-		 String metadata_loc = textMetadataLoc.getText();
++		 String metadataLoc = textMetadataLoc.getText();
++		 
+ 		 if (widget == textMetadataLoc) {
+ 			 resetKarchCombo();
+-
+-			 if (metadata_loc.length() == 0) {
++			 if (metadataLoc.length() == 0) {
+ 				 status = new Status(IStatus.ERROR, "not_used", 0, "Meta data location can't be empty!", null);
+ 			 } else {
+-				 File meta_data = new File(metadata_loc);
++				 File meta_data = new File(metadataLoc);
+ 				 if (!meta_data.exists() || !meta_data.isDirectory()) {
+ 					 status = new Status(IStatus.ERROR, "not_used", 0, 
+ 							 "Invalid meta data location: Make sure it exists and is a directory!", null);
+ 				 } else {
+-					 File bsp_script = new File(metadata_loc + "/scripts/" + BSP_SCRIPT);
+-					 if (!bsp_script.exists() || !bsp_script.canExecute())
++					 File bspScript = new File(metadataLoc + "/scripts/" + BSP_SCRIPT);
++					 if (!bspScript.exists() || !bspScript.canExecute())
+ 						 status = new Status(IStatus.ERROR, "not_used", 0,
+-								 "Make sure yocto-bsp exists under \"" + metadata_loc + "/scripts\" and is executable!", null);
++								 "Make sure yocto-bsp exists under \"" + metadataLoc + "/scripts\" and is executable!", null);
+ 					 else {		
+ 						 kernelArchesHandler();
+ 					 }
+ 				 }
+ 			 }
+-		 }
+-		 if (widget == karchCombo) {
+-			 String selection = karchCombo.getText();
++		 } else if (widget == comboKArch) {
++			 String selection = comboKArch.getText();
+ 			 if (!bspElem.getKarch().contentEquals(selection))
+ 				 bspElem = new YoctoBspElement();
+ 			 if (selection.matches("qemu")) {
+-				 qarch_label.setEnabled(true);
+-				 qarchCombo.setEnabled(true);
++				 labelQArch.setEnabled(true);
++				 comboQArch.setEnabled(true);
+ 			 } else {
+-				 qarch_label.setEnabled(false);
+-				 qarchCombo.setEnabled(false);
++				 labelQArch.setEnabled(false);
++				 comboQArch.setEnabled(false);
+ 			 }		
+ 		 }
+ 		
+ 		 checkBuildDir();
+ 		 
+-		 String build_dir = textBuilddirLoc.getText();
+-		 String output_dir = textBspOutLoc.getText();
++		 String build_dir = textBuildLoc.getText();
++		 String output_dir = textBspOutputLoc.getText();
+ 		 String bsp_name = textBspName.getText();
+ 		 
+ 		 if (!output_dir.isEmpty() && output_dir.matches(build_dir)) {
+@@ -243,8 +264,8 @@ public class MainPage extends WizardPage {
+ 					 "You've set BSP output directory the same as build directory, please leave output directory empty for this scenario!", null);
+ 		 }
+ 		 
+-		 if (build_dir.startsWith(metadata_loc) && output_dir.isEmpty() && !bsp_name.isEmpty()) {
+-			 String bsp_dir_str = metadata_loc + "/meta-" + bsp_name;
++		 if (build_dir.startsWith(metadataLoc) && output_dir.isEmpty() && !bsp_name.isEmpty()) {
++			 String bsp_dir_str = metadataLoc + "/meta-" + bsp_name;
+ 			 File bsp_dir = new File(bsp_dir_str);
+ 			 if (bsp_dir.exists()) {
+ 				 status = new Status(IStatus.ERROR, "not_used", 0,
+@@ -262,7 +283,7 @@ public class MainPage extends WizardPage {
+ 	
+ 	private void checkBuildDir() {
+ 		String metadata_dir = textMetadataLoc.getText();
+-		String builddir_str = textBuilddirLoc.getText();
++		String builddir_str = textBuildLoc.getText();
+ 	
+ 		File build_dir = null;
+ 		if ((builddir_str == null) || builddir_str.isEmpty()) 
+@@ -274,24 +295,15 @@ public class MainPage extends WizardPage {
+ 			String create_builddir_cmd = metadata_dir + "/oe-init-build-env " + builddir_str;
+ 			try {
+ 				Runtime rt = Runtime.getRuntime();
+-				//Process proc = rt.exec(create_builddir_cmd);
+ 				Process proc = rt.exec(new String[] {"sh", "-c", create_builddir_cmd});
+-				InputStream stdin = proc.getInputStream();
+-				InputStreamReader isr = new InputStreamReader(stdin);
+-				BufferedReader br = new BufferedReader(isr);
+-				String line = null;
+-
+-				while ( (line = br.readLine()) != null) {
+-				}
+-
+-				int exitVal = proc.waitFor();
++				proc.waitFor();
+ 			} catch (Throwable t) {
+ 				t.printStackTrace();
+ 			}
+ 		}
+ 	}
+ 	
+-	public YoctoBspElement bspElement() {
++	public YoctoBspElement getBSPElement() {
+ 		return this.bspElem;
+ 	}
+ 	
+@@ -301,11 +313,11 @@ public class MainPage extends WizardPage {
+ 	}
+ 	
+ 	private void resetKarchCombo() {
+-		karchCombo.deselectAll();
+-		qarchCombo.deselectAll();
+-		karchCombo.setEnabled(false);
+-		qarch_label.setEnabled(false);
+-		qarchCombo.setEnabled(false);
++		comboKArch.deselectAll();
++		comboQArch.deselectAll();
++		comboKArch.setEnabled(false);
++		labelQArch.setEnabled(false);
++		comboQArch.setEnabled(false);
+ 	}
+ 	
+ 	private void kernelArchesHandler() {
+@@ -313,14 +325,14 @@ public class MainPage extends WizardPage {
+ 		if (!karches.isEmpty()) {
+ 			String[] kitems = new String[karches.size()];
+ 			kitems = karches.toArray(kitems);
+-			karchCombo.setItems(kitems);
+-			karchCombo.setEnabled(true);
++			comboKArch.setItems(kitems);
++			comboKArch.setEnabled(true);
+ 		}
+ 		ArrayList<String> qarches = getQArches();
+ 		if (!qarches.isEmpty()) {
+ 			String[] qitems = new String[qarches.size()];
+ 			qitems = qarches.toArray(qitems);
+-			qarchCombo.setItems(qitems);
++			comboQArch.setItems(qitems);
+ 		}
+ 	}
+ 	
+@@ -337,26 +349,23 @@ public class MainPage extends WizardPage {
+ 	public boolean validatePage() {
+ 		String metadata_loc = textMetadataLoc.getText();
+ 		String bspname = textBspName.getText();
+-		String karch = karchCombo.getText();
+-		String qarch = qarchCombo.getText();
++		String karch = comboKArch.getText();
++		String qarch = comboQArch.getText();
+ 		if (metadata_loc.isEmpty() ||
+ 				bspname.isEmpty() ||
+ 				karch.isEmpty()) {
+-			
+ 			return false;
+-		} else {
+-			if (karch.matches("qemu"))
+-				if (qarch.isEmpty())
+-					return false;
++		} else if (karch.matches("qemu") && qarch.isEmpty()) {
++			return false;
+ 		}
+ 		
+ 		bspElem.setBspName(bspname);
+-		if (!textBspOutLoc.getText().isEmpty())
+-			bspElem.setBspOutLoc(textBspOutLoc.getText());
++		if (!textBspOutputLoc.getText().isEmpty())
++			bspElem.setBspOutLoc(textBspOutputLoc.getText());
+ 		else
+ 			bspElem.setBspOutLoc("");
+-		if (!textBuilddirLoc.getText().isEmpty())
+-			bspElem.setBuildLoc(textBuilddirLoc.getText());
++		if (!textBuildLoc.getText().isEmpty())
++			bspElem.setBuildLoc(textBuildLoc.getText());
+ 		else
+ 			bspElem.setBuildLoc("");
+ 		bspElem.setMetadataLoc(metadata_loc);
+@@ -374,20 +383,14 @@ public class MainPage extends WizardPage {
+ 		try {
+ 			Runtime rt = Runtime.getRuntime();
+ 			Process proc = rt.exec(create_properties_cmd);
+-			InputStream stdin = proc.getInputStream();
+-			InputStreamReader isr = new InputStreamReader(stdin);
+-			BufferedReader br = new BufferedReader(isr);
+-			String line = null;
+-			
+-			while ( (line = br.readLine()) != null) {
+-			}
+-			
+ 			int exitVal = proc.waitFor();
++			if (exitVal != 0)
++				return false;
++			return true;
+ 		} catch (Throwable t) {
+ 			t.printStackTrace();
+ 			return false;
+ 		}
+-		return true;
+ 	}
+ 	
+ 	private ArrayList<String> getKArches() {
+@@ -410,7 +413,7 @@ public class MainPage extends WizardPage {
+ 				karches.add(line);
+ 			}
+ 			
+-			int exitVal = proc.waitFor();
++			proc.waitFor();
+ 			
+ 		} catch (Throwable t) {
+ 			t.printStackTrace();
+@@ -441,7 +444,7 @@ public class MainPage extends WizardPage {
+ 				value = value.replaceAll("\"$", "");
+ 				qarches.add(value);
+ 			}
+-			int exitVal = proc.waitFor();
++			proc.waitFor();
+ 			
+ 		} catch (Throwable t) {
+ 			t.printStackTrace();
+@@ -449,4 +452,28 @@ public class MainPage extends WizardPage {
+ 		
+ 		return qarches;
+ 	}
++
++	public Button getBtnMetadataLoc() {
++		return btnMetadataLoc;
++	}
++
++	public void setBtnMetadataLoc(Button btnMetadataLoc) {
++		this.btnMetadataLoc = btnMetadataLoc;
++	}
++
++	public Button getBtnBspOutLoc() {
++		return btnBspOutputLoc;
++	}
++
++	public void setBtnBspOutLoc(Button btnBspOutLoc) {
++		this.btnBspOutputLoc = btnBspOutLoc;
++	}
++
++	public Button getBtnBuilddirLoc() {
++		return btnBuildLoc;
++	}
++
++	public void setBtnBuilddirLoc(Button btnBuilddirLoc) {
++		this.btnBuildLoc = btnBuilddirLoc;
++	}
+ }
+diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/wizards/bsp/PropertiesPage.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/wizards/bsp/PropertiesPage.java
+index 44dc43b..4661b37 100644
+--- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/wizards/bsp/PropertiesPage.java
++++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/wizards/bsp/PropertiesPage.java
+@@ -13,12 +13,11 @@ package org.yocto.sdk.remotetools.wizards.bsp;
+ import java.io.BufferedReader;
+ import java.io.InputStream;
+ import java.io.InputStreamReader;
+-
+ import java.util.ArrayList;
++import java.util.Enumeration;
++import java.util.HashSet;
+ import java.util.Hashtable;
+ import java.util.Iterator;
+-import java.util.HashSet;
+-import java.util.Enumeration;
+ 
+ import org.eclipse.jface.dialogs.MessageDialog;
+ import org.eclipse.jface.wizard.WizardPage;
+@@ -28,21 +27,20 @@ import org.eclipse.swt.events.ModifyEvent;
+ import org.eclipse.swt.events.ModifyListener;
+ import org.eclipse.swt.events.SelectionEvent;
+ import org.eclipse.swt.events.SelectionListener;
++import org.eclipse.swt.layout.FillLayout;
+ import org.eclipse.swt.layout.GridData;
+ import org.eclipse.swt.layout.GridLayout;
+-import org.eclipse.swt.layout.FillLayout;
+ import org.eclipse.swt.widgets.Button;
+-import org.eclipse.swt.widgets.Composite;
+ import org.eclipse.swt.widgets.Combo;
++import org.eclipse.swt.widgets.Composite;
+ import org.eclipse.swt.widgets.Control;
+ import org.eclipse.swt.widgets.Group;
+ import org.eclipse.swt.widgets.Label;
+ import org.eclipse.swt.widgets.Text;
+ import org.eclipse.swt.widgets.Widget;
+-
+ import org.yocto.sdk.remotetools.YoctoBspElement;
+-import org.yocto.sdk.remotetools.YoctoJSONHelper;
+ import org.yocto.sdk.remotetools.YoctoBspPropertyElement;
++import org.yocto.sdk.remotetools.YoctoJSONHelper;
+ /**
+  *
+  * Setting up the parameters for creating the new Yocto Bitbake project
+@@ -73,22 +71,15 @@ public class PropertiesPage extends WizardPage {
+ 	private Button smpButton;
+ 	private Composite kcContainer = null;
+ 	private Group kbGroup = null;
+-	private Composite scContainer = null;
+ 	private ScrolledComposite sc = null;
+ 	private Composite controlContainer = null;
+ 	private Group propertyGroup = null;
+ 	
+ 	public PropertiesPage(YoctoBspElement element) {
+ 		super(PAGE_NAME, "yocto-bsp properties page", null);
+-		//setTitle("Create new yocto bitbake project");
+-		//setMessage("Enter these parameters to create new Yocto Project BitBake commander project");
+ 		this.bspElem = element;
+ 	}
+ 
+-	public void test() {
+-		
+-	}
+-	
+ 	public void onEnterPage(YoctoBspElement element) {
+ 		String[] values;
+ 		if (!element.getValidPropertiesFile()) {
+@@ -96,7 +87,7 @@ public class PropertiesPage extends WizardPage {
+ 			return;
+ 		}
+ 		
+-		if ((this.bspElem == null) || (!this.bspElem.getKarch().contentEquals(element.getKarch()))) {
++		if (this.bspElem == null || this.bspElem.getKarch().isEmpty() || !this.bspElem.getKarch().contentEquals(element.getKarch())) {
+ 			karch_changed = true;
+ 		} else
+ 			karch_changed = false;
+@@ -108,7 +99,6 @@ public class PropertiesPage extends WizardPage {
+ 			sc = new ScrolledComposite(this.composite, SWT.H_SCROLL | SWT.V_SCROLL);
+ 
+ 			controlContainer = new Composite(sc, SWT.NONE);
+-			//controlContainer.setLayout(new FillLayout(SWT.VERTICAL));
+ 			controlContainer.setLayout(new GridLayout(1, false));
+ 			controlContainer.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
+ 			if (kcContainer == null) {
+@@ -116,14 +106,11 @@ public class PropertiesPage extends WizardPage {
+ 
+ 				kcContainer.setLayout(new FillLayout());
+ 				new Label (kcContainer, SWT.NONE).setText(KERNEL_CHOICE+":");
+-				//kcGroup.setText(KERNEL_CHOICE);
+ 				kcCombo = new Combo(kcContainer, SWT.DROP_DOWN | SWT.READ_ONLY);
+-				//kcCombo.setBounds(50, 50, 150, 10);
+ 				smpButton = new Button(controlContainer, SWT.CHECK);
+ 				smpButton.setText("SMP Support");
+ 				smpButton.setSelection(true);
+ 				
+-				//kcContainer.setSize(SWT.DEFAULT, SWT.DEFAULT);
+ 				kbGroup= new Group(controlContainer, SWT.NONE);		
+ 				kbGroup.setLayout(new FillLayout(SWT.VERTICAL));	
+ 				kbGroup.setText("Kernel Branch Settings:");
+@@ -171,7 +158,6 @@ public class PropertiesPage extends WizardPage {
+ 					
+ 					propertyControlMap = new Hashtable<YoctoBspPropertyElement, Control>();
+ 					Iterator<YoctoBspPropertyElement> it = properties.iterator();
+-					int height = 0;
+ 				
+ 				    while (it.hasNext()) {
+ 				        // Get property
+diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/wizards/bsp/YoctoBSPWizard.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/wizards/bsp/YoctoBSPWizard.java
+index 368b2ad..454a705 100644
+--- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/wizards/bsp/YoctoBSPWizard.java
++++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/wizards/bsp/YoctoBSPWizard.java
+@@ -11,42 +11,13 @@
+ package org.yocto.sdk.remotetools.wizards.bsp;
+ 
+ import java.io.BufferedReader;
+-import java.io.File;
+-import java.io.FileInputStream;
+-import java.io.FileDescriptor;
+ import java.io.InputStream;
+-import java.io.IOException;
+ import java.io.InputStreamReader;
+-import java.io.OutputStream;
+-import java.io.Writer;
+-import java.util.ArrayList;
+ import java.util.HashSet;
+-import java.util.Hashtable;
+-import java.util.Map;
+-import java.util.regex.Matcher;
+-import java.util.regex.Pattern;
+-import java.lang.reflect.InvocationTargetException;
+-import java.net.URL;
+ 
+-import org.eclipse.core.runtime.IProgressMonitor;
+-import org.eclipse.core.runtime.IStatus;
+-import org.eclipse.core.runtime.NullProgressMonitor;
+-import org.eclipse.core.runtime.Path;
+-import org.eclipse.core.runtime.Status;
+ import org.eclipse.jface.dialogs.MessageDialog;
+-import org.eclipse.jface.operation.IRunnableWithProgress;
+-import org.eclipse.jface.viewers.IStructuredSelection;
+ import org.eclipse.jface.wizard.IWizardPage;
+-import org.eclipse.jface.wizard.WizardPage;
+ import org.eclipse.jface.wizard.Wizard;
+-
+-import org.eclipse.ui.PlatformUI;
+-import org.eclipse.ui.IWorkbench;
+-import org.eclipse.ui.IWorkbenchWizard;
+-import org.eclipse.ui.IWorkbenchPage;
+-import org.eclipse.ui.IWorkbenchWindow;
+-import org.eclipse.ui.progress.IProgressService;
+-
+ import org.yocto.sdk.remotetools.YoctoBspElement;
+ import org.yocto.sdk.remotetools.YoctoBspPropertyElement;
+ import org.yocto.sdk.remotetools.YoctoJSONHelper;
+@@ -72,7 +43,7 @@ public class YoctoBSPWizard extends Wizard {
+ 
+ 	@Override 
+ 	public IWizardPage getNextPage(IWizardPage page) {
+-		propertiesPage.onEnterPage(mainPage.bspElement());
++		propertiesPage.onEnterPage(mainPage.getBSPElement());
+ 		return propertiesPage;
+ 	}
+ 	 
+@@ -89,7 +60,7 @@ public class YoctoBSPWizard extends Wizard {
+ 		if (propertiesPage.validatePage()) {
+ 			HashSet<YoctoBspPropertyElement> properties = propertiesPage.getProperties();
+ 			YoctoJSONHelper.createBspJSONFile(properties);
+-			YoctoBspElement element = mainPage.bspElement();
++			YoctoBspElement element = mainPage.getBSPElement();
+ 			
+ 			String create_bsp_cmd = element.getMetadataLoc() + CREATE_CMD + 
+ 									element.getBspName() + " " + element.getKarch();
+-- 
+1.7.9.5
 
-> On Tue, Aug 14, 2012 at 7:26 AM, Khem Raj <raj.khem@gmail.com> wrote:
->>=20
->> There are differences in eglibc.inc and initrd recipes. Try to see if =
-they
->> make difference
->> Also the libgcc one after the above two
->=20
-> Did you try the above ?
-
-I took a slight detour, the past 2 days, trying to use icecc, to reduce =
-my build time across two quad-core i7 Ubuntu machines, but that didn't =
-work for some reason. No workloads got distributed across to the second =
-machine.
-
-I'll get back to continuing these tests this weekend.
-
-> I have pushed a patch into my contrib tree.
->=20
-> =
-http://git.openembedded.org/openembedded-core-contrib/commit/?h=3Dkraj/mis=
-c&id=3D502a61792cdb219c1ee35bb9474b8f0c4b007385
->=20
-> can you try that out and see if it helps with gcc 4.7
-
-Will do that for sure! :-)
-
-Best regards,
-
-Elvis Dowson=
 
