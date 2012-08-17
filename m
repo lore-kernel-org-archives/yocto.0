@@ -1,27 +1,33 @@
-Return-Path: <Paul.Gortmaker@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A5CA7E002A6
-	for <yocto@yoctoproject.org>; Fri, 17 Aug 2012 06:36:10 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id q7HDa9q4018516
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 17 Aug 2012 06:36:09 -0700 (PDT)
-Received: from [128.224.146.65] (128.224.146.65) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.2.309.2;
-	Fri, 17 Aug 2012 06:36:09 -0700
-Message-ID: <502E48C8.7060505@windriver.com>
-Date: Fri, 17 Aug 2012 09:36:08 -0400
-From: Paul Gortmaker <paul.gortmaker@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:14.0) Gecko/20120714 Thunderbird/14.0
+Return-Path: <alexandru.damian@intel.com>
+Received: from azsmga101.ch.intel.com (mga07.intel.com [143.182.124.22])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6A88EE0076A
+	for <yocto@yoctoproject.org>; Fri, 17 Aug 2012 07:01:17 -0700 (PDT)
+Received: from mail-qa0-f45.google.com ([209.85.216.45])
+	by mga03.intel.com with ESMTP/TLS/RC4-SHA; 17 Aug 2012 07:01:15 -0700
+Received: by qadc10 with SMTP id c10so1429960qad.4
+	for <yocto@yoctoproject.org>; Fri, 17 Aug 2012 07:01:14 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type
+	:x-gm-message-state;
+	bh=SR4E/NupqmxENj1x+4DZKTaFLw+ir9ncGk4KS06GSO4=;
+	b=i6AVNUnii5XvOMiIMOhKJJJhnLVaFZMww3I7QVzg3LW57W4DwlKPxC7sG7o81mk3XY
+	aqd7btrZDvVqdtlENwsU1hkzD+V1QmCH4Gc1yTPiJS+Gh3h9C9RnIjbPU3sfyd1rJaG5
+	kBnrcqNnukY1JTznLK/6PenP3hjogdCeehK03ntIWeOc+aV8LyMap6l7AHb/OUI0Icb1
+	XNJohWt6sOrQ0RLRBi35YDLEoraX8umQdWhmzYfJKcay7iO6E59eDNnFoGOGgxTGt/Oe
+	ddBdtmUi6AgZBRZ8oSMdV1BEvLT86UJNYBMG6H8Aaipg5z21X8lEEgOuM6lOffFVic7C
+	Xa9Q==
 MIME-Version: 1.0
-To: Saul Wold <sgw@linux.intel.com>
-References: <1343409056-6235-1-git-send-email-paul.gortmaker@windriver.com>
-	<502D73D4.6090408@linux.intel.com>
-In-Reply-To: <502D73D4.6090408@linux.intel.com>
-X-Originating-IP: [128.224.146.65]
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH] routerstationpro: move board off 3.0 and onto the 3.4 kernel
+Received: by 10.229.136.14 with SMTP id p14mr3758595qct.93.1345212074266; Fri,
+	17 Aug 2012 07:01:14 -0700 (PDT)
+Received: by 10.229.204.142 with HTTP; Fri, 17 Aug 2012 07:01:14 -0700 (PDT)
+Date: Fri, 17 Aug 2012 17:01:14 +0300
+Message-ID: <CAJ2CSBtt85SZBo9MoGvjEbvCcNp7+v9CaJjbM-tBf7_mOHFLbg@mail.gmail.com>
+From: "Damian, Alexandru" <alexandru.damian@intel.com>
+To: Yocto Project Discussions <yocto@linux.intel.com>, 
+	Yocto Project Discussion <yocto@yoctoproject.org>
+X-Gm-Message-State: ALoCoQmFZmONon+r6LDUdSIvAPQq8asLgTYF8RMsI5hWBbl6abwyZJvo7kBfOPy0ZlNPZgYRqmi9
+Subject: [offtopic] a hack to better view pipermail archives
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,73 +39,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 17 Aug 2012 13:36:10 -0000
-Content-Type: text/plain; charset="ISO-8859-1"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 17 Aug 2012 14:01:17 -0000
+Content-Type: multipart/alternative; boundary=00248c711847d5911204c776970e
 
-On 12-08-16 06:27 PM, Saul Wold wrote:
-> On 07/27/2012 10:10 AM, Paul Gortmaker wrote:
->> The updated patch series to support this target is in place
->> on the BSP specific branch in the 3.4 kernel tree now[1], so
->> we can move it ahead off of the old 3.0 kernel.
->>
->> [1] https://lists.yoctoproject.org/pipermail/linux-yocto/2012-July/000023.html
->>
->> Signed-off-by: Paul Gortmaker <paul.gortmaker@windriver.com>
->>
->> diff --git a/meta-yocto/conf/machine/routerstationpro.conf b/meta-yocto/conf/machine/routerstationpro.conf
->> index 3c2f56f..adf36a9 100644
->> --- a/meta-yocto/conf/machine/routerstationpro.conf
->> +++ b/meta-yocto/conf/machine/routerstationpro.conf
->> @@ -10,7 +10,7 @@ KERNEL_IMAGETYPE = "vmlinux"
->>   KERNEL_ALT_IMAGETYPE = "vmlinux.bin"
->>
->>   PREFERRED_PROVIDER_virtual/kernel ?= "linux-yocto"
->> -PREFERRED_VERSION_linux-yocto ?= "3.0%"
->> +PREFERRED_VERSION_linux-yocto ?= "3.4%"
->>   PREFERRED_PROVIDER_virtual/xserver = "xserver-kdrive"
->>   XSERVER = "xserver-kdrive-fbdev"
->>
->> diff --git a/meta-yocto/recipes-kernel/linux/linux-yocto_3.4.bbappend b/meta-yocto/recipes-kernel/linux/linux-yocto_3.4.bbappend
->> index 2ff467b..1c8d26a 100644
->> --- a/meta-yocto/recipes-kernel/linux/linux-yocto_3.4.bbappend
->> +++ b/meta-yocto/recipes-kernel/linux/linux-yocto_3.4.bbappend
->> @@ -4,11 +4,11 @@ KBRANCH_mpc8315e-rdb = "standard/fsl-mpc8315e-rdb"
->>   KBRANCH_beagleboard = "standard/beagleboard"
->>
->>   SRCREV_machine_atom-pc ?= "a8291fa6f723b0182d2b7033b5d59f412ba7cf72"
->> -SRCREV_machine_routerstationpro ?= "a8291fa6f723b0182d2b7033b5d59f412ba7cf72"
->> +SRCREV_machine_routerstationpro ?= "27019633ccdaa88dc55101615d936d1d74db9a1e"
->>   SRCREV_machine_mpc8315e-rdb ?= "47d3076aa7e2a640a1dab8d663529a784709f697"
->>   SRCREV_machine_beagleboard ?= "a8291fa6f723b0182d2b7033b5d59f412ba7cf72"
->>
->>   COMPATIBLE_MACHINE_mpc8315e-rdb = "mpc8315e-rdb"
->> -# COMPATIBLE_MACHINE_routerstationpro = "routerstationpro"
->> +COMPATIBLE_MACHINE_routerstationpro = "routerstationpro"
->>   # COMPATIBLE_MACHINE_beagleboard = "beagleboard"
->>   COMPATIBLE_MACHINE_atom-pc = "atom-pc"
->>
-> 
-> Yup, this got lost, sorry about that.  It will need to be rebased 
-> against the patchset that Bruce put up, as I am working with that set also.
+--00248c711847d5911204c776970e
+Content-Type: text/plain; charset=ISO-8859-1
 
-I'll resend with the latest SRCREV.  Too bad SRCREV="latest" isn't
-the default, it would save a lot of churn, at least in dev cycles
-where there is no excuse for not wanting the latest...
+Hi guys,
 
-> 
-> Also, changes to meta-yocto should go to poky@yoctoproject.org.
+Getting frustrated by the deluge of list emails in my inbox, I decided I a
+better way to view/search the web archives.
+So I hacked away this User Script that hijacks the "Thread" view in the
+mail archives, and allows panel-view (like in Thunderbird),
+and text filtering on the mail index.
 
-Is there something akin to a maintainers file or similar that
-adds some clarity as to what goes where?  I'm looking at the
-list summaries here:  https://lists.yoctoproject.org/  and it
-isn't helping me understand what bits I should send where.
+How to use:
+1. Use Firefox (Chrome untested)
 
-Thanks,
-Paul.
---
+2. Install GreaseMonkey
+https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/
 
-> 
-> Sau!
-> 
+3. Install http://adamian-desktop.rb.intel.com/PiperMailViewer.user.js
+(click on it after GreaseMonkey is installed).
 
+4. Open
+https://lists.yoctoproject.org/pipermail/yocto/2012-August/thread.html and
+use the new view.
+
+5. ???
+
+6. Report bugs and feature requests to this thread.
+
+
+Happy list reading,
+Alex
+
+--00248c711847d5911204c776970e
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+Hi guys,<br><br>Getting frustrated by the deluge of list emails in my inbox=
+, I decided I a better way to view/search the web archives.<br>So I hacked =
+away this User Script that hijacks the &quot;Thread&quot; view in the mail =
+archives, and allows panel-view (like in Thunderbird),<br>
+and text filtering on the mail index.<br><br>How to use:<br>1. Use Firefox =
+(Chrome untested)<br><br>2. Install GreaseMonkey <a href=3D"https://addons.=
+mozilla.org/en-US/firefox/addon/greasemonkey/">https://addons.mozilla.org/e=
+n-US/firefox/addon/greasemonkey/</a><br>
+<br>3. Install <a href=3D"http://adamian-desktop.rb.intel.com/PiperMailView=
+er.user.js">http://adamian-desktop.rb.intel.com/PiperMailViewer.user.js</a>=
+=A0 (click on it after GreaseMonkey is installed).<br><br>4. Open <a href=
+=3D"https://lists.yoctoproject.org/pipermail/yocto/2012-August/thread.html"=
+>https://lists.yoctoproject.org/pipermail/yocto/2012-August/thread.html</a>=
+ and use the new view.<br>
+<br>5. ???<br><br>6. Report bugs and feature requests to this thread.<br><b=
+r><br>Happy list reading,<br>Alex<br>
+
+--00248c711847d5911204c776970e--
