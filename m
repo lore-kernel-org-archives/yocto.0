@@ -1,40 +1,50 @@
 Return-Path: <raj.khem@gmail.com>
 Received: from mail-ey0-f176.google.com (mail-ey0-f176.google.com
 	[209.85.215.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9A7D5E0027E
-	for <yocto@yoctoproject.org>; Thu, 16 Aug 2012 22:12:36 -0700 (PDT)
-Received: by eabd1 with SMTP id d1so1167113eab.35
-	for <yocto@yoctoproject.org>; Thu, 16 Aug 2012 22:12:35 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7BECFE0027E
+	for <yocto@yoctoproject.org>; Thu, 16 Aug 2012 22:49:00 -0700 (PDT)
+Received: by eabd1 with SMTP id d1so1172697eab.35
+	for <yocto@yoctoproject.org>; Thu, 16 Aug 2012 22:48:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type:content-transfer-encoding;
-	bh=UHhXRharN2jqoblZ6zN0/ZfnghyEWdZB4isL/A1cfq4=;
-	b=QcZ5wpabn3We5oVPSrUO6sCe1BBewmrKPmVzXnctpdwWDorTi9XHa442ZWf/pD0j3K
-	iwQtui3TF3N8z6p1jir+yDcczBrGVjH9/oohbCKQWDOWE2RhWEj5rJD5rwLGNwYZwSgN
-	XCxOVWa7WF8yNRv+k9FCTqOqtMbwji8XDI1XtgoOnIBtfpFXkbgBBC9eFTqjDwEmyln3
-	IB+XawIzue1Z2Oz3wsHrWMoUUT5hQgDo/ebJoEqr7pESFzWOD5aAMfsWZ9fMoKMGytFK
-	8KJGsDaNoUdkYKY8N4WAudIpl6FYxjoN1mtIu2+EIKx1FUqyBeNbEVmJipzLM/LUpaCt
-	7+1Q==
-Received: by 10.14.5.67 with SMTP id 43mr4759448eek.15.1345180355400; Thu, 16
-	Aug 2012 22:12:35 -0700 (PDT)
+	:cc:content-type;
+	bh=ZodXY1vt5QtFdGfL6LPndBsinnRr4LNBj95ZZrVHMtg=;
+	b=VtWF8Uj4TfWFiuh6Gi0MePoHSABf3DE20v99bAgmidDR/X+dMzDKd0MBXoJltbOVe/
+	8xSYjxvHT7QvJ4ofVWT1OETyo702On8JWi7anQpKERz6DUzHC79hEDnoeoRG4B3A0cFs
+	VQAQkpeM64UyTdhbxckUyJTaXZqjoPFp0r/hFIVTCYwTJXC3LG5mVMNLzSN7lV2NHzIr
+	MrpJLKg5Hg1QkVW1hoW9IwAShLXTFcxazmwqoy23jM5Ft+lTh62/sk/tIDk3+sDbL2a+
+	rtc3ZIFQqowY7RnMJa9GMi5AoGV1z3PbhJejT/RiAweGpEWBKcXMAxmjsXhDl+hEUQ5w
+	rYpw==
+Received: by 10.14.202.131 with SMTP id d3mr3200476eeo.32.1345182539453; Thu,
+	16 Aug 2012 22:48:59 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.14.2.5 with HTTP; Thu, 16 Aug 2012 22:12:05 -0700 (PDT)
-In-Reply-To: <CAEsOVNfHByXRcqY3=NQYJ2Y5a5+=sXiVqVQDF6nBcjeFbOAj5Q@mail.gmail.com>
-References: <1341550315-9795-1-git-send-email-raj.khem@gmail.com>
-	<1341550315-9795-2-git-send-email-raj.khem@gmail.com>
-	<88701C38B5D07249817D428430999C910EAC7607@sestoex05.enea.se>
-	<CAEsOVNe=+W0XLdYr1cZ_YFzkbASFCEio+yQ40Ojip_nq5FC=wQ@mail.gmail.com>
-	<88701C38B5D07249817D428430999C910EAC7B39@sestoex05.enea.se>
-	<CAEsOVNcGt6bP0woxhEjJnfpTVJj6W9A7oF_3VdxT_4N21zNddg@mail.gmail.com>
-	<502A0308.6080203@enea.com>
-	<CAMKF1sq=wRkTBAcUkLQhbv0QX6rCAA3cb8S39hYSAM4knfqcbw@mail.gmail.com>
-	<CAEsOVNfHByXRcqY3=NQYJ2Y5a5+=sXiVqVQDF6nBcjeFbOAj5Q@mail.gmail.com>
+Received: by 10.14.2.5 with HTTP; Thu, 16 Aug 2012 22:48:29 -0700 (PDT)
+In-Reply-To: <4855B040-2194-4E0F-8B88-6C10385DBE8F@gmail.com>
+References: <F1A84E50-21BF-4E9B-BC38-545D72F59A70@gmail.com>
+	<50226D44.3070503@mindchasers.com>
+	<CAEsOVNcYoCPaT-uRFw1tzggABncZAKL+U17fYkbi_fOgdJ5CtQ@mail.gmail.com>
+	<5022CDAD.5020309@mindchasers.com>
+	<CAEsOVNeyn9OQQvk-Z8V0eax5sjSSwHCkuDgd3yLu60VTsSqNSA@mail.gmail.com>
+	<ADE9BE2D-CF83-4389-9262-B628780B1DD4@gmail.com>
+	<AE25B08B-9B55-4EBA-B39B-2BE263109AA7@gmail.com>
+	<E1905E17-0DE0-46BD-B6CF-CD5B87BE816C@gmail.com>
+	<D5CC2FFB-E56B-41B1-BC70-9DFC41F54988@gmail.com>
+	<CAMKF1soVRDxAQ86HPpPMEB9WL142HCWkOHVqXhGQSN9b4290UQ@mail.gmail.com>
+	<651EC518-2C02-4A13-8AE7-0D118BCB3719@gmail.com>
+	<CAMKF1sp5hQKC3fEd4TnXHnPMjPyEsCmWHOUuHdd4RLMZMZZb0w@mail.gmail.com>
+	<50739671-4885-4C82-9360-C3376960B165@gmail.com>
+	<3E8B6BA0-C1A9-4861-B1A1-F15BAAB7B3ED@gmail.com>
+	<CAMKF1soQ3o7E6h86xbD9Wh8jCGzHEKmvzpwpYXKjePGcQe-+Yg@mail.gmail.com>
+	<6047F1EE-6246-490D-BEC3-EE93F40439FE@gmail.com>
+	<4A5B27D0-AF2F-4FBE-B1DC-FEB002F80B76@gmail.com>
+	<B3DEA1FA-A170-46D6-9BCA-82555C89523C@gmail.com>
+	<4855B040-2194-4E0F-8B88-6C10385DBE8F@gmail.com>
 From: Khem Raj <raj.khem@gmail.com>
-Date: Thu, 16 Aug 2012 22:12:05 -0700
-Message-ID: <CAMKF1sprsPQfJ2u+V7bJ9JGrWgaGHKkVPtEouvLAvqEBPck8Tg@mail.gmail.com>
-To: McClintock Matthew-B29882 <B29882@freescale.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-fsl-ppc][PATCH 2/2] fsl.conf: Let linux-qoriq-sdk-headers-nativesdk provide linux-libc-headers-nativesdk
+Date: Thu, 16 Aug 2012 22:48:29 -0700
+Message-ID: <CAMKF1sp19QKejvTx-qGQ0XpWomS67p-6D2ZS5NGe_L1hJ8Mz+w@mail.gmail.com>
+To: Elvis Dowson <elvis.dowson@gmail.com>
+Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+Subject: Re: Unable to get serial console login prompt - PowerPC 440 Virtex 5 processor
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,47 +56,21 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 17 Aug 2012 05:12:37 -0000
+X-List-Received-Date: Fri, 17 Aug 2012 05:49:00 -0000
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
 
-On Thu, Aug 16, 2012 at 12:37 PM, McClintock Matthew-B29882
-<B29882@freescale.com> wrote:
-> On Tue, Aug 14, 2012 at 2:26 PM, Khem Raj <raj.khem@gmail.com> wrote:
->> On Tue, Aug 14, 2012 at 12:49 AM, David Nystr=C3=B6m <david.nystrom@enea=
-.com> wrote:
->>>
->>> Hi, it looks like this was merged to the denzil branch, and
->>> PREFERRED_PROVIDER_linux-libc-headers-nativesdk was moved back to
->>> distro.conf.
->>> Any reason for this ?
->>
->> why do you want nativesdk headers to come from BSP its a fsl-ppc bsp I
->> dont expect it to have something special for SDK hosts which are
->> usually x86 ? afterall these are for
->> the SDK host and not for target. Moreover it means that this BSP will
->> not play in the multi BSP environment something you never want.
+On Tue, Aug 14, 2012 at 7:26 AM, Khem Raj <raj.khem@gmail.com> wrote:
 >
-> But, I think we might need them for this warning specifically:
->
-> NOTE: Resolving any missing task queue dependencies
-> NOTE: multiple providers are available for lib32-linux-libc-headers
-> (lib32-linux-libc-headers, lib32-linux-libc-headers-yocto,
-> lib32-linux-qoriq-sdk-headers)
-> NOTE: consider defining a PREFERRED_PROVIDER entry to match
-> lib32-linux-libc-headers
-> NOTE: multiple providers are available for runtime
-> lib32-linux-libc-headers-dev (lib32-linux-libc-headers,
-> lib32-linux-libc-headers-yocto, lib32-linux-qoriq-sdk-headers)
-> NOTE: consider defining a PREFERRED_PROVIDER entry to match
-> lib32-linux-libc-headers-dev
->
+> There are differences in eglibc.inc and initrd recipes. Try to see if they
+> make difference
+> Also the libgcc one after the above two
 
-This is a bug in OE-Core, it should have added appropriate defines for
-multilib case as well in
-tcmode-default.inc and default-providers.inc
+Elvis
 
-> ?
->
-> -M
+Did you try the above ?
+I have pushed a patch into my contrib tree.
+
+http://git.openembedded.org/openembedded-core-contrib/commit/?h=kraj/misc&id=502a61792cdb219c1ee35bb9474b8f0c4b007385
+
+can you try that out and see if it helps with gcc 4.7
 
