@@ -1,24 +1,23 @@
-Return-Path: <Paul.Gortmaker@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1015AE0027E;
-	Fri, 17 Aug 2012 08:24:34 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id q7HFOXBU004825
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 17 Aug 2012 08:24:33 -0700 (PDT)
-Received: from yow-pgortmak-d2.corp.ad.wrs.com (128.224.146.165) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.2.309.2; Fri, 17 Aug 2012 08:24:32 -0700
-From: Paul Gortmaker <paul.gortmaker@windriver.com>
-To: <poky@yoctoproject.org>
-Date: Fri, 17 Aug 2012 11:24:19 -0400
-Message-ID: <1345217059-10448-1-git-send-email-paul.gortmaker@windriver.com>
-X-Mailer: git-send-email 1.7.12.rc2
-In-Reply-To: <502D73D4.6090408@linux.intel.com>
-References: <502D73D4.6090408@linux.intel.com>
-MIME-Version: 1.0
-Cc: yocto@yoctoproject.org, Darren Hart <dvhart@linux.intel.com>
-Subject: [PATCH v2] routerstationpro: move board off 3.0 and onto the 3.4 kernel
+Return-Path: <mihaix.lindner@linux.intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AD797E0027F
+	for <yocto@yoctoproject.org>; Fri, 17 Aug 2012 08:53:41 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 17 Aug 2012 08:53:41 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.77,785,1336374000"; d="scan'208";a="187795170"
+Received: from linux.jf.intel.com (HELO linux.intel.com) ([10.23.232.205])
+	by orsmga002.jf.intel.com with ESMTP; 17 Aug 2012 08:53:41 -0700
+Received: from moolinex.rb.intel.com (qa.rb.intel.com [10.237.100.11])
+	by linux.intel.com (Postfix) with ESMTP id 496622C8001;
+	Fri, 17 Aug 2012 08:53:41 -0700 (PDT)
+From: Mihai Lindner <mihaix.lindner@linux.intel.com>
+To: yocto@yoctoproject.org,
+	kishore.k.bodke@intel.com
+Date: Fri, 17 Aug 2012 18:53:33 +0300
+Message-Id: <cover.1345218399.git.mihaix.lindner@linux.intel.com>
+X-Mailer: git-send-email 1.7.8.6
+Subject: [PATCH 0/1] meta-cedartrail: fix PREFERRED_VERSION_linux-yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,61 +29,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 17 Aug 2012 15:24:34 -0000
-Content-Type: text/plain
+X-List-Received-Date: Fri, 17 Aug 2012 15:53:41 -0000
 
-The updated patch series to support this target is in place
-on the BSP specific branch in the 3.4 kernel tree now[1], so
-we can move it ahead off of the old 3.0 kernel.
+Missing PREFERRED_VERSION_linux-yocto generated NOTEs when building.
+"""
+NOTE: preferred version 3.4% of linux-yocto not available (for item
+virtual/kernel)
+"""
 
-[1] https://lists.yoctoproject.org/pipermail/linux-yocto/2012-July/000023.html
+[YOCTO #2962]
 
-Cc: Bruce Ashfield <bruce.ashfield@windriver.com>
-Cc: Saul Wold <sgw@linux.intel.com>
-Acked-by: Darren Hart <dvhart@linux.intel.com>
-Signed-off-by: Paul Gortmaker <paul.gortmaker@windriver.com>
+Signed-off-by: Mihai Lindner <mihaix.lindner@linux.intel.com>
 ---
+The following changes since commit 50b22497cb34c3502f3dca1407aecdcd4dfc52b1:
 
-[v2: update to the SRCREV-of-the-day.  Note that if anyone sees
- build failures with this, you are also missing the meta SRCREV
- update in linux-yocto_3.4.bb from Bruce.  Yay SRCREV. ]
+  layer.conf: Clarify BBFILES comments regarding recipe-* directories (2012-08-15 15:43:01 -0700)
 
- meta-yocto/conf/machine/routerstationpro.conf            | 2 +-
- meta-yocto/recipes-kernel/linux/linux-yocto_3.4.bbappend | 4 ++--
- 2 files changed, 3 insertions(+), 3 deletions(-)
+are available in the git repository at:
+  git://git.yoctoproject.org/poky-contrib mihai/bug2962
+  http://git.yoctoproject.org/cgit.cgi/poky-contrib/log/?h=mihai/bug2962
 
-diff --git a/meta-yocto/conf/machine/routerstationpro.conf b/meta-yocto/conf/machine/routerstationpro.conf
-index 3c2f56f..adf36a9 100644
---- a/meta-yocto/conf/machine/routerstationpro.conf
-+++ b/meta-yocto/conf/machine/routerstationpro.conf
-@@ -10,7 +10,7 @@ KERNEL_IMAGETYPE = "vmlinux"
- KERNEL_ALT_IMAGETYPE = "vmlinux.bin"
- 
- PREFERRED_PROVIDER_virtual/kernel ?= "linux-yocto"
--PREFERRED_VERSION_linux-yocto ?= "3.0%"
-+PREFERRED_VERSION_linux-yocto ?= "3.4%"
- PREFERRED_PROVIDER_virtual/xserver = "xserver-kdrive"
- XSERVER = "xserver-kdrive-fbdev"
- 
-diff --git a/meta-yocto/recipes-kernel/linux/linux-yocto_3.4.bbappend b/meta-yocto/recipes-kernel/linux/linux-yocto_3.4.bbappend
-index 2ff467b..fe8e97c 100644
---- a/meta-yocto/recipes-kernel/linux/linux-yocto_3.4.bbappend
-+++ b/meta-yocto/recipes-kernel/linux/linux-yocto_3.4.bbappend
-@@ -4,11 +4,11 @@ KBRANCH_mpc8315e-rdb = "standard/fsl-mpc8315e-rdb"
- KBRANCH_beagleboard = "standard/beagleboard"
- 
- SRCREV_machine_atom-pc ?= "a8291fa6f723b0182d2b7033b5d59f412ba7cf72"
--SRCREV_machine_routerstationpro ?= "a8291fa6f723b0182d2b7033b5d59f412ba7cf72"
-+SRCREV_machine_routerstationpro ?= "2c4707476e4295ee58c3e7963b9028ab98bf41e5"
- SRCREV_machine_mpc8315e-rdb ?= "47d3076aa7e2a640a1dab8d663529a784709f697"
- SRCREV_machine_beagleboard ?= "a8291fa6f723b0182d2b7033b5d59f412ba7cf72"
- 
- COMPATIBLE_MACHINE_mpc8315e-rdb = "mpc8315e-rdb"
--# COMPATIBLE_MACHINE_routerstationpro = "routerstationpro"
-+COMPATIBLE_MACHINE_routerstationpro = "routerstationpro"
- # COMPATIBLE_MACHINE_beagleboard = "beagleboard"
- COMPATIBLE_MACHINE_atom-pc = "atom-pc"
+Mihai Lindner (1):
+  meta-cedartrail: fixed PREFERRED_VERSION_linux-yocto
+
+ meta-cedartrail/conf/machine/cedartrail.conf |    1 +
+ 1 files changed, 1 insertions(+), 0 deletions(-)
+
 -- 
-1.7.12.rc2
+1.7.8.6
 
 
