@@ -1,28 +1,34 @@
-Return-Path: <munoz0raul@gmail.com>
-Received: from mail-lpp01m010-f48.google.com (mail-lpp01m010-f48.google.com
-	[209.85.215.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7B41AE01370
-	for <yocto@yoctoproject.org>; Sat, 18 Aug 2012 13:16:16 -0700 (PDT)
-Received: by lagr15 with SMTP id r15so3049500lag.35
-	for <yocto@yoctoproject.org>; Sat, 18 Aug 2012 13:16:14 -0700 (PDT)
+Return-Path: <kergoth@gmail.com>
+Received: from mail-lb0-f176.google.com (mail-lb0-f176.google.com
+	[209.85.217.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6CF6EE01370
+	for <yocto@yoctoproject.org>; Sat, 18 Aug 2012 14:36:29 -0700 (PDT)
+Received: by lboi15 with SMTP id i15so3106635lbo.35
+	for <yocto@yoctoproject.org>; Sat, 18 Aug 2012 14:36:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=04b8iK+Os+FY/uqfkxpGicb0dXSntixEabPNOqbJuvM=;
-	b=BCgsD8M661tyI7tPvIrw5fRsD3ok/QPssEhmcqHsaHF4RI4Hkc+6K+UiIzLw97EBC/
-	m/onciwe63Uz2aivvwXpcKbauPJSKBqPsQMc60LmMhOc7rEveZtNhVvHNunr8yhnP1Qg
-	RxG6cmDWBNVsHjGIiGI8khFmzHPofyK3CQ94VNEMoOou+wNzdmOmtHvboaGF1ZbJ97x7
-	pcC4J+RmEtxYhpelyTmaQ9A8dB0zrl3IaWrT1mJWwOAmLAH11fTPoZTLYe6m7nWlmisu
-	+efx1qtUOSqVka8zIajx07qkE5Ef0sN5sI81uaj7OTcxfryTa3/y670Swb6NinvVusSL
-	EVZw==
+	h=mime-version:sender:in-reply-to:references:from:date
+	:x-google-sender-auth:message-id:subject:to:cc:content-type;
+	bh=X4kJY4OOyNkqsFDAvUAOjXAhCj/YoIqjNgUtdjDm3YE=;
+	b=geTsX79bjV6plYpZSVAxdEpLN0dsRSjSuBscIekoq46t15KeVveUq/JaasDK4JgimG
+	z0wPaxgagg4sCmtCwsTUv0gzdFz0hD3vVopmlA9w7cVwD7hgg63PYy8cwIqvhsS66kOe
+	cboagy4rtybwP9dP9fUJaO7ubMnxmnnRoqfRVMzvbHfYwJhdCayUlZSd5mKt8aChS0C5
+	Ulsl/9TInR9OxbqLKd8qgGa8mPVqKckMqeM5fRpETmMdMWrPhPdNgDhU6o9m/MYUdgyQ
+	TGB2pCg/F7cXqGfW9L01MfETkzC30Y847crIA6gXE7YC9LoQoh3x/3Yy/O7TWJfG98bH
+	PSXA==
+Received: by 10.112.85.225 with SMTP id k1mr4069890lbz.38.1345325788210; Sat,
+	18 Aug 2012 14:36:28 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.112.23.42 with SMTP id j10mr4019360lbf.20.1345320974720; Sat,
-	18 Aug 2012 13:16:14 -0700 (PDT)
-Received: by 10.112.21.194 with HTTP; Sat, 18 Aug 2012 13:16:14 -0700 (PDT)
-Date: Sat, 18 Aug 2012 17:16:14 -0300
-Message-ID: <CANmVirj4Z5+bnJJya2ZmYr_H++VjXsm4A5yB9Hs9D6mQuK6eGg@mail.gmail.com>
-From: Raul Rosetto Munoz <munoz0raul@gmail.com>
-To: yocto@yoctoproject.org
-Subject: Add new package
+Sender: kergoth@gmail.com
+Received: by 10.114.19.2 with HTTP; Sat, 18 Aug 2012 14:36:07 -0700 (PDT)
+In-Reply-To: <CAHUNapTnb_Q2z0+23OVayw8uETMjcMpSYJ1umUa6qnQPfF88TA@mail.gmail.com>
+References: <CAHUNapTnb_Q2z0+23OVayw8uETMjcMpSYJ1umUa6qnQPfF88TA@mail.gmail.com>
+From: Chris Larson <clarson@kergoth.com>
+Date: Sat, 18 Aug 2012 14:36:07 -0700
+X-Google-Sender-Auth: LwpIE9G0Gk1O8hFV-eFVnQu-zSY
+Message-ID: <CABcZANnTzLZAVYdXDOjbRx93pPA0aEdyY_g-bUpCQ64rAhuxrA@mail.gmail.com>
+To: Trevor Woerner <twoerner@gmail.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: knotty2
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,36 +40,18 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 18 Aug 2012 20:16:16 -0000
-Content-Type: multipart/alternative; boundary=90e6ba309826ce9fee04c78ff271
+X-List-Received-Date: Sat, 18 Aug 2012 21:36:29 -0000
+Content-Type: text/plain; charset=UTF-8
 
---90e6ba309826ce9fee04c78ff271
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+On Sat, Aug 18, 2012 at 4:09 AM, Trevor Woerner <twoerner@gmail.com> wrote:
+> Wow! The new cmdline interface (which I assume is knotty2?) is
+> _really_ impressive!
 
-Hello All..
+It was knotty2, yeah, but that functionality was merged into the
+default UI, so it's just knotty now :) Agreed, Richard did a good job
+on it. It's a simple change, really, but one with great impact on
+usability. It makes it much easier to spot real warnings/errors, since
+you don't have to dig through the spam.
+-- 
+Christopher Larson
 
-I need to use a minicom and curl in the beaglebone.
-
-I have a core-image-minimal that work fine in the board.
-
-Can some one help me and tell how to add this packages?
-
-Thanks for all help.
-
---=20
-*Raul Rosetto Mu=F1oz*
-
---90e6ba309826ce9fee04c78ff271
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-Hello All..<div><br></div><div>I need to use a minicom and curl in the beag=
-lebone.</div><div><br></div><div>I have a core-image-minimal that work fine=
- in the board.</div><div><br></div><div>Can some one help me and tell how t=
-o add this=A0packages?</div>
-<div><br></div><div>Thanks for all help.</div><div><div><br></div>-- <br><b=
->Raul Rosetto Mu=F1oz</b><br>
-</div>
-
---90e6ba309826ce9fee04c78ff271--
