@@ -1,31 +1,31 @@
 Return-Path: <elvis.dowson@gmail.com>
 Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
 	[209.85.160.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2E579E01370
-	for <yocto@yoctoproject.org>; Sat, 18 Aug 2012 23:08:43 -0700 (PDT)
-Received: by pbbrp16 with SMTP id rp16so6880081pbb.35
-	for <yocto@yoctoproject.org>; Sat, 18 Aug 2012 23:08:42 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3EDF3E01370
+	for <yocto@yoctoproject.org>; Sat, 18 Aug 2012 23:13:45 -0700 (PDT)
+Received: by pbbrp16 with SMTP id rp16so6884596pbb.35
+	for <yocto@yoctoproject.org>; Sat, 18 Aug 2012 23:13:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=subject:mime-version:content-type:from:in-reply-to:date:cc
-	:content-transfer-encoding:message-id:references:to:x-mailer;
-	bh=b22oCBMkLWA8lOhlMIBNWAZyczxNzYDkwAEvTpMDUbI=;
-	b=rX8ddJXb34It9MG+dv0Nqz3rAF4ZN7S6qEH7DZfifWxcEzohjPcfFk3aSohX2qngJU
-	Pwgkjgl0ZsQDqaAGA6xNDn/1SycVkPBOcQbH7jRV+xK8OUOB5sTQdAIR+NuE0h7bPUdJ
-	die4JcS5ikYCHorrPAAhFT87GBYd30H/HnvRGMt/cwwjwrgnPqQ4xsq0jq8Xfk7O1FhM
-	GtFUsUYHNYmGO5JnXXNGMclnP4yleFhf2bQhyv553TI+wIMbHavcjZHXs7jr3yH7hbmF
-	HNRVkdGyl0Kyl1aT0d6pOB7m1s80HcyjN/byB2h93OGTDg6dmQJk51JKaqWTyAv8ga8h
-	a8xQ==
-Received: by 10.68.212.161 with SMTP id nl1mr24622088pbc.84.1345356522635;
-	Sat, 18 Aug 2012 23:08:42 -0700 (PDT)
+	:message-id:references:to:x-mailer;
+	bh=RocMwFV6w49V0PV2ijvjNkOKHSJTShyQcopbClAXNH4=;
+	b=CX0tN1odvj7x6j3rOiym9ukMpLoarRDmC1iDrHgCz17WjJw9jQOuG/shAxNawnilU7
+	CNc34CQ0WKiZwC0WF/7lqkwoJUlgLUp9svvTzRhmxA5avYcTb5wPwzBFHob+KcY2qlko
+	neYLDPkmZDeufYwMY867v+E6VwKSBwUNEYsAs4iov34JiLpYXrsRR/mCK3RLC/qrVsqM
+	Z8AGIVBBce8TUtG6YPkNdeNj5iKtMOYi7vnd4169l4FqfdIH9wNBl/6Nm/Un+FtfJ0lC
+	WsVMh5AxxqMhpORXI4vhRLKMUQvSCZ+Fi8ogbmh/rB8yb8uVdc8yDgL1LePfKsFpRGw2
+	LHiw==
+Received: by 10.68.238.138 with SMTP id vk10mr24716813pbc.75.1345356824975;
+	Sat, 18 Aug 2012 23:13:44 -0700 (PDT)
 Received: from [192.168.1.101] ([94.205.108.162])
-	by mx.google.com with ESMTPS id or1sm8436248pbb.10.2012.08.18.23.08.39
+	by mx.google.com with ESMTPS id pq1sm8445358pbb.3.2012.08.18.23.13.42
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Sat, 18 Aug 2012 23:08:41 -0700 (PDT)
+	Sat, 18 Aug 2012 23:13:43 -0700 (PDT)
 Mime-Version: 1.0 (Apple Message framework v1278)
 From: Elvis Dowson <elvis.dowson@gmail.com>
-In-Reply-To: <CAMKF1sp19QKejvTx-qGQ0XpWomS67p-6D2ZS5NGe_L1hJ8Mz+w@mail.gmail.com>
-Date: Sun, 19 Aug 2012 10:08:35 +0400
-Message-Id: <AF18A8EF-44E8-4C11-B52B-D5C7E7B7FD85@gmail.com>
+In-Reply-To: <AF18A8EF-44E8-4C11-B52B-D5C7E7B7FD85@gmail.com>
+Date: Sun, 19 Aug 2012 10:13:37 +0400
+Message-Id: <E089A60B-5047-407B-9CD2-8764C5416DF0@gmail.com>
 References: <F1A84E50-21BF-4E9B-BC38-545D72F59A70@gmail.com>
 	<50226D44.3070503@mindchasers.com>
 	<CAEsOVNcYoCPaT-uRFw1tzggABncZAKL+U17fYkbi_fOgdJ5CtQ@mail.gmail.com>
@@ -46,6 +46,7 @@ References: <F1A84E50-21BF-4E9B-BC38-545D72F59A70@gmail.com>
 	<B3DEA1FA-A170-46D6-9BCA-82555C89523C@gmail.com>
 	<4855B040-2194-4E0F-8B88-6C10385DBE8F@gmail.com>
 	<CAMKF1sp19QKejvTx-qGQ0XpWomS67p-6D2ZS5NGe_L1hJ8Mz+w@mail.gmail.com>
+	<AF18A8EF-44E8-4C11-B52B-D5C7E7B7FD85@gmail.com>
 To: Khem Raj <raj.khem@gmail.com>
 X-Mailer: Apple Mail (2.1278)
 Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
@@ -61,46 +62,94 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 19 Aug 2012 06:08:44 -0000
-Content-Type: text/plain; charset=us-ascii
+X-List-Received-Date: Sun, 19 Aug 2012 06:13:45 -0000
+Content-Type: multipart/alternative;
+	boundary="Apple-Mail=_78AEC9ED-7817-4881-87A7-0DBE5E179F6D"
+
+--Apple-Mail=_78AEC9ED-7817-4881-87A7-0DBE5E179F6D
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=us-ascii
 
-Hi Khem,
+hi Khem,
 
-On Aug 17, 2012, at 9:48 AM, Khem Raj wrote:
+On Aug 19, 2012, at 10:08 AM, Elvis Dowson wrote:
 
-> On Tue, Aug 14, 2012 at 7:26 AM, Khem Raj <raj.khem@gmail.com> wrote:
->>=20
->> There are differences in eglibc.inc and initrd recipes. Try to see if =
-they
->> make difference
->> Also the libgcc one after the above two
->=20
-> Elvis
->=20
-> Did you try the above ?
-> I have pushed a patch into my contrib tree.
->=20
-> =
-http://git.openembedded.org/openembedded-core-contrib/commit/?h=3Dkraj/mis=
-c&id=3D502a61792cdb219c1ee35bb9474b8f0c4b007385
->=20
-> can you try that out and see if it helps with gcc 4.7
-
-I had to manually apply the patch to poky/master.
-
-The gcc-4.7 patch alone didn't fix the issue with not getting a bash =
-prompt, which makes sense I guess, since the eglibc recipes also need to =
-be modified to ensure that the soft-float libraries are also generated =
-into the target root filesystem.
-
-I'll now, make the necessary changes to eglibc-2.13, in poky/master, =
+> I'll now, make the necessary changes to eglibc-2.13, in poky/master, =
 with gcc-4.7, and see if it works.
 
-If it does, then I'll adapt the same solution for eglibc-2.15, =
-eglibc-2.16, and gcc-4.6 recipes, and sent them across.
+Sorry, I meant to say libgcc-4.7
+
+diff --git a/tool/yocto/poky/meta/recipes-devtools/gcc/libgcc_4.6.bb =
+b/tool/eldk/meta/recipes-devtools/gcc/libgcc_4.6.bb
+index 9a8b20d..f75ca34 100644
+--- a/tool/yocto/poky/meta/recipes-devtools/gcc/libgcc_4.6.bb
++++ b/tool/eldk/meta/recipes-devtools/gcc/libgcc_4.6.bb
+@@ -16,8 +16,10 @@ PACKAGES =3D "\
+ FILES_${PN} =3D "${base_libdir}/libgcc*.so.*"
+ FILES_${PN}-dev =3D " \
+   ${base_libdir}/libgcc*.so \
+-  ${libdir}/${TARGET_SYS}/${BINV}/*crt* \
+-  ${libdir}/${TARGET_SYS}/${BINV}/libgcc*"
++  ${libdir}/${TARGET_SYS}/${BINV}/crt* \
++  ${libdir}/${TARGET_SYS}/${BINV}/libgcc* \
++  ${libdir}/${TARGET_SYS}/${BINV}/nof/crt* \
++  ${libdir}/${TARGET_SYS}/${BINV}/nof/libgcc*"
+ FILES_libgcov${PKGSUFFIX}-dev =3D " \
+   ${libdir}/${TARGET_SYS}/${BINV}/libgcov.a"
 
 Best regards,
 
 Elvis Dowson=
 
+--Apple-Mail=_78AEC9ED-7817-4881-87A7-0DBE5E179F6D
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=us-ascii
+
+<html><head></head><body style=3D"word-wrap: break-word; =
+-webkit-nbsp-mode: space; -webkit-line-break: after-white-space; ">hi =
+Khem,<div><br><div><div>On Aug 19, 2012, at 10:08 AM, Elvis Dowson =
+wrote:</div><br class=3D"Apple-interchange-newline"><blockquote =
+type=3D"cite"><div>I'll now, make the necessary changes to eglibc-2.13, =
+in poky/master, with gcc-4.7, and see if it =
+works.<br></div></blockquote></div><br><div>Sorry, I meant to say =
+libgcc-4.7</div><div><br></div><div><div><font class=3D"Apple-style-span" =
+face=3D"Monaco" size=3D"2">diff --git =
+a/tool/yocto/poky/meta/recipes-devtools/gcc/libgcc_4.6.bb =
+b/tool/eldk/meta/recipes-devtools/gcc/libgcc_4.6.bb</font></div><div><font=
+ class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">index =
+9a8b20d..f75ca34 100644</font></div><div><font class=3D"Apple-style-span" =
+face=3D"Monaco" size=3D"2">--- =
+a/tool/yocto/poky/meta/recipes-devtools/gcc/libgcc_4.6.bb</font></div><div=
+><font class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">+++ =
+b/tool/eldk/meta/recipes-devtools/gcc/libgcc_4.6.bb</font></div><div><font=
+ class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">@@ -16,8 +16,10 =
+@@ PACKAGES =3D "\</font></div><div><font class=3D"Apple-style-span" =
+face=3D"Monaco" size=3D"2">&nbsp;FILES_${PN} =3D =
+"${base_libdir}/libgcc*.so.*"</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" =
+size=3D"2">&nbsp;FILES_${PN}-dev =3D " \</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">&nbsp; =
+&nbsp;${base_libdir}/libgcc*.so \</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">- =
+&nbsp;${libdir}/${TARGET_SYS}/${BINV}/*crt* \</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">- =
+&nbsp;${libdir}/${TARGET_SYS}/${BINV}/libgcc*"</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">+ =
+&nbsp;${libdir}/${TARGET_SYS}/${BINV}/crt* \</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">+ =
+&nbsp;${libdir}/${TARGET_SYS}/${BINV}/libgcc* \</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">+ =
+&nbsp;${libdir}/${TARGET_SYS}/${BINV}/nof/crt* \</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">+ =
+&nbsp;${libdir}/${TARGET_SYS}/${BINV}/nof/libgcc*"</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" =
+size=3D"2">&nbsp;FILES_libgcov${PKGSUFFIX}-dev =3D " =
+\</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
+size=3D"2">&nbsp; =
+&nbsp;${libdir}/${TARGET_SYS}/${BINV}/libgcov.a"</font></div></div><div><b=
+r></div><div>Best regards,</div><div><br></div><div>Elvis =
+Dowson</div></div></body></html>=
+
+--Apple-Mail=_78AEC9ED-7817-4881-87A7-0DBE5E179F6D--
