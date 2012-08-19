@@ -1,37 +1,34 @@
-Return-Path: <elvis.dowson@gmail.com>
-Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
-	[209.85.160.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3DA32E0049B
-	for <yocto@yoctoproject.org>; Sun, 19 Aug 2012 09:39:27 -0700 (PDT)
-Received: by pbbrp16 with SMTP id rp16so7413188pbb.35
-	for <yocto@yoctoproject.org>; Sun, 19 Aug 2012 09:39:26 -0700 (PDT)
+Return-Path: <kergoth@gmail.com>
+Received: from mail-lb0-f176.google.com (mail-lb0-f176.google.com
+	[209.85.217.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D6B8EE01304
+	for <yocto@yoctoproject.org>; Sun, 19 Aug 2012 15:14:16 -0700 (PDT)
+Received: by lboi15 with SMTP id i15so3417951lbo.35
+	for <yocto@yoctoproject.org>; Sun, 19 Aug 2012 15:14:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=references:in-reply-to:mime-version:content-transfer-encoding
-	:content-type:message-id:cc:x-mailer:from:subject:date:to;
-	bh=IDtVG8fdcRO8ArczIIENaz44pUTT103nWKkcfIgnJ0s=;
-	b=UOVkZibCjp60ZhN9FIbeWc48S8RlE5oUp1eRRTWxpKi8oNsWzcdulb9RwdIIBvopMv
-	h+zYUM9nYOPZfKsCp/3XgqGW158fGEcxhjd03xQVm0aG2g5a7Vp46t6KKBaebqdn5pua
-	PePu6goV7XdMJCw6xenZibC2CEmQ3i7RckRS0Vk9azJePegyA9GoYdS6XVlM4H88WhW2
-	YedMY6vyxAsc5v7mywOrjxgKj5kS6rE0uGisiaDiKOrXe49RxuiO2iOuUYp4fSFxzA5J
-	bu5awdFhPCD2bFSZNze3fUIZEWwCpiX9zHhohFufZjVI2RA3v7GbHN+b0/qyx3ti19mz
-	hPEQ==
-Received: by 10.68.200.162 with SMTP id jt2mr27744042pbc.54.1345394366869;
-	Sun, 19 Aug 2012 09:39:26 -0700 (PDT)
-Received: from [192.168.1.102] ([94.205.108.162])
-	by mx.google.com with ESMTPS id th6sm9268830pbc.0.2012.08.19.09.39.23
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Sun, 19 Aug 2012 09:39:25 -0700 (PDT)
-References: <0F31BD17-B08A-4D0A-8807-8A2B2F21BE00@gmail.com>
-	<CAMKF1sr-vgPoG3_QsWkFMHsS=JQB_bj+EK61MUyEp77NjL8d6Q@mail.gmail.com>
-In-Reply-To: <CAMKF1sr-vgPoG3_QsWkFMHsS=JQB_bj+EK61MUyEp77NjL8d6Q@mail.gmail.com>
-Mime-Version: 1.0 (1.0)
-Message-Id: <2E04F412-1416-4454-AD1F-9DFE3993748C@gmail.com>
-X-Mailer: iPhone Mail (9B206)
-From: Elvis Dowson <elvis.dowson@gmail.com>
-Date: Sun, 19 Aug 2012 20:39:18 +0400
-To: Khem Raj <raj.khem@gmail.com>
-Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-Subject: Re: Distributing yocto builds onto an Ubuntu 12.04 LTS cluster
+	h=mime-version:sender:in-reply-to:references:from:date
+	:x-google-sender-auth:message-id:subject:to:cc:content-type;
+	bh=mlCYycYuHI4e85a8uH9fhBAJMErYmhaNdT4qZbEgmoE=;
+	b=Z2KAXx9yv6/PxNAFHqy1IyrA+nVdSZRl4Z4Oyf3SIjv2GWzpmJywtOAgTF8UwlOqBq
+	F15YnvUcfDSnVZvY17/UoeNunWJRiDllrpbtds+R3EJAYMP6UKKVlbhZm/Wgjw1G9i/G
+	aJ0qdCM+l5caMtd73bHpfDjQmzfM0g6M5jAX7zuSrhgk2sU6i6UyeJNoQRwdmABWRd6o
+	dMMObPosR33s0VoDKFwQ7IH/g465F3ft9+RPmz6K1nu82f4J429wEe2SQzSEio5xKNcM
+	ue6IDSm/D0L+fA0nXTZ+tmue3v6cDPJcXnfYRjVhoONZhU2B6DT5sOxLbKAewXkV/+aN
+	FWUQ==
+Received: by 10.112.36.195 with SMTP id s3mr5273512lbj.42.1345414455053; Sun,
+	19 Aug 2012 15:14:15 -0700 (PDT)
+MIME-Version: 1.0
+Sender: kergoth@gmail.com
+Received: by 10.114.19.2 with HTTP; Sun, 19 Aug 2012 15:13:54 -0700 (PDT)
+In-Reply-To: <CA+JN8xOM0SVhCsrj+DdL7gjGAZAZ1SMrwVCA7mxWocK7+XQoyQ@mail.gmail.com>
+References: <CA+JN8xOM0SVhCsrj+DdL7gjGAZAZ1SMrwVCA7mxWocK7+XQoyQ@mail.gmail.com>
+From: Chris Larson <clarson@kergoth.com>
+Date: Sun, 19 Aug 2012 15:13:54 -0700
+X-Google-Sender-Auth: 8fab3ckwSnYXWCLr8doV_jTM2o0
+Message-ID: <CABcZANmD72ZTvQ86Z85Gw_vUPCxpuTBUaM0kw6+Tu+-TLjObBQ@mail.gmail.com>
+To: Seth Bollinger <seth.boll@gmail.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: Installing Kernel Modules
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,26 +40,22 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 19 Aug 2012 16:39:27 -0000
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=us-ascii
+X-List-Received-Date: Sun, 19 Aug 2012 22:14:17 -0000
+Content-Type: text/plain; charset=UTF-8
 
-Hi Khem,
+On Sun, Aug 19, 2012 at 6:53 AM, Seth Bollinger <seth.boll@gmail.com> wrote:
+> I currently have a modules*.tgz in my tmp/images/deploy directory that
+> contains all of the kernel modules built.  What's the yocto way to pull only
+> the modules I care about into the rootfs image?
 
-On Aug 19, 2012, at 20:09, Khem Raj <raj.khem@gmail.com> wrote:
 
-> On Sun, Aug 19, 2012 at 5:15 AM, Elvis Dowson <elvis.dowson@gmail.com> wro=
-te:
->> Has anyone been able to successfully distribute yocto builds onto an Ubun=
-tu 12.04 LTS cluster?
->=20
-> master works fine
-
-I couldnt get icecc to work. Could you share your settings to get it to work=
- please?
-
-Best regards,
-
-Elvis Dowson=
+Every kernel module gets split out into its own binary package.
+Inspect tmp/deploy/ipk/*/kernel-module-*.ipk, for example, if you're
+using package_ipk.
+-- 
+Christopher Larson
+clarson at kergoth dot com
+Founder - BitBake, OpenEmbedded, OpenZaurus
+Maintainer - Tslib
+Senior Software Engineer, Mentor Graphics
 
