@@ -1,30 +1,32 @@
-Return-Path: <David.Nystrom@enea.com>
-Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 2ED6AE013F7
-	for <yocto@yoctoproject.org>; Mon, 20 Aug 2012 00:21:48 -0700 (PDT)
-Received: from [172.16.140.132] (172.16.140.132) by smtp.enea.com
-	(172.21.1.209) with Microsoft SMTP Server id 14.2.298.4;
-	Mon, 20 Aug 2012 09:21:45 +0200
-Message-ID: <5031E600.8030208@enea.com>
-Date: Mon, 20 Aug 2012 09:23:44 +0200
-From: =?UTF-8?B?RGF2aWQgTnlzdHLDtm0=?= <david.nystrom@enea.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:14.0) Gecko/20120714 Thunderbird/14.0
+Return-Path: <belen.barros.pena@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4EBD6E013D2
+	for <yocto@yoctoproject.org>; Mon, 20 Aug 2012 04:25:48 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 20 Aug 2012 04:25:47 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.77,796,1336374000"; d="scan'208";a="210992826"
+Received: from irsmsx101.ger.corp.intel.com ([163.33.3.153])
+	by fmsmga002.fm.intel.com with ESMTP; 20 Aug 2012 04:25:46 -0700
+Received: from irsmsx152.ger.corp.intel.com (163.33.192.66) by
+	IRSMSX101.ger.corp.intel.com (163.33.3.153) with Microsoft SMTP Server
+	(TLS) id 14.1.355.2; Mon, 20 Aug 2012 12:25:15 +0100
+Received: from irsmsx104.ger.corp.intel.com ([169.254.5.154]) by
+	IRSMSX152.ger.corp.intel.com ([169.254.6.51]) with mapi id
+	14.01.0355.002; Mon, 20 Aug 2012 12:25:15 +0100
+From: "Barros Pena, Belen" <belen.barros.pena@intel.com>
+To: yocto <yocto@yoctoproject.org>
+Thread-Topic: Hob and image groups: feedback wanted
+Thread-Index: AQHNfsZ4iX/3zaMejkqIUrafqJ3/hQ==
+Date: Mon, 20 Aug 2012 11:25:14 +0000
+Message-ID: <CC57DD29.16735%belen.barros.pena@intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Microsoft-MacOutlook/14.2.2.120421
+x-originating-ip: [10.252.42.150]
 MIME-Version: 1.0
-To: Khem Raj <raj.khem@gmail.com>
-References: <1341550315-9795-1-git-send-email-raj.khem@gmail.com>
-	<1341550315-9795-2-git-send-email-raj.khem@gmail.com>
-	<88701C38B5D07249817D428430999C910EAC7607@sestoex05.enea.se>
-	<CAEsOVNe=+W0XLdYr1cZ_YFzkbASFCEio+yQ40Ojip_nq5FC=wQ@mail.gmail.com>
-	<88701C38B5D07249817D428430999C910EAC7B39@sestoex05.enea.se>
-	<CAEsOVNcGt6bP0woxhEjJnfpTVJj6W9A7oF_3VdxT_4N21zNddg@mail.gmail.com>
-	<502A0308.6080203@enea.com>
-	<CAMKF1sq=wRkTBAcUkLQhbv0QX6rCAA3cb8S39hYSAM4knfqcbw@mail.gmail.com>
-In-Reply-To: <CAMKF1sq=wRkTBAcUkLQhbv0QX6rCAA3cb8S39hYSAM4knfqcbw@mail.gmail.com>
-X-Originating-IP: [172.16.140.132]
-Cc: McClintock Matthew-B29882 <B29882@freescale.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-fsl-ppc][PATCH 2/2] fsl.conf: Let linux-qoriq-sdk-headers-nativesdk provide linux-libc-headers-nativesdk
+Subject: Hob and image groups: feedback wanted
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,34 +38,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 20 Aug 2012 07:21:50 -0000
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+X-List-Received-Date: Mon, 20 Aug 2012 11:25:48 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <2F33DD7883D63A4692E0B20DE8C504CA@intel.com>
 Content-Transfer-Encoding: quoted-printable
 
-On 08/14/2012 09:26 PM, Khem Raj wrote:
-> On Tue, Aug 14, 2012 at 12:49 AM, David Nystr=C3=B6m <david.nystrom@enea.=
-com> wrote:
->> Hi, it looks like this was merged to the denzil branch, and
->> PREFERRED_PROVIDER_linux-libc-headers-nativesdk was moved back to
->> distro.conf.
->> Any reason for this ?
-> why do you want nativesdk headers to come from BSP its a fsl-ppc bsp I
-> dont expect it to have something special for SDK hosts which are
-> usually x86 ? afterall these are for
-> the SDK host and not for target. Moreover it means that this BSP will
-> not play in the multi BSP environment something you never want.
+Hi all,
 
-My main concern is that meta-toolchain uses linux-libc-headers-nativesdk=20
-for the meta-toolchain
-tarball build, i.e. the meta-toolchain API may differ from the on-target=20
-API in regards to kernel-headers, no ?
+As part of bug 2345 I've come up with an alternative way of selecting base
+images in Hob that involves grouping base images. I have given a first go
+to the image groups, but it would be good if you looked at them to make
+sure they make sense.
 
-This might very well be true if kernel version of=20
-linux-libc-headers-nativesdk !=3D linux-libc-headers
+The groups are listed in page 2 of this document:
 
-Br,
-David
+https://bugzilla.yoctoproject.org/attachment.cgi?id=3D704
+
+There is also a html-based prototype of the image selection process here:
+
+https://github.com/belenbarrospena/2-step-image-selection-2345
+
+You can play with the 'Select a base image' section to see how the image
+groups work. =
 
 
+Let me know if we need to make any changes.
+
+Thanks!
+
+Belen
+
+
+
+---------------------------------------------------------------------
+Intel Corporation (UK) Limited
+Registered No. 1134945 (England)
+Registered Office: Pipers Way, Swindon SN3 1RJ
+VAT No: 860 2173 47
+
+This e-mail and any attachments may contain confidential material for
+the sole use of the intended recipient(s). Any review or distribution
+by others is strictly prohibited. If you are not the intended
+recipient, please contact the sender and delete all copies.
 
 
