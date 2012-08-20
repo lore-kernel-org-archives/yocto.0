@@ -1,37 +1,37 @@
-Return-Path: <jefro.net@gmail.com>
-Received: from mail-yx0-f176.google.com (mail-yx0-f176.google.com
-	[209.85.213.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0C4D4E0027E;
-	Mon, 20 Aug 2012 15:18:30 -0700 (PDT)
-Received: by yenm12 with SMTP id m12so6816584yen.35
-	for <multiple recipients>; Mon, 20 Aug 2012 15:18:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:date
-	:x-google-sender-auth:message-id:subject:from:to:cc:content-type;
-	bh=qsgRg+nP8fj7lDiLX2w+RKhCLKnOocUL3KT3mD8O6Ho=;
-	b=bqbQKj8xMIcbHYjJ6o2MEYDtm/SPwhckSe55tjBoGB/+99LFMjPIgW7yrRZv5qndzX
-	pFZ733eBGM59doi9RVFEUkizdtLPhtL3Dh+nZaXMUb4A4CvT7y17+ZkrCzZi3ApMtMu8
-	VNCcJUedtBSLIa7jFCNI4xJcuVWGt9i3MQl2gIQgu7fvjEkVcZE97ZGP+B1C/f9ekmzf
-	JooWve/DEar+CuLG2lQGXMCyYb/UBF3mAgoAmWuG1eivlesysYmlTxMiVscYlh+edN52
-	HA0zykqAFMgxUtXZks9IGhVUmUDmQ4AHbfqfLQMGNcwwF/131OGepxrqPwa6s0AlLZ+C
-	SXAA==
-MIME-Version: 1.0
-Received: by 10.50.46.170 with SMTP id w10mr11183222igm.44.1345501109840; Mon,
-	20 Aug 2012 15:18:29 -0700 (PDT)
-Sender: jefro.net@gmail.com
-Received: by 10.64.50.231 with HTTP; Mon, 20 Aug 2012 15:18:29 -0700 (PDT)
-In-Reply-To: <5032B4E3.2000701@linux.intel.com>
-References: <5032855A.5050704@linux.intel.com>
-	<289CD940EE567444BB43E62E0C3028F329137C29@NA-MBX-02.mgc.mentorg.com>
-	<5032B285.6010903@yoctoproject.org>
-	<5032B4E3.2000701@linux.intel.com>
-Date: Mon, 20 Aug 2012 15:18:29 -0700
-X-Google-Sender-Auth: -dtbWJrxHuFg3QRy-7kTjXFYZIM
-Message-ID: <CA+YB3raLRHtC_=oBsZBV2yAxEfLUaGp55US5inias1Fkbwv+gw@mail.gmail.com>
-From: Jeff Osier-Mixon <jefro@jefro.net>
+Return-Path: <scott.m.rifenbark@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 117E4E0027F;
+	Mon, 20 Aug 2012 15:22:03 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 20 Aug 2012 15:22:02 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.77,799,1336374000"; d="scan'208";a="206867183"
+Received: from orsmsx606.amr.corp.intel.com ([10.22.226.128])
+	by fmsmga001.fm.intel.com with ESMTP; 20 Aug 2012 15:22:02 -0700
+Received: from orsmsx153.amr.corp.intel.com (10.22.226.247) by
+	orsmsx606.amr.corp.intel.com (10.22.226.128) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Mon, 20 Aug 2012 15:22:01 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.152]) by
+	ORSMSX153.amr.corp.intel.com ([169.254.13.86]) with mapi id
+	14.01.0355.002; Mon, 20 Aug 2012 15:22:01 -0700
+From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
 To: Darren Hart <dvhart@linux.intel.com>
-Cc: Yocto Project <yocto@yoctoproject.org>, "Wold, Saul" <saul.wold@intel.com>,
-	Jason Kridner <jdk@ti.com>, Paul Eggleton <paul.eggleton@linux.intel.com>
+Thread-Topic: Documenting the mailing lists.
+Thread-Index: AQHNfxqrlKnsqmU4+UiTi2nBQSMagpdjOG9ggAB+KgD//47+MA==
+Date: Mon, 20 Aug 2012 22:22:00 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237946A5EE93@ORSMSX101.amr.corp.intel.com>
+References: <5032855A.5050704@linux.intel.com> <1435514.v1EOzaWE9d@helios>
+	<5032ABDE.6090402@linux.intel.com>
+	<41DEA4B02DBDEF40A0F3B6D0DDB1237946A5EDDE@ORSMSX101.amr.corp.intel.com>
+	<5032B45C.3040309@linux.intel.com>
+In-Reply-To: <5032B45C.3040309@linux.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.139]
+MIME-Version: 1.0
+Cc: Paul Eggleton <paul.eggleton@linux.intel.com>, Jason Kridner <jdk@ti.com>,
+	Yocto Project <yocto@yoctoproject.org>, "Wold, Saul" <saul.wold@intel.com>
 Subject: Re: Documenting the mailing lists.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -44,55 +44,231 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 20 Aug 2012 22:18:31 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Mon, 20 Aug 2012 22:22:03 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-The mailing lists and website stuff is generally my responsibility,
-but please fix anything you like. :)  Be aware that the new website is
-under construction, so I am loathe to change much on the old website
-at this point.  For the new one, it may be possible to dynamically
-grab the description from mailman.
+Since the YP Reference Manual is the reference manual for YP I think we sho=
+uld retain the 12.3 section about mailing lists.  That said, maybe we shoul=
+d only list by name the general Yocto project discussion mailing list and t=
+hen refer the reader to https://lists.yoctoproject.org/ for all related lis=
+ts.  I still feel that we should have the general discussion mailing list a=
+t least named in the YP Reference Manual.
 
-On Mon, Aug 20, 2012 at 3:06 PM, Darren Hart <dvhart@linux.intel.com> wrote:
->
->
-> On 08/20/2012 02:56 PM, Michael Halstead wrote:
->> On 08/20/2012 02:40 PM, Hudson, Sean wrote:
->>>> -----Original Message-----
->>>> From: Darren Hart [mailto:dvhart@linux.intel.com]
->>>> Sent: Monday, August 20, 2012 1:44 PM
->>>> To: Yocto Project
->>>> Subject: Documenting the mailing lists.
+Scott
+
+-----Original Message-----
+From: Darren Hart [mailto:dvhart@linux.intel.com]=20
+Sent: Monday, August 20, 2012 3:04 PM
+To: Rifenbark, Scott M
+Cc: Paul Eggleton; Yocto Project; Paul Gortmaker; Richard Purdie; Wold, Sau=
+l; Osier-mixon, Jeffrey; Zanussi, Tom; Hudson, Sean; Denys Dmytriyenko; Koe=
+n Kooi; Jason Kridner; Flanagan, Elizabeth; Michael Halstead
+Subject: Re: Documenting the mailing lists.
+
+
+
+On 08/20/2012 02:34 PM, Rifenbark, Scott M wrote:
+> Here is what it says in the Reference Manual:
+>=20
+> 12.3. Mailing lists There are a number of mailing lists maintained by the
+> Yocto Project as well as related OpenEmbedded mailing lists for discussio=
+n,
+> patch submission and announcements. To subscribe to one of the following
+> mailing lists, click on the appropriate URL in the following list and fol=
+low
+> the instructions:=20
+> *	http://lists.yoctoproject.org/listinfo/yocto - General Yocto Project di=
+scussion mailing list.=20
+> *	http://lists.linuxtogo.org/cgi-bin/mailman/listinfo/openembedded-core -=
+ Discussion mailing list about OpenEmbedded-Core (the core metadata).
+> *	http://lists.linuxtogo.org/cgi-bin/mailman/listinfo/openembedded-devel =
+- Discussion mailing list about OpenEmbedded.
+> *	http://lists.linuxtogo.org/cgi-bin/mailman/listinfo/bitbake-devel - Dis=
+cussion mailing list about the BitBake build tool.
+> *	http://lists.yoctoproject.org/listinfo/poky - Discussion mailing list a=
+bout Poky.
+> *	http://lists.yoctoproject.org/listinfo/yocto-announce - Mailing list to=
+ receive official Yocto Project release and milestone announcements.
+>=20
+>=20
+> This is what Paul is referring to by way of corrections.  I personally th=
+ink
+> it is useful to have something of a list in the Reference manual under th=
+is
+> heading.  I don't think we need the exact same wordings though in the
+> Reference manual as would be found in https://lists.yoctoproject.org/.  T=
+he
+> stuff in the Reference manual should be general and give the reader an id=
+ea of
+> the flavor of the lists.  I can update the reference manual to include a =
+link
+> to https://lists.yoctoproject.org/ for the final say on each list.=20
+
+Hrm, a wrench in the works. It is necessary to include non-yoctoproject.org
+mailing lists in order to fully document where all patches for "the Yocto
+Project" should go. As such, we can't rely on the lists.yoctoproject.org as=
+ the
+sole point of documentation. As such, as I see it, the sources README or
+MAINTAINERS files should be the definitive policy setter regarding where to=
+ send
+patches. Of course there is more to define than just that.
+
+Perhaps the best we can do is update the descriptions in mailman for the yp
+lists and update the mailing lists page with those and the external lists. =
+Many
+people will look to the mailing lists page on the yp website before they lo=
+ok in
+the reference manual.
+
+Thoughts?
+
+--
+Darren
+
+
+>=20
+> Scott
+>=20
+> -----Original Message-----
+> From: Darren Hart [mailto:dvhart@linux.intel.com]=20
+> Sent: Monday, August 20, 2012 2:28 PM
+> To: Paul Eggleton
+> Cc: Yocto Project; Rifenbark, Scott M; Paul Gortmaker; Richard Purdie; Wo=
+ld, Saul; Osier-mixon, Jeffrey; Zanussi, Tom; Hudson, Sean; Denys Dmytriyen=
+ko; Koen Kooi; Jason Kridner; Flanagan, Elizabeth; Michael Halstead
+> Subject: Re: Documenting the mailing lists.
+>=20
+>=20
+>=20
+> On 08/20/2012 02:26 PM, Paul Eggleton wrote:
+>> On Monday 20 August 2012 11:43:38 Darren Hart wrote:
+>>> Scott,
+>>>
+>>> We've come across some more confusion about mailing lists recently. I'v=
+e
+>>> sent a patch against poky to try and clear it up a bit in the source,
+>>> but we should also see about cleaning up the web descriptions of the li=
+sts.
+>>>
+>>> We have two pages that describe the lists:
+>>>
+>>> http://www.yoctoproject.org/community/mailing-lists
+>>> https://lists.yoctoproject.org/
+>>>
+>>> My first recommendation would be to eliminate
+>>> http://www.yoctoproject.org/community/mailing-lists and replace links t=
+o
+>>> it with links to https://lists.yoctoproject.org. This eliminates the
+>>> need to keep the CMS version in sync with the mailman page. The mailman
+>>> page should be considered the master anyway as the Description field is
+>>> taken directly from the list administrative settings.
+>>>
+>>> We should then work to create meaningful Descriptions of all the lists.
+>>> These should still fit on a single line, but I think we can improve on
+>>> what we have. For example:
+>>>
+>>> meta-ti		Mailing list for the meta-ti layer
+>>>
+>>> is not particularly enlightening. Perhaps something like:
+>>>
+>>> meta-ti		Usage and development of the meta-ti layer
+>>>
+>>> If we do this all at once, we can also ensure a consistent language,
+>>> tone, etc. I'll propose something for each list here and ask that
+>>> interested parties comment and correct in reply. Once agreed upon, the
+>>> admins of the respective lists can make the changes (all CC'd)
+>>>
+>>> Current:
+>>> =3D=3D=3D=3D=3D=3D=3D=3D
+>>> linux-yocto 	Development list for the linux-yocto*.git Linux kernel
+>>> 		repositories
+>>> meta-ti 	Mailing list for the meta-ti layer
+>>> poky 		Poky build system developer discussion & patch
+>>> 		submission for meta-yocto
+>>> shoeleather 	Neutral Board Lab Mailing List
+>>> yocto 		Discussion of all things Yocto
+>>> yocto-ab 	Yocto Project Advisory Board
+>>> yocto-advocacy 	Yocto Project Advocacy & Outreach AB Subgroup
+>>> yocto-announce 	Announcements from the Yocto Project
+>>> yocto-bsp 	BSP Interest Group
+>>> Yocto-builds 	Build failures and discusion about the build system
+>>> yocto-infrastructure 	Infrastructure
+>>>
 >>>
 >>> Proposed:
->>> =========
->>> shoeleather  Neutral Board Lab Mailing List
+>>> =3D=3D=3D=3D=3D=3D=3D=3D=3D
+>>> linux-yocto 	Development list for the linux-yocto*.git Linux kernel
+>>> 		repositories
+>>> meta-ti 	Usage and development list for the meta-ti layer
+>>> poky 		Usage and development list for the Poky build system
+>>> 		(see README for patch submission)
+>>> shoeleather 	Neutral Board Lab Mailing List
 >>>
 >>> I'm not sure what "neutral" is meant to convey. How about:
 >>>
->>>              Discussion list for the Shoeleather embedded board lab
->>> [Hudson, Sean] Sounds good to me.
+>>> 		Discussion list for the Shoeleather embedded board lab
+>>>
+>>> yocto 		General discussion list for the Yocto Project and
+>>> 		development for projects without dedicated lists
+>>>
+>>> I think the yocto list is a bit problematic in that it mixes project
+>>> conceptual discussion, user help desk, and development all on the same
+>>> list. However, I'm trying to clarify what these actually are here - not
+>>> change anything.
+>>>
+>>> yocto-ab 	Yocto Project Advisory Board ???
+>>>
+>>> This should imply the intended audience. Is it just meant for members?
+>>> Is it meant as a way for non-AB members to observe what is going on?
+>>>
+>>> yocto-advocacy 	Yocto Project advocacy & outreach AB subgroup
+>>>
+>>> Same as above.
+>>>
+>>> yocto-announce 	Announcements from the Yocto Project (low traffic)
+>>> yocto-bsp 	BSP Interest Group ???
+>>>
+>>> There is no detailed description for this list, so I'm not sure what
+>>> this is really about.
+>>>
+>>> Yocto-builds 	Build failures and discussion about the autobuilder
+>>>
+>>> (includes typo fix, "build system" removed to avoid confusion with the
+>>> "poky build system")
+>>>
+>>> yocto-infrastructure 	Infrastructure ???
+>>>
+>>> Jefro or Michael, can you come up with something appropriate here?
 >>>
 >>>
->> I've updated the description at https://lists.yoctoproject.org/
+>>> For lists where certain guidelines should be used in communications and
+>>> patch submission, we should document that in the detailed description o=
+f
+>>> the list, such as [project] tags for example.
 >>
->
-> Thanks Michael, let's hold off on any additional changes until we've
-> been able to agree on the entire set, as we want to keep language,
-> tense, etc. consistent. No need to change them multiple times.
->
-> --
-> Darren Hart
-> Intel Open Source Technology Center
-> Yocto Project - Technical Lead - Linux Kernel
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+>> This is all good stuff, I'd just like to mention in case it is useful th=
+at I=20
+>> did update the list in the Reference Manual along with the information o=
+n how=20
+>> to contribute - which includes some direction on where to send patches. =
+This=20
+>> is in the master version of the documentation but not the version curren=
+tly=20
+>> shown on the website - we probably ought to fix that. We really ought to=
+ try to=20
+>> have all of this information consistent if at all possible.
+>=20
+> Does it make sense to have this list in the reference manual? Should we
+> perhaps just have it reference the README in the source (that way people
+> can always see the current policy) and the long mailing list
+> description? That reduces the redundancy to 2 from 4. Should be much
+> easier to keep in sync.
+>=20
 
-
-
--- 
-Jeff Osier-Mixon http://jefro.net/blog
-Yocto Project Community Manager @Intel http://yoctoproject.org
+--=20
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Technical Lead - Linux Kernel
 
