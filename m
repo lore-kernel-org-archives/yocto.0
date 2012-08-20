@@ -1,27 +1,37 @@
-Return-Path: <mark.hatle@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8B9D8E0027E
-	for <yocto@yoctoproject.org>; Mon, 20 Aug 2012 13:45:19 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id q7KKjExQ011609
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Mon, 20 Aug 2012 13:45:15 -0700 (PDT)
-Received: from msp-dhcp10.wrs.com (172.25.34.10) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.2.309.2;
-	Mon, 20 Aug 2012 13:45:15 -0700
-Message-ID: <5032A1D3.8090600@windriver.com>
-Date: Mon, 20 Aug 2012 15:45:07 -0500
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8;
-	rv:14.0) Gecko/20120713 Thunderbird/14.0
+Return-Path: <scott.m.rifenbark@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 56683E0027E;
+	Mon, 20 Aug 2012 13:55:38 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by orsmga102.jf.intel.com with ESMTP; 20 Aug 2012 13:55:37 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.77,799,1336374000"; d="scan'208";a="183265934"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
+	by azsmga001.ch.intel.com with ESMTP; 20 Aug 2012 13:55:36 -0700
+Received: from orsmsx104.amr.corp.intel.com (10.22.225.131) by
+	orsmsx603.amr.corp.intel.com (10.22.226.49) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Mon, 20 Aug 2012 13:55:36 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.152]) by
+	ORSMSX104.amr.corp.intel.com ([169.254.3.52]) with mapi id
+	14.01.0355.002; Mon, 20 Aug 2012 13:55:35 -0700
+From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+To: Denys Dmytriyenko <denys@ti.com>, Darren Hart <dvhart@linux.intel.com>
+Thread-Topic: Documenting the mailing lists.
+Thread-Index: AQHNfwQAlKnsqmU4+UiTi2nBQSMagpdjh4aA//+jY8A=
+Date: Mon, 20 Aug 2012 20:55:34 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237946A5ED30@ORSMSX101.amr.corp.intel.com>
+References: <5032855A.5050704@linux.intel.com>
+	<20120820191505.GA29601@denix.org>
+In-Reply-To: <20120820191505.GA29601@denix.org>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.139]
 MIME-Version: 1.0
-To: <yocto@yoctoproject.org>, Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>,
-	<openembedded-devel@lists.openembedded.org>
-References: <2404459.dJBf5OQotX@helios>
-In-Reply-To: <2404459.dJBf5OQotX@helios>
-Subject: Re: RFC: OE-Core task rework
+Cc: Yocto Project <yocto@yoctoproject.org>, Jason Kridner <jdk@ti.com>,
+	Paul Eggleton <paul.eggleton@linux.intel.com>, "Wold,
+	Saul" <saul.wold@intel.com>
+Subject: Re: Documenting the mailing lists.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,142 +43,150 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 20 Aug 2012 20:45:19 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 20 Aug 2012 20:55:38 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-[resend, I had the original mail rejected by the oe list serves as being 
-undeliverable.]
+I can replace the information on http://www.yoctoproject.org/community/mail=
+ing-lists with a generic bit about mailing lists and then provide a link to=
+ the https://lists.yoctoproject.org/ page.  Regarding the text on the https=
+://lists.yoctoproject.org link.  Who maintains that page?
 
-On 8/15/12 4:46 AM, Paul Eggleton wrote:
-> Hi all,
->
-> There have been a few requests to review the task recipes (i.e. package
-> groups) provided by OE-Core, and indeed these have not really been looked at
-> seriously since OE-Core was created. Ideally I think we want them to be useful
-> to a wide audience and provide useful units of functionality that can be added
-> to an image without the person doing the selection having to manually select
-> too many individual packages. Imagine presenting the list of tasks to someone
-> in a UI for assembling images (such as Hob or Narcissus) and you can start to
-> see that we have some work to do in this area.
->
-> I know various distros and users of OE-Core have created their own tasks or
-> resurrected tasks from OE-Classic, and this is an opportunity to perhaps look
-> at bringing some of these (or at least, parts of them) into the core. It is
-> true that tasks will often be an expression of distro policy, and we also
-> can't have any tasks in OE-Core that refer to packages that don't exist in OE-
-> Core; thus distros will always be extending the base tasks or adding their own
-> - and that's fine. However, with some thought I believe we can come up with a
-> set of tasks that are generally useful to most people using OE-Core.
->
-> For reference, I've compiled a list on the wiki of the current tasks in OE-
-> Core with links to the recipes and some notes:
->
->    http://www.openembedded.org/wiki/OE-Core_Task_Rework
->
-> Some of the things I think we ought to consider/address as part of this
-> exercise:
->
-> 1) Do we rename "task" to something a little more understandable to the
-> uninitiated, such as "package group"? The word "task" is already used in a
-> much more natural sense within bitbake as a unit of work. Historically I
-> believe we picked up this term from Debian but I'm not aware of significant use
-> by other mainstream distributions.
+Scott
 
-"group" or "packagegroup" or "package-group" is my suggestion for the existing 
-'task' recipes.  From what I've seen, it should be a rename opportunity -- we 
-can even provide/rprovide the old names....
+-----Original Message-----
+From: Denys Dmytriyenko [mailto:denys@ti.com]=20
+Sent: Monday, August 20, 2012 12:15 PM
+To: Darren Hart
+Cc: Yocto Project; Rifenbark, Scott M; Paul Gortmaker; Richard Purdie; Wold=
+, Saul; Paul Eggleton; Osier-mixon, Jeffrey; Zanussi, Tom; Hudson, Sean; Ko=
+en Kooi; Jason Kridner; Flanagan, Elizabeth; Michael Halstead
+Subject: Re: Documenting the mailing lists.
 
-> 2) Look at the existing tasks and:
->   * evaluate their usefulness
->   * remove any that are obsolete
->   * adjust existing contents if needed
->   * look for useful groups of packages that might be added
->
->   We need to pay particular attention to task-core-boot and task-base as these
-> are pulled in by default in any image that inherits from core-image.bbclass -
-> if these are not generally working for people that are creating their own
-> images, we need to change them such that they are.
+On Mon, Aug 20, 2012 at 11:43:38AM -0700, Darren Hart wrote:
+> Scott,
+>=20
+> We've come across some more confusion about mailing lists recently. I've
+> sent a patch against poky to try and clear it up a bit in the source,
+> but we should also see about cleaning up the web descriptions of the list=
+s.
+>=20
+> We have two pages that describe the lists:
+>=20
+> http://www.yoctoproject.org/community/mailing-lists
+> https://lists.yoctoproject.org/
+>=20
+> My first recommendation would be to eliminate
+> http://www.yoctoproject.org/community/mailing-lists and replace links to
+> it with links to https://lists.yoctoproject.org. This eliminates the
+> need to keep the CMS version in sync with the mailman page. The mailman
+> page should be considered the master anyway as the Description field is
+> taken directly from the list administrative settings.
 
-During the pre-oe-core Yocto Project development, a design was generated to 
-roughly group the packages into functional areas.  For the most part, this 
-design (as well as legacy elements) still exist.
+I completely agree with this proposal to unify and clean up the mailing lis=
+t=20
+references and descriptions. I didn't even know there was a separate page a=
+t=20
+http://www.yoctoproject.org/community/mailing-lists - probably because I wa=
+s=20
+happy with https://lists.yoctoproject.org/ all the time :)
 
-I think the boot, base and others need to be evaluated for usefulness... but my 
-feeling is most of them are close to being correct.
 
-The original design attempted to group things into functionality, so that OE 
-could be an "additive" distribution.  I.e., you don't start with a big blob of 
-packages and remove them as necessary, but instead you start with small 
-functional blocks and put them together to construct a system.  The tasks seemed 
-to be the logical blocks, and the contents of these blocks were based on the 
-early design.
+> We should then work to create meaningful Descriptions of all the lists.
+> These should still fit on a single line, but I think we can improve on
+> what we have. For example:
+>=20
+> meta-ti		Mailing list for the meta-ti layer
+>=20
+> is not particularly enlightening. Perhaps something like:
+>=20
+> meta-ti		Usage and development of the meta-ti layer
 
-Very roughly speaking the early design was:
+Not sure if this improves much - in either case it's just a generic=20
+description of the mailing list that is specific to the corresponding layer=
+,=20
+meta-ti. But I'm fine with the change, as long as we are unifying all the=20
+other list descriptions.
 
-filesystem
-|        \
-libc    libstdcxx
-|           \
-small cli    \
-(busybox)     \
-|              \
-basic commands  python -- perl
-|                 |         |
-initscripts       |         |
-multiuser         |         |
-system services --+---------+
-|
-LSB functionality
 
-(Lines indicate implicit dependencies)
+> If we do this all at once, we can also ensure a consistent language,
+> tone, etc.
 
-The goal was that if you include a specific group, such as "multiuser" support, 
-you would get all of the recipes necessary to enable multiuser support on the 
-system.  I think this is a reasonable theory to consider when evaluating the 
-existing groupings.
+Exactly! Thanks for initiating this.
 
-> 3) Ensure all task recipes follow reasonable patterns:
->   *  Fix recipe DESCRIPTIONs to make sense (and not contain Poky references)
->   *  Ensure all individual packages have a decent SUMMARY/DESCRIPTION
->   *  Try to make each task have a reasonable name - there are some current uses
-> of "core" and "base" that don't actually convey any meaning; LSB specific tasks
-> should be named as such, etc.
 
-Yup, there is a logical grouping for the lsb specific tasks, as for others.  The 
-naming needs to be made clear as to why it's there, and what it represents. Same 
-with the summary and descriptions -- they should list the functionality provided 
-by this group of components.
+> I'll propose something for each list here and ask that
+> interested parties comment and correct in reply. Once agreed upon, the
+> admins of the respective lists can make the changes (all CC'd)
+>=20
+> Current:
+> =3D=3D=3D=3D=3D=3D=3D=3D
+> linux-yocto 	Development list for the linux-yocto*.git Linux kernel
+> 		repositories
+> meta-ti 	Mailing list for the meta-ti layer
+> poky 		Poky build system developer discussion & patch
+> 		submission for meta-yocto
+> shoeleather 	Neutral Board Lab Mailing List
+> yocto 		Discussion of all things Yocto
+> yocto-ab 	Yocto Project Advisory Board
+> yocto-advocacy 	Yocto Project Advocacy & Outreach AB Subgroup
+> yocto-announce 	Announcements from the Yocto Project
+> yocto-bsp 	BSP Interest Group
+> Yocto-builds 	Build failures and discusion about the build system
+> yocto-infrastructure 	Infrastructure
+>=20
+>=20
+> Proposed:
+> =3D=3D=3D=3D=3D=3D=3D=3D=3D
+> linux-yocto 	Development list for the linux-yocto*.git Linux kernel
+> 		repositories
+> meta-ti 	Usage and development list for the meta-ti layer
+> poky 		Usage and development list for the Poky build system
+> 		(see README for patch submission)
+> shoeleather 	Neutral Board Lab Mailing List
+>=20
+> I'm not sure what "neutral" is meant to convey. How about:
+>=20
+> 		Discussion list for the Shoeleather embedded board lab
+>=20
+> yocto 		General discussion list for the Yocto Project and
+> 		development for projects without dedicated lists
+>=20
+> I think the yocto list is a bit problematic in that it mixes project
+> conceptual discussion, user help desk, and development all on the same
+> list. However, I'm trying to clarify what these actually are here - not
+> change anything.
+>=20
+> yocto-ab 	Yocto Project Advisory Board ???
+>=20
+> This should imply the intended audience. Is it just meant for members?
+> Is it meant as a way for non-AB members to observe what is going on?
+>=20
+> yocto-advocacy 	Yocto Project advocacy & outreach AB subgroup
+>=20
+> Same as above.
+>=20
+> yocto-announce 	Announcements from the Yocto Project (low traffic)
+> yocto-bsp 	BSP Interest Group ???
+>=20
+> There is no detailed description for this list, so I'm not sure what
+> this is really about.
+>=20
+> Yocto-builds 	Build failures and discussion about the autobuilder
+>=20
+> (includes typo fix, "build system" removed to avoid confusion with the
+> "poky build system")
+>=20
+> yocto-infrastructure 	Infrastructure ???
+>=20
+> Jefro or Michael, can you come up with something appropriate here?
+>=20
+>=20
+> For lists where certain guidelines should be used in communications and
+> patch submission, we should document that in the detailed description of
+> the list, such as [project] tags for example.
 
->   *  Make all tasks inherit task.bbclass so that they get proper dbg/dev
-> packages and any other common task functionality
->
-> 4) Consider the usefulness of the existing PACKAGE_GROUP_ structure which
-> converts some IMAGE_FEATURES into the addition of tasks to be installed (see
-> classes/core-image.bbclass). At the very least we should probably rename this
-> if we rename tasks to package groups, and there's a question as to how
-> IMAGE_FEATURES scales - should every task be represented in there or only a
-> select list? Would we be better off not trying to bring any tasks in via
-> IMAGE_FEATURES at all and mostly leave that to control post-processing (e.g.
-> package-management, debug-tweaks, etc.)?
-
-I'd certainly prefer that images were limited to selecting software from task 
-(group) recipes only, and not providing their own.  An image should be able to 
-change the selection based on an "image feature" or similar configuration, but 
-the underlying tasks/groups, recipes, etc should all be 'generic' to a given 
-distribution configuration.
-
-I think if you go through the images today, a lot of that stuff is either old, 
-or could be simplified by creating appropriate tasks/groups.
-
---Mark
-
-> Please reply with your thoughts. Once we've come to a consensus on the things
-> we want to do (allowing plenty of time for discussion), I'll look at putting
-> together a set of patches that makes the appropriate changes.
->
-> Thanks,
-> Paul
->
-
+--=20
+Denys
 
