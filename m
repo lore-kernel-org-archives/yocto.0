@@ -1,25 +1,30 @@
 Return-Path: <dvhart@linux.intel.com>
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 80D21E0027F
-	for <yocto@yoctoproject.org>; Mon, 20 Aug 2012 15:28:15 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 20 Aug 2012 15:28:15 -0700
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EBD16E0027E;
+	Mon, 20 Aug 2012 15:39:26 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 20 Aug 2012 15:39:26 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.77,799,1336374000"; d="scan'208";a="183157092"
+X-IronPort-AV: E=Sophos;i="4.77,799,1336374000"; d="scan'208";a="188967118"
 Received: from unknown (HELO envy.home) ([10.7.199.146])
-	by orsmga001.jf.intel.com with ESMTP; 20 Aug 2012 15:28:15 -0700
-Message-ID: <5032B987.4050102@linux.intel.com>
-Date: Mon, 20 Aug 2012 15:26:15 -0700
+	by orsmga002.jf.intel.com with ESMTP; 20 Aug 2012 15:39:26 -0700
+Message-ID: <5032BC26.3040507@linux.intel.com>
+Date: Mon, 20 Aug 2012 15:37:26 -0700
 From: Darren Hart <dvhart@linux.intel.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:14.0) Gecko/20120717 Thunderbird/14.0
 MIME-Version: 1.0
-To: rahul.saxena@intel.com
-References: <cover.1345497883.git.rahul.saxena@intel.com>
-In-Reply-To: <cover.1345497883.git.rahul.saxena@intel.com>
+To: Jeff Osier-Mixon <jefro@jefro.net>
+References: <5032855A.5050704@linux.intel.com>
+	<289CD940EE567444BB43E62E0C3028F329137C29@NA-MBX-02.mgc.mentorg.com>
+	<5032B285.6010903@yoctoproject.org>
+	<5032B4E3.2000701@linux.intel.com>
+	<CA+YB3raLRHtC_=oBsZBV2yAxEfLUaGp55US5inias1Fkbwv+gw@mail.gmail.com>
+In-Reply-To: <CA+YB3raLRHtC_=oBsZBV2yAxEfLUaGp55US5inias1Fkbwv+gw@mail.gmail.com>
 X-Enigmail-Version: 1.4.3
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 0/3][meta-intel] Cover letter to update pvr driver to v1.0.2 in meta-cedartrail
+Cc: Yocto Project <yocto@yoctoproject.org>, "Wold, Saul" <saul.wold@intel.com>,
+	Jason Kridner <jdk@ti.com>, Paul Eggleton <paul.eggleton@linux.intel.com>
+Subject: Re: Documenting the mailing lists.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,48 +36,69 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 20 Aug 2012 22:28:15 -0000
+X-List-Received-Date: Mon, 20 Aug 2012 22:39:27 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-On 08/20/2012 02:52 PM, rahul.saxena@intel.com wrote:
-> From: Rahul Saxena <rahul.saxena@intel.com>
-> 
-> Cover letter to update pvr driver to v1.0.2 in meta-cedartrail
-> 
-> This update of the driver supports B3 stepping of the Cedarview processor and also
-> supports DP/eDP ports.
-> 
-> Signed-off-by: Rahul Saxena <rahul.saxena@intel.com> 
+On 08/20/2012 03:18 PM, Jeff Osier-Mixon wrote:
+> The mailing lists and website stuff is generally my responsibility,
+> but please fix anything you like. :)  Be aware that the new website is
 
+No intent to take over anything, I've just had to answer the "what goes
+where" question a few too many times these last couple of weeks and felt
+I should do something about it :-)
 
-Applied to Denzil branch.
+I made sure you were on CC so you could help guide this.
 
-Thanks
+> under construction, so I am loathe to change much on the old website
+> at this point.  For the new one, it may be possible to dynamically
+> grab the description from mailman.
 
-> --
-> The following changes since commit 2552a046878e4352595f6e081ad371538cceda10:
+We'll still need descriptions of the non-yocto-project lists, so that
+may not be particularly helpful.
+
+--
+Darren
+
 > 
->   meta-n450: explicitly specify KBRANCH we expect to use (2012-07-12 16:32:58 -0500)
+> On Mon, Aug 20, 2012 at 3:06 PM, Darren Hart <dvhart@linux.intel.com> wrote:
+>>
+>>
+>> On 08/20/2012 02:56 PM, Michael Halstead wrote:
+>>> On 08/20/2012 02:40 PM, Hudson, Sean wrote:
+>>>>> -----Original Message-----
+>>>>> From: Darren Hart [mailto:dvhart@linux.intel.com]
+>>>>> Sent: Monday, August 20, 2012 1:44 PM
+>>>>> To: Yocto Project
+>>>>> Subject: Documenting the mailing lists.
+>>>>
+>>>> Proposed:
+>>>> =========
+>>>> shoeleather  Neutral Board Lab Mailing List
+>>>>
+>>>> I'm not sure what "neutral" is meant to convey. How about:
+>>>>
+>>>>              Discussion list for the Shoeleather embedded board lab
+>>>> [Hudson, Sean] Sounds good to me.
+>>>>
+>>>>
+>>> I've updated the description at https://lists.yoctoproject.org/
+>>>
+>>
+>> Thanks Michael, let's hold off on any additional changes until we've
+>> been able to agree on the entire set, as we want to keep language,
+>> tense, etc. consistent. No need to change them multiple times.
+>>
+>> --
+>> Darren Hart
+>> Intel Open Source Technology Center
+>> Yocto Project - Technical Lead - Linux Kernel
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
 > 
-> are available in the git repository at:
->   git://git.pokylinux.org/meta-intel-contrib rsaxena/denzelv102aug20OK
->   http://git.pokylinux.org/cgit.cgi/meta-intel-contrib/log/?h=rsaxena/denzelv102aug20OK
 > 
-> Rahul Saxena (3):
->   meta-cedartrail: update SRCREV for Cedartrail machine branch
->   meta-cedartrail: update SRCREV for yocto kernel pvr branch
->   meta-cedartrail: update PVR graphics driver to version 1.0.2
-> 
->  meta-cedartrail/README                             |    2 +-
->  .../xorg-driver/cdv-pvr-driver.inc                 |   37 -----
->  .../xorg-driver/cdv-pvr-driver_1.0.2.bb            |  139 ++++++++++++++++++++
->  .../xorg-driver/cdv-pvr-driver_1.0.bb              |   99 --------------
->  .../recipes-kernel/linux/linux-yocto_3.0.bbappend  |    6 +-
->  5 files changed, 143 insertions(+), 140 deletions(-)
->  delete mode 100644 meta-cedartrail/recipes-graphics/xorg-driver/cdv-pvr-driver.inc
->  create mode 100644 meta-cedartrail/recipes-graphics/xorg-driver/cdv-pvr-driver_1.0.2.bb
->  delete mode 100644 meta-cedartrail/recipes-graphics/xorg-driver/cdv-pvr-driver_1.0.bb
 > 
 
 -- 
