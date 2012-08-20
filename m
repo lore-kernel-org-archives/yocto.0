@@ -1,28 +1,41 @@
-Return-Path: <denis@denix.org>
-Received: from vms173001pub.verizon.net (vms173001pub.verizon.net
-	[206.46.173.1])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EE2E9E0027E;
-	Mon, 20 Aug 2012 12:15:45 -0700 (PDT)
-Received: from gandalf.denix.org ([unknown] [72.66.25.115])
-	by vms173001.mailsrvcs.net
-	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009))
-	with ESMTPA id <0M9200D12IT61NF5@vms173001.mailsrvcs.net>; Mon,
-	20 Aug 2012 14:15:22 -0500 (CDT)
-Received: by gandalf.denix.org (Postfix, from userid 1000)	id 4DD33200AB; Mon,
-	20 Aug 2012 15:15:05 -0400 (EDT)
-Date: Mon, 20 Aug 2012 15:15:05 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: Darren Hart <dvhart@linux.intel.com>
-Message-id: <20120820191505.GA29601@denix.org>
-References: <5032855A.5050704@linux.intel.com>
-MIME-version: 1.0
-In-reply-to: <5032855A.5050704@linux.intel.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: Yocto Project <yocto@yoctoproject.org>, Jason Kridner <jdk@ti.com>,
-	Paul Eggleton <paul.eggleton@linux.intel.com>, "Wold,
-	Saul" <saul.wold@intel.com>
-Subject: Re: Documenting the mailing lists.
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-ee0-f48.google.com (mail-ee0-f48.google.com [74.125.83.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F3185E0027E
+	for <yocto@yoctoproject.org>; Mon, 20 Aug 2012 12:27:32 -0700 (PDT)
+Received: by eekd41 with SMTP id d41so2040542eek.35
+	for <yocto@yoctoproject.org>; Mon, 20 Aug 2012 12:27:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=jenV7dA2MBHbBTmRXB4kzcfDKlAB9Adp1zlWdlaKypk=;
+	b=cZ71Lx0flqQ9J/77XRfB4BduQnYDFZvHlOlySBHjvrN/vlkZvH+lJgGYA01L5YazjM
+	TbCCZXKWwtDhz2c7960El5T/tGMMKMZWzOeGARQFu+hjr2LVMDqYQGriNzafBl3B4Hyy
+	/6y2edPFxWVQnYdwFVDPTFSpkrL3BHggl/dmMyB2fmME0fgGpPIl9PhgAs0rQ4JI0f23
+	jFsMpaZjde7WzcDt3wnL5b1rNZAxuzRrHBSLB/P+5axN3jPyJ8cA2hJlbqlm4IU0K7Gm
+	dqzsi6Fqg3jmMtwg2/sF2tkZ432StMd30wGLiboZ0xGfKwmLHFnmfiSqIKwf1ZhpKooW
+	U+IQ==
+Received: by 10.14.218.134 with SMTP id k6mr10125085eep.14.1345490851966; Mon,
+	20 Aug 2012 12:27:31 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.14.2.5 with HTTP; Mon, 20 Aug 2012 12:27:01 -0700 (PDT)
+In-Reply-To: <CAEsOVNfb=KeN_WGWfuyPT6MTiY9S9nEkz6pn5G6xp+-Jroeh5g@mail.gmail.com>
+References: <1341550315-9795-1-git-send-email-raj.khem@gmail.com>
+	<1341550315-9795-2-git-send-email-raj.khem@gmail.com>
+	<88701C38B5D07249817D428430999C910EAC7607@sestoex05.enea.se>
+	<CAEsOVNe=+W0XLdYr1cZ_YFzkbASFCEio+yQ40Ojip_nq5FC=wQ@mail.gmail.com>
+	<88701C38B5D07249817D428430999C910EAC7B39@sestoex05.enea.se>
+	<CAEsOVNcGt6bP0woxhEjJnfpTVJj6W9A7oF_3VdxT_4N21zNddg@mail.gmail.com>
+	<502A0308.6080203@enea.com>
+	<CAMKF1sq=wRkTBAcUkLQhbv0QX6rCAA3cb8S39hYSAM4knfqcbw@mail.gmail.com>
+	<5031E600.8030208@enea.com>
+	<CAMKF1spkpnDye4NxNpTSKsC6CVebTfm1_1roW5viO=xMZz50ug@mail.gmail.com>
+	<CAEsOVNfb=KeN_WGWfuyPT6MTiY9S9nEkz6pn5G6xp+-Jroeh5g@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Mon, 20 Aug 2012 12:27:01 -0700
+Message-ID: <CAMKF1srF6AYbJzCGN989kweBmcz6Y-BGvyCiAhHGTPDoOYESYQ@mail.gmail.com>
+To: McClintock Matthew-B29882 <B29882@freescale.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [meta-fsl-ppc][PATCH 2/2] fsl.conf: Let linux-qoriq-sdk-headers-nativesdk provide linux-libc-headers-nativesdk
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,128 +47,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 20 Aug 2012 19:15:46 -0000
-Content-type: text/plain; charset=us-ascii
-Content-disposition: inline
+X-List-Received-Date: Mon, 20 Aug 2012 19:27:33 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On Mon, Aug 20, 2012 at 11:43:38AM -0700, Darren Hart wrote:
-> Scott,
-> 
-> We've come across some more confusion about mailing lists recently. I've
-> sent a patch against poky to try and clear it up a bit in the source,
-> but we should also see about cleaning up the web descriptions of the lists.
-> 
-> We have two pages that describe the lists:
-> 
-> http://www.yoctoproject.org/community/mailing-lists
-> https://lists.yoctoproject.org/
-> 
-> My first recommendation would be to eliminate
-> http://www.yoctoproject.org/community/mailing-lists and replace links to
-> it with links to https://lists.yoctoproject.org. This eliminates the
-> need to keep the CMS version in sync with the mailman page. The mailman
-> page should be considered the master anyway as the Description field is
-> taken directly from the list administrative settings.
+> I just checked and we do have a few obscure bits in our kernel tree's
+> header files. Nothing that 99.9% would use but it seems reasonable to
+> include these...
 
-I completely agree with this proposal to unify and clean up the mailing list 
-references and descriptions. I didn't even know there was a separate page at 
-http://www.yoctoproject.org/community/mailing-lists - probably because I was 
-happy with https://lists.yoctoproject.org/ all the time :)
+Do you want applications for sdk host to be built using these obscure bits ?
+if yes I would like to know why?
 
+since then you are creating a scenariou where nativesdk is dependent on target
+kernel and we need to fix it so that nativesdk can be common again.
 
-> We should then work to create meaningful Descriptions of all the lists.
-> These should still fit on a single line, but I think we can improve on
-> what we have. For example:
-> 
-> meta-ti		Mailing list for the meta-ti layer
-> 
-> is not particularly enlightening. Perhaps something like:
-> 
-> meta-ti		Usage and development of the meta-ti layer
+if patches you are carrying are good for nativesdk headers can they be made
+available for other kernels like linux-yocto e.g. ?
 
-Not sure if this improves much - in either case it's just a generic 
-description of the mailing list that is specific to the corresponding layer, 
-meta-ti. But I'm fine with the change, as long as we are unifying all the 
-other list descriptions.
-
-
-> If we do this all at once, we can also ensure a consistent language,
-> tone, etc.
-
-Exactly! Thanks for initiating this.
-
-
-> I'll propose something for each list here and ask that
-> interested parties comment and correct in reply. Once agreed upon, the
-> admins of the respective lists can make the changes (all CC'd)
-> 
-> Current:
-> ========
-> linux-yocto 	Development list for the linux-yocto*.git Linux kernel
-> 		repositories
-> meta-ti 	Mailing list for the meta-ti layer
-> poky 		Poky build system developer discussion & patch
-> 		submission for meta-yocto
-> shoeleather 	Neutral Board Lab Mailing List
-> yocto 		Discussion of all things Yocto
-> yocto-ab 	Yocto Project Advisory Board
-> yocto-advocacy 	Yocto Project Advocacy & Outreach AB Subgroup
-> yocto-announce 	Announcements from the Yocto Project
-> yocto-bsp 	BSP Interest Group
-> Yocto-builds 	Build failures and discusion about the build system
-> yocto-infrastructure 	Infrastructure
-> 
-> 
-> Proposed:
-> =========
-> linux-yocto 	Development list for the linux-yocto*.git Linux kernel
-> 		repositories
-> meta-ti 	Usage and development list for the meta-ti layer
-> poky 		Usage and development list for the Poky build system
-> 		(see README for patch submission)
-> shoeleather 	Neutral Board Lab Mailing List
-> 
-> I'm not sure what "neutral" is meant to convey. How about:
-> 
-> 		Discussion list for the Shoeleather embedded board lab
-> 
-> yocto 		General discussion list for the Yocto Project and
-> 		development for projects without dedicated lists
-> 
-> I think the yocto list is a bit problematic in that it mixes project
-> conceptual discussion, user help desk, and development all on the same
-> list. However, I'm trying to clarify what these actually are here - not
-> change anything.
-> 
-> yocto-ab 	Yocto Project Advisory Board ???
-> 
-> This should imply the intended audience. Is it just meant for members?
-> Is it meant as a way for non-AB members to observe what is going on?
-> 
-> yocto-advocacy 	Yocto Project advocacy & outreach AB subgroup
-> 
-> Same as above.
-> 
-> yocto-announce 	Announcements from the Yocto Project (low traffic)
-> yocto-bsp 	BSP Interest Group ???
-> 
-> There is no detailed description for this list, so I'm not sure what
-> this is really about.
-> 
-> Yocto-builds 	Build failures and discussion about the autobuilder
-> 
-> (includes typo fix, "build system" removed to avoid confusion with the
-> "poky build system")
-> 
-> yocto-infrastructure 	Infrastructure ???
-> 
-> Jefro or Michael, can you come up with something appropriate here?
-> 
-> 
-> For lists where certain guidelines should be used in communications and
-> patch submission, we should document that in the detailed description of
-> the list, such as [project] tags for example.
-
--- 
-Denys
+right now if we do this we are pretty much saying fsl machine layer can really
+not mix with other BSPs. Many people use yocto commonly on more than one kind
+of CPU and this does not scale.
 
