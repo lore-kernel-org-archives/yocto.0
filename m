@@ -1,27 +1,40 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 332AFE0027F
-	for <yocto@yoctoproject.org>; Mon, 20 Aug 2012 09:45:10 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 20 Aug 2012 09:39:27 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.77,797,1336374000"; d="scan'208";a="188823198"
-Received: from unknown (HELO envy.home) ([10.7.199.146])
-	by orsmga002.jf.intel.com with ESMTP; 20 Aug 2012 09:39:27 -0700
-Message-ID: <503267C8.6080904@linux.intel.com>
-Date: Mon, 20 Aug 2012 09:37:28 -0700
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:14.0) Gecko/20120717 Thunderbird/14.0
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-ee0-f48.google.com (mail-ee0-f48.google.com [74.125.83.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 666EEE0027F
+	for <yocto@yoctoproject.org>; Mon, 20 Aug 2012 09:45:48 -0700 (PDT)
+Received: by eekd41 with SMTP id d41so1984883eek.35
+	for <yocto@yoctoproject.org>; Mon, 20 Aug 2012 09:45:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type:content-transfer-encoding;
+	bh=MfbXAUC/af7NeLBvWev/IaIPW2wdNyG+VDcXOLo++Ko=;
+	b=SdIsPTMooMnLRXgaVkYgDuIYLb5bLmZCXa0vU9qqR5C7Sc9N6dPmfWqIhaM46TygFQ
+	lHeZtwuym97/8AxbMxAemVL1jUGf23xOXil/c2FMJy4tIeL2PAUA2kMPjIGHeRpdkp8a
+	EmZIJylmgveMcwfnlotUlMXdJwNb8vRBu/j5UeqLARnIrEy32Dx9D2qwAEJeETYBJdFA
+	74FadjdyQjZDrqAj6QifbddgN30UD3AYiqkgmmbjtZOffZut65mVPUM4WOPk4q3GhDsX
+	Ut+1kkGeZtLyuFtQkHNwkeOqj4HokFGgYdE/afyEYU6cNsyzkp1gPVy71gCefCK8PCVc
+	wx/w==
+Received: by 10.14.218.134 with SMTP id k6mr9582289eep.14.1345481146555; Mon,
+	20 Aug 2012 09:45:46 -0700 (PDT)
 MIME-Version: 1.0
-To: "Bodke, Kishore K" <kishore.k.bodke@intel.com>
-References: <cover.1345218399.git.mihaix.lindner@linux.intel.com>
-	<43dcdb1922fe530749e6050df3a77bc95ba49620.1345218399.git.mihaix.lindner@linux.intel.com>
-	<D956029D25CF204F948EA0FB515E1EE20AD5DDE8@ORSMSX105.amr.corp.intel.com>
-In-Reply-To: <D956029D25CF204F948EA0FB515E1EE20AD5DDE8@ORSMSX105.amr.corp.intel.com>
-X-Enigmail-Version: 1.4.3
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [PATCH 1/1] meta-cedartrail: fixed PREFERRED_VERSION_linux-yocto
+Received: by 10.14.2.5 with HTTP; Mon, 20 Aug 2012 09:45:16 -0700 (PDT)
+In-Reply-To: <5031E600.8030208@enea.com>
+References: <1341550315-9795-1-git-send-email-raj.khem@gmail.com>
+	<1341550315-9795-2-git-send-email-raj.khem@gmail.com>
+	<88701C38B5D07249817D428430999C910EAC7607@sestoex05.enea.se>
+	<CAEsOVNe=+W0XLdYr1cZ_YFzkbASFCEio+yQ40Ojip_nq5FC=wQ@mail.gmail.com>
+	<88701C38B5D07249817D428430999C910EAC7B39@sestoex05.enea.se>
+	<CAEsOVNcGt6bP0woxhEjJnfpTVJj6W9A7oF_3VdxT_4N21zNddg@mail.gmail.com>
+	<502A0308.6080203@enea.com>
+	<CAMKF1sq=wRkTBAcUkLQhbv0QX6rCAA3cb8S39hYSAM4knfqcbw@mail.gmail.com>
+	<5031E600.8030208@enea.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Mon, 20 Aug 2012 09:45:16 -0700
+Message-ID: <CAMKF1spkpnDye4NxNpTSKsC6CVebTfm1_1roW5viO=xMZz50ug@mail.gmail.com>
+To: =?UTF-8?Q?David_Nystr=C3=B6m?= <david.nystrom@enea.com>
+Cc: McClintock Matthew-B29882 <B29882@freescale.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [meta-fsl-ppc][PATCH 2/2] fsl.conf: Let linux-qoriq-sdk-headers-nativesdk provide linux-libc-headers-nativesdk
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,33 +46,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 20 Aug 2012 16:45:10 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 20 Aug 2012 16:45:48 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-
-
-On 08/17/2012 09:54 AM, Bodke, Kishore K wrote:
-> 
-> 
->> -----Original Message-----
->> From: Mihai Lindner [mailto:mihaix.lindner@linux.intel.com]
->> Sent: Friday, August 17, 2012 8:54 AM
->> To: yocto@yoctoproject.org; Bodke, Kishore K
->> Subject: [PATCH 1/1] meta-cedartrail: fixed PREFERRED_VERSION_linux-yocto
+On Mon, Aug 20, 2012 at 12:23 AM, David Nystr=C3=B6m <david.nystrom@enea.co=
+m> wrote:
+> On 08/14/2012 09:26 PM, Khem Raj wrote:
 >>
->> Missing PREFERRED_VERSION_linux-yocto generated NOTEs when building.
->> """
->> NOTE: preferred version 3.4% of linux-yocto not available (for item
->> virtual/kernel)
->> """
-> 
-> Acked-by: Kishore Bodke <kishore.k.bodke@intel.com>
+>> On Tue, Aug 14, 2012 at 12:49 AM, David Nystr=C3=B6m <david.nystrom@enea=
+.com>
+>> wrote:
+>>>
+>>> Hi, it looks like this was merged to the denzil branch, and
+>>> PREFERRED_PROVIDER_linux-libc-headers-nativesdk was moved back to
+>>> distro.conf.
+>>> Any reason for this ?
+>>
+>> why do you want nativesdk headers to come from BSP its a fsl-ppc bsp I
+>> dont expect it to have something special for SDK hosts which are
+>> usually x86 ? afterall these are for
+>> the SDK host and not for target. Moreover it means that this BSP will
+>> not play in the multi BSP environment something you never want.
+>
+>
+> My main concern is that meta-toolchain uses linux-libc-headers-nativesdk =
+for
+> the meta-toolchain
+> tarball build, i.e. the meta-toolchain API may differ from the on-target =
+API
+> in regards to kernel-headers, no ?
+>
+> This might very well be true if kernel version of
+> linux-libc-headers-nativesdk !=3D linux-libc-headers
 
-Merged to master, thanks.
-
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Technical Lead - Linux Kernel
+whats the point of keeping header versions same across two entirely
+different systems.
+can you point to some instances where this API difference if any is in
+conflict ?
 
