@@ -1,53 +1,27 @@
-Return-Path: <halstead@happypunch.com>
-Received: from mail-pz0-f48.google.com (mail-pz0-f48.google.com
-	[209.85.210.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 26141E0027F
-	for <yocto@yoctoproject.org>; Mon, 20 Aug 2012 14:56:20 -0700 (PDT)
-Received: by dadz8 with SMTP id z8so3198998dad.35
-	for <yocto@yoctoproject.org>; Mon, 20 Aug 2012 14:56:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=happypunch.com; s=google;
-	h=sender:message-id:date:from:user-agent:mime-version:to:cc:subject
-	:references:in-reply-to:x-enigmail-version:content-type;
-	bh=LTKPvXlXnVXvc5IRw5BsfYkQq/6VYEh7X6G3MjuxmbQ=;
-	b=N7m00Ht+j4XLXELcb9UEUPgx10GK2rfiGVsNWoKNo1zkUqmmaDW/kBLJWLbaou3OJi
-	fl5at3lMmn7AgWDbe2R20uxQDXtplwZTyT01us9xTni01q6jNgSHk9kjkM8DsRPwFdyE
-	VKJUAtLeoUnmZZQXm0Ac6bSifPuHW+83YcQb8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=sender:message-id:date:from:user-agent:mime-version:to:cc:subject
-	:references:in-reply-to:x-enigmail-version:content-type
-	:x-gm-message-state;
-	bh=LTKPvXlXnVXvc5IRw5BsfYkQq/6VYEh7X6G3MjuxmbQ=;
-	b=KL03sTPzeDGEN9FWyy/2x4mdvyslocWb0KJtdB0zfV28hD/00NYT2w7KsHchFLCz68
-	efCSAXwu2tqXztwtpFTjkjvoG1Pw4GsKQh9WQS5ueOGfSr0F7ciZ4iufGy7f0buD9zST
-	JnaZGm71H5wUCb/x05EvXvR6RDByDZqM8y/DDuqUFuILviFpJTeMl5nq0PUXTYzfDOXZ
-	eKZj+Okfr4V85+cHLLSP0wopEDQ3Imq0SaXHG/50wFJUmvvq+uSFwHvVP+yl8rMhi7IG
-	uz93U+vrLBH6oEZLnw8rAVFnQJ8VIJy3o57XyIjiLyjRJRVUCdQ8MTJMqqySB3x+tHUb
-	wbuw==
-Received: by 10.68.227.70 with SMTP id ry6mr38242218pbc.53.1345499779830;
-	Mon, 20 Aug 2012 14:56:19 -0700 (PDT)
-Received: from [192.168.1.69] (static-50-43-56-179.bvtn.or.frontiernet.net.
-	[50.43.56.179])
-	by mx.google.com with ESMTPS id os1sm11866828pbc.31.2012.08.20.14.56.18
-	(version=SSLv3 cipher=OTHER); Mon, 20 Aug 2012 14:56:18 -0700 (PDT)
-Sender: Michael Halstead <halstead@happypunch.com>
-Message-ID: <5032B285.6010903@yoctoproject.org>
-Date: Mon, 20 Aug 2012 14:56:21 -0700
-From: Michael Halstead <michael@yoctoproject.org>
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 239EEE0027E;
+	Mon, 20 Aug 2012 15:06:13 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 20 Aug 2012 15:06:12 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.77,799,1336374000"; d="scan'208";a="188954972"
+Received: from unknown (HELO envy.home) ([10.7.199.146])
+	by orsmga002.jf.intel.com with ESMTP; 20 Aug 2012 15:06:12 -0700
+Message-ID: <5032B45C.3040309@linux.intel.com>
+Date: Mon, 20 Aug 2012 15:04:12 -0700
+From: Darren Hart <dvhart@linux.intel.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:14.0) Gecko/20120714 Thunderbird/14.0
+	rv:14.0) Gecko/20120717 Thunderbird/14.0
 MIME-Version: 1.0
-To: "Hudson, Sean" <Sean_Hudson@mentor.com>
-References: <5032855A.5050704@linux.intel.com>
-	<289CD940EE567444BB43E62E0C3028F329137C29@NA-MBX-02.mgc.mentorg.com>
-In-Reply-To: <289CD940EE567444BB43E62E0C3028F329137C29@NA-MBX-02.mgc.mentorg.com>
-X-Enigmail-Version: 1.5a1pre
-X-Gm-Message-State: ALoCoQkncWS7rxcSoGZdi5VW8Q2JDxFvM/PP74AX1MVZpdyBtSUWeYbFgP9bZ4Uklko3MHpx3C19
-Cc: Yocto Project <yocto@yoctoproject.org>,
-	Darren Hart <dvhart@linux.intel.com>, Jason Kridner <jdk@ti.com>,
-	Paul Eggleton <paul.eggleton@linux.intel.com>, "Wold,
-	Saul" <saul.wold@intel.com>
+To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+References: <5032855A.5050704@linux.intel.com> <1435514.v1EOzaWE9d@helios>
+	<5032ABDE.6090402@linux.intel.com>
+	<41DEA4B02DBDEF40A0F3B6D0DDB1237946A5EDDE@ORSMSX101.amr.corp.intel.com>
+In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB1237946A5EDDE@ORSMSX101.amr.corp.intel.com>
+X-Enigmail-Version: 1.4.3
+Cc: Paul Eggleton <paul.eggleton@linux.intel.com>, Jason Kridner <jdk@ti.com>,
+	Yocto Project <yocto@yoctoproject.org>, "Wold, Saul" <saul.wold@intel.com>
 Subject: Re: Documenting the mailing lists.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -60,124 +34,184 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 20 Aug 2012 21:56:20 -0000
-X-Groupsio-MsgNum: 8797
-Content-Type: multipart/signed; protocol="application/pkcs7-signature";
-	micalg=sha1; boundary="------------ms050804070608070303010607"
-
---------------ms050804070608070303010607
+X-List-Received-Date: Mon, 20 Aug 2012 22:06:13 -0000
 Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-On 08/20/2012 02:40 PM, Hudson, Sean wrote:
->> -----Original Message-----
->> From: Darren Hart [mailto:dvhart@linux.intel.com]
->> Sent: Monday, August 20, 2012 1:44 PM
->> To: Yocto Project
->> Subject: Documenting the mailing lists.
->
-> Proposed:
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D
-> shoeleather 	Neutral Board Lab Mailing List
->
-> I'm not sure what "neutral" is meant to convey. How about:
->
-> 		Discussion list for the Shoeleather embedded board lab
-> [Hudson, Sean] Sounds good to me.=20
->
->
-I've updated the description at https://lists.yoctoproject.org/
-
-Michael Halstead
-Yocto Project / Sys Admin
+Content-Transfer-Encoding: 7bit
 
 
 
---------------ms050804070608070303010607
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
+On 08/20/2012 02:34 PM, Rifenbark, Scott M wrote:
+> Here is what it says in the Reference Manual:
+> 
+> 12.3. Mailing lists There are a number of mailing lists maintained by the
+> Yocto Project as well as related OpenEmbedded mailing lists for discussion,
+> patch submission and announcements. To subscribe to one of the following
+> mailing lists, click on the appropriate URL in the following list and follow
+> the instructions: 
+> *	http://lists.yoctoproject.org/listinfo/yocto - General Yocto Project discussion mailing list. 
+> *	http://lists.linuxtogo.org/cgi-bin/mailman/listinfo/openembedded-core - Discussion mailing list about OpenEmbedded-Core (the core metadata).
+> *	http://lists.linuxtogo.org/cgi-bin/mailman/listinfo/openembedded-devel - Discussion mailing list about OpenEmbedded.
+> *	http://lists.linuxtogo.org/cgi-bin/mailman/listinfo/bitbake-devel - Discussion mailing list about the BitBake build tool.
+> *	http://lists.yoctoproject.org/listinfo/poky - Discussion mailing list about Poky.
+> *	http://lists.yoctoproject.org/listinfo/yocto-announce - Mailing list to receive official Yocto Project release and milestone announcements.
+> 
+> 
+> This is what Paul is referring to by way of corrections.  I personally think
+> it is useful to have something of a list in the Reference manual under this
+> heading.  I don't think we need the exact same wordings though in the
+> Reference manual as would be found in https://lists.yoctoproject.org/.  The
+> stuff in the Reference manual should be general and give the reader an idea of
+> the flavor of the lists.  I can update the reference manual to include a link
+> to https://lists.yoctoproject.org/ for the final say on each list. 
 
-MIAGCSqGSIb3DQEHAqCAMIACAQExCzAJBgUrDgMCGgUAMIAGCSqGSIb3DQEHAQAAoIINjDCCBjQw
-ggQcoAMCAQICASAwDQYJKoZIhvcNAQEFBQAwfTELMAkGA1UEBhMCSUwxFjAUBgNVBAoTDVN0YXJ0
-Q29tIEx0ZC4xKzApBgNVBAsTIlNlY3VyZSBEaWdpdGFsIENlcnRpZmljYXRlIFNpZ25pbmcxKTAn
-BgNVBAMTIFN0YXJ0Q29tIENlcnRpZmljYXRpb24gQXV0aG9yaXR5MB4XDTA3MTAyNDIxMDI1NVoX
-DTE3MTAyNDIxMDI1NVowgYwxCzAJBgNVBAYTAklMMRYwFAYDVQQKEw1TdGFydENvbSBMdGQuMSsw
-KQYDVQQLEyJTZWN1cmUgRGlnaXRhbCBDZXJ0aWZpY2F0ZSBTaWduaW5nMTgwNgYDVQQDEy9TdGFy
-dENvbSBDbGFzcyAyIFByaW1hcnkgSW50ZXJtZWRpYXRlIENsaWVudCBDQTCCASIwDQYJKoZIhvcN
-AQEBBQADggEPADCCAQoCggEBAMsohUWcASz7GfKrpTOMKqANy9BV7V0igWdGxA8IU77L3aTxErQ+
-fcxtDYZ36Z6GH0YFn7fq5RADteP0AYzrCA+EQTfi8q1+kA3m0nwtwXG94M5sIqsvs7lRP1aycBke
-/s5g9hJHryZ2acScnzczjBCAo7X1v5G3yw8MDP2m2RCye0KfgZ4nODerZJVzhAlOD9YejvAXZqHk
-sw56HzElVIoYSZ3q4+RJuPXXfIoyby+Y2m1E+YzX5iCZXBx05gk6MKAW1vaw4/v2OOLy6FZH3XHH
-tOkzUreG//CsFnB9+uaYSlR65cdGzTsmoIK8WH1ygoXhRBm98SD7Hf/r3FELNvUCAwEAAaOCAa0w
-ggGpMA8GA1UdEwEB/wQFMAMBAf8wDgYDVR0PAQH/BAQDAgEGMB0GA1UdDgQWBBSuVYNv7DHKufcd
-+q9rMfPIHeOsuzAfBgNVHSMEGDAWgBROC+8apEBbpRdphzDKNGhD0EGu8jBmBggrBgEFBQcBAQRa
-MFgwJwYIKwYBBQUHMAGGG2h0dHA6Ly9vY3NwLnN0YXJ0c3NsLmNvbS9jYTAtBggrBgEFBQcwAoYh
-aHR0cDovL3d3dy5zdGFydHNzbC5jb20vc2ZzY2EuY3J0MFsGA1UdHwRUMFIwJ6AloCOGIWh0dHA6
-Ly93d3cuc3RhcnRzc2wuY29tL3Nmc2NhLmNybDAnoCWgI4YhaHR0cDovL2NybC5zdGFydHNzbC5j
-b20vc2ZzY2EuY3JsMIGABgNVHSAEeTB3MHUGCysGAQQBgbU3AQIBMGYwLgYIKwYBBQUHAgEWImh0
-dHA6Ly93d3cuc3RhcnRzc2wuY29tL3BvbGljeS5wZGYwNAYIKwYBBQUHAgEWKGh0dHA6Ly93d3cu
-c3RhcnRzc2wuY29tL2ludGVybWVkaWF0ZS5wZGYwDQYJKoZIhvcNAQEFBQADggIBADqpJw3I07QW
-ke9plNBpxUxcffc7nUrIQpJHDci91DFG7fVhHRkMZ1J+BKg5UNUxIFJ2Z9B90Micc/NXcs7kPBRd
-n6XGO/vPc87Y6R+cWS9Nc9+fp3Enmsm94OxOwI9wn8qnr/6o3mD4noP9JphwUPTXwHovjavRnhUQ
-HLfo/i2NG0XXgTHXS2Xm0kVUozXqpYpAdumMiB/vezj1QHQJDmUdPYMcp+reg9901zkyT3fDW/iv
-JVv6pWtkh6Pw2ytZT7mvg7YhX3V50Nv860cV11mocUVcqBLv0gcT+HBDYtbuvexNftwNQKD5193A
-7zN4vG7CTYkXxytSjKuXrpEatEiFPxWgb84nVj25SU5q/r1Xhwby6mLhkbaXslkVtwEWT3Van49r
-KjlK4XrUKYYWtnfzq6aSak5u0Vpxd1rY79tWhD3EdCvOhNz/QplNa+VkIsrcp7+8ZhP1l1b2U6Ma
-xIVteuVMD3X0vziIwr7jxYae9FZjbxlpUemqXjcC0QaFfN7qI0JsQMALL7iGRBg7K0CoOBzECdD3
-fuZil5kU/LP9cr1BK31U0Uy651bFnAMMMkqhAChIbn0ei72VnbpSsrrSdF0BAGYQ8vyHae5aCg+H
-75dVCV33K6FuxZrf09yTz+Vx/PkdRUYkXmZz/OTfyJXsUOUXrym6KvI2rYpccSk5MIIHUDCCBjig
-AwIBAgICIgMwDQYJKoZIhvcNAQEFBQAwgYwxCzAJBgNVBAYTAklMMRYwFAYDVQQKEw1TdGFydENv
-bSBMdGQuMSswKQYDVQQLEyJTZWN1cmUgRGlnaXRhbCBDZXJ0aWZpY2F0ZSBTaWduaW5nMTgwNgYD
-VQQDEy9TdGFydENvbSBDbGFzcyAyIFByaW1hcnkgSW50ZXJtZWRpYXRlIENsaWVudCBDQTAeFw0x
-MjA2MTMwNDU5MjlaFw0xNDA2MTQxNjE4MzBaMIGRMRkwFwYDVQQNExBnMDFwWTYwMWJGM1BrRTY3
-MQswCQYDVQQGEwJVUzEPMA0GA1UECBMGT3JlZ29uMRIwEAYDVQQHEwlIaWxsc2Jvcm8xGTAXBgNV
-BAMTEE1pY2hhZWwgSGFsc3RlYWQxJzAlBgkqhkiG9w0BCQEWGG1pY2hhZWxAeW9jdG9wcm9qZWN0
-Lm9yZzCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMFZ+GW0VKdiyuQy3hlOvwcHxcm0
-8ZwNGGah4zipYky5wVFZO7p9LjJfyF6rvd24xdkaTluxTMmd9pfq2cOVQ6c3RsPufv1yBUbytk6F
-4Wk+qD0qEGjuHh5FfakcLIEsHiSn3nzaQZHaolS/yzx/A3coQS8pQrshZYqAF/ME5OxMyL8KDdtk
-xatt1reDPqzvI5rKYdeEbmHsTYgd9WWHvs8MfZFHidZoAXMXU+PcsKCUxEYhgP/h9NKcTApu/Mhd
-IPKn11pD+gfDM+ochGu1uxuW/t1tNJyRYDVQSDV+rpliQ7mrimSmyktIKkow02pUk4Xw3OqdYq7/
-/HpVOUs5nk8CAwEAAaOCA7MwggOvMAkGA1UdEwQCMAAwCwYDVR0PBAQDAgSwMB0GA1UdJQQWMBQG
-CCsGAQUFBwMCBggrBgEFBQcDBDAdBgNVHQ4EFgQUcZFNotb1OfDmPE6GQ6MQIBh7meUwHwYDVR0j
-BBgwFoAUrlWDb+wxyrn3HfqvazHzyB3jrLswIwYDVR0RBBwwGoEYbWljaGFlbEB5b2N0b3Byb2pl
-Y3Qub3JnMIICIQYDVR0gBIICGDCCAhQwggIQBgsrBgEEAYG1NwECAjCCAf8wLgYIKwYBBQUHAgEW
-Imh0dHA6Ly93d3cuc3RhcnRzc2wuY29tL3BvbGljeS5wZGYwNAYIKwYBBQUHAgEWKGh0dHA6Ly93
-d3cuc3RhcnRzc2wuY29tL2ludGVybWVkaWF0ZS5wZGYwgfcGCCsGAQUFBwICMIHqMCcWIFN0YXJ0
-Q29tIENlcnRpZmljYXRpb24gQXV0aG9yaXR5MAMCAQEagb5UaGlzIGNlcnRpZmljYXRlIHdhcyBp
-c3N1ZWQgYWNjb3JkaW5nIHRvIHRoZSBDbGFzcyAyIFZhbGlkYXRpb24gcmVxdWlyZW1lbnRzIG9m
-IHRoZSBTdGFydENvbSBDQSBwb2xpY3ksIHJlbGlhbmNlIG9ubHkgZm9yIHRoZSBpbnRlbmRlZCBw
-dXJwb3NlIGluIGNvbXBsaWFuY2Ugb2YgdGhlIHJlbHlpbmcgcGFydHkgb2JsaWdhdGlvbnMuMIGc
-BggrBgEFBQcCAjCBjzAnFiBTdGFydENvbSBDZXJ0aWZpY2F0aW9uIEF1dGhvcml0eTADAgECGmRM
-aWFiaWxpdHkgYW5kIHdhcnJhbnRpZXMgYXJlIGxpbWl0ZWQhIFNlZSBzZWN0aW9uICJMZWdhbCBh
-bmQgTGltaXRhdGlvbnMiIG9mIHRoZSBTdGFydENvbSBDQSBwb2xpY3kuMDYGA1UdHwQvMC0wK6Ap
-oCeGJWh0dHA6Ly9jcmwuc3RhcnRzc2wuY29tL2NydHUyLWNybC5jcmwwgY4GCCsGAQUFBwEBBIGB
-MH8wOQYIKwYBBQUHMAGGLWh0dHA6Ly9vY3NwLnN0YXJ0c3NsLmNvbS9zdWIvY2xhc3MyL2NsaWVu
-dC9jYTBCBggrBgEFBQcwAoY2aHR0cDovL2FpYS5zdGFydHNzbC5jb20vY2VydHMvc3ViLmNsYXNz
-Mi5jbGllbnQuY2EuY3J0MCMGA1UdEgQcMBqGGGh0dHA6Ly93d3cuc3RhcnRzc2wuY29tLzANBgkq
-hkiG9w0BAQUFAAOCAQEANR/d6M8GHL/rkx3Kz9ILDxYMcekmFgefaDXNQMicUHiUw5TsIl5af1pS
-Y2AvbKlA2/FZnyG8w42FuK6ZQBZJxs4/N10NW8qDmuuFTi6TyJgurj73tx9RogW50miDHMZLoMRe
-avB1h8zy99L2lRPZSebpSFkrQdYDHaGRVhYMjEcWNW9cLxhR8BaAEw/KlpERv3hUQpwGMppYOE66
-M7KJ3HpeR7DXfa4njL9W2hukTQNsskdWtzejHp5iQ65+5Mv+NXLmYP4uLJcR9AbttgNhwStc0P1b
-LxnQkElGeUzATOBq+QsVZ7Fo6sSS7kqrhpfaPibqpj83m/wSgpKVsbZJ3DGCA9owggPWAgEBMIGT
-MIGMMQswCQYDVQQGEwJJTDEWMBQGA1UEChMNU3RhcnRDb20gTHRkLjErMCkGA1UECxMiU2VjdXJl
-IERpZ2l0YWwgQ2VydGlmaWNhdGUgU2lnbmluZzE4MDYGA1UEAxMvU3RhcnRDb20gQ2xhc3MgMiBQ
-cmltYXJ5IEludGVybWVkaWF0ZSBDbGllbnQgQ0ECAiIDMAkGBSsOAwIaBQCgggIbMBgGCSqGSIb3
-DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTEyMDgyMDIxNTYyMVowIwYJKoZIhvcN
-AQkEMRYEFICbRscVTFGJI9Iu2nFLyyXCQrs2MGwGCSqGSIb3DQEJDzFfMF0wCwYJYIZIAWUDBAEq
-MAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzAOBggqhkiG9w0DAgICAIAwDQYIKoZIhvcNAwICAUAw
-BwYFKw4DAgcwDQYIKoZIhvcNAwICASgwgaQGCSsGAQQBgjcQBDGBljCBkzCBjDELMAkGA1UEBhMC
-SUwxFjAUBgNVBAoTDVN0YXJ0Q29tIEx0ZC4xKzApBgNVBAsTIlNlY3VyZSBEaWdpdGFsIENlcnRp
-ZmljYXRlIFNpZ25pbmcxODA2BgNVBAMTL1N0YXJ0Q29tIENsYXNzIDIgUHJpbWFyeSBJbnRlcm1l
-ZGlhdGUgQ2xpZW50IENBAgIiAzCBpgYLKoZIhvcNAQkQAgsxgZaggZMwgYwxCzAJBgNVBAYTAklM
-MRYwFAYDVQQKEw1TdGFydENvbSBMdGQuMSswKQYDVQQLEyJTZWN1cmUgRGlnaXRhbCBDZXJ0aWZp
-Y2F0ZSBTaWduaW5nMTgwNgYDVQQDEy9TdGFydENvbSBDbGFzcyAyIFByaW1hcnkgSW50ZXJtZWRp
-YXRlIENsaWVudCBDQQICIgMwDQYJKoZIhvcNAQEBBQAEggEAkRBctsJNqJdJYB7ur/WCDL81ki32
-oLefkczHm6Y9STMzte+hmfsZfnW8ZVFDGNin5xW8WEzPS8mCgM3LJf8b+kWlBx/OMiYwR1a4azDF
-LiiVjHLiwJICK9p6gIzSdXlj7Gu30V3tmpyS0Je07Vd5WPBeI+Y9bQ3NpeCX/S4kmTqvVMwA+x/D
-Rvv1H7yB6wqdZT/SQ2ftRe1+smkKA6X0wFMDzVFItCHvIm8hZiikVxlY1a2HPTCZ+lN13RQ0pHB1
-7sqDUPcSvJMte0p+UhnZgkiBA+ZWgIPMMI8GRBRsvc9qCqbyxioOpf63XxXt/kub0HkweUhkJDRb
-hbqQDI/0xAAAAAAAAA==
+Hrm, a wrench in the works. It is necessary to include non-yoctoproject.org
+mailing lists in order to fully document where all patches for "the Yocto
+Project" should go. As such, we can't rely on the lists.yoctoproject.org as the
+sole point of documentation. As such, as I see it, the sources README or
+MAINTAINERS files should be the definitive policy setter regarding where to send
+patches. Of course there is more to define than just that.
 
---------------ms050804070608070303010607--
+Perhaps the best we can do is update the descriptions in mailman for the yp
+lists and update the mailing lists page with those and the external lists. Many
+people will look to the mailing lists page on the yp website before they look in
+the reference manual.
+
+Thoughts?
+
+--
+Darren
+
+
+> 
+> Scott
+> 
+> -----Original Message-----
+> From: Darren Hart [mailto:dvhart@linux.intel.com] 
+> Sent: Monday, August 20, 2012 2:28 PM
+> To: Paul Eggleton
+> Cc: Yocto Project; Rifenbark, Scott M; Paul Gortmaker; Richard Purdie; Wold, Saul; Osier-mixon, Jeffrey; Zanussi, Tom; Hudson, Sean; Denys Dmytriyenko; Koen Kooi; Jason Kridner; Flanagan, Elizabeth; Michael Halstead
+> Subject: Re: Documenting the mailing lists.
+> 
+> 
+> 
+> On 08/20/2012 02:26 PM, Paul Eggleton wrote:
+>> On Monday 20 August 2012 11:43:38 Darren Hart wrote:
+>>> Scott,
+>>>
+>>> We've come across some more confusion about mailing lists recently. I've
+>>> sent a patch against poky to try and clear it up a bit in the source,
+>>> but we should also see about cleaning up the web descriptions of the lists.
+>>>
+>>> We have two pages that describe the lists:
+>>>
+>>> http://www.yoctoproject.org/community/mailing-lists
+>>> https://lists.yoctoproject.org/
+>>>
+>>> My first recommendation would be to eliminate
+>>> http://www.yoctoproject.org/community/mailing-lists and replace links to
+>>> it with links to https://lists.yoctoproject.org. This eliminates the
+>>> need to keep the CMS version in sync with the mailman page. The mailman
+>>> page should be considered the master anyway as the Description field is
+>>> taken directly from the list administrative settings.
+>>>
+>>> We should then work to create meaningful Descriptions of all the lists.
+>>> These should still fit on a single line, but I think we can improve on
+>>> what we have. For example:
+>>>
+>>> meta-ti		Mailing list for the meta-ti layer
+>>>
+>>> is not particularly enlightening. Perhaps something like:
+>>>
+>>> meta-ti		Usage and development of the meta-ti layer
+>>>
+>>> If we do this all at once, we can also ensure a consistent language,
+>>> tone, etc. I'll propose something for each list here and ask that
+>>> interested parties comment and correct in reply. Once agreed upon, the
+>>> admins of the respective lists can make the changes (all CC'd)
+>>>
+>>> Current:
+>>> ========
+>>> linux-yocto 	Development list for the linux-yocto*.git Linux kernel
+>>> 		repositories
+>>> meta-ti 	Mailing list for the meta-ti layer
+>>> poky 		Poky build system developer discussion & patch
+>>> 		submission for meta-yocto
+>>> shoeleather 	Neutral Board Lab Mailing List
+>>> yocto 		Discussion of all things Yocto
+>>> yocto-ab 	Yocto Project Advisory Board
+>>> yocto-advocacy 	Yocto Project Advocacy & Outreach AB Subgroup
+>>> yocto-announce 	Announcements from the Yocto Project
+>>> yocto-bsp 	BSP Interest Group
+>>> Yocto-builds 	Build failures and discusion about the build system
+>>> yocto-infrastructure 	Infrastructure
+>>>
+>>>
+>>> Proposed:
+>>> =========
+>>> linux-yocto 	Development list for the linux-yocto*.git Linux kernel
+>>> 		repositories
+>>> meta-ti 	Usage and development list for the meta-ti layer
+>>> poky 		Usage and development list for the Poky build system
+>>> 		(see README for patch submission)
+>>> shoeleather 	Neutral Board Lab Mailing List
+>>>
+>>> I'm not sure what "neutral" is meant to convey. How about:
+>>>
+>>> 		Discussion list for the Shoeleather embedded board lab
+>>>
+>>> yocto 		General discussion list for the Yocto Project and
+>>> 		development for projects without dedicated lists
+>>>
+>>> I think the yocto list is a bit problematic in that it mixes project
+>>> conceptual discussion, user help desk, and development all on the same
+>>> list. However, I'm trying to clarify what these actually are here - not
+>>> change anything.
+>>>
+>>> yocto-ab 	Yocto Project Advisory Board ???
+>>>
+>>> This should imply the intended audience. Is it just meant for members?
+>>> Is it meant as a way for non-AB members to observe what is going on?
+>>>
+>>> yocto-advocacy 	Yocto Project advocacy & outreach AB subgroup
+>>>
+>>> Same as above.
+>>>
+>>> yocto-announce 	Announcements from the Yocto Project (low traffic)
+>>> yocto-bsp 	BSP Interest Group ???
+>>>
+>>> There is no detailed description for this list, so I'm not sure what
+>>> this is really about.
+>>>
+>>> Yocto-builds 	Build failures and discussion about the autobuilder
+>>>
+>>> (includes typo fix, "build system" removed to avoid confusion with the
+>>> "poky build system")
+>>>
+>>> yocto-infrastructure 	Infrastructure ???
+>>>
+>>> Jefro or Michael, can you come up with something appropriate here?
+>>>
+>>>
+>>> For lists where certain guidelines should be used in communications and
+>>> patch submission, we should document that in the detailed description of
+>>> the list, such as [project] tags for example.
+>>
+>> This is all good stuff, I'd just like to mention in case it is useful that I 
+>> did update the list in the Reference Manual along with the information on how 
+>> to contribute - which includes some direction on where to send patches. This 
+>> is in the master version of the documentation but not the version currently 
+>> shown on the website - we probably ought to fix that. We really ought to try to 
+>> have all of this information consistent if at all possible.
+> 
+> Does it make sense to have this list in the reference manual? Should we
+> perhaps just have it reference the README in the source (that way people
+> can always see the current policy) and the long mailing list
+> description? That reduces the redundancy to 2 from 4. Should be much
+> easier to keep in sync.
+> 
+
+-- 
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Technical Lead - Linux Kernel
+
