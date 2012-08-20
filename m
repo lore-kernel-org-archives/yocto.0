@@ -1,26 +1,30 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DF9FEE01304
-	for <yocto@yoctoproject.org>; Sun, 19 Aug 2012 21:30:15 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id q7K4UAQq005403
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Sun, 19 Aug 2012 21:30:10 -0700 (PDT)
-Received: from bruce-ashfields-macbook.local (128.224.21.85) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.2.309.2; Sun, 19 Aug 2012 21:30:10 -0700
-Message-ID: <5031BD51.30104@windriver.com>
-Date: Mon, 20 Aug 2012 00:30:09 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7;
-	rv:9.0) Gecko/20111222 Thunderbird/9.0.1
+Return-Path: <David.Nystrom@enea.com>
+Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id 2ED6AE013F7
+	for <yocto@yoctoproject.org>; Mon, 20 Aug 2012 00:21:48 -0700 (PDT)
+Received: from [172.16.140.132] (172.16.140.132) by smtp.enea.com
+	(172.21.1.209) with Microsoft SMTP Server id 14.2.298.4;
+	Mon, 20 Aug 2012 09:21:45 +0200
+Message-ID: <5031E600.8030208@enea.com>
+Date: Mon, 20 Aug 2012 09:23:44 +0200
+From: =?UTF-8?B?RGF2aWQgTnlzdHLDtm0=?= <david.nystrom@enea.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:14.0) Gecko/20120714 Thunderbird/14.0
 MIME-Version: 1.0
-To: Marc Ferland <ferlandm@sonatest.com>
-References: <871uj51d87.fsf@sonatest.com> <502EAB14.2070109@windriver.com>
-	<87lihdtd8w.fsf@sonatest.com>
-In-Reply-To: <87lihdtd8w.fsf@sonatest.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: linux-yocto and private topic branches
+To: Khem Raj <raj.khem@gmail.com>
+References: <1341550315-9795-1-git-send-email-raj.khem@gmail.com>
+	<1341550315-9795-2-git-send-email-raj.khem@gmail.com>
+	<88701C38B5D07249817D428430999C910EAC7607@sestoex05.enea.se>
+	<CAEsOVNe=+W0XLdYr1cZ_YFzkbASFCEio+yQ40Ojip_nq5FC=wQ@mail.gmail.com>
+	<88701C38B5D07249817D428430999C910EAC7B39@sestoex05.enea.se>
+	<CAEsOVNcGt6bP0woxhEjJnfpTVJj6W9A7oF_3VdxT_4N21zNddg@mail.gmail.com>
+	<502A0308.6080203@enea.com>
+	<CAMKF1sq=wRkTBAcUkLQhbv0QX6rCAA3cb8S39hYSAM4knfqcbw@mail.gmail.com>
+In-Reply-To: <CAMKF1sq=wRkTBAcUkLQhbv0QX6rCAA3cb8S39hYSAM4knfqcbw@mail.gmail.com>
+X-Originating-IP: [172.16.140.132]
+Cc: McClintock Matthew-B29882 <B29882@freescale.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [meta-fsl-ppc][PATCH 2/2] fsl.conf: Let linux-qoriq-sdk-headers-nativesdk provide linux-libc-headers-nativesdk
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,95 +36,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 20 Aug 2012 04:30:16 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 20 Aug 2012 07:21:50 -0000
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: quoted-printable
 
-On 12-08-17 5:33 PM, Marc Ferland wrote:
-> Bruce Ashfield<bruce.ashfield@windriver.com>  writes:
->
->> On 12-08-17 04:21 PM, Marc Ferland wrote:
->>> Hi,
->>>
->>> I'm maintaining a BSP based on crownbay and I would like to change my
->>> current kernel recipe from a custom one to linux-yocto_3.2.bb.
->>
->> I'm just heading out for the weekend, but I can pick this up in more
->> detail layer.
->
-> That would be great!
->>>
->>> Reading the kernel-yocto.bbclass, I see that it is possible to provide a
->>> list of patches and configuration fragments but also (not sure about
->>> that) to provide an "external branch".
->>
->> In the denzil (3.2 kernel) that is the case, in the yocto 1.3 (3.4)
->> kernel, it isn't even called an external branch, since the tools
->> are more tolerant of a branch not being present at validation time.
->
-> BTW, I am using denzil.
->>
->>>
->>> Since we maintain several private topic branches in-house this would be
->>> the perfect solution. I could "inherit" from crownbay (available on
->>> linux-yocto) and just merge my topic branches to produce the final
->>> kernel source tree.
->>>
->>> My question:
->>> Is this currently possible? If so, are there any examples available?
->>
->> You can do this, but you do need to host your own kernel repository
->> that is based off linux-yocto. In that repository, you can have
->> your own branches, that are easily referenced from the recipes.
->>
->> Is this what you are currently doing with your custom recipe ?
->
-> We indeed host our own kernel repo but it is based off kernel.org. The
-> recipe just defines the SRC_URI of that repo along with a defconfig.
+On 08/14/2012 09:26 PM, Khem Raj wrote:
+> On Tue, Aug 14, 2012 at 12:49 AM, David Nystr=C3=B6m <david.nystrom@enea.=
+com> wrote:
+>> Hi, it looks like this was merged to the denzil branch, and
+>> PREFERRED_PROVIDER_linux-libc-headers-nativesdk was moved back to
+>> distro.conf.
+>> Any reason for this ?
+> why do you want nativesdk headers to come from BSP its a fsl-ppc bsp I
+> dont expect it to have something special for SDK hosts which are
+> usually x86 ? afterall these are for
+> the SDK host and not for target. Moreover it means that this BSP will
+> not play in the multi BSP environment something you never want.
 
-... and some patches carried out of tree ?
+My main concern is that meta-toolchain uses linux-libc-headers-nativesdk=20
+for the meta-toolchain
+tarball build, i.e. the meta-toolchain API may differ from the on-target=20
+API in regards to kernel-headers, no ?
 
->
-> So first step for us is to rebase our stuff on linux-yocto!
+This might very well be true if kernel version of=20
+linux-libc-headers-nativesdk !=3D linux-libc-headers
 
-I assumed the patches existing, since you mentioned rebasing something :)
+Br,
+David
 
->>
->> I'm stating the obvious, since if you want to clone a tree with your
->> branch .. there must be a tree somewhere with that branch :)
->>
->> The yocto-bsp tools are using the external branches to manage new
->> BSPs that aren't already in linux-yocto.
->>
->> There are other tricks that can be played where smaller, pruned git
->> trees are used, and they are cloned and have their alternates pointed
->> at the main kernel tree repository, gluing the two together. But there's
->> nothing within the current models that supports it directly (you need
->> reference clones, scripts, etc).
->>
->>> Can these changes be kept in "recipe-space"?
->>
->> Most everything that can be done in a tree, with branches and meta data
->> can also happen in recipe space. The yocto-bsp scripts are again a
->> good example of this.
->
-> Ok. I'll definitively have a look at these yocto-bsp scripts. Keeping
-> everything in recipe space will be easier since all changes will be
-> concentrated in one place.
 
-Depending on the scale of your patches, how you need to share/reuse them,
-then keeping them in recipe space is a good starting point. If you scale
-up to multiple BSPs, with conflicting features, fragments, etc, etc, then
-going with a repository based on linux-yocto (or some other base) is
-the next thing to look at.
-
-Cheers,
-
-Bruce
-
->
-> Thanks for all the info!
->
-> Marc
 
 
