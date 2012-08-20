@@ -1,37 +1,38 @@
-Return-Path: <rahul.saxena@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EA6C9E0027E
-	for <yocto@yoctoproject.org>; Mon, 20 Aug 2012 15:13:46 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 20 Aug 2012 15:13:46 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.77,799,1336374000"; d="scan'208";a="206860668"
-Received: from orsmsx606.amr.corp.intel.com ([10.22.226.128])
-	by fmsmga001.fm.intel.com with ESMTP; 20 Aug 2012 15:13:46 -0700
-Received: from orsmsx153.amr.corp.intel.com (10.22.226.247) by
-	orsmsx606.amr.corp.intel.com (10.22.226.128) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Mon, 20 Aug 2012 15:13:46 -0700
-Received: from orsmsx103.amr.corp.intel.com ([169.254.2.138]) by
-	ORSMSX153.amr.corp.intel.com ([169.254.13.86]) with mapi id
-	14.01.0355.002; Mon, 20 Aug 2012 15:13:45 -0700
-From: "Saxena, Rahul" <rahul.saxena@intel.com>
-To: Darren Hart <dvhart@linux.intel.com>
-Thread-Topic: [PATCH 1/3] meta-cedartrail: update SRCREV for Cedartrail
-	machine branch
-Thread-Index: AQHNfyC6ITKOi1U3GEawDZ70EhfmEJdjQ2Vg
-Date: Mon, 20 Aug 2012 22:13:45 +0000
-Message-ID: <63ECFF2A2302B44093D7CE9E9962C490033135EA@ORSMSX103.amr.corp.intel.com>
-References: <cover.1345497883.git.rahul.saxena@intel.com>
-	<022960688d1a4e279d6e9223e787e453f9ec8b0b.1345497883.git.rahul.saxena@intel.com>
-	<5032B588.60803@linux.intel.com>
-In-Reply-To: <5032B588.60803@linux.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
+Return-Path: <jefro.net@gmail.com>
+Received: from mail-yx0-f176.google.com (mail-yx0-f176.google.com
+	[209.85.213.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0C4D4E0027E;
+	Mon, 20 Aug 2012 15:18:30 -0700 (PDT)
+Received: by yenm12 with SMTP id m12so6816584yen.35
+	for <multiple recipients>; Mon, 20 Aug 2012 15:18:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:sender:in-reply-to:references:date
+	:x-google-sender-auth:message-id:subject:from:to:cc:content-type;
+	bh=qsgRg+nP8fj7lDiLX2w+RKhCLKnOocUL3KT3mD8O6Ho=;
+	b=bqbQKj8xMIcbHYjJ6o2MEYDtm/SPwhckSe55tjBoGB/+99LFMjPIgW7yrRZv5qndzX
+	pFZ733eBGM59doi9RVFEUkizdtLPhtL3Dh+nZaXMUb4A4CvT7y17+ZkrCzZi3ApMtMu8
+	VNCcJUedtBSLIa7jFCNI4xJcuVWGt9i3MQl2gIQgu7fvjEkVcZE97ZGP+B1C/f9ekmzf
+	JooWve/DEar+CuLG2lQGXMCyYb/UBF3mAgoAmWuG1eivlesysYmlTxMiVscYlh+edN52
+	HA0zykqAFMgxUtXZks9IGhVUmUDmQ4AHbfqfLQMGNcwwF/131OGepxrqPwa6s0AlLZ+C
+	SXAA==
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [PATCH 1/3] meta-cedartrail: update SRCREV for Cedartrail machine branch
+Received: by 10.50.46.170 with SMTP id w10mr11183222igm.44.1345501109840; Mon,
+	20 Aug 2012 15:18:29 -0700 (PDT)
+Sender: jefro.net@gmail.com
+Received: by 10.64.50.231 with HTTP; Mon, 20 Aug 2012 15:18:29 -0700 (PDT)
+In-Reply-To: <5032B4E3.2000701@linux.intel.com>
+References: <5032855A.5050704@linux.intel.com>
+	<289CD940EE567444BB43E62E0C3028F329137C29@NA-MBX-02.mgc.mentorg.com>
+	<5032B285.6010903@yoctoproject.org>
+	<5032B4E3.2000701@linux.intel.com>
+Date: Mon, 20 Aug 2012 15:18:29 -0700
+X-Google-Sender-Auth: -dtbWJrxHuFg3QRy-7kTjXFYZIM
+Message-ID: <CA+YB3raLRHtC_=oBsZBV2yAxEfLUaGp55US5inias1Fkbwv+gw@mail.gmail.com>
+From: Jeff Osier-Mixon <jefro@jefro.net>
+To: Darren Hart <dvhart@linux.intel.com>
+Cc: Yocto Project <yocto@yoctoproject.org>, "Wold, Saul" <saul.wold@intel.com>,
+	Jason Kridner <jdk@ti.com>, Paul Eggleton <paul.eggleton@linux.intel.com>
+Subject: Re: Documenting the mailing lists.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,74 +44,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 20 Aug 2012 22:13:47 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 20 Aug 2012 22:18:31 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-I am just bringing it up to a most recent update from Bruce. Nothing pushed=
- from my side to cedartrail branch.
+The mailing lists and website stuff is generally my responsibility,
+but please fix anything you like. :)  Be aware that the new website is
+under construction, so I am loathe to change much on the old website
+at this point.  For the new one, it may be possible to dynamically
+grab the description from mailman.
 
-Thanks
-Rahul
+On Mon, Aug 20, 2012 at 3:06 PM, Darren Hart <dvhart@linux.intel.com> wrote:
+>
+>
+> On 08/20/2012 02:56 PM, Michael Halstead wrote:
+>> On 08/20/2012 02:40 PM, Hudson, Sean wrote:
+>>>> -----Original Message-----
+>>>> From: Darren Hart [mailto:dvhart@linux.intel.com]
+>>>> Sent: Monday, August 20, 2012 1:44 PM
+>>>> To: Yocto Project
+>>>> Subject: Documenting the mailing lists.
+>>>
+>>> Proposed:
+>>> =========
+>>> shoeleather  Neutral Board Lab Mailing List
+>>>
+>>> I'm not sure what "neutral" is meant to convey. How about:
+>>>
+>>>              Discussion list for the Shoeleather embedded board lab
+>>> [Hudson, Sean] Sounds good to me.
+>>>
+>>>
+>> I've updated the description at https://lists.yoctoproject.org/
+>>
+>
+> Thanks Michael, let's hold off on any additional changes until we've
+> been able to agree on the entire set, as we want to keep language,
+> tense, etc. consistent. No need to change them multiple times.
+>
+> --
+> Darren Hart
+> Intel Open Source Technology Center
+> Yocto Project - Technical Lead - Linux Kernel
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
------Original Message-----
-From: Darren Hart [mailto:dvhart@linux.intel.com]=20
-Sent: Monday, August 20, 2012 3:09 PM
-To: Saxena, Rahul
-Cc: yocto@yoctoproject.org; Zanussi, Tom
-Subject: Re: [PATCH 1/3] meta-cedartrail: update SRCREV for Cedartrail mach=
-ine branch
 
 
-
-On 08/20/2012 02:52 PM, rahul.saxena@intel.com wrote:
-> From: Rahul Saxena <rahul.saxena@intel.com>
->=20
-> update SRCREV_machine_pn-linux-yocto_cedartrail
-
-These typically include a reason for the update. Are you just bringing it u=
-p to the most recent update from Bruce or is this to include some update th=
-at you pushed to the cedartrail branch?
-
---
-Darren
-
->=20
-> Signed-off-by: Rahul Saxena <rahul.saxena@intel.com>
-> ---
->  .../recipes-kernel/linux/linux-yocto_3.0.bbappend  |    4 ++--
->  1 files changed, 2 insertions(+), 2 deletions(-)
->=20
-> diff --git=20
-> a/meta-cedartrail/recipes-kernel/linux/linux-yocto_3.0.bbappend=20
-> b/meta-cedartrail/recipes-kernel/linux/linux-yocto_3.0.bbappend
-> index 7a0a2a3..48deb45 100644
-> --- a/meta-cedartrail/recipes-kernel/linux/linux-yocto_3.0.bbappend
-> +++ b/meta-cedartrail/recipes-kernel/linux/linux-yocto_3.0.bbappend
-> @@ -15,9 +15,9 @@ KMACHINE_cedartrail-nopvr  =3D "cedartrail"
->  KBRANCH_cedartrail-nopvr  =3D "yocto/standard/cedartrail"
->  KERNEL_FEATURES_append_cedartrail-nopvr +=3D " cfg/smp.scc"
-> =20
-> -SRCREV_machine_pn-linux-yocto_cedartrail ?=3D "81fd8c307997aff37916828dc=
-8b4ef72f5d35a94"
-> +SRCREV_machine_pn-linux-yocto_cedartrail ?=3D "3b5b629560f2a36426c19f4f1=
-8e3633aa93c955e"
->  SRCREV_meta_pn-linux-yocto_cedartrail ?=3D "46e8fc2bbbe73514e8d99101adaa=
-a373f760ffa7"
->  SRCREV_pvr_pn-linux-yocto_cedartrail ?=3D "997f5644664b31ebefd6e16c451c4=
-a3729eb378a"
-> =20
-> -SRCREV_machine_pn-linux-yocto_cedartrail-nopvr ?=3D "81fd8c307997aff3791=
-6828dc8b4ef72f5d35a94"
-> +SRCREV_machine_pn-linux-yocto_cedartrail-nopvr ?=3D "3b5b629560f2a36426c=
-19f4f18e3633aa93c955e"
->  SRCREV_meta_pn-linux-yocto_cedartrail-nopvr ?=3D "a4ac64fe873f08ef718e28=
-49b88914725dc99c1c"
->=20
-
---
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Technical Lead - Linux Kernel
+-- 
+Jeff Osier-Mixon http://jefro.net/blog
+Yocto Project Community Manager @Intel http://yoctoproject.org
 
