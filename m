@@ -1,61 +1,27 @@
-Return-Path: <B29882@freescale.com>
-Received: from co1outboundpool.messaging.microsoft.com
-	(co1ehsobe005.messaging.microsoft.com [216.32.180.188])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0421AE0027E
-	for <yocto@yoctoproject.org>; Mon, 20 Aug 2012 11:13:09 -0700 (PDT)
-Received: from mail3-co1-R.bigfish.com (10.243.78.245) by
-	CO1EHSOBE004.bigfish.com (10.243.66.67) with Microsoft SMTP Server id
-	14.1.225.23; Mon, 20 Aug 2012 18:13:07 +0000
-Received: from mail3-co1 (localhost [127.0.0.1])	by mail3-co1-R.bigfish.com
-	(Postfix) with ESMTP id AFD8A920088;
-	Mon, 20 Aug 2012 18:13:07 +0000 (UTC)
-X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null); IPV:NLI;
-	H:mail.freescale.net; RD:none; EFVD:NLI
-X-SpamScore: 3
-X-BigFish: VS3(z1725nzbb2dI98dI9371Ic89bh1432Izz1202hzz8275bhz2dh2a8h668h839h8e2h8e3hf0ah107ah10d2hbe9i)
-Received: from mail3-co1 (localhost.localdomain [127.0.0.1]) by mail3-co1
-	(MessageSwitch) id 1345486385475673_31925;
-	Mon, 20 Aug 2012 18:13:05 +0000 (UTC)
-Received: from CO1EHSMHS017.bigfish.com (unknown [10.243.78.244])	by
-	mail3-co1.bigfish.com (Postfix) with ESMTP id 67FF7900238;
-	Mon, 20 Aug 2012 18:13:05 +0000 (UTC)
-Received: from mail.freescale.net (70.37.183.190) by CO1EHSMHS017.bigfish.com
-	(10.243.66.27) with Microsoft SMTP Server (TLS) id 14.1.225.23;
-	Mon, 20 Aug 2012 18:13:04 +0000
-Received: from 039-SN1MPN1-001.039d.mgd.msft.net ([169.254.1.41]) by
-	039-SN1MMR1-005.039d.mgd.msft.net ([::1]) with mapi id 14.02.0309.003;
-	Mon, 20 Aug 2012 13:13:03 -0500
-From: McClintock Matthew-B29882 <B29882@freescale.com>
-To: Khem Raj <raj.khem@gmail.com>
-Thread-Topic: [yocto] [meta-fsl-ppc][PATCH 2/2] fsl.conf: Let
-	linux-qoriq-sdk-headers-nativesdk provide linux-libc-headers-nativesdk
-Thread-Index: AQHNW462266JlnvN2UumT9YN8fdDr5cdLAYAgAABHYCAPFI6AIAAwqgAgAikJQCAAJzkAIAAGGsA
-Date: Mon, 20 Aug 2012 18:13:02 +0000
-Message-ID: <CAEsOVNfb=KeN_WGWfuyPT6MTiY9S9nEkz6pn5G6xp+-Jroeh5g@mail.gmail.com>
-References: <1341550315-9795-1-git-send-email-raj.khem@gmail.com>
-	<1341550315-9795-2-git-send-email-raj.khem@gmail.com>
-	<88701C38B5D07249817D428430999C910EAC7607@sestoex05.enea.se>
-	<CAEsOVNe=+W0XLdYr1cZ_YFzkbASFCEio+yQ40Ojip_nq5FC=wQ@mail.gmail.com>
-	<88701C38B5D07249817D428430999C910EAC7B39@sestoex05.enea.se>
-	<CAEsOVNcGt6bP0woxhEjJnfpTVJj6W9A7oF_3VdxT_4N21zNddg@mail.gmail.com>
-	<502A0308.6080203@enea.com>
-	<CAMKF1sq=wRkTBAcUkLQhbv0QX6rCAA3cb8S39hYSAM4knfqcbw@mail.gmail.com>
-	<5031E600.8030208@enea.com>
-	<CAMKF1spkpnDye4NxNpTSKsC6CVebTfm1_1roW5viO=xMZz50ug@mail.gmail.com>
-In-Reply-To: <CAMKF1spkpnDye4NxNpTSKsC6CVebTfm1_1roW5viO=xMZz50ug@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [70.112.201.132]
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C6350E0027E;
+	Mon, 20 Aug 2012 11:45:38 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 20 Aug 2012 11:45:38 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.77,798,1336374000"; d="scan'208";a="188880140"
+Received: from unknown (HELO envy.home) ([10.7.199.146])
+	by orsmga002.jf.intel.com with ESMTP; 20 Aug 2012 11:45:37 -0700
+Message-ID: <5032855A.5050704@linux.intel.com>
+Date: Mon, 20 Aug 2012 11:43:38 -0700
+From: Darren Hart <dvhart@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:14.0) Gecko/20120717 Thunderbird/14.0
 MIME-Version: 1.0
-X-OriginatorOrg: freescale.com
-Cc: McClintock Matthew-B29882 <B29882@freescale.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-fsl-ppc][PATCH 2/2] fsl.conf: Let linux-qoriq-sdk-headers-nativesdk provide linux-libc-headers-nativesdk
+To: Yocto Project <yocto@yoctoproject.org>
+X-Enigmail-Version: 1.4.3
+Cc: Paul Eggleton <paul.eggleton@linux.intel.com>, Jason Kridner <jdk@ti.com>,
+	"Wold, Saul" <saul.wold@intel.com>
+Subject: Documenting the mailing lists.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: McClintock Matthew-B29882 <B29882@freescale.com>
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -64,52 +30,112 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 20 Aug 2012 18:13:09 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-ID: <8B2628310B805647AA15297421D9559F@mgd.freescale.com>
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 20 Aug 2012 18:45:38 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-On Mon, Aug 20, 2012 at 11:45 AM, Khem Raj <raj.khem@gmail.com> wrote:
-> On Mon, Aug 20, 2012 at 12:23 AM, David Nystr=F6m <david.nystrom@enea.com=
-> wrote:
->> On 08/14/2012 09:26 PM, Khem Raj wrote:
->>>
->>> On Tue, Aug 14, 2012 at 12:49 AM, David Nystr=F6m <david.nystrom@enea.c=
-om>
->>> wrote:
->>>>
->>>> Hi, it looks like this was merged to the denzil branch, and
->>>> PREFERRED_PROVIDER_linux-libc-headers-nativesdk was moved back to
->>>> distro.conf.
->>>> Any reason for this ?
->>>
->>> why do you want nativesdk headers to come from BSP its a fsl-ppc bsp I
->>> dont expect it to have something special for SDK hosts which are
->>> usually x86 ? afterall these are for
->>> the SDK host and not for target. Moreover it means that this BSP will
->>> not play in the multi BSP environment something you never want.
->>
->>
->> My main concern is that meta-toolchain uses linux-libc-headers-nativesdk=
- for
->> the meta-toolchain
->> tarball build, i.e. the meta-toolchain API may differ from the on-target=
- API
->> in regards to kernel-headers, no ?
->>
->> This might very well be true if kernel version of
->> linux-libc-headers-nativesdk !=3D linux-libc-headers
->
-> whats the point of keeping header versions same across two entirely
-> different systems.
-> can you point to some instances where this API difference if any is in
-> conflict ?
+Scott,
 
-I just checked and we do have a few obscure bits in our kernel tree's
-header files. Nothing that 99.9% would use but it seems reasonable to
-include these...
+We've come across some more confusion about mailing lists recently. I've
+sent a patch against poky to try and clear it up a bit in the source,
+but we should also see about cleaning up the web descriptions of the lists.
 
--M=
+We have two pages that describe the lists:
 
+http://www.yoctoproject.org/community/mailing-lists
+https://lists.yoctoproject.org/
+
+My first recommendation would be to eliminate
+http://www.yoctoproject.org/community/mailing-lists and replace links to
+it with links to https://lists.yoctoproject.org. This eliminates the
+need to keep the CMS version in sync with the mailman page. The mailman
+page should be considered the master anyway as the Description field is
+taken directly from the list administrative settings.
+
+We should then work to create meaningful Descriptions of all the lists.
+These should still fit on a single line, but I think we can improve on
+what we have. For example:
+
+meta-ti		Mailing list for the meta-ti layer
+
+is not particularly enlightening. Perhaps something like:
+
+meta-ti		Usage and development of the meta-ti layer
+
+If we do this all at once, we can also ensure a consistent language,
+tone, etc. I'll propose something for each list here and ask that
+interested parties comment and correct in reply. Once agreed upon, the
+admins of the respective lists can make the changes (all CC'd)
+
+Current:
+========
+linux-yocto 	Development list for the linux-yocto*.git Linux kernel
+		repositories
+meta-ti 	Mailing list for the meta-ti layer
+poky 		Poky build system developer discussion & patch
+		submission for meta-yocto
+shoeleather 	Neutral Board Lab Mailing List
+yocto 		Discussion of all things Yocto
+yocto-ab 	Yocto Project Advisory Board
+yocto-advocacy 	Yocto Project Advocacy & Outreach AB Subgroup
+yocto-announce 	Announcements from the Yocto Project
+yocto-bsp 	BSP Interest Group
+Yocto-builds 	Build failures and discusion about the build system
+yocto-infrastructure 	Infrastructure
+
+
+Proposed:
+=========
+linux-yocto 	Development list for the linux-yocto*.git Linux kernel
+		repositories
+meta-ti 	Usage and development list for the meta-ti layer
+poky 		Usage and development list for the Poky build system
+		(see README for patch submission)
+shoeleather 	Neutral Board Lab Mailing List
+
+I'm not sure what "neutral" is meant to convey. How about:
+
+		Discussion list for the Shoeleather embedded board lab
+
+yocto 		General discussion list for the Yocto Project and
+		development for projects without dedicated lists
+
+I think the yocto list is a bit problematic in that it mixes project
+conceptual discussion, user help desk, and development all on the same
+list. However, I'm trying to clarify what these actually are here - not
+change anything.
+
+yocto-ab 	Yocto Project Advisory Board ???
+
+This should imply the intended audience. Is it just meant for members?
+Is it meant as a way for non-AB members to observe what is going on?
+
+yocto-advocacy 	Yocto Project advocacy & outreach AB subgroup
+
+Same as above.
+
+yocto-announce 	Announcements from the Yocto Project (low traffic)
+yocto-bsp 	BSP Interest Group ???
+
+There is no detailed description for this list, so I'm not sure what
+this is really about.
+
+Yocto-builds 	Build failures and discussion about the autobuilder
+
+(includes typo fix, "build system" removed to avoid confusion with the
+"poky build system")
+
+yocto-infrastructure 	Infrastructure ???
+
+Jefro or Michael, can you come up with something appropriate here?
+
+
+For lists where certain guidelines should be used in communications and
+patch submission, we should document that in the detailed description of
+the list, such as [project] tags for example.
+
+-- 
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Technical Lead - Linux Kernel
 
