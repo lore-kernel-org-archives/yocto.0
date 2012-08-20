@@ -1,33 +1,27 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from fmsmga102.fm.intel.com (mga10.intel.com [192.55.52.92])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C7437E0027E
-	for <yocto@yoctoproject.org>; Mon, 20 Aug 2012 15:57:28 -0700 (PDT)
-Received: from mail-qa0-f52.google.com ([209.85.216.52])
-	by mga11.intel.com with ESMTP/TLS/RC4-SHA; 20 Aug 2012 15:57:28 -0700
-Received: by qabg14 with SMTP id g14so2984701qab.4
-	for <yocto@yoctoproject.org>; Mon, 20 Aug 2012 15:57:27 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:cc:content-type
-	:x-gm-message-state;
-	bh=zeVr3c2UtfdNPstlgc46F2M8Rt7ybz43pt3qtkWJ9qc=;
-	b=i4fVoZEbrDLbGH8arTVZMkk6RMPCr4sO7246JD/dQ9KPC9uNRkzeF59Y8APA1ywLl3
-	rb1xhAoRLHTMsnqDoPRXZocjDo9EsSodxiOYkSi2UKEmXSdYptnIA0wrh/LADXY6VF0X
-	5PCr4VKg5NhrisYHzP132GEIhWNxorukDmZ9Tn+uUwpF1hcbvFj6K14G+2TJIjT+a/DZ
-	uRrLSMAkGvK8Jiu9zE3sQVjA2ONTW1nHzatdX4+VOt6+pbnDatNDbk8XZpVODPB0MeVr
-	+9f89mzBQy1n3ATVjaF2rO3LiqlLp+oFexmUGNB+Q2b5EqzhWiCS8SMPJRr1N9Y3C8nw
-	/wnA==
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BA249E002A5;
+	Mon, 20 Aug 2012 16:19:19 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 20 Aug 2012 16:19:19 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.77,799,1336374000"; d="scan'208";a="183174630"
+Received: from unknown (HELO helios.localnet) ([10.252.121.107])
+	by orsmga001.jf.intel.com with ESMTP; 20 Aug 2012 16:19:17 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Darren Hart <dvhart@linux.intel.com>
+Date: Tue, 21 Aug 2012 00:19:16 +0100
+Message-ID: <336378798.CjWX3CWzPu@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.9 (Linux/3.2.0-29-generic-pae; KDE/4.9.0; i686; ; )
+In-Reply-To: <5032BF3D.4000900@linux.intel.com>
+References: <5032855A.5050704@linux.intel.com>
+	<CA+YB3rbgN8L_U7VznPNcSpX3dja4KbkjaePQt305KGmyV5eFkg@mail.gmail.com>
+	<5032BF3D.4000900@linux.intel.com>
 MIME-Version: 1.0
-Received: by 10.229.135.75 with SMTP id m11mr13840536qct.66.1345503447465;
-	Mon, 20 Aug 2012 15:57:27 -0700 (PDT)
-Received: by 10.229.103.143 with HTTP; Mon, 20 Aug 2012 15:57:27 -0700 (PDT)
-Date: Mon, 20 Aug 2012 15:57:27 -0700
-Message-ID: <CAPhnLPDV_HrO8f0Lr2Si+gPwv96ubX3bm6t+g5-_V+dNoDF7_A@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: yocto@yoctoproject.org
-X-Gm-Message-State: ALoCoQkjl25nPn8TnjGgex54hPwoyzqR0HcL1LjN4Fl/eH2uEzfIEIhY0F84ZQuN8pnan802ep2X
-Cc: IoanaX Grigoropol <ioanax.grigoropol@intel.com>
-Subject: [eclipse-poky][PATCH] setup.py: Change main eclipse SDK repo to point to yocto
+Cc: Yocto Project <yocto@yoctoproject.org>, Jason Kridner <jdk@ti.com>, "Wold,
+	Saul" <saul.wold@intel.com>
+Subject: Re: Documenting the mailing lists.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,81 +33,57 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 20 Aug 2012 22:57:28 -0000
-Content-Type: multipart/alternative; boundary=00248c6a66c207bf0904c7ba6fc4
+X-List-Received-Date: Mon, 20 Aug 2012 23:19:19 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
---00248c6a66c207bf0904c7ba6fc4
-Content-Type: text/plain; charset=ISO-8859-1
+On Monday 20 August 2012 15:50:37 Darren Hart wrote:
+> On 08/20/2012 03:43 PM, Jeff Osier-Mixon wrote:
+> > On Mon, Aug 20, 2012 at 3:37 PM, Darren Hart <dvhart@linux.intel.com> 
+wrote:
+> >> On 08/20/2012 03:18 PM, Jeff Osier-Mixon wrote:
+> >>> The mailing lists and website stuff is generally my responsibility,
+> >>> but please fix anything you like. :)  Be aware that the new website is
+> >> 
+> >> No intent to take over anything, I've just had to answer the "what goes
+> >> where" question a few too many times these last couple of weeks and felt
+> >> I should do something about it :-)
+> > 
+> > Oh, I'm not joking - please fix anything you want! or Scott or I can
+> > do it. Thanks for getting the ball rolling. I'll catch up on this
+> > thread.
+> > 
+> >> I made sure you were on CC so you could help guide this.
+> >> 
+> >>> under construction, so I am loathe to change much on the old website
+> >>> at this point.  For the new one, it may be possible to dynamically
+> >>> grab the description from mailman.
+> >> 
+> >> We'll still need descriptions of the non-yocto-project lists, so that
+> >> may not be particularly helpful.
+> > 
+> > The only YP-related, non-YP lists I currently track are
+> > openembedded-core and bitbake-devel.  Both are OE lists, and I have
+> > recently volunteered to help admin, so can make sure they have valid
+> > Descriptions. If there are other lists we should track, please let me
+> > know and I'll add them to the pile.
+> 
+> The only additional one that we reference in the manual is:
+> 
+> *	http://lists.linuxtogo.org/cgi-bin/mailman/listinfo/openembedded-devel
+> - Discussion mailing list about OpenEmbedded.
+> 
+> I'm not sure we need reference it at all though, perhaps oe-core is
+> sufficient.
 
-The main eclipse download site has been hard to connect to
-for many users. This sets up the main setup script to use a
-mirror of the eclipse tarballs.
+FYI, the reason I added oe-devel is because it's the list that is used to 
+discuss/submit patches for almost all OE community layers other than OE-Core 
+and the ones that are hosted on yoctoproject.org.
 
-One note of importance here, is that we will have to maintain
-a mirror of all SDK releases we wish to utilize.
+Cheers,
+Paul
 
-Signed-off-by: Elizabeth Flanagan <elizabeth.flanagan@intel.com>
----
- scripts/setup.sh |    2 +-
- 1 files changed, 1 insertions(+), 1 deletions(-)
+--
+Paul Eggleton
+Intel Open Source Technology Centre
 
-diff --git a/scripts/setup.sh b/scripts/setup.sh
-index 5a928f4..b7e2a54 100755
---- a/scripts/setup.sh
-+++ b/scripts/setup.sh
-@@ -66,7 +66,7 @@ if [ ! -f
-eclipse/plugins/org.eclipse.swt_3.100.0.v4233d.jar ]; then
-   fi
-   # Eclipse SDK: Need the SDK so we can link into docs
-   echo "Getting Eclipse SDK..."
--  wget "
-http://download.eclipse.org/eclipse/downloads/drops4/${ep_rel}${ep_ver}${ep_date}/eclipse-SDK-${ep_ver}-${ep_arch}.tar.gz
-"
-+  wget "
-http://downloads.yoctoproject.org/eclipse/downloads/drops4/${ep_rel}${ep_ver}${ep_date}/eclipse-SDK-${ep_ver}-${ep_arch}.tar.gz
-"
-   tar xfz eclipse-SDK-${ep_ver}-${ep_arch}.tar.gz || err_exit $?
-"extracting Eclipse SDK failed"
-   rm eclipse-SDK-${ep_ver}-${ep_arch}.tar.gz
-   cd "${curdir2}"
--- 
-1.7.5.4
-
--- 
-Elizabeth Flanagan
-Yocto Project
-Build and Release
-
---00248c6a66c207bf0904c7ba6fc4
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-The main eclipse download site has been hard to connect to<br>for many user=
-s. This sets up the main setup script to use a<br>mirror of the eclipse tar=
-balls.<br><br>One note of importance here, is that we will have to maintain=
-<br>
-a mirror of all SDK releases we wish to utilize.<br><br>Signed-off-by: Eliz=
-abeth Flanagan &lt;<a href=3D"mailto:elizabeth.flanagan@intel.com">elizabet=
-h.flanagan@intel.com</a>&gt;<br>---<br>=A0scripts/setup.sh |=A0=A0=A0 2 +-<=
-br>=A01 files changed, 1 insertions(+), 1 deletions(-)<br>
-<br>diff --git a/scripts/setup.sh b/scripts/setup.sh<br>index 5a928f4..b7e2=
-a54 100755<br>--- a/scripts/setup.sh<br>+++ b/scripts/setup.sh<br>@@ -66,7 =
-+66,7 @@ if [ ! -f eclipse/plugins/org.eclipse.swt_3.100.0.v4233d.jar ]; th=
-en<br>
-=A0=A0 fi<br>=A0=A0 # Eclipse SDK: Need the SDK so we can link into docs<br=
->=A0=A0 echo &quot;Getting Eclipse SDK...&quot;<br>-=A0 wget &quot;<a href=
-=3D"http://download.eclipse.org/eclipse/downloads/drops4/${ep_rel}${ep_ver}=
-${ep_date}/eclipse-SDK-${ep_ver}-${ep_arch}.tar.gz">http://download.eclipse=
-.org/eclipse/downloads/drops4/${ep_rel}${ep_ver}${ep_date}/eclipse-SDK-${ep=
-_ver}-${ep_arch}.tar.gz</a>&quot;<br>
-+=A0 wget &quot;<a href=3D"http://downloads.yoctoproject.org/eclipse/downlo=
-ads/drops4/${ep_rel}${ep_ver}${ep_date}/eclipse-SDK-${ep_ver}-${ep_arch}.ta=
-r.gz">http://downloads.yoctoproject.org/eclipse/downloads/drops4/${ep_rel}$=
-{ep_ver}${ep_date}/eclipse-SDK-${ep_ver}-${ep_arch}.tar.gz</a>&quot;<br>
-=A0=A0 tar xfz eclipse-SDK-${ep_ver}-${ep_arch}.tar.gz || err_exit $? &quot=
-;extracting Eclipse SDK failed&quot;<br>=A0=A0 rm eclipse-SDK-${ep_ver}-${e=
-p_arch}.tar.gz<br>=A0=A0 cd &quot;${curdir2}&quot;<br>-- <br>1.7.5.4<br><br=
- clear=3D"all">
--- <br>Elizabeth Flanagan<br>Yocto Project<br>Build and Release<br>
-
---00248c6a66c207bf0904c7ba6fc4--
