@@ -1,65 +1,30 @@
-Return-Path: <B29882@freescale.com>
-Received: from ch1outboundpool.messaging.microsoft.com
-	(ch1ehsobe004.messaging.microsoft.com [216.32.181.184])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 567F7E0027E
-	for <yocto@yoctoproject.org>; Mon, 20 Aug 2012 12:50:06 -0700 (PDT)
-Received: from mail105-ch1-R.bigfish.com (10.43.68.253) by
-	CH1EHSOBE017.bigfish.com (10.43.70.67) with Microsoft SMTP Server id
-	14.1.225.23; Mon, 20 Aug 2012 19:50:05 +0000
-Received: from mail105-ch1 (localhost [127.0.0.1])	by
-	mail105-ch1-R.bigfish.com (Postfix) with ESMTP id 0051D420354;
-	Mon, 20 Aug 2012 19:50:05 +0000 (UTC)
-X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null); IPV:NLI;
-	H:mail.freescale.net; RD:none; EFVD:NLI
-X-SpamScore: -2
-X-BigFish: VS-2(z1725nz98dI9371I1432I179dNzz1202hzz8275bhz2dh2a8h668h839h8e2h8e3hf0ah107ah10d2hbe9i)
-Received: from mail105-ch1 (localhost.localdomain [127.0.0.1]) by mail105-ch1
-	(MessageSwitch) id 1345492204166258_27691;
-	Mon, 20 Aug 2012 19:50:04 +0000 (UTC)
-Received: from CH1EHSMHS004.bigfish.com (snatpool1.int.messaging.microsoft.com
-	[10.43.68.250])	by mail105-ch1.bigfish.com (Postfix) with ESMTP id
-	20C2D34004F;	Mon, 20 Aug 2012 19:50:04 +0000 (UTC)
-Received: from mail.freescale.net (70.37.183.190) by CH1EHSMHS004.bigfish.com
-	(10.43.70.4) with Microsoft SMTP Server (TLS) id 14.1.225.23;
-	Mon, 20 Aug 2012 19:50:01 +0000
-Received: from 039-SN1MPN1-001.039d.mgd.msft.net ([169.254.1.41]) by
-	039-SN1MMR1-003.039d.mgd.msft.net ([10.84.1.16]) with mapi id
-	14.02.0309.003; Mon, 20 Aug 2012 14:50:01 -0500
-From: McClintock Matthew-B29882 <B29882@freescale.com>
-To: Khem Raj <raj.khem@gmail.com>, =?iso-8859-1?Q?David_Nystr=F6m?=
-	<David.Nystrom@enea.com>
-Thread-Topic: [yocto] [meta-fsl-ppc][PATCH 2/2] fsl.conf: Let
-	linux-qoriq-sdk-headers-nativesdk provide linux-libc-headers-nativesdk
-Thread-Index: AQHNW462266JlnvN2UumT9YN8fdDr5cdLAYAgAABHYCAPFI6AIAAwqgAgAikJQCAAJzkAIAAGGsAgAAUxoCAAARiAIAAAfAA
-Date: Mon, 20 Aug 2012 19:50:00 +0000
-Message-ID: <CAEsOVNfBgOGgmZm4BehTAm28v703d7Ao9ehkE2GD+dwxKswtOw@mail.gmail.com>
-References: <1341550315-9795-1-git-send-email-raj.khem@gmail.com>
-	<1341550315-9795-2-git-send-email-raj.khem@gmail.com>
-	<88701C38B5D07249817D428430999C910EAC7607@sestoex05.enea.se>
-	<CAEsOVNe=+W0XLdYr1cZ_YFzkbASFCEio+yQ40Ojip_nq5FC=wQ@mail.gmail.com>
-	<88701C38B5D07249817D428430999C910EAC7B39@sestoex05.enea.se>
-	<CAEsOVNcGt6bP0woxhEjJnfpTVJj6W9A7oF_3VdxT_4N21zNddg@mail.gmail.com>
-	<502A0308.6080203@enea.com>
-	<CAMKF1sq=wRkTBAcUkLQhbv0QX6rCAA3cb8S39hYSAM4knfqcbw@mail.gmail.com>
-	<5031E600.8030208@enea.com>
-	<CAMKF1spkpnDye4NxNpTSKsC6CVebTfm1_1roW5viO=xMZz50ug@mail.gmail.com>
-	<CAEsOVNfb=KeN_WGWfuyPT6MTiY9S9nEkz6pn5G6xp+-Jroeh5g@mail.gmail.com>
-	<CAMKF1srF6AYbJzCGN989kweBmcz6Y-BGvyCiAhHGTPDoOYESYQ@mail.gmail.com>
-	<CAEsOVNfcBKAHut3Mw3tCb93TgkwW6uQE5J1DVSSez65oczNvMg@mail.gmail.com>
-In-Reply-To: <CAEsOVNfcBKAHut3Mw3tCb93TgkwW6uQE5J1DVSSez65oczNvMg@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [70.112.201.132]
+Return-Path: <mark.hatle@windriver.com>
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8B9D8E0027E
+	for <yocto@yoctoproject.org>; Mon, 20 Aug 2012 13:45:19 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id q7KKjExQ011609
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Mon, 20 Aug 2012 13:45:15 -0700 (PDT)
+Received: from msp-dhcp10.wrs.com (172.25.34.10) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.2.309.2;
+	Mon, 20 Aug 2012 13:45:15 -0700
+Message-ID: <5032A1D3.8090600@windriver.com>
+Date: Mon, 20 Aug 2012 15:45:07 -0500
+From: Mark Hatle <mark.hatle@windriver.com>
+Organization: Wind River Systems
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8;
+	rv:14.0) Gecko/20120713 Thunderbird/14.0
 MIME-Version: 1.0
-X-OriginatorOrg: freescale.com
-Cc: McClintock Matthew-B29882 <B29882@freescale.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-fsl-ppc][PATCH 2/2] fsl.conf: Let linux-qoriq-sdk-headers-nativesdk provide linux-libc-headers-nativesdk
+To: <yocto@yoctoproject.org>, Patches and discussions about the oe-core layer
+	<openembedded-core@lists.openembedded.org>,
+	<openembedded-devel@lists.openembedded.org>
+References: <2404459.dJBf5OQotX@helios>
+In-Reply-To: <2404459.dJBf5OQotX@helios>
+Subject: Re: RFC: OE-Core task rework
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: McClintock Matthew-B29882 <B29882@freescale.com>
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -68,48 +33,142 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 20 Aug 2012 19:50:07 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-ID: <E3FAC354AAEFCA4A887B9D58E4AF2692@mgd.freescale.com>
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 20 Aug 2012 20:45:19 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Adding David back...
+[resend, I had the original mail rejected by the oe list serves as being 
+undeliverable.]
 
--M
+On 8/15/12 4:46 AM, Paul Eggleton wrote:
+> Hi all,
+>
+> There have been a few requests to review the task recipes (i.e. package
+> groups) provided by OE-Core, and indeed these have not really been looked at
+> seriously since OE-Core was created. Ideally I think we want them to be useful
+> to a wide audience and provide useful units of functionality that can be added
+> to an image without the person doing the selection having to manually select
+> too many individual packages. Imagine presenting the list of tasks to someone
+> in a UI for assembling images (such as Hob or Narcissus) and you can start to
+> see that we have some work to do in this area.
+>
+> I know various distros and users of OE-Core have created their own tasks or
+> resurrected tasks from OE-Classic, and this is an opportunity to perhaps look
+> at bringing some of these (or at least, parts of them) into the core. It is
+> true that tasks will often be an expression of distro policy, and we also
+> can't have any tasks in OE-Core that refer to packages that don't exist in OE-
+> Core; thus distros will always be extending the base tasks or adding their own
+> - and that's fine. However, with some thought I believe we can come up with a
+> set of tasks that are generally useful to most people using OE-Core.
+>
+> For reference, I've compiled a list on the wiki of the current tasks in OE-
+> Core with links to the recipes and some notes:
+>
+>    http://www.openembedded.org/wiki/OE-Core_Task_Rework
+>
+> Some of the things I think we ought to consider/address as part of this
+> exercise:
+>
+> 1) Do we rename "task" to something a little more understandable to the
+> uninitiated, such as "package group"? The word "task" is already used in a
+> much more natural sense within bitbake as a unit of work. Historically I
+> believe we picked up this term from Debian but I'm not aware of significant use
+> by other mainstream distributions.
 
-On Mon, Aug 20, 2012 at 2:42 PM, Matthew McClintock <msm@freescale.com> wro=
-te:
-> On Mon, Aug 20, 2012 at 2:27 PM, Khem Raj <raj.khem@gmail.com> wrote:
->>> I just checked and we do have a few obscure bits in our kernel tree's
->>> header files. Nothing that 99.9% would use but it seems reasonable to
->>> include these...
->>
->> Do you want applications for sdk host to be built using these obscure bi=
-ts ?
->> if yes I would like to know why?
->>
->> since then you are creating a scenariou where nativesdk is dependent on =
-target
->> kernel and we need to fix it so that nativesdk can be common again.
->>
->> if patches you are carrying are good for nativesdk headers can they be m=
-ade
->> available for other kernels like linux-yocto e.g. ?
->>
->> right now if we do this we are pretty much saying fsl machine layer can =
-really
->> not mix with other BSPs. Many people use yocto commonly on more than one=
- kind
->> of CPU and this does not scale.
+"group" or "packagegroup" or "package-group" is my suggestion for the existing 
+'task' recipes.  From what I've seen, it should be a rename opportunity -- we 
+can even provide/rprovide the old names....
+
+> 2) Look at the existing tasks and:
+>   * evaluate their usefulness
+>   * remove any that are obsolete
+>   * adjust existing contents if needed
+>   * look for useful groups of packages that might be added
 >
-> Hmm I think I was just confused. We don't need any modifications for
-> the headers for nativesdk foo (that is the x86 tools in
-> meta-toolchain).
+>   We need to pay particular attention to task-core-boot and task-base as these
+> are pulled in by default in any image that inherits from core-image.bbclass -
+> if these are not generally working for people that are creating their own
+> images, we need to change them such that they are.
+
+During the pre-oe-core Yocto Project development, a design was generated to 
+roughly group the packages into functional areas.  For the most part, this 
+design (as well as legacy elements) still exist.
+
+I think the boot, base and others need to be evaluated for usefulness... but my 
+feeling is most of them are close to being correct.
+
+The original design attempted to group things into functionality, so that OE 
+could be an "additive" distribution.  I.e., you don't start with a big blob of 
+packages and remove them as necessary, but instead you start with small 
+functional blocks and put them together to construct a system.  The tasks seemed 
+to be the logical blocks, and the contents of these blocks were based on the 
+early design.
+
+Very roughly speaking the early design was:
+
+filesystem
+|        \
+libc    libstdcxx
+|           \
+small cli    \
+(busybox)     \
+|              \
+basic commands  python -- perl
+|                 |         |
+initscripts       |         |
+multiuser         |         |
+system services --+---------+
+|
+LSB functionality
+
+(Lines indicate implicit dependencies)
+
+The goal was that if you include a specific group, such as "multiuser" support, 
+you would get all of the recipes necessary to enable multiuser support on the 
+system.  I think this is a reasonable theory to consider when evaluating the 
+existing groupings.
+
+> 3) Ensure all task recipes follow reasonable patterns:
+>   *  Fix recipe DESCRIPTIONs to make sense (and not contain Poky references)
+>   *  Ensure all individual packages have a decent SUMMARY/DESCRIPTION
+>   *  Try to make each task have a reasonable name - there are some current uses
+> of "core" and "base" that don't actually convey any meaning; LSB specific tasks
+> should be named as such, etc.
+
+Yup, there is a logical grouping for the lsb specific tasks, as for others.  The 
+naming needs to be made clear as to why it's there, and what it represents. Same 
+with the summary and descriptions -- they should list the functionality provided 
+by this group of components.
+
+>   *  Make all tasks inherit task.bbclass so that they get proper dbg/dev
+> packages and any other common task functionality
 >
-> So, I think everything is OK as is.. if you look at meta-toolchain you
-> will see it includes our kernel's headers for cross compiling.
+> 4) Consider the usefulness of the existing PACKAGE_GROUP_ structure which
+> converts some IMAGE_FEATURES into the addition of tasks to be installed (see
+> classes/core-image.bbclass). At the very least we should probably rename this
+> if we rename tasks to package groups, and there's a question as to how
+> IMAGE_FEATURES scales - should every task be represented in there or only a
+> select list? Would we be better off not trying to bring any tasks in via
+> IMAGE_FEATURES at all and mostly leave that to control post-processing (e.g.
+> package-management, debug-tweaks, etc.)?
+
+I'd certainly prefer that images were limited to selecting software from task 
+(group) recipes only, and not providing their own.  An image should be able to 
+change the selection based on an "image feature" or similar configuration, but 
+the underlying tasks/groups, recipes, etc should all be 'generic' to a given 
+distribution configuration.
+
+I think if you go through the images today, a lot of that stuff is either old, 
+or could be simplified by creating appropriate tasks/groups.
+
+--Mark
+
+> Please reply with your thoughts. Once we've come to a consensus on the things
+> we want to do (allowing plenty of time for discussion), I'll look at putting
+> together a set of patches that makes the appropriate changes.
 >
-> -M=
+> Thanks,
+> Paul
+>
 
 
