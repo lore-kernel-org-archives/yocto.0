@@ -1,39 +1,35 @@
-Return-Path: <martin.jansa@gmail.com>
-Received: from mail-wi0-f176.google.com (mail-wi0-f176.google.com
-	[209.85.212.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C14B7E0044A
-	for <yocto@yoctoproject.org>; Tue, 21 Aug 2012 05:19:00 -0700 (PDT)
-Received: by wibhn17 with SMTP id hn17so3846237wib.11
-	for <yocto@yoctoproject.org>; Tue, 21 Aug 2012 05:18:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:content-disposition:in-reply-to:user-agent;
-	bh=KvLdf2MMaueYdjFfH4mQ9gd65huGNziMcpjwocqn4aU=;
-	b=kjJZ4OjgW/b60dX6xO6beHGekbEp3ZKmOwrA/TYCzMWuJZAx+AI/Rotws6qUeKXExi
-	NaieYvUYcW2CuXBwrPscsYYWCPdZX1VbXlL/A2eZWtFkyplz6ZZftlUfThF6d1sB/wUe
-	OavaxpnvXx4bAasGM4VkodKnf1kLzmbw3FMWv/Q6ZexF3DtB67ZiQCOXfFUSgTyu7bs/
-	P5vX5g5tP1Ij9hwtpA+LSa9fSOWrh3OK6dj1I16EunUzFXrnJnBL1CalnOrHu9J6iGIj
-	5y4B4t3BT39Io0cSF7QcId1zhvZQ84FOiGR2TlWYBcRpwv8Srbwpj3uaZpgYJMkj7RI7
-	uUnA==
-Received: by 10.180.83.66 with SMTP id o2mr37557541wiy.14.1345551539291;
-	Tue, 21 Aug 2012 05:18:59 -0700 (PDT)
-Received: from localhost ([94.230.152.246])
-	by mx.google.com with ESMTPS id w7sm33368718wiz.0.2012.08.21.05.18.44
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Tue, 21 Aug 2012 05:18:57 -0700 (PDT)
-Date: Tue, 21 Aug 2012 14:18:50 +0200
-From: Martin Jansa <martin.jansa@gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
-Message-ID: <20120821121850.GD3029@jama.jama.net>
-References: <CAMKF1srjqDsesRcWP7oGzouPj9aOt_Ln0aOWE9cEQwpUQ7Unuw@mail.gmail.com>
+Return-Path: <david.c.stewart@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 91FEEE0044A
+	for <yocto@yoctoproject.org>; Tue, 21 Aug 2012 07:24:42 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 21 Aug 2012 07:24:42 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.77,802,1336374000"; 
+	d="scan'208,217";a="211677259"
+Received: from orsmsx606.amr.corp.intel.com ([10.22.226.128])
+	by fmsmga002.fm.intel.com with ESMTP; 21 Aug 2012 07:24:41 -0700
+Received: from orsmsx106.amr.corp.intel.com (10.22.225.133) by
+	orsmsx606.amr.corp.intel.com (10.22.226.128) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Tue, 21 Aug 2012 07:24:41 -0700
+Received: from orsmsx105.amr.corp.intel.com ([169.254.4.178]) by
+	ORSMSX106.amr.corp.intel.com ([169.254.5.217]) with mapi id
+	14.01.0355.002; Tue, 21 Aug 2012 07:24:40 -0700
+From: "Stewart, David C" <david.c.stewart@intel.com>
+To: Seth Bollinger <seth.boll@gmail.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] Classes
+Thread-Index: AQHNf0KlYy8SynLyA0Od9HnLHPD6sZdkT1wg
+Date: Tue, 21 Aug 2012 14:24:40 +0000
+Message-ID: <CDED78A957032E45B3239CDDA7642D151C8FDC78@ORSMSX105.amr.corp.intel.com>
+References: <CA+JN8xMPwisCNTrbzQaDm97D0ShGWRaCbkj752wLcF13eV6j=Q@mail.gmail.com>
+In-Reply-To: <CA+JN8xMPwisCNTrbzQaDm97D0ShGWRaCbkj752wLcF13eV6j=Q@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.139]
 MIME-Version: 1.0
-In-Reply-To: <CAMKF1srjqDsesRcWP7oGzouPj9aOt_Ln0aOWE9cEQwpUQ7Unuw@mail.gmail.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-Cc: yocto@yoctoproject.org,
-	openembeded-devel <Openembedded-devel@lists.openembedded.org>,
-	Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>
-Subject: Re: Toolchain rework, call for testing
+Subject: Re: Classes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,91 +41,208 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 21 Aug 2012 12:19:01 -0000
-X-Groupsio-MsgNum: 8822
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="hxkXGo8AKqTJ+9QI"
-Content-Disposition: inline
+X-List-Received-Date: Tue, 21 Aug 2012 14:24:42 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_CDED78A957032E45B3239CDDA7642D151C8FDC78ORSMSX105amrcor_"
 
---hxkXGo8AKqTJ+9QI
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+--_000_CDED78A957032E45B3239CDDA7642D151C8FDC78ORSMSX105amrcor_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Aug 16, 2012 at 09:47:37PM -0700, Khem Raj wrote:
-> Hi All
->=20
-> Recently glibc build has been simplified upstream. It has dropped the
-> dependency on libgcc_s and libgcc_eh for building glibc itself.
-> This means that we can simplify our toolchain bootstrap a bit by
-> dropping 1 of the 3 cross gcc build stages. We do not need
-> gcc-cross-intermediate
-> anymore. This should bring some build time reduction and simplify the
-> bootstrap. I have a series of patches which I have tested
-> by building core-image-minimal and meta-toolchain for all supported
-> qemu architectures and also uclibc/eglibc both
-> but it needs a lot more testing therefore I am calling out wider
-> audience for help in testing it out.
->=20
-> The branch is
->=20
-> http://git.openembedded.org/openembedded-core-contrib/log/?h=3Dkraj/toolc=
-hain-rework
+Seth - it sounds like you need something different than an overview class. =
+I think you might want to have one of the consultants who are familiar with=
+ building projects using the Yocto Project work for you for a couple of day=
+s to help you sort these things out, for a fee. I'm sure one of them on thi=
+s mailing list would be willing to offer their help. (Guys - you know who y=
+ou are...)
 
-eglibc fails to build in incremental build
+Dave
 
-| arm-oe-linux-gnueabi-gcc  -march=3Darmv4t -marm -mthumb-interwork -mtune=
-=3Darm920t --sysroot=3D/OE/shr-core/tmp-eglibc/sysroots/om-gta02-tcbootstra=
-p   -nostdlib -nostartfiles -r -o /OE/shr-core/tmp-eglibc/work/armv4t-oe-li=
-nux-gnueabi/eglibc-2.16-r6+svnr19922/build-arm-oe-linux-gnueabi/libc_pic.os=
- \
-|  -Wl,-d -Wl,--whole-archive /OE/shr-core/tmp-eglibc/work/armv4t-oe-linux-=
-gnueabi/eglibc-2.16-r6+svnr19922/build-arm-oe-linux-gnueabi/libc_pic.a -o /=
-OE/shr-core/tmp-eglibc/work/armv4t-oe-linux-gnueabi/eglibc-2.16-r6+svnr1992=
-2/build-arm-oe-linux-gnueabi/libc_pic.os
-| arm-oe-linux-gnueabi-gcc  -march=3Darmv4t -marm -mthumb-interwork -mtune=
-=3Darm920t --sysroot=3D/OE/shr-core/tmp-eglibc/sysroots/om-gta02-tcbootstra=
-p   -nostdlib -nostartfiles -r -o /OE/shr-core/tmp-eglibc/work/armv4t-oe-li=
-nux-gnueabi/eglibc-2.16-r6+svnr19922/build-arm-oe-linux-gnueabi/elf/librtld=
-=2Emap.o '-Wl,-(' /OE/shr-core/tmp-eglibc/work/armv4t-oe-linux-gnueabi/egli=
-bc-2.16-r6+svnr19922/build-arm-oe-linux-gnueabi/elf/dl-allobjs.os /OE/shr-c=
-ore/tmp-eglibc/work/armv4t-oe-linux-gnueabi/eglibc-2.16-r6+svnr19922/build-=
-arm-oe-linux-gnueabi/libc_pic.a -lgcc '-Wl,-)' -Wl,-Map,/OE/shr-core/tmp-eg=
-libc/work/armv4t-oe-linux-gnueabi/eglibc-2.16-r6+svnr19922/build-arm-oe-lin=
-ux-gnueabi/elf/librtld.mapT
-| /OE/shr-core/tmp-eglibc/sysroots/x86_64-linux/usr/libexec/armv4t-oe-linux=
--gnueabi.gcc-cross-initial/gcc/arm-oe-linux-gnueabi/4.7.2/ld: cannot find -=
-lgcc
-| collect2: error: ld returned 1 exit status
-| make[2]: *** [/OE/shr-core/tmp-eglibc/work/armv4t-oe-linux-gnueabi/eglibc=
--2.16-r6+svnr19922/build-arm-oe-linux-gnueabi/elf/librtld.map] Error 1
-| make[2]: *** Waiting for unfinished jobs....
-| make[2]: Leaving directory `/OE/shr-core/tmp-eglibc/work/armv4t-oe-linux-=
-gnueabi/eglibc-2.16-r6+svnr19922/eglibc-2_16/libc/elf'
-| make[1]: *** [elf/subdir_lib] Error 2
-| make[1]: Leaving directory `/OE/shr-core/tmp-eglibc/work/armv4t-oe-linux-=
-gnueabi/eglibc-2.16-r6+svnr19922/eglibc-2_16/libc'
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Seth Bollinger
+Sent: Monday, August 20, 2012 7:14 PM
+To: yocto@yoctoproject.org
+Subject: [yocto] Classes
 
-Maybe it's because=20
-http://git.openembedded.org/openembedded-core/commit/?id=3D30617bde61a3b0a0=
-944b49a0c9fb7159dacbb19f
-is missing PR bump and gcc wasn't rebuilt before eglibc upgrade (OEBasic no=
-t OEBasicHash here).
+Hello,
 
-Cheers,
---=20
-Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
+Will anyone recommend some classes regarding yocto and open embedded?  It w=
+ould be nice to get up to speed quickly and into the nitty gritty instead o=
+f an overview.
 
---hxkXGo8AKqTJ+9QI
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
+Something covering the following items would be nice:
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2.0.19 (GNU/Linux)
+1.  How should projects be laid out?  Distro, image, task, BSP, what things=
+ should go where?
+2.  How should subprojects inherit from superprojects?  If you need to crea=
+te many subplatforms from a base platform, what's the best way to go about =
+this?
+3.  How should classes such as distutils be created to be inherited by othe=
+r recipes (ruby modules that require a C extension to be compiled would be =
+one example).
+4.  How should hardware specific software be handled?
 
-iEYEARECAAYFAlAzfKoACgkQN1Ujt2V2gBy7rgCfebGuwBtEy+P3c8r6lGv9OYw/
-Fl0Anj/SCIIYEOOuXTR3jbHdTOTL5kVs
-=BZfg
------END PGP SIGNATURE-----
+I fear that (as a newb) I will design a layout that will be sub-optimal, bu=
+t we'll discover that after we have 25 platforms that will need major refac=
+toring.  :)
 
---hxkXGo8AKqTJ+9QI--
+Thanks,
+
+Seth
+
+
+--_000_CDED78A957032E45B3239CDDA7642D151C8FDC78ORSMSX105amrcor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-reply;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Seth &#8211; it sounds li=
+ke you need something different than an overview class. I think you might w=
+ant to have one of the consultants who are familiar with building
+ projects using the Yocto Project work for you for a couple of days to help=
+ you sort these things out, for a fee. I&#8217;m sure one of them on this m=
+ailing list would be willing to offer their help. (Guys &#8211; you know wh=
+o you are&#8230;)<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
+/p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Dave<o:p></o:p></span></p=
+>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
+/p>
+<div style=3D"border:none;border-left:solid blue 1.5pt;padding:0in 0in 0in =
+4.0pt">
+<div>
+<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
+0in 0in">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
+ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> yocto-bo=
+unces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org]
+<b>On Behalf Of </b>Seth Bollinger<br>
+<b>Sent:</b> Monday, August 20, 2012 7:14 PM<br>
+<b>To:</b> yocto@yoctoproject.org<br>
+<b>Subject:</b> [yocto] Classes<o:p></o:p></span></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Hello,<o:p></o:p></p>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Will anyone recommend some classes regarding yocto a=
+nd open embedded? &nbsp;It would be nice to get up to speed quickly and int=
+o the nitty gritty instead of an overview.<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Something covering the following items would be nice=
+:<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">1. &nbsp;How should projects be laid out? &nbsp;Dist=
+ro, image, task, BSP, what things should go where?<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">2. &nbsp;How should subprojects inherit from superpr=
+ojects? &nbsp;If you need to create many subplatforms from a base platform,=
+ what's the best way to go about this?<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">3. &nbsp;How should classes such as distutils be cre=
+ated to be inherited by other recipes (ruby modules that require a C extens=
+ion to be compiled would be one example).<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">4. &nbsp;How should hardware specific software be ha=
+ndled?<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">I fear that (as a newb) I will design a layout that =
+will be sub-optimal, but we'll discover that after we have 25 platforms tha=
+t will need major refactoring. &nbsp;:)<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Seth<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</div>
+</div>
+</body>
+</html>
+
+--_000_CDED78A957032E45B3239CDDA7642D151C8FDC78ORSMSX105amrcor_--
