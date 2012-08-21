@@ -1,41 +1,35 @@
-Return-Path: <martin.jansa@gmail.com>
-Received: from mail-we0-f176.google.com (mail-we0-f176.google.com
-	[74.125.82.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0B240E00346
-	for <yocto@yoctoproject.org>; Tue, 21 Aug 2012 11:28:11 -0700 (PDT)
-Received: by weyu3 with SMTP id u3so88536wey.35
-	for <yocto@yoctoproject.org>; Tue, 21 Aug 2012 11:28:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:content-disposition:in-reply-to:user-agent;
-	bh=Dnrp3aaTTz3F0TYZp3Ldu4oi0QWPVTLqX4bYUDpolgc=;
-	b=rEJX5lcPuM8tSwyPnGy9mAcCzKh+nU8HWOyZ+42q26CD+GfV1Hj/MqOPbPWPa2ko0a
-	2hf+kCyIgYU/UZcJChHCjwXqDz+lVpYyK7j6JTPabldCXDpENT4K097aGw+7v8cZjNpY
-	K6vq0h8ddF8AX+1QFBolGFX5G8vd+GGc1IuYGifA0Vl6dmPA+IfklK0pIO/xcddUnrtE
-	EmU5tBoxs+nEIlIPYrK5HbM16sA9AtAUzH+vfsyR7GqglGRVoa2rkXFdczbt5mj4TF7v
-	01Npt7pmcPY3wov/cJsivX4WyFH1F+TFSPTDO1LHnB71RY29rPu7r/alx3xDtXLuQHaV
-	IkRw==
-Received: by 10.180.96.3 with SMTP id do3mr41140989wib.5.1345573690613;
-	Tue, 21 Aug 2012 11:28:10 -0700 (PDT)
-Received: from localhost ([94.230.152.246])
-	by mx.google.com with ESMTPS id l5sm5947764wix.5.2012.08.21.11.28.07
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Tue, 21 Aug 2012 11:28:08 -0700 (PDT)
-Date: Tue, 21 Aug 2012 20:28:13 +0200
-From: Martin Jansa <martin.jansa@gmail.com>
+Return-Path: <rahul.saxena@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 91CE2E00346
+	for <yocto@yoctoproject.org>; Tue, 21 Aug 2012 12:05:25 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 21 Aug 2012 12:05:15 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.77,803,1336374000"; d="scan'208";a="189454447"
+Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
+	by orsmga002.jf.intel.com with ESMTP; 21 Aug 2012 12:05:15 -0700
+Received: from orsmsx151.amr.corp.intel.com (10.22.226.38) by
+	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Tue, 21 Aug 2012 12:05:14 -0700
+Received: from orsmsx103.amr.corp.intel.com ([169.254.2.138]) by
+	ORSMSX151.amr.corp.intel.com ([169.254.7.3]) with mapi id
+	14.01.0355.002; Tue, 21 Aug 2012 12:05:14 -0700
+From: "Saxena, Rahul" <rahul.saxena@intel.com>
 To: Khem Raj <raj.khem@gmail.com>
-Message-ID: <20120821182813.GF3029@jama.jama.net>
-References: <CAMKF1srjqDsesRcWP7oGzouPj9aOt_Ln0aOWE9cEQwpUQ7Unuw@mail.gmail.com>
-	<20120821121850.GD3029@jama.jama.net>
-	<CAMKF1spWTYExCcvQ9Uqo-470Qxb2NTwB_xYHhU7RzFOuiYP_VA@mail.gmail.com>
+Thread-Topic: [yocto] ERROR: QA Issue: No GNU_HASH in the elf binary
+Thread-Index: Ac1/xz1OQq0h6peoTwi2emTaPSNZ4wAO3cuAAA1mg+A=
+Date: Tue, 21 Aug 2012 19:05:14 +0000
+Message-ID: <63ECFF2A2302B44093D7CE9E9962C49003313948@ORSMSX103.amr.corp.intel.com>
+References: <63ECFF2A2302B44093D7CE9E9962C49003313905@ORSMSX103.amr.corp.intel.com>
+	<CAMKF1soePqtwZyQTJLOi2wxi9ODf1W-JP_cKf6Kvi6wJ4GtFtg@mail.gmail.com>
+In-Reply-To: <CAMKF1soePqtwZyQTJLOi2wxi9ODf1W-JP_cKf6Kvi6wJ4GtFtg@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-In-Reply-To: <CAMKF1spWTYExCcvQ9Uqo-470Qxb2NTwB_xYHhU7RzFOuiYP_VA@mail.gmail.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-Cc: yocto@yoctoproject.org,
-	openembeded-devel <Openembedded-devel@lists.openembedded.org>,
-	Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>
-Subject: Re: Toolchain rework, call for testing
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: ERROR: QA Issue: No GNU_HASH in the elf binary
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,48 +41,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 21 Aug 2012 18:28:12 -0000
-X-Groupsio-MsgNum: 8844
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="TU+u6i6jrDPzmlWF"
-Content-Disposition: inline
+X-List-Received-Date: Tue, 21 Aug 2012 19:05:25 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
---TU+u6i6jrDPzmlWF
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+DQpZb3UgYXJlIHJpZ2h0LCB0aGVzZSBhcmUgcmVndWxhciBmaWxlcyBhbmQgbm90IHN5bWxpbmtz
+IGFuZCBhcmUgZW5kaW5nIHVwIGluIHVzci9saWIgaW4gcGFja2FnZW5hbWUtZGV2IHBhY2thZ2UN
+Ckhvd2V2ZXIgSSB3YW50IHRoZW0gdG8gYmUgaW4gdGhlIHJlZ3VsYXIgcGFja2FnZS4NCg0KSSBk
+byBoYXZlIHRoZSBmb2xsb3dpbmcgc3RhdGVtZW50IGluIG15IHJlY2lwZToNCg0KRklMRVNfJHtQ
+Tn0gKz0gIiR7bGliZGlyfS9saWIqLnNvIg0KDQphbmQgbm90aGluZyBpbiBteSByZWNpcGUgaGFz
+IHN0YXRlbWVudHMgc3VjaCBhcyBGSUxFU18ke1BOKS1kZXYgPSAuLi4NCg0KDQpTbyBpdCBzZWVt
+cyB0aGF0IHRoZSBidWlsZCBpcyBtYWtpbmcgYSBhc3N1bXB0aW9uIHRoZXNlIGFyZSBzeW1saW5r
+cyBhbmQNCmFuZCBzaG91bGQgbmVjZXNzYXJpbHkgZ28gaW50byAtZGV2IHBhY2thZ2UgaWdub3Jp
+bmcgbXkgYWJvdmUgc3RhdGVtZW50IGluIHRoZSBhYm92ZS4gSG93IGRvIEkgZml4IHRoaXMgPw0K
+VGhlIGRlbnplbCBicmFuY2ggb2YgcG9reSBkb2VzIG5vdCBoYXZlIHRoaXMgYmVoYXZpb3IsIEkg
+Y2hlY2tlZCB0aGF0IGl0IGlzIG5vdCBwdXR0aW5nIGFueSAuc28gZmlsZXMgaW4gLWRldiBwYWNr
+YWdlLg0KDQpUaGFua3MNClJhaHVsDQogDQoNCi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQpG
+cm9tOiBLaGVtIFJhaiBbbWFpbHRvOnJhai5raGVtQGdtYWlsLmNvbV0gDQpTZW50OiBUdWVzZGF5
+LCBBdWd1c3QgMjEsIDIwMTIgMTE6MDkgQU0NClRvOiBTYXhlbmEsIFJhaHVsDQpDYzogeW9jdG9A
+eW9jdG9wcm9qZWN0Lm9yZw0KU3ViamVjdDogUmU6IFt5b2N0b10gRVJST1I6IFFBIElzc3VlOiBO
+byBHTlVfSEFTSCBpbiB0aGUgZWxmIGJpbmFyeQ0KDQpPbiBUdWUsIEF1ZyAyMSwgMjAxMiBhdCAx
+MTowMyBBTSwgU2F4ZW5hLCBSYWh1bCA8cmFodWwuc2F4ZW5hQGludGVsLmNvbT4gd3JvdGU6DQo+
+IGNkdi1wdnItZHJpdmVyLWRldi91c3IvbGliL2xpYk9wZW5WR1Uuc28NCg0KdGhpcyBzZWVtcyB0
+byBiZSBhIHByb3BlciBmaWxlIGFuZCBub3QgYSBzeW1saW5rIHNvIGZpcnN0bHkgeW91IGhhdmUg
+LnNvIGluIC1kZXYgcGFja2FnZXMgaWYgeW91IGZpeCB0aGF0IGl0IHdpbGwgd29yayBzZWNvbmRs
+eSBpZiB5b3UgaW50ZW50aW9uYWxseSB3YW50IHRob3NlIC5zbyBpbiAtZGV2IHBhY2thZ2UgdGhl
+biBhZGQNCg0KSU5TQU5FX1NLSVBfJHtQTn0tZGV2ID0gImxkZmxhZ3MiDQoNCmFzIHdlbGwuDQo=
 
-On Tue, Aug 21, 2012 at 10:15:47AM -0700, Khem Raj wrote:
-> On Tue, Aug 21, 2012 at 5:18 AM, Martin Jansa <martin.jansa@gmail.com> wr=
-ote:
-> >
-> > Maybe it's because
-> > http://git.openembedded.org/openembedded-core/commit/?id=3D30617bde61a3=
-b0a0944b49a0c9fb7159dacbb19f
-> > is missing PR bump and gcc wasn't rebuilt before eglibc upgrade (OEBasi=
-c not OEBasicHash here).
->=20
-> yes seems so. I have stopped using OEBasic long ago, you should stop
-> using it too.
-
-I'm using OEBasicHash on one jenkins setup, but that one is still
-building changes from 2 days ago.. (building 24/7.. )
-
-> But feel free to send a PR bump patchlet.
-
---=20
-Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
-
---TU+u6i6jrDPzmlWF
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2.0.19 (GNU/Linux)
-
-iEYEARECAAYFAlAz0z0ACgkQN1Ujt2V2gByr1QCgqAdGqRvm6A1h1bp3OoHSpsXk
-4l0AnR74WsFFVNl66jvfm58umvk0bWeG
-=x8AF
------END PGP SIGNATURE-----
-
---TU+u6i6jrDPzmlWF--
