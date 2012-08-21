@@ -1,24 +1,35 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A617FE0027F
-	for <yocto@yoctoproject.org>; Tue, 21 Aug 2012 09:40:45 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by orsmga102.jf.intel.com with ESMTP; 21 Aug 2012 09:34:53 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.77,802,1336374000"; d="scan'208";a="136556304"
-Received: from unknown (HELO helios.localnet) ([10.252.121.105])
-	by AZSMGA002.ch.intel.com with ESMTP; 21 Aug 2012 09:34:52 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: yocto@yoctoproject.org
-Date: Tue, 21 Aug 2012 17:34:51 +0100
-Message-ID: <2350730.VsPNl426oH@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.9 (Linux/3.2.0-29-generic-pae; KDE/4.9.0; i686; ; )
-In-Reply-To: <alpine.DEB.2.02.1208211215490.14178@oneiric>
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6C59CE0027E
+	for <yocto@yoctoproject.org>; Tue, 21 Aug 2012 09:51:45 -0700 (PDT)
+Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
+	([174.115.5.73]:36500 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.77) (envelope-from <rpjday@crashcourse.ca>)
+	id 1T3rg5-0006Y8-Ve; Tue, 21 Aug 2012 12:51:42 -0400
+Date: Tue, 21 Aug 2012 12:51:41 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+In-Reply-To: <2350730.VsPNl426oH@helios>
+Message-ID: <alpine.DEB.2.02.1208211251090.14771@oneiric>
 References: <CAMv4DROy+nzU-6ESb2FGQyok33C7e6hV7EoOhN_5sq8PSCTxYA@mail.gmail.com>
 	<CA+YB3rYnSio1LLL_awAUM55FaMwdQoxsyanopVTOmmNHmGRqwA@mail.gmail.com>
 	<alpine.DEB.2.02.1208211215490.14178@oneiric>
+	<2350730.VsPNl426oH@helios>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Cc: yocto@yoctoproject.org
 Subject: Re: adding packages in my Yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -31,38 +42,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 21 Aug 2012 16:40:45 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Tue, 21 Aug 2012 16:51:45 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-On Tuesday 21 August 2012 12:16:26 Robert P. J. Day wrote:
-> On Tue, 21 Aug 2012, Jeff Osier-Mixon wrote:
-> > Hi - please take a look at the FAQ here:
-> > https://wiki.yoctoproject.org/wiki/FAQ
-> > 
-> > Near the bottom there are some technical answers, one of which is how
-> > to add a single package:
-> > 
-> > Q: How can I add a package to my project?
-> > 
-> > A: As with any complex system, the real answer is it depends, but of
-> > course that is not very helpful. The simplest method for adding a
-> > single package to your build is to add a line like this to
-> > 
-> > conf/local.conf:
-> >    IMAGE_INSTALL_append += " package"
-> 
->    grrrrrr ...            ^ "="
-> 
-> the "+=" is redundant.
+On Tue, 21 Aug 2012, Paul Eggleton wrote:
 
-Fixed.
+> On Tuesday 21 August 2012 12:16:26 Robert P. J. Day wrote:
+> > On Tue, 21 Aug 2012, Jeff Osier-Mixon wrote:
+> > > Hi - please take a look at the FAQ here:
+> > > https://wiki.yoctoproject.org/wiki/FAQ
+> > >
+> > > Near the bottom there are some technical answers, one of which is how
+> > > to add a single package:
+> > >
+> > > Q: How can I add a package to my project?
+> > >
+> > > A: As with any complex system, the real answer is it depends, but of
+> > > course that is not very helpful. The simplest method for adding a
+> > > single package to your build is to add a line like this to
+> > >
+> > > conf/local.conf:
+> > >    IMAGE_INSTALL_append += " package"
+> >
+> >    grrrrrr ...            ^ "="
+> >
+> > the "+=" is redundant.
+>
+> Fixed.
 
-Cheers,
-Paul
+  if there's no objection, i added how to add multiple packages as
+well, just below that.
+
+rday
 
 -- 
 
-Paul Eggleton
-Intel Open Source Technology Centre
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
