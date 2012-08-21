@@ -1,35 +1,28 @@
-Return-Path: <david.c.stewart@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3AAE5E0027E
-	for <yocto@yoctoproject.org>; Tue, 21 Aug 2012 09:34:56 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by orsmga101.jf.intel.com with ESMTP; 21 Aug 2012 09:21:30 -0700
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C7F93E0027F;
+	Tue, 21 Aug 2012 09:37:09 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 21 Aug 2012 09:31:18 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.77,802,1336374000"; d="scan'208";a="136553956"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
-	by AZSMGA002.ch.intel.com with ESMTP; 21 Aug 2012 09:21:21 -0700
-Received: from orsmsx106.amr.corp.intel.com (10.22.225.133) by
-	orsmsx603.amr.corp.intel.com (10.22.226.49) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Tue, 21 Aug 2012 09:21:20 -0700
-Received: from orsmsx105.amr.corp.intel.com ([169.254.4.178]) by
-	ORSMSX106.amr.corp.intel.com ([169.254.5.217]) with mapi id
-	14.01.0355.002; Tue, 21 Aug 2012 09:21:20 -0700
-From: "Stewart, David C" <david.c.stewart@intel.com>
-To: Jeff Osier-Mixon <jefro@jefro.net>, aaryak gautam <aaryak.gautam@gmail.com>
-Thread-Topic: [yocto] adding packages in my Yocto
-Thread-Index: AQHNf6/lLxNp/MZNw0eeIF/tO9QUaJdk4mKA//+P/hA=
-Date: Tue, 21 Aug 2012 16:21:20 +0000
-Message-ID: <CDED78A957032E45B3239CDDA7642D151C8FE203@ORSMSX105.amr.corp.intel.com>
-References: <CAMv4DROy+nzU-6ESb2FGQyok33C7e6hV7EoOhN_5sq8PSCTxYA@mail.gmail.com>
-	<CA+YB3rYnSio1LLL_awAUM55FaMwdQoxsyanopVTOmmNHmGRqwA@mail.gmail.com>
-In-Reply-To: <CA+YB3rYnSio1LLL_awAUM55FaMwdQoxsyanopVTOmmNHmGRqwA@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.139]
+X-IronPort-AV: E=Sophos;i="4.77,802,1336374000"; d="scan'208";a="183536006"
+Received: from unknown (HELO envy.home) ([10.255.13.36])
+	by orsmga001.jf.intel.com with ESMTP; 21 Aug 2012 09:31:00 -0700
+Message-ID: <5033B74B.8020209@linux.intel.com>
+Date: Tue, 21 Aug 2012 09:28:59 -0700
+From: Darren Hart <dvhart@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:14.0) Gecko/20120717 Thunderbird/14.0
 MIME-Version: 1.0
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: adding packages in my Yocto
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+References: <5032855A.5050704@linux.intel.com>
+	<CA+YB3rbgN8L_U7VznPNcSpX3dja4KbkjaePQt305KGmyV5eFkg@mail.gmail.com>
+	<5032BF3D.4000900@linux.intel.com> <336378798.CjWX3CWzPu@helios>
+In-Reply-To: <336378798.CjWX3CWzPu@helios>
+X-Enigmail-Version: 1.4.3
+Cc: Yocto Project <yocto@yoctoproject.org>, Jason Kridner <jdk@ti.com>, "Wold,
+	Saul" <saul.wold@intel.com>
+Subject: Re: Documenting the mailing lists.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,79 +34,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 21 Aug 2012 16:34:56 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 21 Aug 2012 16:37:09 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-Good advice. A quick check of openembedded-core shows that gst-ffmpeg appea=
-rs to be one of the packages available. Yes, definitely check the hob.
 
->-----Original Message-----
->From: yocto-bounces@yoctoproject.org [mailto:yocto-
->bounces@yoctoproject.org] On Behalf Of Jeff Osier-Mixon
->Sent: Tuesday, August 21, 2012 9:01 AM
->To: aaryak gautam
->Cc: Yocto Project
->Subject: Re: [yocto] adding packages in my Yocto
->
->Hi - please take a look at the FAQ here:
->https://wiki.yoctoproject.org/wiki/FAQ
->
->Near the bottom there are some technical answers, one of which is how
->to add a single package:
->
->Q: How can I add a package to my project?
->
->A: As with any complex system, the real answer is it depends, but of
->course that is not very helpful. The simplest method for adding a
->single package to your build is to add a line like this to
->conf/local.conf:
->
->   IMAGE_INSTALL_append +=3D " package"
->
->Use your own package name in place of package. Note the leading space
->before the package name.
->For more information, read this chapter in the Yocto Project
->Development Manual
->(http://www.yoctoproject.org/docs/current/dev-manual/dev-
->manual.html#usingpoky-extend-addpkg).
->
->I also highly recommend trying out the Hob interface, as it makes the
->whole system easier to understand. I like to make changes in the Hob
->and then examine those changes in the resulting configuration files to
->better understand the system at work.
->
->Hope this helps!
->
->On Tue, Aug 21, 2012 at 1:26 AM, aaryak gautam <aaryak.gautam@gmail.com>
->wrote:
->> Hello
+
+On 08/20/2012 04:19 PM, Paul Eggleton wrote:
+> On Monday 20 August 2012 15:50:37 Darren Hart wrote:
+>> On 08/20/2012 03:43 PM, Jeff Osier-Mixon wrote:
+>>> On Mon, Aug 20, 2012 at 3:37 PM, Darren Hart <dvhart@linux.intel.com> 
+> wrote:
+>>>> On 08/20/2012 03:18 PM, Jeff Osier-Mixon wrote:
+>>>>> The mailing lists and website stuff is generally my responsibility,
+>>>>> but please fix anything you like. :)  Be aware that the new website is
+>>>>
+>>>> No intent to take over anything, I've just had to answer the "what goes
+>>>> where" question a few too many times these last couple of weeks and felt
+>>>> I should do something about it :-)
+>>>
+>>> Oh, I'm not joking - please fix anything you want! or Scott or I can
+>>> do it. Thanks for getting the ball rolling. I'll catch up on this
+>>> thread.
+>>>
+>>>> I made sure you were on CC so you could help guide this.
+>>>>
+>>>>> under construction, so I am loathe to change much on the old website
+>>>>> at this point.  For the new one, it may be possible to dynamically
+>>>>> grab the description from mailman.
+>>>>
+>>>> We'll still need descriptions of the non-yocto-project lists, so that
+>>>> may not be particularly helpful.
+>>>
+>>> The only YP-related, non-YP lists I currently track are
+>>> openembedded-core and bitbake-devel.  Both are OE lists, and I have
+>>> recently volunteered to help admin, so can make sure they have valid
+>>> Descriptions. If there are other lists we should track, please let me
+>>> know and I'll add them to the pile.
 >>
->> I am  a hobbyist and quite new to both Linux and Yocto.
->> I had already compiled my Yocto kernel for I.MX23 successfully.
->> But I want to add few packages.
->> Like if i want to have ffmpeg in my yocto,how should I add it?
->> I have gone through the documentation,but could not understand.
+>> The only additional one that we reference in the manual is:
 >>
->> can you help me out?
->> I am using Bitbake core-image-minimal , not sato.
+>> *	http://lists.linuxtogo.org/cgi-bin/mailman/listinfo/openembedded-devel
+>> - Discussion mailing list about OpenEmbedded.
 >>
->>
->> Thank You.
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->>
->
->
->
->--
->Jeff Osier-Mixon http://jefro.net/blog
->Yocto Project Community Manager @Intel http://yoctoproject.org
->_______________________________________________
->yocto mailing list
->yocto@yoctoproject.org
->https://lists.yoctoproject.org/listinfo/yocto
+>> I'm not sure we need reference it at all though, perhaps oe-core is
+>> sufficient.
+> 
+> FYI, the reason I added oe-devel is because it's the list that is used to 
+> discuss/submit patches for almost all OE community layers other than OE-Core 
+> and the ones that are hosted on yoctoproject.org.
+
+Fair enough.
+
+-- 
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Technical Lead - Linux Kernel
 
