@@ -1,35 +1,35 @@
-Return-Path: <david.c.stewart@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 91FEEE0044A
-	for <yocto@yoctoproject.org>; Tue, 21 Aug 2012 07:24:42 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 21 Aug 2012 07:24:42 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.77,802,1336374000"; 
-	d="scan'208,217";a="211677259"
-Received: from orsmsx606.amr.corp.intel.com ([10.22.226.128])
-	by fmsmga002.fm.intel.com with ESMTP; 21 Aug 2012 07:24:41 -0700
-Received: from orsmsx106.amr.corp.intel.com (10.22.225.133) by
-	orsmsx606.amr.corp.intel.com (10.22.226.128) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Tue, 21 Aug 2012 07:24:41 -0700
-Received: from orsmsx105.amr.corp.intel.com ([169.254.4.178]) by
-	ORSMSX106.amr.corp.intel.com ([169.254.5.217]) with mapi id
-	14.01.0355.002; Tue, 21 Aug 2012 07:24:40 -0700
-From: "Stewart, David C" <david.c.stewart@intel.com>
-To: Seth Bollinger <seth.boll@gmail.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] Classes
-Thread-Index: AQHNf0KlYy8SynLyA0Od9HnLHPD6sZdkT1wg
-Date: Tue, 21 Aug 2012 14:24:40 +0000
-Message-ID: <CDED78A957032E45B3239CDDA7642D151C8FDC78@ORSMSX105.amr.corp.intel.com>
-References: <CA+JN8xMPwisCNTrbzQaDm97D0ShGWRaCbkj752wLcF13eV6j=Q@mail.gmail.com>
-In-Reply-To: <CA+JN8xMPwisCNTrbzQaDm97D0ShGWRaCbkj752wLcF13eV6j=Q@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.139]
+Return-Path: <David.Nystrom@enea.com>
+Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id A71E2E0044A
+	for <yocto@yoctoproject.org>; Tue, 21 Aug 2012 07:52:07 -0700 (PDT)
+Received: from [172.16.140.132] (172.16.140.132) by smtp.enea.com
+	(172.21.1.208) with Microsoft SMTP Server id 14.2.298.4;
+	Tue, 21 Aug 2012 16:52:04 +0200
+Message-ID: <5033A10E.1030000@enea.com>
+Date: Tue, 21 Aug 2012 16:54:06 +0200
+From: =?UTF-8?B?RGF2aWQgTnlzdHLDtm0=?= <david.nystrom@enea.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:14.0) Gecko/20120714 Thunderbird/14.0
 MIME-Version: 1.0
-Subject: Re: Classes
+To: McClintock Matthew-B29882 <B29882@freescale.com>
+References: <1341550315-9795-1-git-send-email-raj.khem@gmail.com>
+	<1341550315-9795-2-git-send-email-raj.khem@gmail.com>
+	<88701C38B5D07249817D428430999C910EAC7607@sestoex05.enea.se>
+	<CAEsOVNe=+W0XLdYr1cZ_YFzkbASFCEio+yQ40Ojip_nq5FC=wQ@mail.gmail.com>
+	<88701C38B5D07249817D428430999C910EAC7B39@sestoex05.enea.se>
+	<CAEsOVNcGt6bP0woxhEjJnfpTVJj6W9A7oF_3VdxT_4N21zNddg@mail.gmail.com>
+	<502A0308.6080203@enea.com>
+	<CAMKF1sq=wRkTBAcUkLQhbv0QX6rCAA3cb8S39hYSAM4knfqcbw@mail.gmail.com>
+	<5031E600.8030208@enea.com>
+	<CAMKF1spkpnDye4NxNpTSKsC6CVebTfm1_1roW5viO=xMZz50ug@mail.gmail.com>
+	<CAEsOVNfb=KeN_WGWfuyPT6MTiY9S9nEkz6pn5G6xp+-Jroeh5g@mail.gmail.com>
+	<CAMKF1srF6AYbJzCGN989kweBmcz6Y-BGvyCiAhHGTPDoOYESYQ@mail.gmail.com>
+	<CAEsOVNfcBKAHut3Mw3tCb93TgkwW6uQE5J1DVSSez65oczNvMg@mail.gmail.com>
+	<CAEsOVNfBgOGgmZm4BehTAm28v703d7Ao9ehkE2GD+dwxKswtOw@mail.gmail.com>
+In-Reply-To: <CAEsOVNfBgOGgmZm4BehTAm28v703d7Ao9ehkE2GD+dwxKswtOw@mail.gmail.com>
+X-Originating-IP: [172.16.140.132]
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [meta-fsl-ppc][PATCH 2/2] fsl.conf: Let linux-qoriq-sdk-headers-nativesdk provide linux-libc-headers-nativesdk
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,208 +41,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 21 Aug 2012 14:24:42 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_CDED78A957032E45B3239CDDA7642D151C8FDC78ORSMSX105amrcor_"
+X-List-Received-Date: Tue, 21 Aug 2012 14:52:08 -0000
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 
---_000_CDED78A957032E45B3239CDDA7642D151C8FDC78ORSMSX105amrcor_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-Seth - it sounds like you need something different than an overview class. =
-I think you might want to have one of the consultants who are familiar with=
- building projects using the Yocto Project work for you for a couple of day=
-s to help you sort these things out, for a fee. I'm sure one of them on thi=
-s mailing list would be willing to offer their help. (Guys - you know who y=
-ou are...)
-
-Dave
-
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Seth Bollinger
-Sent: Monday, August 20, 2012 7:14 PM
-To: yocto@yoctoproject.org
-Subject: [yocto] Classes
-
-Hello,
-
-Will anyone recommend some classes regarding yocto and open embedded?  It w=
-ould be nice to get up to speed quickly and into the nitty gritty instead o=
-f an overview.
-
-Something covering the following items would be nice:
-
-1.  How should projects be laid out?  Distro, image, task, BSP, what things=
- should go where?
-2.  How should subprojects inherit from superprojects?  If you need to crea=
-te many subplatforms from a base platform, what's the best way to go about =
-this?
-3.  How should classes such as distutils be created to be inherited by othe=
-r recipes (ruby modules that require a C extension to be compiled would be =
-one example).
-4.  How should hardware specific software be handled?
-
-I fear that (as a newb) I will design a layout that will be sub-optimal, bu=
-t we'll discover that after we have 25 platforms that will need major refac=
-toring.  :)
-
-Thanks,
-
-Seth
-
-
---_000_CDED78A957032E45B3239CDDA7642D151C8FDC78ORSMSX105amrcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+On 08/20/2012 09:50 PM, McClintock Matthew-B29882 wrote:
+> Adding David back...
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:12.0pt;
-	font-family:"Times New Roman","serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-reply;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri","sans-serif";}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Seth &#8211; it sounds li=
-ke you need something different than an overview class. I think you might w=
-ant to have one of the consultants who are familiar with building
- projects using the Yocto Project work for you for a couple of days to help=
- you sort these things out, for a fee. I&#8217;m sure one of them on this m=
-ailing list would be willing to offer their help. (Guys &#8211; you know wh=
-o you are&#8230;)<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
-/p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Dave<o:p></o:p></span></p=
+> -M
 >
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
-/p>
-<div style=3D"border:none;border-left:solid blue 1.5pt;padding:0in 0in 0in =
-4.0pt">
-<div>
-<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
-0in 0in">
-<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
-;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
-ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> yocto-bo=
-unces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org]
-<b>On Behalf Of </b>Seth Bollinger<br>
-<b>Sent:</b> Monday, August 20, 2012 7:14 PM<br>
-<b>To:</b> yocto@yoctoproject.org<br>
-<b>Subject:</b> [yocto] Classes<o:p></o:p></span></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Hello,<o:p></o:p></p>
-<div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal">Will anyone recommend some classes regarding yocto a=
-nd open embedded? &nbsp;It would be nice to get up to speed quickly and int=
-o the nitty gritty instead of an overview.<o:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal">Something covering the following items would be nice=
-:<o:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal">1. &nbsp;How should projects be laid out? &nbsp;Dist=
-ro, image, task, BSP, what things should go where?<o:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal">2. &nbsp;How should subprojects inherit from superpr=
-ojects? &nbsp;If you need to create many subplatforms from a base platform,=
- what's the best way to go about this?<o:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal">3. &nbsp;How should classes such as distutils be cre=
-ated to be inherited by other recipes (ruby modules that require a C extens=
-ion to be compiled would be one example).<o:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal">4. &nbsp;How should hardware specific software be ha=
-ndled?<o:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal">I fear that (as a newb) I will design a layout that =
-will be sub-optimal, but we'll discover that after we have 25 platforms tha=
-t will need major refactoring. &nbsp;:)<o:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal">Seth<o:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</div>
-</div>
-</body>
-</html>
+> On Mon, Aug 20, 2012 at 2:42 PM, Matthew McClintock <msm@freescale.com> wrote:
+>> On Mon, Aug 20, 2012 at 2:27 PM, Khem Raj <raj.khem@gmail.com> wrote:
+>>>> I just checked and we do have a few obscure bits in our kernel tree's
+>>>> header files. Nothing that 99.9% would use but it seems reasonable to
+>>>> include these...
+>>> Do you want applications for sdk host to be built using these obscure bits ?
+>>> if yes I would like to know why?
+>>>
+>>> since then you are creating a scenariou where nativesdk is dependent on target
+>>> kernel and we need to fix it so that nativesdk can be common again.
+>>>
+>>> if patches you are carrying are good for nativesdk headers can they be made
+>>> available for other kernels like linux-yocto e.g. ?
+>>>
+>>> right now if we do this we are pretty much saying fsl machine layer can really
+>>> not mix with other BSPs. Many people use yocto commonly on more than one kind
+>>> of CPU and this does not scale.
+>> Hmm I think I was just confused. We don't need any modifications for
+>> the headers for nativesdk foo (that is the x86 tools in
+>> meta-toolchain).
+>>
+>> So, I think everything is OK as is.. if you look at meta-toolchain you
+>> will see it includes our kernel's headers for cross compiling.
+>>
+>> -M
 
---_000_CDED78A957032E45B3239CDDA7642D151C8FDC78ORSMSX105amrcor_--
+Oh, sorry for the misunderstanding
+
+I was under the impression that linux-libc-headers-nativesdk was 
+installed under
+/opt/poky/1.2/sysroots/<target-sysroot>/..., which it obviously is not.
+
+Br,
+David
+
