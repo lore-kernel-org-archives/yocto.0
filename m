@@ -1,41 +1,37 @@
-Return-Path: <ml@communistcode.co.uk>
-Received: from eumx.net (eumx.net [91.82.101.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E7051E0074B
-	for <yocto@yoctoproject.org>; Tue, 21 Aug 2012 02:00:04 -0700 (PDT)
-Received: from localhost ([127.0.0.1]:45996 helo=eumx.net)
-	by eumx.net with esmtp (Exim 4.72)
-	(envelope-from <ml@communistcode.co.uk>) id 1T3kJe-0007iU-R2
-	for yocto@yoctoproject.org; Tue, 21 Aug 2012 09:00:03 +0000
-DKIM-Signature: v=1; a=rsa-sha1; c=relaxed; d=eumx.net; h=message-id
-	:date:from:reply-to:mime-version:to:subject:references
-	:in-reply-to:content-type:content-transfer-encoding; s=default;
-	bh=Jrfd2nIj2bozBXMmelQvO4VJ5sw=; b=rVcN3CJJxw+g9U3jrW9wYylq/VMk
-	oEbBCq0SZbHrjwjYaL94mdHWJwJBIyf6V8beX6Ke3SPQs7vtZ8L6RHoQJwd859vG
-	fOwR8ZNPadcfxSpj/poem5WRfbQE9sO48RTgHwQTOxN31cGtUHhupdc5iGJLeBbB
-	q5fWkgxgtg3/CDQ=
-Received: from [195.171.99.130] (port=28926 helo=[192.168.0.33])
-	by eumx.net with esmtpa (Exim 4.72)
-	(envelope-from <ml@communistcode.co.uk>) id 1T3kJe-0007hV-CM
-	for yocto@yoctoproject.org; Tue, 21 Aug 2012 09:00:02 +0000
-Message-ID: <50334E66.2020905@communistcode.co.uk>
-Date: Tue, 21 Aug 2012 10:01:26 +0100
-From: Jack Mitchell <ml@communistcode.co.uk>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:14.0) Gecko/20120717 Thunderbird/14.0
-MIME-Version: 1.0
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-References: <5029026B.90602@communistcode.co.uk>
-	<CAK18fxEWCkDGeG=TWnS-YKUQdwp+bQLkFGDD3cPwWp96ghRt6w@mail.gmail.com>
-	<5029088A.4030909@communistcode.co.uk>
-	<7CF86E24-B6F0-4B99-BBB2-7E9BB4C96F0B@keylevel.com>
-	<CAK18fxHooAxhXxLBgytn5RuyxT2_UqoVoyMk6v+3uO73_xBrwg@mail.gmail.com>
-	<CAK18fxE98rqHo+F2SO63_4oHLHThsiQHw9Pf-9hMKvaa3UQCXQ@mail.gmail.com>
-In-Reply-To: <CAK18fxE98rqHo+F2SO63_4oHLHThsiQHw9Pf-9hMKvaa3UQCXQ@mail.gmail.com>
-Subject: Re: Raspberry Pi do_fetch failure
+Return-Path: <ross.burton@intel.com>
+Received: from orsmga101.jf.intel.com (mga06.intel.com [134.134.136.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EC58FE0044A
+	for <yocto@yoctoproject.org>; Tue, 21 Aug 2012 03:46:48 -0700 (PDT)
+Received: from mail-we0-f180.google.com ([74.125.82.180])
+	by mga02.intel.com with ESMTP/TLS/RC4-SHA; 21 Aug 2012 03:46:48 -0700
+Received: by weyt11 with SMTP id t11so4055791wey.25
+	for <yocto@yoctoproject.org>; Tue, 21 Aug 2012 03:46:46 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=from:to:cc:subject:date:message-id:x-mailer:x-gm-message-state;
+	bh=jMeQWTlqIOP3C+cxO4JlPofgP3VClNo83oYe6fvYt0c=;
+	b=TCB5FSqhrc469YFMAND7so9F5s0D8Il2i3d0s8NV6fbO42hxAX1KdsWNcV7f4dx35c
+	Gttrb58YyQ6HrJIEstOFef+DbPY+TY4bEKLfKaGy51I5cmLtt6DHFh+grGlz+7Vq8XRA
+	jo7LbOVdJK5eJnUSyA8o4xNjBw+CnoHlmF5jvsc6qmj7chpnn2Xupuq22VtuBrs9/Hfj
+	BKBBNUUtLKnfdmIiY2FZrsiyA83K5fwj4SpyxTxRl6htOM+94EcZ6gSwyu/AxUAcwIOW
+	vvsezi87klpSsIWt5LMKKoBpyVRujTArognFrd1fnypqWlaS/HjLIychnE4LFQSFEnZv
+	w3Dw==
+Received: by 10.216.138.92 with SMTP id z70mr8725128wei.68.1345546006587;
+	Tue, 21 Aug 2012 03:46:46 -0700 (PDT)
+Received: from melchett.burtonini.com (35.106.2.81.in-addr.arpa. [81.2.106.35])
+	by mx.google.com with ESMTPS id el6sm33042632wib.8.2012.08.21.03.46.45
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Tue, 21 Aug 2012 03:46:45 -0700 (PDT)
+From: Ross Burton <ross.burton@intel.com>
+To: yocto@yoctoproject.org
+Date: Tue, 21 Aug 2012 11:46:07 +0100
+Message-Id: <1345545967-1386-1-git-send-email-ross.burton@intel.com>
+X-Mailer: git-send-email 1.7.10
+X-Gm-Message-State: ALoCoQmSv5P8q2xp7Jx5AI3a9ijG6RIRj8QrQDCv81h89rRMLgCCGWYL+HQuKUToOMHxHyvReKP8
+Subject: [PATCH] meta-emenlow: unset preferred providers for virtual/libgles[12]
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: ml@communistcode.co.uk
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -44,88 +40,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 21 Aug 2012 09:00:05 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 21 Aug 2012 10:46:49 -0000
 
-On 20/08/12 18:23, Andrei Gherzan wrote:
-> It seems like even if i got no feedback from github, this issue is not 
-> reproducible anymore. Fetch is working as it should now. Could you 
-> please confirm?
->
-> Si it could have been a temporary bug or this was solved meanwhile.
->
-> ag
->
->
->
->
-> On Mon, Aug 13, 2012 at 9:58 PM, Andrei Gherzan <andrei@gherzan.ro 
-> <mailto:andrei@gherzan.ro>> wrote:
->
->
->     On Mon, Aug 13, 2012 at 7:38 PM, Chris Tapp
->     <opensource@keylevel.com <mailto:opensource@keylevel.com>> wrote:
->
->         On 13 Aug 2012, at 15:00, Jack Mitchell wrote:
->
->         > On 13/08/12 14:51, Andrei Gherzan wrote:
->         >>
->         >> On Mon, Aug 13, 2012 at 4:34 PM, Jack Mitchell
->         <ml@communistcode.co.uk <mailto:ml@communistcode.co.uk>
->         <mailto:ml@communistcode.co.uk
->         <mailto:ml@communistcode.co.uk>>> wrote:
->         >>
->         >>    Good afternoon everyone,
->         >>
->         >>    I am trying (yet again) to get yocto to build for the
->         Raspberry Pi
->         >>    and I am falling at the do_fetch hurdle on the RasPi kernel.
->         >>
->         >>       ERROR: Fetcher failure: Fetch command export
->         HOME="/home/jack";
->         >>       export SSH_AGENT_PID="1350"; export
->         >> SSH_AUTH_SOCK="/home/jack/.cache/keyring-fjEm9a/ssh"; export
->         >>
->          GIT_CONFIG="/home/jack/Projects/poky-rasp/raspberry/tmp/sysroots/x86_64-linux/etc/gitconfig";
->         >>       export
->         >>
->          PATH="/home/jack/Projects/poky-rasp/scripts:/home/jack/Projects/poky-rasp/raspberry/tmp/sysroots/x86_64-linux/usr/bin/armv6-vfp-poky-linux-gnueabi:/home/jack/Projects/poky-rasp/raspberry/tmp/sysroots/raspberrypi/usr/bin/crossscripts:/home/jack/Projects/poky-rasp/raspberry/tmp/sysroots/x86_64-linux/usr/sbin:/home/jack/Projects/poky-rasp/raspberry/tmp/sysroots/x86_64-linux/usr/bin:/home/jack/Projects/poky-rasp/raspberry/tmp/sysroots/x86_64-linux/sbin:/home/jack/Projects/poky-rasp/raspberry/tmp/sysroots/x86_64-linux//bin:/home/jack/Projects/poky-rasp/scripts:/home/jack/Projects/poky-rasp/bitbake/bin/:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/bin/core_perl";
->         >>       git clone --bare --mirror
->         >>    git://github.com/raspberrypi/linux.git
->         <http://github.com/raspberrypi/linux.git>
->         >>    <http://github.com/raspberrypi/linux.git>
->         >>
->         >>
->         >> Does this work in a shell? Just try to clone it on your
->         computer.
->         >>
->         >> ag
->         >
->         > Yes, cloning it now without issues - it took a while to get
->         going and someone has suggested that it might be timing out
->         within bitbake...
->
->
->         I've had similar issues in the past that seemed to be caused
->         by Github. If I ran a manual fetch I could see errors relating
->         to compressed folders (I think - was a while back) that
->         couldn't be found. It sorted itself after a day or so.
->
->     I sent an email to github. Will keep you posted.
->
->     ag
->
->
+The recent changes to enable GLES/EGL in mesa-dri have caused emenlow to fail:
 
-Working fine for me now.
+ERROR: Trying to resolve runtime dependency libglu resulted in conflicting PREFERRED_PROVIDER entries being found.
+The providers found were: ['/srv/home/pokybuild/yocto-autobuilder/yocto-slave/emenlow/build/yocto/meta-intel/meta-emenlow/recipes-graphics/xpsb-glx/xpsb-glx_0.18.bb', '/srv/home/pokybuild/yocto-autobuilder/yocto-slave/emenlow/build/meta/recipes-graphics/mesa/mesa-dri_8.0.4.bb']
+The PREFERRED_PROVIDER entries resulting in this conflict were: ['PREFERRED_PROVIDER_mesa-dri = xpsb-glx', 'PREFERRED_PROVIDER_virtual/libgles1 = mesa-dri']
 
+Because emenlow's xpsb-glx contains mesa, it needs to entirely replace
+mesa-dri. We'd normally set virtual/libgles1 and virtual/libgles2 to xpsb-glx
+but these drivers don't build the GLES libraries so that would be a lie.
+
+So, unset the preferred provider entries so that bitbake doesn't look at
+mesa-dri at all.
+---
+ meta-emenlow/conf/machine/emenlow.conf |    2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/meta-emenlow/conf/machine/emenlow.conf b/meta-emenlow/conf/machine/emenlow.conf
+index afb3866..65dcd5a 100644
+--- a/meta-emenlow/conf/machine/emenlow.conf
++++ b/meta-emenlow/conf/machine/emenlow.conf
+@@ -13,6 +13,8 @@ PREFERRED_PROVIDER_libdrm = "libdrm-poulsbo"
+ PREFERRED_PROVIDER_drm = "libdrm-poulsbo"
+ PREFERRED_PROVIDER_virtual/libx11 = "libx11-trim"
+ PREFERRED_PROVIDER_virtual/libgl = "xpsb-glx"
++PREFERRED_PROVIDER_virtual/libgles1 = ""
++PREFERRED_PROVIDER_virtual/libgles2 = ""
+ PREFERRED_PROVIDER_virtual/xserver = "xserver-psb"
+ PREFERRED_PROVIDER_virtual/xserver-xf86 = "xserver-psb"
+ PREFERRED_PROVIDER_mesa-dri = "xpsb-glx"
 -- 
-
-   Jack Mitchell (jack@embed.me.uk)
-   Embedded Systems Engineer
-   http://www.embed.me.uk
-
---
+1.7.10
 
 
