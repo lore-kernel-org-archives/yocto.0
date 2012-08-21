@@ -1,26 +1,26 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9DE96E00346
-	for <yocto@yoctoproject.org>; Tue, 21 Aug 2012 10:27:48 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 21 Aug 2012 10:13:53 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.77,803,1336374000"; d="scan'208";a="207659091"
-Received: from unknown (HELO helios.localnet) ([10.252.121.105])
-	by fmsmga001.fm.intel.com with ESMTP; 21 Aug 2012 10:13:52 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>
-Date: Tue, 21 Aug 2012 18:13:51 +0100
-Message-ID: <35424393.cCDRK386FI@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.9 (Linux/3.2.0-29-generic-pae; KDE/4.9.0; i686; ; )
-In-Reply-To: <alpine.DEB.2.02.1208211251090.14771@oneiric>
-References: <CAMv4DROy+nzU-6ESb2FGQyok33C7e6hV7EoOhN_5sq8PSCTxYA@mail.gmail.com>
-	<2350730.VsPNl426oH@helios>
-	<alpine.DEB.2.02.1208211251090.14771@oneiric>
+Return-Path: <philip@balister.org>
+Received: from sanddollar.geekisp.com (sanddollar.geekisp.com
+	[216.168.135.167])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 80BD9E0027E
+	for <yocto@yoctoproject.org>; Tue, 21 Aug 2012 10:34:23 -0700 (PDT)
+Received: (qmail 24597 invoked by uid 1003); 21 Aug 2012 17:34:21 -0000
+Received: from unknown (HELO ?10.16.24.71?) (philip@opensdr.com@157.22.28.10)
+	by mail.geekisp.com with (DHE-RSA-AES256-SHA encrypted) SMTP;
+	21 Aug 2012 17:34:21 -0000
+Message-ID: <5033C69A.9030206@balister.org>
+Date: Tue, 21 Aug 2012 10:34:18 -0700
+From: Philip Balister <philip@balister.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:14.0) Gecko/20120717 Thunderbird/14.0
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: adding packages in my Yocto
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+References: <2404459.dJBf5OQotX@helios> <5032A1D3.8090600@windriver.com>
+	<1570865.4gpYqKP9pu@helios>
+In-Reply-To: <1570865.4gpYqKP9pu@helios>
+Cc: yocto@yoctoproject.org, openembedded-devel@lists.openembedded.org,
+	Patches and discussions about the oe-core layer
+	<openembedded-core@lists.openembedded.org>
+Subject: Re: [OE-core] RFC: OE-Core task rework
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,45 +32,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 21 Aug 2012 17:27:48 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Tue, 21 Aug 2012 17:34:23 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Tuesday 21 August 2012 12:51:41 Robert P. J. Day wrote:
-> On Tue, 21 Aug 2012, Paul Eggleton wrote:
-> > On Tuesday 21 August 2012 12:16:26 Robert P. J. Day wrote:
-> > > On Tue, 21 Aug 2012, Jeff Osier-Mixon wrote:
-> > > > Hi - please take a look at the FAQ here:
-> > > > https://wiki.yoctoproject.org/wiki/FAQ
-> > > > 
-> > > > Near the bottom there are some technical answers, one of which is how
-> > > > to add a single package:
-> > > > 
-> > > > Q: How can I add a package to my project?
-> > > > 
-> > > > A: As with any complex system, the real answer is it depends, but of
-> > > > course that is not very helpful. The simplest method for adding a
-> > > > single package to your build is to add a line like this to
-> > > > 
-> > > > conf/local.conf:
-> > > >    IMAGE_INSTALL_append += " package"
-> > >    
-> > >    grrrrrr ...            ^ "="
-> > > 
-> > > the "+=" is redundant.
-> > 
-> > Fixed.
-> 
->   if there's no objection, i added how to add multiple packages as
-> well, just below that.
+On 08/21/2012 01:49 AM, Paul Eggleton wrote:
+> On Monday 20 August 2012 15:45:07 Mark Hatle wrote:
+...
 
-Looks good to me, thanks.
+>>
+>> Yup, there is a logical grouping for the lsb specific tasks, as for others.
+>> The naming needs to be made clear as to why it's there, and what it
+>> represents. Same with the summary and descriptions -- they should list the
+>> functionality provided by this group of components.
+>
+> The main concern with LSB is that we have something called task-basic, which
+> seems to be intended for LSB but does not state as much, and I know at least
+> one person has tried to use it and then been a little puzzled as to why rpm
+> has been pulled in when ipk packaging has been selected. Just naming some of
+> these tasks more appropriately would help avoid such situations. In the
+> specific case of task-basic there may be a case for creating a similar but not
+> LSB-focused task that pulls in real shell utilities in preference to the light
+> versions provided by busybox.
 
-Cheers,
-Paul
+I was seriously stumped by the presence of rpm in what I felt should 
+have been a very basic image. If a task/group is targeted at lsb, it 
+needs to have lsb plastered all over the name so the rest of us can 
+avoid it :)
 
--- 
+Philip
 
-Paul Eggleton
-Intel Open Source Technology Centre
+>
+>>> 4) Consider the usefulness of the existing PACKAGE_GROUP_ structure which
+>>> converts some IMAGE_FEATURES into the addition of tasks to be installed
+>>> (see classes/core-image.bbclass). At the very least we should probably
+>>> rename this if we rename tasks to package groups, and there's a question
+>>> as to how IMAGE_FEATURES scales - should every task be represented in
+>>> there or only a select list? Would we be better off not trying to bring
+>>> any tasks in via IMAGE_FEATURES at all and mostly leave that to control
+>>> post-processing (e.g. package-management, debug-tweaks, etc.)?
+>>
+>> I'd certainly prefer that images were limited to selecting software from
+>> task (group) recipes only, and not providing their own.  An image should be
+>> able to change the selection based on an "image feature" or similar
+>> configuration, but the underlying tasks/groups, recipes, etc should all be
+>> 'generic' to a given distribution configuration.
+>
+> The first part seems reasonable to me; but I'm still short of an answer as to
+> what to do with the existing IMAGE_FEATURES code as mentioned above. At the
+> moment aside from the special features such as debug-tweaks, these are just a
+> thin layer on top of task recipes which doesn't add very much at all other
+> than extra maintenance.
+>
+>> I think if you go through the images today, a lot of that stuff is either
+>> old, or could be simplified by creating appropriate tasks/groups.
+>
+> OK, that's a good point. I have another task on my list to clean up our image
+> recipes and that would be a good segue into that.
+>
+> Cheers,
+> Paul
+>
 
