@@ -1,29 +1,26 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
-	[93.97.173.237])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D20ADE00346
-	for <yocto@yoctoproject.org>; Tue, 21 Aug 2012 00:14:05 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q7L7E2TX027956;
-	Tue, 21 Aug 2012 08:14:02 +0100
-Received: from tim.rpsys.net ([127.0.0.1])
-	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
-	port 10024) with LMTP
-	id 25661-09; Tue, 21 Aug 2012 08:13:58 +0100 (BST)
-Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q7L7DrkM027950
-	(version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=NO);
-	Tue, 21 Aug 2012 08:13:54 +0100
-Message-ID: <1345533233.3907.42.camel@ted>
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: "Zanussi, Tom" <tom.zanussi@intel.com>, "Hart, Darren"
-	<darren.hart@intel.com>
-Date: Tue, 21 Aug 2012 08:13:53 +0100
-X-Mailer: Evolution 3.2.3-0ubuntu6 
-Mime-Version: 1.0
-X-Virus-Scanned: amavisd-new at rpsys.net
-Cc: yocto <yocto@yoctoproject.org>
-Subject: ia32-base.inc: Drop glibc --with-tls option, its now the only option for glibc
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 351B4E0049B
+	for <yocto@yoctoproject.org>; Tue, 21 Aug 2012 01:49:40 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 21 Aug 2012 01:49:39 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.77,801,1336374000"; d="scan'208";a="189159378"
+Received: from unknown (HELO helios.localnet) ([10.252.121.105])
+	by orsmga002.jf.intel.com with ESMTP; 21 Aug 2012 01:49:38 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Tue, 21 Aug 2012 09:49:37 +0100
+Message-ID: <1570865.4gpYqKP9pu@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.9 (Linux/3.2.0-29-generic-pae; KDE/4.9.0; i686; ; )
+In-Reply-To: <5032A1D3.8090600@windriver.com>
+References: <2404459.dJBf5OQotX@helios> <5032A1D3.8090600@windriver.com>
+MIME-Version: 1.0
+Cc: openembedded-devel@lists.openembedded.org,
+	Patches and discussions about the oe-core layer
+	<openembedded-core@lists.openembedded.org>
+Subject: Re: RFC: OE-Core task rework
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,29 +32,96 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 21 Aug 2012 07:14:06 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 21 Aug 2012 08:49:40 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-This option is unused by (e)glibc since 2011 and is the default. It has been
-shown to interact badly with the configure option in atom-pc from meta-yocto 
-causing a rebuild of the whole system despite the only change being an 
-assignment with += vs =. The easiest fix is simply to drop it.
-    
-Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
+On Monday 20 August 2012 15:45:07 Mark Hatle wrote:
+> > 1) Do we rename "task" to something a little more understandable to the
+> > uninitiated, such as "package group"? The word "task" is already used in a
+> > much more natural sense within bitbake as a unit of work. Historically I
+> > believe we picked up this term from Debian but I'm not aware of
+> > significant use by other mainstream distributions.
+> 
+> "group" or "packagegroup" or "package-group" is my suggestion for the
+> existing 'task' recipes.  From what I've seen, it should be a rename
+> opportunity -- we can even provide/rprovide the old names....
 
-diff --git a/conf/machine/include/ia32-base.inc b/conf/machine/include/ia32-base.inc
-index 99ac352..17ff714 100644
---- a/conf/machine/include/ia32-base.inc
-+++ b/conf/machine/include/ia32-base.inc
-@@ -21,7 +21,6 @@ SERIAL_CONSOLE ?= "115200 ttyS0"
- # glibc-related variables
- #
- GLIBC_ADDONS ?= "nptl"
--GLIBC_EXTRA_OECONF += "--with-tls"
+Indeed, and I think we would for compatibility purposes.
  
- #
- # kernel-related variables
+> > 2) Look at the existing tasks and:
+> >   * evaluate their usefulness
+> >   * remove any that are obsolete
+> >   * adjust existing contents if needed
+> >   * look for useful groups of packages that might be added
+> >   
+> >   We need to pay particular attention to task-core-boot and task-base as
+> >   these> 
+> > are pulled in by default in any image that inherits from
+> > core-image.bbclass - if these are not generally working for people that
+> > are creating their own images, we need to change them such that they are.
+> 
+> During the pre-oe-core Yocto Project development, a design was generated to
+> roughly group the packages into functional areas.  For the most part, this
+> design (as well as legacy elements) still exist.
+> 
+> I think the boot, base and others need to be evaluated for usefulness... but
+> my feeling is most of them are close to being correct.
 
+I think so as well. We may be pulling in one or two packages unconditionally 
+where they should be optional (e.g. modutils-initscripts?) but most of it is 
+pretty sensible.
+ 
+> >   *  Try to make each task have a reasonable name - there are some current
+> >   uses of "core" and "base" that don't actually convey any meaning; LSB
+> >   specific tasks should be named as such, etc.
+> 
+> Yup, there is a logical grouping for the lsb specific tasks, as for others. 
+> The naming needs to be made clear as to why it's there, and what it
+> represents. Same with the summary and descriptions -- they should list the
+> functionality provided by this group of components.
 
+The main concern with LSB is that we have something called task-basic, which 
+seems to be intended for LSB but does not state as much, and I know at least 
+one person has tried to use it and then been a little puzzled as to why rpm 
+has been pulled in when ipk packaging has been selected. Just naming some of 
+these tasks more appropriately would help avoid such situations. In the 
+specific case of task-basic there may be a case for creating a similar but not 
+LSB-focused task that pulls in real shell utilities in preference to the light 
+versions provided by busybox.
+
+> > 4) Consider the usefulness of the existing PACKAGE_GROUP_ structure which
+> > converts some IMAGE_FEATURES into the addition of tasks to be installed
+> > (see classes/core-image.bbclass). At the very least we should probably
+> > rename this if we rename tasks to package groups, and there's a question
+> > as to how IMAGE_FEATURES scales - should every task be represented in
+> > there or only a select list? Would we be better off not trying to bring
+> > any tasks in via IMAGE_FEATURES at all and mostly leave that to control
+> > post-processing (e.g. package-management, debug-tweaks, etc.)?
+> 
+> I'd certainly prefer that images were limited to selecting software from
+> task (group) recipes only, and not providing their own.  An image should be
+> able to change the selection based on an "image feature" or similar
+> configuration, but the underlying tasks/groups, recipes, etc should all be
+> 'generic' to a given distribution configuration.
+
+The first part seems reasonable to me; but I'm still short of an answer as to 
+what to do with the existing IMAGE_FEATURES code as mentioned above. At the 
+moment aside from the special features such as debug-tweaks, these are just a 
+thin layer on top of task recipes which doesn't add very much at all other 
+than extra maintenance.
+
+> I think if you go through the images today, a lot of that stuff is either
+> old, or could be simplified by creating appropriate tasks/groups.
+
+OK, that's a good point. I have another task on my list to clean up our image 
+recipes and that would be a good segue into that.
+
+Cheers,
+Paul
+
+-- 
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
