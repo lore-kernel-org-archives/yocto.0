@@ -1,20 +1,20 @@
 Return-Path: <ioanax.grigoropol@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 05704E01388
-	for <yocto@yoctoproject.org>; Wed, 22 Aug 2012 04:36:14 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 22 Aug 2012 04:36:14 -0700
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 625F3E01388
+	for <yocto@yoctoproject.org>; Wed, 22 Aug 2012 04:46:08 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by fmsmga101.fm.intel.com with ESMTP; 22 Aug 2012 04:46:07 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.77,808,1336374000"; d="scan'208";a="189803950"
+X-IronPort-AV: E=Sophos;i="4.77,808,1336374000"; d="scan'208";a="136791834"
 Received: from ideapad (HELO localhost.localdomain) ([10.237.105.40])
-	by orsmga002.jf.intel.com with ESMTP; 22 Aug 2012 04:35:56 -0700
+	by AZSMGA002.ch.intel.com with ESMTP; 22 Aug 2012 04:46:05 -0700
 From: Ioana Grigoropol <ioanax.grigoropol@intel.com>
 To: yocto@yoctoproject.org
-Date: Wed, 22 Aug 2012 14:34:11 +0300
-Message-Id: <1345635251-3199-1-git-send-email-ioanax.grigoropol@intel.com>
+Date: Wed, 22 Aug 2012 14:44:15 +0300
+Message-Id: <1345635855-3472-1-git-send-email-ioanax.grigoropol@intel.com>
 X-Mailer: git-send-email 1.7.9.5
 Cc: Ioana Grigoropol <ioanax.grigoropol@intel.com>
-Subject: [PATCH] [Fixed]Yocto-BSP Main Page - time consuming processes block the UI
+Subject: [PATCH v2] [Fixed]Yocto-BSP Main Page - time consuming processes block the UI
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -26,7 +26,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 22 Aug 2012 11:36:15 -0000
+X-List-Received-Date: Wed, 22 Aug 2012 11:46:08 -0000
 
 - problems on the main page of yocto-bsp wizard :
 	- getting the available kernel architectures is invoked from the UI
