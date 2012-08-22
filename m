@@ -1,34 +1,37 @@
-Return-Path: <jefro.net@gmail.com>
-Received: from mail-yx0-f176.google.com (mail-yx0-f176.google.com
-	[209.85.213.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4FCE8E00283
-	for <yocto@yoctoproject.org>; Wed, 22 Aug 2012 10:15:59 -0700 (PDT)
-Received: by yenm12 with SMTP id m12so1048113yen.35
-	for <yocto@yoctoproject.org>; Wed, 22 Aug 2012 10:15:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:date
-	:x-google-sender-auth:message-id:subject:from:to:cc:content-type;
-	bh=mwSEpsZ8nTljYUdEOz6zvVH7m2b7ogeQwEfHLsELzUQ=;
-	b=qFq5M0+ZZhCYVv+V2o1C9o97kndTOvdvC4MGWnGkzqHhR76Pc7mlPW3XxJiMCsL2FB
-	v/ByvahPIFo8hCdIATRcTu1mUPiNwAxqFqlvlZieylnGUm8xUS0R9D96cAHSEbOjoNn1
-	ACUkEIpDHFZkUokd+yzVP1CeLT4KzDv66Vodzs3tLozppXJynT3TbDZHnotz2PVoNAoS
-	A0EOI6MzFN1NQPAho8/4DswUfglIS/EtvIWYDROSjXJVzUXy2BDl+srZDw0ynz5axruR
-	0wwIy5/Y8tSaOW+9ioe8XTsLRmUfPBQfGpApumnqM7OeTuK98Eh19YAnLN7M9W0Jd+Cm
-	AKbQ==
-MIME-Version: 1.0
-Received: by 10.50.168.70 with SMTP id zu6mr2973222igb.44.1345655756121; Wed,
-	22 Aug 2012 10:15:56 -0700 (PDT)
-Sender: jefro.net@gmail.com
-Received: by 10.64.50.231 with HTTP; Wed, 22 Aug 2012 10:15:56 -0700 (PDT)
-In-Reply-To: <CAHUNapSmuzJaUkE2fz27-6MDWGg5TAUug9sBxPWEqneM2OO1WA@mail.gmail.com>
-References: <CAHUNapSmuzJaUkE2fz27-6MDWGg5TAUug9sBxPWEqneM2OO1WA@mail.gmail.com>
-Date: Wed, 22 Aug 2012 10:15:56 -0700
-X-Google-Sender-Auth: 1MD6sQRetoXBN2wdKUh7kP6Rq7g
-Message-ID: <CA+YB3raTP8ROCvuidyH8zoupo4_qO1a+oWZ_Noakm3Kx5suRag@mail.gmail.com>
-From: Jeff Osier-Mixon <jefro@jefro.net>
-To: Trevor Woerner <twoerner@gmail.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: of recipes and packages
+Return-Path: <ross.burton@intel.com>
+Received: from orsmga101.jf.intel.com (mga06.intel.com [134.134.136.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F153DE00283
+	for <yocto@yoctoproject.org>; Wed, 22 Aug 2012 10:19:17 -0700 (PDT)
+Received: from mail-wg0-f44.google.com ([74.125.82.44])
+	by mga02.intel.com with ESMTP/TLS/RC4-SHA; 22 Aug 2012 10:12:08 -0700
+Received: by wgbdr13 with SMTP id dr13so671738wgb.13
+	for <yocto@yoctoproject.org>; Wed, 22 Aug 2012 10:12:06 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=from:to:subject:date:message-id:x-mailer:in-reply-to:references
+	:x-gm-message-state;
+	bh=ejj3wznX7x2ZGHxizgGrhHxLRCOMFzi1DOM5aBKvQR0=;
+	b=a2DMRqHuEiN2j7ydcYJmYtAuYJaIfg4TVH+bYS2MCt3ExFAvtoJhI5CkYbMWykGzUU
+	3exaitL2/8G2ZlUwqPFRZUEPbd6gHFj9e0z/ajmgSQAMN5fV7R0QVFqnhogfHUnV3tXd
+	QezuKwQ0eB9Be56m6dQd3tXWPZeHguo/ILvqexmiu70vCmmulthiMeCwe7XeiAsvEvuc
+	vippIqHHBH+Tq6zkdNYHMKJc/9AQC0deIoM5azj1qoRSVqE9YifwNuJowXbT8gg5WiJW
+	hPwmqZSXxBuuuL3PMW4F5Rsc3dMlJr6hzJj4eUuJSMwqsbyl6lWxdzQVnGhRB8y05SWs
+	Ja+g==
+Received: by 10.180.84.104 with SMTP id x8mr7394620wiy.20.1345655526631;
+	Wed, 22 Aug 2012 10:12:06 -0700 (PDT)
+Received: from melchett.burtonini.com (35.106.2.81.in-addr.arpa. [81.2.106.35])
+	by mx.google.com with ESMTPS id bc2sm13920163wib.0.2012.08.22.10.12.04
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Wed, 22 Aug 2012 10:12:05 -0700 (PDT)
+From: Ross Burton <ross.burton@intel.com>
+To: yocto@yoctoproject.org
+Date: Wed, 22 Aug 2012 18:11:23 +0100
+Message-Id: <1345655483-10933-2-git-send-email-ross.burton@intel.com>
+X-Mailer: git-send-email 1.7.10
+In-Reply-To: <1345655483-10933-1-git-send-email-ross.burton@intel.com>
+References: <1345655483-10933-1-git-send-email-ross.burton@intel.com>
+X-Gm-Message-State: ALoCoQlmubOMyXzl+DORS7wbb1fLVEre+NaCwEX+TBYjK7CFNv9jqelPGVrrG0IUncb5u5YyaUrP
+Subject: [PATCH 2/2] routerstationpro: switch to Xorg instead of kdrive
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,67 +43,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 22 Aug 2012 17:15:59 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Wed, 22 Aug 2012 17:19:18 -0000
 
-I tend to think of packages as "ingredients", in keeping with the
-cooking metaphor. They have version numbers, just as ingredients in
-the refrigerator have expiration dates. The recipes, however, have
-their own version numbers, but they are less critical to the success
-of the build - maybe my Aunt Agnes has a version of Betty Crocker's
-yellow cake recipe, but improved slightly. If I make that recipe with
-old eggs, though, it will fail.
+All of the other BSPs are using Xorg and kdrive is only maintained for Xephyr.
 
-In this case, bitbake is looking for the expiration dates on your
-ingredients - the version of the package that each recipe builds. With
-the list that comes from bitbake -s you can determine whether any of
-your packages is the right one.
+Signed-off-by: Ross Burton <ross.burton@intel.com>
+---
+ meta-yocto/conf/machine/routerstationpro.conf |    9 +++++++--
+ 1 file changed, 7 insertions(+), 2 deletions(-)
 
-As for the versions of the recipes themselves, the Yocto Project's QA
-and testing process makes sure that each of the included recipes
-works, in the sense that it builds the package reliably. You can spice
-them up if you like.
-
-Chris Hallinan wrote up a good description of many of the terms used
-in the project:
-http://blogs.mentor.com/chrishallinan/blog/2012/04/13/yocto-versus-poky-versus-angstrom-etc/
-
-Hope that helps
-
-On Wed, Aug 22, 2012 at 10:05 AM, Trevor Woerner <twoerner@gmail.com> wrote:
-> Okay, if the confusion over "yocto" versus "yocto project" versus
-> "poky" and trying to decide whether poky or yocto is a distribution or
-> a build system or sometimes both or neither of either wasn't bad
-> enough... there now comes a new confusion:
->
-> recipes versus packages
->
-> an image is composed of packages
-> a recipe for a given piece of software generates a set of packages
->
-> to discover the list of packages generated by a recipe one can use:
-> $ bitbake -e <recipe> | grep "^PACKAGES="
->
-> to discover the list of available recipes (for a given set of layers)
-> one can use:
-> $ bitbake -s
->
-> However:
->
-> $ bitbake --help | grep -- -s
-> ...
->   -s, --show-versions   show current and preferred versions of all packages
-> ...
->
-> "...versions of all _packages_"!? Shouldn't that be "recipes"?
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
-
-
+diff --git a/meta-yocto/conf/machine/routerstationpro.conf b/meta-yocto/conf/machine/routerstationpro.conf
+index 3c2f56f..645a94a 100644
+--- a/meta-yocto/conf/machine/routerstationpro.conf
++++ b/meta-yocto/conf/machine/routerstationpro.conf
+@@ -11,9 +11,14 @@ KERNEL_ALT_IMAGETYPE = "vmlinux.bin"
+ 
+ PREFERRED_PROVIDER_virtual/kernel ?= "linux-yocto"
+ PREFERRED_VERSION_linux-yocto ?= "3.0%"
+-PREFERRED_PROVIDER_virtual/xserver = "xserver-kdrive"
+-XSERVER = "xserver-kdrive-fbdev"
+ 
++PREFERRED_PROVIDER_virtual/xserver ?= "xserver-xorg"
++XSERVER ?= "xserver-xorg \
++           xserver-xorg-extension-extmod \
++           xf86-input-mouse \
++           xf86-input-keyboard \
++           xf86-input-evdev \
++           xf86-video-fbdev"
+ 
+ SERIAL_CONSOLE = "115200 ttyS0"
+ 
 -- 
-Jeff Osier-Mixon http://jefro.net/blog
-Yocto Project Community Manager @Intel http://yoctoproject.org
+1.7.10
+
 
