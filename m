@@ -1,34 +1,33 @@
-Return-Path: <kergoth@gmail.com>
-Received: from mail-lb0-f176.google.com (mail-lb0-f176.google.com
-	[209.85.217.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 43908E013B2
-	for <yocto@yoctoproject.org>; Wed, 22 Aug 2012 12:25:04 -0700 (PDT)
-Received: by lboi15 with SMTP id i15so1008088lbo.35
-	for <yocto@yoctoproject.org>; Wed, 22 Aug 2012 12:25:03 -0700 (PDT)
+Return-Path: <twoerner@gmail.com>
+Received: from mail-lpp01m010-f48.google.com (mail-lpp01m010-f48.google.com
+	[209.85.215.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 281E9E013B2
+	for <yocto@yoctoproject.org>; Wed, 22 Aug 2012 13:15:31 -0700 (PDT)
+Received: by lagr15 with SMTP id r15so939079lag.35
+	for <yocto@yoctoproject.org>; Wed, 22 Aug 2012 13:15:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:from:date
-	:x-google-sender-auth:message-id:subject:to:cc:content-type;
-	bh=pHIuFh5qZY/WJGr18/26Daw9Wv41WMBUSsI2d64lww4=;
-	b=kYNqxH7LlADKZvoHGnygwyprJ7HxUpC7nZJGj62u23QepPoUTbrL44KgyaYfZLxNj8
-	k5yO//nNgqxIz81dm/JzmcYwvq5stuUgP4I0QnyU0BySExMPdb/p4GRuOrLEadQgEtWx
-	KQpBvuYrvJi55K7b1eYDRPoWUsnGbj84CZcNc028pIexyL/+oHNZJ+gy4piYiiSZY6AD
-	5McZbB99PrcEkTBhBRxz5SJHwpZk8lPefz3iUnW6nM0d9iFsU1yuGJtkoxPqqaKpmayw
-	nw7W/wgiewnXtDxjcbL7jHztlFs5iqCxZVg6I4MY60suiPUvWjBFfFzg13yE7bmLPBLm
-	gGUg==
-Received: by 10.112.83.229 with SMTP id t5mr9805144lby.8.1345663503166; Wed,
-	22 Aug 2012 12:25:03 -0700 (PDT)
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=JNpmv7EB6X2EZcN6O+oL56Viayjat2eK6ZT5QEjQHxI=;
+	b=TcNoZbMFK2oqn51OWFYHuFsQXqZ6O7EsLZ1nKlfIwy8PJTp3kAaLbLzUj1CU+87hyb
+	QLmsaxe3OsIChG3L5KUuVaIdkCwtex3U+HTzgCW4PdEFF3Jj9LcuGIg3x2k+QVhV2nM1
+	oQMUAwSsYKPRJE+SKSUy5o2MBXRHSj6Ga66R1Y7We0qcBFW3VVy7IP5HSKjk/JveaSgf
+	QpH221VPx4COCKvbpfKSYyY9Y5V7BEDAUjRl6WYr+qGcXqfvouGXxsMbbssoOok+WjZ5
+	cm249NUTcgCTesnm1O416jNupEKgxBU0gCIVPzO0HAu+N7Lv239eq2SdytMgkmsEt1aT
+	a+8A==
 MIME-Version: 1.0
-Sender: kergoth@gmail.com
-Received: by 10.114.19.2 with HTTP; Wed, 22 Aug 2012 12:24:43 -0700 (PDT)
-In-Reply-To: <CAHUNapRLsCWvefm1+Sc0QT2OhVJ-e0fa3iF7zL2H2qFQLR+AUA@mail.gmail.com>
+Received: by 10.112.44.9 with SMTP id a9mr1174656lbm.84.1345666530894; Wed, 22
+	Aug 2012 13:15:30 -0700 (PDT)
+Received: by 10.112.21.9 with HTTP; Wed, 22 Aug 2012 13:15:30 -0700 (PDT)
+In-Reply-To: <CABcZAN=Dktdoq00_uHAvG7Wy2UgQhZS0KbZOeCK-s=7B+RbwWA@mail.gmail.com>
 References: <CAHUNapSmuzJaUkE2fz27-6MDWGg5TAUug9sBxPWEqneM2OO1WA@mail.gmail.com>
 	<CA+YB3raTP8ROCvuidyH8zoupo4_qO1a+oWZ_Noakm3Kx5suRag@mail.gmail.com>
 	<CAHUNapRLsCWvefm1+Sc0QT2OhVJ-e0fa3iF7zL2H2qFQLR+AUA@mail.gmail.com>
-From: Chris Larson <clarson@kergoth.com>
-Date: Wed, 22 Aug 2012 12:24:43 -0700
-X-Google-Sender-Auth: Jhbw_2C0ruD0Rh4O-3Hy92M4u1I
-Message-ID: <CABcZAN=Dktdoq00_uHAvG7Wy2UgQhZS0KbZOeCK-s=7B+RbwWA@mail.gmail.com>
-To: Trevor Woerner <twoerner@gmail.com>
+	<CABcZAN=Dktdoq00_uHAvG7Wy2UgQhZS0KbZOeCK-s=7B+RbwWA@mail.gmail.com>
+Date: Wed, 22 Aug 2012 16:15:30 -0400
+Message-ID: <CAHUNapRvcW+M2t-LUpDYGRYJBYhLu0Yy_z66gHqE67kb9yWXvA@mail.gmail.com>
+From: Trevor Woerner <twoerner@gmail.com>
+To: Chris Larson <clarson@kergoth.com>
 Cc: yocto@yoctoproject.org
 Subject: Re: of recipes and packages
 X-BeenThere: yocto@yoctoproject.org
@@ -42,31 +41,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 22 Aug 2012 19:25:04 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 22 Aug 2012 20:15:32 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On Wed, Aug 22, 2012 at 12:23 PM, Trevor Woerner <twoerner@gmail.com> wrote:
-> On Wed, Aug 22, 2012 at 1:15 PM, Jeff Osier-Mixon <jefro@jefro.net> wrote:
->> In this case, bitbake is looking for the expiration dates on your
->> ingredients - the version of the package that each recipe builds.
+On Wed, Aug 22, 2012 at 3:24 PM, Chris Larson <clarson@kergoth.com> wrote:
+> On Wed, Aug 22, 2012 at 12:23 PM, Trevor Woerner <twoerner@gmail.com> wrote:
+>> "bitbake -s" doesn't list "net-snmp-dbg net-snmp-doc net-snmp-dev..."
+>> it lists "net-snmp". Therefore couldn't the wording of the bitbake
+>> help be improved to say:
+>>
+>> -s, --show-versions   show current and preferred versions of all __recipes__
+>>
+>> instead of:
 >
-> But your wording would seem to imply _a_ recipe builds _a_ package.
-> But a recipe doesn't build a package, a recipe potentially builds lots
-> of packages. For example the "net-snmp" recipe builds the following
-> packages: "net-snmp-dbg net-snmp-doc net-snmp-dev net-snmp-staticdev
-> net-snmp-static net-snmp-libs net-snmp-mibs net-snmp-server
-> net-snmp-client"
 >
-> "bitbake -s" doesn't list "net-snmp-dbg net-snmp-doc net-snmp-dev..."
-> it lists "net-snmp". Therefore couldn't the wording of the bitbake
-> help be improved to say:
->
-> -s, --show-versions   show current and preferred versions of all __recipes__
->
-> instead of:
+> It could, and should, be changed in that way, yes.
 
-
-It could, and should, be changed in that way, yes.
--- 
-Christopher Larson
+Do the OE people accept this wording too, or is this a
+yocto-project-only thing? In other words, should a potential patch be
+sent to OE or here?
 
