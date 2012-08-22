@@ -1,25 +1,36 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7BEA0E01388
-	for <yocto@yoctoproject.org>; Wed, 22 Aug 2012 12:24:28 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id q7MJOQgI025322
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 22 Aug 2012 12:24:26 -0700 (PDT)
-Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.2.309.2;
-	Wed, 22 Aug 2012 12:24:26 -0700
-Message-ID: <503531E4.8000506@windriver.com>
-Date: Wed, 22 Aug 2012 15:24:20 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:12.0) Gecko/20120430 Thunderbird/12.0.1
+Return-Path: <kergoth@gmail.com>
+Received: from mail-lb0-f176.google.com (mail-lb0-f176.google.com
+	[209.85.217.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 43908E013B2
+	for <yocto@yoctoproject.org>; Wed, 22 Aug 2012 12:25:04 -0700 (PDT)
+Received: by lboi15 with SMTP id i15so1008088lbo.35
+	for <yocto@yoctoproject.org>; Wed, 22 Aug 2012 12:25:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:sender:in-reply-to:references:from:date
+	:x-google-sender-auth:message-id:subject:to:cc:content-type;
+	bh=pHIuFh5qZY/WJGr18/26Daw9Wv41WMBUSsI2d64lww4=;
+	b=kYNqxH7LlADKZvoHGnygwyprJ7HxUpC7nZJGj62u23QepPoUTbrL44KgyaYfZLxNj8
+	k5yO//nNgqxIz81dm/JzmcYwvq5stuUgP4I0QnyU0BySExMPdb/p4GRuOrLEadQgEtWx
+	KQpBvuYrvJi55K7b1eYDRPoWUsnGbj84CZcNc028pIexyL/+oHNZJ+gy4piYiiSZY6AD
+	5McZbB99PrcEkTBhBRxz5SJHwpZk8lPefz3iUnW6nM0d9iFsU1yuGJtkoxPqqaKpmayw
+	nw7W/wgiewnXtDxjcbL7jHztlFs5iqCxZVg6I4MY60suiPUvWjBFfFzg13yE7bmLPBLm
+	gGUg==
+Received: by 10.112.83.229 with SMTP id t5mr9805144lby.8.1345663503166; Wed,
+	22 Aug 2012 12:25:03 -0700 (PDT)
 MIME-Version: 1.0
-To: Khem Raj <raj.khem@gmail.com>
-References: <1345627689-23016-1-git-send-email-raj.khem@gmail.com>
-In-Reply-To: <1345627689-23016-1-git-send-email-raj.khem@gmail.com>
+Sender: kergoth@gmail.com
+Received: by 10.114.19.2 with HTTP; Wed, 22 Aug 2012 12:24:43 -0700 (PDT)
+In-Reply-To: <CAHUNapRLsCWvefm1+Sc0QT2OhVJ-e0fa3iF7zL2H2qFQLR+AUA@mail.gmail.com>
+References: <CAHUNapSmuzJaUkE2fz27-6MDWGg5TAUug9sBxPWEqneM2OO1WA@mail.gmail.com>
+	<CA+YB3raTP8ROCvuidyH8zoupo4_qO1a+oWZ_Noakm3Kx5suRag@mail.gmail.com>
+	<CAHUNapRLsCWvefm1+Sc0QT2OhVJ-e0fa3iF7zL2H2qFQLR+AUA@mail.gmail.com>
+From: Chris Larson <clarson@kergoth.com>
+Date: Wed, 22 Aug 2012 12:24:43 -0700
+X-Google-Sender-Auth: Jhbw_2C0ruD0Rh4O-3Hy92M4u1I
+Message-ID: <CABcZAN=Dktdoq00_uHAvG7Wy2UgQhZS0KbZOeCK-s=7B+RbwWA@mail.gmail.com>
+To: Trevor Woerner <twoerner@gmail.com>
 Cc: yocto@yoctoproject.org
-Subject: Re: [linux-yocto-3.2][PATCH] arm: Fix linking errors with binutils 2.23
+Subject: Re: of recipes and packages
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,67 +42,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 22 Aug 2012 19:24:28 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 22 Aug 2012 19:25:04 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On 12-08-22 05:28 AM, Khem Raj wrote:
-> We end up with linking errors on arm using latest binutils
-> because we are linking asm generated objects which use -march=all
-> generating different attributes into object and use some c objects
-> e.g. misc.o which use different march therefore generating a
-> different set of attributes into object. When linking is done
-> the ld complains since it finds incompatible attributes and ends
-> up with errors like
+On Wed, Aug 22, 2012 at 12:23 PM, Trevor Woerner <twoerner@gmail.com> wrote:
+> On Wed, Aug 22, 2012 at 1:15 PM, Jeff Osier-Mixon <jefro@jefro.net> wrote:
+>> In this case, bitbake is looking for the expiration dates on your
+>> ingredients - the version of the package that each recipe builds.
 >
-> error: DIV usage mismatch between arch/arm/boot/compressed/head.o and
-> output
-> error: DIV usage mismatch between arch/arm/boot/compressed/misc.o and
-> output
-> error: DIV usage mismatch between arch/arm/boot/compressed/decompress.o
-> and output
-> error: DIV usage mismatch between arch/arm/boot/compressed/lib1funcs.o
-> and output
+> But your wording would seem to imply _a_ recipe builds _a_ package.
+> But a recipe doesn't build a package, a recipe potentially builds lots
+> of packages. For example the "net-snmp" recipe builds the following
+> packages: "net-snmp-dbg net-snmp-doc net-snmp-dev net-snmp-staticdev
+> net-snmp-static net-snmp-libs net-snmp-mibs net-snmp-server
+> net-snmp-client"
 >
-> This patch fixes it by providing correct march to assembly routines
-> which than matches with output of ld.
+> "bitbake -s" doesn't list "net-snmp-dbg net-snmp-doc net-snmp-dev..."
+> it lists "net-snmp". Therefore couldn't the wording of the bitbake
+> help be improved to say:
+>
+> -s, --show-versions   show current and preferred versions of all __recipes__
+>
+> instead of:
 
-Looks good to me. I'll queue it here with a few other fixes and do
-a test build against my existing binutils.
 
-I haven't looked yet, will 3.4+ need the same fix ?
-
-Cheers,
-
-Bruce
-
->
-> Signed-off-by: Khem Raj<raj.khem@gmail.com>
-> ---
->   arch/arm/boot/compressed/Makefile |    4 ++--
->   1 file changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/arch/arm/boot/compressed/Makefile b/arch/arm/boot/compressed/Makefile
-> index 21f56ff..05d9cb3 100644
-> --- a/arch/arm/boot/compressed/Makefile
-> +++ b/arch/arm/boot/compressed/Makefile
-> @@ -5,7 +5,7 @@
->   #
->
->   OBJS		=
-> -
-> +plus_sec :=	$(call as-instr,.arch_extension sec,+sec)
->   # Ensure that MMCIF loader code appears early in the image
->   # to minimise that number of bocks that have to be read in
->   # order to load it.
-> @@ -123,7 +123,7 @@ KBUILD_CFLAGS = $(subst -pg, , $(ORIG_CFLAGS))
->   endif
->
->   ccflags-y := -fpic -fno-builtin -I$(obj)
-> -asflags-y := -Wa,-march=all
-> +asflags-y := -Wa,-march=armv7-a$(plus_sec)
->
->   # Supply kernel BSS size to the decompressor via a linker symbol.
->   KBSS_SZ = $(shell size $(obj)/../../../../vmlinux | awk 'END{print $$3}')
-
+It could, and should, be changed in that way, yes.
+-- 
+Christopher Larson
 
