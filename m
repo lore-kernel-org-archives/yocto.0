@@ -1,32 +1,32 @@
-Return-Path: <navani.srivastava@gmail.com>
-Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
-	[209.85.160.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 935A5E01388
-	for <yocto@yoctoproject.org>; Wed, 22 Aug 2012 05:16:01 -0700 (PDT)
-Received: by pbbrq13 with SMTP id rq13so1645893pbb.35
-	for <yocto@yoctoproject.org>; Wed, 22 Aug 2012 05:15:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=Zc6zd2aTnrCwX/LFcM9up74bOufthoNYILBZ+bFtJtw=;
-	b=NQb//qkllVNmDzS4eU1PTL8hKIjz06+PybSKxSO5pCgFsoipeLtqVKc0qawQWUIgHR
-	QGO8QwRxMWQUig0a8DvCn42hVqpkd9oghKAUAXt4lL858cNKJdq1d3L/qcQBYhjE3vnz
-	Ap9qx0PPI7YnCamIdSyOCzLR4qDnVylZIdB/HYIxameIucHhk6bwIscLsjsj2sQgnOeN
-	wX8rhmXwlDbvR7a13Cknj1m7cA7B07cvol0g8STXw3T6ZhoyaBoJ58AXwOAUqy3h6Bmy
-	em1Pm3feid37XSFWveSuig2A3s19VRbWlKXAou00/gTAsdIar5Rx8WvV6L1y1rA0hh5M
-	WALA==
-Received: by 10.68.222.40 with SMTP id qj8mr52164481pbc.139.1345637759172;
-	Wed, 22 Aug 2012 05:15:59 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.66.191.7 with HTTP; Wed, 22 Aug 2012 05:15:38 -0700 (PDT)
-In-Reply-To: <9BACABF0C6B14A4D8C33B42A795119BE0996CAB9@POCITMSEXMB03.LntUniverse.com>
-References: <9BACABF0C6B14A4D8C33B42A795119BE0996CAB9@POCITMSEXMB03.LntUniverse.com>
-From: Navani Srivastava <navani.srivastava@gmail.com>
-Date: Wed, 22 Aug 2012 17:45:38 +0530
-Message-ID: <CA+Z6RkX23xXB0YFHm=D_2-DVrHA5fRjkPcsefLQ9kqB6=RZwVw@mail.gmail.com>
-To: yocto@yoctoproject.org
-Cc: navani.srivastava@lnties.com
-Subject: cannot find -lgcov
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
+	[93.97.173.237])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BECDBE01388;
+	Wed, 22 Aug 2012 06:27:12 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q7MDR6mX003520;
+	Wed, 22 Aug 2012 14:27:06 +0100
+Received: from tim.rpsys.net ([127.0.0.1])
+	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
+	port 10024) with LMTP
+	id 03207-05; Wed, 22 Aug 2012 14:27:02 +0100 (BST)
+Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q7MDQvgf003506
+	(version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=NO);
+	Wed, 22 Aug 2012 14:26:58 +0100
+Message-ID: <1345642019.3907.120.camel@ted>
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: Paul Gortmaker <paul.gortmaker@windriver.com>
+Date: Wed, 22 Aug 2012 14:26:59 +0100
+In-Reply-To: <1345217059-10448-1-git-send-email-paul.gortmaker@windriver.com>
+References: <502D73D4.6090408@linux.intel.com>
+	<1345217059-10448-1-git-send-email-paul.gortmaker@windriver.com>
+X-Mailer: Evolution 3.2.3-0ubuntu6 
+Mime-Version: 1.0
+X-Virus-Scanned: amavisd-new at rpsys.net
+Cc: yocto@yoctoproject.org, Darren Hart <dvhart@linux.intel.com>,
+	poky@yoctoproject.org
+Subject: Re: [poky] [PATCH v2] routerstationpro: move board off 3.0 and onto the 3.4 kernel
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,85 +38,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 22 Aug 2012 12:16:01 -0000
-Content-Type: multipart/alternative; boundary=047d7b2ee2e9a1c02e04c7d9b45c
+X-List-Received-Date: Wed, 22 Aug 2012 13:27:13 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
---047d7b2ee2e9a1c02e04c7d9b45c
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: quoted-printable
+On Fri, 2012-08-17 at 11:24 -0400, Paul Gortmaker wrote:
+> The updated patch series to support this target is in place
+> on the BSP specific branch in the 3.4 kernel tree now[1], so
+> we can move it ahead off of the old 3.0 kernel.
+> 
+> [1] https://lists.yoctoproject.org/pipermail/linux-yocto/2012-July/000023.html
+> 
+> Cc: Bruce Ashfield <bruce.ashfield@windriver.com>
+> Cc: Saul Wold <sgw@linux.intel.com>
+> Acked-by: Darren Hart <dvhart@linux.intel.com>
+> Signed-off-by: Paul Gortmaker <paul.gortmaker@windriver.com>
+> ---
+> 
+> [v2: update to the SRCREV-of-the-day.  Note that if anyone sees
+>  build failures with this, you are also missing the meta SRCREV
+>  update in linux-yocto_3.4.bb from Bruce.  Yay SRCREV. ]
+> 
+>  meta-yocto/conf/machine/routerstationpro.conf            | 2 +-
+>  meta-yocto/recipes-kernel/linux/linux-yocto_3.4.bbappend | 4 ++--
+>  2 files changed, 3 insertions(+), 3 deletions(-)
 
-Hi,
+Merged to master, thanks. I had to manually apply the patch.
 
+Cheers,
 
-
-I am using Poky-denzil-7.0 and have created SDK for arm1136 architecture.
-
-I am facing problem in using gcov utility. I installed SDK on my server and
-issued following command-
-
-
-
-=93root@lnux-PC$
- /opt/poky/1.2/sysroots/i686-pokysdk-linux/usr/bin/armv6-vfp-poky-linux-gnu=
-eabi/arm-poky-linux-gnueabi-gcc
--fprofile-arcs -ftest-coverage test.c
-
-
-
-But it ended up with following error-
-
-
-
-=93/opt/poky/1.2/sysroots/i686-pokysdk-linux/usr/libexec/armv6-vfp-poky-lin=
-ux-gnueabi/gcc/arm-poky-linux-gnueabi/4.6.4/ld:
-cannot find -lgcov
-
-collect2: ld returned 1 exit status=94
+Richard
 
 
-
-Do gcc-4.6 recipe need any modification related to gcov?
-
-Any help is appreciable=85
-
-
-
-Thanks and Regards
-
-Navani Kamal Srivastava
-
---047d7b2ee2e9a1c02e04c7d9b45c
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: quoted-printable
-
-<br><div class=3D"gmail_quote">Hi,<div link=3D"blue" vlink=3D"purple" lang=
-=3D"EN-US"><div>
-<p class=3D"MsoNormal">=A0</p>
-<p class=3D"MsoNormal">I am using Poky-denzil-7.0 and have created SDK for =
-arm1136 architecture.</p>
-<p class=3D"MsoNormal">I am facing problem in using gcov utility. I install=
-ed SDK on my server and issued following command-</p>
-<p class=3D"MsoNormal">=A0</p>
-<p class=3D"MsoNormal">=93root@lnux-PC$ =A0/opt/poky/1.2/sysroots/i686-poky=
-sdk-linux/usr/bin/armv6-vfp-poky-linux-gnueabi/arm-poky-linux-gnueabi-gcc -=
-fprofile-arcs -ftest-coverage test.c</p>
-<p class=3D"MsoNormal">=A0</p>
-<p class=3D"MsoNormal">But it ended up with following error-</p>
-<p class=3D"MsoNormal">=A0</p>
-<p class=3D"MsoNormal">=93/opt/poky/1.2/sysroots/i686-pokysdk-linux/usr/lib=
-exec/armv6-vfp-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/4.6.4/ld: cann=
-ot find -lgcov</p>
-<p class=3D"MsoNormal">collect2: ld returned 1 exit status=94</p>
-<p class=3D"MsoNormal">=A0</p>
-<p class=3D"MsoNormal">Do gcc-4.6 recipe need any modification related to g=
-cov? </p>
-<p class=3D"MsoNormal">Any help is appreciable=85</p>
-<p class=3D"MsoNormal">=A0</p>
-<p class=3D"MsoNormal">Thanks and Regards</p>
-<p class=3D"MsoNormal">Navani Kamal Srivastava</p>
-<p class=3D"MsoNormal">=A0</p>
-</div></div>
-
-</div><br>
-
---047d7b2ee2e9a1c02e04c7d9b45c--
