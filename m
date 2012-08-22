@@ -1,31 +1,33 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 99130E013B7
-	for <yocto@yoctoproject.org>; Wed, 22 Aug 2012 13:37:47 -0700 (PDT)
-Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
-	([174.115.5.73]:35000 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.77) (envelope-from <rpjday@crashcourse.ca>)
-	id 1T4HgO-0003lU-JB
-	for yocto@yoctoproject.org; Wed, 22 Aug 2012 16:37:44 -0400
-Date: Wed, 22 Aug 2012 16:37:44 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.DEB.2.02.1208221629150.20737@oneiric>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <rstreif@linuxfoundation.org>
+Received: from mail-iy0-f176.google.com (mail-iy0-f176.google.com
+	[209.85.210.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 01F9FE01404
+	for <yocto@yoctoproject.org>; Wed, 22 Aug 2012 16:00:32 -0700 (PDT)
+Received: by iagt4 with SMTP id t4so197874iag.35
+	for <yocto@yoctoproject.org>; Wed, 22 Aug 2012 16:00:30 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:sender:date:x-google-sender-auth:message-id:subject
+	:from:to:content-type:x-gm-message-state;
+	bh=cT3wKhMIfBCB8DXfQFIeNyEObF5ZUD24SxJ/f+0yxjI=;
+	b=WjKYdWDjeC1Sf7wkTpLYh4PMeeCKjbE5vWAIarIpzMtMm6W/sO2actTBNvC3oEtI2+
+	DGeWWNUAZ60S/91DY0vzEisfg+CPG/G4vJxXV9rrogSnACxgrG0KppuLMJdBLir+fHMR
+	X2zaGe0WCTmebP86udrXdAmvQKtS131PaEPmFuFv4yrUljFfNgSoIHR/bm4886KoGGZn
+	5cTiYP0qM2HE603ZvTmm5YpipnV4jGUkIrj2P6ijP1td2/qDdsCfcO0X1UV9TSFt9Nb5
+	lUuU9491b+ynoWv8sU6ABwvIC24IrFxvKuU72LZ5Ra76kcANegavpgpByu0U9G9Wzszd
+	wA+w==
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: dev manual section on "customizing images" needs serious adjustment
+Received: by 10.50.222.162 with SMTP id qn2mr3978575igc.46.1345676430122; Wed,
+	22 Aug 2012 16:00:30 -0700 (PDT)
+Sender: rstreif@linuxfoundation.org
+Received: by 10.64.142.134 with HTTP; Wed, 22 Aug 2012 16:00:30 -0700 (PDT)
+Date: Wed, 22 Aug 2012 16:00:30 -0700
+X-Google-Sender-Auth: msbLtZlaXpCg_MdQFCov4Qf8CNQ
+Message-ID: <CA+gsK-pwJ4dWQ6PyR-Lg2y3L7N19K5Ndzo-1c1n3wqbryy5vbQ@mail.gmail.com>
+From: Rudolf Streif <rudolf.streif@linux.com>
+To: yocto@yoctoproject.org
+X-Gm-Message-State: ALoCoQls3sJ9eIK9ibpRx6VdkRst7AvbSwqD28Iagfw+QKsV29aCsEl5C7LQkhW+Ln839lseeXm7
+Subject: [Eclipse ADT] Eclipse plugin download site is not a valid Eclipse site
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,63 +39,63 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 22 Aug 2012 20:37:47 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Wed, 22 Aug 2012 23:00:33 -0000
+Content-Type: multipart/alternative; boundary=14dae9340fbf999d5204c7e2b531
+
+--14dae9340fbf999d5204c7e2b531
+Content-Type: text/plain; charset=ISO-8859-1
+
+The download site
+http://downloads.yoctoproject.org/releases/eclipse-plugin/1.2.1/indigo/ for
+the Eclipse plugin is not a correctly setup Eclipse download site. The site
+root does not have the correct layout for Eclipse to be able to recognize
+it:
+
+<site root>/
+    content.jar
+    artifacts.jar
+    features/
+        feature archives
+    plugins/
+        plug-in archives
+    binary/
+        binary artifact archives
+
+However, the file org.yocto.sdk-rc1-201206291755-archive.zip looks as if it
+contains the correct site layout. The
+file org.yocto.sdk-rc1-201206291755.zip does contain the features and
+plugins only however time stamps in the file names and file sizes differ
+from the ones contained in org.yocto.sdk-rc1-201206291755-archive.zip.
+
+Could anybody please shed some light on this?
+
+Thanks,
+Rudi
+
+--14dae9340fbf999d5204c7e2b531
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<div>The download site=A0<a href=3D"http://downloads.yoctoproject.org/relea=
+ses/eclipse-plugin/1.2.1/indigo/">http://downloads.yoctoproject.org/release=
+s/eclipse-plugin/1.2.1/indigo/</a>=A0for the Eclipse plugin is not a correc=
+tly setup Eclipse download site. The site root does not have the correct la=
+yout for Eclipse to be able to recognize it:</div>
+<div><br></div><div><font face=3D"arial, helvetica, sans-serif"><tt>&lt;sit=
+e root&gt;/</tt>=A0<br><tt>=A0=A0=A0 content.jar</tt>=A0<br><tt>=A0=A0=A0 a=
+rtifacts.jar</tt>=A0<br><tt>=A0=A0=A0 features/</tt>=A0<br><tt>=A0=A0=A0=A0=
+=A0=A0=A0 feature archives</tt><br><tt>=A0=A0=A0 plugins/</tt>=A0<br>
+<tt>=A0=A0=A0=A0=A0=A0=A0 plug-in archives=A0=A0=A0</tt><br><tt>=A0=A0=A0 b=
+inary/</tt>=A0<br><tt>=A0=A0=A0=A0=A0=A0=A0 binary artifact archives</tt></=
+font></div><div><font face=3D"arial, helvetica, sans-serif"><tt><br></tt></=
+font></div><div>However, the file org.yocto.sdk-rc1-201206291755-archive.zi=
+p looks as if it contains the correct site layout. The file=A0org.yocto.sdk=
+-rc1-201206291755.zip does contain the features and plugins only however ti=
+me stamps in the file names and file sizes differ from the ones contained i=
+n=A0org.yocto.sdk-rc1-201206291755-archive.zip.</div>
+<div><br></div><div>Could anybody please shed some light on this?</div><div=
+><br></div><div>Thanks,</div><div>Rudi</div><table style=3D"font-family:&#3=
+9;Times New Roman&#39;"><tbody><tr><td><br><br></td></tr></tbody></table>
 
 
-  from here:
-
-http://www.yoctoproject.org/docs/latest/dev-manual/dev-manual.html#usingpoky-extend-customimage-custombb
-
-a couple gripes.
-
-  end of 4.2.1 suggests
-
-  IMAGE_INSTALL += "strace"
-
-when creating a new image .bb file.  as i read it, the docs currently
-suggest
-
-  IMAGE_INSTALL_append = " strace"
-
-when adding to your local.conf, and i don't think it's sufficiently
-clear to the reader the distinction between "+=" and "_append", and
-when to use one or the other.  and reading the source doesn't help
-since it bounces back and forth constantly.  is this clarified
-anywhere?
-
-  a bigger gripe for me is this:
-
-One way to get additional software into an image is to create a
-custom image. The following example shows the form for the two lines
-you need:
-
-     IMAGE_INSTALL = "task-core-x11-base package1 package2"
-
-     inherit core-image
-
-no.  that is not a way to get "additional" software into an image, it
-is a way to *override* core-image.bbclass's conditional setting of:
-
-  IMAGE_INSTALL ?= "${CORE_IMAGE_BASE_INSTALL}"
-
-which i think is overly confusing.  in general, i'm really unhappy
-with the number of image definitions that explicitly set
-IMAGE_INSTALL, *then* inherit core-image.  the potential to mislead
-the reader as to what's happening is really overwhelming.
-
-rday
-
--- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
-
-
-
-
+--14dae9340fbf999d5204c7e2b531--
