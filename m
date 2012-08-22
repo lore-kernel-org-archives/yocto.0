@@ -1,37 +1,28 @@
-Return-Path: <ross.burton@intel.com>
-Received: from orsmga101.jf.intel.com (mga06.intel.com [134.134.136.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F153DE00283
-	for <yocto@yoctoproject.org>; Wed, 22 Aug 2012 10:19:17 -0700 (PDT)
-Received: from mail-wg0-f44.google.com ([74.125.82.44])
-	by mga02.intel.com with ESMTP/TLS/RC4-SHA; 22 Aug 2012 10:12:08 -0700
-Received: by wgbdr13 with SMTP id dr13so671738wgb.13
-	for <yocto@yoctoproject.org>; Wed, 22 Aug 2012 10:12:06 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=from:to:subject:date:message-id:x-mailer:in-reply-to:references
-	:x-gm-message-state;
-	bh=ejj3wznX7x2ZGHxizgGrhHxLRCOMFzi1DOM5aBKvQR0=;
-	b=a2DMRqHuEiN2j7ydcYJmYtAuYJaIfg4TVH+bYS2MCt3ExFAvtoJhI5CkYbMWykGzUU
-	3exaitL2/8G2ZlUwqPFRZUEPbd6gHFj9e0z/ajmgSQAMN5fV7R0QVFqnhogfHUnV3tXd
-	QezuKwQ0eB9Be56m6dQd3tXWPZeHguo/ILvqexmiu70vCmmulthiMeCwe7XeiAsvEvuc
-	vippIqHHBH+Tq6zkdNYHMKJc/9AQC0deIoM5azj1qoRSVqE9YifwNuJowXbT8gg5WiJW
-	hPwmqZSXxBuuuL3PMW4F5Rsc3dMlJr6hzJj4eUuJSMwqsbyl6lWxdzQVnGhRB8y05SWs
-	Ja+g==
-Received: by 10.180.84.104 with SMTP id x8mr7394620wiy.20.1345655526631;
-	Wed, 22 Aug 2012 10:12:06 -0700 (PDT)
-Received: from melchett.burtonini.com (35.106.2.81.in-addr.arpa. [81.2.106.35])
-	by mx.google.com with ESMTPS id bc2sm13920163wib.0.2012.08.22.10.12.04
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Wed, 22 Aug 2012 10:12:05 -0700 (PDT)
-From: Ross Burton <ross.burton@intel.com>
-To: yocto@yoctoproject.org
-Date: Wed, 22 Aug 2012 18:11:23 +0100
-Message-Id: <1345655483-10933-2-git-send-email-ross.burton@intel.com>
-X-Mailer: git-send-email 1.7.10
-In-Reply-To: <1345655483-10933-1-git-send-email-ross.burton@intel.com>
-References: <1345655483-10933-1-git-send-email-ross.burton@intel.com>
-X-Gm-Message-State: ALoCoQlmubOMyXzl+DORS7wbb1fLVEre+NaCwEX+TBYjK7CFNv9jqelPGVrrG0IUncb5u5YyaUrP
-Subject: [PATCH 2/2] routerstationpro: switch to Xorg instead of kdrive
+Return-Path: <bewithsathish@gmail.com>
+Received: from mail-qc0-f176.google.com (mail-qc0-f176.google.com
+	[209.85.216.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B05F9E01388
+	for <yocto@yoctoproject.org>; Wed, 22 Aug 2012 10:53:32 -0700 (PDT)
+Received: by qcsc21 with SMTP id c21so1041605qcs.35
+	for <yocto@yoctoproject.org>; Wed, 22 Aug 2012 10:53:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=ZrGYfrsLehkhT/2OEiKmd2keYuT+PKRQclVo6sbx2As=;
+	b=FqDMJFrnpj6lHRwl+4oOb/90enDJOgJCHnpAxh3BPSsN2qDPnxlTLgkRxF4EM7NwR+
+	34dViCX/RUIglSYlhjJ9GmEbGG6vjVnsEGpzDVfJwf0OsH6V8KMIhVqw4z9ge75FbPzN
+	+pomG4GIqOmMM6OQLOEodwP09jjmBZFpppraRVNScmuJi3T8hueuBV+5Ol/N/9jWqY6j
+	t5b2aUyhP/fWDKqlQwe6UYfbEQFDqGBEyT6MP4guLNZKF4zdRNYFWlSM+6nzC2HdQssy
+	R4tkAVf9b49S3xTs1WSOyW2oJhTjVe4wJlyMFmwtI7Mcn0sGBk0Zqv2KrUa0Po7nxnQq
+	WjYQ==
+MIME-Version: 1.0
+Received: by 10.224.44.202 with SMTP id b10mr12041168qaf.2.1345658009946; Wed,
+	22 Aug 2012 10:53:29 -0700 (PDT)
+Received: by 10.49.40.161 with HTTP; Wed, 22 Aug 2012 10:53:29 -0700 (PDT)
+Date: Wed, 22 Aug 2012 23:23:29 +0530
+Message-ID: <CANJvwR8jR_d3ULY=LxgM_PamCex9UV1U3NieGXKt9hD=jWAX6Q@mail.gmail.com>
+From: Sathishkumar Duraisamy <bewithsathish@gmail.com>
+To: Yocto Project <yocto@yoctoproject.org>
+Subject: PyCon India 2012
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,37 +34,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 22 Aug 2012 17:19:18 -0000
+X-List-Received-Date: Wed, 22 Aug 2012 17:53:32 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-All of the other BSPs are using Xorg and kdrive is only maintained for Xephyr.
+Hi All,
 
-Signed-off-by: Ross Burton <ross.burton@intel.com>
----
- meta-yocto/conf/machine/routerstationpro.conf |    9 +++++++--
- 1 file changed, 7 insertions(+), 2 deletions(-)
+I would like to do a talk in Python Conference, PyCon India 2012 about
+Yocto Project. The PyCon India is purely a volunteer effort from
+python community in India. Here is the details:
+http://in.pycon.org/2012/funnel/pyconindia2012/6-yoctoproject-and-bitbake
+and http://in.pycon.org/2012/.
 
-diff --git a/meta-yocto/conf/machine/routerstationpro.conf b/meta-yocto/conf/machine/routerstationpro.conf
-index 3c2f56f..645a94a 100644
---- a/meta-yocto/conf/machine/routerstationpro.conf
-+++ b/meta-yocto/conf/machine/routerstationpro.conf
-@@ -11,9 +11,14 @@ KERNEL_ALT_IMAGETYPE = "vmlinux.bin"
- 
- PREFERRED_PROVIDER_virtual/kernel ?= "linux-yocto"
- PREFERRED_VERSION_linux-yocto ?= "3.0%"
--PREFERRED_PROVIDER_virtual/xserver = "xserver-kdrive"
--XSERVER = "xserver-kdrive-fbdev"
- 
-+PREFERRED_PROVIDER_virtual/xserver ?= "xserver-xorg"
-+XSERVER ?= "xserver-xorg \
-+           xserver-xorg-extension-extmod \
-+           xf86-input-mouse \
-+           xf86-input-keyboard \
-+           xf86-input-evdev \
-+           xf86-video-fbdev"
- 
- SERIAL_CONSOLE = "115200 ttyS0"
- 
+Firstly, I request the community and project leaders to give me the
+permission to do presentation and Secondly, request you all to guide
+me to make the presentation a grand successful.
+
+I believe, about 80% of the audience would be python programmer and
+about 5% - 10% can be from embedded stream. So, what I planning is to
+give a short intro about yocto project and showing a demo with Qemu
+(10 - 15 min), and then explaining bitbake's operation with a recipe
+in the yocto (20 mins). That is about bitbake's COW, scheduler,
+runqueue and shared state cache.
+
+Based on this idea, I have been preparing the slides. I was little
+away due to current assignment but I found
+http://www.aosabook.org/en/yocto.html and http://vimeo.com/36450321
+very useful. Once draft slides are made, I will sent to the mailing
+list. I request you all to give some more comments on this.
+
 -- 
-1.7.10
-
+Thanks and Regards,
+Sathishkumar D
 
