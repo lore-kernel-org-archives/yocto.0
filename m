@@ -1,33 +1,40 @@
-Return-Path: <rstreif@linuxfoundation.org>
-Received: from mail-iy0-f176.google.com (mail-iy0-f176.google.com
-	[209.85.210.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 37C88E01404
-	for <yocto@yoctoproject.org>; Wed, 22 Aug 2012 16:22:31 -0700 (PDT)
-Received: by iagt4 with SMTP id t4so232768iag.35
-	for <yocto@yoctoproject.org>; Wed, 22 Aug 2012 16:22:31 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:sender:date:x-google-sender-auth:message-id:subject
-	:from:to:content-type:x-gm-message-state;
-	bh=K4A61JbRI5vkQpXDHXAN9Tx47fsKm9N4tWewakjBwGI=;
-	b=mME+PuokIuuh8ct/Y65YlLcwPPvm+Y1uZryVFJpyO4s9RB5MiJcH8IA15yjCdiuOzz
-	4UJCAjk7G+VK70c2hNWLTcFZXh2recdqwJxIk/PPCsNJf3PuAFPNI/h2Grl62Gx+COyL
-	HKRGl7QC6vXWWqyV9hexzklzcXfeZavPS4P4IPHI9kSDUCf+0YkArcmEzOl3EGiAgVZC
-	1TXOjn6u+ulqFS5lHGrMGjClDB+LZ2jIJbYBI2Ck/f8yUUAh8NSRp/Sf/SbRrx5Z8Hc/
-	Yd2KF8aXRFv0XRKsUwZJ/tFvuWsoFQ1zaRfmg1iZG6c/kuUQZ0rWmPgqyO/4MjhaQ1ya
-	R/Wg==
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-ey0-f176.google.com (mail-ey0-f176.google.com
+	[209.85.215.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2BB1BE0140A
+	for <yocto@yoctoproject.org>; Wed, 22 Aug 2012 16:26:03 -0700 (PDT)
+Received: by eabd1 with SMTP id d1so47327eab.35
+	for <yocto@yoctoproject.org>; Wed, 22 Aug 2012 16:26:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type:content-transfer-encoding;
+	bh=O9mAGdmjDIkYqL6gLMCF/ZIbR//+d+FR7LCqMx1uBNA=;
+	b=V1EJ9BbKDoc98iqfqb0BuZoDLBlYwdpeixqUDm4nCCbloLuwYE4Iecz0qMkFEtqw5z
+	oFdxhmy6jrOLZdvURL5Y11wC6H+3Sjc2DDko4Y1aKQwmMc4oYvZQRjSzbIltu0XnQX4c
+	8EU2CgYeomPqY4Hg8lV4shAl3wadSctd4MokmgzbISyagm1vvLxtPvoi9TD0PDgI+HFo
+	aUjAVKVLdXk2r+NgpsI0rgu8Kt4QMchRuh/P6vqMg06rrmHj81TA32JL17RNHnY+oi5h
+	AN6d0Z3Sdt5OVErJ1rb1Sh7o5Zoggzgoo4I2hRoIKaN4L9nC1oF2550vgtLZfXVxl9l/
+	ZTEw==
+Received: by 10.14.220.70 with SMTP id n46mr20952185eep.42.1345677961934; Wed,
+	22 Aug 2012 16:26:01 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.50.100.129 with SMTP id ey1mr3949445igb.35.1345677750665; Wed,
-	22 Aug 2012 16:22:30 -0700 (PDT)
-Sender: rstreif@linuxfoundation.org
-Received: by 10.64.142.134 with HTTP; Wed, 22 Aug 2012 16:22:30 -0700 (PDT)
-Date: Wed, 22 Aug 2012 16:22:30 -0700
-X-Google-Sender-Auth: wIFCX9NXzGzJvyCDZpRvbnNaPac
-Message-ID: <CA+gsK-rG1i7A1CHgR+T7UevStRVQXku6ri6LK407hHzSqqLfUA@mail.gmail.com>
-From: Rudolf Streif <rudolf.streif@linux.com>
-To: yocto@yoctoproject.org
-X-Gm-Message-State: ALoCoQmghLD7foPwiKaT6lGUcYvRsX8RWEzG6Y2+cuzlyJu6G6jkpx5MDDtY0YU2ZOIu9CKg0959
-Subject: [ADT] Autotools: configure using --with-libtool-sysroot
+Received: by 10.14.2.5 with HTTP; Wed, 22 Aug 2012 16:25:31 -0700 (PDT)
+In-Reply-To: <50356A22.7070705@am.sony.com>
+References: <CAHUNapSmuzJaUkE2fz27-6MDWGg5TAUug9sBxPWEqneM2OO1WA@mail.gmail.com>
+	<CA+YB3raTP8ROCvuidyH8zoupo4_qO1a+oWZ_Noakm3Kx5suRag@mail.gmail.com>
+	<CAHUNapRLsCWvefm1+Sc0QT2OhVJ-e0fa3iF7zL2H2qFQLR+AUA@mail.gmail.com>
+	<CABcZAN=Dktdoq00_uHAvG7Wy2UgQhZS0KbZOeCK-s=7B+RbwWA@mail.gmail.com>
+	<CAHUNapRvcW+M2t-LUpDYGRYJBYhLu0Yy_z66gHqE67kb9yWXvA@mail.gmail.com>
+	<CABcZAN=cCub4sgSW7am+TaA8bois9Q23_x1kRmWWBCh9=hCNXQ@mail.gmail.com>
+	<alpine.DEB.2.02.1208221623080.20631@oneiric>
+	<50356A22.7070705@am.sony.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Wed, 22 Aug 2012 16:25:31 -0700
+Message-ID: <CAMKF1sqzgj=AHxPYO2EC8kGRJkq=3qsO8DwhATRd1c_j3m8_2A@mail.gmail.com>
+To: Tim Bird <tim.bird@am.sony.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	Chris Larson <clarson@kergoth.com>
+Subject: Re: of recipes and packages
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,94 +46,91 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 22 Aug 2012 23:22:31 -0000
-Content-Type: multipart/alternative; boundary=e89a8f3b9c114f833504c7e30433
-
---e89a8f3b9c114f833504c7e30433
-Content-Type: text/plain; charset=ISO-8859-1
-
-I tried, according to the documentation at
-http://www.yoctoproject.org/docs/current/adt-manual/adt-manual.html#extracting-the-root-filesystem),
-to configure and compile the autotooled GNU Hello World Applcation for x86
-and ARM with
-
-./configure --host=i586-poky-linux
---with-libtool-sysroot=${YOCTODIR}/adt-sysroots/x86
-
-and
-
-./configure
---host=armv5te-poky-linux-gnueabi
---with-libtool-sysroot=${YOCTODIR}/adt-sysroots/arm
-
-As expected configure does not recognize --with-libtool-sysroot: configure:
-WARNING: unrecognized options: --with-libtool-sysroot.
-
-Running the suggested commands:
-
-$ libtoolize --automake
-$ aclocal -I ${OECORE_NATIVE_SYSROOT}/usr/share/aclocal \
-        [-I <dir_containing_your_project-specific_m4_macros>]
-$ autoconf
-$ autoheader
-$ automake -a
-
-did not make a difference (same error message). However, compiling the
-application worked just fine.
-
-Questions:
-
-   - What exactly is --with-libtool-sysroot supposed to do?
-   - What could be the reason that the steps to update the configure script
-   to recognize the option do not work?
-
-Suggestion:
-
-   - Add --prefix to ./configure
-   --host=armv5te-poky-linux-gnueabi --with-libtool-sysroot=<sysrootdir>
-   --prefix=<sysrootdir>/<prefix> so that make install actually installs into
-   the system root.
-
-:rjs
-
---e89a8f3b9c114f833504c7e30433
-Content-Type: text/html; charset=ISO-8859-1
+X-List-Received-Date: Wed, 22 Aug 2012 23:26:03 -0000
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-I tried, according to the documentation at=A0<a href=3D"http://www.yoctopro=
-ject.org/docs/current/adt-manual/adt-manual.html#extracting-the-root-filesy=
-stem">http://www.yoctoproject.org/docs/current/adt-manual/adt-manual.html#e=
-xtracting-the-root-filesystem</a>), to configure and compile the autotooled=
- GNU Hello World Applcation for x86 and ARM with<div>
-<br></div><div>./configure --host=3Di586-poky-linux --with-libtool-sysroot=
-=3D${YOCTODIR}/adt-sysroots/x86</div><div><br></div><div>and</div><div><br>=
-</div><div>./configure --host=3Darmv5te-poky-linux-gnueabi=A0--with-libtool=
--sysroot=3D${YOCTODIR}/adt-sysroots/arm</div>
-<div><br></div><div>As expected configure does not recognize --with-libtool=
--sysroot:=A0configure: WARNING: unrecognized options: --with-libtool-sysroo=
-t.</div><div><br></div><div>Running the suggested commands:</div><div><br>
-</div><div><pre class=3D"literallayout" style=3D"overflow:auto;color:rgb(51=
-,51,51)"><font face=3D"arial, helvetica, sans-serif">$ libtoolize --automak=
-e
-$ aclocal -I ${OECORE_NATIVE_SYSROOT}/usr/share/aclocal \
-        [-I &lt;dir_containing_your_project-specific_m4_macros&gt;]
-$ autoconf
-$ autoheader
-$ automake -a</font></pre><div><font face=3D"arial, helvetica, sans-serif">=
-did not make a difference (same error message). However, compiling the appl=
-ication worked just fine.</font></div><div><font face=3D"arial, helvetica, =
-sans-serif"><br>
-</font></div><div><font face=3D"arial, helvetica, sans-serif">Questions:</f=
-ont></div><div><ul><li><span style=3D"font-family:arial,helvetica,sans-seri=
-f">What exactly is --with-libtool-sysroot supposed to do?</span></li><li><s=
-pan style=3D"font-family:arial,helvetica,sans-serif">What could be the reas=
-on that the steps to update the configure script to recognize the option do=
- not work?</span></li>
-</ul><div><font face=3D"arial, helvetica, sans-serif">Suggestion:</font></d=
-iv></div><div><ul><li><font face=3D"arial, helvetica, sans-serif">Add --pre=
-fix to=A0</font>./configure --host=3Darmv5te-poky-linux-gnueabi=A0--with-li=
-btool-sysroot=3D&lt;sysrootdir&gt; --prefix=3D&lt;sysrootdir&gt;/&lt;prefix=
-&gt; so that make install actually installs into the system root.</li>
-</ul><div>:rjs</div></div><div><br></div></div>
+On Wed, Aug 22, 2012 at 4:24 PM, Tim Bird <tim.bird@am.sony.com> wrote:
+> On 08/22/2012 01:27 PM, Robert P. J. Day wrote:
+>> On Wed, 22 Aug 2012, Chris Larson wrote:
+>>
+>>> On Wed, Aug 22, 2012 at 1:15 PM, Trevor Woerner <twoerner@gmail.com> wr=
+ote:
+>>>> On Wed, Aug 22, 2012 at 3:24 PM, Chris Larson <clarson@kergoth.com> wr=
+ote:
+>>>>> On Wed, Aug 22, 2012 at 12:23 PM, Trevor Woerner <twoerner@gmail.com>=
+ wrote:
+>>>>>> "bitbake -s" doesn't list "net-snmp-dbg net-snmp-doc net-snmp-dev...=
+"
+>>>>>> it lists "net-snmp". Therefore couldn't the wording of the bitbake
+>>>>>> help be improved to say:
+>>>>>>
+>>>>>> -s, --show-versions   show current and preferred versions of all __r=
+ecipes__
+>>>>>>
+>>>>>> instead of:
+>>>>>
+>>>>>
+>>>>> It could, and should, be changed in that way, yes.
+>>>>
+>>>> Do the OE people accept this wording too, or is this a
+>>>> yocto-project-only thing? In other words, should a potential patch be
+>>>> sent to OE or here?
+>>>
+>>> The change would be to a core component, which is part of OE and which
+>>> yocto pulls in =E2=80=94 bitbake. So it would make no sense to send the=
+ patch
+>>> here. No changes to bitbake are going into poky without going into the
+>>> main bitbake repository. The bitbake-devel mailing list is the correct
+>>> place for it.
+>>
+>>   there really should be an official glossary somewhere, and it should
+>> be backed up with *actual* *examples* from the source as much as
+>> possible.  that is, don't use "foo" if there's an existing recipe or
+>> package whose use would be more informative.
+>
+> From Jeff's description, it sounded like the package (especially 'package=
+ version')
+> comes from the stuff that is the recipe's *input*, and not the recipe's o=
+utput
+>  -- if you've selected to build packages and not just a straight image.
+>
+> Is 'package' also used in that sense, to describe, say, the tarball for b=
+usybox
+> before it's processed by bitbake and made into an busybox binary ipkg or =
+rpm?
+>
+> Or am I just muddying the waters further?
+>
+> BTW, on denzil, I get the following:
+> $ bitbake -s | grep busybox
+> busybox                         :1.19.4-r2
+>
 
---e89a8f3b9c114f833504c7e30433--
+
+anything you bake using bitbake is a recipe (input rules) which then
+generates packages (output) and there can be many packages generated
+from single recipes and one of the name of output package can be same
+as recipe name.
+
+
+> Note that this includes the version of busybox (the input source version)=
+, as
+> well as (I think) the recipe revision number.
+>
+> And yes - a definitive glossary would be great.
+>  -- Tim
+>
+> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D
+> Tim Bird
+> Architecture Group Chair, CE Workgroup of the Linux Foundation
+> Senior Staff Engineer, Sony Network Entertainment
+> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
