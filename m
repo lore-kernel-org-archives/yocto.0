@@ -1,38 +1,50 @@
-Return-Path: <jefro.net@gmail.com>
-Received: from mail-iy0-f176.google.com (mail-iy0-f176.google.com
-	[209.85.210.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 22D63E002A5
-	for <yocto@yoctoproject.org>; Thu, 23 Aug 2012 10:15:35 -0700 (PDT)
-Received: by iagt4 with SMTP id t4so1874056iag.35
-	for <yocto@yoctoproject.org>; Thu, 23 Aug 2012 10:15:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:date
-	:x-google-sender-auth:message-id:subject:from:to:cc:content-type;
-	bh=11XC7QiNH4UNnvgBkDSH69NjJhmfZ8RCVhcALYqlZkg=;
-	b=EZocwE6ZxLiaqNDHWEXT7Fnx0LvcAid/lUYS8aVffbreAWT0aFLYrG3r+zxeK/jDmO
-	fUJRJaMAH4AaXk60cyERSVS8hiqHPkOrjWT3I2K0Bi9ZPLx7qshqhjMqypXOnGXLFRbV
-	/UCnOqdaJ1Jt/7LZr5ILuhdHzK+LAfAhyAEJD0jHaFqLYFFYT9QXDwQeeQl2FtIPrqr+
-	/Cjm1w8tL0JIGXYD19iqcF2MbVglp/cWZ/P/s1FAB9H6hmGxB5v9hJgD7ngNCAGIP7j9
-	AMgaec5UNimUj97YE2fmF1ecVVZyFe2xO8iOLjGULGxyMMBYR1TxZlgU95dxDnFEx68Q
-	/vFg==
+Return-Path: <mhubig@imko.de>
+Received: from mail-bk0-f48.google.com (mail-bk0-f48.google.com
+	[209.85.214.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ED22AE002A5
+	for <yocto@yoctoproject.org>; Thu, 23 Aug 2012 10:28:09 -0700 (PDT)
+Received: by bkty5 with SMTP id y5so356382bkt.35
+	for <yocto@yoctoproject.org>; Thu, 23 Aug 2012 10:28:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=imko.de; s=google;
+	h=date:from:to:subject:message-id:mail-followup-to:references
+	:mime-version:content-type:content-disposition:in-reply-to
+	:user-agent; bh=t5oNZlAdgI3einyAb2DbebSRLybJDjYVuqYXn1XkQkg=;
+	b=qN8jgypjemdBvcxyiBXf86RP/yvtSA9ANfx7BwER0y0zJ2h6gNBvvuWrGAPXMoIfhJ
+	97PRDUUAwl1qCpXJ+WElL1jO7w4lZHXBsqcQZ1FKfarsBNE56BdMAncDCyOIeueQNrhw
+	BbaOapd6WeIREr12bCz8GJsGn+yr+LTBLwDGc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=date:from:to:subject:message-id:mail-followup-to:references
+	:mime-version:content-type:content-disposition:in-reply-to
+	:user-agent:x-gm-message-state;
+	bh=t5oNZlAdgI3einyAb2DbebSRLybJDjYVuqYXn1XkQkg=;
+	b=EvWw6tmTAyM6sHjDx9RrPYA2pWGdc1bTOtd8cPAR3Zx+MTqP4RKWZgAiRnHtd/PQVv
+	HgY/0+mkijGnm3YyQvIMCsN/2SBG3EjxvJDNXlLEro3fxy0do6zXjYoF4AG9j5+iANHp
+	jF+uIb1gF2XdyaFX6ODVpYHkaJRZYNCFds+4YYas+IJdZzwPz6KxQEhc6n15Y6gKWgM+
+	xqoVdvb1KuNilhrdBUWj3g8NnpALWKnkp9DfRcoA5OeYjmjgds69es7JqFN+P52PHtaZ
+	unyoCayeMWQpjnFYXCaXQotP1HPFZR3LTUFCnPMHnBCSkbDgKwjTmAJf+B5f1i1uqjvL
+	wpyg==
+Received: by 10.204.154.214 with SMTP id p22mr909473bkw.111.1345742888758;
+	Thu, 23 Aug 2012 10:28:08 -0700 (PDT)
+Received: from imko.de (business-092-079-181-094.static.arcor-ip.net.
+	[92.79.181.94])
+	by mx.google.com with ESMTPS id ht18sm5079273bkc.16.2012.08.23.10.28.06
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Thu, 23 Aug 2012 10:28:07 -0700 (PDT)
+Date: Thu, 23 Aug 2012 19:28:04 +0200
+From: Markus Hubig <mhubig@imko.de>
+To: yocto@yoctoproject.org
+Message-ID: <20120823192343.a92af96b-a5ee-491b-80de-fb8ba16871e6.mhubig@imko.de>
+Mail-Followup-To: yocto@yoctoproject.org
+References: <20120823151259.f1550eb3-e33f-4100-93dc-f39eab90e4b1.mhubig@imko.de>
+	<503630A3.90606@windriver.com>
+	<20120823163126.ddbd0076-38df-4053-a9ae-7fa318879d54.mhubig@imko.de>
+	<503659B6.6090207@windriver.com>
 MIME-Version: 1.0
-Received: by 10.50.1.200 with SMTP id 8mr2383042igo.65.1345742132680; Thu, 23
-	Aug 2012 10:15:32 -0700 (PDT)
-Sender: jefro.net@gmail.com
-Received: by 10.64.50.231 with HTTP; Thu, 23 Aug 2012 10:15:32 -0700 (PDT)
-In-Reply-To: <alpine.DEB.2.02.1208211251090.14771@oneiric>
-References: <CAMv4DROy+nzU-6ESb2FGQyok33C7e6hV7EoOhN_5sq8PSCTxYA@mail.gmail.com>
-	<CA+YB3rYnSio1LLL_awAUM55FaMwdQoxsyanopVTOmmNHmGRqwA@mail.gmail.com>
-	<alpine.DEB.2.02.1208211215490.14178@oneiric>
-	<2350730.VsPNl426oH@helios>
-	<alpine.DEB.2.02.1208211251090.14771@oneiric>
-Date: Thu, 23 Aug 2012 10:15:32 -0700
-X-Google-Sender-Auth: VNsWXKpi-wy-RiI73vwTxq5ixXM
-Message-ID: <CA+YB3rZH1y_cZzh=bhbcj1yk+P3jyHT+6a=28smHKs76qkoj6Q@mail.gmail.com>
-From: Jeff Osier-Mixon <jefro@jefro.net>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>
-Cc: Paul Eggleton <paul.eggleton@linux.intel.com>, yocto@yoctoproject.org
-Subject: Re: adding packages in my Yocto
+In-Reply-To: <503659B6.6090207@windriver.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Gm-Message-State: ALoCoQk+6DkKQXYQUIV9hJqJowZ6DE/5yOgIJK3/PvmwfgnjpMiBp76PhULS6RAhx1hsAptwFN9e
+Subject: Re: 1.3_M3 do_kernel_config failes, config_frag.txt is crippled.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,45 +56,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 23 Aug 2012 17:15:35 -0000
-Content-Type: multipart/alternative; boundary=e89a8f502e0cc7188a04c7f201ad
+X-List-Received-Date: Thu, 23 Aug 2012 17:28:10 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
---e89a8f502e0cc7188a04c7f201ad
-Content-Type: text/plain; charset=ISO-8859-1
+On Thu, Aug 23, 2012 at 12:26:30PM -0400, Bruce Ashfield wrote:
+> On 12-08-23 12:18 PM, Markus Hubig wrote:
+> >On Thu, Aug 23, 2012 at 09:31:15AM -0400, Bruce Ashfield wrote:
+> >>On 12-08-23 09:24 AM, Markus Hubig wrote:
 
-On Tue, Aug 21, 2012 at 9:51 AM, Robert P. J. Day <rpjday@crashcourse.ca>wrote:
+<snipp>
 
->
->   if there's no objection, i added how to add multiple packages as
-> well, just below that.
->
+> >Surprisingly if I remove the *.cfg files from the SRC_URI
+> >
+> >| SRC_URI_append_portuxg20 = "\
+> >|         file://portuxg20-standard.scc   \
+> >|         file://portuxg20-preempt-rt.scc \
+> >|         file://portuxg20.scc            \
+> >|         "
+> >|
+> >| SRC_URI_append_stamp9g20 = "
+> >|         file://stamp9g20-standard.scc   \
+> >|         file://stamp9g20-preempt-rt.scc \
+> >|         file://stamp9g20.scc            \
+> >
+> >it also works ...
+> 
+> Yes, and I can explain this part. When a .scc file is detected, the
+> entire directory contents are propagated to the kernel build, since
+> .scc files can refer to patches, configs, etc, and some elements are
+> optional, they are all made available.
+> 
+> So if you reference .cfgs and patches in your .scc files, you don't
+> need them in the SRC_URI, just the .scc file.
 
-No objection at all - we set it up as a wiki just for that purpose, thanks
-for adding
+Is it possible that if I remove the *.cfg files, bitbake no longer tracks
+changes inside this files and will not rebuild the related packages from
+scratch with:
+
+| bitbake -fc clean linux-yocto
+| bitbake linux-yocto
+ 
+Cheers, Markus
 
 -- 
-Jeff Osier-Mixon http://jefro.net/blog
-Yocto Project Community Manager @Intel http://yoctoproject.org
+Human beings were created by water to transport it uphill.
 
---e89a8f502e0cc7188a04c7f201ad
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<br><br><div class=3D"gmail_quote">On Tue, Aug 21, 2012 at 9:51 AM, Robert =
-P. J. Day <span dir=3D"ltr">&lt;<a href=3D"mailto:rpjday@crashcourse.ca" ta=
-rget=3D"_blank">rpjday@crashcourse.ca</a>&gt;</span> wrote:<br><blockquote =
-class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid=
-;padding-left:1ex">
-<div class=3D"HOEnZb"><div class=3D"h5"><br>
-</div></div>=A0 if there&#39;s no objection, i added how to add multiple pa=
-ckages as<br>
-well, just below that.<br>
-<div class=3D"HOEnZb"><div class=3D"h5"></div></div></blockquote></div><div=
-><br></div><div>No objection at all - we set it up as a wiki just for that =
-purpose, thanks for adding</div><div><br></div>-- <br>Jeff Osier-Mixon <a h=
-ref=3D"http://jefro.net/blog" target=3D"_blank">http://jefro.net/blog</a><d=
-iv>
-Yocto Project Community Manager @Intel <a href=3D"http://yoctoproject.org" =
-target=3D"_blank">http://yoctoproject.org</a></div><br>
-
---e89a8f502e0cc7188a04c7f201ad--
