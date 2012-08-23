@@ -1,33 +1,41 @@
-Return-Path: <belatronix@freenet.de>
-Received: from mout3.freenet.de (mout3.freenet.de [195.4.92.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6E47EE0140A
-	for <yocto@yoctoproject.org>; Thu, 23 Aug 2012 05:35:14 -0700 (PDT)
-Received: from [195.4.92.142] (helo=mjail2.freenet.de)
-	by mout3.freenet.de with esmtpa (ID belatronix@freenet.de) (port 25)
-	(Exim 4.76 #1) id 1T4Wcy-0003vD-8f
-	for yocto@yoctoproject.org; Thu, 23 Aug 2012 14:35:12 +0200
-Received: from localhost ([::1]:52002 helo=mjail2.freenet.de)
-	by mjail2.freenet.de with esmtpa (ID belatronix@freenet.de) (Exim 4.76
-	#1) id 1T4Wcy-0006Ae-3M
-	for yocto@yoctoproject.org; Thu, 23 Aug 2012 14:35:12 +0200
-Received: from [195.4.92.16] (port=46302 helo=6.mx.freenet.de)
-	by mjail2.freenet.de with esmtpa (ID belatronix@freenet.de) (Exim 4.76
-	#1) id 1T4Waj-0005SU-2C
-	for yocto@yoctoproject.org; Thu, 23 Aug 2012 14:32:53 +0200
-Received: from 77-22-19-32-dynip.superkabel.de ([77.22.19.32]:38855
-	helo=[10.0.0.1])
-	by 6.mx.freenet.de with esmtpsa (ID belatronix@freenet.de)
-	(TLSv1:CAMELLIA256-SHA:256) (port 465) (Exim 4.76 #1)
-	id 1T4Wai-00069G-RW
-	for yocto@yoctoproject.org; Thu, 23 Aug 2012 14:32:53 +0200
-Message-ID: <503622F1.8000608@freenet.de>
-Date: Thu, 23 Aug 2012 14:32:49 +0200
-From: Axel Beierlein <belatronix@freenet.de>
-User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:14.0) Gecko/20120714 Thunderbird/14.0
-MIME-Version: 1.0
+Return-Path: <marc.ferland@gmail.com>
+Received: from mail-ob0-f176.google.com (mail-ob0-f176.google.com
+	[209.85.214.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0A48AE01438
+	for <yocto@yoctoproject.org>; Thu, 23 Aug 2012 05:35:27 -0700 (PDT)
+Received: by obbtb18 with SMTP id tb18so1703202obb.35
+	for <yocto@yoctoproject.org>; Thu, 23 Aug 2012 05:35:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=sender:from:to:subject:references:date:in-reply-to:message-id
+	:user-agent:mime-version:content-type:content-transfer-encoding;
+	bh=ZzDN8mGSVt3gHv+iwoBm8bF3kNFqSTOx28Iype1DynM=;
+	b=f8mWSMORbBlJ6X+g1cYT372R51Kp7b7tkD7+4g/EuTJk17nLN4w6XzuBfSNUiysKoz
+	vMRjZAZ6Mz7Qa+lxQdG45Brur5K9Ra+BRCNS3ci1XxUweAE2PyiLmtuXRCHWptkUcwJ/
+	Jhj/YoMtBTeG2wCYjM0jLu3kB3jvpAPmMHxeAn4D3k2ihEuZ6UCcs3w4hWBiwbuZQuwi
+	CZV8/O0IKDqssvUrj4Jl/L1pdVdBSwQsWnhfeozoNu8wpdKX1VapSlj8QQLThMi+16Uw
+	O7ZDzlQOKW4ghLPUIRNBef4djKkdgf5aewFqkS1219eGTnNXCApES6Q4tOd/sPKgjPRO
+	W7PA==
+Received: by 10.50.186.196 with SMTP id fm4mr1399950igc.1.1345725324926;
+	Thu, 23 Aug 2012 05:35:24 -0700 (PDT)
+Received: from ferlandm@sonatest.com
+	(modemcable066.15-37-24.static.videotron.ca. [24.37.15.66])
+	by mx.google.com with ESMTPS id
+	at10sm10497517igc.16.2012.08.23.05.35.16
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Thu, 23 Aug 2012 05:35:19 -0700 (PDT)
+Sender: Marc Ferland <marc.ferland@gmail.com>
+Received: by ferlandm@sonatest.com (sSMTP sendmail emulation);
+	Thu, 23 Aug 2012 08:35:35 -0400
+From: Marc Ferland <ferlandm@sonatest.com>
 To: yocto@yoctoproject.org
-Subject: Buggy busybox update 1.94.4 => 1.20.2
+References: <50361C9F.3090203@gmail.com>
+Date: Thu, 23 Aug 2012 08:35:35 -0400
+In-Reply-To: <50361C9F.3090203@gmail.com> (Jim Abernathy's message of "Thu, 23
+	Aug 2012 08:05:51 -0400")
+Message-ID: <87393dn5uw.fsf@sonatest.com>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/24.1 (gnu/linux)
+MIME-Version: 1.0
+Subject: Re: adding drivers to the kernel
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,22 +47,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 23 Aug 2012 12:35:14 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 23 Aug 2012 12:35:28 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-Two questions from a Newbie on Yocto:
+Jim Abernathy <jfabernathy@gmail.com> writes:
 
-I get compiling Errors in Busybox from a new clone of the Yocto Git Repo.
-
-I have to change the name of the .bbappend File from 1.94.4 to 1.20.2
-and also the directory to get a working tree.
-
-And in the 1.94.4.bbappend File. What means ${P} after the THISDIR?
-In the Documentation i read something about ${THISDIR}/${PN} and not
-${P} is this a mistake or do i understand something wrong?
-
-Regards
-
-Axel
+> If I need to add a driver for a networking device that should be in
+> the 3.0 kernel, but seems to be turned off, I usually follow the
+> example in sections B.2.3 in the Development Manual. When I get to the
+> stage of running bitbake linux-yocto -c menuconfig, I can search for
+> my device with the "/" command and search for CONFIG_RTL8192CE and I
+> find this:
+>
+> Symbol: RTL8192CE [=3Dn] =E2=94=82
+> =E2=94=82 Type : tristate =E2=94=82
+> =E2=94=82 Prompt: Realtek RTL8192CE/RTL8188CE Wireless Network Adapter =
+=E2=94=82
+> =E2=94=82 Defined at drivers/net/wireless/rtlwifi/Kconfig:1 =E2=94=82
+> =E2=94=82 Depends on: NETDEVICES [=3Dy] && WLAN [=3Dy] && MAC80211 [=3Dn]=
+ && PCI [=3Dy] =E2=94=82
+> =E2=94=82 Location: =E2=94=82
+> =E2=94=82 -> Device Drivers =E2=94=82
+> =E2=94=82 -> Network device support (NETDEVICES [=3Dy]) =E2=94=82
+> =E2=94=82 -> Wireless LAN (WLAN [=3Dy]) =E2=94=82
+> =E2=94=82 Selects: FW_LOADER [=3Dy] && RTLWIFI [=3Dn] && RTL8192C_COMMON =
+[=3Dn]
+>
+> However, I can't find this device where is should be or anywhere in
+> the .config file. I've tried just adding the CONFIG_RTL8192CE=3Dy to a
+> config fragment file anyway and that didn't work. After building the
+> image, the .config still didn't have the CONFIG_RTL8192CE=3Dy. The 3.0
+> kernel should have support for the RTL8192CE devices.
+>
+> Also if I manual add CONFIG_RTL8192CE=3Dy to the .config file and then
+> compile and build the kernel, the RTL8192CE parameter is removed from
+> the .config file after the kernel build.
+>
+You probably need to enable MAC80211 first. Your RTL8192CE driver will
+be selectable afterwards.
+Marc
 
