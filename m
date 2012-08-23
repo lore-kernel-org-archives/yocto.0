@@ -1,23 +1,28 @@
-Return-Path: <treebody@embedstudy.com>
-Received: from smtpbg56.qq.com (smtpbg56.qq.com [64.71.138.45])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id CBAC5E0140A
-	for <yocto@yoctoproject.org>; Thu, 23 Aug 2012 03:56:16 -0700 (PDT)
-X-QQ-SSF: 00000000000000F000000000000000G
-X-HAS-ATTACH: no
-X-QQ-BUSINESS-ORIGIN: 2
-X-Originating-IP: 222.92.156.26
-X-QQ-STYLE: 
-X-QQ-mid: webmail79t1345719356t2521446
-From: "=?ISO-8859-1?B?TGl1?=" <treebody@embedstudy.com>
-To: "=?ISO-8859-1?B?eW9jdG8=?=" <yocto@yoctoproject.org>
-Mime-Version: 1.0
-Date: Thu, 23 Aug 2012 18:55:56 +0800
-X-Priority: 3
-Message-ID: <tencent_3D29FA7D4230B0B54CDFC883@qq.com>
-X-QQ-MIME: TCMime 1.0 by Tencent
-X-Mailer: QQMail 2.x
-X-QQ-Mailer: QQMail 2.x
-Subject: The dependency packages
+Return-Path: <twoerner@gmail.com>
+Received: from mail-lb0-f176.google.com (mail-lb0-f176.google.com
+	[209.85.217.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D1D33E0140A
+	for <yocto@yoctoproject.org>; Thu, 23 Aug 2012 04:56:03 -0700 (PDT)
+Received: by lboi15 with SMTP id i15so413788lbo.35
+	for <yocto@yoctoproject.org>; Thu, 23 Aug 2012 04:55:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=6bWgWCs2O8oZmGuPwPKQMhJ0QvKAh8HJqNuuC6fd+zI=;
+	b=GymaytX2XaSx5Ds4TiDe7spaAjCMtDfy6lL/yorm9IUJSGznKV8pZd3vsfIpP6g6io
+	kg4Ru98iwC5KGXkL0Mnu2aGWBri3cXk+yEkkhm5gbhj0THBKtELyp6VxCNCNKpiqMF8y
+	YSSear6ZVOcbUasOq1GziD7jbGdepcy0R1ru0+MsqOu9irFsYV0qrhkbaBFbjliO2Wi0
+	wArReKFK8iy0NPDFWHdjQE0nVRzoXNPkItTkkWl8nU3tMdOwAC8uHY4C3aOZd/ZD49sD
+	fBQBSnmLAF8IFwJXYvqWY07HuePmsh8LDuYUBQOtQPJrzPVVY3+mbQzjHrouAb6xwWGB
+	nbjg==
+MIME-Version: 1.0
+Received: by 10.152.106.233 with SMTP id gx9mr1419535lab.48.1345722958150;
+	Thu, 23 Aug 2012 04:55:58 -0700 (PDT)
+Received: by 10.112.21.9 with HTTP; Thu, 23 Aug 2012 04:55:57 -0700 (PDT)
+Date: Thu, 23 Aug 2012 07:55:57 -0400
+Message-ID: <CAHUNapR6uTjDHtD19r_cKwGWD836oVLmwPR7dkyBsahzMV0-dg@mail.gmail.com>
+From: Trevor Woerner <twoerner@gmail.com>
+To: yocto@yoctoproject.org
+Subject: microcontroller central article
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,59 +34,11 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 23 Aug 2012 10:56:16 -0000
-Content-Type: multipart/alternative;
-	boundary="----=_NextPart_50360C3C_08C17430_103A0828"
-Content-Transfer-Encoding: 8Bit
+X-List-Received-Date: Thu, 23 Aug 2012 11:56:04 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-------=_NextPart_50360C3C_08C17430_103A0828
-Content-Type: text/plain;
-	charset="ISO-8859-1"
-Content-Transfer-Encoding: base64
+A short blog entry about the Yocto Project was just posted on the
+"microcontroller central" website:
 
-SGkgYWxsLA0KICAgICAgIEknbSB3YXRjaGluZyB0aGUgZGVwZW5kZW5jeSBncmFwaHMgZ2Vu
-ZXJhdGVkIGJ5ICJiaXRiYWtlIC1nIC11IGRlcGV4cCBidXN5Ym94IiwgYW5kIEkgZm91bmQg
-dGhlIG1vc3QgZGVwZW5kbmN5IHBhY2thZ2VzIHdoZXJlIHRoZXJlIGFyZSBpbnZva2VkLiBC
-dXQgc3RpbGwgc2V2ZXJhbCBvbmVzIGxlZnQgSSBjYW4gbm90IGZpbmQgd2hlcmUgb3Igd2hp
-Y2ggZmlsZSB0byBpbnZva2UgDQogdGhlbS4NCiAgICAgICAxKSBUaGUgZmlyc3QgcGFja2Fn
-ZSBpcyBxdWlsdCBhbmQgSSBrbm93IGl0IGlzIHVzZWQgdG8gcGF0Y2ggc29tZXRoaW5nLk1l
-YW53aGlsZSBJIGZpbmQgdGhhdCBpbiB0aGUgYnVpbGRpbmcgcHJvY2VzcyB0aGUgcXVpbHQg
-cGFja2FnZSBpcyBhbHdheXMgZmlyc3QgYnVpbHQgdGhhbiBvdGhlciBwYWNrYWdlcy4gVGhl
-biBob3cgY2FuIEkgc2VlICB0aGF0IGl0IGlzIGluZGVlZCBuZWNlc3NhcnkgdG8gYnVpbGQg
-dGhlIHBhY2thZ2UgInF1aWx0Ii5UaGF0IGlzIHRvIHNheSB3aGljaCBmaWxlIGRlZmluZXMg
-dG8gYnVpbGQgcXVpbHQuDQogICAgICAgMikgSSB1c2VkIGJpdGJha2UgLWUgYnVzeWJveCB8
-IGdyZXAgREVQRU5EUyB0byBzaG93IHRoZSByZXF1aXJlZCBwYWNrYWdlcyBmb3IgbXkgYnVp
-bGQuICBJIGRpZCBub3QgZmluZCB0aGUgcHNldWRvIGluIHRoZSBERVBFTkRTLGJ1dCBJIHNl
-ZSBzb21ldGhpbmcgcmVsYXRlZCBpbiBwb2t5LWRlbnppbC03LjAuMS9zY3JpcHRzL2JpdGJh
-a2UgLiBJcyB0aGVyZSBhbnkgb3RoZXIgcGxhY2UgZGVmaW5lcyB0byB1c2Ugc29tZSBjZXJ0
-YWluIHBhY2thZ2VzIGxpa2UgdGhpcyA/DQogICAgICAgQmVzdCB3aXNoZXMsDQogLS0tLS0t
-LS0tLVl1IExpdQ==
+http://www.microcontrollercentral.com/author.asp?section_id=1741&doc_id=249581
 
-------=_NextPart_50360C3C_08C17430_103A0828
-Content-Type: text/html;
-	charset="ISO-8859-1"
-Content-Transfer-Encoding: base64
-
-PERJVj5IaSBhbGwsPC9ESVY+DQo8RElWPiZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
-OyZuYnNwO0knbSB3YXRjaGluZyB0aGUgZGVwZW5kZW5jeSBncmFwaHMgZ2VuZXJhdGVkIGJ5
-ICJiaXRiYWtlIC1nIC11IGRlcGV4cCBidXN5Ym94IiwgYW5kIEkgZm91bmQgdGhlIG1vc3Qg
-ZGVwZW5kbmN5IHBhY2thZ2VzIHdoZXJlIHRoZXJlIGFyZSBpbnZva2VkLiBCdXQmbmJzcDtz
-dGlsbCBzZXZlcmFsIG9uZXMgbGVmdCBJIGNhbiBub3QgZmluZCB3aGVyZSBvciB3aGljaCBm
-aWxlIHRvIGludm9rZSA8L0RJVj4NCjxESVY+dGhlbS48L0RJVj4NCjxESVY+Jm5ic3A7Jm5i
-c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IDEpIFRoZSBmaXJzdCBwYWNrYWdlIGlzIHF1aWx0IGFu
-ZCBJIGtub3cgaXQgaXMgdXNlZCZuYnNwO3RvIHBhdGNoIHNvbWV0aGluZy5NZWFud2hpbGUg
-SSZuYnNwO2ZpbmQgdGhhdCBpbiB0aGUgYnVpbGRpbmcgcHJvY2VzcyB0aGUgcXVpbHQgcGFj
-a2FnZSBpcyBhbHdheXMgZmlyc3QgYnVpbHQmbmJzcDt0aGFuIG90aGVyIHBhY2thZ2VzLiZu
-YnNwO1RoZW4gaG93IGNhbiBJIHNlZSZuYnNwOyB0aGF0IGl0IGlzIGluZGVlZCBuZWNlc3Nh
-cnkgdG8mbmJzcDtidWlsZCB0aGUgcGFja2FnZSZuYnNwOyJxdWlsdCIuVGhhdCBpcyB0byBz
-YXkgd2hpY2ggZmlsZSBkZWZpbmVzIHRvIGJ1aWxkIHF1aWx0LjwvRElWPg0KPERJVj4mbmJz
-cDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsyKSBJIHVzZWQgYml0YmFrZSAtZSBi
-dXN5Ym94IHwgZ3JlcCBERVBFTkRTIHRvIHNob3cgdGhlJm5ic3A7cmVxdWlyZWQgcGFja2Fn
-ZXMgZm9yIG15IGJ1aWxkLiZuYnNwOyBJIGRpZCBub3QgZmluZCB0aGUgcHNldWRvIGluIHRo
-ZSBERVBFTkRTLGJ1dCBJIHNlZSBzb21ldGhpbmcgcmVsYXRlZCBpbiBwb2t5LWRlbnppbC03
-LjAuMS9zY3JpcHRzL2JpdGJha2UmbmJzcDsuIElzIHRoZXJlIGFueSBvdGhlciBwbGFjZSBk
-ZWZpbmVzIHRvIHVzZSBzb21lIGNlcnRhaW4gcGFja2FnZXMgbGlrZSB0aGlzID88L0RJVj4N
-CjxESVY+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IEJlc3Qgd2lzaGVzLDwvRElW
-Pg0KPERJVj4tLS0tLS0tLS0tWXUgTGl1PC9ESVY+
-
-------=_NextPart_50360C3C_08C17430_103A0828--
