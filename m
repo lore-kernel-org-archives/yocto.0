@@ -1,28 +1,32 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A283DE002A6
-	for <yocto@yoctoproject.org>; Thu, 23 Aug 2012 10:33:20 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id q7NHXKA5001171
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Thu, 23 Aug 2012 10:33:20 -0700 (PDT)
-Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.2.309.2;
-	Thu, 23 Aug 2012 10:33:19 -0700
-Message-ID: <50366959.6090008@windriver.com>
-Date: Thu, 23 Aug 2012 13:33:13 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:12.0) Gecko/20120430 Thunderbird/12.0.1
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from orsmga101.jf.intel.com (mga06.intel.com [134.134.136.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EB6A0E002A6
+	for <yocto@yoctoproject.org>; Thu, 23 Aug 2012 10:53:10 -0700 (PDT)
+Received: from mail-qa0-f52.google.com ([209.85.216.52])
+	by mga02.intel.com with ESMTP/TLS/RC4-SHA; 23 Aug 2012 10:53:09 -0700
+Received: by qabg14 with SMTP id g14so640244qab.4
+	for <yocto@yoctoproject.org>; Thu, 23 Aug 2012 10:53:09 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type
+	:x-gm-message-state;
+	bh=eetPxLsTJU0RYzNLxRHgXzeavanEwNloaaOc99PD7XQ=;
+	b=oEsbkCsrGAnGcSk6ujCP6mnwJiXSwBRzJkqKpz5YeHMMrVof3Znmr56BKagzqsJEar
+	Q11Fk98kLgfN0cIEezVSN1k1+tidn686p34Fpq9f7z3iu60x+IGsukDTyfR4Rty6Ef6j
+	/u7nfuzpzfL7Lql+9tDYhDhhLvjOGxL+rj8KvD1iNor0zCaKG8KrUsDh198aX3VoI+LQ
+	LhybU2hayqPwmhlyTSdAsMnoaiwfrRKUg8xmoNAD34HquMDLiOzPcQPC9Pytb0Dy8MoG
+	TBV+ihtpjF6aoE/9Hc3HnQHBdDrFiPsT14Kyins/EdZg4UBJ3axC6CvhXvncLi9uV5SN
+	qwCg==
 MIME-Version: 1.0
-To: <yocto@yoctoproject.org>
-References: <20120823151259.f1550eb3-e33f-4100-93dc-f39eab90e4b1.mhubig@imko.de>
-	<503630A3.90606@windriver.com>
-	<20120823163126.ddbd0076-38df-4053-a9ae-7fa318879d54.mhubig@imko.de>
-	<503659B6.6090207@windriver.com>
-	<20120823192343.a92af96b-a5ee-491b-80de-fb8ba16871e6.mhubig@imko.de>
-In-Reply-To: <20120823192343.a92af96b-a5ee-491b-80de-fb8ba16871e6.mhubig@imko.de>
-Subject: Re: 1.3_M3 do_kernel_config failes, config_frag.txt is crippled.
+Received: by 10.229.137.68 with SMTP id v4mr1095965qct.51.1345744388826; Thu,
+	23 Aug 2012 10:53:08 -0700 (PDT)
+Received: by 10.229.103.143 with HTTP; Thu, 23 Aug 2012 10:53:08 -0700 (PDT)
+Date: Thu, 23 Aug 2012 10:53:08 -0700
+Message-ID: <CAPhnLPAQh0S64Frhn6cb8zyMRNWGYFV7zYupnfn=UtuAEoTk1A@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: yocto@yoctoproject.org
+X-Gm-Message-State: ALoCoQmEsmxPyDDJZcO1MFii8Uw8yRtxRpIt3L/RwMYS5Upr+qFisPoJ+utnSimnQVnrPU4BZ4fV
+Subject: autobuilder.yoctoproject.org scheduled downtime, bugfixing and impacts
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,64 +38,99 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 23 Aug 2012 17:33:20 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 23 Aug 2012 17:53:11 -0000
+Content-Type: multipart/alternative; boundary=002354790e5841287904c7f28802
 
-On 12-08-23 01:28 PM, Markus Hubig wrote:
-> On Thu, Aug 23, 2012 at 12:26:30PM -0400, Bruce Ashfield wrote:
->> On 12-08-23 12:18 PM, Markus Hubig wrote:
->>> On Thu, Aug 23, 2012 at 09:31:15AM -0400, Bruce Ashfield wrote:
->>>> On 12-08-23 09:24 AM, Markus Hubig wrote:
->
-> <snipp>
->
->>> Surprisingly if I remove the *.cfg files from the SRC_URI
->>>
->>> | SRC_URI_append_portuxg20 = "\
->>> |         file://portuxg20-standard.scc   \
->>> |         file://portuxg20-preempt-rt.scc \
->>> |         file://portuxg20.scc            \
->>> |         "
->>> |
->>> | SRC_URI_append_stamp9g20 = "
->>> |         file://stamp9g20-standard.scc   \
->>> |         file://stamp9g20-preempt-rt.scc \
->>> |         file://stamp9g20.scc            \
->>>
->>> it also works ...
->>
->> Yes, and I can explain this part. When a .scc file is detected, the
->> entire directory contents are propagated to the kernel build, since
->> .scc files can refer to patches, configs, etc, and some elements are
->> optional, they are all made available.
->>
->> So if you reference .cfgs and patches in your .scc files, you don't
->> need them in the SRC_URI, just the .scc file.
->
-> Is it possible that if I remove the *.cfg files, bitbake no longer tracks
-> changes inside this files and will not rebuild the related packages from
-> scratch with:
+--002354790e5841287904c7f28802
+Content-Type: text/plain; charset=ISO-8859-1
 
-If the checksums are over the elements in the SRC_URI, then that would
-be true, but I'm not a checksum or fetcher expert.
+All,
 
-repeating a .cfg really should be safe, just a bit verbose, I'll retest
-that here to see if something broke.
+In order to get some bug fixes into the production autobuilders, I'm
+scheduling at least two (maybe three), day long outages. One for Sunday,
+Aug 26th and another for Sunday September 9th. There may also be a future
+outage for September 16th.
 
-My workflow never hits any problems with not rebuilding, but I can also
-check that. If necessary, listing the files, or another technique to get
-the checksum'd would be advisable. I'll look into that as well.
+Some of the upgrades planned:
 
-Cheers,
+August 26th:
+1958: missing package at source and not in Yocto mirror
+2818: Add Build Appliance Target to Autobuilder
+2732: Better build failure email. (This will contain repo specific builds,
+grep for ERROR. This will not contain exclude sanity if prior build failed).
+2882: Include git hash in release tarball.
+Split up LSB targets
 
-Bruce
+Impacts:
+- LSB targets: Impacts how waterfall will look. This is being done in order
+to save a bit of time during builds and to make debugging easier. This will
+impact buildhistory a bit and I will need to add 5 additional branches to
+the buildhistory repo to account for LSB. I'm estimating about an hour or
+so (around 10%) can be shaved off the build time by doing this. The
+downside, of course, is that by adding additional targets, the waterfall
+scroll will be greater. I'll try to alleviate this a bit by some css
+changes but the take away here is the effect to buildhistory.
 
->
-> | bitbake -fc clean linux-yocto
-> | bitbake linux-yocto
->
-> Cheers, Markus
->
+- Build failure email. Only build failures from branches on git://
+git.yoctoproject.org/poky will be sent. As well, I'll be only sending out
+certain lines of the failure. This isn't optimal, but I'd rather small
+changes on the build emails in order to get feedback.
 
+- Build appliance. We won't be doing this in the main nightly build as
+there are some manual buildsteps to this. I'm still hashing the impact this
+will have out and there is a slight chance this might slip to the 9th.
 
+During these outages, only autobuilder will be effected. No build failure
+emails will be sent to the yocto-builds list during testing. The outage
+should last from 11am PST to 10pm PST.
+
+-b
+
+-- 
+Elizabeth Flanagan
+Yocto Project
+Build and Release
+
+--002354790e5841287904c7f28802
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+All,<br><br>In order to get some bug fixes into the production autobuilders=
+, I&#39;m scheduling at least two (maybe three), day long outages. One for =
+Sunday, Aug 26th and another for Sunday September 9th. There may also be a =
+future outage for September 16th.<br>
+<br>Some of the upgrades planned:<br><br>August 26th:<br>1958: <span>=20
+      <span>missing package at source and not in Yocto mirror</span></span>=
+<br>2818: <span><span>Add Build Appliance Target to Autobuilder</span></spa=
+n><br>
+2732: <span>
+      <span>Better build failure email. (This will contain repo=20
+specific builds, grep for ERROR. This will not contain exclude sanity if
+ prior build failed).</span></span><br>2882: <span><span>Include git hash i=
+n release tarball. <br>
+Split up LSB targets<br><br>Impacts:<br>- LSB targets: Impacts how waterfal=
+l will look. This is being done in order to save a bit of time during build=
+s and to make debugging easier. This will impact buildhistory a bit and I w=
+ill need to add 5 additional branches to the buildhistory repo to account f=
+or LSB. I&#39;m estimating about an hour or so (around 10%) can be shaved o=
+ff the build time by doing this. The downside, of course, is that by adding=
+ additional targets, the waterfall scroll will be greater. I&#39;ll try to =
+alleviate this a bit by some css changes but the take away here is the effe=
+ct to buildhistory.<br>
+<br>- Build failure email. Only build failures from branches on git://<a hr=
+ef=3D"http://git.yoctoproject.org/poky">git.yoctoproject.org/poky</a> will =
+be sent. As well, I&#39;ll be only sending out certain lines of the failure=
+. This isn&#39;t optimal, but I&#39;d rather small changes on the build ema=
+ils in order to get feedback.<br>
+<br>- Build appliance. We won&#39;t be doing this in the main nightly build=
+ as there are some manual buildsteps to this. I&#39;m still hashing the imp=
+act this will have out and there is a slight chance this might slip to the =
+9th.<br>
+</span></span><span><span></span></span><br>During these outages, only auto=
+builder will be effected. No build failure emails will be sent to the yocto=
+-builds list during testing. The outage should last from 11am PST to 10pm P=
+ST.<br>
+<br>-b<br><br>-- <br>Elizabeth Flanagan<br>Yocto Project<br>Build and Relea=
+se<br>
+
+--002354790e5841287904c7f28802--
