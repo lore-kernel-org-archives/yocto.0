@@ -1,35 +1,32 @@
-Return-Path: <jfabernathy@gmail.com>
+Return-Path: <bruce.ashfield@gmail.com>
 Received: from mail-qc0-f176.google.com (mail-qc0-f176.google.com
 	[209.85.216.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0B130E0140A
-	for <yocto@yoctoproject.org>; Thu, 23 Aug 2012 05:41:30 -0700 (PDT)
-Received: by qcsc21 with SMTP id c21so492724qcs.35
-	for <yocto@yoctoproject.org>; Thu, 23 Aug 2012 05:41:30 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 10583E0140A
+	for <yocto@yoctoproject.org>; Thu, 23 Aug 2012 05:53:58 -0700 (PDT)
+Received: by qcsc21 with SMTP id c21so501453qcs.35
+	for <yocto@yoctoproject.org>; Thu, 23 Aug 2012 05:53:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=message-id:date:from:user-agent:mime-version:to:subject:references
-	:in-reply-to:content-type:content-transfer-encoding;
-	bh=n++KslCWA79Zrea7h1HHWRuaYUOu/cCE0OicqZTsJ4A=;
-	b=RprN8kEIqzJDoSHDaHphnVUrVz+Sq+1PUUAI2oA+5QuscBZA/cxij/2lkvYeqLRema
-	5s6RugUmI0gVM0xJr5mDnn+SirVOpCWPDMkdQpE8FR9oeldpgHESrfKitOJawzBxXgct
-	YaB4lMN5e+WB6WhEftCuTiEqxmxfbRM4jCNY+3BkFf4zj0TfQaHBOBwQGg7ikauxkBxj
-	HrzprBAMGRWpkyp/LEAPn67arT+X7ES0g2u53W8y8Vjx8DzVY+ht5x2140m3WSOg4Hpx
-	S3V+tSXFlzMuOvci8nxrdY5JC0wxL/fixhIyL8EJOHSC8jIxn5M1NzTw9HW8OANieuiJ
-	ITKA==
-Received: by 10.224.195.199 with SMTP id ed7mr2606911qab.22.1345725690451;
-	Thu, 23 Aug 2012 05:41:30 -0700 (PDT)
-Received: from [10.0.1.54] (nc-184-4-32-137.dhcp.embarqhsd.net. [184.4.32.137])
-	by mx.google.com with ESMTPS id gw6sm5174731qab.21.2012.08.23.05.41.29
-	(version=SSLv3 cipher=OTHER); Thu, 23 Aug 2012 05:41:29 -0700 (PDT)
-Message-ID: <503624F9.60905@gmail.com>
-Date: Thu, 23 Aug 2012 08:41:29 -0400
-From: Jim Abernathy <jfabernathy@gmail.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:14.0) Gecko/20120714 Thunderbird/14.0
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=KLGdftEYg6jHUWk8Q7ABO97pjwtRNnjb+Po1WYAQrGg=;
+	b=WxLh1YV9hLIyGcrwURkt4z8koj6ZD3bPEgB0ElgavlyRq+01dB85KQGLHcmzuDU2wJ
+	Kk7hvElJikSApFCV8vCwd7tXBi1qyJcwM6pH/RDKpinMc7fmmPyf/pWv0gNj6CM3vtRC
+	m+POPQRv79551T7f7Mrt+ZAm+dsO9CTeHML4YA2enhAk9pSGMhlcLbBDuZSYIPmA38XH
+	SQNI8z7OVTYTRG/dKL8mD5btxuZqFdmHcZhSFDqHolPlb8jFOJdqkx9GqE5gzfReCgQT
+	uH1R+oJHcEJce8dzxlOQjpq1AMiUDKNf3/FzIKKvcDq+f8LqVJZUCLhbngcO7ns6Zsql
+	FxUQ==
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <50361C9F.3090203@gmail.com> <87393dn5uw.fsf@sonatest.com>
-In-Reply-To: <87393dn5uw.fsf@sonatest.com>
-Subject: Re: adding drivers to the kernel
+Received: by 10.229.136.82 with SMTP id q18mr596004qct.108.1345726438583; Thu,
+	23 Aug 2012 05:53:58 -0700 (PDT)
+Received: by 10.229.247.198 with HTTP; Thu, 23 Aug 2012 05:53:58 -0700 (PDT)
+In-Reply-To: <CA+69FtCf42+XyXFWg+QHL=qM1B3FoeXNXEkNbQ66TCWeOMbubw@mail.gmail.com>
+References: <CA+69FtCf42+XyXFWg+QHL=qM1B3FoeXNXEkNbQ66TCWeOMbubw@mail.gmail.com>
+Date: Thu, 23 Aug 2012 08:53:58 -0400
+Message-ID: <CADkTA4Oc7uD8Hc7MX3kb7PRaDnZKsFM2kHbNxN7pTVXJ122ZzA@mail.gmail.com>
+From: Bruce Ashfield <bruce.ashfield@gmail.com>
+To: Hartmut Behrens <hartmut.behrens@gmail.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: Changing PREFERRED_PROVIDER_virtual/kernel has no effect
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,64 +38,59 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 23 Aug 2012 12:41:31 -0000
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Thu, 23 Aug 2012 12:53:59 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On 08/23/2012 08:35 AM, Marc Ferland wrote:
-> Jim Abernathy <jfabernathy@gmail.com> writes:
+On Thu, Aug 23, 2012 at 8:40 AM, Hartmut Behrens
+<hartmut.behrens@gmail.com> wrote:
+> Hi,
 >
->> If I need to add a driver for a networking device that should be in
->> the 3.0 kernel, but seems to be turned off, I usually follow the
->> example in sections B.2.3 in the Development Manual. When I get to the
->> stage of running bitbake linux-yocto -c menuconfig, I can search for
->> my device with the "/" command and search for CONFIG_RTL8192CE and I
->> find this:
->>
->> Symbol: RTL8192CE [=n] │
->> │ Type : tristate │
->> │ Prompt: Realtek RTL8192CE/RTL8188CE Wireless Network Adapter │
->> │ Defined at drivers/net/wireless/rtlwifi/Kconfig:1 │
->> │ Depends on: NETDEVICES [=y] && WLAN [=y] && MAC80211 [=n] && PCI [=y] │
->> │ Location: │
->> │ -> Device Drivers │
->> │ -> Network device support (NETDEVICES [=y]) │
->> │ -> Wireless LAN (WLAN [=y]) │
->> │ Selects: FW_LOADER [=y] && RTLWIFI [=n] && RTL8192C_COMMON [=n]
->>
->> However, I can't find this device where is should be or anywhere in
->> the .config file. I've tried just adding the CONFIG_RTL8192CE=y to a
->> config fragment file anyway and that didn't work. After building the
->> image, the .config still didn't have the CONFIG_RTL8192CE=y. The 3.0
->> kernel should have support for the RTL8192CE devices.
->>
->> Also if I manual add CONFIG_RTL8192CE=y to the .config file and then
->> compile and build the kernel, the RTL8192CE parameter is removed from
->> the .config file after the kernel build.
->>
-> You probably need to enable MAC80211 first. Your RTL8192CE driver will
-> be selectable afterwards.
-> Marc
-You are correct. after I posted my question, I cheated and booted Ubuntu 
-on the same hardware and saw the list of modules that lsmod showed were 
-loaded to support my WiFi card.  my config fragment files now has:
-CONFIG_RTL8192CE=y
-CONFIG_RTL8192C_COMMON=y
-CONFIG_RTLWIFI=y
-CONFIG_MAC80211=y
-CONFIG_CFG80211=y
+> I've successfully created an image for a Gumstix Overo using the BSP layer
+> available at https://github.com/squirly/meta-gumstix
+> The MACHINE variable is set to "overo" in the build/conf/local.conf file.
+>
+> I then change the PREFERRED_PROVIDER_virtual/kernel variable in
+> meta-gumstix/conf/machine/overo.inc (which is included from overo.conf) from
+> the default "linux-omap3" to "linux-yocto-rt" and set
+> PREFERRED_PROVIDER_linux-yocto-rt to "3.4%".
+>
+> Once this is done I execute bitbake -k core-image-minimal.
+>
+> However, this does not result in the linux-yocto-rt kernel being built for
+> the new image. Instead, in the bitbake output I can see a warning informing
+> me that multiple providers for virtual/kernel are present
+> (linux-dummy,linux-omap3) and that I should set the PREFERRED_PROVIDER
+> variable to the required virtual/kernel.
+>
+> Any ideas how to get linux-yocto-rt built instead of linux-omap3 ?
 
-It's still building, but at least the .config file now has all the right 
-parameters in it and they didn't get deleted by the bitbake linux-yocto 
--c compile -f
+Did you also set your COMPATIBLE_MACHINE ? Setting that as well should at least
+get the kernel building, but unless you also have a bbappend with a
+config, or have
+a BSP definition you'll probably not build what you expect.
 
-Thanks,
+If the layer you are using already has a defconfig, that will be a configuration
+start, but als take a peek at the meta-intel layer and the BSPs there.
+They set compatibility, and specify a branch that should be built, etc.
 
-Jim A
+Cheers,
 
+Bruce
+
+>
+> Hartmut
+>
+>
+>
 > _______________________________________________
 > yocto mailing list
 > yocto@yoctoproject.org
 > https://lists.yoctoproject.org/listinfo/yocto
+>
 
+
+
+-- 
+"Thou shalt not follow the NULL pointer, for chaos and madness await
+thee at its end"
 
