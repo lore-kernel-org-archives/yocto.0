@@ -1,34 +1,38 @@
 Return-Path: <jefro.net@gmail.com>
-Received: from mail-ob0-f176.google.com (mail-ob0-f176.google.com
-	[209.85.214.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 20C3AE002A5
-	for <yocto@yoctoproject.org>; Thu, 23 Aug 2012 10:10:33 -0700 (PDT)
-Received: by obbtb18 with SMTP id tb18so2778087obb.35
-	for <yocto@yoctoproject.org>; Thu, 23 Aug 2012 10:10:32 -0700 (PDT)
+Received: from mail-iy0-f176.google.com (mail-iy0-f176.google.com
+	[209.85.210.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 22D63E002A5
+	for <yocto@yoctoproject.org>; Thu, 23 Aug 2012 10:15:35 -0700 (PDT)
+Received: by iagt4 with SMTP id t4so1874056iag.35
+	for <yocto@yoctoproject.org>; Thu, 23 Aug 2012 10:15:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:sender:in-reply-to:references:date
 	:x-google-sender-auth:message-id:subject:from:to:cc:content-type;
-	bh=Q8ke3cEGmtmlfSpsZ63LAr9oaxarkNun5IH21wS3dcA=;
-	b=KoV/vLSQo009TxmNmn2iQ1jFG2J0SCYXSUoi+MFHFzKlPdcOO2tmHBKhS5uthZ6Uyc
-	ItRWfwbIQMJ4ybTfza0p4ScpXH2rEuPXxhptOZtcjuRkj8QZi0ja/WDrng6y0LnpRDvS
-	PBSSc4GkPU2VoXzhslW4C4bPu77Tl3qLTDUx/pJyVpP/cTqwhuu+7FfWveeWHk5fKjaS
-	jFLmzyAc/XiJ6UzXB2vQaAuCoF5IbwxUfT0Q631URQKwXO27lyTpRcNCFbA+oJARr8jU
-	L2I5diDvdWOD/EdqQWoM44+F+iI8qaZyh+zU8Y07i6RnbvpL6JyUn8FnjDdh73XjrxR/
-	anCQ==
+	bh=11XC7QiNH4UNnvgBkDSH69NjJhmfZ8RCVhcALYqlZkg=;
+	b=EZocwE6ZxLiaqNDHWEXT7Fnx0LvcAid/lUYS8aVffbreAWT0aFLYrG3r+zxeK/jDmO
+	fUJRJaMAH4AaXk60cyERSVS8hiqHPkOrjWT3I2K0Bi9ZPLx7qshqhjMqypXOnGXLFRbV
+	/UCnOqdaJ1Jt/7LZr5ILuhdHzK+LAfAhyAEJD0jHaFqLYFFYT9QXDwQeeQl2FtIPrqr+
+	/Cjm1w8tL0JIGXYD19iqcF2MbVglp/cWZ/P/s1FAB9H6hmGxB5v9hJgD7ngNCAGIP7j9
+	AMgaec5UNimUj97YE2fmF1ecVVZyFe2xO8iOLjGULGxyMMBYR1TxZlgU95dxDnFEx68Q
+	/vFg==
 MIME-Version: 1.0
-Received: by 10.50.149.137 with SMTP id ua9mr2371456igb.65.1345741831511; Thu,
-	23 Aug 2012 10:10:31 -0700 (PDT)
+Received: by 10.50.1.200 with SMTP id 8mr2383042igo.65.1345742132680; Thu, 23
+	Aug 2012 10:15:32 -0700 (PDT)
 Sender: jefro.net@gmail.com
-Received: by 10.64.50.231 with HTTP; Thu, 23 Aug 2012 10:10:31 -0700 (PDT)
-In-Reply-To: <CAHUNapR6uTjDHtD19r_cKwGWD836oVLmwPR7dkyBsahzMV0-dg@mail.gmail.com>
-References: <CAHUNapR6uTjDHtD19r_cKwGWD836oVLmwPR7dkyBsahzMV0-dg@mail.gmail.com>
-Date: Thu, 23 Aug 2012 10:10:31 -0700
-X-Google-Sender-Auth: uUnCJ9MXywPACU8u4Q-WhHSoNes
-Message-ID: <CA+YB3rbymW1SMmetJ3no4iL5PLLWfD4eWm315S6P_6APUgSmOQ@mail.gmail.com>
+Received: by 10.64.50.231 with HTTP; Thu, 23 Aug 2012 10:15:32 -0700 (PDT)
+In-Reply-To: <alpine.DEB.2.02.1208211251090.14771@oneiric>
+References: <CAMv4DROy+nzU-6ESb2FGQyok33C7e6hV7EoOhN_5sq8PSCTxYA@mail.gmail.com>
+	<CA+YB3rYnSio1LLL_awAUM55FaMwdQoxsyanopVTOmmNHmGRqwA@mail.gmail.com>
+	<alpine.DEB.2.02.1208211215490.14178@oneiric>
+	<2350730.VsPNl426oH@helios>
+	<alpine.DEB.2.02.1208211251090.14771@oneiric>
+Date: Thu, 23 Aug 2012 10:15:32 -0700
+X-Google-Sender-Auth: VNsWXKpi-wy-RiI73vwTxq5ixXM
+Message-ID: <CA+YB3rZH1y_cZzh=bhbcj1yk+P3jyHT+6a=28smHKs76qkoj6Q@mail.gmail.com>
 From: Jeff Osier-Mixon <jefro@jefro.net>
-To: Trevor Woerner <twoerner@gmail.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: microcontroller central article
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>
+Cc: Paul Eggleton <paul.eggleton@linux.intel.com>, yocto@yoctoproject.org
+Subject: Re: adding packages in my Yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,58 +44,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 23 Aug 2012 17:10:33 -0000
-Content-Type: multipart/alternative; boundary=e89a8f3bac1dd39f0204c7f1efc3
+X-List-Received-Date: Thu, 23 Aug 2012 17:15:35 -0000
+Content-Type: multipart/alternative; boundary=e89a8f502e0cc7188a04c7f201ad
 
---e89a8f3bac1dd39f0204c7f1efc3
+--e89a8f502e0cc7188a04c7f201ad
 Content-Type: text/plain; charset=ISO-8859-1
 
-Awesome, thanks for the heads-up!
+On Tue, Aug 21, 2012 at 9:51 AM, Robert P. J. Day <rpjday@crashcourse.ca>wrote:
 
-On Thu, Aug 23, 2012 at 4:55 AM, Trevor Woerner <twoerner@gmail.com> wrote:
-
-> A short blog entry about the Yocto Project was just posted on the
-> "microcontroller central" website:
 >
->
-> http://www.microcontrollercentral.com/author.asp?section_id=1741&doc_id=249581
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+>   if there's no objection, i added how to add multiple packages as
+> well, just below that.
 >
 
-
+No objection at all - we set it up as a wiki just for that purpose, thanks
+for adding
 
 -- 
 Jeff Osier-Mixon http://jefro.net/blog
 Yocto Project Community Manager @Intel http://yoctoproject.org
 
---e89a8f3bac1dd39f0204c7f1efc3
+--e89a8f502e0cc7188a04c7f201ad
 Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-Awesome, thanks for the heads-up!<br><br><div class=3D"gmail_quote">On Thu,=
- Aug 23, 2012 at 4:55 AM, Trevor Woerner <span dir=3D"ltr">&lt;<a href=3D"m=
-ailto:twoerner@gmail.com" target=3D"_blank">twoerner@gmail.com</a>&gt;</spa=
-n> wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">A short blog entry about the Yocto Project w=
-as just posted on the<br>
-&quot;microcontroller central&quot; website:<br>
-<br>
-<a href=3D"http://www.microcontrollercentral.com/author.asp?section_id=3D17=
-41&amp;doc_id=3D249581" target=3D"_blank">http://www.microcontrollercentral=
-.com/author.asp?section_id=3D1741&amp;doc_id=3D249581</a><br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
->https://lists.yoctoproject.org/listinfo/yocto</a><br>
-</blockquote></div><br><br clear=3D"all"><div><br></div>-- <br>Jeff Osier-M=
-ixon <a href=3D"http://jefro.net/blog" target=3D"_blank">http://jefro.net/b=
-log</a><div>Yocto Project Community Manager @Intel <a href=3D"http://yoctop=
-roject.org" target=3D"_blank">http://yoctoproject.org</a></div>
-<br>
+<br><br><div class=3D"gmail_quote">On Tue, Aug 21, 2012 at 9:51 AM, Robert =
+P. J. Day <span dir=3D"ltr">&lt;<a href=3D"mailto:rpjday@crashcourse.ca" ta=
+rget=3D"_blank">rpjday@crashcourse.ca</a>&gt;</span> wrote:<br><blockquote =
+class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid=
+;padding-left:1ex">
+<div class=3D"HOEnZb"><div class=3D"h5"><br>
+</div></div>=A0 if there&#39;s no objection, i added how to add multiple pa=
+ckages as<br>
+well, just below that.<br>
+<div class=3D"HOEnZb"><div class=3D"h5"></div></div></blockquote></div><div=
+><br></div><div>No objection at all - we set it up as a wiki just for that =
+purpose, thanks for adding</div><div><br></div>-- <br>Jeff Osier-Mixon <a h=
+ref=3D"http://jefro.net/blog" target=3D"_blank">http://jefro.net/blog</a><d=
+iv>
+Yocto Project Community Manager @Intel <a href=3D"http://yoctoproject.org" =
+target=3D"_blank">http://yoctoproject.org</a></div><br>
 
---e89a8f3bac1dd39f0204c7f1efc3--
+--e89a8f502e0cc7188a04c7f201ad--
