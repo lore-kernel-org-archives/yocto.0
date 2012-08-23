@@ -1,33 +1,33 @@
-Return-Path: <jfabernathy@gmail.com>
-Received: from mail-qa0-f48.google.com (mail-qa0-f48.google.com
-	[209.85.216.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 09185E0140A
-	for <yocto@yoctoproject.org>; Thu, 23 Aug 2012 05:05:55 -0700 (PDT)
-Received: by qady1 with SMTP id y1so485781qad.14
-	for <yocto@yoctoproject.org>; Thu, 23 Aug 2012 05:05:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=message-id:date:from:user-agent:mime-version:to:subject
-	:content-type:content-transfer-encoding;
-	bh=f+NxpuHUOXBKcswekbH7eva6M8lY/OKBjSmCeu+xe0o=;
-	b=bQ+b9tJAgGq8O0UXwJemUJH/UQM5yYaMH+zhk9sIVrgqAUqW2Xu8R0nvGHLpILLm21
-	Z2EtkYGIjqPXIKuRNOdszs+7vS1NkhrStgm0oJKpimBeUljpmbg1kuFya/+STJcLSpeY
-	0nma726SbA5KHzQAkxFLzDDvwUt8RQ3l4W/WAS39wp/Mv5ZiF9+DJVF9ZW8OwnrtSOlG
-	pK/RocINnuJRmaTNzNN9ZRAdhFl0ZQgvheMOValjRZ40c99WEwoSISOjn0/aXZQytX0I
-	qyxiMHNT1cqHpH0MX0lpBoVVu7dP85B08HMZ5XkdgJQUoARYrlnjY1+wPcKdSN8r7d6J
-	tx7w==
-Received: by 10.224.97.199 with SMTP id m7mr2317267qan.61.1345723553188;
-	Thu, 23 Aug 2012 05:05:53 -0700 (PDT)
-Received: from [10.0.1.54] (nc-184-4-32-137.dhcp.embarqhsd.net. [184.4.32.137])
-	by mx.google.com with ESMTPS id h8sm5132606qap.16.2012.08.23.05.05.52
-	(version=SSLv3 cipher=OTHER); Thu, 23 Aug 2012 05:05:52 -0700 (PDT)
-Message-ID: <50361C9F.3090203@gmail.com>
-Date: Thu, 23 Aug 2012 08:05:51 -0400
-From: Jim Abernathy <jfabernathy@gmail.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+Return-Path: <belatronix@freenet.de>
+Received: from mout3.freenet.de (mout3.freenet.de [195.4.92.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6E47EE0140A
+	for <yocto@yoctoproject.org>; Thu, 23 Aug 2012 05:35:14 -0700 (PDT)
+Received: from [195.4.92.142] (helo=mjail2.freenet.de)
+	by mout3.freenet.de with esmtpa (ID belatronix@freenet.de) (port 25)
+	(Exim 4.76 #1) id 1T4Wcy-0003vD-8f
+	for yocto@yoctoproject.org; Thu, 23 Aug 2012 14:35:12 +0200
+Received: from localhost ([::1]:52002 helo=mjail2.freenet.de)
+	by mjail2.freenet.de with esmtpa (ID belatronix@freenet.de) (Exim 4.76
+	#1) id 1T4Wcy-0006Ae-3M
+	for yocto@yoctoproject.org; Thu, 23 Aug 2012 14:35:12 +0200
+Received: from [195.4.92.16] (port=46302 helo=6.mx.freenet.de)
+	by mjail2.freenet.de with esmtpa (ID belatronix@freenet.de) (Exim 4.76
+	#1) id 1T4Waj-0005SU-2C
+	for yocto@yoctoproject.org; Thu, 23 Aug 2012 14:32:53 +0200
+Received: from 77-22-19-32-dynip.superkabel.de ([77.22.19.32]:38855
+	helo=[10.0.0.1])
+	by 6.mx.freenet.de with esmtpsa (ID belatronix@freenet.de)
+	(TLSv1:CAMELLIA256-SHA:256) (port 465) (Exim 4.76 #1)
+	id 1T4Wai-00069G-RW
+	for yocto@yoctoproject.org; Thu, 23 Aug 2012 14:32:53 +0200
+Message-ID: <503622F1.8000608@freenet.de>
+Date: Thu, 23 Aug 2012 14:32:49 +0200
+From: Axel Beierlein <belatronix@freenet.de>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
 	rv:14.0) Gecko/20120714 Thunderbird/14.0
 MIME-Version: 1.0
 To: yocto@yoctoproject.org
-Subject: adding drivers to the kernel
+Subject: Buggy busybox update 1.94.4 => 1.20.2
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,39 +39,22 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 23 Aug 2012 12:05:56 -0000
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Thu, 23 Aug 2012 12:35:14 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-If I need to add a driver for a networking device that should be in the 
-3.0 kernel, but seems to be turned off, I usually follow the example in 
-sections B.2.3 in the Development Manual. When I get to the stage of 
-running bitbake linux-yocto -c menuconfig, I can search for my device 
-with the "/" command and search for CONFIG_RTL8192CE and I find this:
+Two questions from a Newbie on Yocto:
 
-Symbol: RTL8192CE [=n] │
-│ Type : tristate │
-│ Prompt: Realtek RTL8192CE/RTL8188CE Wireless Network Adapter │
-│ Defined at drivers/net/wireless/rtlwifi/Kconfig:1 │
-│ Depends on: NETDEVICES [=y] && WLAN [=y] && MAC80211 [=n] && PCI [=y] │
-│ Location: │
-│ -> Device Drivers │
-│ -> Network device support (NETDEVICES [=y]) │
-│ -> Wireless LAN (WLAN [=y]) │
-│ Selects: FW_LOADER [=y] && RTLWIFI [=n] && RTL8192C_COMMON [=n]
+I get compiling Errors in Busybox from a new clone of the Yocto Git Repo.
 
-However, I can't find this device where is should be or anywhere in the 
-.config file. I've tried just adding the CONFIG_RTL8192CE=y to a config 
-fragment file anyway and that didn't work. After building the image, the 
-.config still didn't have the CONFIG_RTL8192CE=y. The 3.0 kernel should 
-have support for the RTL8192CE devices.
+I have to change the name of the .bbappend File from 1.94.4 to 1.20.2
+and also the directory to get a working tree.
 
-Also if I manual add CONFIG_RTL8192CE=y to the .config file and then 
-compile and build the kernel, the RTL8192CE parameter is removed from 
-the .config file after the kernel build.
+And in the 1.94.4.bbappend File. What means ${P} after the THISDIR?
+In the Documentation i read something about ${THISDIR}/${PN} and not
+${P} is this a mistake or do i understand something wrong?
 
-Any ideas?
+Regards
 
-Jim A
-
+Axel
 
