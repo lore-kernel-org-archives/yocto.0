@@ -1,32 +1,44 @@
-Return-Path: <bruce.ashfield@gmail.com>
-Received: from mail-qc0-f176.google.com (mail-qc0-f176.google.com
-	[209.85.216.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 10583E0140A
-	for <yocto@yoctoproject.org>; Thu, 23 Aug 2012 05:53:58 -0700 (PDT)
-Received: by qcsc21 with SMTP id c21so501453qcs.35
-	for <yocto@yoctoproject.org>; Thu, 23 Aug 2012 05:53:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=KLGdftEYg6jHUWk8Q7ABO97pjwtRNnjb+Po1WYAQrGg=;
-	b=WxLh1YV9hLIyGcrwURkt4z8koj6ZD3bPEgB0ElgavlyRq+01dB85KQGLHcmzuDU2wJ
-	Kk7hvElJikSApFCV8vCwd7tXBi1qyJcwM6pH/RDKpinMc7fmmPyf/pWv0gNj6CM3vtRC
-	m+POPQRv79551T7f7Mrt+ZAm+dsO9CTeHML4YA2enhAk9pSGMhlcLbBDuZSYIPmA38XH
-	SQNI8z7OVTYTRG/dKL8mD5btxuZqFdmHcZhSFDqHolPlb8jFOJdqkx9GqE5gzfReCgQT
-	uH1R+oJHcEJce8dzxlOQjpq1AMiUDKNf3/FzIKKvcDq+f8LqVJZUCLhbngcO7ns6Zsql
-	FxUQ==
+Return-Path: <mhubig@imko.de>
+Received: from mail-bk0-f48.google.com (mail-bk0-f48.google.com
+	[209.85.214.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D3FE3E0140A
+	for <yocto@yoctoproject.org>; Thu, 23 Aug 2012 06:24:26 -0700 (PDT)
+Received: by bkty5 with SMTP id y5so249213bkt.35
+	for <yocto@yoctoproject.org>; Thu, 23 Aug 2012 06:24:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=imko.de; s=google;
+	h=date:from:to:subject:message-id:mail-followup-to:mime-version
+	:content-type:content-disposition:user-agent;
+	bh=4e9vNJc7NnLxNRTnGkvf3e65UhG2COo9nZneKOHrpDk=;
+	b=pUXV89bOBKtilxH7iogz+X9k8U1+F0QEcTIzwKafOQzTlwYRlm4vmXELkikyE8VauU
+	R1MuEKGW+tkHz6cnHkPMTFgTf31/xT6dBu2os1zv3I7IQym2xAPsmV4UCJsbhkWlTIDQ
+	b78sOoAoEr9oiYRikd9zHCN/XxTJZpMaZcQd8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=date:from:to:subject:message-id:mail-followup-to:mime-version
+	:content-type:content-disposition:user-agent:x-gm-message-state;
+	bh=4e9vNJc7NnLxNRTnGkvf3e65UhG2COo9nZneKOHrpDk=;
+	b=ABSsd+f0zEbTC9FF6zlAQgD/YRKtCc4G94HggFJEjqkJke4jKvqill8O0OAqoMNbbq
+	rFQ6+nMLCCzJooQ+N6fqfRuwst7KgAfWbZPenrfFiiicHz9YudNbjUPTYdJkxzgNK3eP
+	T7N4RqCJYbGcuA71tbaQfjBKAYStb9dBe9ySe+re+6kRBnJryX9lhx1Mu2CA+hZcLyvL
+	caNzq/bz8dSYFsuiurR3CjJWxMckLKnFlSBQq3MDH5vULFSZhGe9dwyzQ21K8Ljbtjv8
+	58270/eaFXH5GBAMsg/RMNlxhXEh7xwk4CK+TQro0qNPzVK2bJapP1AfXInEnhfV/pCy
+	Cjkw==
+Received: by 10.204.8.65 with SMTP id g1mr486486bkg.50.1345728265235;
+	Thu, 23 Aug 2012 06:24:25 -0700 (PDT)
+Received: from imko.de (business-092-079-181-094.static.arcor-ip.net.
+	[92.79.181.94])
+	by mx.google.com with ESMTPS id y20sm4644858bkv.11.2012.08.23.06.24.23
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Thu, 23 Aug 2012 06:24:24 -0700 (PDT)
+Date: Thu, 23 Aug 2012 15:24:20 +0200
+From: Markus Hubig <mhubig@imko.de>
+To: Yocto Project Mailing List <yocto@yoctoproject.org>
+Message-ID: <20120823151259.f1550eb3-e33f-4100-93dc-f39eab90e4b1.mhubig@imko.de>
+Mail-Followup-To: Yocto Project Mailing List <yocto@yoctoproject.org>
 MIME-Version: 1.0
-Received: by 10.229.136.82 with SMTP id q18mr596004qct.108.1345726438583; Thu,
-	23 Aug 2012 05:53:58 -0700 (PDT)
-Received: by 10.229.247.198 with HTTP; Thu, 23 Aug 2012 05:53:58 -0700 (PDT)
-In-Reply-To: <CA+69FtCf42+XyXFWg+QHL=qM1B3FoeXNXEkNbQ66TCWeOMbubw@mail.gmail.com>
-References: <CA+69FtCf42+XyXFWg+QHL=qM1B3FoeXNXEkNbQ66TCWeOMbubw@mail.gmail.com>
-Date: Thu, 23 Aug 2012 08:53:58 -0400
-Message-ID: <CADkTA4Oc7uD8Hc7MX3kb7PRaDnZKsFM2kHbNxN7pTVXJ122ZzA@mail.gmail.com>
-From: Bruce Ashfield <bruce.ashfield@gmail.com>
-To: Hartmut Behrens <hartmut.behrens@gmail.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: Changing PREFERRED_PROVIDER_virtual/kernel has no effect
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Gm-Message-State: ALoCoQmiv3kpVfvGMF/FCvvm7odkKI3i+9rXLpp/e2J3kK6wz7J7DlTBDD4BepiDtxnnvCFoRm7s
+Subject: 1.3_M3 do_kernel_config failes, config_frag.txt is crippled.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,59 +50,61 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 23 Aug 2012 12:53:59 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Thu, 23 Aug 2012 13:24:27 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-On Thu, Aug 23, 2012 at 8:40 AM, Hartmut Behrens
-<hartmut.behrens@gmail.com> wrote:
-> Hi,
->
-> I've successfully created an image for a Gumstix Overo using the BSP layer
-> available at https://github.com/squirly/meta-gumstix
-> The MACHINE variable is set to "overo" in the build/conf/local.conf file.
->
-> I then change the PREFERRED_PROVIDER_virtual/kernel variable in
-> meta-gumstix/conf/machine/overo.inc (which is included from overo.conf) from
-> the default "linux-omap3" to "linux-yocto-rt" and set
-> PREFERRED_PROVIDER_linux-yocto-rt to "3.4%".
->
-> Once this is done I execute bitbake -k core-image-minimal.
->
-> However, this does not result in the linux-yocto-rt kernel being built for
-> the new image. Instead, in the bitbake output I can see a warning informing
-> me that multiple providers for virtual/kernel are present
-> (linux-dummy,linux-omap3) and that I should set the PREFERRED_PROVIDER
-> variable to the required virtual/kernel.
->
-> Any ideas how to get linux-yocto-rt built instead of linux-omap3 ?
+Hello @all,
 
-Did you also set your COMPATIBLE_MACHINE ? Setting that as well should at least
-get the kernel building, but unless you also have a bbappend with a
-config, or have
-a BSP definition you'll probably not build what you expect.
+because I need the commit 'dcadeda' I switched from denzil to 1.3_M3.
+Now I get a strage error while do_kernel_config:
 
-If the layer you are using already has a defconfig, that will be a configuration
-start, but als take a peek at the meta-intel layer and the BSPs there.
-They set compatibility, and specify a branch that should be built, etc.
+| configme --reconfig --output <...>/linux-portuxg20-standard-build standard stamp9g20
+| [INFO] Configuring target/machine combo: "standard/stamp9g20"
+| [INFO] collecting configs in ./meta/meta-series 
+|   [##################################################]  (completed in 0 seconds)                    
+| ERROR: could not sanitize configuration fragments
+|    errors are logged in meta/cfg/standard/portuxg20/config.log
 
-Cheers,
+Digin a bit deeper I found:
 
-Bruce
+| [INFO] Sanitizing meta/cfg/kernel-cache/features/fuse/fuse.cfg
+| [INFO] Sanitizing meta/cfg/kernel-cache/ktypes/standard/standard.cfg
+| [INFO] Sanitizing meta/cfg/kernel-cache/cfg/devtmpfs.cfg
+| [INFO] Sanitizing meta/cfg/kernel-cache/cfg/debugfs.cfg
+| [INFO] Sanitizing meta/cfgportuxg20
+                    ^^^^^^^^^^^^^^^^^
+| [ERROR] Kern frag  does not exist
 
->
-> Hartmut
->
->
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+And again a bit deeper I found that the file
 
+| ./meta/cfg/standard/portuxg20/config_frag.txt
 
+is somewhat crippled:
+
+| ...
+| /kernel-cache/ktypes/standard/standard.cfg
+| /kernel-cache/cfg/devtmpfs.cfg
+| /kernel-cache/cfg/debugfs.cfg
+| portuxg20
+  ^^^^^^^^^
+| hardware.cfg
+| non-hardware.cfg
+| /kernel-cache/features/usb-net/usb-net.cfg
+| portuxg20
+| hardware.cfg
+| non-hardware.cfg
+| /kernel-cache/features/usb-net/usb-net.cfg
+| /hardware.cfg
+| /non-hardware.cfg
+| /portuxg20/portuxg20.cfg
+| /kernel-cache/features/netfilter/netfilter.cfg
+| /kernel-cache/features/taskstats/taskstats.cfg
+
+Who is creating this file?
+
+Cheers, Markus
 
 -- 
-"Thou shalt not follow the NULL pointer, for chaos and madness await
-thee at its end"
+Human beings were created by water to transport it uphill.
 
