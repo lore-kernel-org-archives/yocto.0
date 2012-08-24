@@ -1,31 +1,41 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
-	[93.97.173.237])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5176CE011AD
-	for <yocto@yoctoproject.org>; Fri, 24 Aug 2012 08:40:31 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q7OFeO4d014203;
-	Fri, 24 Aug 2012 16:40:24 +0100
-Received: from tim.rpsys.net ([127.0.0.1])
-	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
-	port 10024) with LMTP
-	id 12212-04; Fri, 24 Aug 2012 16:40:20 +0100 (BST)
-Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q7OFeGTC014197
-	(version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=NO);
-	Fri, 24 Aug 2012 16:40:17 +0100
-Message-ID: <1345822818.14369.81.camel@ted>
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: =?ISO-8859-1?Q?Bj=F6rn?= Stenberg <bjst@enea.com>
-Date: Fri, 24 Aug 2012 16:40:18 +0100
-In-Reply-To: <1345731602-47313-4-git-send-email-bjst@enea.com>
-References: <1345731602-47313-1-git-send-email-bjst@enea.com>
-	<1345731602-47313-4-git-send-email-bjst@enea.com>
-X-Mailer: Evolution 3.2.3-0ubuntu6 
-Mime-Version: 1.0
-X-Virus-Scanned: amavisd-new at rpsys.net
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 3/3] Enable bash-ptest
+Return-Path: <scott.a.garman@intel.com>
+Received: from azsmga102.ch.intel.com (mga12.intel.com [143.182.124.36])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 62D42E011AD
+	for <yocto@yoctoproject.org>; Fri, 24 Aug 2012 08:42:22 -0700 (PDT)
+Received: from mail-pb0-f52.google.com ([209.85.160.52])
+	by mga14.intel.com with ESMTP/TLS/RC4-SHA; 24 Aug 2012 08:42:21 -0700
+Received: by pbcxa7 with SMTP id xa7so3642950pbc.25
+	for <yocto@yoctoproject.org>; Fri, 24 Aug 2012 08:42:21 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=message-id:date:from:user-agent:mime-version:to:subject:references
+	:in-reply-to:content-type:content-transfer-encoding
+	:x-gm-message-state;
+	bh=d2FcmOJ4cwgDACC6Jpzw3GbIguidS/PYM3qvAHorOSQ=;
+	b=RbnOKxi6LC/yluYIHRUbpLjOSWuUARiBApm/Tf560o1b2fsDWFxJFSWoURuFHYA/kT
+	GBm3gH4YKffKcFYNKLXBSEReRFkOwNyM2+2mjPcMI2tBdq/zeyShfRN8gN4rAsk2C/De
+	0BdWFYuTWEoPVp4VtD/i9RCNuylyrFGeN7r1/7pHtA2B5NrKqfOT074RBRDpkg/wSjX3
+	deplpedz0mJ4/mLVXMfTTiBIWHG/i1guxJYzFUuDnybXIZrgHLO5ZoC98LVb0fhJQRkg
+	vUxmLdL95bTU5l+nd6s8/eXgMSWmHC7fywfZdBtutwgJ1O/AnqwtYoxkeYgJe93BRjqp
+	1nSQ==
+Received: by 10.68.225.199 with SMTP id rm7mr13972030pbc.150.1345822940943;
+	Fri, 24 Aug 2012 08:42:20 -0700 (PDT)
+Received: from [10.1.10.35] (c-50-137-42-92.hsd1.or.comcast.net.
+	[50.137.42.92])
+	by mx.google.com with ESMTPS id mr2sm8543250pbb.16.2012.08.24.08.42.19
+	(version=SSLv3 cipher=OTHER); Fri, 24 Aug 2012 08:42:19 -0700 (PDT)
+Message-ID: <5037A0D5.5050508@intel.com>
+Date: Fri, 24 Aug 2012 08:42:13 -0700
+From: Scott Garman <scott.a.garman@intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:14.0) Gecko/20120714 Thunderbird/14.0
+MIME-Version: 1.0
+To: yocto@yoctoproject.org
+References: <alpine.DEB.2.02.1208221629150.20737@oneiric>
+	<5035E629.5010109@r-finger.com>
+In-Reply-To: <5035E629.5010109@r-finger.com>
+X-Gm-Message-State: ALoCoQkFs86dRlwzWHhqNif7LBh/1Wd1/OTIbVeZwpqv0NxXIlntFsr3I7qKc3LcU1erRdfaJGOs
+Subject: Re: dev manual section on "customizing images" needs serious adjustment
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,73 +47,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 24 Aug 2012 15:40:31 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Fri, 24 Aug 2012 15:42:22 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Thu, 2012-08-23 at 16:20 +0200, Björn Stenberg wrote:
-> Patch Makefile.in to allow test programs be built on host and ran on
-> target.
-> Patch tests/run-all to output PASS/FAIL for each testcase.
-> Patch recipe to build and install test programs and test suite.
-> 
-> ---
->  .../bash/bash-4.2/build-tests.patch                |   29 ++++++++++++++++++++
->  meta/recipes-extended/bash/bash-4.2/run-ptest      |    2 +
->  .../bash/bash-4.2/test-output.patch                |   19 +++++++++++++
->  meta/recipes-extended/bash/bash.inc                |   18 ++++++++++++
->  meta/recipes-extended/bash/bash_4.2.bb             |    5 +++-
->  5 files changed, 72 insertions(+), 1 deletions(-)
->  create mode 100644 meta/recipes-extended/bash/bash-4.2/build-tests.patch
->  create mode 100644 meta/recipes-extended/bash/bash-4.2/run-ptest
->  create mode 100644 meta/recipes-extended/bash/bash-4.2/test-output.patch
-> 
-> diff --git a/meta/recipes-extended/bash/bash-4.2/build-tests.patch b/meta/recipes-extended/bash/bash-4.2/build-tests.patch
-> new file mode 100644
-> index 0000000..e92fab3
-> --- /dev/null
-> +++ b/meta/recipes-extended/bash/bash-4.2/build-tests.patch
-> @@ -0,0 +1,29 @@
-> +diff -uNr a/Makefile.in b/Makefile.in
-> +--- a/Makefile.in	2012-06-14 10:15:15.063465304 +0200
-> ++++ b/Makefile.in	2012-06-14 10:47:02.985115849 +0200
-> +@@ -827,18 +827,21 @@
-> + 	fi
-> + 
-> + recho$(EXEEXT):		$(SUPPORT_SRC)recho.c
-> +-	@$(CC_FOR_BUILD) $(CCFLAGS_FOR_BUILD) -o $@ $(SUPPORT_SRC)recho.c ${LIBS_FOR_BUILD}
-> ++	@$(CC) $(CCFLAGS) $(LDFLAGS) -o $@ $<
-> + 
-> + zecho$(EXEEXT):		$(SUPPORT_SRC)zecho.c
-> +-	@$(CC_FOR_BUILD) $(CCFLAGS_FOR_BUILD) -o $@ $(SUPPORT_SRC)zecho.c ${LIBS_FOR_BUILD}
-> ++	@$(CC) $(CCFLAGS) $(LDFLAGS) -o $@ $<
-> + 
-> + printenv$(EXEEXT):	$(SUPPORT_SRC)printenv.c
-> +-	@$(CC_FOR_BUILD) $(CCFLAGS_FOR_BUILD) -o $@ $(SUPPORT_SRC)printenv.c ${LIBS_FOR_BUILD}
-> ++	@$(CC) $(CCFLAGS) $(LDFLAGS) -o $@ $<
-> + 
-> + xcase$(EXEEXT):	$(SUPPORT_SRC)xcase.c
-> +-	@$(CC_FOR_BUILD) $(CCFLAGS_FOR_BUILD) -o $@ $(SUPPORT_SRC)xcase.c ${LIBS_FOR_BUILD}
-> ++	@$(CC) $(CCFLAGS) $(LDFLAGS) -o $@ $<
-> + 
-> + test tests check:	force $(Program) $(TESTS_SUPPORT)
-> ++	$(MAKE) runtest
-> ++
-> ++runtest:
-> + 	@-test -d tests || mkdir tests
-> + 	@cp $(TESTS_SUPPORT) tests
-> + 	@( cd $(srcdir)/tests && \
+On 08/23/2012 01:13 AM, Tomas Frydrych wrote:
+> Hi,
+>
+> On 22/08/12 21:37, Robert P. J. Day wrote:
+>> One way to get additional software into an image is to create a
+>> custom image.
+>
+> The manual should make it clear that this is *the* canonical way to add
+> software to your images. Modifications to local.conf are temporary
+> tweaks for testing/debugging (i.e., you should never feel the need to
+> commit your local.conf to some project version control system).
+>
+> Tomas
 
++1. If you add additional packages to core-image-minimal in your 
+local.conf, you're no longer really building core-image-minimal.
 
-As it stands, I can bet on upstream saying "no" to this for good reason.
-A better concept might be to introduce $(CC_FOR_TEST) which could
-default to CC_FOR_BUILD. This would let us do what you're thinking here
-yet keep upstream happy too.
+Scott
 
-Just thinking out loud really...
-
-Cheers,
-
-Richard
-
+-- 
+Scott Garman
+Embedded Linux Engineer - Yocto Project
+Intel Open Source Technology Center
 
