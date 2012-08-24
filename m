@@ -1,24 +1,31 @@
-Return-Path: <tf+lists.yocto@r-finger.com>
-Received: from r-finger.com (r-finger.com [178.79.160.5])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 51F33E0027F
-	for <yocto@yoctoproject.org>; Fri, 24 Aug 2012 09:30:31 -0700 (PDT)
-Received: from [192.168.0.2] (host81-153-112-181.range81-153.btcentralplus.com
-	[81.153.112.181]) (using TLSv1 with cipher AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by r-finger.com (Postfix) with ESMTPSA id 81B8B9AE3
-	for <yocto@yoctoproject.org>; Fri, 24 Aug 2012 17:30:25 +0100 (BST)
-Message-ID: <5037AC20.5020705@r-finger.com>
-Date: Fri, 24 Aug 2012 17:30:24 +0100
-From: Tomas Frydrych <tf+lists.yocto@r-finger.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:10.0.5) Gecko/20120624 Icedove/10.0.5
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-ee0-f48.google.com (mail-ee0-f48.google.com [74.125.83.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 10D2EE0027F
+	for <yocto@yoctoproject.org>; Fri, 24 Aug 2012 09:36:06 -0700 (PDT)
+Received: by eekd41 with SMTP id d41so877785eek.35
+	for <yocto@yoctoproject.org>; Fri, 24 Aug 2012 09:36:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=MbjAvefwy8XxFhST9/QSWsqZpAu20HZmblMdnTTco3k=;
+	b=uztHWWgFCb6XgANquFvL3ObfCWII7KHZPa0t1sScOLSPDZr8yWQbtNKCAAlqQKDDm8
+	upGRgZjtMnSzDWJxBZtXc/ygzULArT7K8KsSOSHyCZlyhysHuYUq+u+S9nOrr9c15sDv
+	CCsMcM60huPKSU3T0x246ka+RLFaY+2/NsNPCx5yYkC4VY1cLLs3TcD1v5XIiojqXfPM
+	HVxsgprtnrmJptPsAXDeeAGTEuS4lcWW/EkZVf8uIDJJuJPSerg37jnFflKQpXKDin0b
+	Xh6JmTuy/0SBbYnk9Xp2czypoALRYzcp4/0JELDvhDEZ7qe4RuXHgaxD4CGxhcp/Exjp
+	nXmA==
+Received: by 10.14.204.72 with SMTP id g48mr8246191eeo.45.1345826166258; Fri,
+	24 Aug 2012 09:36:06 -0700 (PDT)
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <alpine.DEB.2.02.1208221629150.20737@oneiric>
-	<5035E629.5010109@r-finger.com> <5037A0D5.5050508@intel.com>
-	<alpine.DEB.2.02.1208241145100.32624@oneiric>
-In-Reply-To: <alpine.DEB.2.02.1208241145100.32624@oneiric>
-Subject: Re: dev manual section on "customizing images" needs serious adjustment
+Received: by 10.14.2.5 with HTTP; Fri, 24 Aug 2012 09:35:34 -0700 (PDT)
+In-Reply-To: <B69A6542-B9AD-4E9E-9806-8C344D30B29F@gmail.com>
+References: <B69A6542-B9AD-4E9E-9806-8C344D30B29F@gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Fri, 24 Aug 2012 09:35:34 -0700
+Message-ID: <CAMKF1srGqCXGdYPmOh9XXOV3uXTj4P6NvD6QdsBrNsiXC1e6_A@mail.gmail.com>
+To: Elvis Dowson <elvis.dowson@gmail.com>
+Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+Subject: Re: TARGET_FPU not getting populated for powerpc 405/440 fpu-hard targets
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,37 +37,15 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 24 Aug 2012 16:30:31 -0000
+X-List-Received-Date: Fri, 24 Aug 2012 16:36:07 -0000
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
 
-On 24/08/12 16:45, Robert P. J. Day wrote:
-> On Fri, 24 Aug 2012, Scott Garman wrote:
-> 
->> On 08/23/2012 01:13 AM, Tomas Frydrych wrote:
->>> Hi,
->>>
->>> On 22/08/12 21:37, Robert P. J. Day wrote:
->>>> One way to get additional software into an image is to create a
->>>> custom image.
->>>
->>> The manual should make it clear that this is *the* canonical way to add
->>> software to your images. Modifications to local.conf are temporary
->>> tweaks for testing/debugging (i.e., you should never feel the need to
->>> commit your local.conf to some project version control system).
->>>
->>> Tomas
->>
->> +1. If you add additional packages to core-image-minimal in your local.conf,
->> you're no longer really building core-image-minimal.
-> 
->   sure.  but if you similarly explicitly set IMAGE_INSTALL before
-> inheriting core-image, you're not really "inheriting" core-image
-> either. :-)
+On Fri, Aug 24, 2012 at 9:27 AM, Elvis Dowson <elvis.dowson@gmail.com> wrote:
+>        I just observed that TARGET_FPU is not getting populated, when you do
+> a build for fpu-hard targets. For fpu-soft targets, it displays TARGET_FPU =
+> "soft", but for fpu-hard targets, it display TARGET_FPU = "".
 
-That is quite a different thing: core-image-minimal is a recipe to build
-an image with defined contents, in contrast core-image is a class, and
-the whole point of classes is that recipes can inherit and override them.
-
-Tomas
+that means default is hard for this architecture. This option is
+essentially used to configure gcc
+unless your fpu is special like fsl one's you are good here.
 
