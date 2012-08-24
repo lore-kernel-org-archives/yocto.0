@@ -1,41 +1,35 @@
-Return-Path: <scott.a.garman@intel.com>
-Received: from azsmga102.ch.intel.com (mga12.intel.com [143.182.124.36])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 62D42E011AD
-	for <yocto@yoctoproject.org>; Fri, 24 Aug 2012 08:42:22 -0700 (PDT)
-Received: from mail-pb0-f52.google.com ([209.85.160.52])
-	by mga14.intel.com with ESMTP/TLS/RC4-SHA; 24 Aug 2012 08:42:21 -0700
-Received: by pbcxa7 with SMTP id xa7so3642950pbc.25
-	for <yocto@yoctoproject.org>; Fri, 24 Aug 2012 08:42:21 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=message-id:date:from:user-agent:mime-version:to:subject:references
-	:in-reply-to:content-type:content-transfer-encoding
-	:x-gm-message-state;
-	bh=d2FcmOJ4cwgDACC6Jpzw3GbIguidS/PYM3qvAHorOSQ=;
-	b=RbnOKxi6LC/yluYIHRUbpLjOSWuUARiBApm/Tf560o1b2fsDWFxJFSWoURuFHYA/kT
-	GBm3gH4YKffKcFYNKLXBSEReRFkOwNyM2+2mjPcMI2tBdq/zeyShfRN8gN4rAsk2C/De
-	0BdWFYuTWEoPVp4VtD/i9RCNuylyrFGeN7r1/7pHtA2B5NrKqfOT074RBRDpkg/wSjX3
-	deplpedz0mJ4/mLVXMfTTiBIWHG/i1guxJYzFUuDnybXIZrgHLO5ZoC98LVb0fhJQRkg
-	vUxmLdL95bTU5l+nd6s8/eXgMSWmHC7fywfZdBtutwgJ1O/AnqwtYoxkeYgJe93BRjqp
-	1nSQ==
-Received: by 10.68.225.199 with SMTP id rm7mr13972030pbc.150.1345822940943;
-	Fri, 24 Aug 2012 08:42:20 -0700 (PDT)
-Received: from [10.1.10.35] (c-50-137-42-92.hsd1.or.comcast.net.
-	[50.137.42.92])
-	by mx.google.com with ESMTPS id mr2sm8543250pbb.16.2012.08.24.08.42.19
-	(version=SSLv3 cipher=OTHER); Fri, 24 Aug 2012 08:42:19 -0700 (PDT)
-Message-ID: <5037A0D5.5050508@intel.com>
-Date: Fri, 24 Aug 2012 08:42:13 -0700
-From: Scott Garman <scott.a.garman@intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:14.0) Gecko/20120714 Thunderbird/14.0
-MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <alpine.DEB.2.02.1208221629150.20737@oneiric>
-	<5035E629.5010109@r-finger.com>
-In-Reply-To: <5035E629.5010109@r-finger.com>
-X-Gm-Message-State: ALoCoQkFs86dRlwzWHhqNif7LBh/1Wd1/OTIbVeZwpqv0NxXIlntFsr3I7qKc3LcU1erRdfaJGOs
-Subject: Re: dev manual section on "customizing images" needs serious adjustment
+Return-Path: <elvis.dowson@gmail.com>
+Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
+	[209.85.160.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C4A82E011AD
+	for <yocto@yoctoproject.org>; Fri, 24 Aug 2012 08:44:53 -0700 (PDT)
+Received: by pbbrq13 with SMTP id rq13so4393438pbb.35
+	for <yocto@yoctoproject.org>; Fri, 24 Aug 2012 08:44:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=subject:mime-version:content-type:from:in-reply-to:date:cc
+	:message-id:references:to:x-mailer;
+	bh=O4SWqEAd95bWhAnWqWPZU9V8eOTrWs10hvBbrb5p7zk=;
+	b=j6c82O6aH8EYSktjmQH0dDzVlm3qkkc3fipCaWQ+6hfrQbdk9g9kSVhxpphCTnm5gE
+	QFIm2TsFK4/rbW08ve9NhusAomoEB38zsktqgNja76/wLh1kTg8msaD+iR1vEwlrd6aY
+	MfU+KpnDVxrEb+hu3bdhsIL6RHQ0souJHZEj63LH5MehKxKs74I5teL5Xw41mmN5v3pg
+	x+UygMkGgln004hfq1rTvHgVSWzdVhFId7ghax6UjeT0IpbrAHbzcm5FpAL9tQMi/F6N
+	rhUdNrXn0RrKvHmhYnyEAAhdDpEKTbHeNlt9CqIJGGMfENXppHi8/6uJFj5HiH8AhBCP
+	R1+A==
+Received: by 10.68.223.164 with SMTP id qv4mr13895986pbc.20.1345823093526;
+	Fri, 24 Aug 2012 08:44:53 -0700 (PDT)
+Received: from [192.168.1.101] ([94.205.108.162])
+	by mx.google.com with ESMTPS id jz4sm8552414pbc.17.2012.08.24.08.44.51
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Fri, 24 Aug 2012 08:44:52 -0700 (PDT)
+Mime-Version: 1.0 (Apple Message framework v1278)
+From: Elvis Dowson <elvis.dowson@gmail.com>
+In-Reply-To: <940C4F71-39E0-43FF-90A0-D0802345B6C8@gmail.com>
+Date: Fri, 24 Aug 2012 19:44:47 +0400
+Message-Id: <AC824268-7CF6-474B-90A2-0AD554E01A8F@gmail.com>
+References: <940C4F71-39E0-43FF-90A0-D0802345B6C8@gmail.com>
+To: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+X-Mailer: Apple Mail (2.1278)
+Subject: Re: Errors while creating a new PowerPC 405e tune file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,31 +41,70 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 24 Aug 2012 15:42:22 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 24 Aug 2012 15:44:53 -0000
+Content-Type: multipart/alternative;
+	boundary="Apple-Mail=_6A361433-F93F-480C-B0B0-3D6B1F14401D"
 
-On 08/23/2012 01:13 AM, Tomas Frydrych wrote:
-> Hi,
->
-> On 22/08/12 21:37, Robert P. J. Day wrote:
->> One way to get additional software into an image is to create a
->> custom image.
->
-> The manual should make it clear that this is *the* canonical way to add
-> software to your images. Modifications to local.conf are temporary
-> tweaks for testing/debugging (i.e., you should never feel the need to
-> commit your local.conf to some project version control system).
->
-> Tomas
+--Apple-Mail=_6A361433-F93F-480C-B0B0-3D6B1F14401D
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=us-ascii
 
-+1. If you add additional packages to core-image-minimal in your 
-local.conf, you're no longer really building core-image-minimal.
+Hi,
+          =20
+On Aug 24, 2012, at 7:39 PM, Elvis Dowson wrote:
 
-Scott
 
--- 
-Scott Garman
-Embedded Linux Engineer - Yocto Project
-Intel Open Source Technology Center
+> TUNE_PKGARCH_tune-ppc440e =3D "ppc405e"
 
+My bad, it was a typo, I should have been written as follows:
+
+TUNE_PKGARCH_tune-ppc405e =3D "ppc405e"
+
+> And in my machine, should I be defining TARGET_CPU =3D "405fp" or =
+"405e" ?
+>=20
+> TARGET_CPU  =3D "405fp"
+> #tune for the 405e cpu
+> require conf/machine/include/tune-ppc405e.inc
+
+The only question I have now is, should I be defining TARGET_CPU as =
+405fp or 405e ?
+
+Best regards,
+
+Elvis Dowson=
+
+--Apple-Mail=_6A361433-F93F-480C-B0B0-3D6B1F14401D
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=us-ascii
+
+<html><head></head><body style=3D"word-wrap: break-word; =
+-webkit-nbsp-mode: space; -webkit-line-break: after-white-space; =
+">Hi,<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<br><div><div>On Aug =
+24, 2012, at 7:39 PM, Elvis Dowson wrote:</div><br =
+class=3D"Apple-interchange-newline"><br><blockquote type=3D"cite"><div =
+style=3D"word-wrap: break-word; -webkit-nbsp-mode: space; =
+-webkit-line-break: after-white-space; "><div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" =
+size=3D"2">TUNE_PKGARCH_tune-ppc440e =3D =
+"ppc405e"</font></div></div></div></blockquote><div><br></div><div>My =
+bad, it was a typo, I should have been written as =
+follows:</div><div><br></div><div><font class=3D"Apple-style-span" =
+face=3D"Monaco" size=3D"2">TUNE_PKGARCH_tune-ppc405e =3D =
+"ppc405e"</font></div><br><blockquote type=3D"cite"><div =
+style=3D"word-wrap: break-word; -webkit-nbsp-mode: space; =
+-webkit-line-break: after-white-space; "><div>And in my machine, should =
+I be defining TARGET_CPU =3D "405fp" or "405e" =
+?</div><div><br></div><div><div><font class=3D"Apple-style-span" =
+face=3D"Monaco" size=3D"2">TARGET_CPU &nbsp;=3D =
+"405fp"</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
+size=3D"2">#tune for the 405e cpu</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">require =
+conf/machine/include/tune-ppc405e.inc</font></div></div></div></blockquote=
+><br></div><div>The only question I have now is, should I be defining =
+TARGET_CPU as 405fp or 405e ?</div><div><br></div><div>Best =
+regards,</div></div><div><br></div><div>Elvis Dowson</div></body></html>=
+
+--Apple-Mail=_6A361433-F93F-480C-B0B0-3D6B1F14401D--
