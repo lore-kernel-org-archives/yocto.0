@@ -1,19 +1,32 @@
-Return-Path: <ioanax.grigoropol@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E2C1AE01388
-	for <yocto@yoctoproject.org>; Fri, 24 Aug 2012 08:39:23 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 24 Aug 2012 08:39:23 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,304,1344236400"; d="scan'208";a="184516871"
-Received: from ideapad (HELO localhost.localdomain) ([10.237.105.40])
-	by azsmga001.ch.intel.com with ESMTP; 24 Aug 2012 08:39:21 -0700
-From: Ioana Grigoropol <ioanax.grigoropol@intel.com>
-To: yocto@yoctoproject.org
-Date: Fri, 24 Aug 2012 18:37:26 +0300
-Message-Id: <1345822646-1755-1-git-send-email-ioanax.grigoropol@intel.com>
-X-Mailer: git-send-email 1.7.9.5
-Subject: [PATCH] Yocto-BSP Properties - Layout, Grouping and Naming refactorization
+Return-Path: <elvis.dowson@gmail.com>
+Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
+	[209.85.160.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 04BBAE011AD
+	for <yocto@yoctoproject.org>; Fri, 24 Aug 2012 08:40:06 -0700 (PDT)
+Received: by pbbrq13 with SMTP id rq13so4384594pbb.35
+	for <yocto@yoctoproject.org>; Fri, 24 Aug 2012 08:40:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:content-type:subject:date:message-id:cc:to:mime-version
+	:x-mailer; bh=toDv4Zi7wqGHB73+ZxraWhLv6M2nxjK7uUh7evu9gXI=;
+	b=CobLvZzLm+Itig3EykYaRx0uBhgsTZd0maRBKEXUzaOFqPQ/8xjF2lGJcPdJm9KDOt
+	oqsflb41wUJ94RNN5+CnhIFY49wVS4825K/O1ZwSkhLtJ6N8Q3g73FJdtWmLn5ois/Rq
+	9ClRKX/DDaF09A7NU5Q8775jYKFpMtpZzUYtpaF0MXTfdd6gSNHi2zxBA8l88goSLs0J
+	1nBWhJSsiHt5IuY0cLjdCKBnE1q9rp9+c71v6qLBJMdQEiAx9jaD7cMEYVWkYbpuDVOw
+	T/ACCaTpXtWE1emmB6QipoLWW6GOdyCtPmtIu+R6WCoOS8H3HnIERpqRTaDaUWTmIynj
+	EuLw==
+Received: by 10.68.195.106 with SMTP id id10mr13702103pbc.121.1345822801585;
+	Fri, 24 Aug 2012 08:40:01 -0700 (PDT)
+Received: from [192.168.1.101] ([94.205.108.162])
+	by mx.google.com with ESMTPS id gf7sm8513072pbc.65.2012.08.24.08.39.58
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Fri, 24 Aug 2012 08:40:00 -0700 (PDT)
+From: Elvis Dowson <elvis.dowson@gmail.com>
+Date: Fri, 24 Aug 2012 19:39:54 +0400
+Message-Id: <940C4F71-39E0-43FF-90A0-D0802345B6C8@gmail.com>
+To: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+Mime-Version: 1.0 (Apple Message framework v1278)
+X-Mailer: Apple Mail (2.1278)
+Subject: Errors while creating a new PowerPC 405e tune file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -25,754 +38,294 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 24 Aug 2012 15:39:24 -0000
+X-List-Received-Date: Fri, 24 Aug 2012 15:40:06 -0000
+Content-Type: multipart/alternative;
+	boundary="Apple-Mail=_15E526FE-9CFD-4790-B578-854516873D7E"
 
-	- re-grouped preferences by yocto-bsp logic
-	- re-arranged & aligned controls
+--Apple-Mail=_15E526FE-9CFD-4790-B578-854516873D7E
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=us-ascii
 
-Signed-off-by: Ioana Grigoropol <ioanax.grigoropol@intel.com>
----
- .../sdk/remotetools/YoctoBspPropertyElement.java   |   23 +-
- .../sdk/remotetools/wizards/bsp/MainPage.java      |   11 +-
- .../remotetools/wizards/bsp/PropertiesPage.java    |  418 +++++++++++---------
- .../remotetools/wizards/bsp/YoctoBSPWizard.java    |    6 -
- 4 files changed, 257 insertions(+), 201 deletions(-)
+Hi,
+     I have defined a tune-ppc405e.inc ( suffixed with an 'e' to signify =
+that it has a hardware floating point unit attached), as follows:
 
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/YoctoBspPropertyElement.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/YoctoBspPropertyElement.java
-index a67a5f8..e88b4bd 100644
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/YoctoBspPropertyElement.java
-+++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/YoctoBspPropertyElement.java
-@@ -10,7 +10,7 @@
-  *******************************************************************************/
- package org.yocto.sdk.remotetools;
- 
--public class YoctoBspPropertyElement {
-+public class YoctoBspPropertyElement implements Comparable<YoctoBspPropertyElement>{
- 	private String name;
- 	private String type;
- 	private String value;
-@@ -27,32 +27,39 @@ public class YoctoBspPropertyElement {
- 	public String getName() {
- 		return name;
- 	}
--	
-+
- 	public void setName(String value) {
- 		name = value;
- 	}
--	
-+
- 	public String getType() {
- 		return type;
- 	}
--	
-+
- 	public void setType(String value) {
- 		type = value;
- 	}
--	
-+
- 	public String getDefaultValue() {
- 		return defaultValue;
- 	}
--	
-+
- 	public void setDefaultValue(String value) {
- 		this.defaultValue = value;
- 	}
--	
-+
- 	public String getValue() {
- 		return value;
- 	}
--	
-+
- 	public void setValue(String value) {
- 		this.value = value;
- 	}
-+
-+	@Override
-+	public int compareTo(YoctoBspPropertyElement o) {
-+		return type.compareTo(o.type);
-+	}
-+
-+
- }
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/wizards/bsp/MainPage.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/wizards/bsp/MainPage.java
-index 4a1bbea..5899c8e 100644
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/wizards/bsp/MainPage.java
-+++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/wizards/bsp/MainPage.java
-@@ -79,7 +79,7 @@ public class MainPage extends WizardPage {
- 	private YoctoBspElement bspElem;
- 
- 	public MainPage(YoctoBspElement element) {
--		super(PAGE_NAME, "yocto-bsp main page", null);
-+		super(PAGE_NAME, "yocto-bsp Main page", null);
- 
- 		setMessage("Enter the required fields(with *) to create new Yocto Project BSP!");
- 		this.bspElem = element;
-@@ -89,15 +89,14 @@ public class MainPage extends WizardPage {
- 	public void createControl(Composite parent) {
- 		setErrorMessage(null);
- 		Composite composite = new Composite(parent, SWT.NONE);
--		GridData gd = new GridData(SWT.FILL, SWT.CENTER, true, false);
- 		GridLayout layout = new GridLayout(2, false);
-+		GridData gd = new GridData(SWT.FILL, SWT.CENTER, true, false);
- 		composite.setLayout(layout);
--
- 		gd.horizontalSpan = 2;
- 		composite.setLayoutData(gd);
- 
- 		labelMetadata = new Label(composite, SWT.NONE);
--		labelMetadata.setText("Meta_data location*: ");
-+		labelMetadata.setText("Metadata location*: ");
- 		Composite textContainer = new Composite(composite, SWT.NONE);
- 		textContainer.setLayout(new GridLayout(2, false));
- 		textContainer.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
-@@ -140,7 +139,7 @@ public class MainPage extends WizardPage {
- 		});
- 
- 		labelBspOutput = new Label(composite, SWT.NONE);
--		labelBspOutput.setText("Bsp output location: ");
-+		labelBspOutput.setText("BSP output location: ");
- 
- 		textContainer = new Composite(composite, SWT.NONE);
- 		textContainer.setLayout(new GridLayout(2, false));
-@@ -156,7 +155,7 @@ public class MainPage extends WizardPage {
- 		setBtnBspOutLoc(addFileSelectButton(textContainer, textBspOutputLoc));
- 
- 		labelKArch = new Label(composite, SWT.NONE);
--		labelKArch.setText("kernel Architecture*: ");
-+		labelKArch.setText("Kernel Architecture*: ");
- 
- 		textContainer = new Composite(composite, SWT.NONE);
- 		textContainer.setLayout(new GridLayout(2, false));
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/wizards/bsp/PropertiesPage.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/wizards/bsp/PropertiesPage.java
-index d5b38a4..13f17a3 100644
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/wizards/bsp/PropertiesPage.java
-+++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/wizards/bsp/PropertiesPage.java
-@@ -10,6 +10,8 @@
-  *******************************************************************************/
- package org.yocto.sdk.remotetools.wizards.bsp;
- 
-+import java.util.ArrayList;
-+import java.util.Collections;
- import java.util.Enumeration;
- import java.util.HashSet;
- import java.util.Hashtable;
-@@ -19,11 +21,8 @@ import org.eclipse.jface.dialogs.MessageDialog;
- import org.eclipse.jface.wizard.WizardPage;
- import org.eclipse.swt.SWT;
- import org.eclipse.swt.custom.ScrolledComposite;
--import org.eclipse.swt.events.ModifyEvent;
--import org.eclipse.swt.events.ModifyListener;
- import org.eclipse.swt.events.SelectionEvent;
- import org.eclipse.swt.events.SelectionListener;
--import org.eclipse.swt.layout.FillLayout;
- import org.eclipse.swt.layout.GridData;
- import org.eclipse.swt.layout.GridLayout;
- import org.eclipse.swt.widgets.Button;
-@@ -39,7 +38,7 @@ import org.yocto.sdk.remotetools.YoctoBspPropertyElement;
- import org.yocto.sdk.remotetools.YoctoJSONHelper;
- /**
-  *
-- * Setting up the parameters for creating the new Yocto Bitbake project
-+ * Setting up the parameters for creating the new Yocto BSP
-  *
-  * @author jzhang
-  */
-@@ -47,9 +46,9 @@ public class PropertiesPage extends WizardPage {
- 	private static final String PAGE_NAME = "Properties";
- 	private static final String VALUES_CMD_PREFIX = "yocto-bsp list ";
- 	private static final String VALUES_CMD_SURFIX = " property  ";
--	private static final String KERNEL_CHOICE = "kernel_choice";
- 	private static final String DEFAULT_KERNEL = "use_default_kernel";
- 	private static final String SMP_NAME = "smp";
-+	private static final String KERNEL_CHOICE = "kernel_choice";
- 	private static final String EXISTING_KBRANCH_NAME = "existing_kbranch";
- 	private static final String NEED_NEW_KBRANCH_NAME = "need_new_kbranch";
- 	private static final String NEW_KBRANCH_NAME = "new_kbranch";
-@@ -60,22 +59,28 @@ public class PropertiesPage extends WizardPage {
- 
- 	private Hashtable<YoctoBspPropertyElement, Control> propertyControlMap;
- 	HashSet<YoctoBspPropertyElement> properties;
--	private Composite composite;
-+
-+	private ScrolledComposite composite;
-+	private Composite controlContainer = null;
-+
- 	private YoctoBspElement bspElem = null;
--	private boolean karch_changed = false;
--	private Combo kcCombo;
--	private Combo kbCombo;
--	private Button newButton;
--	private Button existingButton;
-+	private boolean kArchChanged = false;
-+
-+	private Combo kernelCombo;
-+	private Combo branchesCombo;
-+
-+	private Button newBranchButton;
-+	private Button existingBranchButton;
-+
- 	private Button smpButton;
--	private Composite kcContainer = null;
-+
-+	private Group kGroup = null;
- 	private Group kbGroup = null;
--	private ScrolledComposite sc = null;
--	private Composite controlContainer = null;
-+	private Group otherSettingsGroup = null;
- 	private Group propertyGroup = null;
- 
- 	public PropertiesPage(YoctoBspElement element) {
--		super(PAGE_NAME, "yocto-bsp properties page", null);
-+		super(PAGE_NAME, "yocto-bsp Properties page", null);
- 		this.bspElem = element;
- 	}
- 
-@@ -86,65 +91,25 @@ public class PropertiesPage extends WizardPage {
- 		}
- 
- 		if (this.bspElem == null || this.bspElem.getKarch().isEmpty() || !this.bspElem.getKarch().contentEquals(element.getKarch())) {
--			karch_changed = true;
-+			kArchChanged = true;
- 		} else
--			karch_changed = false;
-+			kArchChanged = false;
- 
- 		this.bspElem = element;
--		this.composite.setLayout(new FillLayout());
--		if (sc == null) {
--
--			sc = new ScrolledComposite(this.composite, SWT.H_SCROLL | SWT.V_SCROLL);
--
--			controlContainer = new Composite(sc, SWT.NONE);
--			controlContainer.setLayout(new GridLayout(1, false));
--			controlContainer.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
--			if (kcContainer == null) {
--				kcContainer = new Composite(controlContainer, SWT.NONE);
--
--				kcContainer.setLayout(new FillLayout());
--				new Label (kcContainer, SWT.NONE).setText(KERNEL_CHOICE+":");
--				kcCombo = new Combo(kcContainer, SWT.DROP_DOWN | SWT.READ_ONLY);
--				smpButton = new Button(controlContainer, SWT.CHECK);
--				smpButton.setText("SMP Support");
--				smpButton.setSelection(true);
--
--				kbGroup= new Group(controlContainer, SWT.NONE);
--				kbGroup.setLayout(new FillLayout(SWT.VERTICAL));
--				kbGroup.setText("Kernel Branch Settings:");
--				newButton = new Button(kbGroup, SWT.RADIO);
--				newButton.setText("New");
--				newButton.setSelection(true);
--
--				existingButton = new Button(kbGroup, SWT.RADIO);
--				existingButton.setText("Existing");
--				existingButton.setSelection(false);
--
--				kbCombo = new Combo(kbGroup, SWT.DROP_DOWN | SWT.READ_ONLY);
--
--			}
--		}
--		if (karch_changed) {
--			kbCombo.removeAll();
--			newButton.setSelection(true);
--			existingButton.setSelection(false);
-+		try {
-+			if (kArchChanged) {
-+				updateKernelValues(KERNEL_CHOICES, KERNEL_CHOICE);
- 
--			updateKernelValues(KERNEL_CHOICES, KERNEL_CHOICE);
--		}
-+				if (propertyGroup != null) {
-+					for (Control cntrl : propertyGroup.getChildren()) {
-+						cntrl.dispose();
-+					}
-+				}
- 
--		try {
--			if (karch_changed) {
- 				properties = YoctoJSONHelper.getProperties();
- 
- 				if (!properties.isEmpty()) {
- 
--					if (propertyGroup != null) {
--						propertyGroup.dispose();
--					}
--					propertyGroup= new Group(controlContainer, SWT.NONE);
--					propertyGroup.setLayout(new FillLayout(SWT.VERTICAL));
--					propertyGroup.setText("Other Properties Settings:");
--
- 					if (!element.getQarch().isEmpty()) {
- 						YoctoBspPropertyElement qarch_elem = new YoctoBspPropertyElement();
- 						qarch_elem.setName(QARCH_NAME);
-@@ -153,115 +118,189 @@ public class PropertiesPage extends WizardPage {
- 					}
- 
- 					propertyControlMap = new Hashtable<YoctoBspPropertyElement, Control>();
--					Iterator<YoctoBspPropertyElement> it = properties.iterator();
-+
-+					ArrayList<YoctoBspPropertyElement> propertiesList = new ArrayList<YoctoBspPropertyElement>(properties);
-+					Collections.sort(propertiesList, Collections.reverseOrder());
-+
-+					Iterator<YoctoBspPropertyElement> it = propertiesList.iterator();
-+					Composite comp = new Composite(propertyGroup, SWT.FILL);
-+					GridLayout layout = new GridLayout(2, false);
-+					GridData data = new GridData(GridData.FILL, GridData.FILL, true, false, 2, 1);
-+					comp.setLayoutData(data);
-+					comp.setLayout(layout);
- 
- 					while (it.hasNext()) {
- 						// Get property
- 						YoctoBspPropertyElement propElem = it.next();
--						String type  = propElem.getType();
-+						String type = propElem.getType();
- 						String name = propElem.getName();
- 						if (type.contentEquals("edit")) {
--							Composite textContainer = new Composite(propertyGroup, SWT.NONE);
-+							new Label (propertyGroup, SWT.FILL).setText(name + ":");
- 
--							textContainer.setLayout(new FillLayout());
--							new Label (textContainer, SWT.NONE).setText(name+":");
-+							Composite textContainer = new Composite(propertyGroup, SWT.NONE);
-+							textContainer.setLayout(new GridLayout(1, false));
-+							textContainer.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
- 							Text text = new Text(textContainer, SWT.BORDER | SWT.SINGLE);
-+							text.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 1, 1));
- 							propertyControlMap.put(propElem, text);
- 
- 						} else if (type.contentEquals("boolean")) {
--							Composite booleanContainer = new Composite(propertyGroup, SWT.NONE);
--
--							booleanContainer.setLayout(new FillLayout(SWT.VERTICAL));
--
- 							String default_value = propElem.getDefaultValue();
--							Button button = new Button(booleanContainer, SWT.CHECK);
-+							Composite labelContainer = new Composite(propertyGroup, SWT.NONE);
-+							labelContainer.setLayout(new GridLayout(2, false));
-+							labelContainer.setLayoutData(new GridData(GridData.FILL_HORIZONTAL, GridData.FILL_VERTICAL, true, false, 2, 1));
-+							Button button = new Button(propertyGroup, SWT.CHECK);
- 							button.setText(name);
- 							if (default_value.equalsIgnoreCase("y")) {
- 								button.setSelection(true);
- 							} else
- 								button.setSelection(false);
- 							propertyControlMap.put(propElem, button);
--
- 						} else if (type.contentEquals("choicelist")) {
--							Composite choiceContainer = new Composite(propertyGroup, SWT.NONE);
--
--							choiceContainer.setLayout(new FillLayout());
--
--							new Label (choiceContainer, SWT.NONE).setText(name+":");
--							Combo combo = new Combo(choiceContainer, SWT.BORDER | SWT.READ_ONLY);
--							combo.setLayout(new FillLayout());
--
--							updateKernelValues(KERNEL_CHOICES, name);
-+							new Label (propertyGroup, SWT.NONE).setText(name + ":");
- 
-+							Composite textContainer = new Composite(propertyGroup, SWT.NONE);
-+							textContainer.setLayout(new GridLayout(1, false));
-+							textContainer.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
-+							Combo combo = new Combo(textContainer, SWT.READ_ONLY);
-+							combo.setLayout(new GridLayout(2, false));
-+							combo.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 1, 1));
-+							combo.setItems(getBSPComboProperties(name));
- 							propertyControlMap.put(propElem, combo);
- 						}
- 					}
- 				}
--
-+				composite.setMinSize(controlContainer.computeSize(SWT.DEFAULT, SWT.DEFAULT, true));
-+				composite.computeSize(SWT.DEFAULT, SWT.DEFAULT);
-+				controlContainer.pack();
-+				this.composite.layout(true, true);
- 			}
- 		} catch (Exception e) {
- 			e.printStackTrace();
- 		}
--		sc.setContent(controlContainer);
--		sc.setExpandHorizontal(true);
--		sc.setExpandVertical(true);
--		sc.setMinSize(controlContainer.computeSize(SWT.DEFAULT, SWT.DEFAULT, true));
--		controlContainer.pack();
- 
--		this.composite.layout(true, true);
--		kcCombo.addModifyListener(new ModifyListener() {
--			@Override
--			public void modifyText(ModifyEvent e) {
--				controlChanged(e.widget);
--			}
--		});
- 
-+	}
- 
--		newButton.addSelectionListener(new SelectionListener() {
--			@Override
--			public void widgetDefaultSelected(SelectionEvent e) {}
-+
-+	@Override
-+	public void createControl(Composite parent) {
-+		this.composite = new ScrolledComposite(parent, SWT.H_SCROLL | SWT.V_SCROLL);
-+		GridData gd = new GridData(SWT.FILL, SWT.FILL, true, false);
-+		GridLayout layout = new GridLayout(2, true);
-+		this.composite.setLayout(layout);
-+
-+		gd= new GridData(SWT.FILL, SWT.FILL, true, false);
-+		gd.horizontalSpan = 2;
-+		this.composite.setLayoutData(gd);
-+
-+		setControl(this.composite);
-+
-+		controlContainer = new Composite(composite, SWT.NONE);
-+		controlContainer.setLayout(new GridLayout(1, true));
-+		controlContainer.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
-+
-+		kGroup = new Group(controlContainer, SWT.FILL);
-+		kGroup.setLayout(new GridLayout(2, false));
-+		GridData data = new GridData(SWT.FILL, SWT.FILL, true, false, 2, 1);
-+		kGroup.setLayoutData(data);
-+		kGroup.setText("Kernel Settings:");
-+
-+		new Label (kGroup, SWT.NONE).setText("Kernel:");
-+		Composite textContainer = new Composite(kGroup, SWT.NONE);
-+		textContainer.setLayout(new GridLayout(1, false));
-+		textContainer.setLayoutData(new GridData(GridData.FILL, GridData.CENTER, true, false, 1, 1));
-+
-+		kernelCombo = new Combo(textContainer, SWT.READ_ONLY);
-+		kernelCombo.setLayout(new GridLayout(2, false));
-+		kernelCombo.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 1, 1));
-+
-+		kernelCombo.addSelectionListener(new SelectionListener() {
- 
- 			@Override
- 			public void widgetSelected(SelectionEvent e) {
- 				controlChanged(e.widget);
- 			}
-+
-+			@Override
-+			public void widgetDefaultSelected(SelectionEvent e) {
-+			}
- 		});
- 
- 
--		existingButton.addSelectionListener(new SelectionListener() {
--			@Override
--			public void widgetDefaultSelected(SelectionEvent e) {}
-+		new Label(kGroup, SWT.NONE).setText("Kernel branch:");
-+
-+		textContainer = new Composite(kGroup, SWT.NONE);
-+		textContainer.setLayout(new GridLayout(1, false));
-+		textContainer.setLayoutData(new GridData(GridData.FILL, GridData.CENTER, true, false, 1, 1));
-+		branchesCombo = new Combo(textContainer, SWT.READ_ONLY);
-+		branchesCombo.setLayout(new GridLayout(2, false));
-+		branchesCombo.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 1, 1));
-+		branchesCombo.addSelectionListener(new SelectionListener() {
- 
- 			@Override
- 			public void widgetSelected(SelectionEvent e) {
- 				controlChanged(e.widget);
- 			}
--		});
- 
-+			@Override
-+			public void widgetDefaultSelected(SelectionEvent e) {
-+			}
-+		});
-+		branchesCombo.setSize(200, 200);
-+
-+		kbGroup = new Group(kGroup, SWT.FILL);
-+		kbGroup.setLayout(new GridLayout(1, true));
-+		data = new GridData(SWT.FILL, SWT.FILL, true, false);
-+		data.horizontalSpan = 2;
-+		kbGroup.setLayoutData(data);
-+		kbGroup.setText("Branch Settings:");
-+
-+		newBranchButton = new Button(kbGroup, SWT.RADIO);
-+		newBranchButton.setText("Create a new branch from an existing one");
-+		newBranchButton.setSelection(true);
-+		SelectionListener listener = new SelectionListener() {
-+			@Override
-+			public void widgetDefaultSelected(SelectionEvent e) {}
- 
--		kbCombo.addModifyListener(new ModifyListener() {
- 			@Override
--			public void modifyText(ModifyEvent e) {
-+			public void widgetSelected(SelectionEvent e) {
- 				controlChanged(e.widget);
- 			}
--		});
-+		};
- 
-+		newBranchButton.addSelectionListener(listener);
- 
--	}
-+		existingBranchButton = new Button(kbGroup, SWT.RADIO);
-+		existingBranchButton.setText("Use existing branch");
-+		existingBranchButton.setSelection(false);
-+		existingBranchButton.addSelectionListener(listener);
- 
-+		propertyGroup = new Group(controlContainer, SWT.NONE);
-+		propertyGroup.setLayout(new GridLayout(2, false));
-+		data = new GridData(GridData.FILL, GridData.FILL, true, false, 2, 1);
-+		propertyGroup.setLayoutData(data);
-+		propertyGroup.setText("BSP specific settings:");
- 
--	@Override
--	public void createControl(Composite parent) {
--		this.composite = new Composite(parent, SWT.NONE);
--		GridData gd = new GridData(SWT.FILL, SWT.CENTER, true, false);
--		GridLayout layout = new GridLayout(2, false);
--		this.composite.setLayout(layout);
-+		otherSettingsGroup = new Group(controlContainer, SWT.FILL);
-+		otherSettingsGroup.setLayout(new GridLayout(2, true));
-+		data = new GridData(SWT.FILL, SWT.FILL, true, false);
-+		data.horizontalSpan = 2;
-+		otherSettingsGroup.setLayoutData(data);
-+		otherSettingsGroup.setText("Other Settings:");
- 
--		gd= new GridData(SWT.FILL, SWT.CENTER, true, false);
--		gd.horizontalSpan= 2;
--		this.composite.setLayoutData(gd);
-+		smpButton = new Button(otherSettingsGroup, SWT.CHECK);
-+		smpButton.setText("Enable SMP support");
-+		smpButton.setSelection(true);
- 
--		setControl(this.composite);
-+		this.composite.layout(true, true);
-+
-+		composite.setContent(controlContainer);
-+		composite.setExpandHorizontal(true);
-+		composite.setExpandVertical(true);
-+		composite.setMinSize(controlContainer.computeSize(SWT.DEFAULT, SWT.DEFAULT, true));
-+		controlContainer.pack();
-+		composite.pack();
- 	}
- 
- 	@Override
-@@ -270,62 +309,62 @@ public class PropertiesPage extends WizardPage {
- 	}
- 
- 	public HashSet<YoctoBspPropertyElement> getProperties() {
--		String kcSelection = kcCombo.getText();
--		String kbSelection = kbCombo.getText();
--		YoctoBspPropertyElement kc_element = new YoctoBspPropertyElement();
--		kc_element.setName(KERNEL_CHOICE);
--		kc_element.setValue(kcSelection);
--		properties.add(kc_element);
--		YoctoBspPropertyElement default_element = new YoctoBspPropertyElement();
--		default_element.setName(DEFAULT_KERNEL);
--		default_element.setValue("n");
--		properties.add(default_element);
--
--		YoctoBspPropertyElement smp_element = new YoctoBspPropertyElement();
--		smp_element.setName(SMP_NAME);
-+		String kcSelection = kernelCombo.getText();
-+		String kbSelection = branchesCombo.getText();
-+		YoctoBspPropertyElement kcElement = new YoctoBspPropertyElement();
-+		kcElement.setName(KERNEL_CHOICE);
-+		kcElement.setValue(kcSelection);
-+		properties.add(kcElement);
-+		YoctoBspPropertyElement defaultElement = new YoctoBspPropertyElement();
-+		defaultElement.setName(DEFAULT_KERNEL);
-+		defaultElement.setValue("n");
-+		properties.add(defaultElement);
-+
-+		YoctoBspPropertyElement smpElement = new YoctoBspPropertyElement();
-+		smpElement.setName(SMP_NAME);
- 		if (smpButton.getSelection())
--			smp_element.setValue("y");
-+			smpElement.setValue("y");
- 		else
--			smp_element.setValue("n");
--		properties.add(smp_element);
--
--		YoctoBspPropertyElement newkb_element = new YoctoBspPropertyElement();
--		YoctoBspPropertyElement kb_element = new YoctoBspPropertyElement();
--
--		newkb_element.setName(NEED_NEW_KBRANCH_NAME);
--		if (newButton.getSelection()) {
--			newkb_element.setValue("y");
--			properties.add(newkb_element);
--			kb_element.setName(NEW_KBRANCH_NAME);
--			kb_element.setValue(kbSelection);
--			properties.add(kb_element);
-+			smpElement.setValue("n");
-+		properties.add(smpElement);
-+
-+		YoctoBspPropertyElement newKbElement = new YoctoBspPropertyElement();
-+		YoctoBspPropertyElement kbElement = new YoctoBspPropertyElement();
-+
-+		newKbElement.setName(NEED_NEW_KBRANCH_NAME);
-+		if (newBranchButton.getSelection()) {
-+			newKbElement.setValue("y");
-+			properties.add(newKbElement);
-+			kbElement.setName(NEW_KBRANCH_NAME);
-+			kbElement.setValue(kbSelection);
-+			properties.add(kbElement);
- 		} else {
--			newkb_element.setValue("n");
--			properties.add(newkb_element);
--			kb_element.setName(EXISTING_KBRANCH_NAME);
--			kb_element.setValue(kbSelection);
--			properties.add(kb_element);
-+			newKbElement.setValue("n");
-+			properties.add(newKbElement);
-+			kbElement.setName(EXISTING_KBRANCH_NAME);
-+			kbElement.setValue(kbSelection);
-+			properties.add(kbElement);
- 		}
- 
- 		return properties;
- 	}
- 
- 	public boolean validatePage() {
--		if (kcCombo == null)
-+		if (kernelCombo == null)
- 			return false;
- 
--		if ((kcCombo != null) && (kbCombo != null)) {
--			String kcSelection = kcCombo.getText();
--			String kbSelection = kbCombo.getText();
-+		if ((kernelCombo != null) && (branchesCombo != null)) {
-+			String kcSelection = kernelCombo.getText();
-+			String kbSelection = branchesCombo.getText();
- 			if ((kcSelection == null) || (kbSelection == null) || (kcSelection.isEmpty()) || (kbSelection.isEmpty())) {
--				setErrorMessage("Please select kernel_choice and kernel_branch!");
-+				setErrorMessage("Please choose a kernel and a specific branch!");
- 				return false;
- 			}
- 		}
- 		if ((propertyControlMap != null)) {
- 			if (!propertyControlMap.isEmpty()) {
- 				Enumeration<YoctoBspPropertyElement> keys = propertyControlMap.keys();
--				while( keys.hasMoreElements() ) {
-+				while (keys.hasMoreElements()) {
- 					YoctoBspPropertyElement key = keys.nextElement();
- 					Control control = propertyControlMap.get(key);
- 					String type = key.getType();
-@@ -362,6 +401,7 @@ public class PropertiesPage extends WizardPage {
- 
- 	private void updateProperties(YoctoBspPropertyElement element) {
- 		Iterator<YoctoBspPropertyElement> it = properties.iterator();
-+
- 		while (it.hasNext()) {
- 			YoctoBspPropertyElement propElem = it.next();
- 			if (propElem.getName().contentEquals(element.getName())) {
-@@ -375,37 +415,28 @@ public class PropertiesPage extends WizardPage {
- 	private void controlChanged(Widget widget) {
- 		setErrorMessage(null);
- 
--		String kernel_choice = kcCombo.getText();
-+		String kernel_choice = kernelCombo.getText();
- 		if ((kernel_choice == null) || (kernel_choice.isEmpty())) {
--			setErrorMessage("Please selecte kernel_choice!");
-+			setErrorMessage("Please choose kernel !");
- 			return;
- 		}
--		if (widget == kcCombo) {
--			newButton.setSelection(true);
--			existingButton.setSelection(false);
--			kbCombo.removeAll();
--
-+		if (widget == kernelCombo) {
- 			updateKernelValues(KERNEL_BRANCHES, "\\\"" + kernel_choice + "\\\"." + NEW_KBRANCH_NAME);
--		} else if (widget == kbCombo) {
-+		} else if (widget == branchesCombo) {
- 			setErrorMessage(null);
--		} else if (widget == newButton) {
--
--			boolean newBranch = newButton.getSelection();
--
--			if (newBranch) {
-+			branchesCombo.computeSize(SWT.DEFAULT, SWT.DEFAULT);
-+		} else if (widget == newBranchButton || widget == existingBranchButton) {
-+			System.out.println("aici " + widget.toString());
-+			if (newBranchButton.getSelection()) {
- 				updateKernelValues(KERNEL_BRANCHES, "\"" + kernel_choice + "\"." + NEW_KBRANCH_NAME);
- 			} else {
- 				updateKernelValues(KERNEL_BRANCHES, "\"" + kernel_choice + "\"." + EXISTING_KBRANCH_NAME);
- 			}
--		} else if (widget == existingButton) {
--			boolean existingBranch = existingButton.getSelection();
--
--			if (existingBranch) {
--				updateKernelValues(KERNEL_BRANCHES, "\"" + kernel_choice + "\"." + EXISTING_KBRANCH_NAME);
--			}
- 		}
- 		canFlipToNextPage();
- 		getWizard().getContainer().updateButtons();
-+		this.composite.layout(true, true);
-+		composite.pack();
- 	}
- 
- 	private void updateKernelValues(final String value, String property) {
-@@ -416,16 +447,41 @@ public class PropertiesPage extends WizardPage {
- 			build_dir = bspElem.getBuildLoc();
- 
- 		String valuesCmd = "export BUILDDIR=" + build_dir + ";" + bspElem.getMetadataLoc() + "/scripts/" + VALUES_CMD_PREFIX + bspElem.getKarch() + VALUES_CMD_SURFIX + property;
--
- 		BSPProgressDialog progressDialog = new BSPProgressDialog(getShell(),  new KernelBranchesGetter(valuesCmd), "Loading Kernel " + value);
- 		progressDialog.run();
- 		BSPAction action = progressDialog.getBspAction();
- 		if (action.getItems() != null) {
--			if (value == KERNEL_CHOICES)
--				kcCombo.setItems(action.getItems());
--			else if (value == KERNEL_BRANCHES)
--				kbCombo.setItems(action.getItems());
-+			if (value.equals(KERNEL_CHOICES)) {
-+				kernelCombo.setItems(action.getItems());
-+				kernelCombo.pack();
-+			} else if (value.equals(KERNEL_BRANCHES)) {
-+				branchesCombo.setItems(action.getItems());
-+				branchesCombo.pack();
-+			}
-+			composite.setMinSize(controlContainer.computeSize(SWT.DEFAULT, SWT.DEFAULT, true));
- 		} else if (action.getMessage() != null)
- 			MessageDialog.openError(getShell(), "Yocto-BSP", action.getMessage());
-+		composite.setMinSize(controlContainer.computeSize(SWT.DEFAULT, SWT.DEFAULT, true));
-+	}
-+
-+	private String[] getBSPComboProperties(String property) {
-+		String build_dir = "";
-+		if ((bspElem.getBuildLoc() == null) || bspElem.getBuildLoc().isEmpty())
-+			build_dir = bspElem.getMetadataLoc()+"/build";
-+		else
-+			build_dir = bspElem.getBuildLoc();
-+
-+		String valuesCmd = "export BUILDDIR=" + build_dir + ";" + bspElem.getMetadataLoc() + "/scripts/" + VALUES_CMD_PREFIX + bspElem.getKarch() + VALUES_CMD_SURFIX + property;
-+		BSPProgressDialog progressDialog = new BSPProgressDialog(getShell(),  new KernelBranchesGetter(valuesCmd), "Loading property " + property + "values");
-+		progressDialog.run();
-+		BSPAction action = progressDialog.getBspAction();
-+
-+		if (action.getItems() != null) {
-+			return action.getItems();
-+		} else if (action.getMessage() != null) {
-+			MessageDialog.openError(getShell(), "Yocto-BSP", action.getMessage());
-+			return new String[]{};
-+		}
-+		return new String[]{};
- 	}
- }
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/wizards/bsp/YoctoBSPWizard.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/wizards/bsp/YoctoBSPWizard.java
-index bf08413..f8e0781 100644
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/wizards/bsp/YoctoBSPWizard.java
-+++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/wizards/bsp/YoctoBSPWizard.java
-@@ -74,12 +74,6 @@ public class YoctoBSPWizard extends Wizard {
- 			HashSet<YoctoBspPropertyElement> properties = propertiesPage.getProperties();
- 			YoctoJSONHelper.createBspJSONFile(properties);
- 
--//			BSPAction createPropertiesAction = createPropertiesFile();
--//			if (createPropertiesAction.getMessage() !=  null && !createPropertiesAction.getMessage().isEmpty()) {
--//				MessageDialog.openError(getShell(),"Yocto-BSP", createPropertiesAction.getMessage());
--//				return false;
--//			}
--
- 			BSPAction createBSPAction = createBSP();
- 			if (createBSPAction.getMessage() !=  null && !createBSPAction.getMessage().isEmpty()) {
- 				MessageDialog.openError(getShell(),"Yocto-BSP", createBSPAction.getMessage());
--- 
-1.7.9.5
+DEFAULTTUNE ?=3D "ppc405e"
+
+require conf/machine/include/powerpc/arch-powerpc.inc
+
+TUNEVALID[ppc405e] =3D "Enable ppc405e specific processor optimizations"
+TUNE_CCARGS +=3D "${@bb.utils.contains("TUNE_FEATURES", "ppc405e", =
+"-mcpu=3D405fp", "", d)}"
+
+AVAILTUNES +=3D "ppc405e"
+TUNE_FEATURES_tune-ppc405e =3D "m32 ppc405e fpu-hard"
+TUNE_PKGARCH_tune-ppc440e =3D "ppc405e"
+PACKAGE_EXTRA_ARCHS_tune-ppc405e =3D =
+"${PACKAGE_EXTRA_ARCHS_tune-powerpc} ppc405e"
+
+# glibc configure options to get ppc405e specific library (for sqrt)
+GLIBC_EXTRA_OECONF +=3D "${@bb.utils.contains("TUNE_FEATURES", =
+"ppc405e", "-with-cpu=3D405fp", "", d)}"
+
+And in my machine, should I be defining TARGET_CPU =3D "405fp" or "405e" =
+?
+
+TARGET_CPU  =3D "405fp"
+#tune for the 405e cpu
+require conf/machine/include/tune-ppc405e.inc
+
+The gcc compiler options for -mcpu=3Dcpu_type can be one of '405' or =
+'405fp'.
+
+I can't get bitbake to build it for some reason, I keep getting errors =
+like this:
+
+$ bitbake -c fetchall core-image-minimal
+Pseudo is not present but is required, building this first before the =
+main build
+NOTE: Error expanding variable oe_runconf                                =
+                                          | ETA:  00:00:50
+NOTE: Error during finalise of =
+/tool/yocto/meta-openembedded/toolchain-layer/recipes-devtools/gcc/gcc-cro=
+ss-initial_4.5.bb
+ERROR: ExpansionError during parsing =
+/tool/yocto/meta-openembedded/toolchain-layer/recipes-devtools/gcc/gcc-cro=
+ss-initial_4.5.bb: Failure expanding variable EXTRA_OECONF, expression =
+was --with-newlib 		--without-headers 		=
+--disable-shared 	--disable-threads 		=
+--disable-multilib 		--disable-__cxa_atexit 		=
+--enable-languages=3Dc                  		=
+--program-prefix=3Dpowerpc-poky-linux- 		=
+--with-sysroot=3D/tool/yocto/poky/build/tmp/sysroots/virtex5 		=
+--with-build-sysroot=3D/tool/yocto/poky/build/tmp/work/${TUNE_PKGARCH_tune=
+-ppc405e}-poky-linux/gcc-cross-initial-4.5.1+svnr162773-r14/gcc-4_5-branch=
+/build.x86_64-linux.powerpc-poky-linux/tmpsysroot 		=
+--disable-libmudflap 			--disable-libgomp 			=
+--disable-libssp 			--enable-decimal-float=3Dno 		=
+${@base_contains('DISTRO_FEATURES', 'ld-is-gold', =
+'--with-ld=3D/tool/yocto/poky/build/tmp/sysroots/x86_64-linux/usr/bin/${TU=
+NE_PKGARCH_tune-ppc405e}-poky-linux/powerpc-poky-linux-ld.bfd', '', d)} 	=
+	 ${@gettext_oeconf(d)} --enable-__cxa_atexit =
+--with-long-double-128 which triggered exception SyntaxError: EOL while =
+scanning string literal (EXTRA_OECONF, line 1)
+NOTE: Error expanding variable do_install
+NOTE: Error during finalise of =
+/tool/yocto/meta-openembedded/toolchain-layer/recipes-devtools/gcc/gcc-cro=
+ss_4.5.bb
+ERROR:  OE-core's config sanity checker detected a potential =
+misconfiguration.
+    Either fix the cause of this error or at your own risk disable the =
+checker (see sanity.conf).
+    Following is the list of potential problems / advisories:
+
+    Error, the PACKAGE_ARCHS variable does not contain TUNE_PKGARCH =
+(${TUNE_PKGARCH_tune-ppc405e}).
+ERROR: Execution of event handler 'check_sanity_eventhandler' failed
+ERROR: Command execution failed: Exited with 1
+
+Summary: There were 4 ERROR messages shown, returning a non-zero exit =
+code.
+
+Is this some how related to expanding the variable EXTRA_OECONF_FPU in =
+gcc-cross-initial.inc (I'm working on a commit that is before Khem's =
+recent rework on gcc-4.7)
+
+EXTRA_OECONF =3D "--with-newlib \
+		--without-headers \
+		--disable-shared \
+		--disable-threads \
+		--disable-multilib \
+		--disable-__cxa_atexit \
+		--enable-languages=3Dc \
+                ${OPTSPACE} \
+		--program-prefix=3D${TARGET_PREFIX} \
+		--with-sysroot=3D${STAGING_DIR_TARGET} \
+		--with-build-sysroot=3D${GCCCROSS_BUILDSYSROOT} \
+		${EXTRA_OECONF_INITIAL} \
+		${@base_contains('DISTRO_FEATURES', 'ld-is-gold', =
+'--with-ld=3D${STAGING_BINDIR_TOOLCHAIN}/${TARGET_PREFIX}ld.bfd', '', =
+d)} \
+		${EXTRA_OECONF_FPU}"
 
 
+
+Best regards,
+
+Elvis Dowson
+
+
+--Apple-Mail=_15E526FE-9CFD-4790-B578-854516873D7E
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=us-ascii
+
+<html><head></head><body style=3D"word-wrap: break-word; =
+-webkit-nbsp-mode: space; -webkit-line-break: after-white-space; =
+">Hi,<div>&nbsp; &nbsp; &nbsp;I have defined a tune-ppc405e.inc ( =
+suffixed with an 'e' to signify that it has a hardware floating point =
+unit attached), as follows:</div><div><br></div><div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">DEFAULTTUNE ?=3D =
+"ppc405e"</font></div><div><font class=3D"Apple-style-span" =
+face=3D"Monaco" size=3D"2"><br></font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">require =
+conf/machine/include/powerpc/arch-powerpc.inc</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" =
+size=3D"2"><br></font></div><div><font class=3D"Apple-style-span" =
+face=3D"Monaco" size=3D"2">TUNEVALID[ppc405e] =3D "Enable ppc405e =
+specific processor optimizations"</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">TUNE_CCARGS +=3D =
+"${@bb.utils.contains("TUNE_FEATURES", "ppc405e", "-mcpu=3D405fp", "", =
+d)}"</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
+size=3D"2"><br></font></div><div><font class=3D"Apple-style-span" =
+face=3D"Monaco" size=3D"2">AVAILTUNES +=3D =
+"ppc405e"</font></div><div><font class=3D"Apple-style-span" =
+face=3D"Monaco" size=3D"2">TUNE_FEATURES_tune-ppc405e =3D "m32 ppc405e =
+fpu-hard"</font></div><div><font class=3D"Apple-style-span" =
+face=3D"Monaco" size=3D"2">TUNE_PKGARCH_tune-ppc440e =3D =
+"ppc405e"</font></div><div><font class=3D"Apple-style-span" =
+face=3D"Monaco" size=3D"2">PACKAGE_EXTRA_ARCHS_tune-ppc405e =3D =
+"${PACKAGE_EXTRA_ARCHS_tune-powerpc} ppc405e"</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" =
+size=3D"2"><br></font></div><div><font class=3D"Apple-style-span" =
+face=3D"Monaco" size=3D"2"># glibc configure options to get ppc405e =
+specific library (for sqrt)</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">GLIBC_EXTRA_OECONF =
++=3D "${@bb.utils.contains("TUNE_FEATURES", "ppc405e", =
+"-with-cpu=3D405fp", "", d)}"</font></div></div><div><br></div><div>And =
+in my machine, should I be defining TARGET_CPU =3D "405fp" or "405e" =
+?</div><div><br></div><div><div><font class=3D"Apple-style-span" =
+face=3D"Monaco" size=3D"2">TARGET_CPU &nbsp;=3D =
+"405fp"</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
+size=3D"2">#tune for the 405e cpu</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">require =
+conf/machine/include/tune-ppc405e.inc</font></div></div><div><br></div><di=
+v>The gcc compiler options for -mcpu=3Dcpu_type can be one of '405' or =
+'405fp'.</div><div><br></div><div>I can't get bitbake to build it for =
+some reason, I keep getting errors like =
+this:</div><div><br></div><div><div><font class=3D"Apple-style-span" =
+face=3D"Monaco" size=3D"2">$ bitbake -c fetchall =
+core-image-minimal</font></div><div><font class=3D"Apple-style-span" =
+face=3D"Monaco" size=3D"2">Pseudo is not present but is required, =
+building this first before the main build</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">NOTE: Error =
+expanding variable oe_runconf &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
+&nbsp;| ETA: &nbsp;00:00:50</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">NOTE: Error during =
+finalise of =
+/tool/yocto/meta-openembedded/toolchain-layer/recipes-devtools/gcc/gcc-cro=
+ss-initial_4.5.bb</font></div><div><font class=3D"Apple-style-span" =
+face=3D"Monaco" size=3D"2">ERROR: ExpansionError during parsing =
+/tool/yocto/meta-openembedded/toolchain-layer/recipes-devtools/gcc/gcc-cro=
+ss-initial_4.5.bb: Failure expanding variable EXTRA_OECONF, expression =
+was --with-newlib <span class=3D"Apple-tab-span" =
+style=3D"white-space:pre">		</span>--without-headers <span =
+class=3D"Apple-tab-span" style=3D"white-space:pre">		=
+</span>--disable-shared <span class=3D"Apple-tab-span" =
+style=3D"white-space:pre">	</span>--disable-threads <span =
+class=3D"Apple-tab-span" style=3D"white-space:pre">		=
+</span>--disable-multilib <span class=3D"Apple-tab-span" =
+style=3D"white-space:pre">		</span>--disable-__cxa_atexit =
+<span class=3D"Apple-tab-span" style=3D"white-space:pre">		=
+</span>--enable-languages=3Dc &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
+&nbsp; &nbsp; &nbsp;<span class=3D"Apple-tab-span" =
+style=3D"white-space:pre">		=
+</span>--program-prefix=3Dpowerpc-poky-linux- <span =
+class=3D"Apple-tab-span" style=3D"white-space:pre">		=
+</span>--with-sysroot=3D/tool/yocto/poky/build/tmp/sysroots/virtex5 =
+<span class=3D"Apple-tab-span" style=3D"white-space:pre">		=
+</span>--with-build-sysroot=3D/tool/yocto/poky/build/tmp/work/${TUNE_PKGAR=
+CH_tune-ppc405e}-poky-linux/gcc-cross-initial-4.5.1+svnr162773-r14/gcc-4_5=
+-branch/build.x86_64-linux.powerpc-poky-linux/tmpsysroot <span =
+class=3D"Apple-tab-span" style=3D"white-space:pre">		=
+</span>--disable-libmudflap <span class=3D"Apple-tab-span" =
+style=3D"white-space:pre">			</span>--disable-libgomp =
+<span class=3D"Apple-tab-span" style=3D"white-space:pre">			=
+</span>--disable-libssp <span class=3D"Apple-tab-span" =
+style=3D"white-space:pre">			=
+</span>--enable-decimal-float=3Dno <span class=3D"Apple-tab-span" =
+style=3D"white-space:pre">		=
+</span>${@base_contains('DISTRO_FEATURES', 'ld-is-gold', =
+'--with-ld=3D/tool/yocto/poky/build/tmp/sysroots/x86_64-linux/usr/bin/${TU=
+NE_PKGARCH_tune-ppc405e}-poky-linux/powerpc-poky-linux-ld.bfd', '', d)} =
+<span class=3D"Apple-tab-span" style=3D"white-space:pre">		=
+</span> ${@gettext_oeconf(d)} --enable-__cxa_atexit =
+--with-long-double-128 which triggered exception SyntaxError: EOL while =
+scanning string literal (EXTRA_OECONF, line 1)</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">NOTE: Error =
+expanding variable do_install</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">NOTE: Error during =
+finalise of =
+/tool/yocto/meta-openembedded/toolchain-layer/recipes-devtools/gcc/gcc-cro=
+ss_4.5.bb</font></div><div><font class=3D"Apple-style-span" =
+face=3D"Monaco" size=3D"2">ERROR: &nbsp;OE-core's config sanity checker =
+detected a potential misconfiguration.</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">&nbsp; &nbsp; =
+Either fix the cause of this error or at your own risk disable the =
+checker (see sanity.conf).</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">&nbsp; &nbsp; =
+Following is the list of potential problems / =
+advisories:</font></div><div><font class=3D"Apple-style-span" =
+face=3D"Monaco" size=3D"2"><br></font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">&nbsp; &nbsp; =
+Error, the PACKAGE_ARCHS variable does not contain TUNE_PKGARCH =
+(${TUNE_PKGARCH_tune-ppc405e}).</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">ERROR: Execution =
+of event handler 'check_sanity_eventhandler' =
+failed</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
+size=3D"2">ERROR: Command execution failed: Exited with =
+1</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
+size=3D"2"><br></font></div><div><font class=3D"Apple-style-span" =
+face=3D"Monaco" size=3D"2">Summary: There were 4 ERROR messages shown, =
+returning a non-zero exit code.</font></div></div><div><br></div><div>Is =
+this some how related to expanding the variable EXTRA_OECONF_FPU in =
+gcc-cross-initial.inc (I'm working on a commit that is before Khem's =
+recent rework on gcc-4.7)</div><div><br></div><div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">EXTRA_OECONF =3D =
+"--with-newlib \</font></div><div><font class=3D"Apple-style-span" =
+face=3D"Monaco" size=3D"2"><span class=3D"Apple-tab-span" =
+style=3D"white-space:pre">		</span>--without-headers =
+\</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
+size=3D"2"><span class=3D"Apple-tab-span" style=3D"white-space:pre">		=
+</span>--disable-shared \</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2"><span =
+class=3D"Apple-tab-span" style=3D"white-space:pre">		=
+</span>--disable-threads \</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2"><span =
+class=3D"Apple-tab-span" style=3D"white-space:pre">		=
+</span>--disable-multilib \</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2"><span =
+class=3D"Apple-tab-span" style=3D"white-space:pre">		=
+</span>--disable-__cxa_atexit \</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2"><span =
+class=3D"Apple-tab-span" style=3D"white-space:pre">		=
+</span>--enable-languages=3Dc \</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">&nbsp; &nbsp; =
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ${OPTSPACE} =
+\</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
+size=3D"2"><span class=3D"Apple-tab-span" style=3D"white-space:pre">		=
+</span>--program-prefix=3D${TARGET_PREFIX} \</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2"><span =
+class=3D"Apple-tab-span" style=3D"white-space:pre">		=
+</span>--with-sysroot=3D${STAGING_DIR_TARGET} \</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2"><span =
+class=3D"Apple-tab-span" style=3D"white-space:pre">		=
+</span>--with-build-sysroot=3D${GCCCROSS_BUILDSYSROOT} =
+\</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
+size=3D"2"><span class=3D"Apple-tab-span" style=3D"white-space:pre">		=
+</span>${EXTRA_OECONF_INITIAL} \</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2"><span =
+class=3D"Apple-tab-span" style=3D"white-space:pre">		=
+</span>${@base_contains('DISTRO_FEATURES', 'ld-is-gold', =
+'--with-ld=3D${STAGING_BINDIR_TOOLCHAIN}/${TARGET_PREFIX}ld.bfd', '', =
+d)} \</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
+size=3D"2"><span class=3D"Apple-tab-span" style=3D"white-space:pre">		=
+</span>${EXTRA_OECONF_FPU}"</font></div></div><div><br></div><div><br></di=
+v><div><br></div><div>Best regards,</div><div><br></div><div>Elvis =
+Dowson</div><div><br></div></body></html>=
+
+--Apple-Mail=_15E526FE-9CFD-4790-B578-854516873D7E--
