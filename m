@@ -1,26 +1,24 @@
-Return-Path: <richard.purdie@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 28473E00346
-	for <yocto@yoctoproject.org>; Fri, 24 Aug 2012 03:21:51 -0700 (PDT)
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4429BE00346
+	for <yocto@yoctoproject.org>; Fri, 24 Aug 2012 03:39:14 -0700 (PDT)
 Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 24 Aug 2012 03:21:51 -0700
+	by azsmga101.ch.intel.com with ESMTP; 24 Aug 2012 03:39:13 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,302,1344236400"; d="scan'208";a="137377398"
-Received: from unknown (HELO [10.255.13.18]) ([10.255.13.18])
-	by AZSMGA002.ch.intel.com with ESMTP; 24 Aug 2012 03:21:49 -0700
-Message-ID: <1345803711.14369.69.camel@ted>
-From: Richard Purdie <richard.purdie@intel.com>
-To: "Serban, Laurentiu" <laurentiu.serban@intel.com>
-Date: Fri, 24 Aug 2012 11:21:51 +0100
-In-Reply-To: <E16513A01CAAFF40B65178C63CE45EEC1917553B@IRSMSX102.ger.corp.intel.com>
-References: <E16513A01CAAFF40B65178C63CE45EEC1917553B@IRSMSX102.ger.corp.intel.com>
-Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
-	Swindon SN3 1RJ
-X-Mailer: Evolution 3.2.3-0ubuntu6 
-Mime-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Wold,
-	Saul" <saul.wold@intel.com>
-Subject: Re: 1.3 M3 Full Pass test results
+X-IronPort-AV: E=Sophos;i="4.80,304,1344236400"; d="scan'208";a="137383306"
+Received: from unknown (HELO helios.localnet) ([10.252.121.125])
+	by AZSMGA002.ch.intel.com with ESMTP; 24 Aug 2012 03:39:13 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Markus Hubig <mhubig@imko.de>
+Date: Fri, 24 Aug 2012 11:39:10 +0100
+Message-ID: <3392698.9QUAKKNk7n@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.9 (Linux/3.2.0-29-generic-pae; KDE/4.9.0; i686; ; )
+In-Reply-To: <20120824114034.3297d25c-b448-4631-93b1-fba8afc4d8c5.mhubig@imko.de>
+References: <20120824114034.3297d25c-b448-4631-93b1-fba8afc4d8c5.mhubig@imko.de>
+MIME-Version: 1.0
+Cc: yocto@yoctoproject.org
+Subject: Re: License information of tasks
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,54 +30,81 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 24 Aug 2012 10:21:52 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Fri, 24 Aug 2012 10:39:14 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On Thu, 2012-08-23 at 20:13 +0100, Serban, Laurentiu wrote:
+On Friday 24 August 2012 12:05:41 Markus Hubig wrote:
+> Hi @all,
+> 
+> I'm building a layer to provide a customized image. Now I'm struggling
+> a bit by the license informations one have to provide for a task.
+> 
+> First: tasks are packages without content.
+> 
+> | rpm -qpl task-core-boot-1.0-r9.stamp9g20.rpm
+> | (contains no files)
+> 
+> ... so why do they need some license information in the first place?
 
-> Here are the results for the full pas tests on 1.3 M3 RC2. The commit
-> used for testing is 8b8748c8f963900b83dc0fdd7757556f917fe4fd.
->
-> Some details about the encountered issues below:
->  
-> BSP – Sudoku-savant project build issue (2878)
->
-> ADT – the relocatable sdk issue (2980) causes 13 test cases to be on
-> faile/blocked state
+This is something that annoys me as well. I have thought about adding the 
+ability to declare that a license is not applicable for those recipes that 
+don't actually distribute any files, in which case a check during do_deploy, 
+do_package and do_populate_sysroot would be enabled that would fail if the 
+recipe ended up distributing anything. Unfortunately we don't have hooks in 
+all of the necessary places to make this practical, but it is still something 
+I would like to resolve.
 
-I thought it worked as long as you didn't have to relocate it so no
-tests should have been blocked, we just have the relocation issue?
+> Second: OK if there are some reasons to provide license informations,
+> how do I include them?
+> 
+> In task-core-boot there are included like this:
+> | LICENSE = "MIT"
+> | LIC_FILES_CHKSUM =
+> | "file://${COREBASE}/LICENSE;md5=3f40d7994397109285ec7b81fdeb3b58 \| 
+> |                     file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c8
+> |                     0a0384361b4de20420"
+> 
+> No I wanna do the same, but of course relative to the base dir of my layer.
+> But I don't find a way of doing this ...
+> 
+> | LICENSE = "LGPL-3.0"
+> | LIC_FILES_CHKSUM =
+> | "file://${LAYERDIR}/LICENSE;md5=5b241fa147528c635da6d1598c4a4056 \| 
+> |                     file://${LAYERDIR}/COPYING;md5=c79ff39f19dfec6d293b95d
+> |                     ea7b07891 \
+> |                     file://${LAYERDIR}/COPYING.LESSER;md5=bfccfe952269fff2
+> |                     b407dd11f2f3083b"
+> 
+> ... which looks good but don't work (I'm on 1.3_M3).
 
->  , also the Clutter C template issue is unsolved (2577)
->
-> Core Build System – x32 is still an issue (2888), cleaning sstate
-> issue is still not solved (2897), incremental RPM image generation
-> (2969), source archiving (2619), the kvm issue was reproduced by
-> another colleague (2790) Yocto BSP creation via JSON (2693) or for
-> qemu (2991) fails, multilib issue (2918 – this requires a little more
-> investigation from QA), 
->
-> HOB - all seems ok for RC2
->
-> Self-hosted-image  - cannot start on Virtual Box (X issue), it is very
-> slow on qemu and it has a m4 package build (3005) issue on VMWare. If
-> the self-hosted-image is used on machine with internet connectivity
-> via proxy there will be an initial sanity check failure, but this is
-> not a blocking issue.
->  
-> A mention for the performance testing: on a Ubbuntu 12.04  i7 machine
-> using 8 threads the build time was 83 minutes (with prior fetching).
+This doesn't work because LAYERDIR is not valid outside of layer.conf.
 
-How does this compare with our other performance numbers. From what I
-remember, we used to hover around the 105-115 minute mark. Did we have
-some significant speed gains or is this just an artefact of changing the
-test machine?
+Some possible solutions:
+
+1) Use something like e.g. ${THISDIR}/../../COPYING.LESSER; seems quite clunky 
+though.
+
+2) Set your own variable to the value of LAYERDIR in layer.conf and then use 
+that in the recipe; however that would make the recipe even more hardwired to 
+the specific layer.
+
+3) Refer to a license file in ${COMMON_LICENSE_DIR}; this is discouraged as it 
+may break if files in there are moved around although I think that is less 
+likely in future.
+
+4) Copy the license file into the directory containing the recipe. This is the 
+recommended method for recipes that do actually distribute files, but seems 
+excessive for a task.
+
+Ultimately though is it really important that the license for a recipe that 
+distributes no files be any particular license?
 
 Cheers,
+Paul
 
-Richard
+-- 
 
-
-
+Paul Eggleton
+Intel Open Source Technology Centre
 
