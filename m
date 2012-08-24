@@ -1,44 +1,26 @@
-Return-Path: <mhubig@imko.de>
-Received: from mail-bk0-f48.google.com (mail-bk0-f48.google.com
-	[209.85.214.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6DC4DE00346
-	for <yocto@yoctoproject.org>; Fri, 24 Aug 2012 03:05:49 -0700 (PDT)
-Received: by bkty5 with SMTP id y5so554795bkt.35
-	for <yocto@yoctoproject.org>; Fri, 24 Aug 2012 03:05:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=imko.de; s=google;
-	h=date:from:to:subject:message-id:mail-followup-to:mime-version
-	:content-type:content-disposition:user-agent;
-	bh=jDxQktR6inmxZgz4h0pMVn1XB8Qvtq/jelEQAEqYSNE=;
-	b=kfvgZ7zPzAu6SVBRjmHnJXmA01wuwHeHYihflHDiQmOHhxlCTz4/jFn/u1qLJRfNtB
-	rLRfJbHuU7Oiujl0vPnhmkufpjUUfU/IpD1nnpFU3G4Fcf7twbkNa9R5prArpCxvY7h0
-	zHF5nild/OI4yP/Kv6JVrOUrVM7h1zuTP8suU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=date:from:to:subject:message-id:mail-followup-to:mime-version
-	:content-type:content-disposition:user-agent:x-gm-message-state;
-	bh=jDxQktR6inmxZgz4h0pMVn1XB8Qvtq/jelEQAEqYSNE=;
-	b=CzLKBhcZ8lMGQ9DFC3ZpZ3yaOP+cD8dKBO6ZdCDVGg4CWDc8HHDCWHwMkNZKYBorL5
-	/cUeMbcTtFhcNlPfPsxkjCtdR0+4+ApNKnuFc4zQsShmOARa2EshedS52EKqXDcOCqcS
-	OWbHcfgy4z65K7HDTcjRxMuqYNouiN0AJQVwB8P4a14aoht/hjsfZehbpTDKf0UUSySN
-	yJvYd2ndSl0PKIBJaQIdbOVANhblunJ/Kxa1uRwQClDnVaLYD3QB71IeQ1svqLjya3eZ
-	2yQ+EA6GotmhbQDhCwCtPyr8tO+oJyWT8hAlCw/BwZuZQ3OgACuX2iZW83UxY3IfIpux
-	cSIQ==
-Received: by 10.204.129.14 with SMTP id m14mr1670841bks.7.1345802745729;
-	Fri, 24 Aug 2012 03:05:45 -0700 (PDT)
-Received: from imko.de (business-092-079-181-094.static.arcor-ip.net.
-	[92.79.181.94])
-	by mx.google.com with ESMTPS id g6sm6054143bkg.2.2012.08.24.03.05.43
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Fri, 24 Aug 2012 03:05:44 -0700 (PDT)
-Date: Fri, 24 Aug 2012 12:05:41 +0200
-From: Markus Hubig <mhubig@imko.de>
-To: Yocto Project Mailing List <yocto@yoctoproject.org>
-Message-ID: <20120824114034.3297d25c-b448-4631-93b1-fba8afc4d8c5.mhubig@imko.de>
-Mail-Followup-To: Yocto Project Mailing List <yocto@yoctoproject.org>
-MIME-Version: 1.0
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Gm-Message-State: ALoCoQkO0V4uPeLso3h8ZBV8zTx6qFZXfXkWF2LObuPJQ75Wmpv3kXFI8z11JR8zwnurV9PRfVX3
-Subject: License information of tasks
+Return-Path: <richard.purdie@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 28473E00346
+	for <yocto@yoctoproject.org>; Fri, 24 Aug 2012 03:21:51 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 24 Aug 2012 03:21:51 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,302,1344236400"; d="scan'208";a="137377398"
+Received: from unknown (HELO [10.255.13.18]) ([10.255.13.18])
+	by AZSMGA002.ch.intel.com with ESMTP; 24 Aug 2012 03:21:49 -0700
+Message-ID: <1345803711.14369.69.camel@ted>
+From: Richard Purdie <richard.purdie@intel.com>
+To: "Serban, Laurentiu" <laurentiu.serban@intel.com>
+Date: Fri, 24 Aug 2012 11:21:51 +0100
+In-Reply-To: <E16513A01CAAFF40B65178C63CE45EEC1917553B@IRSMSX102.ger.corp.intel.com>
+References: <E16513A01CAAFF40B65178C63CE45EEC1917553B@IRSMSX102.ger.corp.intel.com>
+Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
+	Swindon SN3 1RJ
+X-Mailer: Evolution 3.2.3-0ubuntu6 
+Mime-Version: 1.0
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Wold,
+	Saul" <saul.wold@intel.com>
+Subject: Re: 1.3 M3 Full Pass test results
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,61 +32,54 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 24 Aug 2012 10:05:49 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Fri, 24 Aug 2012 10:21:52 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-Hi @all,
+On Thu, 2012-08-23 at 20:13 +0100, Serban, Laurentiu wrote:
 
-I'm building a layer to provide a customized image. Now I'm struggling
-a bit by the license informations one have to provide for a task.
+> Here are the results for the full pas tests on 1.3 M3 RC2. The commit
+> used for testing is 8b8748c8f963900b83dc0fdd7757556f917fe4fd.
+>
+> Some details about the encountered issues below:
+>  
+> BSP – Sudoku-savant project build issue (2878)
+>
+> ADT – the relocatable sdk issue (2980) causes 13 test cases to be on
+> faile/blocked state
 
-First: tasks are packages without content.
+I thought it worked as long as you didn't have to relocate it so no
+tests should have been blocked, we just have the relocation issue?
 
-| rpm -qpl task-core-boot-1.0-r9.stamp9g20.rpm
-| (contains no files)
+>  , also the Clutter C template issue is unsolved (2577)
+>
+> Core Build System – x32 is still an issue (2888), cleaning sstate
+> issue is still not solved (2897), incremental RPM image generation
+> (2969), source archiving (2619), the kvm issue was reproduced by
+> another colleague (2790) Yocto BSP creation via JSON (2693) or for
+> qemu (2991) fails, multilib issue (2918 – this requires a little more
+> investigation from QA), 
+>
+> HOB - all seems ok for RC2
+>
+> Self-hosted-image  - cannot start on Virtual Box (X issue), it is very
+> slow on qemu and it has a m4 package build (3005) issue on VMWare. If
+> the self-hosted-image is used on machine with internet connectivity
+> via proxy there will be an initial sanity check failure, but this is
+> not a blocking issue.
+>  
+> A mention for the performance testing: on a Ubbuntu 12.04  i7 machine
+> using 8 threads the build time was 83 minutes (with prior fetching).
 
-... so why do they need some license information in the first place?
+How does this compare with our other performance numbers. From what I
+remember, we used to hover around the 105-115 minute mark. Did we have
+some significant speed gains or is this just an artefact of changing the
+test machine?
 
-Second: OK if there are some reasons to provide license informations,
-how do I include them?
+Cheers,
 
-In task-core-boot there are included like this:
+Richard
 
-| LICENSE = "MIT"
-| LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=3f40d7994397109285ec7b81fdeb3b58 \
-|                     file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
 
-No I wanna do the same, but of course relative to the base dir of my layer. But
-I don't find a way of doing this ... 
 
-| LICENSE = "LGPL-3.0"
-| LIC_FILES_CHKSUM = "file://${LAYERDIR}/LICENSE;md5=5b241fa147528c635da6d1598c4a4056 \
-|                     file://${LAYERDIR}/COPYING;md5=c79ff39f19dfec6d293b95dea7b07891 \
-|                     file://${LAYERDIR}/COPYING.LESSER;md5=bfccfe952269fff2b407dd11f2f3083b"
-
-... which looks good but don't work (I'm on 1.3_M3).
-
-%  ERROR: Function failed: task-imko-python: LIC_FILES_CHKSUM points to an invalid file:
-%   ...task-imko-python-1.0-r1/task-imko-python-1.0/${LAYERDIR}/LICENSE
-%  ERROR: Logfile of failure stored in:
-%   .../task-imko-python-1.0-r1/temp/log.do_configure.1179
-%  Log data follows:
-%  | DEBUG: Executing python function sysroot_cleansstate
-%  | DEBUG: Python function sysroot_cleansstate finished
-%  | DEBUG: Executing shell function do_configure
-%  | DEBUG: Shell function do_configure finished
-%  | DEBUG: Executing python function do_qa_configure
-%  | NOTE: Checking autotools environment for common misconfiguration
-%  | DEBUG: Python function do_qa_configure finished
-%  | ERROR: Function failed: task-imko-python: LIC_FILES_CHKSUM points to an invalid file:
-%   .../task-imko-python-1.0-r1/task-imko-python-1.0/${LAYERDIR}/LICENSE
-%  NOTE: package task-imko-python-1.0-r1: task do_configure: Failed
-
-Any ideas?
-
-Cheers, Markus
-
--- 
-Human beings were created by water to transport it uphill.
 
