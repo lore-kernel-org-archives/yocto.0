@@ -1,48 +1,33 @@
-Return-Path: <mhubig@imko.de>
-Received: from mail-bk0-f48.google.com (mail-bk0-f48.google.com
-	[209.85.214.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 554C2E00346
-	for <yocto@yoctoproject.org>; Fri, 24 Aug 2012 04:02:32 -0700 (PDT)
-Received: by bkty5 with SMTP id y5so572380bkt.35
-	for <yocto@yoctoproject.org>; Fri, 24 Aug 2012 04:02:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=imko.de; s=google;
-	h=date:from:to:subject:message-id:mail-followup-to:references
-	:mime-version:content-type:content-disposition:in-reply-to
-	:user-agent; bh=wbUoopupz37TBjhHhiCtoHm9YjdeyYl/ZF3pdYMyRPQ=;
-	b=XOSSDOawR5RNCoFXF8lmWZKBBQ9V4QU894o1/0yi3zcoeScei71JYlVSlS622BKAPp
-	8FVuQQmhKIwYnijCa+37U5psEFAE8XwAX2UunnPzhqfXed+o7athfxVKKVqucpNZfvZ8
-	dQPvzaAA4QQpLg+pKlcmuXJjA5KxG+g60XCAk=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=date:from:to:subject:message-id:mail-followup-to:references
-	:mime-version:content-type:content-disposition:in-reply-to
-	:user-agent:x-gm-message-state;
-	bh=wbUoopupz37TBjhHhiCtoHm9YjdeyYl/ZF3pdYMyRPQ=;
-	b=V2p+fYVUDumZi8P7URyQbLuaNthq03B0aU9OoPgllmY00GLS+w2c9zBr0FHqjaYBkS
-	TBnudyoOCKxgf4ddiErEPDchh35Ij/cul13+rqpTGAdPKjeDHMipMGFyg+R/uMhv1/I3
-	4/zKylaFqqhZr4DG9Oo9voWd8rHLGKNOrC+YKDt4kaNHlUB0BcWHkn5KsDS4jjnT2bOL
-	BuGhgHGeyeNsgBkifrXa/bytJ0FUaPf1BFK4Nt55WMy0WsE1GzHshyAh3Kpn4dTj4jow
-	9MZc91YHdFdj8jNQQ/kgZXgOIbeQpA6UPXtu4mUGg98k5jrGWq6Xom2BnDjcOuRj58jS
-	NItg==
-Received: by 10.204.15.199 with SMTP id l7mr1785644bka.51.1345806150963;
-	Fri, 24 Aug 2012 04:02:30 -0700 (PDT)
-Received: from imko.de (business-092-079-181-094.static.arcor-ip.net.
-	[92.79.181.94])
-	by mx.google.com with ESMTPS id m9sm6154226bkm.10.2012.08.24.04.02.29
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Fri, 24 Aug 2012 04:02:29 -0700 (PDT)
-Date: Fri, 24 Aug 2012 13:02:26 +0200
-From: Markus Hubig <mhubig@imko.de>
-To: yocto@yoctoproject.org
-Message-ID: <20120824124547.8e56cbbd-43ec-4781-8cbb-5d50b4cdf311.mhubig@imko.de>
-Mail-Followup-To: yocto@yoctoproject.org
-References: <20120824114034.3297d25c-b448-4631-93b1-fba8afc4d8c5.mhubig@imko.de>
-	<3392698.9QUAKKNk7n@helios>
+Return-Path: <laurentiu.serban@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 85546E0076A
+	for <yocto@yoctoproject.org>; Fri, 24 Aug 2012 06:34:30 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga102.fm.intel.com with ESMTP; 24 Aug 2012 06:34:28 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,304,1344236400"; d="scan'208";a="210518072"
+Received: from irsmsx103.ger.corp.intel.com ([163.33.3.157])
+	by fmsmga001.fm.intel.com with ESMTP; 24 Aug 2012 06:34:27 -0700
+Received: from irsmsx102.ger.corp.intel.com ([169.254.2.34]) by
+	IRSMSX103.ger.corp.intel.com ([169.254.3.75]) with mapi id
+	14.01.0355.002; Fri, 24 Aug 2012 14:33:56 +0100
+From: "Serban, Laurentiu" <laurentiu.serban@intel.com>
+To: "Purdie, Richard" <richard.purdie@intel.com>
+Thread-Topic: 1.3 M3 Full Pass test results
+Thread-Index: Ac2BY2ArS5dRmnanT+CdJRPDq9FOEgAdoSeAAAidMNA=
+Date: Fri, 24 Aug 2012 13:33:50 +0000
+Message-ID: <E16513A01CAAFF40B65178C63CE45EEC191761D6@IRSMSX102.ger.corp.intel.com>
+References: <E16513A01CAAFF40B65178C63CE45EEC1917553B@IRSMSX102.ger.corp.intel.com>
+	<1345803711.14369.69.camel@ted>
+In-Reply-To: <1345803711.14369.69.camel@ted>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [163.33.239.180]
 MIME-Version: 1.0
-In-Reply-To: <3392698.9QUAKKNk7n@helios>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Gm-Message-State: ALoCoQkwtc3T25/638YPjsNFXkDsPIeToM4YUAsWU6bKSVctfS0g5de0FF7BslZZWQFv4rGUehJw
-Subject: Re: License information of tasks
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Wold,
+	Saul" <saul.wold@intel.com>
+Subject: Re: 1.3 M3 Full Pass test results
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,62 +39,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 24 Aug 2012 11:02:32 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Fri, 24 Aug 2012 13:34:30 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-On Fri, Aug 24, 2012 at 11:39:10AM +0100, Paul Eggleton wrote:
-> On Friday 24 August 2012 12:05:41 Markus Hubig wrote:
-> > 
-> > First: tasks are packages without content.
-> > 
-> > | rpm -qpl task-core-boot-1.0-r9.stamp9g20.rpm
-> > | (contains no files)
-> > 
-> > ... so why do they need some license information in the first place?
-> 
-> This is something that annoys me as well. I have thought about adding the 
-> ability to declare that a license is not applicable for those recipes that 
-> don't actually distribute any files, in which case a check during do_deploy, 
-> do_package and do_populate_sysroot would be enabled that would fail if the 
-> recipe ended up distributing anything. Unfortunately we don't have hooks in 
-> all of the necessary places to make this practical, but it is still something 
-> I would like to resolve.
-
-Hmm, it seems you don't have to use LIC_FILES_CHKSUM in a image recipe. So
-maybe one can adapt it from there ...
-
-> 2) Set your own variable to the value of LAYERDIR in layer.conf and then use 
-> that in the recipe; however that would make the recipe even more hardwired to 
-> the specific layer.
-
-Hmm OK but this seems nevertheless a good solution ... will try it.
-
-> 3) Refer to a license file in ${COMMON_LICENSE_DIR}; this is discouraged as it 
-> may break if files in there are moved around although I think that is less 
-> likely in future.
-
-Also OK IMHO ...
-
-> 4) Copy the license file into the directory containing the recipe. This is the 
-> recommended method for recipes that do actually distribute files, but seems 
-> excessive for a task.
-
-That's bad cause I have to duplicate all files this way. My first thought was
-to use the License files I already included into my layers for this ...
-
-> Ultimately though is it really important that the license for a recipe that 
-> distributes no files be any particular license?
-
-Yes I also think these files (themselves) are covered my the layer license and
-since they don't distribute any files don't need an additional license.
-
-Maybe some day there will be a distinction of the licence information between
-the Yocto stuff like Layers, tasks, images and recipes and the created
-software.
-
-Cheers, Markus
-
--- 
-Human beings were created by water to transport it uphill.
+SGVsbG8gUmljaGFyZCwNCg0KRXZlbiBpZiB0aGUgaW5zdGFsbGVyIGlzIHVzZWQgaW4gdGhlIGRl
+ZmF1bHQgbW9kZSwgaXNzdWVzIHN0aWxsIG9jY3VyIChzZWUgY29tbWVudCA3KS4gSSB0aGluayB0
+aGUgcm9vdCBjYXVzZSBmb3IgdGhlc2UgaXMgdGhlIHNhbWUsIHNvIEkgZGlkIG5vdCBzdWJtaXQg
+YSBuZXcgYnVnLg0KDQpUaGFuayB5b3UsDQpMYXVyZW50aXUgDQoNCi0tLS0tT3JpZ2luYWwgTWVz
+c2FnZS0tLS0tDQpGcm9tOiBQdXJkaWUsIFJpY2hhcmQgDQpTZW50OiBGcmlkYXksIEF1Z3VzdCAy
+NCwgMjAxMiAxOjIyIFBNDQpUbzogU2VyYmFuLCBMYXVyZW50aXUNCkNjOiB5b2N0b0B5b2N0b3By
+b2plY3Qub3JnOyBMaXUsIFNvbmc7IFN0ZXdhcnQsIERhdmlkIEM7IFdvbGQsIFNhdWwNClN1Ympl
+Y3Q6IFJlOiAxLjMgTTMgRnVsbCBQYXNzIHRlc3QgcmVzdWx0cw0KDQpPbiBUaHUsIDIwMTItMDgt
+MjMgYXQgMjA6MTMgKzAxMDAsIFNlcmJhbiwgTGF1cmVudGl1IHdyb3RlOg0KDQo+IEhlcmUgYXJl
+IHRoZSByZXN1bHRzIGZvciB0aGUgZnVsbCBwYXMgdGVzdHMgb24gMS4zIE0zIFJDMi4gVGhlIGNv
+bW1pdCANCj4gdXNlZCBmb3IgdGVzdGluZyBpcyA4Yjg3NDhjOGY5NjM5MDBiODNkYzBmZGQ3NzU3
+NTU2ZjkxN2ZlNGZkLg0KPg0KPiBTb21lIGRldGFpbHMgYWJvdXQgdGhlIGVuY291bnRlcmVkIGlz
+c3VlcyBiZWxvdzoNCj4gIA0KPiBCU1Ag4oCTIFN1ZG9rdS1zYXZhbnQgcHJvamVjdCBidWlsZCBp
+c3N1ZSAoMjg3OCkNCj4NCj4gQURUIOKAkyB0aGUgcmVsb2NhdGFibGUgc2RrIGlzc3VlICgyOTgw
+KSBjYXVzZXMgMTMgdGVzdCBjYXNlcyB0byBiZSBvbiANCj4gZmFpbGUvYmxvY2tlZCBzdGF0ZQ0K
+DQpJIHRob3VnaHQgaXQgd29ya2VkIGFzIGxvbmcgYXMgeW91IGRpZG4ndCBoYXZlIHRvIHJlbG9j
+YXRlIGl0IHNvIG5vIHRlc3RzIHNob3VsZCBoYXZlIGJlZW4gYmxvY2tlZCwgd2UganVzdCBoYXZl
+IHRoZSByZWxvY2F0aW9uIGlzc3VlPw0KDQo+ICAsIGFsc28gdGhlIENsdXR0ZXIgQyB0ZW1wbGF0
+ZSBpc3N1ZSBpcyB1bnNvbHZlZCAoMjU3NykNCj4NCj4gQ29yZSBCdWlsZCBTeXN0ZW0g4oCTIHgz
+MiBpcyBzdGlsbCBhbiBpc3N1ZSAoMjg4OCksIGNsZWFuaW5nIHNzdGF0ZSANCj4gaXNzdWUgaXMg
+c3RpbGwgbm90IHNvbHZlZCAoMjg5NyksIGluY3JlbWVudGFsIFJQTSBpbWFnZSBnZW5lcmF0aW9u
+IA0KPiAoMjk2OSksIHNvdXJjZSBhcmNoaXZpbmcgKDI2MTkpLCB0aGUga3ZtIGlzc3VlIHdhcyBy
+ZXByb2R1Y2VkIGJ5IA0KPiBhbm90aGVyIGNvbGxlYWd1ZSAoMjc5MCkgWW9jdG8gQlNQIGNyZWF0
+aW9uIHZpYSBKU09OICgyNjkzKSBvciBmb3IgDQo+IHFlbXUgKDI5OTEpIGZhaWxzLCBtdWx0aWxp
+YiBpc3N1ZSAoMjkxOCDigJMgdGhpcyByZXF1aXJlcyBhIGxpdHRsZSBtb3JlIA0KPiBpbnZlc3Rp
+Z2F0aW9uIGZyb20gUUEpLA0KPg0KPiBIT0IgLSBhbGwgc2VlbXMgb2sgZm9yIFJDMg0KPg0KPiBT
+ZWxmLWhvc3RlZC1pbWFnZSAgLSBjYW5ub3Qgc3RhcnQgb24gVmlydHVhbCBCb3ggKFggaXNzdWUp
+LCBpdCBpcyB2ZXJ5IA0KPiBzbG93IG9uIHFlbXUgYW5kIGl0IGhhcyBhIG00IHBhY2thZ2UgYnVp
+bGQgKDMwMDUpIGlzc3VlIG9uIFZNV2FyZS4gSWYgDQo+IHRoZSBzZWxmLWhvc3RlZC1pbWFnZSBp
+cyB1c2VkIG9uIG1hY2hpbmUgd2l0aCBpbnRlcm5ldCBjb25uZWN0aXZpdHkgDQo+IHZpYSBwcm94
+eSB0aGVyZSB3aWxsIGJlIGFuIGluaXRpYWwgc2FuaXR5IGNoZWNrIGZhaWx1cmUsIGJ1dCB0aGlz
+IGlzIA0KPiBub3QgYSBibG9ja2luZyBpc3N1ZS4NCj4gIA0KPiBBIG1lbnRpb24gZm9yIHRoZSBw
+ZXJmb3JtYW5jZSB0ZXN0aW5nOiBvbiBhIFViYnVudHUgMTIuMDQgIGk3IG1hY2hpbmUgDQo+IHVz
+aW5nIDggdGhyZWFkcyB0aGUgYnVpbGQgdGltZSB3YXMgODMgbWludXRlcyAod2l0aCBwcmlvciBm
+ZXRjaGluZykuDQoNCkhvdyBkb2VzIHRoaXMgY29tcGFyZSB3aXRoIG91ciBvdGhlciBwZXJmb3Jt
+YW5jZSBudW1iZXJzLiBGcm9tIHdoYXQgSSByZW1lbWJlciwgd2UgdXNlZCB0byBob3ZlciBhcm91
+bmQgdGhlIDEwNS0xMTUgbWludXRlIG1hcmsuIERpZCB3ZSBoYXZlIHNvbWUgc2lnbmlmaWNhbnQg
+c3BlZWQgZ2FpbnMgb3IgaXMgdGhpcyBqdXN0IGFuIGFydGVmYWN0IG9mIGNoYW5naW5nIHRoZSB0
+ZXN0IG1hY2hpbmU/DQoNCkNoZWVycywNCg0KUmljaGFyZA0KDQoNCg0K
 
