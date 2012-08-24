@@ -1,37 +1,22 @@
-Return-Path: <elvis.dowson@gmail.com>
-Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
-	[209.85.160.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 23005E0027E
-	for <yocto@yoctoproject.org>; Fri, 24 Aug 2012 14:01:59 -0700 (PDT)
-Received: by pbbrq13 with SMTP id rq13so4943496pbb.35
-	for <yocto@yoctoproject.org>; Fri, 24 Aug 2012 14:01:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=subject:mime-version:content-type:from:in-reply-to:date:cc
-	:content-transfer-encoding:message-id:references:to:x-mailer;
-	bh=I1k4r3pLC0PtE10QpNcxKey/D97n8ZNOKITTMSx9/C8=;
-	b=dQ3+axPTPQ5dWvto5hEKSQNaRMFC6BxeChXCzl+U7JRRh9X93LqtVKxlCITll7XxcX
-	q+AI4C3MCYuwe0JbuMd/aYL7AOibuRjilGuvTejQqz8Udz90uQvK3u7h576uMiNiWGYz
-	vuekPyD0FMS9nVtqCwWdlNzD2KCFf1Y7ynLxh5xFkimbScrpy2cr6IXMlfoto2n5InHP
-	xEWrdZP/1gybwo+oFw9s3VV335qsPPqpIaMrzKSKURh0RGZB60Bw+F3BXmNpYf9SaKrb
-	tIa5OSm6pgtSs/vefm3b+/x5pkVUuuEudGTJ9roUDKMC/yIWfZ0L9YXJ3phQ8sTvdX2f
-	CXUw==
-Received: by 10.68.239.103 with SMTP id vr7mr16190341pbc.0.1345842118902;
-	Fri, 24 Aug 2012 14:01:58 -0700 (PDT)
-Received: from [192.168.1.101] ([94.205.108.162])
-	by mx.google.com with ESMTPS id uj3sm9003251pbc.39.2012.08.24.14.01.55
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Fri, 24 Aug 2012 14:01:56 -0700 (PDT)
-Mime-Version: 1.0 (Apple Message framework v1278)
-From: Elvis Dowson <elvis.dowson@gmail.com>
-In-Reply-To: <CAMKF1spMZtVPhS+iriB2wk3imKUYcsFuZVGuaViUxHgBuCdeDw@mail.gmail.com>
-Date: Sat, 25 Aug 2012 01:01:51 +0400
-Message-Id: <71E21B95-07AE-43F9-AB41-9C3E6CDB8D29@gmail.com>
-References: <E76AA88E-0C71-4531-B5B4-B1C0074C7DB7@gmail.com>
-	<CAMKF1spMZtVPhS+iriB2wk3imKUYcsFuZVGuaViUxHgBuCdeDw@mail.gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
-X-Mailer: Apple Mail (2.1278)
-Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-Subject: Re: New task progress interface with Yocto 1.3 ?
+Return-Path: <kishore.k.bodke@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 692FFE0027E
+	for <yocto@yoctoproject.org>; Fri, 24 Aug 2012 16:24:51 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 24 Aug 2012 16:24:50 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,307,1344236400"; d="scan'208";a="184680627"
+Received: from rsaxena-rosecity.sc.intel.com (HELO localhost)
+	([143.183.188.83])
+	by azsmga001.ch.intel.com with ESMTP; 24 Aug 2012 16:24:50 -0700
+From: rahul.saxena@intel.com
+To: yocto@yoctoproject.org,
+	tom.zanussi@intel.com,
+	dvhart@linux.intel.com
+Date: Fri, 24 Aug 2012 16:10:56 -0700
+Message-Id: <cover.1345849179.git.rahul.saxena@intel.com>
+X-Mailer: git-send-email 1.7.4.1
+Subject: [PATCH 0/2][meta-intel] Cover letter to update pvr driver to v1.0.2 in meta-cedartral, denzil branch
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,17 +28,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 24 Aug 2012 21:01:59 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 24 Aug 2012 23:24:51 -0000
 
+From: Rahul Saxena <rahul.saxena@intel.com>
 
-On Aug 25, 2012, at 12:56 AM, Khem Raj wrote:
+Cover letter to update pvr driver to v1.0.2 in meta-cedartrail.
 
-> Yes isn't it cool
+This update of the driver supports B3 stepping of the Cedarview processor
+and also supports DP/eDP ports.
 
-Yes, it's definitely an improvement! 
+Please update denzil branch with this patch series.
 
-Elvis
+Signed-off-by: Rahul Saxena <rahul.saxena@intel.com>
+
+--
+The following changes since commit ff7fdafba88a5b7676f601b3d16a97ce7d48c4a9:
+
+  crownbay: make v3.4 the default kernel (2012-07-31 23:08:05 -0500)
+
+are available in the git repository at:
+  git://git.pokylinux.org/meta-intel-contrib rsaxena_1_3_M3
+  http://git.pokylinux.org/cgit.cgi/meta-intel-contrib/log/?h=rsaxena_1_3_M3
+
+Rahul Saxena (2):
+  meta-cedartrail: Update SRCREV for the linux-yocto kernel pvr branch
+  meta-cedartrail: Update PVR graphics driver to version 1.0.2
+
+ meta-cedartrail/README                             |    2 +-
+ .../xorg-driver/cdv-pvr-driver.inc                 |   37 -----
+ .../xorg-driver/cdv-pvr-driver_1.0.2.bb            |  143 ++++++++++++++++++++
+ .../xorg-driver/cdv-pvr-driver_1.0.bb              |   99 --------------
+ .../recipes-kernel/linux/linux-yocto_3.0.bbappend  |    2 +-
+ 5 files changed, 145 insertions(+), 138 deletions(-)
+ delete mode 100644 meta-cedartrail/recipes-graphics/xorg-driver/cdv-pvr-driver.inc
+ create mode 100644 meta-cedartrail/recipes-graphics/xorg-driver/cdv-pvr-driver_1.0.2.bb
+ delete mode 100644 meta-cedartrail/recipes-graphics/xorg-driver/cdv-pvr-driver_1.0.bb
+
+-- 
+1.7.4.1
 
 
