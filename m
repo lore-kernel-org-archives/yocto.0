@@ -1,25 +1,32 @@
-Return-Path: <sgw@linux.intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3624FE0027F
-	for <yocto@yoctoproject.org>; Fri, 24 Aug 2012 12:10:08 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by azsmga102.ch.intel.com with ESMTP; 24 Aug 2012 12:10:07 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,304,1344236400"; d="scan'208";a="185011028"
-Received: from unknown (HELO [10.255.13.21]) ([10.255.13.21])
-	by orsmga001.jf.intel.com with ESMTP; 24 Aug 2012 12:10:05 -0700
-Message-ID: <5037D18C.1050601@linux.intel.com>
-Date: Fri, 24 Aug 2012 12:10:04 -0700
-From: Saul Wold <sgw@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:14.0) Gecko/20120717 Thunderbird/14.0
-MIME-Version: 1.0
-To: =?ISO-8859-1?Q?Bj=F6rn_Stenberg?= <bjst@enea.com>
-References: <1345731602-47313-1-git-send-email-bjst@enea.com>
-	<1345731602-47313-4-git-send-email-bjst@enea.com>
-In-Reply-To: <1345731602-47313-4-git-send-email-bjst@enea.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 3/3] Enable bash-ptest
+Return-Path: <elvis.dowson@gmail.com>
+Received: from mail-pz0-f48.google.com (mail-pz0-f48.google.com
+	[209.85.210.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CDCD6E0027E
+	for <yocto@yoctoproject.org>; Fri, 24 Aug 2012 13:30:39 -0700 (PDT)
+Received: by dadz8 with SMTP id z8so1440396dad.35
+	for <yocto@yoctoproject.org>; Fri, 24 Aug 2012 13:30:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:content-type:subject:date:message-id:to:mime-version:x-mailer;
+	bh=1YvfSbocU9i0iBytN19HxB6poUvGqjG6zUcKYduuH8I=;
+	b=dNfsjiF8P0X6FtuYF7QBHQe9H6gn8SANhx6NDbT94omSdL0rXf/OY2TNvxt/aun6WN
+	NLyj94+1sdDkJTC1iVpiq4MdWl2zvPCc5xUIjU9IDEvlYvGW163BCkZ4wQR+hwuDj9fe
+	BbVMbB8WvaCGzIXD2afpkh1K8Kl4NaAUY1UB88FtbcEMqtda9/oKtFUlyuVScJPhEgUu
+	gRozEcVXXnPzkWzxb5J/d20Zapy8a1F1hLpvsMvz3cYj5v10+SsP596qgjNo5GgMmkX0
+	xBY/j6HrTJQk/4ME3Hpi4SL6+5tJBfEyLtNpGxpI+DmZ95pXkCTgw33CCSubQ7Rq6K4S
+	5MiA==
+Received: by 10.68.129.131 with SMTP id nw3mr15694668pbb.43.1345840239439;
+	Fri, 24 Aug 2012 13:30:39 -0700 (PDT)
+Received: from [192.168.1.101] ([94.205.108.162])
+	by mx.google.com with ESMTPS id vh7sm8970398pbc.22.2012.08.24.13.30.36
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Fri, 24 Aug 2012 13:30:38 -0700 (PDT)
+From: Elvis Dowson <elvis.dowson@gmail.com>
+Date: Sat, 25 Aug 2012 00:30:32 +0400
+Message-Id: <E76AA88E-0C71-4531-B5B4-B1C0074C7DB7@gmail.com>
+To: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+Mime-Version: 1.0 (Apple Message framework v1278)
+X-Mailer: Apple Mail (2.1278)
+Subject: New task progress interface with Yocto 1.3 ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,186 +38,70 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 24 Aug 2012 19:10:08 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Fri, 24 Aug 2012 20:30:39 -0000
+Content-Type: multipart/alternative;
+	boundary="Apple-Mail=_B5B6544F-E08F-4F5D-9031-FD51887403A4"
 
-On 08/23/2012 07:20 AM, Björn Stenberg wrote:
-> Patch Makefile.in to allow test programs be built on host and ran on
-> target.
-> Patch tests/run-all to output PASS/FAIL for each testcase.
-> Patch recipe to build and install test programs and test suite.
->
-> ---
->   .../bash/bash-4.2/build-tests.patch                |   29 ++++++++++++++++++++
->   meta/recipes-extended/bash/bash-4.2/run-ptest      |    2 +
->   .../bash/bash-4.2/test-output.patch                |   19 +++++++++++++
->   meta/recipes-extended/bash/bash.inc                |   18 ++++++++++++
->   meta/recipes-extended/bash/bash_4.2.bb             |    5 +++-
->   5 files changed, 72 insertions(+), 1 deletions(-)
->   create mode 100644 meta/recipes-extended/bash/bash-4.2/build-tests.patch
->   create mode 100644 meta/recipes-extended/bash/bash-4.2/run-ptest
->   create mode 100644 meta/recipes-extended/bash/bash-4.2/test-output.patch
->
-> diff --git a/meta/recipes-extended/bash/bash-4.2/build-tests.patch b/meta/recipes-extended/bash/bash-4.2/build-tests.patch
-> new file mode 100644
-> index 0000000..e92fab3
-> --- /dev/null
-> +++ b/meta/recipes-extended/bash/bash-4.2/build-tests.patch
+--Apple-Mail=_B5B6544F-E08F-4F5D-9031-FD51887403A4
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=us-ascii
 
-Thanks for proposing and getting the initial implementation started, 
-this has been something we have been thinking about for a while, great 
-to have the things like this become reality!
+Hi,
+      I'm building against the latest yocto master branch, and noticed =
+that the task progress now summarizes the total number of active theads:
 
-When introducing new patches, please follow the guidelines for patches 
-and commit message:
+NOTE: Resolving any missing task queue dependencies
+NOTE: Preparing runqueue
+NOTE: Executing SetScene Tasks
+NOTE: Executing RunQueue Tasks
+Currently 6 running tasks (334 of 1485):
+0: icu-native-3.6-r9 do_compile (pid 58438)
+1: python-native-2.7.3-r0.1 do_compile (pid 31435)
+2: popt-native-1.16-r2 do_configure (pid 55290)
+3: gnutls-native-2.12.20-r8.3 do_compile (pid 55897)
+4: acl-native-2.2.51-r3 do_configure (pid 56626)
+5: libpcre-native-8.31-r0 do_configure (pid 62244)
 
-http://www.openembedded.org/wiki/Commit_Patch_Message_Guidelines
+Is this update part of the upcoming Yocto 1.3 release?
 
-I know this is still and RFC, but your commits themselves also need 
-Signed-off-by:
+Best regards,
 
+Elvis Dowson=
 
-> @@ -0,0 +1,29 @@
-> +diff -uNr a/Makefile.in b/Makefile.in
-> +--- a/Makefile.in	2012-06-14 10:15:15.063465304 +0200
-> ++++ b/Makefile.in	2012-06-14 10:47:02.985115849 +0200
-> +@@ -827,18 +827,21 @@
-> + 	fi
-> +
-> + recho$(EXEEXT):		$(SUPPORT_SRC)recho.c
-> +-	@$(CC_FOR_BUILD) $(CCFLAGS_FOR_BUILD) -o $@ $(SUPPORT_SRC)recho.c ${LIBS_FOR_BUILD}
-> ++	@$(CC) $(CCFLAGS) $(LDFLAGS) -o $@ $<
-> +
-> + zecho$(EXEEXT):		$(SUPPORT_SRC)zecho.c
-> +-	@$(CC_FOR_BUILD) $(CCFLAGS_FOR_BUILD) -o $@ $(SUPPORT_SRC)zecho.c ${LIBS_FOR_BUILD}
-> ++	@$(CC) $(CCFLAGS) $(LDFLAGS) -o $@ $<
-> +
-> + printenv$(EXEEXT):	$(SUPPORT_SRC)printenv.c
-> +-	@$(CC_FOR_BUILD) $(CCFLAGS_FOR_BUILD) -o $@ $(SUPPORT_SRC)printenv.c ${LIBS_FOR_BUILD}
-> ++	@$(CC) $(CCFLAGS) $(LDFLAGS) -o $@ $<
-> +
-> + xcase$(EXEEXT):	$(SUPPORT_SRC)xcase.c
-> +-	@$(CC_FOR_BUILD) $(CCFLAGS_FOR_BUILD) -o $@ $(SUPPORT_SRC)xcase.c ${LIBS_FOR_BUILD}
-> ++	@$(CC) $(CCFLAGS) $(LDFLAGS) -o $@ $<
-> +
-> + test tests check:	force $(Program) $(TESTS_SUPPORT)
-> ++	$(MAKE) runtest
-> ++
-> ++runtest:
-> + 	@-test -d tests || mkdir tests
-> + 	@cp $(TESTS_SUPPORT) tests
-> + 	@( cd $(srcdir)/tests && \
-> diff --git a/meta/recipes-extended/bash/bash-4.2/run-ptest b/meta/recipes-extended/bash/bash-4.2/run-ptest
-> new file mode 100644
-> index 0000000..8dd3b99
-> --- /dev/null
-> +++ b/meta/recipes-extended/bash/bash-4.2/run-ptest
-> @@ -0,0 +1,2 @@
-> +#!/bin/sh
-> +make -k THIS_SH=/bin/bash BUILD_DIR=. runtest
-> diff --git a/meta/recipes-extended/bash/bash-4.2/test-output.patch b/meta/recipes-extended/bash/bash-4.2/test-output.patch
-> new file mode 100644
-> index 0000000..065a85c
-> --- /dev/null
-> +++ b/meta/recipes-extended/bash/bash-4.2/test-output.patch
-> @@ -0,0 +1,19 @@
-> +diff -uNr a/tests/run-all b/tests/run-all
-> +--- a/tests/run-all	2012-06-14 10:15:15.007467700 +0200
-> ++++ b/tests/run-all	2012-06-14 10:19:26.464678067 +0200
-> +@@ -22,6 +22,14 @@
-> + 	case $x in
-> + 	$0|run-minimal|run-gprof)	;;
-> + 	*.orig|*~) ;;
-> +-	*)	echo $x ; sh $x ;;
-> ++	*)	echo $x
-> ++		output=`sh $x`
-> ++		if [ -n "$output" ]; then
-> ++			echo "$output"
-> ++			echo "FAIL: $x"
-> ++		else
-> ++			echo "PASS: $x"
-> ++		fi
-> ++		;;
-> + 	esac
-> + done
-> diff --git a/meta/recipes-extended/bash/bash.inc b/meta/recipes-extended/bash/bash.inc
-> index 3684191..04f9940 100644
-> --- a/meta/recipes-extended/bash/bash.inc
-> +++ b/meta/recipes-extended/bash/bash.inc
-> @@ -21,18 +21,36 @@ ALTERNATIVE_PRIORITY = "100"
->
->   export AUTOHEADER = "true"
->
-> +RDEPENDS_${PN}-ptest += "make"
-> +FILES_${PN}-dbg += "${PTEST_PATH}/.debug"
-> +
->   do_configure_prepend () {
->   	if [ ! -e acinclude.m4 ]; then
->   		cat aclocal.m4 > acinclude.m4
->   	fi
->   }
->
-> +do_compile_append () {
-> +	oe_runmake recho zecho printenv xcase
-> +}
-> +
+--Apple-Mail=_B5B6544F-E08F-4F5D-9031-FD51887403A4
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=us-ascii
 
-One thing that we have discussed a couple of times, but no real outcome 
-yet is to make the building of tests conditional so as more recipes are 
-enabled with this kind of change, we don't extend the default build time 
-too long.
+<html><head></head><body style=3D"word-wrap: break-word; =
+-webkit-nbsp-mode: space; -webkit-line-break: after-white-space; =
+"><div>Hi,</div><div>&nbsp; &nbsp; &nbsp; I'm building against the =
+latest yocto master branch, and noticed that the task progress now =
+summarizes the total number of active =
+theads:</div><div><br></div><div><div><font class=3D"Apple-style-span" =
+face=3D"Monaco" size=3D"2">NOTE: Resolving any missing task queue =
+dependencies</font></div><div><font class=3D"Apple-style-span" =
+face=3D"Monaco" size=3D"2">NOTE: Preparing =
+runqueue</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco"=
+ size=3D"2">NOTE: Executing SetScene Tasks</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">NOTE: Executing =
+RunQueue Tasks</font></div><div><font class=3D"Apple-style-span" =
+face=3D"Monaco" size=3D"2">Currently 6 running tasks (334 of =
+1485):</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
+size=3D"2">0: icu-native-3.6-r9 do_compile (pid =
+58438)</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
+size=3D"2">1: python-native-2.7.3-r0.1 do_compile (pid =
+31435)</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
+size=3D"2">2: popt-native-1.16-r2 do_configure (pid =
+55290)</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
+size=3D"2">3: gnutls-native-2.12.20-r8.3 do_compile (pid =
+55897)</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
+size=3D"2">4: acl-native-2.2.51-r3 do_configure (pid =
+56626)</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
+size=3D"2">5: libpcre-native-8.31-r0 do_configure (pid =
+62244)</font></div></div><div><br></div><div>Is this update part of the =
+upcoming Yocto 1.3 release?</div><div><br></div><div>Best =
+regards,</div><div><br></div><div>Elvis Dowson</div></body></html>=
 
-What's been discussed is using DISTRO_FEATURE to test first.
-
-Thoughts?
-
-
->   do_install_append () {
->   	# Move /usr/bin/bash to /bin/bash, if need
->   	if [ "${base_bindir}" != "${bindir}" ]; then
->   		mkdir -p ${D}${base_bindir}
->   		mv ${D}${bindir}/bash ${D}${base_bindir}
->   	fi
-> +
-> +        if [ "${PN}" = "${BPN}" ]; then
-> +            mkdir -p ${D}${PTEST_PATH}
-> +            install -m 0755 ${WORKDIR}/run-ptest    ${D}${PTEST_PATH}
-> +            install -m 0755 ${B}/Makefile           ${D}${PTEST_PATH}
-> +            install -m 0755 ${B}/recho              ${D}${PTEST_PATH}
-> +            install -m 0755 ${B}/zecho              ${D}${PTEST_PATH}
-> +            install -m 0755 ${B}/printenv           ${D}${PTEST_PATH}
-> +            install -m 0755 ${B}/xcase              ${D}${PTEST_PATH}
-> +            cp -r ${B}/tests                        ${D}${PTEST_PATH}/
-> +        fi
->   }
->
->   pkg_postinst_${PN} () {
-> diff --git a/meta/recipes-extended/bash/bash_4.2.bb b/meta/recipes-extended/bash/bash_4.2.bb
-> index 50f2ff6..5e9b50e 100644
-> --- a/meta/recipes-extended/bash/bash_4.2.bb
-> +++ b/meta/recipes-extended/bash/bash_4.2.bb
-> @@ -1,6 +1,6 @@
->   require bash.inc
->
-> -PR = "r4"
-> +PR = "r5"
->
->   SRC_URI = "${GNU_MIRROR}/bash/${BPN}-${PV}.tar.gz;name=tarball \
->              ${GNU_MIRROR}/bash/bash-4.2-patches/bash42-001;apply=yes;striplevel=0;name=patch001 \
-> @@ -14,6 +14,9 @@ SRC_URI = "${GNU_MIRROR}/bash/${BPN}-${PV}.tar.gz;name=tarball \
->              ${GNU_MIRROR}/bash/bash-4.2-patches/bash42-009;apply=yes;striplevel=0;name=patch009 \
->              ${GNU_MIRROR}/bash/bash-4.2-patches/bash42-010;apply=yes;striplevel=0;name=patch010 \
->              file://execute_cmd.patch;striplevel=0 \
-> +           file://build-tests.patch \
-> +           file://test-output.patch \
-> +           file://run-ptest \
->              "
->
->   SRC_URI[tarball.md5sum] = "3fb927c7c33022f1c327f14a81c0d4b0"
->
-
-Thanks
-	Sau!
-
-
+--Apple-Mail=_B5B6544F-E08F-4F5D-9031-FD51887403A4--
