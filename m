@@ -1,23 +1,37 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BF63EE00344
-	for <yocto@yoctoproject.org>; Fri, 24 Aug 2012 21:37:36 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 24 Aug 2012 21:37:36 -0700
+Return-Path: <rahul.saxena@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C2638E0027E
+	for <yocto@yoctoproject.org>; Fri, 24 Aug 2012 23:47:47 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga102.fm.intel.com with ESMTP; 24 Aug 2012 23:47:47 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,309,1344236400"; d="scan'208";a="184741039"
-Received: from unknown (HELO localhost) ([10.255.12.244])
-	by azsmga001.ch.intel.com with ESMTP; 24 Aug 2012 21:37:09 -0700
-From: tom.zanussi@intel.com
-To: yocto@yoctoproject.org
-Date: Fri, 24 Aug 2012 23:36:45 -0500
-Message-Id: <d3c52cc5225d1ef009f3c0a5914d908304182dda.1345868069.git.tom.zanussi@intel.com>
-X-Mailer: git-send-email 1.7.11.4
-In-Reply-To: <a4c4b0f81b4facca97c9183e7df3664030464e92.1345868069.git.tom.zanussi@intel.com>
-References: <a4c4b0f81b4facca97c9183e7df3664030464e92.1345868069.git.tom.zanussi@intel.com>
-In-Reply-To: <cover.1345868069.git.tom.zanussi@intel.com>
-References: <cover.1345868069.git.tom.zanussi@intel.com>
-Subject: [PATCH 2/4] ia32-base.inc: remove
+X-IronPort-AV: E=Sophos;i="4.80,309,1344236400"; d="scan'208";a="211218584"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
+	by fmsmga001.fm.intel.com with ESMTP; 24 Aug 2012 23:47:46 -0700
+Received: from orsmsx103.amr.corp.intel.com (10.22.225.130) by
+	orsmsx603.amr.corp.intel.com (10.22.226.49) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Fri, 24 Aug 2012 23:47:46 -0700
+Received: from orsmsx104.amr.corp.intel.com ([169.254.3.52]) by
+	ORSMSX103.amr.corp.intel.com ([169.254.2.138]) with mapi id
+	14.01.0355.002; Fri, 24 Aug 2012 23:47:46 -0700
+From: "Saxena, Rahul" <rahul.saxena@intel.com>
+To: "Saxena, Rahul" <rahul.saxena@intel.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>, "Zanussi, Tom" <tom.zanussi@intel.com>,
+	"dvhart@linux.intel.com" <dvhart@linux.intel.com>
+Thread-Topic: [yocto] [PATCH 0/2][meta-intel] Cover letter to update pvr
+	driver to v1.0.2 in meta-cedartral,
+	denzil branch: Correction master branch
+Thread-Index: AQHNgk/DPjjlRrT8zEiTvkcPgKAmm5dqFVcw
+Date: Sat, 25 Aug 2012 06:47:45 +0000
+Message-ID: <63ECFF2A2302B44093D7CE9E9962C49003317EAD@ORSMSX104.amr.corp.intel.com>
+References: <cover.1345849179.git.rahul.saxena@intel.com>
+In-Reply-To: <cover.1345849179.git.rahul.saxena@intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.138]
+MIME-Version: 1.0
+Subject: Re: [PATCH 0/2][meta-intel] Cover letter to update pvr driver to v1.0.2 in meta-cedartral, denzil branch: Correction master branch
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,83 +43,72 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 25 Aug 2012 04:37:36 -0000
+X-List-Received-Date: Sat, 25 Aug 2012 06:47:47 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-From: Tom Zanussi <tom.zanussi@intel.com>
+Need to make a correction: This patch series is not for denzil branch, it i=
+s for the master branch.
 
-This has been moved to oe-core, so remove it.
+Pl pull into master branch. My apologies  for any confusion this may have c=
+aused.
 
-Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
----
- conf/machine/include/ia32-base.inc | 58 --------------------------------------
- 1 file changed, 58 deletions(-)
- delete mode 100644 conf/machine/include/ia32-base.inc
+Thanks
+Rahul
 
-diff --git a/conf/machine/include/ia32-base.inc b/conf/machine/include/ia32-base.inc
-deleted file mode 100644
-index af583ae..0000000
---- a/conf/machine/include/ia32-base.inc
-+++ /dev/null
-@@ -1,58 +0,0 @@
--#
--# base machine settings for ia32-architecture BSPs
--#
--
--#
--# common settings for Intel-based machines
--#
--MACHINE_FEATURES += "screen keyboard pci usbhost ext2 ext3 x86 \
--                     acpi serial usbgadget alsa"
--
--MACHINE_EXTRA_RRECOMMENDS += "kernel-modules eee-acpi-scripts"
--MACHINE_ESSENTIAL_EXTRA_RDEPENDS += "grub"
--
--IMAGE_FSTYPES += "ext3 cpio.gz live"
--
--KERNEL_IMAGETYPE ?= "bzImage"
--
--SERIAL_CONSOLE ?= "115200 ttyS0"
--
--#
--# glibc-related variables
--#
--GLIBC_ADDONS ?= "nptl"
--
--#
--# kernel-related variables
--#
--PREFERRED_PROVIDER_virtual/kernel ??= "linux-yocto"
--PREFERRED_VERSION_linux-yocto ??= "3.0%"
--
--#
--# XSERVER subcomponents, used to build the XSERVER variable
--#
--XSERVER_IA32_BASE = "xserver-xorg \
--           xf86-input-mouse \
--           xf86-input-keyboard \
--           xf86-input-evdev \
--           xf86-input-synaptics \
--           mesa-dri \
--           "
--
--XSERVER_IA32_EXT = "xserver-xorg-extension-dri \
--           xserver-xorg-extension-dri2 \
--           xserver-xorg-extension-glx \
--           xserver-xorg-extension-extmod \
--           xserver-xorg-extension-dbe \
--           xserver-xorg-module-libint10 \
--           "
--
--XSERVER_IA32_I915 = "xf86-video-intel \
--           mesa-dri-driver-i915 \
--           "
--
--XSERVER_IA32_I965 = "xf86-video-intel \
--           mesa-dri-driver-i965 \
--           "
--
--XSERVER_IA32_VESA = "xf86-video-vesa"
--- 
-1.7.11.4
+-----Original Message-----
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of rahul.saxena@intel.com
+Sent: Friday, August 24, 2012 4:11 PM
+To: yocto@yoctoproject.org; Zanussi, Tom; dvhart@linux.intel.com
+Subject: [yocto] [PATCH 0/2][meta-intel] Cover letter to update pvr driver =
+to v1.0.2 in meta-cedartral, denzil branch
 
+From: Rahul Saxena <rahul.saxena@intel.com>
+
+Cover letter to update pvr driver to v1.0.2 in meta-cedartrail.
+
+This update of the driver supports B3 stepping of the Cedarview processor a=
+nd also supports DP/eDP ports.
+
+Please update denzil branch with this patch series.
+
+Signed-off-by: Rahul Saxena <rahul.saxena@intel.com>
+
+--
+The following changes since commit ff7fdafba88a5b7676f601b3d16a97ce7d48c4a9=
+:
+
+  crownbay: make v3.4 the default kernel (2012-07-31 23:08:05 -0500)
+
+are available in the git repository at:
+  git://git.pokylinux.org/meta-intel-contrib rsaxena_1_3_M3
+  http://git.pokylinux.org/cgit.cgi/meta-intel-contrib/log/?h=3Drsaxena_1_3=
+_M3
+
+Rahul Saxena (2):
+  meta-cedartrail: Update SRCREV for the linux-yocto kernel pvr branch
+  meta-cedartrail: Update PVR graphics driver to version 1.0.2
+
+ meta-cedartrail/README                             |    2 +-
+ .../xorg-driver/cdv-pvr-driver.inc                 |   37 -----
+ .../xorg-driver/cdv-pvr-driver_1.0.2.bb            |  143 ++++++++++++++++=
+++++
+ .../xorg-driver/cdv-pvr-driver_1.0.bb              |   99 --------------
+ .../recipes-kernel/linux/linux-yocto_3.0.bbappend  |    2 +-
+ 5 files changed, 145 insertions(+), 138 deletions(-)  delete mode 100644 m=
+eta-cedartrail/recipes-graphics/xorg-driver/cdv-pvr-driver.inc
+ create mode 100644 meta-cedartrail/recipes-graphics/xorg-driver/cdv-pvr-dr=
+iver_1.0.2.bb
+ delete mode 100644 meta-cedartrail/recipes-graphics/xorg-driver/cdv-pvr-dr=
+iver_1.0.bb
+
+--
+1.7.4.1
+
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
 
