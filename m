@@ -1,37 +1,32 @@
-Return-Path: <rahul.saxena@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C2638E0027E
-	for <yocto@yoctoproject.org>; Fri, 24 Aug 2012 23:47:47 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 24 Aug 2012 23:47:47 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,309,1344236400"; d="scan'208";a="211218584"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
-	by fmsmga001.fm.intel.com with ESMTP; 24 Aug 2012 23:47:46 -0700
-Received: from orsmsx103.amr.corp.intel.com (10.22.225.130) by
-	orsmsx603.amr.corp.intel.com (10.22.226.49) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Fri, 24 Aug 2012 23:47:46 -0700
-Received: from orsmsx104.amr.corp.intel.com ([169.254.3.52]) by
-	ORSMSX103.amr.corp.intel.com ([169.254.2.138]) with mapi id
-	14.01.0355.002; Fri, 24 Aug 2012 23:47:46 -0700
-From: "Saxena, Rahul" <rahul.saxena@intel.com>
-To: "Saxena, Rahul" <rahul.saxena@intel.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>, "Zanussi, Tom" <tom.zanussi@intel.com>,
-	"dvhart@linux.intel.com" <dvhart@linux.intel.com>
-Thread-Topic: [yocto] [PATCH 0/2][meta-intel] Cover letter to update pvr
-	driver to v1.0.2 in meta-cedartral,
-	denzil branch: Correction master branch
-Thread-Index: AQHNgk/DPjjlRrT8zEiTvkcPgKAmm5dqFVcw
-Date: Sat, 25 Aug 2012 06:47:45 +0000
-Message-ID: <63ECFF2A2302B44093D7CE9E9962C49003317EAD@ORSMSX104.amr.corp.intel.com>
-References: <cover.1345849179.git.rahul.saxena@intel.com>
-In-Reply-To: <cover.1345849179.git.rahul.saxena@intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.138]
-MIME-Version: 1.0
-Subject: Re: [PATCH 0/2][meta-intel] Cover letter to update pvr driver to v1.0.2 in meta-cedartral, denzil branch: Correction master branch
+Return-Path: <elvis.dowson@gmail.com>
+Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
+	[209.85.160.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C8F31E0027F
+	for <yocto@yoctoproject.org>; Sat, 25 Aug 2012 06:14:14 -0700 (PDT)
+Received: by pbbrq13 with SMTP id rq13so6027238pbb.35
+	for <yocto@yoctoproject.org>; Sat, 25 Aug 2012 06:14:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:content-type:subject:date:message-id:to:mime-version:x-mailer;
+	bh=qpcS/xuJOXOH2z/+6TlgvtxnOB1uBDF90a79mkNpWXM=;
+	b=G8IgnsbEmKJhF3DUvevWLAVlOO+GTpj+6IO3yTVyJmYx4MZ9fKLp5SWVHkPivUaPqt
+	IcI82/8TZwt/gDMQbQYcfOoINO4ZUzIV5whzaHf8+9OLuiBQof1K3fYTA2eoW64V/5SM
+	S0XWQ1WjUyBcCmfU4KDpIwr1yUyj4tZ68cLB7ADuylgz3xsOw+c8hXkWWUGuFYBX7Kic
+	czTc1oKsdzo33f4hF6xvry1KgT8DVw7psJy7hpaEZCVoQ36XobfDX32QIRrLFm0+6iPx
+	ptJrKH+uJ4VXkptEcM4OUPgzTjI2uLF1V2VPblNOLNrDnqsJNn2ha9wU+uX46K/Op7OC
+	k1vQ==
+Received: by 10.66.78.9 with SMTP id x9mr17331632paw.84.1345900452300;
+	Sat, 25 Aug 2012 06:14:12 -0700 (PDT)
+Received: from [192.168.1.101] ([94.205.108.162])
+	by mx.google.com with ESMTPS id qb2sm9226549pbb.15.2012.08.25.06.14.09
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Sat, 25 Aug 2012 06:14:10 -0700 (PDT)
+From: Elvis Dowson <elvis.dowson@gmail.com>
+Date: Sat, 25 Aug 2012 17:14:05 +0400
+Message-Id: <33FA7F6F-5C7B-40A0-AE08-18E0058A4C31@gmail.com>
+To: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+Mime-Version: 1.0 (Apple Message framework v1278)
+X-Mailer: Apple Mail (2.1278)
+Subject: WARNING: QA Issue: udev: /lib/libgudev-1.0.so.0.0.1, installed in the base_prefix, requires a shared library under exec_prefix (/usr)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,72 +38,126 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 25 Aug 2012 06:47:47 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Sat, 25 Aug 2012 13:14:14 -0000
+Content-Type: multipart/alternative;
+	boundary="Apple-Mail=_A592E3C6-B573-41DD-B218-486EB9F2FA8B"
+
+--Apple-Mail=_A592E3C6-B573-41DD-B218-486EB9F2FA8B
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=us-ascii
 
-Need to make a correction: This patch series is not for denzil branch, it i=
-s for the master branch.
+Hi,
+      I have added support for gcc-4.5 and eglibc-2.13, in the retired =
+tool-chain layer, and ran the build, against the latest poky master =
+branch, and get the following warnings:
 
-Pl pull into master branch. My apologies  for any confusion this may have c=
-aused.
+Build Configuration:
+BB_VERSION        =3D "1.15.3"
+TARGET_ARCH       =3D "powerpc"
+TARGET_OS         =3D "linux"
+MACHINE           =3D "virtex5"
+DISTRO            =3D "poky"
+DISTRO_VERSION    =3D "1.2+snapshot-20120825"
+TUNE_FEATURES     =3D "m32 ppc440 fpu-soft"
+TARGET_FPU        =3D "soft"
+meta             =20
+meta-yocto        =3D =
+"master-xilinx-ml507-gcc-4.5:230631343fd1439fcf5c408e1d31870f5490d235"
+toolchain-layer   =3D =
+"master-xilinx-ml507-gcc-4.5:7086c388699be96873d57f1d4c72ceaabf67846b"
+meta-xilinx       =3D =
+"master-xilinx-ml507-gcc-4.5:4625488ffab40bf9eed6ce36906e433430f0155d"
 
-Thanks
-Rahul
 
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of rahul.saxena@intel.com
-Sent: Friday, August 24, 2012 4:11 PM
-To: yocto@yoctoproject.org; Zanussi, Tom; dvhart@linux.intel.com
-Subject: [yocto] [PATCH 0/2][meta-intel] Cover letter to update pvr driver =
-to v1.0.2 in meta-cedartral, denzil branch
+WARNING: QA Issue: udev: /lib/libgudev-1.0.so.0.0.1, installed in the =
+base_prefix, requires a shared library under exec_prefix (/usr): =
+libgobject-2.0.so.0 =3D> /usr/lib/libgobject-2.0.so.0 (0xdead2000)
+WARNING: QA Issue: udev: /lib/libgudev-1.0.so.0.0.1, installed in the =
+base_prefix, requires a shared library under exec_prefix (/usr): =
+libgthread-2.0.so.0 =3D> /usr/lib/libgthread-2.0.so.0 (0xdead3000)
+WARNING: QA Issue: udev: /lib/libgudev-1.0.so.0.0.1, installed in the =
+base_prefix, requires a shared library under exec_prefix (/usr): =
+libffi.so.5 =3D> /usr/lib/libffi.so.5 (0xdead4000)
+WARNING: QA Issue: udev: /lib/libgudev-1.0.so.0.0.1, installed in the =
+base_prefix, requires a shared library under exec_prefix (/usr): =
+libglib-2.0.so.0 =3D> /usr/lib/libglib-2.0.so.0 (0xdead5000)
+WARNING: QA Issue: udev: /lib/udev/udev-acl, installed in the =
+base_prefix, requires a shared library under exec_prefix (/usr): =
+libglib-2.0.so.0 =3D> /usr/lib/libglib-2.0.so.0 (0xdead2000)
 
-From: Rahul Saxena <rahul.saxena@intel.com>
+How can I fix this?=20
 
-Cover letter to update pvr driver to v1.0.2 in meta-cedartrail.
+Best regards,
 
-This update of the driver supports B3 stepping of the Cedarview processor a=
-nd also supports DP/eDP ports.
+Elvis Dowson
 
-Please update denzil branch with this patch series.
 
-Signed-off-by: Rahul Saxena <rahul.saxena@intel.com>
+--Apple-Mail=_A592E3C6-B573-41DD-B218-486EB9F2FA8B
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=us-ascii
 
---
-The following changes since commit ff7fdafba88a5b7676f601b3d16a97ce7d48c4a9=
-:
+<html><head></head><body style=3D"word-wrap: break-word; =
+-webkit-nbsp-mode: space; -webkit-line-break: after-white-space; =
+"><div>Hi,</div><div>&nbsp; &nbsp; &nbsp; I have added support for =
+gcc-4.5 and eglibc-2.13, in the retired tool-chain layer, and ran the =
+build, against the latest poky master branch, and get the following =
+warnings:</div><div><br></div><div><div><font class=3D"Apple-style-span" =
+face=3D"Monaco" size=3D"2">Build Configuration:</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">BB_VERSION &nbsp; =
+&nbsp; &nbsp; &nbsp;=3D "1.15.3"</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">TARGET_ARCH &nbsp; =
+&nbsp; &nbsp; =3D "powerpc"</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">TARGET_OS &nbsp; =
+&nbsp; &nbsp; &nbsp; =3D "linux"</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">MACHINE &nbsp; =
+&nbsp; &nbsp; &nbsp; &nbsp; =3D "virtex5"</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">DISTRO &nbsp; =
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=3D "poky"</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">DISTRO_VERSION =
+&nbsp; &nbsp;=3D "1.2+snapshot-20120825"</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">TUNE_FEATURES =
+&nbsp; &nbsp; =3D "m32 ppc440 fpu-soft"</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">TARGET_FPU &nbsp; =
+&nbsp; &nbsp; &nbsp;=3D "soft"</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">meta &nbsp; &nbsp; =
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">meta-yocto &nbsp; =
+&nbsp; &nbsp; &nbsp;=3D =
+"master-xilinx-ml507-gcc-4.5:230631343fd1439fcf5c408e1d31870f5490d235"</fo=
+nt></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
+size=3D"2">toolchain-layer &nbsp; =3D =
+"master-xilinx-ml507-gcc-4.5:7086c388699be96873d57f1d4c72ceaabf67846b"</fo=
+nt></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
+size=3D"2">meta-xilinx &nbsp; &nbsp; &nbsp; =3D =
+"master-xilinx-ml507-gcc-4.5:4625488ffab40bf9eed6ce36906e433430f0155d"</fo=
+nt></div></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
+size=3D"2"><br></font></div><div><font class=3D"Apple-style-span" =
+face=3D"Monaco" size=3D"2"><br></font></div><div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">WARNING: QA Issue: =
+udev: /lib/libgudev-1.0.so.0.0.1, installed in the base_prefix, requires =
+a shared library under exec_prefix (/usr): libgobject-2.0.so.0 =3D&gt; =
+/usr/lib/libgobject-2.0.so.0 (0xdead2000)</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">WARNING: QA Issue: =
+udev: /lib/libgudev-1.0.so.0.0.1, installed in the base_prefix, requires =
+a shared library under exec_prefix (/usr): libgthread-2.0.so.0 =3D&gt; =
+/usr/lib/libgthread-2.0.so.0 (0xdead3000)</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">WARNING: QA Issue: =
+udev: /lib/libgudev-1.0.so.0.0.1, installed in the base_prefix, requires =
+a shared library under exec_prefix (/usr): libffi.so.5 =3D&gt; =
+/usr/lib/libffi.so.5 (0xdead4000)</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">WARNING: QA Issue: =
+udev: /lib/libgudev-1.0.so.0.0.1, installed in the base_prefix, requires =
+a shared library under exec_prefix (/usr): libglib-2.0.so.0 =3D&gt; =
+/usr/lib/libglib-2.0.so.0 (0xdead5000)</font></div><div><font =
+class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">WARNING: QA Issue: =
+udev: /lib/udev/udev-acl, installed in the base_prefix, requires a =
+shared library under exec_prefix (/usr): libglib-2.0.so.0 =3D&gt; =
+/usr/lib/libglib-2.0.so.0 =
+(0xdead2000)</font></div><div><br></div></div><div>How can I fix =
+this?&nbsp;</div><div><br></div><div>Best =
+regards,</div><div><br></div><div>Elvis =
+Dowson</div><div><br></div></body></html>=
 
-  crownbay: make v3.4 the default kernel (2012-07-31 23:08:05 -0500)
-
-are available in the git repository at:
-  git://git.pokylinux.org/meta-intel-contrib rsaxena_1_3_M3
-  http://git.pokylinux.org/cgit.cgi/meta-intel-contrib/log/?h=3Drsaxena_1_3=
-_M3
-
-Rahul Saxena (2):
-  meta-cedartrail: Update SRCREV for the linux-yocto kernel pvr branch
-  meta-cedartrail: Update PVR graphics driver to version 1.0.2
-
- meta-cedartrail/README                             |    2 +-
- .../xorg-driver/cdv-pvr-driver.inc                 |   37 -----
- .../xorg-driver/cdv-pvr-driver_1.0.2.bb            |  143 ++++++++++++++++=
-++++
- .../xorg-driver/cdv-pvr-driver_1.0.bb              |   99 --------------
- .../recipes-kernel/linux/linux-yocto_3.0.bbappend  |    2 +-
- 5 files changed, 145 insertions(+), 138 deletions(-)  delete mode 100644 m=
-eta-cedartrail/recipes-graphics/xorg-driver/cdv-pvr-driver.inc
- create mode 100644 meta-cedartrail/recipes-graphics/xorg-driver/cdv-pvr-dr=
-iver_1.0.2.bb
- delete mode 100644 meta-cedartrail/recipes-graphics/xorg-driver/cdv-pvr-dr=
-iver_1.0.bb
-
---
-1.7.4.1
-
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
-
+--Apple-Mail=_A592E3C6-B573-41DD-B218-486EB9F2FA8B--
