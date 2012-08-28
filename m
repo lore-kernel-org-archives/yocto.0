@@ -1,26 +1,24 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9635EE01400
-	for <yocto@yoctoproject.org>; Mon, 27 Aug 2012 20:18:50 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id q7S3ImnA001816
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Mon, 27 Aug 2012 20:18:48 -0700 (PDT)
-Received: from bruce-ashfields-macbook.local (128.224.21.166) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.2.309.2; Mon, 27 Aug 2012 20:18:47 -0700
-Message-ID: <503C3896.5080509@windriver.com>
-Date: Mon, 27 Aug 2012 23:18:46 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7;
-	rv:9.0) Gecko/20111222 Thunderbird/9.0.1
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AB79BE01402
+	for <yocto@yoctoproject.org>; Tue, 28 Aug 2012 00:05:07 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 28 Aug 2012 00:05:05 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,325,1344236400"; d="scan'208";a="192167854"
+Received: from unknown (HELO helios.localnet) ([10.252.121.139])
+	by orsmga002.jf.intel.com with ESMTP; 28 Aug 2012 00:05:05 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: openembedded-core@lists.linuxtogo.org
+Date: Tue, 28 Aug 2012 08:05:03 +0100
+Message-ID: <2381126.z6HOKOkkxB@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.9 (Linux/3.2.0-29-generic-pae; KDE/4.9.0; i686; ; )
+In-Reply-To: <2404459.dJBf5OQotX@helios>
+References: <2404459.dJBf5OQotX@helios>
 MIME-Version: 1.0
-To: "Saxena, Rahul" <rahul.saxena@intel.com>
-References: <63ECFF2A2302B44093D7CE9E9962C4900332062C@ORSMSX103.amr.corp.intel.com>
-In-Reply-To: <63ECFF2A2302B44093D7CE9E9962C4900332062C@ORSMSX103.amr.corp.intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Hart,
-	Darren" <darren.hart@intel.com>
-Subject: Re: Poky 1.3_M3 branch does not work with linux-yocto 3.0 kernel ?
+Cc: yocto@yoctoproject.org, openembedded-devel@lists.linuxtogo.org
+Subject: Re: [OE-core] RFC: OE-Core task rework
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,53 +30,87 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 Aug 2012 03:18:50 -0000
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Tue, 28 Aug 2012 07:05:07 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On 12-08-27 8:14 PM, Saxena, Rahul wrote:
-> Hi,
->
-> I am building a BSP (meta-cedartrail) using 1.3 M3 branch of Poky.
->
-> When I try to boot a image such as core-image-sato, I get kernel panic
-> and errors such as:
->
-> VFS: Cannot open root device “ram0” or unkown-block(0,0)
->
-> Please append a correct “root=” boot option; here are the available
->
-> partitions:
->
-> VFS: unable to mount root fs on unknown block(0,0)
->
-> User configuration error – no valid rootfilesystem found
->
-> I do see that the root file system exists in
-> cedartrail-poky-linux/core-image-sato-1.0-r0/rootfs dir..
->
-> I did not see this problem when I uses a earlier commit of the Poky
-> master branch.
->
-> It seems like something broke with 1.3 M3 branch that prevents a proper
-> build with 3.0 kernel. I do need to build my BSP with 3.0 kernel.
->
-> (I was also told by Laurentiu Serban that 1.3 M3 Full Pass testing does
-> not include testing with the 3.0 kernel)
->
-> Any suggestions would be most welcome. I do need to build my BSP with
-> the 3.0 kernel.
+On Wednesday 15 August 2012 10:46:49 Paul Eggleton wrote:
+> Hi all,
+> 
+> There have been a few requests to review the task recipes (i.e. package
+> groups) provided by OE-Core, and indeed these have not really been looked at
+> seriously since OE-Core was created. Ideally I think we want them to be
+> useful to a wide audience and provide useful units of functionality that
+> can be added to an image without the person doing the selection having to
+> manually select too many individual packages. Imagine presenting the list
+> of tasks to someone in a UI for assembling images (such as Hob or
+> Narcissus) and you can start to see that we have some work to do in this
+> area.
+> 
+> I know various distros and users of OE-Core have created their own tasks or
+> resurrected tasks from OE-Classic, and this is an opportunity to perhaps
+> look at bringing some of these (or at least, parts of them) into the core.
+> It is true that tasks will often be an expression of distro policy, and we
+> also can't have any tasks in OE-Core that refer to packages that don't
+> exist in OE- Core; thus distros will always be extending the base tasks or
+> adding their own - and that's fine. However, with some thought I believe we
+> can come up with a set of tasks that are generally useful to most people
+> using OE-Core.
+> 
+> For reference, I've compiled a list on the wiki of the current tasks in OE-
+> Core with links to the recipes and some notes:
+> 
+>   http://www.openembedded.org/wiki/OE-Core_Task_Rework
+> 
+> Some of the things I think we ought to consider/address as part of this
+> exercise:
+> 
+> 1) Do we rename "task" to something a little more understandable to the
+> uninitiated, such as "package group"? The word "task" is already used in a
+> much more natural sense within bitbake as a unit of work. Historically I
+> believe we picked up this term from Debian but I'm not aware of significant
+> use by other mainstream distributions.
+> 
+> 2) Look at the existing tasks and:
+>  * evaluate their usefulness
+>  * remove any that are obsolete
+>  * adjust existing contents if needed
+>  * look for useful groups of packages that might be added
+> 
+>  We need to pay particular attention to task-core-boot and task-base as
+> these are pulled in by default in any image that inherits from
+> core-image.bbclass - if these are not generally working for people that are
+> creating their own images, we need to change them such that they are.
+> 
+> 3) Ensure all task recipes follow reasonable patterns:
+>  *  Fix recipe DESCRIPTIONs to make sense (and not contain Poky references)
+>  *  Ensure all individual packages have a decent SUMMARY/DESCRIPTION
+>  *  Try to make each task have a reasonable name - there are some current
+> uses of "core" and "base" that don't actually convey any meaning; LSB
+> specific tasks should be named as such, etc.
+>  *  Make all tasks inherit task.bbclass so that they get proper dbg/dev
+> packages and any other common task functionality
+> 
+> 4) Consider the usefulness of the existing PACKAGE_GROUP_ structure which
+> converts some IMAGE_FEATURES into the addition of tasks to be installed (see
+> classes/core-image.bbclass). At the very least we should probably rename
+> this if we rename tasks to package groups, and there's a question as to how
+> IMAGE_FEATURES scales - should every task be represented in there or only a
+> select list? Would we be better off not trying to bring any tasks in via
+> IMAGE_FEATURES at all and mostly leave that to control post-processing
+> (e.g. package-management, debug-tweaks, etc.)?
+> 
+> Please reply with your thoughts. Once we've come to a consensus on the
+> things we want to do (allowing plenty of time for discussion), I'll look at
+> putting together a set of patches that makes the appropriate changes.
 
-Hmm. It should work, I booted one not that long ago. Can you force
-qemux86 to prefer the 3.0 kernel and see if that boots ? That would
-at least start to isolate the potential problem areas.
+So, any further thoughts on this one?
 
-Bruce
+Cheers,
+Paul
 
->
-> Thanks
->
-> Rahul
->
+-- 
 
+Paul Eggleton
+Intel Open Source Technology Centre
 
