@@ -1,32 +1,33 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-ey0-f176.google.com (mail-ey0-f176.google.com
-	[209.85.215.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 12993E00347
-	for <yocto@yoctoproject.org>; Tue, 28 Aug 2012 10:04:38 -0700 (PDT)
-Received: by eabd1 with SMTP id d1so1842477eab.35
-	for <yocto@yoctoproject.org>; Tue, 28 Aug 2012 10:04:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type:content-transfer-encoding;
-	bh=JzBMJbFMcti8m46dRtDvvyMGp40lFX4N5N0CZ2ZwbF8=;
-	b=p0eSnig5hcGmRnGDK1mShV26uA4ZyRKRcSMts4s6ZnALs1UYfMmY7zaJ1+MZ4AyeDQ
-	E5Ntr07mluOplYf+OW7ECjhOx6d0sqhUupAYZtwW8TcaKixe36M8mxKn4Ftza99DgfJT
-	blcIY+oGNTJD1S+IO4bbpfiZtNYf81PH+GqjmZn3Alfz4ElLNiJGFLIpBmbrJ/HKixEG
-	C/kep0LTjelA/13Pj7E08bA/DPG1WYaeecw/sX9oQZILdQRFAIlx+U3VS4e1KW9vjfBF
-	nZh95jf4G5SBTc+o56zMEAKSfYUKQMLViGUkEa3buf8pVoqfWv3m1jRhUlFWiZlspgZ2
-	VR9w==
-Received: by 10.14.218.134 with SMTP id k6mr23080831eep.14.1346173473439; Tue,
-	28 Aug 2012 10:04:33 -0700 (PDT)
+Return-Path: <song.liu@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6EA91E0049B
+	for <yocto@yoctoproject.org>; Tue, 28 Aug 2012 15:31:28 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 28 Aug 2012 15:31:27 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,330,1344236400"; d="scan'208";a="192526793"
+Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
+	by orsmga002.jf.intel.com with ESMTP; 28 Aug 2012 15:31:20 -0700
+Received: from orsmsx102.amr.corp.intel.com (10.22.225.129) by
+	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Tue, 28 Aug 2012 15:31:20 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.152]) by
+	ORSMSX102.amr.corp.intel.com ([169.254.1.89]) with mapi id
+	14.01.0355.002; Tue, 28 Aug 2012 15:31:20 -0700
+From: "Liu, Song" <song.liu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Minutes: Yocto Project Technical Team Meeting - Tuesday,
+	August 28, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+Thread-Index: AQHNhWzYrw6VbsaO0EemPyfQ3YxPMA==
+Date: Tue, 28 Aug 2012 22:31:19 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A4852395B@ORSMSX101.amr.corp.intel.com>
+References: <7E680CB2A76BB8438D08CF13C09FC53A4844CAD5@ORSMSX101.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-Received: by 10.14.2.5 with HTTP; Tue, 28 Aug 2012 10:04:01 -0700 (PDT)
-In-Reply-To: <4439C3C0562087488F139C696CD862A713217A37@SBS-MEDEC.medecbenelux.local>
-References: <4439C3C0562087488F139C696CD862A713217A37@SBS-MEDEC.medecbenelux.local>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Tue, 28 Aug 2012 10:04:01 -0700
-Message-ID: <CAMKF1sqiCKPxnkaMYAnxyqA0jG01oWxJNi9pC5zP0vjUPyng_A@mail.gmail.com>
-To: Tim Verstraete <Tim.Verstraete@medecbenelux.be>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Ubuntu PPA usage in Yocto
+Subject: Minutes: Yocto Project Technical Team Meeting - Tuesday, August 28, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,62 +39,88 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 Aug 2012 17:04:39 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Tue, 28 Aug 2012 22:31:28 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Aug 28, 2012 at 2:50 AM, Tim Verstraete
-<Tim.Verstraete@medecbenelux.be> wrote:
-> Hi everybody,
->
->
->
-> I keep on seeing some interesting software packages into the PPA for Ubun=
-tu
-> ... now I was wondering is there a way within Yocto to reuse those PPA
-> package (not from the machine with apt-get) but with a recipe?
->
->
->
-> Take for example the TI OMAP4 =E2=80=A6 on the TI Launchpad I see:
-> https://launchpad.net/~tiomap-dev/+archive/release pvr-omap4-dkms and i
-> would like to use this. How should I add such thing in yocto.
->
->
+Attendees:
+Cristian, LaurentiuS, Andrew, Cristina, ScottR, TomZ, Bjorn, Richard, Saul,=
+ Kevin, PaulE, DaveSt, Nitin, Belen, Mihai, Alex, Beth, Sean, Ross, Song
+=A0
+Agenda:
+=A0
+* Opens collection - 5 min (Song)
+* Yocto 1.3 M3 release readiness (All)
+  https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.3_Status#Milestone_3=
+=20
+  https://wiki.yoctoproject.org/wiki/Yocto_1.3_Milestone_Test_Report  (M3 r=
+eport is at the bottom of the page)
+    - Function complete: most are completed, some are moved to M4, CCB appr=
+oved that change.
+    - Build & Release: all features and core BSPs can be build with no erro=
+r.
+    - Open bugs: All M3 high's are fixed, except 2 reopened recently.
+      . 2775 is reopened: RP - there is a kernel patch, we will need to ide=
+ntify and pull it in.=20
+      . 2675 is a 1.2.1 bug. QA verified that that is fixed.
+    - Build Performance: we have about 13 minutes improvement over M2.=20
+    - Consensus: release M3. song will send email to CCB and Beth/Michael w=
+ill release this week.
+=A0
+* Yocto 1.3 status  - 10 min (Song/team)
+  https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.3_Status =20
+    - Wiki status page updated with feature development and bug fixing prog=
+ress.
+    - Record week for bug fixing: 39 resolved (medium above bugs). Please k=
+eep the good work going!
+    - Most of the high features will be changed to medium or medium+. Pleas=
+e send questions/comments to Song. Song will send email out later on.
+    - 2675 is targeted for M3, high.
+    - 1729-1730: multi-lib enabling, completed? Radu/Richard. Alex will fol=
+low up
+    - Beth: Fixed some long standing AB bugs last weekend. There will be mo=
+re AB downtime coming (one on 9/7) to fix some long standing AB bug. Any qu=
+estions/feedback  please let me know.
+    -Beth: Master is mostly green except eclipse plug-in is failing. There =
+is some kernel fetch issues. Will open a bug against this. Build appliance =
+is in. make the water fall harder to read.  Using grid view should help.  I=
+ona looked at the Eclipse issue, cannot recreate. Could be related to that =
+some local libs are upgraded.=20
+=A0
+* SWAT team rotation: Ross -> Ross
+  - LaurentiuP is on vacation, Ross volunteered to stay on. Thank you, Ross=
+!
+=A0
+* Opens - 10 min
+  - LaurentiuS: bug 2995. Saul/RP: already fixed.
+  - Richard - should mention nativesdk:
+    already mentioned this in mailing list. Got some issues, pulled some pa=
+tches from the mailing list for this, would like to let people know this. P=
+lease let me know if you have any feedback.
+=A0
+* Team sharing - 20 min
+  - ScottR: new manual on the latest doc area on the website. All 6 docs co=
+ncatenated together for the purpose of searching. Please take a look and co=
+mment if you can.
+  - Paul: working on some bitabke tools last week, enabled new feature to a=
+llow specify a recipe then search data files for you. Will follow cache dir=
+ectory recursively. Find out why a task was re-run. The patches are on the =
+mailing list for this. Again, Tasks-rework, RFC sent out, please reply.
+  - Christian: working on adding a new machine qemu86 machine with kvm enab=
+led, with gto to improve networking and other io performance.  Add virtio d=
+river next. It's not clearly how I will go with this one. There are some op=
+tions. Looking for input. 2550. Saul: virtio is enabled by kernel by defaul=
+t right now. Will follow up with Christian
+  - RP: bitbake for tracing, and message improvement. If people are not cle=
+ar where the error is after seeing the error message, please file bugs. It =
+will improve the user experience. Show the error message in the bug.
+  -Bjorn: posted patches on package testing (Ptest), it would be nice to ha=
+ve everyone interested to take a look and point out errors. It's getting bi=
+gger, would like to make sure the direction is correct. So please send feed=
+back. RP: this probably something we should talk more on the oe-core list. =
+Saul: on the right track.
 
-well you would start by using PACKAGE_CLASSES =3D "
-package_deb" in your local.conf
-
-that should generate you an image with dpkg as packaging backend
-
-IMAGE_FEATURES +=3D "package-management"
-
-that will add online package management component to your image
-
-build your image and it should have knobs for hooking in feeds if you
-know how its done for apt
-
-bigger problems start here where the packages in that PPA may require
-different versions of package dependencies than what you get from
-yocto image and even
-worse they might use a different ABI etc.
 
 
->
-> Thank in advance,
->
->
->
-> Kind regards,
->
->
->
-> Tim
->
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
 
