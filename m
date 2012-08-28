@@ -1,24 +1,22 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AB79BE01402
-	for <yocto@yoctoproject.org>; Tue, 28 Aug 2012 00:05:07 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 28 Aug 2012 00:05:05 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,325,1344236400"; d="scan'208";a="192167854"
-Received: from unknown (HELO helios.localnet) ([10.252.121.139])
-	by orsmga002.jf.intel.com with ESMTP; 28 Aug 2012 00:05:05 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: openembedded-core@lists.linuxtogo.org
-Date: Tue, 28 Aug 2012 08:05:03 +0100
-Message-ID: <2381126.z6HOKOkkxB@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.9 (Linux/3.2.0-29-generic-pae; KDE/4.9.0; i686; ; )
-In-Reply-To: <2404459.dJBf5OQotX@helios>
-References: <2404459.dJBf5OQotX@helios>
+Return-Path: <Tim.Verstraete@medecbenelux.be>
+Received: from mail.medecbenelux.be (mail.medecbenelux.be [81.83.14.242])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 85CACE0141D
+	for <yocto@yoctoproject.org>; Tue, 28 Aug 2012 02:50:48 -0700 (PDT)
+Received: from SBS-MEDEC.medecbenelux.local ([fe80::1b66:a66e:3778:1407]) by
+	SBS-MEDEC.medecbenelux.local ([fe80::1b66:a66e:3778:1407%10]) with mapi
+	id 14.01.0355.002; Tue, 28 Aug 2012 11:50:45 +0200
+From: Tim Verstraete <Tim.Verstraete@medecbenelux.be>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Ubuntu PPA usage in Yocto
+Thread-Index: Ac2FAfjSRugwdPgNQ6eZs5RZrLwJ9A==
+Date: Tue, 28 Aug 2012 09:50:44 +0000
+Message-ID: <4439C3C0562087488F139C696CD862A713217A37@SBS-MEDEC.medecbenelux.local>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [2002:5153:ef2:0:f1ea:c44f:6a49:d303]
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org, openembedded-devel@lists.linuxtogo.org
-Subject: Re: [OE-core] RFC: OE-Core task rework
+Subject: Ubuntu PPA usage in Yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,87 +28,108 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 Aug 2012 07:05:07 -0000
-Content-Transfer-Encoding: 7Bit
+X-List-Received-Date: Tue, 28 Aug 2012 09:50:49 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_4439C3C0562087488F139C696CD862A713217A37SBSMEDECmedecbe_"
+
+--_000_4439C3C0562087488F139C696CD862A713217A37SBSMEDECmedecbe_
 Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On Wednesday 15 August 2012 10:46:49 Paul Eggleton wrote:
-> Hi all,
-> 
-> There have been a few requests to review the task recipes (i.e. package
-> groups) provided by OE-Core, and indeed these have not really been looked at
-> seriously since OE-Core was created. Ideally I think we want them to be
-> useful to a wide audience and provide useful units of functionality that
-> can be added to an image without the person doing the selection having to
-> manually select too many individual packages. Imagine presenting the list
-> of tasks to someone in a UI for assembling images (such as Hob or
-> Narcissus) and you can start to see that we have some work to do in this
-> area.
-> 
-> I know various distros and users of OE-Core have created their own tasks or
-> resurrected tasks from OE-Classic, and this is an opportunity to perhaps
-> look at bringing some of these (or at least, parts of them) into the core.
-> It is true that tasks will often be an expression of distro policy, and we
-> also can't have any tasks in OE-Core that refer to packages that don't
-> exist in OE- Core; thus distros will always be extending the base tasks or
-> adding their own - and that's fine. However, with some thought I believe we
-> can come up with a set of tasks that are generally useful to most people
-> using OE-Core.
-> 
-> For reference, I've compiled a list on the wiki of the current tasks in OE-
-> Core with links to the recipes and some notes:
-> 
->   http://www.openembedded.org/wiki/OE-Core_Task_Rework
-> 
-> Some of the things I think we ought to consider/address as part of this
-> exercise:
-> 
-> 1) Do we rename "task" to something a little more understandable to the
-> uninitiated, such as "package group"? The word "task" is already used in a
-> much more natural sense within bitbake as a unit of work. Historically I
-> believe we picked up this term from Debian but I'm not aware of significant
-> use by other mainstream distributions.
-> 
-> 2) Look at the existing tasks and:
->  * evaluate their usefulness
->  * remove any that are obsolete
->  * adjust existing contents if needed
->  * look for useful groups of packages that might be added
-> 
->  We need to pay particular attention to task-core-boot and task-base as
-> these are pulled in by default in any image that inherits from
-> core-image.bbclass - if these are not generally working for people that are
-> creating their own images, we need to change them such that they are.
-> 
-> 3) Ensure all task recipes follow reasonable patterns:
->  *  Fix recipe DESCRIPTIONs to make sense (and not contain Poky references)
->  *  Ensure all individual packages have a decent SUMMARY/DESCRIPTION
->  *  Try to make each task have a reasonable name - there are some current
-> uses of "core" and "base" that don't actually convey any meaning; LSB
-> specific tasks should be named as such, etc.
->  *  Make all tasks inherit task.bbclass so that they get proper dbg/dev
-> packages and any other common task functionality
-> 
-> 4) Consider the usefulness of the existing PACKAGE_GROUP_ structure which
-> converts some IMAGE_FEATURES into the addition of tasks to be installed (see
-> classes/core-image.bbclass). At the very least we should probably rename
-> this if we rename tasks to package groups, and there's a question as to how
-> IMAGE_FEATURES scales - should every task be represented in there or only a
-> select list? Would we be better off not trying to bring any tasks in via
-> IMAGE_FEATURES at all and mostly leave that to control post-processing
-> (e.g. package-management, debug-tweaks, etc.)?
-> 
-> Please reply with your thoughts. Once we've come to a consensus on the
-> things we want to do (allowing plenty of time for discussion), I'll look at
-> putting together a set of patches that makes the appropriate changes.
+Hi everybody,
 
-So, any further thoughts on this one?
+I keep on seeing some interesting software packages into the PPA for Ubuntu=
+ ... now I was wondering is there a way within Yocto to reuse those PPA  pa=
+ckage (not from the machine with apt-get) but with a recipe?
 
-Cheers,
-Paul
+Take for example the TI OMAP4 ... on the TI Launchpad I see: https://launch=
+pad.net/~tiomap-dev/+archive/release pvr-omap4-dkms and i would like to use=
+ this. How should I add such thing in yocto.
 
--- 
+Thank in advance,
 
-Paul Eggleton
-Intel Open Source Technology Centre
+Kind regards,
 
+Tim
+
+--_000_4439C3C0562087488F139C696CD862A713217A37SBSMEDECmedecbe_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 70.85pt 70.85pt 70.85pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"NL" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hi everybody,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">I keep on seeing some interesti=
+ng software packages into the PPA for Ubuntu ... now I was wondering is the=
+re a way within Yocto to reuse those PPA&nbsp; package (not from the machin=
+e with apt-get) but with a recipe?<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Take for example the TI OMAP4 &=
+#8230; on the TI Launchpad I see:
+</span><a href=3D"https://launchpad.net/~tiomap-dev/&#43;archive/release"><=
+span lang=3D"EN-US">https://launchpad.net/~tiomap-dev/&#43;archive/release<=
+/span></a><span lang=3D"EN-US"> pvr-omap4-dkms and i would like to use this=
+. How should I add such thing in yocto.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Thank in advance,<o:p></o:p></s=
+pan></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Kind regards,<o:p></o:p></span>=
+</p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Tim<o:p></o:p></span></p>
+</div>
+</body>
+</html>
+
+--_000_4439C3C0562087488F139C696CD862A713217A37SBSMEDECmedecbe_--
