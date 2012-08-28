@@ -1,37 +1,25 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
-	[209.85.160.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 48B17E0074B
-	for <yocto@yoctoproject.org>; Wed, 29 Aug 2012 07:21:46 -0700 (PDT)
-Received: by pbbrq13 with SMTP id rq13so1527153pbb.35
-	for <yocto@yoctoproject.org>; Wed, 29 Aug 2012 07:21:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=references:in-reply-to:mime-version:content-transfer-encoding
-	:content-type:message-id:cc:x-mailer:from:subject:date:to;
-	bh=tDasMxqUFoGIqMr3N4ZLp++7va850mXU4NbM+ogimKk=;
-	b=hKstEYMfTzJ51CpY6M7nY+6AzvfSWTsX+p6W0ZHrGfOgbKjuJhhEQHtBa9FCtvFuqc
-	NDV8BvMzMovx6s6QFttJs399sluYvYIVqjsLoJN8OmCA2va88PKVFqoAlc9FBSXJzsdy
-	lToER1a1BxwgYKUg61Goe8YXlRy4qnp8MtrQ8GZM7YFZpB0pXJFHKWXrDyJE/jQgUUg7
-	E3xq+aOwcKHbODGKUj2ZX8otbkYmiBRk8VAdXXek5TumEKykp4ermWbUiMFTSLS3FxFi
-	nKdHuj9uuxEM2Pt0cSonogd9lc2aswpDxAvIuUcEEWTU3uoSUXj3iYBz5sCkn8VX8YPF
-	3u6A==
-Received: by 10.66.88.1 with SMTP id bc1mr4075843pab.18.1346250103919;
-	Wed, 29 Aug 2012 07:21:43 -0700 (PDT)
-Received: from [192.168.1.66] (99-57-140-209.lightspeed.sntcca.sbcglobal.net.
-	[99.57.140.209])
-	by mx.google.com with ESMTPS id b4sm19445161pbw.28.2012.08.29.07.21.41
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Wed, 29 Aug 2012 07:21:42 -0700 (PDT)
-References: <CA+69FtDmQvB_ex4guS12Xrf0oXhQj-7A4tZ7-PWof4YWWCcRyA@mail.gmail.com>
-In-Reply-To: <CA+69FtDmQvB_ex4guS12Xrf0oXhQj-7A4tZ7-PWof4YWWCcRyA@mail.gmail.com>
-Mime-Version: 1.0 (1.0)
-Message-Id: <355A3A69-B4E5-4DA3-9E0B-C243280D864A@gmail.com>
-X-Mailer: iPad Mail (9B206)
-From: Khem Raj <raj.khem@gmail.com>
-Date: Wed, 29 Aug 2012 07:21:41 -0700
-To: Hartmut Behrens <hartmut.behrens@gmail.com>
+Return-Path: <darren.hart@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E7F53E00769
+	for <yocto@yoctoproject.org>; Wed, 29 Aug 2012 10:42:18 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 29 Aug 2012 10:42:18 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,335,1344236400"; d="scan'208";a="215398344"
+Received: from unknown (HELO envy.home) ([10.255.13.96])
+	by fmsmga002.fm.intel.com with ESMTP; 29 Aug 2012 10:42:18 -0700
+Message-ID: <503D1D55.1010205@intel.com>
+Date: Tue, 28 Aug 2012 12:34:45 -0700
+From: Darren Hart <darren.hart@intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:14.0) Gecko/20120717 Thunderbird/14.0
+MIME-Version: 1.0
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
+References: <63ECFF2A2302B44093D7CE9E9962C4900332062C@ORSMSX103.amr.corp.intel.com>
+	<503C3896.5080509@windriver.com>
+In-Reply-To: <503C3896.5080509@windriver.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Kernel does not emit any boot-up messages
+Subject: Re: Poky 1.3_M3 branch does not work with linux-yocto 3.0 kernel ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,108 +31,66 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 29 Aug 2012 14:21:46 -0000
-Content-Transfer-Encoding: 7bit
-Content-Type: multipart/alternative;
-	boundary=Apple-Mail-B5A9AE3E-9AC1-4BED-B79A-68718EDFF960
+X-List-Received-Date: Wed, 29 Aug 2012 17:42:19 -0000
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: 8bit
 
---Apple-Mail-B5A9AE3E-9AC1-4BED-B79A-68718EDFF960
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=us-ascii
+On 08/27/2012 08:18 PM, Bruce Ashfield wrote:
+> On 12-08-27 8:14 PM, Saxena, Rahul wrote:
+>> Hi,
+>>
+>> I am building a BSP (meta-cedartrail) using 1.3 M3 branch of Poky.
+>>
+>> When I try to boot a image such as core-image-sato, I get kernel panic
+>> and errors such as:
+>>
+>> VFS: Cannot open root device “ram0” or unkown-block(0,0)
+>>
+>> Please append a correct “root=” boot option; here are the available
+>>
+>> partitions:
+>>
+>> VFS: unable to mount root fs on unknown block(0,0)
+>>
+>> User configuration error – no valid rootfilesystem found
+>>
+>> I do see that the root file system exists in
+>> cedartrail-poky-linux/core-image-sato-1.0-r0/rootfs dir..
+>>
+>> I did not see this problem when I uses a earlier commit of the Poky
+>> master branch.
+>>
+>> It seems like something broke with 1.3 M3 branch that prevents a proper
+>> build with 3.0 kernel. I do need to build my BSP with 3.0 kernel.
+>>
+>> (I was also told by Laurentiu Serban that 1.3 M3 Full Pass testing does
+>> not include testing with the 3.0 kernel)
+>>
+>> Any suggestions would be most welcome. I do need to build my BSP with
+>> the 3.0 kernel.
+> 
+> Hmm. It should work, I booted one not that long ago. Can you force
+> qemux86 to prefer the 3.0 kernel and see if that boots ? That would
+> at least start to isolate the potential problem areas.
 
-What does your. Overo  machine.conf looks like ?
+However, won't 3.0 be removed for the 1.3 release? Keeping with 3.4 and 3.2?
 
--Khem
+--
+Darren
 
-On Aug 29, 2012, at 4:04 AM, Hartmut Behrens <hartmut.behrens@gmail.com> wro=
-te:
+> 
+> Bruce
+> 
+>>
+>> Thanks
+>>
+>> Rahul
+>>
+> 
 
-> Hi All,
->=20
-> A newbie question:
->=20
-> After creating a new bsp for an Overo using the yocto-bsp script and modif=
-ying some kernel config's using menuconfig, I successfully created and loade=
-d the image (core-image-minimal) onto an SD card and booted it.
->=20
-> However, I do not see the kernel emitting any boot messages. Am I forgetti=
-ng to include some recipes?
->=20
->=20
-> =20
-> OMAP36XX/37XX-GP ES2.1, CPU-OPP2, L3-165MHz, Max CPU Clock 1 Ghz
-> OMAP3 Beagle board + LPDDR/NAND
-> I2C:   ready
-> DRAM:  512 MiB
-> NAND:  512 MiB
-> MMC:   OMAP SD/MMC: 0
-> *** Warning - bad CRC, using default environment
->=20
-> In:    serial
-> Out:   serial
-> Err:   serial
-> Beagle Rev Ax/Bx
-> No EEPROM on expansion board
-> Die ID #36be00029ff80000016071640201b009
-> Hit any key to stop autoboot:  0=20
-> SD/MMC found on device 0
-> reading uEnv.txt
->=20
-> ** Unable to read "uEnv.txt" from mmc 0:1 **
-> reading uImage
->=20
-> 3356520 bytes read
-> Booting from mmc ...
-> ## Booting kernel from Legacy Image at 82000000 ...
->    Image Name:   Linux-3.2.18-rt16-yocto-preempt-
->    Image Type:   ARM Linux Kernel Image (uncompressed)
->    Data Size:    3356456 Bytes =3D 3.2 MiB
->    Load Address: 80008000
->    Entry Point:  80008000
->    Verifying Checksum ... OK
->    Loading Kernel Image ... OK
-> OK
->=20
-> Starting kernel ...
->=20
-> Uncompressing Linux... done, booting the kernel.
->=20
-> Yocto (Built by Poky 7.0) 1.2+snapshot-20120828=20
->  ttyO2
->=20
-> overo login: root
-> root@overo:~# uname -a
-> Linux overo 3.2.18-rt16-yocto-preempt-rt #4 PREEMPT RT Tue Aug 28 22:36:26=
- SAST 2012 armv7l GNU/Linux
->=20
->=20
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
 
---Apple-Mail-B5A9AE3E-9AC1-4BED-B79A-68718EDFF960
-Content-Transfer-Encoding: 7bit
-Content-Type: text/html;
-	charset=utf-8
+-- 
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
-<html><head></head><body bgcolor="#FFFFFF"><div>What does your. Overo&nbsp;<span class="Apple-style-span" style="-webkit-tap-highlight-color: rgba(26, 26, 26, 0.296875); -webkit-composition-fill-color: rgba(175, 192, 227, 0.230469); -webkit-composition-frame-color: rgba(77, 128, 180, 0.230469); ">&nbsp;machine.conf looks like ?</span></div><div><br>-Khem</div><div><br>On Aug 29, 2012, at 4:04 AM, Hartmut Behrens &lt;<a href="mailto:hartmut.behrens@gmail.com">hartmut.behrens@gmail.com</a>&gt; wrote:<br><br></div><div></div><blockquote type="cite"><div><div class="gmail_quote"><div>Hi All,</div><div><br></div><div>A newbie question:</div><div><br></div><div>After creating a new bsp for an Overo using the yocto-bsp script and modifying some kernel config's using menuconfig, I&nbsp;successfully&nbsp;created and loaded the image (core-image-minimal) onto an SD card and booted it.</div>
-<div><br></div><div>However, I do not see the kernel emitting any boot messages. Am I forgetting to include some recipes?</div><div><br></div><div><br></div><div>&nbsp;</div><blockquote class="gmail_quote" style="margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
-<div></div><div>OMAP36XX/37XX-GP ES2.1, CPU-OPP2, L3-165MHz, Max CPU Clock 1 Ghz</div><div>OMAP3 Beagle board + LPDDR/NAND</div><div>I2C: &nbsp; ready</div><div>DRAM: &nbsp;512 MiB</div>
-<div>NAND: &nbsp;512 MiB</div><div>MMC: &nbsp; OMAP SD/MMC: 0</div><div>*** Warning - bad CRC, using default environment</div><div><br></div><div>In: &nbsp; &nbsp;serial</div><div>Out: &nbsp; serial</div><div>Err: &nbsp; serial</div><div>Beagle Rev Ax/Bx</div>
-
-<div>No EEPROM on expansion board</div><div>Die ID #36be00029ff80000016071640201b009</div><div>Hit any key to stop autoboot: &nbsp;0&nbsp;</div><div>SD/MMC found on device 0</div><div>reading uEnv.txt</div><div><br></div><div>** Unable to read "uEnv.txt" from mmc 0:1 **</div>
-
-<div>reading uImage</div><div><br></div><div>3356520 bytes read</div><div>Booting from mmc ...</div><div>## Booting kernel from Legacy Image at 82000000 ...</div><div>&nbsp; &nbsp;Image Name: &nbsp; Linux-3.2.18-rt16-yocto-preempt-</div>
-
-<div>&nbsp; &nbsp;Image Type: &nbsp; ARM Linux Kernel Image (uncompressed)</div><div>&nbsp; &nbsp;Data Size: &nbsp; &nbsp;3356456 Bytes = 3.2 MiB</div><div>&nbsp; &nbsp;Load Address: 80008000</div><div>&nbsp; &nbsp;Entry Point: &nbsp;80008000</div><div>&nbsp; &nbsp;Verifying Checksum ... OK</div>
-
-<div>&nbsp; &nbsp;Loading Kernel Image ... OK</div><div>OK</div><div><br></div><div>Starting kernel ...</div><div><br></div><div>Uncompressing Linux... done, booting the kernel.</div><div><br></div><div>Yocto (Built by Poky 7.0) 1.2+snapshot-20120828&nbsp;</div>
-
-<div>&nbsp;ttyO2</div><div><br></div><div>overo login: root</div><div>root@overo:~# uname -a</div><div>Linux overo 3.2.18-rt16-yocto-preempt-rt #4 PREEMPT RT Tue Aug 28 22:36:26 SAST 2012 armv7l GNU/Linux</div><div><br></div>
-
-</blockquote></div><br>
-</div></blockquote><blockquote type="cite"><div><span>_______________________________________________</span><br><span>yocto mailing list</span><br><span><a href="mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a></span><br><span><a href="https://lists.yoctoproject.org/listinfo/yocto">https://lists.yoctoproject.org/listinfo/yocto</a></span><br></div></blockquote></body></html>
-
---Apple-Mail-B5A9AE3E-9AC1-4BED-B79A-68718EDFF960--
