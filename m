@@ -1,26 +1,32 @@
-Return-Path: <bjst@giant.haxx.se>
-Received: from giant.haxx.se (giant.haxx.se [80.67.6.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 07383E0141D
-	for <yocto@yoctoproject.org>; Tue, 28 Aug 2012 04:17:16 -0700 (PDT)
-Received: from giant.haxx.se (localhost.localdomain [127.0.0.1])
-	by giant.haxx.se (8.14.4/8.14.4/Debian-2) with ESMTP id q7SBH8Nc017152
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NOT);
-	Tue, 28 Aug 2012 13:17:08 +0200
-Received: (from bjst@localhost)
-	by giant.haxx.se (8.14.4/8.14.4/Submit) id q7SBH8lf017150;
-	Tue, 28 Aug 2012 13:17:08 +0200
-Date: Tue, 28 Aug 2012 13:17:08 +0200
-From: =?iso-8859-1?Q?Bj=F6rn?= Stenberg <bjst@enea.com>
-To: Richard Purdie <richard.purdie@linuxfoundation.org>
-Message-ID: <20120828111708.GB28777@giant>
-References: <1345731602-47313-1-git-send-email-bjst@enea.com>
-	<1345731602-47313-2-git-send-email-bjst@enea.com>
-	<1345822661.14369.79.camel@ted>
-MIME-Version: 1.0
-In-Reply-To: <1345822661.14369.79.camel@ted>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 1/3] Add -ptest package group
+Return-Path: <opensource@keylevel.com>
+Received: from hxhsvr03.internetintuitive.net (hxhsvr03.internetintuitive.net
+	[80.254.228.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4BCEBE0141D
+	for <yocto@yoctoproject.org>; Tue, 28 Aug 2012 05:40:41 -0700 (PDT)
+Received: from [109.224.129.17] (helo=macbook-pro.durham.keylevel.com)
+	by hxhsvr03.internetintuitive.net with esmtpa (Exim 4.69)
+	(envelope-from <opensource@keylevel.com>)
+	id 1T6L5v-00011O-HH; Tue, 28 Aug 2012 13:40:35 +0100
+Mime-Version: 1.0 (Apple Message framework v1278)
+From: Chris Tapp <opensource@keylevel.com>
+In-Reply-To: <CAJTo0LboBhu+NM6WTTsV+vmj73OoUtcf_-z07EKZMNMRhQ1F4w@mail.gmail.com>
+Date: Tue, 28 Aug 2012 13:40:32 +0100
+Message-Id: <EF6C4AA8-5B3B-47BE-9696-C258424993E4@keylevel.com>
+References: <E5621C20-71E4-4AB7-BBAD-EE5CD0B9483E@keylevel.com>
+	<CAJTo0LboBhu+NM6WTTsV+vmj73OoUtcf_-z07EKZMNMRhQ1F4w@mail.gmail.com>
+To: "Burton, Ross" <ross.burton@intel.com>
+X-Mailer: Apple Mail (2.1278)
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - hxhsvr03.internetintuitive.net
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - keylevel.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Cc: "yocto@yoctoproject.org Project" <yocto@yoctoproject.org>
+Subject: Re: Xorg keyboard not working
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,46 +38,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 Aug 2012 11:17:17 -0000
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Tue, 28 Aug 2012 12:40:41 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
-Richard Purdie wrote:
-> Would a ptest.bbclass containing the above make more sense? How
-> widespread do we think these tests will be?
+On 28 Aug 2012, at 11:07, Burton, Ross wrote:
 
-Most source packages include some form of test suite that we want to make into a -ptest package. I would guesstimate the number to be somewhere between the number of -dbg and the number of -dev packages. This is why I felt it made sense to add the handling of -ptest side-by-side with the handling of -dev and -dbg.
+> On 27 August 2012 21:41, Chris Tapp <opensource@keylevel.com> wrote:
+>> I've got a system that has a working console and four virtual =
+terminals.
+>>=20
+>> I can start X and run an application using
+>>=20
+>> /usr/bin/xinit /usr/sbin/xinitrc -- /usr/bin/Xorg
+>>=20
+>> The application runs fine and is expected to run with no user =
+interaction. Keyboard input is sometimes needed to either kill the =
+application or switch to another virtual terminal to make some =
+configuration changes.
+>>=20
+>> However, I can't seem to get the keyboard to work - I can't switch =
+virtual terminal or force the application to exit and the caps-lock =
+light doesn't toggle. This is the same keyboard that was used to kick =
+the application off. xf86-input-keyboard and xf86-input-evdev are both =
+listed in 'XSERVER' when the system is baked.
+>>=20
+>> Where should I be looking to work out why the keyboard isn't working?
+>=20
+> Does the keyboard work from a VT before X starts?  What user does X
+> run as -- my hunch is that it doesn't have permission to access the
+> input devices.  Check the Xorg log to see if there are any relevant
+> errors.
 
-> My biggest worry is the overhead of the patches to
-> software to enable the tests. Are you planning to engage the upstreams
-> and see if we can get them to accept the patches?
+Yes, the keyboard works fine from the VTs. X is running as root and I =
+can't see anything in the logs that are of any help!
 
-Upstreaming is absolutely the idea, both for the benefit of the entire ecosystem and of course to reduce the number of patches.
+Chris Tapp
 
-However I won't downplay the effort required to get hundreds of upstream projects to agree on a common concept for test cross compilation and result formatting.
+opensource@keylevel.com
+www.keylevel.com
 
-I see two main options: Implement first or discuss first.
 
-a) Implement first: We design and implement a good system for yocto/oe and then, once it has proven itself, engage the larger open source community with our already tested concept.
 
-Pro: It's easier to discuss an already working system
-Con: We'll have to manage patches for all packages until agreement
-
-b) Discuss first: We invite the whole open source community to discuss and try to agree on how to handle cross-compiled test cases and test result formatting before we implement anything.
-
-Pro: No increased patch load until agreement
-Con: No result until agreement, which could potentially take a long time
-
-My suggestion is a). I'm open for any and all suggestions that would make the patch load easier to manage.
-
-> Also these patches are against OE-Core so need to go to the
-> openembedded-code mailing list.
-
-I'll update the patches with the feedback I've got and post them to oe-core for further discussion.
-
-Thanks.
-
--- 
-Björn
 
