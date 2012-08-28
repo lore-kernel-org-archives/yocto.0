@@ -1,32 +1,32 @@
-Return-Path: <opensource@keylevel.com>
-Received: from hxhsvr03.internetintuitive.net (hxhsvr03.internetintuitive.net
-	[80.254.228.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4BCEBE0141D
-	for <yocto@yoctoproject.org>; Tue, 28 Aug 2012 05:40:41 -0700 (PDT)
-Received: from [109.224.129.17] (helo=macbook-pro.durham.keylevel.com)
-	by hxhsvr03.internetintuitive.net with esmtpa (Exim 4.69)
-	(envelope-from <opensource@keylevel.com>)
-	id 1T6L5v-00011O-HH; Tue, 28 Aug 2012 13:40:35 +0100
-Mime-Version: 1.0 (Apple Message framework v1278)
-From: Chris Tapp <opensource@keylevel.com>
-In-Reply-To: <CAJTo0LboBhu+NM6WTTsV+vmj73OoUtcf_-z07EKZMNMRhQ1F4w@mail.gmail.com>
-Date: Tue, 28 Aug 2012 13:40:32 +0100
-Message-Id: <EF6C4AA8-5B3B-47BE-9696-C258424993E4@keylevel.com>
-References: <E5621C20-71E4-4AB7-BBAD-EE5CD0B9483E@keylevel.com>
-	<CAJTo0LboBhu+NM6WTTsV+vmj73OoUtcf_-z07EKZMNMRhQ1F4w@mail.gmail.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-X-Mailer: Apple Mail (2.1278)
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - hxhsvr03.internetintuitive.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: "yocto@yoctoproject.org Project" <yocto@yoctoproject.org>
-Subject: Re: Xorg keyboard not working
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-ey0-f176.google.com (mail-ey0-f176.google.com
+	[209.85.215.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 12993E00347
+	for <yocto@yoctoproject.org>; Tue, 28 Aug 2012 10:04:38 -0700 (PDT)
+Received: by eabd1 with SMTP id d1so1842477eab.35
+	for <yocto@yoctoproject.org>; Tue, 28 Aug 2012 10:04:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type:content-transfer-encoding;
+	bh=JzBMJbFMcti8m46dRtDvvyMGp40lFX4N5N0CZ2ZwbF8=;
+	b=p0eSnig5hcGmRnGDK1mShV26uA4ZyRKRcSMts4s6ZnALs1UYfMmY7zaJ1+MZ4AyeDQ
+	E5Ntr07mluOplYf+OW7ECjhOx6d0sqhUupAYZtwW8TcaKixe36M8mxKn4Ftza99DgfJT
+	blcIY+oGNTJD1S+IO4bbpfiZtNYf81PH+GqjmZn3Alfz4ElLNiJGFLIpBmbrJ/HKixEG
+	C/kep0LTjelA/13Pj7E08bA/DPG1WYaeecw/sX9oQZILdQRFAIlx+U3VS4e1KW9vjfBF
+	nZh95jf4G5SBTc+o56zMEAKSfYUKQMLViGUkEa3buf8pVoqfWv3m1jRhUlFWiZlspgZ2
+	VR9w==
+Received: by 10.14.218.134 with SMTP id k6mr23080831eep.14.1346173473439; Tue,
+	28 Aug 2012 10:04:33 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.14.2.5 with HTTP; Tue, 28 Aug 2012 10:04:01 -0700 (PDT)
+In-Reply-To: <4439C3C0562087488F139C696CD862A713217A37@SBS-MEDEC.medecbenelux.local>
+References: <4439C3C0562087488F139C696CD862A713217A37@SBS-MEDEC.medecbenelux.local>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Tue, 28 Aug 2012 10:04:01 -0700
+Message-ID: <CAMKF1sqiCKPxnkaMYAnxyqA0jG01oWxJNi9pC5zP0vjUPyng_A@mail.gmail.com>
+To: Tim Verstraete <Tim.Verstraete@medecbenelux.be>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Ubuntu PPA usage in Yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,46 +38,62 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 Aug 2012 12:40:41 -0000
-Content-Type: text/plain; charset=us-ascii
+X-List-Received-Date: Tue, 28 Aug 2012 17:04:39 -0000
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-On 28 Aug 2012, at 11:07, Burton, Ross wrote:
+On Tue, Aug 28, 2012 at 2:50 AM, Tim Verstraete
+<Tim.Verstraete@medecbenelux.be> wrote:
+> Hi everybody,
+>
+>
+>
+> I keep on seeing some interesting software packages into the PPA for Ubun=
+tu
+> ... now I was wondering is there a way within Yocto to reuse those PPA
+> package (not from the machine with apt-get) but with a recipe?
+>
+>
+>
+> Take for example the TI OMAP4 =E2=80=A6 on the TI Launchpad I see:
+> https://launchpad.net/~tiomap-dev/+archive/release pvr-omap4-dkms and i
+> would like to use this. How should I add such thing in yocto.
+>
+>
 
-> On 27 August 2012 21:41, Chris Tapp <opensource@keylevel.com> wrote:
->> I've got a system that has a working console and four virtual =
-terminals.
->>=20
->> I can start X and run an application using
->>=20
->> /usr/bin/xinit /usr/sbin/xinitrc -- /usr/bin/Xorg
->>=20
->> The application runs fine and is expected to run with no user =
-interaction. Keyboard input is sometimes needed to either kill the =
-application or switch to another virtual terminal to make some =
-configuration changes.
->>=20
->> However, I can't seem to get the keyboard to work - I can't switch =
-virtual terminal or force the application to exit and the caps-lock =
-light doesn't toggle. This is the same keyboard that was used to kick =
-the application off. xf86-input-keyboard and xf86-input-evdev are both =
-listed in 'XSERVER' when the system is baked.
->>=20
->> Where should I be looking to work out why the keyboard isn't working?
->=20
-> Does the keyboard work from a VT before X starts?  What user does X
-> run as -- my hunch is that it doesn't have permission to access the
-> input devices.  Check the Xorg log to see if there are any relevant
-> errors.
+well you would start by using PACKAGE_CLASSES =3D "
+package_deb" in your local.conf
 
-Yes, the keyboard works fine from the VTs. X is running as root and I =
-can't see anything in the logs that are of any help!
+that should generate you an image with dpkg as packaging backend
 
-Chris Tapp
+IMAGE_FEATURES +=3D "package-management"
 
-opensource@keylevel.com
-www.keylevel.com
+that will add online package management component to your image
+
+build your image and it should have knobs for hooking in feeds if you
+know how its done for apt
+
+bigger problems start here where the packages in that PPA may require
+different versions of package dependencies than what you get from
+yocto image and even
+worse they might use a different ABI etc.
 
 
-
+>
+> Thank in advance,
+>
+>
+>
+> Kind regards,
+>
+>
+>
+> Tim
+>
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
