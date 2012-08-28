@@ -1,22 +1,35 @@
-Return-Path: <Tim.Verstraete@medecbenelux.be>
-Received: from mail.medecbenelux.be (mail.medecbenelux.be [81.83.14.242])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 85CACE0141D
-	for <yocto@yoctoproject.org>; Tue, 28 Aug 2012 02:50:48 -0700 (PDT)
-Received: from SBS-MEDEC.medecbenelux.local ([fe80::1b66:a66e:3778:1407]) by
-	SBS-MEDEC.medecbenelux.local ([fe80::1b66:a66e:3778:1407%10]) with mapi
-	id 14.01.0355.002; Tue, 28 Aug 2012 11:50:45 +0200
-From: Tim Verstraete <Tim.Verstraete@medecbenelux.be>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Ubuntu PPA usage in Yocto
-Thread-Index: Ac2FAfjSRugwdPgNQ6eZs5RZrLwJ9A==
-Date: Tue, 28 Aug 2012 09:50:44 +0000
-Message-ID: <4439C3C0562087488F139C696CD862A713217A37@SBS-MEDEC.medecbenelux.local>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [2002:5153:ef2:0:f1ea:c44f:6a49:d303]
+Return-Path: <ross.burton@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 407F1E0141D
+	for <yocto@yoctoproject.org>; Tue, 28 Aug 2012 03:07:28 -0700 (PDT)
+Received: from mail-ob0-f180.google.com ([209.85.214.180])
+	by mga09.intel.com with ESMTP/TLS/RC4-SHA; 28 Aug 2012 03:07:26 -0700
+Received: by obceq6 with SMTP id eq6so8532990obc.25
+	for <yocto@yoctoproject.org>; Tue, 28 Aug 2012 03:07:26 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type:content-transfer-encoding:x-gm-message-state;
+	bh=aEffuskn2eY08t4rJW7UpAAWMTr5Isal6FcXcWp7crA=;
+	b=N/hpOS5f+zoUD3CZfuSFKS8I7EWGMS7Fw1gCe7Yz1dIw+HmoJ2YBifUWQSN/RBL/Pp
+	eIO/j8jehzydgVg2T28IwSYkRj95L8dsUnpX33wDl+QsLrKzwQejZyFxkA3/Y06jN4OU
+	6/X1VXCBaDDBv8sHyz4qAU+8+58urojSWiXsUHmaUkhMsBKY1NXYdOlyKCTsh3xhq+M+
+	mpRiVWBtXfY4c5sszsw07mXPVNJ5qHegpLQUeP7gk3Yf0Oqzl6h6Bh8Y17FUSudB18zc
+	7OHGkcIig60KzlBteFx9aZUK9R8VtDGQsG8dwodjDCuEG0wXRQPbub9R7PxlM5o1+Ayz
+	zjKQ==
+Received: by 10.182.154.70 with SMTP id vm6mr9418986obb.50.1346148446505; Tue,
+	28 Aug 2012 03:07:26 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Ubuntu PPA usage in Yocto
+Received: by 10.182.79.105 with HTTP; Tue, 28 Aug 2012 03:07:06 -0700 (PDT)
+In-Reply-To: <E5621C20-71E4-4AB7-BBAD-EE5CD0B9483E@keylevel.com>
+References: <E5621C20-71E4-4AB7-BBAD-EE5CD0B9483E@keylevel.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Tue, 28 Aug 2012 11:07:06 +0100
+Message-ID: <CAJTo0LboBhu+NM6WTTsV+vmj73OoUtcf_-z07EKZMNMRhQ1F4w@mail.gmail.com>
+To: Chris Tapp <opensource@keylevel.com>
+X-Gm-Message-State: ALoCoQkj2xmPopTumox8INkzqIj4YeKruIZFUysiZ7Ab//WmifqdA94bu6OH69PS1RRtubU/s3du
+Cc: "yocto@yoctoproject.org Project" <yocto@yoctoproject.org>
+Subject: Re: Xorg keyboard not working
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,108 +41,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 Aug 2012 09:50:49 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_4439C3C0562087488F139C696CD862A713217A37SBSMEDECmedecbe_"
-
---_000_4439C3C0562087488F139C696CD862A713217A37SBSMEDECmedecbe_
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Tue, 28 Aug 2012 10:07:32 -0000
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Hi everybody,
-
-I keep on seeing some interesting software packages into the PPA for Ubuntu=
- ... now I was wondering is there a way within Yocto to reuse those PPA  pa=
-ckage (not from the machine with apt-get) but with a recipe?
-
-Take for example the TI OMAP4 ... on the TI Launchpad I see: https://launch=
-pad.net/~tiomap-dev/+archive/release pvr-omap4-dkms and i would like to use=
- this. How should I add such thing in yocto.
-
-Thank in advance,
-
-Kind regards,
-
-Tim
-
---_000_4439C3C0562087488F139C696CD862A713217A37SBSMEDECmedecbe_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+On 27 August 2012 21:41, Chris Tapp <opensource@keylevel.com> wrote:
+> I've got a system that has a working console and four virtual terminals.
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri","sans-serif";
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:70.85pt 70.85pt 70.85pt 70.85pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"NL" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi everybody,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">I keep on seeing some interesti=
-ng software packages into the PPA for Ubuntu ... now I was wondering is the=
-re a way within Yocto to reuse those PPA&nbsp; package (not from the machin=
-e with apt-get) but with a recipe?<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Take for example the TI OMAP4 &=
-#8230; on the TI Launchpad I see:
-</span><a href=3D"https://launchpad.net/~tiomap-dev/&#43;archive/release"><=
-span lang=3D"EN-US">https://launchpad.net/~tiomap-dev/&#43;archive/release<=
-/span></a><span lang=3D"EN-US"> pvr-omap4-dkms and i would like to use this=
-. How should I add such thing in yocto.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Thank in advance,<o:p></o:p></s=
-pan></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Kind regards,<o:p></o:p></span>=
-</p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Tim<o:p></o:p></span></p>
-</div>
-</body>
-</html>
+> I can start X and run an application using
+>
+> /usr/bin/xinit /usr/sbin/xinitrc -- /usr/bin/Xorg
+>
+> The application runs fine and is expected to run with no user interaction=
+. Keyboard input is sometimes needed to either kill the application or swit=
+ch to another virtual terminal to make some configuration changes.
+>
+> However, I can't seem to get the keyboard to work - I can't switch virtua=
+l terminal or force the application to exit and the caps-lock light doesn't=
+ toggle. This is the same keyboard that was used to kick the application of=
+f. xf86-input-keyboard and xf86-input-evdev are both listed in 'XSERVER' wh=
+en the system is baked.
+>
+> Where should I be looking to work out why the keyboard isn't working?
 
---_000_4439C3C0562087488F139C696CD862A713217A37SBSMEDECmedecbe_--
+Does the keyboard work from a VT before X starts?  What user does X
+run as -- my hunch is that it doesn't have permission to access the
+input devices.  Check the Xorg log to see if there are any relevant
+errors.
+
+Ross
+
