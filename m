@@ -1,40 +1,26 @@
-Return-Path: <jiajun.xu@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7E856E013FE
-	for <yocto@yoctoproject.org>; Mon, 27 Aug 2012 17:47:36 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 27 Aug 2012 17:47:36 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,322,1344236400"; d="scan'208";a="186025871"
-Received: from fmsmsx103.amr.corp.intel.com ([10.19.9.34])
-	by orsmga001.jf.intel.com with ESMTP; 27 Aug 2012 17:47:35 -0700
-Received: from shsmsx102.ccr.corp.intel.com (10.239.4.154) by
-	FMSMSX103.amr.corp.intel.com (10.19.9.34) with Microsoft SMTP Server
-	(TLS) id 14.1.355.2; Mon, 27 Aug 2012 17:47:35 -0700
-Received: from shsmsx101.ccr.corp.intel.com ([169.254.1.239]) by
-	SHSMSX102.ccr.corp.intel.com ([169.254.2.92]) with mapi id
-	14.01.0355.002; Tue, 28 Aug 2012 08:47:33 +0800
-From: "Xu, Jiajun" <jiajun.xu@intel.com>
-To: "Serban, Laurentiu" <laurentiu.serban@intel.com>, "Liu, Song"
-	<song.liu@intel.com>, "Purdie, Richard" <richard.purdie@intel.com>
-Thread-Topic: 1.3 M3 Full Pass test results
-Thread-Index: Ac2BY2ArS5dRmnanT+CdJRPDq9FOEgAuZLCAAAa0dwAAj+ZysP//iscA//8NECA=
-Date: Tue, 28 Aug 2012 00:47:32 +0000
-Message-ID: <90741FE9B50D654690EB940EDB456C8E20B919@SHSMSX101.ccr.corp.intel.com>
-References: <E16513A01CAAFF40B65178C63CE45EEC1917553B@IRSMSX102.ger.corp.intel.com>
-	<1345803711.14369.69.camel@ted>
-	<E16513A01CAAFF40B65178C63CE45EEC191761D6@IRSMSX102.ger.corp.intel.com>
-	<7E680CB2A76BB8438D08CF13C09FC53A4852270D@ORSMSX101.amr.corp.intel.com>
-	<E16513A01CAAFF40B65178C63CE45EEC19176C06@IRSMSX102.ger.corp.intel.com>
-In-Reply-To: <E16513A01CAAFF40B65178C63CE45EEC19176C06@IRSMSX102.ger.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.239.127.40]
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9635EE01400
+	for <yocto@yoctoproject.org>; Mon, 27 Aug 2012 20:18:50 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id q7S3ImnA001816
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Mon, 27 Aug 2012 20:18:48 -0700 (PDT)
+Received: from bruce-ashfields-macbook.local (128.224.21.166) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
+	14.2.309.2; Mon, 27 Aug 2012 20:18:47 -0700
+Message-ID: <503C3896.5080509@windriver.com>
+Date: Mon, 27 Aug 2012 23:18:46 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7;
+	rv:9.0) Gecko/20111222 Thunderbird/9.0.1
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Wold,
-	Saul" <saul.wold@intel.com>
-Subject: Re: 1.3 M3 Full Pass test results
+To: "Saxena, Rahul" <rahul.saxena@intel.com>
+References: <63ECFF2A2302B44093D7CE9E9962C4900332062C@ORSMSX103.amr.corp.intel.com>
+In-Reply-To: <63ECFF2A2302B44093D7CE9E9962C4900332062C@ORSMSX103.amr.corp.intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Hart,
+	Darren" <darren.hart@intel.com>
+Subject: Re: Poky 1.3_M3 branch does not work with linux-yocto 3.0 kernel ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,91 +32,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 Aug 2012 00:47:36 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Tue, 28 Aug 2012 03:18:50 -0000
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 8bit
 
-V2UgdXNlZCB0byBnZXQgMTE1bSBhbmQgMTI3bSBmb3IgMS4zIE0xIGFuZCBNMiBvbiBvdXIgdGVz
-dCBtYWNoaW5lLg0KDQo+IEhlbGxvIGd1eXMsDQo+IA0KPiBJIGFtIHNvcnJ5IEkgZGlkIG5vdCBu
-b3RpY2UgdGhlIGxhc3QgbGluZSBpbiB0aGUgZS1tYWlsLg0KPiANCj4gV2hlbiB3ZSByYW4gdGhl
-IHBlcmZvcm1hbmNlIHRlc3Rpbmcgd2UgcHJlLWRvd25sb2FkZWQgYWxsIHRoZSBzb3VyY2VzLA0K
-PiBiZWNhdXNlIGxhc3Qgd2VlayBoYWQgYSBsb3Qgb2YgY29ubmVjdGl2aXR5IGlzc3Vlcy4gSSBt
-ZW50aW9uZWQgaW4gdGhlDQo+IGUtbWFpbCB0aGF0IHRoZSBidWlsZCB0aW1lIHJlZmVycyB0byBh
-biBpbWFnZSBidWlsdCBhZnRlciBhbGwgdGhlDQo+IHNvdXJjZXMgd2VyZSBkb3dubG9hZGVkLg0K
-PiBUaGUgbWFjaGluZSBvbiB3aGljaCB0aGUgdGVzdCB3YXMgcmFuIGlzIHRoZSBzYW1lIGFzIGZv
-ciBNMS4NCj4gDQo+IEkgd2lsbCBhc2sgU3RlZmFuIHRvIHJlLXJ1biB0aGUgcGVyZm9ybWFuY2Ug
-dGVzdHMgZm9yIHRoZSBkaWZmZXJlbnQNCj4gbWlsZXN0b25lcyBzbyBmYXIsIE0xIGFuZCBNMiwg
-aW4gdGhlIHNhbWUgY29uZGl0aW9ucyBhcyBmb3IgTTMgc28gd2UNCj4gd291bGQgaGF2ZSBhIGNs
-ZWFyIHZpZXcuDQo+IA0KPiBJIGFkZCBKaWFqdW4gaW4gdGhlIGxvb3Agc28gaGUgY2FuIGhlbHAg
-dXMgaWYgaGUgY2FuIHdpdGggYSB0ZXN0IHRvDQo+IHNlZSBpZiB0aGlzIGlzIHJlbGF0ZWQgdG8g
-YW4gYXJ0aWZhY3QgYXMgUmljaGFyZCBzYWlkLCBidXQgYWxzbyB0aGVyZQ0KPiB3ZXJlIHNvbWUg
-aW1wcm92ZW1lbnRzIG1hZGUgYnkgQmV0aCBvbiBmaWxlc3lzdGVtIGdlbmVyYXRpb24uDQo+IA0K
-PiBCciwNCj4gTGF1cmVudGl1DQo+IA0KPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBG
-cm9tOiBMaXUsIFNvbmcNCj4gU2VudDogTW9uZGF5LCBBdWd1c3QgMjcsIDIwMTIgODo1MCBQTQ0K
-PiBUbzogU2VyYmFuLCBMYXVyZW50aXU7IFB1cmRpZSwgUmljaGFyZA0KPiBDYzogeW9jdG9AeW9j
-dG9wcm9qZWN0Lm9yZzsgU3Rld2FydCwgRGF2aWQgQzsgV29sZCwgU2F1bA0KPiBTdWJqZWN0OiBS
-RTogMS4zIE0zIEZ1bGwgUGFzcyB0ZXN0IHJlc3VsdHMNCj4gDQo+IEhpIExhdXJlbnRpdSwNCj4g
-DQo+IERvIHlvdSBoYXZlIGFueSBjb21tZW50IG9uIHRoZSBwZXJmb3JtYW5jZSBxdWVzdGlvbiBS
-aWNoYXJkIGFza2VkPyBJDQo+IGtub3cgeW91ciB0ZWFtIGlzIHVzaW5nIGEgbWFjaGluZSB3aXRo
-IGRpZmZlcmVudCBjb25maWd1cmF0aW9uIGZyb20NCj4gdGhlIG9uZSB1c2VkIGJ5IHRoZSBTaGFu
-Z2hhaSB0ZWFtLiBUaGUgcGVyZm9ybWFuY2UgZmlndXJlIGZyb20gdGhlDQo+IFNoYW5naGFpIHRl
-YW0gaGFzIGJlZW4gaG92ZXJpbmcgYXJvdW5kIDExMCBtaW5zLiBUaGF0J3MgdGhlIGNhc2UgZm9y
-DQo+IDEuMiByZWxlYXNlIGFuZCAxLjMgTTIgbWlsZXN0b25lIHJlcG9ydC4gMS4zIE0xIG1pbGVz
-dG9uZSByZXBvcnQgaGFzDQo+IHRoZSBidWlsZCB0aW1lIGFzIDk1IG1pbnV0ZXMsIHdoaWNoIEkg
-YmVsaWV2ZSBpcyBmcm9tIHlvdXIgdGVhbS4gU28gbXkNCj4gcXVlc3Rpb24gaXMgd2hldGhlciB5
-b3UgdXNlZCB0aGUgc2FtZSBtYWNoaW5lIGZvciBNMyBwZXJmb3JtYW5jZQ0KPiB0ZXN0aW5nIGFz
-IGZvciBNMS4gQW5vdGhlciBmYWN0b3IgdGhhdCBtaWdodCBoYXZlIGNhdXNlZCB0aGUNCj4gZGlm
-ZmVyZW5jZSAoYmV0d2VlbiA5NSBhbmQgODMgbWludXRlcykgaXMgeW91ciB0ZXN0aW5nDQo+IHBy
-b2NlZHVyZS9lbnZpcm9ubWVudCBzdWNoIGFzIG90aGVyIHByb2Nlc3NlcyBydW5uaW5nIGF0IHRo
-ZSBzYW1lDQo+IHRpbWUsIG1lbW9yeSB1c2FnZSwgc3N0YXRlIGNhY2hlLCBldGMuIElmIHlvdSB1
-c2VkIHRoZSBzYW1lIG1hY2hpbmUNCj4gYW5kIHNhbWUgdGVzdGluZyBwcm9jZWR1cmUvZW52aXJv
-bm1lbnQsIHRoZW4gd2UgaGF2ZSBzb21lIGltcHJvdmVtZW50IGluIE0zIGNvbXBhcmVkIHdpdGgg
-TTEuIFBsZWFzZSBsZXQgbWUga25vdyB5b3VyIHRob3VnaHRzLg0KPiANCj4gVGhhbmtzLA0KPiBT
-b25nDQo+IA0KPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBTZXJiYW4sIExh
-dXJlbnRpdQ0KPiBTZW50OiBGcmlkYXksIEF1Z3VzdCAyNCwgMjAxMiA2OjM0IEFNDQo+IFRvOiBQ
-dXJkaWUsIFJpY2hhcmQNCj4gQ2M6IHlvY3RvQHlvY3RvcHJvamVjdC5vcmc7IExpdSwgU29uZzsg
-U3Rld2FydCwgRGF2aWQgQzsgV29sZCwgU2F1bA0KPiBTdWJqZWN0OiBSRTogMS4zIE0zIEZ1bGwg
-UGFzcyB0ZXN0IHJlc3VsdHMNCj4gDQo+IEhlbGxvIFJpY2hhcmQsDQo+IA0KPiBFdmVuIGlmIHRo
-ZSBpbnN0YWxsZXIgaXMgdXNlZCBpbiB0aGUgZGVmYXVsdCBtb2RlLCBpc3N1ZXMgc3RpbGwgb2Nj
-dXINCj4gKHNlZSBjb21tZW50IDcpLiBJIHRoaW5rIHRoZSByb290IGNhdXNlIGZvciB0aGVzZSBp
-cyB0aGUgc2FtZSwgc28gSSBkaWQgbm90IHN1Ym1pdCBhIG5ldyBidWcuDQo+IA0KPiBUaGFuayB5
-b3UsDQo+IExhdXJlbnRpdQ0KPiANCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJv
-bTogUHVyZGllLCBSaWNoYXJkDQo+IFNlbnQ6IEZyaWRheSwgQXVndXN0IDI0LCAyMDEyIDE6MjIg
-UE0NCj4gVG86IFNlcmJhbiwgTGF1cmVudGl1DQo+IENjOiB5b2N0b0B5b2N0b3Byb2plY3Qub3Jn
-OyBMaXUsIFNvbmc7IFN0ZXdhcnQsIERhdmlkIEM7IFdvbGQsIFNhdWwNCj4gU3ViamVjdDogUmU6
-IDEuMyBNMyBGdWxsIFBhc3MgdGVzdCByZXN1bHRzDQo+IA0KPiBPbiBUaHUsIDIwMTItMDgtMjMg
-YXQgMjA6MTMgKzAxMDAsIFNlcmJhbiwgTGF1cmVudGl1IHdyb3RlOg0KPiANCj4+IEhlcmUgYXJl
-IHRoZSByZXN1bHRzIGZvciB0aGUgZnVsbCBwYXMgdGVzdHMgb24gMS4zIE0zIFJDMi4gVGhlDQo+
-PiBjb21taXQgdXNlZCBmb3IgdGVzdGluZyBpcyA4Yjg3NDhjOGY5NjM5MDBiODNkYzBmZGQ3NzU3
-NTU2ZjkxN2ZlNGZkLg0KPj4gDQo+PiBTb21lIGRldGFpbHMgYWJvdXQgdGhlIGVuY291bnRlcmVk
-IGlzc3VlcyBiZWxvdzoNCj4+IA0KPj4gQlNQIOKAkyBTdWRva3Utc2F2YW50IHByb2plY3QgYnVp
-bGQgaXNzdWUgKDI4NzgpDQo+PiANCj4+IEFEVCDigJMgdGhlIHJlbG9jYXRhYmxlIHNkayBpc3N1
-ZSAoMjk4MCkgY2F1c2VzIDEzIHRlc3QgY2FzZXMgdG8gYmUgb24NCj4+IGZhaWxlL2Jsb2NrZWQg
-c3RhdGUNCj4gDQo+IEkgdGhvdWdodCBpdCB3b3JrZWQgYXMgbG9uZyBhcyB5b3UgZGlkbid0IGhh
-dmUgdG8gcmVsb2NhdGUgaXQgc28gbm8NCj4gdGVzdHMgc2hvdWxkIGhhdmUgYmVlbiBibG9ja2Vk
-LCB3ZSBqdXN0IGhhdmUgdGhlIHJlbG9jYXRpb24gaXNzdWU/DQo+IA0KPj4gICwgYWxzbyB0aGUg
-Q2x1dHRlciBDIHRlbXBsYXRlIGlzc3VlIGlzIHVuc29sdmVkICgyNTc3KQ0KPj4gQ29yZSBCdWls
-ZCBTeXN0ZW0g4oCTIHgzMiBpcyBzdGlsbCBhbiBpc3N1ZSAoMjg4OCksIGNsZWFuaW5nIHNzdGF0
-ZQ0KPj4gaXNzdWUgaXMgc3RpbGwgbm90IHNvbHZlZCAoMjg5NyksIGluY3JlbWVudGFsIFJQTSBp
-bWFnZSBnZW5lcmF0aW9uDQo+PiAoMjk2OSksIHNvdXJjZSBhcmNoaXZpbmcgKDI2MTkpLCB0aGUg
-a3ZtIGlzc3VlIHdhcyByZXByb2R1Y2VkIGJ5DQo+PiBhbm90aGVyIGNvbGxlYWd1ZSAoMjc5MCkg
-WW9jdG8gQlNQIGNyZWF0aW9uIHZpYSBKU09OICgyNjkzKSBvciBmb3INCj4+IHFlbXUgKDI5OTEp
-IGZhaWxzLCBtdWx0aWxpYiBpc3N1ZSAoMjkxOCDigJMgdGhpcyByZXF1aXJlcyBhIGxpdHRsZQ0K
-Pj4gbW9yZSBpbnZlc3RpZ2F0aW9uIGZyb20gUUEpLA0KPj4gDQo+PiBIT0IgLSBhbGwgc2VlbXMg
-b2sgZm9yIFJDMg0KPj4gDQo+PiBTZWxmLWhvc3RlZC1pbWFnZSAgLSBjYW5ub3Qgc3RhcnQgb24g
-VmlydHVhbCBCb3ggKFggaXNzdWUpLCBpdCBpcw0KPj4gdmVyeSBzbG93IG9uIHFlbXUgYW5kIGl0
-IGhhcyBhIG00IHBhY2thZ2UgYnVpbGQgKDMwMDUpIGlzc3VlIG9uDQo+PiBWTVdhcmUuIElmIHRo
-ZSBzZWxmLWhvc3RlZC1pbWFnZSBpcyB1c2VkIG9uIG1hY2hpbmUgd2l0aCBpbnRlcm5ldA0KPj4g
-Y29ubmVjdGl2aXR5IHZpYSBwcm94eSB0aGVyZSB3aWxsIGJlIGFuIGluaXRpYWwgc2FuaXR5IGNo
-ZWNrDQo+PiBmYWlsdXJlLCBidXQgdGhpcyBpcyBub3QgYSBibG9ja2luZyBpc3N1ZS4NCj4+IA0K
-Pj4gQSBtZW50aW9uIGZvciB0aGUgcGVyZm9ybWFuY2UgdGVzdGluZzogb24gYSBVYmJ1bnR1IDEy
-LjA0ICBpNw0KPj4gbWFjaGluZSB1c2luZyA4IHRocmVhZHMgdGhlIGJ1aWxkIHRpbWUgd2FzIDgz
-IG1pbnV0ZXMgKHdpdGggcHJpb3IgZmV0Y2hpbmcpLg0KPiANCj4gSG93IGRvZXMgdGhpcyBjb21w
-YXJlIHdpdGggb3VyIG90aGVyIHBlcmZvcm1hbmNlIG51bWJlcnMuIEZyb20gd2hhdCBJDQo+IHJl
-bWVtYmVyLCB3ZSB1c2VkIHRvIGhvdmVyIGFyb3VuZCB0aGUgMTA1LTExNSBtaW51dGUgbWFyay4g
-RGlkIHdlIGhhdmUNCj4gc29tZSBzaWduaWZpY2FudCBzcGVlZCBnYWlucyBvciBpcyB0aGlzIGp1
-c3QgYW4gYXJ0ZWZhY3Qgb2YgY2hhbmdpbmcNCj4gdGhlIHRlc3QgbWFjaGluZT8NCj4gDQo+IENo
-ZWVycywNCj4gDQo+IFJpY2hhcmQNCj4gDQo+DQoNCkJlc3QgUmVnYXJkcywNCkppYWp1bg0KDQoN
-Cg==
+On 12-08-27 8:14 PM, Saxena, Rahul wrote:
+> Hi,
+>
+> I am building a BSP (meta-cedartrail) using 1.3 M3 branch of Poky.
+>
+> When I try to boot a image such as core-image-sato, I get kernel panic
+> and errors such as:
+>
+> VFS: Cannot open root device “ram0” or unkown-block(0,0)
+>
+> Please append a correct “root=” boot option; here are the available
+>
+> partitions:
+>
+> VFS: unable to mount root fs on unknown block(0,0)
+>
+> User configuration error – no valid rootfilesystem found
+>
+> I do see that the root file system exists in
+> cedartrail-poky-linux/core-image-sato-1.0-r0/rootfs dir..
+>
+> I did not see this problem when I uses a earlier commit of the Poky
+> master branch.
+>
+> It seems like something broke with 1.3 M3 branch that prevents a proper
+> build with 3.0 kernel. I do need to build my BSP with 3.0 kernel.
+>
+> (I was also told by Laurentiu Serban that 1.3 M3 Full Pass testing does
+> not include testing with the 3.0 kernel)
+>
+> Any suggestions would be most welcome. I do need to build my BSP with
+> the 3.0 kernel.
+
+Hmm. It should work, I booted one not that long ago. Can you force
+qemux86 to prefer the 3.0 kernel and see if that boots ? That would
+at least start to isolate the potential problem areas.
+
+Bruce
+
+>
+> Thanks
+>
+> Rahul
+>
+
 
