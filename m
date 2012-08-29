@@ -1,39 +1,27 @@
-Return-Path: <ross.burton@intel.com>
-Received: from fmsmga102.fm.intel.com (mga10.intel.com [192.55.52.92])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8ED50E013FE
-	for <yocto@yoctoproject.org>; Wed, 29 Aug 2012 04:47:21 -0700 (PDT)
-Received: from mail-ob0-f176.google.com ([209.85.214.176])
-	by mga11.intel.com with ESMTP/TLS/RC4-SHA; 29 Aug 2012 04:47:16 -0700
-Received: by obbtb18 with SMTP id tb18so884768obb.35
-	for <yocto@yoctoproject.org>; Wed, 29 Aug 2012 04:47:16 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type:x-gm-message-state;
-	bh=dWp0Bp5YVcEwO3UrNQ2RUYxOcTYY3wKUcfEusjBQCaw=;
-	b=AZn5WUN+VuGB83N6YgSpTyXS+oKkO4XMXX/0iu+HnHgNmuD4mKGshyxOcYVi6AmA7d
-	cLB7B2pBFOY7NRrkRZP71tDSdIUEQUjAKDK7Dg9jX8uJDeWGdHV3uAqtIyKic0fuj5NH
-	3PcP5dAPVVcU4Y5KDCbUV8gZjB/Pc0wP4QkiXrS4ID0QuRtcJOQXIDEYr7ApiPabstAs
-	6PPQGn8YLEb+Hs8etAY9Ijqah/GfwBRDMbcD86p21vnEfPHzRwvXb8ju3NroyPWC0mjj
-	6+8T96Kc53/GqxbF4B/DHpB0OMoxfKvvIKrbpBzIjBj9w/stJ8lA/4gLalgzvbUhREyY
-	dYhw==
-Received: by 10.60.19.195 with SMTP id h3mr900156oee.102.1346240836111; Wed,
-	29 Aug 2012 04:47:16 -0700 (PDT)
+Return-Path: <Tim.Verstraete@medecbenelux.be>
+Received: from mail.medecbenelux.be (mail.medecbenelux.be [81.83.14.242])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9BF59E013FE
+	for <yocto@yoctoproject.org>; Wed, 29 Aug 2012 05:26:11 -0700 (PDT)
+Received: from SBS-MEDEC.medecbenelux.local ([fe80::1b66:a66e:3778:1407]) by
+	SBS-MEDEC.medecbenelux.local ([fe80::1b66:a66e:3778:1407%10]) with mapi
+	id 14.01.0355.002; Wed, 29 Aug 2012 14:26:09 +0200
+From: Tim Verstraete <Tim.Verstraete@medecbenelux.be>
+To: Khem Raj <raj.khem@gmail.com>
+Thread-Topic: [SPAM] - Re: [yocto] Ubuntu PPA usage in Yocto - Email found
+	in subject
+Thread-Index: AQHNhT8yYk4bDwmvL06vD3CDyGW2E5dwuEcA
+Date: Wed, 29 Aug 2012 12:26:08 +0000
+Message-ID: <4439C3C0562087488F139C696CD862A713217D20@SBS-MEDEC.medecbenelux.local>
+References: <4439C3C0562087488F139C696CD862A713217A37@SBS-MEDEC.medecbenelux.local>
+	<CAMKF1sqiCKPxnkaMYAnxyqA0jG01oWxJNi9pC5zP0vjUPyng_A@mail.gmail.com>
+In-Reply-To: <CAMKF1sqiCKPxnkaMYAnxyqA0jG01oWxJNi9pC5zP0vjUPyng_A@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [2002:5153:ef2:0:70e1:cfcc:dcb4:e2f5]
 MIME-Version: 1.0
-Received: by 10.182.79.105 with HTTP; Wed, 29 Aug 2012 04:46:55 -0700 (PDT)
-In-Reply-To: <5037C9B6.2040306@gmail.com>
-References: <5037B5F5.5040105@gmail.com>
-	<27A36DD288D740FA887185346F191582@intel.com>
-	<5037C63E.6050507@gmail.com>
-	<AB1D85DF566F4611935A07ABBD4D003E@intel.com>
-	<5037C9B6.2040306@gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Wed, 29 Aug 2012 12:46:55 +0100
-Message-ID: <CAJTo0LaMQkoGqojaDdFOXeELvRJow=sosoKWYnGgV_ONtRjgCg@mail.gmail.com>
-To: Jim Abernathy <jfabernathy@gmail.com>
-X-Gm-Message-State: ALoCoQlak/+l/7qa1o8iij5ByjhktzexhxQ/3kJvNwBxychDZ3NWdMs2LiRQ2MuYmYbnImGEhO4x
-Cc: yocto@yoctoproject.org
-Subject: Re: configuring WiFi in Yocto
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [SPAM] - Re: Ubuntu PPA usage in Yocto - Email found in subject
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,21 +33,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 29 Aug 2012 11:47:21 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 29 Aug 2012 12:26:12 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-On 24 August 2012 19:36, Jim Abernathy <jfabernathy@gmail.com> wrote:
-> On 08/24/2012 02:23 PM, Ross Burton wrote:
-> See the linux-firmware packages. There are a few split out sub packages, and
-> then linux-firmware contains the rest.
->
-> I see the rtl8192 firmware included in the linux-firmware recipe, but not
-> sure if there is a step to force a load of the firmware.
-
-Whoops, accidentally took this off-list by using my phone.
-
-If this is still broken, can you attach the output of dmesg, ifconfig
-and iwconfig on a fresh boot?
-
-Ross
+SW5kZWVkLCB0aGF0IGRvZXMgbWFrZSBzZW5zZSAuLi4gDQoNClRoYW5rcyBmb3IgdGhlIHJlcGx5
+LA0KDQpLaW5kIHJlZ2FyZHMsDQoNClRpbQ0KDQotLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0K
+RnJvbTogS2hlbSBSYWogW21haWx0bzpyYWoua2hlbUBnbWFpbC5jb21dIA0KU2VudDogZGluc2Rh
+ZyAyOCBhdWd1c3R1cyAyMDEyIDE5OjA0DQpUbzogVGltIFZlcnN0cmFldGUNCkNjOiB5b2N0b0B5
+b2N0b3Byb2plY3Qub3JnDQpTdWJqZWN0OiBbU1BBTV0gLSBSZTogW3lvY3RvXSBVYnVudHUgUFBB
+IHVzYWdlIGluIFlvY3RvIC0gRW1haWwgZm91bmQgaW4gc3ViamVjdA0KDQpPbiBUdWUsIEF1ZyAy
+OCwgMjAxMiBhdCAyOjUwIEFNLCBUaW0gVmVyc3RyYWV0ZSA8VGltLlZlcnN0cmFldGVAbWVkZWNi
+ZW5lbHV4LmJlPiB3cm90ZToNCj4gSGkgZXZlcnlib2R5LA0KPg0KPg0KPg0KPiBJIGtlZXAgb24g
+c2VlaW5nIHNvbWUgaW50ZXJlc3Rpbmcgc29mdHdhcmUgcGFja2FnZXMgaW50byB0aGUgUFBBIGZv
+ciANCj4gVWJ1bnR1IC4uLiBub3cgSSB3YXMgd29uZGVyaW5nIGlzIHRoZXJlIGEgd2F5IHdpdGhp
+biBZb2N0byB0byByZXVzZSANCj4gdGhvc2UgUFBBIHBhY2thZ2UgKG5vdCBmcm9tIHRoZSBtYWNo
+aW5lIHdpdGggYXB0LWdldCkgYnV0IHdpdGggYSByZWNpcGU/DQo+DQo+DQo+DQo+IFRha2UgZm9y
+IGV4YW1wbGUgdGhlIFRJIE9NQVA0IOKApiBvbiB0aGUgVEkgTGF1bmNocGFkIEkgc2VlOg0KPiBo
+dHRwczovL2xhdW5jaHBhZC5uZXQvfnRpb21hcC1kZXYvK2FyY2hpdmUvcmVsZWFzZSBwdnItb21h
+cDQtZGttcyBhbmQgDQo+IGkgd291bGQgbGlrZSB0byB1c2UgdGhpcy4gSG93IHNob3VsZCBJIGFk
+ZCBzdWNoIHRoaW5nIGluIHlvY3RvLg0KPg0KPg0KDQp3ZWxsIHlvdSB3b3VsZCBzdGFydCBieSB1
+c2luZyBQQUNLQUdFX0NMQVNTRVMgPSAiDQpwYWNrYWdlX2RlYiIgaW4geW91ciBsb2NhbC5jb25m
+DQoNCnRoYXQgc2hvdWxkIGdlbmVyYXRlIHlvdSBhbiBpbWFnZSB3aXRoIGRwa2cgYXMgcGFja2Fn
+aW5nIGJhY2tlbmQNCg0KSU1BR0VfRkVBVFVSRVMgKz0gInBhY2thZ2UtbWFuYWdlbWVudCINCg0K
+dGhhdCB3aWxsIGFkZCBvbmxpbmUgcGFja2FnZSBtYW5hZ2VtZW50IGNvbXBvbmVudCB0byB5b3Vy
+IGltYWdlDQoNCmJ1aWxkIHlvdXIgaW1hZ2UgYW5kIGl0IHNob3VsZCBoYXZlIGtub2JzIGZvciBo
+b29raW5nIGluIGZlZWRzIGlmIHlvdSBrbm93IGhvdyBpdHMgZG9uZSBmb3IgYXB0DQoNCmJpZ2dl
+ciBwcm9ibGVtcyBzdGFydCBoZXJlIHdoZXJlIHRoZSBwYWNrYWdlcyBpbiB0aGF0IFBQQSBtYXkg
+cmVxdWlyZSBkaWZmZXJlbnQgdmVyc2lvbnMgb2YgcGFja2FnZSBkZXBlbmRlbmNpZXMgdGhhbiB3
+aGF0IHlvdSBnZXQgZnJvbSB5b2N0byBpbWFnZSBhbmQgZXZlbiB3b3JzZSB0aGV5IG1pZ2h0IHVz
+ZSBhIGRpZmZlcmVudCBBQkkgZXRjLg0KDQoNCj4NCj4gVGhhbmsgaW4gYWR2YW5jZSwNCj4NCj4N
+Cj4NCj4gS2luZCByZWdhcmRzLA0KPg0KPg0KPg0KPiBUaW0NCj4NCj4NCj4gX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCj4geW9jdG8gbWFpbGluZyBsaXN0
+DQo+IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcNCj4gaHR0cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qu
+b3JnL2xpc3RpbmZvL3lvY3RvDQo+DQo=
 
