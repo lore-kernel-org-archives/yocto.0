@@ -1,31 +1,36 @@
-Return-Path: <bruce.ashfield@gmail.com>
-Received: from mail-qa0-f48.google.com (mail-qa0-f48.google.com
-	[209.85.216.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 13B68E00769
-	for <yocto@yoctoproject.org>; Wed, 29 Aug 2012 10:46:54 -0700 (PDT)
-Received: by qady1 with SMTP id y1so732486qad.14
-	for <yocto@yoctoproject.org>; Wed, 29 Aug 2012 10:46:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type:content-transfer-encoding;
-	bh=8qlf5L5d4cEhEDOiLc6XHXUUQJH2ArwyRDYdXwbpYuc=;
-	b=XjX1btIjkUzLlnGjAxaBX0emkDDr7v3pL34pHHMbnPnjLW6oWcEQ3GvfmfryFPDsCu
-	XIReaQY5iFZ1rNmGZn7MrFP6y0rQy132K2CsKo9Rcr89aVCoEb5Q96M4YIj0Nv4clL0u
-	uzK5l61CmGpBt5pj4GdmpYz4o8elu2DaCP7XM9phlQYX88COkakFwWRJkoEVb0dR9veW
-	UEMjnlY1rmi+QRhG8UAzCc2JVOjC8sPgQWLDruvZj+SSp5Etwv3jaRl8p6NTUP0GQhS2
-	wIcTZXWMimdtBkURy8rxtVeHq/zu5PRm/rOXrMPExfaGv1dhZxU/C3sL7Isn2nqTn10B
-	mNQQ==
-MIME-Version: 1.0
-Received: by 10.224.176.195 with SMTP id bf3mr5196799qab.55.1346262410104;
-	Wed, 29 Aug 2012 10:46:50 -0700 (PDT)
-Received: by 10.229.247.198 with HTTP; Wed, 29 Aug 2012 10:46:50 -0700 (PDT)
-In-Reply-To: <503D1D55.1010205@intel.com>
+Return-Path: <kishore.k.bodke@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0FB4EE00769
+	for <yocto@yoctoproject.org>; Wed, 29 Aug 2012 11:08:10 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 29 Aug 2012 11:08:09 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,335,1344236400"; d="scan'208";a="215828600"
+Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
+	by fmsmga001.fm.intel.com with ESMTP; 29 Aug 2012 11:08:09 -0700
+Received: from orsmsx103.amr.corp.intel.com (10.22.225.130) by
+	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Wed, 29 Aug 2012 11:08:08 -0700
+Received: from orsmsx105.amr.corp.intel.com ([169.254.4.178]) by
+	ORSMSX103.amr.corp.intel.com ([169.254.2.246]) with mapi id
+	14.01.0355.002; Wed, 29 Aug 2012 11:08:07 -0700
+From: "Bodke, Kishore K" <kishore.k.bodke@intel.com>
+To: Bruce Ashfield <bruce.ashfield@gmail.com>, "Hart, Darren"
+	<darren.hart@intel.com>
+Thread-Topic: [yocto] Poky 1.3_M3 branch does not work with linux-yocto 3.0
+	kernel ?
+Thread-Index: AQHNhMwME3GmTVwxyEaiEW+DAl5V5pdwFBuAgAF0LgD//5AjkA==
+Date: Wed, 29 Aug 2012 18:08:06 +0000
+Message-ID: <D956029D25CF204F948EA0FB515E1EE20AD632AA@ORSMSX105.amr.corp.intel.com>
 References: <63ECFF2A2302B44093D7CE9E9962C4900332062C@ORSMSX103.amr.corp.intel.com>
 	<503C3896.5080509@windriver.com> <503D1D55.1010205@intel.com>
-Date: Wed, 29 Aug 2012 13:46:50 -0400
-Message-ID: <CADkTA4MxAKcbtnEpCDKB==G2hxjRqt5F32kCqtg6HPo1QBcfUA@mail.gmail.com>
-From: Bruce Ashfield <bruce.ashfield@gmail.com>
-To: Darren Hart <darren.hart@intel.com>
+	<CADkTA4MxAKcbtnEpCDKB==G2hxjRqt5F32kCqtg6HPo1QBcfUA@mail.gmail.com>
+In-Reply-To: <CADkTA4MxAKcbtnEpCDKB==G2hxjRqt5F32kCqtg6HPo1QBcfUA@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.138]
+MIME-Version: 1.0
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Poky 1.3_M3 branch does not work with linux-yocto 3.0 kernel ?
 X-BeenThere: yocto@yoctoproject.org
@@ -39,90 +44,113 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 29 Aug 2012 17:46:55 -0000
-Content-Type: text/plain; charset=windows-1252
+X-List-Received-Date: Wed, 29 Aug 2012 18:08:10 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Aug 28, 2012 at 3:34 PM, Darren Hart <darren.hart@intel.com> wrote:
-> On 08/27/2012 08:18 PM, Bruce Ashfield wrote:
->> On 12-08-27 8:14 PM, Saxena, Rahul wrote:
->>> Hi,
+
+
+>-----Original Message-----
+>From: yocto-bounces@yoctoproject.org [mailto:yocto-
+>bounces@yoctoproject.org] On Behalf Of Bruce Ashfield
+>Sent: Wednesday, August 29, 2012 10:47 AM
+>To: Hart, Darren
+>Cc: yocto@yoctoproject.org
+>Subject: Re: [yocto] Poky 1.3_M3 branch does not work with linux-yocto 3.0
+>kernel ?
+>
+>On Tue, Aug 28, 2012 at 3:34 PM, Darren Hart <darren.hart@intel.com> wrote=
+:
+>> On 08/27/2012 08:18 PM, Bruce Ashfield wrote:
+>>> On 12-08-27 8:14 PM, Saxena, Rahul wrote:
+>>>> Hi,
+>>>>
+>>>> I am building a BSP (meta-cedartrail) using 1.3 M3 branch of Poky.
+>>>>
+>>>> When I try to boot a image such as core-image-sato, I get kernel panic
+>>>> and errors such as:
+>>>>
+>>>> VFS: Cannot open root device "ram0" or unkown-block(0,0)
+>>>>
+>>>> Please append a correct "root=3D" boot option; here are the available
+>>>>
+>>>> partitions:
+>>>>
+>>>> VFS: unable to mount root fs on unknown block(0,0)
+>>>>
+>>>> User configuration error - no valid rootfilesystem found
+>>>>
+>>>> I do see that the root file system exists in
+>>>> cedartrail-poky-linux/core-image-sato-1.0-r0/rootfs dir..
+>>>>
+>>>> I did not see this problem when I uses a earlier commit of the Poky
+>>>> master branch.
+>>>>
+>>>> It seems like something broke with 1.3 M3 branch that prevents a prope=
+r
+>>>> build with 3.0 kernel. I do need to build my BSP with 3.0 kernel.
+>>>>
+>>>> (I was also told by Laurentiu Serban that 1.3 M3 Full Pass testing doe=
+s
+>>>> not include testing with the 3.0 kernel)
+>>>>
+>>>> Any suggestions would be most welcome. I do need to build my BSP with
+>>>> the 3.0 kernel.
 >>>
->>> I am building a BSP (meta-cedartrail) using 1.3 M3 branch of Poky.
->>>
->>> When I try to boot a image such as core-image-sato, I get kernel panic
->>> and errors such as:
->>>
->>> VFS: Cannot open root device =93ram0=94 or unkown-block(0,0)
->>>
->>> Please append a correct =93root=3D=94 boot option; here are the availab=
-le
->>>
->>> partitions:
->>>
->>> VFS: unable to mount root fs on unknown block(0,0)
->>>
->>> User configuration error =96 no valid rootfilesystem found
->>>
->>> I do see that the root file system exists in
->>> cedartrail-poky-linux/core-image-sato-1.0-r0/rootfs dir..
->>>
->>> I did not see this problem when I uses a earlier commit of the Poky
->>> master branch.
->>>
->>> It seems like something broke with 1.3 M3 branch that prevents a proper
->>> build with 3.0 kernel. I do need to build my BSP with 3.0 kernel.
->>>
->>> (I was also told by Laurentiu Serban that 1.3 M3 Full Pass testing does
->>> not include testing with the 3.0 kernel)
->>>
->>> Any suggestions would be most welcome. I do need to build my BSP with
->>> the 3.0 kernel.
+>>> Hmm. It should work, I booted one not that long ago. Can you force
+>>> qemux86 to prefer the 3.0 kernel and see if that boots ? That would
+>>> at least start to isolate the potential problem areas.
 >>
->> Hmm. It should work, I booted one not that long ago. Can you force
->> qemux86 to prefer the 3.0 kernel and see if that boots ? That would
->> at least start to isolate the potential problem areas.
+>> However, won't 3.0 be removed for the 1.3 release? Keeping with 3.4 and
+>3.2?
 >
-> However, won't 3.0 be removed for the 1.3 release? Keeping with 3.4 and 3=
-.2?
-
-For 1.3 the 3 kernel sliding window plan was 3.4, 3.2 and 3.0 with 2.6.37 b=
-eing
-voted off the island. Or did you mean 1.4 ? Regardless, anything using 3.0 =
-needs
-to be updated since it's time is running short! :)
-
-Cheers,
-
-Bruce
-
+>For 1.3 the 3 kernel sliding window plan was 3.4, 3.2 and 3.0 with 2.6.37 =
+being
+>voted off the island. Or did you mean 1.4 ? Regardless, anything using 3.0
+>needs
+>to be updated since it's time is running short! :)
 >
-> --
-> Darren
+
+Cedartrail BSP has PVR Graphics drivers which works only with 3.0 Kernel.
+
+Thanks
+Kishore.
+>Cheers,
+>
+>Bruce
 >
 >>
->> Bruce
+>> --
+>> Darren
 >>
 >>>
->>> Thanks
+>>> Bruce
 >>>
->>> Rahul
+>>>>
+>>>> Thanks
+>>>>
+>>>> Rahul
+>>>>
 >>>
 >>
+>>
+>> --
+>> Darren Hart
+>> Intel Open Source Technology Center
+>> Yocto Project - Linux Kernel
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
 >
 >
-> --
-> Darren Hart
-> Intel Open Source Technology Center
-> Yocto Project - Linux Kernel
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
-
-
---=20
-"Thou shalt not follow the NULL pointer, for chaos and madness await
-thee at its end"
+>
+>--
+>"Thou shalt not follow the NULL pointer, for chaos and madness await
+>thee at its end"
+>_______________________________________________
+>yocto mailing list
+>yocto@yoctoproject.org
+>https://lists.yoctoproject.org/listinfo/yocto
 
