@@ -1,33 +1,28 @@
-Return-Path: <song.liu@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6EA91E0049B
-	for <yocto@yoctoproject.org>; Tue, 28 Aug 2012 15:31:28 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 28 Aug 2012 15:31:27 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,330,1344236400"; d="scan'208";a="192526793"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
-	by orsmga002.jf.intel.com with ESMTP; 28 Aug 2012 15:31:20 -0700
-Received: from orsmsx102.amr.corp.intel.com (10.22.225.129) by
-	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Tue, 28 Aug 2012 15:31:20 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.152]) by
-	ORSMSX102.amr.corp.intel.com ([169.254.1.89]) with mapi id
-	14.01.0355.002; Tue, 28 Aug 2012 15:31:20 -0700
-From: "Liu, Song" <song.liu@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Minutes: Yocto Project Technical Team Meeting - Tuesday,
-	August 28, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
-Thread-Index: AQHNhWzYrw6VbsaO0EemPyfQ3YxPMA==
-Date: Tue, 28 Aug 2012 22:31:19 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A4852395B@ORSMSX101.amr.corp.intel.com>
-References: <7E680CB2A76BB8438D08CF13C09FC53A4844CAD5@ORSMSX101.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
+Return-Path: <hartmut.behrens@gmail.com>
+Received: from mail-ob0-f176.google.com (mail-ob0-f176.google.com
+	[209.85.214.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3D8FCE013FE
+	for <yocto@yoctoproject.org>; Wed, 29 Aug 2012 04:04:20 -0700 (PDT)
+Received: by obbtb18 with SMTP id tb18so813849obb.35
+	for <yocto@yoctoproject.org>; Wed, 29 Aug 2012 04:04:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=mz6kJ2QHTdAl0/1sjjZ5+k750pc8jliG9eRtaP8icQ4=;
+	b=SnhmJ2H20Uzczboh2LmlxN5EoVoTssGVfFmXuABfj1VTCvlm2UzInMcjRbguNonAM+
+	2RB5GATZCG0E26mg29vViGhAnuLd6+kMOBB1VOsjGEIXZEVTCDQpmpl0J7DcGMbHofXm
+	2J7dOa40/o32Cy29M9m7jsy1Kb8S4ZQPhVgUkX9o8tMxIBnKJZeDlMDyx+UJcEWxGNXS
+	zR4vVJ3p9eabmrrXmJHTWO45BwMaTLoTPHMIkWON/jX5SoQm8DgFftH7236E8oOTjU28
+	2/ftW+lzfXF1kUDB5Klp9c92xxo9emk8r714tcf6+jQotGaKk8Co+a/sr7uCnV6qK1YB
+	IO2w==
 MIME-Version: 1.0
-Subject: Minutes: Yocto Project Technical Team Meeting - Tuesday, August 28, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+Received: by 10.182.73.65 with SMTP id j1mr864571obv.42.1346238245498; Wed, 29
+	Aug 2012 04:04:05 -0700 (PDT)
+Received: by 10.182.187.33 with HTTP; Wed, 29 Aug 2012 04:04:05 -0700 (PDT)
+Date: Wed, 29 Aug 2012 13:04:05 +0200
+Message-ID: <CA+69FtDmQvB_ex4guS12Xrf0oXhQj-7A4tZ7-PWof4YWWCcRyA@mail.gmail.com>
+From: Hartmut Behrens <hartmut.behrens@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Kernel does not emit any boot-up messages
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,88 +34,118 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 Aug 2012 22:31:28 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
+X-List-Received-Date: Wed, 29 Aug 2012 11:04:20 -0000
+Content-Type: multipart/alternative; boundary=f46d044472e367edcf04c86584ce
+
+--f46d044472e367edcf04c86584ce
+Content-Type: text/plain; charset=ISO-8859-1
+
+Hi All,
+
+A newbie question:
+
+After creating a new bsp for an Overo using the yocto-bsp script and
+modifying some kernel config's using menuconfig, I successfully created and
+loaded the image (core-image-minimal) onto an SD card and booted it.
+
+However, I do not see the kernel emitting any boot messages. Am I
+forgetting to include some recipes?
+
+
+
+
+> OMAP36XX/37XX-GP ES2.1, CPU-OPP2, L3-165MHz, Max CPU Clock 1 Ghz
+> OMAP3 Beagle board + LPDDR/NAND
+> I2C:   ready
+> DRAM:  512 MiB
+> NAND:  512 MiB
+> MMC:   OMAP SD/MMC: 0
+> *** Warning - bad CRC, using default environment
+>
+> In:    serial
+> Out:   serial
+> Err:   serial
+> Beagle Rev Ax/Bx
+> No EEPROM on expansion board
+> Die ID #36be00029ff80000016071640201b009
+> Hit any key to stop autoboot:  0
+> SD/MMC found on device 0
+> reading uEnv.txt
+>
+> ** Unable to read "uEnv.txt" from mmc 0:1 **
+> reading uImage
+>
+> 3356520 bytes read
+> Booting from mmc ...
+> ## Booting kernel from Legacy Image at 82000000 ...
+>    Image Name:   Linux-3.2.18-rt16-yocto-preempt-
+>    Image Type:   ARM Linux Kernel Image (uncompressed)
+>    Data Size:    3356456 Bytes = 3.2 MiB
+>    Load Address: 80008000
+>    Entry Point:  80008000
+>    Verifying Checksum ... OK
+>    Loading Kernel Image ... OK
+> OK
+>
+> Starting kernel ...
+>
+> Uncompressing Linux... done, booting the kernel.
+>
+> Yocto (Built by Poky 7.0) 1.2+snapshot-20120828
+>  ttyO2
+>
+> overo login: root
+> root@overo:~# uname -a
+> Linux overo 3.2.18-rt16-yocto-preempt-rt #4 PREEMPT RT Tue Aug 28 22:36:26
+> SAST 2012 armv7l GNU/Linux
+>
+>
+
+--f46d044472e367edcf04c86584ce
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-Attendees:
-Cristian, LaurentiuS, Andrew, Cristina, ScottR, TomZ, Bjorn, Richard, Saul,=
- Kevin, PaulE, DaveSt, Nitin, Belen, Mihai, Alex, Beth, Sean, Ross, Song
-=A0
-Agenda:
-=A0
-* Opens collection - 5 min (Song)
-* Yocto 1.3 M3 release readiness (All)
-  https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.3_Status#Milestone_3=
-=20
-  https://wiki.yoctoproject.org/wiki/Yocto_1.3_Milestone_Test_Report  (M3 r=
-eport is at the bottom of the page)
-    - Function complete: most are completed, some are moved to M4, CCB appr=
-oved that change.
-    - Build & Release: all features and core BSPs can be build with no erro=
-r.
-    - Open bugs: All M3 high's are fixed, except 2 reopened recently.
-      . 2775 is reopened: RP - there is a kernel patch, we will need to ide=
-ntify and pull it in.=20
-      . 2675 is a 1.2.1 bug. QA verified that that is fixed.
-    - Build Performance: we have about 13 minutes improvement over M2.=20
-    - Consensus: release M3. song will send email to CCB and Beth/Michael w=
-ill release this week.
-=A0
-* Yocto 1.3 status  - 10 min (Song/team)
-  https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.3_Status =20
-    - Wiki status page updated with feature development and bug fixing prog=
-ress.
-    - Record week for bug fixing: 39 resolved (medium above bugs). Please k=
-eep the good work going!
-    - Most of the high features will be changed to medium or medium+. Pleas=
-e send questions/comments to Song. Song will send email out later on.
-    - 2675 is targeted for M3, high.
-    - 1729-1730: multi-lib enabling, completed? Radu/Richard. Alex will fol=
-low up
-    - Beth: Fixed some long standing AB bugs last weekend. There will be mo=
-re AB downtime coming (one on 9/7) to fix some long standing AB bug. Any qu=
-estions/feedback  please let me know.
-    -Beth: Master is mostly green except eclipse plug-in is failing. There =
-is some kernel fetch issues. Will open a bug against this. Build appliance =
-is in. make the water fall harder to read.  Using grid view should help.  I=
-ona looked at the Eclipse issue, cannot recreate. Could be related to that =
-some local libs are upgraded.=20
-=A0
-* SWAT team rotation: Ross -> Ross
-  - LaurentiuP is on vacation, Ross volunteered to stay on. Thank you, Ross=
-!
-=A0
-* Opens - 10 min
-  - LaurentiuS: bug 2995. Saul/RP: already fixed.
-  - Richard - should mention nativesdk:
-    already mentioned this in mailing list. Got some issues, pulled some pa=
-tches from the mailing list for this, would like to let people know this. P=
-lease let me know if you have any feedback.
-=A0
-* Team sharing - 20 min
-  - ScottR: new manual on the latest doc area on the website. All 6 docs co=
-ncatenated together for the purpose of searching. Please take a look and co=
-mment if you can.
-  - Paul: working on some bitabke tools last week, enabled new feature to a=
-llow specify a recipe then search data files for you. Will follow cache dir=
-ectory recursively. Find out why a task was re-run. The patches are on the =
-mailing list for this. Again, Tasks-rework, RFC sent out, please reply.
-  - Christian: working on adding a new machine qemu86 machine with kvm enab=
-led, with gto to improve networking and other io performance.  Add virtio d=
-river next. It's not clearly how I will go with this one. There are some op=
-tions. Looking for input. 2550. Saul: virtio is enabled by kernel by defaul=
-t right now. Will follow up with Christian
-  - RP: bitbake for tracing, and message improvement. If people are not cle=
-ar where the error is after seeing the error message, please file bugs. It =
-will improve the user experience. Show the error message in the bug.
-  -Bjorn: posted patches on package testing (Ptest), it would be nice to ha=
-ve everyone interested to take a look and point out errors. It's getting bi=
-gger, would like to make sure the direction is correct. So please send feed=
-back. RP: this probably something we should talk more on the oe-core list. =
-Saul: on the right track.
+<div class=3D"gmail_quote"><div>Hi All,</div><div><br></div><div>A newbie q=
+uestion:</div><div><br></div><div>After creating a new bsp for an Overo usi=
+ng the yocto-bsp script and modifying some kernel config&#39;s using menuco=
+nfig, I=A0successfully=A0created and loaded the image (core-image-minimal) =
+onto an SD card and booted it.</div>
+<div><br></div><div>However, I do not see the kernel emitting any boot mess=
+ages. Am I forgetting to include some recipes?</div><div><br></div><div><br=
+></div><div>=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 =
+0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
+<div></div><div>OMAP36XX/37XX-GP ES2.1, CPU-OPP2, L3-165MHz, Max CPU Clock =
+1 Ghz</div><div>OMAP3 Beagle board + LPDDR/NAND</div><div>I2C: =A0 ready</d=
+iv><div>DRAM: =A0512 MiB</div>
+<div>NAND: =A0512 MiB</div><div>MMC: =A0 OMAP SD/MMC: 0</div><div>*** Warni=
+ng - bad CRC, using default environment</div><div><br></div><div>In: =A0 =
+=A0serial</div><div>Out: =A0 serial</div><div>Err: =A0 serial</div><div>Bea=
+gle Rev Ax/Bx</div>
 
+<div>No EEPROM on expansion board</div><div>Die ID #36be00029ff800000160716=
+40201b009</div><div>Hit any key to stop autoboot: =A00=A0</div><div>SD/MMC =
+found on device 0</div><div>reading uEnv.txt</div><div><br></div><div>** Un=
+able to read &quot;uEnv.txt&quot; from mmc 0:1 **</div>
 
+<div>reading uImage</div><div><br></div><div>3356520 bytes read</div><div>B=
+ooting from mmc ...</div><div>## Booting kernel from Legacy Image at 820000=
+00 ...</div><div>=A0 =A0Image Name: =A0 Linux-3.2.18-rt16-yocto-preempt-</d=
+iv>
 
+<div>=A0 =A0Image Type: =A0 ARM Linux Kernel Image (uncompressed)</div><div=
+>=A0 =A0Data Size: =A0 =A03356456 Bytes =3D 3.2 MiB</div><div>=A0 =A0Load A=
+ddress: 80008000</div><div>=A0 =A0Entry Point: =A080008000</div><div>=A0 =
+=A0Verifying Checksum ... OK</div>
 
+<div>=A0 =A0Loading Kernel Image ... OK</div><div>OK</div><div><br></div><d=
+iv>Starting kernel ...</div><div><br></div><div>Uncompressing Linux... done=
+, booting the kernel.</div><div><br></div><div>Yocto (Built by Poky 7.0) 1.=
+2+snapshot-20120828=A0</div>
+
+<div>=A0ttyO2</div><div><br></div><div>overo login: root</div><div>root@ove=
+ro:~# uname -a</div><div>Linux overo 3.2.18-rt16-yocto-preempt-rt #4 PREEMP=
+T RT Tue Aug 28 22:36:26 SAST 2012 armv7l GNU/Linux</div><div><br></div>
+
+</blockquote></div><br>
+
+--f46d044472e367edcf04c86584ce--
