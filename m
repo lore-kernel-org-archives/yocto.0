@@ -1,38 +1,17 @@
-Return-Path: <kishore.k.bodke@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0FB4EE00769
-	for <yocto@yoctoproject.org>; Wed, 29 Aug 2012 11:08:10 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 29 Aug 2012 11:08:09 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,335,1344236400"; d="scan'208";a="215828600"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
-	by fmsmga001.fm.intel.com with ESMTP; 29 Aug 2012 11:08:09 -0700
-Received: from orsmsx103.amr.corp.intel.com (10.22.225.130) by
-	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Wed, 29 Aug 2012 11:08:08 -0700
-Received: from orsmsx105.amr.corp.intel.com ([169.254.4.178]) by
-	ORSMSX103.amr.corp.intel.com ([169.254.2.246]) with mapi id
-	14.01.0355.002; Wed, 29 Aug 2012 11:08:07 -0700
-From: "Bodke, Kishore K" <kishore.k.bodke@intel.com>
-To: Bruce Ashfield <bruce.ashfield@gmail.com>, "Hart, Darren"
-	<darren.hart@intel.com>
-Thread-Topic: [yocto] Poky 1.3_M3 branch does not work with linux-yocto 3.0
-	kernel ?
-Thread-Index: AQHNhMwME3GmTVwxyEaiEW+DAl5V5pdwFBuAgAF0LgD//5AjkA==
-Date: Wed, 29 Aug 2012 18:08:06 +0000
-Message-ID: <D956029D25CF204F948EA0FB515E1EE20AD632AA@ORSMSX105.amr.corp.intel.com>
-References: <63ECFF2A2302B44093D7CE9E9962C4900332062C@ORSMSX103.amr.corp.intel.com>
-	<503C3896.5080509@windriver.com> <503D1D55.1010205@intel.com>
-	<CADkTA4MxAKcbtnEpCDKB==G2hxjRqt5F32kCqtg6HPo1QBcfUA@mail.gmail.com>
-In-Reply-To: <CADkTA4MxAKcbtnEpCDKB==G2hxjRqt5F32kCqtg6HPo1QBcfUA@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.138]
+Return-Path: <packages@autobuilder.yoctoproject.org>
+Received: from autobuilder.yoctoproject.org (autobuilder.yoctoproject.org
+	[140.211.169.59])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6F532E01404
+	for <yocto@yoctoproject.org>; Wed, 29 Aug 2012 16:58:59 -0700 (PDT)
+Received: by autobuilder.yoctoproject.org (Postfix, from userid 802)
+	id 3643440CCC; Wed, 29 Aug 2012 23:58:45 +0000 (UTC)
+Date: Wed, 29 Aug 2012 23:58:45 +0000
+From: Yocto Project Package Report System <package-reporting@yoctoproject.org>
+To: yocto@yoctoproject.org
+Message-ID: <20120829235845.GA29459@ab01.i.yoctoproject.org>
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Poky 1.3_M3 branch does not work with linux-yocto 3.0 kernel ?
+User-Agent: Mutt/1.5.20 (2009-12-10)
+Subject: [Package Report System]Upgrade recipes name list
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,113 +23,120 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 29 Aug 2012 18:08:10 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 29 Aug 2012 23:58:59 -0000
+X-Groupsio-MsgNum: 8998
+Content-Type: multipart/mixed; boundary="2fHTh5uZTiUOsy+g"
+Content-Disposition: inline
+
+--2fHTh5uZTiUOsy+g
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+This mail was sent out by Package Report System.
+This message list those recipes which need to be upgraded. If maintainers believe some of them needn't to upgrade this time, they can fill in RECIPE_NO_UPDATE_REASON_pn-"xxx" in upstream_tracking files to ignore this recipe remainder until newer upstream version was detected.
+Example:
+RECIPE_NO_UPDATE_REASON_pn-"xxx" = "Not upgrade to 2.0 because the new version is unstable"
+You can check the detail information at http://packages.yoctoproject.org/upgradepkgname
 
 
+PackageName                   Version                       UpVersion                     Maintainer                                        NoUpgradeReason               
+ccache                        3.1.7                         3.1.8                         Wenzong Fan <wenzong.fan@windriver.com>           
+xdg-utils                     1.0.2                         1.1.0                         Valentin Popa <valentin.popa@intel.com>           
+liberation-fonts              1.04                          2.00.0                        Valentin Popa <valentin.popa@intel.com>           
+qemu                          0.15.1                        1.2.0                         Valentin Popa <valentin.popa@intel.com>           
+matchbox-panel-2              0.0+git1+cdf7a22716b8746      2.0                           Valentin Popa <valentin.popa@intel.com>           
+evolution-data-server         2.30+git1+3ca578d968d097      6.0                           Valentin Popa <valentin.popa@intel.com>           
+puzzles                       r9561                         9606                          Valentin Popa <valentin.popa@intel.com>           
+lttng-viewer                  0.12.38                       0.12.38.21032011              Valentin Popa <valentin.popa@intel.com>           
+shadow                        4.1.4.3                       4.1.5.1                       Scott Garman <scott.a.garman@intel.com>           
+blktool                       4-6                           4                             Scott Garman <scott.a.garman@intel.com>           
+apmd                          3.2.2-14                      3.2.2                         Scott Garman <scott.a.garman@intel.com>           
+openssh                       6.0p1                         6.1p1                         Scott Garman <scott.a.garman@intel.com>           
+createrepo                    0.4.11                        0.9.9                         Saul Wold <sgw@linux.intel.com>                   Versions after 0.9.* use YUM,...
+apt                           0.7.14                        0.9.7.4                       Saul Wold <sgw@linux.intel.com>                   
+pkgconfig                     0.25                          0.27.1                        Saul Wold <sgw@linux.intel.com>                   0.26 removes glib-conf, adds ...
+build-appliance-image         1.0                           3.2.1                         Saul Wold <sgw@linux.intel.com>                   
+util-linux                    2.21.2                        2.22                          Saul Wold <sgw@linux.intel.com>                   
+libxml2                       2.8.0                         2.9.0                         Saul Wold <sgw@linux.intel.com>                   
+dhcp                          4.2.4-P1                      4.2.4                         Saul Wold <sgw@linux.intel.com>                   ftp://ftp.isc.org/isc/dhcp/4.2.4-P1/dhcp-4.2.4-P1.tar.gz
+logrotate                     3.8.1                         3.8.2                         Robert Yang <liezhi.yang@windriver.com>           
+curl                          7.26.0                        7.27.0                        Radu Moisan <radu.moisan@intel.com>               
+liburcu                       0.6.7                         0.7.4                         Radu Moisan <radu.moisan@intel.com>               
+js                            1.7.0+1.8.0rc1                1.60                          Radu Moisan <radu.moisan@intel.com>               
+u-boot-mkimage                2011.06                       2012.07                       Radu Moisan <radu.moisan@intel.com>               
+valgrind                      3.7.0                         3.8.0                         Radu Moisan <radu.moisan@intel.com>               
+babeltrace                    0.12+git1+0d8f8c2ea27df0      1.0.0                         Radu Moisan <radu.moisan@intel.com>               
+udev                          164                           182                           Radu Moisan <radu.moisan@intel.com>               
+mobile-broadband-provider-info1.0.0+gitr1+d9995ef693cb      20090309                      Radu Moisan <radu.moisan@intel.com>               
+man-pages                     3.41                          3.42                          No Maintainer information                         
+nativesdk-bdwgc               20110107                      7.2alpha5                     No Maintainer information                         
+nativesdk-curl                7.26.0                        7.27.0                        No Maintainer information                         
+nativesdk-qemu                0.15.1                        1.2.0                         No Maintainer information                         
+kconfig-frontends             3.5.0                         3.5.0.0                       No Maintainer information                         
+nativesdk-automake            1.12.1                        1.12.3                        No Maintainer information                         
+nativesdk-pkgconfig           0.25                          0.27.1                        No Maintainer information                         
+nativesdk-perl                5.14.2                        5.17.3                        No Maintainer information                         
+nativesdk-linux-libc-headers  3.4.3                         3.5.3                         No Maintainer information                         
+nativesdk-linux-libc-headers- 3.4+git-1+a1cdb60720c452      3.4.9                         No Maintainer information                         
+nativesdk-zlib                1.2.7                         121                           No Maintainer information                         
+nativesdk-libxml2             2.8.0                         2.9.0                         No Maintainer information                         
+nativesdk-libffi              3.0.10                        3.0.11                        No Maintainer information                         
+nativesdk-openssl             1.0.0j                        1.0.1                         No Maintainer information                         
+zypper                        1.5.3-git1+2c5bb6ceb99ec      11.0                          Mark Hatle <mark.hatle@windriver.com>             
+libzypp                       0.0-git1+15b6c52260bbc52      11.0                          Mark Hatle <mark.hatle@windriver.com>             
+rpm                           5.4.9                         5.4.9.0.20120508              Mark Hatle <mark.hatle@windriver.com>             
+libdrm                        2.4.37                        2.4.39                        Laurentiu Palcu <laurentiu.palcu@intel.com>       
+fontconfig                    2.9.0                         2.10.1                        Laurentiu Palcu <laurentiu.palcu@intel.com>       
+xkeyboard-config              2.1                           2.5.99                        Laurentiu Palcu <laurentiu.palcu@intel.com>       
+xserver-xorg                  1.11.2                        1.12.99.905                   Laurentiu Palcu <laurentiu.palcu@intel.com>       
+xf86-input-evdev              2.7.0                         2.7.3                         Laurentiu Palcu <laurentiu.palcu@intel.com>       
+xf86-video-vesa               2.3.1                         2.3.2                         Laurentiu Palcu <laurentiu.palcu@intel.com>       
+xf86-video-fbdev              0.4.2                         0.4.3                         Laurentiu Palcu <laurentiu.palcu@intel.com>       
+xf86-input-keyboard           1.6.1                         1.6.2                         Laurentiu Palcu <laurentiu.palcu@intel.com>       
+xf86-video-intel              2.19.0                        2.20.5                        Laurentiu Palcu <laurentiu.palcu@intel.com>       
+xf86-input-mouse              1.7.2                         1.8.1                         Laurentiu Palcu <laurentiu.palcu@intel.com>       
+ghostscript                   9.05                          9.06                          Kai Kang <kai.kang@windriver.com>                 
+xserver-kdrive                1.7.99.2                      1.12.99.905                   Kai Kang <kai.kang@windriver.com>                 
+xserver-xorg-lite             1.11.2                        1.12.99.905                   Kai Kang <kai.kang@windriver.com>                 
+qmmp                          0.6.1                         0.6.3                         Kai Kang <kai.kang@windriver.com>                 
+syslinux                      4.03                          4.05                          Darren Hart <dvhart@linux.intel.com>              Waiting for 4.06 for 3.3 kern...
+net-tools                     1.60-23                       1.60                          Cristian Iorga <cristian.iorga@intel.com>         
+connman                       1.4                           1.6                           Cristian Iorga <cristian.iorga@intel.com>         
+gypsy                         0.8                           0.9                           Cristian Iorga <cristian.iorga@intel.com>         
+iproute2                      3.5.0                         3.5.1                         Cristian Iorga <cristian.iorga@intel.com>         
+telepathy-glib                0.19.6                        0.19.7                        Cristian Iorga <cristian.iorga@intel.com>         
+libmusicbrainz                3.0.3                         4.0.0                         Cristian Iorga <cristian.iorga@intel.com>         
+gst-plugins-base              0.10.36                       0.11.90                       Cristian Iorga <cristian.iorga@intel.com>         
+gst-ffmpeg                    0.10.13                       0.11.2                        Cristian Iorga <cristian.iorga@intel.com>         
+gst-plugins-good              0.10.31                       0.11.90                       Cristian Iorga <cristian.iorga@intel.com>         
+gst-plugins-bad               0.10.23                       0.11.90                       Cristian Iorga <cristian.iorga@intel.com>         
+gst-plugins-ugly              0.10.19                       0.11.90                       Cristian Iorga <cristian.iorga@intel.com>         
+gstreamer                     0.10.36                       0.11.90                       Cristian Iorga <cristian.iorga@intel.com>         upgrading to 0.11.1 causes gs...
+libconvert-asn1-perl          0.22                          0.26                          Bogdan Marinescu <bogdan.a.marinescu@intel.com>   
+lsof                          4.85                          4.86                          Bogdan Marinescu <bogdan.a.marinescu@intel.com>   
+tcf-agent                     0.4.0+git1+4ef94ecb927a8      8.0                           Bogdan Marinescu <bogdan.a.marinescu@intel.com>   
+automake                      1.12.1                        1.12.3                        Bogdan Marinescu <bogdan.a.marinescu@intel.com>   
+bison                         2.5.1                         2.6.2                         Bogdan Marinescu <bogdan.a.marinescu@intel.com>   
+gdb                           7.4.1                         7.5                           Bogdan Marinescu <bogdan.a.marinescu@intel.com>   
+nasm                          2.10.01                       2.10.04                       Bogdan Marinescu <bogdan.a.marinescu@intel.com>   
+lttng2-ust                    2.0.2+git1+a367ee66aad3f      2.0.5                         Bogdan Marinescu <bogdan.a.marinescu@intel.com>   
+linux-libc-headers-yocto      3.4+git-1+a1cdb60720c452      3.4.9                         Bogdan Marinescu <bogdan.a.marinescu@intel.com>   
+linux-libc-headers            3.4.3                         3.5.3                         Bogdan Marinescu <bogdan.a.marinescu@intel.com>   
+lttng-control                 0.89                          0.89.05122011                 Bogdan Marinescu <bogdan.a.marinescu@intel.com>   
+Upgradable Count: 78
+Upgrade Total Count: 83
+The based commit merge time is:
+Wed Aug 29 15:29:40 2012 -0700
+The based commit is:
+commit 77886e0ed15db2805d06c4b88c67e24ba1510ad3
+Author: Ross Burton <ross.burton@intel.com>
+Date:   Wed Aug 29 16:48:38 2012 +0100
+Any problem, please contact Saul Wold <sgw@linux.intel.com> 
 
->-----Original Message-----
->From: yocto-bounces@yoctoproject.org [mailto:yocto-
->bounces@yoctoproject.org] On Behalf Of Bruce Ashfield
->Sent: Wednesday, August 29, 2012 10:47 AM
->To: Hart, Darren
->Cc: yocto@yoctoproject.org
->Subject: Re: [yocto] Poky 1.3_M3 branch does not work with linux-yocto 3.0
->kernel ?
->
->On Tue, Aug 28, 2012 at 3:34 PM, Darren Hart <darren.hart@intel.com> wrote=
-:
->> On 08/27/2012 08:18 PM, Bruce Ashfield wrote:
->>> On 12-08-27 8:14 PM, Saxena, Rahul wrote:
->>>> Hi,
->>>>
->>>> I am building a BSP (meta-cedartrail) using 1.3 M3 branch of Poky.
->>>>
->>>> When I try to boot a image such as core-image-sato, I get kernel panic
->>>> and errors such as:
->>>>
->>>> VFS: Cannot open root device "ram0" or unkown-block(0,0)
->>>>
->>>> Please append a correct "root=3D" boot option; here are the available
->>>>
->>>> partitions:
->>>>
->>>> VFS: unable to mount root fs on unknown block(0,0)
->>>>
->>>> User configuration error - no valid rootfilesystem found
->>>>
->>>> I do see that the root file system exists in
->>>> cedartrail-poky-linux/core-image-sato-1.0-r0/rootfs dir..
->>>>
->>>> I did not see this problem when I uses a earlier commit of the Poky
->>>> master branch.
->>>>
->>>> It seems like something broke with 1.3 M3 branch that prevents a prope=
-r
->>>> build with 3.0 kernel. I do need to build my BSP with 3.0 kernel.
->>>>
->>>> (I was also told by Laurentiu Serban that 1.3 M3 Full Pass testing doe=
-s
->>>> not include testing with the 3.0 kernel)
->>>>
->>>> Any suggestions would be most welcome. I do need to build my BSP with
->>>> the 3.0 kernel.
->>>
->>> Hmm. It should work, I booted one not that long ago. Can you force
->>> qemux86 to prefer the 3.0 kernel and see if that boots ? That would
->>> at least start to isolate the potential problem areas.
->>
->> However, won't 3.0 be removed for the 1.3 release? Keeping with 3.4 and
->3.2?
->
->For 1.3 the 3 kernel sliding window plan was 3.4, 3.2 and 3.0 with 2.6.37 =
-being
->voted off the island. Or did you mean 1.4 ? Regardless, anything using 3.0
->needs
->to be updated since it's time is running short! :)
->
+--2fHTh5uZTiUOsy+g
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: attachment; filename="potential_format_problem.log"
 
-Cedartrail BSP has PVR Graphics drivers which works only with 3.0 Kernel.
+recipe_color.inc/17: RECIPE_COLOR = "green"
 
-Thanks
-Kishore.
->Cheers,
->
->Bruce
->
->>
->> --
->> Darren
->>
->>>
->>> Bruce
->>>
->>>>
->>>> Thanks
->>>>
->>>> Rahul
->>>>
->>>
->>
->>
->> --
->> Darren Hart
->> Intel Open Source Technology Center
->> Yocto Project - Linux Kernel
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->
->
->
->--
->"Thou shalt not follow the NULL pointer, for chaos and madness await
->thee at its end"
->_______________________________________________
->yocto mailing list
->yocto@yoctoproject.org
->https://lists.yoctoproject.org/listinfo/yocto
-
+--2fHTh5uZTiUOsy+g--
