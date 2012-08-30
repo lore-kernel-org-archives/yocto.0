@@ -1,23 +1,21 @@
 Return-Path: <tom.zanussi@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 00B52E0044A
-	for <yocto@yoctoproject.org>; Thu, 30 Aug 2012 14:38:12 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 30 Aug 2012 14:38:12 -0700
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 227F0E0141C
+	for <yocto@yoctoproject.org>; Thu, 30 Aug 2012 14:38:26 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga102.fm.intel.com with ESMTP; 30 Aug 2012 14:38:10 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,342,1344236400"; d="scan'208";a="193708058"
+X-IronPort-AV: E=Sophos;i="4.80,342,1344236400"; d="scan'208";a="216401259"
 Received: from unknown (HELO localhost) ([10.255.13.3])
-	by orsmga002.jf.intel.com with ESMTP; 30 Aug 2012 14:38:11 -0700
+	by fmsmga001.fm.intel.com with ESMTP; 30 Aug 2012 14:38:10 -0700
 From: tom.zanussi@intel.com
 To: yocto@yoctoproject.org
-Date: Thu, 30 Aug 2012 16:38:01 -0500
-Message-Id: <2a7a46cad31df8c8c7559d2d55c905ac23a56b65.1346362316.git.tom.zanussi@intel.com>
+Date: Thu, 30 Aug 2012 16:38:00 -0500
+Message-Id: <756571750b0449335ef01279ce10609099b8a8e1.1346362316.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.4.1
-In-Reply-To: <756571750b0449335ef01279ce10609099b8a8e1.1346362316.git.tom.zanussi@intel.com>
-References: <756571750b0449335ef01279ce10609099b8a8e1.1346362316.git.tom.zanussi@intel.com>
 In-Reply-To: <cover.1346362316.git.tom.zanussi@intel.com>
 References: <cover.1346362316.git.tom.zanussi@intel.com>
-Subject: [PATCH 2/2] meta-intel: use va-impl-intel MACHINE_FEATURE
+Subject: [PATCH 1/2] meta-intel: add va-impl-intel MACHINE_FEATURE
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,72 +27,91 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 30 Aug 2012 21:38:13 -0000
+X-List-Received-Date: Thu, 30 Aug 2012 21:38:26 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-Explicitly specify the va-impl-intel MACHINE_FEATURE, and update the
-mixvideo uses with the feature rename.
+Add a new va-impl-intel MACHINE_FEATURE to explicitly choose intel
+video acceleration, rather than have it as the fallthrough default, so
+that anything that wants to specify something different locally
+doesn't get unwanted components.
+
+Also rename the gst-va-mixvideo feature to va-impl-mixvideo match and
+since it isn't only concerned with gst.
 
 Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
 ---
- meta-chiefriver/conf/machine/chiefriver.conf |    1 +
- meta-crownbay/conf/machine/crownbay.conf     |    2 +-
- meta-fri2/conf/machine/fri2.conf             |    2 +-
- meta-sugarbay/conf/machine/sugarbay.conf     |    2 ++
- 4 files changed, 5 insertions(+), 2 deletions(-)
+ .../recipes-multimedia/gstreamer/gst-va-intel.bb   |   16 +++++++++++++---
+ common/recipes-multimedia/libva/va-intel.bb        |   16 ++++++++++++----
+ 2 files changed, 25 insertions(+), 7 deletions(-)
 
-diff --git a/meta-chiefriver/conf/machine/chiefriver.conf b/meta-chiefriver/conf/machine/chiefriver.conf
-index b644119..6d8d3a5 100644
---- a/meta-chiefriver/conf/machine/chiefriver.conf
-+++ b/meta-chiefriver/conf/machine/chiefriver.conf
-@@ -5,6 +5,7 @@
- # i.e. Ivy Bridge + Panther Point
+diff --git a/common/recipes-multimedia/gstreamer/gst-va-intel.bb b/common/recipes-multimedia/gstreamer/gst-va-intel.bb
+index 17cb7c8..516e5f1 100644
+--- a/common/recipes-multimedia/gstreamer/gst-va-intel.bb
++++ b/common/recipes-multimedia/gstreamer/gst-va-intel.bb
+@@ -4,10 +4,16 @@ DEPENDS = "gst-meta-base"
+ LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=3f40d7994397109285ec7b81fdeb3b58 \
+                     file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
  
- PREFERRED_VERSION_linux-yocto ?= "3.4%"
-+MACHINE_FEATURES += "va-impl-intel"
+-PR = "r0"
++PR = "r1"
  
- require conf/machine/include/tune-x86_64.inc
- require conf/machine/include/ia32-base.inc
-diff --git a/meta-crownbay/conf/machine/crownbay.conf b/meta-crownbay/conf/machine/crownbay.conf
-index dba735a..c4b7682 100644
---- a/meta-crownbay/conf/machine/crownbay.conf
-+++ b/meta-crownbay/conf/machine/crownbay.conf
-@@ -10,7 +10,7 @@ require conf/machine/include/tune-atom.inc
- require conf/machine/include/ia32-base.inc
- require conf/machine/include/meta-intel.inc
- 
--MACHINE_FEATURES += "gst-va-mixvideo"
-+MACHINE_FEATURES += "va-impl-mixvideo"
- 
- XSERVER ?= "${XSERVER_IA32_BASE} \
-            ${XSERVER_IA32_EXT} \
-diff --git a/meta-fri2/conf/machine/fri2.conf b/meta-fri2/conf/machine/fri2.conf
-index a928f0f..56408f7 100644
---- a/meta-fri2/conf/machine/fri2.conf
-+++ b/meta-fri2/conf/machine/fri2.conf
-@@ -10,7 +10,7 @@ require conf/machine/include/meta-intel.inc
- 
- VA_FEATURES ?= "gst-va-intel va-intel"
- 
--MACHINE_FEATURES += "wifi 3g pcbios efi gst-va-mixvideo"
-+MACHINE_FEATURES += "wifi 3g pcbios efi va-impl-mixvideo"
- MACHINE_EXTRA_RRECOMMENDS += "linux-firmware-iwlwifi-6000g2a-5 ${VA_FEATURES}"
- 
- PREFERRED_PROVIDER_virtual/kernel ?= "linux-yocto"
-diff --git a/meta-sugarbay/conf/machine/sugarbay.conf b/meta-sugarbay/conf/machine/sugarbay.conf
-index a80c938..616c2c5 100644
---- a/meta-sugarbay/conf/machine/sugarbay.conf
-+++ b/meta-sugarbay/conf/machine/sugarbay.conf
-@@ -4,6 +4,8 @@
- #@DESCRIPTION: Machine configuration for Sugar Bay systems
- # i.e. Sandy Bridge + Cougar Point
- 
-+MACHINE_FEATURES += "va-impl-intel"
+-VAAPI_IMPL = "${@base_contains('MACHINE_FEATURES', 'gst-va-mixvideo', 'gst-va-mixvideo-vaapi', \
+-             'gst-va-intel-vaapi', d)}"
++def map_gst_vaapi(d):
++    if base_contains('MACHINE_FEATURES', 'va-impl-mixvideo', "1", "0", d) == "1":
++       return "gst-va-mixvideo-vaapi"
++    if base_contains('MACHINE_FEATURES', 'va-impl-intel', "1", "0", d) == "1":
++       return "gst-va-intel-vaapi"
++    return ""
 +
- PREFERRED_VERSION_linux-yocto ?= "3.4%"
++VAAPI_IMPL = "${@map_gst_vaapi(d)}"
  
- require conf/machine/include/tune-x86_64.inc
+ PACKAGES = "\
+     gst-va-intel \
+@@ -32,10 +38,14 @@ RDEPENDS_gst-va-intel-video = "\
+     gst-plugins-good-isomp4 \
+     "
+ 
++# The gstreamer-vaapi package contains the vaapi implementation
++#
+ RDEPENDS_gst-va-intel-vaapi = "\
+     gstreamer-vaapi \
+     "
+ 
++# The emgd driver contains the vaapi implementation
++#
+ RDEPENDS_gst-va-mixvideo-vaapi = "\
+     emgd-driver-bin \
+     "
+diff --git a/common/recipes-multimedia/libva/va-intel.bb b/common/recipes-multimedia/libva/va-intel.bb
+index fc4a28e..ce642fe 100644
+--- a/common/recipes-multimedia/libva/va-intel.bb
++++ b/common/recipes-multimedia/libva/va-intel.bb
+@@ -3,11 +3,19 @@ LICENSE = "MIT"
+ LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=3f40d7994397109285ec7b81fdeb3b58 \
+                     file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
+ 
+-PR = "r0"
++PR = "r1"
+ 
+-VA_IMPL = "${@base_contains('MACHINE_FEATURES', 'gst-va-mixvideo', \
+-          'libva libva-x11 libva-tpi libva-glx libva-egl', \
+-          'libva libva-intel-driver', d)}"
++def map_valibs(d):
++    # The emgd mixvideo implementation requires libva-x11/tpi/glx/egl
++    if base_contains('MACHINE_FEATURES', 'va-impl-mixvideo', "1", "0", d) == "1":
++       return "libva libva-x11 libva-tpi libva-glx libva-egl"
++    # The intel implementation requires the libva-intel-driver package
++    if base_contains('MACHINE_FEATURES', 'va-impl-intel', "1", "0", d) == "1":
++       return "libva libva-intel-driver"
++    # All meta-intel video acceleration requires libva
++    return "libva"
++
++VA_IMPL = "${@map_valibs(d)}"
+ 
+ PACKAGES = "\
+     va-intel \
 -- 
 1.7.4.1
 
