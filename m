@@ -1,41 +1,30 @@
-Return-Path: <ross.burton@intel.com>
-Received: from fmsmga101.fm.intel.com (mga05.intel.com [192.55.52.89])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 53F62E01438
-	for <yocto@yoctoproject.org>; Thu, 30 Aug 2012 04:42:01 -0700 (PDT)
-Received: from mail-ob0-f176.google.com ([209.85.214.176])
-	by mga01.intel.com with ESMTP/TLS/RC4-SHA; 30 Aug 2012 04:41:49 -0700
-Received: by obbtb18 with SMTP id tb18so3803940obb.35
-	for <yocto@yoctoproject.org>; Thu, 30 Aug 2012 04:41:49 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type:x-gm-message-state;
-	bh=ce49dJPMXfPatkg9CRzjRDP56oACdqJQ9LsL9LKKjBE=;
-	b=g8Zv//Wn4XC0ulDlP87CNaZSQiAFIOv6+TZBAIqjTmox9WjS1AMdXrReOZ3+OSDq3v
-	aUbSMvbzfSy0tM9cP1+/R1FOO8pmXCqfk8fwiCKgS2MaHDRo1OqoQukGYsnxizb3aoPr
-	980yIS8G7XMCnlliJ3WF/wOoA9uJCo8laYnx/1pJWPqa9WokFPlEA1XqU+bAZz6/jW32
-	RFa5ZYGM1uU0bYUTLPcF2AOnK/F77qjgUqhd3zUVVOGTLM6UyZcmLiQiyxDmc6GMWiZ6
-	bPg1n2WjmxHQvATkWeztt1kHxZTROVjKQQNyySuLPZBbEtT/U0eYGEJA48iOfHV24NTp
-	umsw==
-Received: by 10.182.43.40 with SMTP id t8mr3928605obl.93.1346326909210; Thu,
-	30 Aug 2012 04:41:49 -0700 (PDT)
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 65D2AE0044A
+	for <yocto@yoctoproject.org>; Thu, 30 Aug 2012 10:22:54 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id q7UHMoDT024844
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Thu, 30 Aug 2012 10:22:50 -0700 (PDT)
+Received: from [147.11.117.131] (147.11.117.131) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.2.309.2;
+	Thu, 30 Aug 2012 10:22:50 -0700
+Message-ID: <503FA169.7020805@windriver.com>
+Date: Thu, 30 Aug 2012 13:22:49 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:11.0) Gecko/20120329 Thunderbird/11.0.1
 MIME-Version: 1.0
-Received: by 10.182.79.105 with HTTP; Thu, 30 Aug 2012 04:41:29 -0700 (PDT)
-In-Reply-To: <CANFv2E=8vKRKWaK_M_OyhOY_nH5KMA08y2NcAXJLW1yPukVN0w@mail.gmail.com>
-References: <5037B5F5.5040105@gmail.com>
-	<27A36DD288D740FA887185346F191582@intel.com>
-	<5037C63E.6050507@gmail.com>
-	<AB1D85DF566F4611935A07ABBD4D003E@intel.com>
-	<5037C9B6.2040306@gmail.com>
-	<CAJTo0LaMQkoGqojaDdFOXeELvRJow=sosoKWYnGgV_ONtRjgCg@mail.gmail.com>
-	<CANFv2E=8vKRKWaK_M_OyhOY_nH5KMA08y2NcAXJLW1yPukVN0w@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Thu, 30 Aug 2012 12:41:29 +0100
-Message-ID: <CAJTo0LYvmRzYX0j2HU3eD1nXt6B5URcg6EfGGo_tWUcYz1W6uA@mail.gmail.com>
-To: James Abernathy <jfabernathy@gmail.com>
-X-Gm-Message-State: ALoCoQnYQha/SMLvKKRmzTvb1um8jOoL/LLXrwYEcEA+hdy/HOqY85mdDRRFrtO3hlFs2HTLM8az
-Cc: yocto@yoctoproject.org
-Subject: Re: configuring WiFi in Yocto
+To: "Saxena, Rahul" <rahul.saxena@intel.com>
+References: <63ECFF2A2302B44093D7CE9E9962C4900332062C@ORSMSX103.amr.corp.intel.com>
+	<503C3896.5080509@windriver.com> <503D1D55.1010205@intel.com>
+	<CADkTA4MxAKcbtnEpCDKB==G2hxjRqt5F32kCqtg6HPo1QBcfUA@mail.gmail.com>
+	<D956029D25CF204F948EA0FB515E1EE20AD632AA@ORSMSX105.amr.corp.intel.com>
+	<63ECFF2A2302B44093D7CE9E9962C4900332201E@ORSMSX103.amr.corp.intel.com>
+In-Reply-To: <63ECFF2A2302B44093D7CE9E9962C4900332201E@ORSMSX103.amr.corp.intel.com>
+Cc: "Hart, Darren" <darren.hart@intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Poky 1.3_M3 branch does not work with linux-yocto 3.0 kernel ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,15 +36,145 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 30 Aug 2012 11:42:01 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 30 Aug 2012 17:22:54 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On 29 August 2012 13:52, James Abernathy <jfabernathy@gmail.com> wrote:
-> rtl8192ce:rtl92c_init_sw_vars():<0-0> Failed to request firmware!
+On 12-08-30 01:06 AM, Saxena, Rahul wrote:
+>
+>
+> -----Original Message-----
+> From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org] On Behalf Of Bodke, Kishore K
+> Sent: Wednesday, August 29, 2012 11:08 AM
+> To: Bruce Ashfield; Hart, Darren
+> Cc: yocto@yoctoproject.org
+> Subject: Re: [yocto] Poky 1.3_M3 branch does not work with linux-yocto 3.0 kernel ?
+>
+>
+>
+>> -----Original Message-----
+>> From: yocto-bounces@yoctoproject.org [mailto:yocto-
+>> bounces@yoctoproject.org] On Behalf Of Bruce Ashfield
+>> Sent: Wednesday, August 29, 2012 10:47 AM
+>> To: Hart, Darren
+>> Cc: yocto@yoctoproject.org
+>> Subject: Re: [yocto] Poky 1.3_M3 branch does not work with linux-yocto
+>> 3.0 kernel ?
+>>
+>> On Tue, Aug 28, 2012 at 3:34 PM, Darren Hart<darren.hart@intel.com>  wrote:
+>>> On 08/27/2012 08:18 PM, Bruce Ashfield wrote:
+>>>> On 12-08-27 8:14 PM, Saxena, Rahul wrote:
+>>>>> Hi,
+>>>>>
+>>>>> I am building a BSP (meta-cedartrail) using 1.3 M3 branch of Poky.
+>>>>>
+>>>>> When I try to boot a image such as core-image-sato, I get kernel
+>>>>> panic and errors such as:
+>>>>>
+>>>>> VFS: Cannot open root device "ram0" or unkown-block(0,0)
+>>>>>
+>>>>> Please append a correct "root=" boot option; here are the available
+>>>>>
+>>>>> partitions:
+>>>>>
+>>>>> VFS: unable to mount root fs on unknown block(0,0)
+>>>>>
+>>>>> User configuration error - no valid rootfilesystem found
+>>>>>
+>>>>> I do see that the root file system exists in
+>>>>> cedartrail-poky-linux/core-image-sato-1.0-r0/rootfs dir..
+>>>>>
+>>>>> I did not see this problem when I uses a earlier commit of the Poky
+>>>>> master branch.
+>>>>>
+>>>>> It seems like something broke with 1.3 M3 branch that prevents a
+>>>>> proper build with 3.0 kernel. I do need to build my BSP with 3.0 kernel.
+>>>>>
+>>>>> (I was also told by Laurentiu Serban that 1.3 M3 Full Pass testing
+>>>>> does not include testing with the 3.0 kernel)
+>>>>>
+>>>>> Any suggestions would be most welcome. I do need to build my BSP
+>>>>> with the 3.0 kernel.
+>>>>
+>>>> Hmm. It should work, I booted one not that long ago. Can you force
+>>>> qemux86 to prefer the 3.0 kernel and see if that boots ? That would
+>>>> at least start to isolate the potential problem areas.
+>>>
+>>> However, won't 3.0 be removed for the 1.3 release? Keeping with 3.4
+>>> and
+>> 3.2?
+>>
+>> For 1.3 the 3 kernel sliding window plan was 3.4, 3.2 and 3.0 with
+>> 2.6.37 being voted off the island. Or did you mean 1.4 ? Regardless,
+>> anything using 3.0 needs to be updated since it's time is running
+>> short! :)
+>>
+>
+> Cedartrail BSP has PVR Graphics drivers which works only with 3.0 Kernel.
+>
+> Thanks
+> Kishore.
+>
+>
+> I am mainly interested in ensuring 3.0 Kernel works with the next Yocto release (i.e. Yocto 1.3)
+> since the CedarTrail BSP will work only with 3.0 Kernel due to a graphics driver dependency.
+>
 
-You're missing firmware still.  Ensure that you've installed every
-linux-firmware-* package first, and if that doesn't work dig around
-the logs and hopefully you'll find the file it's after.
+And that's all definitely fine. If we are having boot problems with the
+board on the kernel that it tags, then opening a defect so we can look into
+it is fine, since it is a supported kernel.
 
-Ross
+Bruce
+
+> We will not port the Cedartrail BSP beyond Yocto 1.3.
+>
+> Thanks
+> Rahul
+>
+>> Cheers,
+>>
+>> Bruce
+>>
+>>>
+>>> --
+>>> Darren
+>>>
+>>>>
+>>>> Bruce
+>>>>
+>>>>>
+>>>>> Thanks
+>>>>>
+>>>>> Rahul
+>>>>>
+>>>>
+>>>
+>>>
+>>> --
+>>> Darren Hart
+>>> Intel Open Source Technology Center
+>>> Yocto Project - Linux Kernel
+>>> _______________________________________________
+>>> yocto mailing list
+>>> yocto@yoctoproject.org
+>>> https://lists.yoctoproject.org/listinfo/yocto
+>>
+>>
+>>
+>> --
+>> "Thou shalt not follow the NULL pointer, for chaos and madness await
+>> thee at its end"
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
 
