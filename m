@@ -1,17 +1,39 @@
-Return-Path: <packages@autobuilder.yoctoproject.org>
-Received: from autobuilder.yoctoproject.org (autobuilder.yoctoproject.org
-	[140.211.169.59])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 708E9E0140A
-	for <yocto@yoctoproject.org>; Wed, 29 Aug 2012 16:58:59 -0700 (PDT)
-Received: by autobuilder.yoctoproject.org (Postfix, from userid 802)
-	id 3DDBC40507; Wed, 29 Aug 2012 23:58:45 +0000 (UTC)
-Date: Wed, 29 Aug 2012 23:58:45 +0000
-From: Yocto Project Package Report System <package-reporting@yoctoproject.org>
-To: yocto@yoctoproject.org
-Message-ID: <20120829235845.GA29465@ab01.i.yoctoproject.org>
+Return-Path: <rahul.saxena@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7072AE01404
+	for <yocto@yoctoproject.org>; Wed, 29 Aug 2012 22:06:09 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 29 Aug 2012 22:06:05 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,337,1344236400"; d="scan'208";a="186988028"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
+	by orsmga001.jf.intel.com with ESMTP; 29 Aug 2012 22:06:04 -0700
+Received: from orsmsx152.amr.corp.intel.com (10.22.226.39) by
+	orsmsx603.amr.corp.intel.com (10.22.226.49) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Wed, 29 Aug 2012 22:06:04 -0700
+Received: from orsmsx103.amr.corp.intel.com ([169.254.2.246]) by
+	ORSMSX152.amr.corp.intel.com ([169.254.8.174]) with mapi id
+	14.01.0355.002; Wed, 29 Aug 2012 22:06:03 -0700
+From: "Saxena, Rahul" <rahul.saxena@intel.com>
+To: "Bodke, Kishore K" <kishore.k.bodke@intel.com>, Bruce Ashfield
+	<bruce.ashfield@gmail.com>, "Hart, Darren" <darren.hart@intel.com>
+Thread-Topic: [yocto] Poky 1.3_M3 branch does not work with linux-yocto 3.0
+	kernel ?
+Thread-Index: Ac2EshDbe88X/yhnTvyfYJ1eQgJkOQBW5S/JAA7SzwAAAL4kAAAINXDQ
+Date: Thu, 30 Aug 2012 05:06:03 +0000
+Message-ID: <63ECFF2A2302B44093D7CE9E9962C4900332201E@ORSMSX103.amr.corp.intel.com>
+References: <63ECFF2A2302B44093D7CE9E9962C4900332062C@ORSMSX103.amr.corp.intel.com>
+	<503C3896.5080509@windriver.com> <503D1D55.1010205@intel.com>
+	<CADkTA4MxAKcbtnEpCDKB==G2hxjRqt5F32kCqtg6HPo1QBcfUA@mail.gmail.com>
+	<D956029D25CF204F948EA0FB515E1EE20AD632AA@ORSMSX105.amr.corp.intel.com>
+In-Reply-To: <D956029D25CF204F948EA0FB515E1EE20AD632AA@ORSMSX105.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-User-Agent: Mutt/1.5.20 (2009-12-10)
-Subject: [Package Report System]Manual check recipes name list
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Poky 1.3_M3 branch does not work with linux-yocto 3.0 kernel ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -23,87 +45,139 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 29 Aug 2012 23:58:59 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-This mail was sent out by Package Report System.
-It will list all the recipes which can't check upstream version by script, and will show how long it is since their last mannual version check.
-You can check the detail information at http://packages.yoctoproject.org/manuallychkinfo
+X-List-Received-Date: Thu, 30 Aug 2012 05:06:09 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
 
-PackageName              Version             LastChkVersion      LastChkTime              Maintainer                              NoUpgradeReason               
-lsb                      1.4                 1.4                 133 day                  Yi Zhao <yi.zhao@windriver.co...        1.4 is fixed version of LSB Te...
-menu-cache               0.3.3               0.3.3               41148 d                  Valentin Popa <valentin.popa@...        No data                       
-freetype                 2.4.9               2.4.10              54 days                  Valentin Popa <valentin.popa@...        No data                       
-libfm                    0.1.17              0.1.17              54 days                  Valentin Popa <valentin.popa@...        No data                       
-pcmanfm                  0.9.10              0.9.10              54 days                  Valentin Popa <valentin.popa@...        No data                       
-gtkhtml2                 2.11.0+svnr11...    2.11.1              41148 d                  Valentin Popa <valentin.popa@...        No data                       
-e2fsprogs                1.42.1              1.42.4              55 days                  Scott Garman <scott.a.garman@...        No data                       
-chrpath                  0.14                0.14                55 days                  Scott Garman <scott.a.garman@...        No data                       
-opensp                   1.5.2               1.5.2               55 days                  Scott Garman <scott.a.garman@...        No data                       
-expat                    2.1.0               2.0.1               55 days                  Scott Garman <scott.a.garman@...        No data                       
-nfs-utils                1.2.3               1.2.6               55 days                  Scott Garman <scott.a.garman@...        No data                       
-libpng                   1.2.49              1.5.11              55 days                  Scott Garman <scott.a.garman@...        1.4.3 and later changes the AP...
-cracklib                 2.8.19              2.8.19              55 days                  Saul Wold <sgw@linux.intel.co...        No data                       
-psmisc                   22.19               22.19               55 days                  Saul Wold <sgw@linux.intel.co...        No data                       
-sysstat                  10.0.5              10.0.5              55 days                  Saul Wold <sgw@linux.intel.co...        No data                       
-less                     444                 444                 55 days                  Saul Wold <sgw@linux.intel.co...        No data                       
-glew                     1.7.0               1.7.0               55 days                  Saul Wold <sgw@linux.intel.co...        No data                       
-libexif                  0.6.20              0.6.20              55 days                  Saul Wold <sgw@linux.intel.co...        No data                       
-sqlite3                  3.7.13              3.7.13              55 days                  Saul Wold <sgw@linux.intel.co...        No data                       
-boost                    1.50.0              1.50.0              55 days                  Saul Wold <sgw@linux.intel.co...        No data                       
-libcheck                 0.9.8               0.9.8               55 days                  Saul Wold <sgw@linux.intel.co...        No data                       
-sysfsutils               2.1.0               2.1.0               55 days                  Saul Wold <sgw@linux.intel.co...        No data                       
-console-tools            0.3.2               0.3.2               55 days                  Saul Wold <sgw@linux.intel.co...        No data                       
-libmad                   0.15.1b             0.15.1b             55 days                  Saul Wold <sgw@linux.intel.co...        No data                       
-tzdata                   2012d               2012c               54 days                  Radu Moisan <radu.moisan@inte...        No data                       
-zip                      3.0                 3.0                 54 days                  Radu Moisan <radu.moisan@inte...        No data                       
-watchdog                 5.12                5.12                54 days                  Radu Moisan <radu.moisan@inte...        No data                       
-hdparm                   9.39                9.39                54 days                  Radu Moisan <radu.moisan@inte...        No data                       
-unzip                    6.0                 6.0                 54 days                  Radu Moisan <radu.moisan@inte...        No data                       
-tslib                    1.0                 1.0                 54 days                  Radu Moisan <radu.moisan@inte...        No data                       
-beecrypt                 4.2.1               4.2.1               54 days                  Radu Moisan <radu.moisan@inte...        No data                       
-setserial                2.17                2.17                126 day                  Radu Moisan <radu.moisan@inte...        No data                       
-acpid                    1.0.10              1.0.10              54 days                  Radu Moisan <radu.moisan@inte...        No data                       
-squashfs-tools           4.2                 4.2                 54 days                  Radu Moisan <radu.moisan@inte...        No data                       
-ubootchart               0.0+r12             0.0+r12             41148 d                  Radu Moisan <radu.moisan@inte...        No data                       
-opkg                     0.1.8+svnr633...    0.1.8               54 days                  Radu Moisan <radu.moisan@inte...        No data                       
-kmod                     9                   N/A                 41148 d                  Radu Moisan <radu.moisan@inte...        No data                       
-tinylogin                1.4                 1.4                 41 days                  Radu Moisan <radu.moisan@inte...        TinyLogin was merged into Busy...
-lame                     3.99.5              3.99.5              54 days                  Radu Moisan <radu.moisan@inte...        No data                       
-nativesdk-mpfr           3.1.0               N/A                 41148 d                  No Maintainer information               No data                       
-nativesdk-sqlite3        3.7.13              N/A                 41148 d                  No Maintainer information               No data                       
-nativesdk-opkg           0.1.8+svnr633...    N/A                 41148 d                  No Maintainer information               No data                       
-nativesdk-chrpath        0.14                N/A                 41148 d                  No Maintainer information               No data                       
-nativesdk-eglibc         2.16                N/A                 41148 d                  No Maintainer information               No data                       
-libcgroup                0.37.1              N/A                 41148 d                  No Maintainer information               No data                       
-nativesdk-expat          2.1.0               N/A                 41148 d                  No Maintainer information               No data                       
-ltp                      20120614            20120614            35 days                  Mihai Lindner <mihaix.lindner...        No data                       
-prelink                  1.0+git1+a2d8...    1.0+git1+9552...    229 day                  Mark Hatle <mark.hatle@windri...        No data                       
-x11vnc                   0.9.13              0.9.13              54 days                  Laurentiu Palcu <laurentiu.pa...        No data                       
-mingetty                 1.08                1.08                36 days                  Kai Kang <kai.kang@windriver....        No data                       
-adt-installer            0.1.8+svnr596...    1.1                 41148 d                  Jessica Zhang <jessica.zhang@...        No data                       
-quota                    4.00                4.00                36 days                  Cristian Iorga <cristian.iorg...        No data                       
-cwautomacros             20110201            20110201            54 days                  Cristian Iorga <cristian.iorg...        No data                       
-libtirpc                 0.2.2               0.2.2               36 days                  Cristian Iorga <cristian.iorg...        No data                       
-minicom                  2.6.1               2.6.1               54 days                  Cristian Iorga <cristian.iorg...        No data                       
-rpcbind                  0.2.0               0.2.0               36 days                  Cristian Iorga <cristian.iorg...        No data                       
-libical                  0.48                0.48                36 days                  Cristian Iorga <cristian.iorg...        No data                       
-wireless-tools           29                  29                  36 days                  Cristian Iorga <cristian.iorg...        No data                       
-irda-utils               0.9.18              0.9.18              36 days                  Cristian Iorga <cristian.iorg...        No data                       
-tremor                   20120314            20120122            41148 d                  Cristian Iorga <cristian.iorg...        No data                       
-flac                     1.2.1               1.2.1               36 days                  Cristian Iorga <cristian.iorg...        No data                       
-libomxil                 0.9.3               0.9.3               36 days                  Cristian Iorga <cristian.iorg...        No data                       
-libsamplerate0           0.1.8               0.1.8               36 days                  Cristian Iorga <cristian.iorg...        No data                       
-mpfr                     3.1.0               3.1.1               54 days                  Bogdan Marinescu <bogdan.a.ma...        No data                       
-libpcre                  8.31                8.31                36 days                  Bogdan Marinescu <bogdan.a.ma...        No data                       
-python-scons             2.1.0               N/A                 41148 d                  Bogdan Marinescu <bogdan.a.ma...        No data                       
-strace                   4.7                 4.7                 54 days                  Bogdan Marinescu <bogdan.a.ma...        No data                       
-tcl                      8.5.11              8.5.11              54 days                  Bogdan Marinescu <bogdan.a.ma...        No data                       
-oprofile                 0.9.7               0.9.7               54 days                  Bogdan Marinescu <bogdan.a.ma...        No data                       
-eglibc                   2.16                git:16540           241 day                  Bogdan Marinescu <bogdan.a.ma...        No data                       
-Manual Check Count: 70
-Manual Need Check Count: 70
-Any problem, please contact Saul Wold <sgw@linux.intel.com> 
+
+-----Original Message-----
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Bodke, Kishore K
+Sent: Wednesday, August 29, 2012 11:08 AM
+To: Bruce Ashfield; Hart, Darren
+Cc: yocto@yoctoproject.org
+Subject: Re: [yocto] Poky 1.3_M3 branch does not work with linux-yocto 3.0 =
+kernel ?
+
+
+
+>-----Original Message-----
+>From: yocto-bounces@yoctoproject.org [mailto:yocto-=20
+>bounces@yoctoproject.org] On Behalf Of Bruce Ashfield
+>Sent: Wednesday, August 29, 2012 10:47 AM
+>To: Hart, Darren
+>Cc: yocto@yoctoproject.org
+>Subject: Re: [yocto] Poky 1.3_M3 branch does not work with linux-yocto=20
+>3.0 kernel ?
+>
+>On Tue, Aug 28, 2012 at 3:34 PM, Darren Hart <darren.hart@intel.com> wrote=
+:
+>> On 08/27/2012 08:18 PM, Bruce Ashfield wrote:
+>>> On 12-08-27 8:14 PM, Saxena, Rahul wrote:
+>>>> Hi,
+>>>>
+>>>> I am building a BSP (meta-cedartrail) using 1.3 M3 branch of Poky.
+>>>>
+>>>> When I try to boot a image such as core-image-sato, I get kernel=20
+>>>> panic and errors such as:
+>>>>
+>>>> VFS: Cannot open root device "ram0" or unkown-block(0,0)
+>>>>
+>>>> Please append a correct "root=3D" boot option; here are the available
+>>>>
+>>>> partitions:
+>>>>
+>>>> VFS: unable to mount root fs on unknown block(0,0)
+>>>>
+>>>> User configuration error - no valid rootfilesystem found
+>>>>
+>>>> I do see that the root file system exists in=20
+>>>> cedartrail-poky-linux/core-image-sato-1.0-r0/rootfs dir..
+>>>>
+>>>> I did not see this problem when I uses a earlier commit of the Poky=20
+>>>> master branch.
+>>>>
+>>>> It seems like something broke with 1.3 M3 branch that prevents a=20
+>>>> proper build with 3.0 kernel. I do need to build my BSP with 3.0 kerne=
+l.
+>>>>
+>>>> (I was also told by Laurentiu Serban that 1.3 M3 Full Pass testing=20
+>>>> does not include testing with the 3.0 kernel)
+>>>>
+>>>> Any suggestions would be most welcome. I do need to build my BSP=20
+>>>> with the 3.0 kernel.
+>>>
+>>> Hmm. It should work, I booted one not that long ago. Can you force
+>>> qemux86 to prefer the 3.0 kernel and see if that boots ? That would=20
+>>> at least start to isolate the potential problem areas.
+>>
+>> However, won't 3.0 be removed for the 1.3 release? Keeping with 3.4=20
+>> and
+>3.2?
+>
+>For 1.3 the 3 kernel sliding window plan was 3.4, 3.2 and 3.0 with=20
+>2.6.37 being voted off the island. Or did you mean 1.4 ? Regardless,=20
+>anything using 3.0 needs to be updated since it's time is running=20
+>short! :)
+>
+
+Cedartrail BSP has PVR Graphics drivers which works only with 3.0 Kernel.
+
+Thanks
+Kishore.
+
+
+I am mainly interested in ensuring 3.0 Kernel works with the next Yocto rel=
+ease (i.e. Yocto 1.3)
+since the CedarTrail BSP will work only with 3.0 Kernel due to a graphics d=
+river dependency.
+
+We will not port the Cedartrail BSP beyond Yocto 1.3.
+
+Thanks
+Rahul
+
+>Cheers,
+>
+>Bruce
+>
+>>
+>> --
+>> Darren
+>>
+>>>
+>>> Bruce
+>>>
+>>>>
+>>>> Thanks
+>>>>
+>>>> Rahul
+>>>>
+>>>
+>>
+>>
+>> --
+>> Darren Hart
+>> Intel Open Source Technology Center
+>> Yocto Project - Linux Kernel
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
+>
+>--
+>"Thou shalt not follow the NULL pointer, for chaos and madness await=20
+>thee at its end"
+>_______________________________________________
+>yocto mailing list
+>yocto@yoctoproject.org
+>https://lists.yoctoproject.org/listinfo/yocto
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
 
