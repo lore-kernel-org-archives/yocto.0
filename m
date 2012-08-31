@@ -1,24 +1,22 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 40341E004AB
-	for <yocto@yoctoproject.org>; Fri, 31 Aug 2012 03:01:00 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 31 Aug 2012 03:00:59 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,346,1344236400"; d="scan'208";a="216212141"
-Received: from unknown (HELO helios.localnet) ([10.252.121.160])
-	by fmsmga002.fm.intel.com with ESMTP; 31 Aug 2012 03:00:42 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: ml@communistcode.co.uk, yocto@yoctoproject.org
-Date: Fri, 31 Aug 2012 11:00:41 +0100
-Message-ID: <1376657.fH45jMCXXT@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.9 (Linux/3.2.0-29-generic-pae; KDE/4.9.0; i686; ; )
-In-Reply-To: <504084C5.2040409@communistcode.co.uk>
-References: <5040835B.1030201@communistcode.co.uk>
-	<504084C5.2040409@communistcode.co.uk>
+Return-Path: <Bjorn.Arnelid@enea.com>
+Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id 832B3E0140A
+	for <yocto@yoctoproject.org>; Fri, 31 Aug 2012 05:36:08 -0700 (PDT)
+Received: from SESTOEX05.enea.se ([fe80::41cb:8d2e:2e90:a183]) by
+	SESTOEX08.enea.se ([fe80::fda4:d8b2:80c9:b320%24]) with mapi id
+	14.02.0298.004; Fri, 31 Aug 2012 14:36:02 +0200
+From: =?iso-8859-1?Q?Bj=F6rn_Arnelid?= <Bjorn.Arnelid@enea.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Patch to poky-eclipse
+Thread-Index: Ac2HbI5nOdh8qFCiQO6DegJ38rXr1w==
+Date: Fri, 31 Aug 2012 12:36:04 +0000
+Message-ID: <3978FA4917A02149AA33ECE70914C515037D2017@sestoex05.enea.se>
+Accept-Language: en-US, sv-SE
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.16.140.18]
 MIME-Version: 1.0
-Subject: Re: [meta-raspberrypi] gettext RPATH QA issue
+Subject: Patch to poky-eclipse
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,122 +28,144 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 31 Aug 2012 10:01:00 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Fri, 31 Aug 2012 12:36:09 -0000
+X-Groupsio-MsgNum: 9021
+Content-Language: en-US
+Content-Type: multipart/mixed;
+	boundary="_004_3978FA4917A02149AA33ECE70914C515037D2017sestoex05enease_"
 
-On Friday 31 August 2012 10:32:53 Jack Mitchell wrote:
-> On 31/08/12 10:26, Jack Mitchell wrote:
-> > So, I have run into a second problem with the new RPATH sanity checks
-> > in bitbake. I'm on master for everything and this is the error I am
-> > 
-> > receiving:
-> >    [jack@archHP raspberry]$ bitbake rpi-hwup-image
-> >    Pseudo may be out of date, rebuilding pseudo before the main build
-> >    Parsing recipes: 100% |#########################################|
-> >    Time: 00:00:19
-> >    Parsing of 1193 .bb files complete (0 cached, 1193 parsed). 1528
-> >    targets, 48 skipped, 1 masked, 0 errors.
-> >    WARNING: Host distribution could not be determined; you may possibly
-> >    experience unexpected failures. It is recommended that you use a
-> >    tested distribution.
-> >    
-> >    Build Configuration:
-> >    BB_VERSION        = "1.15.3"
-> >    TARGET_ARCH       = "arm"
-> >    TARGET_OS         = "linux-gnueabi"
-> >    MACHINE           = "raspberrypi"
-> >    DISTRO            = "poky"
-> >    DISTRO_VERSION    = "1.2+snapshot-20120831"
-> >    TUNE_FEATURES     = "armv6 vfp arm1176jzfs"
-> >    TARGET_FPU        = "vfp"
-> >    meta
-> >    meta-yocto        = "master:9ba1e33e2d14362971d6441ee6142bcb0857df1a"
-> >    meta-raspberrypi  = "master:ad5ef650663b7bf67c4ca08f0b1a9ce402e58be9"
-> >    meta-oe           = "master:a81cdc840c1dfca2bd0cb4ddd6e4bc1488286649"
-> >    
-> >    NOTE: Resolving any missing task queue dependencies
-> >    NOTE: Preparing runqueue
-> >    NOTE: Executing SetScene Tasks
-> >    NOTE: Executing RunQueue Tasks
-> >    NOTE: Tasks Summary: Attempted 63 tasks of which 30 didn't need to
-> >    be rerun and all succeeded.
-> >    
-> >    Summary: There was 1 WARNING message shown.
-> >    Loading cache: 100% |###########################################|
-> >    ETA:  00:00:00
-> >    Loaded 1529 entries from dependency cache.
-> >    WARNING: Host distribution could not be determined; you may possibly
-> >    experience unexpected failures. It is recommended that you use a
-> >    tested distribution.
-> >    
-> >    Build Configuration:
-> >    BB_VERSION        = "1.15.3"
-> >    TARGET_ARCH       = "arm"
-> >    TARGET_OS         = "linux-gnueabi"
-> >    MACHINE           = "raspberrypi"
-> >    DISTRO            = "poky"
-> >    DISTRO_VERSION    = "1.2+snapshot-20120831"
-> >    TUNE_FEATURES     = "armv6 vfp arm1176jzfs"
-> >    TARGET_FPU        = "vfp"
-> >    meta
-> >    meta-yocto        = "master:9ba1e33e2d14362971d6441ee6142bcb0857df1a"
-> >    meta-raspberrypi  = "master:ad5ef650663b7bf67c4ca08f0b1a9ce402e58be9"
-> >    meta-oe           = "master:a81cdc840c1dfca2bd0cb4ddd6e4bc1488286649"
-> >    
-> >    NOTE: Resolving any missing task queue dependencies
-> >    NOTE: Preparing runqueue
-> >    NOTE: Executing SetScene Tasks
-> >    NOTE: Executing RunQueue Tasks
-> > 
-> >    ERROR: QA Issue: libgettextlib:
-> > /work/armv6-vfp-poky-linux-gnueabi/gettext-0.18.1.1-r16/packages-split/lib
-> > gettextlib/usr/lib/libgettextlib-0.18.1.so> 
-> >    contains probably-redundant RPATH /usr/lib/../lib
-> > 
-> >    ERROR: QA Issue: libgettextsrc:
-> > /work/armv6-vfp-poky-linux-gnueabi/gettext-0.18.1.1-r16/packages-split/lib
-> > gettextsrc/usr/lib/libgettextsrc-0.18.1.so> 
-> >    contains probably-redundant RPATH /usr/lib/../lib
-> >    ERROR: QA run found fatal errors. Please consider fixing them.
-> >    ERROR: Function failed: do_package_qa
-> > 
-> >    ERROR: Logfile of failure stored in:
-> > /home/jack/Projects/poky-rasp/raspberry/tmp/work/armv6-vfp-poky-linux-gnue
-> > abi/gettext-0.18.1.1-r16/temp/log.do_package.7077> 
-> >    ERROR: Task 834
-> > 
-> > (/home/jack/Projects/poky-rasp/meta/recipes-core/gettext/gettext_0.18.1.1.
-> > bb,> 
-> >    do_package) failed with exit code '1'
-> >    NOTE: Tasks Summary: Attempted 1412 tasks of which 661 didn't need
-> >    to be rerun and 1 failed.
-> > 
-> >    Summary: 1 task failed:
-> > /home/jack/Projects/poky-rasp/meta/recipes-core/gettext/gettext_0.18.1.1.b
-> > b,> 
-> >    do_package
-> >    Summary: There was 1 WARNING message shown.
-> >    Summary: There were 4 ERROR messages shown, returning a non-zero
-> >    exit code.
-> > 
-> > Does anybody have an suggestions?
-> > 
-> > Regards,
-> 
-> I'm not sure where this issue lies, I have a standard qemu build on
-> going which seems ok, so I'm tempted to say that it is either meta-oe or
-> meta-raspberry pi doing some overides?
+--_004_3978FA4917A02149AA33ECE70914C515037D2017sestoex05enease_
+Content-Type: multipart/alternative;
+	boundary="_000_3978FA4917A02149AA33ECE70914C515037D2017sestoex05enease_"
 
-This has been fixed, but unfortunately the change to fix it was in libtool and 
-did not trigger a recompile - we probably ought to bump PR on gettext. At the 
-moment the fix is to "bitbake -c cleansstate gettext" and then carry on.
+--_000_3978FA4917A02149AA33ECE70914C515037D2017sestoex05enease_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-Cheers,
-Paul
+Hi, I hope this is the right place to send a patch, if not could someone pl=
+eace point me in the right direction for sending patches.
 
--- 
+YoctoSDKUtils: Avoid NullPointerException when setting Yocto Properties
 
-Paul Eggleton
-Intel Open Source Technology Centre
+[Yocto Bugzilla] -- https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D301=
+9
 
+When using a Toolchain where sysroot is not named <arch>-pokysdk-linux a Nu=
+llPointerException is thrown when trying to apply changes in Yocto Preferen=
+ces.
+It should be possible to use Toolchains with a sysroot named <arch>-<organi=
+zationName>sdk-linux with the plugin.
+
+static private String findHostArch(File sysroot_dir) now accept folders nam=
+ed *sdk-linux instead of *-pokysdk-linux. checkYoctoSDK will also return SD=
+KCheckResults.TOOLCHAIN_NO_SYSROOT if findHostArch returns null.
+
+
+Signed-off-by: Bj=F6rn Arnelid <bjorn.arnelid@enea.com>
+
+
+--_000_3978FA4917A02149AA33ECE70914C515037D2017sestoex05enease_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html dir=3D"ltr">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style id=3D"owaParaStyle" type=3D"text/css">P {margin-top:0;margin-bottom:=
+0;}</style>
+</head>
+<body ocsi=3D"0" fpstyle=3D"1">
+<div style=3D"direction: ltr;font-family: Tahoma;color: #000000;font-size: =
+10pt;">Hi, I hope this is the right place to send a patch, if not could som=
+eone pleace point me in the right direction for sending patches.
+<br>
+<br>
+YoctoSDKUtils: Avoid NullPointerException when setting Yocto Properties&nbs=
+p; <br>
+<br>
+[Yocto Bugzilla] -- https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D301=
+9<br>
+<br>
+When using a Toolchain where sysroot is not named &lt;arch&gt;-pokysdk-linu=
+x a NullPointerException is thrown when trying to apply changes in Yocto Pr=
+eferences.
+<br>
+It should be possible to use Toolchains with a sysroot named &lt;arch&gt;-&=
+lt;organizationName&gt;sdk-linux with the plugin.
+<br>
+<br>
+static private String findHostArch(File sysroot_dir) now accept folders nam=
+ed *sdk-linux instead of *-pokysdk-linux. checkYoctoSDK will also return SD=
+KCheckResults.TOOLCHAIN_NO_SYSROOT if findHostArch returns null.<br>
+<br>
+<pre><font face=3D"Tahoma">Signed-off-by: Bj=F6rn Arnelid &lt;bjorn.arnelid=
+@enea.com&gt;</font></pre>
+<br>
+</div>
+</body>
+</html>
+
+--_000_3978FA4917A02149AA33ECE70914C515037D2017sestoex05enease_--
+
+--_004_3978FA4917A02149AA33ECE70914C515037D2017sestoex05enease_
+Content-Type: text/x-patch;
+	name="0001-YoctoSDKUtils-Avoid-NullPointerException-when-settin.patch"
+Content-Description: 0001-YoctoSDKUtils-Avoid-NullPointerException-when-settin.patch
+Content-Disposition: attachment;
+	filename="0001-YoctoSDKUtils-Avoid-NullPointerException-when-settin.patch";
+	size=2773; creation-date="Fri, 31 Aug 2012 12:34:12 GMT";
+	modification-date="Fri, 31 Aug 2012 12:34:12 GMT"
+Content-Transfer-Encoding: base64
+
+RnJvbSBmOGY0OTYxZjdiNWQ0NGFlOTJiZjliNTc4OTU1ZjQwYWUyMzQyMTc5IE1vbiBTZXAgMTcg
+MDA6MDA6MDAgMjAwMQpGcm9tOiA9P1VURi04P3E/Qmo9QzM9QjZybj0yMEFybmVsaWQ/PSA8Ymph
+ckBiamFyLUxhdGl0dWRlLUQ2MzAuKG5vbmUpPgpEYXRlOiBGcmksIDMxIEF1ZyAyMDEyIDE0OjMx
+OjAzICswMjAwClN1YmplY3Q6IFtQQVRDSF0gWW9jdG9TREtVdGlsczogQXZvaWQgTnVsbFBvaW50
+ZXJFeGNlcHRpb24gd2hlbiBzZXR0aW5nIFlvY3RvCiBQcm9wZXJ0aWVzCk1JTUUtVmVyc2lvbjog
+MS4wCkNvbnRlbnQtVHlwZTogdGV4dC9wbGFpbjsgY2hhcnNldD1VVEYtOApDb250ZW50LVRyYW5z
+ZmVyLUVuY29kaW5nOiA4Yml0CgpbWW9jdG8gQnVnemlsbGFdIC0tIGh0dHBzOi8vYnVnemlsbGEu
+eW9jdG9wcm9qZWN0Lm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MzAxOQoKV2hlbiB1c2luZyBhIFRvb2xj
+aGFpbiB3aGVyZSBzeXNyb290IGlzIG5vdCBuYW1lZCA8YXJjaD4tcG9reXNkay1saW51eCBhIE51
+bGxQb2ludGVyRXhjZXB0aW9uIGlzIHRocm93biB3aGVuIHRyeWluZyB0byBhcHBseSBjaGFuZ2Vz
+IGluIFlvY3RvIFByZWZlcmVuY2VzLgpJdCBzaG91bGQgYmUgcG9zc2libGUgdG8gdXNlIFRvb2xj
+aGFpbnMgd2l0aCBhIHN5c3Jvb3QgbmFtZWQgPGFyY2g+LTxvcmdhbml6YXRpb25OYW1lPnNkay1s
+aW51eCB3aXRoIHRoZSBwbHVnaW4uCgpzdGF0aWMgcHJpdmF0ZSBTdHJpbmcgZmluZEhvc3RBcmNo
+KEZpbGUgc3lzcm9vdF9kaXIpIG5vdyBhY2NlcHQgZm9sZGVycyBuYW1lZCAqc2RrLWxpbnV4IGlu
+c3RlYWQgb2YgKi1wb2t5c2RrLWxpbnV4LiBjaGVja1lvY3RvU0RLIHdpbGwgYWxzbyByZXR1cm4g
+U0RLQ2hlY2tSZXN1bHRzLlRPT0xDSEFJTl9OT19TWVNST09UIGlmIGZpbmRIb3N0QXJjaCByZXR1
+cm5zIG51bGwuCgpTaWduZWQtb2ZmLWJ5OiBCasO2cm4gQXJuZWxpZCA8Ympvcm4uYXJuZWxpZEBl
+bmVhLmNvbT4KLS0tCiAuLi4vc3JjL29yZy95b2N0by9zZGsvaWRlL1lvY3RvU0RLVXRpbHMuamF2
+YSAgICAgICB8ICAgMjAgKysrKysrKysrKysrKysrLS0tLS0KIDEgZmlsZSBjaGFuZ2VkLCAxNSBp
+bnNlcnRpb25zKCspLCA1IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL3BsdWdpbnMvb3JnLnlv
+Y3RvLnNkay5pZGUvc3JjL29yZy95b2N0by9zZGsvaWRlL1lvY3RvU0RLVXRpbHMuamF2YSBiL3Bs
+dWdpbnMvb3JnLnlvY3RvLnNkay5pZGUvc3JjL29yZy95b2N0by9zZGsvaWRlL1lvY3RvU0RLVXRp
+bHMuamF2YQppbmRleCA2YmU5MGJlLi43NDlmYWM3IDEwMDY0NAotLS0gYS9wbHVnaW5zL29yZy55
+b2N0by5zZGsuaWRlL3NyYy9vcmcveW9jdG8vc2RrL2lkZS9Zb2N0b1NES1V0aWxzLmphdmEKKysr
+IGIvcGx1Z2lucy9vcmcueW9jdG8uc2RrLmlkZS9zcmMvb3JnL3lvY3RvL3Nkay9pZGUvWW9jdG9T
+REtVdGlscy5qYXZhCkBAIC0xMDAsNyArMTAwLDE3IEBAIHB1YmxpYyBjbGFzcyBZb2N0b1NES1V0
+aWxzIHsKIAkJCUZpbGUgc3lzcm9vdF9kaXIgPSBuZXcgRmlsZShzeXNyb290X2Rpcl9zdHIpOwog
+CQkJaWYgKCFzeXNyb290X2Rpci5leGlzdHMoKSkKIAkJCQlyZXR1cm4gU0RLQ2hlY2tSZXN1bHRz
+LlRPT0xDSEFJTl9OT19TWVNST09UOwotCQkJU3RyaW5nIHRvb2xjaGFpbl9ob3N0X2FyY2ggPSBm
+aW5kSG9zdEFyY2goc3lzcm9vdF9kaXIpOworCQkJCisJCQlTdHJpbmcgdG9vbGNoYWluX2hvc3Rf
+YXJjaCA9IG51bGw7CisJCQkKKwkJCXRyeSAKKwkJCXsKKwkJCQl0b29sY2hhaW5faG9zdF9hcmNo
+ID0gZmluZEhvc3RBcmNoKHN5c3Jvb3RfZGlyKTsKKwkJCX0KKwkJCWNhdGNoKE51bGxQb2ludGVy
+RXhjZXB0aW9uIGUpIAorCQkJeworCQkJCXJldHVybiBTREtDaGVja1Jlc3VsdHMuVE9PTENIQUlO
+X05PX1NZU1JPT1Q7CisJCQl9CiAJCQkKIAkJCWlmICghdG9vbGNoYWluX2hvc3RfYXJjaC5lcXVh
+bHNJZ25vcmVDYXNlKHBsYXRmb3JtKSkgewogCQkJCWlmICghcGxhdGZvcm0ubWF0Y2hlcygiaVxc
+ZDg2IikgfHwgIXRvb2xjaGFpbl9ob3N0X2FyY2gubWF0Y2hlcygiaVxcZDg2IikpCkBAIC01NzYs
+NyArNTg2LDcgQEAgcHVibGljIGNsYXNzIFlvY3RvU0RLVXRpbHMgewogCXN0YXRpYyBwcml2YXRl
+IFN0cmluZyBmaW5kSG9zdEFyY2goRmlsZSBzeXNyb290X2RpcikgewogCQlGaWxlbmFtZUZpbHRl
+ciBuYXRpdmVGaWx0ZXIgPSBuZXcgRmlsZW5hbWVGaWx0ZXIoKSB7CiAJCQlwdWJsaWMgYm9vbGVh
+biBhY2NlcHQoRmlsZSBkaXIsIFN0cmluZyBuYW1lKSB7Ci0JCQkJaWYgKG5hbWUuZW5kc1dpdGgo
+Ii1wb2t5c2RrLWxpbnV4IikpIHsKKwkJCQlpZiAobmFtZS5lbmRzV2l0aCgic2RrLWxpbnV4Iikp
+IHsKIAkJCQkJcmV0dXJuIHRydWU7CiAJCQkJfSBlbHNlIHsKIAkJCQkJcmV0dXJuIGZhbHNlOwpA
+QCAtNTkwLDExICs2MDAsMTEgQEAgcHVibGljIGNsYXNzIFlvY3RvU0RLVXRpbHMgewogCQlmb3Ig
+KEZpbGUgZmlsZSA6IGZpbGVzKSB7CiAJCQlpZiAoZmlsZS5pc0RpcmVjdG9yeSgpKSB7CiAJCQkJ
+U3RyaW5nIHBhdGggPSBmaWxlLmdldE5hbWUoKTsKLQkJCQlhcmNoID0gcGF0aC5zdWJzdHJpbmco
+MCwgcGF0aC5pbmRleE9mKCItcG9reXNkay1saW51eCIpKTsKKwkJCQlTdHJpbmdbXSBzdWJQYXRo
+ID0gcGF0aC5zcGxpdCgiLSIpOworCQkJCWFyY2ggPSBzdWJQYXRoWzBdOwogCQkJfSBlbHNlIAog
+CQkJCWNvbnRpbnVlOwogICAgICAgICB9CiAJCXJldHVybiBhcmNoOwogCX0KLX0KLQorfQpcIE5v
+IG5ld2xpbmUgYXQgZW5kIG9mIGZpbGUKLS0gCjEuNy45LjUKCg==
+
+--_004_3978FA4917A02149AA33ECE70914C515037D2017sestoex05enease_--
