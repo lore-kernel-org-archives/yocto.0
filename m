@@ -1,33 +1,32 @@
-Return-Path: <bruce.ashfield@gmail.com>
-Received: from mail-qc0-f176.google.com (mail-qc0-f176.google.com
-	[209.85.216.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 638F3E002A5
-	for <yocto@yoctoproject.org>; Fri, 31 Aug 2012 18:59:22 -0700 (PDT)
-Received: by qcsc21 with SMTP id c21so3043184qcs.35
-	for <yocto@yoctoproject.org>; Fri, 31 Aug 2012 18:59:19 -0700 (PDT)
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-wg0-f42.google.com (mail-wg0-f42.google.com [74.125.82.42])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7B5B6E00283
+	for <yocto@yoctoproject.org>; Fri, 31 Aug 2012 20:03:35 -0700 (PDT)
+Received: by wgbfm10 with SMTP id fm10so1090965wgb.5
+	for <yocto@yoctoproject.org>; Fri, 31 Aug 2012 20:03:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
 	:cc:content-type;
-	bh=vgGUnUUoFaU/kjRcTkQosj9xK5cEDN7wRb5S5exlRZI=;
-	b=hgl8/ANnr61jcYnTrkqf+f1DPEG30vbUjCnU+Fkrdmza6NgYpulafsrrGClKP3s5lz
-	zuT6UKwrnCOIOWgEg7dGhkqmBjcAspV4h+qaRq4ebpoFe8Ha6oKbfYHiXpo7m359p9F/
-	0Jh2UsY7+Su66k55hl1qUh8NmumYWuodTg+YFZmuIm1MNuSCqrOPV7wHjyFyByQJZHcf
-	fIMoqIrfOjZ2JbvYX5hfS0W/reAKZdowzNHN84vNFDIo+uZ+tFWH5SqbkP88Ey5OjnUv
-	MXJ7ERbWp/16DdSiLlalzvrmDwituR7s+0pKGwfY6nJ6CtGjTPemEAy8N5HMQIiVDUO6
-	vY5A==
+	bh=BWvBXdkM6JpvdF/uUH7TYNgjLvkBp7+n6z94E7+XHGg=;
+	b=d3/M3Me+RIy1LqU6A5l+0Su63OAOdE3lCIi1yd3PDgxtmVp8Q820FUUQZDEPkZvgr0
+	6l9JCMZ3+efc9SptrMT6K5t9oKisj+b8KflMPtcMVx+NiDhE5TSqjzuGqgUNdz0XFfKj
+	lsk6BFgL7Qhe9/LHAvJJXNpULXnXxJ2RE4GuBMnICNlJguv1Sbj6HaukICTpRc3woDq+
+	k+KbrvRL0YeNp+fgHN27VQtRYHki0W7Z5ojlkKITcUaE3pTB968nZH6JQMwvd8/rmPrE
+	lXFMk6FFZu1IcERUc1c82Bkga5GT4gwlSJi1Jn+U9Zf48FvaawCO6VUQ9a4hJF1XBHcn
+	0SoA==
+Received: by 10.180.109.129 with SMTP id hs1mr8622475wib.0.1346468614033; Fri,
+	31 Aug 2012 20:03:34 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.229.105.100 with SMTP id s36mr6067876qco.88.1346464759613;
-	Fri, 31 Aug 2012 18:59:19 -0700 (PDT)
-Received: by 10.229.247.198 with HTTP; Fri, 31 Aug 2012 18:59:19 -0700 (PDT)
-In-Reply-To: <63ECFF2A2302B44093D7CE9E9962C49003322769@ORSMSX103.amr.corp.intel.com>
-References: <63ECFF2A2302B44093D7CE9E9962C49003322769@ORSMSX103.amr.corp.intel.com>
-Date: Fri, 31 Aug 2012 21:59:19 -0400
-Message-ID: <CADkTA4PjWtbOrxa1Vc6RymjzJRuFBaXKKpj=2q5Y-NW4z11-pQ@mail.gmail.com>
-From: Bruce Ashfield <bruce.ashfield@gmail.com>
-To: "Saxena, Rahul" <rahul.saxena@intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Hart,
-	Darren" <darren.hart@intel.com>
-Subject: Re: Error when applying kernel patch from BSP: "Uncommited changes detected. Refresh first" error
+Received: by 10.194.42.197 with HTTP; Fri, 31 Aug 2012 20:03:03 -0700 (PDT)
+In-Reply-To: <CA+gsK-r_rXoS2mGntN87jS_VHjMO3FVhFFGgug0N73Wv7qjUnA@mail.gmail.com>
+References: <504144D8.40605@intel.com>
+	<CA+gsK-r_rXoS2mGntN87jS_VHjMO3FVhFFGgug0N73Wv7qjUnA@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Fri, 31 Aug 2012 20:03:03 -0700
+Message-ID: <CAMKF1so68xho-Bpf2Pw8C7HJskfx1G1zdLf=hDXsznwrbfvTog@mail.gmail.com>
+To: Rudolf Streif <rstreif@linuxfoundation.org>
+Cc: yocto@yoctoproject.org, Scott Garman <scott.a.garman@intel.com>
+Subject: Re: Beaglebone BSP for denzil?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,123 +38,64 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 01 Sep 2012 01:59:22 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Sat, 01 Sep 2012 03:03:36 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On Fri, Aug 31, 2012 at 7:26 PM, Saxena, Rahul <rahul.saxena@intel.com> wrote:
+On Fri, Aug 31, 2012 at 6:44 PM, Rudolf Streif
+<rstreif@linuxfoundation.org> wrote:
+> Hey Scott,
 >
+> I am doing the same thing for a Linux Foundation class.
 >
-> Hi,
+> The root filesystem that YP builds for the BBoard works just fine for the
+> BBone. That's at least true for core-image-minimal. I tested that with the
+> kernel that comes with the BBone.
 >
+> The kernel does not work. The BBoard has an OMAP3 CPU the BBoard has an
+> AM3359 CPU.
 >
+> I built a kernel with YP from kernel.org some patches and a defconfig. My
+> goal is to use linux-yocto so I started from scratch and did not use
+> meta-ti. And it's educational too.
 >
-> I am trying to apply a kernel patch from the BSP, but getting a error.
->
->
->
-> DEBUG: Executing shell function do_patch
->
-> Unstaged changes after reset:
->
-> M     .gitignore
->
-> Deleted branch meta-temp (was 580ac9c).
->
-> warning: could not find (or was already included): cfg/x86_64.scc
-> (/home/rsaxena/YoctoWork2/rangeley3/tmp/work/rangeley-poky-linux/linux-yocto-3.4.4+git3+dab07bdc3a53b21220da3af91c5d2729b027b5a7_2+19f7e43b54aef08d58135ed2a897d77b624b320a-r3/linux/meta/cfg/kernel-cache/bsp/common-pc-64)
->
-> [INFO] validating against known patches  (rangeley-standard-meta)
->
->   [                                                  ] (|)(1 %)
->
->   [#                                                 ] (/)(2 %)
->
->   [#                                                 ] (-)(3 %)
->
->   [##                                                ] (\)(4 %)
->
->   [##                                                ] (|)(5 %)
->
->   [###                                               ] (/)(6 %)
->
->
->
-> --
->
-> [############################################      ] (/)(89 %)
->
->   [#############################################     ] (-)(90 %)
->
-> Uncommited changes detected. Refresh first.
->
-> [ERROR] unable to complete push
->
-> pending patches are:
->
-> links/linux-yocto/msi.patch
->
-> ERROR. could not update git tree
->
-> ERROR. Could not modify standard/common-pc-64/rangeley
->
-> ERROR: Function failed: do_patch (see
-> /home/rsaxena/YoctoWork2/rangeley3/tmp/work/rangeley-poky-linux/linux-yocto-3.4.4+git3+dab07bdc3a53b21220da3af91c5d2729b027b5a7_2+19f7e43b54aef08d58135ed2a897d77b624b320a-r3/temp/log.do_patch.39386
-> for further information)
->
->
->
-> My linux-yocto_3.4.bbappend file has the statements:
->
-> SRC_URI +="file://patchlist.scc"
->
-> SRC_URI +="file://my_rangeley.cfg"
->
-> COMPATIBLE_MACHINE_rangeley = "rangeley"
->
->
->
-> KMACHINE_rangeley  = "rangeley"
->
-> KBRANCH_rangeley  = "standard/common-pc-64/rangeley"
->
-> SRCREV_machine_pn-linux-yocto_rangeley ?=
-> "19f7e43b54aef08d58135ed2a897d77b624b320a"
->
-> SRCREV_meta_pn-linux-yocto_rangeley ?=
-> "dab07bdc3a53b21220da3af91c5d2729b027b5a7"
->
->
->
-> cat  linux-yocto/patchlist.scc
->
->
->
-> patch msi.patch
->
->
->
-> I am using the master branch of poky.
->
->
->
-> What is the meaning of the ERROR messages above ?
+> I still used MLO and UBoot that came with the BBone. My next steps are to
+> build the kernel using linux-yocto and then eventually also building UBoot
+> with YP.
 
-It means that the patch or some other work happened in the linux source
-directory and hence nothing else can be applied (i.e. git stops you).
-
-Head to your kernel source directory and do a 'git status', that'll give
-you some info about what has happened.
-
-Bruce
+you need to add the right .config and may be patches. But there are lot
+of patches see meta-ti for more details.
 
 >
-> Any suggestions would be greatly appreciated.
+> I can give more info but right now I am just typing this on a mobile with no
+> access to my dev box. I will follow up.
 >
+> Cheers,
+> Rudi
 >
->
-> Thanks
->
-> Rahul
+> On Aug 31, 2012 4:11 PM, "Scott Garman" <scott.a.garman@intel.com> wrote:
+>>
+>> Hello,
+>>
+>> Am I correct in understanding that the TI Beagleboard BSP from
+>> yoctoproject.org should work with the Beaglebone, or do I need meta-ti? I'm
+>> not looking for accelerated graphics or anything - this will just be used in
+>> a classroom setting where there will be Beaglebones I'd like to boot up to a
+>> minimal console image.
+>>
+>> I'll be doing this with the denzil release.
+>>
+>> Thanks,
+>>
+>> Scott
+>>
+>> --
+>> Scott Garman
+>> Embedded Linux Engineer - Yocto Project
+>> Intel Open Source Technology Center
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
 >
 >
 > _______________________________________________
@@ -163,10 +103,4 @@ Bruce
 > yocto@yoctoproject.org
 > https://lists.yoctoproject.org/listinfo/yocto
 >
-
-
-
--- 
-"Thou shalt not follow the NULL pointer, for chaos and madness await
-thee at its end"
 
