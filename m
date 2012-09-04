@@ -1,38 +1,26 @@
-Return-Path: <jessica.zhang@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 07380E01371
-	for <yocto@yoctoproject.org>; Tue,  4 Sep 2012 14:50:41 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 04 Sep 2012 14:50:41 -0700
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0C34EE01371
+	for <yocto@yoctoproject.org>; Tue,  4 Sep 2012 16:23:59 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 04 Sep 2012 16:23:59 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,369,1344236400"; 
-	d="scan'208,217";a="196781756"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
-	by orsmga002.jf.intel.com with ESMTP; 04 Sep 2012 14:50:41 -0700
-Received: from orsmsx107.amr.corp.intel.com (10.22.225.80) by
-	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Tue, 4 Sep 2012 14:50:40 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.152]) by
-	ORSMSX107.amr.corp.intel.com ([169.254.10.146]) with mapi id
-	14.01.0355.002; Tue, 4 Sep 2012 14:50:39 -0700
-From: "Zhang, Jessica" <jessica.zhang@intel.com>
-To: David Nystr?m <David.Nystrom@enea.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] [eclipse-poky][PATCH] Fix NullPointerException
-Thread-Index: AQHNinZO646hf/3UqE+1Ugl36pP+5pd6bPVwgACpfoD//6MdMA==
-Date: Tue, 4 Sep 2012 21:50:39 +0000
-Message-ID: <C6510F6D410BB64A8C15398EDC6B847C46AEA916@ORSMSX101.amr.corp.intel.com>
-References: <1346746848-18847-1-git-send-email-david.nystrom@enea.com>,
-	<C6510F6D410BB64A8C15398EDC6B847C46AE9718@ORSMSX101.amr.corp.intel.com>
-	<88701C38B5D07249817D428430999C9121486067@sestoex09.enea.se>
-In-Reply-To: <88701C38B5D07249817D428430999C9121486067@sestoex09.enea.se>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.138]
+X-IronPort-AV: E=Sophos;i="4.80,369,1344236400"; d="scan'208";a="188815009"
+Received: from unknown (HELO envy.home) ([10.255.13.106])
+	by azsmga001.ch.intel.com with ESMTP; 04 Sep 2012 16:23:41 -0700
+Message-ID: <50468D68.50608@linux.intel.com>
+Date: Tue, 04 Sep 2012 16:23:20 -0700
+From: Darren Hart <dvhart@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:15.0) Gecko/20120828 Thunderbird/15.0
 MIME-Version: 1.0
-Cc: Bj?rn Arnelid <Bjorn.Arnelid@enea.com>
-Subject: Re: [eclipse-poky][PATCH] Fix NullPointerException
+To: William Mills <wmills@ti.com>
+References: <50450DC6.20303@r-finger.com>	<CADkTA4NbPk6UDbctuj=McV1PT4QZu=2LRTq2-GHSAAoeaasAUw@mail.gmail.com>	<50451947.2090401@r-finger.com>	<CADkTA4PX-ZAhhPi0OppbT4y4e5jiwDwgNFHONjebPimF8U21Yg@mail.gmail.com>	<5045C2B7.1070406@r-finger.com>	<CADkTA4No3Y0K1eUF_w5OZApD7pfnmLD3YY2uiMG9rDe2okYtEg@mail.gmail.com>
+	<504637F5.8090603@linux.intel.com> <504663C0.6050907@ti.com>
+In-Reply-To: <504663C0.6050907@ti.com>
+X-Enigmail-Version: 1.4.4
+Cc: yocto@yoctoproject.org, "Dmytriyenko, Denys" <denys@ti.com>
+Subject: Re: yocto beagleboard.conf -- should it not go away?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,469 +32,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Sep 2012 21:50:42 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_C6510F6D410BB64A8C15398EDC6B847C46AEA916ORSMSX101amrcor_"
-
---_000_C6510F6D410BB64A8C15398EDC6B847C46AEA916ORSMSX101amrcor_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-Merged to master, thanks!
+X-List-Received-Date: Tue, 04 Sep 2012 23:24:00 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
 
 
-From: David Nystr=F6m [mailto:David.Nystrom@enea.com]
-Sent: Tuesday, September 04, 2012 1:23 PM
-To: yocto@yoctoproject.org; Zhang, Jessica
-Cc: Bj=F6rn Arnelid
-Subject: RE: [yocto] [eclipse-poky][PATCH] Fix NullPointerException
+On 09/04/2012 01:25 PM, William Mills wrote:
 
+> Darren: Is it true you can't get @ the Intel BSP's w/o also getting the 
+> poky distro defs?  That does seem to mixing things a bit.  (I am not 
+> claiming meta-ti is clean yet but I want to understand the Intel examples.)
+> 
 
+It isn't something we test as part of the QA that we perform. I mostly
+expect people building meta-intel to be building with meta-yocto
+(although I wouldn't take a hard line on requiring it). That said, I
+removed meta-yocto from a meta-intel/meta-fri2 build and removed
+DISTRO=poky from my local.conf and successfully built and booted a
+core-image-minimal build on an FRI2 this afternoon without any changes.
 
-Hi,
+This was with latest master of both poky and meta-intel. I have not
+tried this with oe-core and bitbake pulled down separately, I'll leave
+that as an exercise for the reader.
 
-The Nullpointer exception is thrown when trying to use a toolchain tarball
-which has DISTRO set to something else than poky.
-This would generate the name *${DISTRO}sdk* in the sysroot under /opt/${DIS=
-TRO}/1.2/sysroots/
+-- 
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Technical Lead - Linux Kernel
 
-Br,
-David
-
-
-Sent from my Android phone using TouchDown (www.nitrodesk.com<http://www.ni=
-trodesk.com>)
-
------Original Message-----
-From: Zhang, Jessica [jessica.zhang@intel.com]
-Received: Tuesday, 04 Sep 2012, 19:21
-To: David Nystr=F6m [David.Nystrom@enea.com]; yocto@yoctoproject.org<mailto=
-:yocto@yoctoproject.org> [yocto@yoctoproject.org]
-CC: Bj=F6rn Arnelid [Bjorn.Arnelid@enea.com]
-Subject: RE: [yocto] [eclipse-poky][PATCH] Fix NullPointerException
-
-Hi Bj=F6rn,
-
-Thanks for the patch, there's no issue as to the coding and implementation =
-of the patch.  Just need to clarify what's the usage scenario or how did yo=
-u generate your toolchain that's different from the naming convention of th=
-e sysroot directory names that's generated by poky build?
-
-Thanks,
-Jessica
-
------Original Message-----
-From: yocto-bounces@yoctoproject.org<mailto:yocto-bounces@yoctoproject.org>=
- [mailto:yocto-bounces@yoctoproject.org] On Behalf Of David Nystr?m
-Sent: Tuesday, September 04, 2012 1:21 AM
-To: yocto@yoctoproject.org<mailto:yocto@yoctoproject.org>
-Cc: Bj=F6rn Arnelid
-Subject: [yocto] [eclipse-poky][PATCH] Fix NullPointerException
-
-From: Bj=F6rn Arnelid <bjorn.arnelid@enea.com<mailto:bjorn.arnelid@enea.com=
->>
-
-[Yocto Bugzilla] -- https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D301=
-9
-
-When using a Toolchain where sysroot is not named <arch>-pokysdk-linux a Nu=
-llPointerException is thrown when trying to apply changes in Yocto Preferen=
-ces.
-It should be possible to use Toolchains with a sysroot named <arch>-<organi=
-zationName>sdk-linux with the plugin.
-
-static private String findHostArch(File sysroot_dir) now accept folders nam=
-ed *sdk-linux instead of *-pokysdk-linux. checkYoctoSDK will also return SD=
-KCheckResults.TOOLCHAIN_NO_SYSROOT if findHostArch returns null.
-
-Author:    Bj=F6rn Arnelid <bjorn.arnelid@enea.com<mailto:bjorn.arnelid@ene=
-a.com>>
-Signed-off-by: David Nystr=F6m <david.nystrom@enea.com<mailto:david.nystrom=
-@enea.com>>
----
- .../src/org/yocto/sdk/ide/YoctoSDKUtils.java       |   20 +++++++++++++++-=
-----
- 1 file changed, 15 insertions(+), 5 deletions(-)
-
-diff --git a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoSDKUtils.=
-java b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoSDKUtils.java
-index 6be90be..749fac7 100644
---- a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoSDKUtils.java
-+++ b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoSDKUtils.java
-@@ -100,7 +100,17 @@ public class YoctoSDKUtils {
-                        File sysroot_dir =3D new File(sysroot_dir_str);
-                        if (!sysroot_dir.exists())
-                                return SDKCheckResults.TOOLCHAIN_NO_SYSROOT=
-;
--                       String toolchain_host_arch =3D findHostArch(sysroot=
-_dir);
-+
-+                       String toolchain_host_arch =3D null;
-+
-+                       try
-+                       {
-+                               toolchain_host_arch =3D findHostArch(sysroo=
-t_dir);
-+                       }
-+                       catch(NullPointerException e)
-+                       {
-+                               return SDKCheckResults.TOOLCHAIN_NO_SYSROOT=
-;
-+                       }
-
-                        if (!toolchain_host_arch.equalsIgnoreCase(platform)=
-) {
-                                if (!platform.matches("i\\d86") || !toolcha=
-in_host_arch.matches("i\\d86"))
-@@ -576,7 +586,7 @@ public class YoctoSDKUtils {
-        static private String findHostArch(File sysroot_dir) {
-                FilenameFilter nativeFilter =3D new FilenameFilter() {
-                        public boolean accept(File dir, String name) {
--                               if (name.endsWith("-pokysdk-linux")) {
-+                               if (name.endsWith("sdk-linux")) {
-                                        return true;
-                                } else {
-                                        return false;
-@@ -590,11 +600,11 @@ public class YoctoSDKUtils {
-                for (File file : files) {
-                        if (file.isDirectory()) {
-                                String path =3D file.getName();
--                               arch =3D path.substring(0, path.indexOf("-p=
-okysdk-linux"));
-+                               String[] subPath =3D path.split("-");
-+                               arch =3D subPath[0];
-                        } else
-                                continue;
-         }
-                return arch;
-        }
--}
--
-+}
-\ No newline at end of file
---
-1.7.9.5
-
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org<mailto:yocto@yoctoproject.org>
-https://lists.yoctoproject.org/listinfo/yocto
-
-
---_000_C6510F6D410BB64A8C15398EDC6B847C46AEA916ORSMSX101amrcor_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:SimSun;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-@font-face
-	{font-family:SimSun;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:SimSun;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:12.0pt;
-	font-family:"Times New Roman","serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
-	{mso-style-priority:99;
-	mso-style-link:"Balloon Text Char";
-	margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:8.0pt;
-	font-family:"Tahoma","sans-serif";}
-p.emailquote, li.emailquote, div.emailquote
-	{mso-style-name:emailquote;
-	mso-margin-top-alt:auto;
-	margin-right:0cm;
-	mso-margin-bottom-alt:auto;
-	margin-left:1.0pt;
-	border:none;
-	padding:0cm;
-	font-size:12.0pt;
-	font-family:"Times New Roman","serif";}
-span.BalloonTextChar
-	{mso-style-name:"Balloon Text Char";
-	mso-style-priority:99;
-	mso-style-link:"Balloon Text";
-	font-family:"Tahoma","sans-serif";}
-span.EmailStyle20
-	{mso-style-type:personal-reply;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:72.0pt 90.0pt 72.0pt 90.0pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Merged to master, thanks!=
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
-/p>
-<div>
-<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0cm =
-0cm 0cm">
-<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
-;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
-ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> David Ny=
-str=F6m [mailto:David.Nystrom@enea.com]
-<br>
-<b>Sent:</b> Tuesday, September 04, 2012 1:23 PM<br>
-<b>To:</b> yocto@yoctoproject.org; Zhang, Jessica<br>
-<b>Cc:</b> Bj=F6rn Arnelid<br>
-<b>Subject:</b> RE: [yocto] [eclipse-poky][PATCH] Fix NullPointerException<=
-o:p></o:p></span></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<div>
-<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><span style=3D"font-s=
-ize:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:bla=
-ck">Hi,<br>
-<br>
-The Nullpointer exception is thrown when trying to use a toolchain tarball<=
-br>
-which has DISTRO set to something else than poky.<br>
-This would generate the name *${DISTRO}sdk* in the sysroot under /opt/${DIS=
-TRO}/1.2/sysroots/<br>
-<br>
-Br,<br>
-David<br>
-<br>
-<br>
-Sent from my Android phone using TouchDown (<a href=3D"http://www.nitrodesk=
-.com">www.nitrodesk.com</a>)<br>
-<br>
------Original Message----- <br>
-<b>From:</b> Zhang, Jessica [jessica.zhang@intel.com]<br>
-<b>Received:</b> Tuesday, 04 Sep 2012, 19:21<br>
-<b>To:</b> David Nystr=F6m [David.Nystrom@enea.com]; <a href=3D"mailto:yoct=
-o@yoctoproject.org">
-yocto@yoctoproject.org</a> [yocto@yoctoproject.org]<br>
-<b>CC:</b> Bj=F6rn Arnelid [Bjorn.Arnelid@enea.com]<br>
-<b>Subject:</b> RE: [yocto] [eclipse-poky][PATCH] Fix NullPointerException<=
-o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt">Hi Bj=F6rn,<br>
-<br>
-Thanks for the patch, there's no issue as to the coding and implementation =
-of the patch.&nbsp; Just need to clarify what's the usage scenario or how d=
-id you generate your toolchain that's different from the naming convention =
-of the sysroot directory names that's
- generated by poky build?<br>
-<br>
-Thanks,<br>
-Jessica<br>
-<br>
------Original Message-----<br>
-From: <a href=3D"mailto:yocto-bounces@yoctoproject.org">yocto-bounces@yocto=
-project.org</a> [<a href=3D"mailto:yocto-bounces@yoctoproject.org">mailto:y=
-octo-bounces@yoctoproject.org</a>] On Behalf Of David Nystr?m<br>
-Sent: Tuesday, September 04, 2012 1:21 AM<br>
-To: <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br=
->
-Cc: Bj=F6rn Arnelid<br>
-Subject: [yocto] [eclipse-poky][PATCH] Fix NullPointerException<br>
-<br>
-From: Bj=F6rn Arnelid &lt;<a href=3D"mailto:bjorn.arnelid@enea.com">bjorn.a=
-rnelid@enea.com</a>&gt;<br>
-<br>
-[Yocto Bugzilla] -- <a href=3D"https://bugzilla.yoctoproject.org/show_bug.c=
-gi?id=3D3019">
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D3019</a><br>
-<br>
-When using a Toolchain where sysroot is not named &lt;arch&gt;-pokysdk-linu=
-x a NullPointerException is thrown when trying to apply changes in Yocto Pr=
-eferences.<br>
-It should be possible to use Toolchains with a sysroot named &lt;arch&gt;-&=
-lt;organizationName&gt;sdk-linux with the plugin.<br>
-<br>
-static private String findHostArch(File sysroot_dir) now accept folders nam=
-ed *sdk-linux instead of *-pokysdk-linux. checkYoctoSDK will also return SD=
-KCheckResults.TOOLCHAIN_NO_SYSROOT if findHostArch returns null.<br>
-<br>
-Author:&nbsp;&nbsp;&nbsp; Bj=F6rn Arnelid &lt;<a href=3D"mailto:bjorn.arnel=
-id@enea.com">bjorn.arnelid@enea.com</a>&gt;<br>
-Signed-off-by: David Nystr=F6m &lt;<a href=3D"mailto:david.nystrom@enea.com=
-">david.nystrom@enea.com</a>&gt;<br>
----<br>
-&nbsp;.../src/org/yocto/sdk/ide/YoctoSDKUtils.java&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp; |&nbsp;&nbsp; 20 &#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&=
-#43;&#43;&#43;&#43;&#43;&#43;-----<br>
-&nbsp;1 file changed, 15 insertions(&#43;), 5 deletions(-)<br>
-<br>
-diff --git a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoSDKUtils.=
-java b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoSDKUtils.java<b=
-r>
-index 6be90be..749fac7 100644<br>
---- a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoSDKUtils.java<br=
->
-&#43;&#43;&#43; b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoSDKU=
-tils.java<br>
-@@ -100,7 &#43;100,17 @@ public class YoctoSDKUtils {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; File sysroo=
-t_dir =3D new File(sysroot_dir_str);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!sysroo=
-t_dir.exists())<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return SDKCheckResults.TOOLCHAIN_NO_SY=
-SROOT;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String toolchain=
-_host_arch =3D findHostArch(sysroot_dir);<br>
-&#43;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String toolc=
-hain_host_arch =3D null;<br>
-&#43;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; toolchain_host_arch =3D findHostArch(sy=
-sroot_dir);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; catch(NullPo=
-interException e)<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return SDKCheckResults.TOOLCHAIN_NO_SYS=
-ROOT;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!toolch=
-ain_host_arch.equalsIgnoreCase(platform)) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!platform.matches(&quot;i\\d86&quo=
-t;) || !toolchain_host_arch.matches(&quot;i\\d86&quot;))<br>
-@@ -576,7 &#43;586,7 @@ public class YoctoSDKUtils {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; static private String findHostAr=
-ch(File sysroot_dir) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; FilenameFilter nativeFilter =3D new FilenameFilter() {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; public bool=
-ean accept(File dir, String name) {<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (name.endsWith(&quot;-pokysdk-linux&quot=
-;)) {<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (name.endsWith(&quot;sdk-linux&quot;=
-)) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp; return true;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp; return false;<br>
-@@ -590,11 &#43;600,11 @@ public class YoctoSDKUtils {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; for (File file : files) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (file.is=
-Directory()) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String path =3D file.getName();<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; arch =3D path.substring(0, path.indexOf(&qu=
-ot;-pokysdk-linux&quot;));<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String[] subPath =3D path.split(&quot;-=
-&quot;);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; arch =3D subPath[0];<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; continue;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; return arch;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
--}<br>
--<br>
-&#43;}<br>
-\ No newline at end of file<br>
---<br>
-1.7.9.5<br>
-<br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto">https://lists.yoc=
-toproject.org/listinfo/yocto</a><o:p></o:p></span></p>
-</div>
-</div>
-</body>
-</html>
-
---_000_C6510F6D410BB64A8C15398EDC6B847C46AEA916ORSMSX101amrcor_--
