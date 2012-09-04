@@ -1,34 +1,28 @@
-Return-Path: <bruce.ashfield@gmail.com>
-Received: from mail-vb0-f48.google.com (mail-vb0-f48.google.com
-	[209.85.212.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DF078E01464
-	for <yocto@yoctoproject.org>; Mon,  3 Sep 2012 14:08:58 -0700 (PDT)
-Received: by vbme21 with SMTP id e21so7179633vbm.35
-	for <yocto@yoctoproject.org>; Mon, 03 Sep 2012 14:08:44 -0700 (PDT)
+Return-Path: <twoerner@gmail.com>
+Received: from mail-lpp01m010-f48.google.com (mail-lpp01m010-f48.google.com
+	[209.85.215.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 64AF9E0146C
+	for <yocto@yoctoproject.org>; Mon,  3 Sep 2012 19:25:43 -0700 (PDT)
+Received: by lagr15 with SMTP id r15so4471899lag.35
+	for <yocto@yoctoproject.org>; Mon, 03 Sep 2012 19:25:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=r+WtsOCxqTNL8bnhC0p5G/ushP3iMG6wy+2BmrbzKDM=;
-	b=dFTBEl1Oi0tRQhX/EiI5rFvlAoRkZuhFG96j/NOzD+KD57gtoifwDpKjmAtMj837X7
-	W8t092Sop4nBMDvXw3JrRgQyT08Sb1HmaeQyu1GHP+lFTJ6VOhE9UKpeNEWpIltTkJfz
-	gd8BSE/wBHUVcgMLJg54wZlkULNGv76l4d5VPJyiZiREuX+XAUdvTr1Oawv+9MgxT++o
-	5w9s5kbBefqWyar6/00/9M+i0+Ncxj03Ks9MyFmk6gTJcC70zmDwZm5pzXPKwSInjU9T
-	OAS4HkMeuGTI5f8vusX5JKdlLgaMfbX7IWevSunXsgNoKURsXjP3/X2np3Dp7pbOdT0P
-	XpDw==
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=+DowVbDmwICuGPS9OFnBJIStkGqiozuHRFRlo6B//0Y=;
+	b=vgwQuzj3k8Ch6vGYcW9/D1ozTrkOlIso6Oo1qJiZvMu0vAycFTaw9wKUDVEQlDPucz
+	iP5Wjrl8jsRSNx+VNpQtZ/5+C69ZfX0VkXT4MgZ/gycZYoH1kDb1JR6rqpR4U9sPck2S
+	Ru8fe/HDgZg4g9ppw5dIHOtTjBX+XBZOLhn6cjJmV9RfSIKJVqL+XQ89im0ODXOuNn5w
+	n9Lfy6vxQdPcq6PVAkt7xPh6jHjOXA2Po0Jiv5jtV510WApqXwBjxEjPMKF0w3DGRVzZ
+	gN4/eEyqV3v+S076wD7BDBQ8SkVFgJWy0wb8slOhFdSBMU0uDmU5iweedsjstXtPJbBU
+	mi7g==
 MIME-Version: 1.0
-Received: by 10.52.90.104 with SMTP id bv8mr10768615vdb.102.1346706524074;
-	Mon, 03 Sep 2012 14:08:44 -0700 (PDT)
-Received: by 10.52.69.163 with HTTP; Mon, 3 Sep 2012 14:08:44 -0700 (PDT)
-In-Reply-To: <50451947.2090401@r-finger.com>
-References: <50450DC6.20303@r-finger.com>
-	<CADkTA4NbPk6UDbctuj=McV1PT4QZu=2LRTq2-GHSAAoeaasAUw@mail.gmail.com>
-	<50451947.2090401@r-finger.com>
-Date: Mon, 3 Sep 2012 17:08:44 -0400
-Message-ID: <CADkTA4PX-ZAhhPi0OppbT4y4e5jiwDwgNFHONjebPimF8U21Yg@mail.gmail.com>
-From: Bruce Ashfield <bruce.ashfield@gmail.com>
-To: Tomas Frydrych <tf+lists.yocto@r-finger.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: yocto beagleboard.conf -- should it not go away?
+Received: by 10.152.112.233 with SMTP id it9mr15358683lab.40.1346725541897;
+	Mon, 03 Sep 2012 19:25:41 -0700 (PDT)
+Received: by 10.112.21.9 with HTTP; Mon, 3 Sep 2012 19:25:41 -0700 (PDT)
+Date: Mon, 3 Sep 2012 22:25:41 -0400
+Message-ID: <CAHUNapQUS19axgi+i=wAr0r_ogFj+UsSBpsBY_mhd+ac=5w8-g@mail.gmail.com>
+From: Trevor Woerner <twoerner@gmail.com>
+To: yocto@yoctoproject.org
+Subject: any success with spartan6-lx9mb?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,73 +34,86 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 03 Sep 2012 21:08:59 -0000
+X-List-Received-Date: Tue, 04 Sep 2012 02:25:43 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 
-On Mon, Sep 3, 2012 at 4:55 PM, Tomas Frydrych
-<tf+lists.yocto@r-finger.com> wrote:
-> Hi,
->
-> On 03/09/12 21:15, Bruce Ashfield wrote:
->> On Mon, Sep 3, 2012 at 4:06 PM, Tomas Frydrych
->> So we fix the configuration of the layers ..
->
-> I expect this is not actually that trivial. I think the only way to do
-> this is properly is for the layer priorities to be respected by all
-> files in the layer, not just the bb files. No idea how involved that
-> change would be, or what the side effects would be.
+Hi,
 
-This is a very common layering scenario, so if the system as a whole can't
-handle it, that's a bigger problem. If two layers can't have a board with the
-same name, and there's no way for them to work together without tweaking
-multiple files in the layer, I'd say that's a problem and one that should
-be fixed. Otherwise, a OSV (or someone else) can never hope to extend
-anything from a yocto layer.
+I was playing around with the meta-xilinx layer and tried to build
+"core-image-minimal" for the spartan6 without success. I was wondering
+if anyone has tried this lately and/or if anyone has any tips to
+suggest?
 
-That being said, taking a step back, what are you trying to get out of
-meta-yocto in this scenario ? oe-core + meta-ti is probably what you
-should be using.
+configuration:
 
->
->
->> and meta-ti was supposed to work properly with meta-yocto last I heard.
->
-> If properly means 'out of the box', then no; the two layers can be made
-> to work together, but it's fairly clear that nobody comprehensively
-> tests that combination at the moment.
+I'm using the latest HEAD:
+    BB_VERSION        = "1.15.3"
+    TARGET_ARCH       = "microblaze"
+    TARGET_OS         = "linux"
+    MACHINE           = "spartan6-lx9mb"
+    DISTRO            = "poky"
+    DISTRO_VERSION    = "1.2+snapshot-20120904"
+    TUNE_FEATURES     = "m32 microblazeel"
+    TARGET_FPU        = "soft"
+    meta
+    meta-yocto        = "master:37c8597e7600385367257e8a513e003947ebef5b"
+    meta-xilinx       = "master:d196fa93c7ff5e080d4c44e2b83aed472f32b2c7"
 
-see above. I misspoke. I don't think there's an intent to make meta-yocto
-and meta-ti work together, but oe-core + meta-ti, that's the combo that
-makes sense.
+conf/local.conf:
+    BB_NUMBER_THREADS = "4"
+    PARALLEL_MAKE = "-j 4"
+    MACHINE ??= "spartan6-lx9mb"
+    DL_DIR = "/home/trevor/devel/Downloads"
+    DISTRO ?= "poky"
+    PACKAGE_CLASSES ?= "package_rpm"
+    EXTRA_IMAGE_FEATURES = "debug-tweaks"
+    USER_CLASSES ?= "buildstats image-mklibs image-prelink"
+    PATCHRESOLVE = "noop"
+    CONF_VERSION = "1"
 
->
->
->> The meta-yocto layer beagleboard configuration is a hardware ARM reference, that
->> uses the linux-yocto kernel (policy and version) and is used for the
->> project QA on hardware.
->
-> I am all for QA, but in this instance your QA procedure breaks things
-> for the end user. Could you not just call it something else, e.g.,
-> yocto-qa-arm-reference.conf?
+conf/bblayers.conf:
+    LCONF_VERSION = "5"
+    BBPATH = "${TOPDIR}"
+    BBFILES ?= ""
+    BBLAYERS ?= " \
+      /home/trevor/devel/yocto/git-method/poky/meta \
+      /home/trevor/devel/yocto/git-method/poky/meta-yocto \
+      /home/trevor/devel/yocto/git-method/poky/meta-xilinx \
+      "
 
-Hmmm. I'd say no to that, because the system should handle something like this,
-and dancing around the real problem with varying names of BSPs outside of the
-name of the board they actually support, isn't a solution.
+issues:
 
-Cheers,
+The first problem I encountered was trying to build gcc-cross-initial:
+    This target does not support --with-float.
 
-Bruce
-
->
-> Tomas
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
-
-
+I was able to get around this with the following (very silly) patch:
+diff --git a/meta/recipes-devtools/gcc/gcc-common.inc
+b/meta/recipes-devtools/gcc/gcc-common.inc
+index 72180db..cb3a8cf 100644
+--- a/meta/recipes-devtools/gcc/gcc-common.inc
++++ b/meta/recipes-devtools/gcc/gcc-common.inc
+@@ -12,8 +12,6 @@ FILESDIR = "${@os.path.dirname(d.getVar('FILE',1))}/gcc-${PV}"
+ def get_gcc_fpu_setting(bb, d):
+     if d.getVar('ARMPKGSFX_EABI', True) == "hf" and
+d.getVar('TRANSLATED_TARGET_ARCH', True) == "arm":
+         return "--with-float=hard"
+-    if d.getVar('TARGET_FPU', True) in [ 'soft' ]:
+-        return "--with-float=soft"
+     if d.getVar('TARGET_FPU', True) in [ 'ppc-efd' ]:
+         return "--enable-e500_double"
+     return ""
 -- 
-"Thou shalt not follow the NULL pointer, for chaos and madness await
-thee at its end"
+
+
+Although I could get past this point, bitbaking again led to the
+following problem with the same, gcc-cross-initial, recipe:
+
+opening microblaze-c.o: No such file or directory
+make[1]: *** [cc1-checksum.c] Error 1
+rm cpp.pod gcov.pod gfdl.pod gcc.pod fsf-funding.pod
+make[1]: Leaving directory
+`/home/trevor/devel/yocto/git-method/spartan6-lx9/tmp/work/microblazeel-poky-linux/gcc-cross-initial-4.7.1.0+git1+d07e24f4ab59f264d68d21838795349faab5dede-r11/gcc-4_7-branch/build.x86_64-linux.microblaze-poky-linux/gcc'
+make: *** [all-gcc] Error 2
+ERROR: oe_runmake failed
+ERROR: Function failed: do_compile
 
