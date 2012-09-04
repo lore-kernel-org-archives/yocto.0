@@ -1,30 +1,35 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 03EE1E01491
-	for <yocto@yoctoproject.org>; Tue,  4 Sep 2012 10:19:06 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 04 Sep 2012 10:19:06 -0700
+Return-Path: <jessica.zhang@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C9D82E00344
+	for <yocto@yoctoproject.org>; Tue,  4 Sep 2012 10:21:29 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 04 Sep 2012 10:21:29 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,367,1344236400"; d="scan'208";a="196629694"
-Received: from unknown (HELO envy.home) ([10.7.199.69])
-	by orsmga002.jf.intel.com with ESMTP; 04 Sep 2012 10:19:06 -0700
-Message-ID: <504637F5.8090603@linux.intel.com>
-Date: Tue, 04 Sep 2012 10:18:45 -0700
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:14.0) Gecko/20120717 Thunderbird/14.0
+X-IronPort-AV: E=Sophos;i="4.80,367,1344236400"; d="scan'208";a="217682214"
+Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
+	by fmsmga002.fm.intel.com with ESMTP; 04 Sep 2012 10:21:28 -0700
+Received: from orsmsx102.amr.corp.intel.com (10.22.225.129) by
+	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Tue, 4 Sep 2012 10:21:26 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.152]) by
+	ORSMSX102.amr.corp.intel.com ([169.254.1.89]) with mapi id
+	14.01.0355.002; Tue, 4 Sep 2012 10:21:26 -0700
+From: "Zhang, Jessica" <jessica.zhang@intel.com>
+To: David Nystr?m <david.nystrom@enea.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] [eclipse-poky][PATCH] Fix NullPointerException
+Thread-Index: AQHNinZO646hf/3UqE+1Ugl36pP+5pd6bPVw
+Date: Tue, 4 Sep 2012 17:21:24 +0000
+Message-ID: <C6510F6D410BB64A8C15398EDC6B847C46AE9718@ORSMSX101.amr.corp.intel.com>
+References: <1346746848-18847-1-git-send-email-david.nystrom@enea.com>
+In-Reply-To: <1346746848-18847-1-git-send-email-david.nystrom@enea.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-To: Bruce Ashfield <bruce.ashfield@gmail.com>
-References: <50450DC6.20303@r-finger.com>
-	<CADkTA4NbPk6UDbctuj=McV1PT4QZu=2LRTq2-GHSAAoeaasAUw@mail.gmail.com>
-	<50451947.2090401@r-finger.com>
-	<CADkTA4PX-ZAhhPi0OppbT4y4e5jiwDwgNFHONjebPimF8U21Yg@mail.gmail.com>
-	<5045C2B7.1070406@r-finger.com>
-	<CADkTA4No3Y0K1eUF_w5OZApD7pfnmLD3YY2uiMG9rDe2okYtEg@mail.gmail.com>
-In-Reply-To: <CADkTA4No3Y0K1eUF_w5OZApD7pfnmLD3YY2uiMG9rDe2okYtEg@mail.gmail.com>
-X-Enigmail-Version: 1.4.4
-Cc: yocto@yoctoproject.org
-Subject: Re: yocto beagleboard.conf -- should it not go away?
+Cc: Bj?rn Arnelid <bjorn.arnelid@enea.com>
+Subject: Re: [eclipse-poky][PATCH] Fix NullPointerException
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,68 +41,80 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Sep 2012 17:19:07 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 04 Sep 2012 17:21:30 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-
-
-On 09/04/2012 05:20 AM, Bruce Ashfield wrote:
-> On Tue, Sep 4, 2012 at 4:58 AM, Tomas Frydrych
-> <tf+lists.yocto@r-finger.com> wrote:
->> Hi Bruce,
->>
->> On 03/09/12 22:08, Bruce Ashfield wrote:
->>> That being said, taking a step back, what are you trying to get out of
->>> meta-yocto in this scenario ?
->>
->> a) I am targeting multiple chips, including TI Omap and Intel Atom.
->> meta-yocto is a prerequisite for the various machines in meta-intel, so
->> I have to include meta-yocto if I want to build images for an Intel
->> chip. Nothing unusual here.
->>
->> b) meta-yocto is the Poky distro layer; if you want to use Poky, then
->> you need meta-yocto.
->>
->>> see above. I misspoke. I don't think there's an intent to make meta-yocto
->>> and meta-ti work together, but oe-core + meta-ti, that's the combo that
->>> makes sense.
->>
->> See (b) above; you are not saying that Poky is only meant for Intel HW,
->> are you?
-> 
-> Definitely not. But I'm not familiar with anyone's (outside of the
-> weekly meetings
-> that I attend) plans for meta-yocto, so I'm commenting on what I see. You'd need
-> someone from TI to comment on their meta-yocto compatibility. And that person
-> definitely is not me :)
-> 
->>
->> The basic problem with meta-yocto is that it combines BSP stuff
->> (meta-intel prerequisite, Atom & Beagle config) with distro stuff (Poky,
->> Yocto branding). That's convenient for doing QA on a limited set of HW,
->> but suboptimal for real use; BSP layers simply should not be dependent
->> on distro layers, it largely defeats the purpose of having layers.
->>
->> Splitting out the minimal beagle config into a layer of its own would
->> improve things quite a bit.
-> 
-> All of the above are things that Richard would need to comment on, the yocto
-> layering and maintenance is not something that I have control over :)
-> 
-
-As far as I understand it, meta-yocto and meta-ti should be able to work
-together. If they don't, it's a bug in one or the other or both and we
-should work to address it.
-
-The machine namespace collision could be an example of something we need
-to fix.
-
---
-Darren
-
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Technical Lead - Linux Kernel
+SGkgQmrDtnJuLA0KDQpUaGFua3MgZm9yIHRoZSBwYXRjaCwgdGhlcmUncyBubyBpc3N1ZSBhcyB0
+byB0aGUgY29kaW5nIGFuZCBpbXBsZW1lbnRhdGlvbiBvZiB0aGUgcGF0Y2guICBKdXN0IG5lZWQg
+dG8gY2xhcmlmeSB3aGF0J3MgdGhlIHVzYWdlIHNjZW5hcmlvIG9yIGhvdyBkaWQgeW91IGdlbmVy
+YXRlIHlvdXIgdG9vbGNoYWluIHRoYXQncyBkaWZmZXJlbnQgZnJvbSB0aGUgbmFtaW5nIGNvbnZl
+bnRpb24gb2YgdGhlIHN5c3Jvb3QgZGlyZWN0b3J5IG5hbWVzIHRoYXQncyBnZW5lcmF0ZWQgYnkg
+cG9reSBidWlsZD8NCg0KVGhhbmtzLA0KSmVzc2ljYQ0KDQotLS0tLU9yaWdpbmFsIE1lc3NhZ2Ut
+LS0tLQ0KRnJvbTogeW9jdG8tYm91bmNlc0B5b2N0b3Byb2plY3Qub3JnIFttYWlsdG86eW9jdG8t
+Ym91bmNlc0B5b2N0b3Byb2plY3Qub3JnXSBPbiBCZWhhbGYgT2YgRGF2aWQgTnlzdHI/bQ0KU2Vu
+dDogVHVlc2RheSwgU2VwdGVtYmVyIDA0LCAyMDEyIDE6MjEgQU0NClRvOiB5b2N0b0B5b2N0b3By
+b2plY3Qub3JnDQpDYzogQmrDtnJuIEFybmVsaWQNClN1YmplY3Q6IFt5b2N0b10gW2VjbGlwc2Ut
+cG9reV1bUEFUQ0hdIEZpeCBOdWxsUG9pbnRlckV4Y2VwdGlvbg0KDQpGcm9tOiBCasO2cm4gQXJu
+ZWxpZCA8Ympvcm4uYXJuZWxpZEBlbmVhLmNvbT4NCg0KW1lvY3RvIEJ1Z3ppbGxhXSAtLSBodHRw
+czovL2J1Z3ppbGxhLnlvY3RvcHJvamVjdC5vcmcvc2hvd19idWcuY2dpP2lkPTMwMTkNCg0KV2hl
+biB1c2luZyBhIFRvb2xjaGFpbiB3aGVyZSBzeXNyb290IGlzIG5vdCBuYW1lZCA8YXJjaD4tcG9r
+eXNkay1saW51eCBhIE51bGxQb2ludGVyRXhjZXB0aW9uIGlzIHRocm93biB3aGVuIHRyeWluZyB0
+byBhcHBseSBjaGFuZ2VzIGluIFlvY3RvIFByZWZlcmVuY2VzLg0KSXQgc2hvdWxkIGJlIHBvc3Np
+YmxlIHRvIHVzZSBUb29sY2hhaW5zIHdpdGggYSBzeXNyb290IG5hbWVkIDxhcmNoPi08b3JnYW5p
+emF0aW9uTmFtZT5zZGstbGludXggd2l0aCB0aGUgcGx1Z2luLg0KDQpzdGF0aWMgcHJpdmF0ZSBT
+dHJpbmcgZmluZEhvc3RBcmNoKEZpbGUgc3lzcm9vdF9kaXIpIG5vdyBhY2NlcHQgZm9sZGVycyBu
+YW1lZCAqc2RrLWxpbnV4IGluc3RlYWQgb2YgKi1wb2t5c2RrLWxpbnV4LiBjaGVja1lvY3RvU0RL
+IHdpbGwgYWxzbyByZXR1cm4gU0RLQ2hlY2tSZXN1bHRzLlRPT0xDSEFJTl9OT19TWVNST09UIGlm
+IGZpbmRIb3N0QXJjaCByZXR1cm5zIG51bGwuDQoNCkF1dGhvcjogICAgQmrDtnJuIEFybmVsaWQg
+PGJqb3JuLmFybmVsaWRAZW5lYS5jb20+DQpTaWduZWQtb2ZmLWJ5OiBEYXZpZCBOeXN0csO2bSA8
+ZGF2aWQubnlzdHJvbUBlbmVhLmNvbT4NCi0tLQ0KIC4uLi9zcmMvb3JnL3lvY3RvL3Nkay9pZGUv
+WW9jdG9TREtVdGlscy5qYXZhICAgICAgIHwgICAyMCArKysrKysrKysrKysrKystLS0tLQ0KIDEg
+ZmlsZSBjaGFuZ2VkLCAxNSBpbnNlcnRpb25zKCspLCA1IGRlbGV0aW9ucygtKQ0KDQpkaWZmIC0t
+Z2l0IGEvcGx1Z2lucy9vcmcueW9jdG8uc2RrLmlkZS9zcmMvb3JnL3lvY3RvL3Nkay9pZGUvWW9j
+dG9TREtVdGlscy5qYXZhIGIvcGx1Z2lucy9vcmcueW9jdG8uc2RrLmlkZS9zcmMvb3JnL3lvY3Rv
+L3Nkay9pZGUvWW9jdG9TREtVdGlscy5qYXZhDQppbmRleCA2YmU5MGJlLi43NDlmYWM3IDEwMDY0
+NA0KLS0tIGEvcGx1Z2lucy9vcmcueW9jdG8uc2RrLmlkZS9zcmMvb3JnL3lvY3RvL3Nkay9pZGUv
+WW9jdG9TREtVdGlscy5qYXZhDQorKysgYi9wbHVnaW5zL29yZy55b2N0by5zZGsuaWRlL3NyYy9v
+cmcveW9jdG8vc2RrL2lkZS9Zb2N0b1NES1V0aWxzLmphdmENCkBAIC0xMDAsNyArMTAwLDE3IEBA
+IHB1YmxpYyBjbGFzcyBZb2N0b1NES1V0aWxzIHsNCiAgICAgICAgICAgICAgICAgICAgICAgIEZp
+bGUgc3lzcm9vdF9kaXIgPSBuZXcgRmlsZShzeXNyb290X2Rpcl9zdHIpOw0KICAgICAgICAgICAg
+ICAgICAgICAgICAgaWYgKCFzeXNyb290X2Rpci5leGlzdHMoKSkNCiAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgcmV0dXJuIFNES0NoZWNrUmVzdWx0cy5UT09MQ0hBSU5fTk9fU1lTUk9P
+VDsNCi0gICAgICAgICAgICAgICAgICAgICAgIFN0cmluZyB0b29sY2hhaW5faG9zdF9hcmNoID0g
+ZmluZEhvc3RBcmNoKHN5c3Jvb3RfZGlyKTsNCisNCisgICAgICAgICAgICAgICAgICAgICAgIFN0
+cmluZyB0b29sY2hhaW5faG9zdF9hcmNoID0gbnVsbDsNCisNCisgICAgICAgICAgICAgICAgICAg
+ICAgIHRyeQ0KKyAgICAgICAgICAgICAgICAgICAgICAgew0KKyAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICB0b29sY2hhaW5faG9zdF9hcmNoID0gZmluZEhvc3RBcmNoKHN5c3Jvb3RfZGly
+KTsNCisgICAgICAgICAgICAgICAgICAgICAgIH0NCisgICAgICAgICAgICAgICAgICAgICAgIGNh
+dGNoKE51bGxQb2ludGVyRXhjZXB0aW9uIGUpDQorICAgICAgICAgICAgICAgICAgICAgICB7DQor
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHJldHVybiBTREtDaGVja1Jlc3VsdHMuVE9P
+TENIQUlOX05PX1NZU1JPT1Q7DQorICAgICAgICAgICAgICAgICAgICAgICB9DQoNCiAgICAgICAg
+ICAgICAgICAgICAgICAgIGlmICghdG9vbGNoYWluX2hvc3RfYXJjaC5lcXVhbHNJZ25vcmVDYXNl
+KHBsYXRmb3JtKSkgew0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBpZiAoIXBsYXRm
+b3JtLm1hdGNoZXMoImlcXGQ4NiIpIHx8ICF0b29sY2hhaW5faG9zdF9hcmNoLm1hdGNoZXMoImlc
+XGQ4NiIpKQ0KQEAgLTU3Niw3ICs1ODYsNyBAQCBwdWJsaWMgY2xhc3MgWW9jdG9TREtVdGlscyB7
+DQogICAgICAgIHN0YXRpYyBwcml2YXRlIFN0cmluZyBmaW5kSG9zdEFyY2goRmlsZSBzeXNyb290
+X2Rpcikgew0KICAgICAgICAgICAgICAgIEZpbGVuYW1lRmlsdGVyIG5hdGl2ZUZpbHRlciA9IG5l
+dyBGaWxlbmFtZUZpbHRlcigpIHsNCiAgICAgICAgICAgICAgICAgICAgICAgIHB1YmxpYyBib29s
+ZWFuIGFjY2VwdChGaWxlIGRpciwgU3RyaW5nIG5hbWUpIHsNCi0gICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgaWYgKG5hbWUuZW5kc1dpdGgoIi1wb2t5c2RrLWxpbnV4IikpIHsNCisgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgaWYgKG5hbWUuZW5kc1dpdGgoInNkay1saW51eCIp
+KSB7DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcmV0dXJuIHRydWU7
+DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIH0gZWxzZSB7DQogICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgcmV0dXJuIGZhbHNlOw0KQEAgLTU5MCwxMSArNjAw
+LDExIEBAIHB1YmxpYyBjbGFzcyBZb2N0b1NES1V0aWxzIHsNCiAgICAgICAgICAgICAgICBmb3Ig
+KEZpbGUgZmlsZSA6IGZpbGVzKSB7DQogICAgICAgICAgICAgICAgICAgICAgICBpZiAoZmlsZS5p
+c0RpcmVjdG9yeSgpKSB7DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFN0cmluZyBw
+YXRoID0gZmlsZS5nZXROYW1lKCk7DQotICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGFy
+Y2ggPSBwYXRoLnN1YnN0cmluZygwLCBwYXRoLmluZGV4T2YoIi1wb2t5c2RrLWxpbnV4IikpOw0K
+KyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBTdHJpbmdbXSBzdWJQYXRoID0gcGF0aC5z
+cGxpdCgiLSIpOw0KKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBhcmNoID0gc3ViUGF0
+aFswXTsNCiAgICAgICAgICAgICAgICAgICAgICAgIH0gZWxzZQ0KICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICBjb250aW51ZTsNCiAgICAgICAgIH0NCiAgICAgICAgICAgICAgICByZXR1
+cm4gYXJjaDsNCiAgICAgICAgfQ0KLX0NCi0NCit9DQpcIE5vIG5ld2xpbmUgYXQgZW5kIG9mIGZp
+bGUNCi0tDQoxLjcuOS41DQoNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fDQp5b2N0byBtYWlsaW5nIGxpc3QNCnlvY3RvQHlvY3RvcHJvamVjdC5vcmcNCmh0
+dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9saXN0aW5mby95b2N0bw0K
 
