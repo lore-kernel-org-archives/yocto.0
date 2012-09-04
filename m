@@ -1,23 +1,21 @@
 Return-Path: <tom.zanussi@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DD4A8E013CE
-	for <yocto@yoctoproject.org>; Tue,  4 Sep 2012 08:23:48 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 04 Sep 2012 08:23:43 -0700
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 309E8E0148E
+	for <yocto@yoctoproject.org>; Tue,  4 Sep 2012 08:24:07 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 04 Sep 2012 08:24:06 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,367,1344236400"; d="scan'208";a="217631917"
+X-IronPort-AV: E=Sophos;i="4.80,367,1344236400"; d="scan'208";a="196565800"
 Received: from unknown (HELO localhost) ([10.255.13.26])
-	by fmsmga002.fm.intel.com with ESMTP; 04 Sep 2012 08:23:43 -0700
+	by orsmga002.jf.intel.com with ESMTP; 04 Sep 2012 08:23:40 -0700
 From: tom.zanussi@intel.com
 To: yocto@yoctoproject.org
-Date: Tue,  4 Sep 2012 10:23:38 -0500
-Message-Id: <16a7879b98352b70e8c17181912a26212d716c87.1346771837.git.tom.zanussi@intel.com>
+Date: Tue,  4 Sep 2012 10:23:37 -0500
+Message-Id: <6e74be58a9b03a774ab21ac72bca9b9d56a622d4.1346771837.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.11.4
-In-Reply-To: <6e74be58a9b03a774ab21ac72bca9b9d56a622d4.1346771837.git.tom.zanussi@intel.com>
-References: <6e74be58a9b03a774ab21ac72bca9b9d56a622d4.1346771837.git.tom.zanussi@intel.com>
 In-Reply-To: <cover.1346771837.git.tom.zanussi@intel.com>
 References: <cover.1346771837.git.tom.zanussi@intel.com>
-Subject: [PATCH 2/2] meta-emenlow: rename recipes-gnome bbappends
+Subject: [PATCH 1/2] meta-intel: remove task-core-tools-profile.bbappend
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,29 +27,133 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Sep 2012 15:23:49 -0000
+X-List-Received-Date: Tue, 04 Sep 2012 15:24:07 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-The recipes these .bbappends correspond to were renamed, so rename
-them here as well.
+The functionality previously added by these bbappends was already
+handled in task-core-tools-profile.bb (now
+packagegroup-core-tools-profile.bb), so remove these.
+
+SYSTEMTAP = "systemtap"
+SYSTEMTAP_mips = ""
+
+LTTNGUST = "lttng-ust"
+LTTNGUST_mips = ""
+
+RDEPENDS_${PN} = "\
+    ${PROFILETOOLS} \
+    ${LTTNGUST} \
+    ${SYSTEMTAP} \
+    ${VALGRIND} \
 
 Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
 ---
- .../{task-core-sdk-gmae.bbappend => packagegroup-core-sdk-gmae.bbappend}  | 0
- ...get.bbappend => packagegroup-core-standalone-gmae-sdk-target.bbappend} | 0
- 2 files changed, 0 insertions(+), 0 deletions(-)
- rename meta-emenlow/recipes-gnome/tasks/{task-core-sdk-gmae.bbappend => packagegroup-core-sdk-gmae.bbappend} (100%)
- rename meta-emenlow/recipes-gnome/tasks/{task-core-standalone-gmae-sdk-target.bbappend => packagegroup-core-standalone-gmae-sdk-target.bbappend} (100%)
+ meta-cedartrail/recipes-core/tasks/task-core-tools-profile.bbappend   | 3 ---
+ meta-chiefriver/recipes-core/tasks/task-core-tools-profile.bbappend   | 2 --
+ meta-crownbay/recipes-core/tasks/task-core-tools-profile.bbappend     | 3 ---
+ meta-emenlow/recipes-core/tasks/task-core-tools-profile.bbappend      | 2 --
+ meta-fishriver/recipes-core/tasks/task-core-tools-profile.bbappend    | 2 --
+ meta-fri2/recipes-core/tasks/task-core-tools-profile.bbappend         | 3 ---
+ meta-jasperforest/recipes-core/tasks/task-core-tools-profile.bbappend | 2 --
+ meta-n450/recipes-core/tasks/task-core-tools-profile.bbappend         | 2 --
+ meta-romley/recipes-core/tasks/task-core-tools-profile.bbappend       | 2 --
+ meta-sugarbay/recipes-core/tasks/task-core-tools-profile.bbappend     | 2 --
+ 10 files changed, 23 deletions(-)
+ delete mode 100644 meta-cedartrail/recipes-core/tasks/task-core-tools-profile.bbappend
+ delete mode 100644 meta-chiefriver/recipes-core/tasks/task-core-tools-profile.bbappend
+ delete mode 100644 meta-crownbay/recipes-core/tasks/task-core-tools-profile.bbappend
+ delete mode 100644 meta-emenlow/recipes-core/tasks/task-core-tools-profile.bbappend
+ delete mode 100644 meta-fishriver/recipes-core/tasks/task-core-tools-profile.bbappend
+ delete mode 100644 meta-fri2/recipes-core/tasks/task-core-tools-profile.bbappend
+ delete mode 100644 meta-jasperforest/recipes-core/tasks/task-core-tools-profile.bbappend
+ delete mode 100644 meta-n450/recipes-core/tasks/task-core-tools-profile.bbappend
+ delete mode 100644 meta-romley/recipes-core/tasks/task-core-tools-profile.bbappend
+ delete mode 100644 meta-sugarbay/recipes-core/tasks/task-core-tools-profile.bbappend
 
-diff --git a/meta-emenlow/recipes-gnome/tasks/task-core-sdk-gmae.bbappend b/meta-emenlow/recipes-gnome/tasks/packagegroup-core-sdk-gmae.bbappend
-similarity index 100%
-rename from meta-emenlow/recipes-gnome/tasks/task-core-sdk-gmae.bbappend
-rename to meta-emenlow/recipes-gnome/tasks/packagegroup-core-sdk-gmae.bbappend
-diff --git a/meta-emenlow/recipes-gnome/tasks/task-core-standalone-gmae-sdk-target.bbappend b/meta-emenlow/recipes-gnome/tasks/packagegroup-core-standalone-gmae-sdk-target.bbappend
-similarity index 100%
-rename from meta-emenlow/recipes-gnome/tasks/task-core-standalone-gmae-sdk-target.bbappend
-rename to meta-emenlow/recipes-gnome/tasks/packagegroup-core-standalone-gmae-sdk-target.bbappend
+diff --git a/meta-cedartrail/recipes-core/tasks/task-core-tools-profile.bbappend b/meta-cedartrail/recipes-core/tasks/task-core-tools-profile.bbappend
+deleted file mode 100644
+index 365958b..0000000
+--- a/meta-cedartrail/recipes-core/tasks/task-core-tools-profile.bbappend
++++ /dev/null
+@@ -1,3 +0,0 @@
+-RRECOMMENDS_task-core-tools-profile_append_cedartrail = " systemtap"
+-RRECOMMENDS_task-core-tools-profile_append_cedartrail-nopvr = " systemtap"
+-
+diff --git a/meta-chiefriver/recipes-core/tasks/task-core-tools-profile.bbappend b/meta-chiefriver/recipes-core/tasks/task-core-tools-profile.bbappend
+deleted file mode 100644
+index 4631da3..0000000
+--- a/meta-chiefriver/recipes-core/tasks/task-core-tools-profile.bbappend
++++ /dev/null
+@@ -1,2 +0,0 @@
+-RRECOMMENDS_task-core-tools-profile_append_chiefriver = " systemtap"
+-
+diff --git a/meta-crownbay/recipes-core/tasks/task-core-tools-profile.bbappend b/meta-crownbay/recipes-core/tasks/task-core-tools-profile.bbappend
+deleted file mode 100644
+index 2181151..0000000
+--- a/meta-crownbay/recipes-core/tasks/task-core-tools-profile.bbappend
++++ /dev/null
+@@ -1,3 +0,0 @@
+-RRECOMMENDS_task-core-tools-profile_append_crownbay = " systemtap"
+-RRECOMMENDS_task-core-tools-profile_append_crownbay-noemgd = " systemtap"
+-
+diff --git a/meta-emenlow/recipes-core/tasks/task-core-tools-profile.bbappend b/meta-emenlow/recipes-core/tasks/task-core-tools-profile.bbappend
+deleted file mode 100644
+index 890d103..0000000
+--- a/meta-emenlow/recipes-core/tasks/task-core-tools-profile.bbappend
++++ /dev/null
+@@ -1,2 +0,0 @@
+-RRECOMMENDS_task-core-tools-profile_append_emenlow = " lttng-ust systemtap"
+-
+diff --git a/meta-fishriver/recipes-core/tasks/task-core-tools-profile.bbappend b/meta-fishriver/recipes-core/tasks/task-core-tools-profile.bbappend
+deleted file mode 100644
+index 128531b..0000000
+--- a/meta-fishriver/recipes-core/tasks/task-core-tools-profile.bbappend
++++ /dev/null
+@@ -1,2 +0,0 @@
+-RRECOMMENDS_task-core-tools-profile_append_fishriver = " systemtap"
+-
+diff --git a/meta-fri2/recipes-core/tasks/task-core-tools-profile.bbappend b/meta-fri2/recipes-core/tasks/task-core-tools-profile.bbappend
+deleted file mode 100644
+index aa50c91..0000000
+--- a/meta-fri2/recipes-core/tasks/task-core-tools-profile.bbappend
++++ /dev/null
+@@ -1,3 +0,0 @@
+-RRECOMMENDS_task-core-tools-profile_append_fri2 = " systemtap"
+-RRECOMMENDS_task-core-tools-profile_append_fri2-noemgd = " systemtap"
+-
+diff --git a/meta-jasperforest/recipes-core/tasks/task-core-tools-profile.bbappend b/meta-jasperforest/recipes-core/tasks/task-core-tools-profile.bbappend
+deleted file mode 100644
+index 6561773..0000000
+--- a/meta-jasperforest/recipes-core/tasks/task-core-tools-profile.bbappend
++++ /dev/null
+@@ -1,2 +0,0 @@
+-RRECOMMENDS_task-core-tools-profile_append_jasperforest = " systemtap"
+-
+diff --git a/meta-n450/recipes-core/tasks/task-core-tools-profile.bbappend b/meta-n450/recipes-core/tasks/task-core-tools-profile.bbappend
+deleted file mode 100644
+index 3098950..0000000
+--- a/meta-n450/recipes-core/tasks/task-core-tools-profile.bbappend
++++ /dev/null
+@@ -1,2 +0,0 @@
+-RRECOMMENDS_task-core-tools-profile_append_n450 = " systemtap"
+-
+diff --git a/meta-romley/recipes-core/tasks/task-core-tools-profile.bbappend b/meta-romley/recipes-core/tasks/task-core-tools-profile.bbappend
+deleted file mode 100644
+index aba487f..0000000
+--- a/meta-romley/recipes-core/tasks/task-core-tools-profile.bbappend
++++ /dev/null
+@@ -1,2 +0,0 @@
+-RRECOMMENDS_task-core-tools-profile_append_romley = " systemtap"
+-
+diff --git a/meta-sugarbay/recipes-core/tasks/task-core-tools-profile.bbappend b/meta-sugarbay/recipes-core/tasks/task-core-tools-profile.bbappend
+deleted file mode 100644
+index 6cd24d0..0000000
+--- a/meta-sugarbay/recipes-core/tasks/task-core-tools-profile.bbappend
++++ /dev/null
+@@ -1,2 +0,0 @@
+-RRECOMMENDS_task-core-tools-profile_append_sugarbay = " systemtap"
+-
 -- 
 1.7.11.4
 
