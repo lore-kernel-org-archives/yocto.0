@@ -1,26 +1,28 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7D0CEE014A1
-	for <yocto@yoctoproject.org>; Tue,  4 Sep 2012 10:14:07 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 04 Sep 2012 10:13:53 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,367,1344236400"; d="scan'208";a="188803580"
-Received: from unknown (HELO envy.home) ([10.7.199.69])
-	by orsmga001.jf.intel.com with ESMTP; 04 Sep 2012 10:13:58 -0700
-Message-ID: <504636C0.9010709@linux.intel.com>
-Date: Tue, 04 Sep 2012 10:13:36 -0700
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:14.0) Gecko/20120717 Thunderbird/14.0
+Return-Path: <munoz0raul@gmail.com>
+Received: from mail-lpp01m010-f48.google.com (mail-lpp01m010-f48.google.com
+	[209.85.215.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D493AE014AA
+	for <yocto@yoctoproject.org>; Tue,  4 Sep 2012 10:14:45 -0700 (PDT)
+Received: by lagr15 with SMTP id r15so5013820lag.35
+	for <yocto@yoctoproject.org>; Tue, 04 Sep 2012 10:14:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=WRdhh1c5Drpp/0V8V4GjSXQ3g2yKpdaze4VFGKxyqJA=;
+	b=fg7U14F+O0PK60qx6q46W5x59rVt4/UvtEeCpYUu+XfDQmnHz4b8fhYs08wsuv/3Fa
+	glO62CsU3WCP0zWWgjM+6pW4ddKWzJc4/HIZKPaii4elM3AGQTnDWhSF4NB0Qr4K1Uei
+	M9sL8a6AsH8LazMHZiXxWnm1PGA6HeBRVkJh4IHNg96O9CTrLRRrwNiHTWw4i+GmWurT
+	4VvALhAZp7rLTzCs+A4FysCoWQBhl+Km/9izlUcDBuqoH3HIienKzAwTCkMCqkWWTgY7
+	8Yp/+HeSFQUv3KTMX3kCk6caqBTKG+5KSHuP39nyjc1laM8IXmGd1rwjds+X0lGNl7Gj
+	XVuA==
 MIME-Version: 1.0
-To: tom.zanussi@intel.com
-References: <6e74be58a9b03a774ab21ac72bca9b9d56a622d4.1346771837.git.tom.zanussi@intel.com>
-	<16a7879b98352b70e8c17181912a26212d716c87.1346771837.git.tom.zanussi@intel.com>
-In-Reply-To: <16a7879b98352b70e8c17181912a26212d716c87.1346771837.git.tom.zanussi@intel.com>
-X-Enigmail-Version: 1.4.4
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 2/2] meta-emenlow: rename recipes-gnome bbappends
+Received: by 10.152.148.1 with SMTP id to1mr17527140lab.34.1346778884547; Tue,
+	04 Sep 2012 10:14:44 -0700 (PDT)
+Received: by 10.112.21.194 with HTTP; Tue, 4 Sep 2012 10:14:44 -0700 (PDT)
+Date: Tue, 4 Sep 2012 14:14:44 -0300
+Message-ID: <CANmVirh4JJnAyuJxnxMQbBuOB79dGsi6p_SRnn_HD8AZShsxKg@mail.gmail.com>
+From: Raul Rosetto Munoz <munoz0raul@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Create a .bb for my aplication
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,41 +34,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Sep 2012 17:14:07 -0000
+X-List-Received-Date: Tue, 04 Sep 2012 17:14:46 -0000
+Content-Type: multipart/alternative; boundary=e89a8f22c34f0125e304c8e3650b
+
+--e89a8f22c34f0125e304c8e3650b
 Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
 
+Hello,
+I have some files that compose my application, and I want to put this files
+in the "/home/prjs" folder, I know That I need to install the prjs folder
+and the other files in this folder.
 
+What I dont know first, How to create a .bb file!
 
-On 09/04/2012 08:23 AM, tom.zanussi@intel.com wrote:
-> From: Tom Zanussi <tom.zanussi@intel.com>
-> 
-> The recipes these .bbappends correspond to were renamed, so rename
-> them here as well.
-> 
-> Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
+And another question.
 
-Acked-by: Darren Hart <dvhart@linux.intel.com>
+I saw that if I do some things like this:
 
-> ---
->  .../{task-core-sdk-gmae.bbappend => packagegroup-core-sdk-gmae.bbappend}  | 0
->  ...get.bbappend => packagegroup-core-standalone-gmae-sdk-target.bbappend} | 0
->  2 files changed, 0 insertions(+), 0 deletions(-)
->  rename meta-emenlow/recipes-gnome/tasks/{task-core-sdk-gmae.bbappend => packagegroup-core-sdk-gmae.bbappend} (100%)
->  rename meta-emenlow/recipes-gnome/tasks/{task-core-standalone-gmae-sdk-target.bbappend => packagegroup-core-standalone-gmae-sdk-target.bbappend} (100%)
-> 
-> diff --git a/meta-emenlow/recipes-gnome/tasks/task-core-sdk-gmae.bbappend b/meta-emenlow/recipes-gnome/tasks/packagegroup-core-sdk-gmae.bbappend
-> similarity index 100%
-> rename from meta-emenlow/recipes-gnome/tasks/task-core-sdk-gmae.bbappend
-> rename to meta-emenlow/recipes-gnome/tasks/packagegroup-core-sdk-gmae.bbappend
-> diff --git a/meta-emenlow/recipes-gnome/tasks/task-core-standalone-gmae-sdk-target.bbappend b/meta-emenlow/recipes-gnome/tasks/packagegroup-core-standalone-gmae-sdk-target.bbappend
-> similarity index 100%
-> rename from meta-emenlow/recipes-gnome/tasks/task-core-standalone-gmae-sdk-target.bbappend
-> rename to meta-emenlow/recipes-gnome/tasks/packagegroup-core-standalone-gmae-sdk-target.bbappend
-> 
+install -m 0644 ${WORKDIR}/fstab ${D}${sysconfdir}/fstab
 
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Technical Lead - Linux Kernel
+I will copy the file fstab in /etc/ folder.
 
+How I can know that {sysconfdir} correspond to /etc/ folder?
+
+And If it is correct how to know for what /home/ folder correspond {???}.
+
+plz Can some one try to tell me???
+
+Thanks For All Help!
+
+--=20
+*Raul Rosetto Mu=F1oz*
+
+--e89a8f22c34f0125e304c8e3650b
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<div><div>Hello,</div><div>I have some files that compose my application, a=
+nd I want to put this files in the &quot;/home/prjs&quot; folder, I know Th=
+at I need to install the prjs folder and the other files in this folder.</d=
+iv>
+<div><br></div><div>What I dont know first, How to create a .bb file!</div>=
+<div><br></div><div>And another question.</div><div><br></div><div>I saw th=
+at if I do some things like this:</div><div><br></div><div>install -m 0644 =
+${WORKDIR}/fstab ${D}${sysconfdir}/fstab</div>
+<div><br></div><div>I will copy the file fstab in /etc/ folder.</div><div><=
+br></div><div>How I can know that {sysconfdir} correspond to /etc/ folder?<=
+/div><div><br></div><div>And If it is correct how to know for what /home/ f=
+older correspond {???}.</div>
+<div><br></div><div>plz Can some one try to tell me???</div><div><br></div>=
+<div>Thanks For All Help!</div><div><br></div>-- <br><b>Raul Rosetto Mu=F1o=
+z</b><br>
+</div>
+
+--e89a8f22c34f0125e304c8e3650b--
