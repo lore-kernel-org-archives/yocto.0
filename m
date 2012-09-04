@@ -1,26 +1,26 @@
 Return-Path: <dvhart@linux.intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C51C9E00344
-	for <yocto@yoctoproject.org>; Tue,  4 Sep 2012 10:13:29 -0700 (PDT)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E2998E0149F
+	for <yocto@yoctoproject.org>; Tue,  4 Sep 2012 10:14:05 -0700 (PDT)
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 04 Sep 2012 10:13:29 -0700
+	by orsmga102.jf.intel.com with ESMTP; 04 Sep 2012 10:13:46 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,367,1344236400"; d="scan'208";a="188803463"
+X-IronPort-AV: E=Sophos;i="4.80,367,1344236400"; d="scan'208";a="188803551"
 Received: from unknown (HELO envy.home) ([10.7.199.69])
-	by orsmga001.jf.intel.com with ESMTP; 04 Sep 2012 10:13:29 -0700
-Message-ID: <504636A3.1000608@linux.intel.com>
-Date: Tue, 04 Sep 2012 10:13:07 -0700
+	by orsmga001.jf.intel.com with ESMTP; 04 Sep 2012 10:13:50 -0700
+Message-ID: <504636B9.4060205@linux.intel.com>
+Date: Tue, 04 Sep 2012 10:13:29 -0700
 From: Darren Hart <dvhart@linux.intel.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:14.0) Gecko/20120717 Thunderbird/14.0
 MIME-Version: 1.0
 To: tom.zanussi@intel.com
-References: <cover.1346770375.git.tom.zanussi@intel.com>
-	<6e74be58a9b03a774ab21ac72bca9b9d56a622d4.1346770375.git.tom.zanussi@intel.com>
-In-Reply-To: <6e74be58a9b03a774ab21ac72bca9b9d56a622d4.1346770375.git.tom.zanussi@intel.com>
+References: <cover.1346771837.git.tom.zanussi@intel.com>
+	<6e74be58a9b03a774ab21ac72bca9b9d56a622d4.1346771837.git.tom.zanussi@intel.com>
+In-Reply-To: <6e74be58a9b03a774ab21ac72bca9b9d56a622d4.1346771837.git.tom.zanussi@intel.com>
 X-Enigmail-Version: 1.4.4
 Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 1/1] meta-intel: remove task-core-tools-profile.bbappend
+Subject: Re: [PATCH 1/2] meta-intel: remove task-core-tools-profile.bbappend
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,13 +32,13 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Sep 2012 17:13:29 -0000
+X-List-Received-Date: Tue, 04 Sep 2012 17:14:06 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
 
 
-On 09/04/2012 07:55 AM, tom.zanussi@intel.com wrote:
+On 09/04/2012 08:23 AM, tom.zanussi@intel.com wrote:
 > From: Tom Zanussi <tom.zanussi@intel.com>
 > 
 > The functionality previously added by these bbappends was already
