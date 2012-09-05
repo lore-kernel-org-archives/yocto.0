@@ -1,31 +1,31 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
-	[93.97.173.237])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0EF48E014BD
-	for <yocto@yoctoproject.org>; Wed,  5 Sep 2012 05:48:34 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q85CmXbO027171;
-	Wed, 5 Sep 2012 13:48:33 +0100
-Received: from tim.rpsys.net ([127.0.0.1])
-	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
-	port 10024) with LMTP
-	id 24954-08; Wed,  5 Sep 2012 13:48:29 +0100 (BST)
-Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q85CmNPS027164
-	(version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=NO);
-	Wed, 5 Sep 2012 13:48:24 +0100
-Message-ID: <1346849303.21985.56.camel@ted>
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Tomas Frydrych <tf+lists.yocto@r-finger.com>
-Date: Wed, 05 Sep 2012 13:48:23 +0100
-In-Reply-To: <50471ECE.8000502@r-finger.com>
-References: <50450DC6.20303@r-finger.com> <504663C0.6050907@ti.com>
-	<50471207.8080104@r-finger.com> <2612934.gZ3vcrfUaE@helios>
-	<50471ECE.8000502@r-finger.com>
-X-Mailer: Evolution 3.2.3-0ubuntu6 
-Mime-Version: 1.0
-X-Virus-Scanned: amavisd-new at rpsys.net
-Cc: yocto@yoctoproject.org
+Return-Path: <wmills@ti.com>
+Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F2F05E01385
+	for <yocto@yoctoproject.org>; Wed,  5 Sep 2012 07:20:45 -0700 (PDT)
+Received: from dlelxv30.itg.ti.com ([172.17.2.17])
+	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id q85EKepD023836;
+	Wed, 5 Sep 2012 09:20:40 -0500
+Received: from DLEE74.ent.ti.com (dlee74.ent.ti.com [157.170.170.8])
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id q85EKerq005068;
+	Wed, 5 Sep 2012 09:20:40 -0500
+Received: from dlelxv22.itg.ti.com (172.17.1.197) by DLEE74.ent.ti.com
+	(157.170.170.8) with Microsoft SMTP Server id 14.1.323.3;
+	Wed, 5 Sep 2012 09:20:40 -0500
+Received: from gtwmills.gt.design.ti.com (gtwmills.gt.design.ti.com
+	[158.218.102.52])	by dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id
+	q85EKe2Z020328;	Wed, 5 Sep 2012 09:20:40 -0500
+Message-ID: <50475FB7.2080408@ti.com>
+Date: Wed, 5 Sep 2012 10:20:39 -0400
+From: William Mills <wmills@ti.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US;
+	rv:1.9.2.27) Gecko/20120216 Thunderbird/3.1.19
+MIME-Version: 1.0
+To: Darren Hart <dvhart@linux.intel.com>
+References: <50450DC6.20303@r-finger.com>	<CADkTA4NbPk6UDbctuj=McV1PT4QZu=2LRTq2-GHSAAoeaasAUw@mail.gmail.com>	<50451947.2090401@r-finger.com>	<CADkTA4PX-ZAhhPi0OppbT4y4e5jiwDwgNFHONjebPimF8U21Yg@mail.gmail.com>	<5045C2B7.1070406@r-finger.com>	<CADkTA4No3Y0K1eUF_w5OZApD7pfnmLD3YY2uiMG9rDe2okYtEg@mail.gmail.com>
+	<504637F5.8090603@linux.intel.com> <504663C0.6050907@ti.com>
+	<50468D68.50608@linux.intel.com>
+In-Reply-To: <50468D68.50608@linux.intel.com>
+Cc: yocto@yoctoproject.org, "Dmytriyenko, Denys" <denys@ti.com>
 Subject: Re: yocto beagleboard.conf -- should it not go away?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -38,46 +38,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Sep 2012 12:48:35 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Wed, 05 Sep 2012 14:20:46 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On Wed, 2012-09-05 at 10:43 +0100, Tomas Frydrych wrote:
-> On 05/09/12 10:15, Paul Eggleton wrote:
-> > On Wednesday 05 September 2012 09:49:11 Tomas Frydrych wrote:
-> > It has been considered witin OE to be best practice to append to BBPATH and 
-> > not prepend, the thinking being that then the search path matches the order of 
-> > the layers listed in bblayers.conf rather than the reverse.
-> 
-> Then meta-yocto should follow that convention ... and it needs to be
-> well documented, with the consequence of breaking that convention
-> explained, and the terrible punishments to come described in great and
-> sordid detail. Because this needs to be more than a convention, it needs
-> to be an article of faith.
+On 09/04/2012 07:23 PM, Darren Hart wrote:
+>
+>
+> On 09/04/2012 01:25 PM, William Mills wrote:
+>
+>> Darren: Is it true you can't get @ the Intel BSP's w/o also getting the
+>> poky distro defs?  That does seem to mixing things a bit.  (I am not
+>> claiming meta-ti is clean yet but I want to understand the Intel examples.)
+>>
+>
+> It isn't something we test as part of the QA that we perform. I mostly
+> expect people building meta-intel to be building with meta-yocto
+> (although I wouldn't take a hard line on requiring it). That said, I
+> removed meta-yocto from a meta-intel/meta-fri2 build and removed
+> DISTRO=poky from my local.conf and successfully built and booted a
+> core-image-minimal build on an FRI2 this afternoon without any changes.
+>
 
-I just want to clarify something here.
+Thanks!  My confidence is restored.
 
-Its accepted that most layers will append to BBPATH. I do think its
-acceptable for a distro policy layer to prepend though and this is why
-meta-yocto does this. I don't remember the exact reason right now but
-the principle stands.
+As long as including meta-yocto does not interfere with other BSPs or 
+distros etc then there should be no harm in your assumption.
 
-The root of the problem is that meta-yocto mixes up policy and hardware
-support which is bad. It also means its not compliant with the new Yocto
-Project compliance criteria and hence is not Yocto Project Compatible.
-
-Now we've got the compliance criteria sorted out there are some
-adjustments that need to be made and I will shortly be cleaving
-meta-yocto into two pieces to resolve this. I hadn't looked at this
-until now mainly in case there were changes to the criteria.
-
-FWIW I think this shows the strength of those criteria as by following
-them, we'd avoid a real world problem here.
-
-Cheers,
-
-Richard
-
-
+I would be interested to know what Mentor Graphics and Wind River do on 
+their products.  Do they include meta-yocto? (YP is not all about 
+comercial OS support but I know these orginatations have done the due 
+diligence on layer compatibility for a non-poky distro.)
 
 
