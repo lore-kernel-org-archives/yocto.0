@@ -1,37 +1,38 @@
 Return-Path: <martin.jansa@gmail.com>
-Received: from mail-wg0-f54.google.com (mail-wg0-f54.google.com [74.125.82.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8F892E014DA
-	for <yocto@yoctoproject.org>; Wed,  5 Sep 2012 12:34:13 -0700 (PDT)
-Received: by wgx1 with SMTP id 1so664697wgx.11
-	for <yocto@yoctoproject.org>; Wed, 05 Sep 2012 12:34:12 -0700 (PDT)
+Received: from mail-wi0-f176.google.com (mail-wi0-f176.google.com
+	[209.85.212.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3818BE014DA
+	for <yocto@yoctoproject.org>; Wed,  5 Sep 2012 12:44:57 -0700 (PDT)
+Received: by wibhn17 with SMTP id hn17so4490494wib.11
+	for <yocto@yoctoproject.org>; Wed, 05 Sep 2012 12:44:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=date:from:to:cc:subject:message-id:references:mime-version
 	:content-type:content-disposition:in-reply-to:user-agent;
-	bh=kqGS+R3TPXH4/NNraGF+lKBgOCSVWwXVKSg55hieOAo=;
-	b=03Y0VfEnIqqdjGK6VWtjcc5C61sIaq6LgXLsA3f5iRxsTbQsfd4/LW1zlHfS5Pa9cr
-	m4fU38DOiXBQJxJFI9CUBi9nvUG19lYBUsMhy4BNWwglLZIY1W0ygEH0bJR3YLo1Jbpu
-	XdjpsKSaKC2YEqKpOe2mvhKYVT63z4DXEKCjzFPTrCrU57DGHsVfbLiSPFHrWvQt9mkv
-	S3yWTDt1cprA3jdt7hPUCitSw2nk5GGa5eT3vVGvMimBkIrgtKAwj71F6l8eCoiT764w
-	PVyQUv/iVoVtP/vxMmRJcYG7xw6jBG5WMkIGQa+Vf8sTc8ALxKAMytLClJP/mlfczN64
-	XTbg==
-Received: by 10.217.3.1 with SMTP id q1mr13591282wes.38.1346873652148;
-	Wed, 05 Sep 2012 12:34:12 -0700 (PDT)
+	bh=YWa0Mpog4UmqJp+FpG2Fcl8DlgGHT8tIhhiFxRYiAjw=;
+	b=TA7fWxEfeEuzUkKfhxzinDJ/Sm6eZB6OIHGqKEW9meq4gxioBnX/a/LxIWbryTlCJf
+	ZD+XAqFDlQj6fwAGcsgyQLomtB9auNydD19+p5Huwdo3ILlaIySddASJZlZKrDIFv+xV
+	22pr4GULoxRLVZswBQDDdXROIvllbDGWyn1UQAd5M1aK3eGHT7JWDf4C76T+8sZoCtRj
+	U1dUBuoFHA/FL0BvKGzOmU/6J/bcZqU/tbE7PDJNX3wdXY/ZrJG1wu2dFOI/1pFgYLLo
+	qcUM4kLRCcsBvc/lKhfhJxIeDFnVTCePidznkp5l4yJ1S2jPU5iehKD7pktNixYBI3+E
+	6KpA==
+Received: by 10.180.106.130 with SMTP id gu2mr4253841wib.20.1346874291569;
+	Wed, 05 Sep 2012 12:44:51 -0700 (PDT)
 Received: from localhost ([94.230.152.246])
-	by mx.google.com with ESMTPS id l5sm271230wix.5.2012.09.05.12.34.09
+	by mx.google.com with ESMTPS id j6sm338542wiy.4.2012.09.05.12.44.49
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Wed, 05 Sep 2012 12:34:09 -0700 (PDT)
-Date: Wed, 5 Sep 2012 21:34:39 +0200
+	Wed, 05 Sep 2012 12:44:50 -0700 (PDT)
+Date: Wed, 5 Sep 2012 21:45:20 +0200
 From: Martin Jansa <martin.jansa@gmail.com>
-To: Richard Purdie <richard.purdie@linuxfoundation.org>
-Message-ID: <20120905193439.GS3372@jama.jama.net>
-References: <50450DC6.20303@r-finger.com> <504663C0.6050907@ti.com>
-	<50471207.8080104@r-finger.com> <2612934.gZ3vcrfUaE@helios>
-	<50471ECE.8000502@r-finger.com> <1346849303.21985.56.camel@ted>
+To: Saul Wold <sgw@linux.intel.com>
+Message-ID: <20120905194520.GT3372@jama.jama.net>
+References: <1346792241-23600-1-git-send-email-sgw@linux.intel.com>
+	<20120904210033.GH3372@jama.jama.net>
+	<5046D2A3.2070600@linux.intel.com>
 MIME-Version: 1.0
-In-Reply-To: <1346849303.21985.56.camel@ted>
+In-Reply-To: <5046D2A3.2070600@linux.intel.com>
 User-Agent: Mutt/1.5.21 (2010-09-15)
 Cc: yocto@yoctoproject.org
-Subject: Re: yocto beagleboard.conf -- should it not go away?
+Subject: Re: [PATCH 1/3] linux-yocto: Update linux-yocto for 3.2 and 3.4
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,80 +44,134 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Sep 2012 19:34:14 -0000
-X-Groupsio-MsgNum: 9145
+X-List-Received-Date: Wed, 05 Sep 2012 19:44:57 -0000
+X-Groupsio-MsgNum: 9146
 Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="JMCz+drDJ1SjddZX"
+	protocol="application/pgp-signature"; boundary="iskw6J4cuOvZ6IVF"
 Content-Disposition: inline
 
---JMCz+drDJ1SjddZX
+--iskw6J4cuOvZ6IVF
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Sep 05, 2012 at 01:48:23PM +0100, Richard Purdie wrote:
-> On Wed, 2012-09-05 at 10:43 +0100, Tomas Frydrych wrote:
-> > On 05/09/12 10:15, Paul Eggleton wrote:
-> > > On Wednesday 05 September 2012 09:49:11 Tomas Frydrych wrote:
-> > > It has been considered witin OE to be best practice to append to BBPA=
-TH and=20
-> > > not prepend, the thinking being that then the search path matches the=
- order of=20
-> > > the layers listed in bblayers.conf rather than the reverse.
-> >=20
-> > Then meta-yocto should follow that convention ... and it needs to be
-> > well documented, with the consequence of breaking that convention
-> > explained, and the terrible punishments to come described in great and
-> > sordid detail. Because this needs to be more than a convention, it needs
-> > to be an article of faith.
+On Tue, Sep 04, 2012 at 09:18:43PM -0700, Saul Wold wrote:
+> On 09/04/2012 02:00 PM, Martin Jansa wrote:
+> > On Tue, Sep 04, 2012 at 01:57:19PM -0700, Saul Wold wrote:
+> >> Signed-off-by: Saul Wold <sgw@linux.intel.com>
+> >> ---
+> >>   .../recipes-kernel/linux/linux-yocto_3.0.bbappend  |    2 ++
+> >>   .../recipes-kernel/linux/linux-yocto_3.2.bbappend  |    6 ++++++
+> >>   .../recipes-kernel/linux/linux-yocto_3.4.bbappend  |    6 ++++++
+> >>   3 files changed, 14 insertions(+), 0 deletions(-)
+> >>   create mode 100644 meta-tlk/recipes-kernel/linux/linux-yocto_3.2.bba=
+ppend
+> >>   create mode 100644 meta-tlk/recipes-kernel/linux/linux-yocto_3.4.bba=
+ppend
+> >>
+> >> diff --git a/meta-tlk/recipes-kernel/linux/linux-yocto_3.0.bbappend b/=
+meta-tlk/recipes-kernel/linux/linux-yocto_3.0.bbappend
+> >> index 58a6541..138cc21 100644
+> >> --- a/meta-tlk/recipes-kernel/linux/linux-yocto_3.0.bbappend
+> >> +++ b/meta-tlk/recipes-kernel/linux/linux-yocto_3.0.bbappend
+> >> @@ -2,3 +2,5 @@ FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
+> >>
+> >>   # enable the time limited kernel configuration options
+> >>   SRC_URI +=3D "file://time-limited-kernel.cfg"
+> >> +
+> >> +PR .=3D ".1"
+> >
+> > why not
+> > PRINC :=3D "${@int(PRINC) + 1}"
+> > ?
 >=20
-> I just want to clarify something here.
->=20
-> Its accepted that most layers will append to BBPATH. I do think its
-> acceptable for a distro policy layer to prepend though and this is why
-> meta-yocto does this. I don't remember the exact reason right now but
-> the principle stands.
+> I understood that the .1 adds more finer granularity instead of=20
+> incrementing the base PR itself.  You end up with a potential r1.2.1=20
+> which is still legal.
 
-Then the reason should be documented in layer's README file with warning
-that this layer wants to be first or last in BBPATH so whoever is
-setting BBLAYERS can decide where to put it.
+Yes but also makes order of .bbappends applied even more important.
 
-> The root of the problem is that meta-yocto mixes up policy and hardware
-> support which is bad. It also means its not compliant with the new Yocto
-> Project compliance criteria and hence is not Yocto Project Compatible.
+In case one layer has
+PR .=3D ".2"
+
+and other
+PR .=3D ".1"
+
+Then it will provide r1.2.1 or r1.1.2 depending on order of bbappends
+applied. Hopefully you want change order of layers to break every
+upgrade path, but why not use PRINC which does not suffer from this?
+=20
+> What happens with a r1.2 and the above @int(PRINC) + 1?
+
+I guess it will produce r2.2
+
+    princ =3D d.getVar('PRINC', True)
+    if princ and princ !=3D "0":
+        pr =3D d.getVar('PR', True)
+        pr_prefix =3D re.search("\D+",pr)
+        prval =3D re.search("\d+",pr)
+        if pr_prefix is None or prval is None:
+            bb.error("Unable to analyse format of PR variable: %s" % pr)
+        nval =3D int(prval.group(0)) + int(princ)
+        pr =3D pr_prefix.group(0) + str(nval) + pr[prval.end():]
+        d.setVar('PR', pr)
+
+Cheers,
+
 >=20
-> Now we've got the compliance criteria sorted out there are some
-> adjustments that need to be made and I will shortly be cleaving
-> meta-yocto into two pieces to resolve this. I hadn't looked at this
-> until now mainly in case there were changes to the criteria.
->=20
-> FWIW I think this shows the strength of those criteria as by following
-> them, we'd avoid a real world problem here.
->=20
-> Cheers,
->=20
-> Richard
+> I would need to test it, done for the day right now.
 >=20
 >=20
+> Sau!
 >=20
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+> >> diff --git a/meta-tlk/recipes-kernel/linux/linux-yocto_3.2.bbappend b/=
+meta-tlk/recipes-kernel/linux/linux-yocto_3.2.bbappend
+> >> new file mode 100644
+> >> index 0000000..138cc21
+> >> --- /dev/null
+> >> +++ b/meta-tlk/recipes-kernel/linux/linux-yocto_3.2.bbappend
+> >> @@ -0,0 +1,6 @@
+> >> +FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
+> >> +
+> >> +# enable the time limited kernel configuration options
+> >> +SRC_URI +=3D "file://time-limited-kernel.cfg"
+> >> +
+> >> +PR .=3D ".1"
+> >> diff --git a/meta-tlk/recipes-kernel/linux/linux-yocto_3.4.bbappend b/=
+meta-tlk/recipes-kernel/linux/linux-yocto_3.4.bbappend
+> >> new file mode 100644
+> >> index 0000000..138cc21
+> >> --- /dev/null
+> >> +++ b/meta-tlk/recipes-kernel/linux/linux-yocto_3.4.bbappend
+> >> @@ -0,0 +1,6 @@
+> >> +FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
+> >> +
+> >> +# enable the time limited kernel configuration options
+> >> +SRC_URI +=3D "file://time-limited-kernel.cfg"
+> >> +
+> >> +PR .=3D ".1"
+> >> --
+> >> 1.7.7.6
+> >>
+> >> _______________________________________________
+> >> yocto mailing list
+> >> yocto@yoctoproject.org
+> >> https://lists.yoctoproject.org/listinfo/yocto
+> >
 
 --=20
 Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
 
---JMCz+drDJ1SjddZX
+--iskw6J4cuOvZ6IVF
 Content-Type: application/pgp-signature; name="signature.asc"
 Content-Description: Digital signature
 
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v2.0.19 (GNU/Linux)
 
-iEYEARECAAYFAlBHqU8ACgkQN1Ujt2V2gBzYZwCeL8JMEwO+GG4kl4b7FSATCjzo
-uFEAn0J5hnUo7nvohve0VavXHtzpcY04
-=y9RH
+iEYEARECAAYFAlBHq9AACgkQN1Ujt2V2gBw2EQCfc1TaX50mQ+aiSP1bk/b6Oheu
+/H8AnRpbVbfxeo/xA8nMg3NjeMFAOYXP
+=XWO4
 -----END PGP SIGNATURE-----
 
---JMCz+drDJ1SjddZX--
+--iskw6J4cuOvZ6IVF--
