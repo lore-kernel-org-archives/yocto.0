@@ -1,31 +1,41 @@
-Return-Path: <kyle.wangdawei@huawei.com>
-Received: from szxga01-in.huawei.com (szxga01-in.huawei.com [119.145.14.64])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AF0CBE014B0
-	for <yocto@yoctoproject.org>; Tue,  4 Sep 2012 20:16:57 -0700 (PDT)
-Received: from 172.24.2.119 (EHLO szxeml212-edg.china.huawei.com)
-	([172.24.2.119])
-	by szxrg01-dlp.huawei.com (MOS 4.3.4-GA FastPath queued)
-	with ESMTP id AOL17840; Wed, 05 Sep 2012 11:16:56 +0800 (CST)
-Received: from SZXEML409-HUB.china.huawei.com (10.82.67.136) by
-	szxeml212-edg.china.huawei.com (172.24.2.181) with Microsoft SMTP
-	Server (TLS) id 14.1.323.3; Wed, 5 Sep 2012 11:15:53 +0800
-Received: from SZXEML526-MBS.china.huawei.com ([169.254.7.116]) by
-	szxeml409-hub.china.huawei.com ([10.82.67.136]) with mapi id
-	14.01.0323.003; Wed, 5 Sep 2012 11:15:48 +0800
-From: Wangdawei <kyle.wangdawei@huawei.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: how to add a new environment in poky
-Thread-Index: Ac2LFL035MYfNy+ET6C9ASFUVP8VAQ==
-Date: Wed, 5 Sep 2012 03:15:47 +0000
-Message-ID: <7E29EF69110C17499E6B3A9844CD4FD917AF1EB1@szxeml526-mbs.china.huawei.com>
-Accept-Language: zh-CN, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.66.60.253]
+Return-Path: <jack.mitchell@eumx.net>
+Received: from eumx.net (eumx.net [91.82.101.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 950BFE01423
+	for <yocto@yoctoproject.org>; Wed,  5 Sep 2012 14:57:00 -0700 (PDT)
+Received: from localhost ([127.0.0.1]:54517 helo=eumx.net)
+	by eumx.net with esmtp (Exim 4.72)
+	(envelope-from <jack.mitchell@eumx.net>) id 1T9Nal-0002ye-Eo
+	for yocto@yoctoproject.org; Wed, 05 Sep 2012 21:56:59 +0000
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed; d=eumx.net; h=message-id
+	:date:from:mime-version:to:subject:references:in-reply-to
+	:content-type:content-transfer-encoding; s=default; bh=j64Ddkweh
+	jebc6c4q+x8Lsg0gzM=; b=ZLQ6nA/FZWSTK0ltIzDMZdoCu0+A9GfMDRUEsYu3A
+	g+3Q62P6aHZnzic83KSQrqWm/R+TsS9XpGGZ1StI5Wx5GWWnjsIjAsZmnm1b/ZEF
+	ol784VgY8O86OJiqsqqjSo/9boT8F7nyk90RPmhv4FtpBV72BaAfN42ierUEqYPK
+	JY=
+DomainKey-Signature: a=rsa-sha1; c=nofws; d=eumx.net; h=message-id:date
+	:from:mime-version:to:subject:references:in-reply-to
+	:content-type:content-transfer-encoding; q=dns; s=default; b=llx
+	72aPqsMIbwyPrqXxn3id99KQzAXbumttlUGcMJCdyByU+meXPMbkzFGPXwbLij+b
+	bTuUB9/P8/g4cRn3ZR8dX5ZGcoS1h0D6YGnjAO5diP1xvthVVHEK9XtX2aewYn7P
+	XDNIE8HLi4nwoklv8TX8fbwxmq9cIZSyd/blD8H4=
+Received: from cpc2-cmbg15-2-0-cust171.5-4.cable.virginmedia.com
+	([86.26.12.172]:54095 helo=[192.168.1.113])
+	by eumx.net with esmtpsa (TLS1.0:DHE_RSA_AES_256_CBC_SHA1:32)
+	(Exim 4.72) (envelope-from <jack.mitchell@eumx.net>)
+	id 1T9Nal-0002yb-CC
+	for yocto@yoctoproject.org; Wed, 05 Sep 2012 21:56:59 +0000
+Message-ID: <5047CAA9.1000708@eumx.net>
+Date: Wed, 05 Sep 2012 22:56:57 +0100
+From: Jack Mitchell <jack.mitchell@eumx.net>
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
+	rv:15.0) Gecko/20120824 Thunderbird/15.0
 MIME-Version: 1.0
-X-CFilter-Loop: Reflected
+To: yocto@yoctoproject.org
+References: <5047970C.8010208@mlbassoc.com> <2238601.rFqqxpWrI4@helios>
+In-Reply-To: <2238601.rFqqxpWrI4@helios>
 X-Mailman-Approved-At: Wed, 05 Sep 2012 15:00:21 -0700
-Subject: how to add a new environment in poky
+Subject: Re: raspberrypi image questions
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,126 +47,59 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Sep 2012 03:16:59 -0000
-Content-Language: zh-CN
-Content-Type: multipart/alternative;
-	boundary="_000_7E29EF69110C17499E6B3A9844CD4FD917AF1EB1szxeml526mbschi_"
+X-List-Received-Date: Wed, 05 Sep 2012 21:57:00 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
---_000_7E29EF69110C17499E6B3A9844CD4FD917AF1EB1szxeml526mbschi_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-Hi
-         I need to add a new environment that LD_LIBRARY_PATH when I use my=
- own external toolchain .
-         I add 1 line in external-toolchain.inc "LD_LIBRARY_PATH =3D. "${EX=
-TERNAL_TOOLCHAIN}/i586-target-linux-gnu/lib:"",but there is no effect.when =
-I used this toolchain to compile , there also isn't this value , so I want =
-to ask how to add a environment in poky ? the run.compile.xxx script can ge=
-t the value ?
-
-________________________________
-
-thanks & rgds
-
-
---_000_7E29EF69110C17499E6B3A9844CD4FD917AF1EB1szxeml526mbschi_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+On 05/09/2012 22:46, Paul Eggleton wrote:
+> On Wednesday 05 September 2012 12:16:44 Gary Thomas wrote:
+>> I just built Yocto/Poky for the raspberrypi, following the
+>> recent thread on this list.  I noticed that the resulting SD
+>> image is ~4GB, but most of that space seems to be unused:
+>>
+>>     $ ssh root@192.168.1.150
+>>     Warning: Permanently added '192.168.1.150' (RSA) to the list of known
+>> hosts. root@192.168.1.150's password:
+>>     root@raspberrypi:~# df
+>>     Filesystem           1K-blocks      Used Available Use% Mounted on
+>>     /dev/root                57388     46754      7718  86% /
+>>     none                     93964       156     93808   0% /dev
+>>     /dev/mmcblk0p2           57388     46754      7718  86% /media/mmcblk0p2
+>>     /dev/mmcblk0p1           19400      8928     10472  46% /media/mmcblk0p1
+>>     tmpfs                    93964        56     93908   0% /var/volatile
+>>     tmpfs                    93964         0     93964   0% /dev/shm
+>>     tmpfs                    93964         0     93964   0% /media/ram
+>>     root@raspberrypi:~# cat /proc/partitions
+>>     major minor  #blocks  name
+>>
+>>      179        0    3977216 mmcblk0
+>>      179        1      19456 mmcblk0p1
+>>      179        2    3885056 mmcblk0p2
+>>
+>> Notice that the physical partition for /dev/mmcblk0p2 is huge but
+>> the file system is only 57MB.
+>>
+>> How can I adjust my build and/or resize the file system to actually
+>> use the rest of the SD card?
+> I suspect a resize2fs call is needed in there. Since the SD card class in
+> meta-raspberrypi was changed to use the actual ext2 rootfs image instead of
+> creating a new one on the fly, this has become an issue. I would suggest filing
+> the issue on the meta-raspberrypi github.
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
-<!--[if !mso]><style>v\:* {behavior:url(#default#VML);}
-o\:* {behavior:url(#default#VML);}
-w\:* {behavior:url(#default#VML);}
-.shape {behavior:url(#default#VML);}
-</style><![endif]--><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:\5B8B\4F53;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:"\@\5B8B\4F53";
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-@font-face
-	{font-family:\534E\6587\7EC6\9ED1;
-	panose-1:2 1 6 0 4 1 1 1 1 1;}
-@font-face
-	{font-family:"\@\534E\6587\7EC6\9ED1";
-	panose-1:2 1 6 0 4 1 1 1 1 1;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	text-align:justify;
-	text-justify:inter-ideograph;
-	font-size:10.5pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;}
-/* Page Definitions */
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:72.0pt 90.0pt 72.0pt 90.0pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"ZH-CN" link=3D"blue" vlink=3D"purple" style=3D"text-justify-t=
-rim:punctuation">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Hi <o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp; I need to add a new environment that LD_LIBRARY_PATH when=
- I use my own external toolchain .<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp; I add 1 line in external-toolchain.inc &#8220;LD_LIBRARY_=
-PATH =3D. &quot;${EXTERNAL_TOOLCHAIN}/i586-target-linux-gnu/lib:&quot;&#822=
-1;,but there is no effect.when I used this toolchain to compile , there als=
-o isn&#8217;t this value , so I
- want to ask how to add a environment in poky ? the run.compile.xxx script =
-can get the value ?<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<div class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span=
- lang=3D"EN-US" style=3D"font-size:12.0pt;font-family:&#23435;&#20307;">
-<hr size=3D"2" width=3D"100%" align=3D"center">
-</span></div>
-<p class=3D"MsoNormal" align=3D"left" style=3D"text-align:left"><span lang=
-=3D"EN-US" style=3D"font-size:10.0pt;font-family:&#21326;&#25991;&#32454;&#=
-40657;;color:black"><br>
-thanks &amp; rgds</span><span lang=3D"EN-US"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-</div>
-</body>
-</html>
+>> Also, is it possible to just build the SD image much like I do for
+>> other devices like the BeagleBoard, albeit with different contents
+>> in /boot?  Sloshing around 4GB images is rather painful, plus it
+>> takes forever to DD it to the SD card.
+> I must be missing something - do you want the rootfs larger or don't you? If
+> it's expanded it will take up 4GB minus the boot partition size so you're into
+> a large dd again...
+>
+> Cheers,
+> Paul
+>
 
---_000_7E29EF69110C17499E6B3A9844CD4FD917AF1EB1szxeml526mbschi_--
+I think what he means (or this is what I would like to see ;) ) is a 
+boot.tar.gz and a rootfs.tar.gz which can then be extracted straight 
+onto the partitions? Hence only a ~40mb boot write and ~50mb rootfs 
+write rather than a 4GB dd slog.
+
