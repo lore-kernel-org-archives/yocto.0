@@ -1,32 +1,24 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
-	[93.97.173.237])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 05C58E014FB
-	for <yocto@yoctoproject.org>; Wed,  5 Sep 2012 14:43:22 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q85LhKH0030746;
-	Wed, 5 Sep 2012 22:43:20 +0100
-Received: from tim.rpsys.net ([127.0.0.1])
-	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
-	port 10024) with LMTP
-	id 28994-03; Wed,  5 Sep 2012 22:43:16 +0100 (BST)
-Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q85LhDZf030740
-	(version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=NO);
-	Wed, 5 Sep 2012 22:43:14 +0100
-Message-ID: <1346881393.21985.97.camel@ted>
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Tomas Frydrych <tf+lists.yocto@r-finger.com>
-Date: Wed, 05 Sep 2012 22:43:13 +0100
-In-Reply-To: <1346849303.21985.56.camel@ted>
-References: <50450DC6.20303@r-finger.com> <504663C0.6050907@ti.com>
-	<50471207.8080104@r-finger.com> <2612934.gZ3vcrfUaE@helios>
-	<50471ECE.8000502@r-finger.com> <1346849303.21985.56.camel@ted>
-X-Mailer: Evolution 3.2.3-0ubuntu6 
-Mime-Version: 1.0
-X-Virus-Scanned: amavisd-new at rpsys.net
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C796BE01423
+	for <yocto@yoctoproject.org>; Wed,  5 Sep 2012 14:46:33 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 05 Sep 2012 14:46:33 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,376,1344236400"; d="scan'208";a="189276344"
+Received: from unknown (HELO helios.localnet) ([10.252.121.177])
+	by azsmga001.ch.intel.com with ESMTP; 05 Sep 2012 14:46:32 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Gary Thomas <gary@mlbassoc.com>
+Date: Wed, 05 Sep 2012 22:46:31 +0100
+Message-ID: <2238601.rFqqxpWrI4@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.9 (Linux/3.2.0-30-generic-pae; KDE/4.9.0; i686; ; )
+In-Reply-To: <5047970C.8010208@mlbassoc.com>
+References: <5047970C.8010208@mlbassoc.com>
+MIME-Version: 1.0
 Cc: yocto@yoctoproject.org
-Subject: Re: yocto beagleboard.conf -- should it not go away?
+Subject: Re: raspberrypi image questions
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,23 +30,59 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Sep 2012 21:43:23 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 05 Sep 2012 21:46:34 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On Wed, 2012-09-05 at 13:48 +0100, Richard Purdie wrote:
-> The root of the problem is that meta-yocto mixes up policy and hardware
-> support which is bad. It also means its not compliant with the new Yocto
-> Project compliance criteria and hence is not Yocto Project Compatible.
+On Wednesday 05 September 2012 12:16:44 Gary Thomas wrote:
+> I just built Yocto/Poky for the raspberrypi, following the
+> recent thread on this list.  I noticed that the resulting SD
+> image is ~4GB, but most of that space seems to be unused:
 > 
-> Now we've got the compliance criteria sorted out there are some
-> adjustments that need to be made and I will shortly be cleaving
-> meta-yocto into two pieces to resolve this. I hadn't looked at this
-> until now mainly in case there were changes to the criteria.
+>    $ ssh root@192.168.1.150
+>    Warning: Permanently added '192.168.1.150' (RSA) to the list of known
+> hosts. root@192.168.1.150's password:
+>    root@raspberrypi:~# df
+>    Filesystem           1K-blocks      Used Available Use% Mounted on
+>    /dev/root                57388     46754      7718  86% /
+>    none                     93964       156     93808   0% /dev
+>    /dev/mmcblk0p2           57388     46754      7718  86% /media/mmcblk0p2
+>    /dev/mmcblk0p1           19400      8928     10472  46% /media/mmcblk0p1
+>    tmpfs                    93964        56     93908   0% /var/volatile
+>    tmpfs                    93964         0     93964   0% /dev/shm
+>    tmpfs                    93964         0     93964   0% /media/ram
+>    root@raspberrypi:~# cat /proc/partitions
+>    major minor  #blocks  name
+> 
+>     179        0    3977216 mmcblk0
+>     179        1      19456 mmcblk0p1
+>     179        2    3885056 mmcblk0p2
+> 
+> Notice that the physical partition for /dev/mmcblk0p2 is huge but
+> the file system is only 57MB.
+> 
+> How can I adjust my build and/or resize the file system to actually
+> use the rest of the SD card?
 
-This has now been fixed in:
+I suspect a resize2fs call is needed in there. Since the SD card class in 
+meta-raspberrypi was changed to use the actual ext2 rootfs image instead of 
+creating a new one on the fly, this has become an issue. I would suggest filing 
+the issue on the meta-raspberrypi github.
 
-http://git.yoctoproject.org/cgit.cgi/poky/commit/?id=2000698b17011bbde1c3e5bb01a7d6763316db5a
+> Also, is it possible to just build the SD image much like I do for
+> other devices like the BeagleBoard, albeit with different contents
+> in /boot?  Sloshing around 4GB images is rather painful, plus it
+> takes forever to DD it to the SD card.
 
+I must be missing something - do you want the rootfs larger or don't you? If 
+it's expanded it will take up 4GB minus the boot partition size so you're into 
+a large dd again... 
 
+Cheers,
+Paul
+
+-- 
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
