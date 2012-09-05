@@ -1,23 +1,23 @@
 Return-Path: <paul.eggleton@linux.intel.com>
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9B56EE01423
-	for <yocto@yoctoproject.org>; Wed,  5 Sep 2012 07:35:17 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6E4E5E01385
+	for <yocto@yoctoproject.org>; Wed,  5 Sep 2012 07:35:18 -0700 (PDT)
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 05 Sep 2012 07:35:17 -0700
+	by fmsmga101.fm.intel.com with ESMTP; 05 Sep 2012 07:35:18 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,374,1344236400"; d="scan'208";a="218100746"
+X-IronPort-AV: E=Sophos;i="4.80,374,1344236400"; d="scan'208";a="218100755"
 Received: from unknown (HELO helios.ger.corp.intel.com) ([10.252.121.155])
-	by fmsmga002.fm.intel.com with ESMTP; 05 Sep 2012 07:35:16 -0700
+	by fmsmga002.fm.intel.com with ESMTP; 05 Sep 2012 07:35:17 -0700
 From: Paul Eggleton <paul.eggleton@linux.intel.com>
 To: yocto@yoctoproject.org
-Date: Wed,  5 Sep 2012 15:34:59 +0100
-Message-Id: <68550f541a3dcbe3e8f20ba3f2a927cadb3d98b1.1346854096.git.paul.eggleton@linux.intel.com>
+Date: Wed,  5 Sep 2012 15:35:00 +0100
+Message-Id: <0aef086dbe02400ee6d845354296902dd53d1c07.1346854096.git.paul.eggleton@linux.intel.com>
 X-Mailer: git-send-email 1.7.9.5
 In-Reply-To: <cover.1346854096.git.paul.eggleton@linux.intel.com>
 References: <cover.1346854096.git.paul.eggleton@linux.intel.com>
 In-Reply-To: <cover.1346854096.git.paul.eggleton@linux.intel.com>
 References: <cover.1346854096.git.paul.eggleton@linux.intel.com>
-Subject: [yocto-docs][PATCH 01/12] documentation/bsp-guide, dev-manual-bsp-appendix: remove references to task bbappend
+Subject: [yocto-docs][PATCH 02/12] documentation/poky-ref-manual: fix for rename of task to packagegroup
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,100 +29,67 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Sep 2012 14:35:17 -0000
-
-The meta-intel BSPs and yocto-bsp tool no longer use a bbappend of
-task-core-tools-profile to add systemtap, so these sections should be
-removed.
+X-List-Received-Date: Wed, 05 Sep 2012 14:35:18 -0000
 
 Signed-off-by: Paul Eggleton <paul.eggleton@linux.intel.com>
 ---
- documentation/bsp-guide/bsp.xml                    |   24 ----------------
- .../dev-manual/dev-manual-bsp-appendix.xml         |   29 --------------------
- 2 files changed, 53 deletions(-)
+ documentation/poky-ref-manual/ref-bitbake.xml   |    2 +-
+ documentation/poky-ref-manual/ref-variables.xml |    8 ++++----
+ 2 files changed, 5 insertions(+), 5 deletions(-)
 
-diff --git a/documentation/bsp-guide/bsp.xml b/documentation/bsp-guide/bsp.xml
-index 0c7ead5..5bfa9fb 100644
---- a/documentation/bsp-guide/bsp.xml
-+++ b/documentation/bsp-guide/bsp.xml
-@@ -172,9 +172,6 @@
-      meta-crownbay/recipes-bsp/formfactor/formfactor/crownbay/machconfig
-      meta-crownbay/recipes-bsp/formfactor/formfactor/crownbay-noemgd/
-      meta-crownbay/recipes-bsp/formfactor/formfactor/crownbay-noemgd/machconfig
--     meta-crownbay/recipes-core/
--     meta-crownbay/recipes-core/tasks/
--     meta-crownbay/recipes-core/tasks/task-core-tools-profile.bbappend
-      meta-crownbay/recipes-graphics/
-      meta-crownbay/recipes-graphics/xorg-xserver/
-      meta-crownbay/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend
-@@ -447,27 +444,6 @@
-             </para></note>
-             </section>
- 
--            <section id='bsp-filelayout-core-recipes'>
--            <title>Core Recipe Files</title>
--            <para>
--                You can find these files in the BSP Layer at:
--                <literallayout class='monospaced'>
--     meta-&lt;bsp_name&gt;/recipes-core/*
--                </literallayout> 
--            </para>
--
--            <para>
--                This directory contains recipe files that are almost always necessary to build a 
--                useful, working Linux image.
--                Thus, the term "core" is used to group these recipes.
--                For example, in the Crown Bay BSP there is the 
--                <filename>task-core-tools-profile.bbappend</filename> file, which is an append file used 
--                to recommend that the 
--                <ulink url='http://sourceware.org/systemtap/wiki'>SystemTap</ulink>
--                package be included as a package when the image is built.
--            </para>
--            </section>
--
-             <section id='bsp-filelayout-recipes-graphics'>
-             <title>Display Support Files</title>
-             <para>
-diff --git a/documentation/dev-manual/dev-manual-bsp-appendix.xml b/documentation/dev-manual/dev-manual-bsp-appendix.xml
-index 98ed837..50a0049 100644
---- a/documentation/dev-manual/dev-manual-bsp-appendix.xml
-+++ b/documentation/dev-manual/dev-manual-bsp-appendix.xml
-@@ -358,35 +358,6 @@
-             </para>
-         </section>
- 
--        <section id='changing-recipes-core'>
--            <title>Changing&nbsp;&nbsp;<filename>recipes-core</filename></title>
--
--            <para>
--                Now let's look at changes in <filename>recipes-core</filename>.
--                The file <filename>task-core-tools.bbappend</filename> in 
--                <filename>recipes-core/tasks</filename> appends the similarly named recipe
--                located in the <link linkend='source-directory'>source directory</link> at 
--                <filename>meta/recipes-core/tasks</filename>.
--                The append file in our layer right now is Crown Bay-specific and supports 
--                EMGD and non-EMGD.
--                Here are the contents of the file:
--                <literallayout class='monospaced'>
--     RRECOMMENDS_task-core-tools-profile_append_crownbay = " systemtap"
--     RRECOMMENDS_task-core-tools-profile_append_crownbay-noemgd = " systemtap"
--                </literallayout>
--            </para>
--
--            <para>
--                The <filename>RRECOMMENDS</filename> statements list packages that 
--                extend usability.
--                The first <filename>RRECOMMENDS</filename> statement can be removed, while the 
--                second one can be changed to reflect <filename>meta-mymachine</filename>:
--                <literallayout class='monospaced'>
--     RRECOMMENDS_task-core-tools-profile_append_mymachine = " systemtap"
--                </literallayout>
--            </para>
--        </section>
--
-         <section id='changing-recipes-kernel'>
-             <title>Changing&nbsp;&nbsp;<filename>recipes-kernel</filename></title>
- 
+diff --git a/documentation/poky-ref-manual/ref-bitbake.xml b/documentation/poky-ref-manual/ref-bitbake.xml
+index 330d72e..ff8db59 100644
+--- a/documentation/poky-ref-manual/ref-bitbake.xml
++++ b/documentation/poky-ref-manual/ref-bitbake.xml
+@@ -124,7 +124,7 @@
+             Once a provider is selected, BitBake resolves all the dependencies for  
+             the target. 
+             In the case of <filename>core-image-sato</filename>, it would lead to 
+-            <filename>task-base.bb</filename>,  
++            <filename>packagegroup-base.bb</filename>,  
+             which in turn leads to packages like <filename>Contacts</filename>, 
+             <filename>Dates</filename> and <filename>BusyBox</filename>.
+             These packages in turn depend on <filename>eglibc</filename> and the toolchain.
+diff --git a/documentation/poky-ref-manual/ref-variables.xml b/documentation/poky-ref-manual/ref-variables.xml
+index 362ece4..b1e3cd3 100644
+--- a/documentation/poky-ref-manual/ref-variables.xml
++++ b/documentation/poky-ref-manual/ref-variables.xml
+@@ -1311,7 +1311,7 @@ recipes-graphics/xorg-font/xorg-font-common.inc:INC_PR = "r2"
+                     The build process depends on these packages being present.
+                     Furthermore, because this is a "machine essential" variable, the list of 
+                     packages are essential for the machine to boot.
+-                    The impact of this variable affects images based on <filename>task-core-boot</filename>,
++                    The impact of this variable affects images based on <filename>packagegroup-core-boot</filename>,
+                     including the <filename>core-image-minimal</filename> image.
+                 </para>
+                 <para>
+@@ -1341,7 +1341,7 @@ recipes-graphics/xorg-font/xorg-font-common.inc:INC_PR = "r2"
+                     The build process does not depend on these packages being present.
+                     Furthermore, because this is a "machine essential" variable, the list of 
+                     packages are essential for the machine to boot.
+-                    The impact of this variable affects images based on <filename>task-core-boot</filename>,
++                    The impact of this variable affects images based on <filename>packagegroup-core-boot</filename>,
+                     including the <filename>core-image-minimal</filename> image.
+                 </para>
+                 <para>
+@@ -1388,7 +1388,7 @@ recipes-graphics/xorg-font/xorg-font-common.inc:INC_PR = "r2"
+                     Even though these packages are not essential for the machine to boot,  
+                     the build process depends on them being present.
+                     The impact of this variable affects all images based on
+-                    <filename>task-base</filename>, which does not include the 
++                    <filename>packagegroup-base</filename>, which does not include the 
+                     <filename>core-image-minimal</filename> or <filename>core-image-basic</filename> 
+                     images.
+                 </para>
+@@ -1425,7 +1425,7 @@ recipes-graphics/xorg-font/xorg-font-common.inc:INC_PR = "r2"
+                     The package being built has no build dependency on the list of packages 
+                     with this variable.  
+                     The impact of this variable affects only images based on 
+-                    <filename>task-base</filename>, which does not include the 
++                    <filename>packagegroup-base</filename>, which does not include the 
+                     <filename>core-image-minimal</filename> or <filename>core-image-basic</filename> 
+                     images.
+                 </para>
 -- 
 1.7.9.5
 
