@@ -1,25 +1,27 @@
-Return-Path: <tf+lists.yocto@r-finger.com>
-Received: from r-finger.com (r-finger.com [178.79.160.5])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 49DEBE01385
-	for <yocto@yoctoproject.org>; Wed,  5 Sep 2012 08:06:32 -0700 (PDT)
-Received: from [192.168.0.2] (host81-153-84-143.range81-153.btcentralplus.com
-	[81.153.84.143]) (using TLSv1 with cipher AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by r-finger.com (Postfix) with ESMTPSA id E28FF9ADE;
-	Wed,  5 Sep 2012 16:06:30 +0100 (BST)
-Message-ID: <50476A75.20107@r-finger.com>
-Date: Wed, 05 Sep 2012 16:06:29 +0100
-From: Tomas Frydrych <tf+lists.yocto@r-finger.com>
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 31C47E01385
+	for <yocto@yoctoproject.org>; Wed,  5 Sep 2012 08:16:31 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id q85FGDIQ007229
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Wed, 5 Sep 2012 08:16:13 -0700 (PDT)
+Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.2.309.2;
+	Wed, 5 Sep 2012 08:16:13 -0700
+Message-ID: <50476CB4.7020901@windriver.com>
+Date: Wed, 5 Sep 2012 11:16:04 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:10.0.5) Gecko/20120624 Icedove/10.0.5
+	rv:12.0) Gecko/20120430 Thunderbird/12.0.1
 MIME-Version: 1.0
 To: William Mills <wmills@ti.com>
-References: <50450DC6.20303@r-finger.com>
-	<504663C0.6050907@ti.com>	<50471207.8080104@r-finger.com>
-	<2612934.gZ3vcrfUaE@helios>	<50471ECE.8000502@r-finger.com>
-	<1346849303.21985.56.camel@ted> <5047657C.4010902@ti.com>
-In-Reply-To: <5047657C.4010902@ti.com>
-Cc: yocto@yoctoproject.org
+References: <50450DC6.20303@r-finger.com>	<CADkTA4NbPk6UDbctuj=McV1PT4QZu=2LRTq2-GHSAAoeaasAUw@mail.gmail.com>	<50451947.2090401@r-finger.com>	<CADkTA4PX-ZAhhPi0OppbT4y4e5jiwDwgNFHONjebPimF8U21Yg@mail.gmail.com>	<5045C2B7.1070406@r-finger.com>	<CADkTA4No3Y0K1eUF_w5OZApD7pfnmLD3YY2uiMG9rDe2okYtEg@mail.gmail.com>
+	<504637F5.8090603@linux.intel.com> <504663C0.6050907@ti.com>
+	<50468D68.50608@linux.intel.com> <50475FB7.2080408@ti.com>
+In-Reply-To: <50475FB7.2080408@ti.com>
+Cc: yocto@yoctoproject.org, Darren Hart <dvhart@linux.intel.com>, "Dmytriyenko,
+	Denys" <denys@ti.com>
 Subject: Re: yocto beagleboard.conf -- should it not go away?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -32,32 +34,57 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Sep 2012 15:06:32 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 05 Sep 2012 15:16:31 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 05/09/12 15:45, William Mills wrote:
->> Its accepted that most layers will append to BBPATH. I do think its
->> acceptable for a distro policy layer to prepend though and this is why
->> meta-yocto does this. I don't remember the exact reason right now but
->> the principle stands.
-> 
-> So how should we resolve the issue in meta-ti for the denzil/1.2 branch?
-> 
-> I think the expediency of prepending sounds right to me.  We can shoot
-> for a better fix in 1.3.
+On 12-09-05 10:20 AM, William Mills wrote:
+> On 09/04/2012 07:23 PM, Darren Hart wrote:
+>>
+>>
+>> On 09/04/2012 01:25 PM, William Mills wrote:
+>>
+>>> Darren: Is it true you can't get @ the Intel BSP's w/o also getting the
+>>> poky distro defs? That does seem to mixing things a bit. (I am not
+>>> claiming meta-ti is clean yet but I want to understand the Intel
+>>> examples.)
+>>>
+>>
+>> It isn't something we test as part of the QA that we perform. I mostly
+>> expect people building meta-intel to be building with meta-yocto
+>> (although I wouldn't take a hard line on requiring it). That said, I
+>> removed meta-yocto from a meta-intel/meta-fri2 build and removed
+>> DISTRO=poky from my local.conf and successfully built and booted a
+>> core-image-minimal build on an FRI2 this afternoon without any changes.
+>>
+>
+> Thanks! My confidence is restored.
+>
+> As long as including meta-yocto does not interfere with other BSPs or
+> distros etc then there should be no harm in your assumption.
+>
+> I would be interested to know what Mentor Graphics and Wind River do on
+> their products. Do they include meta-yocto? (YP is not all about
+> comercial OS support but I know these orginatations have done the due
+> diligence on layer compatibility for a non-poky distro.)
 
-I think in the light of what Paul said, the meta-ti behaviour is what is
-expected and changing will potentially complicate things for other
-meta-ti consumers who follow the convention; the problem is in
-meta-yocto, not meta-ti.
+Layering flexibility is important, so we work largely on oe-core
+vs meta-yocto. That being said, there are elements in meta-yocto that
+are of interest, so it can be included in used, but with layers that
+get the ordering and priority correct to override/preserve appropriately.
 
-The current problem can be worked around; it requires a custom layer
-that also prepends itself to the path in front of meta-yocto, and then
-provides a beagleboard.conf of it's own (which can simply 'include' or
-'require' the beagleboard.conf from meta-ti). I think if Richard is
-working on a solution in meta-yocto, it might be enough to document this
-somewhere until it is ready.
+But sorting out exactly what we are talking about in this thread, would
+make using meta-yocto (or whatever the elements of it become), that much
+easier to do.
 
-Tomas
+Cheers,
+
+Bruce
+
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
 
