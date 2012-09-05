@@ -1,19 +1,32 @@
-Return-Path: <ioanax.grigoropol@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 57F42E014BD
-	for <yocto@yoctoproject.org>; Wed,  5 Sep 2012 04:32:40 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 05 Sep 2012 04:32:25 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,372,1344236400"; d="scan'208";a="218037322"
-Received: from ideapad (HELO localhost.localdomain) ([10.237.105.40])
-	by fmsmga002.fm.intel.com with ESMTP; 05 Sep 2012 04:32:24 -0700
-From: Ioana Grigoropol <ioanax.grigoropol@intel.com>
-To: yocto@yoctoproject.org
-Date: Wed,  5 Sep 2012 14:29:19 +0300
-Message-Id: <1346844559-3490-1-git-send-email-ioanax.grigoropol@intel.com>
-X-Mailer: git-send-email 1.7.9.5
-Subject: [PATCH] [Yocto #3044]Set JavaSource=1.6 for headless build
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
+	[93.97.173.237])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0EF48E014BD
+	for <yocto@yoctoproject.org>; Wed,  5 Sep 2012 05:48:34 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q85CmXbO027171;
+	Wed, 5 Sep 2012 13:48:33 +0100
+Received: from tim.rpsys.net ([127.0.0.1])
+	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
+	port 10024) with LMTP
+	id 24954-08; Wed,  5 Sep 2012 13:48:29 +0100 (BST)
+Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q85CmNPS027164
+	(version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=NO);
+	Wed, 5 Sep 2012 13:48:24 +0100
+Message-ID: <1346849303.21985.56.camel@ted>
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: Tomas Frydrych <tf+lists.yocto@r-finger.com>
+Date: Wed, 05 Sep 2012 13:48:23 +0100
+In-Reply-To: <50471ECE.8000502@r-finger.com>
+References: <50450DC6.20303@r-finger.com> <504663C0.6050907@ti.com>
+	<50471207.8080104@r-finger.com> <2612934.gZ3vcrfUaE@helios>
+	<50471ECE.8000502@r-finger.com>
+X-Mailer: Evolution 3.2.3-0ubuntu6 
+Mime-Version: 1.0
+X-Virus-Scanned: amavisd-new at rpsys.net
+Cc: yocto@yoctoproject.org
+Subject: Re: yocto beagleboard.conf -- should it not go away?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -25,54 +38,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Sep 2012 11:32:40 -0000
+X-List-Received-Date: Wed, 05 Sep 2012 12:48:35 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-- @Override annotations can be used starting with jre >= 1.6
-- Headless build plugin limited the java compilation to 1.5 (no matter what the system jdk is)
+On Wed, 2012-09-05 at 10:43 +0100, Tomas Frydrych wrote:
+> On 05/09/12 10:15, Paul Eggleton wrote:
+> > On Wednesday 05 September 2012 09:49:11 Tomas Frydrych wrote:
+> > It has been considered witin OE to be best practice to append to BBPATH and 
+> > not prepend, the thinking being that then the search path matches the order of 
+> > the layers listed in bblayers.conf rather than the reverse.
+> 
+> Then meta-yocto should follow that convention ... and it needs to be
+> well documented, with the consequence of breaking that convention
+> explained, and the terrible punishments to come described in great and
+> sordid detail. Because this needs to be more than a convention, it needs
+> to be an article of faith.
 
-Signed-off-by: Ioana Grigoropol <ioanax.grigoropol@intel.com>
----
- .../org.yocto.sdk.headless.build/build.properties  |    4 ++--
- .../sdk/remotetools/wizards/bsp/MainPage.java      |    4 ++--
- 2 files changed, 4 insertions(+), 4 deletions(-)
+I just want to clarify something here.
 
-diff --git a/features/org.yocto.sdk.headless.build/build.properties b/features/org.yocto.sdk.headless.build/build.properties
-index 24ccf99..9a3e4d9 100644
---- a/features/org.yocto.sdk.headless.build/build.properties
-+++ b/features/org.yocto.sdk.headless.build/build.properties
-@@ -247,10 +247,10 @@ javacVerbose=true
- #compilerArg=
- 
- # Default value for the version of the source code. This value is used when compiling plug-ins that do not set the Bundle-RequiredExecutionEnvironment or set javacSource in build.properties
--javacSource=1.5
-+javacSource=1.6
- 
- # Default value for the version of the byte code targeted. This value is used when compiling plug-ins that do not set the Bundle-RequiredExecutionEnvironment or set javacTarget in build.properties.
--javacTarget=1.5
-+javacTarget=1.6
- 
- #individualSourceBundles=true
- 
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/wizards/bsp/MainPage.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/wizards/bsp/MainPage.java
-index 861cb08..fea1c76 100644
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/wizards/bsp/MainPage.java
-+++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/wizards/bsp/MainPage.java
-@@ -520,12 +520,12 @@ public class MainPage extends WizardPage {
- 		BuildLocationListener(String value){
- 			this.value = value;
- 		}
--		//@Override
-+		@Override
- 		public void focusGained(FocusEvent e) {
- 			value = ((Text)e.getSource()).getText();
- 		}
- 
--		//@Override
-+		@Override
- 		public void focusLost(FocusEvent e) {
- 			if(!((Text)e.getSource()).getText().equals(value)) {
- 				checkBuildDir();
--- 
-1.7.9.5
+Its accepted that most layers will append to BBPATH. I do think its
+acceptable for a distro policy layer to prepend though and this is why
+meta-yocto does this. I don't remember the exact reason right now but
+the principle stands.
+
+The root of the problem is that meta-yocto mixes up policy and hardware
+support which is bad. It also means its not compliant with the new Yocto
+Project compliance criteria and hence is not Yocto Project Compatible.
+
+Now we've got the compliance criteria sorted out there are some
+adjustments that need to be made and I will shortly be cleaving
+meta-yocto into two pieces to resolve this. I hadn't looked at this
+until now mainly in case there were changes to the criteria.
+
+FWIW I think this shows the strength of those criteria as by following
+them, we'd avoid a real world problem here.
+
+Cheers,
+
+Richard
+
+
 
 
