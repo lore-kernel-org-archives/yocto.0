@@ -1,24 +1,34 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C796BE01423
-	for <yocto@yoctoproject.org>; Wed,  5 Sep 2012 14:46:33 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 05 Sep 2012 14:46:33 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,376,1344236400"; d="scan'208";a="189276344"
-Received: from unknown (HELO helios.localnet) ([10.252.121.177])
-	by azsmga001.ch.intel.com with ESMTP; 05 Sep 2012 14:46:32 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Gary Thomas <gary@mlbassoc.com>
-Date: Wed, 05 Sep 2012 22:46:31 +0100
-Message-ID: <2238601.rFqqxpWrI4@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.9 (Linux/3.2.0-30-generic-pae; KDE/4.9.0; i686; ; )
-In-Reply-To: <5047970C.8010208@mlbassoc.com>
-References: <5047970C.8010208@mlbassoc.com>
-MIME-Version: 1.0
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
+	[93.97.173.237])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3CD36E01423
+	for <yocto@yoctoproject.org>; Wed,  5 Sep 2012 14:47:07 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q85Ll6Ba030795;
+	Wed, 5 Sep 2012 22:47:06 +0100
+Received: from tim.rpsys.net ([127.0.0.1])
+	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
+	port 10024) with LMTP
+	id 27558-10; Wed,  5 Sep 2012 22:47:02 +0100 (BST)
+Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q85LkuRk030767
+	(version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=NO);
+	Wed, 5 Sep 2012 22:46:57 +0100
+Message-ID: <1346881616.21985.100.camel@ted>
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: Tomas Frydrych <tf+lists.yocto@r-finger.com>
+Date: Wed, 05 Sep 2012 22:46:56 +0100
+In-Reply-To: <5045C2B7.1070406@r-finger.com>
+References: <50450DC6.20303@r-finger.com>
+	<CADkTA4NbPk6UDbctuj=McV1PT4QZu=2LRTq2-GHSAAoeaasAUw@mail.gmail.com>
+	<50451947.2090401@r-finger.com>
+	<CADkTA4PX-ZAhhPi0OppbT4y4e5jiwDwgNFHONjebPimF8U21Yg@mail.gmail.com>
+	<5045C2B7.1070406@r-finger.com>
+X-Mailer: Evolution 3.2.3-0ubuntu6 
+Mime-Version: 1.0
+X-Virus-Scanned: amavisd-new at rpsys.net
 Cc: yocto@yoctoproject.org
-Subject: Re: raspberrypi image questions
+Subject: Re: yocto beagleboard.conf -- should it not go away?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,59 +40,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Sep 2012 21:46:34 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Wed, 05 Sep 2012 21:47:07 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-On Wednesday 05 September 2012 12:16:44 Gary Thomas wrote:
-> I just built Yocto/Poky for the raspberrypi, following the
-> recent thread on this list.  I noticed that the resulting SD
-> image is ~4GB, but most of that space seems to be unused:
+On Tue, 2012-09-04 at 09:58 +0100, Tomas Frydrych wrote:
+> Hi Bruce,
 > 
->    $ ssh root@192.168.1.150
->    Warning: Permanently added '192.168.1.150' (RSA) to the list of known
-> hosts. root@192.168.1.150's password:
->    root@raspberrypi:~# df
->    Filesystem           1K-blocks      Used Available Use% Mounted on
->    /dev/root                57388     46754      7718  86% /
->    none                     93964       156     93808   0% /dev
->    /dev/mmcblk0p2           57388     46754      7718  86% /media/mmcblk0p2
->    /dev/mmcblk0p1           19400      8928     10472  46% /media/mmcblk0p1
->    tmpfs                    93964        56     93908   0% /var/volatile
->    tmpfs                    93964         0     93964   0% /dev/shm
->    tmpfs                    93964         0     93964   0% /media/ram
->    root@raspberrypi:~# cat /proc/partitions
->    major minor  #blocks  name
+> On 03/09/12 22:08, Bruce Ashfield wrote:
+> > That being said, taking a step back, what are you trying to get out of
+> > meta-yocto in this scenario ? 
 > 
->     179        0    3977216 mmcblk0
->     179        1      19456 mmcblk0p1
->     179        2    3885056 mmcblk0p2
-> 
-> Notice that the physical partition for /dev/mmcblk0p2 is huge but
-> the file system is only 57MB.
-> 
-> How can I adjust my build and/or resize the file system to actually
-> use the rest of the SD card?
+> a) I am targeting multiple chips, including TI Omap and Intel Atom.
+> meta-yocto is a prerequisite for the various machines in meta-intel, so
+> I have to include meta-yocto if I want to build images for an Intel
+> chip. Nothing unusual here.
 
-I suspect a resize2fs call is needed in there. Since the SD card class in 
-meta-raspberrypi was changed to use the actual ext2 rootfs image instead of 
-creating a new one on the fly, this has become an issue. I would suggest filing 
-the issue on the meta-raspberrypi github.
+Is that really true? What in meta-intel depends on meta-yocto?
 
-> Also, is it possible to just build the SD image much like I do for
-> other devices like the BeagleBoard, albeit with different contents
-> in /boot?  Sloshing around 4GB images is rather painful, plus it
-> takes forever to DD it to the SD card.
+This certainly isn't intentional so I'd like to understand more.
 
-I must be missing something - do you want the rootfs larger or don't you? If 
-it's expanded it will take up 4GB minus the boot partition size so you're into 
-a large dd again... 
+> b) meta-yocto is the Poky distro layer; if you want to use Poky, then
+> you need meta-yocto.
+>
+> > see above. I misspoke. I don't think there's an intent to make meta-yocto
+> > and meta-ti work together, but oe-core + meta-ti, that's the combo that
+> > makes sense.
+> 
+> See (b) above; you are not saying that Poky is only meant for Intel HW,
+> are you?
+> 
+> The basic problem with meta-yocto is that it combines BSP stuff
+> (meta-intel prerequisite, Atom & Beagle config) with distro stuff (Poky,
+> Yocto branding). That's convenient for doing QA on a limited set of HW,
+> but suboptimal for real use; BSP layers simply should not be dependent
+> on distro layers, it largely defeats the purpose of having layers.
+> 
+> Splitting out the minimal beagle config into a layer of its own would
+> improve things quite a bit.
+
+Effectively this is what we've now done and was always the intention
+(see the Yocto Project compatible criteria).
 
 Cheers,
-Paul
 
--- 
+Richard
 
-Paul Eggleton
-Intel Open Source Technology Centre
 
