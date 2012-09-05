@@ -1,36 +1,26 @@
-Return-Path: <twoerner@gmail.com>
-Received: from mail-lpp01m010-f48.google.com (mail-lpp01m010-f48.google.com
-	[209.85.215.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 98074E01385
-	for <yocto@yoctoproject.org>; Wed,  5 Sep 2012 10:13:32 -0700 (PDT)
-Received: by lagr15 with SMTP id r15so564881lag.35
-	for <yocto@yoctoproject.org>; Wed, 05 Sep 2012 10:13:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=pOD5G/ToYsV2PDEUAUK60yTMbE86ERqwsNx7/BuF0sM=;
-	b=F0+LSH5sE0wKbZ8FnWu+S3BxFLNMi5DODN5DKLFx9voZL2z3Msedr4nwdzGVc49iMR
-	VaQq4LflQMmMUq+qwq+VC6Hj5KUzqWpNgpBE9xUJWhvld6fxa9uguWFInIfoczQnbcY5
-	XToPQWUvYNiACiEBM7AWbz6BqKtTQt4sE6Q20dqjB1yTS8JQ8SyiwAOZm68BkVaXo5im
-	mI+QGa0ZsXRq9sJSjtYfz1sDvplQBNQaHeBAOJGR5dwcF/H9ZXAGBqF2y8/GC2C/PIcq
-	uZN6E0E7a48tF7KGySB6DZVuqGssIm08Tkr0H2YJVRgyiBS64tctclymGWyM+FZPkdrw
-	YRmg==
+Return-Path: <sgw@linux.intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1D172E014D3
+	for <yocto@yoctoproject.org>; Wed,  5 Sep 2012 10:15:16 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 05 Sep 2012 10:15:15 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,375,1344236400"; d="scan'208";a="189177202"
+Received: from unknown (HELO [10.255.13.76]) ([10.255.13.76])
+	by azsmga001.ch.intel.com with ESMTP; 05 Sep 2012 10:15:15 -0700
+Message-ID: <504788A3.1020507@linux.intel.com>
+Date: Wed, 05 Sep 2012 10:15:15 -0700
+From: Saul Wold <sgw@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:14.0) Gecko/20120717 Thunderbird/14.0
 MIME-Version: 1.0
-Received: by 10.152.46.203 with SMTP id x11mr3474885lam.46.1346865211272; Wed,
-	05 Sep 2012 10:13:31 -0700 (PDT)
-Received: by 10.112.37.2 with HTTP; Wed, 5 Sep 2012 10:13:31 -0700 (PDT)
-In-Reply-To: <50477015.7010603@communistcode.co.uk>
-References: <5044EE55.4050208@communistcode.co.uk>
-	<50451A77.1020609@r-finger.com>
-	<50472249.1010009@communistcode.co.uk>
-	<CAHUNapQmyBhDVfCHD2H2JO1NmSN6atW1XO7uQr+sH-nGJKgiKg@mail.gmail.com>
-	<50477015.7010603@communistcode.co.uk>
-Date: Wed, 5 Sep 2012 13:13:31 -0400
-Message-ID: <CAHUNapTnkzJtpfeXeqpTqB1yHd43gOwWFNpDnGZqQDU-fWPUUg@mail.gmail.com>
-From: Trevor Woerner <twoerner@gmail.com>
-To: ml@communistcode.co.uk
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Building a Custom Raspberry Pi Image using OpenEmbedded and Yocto
+To: Khem Raj <raj.khem@gmail.com>
+References: <cover.1346864117.git.sgw@linux.intel.com>
+	<fa8f0e879cb51717131fc1a2f01b88fa61c9caf2.1346864117.git.sgw@linux.intel.com>
+	<CAMKF1sqtiJYiHRAO9VL0ydxPssT3Z5GfGKWnKD+6ZsVWHDTZwg@mail.gmail.com>
+In-Reply-To: <CAMKF1sqtiJYiHRAO9VL0ydxPssT3Z5GfGKWnKD+6ZsVWHDTZwg@mail.gmail.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH 1/3] linux-yocto: Update linux-yocto for 3.2 and 3.4
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,19 +32,62 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Sep 2012 17:13:33 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Wed, 05 Sep 2012 17:15:16 -0000
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-I also found that I had to add:
+On 09/05/2012 10:08 AM, Khem Raj wrote:
+> On Wed, Sep 5, 2012 at 9:56 AM, Saul Wold <sgw@linux.intel.com> wrote:
+>> Signed-off-by: Saul Wold <sgw@linux.intel.com>
+>> ---
+>>   .../recipes-kernel/linux/linux-yocto_3.0.bbappend  |    2 ++
+>>   .../recipes-kernel/linux/linux-yocto_3.2.bbappend  |    6 ++++++
+>>   .../recipes-kernel/linux/linux-yocto_3.4.bbappend  |    6 ++++++
+>>   3 files changed, 14 insertions(+), 0 deletions(-)
+>>   create mode 100644 meta-tlk/recipes-kernel/linux/linux-yocto_3.2.bbappend
+>>   create mode 100644 meta-tlk/recipes-kernel/linux/linux-yocto_3.4.bbappend
+>>
+>> diff --git a/meta-tlk/recipes-kernel/linux/linux-yocto_3.0.bbappend b/meta-tlk/recipes-kernel/linux/linux-yocto_3.0.bbappend
+>> index 58a6541..138cc21 100644
+>> --- a/meta-tlk/recipes-kernel/linux/linux-yocto_3.0.bbappend
+>> +++ b/meta-tlk/recipes-kernel/linux/linux-yocto_3.0.bbappend
+>> @@ -2,3 +2,5 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+>>
+>>   # enable the time limited kernel configuration options
+>>   SRC_URI += "file://time-limited-kernel.cfg"
+>> +
+>> +PR .= ".1"
+>> diff --git a/meta-tlk/recipes-kernel/linux/linux-yocto_3.2.bbappend b/meta-tlk/recipes-kernel/linux/linux-yocto_3.2.bbappend
+>> new file mode 100644
+>> index 0000000..138cc21
+>> --- /dev/null
+>> +++ b/meta-tlk/recipes-kernel/linux/linux-yocto_3.2.bbappend
+>> @@ -0,0 +1,6 @@
+>> +FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+>> +
+>> +# enable the time limited kernel configuration options
+>> +SRC_URI += "file://time-limited-kernel.cfg"
+>> +
+>> +PR .= ".1"
+>> diff --git a/meta-tlk/recipes-kernel/linux/linux-yocto_3.4.bbappend b/meta-tlk/recipes-kernel/linux/linux-yocto_3.4.bbappend
+>> new file mode 100644
+>> index 0000000..138cc21
+>> --- /dev/null
+>> +++ b/meta-tlk/recipes-kernel/linux/linux-yocto_3.4.bbappend
+>> @@ -0,0 +1,6 @@
+>> +FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+>> +
+>> +# enable the time limited kernel configuration options
+>> +SRC_URI += "file://time-limited-kernel.cfg"
+>> +
+>> +PR .= ".1"
+>
+> what will this option do ?
+>
+Khem,
 
-    BB_DANGLINGAPPENDS_WARNONLY = "yes"
+It will add another .1 to the PR, if PR = 4.1, it will become 4.1.1
 
-at the end of my conf/local.conf since I received a:
-
-    ERROR: No recipes available for:
-      /home/trevor/devel/yocto/raspi/poky/meta-raspberrypi/recipes-multimedia/libav/libav_0.7.4.bbappend
-
-the first time I tried baking (even when using the exact commits for
-both poky and meta-raspberrypi as specified in the instructions).
-Maybe it's just me?
+Sau!
+>
 
