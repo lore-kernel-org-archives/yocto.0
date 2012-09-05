@@ -1,23 +1,32 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8104EE014FD
-	for <yocto@yoctoproject.org>; Wed,  5 Sep 2012 14:38:58 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 05 Sep 2012 14:38:53 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,376,1344236400"; d="scan'208";a="189355468"
-Received: from unknown (HELO [10.255.13.143]) ([10.255.13.143])
-	by orsmga001.jf.intel.com with ESMTP; 05 Sep 2012 14:38:57 -0700
-Message-ID: <1346881137.3654.4.camel@empanada>
-From: Tom Zanussi <tom.zanussi@intel.com>
-To: Saul Wold <sgw@linux.intel.com>
-Date: Wed, 05 Sep 2012 16:38:57 -0500
-In-Reply-To: <cover.1346864117.git.sgw@linux.intel.com>
-References: <cover.1346864117.git.sgw@linux.intel.com>
-X-Mailer: Evolution 3.4.1 (3.4.1-2.fc17) 
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
+	[93.97.173.237])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 05C58E014FB
+	for <yocto@yoctoproject.org>; Wed,  5 Sep 2012 14:43:22 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q85LhKH0030746;
+	Wed, 5 Sep 2012 22:43:20 +0100
+Received: from tim.rpsys.net ([127.0.0.1])
+	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
+	port 10024) with LMTP
+	id 28994-03; Wed,  5 Sep 2012 22:43:16 +0100 (BST)
+Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q85LhDZf030740
+	(version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=NO);
+	Wed, 5 Sep 2012 22:43:14 +0100
+Message-ID: <1346881393.21985.97.camel@ted>
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: Tomas Frydrych <tf+lists.yocto@r-finger.com>
+Date: Wed, 05 Sep 2012 22:43:13 +0100
+In-Reply-To: <1346849303.21985.56.camel@ted>
+References: <50450DC6.20303@r-finger.com> <504663C0.6050907@ti.com>
+	<50471207.8080104@r-finger.com> <2612934.gZ3vcrfUaE@helios>
+	<50471ECE.8000502@r-finger.com> <1346849303.21985.56.camel@ted>
+X-Mailer: Evolution 3.2.3-0ubuntu6 
 Mime-Version: 1.0
+X-Virus-Scanned: amavisd-new at rpsys.net
 Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 0/3 v3] Meta-tlk update
+Subject: Re: yocto beagleboard.conf -- should it not go away?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,44 +38,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Sep 2012 21:38:58 -0000
+X-List-Received-Date: Wed, 05 Sep 2012 21:43:23 -0000
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-On Wed, 2012-09-05 at 09:56 -0700, Saul Wold wrote:
-> The following changes since commit 16a7879b98352b70e8c17181912a26212d716c87:
+On Wed, 2012-09-05 at 13:48 +0100, Richard Purdie wrote:
+> The root of the problem is that meta-yocto mixes up policy and hardware
+> support which is bad. It also means its not compliant with the new Yocto
+> Project compliance criteria and hence is not Yocto Project Compatible.
 > 
->   meta-emenlow: rename recipes-gnome bbappends (2012-09-04 10:04:37 -0500)
-> 
-> are available in the git repository at:
->   git://git.yoctoproject.org/poky-contrib sgw/meta-tlk
->   http://git.yoctoproject.org/cgit.cgi/poky-contrib/log/?h=sgw/meta-tlk
-> 
-> Saul Wold (3):
->   linux-yocto: Update linux-yocto for 3.2 and 3.4
->   base-files: add /etc/motd with TLK info
->   psplash: Add TLK info to psplash image
-> 
+> Now we've got the compliance criteria sorted out there are some
+> adjustments that need to be made and I will shortly be cleaving
+> meta-yocto into two pieces to resolve this. I hadn't looked at this
+> until now mainly in case there were changes to the criteria.
 
-Pulled into meta-intel/master, thanks.
+This has now been fixed in:
 
-Tom
-
->  .../base-files/base-files_3.0.14.bbappend          |    3 +++
->  meta-tlk/recipes-core/base-files/files/motd        |    7 +++++++
->  .../recipes-core/psplash/files/psplash-tlk.png     |  Bin 0 -> 42295 bytes
->  meta-tlk/recipes-core/psplash/psplash_git.bbappend |   10 ++++++++++
->  .../recipes-kernel/linux/linux-yocto_3.0.bbappend  |    2 ++
->  .../recipes-kernel/linux/linux-yocto_3.2.bbappend  |    6 ++++++
->  .../recipes-kernel/linux/linux-yocto_3.4.bbappend  |    6 ++++++
->  7 files changed, 34 insertions(+), 0 deletions(-)
->  create mode 100644 meta-tlk/recipes-core/base-files/base-files_3.0.14.bbappend
->  create mode 100644 meta-tlk/recipes-core/base-files/files/motd
->  create mode 100644 meta-tlk/recipes-core/psplash/files/psplash-tlk.png
->  create mode 100644 meta-tlk/recipes-core/psplash/psplash_git.bbappend
->  create mode 100644 meta-tlk/recipes-kernel/linux/linux-yocto_3.2.bbappend
->  create mode 100644 meta-tlk/recipes-kernel/linux/linux-yocto_3.4.bbappend
-> 
+http://git.yoctoproject.org/cgit.cgi/poky/commit/?id=2000698b17011bbde1c3e5bb01a7d6763316db5a
 
 
 
