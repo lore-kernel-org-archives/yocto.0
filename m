@@ -1,26 +1,37 @@
-Return-Path: <tf+lists.yocto@r-finger.com>
-Received: from r-finger.com (r-finger.com [178.79.160.5])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 05A80E014B8
-	for <yocto@yoctoproject.org>; Wed,  5 Sep 2012 02:43:44 -0700 (PDT)
-Received: from [192.168.0.2] (host81-153-84-143.range81-153.btcentralplus.com
-	[81.153.84.143]) (using TLSv1 with cipher AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by r-finger.com (Postfix) with ESMTPSA id DC8D39ADE
-	for <yocto@yoctoproject.org>; Wed,  5 Sep 2012 10:43:43 +0100 (BST)
-Message-ID: <50471ECE.8000502@r-finger.com>
-Date: Wed, 05 Sep 2012 10:43:42 +0100
-From: Tomas Frydrych <tf+lists.yocto@r-finger.com>
+Return-Path: <ml@communistcode.co.uk>
+Received: from eumx.net (eumx.net [91.82.101.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 21B9BE014B8
+	for <yocto@yoctoproject.org>; Wed,  5 Sep 2012 02:57:39 -0700 (PDT)
+Received: from localhost ([127.0.0.1]:41430 helo=eumx.net)
+	by eumx.net with esmtp (Exim 4.72)
+	(envelope-from <ml@communistcode.co.uk>) id 1T9CMN-0007ND-Ta
+	for yocto@yoctoproject.org; Wed, 05 Sep 2012 09:57:24 +0000
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed; d=eumx.net; h=message-id
+	:date:from:reply-to:mime-version:to:subject:references
+	:in-reply-to:content-type:content-transfer-encoding; s=default;
+	bh=H90Ba9DU/oMAtlhXvZfoIbtBykI=; b=AGf+yDW/XD5wSaTfSOteqbcXoFDR
+	2Mdm2qnU+2aZOOdegvzU7jVToWvySuDUNXtnDX2NS7vPLLtE/71OGIZmxtr5Hncp
+	EcaQ1SMiS7jPiJP2HKruvM42Lg5dK80APLPRQbCUA5oIo0ZVQFMS46vynWwNHSSz
+	URVaSKF/Ce7RczI=
+Received: from [195.171.99.130] (port=5163 helo=[192.168.0.33])
+	by eumx.net with esmtpa (Exim 4.72)
+	(envelope-from <ml@communistcode.co.uk>) id 1T9CMN-0007N9-RD
+	for yocto@yoctoproject.org; Wed, 05 Sep 2012 09:57:23 +0000
+Message-ID: <50472249.1010009@communistcode.co.uk>
+Date: Wed, 05 Sep 2012 10:58:33 +0100
+From: Jack Mitchell <ml@communistcode.co.uk>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:10.0.5) Gecko/20120624 Icedove/10.0.5
+	rv:15.0) Gecko/20120828 Thunderbird/15.0
 MIME-Version: 1.0
-CC: yocto@yoctoproject.org
-References: <50450DC6.20303@r-finger.com> <504663C0.6050907@ti.com>
-	<50471207.8080104@r-finger.com> <2612934.gZ3vcrfUaE@helios>
-In-Reply-To: <2612934.gZ3vcrfUaE@helios>
-Subject: Re: yocto beagleboard.conf -- should it not go away?
+To: yocto@yoctoproject.org
+References: <5044EE55.4050208@communistcode.co.uk>
+	<50451A77.1020609@r-finger.com>
+In-Reply-To: <50451A77.1020609@r-finger.com>
+Subject: Re: Building a Custom Raspberry Pi Image using OpenEmbedded and Yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: ml@communistcode.co.uk
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -29,23 +40,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Sep 2012 09:43:45 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 05 Sep 2012 09:57:39 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 05/09/12 10:15, Paul Eggleton wrote:
-> On Wednesday 05 September 2012 09:49:11 Tomas Frydrych wrote:
-> It has been considered witin OE to be best practice to append to BBPATH and 
-> not prepend, the thinking being that then the search path matches the order of 
-> the layers listed in bblayers.conf rather than the reverse.
+On 03/09/12 22:00, Tomas Frydrych wrote:
+> Hi Jack,
+>
+> On 03/09/12 18:52, Jack Mitchell wrote:
+>> As some of you know I run a small Raspberry Pi community site[1] and I
+>> would like to write a follow up to an earlier blog post about preparing
+>> yourself for programming on the Raspberry Pi with the Yocto Project.
+> I don't know if of any use to you, but we have a recipe for a
+> Yocto-based image for a UPnP audio player, which can be built for the
+> RPi, in Guacamayo[1].
+>
+> Tomas
+>
+> [1] https://github.com/Guacamayo/meta-guacamayo
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-Then meta-yocto should follow that convention ... and it needs to be
-well documented, with the consequence of breaking that convention
-explained, and the terrible punishments to come described in great and
-sordid detail. Because this needs to be more than a convention, it needs
-to be an article of faith.
+This is now livefor anyone interested.
 
-Tomas
+http://www.pimpmypi.com/blog/blogPost.php?blogPostID=7
 
+-- 
+
+   Jack Mitchell (jack@embed.me.uk)
+   Embedded Systems Engineer
+   http://www.embed.me.uk
+
+--
 
 
