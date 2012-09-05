@@ -1,19 +1,23 @@
 Return-Path: <paul.eggleton@linux.intel.com>
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7DD12E01385
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9B56EE01423
 	for <yocto@yoctoproject.org>; Wed,  5 Sep 2012 07:35:17 -0700 (PDT)
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
 	by fmsmga101.fm.intel.com with ESMTP; 05 Sep 2012 07:35:17 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,374,1344236400"; d="scan'208";a="218100736"
+X-IronPort-AV: E=Sophos;i="4.80,374,1344236400"; d="scan'208";a="218100746"
 Received: from unknown (HELO helios.ger.corp.intel.com) ([10.252.121.155])
-	by fmsmga002.fm.intel.com with ESMTP; 05 Sep 2012 07:35:14 -0700
+	by fmsmga002.fm.intel.com with ESMTP; 05 Sep 2012 07:35:16 -0700
 From: Paul Eggleton <paul.eggleton@linux.intel.com>
 To: yocto@yoctoproject.org
-Date: Wed,  5 Sep 2012 15:34:58 +0100
-Message-Id: <cover.1346854096.git.paul.eggleton@linux.intel.com>
+Date: Wed,  5 Sep 2012 15:34:59 +0100
+Message-Id: <68550f541a3dcbe3e8f20ba3f2a927cadb3d98b1.1346854096.git.paul.eggleton@linux.intel.com>
 X-Mailer: git-send-email 1.7.9.5
-Subject: [yocto-docs][PATCH 00/12] Documentation fixes
+In-Reply-To: <cover.1346854096.git.paul.eggleton@linux.intel.com>
+References: <cover.1346854096.git.paul.eggleton@linux.intel.com>
+In-Reply-To: <cover.1346854096.git.paul.eggleton@linux.intel.com>
+References: <cover.1346854096.git.paul.eggleton@linux.intel.com>
+Subject: [yocto-docs][PATCH 01/12] documentation/bsp-guide, dev-manual-bsp-appendix: remove references to task bbappend
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,47 +31,98 @@ List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
 X-List-Received-Date: Wed, 05 Sep 2012 14:35:17 -0000
 
-Documentation fixes for the recent package group changes as well
-as a few other things I noticed along the way.
+The meta-intel BSPs and yocto-bsp tool no longer use a bbappend of
+task-core-tools-profile to add systemtap, so these sections should be
+removed.
 
+Signed-off-by: Paul Eggleton <paul.eggleton@linux.intel.com>
+---
+ documentation/bsp-guide/bsp.xml                    |   24 ----------------
+ .../dev-manual/dev-manual-bsp-appendix.xml         |   29 --------------------
+ 2 files changed, 53 deletions(-)
 
-The following changes since commit 12f77236b602e9ec43e845c8cec060ad342af19c:
-
-  documentation: Fixed links to BitBake User Manual (2012-09-04 12:05:21 -0700)
-
-are available in the git repository at:
-
-  git://git.yoctoproject.org/poky-contrib paule/doc-fixes-pg
-  http://git.yoctoproject.org/cgit.cgi/poky-contrib/log/?h=paule/doc-fixes-pg
-
-Paul Eggleton (12):
-  documentation/bsp-guide, dev-manual-bsp-appendix: remove references
-    to task bbappend
-  documentation/poky-ref-manual: fix for rename of task to packagegroup
-  documentation/dev-manual: fix for package group changes
-  documentation/poky-ref-manual: improve IMAGE_FEATURES reference
-  documentation/poky-ref-manual: replace reference to old files
-  documentation/poky-ref-manual: update the default value of PACKAGES
-  documentation/poky-ref-manual: variable reference clarifications and
-    fixes
-  documentation/poky-ref-manual: add packagegroup.bbclass to classes
-  documentation/poky-ref-manual: update undocumented classes list
-  documentation/poky-ref-manual: update images reference section
-  documentation/yocto-project-qs: adjust GUI component feature listing
-  documentation/poky-ref-manual: remove references to Dates and
-    Contacts
-
- documentation/bsp-guide/bsp.xml                    |   24 -------
- .../dev-manual/dev-manual-bsp-appendix.xml         |   29 --------
- .../dev-manual/dev-manual-common-tasks.xml         |   48 ++++++-------
- documentation/poky-ref-manual/ref-bitbake.xml      |    8 +--
- documentation/poky-ref-manual/ref-classes.xml      |   50 ++++++++++++-
- documentation/poky-ref-manual/ref-features.xml     |   28 +++++---
- documentation/poky-ref-manual/ref-images.xml       |   17 +++--
- documentation/poky-ref-manual/ref-variables.xml    |   75 +++++++++++++-------
- .../yocto-project-qs/yocto-project-qs.xml          |   10 +--
- 9 files changed, 154 insertions(+), 135 deletions(-)
-
+diff --git a/documentation/bsp-guide/bsp.xml b/documentation/bsp-guide/bsp.xml
+index 0c7ead5..5bfa9fb 100644
+--- a/documentation/bsp-guide/bsp.xml
++++ b/documentation/bsp-guide/bsp.xml
+@@ -172,9 +172,6 @@
+      meta-crownbay/recipes-bsp/formfactor/formfactor/crownbay/machconfig
+      meta-crownbay/recipes-bsp/formfactor/formfactor/crownbay-noemgd/
+      meta-crownbay/recipes-bsp/formfactor/formfactor/crownbay-noemgd/machconfig
+-     meta-crownbay/recipes-core/
+-     meta-crownbay/recipes-core/tasks/
+-     meta-crownbay/recipes-core/tasks/task-core-tools-profile.bbappend
+      meta-crownbay/recipes-graphics/
+      meta-crownbay/recipes-graphics/xorg-xserver/
+      meta-crownbay/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend
+@@ -447,27 +444,6 @@
+             </para></note>
+             </section>
+ 
+-            <section id='bsp-filelayout-core-recipes'>
+-            <title>Core Recipe Files</title>
+-            <para>
+-                You can find these files in the BSP Layer at:
+-                <literallayout class='monospaced'>
+-     meta-&lt;bsp_name&gt;/recipes-core/*
+-                </literallayout> 
+-            </para>
+-
+-            <para>
+-                This directory contains recipe files that are almost always necessary to build a 
+-                useful, working Linux image.
+-                Thus, the term "core" is used to group these recipes.
+-                For example, in the Crown Bay BSP there is the 
+-                <filename>task-core-tools-profile.bbappend</filename> file, which is an append file used 
+-                to recommend that the 
+-                <ulink url='http://sourceware.org/systemtap/wiki'>SystemTap</ulink>
+-                package be included as a package when the image is built.
+-            </para>
+-            </section>
+-
+             <section id='bsp-filelayout-recipes-graphics'>
+             <title>Display Support Files</title>
+             <para>
+diff --git a/documentation/dev-manual/dev-manual-bsp-appendix.xml b/documentation/dev-manual/dev-manual-bsp-appendix.xml
+index 98ed837..50a0049 100644
+--- a/documentation/dev-manual/dev-manual-bsp-appendix.xml
++++ b/documentation/dev-manual/dev-manual-bsp-appendix.xml
+@@ -358,35 +358,6 @@
+             </para>
+         </section>
+ 
+-        <section id='changing-recipes-core'>
+-            <title>Changing&nbsp;&nbsp;<filename>recipes-core</filename></title>
+-
+-            <para>
+-                Now let's look at changes in <filename>recipes-core</filename>.
+-                The file <filename>task-core-tools.bbappend</filename> in 
+-                <filename>recipes-core/tasks</filename> appends the similarly named recipe
+-                located in the <link linkend='source-directory'>source directory</link> at 
+-                <filename>meta/recipes-core/tasks</filename>.
+-                The append file in our layer right now is Crown Bay-specific and supports 
+-                EMGD and non-EMGD.
+-                Here are the contents of the file:
+-                <literallayout class='monospaced'>
+-     RRECOMMENDS_task-core-tools-profile_append_crownbay = " systemtap"
+-     RRECOMMENDS_task-core-tools-profile_append_crownbay-noemgd = " systemtap"
+-                </literallayout>
+-            </para>
+-
+-            <para>
+-                The <filename>RRECOMMENDS</filename> statements list packages that 
+-                extend usability.
+-                The first <filename>RRECOMMENDS</filename> statement can be removed, while the 
+-                second one can be changed to reflect <filename>meta-mymachine</filename>:
+-                <literallayout class='monospaced'>
+-     RRECOMMENDS_task-core-tools-profile_append_mymachine = " systemtap"
+-                </literallayout>
+-            </para>
+-        </section>
+-
+         <section id='changing-recipes-kernel'>
+             <title>Changing&nbsp;&nbsp;<filename>recipes-kernel</filename></title>
+ 
 -- 
 1.7.9.5
 
