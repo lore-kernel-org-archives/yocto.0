@@ -1,41 +1,31 @@
-Return-Path: <jack.mitchell@eumx.net>
-Received: from eumx.net (eumx.net [91.82.101.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9261EE0146C
-	for <yocto@yoctoproject.org>; Tue,  4 Sep 2012 01:51:24 -0700 (PDT)
-Received: from localhost ([127.0.0.1]:50744 helo=eumx.net)
-	by eumx.net with esmtp (Exim 4.72)
-	(envelope-from <jack.mitchell@eumx.net>) id 1T8oqx-0003yH-7f
-	for yocto@yoctoproject.org; Tue, 04 Sep 2012 08:51:23 +0000
-DKIM-Signature: v=1; a=rsa-sha1; c=relaxed; d=eumx.net; h=message-id
-	:date:from:mime-version:to:subject:references:in-reply-to
-	:content-type:content-transfer-encoding; s=default; bh=mb1EdWasx
-	9i1Xa/IpKaQjzlC2lU=; b=N3BlfHyyzLHLcY6RyWz1UXA6d7ruh+LIhgnsLR4Jj
-	KQeFJsBTcJYkzMg3ut+FkeVnXuEG5VzkJor+np9+vv9bEiBDlrdhOtOPm/cFDlMh
-	j7ecehOo97wEBbHAshQZ9Big8urD2vhKYrKX5mFnECOvSLJkIm8l+q0C41Zee8Zl
-	9U=
-DomainKey-Signature: a=rsa-sha1; c=nofws; d=eumx.net; h=message-id:date
-	:from:mime-version:to:subject:references:in-reply-to
-	:content-type:content-transfer-encoding; q=dns; s=default; b=BFX
-	hqWpq/knU7Rfmx6hCstH8uihyV9WQfCpyQXNyQeHt/Frps6LyQBHpfxCFDWvtH9D
-	3nNzCKzQQDRZ5nUMiLaufXry6axC2VVzNfVcDb46rYT4PWEOAb9xRfOpCoNEQWdz
-	2YbN9b8RUOHY0Iz8aRt4ZiJNiF8YQuu4ZNzTXnlA=
-Received: from [195.171.99.130] (port=56805 helo=[192.168.0.33])
-	by eumx.net with esmtpa (Exim 4.72)
-	(envelope-from <jack.mitchell@eumx.net>) id 1T8oqx-0003yD-5G
-	for yocto@yoctoproject.org; Tue, 04 Sep 2012 08:51:23 +0000
-Message-ID: <5045C155.4040906@eumx.net>
-Date: Tue, 04 Sep 2012 09:52:37 +0100
-From: Jack Mitchell <jack.mitchell@eumx.net>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:15.0) Gecko/20120828 Thunderbird/15.0
+Return-Path: <kyle.wangdawei@huawei.com>
+Received: from szxga01-in.huawei.com (szxga01-in.huawei.com [119.145.14.64])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AF0CBE014B0
+	for <yocto@yoctoproject.org>; Tue,  4 Sep 2012 20:16:57 -0700 (PDT)
+Received: from 172.24.2.119 (EHLO szxeml212-edg.china.huawei.com)
+	([172.24.2.119])
+	by szxrg01-dlp.huawei.com (MOS 4.3.4-GA FastPath queued)
+	with ESMTP id AOL17840; Wed, 05 Sep 2012 11:16:56 +0800 (CST)
+Received: from SZXEML409-HUB.china.huawei.com (10.82.67.136) by
+	szxeml212-edg.china.huawei.com (172.24.2.181) with Microsoft SMTP
+	Server (TLS) id 14.1.323.3; Wed, 5 Sep 2012 11:15:53 +0800
+Received: from SZXEML526-MBS.china.huawei.com ([169.254.7.116]) by
+	szxeml409-hub.china.huawei.com ([10.82.67.136]) with mapi id
+	14.01.0323.003; Wed, 5 Sep 2012 11:15:48 +0800
+From: Wangdawei <kyle.wangdawei@huawei.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: how to add a new environment in poky
+Thread-Index: Ac2LFL035MYfNy+ET6C9ASFUVP8VAQ==
+Date: Wed, 5 Sep 2012 03:15:47 +0000
+Message-ID: <7E29EF69110C17499E6B3A9844CD4FD917AF1EB1@szxeml526-mbs.china.huawei.com>
+Accept-Language: zh-CN, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.66.60.253]
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <5044EE55.4050208@communistcode.co.uk>
-	<50451A77.1020609@r-finger.com>
-	<5045BF44.9000001@communistcode.co.uk>
-In-Reply-To: <5045BF44.9000001@communistcode.co.uk>
+X-CFilter-Loop: Reflected
 X-Mailman-Approved-At: Wed, 05 Sep 2012 15:00:21 -0700
-Subject: Re: Building a Custom Raspberry Pi Image using OpenEmbedded and Yocto
+Subject: how to add a new environment in poky
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,39 +37,126 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Sep 2012 08:51:24 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 05 Sep 2012 03:16:59 -0000
+Content-Language: zh-CN
+Content-Type: multipart/alternative;
+	boundary="_000_7E29EF69110C17499E6B3A9844CD4FD917AF1EB1szxeml526mbschi_"
 
-On 04/09/12 09:43, Jack Mitchell wrote:
-> On 03/09/12 22:00, Tomas Frydrych wrote:
->> Hi Jack,
->>
->> On 03/09/12 18:52, Jack Mitchell wrote:
->>> As some of you know I run a small Raspberry Pi community site[1] and I
->>> would like to write a follow up to an earlier blog post about preparing
->>> yourself for programming on the Raspberry Pi with the Yocto Project.
->> I don't know if of any use to you, but we have a recipe for a
->> Yocto-based image for a UPnP audio player, which can be built for the
->> RPi, in Guacamayo[1].
->>
->> Tomas
->>
->> [1] https://github.com/Guacamayo/meta-guacamayo
->>
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->
-> Hi Tomas,
->
-> That looks like an interesting layer. I have seen it pop up here and 
-> there but have never investigated it properly. Once this post is out 
-> the door and I have started experimenting with .
-other new image builds and applications I may be in touch!
->
-> Cheers,
->
+--_000_7E29EF69110C17499E6B3A9844CD4FD917AF1EB1szxeml526mbschi_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+Hi
+         I need to add a new environment that LD_LIBRARY_PATH when I use my=
+ own external toolchain .
+         I add 1 line in external-toolchain.inc "LD_LIBRARY_PATH =3D. "${EX=
+TERNAL_TOOLCHAIN}/i586-target-linux-gnu/lib:"",but there is no effect.when =
+I used this toolchain to compile , there also isn't this value , so I want =
+to ask how to add a environment in poky ? the run.compile.xxx script can ge=
+t the value ?
+
+________________________________
+
+thanks & rgds
 
 
+--_000_7E29EF69110C17499E6B3A9844CD4FD917AF1EB1szxeml526mbschi_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
+<!--[if !mso]><style>v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style><![endif]--><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:\5B8B\4F53;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"\@\5B8B\4F53";
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:\534E\6587\7EC6\9ED1;
+	panose-1:2 1 6 0 4 1 1 1 1 1;}
+@font-face
+	{font-family:"\@\534E\6587\7EC6\9ED1";
+	panose-1:2 1 6 0 4 1 1 1 1 1;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	font-size:10.5pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;}
+/* Page Definitions */
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"ZH-CN" link=3D"blue" vlink=3D"purple" style=3D"text-justify-t=
+rim:punctuation">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Hi <o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp; I need to add a new environment that LD_LIBRARY_PATH when=
+ I use my own external toolchain .<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp; I add 1 line in external-toolchain.inc &#8220;LD_LIBRARY_=
+PATH =3D. &quot;${EXTERNAL_TOOLCHAIN}/i586-target-linux-gnu/lib:&quot;&#822=
+1;,but there is no effect.when I used this toolchain to compile , there als=
+o isn&#8217;t this value , so I
+ want to ask how to add a environment in poky ? the run.compile.xxx script =
+can get the value ?<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<div class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span=
+ lang=3D"EN-US" style=3D"font-size:12.0pt;font-family:&#23435;&#20307;">
+<hr size=3D"2" width=3D"100%" align=3D"center">
+</span></div>
+<p class=3D"MsoNormal" align=3D"left" style=3D"text-align:left"><span lang=
+=3D"EN-US" style=3D"font-size:10.0pt;font-family:&#21326;&#25991;&#32454;&#=
+40657;;color:black"><br>
+thanks &amp; rgds</span><span lang=3D"EN-US"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+</div>
+</body>
+</html>
+
+--_000_7E29EF69110C17499E6B3A9844CD4FD917AF1EB1szxeml526mbschi_--
