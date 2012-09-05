@@ -1,28 +1,34 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 31C47E01385
-	for <yocto@yoctoproject.org>; Wed,  5 Sep 2012 08:16:31 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id q85FGDIQ007229
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 5 Sep 2012 08:16:13 -0700 (PDT)
-Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.2.309.2;
-	Wed, 5 Sep 2012 08:16:13 -0700
-Message-ID: <50476CB4.7020901@windriver.com>
-Date: Wed, 5 Sep 2012 11:16:04 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:12.0) Gecko/20120430 Thunderbird/12.0.1
+Return-Path: <twoerner@gmail.com>
+Received: from mail-lb0-f176.google.com (mail-lb0-f176.google.com
+	[209.85.217.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E4E85E014CE
+	for <yocto@yoctoproject.org>; Wed,  5 Sep 2012 08:20:50 -0700 (PDT)
+Received: by lboi15 with SMTP id i15so525052lbo.35
+	for <yocto@yoctoproject.org>; Wed, 05 Sep 2012 08:20:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=Y5z12Sb6fWd5EJCKdqxchVhVSNpzL3WoKW9Wbe0ViEQ=;
+	b=jUJw3J1N1xofRQf+CtScFqE08PxpxcxI4vGuJS5hF9SUrkh6tdwkBWHFnX3h4pLnHA
+	oB9KezQUq3ax3hqSEy7lS4M3MS5QRC5aeE7z6ncMVecnQ5nPSOiYgZrV6+TfTSXCD/1N
+	VPXlE/UDY5AAWw3gMtnMFEBKGLNIi9gnVg25iH7nMVCXabd8q6ByzeykScVpPC9SMqFw
+	vnLi7MCzjJ8A8yL7ip+whFRNUGl4kbbIAPTLNiOfqsdOh3wggqnw90k1SDF7Wjr57yaK
+	mNDzyP3TReeFdLynZ+7ELk/aIdVnCx0R5b4EEoDxgbcPtyqHjxkdso/VOTkdpkb3Du64
+	TxwA==
 MIME-Version: 1.0
-To: William Mills <wmills@ti.com>
-References: <50450DC6.20303@r-finger.com>	<CADkTA4NbPk6UDbctuj=McV1PT4QZu=2LRTq2-GHSAAoeaasAUw@mail.gmail.com>	<50451947.2090401@r-finger.com>	<CADkTA4PX-ZAhhPi0OppbT4y4e5jiwDwgNFHONjebPimF8U21Yg@mail.gmail.com>	<5045C2B7.1070406@r-finger.com>	<CADkTA4No3Y0K1eUF_w5OZApD7pfnmLD3YY2uiMG9rDe2okYtEg@mail.gmail.com>
-	<504637F5.8090603@linux.intel.com> <504663C0.6050907@ti.com>
-	<50468D68.50608@linux.intel.com> <50475FB7.2080408@ti.com>
-In-Reply-To: <50475FB7.2080408@ti.com>
-Cc: yocto@yoctoproject.org, Darren Hart <dvhart@linux.intel.com>, "Dmytriyenko,
-	Denys" <denys@ti.com>
-Subject: Re: yocto beagleboard.conf -- should it not go away?
+Received: by 10.152.122.9 with SMTP id lo9mr12913639lab.41.1346858435283; Wed,
+	05 Sep 2012 08:20:35 -0700 (PDT)
+Received: by 10.112.37.2 with HTTP; Wed, 5 Sep 2012 08:20:35 -0700 (PDT)
+In-Reply-To: <50472249.1010009@communistcode.co.uk>
+References: <5044EE55.4050208@communistcode.co.uk>
+	<50451A77.1020609@r-finger.com>
+	<50472249.1010009@communistcode.co.uk>
+Date: Wed, 5 Sep 2012 11:20:35 -0400
+Message-ID: <CAHUNapQmyBhDVfCHD2H2JO1NmSN6atW1XO7uQr+sH-nGJKgiKg@mail.gmail.com>
+From: Trevor Woerner <twoerner@gmail.com>
+To: ml@communistcode.co.uk
+Cc: yocto@yoctoproject.org
+Subject: Re: Building a Custom Raspberry Pi Image using OpenEmbedded and Yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,57 +40,13 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Sep 2012 15:16:31 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 05 Sep 2012 15:20:51 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On 12-09-05 10:20 AM, William Mills wrote:
-> On 09/04/2012 07:23 PM, Darren Hart wrote:
->>
->>
->> On 09/04/2012 01:25 PM, William Mills wrote:
->>
->>> Darren: Is it true you can't get @ the Intel BSP's w/o also getting the
->>> poky distro defs? That does seem to mixing things a bit. (I am not
->>> claiming meta-ti is clean yet but I want to understand the Intel
->>> examples.)
->>>
->>
->> It isn't something we test as part of the QA that we perform. I mostly
->> expect people building meta-intel to be building with meta-yocto
->> (although I wouldn't take a hard line on requiring it). That said, I
->> removed meta-yocto from a meta-intel/meta-fri2 build and removed
->> DISTRO=poky from my local.conf and successfully built and booted a
->> core-image-minimal build on an FRI2 this afternoon without any changes.
->>
->
-> Thanks! My confidence is restored.
->
-> As long as including meta-yocto does not interfere with other BSPs or
-> distros etc then there should be no harm in your assumption.
->
-> I would be interested to know what Mentor Graphics and Wind River do on
-> their products. Do they include meta-yocto? (YP is not all about
-> comercial OS support but I know these orginatations have done the due
-> diligence on layer compatibility for a non-poky distro.)
+On Wed, Sep 5, 2012 at 5:58 AM, Jack Mitchell <ml@communistcode.co.uk> wrote:
+> This is now livefor anyone interested.
+> http://www.pimpmypi.com/blog/blogPost.php?blogPostID=7
 
-Layering flexibility is important, so we work largely on oe-core
-vs meta-yocto. That being said, there are elements in meta-yocto that
-are of interest, so it can be included in used, but with layers that
-get the ordering and priority correct to override/preserve appropriately.
-
-But sorting out exactly what we are talking about in this thread, would
-make using meta-yocto (or whatever the elements of it become), that much
-easier to do.
-
-Cheers,
-
-Bruce
-
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
+Shouldn't the instructions include a step adding the meta-raspberrypi
+layer to conf/bblayers.conf?
 
