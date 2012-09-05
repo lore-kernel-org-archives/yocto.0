@@ -1,34 +1,25 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
-	[93.97.173.237])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1E41FE0027F
-	for <yocto@yoctoproject.org>; Wed,  5 Sep 2012 15:04:08 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q85M44RV030902;
-	Wed, 5 Sep 2012 23:04:04 +0100
-Received: from tim.rpsys.net ([127.0.0.1])
-	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
-	port 10024) with LMTP
-	id 30798-01; Wed,  5 Sep 2012 23:03:58 +0100 (BST)
-Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q85M3tUv030896
-	(version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=NO);
-	Wed, 5 Sep 2012 23:03:56 +0100
-Message-ID: <1346882635.21985.115.camel@ted>
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 70400E0027F
+	for <yocto@yoctoproject.org>; Wed,  5 Sep 2012 15:27:21 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 05 Sep 2012 15:27:20 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,376,1344236400"; d="scan'208";a="189290861"
+Received: from unknown (HELO helios.localnet) ([10.252.121.177])
+	by azsmga001.ch.intel.com with ESMTP; 05 Sep 2012 15:27:19 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
 To: ml@communistcode.co.uk
-Date: Wed, 05 Sep 2012 23:03:55 +0100
-In-Reply-To: <5045BA26.9030104@communistcode.co.uk>
-References: <50450DC6.20303@r-finger.com>
-	<CADkTA4NbPk6UDbctuj=McV1PT4QZu=2LRTq2-GHSAAoeaasAUw@mail.gmail.com>
-	<50451947.2090401@r-finger.com>
-	<CADkTA4PX-ZAhhPi0OppbT4y4e5jiwDwgNFHONjebPimF8U21Yg@mail.gmail.com>
-	<5045BA26.9030104@communistcode.co.uk>
-X-Mailer: Evolution 3.2.3-0ubuntu6 
-Mime-Version: 1.0
-X-Virus-Scanned: amavisd-new at rpsys.net
+Date: Wed, 05 Sep 2012 23:27:19 +0100
+Message-ID: <6099464.5q5kWXbBUM@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.9 (Linux/3.2.0-30-generic-pae; KDE/4.9.0; i686; ; )
+In-Reply-To: <5047CAC2.2020405@communistcode.co.uk>
+References: <5047970C.8010208@mlbassoc.com> <2238601.rFqqxpWrI4@helios>
+	<5047CAC2.2020405@communistcode.co.uk>
+MIME-Version: 1.0
 Cc: yocto@yoctoproject.org
-Subject: Re: yocto beagleboard.conf -- should it not go away?
+Subject: Re: raspberrypi image questions
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,70 +31,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Sep 2012 22:04:09 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 05 Sep 2012 22:27:21 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On Tue, 2012-09-04 at 09:21 +0100, Jack Mitchell wrote:
-> On 03/09/12 22:08, Bruce Ashfield wrote:
-> > On Mon, Sep 3, 2012 at 4:55 PM, Tomas Frydrych
-> > <tf+lists.yocto@r-finger.com> wrote:
-> >> snip...
-> >>
-> >>
-> >>
-> >> That being said, taking a step back, what are you trying to get out of
-> >> meta-yocto in this scenario ? oe-core + meta-ti is probably what you
-> >> should be using.
-> >>
+On Wednesday 05 September 2012 22:57:22 Jack Mitchell wrote:
+> On 05/09/2012 22:46, Paul Eggleton wrote:
+> > On Wednesday 05 September 2012 12:16:44 Gary Thomas wrote:
+> >> Also, is it possible to just build the SD image much like I do for
+> >> other devices like the BeagleBoard, albeit with different contents
+> >> in /boot?  Sloshing around 4GB images is rather painful, plus it
+> >> takes forever to DD it to the SD card.
+> > 
+> > I must be missing something - do you want the rootfs larger or don't you?
+> > If it's expanded it will take up 4GB minus the boot partition size so
+> > you're into a large dd again...
 > 
-> Sorry to jump in here, but this is actually a very interesting point. 
->  From coming to OpenEmbedded through Yocto and subsequently learning 
-> about the ecosystem as a whole, I have always considered meta-yocto to 
-> be providing a sane distro configuration. This implies that I believe 
-> the oe-core default distro configuration, even though it will build, the 
-> result won't be very satisfying - or maybe a bit disjointed.
->
-> You seem to be saying above that the meta-yocto layer is only any good 
-> for providing the kernel framework, and as he is not using the framework 
-> (i.e. using meta-ti) then there is no point in using the meta-yocto 
-> layer? So does the Poky distro config only really slap a name on the 
-> oe-core default distro policy - or does it have some added value?
+> I think what he means (or this is what I would like to see ) is a
+> boot.tar.gz and a rootfs.tar.gz which can then be extracted straight
+> onto the partitions? Hence only a ~40mb boot write and ~50mb rootfs
+> write rather than a 4GB dd slog.
 
-In the old days, there was no default distro config. OE-Core changed
-that as an experiment which IMO has been relatively successful. The Poky
-distro config inherits as much as possible from the core defaults. The
-extras are (reading poky.conf):
-
-* Example of Distro Branding
-* Ensuring some particular kernel versions
-* Particular SDK layout
-* Minor tweaks to basic images/qemu images
-* Mirror Setup (although OE-Core has these now too iirc)
-* Sets connectivity check
-* Sets list of compatible/tested distros
-* Some signature stuff (now OE-Core default)
-* Sets more stringent package sanity checks that OE-Core
-
-So at least some of the above moved into the core as default although we
-still need to remove the remnants from the poky.conf file. Others will
-likely move in future too.
-
-There isn't anything major above but there are several smaller usability
-tweaks/optimisations and I'd argue there is some added value.
-
-There are also example LSB and "tiny" profiles showing how to take the
-system and customise it in different ways which I'd argue have value
-too.
-
-> I'm not trying to rile anyone up here, just trying to put the jigsaw 
-> together as the picture looks different every time I revisit it!!
-
-Its an evolving picture, hopefully in a good way :)
+Ah, I see, that makes more sense. Another thing to add to the meta-raspberrypi 
+issue tracker.
 
 Cheers,
+Paul
 
-Richard
+-- 
 
-
+Paul Eggleton
+Intel Open Source Technology Centre
 
