@@ -1,26 +1,28 @@
-Return-Path: <sgw@linux.intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 51E1AE01430
-	for <yocto@yoctoproject.org>; Thu,  6 Sep 2012 15:14:42 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 06 Sep 2012 15:14:41 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,381,1344236400"; d="scan'208";a="189761416"
-Received: from unknown (HELO [10.255.13.76]) ([10.255.13.76])
-	by azsmga001.ch.intel.com with ESMTP; 06 Sep 2012 15:14:41 -0700
-Message-ID: <50492051.8020109@linux.intel.com>
-Date: Thu, 06 Sep 2012 15:14:41 -0700
-From: Saul Wold <sgw@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:15.0) Gecko/20120827 Thunderbird/15.0
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BC1F4E01430
+	for <yocto@yoctoproject.org>; Thu,  6 Sep 2012 15:20:03 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id q86MJn33021290
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Thu, 6 Sep 2012 15:19:49 -0700 (PDT)
+Received: from bruce-ashfields-macbook.local (128.224.22.66) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
+	14.2.309.2; Thu, 6 Sep 2012 15:19:48 -0700
+Message-ID: <50492183.7030101@windriver.com>
+Date: Thu, 6 Sep 2012 18:19:47 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7;
+	rv:9.0) Gecko/20111222 Thunderbird/9.0.1
 MIME-Version: 1.0
-To: Chris Conlon <chris@yassl.com>
-References: <AA149620-AFAF-4670-8666-A34E500ADA75@yassl.com>
-	<ADD6A3980E8C39419A432FF422031B4C0CCBAAD9@ORSMSX106.amr.corp.intel.com>
-	<A1E9071B-69AC-4306-ADEB-3C24FAC448C6@yassl.com>
-In-Reply-To: <A1E9071B-69AC-4306-ADEB-3C24FAC448C6@yassl.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: CyaSSL Yocto Recipe
+To: Philip Balister <philip@balister.org>
+References: <CAHUNapQUS19axgi+i=wAr0r_ogFj+UsSBpsBY_mhd+ac=5w8-g@mail.gmail.com>
+	<12E1ABCF-B181-4763-88A6-5B7E51758231@gmail.com>
+	<CAHUNapQs-i9hAjxz9vj5kR17CiT4y3VRZiEejjef_9ga+ZwOOg@mail.gmail.com>
+	<50491060.5030300@balister.org>
+In-Reply-To: <50491060.5030300@balister.org>
+Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+Subject: Re: any success with spartan6-lx9mb?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,83 +34,98 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 06 Sep 2012 22:14:42 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+X-List-Received-Date: Thu, 06 Sep 2012 22:20:03 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 09/06/2012 02:59 PM, Chris Conlon wrote:
-> Adding a direct link to the CyaSSL recipe file for review:
->
-> www.yassl.com/files/yocto/cyassl_2.3.0.bb
-> <http://www.yassl.com/files/yocto/cyassl_2.3.0.bb>
->
-Chris,
-
-On initial inspection of this recipe it looks OK, what package/libraries 
-does it provide?  Are they the same as the openssl package?
-
-You may need RCONFLICTS_${PN} and/or RPROVIDES_${PN}, where the ${PN} 
-may need to be the package names in openssl, I need to check that.
-
-I would suggest that initially you make this available as a standard
-layer, possibly called meta-cyassl, it could be hosted on GitHub. You 
-can add it to the OpenEmbedded Layer Index. See 
-http://www.openembedded.org/wiki/LayerIndex
-
-Distributions that want to use this instead of OpenSSL can then use your 
-layer and select your recipe, if it's setup correctly it will provide 
-what they need.
-
-I hope this is helpful in moving things forward for you.
-
-Sau!
-Yocto Project Component Wrangler
-aka Yocto Project User Space Architect
-
-> Best Regards,
-> Chris
->
-> On Sep 6, 2012, at 10:32 AM, Kamble, Nitin A wrote:
->
->> And here is bit of information about CyaSSL from their
->> website.http://www.yassl.com/yaSSL/Products-cyassl.html
->> The CyaSSL embedded SSL library is a lightweight SSL library written
->> in ANSI C and targeted for embedded and RTOS environments - primarily
->> because of its small size, speed, and feature set.  It is commonly
->> used in standard operating environments as well because of its
->> royalty-free pricing and excellent cross platform support.  CyaSSL
->> supports industry standards up to the current TLS 1.2 level, is up
->> to20 times smaller than OpenSSL, and offers progressive ciphers such
->> as HC-128, RABBIT, and NTRU.  User benchmarking and feedback reports
->> dramatically better performance when using CyaSSL over OpenSSL.
->> Thanks,
->> Nitin
->> *From:*Chris Conlon [mailto:chris@yassl.com]
->> *Sent:*Thursday, September 06, 2012 9:07 AM
->> *To:*yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
->> *Cc:*Kamble, Nitin A
->> *Subject:*CyaSSL Yocto Recipe
+On 12-09-06 5:06 PM, Philip Balister wrote:
+> On 09/06/2012 04:11 PM, Trevor Woerner wrote:
+>> Hi Elvis,
 >>
->> Hi,
+>> Thanks so much for taking a look at my email! I've read through lots
+>> of this mailing list's history and noticed all your meta-xilinx work
+>> in the past and was hoping I could pique your interest :-)
 >>
->> As per discussions with a few of the Yocto members, we have put
->> together a Yocto Project recipe for the CyaSSL embedded SSL library.
->> I have attached the recipe here for review and comments.
+>> On Thu, Sep 6, 2012 at 11:19 AM, Elvis Dowson <elvis.dowson@gmail.com>
+>> wrote:
+>>> Can you please list which version of the Xilinx ISE tools you are
+>>> using? e.g. 12.4, 14.1, 14.2 ?
 >>
->> Thanks,
+>> I have 14.2 installed on my Linux machine at home.
 >>
->> Chris Conlon
->> www.yassl.com <http://www.yassl.com>
->> chris@yassl.com <mailto:chris@yassl.com>
->> Skype: chris_conlon_07
->> +1 406 209 0601
+>>> Could you also please list the Xilinx development board that you are
+>>> using? e.g. SP601 (Spartan6) ?
 >>
+>> I have been (slowly) teaching myself VHDL and working with a Papilio
+>> board from Gadget Factory. Are you familiar with them? They have a
+>> Spartan 3E on them.
+>>
+>> http://papilio.cc/
+>>
+>>> Let me know what you ISE development tool configuration and development
+>>> board is, and I'll see if I can divert a bit from target platform,
+>>> and try to
+>>> explore getting the toolchain to build for the Microblaze processor.
+>>
+>> It is my understanding that Microblaze won't fit or work with the
+>> Spartan 3E (?). However, the guy who makes the Papilio board, Jack
+>> Gassett, is currently working on his latest board called the "Papilio
+>> Plus". The Plus is not yet out, although prototypes are available:
+>>
+>> http://forum.gadgetfactory.net/index.php?/topic/1280-papilio-plus-prototypes-available-for-8499-in-the-store/
+>>
+>>
+>> The Plus will feature a Spartan 6 LX9, which, I believe, can support
+>> the Microblaze.
+>>
+>> In a comment on the All Programmable Planet blog about a month ago,
+>> Jack bemoans how easy it used to be to get Linux up and running on a
+>> Spartan 3E devel board using what has now become PetaLinux. The
+>> problem is that PetaLinux is now a commercial product and not readily
+>> available to the DIY market:
+>>
+>> http://www.programmableplanet.com/messages.asp?piddl_msgthreadid=252509&piddl_msgid=717514#msg_717514
+>>
+>>
+>> When I noticed the meta-xilinx layer had support for the Spartan 6 LX9
+>> I was really hoping to surprise Jack by testing it out and providing
+>> instructions for creating a filesystem he could use as part of his
+>> work on the Plus. Unfortunately my attempts fell flat. I even tried
+>> using denzil-7.0.1 but encountered the same problems.
+>>
+>> Seeing how soft processors within programmable logic seems to be
+>> gaining in popularity, I thought it would be a great niche to get
+>> into. If the Yocto Project could be used to create images for the
+>> Microblaze or even the Picoblaze processors I think it would help fill
+>> a void which is quickly expanding. Also, if support could be added to
+>> meta-xilinx to support Jack's Papilio boards it would help introduce
+>> the DIY community to the Yocto Project.
+>>
+>>> I've got the following boards with me:
+>>> - Xilinx ML507 (Virtex 5 FX70T with PowerPC 440)
+>>> - Xilinx SP601 (Spartan 6)
+>>> - Xilinx Zynq (ARM Cortex A-9)
+>>
+>> Once I get more into the VHDL I'll probably end up getting a Zynq
+>> myself too; talk about combining the best of both worlds :-)
 >
+> Speaking of zynq, I have a simple BSP here for the zc702 board:
 >
+> https://github.com/balister/meta-zynq
+
+We have a namespace collision, there is also:
+
+   http://git.yoctoproject.org/cgit/cgit.cgi/meta-zynq/
+
+Cheers,
+
+Bruce
+
 >
+> Philip
 > _______________________________________________
 > yocto mailing list
 > yocto@yoctoproject.org
 > https://lists.yoctoproject.org/listinfo/yocto
->
+
 
