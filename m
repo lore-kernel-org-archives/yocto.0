@@ -1,24 +1,29 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 773B9E013D2
-	for <yocto@yoctoproject.org>; Thu,  6 Sep 2012 07:01:57 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 06 Sep 2012 07:01:56 -0700
+Return-Path: <scott.m.rifenbark@linux.intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4D8A4E01423
+	for <yocto@yoctoproject.org>; Thu,  6 Sep 2012 07:10:00 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 06 Sep 2012 07:10:00 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,380,1344236400"; d="scan'208";a="142184571"
-Received: from unknown (HELO helios.localnet) ([10.252.121.173])
-	by AZSMGA002.ch.intel.com with ESMTP; 06 Sep 2012 07:01:55 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-Date: Thu, 06 Sep 2012 15:01:54 +0100
-Message-ID: <2240155.dFF0jJVt51@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.9 (Linux/3.2.0-30-generic-pae; KDE/4.9.0; i686; ; )
-In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB1237946A072B1@ORSMSX101.amr.corp.intel.com>
-References: <41DEA4B02DBDEF40A0F3B6D0DDB1237946A072B1@ORSMSX101.amr.corp.intel.com>
+X-IronPort-AV: E=Sophos;i="4.80,380,1344236400"; d="scan'208";a="218882464"
+Received: from linux.jf.intel.com (HELO linux.intel.com) ([10.23.219.25])
+	by fmsmga001.fm.intel.com with ESMTP; 06 Sep 2012 07:09:59 -0700
+Received: from [10.7.199.52] (srifenb-mobl.amr.corp.intel.com [10.7.199.52])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by linux.intel.com (Postfix) with ESMTP id D39FC2C8001
+	for <yocto@yoctoproject.org>; Thu,  6 Sep 2012 07:10:00 -0700 (PDT)
+Message-ID: <5048AEB7.2090000@linux.intel.com>
+Date: Thu, 06 Sep 2012 07:09:59 -0700
+From: Scott Rifenbark <scott.m.rifenbark@linux.intel.com>
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
+	rv:10.0.2) Gecko/20120216 Thunderbird/10.0.2
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: developing with devshell and effect of the bitbake.conf file
+To: yocto@yoctoproject.org
+References: <alpine.DEB.2.02.1203100856480.1391@oneiric>
+	<48107031.Jb7NvvnASa@helios>
+In-Reply-To: <48107031.Jb7NvvnASa@helios>
+Subject: Re: yocto ref manual: confusion between BB_ENV_WHITELIST and BB_ENV_EXTRAWHITE
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,70 +35,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 06 Sep 2012 14:01:57 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Thu, 06 Sep 2012 14:10:00 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Thursday 14 June 2012 15:46:51 Rifenbark, Scott M wrote:
-> I want to throw this out for discussion.  I recently was looking at a
-> section in the YP Reference manual
-> (http://www.yoctoproject.org/docs/current/poky-ref-manual/poky-ref-manual.h
-> tml#platdev-appdev-devshell) where it talks about developing using devshell.
->  I asked Darren Hart if this was a valid development model and he says it
-> is.  There is a part of the section though that talks about the
-> bitbake.conf file.  That section in the conf file does not seem to exist
-> anymore.  And, Darren (after some testing) doesn't see how what is in the
-> bitbake.conf file affects development with devshell.  Any comments welcome.
-> 
+I  changed the variable from BB_ENV_WHITELIST in the description to 
+BB_ENV_EXTRAWHITE to make sense with the given example.  You can see the 
+change at 
+http://www.yoctoproject.org/docs/1.3/poky-ref-manual/poky-ref-manual.html#ref-bitbake-runtask.
+
+Scott
+
+On 9/6/2012 1:41 AM, Paul Eggleton wrote:
+> On Saturday 10 March 2012 08:59:02 Robert P. J. Day wrote:
+>>    from section B.5 of yocto ref manual:
+>>
+>> Tell BitBake to load what you want from the environment into the data
+>> store. You can do so through the BB_ENV_WHITELIST variable. For
+>> example, assume you want to prevent the build system from accessing
+>> your $HOME/.ccache directory. The following command tells BitBake to
+>> load CCACHE_DIR from the environment into the data store:
+>>
+>>       export BB_ENV_EXTRAWHITE="$BB_ENV_EXTRAWHITE CCACHE_DIR"
+>>
+>>    i think you can see how that might confuse the reader.
+> Looks like this still needs to be addressed. Scott, would you mind taking a
+> look at this? Seems to me that BB_ENV_WHITELIST just ought to be changed to
+> BB_ENV_EXTRAWHITE to make this make sense.
 >
-> On Wed, Jun 13, 2012 at 2:19 PM, Darren Hart wrote:
->> On 06/12/2012 11:34 AM, Scott Rifenbark wrote:
->> > Hi Darren,
->> > 
->> > So check out section
->> > http://www.yoctoproject.org/docs/current/poky-ref-manual/poky-ref-manual.h
->> > tml#platdev-appdev-devshell. This talks about the whole devshell model. 
->> > One thing in this section is not current and that is the UI/Interfaces
->> > Configuration section
->> > reference in bitbake.conf file.  Regarding the section though, is this
->> > still a valid development model?  Is it worth keeping around in the docs?
->> > 
->> > As you can tell, I value your opinions greatly :)
->> 
->> As I understand it, this is still a perfectly valid working model.
->> Someone was just recommending it this week on the list.
->> 
->> As for the bitbake.conf file... I'm not sure. I thought this would have
->> been controlled by the following in local.conf.
->> 
->> # If you do not use (or have installed) gnome-terminal you will need to
->> # uncomment these variables and set them to the terminal you wish to use
->> # when resolving patches which cannot be applied
->> # Supported shell prefixes for *_TERMCMD and *_TERMCMDRUN ARE:
->> # GNOME, SCREEN, XTERM and SCREEN
->> TERMCMD = "${SCREEN_TERMCMD}"
->> TERMCMDRUN = "${SCREEN_TERMCMDRUN}"
->> 
->> But... it clearly is not after some testing. Hrm... I don't see anything
->> matching in bitbake.conf either. Where this has migrated off to would be
->> a good question for the list, hopefully someone like Paul E. can answer
->> this quickly.
+> Cheers,
+> Paul
+>
 
-Hmm, apparently I didn't - sorry about that! TERMCMD* were replaced by
-OE_TERMINAL some time ago. I see we don't have any references to TERMCMD* so
-I guess you removed these already. FYI there is a short reference to the
-available options for the new OE_TERMINAL in the example config file which
-you should be able to copy and adapt:
-
-http://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta-yocto/conf/local.conf.sample
-
-Please let me know if you need any more info.
-
-Cheers,
-Paul
-
--- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
 
