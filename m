@@ -1,27 +1,36 @@
-Return-Path: <mail@timomueller.eu>
-Received: from h1954115.stratoserver.net (h1954115.stratoserver.net
-	[85.214.246.27])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9F1A1E0027F
-	for <yocto@yoctoproject.org>; Thu,  6 Sep 2012 08:15:06 -0700 (PDT)
-X-No-Relay: not in my network
-X-No-Relay: not in my network
-X-No-Relay: not in my network
-Received: from [192.168.101.57] (mail.bmw-carit.de [62.245.222.98])
-	by h1954115.stratoserver.net (Postfix) with ESMTPSA id 55E6C1D56080;
-	Thu,  6 Sep 2012 17:14:50 +0200 (CEST)
-Message-ID: <5048BDE9.8060501@timomueller.eu>
-Date: Thu, 06 Sep 2012 17:14:49 +0200
-From: =?ISO-8859-1?Q?Timo_M=FCller?= <mail@timomueller.eu>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:14.0) Gecko/20120717 Thunderbird/14.0
-MIME-Version: 1.0
-To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-References: <cover.1346922110.git.timo.mueller@bmw-carit.de>
-	<41DEA4B02DBDEF40A0F3B6D0DDB1237946A64D0B@ORSMSX101.amr.corp.intel.com>
-In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB1237946A64D0B@ORSMSX101.amr.corp.intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: Re: [RFC 0/6][yocto-docs] Add eclipse help generation to build system.
+Return-Path: <elvis.dowson@gmail.com>
+Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
+	[209.85.160.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8821FE0027F
+	for <yocto@yoctoproject.org>; Thu,  6 Sep 2012 08:19:53 -0700 (PDT)
+Received: by pbbrq13 with SMTP id rq13so2979516pbb.35
+	for <yocto@yoctoproject.org>; Thu, 06 Sep 2012 08:19:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=subject:mime-version:content-type:from:in-reply-to:date:cc
+	:content-transfer-encoding:message-id:references:to:x-mailer;
+	bh=tvfgPIR2f65ODtuRKCR5IWcJSXrUkmy/1V0m+XcfoqY=;
+	b=OMtS81jbcQA2Hlfgb/JnMtK5BVQjvEUqLaBJoC2ZHwGkH4s05u3k7gdZsI5owjgkXp
+	/zit2eyArC/gToyWfy3gOuKEfxy8DNQzqKXSUZ7931OMAKPlzPTiMRla9r8dPoxSZDci
+	KbRJqeE1qMGs4ifSN4Ci7ZCDkQFmfE9TTcVAxB0+lEFlHXRL9zbDu7segjGXW/vOK6Jj
+	zBbuFFkvcaFyylNASA9PHChjILHPIkJShgGmIDPxaRoSZ4CCYDoM2oBRHHik9h/W4AVP
+	0YHr8Di5x0u+eR1BMzQVQqW2JlsO1tq4dMrvTRePJ8sslOmRxaT4NfBBtW4iV0EcRilx
+	z2bg==
+Received: by 10.68.203.34 with SMTP id kn2mr4919119pbc.144.1346944791052;
+	Thu, 06 Sep 2012 08:19:51 -0700 (PDT)
+Received: from [192.168.1.101] ([94.205.108.162])
+	by mx.google.com with ESMTPS id rr10sm1484613pbc.71.2012.09.06.08.19.47
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Thu, 06 Sep 2012 08:19:48 -0700 (PDT)
+Mime-Version: 1.0 (Apple Message framework v1278)
+From: Elvis Dowson <elvis.dowson@gmail.com>
+In-Reply-To: <CAHUNapQUS19axgi+i=wAr0r_ogFj+UsSBpsBY_mhd+ac=5w8-g@mail.gmail.com>
+Date: Thu, 6 Sep 2012 19:19:43 +0400
+Message-Id: <12E1ABCF-B181-4763-88A6-5B7E51758231@gmail.com>
+References: <CAHUNapQUS19axgi+i=wAr0r_ogFj+UsSBpsBY_mhd+ac=5w8-g@mail.gmail.com>
+To: Trevor Woerner <twoerner@gmail.com>
+X-Mailer: Apple Mail (2.1278)
+Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+Subject: Re: any success with spartan6-lx9mb?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,86 +42,90 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 06 Sep 2012 15:15:07 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 06 Sep 2012 15:19:53 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
-Hi Scott,
+Hi,
+       =20
+On Sep 4, 2012, at 6:25 AM, Trevor Woerner wrote:
 
-Rifenbark, Scott M wrote, On 06.09.2012 16:50:
-> Hi Timo,
->
-> Thanks for the patches here.  I need to be sure that these patches are based on the most recent documentation
-files found in the yocto-docs/master branch, which is at 
-http://git.yoctoproject.org/cgit/cgit.cgi/yocto-docs/log/.  Can you 
-confirm this for me?
+> I was playing around with the meta-xilinx layer and tried to build
+> "core-image-minimal" for the spartan6 without success. I was wondering
+> if anyone has tried this lately and/or if anyone has any tips to
+> suggest?
 
-Yes, I've tested these patches with the yocto-docs/master branch.
-(git://git.yoctoproject.org/yocto-docs)
+Can you please list which version of the Xilinx ISE tools you are using? =
+e.g. 12.4, 14.1, 14.2 ?
 
-documentation/yocto-project-qs/yocto-project-qs.xml: Added glib-gettextize
-(CommitID: c46f8e46ad70bf979d2e51e58d461bcd9456b773)
+Could you also please list the Xilinx development board that you are =
+using? e.g. SP601 (Spartan6) ?
 
-I've just tested with the current commit and the patches also work with 
-Commit f909a7336ae2f95baa751231beeae08081576e1f.
+>=20
+> configuration:
+>=20
+> I'm using the latest HEAD:
+>    BB_VERSION        =3D "1.15.3"
+>    TARGET_ARCH       =3D "microblaze"
+>    TARGET_OS         =3D "linux"
+>    MACHINE           =3D "spartan6-lx9mb"
+>    DISTRO            =3D "poky"
+>    DISTRO_VERSION    =3D "1.2+snapshot-20120904"
+>    TUNE_FEATURES     =3D "m32 microblazeel"
+>    TARGET_FPU        =3D "soft"
+>    meta
+>    meta-yocto        =3D =
+"master:37c8597e7600385367257e8a513e003947ebef5b"
+>    meta-xilinx       =3D =
+"master:d196fa93c7ff5e080d4c44e2b83aed472f32b2c7"
+>=20
+> conf/local.conf:
+>    BB_NUMBER_THREADS =3D "4"
+>    PARALLEL_MAKE =3D "-j 4"
+>    MACHINE ??=3D "spartan6-lx9mb"
+>    DL_DIR =3D "/home/trevor/devel/Downloads"
+>    DISTRO ?=3D "poky"
+>    PACKAGE_CLASSES ?=3D "package_rpm"
+>    EXTRA_IMAGE_FEATURES =3D "debug-tweaks"
+>    USER_CLASSES ?=3D "buildstats image-mklibs image-prelink"
+>    PATCHRESOLVE =3D "noop"
+>    CONF_VERSION =3D "1"
+>=20
+> conf/bblayers.conf:
+>    LCONF_VERSION =3D "5"
+>    BBPATH =3D "${TOPDIR}"
+>    BBFILES ?=3D ""
+>    BBLAYERS ?=3D " \
+>      /home/trevor/devel/yocto/git-method/poky/meta \
+>      /home/trevor/devel/yocto/git-method/poky/meta-yocto \
+>      /home/trevor/devel/yocto/git-method/poky/meta-xilinx \
+>      "
+>=20
+> issues:
+>=20
+> The first problem I encountered was trying to build gcc-cross-initial:
+>    This target does not support --with-float.
+>=20
 
->
-> Thanks,
-> Scott
->
-> -----Original Message-----
-> From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org] On Behalf Of mail@timomueller.eu
-> Sent: Thursday, September 06, 2012 2:05 AM
-> To: yocto@yoctoproject.org
-> Cc: Timo Mueller
-> Subject: [yocto] [RFC 0/6][yocto-docs] Add eclipse help generation to build system.
->
-> From: Timo Mueller <timo.mueller@bmw-carit.de>
->
-> Hi,
->
-> before my vacation I've submitted a patch to the eclipse-poky project
-> integrating the documentation into the eclipse IDE. To enable the integration
-> into eclipse I've manually generated eclipse help from the documentation
-> using the eclipse stylesheet provided by docbook.
->
-> I've added the target 'eclipse' to the documentation's build system to
-> automate the process of eclipse help generation. This can help to
-> facilitate the process of keeping the integrated documentation in sync
-> with the yocto documentation.
->
-> In this first RFC I've only integrated the adt-manual as a PoC,
-> because I'm also proposing some changes to the existing html
-> generation. These changes add a separation of the options used for the
-> different output formats. They also help to keep the Makefile clean and
-> concise.
->
-> Cheers,
-> 	Timo
->
-> Timo Mueller (6):
->    documentation/adt-manual: Moved stylesheet parameters to
->      customization file
->    documentation/adt-manual/adt-manual-eclipse-customization.xsl: Added
->      stylesheet for eclipse help
->    documentation/Makefile: Added eclipse target for generating eclipse
->      help
->    documentation/template/titlepage.templates.xml: Remove title from pdf
->      template
->    documentation/adt-manual/adt-manual.xml: Added title to bookinfo
->    documentation/Makefile: Added eclipse target to adt-manual
->      documentation
->
->   documentation/Makefile                             |   36 ++++++++++++++-----
->   .../adt-manual/adt-manual-customization.xsl        |    7 +++-
->   .../adt-manual-eclipse-customization.xsl           |   22 ++++++++++++
->   documentation/adt-manual/adt-manual.xml            |    5 ++-
->   documentation/template/titlepage.templates.xml     |   13 -------
->   5 files changed, 57 insertions(+), 26 deletions(-)
->   create mode 100644 documentation/adt-manual/adt-manual-eclipse-customization.xsl
->
+If you look at the tune file, it says TARGET_FPU =3D "soft", which means
+software floating point emulation.
+
+However, the gcc toolchain recipes are trying to build with hardware =
+floating
+point support, from the error message.
+
+Let me know what you ISE development tool configuration and development
+board is, and I'll see if I can divert a bit from target platform, and =
+try to=20
+explore getting the toolchain to build for the Microblaze processor.
+
+I've got the following boards with me:
+- Xilinx ML507 (Virtex 5 FX70T with PowerPC 440)
+- Xilinx SP601 (Spartan 6)
+- Xilinx Zynq (ARM Cortex A-9)
 
 Best regards,
-     Timo
+
+Elvis Dowson
 
 
