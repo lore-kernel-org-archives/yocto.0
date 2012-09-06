@@ -1,35 +1,39 @@
-Return-Path: <nitin.a.kamble@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 34BF0E014FB
-	for <yocto@yoctoproject.org>; Thu,  6 Sep 2012 09:32:17 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 06 Sep 2012 09:32:16 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,380,1344236400"; 
-	d="scan'208,217";a="189704051"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
-	by orsmga001.jf.intel.com with ESMTP; 06 Sep 2012 09:32:16 -0700
-Received: from orsmsx107.amr.corp.intel.com (10.22.225.80) by
-	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Thu, 6 Sep 2012 09:32:16 -0700
-Received: from orsmsx106.amr.corp.intel.com ([169.254.5.204]) by
-	ORSMSX107.amr.corp.intel.com ([169.254.10.146]) with mapi id
-	14.01.0355.002; Thu, 6 Sep 2012 09:32:16 -0700
-From: "Kamble, Nitin A" <nitin.a.kamble@intel.com>
-To: Chris Conlon <chris@yassl.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: CyaSSL Yocto Recipe
-Thread-Index: AQHNjEmaxXQiIBePs0u63Ibmqcm8cZd9gPRA
-Date: Thu, 6 Sep 2012 16:32:16 +0000
-Message-ID: <ADD6A3980E8C39419A432FF422031B4C0CCBAAD9@ORSMSX106.amr.corp.intel.com>
-References: <AA149620-AFAF-4670-8666-A34E500ADA75@yassl.com>
-In-Reply-To: <AA149620-AFAF-4670-8666-A34E500ADA75@yassl.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
-MIME-Version: 1.0
-Subject: Re: CyaSSL Yocto Recipe
+Return-Path: <elvis.dowson@gmail.com>
+Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
+	[209.85.160.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CB1DBE002AC
+	for <yocto@yoctoproject.org>; Thu,  6 Sep 2012 10:52:12 -0700 (PDT)
+Received: by pbbrq13 with SMTP id rq13so3202393pbb.35
+	for <yocto@yoctoproject.org>; Thu, 06 Sep 2012 10:52:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=subject:mime-version:content-type:from:in-reply-to:date:cc
+	:content-transfer-encoding:message-id:references:to:x-mailer;
+	bh=caVrSMpgaMh8IkuyHIF6iugctbsUOENEeckVGRRAZRc=;
+	b=0MhHdYLRw4w/vIC8NT7zccmRkP4BNTVk9isDz6GLp29scv5w72OkhLjNOjPwxfnrHX
+	CuP4O5ny2DvA/1lq95j0ATPYGMzJCRncb4TXLw/gbrU7sMeiFYjZTPBi0i+734hC/RzX
+	1Nhz3rTYdqedLKwqOcZ0RBCQ+fT3TIXYLEqypm8778xpJhPxz2XxprHhjOy4gqsUtduU
+	1nZwvrFEJ4pGHKeJQWJUZ1pBDJBsZ+UPkJ5bOkWNWsS8lrVqLa5QNFl13FP+bGR2HbAw
+	H7g/XOx2kLlU57oUQ6NbyrHUgn+QbBLLJ+7FNAsSOOhChdj6OY+t8RVFh/bq39vYhWHL
+	mLjQ==
+Received: by 10.66.75.225 with SMTP id f1mr4343225paw.35.1346953932549;
+	Thu, 06 Sep 2012 10:52:12 -0700 (PDT)
+Received: from [192.168.1.101] ([94.205.108.162])
+	by mx.google.com with ESMTPS id mu8sm1684657pbc.49.2012.09.06.10.52.09
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Thu, 06 Sep 2012 10:52:11 -0700 (PDT)
+Mime-Version: 1.0 (Apple Message framework v1278)
+From: Elvis Dowson <elvis.dowson@gmail.com>
+In-Reply-To: <5048C1C2.1010903@mlbassoc.com>
+Date: Thu, 6 Sep 2012 21:52:05 +0400
+Message-Id: <9362ED2A-B401-40A3-8341-FA7873C822D8@gmail.com>
+References: <1CA12C40-FBBD-4CC7-B45A-5867AB64490A@gmail.com>
+	<4865264.UZoJkHz8Ho@helios>
+	<FA3A0E24-467D-45F1-9809-BED60472FB8C@gmail.com>
+	<5048C1C2.1010903@mlbassoc.com>
+To: Gary Thomas <gary@mlbassoc.com>
+X-Mailer: Apple Mail (2.1278)
+Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+Subject: Re: Procedure to setup icecc for performing a distributed build
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,185 +45,57 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 06 Sep 2012 16:32:17 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_ADD6A3980E8C39419A432FF422031B4C0CCBAAD9ORSMSX106amrcor_"
-
---_000_ADD6A3980E8C39419A432FF422031B4C0CCBAAD9ORSMSX106amrcor_
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Thu, 06 Sep 2012 17:52:12 -0000
+Content-Type: text/plain; charset=iso-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-And here is bit of information about CyaSSL from their website. http://www.=
-yassl.com/yaSSL/Products-cyassl.html
+Hi Gary,
 
-The CyaSSL embedded SSL library is a lightweight SSL library written in ANS=
-I C and targeted for embedded and RTOS environments - primarily because of =
-its small size, speed, and feature set.  It is commonly used in standard op=
-erating environments as well because of its royalty-free pricing and excell=
-ent cross platform support.  CyaSSL supports industry standards up to the c=
-urrent TLS 1.2 level, is up to 20 times smaller than OpenSSL, and offers pr=
-ogressive ciphers such as HC-128, RABBIT, and NTRU.  User benchmarking and =
-feedback reports dramatically better performance when using CyaSSL over Ope=
-nSSL.
+On Sep 6, 2012, at 7:31 PM, Gary Thomas wrote:
 
-Thanks,
-Nitin
+> On 2012-09-06 09:23, Elvis Dowson wrote:
+>>=20
+>> Unfortunately no. I've got two machines, both with quad-core intel i7 =
+processors, but I just couldn't
+>> get icecc to work with yocto. I end up regularly perform fresh builds =
+at least 5 to 6 times a day,
+>> and it takes me 2 hours to build core-image-minimal.
+>=20
+> Just wondering the exact details of your system and why your =
+performance is
+> so very different from mine.
+>=20
+> I have a HP box with 8-way Intel(R) Core(TM) i7-3770 CPU @ 3.40GHz & =
+12GB RAM
+> It will build a Yocto image from scratch in around 40 minutes.
 
-From: Chris Conlon [mailto:chris@yassl.com]
-Sent: Thursday, September 06, 2012 9:07 AM
-To: yocto@yoctoproject.org
-Cc: Kamble, Nitin A
-Subject: CyaSSL Yocto Recipe
+I'm running Ubuntu 12.04 LTS virtualized on a 2011 Apple MacBook Pro =
+15", with
+VMware Fusion 5.0.1. The VMware disk image resides on a SSD drive with a =
+3G
+SATA interface.
 
-Hi,
+The specs are 2.3GHz Intel quad-core i7-2820QM with 8MB L3 cache,=20
+8GB 1333 MHz RAM for the host.
 
-As per discussions with a few of the Yocto members, we have put together a =
-Yocto Project recipe for the CyaSSL embedded SSL library.  I have attached =
-the recipe here for review and comments.
+The Ubuntu 12.04 guest is configured with 4GB RAM, 8 virtual CPU cores.
+During core-image-minimal builds, the memory usage doesn't exceed 2 to =
+3GB.
 
-Thanks,
+A linux kernel 3.3.0 build for a powepc440 target takes 1 min 40 =
+seconds, as
+an additional data point.
 
-Chris Conlon
-www.yassl.com<http://www.yassl.com>
-chris@yassl.com<mailto:chris@yassl.com>
-Skype: chris_conlon_07
-+1 406 209 0601
+Maybe next year, when the newer Mac Pros come out, I'll probably invest =
+in
+a 8-core or 10-core xeon configuration. The current Mac Pros are due for =
+a refresh
+then, so I'm waiting for the next hardware update.
 
+I'm also considered buying an IBM Blade server, but haven't made up my =
+mind yet.
 
---_000_ADD6A3980E8C39419A432FF422031B4C0CCBAAD9ORSMSX106amrcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Best regards,
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:12.0pt;
-	font-family:"Times New Roman","serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-reply;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-span.style7
-	{mso-style-name:style_7;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">And here is bit of inform=
-ation about CyaSSL from their website.
-<a href=3D"http://www.yassl.com/yaSSL/Products-cyassl.html">http://www.yass=
-l.com/yaSSL/Products-cyassl.html</a><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
-/p>
-<p class=3D"MsoNormal">The CyaSSL embedded SSL library is a lightweight SSL=
- library written in ANSI C and targeted for embedded and RTOS environments =
-- primarily because of its small size, speed, and feature set. &nbsp;It is =
-commonly used in standard operating environments
- as well because of its royalty-free pricing and excellent cross platform s=
-upport.&nbsp; CyaSSL supports industry standards up to the current TLS 1.2 =
-level, is up to<span class=3D"style7"> 20 times smaller than OpenSSL</span>=
-, and offers progressive ciphers such as
- HC-128, RABBIT, and NTRU.&nbsp; User benchmarking and feedback reports dra=
-matically better performance when using CyaSSL over OpenSSL.<span style=3D"=
-font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;col=
-or:#1F497D"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
-/p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Thanks,<o:p></o:p></span>=
-</p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Nitin<o:p></o:p></span></=
-p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
-/p>
-<div style=3D"border:none;border-left:solid blue 1.5pt;padding:0in 0in 0in =
-4.0pt">
-<div>
-<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
-0in 0in">
-<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
-;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
-ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> Chris Co=
-nlon [mailto:chris@yassl.com]
-<br>
-<b>Sent:</b> Thursday, September 06, 2012 9:07 AM<br>
-<b>To:</b> yocto@yoctoproject.org<br>
-<b>Cc:</b> Kamble, Nitin A<br>
-<b>Subject:</b> CyaSSL Yocto Recipe<o:p></o:p></span></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<div>
-<div>
-<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><span style=3D"font-s=
-ize:10.0pt">Hi,<br>
-<br>
-As per discussions with a few of the Yocto members, we have put together a =
-Yocto Project recipe for the CyaSSL embedded SSL library.&nbsp; I have atta=
-ched the recipe here for review and comments.<br>
-<br>
-Thanks,<br>
-<br>
-Chris Conlon<br>
-<a href=3D"http://www.yassl.com">www.yassl.com</a><br>
-<a href=3D"mailto:chris@yassl.com">chris@yassl.com</a><br>
-Skype: chris_conlon_07<br>
-&#43;1 406 209 0601<o:p></o:p></span></p>
-</div>
-</div>
-<div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt"><o:p>&nbsp;</o:p></=
-span></p>
-</div>
-</div>
-</div>
-</div>
-</body>
-</html>
+Elvis Dowson=
 
---_000_ADD6A3980E8C39419A432FF422031B4C0CCBAAD9ORSMSX106amrcor_--
