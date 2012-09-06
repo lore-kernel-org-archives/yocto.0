@@ -1,22 +1,24 @@
-Return-Path: <tf+lists.yocto@r-finger.com>
-Received: from r-finger.com (r-finger.com [178.79.160.5])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 529E6E01423
-	for <yocto@yoctoproject.org>; Thu,  6 Sep 2012 03:19:16 -0700 (PDT)
-Received: from [192.168.0.2] (host81-153-84-143.range81-153.btcentralplus.com
-	[81.153.84.143]) (using TLSv1 with cipher AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by r-finger.com (Postfix) with ESMTPSA id 9FE749ADE
-	for <yocto@yoctoproject.org>; Thu,  6 Sep 2012 11:19:15 +0100 (BST)
-Message-ID: <504878A2.2090507@r-finger.com>
-Date: Thu, 06 Sep 2012 11:19:14 +0100
-From: Tomas Frydrych <tf+lists.yocto@r-finger.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:10.0.5) Gecko/20120624 Icedove/10.0.5
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 29FF2E004AB
+	for <yocto@yoctoproject.org>; Thu,  6 Sep 2012 03:36:28 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 06 Sep 2012 03:36:27 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,380,1344236400"; d="scan'208";a="218808886"
+Received: from unknown (HELO helios.localnet) ([10.252.121.173])
+	by fmsmga001.fm.intel.com with ESMTP; 06 Sep 2012 03:36:27 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Yes Yanus <yesyanus@yahoo.com>
+Date: Thu, 06 Sep 2012 11:36:26 +0100
+Message-ID: <2325002.b8UzUBqXdE@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.9 (Linux/3.2.0-30-generic-pae; KDE/4.9.0; i686; ; )
+In-Reply-To: <1344430759.60259.YahooMailNeo@web121502.mail.ne1.yahoo.com>
+References: <1344430759.60259.YahooMailNeo@web121502.mail.ne1.yahoo.com>
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <CAK18fxEb3gjEEwhvN-du3eJvgUVCbjXU2Ag4kicFFDt6xra6og@mail.gmail.com>
-In-Reply-To: <CAK18fxEb3gjEEwhvN-du3eJvgUVCbjXU2Ag4kicFFDt6xra6og@mail.gmail.com>
-Subject: Re: opengl / libgl / libgles
+Cc: yocto@yoctoproject.org
+Subject: Re: a question about multilib
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,32 +30,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 06 Sep 2012 10:19:16 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 06 Sep 2012 10:36:28 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On 06/09/12 11:00, Andrei Gherzan wrote:
-> Hello,
+On Wednesday 08 August 2012 05:59:19 Yes Yanus wrote:
+>  I have a question about multilib. I have a layer which is Independent of
+> meta. this layer include some bb files and some of them are same with bb
+> files in meta. for example, ncurses_5.7.bb in my layer and ncurses_5.9.bb
+> in meta. but when I run command bitbake lib32-ncurses the bb file in meta
+> is called. I have set the priority in my layer. the prority is higher than
+> layer in meta. why bb files in my layer can't be called ? and if I run
+> bitbake ncurses then bb files in my layer can be called.
 > 
-> In DISTRO_FEATURES we have opengl. That is pretty vague and generally we
-> don't want to have mesa on machines where there is no libgl but only gles +
-> egl. For example if we want to compile something that adds a DEPENDS based
-> on DISTRO_FEATURE opengl, this dependency will be added even if there is no
-> libgl implemented for that specific machine.
-> 
-> First idea would be that opengl (gl / gles) are machine related. On the
-> other hand opengl can be a DISTRO_FEATURE as we have a software
-> implementation - mesa.
-> 
-> How would you guys see a solution for this? The idea that came into my mind
-> was to map opengl to libgl or libgles. Or to both if there is the case.
+> Who can tell me the cause and how to solve the question?
 
-I think we need both machine and distro features matching the options
-here: opengl, gles1, gles2. The machine conf sets the MACHINE_FEATURE
-appropriately, the distro conf then sets the distro features based on
-intersection of distro policy and what is available on the machine.
-Recipes like the xserver use DISTRO_FEATURE to determine how to
-configure the package.
+Not sure if I already noted this, but I reproduced the issue here and filed bug 
+2933 since it affects anything that uses the BBCLASSEXTENDS mechanism:
 
-Tomas
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=2933
+
+Cheers,
+Paul
+
+-- 
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
