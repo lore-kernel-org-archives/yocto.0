@@ -1,28 +1,32 @@
-Return-Path: <timo.mueller@oss.bmw-carit.de>
-Received: from linuxmail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B96E1E013DB
-	for <yocto@yoctoproject.org>; Thu,  6 Sep 2012 02:04:59 -0700 (PDT)
-Received: from localhost (mysterion.bmw-carit.intra [192.168.101.57])
-	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
-	(No client certificate requested)
-	(Authenticated sender: timo.mueller)
-	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 360E44011F;
-	Thu,  6 Sep 2012 10:35:56 +0200 (CEST)
-From: mail@timomueller.eu
-To: yocto@yoctoproject.org
-Date: Thu,  6 Sep 2012 11:04:38 +0200
-Message-Id: <128ba200ca531e3afddd08414a5ea1da2895090f.1346922110.git.timo.mueller@bmw-carit.de>
-X-Mailer: git-send-email 1.7.7.6
-In-Reply-To: <73db3a531bfdde7d26ea5f77e4bf76c7e8249aad.1346922110.git.timo.mueller@bmw-carit.de>
-References: <cover.1346922110.git.timo.mueller@bmw-carit.de>
-	<9c31105cfa8f5bfe6f7ec025de1084e79221e88f.1346922110.git.timo.mueller@bmw-carit.de>
-	<bdbc5cf7f1e7b188ccabf9979b69b844f9735490.1346922110.git.timo.mueller@bmw-carit.de>
-	<6c9ad3a6e10e00777c86a664e5b4faf78e411fed.1346922110.git.timo.mueller@bmw-carit.de>
-	<73db3a531bfdde7d26ea5f77e4bf76c7e8249aad.1346922110.git.timo.mueller@bmw-carit.de>
-In-Reply-To: <cover.1346922110.git.timo.mueller@bmw-carit.de>
-References: <cover.1346922110.git.timo.mueller@bmw-carit.de>
-Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: [RFC 5/6] documentation/adt-manual/adt-manual.xml: Added title to bookinfo
+Return-Path: <andrei@gherzan.ro>
+Received: from mail-iy0-f176.google.com (mail-iy0-f176.google.com
+	[209.85.210.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7D18FE004AB
+	for <yocto@yoctoproject.org>; Thu,  6 Sep 2012 03:01:27 -0700 (PDT)
+Received: by iagt4 with SMTP id t4so2096687iag.35
+	for <yocto@yoctoproject.org>; Thu, 06 Sep 2012 03:01:13 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:x-originating-ip:from:date:message-id:subject:to
+	:content-type:x-gm-message-state;
+	bh=4mJJMjAdTZuGzEZog8xAmYdyH7dOe3lMvVPEwXZEEqI=;
+	b=Av9110Wfpkh9aKRW72+UDUs7T3birPRYKKA/IaSDTWmfvfJuu6bR9JqxySk2zl5Jfz
+	ZDyQmCNQ5y+f1abgPlL6JeTtaKQuAIZsDyXT1K+BUFIvofDMhj1neMqWAoDOPA/z28UD
+	CR7Hh3XVwjjonQ86Fv+CxnAQWK8LT7oiaRqcCjpIMZFg8pPGWy2FQ1AvdjDqt1HRYD5y
+	uhM4xwmjVWwIvXdc4F0mOkiBbDX8g+gRF5kU6O/46Hs8XhEJNN+dfaLQUa1JIHxVokeA
+	JKbrYu7m9UvoJ64cXn/qZNWdbFU0yZojKXWLL6C8UfFCThxCg6NdEX/B8tv6sQh7qi04
+	9UcA==
+Received: by 10.50.41.129 with SMTP id f1mr21454681igl.57.1346925673035; Thu,
+	06 Sep 2012 03:01:13 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.64.129.232 with HTTP; Thu, 6 Sep 2012 03:00:52 -0700 (PDT)
+X-Originating-IP: [89.121.200.106]
+From: Andrei Gherzan <andrei@gherzan.ro>
+Date: Thu, 6 Sep 2012 13:00:52 +0300
+Message-ID: <CAK18fxEb3gjEEwhvN-du3eJvgUVCbjXU2Ag4kicFFDt6xra6og@mail.gmail.com>
+To: Yocto Project <yocto@yoctoproject.org>
+X-Gm-Message-State: ALoCoQm4i2HtllundsD02mPPLhQ4LubzKxavmP8Sf5nWmfUHx83bAyq+OJ1uef3VO6OuNUCn5zLO
+Subject: opengl / libgl / libgles
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,33 +38,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 06 Sep 2012 09:05:00 -0000
+X-List-Received-Date: Thu, 06 Sep 2012 10:01:27 -0000
+Content-Type: multipart/alternative; boundary=14dae934068347b85504c90592c6
 
-From: Timo Mueller <timo.mueller@bmw-carit.de>
+--14dae934068347b85504c90592c6
+Content-Type: text/plain; charset=ISO-8859-1
 
-The title of the document used to create metadata for output formats
-such as eclipse help.
----
- documentation/adt-manual/adt-manual.xml |    5 ++++-
- 1 files changed, 4 insertions(+), 1 deletions(-)
+Hello,
 
-diff --git a/documentation/adt-manual/adt-manual.xml b/documentation/adt-manual/adt-manual.xml
-index e34dc1c..614a38e 100644
---- a/documentation/adt-manual/adt-manual.xml
-+++ b/documentation/adt-manual/adt-manual.xml
-@@ -16,7 +16,10 @@
-             </imageobject>    
-         </mediaobject>
- 
--        <title></title>
-+        <title>
-+            The Yocto Project Application Development Toolkit (ADT)
-+            User's Guide.
-+        </title>
- 
-         <authorgroup>
-             <author>
--- 
-1.7.7.6
+In DISTRO_FEATURES we have opengl. That is pretty vague and generally we
+don't want to have mesa on machines where there is no libgl but only gles +
+egl. For example if we want to compile something that adds a DEPENDS based
+on DISTRO_FEATURE opengl, this dependency will be added even if there is no
+libgl implemented for that specific machine.
 
+First idea would be that opengl (gl / gles) are machine related. On the
+other hand opengl can be a DISTRO_FEATURE as we have a software
+implementation - mesa.
 
+How would you guys see a solution for this? The idea that came into my mind
+was to map opengl to libgl or libgles. Or to both if there is the case.
+
+ag
+
+--14dae934068347b85504c90592c6
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+Hello,
+<div><br></div><div>In DISTRO_FEATURES we have opengl. That is pretty vague=
+ and generally we don&#39;t want to have mesa on machines where there is no=
+ libgl but only gles + egl. For example if we want to compile something tha=
+t adds a DEPENDS based on DISTRO_FEATURE opengl, this dependency will be ad=
+ded even if there is no libgl implemented for that specific machine.</div>
+
+<div><br></div><div>First idea would be that opengl (gl / gles) are machine=
+ related. On the other hand opengl can be a DISTRO_FEATURE as we have a sof=
+tware implementation - mesa.</div><div><br></div><div>How would you guys se=
+e a solution for this? The idea that came into my mind was to map opengl to=
+ libgl or libgles. Or to both if there is the case.</div>
+
+<div><br></div><div>ag</div>
+
+--14dae934068347b85504c90592c6--
