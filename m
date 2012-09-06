@@ -1,25 +1,19 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B8930E014F9
-	for <yocto@yoctoproject.org>; Thu,  6 Sep 2012 08:38:23 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 06 Sep 2012 08:38:23 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,380,1344236400"; d="scan'208";a="218918559"
-Received: from unknown (HELO helios.localnet) ([10.252.121.173])
-	by fmsmga001.fm.intel.com with ESMTP; 06 Sep 2012 08:38:22 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Gary Thomas <gary@mlbassoc.com>
-Date: Thu, 06 Sep 2012 16:38:21 +0100
-Message-ID: <1789113.10IpD71yH1@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.9 (Linux/3.2.0-30-generic-pae; KDE/4.9.0; i686; ; )
-In-Reply-To: <5048C246.4090807@mlbassoc.com>
-References: <1CA12C40-FBBD-4CC7-B45A-5867AB64490A@gmail.com>
-	<2515670.URCovxJbBq@helios> <5048C246.4090807@mlbassoc.com>
-MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: Procedure to setup icecc for performing a distributed build
+Return-Path: <chris@yassl.com>
+Received: from p3plsmtpa08-04.prod.phx3.secureserver.net
+	(p3plsmtpa08-04.prod.phx3.secureserver.net [173.201.193.105])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id 8F36FE002AC
+	for <yocto@yoctoproject.org>; Thu,  6 Sep 2012 09:06:33 -0700 (PDT)
+Received: (qmail 28902 invoked from network); 6 Sep 2012 16:06:33 -0000
+Received: from unknown (174.45.76.142)
+	by p3plsmtpa08-04.prod.phx3.secureserver.net (173.201.193.105) with
+	ESMTP; 06 Sep 2012 16:06:33 -0000
+From: Chris Conlon <chris@yassl.com>
+Date: Thu, 6 Sep 2012 10:06:31 -0600
+Message-Id: <AA149620-AFAF-4670-8666-A34E500ADA75@yassl.com>
+To: yocto@yoctoproject.org
+Mime-Version: 1.0 (Apple Message framework v1084)
+X-Mailer: Apple Mail (2.1084)
+Subject: CyaSSL Yocto Recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,40 +25,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 06 Sep 2012 15:38:23 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Thu, 06 Sep 2012 16:06:33 -0000
+X-Groupsio-MsgNum: 9198
+Content-Type: multipart/mixed; boundary=Apple-Mail-2609--726795293
 
-On Thursday 06 September 2012 09:33:26 Gary Thomas wrote:
-> On 2012-09-06 09:29, Paul Eggleton wrote:
-> > On Thursday 06 September 2012 19:23:53 Elvis Dowson wrote:
-> >> Unfortunately no. I've got two machines, both with quad-core intel i7
-> >> processors, but I just couldn't get icecc to work with yocto. I end up
-> >> regularly perform fresh builds at least 5 to 6 times a day, and it takes
-> >> me
-> >> 2 hours to build core-image-minimal.
-> > 
-> > At its core, icecc.bbclass just sets things up so that icecc is called
-> > instead of the normal compiler. It would be worth verifying that that is
-> > actually taking effect by looking at the commands being used as reported
-> > in log.do_configure for specific recipes.
-> 
-> Is this only for the host compiler or the target (cross) compilers as well?
-> If it's only the host compiler being used for "native" builds, how much is
-> there to be gained from distributing the work?
+--Apple-Mail-2609--726795293
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=us-ascii
 
-It covers all according to the comments at the top of the file.
+Hi,
 
-I have to be honest and say I've never used icecc.bbclass; I've been told that 
-the overhead mostly wipes out any advantage of individual compile jobs being 
-farmed out to different machines, but I've never actually verified that first 
-hand.
+As per discussions with a few of the Yocto members, we have put together a=
+ Yocto Project recipe for the CyaSSL embedded SSL library.  I have attached=
+ the recipe here for review and comments.
 
-Cheers,
-Paul
+Thanks,
 
--- 
+Chris Conlon
+www.yassl.com
+chris@yassl.com
+Skype: chris_conlon_07
++1 406 209 0601
 
-Paul Eggleton
-Intel Open Source Technology Centre
 
+
+--Apple-Mail-2609--726795293
+Content-Disposition: attachment;
+	filename=cyassl_2.3.0.bb
+Content-Type: application/octet-stream;
+	name="cyassl_2.3.0.bb"
+Content-Transfer-Encoding: 7bit
+
+SUMMARY = "CyaSSL Embedded SSL Library"
+DESCRIPTION = "CyaSSL is a lightweight SSL library written in C and \
+               optimized for embedded and RTOS environments. It can be \
+               Up to 20 times smaller than OpenSSL while still supporting \
+               a full TLS 1.2 client and server."
+HOMEPAGE = "http://www.yassl.com/yaSSL/Products-cyassl.html"
+BUGTRACKER = "http://github.com/cyassl/cyassl/issues"
+SECTION = "libs/network"
+LICENSE = "GPLv2"
+LIC_FILES_CHKSUM = "file://COPYING;md5=94d55d512a9ba36caa9b7df079bae19f"
+
+PR = "r0"
+
+SRC_URI = "http://www.yassl.com/cyassl-${PV}.zip"
+
+SRC_URI[md5sum] = "e73b50c95eae06a2fb4a7eb0183b21ab"
+SRC_URI[sha256sum] = "b597f1c55d3bc4556d9c37e98ca56da2a529e111164d97c650fb097ef0a0d461"
+
+inherit autotools siteinfo
+
+# Detect and build with correct endianness
+CFLAGS += "${@base_conditional('SITEINFO_ENDIANNESS', 'le', '', '-DBIG_ENDIAN_ORDER', d)}"
+
+
+--Apple-Mail-2609--726795293--
