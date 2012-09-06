@@ -1,34 +1,34 @@
-Return-Path: <dbaryshkov@gmail.com>
-Received: from mail-qa0-f48.google.com (mail-qa0-f48.google.com
-	[209.85.216.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C20B9E0150C
-	for <yocto@yoctoproject.org>; Thu,  6 Sep 2012 14:46:35 -0700 (PDT)
-Received: by qady1 with SMTP id y1so2088984qad.14
-	for <yocto@yoctoproject.org>; Thu, 06 Sep 2012 14:46:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=HMTZVLEk03HQ1DQ5uipkz4g8ImcvBN4hINIUhZbct9Q=;
-	b=E1ZyDRPbcDDddEg7LYOjI2E7ZN9tyNW18Tqzc8MRqPLOgVvQ/yth98QhnIgl85gUGc
-	p7y+A4U05DcrOkfXn0W6HxODosI3Ag1OUBhIR0pTIIiBuOZ1qJD+JPa5ZTdt3APWt8VK
-	SzEiEWBQst+BWd4lgwi0ohtPTH5htZNHgJvUZ90vcM9YZKgEpNUPgDENn83pw6r9e1G2
-	vhjIayDmHJX6pzDtPZuMIl0e4n+vwWBsuixpua+egHbqyqO3Eti3XMBCDUVMqm5xuHmj
-	xUS6Cdl6s2Z1w2m8U0Yuhqer9pDoPsbl1Bz98c7TMQFoKUHre7sp0+HG3HtMMDm9KH0g
-	XQ3g==
+Return-Path: <winson.w.yung@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 800CBE01430
+	for <yocto@yoctoproject.org>; Thu,  6 Sep 2012 15:32:36 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 06 Sep 2012 15:32:36 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,381,1344236400"; 
+	d="scan'208,217";a="198253712"
+Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
+	by orsmga002.jf.intel.com with ESMTP; 06 Sep 2012 15:32:36 -0700
+Received: from orsmsx107.amr.corp.intel.com (10.22.225.80) by
+	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Thu, 6 Sep 2012 15:32:35 -0700
+Received: from orsmsx105.amr.corp.intel.com ([169.254.4.178]) by
+	ORSMSX107.amr.corp.intel.com ([169.254.10.146]) with mapi id
+	14.01.0355.002; Thu, 6 Sep 2012 15:32:35 -0700
+From: "Yung, Winson W" <winson.w.yung@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: can someone provide me a pre-build binary of lsusb/lspci that
+	I can run on yacto?<eom>
+Thread-Index: Ac2Mf4Jh9W3LSs5QRVuwOyyaXV3WoA==
+Date: Thu, 6 Sep 2012 22:32:35 +0000
+Message-ID: <C4E462F82E17EB4C88CDC5FA9A3BABE3077EAC3E@ORSMSX105.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.138]
 MIME-Version: 1.0
-Received: by 10.224.174.145 with SMTP id t17mr5743063qaz.0.1346967990583; Thu,
-	06 Sep 2012 14:46:30 -0700 (PDT)
-Received: by 10.49.130.232 with HTTP; Thu, 6 Sep 2012 14:46:30 -0700 (PDT)
-In-Reply-To: <4865264.UZoJkHz8Ho@helios>
-References: <1CA12C40-FBBD-4CC7-B45A-5867AB64490A@gmail.com>
-	<4865264.UZoJkHz8Ho@helios>
-Date: Fri, 7 Sep 2012 01:46:30 +0400
-Message-ID: <CALT56yMAmUfWKZsL4FgPyX7qhkz1CW-SniSUbHiPZ_QmCO8BbQ@mail.gmail.com>
-From: Dmitry Eremin-Solenikov <dbaryshkov@gmail.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
 X-Mailman-Approved-At: Fri, 07 Sep 2012 08:04:32 -0700
-Cc: yocto@yoctoproject.org
-Subject: Re: Procedure to setup icecc for performing a distributed build
+Subject: can someone provide me a pre-build binary of lsusb/lspci that I can run on yacto?<eom>
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,32 +40,81 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 06 Sep 2012 21:46:36 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Thu, 06 Sep 2012 22:32:36 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_C4E462F82E17EB4C88CDC5FA9A3BABE3077EAC3EORSMSX105amrcor_"
 
-On Thu, Sep 6, 2012 at 2:17 PM, Paul Eggleton
-<paul.eggleton@linux.intel.com> wrote:
-> On Thursday 16 August 2012 00:30:15 Elvis Dowson wrote:
+--_000_C4E462F82E17EB4C88CDC5FA9A3BABE3077EAC3EORSMSX105amrcor_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+
+
+--_000_C4E462F82E17EB4C88CDC5FA9A3BABE3077EAC3EORSMSX105amrcor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
 >
-> Otherwise, Dmitry, any suggestions? I'm assuming you made use of icecc.bbclass
-> since you made some changes to it a while ago...
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:\5B8B\4F53;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:\5B8B\4F53;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"\@\5B8B\4F53";
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
 
-I'm sorry, I had not tried icecc.bbclass lately. I should give it a
-try. Probably either
-on Weekend, or next week.
-
->
-> Cheers,
-> Paul
->
-> --
->
-> Paul Eggleton
-> Intel Open Source Technology Centre
-
-
-
--- 
-With best wishes
-Dmitry
-
+--_000_C4E462F82E17EB4C88CDC5FA9A3BABE3077EAC3EORSMSX105amrcor_--
