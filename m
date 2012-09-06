@@ -1,31 +1,29 @@
-Return-Path: <opensource@keylevel.com>
-Received: from hxhsvr03.internetintuitive.net (hxhsvr03.internetintuitive.net
-	[80.254.228.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A1E17E0027F
-	for <yocto@yoctoproject.org>; Thu,  6 Sep 2012 12:22:40 -0700 (PDT)
-Received: from [109.224.129.17] (helo=macbook-pro.durham.keylevel.com)
-	by hxhsvr03.internetintuitive.net with esmtpa (Exim 4.69)
-	(envelope-from <opensource@keylevel.com>)
-	id 1T9hei-0004ru-Mv; Thu, 06 Sep 2012 20:22:24 +0100
-Mime-Version: 1.0 (Apple Message framework v1278)
-From: Chris Tapp <opensource@keylevel.com>
-In-Reply-To: <OF2E6500D3.0EB341C7-ON87257A71.005A2207-85257A71.005A8DF2@us.ibm.com>
-Date: Thu, 6 Sep 2012 20:22:22 +0100
-Message-Id: <63A89E26-B1A6-4F5D-86E2-11971A4C4CC8@keylevel.com>
-References: <OF2E6500D3.0EB341C7-ON87257A71.005A2207-85257A71.005A8DF2@us.ibm.com>
-To: James Macon <macon@us.ibm.com>
-X-Mailer: Apple Mail (2.1278)
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - hxhsvr03.internetintuitive.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: yocto@yoctoproject.org
-Subject: Re: Where is PREFERRED_VERSION_linux-yocto_qemux86 used?
+Return-Path: <evadeflow@gmail.com>
+Received: from mail-pz0-f48.google.com (mail-pz0-f48.google.com
+	[209.85.210.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 39E59E01509
+	for <yocto@yoctoproject.org>; Thu,  6 Sep 2012 12:22:49 -0700 (PDT)
+Received: by dadz8 with SMTP id z8so1455300dad.35
+	for <yocto@yoctoproject.org>; Thu, 06 Sep 2012 12:22:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:cc:content-type;
+	bh=23CuHcABHHNwqFvJK8nDi6ssTIPRuRwlcrmDqtgzL1s=;
+	b=rRGn7Z8NJsV5YhDnk2F741n3G5twCMeR1t2bV2PXg3JJkaxEgGKnJJUQCHAqd+W7zN
+	xPHzzxDaWdiR2u7Obz565pweX863papXgGQtyNuhtoToYWJ9gUS2G9/jEO6KHmjCwWFz
+	s7cLFAMtbvW0Xx8fCo/moSgSqGqipDKNDKkt7LLwIvrDOcSqDCYtj1LqOHiFqIDSyyx2
+	Z0waQwP7qjD5/O8t/0pYwb56K7nPxpjjsYntQgdl5sllg/Ac/i21C8Z9rmDDWMEFxNLx
+	5NpNANNgdXWbsuTKUFuygylmYn2DwtywIFWU7E/vveZietDI4BPFlki71NnQsUsF0P7+
+	mV/A==
+MIME-Version: 1.0
+Received: by 10.66.85.70 with SMTP id f6mr4750330paz.7.1346959369042; Thu, 06
+	Sep 2012 12:22:49 -0700 (PDT)
+Received: by 10.66.90.42 with HTTP; Thu, 6 Sep 2012 12:22:48 -0700 (PDT)
+Date: Thu, 6 Sep 2012 15:22:48 -0400
+Message-ID: <CAMAb8ZNh8zUQnPuhMK8fkPT5QZuBdypDVYb8BudqT9Dc2TbT3g@mail.gmail.com>
+From: Evade Flow <evadeflow@gmail.com>
+To: yocto@yoctoproject.org
+Cc: Florin Sarbu <florin.sarbu@windriver.com>
+Subject: ERROR: Nothing RPROVIDES 'libsegfault'
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,73 +35,56 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 06 Sep 2012 19:22:41 -0000
-Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_7F4241D5-638E-4021-8E06-4370896FC3AB"
+X-List-Received-Date: Thu, 06 Sep 2012 19:22:49 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
---Apple-Mail=_7F4241D5-638E-4021-8E06-4370896FC3AB
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=us-ascii
+I'm seeing this error while trying to 'bitbake discovery-image' from the
+meta-ivi layer, according to the instructions here:
 
-On 6 Sep 2012, at 17:29, James Macon wrote:
+  - http://git.yoctoproject.org/cgit/cgit.cgi/meta-ivi/tree/README.md
 
-> Inside of poky.conf there is a variable =
-PREFERRED_VERSION_linux-yocto_qemux86 ?=3D "3.0%"=20
->  =20
-> I assume linux-yocto is the package name and qemux86 is the machine =
-name.=20
->=20
-> I can't find where any references =
-PREFERRED_VERSION_linux-yocto_qemux86 are in the build. It is probably =
-the result of multiple appends but I haven't been able to find it.=20
->=20
-> I would like to know where the appends are and who uses it.=20
+The complete output looks like this:
 
-You just need to know how to break the name down:
+Loading cache...done.
+Loaded 1162 entries from dependency cache.
+Parsing recipes...done.
+Parsing of 858 .bb files complete (857 cached, 1 parsed). 1159
+targets, 39 skipped, 0 masked, 0 errors.
 
-1) 'linux-yocto' is what will be built;
-2) when the MACHINE is 'qemux86'.
+Build Configuration:
+BB_VERSION        = "1.15.3"
+TARGET_ARCH       = "arm"
+TARGET_OS         = "linux-gnueabi"
+MACHINE           = "vexpressa9"
+DISTRO            = "poky-ivi-systemd"
+DISTRO_VERSION    = "E-0.2+snapshot-20120906"
+TUNE_FEATURES     = "armv7a vfp neon cortexa9"
+TARGET_FPU        = "vfp-neon"
+meta
+meta-yocto        = "master:0f55a5868457300a3defc7fa7451ef191d19e018"
+meta-ivi          = "master:d2be84764e15003603f08e950308dae7d0ffa9a2"
+meta-systemd      = "master:ff33e6271934c747396c307e51dc3e5a5a1f75b8"
 
-So, PREFERRED_VERSION_linux-yocto_qemux86 ?=3D "3.0%" says that the =
-'linux-yocto_3.0x' kernel recipe (look in meta/recipes-kernel/linux) is =
-the preferred kernel to build for the 'qemux86' machine.
+NOTE: Resolving any missing task queue dependencies
+ERROR: Nothing RPROVIDES 'libsegfault' (but
+/media/acme/remus/poky-git/meta/recipes-core/packagegroups/packagegroup-core-standalone-sdk-target.bb
+RDEPENDS on or otherwise requires it)
+NOTE: Runtime target 'libsegfault' is unbuildable, removing...
+Missing or unbuildable dependency chain was: ['libsegfault']
+NOTE: Runtime target 'packagegroup-core-standalone-sdk-target' is
+unbuildable, removing...
+Missing or unbuildable dependency chain was:
+['packagegroup-core-standalone-sdk-target', 'libsegfault']
+ERROR: Required build target 'discovery-image' has no buildable providers.
+Missing or unbuildable dependency chain was: ['discovery-image',
+'packagegroup-core-standalone-sdk-target', 'libsegfault']
 
-bitbake knows how to extract the parts that follow PREFERRED_VERSION =
-(and similar), so you won't find direct references to =
-PREFERRED_VERSION_linux-yocto_qemux86.
-
-I'm sure someone will be along to explain that better shortly...
-
-Chris Tapp
-
-opensource@keylevel.com
-www.keylevel.com
+Summary: There were 2 ERROR messages shown, returning a non-zero exit code.
 
 
+Being fairly new to Yocto/bitbake, I'm not sure how to begin
+troubleshooting this. Any suggestions?  (Note: this is from poky master
+as of this morning. It may be that meta-ivi doesn't--and isn't intended
+to--work with the bleeding edge poky sources. I'm just trying to get my
+head around how to sort out conflicts like this...)
 
-
---Apple-Mail=_7F4241D5-638E-4021-8E06-4370896FC3AB
-Content-Transfer-Encoding: 7bit
-Content-Type: text/html;
-	charset=us-ascii
-
-<html><head></head><body style="word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-line-break: after-white-space; "><div><div>On 6 Sep 2012, at 17:29, James Macon wrote:</div><br class="Apple-interchange-newline"><blockquote type="cite"><font size="2" face="sans-serif">Inside of poky.conf there is a variable
-</font><font size="2" face="Courier New">PREFERRED_VERSION_linux-yocto_qemux86
-?= "3.0%"</font>
-<br><font size="2" face="sans-serif">&nbsp;</font>
-<br><font size="2" face="sans-serif">I assume linux-yocto is the package
-name and qemux86 is the machine name. </font>
-<br>
-<br><font size="2" face="sans-serif">I can't find where any references </font><font size="2" face="Courier New">PREFERRED_VERSION_linux-yocto_qemux86</font><font size="2" face="sans-serif">
-are in the build. It is probably the result of multiple appends but I haven't
-been able to find it. </font>
-<br>
-<br><font size="2" face="sans-serif">I would like to know where the appends
-are and who uses it.</font>
-<br></blockquote><br></div><div>You just need to know how to break the name down:</div><div><br></div><div>1) 'linux-yocto' is what will be built;</div><div>2) when the MACHINE is 'qemux86'.</div><div><br></div><div>So,&nbsp;PREFERRED_VERSION_linux-yocto_qemux86 ?= "3.0%" says that the 'linux-yocto_3.0x' kernel recipe (look in meta/recipes-kernel/linux) is the preferred kernel to build for the 'qemux86' machine.</div><div><br></div><div>bitbake knows how to extract the parts that follow PREFERRED_VERSION (and similar), so you won't find direct references to&nbsp;PREFERRED_VERSION_linux-yocto_qemux86.</div><div><br></div><div>I'm sure someone will be along to explain that better shortly...</div><div><br></div><div apple-content-edited="true">
-<span class="Apple-style-span" style="border-collapse: separate; color: rgb(0, 0, 0); font-family: Helvetica; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: auto; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-border-horizontal-spacing: 0px; -webkit-border-vertical-spacing: 0px; -webkit-text-decorations-in-effect: none; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; font-size: medium; "><div>Chris Tapp</div><div><br></div><div><a href="mailto:opensource@keylevel.com">opensource@keylevel.com</a></div><div><a href="http://www.keylevel.com">www.keylevel.com</a></div><div><br></div></span><br class="Apple-interchange-newline">
-</div>
-<br></body></html>
-
---Apple-Mail=_7F4241D5-638E-4021-8E06-4370896FC3AB--
