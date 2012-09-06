@@ -1,39 +1,22 @@
-Return-Path: <elvis.dowson@gmail.com>
-Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
-	[209.85.160.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CB1DBE002AC
-	for <yocto@yoctoproject.org>; Thu,  6 Sep 2012 10:52:12 -0700 (PDT)
-Received: by pbbrq13 with SMTP id rq13so3202393pbb.35
-	for <yocto@yoctoproject.org>; Thu, 06 Sep 2012 10:52:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=subject:mime-version:content-type:from:in-reply-to:date:cc
-	:content-transfer-encoding:message-id:references:to:x-mailer;
-	bh=caVrSMpgaMh8IkuyHIF6iugctbsUOENEeckVGRRAZRc=;
-	b=0MhHdYLRw4w/vIC8NT7zccmRkP4BNTVk9isDz6GLp29scv5w72OkhLjNOjPwxfnrHX
-	CuP4O5ny2DvA/1lq95j0ATPYGMzJCRncb4TXLw/gbrU7sMeiFYjZTPBi0i+734hC/RzX
-	1Nhz3rTYdqedLKwqOcZ0RBCQ+fT3TIXYLEqypm8778xpJhPxz2XxprHhjOy4gqsUtduU
-	1nZwvrFEJ4pGHKeJQWJUZ1pBDJBsZ+UPkJ5bOkWNWsS8lrVqLa5QNFl13FP+bGR2HbAw
-	H7g/XOx2kLlU57oUQ6NbyrHUgn+QbBLLJ+7FNAsSOOhChdj6OY+t8RVFh/bq39vYhWHL
-	mLjQ==
-Received: by 10.66.75.225 with SMTP id f1mr4343225paw.35.1346953932549;
-	Thu, 06 Sep 2012 10:52:12 -0700 (PDT)
-Received: from [192.168.1.101] ([94.205.108.162])
-	by mx.google.com with ESMTPS id mu8sm1684657pbc.49.2012.09.06.10.52.09
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Thu, 06 Sep 2012 10:52:11 -0700 (PDT)
-Mime-Version: 1.0 (Apple Message framework v1278)
-From: Elvis Dowson <elvis.dowson@gmail.com>
-In-Reply-To: <5048C1C2.1010903@mlbassoc.com>
-Date: Thu, 6 Sep 2012 21:52:05 +0400
-Message-Id: <9362ED2A-B401-40A3-8341-FA7873C822D8@gmail.com>
-References: <1CA12C40-FBBD-4CC7-B45A-5867AB64490A@gmail.com>
-	<4865264.UZoJkHz8Ho@helios>
-	<FA3A0E24-467D-45F1-9809-BED60472FB8C@gmail.com>
-	<5048C1C2.1010903@mlbassoc.com>
-To: Gary Thomas <gary@mlbassoc.com>
-X-Mailer: Apple Mail (2.1278)
-Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-Subject: Re: Procedure to setup icecc for performing a distributed build
+Return-Path: <kishore.k.bodke@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4D9CDE002AC
+	for <yocto@yoctoproject.org>; Thu,  6 Sep 2012 11:02:42 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 06 Sep 2012 11:02:42 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,380,1344236400"; d="scan'208";a="189671549"
+Received: from kishore-desktop.sc.intel.com (HELO localhost)
+	([143.183.188.177])
+	by azsmga001.ch.intel.com with ESMTP; 06 Sep 2012 11:02:42 -0700
+From: kishore.k.bodke@intel.com
+To: tom.zanussi@intel.com,
+	nitin.a.kamble@intel.com,
+	yocto@yoctoproject.org
+Date: Thu,  6 Sep 2012 11:03:01 -0700
+Message-Id: <cover.1346954020.git.kishore.k.bodke@intel.com>
+X-Mailer: git-send-email 1.7.9.5
+Subject: [PATCH 0/1] [meta-intel] Crystal Forest BSP Created.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,57 +28,69 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 06 Sep 2012 17:52:12 -0000
-Content-Type: text/plain; charset=iso-8859-1
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 06 Sep 2012 18:02:47 -0000
 
-Hi Gary,
+From: Kishore Bodke <kishore.k.bodke@intel.com>
 
-On Sep 6, 2012, at 7:31 PM, Gary Thomas wrote:
+This is the Initial Checkin for the new Crystal Forest BSP.
+This BSP has two versions of platform.
+1. Stargo Platform is based on Intel Sandy Bridge Gladden Processor,plus the Cave Creek chipset.
+2. Shumway Platform is based on two Intel Sandy Bridge (SNB-EP ES2 Grade and SNB-EN ES2 Grade)
+   Processors plus two Cave Creek Chipsets.
 
-> On 2012-09-06 09:23, Elvis Dowson wrote:
->>=20
->> Unfortunately no. I've got two machines, both with quad-core intel i7 =
-processors, but I just couldn't
->> get icecc to work with yocto. I end up regularly perform fresh builds =
-at least 5 to 6 times a day,
->> and it takes me 2 hours to build core-image-minimal.
->=20
-> Just wondering the exact details of your system and why your =
-performance is
-> so very different from mine.
->=20
-> I have a HP box with 8-way Intel(R) Core(TM) i7-3770 CPU @ 3.40GHz & =
-12GB RAM
-> It will build a Yocto image from scratch in around 40 minutes.
+Both Platforms uses Matrox graphics Card.
 
-I'm running Ubuntu 12.04 LTS virtualized on a 2011 Apple MacBook Pro =
-15", with
-VMware Fusion 5.0.1. The VMware disk image resides on a SSD drive with a =
-3G
-SATA interface.
+Both the Platforms have been successfully booted and done basic testing for 3.4 kernel.
 
-The specs are 2.3GHz Intel quad-core i7-2820QM with 8MB L3 cache,=20
-8GB 1333 MHz RAM for the host.
+Please pull this into meta-intel/master.
 
-The Ubuntu 12.04 guest is configured with 4GB RAM, 8 virtual CPU cores.
-During core-image-minimal builds, the memory usage doesn't exceed 2 to =
-3GB.
+Thanks
+Kishore.
 
-A linux kernel 3.3.0 build for a powepc440 target takes 1 min 40 =
-seconds, as
-an additional data point.
+The following changes since commit 66b516f3d3a287eecbf8804b2221bfc27e36db63:
 
-Maybe next year, when the newer Mac Pros come out, I'll probably invest =
-in
-a 8-core or 10-core xeon configuration. The current Mac Pros are due for =
-a refresh
-then, so I'm waiting for the next hardware update.
+  README: add info explaining meta-tlk layer purpose (2012-09-06 10:36:02 -0500)
 
-I'm also considered buying an IBM Blade server, but haven't made up my =
-mind yet.
+are available in the git repository at:
 
-Best regards,
+  git://git.pokylinux.org/meta-intel-contrib Kishore/CrystalForest
+  http://git.pokylinux.org/cgit.cgi/meta-intel-contrib/log/?h=Kishore/CrystalForest
 
-Elvis Dowson=
+Kishore Bodke (1):
+  meta-crystalforest: Crystal Forest BSP Created.
+
+ meta-crystalforest/COPYING.MIT                     |   17 +++
+ meta-crystalforest/README                          |  139 ++++++++++++++++++++
+ meta-crystalforest/README.sources                  |   17 +++
+ meta-crystalforest/conf/layer.conf                 |   12 ++
+ .../conf/machine/crystalforest-shumway.conf        |   26 ++++
+ .../conf/machine/crystalforest-stargo.conf         |   27 ++++
+ .../formfactor/crystalforest-shumway/machconfig    |    3 +
+ .../formfactor/crystalforest-stargo/machconfig     |    3 +
+ .../recipes-bsp/formfactor/formfactor_0.0.bbappend |    3 +
+ .../crystalforest-shumway/xorg.conf                |   26 ++++
+ .../crystalforest-stargo/xorg.conf                 |   26 ++++
+ .../xorg-xserver/xserver-xf86-config_0.1.bbappend  |    3 +
+ .../linux/linux-yocto-rt_3.4.bbappend              |   18 +++
+ .../recipes-kernel/linux/linux-yocto_3.4.bbappend  |   17 +++
+ 14 files changed, 337 insertions(+)
+ create mode 100644 meta-crystalforest/COPYING.MIT
+ create mode 100644 meta-crystalforest/README
+ create mode 100644 meta-crystalforest/README.sources
+ create mode 100644 meta-crystalforest/binary/.gitignore
+ create mode 100644 meta-crystalforest/conf/layer.conf
+ create mode 100644 meta-crystalforest/conf/machine/crystalforest-shumway.conf
+ create mode 100644 meta-crystalforest/conf/machine/crystalforest-stargo.conf
+ create mode 100644 meta-crystalforest/recipes-bsp/formfactor/formfactor/crystalforest-shumway/machconfig
+ create mode 100644 meta-crystalforest/recipes-bsp/formfactor/formfactor/crystalforest-stargo/machconfig
+ create mode 100644 meta-crystalforest/recipes-bsp/formfactor/formfactor_0.0.bbappend
+ create mode 100644 meta-crystalforest/recipes-graphics/xorg-xserver/xserver-xf86-config/crystalforest-shumway/xorg.conf
+ create mode 100644 meta-crystalforest/recipes-graphics/xorg-xserver/xserver-xf86-config/crystalforest-stargo/xorg.conf
+ create mode 100644 meta-crystalforest/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend
+ create mode 100644 meta-crystalforest/recipes-kernel/linux/linux-yocto-rt_3.4.bbappend
+ create mode 100644 meta-crystalforest/recipes-kernel/linux/linux-yocto_3.4.bbappend
+
+-- 
+1.7.9.5
+
 
