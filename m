@@ -1,30 +1,23 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5BF11E0027F
-	for <yocto@yoctoproject.org>; Thu,  6 Sep 2012 08:33:08 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id EDD1BF811F7; Thu,  6 Sep 2012 09:33:07 -0600 (MDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=ham version=3.3.2
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 821DAF811EF;
-	Thu,  6 Sep 2012 09:33:07 -0600 (MDT)
-Message-ID: <5048C246.4090807@mlbassoc.com>
-Date: Thu, 06 Sep 2012 09:33:26 -0600
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:15.0) Gecko/20120827 Thunderbird/15.0
-MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <1CA12C40-FBBD-4CC7-B45A-5867AB64490A@gmail.com>
-	<4865264.UZoJkHz8Ho@helios>
-	<FA3A0E24-467D-45F1-9809-BED60472FB8C@gmail.com>
-	<2515670.URCovxJbBq@helios>
-In-Reply-To: <2515670.URCovxJbBq@helios>
-Subject: Re: Procedure to setup icecc for performing a distributed build
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D60DFE002AC
+	for <yocto@yoctoproject.org>; Thu,  6 Sep 2012 08:38:19 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 06 Sep 2012 08:38:17 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,380,1344236400"; d="scan'208";a="218628165"
+Received: from unknown (HELO [10.255.13.147]) ([10.255.13.147])
+	by fmsmga002.fm.intel.com with ESMTP; 06 Sep 2012 08:38:16 -0700
+Message-ID: <1346945896.4836.0.camel@empanada>
+From: Tom Zanussi <tom.zanussi@intel.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Date: Thu, 06 Sep 2012 10:38:16 -0500
+In-Reply-To: <1346937099-8151-1-git-send-email-paul.eggleton@linux.intel.com>
+References: <1346937099-8151-1-git-send-email-paul.eggleton@linux.intel.com>
+X-Mailer: Evolution 3.4.1 (3.4.1-2.fc17) 
+Mime-Version: 1.0
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-tlk][PATCH] README: add info explaining meta-tlk layer purpose
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,29 +29,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 06 Sep 2012 15:33:08 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+X-List-Received-Date: Thu, 06 Sep 2012 15:38:20 -0000
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-On 2012-09-06 09:29, Paul Eggleton wrote:
-> On Thursday 06 September 2012 19:23:53 Elvis Dowson wrote:
->> Unfortunately no. I've got two machines, both with quad-core intel i7
->> processors, but I just couldn't get icecc to work with yocto. I end up
->> regularly perform fresh builds at least 5 to 6 times a day, and it takes me
->> 2 hours to build core-image-minimal.
->
-> At its core, icecc.bbclass just sets things up so that icecc is called instead
-> of the normal compiler. It would be worth verifying that that is actually
-> taking effect by looking at the commands being used as reported in
-> log.do_configure for specific recipes.
+On Thu, 2012-09-06 at 14:11 +0100, Paul Eggleton wrote:
+> Signed-off-by: Paul Eggleton <paul.eggleton@linux.intel.com>
 
-Is this only for the host compiler or the target (cross) compilers as well?
-If it's only the host compiler being used for "native" builds, how much is
-there to be gained from distributing the work?
+Pulled into meta-intel/master, thanks.
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+Tom
+
+> ---
+>  meta-tlk/README |   11 +++++++----
+>  1 file changed, 7 insertions(+), 4 deletions(-)
+> 
+> diff --git a/meta-tlk/README b/meta-tlk/README
+> index 5ff4d3b..07cbd76 100644
+> --- a/meta-tlk/README
+> +++ b/meta-tlk/README
+> @@ -1,6 +1,9 @@
+> -meta-autobuilder
+> -===============
+> +meta-tlk
+> +========
+>  
+> -Contains recipe modifications required to produce the official 
+> -yocto autobuild BSPs.
+> +This layer makes the appropriate kernel modifications to enable a 10 day
+> +time limit in the official BSP images produced using the Yocto Project
+> +autobuilder, in order to encourage people to produce their own images
+> +for production whilst still allowing the images to be useful for testing
+> +and debugging.
+>  
+
+
 
