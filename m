@@ -1,19 +1,28 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 77CEBE00717
-	for <yocto@yoctoproject.org>; Thu,  6 Sep 2012 06:12:04 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 06 Sep 2012 06:12:04 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,380,1344236400"; d="scan'208";a="218561686"
-Received: from unknown (HELO helios.ger.corp.intel.com) ([10.252.121.173])
-	by fmsmga002.fm.intel.com with ESMTP; 06 Sep 2012 06:12:03 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
+Return-Path: <munoz0raul@gmail.com>
+Received: from mail-lpp01m010-f48.google.com (mail-lpp01m010-f48.google.com
+	[209.85.215.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B54C5E01491
+	for <yocto@yoctoproject.org>; Thu,  6 Sep 2012 06:17:31 -0700 (PDT)
+Received: by lagr15 with SMTP id r15so1270477lag.35
+	for <yocto@yoctoproject.org>; Thu, 06 Sep 2012 06:17:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=uEX3MC7ieHsm0fPPzCH0xliNza1E+amIJO9jgzy4sOE=;
+	b=txE4Da99pG4CPy8x5qW3/CD0jWoG2qPVQa+diKZjiK7iOGoo53p/GpVFM3QWVY9e6K
+	GiPeNu+Ynvz9dn79sqnFGH2dMZmibI0Z1X7AktsjgNNPNEJfrAp4C3uTpQu9MEBwNNAi
+	3P+Y4vl/4uizgz11URoZ3N8QUUWBZRdaBERzVSRgZ/PWwOeFFwpcLR9QtZ8Ju8D3dTjg
+	m0ftHar4PffaNaF3+dbZgF199oLl04gcw4f9CZnDcujOXZRM/yF3W25TCQHJtnbac6RE
+	YO4w8plo7dCWvwNd/wcKhLs+kPzlSbtfiwPOTppWyX2jUF48YzJRriTyr9Mglwvcn+uN
+	VixQ==
+MIME-Version: 1.0
+Received: by 10.152.102.137 with SMTP id fo9mr1902650lab.35.1346937446613;
+	Thu, 06 Sep 2012 06:17:26 -0700 (PDT)
+Received: by 10.112.21.194 with HTTP; Thu, 6 Sep 2012 06:17:26 -0700 (PDT)
+Date: Thu, 6 Sep 2012 10:17:26 -0300
+Message-ID: <CANmVirjPHP-ychkG8beb6B7cGvYzmCJW9OBs-tOMK20t=u60uQ@mail.gmail.com>
+From: Raul Rosetto Munoz <munoz0raul@gmail.com>
 To: yocto@yoctoproject.org
-Date: Thu,  6 Sep 2012 14:11:39 +0100
-Message-Id: <1346937099-8151-1-git-send-email-paul.eggleton@linux.intel.com>
-X-Mailer: git-send-email 1.7.9.5
-Subject: [meta-tlk][PATCH] README: add info explaining meta-tlk layer purpose
+Subject: BeagleBone U-boot
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -25,32 +34,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 06 Sep 2012 13:12:04 -0000
+X-List-Received-Date: Thu, 06 Sep 2012 13:17:32 -0000
+Content-Type: multipart/alternative; boundary=f46d0407160b0a410204c908503d
 
-Signed-off-by: Paul Eggleton <paul.eggleton@linux.intel.com>
----
- meta-tlk/README |   11 +++++++----
- 1 file changed, 7 insertions(+), 4 deletions(-)
+--f46d0407160b0a410204c908503d
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/meta-tlk/README b/meta-tlk/README
-index 5ff4d3b..07cbd76 100644
---- a/meta-tlk/README
-+++ b/meta-tlk/README
-@@ -1,6 +1,9 @@
--meta-autobuilder
--===============
-+meta-tlk
-+========
- 
--Contains recipe modifications required to produce the official 
--yocto autobuild BSPs.
-+This layer makes the appropriate kernel modifications to enable a 10 day
-+time limit in the official BSP images produced using the Yocto Project
-+autobuilder, in order to encourage people to produce their own images
-+for production whilst still allowing the images to be useful for testing
-+and debugging.
- 
--- 
-1.7.9.5
+Hello,
+
+I have de mux.h and pinmux.h file for a beaglebone.
+
+I want yo know what file the uboot use to configurate de pinmux for
+beaglebone.
+
+I saw that for particular machine this file have a particular name.
+
+SOme one can help me to configure de beaglebone mux?
+
+Thanks For all Help.
 
 
+--=20
+*Raul Rosetto Mu=F1oz*
+
+--f46d0407160b0a410204c908503d
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+Hello,<div><br></div><div>I have de mux.h and pinmux.h file for a beaglebon=
+e.</div><div><br></div><div>I want yo know what file the uboot use to confi=
+gurate de pinmux for beaglebone.</div><div><br></div><div>I saw that for pa=
+rticular machine this file have a particular name.</div>
+<div><br></div><div>SOme one can help me to configure de beaglebone mux?</d=
+iv><div><br></div><div>Thanks For all Help.</div><div><br clear=3D"all"><di=
+v><br></div>-- <br><b>Raul Rosetto Mu=F1oz</b><br>
+</div>
+
+--f46d0407160b0a410204c908503d--
