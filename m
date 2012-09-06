@@ -1,22 +1,33 @@
-Return-Path: <philip@balister.org>
-Received: from starfish.geekisp.com (starfish.geekisp.com [216.168.135.166])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5D09AE002AC
-	for <yocto@yoctoproject.org>; Thu,  6 Sep 2012 14:06:58 -0700 (PDT)
-Received: (qmail 32013 invoked by uid 1003); 6 Sep 2012 21:06:41 -0000
-Received: from unknown (HELO ?192.168.1.105?) (philip@opensdr.com@71.171.24.25)
-	by mail.geekisp.com with (DHE-RSA-AES256-SHA encrypted) SMTP;
-	6 Sep 2012 21:06:41 -0000
-Message-ID: <50491060.5030300@balister.org>
-Date: Thu, 06 Sep 2012 17:06:40 -0400
-From: Philip Balister <philip@balister.org>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:15.0) Gecko/20120828 Thunderbird/15.0
+Return-Path: <twoerner@gmail.com>
+Received: from mail-lpp01m010-f48.google.com (mail-lpp01m010-f48.google.com
+	[209.85.215.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1F967E0150C
+	for <yocto@yoctoproject.org>; Thu,  6 Sep 2012 14:41:36 -0700 (PDT)
+Received: by lagr15 with SMTP id r15so1712757lag.35
+	for <yocto@yoctoproject.org>; Thu, 06 Sep 2012 14:41:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=WunMRHad5fM/cL4JbQTjpX07ejqQdTVXM2DfqEGcK+g=;
+	b=klIork3FOnAWVj1pnY1O4LEtvZTTKyzm/mwBLI0SXlXtYppwlBMt2a63/F/lCqj9pr
+	Hfiwh7AKhi1Dp3owni4kqjzIYV6J4kK9c+cglBzJzZqovUi29CwsQM5GEKSbwsbveSuc
+	SCo5xvtm/upARQTL6Si+3iZbhZnhcKsNnX5gkGxkSh+se3pOZWmNmOYQ1QZCbueQUjW4
+	nFfmjX4/AfJDHQL7tsH8HJQse6IpUfSwc+GAHO5WqocK1K8PP3N8qjFeOEVd4EMuCfhp
+	t9O89HUY2RvHxNTOpwPz6MzFQvgn604JlJVOapFZnyjw2v6/W7CwOldE1FNZhcN1efb4
+	E8WQ==
 MIME-Version: 1.0
-To: Trevor Woerner <twoerner@gmail.com>
+Received: by 10.112.82.170 with SMTP id j10mr1405020lby.8.1346967695544; Thu,
+	06 Sep 2012 14:41:35 -0700 (PDT)
+Received: by 10.112.37.2 with HTTP; Thu, 6 Sep 2012 14:41:35 -0700 (PDT)
+In-Reply-To: <50491060.5030300@balister.org>
 References: <CAHUNapQUS19axgi+i=wAr0r_ogFj+UsSBpsBY_mhd+ac=5w8-g@mail.gmail.com>
 	<12E1ABCF-B181-4763-88A6-5B7E51758231@gmail.com>
 	<CAHUNapQs-i9hAjxz9vj5kR17CiT4y3VRZiEejjef_9ga+ZwOOg@mail.gmail.com>
-In-Reply-To: <CAHUNapQs-i9hAjxz9vj5kR17CiT4y3VRZiEejjef_9ga+ZwOOg@mail.gmail.com>
+	<50491060.5030300@balister.org>
+Date: Thu, 6 Sep 2012 17:41:35 -0400
+Message-ID: <CAHUNapTtdmGV4M6-G1MDKaUGJQBLUBXA8hbwW5fGyG9s8BomSg@mail.gmail.com>
+From: Trevor Woerner <twoerner@gmail.com>
+To: Philip Balister <philip@balister.org>
 Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
 Subject: Re: any success with spartan6-lx9mb?
 X-BeenThere: yocto@yoctoproject.org
@@ -30,77 +41,18 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 06 Sep 2012 21:06:58 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 06 Sep 2012 21:41:37 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On 09/06/2012 04:11 PM, Trevor Woerner wrote:
-> Hi Elvis,
->
-> Thanks so much for taking a look at my email! I've read through lots
-> of this mailing list's history and noticed all your meta-xilinx work
-> in the past and was hoping I could pique your interest :-)
->
-> On Thu, Sep 6, 2012 at 11:19 AM, Elvis Dowson <elvis.dowson@gmail.com> wrote:
->> Can you please list which version of the Xilinx ISE tools you are using? e.g. 12.4, 14.1, 14.2 ?
->
-> I have 14.2 installed on my Linux machine at home.
->
->> Could you also please list the Xilinx development board that you are using? e.g. SP601 (Spartan6) ?
->
-> I have been (slowly) teaching myself VHDL and working with a Papilio
-> board from Gadget Factory. Are you familiar with them? They have a
-> Spartan 3E on them.
->
->      http://papilio.cc/
->
->> Let me know what you ISE development tool configuration and development
->> board is, and I'll see if I can divert a bit from target platform, and try to
->> explore getting the toolchain to build for the Microblaze processor.
->
-> It is my understanding that Microblaze won't fit or work with the
-> Spartan 3E (?). However, the guy who makes the Papilio board, Jack
-> Gassett, is currently working on his latest board called the "Papilio
-> Plus". The Plus is not yet out, although prototypes are available:
->
->      http://forum.gadgetfactory.net/index.php?/topic/1280-papilio-plus-prototypes-available-for-8499-in-the-store/
->
-> The Plus will feature a Spartan 6 LX9, which, I believe, can support
-> the Microblaze.
->
-> In a comment on the All Programmable Planet blog about a month ago,
-> Jack bemoans how easy it used to be to get Linux up and running on a
-> Spartan 3E devel board using what has now become PetaLinux. The
-> problem is that PetaLinux is now a commercial product and not readily
-> available to the DIY market:
->
->      http://www.programmableplanet.com/messages.asp?piddl_msgthreadid=252509&piddl_msgid=717514#msg_717514
->
-> When I noticed the meta-xilinx layer had support for the Spartan 6 LX9
-> I was really hoping to surprise Jack by testing it out and providing
-> instructions for creating a filesystem he could use as part of his
-> work on the Plus. Unfortunately my attempts fell flat. I even tried
-> using denzil-7.0.1 but encountered the same problems.
->
-> Seeing how soft processors within programmable logic seems to be
-> gaining in popularity, I thought it would be a great niche to get
-> into. If the Yocto Project could be used to create images for the
-> Microblaze or even the Picoblaze processors I think it would help fill
-> a void which is quickly expanding. Also, if support could be added to
-> meta-xilinx to support Jack's Papilio boards it would help introduce
-> the DIY community to the Yocto Project.
->
->> I've got the following boards with me:
->> - Xilinx ML507 (Virtex 5 FX70T with PowerPC 440)
->> - Xilinx SP601 (Spartan 6)
->> - Xilinx Zynq (ARM Cortex A-9)
->
-> Once I get more into the VHDL I'll probably end up getting a Zynq
-> myself too; talk about combining the best of both worlds :-)
+Hi Philip,
 
-Speaking of zynq, I have a simple BSP here for the zc702 board:
+On Thu, Sep 6, 2012 at 5:06 PM, Philip Balister <philip@balister.org> wrote:
+> Speaking of zynq, I have a simple BSP here for the zc702 board:
+> https://github.com/balister/meta-zynq
 
-https://github.com/balister/meta-zynq
+Thanks. I found your layer from the layer index page:
+http://www.openembedded.org/wiki/LayerIndex
 
-Philip
+although I haven't tried it yet. It's good that the layer page is
+updated regularly.
 
