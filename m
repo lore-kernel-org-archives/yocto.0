@@ -1,24 +1,20 @@
 Return-Path: <timo.mueller@oss.bmw-carit.de>
 Received: from linuxmail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DBBFFE004AB
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DCFD8E01351
 	for <yocto@yoctoproject.org>; Thu,  6 Sep 2012 02:04:58 -0700 (PDT)
 Received: from localhost (mysterion.bmw-carit.intra [192.168.101.57])
 	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
 	(No client certificate requested)
 	(Authenticated sender: timo.mueller)
-	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id ADAB94009F;
+	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 9001340044;
 	Thu,  6 Sep 2012 10:35:55 +0200 (CEST)
 From: mail@timomueller.eu
 To: yocto@yoctoproject.org
-Date: Thu,  6 Sep 2012 11:04:34 +0200
-Message-Id: <9c31105cfa8f5bfe6f7ec025de1084e79221e88f.1346922110.git.timo.mueller@bmw-carit.de>
+Date: Thu,  6 Sep 2012 11:04:33 +0200
+Message-Id: <cover.1346922110.git.timo.mueller@bmw-carit.de>
 X-Mailer: git-send-email 1.7.7.6
-In-Reply-To: <cover.1346922110.git.timo.mueller@bmw-carit.de>
-References: <cover.1346922110.git.timo.mueller@bmw-carit.de>
-In-Reply-To: <cover.1346922110.git.timo.mueller@bmw-carit.de>
-References: <cover.1346922110.git.timo.mueller@bmw-carit.de>
 Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: [RFC 1/6] documentation/adt-manual: Moved stylesheet parameters to customization file
+Subject: [RFC 0/6][yocto-docs] Add eclipse help generation to build system.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,57 +30,48 @@ X-List-Received-Date: Thu, 06 Sep 2012 09:04:59 -0000
 
 From: Timo Mueller <timo.mueller@bmw-carit.de>
 
-Standard stylesheet parameters were moved to the docbook customization
-file tying them to the docbook stylesheet used. Removing these
-parameters simplifies the Makefile.
+Hi,
 
-Furthermore supporting new output formats can now be achieved by
-creating a new customization file containing its corresponding
-parameters. Parameters that are used across different stylesheets with
-different values will then be separated through different
-customization files.
+before my vacation I've submitted a patch to the eclipse-poky project
+integrating the documentation into the eclipse IDE. To enable the integration
+into eclipse I've manually generated eclipse help from the documentation
+using the eclipse stylesheet provided by docbook.
 
-Global parameters can still be set through the XSLTOPTS variable since
-this precedes the parameters in the customization file.
----
- documentation/Makefile                             |    7 +------
- .../adt-manual/adt-manual-customization.xsl        |    7 +++++--
- 2 files changed, 6 insertions(+), 8 deletions(-)
+I've added the target 'eclipse' to the documentation's build system to
+automate the process of eclipse help generation. This can help to
+facilitate the process of keeping the integrated documentation in sync
+with the yocto documentation.
 
-diff --git a/documentation/Makefile b/documentation/Makefile
-index ee7089a..380193d 100644
---- a/documentation/Makefile
-+++ b/documentation/Makefile
-@@ -213,12 +213,7 @@ endif
- 
- 
- ifeq ($(DOC),adt-manual)
--XSLTOPTS = --stringparam html.stylesheet adt-style.css \
--           --stringparam  chapter.autolabel 1 \
--           --stringparam  appendix.autolabel A \
--           --stringparam  section.autolabel 1 \
--           --stringparam  section.label.includes.component.label 1 \
--           --xinclude
-+XSLTOPTS = --xinclude
- ALLPREQ = html pdf tarball
- TARFILES = adt-manual.html adt-manual.pdf adt-style.css figures/adt-title.png
- MANUALS = $(DOC)/$(DOC).html $(DOC)/$(DOC).pdf
-diff --git a/documentation/adt-manual/adt-manual-customization.xsl b/documentation/adt-manual/adt-manual-customization.xsl
-index 8eb6905..373bdb7 100644
---- a/documentation/adt-manual/adt-manual-customization.xsl
-+++ b/documentation/adt-manual/adt-manual-customization.xsl
-@@ -3,6 +3,9 @@
-   
-   <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/xhtml/docbook.xsl" />
- 
--<!--  <xsl:param name="generate.toc" select="'article nop'"></xsl:param>  -->
--
-+  <xsl:param name="html.stylesheet" select="'adt-style.css'" />
-+  <xsl:param name="chapter.autolabel" select="1" />
-+  <xsl:param name="appendix.autolabel" select="1" />
-+  <xsl:param name="section.autolabel" select="1" />
-+  <xsl:param name="section.label.includes.component.label" select="1" />
- </xsl:stylesheet>
+In this first RFC I've only integrated the adt-manual as a PoC,
+because I'm also proposing some changes to the existing html
+generation. These changes add a separation of the options used for the
+different output formats. They also help to keep the Makefile clean and
+concise.
+
+Cheers,
+	Timo
+
+Timo Mueller (6):
+  documentation/adt-manual: Moved stylesheet parameters to
+    customization file
+  documentation/adt-manual/adt-manual-eclipse-customization.xsl: Added
+    stylesheet for eclipse help
+  documentation/Makefile: Added eclipse target for generating eclipse
+    help
+  documentation/template/titlepage.templates.xml: Remove title from pdf
+    template
+  documentation/adt-manual/adt-manual.xml: Added title to bookinfo
+  documentation/Makefile: Added eclipse target to adt-manual
+    documentation
+
+ documentation/Makefile                             |   36 ++++++++++++++-----
+ .../adt-manual/adt-manual-customization.xsl        |    7 +++-
+ .../adt-manual-eclipse-customization.xsl           |   22 ++++++++++++
+ documentation/adt-manual/adt-manual.xml            |    5 ++-
+ documentation/template/titlepage.templates.xml     |   13 -------
+ 5 files changed, 57 insertions(+), 26 deletions(-)
+ create mode 100644 documentation/adt-manual/adt-manual-eclipse-customization.xsl
+
 -- 
 1.7.7.6
 
