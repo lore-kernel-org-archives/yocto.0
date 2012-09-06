@@ -1,29 +1,36 @@
-Return-Path: <scott.m.rifenbark@linux.intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4D8A4E01423
-	for <yocto@yoctoproject.org>; Thu,  6 Sep 2012 07:10:00 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 06 Sep 2012 07:10:00 -0700
+Return-Path: <scott.m.rifenbark@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9E7ADE00346
+	for <yocto@yoctoproject.org>; Thu,  6 Sep 2012 07:51:02 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga101.ch.intel.com with ESMTP; 06 Sep 2012 07:51:02 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,380,1344236400"; d="scan'208";a="218882464"
-Received: from linux.jf.intel.com (HELO linux.intel.com) ([10.23.219.25])
-	by fmsmga001.fm.intel.com with ESMTP; 06 Sep 2012 07:09:59 -0700
-Received: from [10.7.199.52] (srifenb-mobl.amr.corp.intel.com [10.7.199.52])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by linux.intel.com (Postfix) with ESMTP id D39FC2C8001
-	for <yocto@yoctoproject.org>; Thu,  6 Sep 2012 07:10:00 -0700 (PDT)
-Message-ID: <5048AEB7.2090000@linux.intel.com>
-Date: Thu, 06 Sep 2012 07:09:59 -0700
-From: Scott Rifenbark <scott.m.rifenbark@linux.intel.com>
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
-	rv:10.0.2) Gecko/20120216 Thunderbird/10.0.2
+X-IronPort-AV: E=Sophos;i="4.80,380,1344236400"; d="scan'208";a="142202279"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
+	by AZSMGA002.ch.intel.com with ESMTP; 06 Sep 2012 07:51:01 -0700
+Received: from orsmsx108.amr.corp.intel.com (10.22.225.40) by
+	orsmsx603.amr.corp.intel.com (10.22.226.49) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Thu, 6 Sep 2012 07:51:01 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.152]) by
+	ORSMSX108.amr.corp.intel.com ([169.254.9.127]) with mapi id
+	14.01.0355.002; Thu, 6 Sep 2012 07:51:00 -0700
+From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+To: "mail@timomueller.eu" <mail@timomueller.eu>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] [RFC 0/6][yocto-docs] Add eclipse help generation to
+	build	system.
+Thread-Index: AQHNjA7lghAkm7fRf0egbumL5I2xlZd9ZSOw
+Date: Thu, 6 Sep 2012 14:50:59 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237946A64D0B@ORSMSX101.amr.corp.intel.com>
+References: <cover.1346922110.git.timo.mueller@bmw-carit.de>
+In-Reply-To: <cover.1346922110.git.timo.mueller@bmw-carit.de>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <alpine.DEB.2.02.1203100856480.1391@oneiric>
-	<48107031.Jb7NvvnASa@helios>
-In-Reply-To: <48107031.Jb7NvvnASa@helios>
-Subject: Re: yocto ref manual: confusion between BB_ENV_WHITELIST and BB_ENV_EXTRAWHITE
+Cc: Timo Mueller <timo.mueller@bmw-carit.de>
+Subject: Re: [RFC 0/6][yocto-docs] Add eclipse help generation to build	system.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,36 +42,82 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 06 Sep 2012 14:10:00 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 06 Sep 2012 14:51:02 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-I  changed the variable from BB_ENV_WHITELIST in the description to 
-BB_ENV_EXTRAWHITE to make sense with the given example.  You can see the 
-change at 
-http://www.yoctoproject.org/docs/1.3/poky-ref-manual/poky-ref-manual.html#ref-bitbake-runtask.
+Hi Timo,=20
 
+Thanks for the patches here.  I need to be sure that these patches are base=
+d on the most recent documentation files found in the yocto-docs/master bra=
+nch, which is at http://git.yoctoproject.org/cgit/cgit.cgi/yocto-docs/log/.=
+  Can you confirm this for me?
+
+Thanks,=20
 Scott
 
-On 9/6/2012 1:41 AM, Paul Eggleton wrote:
-> On Saturday 10 March 2012 08:59:02 Robert P. J. Day wrote:
->>    from section B.5 of yocto ref manual:
->>
->> Tell BitBake to load what you want from the environment into the data
->> store. You can do so through the BB_ENV_WHITELIST variable. For
->> example, assume you want to prevent the build system from accessing
->> your $HOME/.ccache directory. The following command tells BitBake to
->> load CCACHE_DIR from the environment into the data store:
->>
->>       export BB_ENV_EXTRAWHITE="$BB_ENV_EXTRAWHITE CCACHE_DIR"
->>
->>    i think you can see how that might confuse the reader.
-> Looks like this still needs to be addressed. Scott, would you mind taking a
-> look at this? Seems to me that BB_ENV_WHITELIST just ought to be changed to
-> BB_ENV_EXTRAWHITE to make this make sense.
->
-> Cheers,
-> Paul
->
+-----Original Message-----
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of mail@timomueller.eu
+Sent: Thursday, September 06, 2012 2:05 AM
+To: yocto@yoctoproject.org
+Cc: Timo Mueller
+Subject: [yocto] [RFC 0/6][yocto-docs] Add eclipse help generation to build=
+ system.
 
+From: Timo Mueller <timo.mueller@bmw-carit.de>
+
+Hi,
+
+before my vacation I've submitted a patch to the eclipse-poky project
+integrating the documentation into the eclipse IDE. To enable the integrati=
+on
+into eclipse I've manually generated eclipse help from the documentation
+using the eclipse stylesheet provided by docbook.
+
+I've added the target 'eclipse' to the documentation's build system to
+automate the process of eclipse help generation. This can help to
+facilitate the process of keeping the integrated documentation in sync
+with the yocto documentation.
+
+In this first RFC I've only integrated the adt-manual as a PoC,
+because I'm also proposing some changes to the existing html
+generation. These changes add a separation of the options used for the
+different output formats. They also help to keep the Makefile clean and
+concise.
+
+Cheers,
+	Timo
+
+Timo Mueller (6):
+  documentation/adt-manual: Moved stylesheet parameters to
+    customization file
+  documentation/adt-manual/adt-manual-eclipse-customization.xsl: Added
+    stylesheet for eclipse help
+  documentation/Makefile: Added eclipse target for generating eclipse
+    help
+  documentation/template/titlepage.templates.xml: Remove title from pdf
+    template
+  documentation/adt-manual/adt-manual.xml: Added title to bookinfo
+  documentation/Makefile: Added eclipse target to adt-manual
+    documentation
+
+ documentation/Makefile                             |   36 ++++++++++++++--=
+---
+ .../adt-manual/adt-manual-customization.xsl        |    7 +++-
+ .../adt-manual-eclipse-customization.xsl           |   22 ++++++++++++
+ documentation/adt-manual/adt-manual.xml            |    5 ++-
+ documentation/template/titlepage.templates.xml     |   13 -------
+ 5 files changed, 57 insertions(+), 26 deletions(-)
+ create mode 100644 documentation/adt-manual/adt-manual-eclipse-customizati=
+on.xsl
+
+--=20
+1.7.7.6
+
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
 
