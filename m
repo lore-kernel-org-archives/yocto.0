@@ -1,23 +1,24 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9B860E004AB
-	for <yocto@yoctoproject.org>; Thu,  6 Sep 2012 01:41:54 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 06 Sep 2012 01:41:48 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,379,1344236400"; d="scan'208";a="197828528"
-Received: from unknown (HELO helios.localnet) ([10.252.121.173])
-	by orsmga002.jf.intel.com with ESMTP; 06 Sep 2012 01:41:53 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: yocto@yoctoproject.org, scott.m.rifenbark@intel.com
-Date: Thu, 06 Sep 2012 09:41:52 +0100
-Message-ID: <48107031.Jb7NvvnASa@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.9 (Linux/3.2.0-30-generic-pae; KDE/4.9.0; i686; ; )
-In-Reply-To: <alpine.DEB.2.02.1203100856480.1391@oneiric>
-References: <alpine.DEB.2.02.1203100856480.1391@oneiric>
-MIME-Version: 1.0
-Subject: Re: yocto ref manual: confusion between BB_ENV_WHITELIST and BB_ENV_EXTRAWHITE
+Return-Path: <timo.mueller@oss.bmw-carit.de>
+Received: from linuxmail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DBBFFE004AB
+	for <yocto@yoctoproject.org>; Thu,  6 Sep 2012 02:04:58 -0700 (PDT)
+Received: from localhost (mysterion.bmw-carit.intra [192.168.101.57])
+	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
+	(No client certificate requested)
+	(Authenticated sender: timo.mueller)
+	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id ADAB94009F;
+	Thu,  6 Sep 2012 10:35:55 +0200 (CEST)
+From: mail@timomueller.eu
+To: yocto@yoctoproject.org
+Date: Thu,  6 Sep 2012 11:04:34 +0200
+Message-Id: <9c31105cfa8f5bfe6f7ec025de1084e79221e88f.1346922110.git.timo.mueller@bmw-carit.de>
+X-Mailer: git-send-email 1.7.7.6
+In-Reply-To: <cover.1346922110.git.timo.mueller@bmw-carit.de>
+References: <cover.1346922110.git.timo.mueller@bmw-carit.de>
+In-Reply-To: <cover.1346922110.git.timo.mueller@bmw-carit.de>
+References: <cover.1346922110.git.timo.mueller@bmw-carit.de>
+Cc: Timo Mueller <timo.mueller@bmw-carit.de>
+Subject: [RFC 1/6] documentation/adt-manual: Moved stylesheet parameters to customization file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,32 +30,62 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 06 Sep 2012 08:41:54 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Thu, 06 Sep 2012 09:04:59 -0000
 
-On Saturday 10 March 2012 08:59:02 Robert P. J. Day wrote:
->   from section B.5 of yocto ref manual:
-> 
-> Tell BitBake to load what you want from the environment into the data
-> store. You can do so through the BB_ENV_WHITELIST variable. For
-> example, assume you want to prevent the build system from accessing
-> your $HOME/.ccache directory. The following command tells BitBake to
-> load CCACHE_DIR from the environment into the data store:
-> 
->      export BB_ENV_EXTRAWHITE="$BB_ENV_EXTRAWHITE CCACHE_DIR"
-> 
->   i think you can see how that might confuse the reader.
+From: Timo Mueller <timo.mueller@bmw-carit.de>
 
-Looks like this still needs to be addressed. Scott, would you mind taking a 
-look at this? Seems to me that BB_ENV_WHITELIST just ought to be changed to 
-BB_ENV_EXTRAWHITE to make this make sense.
+Standard stylesheet parameters were moved to the docbook customization
+file tying them to the docbook stylesheet used. Removing these
+parameters simplifies the Makefile.
 
-Cheers,
-Paul
+Furthermore supporting new output formats can now be achieved by
+creating a new customization file containing its corresponding
+parameters. Parameters that are used across different stylesheets with
+different values will then be separated through different
+customization files.
 
+Global parameters can still be set through the XSLTOPTS variable since
+this precedes the parameters in the customization file.
+---
+ documentation/Makefile                             |    7 +------
+ .../adt-manual/adt-manual-customization.xsl        |    7 +++++--
+ 2 files changed, 6 insertions(+), 8 deletions(-)
+
+diff --git a/documentation/Makefile b/documentation/Makefile
+index ee7089a..380193d 100644
+--- a/documentation/Makefile
++++ b/documentation/Makefile
+@@ -213,12 +213,7 @@ endif
+ 
+ 
+ ifeq ($(DOC),adt-manual)
+-XSLTOPTS = --stringparam html.stylesheet adt-style.css \
+-           --stringparam  chapter.autolabel 1 \
+-           --stringparam  appendix.autolabel A \
+-           --stringparam  section.autolabel 1 \
+-           --stringparam  section.label.includes.component.label 1 \
+-           --xinclude
++XSLTOPTS = --xinclude
+ ALLPREQ = html pdf tarball
+ TARFILES = adt-manual.html adt-manual.pdf adt-style.css figures/adt-title.png
+ MANUALS = $(DOC)/$(DOC).html $(DOC)/$(DOC).pdf
+diff --git a/documentation/adt-manual/adt-manual-customization.xsl b/documentation/adt-manual/adt-manual-customization.xsl
+index 8eb6905..373bdb7 100644
+--- a/documentation/adt-manual/adt-manual-customization.xsl
++++ b/documentation/adt-manual/adt-manual-customization.xsl
+@@ -3,6 +3,9 @@
+   
+   <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/xhtml/docbook.xsl" />
+ 
+-<!--  <xsl:param name="generate.toc" select="'article nop'"></xsl:param>  -->
+-
++  <xsl:param name="html.stylesheet" select="'adt-style.css'" />
++  <xsl:param name="chapter.autolabel" select="1" />
++  <xsl:param name="appendix.autolabel" select="1" />
++  <xsl:param name="section.autolabel" select="1" />
++  <xsl:param name="section.label.includes.component.label" select="1" />
+ </xsl:stylesheet>
 -- 
+1.7.7.6
 
-Paul Eggleton
-Intel Open Source Technology Centre
 
