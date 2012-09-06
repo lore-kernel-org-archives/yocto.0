@@ -1,19 +1,47 @@
-Return-Path: <chris@yassl.com>
-Received: from p3plsmtpa08-04.prod.phx3.secureserver.net
-	(p3plsmtpa08-04.prod.phx3.secureserver.net [173.201.193.105])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 8F36FE002AC
-	for <yocto@yoctoproject.org>; Thu,  6 Sep 2012 09:06:33 -0700 (PDT)
-Received: (qmail 28902 invoked from network); 6 Sep 2012 16:06:33 -0000
-Received: from unknown (174.45.76.142)
-	by p3plsmtpa08-04.prod.phx3.secureserver.net (173.201.193.105) with
-	ESMTP; 06 Sep 2012 16:06:33 -0000
-From: Chris Conlon <chris@yassl.com>
-Date: Thu, 6 Sep 2012 10:06:31 -0600
-Message-Id: <AA149620-AFAF-4670-8666-A34E500ADA75@yassl.com>
+Return-Path: <macon@us.ibm.com>
+Received: from e36.co.us.ibm.com (e36.co.us.ibm.com [32.97.110.154])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 63AE6E002AC
+	for <yocto@yoctoproject.org>; Thu,  6 Sep 2012 09:30:36 -0700 (PDT)
+Received: from /spool/local
+	by e36.co.us.ibm.com with IBM ESMTP SMTP Gateway: Authorized Use Only!
+	Violators will be prosecuted
+	for <yocto@yoctoproject.org> from <macon@us.ibm.com>;
+	Thu, 6 Sep 2012 10:30:30 -0600
+Received: from d03dlp02.boulder.ibm.com (9.17.202.178)
+	by e36.co.us.ibm.com (192.168.1.136) with IBM ESMTP SMTP Gateway:
+	Authorized Use Only! Violators will be prosecuted; 
+	Thu, 6 Sep 2012 10:29:56 -0600
+Received: from d03relay05.boulder.ibm.com (d03relay05.boulder.ibm.com
+	[9.17.195.107])
+	by d03dlp02.boulder.ibm.com (Postfix) with ESMTP id 5D0913E40044
+	for <yocto@yoctoproject.org>; Thu,  6 Sep 2012 10:29:53 -0600 (MDT)
+Received: from d03av05.boulder.ibm.com (d03av05.boulder.ibm.com [9.17.195.85])
+	by d03relay05.boulder.ibm.com (8.13.8/8.13.8/NCO v10.0) with ESMTP
+	id q86GTSeX119986
+	for <yocto@yoctoproject.org>; Thu, 6 Sep 2012 10:29:34 -0600
+Received: from d03av05.boulder.ibm.com (loopback [127.0.0.1])
+	by d03av05.boulder.ibm.com (8.14.4/8.13.1/NCO v10.0 AVout) with ESMTP
+	id q86GTH6K014519
+	for <yocto@yoctoproject.org>; Thu, 6 Sep 2012 10:29:17 -0600
+Received: from d03nm114.boulder.ibm.com (d03nm114.boulder.ibm.com
+	[9.63.40.221])
+	by d03av05.boulder.ibm.com (8.14.4/8.13.1/NCO v10.0 AVin) with ESMTP id
+	q86GTER1014415
+	for <yocto@yoctoproject.org>; Thu, 6 Sep 2012 10:29:15 -0600
 To: yocto@yoctoproject.org
-Mime-Version: 1.0 (Apple Message framework v1084)
-X-Mailer: Apple Mail (2.1084)
-Subject: CyaSSL Yocto Recipe
+MIME-Version: 1.0
+X-KeepSent: 2E6500D3:0EB341C7-87257A71:005A2207;
+ type=4; name=$KeepSent
+X-Mailer: Lotus Notes Release 8.5.1FP5 SHF29 November 12, 2010
+Message-ID: <OF2E6500D3.0EB341C7-ON87257A71.005A2207-85257A71.005A8DF2@us.ibm.com>
+From: James Macon <macon@us.ibm.com>
+Date: Thu, 6 Sep 2012 12:29:04 -0400
+X-MIMETrack: Serialize by Router on D03NM114/03/M/IBM(Release 8.5.3FP2IF1|July
+	25, 2012) at 09/06/2012 10:29:15,
+	Serialize complete at 09/06/2012 10:29:15
+X-Content-Scanned: Fidelis XPS MAILER
+x-cbid: 12090616-7606-0000-0000-00000369AD08
+Subject: Where is PREFERRED_VERSION_linux-yocto_qemux86 used?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -25,60 +53,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 06 Sep 2012 16:06:33 -0000
-X-Groupsio-MsgNum: 9198
-Content-Type: multipart/mixed; boundary=Apple-Mail-2609--726795293
+X-List-Received-Date: Thu, 06 Sep 2012 16:30:36 -0000
+Content-Type: multipart/alternative;
+	boundary="=_alternative 005A8DE585257A71_="
 
---Apple-Mail-2609--726795293
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=us-ascii
+--=_alternative 005A8DE585257A71_=
+Content-Type: text/plain; charset="US-ASCII"
 
-Hi,
+Inside of poky.conf there is a variable 
+PREFERRED_VERSION_linux-yocto_qemux86 ?= "3.0%"
+ 
+I assume linux-yocto is the package name and qemux86 is the machine name. 
 
-As per discussions with a few of the Yocto members, we have put together a=
- Yocto Project recipe for the CyaSSL embedded SSL library.  I have attached=
- the recipe here for review and comments.
+I can't find where any references PREFERRED_VERSION_linux-yocto_qemux86 
+are in the build. It is probably the result of multiple appends but I 
+haven't been able to find it. 
 
-Thanks,
-
-Chris Conlon
-www.yassl.com
-chris@yassl.com
-Skype: chris_conlon_07
-+1 406 209 0601
+I would like to know where the appends are and who uses it.
 
 
+Thanks, 
 
---Apple-Mail-2609--726795293
-Content-Disposition: attachment;
-	filename=cyassl_2.3.0.bb
-Content-Type: application/octet-stream;
-	name="cyassl_2.3.0.bb"
-Content-Transfer-Encoding: 7bit
+Jim Macon
+Toshiba Global Commerce Solutions
+voice +1 919-543-7490 
+mailto: macon@us.ibm.com
 
-SUMMARY = "CyaSSL Embedded SSL Library"
-DESCRIPTION = "CyaSSL is a lightweight SSL library written in C and \
-               optimized for embedded and RTOS environments. It can be \
-               Up to 20 times smaller than OpenSSL while still supporting \
-               a full TLS 1.2 client and server."
-HOMEPAGE = "http://www.yassl.com/yaSSL/Products-cyassl.html"
-BUGTRACKER = "http://github.com/cyassl/cyassl/issues"
-SECTION = "libs/network"
-LICENSE = "GPLv2"
-LIC_FILES_CHKSUM = "file://COPYING;md5=94d55d512a9ba36caa9b7df079bae19f"
+--=_alternative 005A8DE585257A71_=
+Content-Type: text/html; charset="US-ASCII"
 
-PR = "r0"
+<font size=2 face="sans-serif">Inside of poky.conf there is a variable
+</font><font size=2 face="Courier New">PREFERRED_VERSION_linux-yocto_qemux86
+?= &quot;3.0%&quot;</font>
+<br><font size=2 face="sans-serif">&nbsp;</font>
+<br><font size=2 face="sans-serif">I assume linux-yocto is the package
+name and qemux86 is the machine name. </font>
+<br>
+<br><font size=2 face="sans-serif">I can't find where any references </font><font size=2 face="Courier New">PREFERRED_VERSION_linux-yocto_qemux86</font><font size=2 face="sans-serif">
+are in the build. It is probably the result of multiple appends but I haven't
+been able to find it. </font>
+<br>
+<br><font size=2 face="sans-serif">I would like to know where the appends
+are and who uses it.</font>
+<br>
+<br>
+<br><font size=2 face="sans-serif">Thanks, </font>
+<br><font size=2 face="sans-serif"><br>
+Jim Macon<br>
+Toshiba Global Commerce Solutions<br>
+voice +1 919-543-7490 <br>
+mailto: macon@us.ibm.com</font>
 
-SRC_URI = "http://www.yassl.com/cyassl-${PV}.zip"
-
-SRC_URI[md5sum] = "e73b50c95eae06a2fb4a7eb0183b21ab"
-SRC_URI[sha256sum] = "b597f1c55d3bc4556d9c37e98ca56da2a529e111164d97c650fb097ef0a0d461"
-
-inherit autotools siteinfo
-
-# Detect and build with correct endianness
-CFLAGS += "${@base_conditional('SITEINFO_ENDIANNESS', 'le', '', '-DBIG_ENDIAN_ORDER', d)}"
-
-
---Apple-Mail-2609--726795293--
+--=_alternative 005A8DE585257A71_=--
