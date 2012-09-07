@@ -1,25 +1,28 @@
-Return-Path: <philip@balister.org>
-Received: from starfish.geekisp.com (starfish.geekisp.com [216.168.135.166])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C23BFE01507
-	for <yocto@yoctoproject.org>; Fri,  7 Sep 2012 04:22:50 -0700 (PDT)
-Received: (qmail 12002 invoked by uid 1003); 7 Sep 2012 11:22:35 -0000
-Received: from unknown (HELO ?192.168.1.105?) (philip@opensdr.com@71.171.24.25)
-	by mail.geekisp.com with (DHE-RSA-AES256-SHA encrypted) SMTP;
-	7 Sep 2012 11:22:35 -0000
-Message-ID: <5049D8FA.8050600@balister.org>
-Date: Fri, 07 Sep 2012 07:22:34 -0400
-From: Philip Balister <philip@balister.org>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:15.0) Gecko/20120828 Thunderbird/15.0
+Return-Path: <vidal.develone@gmail.com>
+Received: from mail-ie0-f176.google.com (mail-ie0-f176.google.com
+	[209.85.223.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 22572E01507
+	for <yocto@yoctoproject.org>; Fri,  7 Sep 2012 04:47:04 -0700 (PDT)
+Received: by iecs9 with SMTP id s9so5522148iec.35
+	for <yocto@yoctoproject.org>; Fri, 07 Sep 2012 04:46:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=q5SZ1JSOn7FVOTIrWKspgfI1lIs6tG4eIMujiGuR6eY=;
+	b=c91ngq3dOK7kKs5uGhPh/RFhGyg3WMK6xxAqg4wjwZS0JISXqhvN5WVzkqVBc28gsQ
+	YikUWgC599nmScPxj46mu62K5rmH3fcpTK3W1yYxLHJHsLaR0h31bQyqxD0Qcf+y/iwq
+	+gPuNAdn2atjOXRsHIkPcQA4py/sIjyXQB1Rh3S7Nz5gTyfwOemXgzIEfq60mWCasjb3
+	z7VkUMLogbUGOjjuZYndhYf7Zk+hDqTJcn6wxPE48TcfUOOalTUS+Aol6Cwly/ATFaqu
+	wtdkMlB0OU6jRX2BXB9erqbLtf8uWR3OFJt6qsxEDcbbavzMXeNGkk2UjMyASn5c4F08
+	FRnw==
 MIME-Version: 1.0
-To: Bruce Ashfield <bruce.ashfield@windriver.com>
-References: <CAHUNapQUS19axgi+i=wAr0r_ogFj+UsSBpsBY_mhd+ac=5w8-g@mail.gmail.com>
-	<12E1ABCF-B181-4763-88A6-5B7E51758231@gmail.com>
-	<CAHUNapQs-i9hAjxz9vj5kR17CiT4y3VRZiEejjef_9ga+ZwOOg@mail.gmail.com>
-	<50491060.5030300@balister.org> <50492183.7030101@windriver.com>
-In-Reply-To: <50492183.7030101@windriver.com>
-Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-Subject: Re: any success with spartan6-lx9mb?
+Received: by 10.42.23.207 with SMTP id t15mr6624234icb.3.1347018409645; Fri,
+	07 Sep 2012 04:46:49 -0700 (PDT)
+Received: by 10.64.33.107 with HTTP; Fri, 7 Sep 2012 04:46:49 -0700 (PDT)
+Date: Fri, 7 Sep 2012 05:46:49 -0600
+Message-ID: <CANwz6nyaMDWRTdd=_g0yYcg3bsvvJ7Qx56RN8zeWAxFsmjTSsQ@mail.gmail.com>
+From: Edward Vidal <vidal.develone@gmail.com>
+To: yocto@yoctoproject.org
+Subject: beagleboard: change to xserver-xorg, not -lite
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,113 +34,64 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 07 Sep 2012 11:22:51 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 07 Sep 2012 11:47:04 -0000
+Content-Type: multipart/alternative; boundary=20cf301d41a4d0178e04c91b292b
 
-On 09/06/2012 06:19 PM, Bruce Ashfield wrote:
-> On 12-09-06 5:06 PM, Philip Balister wrote:
->> On 09/06/2012 04:11 PM, Trevor Woerner wrote:
->>> Hi Elvis,
->>>
->>> Thanks so much for taking a look at my email! I've read through lots
->>> of this mailing list's history and noticed all your meta-xilinx work
->>> in the past and was hoping I could pique your interest :-)
->>>
->>> On Thu, Sep 6, 2012 at 11:19 AM, Elvis Dowson <elvis.dowson@gmail.com>
->>> wrote:
->>>> Can you please list which version of the Xilinx ISE tools you are
->>>> using? e.g. 12.4, 14.1, 14.2 ?
->>>
->>> I have 14.2 installed on my Linux machine at home.
->>>
->>>> Could you also please list the Xilinx development board that you are
->>>> using? e.g. SP601 (Spartan6) ?
->>>
->>> I have been (slowly) teaching myself VHDL and working with a Papilio
->>> board from Gadget Factory. Are you familiar with them? They have a
->>> Spartan 3E on them.
->>>
->>> http://papilio.cc/
->>>
->>>> Let me know what you ISE development tool configuration and development
->>>> board is, and I'll see if I can divert a bit from target platform,
->>>> and try to
->>>> explore getting the toolchain to build for the Microblaze processor.
->>>
->>> It is my understanding that Microblaze won't fit or work with the
->>> Spartan 3E (?). However, the guy who makes the Papilio board, Jack
->>> Gassett, is currently working on his latest board called the "Papilio
->>> Plus". The Plus is not yet out, although prototypes are available:
->>>
->>> http://forum.gadgetfactory.net/index.php?/topic/1280-papilio-plus-prototypes-available-for-8499-in-the-store/
->>>
->>>
->>>
->>> The Plus will feature a Spartan 6 LX9, which, I believe, can support
->>> the Microblaze.
->>>
->>> In a comment on the All Programmable Planet blog about a month ago,
->>> Jack bemoans how easy it used to be to get Linux up and running on a
->>> Spartan 3E devel board using what has now become PetaLinux. The
->>> problem is that PetaLinux is now a commercial product and not readily
->>> available to the DIY market:
->>>
->>> http://www.programmableplanet.com/messages.asp?piddl_msgthreadid=252509&piddl_msgid=717514#msg_717514
->>>
->>>
->>>
->>> When I noticed the meta-xilinx layer had support for the Spartan 6 LX9
->>> I was really hoping to surprise Jack by testing it out and providing
->>> instructions for creating a filesystem he could use as part of his
->>> work on the Plus. Unfortunately my attempts fell flat. I even tried
->>> using denzil-7.0.1 but encountered the same problems.
->>>
->>> Seeing how soft processors within programmable logic seems to be
->>> gaining in popularity, I thought it would be a great niche to get
->>> into. If the Yocto Project could be used to create images for the
->>> Microblaze or even the Picoblaze processors I think it would help fill
->>> a void which is quickly expanding. Also, if support could be added to
->>> meta-xilinx to support Jack's Papilio boards it would help introduce
->>> the DIY community to the Yocto Project.
->>>
->>>> I've got the following boards with me:
->>>> - Xilinx ML507 (Virtex 5 FX70T with PowerPC 440)
->>>> - Xilinx SP601 (Spartan 6)
->>>> - Xilinx Zynq (ARM Cortex A-9)
->>>
->>> Once I get more into the VHDL I'll probably end up getting a Zynq
->>> myself too; talk about combining the best of both worlds :-)
->>
->> Speaking of zynq, I have a simple BSP here for the zc702 board:
->>
->> https://github.com/balister/meta-zynq
->
-> We have a namespace collision, there is also:
->
->    http://git.yoctoproject.org/cgit/cgit.cgi/meta-zynq/
+--20cf301d41a4d0178e04c91b292b
+Content-Type: text/plain; charset=ISO-8859-1
 
-Before creating the layer I checked:
+hello,
+I did a new build of poky
+git clone git://git.yoctoproject.org/poky.git
+With gitk I see that the patch has been applied to
 
-http://www.openembedded.org/wiki/LayerIndex
+meta-yocto-bsp/conf/machine/beagleboard.conf
 
-This is where layer information is collected. If a layer is not listed 
-here, yo can expect namespace collisions.
+When I execute MACHINE=beagleboard bitbake -v core-image-sato
+I get the following
 
-Philip
+Summary: 4 tasks failed:
+  /home/vidal/poky/meta/recipes-graphics/xorg-proto/glproto_1.4.16.bb,
+do_compile
 
->
-> Cheers,
->
-> Bruce
->
->>
->> Philip
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->
->
->
+  /home/vidal/poky/meta/recipes-graphics/xorg-proto/dri2proto_2.8.bb, do_compile
+  /home/vidal/poky/meta/recipes-graphics/xorg-proto/xf86driproto_2.1.1.bb,
+do_configure
 
+  /home/vidal/poky/meta/recipes-graphics/xorg-proto/fontsproto_2.1.2.bb,
+do_configure
+Summary: There were 4 ERROR messages shown, returning a non-zero exit code.
+Is this error related to change from
+
+xorg-xserver instead of xorg-xserver-lite
+Any help will be appreciated.
+Thanks
+
+--20cf301d41a4d0178e04c91b292b
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+hello,<br>I did a new build of poky<br>git clone git://<a href=3D"http://gi=
+t.yoctoproject.org/poky.git" target=3D"_blank">git.yoctoproject.org/poky.gi=
+t</a><br>With gitk I see that the patch has been applied to <br><pre>meta-y=
+octo-bsp/conf/machine/beagleboard.conf<br>
+
+<br>When I execute MACHINE=3Dbeagleboard bitbake -v core-image-sato<br>I ge=
+t the following<br><br>Summary: 4 tasks failed:<br>  /home/vidal/poky/meta/=
+recipes-graphics/xorg-proto/<a href=3D"http://glproto_1.4.16.bb" target=3D"=
+_blank">glproto_1.4.16.bb</a>, do_compile<br>
+
+  /home/vidal/poky/meta/recipes-graphics/xorg-proto/<a href=3D"http://dri2p=
+roto_2.8.bb" target=3D"_blank">dri2proto_2.8.bb</a>, do_compile<br>  /home/=
+vidal/poky/meta/recipes-graphics/xorg-proto/<a href=3D"http://xf86driproto_=
+2.1.1.bb" target=3D"_blank">xf86driproto_2.1.1.bb</a>, do_configure<br>
+
+  /home/vidal/poky/meta/recipes-graphics/xorg-proto/<a href=3D"http://fonts=
+proto_2.1.2.bb" target=3D"_blank">fontsproto_2.1.2.bb</a>, do_configure<br>=
+Summary: There were 4 ERROR messages shown, returning a non-zero exit code.=
+<br>
+Is this error related to change from <br>
+xorg-xserver instead of xorg-xserver-lite<br>Any help will be appreciated.<=
+br>Thanks<br></pre>
+
+--20cf301d41a4d0178e04c91b292b--
