@@ -1,34 +1,27 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7632FE01527
-	for <yocto@yoctoproject.org>; Fri,  7 Sep 2012 10:36:08 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id q87HZkJv028674
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 7 Sep 2012 10:35:46 -0700 (PDT)
-Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.2.309.2;
-	Fri, 7 Sep 2012 10:35:46 -0700
-Message-ID: <504A3069.2050600@windriver.com>
-Date: Fri, 7 Sep 2012 13:35:37 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:12.0) Gecko/20120430 Thunderbird/12.0.1
-MIME-Version: 1.0
-To: Philip Balister <philip@balister.org>
-References: <CAHUNapQUS19axgi+i=wAr0r_ogFj+UsSBpsBY_mhd+ac=5w8-g@mail.gmail.com>
-	<12E1ABCF-B181-4763-88A6-5B7E51758231@gmail.com>
-	<CAHUNapQs-i9hAjxz9vj5kR17CiT4y3VRZiEejjef_9ga+ZwOOg@mail.gmail.com>
-	<50491060.5030300@balister.org> <50492183.7030101@windriver.com>
-	<5049D8FA.8050600@balister.org>
-	<CADkTA4OCi8KF_QOALu1LTyT1it6ozvM3jD6Z6bmoFedT+HaWMQ@mail.gmail.com>
-	<1347034751.8619.7.camel@ted> <504A2113.8030100@windriver.com>
-	<504A2F0A.8080402@balister.org>
-In-Reply-To: <504A2F0A.8080402@balister.org>
-Cc: Vlad Lungu <vlad.lungu@windriver.com>,
-	Yocto Discussion Mailing List <yocto@yoctoproject.org>,
-	Zhong Hongbo <hongbo.zhong@windriver.com>
-Subject: Re: meta-zynq, was Re: any success with spartan6-lx9mb?
+Return-Path: <chris@yassl.com>
+Received: from smtpauth14.prod.mesa1.secureserver.net
+	(smtpauth14.prod.mesa1.secureserver.net [64.202.165.39])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id 5368FE011AF
+	for <yocto@yoctoproject.org>; Fri,  7 Sep 2012 12:55:17 -0700 (PDT)
+Received: (qmail 8406 invoked from network); 7 Sep 2012 19:55:02 -0000
+Received: from unknown (174.45.76.142)
+	by smtpauth14.prod.mesa1.secureserver.net (64.202.165.39) with ESMTP;
+	07 Sep 2012 19:55:02 -0000
+Mime-Version: 1.0 (Apple Message framework v1084)
+From: Chris Conlon <chris@yassl.com>
+In-Reply-To: <1346972003.7493.31.camel@ted>
+Date: Fri, 7 Sep 2012 13:55:00 -0600
+Message-Id: <F2556984-3668-4AED-B374-7AB2D54C3AF2@yassl.com>
+References: <AA149620-AFAF-4670-8666-A34E500ADA75@yassl.com>
+	<ADD6A3980E8C39419A432FF422031B4C0CCBAAD9@ORSMSX106.amr.corp.intel.com>
+	<A1E9071B-69AC-4306-ADEB-3C24FAC448C6@yassl.com>
+	<50492051.8020109@linux.intel.com>
+	<611E7277-9841-4B9C-A664-329376DCF9FF@yassl.com>
+	<1346972003.7493.31.camel@ted>
+To: Richard Purdie <richard.purdie@linuxfoundation.org>
+X-Mailer: Apple Mail (2.1084)
+Cc: yocto@yoctoproject.org, info@yassl.com
+Subject: Re: CyaSSL Yocto Recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,137 +33,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 07 Sep 2012 17:36:08 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 07 Sep 2012 19:55:17 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
-On 12-09-07 01:29 PM, Philip Balister wrote:
-> On 09/07/2012 12:30 PM, Bruce Ashfield wrote:
->> On 12-09-07 12:19 PM, Richard Purdie wrote:
->>> On Fri, 2012-09-07 at 08:27 -0400, Bruce Ashfield wrote:
->>>> On Fri, Sep 7, 2012 at 7:22 AM, Philip Balister<philip@balister.org>
->>>> wrote:
->>>>> On 09/06/2012 06:19 PM, Bruce Ashfield wrote:
->>>
->>>>>>>
->>>>>>> Speaking of zynq, I have a simple BSP here for the zc702 board:
->>>>>>>
->>>>>>> https://github.com/balister/meta-zynq
->>>>>>
->>>>>>
->>>>>> We have a namespace collision, there is also:
->>>>>>
->>>>>> http://git.yoctoproject.org/cgit/cgit.cgi/meta-zynq/
->>>>>
->>>>>
->>>>> Before creating the layer I checked:
->>>>>
->>>>> http://www.openembedded.org/wiki/LayerIndex
->>>>>
->>>>> This is where layer information is collected. If a layer is not
->>>>> listed here,
->>>>> yo can expect namespace collisions.
->>>>
->>>> Sure, I don't argue with that, but I wasn't the original owner of the
->>>> layer so
->>>> I can't say why it was or wasn't put into the wiki .. I'm not really
->>>> concerned
->>>> about the minor oversight. They layer I pointed to was done under
->>>> contract
->>>> by xilinx themselves, and contributed to be maintained as a yocto
->>>> BSP, so
->>>> the layers name is not something that I control or can change.
->>>>
->>>> Other similar layers can use the same name if they want, I was
->>>> pointing it
->>>> out for reference, since I've had the same thing pointed out to me in
->>>> the past ;)
->>>
->>> The bigger question is whether that layer is getting maintained. If it
->>> isn't, it will likely get removed. I'd prefer it to get added to the
->>> layer index and the namespace collision getting fixed.
->>>
->>> I was going to cc the maintainer but there isn't one listed in the
->>> README which is a really bad start. The feedback I gave when this was
->>> added has not all been acted upon either (multi-dtb.inc,
->>> layencytop/sysprof nastiness).
->>>
->>> This puts it right at the top of my "likely to get removed soon" list.
->>
->> It is being maintained, updates are pending.
->>
->>>
->>> Bruce: Since you have an idea who wrote it, could you find out whether
->>> its going to get fixed (at the very least fix the README, add to the
->>> index and resolve the namespace) or whether I should be deleting it.
->>
->> Don't delete it. Work is being done. This was supposed to be a primary
->> repository for work, and it is the basis for spin off BSPs. There was
->> a handoff issue between Wind River and Xylinx .. but I don't have all
->> the details.
->>
->> And it's something that I'll be carrying forward and pulling kernel
->> patches into linux-yocto on the next kernel bump.
->>
->> I'll do the simple updates to the README and put it in the layer index.
->
-> I'm concerned the kernel version is the yocto project version is based
-> off 3.2 and the code in git.xilinx.com is based of 3.3 now.
+Hi Richard,
 
-True. But the work I mentioned is happening is to move this to 3.4.
-3.2 is the version that Xilinx requested for initial integration as a
-yocto BSP, so that's where it sits for now.
+On Sep 6, 2012, at 4:53 PM, Richard Purdie wrote:
 
->
-> I do not like either situation :)
+> This looks like an interesting piece of software and a quick read
+> through your webpages suggests there may be some interesting
+> applications of this within OE which I'd love to explore.
+>=20
+> We are however quite careful about what goes into OE-Core and you've
+> picked about the worst possible point of the cycle to have this
+> discussion (just after feature freeze which was six days ago).
+>=20
+> So I certainly think this could make OE-Core but probably not in the =
+1.3
+> release timeframe. I would also want to see some kind of demo that we
+> could replace some of our openssl/gnutls usage with this too which so
+> far I've not seen. There is discussion in the OE-Core archives about
+> making the SSL/TLS provider selectable though so there is certainly
+> interest.
+>=20
+> So I think this is a good idea, a layer is a great place to start
+> experimenting and if its shown to be successful it would make the =
+core.
+> We've got to be realistic about the development process and this isn't
+> going to happen overnight though (a layer is much easier/faster to =
+start
+> with).
 
-Niether do I.
+Thanks for the notification about your feature freeze.  I do understand =
+that it may take some time to get CyaSSL rolled into OE-Core, and I =
+think you and Saul's suggestion of starting with a layer on GitHub is a =
+good first step.  =46rom there, maybe we can explore some of the =
+interesting applications you have in mind.
 
->
-> But, working with vendors who provide git repos of their work, it is
-> easier for people using the boards to track the vendor tree, and not
-> spend time figuring out how to get from linux releases to the vendor tree.
-
-In this case, they were hoping to track the yocto kernel versions to
-not make version skew or spread the version landscape anymore. As far
-as I know, this is still the case, since it makes the route to commercial
-support simpler in some cases.
-
->
-> I'd like to see the layers unifed, since we need to reduce confusion,
-> but have some reservations about the layer on the Yocto Project server.
-
-I'm sure we can work through them, I'm raising the right people at
-Xilinx to discuss as well, since in the end, their voice carries the
-most weight.
-
-Cheers,
-
-Bruce
-
->
-> Philip
->
->>
->> Cheers,
->>
->> Bruce
->>
->>>
->>> Cheers,
->>>
->>> Richard
->>>
->>> _______________________________________________
->>> yocto mailing list
->>> yocto@yoctoproject.org
->>> https://lists.yoctoproject.org/listinfo/yocto
->>
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->>
->>
-
+Best Regards,
+Chris=
 
