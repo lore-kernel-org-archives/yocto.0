@@ -1,37 +1,27 @@
-Return-Path: <elvis.dowson@gmail.com>
-Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
-	[209.85.160.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B67CFE01517
-	for <yocto@yoctoproject.org>; Thu,  6 Sep 2012 20:22:18 -0700 (PDT)
-Received: by pbbrq13 with SMTP id rq13so3900900pbb.35
-	for <yocto@yoctoproject.org>; Thu, 06 Sep 2012 20:22:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=subject:mime-version:content-type:from:in-reply-to:date:cc
-	:message-id:references:to:x-mailer;
-	bh=JS1xXO7sCjz3kjAlzhPOj+MNVof1b0UG4WmNomGv2ss=;
-	b=dkQSPqCSIX6bY2tK2gJUlXtlsY1FwB3LdwLPetAJ/m0NyRO4zWmhtPvrdx662TcdIe
-	diL4ooqW9Jl6jIcabgytNfdkRfY2lHe+G0bw5XD6OvT15Ox+VVvI+7aEqRKCqAAkUaft
-	2oehuHwymZVDNwrDNYIAREmSphlUMOLoZmWROnWyMzPwe+r/nMUF3xKrxlcrNuuKKFAG
-	/LLIBdmGlQBRzLICRwigpfV9xszdf81ZIQ41er5z9Oh/qmCo6kcxSeD+cNfOcvu904a8
-	GZRkNMpz9FC1+mSGrH/XRtiMT8MvgK8eywoUq1/3di5+YGJLfBmFBT4DUiU9w8l8lAaa
-	Eomw==
-Received: by 10.68.130.67 with SMTP id oc3mr8232561pbb.18.1346988124374;
-	Thu, 06 Sep 2012 20:22:04 -0700 (PDT)
-Received: from [192.168.1.101] ([94.205.108.162])
-	by mx.google.com with ESMTPS id qn3sm2402577pbc.6.2012.09.06.20.22.01
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Thu, 06 Sep 2012 20:22:03 -0700 (PDT)
-Mime-Version: 1.0 (Apple Message framework v1278)
-From: Elvis Dowson <elvis.dowson@gmail.com>
-In-Reply-To: <12E1ABCF-B181-4763-88A6-5B7E51758231@gmail.com>
-Date: Fri, 7 Sep 2012 07:21:57 +0400
-Message-Id: <AA2F4F97-00C8-48C3-90E8-5AF084D508B8@gmail.com>
-References: <CAHUNapQUS19axgi+i=wAr0r_ogFj+UsSBpsBY_mhd+ac=5w8-g@mail.gmail.com>
-	<12E1ABCF-B181-4763-88A6-5B7E51758231@gmail.com>
-To: Trevor Woerner <twoerner@gmail.com>
-X-Mailer: Apple Mail (2.1278)
-Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-Subject: Re: any success with spartan6-lx9mb?
+Return-Path: <Florin.Sarbu@windriver.com>
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F1E38E01507
+	for <yocto@yoctoproject.org>; Thu,  6 Sep 2012 22:08:13 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca [147.11.189.40])
+	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id q8758AP8013180
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Thu, 6 Sep 2012 22:08:10 -0700 (PDT)
+Received: from [128.224.170.157] (128.224.170.157) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.2.309.2;
+	Thu, 6 Sep 2012 22:08:10 -0700
+Message-ID: <5049813A.2000904@windriver.com>
+Date: Fri, 7 Sep 2012 08:08:10 +0300
+From: Florin Sarbu <florin.sarbu@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:15.0) Gecko/20120827 Thunderbird/15.0
+MIME-Version: 1.0
+To: Evade Flow <evadeflow@gmail.com>
+References: <CAMAb8ZNh8zUQnPuhMK8fkPT5QZuBdypDVYb8BudqT9Dc2TbT3g@mail.gmail.com>
+	<5048FA0F.50309@windriver.com>
+	<CAMAb8ZMhVPceKMAdoR-iTr9Rrd8UQT2CnfPm6kEjKo7b7Th14A@mail.gmail.com>
+In-Reply-To: <CAMAb8ZMhVPceKMAdoR-iTr9Rrd8UQT2CnfPm6kEjKo7b7Th14A@mail.gmail.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: ERROR: Nothing RPROVIDES 'libsegfault'
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,513 +33,239 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 07 Sep 2012 03:22:18 -0000
-Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_98A55373-CD15-4A4D-82AA-240D857A8CF8"
+X-List-Received-Date: Fri, 07 Sep 2012 05:08:14 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
+
+Please use the denzil branch for poky, not a denzil tag.
+
+Thanks,
+Florin
+
+On 09/06/2012 11:02 PM, Evade Flow wrote:
+> Thanks for confirming that the target for meta-ivi is denzil. After
+> re-targetting to branch denzil-7.0.1, I got the following error:
+>
+> ----------
+> Pseudo is not present but is required, building this first before the main build
+> Parsing recipes...NOTE: Error expanding variable populate_packages
+> NOTE: Error during finalise of
+> /media/acme/remus/poky-git/meta-ivi/recipes-graphics/mesa/mesa-dri_8.0.1.bb
+> ERROR: Unable to parse
+> /media/acme/remus/poky-git/meta-ivi/recipes-graphics/mesa/mesa-dri_8.0.1.bb
+> NOTE: Error expanding variable populate_packages
+> NOTE: Error during finalise of
+> /media/acme/remus/poky-git/meta-ivi/recipes-graphics/pango/pango_1.28.4.bb
+> ERROR: Command execution failed: Traceback (most recent call last):
+>    File "/media/acme/remus/poky-git/bitbake/lib/bb/command.py", line
+> 84, in runAsyncCommand
+>      self.cooker.updateCache()
+>    File "/media/acme/remus/poky-git/bitbake/lib/bb/cooker.py", line
+> 1202, in updateCache
+>      if not self.parser.parse_next():
+>    File "/media/acme/remus/poky-git/bitbake/lib/bb/cooker.py", line
+> 1669, in parse_next
+>      self.virtuals += len(result)
+> UnboundLocalError: local variable 'result' referenced before assignment
+>
+>
+> Summary: There were 2 ERROR messages shown, returning a non-zero exit code.
+> ----------
+>
+> I attempted a trivial fix for this (see below), and then got:
+>
+> ----------
+> Pseudo is not present but is required, building this first before the main build
+> Loading cache...done.
+> Loaded 3 entries from dependency cache.
+> Parsing recipes...NOTE: Error expanding variable populate_packages
+> NOTE: Error during finalise of
+> /media/acme/remus/poky-git/meta-ivi/recipes-graphics/mesa/mesa-dri_8.0.1.bb
+> ERROR: Unable to parse
+> /media/acme/remus/poky-git/meta-ivi/recipes-graphics/mesa/mesa-dri_8.0.1.bb
+> NOTE: Error expanding variable populate_packages
+> NOTE: Error during finalise of
+> /media/acme/remus/poky-git/meta-ivi/recipes-graphics/pango/pango_1.28.4.bb
+> ERROR: Command execution failed: Traceback (most recent call last):
+>    File "/media/acme/remus/poky-git/bitbake/lib/bb/command.py", line
+> 84, in runAsyncCommand
+>      self.cooker.updateCache()
+>    File "/media/acme/remus/poky-git/bitbake/lib/bb/cooker.py", line
+> 1202, in updateCache
+>      if not self.parser.parse_next():
+>    File "/media/acme/remus/poky-git/bitbake/lib/bb/cooker.py", line
+> 1671, in parse_next
+>      if parsed:
+> UnboundLocalError: local variable 'parsed' referenced before assignment
+>
+>
+> Summary: There were 2 ERROR messages shown, returning a non-zero exit code.
+> ----------
+>
+> The patch I tried was:
+>
+> diff --git a/bitbake/lib/bb/cooker.py b/bitbake/lib/bb/cooker.py
+> index 4a4dc38..a2cac9a 100644
+> --- a/bitbake/lib/bb/cooker.py
+> +++ b/bitbake/lib/bb/cooker.py
+> @@ -1644,6 +1644,8 @@ class CookerParser(object):
+>                       yield result
+>
+>       def parse_next(self):
+> +        result = []
+> +        parsed = 0
+>           try:
+>               parsed, result = self.results.next()
+>           except StopIteration:
+>
+>
+> After this attempted fix, I got the following errors:
+>
+> ----------
+> Pseudo is not present but is required, building this first before the main build
+> Loading cache...done.
+> Loaded 3 entries from dependency cache.
+> Parsing recipes...NOTE: Error expanding variable populate_packages
+> NOTE: Error during finalise of
+> /media/acme/remus/poky-git/meta-ivi/recipes-graphics/mesa/mesa-dri_8.0.1.bb
+> ERROR: Unable to parse
+> /media/acme/remus/poky-git/meta-ivi/recipes-graphics/mesa/mesa-dri_8.0.1.bb
+> NOTE: Error expanding variable populate_packages
+> NOTE: Error during finalise of
+> /media/acme/remus/poky-git/meta-ivi/recipes-graphics/pango/pango_1.28.4.bb
+> ERROR: No recipes available for:
+>    /media/acme/remus/poky-git/meta-yocto/recipes-core/uclibc/uclibc_git.bbappend
+>    /media/acme/remus/poky-git/meta-yocto/recipes-kernel/linux/linux-yocto_3.2.bbappend
+>    /media/acme/remus/poky-git/meta-yocto/recipes-bsp/formfactor/formfactor_0.0.bbappend
+>    /media/acme/remus/poky-git/meta-ivi/recipes-connectivity/openssl/openssl_1.0.0j.bbappend
+>    /media/acme/remus/poky-git/meta-ivi/recipes-kernel/kmod/kmod_git.bbappend
+>    /media/acme/remus/poky-git/meta-ivi/recipes-core-ivi/eglibc/eglibc-locale_2.16.bbappend
+>    /media/acme/remus/poky-git/meta-ivi/recipes-core-ivi/tinylogin/tinylogin_1.4.bbappend
+>    /media/acme/remus/poky-git/meta-yocto/recipes-graphics/mesa/mesa-dri_7.11.bbappend
+>    /media/acme/remus/poky-git/meta-ivi/recipes-core-ivi/eglibc/eglibc_2.16.bbappend
+>    /media/acme/remus/poky-git/meta-yocto/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
+>    /media/acme/remus/poky-git/meta-ivi/recipes-extended/tcp-wrappers/tcp-wrappers_7.6.bbappend
+>    /media/acme/remus/poky-git/meta-ivi/recipes-support-ivi/attr/attr_2.4.46.bbappend
+>    /media/acme/remus/poky-git/meta-ivi/recipes-graphics/xorg-xserver/xserver-xorg_1.11.2.bbappend
+>    /media/acme/remus/poky-git/meta-yocto/recipes-bsp/alsa-state/alsa-state.bbappend
+>    /media/acme/remus/poky-git/meta-ivi/recipes-qt/qt4/qt4-embedded_4.8.1.bbappend
+>    /media/acme/remus/poky-git/meta-ivi/recipes-multimedia/libtiff/tiff_4.0.2.bbappend
+>    /media/acme/remus/poky-git/meta-ivi/recipes-core-ivi/coreutils/coreutils_6.9.bbappend
+>    /media/acme/remus/poky-git/meta-ivi/recipes-connectivity/ofono/ofono_1.10.bbappend
+>    /media/acme/remus/poky-git/meta-yocto/recipes-core/psplash/psplash_git.bbappend
+>    /media/acme/remus/poky-git/meta-ivi/recipes-multimedia/gstreamer/gst-plugins-good_0.10.31.bbappend
+>    /media/acme/remus/poky-git/meta-yocto/recipes-gnome/tasks/task-core-sdk-gmae.bbappend
+>    /media/acme/remus/poky-git/meta-yocto/recipes-kernel/linux/linux-yocto_3.0.bbappend
+>    /media/acme/remus/poky-git/meta-ivi/recipes-kernel/linux/linux-yocto_3.0.bbappend
+>    /media/acme/remus/poky-git/meta-ivi/recipes-multimedia/alsa/alsa-utils_1.0.25.bbappend
+>    /media/acme/remus/poky-git/meta-ivi/recipes-connectivity/bluez/bluez4_4.101.bbappend
+>    /media/acme/remus/poky-git/meta-ivi/recipes-bsp/usbutils/usbutils_006.bbappend
+>    /media/acme/remus/poky-git/meta-ivi/recipes-core-ivi/base-files/base-files_3.0.14.bbappend
+>    /media/acme/remus/poky-git/meta-ivi/recipes-support-ivi/attr/acl_2.2.51.bbappend
+>    /media/acme/remus/poky-git/meta-ivi/recipes-support-ivi/libcap/libcap_2.22.bbappend
+>    /media/acme/remus/poky-git/meta-ivi/recipes-extended/shadow/shadow_4.1.4.3.bbappend
+>    /media/acme/remus/poky-git/meta-yocto/recipes-kernel/linux/linux-yocto_2.6.37.bbappend
+>    /media/acme/remus/poky-git/meta-ivi/recipes-devtools/gcc/libgcc_4.7.bbappend
+>    /media/acme/remus/poky-git/meta-ivi/recipes-bsp/u-boot/u-boot_2011.06.bbappend
+>    /media/acme/remus/poky-git/meta-ivi/recipes-extended/shadow-securetty/shadow-securetty_4.1.4.3.bbappend
+>    /media/acme/remus/poky-git/meta-yocto/recipes-core/tasks/task-core-tools-profile.bbappend
+>    /media/acme/remus/poky-git/meta-yocto/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend
+>    /media/acme/remus/poky-git/meta-ivi/recipes-devtools/e2fsprogs/e2fsprogs_1.42.1.bbappend
+>    /media/acme/remus/poky-git/meta-ivi/recipes-core-ivi/ncurses/ncurses_5.9.bbappend
+>    /media/acme/remus/poky-git/meta-ivi/recipes-multimedia/pulseaudio/pulseaudio_2.1.bbappend
+>    /media/acme/remus/poky-git/meta-ivi/recipes-connectivity/connman/connman_1.4.bbappend
+>    /media/acme/remus/poky-git/meta-ivi/recipes-core-ivi/busybox/busybox_1.20.2.bbappend
+>    /media/acme/remus/poky-git/meta-ivi/recipes-kernel/linux/linux-yocto_3.4.bbappend
+>    /media/acme/remus/poky-git/meta-yocto/recipes-qt/qt4/qt4-x11-free_4.7.4.bbappend
+>    /media/acme/remus/poky-git/meta-ivi/recipes-connectivity/portmap/portmap_6.0.bbappend
+>    /media/acme/remus/poky-git/meta-yocto/recipes-gnome/tasks/task-core-standalone-gmae-sdk-target.bbappend
+>    /media/acme/remus/poky-git/meta-ivi/recipes-qt/qt4/qt4-native_4.8.1.bbappend
+>    /media/acme/remus/poky-git/meta-ivi/recipes-extended/bash/bash_3.2.48.bbappend
+>    /media/acme/remus/poky-git/meta-ivi/recipes-support-ivi/libusb/libusb1_1.0.8.bbappend
+>    /media/acme/remus/poky-git/meta-ivi/recipes-core-ivi/util-linux/util-linux_2.21.2.bbappend
+>    /media/acme/remus/poky-git/meta-yocto/recipes-graphics/mesa/mesa-dri_git.bbappend
+>    /media/acme/remus/poky-git/meta-ivi/recipes-support-ivi/libusb/libusb-compat_0.1.3.bbappend
+>    /media/acme/remus/poky-git/meta-ivi/recipes-connectivity/wpa-supplicant/wpa-supplicant_1.0.bbappend
+>    /media/acme/remus/poky-git/meta-ivi/recipes-connectivity/openssh/openssh_6.0p1.bbappend
+>    /media/acme/remus/poky-git/meta-ivi/recipes-core-ivi/base-passwd/base-passwd_3.5.24.bbappend
+>    /media/acme/remus/poky-git/meta-ivi/recipes-core-ivi/dbus/dbus_1.6.4.bbappend
+>    /media/acme/remus/poky-git/meta-ivi/recipes-multimedia/gstreamer/gst-plugins-base_0.10.36.bbappend
+>    /media/acme/remus/poky-git/meta-ivi/recipes-connectivity/nfs-utils/nfs-utils_1.2.3.bbappend
+>    /media/acme/remus/poky-git/meta-ivi/recipes-extended/pam/libpam_1.1.6.bbappend
+> ERROR: Command execution failed: Exited with 1
+>
+> Summary: There were 3 ERROR messages shown, returning a non-zero exit code.
+> ----------
+>
+>
+> I'm out of ideas now. `:-} (Actually, I remember now that it was these
+> errors that made me decide to try poky master instead of denzil in the
+> first place.)
+>
+> Any idea what might be wrong?
+>
+>
+> On Thu, Sep 6, 2012 at 3:31 PM, Florin Sarbu <florin.sarbu@windriver.com> wrote:
+>> Hi,
+>> discovery-image is supposed to work with the denzil branch of poky. Please
+>> checkout that branch and let us know if you encounter any other issues.
+>>
+>> Thanks,
+>> Florin
+>>
+>>
+>> On 09/06/2012 10:22 PM, Evade Flow wrote:
+>>> I'm seeing this error while trying to 'bitbake discovery-image' from the
+>>> meta-ivi layer, according to the instructions here:
+>>>
+>>>     - http://git.yoctoproject.org/cgit/cgit.cgi/meta-ivi/tree/README.md
+>>>
+>>> The complete output looks like this:
+>>>
+>>> Loading cache...done.
+>>> Loaded 1162 entries from dependency cache.
+>>> Parsing recipes...done.
+>>> Parsing of 858 .bb files complete (857 cached, 1 parsed). 1159
+>>> targets, 39 skipped, 0 masked, 0 errors.
+>>>
+>>> Build Configuration:
+>>> BB_VERSION        = "1.15.3"
+>>> TARGET_ARCH       = "arm"
+>>> TARGET_OS         = "linux-gnueabi"
+>>> MACHINE           = "vexpressa9"
+>>> DISTRO            = "poky-ivi-systemd"
+>>> DISTRO_VERSION    = "E-0.2+snapshot-20120906"
+>>> TUNE_FEATURES     = "armv7a vfp neon cortexa9"
+>>> TARGET_FPU        = "vfp-neon"
+>>> meta
+>>> meta-yocto        = "master:0f55a5868457300a3defc7fa7451ef191d19e018"
+>>> meta-ivi          = "master:d2be84764e15003603f08e950308dae7d0ffa9a2"
+>>> meta-systemd      = "master:ff33e6271934c747396c307e51dc3e5a5a1f75b8"
+>>>
+>>> NOTE: Resolving any missing task queue dependencies
+>>> ERROR: Nothing RPROVIDES 'libsegfault' (but
+>>>
+>>> /media/acme/remus/poky-git/meta/recipes-core/packagegroups/packagegroup-core-standalone-sdk-target.bb
+>>> RDEPENDS on or otherwise requires it)
+>>> NOTE: Runtime target 'libsegfault' is unbuildable, removing...
+>>> Missing or unbuildable dependency chain was: ['libsegfault']
+>>> NOTE: Runtime target 'packagegroup-core-standalone-sdk-target' is
+>>> unbuildable, removing...
+>>> Missing or unbuildable dependency chain was:
+>>> ['packagegroup-core-standalone-sdk-target', 'libsegfault']
+>>> ERROR: Required build target 'discovery-image' has no buildable providers.
+>>> Missing or unbuildable dependency chain was: ['discovery-image',
+>>> 'packagegroup-core-standalone-sdk-target', 'libsegfault']
+>>>
+>>> Summary: There were 2 ERROR messages shown, returning a non-zero exit
+>>> code.
+>>>
+>>>
+>>> Being fairly new to Yocto/bitbake, I'm not sure how to begin
+>>> troubleshooting this. Any suggestions?  (Note: this is from poky master
+>>> as of this morning. It may be that meta-ivi doesn't--and isn't intended
+>>> to--work with the bleeding edge poky sources. I'm just trying to get my
+>>> head around how to sort out conflicts like this...)
+>>
 
---Apple-Mail=_98A55373-CD15-4A4D-82AA-240D857A8CF8
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=us-ascii
 
-Hi,
-
-On Sep 6, 2012, at 7:19 PM, Elvis Dowson wrote:
-
->>=20
->> issues:
->>=20
->> The first problem I encountered was trying to build =
-gcc-cross-initial:
->>   This target does not support --with-float.
->>=20
->=20
-> If you look at the tune file, it says TARGET_FPU =3D "soft", which =
-means
-> software floating point emulation.
->=20
-> However, the gcc toolchain recipes are trying to build with hardware =
-floating
-> point support, from the error message.
-
-My bad, the error was because the --with-float option does not exist for =
-the
-microblaze processor
-
-Looking at the gcc options for microblaze from=20
-
-http://gcc.gnu.org/onlinedocs/gcc/Option-Summary.html
-
-MicroBlaze Options
-
-          -msoft-float -mhard-float -msmall-divides -mcpu=3Dcpu=20
-          -mmemcpy -mxl-soft-mul -mxl-soft-div -mxl-barrel-shift=20
-          -mxl-pattern-compare -mxl-stack-check -mxl-gp-opt =
--mno-clearbss=20
-          -mxl-multiply-high -mxl-float-convert -mxl-float-sqrt=20
-          -mxl-mode-app-model
-
-So, the next step is to try and modify the tune files, slightly. I =
-recall someone from
-windriver mentioned that TARGET_FPU is to be explicitly set specified =
-only if a=20
-special hardware FPU was used. When it is blank, it means default, which =
-is
-hardware floating point. Software floating point gets set automatically =
-from
-other settings in the tune file.
-
-So the first thing to try is to remove any entry for TARGET_FPU =3D =
-"soft" from
-any tune file that you are referencing. It will get set automatically at =
-build time,
-as far as I know from the other options in the tune file.
-
-
-
-> opening microblaze-c.o: No such file or directory
-> make[1]: *** [cc1-checksum.c] Error 1
-> rm cpp.pod gcov.pod gfdl.pod gcc.pod fsf-funding.pod
-> make[1]: Leaving directory
-> =
-`/home/trevor/devel/yocto/git-method/spartan6-lx9/tmp/work/microblazeel-po=
-ky-linux/gcc-cross-initial-4.7.1.0+git1+d07e24f4ab59f264d68d21838795349faa=
-b5dede-r11/gcc-4_7-branch/build.x86_64-linux.microblaze-poky-linux/gcc'
-> make: *** [all-gcc] Error 2
-> ERROR: oe_runmake failed
-> ERROR: Function failed: do_compile
-
-The second thing to look at is the above error that you got.=20
-
-Perhaps the reason why it couldn't find the microblaze-c.o output file =
-was because in the gcc sources, there is no cpu=3Dmicroblazeel, but only =
-cpu=3Dmicroblaze
-
-=
-http://gcc.gnu.org/git/?p=3Dgcc.git;a=3Dblob;f=3Dgcc/config/microblaze/mic=
-roblaze-c.c;h=3D32c38da311b12b07cc1ed9fbf13f7946291f2857;hb=3Drefs/heads/g=
-cc-4_7-branch
-
-void=20
-microblaze_cpp_define (cpp_reader *pfile)
-{
-  builtin_assert ("cpu=3Dmicroblaze");
-  builtin_assert ("machine=3Dmicroblaze");
-  builtin_define ("__MICROBLAZE__");
-  if (!TARGET_SOFT_MUL)=20
-    {
-      if (!flag_iso)
-        builtin_define ("HAVE_HW_MUL");
-      builtin_define ("__HAVE_HW_MUL__");
-    }
-
-So, we will need to examine the tune files that you are using for your =
-particular machine configuration, and ensure that it is setting the =
-correct cpu type
-
-What you could start off, as a quick test would be to replace the =
-selected tune file in spartan6-lx9mb.conf and change it to use =
-tune-microblaze.inc instead of tune-microblazeel.inc, because the latter =
-appears to incorrectly set the cpu to microblazeel, I think.
-
-File: meta-xilinx/tree/conf/machine/spartan6-lx9mb.conf
-# Copyright (C) 2011, SecretLab Technologies Ltd.
-# Adrian Alonso <aalonso@secretlab.ca>
-# Released under the MIT license (see packages/COPYING)
-#@TYPE: Machine
-#@Name: Xilinx generic microblaze target support
-#@DESCRIPTION: Machine configuration for Xilinx Microblaze
-# Supported target: spartan6-lx9mb
-#
-# Xilinx EDK override hardware  definitions for xilinx-bsp
-# Include in your local.conf
-# XILINX_BSP_PATH =3D "complete path for Xilinx XPS project"
-
-TARGET_CPU =3D "microblaze"
-# tune for the microblaze little endian cpu
--require conf/machine/include/tune-microblazeel.inc
-+require conf/machine/include/tune-microblaze.inc
-
-PREFERRED_PROVIDER_virtual/kernel =3D "linux-xilinx"
-PREFERRED_VERSION_u-boot =3D "uboot-xilinx"
-# Add uboot to rootfs
-EXTRA_IMAGEDEPENDS +=3D "u-boot-xilinx"
-XILINX_BOARD =3D "microblaze-generic"
-
-KERNEL_IMAGETYPE =3D "simpleImage.system"
-
-MACHINE_FEATURES =3D "kernel26 apm ext2 vfat ethernet"
-MACHINE_EXTRA_RECOMMENDS =3D "kernel-modules"
-
-UBOOT_ENTRYPOINT ?=3D "0xBC000000"
-UBOOT_LOADADDRESS ?=3D "0xBC000000"
-UBOOT_MACHINE ?=3D "microblaze-generic_config"
-
-# Don't use tty1
-USE_VT =3D "0"
-SERIAL_CONSOLE =3D "115200 ttyUL0"
-
-# Device nodes add xsa for (system ace)
-IMAGE_DEVICE_TABLES =3D "files/device_table-minimal.txt \
-                       files/device_table_add-xsa.txt"
-
-Perhaps if you could try the above two changes, i.e. remove the =
-TARGET_FPU =3D "soft" from the tune file, and switch tune files so that =
-the correct cpu type is set, and see if the gcc-initial compilation =
-progresses?
-
-File: meta-xilinx/plain/conf/machine/include/tune-microblaze.inc
-# Tune options for microblaze
-
-require conf/machine/include/microblaze/arch-microblaze.inc
-
--TARGET_FPU =3D "soft"
-TUNE_CCARGS +=3D "${@bb.utils.contains("TUNE_FEATURES", "microblaze", =
-"-mcpu=3Dv8.10a", "", d)}"
-
-#MACHINEOVERRIDES .=3D "microblaze"
-
-If that works, then maybe we could update the tune-microblaze.inc files, =
-so that it uses the variables defined in the following file, which I =
-updated recently for powerpc440 soft float
-
-File: meta-xilinx/tree/conf/machine/include/tune-ppc440.inc
-
-DEFAULTTUNE ?=3D "ppc440"
-
-require conf/machine/include/powerpc/arch-powerpc.inc
-
-TUNEVALID[ppc440] =3D "Enable ppc440 specific processor optimizations"
-TUNE_CCARGS +=3D "${@bb.utils.contains("TUNE_FEATURES", "ppc440", =
-"-mcpu=3D440", "", d)}"
-
-AVAILTUNES +=3D "ppc440"
-TUNE_FEATURES_tune-ppc440 =3D "m32 fpu-soft ppc440"
-TUNE_PKGARCH_tune-ppc440 =3D "ppc440"
-PACKAGE_EXTRA_ARCHS_tune-ppc440 =3D =
-"${PACKAGE_EXTRA_ARCHS_tune-powerpc-nf} ppc440"
-
-# glibc configure options to get ppc440 specific library (for sqrt)
-GLIBC_EXTRA_OECONF +=3D "${@bb.utils.contains("TUNE_FEATURES", "ppc440", =
-"-with-cpu=3D440", "", d)}"
-
-I don't see the need for tune-microblazeel.inc, and you could merge the =
-contents of tune-microblazeel.inc, taking care not to define cpu =3D =
-"microblazeel", as highlighed in red below. that should only be =
-microblaze.=20
-
-meta-xilinx/conf.machine/include/tune-microblazeel.inc
-
-# Tune options for microblaze endian little
-DEFAULTTUNE ?=3D "microblazeel"
-
-require conf/machine/include/microblaze/arch-microblaze.inc
-
-TUNEVALID[microblazeel] =3D "Enable microblaze endian little =
-optimizations"
-TUNE_CCARGS +=3D "${@bb.utils.contains("TUNE_FEATURES", "microblazeel", =
-"-mcpu=3Dv8.10a", "", d)}"
-TUNE_PKGARCH =3D "${@bb.utils.contains("TUNE_FEATURES", "microblazeel", =
-"microblazeel", "microblazeel", d)}"
-
-TARGET_FPU =3D "soft"
-
-AVAILTUNES +=3D "microblazeel"
-TUNE_FEATURES_tune-microblazeel =3D "m32 microblazeel"
-PACKAGE_EXTRA_ARCHS_tune-microblazeel =3D "microblazeel"
-
-#MACHINEOVERRIDES .=3D "microblaze"
-
-
-Summary
-
-01. Remove the TARGET_FPU =3D "soft" specification
-
-02. Quickly test the machine/spartan6-lx9mb.conf by temporarily changing =
-the tune file to include/tune-microblaze.inc, and see if the toolchain =
-gets built using gcc-4.7 recipes.
-
-03. If that works, then update the include/tune-microblaze.inc, to make =
-it more current by looking at include/tune-ppc440.inc. We could =
-potentially delete include/tune-microblazeel.inc, since after including =
-same variables from include/tune-ppc440.inc, into=20
-include/tune-microblaze.inc, it would end up nearly looking like =
-include/tune-microblazeel.inc, without the erroneous cpu=3Dmicroblazeel =
-spec in TUNE_CCARGS.
-
-04. Later on create a include/tune-microblazee.inc file, for hardware =
-floating point support.
-
-Do let me know how it goes!
-
-Best regards,
-
-Elvis Dowson=
-
---Apple-Mail=_98A55373-CD15-4A4D-82AA-240D857A8CF8
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html;
-	charset=us-ascii
-
-<html><head></head><body style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; -webkit-line-break: after-white-space; =
-">Hi,<div><br><div><div>On Sep 6, 2012, at 7:19 PM, Elvis Dowson =
-wrote:</div><br class=3D"Apple-interchange-newline"><blockquote =
-type=3D"cite"><div><blockquote type=3D"cite"><br></blockquote><blockquote =
-type=3D"cite">issues:<br></blockquote><blockquote =
-type=3D"cite"><br></blockquote><blockquote type=3D"cite">The first =
-problem I encountered was trying to build =
-gcc-cross-initial:<br></blockquote><blockquote type=3D"cite"> =
-&nbsp;&nbsp;This target does not support =
---with-float.<br></blockquote><blockquote =
-type=3D"cite"><br></blockquote><br>If you look at the tune file, it says =
-TARGET_FPU =3D "soft", which means<br>software floating point =
-emulation.<br><br>However, the gcc toolchain recipes are trying to build =
-with hardware floating<br>point support, from the error =
-message.<br></div></blockquote></div><br><div>My bad, the error was =
-because the --with-float option does not exist for =
-the</div><div>microblaze =
-processor</div><div><br></div><div><div><div>Looking at the gcc options =
-for microblaze from&nbsp;</div><div><br></div><div><a =
-href=3D"http://gcc.gnu.org/onlinedocs/gcc/Option-Summary.html">http://gcc.=
-gnu.org/onlinedocs/gcc/Option-Summary.html</a></div></div><div><br></div><=
-div><div>MicroBlaze Options</div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2"><br></font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">&nbsp; &nbsp; =
-&nbsp; &nbsp; &nbsp; -msoft-float -mhard-float -msmall-divides =
--mcpu=3Dcpu&nbsp;</font></div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -mmemcpy =
--mxl-soft-mul -mxl-soft-div =
--mxl-barrel-shift&nbsp;</font></div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
--mxl-pattern-compare -mxl-stack-check -mxl-gp-opt =
--mno-clearbss&nbsp;</font></div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
--mxl-multiply-high -mxl-float-convert =
--mxl-float-sqrt&nbsp;</font></div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
--mxl-mode-app-model</font></div></div></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" =
-size=3D"2"><br></font></div><div>So, the next step is to try and modify =
-the tune files, slightly. I recall someone from</div><div>windriver =
-mentioned that TARGET_FPU is to be explicitly set specified only if =
-a&nbsp;</div><div>special hardware FPU&nbsp;was used. When it is blank, =
-it means default, which is</div><div>hardware floating point. Software =
-floating point gets set automatically from</div><div>other settings in =
-the tune file.</div><div><br></div><div>So the first thing to try is to =
-remove any entry for TARGET_FPU =3D "soft" from</div><div>any tune file =
-that you are referencing. It will get set automatically at build =
-time,</div><div>as far as I know from the other options in the tune =
-file.</div><div><br></div><div><br></div><div><br></div><div><blockquote =
-type=3D"cite"><div>opening microblaze-c.o: No such file or =
-directory<br>make[1]: *** [cc1-checksum.c] Error 1<br>rm cpp.pod =
-gcov.pod gfdl.pod gcc.pod fsf-funding.pod<br>make[1]: Leaving =
-directory<br>`/home/trevor/devel/yocto/git-method/spartan6-lx9/tmp/work/mi=
-croblazeel-poky-linux/gcc-cross-initial-4.7.1.0+git1+d07e24f4ab59f264d68d2=
-1838795349faab5dede-r11/gcc-4_7-branch/build.x86_64-linux.microblaze-poky-=
-linux/gcc'<br>make: *** [all-gcc] Error 2<br>ERROR: oe_runmake =
-failed<br>ERROR: Function failed: =
-do_compile</div></blockquote><br></div><div>The second thing to look at =
-is the above error that you got.&nbsp;</div><div><br></div><div>Perhaps =
-the reason why it couldn't find the microblaze-c.o output file was =
-because in the gcc sources, there is no cpu=3Dmicroblazeel, but only =
-cpu=3Dmicroblaze</div><div><br></div><div><a =
-href=3D"http://gcc.gnu.org/git/?p=3Dgcc.git;a=3Dblob;f=3Dgcc/config/microb=
-laze/microblaze-c.c;h=3D32c38da311b12b07cc1ed9fbf13f7946291f2857;hb=3Drefs=
-/heads/gcc-4_7-branch">http://gcc.gnu.org/git/?p=3Dgcc.git;a=3Dblob;f=3Dgc=
-c/config/microblaze/microblaze-c.c;h=3D32c38da311b12b07cc1ed9fbf13f7946291=
-f2857;hb=3Drefs/heads/gcc-4_7-branch</a></div><div><br></div><div><div><fo=
-nt class=3D"Apple-style-span" face=3D"Monaco" =
-size=3D"2">void&nbsp;</font></div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2">microblaze_cpp_define (cpp_reader =
-*pfile)</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
-size=3D"2">{</font></div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2">&nbsp; builtin_assert =
-("cpu=3Dmicroblaze");</font></div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2">&nbsp; builtin_assert =
-("machine=3Dmicroblaze");</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">&nbsp; =
-builtin_define ("__MICROBLAZE__");</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">&nbsp; if =
-(!TARGET_SOFT_MUL)&nbsp;</font></div><div><font class=3D"Apple-style-span"=
- face=3D"Monaco" size=3D"2">&nbsp; &nbsp; {</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">&nbsp; &nbsp; =
-&nbsp; if (!flag_iso)</font></div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2">&nbsp; &nbsp; &nbsp; &nbsp; builtin_define =
-("HAVE_HW_MUL");</font></div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2">&nbsp; &nbsp; &nbsp; builtin_define =
-("__HAVE_HW_MUL__");</font></div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2">&nbsp; &nbsp; =
-}</font></div></div><div><br></div><div>So, we will need to examine the =
-tune files that you are using for your particular machine configuration, =
-and ensure that it is setting the correct cpu =
-type</div><div><br></div><div>What you could start off, as a quick test =
-would be to replace the selected tune file in spartan6-lx9mb.conf and =
-change it to use tune-microblaze.inc instead of tune-microblazeel.inc, =
-because the latter appears to incorrectly set the cpu to microblazeel, I =
-think.</div><div><br></div><div>File:&nbsp;meta-xilinx/tree/conf/machine/s=
-partan6-lx9mb.conf</div><div><pre style=3D"font-style: normal; =
-font-variant: normal; font-weight: normal; letter-spacing: normal; =
-line-height: normal; orphans: 2; text-align: -webkit-auto; text-indent: =
-0px; text-transform: none; widows: 2; word-spacing: 0px; =
--webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; =
-word-wrap: break-word; white-space: pre-wrap; "><span =
-class=3D"Apple-style-span" style=3D"color: rgb(0, 0, 0); "># Copyright =
-(C) 2011, SecretLab Technologies Ltd.
-# Adrian Alonso &lt;<a =
-href=3D"mailto:aalonso@secretlab.ca">aalonso@secretlab.ca</a>&gt;
-# Released under the MIT license (see packages/COPYING)
-#@TYPE: Machine
-#@Name: Xilinx generic microblaze target support
-#@DESCRIPTION: Machine configuration for Xilinx Microblaze
-# Supported target: spartan6-lx9mb
-#
-# Xilinx EDK override hardware  definitions for xilinx-bsp
-# Include in your local.conf
-# XILINX_BSP_PATH =3D "complete path for Xilinx XPS project"
-
-TARGET_CPU =3D "microblaze"
-# tune for the microblaze little endian cpu
-</span><font class=3D"Apple-style-span" color=3D"#ff2a1a">-require =
-conf/machine/include/tune-microblazeel.inc</font></pre><pre =
-style=3D"color: rgb(0, 0, 0); font-style: normal; font-variant: normal; =
-font-weight: normal; letter-spacing: normal; line-height: normal; =
-orphans: 2; text-align: -webkit-auto; text-indent: 0px; text-transform: =
-none; widows: 2; word-spacing: 0px; -webkit-text-size-adjust: auto; =
--webkit-text-stroke-width: 0px; word-wrap: break-word; white-space: =
-pre-wrap; "><span class=3D"Apple-style-span" style=3D"font-family: =
-Helvetica; white-space: normal; "><pre style=3D"color: rgb(0, 0, 0); =
-font-style: normal; font-variant: normal; font-weight: normal; =
-letter-spacing: normal; line-height: normal; orphans: 2; text-align: =
--webkit-auto; text-indent: 0px; text-transform: none; widows: 2; =
-word-spacing: 0px; -webkit-text-size-adjust: auto; =
--webkit-text-stroke-width: 0px; word-wrap: break-word; white-space: =
-pre-wrap; ">+require =
-conf/machine/include/tune-microblaze.inc</pre></span>
-PREFERRED_PROVIDER_virtual/kernel =3D "linux-xilinx"
-PREFERRED_VERSION_u-boot =3D "uboot-xilinx"
-# Add uboot to rootfs
-EXTRA_IMAGEDEPENDS +=3D "u-boot-xilinx"
-XILINX_BOARD =3D "microblaze-generic"
-
-KERNEL_IMAGETYPE =3D "simpleImage.system"
-
-MACHINE_FEATURES =3D "kernel26 apm ext2 vfat ethernet"
-MACHINE_EXTRA_RECOMMENDS =3D "kernel-modules"
-
-UBOOT_ENTRYPOINT ?=3D "0xBC000000"
-UBOOT_LOADADDRESS ?=3D "0xBC000000"
-UBOOT_MACHINE ?=3D "microblaze-generic_config"
-
-# Don't use tty1
-USE_VT =3D "0"
-SERIAL_CONSOLE =3D "115200 ttyUL0"
-
-# Device nodes add xsa for (system ace)
-IMAGE_DEVICE_TABLES =3D "files/device_table-minimal.txt \
-                       =
-files/device_table_add-xsa.txt"</pre><div><br></div></div><div>Perhaps =
-if you could try the above two changes, i.e. remove the TARGET_FPU =3D =
-"soft" from the tune file, and switch tune files so that the correct cpu =
-type is set, and see if the gcc-initial compilation =
-progresses?</div><div><br></div><div>File:&nbsp;meta-xilinx/plain/conf/mac=
-hine/include/tune-microblaze.inc</div><div><pre style=3D"font-variant: =
-normal; letter-spacing: normal; line-height: normal; orphans: 2; =
-text-align: -webkit-auto; text-indent: 0px; text-transform: none; =
-widows: 2; word-spacing: 0px; -webkit-text-size-adjust: auto; =
--webkit-text-stroke-width: 0px; word-wrap: break-word; white-space: =
-pre-wrap; font-style: normal; font-weight: normal; "><span =
-class=3D"Apple-style-span" style=3D"color: rgb(0, 0, 0); "># Tune =
-options for microblaze
-
-require conf/machine/include/microblaze/arch-microblaze.inc
-
-</span><font class=3D"Apple-style-span" color=3D"#ff2a1a">-TARGET_FPU =3D =
-"soft"</font>
-TUNE_CCARGS +=3D "${@bb.utils.contains("TUNE_FEATURES", "microblaze", =
-"-mcpu=3Dv8.10a", "", d)}"
-
-#MACHINEOVERRIDES .=3D "microblaze"</pre><div><br></div></div><div>If =
-that works, then maybe we could update =
-the&nbsp;tune-microblaze.inc&nbsp;files, so that it uses the variables =
-defined in the following file, which I updated recently for powerpc440 =
-soft float</div><div><br></div><div>File: =
-meta-xilinx/tree/conf/machine/include/tune-ppc440.inc</div><div><br></div>=
-<div><pre style=3D"color: rgb(0, 0, 0); font-style: normal; =
-font-variant: normal; font-weight: normal; letter-spacing: normal; =
-line-height: normal; orphans: 2; text-align: -webkit-auto; text-indent: =
-0px; text-transform: none; widows: 2; word-spacing: 0px; =
--webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; =
-word-wrap: break-word; white-space: pre-wrap; ">DEFAULTTUNE ?=3D =
-"ppc440"
-
-require conf/machine/include/powerpc/arch-powerpc.inc
-
-TUNEVALID[ppc440] =3D "Enable ppc440 specific processor optimizations"
-TUNE_CCARGS +=3D "${@bb.utils.contains("TUNE_FEATURES", "ppc440", =
-"-mcpu=3D440", "", d)}"
-
-AVAILTUNES +=3D "ppc440"
-TUNE_FEATURES_tune-ppc440 =3D "m32 fpu-soft ppc440"
-TUNE_PKGARCH_tune-ppc440 =3D "ppc440"
-PACKAGE_EXTRA_ARCHS_tune-ppc440 =3D =
-"${PACKAGE_EXTRA_ARCHS_tune-powerpc-nf} ppc440"
-
-# glibc configure options to get ppc440 specific library (for sqrt)
-GLIBC_EXTRA_OECONF +=3D "${@bb.utils.contains("TUNE_FEATURES", "ppc440", =
-"-with-cpu=3D440", "", d)}"</pre><div><br></div></div><div>I don't see =
-the need for tune-microblazeel.inc, and you could merge the contents of =
-tune-microblazeel.inc, taking care not to define cpu =3D "microblazeel", =
-as highlighed in red below. that should only be =
-microblaze.&nbsp;</div><div><br></div><div><div><div>meta-xilinx/conf.mach=
-ine/include/tune-microblazeel.inc</div><div><br></div></div><div><div><fon=
-t class=3D"Apple-style-span" face=3D"Monaco" size=3D"2"># Tune options =
-for microblaze endian little</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">DEFAULTTUNE ?=3D =
-"microblazeel"</font></div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2"><br></font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">require =
-conf/machine/include/microblaze/arch-microblaze.inc</font></div><div><font=
- class=3D"Apple-style-span" face=3D"Monaco" =
-size=3D"2"><br></font></div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2">TUNEVALID[microblazeel] =3D "Enable =
-microblaze endian little optimizations"</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">TUNE_CCARGS +=3D =
-"${@bb.utils.contains("TUNE_FEATURES", "<font class=3D"Apple-style-span" =
-color=3D"#ff2a1a">microblazeel</font>", "-mcpu=3Dv8.10a", "", =
-d)}"</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
-size=3D"2">TUNE_PKGARCH =3D "${@bb.utils.contains("TUNE_FEATURES", =
-"microblazeel", "microblazeel", "microblazeel", =
-d)}"</font></div><div><font class=3D"Apple-style-span" face=3D"Monaco" =
-size=3D"2"><br></font></div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2">TARGET_FPU =3D "soft"</font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" =
-size=3D"2"><br></font></div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2">AVAILTUNES +=3D =
-"microblazeel"</font></div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2">TUNE_FEATURES_tune-microblazeel =3D "m32 =
-microblazeel"</font></div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2">PACKAGE_EXTRA_ARCHS_tune-microblazeel =3D =
-"microblazeel"</font></div><div><font class=3D"Apple-style-span" =
-face=3D"Monaco" size=3D"2"><br></font></div><div><font =
-class=3D"Apple-style-span" face=3D"Monaco" size=3D"2">#MACHINEOVERRIDES =
-.=3D =
-"microblaze"</font></div></div></div><div><br></div><div><br></div><div><b=
-><u>Summary</u></b></div><div><br></div><div>01. Remove the TARGET_FPU =3D=
- "soft" specification</div><div><br></div><div>02. Quickly test =
-the&nbsp;machine/spartan6-lx9mb.conf by temporarily changing the tune =
-file to include/tune-microblaze.inc, and see if the toolchain gets built =
-using gcc-4.7 recipes.</div><div><br></div><div>03. If that works, then =
-update the&nbsp;include/tune-microblaze.inc, to make it more current by =
-looking at&nbsp;include/tune-ppc440.inc. We could potentially =
-delete&nbsp;include/tune-microblazeel.inc, since after including same =
-variables from&nbsp;include/tune-ppc440.inc, =
-into&nbsp;</div><div>include/tune-microblaze.inc, it would end up nearly =
-looking like&nbsp;include/tune-microblazeel.inc, without the erroneous =
-cpu=3Dmicroblazeel spec in TUNE_CCARGS.</div><div><br></div><div>04. =
-Later on create a include/tune-microblaze<b>e</b>.inc file, for hardware =
-floating point support.</div><div><br></div><div>Do let me know how it =
-goes!</div><div><br></div><div>Best =
-regards,</div><div><br></div><div>Elvis Dowson</div></div></body></html>=
-
---Apple-Mail=_98A55373-CD15-4A4D-82AA-240D857A8CF8--
