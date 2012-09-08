@@ -1,46 +1,34 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
-	[209.85.160.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EB85AE01447
-	for <yocto@yoctoproject.org>; Sat,  8 Sep 2012 00:19:27 -0700 (PDT)
-Received: by pbbrq13 with SMTP id rq13so836220pbb.35
-	for <yocto@yoctoproject.org>; Sat, 08 Sep 2012 00:19:08 -0700 (PDT)
+Return-Path: <twoerner@gmail.com>
+Received: from mail-lpp01m010-f48.google.com (mail-lpp01m010-f48.google.com
+	[209.85.215.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 03891E0141D
+	for <yocto@yoctoproject.org>; Sat,  8 Sep 2012 10:04:25 -0700 (PDT)
+Received: by lagr15 with SMTP id r15so412700lag.35
+	for <yocto@yoctoproject.org>; Sat, 08 Sep 2012 10:04:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=date:from:to:cc:subject:message-id:mail-followup-to:references
-	:mime-version:content-type:content-disposition:in-reply-to
-	:user-agent; bh=gPRu5IVOu2qf0B0OaKTtOW0kfOVWkDk5ur5dQ7avA+0=;
-	b=X62NrSAAdhQloqeL6zX09D/kW3DrnIyjqSWkvdsq9azV5UDgqMZhXwI0Xe65P+yN8X
-	qKKoujdlJ6AMWg6cmCLBmQEjiNTW+k2vi1dIJ/4Vta0MIlz5UaM1g4l2I7yBrgn+zCE1
-	eept66qfw0iZAJYcBH8lQQzvNw3BdPSEHIC+Rvrv4r6M5H/z0WvM/4phmt6yIXEJm0vj
-	P8l1PDMPsQgjUh+F/tSNiuoxcs6MWSr+zxOB/SE6XIy9qpXHPAzaUgqgEV2yDgfxN6m2
-	ps2PmMbAjoXbkafGFbD19DRiEw4sSXQAOSvetUcVwrdmBqqlRGCf/5PsIRYWY9iPA9Ic
-	niTw==
-Received: by 10.68.240.138 with SMTP id wa10mr13922073pbc.145.1347088748683;
-	Sat, 08 Sep 2012 00:19:08 -0700 (PDT)
-Received: from sakrah.homelinux.org
-	(99-57-140-209.lightspeed.sntcca.sbcglobal.net. [99.57.140.209])
-	by mx.google.com with ESMTPS id mr2sm4704058pbb.16.2012.09.08.00.19.06
-	(version=SSLv3 cipher=OTHER); Sat, 08 Sep 2012 00:19:07 -0700 (PDT)
-Date: Sat, 8 Sep 2012 00:18:26 -0700
-From: Khem Raj <raj.khem@gmail.com>
-To: William Mills <wmills@ti.com>
-Message-ID: <20120908071824.GA3903@sakrah.homelinux.org>
-Mail-Followup-To: William Mills <wmills@ti.com>,
-	Darren Hart <dvhart@linux.intel.com>, yocto@yoctoproject.org,
-	"Dmytriyenko, Denys" <denys@ti.com>
-References: <50450DC6.20303@r-finger.com>
-	<CADkTA4NbPk6UDbctuj=McV1PT4QZu=2LRTq2-GHSAAoeaasAUw@mail.gmail.com>
-	<50451947.2090401@r-finger.com>
-	<CADkTA4PX-ZAhhPi0OppbT4y4e5jiwDwgNFHONjebPimF8U21Yg@mail.gmail.com>
-	<5045C2B7.1070406@r-finger.com>
-	<CADkTA4No3Y0K1eUF_w5OZApD7pfnmLD3YY2uiMG9rDe2okYtEg@mail.gmail.com>
-	<504637F5.8090603@linux.intel.com> <504663C0.6050907@ti.com>
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=RQu2/IAX1txqqEJEKXxksuYRpXwsTxNzg1Zg6S8mgx0=;
+	b=fWRdNkmstpaIbCJWyURACyefIirWm+27isv9wLyhm0pgK0omTHYAJSZJ0xZxciuKIs
+	ULkOn1ZSNX31XimcLvoFXqxq2HD+VSPGVatN/Qru4stuJUeGRzlkq2mjOVzep2rk9yNI
+	8TB/eq4BUnUkv2thkTuXnjjF9NtyHSpQkx5ftiHPNyMmEmE61eO0Z66DljVYN7qYFMa3
+	PWyDnPV8rF8AgMW6ivN6N8b5HxQzcFL6/ohfBh66CbPPolFE0KylaNpAIa5zmqcI+zG1
+	UQWUGmMpn5mnWYQxznONGZKkmA1fSVvRBvu0BNuShDb1euXfiM8RtqI8jlQ25xu4TJ/R
+	LZXw==
 MIME-Version: 1.0
-In-Reply-To: <504663C0.6050907@ti.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-Cc: yocto@yoctoproject.org, Darren Hart <dvhart@linux.intel.com>, "Dmytriyenko,
-	Denys" <denys@ti.com>
-Subject: Re: yocto beagleboard.conf -- should it not go away?
+Received: by 10.112.9.133 with SMTP id z5mr3292936lba.69.1347123850438; Sat,
+	08 Sep 2012 10:04:10 -0700 (PDT)
+Received: by 10.112.37.2 with HTTP; Sat, 8 Sep 2012 10:04:10 -0700 (PDT)
+In-Reply-To: <AA2F4F97-00C8-48C3-90E8-5AF084D508B8@gmail.com>
+References: <CAHUNapQUS19axgi+i=wAr0r_ogFj+UsSBpsBY_mhd+ac=5w8-g@mail.gmail.com>
+	<12E1ABCF-B181-4763-88A6-5B7E51758231@gmail.com>
+	<AA2F4F97-00C8-48C3-90E8-5AF084D508B8@gmail.com>
+Date: Sat, 8 Sep 2012 13:04:10 -0400
+Message-ID: <CAHUNapStNAw21FiO6vFgBPLPfeqnoFjAtuuUuzun+6FuzLfspg@mail.gmail.com>
+From: Trevor Woerner <twoerner@gmail.com>
+To: Elvis Dowson <elvis.dowson@gmail.com>
+Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+Subject: Re: any success with spartan6-lx9mb?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,74 +40,162 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 08 Sep 2012 07:19:28 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Sat, 08 Sep 2012 17:04:26 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On (04/09/12 16:25), William Mills wrote:
-> On 09/04/2012 01:18 PM, Darren Hart wrote:
-> >
-> >
-> >On 09/04/2012 05:20 AM, Bruce Ashfield wrote:
-> >>On Tue, Sep 4, 2012 at 4:58 AM, Tomas Frydrych
-> >><tf+lists.yocto@r-finger.com>  wrote:
-> >>>Hi Bruce,
-> >>>
-> >>>On 03/09/12 22:08, Bruce Ashfield wrote:
-> >>>>That being said, taking a step back, what are you trying to get out of
-> >>>>meta-yocto in this scenario ?
-> >>>
-> >>>a) I am targeting multiple chips, including TI Omap and Intel Atom.
-> >>>meta-yocto is a prerequisite for the various machines in meta-intel, so
-> >>>I have to include meta-yocto if I want to build images for an Intel
-> >>>chip. Nothing unusual here.
-> >>>
-> >>>b) meta-yocto is the Poky distro layer; if you want to use Poky, then
-> >>>you need meta-yocto.
-> >>>
-> >>>>see above. I misspoke. I don't think there's an intent to make meta-yocto
-> >>>>and meta-ti work together, but oe-core + meta-ti, that's the combo that
-> >>>>makes sense.
-> 
-> oe-core + meta-ti should work or it needs to get fixed.
-> poky + meta-ti should work or it needs to get fixed.
-> 
-> However I suspect the 2nd is not in the nightly builds yet.
-> 
-> Denys is out for the next few days.  He can comment more when he gets back.
-> 
-> It has been our assumption that there is enough functionality in the
-> layer mechanisms that any of the "light weight" BSPs in yocto layer
-> could be completely overridden by a more complete layer (meta-ti in
-> this example).  In addition the end system integrator should be able
-> to override definitions in any BSP layer.
-> 
-> I suspect the current issue is just growing pains for a case that
-> has not been tested.  Lets prove that false before taking more
-> drastic action.
-> 
-> >>>
-> >>>The basic problem with meta-yocto is that it combines BSP stuff
-> >>>(meta-intel prerequisite, Atom&  Beagle config) with distro stuff (Poky,
-> >>>Yocto branding). That's convenient for doing QA on a limited set of HW,
-> >>>but suboptimal for real use; BSP layers simply should not be dependent
-> >>>on distro layers, it largely defeats the purpose of having layers.
-> 
-> Darren: Is it true you can't get @ the Intel BSP's w/o also getting
-> the poky distro defs?  That does seem to mixing things a bit.  (I am
-> not claiming meta-ti is clean yet but I want to understand the Intel
-> examples.)
-> 
+Hi Elvis,
 
-angstrom used meta-intel and it does not have meta-yocto that said I
-have not built for Intel machines using Angstrom so there might be
-issues but it parses fine for me so far.
+Wow! Thanks so much for the help. I have not yet had the time to dig
+into the guts of yocto/oe so I appreciate the opportunity :-)
 
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+On Thu, Sep 6, 2012 at 11:21 PM, Elvis Dowson <elvis.dowson@gmail.com> wrote:
+> 01. Remove the TARGET_FPU = "soft" specification
+>
+> 02. Quickly test the machine/spartan6-lx9mb.conf by temporarily changing the
+> tune file to include/tune-microblaze.inc, and see if the toolchain gets
+> built using gcc-4.7 recipes.
 
--- 
--Khem
+Using the information you provided, my investigations have centered
+around 3 files from meta-xilinx:
+    conf/machine/spartan6-lx9mb.conf
+    conf/machine/include/tune-microblaze.inc
+    conf/machine/include/microblaze/arch-microblaze.inc
+
+First off: I'm curious why, when you refer to your meta-xilinx files,
+you seem to have additional directories:
+    meta-xilinx/tree/conf/machine/spartan6-lx9mb.conf [tree?]
+    meta-xilinx/conf.machine/include/tune-microblazeel.inc [conf.machine?]
+
+Secondly: usually when a bake needs to be restarted there's usually
+some sort of "bitbake -f" or "bitbake -c clean -f <recipe>" that needs
+to be issued. While performing my tests I never issued any such
+cleanups and the new configurations seemed to be picked up correctly.
+It is reasonable to believe my procedure is okay when modifying these
+"machine" files?
+
+I started by editing conf/machine/spartan-lx9mb.conf to "require
+conf/machine/include/tune-microblaze.inc" from "tune-microblazeel.inc"
+and removing 'TARGET_FPU = "soft"' from the "tune-microblaze.inc"
+file. This, unfortunately failed:
+
+    Build Configuration:
+    BB_VERSION        = "1.15.3"
+    TARGET_ARCH       = "microblaze"
+    TARGET_OS         = "linux"
+    MACHINE           = "spartan6-lx9mb"
+    DISTRO            = "poky"
+    DISTRO_VERSION    = "1.2+snapshot-20120908"
+    TUNE_FEATURES     = "m32 fpu-soft"
+    TARGET_FPU        = "soft"
+    meta
+    meta-yocto        = "master:5343cdb20ee56a8b507733c637dcc2466ae13288"
+    meta-xilinx       = "mywork:d196fa93c7ff5e080d4c44e2b83aed472f32b2c7"
+
+because of the following line in
+conf/machine/include/microblaze/arch-microblaze.inc:
+
+    TARGET_FPU .= "${@bb.utils.contains("TUNE_FEATURES", "fpu-soft",
+"soft", "", d)}"
+
+If I delete the line I get:
+    Build Configuration:
+    BB_VERSION        = "1.15.3"
+    TARGET_ARCH       = "microblaze"
+    TARGET_OS         = "linux"
+    MACHINE           = "spartan6-lx9mb"
+    DISTRO            = "poky"
+    DISTRO_VERSION    = "1.2+snapshot-20120908"
+    TUNE_FEATURES     = "m32 fpu-soft"
+    meta
+    meta-yocto        = "master:5343cdb20ee56a8b507733c637dcc2466ae13288"
+    meta-xilinx       = "mywork:d196fa93c7ff5e080d4c44e2b83aed472f32b2c7"
+
+Or if I modify the line to be:
+
+    TARGET_FPU .= "${@bb.utils.contains("TUNE_FEATURES", "fpu-soft",
+"", "", d)}"
+
+I get:
+    Build Configuration:
+    BB_VERSION        = "1.15.3"
+    TARGET_ARCH       = "microblaze"
+    TARGET_OS         = "linux"
+    MACHINE           = "spartan6-lx9mb"
+    DISTRO            = "poky"
+    DISTRO_VERSION    = "1.2+snapshot-20120908"
+    TUNE_FEATURES     = "m32 fpu-soft"
+    TARGET_FPU        = ""
+    meta
+    meta-yocto        = "master:5343cdb20ee56a8b507733c637dcc2466ae13288"
+    meta-xilinx       = "mywork:d196fa93c7ff5e080d4c44e2b83aed472f32b2c7"
+
+I don't know if one is better than the other, but in either case the
+build of gcc-cross-initial_4.7.bb fails with:
+
+    opening microblaze-c.o: No such file or directory
+
+which is ironic since this is the same error message that originally
+led you to suggest I try without the "el".
+
+It appears as though gcc-cross-initial_4.7 is being configured with
+the following options:
+
+/home/trevor/devel/yocto/git-method/spartan6-lx9/tmp/work-shared/gcc-4.7.1.0+git1+d07e24f4ab59f264d68d21838795349faab5dede-r11/git/configure
+    --build=x86_64-linux
+    --host=x86_64-linux
+    --target=microblaze-poky-linux
+    --prefix=/home/trevor/devel/yocto/git-method/spartan6-lx9/tmp/sysroots/x86_64-linux/usr
+    --exec_prefix=/home/trevor/devel/yocto/git-method/spartan6-lx9/tmp/sysroots/x86_64-linux/usr
+    --bindir=/home/trevor/devel/yocto/git-method/spartan6-lx9/tmp/sysroots/x86_64-linux/usr/bin/microblaze-poky-linux.gcc-cross-initial
+    --sbindir=/home/trevor/devel/yocto/git-method/spartan6-lx9/tmp/sysroots/x86_64-linux/usr/bin/microblaze-poky-linux.gcc-cross-initial
+    --libexecdir=/home/trevor/devel/yocto/git-method/spartan6-lx9/tmp/sysroots/x86_64-linux/usr/libexec/microblaze-poky-linux.gcc-cross-initial
+    --datadir=/home/trevor/devel/yocto/git-method/spartan6-lx9/tmp/sysroots/x86_64-linux/usr/share
+    --sysconfdir=/home/trevor/devel/yocto/git-method/spartan6-lx9/tmp/sysroots/x86_64-linux/etc
+    --sharedstatedir=/home/trevor/devel/yocto/git-method/spartan6-lx9/tmp/sysroots/x86_64-linux/com
+    --localstatedir=/home/trevor/devel/yocto/git-method/spartan6-lx9/tmp/sysroots/x86_64-linux/var
+    --libdir=/home/trevor/devel/yocto/git-method/spartan6-lx9/tmp/sysroots/x86_64-linux/usr/lib/microblaze-poky-linux.gcc-cross-initial
+    --includedir=/home/trevor/devel/yocto/git-method/spartan6-lx9/tmp/sysroots/x86_64-linux/usr/include
+    --oldincludedir=/home/trevor/devel/yocto/git-method/spartan6-lx9/tmp/sysroots/x86_64-linux/usr/include
+    --infodir=/home/trevor/devel/yocto/git-method/spartan6-lx9/tmp/sysroots/x86_64-linux/usr/share/info
+    --mandir=/home/trevor/devel/yocto/git-method/spartan6-lx9/tmp/sysroots/x86_64-linux/usr/share/man
+    --disable-silent-rules
+    --disable-dependency-tracking
+    --with-libtool-sysroot=/home/trevor/devel/yocto/git-method/spartan6-lx9/tmp/sysroots/x86_64-linux
+    --with-newlib
+    --without-headers
+    --disable-shared
+    --disable-threads
+    --disable-multilib
+    --disable-__cxa_atexit
+    --enable-languages=c
+    --enable-target-optspace
+    --program-prefix=microblaze-poky-linux-
+    --with-sysroot=/home/trevor/devel/yocto/git-method/spartan6-lx9/tmp/sysroots/spartan6-lx9mb
+    --with-build-sysroot=/home/trevor/devel/yocto/git-method/spartan6-lx9/tmp/work/microblaze-poky-linux/gcc-cross-initial-4.7.1.0+git1+d07e24f4ab59f264d68d21838795349faab5dede-r11/gcc-4_7-branch/build.x86_64-linux.microblaze-poky-linux/tmpsysroot
+    --disable-libmudflap
+    --disable-libgomp
+    --disable-libssp
+    --disable-libquadmath
+    --with-system-zlib
+    --disable-lto
+    --disable-plugin
+    --enable-decimal-float=no
+    --disable-nls
+    --enable-__cxa_atexit
+
+I'll continue digging at the compiler, but all and any suggested
+gladly welcomed. Two (or more things) are obviously fighting each
+other since __cxa_atexit is both --disabled and --enabled. Is the
+--with-newlib strange? Shouldn't there be a "-mcpu=" option in there
+somewhere?
+
+Does Xilinx have/use/suggest a particular version of gcc?
+
+If I did have a filesystem ready to test and a board containing an
+appropriate Xilinx part, do the free ISE tools allow me to work with
+any soft cores, or do I need a paid license? (I also wonder how this
+works for the Zynq board too).
+
+Best regards,
+    Trevor
 
