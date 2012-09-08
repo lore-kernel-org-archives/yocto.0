@@ -1,36 +1,46 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from fmsmga101.fm.intel.com (mga05.intel.com [192.55.52.89])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0BD02E01447
-	for <yocto@yoctoproject.org>; Fri,  7 Sep 2012 16:46:56 -0700 (PDT)
-Received: from mail-qc0-f176.google.com ([209.85.216.176])
-	by mga01.intel.com with ESMTP/TLS/RC4-SHA; 07 Sep 2012 16:46:56 -0700
-Received: by qcsc21 with SMTP id c21so116420qcs.35
-	for <yocto@yoctoproject.org>; Fri, 07 Sep 2012 16:46:55 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type:x-gm-message-state;
-	bh=C479hlVmmfNb7qtSycob/wQkSFcD2113LAA5IFskMbw=;
-	b=JBnsw4IiwWJPPPYVrWfuvPF9G/thX+WE3uIN7ByP0dPDMVtKLmu95nCcXBqo9BYk2i
-	Y4LIe8ALfddB0iq9/iKEnoou+jAphIbo2FdvI7MH6GuIVlY70WFUgC5pDGxwzU5fv64X
-	oGlH32NA4zTcwrCHR0upcgRg0m/7O2uaD7O83jrhUc5BD0Bo5ceJc3y2yhYT0+JHn7B4
-	ZonXDrTp4YmaIp+gAvneR6clZOe3pLCZZEy9nVcf6f24x/S4xa37toFO2ROLploIMMnN
-	BkfV+AVG/F1AnwGAvdACzN5NuYu49klmPrN5LBKPQAzShj8aAffwzMqX4OoEWeBleYY2
-	70UQ==
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
+	[209.85.160.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EB85AE01447
+	for <yocto@yoctoproject.org>; Sat,  8 Sep 2012 00:19:27 -0700 (PDT)
+Received: by pbbrq13 with SMTP id rq13so836220pbb.35
+	for <yocto@yoctoproject.org>; Sat, 08 Sep 2012 00:19:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=date:from:to:cc:subject:message-id:mail-followup-to:references
+	:mime-version:content-type:content-disposition:in-reply-to
+	:user-agent; bh=gPRu5IVOu2qf0B0OaKTtOW0kfOVWkDk5ur5dQ7avA+0=;
+	b=X62NrSAAdhQloqeL6zX09D/kW3DrnIyjqSWkvdsq9azV5UDgqMZhXwI0Xe65P+yN8X
+	qKKoujdlJ6AMWg6cmCLBmQEjiNTW+k2vi1dIJ/4Vta0MIlz5UaM1g4l2I7yBrgn+zCE1
+	eept66qfw0iZAJYcBH8lQQzvNw3BdPSEHIC+Rvrv4r6M5H/z0WvM/4phmt6yIXEJm0vj
+	P8l1PDMPsQgjUh+F/tSNiuoxcs6MWSr+zxOB/SE6XIy9qpXHPAzaUgqgEV2yDgfxN6m2
+	ps2PmMbAjoXbkafGFbD19DRiEw4sSXQAOSvetUcVwrdmBqqlRGCf/5PsIRYWY9iPA9Ic
+	niTw==
+Received: by 10.68.240.138 with SMTP id wa10mr13922073pbc.145.1347088748683;
+	Sat, 08 Sep 2012 00:19:08 -0700 (PDT)
+Received: from sakrah.homelinux.org
+	(99-57-140-209.lightspeed.sntcca.sbcglobal.net. [99.57.140.209])
+	by mx.google.com with ESMTPS id mr2sm4704058pbb.16.2012.09.08.00.19.06
+	(version=SSLv3 cipher=OTHER); Sat, 08 Sep 2012 00:19:07 -0700 (PDT)
+Date: Sat, 8 Sep 2012 00:18:26 -0700
+From: Khem Raj <raj.khem@gmail.com>
+To: William Mills <wmills@ti.com>
+Message-ID: <20120908071824.GA3903@sakrah.homelinux.org>
+Mail-Followup-To: William Mills <wmills@ti.com>,
+	Darren Hart <dvhart@linux.intel.com>, yocto@yoctoproject.org,
+	"Dmytriyenko, Denys" <denys@ti.com>
+References: <50450DC6.20303@r-finger.com>
+	<CADkTA4NbPk6UDbctuj=McV1PT4QZu=2LRTq2-GHSAAoeaasAUw@mail.gmail.com>
+	<50451947.2090401@r-finger.com>
+	<CADkTA4PX-ZAhhPi0OppbT4y4e5jiwDwgNFHONjebPimF8U21Yg@mail.gmail.com>
+	<5045C2B7.1070406@r-finger.com>
+	<CADkTA4No3Y0K1eUF_w5OZApD7pfnmLD3YY2uiMG9rDe2okYtEg@mail.gmail.com>
+	<504637F5.8090603@linux.intel.com> <504663C0.6050907@ti.com>
 MIME-Version: 1.0
-Received: by 10.229.137.6 with SMTP id u6mr2361083qct.24.1347061615241; Fri,
-	07 Sep 2012 16:46:55 -0700 (PDT)
-Received: by 10.229.63.1 with HTTP; Fri, 7 Sep 2012 16:46:55 -0700 (PDT)
-In-Reply-To: <C6510F6D410BB64A8C15398EDC6B847C46AEC1D9@ORSMSX101.amr.corp.intel.com>
-References: <CAPhnLPAZ=TsALQ=yqKe129Aw38gFByQpkP=+w1Uq2t_mh2jBBA@mail.gmail.com>
-	<C6510F6D410BB64A8C15398EDC6B847C46AEC1D9@ORSMSX101.amr.corp.intel.com>
-Date: Fri, 7 Sep 2012 16:46:55 -0700
-Message-ID: <CAPhnLPBKFeLFRsQJ7jctjsQi4d-H2HMdzGfFo5zqXznRQJWq6g@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: "Zhang, Jessica" <jessica.zhang@intel.com>
-X-Gm-Message-State: ALoCoQk6YF95C/tzP39E7c9fFYq5m+f4cwJlgi4I3FhIEV57wmY4N/GB5dq9lK8PTb1vRKuNM5Kp
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [PATCH][eclipse-poky][Rev1] setup.py: Use Yocto mirror of eclipse juno repo
+In-Reply-To: <504663C0.6050907@ti.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+Cc: yocto@yoctoproject.org, Darren Hart <dvhart@linux.intel.com>, "Dmytriyenko,
+	Denys" <denys@ti.com>
+Subject: Re: yocto beagleboard.conf -- should it not go away?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,51 +52,74 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 07 Sep 2012 23:46:57 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Sat, 08 Sep 2012 07:19:28 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-The main eclipse download site has been hard to connect to
-for many users. This sets up the main setup script to use a
-mirror of the eclipse sdk tarballs and a mirror of the update
-site.
+On (04/09/12 16:25), William Mills wrote:
+> On 09/04/2012 01:18 PM, Darren Hart wrote:
+> >
+> >
+> >On 09/04/2012 05:20 AM, Bruce Ashfield wrote:
+> >>On Tue, Sep 4, 2012 at 4:58 AM, Tomas Frydrych
+> >><tf+lists.yocto@r-finger.com>  wrote:
+> >>>Hi Bruce,
+> >>>
+> >>>On 03/09/12 22:08, Bruce Ashfield wrote:
+> >>>>That being said, taking a step back, what are you trying to get out of
+> >>>>meta-yocto in this scenario ?
+> >>>
+> >>>a) I am targeting multiple chips, including TI Omap and Intel Atom.
+> >>>meta-yocto is a prerequisite for the various machines in meta-intel, so
+> >>>I have to include meta-yocto if I want to build images for an Intel
+> >>>chip. Nothing unusual here.
+> >>>
+> >>>b) meta-yocto is the Poky distro layer; if you want to use Poky, then
+> >>>you need meta-yocto.
+> >>>
+> >>>>see above. I misspoke. I don't think there's an intent to make meta-yocto
+> >>>>and meta-ti work together, but oe-core + meta-ti, that's the combo that
+> >>>>makes sense.
+> 
+> oe-core + meta-ti should work or it needs to get fixed.
+> poky + meta-ti should work or it needs to get fixed.
+> 
+> However I suspect the 2nd is not in the nightly builds yet.
+> 
+> Denys is out for the next few days.  He can comment more when he gets back.
+> 
+> It has been our assumption that there is enough functionality in the
+> layer mechanisms that any of the "light weight" BSPs in yocto layer
+> could be completely overridden by a more complete layer (meta-ti in
+> this example).  In addition the end system integrator should be able
+> to override definitions in any BSP layer.
+> 
+> I suspect the current issue is just growing pains for a case that
+> has not been tested.  Lets prove that false before taking more
+> drastic action.
+> 
+> >>>
+> >>>The basic problem with meta-yocto is that it combines BSP stuff
+> >>>(meta-intel prerequisite, Atom&  Beagle config) with distro stuff (Poky,
+> >>>Yocto branding). That's convenient for doing QA on a limited set of HW,
+> >>>but suboptimal for real use; BSP layers simply should not be dependent
+> >>>on distro layers, it largely defeats the purpose of having layers.
+> 
+> Darren: Is it true you can't get @ the Intel BSP's w/o also getting
+> the poky distro defs?  That does seem to mixing things a bit.  (I am
+> not claiming meta-ti is clean yet but I want to understand the Intel
+> examples.)
+> 
 
-Signed-off-by: Elizabeth Flanagan <elizabeth.flanagan@intel.com>
----
- scripts/setup.sh |   10 ++++++++--
- 1 files changed, 8 insertions(+), 2 deletions(-)
+angstrom used meta-intel and it does not have meta-yocto that said I
+have not built for Intel machines using Angstrom so there might be
+issues but it parses fine for me so far.
 
-diff --git a/scripts/setup.sh b/scripts/setup.sh
-index 5a928f4..17b1af4 100755
---- a/scripts/setup.sh
-+++ b/scripts/setup.sh
-@@ -66,7 +66,9 @@ if [ ! -f
-eclipse/plugins/org.eclipse.swt_3.100.0.v4233d.jar ]; then
-   fi
-   # Eclipse SDK: Need the SDK so we can link into docs
-   echo "Getting Eclipse SDK..."
--  wget "http://download.eclipse.org/eclipse/downloads/drops4/${ep_rel}${ep_ver}${ep_date}/eclipse-SDK-${ep_ver}-${ep_arch}.tar.gz"
-+  # wget "http://download.eclipse.org/eclipse/downloads/drops4/${ep_rel}${ep_ver}${ep_date}/eclipse-SDK-${ep_ver}-${ep_arch}.tar.gz"
-+  # The eclipse site has moments where it is overloaded. Maintaining
-our own mirror solves this.
-+  wget "http://downloads.yoctoproject.org/eclipse/downloads/drops4/${ep_rel}${ep_ver}${ep_date}/eclipse-SDK-${ep_ver}-${ep_arch}.tar.gz"
-   tar xfz eclipse-SDK-${ep_ver}-${ep_arch}.tar.gz || err_exit $?
-"extracting Eclipse SDK failed"
-   rm eclipse-SDK-${ep_ver}-${ep_arch}.tar.gz
-   cd "${curdir2}"
-@@ -178,7 +180,11 @@ update_feature_remote()
- }
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
- #Eclipse Update Site
--MAIN_UPDATE_SITE="http://download.eclipse.org/releases/juno"
-+#MAIN_UPDATE_SITE="http://download.eclipse.org/releases/juno"
-+# The main eclipse download site is unreliable at times. For now,
-we're going to
-+# maintain a mirror of just what we need.
-+MAIN_UPDATE_SITE="http://downloads.yoctoproject.org/eclipse/juno/ftp.osuosl.org/pub/eclipse/releases/juno"
-+
- UPDATE_SITE="${MAIN_UPDATE_SITE}"
-
- #CDT related
 -- 
-1.7.5.4
+-Khem
 
