@@ -1,14 +1,14 @@
 Return-Path: <packages@autobuilder.yoctoproject.org>
-Received: from autobuilder.yoctoproject.org (ab-master.i.yoctoproject.org
+Received: from autobuilder.yoctoproject.org (ab01.i.yoctoproject.org
 	[10.0.10.111])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 23976E0145E
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3C320E0145F
 	for <yocto@yoctoproject.org>; Sat,  8 Sep 2012 17:00:54 -0700 (PDT)
 Received: by autobuilder.yoctoproject.org (Postfix, from userid 802)
-	id 172F340506; Sun,  9 Sep 2012 00:00:54 +0000 (UTC)
+	id 35EBC40B24; Sun,  9 Sep 2012 00:00:54 +0000 (UTC)
 Date: Sun, 9 Sep 2012 00:00:54 +0000
 From: Yocto Project Package Report System <package-reporting@yoctoproject.org>
 To: yocto@yoctoproject.org
-Message-ID: <20120909000053.GA10758@ab01.i.yoctoproject.org>
+Message-ID: <20120909000054.GA10766@ab01.i.yoctoproject.org>
 MIME-Version: 1.0
 User-Agent: Mutt/1.5.20 (2009-12-10)
 Subject: Warning! Some failures happened on pkg-report system!
@@ -24,11 +24,11 @@ List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
 X-List-Received-Date: Sun, 09 Sep 2012 00:00:54 -0000
-X-Groupsio-MsgNum: 9244
-Content-Type: multipart/mixed; boundary="2fHTh5uZTiUOsy+g"
+X-Groupsio-MsgNum: 9245
+Content-Type: multipart/mixed; boundary="tThc/1wpZn/ma/RB"
 Content-Disposition: inline
 
---2fHTh5uZTiUOsy+g
+--tThc/1wpZn/ma/RB
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
@@ -7992,13 +7992,13 @@ e wait a minute......
 ['milestone_target_to_db.py', '2012-04-15']
 Any problem, please contact Saul Wold <sgw@linux.intel.com>=20
 
---2fHTh5uZTiUOsy+g
+--tThc/1wpZn/ma/RB
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: attachment; filename="block_update_process_format_problem.log"
 
 CHECK_DATE_pn-bigreqsproto= "Aug 27,2012"
 
---2fHTh5uZTiUOsy+g
+--tThc/1wpZn/ma/RB
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: attachment; filename="potential_format_problem.log"
 
@@ -8377,4 +8377,4 @@ upstream_tracking.inc/1536: CHECK_DATE_pn-yaffs2-utils = "Sep 04,2012"
 upstream_tracking.inc/1542: CHECK_DATE_pn-zeroconf = "Sep 04,2012"
 upstream_tracking.inc/1548: CHECK_DATE_pn-zlib = "Sep 04,2012"
 
---2fHTh5uZTiUOsy+g--
+--tThc/1wpZn/ma/RB--
