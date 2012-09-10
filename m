@@ -1,35 +1,38 @@
 Return-Path: <kevstras@gmail.com>
 Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
 	[209.85.160.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E85C8E01481
-	for <yocto@yoctoproject.org>; Mon, 10 Sep 2012 14:50:25 -0700 (PDT)
-Received: by pbbrq13 with SMTP id rq13so3952180pbb.35
-	for <yocto@yoctoproject.org>; Mon, 10 Sep 2012 14:50:25 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A5514E01482
+	for <yocto@yoctoproject.org>; Mon, 10 Sep 2012 14:51:00 -0700 (PDT)
+Received: by pbbrq13 with SMTP id rq13so3952945pbb.35
+	for <yocto@yoctoproject.org>; Mon, 10 Sep 2012 14:51:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id:x-mailer:in-reply-to:references;
-	bh=XNNPS2wvRvdd4fd7cww3QMWU0a63WfX6YoTBe3B75p8=;
-	b=Kn+o+kwKvqc0ZGHEvp3MrkXIvgDGeOfGfgJgarLqVKjZKOQPXUJ1cgJb5WVfji6SsZ
-	TRvK0XX7h0iOo/bTvgJ6EMnTrMcAzNqAcfP28nzgU2E/2seL09oQPodZw/tQzbdFx9o1
-	QK20cGjbMLqtVT8j0ioUcq8z+yBzj9/czyr2jbih92+V+DqIg7JvBCIXFwt+bFT5kDTq
-	QtkS1iEX3cMFHtI3MAkBVGij02Z+poodpJgQWcp+6tHPZ5J47QzJACzbyxEsiJagrRRD
-	eQAsCFFW9RJCtdruCqRsCy4YpVW3rbNUPVznXhFufl8eJI9Xf1I3idJeSgH0V6pAGsKp
-	HYBQ==
-Received: by 10.68.116.232 with SMTP id jz8mr7703712pbb.77.1347313825745;
-	Mon, 10 Sep 2012 14:50:25 -0700 (PDT)
+	h=from:to:cc:subject:date:message-id:x-mailer:in-reply-to:references
+	:in-reply-to:references;
+	bh=VQmK2zG4DWGBDuAtWFNJRaVoSae7Agx067Qpqrr19nI=;
+	b=uWmiiTpgHXu/zPfO5/7PzZIHcwNgDa9nU8U/mIvig71LRzxOMBtEmfrBKHS55toM5S
+	eaPyaXMKIVZPZZVBjUCnfnVPmexFSpfs73FXPdKZyfIW57t9pGiLrw+CkfE1ZnmYawze
+	MnHzg3B2dSRUkMAx6kl9icKMv3HxDpk2OurGnFZj438iKj3ufTxrR8Hv/RNpVbTwAJSV
+	1XPIumDych8tYyycSfVou5tf9MRCXWBhbSVvlt+bGFGcjhMojJXDajgWcX9VXw64FmUU
+	Qrl6EX1llNmNreMY4or3doI0NlVWRrQuU3rAoxa1MipDItCfHYTeAFkeyBxkTUe5L0gG
+	6fRQ==
+Received: by 10.66.79.195 with SMTP id l3mr23469634pax.33.1347313860492;
+	Mon, 10 Sep 2012 14:51:00 -0700 (PDT)
 Received: from satellite.hsd1.or.comcast.net
 	(c-71-237-182-115.hsd1.or.comcast.net. [71.237.182.115])
-	by mx.google.com with ESMTPS id jz10sm8707662pbc.8.2012.09.10.14.50.24
+	by mx.google.com with ESMTPS id jz10sm8707662pbc.8.2012.09.10.14.50.58
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Mon, 10 Sep 2012 14:50:24 -0700 (PDT)
+	Mon, 10 Sep 2012 14:50:59 -0700 (PDT)
 From: Kevin Strasser <kevstras@gmail.com>
 To: yocto@yoctoproject.org
-Date: Mon, 10 Sep 2012 14:50:09 -0700
-Message-Id: <05bc846eb9ec84e5094832dcac903fef085fd9d8.1347312790.git.kevin.strasser@linux.intel.com>
+Date: Mon, 10 Sep 2012 14:50:10 -0700
+Message-Id: <04fa9227d221efb17c22fb301ede5af31777247c.1347312790.git.kevin.strasser@linux.intel.com>
 X-Mailer: git-send-email 1.7.9.5
+In-Reply-To: <05bc846eb9ec84e5094832dcac903fef085fd9d8.1347312790.git.kevin.strasser@linux.intel.com>
+References: <05bc846eb9ec84e5094832dcac903fef085fd9d8.1347312790.git.kevin.strasser@linux.intel.com>
 In-Reply-To: <cover.1347312790.git.kevin.strasser@linux.intel.com>
 References: <cover.1347312790.git.kevin.strasser@linux.intel.com>
 X-Mailman-Approved-At: Mon, 10 Sep 2012 14:53:55 -0700
-Subject: [meta-baryon][PATCH 1/2] webmin: update package to 1.590
+Subject: [meta-baryon][PATCH 2/2] proftpd: update package to 1.3.4b
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,74 +44,93 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 10 Sep 2012 21:50:26 -0000
+X-List-Received-Date: Mon, 10 Sep 2012 21:51:00 -0000
 
-The patch "fdisk-partprobe-fix.patch" has been accepted upstream
-and is no longer needed.
+The contrib directry now contains its own Makefile which is
+used during installation. It was required to pass DESTDIR through
+when it gets called from the base Makefile.
 
 Signed-off-by: Kevin Strasser <kevin.strasser@linux.intel.com>
 ---
- .../webmin/files/fdisk-partprobe-fix.patch         |   16 ----------------
- .../webmin/{webmin_1.570.bb => webmin_1.590.bb}    |    7 +++----
- 2 files changed, 3 insertions(+), 20 deletions(-)
- delete mode 100644 recipes-extended/webmin/files/fdisk-partprobe-fix.patch
- rename recipes-extended/webmin/{webmin_1.570.bb => webmin_1.590.bb} (96%)
+ recipes-extended/proftpd/files/contrib.patch       |   38 ++++++++++++++++++++
+ .../{proftpd_1.3.3c.bb => proftpd_1.3.4b.bb}       |    7 ++--
+ 2 files changed, 42 insertions(+), 3 deletions(-)
+ create mode 100644 recipes-extended/proftpd/files/contrib.patch
+ rename recipes-extended/proftpd/{proftpd_1.3.3c.bb => proftpd_1.3.4b.bb} (82%)
 
-diff --git a/recipes-extended/webmin/files/fdisk-partprobe-fix.patch b/recipes-extended/webmin/files/fdisk-partprobe-fix.patch
-deleted file mode 100644
-index 2279c96..0000000
---- a/recipes-extended/webmin/files/fdisk-partprobe-fix.patch
-+++ /dev/null
-@@ -1,16 +0,0 @@
--# Fix prepending partprobe command in fdisk module library code
--#
--# Upstream-status: Pending
--#
--# Signed-off-by: Paul Eggleton <paul.eggleton@linux.intel.com>
----- webmin-1.570.orig/fdisk/fdisk-lib.pl
--+++ webmin-1.570/fdisk/fdisk-lib.pl
--@@ -940,7 +940,7 @@ elsif ($_[0] eq "fatx") {
-- 	$cmd = "mkfs -t $_[0] $_[1]";
-- 	}
-- if (&has_command("partprobe")) {
---	$cmd .= "partprobe ; $cmd";
--+	$cmd = "partprobe ; $cmd";
-- 	}
-- return $cmd;
-- }
-diff --git a/recipes-extended/webmin/webmin_1.570.bb b/recipes-extended/webmin/webmin_1.590.bb
-similarity index 96%
-rename from recipes-extended/webmin/webmin_1.570.bb
-rename to recipes-extended/webmin/webmin_1.590.bb
-index cf52030..a408092 100644
---- a/recipes-extended/webmin/webmin_1.570.bb
-+++ b/recipes-extended/webmin/webmin_1.590.bb
-@@ -9,13 +9,12 @@ RDEPENDS_${PN} += "perl-module-warnings perl-module-warnings-register perl-modul
- RDEPENDS_${PN} += "perl-module-fcntl perl-module-tie-hash perl-module-vars perl-module-time-local perl-module-config perl-module-constant"
- RDEPENDS_${PN} += "perl-module-file perl-module-file-glob perl-module-file-copy perl-module-sdbm perl-module-sdbm-file perl-module-timelocal perl-module-feature"
+diff --git a/recipes-extended/proftpd/files/contrib.patch b/recipes-extended/proftpd/files/contrib.patch
+new file mode 100644
+index 0000000..76b9a5c
+--- /dev/null
++++ b/recipes-extended/proftpd/files/contrib.patch
+@@ -0,0 +1,38 @@
++Upstream-Status: Inappropriate [configuration]
++
++Signed-off-by: Kevin Strasser <kevin.strasser@linux.intel.com>
++---
++ Makefile.in         |    2 +-
++ contrib/Makefile.in |    6 +++---
++ 2 files changed, 4 insertions(+), 4 deletions(-)
++
++diff --git a/Makefile.in b/Makefile.in
++index 5b2e683..ee72fe1 100644
++--- a/Makefile.in
+++++ b/Makefile.in
++@@ -120,7 +120,7 @@ install-modules: $(DESTDIR)$(libexecdir) $(DESTDIR)$(sysconfdir)
++ 	test -z "$(SHARED_MODULE_OBJS)" -a -z "$(SHARED_MODULE_DIRS)" -a -z "$(STATIC_MODULE_DIRS)" || (cd modules/ && $(MAKE) install)
++ 
++ install-utils: $(DESTDIR)$(sbindir) $(DESTDIR)$(bindir)
++-	cd contrib/ && $(MAKE) install-utils
+++	cd contrib/ && $(MAKE) DESTDIR=${DESTDIR} install-utils
++ 	$(INSTALL_BIN)  ftpcount $(DESTDIR)$(bindir)/ftpcount
++ 	$(INSTALL_BIN)  ftpdctl  $(DESTDIR)$(bindir)/ftpdctl
++ 	$(INSTALL_SBIN) ftpscrub $(DESTDIR)$(sbindir)/ftpscrub
++diff --git a/contrib/Makefile.in b/contrib/Makefile.in
++index 5bcc038..51d248c 100644
++--- a/contrib/Makefile.in
+++++ b/contrib/Makefile.in
++@@ -18,6 +18,6 @@ Makefile: Makefile.in ../config.status
++ 	cd ../ && ./config.status
++ 
++ install-utils:
++-	$(INSTALL) -o $(INSTALL_USER) -g $(INSTALL_GROUP) -m 0755 ftpasswd $(DESTDIR)$(bindir)/ftpasswd
++-	$(INSTALL) -o $(INSTALL_USER) -g $(INSTALL_GROUP) -m 0755 ftpmail $(DESTDIR)$(bindir)/ftpmail
++-	$(INSTALL) -o $(INSTALL_USER) -g $(INSTALL_GROUP) -m 0755 ftpquota $(DESTDIR)$(bindir)/ftpquota
+++	$(INSTALL) -m 0755 ftpasswd $(DESTDIR)$(bindir)/ftpasswd
+++	$(INSTALL) -m 0755 ftpmail $(DESTDIR)$(bindir)/ftpmail
+++	$(INSTALL) -m 0755 ftpquota $(DESTDIR)$(bindir)/ftpquota
++-- 
++1.7.9.5
++
+diff --git a/recipes-extended/proftpd/proftpd_1.3.3c.bb b/recipes-extended/proftpd/proftpd_1.3.4b.bb
+similarity index 82%
+rename from recipes-extended/proftpd/proftpd_1.3.3c.bb
+rename to recipes-extended/proftpd/proftpd_1.3.4b.bb
+index 8de80fc..b7e201b 100644
+--- a/recipes-extended/proftpd/proftpd_1.3.3c.bb
++++ b/recipes-extended/proftpd/proftpd_1.3.4b.bb
+@@ -2,17 +2,18 @@ DESCRIPTION = "Secure ftp daemon"
+ SECTION = "console/network"
  
--PR = "r13"
-+PR = "r0"
+ LICENSE = "GPLv2+"
+-LIC_FILES_CHKSUM = "file://COPYING;md5=fdedcde17b1ffd967d86c20fe0ac158a"
++LIC_FILES_CHKSUM = "file://COPYING;md5=fb0d1484d11915fa88a6a7702f1dc184"
  
- SRC_URI = "${SOURCEFORGE_MIRROR}/webadmin/webmin-${PV}.tar.gz \
-           file://setup.sh \
-           file://init-exclude.patch \
-           file://net-generic.patch \
--          file://fdisk-partprobe-fix.patch \
-           file://remove-startup-option.patch \
-           file://disable-version-check.patch \
-           file://nfs-export.patch \
-@@ -26,8 +25,8 @@ SRC_URI = "${SOURCEFORGE_MIRROR}/webadmin/webmin-${PV}.tar.gz \
-           file://net-lib.pl.patch \
-           file://media-tomb.patch"
+ PR = "r0"
  
--SRC_URI[md5sum] = "20b4f488637366c39458b9b93162eff3"
--SRC_URI[sha256sum] = "3b8ad51dee0e61e330c8137b3d8cff91a00cf31d710b68e272fe02db25baaf54"
-+SRC_URI[md5sum] = "815005ed7f208dcfbda5308b446779c2"
-+SRC_URI[sha256sum] = "07b06612a8bc864388d86b55ec9a9adba0fa71ec60cc66d87c0e58280264182d"
+ SRC_URI = "ftp://ftp.proftpd.org/distrib/source/${PN}-${PV}.tar.gz \
+ 	file://make.patch \
+ 	file://basic.conf.patch \
++	file://contrib.patch \
+ 	"
  
- inherit allarch perlnative update-rc.d
+-SRC_URI[md5sum] = "4f2c554d6273b8145095837913ba9e5d"
+-SRC_URI[sha256sum] = "44be095ed063df93278928cf665ad7b9b38e2c8d0cca97fb51307ec3a390a591"
++SRC_URI[md5sum] = "0871e0b93c9c3c88ca950b6d9a04aed2"
++SRC_URI[sha256sum] = "9f659585cea90fc6af34a0ffae4a90e4ed37abe92dbd9b6c311f95a436c961cb"
  
+ EXTRA_OECONF = "ac_cv_func_setpgrp_void=yes ac_cv_func_setgrent_void=yes --disable-cap"
+ LDFLAGS += "-Llib"
 -- 
 1.7.9.5
 
