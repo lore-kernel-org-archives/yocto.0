@@ -1,28 +1,37 @@
-Return-Path: <vidal.develone@gmail.com>
-Received: from mail-ie0-f176.google.com (mail-ie0-f176.google.com
-	[209.85.223.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6EB9BE00348
-	for <yocto@yoctoproject.org>; Sun,  9 Sep 2012 08:12:13 -0700 (PDT)
-Received: by iecs9 with SMTP id s9so2036445iec.35
-	for <yocto@yoctoproject.org>; Sun, 09 Sep 2012 08:11:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=9tQrnTyMzTh0fY0bZ8gnTajD77gnZpbN8GTga52wk3g=;
-	b=dlOPEr0qpnieMdB2uxILYjwUDW271ah0+migqNhXvCdnSEagNbbCaL8oK/tJoX9PJq
-	iXXXS4JDz0ltAjw8jWHYgpmGlIP1CoOkLy6vaZknhFLvO5Y/Lu4eGW+QUdQYW2V2jvEz
-	RVkBzNAI6nFo5Cz9nxBAozh8y9+6Ex6woFWHt8tvHhjn1kIuAjZvIWL32pJjH5uyybFi
-	CuGX07a4UqpRyctqCT+0WkAL8kAG8WpoG3S5KzLKCd+T/EEtpi+1tc4ycz/pk+C/IC7S
-	Pysu+k6Qnm4Lifl4aDKo6N5/7EJXjRLuIX8gHozYhYCF45wprhuLSq5MxDpx3sWaNsGO
-	gfhg==
+Return-Path: <jessica.zhang@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B5C79E0146E
+	for <yocto@yoctoproject.org>; Mon, 10 Sep 2012 10:02:36 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 10 Sep 2012 10:02:36 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,398,1344236400"; d="scan'208";a="220150280"
+Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
+	by fmsmga002.fm.intel.com with ESMTP; 10 Sep 2012 10:02:36 -0700
+Received: from orsmsx102.amr.corp.intel.com (10.22.225.129) by
+	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Mon, 10 Sep 2012 10:02:35 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.152]) by
+	ORSMSX102.amr.corp.intel.com ([169.254.1.89]) with mapi id
+	14.01.0355.002; Mon, 10 Sep 2012 10:02:35 -0700
+From: "Zhang, Jessica" <jessica.zhang@intel.com>
+To: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+Thread-Topic: [PATCH][eclipse-poky][Rev1] setup.py: Use Yocto mirror of
+	eclipse juno repo
+Thread-Index: AQHNjVBrI8uweoG5Hke375iERwI2JJd/hxbAgAB5wYCAA9ByQA==
+Date: Mon, 10 Sep 2012 17:02:34 +0000
+Message-ID: <C6510F6D410BB64A8C15398EDC6B847C46AECCCE@ORSMSX101.amr.corp.intel.com>
+References: <CAPhnLPAZ=TsALQ=yqKe129Aw38gFByQpkP=+w1Uq2t_mh2jBBA@mail.gmail.com>
+	<C6510F6D410BB64A8C15398EDC6B847C46AEC1D9@ORSMSX101.amr.corp.intel.com>
+	<CAPhnLPBKFeLFRsQJ7jctjsQi4d-H2HMdzGfFo5zqXznRQJWq6g@mail.gmail.com>
+In-Reply-To: <CAPhnLPBKFeLFRsQJ7jctjsQi4d-H2HMdzGfFo5zqXznRQJWq6g@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-Received: by 10.50.194.130 with SMTP id hw2mr6935144igc.64.1347203517264; Sun,
-	09 Sep 2012 08:11:57 -0700 (PDT)
-Received: by 10.64.33.107 with HTTP; Sun, 9 Sep 2012 08:11:56 -0700 (PDT)
-Date: Sun, 9 Sep 2012 09:11:56 -0600
-Message-ID: <CANwz6nzZ2mduQP6fNCYUcgM+D06fckR0vcwAMpae7=wTUqxpZg@mail.gmail.com>
-From: Edward Vidal <vidal.develone@gmail.com>
-To: yocto@yoctoproject.org
-Subject: beagleboard boots read only
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [PATCH][eclipse-poky][Rev1] setup.py: Use Yocto mirror of eclipse juno repo
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,57 +43,71 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 09 Sep 2012 15:12:13 -0000
-Content-Type: multipart/alternative; boundary=14dae9340bc71633a404c9464352
-
---14dae9340bc71633a404c9464352
-Content-Type: text/plain; charset=ISO-8859-1
-
-Hello,
-I had to use these to get it to boot to prompt.
-setenv bootargs 'console=tty0 console=ttyO2,115200n8 root=/dev/mmcblk0p2
-rootwait rootfstype=ext3 ro'
-setenv bootcmd 'mmc rescan 0; fatload mmc 0:1 0x80300000 uImage; bootm
-0x80300000'
-
-Yocto (Built by    Poky 7.0) 1.2+snapshot-20120907    beagleboard ttyO2
-beagleboard login: root
-root@beagleboard:~# xinit: giving up
-xinit: unable to connect to X server: Connection refused
-xinit: server error
-This is what I have in my uEnv.txt file
-mpurate=auto
-
-bootcmd="mmc rescan 0; fatload mmc 0:1 0x80300000 uImage; bootm 0x80300000"
-dvimode="hd720 omapfb.vram=0:8M,1:4M,2:4M"
-vram=16M
-optargs="consoleblank=0"
-console="tty0 console=ttyO2,115200n8"
-Does anyone have a working uEnv/txt for core-image-sato.
-All will be appreciated.
-Thanks
-
---14dae9340bc71633a404c9464352
-Content-Type: text/html; charset=ISO-8859-1
+X-List-Received-Date: Mon, 10 Sep 2012 17:02:36 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Hello,<br>I had to use these to get it to boot to prompt.<br>setenv bootarg=
-s &#39;console=3Dtty0 console=3DttyO2,115200n8 root=3D/dev/mmcblk0p2 rootwa=
-it rootfstype=3Dext3 ro&#39;<br>
-setenv bootcmd &#39;mmc rescan 0; fatload mmc 0:1 0x80300000 uImage; bootm =
-0x80300000&#39;<br><br>Yocto (Built by=A0=A0=A0 Poky 7.0) 1.2+snapshot-2012=
-0907=A0=A0=A0 beagleboard ttyO2<br>beagleboard login: root<br>root@beaglebo=
-ard:~# xinit: giving up<br>
+Hi Beth,
 
-xinit: unable to connect to X server: Connection refused<br>xinit: server e=
-rror<br>This is what I have in my uEnv.txt file<br>mpurate=3Dauto<br><br>bo=
-otcmd=3D&quot;mmc rescan 0; fatload mmc 0:1 0x80300000 uImage; bootm 0x8030=
-0000&quot;<br>
+The patch seems is corrupted with some text wrapping issue that hard for me=
+ to manually fix.  Can you resend as a attachment or create a branch?
 
-dvimode=3D&quot;hd720 omapfb.vram=3D0:8M,1:4M,2:4M&quot;<br>vram=3D16M<br>o=
-ptargs=3D&quot;consoleblank=3D0&quot;<br>console=3D&quot;tty0 console=3Dtty=
-O2,115200n8&quot;<br>Does anyone have a working uEnv/txt for core-image-sat=
-o.<br>All will be appreciated.<br>
-Thanks<br>
+Thanks,
+Jessica
 
---14dae9340bc71633a404c9464352--
+-----Original Message-----
+From: Flanagan, Elizabeth [mailto:elizabeth.flanagan@intel.com]
+Sent: Friday, September 07, 2012 4:47 PM
+To: Zhang, Jessica
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH][eclipse-poky][Rev1] setup.py: Use Yocto mirror of ecli=
+pse juno repo
+
+The main eclipse download site has been hard to connect to for many users. =
+This sets up the main setup script to use a mirror of the eclipse sdk tarba=
+lls and a mirror of the update site.
+
+Signed-off-by: Elizabeth Flanagan <elizabeth.flanagan@intel.com>
+---
+ scripts/setup.sh |   10 ++++++++--
+ 1 files changed, 8 insertions(+), 2 deletions(-)
+
+diff --git a/scripts/setup.sh b/scripts/setup.sh index 5a928f4..17b1af4 100=
+755
+--- a/scripts/setup.sh
++++ b/scripts/setup.sh
+@@ -66,7 +66,9 @@ if [ ! -f
+eclipse/plugins/org.eclipse.swt_3.100.0.v4233d.jar ]; then
+   fi
+   # Eclipse SDK: Need the SDK so we can link into docs
+   echo "Getting Eclipse SDK..."
+-  wget "http://download.eclipse.org/eclipse/downloads/drops4/${ep_rel}${ep=
+_ver}${ep_date}/eclipse-SDK-${ep_ver}-${ep_arch}.tar.gz"
++  # wget "http://download.eclipse.org/eclipse/downloads/drops4/${ep_rel}${=
+ep_ver}${ep_date}/eclipse-SDK-${ep_ver}-${ep_arch}.tar.gz"
++  # The eclipse site has moments where it is overloaded. Maintaining
+our own mirror solves this.
++  wget "http://downloads.yoctoproject.org/eclipse/downloads/drops4/${ep_re=
+l}${ep_ver}${ep_date}/eclipse-SDK-${ep_ver}-${ep_arch}.tar.gz"
+   tar xfz eclipse-SDK-${ep_ver}-${ep_arch}.tar.gz || err_exit $?
+"extracting Eclipse SDK failed"
+   rm eclipse-SDK-${ep_ver}-${ep_arch}.tar.gz
+   cd "${curdir2}"
+@@ -178,7 +180,11 @@ update_feature_remote()  }
+
+ #Eclipse Update Site
+-MAIN_UPDATE_SITE=3D"http://download.eclipse.org/releases/juno"
++#MAIN_UPDATE_SITE=3D"http://download.eclipse.org/releases/juno"
++# The main eclipse download site is unreliable at times. For now,
+we're going to
++# maintain a mirror of just what we need.
++MAIN_UPDATE_SITE=3D"http://downloads.yoctoproject.org/eclipse/juno/ftp.osu=
+osl.org/pub/eclipse/releases/juno"
++
+ UPDATE_SITE=3D"${MAIN_UPDATE_SITE}"
+
+ #CDT related
+--
+1.7.5.4
+
