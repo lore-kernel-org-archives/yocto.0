@@ -1,37 +1,23 @@
-Return-Path: <jessica.zhang@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B5C79E0146E
-	for <yocto@yoctoproject.org>; Mon, 10 Sep 2012 10:02:36 -0700 (PDT)
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0C9A3E0146B
+	for <yocto@yoctoproject.org>; Mon, 10 Sep 2012 10:14:03 -0700 (PDT)
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 10 Sep 2012 10:02:36 -0700
+	by fmsmga101.fm.intel.com with ESMTP; 10 Sep 2012 10:14:02 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,398,1344236400"; d="scan'208";a="220150280"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
-	by fmsmga002.fm.intel.com with ESMTP; 10 Sep 2012 10:02:36 -0700
-Received: from orsmsx102.amr.corp.intel.com (10.22.225.129) by
-	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Mon, 10 Sep 2012 10:02:35 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.152]) by
-	ORSMSX102.amr.corp.intel.com ([169.254.1.89]) with mapi id
-	14.01.0355.002; Mon, 10 Sep 2012 10:02:35 -0700
-From: "Zhang, Jessica" <jessica.zhang@intel.com>
-To: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-Thread-Topic: [PATCH][eclipse-poky][Rev1] setup.py: Use Yocto mirror of
-	eclipse juno repo
-Thread-Index: AQHNjVBrI8uweoG5Hke375iERwI2JJd/hxbAgAB5wYCAA9ByQA==
-Date: Mon, 10 Sep 2012 17:02:34 +0000
-Message-ID: <C6510F6D410BB64A8C15398EDC6B847C46AECCCE@ORSMSX101.amr.corp.intel.com>
-References: <CAPhnLPAZ=TsALQ=yqKe129Aw38gFByQpkP=+w1Uq2t_mh2jBBA@mail.gmail.com>
-	<C6510F6D410BB64A8C15398EDC6B847C46AEC1D9@ORSMSX101.amr.corp.intel.com>
-	<CAPhnLPBKFeLFRsQJ7jctjsQi4d-H2HMdzGfFo5zqXznRQJWq6g@mail.gmail.com>
-In-Reply-To: <CAPhnLPBKFeLFRsQJ7jctjsQi4d-H2HMdzGfFo5zqXznRQJWq6g@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
-MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [PATCH][eclipse-poky][Rev1] setup.py: Use Yocto mirror of eclipse juno repo
+X-IronPort-AV: E=Sophos;i="4.80,398,1344236400"; d="scan'208";a="220155394"
+Received: from unknown (HELO [10.255.13.118]) ([10.255.13.118])
+	by fmsmga002.fm.intel.com with ESMTP; 10 Sep 2012 10:14:02 -0700
+Message-ID: <1347297241.25993.1.camel@empanada>
+From: Tom Zanussi <tom.zanussi@intel.com>
+To: kishore.k.bodke@intel.com
+Date: Mon, 10 Sep 2012 12:14:01 -0500
+In-Reply-To: <cover.1346954020.git.kishore.k.bodke@intel.com>
+References: <cover.1346954020.git.kishore.k.bodke@intel.com>
+X-Mailer: Evolution 3.4.1 (3.4.1-2.fc17) 
+Mime-Version: 1.0
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH 0/1] [meta-intel] Crystal Forest BSP Created.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,71 +29,78 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 10 Sep 2012 17:02:36 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 10 Sep 2012 17:14:03 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Hi Beth,
+On Thu, 2012-09-06 at 11:03 -0700, kishore.k.bodke@intel.com wrote:
+> From: Kishore Bodke <kishore.k.bodke@intel.com>
+> 
+> This is the Initial Checkin for the new Crystal Forest BSP.
+> This BSP has two versions of platform.
+> 1. Stargo Platform is based on Intel Sandy Bridge Gladden Processor,plus the Cave Creek chipset.
+> 2. Shumway Platform is based on two Intel Sandy Bridge (SNB-EP ES2 Grade and SNB-EN ES2 Grade)
+>    Processors plus two Cave Creek Chipsets.
+> 
+> Both Platforms uses Matrox graphics Card.
+> 
+> Both the Platforms have been successfully booted and done basic testing for 3.4 kernel.
+> 
+> Please pull this into meta-intel/master.
+> 
 
-The patch seems is corrupted with some text wrapping issue that hard for me=
- to manually fix.  Can you resend as a attachment or create a branch?
+Pulled into meta-intel/master.
 
 Thanks,
-Jessica
 
------Original Message-----
-From: Flanagan, Elizabeth [mailto:elizabeth.flanagan@intel.com]
-Sent: Friday, September 07, 2012 4:47 PM
-To: Zhang, Jessica
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH][eclipse-poky][Rev1] setup.py: Use Yocto mirror of ecli=
-pse juno repo
+Tom
 
-The main eclipse download site has been hard to connect to for many users. =
-This sets up the main setup script to use a mirror of the eclipse sdk tarba=
-lls and a mirror of the update site.
+> Thanks
+> Kishore.
+> 
+> The following changes since commit 66b516f3d3a287eecbf8804b2221bfc27e36db63:
+> 
+>   README: add info explaining meta-tlk layer purpose (2012-09-06 10:36:02 -0500)
+> 
+> are available in the git repository at:
+> 
+>   git://git.pokylinux.org/meta-intel-contrib Kishore/CrystalForest
+>   http://git.pokylinux.org/cgit.cgi/meta-intel-contrib/log/?h=Kishore/CrystalForest
+> 
+> Kishore Bodke (1):
+>   meta-crystalforest: Crystal Forest BSP Created.
+> 
+>  meta-crystalforest/COPYING.MIT                     |   17 +++
+>  meta-crystalforest/README                          |  139 ++++++++++++++++++++
+>  meta-crystalforest/README.sources                  |   17 +++
+>  meta-crystalforest/conf/layer.conf                 |   12 ++
+>  .../conf/machine/crystalforest-shumway.conf        |   26 ++++
+>  .../conf/machine/crystalforest-stargo.conf         |   27 ++++
+>  .../formfactor/crystalforest-shumway/machconfig    |    3 +
+>  .../formfactor/crystalforest-stargo/machconfig     |    3 +
+>  .../recipes-bsp/formfactor/formfactor_0.0.bbappend |    3 +
+>  .../crystalforest-shumway/xorg.conf                |   26 ++++
+>  .../crystalforest-stargo/xorg.conf                 |   26 ++++
+>  .../xorg-xserver/xserver-xf86-config_0.1.bbappend  |    3 +
+>  .../linux/linux-yocto-rt_3.4.bbappend              |   18 +++
+>  .../recipes-kernel/linux/linux-yocto_3.4.bbappend  |   17 +++
+>  14 files changed, 337 insertions(+)
+>  create mode 100644 meta-crystalforest/COPYING.MIT
+>  create mode 100644 meta-crystalforest/README
+>  create mode 100644 meta-crystalforest/README.sources
+>  create mode 100644 meta-crystalforest/binary/.gitignore
+>  create mode 100644 meta-crystalforest/conf/layer.conf
+>  create mode 100644 meta-crystalforest/conf/machine/crystalforest-shumway.conf
+>  create mode 100644 meta-crystalforest/conf/machine/crystalforest-stargo.conf
+>  create mode 100644 meta-crystalforest/recipes-bsp/formfactor/formfactor/crystalforest-shumway/machconfig
+>  create mode 100644 meta-crystalforest/recipes-bsp/formfactor/formfactor/crystalforest-stargo/machconfig
+>  create mode 100644 meta-crystalforest/recipes-bsp/formfactor/formfactor_0.0.bbappend
+>  create mode 100644 meta-crystalforest/recipes-graphics/xorg-xserver/xserver-xf86-config/crystalforest-shumway/xorg.conf
+>  create mode 100644 meta-crystalforest/recipes-graphics/xorg-xserver/xserver-xf86-config/crystalforest-stargo/xorg.conf
+>  create mode 100644 meta-crystalforest/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend
+>  create mode 100644 meta-crystalforest/recipes-kernel/linux/linux-yocto-rt_3.4.bbappend
+>  create mode 100644 meta-crystalforest/recipes-kernel/linux/linux-yocto_3.4.bbappend
+> 
 
-Signed-off-by: Elizabeth Flanagan <elizabeth.flanagan@intel.com>
----
- scripts/setup.sh |   10 ++++++++--
- 1 files changed, 8 insertions(+), 2 deletions(-)
 
-diff --git a/scripts/setup.sh b/scripts/setup.sh index 5a928f4..17b1af4 100=
-755
---- a/scripts/setup.sh
-+++ b/scripts/setup.sh
-@@ -66,7 +66,9 @@ if [ ! -f
-eclipse/plugins/org.eclipse.swt_3.100.0.v4233d.jar ]; then
-   fi
-   # Eclipse SDK: Need the SDK so we can link into docs
-   echo "Getting Eclipse SDK..."
--  wget "http://download.eclipse.org/eclipse/downloads/drops4/${ep_rel}${ep=
-_ver}${ep_date}/eclipse-SDK-${ep_ver}-${ep_arch}.tar.gz"
-+  # wget "http://download.eclipse.org/eclipse/downloads/drops4/${ep_rel}${=
-ep_ver}${ep_date}/eclipse-SDK-${ep_ver}-${ep_arch}.tar.gz"
-+  # The eclipse site has moments where it is overloaded. Maintaining
-our own mirror solves this.
-+  wget "http://downloads.yoctoproject.org/eclipse/downloads/drops4/${ep_re=
-l}${ep_ver}${ep_date}/eclipse-SDK-${ep_ver}-${ep_arch}.tar.gz"
-   tar xfz eclipse-SDK-${ep_ver}-${ep_arch}.tar.gz || err_exit $?
-"extracting Eclipse SDK failed"
-   rm eclipse-SDK-${ep_ver}-${ep_arch}.tar.gz
-   cd "${curdir2}"
-@@ -178,7 +180,11 @@ update_feature_remote()  }
-
- #Eclipse Update Site
--MAIN_UPDATE_SITE=3D"http://download.eclipse.org/releases/juno"
-+#MAIN_UPDATE_SITE=3D"http://download.eclipse.org/releases/juno"
-+# The main eclipse download site is unreliable at times. For now,
-we're going to
-+# maintain a mirror of just what we need.
-+MAIN_UPDATE_SITE=3D"http://downloads.yoctoproject.org/eclipse/juno/ftp.osu=
-osl.org/pub/eclipse/releases/juno"
-+
- UPDATE_SITE=3D"${MAIN_UPDATE_SITE}"
-
- #CDT related
---
-1.7.5.4
 
