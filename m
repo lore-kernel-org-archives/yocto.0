@@ -1,28 +1,34 @@
-Return-Path: <munoz0raul@gmail.com>
-Received: from mail-lpp01m010-f48.google.com (mail-lpp01m010-f48.google.com
-	[209.85.215.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 24D76E01370
-	for <yocto@yoctoproject.org>; Tue, 11 Sep 2012 05:55:55 -0700 (PDT)
-Received: by lagr15 with SMTP id r15so315415lag.35
-	for <yocto@yoctoproject.org>; Tue, 11 Sep 2012 05:55:52 -0700 (PDT)
+Return-Path: <otavio.salvador@gmail.com>
+Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
+	[209.85.160.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9A163E01346
+	for <yocto@yoctoproject.org>; Tue, 11 Sep 2012 06:13:01 -0700 (PDT)
+Received: by pbbrq13 with SMTP id rq13so953762pbb.35
+	for <yocto@yoctoproject.org>; Tue, 11 Sep 2012 06:12:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=KDrIOwA9JZUt/cOsB09tBfRoVvoVs40fxsVtG7ra1aw=;
-	b=vqpiJ8BqzT1zenSFTDSOcCkY9saDpIvWnkX87Cqh1MXXMsbOP23j3IbvhUGCQ4r6bZ
-	X4oZ9syJCa1zHs43bKMQVDoGVK+BEhyX7EB/sfzWqfi9IuGK4XM8BmI2fbAbpp9kPDGS
-	0AkESKuqdsytRfjVP1DcpEMbhz2DBkzIqTYByyU++BIKlxs3XChsXLdTvTGn756lt8KI
-	Zzel3C5LVLciE9xVL8LD82KSxen+lCxjCSmN2gjWFayxetkcwHnPpZU5y5sgLkyDeHRf
-	LspECFBosdkLZxmK4vJkzV60eXalt3pEDmJO5UoBW6j3rRVqk61BGiNI09e8LlBqU9wT
-	HAiw==
+	h=mime-version:sender:in-reply-to:references:date
+	:x-google-sender-auth:message-id:subject:from:to:cc:content-type;
+	bh=HfEcyp3/ev+kniiP3nJyFpSw1lsflN8CU2ZsHQdk9OE=;
+	b=pc3lFk/hX1R0m5zD/EXqjwPZX1sZB3E9XYKEwXR3Cq9abLf74BJc99UC5w9QAJ6b0L
+	b0pU+NgRp6aG3AZhhMf6vQvHgFfLwpYAPrVhRmf2CadVIpVqvF1fJSY6WP4nTyg+1MPe
+	RA5RsujXXnv7/Ju0tRfEYFgbXhYK3+189O1/JxODVeQDNSEvzRTDNpuvDVGu4KzTlotq
+	Ua+C7yE19UJ8kaO849dk/DJNzLv2iNE45xzAp7Ienj1+osjHHRcAAzYppXsIKkP5keEG
+	jX/HthxdKtvw7gf8T9LqW+biN/9wS+HIrCZo2tJSK2jf/V8Dw3Kalx0KsHCrHe+O0yIo
+	FUZg==
 MIME-Version: 1.0
-Received: by 10.112.27.232 with SMTP id w8mr6200027lbg.77.1347368152455; Tue,
-	11 Sep 2012 05:55:52 -0700 (PDT)
-Received: by 10.112.21.194 with HTTP; Tue, 11 Sep 2012 05:55:52 -0700 (PDT)
-Date: Tue, 11 Sep 2012 09:55:52 -0300
-Message-ID: <CANmViric_L-9eh-VLbC63RqH-2nU0VwRr+546MmtDh1QKOmL4Q@mail.gmail.com>
-From: Raul Rosetto Munoz <munoz0raul@gmail.com>
-To: meta-fsl-arm@googlegroups.com, yocto@yoctoproject.org
-Subject: imx28 u-boot without NAND command
+Received: by 10.66.72.130 with SMTP id d2mr26718251pav.59.1347369167333; Tue,
+	11 Sep 2012 06:12:47 -0700 (PDT)
+Sender: otavio.salvador@gmail.com
+Received: by 10.68.36.105 with HTTP; Tue, 11 Sep 2012 06:12:47 -0700 (PDT)
+In-Reply-To: <CANmViric_L-9eh-VLbC63RqH-2nU0VwRr+546MmtDh1QKOmL4Q@mail.gmail.com>
+References: <CANmViric_L-9eh-VLbC63RqH-2nU0VwRr+546MmtDh1QKOmL4Q@mail.gmail.com>
+Date: Tue, 11 Sep 2012 10:12:47 -0300
+X-Google-Sender-Auth: f6h7eGWu3kZRmv894tS9IVtQGjQ
+Message-ID: <CAP9ODKr--f3diwzo5C430AGU9bXLovOV3+mU6azwzcQFQZc6mA@mail.gmail.com>
+From: Otavio Salvador <otavio@ossystems.com.br>
+To: meta-fsl-arm@googlegroups.com
+Cc: yocto@yoctoproject.org
+Subject: Re: imx28 u-boot without NAND command
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,48 +40,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 11 Sep 2012 12:55:56 -0000
-Content-Type: multipart/alternative; boundary=bcaec554deda1bda8004c96c98d6
-
---bcaec554deda1bda8004c96c98d6
+X-List-Received-Date: Tue, 11 Sep 2012 13:13:01 -0000
 Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
 
-Hello All,
+On Tue, Sep 11, 2012 at 9:55 AM, Raul Rosetto Munoz
+<munoz0raul@gmail.com> wrote:
+> Hello All,
+>
+> I need to use the command NAND in  the imx28 u-boot.
+>
+> I did a patch that put the line "#define COMFIG_CMD_NAND" in the
 
-I need to use the command NAND in  the imx28 u-boot.
+It is a typo; use:
 
-I did a patch that put the line "#define COMFIG_CMD_NAND" in the
-"/include/configs/mx28evk.h" file, and if I look at
-"/tmp/work/imx28evk-poky-linux-gnueabi/u-boot-v2012.04.01-r3/git/include/co=
-nfigs/mx28evk.h"
-I can see that the patch was sucessful.
+#define CONFIG_CMD_NAND
 
-My problem is that when I stop u-boot, u-boot tell me that nand command
-don't exist.
+and it should work.
 
-Some one can help me to insert nand comand in u-boot?
+> "/include/configs/mx28evk.h" file, and if I look at
+> "/tmp/work/imx28evk-poky-linux-gnueabi/u-boot-v2012.04.01-r3/git/include/configs/mx28evk.h"
+> I can see that the patch was sucessful.
+>
+> My problem is that when I stop u-boot, u-boot tell me that nand command
+> don't exist.
+>
+> Some one can help me to insert nand comand in u-boot?
 
-Thanks For All Help.
+It seems you should add a new board definition to your custom board,
+if this is not mx28evk.
 
---=20
-*Raul Rosetto Mu=F1oz*
+-- 
+Otavio Salvador                             O.S. Systems
+E-mail: otavio@ossystems.com.br  http://www.ossystems.com.br
+Mobile: +55 53 9981-7854              http://projetos.ossystems.com.br
 
---bcaec554deda1bda8004c96c98d6
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<div><div>Hello All,</div><div><br></div><div>I need to use the command NAN=
-D in =A0the imx28 u-boot.</div><div><br></div><div>I did a patch that put t=
-he line &quot;#define COMFIG_CMD_NAND&quot; in the &quot;/include/configs/m=
-x28evk.h&quot; file, and if I look at &quot;/tmp/work/imx28evk-poky-linux-g=
-nueabi/u-boot-v2012.04.01-r3/git/include/configs/mx28evk.h&quot; I can see =
-that the patch was sucessful.</div>
-<div><br></div><div>My problem is that when I stop u-boot, u-boot tell me t=
-hat nand command don&#39;t exist.</div><div><br></div><div>Some one can hel=
-p me to insert nand comand in u-boot?</div><div><br></div><div>Thanks For A=
-ll Help.</div>
-<div><br></div>-- <br><b>Raul Rosetto Mu=F1oz</b><br>
-</div>
-
---bcaec554deda1bda8004c96c98d6--
