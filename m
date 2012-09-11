@@ -1,47 +1,34 @@
-Return-Path: <saul.wold@intel.com>
-Received: from fmsmga102.fm.intel.com (mga10.intel.com [192.55.52.92])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9F322E00348
-	for <yocto@yoctoproject.org>; Mon, 10 Sep 2012 21:01:46 -0700 (PDT)
-Received: from mail-ob0-f200.google.com ([209.85.214.200])
-	by mga11.intel.com with ESMTP/TLS/RC4-SHA; 10 Sep 2012 21:01:31 -0700
-Received: by obbun3 with SMTP id un3so203492obb.11
-	for <yocto@yoctoproject.org>; Mon, 10 Sep 2012 21:01:31 -0700 (PDT)
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from orsmga101.jf.intel.com (mga06.intel.com [134.134.136.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 20E94E00344
+	for <yocto@yoctoproject.org>; Mon, 10 Sep 2012 23:36:13 -0700 (PDT)
+Received: from mail-gg0-f200.google.com ([209.85.161.200])
+	by mga02.intel.com with ESMTP/TLS/RC4-SHA; 10 Sep 2012 23:36:12 -0700
+Received: by gglu4 with SMTP id u4so218344ggl.11
+	for <yocto@yoctoproject.org>; Mon, 10 Sep 2012 23:36:11 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=google.com; s=20120113;
-	h=message-id:date:from:organization:user-agent:mime-version:to
-	:subject:content-type:content-transfer-encoding:x-gm-message-state;
-	bh=84I4euYBkBPzjq6V/F1AoDwohpgGuxBIvAbDHxJFo8c=;
-	b=EUPaV8x04wzrsZZk2wvHV8bL7SwZXLdlyZXae+VXMbbj9fAOJuePoLzztsNLhrOy6p
-	vS62pdfzZH7GwdEz4rwgVCeLlTgbesfHmoaQEvau3lE9IU8fmc1X9wThcdHvsI2THQYM
-	FiBvtsAQARXYJlrVHaF05ZzFcdGiC/1QTzK2qpbBacT+t9EqRBvtdDJ1lyMDgZCJIDjT
-	uZl6GgAqh2ztxnED3dZtajnaZx4nfNp+0d4iDUXF33J8cZJB7elaX5BNAikQBSVdgmmv
-	SjH7H+/Z76yNRelevhBXnfwE36+r1kYhEEhnud0Hngu/vvK3sa10wBxgnfORpB9ZVzCk
-	Pr/g==
-Received: by 10.50.160.228 with SMTP id xn4mr19455486igb.1.1347336091028;
-	Mon, 10 Sep 2012 21:01:31 -0700 (PDT)
-Received: by 10.50.160.228 with SMTP id xn4mr19455482igb.1.1347336090935;
-	Mon, 10 Sep 2012 21:01:30 -0700 (PDT)
-Received: from [10.6.18.71] (c-71-193-189-117.hsd1.wa.comcast.net.
-	[71.193.189.117])
-	by mx.google.com with ESMTPS id wg9sm795070igb.0.2012.09.10.21.01.29
-	(version=SSLv3 cipher=OTHER); Mon, 10 Sep 2012 21:01:30 -0700 (PDT)
-Message-ID: <504EB798.60904@intel.com>
-Date: Mon, 10 Sep 2012 21:01:28 -0700
-From: Saul Wold <saul.wold@intel.com>
-Organization: Intel
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:15.0) Gecko/20120827 Thunderbird/15.0
+	h=mime-version:date:message-id:subject:from:to:content-type
+	:x-gm-message-state;
+	bh=+0ePwKSif0+xQDOIf1eTiswkhRwA9bXk/FMx4zv/RVw=;
+	b=XfqOUS871c2ZojGNXSnp+X9m5FSCofC+5Nmc6QTgvfE0NkLeQIvp3wXZ7mObt4bwoW
+	fVfXTqAc61WOcbq/PFtWybX1dVpaEyii4rDzC8+t/5Hr1ONEmJ7MzcuzQOSeW6fO0zZA
+	8rdkM7LdeuSQMUbe3/xCh639IE47eYp7HrgR7m4NJkmehaSsg/M1mrp7m+HsZkDJh3YU
+	0nTjt01RAQyUwQ5Mw7nSe6BgLJW2lGoBLewvV/gSZgM/ee6qvlNJrVnjpXpUaNu8MNql
+	q44h/iNjSuI0/jBOVPN6pPxKnjYMF+AAJVWzLM0u5MIuQmwYCBrLGs4w6rMeuMfgwQIT
+	Jc0A==
+Received: by 10.224.42.78 with SMTP id r14mr17758605qae.19.1347345371624;
+	Mon, 10 Sep 2012 23:36:11 -0700 (PDT)
 MIME-Version: 1.0
-To: "Serban, Laurentiu" <laurentiu.serban@intel.com>, 
-	Zhao Yi <yi.zhao@windriver.com>, "Liu, Song" <song.liu@intel.com>, 
-	"Stewart, David C" <david.c.stewart@intel.com>,
-	"Purdie, Richard" <richard.purdie@intel.com>, 
-	"Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>,
-	Yocto Project Discussion <yocto@yoctoproject.org>, 
-	"Stewart, David C" <david.c.stewart@intel.com>,
-	Matthew McClintock <msm@freescale.com>
-X-Gm-Message-State: ALoCoQl9jidCOUvDgPAhtE0aiQPg/mHhuVYrjU05KOv5iNAQoYbzTx5GoYH4Rup528DYd8rWpWbHHDlyhoT2bQrxPPnQqtPdBP+xPdftK3Fq23RjYcOy6aPar1yHCz3oIwT2DshpejhEfGAm98gAdXL3D93V1qx/VA==
-Subject: Milestone 4, RC2 Build
+Received: by 10.224.42.78 with SMTP id r14mr17758599qae.19.1347345371356; Mon,
+	10 Sep 2012 23:36:11 -0700 (PDT)
+Received: by 10.229.63.1 with HTTP; Mon, 10 Sep 2012 23:36:11 -0700 (PDT)
+Date: Mon, 10 Sep 2012 23:36:11 -0700
+Message-ID: <CAPhnLPCmAMkMqC6xHL-btgFwjtjSWPmEyPa84FOs1SbmS9Ci1w@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: yocto@yoctoproject.org
+X-Gm-Message-State: ALoCoQlEP6JWOw5QfnZ//4kN95CaEemOCBO2HuBSIzjWokJ+wemZLrKkU4kAyF0KqCdEaqPBwoTW2+0RcodLwY1cZw0hSihHLHFIkAh8LlO571GyTiNj1niAT3SzwUFuINZ63tG2wBc6MlB+mCqkaSguS3Rzg5EP0A==
+Subject: New autobuilder adt-repo functionality and known adt-installer issues.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,35 +40,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 11 Sep 2012 04:01:46 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 11 Sep 2012 06:36:13 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
+All,
 
-Folks,
+There have been a few bugs opened via QA over the inability to test
+the adtrepo from autobuilder builds over the past few weeks. Last week
+I started looking at this and have implemented some changes to the
+autobuilder which should make it so that this won't be an issue for
+much longer.
 
-Given the issues we had with the Eclipse and ADT installer during the 
-RC1 build and we decided to forgo the existing RC1 build and restart 
-with an RC2.  There have been no changes to the Poky RC1 branch, but we 
-moved Eclipse forward to pick up some changes.
+The autobuilder nightly buildset now builds out two adt-installers and
+can install the resulting adtrepo of both. The production autobuilder
+will now build out the vanilla adt-installer which points to the adt
+repo at adtrepo.yoctoproject.org/${SDK_VERSION}. This adt-installer
+will only be used for point and major releases and should only be
+tested when preparing for that release.
 
-The current Autobuilder build artifacts are located at 
-http://autobuilder.yoctoproject.org/pub/nightly/20120910-5/
+The second adt-installer points to
+adtrepo-dev.yoctoproject.org/${SDK_VERSION}-githash. This adt repo is
+installed automatically from the autobuilder and is the one that
+should be tested against using the adt-installer in nightly's
+adt-installer-QA.
 
-This includes the Eclipse plugin and adt-installer, there should be 2 
-versions of the installer if I understood Beth correct, please use the 
-one marked adt-installer-QA when it's populated.
+For people using the yocto-autobuilder, all of this is configurable
+through the autobuilder.conf file and is turned off by default. The
+code for this is currently in the production autobuilder and I'm
+working on testing it out in that environment to ensure that there are
+no issues.
 
-I have seen 3 build failures, all related to libowl-av and sato rootfs, 
-they are in Atom-pc, qemuppc and mpc8315 targets.  I am going attempt a 
-rebuild of the nightly-ppc standalone.  There was also a failure in the 
-p1022, which I think Matthew is aware of.
+After checking the M4.rc2 buildout tonight there is still an issue
+with the adt-installer. The opkg.conf files don't update to the
+correct adtrepo location. I'm working on a patch for it now, however
+to get around this for testing, you'll need to manually update
+./opkg/conf/opkg-sdk-*.conf
+to either:
 
-All major repos have been have been Branched and we are using the 1.3_M4 
-branch, git hash dd3edc9fbb674682947e8218202fdbeef8635dd5
+src yp-x86_64-nativesdk
+http://http://adtrepo-dev.yoctoproject.org/1.2+snapshot-dd3edc9fbb674682947e8218202fdbeef8635dd5
+or
+src yp-i686-nativesdk
+http://http://adtrepo-dev.yoctoproject.org/1.2+snapshot-dd3edc9fbb674682947e8218202fdbeef8635dd5
 
-Thanks for your support in checking out these milestone.
-
-Sau!
-
+-- 
+Elizabeth Flanagan
+Yocto Project
+Build and Release
 
