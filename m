@@ -1,36 +1,20 @@
-Return-Path: <marc.ferland@gmail.com>
-Received: from mail-qa0-f48.google.com (mail-qa0-f48.google.com
-	[209.85.216.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9E870E004AB
-	for <yocto@yoctoproject.org>; Tue, 11 Sep 2012 14:57:21 -0700 (PDT)
-Received: by qady1 with SMTP id y1so789248qad.14
-	for <yocto@yoctoproject.org>; Tue, 11 Sep 2012 14:57:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=sender:from:to:subject:date:message-id:user-agent:mime-version
-	:content-type; bh=KSt99wDLxTkL+4y5W1331+WfYiinXbRWkW+EQzY1o9Q=;
-	b=D/i89+OUGZw1SulJ8zirRZEjNnX3xsKg2vHKP+X6qovixM4y0M1nVDx0MpP17nRNIM
-	8Jh0Sqra+wGeTB+nIsC7M8ZPzB6mEqTRGEunvbX4w6qVtBYSR7x3rrblP6rU5dQSfwrm
-	uSd2KVOP6X6Y52zv6hrxXcsNFgJZ+buyii15nJ0euo7BAk3iFPxSLCePtFQ5F/P0LxJ9
-	0nWbU1sDMPduZpsHamBy5cxUGWk2xCJC82WOIpJtaL1tQoP2DO0HJhsPhTQ4ZbT9Zit4
-	yNq8HGwcZZyjMpS+RT51B++sPj/qyEDT1QhKzUMYWJJ3XUaZDtO0HlJhM41Kv2a+FcA1
-	fk1Q==
-Received: by 10.224.179.18 with SMTP id bo18mr20311483qab.81.1347400638949;
-	Tue, 11 Sep 2012 14:57:18 -0700 (PDT)
-Received: from ferlandm@sonatest.com
-	(modemcable066.15-37-24.static.videotron.ca. [24.37.15.66])
-	by mx.google.com with ESMTPS id ez6sm7564732qab.17.2012.09.11.14.57.16
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Tue, 11 Sep 2012 14:57:18 -0700 (PDT)
-Sender: Marc Ferland <marc.ferland@gmail.com>
-Received: by ferlandm@sonatest.com (sSMTP sendmail emulation);
-	Tue, 11 Sep 2012 17:58:13 -0400
-From: Marc Ferland <ferlandm@sonatest.com>
+Return-Path: <kishore.k.bodke@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CC975E004AB
+	for <yocto@yoctoproject.org>; Tue, 11 Sep 2012 15:32:30 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 11 Sep 2012 15:32:30 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,407,1344236400"; d="scan'208";a="191577678"
+Received: from rsaxena-rosecity.sc.intel.com (HELO localhost)
+	([143.183.188.86])
+	by azsmga001.ch.intel.com with ESMTP; 11 Sep 2012 15:32:29 -0700
+From: rahul.saxena@intel.com
 To: yocto@yoctoproject.org
-Date: Tue, 11 Sep 2012 17:58:13 -0400
-Message-ID: <87627kcjd6.fsf@sonatest.com>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/24.1 (gnu/linux)
-MIME-Version: 1.0
-Subject: Replace netbase with connman
+Date: Tue, 11 Sep 2012 15:22:09 -0700
+Message-Id: <cover.1347401448.git.rahul.saxena@intel.com>
+X-Mailer: git-send-email 1.7.4.1
+Subject: [PATCH 0/1][meta-intel]meta-cedartrail:Cover letter to update PVR graphics driver to v1.0.3 - denzil branch
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,25 +26,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 11 Sep 2012 21:57:21 -0000
-Content-Type: text/plain
+X-List-Received-Date: Tue, 11 Sep 2012 22:32:31 -0000
 
-Hi,
+From: Rahul Saxena <rahul.saxena@intel.com>
 
-I'm trying to replace netbase from my image with connman and I need help
-on how to proceed. So far I see that:
-- udev includes some event scripts that bring up interfaces
-- netbase is included by default in core-image (which I use).
+Cover letter for patch to update pvr driver to v1.0.3
 
-Should I remove both the udev scripts and netbase from my image and just
-install connman?
+This driver update fixes a memory leak bug
 
-So far I successfully removed the udev scripts with a bbappend to udev
-but I don't know how to remove netbase from the 'core-boot' task.
+Please pull into meta-intel/denzil
 
-Also, will connman work when booting with nfsroot?
+Signed-off-by: Rahul Saxena <rahul.saxena@intel.com>
+--
+The following changes since commit 418f6d3936bcd871102042167c699c3773bded3e:
 
-Thanks,
+  meta-cedartrail: Add video acceleration (2012-09-11 13:58:04 -0500)
 
-Marc
+are available in the git repository at:
+  git://git.pokylinux.org/meta-intel-contrib rsaxena-denzilpvr103
+  http://git.pokylinux.org/cgit.cgi/meta-intel-contrib/log/?h=rsaxena-denzilpvr103
+
+Rahul Saxena (1):
+  meta-cedartrail: Update PVR graphics driver to version 1.0.3
+
+ meta-cedartrail/README                             |    2 +-
+ ...pvr-driver_1.0.2.bb => cdv-pvr-driver_1.0.3.bb} |   27 ++++++++++---------
+ 2 files changed, 15 insertions(+), 14 deletions(-)
+ rename meta-cedartrail/recipes-graphics/xorg-driver/{cdv-pvr-driver_1.0.2.bb => cdv-pvr-driver_1.0.3.bb} (85%)
+
+-- 
+1.7.4.1
+
 
