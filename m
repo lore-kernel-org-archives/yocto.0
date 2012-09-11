@@ -1,35 +1,34 @@
-Return-Path: <david.c.stewart@intel.com>
+Return-Path: <song.liu@intel.com>
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A2F00E00348
-	for <yocto@yoctoproject.org>; Mon, 10 Sep 2012 19:08:51 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 04690E00348
+	for <yocto@yoctoproject.org>; Mon, 10 Sep 2012 20:45:53 -0700 (PDT)
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 10 Sep 2012 19:08:51 -0700
+	by fmsmga102.fm.intel.com with ESMTP; 10 Sep 2012 20:45:53 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,400,1344236400"; 
-	d="scan'208,217";a="220517522"
+X-IronPort-AV: E=Sophos;i="4.80,401,1344236400"; d="scan'208";a="220542982"
 Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
-	by fmsmga001.fm.intel.com with ESMTP; 10 Sep 2012 19:08:51 -0700
-Received: from orsmsx103.amr.corp.intel.com (10.22.225.130) by
+	by fmsmga001.fm.intel.com with ESMTP; 10 Sep 2012 20:45:53 -0700
+Received: from orsmsx108.amr.corp.intel.com (10.22.225.40) by
 	orsmsx603.amr.corp.intel.com (10.22.226.49) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Mon, 10 Sep 2012 19:08:50 -0700
-Received: from orsmsx105.amr.corp.intel.com ([169.254.4.116]) by
-	ORSMSX103.amr.corp.intel.com ([169.254.2.246]) with mapi id
-	14.01.0355.002; Mon, 10 Sep 2012 19:08:50 -0700
-From: "Stewart, David C" <david.c.stewart@intel.com>
-To: "Serban, Laurentiu" <laurentiu.serban@intel.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: Yocto Bug Trend ww36
-Thread-Index: Ac2PjmW9IsjEMXhjTbSI7SNjCm+YTQAM/QgQ
-Date: Tue, 11 Sep 2012 02:08:49 +0000
-Message-ID: <CDED78A957032E45B3239CDDA7642D152DCB0427@ORSMSX105.amr.corp.intel.com>
-References: <E16513A01CAAFF40B65178C63CE45EEC1917B35E@IRSMSX102.ger.corp.intel.com>
-In-Reply-To: <E16513A01CAAFF40B65178C63CE45EEC1917B35E@IRSMSX102.ger.corp.intel.com>
+	(TLS) id 8.2.255.0; Mon, 10 Sep 2012 20:45:52 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.152]) by
+	ORSMSX108.amr.corp.intel.com ([169.254.9.127]) with mapi id
+	14.01.0355.002; Mon, 10 Sep 2012 20:45:52 -0700
+From: "Liu, Song" <song.liu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Agenda: Yocto Project Technical Team Meeting - Tuesday,
+	September 11,
+	2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+Thread-Index: AQHNj8/wsBUEG4h6y025qSI9VeDtPQ==
+Date: Tue, 11 Sep 2012 03:45:52 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A4852E648@ORSMSX101.amr.corp.intel.com>
+References: <7E680CB2A76BB8438D08CF13C09FC53A4844CAD5@ORSMSX101.amr.corp.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
+x-originating-ip: [10.22.254.138]
 MIME-Version: 1.0
-Subject: Re: Yocto Bug Trend ww36
+Subject: Agenda: Yocto Project Technical Team Meeting - Tuesday, September 11, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,150 +40,133 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 11 Sep 2012 02:08:51 -0000
+X-List-Received-Date: Tue, 11 Sep 2012 03:45:54 -0000
 Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_CDED78A957032E45B3239CDDA7642D152DCB0427ORSMSX105amrcor_"
-
---_000_CDED78A957032E45B3239CDDA7642D152DCB0427ORSMSX105amrcor_
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-That's headed in the right direction!
-
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Serban, Laurentiu
-Sent: Monday, September 10, 2012 12:56 PM
-To: yocto@yoctoproject.org
-Subject: [yocto] Yocto Bug Trend ww36
-
-Hello guys,
-
-The Yocto Bug Trends charts were updated https://wiki.yoctoproject.org/wiki=
-/Yocto_Bug_Trend
-
-Best regards,
-
-Laurentiu Serban
-QA Engineer
-Open Source Technology Center
-System Software Division Romania
-Desk: +40 31 8604742
-iNET: 88451042
+Agenda:
+=A0
+* Opens collection - 5 min (Song)
+* Yocto 1.3 status  - 10 min (Song/team)
+  https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.3_Status
+* SWAT team rotation: Laurentiu -> Mihai
+* Opens - 10 min
+* Team sharing - 20 min
 
 
---_000_CDED78A957032E45B3239CDDA7642D152DCB0427ORSMSX105amrcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+-----Original Appointment-----
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:Verdana;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-span.EmailStyle18
-	{mso-style-type:personal-reply;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">That&#8217;s headed in=
- the right direction!<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<div style=3D"border:none;border-left:solid blue 1.5pt;padding:0in 0in 0in =
-4.0pt">
-<div>
-<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
-0in 0in">
-<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
-;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
-ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> yocto-bo=
-unces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org]
-<b>On Behalf Of </b>Serban, Laurentiu<br>
-<b>Sent:</b> Monday, September 10, 2012 12:56 PM<br>
-<b>To:</b> yocto@yoctoproject.org<br>
-<b>Subject:</b> [yocto] Yocto Bug Trend ww36<o:p></o:p></span></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Hello guys,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">The Yocto Bug Trends charts were updated <a href=3D"=
-https://wiki.yoctoproject.org/wiki/Yocto_Bug_Trend">
-https://wiki.yoctoproject.org/wiki/Yocto_Bug_Trend</a><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Best regards,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:9.0pt;font-family:&quot;=
-Verdana&quot;,&quot;sans-serif&quot;;color:#244061">Laurentiu Serban<o:p></=
-o:p></span></b></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:&quot;Ver=
-dana&quot;,&quot;sans-serif&quot;;color:#244061">QA Engineer
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:&quot;Ver=
-dana&quot;,&quot;sans-serif&quot;;color:#244061">Open Source Technology Cen=
-ter<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:&quot;Ver=
-dana&quot;,&quot;sans-serif&quot;;color:#1F497D">System Software Division R=
-omania</span><span style=3D"color:#1F497D"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:&quot;Ver=
-dana&quot;,&quot;sans-serif&quot;;color:#244061">Desk: &#43;40 31 8604742</=
-span><b><span style=3D"color:#244061"><o:p></o:p></span></b></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:&quot;Ver=
-dana&quot;,&quot;sans-serif&quot;;color:#244061">iNET: 88451042<o:p></o:p><=
-/span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</div>
-</body>
-</html>
 
---_000_CDED78A957032E45B3239CDDA7642D152DCB0427ORSMSX105amrcor_--
+We encourage people attending the meeting to logon the Yocto IRC chancel du=
+ring the meeting (optional):
+
+Yocto IRC: http://webchat.freenode.net/?channels=3D#yocto
+IRC Tutorial: http://www.irchelp.org/irchelp/irctutorial.html=20
+
+Conference details
+Conference name:=20
+Yocto Technical Team
+Conference date/start time:=20
+Tue Jun 26, 2012 at 10:00 AM Central Daylight Time
+Participants:=20
+30
+Duration:=20
+60 minutes
+Participant passcode:=20
+76994298
+Dial-in number:=20
+1.972.995.7777
+US Toll Free number:=20
+1.877.561.6828
+BlackBerry users, click this link to join your conference as a participant:
+1.972.995.7777x76994298#
+=A0
+Depending on where you are dialing from, either your BlackBerry will pause =
+and enter the passcode automatically or you will be prompted to click again=
+ to dial the passcode.
+
+Local and Global Access Numbers=20
+
+
+Country
+Dial-in number
+Australia:=20
+1800 636 843
+Czech Republic:=20
+242 430 350
+China (Beijing):=20
+From office dial 8-9957777 or 8784277
+Beijing Out of Office dial 5878 4277
+China (Shanghai):=20
+From office dial 8-9957777 or 3073322
+Shanghai Out of Office dial 2307 3322
+China (Shenzen):=20
+From office dial 8-9957777 or 6007877
+Shenzen Out of Office dial 2600 7877
+China (Other Cities):=20
+From IP phone dial 8-9957777
+Other cities - Non IP phone dial 021-23073322
+Denmark:=20
+8060 1400
+Finland:=20
+09 41333477
+France:=20
+0497 275888
+Germany:=20
+08161 803232
+Holland:=20
+030 2417490
+India:=20
+BSNL subscribers use 1800 425 9996 (Toll Free) Airtel subscribers use 0008 =
+009 861 212 (Toll Free) From TI Campus use 89957777 Others use 2509 9555 (L=
+andline within Bangalore) or
+80 2509 9555 (Outside Bangalore)
+Israel:=20
+09 790 6715
+Italy:=20
+039 69061234 (039 is local city code not country code)
+Japan:=20
+From TI Campus use 8 995 7777
+Outside TI use 03 4331 3777
+Malaysia:=20
+From IP phone dial 2643799
+From Kuala Lumpur dial 4264 3799
+Outside Kuala Lumpur dial (03)4264 3799
+Norway:=20
+2 295 8744
+Philippines:=20
+From Baguio City use 4471177
+From Metro Manila area use 8702477
+Singapore:=20
+From IP phone dial 3894777
+Outside TI use 6389 4777
+South Korea:=20
+From IP phone dial 5606998
+From Seoul dial 5606998
+Outside Seoul dial (02)5606998
+Sweden:=20
+08 58755577
+Taiwan:=20
+From IP phone dial 1363
+From Taipei dial 2241 1363
+Outside Taipei dial (02)2241 1363
+Turkey:=20
+Landline Only dial 0811 288 0001
+then enter 877 633 1123
+UK:=20
+01604 663003
+US:=20
+972 995 7777 or 1877 561 6828
+
+Recurring conferences
+First scheduled conference:=20
+Tue Jun 26, 2012
+Recurrence frequency:=20
+Weekly - Every 1 week(s) on Tuesday
+Recurrence ends:=20
+End on Fri Jun 21, 2013, 10:40 AM CDT
+
+
+
+
