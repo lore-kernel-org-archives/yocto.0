@@ -1,23 +1,34 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 434FEE004AB
-	for <yocto@yoctoproject.org>; Tue, 11 Sep 2012 13:56:47 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 11 Sep 2012 13:56:46 -0700
+Return-Path: <jessica.zhang@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A88CDE004AB
+	for <yocto@yoctoproject.org>; Tue, 11 Sep 2012 14:29:01 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 11 Sep 2012 14:28:52 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,407,1344236400"; d="scan'208";a="191547959"
-Received: from unknown (HELO [10.255.13.178]) ([10.255.13.178])
-	by azsmga001.ch.intel.com with ESMTP; 11 Sep 2012 13:56:45 -0700
-Message-ID: <1347397005.17386.4.camel@empanada>
-From: Tom Zanussi <tom.zanussi@intel.com>
-To: rahul.saxena@intel.com
-Date: Tue, 11 Sep 2012 15:56:45 -0500
-In-Reply-To: <cover.1347297888.git.rahul.saxena@intel.com>
-References: <cover.1347297888.git.rahul.saxena@intel.com>
-X-Mailer: Evolution 3.4.1 (3.4.1-2.fc17) 
-Mime-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 0/1][meta-intel] Add video acceleration Cedartrail BSP denzil branch
+X-IronPort-AV: E=Sophos;i="4.80,407,1344236400"; d="scan'208";a="191774686"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
+	by orsmga001.jf.intel.com with ESMTP; 11 Sep 2012 14:29:00 -0700
+Received: from orsmsx104.amr.corp.intel.com (10.22.225.131) by
+	orsmsx603.amr.corp.intel.com (10.22.226.49) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Tue, 11 Sep 2012 14:28:58 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.152]) by
+	ORSMSX104.amr.corp.intel.com ([169.254.3.52]) with mapi id
+	14.01.0355.002; Tue, 11 Sep 2012 14:28:58 -0700
+From: "Zhang, Jessica" <jessica.zhang@intel.com>
+To: Axel Beierlein <belatronix@freenet.de>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] Eclipse Juno Plugin?
+Thread-Index: AQHNiduhj6gFqnjF+EaTJCyVnOd0GJeFtA5g
+Date: Tue, 11 Sep 2012 21:28:57 +0000
+Message-ID: <C6510F6D410BB64A8C15398EDC6B847C46AEE956@ORSMSX101.amr.corp.intel.com>
+References: <5044B59B.30708@freenet.de>
+In-Reply-To: <5044B59B.30708@freenet.de>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.140]
+MIME-Version: 1.0
+Subject: Re: Eclipse Juno Plugin?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,41 +40,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 11 Sep 2012 20:56:47 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 11 Sep 2012 21:29:01 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, 2012-09-10 at 10:34 -0700, rahul.saxena@intel.com wrote:
-> From: Rahul Saxena <rahul.saxena@intel.com>
-> 
-> This adds gstreamer and vaapi video acceleration components to enable video
-> acceleration with pvr driver in meta-cedartrail BSP
-> 
-> Please pull into denzil branch.
->     
+Hi Axel,
 
-Pulled into meta-intel/denzil.
+1.2.1 plug-in is meant for Indigo.  For Juno, please use post 1.2.  Where y=
+ou can find the nightly built out at locations e.g. http://downloads.yoctop=
+roject.org/autobuilder-images/eclipse-plugin/20120911-1/eclipse-plugin/juno=
+/
 
 Thanks,
+Jessica
 
-Tom
+-----Original Message-----
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Axel Beierlein
+Sent: Monday, September 03, 2012 6:50 AM
+To: yocto@yoctoproject.org
+Subject: [yocto] Eclipse Juno Plugin?
 
-> Signed-off-by: Rahul Saxena  <rahul.saxena@intel.com>
-> --
-> The following changes since commit 63f88d16e50384ffab41b548af0ad9b536d22069:
-> 
->   meta-cedartrail: Update PVR graphics driver to version 1.0.2 (2012-08-20 15:25:25 -0700)
-> 
-> are available in the git repository at:
->   git://git.pokylinux.org/meta-intel-contrib rsaxena-denzel3-gsrtOK
->   http://git.pokylinux.org/cgit.cgi/meta-intel-contrib/log/?h=rsaxena-denzel3-gsrtOK
-> 
-> Rahul Saxena (1):
->   meta-cedartrail: Add video acceleration
-> 
->  meta-cedartrail/conf/machine/cedartrail.conf |    4 ++++
->  1 files changed, 4 insertions(+), 0 deletions(-)
-> 
+Hello,
 
+is it right that Eclipse Juno need the Plugin Ver. 1.3?
 
+When i try to install the 1.2.1 Version of the Plugin in Juno, i get the Er=
+ror that autotools.ui was required.
+
+-- Missing requirement: Yocto Plugin IDE 1.2.0.201206291757 (org.yocto.sdk.=
+ide 1.2.0.201206291757) requires 'bundle org.eclipse.linuxtools.cdt.autotoo=
+ls.ui 1.0.0' but it could not be found --
+
+Where is this Package in Juno? The former installation of the Autotools Pac=
+kage was successful.
+
+Axel
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
 
