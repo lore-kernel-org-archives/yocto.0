@@ -1,36 +1,40 @@
-Return-Path: <nitin.a.kamble@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E10ECE002AC
-	for <yocto@yoctoproject.org>; Wed, 12 Sep 2012 09:18:34 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga101.ch.intel.com with ESMTP; 12 Sep 2012 09:18:34 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,410,1344236400"; d="scan'208";a="144268700"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.226.87])
-	by AZSMGA002.ch.intel.com with ESMTP; 12 Sep 2012 09:18:33 -0700
-Received: from orsmsx153.amr.corp.intel.com (10.22.226.247) by
-	orsmsx604.amr.corp.intel.com (10.22.226.87) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Wed, 12 Sep 2012 09:18:31 -0700
-Received: from orsmsx106.amr.corp.intel.com ([169.254.5.60]) by
-	ORSMSX153.amr.corp.intel.com ([169.254.13.67]) with mapi id
-	14.01.0355.002; Wed, 12 Sep 2012 09:18:31 -0700
-From: "Kamble, Nitin A" <nitin.a.kamble@intel.com>
-To: "Zanussi, Tom" <tom.zanussi@intel.com>
-Thread-Topic: [PATCH 0/1] Fix X issue on crownbay
-Thread-Index: AQHNjJT+uO1HjNK9Y0mWQPcnr9R7mZeEtdOAgAI1QYA=
-Date: Wed, 12 Sep 2012 16:18:30 +0000
-Message-ID: <ADD6A3980E8C39419A432FF422031B4C157264D3@ORSMSX106.amr.corp.intel.com>
-References: <cover.1346893078.git.nitin.a.kamble@intel.com>
-	<1347320069.25993.16.camel@empanada>
-In-Reply-To: <1347320069.25993.16.camel@empanada>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
+Return-Path: <rstreif@linuxfoundation.org>
+Received: from mail-qc0-f176.google.com (mail-qc0-f176.google.com
+	[209.85.216.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8FCABE00346
+	for <yocto@yoctoproject.org>; Wed, 12 Sep 2012 09:23:26 -0700 (PDT)
+Received: by qcsc21 with SMTP id c21so1507406qcs.35
+	for <yocto@yoctoproject.org>; Wed, 12 Sep 2012 09:23:26 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:sender:in-reply-to:references:date
+	:x-google-sender-auth:message-id:subject:from:to:cc:content-type
+	:x-gm-message-state;
+	bh=Wg5M60j0n6MFMqzMuEusBJ8PUYwpn0XUjUzVx3FgQjI=;
+	b=RxVeCvUOJdxB6AIOPCEDrPL/G5eyeJFiAvHfoqV306gp5shgE5U9JzsJB3aNRtCubp
+	4h4YIvyJifqs8ChFL0PuXyBP5AwHwudrmiTityU8Y5S74kzlUXkf3TIW1/OyptLbR9Z6
+	3B3IrQB3q6AxJlcPsytIhxbs8PH80I016/Sx7aqnc757Ji2EhfIyIJpZZfoV4uZw2UNQ
+	Ue3fqnyHHd6qExlICFQPYTs1C9rBjTgds6NoQRN0yE4NI6/TqYg1xAIl2iix0m4lwYea
+	LtM5mpLnaKXo5/OTyBIffS7L/hEjWrf9W+Auo0rdQXmGCApedW74pn+K972L7GRcno9z
+	ttjg==
 MIME-Version: 1.0
-Cc: "Hart, Darren" <darren.hart@intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [PATCH 0/1] Fix X issue on crownbay
+Received: by 10.224.78.83 with SMTP id j19mr12475735qak.56.1347467005855; Wed,
+	12 Sep 2012 09:23:25 -0700 (PDT)
+Sender: rstreif@linuxfoundation.org
+Received: by 10.49.116.77 with HTTP; Wed, 12 Sep 2012 09:23:25 -0700 (PDT)
+In-Reply-To: <1391749.2csV02vdze@helios>
+References: <CA+gsK-qoz4u6OZV+FZN+LZq2AOgw5RajOW6DCJOnXbZGecva1w@mail.gmail.com>
+	<CABcZANnkt30OvFX3BNctHf115jQbX4piKMxb3b2N8saP4Prrmg@mail.gmail.com>
+	<CA+gsK-rSTj418hLedGJ8VgdUgrP7=eRqNw5etpb21gBWwGAYkA@mail.gmail.com>
+	<1391749.2csV02vdze@helios>
+Date: Wed, 12 Sep 2012 09:23:25 -0700
+X-Google-Sender-Auth: J3TGwMhev_Skv1igqlch9JQHtMY
+Message-ID: <CA+gsK-rGm6zjVL6sAUoLYwYFJKwRn1oVEE7ubtXi3W=qrd6=dA@mail.gmail.com>
+From: Rudolf Streif <rudolf.streif@linux.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+X-Gm-Message-State: ALoCoQmeOy6JVVlPjNDy0B4Q76qxEKSTLkAW8jGF4td5kvETs4cF1Z76kqcW+Rq4xsbW4oLqsbwK
+Cc: yocto@yoctoproject.org, Chris Larson <clarson@kergoth.com>
+Subject: Re: [linux-yocto] 'bitbake linux-yocto' after 'bitbake linux-yocto -c compile -f' does not create image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,41 +46,82 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 12 Sep 2012 16:18:35 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Wed, 12 Sep 2012 16:23:26 -0000
+Content-Type: multipart/alternative; boundary=20cf3074d81a3b081804c9839cde
 
-SGkgVG9tLA0KICBUaGFua3MgZm9yIGxvb2tpbmcgaW50byB0aGUgbWF0dGVyLiBJIHdpbGwgdHJ5
-IHRvIHJlcHJvZHVjZSB0aGUgaXNzdWUgeW91IGFyZSBzZWVpbmcgd2l0aCBtYXN0ZXIuIEFuZCBz
-ZW5kIGFub3RoZXIgcHVsbCByZXF1ZXN0IHdpdGggYWxsIHRoZSBmaXhlcy4NCg0KUmVnYXJkcywN
-Ck5pdGluDQoNCg0KPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBaYW51c3Np
-LCBUb20NCj4gU2VudDogTW9uZGF5LCBTZXB0ZW1iZXIgMTAsIDIwMTIgNDozNCBQTQ0KPiBUbzog
-S2FtYmxlLCBOaXRpbiBBDQo+IENjOiBIYXJ0LCBEYXJyZW47IHlvY3RvQHlvY3RvcHJvamVjdC5v
-cmcNCj4gU3ViamVjdDogUmU6IFtQQVRDSCAwLzFdIEZpeCBYIGlzc3VlIG9uIGNyb3duYmF5DQo+
-IA0KPiBPbiBXZWQsIDIwMTItMDktMDUgYXQgMTc6NTkgLTA3MDAsIG5pdGluLmEua2FtYmxlQGlu
-dGVsLmNvbSB3cm90ZToNCj4gPiBGcm9tOiBOaXRpbiBBIEthbWJsZSA8bml0aW4uYS5rYW1ibGVA
-aW50ZWwuY29tPg0KPiA+DQo+ID4gVGhlIGZvbGxvd2luZyBjaGFuZ2VzIHNpbmNlIGNvbW1pdA0K
-PiA2NmI1MTZmM2QzYTI4N2VlY2JmODgwNGIyMjIxYmZjMjdlMzZkYjYzOg0KPiA+DQo+ID4gICBS
-RUFETUU6IGFkZCBpbmZvIGV4cGxhaW5pbmcgbWV0YS10bGsgbGF5ZXIgcHVycG9zZSAoMjAxMi0w
-OS0wNg0KPiA+IDEwOjM2OjAyIC0wNTAwKQ0KPiA+DQo+ID4gYXJlIGF2YWlsYWJsZSBpbiB0aGUg
-Z2l0IHJlcG9zaXRvcnkgYXQ6DQo+ID4gICBnaXQ6Ly9naXQueW9jdG9wcm9qZWN0Lm9yZy9tZXRh
-LWludGVsLWNvbnRyaWIgbml0aW4vd29yaw0KPiA+DQo+ID4gaHR0cDovL2dpdC55b2N0b3Byb2pl
-Y3Qub3JnL2NnaXQuY2dpL21ldGEtaW50ZWwtY29udHJpYi9sb2cvP2g9bml0aW4vdw0KPiA+IG9y
-aw0KPiA+DQo+IA0KPiBJIGJ1aWx0IGFuZCB0cmllZCB0aGlzLCBidXQgaXQgc3RpbGwgZGlkbid0
-IGJvb3QgaW50byBYLCBhbmQgbm93IHRoZXJlJ3Mgbm90IGV2ZW4gYW4NCj4gWG9yZy5sb2cgdG8g
-bG9vayBhdDoNCj4gDQo+IHJvb3RAY3Jvd25iYXk6L3Zhci9sb2cjIGxzIC1hbA0KPiBkcnd4ci14
-ci14ICAgIDIgcm9vdCAgICAgcm9vdCAgICAgICAgICAgIDgwIFNlcCAxMCAyMDoxNSAuDQo+IGRy
-d3hyd3hyd3QgICAgNyByb290ICAgICByb290ICAgICAgICAgICAxNDAgSmFuICA2ICAyMDA5IC4u
-DQo+IC1ydy1yLS1yLS0gICAgMSByb290ICAgICByb290ICAgICAgICAgNzg0MjkgU2VwIDEwIDIw
-OjE3IG1lc3NhZ2VzDQo+IC1ydy1ydy1yLS0gICAgMSByb290ICAgICByb290ICAgICAgICAgIDQy
-MjQgU2VwIDEwIDIwOjE3IHd0bXANCj4gDQo+IEkgYXNzdW1lIHRoaXMgaXMgYSBkaWZmZXJlbnQg
-WCBwcm9ibGVtIHJlbGF0ZWQgdG8gcmVjZW50IGNoYW5nZXMgaW4gbWF0ZXIuDQo+IENhbiB5b3Ug
-dXBkYXRlIHRoZSBidWcgcmVwb3J0IHdpdGggdGhlIGNvbW1pdHMgdGhhdCB5b3UgdGVzdGVkIHdp
-dGggc28gSQ0KPiBjYW4gdmVyaWZ5IHRoYXQgeW91ciBwYXRjaCBhdCBsZWFzdCB3b3Jrcz8NCj4g
-DQo+IFRoYW5rcywNCj4gDQo+IFRvbQ0KPiANCj4gDQo+IA0KPiA+IE5pdGluIEEgS2FtYmxlICgx
-KToNCj4gPiAgIGVtZ2QtZHJpdmVyLWJpbjogRml4IHBhY2thZ2UgbmFtaW5nIGlzc3VlDQo+ID4N
-Cj4gPiAgLi4uL3hvcmcteHNlcnZlci9lbWdkLWRyaXZlci1iaW5fMS4xNC5iYiAgICAgICAgICAg
-fCAgICA4ICsrKysrKystDQo+ID4gIDEgZmlsZXMgY2hhbmdlZCwgNyBpbnNlcnRpb25zKCspLCAx
-IGRlbGV0aW9ucygtKQ0KPiA+DQo+IA0KDQo=
+--20cf3074d81a3b081804c9839cde
+Content-Type: text/plain; charset=ISO-8859-1
 
+Thanks. That explains -C. But what happened to -f in the 1.15.2? It seems
+that it does not trigger a rerun of the dependent tasks anymore when
+bitbake is invoked again specifying the package only.
+
+I am actually teaching a class right now and it happens to all of the
+systems including my dev box. So it's not isolated to one system only.
+
+Thanks,
+Rudi
+
+On Wed, Sep 12, 2012 at 9:01 AM, Paul Eggleton <
+paul.eggleton@linux.intel.com> wrote:
+
+> On Wednesday 12 September 2012 08:16:46 Rudolf Streif wrote:
+> > Thanks, Chris. From what bitbake version on is that command available?
+> The
+> > bitbake version bundled with YP Denzil 7.0.1 is 1.15.2 and it does not
+> > recognize that command:
+> >
+> > ...
+> > bitbake: error: no such option -C
+>
+> That's correct. This has been implemented in master (and will be in the
+> upcoming stable release).
+>
+> Cheers,
+> Paul
+>
+> --
+>
+> Paul Eggleton
+> Intel Open Source Technology Centre
+>
+
+--20cf3074d81a3b081804c9839cde
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+Thanks. That explains -C. But what happened to -f in the 1.15.2? It seems t=
+hat it does not trigger a rerun of the dependent tasks anymore when bitbake=
+ is invoked again specifying the package only.<div><br></div><div>I am actu=
+ally teaching a class right now and it happens to all of the systems includ=
+ing my dev box. So it&#39;s not isolated to one system only.</div>
+<div><br></div><div>Thanks,</div><div>Rudi<br><br><div class=3D"gmail_quote=
+">On Wed, Sep 12, 2012 at 9:01 AM, Paul Eggleton <span dir=3D"ltr">&lt;<a h=
+ref=3D"mailto:paul.eggleton@linux.intel.com" target=3D"_blank">paul.eggleto=
+n@linux.intel.com</a>&gt;</span> wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><div class=3D"im">On Wednesday 12 September =
+2012 08:16:46 Rudolf Streif wrote:<br>
+&gt; Thanks, Chris. From what bitbake version on is that command available?=
+ The<br>
+&gt; bitbake version bundled with YP Denzil 7.0.1 is 1.15.2 and it does not=
+<br>
+&gt; recognize that command:<br>
+&gt;<br>
+&gt; ...<br>
+&gt; bitbake: error: no such option -C<br>
+<br>
+</div>That&#39;s correct. This has been implemented in master (and will be =
+in the<br>
+upcoming stable release).<br>
+<br>
+Cheers,<br>
+Paul<br>
+<span class=3D"HOEnZb"><font color=3D"#888888"><br>
+--<br>
+<br>
+Paul Eggleton<br>
+Intel Open Source Technology Centre<br>
+</font></span></blockquote></div><br></div>
+
+--20cf3074d81a3b081804c9839cde--
