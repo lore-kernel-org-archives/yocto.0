@@ -1,38 +1,42 @@
-Return-Path: <kishore.k.bodke@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3272CE0049D
-	for <yocto@yoctoproject.org>; Wed, 12 Sep 2012 13:57:32 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga101.ch.intel.com with ESMTP; 12 Sep 2012 13:57:28 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,413,1344236400"; d="scan'208";a="144375746"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
-	by AZSMGA002.ch.intel.com with ESMTP; 12 Sep 2012 13:57:28 -0700
-Received: from orsmsx103.amr.corp.intel.com (10.22.225.130) by
-	orsmsx603.amr.corp.intel.com (10.22.226.49) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Wed, 12 Sep 2012 13:57:25 -0700
-Received: from orsmsx105.amr.corp.intel.com ([169.254.4.116]) by
-	ORSMSX103.amr.corp.intel.com ([169.254.2.246]) with mapi id
-	14.01.0355.002; Wed, 12 Sep 2012 13:57:25 -0700
-From: "Bodke, Kishore K" <kishore.k.bodke@intel.com>
-To: "Kamble, Nitin A" <nitin.a.kamble@intel.com>, "Zanussi, Tom"
-	<tom.zanussi@intel.com>
-Thread-Topic: [PATCH 0/1] Fix X issue on crownbay
-Thread-Index: AQHNjJT+c4636csDQkO4bthXLQKlhJeEtdOAgAI1QYCAAEG1QIAADCuQ
-Date: Wed, 12 Sep 2012 20:57:25 +0000
-Message-ID: <D956029D25CF204F948EA0FB515E1EE21C1058EB@ORSMSX105.amr.corp.intel.com>
-References: <cover.1346893078.git.nitin.a.kamble@intel.com>
-	<1347320069.25993.16.camel@empanada>
-	<ADD6A3980E8C39419A432FF422031B4C15726661@ORSMSX106.amr.corp.intel.com>
-In-Reply-To: <ADD6A3980E8C39419A432FF422031B4C15726661@ORSMSX106.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.138]
-MIME-Version: 1.0
-Cc: "Hart, Darren" <darren.hart@intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [PATCH 0/1] Fix X issue on crownbay
+Return-Path: <sgw@bigsur.com>
+Received: from mail-pz0-f48.google.com (mail-pz0-f48.google.com
+	[209.85.210.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 14228E00344
+	for <yocto@yoctoproject.org>; Wed, 12 Sep 2012 14:52:59 -0700 (PDT)
+Received: by dadz8 with SMTP id z8so1658394dad.35
+	for <yocto@yoctoproject.org>; Wed, 12 Sep 2012 14:52:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=bigsur.com; s=bigsur.com;
+	h=sender:from:to:subject:date:message-id:x-mailer;
+	bh=1sPNlCh2Jrz8kK+dsL4qJnzm2lJc1cqHirNQ3kGEWCs=;
+	b=HQ3ZprX1kITptKe520uYGMF/gHW9sDvbZiI8otvr96FP8OBYNNs/ijYyAdCVv1G6+1
+	rn0VvS1FG0+ev1wxYfeloh+cnQvxf6+w/zf0fQRJXayliGY4dirVimBsXOYpDASL/KCD
+	6ArHM4+INEO/HfpsD1Yhn4cikMSEuzMoXYSbI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=sender:from:to:subject:date:message-id:x-mailer:x-gm-message-state;
+	bh=1sPNlCh2Jrz8kK+dsL4qJnzm2lJc1cqHirNQ3kGEWCs=;
+	b=dPoQz2OLbGbun2rzS3/Wx3cj8oeH+dcwkqTISCeWEsPmEQCF5z/cZTKczXEKn7yM/c
+	BmUwmIG9IeAw8TnaVBCWmH5/zRdag1nDSRh6QY39qDLwBw5DFIXBoz8iNw56qhKZOFq6
+	/1qdFPpdBRIlpQCC0jn75hfPP34ZIlKmMRDzb2XXhquTsJtbms9+lsoDPiWUybU8cw3c
+	wamsJyVi+lId1/84daJbrp7iYU/OO8A3VjMUtatsa/sXJlzJ+CBQ0iFA58bTD1vehawA
+	bOTtrGf4YYWsuaq/nGdH5VWknPrAijh/p9trCGV2VxFzUi2p60G/5UjNP4pdLN+5U+aJ
+	L6SA==
+Received: by 10.66.84.130 with SMTP id z2mr33704110pay.77.1347486765354;
+	Wed, 12 Sep 2012 14:52:45 -0700 (PDT)
+Received: from localhost (c-71-193-189-117.hsd1.wa.comcast.net.
+	[71.193.189.117])
+	by mx.google.com with ESMTPS id rm6sm5852905pbc.54.2012.09.12.14.52.43
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Wed, 12 Sep 2012 14:52:43 -0700 (PDT)
+Sender: Saul Wold <sgw@bigsur.com>
+From: Saul Wold <sgw@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Wed, 12 Sep 2012 14:52:37 -0700
+Message-Id: <1347486757-20642-1-git-send-email-sgw@linux.intel.com>
+X-Mailer: git-send-email 1.7.9.5
+X-Gm-Message-State: ALoCoQkDyq5Ww9qSz2UjNLj8MRe9fQS9s8yTvNq3TlTR2bBeJmu0PeRQfqUap+FdhWAUwXFHhAG5
+Subject: [PATCH] x32: Update for 1.3
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,109 +48,68 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 12 Sep 2012 20:57:32 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 12 Sep 2012 21:53:00 -0000
 
+x32 is now part of oe-core and the meta-x32 is no longer needed
 
+Signed-off-by: Saul Wold <sgw@linux.intel.com>
+---
+ .../poky-ref-manual/technical-details.xml          |   26 +++-----------------
+ 1 file changed, 4 insertions(+), 22 deletions(-)
 
->-----Original Message-----
->From: yocto-bounces@yoctoproject.org [mailto:yocto-
->bounces@yoctoproject.org] On Behalf Of Kamble, Nitin A
->Sent: Wednesday, September 12, 2012 1:14 PM
->To: Zanussi, Tom
->Cc: Hart, Darren; yocto@yoctoproject.org
->Subject: Re: [yocto] [PATCH 0/1] Fix X issue on crownbay
->
->FYI While testing on the fishriver platform, I also find that there is no =
-X log, and
->looking further found out that xorg executable is not on the image. I thin=
-k the
->same thing is also happening on crownbay.
+diff --git a/documentation/poky-ref-manual/technical-details.xml b/documentation/poky-ref-manual/technical-details.xml
+index aef1c27..caf52cd 100644
+--- a/documentation/poky-ref-manual/technical-details.xml
++++ b/documentation/poky-ref-manual/technical-details.xml
+@@ -600,10 +600,9 @@
+             <itemizedlist>
+                 <listitem><para>You can create packages and images in x32 psABI format on x86_64 architecture targets. 
+                     </para></listitem>
+-                <listitem><para>You can use the x32 psABI support through the <filename>meta-x32</filename>
+-                    layer on top of the OE-core/Yocto layer.</para></listitem>
+-                <listitem><para>The toolchain from the <filename>experimental/meta-x32</filename> layer 
+-                    is used for building x32 psABI program binaries.</para></listitem>
++                <listitem><para>You can use the x32 psABI support by setting
++                    the <filenaeme>DEFAULTTUNE</filename></para></listitem>
++                <listitem><para>The toolchain in or-core now supports x32.</para></listitem>
+                 <listitem><para>You can successfully build many recipes with the x32 toolchain.</para></listitem>
+                 <listitem><para>You can create and boot <filename>core-image-minimal</filename> and 
+                     <filename>core-image-sato</filename> images.</para></listitem>
+@@ -626,8 +625,6 @@
+                     work with and support x32 toolchains.</para></listitem>
+                 <listitem><para>Enhance RPM Package Manager (RPM) support for x32 binaries.</para></listitem>
+                 <listitem><para>Support larger images.</para></listitem>
+-                <listitem><para>Integrate x32 recipes, toolchain, and kernel changes from 
+-                    <filename>experimental/meta-x32</filename> into OE-core.</para></listitem>
+             </itemizedlist>
+         </para>
+     </section>
+@@ -636,23 +633,8 @@
+         <title>Using x32 Right Now</title>
+ 
+         <para>
+-            Despite the fact the x32 psABI support is in development state for this release of the
+-            Yocto Project, you can follow these steps to use the x32 spABI:
++            With this release of the Yocto Project, you can follow these steps to use the x32 spABI:
+             <itemizedlist>
+-                <listitem><para>Add the <filename>experimental/meta-x32</filename> layer to your local
+-                    <ulink url='&YOCTO_DOCS_DEV_URL;#build-directory'>build directory</ulink>.  
+-                    You can find the <filename>experimental/meta-x32</filename> source repository at
+-                    <ulink url='&YOCTO_GIT_URL;'></ulink>.</para></listitem>
+-                <listitem><para>Edit your <filename>conf/bblayers.conf</filename> file so that it includes
+-                    the <filename>meta-x32</filename>.
+-                    Here is an example:
+-                    <literallayout class='monospaced'>
+-     BBLAYERS ?= " \
+-        /home/nitin/prj/poky.git/meta \
+-        /home/nitin/prj/poky.git/meta-yocto \
+-        /home/nitin/prj/meta-x32.git \
+-     "
+-                    </literallayout></para></listitem>
+                 <listitem><para>Enable the x32 psABI tuning file for <filename>x86_64</filename>
+                     machines by editing the <filename>conf/local.conf</filename> like this:
+                     <literallayout class='monospaced'>
+-- 
+1.7.9.5
 
-FYI.. I also see the similar issue for Romley. =20
-There is no Xlog and X does not comes up.
-
-Thanks
-Kishore.
-
->
->Nitin
->
->
->
->> -----Original Message-----
->> From: Kamble, Nitin A
->> Sent: Wednesday, September 12, 2012 9:18 AM
->> To: Zanussi, Tom
->> Cc: Hart, Darren; yocto@yoctoproject.org
->> Subject: RE: [PATCH 0/1] Fix X issue on crownbay
->>
->> Hi Tom,
->>   Thanks for looking into the matter. I will try to reproduce the issue =
-you are
->> seeing with master. And send another pull request with all the fixes.
->>
->> Regards,
->> Nitin
->>
->>
->> > -----Original Message-----
->> > From: Zanussi, Tom
->> > Sent: Monday, September 10, 2012 4:34 PM
->> > To: Kamble, Nitin A
->> > Cc: Hart, Darren; yocto@yoctoproject.org
->> > Subject: Re: [PATCH 0/1] Fix X issue on crownbay
->> >
->> > On Wed, 2012-09-05 at 17:59 -0700, nitin.a.kamble@intel.com wrote:
->> > > From: Nitin A Kamble <nitin.a.kamble@intel.com>
->> > >
->> > > The following changes since commit
->> > 66b516f3d3a287eecbf8804b2221bfc27e36db63:
->> > >
->> > >   README: add info explaining meta-tlk layer purpose (2012-09-06
->> > > 10:36:02 -0500)
->> > >
->> > > are available in the git repository at:
->> > >   git://git.yoctoproject.org/meta-intel-contrib nitin/work
->> > >
->> > > http://git.yoctoproject.org/cgit.cgi/meta-intel-contrib/log/?h=3Dnit=
-in
->> > > /w
->> > > ork
->> > >
->> >
->> > I built and tried this, but it still didn't boot into X, and now
->> > there's not even an Xorg.log to look at:
->> >
->> > root@crownbay:/var/log# ls -al
->> > drwxr-xr-x    2 root     root            80 Sep 10 20:15 .
->> > drwxrwxrwt    7 root     root           140 Jan  6  2009 ..
->> > -rw-r--r--    1 root     root         78429 Sep 10 20:17 messages
->> > -rw-rw-r--    1 root     root          4224 Sep 10 20:17 wtmp
->> >
->> > I assume this is a different X problem related to recent changes in ma=
-ter.
->> > Can you update the bug report with the commits that you tested with so
->> > I can verify that your patch at least works?
->> >
->> > Thanks,
->> >
->> > Tom
->> >
->> >
->> >
->> > > Nitin A Kamble (1):
->> > >   emgd-driver-bin: Fix package naming issue
->> > >
->> > >  .../xorg-xserver/emgd-driver-bin_1.14.bb           |    8 +++++++-
->> > >  1 files changed, 7 insertions(+), 1 deletions(-)
->> > >
->> >
->
->_______________________________________________
->yocto mailing list
->yocto@yoctoproject.org
->https://lists.yoctoproject.org/listinfo/yocto
 
