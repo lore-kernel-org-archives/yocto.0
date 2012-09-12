@@ -1,34 +1,45 @@
-Return-Path: <song.liu@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0F163E0144C
-	for <yocto@yoctoproject.org>; Tue, 11 Sep 2012 22:20:04 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 11 Sep 2012 22:20:03 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,407,1344236400"; d="scan'208";a="191893990"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
-	by orsmga001.jf.intel.com with ESMTP; 11 Sep 2012 22:19:59 -0700
-Received: from orsmsx107.amr.corp.intel.com (10.22.225.80) by
-	orsmsx603.amr.corp.intel.com (10.22.226.49) with Microsoft SMTP Server
-	(TLS) id 8.2.255.0; Tue, 11 Sep 2012 22:19:59 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.152]) by
-	ORSMSX107.amr.corp.intel.com ([169.254.10.146]) with mapi id
-	14.01.0355.002; Tue, 11 Sep 2012 22:19:59 -0700
-From: "Liu, Song" <song.liu@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Minutes: Yocto Project Technical Team Meeting - Tuesday,
-	September 11,
-	2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
-Thread-Index: AQHNkKZAYA+bkahy+k6Wvacj3N4+DQ==
-Date: Wed, 12 Sep 2012 05:19:58 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A4852F777@ORSMSX101.amr.corp.intel.com>
-References: <7E680CB2A76BB8438D08CF13C09FC53A4844CAD5@ORSMSX101.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
+Return-Path: <B19537@freescale.com>
+Received: from ch1outboundpool.messaging.microsoft.com
+	(ch1ehsobe006.messaging.microsoft.com [216.32.181.186])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 82190E0144C
+	for <yocto@yoctoproject.org>; Tue, 11 Sep 2012 23:49:40 -0700 (PDT)
+Received: from mail109-ch1-R.bigfish.com (10.43.68.234) by
+	CH1EHSOBE006.bigfish.com (10.43.70.56) with Microsoft SMTP Server id
+	14.1.225.23; Wed, 12 Sep 2012 06:49:39 +0000
+Received: from mail109-ch1 (localhost [127.0.0.1])	by
+	mail109-ch1-R.bigfish.com (Postfix) with ESMTP id 7159C360234	for
+	<yocto@yoctoproject.org>; Wed, 12 Sep 2012 06:49:39 +0000 (UTC)
+X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null); IPV:NLI;
+	H:mail.freescale.net; RD:none; EFVD:NLI
+X-SpamScore: 0
+X-BigFish: VS0(zzzz1202h1d1ah1d2ahzz8275bhz2dh2a8h668h839hd24he5bhf0ah107ah1288h12a5h12bdh1155h)
+Received: from mail109-ch1 (localhost.localdomain [127.0.0.1]) by mail109-ch1
+	(MessageSwitch) id 1347432577781126_2142;
+	Wed, 12 Sep 2012 06:49:37 +0000 (UTC)
+Received: from CH1EHSMHS036.bigfish.com (snatpool1.int.messaging.microsoft.com
+	[10.43.68.242])	by mail109-ch1.bigfish.com (Postfix) with ESMTP id
+	B219720068
+	for <yocto@yoctoproject.org>; Wed, 12 Sep 2012 06:49:37 +0000 (UTC)
+Received: from mail.freescale.net (70.37.183.190) by CH1EHSMHS036.bigfish.com
+	(10.43.69.245) with Microsoft SMTP Server (TLS) id 14.1.225.23;
+	Wed, 12 Sep 2012 06:49:37 +0000
+Received: from tx30smr01.am.freescale.net (10.81.153.31) by
+	039-SN1MMR1-001.039d.mgd.msft.net (10.84.1.13) with Microsoft SMTP
+	Server (TLS) id 14.2.309.3; Wed, 12 Sep 2012 01:49:36 -0500
+Received: from bjsimics-desktop.ap.freescale.net
+	(bjsimics-desktop-010192208197.ap.freescale.net [10.192.208.197])	by
+	tx30smr01.am.freescale.net (8.14.3/8.14.0) with ESMTP id q8C6nUQK025013;
+	Tue, 11 Sep 2012 23:49:33 -0700
+From: <b19537@freescale.com>
+To: <yocto@yoctoproject.org>
+Date: Wed, 12 Sep 2012 15:06:16 +0800
+Message-ID: <1347433590-8481-2-git-send-email-b19537@freescale.com>
+X-Mailer: git-send-email 1.7.9.5
+In-Reply-To: <1347433590-8481-1-git-send-email-b19537@freescale.com>
+References: <1347433590-8481-1-git-send-email-b19537@freescale.com>
 MIME-Version: 1.0
-Subject: Minutes: Yocto Project Technical Team Meeting - Tuesday, September 11, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+X-OriginatorOrg: freescale.com
+Subject: [meta-fsl-ppc 02/16] fsl-image-minimal: IMAGE_FSTYPES add jffs2
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,60 +51,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 12 Sep 2012 05:20:04 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 12 Sep 2012 06:49:40 -0000
+Content-Type: text/plain
 
-Attendees:
-MichaelH, Christiana, Bogdan, Christy, PaulE, Andrei, Tima, Tom, Ross, Bele=
-n, Kevin, Mark, LaurentiuP, Richard,  Andy, Bjorn, Jessica, Darren, Dave, S=
-ong
-=A0
-Andy: from UK, observing for any firm involvement , looking to get more inf=
-ormation.
-=A0
-Agenda:
-=A0
-* Opens collection - 5 min (Song)
-* Yocto 1.3 status  - 10 min (Song/team)
-  https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.3_Status =20
-    - Bug fixing: good progress last week, 2 high M4 bugs. One is closed. T=
-he other one (2162) already has patches in review.
-    - RC status/Saul: We recreated RC1 (which can be called RC2), Beth did =
-some work on AB, worked with Jessica for adt installer, there was some issu=
-es, resolved over the weekend. We dropped RC1 and moved forward. Now workin=
-g on RC2.=20
-    - X32 progress: With recent update in the kernel, eglibc and gcc, we ca=
-n now create x32 BSPs without the x32 layer, but with one simple change in =
-kernel config. We are working to trigger the change automatically. Should b=
-e done this week or so.=20
-    - QA: We started weekly testing this morning. The full pass testing sho=
-uld be done by the end of this week.
-    - RP: wants to highlight the point on the schedule we're at - starting =
-to switch from feature development to stabilization and bug fixing. If ther=
-e is any big change you would like to put in, please let me know asap. We a=
-re at a point we need to concentrate on bug fixing. HOB has some good fixes=
-.=20
-=A0
-* SWAT team rotation: Laurentiu -> Mihai
-* Opens - 10 min
-=A0
-* Team sharing - 20 min
-=A0
-  - Mark: across link, some patches, arm has particular issues, if you see =
-any prelink issue, we probably have a fix for it. We are working one meta-s=
-elinux. If you can help, let me know. Last week in LinuxCon, we already hav=
-e a large number of patches for se-linux.
-  - MichaelH: Worked on bugzilla, adt issues, did some work for the data ce=
-nter. There were some people locked out of the servers. Resolved those issu=
-e. Layers cleanup, basic information for layers, very easy to do. But make =
-a big difference. RP/Dave: our code should be self documenting in many plac=
-es such as layers.
-  - RP: sstate checksum changes going in. (sorry to miss this here, Richard=
-. Please feel free to fill in if necessary), looking for feedback. Disk cle=
-an needs to be hold off to 1.4.=20
-  - Paul: ability to specify task and follow dependency recursively, etc.
+From: Ting Liu <b28495@freescale.com>
+
+Signed-off-by: Ting Liu <b28495@freescale.com>
+---
+ images/fsl-image-minimal.bb |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/images/fsl-image-minimal.bb b/images/fsl-image-minimal.bb
+index b8d3c77..f3d1ad4 100644
+--- a/images/fsl-image-minimal.bb
++++ b/images/fsl-image-minimal.bb
+@@ -13,4 +13,4 @@ IMAGE_ROOTFS_SIZE = "8192"
+ # remove not needed ipkg informations
+ ROOTFS_POSTPROCESS_COMMAND += "remove_packaging_data_files ; "
+ 
+-IMAGE_FSTYPES = "tar.gz ext2.gz.u-boot"
++IMAGE_FSTYPES = "tar.gz ext2.gz.u-boot jffs2"
+-- 
+1.7.9.5
 
 
 
