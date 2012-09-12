@@ -1,52 +1,38 @@
-Return-Path: <B29882@freescale.com>
-Received: from va3outboundpool.messaging.microsoft.com
-	(va3ehsobe010.messaging.microsoft.com [216.32.180.30])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C1BBCE00344
-	for <yocto@yoctoproject.org>; Wed, 12 Sep 2012 12:49:08 -0700 (PDT)
-Received: from mail151-va3-R.bigfish.com (10.7.14.250) by
-	VA3EHSOBE013.bigfish.com (10.7.40.63) with Microsoft SMTP Server id
-	14.1.225.23; Wed, 12 Sep 2012 19:49:07 +0000
-Received: from mail151-va3 (localhost [127.0.0.1])	by
-	mail151-va3-R.bigfish.com (Postfix) with ESMTP id D253160094	for
-	<yocto@yoctoproject.org>; Wed, 12 Sep 2012 19:49:07 +0000 (UTC)
-X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null); IPV:NLI;
-	H:mail.freescale.net; RD:none; EFVD:NLI
-X-SpamScore: -12
-X-BigFish: VS-12(zb00Rz98dI9371I1432Izz1202h1d1ah1d2ahzz8275bh8275dhz2dh2a8h668h839h8e2h8e3hd25hf0ah107ah10d2h1288h12a5h12a9h12bdhbe9i1155h)
-Received: from mail151-va3 (localhost.localdomain [127.0.0.1]) by mail151-va3
-	(MessageSwitch) id 1347479345101971_17859;
-	Wed, 12 Sep 2012 19:49:05 +0000 (UTC)
-Received: from VA3EHSMHS031.bigfish.com (unknown [10.7.14.251])	by
-	mail151-va3.bigfish.com (Postfix) with ESMTP id 149F020019	for
-	<yocto@yoctoproject.org>; Wed, 12 Sep 2012 19:49:05 +0000 (UTC)
-Received: from mail.freescale.net (70.37.183.190) by VA3EHSMHS031.bigfish.com
-	(10.7.99.41) with Microsoft SMTP Server (TLS) id 14.1.225.23;
-	Wed, 12 Sep 2012 19:49:03 +0000
-Received: from 039-SN1MPN1-001.039d.mgd.msft.net ([169.254.1.124]) by
-	039-SN1MMR1-004.039d.mgd.msft.net ([::1]) with mapi id 14.02.0309.003;
-	Wed, 12 Sep 2012 14:49:03 -0500
-From: McClintock Matthew-B29882 <B29882@freescale.com>
-To: Luo Zhenhua-B19537 <B19537@freescale.com>, Liu Ting-B28495
-	<B28495@freescale.com>, Guo Chunrong-B40290 <B40290@freescale.com>
-Thread-Topic: [yocto] [meta-fsl-ppc 01/16] add "CentOS release 5.5 (Final)"
-	into SANITY_TESTED_DISTROS
-Thread-Index: AQHNkR+o7krHKPZw9UusGogzs0xp/g==
-Date: Wed, 12 Sep 2012 19:49:02 +0000
-Message-ID: <70CC66F5C30A414DADDA6973E4CA391A674FD8@039-SN1MPN1-001.039d.mgd.msft.net>
-References: <1347433590-8481-1-git-send-email-b19537@freescale.com>
-In-Reply-To: <1347433590-8481-1-git-send-email-b19537@freescale.com>
+Return-Path: <nitin.a.kamble@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6166BE0049D
+	for <yocto@yoctoproject.org>; Wed, 12 Sep 2012 13:14:07 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 12 Sep 2012 13:13:58 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,411,1344236400"; d="scan'208";a="202444785"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
+	by orsmga002.jf.intel.com with ESMTP; 12 Sep 2012 13:14:03 -0700
+Received: from orsmsx153.amr.corp.intel.com (10.22.226.247) by
+	orsmsx603.amr.corp.intel.com (10.22.226.49) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Wed, 12 Sep 2012 13:14:02 -0700
+Received: from orsmsx106.amr.corp.intel.com ([169.254.5.60]) by
+	ORSMSX153.amr.corp.intel.com ([169.254.13.67]) with mapi id
+	14.01.0355.002; Wed, 12 Sep 2012 13:14:02 -0700
+From: "Kamble, Nitin A" <nitin.a.kamble@intel.com>
+To: "Zanussi, Tom" <tom.zanussi@intel.com>
+Thread-Topic: [PATCH 0/1] Fix X issue on crownbay
+Thread-Index: AQHNjJT+uO1HjNK9Y0mWQPcnr9R7mZeEtdOAgAI1QYCAAEG1QA==
+Date: Wed, 12 Sep 2012 20:14:01 +0000
+Message-ID: <ADD6A3980E8C39419A432FF422031B4C15726661@ORSMSX106.amr.corp.intel.com>
+References: <cover.1346893078.git.nitin.a.kamble@intel.com>
+	<1347320069.25993.16.camel@empanada> 
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [70.112.201.132]
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-X-OriginatorOrg: freescale.com
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-fsl-ppc 01/16] add "CentOS release 5.5 (Final)" into SANITY_TESTED_DISTROS
+Cc: "Hart, Darren" <darren.hart@intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [PATCH 0/1] Fix X issue on crownbay
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: McClintock Matthew-B29882 <B29882@freescale.com>
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -55,46 +41,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 12 Sep 2012 19:49:09 -0000
+X-List-Received-Date: Wed, 12 Sep 2012 20:14:07 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-ID: <2F27F93B51DBA94BACEA3B9BEEA7F119@mgd.freescale.com>
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Guys,
-
-When submitting patches to this list please CC me. Also fix your git
-email addresses so it shows your name no your CoreID
-
--M
-
-On Wed, Sep 12, 2012 at 2:06 AM,  <b19537@freescale.com> wrote:
-> From: Zhenhua Luo <b19537@freescale.com>
->
-> Signed-off-by: Zhenhua Luo <b19537@freescale.com>
-> ---
->  conf/distro/fsl.conf |    1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/conf/distro/fsl.conf b/conf/distro/fsl.conf
-> index 0169c6c..b35f5e2 100644
-> --- a/conf/distro/fsl.conf
-> +++ b/conf/distro/fsl.conf
-> @@ -60,6 +60,7 @@ SANITY_TESTED_DISTROS ?=3D " \
->              Fedora release 15 (Lovelock) \n \
->              Fedora release 16 (Verne) \n \
->              Fedora release 17 (Beefy Miracle) \n \
-> +            CentOS release 5.5 (Final) \n \
->              CentOS release 5.6 (Final) \n \
->              CentOS release 5.7 (Final) \n \
->              CentOS release 5.8 (Final) \n \
-> --
-> 1.7.9.5
->
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto=
-
+RllJIFdoaWxlIHRlc3Rpbmcgb24gdGhlIGZpc2hyaXZlciBwbGF0Zm9ybSwgSSBhbHNvIGZpbmQg
+dGhhdCB0aGVyZSBpcyBubyBYIGxvZywgYW5kIGxvb2tpbmcgZnVydGhlciBmb3VuZCBvdXQgdGhh
+dCB4b3JnIGV4ZWN1dGFibGUgaXMgbm90IG9uIHRoZSBpbWFnZS4gSSB0aGluayB0aGUgc2FtZSB0
+aGluZyBpcyBhbHNvIGhhcHBlbmluZyBvbiBjcm93bmJheS4NCg0KTml0aW4NCg0KDQoNCj4gLS0t
+LS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogS2FtYmxlLCBOaXRpbiBBDQo+IFNlbnQ6
+IFdlZG5lc2RheSwgU2VwdGVtYmVyIDEyLCAyMDEyIDk6MTggQU0NCj4gVG86IFphbnVzc2ksIFRv
+bQ0KPiBDYzogSGFydCwgRGFycmVuOyB5b2N0b0B5b2N0b3Byb2plY3Qub3JnDQo+IFN1YmplY3Q6
+IFJFOiBbUEFUQ0ggMC8xXSBGaXggWCBpc3N1ZSBvbiBjcm93bmJheQ0KPiANCj4gSGkgVG9tLA0K
+PiAgIFRoYW5rcyBmb3IgbG9va2luZyBpbnRvIHRoZSBtYXR0ZXIuIEkgd2lsbCB0cnkgdG8gcmVw
+cm9kdWNlIHRoZSBpc3N1ZSB5b3UgYXJlDQo+IHNlZWluZyB3aXRoIG1hc3Rlci4gQW5kIHNlbmQg
+YW5vdGhlciBwdWxsIHJlcXVlc3Qgd2l0aCBhbGwgdGhlIGZpeGVzLg0KPiANCj4gUmVnYXJkcywN
+Cj4gTml0aW4NCj4gDQo+IA0KPiA+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+ID4gRnJv
+bTogWmFudXNzaSwgVG9tDQo+ID4gU2VudDogTW9uZGF5LCBTZXB0ZW1iZXIgMTAsIDIwMTIgNDoz
+NCBQTQ0KPiA+IFRvOiBLYW1ibGUsIE5pdGluIEENCj4gPiBDYzogSGFydCwgRGFycmVuOyB5b2N0
+b0B5b2N0b3Byb2plY3Qub3JnDQo+ID4gU3ViamVjdDogUmU6IFtQQVRDSCAwLzFdIEZpeCBYIGlz
+c3VlIG9uIGNyb3duYmF5DQo+ID4NCj4gPiBPbiBXZWQsIDIwMTItMDktMDUgYXQgMTc6NTkgLTA3
+MDAsIG5pdGluLmEua2FtYmxlQGludGVsLmNvbSB3cm90ZToNCj4gPiA+IEZyb206IE5pdGluIEEg
+S2FtYmxlIDxuaXRpbi5hLmthbWJsZUBpbnRlbC5jb20+DQo+ID4gPg0KPiA+ID4gVGhlIGZvbGxv
+d2luZyBjaGFuZ2VzIHNpbmNlIGNvbW1pdA0KPiA+IDY2YjUxNmYzZDNhMjg3ZWVjYmY4ODA0YjIy
+MjFiZmMyN2UzNmRiNjM6DQo+ID4gPg0KPiA+ID4gICBSRUFETUU6IGFkZCBpbmZvIGV4cGxhaW5p
+bmcgbWV0YS10bGsgbGF5ZXIgcHVycG9zZSAoMjAxMi0wOS0wNg0KPiA+ID4gMTA6MzY6MDIgLTA1
+MDApDQo+ID4gPg0KPiA+ID4gYXJlIGF2YWlsYWJsZSBpbiB0aGUgZ2l0IHJlcG9zaXRvcnkgYXQ6
+DQo+ID4gPiAgIGdpdDovL2dpdC55b2N0b3Byb2plY3Qub3JnL21ldGEtaW50ZWwtY29udHJpYiBu
+aXRpbi93b3JrDQo+ID4gPg0KPiA+ID4gaHR0cDovL2dpdC55b2N0b3Byb2plY3Qub3JnL2NnaXQu
+Y2dpL21ldGEtaW50ZWwtY29udHJpYi9sb2cvP2g9bml0aW4NCj4gPiA+IC93DQo+ID4gPiBvcmsN
+Cj4gPiA+DQo+ID4NCj4gPiBJIGJ1aWx0IGFuZCB0cmllZCB0aGlzLCBidXQgaXQgc3RpbGwgZGlk
+bid0IGJvb3QgaW50byBYLCBhbmQgbm93DQo+ID4gdGhlcmUncyBub3QgZXZlbiBhbiBYb3JnLmxv
+ZyB0byBsb29rIGF0Og0KPiA+DQo+ID4gcm9vdEBjcm93bmJheTovdmFyL2xvZyMgbHMgLWFsDQo+
+ID4gZHJ3eHIteHIteCAgICAyIHJvb3QgICAgIHJvb3QgICAgICAgICAgICA4MCBTZXAgMTAgMjA6
+MTUgLg0KPiA+IGRyd3hyd3hyd3QgICAgNyByb290ICAgICByb290ICAgICAgICAgICAxNDAgSmFu
+ICA2ICAyMDA5IC4uDQo+ID4gLXJ3LXItLXItLSAgICAxIHJvb3QgICAgIHJvb3QgICAgICAgICA3
+ODQyOSBTZXAgMTAgMjA6MTcgbWVzc2FnZXMNCj4gPiAtcnctcnctci0tICAgIDEgcm9vdCAgICAg
+cm9vdCAgICAgICAgICA0MjI0IFNlcCAxMCAyMDoxNyB3dG1wDQo+ID4NCj4gPiBJIGFzc3VtZSB0
+aGlzIGlzIGEgZGlmZmVyZW50IFggcHJvYmxlbSByZWxhdGVkIHRvIHJlY2VudCBjaGFuZ2VzIGlu
+IG1hdGVyLg0KPiA+IENhbiB5b3UgdXBkYXRlIHRoZSBidWcgcmVwb3J0IHdpdGggdGhlIGNvbW1p
+dHMgdGhhdCB5b3UgdGVzdGVkIHdpdGggc28NCj4gPiBJIGNhbiB2ZXJpZnkgdGhhdCB5b3VyIHBh
+dGNoIGF0IGxlYXN0IHdvcmtzPw0KPiA+DQo+ID4gVGhhbmtzLA0KPiA+DQo+ID4gVG9tDQo+ID4N
+Cj4gPg0KPiA+DQo+ID4gPiBOaXRpbiBBIEthbWJsZSAoMSk6DQo+ID4gPiAgIGVtZ2QtZHJpdmVy
+LWJpbjogRml4IHBhY2thZ2UgbmFtaW5nIGlzc3VlDQo+ID4gPg0KPiA+ID4gIC4uLi94b3JnLXhz
+ZXJ2ZXIvZW1nZC1kcml2ZXItYmluXzEuMTQuYmIgICAgICAgICAgIHwgICAgOCArKysrKysrLQ0K
+PiA+ID4gIDEgZmlsZXMgY2hhbmdlZCwgNyBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9ucygtKQ0K
+PiA+ID4NCj4gPg0KDQo=
 
