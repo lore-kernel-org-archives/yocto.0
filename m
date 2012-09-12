@@ -1,22 +1,34 @@
-Return-Path: <kishore.k.bodke@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 880C9E0144D
-	for <yocto@yoctoproject.org>; Tue, 11 Sep 2012 15:32:39 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 11 Sep 2012 15:32:38 -0700
+Return-Path: <song.liu@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0F163E0144C
+	for <yocto@yoctoproject.org>; Tue, 11 Sep 2012 22:20:04 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 11 Sep 2012 22:20:03 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,407,1344236400"; d="scan'208";a="220923134"
-Received: from rsaxena-rosecity.sc.intel.com (HELO localhost)
-	([143.183.188.86])
-	by fmsmga001.fm.intel.com with ESMTP; 11 Sep 2012 15:32:37 -0700
-From: rahul.saxena@intel.com
-To: yocto@yoctoproject.org
-Date: Tue, 11 Sep 2012 15:22:14 -0700
-Message-Id: <28ae4508f4c15eb290b4f541f06b1492b59ccb09.1347401448.git.rahul.saxena@intel.com>
-X-Mailer: git-send-email 1.7.4.1
-In-Reply-To: <cover.1347401448.git.rahul.saxena@intel.com>
-References: <cover.1347401448.git.rahul.saxena@intel.com>
-Subject: [PATCH 1/1] meta-cedartrail: Update PVR graphics driver to version 1.0.3
+X-IronPort-AV: E=Sophos;i="4.80,407,1344236400"; d="scan'208";a="191893990"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.226.49])
+	by orsmga001.jf.intel.com with ESMTP; 11 Sep 2012 22:19:59 -0700
+Received: from orsmsx107.amr.corp.intel.com (10.22.225.80) by
+	orsmsx603.amr.corp.intel.com (10.22.226.49) with Microsoft SMTP Server
+	(TLS) id 8.2.255.0; Tue, 11 Sep 2012 22:19:59 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.152]) by
+	ORSMSX107.amr.corp.intel.com ([169.254.10.146]) with mapi id
+	14.01.0355.002; Tue, 11 Sep 2012 22:19:59 -0700
+From: "Liu, Song" <song.liu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Minutes: Yocto Project Technical Team Meeting - Tuesday,
+	September 11,
+	2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+Thread-Index: AQHNkKZAYA+bkahy+k6Wvacj3N4+DQ==
+Date: Wed, 12 Sep 2012 05:19:58 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A4852F777@ORSMSX101.amr.corp.intel.com>
+References: <7E680CB2A76BB8438D08CF13C09FC53A4844CAD5@ORSMSX101.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.140]
+MIME-Version: 1.0
+Subject: Minutes: Yocto Project Technical Team Meeting - Tuesday, September 11, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,118 +40,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 11 Sep 2012 22:32:39 -0000
+X-List-Received-Date: Wed, 12 Sep 2012 05:20:04 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-From: Rahul Saxena <rahul.saxena@intel.com>
+Attendees:
+MichaelH, Christiana, Bogdan, Christy, PaulE, Andrei, Tima, Tom, Ross, Bele=
+n, Kevin, Mark, LaurentiuP, Richard,  Andy, Bjorn, Jessica, Darren, Dave, S=
+ong
+=A0
+Andy: from UK, observing for any firm involvement , looking to get more inf=
+ormation.
+=A0
+Agenda:
+=A0
+* Opens collection - 5 min (Song)
+* Yocto 1.3 status  - 10 min (Song/team)
+  https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.3_Status =20
+    - Bug fixing: good progress last week, 2 high M4 bugs. One is closed. T=
+he other one (2162) already has patches in review.
+    - RC status/Saul: We recreated RC1 (which can be called RC2), Beth did =
+some work on AB, worked with Jessica for adt installer, there was some issu=
+es, resolved over the weekend. We dropped RC1 and moved forward. Now workin=
+g on RC2.=20
+    - X32 progress: With recent update in the kernel, eglibc and gcc, we ca=
+n now create x32 BSPs without the x32 layer, but with one simple change in =
+kernel config. We are working to trigger the change automatically. Should b=
+e done this week or so.=20
+    - QA: We started weekly testing this morning. The full pass testing sho=
+uld be done by the end of this week.
+    - RP: wants to highlight the point on the schedule we're at - starting =
+to switch from feature development to stabilization and bug fixing. If ther=
+e is any big change you would like to put in, please let me know asap. We a=
+re at a point we need to concentrate on bug fixing. HOB has some good fixes=
+.=20
+=A0
+* SWAT team rotation: Laurentiu -> Mihai
+* Opens - 10 min
+=A0
+* Team sharing - 20 min
+=A0
+  - Mark: across link, some patches, arm has particular issues, if you see =
+any prelink issue, we probably have a fix for it. We are working one meta-s=
+elinux. If you can help, let me know. Last week in LinuxCon, we already hav=
+e a large number of patches for se-linux.
+  - MichaelH: Worked on bugzilla, adt issues, did some work for the data ce=
+nter. There were some people locked out of the servers. Resolved those issu=
+e. Layers cleanup, basic information for layers, very easy to do. But make =
+a big difference. RP/Dave: our code should be self documenting in many plac=
+es such as layers.
+  - RP: sstate checksum changes going in. (sorry to miss this here, Richard=
+. Please feel free to fill in if necessary), looking for feedback. Disk cle=
+an needs to be hold off to 1.4.=20
+  - Paul: ability to specify task and follow dependency recursively, etc.
 
-This driver update fixes a memory leak bug
-
-Signed-off-by: Rahul Saxena <rahul.saxena@intel.com>
----
- meta-cedartrail/README                             |    2 +-
- ...pvr-driver_1.0.2.bb => cdv-pvr-driver_1.0.3.bb} |   27 ++++++++++---------
- 2 files changed, 15 insertions(+), 14 deletions(-)
- rename meta-cedartrail/recipes-graphics/xorg-driver/{cdv-pvr-driver_1.0.2.bb => cdv-pvr-driver_1.0.3.bb} (85%)
-
-diff --git a/meta-cedartrail/README b/meta-cedartrail/README
-index 715cad9..e47151e 100755
---- a/meta-cedartrail/README
-+++ b/meta-cedartrail/README
-@@ -61,7 +61,7 @@ Power VR Graphics user-space driver binaries are covered by a
- "Intel Free Distribution Binary License". The build of this driver
- can be enabled by adding the following line to the local.conf file:
- 
--LICENSE_FLAGS_WHITELIST += "license_cdv-pvr-driver_1.0.2"
-+LICENSE_FLAGS_WHITELIST += "license_cdv-pvr-driver_1.0.3"
- 
- To enable the layer that does not support Power VR graphics
- add the following to the local.conf file:
-diff --git a/meta-cedartrail/recipes-graphics/xorg-driver/cdv-pvr-driver_1.0.2.bb b/meta-cedartrail/recipes-graphics/xorg-driver/cdv-pvr-driver_1.0.3.bb
-similarity index 85%
-rename from meta-cedartrail/recipes-graphics/xorg-driver/cdv-pvr-driver_1.0.2.bb
-rename to meta-cedartrail/recipes-graphics/xorg-driver/cdv-pvr-driver_1.0.3.bb
-index f91b235..19b6c74 100644
---- a/meta-cedartrail/recipes-graphics/xorg-driver/cdv-pvr-driver_1.0.2.bb
-+++ b/meta-cedartrail/recipes-graphics/xorg-driver/cdv-pvr-driver_1.0.3.bb
-@@ -1,4 +1,4 @@
--SUMMARY = "Cedartrail PowerVR Graphics Driver version 1.0.2 binaries"
-+SUMMARY = "Cedartrail PowerVR Graphics Driver version 1.0.3 binaries"
- DESCRIPTION = "2D, 3D and Media user space driver for Cedartrail platform \
- The binaries are covered by the Intel Free Distribution Binary License. \ 
- The user must make himself/herself aware of the Licensing terms \
-@@ -10,23 +10,24 @@ LICENSE_FLAGS = "license_${PN}_${PV}"
- LICENSE = "Intel Free Distribution Binary License"
- LIC_FILES_CHKSUM = " \
-     file://${S}/usr/share/doc/psb-video-cdv-${PSB-VIDEO-REV}/license.txt;md5=b14d99f8d4ed664e9ce95057f0bb5b65  \
--    file://${S}/usr/share/doc/pvr-bin-cdv-${PVR-BIN-REV_N}/license.txt;md5=b14d99f8d4ed664e9ce95057f0bb5b65"
-+    file://${S}/usr/share/doc/pvr-bin-cdv-${PVR-BIN-REV_LIC}/license.txt;md5=b14d99f8d4ed664e9ce95057f0bb5b65"
- 
- DEPENDS = "rpm-native libva"
- 
- PR = "r0"
- 
--PSB-VIDEO = "psb-video-cdv-0.17-2.1.i586.rpm"
--PSB-VIDEO-REV = "0.17"
-+PSB-VIDEO = "psb-video-cdv-1.0.3-1.1.i586.rpm"
-+PSB-VIDEO-REV = "1.0.3"
- 
--PVR-BIN = "pvr-bin-cdv-1.7.862890_05-1.1.i586.rpm"
-+PVR-BIN = "pvr-bin-cdv-1.0.3-1.1.i586.rpm"
- PVR-BIN-REV = "1.7.862890"
- PVR-BIN-REV_N = "1.7.862890_05"
-+PVR-BIN-REV_LIC = "1.0.3"
- 
- LIBWSBM = "libwsbm-cdv-1.1.0-3.1.i586.rpm"
- 
- 
--NON-OSS-PATH = "http://repo.meego.com/MeeGo/builds/1.2.0/1.2.0.10.1.20120723.1/repos/non-oss/ia32/packages/"
-+NON-OSS-PATH = "http://repo.meego.com/MeeGo/updates/1.2.0/repos/non-oss/ia32/packages/"
- OSS-PATH =     "http://repo.meego.com/MeeGo/updates/1.2.0/repos/oss/ia32/packages/"
- 
- 
-@@ -34,11 +35,11 @@ SRC_URI = "${NON-OSS-PATH}${PSB-VIDEO};name=psbrpm \
- 	   ${NON-OSS-PATH}${PVR-BIN};name=pvrrpm \
- 	   ${OSS-PATH}${LIBWSBM};name=wsbmrpm \
- 		"
--SRC_URI[pvrrpm.md5sum] = "92dbb85a259dff73c6e4de68d158ef10"
--SRC_URI[pvrrpm.sha256sum] = "46356021efa990cde367b2cdec8626db8c1457234771c6459a106b8342c549c1"
-+SRC_URI[pvrrpm.md5sum] = "3ae7db98825af642445f75f4b5ddb303"
-+SRC_URI[pvrrpm.sha256sum] = "42b97e5d663444f35b1ee51cdf9573e3b1d5a4f49ae854218c5c4c9a66ba95cf"
- 
--SRC_URI[psbrpm.md5sum] =  "0300f7485306bb039ee33e6238a00ae3"
--SRC_URI[psbrpm.sha256sum] = "8e71f2ff7464b20823d7f552729d39cb9e3d75badc9b206d43bcc2429849f6c0"
-+SRC_URI[psbrpm.md5sum] =  "ec486193dc4b3f91bc7c5e18d9ca9d8a"
-+SRC_URI[psbrpm.sha256sum] = "0861d69b44d5ce29a3f778ac82976a22f7726af84d9b2e5438c18da5263ffdac"
- 
- SRC_URI[wsbmrpm.md5sum] = "b8b21ca8325abd7850d197f9bf3071c7"
- SRC_URI[wsbmrpm.sha256sum] = "f436386967c1adec5211e662251bd542bbe0b8cd55e1d9f9c203da5ee934d4f0"
-@@ -55,7 +56,7 @@ FILES_${PN} += "${libdir}/lib*.so"
- FILES_${PN} += "${libdir}/pvr/cdv/xorg/modules/drivers"
- 
- FILES_${PN} += "${datadir}/doc/psb-video-cdv-${PSB-VIDEO-REV}/license.txt"
--FILES_${PN} += "${datadir}/doc/pvr-bin-cdv-${PVR-BIN-REV_N}/license.txt"
-+FILES_${PN} += "${datadir}/doc/pvr-bin-cdv-${PVR-BIN-REV_LIC}/license.txt"
- 
- 
- TARGET_CC_ARCH += "${CFLAGS}{LDFLAGS}"
-@@ -66,7 +67,7 @@ do_configure () {
- 
- # Extract  license files from rpms
- rpm2cpio.sh ${WORKDIR}/${PSB-VIDEO} |cpio -ivd ./usr/share/doc/psb-video-cdv-${PSB-VIDEO-REV}/license.txt
--rpm2cpio.sh ${WORKDIR}/${PVR-BIN} |cpio -ivd ./usr/share/doc/pvr-bin-cdv-${PVR-BIN-REV_N}/license.txt
-+rpm2cpio.sh ${WORKDIR}/${PVR-BIN} |cpio -ivd ./usr/share/doc/pvr-bin-cdv-${PVR-BIN-REV_LIC}/license.txt
- 
- }
- 
-@@ -134,6 +135,6 @@ do_install() {
- 	install -d -m 0755 ${D}${datadir}/doc/pvr-bin-cdv-${PVR-BIN-REV_N}
- 
- 	install -m 0755 ${S}/usr/share/doc/psb-video-cdv-${PSB-VIDEO-REV}/license.txt ${D}${datadir}/doc/psb-video-cdv-${PSB-VIDEO-REV}/license.txt
--	install -m 0755 ${S}/usr/share/doc/pvr-bin-cdv-${PVR-BIN-REV_N}/license.txt	${D}${datadir}/doc/pvr-bin-cdv-${PVR-BIN-REV_N}/license.txt
-+# install -m 0755 ${S}/usr/share/doc/pvr-bin-cdv-${PVR-BIN-REV_LIC}/license.txt	${D}${datadir}/doc/pvr-bin-cdv-${PVR-BIN-REV_LIC}/license.txt
- 
- }
--- 
-1.7.4.1
 
 
