@@ -1,24 +1,43 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3D53BE014B6
-	for <yocto@yoctoproject.org>; Wed, 12 Sep 2012 05:37:50 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 12 Sep 2012 05:37:46 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,408,1344236400"; d="scan'208";a="192020314"
-Received: from unknown (HELO helios.localnet) ([10.252.121.198])
-	by orsmga001.jf.intel.com with ESMTP; 12 Sep 2012 05:37:45 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: yocto@yoctoproject.org, Marc Ferland <ferlandm@sonatest.com>
-Date: Wed, 12 Sep 2012 13:37:44 +0100
-Message-ID: <2798156.JKUUmKvDMW@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.9 (Linux/3.2.0-30-generic-pae; KDE/4.9.0; i686; ; )
-In-Reply-To: <CAJTo0LbUHH8D08KWYGfJZf=5hLh26P9-md4rPUNknJF3-5Ja_g@mail.gmail.com>
-References: <87627kcjd6.fsf@sonatest.com>
-	<CAJTo0LbUHH8D08KWYGfJZf=5hLh26P9-md4rPUNknJF3-5Ja_g@mail.gmail.com>
+Return-Path: <B40290@freescale.com>
+Received: from db3outboundpool.messaging.microsoft.com
+	(db3ehsobe002.messaging.microsoft.com [213.199.154.140])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 78AEEE0147B
+	for <yocto@yoctoproject.org>; Wed, 12 Sep 2012 00:34:05 -0700 (PDT)
+Received: from mail80-db3-R.bigfish.com (10.3.81.240) by
+	DB3EHSOBE003.bigfish.com (10.3.84.23) with Microsoft SMTP Server id
+	14.1.225.23; Wed, 12 Sep 2012 07:33:45 +0000
+Received: from mail80-db3 (localhost [127.0.0.1])	by mail80-db3-R.bigfish.com
+	(Postfix) with ESMTP id CFF0FC00E8	for <yocto@yoctoproject.org>;
+	Wed, 12 Sep 2012 07:33:45 +0000 (UTC)
+X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null); IPV:NLI;
+	H:mail.freescale.net; RD:none; EFVD:NLI
+X-SpamScore: 0
+X-BigFish: VS0(zzzz1202h1d1ah1d2ahzz8275bhz2dh2a8h668h839hd24he5bhf0ah107ah1288h12a5h12bdh1155h)
+Received: from mail80-db3 (localhost.localdomain [127.0.0.1]) by mail80-db3
+	(MessageSwitch) id 1347435223514889_25265;
+	Wed, 12 Sep 2012 07:33:43 +0000 (UTC)
+Received: from DB3EHSMHS015.bigfish.com (unknown [10.3.81.228])	by
+	mail80-db3.bigfish.com (Postfix) with ESMTP id 722E6800A1	for
+	<yocto@yoctoproject.org>; Wed, 12 Sep 2012 07:33:43 +0000 (UTC)
+Received: from mail.freescale.net (70.37.183.190) by DB3EHSMHS015.bigfish.com
+	(10.3.87.115) with Microsoft SMTP Server (TLS) id 14.1.225.23;
+	Wed, 12 Sep 2012 07:33:40 +0000
+Received: from tx30smr01.am.freescale.net (10.81.153.31) by
+	039-SN1MMR1-003.039d.mgd.msft.net (10.84.1.16) with Microsoft SMTP
+	Server (TLS) id 14.2.309.3; Wed, 12 Sep 2012 02:33:38 -0500
+Received: from right.am.freescale.net (right.am.freescale.net [10.82.176.228])
+	by tx30smr01.am.freescale.net (8.14.3/8.14.0) with ESMTP id
+	q8C7Xa5h006608; Wed, 12 Sep 2012 00:33:37 -0700
+From: <b40290@freescale.com>
+To: <yocto@yoctoproject.org>
+Date: Wed, 12 Sep 2012 02:33:30 -0500
+Message-ID: <1347435210-29877-1-git-send-email-b40290@freescale.com>
+X-Mailer: git-send-email 1.7.9.7
 MIME-Version: 1.0
-Subject: Re: Replace netbase with connman
+X-OriginatorOrg: freescale.com
+X-Mailman-Approved-At: Wed, 12 Sep 2012 07:50:08 -0700
+Cc: Chunrong Guo <b40290@freescale.com>
+Subject: [meta-fsl-ppc 15/16] change the priority of packages which provide ifconfig to ifconfig link ifconfig.net-tools by default
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,26 +49,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 12 Sep 2012 12:37:50 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Wed, 12 Sep 2012 07:34:05 -0000
+Content-Type: text/plain
 
-On Wednesday 12 September 2012 12:48:49 Burton, Ross wrote:
-> Re NFS, no idea. I have seen patches on oe-core to stop connman from
-> re-configuring the network when it starts, so you'll probably want to
-> find and integrate those if you are not running oe-core master.
+From: Chunrong Guo <b40290@freescale.com>
 
-We talked to the connman developers and their position is that you shouldn't
-use connman at all with nfsroot, so the solution [1] was not to start
-connmand if nfsroot is detected.
+Signed-off-by: Chunrong Guo <b40290@freescale.com>
+---
+ .../net-tools/net-tools_1.60-23.bbappend           |    9 +++++++++
+ 1 file changed, 9 insertions(+)
+ create mode 100644 recipes-append/net-tools/net-tools_1.60-23.bbappend
 
-Cheers,
-Paul
-
-[1] http://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/?id=c6fda196cbbfd749b8bf10ad97dc373217d8ed2e
-
+diff --git a/recipes-append/net-tools/net-tools_1.60-23.bbappend b/recipes-append/net-tools/net-tools_1.60-23.bbappend
+new file mode 100644
+index 0000000..b780bac
+--- /dev/null
++++ b/recipes-append/net-tools/net-tools_1.60-23.bbappend
+@@ -0,0 +1,9 @@
++PR_append_fsl = "+${DISTRO}.0"
++
++inherit update-alternatives
++
++ALTERNATIVE_NAME_fsl = "ifconfig"
++ALTERNATIVE_LINK_fsl = "${base_sbindir}/ifconfig"
++ALTERNATIVE_PATH_fsl = "${base_sbindir}/ifconfig.net-tools"
++ALTERNATIVE_PRIORITY_fsl = "200"
++
 -- 
+1.7.9.5
 
-Paul Eggleton
-Intel Open Source Technology Centre
+
 
