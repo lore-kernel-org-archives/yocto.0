@@ -1,28 +1,26 @@
-Return-Path: <aaryak.gautam@gmail.com>
-Received: from mail-vb0-f48.google.com (mail-vb0-f48.google.com
-	[209.85.212.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D3145E0149F
-	for <yocto@yoctoproject.org>; Wed, 12 Sep 2012 02:09:37 -0700 (PDT)
-Received: by vbme21 with SMTP id e21so396061vbm.35
-	for <yocto@yoctoproject.org>; Wed, 12 Sep 2012 02:09:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=NOehmrYXnx7e9Qc2bA7fHuMJTEkCw7oXYpuB3n1R7h0=;
-	b=EzMXuO7jISE4y3XMZPNy4SlduKf23Q9vkHM4bMo1qKE1OD2J0V+9rrR43AlOfjvr3x
-	+FECWcTflL1qdbC2qb7okR3obM+oNR+lkc0sGMgdS25wNj/Fpo4mNCTJQABDNGMUJCgk
-	aKVPcYXuvpImF5wUs0da842gRkaJwLKNrM9jivnPjjzlpdXnSEOUBekDWGgLryHL1Zi4
-	bGLN5vIsP66iflQS+SLocSMRcnCAZ/OacDBmGlUB2ojdP0HAgHf3BCtsY72i51fzCDnF
-	qWl5ml3tqa4DDnJ99zWIbkYxAEJe4YA6NzCAei7bJXJy58zV3UR4lVIFCvisnnb9zxdZ
-	tLlg==
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 67458E014B1
+	for <yocto@yoctoproject.org>; Wed, 12 Sep 2012 03:25:04 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 12 Sep 2012 03:24:55 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,408,1344236400"; d="scan'208";a="202127917"
+Received: from unknown (HELO helios.localnet) ([10.252.121.198])
+	by orsmga002.jf.intel.com with ESMTP; 12 Sep 2012 03:25:03 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Khem Raj <raj.khem@gmail.com>
+Date: Wed, 12 Sep 2012 11:25 +0100
+Message-ID: <2072418.kpEGxVepHQ@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.9 (Linux/3.2.0-30-generic-pae; KDE/4.9.0; i686; ; )
+In-Reply-To: <CAMKF1spSfEGfkXcfQ7Q1CHdiohSuJmPLd7yCFwW19B46SRe=tA@mail.gmail.com>
+References: <1347433590-8481-1-git-send-email-b19537@freescale.com>
+	<1347433590-8481-9-git-send-email-b19537@freescale.com>
+	<CAMKF1spSfEGfkXcfQ7Q1CHdiohSuJmPLd7yCFwW19B46SRe=tA@mail.gmail.com>
 MIME-Version: 1.0
-Received: by 10.52.26.237 with SMTP id o13mr23224744vdg.44.1347440963041; Wed,
-	12 Sep 2012 02:09:23 -0700 (PDT)
-Received: by 10.58.180.166 with HTTP; Wed, 12 Sep 2012 02:09:22 -0700 (PDT)
-Date: Wed, 12 Sep 2012 14:39:22 +0530
-Message-ID: <CAMv4DRONgxiTLjdRZ5F4d1WAQjvAqbUPqQe-849Dg8WBHc4eRQ@mail.gmail.com>
-From: aaryak gautam <aaryak.gautam@gmail.com>
-To: yocto@yoctoproject.org
-Subject: Patch for graphic LCD with ILI9325 controller
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-fsl-ppc 09/16] rcw_git.bb: update to 1.2.1 release version
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,27 +32,21 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 12 Sep 2012 09:09:38 -0000
-Content-Type: multipart/alternative; boundary=20cf3079c0bcf5386a04c97d8bd6
+X-List-Received-Date: Wed, 12 Sep 2012 10:25:04 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
---20cf3079c0bcf5386a04c97d8bd6
-Content-Type: text/plain; charset=ISO-8859-1
+On Wednesday 12 September 2012 00:40:36 Khem Raj wrote:
+> NAK
 
-Hi all,
-I am new to Yocto.
-I have an i.MX233 board,which I want to use with Graphic LCD.
-But I cant find any patches for the module.
-I have made a module myself,but I don't know how to integrate it with Yokto
-kernel source.
-Can You please guide me?
-Any help will be appreciated.
+Please do not reply to patches like this. If you object to a patch you need to 
+provide some reasoning.
 
-Thank You
+Cheers,
+Paul
 
---20cf3079c0bcf5386a04c97d8bd6
-Content-Type: text/html; charset=ISO-8859-1
+-- 
 
-Hi all,<br>I am new to Yocto.<br>I have an i.MX233 board,which I want to use with Graphic LCD.<br>But I cant find any patches for the module.<br>I have made a module myself,but I don&#39;t know how to integrate it with Yokto kernel source.<br>
-Can You please guide me?<br>Any help will be appreciated.<br><br>Thank You<br>
+Paul Eggleton
+Intel Open Source Technology Centre
 
---20cf3079c0bcf5386a04c97d8bd6--
