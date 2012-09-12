@@ -1,34 +1,23 @@
-Return-Path: <ross.burton@intel.com>
-Received: from azsmga102.ch.intel.com (mga12.intel.com [143.182.124.36])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 55303E014B6
-	for <yocto@yoctoproject.org>; Wed, 12 Sep 2012 04:49:11 -0700 (PDT)
-Received: from mail-ob0-f176.google.com ([209.85.214.176])
-	by mga14.intel.com with ESMTP/TLS/RC4-SHA; 12 Sep 2012 04:49:10 -0700
-Received: by obbtb18 with SMTP id tb18so3077183obb.35
-	for <yocto@yoctoproject.org>; Wed, 12 Sep 2012 04:49:09 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type:x-gm-message-state;
-	bh=b8+xXPNis6xYuGKa15mw562SneC9t/ZNQOj0yAjBuJY=;
-	b=aOSp6EogCGDmn7rDJONzP/eT/e2l8GlAasMcfTd1DIktVTz5mM7MwoBPfStXnxbdIx
-	B1mM9sn+hE3q/y7nJ98+zjcpsq0kBy22UyXbKWs9vFGvm+jY5JugUOBjnwWIP6Y8OYKa
-	w7gDuodVnapRCa8pMKsTvkLUtJhEAO/p0ieHYhCzOcJgY1x0m+erK6YUkk5LPGjtZ3kn
-	Fc0Li/RzBUvgtGD8tApLmeShQbccu1WfdRPgJjQDNafxemk8kM+OZoJv/s07orC1D23+
-	2X1nUeO//Qpq6T/nyPHxCFxIdt/42oUAWaSx/p8tq/w5N+SSez7IT0p+/sgUlrqhx/tj
-	harw==
-Received: by 10.60.171.174 with SMTP id av14mr22386030oec.61.1347450549231;
-	Wed, 12 Sep 2012 04:49:09 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.182.79.105 with HTTP; Wed, 12 Sep 2012 04:48:49 -0700 (PDT)
-In-Reply-To: <87627kcjd6.fsf@sonatest.com>
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3D53BE014B6
+	for <yocto@yoctoproject.org>; Wed, 12 Sep 2012 05:37:50 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 12 Sep 2012 05:37:46 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,408,1344236400"; d="scan'208";a="192020314"
+Received: from unknown (HELO helios.localnet) ([10.252.121.198])
+	by orsmga001.jf.intel.com with ESMTP; 12 Sep 2012 05:37:45 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: yocto@yoctoproject.org, Marc Ferland <ferlandm@sonatest.com>
+Date: Wed, 12 Sep 2012 13:37:44 +0100
+Message-ID: <2798156.JKUUmKvDMW@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.9 (Linux/3.2.0-30-generic-pae; KDE/4.9.0; i686; ; )
+In-Reply-To: <CAJTo0LbUHH8D08KWYGfJZf=5hLh26P9-md4rPUNknJF3-5Ja_g@mail.gmail.com>
 References: <87627kcjd6.fsf@sonatest.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Wed, 12 Sep 2012 12:48:49 +0100
-Message-ID: <CAJTo0LbUHH8D08KWYGfJZf=5hLh26P9-md4rPUNknJF3-5Ja_g@mail.gmail.com>
-To: Marc Ferland <ferlandm@sonatest.com>
-X-Gm-Message-State: ALoCoQkom6Skcyrg+u27Rpzy6oiLP3fOEaKx0/n0/9aU34Aw+mC7NUNXJf7IxFCgQs2Onc+TXwW3
-Cc: yocto@yoctoproject.org
+	<CAJTo0LbUHH8D08KWYGfJZf=5hLh26P9-md4rPUNknJF3-5Ja_g@mail.gmail.com>
+MIME-Version: 1.0
 Subject: Re: Replace netbase with connman
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -41,25 +30,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 12 Sep 2012 11:49:11 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 12 Sep 2012 12:37:50 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On 11 September 2012 22:58, Marc Ferland <ferlandm@sonatest.com> wrote:
-> I'm trying to replace netbase from my image with connman and I need help
-> on how to proceed. So far I see that:
-> - udev includes some event scripts that bring up interfaces
-> - netbase is included by default in core-image (which I use).
+On Wednesday 12 September 2012 12:48:49 Burton, Ross wrote:
+> Re NFS, no idea. I have seen patches on oe-core to stop connman from
+> re-configuring the network when it starts, so you'll probably want to
+> find and integrate those if you are not running oe-core master.
 
-You don't want go get rid of netbase as it includes critical files,
-but you do want to install an /etc/network/interfaces file that only
-defines lo through a netbase bbappend.
+We talked to the connman developers and their position is that you shouldn't
+use connman at all with nfsroot, so the solution [1] was not to start
+connmand if nfsroot is detected.
 
-Guacamayo is probably a good example -
-https://github.com/Guacamayo/meta-guacamayo.
+Cheers,
+Paul
 
-Re NFS, no idea. I have seen patches on oe-core to stop connman from
-re-configuring the network when it starts, so you'll probably want to
-find and integrate those if you are not running oe-core master.
+[1] http://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/?id=c6fda196cbbfd749b8bf10ad97dc373217d8ed2e
 
-Ross
+-- 
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
