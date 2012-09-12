@@ -1,32 +1,28 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-ee0-f48.google.com (mail-ee0-f48.google.com [74.125.83.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 838A7E0149F
-	for <yocto@yoctoproject.org>; Wed, 12 Sep 2012 00:41:07 -0700 (PDT)
-Received: by eekd41 with SMTP id d41so1137368eek.35
-	for <yocto@yoctoproject.org>; Wed, 12 Sep 2012 00:41:06 -0700 (PDT)
+Return-Path: <aaryak.gautam@gmail.com>
+Received: from mail-vb0-f48.google.com (mail-vb0-f48.google.com
+	[209.85.212.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D3145E0149F
+	for <yocto@yoctoproject.org>; Wed, 12 Sep 2012 02:09:37 -0700 (PDT)
+Received: by vbme21 with SMTP id e21so396061vbm.35
+	for <yocto@yoctoproject.org>; Wed, 12 Sep 2012 02:09:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=eMawVCvgEuzH3CsLlt4WlDigzGIK+Y24AtuVB5M0W+k=;
-	b=pB+GKtFZs0hix2JN2Czq0FEiQQTSJqzfoHMdfx+wiGga6HFv5rPVwF5z7IB1SBAgLr
-	Nzp+NW6lPi4RLJQzyGqVv6W0o1WICmRV2sC73sa+WTgNXQJYiufoKcohfQZboH6A3+03
-	iQyt+mPwt+kLeAt4tSJ3YiTfCbrz1ezMIc+Rsmpot5TuvfMpBbWW/S3PpJGQq4g6T4zh
-	TRljad9bsvse8q0ASeR0l8Gy/ocPI74gnsAv/20TElQS99MOTw2kI1hf5btx9dmw0Go8
-	JkE1N49EjPnauaZVJ+mH551fxDMUIL6a2OaHK0hK5fNeBxYT7XRj2oCrp599+FaaMWGX
-	HV/g==
-Received: by 10.14.218.134 with SMTP id k6mr29526914eep.14.1347435666429; Wed,
-	12 Sep 2012 00:41:06 -0700 (PDT)
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=NOehmrYXnx7e9Qc2bA7fHuMJTEkCw7oXYpuB3n1R7h0=;
+	b=EzMXuO7jISE4y3XMZPNy4SlduKf23Q9vkHM4bMo1qKE1OD2J0V+9rrR43AlOfjvr3x
+	+FECWcTflL1qdbC2qb7okR3obM+oNR+lkc0sGMgdS25wNj/Fpo4mNCTJQABDNGMUJCgk
+	aKVPcYXuvpImF5wUs0da842gRkaJwLKNrM9jivnPjjzlpdXnSEOUBekDWGgLryHL1Zi4
+	bGLN5vIsP66iflQS+SLocSMRcnCAZ/OacDBmGlUB2ojdP0HAgHf3BCtsY72i51fzCDnF
+	qWl5ml3tqa4DDnJ99zWIbkYxAEJe4YA6NzCAei7bJXJy58zV3UR4lVIFCvisnnb9zxdZ
+	tLlg==
 MIME-Version: 1.0
-Received: by 10.14.2.5 with HTTP; Wed, 12 Sep 2012 00:40:36 -0700 (PDT)
-In-Reply-To: <1347433590-8481-9-git-send-email-b19537@freescale.com>
-References: <1347433590-8481-1-git-send-email-b19537@freescale.com>
-	<1347433590-8481-9-git-send-email-b19537@freescale.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Wed, 12 Sep 2012 00:40:36 -0700
-Message-ID: <CAMKF1spSfEGfkXcfQ7Q1CHdiohSuJmPLd7yCFwW19B46SRe=tA@mail.gmail.com>
-To: b19537@freescale.com
-Cc: yocto@yoctoproject.org, Matthew McClintock <msm@freescale.com>
-Subject: Re: [meta-fsl-ppc 09/16] rcw_git.bb: update to 1.2.1 release version
+Received: by 10.52.26.237 with SMTP id o13mr23224744vdg.44.1347440963041; Wed,
+	12 Sep 2012 02:09:23 -0700 (PDT)
+Received: by 10.58.180.166 with HTTP; Wed, 12 Sep 2012 02:09:22 -0700 (PDT)
+Date: Wed, 12 Sep 2012 14:39:22 +0530
+Message-ID: <CAMv4DRONgxiTLjdRZ5F4d1WAQjvAqbUPqQe-849Dg8WBHc4eRQ@mail.gmail.com>
+From: aaryak gautam <aaryak.gautam@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Patch for graphic LCD with ILI9325 controller
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,47 +34,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 12 Sep 2012 07:41:07 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 12 Sep 2012 09:09:38 -0000
+Content-Type: multipart/alternative; boundary=20cf3079c0bcf5386a04c97d8bd6
 
-NAK
+--20cf3079c0bcf5386a04c97d8bd6
+Content-Type: text/plain; charset=ISO-8859-1
 
-On Wed, Sep 12, 2012 at 12:06 AM,  <b19537@freescale.com> wrote:
-> From: Matthew McClintock <msm@freescale.com>
->
-> Signed-off-by: Matthew McClintock <msm@freescale.com>
-> ---
->  recipes-tools/rcw/rcw_git.bb |    4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/recipes-tools/rcw/rcw_git.bb b/recipes-tools/rcw/rcw_git.bb
-> index 4487f9e..0aaf794 100644
-> --- a/recipes-tools/rcw/rcw_git.bb
-> +++ b/recipes-tools/rcw/rcw_git.bb
-> @@ -1,7 +1,7 @@
->  DESCRIPTION = "Reset Control Words (RCW)"
->  SECTION = "rcw"
->  LICENSE = "BSD"
-> -PR = "r4"
-> +PR = "r5"
->
->  LIC_FILES_CHKSUM = " \
->         file://p2041rdb/LICENSE;md5=96dd72f26e9bb861de5c76c60e35e1bc \
-> @@ -16,7 +16,7 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
->
->  inherit deploy
->
-> -SRCREV = "394db85c496f6e41dd7e29e54dab3db2b380b187"
-> +SRCREV = "v1.2.1"
->  SRC_URI = "git://git.freescale.com/ppc/sdk/rcw.git"
->
->  S = "${WORKDIR}/git"
-> --
-> 1.7.9.5
->
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+Hi all,
+I am new to Yocto.
+I have an i.MX233 board,which I want to use with Graphic LCD.
+But I cant find any patches for the module.
+I have made a module myself,but I don't know how to integrate it with Yokto
+kernel source.
+Can You please guide me?
+Any help will be appreciated.
 
+Thank You
+
+--20cf3079c0bcf5386a04c97d8bd6
+Content-Type: text/html; charset=ISO-8859-1
+
+Hi all,<br>I am new to Yocto.<br>I have an i.MX233 board,which I want to use with Graphic LCD.<br>But I cant find any patches for the module.<br>I have made a module myself,but I don&#39;t know how to integrate it with Yokto kernel source.<br>
+Can You please guide me?<br>Any help will be appreciated.<br><br>Thank You<br>
+
+--20cf3079c0bcf5386a04c97d8bd6--
