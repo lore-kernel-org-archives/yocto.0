@@ -1,51 +1,44 @@
-Return-Path: <B29882@freescale.com>
-Received: from co1outboundpool.messaging.microsoft.com
-	(co1ehsobe004.messaging.microsoft.com [216.32.180.187])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 906BEE00344
-	for <yocto@yoctoproject.org>; Wed, 12 Sep 2012 14:59:16 -0700 (PDT)
-Received: from mail86-co1-R.bigfish.com (10.243.78.252) by
-	CO1EHSOBE015.bigfish.com (10.243.66.78) with Microsoft SMTP Server id
-	14.1.225.23; Wed, 12 Sep 2012 21:59:16 +0000
-Received: from mail86-co1 (localhost [127.0.0.1])	by mail86-co1-R.bigfish.com
-	(Postfix) with ESMTP id 45BDF3400AB	for <yocto@yoctoproject.org>;
-	Wed, 12 Sep 2012 21:59:16 +0000 (UTC)
-X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null); IPV:NLI;
-	H:mail.freescale.net; RD:none; EFVD:NLI
-X-SpamScore: -2
-X-BigFish: VS-2(zz98dI9371I1432Izz1202h1d1ah1d2ahzz8275bhz2dh2a8h668h839h8e2h8e3hd25hf0ah107ah10d2h1288h12a5h12a9h12bdhbe9i1155h)
-Received: from mail86-co1 (localhost.localdomain [127.0.0.1]) by mail86-co1
-	(MessageSwitch) id 1347487154482162_25778;
-	Wed, 12 Sep 2012 21:59:14 +0000 (UTC)
-Received: from CO1EHSMHS005.bigfish.com (unknown [10.243.78.235])	by
-	mail86-co1.bigfish.com (Postfix) with ESMTP id 6DFB9740043	for
-	<yocto@yoctoproject.org>; Wed, 12 Sep 2012 21:59:14 +0000 (UTC)
-Received: from mail.freescale.net (70.37.183.190) by CO1EHSMHS005.bigfish.com
-	(10.243.66.15) with Microsoft SMTP Server (TLS) id 14.1.225.23;
-	Wed, 12 Sep 2012 21:59:13 +0000
-Received: from 039-SN1MPN1-001.039d.mgd.msft.net ([169.254.1.124]) by
-	039-SN1MMR1-005.039d.mgd.msft.net ([::1]) with mapi id 14.02.0309.003;
-	Wed, 12 Sep 2012 16:59:13 -0500
-From: McClintock Matthew-B29882 <B29882@freescale.com>
-To: Luo Zhenhua-B19537 <B19537@freescale.com>
-Thread-Topic: [yocto] [meta-fsl-ppc 08/16] fsl.conf: disable auto dhcp for eth0
-Thread-Index: AQHNkTHXREN0kBfKo0CEBGChdQuorA==
-Date: Wed, 12 Sep 2012 21:59:12 +0000
-Message-ID: <70CC66F5C30A414DADDA6973E4CA391A67555C@039-SN1MPN1-001.039d.mgd.msft.net>
-References: <1347433590-8481-1-git-send-email-b19537@freescale.com>
-	<1347433590-8481-8-git-send-email-b19537@freescale.com>
-In-Reply-To: <1347433590-8481-8-git-send-email-b19537@freescale.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [70.112.201.132]
+Return-Path: <scott.a.garman@intel.com>
+Received: from fmsmga102.fm.intel.com (mga10.intel.com [192.55.52.92])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 40227E00348
+	for <yocto@yoctoproject.org>; Wed, 12 Sep 2012 14:59:25 -0700 (PDT)
+Received: from mail-pz0-f48.google.com ([209.85.210.48])
+	by mga11.intel.com with ESMTP/TLS/RC4-SHA; 12 Sep 2012 14:59:24 -0700
+Received: by dadz8 with SMTP id z8so1662755dad.35
+	for <yocto@yoctoproject.org>; Wed, 12 Sep 2012 14:59:24 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=message-id:date:from:user-agent:mime-version:to:cc:subject
+	:references:in-reply-to:content-type:content-transfer-encoding
+	:x-gm-message-state;
+	bh=nbjwFU9Wg0CUdNR6VY+vDkmdnTKa3/G7lFRiP08TayY=;
+	b=mwHZl5n1fzR9FUxrqjGNplRNHzB7WKxdb34vSLQ73CZKNpf+FfJ8IGZQ4btvlADj0N
+	jjFsmUYcPThrpj019zaaIXmfi9zUAerE0U8nes7BbKX2qA1Qbxn0HFfgnqVwIn6INBW+
+	49W9EZcQavvSXFJW0vs2xuQ4AAmZcNLJ6bAwXwtUTHy+5sXfEuskkX+SDvs5M0+4ACTm
+	LP1pDpf3mTJ1o+tuCliNxrWLfndy7u8V4WD4yTfPtr3A7PLvWWK/rmHPP1XLUE9kdK/y
+	pVvD5O1NMJ23zbLoiYhBVgQ3wV3LMTfXF4dxKhDLgmJYNqJVJnGS/tXNoLgbPWHDhhl+
+	ITig==
+Received: by 10.68.224.71 with SMTP id ra7mr807765pbc.154.1347487164445;
+	Wed, 12 Sep 2012 14:59:24 -0700 (PDT)
+Received: from [10.0.99.24] (208.176.205.99.ptr.us.xo.net. [208.176.205.99])
+	by mx.google.com with ESMTPS id uh7sm12034650pbc.35.2012.09.12.14.59.22
+	(version=SSLv3 cipher=OTHER); Wed, 12 Sep 2012 14:59:23 -0700 (PDT)
+Message-ID: <505105B8.4060203@intel.com>
+Date: Wed, 12 Sep 2012 14:59:20 -0700
+From: Scott Garman <scott.a.garman@intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:15.0) Gecko/20120827 Thunderbird/15.0
 MIME-Version: 1.0
-X-OriginatorOrg: freescale.com
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-fsl-ppc 08/16] fsl.conf: disable auto dhcp for eth0
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+References: <CA+gsK-qoz4u6OZV+FZN+LZq2AOgw5RajOW6DCJOnXbZGecva1w@mail.gmail.com>
+	<5050D2CF.3000006@intel.com> <1732336.2HUq7qo8OI@helios>
+In-Reply-To: <1732336.2HUq7qo8OI@helios>
+X-Gm-Message-State: ALoCoQlj9lbgHU8Es1aKvpPil9fXjyHj0Ku6dntH4mbii2yrEM+wVlGv+CSGAkXTTRJl86g67iEl
+Cc: yocto@yoctoproject.org
+Subject: Re: [linux-yocto] 'bitbake linux-yocto' after 'bitbake linux-yocto -c compile -f' does not create image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: McClintock Matthew-B29882 <B29882@freescale.com>
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -54,36 +47,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 12 Sep 2012 21:59:16 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-ID: <3DFD1B87598B4C4691EA5D4E60AECC43@mgd.freescale.com>
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 12 Sep 2012 21:59:25 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Wed, Sep 12, 2012 at 2:06 AM,  <b19537@freescale.com> wrote:
-> From: Ting Liu <b28495@freescale.com>
+On 09/12/2012 01:25 PM, Paul Eggleton wrote:
+> On Wednesday 12 September 2012 11:22:07 Scott Garman wrote:
+>> On 09/12/2012 08:06 AM, Rudolf Streif wrote:
+>>> In Denil modifying kernel parameters and doing
+>>>
+>>> bitbake linux-yocto -c compile -f
+>>> bitbake linux-yocto
+>>>
+>>> worked perfectly fine. The tasks after compile were rerun and the new
+>>> kernel copied to tmp/deploy/images
+>>>
+>>> In Edison 7.0.1 this does not seem to work anymore. The tasks do not
+>>> rerun and the kernel image is not deployed.
+>>>
+>>> What has changed? Why does it not work anymore?
+>>
+>> This was a bug that was introduced in 7.0.1. I have included a patch
+>> series in my testing branch that is intended to go into the denzil
+>> branch soon:
+>>
+>> d7b818b bitbake: refactor out codeparser cache into a separate class
+>> 66123b9 classes/cml1: ensure -c menuconfig forces a rebuild next time
+>> 5bd11a9 bitbake: bitbake: ensure -f causes dependent tasks to be re-run
+>> 8b8be74 bitbake: implement checksums for local files in SRC_URI
 >
-> Signed-off-by: Ting Liu <b28495@freescale.com>
-> ---
->  conf/distro/fsl.conf |    4 ++++
->  1 file changed, 4 insertions(+)
->
-> diff --git a/conf/distro/fsl.conf b/conf/distro/fsl.conf
-> index b35f5e2..b6c8fb4 100644
-> --- a/conf/distro/fsl.conf
-> +++ b/conf/distro/fsl.conf
-> @@ -91,3 +91,7 @@ PREFERRED_VERSION_samba =3D "3.4.0"
->  PREFERRED_PROVIDER_virtual/libx11 =3D "libx11"
->
->  CCACHE =3D ""
-> +
-> +# disable auto dhcp for eth0
-> +ETH0_AUTO_DHCP =3D "0"
+> We need to be very careful which patches we backport. In particular that last
+> patch 8b8be74 should not be backported - it's new functionality, requires
+> support in the metadata to work, and led to several further cleanup patches
+> for the metadata to avoid warnings being raised.
 
-As I've said before just turning off dhcp by default is not what we
-want. Some internal testing issue is not a reason to disable this by
-default as this is used by default by most users.
+I agree with the need to be conservative about backporting new features 
+into point-releases. In this case I was given a list from someone of 
+which patches were needed to resolve the menuconfig issue, and I didn't 
+question it.
 
--M=
+I will make a note to try removing 8b8be74 before I submit my final pull 
+request to denzil - this almost certainly won't happen this week due to 
+conference craziness.
 
+Scott
+
+-- 
+Scott Garman
+Embedded Linux Engineer - Yocto Project
+Intel Open Source Technology Center
 
