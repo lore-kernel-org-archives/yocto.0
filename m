@@ -1,52 +1,24 @@
-Return-Path: <B29882@freescale.com>
-Received: from am1outboundpool.messaging.microsoft.com
-	(am1ehsobe004.messaging.microsoft.com [213.199.154.207])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 48764E00348
-	for <yocto@yoctoproject.org>; Wed, 12 Sep 2012 15:04:16 -0700 (PDT)
-Received: from mail116-am1-R.bigfish.com (10.3.201.232) by
-	AM1EHSOBE003.bigfish.com (10.3.204.23) with Microsoft SMTP Server id
-	14.1.225.23; Wed, 12 Sep 2012 22:04:15 +0000
-Received: from mail116-am1 (localhost [127.0.0.1])	by
-	mail116-am1-R.bigfish.com (Postfix) with ESMTP id 2663D46010F	for
-	<yocto@yoctoproject.org>; Wed, 12 Sep 2012 22:04:15 +0000 (UTC)
-X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null); IPV:NLI;
-	H:mail.freescale.net; RD:none; EFVD:NLI
-X-SpamScore: -2
-X-BigFish: VS-2(zz98dI9371I1432Izz1202h1d1ah1d2ahzz8275bh8275dhz2dh2a8h668h839h8e2h8e3hd25hf0ah107ah10d2h1288h12a5h12a9h12bdhbe9i1155h)
-Received: from mail116-am1 (localhost.localdomain [127.0.0.1]) by mail116-am1
-	(MessageSwitch) id 1347487453518676_32623;
-	Wed, 12 Sep 2012 22:04:13 +0000 (UTC)
-Received: from AM1EHSMHS005.bigfish.com (unknown [10.3.201.235])	by
-	mail116-am1.bigfish.com (Postfix) with ESMTP id 7BA56180049	for
-	<yocto@yoctoproject.org>; Wed, 12 Sep 2012 22:04:13 +0000 (UTC)
-Received: from mail.freescale.net (70.37.183.190) by AM1EHSMHS005.bigfish.com
-	(10.3.207.105) with Microsoft SMTP Server (TLS) id 14.1.225.23;
-	Wed, 12 Sep 2012 22:04:11 +0000
-Received: from 039-SN1MPN1-001.039d.mgd.msft.net ([169.254.1.124]) by
-	039-SN1MMR1-003.039d.mgd.msft.net ([10.84.1.16]) with mapi id
-	14.02.0309.003; Wed, 12 Sep 2012 17:04:10 -0500
-From: McClintock Matthew-B29882 <B29882@freescale.com>
-To: Luo Zhenhua-B19537 <B19537@freescale.com>
-Thread-Topic: [yocto] [meta-fsl-ppc 11/16] u-boot: fix nand image name issue
-	for different core type
-Thread-Index: AQHNkTKInWUeWgg/WkaqSjAkmhCdYQ==
-Date: Wed, 12 Sep 2012 22:04:09 +0000
-Message-ID: <70CC66F5C30A414DADDA6973E4CA391A6755C3@039-SN1MPN1-001.039d.mgd.msft.net>
-References: <1347433590-8481-1-git-send-email-b19537@freescale.com>
-	<1347433590-8481-11-git-send-email-b19537@freescale.com>
-In-Reply-To: <1347433590-8481-11-git-send-email-b19537@freescale.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [70.112.201.132]
-MIME-Version: 1.0
-X-OriginatorOrg: freescale.com
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-fsl-ppc 11/16] u-boot: fix nand image name issue for different core type
+Return-Path: <kishore.k.bodke@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A1559E00344
+	for <yocto@yoctoproject.org>; Wed, 12 Sep 2012 15:09:50 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga102.fm.intel.com with ESMTP; 12 Sep 2012 15:09:50 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,413,1344236400"; d="scan'208";a="221396944"
+Received: from rsaxena-rosecity.sc.intel.com (HELO localhost)
+	([143.183.188.86])
+	by fmsmga001.fm.intel.com with ESMTP; 12 Sep 2012 15:09:49 -0700
+From: rahul.saxena@intel.com
+To: yocto@yoctoproject.org,
+	tom.zanussi@intel.com
+Date: Wed, 12 Sep 2012 14:59:27 -0700
+Message-Id: <cover.1347486881.git.rahul.saxena@intel.com>
+X-Mailer: git-send-email 1.7.4.1
+Subject: [PATCH 0/2][meta-intel]meta-cedartrail:Cover letter for patches to add Video acceleration and update PVR driver to v1.0.3 -- master branch
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: McClintock Matthew-B29882 <B29882@freescale.com>
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -55,93 +27,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 12 Sep 2012 22:04:16 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-ID: <3DBE242041A2174C9E98ACF4AF33864B@mgd.freescale.com>
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 12 Sep 2012 22:09:50 -0000
 
-On Wed, Sep 12, 2012 at 2:06 AM,  <b19537@freescale.com> wrote:
-> From: Zhenhua Luo <b19537@freescale.com>
->
-> Final nand u-boot image is named differently in u-boot source. That is:
-> "u-boot-nand.bin" for e500v2 boards, "u-boot.bin" for other boards.
->
-> Signed-off-by: Zhenhua Luo <b19537@freescale.com>
-> Signed-off-by: Ting Liu <b28495@freescale.com>
+From: Rahul Saxena <rahul.saxena@intel.com>
 
-This is not applying against master.
+Cover letter for patch set that does following:
 
--M
+Adds  gstreamer and vaapi video acceleration components to enable acceleration with pvr driver
 
-> ---
->  recipes-kernel/u-boot/u-boot_git.bb |   21 +++++++++++----------
->  1 file changed, 11 insertions(+), 10 deletions(-)
->
-> diff --git a/recipes-kernel/u-boot/u-boot_git.bb b/recipes-kernel/u-boot/=
-u-boot_git.bb
-> index 38d0574..898cd7a 100644
-> --- a/recipes-kernel/u-boot/u-boot_git.bb
-> +++ b/recipes-kernel/u-boot/u-boot_git.bb
-> @@ -5,7 +5,7 @@ PROVIDES =3D "virtual/bootloader"
->  LICENSE =3D "GPLv2"
->  LIC_FILES_CHKSUM =3D "file://COPYING;md5=3D1707d6db1d42237583f50183a5651=
-ecb"
->
-> -PR =3D "r19"
-> +PR =3D "r21"
->  INHIBIT_DEFAULT_DEPS =3D "1"
->  DEPENDS =3D "boot-format-native virtual/${TARGET_PREFIX}gcc libgcc"
->
-> @@ -49,19 +49,20 @@ do_compile () {
->                 esac
->
->                 if [ "x${UBOOT_TARGET}" !=3D "x" ]; then
-> -                       if [ "${UBOOT_TARGET}" =3D=3D "u-boot-nand" ]; th=
-en
-> -                               :
-> -                       elif [ "${MACHINE_ARCH}" =3D=3D "p1023rds" ] || \
-> -                               [ "${MACHINE_ARCH}" =3D=3D "p2041rdb" ] |=
-| \
-> -                               [ "${MACHINE_ARCH}" =3D=3D "p3041ds" ] ||=
- \
-> -                               [ "${MACHINE_ARCH}" =3D=3D "p4080ds" ] ||=
- \
-> -                               [ "${MACHINE_ARCH}" =3D=3D "p5020ds" ] ||=
- \
-> -                               [ "${UBOOT_TARGET}" =3D=3D "u-boot-sd" ];=
- then
-> +                       if [ "${UBOOT_TARGET}" =3D=3D "u-boot-sd" ]; then
->                                 cp ${S}/${board}/u-boot.bin  ${S}/${board=
-}/${UBOOT_TARGET}.bin
-> +            elif [ "${UBOOT_TARGET}" =3D=3D "u-boot-nand" ];then
-> +                               if [ "${DEFAULTTUNE}" !=3D "ppce500v2" ];=
-then
-> +                    cp ${S}/${board}/u-boot.bin  ${S}/${board}/${UBOOT_T=
-ARGET}.bin
-> +                fi
->                         else
-> -                               ${STAGING_BINDIR_NATIVE}/boot_format \
-> +                               if [ -n "${BOOTFORMAT_CONFIG}" ];then
-> +                    ${STAGING_BINDIR_NATIVE}/boot_format \
->                                         ${STAGING_DATADIR_NATIVE}/boot_fo=
-rmat/${BOOTFORMAT_CONFIG} \
->                                         ${S}/${board}/u-boot.bin -spi ${S=
-}/${board}/${UBOOT_TARGET}.bin
-> +                else
-> +                    cp ${S}/${board}/u-boot.bin  ${S}/${board}/${UBOOT_T=
-ARGET}.bin
-> +                fi
->                         fi
->                 fi
->         done
-> --
-> 1.7.9.5
->
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto=
+Update pvr driver to v1.0.3. This driver update fixes a memory leak bug.
+
+Please pull into master branch
+
+Signed-off-by: Rahul Saxena <rahul.saxena@intel.com>
+--
+The following changes since commit 66b516f3d3a287eecbf8804b2221bfc27e36db63:
+
+  README: add info explaining meta-tlk layer purpose (2012-09-06 10:36:02 -0500)
+
+are available in the git repository at:
+  git://git.pokylinux.org/meta-intel-contrib rsaxena-pvr_103r3master
+  http://git.pokylinux.org/cgit.cgi/meta-intel-contrib/log/?h=rsaxena-pvr_103r3master
+
+Rahul Saxena (2):
+  meta-cedartrail: Add video acceleration
+  meta-cedartrail: Update PVR graphics driver to version 1.0.3
+
+ meta-cedartrail/README                             |    2 +-
+ meta-cedartrail/conf/machine/cedartrail.conf       |    4 ++
+ ...pvr-driver_1.0.2.bb => cdv-pvr-driver_1.0.3.bb} |   34 ++++++++++++-------
+ 3 files changed, 26 insertions(+), 14 deletions(-)
+ rename meta-cedartrail/recipes-graphics/xorg-driver/{cdv-pvr-driver_1.0.2.bb => cdv-pvr-driver_1.0.3.bb} (84%)
+
+-- 
+1.7.4.1
 
 
