@@ -1,38 +1,35 @@
-Return-Path: <rstreif@linuxfoundation.org>
-Received: from mail-qc0-f176.google.com (mail-qc0-f176.google.com
-	[209.85.216.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 86E62E002AC
-	for <yocto@yoctoproject.org>; Wed, 12 Sep 2012 08:16:47 -0700 (PDT)
-Received: by qcsc21 with SMTP id c21so1432637qcs.35
-	for <yocto@yoctoproject.org>; Wed, 12 Sep 2012 08:16:46 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:date
-	:x-google-sender-auth:message-id:subject:from:to:cc:content-type
-	:x-gm-message-state;
-	bh=6OSxUQDE9ve2Cpb5sWMdXVsJ/3VwWrhk5REaekqwixQ=;
-	b=NT2bp0LhnjUBemCVV8vKFw2/R0s/3yPlzliQUf0zrCyFsNHvBmoBxCvLoeULCDd+uJ
-	rALtYmn4+V1tP8x4mSET47LGn10sFvgtZLDQVXg1wNOYbwg9So0+7vVPkhmfv8tPm7Kb
-	m7zamEoBu4sDBeIUB3BrOP0GQKN1FMjyHZOwvUFFx9MBNGtnVW1UquGZiSEimSXE7uaf
-	DBptYX4wY8HhOKbGWUZyHRoLn1e6f7BZe8CpPtFJD1XPoKqm9iRO/MbpNGJQjTEzEiDO
-	7QlHMdtQWSAncFBL80pQH0SPA0MrAnWgizeymQweLkhtuxiMxnZSiZ7q6EJ377FIecw3
-	mkIQ==
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-ey0-f176.google.com (mail-ey0-f176.google.com
+	[209.85.215.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0D062E002AC
+	for <yocto@yoctoproject.org>; Wed, 12 Sep 2012 08:57:17 -0700 (PDT)
+Received: by eabd1 with SMTP id d1so1039279eab.35
+	for <yocto@yoctoproject.org>; Wed, 12 Sep 2012 08:57:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=4cic1AhNyB0s4nsjGqFrBG9h4sRXw4i/4AuA9HO7eKY=;
+	b=OhYKtyajrZRv6R7di+A6mD9Ot5JVy5jn9Dx9GIHGopRjWnwe45ccNHwAMsl6ZtoTrA
+	TInhNTs6KWMrck3uxsqxwgpGIr9DlQt3Xvj72ByQI61wHzXxtLfqwH2g73hY8FWeOQ08
+	0CUqsON2WcmlmhszHgByit7PdRtVVeae2r9j9htz5YARyZRXh0ui9hvcwTMD7llOz730
+	kv31Duhrj08gCXJnsADaWigYwB4HSfOjGODIu2lT622TyKW9bCEe063WIOcxmKFYzgxF
+	9RIZAW9eC11NLjLxgIq2Mu/tQm2ouWZhbMC8K+cvL3YMf0wzZkdD/it30A+Lxy+mt+fl
+	eB9g==
 MIME-Version: 1.0
-Received: by 10.224.183.18 with SMTP id ce18mr4478450qab.90.1347463006843;
-	Wed, 12 Sep 2012 08:16:46 -0700 (PDT)
-Sender: rstreif@linuxfoundation.org
-Received: by 10.49.116.77 with HTTP; Wed, 12 Sep 2012 08:16:46 -0700 (PDT)
-In-Reply-To: <CABcZANnkt30OvFX3BNctHf115jQbX4piKMxb3b2N8saP4Prrmg@mail.gmail.com>
-References: <CA+gsK-qoz4u6OZV+FZN+LZq2AOgw5RajOW6DCJOnXbZGecva1w@mail.gmail.com>
-	<CABcZANnkt30OvFX3BNctHf115jQbX4piKMxb3b2N8saP4Prrmg@mail.gmail.com>
-Date: Wed, 12 Sep 2012 08:16:46 -0700
-X-Google-Sender-Auth: Fpv04RkLNdk4Gef39lpww0ONthM
-Message-ID: <CA+gsK-rSTj418hLedGJ8VgdUgrP7=eRqNw5etpb21gBWwGAYkA@mail.gmail.com>
-From: Rudolf Streif <rudolf.streif@linux.com>
-To: Chris Larson <clarson@kergoth.com>
-X-Gm-Message-State: ALoCoQmqXKbE2EE+qqVeBVJyXwpUyRxYNse1pVRdm+vB3tUxUK3zEnH9ignjUqyF8bzQPZLtW7va
-Cc: yocto@yoctoproject.org
-Subject: Re: [linux-yocto] 'bitbake linux-yocto' after 'bitbake linux-yocto -c compile -f' does not create image
+Received: by 10.14.4.201 with SMTP id 49mr32169677eej.0.1347465436535; Wed, 12
+	Sep 2012 08:57:16 -0700 (PDT)
+Received: by 10.14.2.5 with HTTP; Wed, 12 Sep 2012 08:57:16 -0700 (PDT)
+In-Reply-To: <2072418.kpEGxVepHQ@helios>
+References: <1347433590-8481-1-git-send-email-b19537@freescale.com>
+	<1347433590-8481-9-git-send-email-b19537@freescale.com>
+	<CAMKF1spSfEGfkXcfQ7Q1CHdiohSuJmPLd7yCFwW19B46SRe=tA@mail.gmail.com>
+	<2072418.kpEGxVepHQ@helios>
+Date: Wed, 12 Sep 2012 08:57:16 -0700
+Message-ID: <CAMKF1srJ6FHnmapeJAxu__xS95L02MRNCbhP68gCexNEU3nkQQ@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [meta-fsl-ppc 09/16] rcw_git.bb: update to 1.2.1 release version
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,61 +41,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 12 Sep 2012 15:16:47 -0000
-Content-Type: multipart/alternative; boundary=20cf303b3f45def29104c982ad1e
+X-List-Received-Date: Wed, 12 Sep 2012 15:57:18 -0000
+Content-Type: multipart/alternative; boundary=047d7b66f1cdb11cfa04c9833eaf
 
---20cf303b3f45def29104c982ad1e
-Content-Type: text/plain; charset=ISO-8859-1
+--047d7b66f1cdb11cfa04c9833eaf
+Content-Type: text/plain; charset=UTF-8
 
-Thanks, Chris. From what bitbake version on is that command available? The
-bitbake version bundled with YP Denzil 7.0.1 is 1.15.2 and it does not
-recognize that command:
-
-...
-bitbake: error: no such option -C
-
-Rudi
-
-On Wed, Sep 12, 2012 at 8:08 AM, Chris Larson <clarson@kergoth.com> wrote:
-
-> On Wed, Sep 12, 2012 at 8:06 AM, Rudolf Streif <rudolf.streif@linux.com>
-> wrote:
-> > bitbake linux-yocto -c compile -f
-> > bitbake linux-yocto
-> >
-> > worked perfectly fine. The tasks after compile were rerun and the new
-> kernel
-> > copied to tmp/deploy/images
-> >
-> > In Edison 7.0.1 this does not seem to work anymore. The tasks do not
-> rerun
-> > and the kernel image is not deployed.
+On Wednesday, September 12, 2012, Paul Eggleton <
+paul.eggleton@linux.intel.com> wrote:
+> On Wednesday 12 September 2012 00:40:36 Khem Raj wrote:
+>> NAK
 >
-> I'd suggest using bitbake's new -C argument. Run bitbake -C compile
-> linux-yocto.
+> Please do not reply to patches like this. If you object to a patch you
+need to
+> provide some reasoning.
+
+I did in the previous patch in this series which is similar
+> Cheers,
+> Paul
+>
 > --
-> Christopher Larson
+>
+> Paul Eggleton
+> Intel Open Source Technology Centre
 >
 
---20cf303b3f45def29104c982ad1e
-Content-Type: text/html; charset=ISO-8859-1
+--047d7b66f1cdb11cfa04c9833eaf
+Content-Type: text/html; charset=UTF-8
 
-Thanks, Chris. From what bitbake version on is that command available? The bitbake version bundled with YP Denzil 7.0.1 is 1.15.2 and it does not recognize that command:<div><br></div><div>...</div><div>bitbake: error: no such option -C</div>
-<div><br></div><div>Rudi<br><br><div class="gmail_quote">On Wed, Sep 12, 2012 at 8:08 AM, Chris Larson <span dir="ltr">&lt;<a href="mailto:clarson@kergoth.com" target="_blank">clarson@kergoth.com</a>&gt;</span> wrote:<br>
-<blockquote class="gmail_quote" style="margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div class="im">On Wed, Sep 12, 2012 at 8:06 AM, Rudolf Streif &lt;<a href="mailto:rudolf.streif@linux.com">rudolf.streif@linux.com</a>&gt; wrote:<br>
+<br><br>On Wednesday, September 12, 2012, Paul Eggleton &lt;<a href="mailto:paul.eggleton@linux.intel.com">paul.eggleton@linux.intel.com</a>&gt; wrote:<br>&gt; On Wednesday 12 September 2012 00:40:36 Khem Raj wrote:<br>&gt;&gt; NAK<br>
+&gt;<br>&gt; Please do not reply to patches like this. If you object to a patch you need to<br>&gt; provide some reasoning.<br><br>I did in the previous patch in this series which is similar<br>&gt; Cheers,<br>&gt; Paul<br>
+&gt;<br>&gt; --<br>&gt;<br>&gt; Paul Eggleton<br>&gt; Intel Open Source Technology Centre<br>&gt;
 
-&gt; bitbake linux-yocto -c compile -f<br>
-&gt; bitbake linux-yocto<br>
-&gt;<br>
-&gt; worked perfectly fine. The tasks after compile were rerun and the new kernel<br>
-&gt; copied to tmp/deploy/images<br>
-&gt;<br>
-&gt; In Edison 7.0.1 this does not seem to work anymore. The tasks do not rerun<br>
-&gt; and the kernel image is not deployed.<br>
-<br>
-</div>I&#39;d suggest using bitbake&#39;s new -C argument. Run bitbake -C compile linux-yocto.<br>
-<span class="HOEnZb"><font color="#888888">--<br>
-Christopher Larson<br>
-</font></span></blockquote></div><br></div>
-
---20cf303b3f45def29104c982ad1e--
+--047d7b66f1cdb11cfa04c9833eaf--
