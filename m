@@ -1,41 +1,33 @@
-Return-Path: <elvis.dowson@gmail.com>
-Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
-	[209.85.160.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5D8A8E0142C
-	for <yocto@yoctoproject.org>; Thu, 13 Sep 2012 09:36:43 -0700 (PDT)
-Received: by pbbrq13 with SMTP id rq13so5297512pbb.35
-	for <yocto@yoctoproject.org>; Thu, 13 Sep 2012 09:36:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=subject:mime-version:content-type:from:in-reply-to:date:cc
-	:content-transfer-encoding:message-id:references:to:x-mailer;
-	bh=BCu9UzY2cfdPyOf7D8UWLEWAirv1cFRjycn42VB/zEc=;
-	b=PHixI0oaMaI0aHP44ERHsEvjnwnCoeBDqn9srzHwMqN5XvxvJkj8bSy5GvpqQut6nf
-	xlz7c5EuxSP0SnZB05e3t4lL2KneQL0xO8aHqs0uI5k1buck9Gd27OFL0aa14uy2axy6
-	I2P+wcEV5Prmr7FM+YXdZ1wzwviAmLgccu0yH/yWzWdmMDjHS8sow5p8+BmfQsSeElBK
-	XTBECyc4zZpsvJ2+dDjdb47wXZWepC/8YQsIVlcQA4rD46CIOcqDLZ200dFB3nb4aDi9
-	m1wmk4o6b1jswkVYyaDOHSeHsvsEyNgdUfeBMNJYLL/fSCB/nZC3TBeCAh1ydP8NEM3G
-	2TcQ==
-Received: by 10.68.213.138 with SMTP id ns10mr186980pbc.157.1347554198934;
-	Thu, 13 Sep 2012 09:36:38 -0700 (PDT)
-Received: from [192.168.1.100] ([94.205.108.162])
-	by mx.google.com with ESMTPS id hf1sm13323322pbc.42.2012.09.13.09.36.29
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Thu, 13 Sep 2012 09:36:31 -0700 (PDT)
-Mime-Version: 1.0 (Apple Message framework v1278)
-From: Elvis Dowson <elvis.dowson@gmail.com>
-In-Reply-To: <CAMKF1sozZMQFS4kSbqGGnzzJ9K0O_3NCyujknFpJUZvZ4jOLBA@mail.gmail.com>
-Date: Thu, 13 Sep 2012 20:36:25 +0400
-Message-Id: <00209F5B-F153-4F07-BA14-54FF7D6E5762@gmail.com>
-References: <CAHUNapQUS19axgi+i=wAr0r_ogFj+UsSBpsBY_mhd+ac=5w8-g@mail.gmail.com>
-	<12E1ABCF-B181-4763-88A6-5B7E51758231@gmail.com>
-	<AA2F4F97-00C8-48C3-90E8-5AF084D508B8@gmail.com>
-	<CAHUNapStNAw21FiO6vFgBPLPfeqnoFjAtuuUuzun+6FuzLfspg@mail.gmail.com>
-	<CAHUNapT5HfC+dbzjmuYiQ4ic4m71=iBaaJtygfrhht+JsqMyHA@mail.gmail.com>
-	<CAMKF1sozZMQFS4kSbqGGnzzJ9K0O_3NCyujknFpJUZvZ4jOLBA@mail.gmail.com>
-To: Trevor Woerner <twoerner@gmail.com>
-X-Mailer: Apple Mail (2.1278)
-Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-Subject: Re: any success with spartan6-lx9mb?
+Return-Path: <rahul.saxena@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 659A6E0142C
+	for <yocto@yoctoproject.org>; Thu, 13 Sep 2012 09:38:01 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 13 Sep 2012 09:38:01 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,417,1344236400"; d="scan'208";a="221767984"
+Received: from orsmsx102.amr.corp.intel.com ([10.22.225.129])
+	by fmsmga001.fm.intel.com with ESMTP; 13 Sep 2012 09:38:00 -0700
+Received: from orsmsx107.amr.corp.intel.com ([169.254.10.146]) by
+	ORSMSX102.amr.corp.intel.com ([169.254.1.89]) with mapi id
+	14.01.0355.002; Thu, 13 Sep 2012 09:38:00 -0700
+From: "Saxena, Rahul" <rahul.saxena@intel.com>
+To: "Burton, Ross" <ross.burton@intel.com>, Chris Tapp
+	<opensource@keylevel.com>
+Thread-Topic: [yocto] Denzil / Cedartrail / EGL/GLES under X
+Thread-Index: AQHNj4bb9TQ+w4B1/0iGcaBFRlCdl5eIlSAA///nbvA=
+Date: Thu, 13 Sep 2012 16:37:59 +0000
+Message-ID: <63ECFF2A2302B44093D7CE9E9962C49003CCA801@ORSMSX107.amr.corp.intel.com>
+References: <718DB276-4C65-4925-B1E9-3EFEA0B8B4B7@keylevel.com>
+	<CAJTo0Lb3wH6UQ5SY5mF9seq2cK2k-FguRhvTbASkYBqGTc127Q@mail.gmail.com>
+In-Reply-To: <CAJTo0Lb3wH6UQ5SY5mF9seq2cK2k-FguRhvTbASkYBqGTc127Q@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.138]
+MIME-Version: 1.0
+Cc: "yocto@yoctoproject.org Project" <yocto@yoctoproject.org>
+Subject: Re: Denzil / Cedartrail / EGL/GLES under X
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,22 +39,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 13 Sep 2012 16:36:43 -0000
-Content-Type: text/plain; charset=us-ascii
+X-List-Received-Date: Thu, 13 Sep 2012 16:38:01 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Trevor,
-                   I just briefly tried building it, using gcc-4.5.1, =
-and got build failures too. It looks like it will take some effort to =
-get this up and running with the current version of yocto. I just =
-managed to get powerpc440 soft-float working with gcc-4.5.1 & =
-eglibc-2.13 with a specific commit id for poky and meta-openembedded. =
-Now I have to try and make that legacy gcc-4.5.1 support with with the =
-latest poky and meta-openembedded master branch. Perhaps if you get a =
-Xilinx SP601 board and dive in, you could help get microblaze up and =
-running!
+Ross, the definition of RPROVIDES is not given in the Yocto project referen=
+ce manual.
+Perhaps it should be added to the manual ?
 
-Best regards,
+Thanks
+Rahul
 
-Elvis=
+-----Original Message-----
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Burton, Ross
+Sent: Thursday, September 13, 2012 4:04 AM
+To: Chris Tapp
+Cc: yocto@yoctoproject.org Project
+Subject: Re: [yocto] Denzil / Cedartrail / EGL/GLES under X
+
+Hi Chris,
+
+On 10 September 2012 19:56, Chris Tapp <opensource@keylevel.com> wrote:
+> I've managed to get to the point where I think EGL is up (no API errors r=
+eported), but if I try anything on the GL side (e.g. glClear to get the bac=
+kground color) I'm not getting anything showing on the display when I call =
+eglSwapBuffers().
+
+GL or GLES?  GL on Cedar Trail is very limited , you're heavily recommended=
+ to use GLES.
+
+> I'm not sure how to configure my build to use the cdv-pvr-driver libs rat=
+her than the MESA-dri equivalents either. Both provide libGLESv2, etc., but=
+ I want the cdv-pvr-driver versions in the final image. However, cdv-prv-dr=
+iver doesn't seem to have an include directory to use at build time, so MES=
+A needs to be there as well. Is there a PREFERRED_PROVIDER_virtual/libgl va=
+lue I can use?
+
+This is a bit of a mess at the moment, and I want to sort it, but it's a co=
+mplicated mess.
+
+Building against mesa-dri shouldn't be a problem as all GL implementations =
+have the same ABI, assuming you can get the cdv-prv-driver package installe=
+d and not mesa-dri on your image.
+Preferred providers only work for built-time dependencies, so assuming that=
+ you're having problems with getting mesa-dri out and cdv-prv-driver in the=
+ image you'll need to use something like RCONFLICTS and RPROVIDES so that t=
+he package system uses cdv-prv-driver instead of mesa-dri.
+
+Ross
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
 
