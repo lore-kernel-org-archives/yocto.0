@@ -1,45 +1,35 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-pz0-f48.google.com (mail-pz0-f48.google.com
-	[209.85.210.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1C1FFE011C0
-	for <yocto@yoctoproject.org>; Thu, 13 Sep 2012 11:59:05 -0700 (PDT)
-Received: by dadz8 with SMTP id z8so2488237dad.35
-	for <yocto@yoctoproject.org>; Thu, 13 Sep 2012 11:58:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=user-agent:in-reply-to:references:mime-version:content-type
-	:content-transfer-encoding:subject:from:date:to:cc:message-id;
-	bh=qJPOU+5Pxey+0b5HG6GfzJuyNhIv1jFlzhpcik9pJmM=;
-	b=Fm/n22Kal9iFqdh1y+6CXAcaMk448tsdA/pAovNisqQFRYtIDth4xgDyr50pJ+6+bX
-	JorRvnEIBajj28JQDnCnCM+cRNRMRKNh7IPZ5n4PJeh41YlraUcH1KAEtvcIrwvsbAIW
-	9mdkj8+3hE0DKixCs2iszg2ubcRqEUa75e4JgSle/DyS0iJmr64ay+ReTM0CQYZtHG2e
-	0y5ecG3VXR6HfEs1Ehtven4TVUrSqQSMm5AnUe3zzfgzas/Lk53XK87lcqMrLf8EUmQ8
-	RgUa5BOXRKGNynPx9WwEyf09jcyRbi4zn7iiT6vBUu7JUIi5/YF0I1Cyb1gtBuf4uz75
-	A8dQ==
-Received: by 10.68.216.104 with SMTP id op8mr818213pbc.65.1347562730827;
-	Thu, 13 Sep 2012 11:58:50 -0700 (PDT)
-Received: from [100.199.17.211] (mff2036d0.tmodns.net. [208.54.32.255])
-	by mx.google.com with ESMTPS id qb2sm13507024pbb.15.2012.09.13.11.58.48
-	(version=SSLv3 cipher=OTHER); Thu, 13 Sep 2012 11:58:49 -0700 (PDT)
-User-Agent: K-9 Mail for Android
-In-Reply-To: <CAHUNapScRtp4hTW2z1_wMNJA6AKVYvsHLNu+kzTzUQgQpvVBkA@mail.gmail.com>
-References: <CAHUNapQUS19axgi+i=wAr0r_ogFj+UsSBpsBY_mhd+ac=5w8-g@mail.gmail.com>
-	<12E1ABCF-B181-4763-88A6-5B7E51758231@gmail.com>
-	<AA2F4F97-00C8-48C3-90E8-5AF084D508B8@gmail.com>
-	<CAHUNapStNAw21FiO6vFgBPLPfeqnoFjAtuuUuzun+6FuzLfspg@mail.gmail.com>
-	<CAHUNapT5HfC+dbzjmuYiQ4ic4m71=iBaaJtygfrhht+JsqMyHA@mail.gmail.com>
-	<CAMKF1sozZMQFS4kSbqGGnzzJ9K0O_3NCyujknFpJUZvZ4jOLBA@mail.gmail.com>
-	<00209F5B-F153-4F07-BA14-54FF7D6E5762@gmail.com>
-	<CAMKF1soXwQXyVo4_p_ufGHAM63qitE67tQ9Fg3pLDCZNk5N+nw@mail.gmail.com>
-	<CAHUNapQ9aLCbiEG2eyLzTsBe3k9vaBen4Hfm3E0L85JQJ_j1Kg@mail.gmail.com>
-	<CAHUNapScRtp4hTW2z1_wMNJA6AKVYvsHLNu+kzTzUQgQpvVBkA@mail.gmail.com>
+Return-Path: <nitin.a.kamble@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D5171E0142C
+	for <yocto@yoctoproject.org>; Thu, 13 Sep 2012 12:56:04 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 13 Sep 2012 12:55:53 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,418,1344236400"; d="scan'208";a="203233268"
+Received: from orsmsx102.amr.corp.intel.com ([10.22.225.129])
+	by orsmga002.jf.intel.com with ESMTP; 13 Sep 2012 12:56:01 -0700
+Received: from orsmsx106.amr.corp.intel.com ([169.254.5.60]) by
+	ORSMSX102.amr.corp.intel.com ([169.254.1.89]) with mapi id
+	14.01.0355.002; Thu, 13 Sep 2012 12:56:01 -0700
+From: "Kamble, Nitin A" <nitin.a.kamble@intel.com>
+To: "Burton, Ross" <ross.burton@intel.com>
+Thread-Topic: [yocto] [PATCH 0/1] Fix X issue on crownbay
+Thread-Index: AQHNjJT+uO1HjNK9Y0mWQPcnr9R7mZeEtdOAgAI1QYCAAEG1QIAAfeqAgAEOzdA=
+Date: Thu, 13 Sep 2012 19:56:00 +0000
+Message-ID: <ADD6A3980E8C39419A432FF422031B4C15726C9A@ORSMSX106.amr.corp.intel.com>
+References: <cover.1346893078.git.nitin.a.kamble@intel.com>
+	<1347320069.25993.16.camel@empanada>
+	<ADD6A3980E8C39419A432FF422031B4C15726661@ORSMSX106.amr.corp.intel.com>
+	<CAJTo0LZLWBGsNyDcOKNj+cSWJTkazt51HWTOs6k2LvXQENY7tA@mail.gmail.com>
+In-Reply-To: <CAJTo0LZLWBGsNyDcOKNj+cSWJTkazt51HWTOs6k2LvXQENY7tA@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-From: Khem Raj <raj.khem@gmail.com>
-Date: Thu, 13 Sep 2012 11:58:37 -0700
-To: Trevor Woerner <twoerner@gmail.com>, Elvis Dowson <elvis.dowson@gmail.com>,
-	Adrian Alonso <aalonso00@gmail.com>
-Message-ID: <1c0cc450-af2a-441a-a2ca-0e34b40f5a03@email.android.com>
-Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-Subject: Re: any success with spartan6-lx9mb?
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Hart,
+	Darren" <darren.hart@intel.com>
+Subject: Re: [PATCH 0/1] Fix X issue on crownbay
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,34 +41,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 13 Sep 2012 18:59:05 -0000
-Content-Type: text/plain;
- charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Thu, 13 Sep 2012 19:56:04 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-
-
-Trevor Woerner <twoerner@gmail.com> wrote:
-
->PS simply BBMASK'ing out libffi doesn't help as too many things...
->require(?) it (depend on it, rdepend on it...?)
-
-
-You can try to make libffi as a package group in glib20 if possible other option would be to use something like mdev instead of udev
->
->ERROR: Nothing PROVIDES 'libffi' (but
->/home/trevor/devel/yocto/gitrepo-method/poky/meta/recipes-core/glib-2.0/glib-2.0_2.32.4.bb
->DEPENDS on or otherwise requires it)
->NOTE: Runtime target 'udev' is unbuildable, removing...
->Missing or unbuildable dependency chain was: ['udev', 'glib-2.0',
->'libffi']
->NOTE: Runtime target 'packagegroup-core-boot' is unbuildable,
->removing...
->Missing or unbuildable dependency chain was:
->['packagegroup-core-boot', 'udev', 'glib-2.0', 'libffi']
->ERROR: Required build target 'core-image-minimal' has no buildable
->providers.
->Missing or unbuildable dependency chain was: ['core-image-minimal',
->'packagegroup-core-boot', 'udev', 'glib-2.0', 'libffi']
-
+Um9zcywNCiAgTG9va2luZyBhdCB0aGUgYnVnLCBJIGFtIHRyeWluZyB3aXRoIHRoZSBsYXRlc3Qg
+Y29tbWl0cyBub3cuIFdoZW4gaXQgZmFpbGVkLCBJIGxvb2tlZCBhdCB0aGUgYnVpbGQgYXJlYSwg
+YW5kIGZvdW5kIHRoYXQgdGhlIHhvcmcteHNlcnZlciBwYWNrYWdlIHdhcyBidWlsdCBmaW5lLiBJ
+IHRoaW5rIHRoZSBpc3N1ZSBoYXBwZW5lZCBpbiB0aGUgd2l0aCByb290ZnMgZ2VuZXJhdGlvbi4g
+SSBoYXZlbid0IGZvdW5kIHdoeSBpdCB3YXMgbm90IGluY2x1ZGVkIGluIHRoZSByb290ZnMuIEZy
+b20gdGhlIGJ1ZyBJIHRob3VnaHQgdGhlIGlzc3VlIGdvdCByZXNvbHZlZCBpbiB0aGUgbGF0ZXN0
+IHRyZWUgSEVBRCwgc28gSSBhbSBnb2luZyB0byB0ZXN0IHRoZSBsYXRlc3QgaGVhZCBvbiBmZXcg
+QlNQcywgYW5kIHdpbGwgZGlnIGZ1cnRoZXIgaWYgSSBlbmNvdW50ZXIgdGhlIGlzc3VlIGFnYWlu
+Lg0KDQpOaXRpbg0KDQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogQnVy
+dG9uLCBSb3NzIFttYWlsdG86cm9zcy5idXJ0b25AaW50ZWwuY29tXQ0KPiBTZW50OiBXZWRuZXNk
+YXksIFNlcHRlbWJlciAxMiwgMjAxMiAxOjQzIFBNDQo+IFRvOiBLYW1ibGUsIE5pdGluIEENCj4g
+Q2M6IFphbnVzc2ksIFRvbTsgSGFydCwgRGFycmVuOyB5b2N0b0B5b2N0b3Byb2plY3Qub3JnDQo+
+IFN1YmplY3Q6IFJlOiBbeW9jdG9dIFtQQVRDSCAwLzFdIEZpeCBYIGlzc3VlIG9uIGNyb3duYmF5
+DQo+IA0KPiBPbiAxMiBTZXB0ZW1iZXIgMjAxMiAyMToxNCwgS2FtYmxlLCBOaXRpbiBBIDxuaXRp
+bi5hLmthbWJsZUBpbnRlbC5jb20+DQo+IHdyb3RlOg0KPiA+IEZZSSBXaGlsZSB0ZXN0aW5nIG9u
+IHRoZSBmaXNocml2ZXIgcGxhdGZvcm0sIEkgYWxzbyBmaW5kIHRoYXQgdGhlcmUgaXMgbm8gWCBs
+b2csDQo+IGFuZCBsb29raW5nIGZ1cnRoZXIgZm91bmQgb3V0IHRoYXQgeG9yZyBleGVjdXRhYmxl
+IGlzIG5vdCBvbiB0aGUgaW1hZ2UuIEkNCj4gdGhpbmsgdGhlIHNhbWUgdGhpbmcgaXMgYWxzbyBo
+YXBwZW5pbmcgb24gY3Jvd25iYXkuDQo+IA0KPiBUaGVyZSBoYXZlIGJlZW4gdHJhbnNpZW50IHJl
+cG9ydHMgb2YgWG9yZyBtaXNzaW5nIGluIHRoZSBxZW11IGltYWdlcyB0b28gLS0NCj4gdHJhbnNp
+ZW50IGJlY2F1c2UgdGhlIHJlcG9ydGVyIHNhaWQgdGhhdCB0aGUgbmV4dCBkYXkncyBhdXRvYnVp
+bHQgaW1hZ2UgaGFkDQo+IHRoZSBwYWNrYWdlIGluc3RhbGxlZCBhZ2Fpbi4gIFZlcnkgb2RkLg0K
+PiANCj4gSW4gdGhlIGJyb2tlbiBzeXN0ZW1zIHlvdSBzYXkgdGhlcmUgaXMgbm8gWG9yZyBiaW5h
+cnkuIENhbiB5b3UgY29uZmlybSB0aGF0DQo+IHRoZXJlIGlzIG5vIHhzZXJ2ZXIteG9yZyBwYWNr
+YWdlIHRvbz8gIENhbiB5b3UgaW5zcGVjdCB0aGUgYnVpbGQgYW5kIHNlZSBpZg0KPiB0aGlzIGZh
+aWxlZCwgb3IgaWYgdGhlcmUgaXMgc29tZSBtYWNoaW5lIGNvbmZpZ3VyYXRpb24gZGlzYXN0ZXIg
+d2hpY2ggbWVhbnMgaXQNCj4gZG9lc24ndCB0aGluayBpdCBuZWVkcyB0byBpbnN0YWxsIGFuIHhz
+ZXJ2ZXI/DQo+IA0KPiBSb3NzDQo+IA0KPiBGV0lXLCBteSBxZW11YXJtIGltYWdlIGZyb20gZWFy
+bGllciB0b2RheSB3b3Jrcy4NCg==
 
