@@ -1,34 +1,35 @@
 Return-Path: <nitin.a.kamble@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D5171E0142C
-	for <yocto@yoctoproject.org>; Thu, 13 Sep 2012 12:56:04 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 13 Sep 2012 12:55:53 -0700
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E4DE1E01430
+	for <yocto@yoctoproject.org>; Thu, 13 Sep 2012 12:57:59 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 13 Sep 2012 12:57:59 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,418,1344236400"; d="scan'208";a="203233268"
-Received: from orsmsx102.amr.corp.intel.com ([10.22.225.129])
-	by orsmga002.jf.intel.com with ESMTP; 13 Sep 2012 12:56:01 -0700
+X-IronPort-AV: E=Sophos;i="4.80,418,1344236400"; d="scan'208";a="192701898"
+Received: from orsmsx103.amr.corp.intel.com ([10.22.225.130])
+	by orsmga001.jf.intel.com with ESMTP; 13 Sep 2012 12:57:59 -0700
 Received: from orsmsx106.amr.corp.intel.com ([169.254.5.60]) by
-	ORSMSX102.amr.corp.intel.com ([169.254.1.89]) with mapi id
-	14.01.0355.002; Thu, 13 Sep 2012 12:56:01 -0700
+	ORSMSX103.amr.corp.intel.com ([169.254.2.246]) with mapi id
+	14.01.0355.002; Thu, 13 Sep 2012 12:57:58 -0700
 From: "Kamble, Nitin A" <nitin.a.kamble@intel.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Thread-Topic: [yocto] [PATCH 0/1] Fix X issue on crownbay
-Thread-Index: AQHNjJT+uO1HjNK9Y0mWQPcnr9R7mZeEtdOAgAI1QYCAAEG1QIAAfeqAgAEOzdA=
-Date: Thu, 13 Sep 2012 19:56:00 +0000
-Message-ID: <ADD6A3980E8C39419A432FF422031B4C15726C9A@ORSMSX106.amr.corp.intel.com>
+To: "Bodke, Kishore K" <kishore.k.bodke@intel.com>, "Zanussi, Tom"
+	<tom.zanussi@intel.com>
+Thread-Topic: [PATCH 0/1] Fix X issue on crownbay
+Thread-Index: AQHNjJT+uO1HjNK9Y0mWQPcnr9R7mZeEtdOAgAI1QYCAAEG1QIAAgdGAgAEMN4A=
+Date: Thu, 13 Sep 2012 19:57:58 +0000
+Message-ID: <ADD6A3980E8C39419A432FF422031B4C15726CAF@ORSMSX106.amr.corp.intel.com>
 References: <cover.1346893078.git.nitin.a.kamble@intel.com>
 	<1347320069.25993.16.camel@empanada>
 	<ADD6A3980E8C39419A432FF422031B4C15726661@ORSMSX106.amr.corp.intel.com>
-	<CAJTo0LZLWBGsNyDcOKNj+cSWJTkazt51HWTOs6k2LvXQENY7tA@mail.gmail.com>
-In-Reply-To: <CAJTo0LZLWBGsNyDcOKNj+cSWJTkazt51HWTOs6k2LvXQENY7tA@mail.gmail.com>
+	<D956029D25CF204F948EA0FB515E1EE21C1058EB@ORSMSX105.amr.corp.intel.com>
+In-Reply-To: <D956029D25CF204F948EA0FB515E1EE21C1058EB@ORSMSX105.amr.corp.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Hart,
-	Darren" <darren.hart@intel.com>
+Cc: "Hart, Darren" <darren.hart@intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: [PATCH 0/1] Fix X issue on crownbay
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -41,38 +42,124 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 13 Sep 2012 19:56:04 -0000
+X-List-Received-Date: Thu, 13 Sep 2012 19:58:00 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Um9zcywNCiAgTG9va2luZyBhdCB0aGUgYnVnLCBJIGFtIHRyeWluZyB3aXRoIHRoZSBsYXRlc3Qg
-Y29tbWl0cyBub3cuIFdoZW4gaXQgZmFpbGVkLCBJIGxvb2tlZCBhdCB0aGUgYnVpbGQgYXJlYSwg
-YW5kIGZvdW5kIHRoYXQgdGhlIHhvcmcteHNlcnZlciBwYWNrYWdlIHdhcyBidWlsdCBmaW5lLiBJ
-IHRoaW5rIHRoZSBpc3N1ZSBoYXBwZW5lZCBpbiB0aGUgd2l0aCByb290ZnMgZ2VuZXJhdGlvbi4g
-SSBoYXZlbid0IGZvdW5kIHdoeSBpdCB3YXMgbm90IGluY2x1ZGVkIGluIHRoZSByb290ZnMuIEZy
-b20gdGhlIGJ1ZyBJIHRob3VnaHQgdGhlIGlzc3VlIGdvdCByZXNvbHZlZCBpbiB0aGUgbGF0ZXN0
-IHRyZWUgSEVBRCwgc28gSSBhbSBnb2luZyB0byB0ZXN0IHRoZSBsYXRlc3QgaGVhZCBvbiBmZXcg
-QlNQcywgYW5kIHdpbGwgZGlnIGZ1cnRoZXIgaWYgSSBlbmNvdW50ZXIgdGhlIGlzc3VlIGFnYWlu
-Lg0KDQpOaXRpbg0KDQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogQnVy
-dG9uLCBSb3NzIFttYWlsdG86cm9zcy5idXJ0b25AaW50ZWwuY29tXQ0KPiBTZW50OiBXZWRuZXNk
-YXksIFNlcHRlbWJlciAxMiwgMjAxMiAxOjQzIFBNDQo+IFRvOiBLYW1ibGUsIE5pdGluIEENCj4g
-Q2M6IFphbnVzc2ksIFRvbTsgSGFydCwgRGFycmVuOyB5b2N0b0B5b2N0b3Byb2plY3Qub3JnDQo+
-IFN1YmplY3Q6IFJlOiBbeW9jdG9dIFtQQVRDSCAwLzFdIEZpeCBYIGlzc3VlIG9uIGNyb3duYmF5
-DQo+IA0KPiBPbiAxMiBTZXB0ZW1iZXIgMjAxMiAyMToxNCwgS2FtYmxlLCBOaXRpbiBBIDxuaXRp
-bi5hLmthbWJsZUBpbnRlbC5jb20+DQo+IHdyb3RlOg0KPiA+IEZZSSBXaGlsZSB0ZXN0aW5nIG9u
-IHRoZSBmaXNocml2ZXIgcGxhdGZvcm0sIEkgYWxzbyBmaW5kIHRoYXQgdGhlcmUgaXMgbm8gWCBs
-b2csDQo+IGFuZCBsb29raW5nIGZ1cnRoZXIgZm91bmQgb3V0IHRoYXQgeG9yZyBleGVjdXRhYmxl
-IGlzIG5vdCBvbiB0aGUgaW1hZ2UuIEkNCj4gdGhpbmsgdGhlIHNhbWUgdGhpbmcgaXMgYWxzbyBo
-YXBwZW5pbmcgb24gY3Jvd25iYXkuDQo+IA0KPiBUaGVyZSBoYXZlIGJlZW4gdHJhbnNpZW50IHJl
-cG9ydHMgb2YgWG9yZyBtaXNzaW5nIGluIHRoZSBxZW11IGltYWdlcyB0b28gLS0NCj4gdHJhbnNp
-ZW50IGJlY2F1c2UgdGhlIHJlcG9ydGVyIHNhaWQgdGhhdCB0aGUgbmV4dCBkYXkncyBhdXRvYnVp
-bHQgaW1hZ2UgaGFkDQo+IHRoZSBwYWNrYWdlIGluc3RhbGxlZCBhZ2Fpbi4gIFZlcnkgb2RkLg0K
-PiANCj4gSW4gdGhlIGJyb2tlbiBzeXN0ZW1zIHlvdSBzYXkgdGhlcmUgaXMgbm8gWG9yZyBiaW5h
-cnkuIENhbiB5b3UgY29uZmlybSB0aGF0DQo+IHRoZXJlIGlzIG5vIHhzZXJ2ZXIteG9yZyBwYWNr
-YWdlIHRvbz8gIENhbiB5b3UgaW5zcGVjdCB0aGUgYnVpbGQgYW5kIHNlZSBpZg0KPiB0aGlzIGZh
-aWxlZCwgb3IgaWYgdGhlcmUgaXMgc29tZSBtYWNoaW5lIGNvbmZpZ3VyYXRpb24gZGlzYXN0ZXIg
-d2hpY2ggbWVhbnMgaXQNCj4gZG9lc24ndCB0aGluayBpdCBuZWVkcyB0byBpbnN0YWxsIGFuIHhz
-ZXJ2ZXI/DQo+IA0KPiBSb3NzDQo+IA0KPiBGV0lXLCBteSBxZW11YXJtIGltYWdlIGZyb20gZWFy
-bGllciB0b2RheSB3b3Jrcy4NCg==
+Thanks Kishore for reporting it. I am trying to get to bottom of this by to=
+day or tomorrow.
+
+Thanks,
+Nitin
+
+
+> -----Original Message-----
+> From: Bodke, Kishore K
+> Sent: Wednesday, September 12, 2012 1:57 PM
+> To: Kamble, Nitin A; Zanussi, Tom
+> Cc: Hart, Darren; yocto@yoctoproject.org
+> Subject: RE: [PATCH 0/1] Fix X issue on crownbay
+>=20
+>=20
+>=20
+> >-----Original Message-----
+> >From: yocto-bounces@yoctoproject.org [mailto:yocto-
+> >bounces@yoctoproject.org] On Behalf Of Kamble, Nitin A
+> >Sent: Wednesday, September 12, 2012 1:14 PM
+> >To: Zanussi, Tom
+> >Cc: Hart, Darren; yocto@yoctoproject.org
+> >Subject: Re: [yocto] [PATCH 0/1] Fix X issue on crownbay
+> >
+> >FYI While testing on the fishriver platform, I also find that there is
+> >no X log, and looking further found out that xorg executable is not on
+> >the image. I think the same thing is also happening on crownbay.
+>=20
+> FYI.. I also see the similar issue for Romley.
+> There is no Xlog and X does not comes up.
+>=20
+> Thanks
+> Kishore.
+>=20
+> >
+> >Nitin
+> >
+> >
+> >
+> >> -----Original Message-----
+> >> From: Kamble, Nitin A
+> >> Sent: Wednesday, September 12, 2012 9:18 AM
+> >> To: Zanussi, Tom
+> >> Cc: Hart, Darren; yocto@yoctoproject.org
+> >> Subject: RE: [PATCH 0/1] Fix X issue on crownbay
+> >>
+> >> Hi Tom,
+> >>   Thanks for looking into the matter. I will try to reproduce the
+> >> issue you are seeing with master. And send another pull request with a=
+ll
+> the fixes.
+> >>
+> >> Regards,
+> >> Nitin
+> >>
+> >>
+> >> > -----Original Message-----
+> >> > From: Zanussi, Tom
+> >> > Sent: Monday, September 10, 2012 4:34 PM
+> >> > To: Kamble, Nitin A
+> >> > Cc: Hart, Darren; yocto@yoctoproject.org
+> >> > Subject: Re: [PATCH 0/1] Fix X issue on crownbay
+> >> >
+> >> > On Wed, 2012-09-05 at 17:59 -0700, nitin.a.kamble@intel.com wrote:
+> >> > > From: Nitin A Kamble <nitin.a.kamble@intel.com>
+> >> > >
+> >> > > The following changes since commit
+> >> > 66b516f3d3a287eecbf8804b2221bfc27e36db63:
+> >> > >
+> >> > >   README: add info explaining meta-tlk layer purpose (2012-09-06
+> >> > > 10:36:02 -0500)
+> >> > >
+> >> > > are available in the git repository at:
+> >> > >   git://git.yoctoproject.org/meta-intel-contrib nitin/work
+> >> > >
+> >> > > http://git.yoctoproject.org/cgit.cgi/meta-intel-contrib/log/?h=3Dn=
+i
+> >> > > tin
+> >> > > /w
+> >> > > ork
+> >> > >
+> >> >
+> >> > I built and tried this, but it still didn't boot into X, and now
+> >> > there's not even an Xorg.log to look at:
+> >> >
+> >> > root@crownbay:/var/log# ls -al
+> >> > drwxr-xr-x    2 root     root            80 Sep 10 20:15 .
+> >> > drwxrwxrwt    7 root     root           140 Jan  6  2009 ..
+> >> > -rw-r--r--    1 root     root         78429 Sep 10 20:17 messages
+> >> > -rw-rw-r--    1 root     root          4224 Sep 10 20:17 wtmp
+> >> >
+> >> > I assume this is a different X problem related to recent changes in
+> mater.
+> >> > Can you update the bug report with the commits that you tested with
+> >> > so I can verify that your patch at least works?
+> >> >
+> >> > Thanks,
+> >> >
+> >> > Tom
+> >> >
+> >> >
+> >> >
+> >> > > Nitin A Kamble (1):
+> >> > >   emgd-driver-bin: Fix package naming issue
+> >> > >
+> >> > >  .../xorg-xserver/emgd-driver-bin_1.14.bb           |    8 +++++++=
+-
+> >> > >  1 files changed, 7 insertions(+), 1 deletions(-)
+> >> > >
+> >> >
+> >
+> >_______________________________________________
+> >yocto mailing list
+> >yocto@yoctoproject.org
+> >https://lists.yoctoproject.org/listinfo/yocto
 
