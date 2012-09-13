@@ -1,25 +1,35 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 39D1EE012F0
-	for <yocto@yoctoproject.org>; Thu, 13 Sep 2012 03:02:25 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 13 Sep 2012 03:02:16 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,416,1344236400"; d="scan'208";a="202864628"
-Received: from unknown (HELO helios.localnet) ([10.252.121.214])
-	by orsmga002.jf.intel.com with ESMTP; 13 Sep 2012 03:02:23 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Kevin Strasser <kevstras@gmail.com>
-Date: Thu, 13 Sep 2012 11:02:22 +0100
-Message-ID: <2619220.qq68ZOnzsN@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.9 (Linux/3.2.0-30-generic-pae; KDE/4.9.0; i686; ; )
-In-Reply-To: <04fa9227d221efb17c22fb301ede5af31777247c.1347312790.git.kevin.strasser@linux.intel.com>
-References: <05bc846eb9ec84e5094832dcac903fef085fd9d8.1347312790.git.kevin.strasser@linux.intel.com>
-	<04fa9227d221efb17c22fb301ede5af31777247c.1347312790.git.kevin.strasser@linux.intel.com>
+Return-Path: <ross.burton@intel.com>
+Received: from fmsmga101.fm.intel.com (mga05.intel.com [192.55.52.89])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 297E8E013DB
+	for <yocto@yoctoproject.org>; Thu, 13 Sep 2012 04:04:11 -0700 (PDT)
+Received: from mail-oa0-f48.google.com ([209.85.219.48])
+	by mga01.intel.com with ESMTP/TLS/RC4-SHA; 13 Sep 2012 04:03:56 -0700
+Received: by oagn16 with SMTP id n16so2283272oag.35
+	for <yocto@yoctoproject.org>; Thu, 13 Sep 2012 04:03:55 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type:content-transfer-encoding:x-gm-message-state;
+	bh=UNM6yfB7NI1BocC15+u9IxwZ/CfA9cjsYUnbhu+YtJg=;
+	b=HZfH+If/s68gpFrolpQbj0icKumuYvpwRrexEyEDkCdU58ijkrJu9zFMHSJFaVs8Qb
+	EdyGeDAmt6zTTk+Tlh+pSDuXYC5PQt6+8LD91gJYmiTAT5x9P0Gm1z4W+s61hL4Fwxkj
+	XHiIWuMLCYKvGFG6aJi5sojcaZ+uARh6CnZvpta4glBaL29YuKEOSiM4SWdus3lgPuEf
+	uD3i31/8nneBC/cnfDIG6wqeem1j40kojljTfVP9sBV+VIVJVPIGZFLQpttZIbf6Q23N
+	LGKk7wpF3DoUVdtqUBTlT4mjcoRJroesEUzbXsx5gmZoD5ogQGpN153oERkvcVszwZaV
+	7Eqw==
+Received: by 10.60.29.72 with SMTP id i8mr1550920oeh.26.1347534235463; Thu, 13
+	Sep 2012 04:03:55 -0700 (PDT)
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-baryon][PATCH 2/2] proftpd: update package to 1.3.4b
+Received: by 10.182.79.105 with HTTP; Thu, 13 Sep 2012 04:03:34 -0700 (PDT)
+In-Reply-To: <718DB276-4C65-4925-B1E9-3EFEA0B8B4B7@keylevel.com>
+References: <718DB276-4C65-4925-B1E9-3EFEA0B8B4B7@keylevel.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Thu, 13 Sep 2012 12:03:34 +0100
+Message-ID: <CAJTo0Lb3wH6UQ5SY5mF9seq2cK2k-FguRhvTbASkYBqGTc127Q@mail.gmail.com>
+To: Chris Tapp <opensource@keylevel.com>
+X-Gm-Message-State: ALoCoQkAZk9x4KFmzqzjcRiNS5S6ZUK0PYICW7Yix74cR9BkctHWbTEFOWJffsAtKkYvgyr/fQ87
+Cc: "yocto@yoctoproject.org Project" <yocto@yoctoproject.org>
+Subject: Re: Denzil / Cedartrail / EGL/GLES under X
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,105 +41,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 13 Sep 2012 10:02:25 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Thu, 13 Sep 2012 11:04:11 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Hi Kevin,
+Hi Chris,
 
-On Monday 10 September 2012 14:50:10 Kevin Strasser wrote:
-> The contrib directry now contains its own Makefile which is
-> used during installation. It was required to pass DESTDIR through
-> when it gets called from the base Makefile.
-> 
-> Signed-off-by: Kevin Strasser <kevin.strasser@linux.intel.com>
-> ---
->  recipes-extended/proftpd/files/contrib.patch       |   38
-> ++++++++++++++++++++ .../{proftpd_1.3.3c.bb => proftpd_1.3.4b.bb}       |  
->  7 ++--
->  2 files changed, 42 insertions(+), 3 deletions(-)
->  create mode 100644 recipes-extended/proftpd/files/contrib.patch
->  rename recipes-extended/proftpd/{proftpd_1.3.3c.bb => proftpd_1.3.4b.bb}
-> (82%)
-> 
-> diff --git a/recipes-extended/proftpd/files/contrib.patch
-> b/recipes-extended/proftpd/files/contrib.patch new file mode 100644
-> index 0000000..76b9a5c
-> --- /dev/null
-> +++ b/recipes-extended/proftpd/files/contrib.patch
-> @@ -0,0 +1,38 @@
-> +Upstream-Status: Inappropriate [configuration]
-> +
-> +Signed-off-by: Kevin Strasser <kevin.strasser@linux.intel.com>
-> +---
-> + Makefile.in         |    2 +-
-> + contrib/Makefile.in |    6 +++---
-> + 2 files changed, 4 insertions(+), 4 deletions(-)
-> +
-> +diff --git a/Makefile.in b/Makefile.in
-> +index 5b2e683..ee72fe1 100644
-> +--- a/Makefile.in
-> ++++ b/Makefile.in
-> +@@ -120,7 +120,7 @@ install-modules: $(DESTDIR)$(libexecdir)
-> $(DESTDIR)$(sysconfdir) + 	test -z "$(SHARED_MODULE_OBJS)" -a -z
-> "$(SHARED_MODULE_DIRS)" -a -z "$(STATIC_MODULE_DIRS)" || (cd modules/ &&
-> $(MAKE) install) +
-> + install-utils: $(DESTDIR)$(sbindir) $(DESTDIR)$(bindir)
-> +-	cd contrib/ && $(MAKE) install-utils
-> ++	cd contrib/ && $(MAKE) DESTDIR=${DESTDIR} install-utils
-> + 	$(INSTALL_BIN)  ftpcount $(DESTDIR)$(bindir)/ftpcount
-> + 	$(INSTALL_BIN)  ftpdctl  $(DESTDIR)$(bindir)/ftpdctl
-> + 	$(INSTALL_SBIN) ftpscrub $(DESTDIR)$(sbindir)/ftpscrub
-> +diff --git a/contrib/Makefile.in b/contrib/Makefile.in
-> +index 5bcc038..51d248c 100644
-> +--- a/contrib/Makefile.in
-> ++++ b/contrib/Makefile.in
-> +@@ -18,6 +18,6 @@ Makefile: Makefile.in ../config.status
-> + 	cd ../ && ./config.status
-> +
-> + install-utils:
-> +-	$(INSTALL) -o $(INSTALL_USER) -g $(INSTALL_GROUP) -m 0755 ftpasswd
-> $(DESTDIR)$(bindir)/ftpasswd +-	$(INSTALL) -o $(INSTALL_USER) -g
-> $(INSTALL_GROUP) -m 0755 ftpmail $(DESTDIR)$(bindir)/ftpmail +-	$(INSTALL)
-> -o $(INSTALL_USER) -g $(INSTALL_GROUP) -m 0755 ftpquota
-> $(DESTDIR)$(bindir)/ftpquota ++	$(INSTALL) -m 0755 ftpasswd
-> $(DESTDIR)$(bindir)/ftpasswd
-> ++	$(INSTALL) -m 0755 ftpmail $(DESTDIR)$(bindir)/ftpmail
-> ++	$(INSTALL) -m 0755 ftpquota $(DESTDIR)$(bindir)/ftpquota
-> +--
-> +1.7.9.5
-> +
-> diff --git a/recipes-extended/proftpd/proftpd_1.3.3c.bb
-> b/recipes-extended/proftpd/proftpd_1.3.4b.bb similarity index 82%
-> rename from recipes-extended/proftpd/proftpd_1.3.3c.bb
-> rename to recipes-extended/proftpd/proftpd_1.3.4b.bb
-> index 8de80fc..b7e201b 100644
-> --- a/recipes-extended/proftpd/proftpd_1.3.3c.bb
-> +++ b/recipes-extended/proftpd/proftpd_1.3.4b.bb
-> @@ -2,17 +2,18 @@ DESCRIPTION = "Secure ftp daemon"
->  SECTION = "console/network"
-> 
->  LICENSE = "GPLv2+"
-> -LIC_FILES_CHKSUM = "file://COPYING;md5=fdedcde17b1ffd967d86c20fe0ac158a"
-> +LIC_FILES_CHKSUM = "file://COPYING;md5=fb0d1484d11915fa88a6a7702f1dc184"
+On 10 September 2012 19:56, Chris Tapp <opensource@keylevel.com> wrote:
+> I've managed to get to the point where I think EGL is up (no API errors r=
+eported), but if I try anything on the GL side (e.g. glClear to get the bac=
+kground color) I'm not getting anything showing on the display when I call =
+eglSwapBuffers().
 
-A few points:
+GL or GLES?  GL on Cedar Trail is very limited , you're heavily
+recommended to use GLES.
 
-1) Re contrib.patch - surely it would be valid to pass DESTDIR through for 
-everyone? If so we should be able to consider sending this patch upstream, in 
-which case Upstream-Status should be Pending.
+> I'm not sure how to configure my build to use the cdv-pvr-driver libs rat=
+her than the MESA-dri equivalents either. Both provide libGLESv2, etc., but=
+ I want the cdv-pvr-driver versions in the final image. However, cdv-prv-dr=
+iver doesn't seem to have an include directory to use at build time, so MES=
+A needs to be there as well. Is there a PREFERRED_PROVIDER_virtual/libgl va=
+lue I can use?
 
-2) When LIC_FILES_CHKSUM changes for any reason we need to mention clearly why 
-in the commit message (even if it is a mundane reason such as the copyright 
-year changing).
+This is a bit of a mess at the moment, and I want to sort it, but it's
+a complicated mess.
 
-3) Minor - s/directry/directory in the commit message.
+Building against mesa-dri shouldn't be a problem as all GL
+implementations have the same ABI, assuming you can get the
+cdv-prv-driver package installed and not mesa-dri on your image.
+Preferred providers only work for built-time dependencies, so assuming
+that you're having problems with getting mesa-dri out and
+cdv-prv-driver in the image you'll need to use something like
+RCONFLICTS and RPROVIDES so that the package system uses
+cdv-prv-driver instead of mesa-dri.
 
-Cheers,
-Paul
-
--- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
+Ross
 
