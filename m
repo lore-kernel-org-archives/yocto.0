@@ -1,56 +1,38 @@
-Return-Path: <B29882@freescale.com>
-Received: from ch1outboundpool.messaging.microsoft.com
-	(ch1ehsobe003.messaging.microsoft.com [216.32.181.183])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5EB25E004AB
-	for <yocto@yoctoproject.org>; Wed, 12 Sep 2012 19:50:38 -0700 (PDT)
-Received: from mail145-ch1-R.bigfish.com (10.43.68.235) by
-	CH1EHSOBE004.bigfish.com (10.43.70.54) with Microsoft SMTP Server id
-	14.1.225.23; Thu, 13 Sep 2012 02:50:37 +0000
-Received: from mail145-ch1 (localhost [127.0.0.1])	by
-	mail145-ch1-R.bigfish.com (Postfix) with ESMTP id C20CE4201C6	for
-	<yocto@yoctoproject.org>; Thu, 13 Sep 2012 02:50:37 +0000 (UTC)
-X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null); IPV:NLI;
-	H:mail.freescale.net; RD:none; EFVD:NLI
-X-SpamScore: -6
-X-BigFish: VS-6(zz98dI9371I542M1432Id6f1izz1202h1d1ah1d2ahzz8275bh8275dhz2dh2a8h668h839h8e2h8e3hd25hf0ah107ah10d2h1288h12a5h12a9h12bdhbe9i1155h)
-Received: from mail145-ch1 (localhost.localdomain [127.0.0.1]) by mail145-ch1
-	(MessageSwitch) id 134750463684213_8962;
-	Thu, 13 Sep 2012 02:50:36 +0000 (UTC)
-Received: from CH1EHSMHS006.bigfish.com (snatpool1.int.messaging.microsoft.com
-	[10.43.68.243])	by mail145-ch1.bigfish.com (Postfix) with ESMTP id
-	ECB5B240047	for <yocto@yoctoproject.org>;
-	Thu, 13 Sep 2012 02:50:35 +0000 (UTC)
-Received: from mail.freescale.net (70.37.183.190) by CH1EHSMHS006.bigfish.com
-	(10.43.70.6) with Microsoft SMTP Server (TLS) id 14.1.225.23;
-	Thu, 13 Sep 2012 02:50:35 +0000
-Received: from 039-SN1MPN1-001.039d.mgd.msft.net ([169.254.1.124]) by
-	039-SN1MMR1-001.039d.mgd.msft.net ([10.84.1.13]) with mapi id
-	14.02.0309.003; Wed, 12 Sep 2012 21:50:34 -0500
-From: McClintock Matthew-B29882 <B29882@freescale.com>
-To: Luo Zhenhua-B19537 <B19537@freescale.com>
-Thread-Topic: [yocto] [meta-fsl-ppc 02/16] fsl-image-minimal: IMAGE_FSTYPES
-	add jffs2
-Thread-Index: AQHNkTDwwvhiXXP2WUOmIzf2/rXFwJeH39GAgAAGmwA=
-Date: Thu, 13 Sep 2012 02:50:34 +0000
-Message-ID: <70CC66F5C30A414DADDA6973E4CA391A675BB7@039-SN1MPN1-001.039d.mgd.msft.net>
-References: <1347433590-8481-1-git-send-email-b19537@freescale.com>
-	<1347433590-8481-2-git-send-email-b19537@freescale.com>
-	<70CC66F5C30A414DADDA6973E4CA391A6754D8@039-SN1MPN1-001.039d.mgd.msft.net>
-	<CA452391058F6D4E9715FB2C29D9312A012B7FF2@039-SN2MPN1-022.039d.mgd.msft.net>
-In-Reply-To: <CA452391058F6D4E9715FB2C29D9312A012B7FF2@039-SN2MPN1-022.039d.mgd.msft.net>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [70.112.201.132]
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-ee0-f48.google.com (mail-ee0-f48.google.com [74.125.83.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 03308E00346
+	for <yocto@yoctoproject.org>; Wed, 12 Sep 2012 22:26:40 -0700 (PDT)
+Received: by eekd41 with SMTP id d41so1949597eek.35
+	for <yocto@yoctoproject.org>; Wed, 12 Sep 2012 22:26:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=Lt/0jiAqbqxBFsBvbevhE+dIbLoyLRkuAV6uysOBE/g=;
+	b=Ybwi+wI6dxyTN2rWNJ9EssR2zwRy7VTiZYalDH2gTYHMmqXlkADmyEO94R5qnl5b7O
+	8L0zew/lnXi+IuxF6GTnVFOnJPd2BviGkoyRz8ufT+qfHhZMMV7cmbHsQuABcgXKQvPa
+	zRweEcpYm6w2l5Yv96GcZBzhQ4SSnPu7DmPU7B5UKCp1yM3rUnrKsxYHfdJoyfK1tyDp
+	OyQqlMQFBGmAlsqhYfnKemqUhqP4aDyj4XWXJnu/O9jAtwgGEwwxTOokL/OblKQP7pyr
+	fUdP1tRMyho88mFr06E9wF0DN8Pw/hdbOVOc74tp9cHgvohykDAcD7XOCtc+ykVx3On3
+	i40Q==
+Received: by 10.14.218.134 with SMTP id k6mr1004975eep.14.1347513997456; Wed,
+	12 Sep 2012 22:26:37 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: freescale.com
-Cc: McClintock Matthew-B29882 <B29882@freescale.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-fsl-ppc 02/16] fsl-image-minimal: IMAGE_FSTYPES add jffs2
+Received: by 10.14.2.5 with HTTP; Wed, 12 Sep 2012 22:26:05 -0700 (PDT)
+In-Reply-To: <CAHUNapT5HfC+dbzjmuYiQ4ic4m71=iBaaJtygfrhht+JsqMyHA@mail.gmail.com>
+References: <CAHUNapQUS19axgi+i=wAr0r_ogFj+UsSBpsBY_mhd+ac=5w8-g@mail.gmail.com>
+	<12E1ABCF-B181-4763-88A6-5B7E51758231@gmail.com>
+	<AA2F4F97-00C8-48C3-90E8-5AF084D508B8@gmail.com>
+	<CAHUNapStNAw21FiO6vFgBPLPfeqnoFjAtuuUuzun+6FuzLfspg@mail.gmail.com>
+	<CAHUNapT5HfC+dbzjmuYiQ4ic4m71=iBaaJtygfrhht+JsqMyHA@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Wed, 12 Sep 2012 22:26:05 -0700
+Message-ID: <CAMKF1sozZMQFS4kSbqGGnzzJ9K0O_3NCyujknFpJUZvZ4jOLBA@mail.gmail.com>
+To: Trevor Woerner <twoerner@gmail.com>
+Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+Subject: Re: any success with spartan6-lx9mb?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: McClintock Matthew-B29882 <B29882@freescale.com>
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -59,72 +41,145 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 13 Sep 2012 02:50:38 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-ID: <6A2FB86B75FBF04084440D8A49436148@mgd.freescale.com>
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 13 Sep 2012 05:26:41 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On Wed, Sep 12, 2012 at 9:26 PM, Luo Zhenhua-B19537
-<B19537@freescale.com> wrote:
-> The targets with NAND flash need jffs2 rootfs, e.g. mpc8536ds, mpc8572ds,=
- p1020utm, pp1020rdb, p1021rdb, p1022ds, p1024rdb p1025rdb
+On Wed, Sep 12, 2012 at 11:47 AM, Trevor Woerner <twoerner@gmail.com> wrote:
+> Here's a status update, in case anyone is interested. My goal is to
+> use the Yocto Project to create an image for the Microblaze soft
+> processor core.
+>
+> I started by adding the meta-xilinx layer and specifying:
+>     MACHINE = "spartan6-lx9mb"
+>
+> This fails because the microblaze port of the gcc compiler does not
+> accept the soft FPU compile flag; this one is easy enough to get
+> around (the details can be found in earlier emails). Later the build
+> of the cross compiler fails because an object file is not found. Elvis
+> suggested switching from microblaze EL to "regular" microblaze. No
+> change; same failure in the same place.
+>
+> I then started looking at Xilinx's website to see what they provided
+> in terms of a gcc compiler. Surfing to
+>
+>     http://www.xilinx.com/guest_resources/gnu/
+>
+> I find two sets of microblaze compiler tools: one based around
+> gcc-4.1.2/gdb-6.5/binutils-2.16/newlib-1.14 and another based around
+> gcc-4.6.2/gdb-7.3.50/binutils-2.21.53/newlib-1.19.
+>
+> Unpacking any from the first set gives me a README file, 3 scripts to
+> run (build_binutils.sh,  build_gcc.sh (which calls
+> build_newlib_variants.sh), and build_gdb.sh). build_binutils.sh builds
+> binutils and gprof, build_gcc.sh builds a cross-gcc and several
+> variants of newlib. If I run the build_binutils.sh script binutils
+> builds okay but gprof fails. I can still run build_gcc.sh and both the
+> cross-compiler and the newlib variants are built. build_gdb.sh fails.
+> If I start by replacing my host's gcc-4.7.1 with gcc-4.1.2 gprof will
+> succeed but gdb will continue to fail.
+>
+> I am not able to get either of the two packages based around gcc-4.6.2
+> (etc) to build using either my native gcc-4.7.1 or gcc-4.1.2.
+>
+> So now that I had a cross-toolchain based around gcc-4.1.2 I started
+> looking at configuring yocto to use an external toolchain. That's when
+> I noticed Adrian had already provided recipes for using another,
+> pre-built, toolchain from Xilinx (awesome!):
+>
+>     git://git.xilinx.com/xldk/microblaze_v2.0.git
+>
+> So setup yocto for an external toolchain,
+>
+>     TCMODE = "external-xilinx"
+>     XILINX_TOOLCHAIN = "<path to unpacked
+> toolchain>/microblaze_v2.0/microblaze-unknown-linux-gnu"
+>
+> retrieved and unpacked this new toolchain (based around gcc-4.1.2),
+> and attempted a "bitbake core-image-minimal"
+>
+> This fails too, when trying to configure libtool-cross for a couple of reasons:
+>
+> | configure:3661: checking for C compiler version
+> | configure:3670: microblaze-unknown-linux-gnu-gcc  -m32  -mcpu=v8.10a
+> --sysroot=/home/trevor/devel/microblaze/microblaze_v2.0/microblaze-unknown-linux-gnu/microblaze-unknown-linux-gnu/sys-root
+> --version >&5
+> | microblaze-unknown-linux-gnu-gcc (GCC) 4.1.2
+> | Copyright (C) 2006 Free Software Foundation, Inc.
+> | This is free software; see the source for copying conditions.  There is NO
+> | warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+> |
+> | configure:3681: $? = 0
+> | configure:3670: microblaze-unknown-linux-gnu-gcc  -m32  -mcpu=v8.10a
+> --sysroot=/home/trevor/devel/microblaze/microblaze_v2.0/microblaze-unknown-linux-gnu/microblaze-unknown-linux-gnu/sys-root
+> -v >&5
+> | Using built-in specs.
+> | Target: microblaze-unknown-linux-gnu
+> | Configured with:
+> /home/jwilliams/petalinux/petalinux-v1.00-devel/devel/packager/gnu/toolchains/skeleton/build/crosstool-ng/targets/src/gcc-4.1.2/configure
+> --build=x86_64-build_pc-linux-gnu --host=x86_64-build_pc-linux-gnu
+> --target=microblaze-unknown-linux-gnu
+> --prefix=/home/jwilliams/petalinux/petalinux-v1.00-devel/devel/packager/gnu/toolchains/../toolchains/tool-build/microblaze-unknown-linux-gnu
+> --with-sysroot=/home/jwilliams/petalinux/petalinux-v1.00-devel/devel/packager/gnu/toolchains/../toolchains/tool-build/microblaze-unknown-linux-gnu/microblaze-unknown-linux-gnu//sys-root
+> --enable-languages=c,c++ --enable-multilib --enable-__cxa_atexit
+> --with-local-prefix=/home/jwilliams/petalinux/petalinux-v1.00-devel/devel/packager/gnu/toolchains/../toolchains/tool-build/microblaze-unknown-linux-gnu/microblaze-unknown-linux-gnu//sys-root
+> --disable-nls --enable-threads=posix --enable-symvers=gnu --enable-c99
+> --enable-long-long --enable-target-optspace
+> | Thread model: posix
+> | gcc version 4.1.2
+> | configure:3681: $? = 0
+> | configure:3670: microblaze-unknown-linux-gnu-gcc  -m32  -mcpu=v8.10a
+> --sysroot=/home/trevor/devel/microblaze/microblaze_v2.0/microblaze-unknown-linux-gnu/microblaze-unknown-linux-gnu/sys-root
+> -V >&5
+> | microblaze-unknown-linux-gnu-gcc: '-V' must come at the start of the
+> command line
+> | configure:3681: $? = 1
+> | configure:3670: microblaze-unknown-linux-gnu-gcc  -m32  -mcpu=v8.10a
+> --sysroot=/home/trevor/devel/microblaze/microblaze_v2.0/microblaze-unknown-linux-gnu/microblaze-unknown-linux-gnu/sys-root
+> -qversion >&5
+> | microblaze-unknown-linux-gnu-gcc: unrecognized option '-qversion'
+> | microblaze-unknown-linux-gnu-gcc: no input files
+> | configure:3681: $? = 1
+> | configure:3701: checking whether the C compiler works
+> | configure:3723: microblaze-unknown-linux-gnu-gcc  -m32  -mcpu=v8.10a
+> --sysroot=/home/trevor/devel/microblaze/microblaze_v2.0/microblaze-unknown-linux-gnu/microblaze-unknown-linux-gnu/sys-root
+> -O2 -pipe -g -feliminate-unused-debug-types  -Wl,-O1
+> -Wl,--hash-style=gnu conftest.c  >&5
+> | cc1: error: unrecognized command line option "-m32"
+> | conftest.c:1: error: (v8.10a) is an invalid argument to -mcpu=
+>
 
-I think other's have NAND flash too, they don't need these?
 
--M
+here find out from where is -m32 option coming from. It seems the
+compiler you are hooking in does not like it. similarly it does not
+seem to like mcpu=v8.10a they must be coming from tune-microblaze.inc
+file. It could be that those tune files are written for gcc 4.6 and
+not 4.1 as you are trying.
 
+
+> It is too bad libtool is required as part of core-image-minimal, that
+> seems kinda heavy for a minimal image.
+
+its libtool-cross so its being built for some other packages that are
+going into root file system having some libtool infra
+libtool is not directly going into your image per se. But libtool is
+very commonly used tool.
+
+In any case I also gave
+> poky-tiny a spin but that didn't work either for the exact same
+> reason. My next steps are to try creating my own "minimal" images that
+> can hopefully get around libtool-cross. Another plan of action is to
+> try using meta-xilinx with one or more of the yocto releases to see if
+> that doesn't help create a clean build.
 >
+> I would be interested in knowing if anyone else is interested in
+> microblaze. It would also be great to know if Xilinx is aware of this
+> and/or is working on this support.
 >
-> Best Regards,
->
-> Zhenhua
->
->
->> -----Original Message-----
->> From: McClintock Matthew-B29882
->> Sent: Thursday, September 13, 2012 5:53 AM
->> To: Luo Zhenhua-B19537
->> Cc: yocto@yoctoproject.org
->> Subject: Re: [yocto] [meta-fsl-ppc 02/16] fsl-image-minimal:
->> IMAGE_FSTYPES add jffs2
->>
->> On Wed, Sep 12, 2012 at 2:06 AM,  <b19537@freescale.com> wrote:
->> > From: Ting Liu <b28495@freescale.com>
->> >
->> > Signed-off-by: Ting Liu <b28495@freescale.com>
->> > ---
->> >  images/fsl-image-minimal.bb |    2 +-
->> >  1 file changed, 1 insertion(+), 1 deletion(-)
->> >
->> > diff --git a/images/fsl-image-minimal.bb b/images/fsl-image-minimal.bb
->> > index b8d3c77..f3d1ad4 100644
->> > --- a/images/fsl-image-minimal.bb
->> > +++ b/images/fsl-image-minimal.bb
->> > @@ -13,4 +13,4 @@ IMAGE_ROOTFS_SIZE =3D "8192"
->> >  # remove not needed ipkg informations  ROOTFS_POSTPROCESS_COMMAND +=
-=3D
->> > "remove_packaging_data_files ; "
->> >
->> > -IMAGE_FSTYPES =3D "tar.gz ext2.gz.u-boot"
->> > +IMAGE_FSTYPES =3D "tar.gz ext2.gz.u-boot jffs2"
->>
->> Just to confirm, all boards will use the jffs2 image?
->>
->> -M
->>
->> > --
->> > 1.7.9.5
->> >
->> >
->> > _______________________________________________
->> > yocto mailing list
->> > yocto@yoctoproject.org
->> > https://lists.yoctoproject.org/listinfo/yocto
->
+> I also can't help notice that on Aug. 28, 2012 Xilinx acquired
+> PetaLogix. I hope this helps improve Xilinx's public support for this
+> architecture :-)
 > _______________________________________________
 > yocto mailing list
 > yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto=
-
+> https://lists.yoctoproject.org/listinfo/yocto
 
