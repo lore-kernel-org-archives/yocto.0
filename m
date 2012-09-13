@@ -1,32 +1,45 @@
-Return-Path: <opensource@keylevel.com>
-Received: from hxhsvr03.internetintuitive.net (hxhsvr03.internetintuitive.net
-	[80.254.228.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 94F57E011C0
-	for <yocto@yoctoproject.org>; Thu, 13 Sep 2012 11:12:32 -0700 (PDT)
-Received: from [109.224.129.17] (helo=macbook-pro.durham.keylevel.com)
-	by hxhsvr03.internetintuitive.net with esmtpa (Exim 4.69)
-	(envelope-from <opensource@keylevel.com>)
-	id 1TCDtq-0007eV-Og; Thu, 13 Sep 2012 19:12:26 +0100
-Mime-Version: 1.0 (Apple Message framework v1278)
-From: Chris Tapp <opensource@keylevel.com>
-In-Reply-To: <CAJTo0Lb3wH6UQ5SY5mF9seq2cK2k-FguRhvTbASkYBqGTc127Q@mail.gmail.com>
-Date: Thu, 13 Sep 2012 19:12:23 +0100
-Message-Id: <C3A945A2-3CAE-4045-986E-53C10298A120@keylevel.com>
-References: <718DB276-4C65-4925-B1E9-3EFEA0B8B4B7@keylevel.com>
-	<CAJTo0Lb3wH6UQ5SY5mF9seq2cK2k-FguRhvTbASkYBqGTc127Q@mail.gmail.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-X-Mailer: Apple Mail (2.1278)
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - hxhsvr03.internetintuitive.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: "yocto@yoctoproject.org Project" <yocto@yoctoproject.org>
-Subject: Re: Denzil / Cedartrail / EGL/GLES under X
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-pz0-f48.google.com (mail-pz0-f48.google.com
+	[209.85.210.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1C1FFE011C0
+	for <yocto@yoctoproject.org>; Thu, 13 Sep 2012 11:59:05 -0700 (PDT)
+Received: by dadz8 with SMTP id z8so2488237dad.35
+	for <yocto@yoctoproject.org>; Thu, 13 Sep 2012 11:58:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=user-agent:in-reply-to:references:mime-version:content-type
+	:content-transfer-encoding:subject:from:date:to:cc:message-id;
+	bh=qJPOU+5Pxey+0b5HG6GfzJuyNhIv1jFlzhpcik9pJmM=;
+	b=Fm/n22Kal9iFqdh1y+6CXAcaMk448tsdA/pAovNisqQFRYtIDth4xgDyr50pJ+6+bX
+	JorRvnEIBajj28JQDnCnCM+cRNRMRKNh7IPZ5n4PJeh41YlraUcH1KAEtvcIrwvsbAIW
+	9mdkj8+3hE0DKixCs2iszg2ubcRqEUa75e4JgSle/DyS0iJmr64ay+ReTM0CQYZtHG2e
+	0y5ecG3VXR6HfEs1Ehtven4TVUrSqQSMm5AnUe3zzfgzas/Lk53XK87lcqMrLf8EUmQ8
+	RgUa5BOXRKGNynPx9WwEyf09jcyRbi4zn7iiT6vBUu7JUIi5/YF0I1Cyb1gtBuf4uz75
+	A8dQ==
+Received: by 10.68.216.104 with SMTP id op8mr818213pbc.65.1347562730827;
+	Thu, 13 Sep 2012 11:58:50 -0700 (PDT)
+Received: from [100.199.17.211] (mff2036d0.tmodns.net. [208.54.32.255])
+	by mx.google.com with ESMTPS id qb2sm13507024pbb.15.2012.09.13.11.58.48
+	(version=SSLv3 cipher=OTHER); Thu, 13 Sep 2012 11:58:49 -0700 (PDT)
+User-Agent: K-9 Mail for Android
+In-Reply-To: <CAHUNapScRtp4hTW2z1_wMNJA6AKVYvsHLNu+kzTzUQgQpvVBkA@mail.gmail.com>
+References: <CAHUNapQUS19axgi+i=wAr0r_ogFj+UsSBpsBY_mhd+ac=5w8-g@mail.gmail.com>
+	<12E1ABCF-B181-4763-88A6-5B7E51758231@gmail.com>
+	<AA2F4F97-00C8-48C3-90E8-5AF084D508B8@gmail.com>
+	<CAHUNapStNAw21FiO6vFgBPLPfeqnoFjAtuuUuzun+6FuzLfspg@mail.gmail.com>
+	<CAHUNapT5HfC+dbzjmuYiQ4ic4m71=iBaaJtygfrhht+JsqMyHA@mail.gmail.com>
+	<CAMKF1sozZMQFS4kSbqGGnzzJ9K0O_3NCyujknFpJUZvZ4jOLBA@mail.gmail.com>
+	<00209F5B-F153-4F07-BA14-54FF7D6E5762@gmail.com>
+	<CAMKF1soXwQXyVo4_p_ufGHAM63qitE67tQ9Fg3pLDCZNk5N+nw@mail.gmail.com>
+	<CAHUNapQ9aLCbiEG2eyLzTsBe3k9vaBen4Hfm3E0L85JQJ_j1Kg@mail.gmail.com>
+	<CAHUNapScRtp4hTW2z1_wMNJA6AKVYvsHLNu+kzTzUQgQpvVBkA@mail.gmail.com>
+MIME-Version: 1.0
+From: Khem Raj <raj.khem@gmail.com>
+Date: Thu, 13 Sep 2012 11:58:37 -0700
+To: Trevor Woerner <twoerner@gmail.com>, Elvis Dowson <elvis.dowson@gmail.com>,
+	Adrian Alonso <aalonso00@gmail.com>
+Message-ID: <1c0cc450-af2a-441a-a2ca-0e34b40f5a03@email.android.com>
+Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+Subject: Re: any success with spartan6-lx9mb?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,64 +51,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 13 Sep 2012 18:12:32 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
-
-Hi Ross,
-
-On 13 Sep 2012, at 12:03, Burton, Ross wrote:
-
-> On 10 September 2012 19:56, Chris Tapp <opensource@keylevel.com> =
-wrote:
->> I've managed to get to the point where I think EGL is up (no API =
-errors reported), but if I try anything on the GL side (e.g. glClear to =
-get the background color) I'm not getting anything showing on the =
-display when I call eglSwapBuffers().
->=20
-> GL or GLES?  GL on Cedar Trail is very limited , you're heavily
-> recommended to use GLES.
-
-Thanks. That's actually where I'm headed - glClear() was the first =
-step...
-
-I've actually managed to get things working now. Not too sure what I =
-did, but I __think__ it was something to do with the rendering context - =
-I may not have been specifying a GLES2 surface when I was using it. GLES =
-is new to me (GL background), but my copy of the "OpenGL ES 2.0 =
-Programming Guide" arrived today, so I should be on the way ;-)
-
->> I'm not sure how to configure my build to use the cdv-pvr-driver libs =
-rather than the MESA-dri equivalents either. Both provide libGLESv2, =
-etc., but I want the cdv-pvr-driver versions in the final image. =
-However, cdv-prv-driver doesn't seem to have an include directory to use =
-at build time, so MESA needs to be there as well. Is there a =
-PREFERRED_PROVIDER_virtual/libgl value I can use?
->=20
-> This is a bit of a mess at the moment, and I want to sort it, but it's
-> a complicated mess.
->=20
-> Building against mesa-dri shouldn't be a problem as all GL
-> implementations have the same ABI, assuming you can get the
-> cdv-prv-driver package installed and not mesa-dri on your image.
-> Preferred providers only work for built-time dependencies, so assuming
-> that you're having problems with getting mesa-dri out and
-> cdv-prv-driver in the image you'll need to use something like
-> RCONFLICTS and RPROVIDES so that the package system uses
-> cdv-prv-driver instead of mesa-dri.
-
-It seems to be putting the correct ones in the image as things are =
-working with the simple tests I've got going so far. MD5sum on the libs =
-confirms they are from cdv-prv-driver. No idea how they get used in =
-preference, as I've not used any 'magic' yet!
-
-Thanks for the help :-)
-
-Chris Tapp
-
-opensource@keylevel.com
-www.keylevel.com
+X-List-Received-Date: Thu, 13 Sep 2012 18:59:05 -0000
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
 
+
+Trevor Woerner <twoerner@gmail.com> wrote:
+
+>PS simply BBMASK'ing out libffi doesn't help as too many things...
+>require(?) it (depend on it, rdepend on it...?)
+
+
+You can try to make libffi as a package group in glib20 if possible other option would be to use something like mdev instead of udev
+>
+>ERROR: Nothing PROVIDES 'libffi' (but
+>/home/trevor/devel/yocto/gitrepo-method/poky/meta/recipes-core/glib-2.0/glib-2.0_2.32.4.bb
+>DEPENDS on or otherwise requires it)
+>NOTE: Runtime target 'udev' is unbuildable, removing...
+>Missing or unbuildable dependency chain was: ['udev', 'glib-2.0',
+>'libffi']
+>NOTE: Runtime target 'packagegroup-core-boot' is unbuildable,
+>removing...
+>Missing or unbuildable dependency chain was:
+>['packagegroup-core-boot', 'udev', 'glib-2.0', 'libffi']
+>ERROR: Required build target 'core-image-minimal' has no buildable
+>providers.
+>Missing or unbuildable dependency chain was: ['core-image-minimal',
+>'packagegroup-core-boot', 'udev', 'glib-2.0', 'libffi']
 
 
