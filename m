@@ -1,33 +1,32 @@
-Return-Path: <ml@communistcode.co.uk>
-Received: from eumx.net (eumx.net [91.82.101.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 92CD8E01430
-	for <yocto@yoctoproject.org>; Fri, 14 Sep 2012 01:29:55 -0700 (PDT)
-Received: from localhost ([127.0.0.1]:54804 helo=eumx.net)
-	by eumx.net with esmtp (Exim 4.72)
-	(envelope-from <ml@communistcode.co.uk>) id 1TCRHQ-0007Zl-Fv
-	for yocto@yoctoproject.org; Fri, 14 Sep 2012 08:29:40 +0000
-DKIM-Signature: v=1; a=rsa-sha1; c=relaxed; d=eumx.net; h=message-id
-	:date:from:reply-to:mime-version:to:subject:content-type
-	:content-transfer-encoding; s=default; bh=K8r1ayHwxWpEx9bHqHndDA
-	r/FMs=; b=FlpeNHBeTVJyGgQmbJfwYmkwH+geH1wwb7uiMZyImY/MYMDWu5X7MM
-	SLEL6jRgAHyekbB5IjVwJgU339nSHUfhYXsXxm6oyTVh7mYo4JeA8Ddu6+NsfEUx
-	gDTgJ/samX0j2B475hO4kPujDBB4LTRbSGyS61QrrNj5M8nRbfpJc=
-Received: from [195.171.99.130] (port=43998 helo=[192.168.0.40])
-	by eumx.net with esmtpa (Exim 4.72)
-	(envelope-from <ml@communistcode.co.uk>) id 1TCRHQ-0007Zi-Dl
-	for yocto@yoctoproject.org; Fri, 14 Sep 2012 08:29:40 +0000
-Message-ID: <5052EB4A.1050504@communistcode.co.uk>
-Date: Fri, 14 Sep 2012 09:31:06 +0100
-From: Jack Mitchell <ml@communistcode.co.uk>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:15.0) Gecko/20120828 Thunderbird/15.0
+Return-Path: <belen.barros.pena@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 93597E0027F
+	for <yocto@yoctoproject.org>; Fri, 14 Sep 2012 08:40:47 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 14 Sep 2012 08:40:33 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,423,1344236400"; d="scan'208";a="222100669"
+Received: from irsmsx102.ger.corp.intel.com ([163.33.3.155])
+	by fmsmga002.fm.intel.com with ESMTP; 14 Sep 2012 08:40:27 -0700
+Received: from irsmsx104.ger.corp.intel.com ([169.254.5.154]) by
+	IRSMSX102.ger.corp.intel.com ([169.254.2.34]) with mapi id
+	14.01.0355.002; Fri, 14 Sep 2012 16:39:51 +0100
+From: "Barros Pena, Belen" <belen.barros.pena@intel.com>
+To: yocto <yocto@yoctoproject.org>
+Thread-Topic: Away Monday 17th September
+Thread-Index: AQHNko9B3qSG8TlO7U2Ft11IBM/fxQ==
+Date: Fri, 14 Sep 2012 15:40:23 +0000
+Message-ID: <CC790E76.1827B%belen.barros.pena@intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Microsoft-MacOutlook/14.2.2.120421
+x-originating-ip: [10.252.59.248]
 MIME-Version: 1.0
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Poky SDK Issues
+Subject: Away Monday 17th September
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: ml@communistcode.co.uk
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -36,45 +35,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 14 Sep 2012 08:29:55 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 14 Sep 2012 15:40:48 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <8DF8AC4B6D2A4E43B2EAE1FD5055AD49@intel.com>
+Content-Transfer-Encoding: quoted-printable
 
-I tried the most recent poky SDK image as it allows you to extract to 
-anywhere you wish and I have run into an issue. When I try to compile my 
-program with it (which worked with a poky sdk from a couple of months 
-ago, 4.7.1) I run into the following error:
+Just taking a day free: I'll be back Tuesday.
 
-/home/jack/Projects/pokySDK-140912/sysroots/x86_64-pokysdk-linux/usr/bin/armv7a-vfp-neon-poky-linux-gnueabi/../../libexec/armv7a-vfp-neon-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/4.7.2/ld: 
-cannot find crtbegin.o: No such file or directory
+Have a great weekend
 
-Which is strange as I also get this:
+Belen
 
-[jack@archHP armv7a-vfp-neon-poky-linux-gnueabi]$ find . -name crt*
-./usr/lib/arm-poky-linux-gnueabi/4.7.2/crtendS.o
-./usr/lib/arm-poky-linux-gnueabi/4.7.2/crtbeginS.o
-./usr/lib/arm-poky-linux-gnueabi/4.7.2/crtbegin.o
-./usr/lib/arm-poky-linux-gnueabi/4.7.2/crtbeginT.o
-./usr/lib/arm-poky-linux-gnueabi/4.7.2/crtend.o
-./usr/lib/crtn.o
-./usr/lib/crti.o
-./usr/lib/crt1.o
+---------------------------------------------------------------------
+Intel Corporation (UK) Limited
+Registered No. 1134945 (England)
+Registered Office: Pipers Way, Swindon SN3 1RJ
+VAT No: 860 2173 47
 
-Now, I have seen some patches regarding PPC and crt issues but maybe 
-they exist with arm also? Or possibly I am being a twit and not 
-including the right directories, but seeing as they're GCC libs I would 
-have though tit would have no problem finding them...
-
-Any ideas?
-
-Cheers,
-
--- 
-
-   Jack Mitchell (jack@embed.me.uk)
-   Embedded Systems Engineer
-   http://www.embed.me.uk
-
---
+This e-mail and any attachments may contain confidential material for
+the sole use of the intended recipient(s). Any review or distribution
+by others is strictly prohibited. If you are not the intended
+recipient, please contact the sender and delete all copies.
 
 
