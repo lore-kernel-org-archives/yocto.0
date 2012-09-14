@@ -1,34 +1,23 @@
-Return-Path: <ross.burton@intel.com>
-Received: from azsmga101.ch.intel.com (mga07.intel.com [143.182.124.22])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9B631E00348
-	for <yocto@yoctoproject.org>; Fri, 14 Sep 2012 13:51:23 -0700 (PDT)
-Received: from mail-iy0-f176.google.com ([209.85.210.176])
-	by mga03.intel.com with ESMTP/TLS/RC4-SHA; 14 Sep 2012 13:51:22 -0700
-Received: by iagt4 with SMTP id t4so4386787iag.35
-	for <yocto@yoctoproject.org>; Fri, 14 Sep 2012 13:51:21 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type:x-gm-message-state;
-	bh=qhGApWD8RyuW8zHpFomQxnd5FKKYg9BAUoz1+K8hAWQ=;
-	b=IsDfuI7vkeBs9GeUXVzn5g0TdPROiJd0DIEkygnW2e86/p8SYJ/Lo/vYThNfePCPLb
-	Hp7ChqEf45ozna0FyyTelbw08yE1Yz+3DKmJ2o9bRdas4pQ1TVAIfRuzOk6OShfL2Npa
-	K7LUY92GzxOzV4Wj5o9dXvUhfALiudZU9eirtWfj1+YDnJYUHOJSCy+dYS01U6hhv2+Z
-	ydLORZ7iS4ETKLZaLuE81xaslS+Twd8U1+qAVdh8aJtX6uYLofE3t9T2pmp+wA4OyUhn
-	8blb39JOiEs3X9g+WzQqDz9auI74KVfmqPsMSIKYvYtwhTU0O82ZbKEvzo0/cS2bay6b
-	+WDQ==
-Received: by 10.50.7.212 with SMTP id l20mr69626iga.43.1347655881247; Fri, 14
-	Sep 2012 13:51:21 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.64.141.70 with HTTP; Fri, 14 Sep 2012 13:51:00 -0700 (PDT)
-In-Reply-To: <e5aa858a33392e0a7569c50d308049f88cd802a4.1347650435.git.tom.zanussi@intel.com>
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E0F2EE00348
+	for <yocto@yoctoproject.org>; Fri, 14 Sep 2012 14:25:08 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 14 Sep 2012 14:24:59 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,424,1344236400"; d="scan'208";a="204174914"
+Received: from unknown (HELO [10.255.13.77]) ([10.255.13.77])
+	by orsmga002.jf.intel.com with ESMTP; 14 Sep 2012 14:25:07 -0700
+Message-ID: <1347657906.6185.17.camel@empanada>
+From: Tom Zanussi <tom.zanussi@intel.com>
+To: "Burton, Ross" <ross.burton@intel.com>
+Date: Fri, 14 Sep 2012 16:25:06 -0500
+In-Reply-To: <CAJTo0LbgWdoX8GnMsKYa-y176X1YiTEd7Ucw7CNLLi6OBqaB2g@mail.gmail.com>
 References: <cover.1347650435.git.tom.zanussi@intel.com>
 	<e5aa858a33392e0a7569c50d308049f88cd802a4.1347650435.git.tom.zanussi@intel.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Fri, 14 Sep 2012 21:51:00 +0100
-Message-ID: <CAJTo0LbgWdoX8GnMsKYa-y176X1YiTEd7Ucw7CNLLi6OBqaB2g@mail.gmail.com>
-To: tom.zanussi@intel.com
-X-Gm-Message-State: ALoCoQkIT1nWsIkKYd0vbsr5sIgooYnHIklVwO/eJ51S2yTpqcVU2hHQVeD16XHbVIAT6MUasqHm
+	<CAJTo0LbgWdoX8GnMsKYa-y176X1YiTEd7Ucw7CNLLi6OBqaB2g@mail.gmail.com>
+X-Mailer: Evolution 3.4.1 (3.4.1-2.fc17) 
+Mime-Version: 1.0
 Cc: yocto@yoctoproject.org, dvhart@linux.intel.com
 Subject: Re: [PATCH 1/1] meta-intel: make video acceleration choice dependent on LICENSE_FLAGS
 X-BeenThere: yocto@yoctoproject.org
@@ -42,24 +31,57 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 14 Sep 2012 20:51:23 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Fri, 14 Sep 2012 21:25:09 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-On 14 September 2012 20:27,  <tom.zanussi@intel.com> wrote:
-> The gst-ffmpeg recipe in oe-core had LICENSE_FLAGS added to make it
-> "commercial", so to avoid build errors the BSPs that use it (via the
-> gst-va-intel VA_FEATURE) should only include it if the user has added
-> "commercial" to LICENSE_FLAGS_WHITELIST when building.
+On Fri, 2012-09-14 at 21:51 +0100, Burton, Ross wrote:
+> On 14 September 2012 20:27,  <tom.zanussi@intel.com> wrote:
+> > The gst-ffmpeg recipe in oe-core had LICENSE_FLAGS added to make it
+> > "commercial", so to avoid build errors the BSPs that use it (via the
+> > gst-va-intel VA_FEATURE) should only include it if the user has added
+> > "commercial" to LICENSE_FLAGS_WHITELIST when building.
+> 
+> It's entirely possible to use gst-vaapi without commercial plugins,
+> the problem is the (mysterious to me) dependency on gst-ffmpeg.
+> 
 
-It's entirely possible to use gst-vaapi without commercial plugins,
-the problem is the (mysterious to me) dependency on gst-ffmpeg.
+From the gstreamer-vaapi README:
 
-How about making gst-ffmpeg a recommends instead of rdepends, so that
-if it's blacklisted due to license flags there isn't a build failure.
-gst-vaapi doesn't have license issues to making it disappear when
-avoiding commercial licenses doesn't make sense.
+"vaapidecoder currently relies on FFmpeg"
 
-(I'd also like to understand why gst-ffmpeg is a rdepends at all)
+> How about making gst-ffmpeg a recommends instead of rdepends, so that
+> if it's blacklisted due to license flags there isn't a build failure.
 
-Ross
+I can try that and see what happens.
+
+> gst-vaapi doesn't have license issues to making it disappear when
+> avoiding commercial licenses doesn't make sense.
+> 
+> (I'd also like to understand why gst-ffmpeg is a rdepends at all)
+> 
+
+The only avenue I was able to find (that worked, an important point) to
+get gstreamer to use video acceleration was via ffmpeg (via gst-ffmpeg,
+needed for making ffmpeg available to the gstreamer pipeline) with the
+--with-vaapi option.
+
+Believe me, I went through a bunch of iterations of different versions
+and combinations of all these components before hitting on something
+that didn't always segfault and gave more than 1/2 a frame a second
+(literally), and that was after using code that supposedly worked for an
+ELC demo...
+
+Anyway, it would be nice if someone who had a better understanding of
+this 'stack' could suggest better ways of doing things - at this point
+it works for 3 different video acceleration implementations (emgd, pvr
+and standard intel va) and I'm not looking forward to going through that
+exercise again - for now I'll just be trying to fix the build problems
+introduced by the new licensing restrictions.
+
+Tom
+
+> Ross
+
+
 
