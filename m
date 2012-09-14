@@ -1,29 +1,26 @@
-Return-Path: <belen.barros.pena@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 93597E0027F
-	for <yocto@yoctoproject.org>; Fri, 14 Sep 2012 08:40:47 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 14 Sep 2012 08:40:33 -0700
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 79D98E00344
+	for <yocto@yoctoproject.org>; Fri, 14 Sep 2012 10:11:11 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 14 Sep 2012 10:11:01 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,423,1344236400"; d="scan'208";a="222100669"
-Received: from irsmsx102.ger.corp.intel.com ([163.33.3.155])
-	by fmsmga002.fm.intel.com with ESMTP; 14 Sep 2012 08:40:27 -0700
-Received: from irsmsx104.ger.corp.intel.com ([169.254.5.154]) by
-	IRSMSX102.ger.corp.intel.com ([169.254.2.34]) with mapi id
-	14.01.0355.002; Fri, 14 Sep 2012 16:39:51 +0100
-From: "Barros Pena, Belen" <belen.barros.pena@intel.com>
-To: yocto <yocto@yoctoproject.org>
-Thread-Topic: Away Monday 17th September
-Thread-Index: AQHNko9B3qSG8TlO7U2Ft11IBM/fxQ==
-Date: Fri, 14 Sep 2012 15:40:23 +0000
-Message-ID: <CC790E76.1827B%belen.barros.pena@intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Microsoft-MacOutlook/14.2.2.120421
-x-originating-ip: [10.252.59.248]
+X-IronPort-AV: E=Sophos;i="4.80,423,1344236400"; d="scan'208";a="193144037"
+Received: from unknown (HELO helios.localnet) ([10.252.121.221])
+	by orsmga001.jf.intel.com with ESMTP; 14 Sep 2012 10:11:10 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: kevin.strasser@linux.intel.com
+Date: Fri, 14 Sep 2012 18:11:08 +0100
+Message-ID: <40840227.fxVvBd4b8I@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.9 (Linux/3.2.0-30-generic-pae; KDE/4.9.0; i686; ; )
+In-Reply-To: <33104.10.7.202.84.1347559840.squirrel@linux.intel.com>
+References: <05bc846eb9ec84e5094832dcac903fef085fd9d8.1347312790.git.kevin.strasser@linux.intel.com>
+	<2619220.qq68ZOnzsN@helios>
+	<33104.10.7.202.84.1347559840.squirrel@linux.intel.com>
 MIME-Version: 1.0
-Subject: Away Monday 17th September
+Cc: yocto@yoctoproject.org, Kevin Strasser <kevstras@gmail.com>
+Subject: Re: [meta-baryon][PATCH 2/2] proftpd: update package to 1.3.4b
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,27 +32,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 14 Sep 2012 15:40:48 -0000
-Content-Language: en-US
+X-List-Received-Date: Fri, 14 Sep 2012 17:11:11 -0000
+Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
-Content-ID: <8DF8AC4B6D2A4E43B2EAE1FD5055AD49@intel.com>
-Content-Transfer-Encoding: quoted-printable
 
-Just taking a day free: I'll be back Tuesday.
+On Thursday 13 September 2012 11:10:40 kevin.strasser@linux.intel.com wrote:
+> Thanks, Paul. I've made those changes and added the bbappend for the new
+> kernel.
+> 
+> The updates are available in the git repository at:
+> 
+>   git://git.yoctoproject.org/poky-contrib strassek/baryon-updates
+>  
+> http://git.yoctoproject.org/cgit.cgi/poky-contrib/log/?h=strassek/baryon-up
+> dates
 
-Have a great weekend
+Merged to meta-baryon master, thanks.
 
-Belen
+Cheers,
+Paul
 
----------------------------------------------------------------------
-Intel Corporation (UK) Limited
-Registered No. 1134945 (England)
-Registered Office: Pipers Way, Swindon SN3 1RJ
-VAT No: 860 2173 47
+-- 
 
-This e-mail and any attachments may contain confidential material for
-the sole use of the intended recipient(s). Any review or distribution
-by others is strictly prohibited. If you are not the intended
-recipient, please contact the sender and delete all copies.
-
+Paul Eggleton
+Intel Open Source Technology Centre
 
