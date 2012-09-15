@@ -1,23 +1,28 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E423FE0142C
-	for <yocto@yoctoproject.org>; Sat, 15 Sep 2012 13:17:45 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 15 Sep 2012 13:17:34 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,428,1344236400"; d="scan'208";a="222555597"
-Received: from unknown (HELO localhost) ([10.255.13.77])
-	by fmsmga001.fm.intel.com with ESMTP; 15 Sep 2012 13:17:11 -0700
-From: tom.zanussi@intel.com
-To: yocto@yoctoproject.org
-Date: Sat, 15 Sep 2012 15:17:06 -0500
-Message-Id: <cdf9c835b60041bf144e262bf62fe895a53897e6.1347739624.git.tom.zanussi@intel.com>
-X-Mailer: git-send-email 1.7.11.4
-In-Reply-To: <2231d3800e94e39a6cc77473c6654cb221e7e55b.1347739624.git.tom.zanussi@intel.com>
-References: <2231d3800e94e39a6cc77473c6654cb221e7e55b.1347739624.git.tom.zanussi@intel.com>
-In-Reply-To: <cover.1347739624.git.tom.zanussi@intel.com>
-References: <cover.1347739624.git.tom.zanussi@intel.com>
-Subject: [PATCH 3/4] meta-intel: have fri2 and sys940x prefer emgd-1.10
+Return-Path: <opensource@keylevel.com>
+Received: from hxhsvr03.internetintuitive.net (hxhsvr03.internetintuitive.net
+	[80.254.228.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9ED42E0044A
+	for <yocto@yoctoproject.org>; Sat, 15 Sep 2012 16:59:26 -0700 (PDT)
+Received: from [109.224.129.17] (helo=macbook-pro.durham.keylevel.com)
+	by hxhsvr03.internetintuitive.net with esmtpa (Exim 4.69)
+	(envelope-from <opensource@keylevel.com>) id 1TD2Ge-0007nY-5i
+	for yocto@yoctoproject.org; Sun, 16 Sep 2012 00:59:20 +0100
+From: Chris Tapp <opensource@keylevel.com>
+Date: Sun, 16 Sep 2012 00:59:17 +0100
+Message-Id: <9CB6FE0E-90A1-4627-B2CD-3DAD8090EB9C@keylevel.com>
+To: "yocto@yoctoproject.org Project" <yocto@yoctoproject.org>
+Mime-Version: 1.0 (Apple Message framework v1278)
+X-Mailer: Apple Mail (2.1278)
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - hxhsvr03.internetintuitive.net
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - keylevel.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: Forcing link order for autotools recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,43 +34,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 15 Sep 2012 20:17:46 -0000
+X-List-Received-Date: Sat, 15 Sep 2012 23:59:27 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
-From: Tom Zanussi <tom.zanussi@intel.com>
+I've got a recipe that uses autotools. It builds ok under Poky, but if I =
+try to build it on my host (e.g. when developing) then it fails to build =
+with lots of 'symbol not found' link errors related to libs that are on =
+the system and which are in the gcc lib search path.
 
-fri2 and sys940x need to use emgd-1.10 instead of the newer 1.14.
+I've finally tracked this down to link order. The final command is of =
+the form:
 
-Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
----
- meta-fri2/conf/machine/fri2.conf       | 1 +
- meta-sys940x/conf/machine/sys940x.conf | 1 +
- 2 files changed, 2 insertions(+)
+g++ -lGL -lcurl -o binary a.o b.o
 
-diff --git a/meta-fri2/conf/machine/fri2.conf b/meta-fri2/conf/machine/fri2.conf
-index bf7754f..39fb698 100644
---- a/meta-fri2/conf/machine/fri2.conf
-+++ b/meta-fri2/conf/machine/fri2.conf
-@@ -25,6 +25,7 @@ XSERVER ?= "${XSERVER_IA32_BASE} \
- PREFERRED_VERSION_xserver-xorg ?= "1.9.3"
- PREFERRED_VERSION_mesa-dri ?= "7.11"
- PREFERRED_VERSION_xf86-input-evdev ?= "2.6.0"
-+PREFERRED_VERSION_emgd-driver-bin ?= "1.10"
- 
- # Syslinux does not know about the 64MHz uart clock and it does not detect the
- # serial device by number. Use the IO port directly and divide the baud down to
-diff --git a/meta-sys940x/conf/machine/sys940x.conf b/meta-sys940x/conf/machine/sys940x.conf
-index f71bb3a..46c4315 100644
---- a/meta-sys940x/conf/machine/sys940x.conf
-+++ b/meta-sys940x/conf/machine/sys940x.conf
-@@ -21,6 +21,7 @@ XSERVER ?= "${XSERVER_IA32_BASE} \
- PREFERRED_VERSION_xserver-xorg ?= "1.9.3"
- PREFERRED_VERSION_mesa-dri ?= "7.11"
- PREFERRED_VERSION_xf86-input-evdev ?= "2.6.0"
-+PREFERRED_VERSION_emgd-driver-bin ?= "1.10"
- 
- SERIAL_CONSOLE = "115200 ttyS0"
- APPEND += "console=ttyS0,115200 console=tty0"
--- 
-1.7.11.4
+If I change this to:
+
+g++ -o binary a.o b.o -lGL -lcurl
+
+then it builds ok.
+
+Stranger still is the original form works fine on another system (older =
+Ubuntu). The ld versions are different (2.21.53 on the one that fails, =
+2.20.1 on the one that works).
+
+Can I get autotools to always link the libraries last?
+
+Chris Tapp
+
+opensource@keylevel.com
+www.keylevel.com
+
+
 
 
