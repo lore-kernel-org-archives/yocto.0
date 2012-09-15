@@ -1,27 +1,33 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BAF8EE00348
-	for <yocto@yoctoproject.org>; Fri, 14 Sep 2012 14:52:29 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 14 Sep 2012 14:52:26 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,424,1344236400"; d="scan'208";a="145226200"
-Received: from unknown (HELO [10.255.13.77]) ([10.255.13.77])
-	by AZSMGA002.ch.intel.com with ESMTP; 14 Sep 2012 14:52:23 -0700
-Message-ID: <1347659543.6185.21.camel@empanada>
-From: Tom Zanussi <tom.zanussi@intel.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Date: Fri, 14 Sep 2012 16:52:23 -0500
-In-Reply-To: <CAJTo0LbVU6u5GwZkn2pGzzG=2bem5QUY=76B40ic2ygqQqP+iQ@mail.gmail.com>
-References: <cover.1347650435.git.tom.zanussi@intel.com>
-	<e5aa858a33392e0a7569c50d308049f88cd802a4.1347650435.git.tom.zanussi@intel.com>
-	<CAJTo0LbgWdoX8GnMsKYa-y176X1YiTEd7Ucw7CNLLi6OBqaB2g@mail.gmail.com>
-	<1347657906.6185.17.camel@empanada>
-	<CAJTo0LbVU6u5GwZkn2pGzzG=2bem5QUY=76B40ic2ygqQqP+iQ@mail.gmail.com>
-X-Mailer: Evolution 3.4.1 (3.4.1-2.fc17) 
-Mime-Version: 1.0
-Cc: yocto@yoctoproject.org, dvhart@linux.intel.com
-Subject: Re: [PATCH 1/1] meta-intel: make video acceleration choice dependent on LICENSE_FLAGS
+Return-Path: <elvis.dowson@gmail.com>
+Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
+	[209.85.160.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 25AB6E004AB
+	for <yocto@yoctoproject.org>; Fri, 14 Sep 2012 20:29:53 -0700 (PDT)
+Received: by pbbrq13 with SMTP id rq13so8261430pbb.35
+	for <yocto@yoctoproject.org>; Fri, 14 Sep 2012 20:29:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:content-type:content-transfer-encoding:subject:date:message-id
+	:to:mime-version:x-mailer;
+	bh=zf/1cplz65t+zAkYYnu0lQrCEqkLoHaEA8LN4ZMcdDg=;
+	b=viHosC9vxrwL/rS4Nj+mbTFE27190GmlvbeQBSIuUddZ7piB4xVtpCT6qT5cNuMAAX
+	HpXYGgPs8V7fuHGp/s/8R2shV1GR94qhM4cdcn0HdMb4BYfYm0zFBSOZPlceIocJx0JW
+	mJE7djNt180bkEAypx/HUSY5j2Zu5fKYUoS1Ex1Y0TRnhCpTfokVQjjcW+j785fjCvEE
+	R4ngAb3kqxmHjwkvaXa6xQF6ynWUcWfpzDj/4prmt3dxF2QXhpuQYYXBLe22028LqR0J
+	+Ww3l+QeTdtphbJtDyxbeT++bu6MWCAL+i61lnlwHCEYKWWGxCvhTnHawEZg7pCeK3Sk
+	yD/w==
+Received: by 10.68.191.226 with SMTP id hb2mr8072560pbc.129.1347679774594;
+	Fri, 14 Sep 2012 20:29:34 -0700 (PDT)
+Received: from [192.168.1.100] ([94.205.108.162])
+	by mx.google.com with ESMTPS id sj5sm2119563pbc.30.2012.09.14.20.29.32
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Fri, 14 Sep 2012 20:29:33 -0700 (PDT)
+From: Elvis Dowson <elvis.dowson@gmail.com>
+Date: Sat, 15 Sep 2012 07:29:28 +0400
+Message-Id: <B9672221-8331-49D3-B853-E284CBCCA0B5@gmail.com>
+To: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+Mime-Version: 1.0 (Apple Message framework v1278)
+X-Mailer: Apple Mail (2.1278)
+Subject: All kernel modules being built and shipped in images/modules-*.tgz
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,47 +39,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 14 Sep 2012 21:52:29 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sat, 15 Sep 2012 03:29:53 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, 2012-09-14 at 22:39 +0100, Burton, Ross wrote:
-> On 14 September 2012 22:25, Tom Zanussi <tom.zanussi@intel.com> wrote:
-> > From the gstreamer-vaapi README:
-> >
-> > "vaapidecoder currently relies on FFmpeg"
-> 
-> Ha, fair enough.
-> 
-> > Anyway, it would be nice if someone who had a better understanding of
-> > this 'stack' could suggest better ways of doing things - at this point
-> > it works for 3 different video acceleration implementations (emgd, pvr
-> > and standard intel va) and I'm not looking forward to going through that
-> > exercise again - for now I'll just be trying to fix the build problems
-> > introduced by the new licensing restrictions.
-> 
-> I'm off to the London office on Monday, there's bound to be a few
-> Cedar Trail netbooks hanging around there still.  I know they play
-> h264 through vaapi (albeit fluendo-va) in MeeGo because that was the
-> most frustrating/rewarding week I've had for along time, so I'll build
-> an image with meta-intel and see what I can do.
-> 
+Hi,
+     I just noticed that with the recent poky master updates, my =
+images/modules-3.3.1-r00-virtex5.tgz file has grown from 33.1 MB to =
+668.5MB. When I looked in the package, I saw that the kernel/drivers =
+folder inside that package was nearly 1.5GB uncompressed!!
 
-That would be great - any knowledge you could apply from what worked in
-Meego would be welcome - feel free to rip the whole thing apart and
-replace it if you have to...
+My kenel defconfig was tuned so that I only used a bare minimum of =
+kernel modules, and nearly all except for 2 groups (one related to =
+filesystem and the other for networking) was built as a module. The rest =
+were all built into the kernel.
 
-> I'd also like to see anything MIX related in meta-intel die, that's an
-> abomination now that gst-va actually works.
-> 
+Isn't this a regression or an error?=20
 
-The mixvideo stuff is actually what comes bundled with emgd so I'm not
-sure we're any further ahead replacing it unless we can also replace
-emgd...
+Also my build time has gone up from 40 minutes to 67 minutes, probably =
+as a result of the increased number of kernel modules being built and =
+shipped.
 
-Tom
+Best regards,
 
-> Ross
-
-
+Elvis Dowson=
 
