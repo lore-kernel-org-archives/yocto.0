@@ -1,32 +1,21 @@
-Return-Path: <opensource@keylevel.com>
-Received: from hxhsvr03.internetintuitive.net (hxhsvr03.internetintuitive.net
-	[80.254.228.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E5097E0027F
-	for <yocto@yoctoproject.org>; Mon, 17 Sep 2012 12:04:30 -0700 (PDT)
-Received: from [109.224.129.17] (helo=macbook-pro.durham.keylevel.com)
-	by hxhsvr03.internetintuitive.net with esmtpa (Exim 4.69)
-	(envelope-from <opensource@keylevel.com>)
-	id 1TDgcQ-0001Tz-4H; Mon, 17 Sep 2012 20:04:30 +0100
-Mime-Version: 1.0 (Apple Message framework v1278)
-From: Chris Tapp <opensource@keylevel.com>
-In-Reply-To: <CAMKF1sowgdtLGO4a2NQ9+ioGJ4B7Gg-MysPu4_dFRWg8aeFuiA@mail.gmail.com>
-Date: Mon, 17 Sep 2012 20:04:28 +0100
-Message-Id: <E991EFF5-7BD2-409D-A1BC-FB9E8C320DDE@keylevel.com>
-References: <9CB6FE0E-90A1-4627-B2CD-3DAD8090EB9C@keylevel.com>
-	<CAMKF1sowgdtLGO4a2NQ9+ioGJ4B7Gg-MysPu4_dFRWg8aeFuiA@mail.gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
-X-Mailer: Apple Mail (2.1278)
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - hxhsvr03.internetintuitive.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: "yocto@yoctoproject.org Project" <yocto@yoctoproject.org>
-Subject: Re: Forcing link order for autotools recipe
+Return-Path: <nitin.a.kamble@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8867FE0027F
+	for <yocto@yoctoproject.org>; Mon, 17 Sep 2012 15:35:40 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 17 Sep 2012 15:35:34 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,439,1344236400"; d="scan'208";a="146090527"
+Received: from yocto-hm1.jf.intel.com ([10.23.232.32])
+	by AZSMGA002.ch.intel.com with ESMTP; 17 Sep 2012 15:35:34 -0700
+From: nitin.a.kamble@intel.com
+To: yocto@yoctoproject.org,
+	tom.zanussi@intel.com,
+	darren.hart@intel.com
+Date: Sun, 16 Sep 2012 15:27:02 -0700
+Message-Id: <cover.1347834237.git.nitin.a.kamble@intel.com>
+X-Mailer: git-send-email 1.7.3.4
+Subject: [PATCH 0/2] emgd recipe misc fixes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,58 +27,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 17 Sep 2012 19:04:31 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 17 Sep 2012 22:35:40 -0000
 
-On 17 Sep 2012, at 06:51, Khem Raj wrote:
+From: Nitin A Kamble <nitin.a.kamble@intel.com>
 
-> On Sat, Sep 15, 2012 at 4:59 PM, Chris Tapp <opensource@keylevel.com> =
-wrote:
->> I've got a recipe that uses autotools. It builds ok under Poky, but =
-if I try to build it on my host (e.g. when developing) then it fails to =
-build with lots of 'symbol not found' link errors related to libs that =
-are on the system and which are in the gcc lib search path.
->>=20
->> I've finally tracked this down to link order. The final command is of =
-the form:
->>=20
->> g++ -lGL -lcurl -o binary a.o b.o
->>=20
->> If I change this to:
->>=20
->> g++ -o binary a.o b.o -lGL -lcurl
->>=20
->> then it builds ok.
->>=20
->> Stranger still is the original form works fine on another system =
-(older Ubuntu). The ld versions are different (2.21.53 on the one that =
-fails, 2.20.1 on the one that works).
->>=20
->> Can I get autotools to always link the libraries last?
->=20
-> you did not mention the failing distro but what Ross mentioned could
-> be one reason
+Here are the fixes related to the emgd recipe. These are verified with crownbay BSP with the latest master branches.
 
-It's Ubuntu 11.10. I don't think it's using 'gold', but it is on the =
-system. I'll look at the default flags to see what's up.
+Thanks,
+Nitin
 
-> another reason could be that its using gold as default linker where
-> overlinking is not the default as it used to be. The linking behavior
-> is correct there you need to fix the application to specify the
-> libraries correctly.
+The following changes since commit 574d10a3a2040ff685b74f9d4034f045d0191e5b:
 
+  meta-intel: move emgd-driver-bin_1.14 to xorg-driver/ (2012-09-15 15:02:43 -0500)
 
-Yes, that's exactly what I did once I realised I was using LDFLAGS when =
-I should use LDADD.
-It was once of these 'coincidentaly-correct' errors that only bites =
-after a year or two or working perfectly ;-)
+are available in the git repository at:
+  git://git.yoctoproject.org/meta-intel-contrib nitin/work
+  http://git.yoctoproject.org/cgit.cgi/meta-intel-contrib/log/?h=nitin/work
 
-Chris Tapp
+Nitin A Kamble (2):
+  emgd-driver-bin: Fix package naming issue
+  emgd-driver-bin: avoid rebuilding issue of the recipe
 
-opensource@keylevel.com
-www.keylevel.com
+ .../xorg-driver/emgd-driver-bin_1.14.bb            |   11 ++++++++++-
+ 1 files changed, 10 insertions(+), 1 deletions(-)
 
-
+-- 
+1.7.3.4
 
 
