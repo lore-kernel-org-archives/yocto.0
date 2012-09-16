@@ -1,21 +1,23 @@
 Return-Path: <nitin.a.kamble@intel.com>
 Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8867FE0027F
-	for <yocto@yoctoproject.org>; Mon, 17 Sep 2012 15:35:40 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 10CE4E0027F
+	for <yocto@yoctoproject.org>; Mon, 17 Sep 2012 15:35:41 -0700 (PDT)
 Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 17 Sep 2012 15:35:34 -0700
+	by azsmga102.ch.intel.com with ESMTP; 17 Sep 2012 15:35:40 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,439,1344236400"; d="scan'208";a="146090527"
+X-IronPort-AV: E=Sophos;i="4.80,439,1344236400"; d="scan'208";a="146090553"
 Received: from yocto-hm1.jf.intel.com ([10.23.232.32])
-	by AZSMGA002.ch.intel.com with ESMTP; 17 Sep 2012 15:35:34 -0700
+	by AZSMGA002.ch.intel.com with ESMTP; 17 Sep 2012 15:35:40 -0700
 From: nitin.a.kamble@intel.com
 To: yocto@yoctoproject.org,
 	tom.zanussi@intel.com,
 	darren.hart@intel.com
-Date: Sun, 16 Sep 2012 15:27:02 -0700
-Message-Id: <cover.1347834237.git.nitin.a.kamble@intel.com>
+Date: Sun, 16 Sep 2012 15:27:07 -0700
+Message-Id: <849041c84291bc274805ae375232e7d2eecbd0e7.1347834237.git.nitin.a.kamble@intel.com>
 X-Mailer: git-send-email 1.7.3.4
-Subject: [PATCH 0/2] emgd recipe misc fixes
+In-Reply-To: <cover.1347834237.git.nitin.a.kamble@intel.com>
+References: <cover.1347834237.git.nitin.a.kamble@intel.com>
+Subject: [PATCH 1/2] emgd-driver-bin: Fix package naming issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,30 +29,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 17 Sep 2012 22:35:40 -0000
+X-List-Received-Date: Mon, 17 Sep 2012 22:35:41 -0000
 
 From: Nitin A Kamble <nitin.a.kamble@intel.com>
 
-Here are the fixes related to the emgd recipe. These are verified with crownbay BSP with the latest master branches.
+emgd-driver-bin is generating rpm package with name libegl1.
+This name clashes with a package with sanme name from mesa-dri
+recipe. This name clash blocks installation of emgd user land
+binaries in the image. And due to missing emgd user land
+components X fails to start on BSPs like crownbay.
 
-Thanks,
-Nitin
+Fix this problem by specifying package names in the recipe with the
+PKG_ vars.
 
-The following changes since commit 574d10a3a2040ff685b74f9d4034f045d0191e5b:
+This fixes bug: [YOCTO #3063]
 
-  meta-intel: move emgd-driver-bin_1.14 to xorg-driver/ (2012-09-15 15:02:43 -0500)
+Signed-off-by: Nitin A Kamble <nitin.a.kamble@intel.com>
+---
+ .../xorg-driver/emgd-driver-bin_1.14.bb            |    8 +++++++-
+ 1 files changed, 7 insertions(+), 1 deletions(-)
 
-are available in the git repository at:
-  git://git.yoctoproject.org/meta-intel-contrib nitin/work
-  http://git.yoctoproject.org/cgit.cgi/meta-intel-contrib/log/?h=nitin/work
-
-Nitin A Kamble (2):
-  emgd-driver-bin: Fix package naming issue
-  emgd-driver-bin: avoid rebuilding issue of the recipe
-
- .../xorg-driver/emgd-driver-bin_1.14.bb            |   11 ++++++++++-
- 1 files changed, 10 insertions(+), 1 deletions(-)
-
+diff --git a/common/recipes-graphics/xorg-driver/emgd-driver-bin_1.14.bb b/common/recipes-graphics/xorg-driver/emgd-driver-bin_1.14.bb
+index b1ba1b8..2464c38 100644
+--- a/common/recipes-graphics/xorg-driver/emgd-driver-bin_1.14.bb
++++ b/common/recipes-graphics/xorg-driver/emgd-driver-bin_1.14.bb
+@@ -7,7 +7,7 @@ to LICENSE_FLAGS_WHITELIST += \"License_emgd-driver-bin_1.14\" to your \
+ local.conf in order to enable it in a build."
+ LICENSE = "Intel-binary-only"
+ LICENSE_FLAGS = "license_${PN}_${PV}"
+-PR = "r1"
++PR = "r2"
+ 
+ EMGD_LIC_DIR = "IEMGD_HEAD_Linux/License"
+ EMGD_RPM_DIR = "IEMGD_HEAD_Linux/MeeGo1.2"
+@@ -23,6 +23,12 @@ SRC_URI = "https://edc.intel.com/Download.aspx?id=6190;downloadfilename=LIN_IEMG
+ SRC_URI[md5sum] = "733a7f237ffce21238ce2c9956df4fd6"
+ SRC_URI[sha256sum] = "bcdc333b5edbda7c746a83ef821ded4a0ca55ead30980e4e3680cdb6469f45a2"
+ 
++# make sure generated rpm packages get non conflicting names
++PKG_${PN} = "emgd-driver"
++PKG_${PN}-dev = "emgd-driver-dev"
++PKG_${PN}-dbg = "emgd-driver-dbg"
++PKG_${PN}-doc = "emgd-driver-doc"
++
+ # These are closed binaries generated elsewhere so don't check ldflags
+ INSANE_SKIP_${PN} = "ldflags"
+ 
 -- 
 1.7.3.4
 
