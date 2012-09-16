@@ -1,36 +1,35 @@
 Return-Path: <elvis.dowson@gmail.com>
-Received: from mail-pb0-f48.google.com (unknown [209.85.160.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 323E4E002AB
-	for <yocto@yoctoproject.org>; Sun, 16 Sep 2012 09:09:45 -0700 (PDT)
-Received: by pbbrq13 with SMTP id rq13so10131834pbb.35
-	for <yocto@yoctoproject.org>; Sun, 16 Sep 2012 09:09:17 -0700 (PDT)
+Received: from mail-pz0-f48.google.com (mail-pz0-f48.google.com
+	[209.85.210.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 95642E002AB
+	for <yocto@yoctoproject.org>; Sun, 16 Sep 2012 09:49:58 -0700 (PDT)
+Received: by dadz8 with SMTP id z8so2045450dad.35
+	for <yocto@yoctoproject.org>; Sun, 16 Sep 2012 09:49:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=message-id:date:from:user-agent:mime-version:to:cc:subject
-	:references:in-reply-to:content-type;
-	bh=arGv7OIi1DXeEUuEmxHaJ5+635XZO5bRFRVfSHxir+s=;
-	b=JibEJFv2ICVx69wrqfBsHsKzlF1cu4ul6xBWu4YjoMY8K1GGNbcgdT5GdlzhoKc43v
-	1h4n/dYNimssJ1P30XVksQXPur+3AzOSYE48kp/Wu0ZOpPJ1jwvfyrkW4wJEgo2Icu5K
-	BUxM/0jalXizVl9H+GYdL5sEPsyl5cGmtvVq0Z34BG5sRjtKtu++5/zgsyj6q+6kTI+R
-	99L9C4Bmvd0p27MXYlOwztRL/4kBVovQk1j//+NC1uLw/EgEjvqlu4s3ggOZrh7jyA8q
-	gB3TWC6Sn2UScq85d1wrwaZL/vEdRz4NXfOcn482UqihA/QKFWBZYjnQzMBz1gOnvDDV
-	GGKQ==
-Received: by 10.66.85.4 with SMTP id d4mr15050334paz.11.1347811756848;
-	Sun, 16 Sep 2012 09:09:16 -0700 (PDT)
-Received: from [192.168.1.111] ([94.205.108.162])
-	by mx.google.com with ESMTPS id pj10sm5257209pbb.46.2012.09.16.09.09.14
-	(version=SSLv3 cipher=OTHER); Sun, 16 Sep 2012 09:09:16 -0700 (PDT)
-Message-ID: <5055F9A6.20709@gmail.com>
-Date: Sun, 16 Sep 2012 20:09:10 +0400
+	h=content-type:mime-version:subject:from:in-reply-to:date
+	:content-transfer-encoding:message-id:references:to:x-mailer;
+	bh=NPEOVR61FgKOHrg5f4eT28vo73mvKEImmutHbkSQfV8=;
+	b=JYV4nr492U0MaYpINfbMpmYpbSS74xAWY6LMOeO1PXxuSM/nPci6Sn0CSxvHsFUNJL
+	XBj3KTGBMCrJzLpeqtBasonkSnaohKQ/lkK6iQDQO3C9+wNln7TkGVZ3+yP2U/P5Oduv
+	jjy9q4ZR5svZ86Ay+KbQK7aiRnGsNoyYn9cKicHRVZFE3SqZRFMF3dZlW2xeeQr68Q6Q
+	aeTeYaS6giKKVoQDrZU5ft/Y1XWoINv9a6b3AvJEaR/09Lk6pESDHrj9rxYxMBJoYWPE
+	HfQVfCIAAEEV+e80AsGoTz8XJ7nnXn4i78PU3qBhQ2uIOods/MUx+H8UlgkuERWznOB4
+	2dTg==
+Received: by 10.68.202.193 with SMTP id kk1mr16944934pbc.136.1347814184287;
+	Sun, 16 Sep 2012 09:49:44 -0700 (PDT)
+Received: from [192.168.1.100] ([94.205.108.162])
+	by mx.google.com with ESMTPS id uu10sm5330745pbc.2.2012.09.16.09.49.41
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Sun, 16 Sep 2012 09:49:42 -0700 (PDT)
+Mime-Version: 1.0 (Apple Message framework v1278)
 From: Elvis Dowson <elvis.dowson@gmail.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:15.0) Gecko/20120827 Thunderbird/15.0
-MIME-Version: 1.0
-To: Khem Raj <raj.khem@gmail.com>
-References: <0937D44A-6DDB-49BD-B8E3-14873C5D8839@gmail.com>
-	<CAMKF1sr9zgFJMrhBM_xdVPMM_zhnQCzjxYanub6O7NFG4w1Ohg@mail.gmail.com>
-In-Reply-To: <CAMKF1sr9zgFJMrhBM_xdVPMM_zhnQCzjxYanub6O7NFG4w1Ohg@mail.gmail.com>
-Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-Subject: Re: Dependency walk for busybox recipe
+In-Reply-To: <B9672221-8331-49D3-B853-E284CBCCA0B5@gmail.com>
+Date: Sun, 16 Sep 2012 20:49:38 +0400
+Message-Id: <A158BAD0-6C2D-4724-B13A-AAB54992904C@gmail.com>
+References: <B9672221-8331-49D3-B853-E284CBCCA0B5@gmail.com>
+To: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+X-Mailer: Apple Mail (2.1278)
+Subject: Re: All kernel modules being built and shipped in images/modules-*.tgz
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,124 +41,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 16 Sep 2012 16:09:45 -0000
-Content-Type: multipart/alternative;
-	boundary="------------050003030506000308030907"
+X-List-Received-Date: Sun, 16 Sep 2012 16:49:58 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
---------------050003030506000308030907
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Hi,
 
-On 09/16/2012 07:54 AM, Khem Raj wrote:
-> On Sat, Sep 15, 2012 at 10:59 AM, Elvis Dowson <elvis.dowson@gmail.com> wrote:
->> So I added busybox-1.19.4 recipe back into my poky master branch, and the resulting size of the busybox-1.19.4 /bin/busybox or /bin/sh executable is 604.2 kb.
-> make sure that .config of busybox has not changed even if you have
-> same version backported
-I've made sure that the defconfig files used in the recipe are 
-identical. The only addition that I notice now, is that the recent 
-rework done to task-core-boot, resulting in it being renamed as 
-packagegroup-core-boot.bb adds the following extra line:
+On Sep 15, 2012, at 7:29 AM, Elvis Dowson wrote:
 
-${@base_contains("MACHINE_FEATURES", "rtc", "busybox-hwclock", "", d)} \
+> I just noticed that with the recent poky master updates, my =
+images/modules-3.3.1-r00-virtex5.tgz file has grown from 33.1 MB to =
+668.5MB. When I looked in the package, I saw that the kernel/drivers =
+folder inside that package was nearly 1.5GB uncompressed!!
+>=20
+> My kenel defconfig was tuned so that I only used a bare minimum of =
+kernel modules, and nearly all except for 2 groups (one related to =
+filesystem and the other for networking) was built as a module. The rest =
+were all built into the kernel.
+>=20
+> Isn't this a regression or an error?=20
+>=20
+> Also my build time has gone up from 40 minutes to 67 minutes, probably =
+as a result of the increased number of kernel modules being built and =
+shipped.
 
-My virtex5.conf machine features entry does not specify an rtc,
+Is there any way to prevent all the kernel modules from being built, =
+when 99% of my kernel defconfig settings are set to 'y' and not to build =
+any modules?
 
-MACHINE_FEATURES = "kernel26 apm ext2 ext3 vfat ethernet keyboard screen 
-serial"
+Elvis=
 
-yet the current poky master attempts to pull it in:
-
-NOTE: Resolving any missing task queue dependencies
-ERROR: Nothing RPROVIDES 'busybox-hwclock' (but 
-/tool/yocto/poky/meta/recipes-core/packagegroups/packagegroup-core-boot.bb 
-RDEPENDS on or otherwise requires it)
-NOTE: Runtime target 'busybox-hwclock' is unbuildable, removing...
-Missing or unbuildable dependency chain was: ['busybox-hwclock']
-NOTE: Runtime target 'packagegroup-core-boot' is unbuildable, removing...
-Missing or unbuildable dependency chain was: ['packagegroup-core-boot', 
-'busybox-hwclock']
-ERROR: Required build target 'core-image-minimal' has no buildable 
-providers.
-Missing or unbuildable dependency chain was: ['core-image-minimal', 
-'packagegroup-core-boot', 'busybox-hwclock']
-
-Summary: There were 2 ERROR messages shown, returning a non-zero exit code.
-
-Is this a bug? Is the rtc being added from somewhere else? Should this 
-be happening?
-
-Best regards,
-
-Elvis Dowson
-
---------------050003030506000308030907
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 09/16/2012 07:54 AM, Khem Raj wrote:<br>
-    </div>
-    <blockquote
-cite="mid:CAMKF1sr9zgFJMrhBM_xdVPMM_zhnQCzjxYanub6O7NFG4w1Ohg@mail.gmail.com"
-      type="cite">
-      <pre wrap="">On Sat, Sep 15, 2012 at 10:59 AM, Elvis Dowson <a class="moz-txt-link-rfc2396E" href="mailto:elvis.dowson@gmail.com">&lt;elvis.dowson@gmail.com&gt;</a> wrote:
-</pre>
-      <blockquote type="cite">
-        <pre wrap="">So I added busybox-1.19.4 recipe back into my poky master branch, and the resulting size of the busybox-1.19.4 /bin/busybox or /bin/sh executable is 604.2 kb.
-</pre>
-      </blockquote>
-      <pre wrap="">
-make sure that .config of busybox has not changed even if you have
-same version backported
-</pre>
-    </blockquote>
-    I've made sure that the defconfig files used in the recipe are
-    identical. The only addition that I notice now, is that the recent
-    rework done to task-core-boot, resulting in it being renamed as
-    packagegroup-core-boot.bb adds the following extra line:<br>
-    <br>
-    <small><font face="Courier New, Courier, monospace">${@base_contains("MACHINE_FEATURES",
-        "rtc", "busybox-hwclock", "", d)} \</font></small><br>
-    <br>
-    My virtex5.conf machine features entry does not specify an rtc, <br>
-    <br>
-    <small><font face="Courier New, Courier, monospace">MACHINE_FEATURES
-        = "kernel26 apm ext2 ext3 vfat ethernet keyboard screen serial"</font></small><br>
-    <br>
-    yet the current poky master attempts to pull it in:<br>
-    <br>
-    <small><font face="Courier New, Courier, monospace">NOTE: Resolving
-        any missing task queue dependencies<br>
-        ERROR: Nothing RPROVIDES 'busybox-hwclock' (but
-        /tool/yocto/poky/meta/recipes-core/packagegroups/packagegroup-core-boot.bb
-        RDEPENDS on or otherwise requires it)<br>
-        NOTE: Runtime target 'busybox-hwclock' is unbuildable,
-        removing...<br>
-        Missing or unbuildable dependency chain was: ['busybox-hwclock']<br>
-        NOTE: Runtime target 'packagegroup-core-boot' is unbuildable,
-        removing...<br>
-        Missing or unbuildable dependency chain was:
-        ['packagegroup-core-boot', 'busybox-hwclock']<br>
-        ERROR: Required build target 'core-image-minimal' has no
-        buildable providers.<br>
-        Missing or unbuildable dependency chain was:
-        ['core-image-minimal', 'packagegroup-core-boot',
-        'busybox-hwclock']</font></small><br>
-    <br>
-    Summary: There were 2 ERROR messages shown, returning a non-zero
-    exit code.<br>
-    <br>
-    Is this a bug? Is the rtc being added from somewhere else? Should
-    this be happening?<br>
-    <br>
-    Best regards,<br>
-    <br>
-    Elvis Dowson<br>
-  </body>
-</html>
-
---------------050003030506000308030907--
