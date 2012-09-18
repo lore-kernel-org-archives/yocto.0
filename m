@@ -1,25 +1,31 @@
-Return-Path: <nitin.a.kamble@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 61636E0027F
-	for <yocto@yoctoproject.org>; Mon, 17 Sep 2012 15:35:41 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 17 Sep 2012 15:35:41 -0700
+Return-Path: <song.liu@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F229DE0027F
+	for <yocto@yoctoproject.org>; Mon, 17 Sep 2012 22:25:47 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 17 Sep 2012 22:25:47 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,439,1344236400"; d="scan'208";a="146090558"
-Received: from yocto-hm1.jf.intel.com ([10.23.232.32])
-	by AZSMGA002.ch.intel.com with ESMTP; 17 Sep 2012 15:35:40 -0700
-From: nitin.a.kamble@intel.com
-To: yocto@yoctoproject.org,
-	tom.zanussi@intel.com,
-	darren.hart@intel.com
-Date: Sun, 16 Sep 2012 15:27:08 -0700
-Message-Id: <0d86ea6eeb8e1fdc17aaa4200cb11981f500c728.1347834237.git.nitin.a.kamble@intel.com>
-X-Mailer: git-send-email 1.7.3.4
-In-Reply-To: <849041c84291bc274805ae375232e7d2eecbd0e7.1347834237.git.nitin.a.kamble@intel.com>
-References: <849041c84291bc274805ae375232e7d2eecbd0e7.1347834237.git.nitin.a.kamble@intel.com>
-In-Reply-To: <cover.1347834237.git.nitin.a.kamble@intel.com>
-References: <cover.1347834237.git.nitin.a.kamble@intel.com>
-Subject: [PATCH 2/2] emgd-driver-bin: avoid rebuilding issue of the recipe
+X-IronPort-AV: E=Sophos;i="4.80,441,1344236400"; d="scan'208";a="206741169"
+Received: from orsmsx104.amr.corp.intel.com ([10.22.225.131])
+	by orsmga002.jf.intel.com with ESMTP; 17 Sep 2012 22:25:47 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.152]) by
+	ORSMSX104.amr.corp.intel.com ([169.254.3.62]) with mapi id
+	14.01.0355.002; Mon, 17 Sep 2012 22:25:47 -0700
+From: "Liu, Song" <song.liu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Agenda: Yocto Project Technical Team Meeting - Tuesday,
+	September 18,
+	2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+Thread-Index: AQHNlV4OrJHXe2pg4UasYXQLutuNMQ==
+Date: Tue, 18 Sep 2012 05:25:46 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A485349CE@ORSMSX101.amr.corp.intel.com>
+References: <7E680CB2A76BB8438D08CF13C09FC53A4844CAD5@ORSMSX101.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.138]
+MIME-Version: 1.0
+Subject: Agenda: Yocto Project Technical Team Meeting - Tuesday, September 18, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,43 +37,136 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 17 Sep 2012 22:35:41 -0000
+X-List-Received-Date: Tue, 18 Sep 2012 05:25:48 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-From: Nitin A Kamble <nitin.a.kamble@intel.com>
+Agenda:
+=A0
+* Opens collection - 5 min (Song)
+* Yocto 1.3 status  - 10 min (Song/team)
+  https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.3_Status =20
+* Yocto 1.4 planning - 10 min (Song)
+  - Feature planning=20
+  - Process improvement
+* SWAT team rotation: Laurentiu -> Mihai
+* Opens - 10 min
+* Team sharing - 20 min
 
-This avoids errors like this:
-| cpio: ./usr/lib/libgstvabuffer.so.0 not created: newer or same age version exists
-| install: cannot stat `/srv/home/nitin/builds/build-crownbay/tmp/work/core2-poky-linux/emgd-driver-bin-1.14-r2/IEMGD_HEAD_Linux/MeeGo1.2/usr/lib/libGLES_CM.so': No such file or directory
 
-Signed-off-by: Nitin A Kamble <nitin.a.kamble@intel.com>
----
- .../xorg-driver/emgd-driver-bin_1.14.bb            |    5 ++++-
- 1 files changed, 4 insertions(+), 1 deletions(-)
+-----Original Appointment-----
 
-diff --git a/common/recipes-graphics/xorg-driver/emgd-driver-bin_1.14.bb b/common/recipes-graphics/xorg-driver/emgd-driver-bin_1.14.bb
-index 2464c38..6ea6278 100644
---- a/common/recipes-graphics/xorg-driver/emgd-driver-bin_1.14.bb
-+++ b/common/recipes-graphics/xorg-driver/emgd-driver-bin_1.14.bb
-@@ -7,7 +7,7 @@ to LICENSE_FLAGS_WHITELIST += \"License_emgd-driver-bin_1.14\" to your \
- local.conf in order to enable it in a build."
- LICENSE = "Intel-binary-only"
- LICENSE_FLAGS = "license_${PN}_${PV}"
--PR = "r2"
-+PR = "r3"
- 
- EMGD_LIC_DIR = "IEMGD_HEAD_Linux/License"
- EMGD_RPM_DIR = "IEMGD_HEAD_Linux/MeeGo1.2"
-@@ -38,6 +38,9 @@ FILES_${PN}-dbg += "${libdir}/xorg/modules/drivers/.debug ${libdir}/dri/.debug $
- S = "${WORKDIR}/${EMGD_RPM_DIR}"
- 
- do_install () {
-+    # cleanup previous files if any
-+    rm -rf usr 
-+
-     # A gstreamer VA buffer library
-     rpm2cpio ${S}/${EMGD_VIDEO_PLUGIN_DIR}/gst-vabuffer*.rpm | cpio -id
- 
--- 
-1.7.3.4
+We encourage people attending the meeting to logon the Yocto IRC chancel du=
+ring the meeting (optional):
+
+Yocto IRC: http://webchat.freenode.net/?channels=3D#yocto
+IRC Tutorial: http://www.irchelp.org/irchelp/irctutorial.html=20
+
+Conference details=20
+Conference name:=20
+Yocto Technical Team
+Conference date/start time:=20
+Tue Jun 26, 2012 at 10:00 AM Central Daylight Time=20
+Participants:=20
+30
+Duration:=20
+60 minutes=20
+Participant passcode:=20
+76994298
+Dial-in number:=20
+1.972.995.7777=20
+US Toll Free number:=20
+1.877.561.6828=20
+BlackBerry users, click this link to join your conference as a participant:
+1.972.995.7777x76994298#
+=A0
+Depending on where you are dialing from, either your BlackBerry will pause =
+and enter the passcode automatically or you will be prompted to click again=
+ to dial the passcode.
+
+Local and Global Access Numbers=20
+
+
+Country=20
+Dial-in number
+Australia:=20
+1800 636 843
+Czech Republic:=20
+242 430 350
+China (Beijing):=20
+From office dial 8-9957777 or 8784277=20
+Beijing Out of Office dial 5878 4277
+China (Shanghai):=20
+From office dial 8-9957777 or 3073322=20
+Shanghai Out of Office dial 2307 3322
+China (Shenzen):=20
+From office dial 8-9957777 or 6007877=20
+Shenzen Out of Office dial 2600 7877
+China (Other Cities):=20
+From IP phone dial 8-9957777=20
+Other cities - Non IP phone dial 021-23073322
+Denmark:=20
+8060 1400
+Finland:=20
+09 41333477
+France:=20
+0497 275888
+Germany:=20
+08161 803232
+Holland:=20
+030 2417490
+India:=20
+BSNL subscribers use 1800 425 9996 (Toll Free)
+Airtel subscribers use 0008 009 861 212 (Toll Free)
+From TI Campus use 89957777
+Others use 2509 9555 (Landline within Bangalore) or
+80 2509 9555 (Outside Bangalore)
+Israel:=20
+09 790 6715
+Italy:=20
+039 69061234 (039 is local city code not country code)
+Japan:=20
+From TI Campus use 8 995 7777=20
+Outside TI use 03 4331 3777
+Malaysia:=20
+From IP phone dial 2643799=20
+From Kuala Lumpur dial 4264 3799=20
+Outside Kuala Lumpur dial (03)4264 3799
+Norway:=20
+2 295 8744
+Philippines:=20
+From Baguio City use 4471177=20
+From Metro Manila area use 8702477
+Singapore:=20
+From IP phone dial 3894777=20
+Outside TI use 6389 4777
+South Korea:=20
+From IP phone dial 5606998=20
+From Seoul dial 5606998=20
+Outside Seoul dial (02)5606998
+Sweden:=20
+08 58755577
+Taiwan:=20
+From IP phone dial 1363=20
+From Taipei dial 2241 1363=20
+Outside Taipei dial (02)2241 1363
+Turkey:=20
+Landline Only dial 0811 288 0001=20
+then enter 877 633 1123=20
+UK:=20
+01604 663003
+US:=20
+972 995 7777 or 1877 561 6828
+
+Recurring conferences=20
+First scheduled conference:=20
+Tue Jun 26, 2012
+Recurrence frequency:=20
+Weekly - Every 1 week(s) on Tuesday
+Recurrence ends:=20
+End on Fri Jun 21, 2013, 10:40 AM CDT
+
+
 
 
