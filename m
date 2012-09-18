@@ -1,28 +1,33 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CC93AE002AC
-	for <yocto@yoctoproject.org>; Tue, 18 Sep 2012 05:07:58 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id 90F8BF8123A; Tue, 18 Sep 2012 06:07:55 -0600 (MDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=unavailable version=3.3.2
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id D461EF81239;
-	Tue, 18 Sep 2012 06:07:53 -0600 (MDT)
-Message-ID: <50586422.3080301@mlbassoc.com>
-Date: Tue, 18 Sep 2012 06:08:02 -0600
-From: Gary Thomas <gary@mlbassoc.com>
+Return-Path: <jfabernathy@gmail.com>
+Received: from mail-yx0-f176.google.com (mail-yx0-f176.google.com
+	[209.85.213.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D2661E002AC
+	for <yocto@yoctoproject.org>; Tue, 18 Sep 2012 05:19:35 -0700 (PDT)
+Received: by yenr9 with SMTP id r9so92866yen.35
+	for <yocto@yoctoproject.org>; Tue, 18 Sep 2012 05:19:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=message-id:date:from:user-agent:mime-version:to:subject
+	:content-type:content-transfer-encoding;
+	bh=prN4/tkO+zIcfgNwlRdNe9X3rcBu/NYM5DjR05z125E=;
+	b=mEOQQKvyTI+qcsDVspFYSFI2gNnEiksAJu39LwXQ6RKzGB+bJGYwzosKyjRyKW8ohd
+	xOxpZtUq8bqRkghQQCe1Wh+SZyA7zX0ut5y+0XQ4mdYyhV0NPB5wiPNxSw+fVKEW8va8
+	z3O+p3jyLgzrZjcn6c9fFo3pYtbrMKr6PgEUI/kF98eXwmm81yKmpAof1bGZgqbpTGoY
+	e6KSXVi16iUUahHbwJRt0Q0QvLnR3cBOcj5fJy2Va27BrgCNicYWFceMaMXW1OO1FYYy
+	TWhIpevX2Nrkpmqidao6Nm6XMSayQrEqztKAFAiPZCC8CGHpIJJNu9n2pE9u+qHbffsN
+	qU/w==
+Received: by 10.236.197.5 with SMTP id s5mr14494500yhn.114.1347970773088;
+	Tue, 18 Sep 2012 05:19:33 -0700 (PDT)
+Received: from [10.0.1.54] (nc-184-4-32-137.dhcp.embarqhsd.net. [184.4.32.137])
+	by mx.google.com with ESMTPS id s17sm12061495anj.13.2012.09.18.05.19.26
+	(version=SSLv3 cipher=OTHER); Tue, 18 Sep 2012 05:19:32 -0700 (PDT)
+Message-ID: <505866C9.5000605@gmail.com>
+Date: Tue, 18 Sep 2012 08:19:21 -0400
+From: Jim Abernathy <jfabernathy@gmail.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:15.0) Gecko/20120827 Thunderbird/15.0
 MIME-Version: 1.0
 To: yocto@yoctoproject.org
-References: <CANmVirgOc_q2oedDxnCQBqgP+-t8=DdFT_nhTGjbAh=9iZZhaA@mail.gmail.com>
-	<10140530.yfykbKl0dX@helios>
-In-Reply-To: <10140530.yfykbKl0dX@helios>
-Subject: Re: Bitbake for list packages
+Subject: SATO video player app
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,32 +39,22 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 18 Sep 2012 12:07:58 -0000
+X-List-Received-Date: Tue, 18 Sep 2012 12:19:36 -0000
 Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 2012-09-17 06:39, Paul Eggleton wrote:
-> On Monday 17 September 2012 09:37:13 Raul Rosetto Munoz wrote:
->> I know that habe a bitbake command that list all packages.
->
-> Do you mean list all recipes? If so, one of the following may be helpful:
->
->    bitbake -s
->
->    bitbake-layers show-recipes
+Now that the Denzil branch supports the CDV 1.0.3 hardware accelerated 
+video driver for Cedartrail, I would like to have the Video Player app 
+play the mp4 videos accelerated by the hardware. The player currently 
+does not accelerate the video.  To play accelerated video, I need to run 
+gst from the command line, for example:
 
-Of these, 'bitbake -s' seems more useful as it also tells you the
-package revision (PR) value used.
+gst-launch filesrc location=myvideofile.mp4 ! qtdemux name=demux ! queue 
+! vaapidecode ! vaapisink demux. ! queue ! ffdec_aac ! alsasink.
 
-Would it be possible to do something like
-   bitbake -s core-image-minimal
-to see just what packages/recipes are used to create that image?
-That would be most useful, especially for things like documentation
-and quality/revision tracking.
+Is there a way to configure the GUI video player to include the right 
+pipeline options?
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+Jim A
+
 
