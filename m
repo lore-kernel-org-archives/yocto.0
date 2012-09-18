@@ -1,28 +1,35 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2A368E002AC;
-	Tue, 18 Sep 2012 05:22:03 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id q8ICM1tK020545
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Tue, 18 Sep 2012 05:22:01 -0700 (PDT)
-Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.2.309.2;
-	Tue, 18 Sep 2012 05:22:01 -0700
-Message-ID: <5058675D.9020707@windriver.com>
-Date: Tue, 18 Sep 2012 08:21:49 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:12.0) Gecko/20120430 Thunderbird/12.0.1
+Return-Path: <ross.burton@intel.com>
+Received: from azsmga102.ch.intel.com (mga12.intel.com [143.182.124.36])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CD832E00344
+	for <yocto@yoctoproject.org>; Tue, 18 Sep 2012 06:26:49 -0700 (PDT)
+Received: from mail-ob0-f176.google.com ([209.85.214.176])
+	by mga14.intel.com with ESMTP/TLS/RC4-SHA; 18 Sep 2012 06:26:48 -0700
+Received: by obbtb18 with SMTP id tb18so13552695obb.35
+	for <yocto@yoctoproject.org>; Tue, 18 Sep 2012 06:26:47 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type:x-gm-message-state;
+	bh=ZudDDG35O8GzzXS3uRlVhMTB7vjglEDsPisscbWBc2c=;
+	b=ditCbsOpQWLeF247Z6HVupIjbxr636FxwCg8m48SqREHzCRtTYXQGAc2kgWWAuEH5p
+	1B0CnTHrWA1C1A6NVBUTX15fn2gl9Zpz/dI43GtGiM35omtc9ySZ0+KUol5UGJXhrrEz
+	5qDwicQo1V0Hd1Ba8sd9qoWdbWVG01mU0MqvqI/pYBVlIo/p6c98woii5jYvs+k4J82r
+	iDk8ACP188dM2mfLeh6Ag3xONLBjm16wUFnhsr7JbdkxwFExaEw7LLEmIcGc9Ah88gIg
+	/lRe5mqJLE+U5RQzVuZc1Jb4cEJmBvGcIc+IV4YNcVKpRVyK/raMRXWZdCu4FPnwQDy8
+	wVrQ==
+Received: by 10.60.29.72 with SMTP id i8mr267031oeh.26.1347974807677; Tue, 18
+	Sep 2012 06:26:47 -0700 (PDT)
 MIME-Version: 1.0
-To: Mihai Lindner <mihaix.lindner@linux.intel.com>
-References: <cover.1347946602.git.mihaix.lindner@linux.intel.com>
-In-Reply-To: <cover.1347946602.git.mihaix.lindner@linux.intel.com>
-Cc: yocto@yoctoproject.org, Darren Hart <dvhart@linux.intel.com>,
-	Development list for the linux-yocto repositories
-	<linux-yocto@yoctoproject.org>
-Subject: Re: [PATCH 0/1] [linux-yocto-3.0] boot-live.cfg: enable BLK_DEV_INITRD in kernel
+Received: by 10.182.79.105 with HTTP; Tue, 18 Sep 2012 06:26:27 -0700 (PDT)
+In-Reply-To: <505866C9.5000605@gmail.com>
+References: <505866C9.5000605@gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Tue, 18 Sep 2012 14:26:27 +0100
+Message-ID: <CAJTo0LYCGn4kGUhLgs54AxBA+21LCWUFjD-RXc4QQiGPuWhBVA@mail.gmail.com>
+To: Jim Abernathy <jfabernathy@gmail.com>
+X-Gm-Message-State: ALoCoQlRoGOL9z0q+WnqdKsO5a5+APEH3h877GiZvj4FjdLn7ZuT3RLTnvX1kNYmjOwqtvktQjvl
+Cc: yocto@yoctoproject.org
+Subject: Re: SATO video player app
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,52 +41,21 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 18 Sep 2012 12:22:03 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 18 Sep 2012 13:26:50 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On 12-09-18 01:59 AM, Mihai Lindner wrote:
-> Please pull into linux-yocto-3.0, meta.
->
+On 18 September 2012 13:19, Jim Abernathy <jfabernathy@gmail.com> wrote:
+> Is there a way to configure the GUI video player to include the right
+> pipeline options?
 
-Adding linux-yocto, Darren and Tom.
+Not really - the video player can't know the pipeline to use for each
+specific video.  GStreamer's playbin element should have constructed
+the pipeline that you specified.
 
-This looks fine to me, and we should consider it for all the repositories,
-not just 3.0.
+The video player really is a toy and no more, but I've just picked up
+a Cedar Trail netbook to fix issues like this.  I'm about to leave for
+a conference but I'll bring it with me and see if there's anything
+obviously wrong.
 
-Tom/Darren. Any side effects you can think of for this change ?
-
-Bruce
-
-> Added BLK_DEV_INITRD in boot-live.cfg for linux-yocto-3.0, meta branch.
-> Cedartrail (at least) cannot boot live from ISO image due to
-> BLK_DEV_INITRD missing:
-> "VFS: Cannot open root device "ram0" or unkown-block(0,0)"
-> Should fix #3050
->
-> [YOCTO #3050]
->
-> Signed-off-by: Mihai Lindner<mihaix.lindner@linux.intel.com>
-> ---
->
-> The following changes since commit bf5ee4945ee6d748e6abe16356f2357f76b5e2f0:
->
->    meta: rename virto.scc to virtio.scc (2012-08-18 22:09:35 -0400)
->
-> are available in the git repository at:
->    git://git.yoctoproject.org/poky-contrib mihai/linux-yocto-3.0/meta
->
-> Mihai Lindner (1):
->        boot-live.cfg: enable BLK_DEV_INITRD in kernel
->
->   meta/cfg/kernel-cache/cfg/boot-live.cfg |    2 ++
->   1 files changed, 2 insertions(+), 0 deletions(-)
->
-> Mihai Lindner (1):
->    boot-live.cfg: enable BLK_DEV_INITRD in kernel
->
->   meta/cfg/kernel-cache/cfg/boot-live.cfg |    2 ++
->   1 files changed, 2 insertions(+), 0 deletions(-)
->
-
+Ross
 
