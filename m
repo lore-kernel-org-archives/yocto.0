@@ -1,23 +1,25 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1DDCBE002AB
-	for <yocto@yoctoproject.org>; Tue, 18 Sep 2012 15:30:58 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 18 Sep 2012 15:30:57 -0700
+Return-Path: <darren.hart@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E6682E002AB
+	for <yocto@yoctoproject.org>; Tue, 18 Sep 2012 15:54:11 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 18 Sep 2012 15:54:00 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,445,1344236400"; d="scan'208";a="223694834"
-Received: from unknown (HELO [10.255.13.148]) ([10.255.13.148])
-	by fmsmga001.fm.intel.com with ESMTP; 18 Sep 2012 15:30:57 -0700
-Message-ID: <1348007456.6185.81.camel@empanada>
-From: Tom Zanussi <tom.zanussi@intel.com>
+X-IronPort-AV: E=Sophos;i="4.80,445,1344236400"; d="scan'208";a="194595647"
+Received: from unknown (HELO envy.home) ([10.255.13.79])
+	by orsmga001.jf.intel.com with ESMTP; 18 Sep 2012 15:54:11 -0700
+Message-ID: <5058FB74.40503@intel.com>
+Date: Tue, 18 Sep 2012 15:53:40 -0700
+From: Darren Hart <darren.hart@intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:15.0) Gecko/20120828 Thunderbird/15.0
+MIME-Version: 1.0
 To: nitin.a.kamble@intel.com
-Date: Tue, 18 Sep 2012 17:30:56 -0500
-In-Reply-To: <cover.1347834237.git.nitin.a.kamble@intel.com>
 References: <cover.1347834237.git.nitin.a.kamble@intel.com>
-X-Mailer: Evolution 3.4.1 (3.4.1-2.fc17) 
-Mime-Version: 1.0
-Cc: yocto@yoctoproject.org, darren.hart@intel.com
-Subject: Re: [PATCH 0/2] emgd recipe misc fixes
+	<0d86ea6eeb8e1fdc17aaa4200cb11981f500c728.1347834237.git.nitin.a.kamble@intel.com>
+In-Reply-To: <0d86ea6eeb8e1fdc17aaa4200cb11981f500c728.1347834237.git.nitin.a.kamble@intel.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH 2/2] emgd-driver-bin: avoid rebuilding issue of the recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,42 +31,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 18 Sep 2012 22:30:58 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Tue, 18 Sep 2012 22:54:12 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-On Sun, 2012-09-16 at 15:27 -0700, nitin.a.kamble@intel.com wrote:
+On 09/16/2012 03:27 PM, nitin.a.kamble@intel.com wrote:
 > From: Nitin A Kamble <nitin.a.kamble@intel.com>
 > 
-> Here are the fixes related to the emgd recipe. These are verified with crownbay BSP with the latest master branches.
+> This avoids errors like this:
+> | cpio: ./usr/lib/libgstvabuffer.so.0 not created: newer or same age version exists
+> | install: cannot stat `/srv/home/nitin/builds/build-crownbay/tmp/work/core2-poky-linux/emgd-driver-bin-1.14-r2/IEMGD_HEAD_Linux/MeeGo1.2/usr/lib/libGLES_CM.so': No such file or directory
 > 
+> Signed-off-by: Nitin A Kamble <nitin.a.kamble@intel.com>
+> ---
+>  .../xorg-driver/emgd-driver-bin_1.14.bb            |    5 ++++-
+>  1 files changed, 4 insertions(+), 1 deletions(-)
+> 
+> diff --git a/common/recipes-graphics/xorg-driver/emgd-driver-bin_1.14.bb b/common/recipes-graphics/xorg-driver/emgd-driver-bin_1.14.bb
+> index 2464c38..6ea6278 100644
+> --- a/common/recipes-graphics/xorg-driver/emgd-driver-bin_1.14.bb
+> +++ b/common/recipes-graphics/xorg-driver/emgd-driver-bin_1.14.bb
+> @@ -7,7 +7,7 @@ to LICENSE_FLAGS_WHITELIST += \"License_emgd-driver-bin_1.14\" to your \
+>  local.conf in order to enable it in a build."
+>  LICENSE = "Intel-binary-only"
+>  LICENSE_FLAGS = "license_${PN}_${PV}"
+> -PR = "r2"
+> +PR = "r3"
+>  
+>  EMGD_LIC_DIR = "IEMGD_HEAD_Linux/License"
+>  EMGD_RPM_DIR = "IEMGD_HEAD_Linux/MeeGo1.2"
+> @@ -38,6 +38,9 @@ FILES_${PN}-dbg += "${libdir}/xorg/modules/drivers/.debug ${libdir}/dri/.debug $
+>  S = "${WORKDIR}/${EMGD_RPM_DIR}"
+>  
+>  do_install () {
+> +    # cleanup previous files if any
+> +    rm -rf usr 
+> +
 
-Sorry, but I'm still not able to verify this with the latest poky and
-meta-intel master (no X due to missing /usr/bin/Xorg).
+This looks like a hack. If nothing has changed, this shouldn't be an
+issue. If something has changed, we should triggering a new build
+anyway. What's actually going on here?
 
-poky/master: 913944d904266bf90af0cad94b4f0fb3652bd29d
-meta-intel/master: 574d10a3a2040ff685b74f9d4034f045d0191e5b
-
-Tom
-
-> Thanks,
-> Nitin
-> 
-> The following changes since commit 574d10a3a2040ff685b74f9d4034f045d0191e5b:
-> 
->   meta-intel: move emgd-driver-bin_1.14 to xorg-driver/ (2012-09-15 15:02:43 -0500)
-> 
-> are available in the git repository at:
->   git://git.yoctoproject.org/meta-intel-contrib nitin/work
->   http://git.yoctoproject.org/cgit.cgi/meta-intel-contrib/log/?h=nitin/work
-> 
-> Nitin A Kamble (2):
->   emgd-driver-bin: Fix package naming issue
->   emgd-driver-bin: avoid rebuilding issue of the recipe
-> 
->  .../xorg-driver/emgd-driver-bin_1.14.bb            |   11 ++++++++++-
->  1 files changed, 10 insertions(+), 1 deletions(-)
-> 
-
-
+-- 
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
