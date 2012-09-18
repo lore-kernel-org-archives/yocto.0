@@ -1,24 +1,23 @@
-Return-Path: <mihaix.lindner@linux.intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 31B1AE002AB
-	for <yocto@yoctoproject.org>; Mon, 17 Sep 2012 23:00:00 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 17 Sep 2012 23:00:00 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,441,1344236400"; d="scan'208";a="223405631"
-Received: from linux.jf.intel.com (HELO linux.intel.com) ([10.23.219.25])
-	by fmsmga002.fm.intel.com with ESMTP; 17 Sep 2012 22:59:59 -0700
-Received: from qa.intel.com (qa.rb.intel.com [10.237.100.11])
-	by linux.intel.com (Postfix) with ESMTP id DA41E2C8001;
-	Mon, 17 Sep 2012 22:59:59 -0700 (PDT)
-From: Mihai Lindner <mihaix.lindner@linux.intel.com>
-To: <yocto@yoctoproject.org>
-Date: Tue, 18 Sep 2012 09:00:04 +0300
-Message-Id: <7f2da05208f4cbeb4d9a4faa66ce78fb49bd6352.1347946602.git.mihaix.lindner@linux.intel.com>
-X-Mailer: git-send-email 1.7.8.6
-In-Reply-To: <cover.1347946602.git.mihaix.lindner@linux.intel.com>
-References: <cover.1347946602.git.mihaix.lindner@linux.intel.com>
-Subject: [PATCH 1/1] [linux-yocto-3.0] boot-live.cfg: enable BLK_DEV_INITRD in kernel
+Return-Path: <treebody@embedstudy.com>
+Received: from smtpbg299.qq.com (smtpbg299.qq.com [184.105.67.99])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id 41A6FE002AC
+	for <yocto@yoctoproject.org>; Tue, 18 Sep 2012 03:08:24 -0700 (PDT)
+X-QQ-SSF: 00000000000000F000000000000000G
+X-HAS-ATTACH: no
+X-QQ-BUSINESS-ORIGIN: 2
+X-Originating-IP: 222.92.156.26
+X-QQ-STYLE: 
+X-QQ-mid: webmail676t1347954675t2156411
+From: "=?ISO-8859-1?B?TGl1?=" <treebody@embedstudy.com>
+To: "=?ISO-8859-1?B?eW9jdG8=?=" <yocto@yoctoproject.org>
+Mime-Version: 1.0
+Date: Tue, 18 Sep 2012 15:51:15 +0800
+X-Priority: 3
+Message-ID: <tencent_7FE315F821B5993B36CB513B@qq.com>
+X-QQ-MIME: TCMime 1.0 by Tencent
+X-Mailer: QQMail 2.x
+X-QQ-Mailer: QQMail 2.x
+Subject: how to use makefile in bitbake
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,32 +29,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 18 Sep 2012 06:00:00 -0000
+X-List-Received-Date: Tue, 18 Sep 2012 10:08:25 -0000
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_505827F3_091BADB0_4D39DAE0"
+Content-Transfer-Encoding: 8Bit
 
-Added BLK_DEV_INITRD in boot-live.cfg for linux-yocto-3.0, meta branch.
-Cedartrail (at least) cannot boot live from ISO image due to
-BLK_DEV_INITRD missing:
-"VFS: Cannot open root device "ram0" or unkown-block(0,0)"
-Should fix #3050
+------=_NextPart_505827F3_091BADB0_4D39DAE0
+Content-Type: text/plain;
+	charset="ISO-8859-1"
+Content-Transfer-Encoding: base64
 
-[YOCTO #3050]
+SGkgYWxsLA0KICAgICBJIGhhdmUgYSBwcm9qZWN0IHdoaWNoIGlzIGJ1aWx0IGJ5IGJ1aWxk
+cm9vdCxzbyBpdCB1c2VzIGEgc2V0IG9mIG1ha2VmaWxlcyB0byBidWlsZCBpbWFnZS5CdXQg
+IEkgd2FudCB0byB1c2UgYml0YmFrZSBpbnN0ZWFkIG9mIGJ1aWxkcm9vdCB0byBidWlsZCB0
+aGUgcHJvamVjdC5Ob3cgSSBhbSBmYWNlZCB3aXRoIHNvbWUgZGlmZmljdWx0aWVzIDoNCiAx
+KSBIb3cgY2FuIEkgdXNlIHRoZSB2YXJpYWJsZXMgYW5kIHJ1bGVzIGluIG1ha2VmaWxlID8g
+SSBrbm93IGJpdGJha2UgY2FuIG5vdCBwYXJzZSBmaWxlcyBsaWtlIG1ha2VmaWxlLg0KICAN
+CiBJcyB0aGVyZSBhbnkgZXhhbXBsZSBsaWtlIHRoaXMgcHJvYmxlbT8gQ2FuIGFueW9uZSBn
+aXZlIG1lIHNvbWUgZ29vZCBpZGVhcz8NCiAgDQogICAgQmVzdCB3aXNoZXMsDQogLS0tLS0t
+LS0tLS0tLS0tTGl1
 
-Signed-off-by: Mihai Lindner <mihaix.lindner@linux.intel.com>
----
- meta/cfg/kernel-cache/cfg/boot-live.cfg |    2 ++
- 1 files changed, 2 insertions(+), 0 deletions(-)
+------=_NextPart_505827F3_091BADB0_4D39DAE0
+Content-Type: text/html;
+	charset="ISO-8859-1"
+Content-Transfer-Encoding: base64
 
-diff --git a/meta/cfg/kernel-cache/cfg/boot-live.cfg b/meta/cfg/kernel-cache/cfg/boot-live.cfg
-index a102052..a3ea9f5 100644
---- a/meta/cfg/kernel-cache/cfg/boot-live.cfg
-+++ b/meta/cfg/kernel-cache/cfg/boot-live.cfg
-@@ -7,3 +7,5 @@ CONFIG_RD_GZIP=y
- CONFIG_BLK_DEV_IDECD=y
- CONFIG_ISO9660_FS=y
- CONFIG_BLK_DEV_SR=y
-+# Initial ramdisk support
-+CONFIG_BLK_DEV_INITRD=y
--- 
-1.7.8.6
+PERJVj5IaSBhbGwsPC9ESVY+DQo8RElWPiZuYnNwOyAmbmJzcDsgSSBoYXZlIGEgcHJvamVj
+dCB3aGljaCBpcyBidWlsdCBieSBidWlsZHJvb3Qsc28gaXQgdXNlcyBhIHNldCBvZiBtYWtl
+ZmlsZXMgdG8gYnVpbGQgaW1hZ2UuQnV0Jm5ic3A7IEkgd2FudCB0byB1c2UgYml0YmFrZSBp
+bnN0ZWFkIG9mIGJ1aWxkcm9vdCB0byBidWlsZCB0aGUgcHJvamVjdC5Ob3cgSSBhbSBmYWNl
+ZCB3aXRoIHNvbWUgZGlmZmljdWx0aWVzIDo8L0RJVj4NCjxESVY+MSkgSG93IGNhbiBJIHVz
+ZSB0aGUgdmFyaWFibGVzIGFuZCBydWxlcyBpbiBtYWtlZmlsZSA/IEkga25vdyBiaXRiYWtl
+IGNhbiBub3QgcGFyc2UgZmlsZXMgbGlrZSBtYWtlZmlsZS48L0RJVj4NCjxESVY+Jm5ic3A7
+PC9ESVY+DQo8RElWPklzIHRoZXJlIGFueSBleGFtcGxlIGxpa2UgdGhpcyBwcm9ibGVtPyBD
+YW4gYW55b25lIGdpdmUgbWUgc29tZSBnb29kIGlkZWFzPzwvRElWPg0KPERJVj4mbmJzcDs8
+L0RJVj4NCjxESVY+Jm5ic3A7Jm5ic3A7IEJlc3Qgd2lzaGVzLDwvRElWPg0KPERJVj4tLS0t
+LS0tLS0tLS0tLS1MaXU8L0RJVj4NCjxESVY+Jm5ic3A7PC9ESVY+
 
-
+------=_NextPart_505827F3_091BADB0_4D39DAE0--
