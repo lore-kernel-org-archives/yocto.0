@@ -1,26 +1,34 @@
-Return-Path: <kishore.k.bodke@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CC558E0027F
-	for <yocto@yoctoproject.org>; Wed, 19 Sep 2012 15:46:59 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 19 Sep 2012 15:46:59 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,451,1344236400"; d="scan'208";a="194743939"
-Received: from kishore-desktop.sc.intel.com (HELO localhost)
-	([143.183.188.166])
-	by azsmga001.ch.intel.com with ESMTP; 19 Sep 2012 15:46:32 -0700
-From: kishore.k.bodke@intel.com
-To: tom.zanussi@intel.com,
-	nitin.a.kamble@intel.com,
-	yocto@yoctoproject.org
-Date: Wed, 19 Sep 2012 15:46:57 -0700
-Message-Id: <3c259d65d5503d566558b9eb04651a5e2e565545.1348094339.git.kishore.k.bodke@intel.com>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <18fcddb5acd36f328312adb04b8b9b1235d31d06.1348094339.git.kishore.k.bodke@intel.com>
-References: <18fcddb5acd36f328312adb04b8b9b1235d31d06.1348094339.git.kishore.k.bodke@intel.com>
-In-Reply-To: <cover.1348094339.git.kishore.k.bodke@intel.com>
-References: <cover.1348094339.git.kishore.k.bodke@intel.com>
-Subject: [PATCH 3/3] [meta-intel] meta-crystalforest: Add Silesia Corpus recipe.
+Return-Path: <bruce.ashfield@gmail.com>
+Received: from mail-lb0-f176.google.com (mail-lb0-f176.google.com
+	[209.85.217.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 53329E0027F
+	for <yocto@yoctoproject.org>; Wed, 19 Sep 2012 16:36:06 -0700 (PDT)
+Received: by lboi15 with SMTP id i15so2043852lbo.35
+	for <yocto@yoctoproject.org>; Wed, 19 Sep 2012 16:36:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=ABS3FIkG9Ow6sudod1sUU/cmUpCzzROs4Fdb4zgWqx0=;
+	b=EPGMv6PuHXeHo31WxpUnJZ+tqzxF4UYx6i0vIRotYpAPaAmZbSoXvT5q8a4PBTjei9
+	Zj3wa1n6xghm3Z7YqTEA24tiFD+2ibIOzANzOBEMssKjReL/qjKjFBRPThfa2BKpFVgf
+	8J68pwyZwsR7+VYXceWzj8D9ONRaka9JVSOKSD1QLh2B7+aGt7jWi0/nOCntfWy851tU
+	lIfeinDpihMtm0/XNEXAkpd7MFvMhobrIJbbfAHUqmPPg3wRBVk5hK5yw7PwRNbqeYMb
+	/Yy4VlFZ8KU4hM3IxVfq48EQxb2g9j9QWMTnCe/oZZ5tce45/gWsGX1ubE9xUsYqWHQu
+	bA5g==
+MIME-Version: 1.0
+Received: by 10.112.86.232 with SMTP id s8mr70321lbz.117.1348097764793; Wed,
+	19 Sep 2012 16:36:04 -0700 (PDT)
+Received: by 10.114.68.20 with HTTP; Wed, 19 Sep 2012 16:36:04 -0700 (PDT)
+In-Reply-To: <87haqt90nu.fsf@sonatest.com>
+References: <87ipb9d9u8.fsf@sonatest.com> <505A2FAF.60609@linux.intel.com>
+	<87r4px91jy.fsf@sonatest.com> <505A3245.7070503@linux.intel.com>
+	<87haqt90nu.fsf@sonatest.com>
+Date: Wed, 19 Sep 2012 19:36:04 -0400
+Message-ID: <CADkTA4ONx0E3+a-ijSwjqY-5-Q_PBUhyniawNKz3V44LsZ==Yw@mail.gmail.com>
+From: Bruce Ashfield <bruce.ashfield@gmail.com>
+To: Marc Ferland <ferlandm@sonatest.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: About bug 2331
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,58 +40,64 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 19 Sep 2012 22:47:00 -0000
+X-List-Received-Date: Wed, 19 Sep 2012 23:36:06 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-From: Kishore Bodke <kishore.k.bodke@intel.com>
+On Wed, Sep 19, 2012 at 5:13 PM, Marc Ferland <ferlandm@sonatest.com> wrote:
+> Saul Wold <sgw@linux.intel.com> writes:
+>
+>> On 09/19/2012 01:53 PM, Marc Ferland wrote:
+>>> Saul Wold <sgw@linux.intel.com> writes:
+>>>
+>>>> On 09/19/2012 01:41 PM, Marc Ferland wrote:
+>>>>> Hi,
+>>>>>
+>>>>> I'm currently trying to create a "live" system with squashfs+unionfs and
+>>>>> I stumbled on the same bug described here:
+>>>>>
+>>>>> https://bugzilla.yoctoproject.org/show_bug.cgi?id=2331
+>>>>>
+>>>>> I was wondering if there was a plan to resolve this issue for 1.3?
+>>>>>
+>>>> Marc,
+>>>>
+>>>> It seems to be marked as resolved and verified, is there still and
+>>>> issue?  If so we need to reopen this bug.  Or are you referring to the
+>>>> underlying issue?
+>>>>
+>>> I was referring to the underlying issue.
+>>>
+>>>
+>> No, unfortunately it seems that did not have visibility, I think bug
+>> 1487 is open against that issue, at least with an ISO image, which is
+>> what got partially reverted.  I think the issue was upstream unionfs,
+>> do you know if any changes to resolve the problem upstream?
+>>
+> Unfortunately no. Maybe I'll have more chance using aufs or maybe
+> overlayfs. Unionfs looks pretty much dead... I'm probably better off
+> without it!
 
-Add a new recipe Silesia Corpus for testing with another
-Data Compression algorithm for Crystal Forest BSP.
+If you check the unionfs support I have staged in the 3.4 kernel, it contains
+several big usability fixes.
 
-Signed-off-by: Kishore Bodke <kishore.k.bodke@intel.com>
----
- .../silesia-corpus/silesia-corpus.bb               |   32 ++++++++++++++++++++
- 1 file changed, 32 insertions(+)
- create mode 100644 meta-crystalforest/recipes-corpus/silesia-corpus/silesia-corpus.bb
+If you look at the yocto dev kernel, I've dropped unionfs and am taking aufs
+for a spin (while watching overlayfs and unionmounts as well).
 
-diff --git a/meta-crystalforest/recipes-corpus/silesia-corpus/silesia-corpus.bb b/meta-crystalforest/recipes-corpus/silesia-corpus/silesia-corpus.bb
-new file mode 100644
-index 0000000..73058eb
---- /dev/null
-+++ b/meta-crystalforest/recipes-corpus/silesia-corpus/silesia-corpus.bb
-@@ -0,0 +1,32 @@
-+SUMMARY = "The Data Compression Resource on the Internet"
-+DESCRIPTION = "The intention of the Silesia corpus is to provide a data set of files \
-+		that covers the typical data types used nowadays. \
-+		The sizes of the files are between 6 MB and 51 MB."
-+
-+HOMEPAGE = "http://www.data-compression.info/index.htm"
-+SECTION = "misc"
-+LICENSE = "GPLv2"
-+LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/GPL-2.0;md5=801f80980d171dd6425610833a22dbe6"
-+
-+PR="r0"
-+
-+S = "${WORKDIR}/silesia-corpus"
-+
-+SRC_URI = "http://sun.aei.polsl.pl/~sdeor/corpus/silesia.zip"
-+
-+SRC_URI[md5sum] = "c240c17d6805fb8a0bde763f1b94cd99"
-+SRC_URI[sha256sum] = "0626e25f45c0ffb5dc801f13b7c82a3b75743ba07e3a71835a41e3d9f63c77af"
-+
-+do_unpack () {
-+ 	 mkdir -p ${S}
-+	cp ${DL_DIR}/silesia.zip ${S}
-+	cd ${S} && unzip silesia.zip
-+}
-+
-+do_install () {
-+
-+	install -d 			${D}${base_libdir}/firmware
-+	install -m 664 ${S}/* 		${D}${base_libdir}/firmware
-+}
-+
-+FILES_${PN} = "/lib/firmware/*"
+So there are options to try that may address that issue, and also chart a
+way forward.
+
+Cheers,
+
+Bruce
+
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
+
+
 -- 
-1.7.9.5
-
+"Thou shalt not follow the NULL pointer, for chaos and madness await
+thee at its end"
 
