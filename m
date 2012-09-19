@@ -1,35 +1,24 @@
-Return-Path: <evadeflow@gmail.com>
-Received: from mail-ob0-f176.google.com (mail-ob0-f176.google.com
-	[209.85.214.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6379EE004AB
-	for <yocto@yoctoproject.org>; Wed, 19 Sep 2012 10:33:46 -0700 (PDT)
-Received: by obbtb18 with SMTP id tb18so1701440obb.35
-	for <yocto@yoctoproject.org>; Wed, 19 Sep 2012 10:33:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=pgr/ZccuaGVzi2luUKICtGXh9qQQBpsUwdfytmHuKH0=;
-	b=uMST/MSaQgxkQJz7bAc/GWRAu1LTlfGrcAFnarOSswiHex5tjbS4GwwJbVvV93zy3O
-	CaCgDcDz6j78SiuKABXwyRSAilU2rGAca/KV5rJ1YZYVb+RVjiHKbl8TMKz30fcs9g/N
-	hFSXkhxJlnK6wHrEu8N/w91upDiaO1HNGGoI3W9cAHrdENnfDkvGHoWwp2b83Uf1G8Ol
-	JIYVlvlYSz7SPPVlZkgwlfer1W3FRlZ8uOxi33CMnGBxBWpfB5lUp7ioUxcpJWRrNMox
-	yqT0lijhwD4R24YtysyqRmREx6bcoJEU9plHI6dmz+31+D6CaoMkE2/A59bPaPZ2ry8i
-	yxWA==
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6EFDFE013DB
+	for <yocto@yoctoproject.org>; Wed, 19 Sep 2012 10:34:46 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 19 Sep 2012 10:34:34 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,450,1344236400"; d="scan'208";a="194943242"
+Received: from unknown (HELO helios.localnet) ([10.252.121.228])
+	by orsmga001.jf.intel.com with ESMTP; 19 Sep 2012 10:34:45 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: "Saxena, Rahul" <rahul.saxena@intel.com>
+Date: Wed, 19 Sep 2012 18:34:43 +0100
+Message-ID: <2395129.l0asU7EgLM@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.9 (Linux/3.2.0-30-generic-pae; KDE/4.9.0; i686; ; )
+In-Reply-To: <63ECFF2A2302B44093D7CE9E9962C49003CCC541@ORSMSX107.amr.corp.intel.com>
+References: <63ECFF2A2302B44093D7CE9E9962C49003CCC541@ORSMSX107.amr.corp.intel.com>
 MIME-Version: 1.0
-Received: by 10.182.76.194 with SMTP id m2mr3628910obw.27.1348076025978; Wed,
-	19 Sep 2012 10:33:45 -0700 (PDT)
-Received: by 10.76.153.198 with HTTP; Wed, 19 Sep 2012 10:33:45 -0700 (PDT)
-In-Reply-To: <5059FF96.7080907@mlbassoc.com>
-References: <CAMAb8ZO=KzrgNoW4VPADtCn27KUfviP4QL84_ia5sAUbj_9a3Q@mail.gmail.com>
-	<5059F7ED.7030006@mlbassoc.com>
-	<CAMAb8ZMUJa_MpkFfRqbwyZpMn6MAa=guE0bNc5+_J+Pkdae2FQ@mail.gmail.com>
-	<5059FF96.7080907@mlbassoc.com>
-Date: Wed, 19 Sep 2012 13:33:45 -0400
-Message-ID: <CAMAb8ZNHj29dcoSjjcF+XnULeyyZa=6MPyNtm-V4VAJ1jGFTHw@mail.gmail.com>
-From: Evade Flow <evadeflow@gmail.com>
-To: Gary Thomas <gary@mlbassoc.com>
 Cc: yocto@yoctoproject.org
-Subject: Re: BB_NO_NETWORK and own-mirrors not working with meta-systemd
+Subject: Re: maximum recursion depth exceeded errors with gnutls_2.12.17.bb
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,158 +30,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 19 Sep 2012 17:33:46 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Wed, 19 Sep 2012 17:34:46 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-I'm not sure how to answer your questions, unfortunately, this is all
-quite new to me. I'm not the maintainer of said layer, and don't know
-anything at all yet about 'layer etiquette'. There does seem to be a
-README.md file in meta-systemd, though:
+On Wednesday 19 September 2012 17:00:20 Saxena, Rahul wrote:
+> I have suddenly started getting maximum recursion depth exceeded python
+> errors with gnutls_2.12.17.bb
+> 
+>  recipe on Denzil branch.
+> 
+> I am copying snippets of the message log below (some of the stuff that
+> repeats has been removed)
+> 
+> Any suggestions as what could be the problem ?
 
-  - http://git.yoctoproject.org/cgit/cgit.cgi/meta-systemd/tree/README.md
+This is a symptom of this bug:
 
-I'm just trying to build the thing. :-)  I'll try converting the tag
-name into a commit hash and see if that helps, thanks a lot...
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=3073
 
+I've sent a backported patch to fix this for denzil, Scott is about to add it 
+to his queue:
 
-On Wed, Sep 19, 2012 at 1:23 PM, Gary Thomas <gary@mlbassoc.com> wrote:
-> On 2012-09-19 11:15, Evade Flow wrote:
->>>
->>> Where did you get that meta-systemd layer?
->>
->>
->>> From here:
->>
->>
->>    - http://git.yoctoproject.org/cgit/cgit.cgi/meta-systemd/
->
->
-> Why are there conflicting meta-systemd layers (and pointers thereto)??
-> This layer in git.yoctoproject.org doesn't seem even "legal" - where is
-> the README that is expected with every layer?  Without it, I don't have
-> enough info to be able to report problems like yours...
->
-> The reason your build fails with BB_NO_NETWORK is that the kmod_7.bb
-> recipe refers to a git tag, not a specific revision, which cannot be
-> resolved without using the network.
->
->
->>
->>
->> On Wed, Sep 19, 2012 at 12:50 PM, Gary Thomas <gary@mlbassoc.com> wrote:
->>>
->>> On 2012-09-19 10:34, Evade Flow wrote:
->>>>
->>>>
->>>> Trying to build the meta-ivi discovery-image behind a firewall is
->>>> proving to be quite a challenge. I tried modifying my conf/local.conf
->>>> file as follows:
->>>>
->>>> CONNECTIVITY_CHECK_URIS=""
->>>> BB_GENERATE_MIRROR_TARBALLS = "1"
->>>> SOURCE_MIRROR_URL ?= "file:///home/evadeflow/projects/poky-mirror/"
->>>> INHERIT += "own-mirrors"
->>>>
->>>> and then ran:
->>>>
->>>> % bitbake discovery-image
->>>>
->>>> in a VM on my home laptop over the weekend. (I'm trying to build using
->>>> the meta-ivi layer, per the instructions in its README.) After grinding
->>>> and churning for some 60+ hours, it finally succeeded, leaving 11 GB of
->>>> 'stuff' in my poky-mirror folder.
->>>>
->>>> Then, I copied the poky-mirror folder to a firewalled machine at work
->>>> and added:
->>>>
->>>> BB_NO_NETWORK="1"
->>>>
->>>> to local.conf.  When I tried to bitbake discovery-image on this machine,
->>>> I got the following error:
->>>>
->>>>
->>>> NOTE: Running task 697 of 3568 (ID: 1374,
->>>>
->>>>
->>>> /home/evadeflow/projects/poky-git/meta-systemd/recipes-kernel/kmod/kmod_7.bb,
->>>> do_fetch)
->>>> NOTE: package kmod-7-r0: task do_fetch: Started
->>>> ERROR: Function failed: Network access disabled through BB_NO_NETWORK
->>>> but access rquested with command git ls-remote
->>>> git://git.kernel.org/pub/scm/utils/kernel/kmod/kmod.git v7 (for url
->>>> None)
->>>> ERROR: Logfile of failure stored in:
->>>>
->>>>
->>>> /home/evadeflow/projects/poky-git/build/tmp-eglibc-eglibc/work/armv7a-vfp-neon-oe-linux-gnueabi/kmod-7-r0/temp/log.do_fetch.29423
->>>> Log data follows:
->>>> | ERROR: Function failed: Network access disabled through
->>>> BB_NO_NETWORK but access rquested with command git ls-remote
->>>> git://git.kernel.org/pub/scm/utils/kernel/kmod/kmod.git v7 (for url
->>>> None)
->>>> NOTE: package kmod-7-r0: task do_fetch: Failed
->>>> ERROR: Task 1374
->>>>
->>>>
->>>> (/home/evadeflow/projects/poky-git/meta-systemd/recipes-kernel/kmod/kmod_7.bb,
->>>> do_fetch) failed with exit code '1'
->>>> Waiting for 1 running tasks to finish:
->>>> 0: libusb1-1.0.8-r4 do_compile (pid 29232)
->>>> NOTE: package libusb1-1.0.8-r4: task do_compile: Succeeded
->>>> NOTE: Tasks Summary: Attempted 697 tasks of which 105 didn't need to
->>>> be rerun and 1 failed.
->>>>
->>>> Summary: 1 task failed:
->>>>
->>>>
->>>> /home/evadeflow/projects/poky-git/meta-systemd/recipes-kernel/kmod/kmod_7.bb,
->>>> do_fetch
->>>> Summary: There was 1 ERROR message shown, returning a non-zero exit
->>>> code.
->>>> bitbake discovery-image  5338.15s user 995.52s system 187% cpu 56:12.92
->>>> total
->>>>
->>>> [NOTE: I'm on poky denzil@65ffa73, meta-ivi denzil@e068388, and
->>>> meta-systemd denzil@6a358e9. Also, that typo in the output
->>>> isn't mine, i.e., 'rquested' should be 'requested'.]
->>>>
->>>> Can anyone explain what's going on here? If I look in the poky-mirror
->>>> folder for kmod-related stuff, I see:
->>>>
->>>> % ls /home/evadeflow/projects/poky-mirror/*kmod*
->>>>
->>>>
->>>> /home/evadeflow/projects/poky-mirror/git2_git.kernel.org.pub.scm.utils.kernel.kmod.kmod.git.tar.gz
->>>>
->>>>
->>>> /home/evadeflow/projects/poky-mirror/git2_git.profusion.mobi.kmod.git.tar.gz
->>>>
->>>> I *think* this is what needs to be downloaded for this recipe(?) Why is
->>>> `git ls-remote` being run at all? I'm not sure whether this is the fault
->>>> of poky/oe-core, or of the meta-systemd layer. I'd just really wish it
->>>> worked. `:-}  Any advice?
->>>
->>>
->>>
->>> Where did you get that meta-systemd layer?  I can't find your
->>> recipe nor that revision (denzil@6a358e9) in the published version
->>> which is at git://git.openembedded.org/meta-openembedded according
->>> to http://www.openembedded.org/wiki/LayerIndex
->>>
->>> --
->>> ------------------------------------------------------------
->>> Gary Thomas                 |  Consulting for the
->>> MLB Associates              |    Embedded world
->>> ------------------------------------------------------------
->>> _______________________________________________
->>> yocto mailing list
->>> yocto@yoctoproject.org
->>> https://lists.yoctoproject.org/listinfo/yocto
->
->
-> --
-> ------------------------------------------------------------
-> Gary Thomas                 |  Consulting for the
-> MLB Associates              |    Embedded world
-> ------------------------------------------------------------
+http://patchwork.openembedded.org/patch/36547/
+
+Cheers,
+Paul
+
+-- 
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
