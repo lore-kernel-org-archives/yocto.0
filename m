@@ -1,33 +1,35 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3933AE0027E;
-	Wed, 19 Sep 2012 08:44:21 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id q8JFiJ1N020145
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 19 Sep 2012 08:44:19 -0700 (PDT)
-Received: from [147.11.4.123] (147.11.4.123) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.2.309.2;
-	Wed, 19 Sep 2012 08:44:18 -0700
-Message-ID: <5059E83A.9040306@windriver.com>
-Date: Wed, 19 Sep 2012 11:43:54 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:11.0) Gecko/20120329 Thunderbird/11.0.1
-MIME-Version: 1.0
-To: Mihai Lindner <mihaix.lindner@linux.intel.com>
-References: <cover.1347946602.git.mihaix.lindner@linux.intel.com>
-	<5058675D.9020707@windriver.com>
-	<1347976148.6185.49.camel@empanada>
-	<50587DEA.6030508@linux.intel.com>
-	<1347978192.6185.51.camel@empanada>
-	<5058892F.3020704@linux.intel.com>
-In-Reply-To: <5058892F.3020704@linux.intel.com>
-Cc: Darren Hart <dvhart@linux.intel.com>,
-	Development list for the linux-yocto repositories
-	<linux-yocto@yoctoproject.org>, yocto@yoctoproject.org
-Subject: Re: [PATCH 0/1] [linux-yocto-3.0] boot-live.cfg: enable BLK_DEV_INITRD in kernel
+Return-Path: <blloyd@familyhonor.net>
+Received: from mho-01-ewr.mailhop.org (mho-03-ewr.mailhop.org [204.13.248.66])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AAC5AE0027E
+	for <yocto@yoctoproject.org>; Wed, 19 Sep 2012 08:51:02 -0700 (PDT)
+Received: from [98.142.68.244] (helo=lloydserv.familyhonor.net)
+	by mho-01-ewr.mailhop.org with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.72) (envelope-from <blloyd@familyhonor.net>)
+	id 1TEMYF-0006ut-P7
+	for yocto@yoctoproject.org; Wed, 19 Sep 2012 15:51:00 +0000
+Received: from [10.1.7.39] (ICNET-66-210-165-231.icnet.net [66.210.165.231])
+	(authenticated bits=0)
+	by lloydserv.familyhonor.net (8.14.5/8.14.5) with ESMTP id
+	q8JFouwJ027607
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-CAMELLIA256-SHA bits=256 verify=NO)
+	for <yocto@yoctoproject.org>; Wed, 19 Sep 2012 10:50:57 -0500
+X-Mail-Handler: Dyn Standard SMTP by Dyn
+X-Originating-IP: 98.142.68.244
+X-Report-Abuse-To: abuse@dyndns.com (see
+	http://www.dyndns.com/services/sendlabs/outbound_abuse.html for
+	abuse reporting information)
+X-MHO-User: U2FsdGVkX1/2mNMuN0DXhJl7DgrXquTiMKZVLqCpljY=
+Message-ID: <1348069852.1829.20.camel@omclinuxballt.devnet.ordermatic.net>
+From: Brian Lloyd <blloyd@familyhonor.net>
+To: yocto@yoctoproject.org
+Date: Wed, 19 Sep 2012 10:50:52 -0500
+In-Reply-To: <CA+YB3rY7Uj+_F=y=p6TEo27yBiN52Lg2YdWf_6LFb5dndvR3Qw@mail.gmail.com>
+References: <1347992629.1943.38.camel@omclinuxballt.devnet.ordermatic.net>
+	<CAHUNapR0dfujrEWTysBPcnsGNj0r=Lkp72NSTM5oArEbyYGV=g@mail.gmail.com>
+	<CA+YB3rY7Uj+_F=y=p6TEo27yBiN52Lg2YdWf_6LFb5dndvR3Qw@mail.gmail.com>
+X-Mailer: Evolution 3.4.4 (3.4.4-1.fc17) 
+Mime-Version: 1.0
+Subject: Re: All incompassing documentation
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,99 +41,73 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 19 Sep 2012 15:44:21 -0000
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+X-List-Received-Date: Wed, 19 Sep 2012 15:51:02 -0000
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-On 12-09-18 10:46 AM, Mihai Lindner wrote:
-> On 2012-09-18 17:23, Tom Zanussi wrote:
->> On Tue, 2012-09-18 at 16:58 +0300, Mihai Lindner wrote:
->>> On 2012-09-18 16:49, Tom Zanussi wrote:
->>>> On Tue, 2012-09-18 at 08:21 -0400, Bruce Ashfield wrote:
->>>>> On 12-09-18 01:59 AM, Mihai Lindner wrote:
->>>>>> Please pull into linux-yocto-3.0, meta.
->>>>>>
->>>>>
->>>>> Adding linux-yocto, Darren and Tom.
->>>>>
->>>>> This looks fine to me, and we should consider it for all the repositories,
->>>>> not just 3.0.
->>>>>
->>>>> Tom/Darren. Any side effects you can think of for this change ?
->>>>>
->>>>
->>>> No, but shouldn't it already be there, inherited from base.cfg?
->>>
->>> For cedartrail, at least, standard.cfg is used.
->>>
->>
->> And standard inherits from base, so it should be turned on.  Somehow
->> it's getting turned off in cedartrail...
->
-> Yes, it the final .config file is turned off. Solved it by setting it in boot-live.
-> --Mihai
+I would like to point out Yocto's own documentation uses it for two
+separate items, which is the point I was making.  Neither of which are
+source tarballs....
 
-To follow up on this, is someone taking a closer look at this config
-to see if we can get a root cause for that option being disabled for
-this board ?
 
-I won't be able to poke at it myself for another day or so.
+It is a product produced by Yocto.
+It is the items to be installed from the host system.
 
-Bruce
 
->
->>
->> Tom
->>
->>> --Mihai
->>>
->>>>
->>>> Tom
->>>>
->>>>> Bruce
->>>>>
->>>>>> Added BLK_DEV_INITRD in boot-live.cfg for linux-yocto-3.0, meta branch.
->>>>>> Cedartrail (at least) cannot boot live from ISO image due to
->>>>>> BLK_DEV_INITRD missing:
->>>>>> "VFS: Cannot open root device "ram0" or unkown-block(0,0)"
->>>>>> Should fix #3050
->>>>>>
->>>>>> [YOCTO #3050]
->>>>>>
->>>>>> Signed-off-by: Mihai Lindner<mihaix.lindner@linux.intel.com>
->>>>>> ---
->>>>>>
->>>>>> The following changes since commit bf5ee4945ee6d748e6abe16356f2357f76b5e2f0:
->>>>>>
->>>>>>     meta: rename virto.scc to virtio.scc (2012-08-18 22:09:35 -0400)
->>>>>>
->>>>>> are available in the git repository at:
->>>>>>     git://git.yoctoproject.org/poky-contrib mihai/linux-yocto-3.0/meta
->>>>>>
->>>>>> Mihai Lindner (1):
->>>>>>         boot-live.cfg: enable BLK_DEV_INITRD in kernel
->>>>>>
->>>>>>    meta/cfg/kernel-cache/cfg/boot-live.cfg |    2 ++
->>>>>>    1 files changed, 2 insertions(+), 0 deletions(-)
->>>>>>
->>>>>> Mihai Lindner (1):
->>>>>>     boot-live.cfg: enable BLK_DEV_INITRD in kernel
->>>>>>
->>>>>>    meta/cfg/kernel-cache/cfg/boot-live.cfg |    2 ++
->>>>>>    1 files changed, 2 insertions(+), 0 deletions(-)
->>>>>>
->>>>>
->>>>
->>>>
->>>>
->>>>
->>>
->>>
->>
->>
->>
->>
->
->
+That may be right, but if so, we can't say that for Yocto it only means
+the first, as we use it for the second as well.  If we want it to only
+be the first, then we must use a different term for the second, such as
+host applications, and the user should be notified of the unusual word
+choice and why early in the documentation.  I believe there are several
+locations where terms are explained already in the documentation, even
+if we later use the term in a way other than that identified as it's
+meaning (3.4. Yocto Project Terms comes to mind).  Discussing Package
+meaning there, perhaps we should identify the term that will be used for
+host package, or how we will identify when the term is used with a
+different meaning than the one just given.
+
+
+Or if we concede that packages is what the user expects to see when
+discussing what to install, we need to disambiguate in some way to
+differentiate the two uses.  Indexes are good at this.  The biggest
+advantage to an index over straight search is that author's can use
+context to differentiate the different uses when a word has them.
+Another option could be prepending to both the context at each location
+used, so we use Yocto package and host package or where we always prefix
+context to one of the two for every use.  However, doing only one with a
+context makes for more manual searches, where we are making a document
+with the goal of making searching for information more effective.
+
+
+On Tue, 2012-09-18 at 21:02 -0700, Jeff Osier-Mixon wrote:
+> <snipped>
+> 
+> On Tue, Sep 18, 2012 at 12:04 PM, Trevor Woerner <twoerner@gmail.com> wrote:
+> > On Tue, Sep 18, 2012 at 2:23 PM, Brian Lloyd <blloyd@familyhonor.net> wrote:
+> >> Most of my hits for such an item
+> >> discuss the packages I will need to install in my host distribution so I
+> >> can use the yocto project (not surprised, the danger of a term as vague
+> >> as packages).
+> >
+> > In bitbake/yocto/OE/etc. the term "packages" is not vague and has a
+> > very specific meaning: bitbake processes recipes to produce one or
+> > more packages. Some of these packages are then assembled into an
+> 
+> This is quite true - but the term itself is overloaded. I have often
+> heard "package" referred to also as the collection of source code one
+> would use to create a given piece of software, e.g. "the busybox
+> package". This is no doubt the result of downloading numerous
+> "packages" from the net in binary form rather than source. It doesn't
+> help that there are "source packages" in the RPM world
+> (http://www.rpm.org/max-rpm/s1-rpm-miscellania-srpms.html) and in the
+> Debian world (http://www.debian.org/doc/manuals/apt-howto/ch-sourcehandling.en.html),
+> so the confusion is natural.
+> 
+> In OE-based systems like the Yocto Project, the term refers to the
+> results of a build rather than the ingredients. I agree with you that
+> we should continue to push the correct usage to unload the term.
+> Anyone have a good term for "source packages"?
+> 
+
 
 
