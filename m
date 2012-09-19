@@ -1,32 +1,33 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-wi0-f182.google.com (mail-wi0-f182.google.com
-	[209.85.212.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C92D5E002AB
-	for <yocto@yoctoproject.org>; Tue, 18 Sep 2012 22:35:28 -0700 (PDT)
-Received: by wibhq12 with SMTP id hq12so599285wib.11
-	for <yocto@yoctoproject.org>; Tue, 18 Sep 2012 22:35:25 -0700 (PDT)
+Return-Path: <tarek.elsherbiny@gmail.com>
+Received: from mail-qa0-f41.google.com (mail-qa0-f41.google.com
+	[209.85.216.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E99B8E002AC
+	for <yocto@yoctoproject.org>; Wed, 19 Sep 2012 04:53:25 -0700 (PDT)
+Received: by qafk30 with SMTP id k30so3983942qaf.14
+	for <yocto@yoctoproject.org>; Wed, 19 Sep 2012 04:53:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
 	:cc:content-type;
-	bh=sMB5LwLs43HBBIX92owqyEhhLoB3quyuKHWO2yyu9O4=;
-	b=okjWAXUVn2KOoVhetE92m9OXhwd6fQ/EeSAXPqmpzbnHIJC1O8iiZJCbqwCDXuOqdN
-	nT4kgMjkfNqYJzg4zAVYCHU/KIi4+MaIAJBsVIl8BtlohwNw8r4l4tWp0IDGFMeAk7MI
-	2Lth7J/M85cA82ziKW2bVH2t9ue0D0jhT5RTlclfY4fKrM5yQOX9V6uyryR9MjNFG3v6
-	rk0VQ38W765XPnFMQovq3jgah2Xr60oty0nHnckSht/5DEDvQWT7t8yurFxAsF+fCGFy
-	VNnXiaOIPtffprtmTmg3TXS+GNmC7/RE1loJVLnm0Fe57UxXVmjhQebSlN59RJDmsY/X
-	Vmvw==
-Received: by 10.180.84.169 with SMTP id a9mr4216244wiz.8.1348032925699; Tue,
-	18 Sep 2012 22:35:25 -0700 (PDT)
+	bh=7Ob/3pJNm/qr3cBK2cRUHowubvNcvLthgr7y2Nx+mRI=;
+	b=rjQhmQkCD0iObF+/x450dKhPycDI88TASQmUSa8v4v+q0DU8O6LxKYHorkqG7evFo/
+	gZ2YOVG/UHZRv8GIdP4H19/wT4LxGLMDkqz51OhMli+hx9p40WM5mAqf9fupfF0me5Ej
+	vEj2jo4I7dmJzQAnvGBd0rPXDtCECCob+M4mM7toUae8fu+wM4aYq+GOs/sPihsaqVKx
+	v7bp22vAycXCJmDa3d47UN9jDtjQ5+fT4GpKqCi8M/pj+VLBQOChjWvy0Pq47/JFc6VY
+	TKefHUHUNCqm3213HblSD5dB3MB4Agjw4K6PZ6TL9hQR1rzxdtHMNecLR96sg2s8fplW
+	udVg==
 MIME-Version: 1.0
-Received: by 10.194.42.197 with HTTP; Tue, 18 Sep 2012 22:34:55 -0700 (PDT)
-In-Reply-To: <tencent_7FE315F821B5993B36CB513B@qq.com>
-References: <tencent_7FE315F821B5993B36CB513B@qq.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Tue, 18 Sep 2012 22:34:55 -0700
-Message-ID: <CAMKF1srzMjicRKOA8FbwzxiDNtn3KvCdMJyiFyMXY05oaXK8aw@mail.gmail.com>
-To: Liu <treebody@embedstudy.com>
-Cc: yocto <yocto@yoctoproject.org>
-Subject: Re: how to use makefile in bitbake
+Received: by 10.224.39.147 with SMTP id g19mr6574345qae.46.1348055603043; Wed,
+	19 Sep 2012 04:53:23 -0700 (PDT)
+Received: by 10.224.174.19 with HTTP; Wed, 19 Sep 2012 04:53:23 -0700 (PDT)
+In-Reply-To: <CAMKF1srM0n=OdWORA9RSRn7BNt8F2VtsYS_Cuntx7bBpoA5e-A@mail.gmail.com>
+References: <CAB3sqtYJJFxPFNZZ1iR+paQD-AHO37=3_RXAsbVmkBQWHobp_Q@mail.gmail.com>
+	<CAMKF1srM0n=OdWORA9RSRn7BNt8F2VtsYS_Cuntx7bBpoA5e-A@mail.gmail.com>
+Date: Wed, 19 Sep 2012 12:53:23 +0100
+Message-ID: <CAB3sqtb_QujO=j0nrSSC_EJt-rJNVVu5WZEf2pqMc0_LEx1TXg@mail.gmail.com>
+From: Tarek El-Sherbiny <tarek.elsherbiny@gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: Autotools CFLAGS & LDFLAGS
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,32 +39,71 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 19 Sep 2012 05:35:29 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 19 Sep 2012 11:53:26 -0000
+Content-Type: multipart/alternative; boundary=20cf306f74d65b5eb204ca0ca773
 
-On Tue, Sep 18, 2012 at 12:51 AM, Liu <treebody@embedstudy.com> wrote:
-> Hi all,
->     I have a project which is built by buildroot,so it uses a set of
-> makefiles to build image.But  I want to use bitbake instead of buildroot to
-> build the project.Now I am faced with some difficulties :
-> 1) How can I use the variables and rules in makefile ? I know bitbake can
-> not parse files like makefile.
+--20cf306f74d65b5eb204ca0ca773
+Content-Type: text/plain; charset=ISO-8859-1
+
+CFLAGS_append and  LDLAGS_append worked for me
+
+Thanks
+
+On Wed, Sep 19, 2012 at 6:30 AM, Khem Raj <raj.khem@gmail.com> wrote:
+
+> On Mon, Sep 17, 2012 at 6:55 AM, Tarek El-Sherbiny
+> <tarek.elsherbiny@gmail.com> wrote:
+> > Hi All,
+> >
+> > What is the easiest way to add nonstandard directory paths for libraries
+> and
+> > header files in a recipe that inherit autotools and pkgconfig?
+> >
+>
+> Adding them to CFLAGS and LDFLAGS doesnt work ?
+>
+> > Regards,
+> > Tarek
+> >
+> > _______________________________________________
+> > yocto mailing list
+> > yocto@yoctoproject.org
+> > https://lists.yoctoproject.org/listinfo/yocto
+> >
 >
 
-bitbake drives the build using recipes which are set of rules similar
-to makefiles. I would suggest to read the bitbake reference manual and
-see the OE metadata especially the .bb files
-on examples of recipes.
+--20cf306f74d65b5eb204ca0ca773
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-> Is there any example like this problem? Can anyone give me some good ideas?
->
->    Best wishes,
-> ---------------Liu
->
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+CFLAGS_append and =A0LDLAGS_append worked for me<div><br></div><div>Thanks<=
+/div><div><br><div class=3D"gmail_quote">On Wed, Sep 19, 2012 at 6:30 AM, K=
+hem Raj <span dir=3D"ltr">&lt;<a href=3D"mailto:raj.khem@gmail.com" target=
+=3D"_blank">raj.khem@gmail.com</a>&gt;</span> wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><div class=3D"HOEnZb"><div class=3D"h5">On M=
+on, Sep 17, 2012 at 6:55 AM, Tarek El-Sherbiny<br>
+&lt;<a href=3D"mailto:tarek.elsherbiny@gmail.com">tarek.elsherbiny@gmail.co=
+m</a>&gt; wrote:<br>
+&gt; Hi All,<br>
+&gt;<br>
+&gt; What is the easiest way to add nonstandard directory paths for librari=
+es and<br>
+&gt; header files in a recipe that inherit autotools and pkgconfig?<br>
+&gt;<br>
+<br>
+</div></div>Adding them to CFLAGS and LDFLAGS doesnt work ?<br>
+<br>
+&gt; Regards,<br>
+&gt; Tarek<br>
+&gt;<br>
+&gt; _______________________________________________<br>
+&gt; yocto mailing list<br>
+&gt; <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><b=
+r>
+&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_b=
+lank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+&gt;<br>
+</blockquote></div><br></div>
 
+--20cf306f74d65b5eb204ca0ca773--
