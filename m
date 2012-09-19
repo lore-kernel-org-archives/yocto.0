@@ -1,24 +1,34 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6EFDFE013DB
-	for <yocto@yoctoproject.org>; Wed, 19 Sep 2012 10:34:46 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 19 Sep 2012 10:34:34 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,450,1344236400"; d="scan'208";a="194943242"
-Received: from unknown (HELO helios.localnet) ([10.252.121.228])
-	by orsmga001.jf.intel.com with ESMTP; 19 Sep 2012 10:34:45 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: "Saxena, Rahul" <rahul.saxena@intel.com>
-Date: Wed, 19 Sep 2012 18:34:43 +0100
-Message-ID: <2395129.l0asU7EgLM@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.9 (Linux/3.2.0-30-generic-pae; KDE/4.9.0; i686; ; )
-In-Reply-To: <63ECFF2A2302B44093D7CE9E9962C49003CCC541@ORSMSX107.amr.corp.intel.com>
-References: <63ECFF2A2302B44093D7CE9E9962C49003CCC541@ORSMSX107.amr.corp.intel.com>
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 648A5E013DB;
+	Wed, 19 Sep 2012 12:02:02 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id q8JJ201Q029930
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Wed, 19 Sep 2012 12:02:00 -0700 (PDT)
+Received: from [147.11.4.123] (147.11.4.123) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.2.309.2;
+	Wed, 19 Sep 2012 12:02:00 -0700
+Message-ID: <505A1690.60007@windriver.com>
+Date: Wed, 19 Sep 2012 15:01:36 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:11.0) Gecko/20120329 Thunderbird/11.0.1
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: maximum recursion depth exceeded errors with gnutls_2.12.17.bb
+To: Mihai Lindner <mihaix.lindner@linux.intel.com>
+References: <cover.1347946602.git.mihaix.lindner@linux.intel.com>
+	<5058675D.9020707@windriver.com>
+	<1347976148.6185.49.camel@empanada>
+	<50587DEA.6030508@linux.intel.com>
+	<1347978192.6185.51.camel@empanada>
+	<5058892F.3020704@linux.intel.com> <5059E83A.9040306@windriver.com>
+	<5059EB19.9070600@linux.intel.com>
+In-Reply-To: <5059EB19.9070600@linux.intel.com>
+Cc: Darren Hart <dvhart@linux.intel.com>,
+	Development list for the linux-yocto repositories
+	<linux-yocto@yoctoproject.org>, yocto@yoctoproject.org
+Subject: Re: [PATCH 0/1] [linux-yocto-3.0] boot-live.cfg: enable BLK_DEV_INITRD in kernel
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,35 +40,122 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 19 Sep 2012 17:34:46 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Wed, 19 Sep 2012 19:02:02 -0000
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Wednesday 19 September 2012 17:00:20 Saxena, Rahul wrote:
-> I have suddenly started getting maximum recursion depth exceeded python
-> errors with gnutls_2.12.17.bb
-> 
->  recipe on Denzil branch.
-> 
-> I am copying snippets of the message log below (some of the stuff that
-> repeats has been removed)
-> 
-> Any suggestions as what could be the problem ?
+On 12-09-19 11:56 AM, Mihai Lindner wrote:
+> On 2012-09-19 18:43, Bruce Ashfield wrote:
+>> On 12-09-18 10:46 AM, Mihai Lindner wrote:
+>>> On 2012-09-18 17:23, Tom Zanussi wrote:
+>>>> On Tue, 2012-09-18 at 16:58 +0300, Mihai Lindner wrote:
+>>>>> On 2012-09-18 16:49, Tom Zanussi wrote:
+>>>>>> On Tue, 2012-09-18 at 08:21 -0400, Bruce Ashfield wrote:
+>>>>>>> On 12-09-18 01:59 AM, Mihai Lindner wrote:
+>>>>>>>> Please pull into linux-yocto-3.0, meta.
+>>>>>>>>
+>>>>>>>
+>>>>>>> Adding linux-yocto, Darren and Tom.
+>>>>>>>
+>>>>>>> This looks fine to me, and we should consider it for all the repositories,
+>>>>>>> not just 3.0.
+>>>>>>>
+>>>>>>> Tom/Darren. Any side effects you can think of for this change ?
+>>>>>>>
+>>>>>>
+>>>>>> No, but shouldn't it already be there, inherited from base.cfg?
+>>>>>
+>>>>> For cedartrail, at least, standard.cfg is used.
+>>>>>
+>>>>
+>>>> And standard inherits from base, so it should be turned on.  Somehow
+>>>> it's getting turned off in cedartrail...
+>>>
+>>> Yes, it the final .config file is turned off. Solved it by setting it in boot-live.
+>>> --Mihai
+>>
+>> To follow up on this, is someone taking a closer look at this config
+>> to see if we can get a root cause for that option being disabled for
+>> this board ?
+>>
+>> I won't be able to poke at it myself for another day or so.
+>>
+>> Bruce
+>>
+> I'm still digging on this, trying to figure out what cfg files are included / omitted by `configme` and why.
+> base.cfg is not included, nor stanadrd.cfg it seems.
+> The list of included cfg files is way to short.
 
-This is a symptom of this bug:
+That likely means the BSP .scc file is missing and update (i.e. does
+it still have scc_leaf?) and the tools aren't finding it and 
+auto-generating something to get you up and running.
 
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=3073
+I just checked the meta branch here, and it looks to be updated, but
+if you look at your build's linux source dir, what's in meta/top_tgt ?
 
-I've sent a backported patch to fix this for denzil, Scott is about to add it 
-to his queue:
+Bruce
 
-http://patchwork.openembedded.org/patch/36547/
 
-Cheers,
-Paul
+>
+> --Mihai
+>>>
+>>>>
+>>>> Tom
+>>>>
+>>>>> --Mihai
+>>>>>
+>>>>>>
+>>>>>> Tom
+>>>>>>
+>>>>>>> Bruce
+>>>>>>>
+>>>>>>>> Added BLK_DEV_INITRD in boot-live.cfg for linux-yocto-3.0, meta branch.
+>>>>>>>> Cedartrail (at least) cannot boot live from ISO image due to
+>>>>>>>> BLK_DEV_INITRD missing:
+>>>>>>>> "VFS: Cannot open root device "ram0" or unkown-block(0,0)"
+>>>>>>>> Should fix #3050
+>>>>>>>>
+>>>>>>>> [YOCTO #3050]
+>>>>>>>>
+>>>>>>>> Signed-off-by: Mihai Lindner<mihaix.lindner@linux.intel.com>
+>>>>>>>> ---
+>>>>>>>>
+>>>>>>>> The following changes since commit bf5ee4945ee6d748e6abe16356f2357f76b5e2f0:
+>>>>>>>>
+>>>>>>>>      meta: rename virto.scc to virtio.scc (2012-08-18 22:09:35 -0400)
+>>>>>>>>
+>>>>>>>> are available in the git repository at:
+>>>>>>>>      git://git.yoctoproject.org/poky-contrib mihai/linux-yocto-3.0/meta
+>>>>>>>>
+>>>>>>>> Mihai Lindner (1):
+>>>>>>>>          boot-live.cfg: enable BLK_DEV_INITRD in kernel
+>>>>>>>>
+>>>>>>>>     meta/cfg/kernel-cache/cfg/boot-live.cfg |    2 ++
+>>>>>>>>     1 files changed, 2 insertions(+), 0 deletions(-)
+>>>>>>>>
+>>>>>>>> Mihai Lindner (1):
+>>>>>>>>      boot-live.cfg: enable BLK_DEV_INITRD in kernel
+>>>>>>>>
+>>>>>>>>     meta/cfg/kernel-cache/cfg/boot-live.cfg |    2 ++
+>>>>>>>>     1 files changed, 2 insertions(+), 0 deletions(-)
+>>>>>>>>
+>>>>>>>
+>>>>>>
+>>>>>>
+>>>>>>
+>>>>>>
+>>>>>
+>>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>
+>>>
+>>
+>>
+>>
+>
+>
 
--- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
 
