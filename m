@@ -1,24 +1,33 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1239AE002AB
-	for <yocto@yoctoproject.org>; Thu, 20 Sep 2012 03:25:32 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga101.ch.intel.com with ESMTP; 20 Sep 2012 03:25:31 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,453,1344236400"; d="scan'208";a="147096227"
-Received: from unknown (HELO helios.localnet) ([10.252.121.248])
-	by AZSMGA002.ch.intel.com with ESMTP; 20 Sep 2012 03:25:30 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Liu <treebody@embedstudy.com>
-Date: Thu, 20 Sep 2012 11:25:29 +0100
-Message-ID: <8173152.vnRYO1d4LU@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.9 (Linux/3.2.0-30-generic-pae; KDE/4.9.0; i686; ; )
-In-Reply-To: <tencent_5829A72418D0015B153A11E6@qq.com>
-References: <tencent_5829A72418D0015B153A11E6@qq.com>
+Return-Path: <czesiekbis@gmail.com>
+Received: from mail-lb0-f176.google.com (mail-lb0-f176.google.com
+	[209.85.217.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 21B53E004AB
+	for <yocto@yoctoproject.org>; Thu, 20 Sep 2012 03:57:58 -0700 (PDT)
+Received: by lboi15 with SMTP id i15so2658759lbo.35
+	for <yocto@yoctoproject.org>; Thu, 20 Sep 2012 03:57:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=E0yhIQ/CQfdoRfy7nTLav+CA5BRZFB/iu8Uuc1X/H68=;
+	b=nZPV7MeVA7egzqBghqfzIa1+ip2G/9ywk1kYybLT0kMzOJ1uL5sr4uINBPSNRVjW9q
+	dIUWu8EjqGYMK1W3pBlBUp+gT8yYilAUurdi5nDBYY/aWLoa4HqSclYp5dmHlMDDEA+E
+	08lbBKzwRy8t9vco6FmV30IQv3wtAMx8ZZAQ/N0E6M6tH6w5rYDKLRlvCT7QdRdmldHm
+	20fn9ybFe2OC7dbU2m3eE/i/rrrSJoYHwJ3QSuAPfjK6BH8MzrIObV0SU4l7lCg/siWv
+	E7Sbs3FNfCYWEpy0o+dJOQtCUpLdaedd5xeVqwNVr9JvPi31vhPtTiFqy1ntSXICC+lu
+	/oyA==
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: How to do the specified tasks instead of many default ones
+Received: by 10.112.37.66 with SMTP id w2mr531163lbj.124.1348138672928; Thu,
+	20 Sep 2012 03:57:52 -0700 (PDT)
+Received: by 10.112.132.167 with HTTP; Thu, 20 Sep 2012 03:57:52 -0700 (PDT)
+In-Reply-To: <cover.1348094339.git.kishore.k.bodke@intel.com>
+References: <cover.1348094339.git.kishore.k.bodke@intel.com>
+Date: Thu, 20 Sep 2012 11:57:52 +0100
+Message-ID: <CAPyixAkSGDRXkne0WYsMfS6jD7hMek=O5jkq=w2FgeS9UMzVmg@mail.gmail.com>
+From: =?ISO-8859-2?Q?Przemys=B3aw_Czesnowicz?= <czesiekbis@gmail.com>
+To: kishore.k.bodke@intel.com
+Cc: don.samson@intel.com, przemyslawx.czesnowicz@intel.com,
+	yocto@yoctoproject.org
+Subject: Re: [PATCH 0/3][meta-intel] Add new Corpus recipes to Crystal Forest BSP.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,36 +39,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 20 Sep 2012 10:25:32 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Thu, 20 Sep 2012 10:57:59 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On Thursday 20 September 2012 17:59:56 Liu wrote:
-> That's not what i mean.I want to remove the tasks like
-> "do_build","do_package" from the default tasks list,and reserve the tasks
-> (do_fetch,do_unpack,do_compile) I need. I know there exist some dependency
-> between tasks and then generate a default list of tasks  for all
-> packages.And now I just want to use the several tasks for my packages. Can
-> you tell me detally about how to remove the tasks "do_build" ,and the tasks
-> after "do_build" ?
+2012/9/19  <kishore.k.bodke@intel.com>:
+> From: Kishore Bodke <kishore.k.bodke@intel.com>
+>
+> Hi,
+>
+> This patch set adds three different types of Corpus files
+> to Crystal Forest BSP, which are basically used to test the
+> Lossless Compression algorithms.
+>
+> 1. calgary-corpus
+> 2. canterbury-corpus
+> 3. silesia-corpus
+>
+> These have been tested on both Crystal Forest Platforms.
+>
 
-What do you mean by tasks after do_build? There should not be any, at least 
-not for the same target.
+Hi
 
-There are several ways of disabling tasks - the first that comes to mind is to 
-mark the task as noexec, for example:
+Are those for the sample code of QA driver?
+If so  the sample code needs the corpus to be in one file
 
-do_package[noexec] = "1"
+tar -xf calgary.tar.gz -O > calgary
 
-My question would be though, what are you trying to achieve by doing this?
+Also the CrystalForest software package includes the
+ calgary and canterbury corpus files, at least in 0.9.0 version
 
-Cheers,
-Paul
-
-PS: please reply on the mailing list, thanks.
-
--- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
+Regards
+Przemek
 
