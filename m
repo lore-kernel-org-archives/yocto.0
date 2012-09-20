@@ -1,25 +1,24 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C5CC2E00655
-	for <yocto@yoctoproject.org>; Thu, 20 Sep 2012 14:33:16 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 20 Sep 2012 14:33:04 -0700
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 89B04E01304
+	for <yocto@yoctoproject.org>; Thu, 20 Sep 2012 14:35:00 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 20 Sep 2012 14:35:00 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,455,1344236400"; d="scan'208";a="208993386"
-Received: from unknown (HELO envy.home) ([10.7.199.50])
-	by orsmga002.jf.intel.com with ESMTP; 20 Sep 2012 14:33:13 -0700
-Message-ID: <505B8B7C.7080501@linux.intel.com>
-Date: Thu, 20 Sep 2012 14:32:44 -0700
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:15.0) Gecko/20120828 Thunderbird/15.0
-MIME-Version: 1.0
-To: "Chatre, Reinette" <reinette.chatre@intel.com>
-References: <1348166956.16487.26.camel@rchatre.jf.intel.com>
-In-Reply-To: <1348166956.16487.26.camel@rchatre.jf.intel.com>
-X-Enigmail-Version: 1.4.4
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: Any hints when building boost-nativesdk?
+X-IronPort-AV: E=Sophos;i="4.80,455,1344236400"; d="scan'208";a="195517735"
+Received: from unknown (HELO [10.255.13.88]) ([10.255.13.88])
+	by orsmga001.jf.intel.com with ESMTP; 20 Sep 2012 14:34:59 -0700
+Message-ID: <1348176899.32247.40.camel@empanada>
+From: Tom Zanussi <tom.zanussi@intel.com>
+To: nitin.a.kamble@intel.com
+Date: Thu, 20 Sep 2012 16:34:59 -0500
+In-Reply-To: <849041c84291bc274805ae375232e7d2eecbd0e7.1347834237.git.nitin.a.kamble@intel.com>
+References: <cover.1347834237.git.nitin.a.kamble@intel.com>
+	<849041c84291bc274805ae375232e7d2eecbd0e7.1347834237.git.nitin.a.kamble@intel.com>
+X-Mailer: Evolution 3.4.1 (3.4.1-2.fc17) 
+Mime-Version: 1.0
+Cc: yocto@yoctoproject.org, darren.hart@intel.com
+Subject: Re: [PATCH 1/2] emgd-driver-bin: Fix package naming issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,65 +30,63 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 20 Sep 2012 21:33:16 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Thu, 20 Sep 2012 21:35:00 -0000
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-On 09/20/2012 11:50 AM, Chatre, Reinette wrote:
-> Hi,
+On Sun, 2012-09-16 at 15:27 -0700, nitin.a.kamble@intel.com wrote:
+> From: Nitin A Kamble <nitin.a.kamble@intel.com>
 > 
-> I am running Yocto 1.2 and would like to include the boost development
-> environment in my SDK. I created a bbappend for the boost recipe that
-> only contains two lines:
+> emgd-driver-bin is generating rpm package with name libegl1.
+> This name clashes with a package with sanme name from mesa-dri
+> recipe. This name clash blocks installation of emgd user land
+> binaries in the image. And due to missing emgd user land
+> components X fails to start on BSPs like crownbay.
 > 
-> PR = "${INC_PR}.1"
-> BBCLASSEXTEND += "nativesdk"
+> Fix this problem by specifying package names in the recipe with the
+> PKG_ vars.
 > 
-> When I build with the above I get the following warnings:
-> NOTE: multiple providers are available for runtime boost-date-time (boost, boost-nativesdk)
-> NOTE: consider defining a PREFERRED_PROVIDER entry to match boost-date-time
+> This fixes bug: [YOCTO #3063]
 
-Khem, I thought this might be something you were familiar with. Any
-thoughts?
+OK, I was finally able to get a build that had X working and was able to
+test this and pull it into meta-intel/master.
 
---
-Darren
+Thanks,
 
-> NOTE: multiple providers are available for runtime boost-filesystem (boost, boost-nativesdk)
-> NOTE: consider defining a PREFERRED_PROVIDER entry to match boost-filesystem
-> NOTE: multiple providers are available for runtime boost-graph (boost, boost-nativesdk)
-> NOTE: consider defining a PREFERRED_PROVIDER entry to match boost-graph
-> NOTE: multiple providers are available for runtime boost-iostreams (boost, boost-nativesdk)
-> NOTE: consider defining a PREFERRED_PROVIDER entry to match boost-iostreams
-> NOTE: multiple providers are available for runtime boost-program-options (boost, boost-nativesdk)
-> NOTE: consider defining a PREFERRED_PROVIDER entry to match boost-program-options
-> NOTE: multiple providers are available for runtime boost-regex (boost, boost-nativesdk)
-> NOTE: consider defining a PREFERRED_PROVIDER entry to match boost-regex
-> NOTE: multiple providers are available for runtime boost-signals (boost, boost-nativesdk)
-> NOTE: consider defining a PREFERRED_PROVIDER entry to match boost-signals
-> NOTE: multiple providers are available for runtime boost-system (boost, boost-nativesdk)
-> NOTE: consider defining a PREFERRED_PROVIDER entry to match boost-system
-> NOTE: multiple providers are available for runtime boost-test (boost, boost-nativesdk)
-> NOTE: consider defining a PREFERRED_PROVIDER entry to match boost-test
-> NOTE: multiple providers are available for runtime boost-thread (boost, boost-nativesdk)
-> NOTE: consider defining a PREFERRED_PROVIDER entry to match boost-thread
+Tom
+
 > 
-> It seems a bit strange that "boost-nativesdk" is seen as a provider for
-> any of those runtime components. Any hints what I should change to build
-> things correctly?
+> Signed-off-by: Nitin A Kamble <nitin.a.kamble@intel.com>
+> ---
+>  .../xorg-driver/emgd-driver-bin_1.14.bb            |    8 +++++++-
+>  1 files changed, 7 insertions(+), 1 deletions(-)
 > 
-> Thank you very much
-> 
-> Reinette
+> diff --git a/common/recipes-graphics/xorg-driver/emgd-driver-bin_1.14.bb b/common/recipes-graphics/xorg-driver/emgd-driver-bin_1.14.bb
+> index b1ba1b8..2464c38 100644
+> --- a/common/recipes-graphics/xorg-driver/emgd-driver-bin_1.14.bb
+> +++ b/common/recipes-graphics/xorg-driver/emgd-driver-bin_1.14.bb
+> @@ -7,7 +7,7 @@ to LICENSE_FLAGS_WHITELIST += \"License_emgd-driver-bin_1.14\" to your \
+>  local.conf in order to enable it in a build."
+>  LICENSE = "Intel-binary-only"
+>  LICENSE_FLAGS = "license_${PN}_${PV}"
+> -PR = "r1"
+> +PR = "r2"
 >  
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-> 
+>  EMGD_LIC_DIR = "IEMGD_HEAD_Linux/License"
+>  EMGD_RPM_DIR = "IEMGD_HEAD_Linux/MeeGo1.2"
+> @@ -23,6 +23,12 @@ SRC_URI = "https://edc.intel.com/Download.aspx?id=6190;downloadfilename=LIN_IEMG
+>  SRC_URI[md5sum] = "733a7f237ffce21238ce2c9956df4fd6"
+>  SRC_URI[sha256sum] = "bcdc333b5edbda7c746a83ef821ded4a0ca55ead30980e4e3680cdb6469f45a2"
+>  
+> +# make sure generated rpm packages get non conflicting names
+> +PKG_${PN} = "emgd-driver"
+> +PKG_${PN}-dev = "emgd-driver-dev"
+> +PKG_${PN}-dbg = "emgd-driver-dbg"
+> +PKG_${PN}-doc = "emgd-driver-doc"
+> +
+>  # These are closed binaries generated elsewhere so don't check ldflags
+>  INSANE_SKIP_${PN} = "ldflags"
+>  
 
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Technical Lead - Linux Kernel
+
 
