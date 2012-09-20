@@ -1,35 +1,39 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-ee0-f48.google.com (mail-ee0-f48.google.com [74.125.83.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C19EFE00655
-	for <yocto@yoctoproject.org>; Thu, 20 Sep 2012 15:20:53 -0700 (PDT)
-Received: by eekd41 with SMTP id d41so1366295eek.35
-	for <yocto@yoctoproject.org>; Thu, 20 Sep 2012 15:20:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=cYMkA5biFJSnFhch3xbdqo4F1DiGgsD8mzQB+VUEAQs=;
-	b=wD+TWgQ9aDkrA1vUtIKJO5N3MQxepqZTgSdgy0yRLXw0k/3yAqQS7b2RUTp8ilvCLi
-	8fvjGxn1zxEDWrspL0nqXKmz7l+Wsxy+7iJ1zMxh5KdpCVuOn8Qh7ViOOy/2+G6KmYaY
-	MciN+XRMShZx7abzzRkLypzpX2QagTM9wSVjVBRhp5MbFqr8a/lNgdHfrpGK8Co5Fsba
-	1+lvR7TWlMAd+syD1UpSvyhFPWQOiOxxMX8dfDrnzafBjDZBMT5F/r1yWbUbD/daFOXE
-	9okdY8/7wtjigR5cK4Uzf2QAb4R/70INLKZB4vu+xYai/dP/RiJoWrUkYPMh+Xd0urMC
-	cRcw==
-Received: by 10.14.202.71 with SMTP id c47mr3918243eeo.42.1348179652684; Thu,
-	20 Sep 2012 15:20:52 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.14.173.69 with HTTP; Thu, 20 Sep 2012 15:20:22 -0700 (PDT)
-In-Reply-To: <CAMAb8ZNAb3qfjyRvf9CNh=Sm+o-fLCNGAikO1jAO2Z=LdZ8LOA@mail.gmail.com>
+Return-Path: <blloyd@familyhonor.net>
+Received: from mho-01-ewr.mailhop.org (mho-03-ewr.mailhop.org [204.13.248.66])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 90D20E01304
+	for <yocto@yoctoproject.org>; Thu, 20 Sep 2012 15:30:46 -0700 (PDT)
+Received: from [98.142.68.244] (helo=lloydserv.familyhonor.net)
+	by mho-01-ewr.mailhop.org with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.72) (envelope-from <blloyd@familyhonor.net>)
+	id 1TEpGb-000ABV-Fj; Thu, 20 Sep 2012 22:30:41 +0000
+Received: from [10.1.7.39] (ICNET-66-210-165-231.icnet.net [66.210.165.231])
+	(authenticated bits=0)
+	by lloydserv.familyhonor.net (8.14.5/8.14.5) with ESMTP id
+	q8KMUbvl030885
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-CAMELLIA256-SHA bits=256 verify=NO);
+	Thu, 20 Sep 2012 17:30:38 -0500
+X-Mail-Handler: Dyn Standard SMTP by Dyn
+X-Originating-IP: 98.142.68.244
+X-Report-Abuse-To: abuse@dyndns.com (see
+	http://www.dyndns.com/services/sendlabs/outbound_abuse.html for
+	abuse reporting information)
+X-MHO-User: U2FsdGVkX19k7kDv6tV8MamvT3PHiW09HawhbsPxmkA=
+Message-ID: <1348180233.4394.2.camel@omclinuxballt.devnet.ordermatic.net>
+From: Brian Lloyd <blloyd@familyhonor.net>
+To: William Mills <wmills@ti.com>
+Date: Thu, 20 Sep 2012 17:30:33 -0500
+In-Reply-To: <505B7D59.3020306@ti.com>
 References: <CAMAb8ZO=KzrgNoW4VPADtCn27KUfviP4QL84_ia5sAUbj_9a3Q@mail.gmail.com>
+	<505A5FB9.4010802@mlbassoc.com>
+	<CAMAb8ZN0Yb4km-X0wyUDsbRYYSC53B62F+ZPYRVNEmae7QeVsA@mail.gmail.com>
+	<4100342.qsm4CZIotx@helios>
 	<CAMAb8ZPXYXNTgk_v_PG55C1FYERrT4s08FGLQO7frsE=J4pGDA@mail.gmail.com>
 	<CAMAb8ZOAk-oF_gJmVvAVjAEN+JpS12=WpbxZjhqD0Tx6h=f4Zw@mail.gmail.com>
-	<13486486.LUSYcH1i4g@helios>
-	<CAMAb8ZNAb3qfjyRvf9CNh=Sm+o-fLCNGAikO1jAO2Z=LdZ8LOA@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Thu, 20 Sep 2012 15:20:22 -0700
-Message-ID: <CAMKF1sosmizJWDNj7o1Vs2nPPMis5ZLeWT8zdRYtiz6ZvrLytA@mail.gmail.com>
-To: Evade Flow <evadeflow@gmail.com>
-Cc: Paul Eggleton <paul.eggleton@linux.intel.com>, yocto@yoctoproject.org
-Subject: Re: BB_NO_NETWORK and own-mirrors not working with meta-systemd
+	<505B7D59.3020306@ti.com>
+X-Mailer: Evolution 3.4.4 (3.4.4-1.fc17) 
+Mime-Version: 1.0
+Cc: yocto@yoctoproject.org
+Subject: Re: BB_NO_NETWORK and own-mirrors not working with	meta-systemd
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,27 +45,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 20 Sep 2012 22:20:54 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 20 Sep 2012 22:30:46 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-On Thu, Sep 20, 2012 at 3:12 PM, Evade Flow <evadeflow@gmail.com> wrote:
-> This doesn't appear to be done in a couple of the Yocto recipes:
->
->   - meta/recipes-devtools/btrfs-tools/btrfs-tools_git.bb
->   - meta/recipes-devtools/mtd/mtd-utils_1.4.9.bb
->
+Simple: tags aren't guaranteed to not change what it references, the
+hash is guaranteed to always point to the same thing.  Thus, git is
+double checking that the meaning of the tag hasn't changed.
 
-good. Send patches we will accept.
 
-> SRCREV is not set in either of these, but 'tag=' is supplied as part of
-> SRC_URI, i.e.:
->
->
->   SRC_URI = "git://git.kernel.org/pub/scm/linux/kernel/git/mason/btrfs-progs.git;protocol=git;tag=fdb6c0402337d9607c7a39155088eaf033742752;branch=master"
->
->
-> I'm not sure what to make of that, but... I'll modify my Wiki entry to say
-> that SRCREV should be set (instead of a SRC_URI with 'tag=').
+On Thu, 2012-09-20 at 16:32 -0400, William Mills wrote:
+> On 09/20/2012 04:08 PM, Evade Flow wrote:
+> > To bring this full circle... if you want to build behind a restrictive
+> > firewall using pre-mirrored sources and BB_NO_NETWORK, be aware that
+> > recipes which:
+> >
+> >    1. Specify a git repo as the source, and,
+> >
+> >    2. Specify the revision to be built using a tag name
+> >
+> >
+> > will cause your build to abort when bitbake tries to run 'git ls-remote'
+> > to resolve the tag name.  So don't specify SRC_URI like this:
+> >
+> >
+> >    SRC_URI = "git://git.kernel.org/pub/scm/utils/kernel/kmod/kmod.git;protocol=git;tag=v${PV}"
+> >
+> > Instead, use:
+> >
+> >    SRC_URI = "git://git.kernel.org/pub/scm/utils/kernel/kmod/kmod.git;protocol=git;tag=8885ced062131214448fae056ef453f094303805;branch=master"
+> >
+> >
+> > I added a note about this to the Wiki:
+> >
+> >    - http://wiki.yoctoproject.org/wiki/How_do_I#Non-networked_Builds_and_Cached_Git_Respositories
+> >
+> > I'm still new to Yocto, so someone please chime in if any of this
+> > information is incorrect...
+> >
+> 
+> If true, this seems very unfortunate.  This seems to push people in the 
+> wrong direction.  Is there a reason the fetchers don't pull down the 
+> tags when they mirror in the first place?
+> 
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-change this one too
+
 
