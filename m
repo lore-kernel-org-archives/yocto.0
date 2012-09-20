@@ -1,39 +1,37 @@
-Return-Path: <blloyd@familyhonor.net>
-Received: from mho-01-ewr.mailhop.org (mho-03-ewr.mailhop.org [204.13.248.66])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 90D20E01304
-	for <yocto@yoctoproject.org>; Thu, 20 Sep 2012 15:30:46 -0700 (PDT)
-Received: from [98.142.68.244] (helo=lloydserv.familyhonor.net)
-	by mho-01-ewr.mailhop.org with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.72) (envelope-from <blloyd@familyhonor.net>)
-	id 1TEpGb-000ABV-Fj; Thu, 20 Sep 2012 22:30:41 +0000
-Received: from [10.1.7.39] (ICNET-66-210-165-231.icnet.net [66.210.165.231])
-	(authenticated bits=0)
-	by lloydserv.familyhonor.net (8.14.5/8.14.5) with ESMTP id
-	q8KMUbvl030885
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-CAMELLIA256-SHA bits=256 verify=NO);
-	Thu, 20 Sep 2012 17:30:38 -0500
-X-Mail-Handler: Dyn Standard SMTP by Dyn
-X-Originating-IP: 98.142.68.244
-X-Report-Abuse-To: abuse@dyndns.com (see
-	http://www.dyndns.com/services/sendlabs/outbound_abuse.html for
-	abuse reporting information)
-X-MHO-User: U2FsdGVkX19k7kDv6tV8MamvT3PHiW09HawhbsPxmkA=
-Message-ID: <1348180233.4394.2.camel@omclinuxballt.devnet.ordermatic.net>
-From: Brian Lloyd <blloyd@familyhonor.net>
-To: William Mills <wmills@ti.com>
-Date: Thu, 20 Sep 2012 17:30:33 -0500
-In-Reply-To: <505B7D59.3020306@ti.com>
-References: <CAMAb8ZO=KzrgNoW4VPADtCn27KUfviP4QL84_ia5sAUbj_9a3Q@mail.gmail.com>
-	<505A5FB9.4010802@mlbassoc.com>
-	<CAMAb8ZN0Yb4km-X0wyUDsbRYYSC53B62F+ZPYRVNEmae7QeVsA@mail.gmail.com>
-	<4100342.qsm4CZIotx@helios>
-	<CAMAb8ZPXYXNTgk_v_PG55C1FYERrT4s08FGLQO7frsE=J4pGDA@mail.gmail.com>
-	<CAMAb8ZOAk-oF_gJmVvAVjAEN+JpS12=WpbxZjhqD0Tx6h=f4Zw@mail.gmail.com>
-	<505B7D59.3020306@ti.com>
-X-Mailer: Evolution 3.4.4 (3.4.4-1.fc17) 
-Mime-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: BB_NO_NETWORK and own-mirrors not working with	meta-systemd
+Return-Path: <reinette.chatre@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 10513E00655
+	for <yocto@yoctoproject.org>; Thu, 20 Sep 2012 15:56:56 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 20 Sep 2012 15:56:56 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,457,1344236400"; d="scan'208";a="195234584"
+Received: from orsmsx103.amr.corp.intel.com ([10.22.225.130])
+	by azsmga001.ch.intel.com with ESMTP; 20 Sep 2012 15:56:56 -0700
+Received: from orsmsx153.amr.corp.intel.com (10.22.226.247) by
+	ORSMSX103.amr.corp.intel.com (10.22.225.130) with Microsoft SMTP Server
+	(TLS) id 14.1.355.2; Thu, 20 Sep 2012 15:56:55 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.152]) by
+	ORSMSX153.amr.corp.intel.com ([169.254.13.67]) with mapi id
+	14.01.0355.002; Thu, 20 Sep 2012 15:56:54 -0700
+From: "Chatre, Reinette" <reinette.chatre@intel.com>
+To: Khem Raj <raj.khem@gmail.com>
+Thread-Topic: [yocto] Any hints when building boost-nativesdk?
+Thread-Index: AQHNl2DAYYi5OLliiECcghhBTHaaU5eUNYcAgAAElgCAABKxAA==
+Date: Thu, 20 Sep 2012 22:56:53 +0000
+Message-ID: <1348181762.16487.28.camel@rchatre.jf.intel.com>
+References: <1348166956.16487.26.camel@rchatre.jf.intel.com>
+	<505B8B7C.7080501@linux.intel.com>
+	<CAMKF1srP67RkwqdPTbdwaJiCXPf=uU5kcWfjrWcXffWNejHhBw@mail.gmail.com>
+In-Reply-To: <CAMKF1srP67RkwqdPTbdwaJiCXPf=uU5kcWfjrWcXffWNejHhBw@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.7.198.73]
+MIME-Version: 1.0
+Cc: Yocto discussion list <yocto@yoctoproject.org>,
+	Darren Hart <dvhart@linux.intel.com>
+Subject: Re: Any hints when building boost-nativesdk?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,53 +43,21 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 20 Sep 2012 22:30:46 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 20 Sep 2012 22:56:57 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <A4EAECEE58EF5B419A17A74AE13D98D8@intel.com>
+Content-Transfer-Encoding: base64
 
-Simple: tags aren't guaranteed to not change what it references, the
-hash is guaranteed to always point to the same thing.  Thus, git is
-double checking that the meaning of the tag hasn't changed.
-
-
-On Thu, 2012-09-20 at 16:32 -0400, William Mills wrote:
-> On 09/20/2012 04:08 PM, Evade Flow wrote:
-> > To bring this full circle... if you want to build behind a restrictive
-> > firewall using pre-mirrored sources and BB_NO_NETWORK, be aware that
-> > recipes which:
-> >
-> >    1. Specify a git repo as the source, and,
-> >
-> >    2. Specify the revision to be built using a tag name
-> >
-> >
-> > will cause your build to abort when bitbake tries to run 'git ls-remote'
-> > to resolve the tag name.  So don't specify SRC_URI like this:
-> >
-> >
-> >    SRC_URI = "git://git.kernel.org/pub/scm/utils/kernel/kmod/kmod.git;protocol=git;tag=v${PV}"
-> >
-> > Instead, use:
-> >
-> >    SRC_URI = "git://git.kernel.org/pub/scm/utils/kernel/kmod/kmod.git;protocol=git;tag=8885ced062131214448fae056ef453f094303805;branch=master"
-> >
-> >
-> > I added a note about this to the Wiki:
-> >
-> >    - http://wiki.yoctoproject.org/wiki/How_do_I#Non-networked_Builds_and_Cached_Git_Respositories
-> >
-> > I'm still new to Yocto, so someone please chime in if any of this
-> > information is incorrect...
-> >
-> 
-> If true, this seems very unfortunate.  This seems to push people in the 
-> wrong direction.  Is there a reason the fetchers don't pull down the 
-> tags when they mirror in the first place?
-> 
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
-
+SGkgS2hlbSwNCg0KT24gVGh1LCAyMDEyLTA5LTIwIGF0IDE0OjQ5IC0wNzAwLCBLaGVtIFJhaiB3
+cm90ZToNCj4gT24gVGh1LCBTZXAgMjAsIDIwMTIgYXQgMjozMiBQTSwgRGFycmVuIEhhcnQgPGR2
+aGFydEBsaW51eC5pbnRlbC5jb20+IHdyb3RlOg0KPiA+IE9uIDA5LzIwLzIwMTIgMTE6NTAgQU0s
+IENoYXRyZSwgUmVpbmV0dGUgd3JvdGU6DQo+ID4+IEhpLA0KPiA+Pg0KPiA+PiBJIGFtIHJ1bm5p
+bmcgWW9jdG8gMS4yIGFuZCB3b3VsZCBsaWtlIHRvIGluY2x1ZGUgdGhlIGJvb3N0IGRldmVsb3Bt
+ZW50DQo+ID4+IGVudmlyb25tZW50IGluIG15IFNESy4gSSBjcmVhdGVkIGEgYmJhcHBlbmQgZm9y
+IHRoZSBib29zdCByZWNpcGUgdGhhdA0KPiANCj4gRG8geW91IHdhbnQgeW91ciB0YXJnZXQgYXBw
+bGljYXRpb25zIHRvIGhhdmUgYm9vc3QgcmlnaHQgPw0KDQpDb3JyZWN0Lg0KDQo+IGluIHRoYXQg
+Y2FzZSB5b3UganVzdCBhZGQgYm9vc3QtZGV2IHRvIFRPT0xDSEFJTl9UQVJHRVRfVEFTSyBtYXkg
+YmUgaW4NCj4geW91ciBsb2NhbC5jb25mDQoNClRoYW5rIHlvdSB2ZXJ5IG11Y2gNCg0KUmVpbmV0
+dGUNCg==
 
