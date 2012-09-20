@@ -1,19 +1,19 @@
 Return-Path: <timo.mueller@oss.bmw-carit.de>
 Received: from linuxmail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 78E14E01447
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7D40BE0144A
 	for <yocto@yoctoproject.org>; Thu, 20 Sep 2012 06:38:37 -0700 (PDT)
 Received: from localhost (mysterion.bmw-carit.intra [192.168.101.57])
 	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
 	(No client certificate requested)
 	(Authenticated sender: timo.mueller)
-	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 7319540352;
-	Thu, 20 Sep 2012 15:08:40 +0200 (CEST)
+	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 73CB44043B;
+	Thu, 20 Sep 2012 15:08:41 +0200 (CEST)
 From: mail@timomueller.eu
 To: yocto@yoctoproject.org
-Date: Thu, 20 Sep 2012 15:38:21 +0200
-Message-Id: <83a7d834c42866c8114b7999b2cbaebec3eaaed0.1348147047.git.timo.mueller@bmw-carit.de>
+Date: Thu, 20 Sep 2012 15:38:29 +0200
+Message-Id: <5178dada7642b1fbf83611b5ab10d9bfe71999eb.1348147047.git.timo.mueller@bmw-carit.de>
 X-Mailer: git-send-email 1.7.7.6
-In-Reply-To: <f4a5aa8497f8fc22e7c004a9bae93a3180cf81b8.1348147047.git.timo.mueller@bmw-carit.de>
+In-Reply-To: <5de2c829fd6aba22434130ebf284fcf62c0c4fc7.1348147047.git.timo.mueller@bmw-carit.de>
 References: <cover.1348147047.git.timo.mueller@bmw-carit.de>
 	<1af602c372ef3d674ffc3553ef7bd4f4532834e5.1348147047.git.timo.mueller@bmw-carit.de>
 	<0d6c673c3b5ee40fe7dc5a9ca91ec7d8d35440a0.1348147047.git.timo.mueller@bmw-carit.de>
@@ -31,10 +31,18 @@ References: <cover.1348147047.git.timo.mueller@bmw-carit.de>
 	<10af34d54489f0cefeb5d0597a055d8c7ee3838c.1348147047.git.timo.mueller@bmw-carit.de>
 	<d5344147fcd64278155e4c7683a5ec6350ed7cfa.1348147047.git.timo.mueller@bmw-carit.de>
 	<f4a5aa8497f8fc22e7c004a9bae93a3180cf81b8.1348147047.git.timo.mueller@bmw-carit.de>
+	<83a7d834c42866c8114b7999b2cbaebec3eaaed0.1348147047.git.timo.mueller@bmw-carit.de>
+	<31c360070266660b65a88428f373de241361f714.1348147047.git.timo.mueller@bmw-carit.de>
+	<a068f0e22e133f86aa56a5b19a1b9b15592e7e8b.1348147047.git.timo.mueller@bmw-carit.de>
+	<949c1cf12e34dcd44d65881666bae13ac8dc992f.1348147047.git.timo.mueller@bmw-carit.de>
+	<fe9828237af095ea6f85f2167ed58b722bf29e4c.1348147047.git.timo.mueller@bmw-carit.de>
+	<6ef29bc93e9a3c85e0d9afd8ef050d81a605dc24.1348147047.git.timo.mueller@bmw-carit.de>
+	<027d4cc539d917b35800115c31b91ab42c66efd8.1348147047.git.timo.mueller@bmw-carit.de>
+	<5de2c829fd6aba22434130ebf284fcf62c0c4fc7.1348147047.git.timo.mueller@bmw-carit.de>
 In-Reply-To: <cover.1348147047.git.timo.mueller@bmw-carit.de>
 References: <cover.1348147047.git.timo.mueller@bmw-carit.de>
 Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: [PATCH 17/25] documentation: Move poky-ref-manual global parameters to customization file
+Subject: [PATCH 25/25] documentation/Makefile: logic to make all for yocto-project-qs and cleanup
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,50 +54,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 20 Sep 2012 13:38:37 -0000
+X-List-Received-Date: Thu, 20 Sep 2012 13:38:38 -0000
 
 From: Timo Mueller <timo.mueller@bmw-carit.de>
 
-Standard stylesheet parameters were moved to the docbook customization
-file tying them to the docbook stylesheet used. Removing these
-parameters simplifies the Makefile.
+Eclipse help documents are now created when calling the 'make all'
+target on the yocto-project-qs. Resulting files are archived into
+the tarball as well. When calling 'make clean' artefacts of
+the eclipse documentation build are deleted.
 ---
- documentation/Makefile                             |    7 +------
- .../poky-ref-manual-customization.xsl              |    5 +++++
- 2 files changed, 6 insertions(+), 6 deletions(-)
+ documentation/Makefile |    9 ++++++---
+ 1 files changed, 6 insertions(+), 3 deletions(-)
 
 diff --git a/documentation/Makefile b/documentation/Makefile
-index 23b4d9f..17f7cf5 100644
+index 1a29af5..4965c30 100644
 --- a/documentation/Makefile
 +++ b/documentation/Makefile
-@@ -194,12 +194,7 @@ STYLESHEET = $(DOC)/*.css
+@@ -130,9 +130,12 @@ endif
+ 
+ ifeq ($(DOC),yocto-project-qs)
+ XSLTOPTS = --xinclude
+-ALLPREQ = html tarball
+-TARFILES = yocto-project-qs.html qs-style.css figures/yocto-environment.png figures/building-an-image.png figures/using-a-pre-built-image.png figures/yocto-project-transp.png
+-MANUALS = $(DOC)/$(DOC).html
++ALLPREQ = html eclipse tarball
++TARFILES = yocto-project-qs.html qs-style.css figures/yocto-environment.png \
++           figures/building-an-image.png figures/using-a-pre-built-image.png \
++           figures/yocto-project-transp.png \
++           eclipse
++MANUALS = $(DOC)/$(DOC).html $(DOC)/eclipse
+ FIGURES = figures
+ STYLESHEET = $(DOC)/*.css
  endif
- 
- ifeq ($(DOC),poky-ref-manual)
--XSLTOPTS = --stringparam html.stylesheet ref-style.css \
--           --stringparam  chapter.autolabel 1 \
--           --stringparam  appendix.autolabel A \
--           --stringparam  section.autolabel 1 \
--           --stringparam  section.label.includes.component.label 1 \
--           --xinclude
-+XSLTOPTS = --xinclude
- ALLPREQ = html pdf tarball
- TARFILES = poky-ref-manual.html ref-style.css figures/poky-title.png
- MANUALS = $(DOC)/$(DOC).html $(DOC)/$(DOC).pdf
-diff --git a/documentation/poky-ref-manual/poky-ref-manual-customization.xsl b/documentation/poky-ref-manual/poky-ref-manual-customization.xsl
-index 362ebed..3ad3a31 100644
---- a/documentation/poky-ref-manual/poky-ref-manual-customization.xsl
-+++ b/documentation/poky-ref-manual/poky-ref-manual-customization.xsl
-@@ -3,4 +3,9 @@
-   
-   <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/xhtml/docbook.xsl" />
- 
-+  <xsl:param name="html.stylesheet" select="'ref-style.css'" />
-+  <xsl:param name="chapter.autolabel" select="1" />
-+  <xsl:param name="appendix.autolabel" select="A" />
-+  <xsl:param name="section.autolabel" select="1" />
-+  <xsl:param name="section.label.includes.component.label" select="1" />
- </xsl:stylesheet>
 -- 
 1.7.7.6
 
