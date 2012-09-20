@@ -1,44 +1,38 @@
-Return-Path: <kyle@farnsworthtech.com>
-Received: from smtp.knology.net (smtp-fo.knology.synacor.com [64.8.71.118])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3C5D2E004AB
-	for <yocto@yoctoproject.org>; Thu, 20 Sep 2012 09:08:01 -0700 (PDT)
-X_CMAE_Category: 0,0 Undefined,Undefined
-X-CNFS-Analysis: v=2.0 cv=f4TK9ZOM c=1 sm=0 a=WUVZR0xZJcfxSaQYriipYQ==:17
-	a=aFP-xk0SXQ8A:10 a=UpT5HnxeXTsA:10 a=dWUxHrtDoX8A:10
-	a=8nJEP1OIZ-IA:10 a=4Du6mIFzAAAA:8 a=G0MQdoAnjk4A:10
-	a=yRlVC3M_65ZRRlhOkjsA:9 a=wPNLvfGTeEIA:10
-	a=WUVZR0xZJcfxSaQYriipYQ==:117
-X-CM-Score: 0
-X-Scanned-by: Cloudmark Authority Engine
-Authentication-Results: smtp02.knology.synacor.com
-	header.from=kyle@farnsworthtech.com; sender-id=neutral
-Authentication-Results: smtp02.knology.synacor.com
-	smtp.mail=kyle@farnsworthtech.com; spf=neutral;
-	sender-id=neutral
-Authentication-Results: smtp02.knology.synacor.com
-	smtp.user=kfarns@knology.net; auth=pass (LOGIN)
-Received-SPF: neutral (smtp02.knology.synacor.com: 24.236.110.180 is neither
-	permitted nor denied by domain of farnsworthtech.com)
-Received: from [24.236.110.180] ([24.236.110.180:65185]
-	helo=host.farnsworthtech.com)
-	by smtp.knlogy.net (envelope-from <kyle@farnsworthtech.com>)
-	(ecelerity 2.2.3.47 r(39787)) with ESMTPA
-	id 40/0B-12827-16F3B505; Thu, 20 Sep 2012 12:08:01 -0400
-Received: from [192.168.1.43] (farntech1.farnsworthtech.com [192.168.1.43])
-	by host.farnsworthtech.com (Postfix) with ESMTP id 91D17811BB
-	for <yocto@yoctoproject.org>; Thu, 20 Sep 2012 11:08:00 -0500 (CDT)
-Message-ID: <505B3F61.7080400@farnsworthtech.com>
-Date: Thu, 20 Sep 2012 11:08:01 -0500
-From: Kyle Farnsworth <kyle@farnsworthtech.com>
-Organization: Farnsworth Technology, Inc.
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:14.0) Gecko/20120714 Thunderbird/14.0
+Return-Path: <kishore.k.bodke@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 51E25E004AB
+	for <yocto@yoctoproject.org>; Thu, 20 Sep 2012 09:21:28 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga101.ch.intel.com with ESMTP; 20 Sep 2012 09:21:27 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,454,1344236400"; d="scan'208";a="147221312"
+Received: from orsmsx103.amr.corp.intel.com ([10.22.225.130])
+	by AZSMGA002.ch.intel.com with ESMTP; 20 Sep 2012 09:21:27 -0700
+Received: from orsmsx151.amr.corp.intel.com (10.22.226.38) by
+	ORSMSX103.amr.corp.intel.com (10.22.225.130) with Microsoft SMTP Server
+	(TLS) id 14.1.355.2; Thu, 20 Sep 2012 09:21:26 -0700
+Received: from orsmsx105.amr.corp.intel.com ([169.254.4.116]) by
+	ORSMSX151.amr.corp.intel.com ([169.254.7.213]) with mapi id
+	14.01.0355.002; Thu, 20 Sep 2012 09:21:26 -0700
+From: "Bodke, Kishore K" <kishore.k.bodke@intel.com>
+To: Przemyslaw Czesnowicz <czesiekbis@gmail.com>
+Thread-Topic: [yocto] [PATCH 0/3][meta-intel] Add new Corpus recipes to
+	Crystal Forest BSP.
+Thread-Index: AQHNlx7YUyN8bQTqQUKSmAB/oZZTCJeTaBAg
+Date: Thu, 20 Sep 2012 16:21:26 +0000
+Message-ID: <D956029D25CF204F948EA0FB515E1EE21C10AE7D@ORSMSX105.amr.corp.intel.com>
+References: <cover.1348094339.git.kishore.k.bodke@intel.com>
+	<CAPyixAkSGDRXkne0WYsMfS6jD7hMek=O5jkq=w2FgeS9UMzVmg@mail.gmail.com>
+In-Reply-To: <CAPyixAkSGDRXkne0WYsMfS6jD7hMek=O5jkq=w2FgeS9UMzVmg@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.139]
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <505B3722.2090302@farnsworthtech.com>
-In-Reply-To: <505B3722.2090302@farnsworthtech.com>
-X-Enigmail-Version: 1.4.4
-Subject: Re: source added to -dbg pkg
+Cc: "Samson, Don" <don.samson@intel.com>, "Czesnowicz,
+	PrzemyslawX" <przemyslawx.czesnowicz@intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [PATCH 0/3][meta-intel] Add new Corpus recipes to Crystal Forest BSP.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,16 +44,56 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 20 Sep 2012 16:08:02 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 20 Sep 2012 16:21:28 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-2"
+Content-Transfer-Encoding: quoted-printable
 
-> I would like to NOT put the source code within the ${PN}-dbg pkg and
-> keep it separate from my symbol binaries in that pkg.  Is there a way to
-> either turn off the collection of the source or allow me to put it in a
-> different pkg.  It could be useful to have some cases but not in all.
-I just figured out I could move it to it's own pkg using this:
-PACKAGES =+ " ${PN}-src "
-FILES_${PN}-src = "${DEBUGFILESDIRECTORY-dbg}"
 
+
+>-----Original Message-----
+>From: Przemys=B3aw Czesnowicz [mailto:czesiekbis@gmail.com]
+>Sent: Thursday, September 20, 2012 3:58 AM
+>To: Bodke, Kishore K
+>Cc: Zanussi, Tom; Kamble, Nitin A; yocto@yoctoproject.org; Samson, Don;
+>Czesnowicz, PrzemyslawX
+>Subject: Re: [yocto] [PATCH 0/3][meta-intel] Add new Corpus recipes to
+>Crystal Forest BSP.
+>
+>2012/9/19  <kishore.k.bodke@intel.com>:
+>> From: Kishore Bodke <kishore.k.bodke@intel.com>
+>>
+>> Hi,
+>>
+>> This patch set adds three different types of Corpus files
+>> to Crystal Forest BSP, which are basically used to test the
+>> Lossless Compression algorithms.
+>>
+>> 1. calgary-corpus
+>> 2. canterbury-corpus
+>> 3. silesia-corpus
+>>
+>> These have been tested on both Crystal Forest Platforms.
+>>
+>
+>Hi
+>
+>Are those for the sample code of QA driver?
+>If so  the sample code needs the corpus to be in one file
+>
+>tar -xf calgary.tar.gz -O > calgary
+>
+>Also the CrystalForest software package includes the
+> calgary and canterbury corpus files, at least in 0.9.0 version
+>
+
+Yes. These are for the QuickAssist Driver.
+All the sample corpus data files will be installed under /lib/firmware, at =
+least with the 0.9.0-144  version QA driver, that I had tested.
+
+Instead of having all of files in one package and having one recipe, I had =
+split them to multiple recipes.
+
+Thanks
+Kishore.
 
