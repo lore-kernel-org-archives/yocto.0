@@ -1,23 +1,24 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 992E3E0141C
-	for <yocto@yoctoproject.org>; Thu, 20 Sep 2012 06:57:02 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 20 Sep 2012 06:57:02 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,453,1344236400"; d="scan'208";a="224591508"
-Received: from unknown (HELO helios.localnet) ([10.252.121.248])
-	by fmsmga002.fm.intel.com with ESMTP; 20 Sep 2012 06:57:01 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Liu <treebody@embedstudy.com>
-Date: Thu, 20 Sep 2012 14:57 +0100
-Message-ID: <1546898.F9k85MPnqC@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.9 (Linux/3.2.0-30-generic-pae; KDE/4.9.0; i686; ; )
-In-Reply-To: <tencent_6D1428EC1BCDDD3D5AB8C6A0@qq.com>
-References: <tencent_6D1428EC1BCDDD3D5AB8C6A0@qq.com>
-MIME-Version: 1.0
-Cc: yocto <yocto@yoctoproject.org>
+Return-Path: <treebody@embedstudy.com>
+Received: from smtpbg298.qq.com (smtpbg298.qq.com [184.105.67.102])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id 1EFB4E004AB
+	for <yocto@yoctoproject.org>; Thu, 20 Sep 2012 07:07:49 -0700 (PDT)
+X-QQ-SSF: 00000000000000F000000000000000G
+X-HAS-ATTACH: no
+X-QQ-BUSINESS-ORIGIN: 2
+X-Originating-IP: 49.75.92.42
+X-QQ-STYLE: 
+X-QQ-mid: webmail437t1348150062t4939109
+From: "=?ISO-8859-1?B?TGl1?=" <treebody@embedstudy.com>
+To: "=?ISO-8859-1?B?UGF1bCBFZ2dsZXRvbg==?=" <paul.eggleton@linux.intel.com>
+Mime-Version: 1.0
+Date: Thu, 20 Sep 2012 22:07:42 +0800
+X-Priority: 3
+Message-ID: <tencent_579D97015A30E49B6B0DAD5C@qq.com>
+X-QQ-MIME: TCMime 1.0 by Tencent
+X-Mailer: QQMail 2.x
+X-QQ-Mailer: QQMail 2.x
+X-QQ-ReplyHash: 3817766482
+Cc: =?ISO-8859-1?B?eW9jdG8=?= <yocto@yoctoproject.org>
 Subject: Re: How to do the specified tasks instead of many default
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -30,28 +31,85 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 20 Sep 2012 13:57:02 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Thu, 20 Sep 2012 14:07:49 -0000
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_505B232E_D496F8B0_2BAB9160"
+Content-Transfer-Encoding: 8Bit
 
-On Thursday 20 September 2012 21:50:42 Liu wrote:
->      I know it probably not be right to do in such way.But my project is
-> built by buildroot,So I just need to run make to build the image.And now 
-> I want to use bitbake to build the project instead of buildroot.Then I
-> think of the idea to use recipes to "do_fetch","do_unpack",and 
-> "oe_runmake" to build the packages. 
+------=_NextPart_505B232E_D496F8B0_2BAB9160
+Content-Type: text/plain;
+	charset="ISO-8859-1"
+Content-Transfer-Encoding: base64
 
-I guess I would recommend if you're going to migrate to building with bitbake 
-that you make more of a migration towards standard recipes - I'm not sure 
-exactly where you will end up with your current approach but it sounds like 
-you won't get much benefit by just calling into the original Buildroot makefiles 
-over just continuing to use Buildroot on its own.
+RGVhciBQYXVsLA0KICAgICBUaGFua3MgYSBsb3QgZm9yIHlvdXIgc3VnZ2VzdGlvbi5NYXli
+ZSBpbiB0aGUgZnV0dXJlIEkgd2lsbCBjaGFuZ2UgdGhlIG9yaWdpbmFsIEJ1aWxkcm9vdCBt
+YWtlZmlsZXMgIGluIG15IHByb2plY3QgdG8gbWFrZSB0aGUgYnVpbGQgZWFzeSBhbmQgY29k
+ZSBjb252ZW5pZW50IG1hbmFnZW1lbnQuDQogIA0KIC0tLS0tLS1MaXUNCiAgDQoNCiANCg0K
+IC0tLS0tLS0tLS0tLS0tLS0tLSBPcmlnaW5hbCAtLS0tLS0tLS0tLS0tLS0tLS0NCiAgRnJv
+bTogICJQYXVsIEVnZ2xldG9uIjxwYXVsLmVnZ2xldG9uQGxpbnV4LmludGVsLmNvbT47DQog
+RGF0ZTogIFRodSwgU2VwIDIwLCAyMDEyIDA5OjU3IFBNDQogVG86ICAiTGl1Ijx0cmVlYm9k
+eUBlbWJlZHN0dWR5LmNvbT47IA0KIENjOiAgInlvY3RvIjx5b2N0b0B5b2N0b3Byb2plY3Qu
+b3JnPjsgDQogU3ViamVjdDogIFJlOiBbeW9jdG9dIEhvdyB0byBkbyB0aGUgc3BlY2lmaWVk
+IHRhc2tzIGluc3RlYWQgb2YgbWFueSBkZWZhdWx0DQoNCiANCg0KT24gVGh1cnNkYXkgMjAg
+U2VwdGVtYmVyIDIwMTIgMjE6NTA6NDIgTGl1IHdyb3RlOg0KPiAgICAgIEkga25vdyBpdCBw
+cm9iYWJseSBub3QgYmUgcmlnaHQgdG8gZG8gaW4gc3VjaCB3YXkuQnV0IG15IHByb2plY3Qg
+aXMNCj4gYnVpbHQgYnkgYnVpbGRyb290LFNvIEkganVzdCBuZWVkIHRvIHJ1biBtYWtlIHRv
+IGJ1aWxkIHRoZSBpbWFnZS5BbmQgbm93IA0KPiBJIHdhbnQgdG8gdXNlIGJpdGJha2UgdG8g
+YnVpbGQgdGhlIHByb2plY3QgaW5zdGVhZCBvZiBidWlsZHJvb3QuVGhlbiBJDQo+IHRoaW5r
+IG9mIHRoZSBpZGVhIHRvIHVzZSByZWNpcGVzIHRvICJkb19mZXRjaCIsImRvX3VucGFjayIs
+YW5kIA0KPiAib2VfcnVubWFrZSIgdG8gYnVpbGQgdGhlIHBhY2thZ2VzLiANCg0KSSBndWVz
+cyBJIHdvdWxkIHJlY29tbWVuZCBpZiB5b3UncmUgZ29pbmcgdG8gbWlncmF0ZSB0byBidWls
+ZGluZyB3aXRoIGJpdGJha2UgDQp0aGF0IHlvdSBtYWtlIG1vcmUgb2YgYSBtaWdyYXRpb24g
+dG93YXJkcyBzdGFuZGFyZCByZWNpcGVzIC0gSSdtIG5vdCBzdXJlIA0KZXhhY3RseSB3aGVy
+ZSB5b3Ugd2lsbCBlbmQgdXAgd2l0aCB5b3VyIGN1cnJlbnQgYXBwcm9hY2ggYnV0IGl0IHNv
+dW5kcyBsaWtlIA0KeW91IHdvbid0IGdldCBtdWNoIGJlbmVmaXQgYnkganVzdCBjYWxsaW5n
+IGludG8gdGhlIG9yaWdpbmFsIEJ1aWxkcm9vdCBtYWtlZmlsZXMgDQpvdmVyIGp1c3QgY29u
+dGludWluZyB0byB1c2UgQnVpbGRyb290IG9uIGl0cyBvd24uDQoNCkNoZWVycywNClBhdWwN
+Cg0KLS0gDQoNClBhdWwgRWdnbGV0b24NCkludGVsIE9wZW4gU291cmNlIFRlY2hub2xvZ3kg
+Q2VudHJl
 
-Cheers,
-Paul
+------=_NextPart_505B232E_D496F8B0_2BAB9160
+Content-Type: text/html;
+	charset="ISO-8859-1"
+Content-Transfer-Encoding: base64
 
--- 
+PERJVj5EZWFyIFBhdWwsPC9ESVY+DQo8RElWPiZuYnNwOyZuYnNwOyZuYnNwOyBUaGFua3Mg
+YSBsb3QgZm9yIHlvdXIgc3VnZ2VzdGlvbi5NYXliZSBpbiB0aGUgZnV0dXJlIEkgd2lsbCBj
+aGFuZ2UgdGhlIG9yaWdpbmFsIEJ1aWxkcm9vdCBtYWtlZmlsZXMmbmJzcDsgaW4gbXkgcHJv
+amVjdCB0byBtYWtlJm5ic3A7dGhlIGJ1aWxkJm5ic3A7ZWFzeSBhbmQgY29kZSBjb252ZW5p
+ZW50Jm5ic3A7bWFuYWdlbWVudC48L0RJVj4NCjxESVY+Jm5ic3A7PC9ESVY+DQo8RElWPi0t
+LS0tLS1MaXU8L0RJVj4NCjxESVY+PGluY2x1ZGV0YWlsPg0KPERJVj48QlI+PC9ESVY+DQo8
+RElWPjxCUj48L0RJVj4NCjxESVYgc3R5bGU9IlBBRERJTkctQk9UVE9NOiAycHg7IFBBRERJ
+TkctTEVGVDogMHB4OyBQQURESU5HLVJJR0hUOiAwcHg7IEZPTlQtRkFNSUxZOiBBcmlhbCBO
+YXJyb3c7IEZPTlQtU0laRTogMTJweDsgUEFERElORy1UT1A6IDJweCI+LS0tLS0tLS0tLS0t
+LS0tLS0tJm5ic3A7T3JpZ2luYWwmbmJzcDstLS0tLS0tLS0tLS0tLS0tLS08L0RJVj4NCjxE
+SVYgc3R5bGU9IlBBRERJTkctQk9UVE9NOiA4cHg7IFBBRERJTkctTEVGVDogOHB4OyBQQURE
+SU5HLVJJR0hUOiA4cHg7IEJBQ0tHUk9VTkQ6ICNlZmVmZWY7IEZPTlQtU0laRTogMTJweDsg
+UEFERElORy1UT1A6IDhweCI+DQo8RElWPjxCPkZyb206IDwvQj4mbmJzcDsiUGF1bCBFZ2ds
+ZXRvbiImbHQ7cGF1bC5lZ2dsZXRvbkBsaW51eC5pbnRlbC5jb20mZ3Q7OzwvRElWPg0KPERJ
+Vj48Qj5EYXRlOiA8L0I+Jm5ic3A7VGh1LCBTZXAgMjAsIDIwMTIgMDk6NTcgUE08L0RJVj4N
+CjxESVY+PEI+VG86IDwvQj4mbmJzcDsiTGl1IiZsdDt0cmVlYm9keUBlbWJlZHN0dWR5LmNv
+bSZndDs7IDxXQlI+PC9ESVY+DQo8RElWPjxCPkNjOiA8L0I+Jm5ic3A7InlvY3RvIiZsdDt5
+b2N0b0B5b2N0b3Byb2plY3Qub3JnJmd0OzsgPFdCUj48L0RJVj4NCjxESVY+PEI+U3ViamVj
+dDogPC9CPiZuYnNwO1JlOiBbeW9jdG9dIEhvdyB0byBkbyB0aGUgc3BlY2lmaWVkIHRhc2tz
+IGluc3RlYWQgb2YgbWFueSBkZWZhdWx0PC9ESVY+PC9ESVY+DQo8RElWPjxCUj48L0RJVj5P
+biBUaHVyc2RheSAyMCBTZXB0ZW1iZXIgMjAxMiAyMTo1MDo0MiBMaXUgd3JvdGU6PEJSPiZn
+dDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgSSBrbm93IGl0IHByb2JhYmx5IG5v
+dCBiZSByaWdodCB0byBkbyBpbiBzdWNoIHdheS5CdXQgbXkgcHJvamVjdCBpczxCUj4mZ3Q7
+IGJ1aWx0IGJ5IGJ1aWxkcm9vdCxTbyBJIGp1c3QgbmVlZCB0byBydW4gbWFrZSB0byBidWls
+ZCB0aGUgaW1hZ2UuQW5kIG5vdyA8QlI+Jmd0OyBJIHdhbnQgdG8gdXNlIGJpdGJha2UgdG8g
+YnVpbGQgdGhlIHByb2plY3QgaW5zdGVhZCBvZiBidWlsZHJvb3QuVGhlbiBJPEJSPiZndDsg
+dGhpbmsgb2YgdGhlIGlkZWEgdG8gdXNlIHJlY2lwZXMgdG8gImRvX2ZldGNoIiwiZG9fdW5w
+YWNrIixhbmQgPEJSPiZndDsgIm9lX3J1bm1ha2UiIHRvIGJ1aWxkIHRoZSBwYWNrYWdlcy4g
+PEJSPjxCUj5JIGd1ZXNzIEkgd291bGQgcmVjb21tZW5kIGlmIHlvdSdyZSBnb2luZyB0byBt
+aWdyYXRlIHRvIGJ1aWxkaW5nIHdpdGggYml0YmFrZSA8QlI+dGhhdCB5b3UgbWFrZSBtb3Jl
+IG9mIGEgbWlncmF0aW9uIHRvd2FyZHMgc3RhbmRhcmQgcmVjaXBlcyAtIEknbSBub3Qgc3Vy
+ZSA8QlI+ZXhhY3RseSB3aGVyZSB5b3Ugd2lsbCBlbmQgdXAgd2l0aCB5b3VyIGN1cnJlbnQg
+YXBwcm9hY2ggYnV0IGl0IHNvdW5kcyBsaWtlIDxCUj55b3Ugd29uJ3QgZ2V0IG11Y2ggYmVu
+ZWZpdCBieSBqdXN0IGNhbGxpbmcgaW50byB0aGUgb3JpZ2luYWwgQnVpbGRyb290IG1ha2Vm
+aWxlcyA8QlI+b3ZlciBqdXN0IGNvbnRpbnVpbmcgdG8gdXNlIEJ1aWxkcm9vdCBvbiBpdHMg
+b3duLjxCUj48QlI+Q2hlZXJzLDxCUj5QYXVsPEJSPjxCUj4tLSA8QlI+PEJSPlBhdWwgRWdn
+bGV0b248QlI+SW50ZWwgT3BlbiBTb3VyY2UgVGVjaG5vbG9neSBDZW50cmU8QlI+DQo8RElW
+PjwvRElWPjwvaW5jbHVkZXRhaWw+PC9ESVY+
 
-Paul Eggleton
-Intel Open Source Technology Centre
-
+------=_NextPart_505B232E_D496F8B0_2BAB9160--
