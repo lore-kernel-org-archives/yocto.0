@@ -1,20 +1,29 @@
 Return-Path: <timo.mueller@oss.bmw-carit.de>
 Received: from linuxmail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1E1BFE0142C
-	for <yocto@yoctoproject.org>; Thu, 20 Sep 2012 06:38:35 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EB45AE0142C
+	for <yocto@yoctoproject.org>; Thu, 20 Sep 2012 06:38:36 -0700 (PDT)
 Received: from localhost (mysterion.bmw-carit.intra [192.168.101.57])
 	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
 	(No client certificate requested)
 	(Authenticated sender: timo.mueller)
-	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 5493540010;
-	Thu, 20 Sep 2012 15:08:38 +0200 (CEST)
+	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 164EC40295;
+	Thu, 20 Sep 2012 15:08:39 +0200 (CEST)
 From: mail@timomueller.eu
 To: yocto@yoctoproject.org
-Date: Thu, 20 Sep 2012 15:38:04 +0200
-Message-Id: <cover.1348147047.git.timo.mueller@bmw-carit.de>
+Date: Thu, 20 Sep 2012 15:38:10 +0200
+Message-Id: <ee7ceec0f795156840ecf5fbfde6e623e3674eeb.1348147047.git.timo.mueller@bmw-carit.de>
 X-Mailer: git-send-email 1.7.7.6
+In-Reply-To: <3d0a07f43721d2662899b371a3c6e8521e401323.1348147047.git.timo.mueller@bmw-carit.de>
+References: <cover.1348147047.git.timo.mueller@bmw-carit.de>
+	<1af602c372ef3d674ffc3553ef7bd4f4532834e5.1348147047.git.timo.mueller@bmw-carit.de>
+	<0d6c673c3b5ee40fe7dc5a9ca91ec7d8d35440a0.1348147047.git.timo.mueller@bmw-carit.de>
+	<b7d9dbe40bd79fca4d81128448c0b2becec50589.1348147047.git.timo.mueller@bmw-carit.de>
+	<e8d106d7f16af5bc0819650ae9471f7936b0d71e.1348147047.git.timo.mueller@bmw-carit.de>
+	<3d0a07f43721d2662899b371a3c6e8521e401323.1348147047.git.timo.mueller@bmw-carit.de>
+In-Reply-To: <cover.1348147047.git.timo.mueller@bmw-carit.de>
+References: <cover.1348147047.git.timo.mueller@bmw-carit.de>
 Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: [PATCH 00/25][yocto-docs] Add eclipse help generation for remaining documents
+Subject: [PATCH 06/25] documentation/Makefile: logic to make all for adt manual and cleanup
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -26,93 +35,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 20 Sep 2012 13:38:36 -0000
+X-List-Received-Date: Thu, 20 Sep 2012 13:38:37 -0000
 
 From: Timo Mueller <timo.mueller@bmw-carit.de>
 
-Hi,
+Eclipse help documents are now created when calling the 'make all'
+target on the dev-manual. Resulting files are archived into
+the tarball as well. When calling 'make clean' artefacts of
+the eclipse documentation build are deleted.
+---
+ documentation/Makefile |   13 ++++++++-----
+ 1 files changed, 8 insertions(+), 5 deletions(-)
 
-I've recently submitted a proof of concept showing how eclipse help files
-can be generated from the adt-manual using the docbook eclipse3.xsl
-stylesheet. These patches are currently in the temporary branch 'timo'
-in the yocto-docs git.
-
-This patch series fixes a small bug and adds eclipse help generation support
-for the other documentation parts.
-
-1: Small bug fix stopping eclipse target when generation fails
-2..6: Add eclipse generation to dev-manual
-7..11: Add eclipse generation to bsp-guide
-12..16: Add eclipse generation to kernel-manual
-17..21: Add eclipse generation to poky-ref-manual
-22..25: Add eclipse generation to yocto-project-qs
-
-Best regards,
-	Timo
-
-Timo Mueller (25):
-  documentation/Makefile: Stop eclipse target workflow if generation
-    fails.
-  documentation: Move dev-manual global parameters to customization
-    file
-  documentation/dev-manual/dev-manual-eclipse-customization.xsl: new
-    file
-  documentation/Makefile: Support for making Eclipse HTML dev manual
-  documentation/dev-manual/dev-manual.xml: Added Title tag
-  documentation/Makefile: logic to make all for adt manual and cleanup
-  documentation: Move bsp-guide global parameters to customization file
-  documentation/bsp-guide/bsp-guide-eclipse-customization.xsl: new file
-  documentation/Makefile: Support for making Eclipse HTML bsp guide
-  documentation/bsp-guide/bsp-guide.xml: Added Title tag
-  documentation/Makefile: logic to make all for bsp guide and cleanup
-  documentation: Move kernel-manual global parameters to customization
-    file
-  documentation/kernel-manual/kernel-manual-eclipse-customization.xsl:
-    new file
-  documentation/Makefile: Support for making Eclipse HTML kernel manual
-  documentation/kernel-manual/kernel-manual.xml: Added Title tag
-  documentation/Makefile: logic to make all for kernel-manual and
-    cleanup
-  documentation: Move poky-ref-manual global parameters to
-    customization file
-  documentation/poky-ref-manual/poky-ref-manual-eclipse-customization.xsl:
-    new file
-  documentation/Makefile: Support for making Eclipse HTML poky ref
-    manual
-  documentation/poky-ref-manual/poky-ref-manual.xml: Added Title tag
-  documentation/Makefile: logic to make all for poky-ref-manual and
-    cleanup
-  documentation: Move yocto-project-qs global parameters to
-    customization file
-  documentation/yocto-project-qs/yocto-project-qs-eclipse-customization.xsl:
-    new file
-  documentation/Makefile: Support for making Eclipse HTML yocto project
-    qs manual
-  documentation/Makefile: logic to make all for yocto-project-qs and
-    cleanup
-
- documentation/Makefile                             |   96 ++++++++++----------
- .../bsp-guide/bsp-guide-customization.xsl          |    4 +
- .../bsp-guide/bsp-guide-eclipse-customization.xsl  |   21 +++++
- documentation/bsp-guide/bsp-guide.xml              |    4 +-
- .../dev-manual/dev-manual-customization.xsl        |    6 +-
- .../dev-manual-eclipse-customization.xsl           |   21 +++++
- documentation/dev-manual/dev-manual.xml            |    4 +-
- .../kernel-manual/kernel-manual-customization.xsl  |    7 +-
- .../kernel-manual-eclipse-customization.xsl        |   21 +++++
- documentation/kernel-manual/kernel-manual.xml      |    4 +-
- .../poky-ref-manual-customization.xsl              |    5 +
- .../poky-ref-manual-eclipse-customization.xsl      |   21 +++++
- documentation/poky-ref-manual/poky-ref-manual.xml  |    4 +-
- .../yocto-project-qs-customization.xsl             |    2 +-
- .../yocto-project-qs-eclipse-customization.xsl     |   20 ++++
- 15 files changed, 182 insertions(+), 58 deletions(-)
- create mode 100644 documentation/bsp-guide/bsp-guide-eclipse-customization.xsl
- create mode 100644 documentation/dev-manual/dev-manual-eclipse-customization.xsl
- create mode 100644 documentation/kernel-manual/kernel-manual-eclipse-customization.xsl
- create mode 100644 documentation/poky-ref-manual/poky-ref-manual-eclipse-customization.xsl
- create mode 100644 documentation/yocto-project-qs/yocto-project-qs-eclipse-customization.xsl
-
+diff --git a/documentation/Makefile b/documentation/Makefile
+index 812a6d7..45ba6b6 100644
+--- a/documentation/Makefile
++++ b/documentation/Makefile
+@@ -85,7 +85,7 @@ endif
+ 
+ ifeq ($(DOC),dev-manual)
+ XSLTOPTS = --xinclude
+-ALLPREQ = html pdf tarball
++ALLPREQ = html pdf eclipse tarball
+ #
+ # Note that the tarfile might produce the "Cannot stat: No such file or directory" error
+ # message for .PNG files that are not present when building a particular branch.  The 
+@@ -101,7 +101,8 @@ TARFILES = dev-style.css dev-manual.html dev-manual.pdf \
+            figures/kernel-overview-1.png figures/kernel-overview-2.png \
+            figures/kernel-overview-3-edison.png \
+            figures/source-repos.png figures/yp-download.png \
+-           figures/wip.png
++           figures/wip.png \
++           eclipse
+ 	else ifeq ($(BRANCH),denzil)
+ TARFILES = dev-style.css dev-manual.html dev-manual.pdf \
+            figures/app-dev-flow.png figures/bsp-dev-flow.png figures/dev-title.png \
+@@ -110,7 +111,8 @@ TARFILES = dev-style.css dev-manual.html dev-manual.pdf \
+            figures/kernel-overview-1.png figures/kernel-overview-2.png \
+            figures/kernel-overview-3-denzil.png \
+            figures/source-repos.png figures/yp-download.png \
+-           figures/wip.png
++           figures/wip.png \
++           eclipse
+         else
+ TARFILES = dev-style.css dev-manual.html dev-manual.pdf \
+            figures/app-dev-flow.png figures/bsp-dev-flow.png figures/dev-title.png \
+@@ -119,10 +121,11 @@ TARFILES = dev-style.css dev-manual.html dev-manual.pdf \
+            figures/kernel-overview-1.png figures/kernel-overview-2.png \
+            figures/kernel-overview-3-denzil.png \
+            figures/source-repos.png figures/yp-download.png \
+-           figures/wip.png
++           figures/wip.png \
++           eclipse
+ 	endif
+ 
+-MANUALS = $(DOC)/$(DOC).html $(DOC)/$(DOC).pdf
++MANUALS = $(DOC)/$(DOC).html $(DOC)/$(DOC).pdf $(DOC)/eclipse
+ FIGURES = figures
+ STYLESHEET = $(DOC)/*.css
+ 
 -- 
 1.7.7.6
 
