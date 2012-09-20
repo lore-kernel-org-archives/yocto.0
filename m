@@ -1,33 +1,35 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-ey0-f176.google.com (mail-ey0-f176.google.com
-	[209.85.215.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 45E20E00655
-	for <yocto@yoctoproject.org>; Thu, 20 Sep 2012 14:49:42 -0700 (PDT)
-Received: by eaan12 with SMTP id n12so96940eaa.35
-	for <yocto@yoctoproject.org>; Thu, 20 Sep 2012 14:49:39 -0700 (PDT)
+Return-Path: <evadeflow@gmail.com>
+Received: from mail-ob0-f176.google.com (mail-ob0-f176.google.com
+	[209.85.214.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8EBF9E00655
+	for <yocto@yoctoproject.org>; Thu, 20 Sep 2012 15:12:22 -0700 (PDT)
+Received: by obbtb18 with SMTP id tb18so3483583obb.35
+	for <yocto@yoctoproject.org>; Thu, 20 Sep 2012 15:12:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
 	:cc:content-type;
-	bh=PSsH7KNB5BTdcS2VDcwG/Vdar065MY49BFo5JCAlZpw=;
-	b=StVThp8b3uo8zC1axZpI15JG6uHeFE7Yr2b44WOpszK7YEG225iW5F/THMb63FBZjv
-	LFZYJPrue+wJoIFLoIQ3CTuHjqiOYyeUvODi77FzDVa5tIUbmIXP455Ht7Ux8K6qJJN5
-	vdREpqbjy/L5Tg8YNAoqGMp8HmjDhaZz1cHfKQCZRzoNdB/IiWmZ1CX+CYprbP5swy+C
-	pPKtjz5bUmXM1q7Q7J0FQJQ2eqUZevGoSSGn3HJi1a27APJykRsruETZmVAI6GwWVSEm
-	8CGCpFYj0QWQAN1Nil6C5XjYfwL7xwsgewguS4MqY6F1KfTlKm0XW6DuxTDtVKbby4z4
-	KnLw==
-Received: by 10.14.173.131 with SMTP id v3mr3836001eel.15.1348177778947; Thu,
-	20 Sep 2012 14:49:38 -0700 (PDT)
+	bh=8HBEX6m44qae2RPYqSFoVMoupwT11NFXjQCrgaKg6dc=;
+	b=smuCWdNDED2ZmpQd6AQb4krCYDfyYbMMidtTqZL5QWiY3DIeMSSVsQWtNnuqe5zGRE
+	FWd8mspkC7ZsUH0iQwz9RLVTv63vegI5JZCLLaSdYAPwiCSB4OJJyz6oiAONjh+vTtUU
+	uWNuMKjo4K+nkyDBDtoTDD4IL1qzqOExnQyeKYL7uo835TY227n03sn9GqAZ2crHVzpu
+	4luO2ymLT9ZdqMdC7u7MnU/aLlXH4/OTqfwFS5TRjM7Hnfbj72FDvckd+1p+WP6FBMOE
+	jTCzUszpFUy0kLF4PNMOu7F2vWrTVb53TdL2xp5seprTmHfU8KCXKEW+uPYdL9CRHa4y
+	OzHQ==
 MIME-Version: 1.0
-Received: by 10.14.173.69 with HTTP; Thu, 20 Sep 2012 14:49:08 -0700 (PDT)
-In-Reply-To: <505B8B7C.7080501@linux.intel.com>
-References: <1348166956.16487.26.camel@rchatre.jf.intel.com>
-	<505B8B7C.7080501@linux.intel.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Thu, 20 Sep 2012 14:49:08 -0700
-Message-ID: <CAMKF1srP67RkwqdPTbdwaJiCXPf=uU5kcWfjrWcXffWNejHhBw@mail.gmail.com>
-To: Darren Hart <dvhart@linux.intel.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: Any hints when building boost-nativesdk?
+Received: by 10.60.22.162 with SMTP id e2mr2434715oef.35.1348179141908; Thu,
+	20 Sep 2012 15:12:21 -0700 (PDT)
+Received: by 10.76.153.198 with HTTP; Thu, 20 Sep 2012 15:12:21 -0700 (PDT)
+In-Reply-To: <13486486.LUSYcH1i4g@helios>
+References: <CAMAb8ZO=KzrgNoW4VPADtCn27KUfviP4QL84_ia5sAUbj_9a3Q@mail.gmail.com>
+	<CAMAb8ZPXYXNTgk_v_PG55C1FYERrT4s08FGLQO7frsE=J4pGDA@mail.gmail.com>
+	<CAMAb8ZOAk-oF_gJmVvAVjAEN+JpS12=WpbxZjhqD0Tx6h=f4Zw@mail.gmail.com>
+	<13486486.LUSYcH1i4g@helios>
+Date: Thu, 20 Sep 2012 18:12:21 -0400
+Message-ID: <CAMAb8ZNAb3qfjyRvf9CNh=Sm+o-fLCNGAikO1jAO2Z=LdZ8LOA@mail.gmail.com>
+From: Evade Flow <evadeflow@gmail.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: BB_NO_NETWORK and own-mirrors not working with meta-systemd
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,71 +41,78 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 20 Sep 2012 21:49:42 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 20 Sep 2012 22:12:22 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On Thu, Sep 20, 2012 at 2:32 PM, Darren Hart <dvhart@linux.intel.com> wrote:
-> On 09/20/2012 11:50 AM, Chatre, Reinette wrote:
->> Hi,
+> You should not need to be specifying the revision within SRC_URI as you are
+> doing, however, it is correct that you must specify the revision in
+> SRCREV...
+
+This doesn't appear to be done in a couple of the Yocto recipes:
+
+  - meta/recipes-devtools/btrfs-tools/btrfs-tools_git.bb
+  - meta/recipes-devtools/mtd/mtd-utils_1.4.9.bb
+
+SRCREV is not set in either of these, but 'tag=' is supplied as part of
+SRC_URI, i.e.:
+
+
+  SRC_URI = "git://git.kernel.org/pub/scm/linux/kernel/git/mason/btrfs-progs.git;protocol=git;tag=fdb6c0402337d9607c7a39155088eaf033742752;branch=master"
+
+
+I'm not sure what to make of that, but... I'll modify my Wiki entry to say
+that SRCREV should be set (instead of a SRC_URI with 'tag=').
+
+
+
+On Thu, Sep 20, 2012 at 5:41 PM, Paul Eggleton
+<paul.eggleton@linux.intel.com> wrote:
+> On Thursday 20 September 2012 16:08:41 Evade Flow wrote:
+>> To bring this full circle... if you want to build behind a restrictive
+>> firewall using pre-mirrored sources and BB_NO_NETWORK, be aware that
+>> recipes which:
 >>
->> I am running Yocto 1.2 and would like to include the boost development
->> environment in my SDK. I created a bbappend for the boost recipe that
-
-Do you want your target applications to have boost right ?
-in that case you just add boost-dev to TOOLCHAIN_TARGET_TASK may be in
-your local.conf
-
-
->> only contains two lines:
+>>   1. Specify a git repo as the source, and,
 >>
->> PR = "${INC_PR}.1"
->> BBCLASSEXTEND += "nativesdk"
+>>   2. Specify the revision to be built using a tag name
 >>
->> When I build with the above I get the following warnings:
->> NOTE: multiple providers are available for runtime boost-date-time (boost, boost-nativesdk)
->> NOTE: consider defining a PREFERRED_PROVIDER entry to match boost-date-time
+>>
+>> will cause your build to abort when bitbake tries to run 'git ls-remote'
+>> to resolve the tag name.  So don't specify SRC_URI like this:
+>>
+>>
+>>   SRC_URI =
+>> "git://git.kernel.org/pub/scm/utils/kernel/kmod/kmod.git;protocol=git;tag=v
+>> ${PV}"
+>>
+>> Instead, use:
+>>
+>>   SRC_URI =
+>> "git://git.kernel.org/pub/scm/utils/kernel/kmod/kmod.git;protocol=git;tag=8
+>> 885ced062131214448fae056ef453f094303805;branch=master"
+>>
+>>
+>> I added a note about this to the Wiki:
+>>
+>>   -
+>> http://wiki.yoctoproject.org/wiki/How_do_I#Non-networked_Builds_and_Cached_
+>> Git_Respositories
+>>
+>> I'm still new to Yocto, so someone please chime in if any of this
+>> information is incorrect...
 >
-> Khem, I thought this might be something you were familiar with. Any
-> thoughts?
+> You should not need to be specifying the revision within SRC_URI as you are
+> doing, however, it is correct that you must specify the revision in SRCREV and
+> that revision must be the full SHA1 hash and not just a tag or branch name.
+> The reason for this is that tags are not fixed and could change, therefore if
+> one is used we must query the server and resolve it to the current SHA1 hash
+> every time the recipe is parsed.
+>
+> Cheers,
+> Paul
 >
 > --
-> Darren
 >
->> NOTE: multiple providers are available for runtime boost-filesystem (boost, boost-nativesdk)
->> NOTE: consider defining a PREFERRED_PROVIDER entry to match boost-filesystem
->> NOTE: multiple providers are available for runtime boost-graph (boost, boost-nativesdk)
->> NOTE: consider defining a PREFERRED_PROVIDER entry to match boost-graph
->> NOTE: multiple providers are available for runtime boost-iostreams (boost, boost-nativesdk)
->> NOTE: consider defining a PREFERRED_PROVIDER entry to match boost-iostreams
->> NOTE: multiple providers are available for runtime boost-program-options (boost, boost-nativesdk)
->> NOTE: consider defining a PREFERRED_PROVIDER entry to match boost-program-options
->> NOTE: multiple providers are available for runtime boost-regex (boost, boost-nativesdk)
->> NOTE: consider defining a PREFERRED_PROVIDER entry to match boost-regex
->> NOTE: multiple providers are available for runtime boost-signals (boost, boost-nativesdk)
->> NOTE: consider defining a PREFERRED_PROVIDER entry to match boost-signals
->> NOTE: multiple providers are available for runtime boost-system (boost, boost-nativesdk)
->> NOTE: consider defining a PREFERRED_PROVIDER entry to match boost-system
->> NOTE: multiple providers are available for runtime boost-test (boost, boost-nativesdk)
->> NOTE: consider defining a PREFERRED_PROVIDER entry to match boost-test
->> NOTE: multiple providers are available for runtime boost-thread (boost, boost-nativesdk)
->> NOTE: consider defining a PREFERRED_PROVIDER entry to match boost-thread
->>
->> It seems a bit strange that "boost-nativesdk" is seen as a provider for
->> any of those runtime components. Any hints what I should change to build
->> things correctly?
->>
->> Thank you very much
->>
->> Reinette
->>
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->>
->
-> --
-> Darren Hart
-> Intel Open Source Technology Center
-> Yocto Project - Technical Lead - Linux Kernel
+> Paul Eggleton
+> Intel Open Source Technology Centre
 
