@@ -1,19 +1,19 @@
 Return-Path: <timo.mueller@oss.bmw-carit.de>
 Received: from linuxmail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D1099E01443
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D5412E0144E
 	for <yocto@yoctoproject.org>; Thu, 20 Sep 2012 06:38:37 -0700 (PDT)
 Received: from localhost (mysterion.bmw-carit.intra [192.168.101.57])
 	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
 	(No client certificate requested)
 	(Authenticated sender: timo.mueller)
-	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 361A740430;
+	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 5374040436;
 	Thu, 20 Sep 2012 15:08:41 +0200 (CEST)
 From: mail@timomueller.eu
 To: yocto@yoctoproject.org
-Date: Thu, 20 Sep 2012 15:38:27 +0200
-Message-Id: <027d4cc539d917b35800115c31b91ab42c66efd8.1348147047.git.timo.mueller@bmw-carit.de>
+Date: Thu, 20 Sep 2012 15:38:28 +0200
+Message-Id: <5de2c829fd6aba22434130ebf284fcf62c0c4fc7.1348147047.git.timo.mueller@bmw-carit.de>
 X-Mailer: git-send-email 1.7.7.6
-In-Reply-To: <6ef29bc93e9a3c85e0d9afd8ef050d81a605dc24.1348147047.git.timo.mueller@bmw-carit.de>
+In-Reply-To: <027d4cc539d917b35800115c31b91ab42c66efd8.1348147047.git.timo.mueller@bmw-carit.de>
 References: <cover.1348147047.git.timo.mueller@bmw-carit.de>
 	<1af602c372ef3d674ffc3553ef7bd4f4532834e5.1348147047.git.timo.mueller@bmw-carit.de>
 	<0d6c673c3b5ee40fe7dc5a9ca91ec7d8d35440a0.1348147047.git.timo.mueller@bmw-carit.de>
@@ -37,10 +37,11 @@ References: <cover.1348147047.git.timo.mueller@bmw-carit.de>
 	<949c1cf12e34dcd44d65881666bae13ac8dc992f.1348147047.git.timo.mueller@bmw-carit.de>
 	<fe9828237af095ea6f85f2167ed58b722bf29e4c.1348147047.git.timo.mueller@bmw-carit.de>
 	<6ef29bc93e9a3c85e0d9afd8ef050d81a605dc24.1348147047.git.timo.mueller@bmw-carit.de>
+	<027d4cc539d917b35800115c31b91ab42c66efd8.1348147047.git.timo.mueller@bmw-carit.de>
 In-Reply-To: <cover.1348147047.git.timo.mueller@bmw-carit.de>
 References: <cover.1348147047.git.timo.mueller@bmw-carit.de>
 Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: [PATCH 23/25] documentation/yocto-project-qs/yocto-project-qs-eclipse-customization.xsl: new file
+Subject: [PATCH 24/25] documentation/Makefile: Support for making Eclipse HTML yocto project qs manual
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -56,41 +57,36 @@ X-List-Received-Date: Thu, 20 Sep 2012 13:38:38 -0000
 
 From: Timo Mueller <timo.mueller@bmw-carit.de>
 
-This stylesheet uses the eclipse stylesheets of docbook to create
-eclipse help from this documentation. In addition to simple html
-files these stylesheets will also create xml files which are
-needed to integrate the documentation into eclipse (e.g. toc.xml).
----
- .../yocto-project-qs-eclipse-customization.xsl     |   20 ++++++++++++++++++++
- 1 files changed, 20 insertions(+), 0 deletions(-)
- create mode 100644 documentation/yocto-project-qs/yocto-project-qs-eclipse-customization.xsl
+This target will generate eclipse help for the yocto-project-qs using
+the yocto-project-qs-eclipse-customization.xsl stylesheet.
 
-diff --git a/documentation/yocto-project-qs/yocto-project-qs-eclipse-customization.xsl b/documentation/yocto-project-qs/yocto-project-qs-eclipse-customization.xsl
-new file mode 100644
-index 0000000..cff787f
---- /dev/null
-+++ b/documentation/yocto-project-qs/yocto-project-qs-eclipse-customization.xsl
-@@ -0,0 +1,20 @@
-+<?xml version='1.0'?>
-+<xsl:stylesheet
-+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-+	xmlns="http://www.w3.org/1999/xhtml"
-+	xmlns:fo="http://www.w3.org/1999/XSL/Format"
-+	version="1.0">
-+
-+  <xsl:import
-+	  href="http://docbook.sourceforge.net/release/xsl/current/eclipse/eclipse3.xsl" />
-+
-+  <xsl:param name="base.dir" select="'html/yocto-project-qs/'"/>
-+  <xsl:param name="chunk.section.depth" select="0"/>
-+  <xsl:param name="html.stylesheet" select="'../book.css'"/>
-+  <xsl:param name="eclipse.manifest" select="0"/>
-+  <xsl:param name="create.plugin.xml" select="0"/>
-+  <xsl:param name="suppress.navigation" select="1"/>
-+  <xsl:param name="generate.index" select="0"/>
-+  <xsl:param name="generate.toc" select="'article nop'"></xsl:param>
-+  <xsl:param name="html.stylesheet" select="'style.css'" />
-+</xsl:stylesheet>
+The output will be generated to a separate directory which can be used
+for integrating the documentation into eclipse.
+---
+ documentation/Makefile |    3 ++-
+ 1 files changed, 2 insertions(+), 1 deletions(-)
+
+diff --git a/documentation/Makefile b/documentation/Makefile
+index 2887a95..1a29af5 100644
+--- a/documentation/Makefile
++++ b/documentation/Makefile
+@@ -275,7 +275,7 @@ endif
+ eclipse: BASE_DIR = html/$(DOC)/
+ 
+ eclipse:
+-ifeq ($(filter $(DOC), adt-manual bsp-guide dev-manual kernel-manual poky-ref-manual),)
++ifeq ($(filter $(DOC), adt-manual bsp-guide dev-manual kernel-manual poky-ref-manual yocto-project-qs),)
+ 	@echo " "
+ 	@echo "ERROR: You can only create eclipse documentation"
+ 	@echo "       of the following documentation parts:"
+@@ -287,6 +287,7 @@ ifeq ($(filter $(DOC), adt-manual bsp-guide dev-manual kernel-manual poky-ref-ma
+ 	@echo "       - The Yocto Project Kernel Architecture and"
+ 	@echo "                           Use Manual (kernel-manual)"
+ 	@echo "		  - The Yocto Project Reference Manual (poky-ref-manual)"
++	@echo "       - The Yocto Project Quick Start (yocto-project-qs)"
+ 	@echo " "
+ else
+ 	cd $(DOC) && \
 -- 
 1.7.7.6
 
