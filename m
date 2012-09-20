@@ -1,28 +1,24 @@
-Return-Path: <tarek.elsherbiny@gmail.com>
-Received: from mail-qc0-f176.google.com (mail-qc0-f176.google.com
-	[209.85.216.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 33452E004AB
-	for <yocto@yoctoproject.org>; Thu, 20 Sep 2012 05:26:06 -0700 (PDT)
-Received: by qcsc21 with SMTP id c21so2033461qcs.35
-	for <yocto@yoctoproject.org>; Thu, 20 Sep 2012 05:26:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=MCkwV2tNUJQk19T9DVTppNjUnlPE4j8hCwYRBuxWi1E=;
-	b=qUNPLZPnzAgehAx52hs2KMLFDLiPCpRIRZ2IVgELOXKLz1Jpyr7211O3+a2dDmnJTo
-	qDJl858/4vPWni13dxpOh8n4EXObZkJKzYyKK4KCpxePUyDpFGyjIv8xFZd+5XEUwiA9
-	HrF8L+lgmlrTm7hSIUjAUzVEcDoUvqQ6NavvK3EB/NP0eNv1biveK7GenTvlRJRH4tSH
-	96YDuqfKgx0ki9AEwrdVfpfAH+ZpNhCwixB5QgRRM9ITvXp/qiXHLdr4mAj+xOo3hmle
-	E/boaCWTYTSwwCGf08ZTLycfyjiszzoyTj7OEDU+PoDHsFy/3M+kYcUiiEwu737087Qc
-	B2wQ==
-MIME-Version: 1.0
-Received: by 10.229.107.19 with SMTP id z19mr1025031qco.154.1348143963166;
-	Thu, 20 Sep 2012 05:26:03 -0700 (PDT)
-Received: by 10.224.174.19 with HTTP; Thu, 20 Sep 2012 05:26:03 -0700 (PDT)
-Date: Thu, 20 Sep 2012 13:26:03 +0100
-Message-ID: <CAB3sqtYTWOy4YyFRn70Krs5aFCZW+5A=RC4Z32NqDr74vaAngw@mail.gmail.com>
-From: Tarek El-Sherbiny <tarek.elsherbiny@gmail.com>
-To: yocto@yoctoproject.org
-Subject: bitbake check out from svn
+Return-Path: <treebody@embedstudy.com>
+Received: from smtpbg55.qq.com (smtpbg55.qq.com [64.71.138.44])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id 16107E004AB
+	for <yocto@yoctoproject.org>; Thu, 20 Sep 2012 06:12:09 -0700 (PDT)
+X-QQ-SSF: 00000000000000F000000000000000G
+X-HAS-ATTACH: no
+X-QQ-BUSINESS-ORIGIN: 2
+X-Originating-IP: 49.75.92.42
+X-QQ-STYLE: 
+X-QQ-mid: webmail603t1348146709t5889954
+From: "=?ISO-8859-1?B?TGl1?=" <treebody@embedstudy.com>
+To: "=?ISO-8859-1?B?UGF1bCBFZ2dsZXRvbg==?=" <paul.eggleton@linux.intel.com>
+Mime-Version: 1.0
+Date: Thu, 20 Sep 2012 21:11:49 +0800
+X-Priority: 3
+Message-ID: <tencent_072CFA5F099397A10638EA9F@qq.com>
+X-QQ-MIME: TCMime 1.0 by Tencent
+X-Mailer: QQMail 2.x
+X-QQ-Mailer: QQMail 2.x
+Cc: =?ISO-8859-1?B?eW9jdG8=?= <yocto@yoctoproject.org>
+Subject: Re: How to do the specified tasks instead of many default
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,106 +30,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 20 Sep 2012 12:26:06 -0000
-Content-Type: multipart/alternative; boundary=002354471a3c07d6e504ca213a69
+X-List-Received-Date: Thu, 20 Sep 2012 13:12:09 -0000
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_505B1615_D4F072D0_1890F048"
+Content-Transfer-Encoding: 8Bit
 
---002354471a3c07d6e504ca213a69
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+------=_NextPart_505B1615_D4F072D0_1890F048
+Content-Type: text/plain;
+	charset="ISO-8859-1"
+Content-Transfer-Encoding: base64
 
-I'm writing a recipe to checkout files from local svn. Here is my URI:
+RGVhciBQYXVsLA0KICAgICBJIGhhdmUgc29tZSBwYWNrYWdlcyBidWlsdCBieSBhIHNldCBv
+ZiBNYWtlZmlsZXMsYW5kIHdhbnQgdG8gYnVpbGQgdGhlbSB1c2luZyBiaXRiYWtlLlNvIEkg
+dXNlZCByZWNpcGVzIHRvIGludm9rZSBNYWtlZmlsZXMgdG8gZG8gZmV0Y2gsdW5wYWNrLHBh
+dGNoLGNvbXBpbGUgdGFza3MuQnV0IEkgZG8gbm90IG5lZWQgdG8gZG8gdGhlIGZvbGxvd2lu
+ZyB0YXNrcyBsaWtlIGRvX2J1aWxkLGRvX3BhY2thZ2UuDQogSW4gdGhlIGRlZmF1bHQgY29u
+ZGl0aW9ucyx0aGVyZSBleGlzdCBsaXN0IG9mIHBhY2thZ2VzIGJ5IHVzaW5nIHRoZSBjb21t
+YW5kIGxpa2UgImJpdGJha2UgYnVzeWJveCAtYyBsaXN0dGFza3MiLg0KICAgICBXaXRoIHlv
+dXIgaWRlYSBJIGNhbiBkaXNhYmxlIHRhc2tzIGJ5IGRvX3BhY2thZ2Vbbm9leGVjXSA9ICIx
+Ii4gQnV0IHRoZW4gaXQgbmVlZHMgdG8gZG8gbWFueSBzaW1pbGFyIHdvcmtzIHRvIGRpc2Fi
+bGUgdGFza3MgSSBkbyBub3QgbmVlZCBpbiBhbGwgbXkgcGFja2FnZSByZWNpcGVzLlNvIEkg
+d2FudCB0byBrbm93IGlmIHRoZXJlIGlzIGEgZGlyZWN0IHdheSB0byBkaXNhYmxlIGRlZmF1
+bHQgdGFza3MgZGVmaW5lZCBpbiAuYmJjbGFzcy4NCiBUaGFua3MsDQogLS0tLS0tLS0tLS0t
+TGl1
 
-SRC_URI =3D
-"svn://svn.ad-group.adh/svn/dev_repos/Generation3_app;module=3Dtrunk;protoc=
-ol=3Dhttp"
+------=_NextPart_505B1615_D4F072D0_1890F048
+Content-Type: text/html;
+	charset="ISO-8859-1"
+Content-Transfer-Encoding: base64
 
-bitbake fails to fetch the source from this location and gives the bellow
-error message.
-
-Looks like bitbake is not replacing svn with http hence it's not querying a
-correct address.
-
-Why bitbake is not reading the protocol parameter and construct the
-correct address?
-
-
-NOTE: Preparing runqueue
-NOTE: Executing SetScene Tasks
-NOTE: Executing RunQueue Tasks
-NOTE: Running task 1577 of 2240 (ID: 4,
-/home/telsherbiny/work/fsl/sources/meta-adh-console/recipes-web/web-browser=
-/
-web-browser_8.5.bb, do_fetch)
-NOTE: package web-browser-8.5-r1: task do_fetch: Started
-ERROR: Function failed: Fetcher failure: Fetch command export
-HOME=3D"/home/telsherbiny"; export SSH_AGENT_PID=3D"2398"; export
-SSH_AUTH_SOCK=3D"/tmp/keyring-suRHPa/ssh"; export
-GIT_CONFIG=3D"/home/telsherbiny/work/fsl/build/tmp/sysroots/i686-linux/etc/=
-gitconfig";
-export
-PATH=3D"/home/telsherbiny/work/fsl/build/tmp/sysroots/i686-linux/usr/bin/ar=
-mv7a-vfp-neon-poky-linux-gnueabi:/home/telsherbiny/work/fsl/build/tmp/sysro=
-ots/imx6qsabrelite/usr/bin/crossscripts:/home/telsherbiny/work/fsl/build/tm=
-p/sysroots/i686-linux/usr/sbin:/home/telsherbiny/work/fsl/build/tmp/sysroot=
-s/i686-linux/usr/bin:/home/telsherbiny/work/fsl/build/tmp/sysroots/i686-lin=
-ux/sbin:/home/telsherbiny/work/fsl/build/tmp/sysroots/i686-linux//bin:/home=
-/telsherbiny/work/fsl/sources/poky/scripts:/home/telsherbiny/work/fsl/sourc=
-es/poky/bitbake/bin/:/home/telsherbiny/bin:/usr/local/sbin:/usr/local/bin:/=
-usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/opt/openocd/bin:/opt/arm-elf/bin:/=
-opt/arm-elf-insight/bin:/opt/sh-elf/bin:/opt/insight.sh-elf/bin:/usr/local/=
-cwSDK/cwvx/bin:/opt/arm-elf-insight/bin:/opt/android-sdk-linux_x86/platform=
--tools/:/home/telsherbiny/work/fsl/sources/poky/scripts";
-LANG=3DC LC_ALL=3DC /usr/bin/env svn info
- svn://svn.ad-group.adh/svn/dev_repos/Generation3_app/trunk/ could not be
-run:
-None
-ERROR: Logfile of failure stored in:
-/home/telsherbiny/work/fsl/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueab=
-i/web-browser-8.5-r1/temp/log.do_fetch.14696
+PERJVj5EZWFyIFBhdWwsPC9ESVY+DQo8RElWPiZuYnNwOyAmbmJzcDsgSSBoYXZlIHNvbWUg
+cGFja2FnZXMgYnVpbHQgYnkgYSBzZXQgb2YgTWFrZWZpbGVzLGFuZCB3YW50IHRvIGJ1aWxk
+IHRoZW0gdXNpbmcgYml0YmFrZS5TbyBJIHVzZWQgcmVjaXBlcyB0byBpbnZva2UgTWFrZWZp
+bGVzIHRvIGRvIGZldGNoLHVucGFjayxwYXRjaCxjb21waWxlIHRhc2tzLkJ1dCBJIGRvIG5v
+dCBuZWVkIHRvIGRvIHRoZSBmb2xsb3dpbmcgdGFza3MgbGlrZSBkb19idWlsZCxkb19wYWNr
+YWdlLjwvRElWPg0KPERJVj5JbiB0aGUgZGVmYXVsdCBjb25kaXRpb25zLHRoZXJlIGV4aXN0
+IGxpc3Qgb2YgcGFja2FnZXMgYnkgdXNpbmcgdGhlIGNvbW1hbmQgbGlrZSAiYml0YmFrZSBi
+dXN5Ym94IC1jIGxpc3R0YXNrcyIuPC9ESVY+DQo8RElWPiZuYnNwOyAmbmJzcDsgV2l0aCB5
+b3VyIGlkZWEgSSBjYW4gZGlzYWJsZSB0YXNrcyBieSBkb19wYWNrYWdlW25vZXhlY10gPSAi
+MSIuIEJ1dCZuYnNwO3RoZW4gaXQmbmJzcDtuZWVkcyB0byBkbyBtYW55IHNpbWlsYXIgd29y
+a3MgdG8gZGlzYWJsZSB0YXNrcyBJIGRvIG5vdCBuZWVkIGluIGFsbCBteSBwYWNrYWdlIHJl
+Y2lwZXMuU28gSSB3YW50IHRvIGtub3cgaWYgdGhlcmUgaXMgYSZuYnNwO2RpcmVjdCZuYnNw
+O3dheSB0byBkaXNhYmxlIGRlZmF1bHQgdGFza3MgZGVmaW5lZCBpbiAuYmJjbGFzcy48L0RJ
+Vj4NCjxESVY+VGhhbmtzLDwvRElWPg0KPERJVj4tLS0tLS0tLS0tLS1MaXU8QlI+PC9ESVY+
 
 
-Thanks
-
---002354471a3c07d6e504ca213a69
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-I&#39;m writing a recipe to checkout files from local svn. Here is my URI:<=
-div><br></div><div>SRC_URI =3D &quot;svn://svn.ad-group.adh/svn/dev_repos/G=
-eneration3_app;module=3Dtrunk;protocol=3Dhttp&quot;</div><div><br></div><di=
-v>bitbake fails to fetch the source from this location and gives the bellow=
- error message.</div>
-<div><br></div><div>Looks like bitbake is not replacing svn with http hence=
- it&#39;s not=A0querying=A0a correct address.</div><div><br></div><div>Why =
-bitbake is not reading the protocol parameter and=A0construct=A0the correct=
-=A0address?</div>
-<div>=A0</div><div><br></div><div><div>NOTE: Preparing runqueue</div><div>N=
-OTE: Executing SetScene Tasks</div><div>NOTE: Executing RunQueue Tasks</div=
-><div>NOTE: Running task 1577 of 2240 (ID: 4, /home/telsherbiny/work/fsl/so=
-urces/meta-adh-console/recipes-web/web-browser/<a href=3D"http://web-browse=
-r_8.5.bb">web-browser_8.5.bb</a>, do_fetch)</div>
-<div>NOTE: package web-browser-8.5-r1: task do_fetch: Started</div><div>ERR=
-OR: Function failed: Fetcher failure: Fetch command export HOME=3D&quot;/ho=
-me/telsherbiny&quot;; export SSH_AGENT_PID=3D&quot;2398&quot;; export SSH_A=
-UTH_SOCK=3D&quot;/tmp/keyring-suRHPa/ssh&quot;; export GIT_CONFIG=3D&quot;/=
-home/telsherbiny/work/fsl/build/tmp/sysroots/i686-linux/etc/gitconfig&quot;=
-; export PATH=3D&quot;/home/telsherbiny/work/fsl/build/tmp/sysroots/i686-li=
-nux/usr/bin/armv7a-vfp-neon-poky-linux-gnueabi:/home/telsherbiny/work/fsl/b=
-uild/tmp/sysroots/imx6qsabrelite/usr/bin/crossscripts:/home/telsherbiny/wor=
-k/fsl/build/tmp/sysroots/i686-linux/usr/sbin:/home/telsherbiny/work/fsl/bui=
-ld/tmp/sysroots/i686-linux/usr/bin:/home/telsherbiny/work/fsl/build/tmp/sys=
-roots/i686-linux/sbin:/home/telsherbiny/work/fsl/build/tmp/sysroots/i686-li=
-nux//bin:/home/telsherbiny/work/fsl/sources/poky/scripts:/home/telsherbiny/=
-work/fsl/sources/poky/bitbake/bin/:/home/telsherbiny/bin:/usr/local/sbin:/u=
-sr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/opt/openocd/bin:/opt=
-/arm-elf/bin:/opt/arm-elf-insight/bin:/opt/sh-elf/bin:/opt/insight.sh-elf/b=
-in:/usr/local/cwSDK/cwvx/bin:/opt/arm-elf-insight/bin:/opt/android-sdk-linu=
-x_x86/platform-tools/:/home/telsherbiny/work/fsl/sources/poky/scripts&quot;=
-; LANG=3DC LC_ALL=3DC /usr/bin/env svn info =A0svn://svn.ad-group.adh/svn/d=
-ev_repos/Generation3_app/trunk/ could not be run:</div>
-<div>None</div><div>ERROR: Logfile of failure stored in: /home/telsherbiny/=
-work/fsl/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/web-browser-8.5-=
-r1/temp/log.do_fetch.14696</div></div><div><br></div><div><br></div><div>
-Thanks</div>
-
---002354471a3c07d6e504ca213a69--
+------=_NextPart_505B1615_D4F072D0_1890F048--
