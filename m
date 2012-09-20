@@ -1,25 +1,35 @@
-Return-Path: <treebody@embedstudy.com>
-Received: from smtpbg298.qq.com (smtpbg298.qq.com [184.105.67.102])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 1EFB4E004AB
-	for <yocto@yoctoproject.org>; Thu, 20 Sep 2012 07:07:49 -0700 (PDT)
-X-QQ-SSF: 00000000000000F000000000000000G
-X-HAS-ATTACH: no
-X-QQ-BUSINESS-ORIGIN: 2
-X-Originating-IP: 49.75.92.42
-X-QQ-STYLE: 
-X-QQ-mid: webmail437t1348150062t4939109
-From: "=?ISO-8859-1?B?TGl1?=" <treebody@embedstudy.com>
-To: "=?ISO-8859-1?B?UGF1bCBFZ2dsZXRvbg==?=" <paul.eggleton@linux.intel.com>
-Mime-Version: 1.0
-Date: Thu, 20 Sep 2012 22:07:42 +0800
-X-Priority: 3
-Message-ID: <tencent_579D97015A30E49B6B0DAD5C@qq.com>
-X-QQ-MIME: TCMime 1.0 by Tencent
-X-Mailer: QQMail 2.x
-X-QQ-Mailer: QQMail 2.x
-X-QQ-ReplyHash: 3817766482
-Cc: =?ISO-8859-1?B?eW9jdG8=?= <yocto@yoctoproject.org>
-Subject: Re: How to do the specified tasks instead of many default
+Return-Path: <evadeflow@gmail.com>
+Received: from mail-oa0-f48.google.com (mail-oa0-f48.google.com
+	[209.85.219.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 05EC8E01400
+	for <yocto@yoctoproject.org>; Thu, 20 Sep 2012 07:12:15 -0700 (PDT)
+Received: by oagn16 with SMTP id n16so2809761oag.35
+	for <yocto@yoctoproject.org>; Thu, 20 Sep 2012 07:12:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=4mo+JoCGzYXgBYN5wjS/fRj8znpOhgIG8QML4vVjG3w=;
+	b=N7CYW8l+7i9nmQru5LYyrocOqqGF8Yki3AU2ARZ9gVbQCW/Ha4W/KHdD/JRP1tRT4N
+	t0at2gWrb54tXwWPVI6Eyq5wUOmyWykxE+MThHafUBMr0ZBCtRD4qZh8dGosI/meAVXQ
+	I4UwkCzcZkehtVZw5I/j+eS7AauSQznjQ/1Q44/fbCdSnJdW/tCOwn6fywMUSsvso+up
+	14JR6AG1QogO9LN5CtWjlgY+Q07LRFB8C43/inNiUePhwH+EEpGkBXJX9AOANbx/3UeM
+	He8oupfgy2d9bJLLrQneFdPhZ6+4i3o7my5Q6g4pdKO9ggMW9WpsXn74tnLBOXDtkaVA
+	QyVg==
+MIME-Version: 1.0
+Received: by 10.60.26.133 with SMTP id l5mr1426641oeg.60.1348150335500; Thu,
+	20 Sep 2012 07:12:15 -0700 (PDT)
+Received: by 10.76.153.198 with HTTP; Thu, 20 Sep 2012 07:12:15 -0700 (PDT)
+In-Reply-To: <4100342.qsm4CZIotx@helios>
+References: <CAMAb8ZO=KzrgNoW4VPADtCn27KUfviP4QL84_ia5sAUbj_9a3Q@mail.gmail.com>
+	<505A5FB9.4010802@mlbassoc.com>
+	<CAMAb8ZN0Yb4km-X0wyUDsbRYYSC53B62F+ZPYRVNEmae7QeVsA@mail.gmail.com>
+	<4100342.qsm4CZIotx@helios>
+Date: Thu, 20 Sep 2012 10:12:15 -0400
+Message-ID: <CAMAb8ZPXYXNTgk_v_PG55C1FYERrT4s08FGLQO7frsE=J4pGDA@mail.gmail.com>
+From: Evade Flow <evadeflow@gmail.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: BB_NO_NETWORK and own-mirrors not working with meta-systemd
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,85 +41,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 20 Sep 2012 14:07:49 -0000
-Content-Type: multipart/alternative;
-	boundary="----=_NextPart_505B232E_D496F8B0_2BAB9160"
-Content-Transfer-Encoding: 8Bit
+X-List-Received-Date: Thu, 20 Sep 2012 14:12:16 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-------=_NextPart_505B232E_D496F8B0_2BAB9160
-Content-Type: text/plain;
-	charset="ISO-8859-1"
-Content-Transfer-Encoding: base64
+Fortunately, you caught me before I pulled out a bigger hammer. :-} I was
+going to report that this still didn't work after typing:
 
-RGVhciBQYXVsLA0KICAgICBUaGFua3MgYSBsb3QgZm9yIHlvdXIgc3VnZ2VzdGlvbi5NYXli
-ZSBpbiB0aGUgZnV0dXJlIEkgd2lsbCBjaGFuZ2UgdGhlIG9yaWdpbmFsIEJ1aWxkcm9vdCBt
-YWtlZmlsZXMgIGluIG15IHByb2plY3QgdG8gbWFrZSB0aGUgYnVpbGQgZWFzeSBhbmQgY29k
-ZSBjb252ZW5pZW50IG1hbmFnZW1lbnQuDQogIA0KIC0tLS0tLS1MaXUNCiAgDQoNCiANCg0K
-IC0tLS0tLS0tLS0tLS0tLS0tLSBPcmlnaW5hbCAtLS0tLS0tLS0tLS0tLS0tLS0NCiAgRnJv
-bTogICJQYXVsIEVnZ2xldG9uIjxwYXVsLmVnZ2xldG9uQGxpbnV4LmludGVsLmNvbT47DQog
-RGF0ZTogIFRodSwgU2VwIDIwLCAyMDEyIDA5OjU3IFBNDQogVG86ICAiTGl1Ijx0cmVlYm9k
-eUBlbWJlZHN0dWR5LmNvbT47IA0KIENjOiAgInlvY3RvIjx5b2N0b0B5b2N0b3Byb2plY3Qu
-b3JnPjsgDQogU3ViamVjdDogIFJlOiBbeW9jdG9dIEhvdyB0byBkbyB0aGUgc3BlY2lmaWVk
-IHRhc2tzIGluc3RlYWQgb2YgbWFueSBkZWZhdWx0DQoNCiANCg0KT24gVGh1cnNkYXkgMjAg
-U2VwdGVtYmVyIDIwMTIgMjE6NTA6NDIgTGl1IHdyb3RlOg0KPiAgICAgIEkga25vdyBpdCBw
-cm9iYWJseSBub3QgYmUgcmlnaHQgdG8gZG8gaW4gc3VjaCB3YXkuQnV0IG15IHByb2plY3Qg
-aXMNCj4gYnVpbHQgYnkgYnVpbGRyb290LFNvIEkganVzdCBuZWVkIHRvIHJ1biBtYWtlIHRv
-IGJ1aWxkIHRoZSBpbWFnZS5BbmQgbm93IA0KPiBJIHdhbnQgdG8gdXNlIGJpdGJha2UgdG8g
-YnVpbGQgdGhlIHByb2plY3QgaW5zdGVhZCBvZiBidWlsZHJvb3QuVGhlbiBJDQo+IHRoaW5r
-IG9mIHRoZSBpZGVhIHRvIHVzZSByZWNpcGVzIHRvICJkb19mZXRjaCIsImRvX3VucGFjayIs
-YW5kIA0KPiAib2VfcnVubWFrZSIgdG8gYnVpbGQgdGhlIHBhY2thZ2VzLiANCg0KSSBndWVz
-cyBJIHdvdWxkIHJlY29tbWVuZCBpZiB5b3UncmUgZ29pbmcgdG8gbWlncmF0ZSB0byBidWls
-ZGluZyB3aXRoIGJpdGJha2UgDQp0aGF0IHlvdSBtYWtlIG1vcmUgb2YgYSBtaWdyYXRpb24g
-dG93YXJkcyBzdGFuZGFyZCByZWNpcGVzIC0gSSdtIG5vdCBzdXJlIA0KZXhhY3RseSB3aGVy
-ZSB5b3Ugd2lsbCBlbmQgdXAgd2l0aCB5b3VyIGN1cnJlbnQgYXBwcm9hY2ggYnV0IGl0IHNv
-dW5kcyBsaWtlIA0KeW91IHdvbid0IGdldCBtdWNoIGJlbmVmaXQgYnkganVzdCBjYWxsaW5n
-IGludG8gdGhlIG9yaWdpbmFsIEJ1aWxkcm9vdCBtYWtlZmlsZXMgDQpvdmVyIGp1c3QgY29u
-dGludWluZyB0byB1c2UgQnVpbGRyb290IG9uIGl0cyBvd24uDQoNCkNoZWVycywNClBhdWwN
-Cg0KLS0gDQoNClBhdWwgRWdnbGV0b24NCkludGVsIE9wZW4gU291cmNlIFRlY2hub2xvZ3kg
-Q2VudHJl
+  % bitbake -c cleanstate
 
-------=_NextPart_505B232E_D496F8B0_2BAB9160
-Content-Type: text/html;
-	charset="ISO-8859-1"
-Content-Transfer-Encoding: base64
+But re-reading your post, I saw that there were supposed to be two 'esses'[!]
+The following:
 
-PERJVj5EZWFyIFBhdWwsPC9ESVY+DQo8RElWPiZuYnNwOyZuYnNwOyZuYnNwOyBUaGFua3Mg
-YSBsb3QgZm9yIHlvdXIgc3VnZ2VzdGlvbi5NYXliZSBpbiB0aGUgZnV0dXJlIEkgd2lsbCBj
-aGFuZ2UgdGhlIG9yaWdpbmFsIEJ1aWxkcm9vdCBtYWtlZmlsZXMmbmJzcDsgaW4gbXkgcHJv
-amVjdCB0byBtYWtlJm5ic3A7dGhlIGJ1aWxkJm5ic3A7ZWFzeSBhbmQgY29kZSBjb252ZW5p
-ZW50Jm5ic3A7bWFuYWdlbWVudC48L0RJVj4NCjxESVY+Jm5ic3A7PC9ESVY+DQo8RElWPi0t
-LS0tLS1MaXU8L0RJVj4NCjxESVY+PGluY2x1ZGV0YWlsPg0KPERJVj48QlI+PC9ESVY+DQo8
-RElWPjxCUj48L0RJVj4NCjxESVYgc3R5bGU9IlBBRERJTkctQk9UVE9NOiAycHg7IFBBRERJ
-TkctTEVGVDogMHB4OyBQQURESU5HLVJJR0hUOiAwcHg7IEZPTlQtRkFNSUxZOiBBcmlhbCBO
-YXJyb3c7IEZPTlQtU0laRTogMTJweDsgUEFERElORy1UT1A6IDJweCI+LS0tLS0tLS0tLS0t
-LS0tLS0tJm5ic3A7T3JpZ2luYWwmbmJzcDstLS0tLS0tLS0tLS0tLS0tLS08L0RJVj4NCjxE
-SVYgc3R5bGU9IlBBRERJTkctQk9UVE9NOiA4cHg7IFBBRERJTkctTEVGVDogOHB4OyBQQURE
-SU5HLVJJR0hUOiA4cHg7IEJBQ0tHUk9VTkQ6ICNlZmVmZWY7IEZPTlQtU0laRTogMTJweDsg
-UEFERElORy1UT1A6IDhweCI+DQo8RElWPjxCPkZyb206IDwvQj4mbmJzcDsiUGF1bCBFZ2ds
-ZXRvbiImbHQ7cGF1bC5lZ2dsZXRvbkBsaW51eC5pbnRlbC5jb20mZ3Q7OzwvRElWPg0KPERJ
-Vj48Qj5EYXRlOiA8L0I+Jm5ic3A7VGh1LCBTZXAgMjAsIDIwMTIgMDk6NTcgUE08L0RJVj4N
-CjxESVY+PEI+VG86IDwvQj4mbmJzcDsiTGl1IiZsdDt0cmVlYm9keUBlbWJlZHN0dWR5LmNv
-bSZndDs7IDxXQlI+PC9ESVY+DQo8RElWPjxCPkNjOiA8L0I+Jm5ic3A7InlvY3RvIiZsdDt5
-b2N0b0B5b2N0b3Byb2plY3Qub3JnJmd0OzsgPFdCUj48L0RJVj4NCjxESVY+PEI+U3ViamVj
-dDogPC9CPiZuYnNwO1JlOiBbeW9jdG9dIEhvdyB0byBkbyB0aGUgc3BlY2lmaWVkIHRhc2tz
-IGluc3RlYWQgb2YgbWFueSBkZWZhdWx0PC9ESVY+PC9ESVY+DQo8RElWPjxCUj48L0RJVj5P
-biBUaHVyc2RheSAyMCBTZXB0ZW1iZXIgMjAxMiAyMTo1MDo0MiBMaXUgd3JvdGU6PEJSPiZn
-dDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgSSBrbm93IGl0IHByb2JhYmx5IG5v
-dCBiZSByaWdodCB0byBkbyBpbiBzdWNoIHdheS5CdXQgbXkgcHJvamVjdCBpczxCUj4mZ3Q7
-IGJ1aWx0IGJ5IGJ1aWxkcm9vdCxTbyBJIGp1c3QgbmVlZCB0byBydW4gbWFrZSB0byBidWls
-ZCB0aGUgaW1hZ2UuQW5kIG5vdyA8QlI+Jmd0OyBJIHdhbnQgdG8gdXNlIGJpdGJha2UgdG8g
-YnVpbGQgdGhlIHByb2plY3QgaW5zdGVhZCBvZiBidWlsZHJvb3QuVGhlbiBJPEJSPiZndDsg
-dGhpbmsgb2YgdGhlIGlkZWEgdG8gdXNlIHJlY2lwZXMgdG8gImRvX2ZldGNoIiwiZG9fdW5w
-YWNrIixhbmQgPEJSPiZndDsgIm9lX3J1bm1ha2UiIHRvIGJ1aWxkIHRoZSBwYWNrYWdlcy4g
-PEJSPjxCUj5JIGd1ZXNzIEkgd291bGQgcmVjb21tZW5kIGlmIHlvdSdyZSBnb2luZyB0byBt
-aWdyYXRlIHRvIGJ1aWxkaW5nIHdpdGggYml0YmFrZSA8QlI+dGhhdCB5b3UgbWFrZSBtb3Jl
-IG9mIGEgbWlncmF0aW9uIHRvd2FyZHMgc3RhbmRhcmQgcmVjaXBlcyAtIEknbSBub3Qgc3Vy
-ZSA8QlI+ZXhhY3RseSB3aGVyZSB5b3Ugd2lsbCBlbmQgdXAgd2l0aCB5b3VyIGN1cnJlbnQg
-YXBwcm9hY2ggYnV0IGl0IHNvdW5kcyBsaWtlIDxCUj55b3Ugd29uJ3QgZ2V0IG11Y2ggYmVu
-ZWZpdCBieSBqdXN0IGNhbGxpbmcgaW50byB0aGUgb3JpZ2luYWwgQnVpbGRyb290IG1ha2Vm
-aWxlcyA8QlI+b3ZlciBqdXN0IGNvbnRpbnVpbmcgdG8gdXNlIEJ1aWxkcm9vdCBvbiBpdHMg
-b3duLjxCUj48QlI+Q2hlZXJzLDxCUj5QYXVsPEJSPjxCUj4tLSA8QlI+PEJSPlBhdWwgRWdn
-bGV0b248QlI+SW50ZWwgT3BlbiBTb3VyY2UgVGVjaG5vbG9neSBDZW50cmU8QlI+DQo8RElW
-PjwvRElWPjwvaW5jbHVkZXRhaWw+PC9ESVY+
+  % bitbake kmod -c cleansstate
+  % bitbake kmod
 
-------=_NextPart_505B232E_D496F8B0_2BAB9160--
+does, in fact, seem to have worked for me.  Thanks, guys, for your help!
+
+
+On Thu, Sep 20, 2012 at 9:42 AM, Paul Eggleton
+<paul.eggleton@linux.intel.com> wrote:
+> On Thursday 20 September 2012 09:30:19 Evade Flow wrote:
+>> I guess I'll try the BFI approach of restarting the build from scratch next.
+>> `:-o.
+>
+> We'd really rather people didn't do this as it does not help us to diagnose
+> and fix problems.
+>
+>> Incidentally, searching the OpenEmbedded manual for 'cleanslate'
+>> turns up no hits. Is this some kind of 'secret' command?  Where can I learn
+>> about other such commands?
+>
+> As Gary pointed out the command is "cleansstate". The OpenEmbedded manual has
+> not been kept up-to-date I'm afraid - but the good news is there is an up-to-
+> date and comprehensive set of documentation set provided by the Yocto Project
+> here:
+>
+> http://www.yoctoproject.org/documentation
+>
+> FYI you can do "bitbake -c listtasks <targetname>" which will list all of the
+> valid tasks, you can remove do_ from the start of these to get commands you
+> can use with -c.
+>
+> Cheers,
+> Paul
+>
+> --
+>
+> Paul Eggleton
+> Intel Open Source Technology Centre
+
