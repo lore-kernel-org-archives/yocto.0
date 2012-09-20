@@ -1,24 +1,41 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3A363E002AB
-	for <yocto@yoctoproject.org>; Thu, 20 Sep 2012 02:37:46 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 20 Sep 2012 02:37:45 -0700
+Return-Path: <mihaix.lindner@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 75F95E002AB;
+	Thu, 20 Sep 2012 03:03:28 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 20 Sep 2012 03:03:28 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,453,1344236400"; d="scan'208";a="147084774"
-Received: from unknown (HELO helios.localnet) ([10.252.121.248])
-	by AZSMGA002.ch.intel.com with ESMTP; 20 Sep 2012 02:37:27 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Liu <treebody@embedstudy.com>
-Date: Thu, 20 Sep 2012 10:37:26 +0100
-Message-ID: <2610235.ldikzBKGIg@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.9 (Linux/3.2.0-30-generic-pae; KDE/4.9.0; i686; ; )
-In-Reply-To: <tencent_481A33D43CF5A7886EAFDDC1@qq.com>
-References: <tencent_481A33D43CF5A7886EAFDDC1@qq.com>
+X-IronPort-AV: E=Sophos;i="4.80,453,1344236400"; d="scan'208";a="208568554"
+Received: from linux.jf.intel.com (HELO linux.intel.com) ([10.23.219.25])
+	by orsmga002.jf.intel.com with ESMTP; 20 Sep 2012 03:03:27 -0700
+Received: from [10.237.105.142] (mlindnex-mobl1.ger.corp.intel.com
+	[10.237.105.142])
+	by linux.intel.com (Postfix) with ESMTP id C7A092C8001;
+	Thu, 20 Sep 2012 03:03:26 -0700 (PDT)
+Message-ID: <505AE9EC.8070809@linux.intel.com>
+Date: Thu, 20 Sep 2012 13:03:24 +0300
+From: Mihai Lindner <mihaix.lindner@linux.intel.com>
+Organization: Intel OTC
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
+	rv:15.0) Gecko/20120907 Thunderbird/15.0.1
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: How to do the specified tasks instead of many default ones
+To: Tom Zanussi <tom.zanussi@intel.com>
+References: <cover.1347946602.git.mihaix.lindner@linux.intel.com>
+	<5058675D.9020707@windriver.com>
+	<1347976148.6185.49.camel@empanada>
+	<50587DEA.6030508@linux.intel.com>
+	<1347978192.6185.51.camel@empanada>
+	<5058892F.3020704@linux.intel.com> <5059E83A.9040306@windriver.com>
+	<5059EB19.9070600@linux.intel.com> <505A1690.60007@windriver.com>
+	<505A1F76.4070706@linux.intel.com> <505A2982.9010908@windriver.com>
+	<505A2BF0.4070906@windriver.com> <505A311E.8060805@linux.intel.com>
+	<505A5BA4.3010809@windriver.com>
+	<1348108698.32247.1.camel@empanada>
+In-Reply-To: <1348108698.32247.1.camel@empanada>
+Cc: "Development list for the linux-yocto*.git Linux kernel repositories"
+	<linux-yocto@yoctoproject.org>, yocto@yoctoproject.org,
+	Darren Hart <dvhart@linux.intel.com>
+Subject: Re: [linux-yocto] [PATCH 0/1] [linux-yocto-3.0] boot-live.cfg: enable BLK_DEV_INITRD in kernel
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,25 +47,248 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 20 Sep 2012 09:37:46 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Thu, 20 Sep 2012 10:03:28 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thursday 20 September 2012 15:41:54 Liu wrote:
->      I'm compiling a test package  "helloworld",then I just want to do the
-> standard tasks of "do_fetch","do_unpack" until the task "do_compile",and I
-> do not want to the next tasks like "do_build","do_package". I think there
-> exist the task dependency chain,but can hardly find how to remove the tasks
-> I do not want to do.Can anyone tell me something detailed about this
-> question ?
+On 2012-09-20 05:38, Tom Zanussi wrote:
+> On Wed, 2012-09-19 at 19:56 -0400, Bruce Ashfield wrote:
+>> On 12-09-19 04:54 PM, Mihai Lindner wrote:
+>>> On 2012-09-19 23:32, Bruce Ashfield wrote:
+>>>> On 12-09-19 04:22 PM, Bruce Ashfield wrote:
+>>>>> On 12-09-19 03:39 PM, Mihai Lindner wrote:
+>>>>>> On 2012-09-19 22:01, Bruce Ashfield wrote:
+>>>>>>> On 12-09-19 11:56 AM, Mihai Lindner wrote:
+>>>>>>>> On 2012-09-19 18:43, Bruce Ashfield wrote:
+>>>>>>>>> On 12-09-18 10:46 AM, Mihai Lindner wrote:
+>>>>>>>>>> On 2012-09-18 17:23, Tom Zanussi wrote:
+>>>>>>>>>>> On Tue, 2012-09-18 at 16:58 +0300, Mihai Lindner wrote:
+>>>>>>>>>>>> On 2012-09-18 16:49, Tom Zanussi wrote:
+>>>>>>>>>>>>> On Tue, 2012-09-18 at 08:21 -0400, Bruce Ashfield wrote:
+>>>>>>>>>>>>>> On 12-09-18 01:59 AM, Mihai Lindner wrote:
+>>>>>>>>>>>>>>> Please pull into linux-yocto-3.0, meta.
+>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>> Adding linux-yocto, Darren and Tom.
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>> This looks fine to me, and we should consider it for all the
+>>>>>>>>>>>>>> repositories,
+>>>>>>>>>>>>>> not just 3.0.
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>> Tom/Darren. Any side effects you can think of for this change ?
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>
+>>>>>>>>>>>>> No, but shouldn't it already be there, inherited from base.cfg?
+>>>>>>>>>>>>
+>>>>>>>>>>>> For cedartrail, at least, standard.cfg is used.
+>>>>>>>>>>>>
+>>>>>>>>>>>
+>>>>>>>>>>> And standard inherits from base, so it should be turned on. Somehow
+>>>>>>>>>>> it's getting turned off in cedartrail...
+>>>>>>>>>>
+>>>>>>>>>> Yes, it the final .config file is turned off. Solved it by setting
+>>>>>>>>>> it in boot-live.
+>>>>>>>>>> --Mihai
+>>>>>>>>>
+>>>>>>>>> To follow up on this, is someone taking a closer look at this config
+>>>>>>>>> to see if we can get a root cause for that option being disabled for
+>>>>>>>>> this board ?
+>>>>>>>>>
+>>>>>>>>> I won't be able to poke at it myself for another day or so.
+>>>>>>>>>
+>>>>>>>>> Bruce
+>>>>>>>>>
+>>>>>>>> I'm still digging on this, trying to figure out what cfg files are
+>>>>>>>> included / omitted by `configme` and why.
+>>>>>>>> base.cfg is not included, nor stanadrd.cfg it seems.
+>>>>>>>> The list of included cfg files is way to short.
+>>>>>>>
+>>>>>>> That likely means the BSP .scc file is missing and update (i.e. does
+>>>>>>> it still have scc_leaf?) and the tools aren't finding it and
+>>>>>>> auto-generating something to get you up and running.
+>>>>>>>
+>>>>>>> I just checked the meta branch here, and it looks to be updated, but
+>>>>>>> if you look at your build's linux source dir, what's in meta/top_tgt ?
+>>>>>>>
+>>>>>>> Bruce
+>>>>>>>
+>>>>>> In meta/top_tgt i have:
+>>>>>>
+>>>>>> /home/mihai/cedartrail/tmp/work/cedartrail-poky-linux/linux-yocto-3.0.32+git5+46e8fc2bbbe73514e8d99101adaaa373f760ffa7_1+1e79e03d115ed177882ab53909a4f3555e434833-r4.1/linux/meta/cfg/kernel-cache/bsp/cedartrail/cedartrail-standard.scc
+>>>>>>
+>>>>>>
+>>>>>>
+>>>>>> I've also hit an error, after more verbose runs of
+>>>>>> ./cedartrail-standard in meta/cfg/scratch/obj/:
+>>>>>>
+>>>>>> ./0-cedartrail-standard-897c5c055888aca397b3ab0d7be9e6fa.sco: line 17:
+>>>>>> standard_5b57715386592f694588063dd3ec6ebb: command not found
+>>>>>>
+>>>>>> After this the scripts stops.
+>>>>>>
+>>>>>
+>>>>> Aha. This definitely breaks the configuration chain (and would throw
+>>>>> a hard error in the 3.4 kernel) and is where the options drop. But this
+>>>>> should no way be specific to this board. I'll get something configured
+>>>>> here, since I need to see this happen in front of me.
+>>>>
+>>>> I've finally reproduced this. Leave the issue with me and I'll get
+>>>> back to you with a fix.
+>>>>
+>>>> Bruce
+>>>
+>>> Yay! Thanks.
+>>> It's not specific, it's just easier to hit; for cedartrail only 3.0 is available, and also set as preferred.
+>>>
+>>
+>> Aha. I was right. It is a tools issue and a interface that changed.
+>> I made a fix for this in the 3.0 kernel tree some time ago, but
+>> I didn't update the lagging BSPs, and the handoff to a meta-intel
+>> change was missed.
+>>
+>> With this change (sorry for the linewraps, I'm out of the office):
+>>
+>> --git a/meta-cedartrail/recipes-kernel/linux/linux-yocto_3.0.bbappend 
+>> b/meta-cedartrail/recipes-kernel/linux/linux-yocto_3.0.bbappend
+>> index 35c4755..212a400 100644
+>> --- a/meta-cedartrail/recipes-kernel/linux/linux-yocto_3.0.bbappend
+>> +++ b/meta-cedartrail/recipes-kernel/linux/linux-yocto_3.0.bbappend
+>> @@ -16,7 +16,7 @@ KBRANCH_cedartrail-nopvr  = "yocto/standard/cedartrail"
+>>   KERNEL_FEATURES_append_cedartrail-nopvr += " cfg/smp.scc"
+>>
+>>   SRCREV_machine_pn-linux-yocto_cedartrail ?= 
+>> "1e79e03d115ed177882ab53909a4f3555e434833"
+>> -SRCREV_meta_pn-linux-yocto_cedartrail ?= 
+>> "46e8fc2bbbe73514e8d99101adaaa373f760ffa7"
+>> +SRCREV_meta_pn-linux-yocto_cedartrail ?= 
+>> "bf5ee4945ee6d748e6abe16356f2357f76b5e2f0"
+>>   SRCREV_pvr_pn-linux-yocto_cedartrail ?= 
+>> "997f5644664b31ebefd6e16c451c4a3729eb378a"
+>>
+>>   SRCREV_machine_pn-linux-yocto_cedartrail-nopvr ?= 
+>> "1e79e03d115ed177882ab53909a4f3555e434833"
+>>
+>> i.e. bump the META srcrev and everything is properly configured.
+>> Tom or Darren .. or someone else can make the change permanently in
+>> meta-intel/meta-cedartrail.
+>>
+> 
+> Fix pushed to meta-intel/master, thanks, Bruce.
+> 
+> Rahul, Kishore, could you please verify the fix and check whether there
+> might be other SRCREV updates lurking?
+> 
+> Tom
+> 
+>> Cheers,
+>>
+>> Bruce
+>>
+>>
+>>
+>>
+>>> --Mihai
+>>>
+>>>>
+>>>>>
+>>>>> Cheers,
+>>>>>
+>>>>> Bruce
+>>>>>
+>>>>>
+>>>>>> Mihai
+>>>>>>
+>>>>>>>
+>>>>>>>>
+>>>>>>>> --Mihai
+>>>>>>>>>>
+>>>>>>>>>>>
+>>>>>>>>>>> Tom
+>>>>>>>>>>>
+>>>>>>>>>>>> --Mihai
+>>>>>>>>>>>>
+>>>>>>>>>>>>>
+>>>>>>>>>>>>> Tom
+>>>>>>>>>>>>>
+>>>>>>>>>>>>>> Bruce
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>> Added BLK_DEV_INITRD in boot-live.cfg for linux-yocto-3.0,
+>>>>>>>>>>>>>>> meta branch.
+>>>>>>>>>>>>>>> Cedartrail (at least) cannot boot live from ISO image due to
+>>>>>>>>>>>>>>> BLK_DEV_INITRD missing:
+>>>>>>>>>>>>>>> "VFS: Cannot open root device "ram0" or unkown-block(0,0)"
+>>>>>>>>>>>>>>> Should fix #3050
+>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>> [YOCTO #3050]
+>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>> Signed-off-by: Mihai Lindner<mihaix.lindner@linux.intel.com>
+>>>>>>>>>>>>>>> ---
+>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>> The following changes since commit
+>>>>>>>>>>>>>>> bf5ee4945ee6d748e6abe16356f2357f76b5e2f0:
+>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>> meta: rename virto.scc to virtio.scc (2012-08-18 22:09:35 -0400)
+>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>> are available in the git repository at:
+>>>>>>>>>>>>>>> git://git.yoctoproject.org/poky-contrib
+>>>>>>>>>>>>>>> mihai/linux-yocto-3.0/meta
+>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>> Mihai Lindner (1):
+>>>>>>>>>>>>>>> boot-live.cfg: enable BLK_DEV_INITRD in kernel
+>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>> meta/cfg/kernel-cache/cfg/boot-live.cfg | 2 ++
+>>>>>>>>>>>>>>> 1 files changed, 2 insertions(+), 0 deletions(-)
+>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>> Mihai Lindner (1):
+>>>>>>>>>>>>>>> boot-live.cfg: enable BLK_DEV_INITRD in kernel
+>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>> meta/cfg/kernel-cache/cfg/boot-live.cfg | 2 ++
+>>>>>>>>>>>>>>> 1 files changed, 2 insertions(+), 0 deletions(-)
+>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>
+>>>>>>>>>>>>>
+>>>>>>>>>>>>>
+>>>>>>>>>>>>>
+>>>>>>>>>>>>
+>>>>>>>>>>>>
+>>>>>>>>>>>
+>>>>>>>>>>>
+>>>>>>>>>>>
+>>>>>>>>>>>
+>>>>>>>>>>
+>>>>>>>>>>
+>>>>>>>>>
+>>>>>>>>>
+>>>>>>>>>
+>>>>>>>>
+>>>>>>>>
+>>>>>>>
+>>>>>>>
+>>>>>>>
+>>>>>>
+>>>>>>
+>>>>>
+>>>>> _______________________________________________
+>>>>> linux-yocto mailing list
+>>>>> linux-yocto@yoctoproject.org
+>>>>> https://lists.yoctoproject.org/listinfo/linux-yocto
+>>>>
+>>>>
+>>>>
+>>>
+>>>
+>>
+> 
+> 
+> 
+> 
 
-If you mean for a single execution, just run "bitbake -c compile helloworld".
-
-Cheers,
-Paul
+Successfully booted a freshly baked image.
+Thanks.
+Verified :)
 
 -- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
+Mihai Lindner
+Yocto Project
 
