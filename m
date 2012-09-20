@@ -1,24 +1,26 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 89B04E01304
-	for <yocto@yoctoproject.org>; Thu, 20 Sep 2012 14:35:00 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 20 Sep 2012 14:35:00 -0700
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 892B6E01304
+	for <yocto@yoctoproject.org>; Thu, 20 Sep 2012 14:41:51 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 20 Sep 2012 14:41:51 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,455,1344236400"; d="scan'208";a="195517735"
-Received: from unknown (HELO [10.255.13.88]) ([10.255.13.88])
-	by orsmga001.jf.intel.com with ESMTP; 20 Sep 2012 14:34:59 -0700
-Message-ID: <1348176899.32247.40.camel@empanada>
-From: Tom Zanussi <tom.zanussi@intel.com>
-To: nitin.a.kamble@intel.com
-Date: Thu, 20 Sep 2012 16:34:59 -0500
-In-Reply-To: <849041c84291bc274805ae375232e7d2eecbd0e7.1347834237.git.nitin.a.kamble@intel.com>
-References: <cover.1347834237.git.nitin.a.kamble@intel.com>
-	<849041c84291bc274805ae375232e7d2eecbd0e7.1347834237.git.nitin.a.kamble@intel.com>
-X-Mailer: Evolution 3.4.1 (3.4.1-2.fc17) 
-Mime-Version: 1.0
-Cc: yocto@yoctoproject.org, darren.hart@intel.com
-Subject: Re: [PATCH 1/2] emgd-driver-bin: Fix package naming issue
+X-IronPort-AV: E=Sophos;i="4.80,455,1344236400"; d="scan'208";a="195210432"
+Received: from unknown (HELO helios.localnet) ([10.252.121.245])
+	by azsmga001.ch.intel.com with ESMTP; 20 Sep 2012 14:41:49 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Evade Flow <evadeflow@gmail.com>
+Date: Thu, 20 Sep 2012 22:41:48 +0100
+Message-ID: <13486486.LUSYcH1i4g@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.9 (Linux/3.2.0-30-generic-pae; KDE/4.9.0; i686; ; )
+In-Reply-To: <CAMAb8ZOAk-oF_gJmVvAVjAEN+JpS12=WpbxZjhqD0Tx6h=f4Zw@mail.gmail.com>
+References: <CAMAb8ZO=KzrgNoW4VPADtCn27KUfviP4QL84_ia5sAUbj_9a3Q@mail.gmail.com>
+	<CAMAb8ZPXYXNTgk_v_PG55C1FYERrT4s08FGLQO7frsE=J4pGDA@mail.gmail.com>
+	<CAMAb8ZOAk-oF_gJmVvAVjAEN+JpS12=WpbxZjhqD0Tx6h=f4Zw@mail.gmail.com>
+MIME-Version: 1.0
+Cc: yocto@yoctoproject.org
+Subject: Re: BB_NO_NETWORK and own-mirrors not working with meta-systemd
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,63 +32,56 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 20 Sep 2012 21:35:00 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 20 Sep 2012 21:41:51 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On Sun, 2012-09-16 at 15:27 -0700, nitin.a.kamble@intel.com wrote:
-> From: Nitin A Kamble <nitin.a.kamble@intel.com>
+On Thursday 20 September 2012 16:08:41 Evade Flow wrote:
+> To bring this full circle... if you want to build behind a restrictive
+> firewall using pre-mirrored sources and BB_NO_NETWORK, be aware that
+> recipes which:
 > 
-> emgd-driver-bin is generating rpm package with name libegl1.
-> This name clashes with a package with sanme name from mesa-dri
-> recipe. This name clash blocks installation of emgd user land
-> binaries in the image. And due to missing emgd user land
-> components X fails to start on BSPs like crownbay.
+>   1. Specify a git repo as the source, and,
 > 
-> Fix this problem by specifying package names in the recipe with the
-> PKG_ vars.
+>   2. Specify the revision to be built using a tag name
 > 
-> This fixes bug: [YOCTO #3063]
-
-OK, I was finally able to get a build that had X working and was able to
-test this and pull it into meta-intel/master.
-
-Thanks,
-
-Tom
-
 > 
-> Signed-off-by: Nitin A Kamble <nitin.a.kamble@intel.com>
-> ---
->  .../xorg-driver/emgd-driver-bin_1.14.bb            |    8 +++++++-
->  1 files changed, 7 insertions(+), 1 deletions(-)
+> will cause your build to abort when bitbake tries to run 'git ls-remote'
+> to resolve the tag name.  So don't specify SRC_URI like this:
 > 
-> diff --git a/common/recipes-graphics/xorg-driver/emgd-driver-bin_1.14.bb b/common/recipes-graphics/xorg-driver/emgd-driver-bin_1.14.bb
-> index b1ba1b8..2464c38 100644
-> --- a/common/recipes-graphics/xorg-driver/emgd-driver-bin_1.14.bb
-> +++ b/common/recipes-graphics/xorg-driver/emgd-driver-bin_1.14.bb
-> @@ -7,7 +7,7 @@ to LICENSE_FLAGS_WHITELIST += \"License_emgd-driver-bin_1.14\" to your \
->  local.conf in order to enable it in a build."
->  LICENSE = "Intel-binary-only"
->  LICENSE_FLAGS = "license_${PN}_${PV}"
-> -PR = "r1"
-> +PR = "r2"
->  
->  EMGD_LIC_DIR = "IEMGD_HEAD_Linux/License"
->  EMGD_RPM_DIR = "IEMGD_HEAD_Linux/MeeGo1.2"
-> @@ -23,6 +23,12 @@ SRC_URI = "https://edc.intel.com/Download.aspx?id=6190;downloadfilename=LIN_IEMG
->  SRC_URI[md5sum] = "733a7f237ffce21238ce2c9956df4fd6"
->  SRC_URI[sha256sum] = "bcdc333b5edbda7c746a83ef821ded4a0ca55ead30980e4e3680cdb6469f45a2"
->  
-> +# make sure generated rpm packages get non conflicting names
-> +PKG_${PN} = "emgd-driver"
-> +PKG_${PN}-dev = "emgd-driver-dev"
-> +PKG_${PN}-dbg = "emgd-driver-dbg"
-> +PKG_${PN}-doc = "emgd-driver-doc"
-> +
->  # These are closed binaries generated elsewhere so don't check ldflags
->  INSANE_SKIP_${PN} = "ldflags"
->  
+> 
+>   SRC_URI =
+> "git://git.kernel.org/pub/scm/utils/kernel/kmod/kmod.git;protocol=git;tag=v
+> ${PV}"
+> 
+> Instead, use:
+> 
+>   SRC_URI =
+> "git://git.kernel.org/pub/scm/utils/kernel/kmod/kmod.git;protocol=git;tag=8
+> 885ced062131214448fae056ef453f094303805;branch=master"
+> 
+> 
+> I added a note about this to the Wiki:
+> 
+>   -
+> http://wiki.yoctoproject.org/wiki/How_do_I#Non-networked_Builds_and_Cached_
+> Git_Respositories
+> 
+> I'm still new to Yocto, so someone please chime in if any of this
+> information is incorrect...
 
+You should not need to be specifying the revision within SRC_URI as you are 
+doing, however, it is correct that you must specify the revision in SRCREV and 
+that revision must be the full SHA1 hash and not just a tag or branch name. 
+The reason for this is that tags are not fixed and could change, therefore if 
+one is used we must query the server and resolve it to the current SHA1 hash 
+every time the recipe is parsed.
 
+Cheers,
+Paul
+
+-- 
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
