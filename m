@@ -1,19 +1,19 @@
 Return-Path: <timo.mueller@oss.bmw-carit.de>
 Received: from linuxmail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7A57CE01449
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7964EE01448
 	for <yocto@yoctoproject.org>; Thu, 20 Sep 2012 06:38:37 -0700 (PDT)
 Received: from localhost (mysterion.bmw-carit.intra [192.168.101.57])
 	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
 	(No client certificate requested)
 	(Authenticated sender: timo.mueller)
-	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id ED3944041D;
+	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 904AE40395;
 	Thu, 20 Sep 2012 15:08:40 +0200 (CEST)
 From: mail@timomueller.eu
 To: yocto@yoctoproject.org
-Date: Thu, 20 Sep 2012 15:38:25 +0200
-Message-Id: <fe9828237af095ea6f85f2167ed58b722bf29e4c.1348147047.git.timo.mueller@bmw-carit.de>
+Date: Thu, 20 Sep 2012 15:38:22 +0200
+Message-Id: <31c360070266660b65a88428f373de241361f714.1348147047.git.timo.mueller@bmw-carit.de>
 X-Mailer: git-send-email 1.7.7.6
-In-Reply-To: <949c1cf12e34dcd44d65881666bae13ac8dc992f.1348147047.git.timo.mueller@bmw-carit.de>
+In-Reply-To: <83a7d834c42866c8114b7999b2cbaebec3eaaed0.1348147047.git.timo.mueller@bmw-carit.de>
 References: <cover.1348147047.git.timo.mueller@bmw-carit.de>
 	<1af602c372ef3d674ffc3553ef7bd4f4532834e5.1348147047.git.timo.mueller@bmw-carit.de>
 	<0d6c673c3b5ee40fe7dc5a9ca91ec7d8d35440a0.1348147047.git.timo.mueller@bmw-carit.de>
@@ -32,13 +32,10 @@ References: <cover.1348147047.git.timo.mueller@bmw-carit.de>
 	<d5344147fcd64278155e4c7683a5ec6350ed7cfa.1348147047.git.timo.mueller@bmw-carit.de>
 	<f4a5aa8497f8fc22e7c004a9bae93a3180cf81b8.1348147047.git.timo.mueller@bmw-carit.de>
 	<83a7d834c42866c8114b7999b2cbaebec3eaaed0.1348147047.git.timo.mueller@bmw-carit.de>
-	<31c360070266660b65a88428f373de241361f714.1348147047.git.timo.mueller@bmw-carit.de>
-	<a068f0e22e133f86aa56a5b19a1b9b15592e7e8b.1348147047.git.timo.mueller@bmw-carit.de>
-	<949c1cf12e34dcd44d65881666bae13ac8dc992f.1348147047.git.timo.mueller@bmw-carit.de>
 In-Reply-To: <cover.1348147047.git.timo.mueller@bmw-carit.de>
 References: <cover.1348147047.git.timo.mueller@bmw-carit.de>
 Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: [PATCH 21/25] documentation/Makefile: logic to make all for poky-ref-manual and cleanup
+Subject: [PATCH 18/25] documentation/poky-ref-manual/poky-ref-manual-eclipse-customization.xsl: new file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,31 +51,42 @@ X-List-Received-Date: Thu, 20 Sep 2012 13:38:37 -0000
 
 From: Timo Mueller <timo.mueller@bmw-carit.de>
 
-Eclipse help documents are now created when calling the 'make all'
-target on the poky-ref-manual. Resulting files are archived into
-the tarball as well. When calling 'make clean' artefacts of
-the eclipse documentation build are deleted.
+This stylesheet uses the eclipse stylesheets of docbook to create
+eclipse help from this documentation. In addition to simple html
+files these stylesheets will also create xml files which are
+needed to integrate the documentation into eclipse (e.g. toc.xml).
 ---
- documentation/Makefile |    6 +++---
- 1 files changed, 3 insertions(+), 3 deletions(-)
+ .../poky-ref-manual-eclipse-customization.xsl      |   21 ++++++++++++++++++++
+ 1 files changed, 21 insertions(+), 0 deletions(-)
+ create mode 100644 documentation/poky-ref-manual/poky-ref-manual-eclipse-customization.xsl
 
-diff --git a/documentation/Makefile b/documentation/Makefile
-index ba26214..33ebd3c 100644
---- a/documentation/Makefile
-+++ b/documentation/Makefile
-@@ -195,9 +195,9 @@ endif
- 
- ifeq ($(DOC),poky-ref-manual)
- XSLTOPTS = --xinclude
--ALLPREQ = html pdf tarball
--TARFILES = poky-ref-manual.html ref-style.css figures/poky-title.png
--MANUALS = $(DOC)/$(DOC).html $(DOC)/$(DOC).pdf
-+ALLPREQ = html pdf eclipse tarball
-+TARFILES = poky-ref-manual.html ref-style.css figures/poky-title.png eclipse
-+MANUALS = $(DOC)/$(DOC).html $(DOC)/$(DOC).pdf $(DOC)/eclipse
- FIGURES = figures
- STYLESHEET = $(DOC)/*.css
- endif
+diff --git a/documentation/poky-ref-manual/poky-ref-manual-eclipse-customization.xsl b/documentation/poky-ref-manual/poky-ref-manual-eclipse-customization.xsl
+new file mode 100644
+index 0000000..40181e2
+--- /dev/null
++++ b/documentation/poky-ref-manual/poky-ref-manual-eclipse-customization.xsl
+@@ -0,0 +1,21 @@
++<?xml version='1.0'?>
++<xsl:stylesheet
++	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
++	xmlns="http://www.w3.org/1999/xhtml"
++	xmlns:fo="http://www.w3.org/1999/XSL/Format"
++	version="1.0">
++
++  <xsl:import
++	  href="http://docbook.sourceforge.net/release/xsl/current/eclipse/eclipse3.xsl" />
++
++  <xsl:param name="base.dir" select="'html/poky-ref-manual/'"/>
++  <xsl:param name="html.stylesheet" select="'../book.css'"/>
++  <xsl:param name="eclipse.manifest" select="0"/>
++  <xsl:param name="create.plugin.xml" select="0"/>
++  <xsl:param name="suppress.navigation" select="1"/>
++  <xsl:param name="generate.index" select="0"/>
++  <xsl:param name="chapter.autolabel" select="1" />
++  <xsl:param name="appendix.autolabel" select="A" />
++  <xsl:param name="section.autolabel" select="1" />
++  <xsl:param name="section.label.includes.component.label" select="1" />
++</xsl:stylesheet>
 -- 
 1.7.7.6
 
