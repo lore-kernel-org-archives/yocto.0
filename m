@@ -1,47 +1,25 @@
-Return-Path: <timo.mueller@oss.bmw-carit.de>
-Received: from linuxmail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D5412E0144E
-	for <yocto@yoctoproject.org>; Thu, 20 Sep 2012 06:38:37 -0700 (PDT)
-Received: from localhost (mysterion.bmw-carit.intra [192.168.101.57])
-	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
-	(No client certificate requested)
-	(Authenticated sender: timo.mueller)
-	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 5374040436;
-	Thu, 20 Sep 2012 15:08:41 +0200 (CEST)
-From: mail@timomueller.eu
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7F9F9E0141C
+	for <yocto@yoctoproject.org>; Thu, 20 Sep 2012 06:42:29 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga102.fm.intel.com with ESMTP; 20 Sep 2012 06:42:29 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,453,1344236400"; d="scan'208";a="224443976"
+Received: from unknown (HELO helios.localnet) ([10.252.121.248])
+	by fmsmga001.fm.intel.com with ESMTP; 20 Sep 2012 06:42:28 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
 To: yocto@yoctoproject.org
-Date: Thu, 20 Sep 2012 15:38:28 +0200
-Message-Id: <5de2c829fd6aba22434130ebf284fcf62c0c4fc7.1348147047.git.timo.mueller@bmw-carit.de>
-X-Mailer: git-send-email 1.7.7.6
-In-Reply-To: <027d4cc539d917b35800115c31b91ab42c66efd8.1348147047.git.timo.mueller@bmw-carit.de>
-References: <cover.1348147047.git.timo.mueller@bmw-carit.de>
-	<1af602c372ef3d674ffc3553ef7bd4f4532834e5.1348147047.git.timo.mueller@bmw-carit.de>
-	<0d6c673c3b5ee40fe7dc5a9ca91ec7d8d35440a0.1348147047.git.timo.mueller@bmw-carit.de>
-	<b7d9dbe40bd79fca4d81128448c0b2becec50589.1348147047.git.timo.mueller@bmw-carit.de>
-	<e8d106d7f16af5bc0819650ae9471f7936b0d71e.1348147047.git.timo.mueller@bmw-carit.de>
-	<3d0a07f43721d2662899b371a3c6e8521e401323.1348147047.git.timo.mueller@bmw-carit.de>
-	<ee7ceec0f795156840ecf5fbfde6e623e3674eeb.1348147047.git.timo.mueller@bmw-carit.de>
-	<3b3b4cc6a87b643b7b37ceb9c9266dd154bc9c9a.1348147047.git.timo.mueller@bmw-carit.de>
-	<cbcf755d00342b6f2141e1b12bee502e2a25b3a5.1348147047.git.timo.mueller@bmw-carit.de>
-	<fec560f6ad9c686a28995a32c53565cbe1b1a5a5.1348147047.git.timo.mueller@bmw-carit.de>
-	<f5caa376895e25a5a277dffcf4e34b8cd9a8502c.1348147047.git.timo.mueller@bmw-carit.de>
-	<c01903c65c0ecf5275d2be20651ad35c31521eb2.1348147047.git.timo.mueller@bmw-carit.de>
-	<d19bce02914cfd6801976c2b50186ea821bfb541.1348147047.git.timo.mueller@bmw-carit.de>
-	<af081481147189299afc1e0946601cae353a16db.1348147047.git.timo.mueller@bmw-carit.de>
-	<10af34d54489f0cefeb5d0597a055d8c7ee3838c.1348147047.git.timo.mueller@bmw-carit.de>
-	<d5344147fcd64278155e4c7683a5ec6350ed7cfa.1348147047.git.timo.mueller@bmw-carit.de>
-	<f4a5aa8497f8fc22e7c004a9bae93a3180cf81b8.1348147047.git.timo.mueller@bmw-carit.de>
-	<83a7d834c42866c8114b7999b2cbaebec3eaaed0.1348147047.git.timo.mueller@bmw-carit.de>
-	<31c360070266660b65a88428f373de241361f714.1348147047.git.timo.mueller@bmw-carit.de>
-	<a068f0e22e133f86aa56a5b19a1b9b15592e7e8b.1348147047.git.timo.mueller@bmw-carit.de>
-	<949c1cf12e34dcd44d65881666bae13ac8dc992f.1348147047.git.timo.mueller@bmw-carit.de>
-	<fe9828237af095ea6f85f2167ed58b722bf29e4c.1348147047.git.timo.mueller@bmw-carit.de>
-	<6ef29bc93e9a3c85e0d9afd8ef050d81a605dc24.1348147047.git.timo.mueller@bmw-carit.de>
-	<027d4cc539d917b35800115c31b91ab42c66efd8.1348147047.git.timo.mueller@bmw-carit.de>
-In-Reply-To: <cover.1348147047.git.timo.mueller@bmw-carit.de>
-References: <cover.1348147047.git.timo.mueller@bmw-carit.de>
-Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: [PATCH 24/25] documentation/Makefile: Support for making Eclipse HTML yocto project qs manual
+Date: Thu, 20 Sep 2012 14:42:27 +0100
+Message-ID: <4100342.qsm4CZIotx@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.9 (Linux/3.2.0-30-generic-pae; KDE/4.9.0; i686; ; )
+In-Reply-To: <CAMAb8ZN0Yb4km-X0wyUDsbRYYSC53B62F+ZPYRVNEmae7QeVsA@mail.gmail.com>
+References: <CAMAb8ZO=KzrgNoW4VPADtCn27KUfviP4QL84_ia5sAUbj_9a3Q@mail.gmail.com>
+	<505A5FB9.4010802@mlbassoc.com>
+	<CAMAb8ZN0Yb4km-X0wyUDsbRYYSC53B62F+ZPYRVNEmae7QeVsA@mail.gmail.com>
+MIME-Version: 1.0
+Subject: Re: BB_NO_NETWORK and own-mirrors not working with meta-systemd
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,41 +31,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 20 Sep 2012 13:38:38 -0000
+X-List-Received-Date: Thu, 20 Sep 2012 13:42:29 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-From: Timo Mueller <timo.mueller@bmw-carit.de>
+On Thursday 20 September 2012 09:30:19 Evade Flow wrote:
+> I guess I'll try the BFI approach of restarting the build from scratch next.
+> `:-o.  
 
-This target will generate eclipse help for the yocto-project-qs using
-the yocto-project-qs-eclipse-customization.xsl stylesheet.
+We'd really rather people didn't do this as it does not help us to diagnose 
+and fix problems.
 
-The output will be generated to a separate directory which can be used
-for integrating the documentation into eclipse.
----
- documentation/Makefile |    3 ++-
- 1 files changed, 2 insertions(+), 1 deletions(-)
+> Incidentally, searching the OpenEmbedded manual for 'cleanslate'
+> turns up no hits. Is this some kind of 'secret' command?  Where can I learn
+> about other such commands?
 
-diff --git a/documentation/Makefile b/documentation/Makefile
-index 2887a95..1a29af5 100644
---- a/documentation/Makefile
-+++ b/documentation/Makefile
-@@ -275,7 +275,7 @@ endif
- eclipse: BASE_DIR = html/$(DOC)/
- 
- eclipse:
--ifeq ($(filter $(DOC), adt-manual bsp-guide dev-manual kernel-manual poky-ref-manual),)
-+ifeq ($(filter $(DOC), adt-manual bsp-guide dev-manual kernel-manual poky-ref-manual yocto-project-qs),)
- 	@echo " "
- 	@echo "ERROR: You can only create eclipse documentation"
- 	@echo "       of the following documentation parts:"
-@@ -287,6 +287,7 @@ ifeq ($(filter $(DOC), adt-manual bsp-guide dev-manual kernel-manual poky-ref-ma
- 	@echo "       - The Yocto Project Kernel Architecture and"
- 	@echo "                           Use Manual (kernel-manual)"
- 	@echo "		  - The Yocto Project Reference Manual (poky-ref-manual)"
-+	@echo "       - The Yocto Project Quick Start (yocto-project-qs)"
- 	@echo " "
- else
- 	cd $(DOC) && \
+As Gary pointed out the command is "cleansstate". The OpenEmbedded manual has 
+not been kept up-to-date I'm afraid - but the good news is there is an up-to-
+date and comprehensive set of documentation set provided by the Yocto Project 
+here:
+
+http://www.yoctoproject.org/documentation
+
+FYI you can do "bitbake -c listtasks <targetname>" which will list all of the 
+valid tasks, you can remove do_ from the start of these to get commands you 
+can use with -c.
+
+Cheers,
+Paul
+
 -- 
-1.7.7.6
 
+Paul Eggleton
+Intel Open Source Technology Centre
 
