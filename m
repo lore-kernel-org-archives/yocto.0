@@ -1,38 +1,45 @@
-Return-Path: <kishore.k.bodke@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 51E25E004AB
-	for <yocto@yoctoproject.org>; Thu, 20 Sep 2012 09:21:28 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga101.ch.intel.com with ESMTP; 20 Sep 2012 09:21:27 -0700
+Return-Path: <rahul.saxena@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5D00FE004AB;
+	Thu, 20 Sep 2012 09:26:41 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 20 Sep 2012 09:26:14 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,454,1344236400"; d="scan'208";a="147221312"
-Received: from orsmsx103.amr.corp.intel.com ([10.22.225.130])
-	by AZSMGA002.ch.intel.com with ESMTP; 20 Sep 2012 09:21:27 -0700
-Received: from orsmsx151.amr.corp.intel.com (10.22.226.38) by
-	ORSMSX103.amr.corp.intel.com (10.22.225.130) with Microsoft SMTP Server
-	(TLS) id 14.1.355.2; Thu, 20 Sep 2012 09:21:26 -0700
-Received: from orsmsx105.amr.corp.intel.com ([169.254.4.116]) by
-	ORSMSX151.amr.corp.intel.com ([169.254.7.213]) with mapi id
-	14.01.0355.002; Thu, 20 Sep 2012 09:21:26 -0700
-From: "Bodke, Kishore K" <kishore.k.bodke@intel.com>
-To: Przemyslaw Czesnowicz <czesiekbis@gmail.com>
-Thread-Topic: [yocto] [PATCH 0/3][meta-intel] Add new Corpus recipes to
-	Crystal Forest BSP.
-Thread-Index: AQHNlx7YUyN8bQTqQUKSmAB/oZZTCJeTaBAg
-Date: Thu, 20 Sep 2012 16:21:26 +0000
-Message-ID: <D956029D25CF204F948EA0FB515E1EE21C10AE7D@ORSMSX105.amr.corp.intel.com>
-References: <cover.1348094339.git.kishore.k.bodke@intel.com>
-	<CAPyixAkSGDRXkne0WYsMfS6jD7hMek=O5jkq=w2FgeS9UMzVmg@mail.gmail.com>
-In-Reply-To: <CAPyixAkSGDRXkne0WYsMfS6jD7hMek=O5jkq=w2FgeS9UMzVmg@mail.gmail.com>
+X-IronPort-AV: E=Sophos;i="4.80,454,1344236400"; d="scan'208";a="208810026"
+Received: from orsmsx105.amr.corp.intel.com ([10.22.225.132])
+	by orsmga002.jf.intel.com with ESMTP; 20 Sep 2012 09:26:14 -0700
+Received: from orsmsx152.amr.corp.intel.com (10.22.226.39) by
+	ORSMSX105.amr.corp.intel.com (10.22.225.132) with Microsoft SMTP Server
+	(TLS) id 14.1.355.2; Thu, 20 Sep 2012 09:26:14 -0700
+Received: from orsmsx107.amr.corp.intel.com ([169.254.10.146]) by
+	ORSMSX152.amr.corp.intel.com ([169.254.8.137]) with mapi id
+	14.01.0355.002; Thu, 20 Sep 2012 09:26:14 -0700
+From: "Saxena, Rahul" <rahul.saxena@intel.com>
+To: "Zanussi, Tom" <tom.zanussi@intel.com>, Bruce Ashfield
+	<bruce.ashfield@windriver.com>
+Thread-Topic: [linux-yocto] [yocto] [PATCH 0/1] [linux-yocto-3.0]
+	boot-live.cfg: enable BLK_DEV_INITRD in kernel
+Thread-Index: AQHNlpkxzRk+SUY6WUuskuuTxenAh5eShSMAgAAL+wCAAALlAIAABi0AgAAysQCAAC1BAIAAcXzw
+Date: Thu, 20 Sep 2012 16:26:12 +0000
+Message-ID: <63ECFF2A2302B44093D7CE9E9962C49003CCCB5C@ORSMSX107.amr.corp.intel.com>
+References: <cover.1347946602.git.mihaix.lindner@linux.intel.com>
+	<5058675D.9020707@windriver.com> <1347976148.6185.49.camel@empanada>
+	<50587DEA.6030508@linux.intel.com> <1347978192.6185.51.camel@empanada>
+	<5058892F.3020704@linux.intel.com> <5059E83A.9040306@windriver.com>
+	<5059EB19.9070600@linux.intel.com> <505A1690.60007@windriver.com>
+	<505A1F76.4070706@linux.intel.com> <505A2982.9010908@windriver.com>
+	<505A2BF0.4070906@windriver.com> <505A311E.8060805@linux.intel.com>
+	<505A5BA4.3010809@windriver.com> <1348108698.32247.1.camel@empanada>
+In-Reply-To: <1348108698.32247.1.camel@empanada>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [10.22.254.139]
 MIME-Version: 1.0
-Cc: "Samson, Don" <don.samson@intel.com>, "Czesnowicz,
-	PrzemyslawX" <przemyslawx.czesnowicz@intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [PATCH 0/3][meta-intel] Add new Corpus recipes to Crystal Forest BSP.
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	Darren Hart <dvhart@linux.intel.com>, "Development list for	the
+	linux-yocto*.git Linux kernel repositories" <linux-yocto@yoctoproject.org>
+Subject: Re: [linux-yocto] [PATCH 0/1] [linux-yocto-3.0] boot-live.cfg: enable BLK_DEV_INITRD in kernel
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,56 +51,155 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 20 Sep 2012 16:21:28 -0000
+X-List-Received-Date: Thu, 20 Sep 2012 16:26:41 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-2"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-
-
->-----Original Message-----
->From: Przemys=B3aw Czesnowicz [mailto:czesiekbis@gmail.com]
->Sent: Thursday, September 20, 2012 3:58 AM
->To: Bodke, Kishore K
->Cc: Zanussi, Tom; Kamble, Nitin A; yocto@yoctoproject.org; Samson, Don;
->Czesnowicz, PrzemyslawX
->Subject: Re: [yocto] [PATCH 0/3][meta-intel] Add new Corpus recipes to
->Crystal Forest BSP.
->
->2012/9/19  <kishore.k.bodke@intel.com>:
->> From: Kishore Bodke <kishore.k.bodke@intel.com>
->>
->> Hi,
->>
->> This patch set adds three different types of Corpus files
->> to Crystal Forest BSP, which are basically used to test the
->> Lossless Compression algorithms.
->>
->> 1. calgary-corpus
->> 2. canterbury-corpus
->> 3. silesia-corpus
->>
->> These have been tested on both Crystal Forest Platforms.
->>
->
->Hi
->
->Are those for the sample code of QA driver?
->If so  the sample code needs the corpus to be in one file
->
->tar -xf calgary.tar.gz -O > calgary
->
->Also the CrystalForest software package includes the
-> calgary and canterbury corpus files, at least in 0.9.0 version
->
-
-Yes. These are for the QuickAssist Driver.
-All the sample corpus data files will be installed under /lib/firmware, at =
-least with the 0.9.0-144  version QA driver, that I had tested.
-
-Instead of having all of files in one package and having one recipe, I had =
-split them to multiple recipes.
-
-Thanks
-Kishore.
+DQoNCi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQpGcm9tOiBaYW51c3NpLCBUb20gDQpTZW50
+OiBXZWRuZXNkYXksIFNlcHRlbWJlciAxOSwgMjAxMiA3OjM4IFBNDQpUbzogQnJ1Y2UgQXNoZmll
+bGQNCkNjOiBNaWhhaSBMaW5kbmVyOyBEZXZlbG9wbWVudCBsaXN0IGZvciB0aGUgbGludXgteW9j
+dG8qLmdpdCBMaW51eCBrZXJuZWwgcmVwb3NpdG9yaWVzOyB5b2N0b0B5b2N0b3Byb2plY3Qub3Jn
+OyBEYXJyZW4gSGFydDsgQm9ka2UsIEtpc2hvcmUgSzsgU2F4ZW5hLCBSYWh1bA0KU3ViamVjdDog
+UmU6IFtsaW51eC15b2N0b10gW3lvY3RvXSBbUEFUQ0ggMC8xXSBbbGludXgteW9jdG8tMy4wXSBi
+b290LWxpdmUuY2ZnOiBlbmFibGUgQkxLX0RFVl9JTklUUkQgaW4ga2VybmVsDQoNCk9uIFdlZCwg
+MjAxMi0wOS0xOSBhdCAxOTo1NiAtMDQwMCwgQnJ1Y2UgQXNoZmllbGQgd3JvdGU6DQo+IE9uIDEy
+LTA5LTE5IDA0OjU0IFBNLCBNaWhhaSBMaW5kbmVyIHdyb3RlOg0KPiA+IE9uIDIwMTItMDktMTkg
+MjM6MzIsIEJydWNlIEFzaGZpZWxkIHdyb3RlOg0KPiA+PiBPbiAxMi0wOS0xOSAwNDoyMiBQTSwg
+QnJ1Y2UgQXNoZmllbGQgd3JvdGU6DQo+ID4+PiBPbiAxMi0wOS0xOSAwMzozOSBQTSwgTWloYWkg
+TGluZG5lciB3cm90ZToNCj4gPj4+PiBPbiAyMDEyLTA5LTE5IDIyOjAxLCBCcnVjZSBBc2hmaWVs
+ZCB3cm90ZToNCj4gPj4+Pj4gT24gMTItMDktMTkgMTE6NTYgQU0sIE1paGFpIExpbmRuZXIgd3Jv
+dGU6DQo+ID4+Pj4+PiBPbiAyMDEyLTA5LTE5IDE4OjQzLCBCcnVjZSBBc2hmaWVsZCB3cm90ZToN
+Cj4gPj4+Pj4+PiBPbiAxMi0wOS0xOCAxMDo0NiBBTSwgTWloYWkgTGluZG5lciB3cm90ZToNCj4g
+Pj4+Pj4+Pj4gT24gMjAxMi0wOS0xOCAxNzoyMywgVG9tIFphbnVzc2kgd3JvdGU6DQo+ID4+Pj4+
+Pj4+PiBPbiBUdWUsIDIwMTItMDktMTggYXQgMTY6NTggKzAzMDAsIE1paGFpIExpbmRuZXIgd3Jv
+dGU6DQo+ID4+Pj4+Pj4+Pj4gT24gMjAxMi0wOS0xOCAxNjo0OSwgVG9tIFphbnVzc2kgd3JvdGU6
+DQo+ID4+Pj4+Pj4+Pj4+IE9uIFR1ZSwgMjAxMi0wOS0xOCBhdCAwODoyMSAtMDQwMCwgQnJ1Y2Ug
+QXNoZmllbGQgd3JvdGU6DQo+ID4+Pj4+Pj4+Pj4+PiBPbiAxMi0wOS0xOCAwMTo1OSBBTSwgTWlo
+YWkgTGluZG5lciB3cm90ZToNCj4gPj4+Pj4+Pj4+Pj4+PiBQbGVhc2UgcHVsbCBpbnRvIGxpbnV4
+LXlvY3RvLTMuMCwgbWV0YS4NCj4gPj4+Pj4+Pj4+Pj4+Pg0KPiA+Pj4+Pj4+Pj4+Pj4NCj4gPj4+
+Pj4+Pj4+Pj4+IEFkZGluZyBsaW51eC15b2N0bywgRGFycmVuIGFuZCBUb20uDQo+ID4+Pj4+Pj4+
+Pj4+Pg0KPiA+Pj4+Pj4+Pj4+Pj4gVGhpcyBsb29rcyBmaW5lIHRvIG1lLCBhbmQgd2Ugc2hvdWxk
+IGNvbnNpZGVyIGl0IGZvciBhbGwgDQo+ID4+Pj4+Pj4+Pj4+PiB0aGUgcmVwb3NpdG9yaWVzLCBu
+b3QganVzdCAzLjAuDQo+ID4+Pj4+Pj4+Pj4+Pg0KPiA+Pj4+Pj4+Pj4+Pj4gVG9tL0RhcnJlbi4g
+QW55IHNpZGUgZWZmZWN0cyB5b3UgY2FuIHRoaW5rIG9mIGZvciB0aGlzIGNoYW5nZSA/DQo+ID4+
+Pj4+Pj4+Pj4+Pg0KPiA+Pj4+Pj4+Pj4+Pg0KPiA+Pj4+Pj4+Pj4+PiBObywgYnV0IHNob3VsZG4n
+dCBpdCBhbHJlYWR5IGJlIHRoZXJlLCBpbmhlcml0ZWQgZnJvbSBiYXNlLmNmZz8NCj4gPj4+Pj4+
+Pj4+Pg0KPiA+Pj4+Pj4+Pj4+IEZvciBjZWRhcnRyYWlsLCBhdCBsZWFzdCwgc3RhbmRhcmQuY2Zn
+IGlzIHVzZWQuDQo+ID4+Pj4+Pj4+Pj4NCj4gPj4+Pj4+Pj4+DQo+ID4+Pj4+Pj4+PiBBbmQgc3Rh
+bmRhcmQgaW5oZXJpdHMgZnJvbSBiYXNlLCBzbyBpdCBzaG91bGQgYmUgdHVybmVkIG9uLiANCj4g
+Pj4+Pj4+Pj4+IFNvbWVob3cgaXQncyBnZXR0aW5nIHR1cm5lZCBvZmYgaW4gY2VkYXJ0cmFpbC4u
+Lg0KPiA+Pj4+Pj4+Pg0KPiA+Pj4+Pj4+PiBZZXMsIGl0IHRoZSBmaW5hbCAuY29uZmlnIGZpbGUg
+aXMgdHVybmVkIG9mZi4gU29sdmVkIGl0IGJ5IA0KPiA+Pj4+Pj4+PiBzZXR0aW5nIGl0IGluIGJv
+b3QtbGl2ZS4NCj4gPj4+Pj4+Pj4gLS1NaWhhaQ0KPiA+Pj4+Pj4+DQo+ID4+Pj4+Pj4gVG8gZm9s
+bG93IHVwIG9uIHRoaXMsIGlzIHNvbWVvbmUgdGFraW5nIGEgY2xvc2VyIGxvb2sgYXQgdGhpcyAN
+Cj4gPj4+Pj4+PiBjb25maWcgdG8gc2VlIGlmIHdlIGNhbiBnZXQgYSByb290IGNhdXNlIGZvciB0
+aGF0IG9wdGlvbiBiZWluZyANCj4gPj4+Pj4+PiBkaXNhYmxlZCBmb3IgdGhpcyBib2FyZCA/DQo+
+ID4+Pj4+Pj4NCj4gPj4+Pj4+PiBJIHdvbid0IGJlIGFibGUgdG8gcG9rZSBhdCBpdCBteXNlbGYg
+Zm9yIGFub3RoZXIgZGF5IG9yIHNvLg0KPiA+Pj4+Pj4+DQo+ID4+Pj4+Pj4gQnJ1Y2UNCj4gPj4+
+Pj4+Pg0KPiA+Pj4+Pj4gSSdtIHN0aWxsIGRpZ2dpbmcgb24gdGhpcywgdHJ5aW5nIHRvIGZpZ3Vy
+ZSBvdXQgd2hhdCBjZmcgZmlsZXMgDQo+ID4+Pj4+PiBhcmUgaW5jbHVkZWQgLyBvbWl0dGVkIGJ5
+IGBjb25maWdtZWAgYW5kIHdoeS4NCj4gPj4+Pj4+IGJhc2UuY2ZnIGlzIG5vdCBpbmNsdWRlZCwg
+bm9yIHN0YW5hZHJkLmNmZyBpdCBzZWVtcy4NCj4gPj4+Pj4+IFRoZSBsaXN0IG9mIGluY2x1ZGVk
+IGNmZyBmaWxlcyBpcyB3YXkgdG8gc2hvcnQuDQo+ID4+Pj4+DQo+ID4+Pj4+IFRoYXQgbGlrZWx5
+IG1lYW5zIHRoZSBCU1AgLnNjYyBmaWxlIGlzIG1pc3NpbmcgYW5kIHVwZGF0ZSAoaS5lLiANCj4g
+Pj4+Pj4gZG9lcyBpdCBzdGlsbCBoYXZlIHNjY19sZWFmPykgYW5kIHRoZSB0b29scyBhcmVuJ3Qg
+ZmluZGluZyBpdCANCj4gPj4+Pj4gYW5kIGF1dG8tZ2VuZXJhdGluZyBzb21ldGhpbmcgdG8gZ2V0
+IHlvdSB1cCBhbmQgcnVubmluZy4NCj4gPj4+Pj4NCj4gPj4+Pj4gSSBqdXN0IGNoZWNrZWQgdGhl
+IG1ldGEgYnJhbmNoIGhlcmUsIGFuZCBpdCBsb29rcyB0byBiZSB1cGRhdGVkLCANCj4gPj4+Pj4g
+YnV0IGlmIHlvdSBsb29rIGF0IHlvdXIgYnVpbGQncyBsaW51eCBzb3VyY2UgZGlyLCB3aGF0J3Mg
+aW4gbWV0YS90b3BfdGd0ID8NCj4gPj4+Pj4NCj4gPj4+Pj4gQnJ1Y2UNCj4gPj4+Pj4NCj4gPj4+
+PiBJbiBtZXRhL3RvcF90Z3QgaSBoYXZlOg0KPiA+Pj4+DQo+ID4+Pj4gL2hvbWUvbWloYWkvY2Vk
+YXJ0cmFpbC90bXAvd29yay9jZWRhcnRyYWlsLXBva3ktbGludXgvbGludXgteW9jdG8NCj4gPj4+
+PiAtMy4wLjMyK2dpdDUrNDZlOGZjMmJiYmU3MzUxNGU4ZDk5MTAxYWRhYWEzNzNmNzYwZmZhN18x
+KzFlNzllMDNkMQ0KPiA+Pj4+IDE1ZWQxNzc4ODJhYjUzOTA5YTRmMzU1NWU0MzQ4MzMtcjQuMS9s
+aW51eC9tZXRhL2NmZy9rZXJuZWwtY2FjaGUvDQo+ID4+Pj4gYnNwL2NlZGFydHJhaWwvY2VkYXJ0
+cmFpbC1zdGFuZGFyZC5zY2MNCj4gPj4+Pg0KPiA+Pj4+DQo+ID4+Pj4NCj4gPj4+PiBJJ3ZlIGFs
+c28gaGl0IGFuIGVycm9yLCBhZnRlciBtb3JlIHZlcmJvc2UgcnVucyBvZiANCj4gPj4+PiAuL2Nl
+ZGFydHJhaWwtc3RhbmRhcmQgaW4gbWV0YS9jZmcvc2NyYXRjaC9vYmovOg0KPiA+Pj4+DQo+ID4+
+Pj4gLi8wLWNlZGFydHJhaWwtc3RhbmRhcmQtODk3YzVjMDU1ODg4YWNhMzk3YjNhYjBkN2JlOWU2
+ZmEuc2NvOiBsaW5lIDE3Og0KPiA+Pj4+IHN0YW5kYXJkXzViNTc3MTUzODY1OTJmNjk0NTg4MDYz
+ZGQzZWM2ZWJiOiBjb21tYW5kIG5vdCBmb3VuZA0KPiA+Pj4+DQo+ID4+Pj4gQWZ0ZXIgdGhpcyB0
+aGUgc2NyaXB0cyBzdG9wcy4NCj4gPj4+Pg0KPiA+Pj4NCj4gPj4+IEFoYS4gVGhpcyBkZWZpbml0
+ZWx5IGJyZWFrcyB0aGUgY29uZmlndXJhdGlvbiBjaGFpbiAoYW5kIHdvdWxkIA0KPiA+Pj4gdGhy
+b3cgYSBoYXJkIGVycm9yIGluIHRoZSAzLjQga2VybmVsKSBhbmQgaXMgd2hlcmUgdGhlIG9wdGlv
+bnMgDQo+ID4+PiBkcm9wLiBCdXQgdGhpcyBzaG91bGQgbm8gd2F5IGJlIHNwZWNpZmljIHRvIHRo
+aXMgYm9hcmQuIEknbGwgZ2V0IA0KPiA+Pj4gc29tZXRoaW5nIGNvbmZpZ3VyZWQgaGVyZSwgc2lu
+Y2UgSSBuZWVkIHRvIHNlZSB0aGlzIGhhcHBlbiBpbiBmcm9udCBvZiBtZS4NCj4gPj4NCj4gPj4g
+SSd2ZSBmaW5hbGx5IHJlcHJvZHVjZWQgdGhpcy4gTGVhdmUgdGhlIGlzc3VlIHdpdGggbWUgYW5k
+IEknbGwgZ2V0IA0KPiA+PiBiYWNrIHRvIHlvdSB3aXRoIGEgZml4Lg0KPiA+Pg0KPiA+PiBCcnVj
+ZQ0KPiA+DQo+ID4gWWF5ISBUaGFua3MuDQo+ID4gSXQncyBub3Qgc3BlY2lmaWMsIGl0J3MganVz
+dCBlYXNpZXIgdG8gaGl0OyBmb3IgY2VkYXJ0cmFpbCBvbmx5IDMuMCBpcyBhdmFpbGFibGUsIGFu
+ZCBhbHNvIHNldCBhcyBwcmVmZXJyZWQuDQo+ID4NCj4gDQo+IEFoYS4gSSB3YXMgcmlnaHQuIEl0
+IGlzIGEgdG9vbHMgaXNzdWUgYW5kIGEgaW50ZXJmYWNlIHRoYXQgY2hhbmdlZC4NCj4gSSBtYWRl
+IGEgZml4IGZvciB0aGlzIGluIHRoZSAzLjAga2VybmVsIHRyZWUgc29tZSB0aW1lIGFnbywgYnV0
+IEkgDQo+IGRpZG4ndCB1cGRhdGUgdGhlIGxhZ2dpbmcgQlNQcywgYW5kIHRoZSBoYW5kb2ZmIHRv
+IGEgbWV0YS1pbnRlbCBjaGFuZ2UgDQo+IHdhcyBtaXNzZWQuDQo+IA0KPiBXaXRoIHRoaXMgY2hh
+bmdlIChzb3JyeSBmb3IgdGhlIGxpbmV3cmFwcywgSSdtIG91dCBvZiB0aGUgb2ZmaWNlKToNCj4g
+DQo+IC0tZ2l0IGEvbWV0YS1jZWRhcnRyYWlsL3JlY2lwZXMta2VybmVsL2xpbnV4L2xpbnV4LXlv
+Y3RvXzMuMC5iYmFwcGVuZA0KPiBiL21ldGEtY2VkYXJ0cmFpbC9yZWNpcGVzLWtlcm5lbC9saW51
+eC9saW51eC15b2N0b18zLjAuYmJhcHBlbmQNCj4gaW5kZXggMzVjNDc1NS4uMjEyYTQwMCAxMDA2
+NDQNCj4gLS0tIGEvbWV0YS1jZWRhcnRyYWlsL3JlY2lwZXMta2VybmVsL2xpbnV4L2xpbnV4LXlv
+Y3RvXzMuMC5iYmFwcGVuZA0KPiArKysgYi9tZXRhLWNlZGFydHJhaWwvcmVjaXBlcy1rZXJuZWwv
+bGludXgvbGludXgteW9jdG9fMy4wLmJiYXBwZW5kDQo+IEBAIC0xNiw3ICsxNiw3IEBAIEtCUkFO
+Q0hfY2VkYXJ0cmFpbC1ub3B2ciAgPSAieW9jdG8vc3RhbmRhcmQvY2VkYXJ0cmFpbCINCj4gICBL
+RVJORUxfRkVBVFVSRVNfYXBwZW5kX2NlZGFydHJhaWwtbm9wdnIgKz0gIiBjZmcvc21wLnNjYyIN
+Cj4gDQo+ICAgU1JDUkVWX21hY2hpbmVfcG4tbGludXgteW9jdG9fY2VkYXJ0cmFpbCA/PSANCj4g
+IjFlNzllMDNkMTE1ZWQxNzc4ODJhYjUzOTA5YTRmMzU1NWU0MzQ4MzMiDQo+IC1TUkNSRVZfbWV0
+YV9wbi1saW51eC15b2N0b19jZWRhcnRyYWlsID89IA0KPiAiNDZlOGZjMmJiYmU3MzUxNGU4ZDk5
+MTAxYWRhYWEzNzNmNzYwZmZhNyINCj4gK1NSQ1JFVl9tZXRhX3BuLWxpbnV4LXlvY3RvX2NlZGFy
+dHJhaWwgPz0NCj4gImJmNWVlNDk0NWVlNmQ3NDhlNmFiZTE2MzU2ZjIzNTdmNzZiNWUyZjAiDQo+
+ICAgU1JDUkVWX3B2cl9wbi1saW51eC15b2N0b19jZWRhcnRyYWlsID89IA0KPiAiOTk3ZjU2NDQ2
+NjRiMzFlYmVmZDZlMTZjNDUxYzRhMzcyOWViMzc4YSINCj4gDQo+ICAgU1JDUkVWX21hY2hpbmVf
+cG4tbGludXgteW9jdG9fY2VkYXJ0cmFpbC1ub3B2ciA/PSANCj4gIjFlNzllMDNkMTE1ZWQxNzc4
+ODJhYjUzOTA5YTRmMzU1NWU0MzQ4MzMiDQo+IA0KPiBpLmUuIGJ1bXAgdGhlIE1FVEEgc3JjcmV2
+IGFuZCBldmVyeXRoaW5nIGlzIHByb3Blcmx5IGNvbmZpZ3VyZWQuDQo+IFRvbSBvciBEYXJyZW4g
+Li4gb3Igc29tZW9uZSBlbHNlIGNhbiBtYWtlIHRoZSBjaGFuZ2UgcGVybWFuZW50bHkgaW4gDQo+
+IG1ldGEtaW50ZWwvbWV0YS1jZWRhcnRyYWlsLg0KPiANCg0KRml4IHB1c2hlZCB0byBtZXRhLWlu
+dGVsL21hc3RlciwgdGhhbmtzLCBCcnVjZS4NCg0KUmFodWwsIEtpc2hvcmUsIGNvdWxkIHlvdSBw
+bGVhc2UgdmVyaWZ5IHRoZSBmaXggYW5kIGNoZWNrIHdoZXRoZXIgdGhlcmUgbWlnaHQgYmUgb3Ro
+ZXIgU1JDUkVWIHVwZGF0ZXMgbHVya2luZz8NCg0KVG9tDQoNCj4gQ2hlZXJzLA0KPiANCj4gQnJ1
+Y2UNCj4gDQo+IA0KPiANCj4gDQo+ID4gLS1NaWhhaQ0KPiA+DQo+ID4+DQo+ID4+Pg0KPiA+Pj4g
+Q2hlZXJzLA0KPiA+Pj4NCj4gPj4+IEJydWNlDQo+ID4+Pg0KPiA+Pj4NCj4gPj4+PiBNaWhhaQ0K
+PiA+Pj4+DQo+ID4+Pj4+DQo+ID4+Pj4+Pg0KPiA+Pj4+Pj4gLS1NaWhhaQ0KPiA+Pj4+Pj4+Pg0K
+PiA+Pj4+Pj4+Pj4NCj4gPj4+Pj4+Pj4+IFRvbQ0KPiA+Pj4+Pj4+Pj4NCj4gPj4+Pj4+Pj4+PiAt
+LU1paGFpDQo+ID4+Pj4+Pj4+Pj4NCj4gPj4+Pj4+Pj4+Pj4NCj4gPj4+Pj4+Pj4+Pj4gVG9tDQo+
+ID4+Pj4+Pj4+Pj4+DQo+ID4+Pj4+Pj4+Pj4+PiBCcnVjZQ0KPiA+Pj4+Pj4+Pj4+Pj4NCj4gPj4+
+Pj4+Pj4+Pj4+PiBBZGRlZCBCTEtfREVWX0lOSVRSRCBpbiBib290LWxpdmUuY2ZnIGZvciANCj4g
+Pj4+Pj4+Pj4+Pj4+PiBsaW51eC15b2N0by0zLjAsIG1ldGEgYnJhbmNoLg0KPiA+Pj4+Pj4+Pj4+
+Pj4+IENlZGFydHJhaWwgKGF0IGxlYXN0KSBjYW5ub3QgYm9vdCBsaXZlIGZyb20gSVNPIGltYWdl
+IA0KPiA+Pj4+Pj4+Pj4+Pj4+IGR1ZSB0byBCTEtfREVWX0lOSVRSRCBtaXNzaW5nOg0KPiA+Pj4+
+Pj4+Pj4+Pj4+ICJWRlM6IENhbm5vdCBvcGVuIHJvb3QgZGV2aWNlICJyYW0wIiBvciB1bmtvd24t
+YmxvY2soMCwwKSINCj4gPj4+Pj4+Pj4+Pj4+PiBTaG91bGQgZml4ICMzMDUwDQo+ID4+Pj4+Pj4+
+Pj4+Pj4NCj4gPj4+Pj4+Pj4+Pj4+PiBbWU9DVE8gIzMwNTBdDQo+ID4+Pj4+Pj4+Pj4+Pj4NCj4g
+Pj4+Pj4+Pj4+Pj4+PiBTaWduZWQtb2ZmLWJ5OiBNaWhhaSANCj4gPj4+Pj4+Pj4+Pj4+PiBMaW5k
+bmVyPG1paGFpeC5saW5kbmVyQGxpbnV4LmludGVsLmNvbT4NCj4gPj4+Pj4+Pj4+Pj4+PiAtLS0N
+Cj4gPj4+Pj4+Pj4+Pj4+Pg0KPiA+Pj4+Pj4+Pj4+Pj4+IFRoZSBmb2xsb3dpbmcgY2hhbmdlcyBz
+aW5jZSBjb21taXQNCj4gPj4+Pj4+Pj4+Pj4+PiBiZjVlZTQ5NDVlZTZkNzQ4ZTZhYmUxNjM1NmYy
+MzU3Zjc2YjVlMmYwOg0KPiA+Pj4+Pj4+Pj4+Pj4+DQo+ID4+Pj4+Pj4+Pj4+Pj4gbWV0YTogcmVu
+YW1lIHZpcnRvLnNjYyB0byB2aXJ0aW8uc2NjICgyMDEyLTA4LTE4IA0KPiA+Pj4+Pj4+Pj4+Pj4+
+IDIyOjA5OjM1IC0wNDAwKQ0KPiA+Pj4+Pj4+Pj4+Pj4+DQo+ID4+Pj4+Pj4+Pj4+Pj4gYXJlIGF2
+YWlsYWJsZSBpbiB0aGUgZ2l0IHJlcG9zaXRvcnkgYXQ6DQo+ID4+Pj4+Pj4+Pj4+Pj4gZ2l0Oi8v
+Z2l0LnlvY3RvcHJvamVjdC5vcmcvcG9reS1jb250cmliDQo+ID4+Pj4+Pj4+Pj4+Pj4gbWloYWkv
+bGludXgteW9jdG8tMy4wL21ldGENCj4gPj4+Pj4+Pj4+Pj4+Pg0KPiA+Pj4+Pj4+Pj4+Pj4+IE1p
+aGFpIExpbmRuZXIgKDEpOg0KPiA+Pj4+Pj4+Pj4+Pj4+IGJvb3QtbGl2ZS5jZmc6IGVuYWJsZSBC
+TEtfREVWX0lOSVRSRCBpbiBrZXJuZWwNCj4gPj4+Pj4+Pj4+Pj4+Pg0KPiA+Pj4+Pj4+Pj4+Pj4+
+IG1ldGEvY2ZnL2tlcm5lbC1jYWNoZS9jZmcvYm9vdC1saXZlLmNmZyB8IDIgKysNCj4gPj4+Pj4+
+Pj4+Pj4+PiAxIGZpbGVzIGNoYW5nZWQsIDIgaW5zZXJ0aW9ucygrKSwgMCBkZWxldGlvbnMoLSkN
+Cj4gPj4+Pj4+Pj4+Pj4+Pg0KPiA+Pj4+Pj4+Pj4+Pj4+IE1paGFpIExpbmRuZXIgKDEpOg0KPiA+
+Pj4+Pj4+Pj4+Pj4+IGJvb3QtbGl2ZS5jZmc6IGVuYWJsZSBCTEtfREVWX0lOSVRSRCBpbiBrZXJu
+ZWwNCj4gPj4+Pj4+Pj4+Pj4+Pg0KPiA+Pj4+Pj4+Pj4+Pj4+IG1ldGEvY2ZnL2tlcm5lbC1jYWNo
+ZS9jZmcvYm9vdC1saXZlLmNmZyB8IDIgKysNCj4gPj4+Pj4+Pj4+Pj4+PiAxIGZpbGVzIGNoYW5n
+ZWQsIDIgaW5zZXJ0aW9ucygrKSwgMCBkZWxldGlvbnMoLSkNCj4gPj4+Pj4+Pj4+Pj4+Pg0KPiA+
+Pj4+Pj4+Pj4+Pj4NCj4gPj4+Pj4+Pj4+Pj4NCj4gPj4+Pj4+Pj4+Pj4NCj4gPj4+Pj4+Pj4+Pj4N
+Cj4gPj4+Pj4+Pj4+Pj4NCj4gPj4+Pj4+Pj4+Pg0KPiA+Pj4+Pj4+Pj4+DQo+ID4+Pj4+Pj4+Pg0K
+PiA+Pj4+Pj4+Pj4NCj4gPj4+Pj4+Pj4+DQo+ID4+Pj4+Pj4+Pg0KPiA+Pj4+Pj4+Pg0KPiA+Pj4+
+Pj4+Pg0KPiA+Pj4+Pj4+DQo+ID4+Pj4+Pj4NCj4gPj4+Pj4+Pg0KPiA+Pj4+Pj4NCj4gPj4+Pj4+
+DQo+ID4+Pj4+DQo+ID4+Pj4+DQo+ID4+Pj4+DQo+ID4+Pj4NCj4gPj4+Pg0KPiA+Pj4NCj4gPj4+
+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+ID4+PiBs
+aW51eC15b2N0byBtYWlsaW5nIGxpc3QNCj4gPj4+IGxpbnV4LXlvY3RvQHlvY3RvcHJvamVjdC5v
+cmcNCj4gPj4+IGh0dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9saXN0aW5mby9saW51eC15
+b2N0bw0KPiA+Pg0KPiA+Pg0KPiA+Pg0KPiA+DQo+ID4NCj4gDQoNCiBZZXMsIEkgd2FzIGFibGUg
+dG8gbm93IHN1Y2Nlc3NmdWxseSBib290IG15IGNlZGFydHJhaWwgaW1hZ2UuDQpUaGFua3MgdG8g
+YWxsIHdobyB3b3JrZWQgb24gcmVzb2x2aW5nIHRoaXMgIQ0KDQogUmFodWwNCg==
 
