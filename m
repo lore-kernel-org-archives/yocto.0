@@ -1,24 +1,23 @@
-Return-Path: <treebody@embedstudy.com>
-Received: from smtpbg55.qq.com (smtpbg55.qq.com [64.71.138.44])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 5BCEFE004AB
-	for <yocto@yoctoproject.org>; Thu, 20 Sep 2012 06:50:48 -0700 (PDT)
-X-QQ-SSF: 00000000000000F000000000000000G
-X-HAS-ATTACH: no
-X-QQ-BUSINESS-ORIGIN: 2
-X-Originating-IP: 49.75.92.42
-X-QQ-STYLE: 
-X-QQ-mid: webmail603t1348149042t2924106
-From: "=?ISO-8859-1?B?TGl1?=" <treebody@embedstudy.com>
-To: "=?ISO-8859-1?B?UGF1bCBFZ2dsZXRvbg==?=" <paul.eggleton@linux.intel.com>
-Mime-Version: 1.0
-Date: Thu, 20 Sep 2012 21:50:42 +0800
-X-Priority: 3
-Message-ID: <tencent_6D1428EC1BCDDD3D5AB8C6A0@qq.com>
-X-QQ-MIME: TCMime 1.0 by Tencent
-X-Mailer: QQMail 2.x
-X-QQ-Mailer: QQMail 2.x
-X-QQ-ReplyHash: 1769416564
-Cc: =?ISO-8859-1?B?eW9jdG8=?= <yocto@yoctoproject.org>
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 992E3E0141C
+	for <yocto@yoctoproject.org>; Thu, 20 Sep 2012 06:57:02 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 20 Sep 2012 06:57:02 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,453,1344236400"; d="scan'208";a="224591508"
+Received: from unknown (HELO helios.localnet) ([10.252.121.248])
+	by fmsmga002.fm.intel.com with ESMTP; 20 Sep 2012 06:57:01 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Liu <treebody@embedstudy.com>
+Date: Thu, 20 Sep 2012 14:57 +0100
+Message-ID: <1546898.F9k85MPnqC@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.9 (Linux/3.2.0-30-generic-pae; KDE/4.9.0; i686; ; )
+In-Reply-To: <tencent_6D1428EC1BCDDD3D5AB8C6A0@qq.com>
+References: <tencent_6D1428EC1BCDDD3D5AB8C6A0@qq.com>
+MIME-Version: 1.0
+Cc: yocto <yocto@yoctoproject.org>
 Subject: Re: How to do the specified tasks instead of many default
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -31,114 +30,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 20 Sep 2012 13:50:48 -0000
-Content-Type: multipart/alternative;
-	boundary="----=_NextPart_505B1F32_D47267A8_6638DECB"
-Content-Transfer-Encoding: 8Bit
+X-List-Received-Date: Thu, 20 Sep 2012 13:57:02 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-------=_NextPart_505B1F32_D47267A8_6638DECB
-Content-Type: text/plain;
-	charset="ISO-8859-1"
-Content-Transfer-Encoding: base64
+On Thursday 20 September 2012 21:50:42 Liu wrote:
+>      I know it probably not be right to do in such way.But my project is
+> built by buildroot,So I just need to run make to build the image.And now 
+> I want to use bitbake to build the project instead of buildroot.Then I
+> think of the idea to use recipes to "do_fetch","do_unpack",and 
+> "oe_runmake" to build the packages. 
 
-RGVhciBQYXVsLA0KICAgICBJIGtub3cgaXQgcHJvYmFibHkgbm90IGJlIHJpZ2h0IHRvIGRv
-IGluIHN1Y2ggd2F5LkJ1dCBteSBwcm9qZWN0IGlzIGJ1aWx0IGJ5IGJ1aWxkcm9vdCxTbyBJ
-IGp1c3QgbmVlZCB0byBydW4gbWFrZSB0byBidWlsZCB0aGUgaW1hZ2UuQW5kIG5vdyANCiBJ
-IHdhbnQgdG8gdXNlIGJpdGJha2UgdG8gYnVpbGQgdGhlIHByb2plY3QgaW5zdGVhZCBvZiBi
-dWlsZHJvb3QuVGhlbiBJIHRoaW5rIG9mIHRoZSBpZGVhIHRvIHVzZSByZWNpcGVzIHRvICJk
-b19mZXRjaCIsImRvX3VucGFjayIsYW5kICAib2VfcnVubWFrZSIgdG8gYnVpbGQgdGhlIHBh
-Y2thZ2VzLiBGb3IgdGhpcyByZWFzb24gSSBjYW1lIHVwIHdpdGggdGhlIHF1ZXN0aW9uIG9m
-IHdoYXQgSSBoYXZlIGJlZW4gYXNraW5nLg0KICBUaGFua3MsDQogLS0tLS0tLS1MaXUNCg0K
-IA0KDQogLS0tLS0tLS0tLS0tLS0tLS0tIE9yaWdpbmFsIC0tLS0tLS0tLS0tLS0tLS0tLQ0K
-ICBGcm9tOiAgIlBhdWwgRWdnbGV0b24iPHBhdWwuZWdnbGV0b25AbGludXguaW50ZWwuY29t
-PjsNCiBEYXRlOiAgVGh1LCBTZXAgMjAsIDIwMTIgMDk6MzAgUE0NCiBUbzogICJMaXUiPHRy
-ZWVib2R5QGVtYmVkc3R1ZHkuY29tPjsgDQogQ2M6ICAieW9jdG8iPHlvY3RvQHlvY3RvcHJv
-amVjdC5vcmc+OyANCiBTdWJqZWN0OiAgUmU6IFt5b2N0b10gSG93IHRvIGRvIHRoZSBzcGVj
-aWZpZWQgdGFza3MgaW5zdGVhZCBvZiBtYW55IGRlZmF1bHQNCg0KIA0KDQpPbiBUaHVyc2Rh
-eSAyMCBTZXB0ZW1iZXIgMjAxMiAyMToxMTo0OSBMaXUgd3JvdGU6DQo+ICAgICAgSSBoYXZl
-IHNvbWUgcGFja2FnZXMgYnVpbHQgYnkgYSBzZXQgb2YgTWFrZWZpbGVzLGFuZCB3YW50IHRv
-IGJ1aWxkIHRoZW0NCj4gdXNpbmcgYml0YmFrZS5TbyBJIHVzZWQgcmVjaXBlcyB0byBpbnZv
-a2UgTWFrZWZpbGVzIHRvIGRvDQo+IGZldGNoLHVucGFjayxwYXRjaCxjb21waWxlIHRhc2tz
-LkJ1dCBJIGRvIG5vdCBuZWVkIHRvIGRvIHRoZSBmb2xsb3dpbmcNCj4gdGFza3MgbGlrZSBk
-b19idWlsZCxkb19wYWNrYWdlLg0KPiBJbiB0aGUgZGVmYXVsdCBjb25kaXRpb25zLHRoZXJl
-IGV4aXN0IGxpc3QNCj4gb2YgcGFja2FnZXMgYnkgdXNpbmcgdGhlIGNvbW1hbmQgbGlrZSAi
-Yml0YmFrZSBidXN5Ym94IC1jIGxpc3R0YXNrcyIuIFdpdGgNCj4geW91ciBpZGVhIEkgY2Fu
-IGRpc2FibGUgdGFza3MgYnkgZG9fcGFja2FnZVtub2V4ZWNdID0gIjEiLiBCdXQgdGhlbiBp
-dA0KPiBuZWVkcyB0byBkbyBtYW55IHNpbWlsYXIgd29ya3MgdG8gZGlzYWJsZSB0YXNrcyBJ
-IGRvIG5vdCBuZWVkIGluIGFsbCBteQ0KPiBwYWNrYWdlIHJlY2lwZXMuU28gSSB3YW50IHRv
-IGtub3cgaWYgdGhlcmUgaXMgYSBkaXJlY3Qgd2F5IHRvIGRpc2FibGUNCj4gZGVmYXVsdCB0
-YXNrcyBkZWZpbmVkIGluIC5iYmNsYXNzLiBUaGFua3MsDQoNCkkgdW5kZXJzdGFuZCB3aGF0
-IHlvdSBhcmUgdHJ5aW5nIHRvIGRvIGJ1dCBJIHN0aWxsIGRvbid0IHVuZGVyc3RhbmQgd2h5
-LiBEbyANCnlvdSBub3Qgd2FudCB0byBiZSBhYmxlIHRvIHByb2R1Y2UgaW1hZ2VzPw0KDQpJ
-ZiB5b3UgcmVhbGx5IGRvIHdhbnQgdG8gZG8gdGhpcyB5b3UgY291bGQgc2V0IHRoaXMgYXQg
-YSBnbG9iYWwgbGV2ZWwgZWl0aGVyIA0KaW4gbG9jYWwuY29uZiBvciBhIGRpc3RybyBjb25m
-aWd1cmF0aW9uIGZpbGUuIElmIHlvdSBkbyB0aGlzIGhvd2V2ZXIgeW91IHdpbGwgYXQgDQps
-ZWFzdCBuZWVkIHRvIGFsbG93IGRvX3BvcHVsYXRlX3N5c3Jvb3QgdG8gcnVuIG9yIG1hbnkg
-dGhpbmdzIHdpbGwgYnJlYWsuDQoNCkkgd29uJ3QgYmUgc3VycHJpc2VkIGlmIHlvdSBleHBl
-cmllbmNlIG90aGVyIHByb2JsZW1zIGFzIHdlbGwuIEkgdGhpbmsgaXQncyANCmZhaXIgdG8g
-c2F5IHlvdSBhcmUgc3RlcHBpbmcgb3V0c2lkZSBvZiB0aGUgYm91bmRzIG9mIHdoYXQgaXMg
-bm9ybWFsbHkgDQpzdXBwb3J0ZWQgd2l0aCB0aGUgbWV0YWRhdGEgd2UgcHJvdmlkZSAoYWx0
-aG91Z2ggaXQgaXMgbm90IG91dHNpZGUgb2YgDQpzdXBwb3J0ZWQgQml0QmFrZSBiZWhhdmlv
-dXIpLg0KDQpDaGVlcnMsDQpQYXVsDQoNCi0tIA0KDQpQYXVsIEVnZ2xldG9uDQpJbnRlbCBP
-cGVuIFNvdXJjZSBUZWNobm9sb2d5IENlbnRyZQ==
+I guess I would recommend if you're going to migrate to building with bitbake 
+that you make more of a migration towards standard recipes - I'm not sure 
+exactly where you will end up with your current approach but it sounds like 
+you won't get much benefit by just calling into the original Buildroot makefiles 
+over just continuing to use Buildroot on its own.
 
-------=_NextPart_505B1F32_D47267A8_6638DECB
-Content-Type: text/html;
-	charset="ISO-8859-1"
-Content-Transfer-Encoding: base64
+Cheers,
+Paul
 
-PERJVj5EZWFyIFBhdWwsPC9ESVY+DQo8RElWPiZuYnNwOyZuYnNwOyZuYnNwOyBJIGtub3cg
-aXQgcHJvYmFibHkgbm90IGJlJm5ic3A7cmlnaHQgdG8gZG8gaW4gc3VjaCB3YXkuQnV0IG15
-IHByb2plY3QgaXMgYnVpbHQgYnkgYnVpbGRyb290LFNvIEkganVzdCBuZWVkIHRvIHJ1biBt
-YWtlIHRvIGJ1aWxkIHRoZSBpbWFnZS5BbmQgbm93IDwvRElWPg0KPERJVj5JIHdhbnQgdG8g
-dXNlIGJpdGJha2UgdG8gYnVpbGQgdGhlIHByb2plY3QgaW5zdGVhZCBvZiBidWlsZHJvb3Qu
-VGhlbiBJIHRoaW5rIG9mIHRoZSBpZGVhIHRvIHVzZSByZWNpcGVzIHRvICJkb19mZXRjaCIs
-ImRvX3VucGFjayIsYW5kJm5ic3A7ICJvZV9ydW5tYWtlIiB0byBidWlsZCB0aGUmbmJzcDtw
-YWNrYWdlcy4mbmJzcDtGb3IgdGhpcyByZWFzb24mbmJzcDtJJm5ic3A7Y2FtZSB1cCB3aXRo
-IHRoZSBxdWVzdGlvbiBvZiB3aGF0IEkgaGF2ZSBiZWVuIGFza2luZy48aW5jbHVkZXRhaWw+
-PC9ESVY+DQo8RElWPg0KPERJVj5UaGFua3MsPC9ESVY+DQo8RElWPi0tLS0tLS0tTGl1PEJS
-PjwvRElWPg0KPERJVj48QlI+PC9ESVY+DQo8RElWIHN0eWxlPSJQQURESU5HLUJPVFRPTTog
-MnB4OyBQQURESU5HLUxFRlQ6IDBweDsgUEFERElORy1SSUdIVDogMHB4OyBGT05ULUZBTUlM
-WTogQXJpYWwgTmFycm93OyBGT05ULVNJWkU6IDEycHg7IFBBRERJTkctVE9QOiAycHgiPi0t
-LS0tLS0tLS0tLS0tLS0tLSZuYnNwO09yaWdpbmFsJm5ic3A7LS0tLS0tLS0tLS0tLS0tLS0t
-PC9ESVY+DQo8RElWIHN0eWxlPSJQQURESU5HLUJPVFRPTTogOHB4OyBQQURESU5HLUxFRlQ6
-IDhweDsgUEFERElORy1SSUdIVDogOHB4OyBCQUNLR1JPVU5EOiAjZWZlZmVmOyBGT05ULVNJ
-WkU6IDEycHg7IFBBRERJTkctVE9QOiA4cHgiPg0KPERJVj48Qj5Gcm9tOiA8L0I+Jm5ic3A7
-IlBhdWwgRWdnbGV0b24iJmx0O3BhdWwuZWdnbGV0b25AbGludXguaW50ZWwuY29tJmd0Ozs8
-L0RJVj4NCjxESVY+PEI+RGF0ZTogPC9CPiZuYnNwO1RodSwgU2VwIDIwLCAyMDEyIDA5OjMw
-IFBNPC9ESVY+DQo8RElWPjxCPlRvOiA8L0I+Jm5ic3A7IkxpdSImbHQ7dHJlZWJvZHlAZW1i
-ZWRzdHVkeS5jb20mZ3Q7OyA8V0JSPjwvRElWPg0KPERJVj48Qj5DYzogPC9CPiZuYnNwOyJ5
-b2N0byImbHQ7eW9jdG9AeW9jdG9wcm9qZWN0Lm9yZyZndDs7IDxXQlI+PC9ESVY+DQo8RElW
-PjxCPlN1YmplY3Q6IDwvQj4mbmJzcDtSZTogW3lvY3RvXSBIb3cgdG8gZG8gdGhlIHNwZWNp
-ZmllZCB0YXNrcyBpbnN0ZWFkIG9mIG1hbnkgZGVmYXVsdDwvRElWPjwvRElWPg0KPERJVj48
-QlI+PC9ESVY+T24gVGh1cnNkYXkgMjAgU2VwdGVtYmVyIDIwMTIgMjE6MTE6NDkgTGl1IHdy
-b3RlOjxCUj4mZ3Q7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IEkgaGF2ZSBzb21l
-IHBhY2thZ2VzIGJ1aWx0IGJ5IGEgc2V0IG9mIE1ha2VmaWxlcyxhbmQgd2FudCB0byBidWls
-ZCB0aGVtPEJSPiZndDsgdXNpbmcgYml0YmFrZS5TbyBJIHVzZWQgcmVjaXBlcyB0byBpbnZv
-a2UgTWFrZWZpbGVzIHRvIGRvPEJSPiZndDsgZmV0Y2gsdW5wYWNrLHBhdGNoLGNvbXBpbGUg
-dGFza3MuQnV0IEkgZG8gbm90IG5lZWQgdG8gZG8gdGhlIGZvbGxvd2luZzxCUj4mZ3Q7IHRh
-c2tzIGxpa2UgZG9fYnVpbGQsZG9fcGFja2FnZS48QlI+Jmd0OyBJbiB0aGUgZGVmYXVsdCBj
-b25kaXRpb25zLHRoZXJlIGV4aXN0IGxpc3Q8QlI+Jmd0OyBvZiBwYWNrYWdlcyBieSB1c2lu
-ZyB0aGUgY29tbWFuZCBsaWtlICJiaXRiYWtlIGJ1c3lib3ggLWMgbGlzdHRhc2tzIi4gV2l0
-aDxCUj4mZ3Q7IHlvdXIgaWRlYSBJIGNhbiBkaXNhYmxlIHRhc2tzIGJ5IGRvX3BhY2thZ2Vb
-bm9leGVjXSA9ICIxIi4gQnV0IHRoZW4gaXQ8QlI+Jmd0OyBuZWVkcyB0byBkbyBtYW55IHNp
-bWlsYXIgd29ya3MgdG8gZGlzYWJsZSB0YXNrcyBJIGRvIG5vdCBuZWVkIGluIGFsbCBteTxC
-Uj4mZ3Q7IHBhY2thZ2UgcmVjaXBlcy5TbyBJIHdhbnQgdG8ga25vdyBpZiB0aGVyZSBpcyBh
-IGRpcmVjdCB3YXkgdG8gZGlzYWJsZTxCUj4mZ3Q7IGRlZmF1bHQgdGFza3MgZGVmaW5lZCBp
-biAuYmJjbGFzcy4gVGhhbmtzLDxCUj48QlI+SSB1bmRlcnN0YW5kIHdoYXQgeW91IGFyZSB0
-cnlpbmcgdG8gZG8gYnV0IEkgc3RpbGwgZG9uJ3QgdW5kZXJzdGFuZCB3aHkuIERvIDxCUj55
-b3Ugbm90IHdhbnQgdG8gYmUgYWJsZSB0byBwcm9kdWNlIGltYWdlcz88QlI+PEJSPklmIHlv
-dSByZWFsbHkgZG8gd2FudCB0byBkbyB0aGlzIHlvdSBjb3VsZCBzZXQgdGhpcyBhdCBhIGds
-b2JhbCBsZXZlbCBlaXRoZXIgPEJSPmluIGxvY2FsLmNvbmYgb3IgYSBkaXN0cm8gY29uZmln
-dXJhdGlvbiBmaWxlLiBJZiB5b3UgZG8gdGhpcyBob3dldmVyIHlvdSB3aWxsIGF0IDxCUj5s
-ZWFzdCBuZWVkIHRvIGFsbG93IGRvX3BvcHVsYXRlX3N5c3Jvb3QgdG8gcnVuIG9yIG1hbnkg
-dGhpbmdzIHdpbGwgYnJlYWsuPEJSPjxCUj5JIHdvbid0IGJlIHN1cnByaXNlZCBpZiB5b3Ug
-ZXhwZXJpZW5jZSBvdGhlciBwcm9ibGVtcyBhcyB3ZWxsLiBJIHRoaW5rIGl0J3MgPEJSPmZh
-aXIgdG8gc2F5IHlvdSBhcmUgc3RlcHBpbmcgb3V0c2lkZSBvZiB0aGUgYm91bmRzIG9mIHdo
-YXQgaXMgbm9ybWFsbHkgPEJSPnN1cHBvcnRlZCB3aXRoIHRoZSBtZXRhZGF0YSB3ZSBwcm92
-aWRlIChhbHRob3VnaCBpdCBpcyBub3Qgb3V0c2lkZSBvZiA8QlI+c3VwcG9ydGVkIEJpdEJh
-a2UgYmVoYXZpb3VyKS48QlI+PEJSPkNoZWVycyw8QlI+UGF1bDxCUj48QlI+LS0gPEJSPjxC
-Uj5QYXVsIEVnZ2xldG9uPEJSPkludGVsIE9wZW4gU291cmNlIFRlY2hub2xvZ3kgQ2VudHJl
-PEJSPjxCUj4NCjxESVY+PC9ESVY+PC9pbmNsdWRldGFpbD48L0RJVj4=
+-- 
 
-------=_NextPart_505B1F32_D47267A8_6638DECB--
+Paul Eggleton
+Intel Open Source Technology Centre
+
