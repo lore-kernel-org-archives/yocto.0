@@ -1,39 +1,28 @@
-Return-Path: <kishore.k.bodke@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E6F16E004AB
-	for <yocto@yoctoproject.org>; Thu, 20 Sep 2012 10:10:12 -0700 (PDT)
+Return-Path: <reinette.chatre@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 41CF3E004AB
+	for <yocto@yoctoproject.org>; Thu, 20 Sep 2012 11:50:09 -0700 (PDT)
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 20 Sep 2012 10:10:00 -0700
+	by orsmga101.jf.intel.com with ESMTP; 20 Sep 2012 11:50:08 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,455,1344236400"; d="scan'208";a="195422710"
-Received: from orsmsx103.amr.corp.intel.com ([10.22.225.130])
-	by orsmga001.jf.intel.com with ESMTP; 20 Sep 2012 10:10:12 -0700
-Received: from orsmsx153.amr.corp.intel.com (10.22.226.247) by
-	ORSMSX103.amr.corp.intel.com (10.22.225.130) with Microsoft SMTP Server
-	(TLS) id 14.1.355.2; Thu, 20 Sep 2012 10:10:12 -0700
-Received: from orsmsx105.amr.corp.intel.com ([169.254.4.116]) by
-	ORSMSX153.amr.corp.intel.com ([169.254.13.67]) with mapi id
-	14.01.0355.002; Thu, 20 Sep 2012 10:10:11 -0700
-From: "Bodke, Kishore K" <kishore.k.bodke@intel.com>
-To: Przemyslaw Czesnowicz <czesiekbis@gmail.com>
-Thread-Topic: [yocto] [PATCH 0/3][meta-intel] Add new Corpus recipes to
-	Crystal Forest BSP.
-Thread-Index: AQHNlx7YUyN8bQTqQUKSmAB/oZZTCJeTaBAggAAOQnA=
-Date: Thu, 20 Sep 2012 17:10:11 +0000
-Message-ID: <D956029D25CF204F948EA0FB515E1EE21C10AEFF@ORSMSX105.amr.corp.intel.com>
-References: <cover.1348094339.git.kishore.k.bodke@intel.com>
-	<CAPyixAkSGDRXkne0WYsMfS6jD7hMek=O5jkq=w2FgeS9UMzVmg@mail.gmail.com>
-	<D956029D25CF204F948EA0FB515E1EE21C10AE7D@ORSMSX105.amr.corp.intel.com>
-In-Reply-To: <D956029D25CF204F948EA0FB515E1EE21C10AE7D@ORSMSX105.amr.corp.intel.com>
+X-IronPort-AV: E=Sophos;i="4.80,455,1344236400"; d="scan'208";a="195461683"
+Received: from orsmsx105.amr.corp.intel.com ([10.22.225.132])
+	by orsmga001.jf.intel.com with ESMTP; 20 Sep 2012 11:50:08 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.152]) by
+	ORSMSX105.amr.corp.intel.com ([169.254.4.116]) with mapi id
+	14.01.0355.002; Thu, 20 Sep 2012 11:50:08 -0700
+From: "Chatre, Reinette" <reinette.chatre@intel.com>
+To: Yocto discussion list <yocto@yoctoproject.org>
+Thread-Topic: Any hints when building boost-nativesdk?
+Thread-Index: AQHNl2DAYYi5OLliiECcghhBTHaaUw==
+Date: Thu, 20 Sep 2012 18:50:08 +0000
+Message-ID: <1348166956.16487.26.camel@rchatre.jf.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.139]
+x-originating-ip: [10.7.198.73]
 MIME-Version: 1.0
-Cc: "Czesnowicz, PrzemyslawX" <przemyslawx.czesnowicz@intel.com>, "Samson,
-	Don" <don.samson@intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [PATCH 0/3][meta-intel] Add new Corpus recipes to Crystal Forest BSP.
+Subject: Any hints when building boost-nativesdk?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,77 +34,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 20 Sep 2012 17:10:13 -0000
+X-List-Received-Date: Thu, 20 Sep 2012 18:50:09 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-2"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <3C8BFCC46F1FE2448658DEC9EB75D075@intel.com>
+Content-Transfer-Encoding: base64
 
-
-
->-----Original Message-----
->From: yocto-bounces@yoctoproject.org [mailto:yocto-
->bounces@yoctoproject.org] On Behalf Of Bodke, Kishore K
->Sent: Thursday, September 20, 2012 9:21 AM
->To: Przemyslaw Czesnowicz
->Cc: Samson, Don; Czesnowicz, PrzemyslawX; yocto@yoctoproject.org
->Subject: Re: [yocto] [PATCH 0/3][meta-intel] Add new Corpus recipes to
->Crystal Forest BSP.
->
->
->
->>-----Original Message-----
->>From: Przemys=B3aw Czesnowicz [mailto:czesiekbis@gmail.com]
->>Sent: Thursday, September 20, 2012 3:58 AM
->>To: Bodke, Kishore K
->>Cc: Zanussi, Tom; Kamble, Nitin A; yocto@yoctoproject.org; Samson, Don;
->>Czesnowicz, PrzemyslawX
->>Subject: Re: [yocto] [PATCH 0/3][meta-intel] Add new Corpus recipes to
->>Crystal Forest BSP.
->>
->>2012/9/19  <kishore.k.bodke@intel.com>:
->>> From: Kishore Bodke <kishore.k.bodke@intel.com>
->>>
->>> Hi,
->>>
->>> This patch set adds three different types of Corpus files
->>> to Crystal Forest BSP, which are basically used to test the
->>> Lossless Compression algorithms.
->>>
->>> 1. calgary-corpus
->>> 2. canterbury-corpus
->>> 3. silesia-corpus
->>>
->>> These have been tested on both Crystal Forest Platforms.
->>>
->>
->>Hi
->>
->>Are those for the sample code of QA driver?
->>If so  the sample code needs the corpus to be in one file
->>
->>tar -xf calgary.tar.gz -O > calgary
->>
->>Also the CrystalForest software package includes the
->> calgary and canterbury corpus files, at least in 0.9.0 version
->>
->
->Yes. These are for the QuickAssist Driver.
->All the sample corpus data files will be installed under /lib/firmware, at=
- least
->with the 0.9.0-144  version QA driver, that I had tested.
->
->Instead of having all of files in one package and having one recipe, I had=
- split
->them to multiple recipes.
->
-
-If you are talking about the Calgary and Canterbury files that are part of =
-QAT Software package,
-that are present in the sample_code/performance/compression, then, Yes, the=
-y will stay inside the QAT Software Package.
-
-But these are the external to the QAT package.
-
-Thanks
-Kishore.
+SGksDQoNCkkgYW0gcnVubmluZyBZb2N0byAxLjIgYW5kIHdvdWxkIGxpa2UgdG8gaW5jbHVkZSB0
+aGUgYm9vc3QgZGV2ZWxvcG1lbnQNCmVudmlyb25tZW50IGluIG15IFNESy4gSSBjcmVhdGVkIGEg
+YmJhcHBlbmQgZm9yIHRoZSBib29zdCByZWNpcGUgdGhhdA0Kb25seSBjb250YWlucyB0d28gbGlu
+ZXM6DQoNClBSID0gIiR7SU5DX1BSfS4xIg0KQkJDTEFTU0VYVEVORCArPSAibmF0aXZlc2RrIg0K
+DQpXaGVuIEkgYnVpbGQgd2l0aCB0aGUgYWJvdmUgSSBnZXQgdGhlIGZvbGxvd2luZyB3YXJuaW5n
+czoNCk5PVEU6IG11bHRpcGxlIHByb3ZpZGVycyBhcmUgYXZhaWxhYmxlIGZvciBydW50aW1lIGJv
+b3N0LWRhdGUtdGltZSAoYm9vc3QsIGJvb3N0LW5hdGl2ZXNkaykNCk5PVEU6IGNvbnNpZGVyIGRl
+ZmluaW5nIGEgUFJFRkVSUkVEX1BST1ZJREVSIGVudHJ5IHRvIG1hdGNoIGJvb3N0LWRhdGUtdGlt
+ZQ0KTk9URTogbXVsdGlwbGUgcHJvdmlkZXJzIGFyZSBhdmFpbGFibGUgZm9yIHJ1bnRpbWUgYm9v
+c3QtZmlsZXN5c3RlbSAoYm9vc3QsIGJvb3N0LW5hdGl2ZXNkaykNCk5PVEU6IGNvbnNpZGVyIGRl
+ZmluaW5nIGEgUFJFRkVSUkVEX1BST1ZJREVSIGVudHJ5IHRvIG1hdGNoIGJvb3N0LWZpbGVzeXN0
+ZW0NCk5PVEU6IG11bHRpcGxlIHByb3ZpZGVycyBhcmUgYXZhaWxhYmxlIGZvciBydW50aW1lIGJv
+b3N0LWdyYXBoIChib29zdCwgYm9vc3QtbmF0aXZlc2RrKQ0KTk9URTogY29uc2lkZXIgZGVmaW5p
+bmcgYSBQUkVGRVJSRURfUFJPVklERVIgZW50cnkgdG8gbWF0Y2ggYm9vc3QtZ3JhcGgNCk5PVEU6
+IG11bHRpcGxlIHByb3ZpZGVycyBhcmUgYXZhaWxhYmxlIGZvciBydW50aW1lIGJvb3N0LWlvc3Ry
+ZWFtcyAoYm9vc3QsIGJvb3N0LW5hdGl2ZXNkaykNCk5PVEU6IGNvbnNpZGVyIGRlZmluaW5nIGEg
+UFJFRkVSUkVEX1BST1ZJREVSIGVudHJ5IHRvIG1hdGNoIGJvb3N0LWlvc3RyZWFtcw0KTk9URTog
+bXVsdGlwbGUgcHJvdmlkZXJzIGFyZSBhdmFpbGFibGUgZm9yIHJ1bnRpbWUgYm9vc3QtcHJvZ3Jh
+bS1vcHRpb25zIChib29zdCwgYm9vc3QtbmF0aXZlc2RrKQ0KTk9URTogY29uc2lkZXIgZGVmaW5p
+bmcgYSBQUkVGRVJSRURfUFJPVklERVIgZW50cnkgdG8gbWF0Y2ggYm9vc3QtcHJvZ3JhbS1vcHRp
+b25zDQpOT1RFOiBtdWx0aXBsZSBwcm92aWRlcnMgYXJlIGF2YWlsYWJsZSBmb3IgcnVudGltZSBi
+b29zdC1yZWdleCAoYm9vc3QsIGJvb3N0LW5hdGl2ZXNkaykNCk5PVEU6IGNvbnNpZGVyIGRlZmlu
+aW5nIGEgUFJFRkVSUkVEX1BST1ZJREVSIGVudHJ5IHRvIG1hdGNoIGJvb3N0LXJlZ2V4DQpOT1RF
+OiBtdWx0aXBsZSBwcm92aWRlcnMgYXJlIGF2YWlsYWJsZSBmb3IgcnVudGltZSBib29zdC1zaWdu
+YWxzIChib29zdCwgYm9vc3QtbmF0aXZlc2RrKQ0KTk9URTogY29uc2lkZXIgZGVmaW5pbmcgYSBQ
+UkVGRVJSRURfUFJPVklERVIgZW50cnkgdG8gbWF0Y2ggYm9vc3Qtc2lnbmFscw0KTk9URTogbXVs
+dGlwbGUgcHJvdmlkZXJzIGFyZSBhdmFpbGFibGUgZm9yIHJ1bnRpbWUgYm9vc3Qtc3lzdGVtIChi
+b29zdCwgYm9vc3QtbmF0aXZlc2RrKQ0KTk9URTogY29uc2lkZXIgZGVmaW5pbmcgYSBQUkVGRVJS
+RURfUFJPVklERVIgZW50cnkgdG8gbWF0Y2ggYm9vc3Qtc3lzdGVtDQpOT1RFOiBtdWx0aXBsZSBw
+cm92aWRlcnMgYXJlIGF2YWlsYWJsZSBmb3IgcnVudGltZSBib29zdC10ZXN0IChib29zdCwgYm9v
+c3QtbmF0aXZlc2RrKQ0KTk9URTogY29uc2lkZXIgZGVmaW5pbmcgYSBQUkVGRVJSRURfUFJPVklE
+RVIgZW50cnkgdG8gbWF0Y2ggYm9vc3QtdGVzdA0KTk9URTogbXVsdGlwbGUgcHJvdmlkZXJzIGFy
+ZSBhdmFpbGFibGUgZm9yIHJ1bnRpbWUgYm9vc3QtdGhyZWFkIChib29zdCwgYm9vc3QtbmF0aXZl
+c2RrKQ0KTk9URTogY29uc2lkZXIgZGVmaW5pbmcgYSBQUkVGRVJSRURfUFJPVklERVIgZW50cnkg
+dG8gbWF0Y2ggYm9vc3QtdGhyZWFkDQoNCkl0IHNlZW1zIGEgYml0IHN0cmFuZ2UgdGhhdCAiYm9v
+c3QtbmF0aXZlc2RrIiBpcyBzZWVuIGFzIGEgcHJvdmlkZXIgZm9yDQphbnkgb2YgdGhvc2UgcnVu
+dGltZSBjb21wb25lbnRzLiBBbnkgaGludHMgd2hhdCBJIHNob3VsZCBjaGFuZ2UgdG8gYnVpbGQN
+CnRoaW5ncyBjb3JyZWN0bHk/DQoNClRoYW5rIHlvdSB2ZXJ5IG11Y2gNCg0KUmVpbmV0dGUNCiAN
+Cg==
 
