@@ -1,19 +1,19 @@
 Return-Path: <timo.mueller@oss.bmw-carit.de>
 Received: from linuxmail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F0670E0144F
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EC816E0144E
 	for <yocto@yoctoproject.org>; Fri, 21 Sep 2012 07:36:43 -0700 (PDT)
 Received: from localhost (mysterion.bmw-carit.intra [192.168.101.57])
 	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
 	(No client certificate requested)
 	(Authenticated sender: timo.mueller)
-	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 46F564041D;
+	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 81B4540430;
 	Fri, 21 Sep 2012 16:06:42 +0200 (CEST)
 From: mail@timomueller.eu
 To: yocto@yoctoproject.org
-Date: Fri, 21 Sep 2012 16:36:27 +0200
-Message-Id: <f2286cc541019b5161ccc415e150c666c943bbad.1348236303.git.timo.mueller@bmw-carit.de>
+Date: Fri, 21 Sep 2012 16:36:29 +0200
+Message-Id: <34f8837b9cab25aa88b47ee7c8c22f940008fff2.1348236303.git.timo.mueller@bmw-carit.de>
 X-Mailer: git-send-email 1.7.7.6
-In-Reply-To: <d4bb708c72daeaae6b4c54fbd6ea0aeaef849353.1348236303.git.timo.mueller@bmw-carit.de>
+In-Reply-To: <3b0a9e28147d4253974456f1a6604ca1ef76de5a.1348236303.git.timo.mueller@bmw-carit.de>
 References: <cover.1348236303.git.timo.mueller@bmw-carit.de>
 	<1af602c372ef3d674ffc3553ef7bd4f4532834e5.1348236303.git.timo.mueller@bmw-carit.de>
 	<f423e465e06fe2ecc63b23eb00dfe583372ea662.1348236303.git.timo.mueller@bmw-carit.de>
@@ -35,10 +35,12 @@ References: <cover.1348236303.git.timo.mueller@bmw-carit.de>
 	<846946c79b28e3f8cfa72d81ef2163f74d9f073f.1348236303.git.timo.mueller@bmw-carit.de>
 	<3988bd3902bb782724995678485e7e36561e8b65.1348236303.git.timo.mueller@bmw-carit.de>
 	<d4bb708c72daeaae6b4c54fbd6ea0aeaef849353.1348236303.git.timo.mueller@bmw-carit.de>
+	<f2286cc541019b5161ccc415e150c666c943bbad.1348236303.git.timo.mueller@bmw-carit.de>
+	<3b0a9e28147d4253974456f1a6604ca1ef76de5a.1348236303.git.timo.mueller@bmw-carit.de>
 In-Reply-To: <cover.1348236303.git.timo.mueller@bmw-carit.de>
 References: <cover.1348236303.git.timo.mueller@bmw-carit.de>
 Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: [PATCHv2 21/28] documentation/poky-ref-manual/poky-ref-manual.xml: Added Title tag
+Subject: [PATCHv2 23/28] documentation: Move yocto-project-qs global parameters to customization file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,27 +56,39 @@ X-List-Received-Date: Fri, 21 Sep 2012 14:36:44 -0000
 
 From: Timo Mueller <timo.mueller@bmw-carit.de>
 
-The title of the document used to create metadata for output formats
-such as eclipse help.
+Standard stylesheet parameters were moved to the docbook customization
+file tying them to the docbook stylesheet used. Removing these
+parameters simplifies the Makefile.
 ---
- documentation/poky-ref-manual/poky-ref-manual.xml |    4 +++-
- 1 files changed, 3 insertions(+), 1 deletions(-)
+ documentation/Makefile                             |    3 +--
+ .../yocto-project-qs-customization.xsl             |    2 +-
+ 2 files changed, 2 insertions(+), 3 deletions(-)
 
-diff --git a/documentation/poky-ref-manual/poky-ref-manual.xml b/documentation/poky-ref-manual/poky-ref-manual.xml
-index e405375..61497d5 100644
---- a/documentation/poky-ref-manual/poky-ref-manual.xml
-+++ b/documentation/poky-ref-manual/poky-ref-manual.xml
-@@ -16,7 +16,9 @@
-             </imageobject>    
-         </mediaobject>
+diff --git a/documentation/Makefile b/documentation/Makefile
+index 33ebd3c..2887a95 100644
+--- a/documentation/Makefile
++++ b/documentation/Makefile
+@@ -129,8 +129,7 @@ STYLESHEET = $(DOC)/*.css
+ endif
  
--        <title></title>
-+        <title>
-+		  The Yocto Project Reference Manual
-+		</title>
+ ifeq ($(DOC),yocto-project-qs)
+-XSLTOPTS = --stringparam html.stylesheet qs-style.css \
+-           --xinclude
++XSLTOPTS = --xinclude
+ ALLPREQ = html tarball
+ TARFILES = yocto-project-qs.html qs-style.css figures/yocto-environment.png figures/building-an-image.png figures/using-a-pre-built-image.png figures/yocto-project-transp.png
+ MANUALS = $(DOC)/$(DOC).html
+diff --git a/documentation/yocto-project-qs/yocto-project-qs-customization.xsl b/documentation/yocto-project-qs/yocto-project-qs-customization.xsl
+index 8e6ea34..904289a 100644
+--- a/documentation/yocto-project-qs/yocto-project-qs-customization.xsl
++++ b/documentation/yocto-project-qs/yocto-project-qs-customization.xsl
+@@ -4,5 +4,5 @@
+   <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/xhtml/docbook.xsl" />
  
-         <authorgroup>
-             <author>
+   <xsl:param name="generate.toc" select="'article nop'"></xsl:param>
+-
++  <xsl:param name="html.stylesheet" select="'qs-style.css'" />
+ </xsl:stylesheet>
 -- 
 1.7.7.6
 
