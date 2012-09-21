@@ -1,19 +1,19 @@
 Return-Path: <timo.mueller@oss.bmw-carit.de>
 Received: from linuxmail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E999CE01447
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F0670E0144F
 	for <yocto@yoctoproject.org>; Fri, 21 Sep 2012 07:36:43 -0700 (PDT)
 Received: from localhost (mysterion.bmw-carit.intra [192.168.101.57])
 	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
 	(No client certificate requested)
 	(Authenticated sender: timo.mueller)
-	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id BED1140352;
-	Fri, 21 Sep 2012 16:06:41 +0200 (CEST)
+	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 46F564041D;
+	Fri, 21 Sep 2012 16:06:42 +0200 (CEST)
 From: mail@timomueller.eu
 To: yocto@yoctoproject.org
-Date: Fri, 21 Sep 2012 16:36:23 +0200
-Message-Id: <5daca14e9c74e218fe2da574fc873cbc60e9e53f.1348236303.git.timo.mueller@bmw-carit.de>
+Date: Fri, 21 Sep 2012 16:36:27 +0200
+Message-Id: <f2286cc541019b5161ccc415e150c666c943bbad.1348236303.git.timo.mueller@bmw-carit.de>
 X-Mailer: git-send-email 1.7.7.6
-In-Reply-To: <5d1dc613cedca89ca693b90013182693a90c3748.1348236303.git.timo.mueller@bmw-carit.de>
+In-Reply-To: <d4bb708c72daeaae6b4c54fbd6ea0aeaef849353.1348236303.git.timo.mueller@bmw-carit.de>
 References: <cover.1348236303.git.timo.mueller@bmw-carit.de>
 	<1af602c372ef3d674ffc3553ef7bd4f4532834e5.1348236303.git.timo.mueller@bmw-carit.de>
 	<f423e465e06fe2ecc63b23eb00dfe583372ea662.1348236303.git.timo.mueller@bmw-carit.de>
@@ -31,10 +31,14 @@ References: <cover.1348236303.git.timo.mueller@bmw-carit.de>
 	<4ff0866c4f03a6f11c62c700e27fb36d0278564d.1348236303.git.timo.mueller@bmw-carit.de>
 	<3dfff12e740169f128caf4c0d72498447ee9e9a6.1348236303.git.timo.mueller@bmw-carit.de>
 	<5d1dc613cedca89ca693b90013182693a90c3748.1348236303.git.timo.mueller@bmw-carit.de>
+	<5daca14e9c74e218fe2da574fc873cbc60e9e53f.1348236303.git.timo.mueller@bmw-carit.de>
+	<846946c79b28e3f8cfa72d81ef2163f74d9f073f.1348236303.git.timo.mueller@bmw-carit.de>
+	<3988bd3902bb782724995678485e7e36561e8b65.1348236303.git.timo.mueller@bmw-carit.de>
+	<d4bb708c72daeaae6b4c54fbd6ea0aeaef849353.1348236303.git.timo.mueller@bmw-carit.de>
 In-Reply-To: <cover.1348236303.git.timo.mueller@bmw-carit.de>
 References: <cover.1348236303.git.timo.mueller@bmw-carit.de>
 Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: [PATCHv2 17/28] documentation/Makefile: logic to make all for kernel-manual and cleanup
+Subject: [PATCHv2 21/28] documentation/poky-ref-manual/poky-ref-manual.xml: Added Title tag
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,33 +54,27 @@ X-List-Received-Date: Fri, 21 Sep 2012 14:36:44 -0000
 
 From: Timo Mueller <timo.mueller@bmw-carit.de>
 
-Eclipse help documents are now created when calling the 'make all'
-target on the kernel-manual. Resulting files are archived into
-the tarball as well. When calling 'make clean' artefacts of
-the eclipse documentation build are deleted.
+The title of the document used to create metadata for output formats
+such as eclipse help.
 ---
- documentation/Makefile |    8 +++++---
- 1 files changed, 5 insertions(+), 3 deletions(-)
+ documentation/poky-ref-manual/poky-ref-manual.xml |    4 +++-
+ 1 files changed, 3 insertions(+), 1 deletions(-)
 
-diff --git a/documentation/Makefile b/documentation/Makefile
-index f64e21c..23b4d9f 100644
---- a/documentation/Makefile
-+++ b/documentation/Makefile
-@@ -220,9 +220,11 @@ endif
+diff --git a/documentation/poky-ref-manual/poky-ref-manual.xml b/documentation/poky-ref-manual/poky-ref-manual.xml
+index e405375..61497d5 100644
+--- a/documentation/poky-ref-manual/poky-ref-manual.xml
++++ b/documentation/poky-ref-manual/poky-ref-manual.xml
+@@ -16,7 +16,9 @@
+             </imageobject>    
+         </mediaobject>
  
- ifeq ($(DOC),kernel-manual)
- XSLTOPTS = --xinclude
--ALLPREQ = html pdf tarball
--TARFILES = kernel-manual.html kernel-manual.pdf kernel-style.css figures/kernel-title.png figures/kernel-architecture-overview.png
--MANUALS = $(DOC)/$(DOC).html $(DOC)/$(DOC).pdf
-+ALLPREQ = html pdf eclipse tarball
-+TARFILES = kernel-manual.html kernel-manual.pdf kernel-style.css \
-+           figures/kernel-title.png figures/kernel-architecture-overview.png \
-+           eclipse
-+MANUALS = $(DOC)/$(DOC).html $(DOC)/$(DOC).pdf $(DOC)/eclipse
- FIGURES = figures
- STYLESHEET = $(DOC)/*.css
- endif
+-        <title></title>
++        <title>
++		  The Yocto Project Reference Manual
++		</title>
+ 
+         <authorgroup>
+             <author>
 -- 
 1.7.7.6
 
