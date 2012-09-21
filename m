@@ -1,19 +1,19 @@
 Return-Path: <timo.mueller@oss.bmw-carit.de>
 Received: from linuxmail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9D152E0144C
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EADF5E0144A
 	for <yocto@yoctoproject.org>; Fri, 21 Sep 2012 07:36:43 -0700 (PDT)
 Received: from localhost (mysterion.bmw-carit.intra [192.168.101.57])
 	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
 	(No client certificate requested)
 	(Authenticated sender: timo.mueller)
-	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id E0CAC40443;
+	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 6492540422;
 	Fri, 21 Sep 2012 16:06:42 +0200 (CEST)
 From: mail@timomueller.eu
 To: yocto@yoctoproject.org
-Date: Fri, 21 Sep 2012 16:36:32 +0200
-Message-Id: <04d1676b19bfa9fa47e4f4b130681b133ba718aa.1348236303.git.timo.mueller@bmw-carit.de>
+Date: Fri, 21 Sep 2012 16:36:28 +0200
+Message-Id: <3b0a9e28147d4253974456f1a6604ca1ef76de5a.1348236303.git.timo.mueller@bmw-carit.de>
 X-Mailer: git-send-email 1.7.7.6
-In-Reply-To: <a2cc24326793e9906a296dc0c418bdd31f3b67c3.1348236303.git.timo.mueller@bmw-carit.de>
+In-Reply-To: <f2286cc541019b5161ccc415e150c666c943bbad.1348236303.git.timo.mueller@bmw-carit.de>
 References: <cover.1348236303.git.timo.mueller@bmw-carit.de>
 	<1af602c372ef3d674ffc3553ef7bd4f4532834e5.1348236303.git.timo.mueller@bmw-carit.de>
 	<f423e465e06fe2ecc63b23eb00dfe583372ea662.1348236303.git.timo.mueller@bmw-carit.de>
@@ -36,14 +36,10 @@ References: <cover.1348236303.git.timo.mueller@bmw-carit.de>
 	<3988bd3902bb782724995678485e7e36561e8b65.1348236303.git.timo.mueller@bmw-carit.de>
 	<d4bb708c72daeaae6b4c54fbd6ea0aeaef849353.1348236303.git.timo.mueller@bmw-carit.de>
 	<f2286cc541019b5161ccc415e150c666c943bbad.1348236303.git.timo.mueller@bmw-carit.de>
-	<3b0a9e28147d4253974456f1a6604ca1ef76de5a.1348236303.git.timo.mueller@bmw-carit.de>
-	<34f8837b9cab25aa88b47ee7c8c22f940008fff2.1348236303.git.timo.mueller@bmw-carit.de>
-	<6c83c2429607b3fe699319da8e29ac63f930b510.1348236303.git.timo.mueller@bmw-carit.de>
-	<a2cc24326793e9906a296dc0c418bdd31f3b67c3.1348236303.git.timo.mueller@bmw-carit.de>
 In-Reply-To: <cover.1348236303.git.timo.mueller@bmw-carit.de>
 References: <cover.1348236303.git.timo.mueller@bmw-carit.de>
 Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: [PATCHv2 26/28] documentation/Makefile: logic to make all for yocto-project-qs and cleanup
+Subject: [PATCHv2 22/28] documentation/Makefile: logic to make all for poky-ref-manual and cleanup
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -60,30 +56,27 @@ X-List-Received-Date: Fri, 21 Sep 2012 14:36:44 -0000
 From: Timo Mueller <timo.mueller@bmw-carit.de>
 
 Eclipse help documents are now created when calling the 'make all'
-target on the yocto-project-qs. Resulting files are archived into
+target on the poky-ref-manual. Resulting files are archived into
 the tarball as well. When calling 'make clean' artefacts of
 the eclipse documentation build are deleted.
 ---
- documentation/Makefile |    9 ++++++---
- 1 files changed, 6 insertions(+), 3 deletions(-)
+ documentation/Makefile |    6 +++---
+ 1 files changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/documentation/Makefile b/documentation/Makefile
-index 1a29af5..4965c30 100644
+index ba26214..33ebd3c 100644
 --- a/documentation/Makefile
 +++ b/documentation/Makefile
-@@ -130,9 +130,12 @@ endif
+@@ -195,9 +195,9 @@ endif
  
- ifeq ($(DOC),yocto-project-qs)
+ ifeq ($(DOC),poky-ref-manual)
  XSLTOPTS = --xinclude
--ALLPREQ = html tarball
--TARFILES = yocto-project-qs.html qs-style.css figures/yocto-environment.png figures/building-an-image.png figures/using-a-pre-built-image.png figures/yocto-project-transp.png
--MANUALS = $(DOC)/$(DOC).html
-+ALLPREQ = html eclipse tarball
-+TARFILES = yocto-project-qs.html qs-style.css figures/yocto-environment.png \
-+           figures/building-an-image.png figures/using-a-pre-built-image.png \
-+           figures/yocto-project-transp.png \
-+           eclipse
-+MANUALS = $(DOC)/$(DOC).html $(DOC)/eclipse
+-ALLPREQ = html pdf tarball
+-TARFILES = poky-ref-manual.html ref-style.css figures/poky-title.png
+-MANUALS = $(DOC)/$(DOC).html $(DOC)/$(DOC).pdf
++ALLPREQ = html pdf eclipse tarball
++TARFILES = poky-ref-manual.html ref-style.css figures/poky-title.png eclipse
++MANUALS = $(DOC)/$(DOC).html $(DOC)/$(DOC).pdf $(DOC)/eclipse
  FIGURES = figures
  STYLESHEET = $(DOC)/*.css
  endif
