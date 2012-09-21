@@ -1,29 +1,28 @@
 Return-Path: <timo.mueller@oss.bmw-carit.de>
 Received: from linuxmail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 15566E01443
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 16AA5E01447
 	for <yocto@yoctoproject.org>; Fri, 21 Sep 2012 07:36:43 -0700 (PDT)
 Received: from localhost (mysterion.bmw-carit.intra [192.168.101.57])
 	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
 	(No client certificate requested)
 	(Authenticated sender: timo.mueller)
-	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 61FC140295;
+	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 404CA40264;
 	Fri, 21 Sep 2012 16:06:40 +0200 (CEST)
 From: mail@timomueller.eu
 To: yocto@yoctoproject.org
-Date: Fri, 21 Sep 2012 16:36:12 +0200
-Message-Id: <5b5e5c1df2e3770b01be3f09b30bfd8b225a010d.1348236303.git.timo.mueller@bmw-carit.de>
+Date: Fri, 21 Sep 2012 16:36:11 +0200
+Message-Id: <7221a4f5e94be6668c5333495055addc668bf6e8.1348236303.git.timo.mueller@bmw-carit.de>
 X-Mailer: git-send-email 1.7.7.6
-In-Reply-To: <7221a4f5e94be6668c5333495055addc668bf6e8.1348236303.git.timo.mueller@bmw-carit.de>
+In-Reply-To: <ba6e360db9bb644f548e5a75f0685e83d63245f7.1348236303.git.timo.mueller@bmw-carit.de>
 References: <cover.1348236303.git.timo.mueller@bmw-carit.de>
 	<1af602c372ef3d674ffc3553ef7bd4f4532834e5.1348236303.git.timo.mueller@bmw-carit.de>
 	<f423e465e06fe2ecc63b23eb00dfe583372ea662.1348236303.git.timo.mueller@bmw-carit.de>
 	<7d9bce7a4c37456b0e358d4ad9188b079f99687c.1348236303.git.timo.mueller@bmw-carit.de>
 	<ba6e360db9bb644f548e5a75f0685e83d63245f7.1348236303.git.timo.mueller@bmw-carit.de>
-	<7221a4f5e94be6668c5333495055addc668bf6e8.1348236303.git.timo.mueller@bmw-carit.de>
 In-Reply-To: <cover.1348236303.git.timo.mueller@bmw-carit.de>
 References: <cover.1348236303.git.timo.mueller@bmw-carit.de>
 Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: [PATCHv2 06/28] documentation/dev-manual/dev-manual.xml: Added Title tag
+Subject: [PATCHv2 05/28] documentation/Makefile: Support for making Eclipse HTML dev manual
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,27 +38,37 @@ X-List-Received-Date: Fri, 21 Sep 2012 14:36:43 -0000
 
 From: Timo Mueller <timo.mueller@bmw-carit.de>
 
-The title of the document used to create metadata for output formats
-such as eclipse help.
----
- documentation/dev-manual/dev-manual.xml |    4 +++-
- 1 files changed, 3 insertions(+), 1 deletions(-)
+This target will generate eclipse help for the dev-manual using
+the dev-manual-eclipse-customization.xsl stylesheet.
 
-diff --git a/documentation/dev-manual/dev-manual.xml b/documentation/dev-manual/dev-manual.xml
-index 0cbd85f..9617fa0 100644
---- a/documentation/dev-manual/dev-manual.xml
-+++ b/documentation/dev-manual/dev-manual.xml
-@@ -16,7 +16,9 @@
-             </imageobject> 
-         </mediaobject>
+The output will be generated to a separate directory which can be used
+for integrating the documentation into eclipse.
+---
+ documentation/Makefile |   10 ++++++----
+ 1 files changed, 6 insertions(+), 4 deletions(-)
+
+diff --git a/documentation/Makefile b/documentation/Makefile
+index 1e8b558..812a6d7 100644
+--- a/documentation/Makefile
++++ b/documentation/Makefile
+@@ -284,11 +284,13 @@ endif
+ eclipse: BASE_DIR = html/$(DOC)/
  
--        <title></title> 
-+        <title>
-+		  The Yocto Project Development Manual
-+		</title>
- 
-         <authorgroup>
-             <author>
+ eclipse:
+-ifneq ($(DOC),adt-manual)
++ifeq ($(filter $(DOC), adt-manual dev-manual),)
+ 	@echo " "
+-	@echo "ERROR: You can only create eclipse documentation of the"
+-	@echo "       Yocto Project Application Development Toolkit (ADT)"
+-	@echo "       User's Guide"
++	@echo "ERROR: You can only create eclipse documentation"
++	@echo "       of the following documentation parts:"
++	@echo " "
++	@echo "       - The Yocto Project Application Developer's Guide (adt-manual)"
++	@echo "       - The Yocto Project Development Manual (dev-manual)"
+ 	@echo " "
+ else
+ 	cd $(DOC) && \
 -- 
 1.7.7.6
 
