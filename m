@@ -1,19 +1,19 @@
 Return-Path: <timo.mueller@oss.bmw-carit.de>
 Received: from linuxmail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0049FE01454
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 01A97E01455
 	for <yocto@yoctoproject.org>; Fri, 21 Sep 2012 07:36:43 -0700 (PDT)
 Received: from localhost (mysterion.bmw-carit.intra [192.168.101.57])
 	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
 	(No client certificate requested)
 	(Authenticated sender: timo.mueller)
-	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id A207740436;
-	Fri, 21 Sep 2012 16:06:42 +0200 (CEST)
+	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 0A30F40498;
+	Fri, 21 Sep 2012 16:06:43 +0200 (CEST)
 From: mail@timomueller.eu
 To: yocto@yoctoproject.org
-Date: Fri, 21 Sep 2012 16:36:30 +0200
-Message-Id: <6c83c2429607b3fe699319da8e29ac63f930b510.1348236303.git.timo.mueller@bmw-carit.de>
+Date: Fri, 21 Sep 2012 16:36:33 +0200
+Message-Id: <d97743f173425873809040dba04fae5e3dfcd793.1348236303.git.timo.mueller@bmw-carit.de>
 X-Mailer: git-send-email 1.7.7.6
-In-Reply-To: <34f8837b9cab25aa88b47ee7c8c22f940008fff2.1348236303.git.timo.mueller@bmw-carit.de>
+In-Reply-To: <04d1676b19bfa9fa47e4f4b130681b133ba718aa.1348236303.git.timo.mueller@bmw-carit.de>
 References: <cover.1348236303.git.timo.mueller@bmw-carit.de>
 	<1af602c372ef3d674ffc3553ef7bd4f4532834e5.1348236303.git.timo.mueller@bmw-carit.de>
 	<f423e465e06fe2ecc63b23eb00dfe583372ea662.1348236303.git.timo.mueller@bmw-carit.de>
@@ -38,10 +38,13 @@ References: <cover.1348236303.git.timo.mueller@bmw-carit.de>
 	<f2286cc541019b5161ccc415e150c666c943bbad.1348236303.git.timo.mueller@bmw-carit.de>
 	<3b0a9e28147d4253974456f1a6604ca1ef76de5a.1348236303.git.timo.mueller@bmw-carit.de>
 	<34f8837b9cab25aa88b47ee7c8c22f940008fff2.1348236303.git.timo.mueller@bmw-carit.de>
+	<6c83c2429607b3fe699319da8e29ac63f930b510.1348236303.git.timo.mueller@bmw-carit.de>
+	<a2cc24326793e9906a296dc0c418bdd31f3b67c3.1348236303.git.timo.mueller@bmw-carit.de>
+	<04d1676b19bfa9fa47e4f4b130681b133ba718aa.1348236303.git.timo.mueller@bmw-carit.de>
 In-Reply-To: <cover.1348236303.git.timo.mueller@bmw-carit.de>
 References: <cover.1348236303.git.timo.mueller@bmw-carit.de>
 Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: [PATCHv2 24/28] documentation/yocto-project-qs/yocto-project-qs-eclipse-customization.xsl: new file
+Subject: [PATCHv2 27/28] documentation/tools/eclipse-help.sed: Processes external links for eclipse html files
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -57,44 +60,39 @@ X-List-Received-Date: Fri, 21 Sep 2012 14:36:44 -0000
 
 From: Timo Mueller <timo.mueller@bmw-carit.de>
 
-This stylesheet uses the eclipse stylesheets of docbook to create
-eclipse help from this documentation. In addition to simple html
-files these stylesheets will also create xml files which are
-needed to integrate the documentation into eclipse (e.g. toc.xml).
+The file is used when creating eclipse help html files. It processes
+all html files and converts links so that the user can navigate
+between different docuementation parts without leaving the eclipse
+help center.
 ---
- .../yocto-project-qs-eclipse-customization.xsl     |   23 ++++++++++++++++++++
- 1 files changed, 23 insertions(+), 0 deletions(-)
- create mode 100644 documentation/yocto-project-qs/yocto-project-qs-eclipse-customization.xsl
+ documentation/tools/eclipse-help.sed |   18 ++++++++++++++++++
+ 1 files changed, 18 insertions(+), 0 deletions(-)
+ create mode 100644 documentation/tools/eclipse-help.sed
 
-diff --git a/documentation/yocto-project-qs/yocto-project-qs-eclipse-customization.xsl b/documentation/yocto-project-qs/yocto-project-qs-eclipse-customization.xsl
+diff --git a/documentation/tools/eclipse-help.sed b/documentation/tools/eclipse-help.sed
 new file mode 100644
-index 0000000..dd488cc
+index 0000000..71d3395
 --- /dev/null
-+++ b/documentation/yocto-project-qs/yocto-project-qs-eclipse-customization.xsl
-@@ -0,0 +1,23 @@
-+<?xml version='1.0'?>
-+<xsl:stylesheet
-+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-+	xmlns="http://www.w3.org/1999/xhtml"
-+	xmlns:fo="http://www.w3.org/1999/XSL/Format"
-+	version="1.0">
++++ b/documentation/tools/eclipse-help.sed
+@@ -0,0 +1,18 @@
++# Processes poky-ref-manual and yocto-project-qs manual (<word>-<word>-<word> style)
++# For example:
++#   "ulink" href="http://www.yoctoproject.org/docs/1.3/poky-ref-manual/poky-ref-manual.html#faq" 
++#   -> "link" href="../poky-ref-manual/faq.html"
++s/\"ulink\" href=\"http:\/\/www.yoctoproject.org\/docs\/[^\/]*\/\([a-z]*-[a-z]*-[a-z]*\)\/[a-z]*-[a-z]*-[a-z]*.html#\([^\"]*\)\"/\"link\" href=\"\.\.\/\1\/\2.html\"/g
 +
-+  <xsl:import
-+	  href="http://docbook.sourceforge.net/release/xsl/current/eclipse/eclipse3.xsl" />
++# Processes all other manuals (<word>-<word> style)
++# For example:
++#   "ulink" href="http://www.yoctoproject.org/docs/1.3/kernel-manual/kernel-manual.html#faq" 
++#   -> "link" href="../kernel-manual/faq.html"
++s/\"ulink\" href=\"http:\/\/www.yoctoproject.org\/docs\/[^\/]*\/\([a-z]*-[a-z]*\)\/[a-z]*-[a-z]*.html#\([^\"]*\)\"/\"link\" href=\"\.\.\/\1\/\2.html\"/g
 +
-+  <xsl:param name="chunker.output.indent" select="'yes'"/>
-+  <xsl:param name="use.id.as.filename" select="1"/>
-+  <xsl:param name="ulink.target" select="'_self'" />
-+  <xsl:param name="base.dir" select="'html/yocto-project-qs/'"/>
-+  <xsl:param name="chunk.section.depth" select="0"/>
-+  <xsl:param name="html.stylesheet" select="'../book.css'"/>
-+  <xsl:param name="eclipse.manifest" select="0"/>
-+  <xsl:param name="create.plugin.xml" select="0"/>
-+  <xsl:param name="suppress.navigation" select="1"/>
-+  <xsl:param name="generate.index" select="0"/>
-+  <xsl:param name="generate.toc" select="'article nop'"></xsl:param>
-+  <xsl:param name="html.stylesheet" select="'style.css'" />
-+</xsl:stylesheet>
++# Process cases where just an external manual is referenced without an id anchor
++# For example:
++#   "ulink" href="http://www.yoctoproject.org/docs/1.3/kernel-manual/kernel-manual.html
++#   -> "link" href="../kernel-manual/index.html"
++s/\"ulink\" href=\"http:\/\/www.yoctoproject.org\/docs\/[^\/]*\/\([a-z]*-[a-z]*-[a-z]*\)\/[a-z]*-[a-z]*-[a-z]*.html\"/\"link\" href=\"\.\.\/\1\/index.html\"/g
++s/\"ulink\" href=\"http:\/\/www.yoctoproject.org\/docs\/[^\/]*\/\([a-z]*-[a-z]*\)\/[a-z]*-[a-z]*.html\"/\"link\" href=\"\.\.\/\1\/index.html\"/g
 -- 
 1.7.7.6
 
