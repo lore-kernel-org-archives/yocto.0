@@ -1,37 +1,36 @@
-Return-Path: <reinette.chatre@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 10513E00655
-	for <yocto@yoctoproject.org>; Thu, 20 Sep 2012 15:56:56 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 20 Sep 2012 15:56:56 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,457,1344236400"; d="scan'208";a="195234584"
-Received: from orsmsx103.amr.corp.intel.com ([10.22.225.130])
-	by azsmga001.ch.intel.com with ESMTP; 20 Sep 2012 15:56:56 -0700
-Received: from orsmsx153.amr.corp.intel.com (10.22.226.247) by
-	ORSMSX103.amr.corp.intel.com (10.22.225.130) with Microsoft SMTP Server
-	(TLS) id 14.1.355.2; Thu, 20 Sep 2012 15:56:55 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.152]) by
-	ORSMSX153.amr.corp.intel.com ([169.254.13.67]) with mapi id
-	14.01.0355.002; Thu, 20 Sep 2012 15:56:54 -0700
-From: "Chatre, Reinette" <reinette.chatre@intel.com>
-To: Khem Raj <raj.khem@gmail.com>
-Thread-Topic: [yocto] Any hints when building boost-nativesdk?
-Thread-Index: AQHNl2DAYYi5OLliiECcghhBTHaaU5eUNYcAgAAElgCAABKxAA==
-Date: Thu, 20 Sep 2012 22:56:53 +0000
-Message-ID: <1348181762.16487.28.camel@rchatre.jf.intel.com>
-References: <1348166956.16487.26.camel@rchatre.jf.intel.com>
-	<505B8B7C.7080501@linux.intel.com>
-	<CAMKF1srP67RkwqdPTbdwaJiCXPf=uU5kcWfjrWcXffWNejHhBw@mail.gmail.com>
-In-Reply-To: <CAMKF1srP67RkwqdPTbdwaJiCXPf=uU5kcWfjrWcXffWNejHhBw@mail.gmail.com>
-Accept-Language: en-US
+Return-Path: <jonas.l.jonsson@ericsson.com>
+Received: from mailgw2.ericsson.se (mailgw2.ericsson.se [193.180.251.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5DF36E013FE
+	for <yocto@yoctoproject.org>; Fri, 21 Sep 2012 02:06:09 -0700 (PDT)
+X-AuditID: c1b4fb25-b7f046d00000644c-85-505c2e004c58
+Received: from esessmw0184.eemea.ericsson.se (Unknown_Domain [153.88.253.125])
+	by mailgw2.ericsson.se (Symantec Mail Security) with SMTP id
+	99.B2.25676.00E2C505; Fri, 21 Sep 2012 11:06:08 +0200 (CEST)
+Received: from ESESSCMS0355.eemea.ericsson.se ([169.254.1.103]) by
+	esessmw0184.eemea.ericsson.se ([10.2.3.53]) with mapi; Fri, 21 Sep 2012
+	11:06:08 +0200
+From: Jonas Jonsson L <jonas.l.jonsson@ericsson.com>
+To: "Yocto Mailinglist (yocto@yoctoproject.org)" <yocto@yoctoproject.org>
+Date: Fri, 21 Sep 2012 11:06:05 +0200
+Thread-Topic: Using other recipes output in Makefile-project
+Thread-Index: Ac2X2FTazYmC7EuYTAq7nHGX4oJCFg==
+Message-ID: <C1024C359E9D4C4EBC664A0111A52A3F7CFB24B9DA@ESESSCMS0355.eemea.ericsson.se>
+Accept-Language: sv-SE, en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [10.7.198.73]
+acceptlanguage: sv-SE, en-US
 MIME-Version: 1.0
-Cc: Yocto discussion list <yocto@yoctoproject.org>,
-	Darren Hart <dvhart@linux.intel.com>
-Subject: Re: Any hints when building boost-nativesdk?
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrALMWRmVeSWpSXmKPExsUyM+JvrS6DXkyAwccV+haTXq5hc2D0aD/R
+	xxbAGMVlk5Kak1mWWqRvl8CVsfeVQcEJoYo9V96yNDA+4+9i5OSQEDCR2L5+LTOELSZx4d56
+	ti5GLg4hgVOMEitm3GSHcOYyStzf0sEIUsUG1DFh5U0gm4NDRMBT4soDXZAwi4CqxJ5jy1lB
+	bGEBc4nbq2ezgNgiAjYSe0/eYIYo15OY1+QGEuYVCJf4/f8JE4jNKCArcf/7PbByZgFxiVtP
+	5jNB3CMgsWTPeajbRCVePv7HClEvI3Fq0X9WiPp8iX8nlzBCzBSUODnzCcsERqFZSEbNQlI2
+	C0kZRFxHYsHuT2wQtrbEsoWvmWHsMwceMyGLL2BkX8UonJuYmZNebqSXWpSZXFycn6dXnLqJ
+	ERgLB7f8Vt3BeOecyCFGaQ4WJXFe6617/IUE0hNLUrNTUwtSi+KLSnNSiw8xMnFwSjUwVvEp
+	S2yVjN996naVb2vCzCeXEl9bKXBK7p3PemjnFfMlXwrmzAs6wJbMfFnoZXuIdMmnqq2eFep+
+	x9z2hyzc7/N5U/zdJb8k/zM8US75/O1m6wrLXzsbJ+/cpTfxpLB1+N+k+Zvdi3farEg/OfPv
+	ydu+eaH8px7OW/a0Yufjw/drjqTUl2R5GCuxFGckGmoxFxUnAgAlewlEUwIAAA==
+Subject: Using other recipes output in Makefile-project
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,21 +42,72 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 20 Sep 2012 22:56:57 -0000
+X-List-Received-Date: Fri, 21 Sep 2012 09:06:11 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <A4EAECEE58EF5B419A17A74AE13D98D8@intel.com>
-Content-Transfer-Encoding: base64
+Content-Type: multipart/alternative;
+	boundary="_000_C1024C359E9D4C4EBC664A0111A52A3F7CFB24B9DAESESSCMS0355e_"
 
-SGkgS2hlbSwNCg0KT24gVGh1LCAyMDEyLTA5LTIwIGF0IDE0OjQ5IC0wNzAwLCBLaGVtIFJhaiB3
-cm90ZToNCj4gT24gVGh1LCBTZXAgMjAsIDIwMTIgYXQgMjozMiBQTSwgRGFycmVuIEhhcnQgPGR2
-aGFydEBsaW51eC5pbnRlbC5jb20+IHdyb3RlOg0KPiA+IE9uIDA5LzIwLzIwMTIgMTE6NTAgQU0s
-IENoYXRyZSwgUmVpbmV0dGUgd3JvdGU6DQo+ID4+IEhpLA0KPiA+Pg0KPiA+PiBJIGFtIHJ1bm5p
-bmcgWW9jdG8gMS4yIGFuZCB3b3VsZCBsaWtlIHRvIGluY2x1ZGUgdGhlIGJvb3N0IGRldmVsb3Bt
-ZW50DQo+ID4+IGVudmlyb25tZW50IGluIG15IFNESy4gSSBjcmVhdGVkIGEgYmJhcHBlbmQgZm9y
-IHRoZSBib29zdCByZWNpcGUgdGhhdA0KPiANCj4gRG8geW91IHdhbnQgeW91ciB0YXJnZXQgYXBw
-bGljYXRpb25zIHRvIGhhdmUgYm9vc3QgcmlnaHQgPw0KDQpDb3JyZWN0Lg0KDQo+IGluIHRoYXQg
-Y2FzZSB5b3UganVzdCBhZGQgYm9vc3QtZGV2IHRvIFRPT0xDSEFJTl9UQVJHRVRfVEFTSyBtYXkg
-YmUgaW4NCj4geW91ciBsb2NhbC5jb25mDQoNClRoYW5rIHlvdSB2ZXJ5IG11Y2gNCg0KUmVpbmV0
-dGUNCg==
+--_000_C1024C359E9D4C4EBC664A0111A52A3F7CFB24B9DAESESSCMS0355e_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
+Hi, I'm having trouble with understanding how to use built libraries (and t=
+heir include-files).
+
+I'm writing a bitbake-recipe for some piece of software that is Makefile-ba=
+sed.  The SW has a compilation and runtime dependency on readline, Sqlite3 =
+and libxml2.
+
+In my bb-file, I've added 'DEPEND =3D "readline sqlite3 libxml2"' and the t=
+hree packages are built and installed for my chosen architecture.
+
+Now how do I use the build artifacts for my compilation??  I would like to =
+add 'XML2_CFLAGS=3DFOO', 'XML2_LIBS=3DBAR' etc to my EXTRA_OEMAKE so that m=
+y Makefile can pick up the location of the necessary include-files and libr=
+aries?
+
+Best regards,
+Jonas Jonsson
+
+
+
+--_000_C1024C359E9D4C4EBC664A0111A52A3F7CFB24B9DAESESSCMS0355e_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
+<!-- converted from rtf -->
+<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
+ #800000 2px solid; } --></style>
+</head>
+<body>
+<font face=3D"Arial, sans-serif" size=3D"2">
+<div>Hi, I'm having trouble with understanding how to use built libraries (=
+and their include-files).</div>
+<div>&nbsp;</div>
+<div>I'm writing a bitbake-recipe for some piece of software that is <i>Mak=
+efile</i>-based.&nbsp; The SW has a compilation and runtime dependency on r=
+eadline, Sqlite3 and libxml2.</div>
+<div>&nbsp;</div>
+<div>In my bb-file, I've added 'DEPEND =3D &quot;readline sqlite3 libxml2&q=
+uot;' and the three packages are built and installed for my chosen architec=
+ture.</div>
+<div>&nbsp;</div>
+<div>Now how do I use the build artifacts for my compilation??&nbsp; I woul=
+d like to add 'XML2_CFLAGS=3DFOO', 'XML2_LIBS=3DBAR' etc to my EXTRA_OEMAKE=
+ so that my Makefile can pick up the location of the necessary include-file=
+s and libraries?</div>
+<div>&nbsp;</div>
+<div>Best regards,</div>
+<div>Jonas Jonsson</div>
+<div>&nbsp;</div>
+<div>&nbsp;</div>
+</font>
+</body>
+</html>
+
+--_000_C1024C359E9D4C4EBC664A0111A52A3F7CFB24B9DAESESSCMS0355e_--
