@@ -1,19 +1,19 @@
 Return-Path: <timo.mueller@oss.bmw-carit.de>
 Received: from linuxmail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 92DCDE01443
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 940B1E01447
 	for <yocto@yoctoproject.org>; Fri, 21 Sep 2012 07:36:43 -0700 (PDT)
 Received: from localhost (mysterion.bmw-carit.intra [192.168.101.57])
 	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
 	(No client certificate requested)
 	(Authenticated sender: timo.mueller)
-	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 84BB540341;
+	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id A17C54034F;
 	Fri, 21 Sep 2012 16:06:41 +0200 (CEST)
 From: mail@timomueller.eu
 To: yocto@yoctoproject.org
-Date: Fri, 21 Sep 2012 16:36:21 +0200
-Message-Id: <3dfff12e740169f128caf4c0d72498447ee9e9a6.1348236303.git.timo.mueller@bmw-carit.de>
+Date: Fri, 21 Sep 2012 16:36:22 +0200
+Message-Id: <5d1dc613cedca89ca693b90013182693a90c3748.1348236303.git.timo.mueller@bmw-carit.de>
 X-Mailer: git-send-email 1.7.7.6
-In-Reply-To: <4ff0866c4f03a6f11c62c700e27fb36d0278564d.1348236303.git.timo.mueller@bmw-carit.de>
+In-Reply-To: <3dfff12e740169f128caf4c0d72498447ee9e9a6.1348236303.git.timo.mueller@bmw-carit.de>
 References: <cover.1348236303.git.timo.mueller@bmw-carit.de>
 	<1af602c372ef3d674ffc3553ef7bd4f4532834e5.1348236303.git.timo.mueller@bmw-carit.de>
 	<f423e465e06fe2ecc63b23eb00dfe583372ea662.1348236303.git.timo.mueller@bmw-carit.de>
@@ -29,10 +29,11 @@ References: <cover.1348236303.git.timo.mueller@bmw-carit.de>
 	<cf841cef6a10d69ab4be1ed3db65d1de62097a86.1348236303.git.timo.mueller@bmw-carit.de>
 	<8283c1ed541d41e0f82109c2c6b2f1e0452c6223.1348236303.git.timo.mueller@bmw-carit.de>
 	<4ff0866c4f03a6f11c62c700e27fb36d0278564d.1348236303.git.timo.mueller@bmw-carit.de>
+	<3dfff12e740169f128caf4c0d72498447ee9e9a6.1348236303.git.timo.mueller@bmw-carit.de>
 In-Reply-To: <cover.1348236303.git.timo.mueller@bmw-carit.de>
 References: <cover.1348236303.git.timo.mueller@bmw-carit.de>
 Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: [PATCHv2 15/28] documentation/Makefile: Support for making Eclipse HTML kernel manual
+Subject: [PATCHv2 16/28] documentation/kernel-manual/kernel-manual.xml: Added Title tag
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,37 +49,27 @@ X-List-Received-Date: Fri, 21 Sep 2012 14:36:43 -0000
 
 From: Timo Mueller <timo.mueller@bmw-carit.de>
 
-This target will generate eclipse help for the kernel-manual using
-the  kernel-manual-eclipse-customization.xsl stylesheet.
-
-The output will be generated to a separate directory which can be used
-for integrating the documentation into eclipse.
+The title of the document used to create metadata for output formats
+such as eclipse help.
 ---
- documentation/Makefile |    4 +++-
+ documentation/kernel-manual/kernel-manual.xml |    4 +++-
  1 files changed, 3 insertions(+), 1 deletions(-)
 
-diff --git a/documentation/Makefile b/documentation/Makefile
-index 9b816a1..f64e21c 100644
---- a/documentation/Makefile
-+++ b/documentation/Makefile
-@@ -279,7 +279,7 @@ endif
- eclipse: BASE_DIR = html/$(DOC)/
+diff --git a/documentation/kernel-manual/kernel-manual.xml b/documentation/kernel-manual/kernel-manual.xml
+index 174663a..0d683ef 100644
+--- a/documentation/kernel-manual/kernel-manual.xml
++++ b/documentation/kernel-manual/kernel-manual.xml
+@@ -16,7 +16,9 @@
+             </imageobject>    
+         </mediaobject>
  
- eclipse:
--ifeq ($(filter $(DOC), adt-manual bsp-guide dev-manual),)
-+ifeq ($(filter $(DOC), adt-manual bsp-guide dev-manual kernel-manual),)
- 	@echo " "
- 	@echo "ERROR: You can only create eclipse documentation"
- 	@echo "       of the following documentation parts:"
-@@ -288,6 +288,8 @@ ifeq ($(filter $(DOC), adt-manual bsp-guide dev-manual),)
- 	@echo "       - The Yocto Project Board Support Package"
- 	@echo "                           Developer's Guide (bsp-guide)"
- 	@echo "       - The Yocto Project Development Manual (dev-manual)"
-+	@echo "       - The Yocto Project Kernel Architecture and"
-+	@echo "                           Use Manual (kernel-manual)"
- 	@echo " "
- else
- 	cd $(DOC) && \
+-        <title></title> 
++        <title>
++		  The Yocto Project Kernel Architecture and Use Manual
++		</title>
+ 
+         <authorgroup>
+             <author>
 -- 
 1.7.7.6
 
