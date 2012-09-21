@@ -1,36 +1,35 @@
-Return-Path: <jonas.l.jonsson@ericsson.com>
-Received: from mailgw2.ericsson.se (mailgw2.ericsson.se [193.180.251.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5DF36E013FE
-	for <yocto@yoctoproject.org>; Fri, 21 Sep 2012 02:06:09 -0700 (PDT)
-X-AuditID: c1b4fb25-b7f046d00000644c-85-505c2e004c58
-Received: from esessmw0184.eemea.ericsson.se (Unknown_Domain [153.88.253.125])
-	by mailgw2.ericsson.se (Symantec Mail Security) with SMTP id
-	99.B2.25676.00E2C505; Fri, 21 Sep 2012 11:06:08 +0200 (CEST)
-Received: from ESESSCMS0355.eemea.ericsson.se ([169.254.1.103]) by
-	esessmw0184.eemea.ericsson.se ([10.2.3.53]) with mapi; Fri, 21 Sep 2012
-	11:06:08 +0200
-From: Jonas Jonsson L <jonas.l.jonsson@ericsson.com>
-To: "Yocto Mailinglist (yocto@yoctoproject.org)" <yocto@yoctoproject.org>
-Date: Fri, 21 Sep 2012 11:06:05 +0200
-Thread-Topic: Using other recipes output in Makefile-project
-Thread-Index: Ac2X2FTazYmC7EuYTAq7nHGX4oJCFg==
-Message-ID: <C1024C359E9D4C4EBC664A0111A52A3F7CFB24B9DA@ESESSCMS0355.eemea.ericsson.se>
-Accept-Language: sv-SE, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: sv-SE, en-US
+Return-Path: <ross.burton@intel.com>
+Received: from fmsmga101.fm.intel.com (mga05.intel.com [192.55.52.89])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9B5DFE013FE
+	for <yocto@yoctoproject.org>; Fri, 21 Sep 2012 03:07:26 -0700 (PDT)
+Received: from mail-oa0-f48.google.com ([209.85.219.48])
+	by mga01.intel.com with ESMTP/TLS/RC4-SHA; 21 Sep 2012 03:07:26 -0700
+Received: by oagn16 with SMTP id n16so4084589oag.35
+	for <yocto@yoctoproject.org>; Fri, 21 Sep 2012 03:07:25 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type:x-gm-message-state;
+	bh=+pkQQHrnS3Niio6DXNzye2U9P1pVAe1bLtgZBS1qZeI=;
+	b=G4YOZjXD3OSgccVtb/NQgykJMLr+/59thiUc7h+mGDvvfXnC+tonldlcP/R7hQ9UHl
+	WnlzBkyCA97ns1Kn9XsndbNowHVEkoLWNEccCENbHcGmxezuaRSqsAzd+Wrde9yvxsQW
+	opXA3dIip4NoW50Zt8/eZcwnoApSv8u23qVahVPzANeUARCNpPKR8V56Q+gngoC4MQty
+	lJsWStCBrue7wbimxfqMdJdIwY9PLnhM3KiyarGrnEgSvfTrke+gOgop5XwAochANC2f
+	uwW9h0MAMLZt0hqp/FxiEC0AnA/Xn1qTGysxHed8qUcQ8QM3k+waGFZy87mtrJ2RDudM
+	IOSQ==
+Received: by 10.182.108.71 with SMTP id hi7mr3544000obb.21.1348222045315; Fri,
+	21 Sep 2012 03:07:25 -0700 (PDT)
 MIME-Version: 1.0
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrALMWRmVeSWpSXmKPExsUyM+JvrS6DXkyAwccV+haTXq5hc2D0aD/R
-	xxbAGMVlk5Kak1mWWqRvl8CVsfeVQcEJoYo9V96yNDA+4+9i5OSQEDCR2L5+LTOELSZx4d56
-	ti5GLg4hgVOMEitm3GSHcOYyStzf0sEIUsUG1DFh5U0gm4NDRMBT4soDXZAwi4CqxJ5jy1lB
-	bGEBc4nbq2ezgNgiAjYSe0/eYIYo15OY1+QGEuYVCJf4/f8JE4jNKCArcf/7PbByZgFxiVtP
-	5jNB3CMgsWTPeajbRCVePv7HClEvI3Fq0X9WiPp8iX8nlzBCzBSUODnzCcsERqFZSEbNQlI2
-	C0kZRFxHYsHuT2wQtrbEsoWvmWHsMwceMyGLL2BkX8UonJuYmZNebqSXWpSZXFycn6dXnLqJ
-	ERgLB7f8Vt3BeOecyCFGaQ4WJXFe6617/IUE0hNLUrNTUwtSi+KLSnNSiw8xMnFwSjUwVvEp
-	S2yVjN996naVb2vCzCeXEl9bKXBK7p3PemjnFfMlXwrmzAs6wJbMfFnoZXuIdMmnqq2eFep+
-	x9z2hyzc7/N5U/zdJb8k/zM8US75/O1m6wrLXzsbJ+/cpTfxpLB1+N+k+Zvdi3farEg/OfPv
-	ydu+eaH8px7OW/a0Yufjw/drjqTUl2R5GCuxFGckGmoxFxUnAgAlewlEUwIAAA==
-Subject: Using other recipes output in Makefile-project
+Received: by 10.182.79.105 with HTTP; Fri, 21 Sep 2012 03:07:05 -0700 (PDT)
+In-Reply-To: <C1024C359E9D4C4EBC664A0111A52A3F7CFB24B9DA@ESESSCMS0355.eemea.ericsson.se>
+References: <C1024C359E9D4C4EBC664A0111A52A3F7CFB24B9DA@ESESSCMS0355.eemea.ericsson.se>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Fri, 21 Sep 2012 11:07:05 +0100
+Message-ID: <CAJTo0La0S28iSaO3qRzygSrFkDtit-sqRpK=azqrDh0dqj_3aA@mail.gmail.com>
+To: Jonas Jonsson L <jonas.l.jonsson@ericsson.com>
+X-Gm-Message-State: ALoCoQlR2QXp6P5kwWOzwNhnvE4arX4G18sivNUf9rC1PtGQ5QQfqoGmRiTWmwQjY84R9LxGs1ui
+Cc: "Yocto Mailinglist \(yocto@yoctoproject.org\)" <yocto@yoctoproject.org>
+Subject: Re: Using other recipes output in Makefile-project
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,72 +41,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 21 Sep 2012 09:06:11 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_C1024C359E9D4C4EBC664A0111A52A3F7CFB24B9DAESESSCMS0355e_"
+X-List-Received-Date: Fri, 21 Sep 2012 10:07:26 -0000
+Content-Type: text/plain; charset=UTF-8
 
---_000_C1024C359E9D4C4EBC664A0111A52A3F7CFB24B9DAESESSCMS0355e_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-Hi, I'm having trouble with understanding how to use built libraries (and t=
-heir include-files).
-
-I'm writing a bitbake-recipe for some piece of software that is Makefile-ba=
-sed.  The SW has a compilation and runtime dependency on readline, Sqlite3 =
-and libxml2.
-
-In my bb-file, I've added 'DEPEND =3D "readline sqlite3 libxml2"' and the t=
-hree packages are built and installed for my chosen architecture.
-
-Now how do I use the build artifacts for my compilation??  I would like to =
-add 'XML2_CFLAGS=3DFOO', 'XML2_LIBS=3DBAR' etc to my EXTRA_OEMAKE so that m=
-y Makefile can pick up the location of the necessary include-files and libr=
-aries?
-
-Best regards,
-Jonas Jonsson
-
-
-
---_000_C1024C359E9D4C4EBC664A0111A52A3F7CFB24B9DAESESSCMS0355e_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+On 21 September 2012 10:06, Jonas Jonsson L
+<jonas.l.jonsson@ericsson.com> wrote:
+> Hi, I'm having trouble with understanding how to use built libraries (and
+> their include-files).
 >
-<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
-<!-- converted from rtf -->
-<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
- #800000 2px solid; } --></style>
-</head>
-<body>
-<font face=3D"Arial, sans-serif" size=3D"2">
-<div>Hi, I'm having trouble with understanding how to use built libraries (=
-and their include-files).</div>
-<div>&nbsp;</div>
-<div>I'm writing a bitbake-recipe for some piece of software that is <i>Mak=
-efile</i>-based.&nbsp; The SW has a compilation and runtime dependency on r=
-eadline, Sqlite3 and libxml2.</div>
-<div>&nbsp;</div>
-<div>In my bb-file, I've added 'DEPEND =3D &quot;readline sqlite3 libxml2&q=
-uot;' and the three packages are built and installed for my chosen architec=
-ture.</div>
-<div>&nbsp;</div>
-<div>Now how do I use the build artifacts for my compilation??&nbsp; I woul=
-d like to add 'XML2_CFLAGS=3DFOO', 'XML2_LIBS=3DBAR' etc to my EXTRA_OEMAKE=
- so that my Makefile can pick up the location of the necessary include-file=
-s and libraries?</div>
-<div>&nbsp;</div>
-<div>Best regards,</div>
-<div>Jonas Jonsson</div>
-<div>&nbsp;</div>
-<div>&nbsp;</div>
-</font>
-</body>
-</html>
+> I'm writing a bitbake-recipe for some piece of software that is
+> Makefile-based.  The SW has a compilation and runtime dependency on
+> readline, Sqlite3 and libxml2.
+>
+> In my bb-file, I've added 'DEPEND = "readline sqlite3 libxml2"' and the
+> three packages are built and installed for my chosen architecture.
+>
+> Now how do I use the build artifacts for my compilation??  I would like to
+> add 'XML2_CFLAGS=FOO', 'XML2_LIBS=BAR' etc to my EXTRA_OEMAKE so that my
+> Makefile can pick up the location of the necessary include-files and
+> libraries?
 
---_000_C1024C359E9D4C4EBC664A0111A52A3F7CFB24B9DAESESSCMS0355e_--
+I'd recommend considering porting the build system to autotools, but I
+know that for a lot of situations that isn't doable.
+
+I'd also recommend changing the build system to use pkg-config for
+libxml2 and sqlite3, that way it will automatically find the right
+headers.
+
+The magic variables you're looking for though are ${STAGING_INCDIR}
+and ${STAGING_LIBDIR}, these are the include and lib directories under
+the staging tree for the target.
+
+Ross
+
