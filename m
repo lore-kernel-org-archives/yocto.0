@@ -1,32 +1,26 @@
-Return-Path: <przemyslawx.czesnowicz@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 968C2E0049D
-	for <yocto@yoctoproject.org>; Fri, 21 Sep 2012 09:07:45 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 21 Sep 2012 09:07:44 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,463,1344236400"; d="scan'208";a="147614221"
-Received: from irsmsx101.ger.corp.intel.com ([163.33.3.153])
-	by AZSMGA002.ch.intel.com with ESMTP; 21 Sep 2012 09:07:25 -0700
-Received: from irsmsx151.ger.corp.intel.com (163.33.192.59) by
-	IRSMSX101.ger.corp.intel.com (163.33.3.153) with Microsoft SMTP Server
-	(TLS) id 14.1.355.2; Fri, 21 Sep 2012 17:07:24 +0100
-Received: from irsmsx102.ger.corp.intel.com ([169.254.2.34]) by
-	IRSMSX151.ger.corp.intel.com ([169.254.4.142]) with mapi id
-	14.01.0355.002; Fri, 21 Sep 2012 17:07:23 +0100
-From: "Czesnowicz, PrzemyslawX" <przemyslawx.czesnowicz@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Yocto 1.3 beta testing
-Thread-Index: Ac2YEuB6ZqIF4aNpTb+ih61errGwJQ==
-Date: Fri, 21 Sep 2012 16:07:23 +0000
-Message-ID: <FD920D91FA434C4988D04BF2D4011259B86039@IRSMSX102.ger.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [163.33.239.180]
+Return-Path: <daniel_norris@selinc.com>
+Received: from duster.selinc.com (duster.selinc.com [74.117.214.140])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 034E9E0027E
+	for <yocto@yoctoproject.org>; Fri, 21 Sep 2012 10:10:33 -0700 (PDT)
+Received: from edison.ad.selinc.com (edison.ad.selinc.com [10.100.0.15])
+	by duster.selinc.com (8.14.5/8.14.5) with ESMTP id q8LH8OjB015922
+	for <yocto@yoctoproject.org>; Fri, 21 Sep 2012 10:08:24 -0700
+To: yocto@yoctoproject.org
 MIME-Version: 1.0
-X-Mailman-Approved-At: Fri, 21 Sep 2012 09:55:34 -0700
-Subject: Yocto 1.3 beta testing
+X-KeepSent: 8C5911CD:67B0A092-88257A80:005CAF7D;
+ type=4; name=$KeepSent
+X-Mailer: Lotus Notes Release 8.5.3 September 15, 2011
+Message-ID: <OF8C5911CD.67B0A092-ON88257A80.005CAF7D-88257A80.005E5805@selinc.com>
+From: daniel_norris@selinc.com
+Date: Fri, 21 Sep 2012 10:10:29 -0700
+X-MIMETrack: Serialize by Router on Edison/SEL(Release 8.5.3FP2|July 02,
+	2012) at 09/21/2012 10:10:29 AM,
+	Serialize complete at 09/21/2012 10:10:29 AM
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10432:5.7.7855, 1.0.431,
+	0.0.0000
+	definitions=2012-09-21_08:2012-09-21, 2012-09-21,
+	1970-01-01 signatures=0
+Subject: Yocto ADT Build Errors
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,65 +32,213 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 21 Sep 2012 16:07:45 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 21 Sep 2012 17:10:34 -0000
+Content-Type: multipart/alternative;
+	boundary="=_alternative 005E580188257A80_="
 
-Hi All, =
+--=_alternative 005E580188257A80_=
+Content-Type: text/plain; charset="US-ASCII"
 
+Hi,
 
-Experience survey of using Yocto 1.3
+I've been following the ADT User's Guide and I'm having trouble getting 
+Eclipse to build the Hello World ANSI C Autotools project. I am using a 
+build-system derived toolchain targeting PowerPC. 
 
-Q: Which architecture did you choose to build? =
+I am able to invoke QEMU using NFS, but configuring the project gives me 
+this output on the console:
 
-A: qemux86-64 , atom-pc
+Invoking autogen.sh in build directory: /home/daninorr/workspace/Hello
 
-Q: How easily were you able to build an image and boot an image? =
+Command-line environment variables:
+         CFLAGS=" -g -O0  --sysroot=/data/add_ntp/sdk" CXXFLAGS=" -g -O0 
+--sysroot=/data/add_ntp/sdk" LDFLAGS=" --sysroot=/data/add_ntp/sdk" 
+CPPFLAGS=" --sysroot=/data/add_ntp/sdk"
 
-A: No problems, but I've done it before.
+sh /home/daninorr/workspace/Hello/autogen.sh 
+--with-libtool-sysroot=/data/add_ntp/sdk --target=powerpc-poky-linux 
+--host=powerpc-poky-linux --build=x86_64-linux 
+--with-libtool-sysroot=/data/add_ntp/sdk 
+configure.ac:21: installing './compile'
+configure.ac:20: installing './config.guess'
+configure.ac:20: installing './config.sub'
+configure.ac:16: installing './install-sh'
+configure.ac:16: installing './missing'
+src/Makefile.am: installing './depcomp'
+configure: loading site script 
+/home/daninorr/Projects/poky/meta/site/endian-big
+configure: loading site script 
+/home/daninorr/Projects/poky/meta/site/powerpc-common
+configure: loading site script 
+/home/daninorr/Projects/poky/meta/site/common-linux
+configure: loading site script 
+/home/daninorr/Projects/poky/meta/site/common-glibc
+configure: loading site script 
+/home/daninorr/Projects/poky/meta/site/powerpc32-linux
+configure: loading site script 
+/home/daninorr/Projects/poky/meta/site/powerpc-linux
+configure: loading site script 
+/home/daninorr/Projects/poky/meta/site/common
+configure: loading site script 
+/data/add_ntp/tmp/sysroots/qemuppc/usr/share/powerpc-poky-linux_config_site.d/ncurses_config
+configure: loading site script 
+/data/add_ntp/tmp/sysroots/qemuppc/usr/share/powerpc-poky-linux_config_site.d/eglibc_config
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether build environment is sane... yes
+checking for powerpc-poky-linux-strip... powerpc-poky-linux-strip
+checking for a thread-safe mkdir -p... /bin/mkdir -p
+checking for gawk... gawk
+checking whether make sets $(MAKE)... yes
+checking build system type... x86_64-pc-linux-gnu
+checking host system type... powerpc-poky-linux-gnu
+checking how to print strings... printf
+checking for style of include used by make... GNU
+checking for powerpc-poky-linux-gcc... powerpc-poky-linux-gcc  -m32 
+-mhard-float  -mcpu=603e --sysroot=/data/add_ntp/tmp/sysroots/qemuppc
+checking whether the C compiler works... no
+configure: error: in `/home/daninorr/workspace/Hello':
+configure: error: in `/home/daninorr/workspace/Hello':
+configure: error: C compiler cannot create executables
+configure: error: C compiler cannot create executables
+See `config.log' for more details
 
-Q: Is there any surprise to you in the process of doing this Beta testing? =
-If so, would you please describe it and tell us how you expected it to work=
-? =
+Configuration failed with error
 
-A: Knotty2
+The /data/add_ntp/sdk folder is the extracted sysroot .
 
-Q: How do you like our HOB interface? Please provide us with your thoughts =
-and suggestions on HOB interface and functionality. =
+However, I can build the project from the terminal if I source the 
+generated environment-setup-ppc603e-poky-linux file, cd into the workspace 
+and run sh autogen.sh $CONFIGURATION_FLAGS; make.
 
-A: First use, I was quite impressed. No suggestions.
+config.log has the following errors:
+root=/data/add_ntp/tmp/sysroots/qemuppc -V >&5
+powerpc-poky-linux-gcc: error: unrecognized command line option '-V'
+powerpc-poky-linux-gcc: fatal error: no input files
+configure:3166: powerpc-poky-linux-gcc  -m32 -mhard-float  -mcpu=603e 
+--sys     root=/data/add_ntp/tmp/sysroots/qemuppc -qversion >&5
+powerpc-poky-linux-gcc: error: unrecognized command line option 
+'-qversion'
+powerpc-poky-linux-gcc: fatal error: no input files
+compilation terminated.
 
-Q: Was it easy to find the support you needed to build and boot an image? =
+Some information about my system:
+OS: Ubuntu 12.04 64-bit
+Eclipse: 3.7.2
+Yocto ADT Plugin: 1.2.0.201206291757
+Autotools Plugin:  3.0.1.201202152032
 
-A:  Yes.
+I followed the ADT User's Guide instructions almost verbatim, so I'm not 
+sure if I did something wrong or not.
 
-Q: Which Bugzilla reports did you submit? =
+Thanks!
+-------------------------------------------------------
+Daniel Norris
 
-A: None.
+--=_alternative 005E580188257A80_=
+Content-Type: text/html; charset="US-ASCII"
 
-Q: Did you try anything else with Yocto 1.3? =
+<font size=2 face="sans-serif">Hi,</font>
+<br>
+<br><font size=2 face="sans-serif">I've been following the ADT User's Guide
+and I'm having trouble getting Eclipse to build the Hello World ANSI C
+Autotools project. I am using a build-system derived toolchain targeting
+PowerPC. &nbsp;</font>
+<br>
+<br><font size=2 face="sans-serif">I am able to invoke QEMU using NFS,
+but configuring the project gives me this output on the console:</font>
+<br>
+<br><font size=2 face="sans-serif">Invoking autogen.sh in build directory:
+/home/daninorr/workspace/Hello</font>
+<br>
+<br><font size=2 face="sans-serif">Command-line environment variables:</font>
+<br><font size=2 face="sans-serif">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;CFLAGS=&quot;
+-g -O0 &nbsp;--sysroot=/data/add_ntp/sdk&quot; CXXFLAGS=&quot; -g -O0 &nbsp;--sysroot=/data/add_ntp/sdk&quot;
+LDFLAGS=&quot; --sysroot=/data/add_ntp/sdk&quot; CPPFLAGS=&quot; --sysroot=/data/add_ntp/sdk&quot;</font>
+<br>
+<br><font size=2 face="sans-serif">sh /home/daninorr/workspace/Hello/autogen.sh
+--with-libtool-sysroot=/data/add_ntp/sdk --target=powerpc-poky-linux --host=powerpc-poky-linux
+--build=x86_64-linux --with-libtool-sysroot=/data/add_ntp/sdk </font>
+<br><font size=2 face="sans-serif">configure.ac:21: installing './compile'</font>
+<br><font size=2 face="sans-serif">configure.ac:20: installing './config.guess'</font>
+<br><font size=2 face="sans-serif">configure.ac:20: installing './config.sub'</font>
+<br><font size=2 face="sans-serif">configure.ac:16: installing './install-sh'</font>
+<br><font size=2 face="sans-serif">configure.ac:16: installing './missing'</font>
+<br><font size=2 face="sans-serif">src/Makefile.am: installing './depcomp'</font>
+<br><font size=2 face="sans-serif">configure: loading site script /home/daninorr/Projects/poky/meta/site/endian-big</font>
+<br><font size=2 face="sans-serif">configure: loading site script /home/daninorr/Projects/poky/meta/site/powerpc-common</font>
+<br><font size=2 face="sans-serif">configure: loading site script /home/daninorr/Projects/poky/meta/site/common-linux</font>
+<br><font size=2 face="sans-serif">configure: loading site script /home/daninorr/Projects/poky/meta/site/common-glibc</font>
+<br><font size=2 face="sans-serif">configure: loading site script /home/daninorr/Projects/poky/meta/site/powerpc32-linux</font>
+<br><font size=2 face="sans-serif">configure: loading site script /home/daninorr/Projects/poky/meta/site/powerpc-linux</font>
+<br><font size=2 face="sans-serif">configure: loading site script /home/daninorr/Projects/poky/meta/site/common</font>
+<br><font size=2 face="sans-serif">configure: loading site script /data/add_ntp/tmp/sysroots/qemuppc/usr/share/powerpc-poky-linux_config_site.d/ncurses_config</font>
+<br><font size=2 face="sans-serif">configure: loading site script /data/add_ntp/tmp/sysroots/qemuppc/usr/share/powerpc-poky-linux_config_site.d/eglibc_config</font>
+<br><font size=2 face="sans-serif">checking for a BSD-compatible install...
+/usr/bin/install -c</font>
+<br><font size=2 face="sans-serif">checking whether build environment is
+sane... yes</font>
+<br><font size=2 face="sans-serif">checking for powerpc-poky-linux-strip...
+powerpc-poky-linux-strip</font>
+<br><font size=2 face="sans-serif">checking for a thread-safe mkdir -p...
+/bin/mkdir -p</font>
+<br><font size=2 face="sans-serif">checking for gawk... gawk</font>
+<br><font size=2 face="sans-serif">checking whether make sets $(MAKE)...
+yes</font>
+<br><font size=2 face="sans-serif">checking build system type... x86_64-pc-linux-gnu</font>
+<br><font size=2 face="sans-serif">checking host system type... powerpc-poky-linux-gnu</font>
+<br><font size=2 face="sans-serif">checking how to print strings... printf</font>
+<br><font size=2 face="sans-serif">checking for style of include used by
+make... GNU</font>
+<br><font size=2 face="sans-serif">checking for powerpc-poky-linux-gcc...
+powerpc-poky-linux-gcc &nbsp;-m32 -mhard-float &nbsp;-mcpu=603e --sysroot=/data/add_ntp/tmp/sysroots/qemuppc</font>
+<br><font size=2 face="sans-serif">checking whether the C compiler works...
+no</font>
+<br><font size=2 face="sans-serif">configure: error: in `/home/daninorr/workspace/Hello':</font>
+<br><font size=2 face="sans-serif">configure: error: in `/home/daninorr/workspace/Hello':</font>
+<br><font size=2 face="sans-serif">configure: error: C compiler cannot
+create executables</font>
+<br><font size=2 face="sans-serif">configure: error: C compiler cannot
+create executables</font>
+<br><font size=2 face="sans-serif">See `config.log' for more details</font>
+<br>
+<br><font size=2 face="sans-serif">Configuration failed with error</font>
+<br>
+<br><font size=2 face="sans-serif">The /data/add_ntp/sdk folder is the
+extracted sysroot .</font>
+<br>
+<br><font size=2 face="sans-serif">However, I can build the project from
+the terminal if I source the generated environment-setup-ppc603e-poky-linux
+file, cd into the workspace and run sh autogen.sh $CONFIGURATION_FLAGS;
+make.</font>
+<br>
+<br><font size=2 face="sans-serif">config.log has the following errors:</font>
+<br><font size=2 face="sans-serif">root=/data/add_ntp/tmp/sysroots/qemuppc
+-V &gt;&amp;5</font>
+<br><font size=2 face="sans-serif">powerpc-poky-linux-gcc: error: unrecognized
+command line option '-V'</font>
+<br><font size=2 face="sans-serif">powerpc-poky-linux-gcc: fatal error:
+no input files</font>
+<br><font size=2 face="sans-serif">configure:3166: powerpc-poky-linux-gcc
+&nbsp;-m32 -mhard-float &nbsp;-mcpu=603e --sys &nbsp; &nbsp; root=/data/add_ntp/tmp/sysroots/qemuppc
+-qversion &gt;&amp;5</font>
+<br><font size=2 face="sans-serif">powerpc-poky-linux-gcc: error: unrecognized
+command line option '-qversion'</font>
+<br><font size=2 face="sans-serif">powerpc-poky-linux-gcc: fatal error:
+no input files</font>
+<br><font size=2 face="sans-serif">compilation terminated.</font>
+<br>
+<br><font size=2 face="sans-serif">Some information about my system:</font>
+<br><font size=2 face="sans-serif">OS: Ubuntu 12.04 64-bit</font>
+<br><font size=2 face="sans-serif">Eclipse: 3.7.2</font>
+<br><font size=2 face="sans-serif">Yocto ADT Plugin: 1.2.0.201206291757</font>
+<br><font size=2 face="sans-serif">Autotools Plugin: &nbsp;3.0.1.201202152032</font>
+<br>
+<br><font size=2 face="sans-serif">I followed the ADT User's Guide instructions
+almost verbatim, so I'm not sure if I did something wrong or not.</font>
+<br>
+<br><font size=2 face="sans-serif">Thanks!</font>
+<br><font size=2 face="sans-serif">-------------------------------------------------------</font>
+<br><font size=2 face="sans-serif">Daniel Norris</font>
+<br>
 
-A: hob, relocatable SDK
-
-Q: What would you like to have in Yocto Project for future releases? =
-
-A: Upgrade of openssl to version 1.0.1 would benefit platforms with AES-NI =
-instruction set.
-
-Regards
-Przemek
---------------------------------------------------------------
-Intel Shannon Limited
-Registered in Ireland
-Registered Office: Collinstown Industrial Park, Leixlip, County Kildare
-Registered Number: 308263
-Business address: Dromore House, East Park, Shannon, Co. Clare
-
-This e-mail and any attachments may contain confidential material for the s=
-ole use of the intended recipient(s). Any review or distribution by others =
-is strictly prohibited. If you are not the intended recipient, please conta=
-ct the sender and delete all copies.
-
-
-
+--=_alternative 005E580188257A80_=--
