@@ -1,42 +1,24 @@
-Return-Path: <jonas.l.jonsson@ericsson.com>
-Received: from mailgw2.ericsson.se (mailgw2.ericsson.se [193.180.251.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E5E18E0141D
-	for <yocto@yoctoproject.org>; Fri, 21 Sep 2012 06:29:24 -0700 (PDT)
-X-AuditID: c1b4fb25-b7f046d00000644c-48-505c6bb37a23
-Received: from esessmw0247.eemea.ericsson.se (Unknown_Domain [153.88.253.125])
-	by mailgw2.ericsson.se (Symantec Mail Security) with SMTP id
-	5A.7A.25676.3BB6C505; Fri, 21 Sep 2012 15:29:23 +0200 (CEST)
-Received: from ESESSCMS0355.eemea.ericsson.se ([169.254.1.103]) by
-	esessmw0247.eemea.ericsson.se ([153.88.115.93]) with mapi;
-	Fri, 21 Sep 2012 15:29:20 +0200
-From: Jonas Jonsson L <jonas.l.jonsson@ericsson.com>
-To: "Yocto Mailinglist (yocto@yoctoproject.org)" <yocto@yoctoproject.org>
-Date: Fri, 21 Sep 2012 15:29:19 +0200
-Thread-Topic: [yocto] Using other recipes output in Makefile-project
-Thread-Index: Ac2X4Oh2IAIORX8ZROu3QOp0TMQYsAAD/tIgAAK124A=
-Message-ID: <C1024C359E9D4C4EBC664A0111A52A3F7CFB24BBA4@ESESSCMS0355.eemea.ericsson.se>
-References: <C1024C359E9D4C4EBC664A0111A52A3F7CFB24B9DA@ESESSCMS0355.eemea.ericsson.se>
-	<CAJTo0La0S28iSaO3qRzygSrFkDtit-sqRpK=azqrDh0dqj_3aA@mail.gmail.com>
-	<C1024C359E9D4C4EBC664A0111A52A3F7CFB24BAFB@ESESSCMS0355.eemea.ericsson.se>
-In-Reply-To: <C1024C359E9D4C4EBC664A0111A52A3F7CFB24BAFB@ESESSCMS0355.eemea.ericsson.se>
-Accept-Language: sv-SE, en-US
-X-MS-Has-Attach: yes
-X-MS-TNEF-Correlator: 
-acceptlanguage: sv-SE, en-US
-MIME-Version: 1.0
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrOIsWRmVeSWpSXmKPExsUyM+Jvre7m7JgAg8edyhbzdthbTHq5hs2B
-	yWPxnpdMHu0n+tgCmKK4bFJSczLLUov07RK4Mm5vnspScK66YvuySUwNjFNKuhg5OCQETCSW
-	PCvrYuQEMsUkLtxbz9bFyMUhJHCKUeJOx2FmCGcho8SpqX9YQKrYgBomrLzJCNIsIuApceWB
-	LkiYWUBLYnnnKXYQm0VAVWLLtA1gtrCAs8Sam/tYQWwRAReJJUtusEHYVhLzj5xlBLF5BcIl
-	PvTMgFr8hlHi78RpYEWcAhESq1ZvB2tmFJCVuP/9HgvEMnGJW0/mM0FcLSLx8OJpNghbVOLl
-	439Q9TISpxb9Z4Woz5S41LqBDWKZoMTJmU9YJjCKzkIyahaSsllIyiDiOhILdn9ig7C1JZYt
-	fM0MYYdIzO6/BRTnALItJLa8i58F9AKzwCFGiYkNO9ghahQlpnQ/hLKDJeZ8OckKYZtLPJm7
-	A2rmQUaJD+9YkNUvYORdxSicm5iZk15upJdalJlcXJyfp1ecuokRGPkHt/xW3cF455zIIUZp
-	DhYlcV7rrXv8hQTSE0tSs1NTC1KL4otKc1KLDzEycXBKNTBy5NtqsZnznFgisjdZuFUiZJui
-	zO6bfveublyQFfWRoyhJ9XpkylNu28utuZun/wm8+Gf6vuglcV7zxJYvlnvbuDNkk9X1Z2JB
-	+qtP3pr/X4KddbuqdGJr3Pq8l580jN8W3/iwROVXnJv//E81Ymy50b82zL18bXJedP2aVL8e
-	kQA29mWL6vyVWIozEg21mIuKEwGibilAygIAAA==
-Subject: Re: Using other recipes output in Makefile-project
+Return-Path: <timo.mueller@oss.bmw-carit.de>
+Received: from linuxmail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3A325E0049D
+	for <yocto@yoctoproject.org>; Fri, 21 Sep 2012 07:36:42 -0700 (PDT)
+Received: from localhost (mysterion.bmw-carit.intra [192.168.101.57])
+	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
+	(No client certificate requested)
+	(Authenticated sender: timo.mueller)
+	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id B269B4006C;
+	Fri, 21 Sep 2012 16:06:39 +0200 (CEST)
+From: mail@timomueller.eu
+To: yocto@yoctoproject.org
+Date: Fri, 21 Sep 2012 16:36:07 +0200
+Message-Id: <1af602c372ef3d674ffc3553ef7bd4f4532834e5.1348236303.git.timo.mueller@bmw-carit.de>
+X-Mailer: git-send-email 1.7.7.6
+In-Reply-To: <cover.1348236303.git.timo.mueller@bmw-carit.de>
+References: <cover.1348236303.git.timo.mueller@bmw-carit.de>
+In-Reply-To: <cover.1348236303.git.timo.mueller@bmw-carit.de>
+References: <cover.1348236303.git.timo.mueller@bmw-carit.de>
+Cc: Timo Mueller <timo.mueller@bmw-carit.de>
+Subject: [PATCHv2 01/28] documentation/Makefile: Stop eclipse target workflow if generation fails.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,266 +30,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 21 Sep 2012 13:29:25 -0000
-X-Groupsio-MsgNum: 9543
-Content-Language: en-US
-Content-Type: multipart/mixed;
-	boundary="_003_C1024C359E9D4C4EBC664A0111A52A3F7CFB24BBA4ESESSCMS0355e_"
+X-List-Received-Date: Fri, 21 Sep 2012 14:36:42 -0000
 
---_003_C1024C359E9D4C4EBC664A0111A52A3F7CFB24BBA4ESESSCMS0355e_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+From: Timo Mueller <timo.mueller@bmw-carit.de>
 
-I've attached the log.do_populate_sysroot.PID-files for libxml2 and readlin=
-e (no errors in here as far as i can see), still there's no trace of any in=
-clude-files in the /usr/include folder of my sysroot.  The lib-files are th=
-ere. =20
+---
+ documentation/Makefile |    8 ++++----
+ 1 files changed, 4 insertions(+), 4 deletions(-)
 
-Is there something more that I can try?
+diff --git a/documentation/Makefile b/documentation/Makefile
+index 0537c22..005d670 100644
+--- a/documentation/Makefile
++++ b/documentation/Makefile
+@@ -295,13 +295,13 @@ ifneq ($(DOC),adt-manual)
+ 	@echo "       User's Guide"
+ 	@echo " "
+ else
+-	cd $(DOC); \
++	cd $(DOC) && \
+ 		xsltproc $(XSLTOPTS) \
+ 				--stringparam base.dir '$(BASE_DIR)' \
+ 				-o eclipse/$(DOC).html \
+-				$(DOC)-eclipse-customization.xsl $(DOC).xml; \
+-		mv eclipse/toc.xml eclipse/$(DOC)-toc.xml; \
+-		cp -rf $(FIGURES) eclipse/$(BASE_DIR)/$(FIGURES); \
++				$(DOC)-eclipse-customization.xsl $(DOC).xml && \
++		mv eclipse/toc.xml eclipse/$(DOC)-toc.xml && \
++		cp -rf $(FIGURES) eclipse/$(BASE_DIR)/$(FIGURES) && \
+ 		cd ..
+ endif
+ 
+-- 
+1.7.7.6
 
-Is there a way to get hold of the include-files somewhere else?  My make-sy=
-stem uses XML_CFLAGS and XML_LIBS, thus if I could feed it with the include=
--files from another (still "valid" location), that would do.  Currently I a=
-dd 'XML2_CFLAGS=3D-I${STAGING_INCDIR}/libxml2' and 'XML2_LIBS=3D"\-L${STAGI=
-NG_LIBDIR} -lxml2\"' to EXTRA_OEMAKE.
 
-BR
-Jonas Jonsson
-
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Jonas Jonsson L
-Sent: den 21 september 2012 14:14
-To: Burton, Ross
-Cc: Yocto Mailinglist (yocto@yoctoproject.org)
-Subject: Re: [yocto] Using other recipes output in Makefile-project
-
-Unfortunately there are no include-files (for any of the three libs in DEPE=
-ND) available in that folder.
-
-I've also tried running "bitbake libxml2" and it runs fine but nothing happ=
-ens in the $STAGING_{INCDIR|LIBDIR} folders :---(  Must I add the dependenc=
-ies to the image too, via an IMAGE_INSTALL_append directive in the 'conf/lo=
-cal.conf'-file?
-
-I'm running yocto 1.2 snapshot 20120919 on an ubuntu 64-bit (VirtualBox) ma=
-chine.
-
-I don't have the time (in this project) for porting the whole buildsystem t=
-o autotools...
-
-/Jonas (Sorry for top-posting, outlook isn't made for mail)
-
------Original Message-----
-From: Burton, Ross [mailto:ross.burton@intel.com]
-Sent: den 21 september 2012 12:07
-To: Jonas Jonsson L
-Cc: Yocto Mailinglist (yocto@yoctoproject.org)
-Subject: Re: [yocto] Using other recipes output in Makefile-project
-
-On 21 September 2012 10:06, Jonas Jonsson L <jonas.l.jonsson@ericsson.com> =
-wrote:
-> Hi, I'm having trouble with understanding how to use built libraries=20
-> (and their include-files).
->
-> I'm writing a bitbake-recipe for some piece of software that is=20
-> Makefile-based.  The SW has a compilation and runtime dependency on=20
-> readline, Sqlite3 and libxml2.
->
-> In my bb-file, I've added 'DEPEND =3D "readline sqlite3 libxml2"' and=20
-> the three packages are built and installed for my chosen architecture.
->
-> Now how do I use the build artifacts for my compilation??  I would=20
-> like to add 'XML2_CFLAGS=3DFOO', 'XML2_LIBS=3DBAR' etc to my EXTRA_OEMAKE=
-=20
-> so that my Makefile can pick up the location of the necessary=20
-> include-files and libraries?
-
-I'd recommend considering porting the build system to autotools, but I know=
- that for a lot of situations that isn't doable.
-
-I'd also recommend changing the build system to use pkg-config for
-libxml2 and sqlite3, that way it will automatically find the right headers.
-
-The magic variables you're looking for though are ${STAGING_INCDIR} and ${S=
-TAGING_LIBDIR}, these are the include and lib directories under the staging=
- tree for the target.
-
-Ross
-
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
-
---_003_C1024C359E9D4C4EBC664A0111A52A3F7CFB24BBA4ESESSCMS0355e_
-Content-Type: application/octet-stream;
-	name="yocto-readline-populate-sysroot.log"
-Content-Description: yocto-readline-populate-sysroot.log
-Content-Disposition: attachment;
-	filename="yocto-readline-populate-sysroot.log"; size=3346;
-	creation-date="Fri, 21 Sep 2012 13:12:45 GMT";
-	modification-date="Fri, 21 Sep 2012 13:12:45 GMT"
-Content-Transfer-Encoding: base64
-
-REVCVUc6IEV4ZWN1dGluZyBweXRob24gZnVuY3Rpb24gc3N0YXRlX3Rhc2tfcHJlZnVuYwpERUJV
-RzogUHl0aG9uIGZ1bmN0aW9uIHNzdGF0ZV90YXNrX3ByZWZ1bmMgZmluaXNoZWQKREVCVUc6IEV4
-ZWN1dGluZyBweXRob24gZnVuY3Rpb24gZG9fcG9wdWxhdGVfc3lzcm9vdApERUJVRzogU0lURSBm
-aWxlcyBbJ2VuZGlhbi1iaWcnLCAnYml0LTMyJywgJ3Bvd2VycGMtY29tbW9uJywgJ2NvbW1vbi1s
-aW51eCcsICdjb21tb24tZ2xpYmMnLCAncG93ZXJwYzMyLWxpbnV4JywgJ3Bvd2VycGMtbGludXgn
-LCAnY29tbW9uJ10KREVCVUc6IEV4ZWN1dGluZyBzaGVsbCBmdW5jdGlvbiBzeXNyb290X3N0YWdl
-X2FsbApERUJVRzogU2hlbGwgZnVuY3Rpb24gc3lzcm9vdF9zdGFnZV9hbGwgZmluaXNoZWQKREVC
-VUc6IFB5dGhvbiBmdW5jdGlvbiBkb19wb3B1bGF0ZV9zeXNyb290IGZpbmlzaGVkCkRFQlVHOiBF
-eGVjdXRpbmcgcHl0aG9uIGZ1bmN0aW9uIGRvX3FhX3N0YWdpbmcKTk9URTogUUEgY2hlY2tpbmcg
-c3RhZ2luZwpERUJVRzogUHl0aG9uIGZ1bmN0aW9uIGRvX3FhX3N0YWdpbmcgZmluaXNoZWQKREVC
-VUc6IEV4ZWN1dGluZyBweXRob24gZnVuY3Rpb24gc3N0YXRlX3Rhc2tfcG9zdGZ1bmMKREVCVUc6
-IFN0YWdpbmcgZmlsZXMgZnJvbSAvbWVkaWEvSGFyZERpc2syL3Bva3kvcGQ3MDEtYnVpbGQvdG1w
-L3dvcmsvcHBjNjAzZS1wb2t5LWxpbnV4L3JlYWRsaW5lLTYuMi1yMy9zeXNyb290LWRlc3RkaXIv
-IHRvIC9tZWRpYS9IYXJkRGlzazIvcG9reS9wZDcwMS1idWlsZC90bXAvc3lzcm9vdHMvcWVtdXBw
-Yy8KREVCVUc6IFN0YWdpbmcgZmlsZXMgZnJvbSAvbWVkaWEvSGFyZERpc2syL3Bva3kvcGQ3MDEt
-YnVpbGQvdG1wL3dvcmsvcHBjNjAzZS1wb2t5LWxpbnV4L3JlYWRsaW5lLTYuMi1yMy9zeXNyb290
-LWRlc3RkaXIvIHRvIC9tZWRpYS9IYXJkRGlzazIvcG9reS9wZDcwMS1idWlsZC90bXAvc3lzcm9v
-dHMvcWVtdXBwYy8KREVCVUc6IFN0YWdpbmcgZmlsZXMgZnJvbSAvbWVkaWEvSGFyZERpc2syL3Bv
-a3kvcGQ3MDEtYnVpbGQvdG1wL3dvcmsvcHBjNjAzZS1wb2t5LWxpbnV4L3JlYWRsaW5lLTYuMi1y
-My9zeXNyb290LWRlc3RkaXIvIHRvIC9tZWRpYS9IYXJkRGlzazIvcG9reS9wZDcwMS1idWlsZC90
-bXAvc3lzcm9vdHMvcWVtdXBwYy8KREVCVUc6IFN0YWdpbmcgZmlsZXMgZnJvbSAvbWVkaWEvSGFy
-ZERpc2syL3Bva3kvcGQ3MDEtYnVpbGQvdG1wL3dvcmsvcHBjNjAzZS1wb2t5LWxpbnV4L3JlYWRs
-aW5lLTYuMi1yMy9zeXNyb290LWRlc3RkaXIvIHRvIC9tZWRpYS9IYXJkRGlzazIvcG9reS9wZDcw
-MS1idWlsZC90bXAvc3lzcm9vdHMvcWVtdXBwYy8KREVCVUc6IFN0YWdpbmcgZmlsZXMgZnJvbSAv
-bWVkaWEvSGFyZERpc2syL3Bva3kvcGQ3MDEtYnVpbGQvdG1wL3dvcmsvcHBjNjAzZS1wb2t5LWxp
-bnV4L3JlYWRsaW5lLTYuMi1yMy9zeXNyb290LWRlc3RkaXIvIHRvIC9tZWRpYS9IYXJkRGlzazIv
-cG9reS9wZDcwMS1idWlsZC90bXAvc3lzcm9vdHMvcWVtdXBwYy8KREVCVUc6IFN0YWdpbmcgZmls
-ZXMgZnJvbSAvbWVkaWEvSGFyZERpc2syL3Bva3kvcGQ3MDEtYnVpbGQvdG1wL3dvcmsvcHBjNjAz
-ZS1wb2t5LWxpbnV4L3JlYWRsaW5lLTYuMi1yMy9zeXNyb290LWRlc3RkaXIvIHRvIC9tZWRpYS9I
-YXJkRGlzazIvcG9reS9wZDcwMS1idWlsZC90bXAvc3lzcm9vdHMvcWVtdXBwYy8KREVCVUc6IFN0
-YWdpbmcgZmlsZXMgZnJvbSAvbWVkaWEvSGFyZERpc2syL3Bva3kvcGQ3MDEtYnVpbGQvdG1wL3dv
-cmsvcHBjNjAzZS1wb2t5LWxpbnV4L3JlYWRsaW5lLTYuMi1yMy9zeXNyb290LWRlc3RkaXIvIHRv
-IC9tZWRpYS9IYXJkRGlzazIvcG9reS9wZDcwMS1idWlsZC90bXAvc3lzcm9vdHMvcWVtdXBwYy8K
-REVCVUc6IEV4ZWN1dGluZyBweXRob24gZnVuY3Rpb24gZG9fc2l0ZWNvbmZpZwpERUJVRzogRXhl
-Y3V0aW5nIHB5dGhvbiBmdW5jdGlvbiBhdXRvdG9vbHNfZG9fc2l0ZWNvbmZpZwpERUJVRzogRXhl
-Y3V0aW5nIHB5dGhvbiBmdW5jdGlvbiBzaXRlY29uZmlnX2RvX3NpdGVjb25maWcKREVCVUc6IE5v
-IHNpdGVfY29uZmlnIGRpcmVjdG9yeSwgc2tpcHBpbmcgZG9fc2l0ZWNvbmZpZwpERUJVRzogUHl0
-aG9uIGZ1bmN0aW9uIHNpdGVjb25maWdfZG9fc2l0ZWNvbmZpZyBmaW5pc2hlZApERUJVRzogUHl0
-aG9uIGZ1bmN0aW9uIGF1dG90b29sc19kb19zaXRlY29uZmlnIGZpbmlzaGVkCkRFQlVHOiBQeXRo
-b24gZnVuY3Rpb24gZG9fc2l0ZWNvbmZpZyBmaW5pc2hlZApERUJVRzogUHJlcGFyaW5nIHRyZWUg
-L21lZGlhL0hhcmREaXNrMi9wb2t5L3BkNzAxLWJ1aWxkL3RtcC93b3JrL3BwYzYwM2UtcG9reS1s
-aW51eC9yZWFkbGluZS02LjItcjMvc3lzcm9vdC1kZXN0ZGlyLyBmb3IgcGFja2FnaW5nIGF0IC9t
-ZWRpYS9IYXJkRGlzazIvcG9reS9wZDcwMS1idWlsZC90bXAvd29yay9wcGM2MDNlLXBva3ktbGlu
-dXgvcmVhZGxpbmUtNi4yLXIzL3NzdGF0ZS1idWlsZC1wb3B1bGF0ZS1zeXNyb290LwpERUJVRzog
-U0lURSBmaWxlcyBbJ2VuZGlhbi1iaWcnLCAnYml0LTMyJywgJ3Bvd2VycGMtY29tbW9uJywgJ2Nv
-bW1vbi1saW51eCcsICdjb21tb24tZ2xpYmMnLCAncG93ZXJwYzMyLWxpbnV4JywgJ3Bvd2VycGMt
-bGludXgnLCAnY29tbW9uJ10KREVCVUc6IEV4ZWN1dGluZyBzaGVsbCBmdW5jdGlvbiBzc3RhdGVf
-Y3JlYXRlX3BhY2thZ2UKUmVtb3ZpbmcgaGFyZGNvZGVkIHBhdGhzIGZyb20gc3N0YXRlIHBhY2th
-Z2U6ICdmaW5kIC9tZWRpYS9IYXJkRGlzazIvcG9reS9wZDcwMS1idWlsZC90bXAvd29yay9wcGM2
-MDNlLXBva3ktbGludXgvcmVhZGxpbmUtNi4yLXIzL3NzdGF0ZS1idWlsZC1wb3B1bGF0ZS1zeXNy
-b290LyBcKCAtbmFtZSAiKi5sYSIgLW8gLW5hbWUgIiotY29uZmlnIiAtbyAtbmFtZSAiKl9jb25m
-aWciIFwpIC10eXBlIGYgfCB4YXJncyBncmVwIC1sIC1lICcvbWVkaWEvSGFyZERpc2syL3Bva3kv
-cGQ3MDEtYnVpbGQvdG1wL3N5c3Jvb3RzL3FlbXVwcGMnIHwgdGVlIC9tZWRpYS9IYXJkRGlzazIv
-cG9reS9wZDcwMS1idWlsZC90bXAvd29yay9wcGM2MDNlLXBva3ktbGludXgvcmVhZGxpbmUtNi4y
-LXIzL3NzdGF0ZS1idWlsZC1wb3B1bGF0ZS1zeXNyb290L2ZpeG1lcGF0aCB8IHhhcmdzIC0tbm8t
-cnVuLWlmLWVtcHR5IHNlZCAtaSAtZSAnczovbWVkaWEvSGFyZERpc2syL3Bva3kvcGQ3MDEtYnVp
-bGQvdG1wL3N5c3Jvb3RzL3FlbXVwcGM6RklYTUVTVEFHSU5HRElSSE9TVDpnJycKREVCVUc6IFNo
-ZWxsIGZ1bmN0aW9uIHNzdGF0ZV9jcmVhdGVfcGFja2FnZSBmaW5pc2hlZApERUJVRzogUHl0aG9u
-IGZ1bmN0aW9uIHNzdGF0ZV90YXNrX3Bvc3RmdW5jIGZpbmlzaGVkCg==
-
---_003_C1024C359E9D4C4EBC664A0111A52A3F7CFB24BBA4ESESSCMS0355e_
-Content-Type: application/octet-stream;
-	name="yocto-libxml2-populate-sysroot.log"
-Content-Description: yocto-libxml2-populate-sysroot.log
-Content-Disposition: attachment;
-	filename="yocto-libxml2-populate-sysroot.log"; size=5038;
-	creation-date="Fri, 21 Sep 2012 13:13:30 GMT";
-	modification-date="Fri, 21 Sep 2012 13:13:30 GMT"
-Content-Transfer-Encoding: base64
-
-REVCVUc6IEV4ZWN1dGluZyBweXRob24gZnVuY3Rpb24gc3N0YXRlX3Rhc2tfcHJlZnVuYwpERUJV
-RzogUHl0aG9uIGZ1bmN0aW9uIHNzdGF0ZV90YXNrX3ByZWZ1bmMgZmluaXNoZWQKREVCVUc6IEV4
-ZWN1dGluZyBweXRob24gZnVuY3Rpb24gZG9fcG9wdWxhdGVfc3lzcm9vdApERUJVRzogU0lURSBm
-aWxlcyBbJ2VuZGlhbi1iaWcnLCAnYml0LTMyJywgJ3Bvd2VycGMtY29tbW9uJywgJ2NvbW1vbi1s
-aW51eCcsICdjb21tb24tZ2xpYmMnLCAncG93ZXJwYzMyLWxpbnV4JywgJ3Bvd2VycGMtbGludXgn
-LCAnY29tbW9uJ10KREVCVUc6IEV4ZWN1dGluZyBzaGVsbCBmdW5jdGlvbiBzeXNyb290X3N0YWdl
-X2FsbApERUJVRzogU2hlbGwgZnVuY3Rpb24gc3lzcm9vdF9zdGFnZV9hbGwgZmluaXNoZWQKREVC
-VUc6IEV4ZWN1dGluZyBzaGVsbCBmdW5jdGlvbiBiaW5jb25maWdfc3lzcm9vdF9wcmVwcm9jZXNz
-CkRFQlVHOiBTaGVsbCBmdW5jdGlvbiBiaW5jb25maWdfc3lzcm9vdF9wcmVwcm9jZXNzIGZpbmlz
-aGVkCkRFQlVHOiBQeXRob24gZnVuY3Rpb24gZG9fcG9wdWxhdGVfc3lzcm9vdCBmaW5pc2hlZApE
-RUJVRzogRXhlY3V0aW5nIHB5dGhvbiBmdW5jdGlvbiBkb19xYV9zdGFnaW5nCk5PVEU6IFFBIGNo
-ZWNraW5nIHN0YWdpbmcKREVCVUc6IFB5dGhvbiBmdW5jdGlvbiBkb19xYV9zdGFnaW5nIGZpbmlz
-aGVkCkRFQlVHOiBFeGVjdXRpbmcgcHl0aG9uIGZ1bmN0aW9uIHNzdGF0ZV90YXNrX3Bvc3RmdW5j
-CkRFQlVHOiBTdGFnaW5nIGZpbGVzIGZyb20gL21lZGlhL0hhcmREaXNrMi9wb2t5L3BkNzAxLWJ1
-aWxkL3RtcC93b3JrL3BwYzYwM2UtcG9reS1saW51eC9saWJ4bWwyLTIuOC4wLXIyL3N5c3Jvb3Qt
-ZGVzdGRpci8gdG8gL21lZGlhL0hhcmREaXNrMi9wb2t5L3BkNzAxLWJ1aWxkL3RtcC9zeXNyb290
-cy9xZW11cHBjLwpERUJVRzogU3RhZ2luZyBmaWxlcyBmcm9tIC9tZWRpYS9IYXJkRGlzazIvcG9r
-eS9wZDcwMS1idWlsZC90bXAvd29yay9wcGM2MDNlLXBva3ktbGludXgvbGlieG1sMi0yLjguMC1y
-Mi9zeXNyb290LWRlc3RkaXIvIHRvIC9tZWRpYS9IYXJkRGlzazIvcG9reS9wZDcwMS1idWlsZC90
-bXAvc3lzcm9vdHMvcWVtdXBwYy8KREVCVUc6IFN0YWdpbmcgZmlsZXMgZnJvbSAvbWVkaWEvSGFy
-ZERpc2syL3Bva3kvcGQ3MDEtYnVpbGQvdG1wL3dvcmsvcHBjNjAzZS1wb2t5LWxpbnV4L2xpYnht
-bDItMi44LjAtcjIvc3lzcm9vdC1kZXN0ZGlyLyB0byAvbWVkaWEvSGFyZERpc2syL3Bva3kvcGQ3
-MDEtYnVpbGQvdG1wL3N5c3Jvb3RzL3FlbXVwcGMvCkRFQlVHOiBTdGFnaW5nIGZpbGVzIGZyb20g
-L21lZGlhL0hhcmREaXNrMi9wb2t5L3BkNzAxLWJ1aWxkL3RtcC93b3JrL3BwYzYwM2UtcG9reS1s
-aW51eC9saWJ4bWwyLTIuOC4wLXIyL3N5c3Jvb3QtZGVzdGRpci8gdG8gL21lZGlhL0hhcmREaXNr
-Mi9wb2t5L3BkNzAxLWJ1aWxkL3RtcC9zeXNyb290cy9xZW11cHBjLwpERUJVRzogU3RhZ2luZyBm
-aWxlcyBmcm9tIC9tZWRpYS9IYXJkRGlzazIvcG9reS9wZDcwMS1idWlsZC90bXAvd29yay9wcGM2
-MDNlLXBva3ktbGludXgvbGlieG1sMi0yLjguMC1yMi9zeXNyb290LWRlc3RkaXIvIHRvIC9tZWRp
-YS9IYXJkRGlzazIvcG9reS9wZDcwMS1idWlsZC90bXAvc3lzcm9vdHMvcWVtdXBwYy8KREVCVUc6
-IFN0YWdpbmcgZmlsZXMgZnJvbSAvbWVkaWEvSGFyZERpc2syL3Bva3kvcGQ3MDEtYnVpbGQvdG1w
-L3dvcmsvcHBjNjAzZS1wb2t5LWxpbnV4L2xpYnhtbDItMi44LjAtcjIvc3lzcm9vdC1kZXN0ZGly
-LyB0byAvbWVkaWEvSGFyZERpc2syL3Bva3kvcGQ3MDEtYnVpbGQvdG1wL3N5c3Jvb3RzL3FlbXVw
-cGMvCkRFQlVHOiBTdGFnaW5nIGZpbGVzIGZyb20gL21lZGlhL0hhcmREaXNrMi9wb2t5L3BkNzAx
-LWJ1aWxkL3RtcC93b3JrL3BwYzYwM2UtcG9reS1saW51eC9saWJ4bWwyLTIuOC4wLXIyL3N5c3Jv
-b3QtZGVzdGRpci8gdG8gL21lZGlhL0hhcmREaXNrMi9wb2t5L3BkNzAxLWJ1aWxkL3RtcC9zeXNy
-b290cy9xZW11cHBjLwpERUJVRzogU3RhZ2luZyBmaWxlcyBmcm9tIC9tZWRpYS9IYXJkRGlzazIv
-cG9reS9wZDcwMS1idWlsZC90bXAvd29yay9wcGM2MDNlLXBva3ktbGludXgvbGlieG1sMi0yLjgu
-MC1yMi9zeXNyb290LWRlc3RkaXIvIHRvIC9tZWRpYS9IYXJkRGlzazIvcG9reS9wZDcwMS1idWls
-ZC90bXAvc3lzcm9vdHMvcWVtdXBwYy8KREVCVUc6IFN0YWdpbmcgZmlsZXMgZnJvbSAvbWVkaWEv
-SGFyZERpc2syL3Bva3kvcGQ3MDEtYnVpbGQvdG1wL3dvcmsvcHBjNjAzZS1wb2t5LWxpbnV4L2xp
-YnhtbDItMi44LjAtcjIvc3lzcm9vdC1kZXN0ZGlyLyB0byAvbWVkaWEvSGFyZERpc2syL3Bva3kv
-cGQ3MDEtYnVpbGQvdG1wL3N5c3Jvb3RzL3FlbXVwcGMvCkRFQlVHOiBTdGFnaW5nIGZpbGVzIGZy
-b20gL21lZGlhL0hhcmREaXNrMi9wb2t5L3BkNzAxLWJ1aWxkL3RtcC93b3JrL3BwYzYwM2UtcG9r
-eS1saW51eC9saWJ4bWwyLTIuOC4wLXIyL3N5c3Jvb3QtZGVzdGRpci8gdG8gL21lZGlhL0hhcmRE
-aXNrMi9wb2t5L3BkNzAxLWJ1aWxkL3RtcC9zeXNyb290cy9xZW11cHBjLwpERUJVRzogU3RhZ2lu
-ZyBmaWxlcyBmcm9tIC9tZWRpYS9IYXJkRGlzazIvcG9reS9wZDcwMS1idWlsZC90bXAvd29yay9w
-cGM2MDNlLXBva3ktbGludXgvbGlieG1sMi0yLjguMC1yMi9zeXNyb290LWRlc3RkaXIvIHRvIC9t
-ZWRpYS9IYXJkRGlzazIvcG9reS9wZDcwMS1idWlsZC90bXAvc3lzcm9vdHMvcWVtdXBwYy8KREVC
-VUc6IFN0YWdpbmcgZmlsZXMgZnJvbSAvbWVkaWEvSGFyZERpc2syL3Bva3kvcGQ3MDEtYnVpbGQv
-dG1wL3dvcmsvcHBjNjAzZS1wb2t5LWxpbnV4L2xpYnhtbDItMi44LjAtcjIvc3lzcm9vdC1kZXN0
-ZGlyLyB0byAvbWVkaWEvSGFyZERpc2syL3Bva3kvcGQ3MDEtYnVpbGQvdG1wL3N5c3Jvb3RzL3Fl
-bXVwcGMvCkRFQlVHOiBTdGFnaW5nIGZpbGVzIGZyb20gL21lZGlhL0hhcmREaXNrMi9wb2t5L3Bk
-NzAxLWJ1aWxkL3RtcC93b3JrL3BwYzYwM2UtcG9reS1saW51eC9saWJ4bWwyLTIuOC4wLXIyL3N5
-c3Jvb3QtZGVzdGRpci8gdG8gL21lZGlhL0hhcmREaXNrMi9wb2t5L3BkNzAxLWJ1aWxkL3RtcC9z
-eXNyb290cy9xZW11cHBjLwpERUJVRzogU3RhZ2luZyBmaWxlcyBmcm9tIC9tZWRpYS9IYXJkRGlz
-azIvcG9reS9wZDcwMS1idWlsZC90bXAvd29yay9wcGM2MDNlLXBva3ktbGludXgvbGlieG1sMi0y
-LjguMC1yMi9zeXNyb290LWRlc3RkaXIvIHRvIC9tZWRpYS9IYXJkRGlzazIvcG9reS9wZDcwMS1i
-dWlsZC90bXAvc3lzcm9vdHMvcWVtdXBwYy8KREVCVUc6IEV4ZWN1dGluZyBweXRob24gZnVuY3Rp
-b24gZG9fc2l0ZWNvbmZpZwpERUJVRzogRXhlY3V0aW5nIHB5dGhvbiBmdW5jdGlvbiBhdXRvdG9v
-bHNfZG9fc2l0ZWNvbmZpZwpERUJVRzogRXhlY3V0aW5nIHB5dGhvbiBmdW5jdGlvbiBzaXRlY29u
-ZmlnX2RvX3NpdGVjb25maWcKREVCVUc6IE5vIHNpdGVfY29uZmlnIGRpcmVjdG9yeSwgc2tpcHBp
-bmcgZG9fc2l0ZWNvbmZpZwpERUJVRzogUHl0aG9uIGZ1bmN0aW9uIHNpdGVjb25maWdfZG9fc2l0
-ZWNvbmZpZyBmaW5pc2hlZApERUJVRzogUHl0aG9uIGZ1bmN0aW9uIGF1dG90b29sc19kb19zaXRl
-Y29uZmlnIGZpbmlzaGVkCkRFQlVHOiBQeXRob24gZnVuY3Rpb24gZG9fc2l0ZWNvbmZpZyBmaW5p
-c2hlZApERUJVRzogUHJlcGFyaW5nIHRyZWUgL21lZGlhL0hhcmREaXNrMi9wb2t5L3BkNzAxLWJ1
-aWxkL3RtcC93b3JrL3BwYzYwM2UtcG9reS1saW51eC9saWJ4bWwyLTIuOC4wLXIyL3N5c3Jvb3Qt
-ZGVzdGRpci8gZm9yIHBhY2thZ2luZyBhdCAvbWVkaWEvSGFyZERpc2syL3Bva3kvcGQ3MDEtYnVp
-bGQvdG1wL3dvcmsvcHBjNjAzZS1wb2t5LWxpbnV4L2xpYnhtbDItMi44LjAtcjIvc3N0YXRlLWJ1
-aWxkLXBvcHVsYXRlLXN5c3Jvb3QvCkRFQlVHOiBTSVRFIGZpbGVzIFsnZW5kaWFuLWJpZycsICdi
-aXQtMzInLCAncG93ZXJwYy1jb21tb24nLCAnY29tbW9uLWxpbnV4JywgJ2NvbW1vbi1nbGliYycs
-ICdwb3dlcnBjMzItbGludXgnLCAncG93ZXJwYy1saW51eCcsICdjb21tb24nXQpERUJVRzogRXhl
-Y3V0aW5nIHNoZWxsIGZ1bmN0aW9uIHNzdGF0ZV9jcmVhdGVfcGFja2FnZQpSZW1vdmluZyBoYXJk
-Y29kZWQgcGF0aHMgZnJvbSBzc3RhdGUgcGFja2FnZTogJ2ZpbmQgL21lZGlhL0hhcmREaXNrMi9w
-b2t5L3BkNzAxLWJ1aWxkL3RtcC93b3JrL3BwYzYwM2UtcG9reS1saW51eC9saWJ4bWwyLTIuOC4w
-LXIyL3NzdGF0ZS1idWlsZC1wb3B1bGF0ZS1zeXNyb290LyBcKCAtbmFtZSAiKi5sYSIgLW8gLW5h
-bWUgIiotY29uZmlnIiAtbyAtbmFtZSAiKl9jb25maWciIFwpIC10eXBlIGYgfCB4YXJncyBncmVw
-IC1sIC1lICcvbWVkaWEvSGFyZERpc2syL3Bva3kvcGQ3MDEtYnVpbGQvdG1wL3N5c3Jvb3RzL3Fl
-bXVwcGMnIHwgdGVlIC9tZWRpYS9IYXJkRGlzazIvcG9reS9wZDcwMS1idWlsZC90bXAvd29yay9w
-cGM2MDNlLXBva3ktbGludXgvbGlieG1sMi0yLjguMC1yMi9zc3RhdGUtYnVpbGQtcG9wdWxhdGUt
-c3lzcm9vdC9maXhtZXBhdGggfCB4YXJncyAtLW5vLXJ1bi1pZi1lbXB0eSBzZWQgLWkgLWUgJ3M6
-L21lZGlhL0hhcmREaXNrMi9wb2t5L3BkNzAxLWJ1aWxkL3RtcC9zeXNyb290cy9xZW11cHBjOkZJ
-WE1FU1RBR0lOR0RJUkhPU1Q6ZycnClJlcGxhY2luZyBhYnNvbHV0ZSBwYXRocyBpbiBmaXhtZXBh
-dGggZmlsZTogJ3NlZCAtaSAtZSAnczpeL21lZGlhL0hhcmREaXNrMi9wb2t5L3BkNzAxLWJ1aWxk
-L3RtcC93b3JrL3BwYzYwM2UtcG9reS1saW51eC9saWJ4bWwyLTIuOC4wLXIyL3NzdGF0ZS1idWls
-ZC1wb3B1bGF0ZS1zeXNyb290Lzo6ZycgL21lZGlhL0hhcmREaXNrMi9wb2t5L3BkNzAxLWJ1aWxk
-L3RtcC93b3JrL3BwYzYwM2UtcG9reS1saW51eC9saWJ4bWwyLTIuOC4wLXIyL3NzdGF0ZS1idWls
-ZC1wb3B1bGF0ZS1zeXNyb290L2ZpeG1lcGF0aCcKREVCVUc6IFNoZWxsIGZ1bmN0aW9uIHNzdGF0
-ZV9jcmVhdGVfcGFja2FnZSBmaW5pc2hlZApERUJVRzogUHl0aG9uIGZ1bmN0aW9uIHNzdGF0ZV90
-YXNrX3Bvc3RmdW5jIGZpbmlzaGVkCg==
-
---_003_C1024C359E9D4C4EBC664A0111A52A3F7CFB24BBA4ESESSCMS0355e_--
