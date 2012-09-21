@@ -1,19 +1,19 @@
 Return-Path: <timo.mueller@oss.bmw-carit.de>
 Received: from linuxmail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 940B1E01447
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 96753E0144A
 	for <yocto@yoctoproject.org>; Fri, 21 Sep 2012 07:36:43 -0700 (PDT)
 Received: from localhost (mysterion.bmw-carit.intra [192.168.101.57])
 	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
 	(No client certificate requested)
 	(Authenticated sender: timo.mueller)
-	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id A17C54034F;
-	Fri, 21 Sep 2012 16:06:41 +0200 (CEST)
+	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 29DE140416;
+	Fri, 21 Sep 2012 16:06:42 +0200 (CEST)
 From: mail@timomueller.eu
 To: yocto@yoctoproject.org
-Date: Fri, 21 Sep 2012 16:36:22 +0200
-Message-Id: <5d1dc613cedca89ca693b90013182693a90c3748.1348236303.git.timo.mueller@bmw-carit.de>
+Date: Fri, 21 Sep 2012 16:36:26 +0200
+Message-Id: <d4bb708c72daeaae6b4c54fbd6ea0aeaef849353.1348236303.git.timo.mueller@bmw-carit.de>
 X-Mailer: git-send-email 1.7.7.6
-In-Reply-To: <3dfff12e740169f128caf4c0d72498447ee9e9a6.1348236303.git.timo.mueller@bmw-carit.de>
+In-Reply-To: <3988bd3902bb782724995678485e7e36561e8b65.1348236303.git.timo.mueller@bmw-carit.de>
 References: <cover.1348236303.git.timo.mueller@bmw-carit.de>
 	<1af602c372ef3d674ffc3553ef7bd4f4532834e5.1348236303.git.timo.mueller@bmw-carit.de>
 	<f423e465e06fe2ecc63b23eb00dfe583372ea662.1348236303.git.timo.mueller@bmw-carit.de>
@@ -30,10 +30,14 @@ References: <cover.1348236303.git.timo.mueller@bmw-carit.de>
 	<8283c1ed541d41e0f82109c2c6b2f1e0452c6223.1348236303.git.timo.mueller@bmw-carit.de>
 	<4ff0866c4f03a6f11c62c700e27fb36d0278564d.1348236303.git.timo.mueller@bmw-carit.de>
 	<3dfff12e740169f128caf4c0d72498447ee9e9a6.1348236303.git.timo.mueller@bmw-carit.de>
+	<5d1dc613cedca89ca693b90013182693a90c3748.1348236303.git.timo.mueller@bmw-carit.de>
+	<5daca14e9c74e218fe2da574fc873cbc60e9e53f.1348236303.git.timo.mueller@bmw-carit.de>
+	<846946c79b28e3f8cfa72d81ef2163f74d9f073f.1348236303.git.timo.mueller@bmw-carit.de>
+	<3988bd3902bb782724995678485e7e36561e8b65.1348236303.git.timo.mueller@bmw-carit.de>
 In-Reply-To: <cover.1348236303.git.timo.mueller@bmw-carit.de>
 References: <cover.1348236303.git.timo.mueller@bmw-carit.de>
 Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: [PATCHv2 16/28] documentation/kernel-manual/kernel-manual.xml: Added Title tag
+Subject: [PATCHv2 20/28] documentation/Makefile: Support for making Eclipse HTML poky ref manual
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,27 +53,36 @@ X-List-Received-Date: Fri, 21 Sep 2012 14:36:43 -0000
 
 From: Timo Mueller <timo.mueller@bmw-carit.de>
 
-The title of the document used to create metadata for output formats
-such as eclipse help.
----
- documentation/kernel-manual/kernel-manual.xml |    4 +++-
- 1 files changed, 3 insertions(+), 1 deletions(-)
+This target will generate eclipse help for the poky-ref-manual using
+the  poky-ref-manual-eclipse-customization.xsl stylesheet.
 
-diff --git a/documentation/kernel-manual/kernel-manual.xml b/documentation/kernel-manual/kernel-manual.xml
-index 174663a..0d683ef 100644
---- a/documentation/kernel-manual/kernel-manual.xml
-+++ b/documentation/kernel-manual/kernel-manual.xml
-@@ -16,7 +16,9 @@
-             </imageobject>    
-         </mediaobject>
+The output will be generated to a separate directory which can be used
+for integrating the documentation into eclipse.
+---
+ documentation/Makefile |    3 ++-
+ 1 files changed, 2 insertions(+), 1 deletions(-)
+
+diff --git a/documentation/Makefile b/documentation/Makefile
+index 17f7cf5..ba26214 100644
+--- a/documentation/Makefile
++++ b/documentation/Makefile
+@@ -276,7 +276,7 @@ endif
+ eclipse: BASE_DIR = html/$(DOC)/
  
--        <title></title> 
-+        <title>
-+		  The Yocto Project Kernel Architecture and Use Manual
-+		</title>
- 
-         <authorgroup>
-             <author>
+ eclipse:
+-ifeq ($(filter $(DOC), adt-manual bsp-guide dev-manual kernel-manual),)
++ifeq ($(filter $(DOC), adt-manual bsp-guide dev-manual kernel-manual poky-ref-manual),)
+ 	@echo " "
+ 	@echo "ERROR: You can only create eclipse documentation"
+ 	@echo "       of the following documentation parts:"
+@@ -287,6 +287,7 @@ ifeq ($(filter $(DOC), adt-manual bsp-guide dev-manual kernel-manual),)
+ 	@echo "       - The Yocto Project Development Manual (dev-manual)"
+ 	@echo "       - The Yocto Project Kernel Architecture and"
+ 	@echo "                           Use Manual (kernel-manual)"
++	@echo "		  - The Yocto Project Reference Manual (poky-ref-manual)"
+ 	@echo " "
+ else
+ 	cd $(DOC) && \
 -- 
 1.7.7.6
 
