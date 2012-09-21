@@ -1,25 +1,26 @@
 Return-Path: <timo.mueller@oss.bmw-carit.de>
 Received: from linuxmail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3B721E00717
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3CA9FE01199
 	for <yocto@yoctoproject.org>; Fri, 21 Sep 2012 07:36:42 -0700 (PDT)
 Received: from localhost (mysterion.bmw-carit.intra [192.168.101.57])
 	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
 	(No client certificate requested)
 	(Authenticated sender: timo.mueller)
-	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id CFF13400A1;
-	Fri, 21 Sep 2012 16:06:39 +0200 (CEST)
+	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 02C64400BF;
+	Fri, 21 Sep 2012 16:06:40 +0200 (CEST)
 From: mail@timomueller.eu
 To: yocto@yoctoproject.org
-Date: Fri, 21 Sep 2012 16:36:08 +0200
-Message-Id: <f423e465e06fe2ecc63b23eb00dfe583372ea662.1348236303.git.timo.mueller@bmw-carit.de>
+Date: Fri, 21 Sep 2012 16:36:09 +0200
+Message-Id: <7d9bce7a4c37456b0e358d4ad9188b079f99687c.1348236303.git.timo.mueller@bmw-carit.de>
 X-Mailer: git-send-email 1.7.7.6
-In-Reply-To: <1af602c372ef3d674ffc3553ef7bd4f4532834e5.1348236303.git.timo.mueller@bmw-carit.de>
+In-Reply-To: <f423e465e06fe2ecc63b23eb00dfe583372ea662.1348236303.git.timo.mueller@bmw-carit.de>
 References: <cover.1348236303.git.timo.mueller@bmw-carit.de>
 	<1af602c372ef3d674ffc3553ef7bd4f4532834e5.1348236303.git.timo.mueller@bmw-carit.de>
+	<f423e465e06fe2ecc63b23eb00dfe583372ea662.1348236303.git.timo.mueller@bmw-carit.de>
 In-Reply-To: <cover.1348236303.git.timo.mueller@bmw-carit.de>
 References: <cover.1348236303.git.timo.mueller@bmw-carit.de>
 Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: [PATCHv2 02/28] documentation/adt-manual/adt-manual-eclipse-customization.xsl: Added chunking and link parameters.
+Subject: [PATCHv2 03/28] documentation: Move dev-manual global parameters to customization file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,32 +36,46 @@ X-List-Received-Date: Fri, 21 Sep 2012 14:36:42 -0000
 
 From: Timo Mueller <timo.mueller@bmw-carit.de>
 
-These parameters are required so resolve links between different
-documentation parts inside eclipse.
+Standard stylesheet parameters were moved to the docbook customization
+file tying them to the docbook stylesheet used. Removing these
+parameters simplifies the Makefile.
 ---
- .../adt-manual-eclipse-customization.xsl           |    6 ++++++
- 1 files changed, 6 insertions(+), 0 deletions(-)
+ documentation/Makefile                             |    6 +-----
+ .../dev-manual/dev-manual-customization.xsl        |    6 ++++--
+ 2 files changed, 5 insertions(+), 7 deletions(-)
 
-diff --git a/documentation/adt-manual/adt-manual-eclipse-customization.xsl b/documentation/adt-manual/adt-manual-eclipse-customization.xsl
-index 7844738..74600bd 100644
---- a/documentation/adt-manual/adt-manual-eclipse-customization.xsl
-+++ b/documentation/adt-manual/adt-manual-eclipse-customization.xsl
-@@ -6,9 +6,15 @@
- 	version="1.0">
+diff --git a/documentation/Makefile b/documentation/Makefile
+index 005d670..1e8b558 100644
+--- a/documentation/Makefile
++++ b/documentation/Makefile
+@@ -84,11 +84,7 @@ STYLESHEET = $(DOC)/*.css
+ endif
  
-   <xsl:import
-+	  href="http://docbook.sourceforge.net/release/xsl/current/html/onechunk.xsl" />
-+  <xsl:import
- 	  href="http://docbook.sourceforge.net/release/xsl/current/eclipse/eclipse3.xsl" />
+ ifeq ($(DOC),dev-manual)
+-XSLTOPTS = --stringparam html.stylesheet dev-style.css \
+-           --stringparam  chapter.autolabel 1 \
+-           --stringparam  section.autolabel 1 \
+-           --stringparam  section.label.includes.component.label 1 \
+-           --xinclude
++XSLTOPTS = --xinclude
+ ALLPREQ = html pdf tarball
+ #
+ # Note that the tarfile might produce the "Cannot stat: No such file or directory" error
+diff --git a/documentation/dev-manual/dev-manual-customization.xsl b/documentation/dev-manual/dev-manual-customization.xsl
+index 8eb6905..8969605 100644
+--- a/documentation/dev-manual/dev-manual-customization.xsl
++++ b/documentation/dev-manual/dev-manual-customization.xsl
+@@ -3,6 +3,8 @@
+   
+   <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/xhtml/docbook.xsl" />
  
-   <xsl:param name="chunker.output.indent" select="'yes'"/>
-+  <xsl:param name="chunk.first.sections" select="1"/>
-+  <xsl:param name="chunk.section.depth" select="10"/>
-+  <xsl:param name="use.id.as.filename" select="1"/>
-+  <xsl:param name="ulink.target" select="'_self'" />
-   <xsl:param name="base.dir" select="'html/adt-manual/'"/>
-   <xsl:param name="html.stylesheet" select="'../book.css'"/>
-   <xsl:param name="eclipse.manifest" select="0"/>
+-<!--  <xsl:param name="generate.toc" select="'article nop'"></xsl:param>  -->
+-
++  <xsl:param name="html.stylesheet" select="'dev-style.css'" />
++  <xsl:param name="chapter.autolabel" select="1" />
++  <xsl:param name="section.autolabel" select="1" />
++  <xsl:param name="section.label.includes.component.label" select="1" />
+ </xsl:stylesheet>
 -- 
 1.7.7.6
 
