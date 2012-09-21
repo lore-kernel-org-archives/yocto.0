@@ -1,19 +1,19 @@
 Return-Path: <timo.mueller@oss.bmw-carit.de>
 Received: from linuxmail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1F68BE0144D
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 21049E0144E
 	for <yocto@yoctoproject.org>; Fri, 21 Sep 2012 07:36:43 -0700 (PDT)
 Received: from localhost (mysterion.bmw-carit.intra [192.168.101.57])
 	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
 	(No client certificate requested)
 	(Authenticated sender: timo.mueller)
-	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 08557402D6;
+	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 27E8D40308;
 	Fri, 21 Sep 2012 16:06:41 +0200 (CEST)
 From: mail@timomueller.eu
 To: yocto@yoctoproject.org
-Date: Fri, 21 Sep 2012 16:36:17 +0200
-Message-Id: <db281face4db3be937cd63227364840103af9e56.1348236303.git.timo.mueller@bmw-carit.de>
+Date: Fri, 21 Sep 2012 16:36:18 +0200
+Message-Id: <cf841cef6a10d69ab4be1ed3db65d1de62097a86.1348236303.git.timo.mueller@bmw-carit.de>
 X-Mailer: git-send-email 1.7.7.6
-In-Reply-To: <00244269457915447285fd0d5dad561acd83007c.1348236303.git.timo.mueller@bmw-carit.de>
+In-Reply-To: <db281face4db3be937cd63227364840103af9e56.1348236303.git.timo.mueller@bmw-carit.de>
 References: <cover.1348236303.git.timo.mueller@bmw-carit.de>
 	<1af602c372ef3d674ffc3553ef7bd4f4532834e5.1348236303.git.timo.mueller@bmw-carit.de>
 	<f423e465e06fe2ecc63b23eb00dfe583372ea662.1348236303.git.timo.mueller@bmw-carit.de>
@@ -25,10 +25,11 @@ References: <cover.1348236303.git.timo.mueller@bmw-carit.de>
 	<d97ef9a78723dc8d588443d0d65100e696150a98.1348236303.git.timo.mueller@bmw-carit.de>
 	<5bd051a0e040ed93cfe8f1c066209b57a28d2119.1348236303.git.timo.mueller@bmw-carit.de>
 	<00244269457915447285fd0d5dad561acd83007c.1348236303.git.timo.mueller@bmw-carit.de>
+	<db281face4db3be937cd63227364840103af9e56.1348236303.git.timo.mueller@bmw-carit.de>
 In-Reply-To: <cover.1348236303.git.timo.mueller@bmw-carit.de>
 References: <cover.1348236303.git.timo.mueller@bmw-carit.de>
 Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: [PATCHv2 11/28] documentation/bsp-guide/bsp-guide.xml: Added Title tag
+Subject: [PATCHv2 12/28] documentation/Makefile: logic to make all for bsp guide and cleanup
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,27 +45,32 @@ X-List-Received-Date: Fri, 21 Sep 2012 14:36:43 -0000
 
 From: Timo Mueller <timo.mueller@bmw-carit.de>
 
-The title of the document used to create metadata for output formats
-such as eclipse help.
+Eclipse help documents are now created when calling the 'make all'
+target on the bsp-guide. Resulting files are archived into
+the tarball as well. When calling 'make clean' artefacts of
+the eclipse documentation build are deleted.
 ---
- documentation/bsp-guide/bsp-guide.xml |    4 +++-
- 1 files changed, 3 insertions(+), 1 deletions(-)
+ documentation/Makefile |    7 ++++---
+ 1 files changed, 4 insertions(+), 3 deletions(-)
 
-diff --git a/documentation/bsp-guide/bsp-guide.xml b/documentation/bsp-guide/bsp-guide.xml
-index 3b7ab6a..c3629bd 100644
---- a/documentation/bsp-guide/bsp-guide.xml
-+++ b/documentation/bsp-guide/bsp-guide.xml
-@@ -16,7 +16,9 @@
-             </imageobject>    
-         </mediaobject>
+diff --git a/documentation/Makefile b/documentation/Makefile
+index 815ab53..02206b5 100644
+--- a/documentation/Makefile
++++ b/documentation/Makefile
+@@ -71,9 +71,10 @@
  
--        <title></title> 
-+        <title>
-+		  The Yocto Project Board Support Package Developer's Guide
-+		</title>
+ ifeq ($(DOC),bsp-guide)
+ XSLTOPTS = --xinclude
+-ALLPREQ = html pdf tarball
+-TARFILES = bsp-style.css bsp-guide.html bsp-guide.pdf figures/bsp-title.png
+-MANUALS = $(DOC)/$(DOC).html $(DOC)/$(DOC).pdf
++ALLPREQ = html pdf eclipse tarball
++TARFILES = bsp-style.css bsp-guide.html bsp-guide.pdf figures/bsp-title.png \
++           eclipse
++MANUALS = $(DOC)/$(DOC).html $(DOC)/$(DOC).pdf $(DOC)/eclipse
+ FIGURES = figures
+ STYLESHEET = $(DOC)/*.css
  
-         <authorgroup>
-             <author>
 -- 
 1.7.7.6
 
