@@ -1,19 +1,19 @@
 Return-Path: <timo.mueller@oss.bmw-carit.de>
 Received: from linuxmail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9D3D0E0144D
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9D152E0144C
 	for <yocto@yoctoproject.org>; Fri, 21 Sep 2012 07:36:43 -0700 (PDT)
 Received: from localhost (mysterion.bmw-carit.intra [192.168.101.57])
 	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
 	(No client certificate requested)
 	(Authenticated sender: timo.mueller)
-	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id C19FC4043B;
+	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id E0CAC40443;
 	Fri, 21 Sep 2012 16:06:42 +0200 (CEST)
 From: mail@timomueller.eu
 To: yocto@yoctoproject.org
-Date: Fri, 21 Sep 2012 16:36:31 +0200
-Message-Id: <a2cc24326793e9906a296dc0c418bdd31f3b67c3.1348236303.git.timo.mueller@bmw-carit.de>
+Date: Fri, 21 Sep 2012 16:36:32 +0200
+Message-Id: <04d1676b19bfa9fa47e4f4b130681b133ba718aa.1348236303.git.timo.mueller@bmw-carit.de>
 X-Mailer: git-send-email 1.7.7.6
-In-Reply-To: <6c83c2429607b3fe699319da8e29ac63f930b510.1348236303.git.timo.mueller@bmw-carit.de>
+In-Reply-To: <a2cc24326793e9906a296dc0c418bdd31f3b67c3.1348236303.git.timo.mueller@bmw-carit.de>
 References: <cover.1348236303.git.timo.mueller@bmw-carit.de>
 	<1af602c372ef3d674ffc3553ef7bd4f4532834e5.1348236303.git.timo.mueller@bmw-carit.de>
 	<f423e465e06fe2ecc63b23eb00dfe583372ea662.1348236303.git.timo.mueller@bmw-carit.de>
@@ -39,10 +39,11 @@ References: <cover.1348236303.git.timo.mueller@bmw-carit.de>
 	<3b0a9e28147d4253974456f1a6604ca1ef76de5a.1348236303.git.timo.mueller@bmw-carit.de>
 	<34f8837b9cab25aa88b47ee7c8c22f940008fff2.1348236303.git.timo.mueller@bmw-carit.de>
 	<6c83c2429607b3fe699319da8e29ac63f930b510.1348236303.git.timo.mueller@bmw-carit.de>
+	<a2cc24326793e9906a296dc0c418bdd31f3b67c3.1348236303.git.timo.mueller@bmw-carit.de>
 In-Reply-To: <cover.1348236303.git.timo.mueller@bmw-carit.de>
 References: <cover.1348236303.git.timo.mueller@bmw-carit.de>
 Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: [PATCHv2 25/28] documentation/Makefile: Support for making Eclipse HTML yocto project qs manual
+Subject: [PATCHv2 26/28] documentation/Makefile: logic to make all for yocto-project-qs and cleanup
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,36 +59,34 @@ X-List-Received-Date: Fri, 21 Sep 2012 14:36:44 -0000
 
 From: Timo Mueller <timo.mueller@bmw-carit.de>
 
-This target will generate eclipse help for the yocto-project-qs using
-the yocto-project-qs-eclipse-customization.xsl stylesheet.
-
-The output will be generated to a separate directory which can be used
-for integrating the documentation into eclipse.
+Eclipse help documents are now created when calling the 'make all'
+target on the yocto-project-qs. Resulting files are archived into
+the tarball as well. When calling 'make clean' artefacts of
+the eclipse documentation build are deleted.
 ---
- documentation/Makefile |    3 ++-
- 1 files changed, 2 insertions(+), 1 deletions(-)
+ documentation/Makefile |    9 ++++++---
+ 1 files changed, 6 insertions(+), 3 deletions(-)
 
 diff --git a/documentation/Makefile b/documentation/Makefile
-index 2887a95..1a29af5 100644
+index 1a29af5..4965c30 100644
 --- a/documentation/Makefile
 +++ b/documentation/Makefile
-@@ -275,7 +275,7 @@ endif
- eclipse: BASE_DIR = html/$(DOC)/
+@@ -130,9 +130,12 @@ endif
  
- eclipse:
--ifeq ($(filter $(DOC), adt-manual bsp-guide dev-manual kernel-manual poky-ref-manual),)
-+ifeq ($(filter $(DOC), adt-manual bsp-guide dev-manual kernel-manual poky-ref-manual yocto-project-qs),)
- 	@echo " "
- 	@echo "ERROR: You can only create eclipse documentation"
- 	@echo "       of the following documentation parts:"
-@@ -287,6 +287,7 @@ ifeq ($(filter $(DOC), adt-manual bsp-guide dev-manual kernel-manual poky-ref-ma
- 	@echo "       - The Yocto Project Kernel Architecture and"
- 	@echo "                           Use Manual (kernel-manual)"
- 	@echo "		  - The Yocto Project Reference Manual (poky-ref-manual)"
-+	@echo "       - The Yocto Project Quick Start (yocto-project-qs)"
- 	@echo " "
- else
- 	cd $(DOC) && \
+ ifeq ($(DOC),yocto-project-qs)
+ XSLTOPTS = --xinclude
+-ALLPREQ = html tarball
+-TARFILES = yocto-project-qs.html qs-style.css figures/yocto-environment.png figures/building-an-image.png figures/using-a-pre-built-image.png figures/yocto-project-transp.png
+-MANUALS = $(DOC)/$(DOC).html
++ALLPREQ = html eclipse tarball
++TARFILES = yocto-project-qs.html qs-style.css figures/yocto-environment.png \
++           figures/building-an-image.png figures/using-a-pre-built-image.png \
++           figures/yocto-project-transp.png \
++           eclipse
++MANUALS = $(DOC)/$(DOC).html $(DOC)/eclipse
+ FIGURES = figures
+ STYLESHEET = $(DOC)/*.css
+ endif
 -- 
 1.7.7.6
 
