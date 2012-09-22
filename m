@@ -1,38 +1,28 @@
-Return-Path: <sean.liming@annabooks.com>
-Received: from mail32c40.carrierzone.com (mail32c40.carrierzone.com
-	[209.235.156.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B620DE011C5
-	for <yocto@yoctoproject.org>; Sat, 22 Sep 2012 08:15:29 -0700 (PDT)
-X-Authenticated-User: sean.liming.annabooks.com
-Received: from [192.168.1.113] (cpe-76-95-170-232.socal.res.rr.com
-	[76.95.170.232]) (authenticated bits=0)
-	by mail32c40.carrierzone.com (8.13.6/8.13.1) with ESMTP id
-	q8MFFQFO032593
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO)
-	for <yocto@yoctoproject.org>; Sat, 22 Sep 2012 15:15:28 +0000
-Message-ID: <505DD60E.6010907@annabooks.com>
-Date: Sat, 22 Sep 2012 08:15:26 -0700
-From: Sean Liming <sean.liming@annabooks.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:15.0) Gecko/20120827 Thunderbird/15.0
+Return-Path: <evadeflow@gmail.com>
+Received: from mail-ob0-f176.google.com (mail-ob0-f176.google.com
+	[209.85.214.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 95817E011C9
+	for <yocto@yoctoproject.org>; Sat, 22 Sep 2012 11:35:31 -0700 (PDT)
+Received: by obbtb18 with SMTP id tb18so5589909obb.35
+	for <yocto@yoctoproject.org>; Sat, 22 Sep 2012 11:35:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=iLyeXRoRm848/OoP/dtprHRZSQccXJx5ecyIK6B9Z9w=;
+	b=eDKHnNK/pARqEarhwYwT7Gw8ASgIJEIeluYgEvzk3dCWgcnwkH/yNBLAAjRVR1kBld
+	JjVkKFnNvIQwBCjrisWCltm1h2xEGYSqEBYXB2a2hbG2mfVYZ7ZfFUInFMsF6eRRL5eM
+	0UZBePPd5WqevIWL/L0dxlWHtysFIp+PLGsHEEpYSWGM//jpGO5rqNEGiRxwvR0iPAQe
+	M0FLa6GwmHqpN60MzH+IByfy+K98suD51Luapb23SXH3vQmRJ/8a0UUVYzD15dibwWrc
+	rEk9iVATcj7yOBTMwnvM9eu+ZOiqhtUYtTrZKZubzS3iohKWqNpfLR3XAI2KL+ekHiKR
+	8jLw==
 MIME-Version: 1.0
+Received: by 10.60.171.138 with SMTP id au10mr6705855oec.39.1348338928813;
+	Sat, 22 Sep 2012 11:35:28 -0700 (PDT)
+Received: by 10.76.153.198 with HTTP; Sat, 22 Sep 2012 11:35:28 -0700 (PDT)
+Date: Sat, 22 Sep 2012 14:35:28 -0400
+Message-ID: <CAMAb8ZN9a7Dtn6evFZ-zQn47EBLnR4y=RZ8KNtX=ooMUpHM2uw@mail.gmail.com>
+From: Evade Flow <evadeflow@gmail.com>
 To: yocto@yoctoproject.org
-References: <CANwz6nwmFNbsTxYh8xvNUysk6ozWS48rchUpOyUPGSXDNYodBA@mail.gmail.com>
-In-Reply-To: <CANwz6nwmFNbsTxYh8xvNUysk6ozWS48rchUpOyUPGSXDNYodBA@mail.gmail.com>
-X-CSC: 0
-X-CHA: v=1.1 cv=Ez94Tw3ujgScwXs1pC+PmdLr+QYD70VLeGu7Cz1MAHQ= c=1 sm=1
-	a=yjbP8ePMWcgA:10 a=DRpQnFnvsMEA:10 a=_DgR7O7FQkkA:10
-	a=6XZH3zlyYmADzTbsPzlaoQ==:17 a=iGHA9ds3AAAA:8 a=zBv0WvqY93a4Cb1M1zQA:9
-	a=wPNLvfGTeEIA:10 a=nHK3ipOpxeAA:10 a=XDKM753qmDAA:10
-	a=6gP5uRWmYxwSCKdL:21
-	a=tYop8ABZmCyj6ODT:21 a=pGLkceISAAAA:8 a=6NGyexyhU58Qu2zFlBQA:9
-	a=_W_S_7VecoQA:10 a=wynLdFB7fA8RTU94XgkA:9 a=QEXdDO2ut3YA:10
-	a=X_vOJ-OpxRCr9-hK:21 a=BQuhg5TVp2a0yTwT:21
-	a=6XZH3zlyYmADzTbsPzlaoQ==:117
-X-CTCH-Spam: Unknown
-X-CTCH-RefID: str=0001.0A020204.505DD610.0070, ss=1, re=0.000, recu=0.000,
-	reip=0.000, cl=1, cld=1, fgs=0
-Subject: Re: beagleboard uEnv.txt file
+Subject: IPK Package name contains illegal characters?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,145 +34,115 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 22 Sep 2012 15:15:30 -0000
-X-Groupsio-MsgNum: 9592
-Content-Type: multipart/mixed; boundary="------------090007050604040404060109"
+X-List-Received-Date: Sat, 22 Sep 2012 18:35:31 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
---------------090007050604040404060109
-Content-Type: multipart/alternative;
- boundary="------------000508060709040806090000"
+After (finally!) getting all the required sources pre-mirrorred, I was
+able to the build the 'discovery-image' in the meta-ivi layer in 2 hours
++ 17 minutes:
 
---------------000508060709040806090000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+  http://git.yoctoproject.org/cgit/cgit.cgi/meta-ivi/
 
-On 09/22/2012 07:08 AM, Edward Vidal wrote:
-> Hello All,
-> Does anyone have a working uEnv.txt file for the core-image-sato for 
-> the beagleoard?
-> Any help will be appreciated thanks in advance.
->
->
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-Attached is one that worked for core-image-minimal.
+This was using package_rpm, though, so I thought I could do better by
+changing conf/local.conf to contain:
 
-Here are the contents:
+  PACKAGE_CLASSES ?= "package_ipk"
 
-bootfile=uImage
-address_uimage=0x80300000
+It appears that this was going to be quite a bit faster, but after 1
+hour it generated the error:
 
-console=ttyO2,115200n8
-
-mmcroot=/dev/mmcblk0p2 rw
-mmcrootfstype=ext3 rootwait
-optargs=console=tty0
-
-mmc_load_uimage=fatload mmc 0:1 ${address_uimage} ${bootfile}
-
-mmcargs=setenv bootargs console=${console} ${optargs} root=${mmcroot} 
-rootfstype=${mmcrootfstype}
-
-loaduimage=run mmc_load_uimage; echo Booting from mmc ...; run mmcargs; 
-bootm ${address_uimage}
+  *** Error: Package name  contains illegal characters, (other than [a-z0-9.+-])
 
 
--- 
-Regards,
+The extra space between 'name' and 'contains' seems *very* suspicious,
+but I don't know what to make of it. (The package name is an empty
+string? Why?)  Any suggestions as to how I can debug this? The log file
+doesn't show what command was attempted, so I really don't know where to
+begin.
 
-Sean D. Liming
-
-Annabooks
-Cell: 858-774-3176
-
-
---------------000508060709040806090000
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=ISO-8859-1"
-      http-equiv="Content-Type">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    <div class="moz-cite-prefix">On 09/22/2012 07:08 AM, Edward Vidal
-      wrote:<br>
-    </div>
-    <blockquote
-cite="mid:CANwz6nwmFNbsTxYh8xvNUysk6ozWS48rchUpOyUPGSXDNYodBA@mail.gmail.com"
-      type="cite">Hello All,<br>
-      Does anyone have a working uEnv.txt file for the core-image-sato
-      for the beagleoard?<br>
-      Any help will be appreciated thanks in advance.<br>
-      <br>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <br>
-      <pre wrap="">_______________________________________________
-yocto mailing list
-<a class="moz-txt-link-abbreviated" href="mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a>
-<a class="moz-txt-link-freetext" href="https://lists.yoctoproject.org/listinfo/yocto">https://lists.yoctoproject.org/listinfo/yocto</a>
-</pre>
-    </blockquote>
-    Attached is one that worked for core-image-minimal.<br>
-    <br>
-    Here are the contents:<br>
-    <br>
-    bootfile=uImage<br>
-    address_uimage=0x80300000<br>
-    <br>
-    console=ttyO2,115200n8<br>
-    <br>
-    mmcroot=/dev/mmcblk0p2 rw<br>
-    mmcrootfstype=ext3 rootwait<br>
-    optargs=console=tty0<br>
-    <br>
-    mmc_load_uimage=fatload mmc 0:1 ${address_uimage} ${bootfile}<br>
-    <br>
-    mmcargs=setenv bootargs console=${console} ${optargs}
-    root=${mmcroot} rootfstype=${mmcrootfstype}<br>
-    <br>
-    loaduimage=run mmc_load_uimage; echo Booting from mmc ...; run
-    mmcargs; bootm ${address_uimage}<br>
-    <br>
-    <br>
-    <pre class="moz-signature" cols="72">-- 
-Regards,
-
-Sean D. Liming
-
-Annabooks
-Cell: 858-774-3176</pre>
-  </body>
-</html>
-
---------------000508060709040806090000--
-
---------------090007050604040404060109
-Content-Type: text/plain; charset=UTF-8;
- name="uEnv.txt"
-Content-Transfer-Encoding: 7bit
-Content-Disposition: attachment;
- filename="uEnv.txt"
-
-bootfile=uImage
-address_uimage=0x80300000
-
-console=ttyO2,115200n8
-
-mmcroot=/dev/mmcblk0p2 rw
-mmcrootfstype=ext3 rootwait
-optargs=console=tty0
-
-mmc_load_uimage=fatload mmc 0:1 ${address_uimage} ${bootfile}
-
-mmcargs=setenv bootargs console=${console} ${optargs} root=${mmcroot} rootfstype=${mmcrootfstype}
-
-loaduimage=run mmc_load_uimage; echo Booting from mmc ...; run mmcargs; bootm ${address_uimage}
+In case it's helpful, the tail-end of the output from running 'bitbake
+-DD DLT-daemon' is appended below.  (NOTE: The exact same problem exists
+for the AudioManager component of the meta-ivi layer...)
 
 
---------------090007050604040404060109--
+DEBUG: Stampfile
+/home/evadeflow/projects/poky-git/build/tmp-eglibc-eglibc/stamps/armv7a-vfp-neon-oe-linux-gnueabi/DLT-daemon-2.5.2-r0.do_compile
+not available
+NOTE: Running task 716 of 722 (ID: 8,
+/home/evadeflow/projects/poky-git/meta-ivi/recipes-extended/DLT-daemon/DLT-daemon_2.5.2.bb,
+do_compile)
+NOTE: package DLT-daemon-2.5.2-r0: task do_compile: Started
+NOTE: package DLT-daemon-2.5.2-r0: task do_compile: Succeeded
+DEBUG: Marking task 2
+(/home/evadeflow/projects/poky-git/meta-ivi/recipes-extended/DLT-daemon/DLT-daemon_2.5.2.bb,
+do_install) as buildable
+DEBUG: Stampfile
+/home/evadeflow/projects/poky-git/build/tmp-eglibc-eglibc/stamps/armv7a-vfp-neon-oe-linux-gnueabi/DLT-daemon-2.5.2-r0.do_install
+not available
+NOTE: Running task 717 of 722 (ID: 2,
+/home/evadeflow/projects/poky-git/meta-ivi/recipes-extended/DLT-daemon/DLT-daemon_2.5.2.bb,
+do_install)
+DEBUG: Running /home/evadeflow/projects/poky-git/meta-ivi/recipes-extended/DLT-daemon/DLT-daemon_2.5.2.bb:do_install
+under fakeroot, fakedirs:
+/home/evadeflow/projects/poky-git/build/tmp-eglibc-eglibc/work/armv7a-vfp-neon-oe-linux-gnueabi/DLT-daemon-2.5.2-r0/pseudo/
+NOTE: package DLT-daemon-2.5.2-r0: task do_install: Started
+NOTE: package DLT-daemon-2.5.2-r0: task do_install: Succeeded
+DEBUG: Marking task 10
+(/home/evadeflow/projects/poky-git/meta-ivi/recipes-extended/DLT-daemon/DLT-daemon_2.5.2.bb,
+do_package) as buildable
+DEBUG: Marking task 3
+(/home/evadeflow/projects/poky-git/meta-ivi/recipes-extended/DLT-daemon/DLT-daemon_2.5.2.bb,
+do_populate_sysroot) as buildable
+DEBUG: Stampfile
+/home/evadeflow/projects/poky-git/build/tmp-eglibc-eglibc/stamps/armv7a-vfp-neon-oe-linux-gnueabi/DLT-daemon-2.5.2-r0.do_package.vexpressa9
+not available
+NOTE: Running task 718 of 722 (ID: 10,
+/home/evadeflow/projects/poky-git/meta-ivi/recipes-extended/DLT-daemon/DLT-daemon_2.5.2.bb,
+do_package)
+DEBUG: Running /home/evadeflow/projects/poky-git/meta-ivi/recipes-extended/DLT-daemon/DLT-daemon_2.5.2.bb:do_package
+under fakeroot, fakedirs:
+/home/evadeflow/projects/poky-git/build/tmp-eglibc-eglibc/work/armv7a-vfp-neon-oe-linux-gnueabi/DLT-daemon-2.5.2-r0/pseudo/
+DEBUG: Stampfile
+/home/evadeflow/projects/poky-git/build/tmp-eglibc-eglibc/stamps/armv7a-vfp-neon-oe-linux-gnueabi/DLT-daemon-2.5.2-r0.do_populate_sysroot.vexpressa9
+not available
+NOTE: Running task 719 of 722 (ID: 3,
+/home/evadeflow/projects/poky-git/meta-ivi/recipes-extended/DLT-daemon/DLT-daemon_2.5.2.bb,
+do_populate_sysroot)
+NOTE: package DLT-daemon-2.5.2-r0: task do_populate_sysroot: Started
+NOTE: package DLT-daemon-2.5.2-r0: task do_package: Started
+NOTE: package DLT-daemon-2.5.2-r0: task do_populate_sysroot: Succeeded
+NOTE: package DLT-daemon-2.5.2-r0: task do_package: Succeeded
+DEBUG: Marking task 12
+(/home/evadeflow/projects/poky-git/meta-ivi/recipes-extended/DLT-daemon/DLT-daemon_2.5.2.bb,
+do_package_write_ipk) as buildable
+DEBUG: Stampfile
+/home/evadeflow/projects/poky-git/build/tmp-eglibc-eglibc/stamps/armv7a-vfp-neon-oe-linux-gnueabi/DLT-daemon-2.5.2-r0.do_package_write_ipk
+not available
+NOTE: Running task 720 of 722 (ID: 12,
+/home/evadeflow/projects/poky-git/meta-ivi/recipes-extended/DLT-daemon/DLT-daemon_2.5.2.bb,
+do_package_write_ipk)
+DEBUG: Running /home/evadeflow/projects/poky-git/meta-ivi/recipes-extended/DLT-daemon/DLT-daemon_2.5.2.bb:do_package_write_ipk
+under fakeroot, fakedirs:
+/home/evadeflow/projects/poky-git/build/tmp-eglibc-eglibc/work/armv7a-vfp-neon-oe-linux-gnueabi/DLT-daemon-2.5.2-r0/pseudo/
+NOTE: package DLT-daemon-2.5.2-r0: task do_package_write_ipk: Started
+ERROR: Function failed: opkg-build execution failed
+ERROR: Logfile of failure stored in:
+/home/evadeflow/projects/poky-git/build/tmp-eglibc-eglibc/work/armv7a-vfp-neon-oe-linux-gnueabi/DLT-daemon-2.5.2-r0/temp/log.do_package_write_ipk.27610
+Log data follows:
+| DLT-daemon-systemd
+| *** Error: Package name  contains illegal characters, (other than [a-z0-9.+-])
+|
+| opkg-build: Please fix the above errors and try again.
+| ERROR: Function failed: opkg-build execution failed
+NOTE: package DLT-daemon-2.5.2-r0: task do_package_write_ipk: Failed
+ERROR: Task 12 (/home/evadeflow/projects/poky-git/meta-ivi/recipes-extended/DLT-daemon/DLT-daemon_2.5.2.bb,
+do_package_write_ipk) failed with exit code '1'
+NOTE: Tasks Summary: Attempted 720 tasks of which 709 didn't need to
+be rerun and 1 failed.
+
+Summary: 1 task failed:
+  /home/evadeflow/projects/poky-git/meta-ivi/recipes-extended/DLT-daemon/DLT-daemon_2.5.2.bb,
+do_package_write_ipk
+Summary: There was 1 WARNING message shown.
+Summary: There was 1 ERROR message shown, returning a non-zero exit code.
+
