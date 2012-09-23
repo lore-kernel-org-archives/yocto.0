@@ -1,36 +1,17 @@
-Return-Path: <andrei@gherzan.ro>
-Received: from mail-ie0-f176.google.com (mail-ie0-f176.google.com
-	[209.85.223.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3AC4CE013DB
-	for <yocto@yoctoproject.org>; Sat, 22 Sep 2012 14:24:41 -0700 (PDT)
-Received: by ieak12 with SMTP id k12so7498461iea.35
-	for <yocto@yoctoproject.org>; Sat, 22 Sep 2012 14:24:39 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:x-originating-ip:in-reply-to:references:date
-	:message-id:subject:from:to:cc:content-type:x-gm-message-state;
-	bh=r7M085ejRzHY7xUwOAxu+YG1diTIzwzyKW/fN8h1i4c=;
-	b=Hun7zQtGk7TbrjTIYNra6b3SZbMvAMSok8L3/nWA8usI8Pana80DZoiWUvDCuWT9fM
-	8PcrAio8KGKokR9lj7PcaK8vj/nSnlNbUM6U6fcpG3E6ZO2QEu0/jbF77beJupgLAKfO
-	DH06h1xVP/n0RCUbyPjl7Xx149AAMxJ93WJHZsuswCVvbpuDvRjC+PGXiy3gUTcjtEgn
-	L+qAlHg+oneXrGEjtIOZzcLa5NfYxZZsvlP4WGf21rK7qw1Kd/fNX0Dj53BFdYWyejFG
-	Nuge7qABcNVyr3JxybKwOz4yoAiNSDlsIf7cCBrRh+mZ8cLH7wol/+ozWrxKtKzZnQTI
-	VD7g==
+Return-Path: <packages@autobuilder.yoctoproject.org>
+Received: from autobuilder.yoctoproject.org (ab-master.i.yoctoproject.org
+	[10.0.10.111])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 816ADE013DB
+	for <yocto@yoctoproject.org>; Sat, 22 Sep 2012 17:17:15 -0700 (PDT)
+Received: by autobuilder.yoctoproject.org (Postfix, from userid 802)
+	id 6F46240CF5; Sun, 23 Sep 2012 00:17:15 +0000 (UTC)
+Date: Sun, 23 Sep 2012 00:17:15 +0000
+From: Yocto Project Package Report System <package-reporting@yoctoproject.org>
+To: yocto@yoctoproject.org
+Message-ID: <20120923001715.GA7382@ab01.i.yoctoproject.org>
 MIME-Version: 1.0
-Received: by 10.50.187.194 with SMTP id fu2mr1793884igc.63.1348349079534; Sat,
-	22 Sep 2012 14:24:39 -0700 (PDT)
-Received: by 10.64.52.8 with HTTP; Sat, 22 Sep 2012 14:24:39 -0700 (PDT)
-X-Originating-IP: [92.86.21.113]
-Received: by 10.64.52.8 with HTTP; Sat, 22 Sep 2012 14:24:39 -0700 (PDT)
-In-Reply-To: <CAMAb8ZN9a7Dtn6evFZ-zQn47EBLnR4y=RZ8KNtX=ooMUpHM2uw@mail.gmail.com>
-References: <CAMAb8ZN9a7Dtn6evFZ-zQn47EBLnR4y=RZ8KNtX=ooMUpHM2uw@mail.gmail.com>
-Date: Sun, 23 Sep 2012 00:24:39 +0300
-Message-ID: <CAK18fxFmBw4Y4LXkogKrMysAfVv1kfXcJe23dZY3fZv4=TJ0jQ@mail.gmail.com>
-From: Andrei Gherzan <andrei@gherzan.ro>
-To: Evade Flow <evadeflow@gmail.com>
-X-Gm-Message-State: ALoCoQkYSJ2FyzrBANH1vrMUjYe1Dn1KH3uTb/VtSBfyLUc6BrrCR0b7qWoGbPk40IV9NaexQjCd
-Cc: yocto@yoctoproject.org
-Subject: Re: IPK Package name contains illegal characters?
+User-Agent: Mutt/1.5.20 (2009-12-10)
+Subject: [Package Report System]Manual check recipes name list
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,327 +23,121 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 22 Sep 2012 21:24:41 -0000
-Content-Type: multipart/alternative; boundary=14dae9340de3eb3d0004ca50fb48
+X-List-Received-Date: Sun, 23 Sep 2012 00:17:15 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
---14dae9340de3eb3d0004ca50fb48
-Content-Type: text/plain; charset=ISO-8859-1
+This mail was sent out by Package Report System.
+It will list all the recipes which can't check upstream version by script, and will show how long it is since their last mannual version check.
+You can check the detail information at http://packages.yoctoproject.org/manuallychkinfo
 
-We will fix this next week. Thanks.
-On Sep 22, 2012 9:37 PM, "Evade Flow" <evadeflow@gmail.com> wrote:
 
-> After (finally!) getting all the required sources pre-mirrorred, I was
-> able to the build the 'discovery-image' in the meta-ivi layer in 2 hours
-> + 17 minutes:
->
->   http://git.yoctoproject.org/cgit/cgit.cgi/meta-ivi/
->
-> This was using package_rpm, though, so I thought I could do better by
-> changing conf/local.conf to contain:
->
->   PACKAGE_CLASSES ?= "package_ipk"
->
-> It appears that this was going to be quite a bit faster, but after 1
-> hour it generated the error:
->
->   *** Error: Package name  contains illegal characters, (other than
-> [a-z0-9.+-])
->
->
-> The extra space between 'name' and 'contains' seems *very* suspicious,
-> but I don't know what to make of it. (The package name is an empty
-> string? Why?)  Any suggestions as to how I can debug this? The log file
-> doesn't show what command was attempted, so I really don't know where to
-> begin.
->
-> In case it's helpful, the tail-end of the output from running 'bitbake
-> -DD DLT-daemon' is appended below.  (NOTE: The exact same problem exists
-> for the AudioManager component of the meta-ivi layer...)
->
->
-> DEBUG: Stampfile
->
-> /home/evadeflow/projects/poky-git/build/tmp-eglibc-eglibc/stamps/armv7a-vfp-neon-oe-linux-gnueabi/DLT-daemon-2.5.2-r0.do_compile
-> not available
-> NOTE: Running task 716 of 722 (ID: 8,
-> /home/evadeflow/projects/poky-git/meta-ivi/recipes-extended/DLT-daemon/
-> DLT-daemon_2.5.2.bb,
-> do_compile)
-> NOTE: package DLT-daemon-2.5.2-r0: task do_compile: Started
-> NOTE: package DLT-daemon-2.5.2-r0: task do_compile: Succeeded
-> DEBUG: Marking task 2
-> (/home/evadeflow/projects/poky-git/meta-ivi/recipes-extended/DLT-daemon/
-> DLT-daemon_2.5.2.bb,
-> do_install) as buildable
-> DEBUG: Stampfile
->
-> /home/evadeflow/projects/poky-git/build/tmp-eglibc-eglibc/stamps/armv7a-vfp-neon-oe-linux-gnueabi/DLT-daemon-2.5.2-r0.do_install
-> not available
-> NOTE: Running task 717 of 722 (ID: 2,
-> /home/evadeflow/projects/poky-git/meta-ivi/recipes-extended/DLT-daemon/
-> DLT-daemon_2.5.2.bb,
-> do_install)
-> DEBUG: Running
-> /home/evadeflow/projects/poky-git/meta-ivi/recipes-extended/DLT-daemon/DLT-daemon_2.5.2.bb:
-> do_install
-> under fakeroot, fakedirs:
->
-> /home/evadeflow/projects/poky-git/build/tmp-eglibc-eglibc/work/armv7a-vfp-neon-oe-linux-gnueabi/DLT-daemon-2.5.2-r0/pseudo/
-> NOTE: package DLT-daemon-2.5.2-r0: task do_install: Started
-> NOTE: package DLT-daemon-2.5.2-r0: task do_install: Succeeded
-> DEBUG: Marking task 10
-> (/home/evadeflow/projects/poky-git/meta-ivi/recipes-extended/DLT-daemon/
-> DLT-daemon_2.5.2.bb,
-> do_package) as buildable
-> DEBUG: Marking task 3
-> (/home/evadeflow/projects/poky-git/meta-ivi/recipes-extended/DLT-daemon/
-> DLT-daemon_2.5.2.bb,
-> do_populate_sysroot) as buildable
-> DEBUG: Stampfile
->
-> /home/evadeflow/projects/poky-git/build/tmp-eglibc-eglibc/stamps/armv7a-vfp-neon-oe-linux-gnueabi/DLT-daemon-2.5.2-r0.do_package.vexpressa9
-> not available
-> NOTE: Running task 718 of 722 (ID: 10,
-> /home/evadeflow/projects/poky-git/meta-ivi/recipes-extended/DLT-daemon/
-> DLT-daemon_2.5.2.bb,
-> do_package)
-> DEBUG: Running
-> /home/evadeflow/projects/poky-git/meta-ivi/recipes-extended/DLT-daemon/DLT-daemon_2.5.2.bb:
-> do_package
-> under fakeroot, fakedirs:
->
-> /home/evadeflow/projects/poky-git/build/tmp-eglibc-eglibc/work/armv7a-vfp-neon-oe-linux-gnueabi/DLT-daemon-2.5.2-r0/pseudo/
-> DEBUG: Stampfile
->
-> /home/evadeflow/projects/poky-git/build/tmp-eglibc-eglibc/stamps/armv7a-vfp-neon-oe-linux-gnueabi/DLT-daemon-2.5.2-r0.do_populate_sysroot.vexpressa9
-> not available
-> NOTE: Running task 719 of 722 (ID: 3,
-> /home/evadeflow/projects/poky-git/meta-ivi/recipes-extended/DLT-daemon/
-> DLT-daemon_2.5.2.bb,
-> do_populate_sysroot)
-> NOTE: package DLT-daemon-2.5.2-r0: task do_populate_sysroot: Started
-> NOTE: package DLT-daemon-2.5.2-r0: task do_package: Started
-> NOTE: package DLT-daemon-2.5.2-r0: task do_populate_sysroot: Succeeded
-> NOTE: package DLT-daemon-2.5.2-r0: task do_package: Succeeded
-> DEBUG: Marking task 12
-> (/home/evadeflow/projects/poky-git/meta-ivi/recipes-extended/DLT-daemon/
-> DLT-daemon_2.5.2.bb,
-> do_package_write_ipk) as buildable
-> DEBUG: Stampfile
->
-> /home/evadeflow/projects/poky-git/build/tmp-eglibc-eglibc/stamps/armv7a-vfp-neon-oe-linux-gnueabi/DLT-daemon-2.5.2-r0.do_package_write_ipk
-> not available
-> NOTE: Running task 720 of 722 (ID: 12,
-> /home/evadeflow/projects/poky-git/meta-ivi/recipes-extended/DLT-daemon/
-> DLT-daemon_2.5.2.bb,
-> do_package_write_ipk)
-> DEBUG: Running
-> /home/evadeflow/projects/poky-git/meta-ivi/recipes-extended/DLT-daemon/DLT-daemon_2.5.2.bb:
-> do_package_write_ipk
-> under fakeroot, fakedirs:
->
-> /home/evadeflow/projects/poky-git/build/tmp-eglibc-eglibc/work/armv7a-vfp-neon-oe-linux-gnueabi/DLT-daemon-2.5.2-r0/pseudo/
-> NOTE: package DLT-daemon-2.5.2-r0: task do_package_write_ipk: Started
-> ERROR: Function failed: opkg-build execution failed
-> ERROR: Logfile of failure stored in:
->
-> /home/evadeflow/projects/poky-git/build/tmp-eglibc-eglibc/work/armv7a-vfp-neon-oe-linux-gnueabi/DLT-daemon-2.5.2-r0/temp/log.do_package_write_ipk.27610
-> Log data follows:
-> | DLT-daemon-systemd
-> | *** Error: Package name  contains illegal characters, (other than
-> [a-z0-9.+-])
-> |
-> | opkg-build: Please fix the above errors and try again.
-> | ERROR: Function failed: opkg-build execution failed
-> NOTE: package DLT-daemon-2.5.2-r0: task do_package_write_ipk: Failed
-> ERROR: Task 12
-> (/home/evadeflow/projects/poky-git/meta-ivi/recipes-extended/DLT-daemon/
-> DLT-daemon_2.5.2.bb,
-> do_package_write_ipk) failed with exit code '1'
-> NOTE: Tasks Summary: Attempted 720 tasks of which 709 didn't need to
-> be rerun and 1 failed.
->
-> Summary: 1 task failed:
->   /home/evadeflow/projects/poky-git/meta-ivi/recipes-extended/DLT-daemon/
-> DLT-daemon_2.5.2.bb,
-> do_package_write_ipk
-> Summary: There was 1 WARNING message shown.
-> Summary: There was 1 ERROR message shown, returning a non-zero exit code.
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+PackageName              Version             LastChkVersion      LastChkTime              Maintainer                              NoUpgradeReason               
+lsb                      4.1                 4.1                 18 days                  Yi Zhao <yi.zhao@windriver.co...        No data                       
+freetype                 2.4.10              2.4.10              25 days                  Valentin Popa <valentin.popa@...        No data                       
+menu-cache               0.3.3               0.3.3               23 days                  Valentin Popa <valentin.popa@...        No data                       
+libfm                    0.1.17              1.30                24 days                  Valentin Popa <valentin.popa@...        No data                       
+pcmanfm                  0.9.10              0.9.10              23 days                  Valentin Popa <valentin.popa@...        No data                       
+gtkhtml2                 2.11.0+svnr11...    2.11.1              25 days                  Valentin Popa <valentin.popa@...        No data                       
+libevent                 2.0.16              2.0.20              24 days                  Scott Garman <scott.a.garman@...        No data                       
+e2fsprogs                1.42.1              1.42.5              26 days                  Scott Garman <scott.a.garman@...        No data                       
+chrpath                  0.14                0.14                27 days                  Scott Garman <scott.a.garman@...        No data                       
+opensp                   1.5.2               1.5.2               23 days                  Scott Garman <scott.a.garman@...        No data                       
+expat                    2.1.0               2.0.1               26 days                  Scott Garman <scott.a.garman@...        No data                       
+nfs-utils                1.2.3               1.2.6               23 days                  Scott Garman <scott.a.garman@...        No data                       
+libatomics-ops           7.2                 N/A                 41173 d                  Scott Garman <scott.a.garman@...        No data                       
+libpng                   1.2.49              1.5.11              80 days                  Scott Garman <scott.a.garman@...        1.4.3 and later changes the AP...
+cracklib                 2.8.19              2.8.19              26 days                  Saul Wold <sgw@linux.intel.co...        No data                       
+psmisc                   22.19               22.19               23 days                  Saul Wold <sgw@linux.intel.co...        No data                       
+sysstat                  10.1.1              10.1.1              20 days                  Saul Wold <sgw@linux.intel.co...        No data                       
+less                     444                 444                 25 days                  Saul Wold <sgw@linux.intel.co...        No data                       
+glew                     1.9.0               1.9.0               25 days                  Saul Wold <sgw@linux.intel.co...        No data                       
+libexif                  0.6.21              0.6.21              24 days                  Saul Wold <sgw@linux.intel.co...        No data                       
+sqlite3                  3.7.13              3.7.13              20 days                  Saul Wold <sgw@linux.intel.co...        No data                       
+boost                    1.51.0              1.51.0              27 days                  Saul Wold <sgw@linux.intel.co...        No data                       
+libcheck                 0.9.8               0.9.8               24 days                  Saul Wold <sgw@linux.intel.co...        No data                       
+libacpi                  0.2                 0.2                 25 days                  Saul Wold <sgw@linux.intel.co...        No data                       
+sysfsutils               2.1.0               2.1.0               20 days                  Saul Wold <sgw@linux.intel.co...        No data                       
+console-tools            0.3.2               0.3.2               26 days                  Saul Wold <sgw@linux.intel.co...        No data                       
+libmad                   0.15.1b             0.15.2b             24 days                  Saul Wold <sgw@linux.intel.co...        No data                       
+tzdata                   2012d               2012c               17 days                  Radu Moisan <radu.moisan@inte...        No data                       
+bzip2                    1.0.6               1.0.6               488 day                  Radu Moisan <radu.moisan@inte...        No data                       
+watchdog                 5.12                5.12                20 days                  Radu Moisan <radu.moisan@inte...        No data                       
+hdparm                   9.39                9.39                25 days                  Radu Moisan <radu.moisan@inte...        No data                       
+tslib                    1.0                 1.0                 20 days                  Radu Moisan <radu.moisan@inte...        No data                       
+zip                      3.0                 3.0                 19 days                  Radu Moisan <radu.moisan@inte...        No data                       
+unzip                    6.0                 6.0                 20 days                  Radu Moisan <radu.moisan@inte...        No data                       
+beecrypt                 4.2.1               4.2.1               27 days                  Radu Moisan <radu.moisan@inte...        No data                       
+setserial                2.17                2.17                20 days                  Radu Moisan <radu.moisan@inte...        No data                       
+u-boot-fw-utils          2011.06             20012.07            41173 d                  Radu Moisan <radu.moisan@inte...        No data                       
+acpid                    1.0.10              1.0.10              27 days                  Radu Moisan <radu.moisan@inte...        No data                       
+squashfs-tools           4.2                 4.2                 20 days                  Radu Moisan <radu.moisan@inte...        No data                       
+ubootchart               0.0+r12             0.0+r12             12 days                  Radu Moisan <radu.moisan@inte...        No data                       
+opkg                     0.1.8+svnr633...    0.1.8               23 days                  Radu Moisan <radu.moisan@inte...        No data                       
+fotowall                 0.9                 0.9                 25 days                  Radu Moisan <radu.moisan@inte...        No data                       
+quicky                   0.4                 N/A                 41173 d                  Radu Moisan <radu.moisan@inte...        No data                       
+kmod                     9                   9                   58 days                  Radu Moisan <radu.moisan@inte...        No data                       
+tinylogin                1.4                 1.4                 20 days                  Radu Moisan <radu.moisan@inte...        TinyLogin was merged into Busy...
+gupnp                    0.16.1              0.18.4              25 days                  Radu Moisan <radu.moisan@inte...        No data                       
+lame                     3.99.5              3.99.5              25 days                  Radu Moisan <radu.moisan@inte...        No data                       
+nativesdk-libarchive...  2.8.5               N/A                 41173 d                  No Maintainer information               No data                       
+nativesdk-bzip2          1.0.6               N/A                 41173 d                  No Maintainer information               No data                       
+nativesdk-mpfr           3.1.0               N/A                 41173 d                  No Maintainer information               No data                       
+nativesdk-db             5.3.15              N/A                 41173 d                  No Maintainer information               No data                       
+nativesdk-sqlite3        3.7.13              N/A                 41173 d                  No Maintainer information               No data                       
+nativesdk-libmpc         0.8.2               N/A                 41173 d                  No Maintainer information               No data                       
+nativesdk-u-boot-mki...  2011.06             N/A                 41173 d                  No Maintainer information               No data                       
+kconfig-frontends        3.5.0               3.5.0               12 days                  No Maintainer information               No data                       
+nativesdk-pseudo         1.4.1               N/A                 41173 d                  No Maintainer information               No data                       
+python-argparse          1.2.1               N/A                 41173 d                  No Maintainer information               No data                       
+ossp-uuid                1.6.2               N/A                 41173 d                  No Maintainer information               No data                       
+nativesdk-opkg           0.1.8+svnr633...    N/A                 41173 d                  No Maintainer information               No data                       
+nativesdk-chrpath        0.14                N/A                 41173 d                  No Maintainer information               No data                       
+nativesdk-eglibc         2.16                N/A                 41173 d                  No Maintainer information               No data                       
+libcgroup                0.37.1              0.38-1              12 days                  No Maintainer information               No data                       
+nativesdk-expat          2.1.0               N/A                 41173 d                  No Maintainer information               No data                       
+mpeg2dec                 0.4.1               0.5.1               23 days                  No Maintainer information               Why are we currently at 0.4.1?
+ltp                      20120903            20120903            18 days                  Mihai Lindner <mihaix.lindner...        No data                       
+pseudo                   1.4.1               1.2                 23 days                  Mark Hatle <mark.hatle@windri...        No data                       
+prelink                  1.0+git1+a2d8...    1.0+git1+9552...    23 days                  Mark Hatle <mark.hatle@windri...        No data                       
+x11vnc                   0.9.13              0.9.13              20 days                  Laurentiu Palcu <laurentiu.pa...        No data                       
+libarchive               2.8.5               3.0.4               25 days                  Kai Kang <kai.kang@windriver....        No data                       
+mingetty                 1.08                1.08                23 days                  Kai Kang <kai.kang@windriver....        No data                       
+adt-installer            0.1.8+svnr596...    1.1                 12 days                  Jessica Zhang <jessica.zhang@...        No data                       
+cwautomacros             20110201            20110201            26 days                  Cristian Iorga <cristian.iorg...        No data                       
+quota                    4.00                4.00                20 days                  Cristian Iorga <cristian.iorg...        No data                       
+libtirpc                 0.2.2               0.2.2               24 days                  Cristian Iorga <cristian.iorg...        No data                       
+minicom                  2.6.1               2.6.1               23 days                  Cristian Iorga <cristian.iorg...        No data                       
+rpcbind                  0.2.0               0.2.0               20 days                  Cristian Iorga <cristian.iorg...        No data                       
+db                       5.3.15              5.0.26              41173 d                  Cristian Iorga <cristian.iorg...        API compatibility issue       
+libproxy                 0.4.7               0.4.7               24 days                  Cristian Iorga <cristian.iorg...        No data                       
+taglib                   1.8                 1.7.2               20 days                  Cristian Iorga <cristian.iorg...        No data                       
+lrzsz                    0.12.20             0.12.20             23 days                  Cristian Iorga <cristian.iorg...        No data                       
+libical                  0.48                0.48                24 days                  Cristian Iorga <cristian.iorg...        No data                       
+wireless-tools           29                  29                  20 days                  Cristian Iorga <cristian.iorg...        No data                       
+irda-utils               0.9.18              0.9.18              25 days                  Cristian Iorga <cristian.iorg...        No data                       
+tremor                   20120314            20120122            20 days                  Cristian Iorga <cristian.iorg...        No data                       
+gssdp                    0.10.0              0.10.0              25 days                  Cristian Iorga <cristian.iorg...        No data                       
+gupnp-av                 0.8.0               0.10.3              25 days                  Cristian Iorga <cristian.iorg...        No data                       
+gupnp-tools              0.8.1               N/A                 41173 d                  Cristian Iorga <cristian.iorg...        No data                       
+liba52                   0.7.4               0.7.4               25 days                  Cristian Iorga <cristian.iorg...        No data                       
+flac                     1.2.1               1.2.1               26 days                  Cristian Iorga <cristian.iorg...        No data                       
+libomxil                 0.9.3               0.9.3               24 days                  Cristian Iorga <cristian.iorg...        No data                       
+libsamplerate0           0.1.8               0.1.8               24 days                  Cristian Iorga <cristian.iorg...        No data                       
+mpfr                     3.1.0               3.1.1               23 days                  Bogdan Marinescu <bogdan.a.ma...        No data                       
+libpcre                  8.31                8.31                24 days                  Bogdan Marinescu <bogdan.a.ma...        No data                       
+libmpc                   0.8.2               0.9                 607 day                  Bogdan Marinescu <bogdan.a.ma...        No data                       
+python-scons             2.1.0               2.2.0               12 days                  Bogdan Marinescu <bogdan.a.ma...        No data                       
+distcc                   2.18.3              3.1.1               26 days                  Bogdan Marinescu <bogdan.a.ma...        No data                       
+intltool                 0.50.0              0.50.2              25 days                  Bogdan Marinescu <bogdan.a.ma...        No data                       
+strace                   4.7                 4.7                 20 days                  Bogdan Marinescu <bogdan.a.ma...        No data                       
+git                      1.7.7               N/A                 25 days                  Bogdan Marinescu <bogdan.a.ma...        No data                       
+tcl                      8.5.11              8.5.12              20 days                  Bogdan Marinescu <bogdan.a.ma...        No data                       
+powertop                 1.13                1.97                23 days                  Bogdan Marinescu <bogdan.a.ma...        Do not upgrade to version 1.97...
+latencytop               0.5                 0.5                 391 day                  Bogdan Marinescu <bogdan.a.ma...        No data                       
+oprofile                 0.9.7               0.9.8               23 days                  Bogdan Marinescu <bogdan.a.ma...        No data                       
+eglibc                   2.16                git:16540           26 days                  Bogdan Marinescu <bogdan.a.ma...        No data                       
+Manual Check Count: 104
+Manual Need Check Count: 24
+Any problem, please contact Saul Wold <sgw@linux.intel.com> 
 
---14dae9340de3eb3d0004ca50fb48
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<p dir=3D"ltr">We will fix this next week. Thanks.</p>
-<div class=3D"gmail_quote">On Sep 22, 2012 9:37 PM, &quot;Evade Flow&quot; =
-&lt;<a href=3D"mailto:evadeflow@gmail.com">evadeflow@gmail.com</a>&gt; wrot=
-e:<br type=3D"attribution"><blockquote class=3D"gmail_quote" style=3D"margi=
-n:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
-After (finally!) getting all the required sources pre-mirrorred, I was<br>
-able to the build the &#39;discovery-image&#39; in the meta-ivi layer in 2 =
-hours<br>
-+ 17 minutes:<br>
-<br>
-=A0 <a href=3D"http://git.yoctoproject.org/cgit/cgit.cgi/meta-ivi/" target=
-=3D"_blank">http://git.yoctoproject.org/cgit/cgit.cgi/meta-ivi/</a><br>
-<br>
-This was using package_rpm, though, so I thought I could do better by<br>
-changing conf/local.conf to contain:<br>
-<br>
-=A0 PACKAGE_CLASSES ?=3D &quot;package_ipk&quot;<br>
-<br>
-It appears that this was going to be quite a bit faster, but after 1<br>
-hour it generated the error:<br>
-<br>
-=A0 *** Error: Package name =A0contains illegal characters, (other than [a-=
-z0-9.+-])<br>
-<br>
-<br>
-The extra space between &#39;name&#39; and &#39;contains&#39; seems *very* =
-suspicious,<br>
-but I don&#39;t know what to make of it. (The package name is an empty<br>
-string? Why?) =A0Any suggestions as to how I can debug this? The log file<b=
-r>
-doesn&#39;t show what command was attempted, so I really don&#39;t know whe=
-re to<br>
-begin.<br>
-<br>
-In case it&#39;s helpful, the tail-end of the output from running &#39;bitb=
-ake<br>
--DD DLT-daemon&#39; is appended below. =A0(NOTE: The exact same problem exi=
-sts<br>
-for the AudioManager component of the meta-ivi layer...)<br>
-<br>
-<br>
-DEBUG: Stampfile<br>
-/home/evadeflow/projects/poky-git/build/tmp-eglibc-eglibc/stamps/armv7a-vfp=
--neon-oe-linux-gnueabi/DLT-daemon-2.5.2-r0.do_compile<br>
-not available<br>
-NOTE: Running task 716 of 722 (ID: 8,<br>
-/home/evadeflow/projects/poky-git/meta-ivi/recipes-extended/DLT-daemon/<a h=
-ref=3D"http://DLT-daemon_2.5.2.bb" target=3D"_blank">DLT-daemon_2.5.2.bb</a=
->,<br>
-do_compile)<br>
-NOTE: package DLT-daemon-2.5.2-r0: task do_compile: Started<br>
-NOTE: package DLT-daemon-2.5.2-r0: task do_compile: Succeeded<br>
-DEBUG: Marking task 2<br>
-(/home/evadeflow/projects/poky-git/meta-ivi/recipes-extended/DLT-daemon/<a =
-href=3D"http://DLT-daemon_2.5.2.bb" target=3D"_blank">DLT-daemon_2.5.2.bb</=
-a>,<br>
-do_install) as buildable<br>
-DEBUG: Stampfile<br>
-/home/evadeflow/projects/poky-git/build/tmp-eglibc-eglibc/stamps/armv7a-vfp=
--neon-oe-linux-gnueabi/DLT-daemon-2.5.2-r0.do_install<br>
-not available<br>
-NOTE: Running task 717 of 722 (ID: 2,<br>
-/home/evadeflow/projects/poky-git/meta-ivi/recipes-extended/DLT-daemon/<a h=
-ref=3D"http://DLT-daemon_2.5.2.bb" target=3D"_blank">DLT-daemon_2.5.2.bb</a=
->,<br>
-do_install)<br>
-DEBUG: Running /home/evadeflow/projects/poky-git/meta-ivi/recipes-extended/=
-DLT-daemon/DLT-daemon_2.5.2.bb:do_install<br>
-under fakeroot, fakedirs:<br>
-/home/evadeflow/projects/poky-git/build/tmp-eglibc-eglibc/work/armv7a-vfp-n=
-eon-oe-linux-gnueabi/DLT-daemon-2.5.2-r0/pseudo/<br>
-NOTE: package DLT-daemon-2.5.2-r0: task do_install: Started<br>
-NOTE: package DLT-daemon-2.5.2-r0: task do_install: Succeeded<br>
-DEBUG: Marking task 10<br>
-(/home/evadeflow/projects/poky-git/meta-ivi/recipes-extended/DLT-daemon/<a =
-href=3D"http://DLT-daemon_2.5.2.bb" target=3D"_blank">DLT-daemon_2.5.2.bb</=
-a>,<br>
-do_package) as buildable<br>
-DEBUG: Marking task 3<br>
-(/home/evadeflow/projects/poky-git/meta-ivi/recipes-extended/DLT-daemon/<a =
-href=3D"http://DLT-daemon_2.5.2.bb" target=3D"_blank">DLT-daemon_2.5.2.bb</=
-a>,<br>
-do_populate_sysroot) as buildable<br>
-DEBUG: Stampfile<br>
-/home/evadeflow/projects/poky-git/build/tmp-eglibc-eglibc/stamps/armv7a-vfp=
--neon-oe-linux-gnueabi/DLT-daemon-2.5.2-r0.do_package.vexpressa9<br>
-not available<br>
-NOTE: Running task 718 of 722 (ID: 10,<br>
-/home/evadeflow/projects/poky-git/meta-ivi/recipes-extended/DLT-daemon/<a h=
-ref=3D"http://DLT-daemon_2.5.2.bb" target=3D"_blank">DLT-daemon_2.5.2.bb</a=
->,<br>
-do_package)<br>
-DEBUG: Running /home/evadeflow/projects/poky-git/meta-ivi/recipes-extended/=
-DLT-daemon/DLT-daemon_2.5.2.bb:do_package<br>
-under fakeroot, fakedirs:<br>
-/home/evadeflow/projects/poky-git/build/tmp-eglibc-eglibc/work/armv7a-vfp-n=
-eon-oe-linux-gnueabi/DLT-daemon-2.5.2-r0/pseudo/<br>
-DEBUG: Stampfile<br>
-/home/evadeflow/projects/poky-git/build/tmp-eglibc-eglibc/stamps/armv7a-vfp=
--neon-oe-linux-gnueabi/DLT-daemon-2.5.2-r0.do_populate_sysroot.vexpressa9<b=
-r>
-not available<br>
-NOTE: Running task 719 of 722 (ID: 3,<br>
-/home/evadeflow/projects/poky-git/meta-ivi/recipes-extended/DLT-daemon/<a h=
-ref=3D"http://DLT-daemon_2.5.2.bb" target=3D"_blank">DLT-daemon_2.5.2.bb</a=
->,<br>
-do_populate_sysroot)<br>
-NOTE: package DLT-daemon-2.5.2-r0: task do_populate_sysroot: Started<br>
-NOTE: package DLT-daemon-2.5.2-r0: task do_package: Started<br>
-NOTE: package DLT-daemon-2.5.2-r0: task do_populate_sysroot: Succeeded<br>
-NOTE: package DLT-daemon-2.5.2-r0: task do_package: Succeeded<br>
-DEBUG: Marking task 12<br>
-(/home/evadeflow/projects/poky-git/meta-ivi/recipes-extended/DLT-daemon/<a =
-href=3D"http://DLT-daemon_2.5.2.bb" target=3D"_blank">DLT-daemon_2.5.2.bb</=
-a>,<br>
-do_package_write_ipk) as buildable<br>
-DEBUG: Stampfile<br>
-/home/evadeflow/projects/poky-git/build/tmp-eglibc-eglibc/stamps/armv7a-vfp=
--neon-oe-linux-gnueabi/DLT-daemon-2.5.2-r0.do_package_write_ipk<br>
-not available<br>
-NOTE: Running task 720 of 722 (ID: 12,<br>
-/home/evadeflow/projects/poky-git/meta-ivi/recipes-extended/DLT-daemon/<a h=
-ref=3D"http://DLT-daemon_2.5.2.bb" target=3D"_blank">DLT-daemon_2.5.2.bb</a=
->,<br>
-do_package_write_ipk)<br>
-DEBUG: Running /home/evadeflow/projects/poky-git/meta-ivi/recipes-extended/=
-DLT-daemon/DLT-daemon_2.5.2.bb:do_package_write_ipk<br>
-under fakeroot, fakedirs:<br>
-/home/evadeflow/projects/poky-git/build/tmp-eglibc-eglibc/work/armv7a-vfp-n=
-eon-oe-linux-gnueabi/DLT-daemon-2.5.2-r0/pseudo/<br>
-NOTE: package DLT-daemon-2.5.2-r0: task do_package_write_ipk: Started<br>
-ERROR: Function failed: opkg-build execution failed<br>
-ERROR: Logfile of failure stored in:<br>
-/home/evadeflow/projects/poky-git/build/tmp-eglibc-eglibc/work/armv7a-vfp-n=
-eon-oe-linux-gnueabi/DLT-daemon-2.5.2-r0/temp/log.do_package_write_ipk.2761=
-0<br>
-Log data follows:<br>
-| DLT-daemon-systemd<br>
-| *** Error: Package name =A0contains illegal characters, (other than [a-z0=
--9.+-])<br>
-|<br>
-| opkg-build: Please fix the above errors and try again.<br>
-| ERROR: Function failed: opkg-build execution failed<br>
-NOTE: package DLT-daemon-2.5.2-r0: task do_package_write_ipk: Failed<br>
-ERROR: Task 12 (/home/evadeflow/projects/poky-git/meta-ivi/recipes-extended=
-/DLT-daemon/<a href=3D"http://DLT-daemon_2.5.2.bb" target=3D"_blank">DLT-da=
-emon_2.5.2.bb</a>,<br>
-do_package_write_ipk) failed with exit code &#39;1&#39;<br>
-NOTE: Tasks Summary: Attempted 720 tasks of which 709 didn&#39;t need to<br=
->
-be rerun and 1 failed.<br>
-<br>
-Summary: 1 task failed:<br>
-=A0 /home/evadeflow/projects/poky-git/meta-ivi/recipes-extended/DLT-daemon/=
-<a href=3D"http://DLT-daemon_2.5.2.bb" target=3D"_blank">DLT-daemon_2.5.2.b=
-b</a>,<br>
-do_package_write_ipk<br>
-Summary: There was 1 WARNING message shown.<br>
-Summary: There was 1 ERROR message shown, returning a non-zero exit code.<b=
-r>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
->https://lists.yoctoproject.org/listinfo/yocto</a><br>
-</blockquote></div>
-
---14dae9340de3eb3d0004ca50fb48--
