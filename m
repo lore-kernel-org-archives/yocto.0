@@ -1,17 +1,23 @@
-Return-Path: <packages@autobuilder.yoctoproject.org>
-Received: from autobuilder.yoctoproject.org (ab01.i.yoctoproject.org
-	[10.0.10.111])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 82195E013E6
-	for <yocto@yoctoproject.org>; Sat, 22 Sep 2012 17:17:15 -0700 (PDT)
-Received: by autobuilder.yoctoproject.org (Postfix, from userid 802)
-	id 63254426CC; Sun, 23 Sep 2012 00:17:15 +0000 (UTC)
-Date: Sun, 23 Sep 2012 00:17:15 +0000
-From: Yocto Project Package Report System <package-reporting@yoctoproject.org>
-To: yocto@yoctoproject.org
-Message-ID: <20120923001715.GA7376@ab01.i.yoctoproject.org>
-MIME-Version: 1.0
-User-Agent: Mutt/1.5.20 (2009-12-10)
-Subject: [Package Report System]Upgrade recipes name list
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3A77FE013E6
+	for <yocto@yoctoproject.org>; Sat, 22 Sep 2012 21:40:19 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 22 Sep 2012 21:40:18 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,469,1344236400"; d="scan'208";a="195941756"
+Received: from unknown (HELO [10.255.13.83]) ([10.255.13.83])
+	by azsmga001.ch.intel.com with ESMTP; 22 Sep 2012 21:40:17 -0700
+Message-ID: <1348375217.23190.34.camel@empanada>
+From: Tom Zanussi <tom.zanussi@intel.com>
+To: Sean Liming <sean.liming@annabooks.com>
+Date: Sat, 22 Sep 2012 23:40:17 -0500
+In-Reply-To: <000701cd9889$19ba1760$4d2e4620$@annabooks.com>
+References: <000701cd9889$19ba1760$4d2e4620$@annabooks.com>
+X-Mailer: Evolution 3.4.1 (3.4.1-2.fc17) 
+Mime-Version: 1.0
+Cc: yocto@yoctoproject.org
+Subject: Re: UEFI support for Crown Bay
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -23,129 +29,135 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 23 Sep 2012 00:17:15 -0000
-X-Groupsio-MsgNum: 9597
-Content-Type: multipart/mixed; boundary="FCuugMFkClbJLl1L"
-Content-Disposition: inline
+X-List-Received-Date: Sun, 23 Sep 2012 04:40:19 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
---FCuugMFkClbJLl1L
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On Fri, 2012-09-21 at 23:11 -0700, Sean Liming wrote:
+>  
+> 
+> Yocto=1.2
+> 
+> BSB = Crown Bay (Intel Atom Processor E660 with Intel Platform
+> Controller Hub EG20T Development Kit)
+> 
+> Target System= Inforce Computing, Inc. - SYS9400 Reference Platform -
+> VGA output only.
+> 
+> UEFI only no BIOS
+> 
+> Base Image: core-image-minimal
+> 
+> Hob used to build the image
+> 
+>  
+> 
+>  
+> 
+>  
+> 
+> The target platform only has UEFI and doesn’t have traditional BIOS. I
+> am able to re-configure the UEFI firmware using the BLDK application
+> if needed. The Crown Bay BSP doesn’t include an efi loader
+> (bootia32.efi) like Cedar Trail BSP in the live image (hddimg). If I
+> add the EFI boot files from Cedar Trail live image, the USB flash disk
+> presents the menu for boot or install. Upon selecting boot, I can see
+> output on the serial console, but it eventually stops no output on the
+> VGA monitor. I have attached the output from the serial port.
+> 
+>  
+> 
+> 1. Is UEFI supported with Crown Bay BSP? Is there a flag that needs to
+> be set like EFI = “1”?
+> 
 
-This mail was sent out by Package Report System.
-This message list those recipes which need to be upgraded. If maintainers believe some of them needn't to upgrade this time, they can fill in RECIPE_NO_UPDATE_REASON_pn-"xxx" in upstream_tracking files to ignore this recipe remainder until newer upstream version was detected.
-Example:
-RECIPE_NO_UPDATE_REASON_pn-"xxx" = "Not upgrade to 2.0 because the new version is unstable"
-You can check the detail information at http://packages.yoctoproject.org/upgradepkgname
+Hi,
+
+The Crown Bay BSP doesn't yet have EFI support - I added it earlier this
+year but had some problems getting it to work.  I just now updated it
+and tried again but though I see the grub menu, selecting 'boot' also
+gets me a blank screen, and I don't even get serial output.
+
+If you want to try it out for yourself and see if you get better
+results, here's the branch (the top 6 commits add efi support and some
+related cleanup):
+
+http://git.yoctoproject.org/cgit/cgit.cgi/meta-intel-contrib/log/?h=tzanussi/crownbay-efi-v2
+
+The current BSP can be found in the meta-intel repo in the meta-crownbay
+directory (the README has some build instructions):
+
+http://git.yoctoproject.org/cgit/cgit.cgi/meta-intel/
+
+http://git.yoctoproject.org/cgit/cgit.cgi/meta-intel/tree/meta-crownbay
 
 
-PackageName                   Version                       UpVersion                     Maintainer                                        NoUpgradeReason               
-ccache                        3.1.7                         3.1.8                         Wenzong Fan <wenzong.fan@windriver.com>           
-xdg-utils                     1.0.2                         1.1.0                         Valentin Popa <valentin.popa@intel.com>           only release candidates avail...
-libxslt                       1.1.26                        1.1.27                        Valentin Popa <valentin.popa@intel.com>           
-evolution-data-server         2.30+git1+3ca578d968d097      6.0                           Valentin Popa <valentin.popa@intel.com>           
-matchbox-panel-2              0.0+git1+cdf7a22716b8746      2.0                           Valentin Popa <valentin.popa@intel.com>           
-puzzles                       r9594                         9660                          Valentin Popa <valentin.popa@intel.com>           
-lttng-viewer                  0.12.38                       0.12.38.21032011              Valentin Popa <valentin.popa@intel.com>           
-sysprof                       1.1.8+git1+4692f85f625f4      1.2.0                         Tom Zanussi <tom.zanussi@intel.com>               
-shadow                        4.1.4.3                       4.1.5.1                       Scott Garman <scott.a.garman@intel.com>           
-sudo                          1.8.5p2                       1.8.6                         Scott Garman <scott.a.garman@intel.com>           
-blktool                       4-6                           4                             Scott Garman <scott.a.garman@intel.com>           
-apmd                          3.2.2-14                      3.2.2                         Scott Garman <scott.a.garman@intel.com>           
-openssh                       6.0p1                         6.1p1                         Scott Garman <scott.a.garman@intel.com>           
-mc                            4.8.4                         4.8.6                         Saul Wold <sgw@linux.intel.com>                   
-libnl                         2.0                           3.2.13                        Saul Wold <sgw@linux.intel.com>                   libnl-3.2.2 is incompatible w...
-createrepo                    0.4.11                        0.9.9                         Saul Wold <sgw@linux.intel.com>                   Versions after 0.9.* use YUM,...
-apt                           0.7.14                        0.9.7.5                       Saul Wold <sgw@linux.intel.com>                   
-pkgconfig                     0.25                          0.27.1                        Saul Wold <sgw@linux.intel.com>                   removes glib-conf, adds circu...
-util-linux                    2.21.2                        2.22                          Saul Wold <sgw@linux.intel.com>                   
-libxml2                       2.8.0                         2.9.0                         Saul Wold <sgw@linux.intel.com>                   
-build-appliance-image         1.0                           3.2.1                         Saul Wold <sgw@linux.intel.com>                   
-resolvconf                    1.67                          1.68                          Saul Wold <sgw@linux.intel.com>                   
-dhcp                          4.2.4-P1                      4.2.4                         Saul Wold <sgw@linux.intel.com>                   
-tiff                          4.0.2                         4.0.3                         Saul Wold <sgw@linux.intel.com>                   
-logrotate                     3.8.1                         3.8.2                         Robert Yang <liezhi.yang@windriver.com>           
-liburcu                       0.6.7                         0.7.4                         Radu Moisan <radu.moisan@intel.com>               
-curl                          7.26.0                        7.27.0                        Radu Moisan <radu.moisan@intel.com>               
-js                            1.7.0+1.8.0rc1                1.60                          Radu Moisan <radu.moisan@intel.com>               
-u-boot-mkimage                2011.06                       2012.07                       Radu Moisan <radu.moisan@intel.com>               
-valgrind                      3.7.0                         3.8.1                         Radu Moisan <radu.moisan@intel.com>               
-babeltrace                    0.12+git1+0d8f8c2ea27df0      1.0.0                         Radu Moisan <radu.moisan@intel.com>               
-zlib                          1.2.7                         121                           Radu Moisan <radu.moisan@intel.com>               
-mobile-broadband-provider-info1.0.0+gitr1+d9995ef693cb      20090309                      Radu Moisan <radu.moisan@intel.com>               
-nativesdk-bdwgc               20110107                      7.2alpha5                     No Maintainer information                         
-nativesdk-curl                7.26.0                        7.27.0                        No Maintainer information                         
-cmake                         2.8.8                         2.8.9                         No Maintainer information                         
-nativesdk-cmake               2.8.8                         2.8.9                         No Maintainer information                         
-nativesdk-automake            1.12.3                        1.12.4                        No Maintainer information                         
-nativesdk-pkgconfig           0.25                          0.27.1                        No Maintainer information                         
-nativesdk-perl                5.14.2                        5.17.4                        No Maintainer information                         
-lttng-modules                 2.0.pre11+git4d3e89e379f      2.1.0                         No Maintainer information                         
-nativesdk-linux-libc-headers  3.4.3                         3.6                           No Maintainer information                         
-nativesdk-linux-libc-headers- 3.4+git-1+a1cdb60720c452      3.4.9                         No Maintainer information                         
-nativesdk-libxml2             2.8.0                         2.9.0                         No Maintainer information                         
-nativesdk-zlib                1.2.7                         121                           No Maintainer information                         
-libdumpvalue-perl             1.16                          1.17                          No Maintainer information                         
-nativesdk-openssl             1.0.0j                        1.0.1                         No Maintainer information                         
-nativesdk-alsa-lib            1.0.25                        1.0.26                        No Maintainer information                         
-zypper                        1.5.3-git1+2c5bb6ceb99ec      11.0                          Mark Hatle <mark.hatle@windriver.com>             
-libzypp                       0.0-git1+15b6c52260bbc52      11.0                          Mark Hatle <mark.hatle@windriver.com>             
-rpm                           5.4.9                         5.4.9.0.20120508              Mark Hatle <mark.hatle@windriver.com>             
-fontconfig                    2.9.0                         2.10.1                        Laurentiu Palcu <laurentiu.palcu@intel.com>       
-xkeyboard-config              2.1                           2.6.99                        Laurentiu Palcu <laurentiu.palcu@intel.com>       
-xserver-xorg                  1.11.2                        1.13.0                        Laurentiu Palcu <laurentiu.palcu@intel.com>       
-xf86-input-mouse              1.7.2                         1.8.1                         Laurentiu Palcu <laurentiu.palcu@intel.com>       
-xf86-input-evdev              2.7.0                         2.7.3                         Laurentiu Palcu <laurentiu.palcu@intel.com>       
-xf86-video-vesa               2.3.1                         2.3.2                         Laurentiu Palcu <laurentiu.palcu@intel.com>       
-xf86-input-keyboard           1.6.1                         1.6.2                         Laurentiu Palcu <laurentiu.palcu@intel.com>       
-xf86-video-fbdev              0.4.2                         0.4.3                         Laurentiu Palcu <laurentiu.palcu@intel.com>       
-xf86-video-intel              2.19.0                        2.20.8                        Laurentiu Palcu <laurentiu.palcu@intel.com>       
-ghostscript                   9.05                          9.06                          Kai Kang <kai.kang@windriver.com>                 
-directfb                      1.6.1                         1.6.2                         Kai Kang <kai.kang@windriver.com>                 
-qmmp                          0.6.1                         0.6.3                         Kai Kang <kai.kang@windriver.com>                 
-alsa-tools                    1.0.25                        1.0.26.1                      Kai Kang <kai.kang@windriver.com>                 
-syslinux                      4.03                          4.05                          Darren Hart <dvhart@linux.intel.com>              Waiting for 4.06 for 3.3 kern...
-net-tools                     1.60-23                       1.60                          Cristian Iorga <cristian.iorga@intel.com>         
-connman                       1.4                           1.7                           Cristian Iorga <cristian.iorga@intel.com>         
-ofono                         1.10                          1.11                          Cristian Iorga <cristian.iorga@intel.com>         
-telepathy-mission-control     5.13.0                        5.13.2                        Cristian Iorga <cristian.iorga@intel.com>         
-telepathy-glib                0.19.8                        0.19.9                        Cristian Iorga <cristian.iorga@intel.com>         
-libmusicbrainz                3.0.3                         4.0.0                         Cristian Iorga <cristian.iorga@intel.com>         
-gst-plugins-base              0.10.36                       0.11.90                       Cristian Iorga <cristian.iorga@intel.com>         not compatible with gst-fluen...
-gst-ffmpeg                    0.10.13                       0.11.2                        Cristian Iorga <cristian.iorga@intel.com>         not compatible with gst-fluen...
-gst-plugins-bad               0.10.23                       0.11.90                       Cristian Iorga <cristian.iorga@intel.com>         not compatible with gst-fluen...
-gst-plugins-good              0.10.31                       0.11.90                       Cristian Iorga <cristian.iorga@intel.com>         not compatible with gst-fluen...
-gst-plugins-ugly              0.10.19                       0.11.90                       Cristian Iorga <cristian.iorga@intel.com>         not compatible with gst-fluen...
-gstreamer                     0.10.36                       0.11.90                       Cristian Iorga <cristian.iorga@intel.com>          not compatible with gst-flue...
-gst-fluendo-mp3               0.10.19                       0.10.20                       Cristian Iorga <cristian.iorga@intel.com>         
-alsa-utils                    1.0.25                        1.0.26                        Cristian Iorga <cristian.iorga@intel.com>         
-alsa-lib                      1.0.25                        1.0.26                        Cristian Iorga <cristian.iorga@intel.com>         
-libconvert-asn1-perl          0.22                          0.26                          Bogdan Marinescu <bogdan.a.marinescu@intel.com>   
-bdwgc                         20110107                      7.2alpha5                     Bogdan Marinescu <bogdan.a.marinescu@intel.com>   
-patch                         2.6.1                         2.7                           Bogdan Marinescu <bogdan.a.marinescu@intel.com>   
-tcf-agent                     0.4.0+git1+4ef94ecb927a8      8.0                           Bogdan Marinescu <bogdan.a.marinescu@intel.com>   
-automake                      1.12.3                        1.12.4                        Bogdan Marinescu <bogdan.a.marinescu@intel.com>   
-bison                         2.5.1                         2.6.2                         Bogdan Marinescu <bogdan.a.marinescu@intel.com>   
-nasm                          2.10.01                       2.10.05                       Bogdan Marinescu <bogdan.a.marinescu@intel.com>   
-lttng2-ust                    2.0.2+git1+a367ee66aad3f      2.1.0                         Bogdan Marinescu <bogdan.a.marinescu@intel.com>   
-linux-libc-headers-yocto      3.4+git-1+a1cdb60720c452      3.4.9                         Bogdan Marinescu <bogdan.a.marinescu@intel.com>   
-linux-libc-headers            3.4.3                         3.6                           Bogdan Marinescu <bogdan.a.marinescu@intel.com>   
-lttng-control                 0.89                          0.89.05122011                 Bogdan Marinescu <bogdan.a.marinescu@intel.com>   
-Upgradable Count: 80
-Upgrade Total Count: 91
-The based commit merge time is:
-Sat Sep 22 11:07:08 2012 -0700
-The based commit is:
-commit 3bbb23a2fb211e543ecefbcc69f9c5f6fd5f2f94
-Author: Alexandru DAMIAN <alexandru.damian@intel.com>
-Date:   Thu Sep 6 12:27:46 2012 +0300
-Any problem, please contact Saul Wold <sgw@linux.intel.com> 
+Since you're using the Inforce Sys9400, though, I'm thinking that it
+might make more sense to use the meta-sys940x BSP:
 
---FCuugMFkClbJLl1L
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: attachment; filename="potential_format_problem.log"
+http://git.yoctoproject.org/cgit/cgit.cgi/meta-intel/tree/meta-sys940x
 
-recipe_color.inc/17: RECIPE_COLOR = "green"
-upstream_tracking.inc/186: RECIPE_UPSTREAM_DATE_pn-diffutils = "Sept 3, 2011"
+I see it already has efi support and so I think that's already been
+tested and probably works (cc'ing Darren, the author of the sys940x and
+EFI expert who actually added the EFI support recipes, etc).
 
---FCuugMFkClbJLl1L--
+As for EMGD and X, the current BSPs should all be good to go - there was
+some unrelated problems with X in the core which has been fixed, and at
+least as far as the crownbay goes, I know it works as I tested it just
+yesterday...
+
+Hope that helps,
+
+Tom
+
+
+>  
+> 
+> There seems to be discussions about this back in 2011:
+> 
+> https://lists.yoctoproject.org/pipermail/yocto/2011-November/005806.html
+> 
+> http://lists.linuxtogo.org/pipermail/openembedded-core/2011-November/012972.html
+> 
+>  
+> 
+> 2. Is it possible to setup serial console for Crown Bay? I tried the
+> following flags from the n450 information:
+> 
+>  
+> 
+> SYSLINUX_OPTS_atom-pc = "serial 0 115200"
+> 
+> SERIAL_CONSOLE_atom-pc = "115200 ttyS0"
+> 
+> APPEND_atom-pc = "console=ttyS0,115200 console=tty0"
+> 
+>  
+> 
+> 3. There was some discussion about EMGD and X Windows issues and a
+> possible fix. Where can I download the latest BSP to try out?
+> 
+>  
+> 
+>  
+> 
+> Regards,
+> 
+>  
+> 
+> Sean Liming
+> 
+> Annabooks
+> 
+> Tel: 714-970-7523 / Cell: 858-774-3176
+> 
+>  
+> 
+> 
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
+
+
