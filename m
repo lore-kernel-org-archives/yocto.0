@@ -1,28 +1,31 @@
-Return-Path: <tarek.elsherbiny@gmail.com>
-Received: from mail-qc0-f176.google.com (mail-qc0-f176.google.com
-	[209.85.216.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 57FA1E01448
-	for <yocto@yoctoproject.org>; Sun, 23 Sep 2012 12:07:05 -0700 (PDT)
-Received: by qcon41 with SMTP id n41so1750896qco.35
-	for <yocto@yoctoproject.org>; Sun, 23 Sep 2012 12:07:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=R1gBJV3oExFzze3cGHoINfg5O0jDycBsaGzeUKnrMVA=;
-	b=WqLmTnqwnTRDs2uOtWlCEsjSY3ZPSKXmNT5BvVSLNoL/a4IPdIiAk/fXuyzLGiSvZ5
-	sFE9Tr3juPXl0jzVFqjbQyAESg6d9v2cbIsxociOZNkrdnbgeFG2oAUrWfQ4lL9fatBg
-	wVobYUBj9vQSloUkKPuVBBvSfcwyvLbwP56hlBFqFTfz/3Pzuo25G8uaEaw1aALhs/iz
-	2ZybP81KfDyfHxQUZEEQfX4XECD2CDFsWwsk/8KEPYq0RDXS4UMUZCCo6Lu1OIEe93sa
-	nrqV384RI0Wv95vyZslfACp0p4V1BlOceZvnab2J4SWMWXEeON8HUmjURNzBoi4NmKoQ
-	f5Xg==
-MIME-Version: 1.0
-Received: by 10.229.135.85 with SMTP id m21mr7690741qct.44.1348427222521; Sun,
-	23 Sep 2012 12:07:02 -0700 (PDT)
-Received: by 10.224.174.19 with HTTP; Sun, 23 Sep 2012 12:07:02 -0700 (PDT)
-Date: Sun, 23 Sep 2012 20:07:02 +0100
-Message-ID: <CAB3sqtaLL81HnFqnE5FKy0j7o8cpNUj6S7qVk6JO3EHTKBPDvg@mail.gmail.com>
-From: Tarek El-Sherbiny <tarek.elsherbiny@gmail.com>
-To: yocto@yoctoproject.org
-Subject: what are libraries required to use SDL
+Return-Path: <opensource@keylevel.com>
+Received: from hxhsvr03.internetintuitive.net (hxhsvr03.internetintuitive.net
+	[80.254.228.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AFE21E01430
+	for <yocto@yoctoproject.org>; Sun, 23 Sep 2012 13:09:49 -0700 (PDT)
+Received: from [109.224.129.17] (helo=macbook-pro.durham.keylevel.com)
+	by hxhsvr03.internetintuitive.net with esmtpa (Exim 4.69)
+	(envelope-from <opensource@keylevel.com>)
+	id 1TFsUp-0002Xh-8w; Sun, 23 Sep 2012 21:09:43 +0100
+Mime-Version: 1.0 (Apple Message framework v1278)
+From: Chris Tapp <opensource@keylevel.com>
+In-Reply-To: <CAB3sqtaLL81HnFqnE5FKy0j7o8cpNUj6S7qVk6JO3EHTKBPDvg@mail.gmail.com>
+Date: Sun, 23 Sep 2012 21:09:40 +0100
+Message-Id: <9E8C582C-5DC7-4239-B2ED-9F3282861D38@keylevel.com>
+References: <CAB3sqtaLL81HnFqnE5FKy0j7o8cpNUj6S7qVk6JO3EHTKBPDvg@mail.gmail.com>
+To: Tarek El-Sherbiny <tarek.elsherbiny@gmail.com>
+X-Mailer: Apple Mail (2.1278)
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - hxhsvr03.internetintuitive.net
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - keylevel.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Cc: yocto@yoctoproject.org
+Subject: Re: what are libraries required to use SDL
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,32 +37,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 23 Sep 2012 19:07:05 -0000
-Content-Type: multipart/alternative; boundary=00248c6a7a8e9a962904ca632d5a
-
---00248c6a7a8e9a962904ca632d5a
-Content-Type: text/plain; charset=ISO-8859-1
-
-Hi,
-
-I'm porting a program which uses SDL to openembedded Yocto-project. I have
-included libsdl to my image but SDL is failling to initialize
-SDL_Init(SDL_INIT_VIDEO) gives:
- No available video device
-
-What are the packages that I need to install to get SDL video device?
-
-Thanks
-
---00248c6a7a8e9a962904ca632d5a
-Content-Type: text/html; charset=ISO-8859-1
+X-List-Received-Date: Sun, 23 Sep 2012 20:09:49 -0000
+Content-Type: text/plain; charset=iso-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-Hi,<div><br></div><div><div>I&#39;m porting a program which uses SDL to ope=
-nembedded Yocto-project. I have included libsdl to my image but SDL is fail=
-ling to initialize SDL_Init(SDL_INIT_VIDEO)=A0gives:</div><div>=A0No availa=
-ble video device</div>
-<div><br></div><div>What are the=A0packages that I need to install to get S=
-DL video device?</div></div><div><br></div><div>Thanks</div>
+On 23 Sep 2012, at 20:07, Tarek El-Sherbiny wrote:
 
---00248c6a7a8e9a962904ca632d5a--
+> Hi,
+>=20
+> I'm porting a program which uses SDL to openembedded Yocto-project. I =
+have included libsdl to my image but SDL is failling to initialize =
+SDL_Init(SDL_INIT_VIDEO) gives:
+>  No available video device
+>=20
+> What are the packages that I need to install to get SDL video device?
+
+What graphics do you have available? I've got it working ok using =
+DirectFB and X11 should be ok as well.
+
+Chris Tapp
+
+opensource@keylevel.com
+www.keylevel.com
+
+
+
+
