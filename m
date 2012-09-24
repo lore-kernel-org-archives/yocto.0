@@ -1,24 +1,34 @@
-Return-Path: <dvhart@linux.intel.com>
+Return-Path: <song.liu@intel.com>
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3F7D0E0027E
-	for <yocto@yoctoproject.org>; Mon, 24 Sep 2012 12:17:03 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 24 Sep 2012 12:17:03 -0700
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0D93CE0049F
+	for <yocto@yoctoproject.org>; Mon, 24 Sep 2012 13:24:01 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 24 Sep 2012 13:24:00 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,477,1344236400"; d="scan'208";a="212133108"
-Received: from fear.jf.intel.com (HELO rage.local) ([10.7.201.160])
-	by orsmga002.jf.intel.com with ESMTP; 24 Sep 2012 12:17:02 -0700
-From: Darren Hart <dvhart@linux.intel.com>
-To: Yocto Project <yocto@yoctoproject.org>
-Date: Mon, 24 Sep 2012 12:16:56 -0700
-Message-Id: <108d5909118ad3437376595578a6376bce09e329.1348514176.git.dvhart@linux.intel.com>
-X-Mailer: git-send-email 1.7.5.4
-In-Reply-To: <4ea1ddc93fe43eff86b45f7e9a1c35bc9fce222a.1348514176.git.dvhart@linux.intel.com>
-References: <4ea1ddc93fe43eff86b45f7e9a1c35bc9fce222a.1348514176.git.dvhart@linux.intel.com>
-In-Reply-To: <4ea1ddc93fe43eff86b45f7e9a1c35bc9fce222a.1348514176.git.dvhart@linux.intel.com>
-References: <4ea1ddc93fe43eff86b45f7e9a1c35bc9fce222a.1348514176.git.dvhart@linux.intel.com>
-Cc: Darren Hart <dvhart@linux.intel.com>
-Subject: [PATCH 3/3] sys940x: Update to Linux 3.4 and EMGD 1.14
+X-IronPort-AV: E=Sophos;i="4.80,477,1344236400"; d="scan'208";a="197118282"
+Received: from orsmsx102.amr.corp.intel.com ([10.22.225.129])
+	by orsmga001.jf.intel.com with ESMTP; 24 Sep 2012 13:24:00 -0700
+Received: from orsmsx152.amr.corp.intel.com (10.22.226.39) by
+	ORSMSX102.amr.corp.intel.com (10.22.225.129) with Microsoft SMTP Server
+	(TLS) id 14.1.355.2; Mon, 24 Sep 2012 13:24:00 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.152]) by
+	ORSMSX152.amr.corp.intel.com ([169.254.8.137]) with mapi id
+	14.01.0355.002; Mon, 24 Sep 2012 13:24:00 -0700
+From: "Liu, Song" <song.liu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Agenda: Yocto Project Technical Team Meeting - Tuesday,
+	September 25,
+	2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+Thread-Index: AQHNmpKHv6e53cKgvE67xgxTrLXlDA==
+Date: Mon, 24 Sep 2012 20:23:58 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A48539C3B@ORSMSX101.amr.corp.intel.com>
+References: <7E680CB2A76BB8438D08CF13C09FC53A4844CAD5@ORSMSX101.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.140]
+MIME-Version: 1.0
+Subject: Agenda: Yocto Project Technical Team Meeting - Tuesday, September 25, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,72 +40,135 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 24 Sep 2012 19:17:03 -0000
+X-List-Received-Date: Mon, 24 Sep 2012 20:24:01 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-Update the sys940x machines to use linux-yocto 3.4 and
-EMGD 1.14.
+Agenda:
+=A0
+* Opens collection - 5 min (Song)
+* Yocto 1.3 M4 release readiness - 10 min (Song)
+  https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.3_Status#Milestone_4
+* Yocto 1.3 status  - 10 min (Song/team)
+  https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.3_Status
+* SWAT team rotation: Stefan Stanacar=A0 -> Laurentiu Serban
+* Opens - 10 min
+* Team sharing - 20 min
 
-Signed-off-by: Darren Hart <dvhart@linux.intel.com>
----
- meta-sys940x/conf/machine/sys940x-noemgd.conf |    4 ++--
- meta-sys940x/conf/machine/sys940x.conf        |    8 ++++----
- 2 files changed, 6 insertions(+), 6 deletions(-)
 
-diff --git a/meta-sys940x/conf/machine/sys940x-noemgd.conf b/meta-sys940x/conf/machine/sys940x-noemgd.conf
-index 23ec0bc..0c04dcd 100644
---- a/meta-sys940x/conf/machine/sys940x-noemgd.conf
-+++ b/meta-sys940x/conf/machine/sys940x-noemgd.conf
-@@ -1,5 +1,5 @@
- #@TYPE: Machine
--#@NAME: sys940x
-+#@NAME: sys940x-noemgd
- 
- #@DESCRIPTION: Machine configuration for Inforce SYS940X systems
- # i.e. E660 + EG20T
-@@ -10,7 +10,7 @@ require conf/machine/include/ia32-base.inc
- # Add "pcbios" if you have a non-efi version of the firmware
- MACHINE_FEATURES += "efi pcbios"
- 
--PREFERRED_VERSION_linux-yocto ?= "3.2%"
-+PREFERRED_VERSION_linux-yocto ?= "3.4%"
- 
- XSERVER ?= "${XSERVER_IA32_BASE} \
-            ${XSERVER_IA32_EXT} \
-diff --git a/meta-sys940x/conf/machine/sys940x.conf b/meta-sys940x/conf/machine/sys940x.conf
-index 46c4315..bdd655f 100644
---- a/meta-sys940x/conf/machine/sys940x.conf
-+++ b/meta-sys940x/conf/machine/sys940x.conf
-@@ -2,7 +2,7 @@
- #@NAME: sys940x
- 
- #@DESCRIPTION: Machine configuration for Inforce SYS940x systems
--# i.e. E660 + EG20T
-+# i.e. E660 + EG20T + emgd
- 
- require conf/machine/include/tune-atom.inc
- require conf/machine/include/ia32-base.inc
-@@ -11,7 +11,7 @@ require conf/machine/include/meta-intel.inc
- # Add "pcbios" if you have a non-efi version of the firmware
- MACHINE_FEATURES += "efi pcbios gst-va-mixvideo"
- 
--PREFERRED_VERSION_linux-yocto ?= "3.2%"
-+PREFERRED_VERSION_linux-yocto ?= "3.4%"
- 
- XSERVER ?= "${XSERVER_IA32_BASE} \
-            ${XSERVER_IA32_EXT} \
-@@ -19,9 +19,9 @@ XSERVER ?= "${XSERVER_IA32_BASE} \
-            "
- 
- PREFERRED_VERSION_xserver-xorg ?= "1.9.3"
--PREFERRED_VERSION_mesa-dri ?= "7.11"
-+PREFERRED_VERSION_mesa-dri ?= "8.0.4"
- PREFERRED_VERSION_xf86-input-evdev ?= "2.6.0"
--PREFERRED_VERSION_emgd-driver-bin ?= "1.10"
-+PREFERRED_VERSION_emgd-driver-bin ?= "1.14"
- 
- SERIAL_CONSOLE = "115200 ttyS0"
- APPEND += "console=ttyS0,115200 console=tty0"
--- 
-1.7.5.4
+-----Original Appointment-----
+
+
+We encourage people attending the meeting to logon the Yocto IRC chancel du=
+ring the meeting (optional):
+
+Yocto IRC: http://webchat.freenode.net/?channels=3D#yocto
+IRC Tutorial: http://www.irchelp.org/irchelp/irctutorial.html=20
+
+Conference details
+Conference name:=20
+Yocto Technical Team
+Conference date/start time:=20
+Tue Jun 26, 2012 at 10:00 AM Central Daylight Time
+Participants:=20
+30
+Duration:=20
+60 minutes
+Participant passcode:=20
+76994298
+Dial-in number:=20
+1.972.995.7777
+US Toll Free number:=20
+1.877.561.6828
+BlackBerry users, click this link to join your conference as a participant:
+1.972.995.7777x76994298#
+=A0
+Depending on where you are dialing from, either your BlackBerry will pause =
+and enter the passcode automatically or you will be prompted to click again=
+ to dial the passcode.
+
+Local and Global Access Numbers=20
+
+
+Country
+Dial-in number
+Australia:=20
+1800 636 843
+Czech Republic:=20
+242 430 350
+China (Beijing):=20
+From office dial 8-9957777 or 8784277
+Beijing Out of Office dial 5878 4277
+China (Shanghai):=20
+From office dial 8-9957777 or 3073322
+Shanghai Out of Office dial 2307 3322
+China (Shenzen):=20
+From office dial 8-9957777 or 6007877
+Shenzen Out of Office dial 2600 7877
+China (Other Cities):=20
+From IP phone dial 8-9957777
+Other cities - Non IP phone dial 021-23073322
+Denmark:=20
+8060 1400
+Finland:=20
+09 41333477
+France:=20
+0497 275888
+Germany:=20
+08161 803232
+Holland:=20
+030 2417490
+India:=20
+BSNL subscribers use 1800 425 9996 (Toll Free) Airtel subscribers use 0008 =
+009 861 212 (Toll Free) From TI Campus use 89957777 Others use 2509 9555 (L=
+andline within Bangalore) or
+80 2509 9555 (Outside Bangalore)
+Israel:=20
+09 790 6715
+Italy:=20
+039 69061234 (039 is local city code not country code)
+Japan:=20
+From TI Campus use 8 995 7777
+Outside TI use 03 4331 3777
+Malaysia:=20
+From IP phone dial 2643799
+From Kuala Lumpur dial 4264 3799
+Outside Kuala Lumpur dial (03)4264 3799
+Norway:=20
+2 295 8744
+Philippines:=20
+From Baguio City use 4471177
+From Metro Manila area use 8702477
+Singapore:=20
+From IP phone dial 3894777
+Outside TI use 6389 4777
+South Korea:=20
+From IP phone dial 5606998
+From Seoul dial 5606998
+Outside Seoul dial (02)5606998
+Sweden:=20
+08 58755577
+Taiwan:=20
+From IP phone dial 1363
+From Taipei dial 2241 1363
+Outside Taipei dial (02)2241 1363
+Turkey:=20
+Landline Only dial 0811 288 0001
+then enter 877 633 1123
+UK:=20
+01604 663003
+US:=20
+972 995 7777 or 1877 561 6828
+
+Recurring conferences
+First scheduled conference:=20
+Tue Jun 26, 2012
+Recurrence frequency:=20
+Weekly - Every 1 week(s) on Tuesday
+Recurrence ends:=20
+End on Fri Jun 21, 2013, 10:40 AM CDT
+
+
 
 
