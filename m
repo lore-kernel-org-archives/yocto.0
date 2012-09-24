@@ -1,33 +1,30 @@
-Return-Path: <ross.burton@intel.com>
-Received: from orsmga101.jf.intel.com (mga06.intel.com [134.134.136.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 717F2E01447
-	for <yocto@yoctoproject.org>; Mon, 24 Sep 2012 04:15:22 -0700 (PDT)
-Received: from mail-oa0-f48.google.com ([209.85.219.48])
-	by mga02.intel.com with ESMTP/TLS/RC4-SHA; 24 Sep 2012 04:15:22 -0700
-Received: by oagh2 with SMTP id h2so708289oag.35
-	for <yocto@yoctoproject.org>; Mon, 24 Sep 2012 04:15:21 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type:x-gm-message-state;
-	bh=nMq3hYOMR4voTO/J25nLTJQIbA75u7n+TvYZi7tCjUU=;
-	b=VQQR8rv1pMTTvpRHTxgodBgFyECjlEIgWWZH1g61kRmRiULUQ0uyjP+ZBVwkA9blvJ
-	dwBBIGZk4FUOHf3ATyrxucyEJziE7PJG3uUBEEsNUKXO/64cvn5iDUDBFdNKk66/j7ax
-	cJdid9hqbf5tuXlhpgXmdy4+TfDTVg9kZLZpjzGG/Kt0n1S0F/QoF8a7GQXXjZjOaSrH
-	m/0f9hNDAtROmpYZJa/K38MtoWe/bkK3E1BtxswoNUBnfpbF08AgNMrgJqxEiOEZ4aQL
-	EIUXBMbt9OgpsAmPS0HYC7LxDKCcOWrj5yVE4qnfoEEdpwZtVRoTIXSYxB49U75lpDEf
-	zfvQ==
-Received: by 10.182.179.100 with SMTP id df4mr9619306obc.59.1348485321004;
-	Mon, 24 Sep 2012 04:15:21 -0700 (PDT)
+Return-Path: <twoerner@gmail.com>
+Received: from mail-lb0-f176.google.com (mail-lb0-f176.google.com
+	[209.85.217.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9DA5CE00347
+	for <yocto@yoctoproject.org>; Mon, 24 Sep 2012 09:29:31 -0700 (PDT)
+Received: by lboi15 with SMTP id i15so8302863lbo.35
+	for <yocto@yoctoproject.org>; Mon, 24 Sep 2012 09:29:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=ks1QiKUb2GnyRtwKgXYkS6NwAZc48d9FbJF1SEaWCi0=;
+	b=f4Rp0BYRg7d2c4GUyzWkUvyN04XazXIuyUG61fQn6hCjmb3nQ7oF5FzbHAuQxxP8Fn
+	ArHx8Jk2+TNtxv2YTaRug4T11kisZEAp0RDmJQGKnzdPue7yTf0a88mP1gJpSAfppMxW
+	lYZDcWCxdDBFai9rBcIfL2om9xQKGSAmgzUnIv2/40789FezdOU2+4v8jhptvDacdK8h
+	N9A7R5h0XjOXnL0SUcq7MD1ttDZJsD7qTh+sFoXh9lv1xrlWbrM0s5PHRm5MS1u4fjwW
+	UtG8l8vMnAd95HpGzbXsWooRSprSTBJm8DyueI6zdqPxmnpBmliC0fAG1aLQwuQ4G6ql
+	8uaw==
 MIME-Version: 1.0
-Received: by 10.182.79.105 with HTTP; Mon, 24 Sep 2012 04:15:00 -0700 (PDT)
+Received: by 10.112.103.71 with SMTP id fu7mr4335492lbb.21.1348504147532; Mon,
+	24 Sep 2012 09:29:07 -0700 (PDT)
+Received: by 10.112.37.2 with HTTP; Mon, 24 Sep 2012 09:29:07 -0700 (PDT)
 In-Reply-To: <1716058.TZM8ukYCTx@helios>
 References: <1716058.TZM8ukYCTx@helios>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Mon, 24 Sep 2012 12:15:00 +0100
-Message-ID: <CAJTo0LbBVgqMwoQi-M3OpwhYvn2eeUNDmteg6iS6fSwWq3HyFw@mail.gmail.com>
+Date: Mon, 24 Sep 2012 12:29:07 -0400
+Message-ID: <CAHUNapTDaEJUi9vZ7rLqG_E3Oyoam9w1nSkKTwfLQepFzUWbgw@mail.gmail.com>
+From: Trevor Woerner <twoerner@gmail.com>
 To: Paul Eggleton <paul.eggleton@linux.intel.com>
-X-Gm-Message-State: ALoCoQkPe57y9+mYicp30347t48EIgZ/CBGN8KIc6TsAhjoKvz0J614DmQh5xjxWyakRiiJ8RCBN
 Cc: yocto@yoctoproject.org
 Subject: Re: Supported host distro updates
 X-BeenThere: yocto@yoctoproject.org
@@ -41,15 +38,15 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 24 Sep 2012 11:15:22 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Mon, 24 Sep 2012 16:29:32 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On 24 September 2012 12:10, Paul Eggleton <paul.eggleton@linux.intel.com> wrote:
->             Debian GNU/Linux 6.0.4 (squeeze) \n \
+On Mon, Sep 24, 2012 at 7:10 AM, Paul Eggleton
+<paul.eggleton@linux.intel.com> wrote:
+>             openSUSE 11.4 \n \
+>             openSUSE 12.1 \n \
 
-The latest stable is 6.0.5, so someone keep up to date with Debian
-Stable will get the warning (it's just a roll-up release of security
-and critical fixes).
-
-Ross
+openSUSE 12.2 was released on September 5th. I have been using it
+since around then and haven't found any issues. Is there some defacto
+test I can run to definitively say 12.2 works fine with Yocto?
 
