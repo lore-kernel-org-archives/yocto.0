@@ -1,30 +1,23 @@
-Return-Path: <twoerner@gmail.com>
-Received: from mail-lb0-f176.google.com (mail-lb0-f176.google.com
-	[209.85.217.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9DA5CE00347
-	for <yocto@yoctoproject.org>; Mon, 24 Sep 2012 09:29:31 -0700 (PDT)
-Received: by lboi15 with SMTP id i15so8302863lbo.35
-	for <yocto@yoctoproject.org>; Mon, 24 Sep 2012 09:29:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=ks1QiKUb2GnyRtwKgXYkS6NwAZc48d9FbJF1SEaWCi0=;
-	b=f4Rp0BYRg7d2c4GUyzWkUvyN04XazXIuyUG61fQn6hCjmb3nQ7oF5FzbHAuQxxP8Fn
-	ArHx8Jk2+TNtxv2YTaRug4T11kisZEAp0RDmJQGKnzdPue7yTf0a88mP1gJpSAfppMxW
-	lYZDcWCxdDBFai9rBcIfL2om9xQKGSAmgzUnIv2/40789FezdOU2+4v8jhptvDacdK8h
-	N9A7R5h0XjOXnL0SUcq7MD1ttDZJsD7qTh+sFoXh9lv1xrlWbrM0s5PHRm5MS1u4fjwW
-	UtG8l8vMnAd95HpGzbXsWooRSprSTBJm8DyueI6zdqPxmnpBmliC0fAG1aLQwuQ4G6ql
-	8uaw==
-MIME-Version: 1.0
-Received: by 10.112.103.71 with SMTP id fu7mr4335492lbb.21.1348504147532; Mon,
-	24 Sep 2012 09:29:07 -0700 (PDT)
-Received: by 10.112.37.2 with HTTP; Mon, 24 Sep 2012 09:29:07 -0700 (PDT)
-In-Reply-To: <1716058.TZM8ukYCTx@helios>
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C83F0E00347
+	for <yocto@yoctoproject.org>; Mon, 24 Sep 2012 09:33:52 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 24 Sep 2012 09:33:52 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,476,1344236400"; d="scan'208";a="212038677"
+Received: from unknown (HELO helios.localnet) ([10.252.122.13])
+	by orsmga002.jf.intel.com with ESMTP; 24 Sep 2012 09:33:51 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Trevor Woerner <twoerner@gmail.com>
+Date: Mon, 24 Sep 2012 17:33:49 +0100
+Message-ID: <1411704.42mFN9N5m0@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.9.1 (Linux/3.2.0-31-generic-pae; KDE/4.9.1; i686; ; )
+In-Reply-To: <CAHUNapTDaEJUi9vZ7rLqG_E3Oyoam9w1nSkKTwfLQepFzUWbgw@mail.gmail.com>
 References: <1716058.TZM8ukYCTx@helios>
-Date: Mon, 24 Sep 2012 12:29:07 -0400
-Message-ID: <CAHUNapTDaEJUi9vZ7rLqG_E3Oyoam9w1nSkKTwfLQepFzUWbgw@mail.gmail.com>
-From: Trevor Woerner <twoerner@gmail.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
+	<CAHUNapTDaEJUi9vZ7rLqG_E3Oyoam9w1nSkKTwfLQepFzUWbgw@mail.gmail.com>
+MIME-Version: 1.0
 Cc: yocto@yoctoproject.org
 Subject: Re: Supported host distro updates
 X-BeenThere: yocto@yoctoproject.org
@@ -38,15 +31,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 24 Sep 2012 16:29:32 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Mon, 24 Sep 2012 16:33:52 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On Mon, Sep 24, 2012 at 7:10 AM, Paul Eggleton
-<paul.eggleton@linux.intel.com> wrote:
->             openSUSE 11.4 \n \
->             openSUSE 12.1 \n \
+On Monday 24 September 2012 12:29:07 Trevor Woerner wrote:
+> On Mon, Sep 24, 2012 at 7:10 AM, Paul Eggleton
+> 
+> <paul.eggleton@linux.intel.com> wrote:
+> >             openSUSE 11.4 \n \
+> >             openSUSE 12.1 \n \
+> 
+> openSUSE 12.2 was released on September 5th. I have been using it
+> since around then and haven't found any issues. Is there some defacto
+> test I can run to definitively say 12.2 works fine with Yocto?
 
-openSUSE 12.2 was released on September 5th. I have been using it
-since around then and haven't found any issues. Is there some defacto
-test I can run to definitively say 12.2 works fine with Yocto?
+IIRC, when we tested the 12.2 pre-release we found we were unable to support 
+it due to the following bug:
+
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=2201
+
+If that is definitely fixed and builds run through OK, we should be able to add 
+it to our host distro tests and declare it supported.
+
+Cheers,
+Paul
+
+-- 
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
