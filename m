@@ -1,33 +1,34 @@
-Return-Path: <tarek.elsherbiny@gmail.com>
-Received: from mail-qa0-f41.google.com (mail-qa0-f41.google.com
-	[209.85.216.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B0FC0E013D2
-	for <yocto@yoctoproject.org>; Mon, 24 Sep 2012 02:16:35 -0700 (PDT)
-Received: by qatp27 with SMTP id p27so1126629qat.14
-	for <yocto@yoctoproject.org>; Mon, 24 Sep 2012 02:16:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=64bZF+mwsjeUqA5MYKNfW6yJ8UmO0gU9mzUsjRFXAfQ=;
-	b=uydW/MJ4eK4pN+AdzEdFyw73g08nDcFKGJs0XzZnNPXoXkqWX1SLyFOA72L6M/xhik
-	+86S+SBLBY0nXFsdPKodtoo/i9KOtBgYSlTnbNWsHAzHTr3i13Esqlv7Zj0rdeosxuIK
-	wwd4ReQej5hRgAf0oFnN4t7HKqfoBw2CeMjC61i37SINYpLg013BuS1fHYhYBmBh/pXv
-	6vshKnlOESL+2yHU5YoC4zQ5nw3XGOT9jmhNe4R2rsXV1ObG4fWJY5sr62+TU6yWfpRQ
-	0OMP0/lcHdaAqGbOYGNqzUkrz9BHeUexmxFW4pRtuBvDaUtfQJZC0M+RyFIWMPgzWX0M
-	tNBQ==
-MIME-Version: 1.0
-Received: by 10.229.135.133 with SMTP id n5mr8528694qct.124.1348478188719;
-	Mon, 24 Sep 2012 02:16:28 -0700 (PDT)
-Received: by 10.224.174.19 with HTTP; Mon, 24 Sep 2012 02:16:28 -0700 (PDT)
-In-Reply-To: <9E8C582C-5DC7-4239-B2ED-9F3282861D38@keylevel.com>
-References: <CAB3sqtaLL81HnFqnE5FKy0j7o8cpNUj6S7qVk6JO3EHTKBPDvg@mail.gmail.com>
-	<9E8C582C-5DC7-4239-B2ED-9F3282861D38@keylevel.com>
-Date: Mon, 24 Sep 2012 10:16:28 +0100
-Message-ID: <CAB3sqtbAiXcExJVa4B=O=vyLMAYEDSFWQa+BwGAGessmd2PFqA@mail.gmail.com>
-From: Tarek El-Sherbiny <tarek.elsherbiny@gmail.com>
-To: Chris Tapp <opensource@keylevel.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: what are libraries required to use SDL
+Return-Path: <ross.burton@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0394CE013D2
+	for <yocto@yoctoproject.org>; Mon, 24 Sep 2012 02:28:17 -0700 (PDT)
+Received: from mail-wg0-f54.google.com ([74.125.82.54])
+	by mga09.intel.com with ESMTP/TLS/RC4-SHA; 24 Sep 2012 02:28:03 -0700
+Received: by wgbdt10 with SMTP id dt10so3492973wgb.11
+	for <yocto@yoctoproject.org>; Mon, 24 Sep 2012 02:28:14 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=from:to:cc:subject:date:message-id:x-mailer:x-gm-message-state;
+	bh=U2PB8bAZnWSu2YiFOw+K3g7nYawtb/aAujDfGSHZ0NY=;
+	b=nQpDWxCnDmNPX6pe2L91Y4reu8fIovAumYRd4YO4ys3NOG/rJIfxqWPN0EoXG6f1OB
+	xj0Ibi/WNn591uTm5l1VIZ5ObM5y9Pe5q8HY5a6KHqFWQBTwNoJq66E00RnZQFWTsmLn
+	rGwkQCY/JbzosON9a64cEsyjIKtGYbH+sGgH6gG6kdPxhQv5/WqJ4JmTPoU25dTKVzbB
+	J/k1pIBcGrwH3WQNX1PT9qFxHqoMHz//FKgHLPTT6C2upbxjkkQwkAbK1fM41iXk9Kq3
+	tOfabAfB1fMgQGOyBpVDLT1lLpYD4ul4b1j06+Itcrz1mW5ldUeO4an0jBQGHJiBDSfN
+	31IA==
+Received: by 10.180.95.193 with SMTP id dm1mr13033235wib.10.1348478894565;
+	Mon, 24 Sep 2012 02:28:14 -0700 (PDT)
+Received: from melchett.burtonini.com (35.106.2.81.in-addr.arpa. [81.2.106.35])
+	by mx.google.com with ESMTPS id cu1sm13870533wib.6.2012.09.24.02.28.13
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Mon, 24 Sep 2012 02:28:13 -0700 (PDT)
+From: Ross Burton <ross.burton@intel.com>
+To: yocto@yoctoproject.org
+Date: Mon, 24 Sep 2012 10:27:18 +0100
+Message-Id: <1348478838-28779-1-git-send-email-ross.burton@intel.com>
+X-Mailer: git-send-email 1.7.10
+X-Gm-Message-State: ALoCoQkCn/r0nCPlN19poTZF0LRptmL5oCEl3zw/PxwVyw/aegW/0cWpz8gx8yzWs2l4dsjAa1pT
+Subject: [PATCH] meta-emenlow: add missing exa dependency
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,128 +40,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 24 Sep 2012 09:16:35 -0000
-Content-Type: multipart/alternative; boundary=00248c6a672e6d102204ca6f0b6a
+X-List-Received-Date: Mon, 24 Sep 2012 09:28:18 -0000
 
---00248c6a672e6d102204ca6f0b6a
-Content-Type: text/plain; charset=ISO-8859-1
+The psb video drivers use the EXA framework, so add a dependency on
+xserver-xorg-module-exa.
 
-I'm using the MM soc i.MX6 from freescale. My application doesn't require a
-full fledged desktop GUI so I'm basing my work on minimal image. The
-application needs to play video "Possibly full screen" using gstreamer and
-just draw some buttons over the video for control using SDL.
+[YOCTO #3149]
 
-I have included libsdl - libsdl-image - libx11 and this is what was
-installed:
-root@imx6qsabrelite:~# rpm -qa |grep sdl
-libsdl-1.2-0-1.2.15-r0.armv7a
-libsdl-image-1.2-0-1.2.10-r3.armv7a
+Signed-off-by: Ross Burton <ross.burton@intel.com>
+---
+ .../xserver-xorg-video-psb/xserver-xorg-video-psb_0.32.1.bb        |    4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-root@imx6qsabrelite:~# rpm -qa |grep libx
-libxau6-1.0.7-r0.armv7a
-libxdmcp6-1.1.1-r0.armv7a
-libxml2-2.7.8-r7.armv7a
-libxcb1-1.8.1-r0.armv7a
-libx11-6-1.4.4-r3.armv7a
-libxext6-1.3.1-r0.armv7a
-libx11-xcb1-1.4.4-r3.armv7a
-libxfixes3-5.0-r0.armv7a
-libxrender1-0.9.7-r0.armv7a
-libxi6-1.4.5-r0.armv7a
-libxxf86vm1-1.1.2-r0.armv7a
-libxdamage1-1.1.3-r1.armv7a
-libxtst6-1.2.1-r0.armv7a
+diff --git a/meta-emenlow/recipes-graphics/xserver-xorg-video-psb/xserver-xorg-video-psb_0.32.1.bb b/meta-emenlow/recipes-graphics/xserver-xorg-video-psb/xserver-xorg-video-psb_0.32.1.bb
+index 9de68f4..56466a0 100644
+--- a/meta-emenlow/recipes-graphics/xserver-xorg-video-psb/xserver-xorg-video-psb_0.32.1.bb
++++ b/meta-emenlow/recipes-graphics/xserver-xorg-video-psb/xserver-xorg-video-psb_0.32.1.bb
+@@ -1,7 +1,7 @@
+ DESCRIPTION = "2D graphics driver for Poulsbo"
+ LICENSE = "MIT"
+ LIC_FILES_CHKSUM = "file://MIT_License.txt;md5=732825ecdcf420261531d935fcd914a7"
+-PR = "r2"
++PR = "r3"
+ 
+ inherit autotools
+ 
+@@ -34,4 +34,6 @@ FILES_${PN} += "${libdir}/xorg/modules/drivers/libmm.so \
+ 
+ DEPENDS += "virtual/libgl virtual/xserver"
+ 
++RDEPENDS_${PN} = "xserver-xorg-module-exa"
++
+ COMPATIBLE_MACHINE = "emenlow"
+-- 
+1.7.10
 
-I still get the same error message so I'm not sure what else I need to do
-to tell SDL to use HDMI video output?
 
-If it easer to use DirectFB rather than libx11 I can do that. Is it
-only directfb that I need to include? Is there any configuration parameters
-that I need to enable?
-
-Thanks in advance.
-
-On Sun, Sep 23, 2012 at 9:09 PM, Chris Tapp <opensource@keylevel.com> wrote:
-
-> On 23 Sep 2012, at 20:07, Tarek El-Sherbiny wrote:
->
-> > Hi,
-> >
-> > I'm porting a program which uses SDL to openembedded Yocto-project. I
-> have included libsdl to my image but SDL is failling to initialize
-> SDL_Init(SDL_INIT_VIDEO) gives:
-> >  No available video device
-> >
-> > What are the packages that I need to install to get SDL video device?
->
-> What graphics do you have available? I've got it working ok using DirectFB
-> and X11 should be ok as well.
->
-> Chris Tapp
->
-> opensource@keylevel.com
-> www.keylevel.com
->
->
->
->
-
---00248c6a672e6d102204ca6f0b6a
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-I&#39;m using the MM soc i.MX6 from freescale. My application doesn&#39;t r=
-equire a full fledged desktop GUI so I&#39;m basing my work on=A0minimal=A0=
-image. The application needs to play video &quot;Possibly full screen&quot;=
- using gstreamer and just draw some buttons over the video for control usin=
-g SDL.<div>
-<br>I have included libsdl -=A0libsdl-image -=A0libx11 and this is what was=
- installed:</div><div><div>root@imx6qsabrelite:~# rpm -qa |grep sdl</div><d=
-iv>libsdl-1.2-0-1.2.15-r0.armv7a</div><div>libsdl-image-1.2-0-1.2.10-r3.arm=
-v7a</div>
-</div><div><br></div><div><div>root@imx6qsabrelite:~# rpm -qa |grep libx</d=
-iv><div>libxau6-1.0.7-r0.armv7a</div><div>libxdmcp6-1.1.1-r0.armv7a</div><d=
-iv>libxml2-2.7.8-r7.armv7a</div><div>libxcb1-1.8.1-r0.armv7a</div><div>
-libx11-6-1.4.4-r3.armv7a</div><div>libxext6-1.3.1-r0.armv7a</div><div>libx1=
-1-xcb1-1.4.4-r3.armv7a</div><div>libxfixes3-5.0-r0.armv7a</div><div>libxren=
-der1-0.9.7-r0.armv7a</div><div>libxi6-1.4.5-r0.armv7a</div><div>libxxf86vm1=
--1.1.2-r0.armv7a</div>
-<div>libxdamage1-1.1.3-r1.armv7a</div><div>libxtst6-1.2.1-r0.armv7a</div></=
-div><div><br></div><div>I still get the same error message so I&#39;m not s=
-ure what else I need to do to tell SDL to use HDMI video output?</div><div>
-<br></div><div>If it easer to use DirectFB rather than libx11 I can do that=
-. Is it only=A0directfb that I need to include? Is there any configuration =
-parameters that I need to enable?</div><div><br></div><div>Thanks=A0in adva=
-nce.=A0</div>
-<div><br><div class=3D"gmail_quote">On Sun, Sep 23, 2012 at 9:09 PM, Chris =
-Tapp <span dir=3D"ltr">&lt;<a href=3D"mailto:opensource@keylevel.com" targe=
-t=3D"_blank">opensource@keylevel.com</a>&gt;</span> wrote:<br><blockquote c=
-lass=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;=
-padding-left:1ex">
-<div class=3D"HOEnZb"><div class=3D"h5">On 23 Sep 2012, at 20:07, Tarek El-=
-Sherbiny wrote:<br>
-<br>
-&gt; Hi,<br>
-&gt;<br>
-&gt; I&#39;m porting a program which uses SDL to openembedded Yocto-project=
-. I have included libsdl to my image but SDL is failling to initialize SDL_=
-Init(SDL_INIT_VIDEO) gives:<br>
-&gt; =A0No available video device<br>
-&gt;<br>
-&gt; What are the packages that I need to install to get SDL video device?<=
-br>
-<br>
-</div></div>What graphics do you have available? I&#39;ve got it working ok=
- using DirectFB and X11 should be ok as well.<br>
-<br>
-Chris Tapp<br>
-<br>
-<a href=3D"mailto:opensource@keylevel.com">opensource@keylevel.com</a><br>
-<a href=3D"http://www.keylevel.com" target=3D"_blank">www.keylevel.com</a><=
-br>
-<br>
-<br>
-<br>
-</blockquote></div><br></div>
-
---00248c6a672e6d102204ca6f0b6a--
