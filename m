@@ -1,34 +1,21 @@
-Return-Path: <ross.burton@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0394CE013D2
-	for <yocto@yoctoproject.org>; Mon, 24 Sep 2012 02:28:17 -0700 (PDT)
-Received: from mail-wg0-f54.google.com ([74.125.82.54])
-	by mga09.intel.com with ESMTP/TLS/RC4-SHA; 24 Sep 2012 02:28:03 -0700
-Received: by wgbdt10 with SMTP id dt10so3492973wgb.11
-	for <yocto@yoctoproject.org>; Mon, 24 Sep 2012 02:28:14 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=from:to:cc:subject:date:message-id:x-mailer:x-gm-message-state;
-	bh=U2PB8bAZnWSu2YiFOw+K3g7nYawtb/aAujDfGSHZ0NY=;
-	b=nQpDWxCnDmNPX6pe2L91Y4reu8fIovAumYRd4YO4ys3NOG/rJIfxqWPN0EoXG6f1OB
-	xj0Ibi/WNn591uTm5l1VIZ5ObM5y9Pe5q8HY5a6KHqFWQBTwNoJq66E00RnZQFWTsmLn
-	rGwkQCY/JbzosON9a64cEsyjIKtGYbH+sGgH6gG6kdPxhQv5/WqJ4JmTPoU25dTKVzbB
-	J/k1pIBcGrwH3WQNX1PT9qFxHqoMHz//FKgHLPTT6C2upbxjkkQwkAbK1fM41iXk9Kq3
-	tOfabAfB1fMgQGOyBpVDLT1lLpYD4ul4b1j06+Itcrz1mW5ldUeO4an0jBQGHJiBDSfN
-	31IA==
-Received: by 10.180.95.193 with SMTP id dm1mr13033235wib.10.1348478894565;
-	Mon, 24 Sep 2012 02:28:14 -0700 (PDT)
-Received: from melchett.burtonini.com (35.106.2.81.in-addr.arpa. [81.2.106.35])
-	by mx.google.com with ESMTPS id cu1sm13870533wib.6.2012.09.24.02.28.13
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Mon, 24 Sep 2012 02:28:13 -0700 (PDT)
-From: Ross Burton <ross.burton@intel.com>
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EFBC0E01447
+	for <yocto@yoctoproject.org>; Mon, 24 Sep 2012 04:10:47 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga101.ch.intel.com with ESMTP; 24 Sep 2012 04:10:47 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,474,1344236400"; d="scan'208";a="148356583"
+Received: from unknown (HELO helios.localnet) ([10.252.122.13])
+	by AZSMGA002.ch.intel.com with ESMTP; 24 Sep 2012 04:10:46 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
 To: yocto@yoctoproject.org
-Date: Mon, 24 Sep 2012 10:27:18 +0100
-Message-Id: <1348478838-28779-1-git-send-email-ross.burton@intel.com>
-X-Mailer: git-send-email 1.7.10
-X-Gm-Message-State: ALoCoQkCn/r0nCPlN19poTZF0LRptmL5oCEl3zw/PxwVyw/aegW/0cWpz8gx8yzWs2l4dsjAa1pT
-Subject: [PATCH] meta-emenlow: add missing exa dependency
+Date: Mon, 24 Sep 2012 12:10:45 +0100
+Message-ID: <1716058.TZM8ukYCTx@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.9.1 (Linux/3.2.0-31-generic-pae; KDE/4.9.1; i686; ; )
+MIME-Version: 1.0
+Subject: Supported host distro updates
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,39 +27,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 24 Sep 2012 09:28:18 -0000
+X-List-Received-Date: Mon, 24 Sep 2012 11:10:48 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-The psb video drivers use the EXA framework, so add a dependency on
-xserver-xorg-module-exa.
+Hi all,
 
-[YOCTO #3149]
+With the release coming up fairly soon, it's time to look at updating our 
+supported distro list. Currently we have the following (in meta-
+yocto/conf/distro/poky.conf):
 
-Signed-off-by: Ross Burton <ross.burton@intel.com>
----
- .../xserver-xorg-video-psb/xserver-xorg-video-psb_0.32.1.bb        |    4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+SANITY_TESTED_DISTROS ?= " \
+            Yocto (Built by Poky 7.0) 1.2 \n \
+            Ubuntu 10.04.4 LTS \n \
+            Ubuntu 11.10 \n \
+            Ubuntu 12.04 LTS \n \
+            Ubuntu 12.04.1 LTS \n \
+            Fedora release 15 (Lovelock) \n \
+            Fedora release 16 (Verne) \n \
+            Fedora release 17 (Beefy Miracle) \n \
+            CentOS release 5.6 (Final) \n \
+            CentOS release 5.7 (Final) \n \
+            CentOS release 6.2 (Final) \n \
+            Debian GNU/Linux 6.0.4 (squeeze) \n \
+            openSUSE 11.4 \n \
+            openSUSE 12.1 \n \
+	    "
 
-diff --git a/meta-emenlow/recipes-graphics/xserver-xorg-video-psb/xserver-xorg-video-psb_0.32.1.bb b/meta-emenlow/recipes-graphics/xserver-xorg-video-psb/xserver-xorg-video-psb_0.32.1.bb
-index 9de68f4..56466a0 100644
---- a/meta-emenlow/recipes-graphics/xserver-xorg-video-psb/xserver-xorg-video-psb_0.32.1.bb
-+++ b/meta-emenlow/recipes-graphics/xserver-xorg-video-psb/xserver-xorg-video-psb_0.32.1.bb
-@@ -1,7 +1,7 @@
- DESCRIPTION = "2D graphics driver for Poulsbo"
- LICENSE = "MIT"
- LIC_FILES_CHKSUM = "file://MIT_License.txt;md5=732825ecdcf420261531d935fcd914a7"
--PR = "r2"
-+PR = "r3"
- 
- inherit autotools
- 
-@@ -34,4 +34,6 @@ FILES_${PN} += "${libdir}/xorg/modules/drivers/libmm.so \
- 
- DEPENDS += "virtual/libgl virtual/xserver"
- 
-+RDEPENDS_${PN} = "xserver-xorg-module-exa"
-+
- COMPATIBLE_MACHINE = "emenlow"
+I think we should drop at least Fedora 15. What do we want to do with CentOS? 
+I've been using 6.3 here on my build machine for some time with no ill effects. 
+I believe we have some interest in preserving 5.x; should we be adding 6.3 and 
+removing 6.2? What about the rest?
+
+Cheers,
+Paul
+
 -- 
-1.7.10
 
+Paul Eggleton
+Intel Open Source Technology Centre
 
