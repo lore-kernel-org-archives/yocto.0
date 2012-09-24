@@ -1,50 +1,27 @@
-Return-Path: <B29882@freescale.com>
-Received: from co1outboundpool.messaging.microsoft.com
-	(co1ehsobe002.messaging.microsoft.com [216.32.180.185])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ED34EE00347
-	for <yocto@yoctoproject.org>; Mon, 24 Sep 2012 12:04:05 -0700 (PDT)
-Received: from mail199-co1-R.bigfish.com (10.243.78.229) by
-	CO1EHSOBE006.bigfish.com (10.243.66.69) with Microsoft SMTP Server id
-	14.1.225.23; Mon, 24 Sep 2012 19:04:05 +0000
-Received: from mail199-co1 (localhost [127.0.0.1])	by
-	mail199-co1-R.bigfish.com (Postfix) with ESMTP id 58E263800EC;
-	Mon, 24 Sep 2012 19:04:05 +0000 (UTC)
-X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null); IPV:NLI;
-	H:mail.freescale.net; RD:none; EFVD:NLI
-X-SpamScore: -1
-X-BigFish: VS-1(zz98dI9371Izz1202h1d1ah1d2ahzz8275bhz2dh2a8h668h839h8e2h8e3hd25hf0ah107ah10d2h1288h12a5h12a9h12bdh137ahbe9i1155h)
-Received: from mail199-co1 (localhost.localdomain [127.0.0.1]) by mail199-co1
-	(MessageSwitch) id 1348513444379311_25623;
-	Mon, 24 Sep 2012 19:04:04 +0000 (UTC)
-Received: from CO1EHSMHS015.bigfish.com (unknown [10.243.78.250])	by
-	mail199-co1.bigfish.com (Postfix) with ESMTP id 50F68D8004A;
-	Mon, 24 Sep 2012 19:04:04 +0000 (UTC)
-Received: from mail.freescale.net (70.37.183.190) by CO1EHSMHS015.bigfish.com
-	(10.243.66.25) with Microsoft SMTP Server (TLS) id 14.1.225.23;
-	Mon, 24 Sep 2012 19:03:59 +0000
-Received: from 039-SN1MPN1-001.039d.mgd.msft.net ([169.254.1.124]) by
-	039-SN1MMR1-003.039d.mgd.msft.net ([10.84.1.16]) with mapi id
-	14.02.0309.003; Mon, 24 Sep 2012 14:03:58 -0500
-From: McClintock Matthew-B29882 <B29882@freescale.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Thread-Topic: [yocto] Supported host distro updates
-Thread-Index: AQHNmodZwUZBrkGLt06hx2UIHEjJsg==
-Date: Mon, 24 Sep 2012 19:03:57 +0000
-Message-ID: <70CC66F5C30A414DADDA6973E4CA391A6A28ED@039-SN1MPN1-001.039d.mgd.msft.net>
-References: <1716058.TZM8ukYCTx@helios>
-In-Reply-To: <1716058.TZM8ukYCTx@helios>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [70.112.201.132]
-MIME-Version: 1.0
-X-OriginatorOrg: freescale.com
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Supported host distro updates
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2133AE0027E
+	for <yocto@yoctoproject.org>; Mon, 24 Sep 2012 12:17:03 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 24 Sep 2012 12:17:02 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,477,1344236400"; d="scan'208";a="212133106"
+Received: from fear.jf.intel.com (HELO rage.local) ([10.7.201.160])
+	by orsmga002.jf.intel.com with ESMTP; 24 Sep 2012 12:17:02 -0700
+From: Darren Hart <dvhart@linux.intel.com>
+To: Yocto Project <yocto@yoctoproject.org>
+Date: Mon, 24 Sep 2012 12:16:55 -0700
+Message-Id: <8a77b9e91f643a6a6bfc9e2d495a204746f55632.1348514176.git.dvhart@linux.intel.com>
+X-Mailer: git-send-email 1.7.5.4
+In-Reply-To: <4ea1ddc93fe43eff86b45f7e9a1c35bc9fce222a.1348514176.git.dvhart@linux.intel.com>
+References: <4ea1ddc93fe43eff86b45f7e9a1c35bc9fce222a.1348514176.git.dvhart@linux.intel.com>
+In-Reply-To: <4ea1ddc93fe43eff86b45f7e9a1c35bc9fce222a.1348514176.git.dvhart@linux.intel.com>
+References: <4ea1ddc93fe43eff86b45f7e9a1c35bc9fce222a.1348514176.git.dvhart@linux.intel.com>
+Cc: Darren Hart <dvhart@linux.intel.com>
+Subject: [PATCH 2/3] fri2: Update to Linux 3.4 and EMGD 1.14
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: McClintock Matthew-B29882 <B29882@freescale.com>
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -53,27 +30,102 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 24 Sep 2012 19:04:06 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-ID: <0D104B83BF6BA547A34A756024038F00@mgd.freescale.com>
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 24 Sep 2012 19:17:03 -0000
 
-On Mon, Sep 24, 2012 at 6:10 AM, Paul Eggleton
-<paul.eggleton@linux.intel.com> wrote:
->             CentOS release 5.6 (Final) \n \
->             CentOS release 5.7 (Final) \n \
+Update the fri2 machines to use linux-yocto 3.4 and
+EMGD 1.14.
 
-I do testing on
+Signed-off-by: Darren Hart <dvhart@linux.intel.com>
+---
+ meta-fri2/conf/machine/fri2-noemgd.conf            |    2 +-
+ meta-fri2/conf/machine/fri2.conf                   |    6 +++---
+ .../linux/linux-yocto-rt_3.4.bbappend              |   15 +++++++++++++++
+ .../recipes-kernel/linux/linux-yocto_3.4.bbappend  |   15 +++++++++++++++
+ 4 files changed, 34 insertions(+), 4 deletions(-)
+ create mode 100644 meta-fri2/recipes-kernel/linux/linux-yocto-rt_3.4.bbappend
+ create mode 100644 meta-fri2/recipes-kernel/linux/linux-yocto_3.4.bbappend
 
-CentOS release 5.8 (Final)
-
-and
-
-Fedora release 13 (Goddard)
-
-I'm even fixing issues with libx11 now on CentOS 5.x
-
--M=
+diff --git a/meta-fri2/conf/machine/fri2-noemgd.conf b/meta-fri2/conf/machine/fri2-noemgd.conf
+index 9205292..3c25817 100644
+--- a/meta-fri2/conf/machine/fri2-noemgd.conf
++++ b/meta-fri2/conf/machine/fri2-noemgd.conf
+@@ -11,7 +11,7 @@ MACHINE_FEATURES += "wifi 3g pcbios efi"
+ MACHINE_EXTRA_RRECOMMENDS += "linux-firmware-iwlwifi-6000g2a-5"
+ 
+ PREFERRED_PROVIDER_virtual/kernel ?= "linux-yocto"
+-PREFERRED_VERSION_linux-yocto = "3.2%"
++PREFERRED_VERSION_linux-yocto = "3.4%"
+ 
+ XSERVER ?= "${XSERVER_IA32_BASE} \
+            ${XSERVER_IA32_EXT} \
+diff --git a/meta-fri2/conf/machine/fri2.conf b/meta-fri2/conf/machine/fri2.conf
+index 39fb698..dff11a8 100644
+--- a/meta-fri2/conf/machine/fri2.conf
++++ b/meta-fri2/conf/machine/fri2.conf
+@@ -15,7 +15,7 @@ MACHINE_FEATURES += "wifi 3g pcbios efi va-impl-mixvideo"
+ MACHINE_EXTRA_RRECOMMENDS += "linux-firmware-iwlwifi-6000g2a-5 ${VA_FEATURES}"
+ 
+ PREFERRED_PROVIDER_virtual/kernel ?= "linux-yocto"
+-PREFERRED_VERSION_linux-yocto = "3.2%"
++PREFERRED_VERSION_linux-yocto = "3.4%"
+ 
+ XSERVER ?= "${XSERVER_IA32_BASE} \
+            ${XSERVER_IA32_EXT} \
+@@ -23,9 +23,9 @@ XSERVER ?= "${XSERVER_IA32_BASE} \
+            "
+ 
+ PREFERRED_VERSION_xserver-xorg ?= "1.9.3"
+-PREFERRED_VERSION_mesa-dri ?= "7.11"
++PREFERRED_VERSION_mesa-dri ?= "8.0.4"
+ PREFERRED_VERSION_xf86-input-evdev ?= "2.6.0"
+-PREFERRED_VERSION_emgd-driver-bin ?= "1.10"
++PREFERRED_VERSION_emgd-driver-bin ?= "1.14"
+ 
+ # Syslinux does not know about the 64MHz uart clock and it does not detect the
+ # serial device by number. Use the IO port directly and divide the baud down to
+diff --git a/meta-fri2/recipes-kernel/linux/linux-yocto-rt_3.4.bbappend b/meta-fri2/recipes-kernel/linux/linux-yocto-rt_3.4.bbappend
+new file mode 100644
+index 0000000..a99bb82
+--- /dev/null
++++ b/meta-fri2/recipes-kernel/linux/linux-yocto-rt_3.4.bbappend
+@@ -0,0 +1,15 @@
++FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
++
++COMPATIBLE_MACHINE_fri2 = "fri2"
++KMACHINE_fri2 = "fri2"
++#KBRANCH_fri2 = "standard/preempt-rt/fri2"
++SRCREV_machine_pn-linux-yocto-rt_fri2 ?= "4ed758e1861621b6db687498e88991b5034cfa78"
++#SRCREV_meta_pn-linux-yocto-rt_fri2 ?= #"c5bddf8ea379406ffec550528e17b777a0eba24b"
++
++COMPATIBLE_MACHINE_fri2-noemgd = "fri2-noemgd"
++KMACHINE_fri2-noemgd = "fri2"
++#KBRANCH_fri2-noemgd = "standard/preempt-rt/fri2"
++SRCREV_machine_pn-linux-yocto-rt_fri2-noemgd ?= "4ed758e1861621b6db687498e88991b5034cfa78"
++#SRCREV_meta_pn-linux-yocto-rt_fri2-noemgd ?= "c5bddf8ea379406ffec550528e17b777a0eba24b"
++
++module_autoload_iwlwifi = "iwlwifi"
+diff --git a/meta-fri2/recipes-kernel/linux/linux-yocto_3.4.bbappend b/meta-fri2/recipes-kernel/linux/linux-yocto_3.4.bbappend
+new file mode 100644
+index 0000000..4c00413
+--- /dev/null
++++ b/meta-fri2/recipes-kernel/linux/linux-yocto_3.4.bbappend
+@@ -0,0 +1,15 @@
++FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
++
++COMPATIBLE_MACHINE_fri2 = "fri2"
++KMACHINE_fri2  = "fri2"
++KBRANCH_fri2 = "standard/fri2"
++SRCREV_machine_pn-linux-yocto_fri2 ?= "59c3ff750831338d05ab67d5efd7fc101c451aff"
++#SRCREV_meta_pn-linux-yocto_fri2 ?= "c5bddf8ea379406ffec550528e17b777a0eba24b"
++
++COMPATIBLE_MACHINE_fri2-noemgd = "fri2-noemgd"
++KMACHINE_fri2-noemgd  = "fri2"
++KBRANCH_fri2-noemgd = "standard/fri2"
++SRCREV_machine_pn-linux-yocto_fri2-noemgd ?= "59c3ff750831338d05ab67d5efd7fc101c451aff"
++#SRCREV_meta_pn-linux-yocto_fri2-noemgd ?= "c5bddf8ea379406ffec550528e17b777a0eba24b"
++
++module_autoload_iwlwifi = "iwlwifi"
+-- 
+1.7.5.4
 
 
