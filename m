@@ -1,36 +1,50 @@
-Return-Path: <opensource@keylevel.com>
-Received: from hxhsvr03.internetintuitive.net (hxhsvr03.internetintuitive.net
-	[80.254.228.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B22CCE0027E
-	for <yocto@yoctoproject.org>; Mon, 24 Sep 2012 11:59:09 -0700 (PDT)
-Received: from [109.224.129.17] (helo=macbook-pro.durham.keylevel.com)
-	by hxhsvr03.internetintuitive.net with esmtpa (Exim 4.69)
-	(envelope-from <opensource@keylevel.com>)
-	id 1TGDs2-0001xh-7q; Mon, 24 Sep 2012 19:59:06 +0100
-Mime-Version: 1.0 (Apple Message framework v1278)
-From: Chris Tapp <opensource@keylevel.com>
-In-Reply-To: <CAB3sqtbAiXcExJVa4B=O=vyLMAYEDSFWQa+BwGAGessmd2PFqA@mail.gmail.com>
-Date: Mon, 24 Sep 2012 19:59:03 +0100
-Message-Id: <4A72DEA8-1EB1-4DE5-B3B7-9DF9CAE626FF@keylevel.com>
-References: <CAB3sqtaLL81HnFqnE5FKy0j7o8cpNUj6S7qVk6JO3EHTKBPDvg@mail.gmail.com>
-	<9E8C582C-5DC7-4239-B2ED-9F3282861D38@keylevel.com>
-	<CAB3sqtbAiXcExJVa4B=O=vyLMAYEDSFWQa+BwGAGessmd2PFqA@mail.gmail.com>
-To: Tarek El-Sherbiny <tarek.elsherbiny@gmail.com>
-X-Mailer: Apple Mail (2.1278)
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - hxhsvr03.internetintuitive.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: yocto@yoctoproject.org
-Subject: Re: what are libraries required to use SDL
+Return-Path: <B29882@freescale.com>
+Received: from co1outboundpool.messaging.microsoft.com
+	(co1ehsobe002.messaging.microsoft.com [216.32.180.185])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ED34EE00347
+	for <yocto@yoctoproject.org>; Mon, 24 Sep 2012 12:04:05 -0700 (PDT)
+Received: from mail199-co1-R.bigfish.com (10.243.78.229) by
+	CO1EHSOBE006.bigfish.com (10.243.66.69) with Microsoft SMTP Server id
+	14.1.225.23; Mon, 24 Sep 2012 19:04:05 +0000
+Received: from mail199-co1 (localhost [127.0.0.1])	by
+	mail199-co1-R.bigfish.com (Postfix) with ESMTP id 58E263800EC;
+	Mon, 24 Sep 2012 19:04:05 +0000 (UTC)
+X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null); IPV:NLI;
+	H:mail.freescale.net; RD:none; EFVD:NLI
+X-SpamScore: -1
+X-BigFish: VS-1(zz98dI9371Izz1202h1d1ah1d2ahzz8275bhz2dh2a8h668h839h8e2h8e3hd25hf0ah107ah10d2h1288h12a5h12a9h12bdh137ahbe9i1155h)
+Received: from mail199-co1 (localhost.localdomain [127.0.0.1]) by mail199-co1
+	(MessageSwitch) id 1348513444379311_25623;
+	Mon, 24 Sep 2012 19:04:04 +0000 (UTC)
+Received: from CO1EHSMHS015.bigfish.com (unknown [10.243.78.250])	by
+	mail199-co1.bigfish.com (Postfix) with ESMTP id 50F68D8004A;
+	Mon, 24 Sep 2012 19:04:04 +0000 (UTC)
+Received: from mail.freescale.net (70.37.183.190) by CO1EHSMHS015.bigfish.com
+	(10.243.66.25) with Microsoft SMTP Server (TLS) id 14.1.225.23;
+	Mon, 24 Sep 2012 19:03:59 +0000
+Received: from 039-SN1MPN1-001.039d.mgd.msft.net ([169.254.1.124]) by
+	039-SN1MMR1-003.039d.mgd.msft.net ([10.84.1.16]) with mapi id
+	14.02.0309.003; Mon, 24 Sep 2012 14:03:58 -0500
+From: McClintock Matthew-B29882 <B29882@freescale.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Thread-Topic: [yocto] Supported host distro updates
+Thread-Index: AQHNmodZwUZBrkGLt06hx2UIHEjJsg==
+Date: Mon, 24 Sep 2012 19:03:57 +0000
+Message-ID: <70CC66F5C30A414DADDA6973E4CA391A6A28ED@039-SN1MPN1-001.039d.mgd.msft.net>
+References: <1716058.TZM8ukYCTx@helios>
+In-Reply-To: <1716058.TZM8ukYCTx@helios>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [70.112.201.132]
+MIME-Version: 1.0
+X-OriginatorOrg: freescale.com
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Supported host distro updates
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: McClintock Matthew-B29882 <B29882@freescale.com>
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -39,133 +53,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 24 Sep 2012 18:59:10 -0000
-Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_2451B7A0-FF24-46E0-9EE0-868EF553461B"
-
---Apple-Mail=_2451B7A0-FF24-46E0-9EE0-868EF553461B
+X-List-Received-Date: Mon, 24 Sep 2012 19:04:06 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-ID: <0D104B83BF6BA547A34A756024038F00@mgd.freescale.com>
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=iso-8859-1
 
-On 24 Sep 2012, at 10:16, Tarek El-Sherbiny wrote:
+On Mon, Sep 24, 2012 at 6:10 AM, Paul Eggleton
+<paul.eggleton@linux.intel.com> wrote:
+>             CentOS release 5.6 (Final) \n \
+>             CentOS release 5.7 (Final) \n \
 
-> I'm using the MM soc i.MX6 from freescale. My application doesn't =
-require a full fledged desktop GUI so I'm basing my work on minimal =
-image. The application needs to play video "Possibly full screen" using =
-gstreamer and just draw some buttons over the video for control using =
-SDL.
+I do testing on
 
-I've no experience with that platform, but...
+CentOS release 5.8 (Final)
 
-> I have included libsdl - libsdl-image - libx11 and this is what was =
-installed:
-> root@imx6qsabrelite:~# rpm -qa |grep sdl
-> libsdl-1.2-0-1.2.15-r0.armv7a
-> libsdl-image-1.2-0-1.2.10-r3.armv7a
->=20
-> root@imx6qsabrelite:~# rpm -qa |grep libx
-> libxau6-1.0.7-r0.armv7a
-> libxdmcp6-1.1.1-r0.armv7a
-> libxml2-2.7.8-r7.armv7a
-> libxcb1-1.8.1-r0.armv7a
-> libx11-6-1.4.4-r3.armv7a
-> libxext6-1.3.1-r0.armv7a
-> libx11-xcb1-1.4.4-r3.armv7a
-> libxfixes3-5.0-r0.armv7a
-> libxrender1-0.9.7-r0.armv7a
-> libxi6-1.4.5-r0.armv7a
-> libxxf86vm1-1.1.2-r0.armv7a
-> libxdamage1-1.1.3-r1.armv7a
-> libxtst6-1.2.1-r0.armv7a
->=20
-> I still get the same error message so I'm not sure what else I need to =
-do to tell SDL to use HDMI video output?
+and
 
-Do you also need to have an X server to use Xlib?
+Fedora release 13 (Goddard)
 
->=20
-> If it easer to use DirectFB rather than libx11 I can do that. Is it =
-only directfb that I need to include? Is there any configuration =
-parameters that I need to enable?
+I'm even fixing issues with libx11 now on CentOS 5.x
 
-If you don't need a full GUI then DirectFB will certainly do the job. =
-All I did to get this going was:
-
-1) Add libsdl as a dependency;
-2) Add the following to local.conf to pull in DirectFB and build libsdl =
-to use it:
-     DISTRO_FEATURES +=3D " directfb"
-
-> Thanks in advance.=20
->=20
-> On Sun, Sep 23, 2012 at 9:09 PM, Chris Tapp <opensource@keylevel.com> =
-wrote:
-> On 23 Sep 2012, at 20:07, Tarek El-Sherbiny wrote:
->=20
-> > Hi,
-> >
-> > I'm porting a program which uses SDL to openembedded Yocto-project. =
-I have included libsdl to my image but SDL is failling to initialize =
-SDL_Init(SDL_INIT_VIDEO) gives:
-> >  No available video device
-> >
-> > What are the packages that I need to install to get SDL video =
-device?
->=20
-> What graphics do you have available? I've got it working ok using =
-DirectFB and X11 should be ok as well.
->=20
-> Chris Tapp
->=20
-> opensource@keylevel.com
-> www.keylevel.com
->=20
->=20
->=20
->=20
-
-Chris Tapp
-
-opensource@keylevel.com
-www.keylevel.com
+-M=
 
 
-
-
---Apple-Mail=_2451B7A0-FF24-46E0-9EE0-868EF553461B
-Content-Transfer-Encoding: 7bit
-Content-Type: text/html;
-	charset=iso-8859-1
-
-<html><head></head><body style="word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-line-break: after-white-space; "><div><div>On 24 Sep 2012, at 10:16, Tarek El-Sherbiny wrote:</div><br class="Apple-interchange-newline"><blockquote type="cite">I'm using the MM soc i.MX6 from freescale. My application doesn't require a full fledged desktop GUI so I'm basing my work on&nbsp;minimal&nbsp;image. The application needs to play video "Possibly full screen" using gstreamer and just draw some buttons over the video for control using SDL.</blockquote><div><br></div><div>I've no experience with that platform, but...</div><div><br></div><blockquote type="cite"><div>I have included libsdl -&nbsp;libsdl-image -&nbsp;libx11 and this is what was installed:</div><div><div>root@imx6qsabrelite:~# rpm -qa |grep sdl</div><div>libsdl-1.2-0-1.2.15-r0.armv7a</div><div>libsdl-image-1.2-0-1.2.10-r3.armv7a</div>
-</div><div><br></div><div><div>root@imx6qsabrelite:~# rpm -qa |grep libx</div><div>libxau6-1.0.7-r0.armv7a</div><div>libxdmcp6-1.1.1-r0.armv7a</div><div>libxml2-2.7.8-r7.armv7a</div><div>libxcb1-1.8.1-r0.armv7a</div><div>
-libx11-6-1.4.4-r3.armv7a</div><div>libxext6-1.3.1-r0.armv7a</div><div>libx11-xcb1-1.4.4-r3.armv7a</div><div>libxfixes3-5.0-r0.armv7a</div><div>libxrender1-0.9.7-r0.armv7a</div><div>libxi6-1.4.5-r0.armv7a</div><div>libxxf86vm1-1.1.2-r0.armv7a</div>
-<div>libxdamage1-1.1.3-r1.armv7a</div><div>libxtst6-1.2.1-r0.armv7a</div></div><div><br></div><div>I still get the same error message so I'm not sure what else I need to do to tell SDL to use HDMI video output?</div></blockquote><div><br></div><div>Do you also need to have an X server to use Xlib?</div><br><blockquote type="cite"><div>
-<br></div><div>If it easer to use DirectFB rather than libx11 I can do that. Is it only&nbsp;directfb that I need to include? Is there any configuration parameters that I need to enable?</div></blockquote><div><br></div><div>If you don't need a full GUI then DirectFB will certainly do the job. All I did to get this going was:</div><div><br></div><div>1) Add libsdl as a dependency;</div><div>2) Add the following to local.conf to pull in DirectFB and build libsdl to use it:</div><div>&nbsp; &nbsp; &nbsp;DISTRO_FEATURES += " directfb"</div><br><blockquote type="cite"><div>Thanks&nbsp;in advance.&nbsp;</div>
-<div><br><div class="gmail_quote">On Sun, Sep 23, 2012 at 9:09 PM, Chris Tapp <span dir="ltr">&lt;<a href="mailto:opensource@keylevel.com" target="_blank">opensource@keylevel.com</a>&gt;</span> wrote:<br><blockquote class="gmail_quote" style="margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
-<div class="HOEnZb"><div class="h5">On 23 Sep 2012, at 20:07, Tarek El-Sherbiny wrote:<br>
-<br>
-&gt; Hi,<br>
-&gt;<br>
-&gt; I'm porting a program which uses SDL to openembedded Yocto-project. I have included libsdl to my image but SDL is failling to initialize SDL_Init(SDL_INIT_VIDEO) gives:<br>
-&gt; &nbsp;No available video device<br>
-&gt;<br>
-&gt; What are the packages that I need to install to get SDL video device?<br>
-<br>
-</div></div>What graphics do you have available? I've got it working ok using DirectFB and X11 should be ok as well.<br>
-<br>
-Chris Tapp<br>
-<br>
-<a href="mailto:opensource@keylevel.com">opensource@keylevel.com</a><br>
-<a href="http://www.keylevel.com/" target="_blank">www.keylevel.com</a><br>
-<br>
-<br>
-<br>
-</blockquote></div><br></div>
-</blockquote></div><br><div apple-content-edited="true">
-<span class="Apple-style-span" style="border-collapse: separate; color: rgb(0, 0, 0); font-family: Helvetica; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: auto; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-border-horizontal-spacing: 0px; -webkit-border-vertical-spacing: 0px; -webkit-text-decorations-in-effect: none; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; font-size: medium; "><div>Chris Tapp</div><div><br></div><div><a href="mailto:opensource@keylevel.com">opensource@keylevel.com</a></div><div><a href="http://www.keylevel.com">www.keylevel.com</a></div><div><br></div></span><br class="Apple-interchange-newline">
-</div>
-<br></body></html>
-
---Apple-Mail=_2451B7A0-FF24-46E0-9EE0-868EF553461B--
