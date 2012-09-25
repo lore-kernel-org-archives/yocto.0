@@ -1,28 +1,50 @@
-Return-Path: <scott.a.garman@intel.com>
-Received: from masterfoo.zenlinux.com (masterfoo.zenlinux.com [207.192.74.254])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 82C53E01371
-	for <yocto@yoctoproject.org>; Mon, 24 Sep 2012 17:29:50 -0700 (PDT)
-Received: from localhost (c-76-105-137-48.hsd1.or.comcast.net [76.105.137.48])
-	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
-	(No client certificate requested)
-	by masterfoo.zenlinux.com (Postfix) with ESMTP id B7D3330474
-	for <yocto@yoctoproject.org>; Mon, 24 Sep 2012 20:29:37 -0400 (EDT)
-From: Scott Garman <scott.a.garman@intel.com>
-To: yocto@yoctoproject.org
-Date: Mon, 24 Sep 2012 17:29:32 -0700
-Message-Id: <cover.1348532753.git.scott.a.garman@intel.com>
-X-Mailer: git-send-email 1.7.9.5
-X-MasterFoo-MailScanner-Information: Please contact the ISP for more
-	information
-X-MailScanner-ID: B7D3330474.4117B
-X-MasterFoo-MailScanner: Found to be clean
-X-MasterFoo-MailScanner-SpamCheck: not spam
-X-MasterFoo-MailScanner-From: scott.a.garman@intel.com
-X-Spam-Status: No
-Subject: [PATCH 00/62] denzil pull request 2
+Return-Path: <B29882@freescale.com>
+Received: from ch1outboundpool.messaging.microsoft.com
+	(ch1ehsobe002.messaging.microsoft.com [216.32.181.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C71FBE01371
+	for <yocto@yoctoproject.org>; Mon, 24 Sep 2012 17:48:55 -0700 (PDT)
+Received: from mail212-ch1-R.bigfish.com (10.43.68.240) by
+	CH1EHSOBE011.bigfish.com (10.43.70.61) with Microsoft SMTP Server id
+	14.1.225.23; Tue, 25 Sep 2012 00:48:55 +0000
+Received: from mail212-ch1 (localhost [127.0.0.1])	by
+	mail212-ch1-R.bigfish.com (Postfix) with ESMTP id 01526300193;
+	Tue, 25 Sep 2012 00:48:55 +0000 (UTC)
+X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null); IPV:NLI;
+	H:mail.freescale.net; RD:none; EFVD:NLI
+X-SpamScore: -1
+X-BigFish: VS-1(zz98dI9371I1432Id6f1izz1202h1d1ah1d2ahzz8275bh8275dhz2dh2a8h668h839h8e2h8e3hd25hf0ah107ah10d2h1288h12a5h12a9h12bdh137ah13b6hbe9i1155h)
+Received: from mail212-ch1 (localhost.localdomain [127.0.0.1]) by mail212-ch1
+	(MessageSwitch) id 1348534133508857_373;
+	Tue, 25 Sep 2012 00:48:53 +0000 (UTC)
+Received: from CH1EHSMHS026.bigfish.com (snatpool2.int.messaging.microsoft.com
+	[10.43.68.233])	by mail212-ch1.bigfish.com (Postfix) with ESMTP id
+	72FA7E0076;	Tue, 25 Sep 2012 00:48:53 +0000 (UTC)
+Received: from mail.freescale.net (70.37.183.190) by CH1EHSMHS026.bigfish.com
+	(10.43.70.26) with Microsoft SMTP Server (TLS) id 14.1.225.23;
+	Tue, 25 Sep 2012 00:48:53 +0000
+Received: from 039-SN1MPN1-001.039d.mgd.msft.net ([169.254.1.124]) by
+	039-SN1MMR1-003.039d.mgd.msft.net ([10.84.1.16]) with mapi id
+	14.02.0309.003; Mon, 24 Sep 2012 19:48:52 -0500
+From: McClintock Matthew-B29882 <B29882@freescale.com>
+To: "Bodke, Kishore K" <kishore.k.bodke@intel.com>
+Thread-Topic: [yocto] do_package_write_rpm failed.
+Thread-Index: AQHNmreIDSFbhZlw9EaZAncIj4XW+w==
+Date: Tue, 25 Sep 2012 00:48:52 +0000
+Message-ID: <70CC66F5C30A414DADDA6973E4CA391A6A3DB1@039-SN1MPN1-001.039d.mgd.msft.net>
+References: <D956029D25CF204F948EA0FB515E1EE2264BB139@ORSMSX106.amr.corp.intel.com>
+In-Reply-To: <D956029D25CF204F948EA0FB515E1EE2264BB139@ORSMSX106.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [70.112.201.132]
+MIME-Version: 1.0
+X-OriginatorOrg: freescale.com
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: do_package_write_rpm failed.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: McClintock Matthew-B29882 <B29882@freescale.com>
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -31,311 +53,175 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 25 Sep 2012 00:29:50 -0000
+X-List-Received-Date: Tue, 25 Sep 2012 00:48:56 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-ID: <66CEF3D862EADF458A02236D84534059@mgd.freescale.com>
+Content-Transfer-Encoding: quoted-printable
 
-Hello,
+On Mon, Sep 24, 2012 at 6:44 PM, Bodke, Kishore K
+<kishore.k.bodke@intel.com> wrote:
+> Hi,
+>
+>
+>
+> I have a modified version of zlib package and trying to build and I get
+> error while doing the packaging.
+>
+> Any idea what this error is?
+>
+>
+>
+> ERROR: Logfile of failure stored in:
+> /usr/local/src/shumway/sep12/build-shumway2/tmp/work/x86_64-poky-linux/zl=
+ib-qat-1.2.7-r9/temp/log.do_package_write_rpm.5284
+>
+> Log data follows:
+>
+> | DEBUG: Executing python function sstate_task_prefunc
+>
+> | DEBUG: Python function sstate_task_prefunc finished
+>
+> | DEBUG: Executing python function do_package_write_rpm
+>
+> | DEBUG: Executing python function read_subpackage_metadata
+>
+> | DEBUG: Python function read_subpackage_metadata finished
+>
+> | DEBUG: Executing python function do_package_rpm
+>
+> | DEBUG: Executing python function write_specfile
+>
+> | NOTE: Creating RPM package for zlib-qat
+>
+> | NOTE: Creating RPM package for zlib-qat
+>
+> | NOTE: Creating RPM package for zlib-qat-dev
+>
+> | NOTE: Creating RPM package for zlib-qat-dbg
+>
+> | NOTE: Creating RPM package for zlib-qat-staticdev
+>
+> | NOTE: Creating RPM package for zlib-qat-doc
+>
+> | DEBUG: Python function write_specfile finished
+>
+> | DEBUG: Executing shell function BUILDSPEC
+>
+> | Building target platforms: x86_64-poky-linux
+>
+> | Processing files: zlib-qat-1.2.7-r9.x86_64
+>
+> | Finding  Provides:
+> /usr/local/src/shumway/sep12/build-shumway2/tmp/work/x86_64-poky-linux/zl=
+ib-qat-1.2.7-r9/zlib-qat.provides
+>
+> | Finding  Requires:
+> /usr/local/src/shumway/sep12/build-shumway2/tmp/work/x86_64-poky-linux/zl=
+ib-qat-1.2.7-r9/zlib-qat.requires
+>
+> | Provides: libz.so.1(ZLIB_1.2.0.2)(64bit) libz.so.1(ZLIB_1.2.2.4)(64bit)
+> libz.so.1(ZLIB_1.2.0)(64bit) libz.so.1(ZLIB_1.2.5.1)(64bit)
+> libz.so.1(ZLIB_1.2.2.3)(64bit) libz.so.1(ZLIB_1.2.3.4)(64bit)
+> libz.so.1(ZLIB_1.2.7)(64bit) libz.so.1(ZLIB_1.2.2)(64bit)
+> libz.so.1(ZLIB_1.2.3.3)(64bit) libz.so.1(ZLIB_1.2.5.2)(64bit)
+> libz.so.1(ZLIB_1.2.3.5)(64bit) libz.so.1(ZLIB_1.2.0.8)(64bit)
+> libz.so.1()(64bit)
+>
+> | Requires: rtld(GNU_HASH) libc.so.6(GLIBC_2.14)(64bit)
+> libcrypto.so.1.0.0()(64bit) libpthread.so.0(GLIBC_2.2.5)(64bit)
+> libpthread.so.0(GLIBC_2.3.4)(64bit) libc.so.6()(64bit)
+> libc.so.6(GLIBC_2.2.5)(64bit) libc.so.6(GLIBC_2.3.4)(64bit)
+> libpthread.so.0(GLIBC_2.3.2)(64bit) libdl.so.2()(64bit)
+> librt.so.1(GLIBC_2.2.5)(64bit) libpthread.so.0()(64bit)
+> libcrypto.so.1.0.0(OPENSSL_1.0.0)(64bit) librt.so.1()(64bit)
+> libc.so.6(GLIBC_2.3.2)(64bit)
+>
+> | Provides: libz.so.1(ZLIB_1.2.0.2)(64bit) libz.so.1(ZLIB_1.2.2.4)(64bit)
+> libz.so.1(ZLIB_1.2.0)(64bit) libz.so.1(ZLIB_1.2.5.1)(64bit)
+> libz.so.1(ZLIB_1.2.2.3)(64bit) libz.so.1(ZLIB_1.2.3.4)(64bit)
+> libz.so.1(ZLIB_1.2.7)(64bit) libz.so.1(ZLIB_1.2.2)(64bit)
+> libz.so.1(ZLIB_1.2.3.3)(64bit) libz.so.1(ZLIB_1.2.5.2)(64bit)
+> libz.so.1(ZLIB_1.2.3.5)(64bit) libz.so.1(ZLIB_1.2.0.8)(64bit)
+> libz.so.1()(64bit)
+>
+> | Requires: rtld(GNU_HASH) libc.so.6(GLIBC_2.14)(64bit)
+> libcrypto.so.1.0.0()(64bit) libpthread.so.0(GLIBC_2.2.5)(64bit)
+> libpthread.so.0(GLIBC_2.3.4)(64bit) libc.so.6()(64bit)
+> libc.so.6(GLIBC_2.2.5)(64bit) libc.so.6(GLIBC_2.3.4)(64bit)
+> libpthread.so.0(GLIBC_2.3.2)(64bit) libdl.so.2()(64bit)
+> librt.so.1(GLIBC_2.2.5)(64bit) libpthread.so.0()(64bit)
+> libcrypto.so.1.0.0(OPENSSL_1.0.0)(64bit) librt.so.1()(64bit)
+> libc.so.6(GLIBC_2.3.2)(64bit)
+>
+> | Processing files: zlib-qat-dev-1.2.7-r9.x86_64
+>
+> | Finding  Provides:
+> /usr/local/src/shumway/sep12/build-shumway2/tmp/work/x86_64-poky-linux/zl=
+ib-qat-1.2.7-r9/zlib-qat.provides
+>
+> | error: line 164: Illegal char '-' in EVR:
+>
+> |
+>
+> | error: Failed to find Provides:
+>
+> |
+>
+> |
+>
+> | RPM build errors:
+>
+> |     line 164: Illegal char '-' in EVR:
 
-Just sending the cover letter here, the patchset is large.
+I've found RPM does not like - in it's variable names. Did you add a
+'-' anywhere? Maybe in your arch or package name? What did you change
+in the recipe?
 
-I've got a lot of patches for denzil now that I'd like to get merged
-before they get too out of hand, so here is my pull request for it,
-along with autobuilder output and explanation.
+-M
 
-nightly-x86:
-http://autobuilder.yoctoproject.org:8010/builders/nightly-x86/builds/729
 
-All builds green except for atom-pc, which fails during build_hddimg of
-do_bootimg due to the kernel image file not being found in the target
-sysroot.
-
-nightly-x86-lsb:
-http://autobuilder.yoctoproject.org:8010/builders/nightly-x86-lsb/builds/61
-
-Same status as nightly-x86.
-
-nightly-x86-64:
-http://autobuilder.yoctoproject.org:8010/builders/nightly-x86-64/builds/658
-
-100% Green
-
-nightly-x86-64-lsb:
-http://autobuilder.yoctoproject.org:8010/builders/nightly-x86-64-lsb/builds/59
-
-100% Green
-
-nightly-arm:
-http://autobuilder.yoctoproject.org:8010/builders/nightly-arm/builds/658
-
-100% Green
-
-nightly-arm-lsb:
-http://autobuilder.yoctoproject.org:8010/builders/nightly-arm-lsb/builds/57
-
-100% Green
-
-nightly-mips:
-http://autobuilder.yoctoproject.org:8010/builders/nightly-mips/builds/631
-
-100% Green
-
-nightly-mips-lsb:
-http://autobuilder.yoctoproject.org:8010/builders/nightly-mips-lsb/builds/56
-
-100% Green
-
-nightly-ppc:
-http://autobuilder.yoctoproject.org:8010/builders/nightly-ppc/builds/612
-
-100% Green
-
-nightly-ppc-lsb:
-http://autobuilder.yoctoproject.org:8010/builders/nightly-ppc-lsb/builds/58
-
-100% Green
-
-nightly-non-gpl3:
-http://autobuilder.yoctoproject.org:8010/builders/nightly-non-gpl3/builds/285
-
-100% Green
-
-nightly-multilib:
-http://autobuilder.yoctoproject.org:8010/builders/nightly-multilib/builds/286
-
-100% Green
-
-nightly-tiny:
-http://autobuilder.yoctoproject.org:8010/builders/nightly-tiny/builds/265
-
-100% Green
-
-The following changes since commit 65ffa7395055f7e012cb973f63f92380828eed0d:
-
-  yocto-bsp: use base branches for qemu 'newbranch' case (2012-08-21 11:35:22 +0100)
-
-are available in the git repository at:
-
-  git://git.yoctoproject.org/poky-contrib sgarman/denzil-next-pull2
-  http://git.yoctoproject.org/cgit.cgi/poky-contrib/log/?h=sgarman/denzil-next-pull2
-
-Bogdan Marinescu (1):
-  Save proxy settings
-
-Bruce Ashfield (4):
-  linux-yocto: allow do_validate_branches to handle all branches
-  kernel-yocto: set master branch to a defined SRCREV
-  kernel: save $kerndir/tools and $kerndir/lib from pruning
-  kernel.bbclass: add non-santized kernel provides
-
-Constantin Musca (1):
-  pulseaudio: upgrade to 2.1
-
-Cristian Iorga (4):
-  gst-plugin-bluetooth: update to ver. 4.101
-  bluez4: update to ver. 4.101
-  pulseaudio: upgrade to 2.0
-  libcanberra: upgrade to 0.29
-
-Darren Hart (1):
-  kernel: Add kernel headers to kernel-dev package
-
-Denys Dmytriyenko (1):
-  pulseaudio: fix typo in the patch name, pulseaudo -> pulseaudio
-
-Dongxiao Xu (1):
-  bluez-hcidump: upgrade to version 2.4
-
-Franklin S Cooper Jr (1):
-  psplash: LIC_CHKSUM Tweak
-
-Franklin S. Cooper Jr (1):
-  u-boot: Use fw_env.config if avaliable
-
-Jeff Polk (1):
-  recipes-core/eglibc-2.13: Patch for locale-base-tt-ru packaging
-
-Jonas Danielsson (1):
-  bluez4: make alsa support conditional upon DISTRO_FEATURES
-
-Kang Kai (1):
-  ltp_20120104: add rdepends
-
-Khem Raj (3):
-  kernel.bbclass: Dont package kxgettext.o
-  libatomics-ops: Make it build for SH4
-  pulseaudio: Always enable NLS
-
-Koen Kooi (2):
-  man: fix RDEPENDS and reformat recipe
-  man: make man actually work by installing custom man.config
-
-Marcin Juszkiewicz (1):
-  libpam: disable NIS to not link with libtirpc when it is available
-
-Martin Jansa (5):
-  package.bbclass: fix TypeError in runstrip
-  opkg-utils: bump SRCREV for Packages cache fix and other fixes
-  opkg-utils: bump SRCREV
-  kernel.bbclass: pass KERNEL_VERSION to depmod calls in postinst
-  pulseaudio: fix pulseaudio-server RDEPENDS
-
-Matthew McClintock (9):
-  dbus.inc: disable selinux for native builds
-  glib.inc: disable selinux for native builds
-  eglibc/gcc: add patches to fix eglibc 2.15 build
-  poky.conf: add distros that work correctly
-  distutils.bbclass: fix libdir for 64-bit python modules built with
-    distutils
-  distutils.bblass: change order of args to install step
-  eglibc_2.15: make patch only for Freescale machines
-  valgrind_3.7.0.bb: fix missing leading space on _append
-  sysvinit-inittab_2.88dsf.bb: only run serial checks at boot if we
-    have items to check
-
-Paul Eggleton (4):
-  classes/mirrors: remove bogus gnutls mirror
-  dhcp: remove dependency of dev/staticdev packages on main package
-  bitbake: hob: ensure error message text is properly escaped
-  bitbake: hob: format error messages properly
-
-Radu Moisan (1):
-  dbus: include dbus-launch in the main dbus package
-
-Richard Purdie (5):
-  distutils/steuptools: Fix files layout and unbreak builds
-  opkg-utils: UPdate to version with python 2.6 fix
-  autotools.bbclass: Add functionality to force a clean of ${B} when
-    reconfiguring (and ${S} != ${B})
-  dbus: Ensure dbus-nativesdk doesn't RPROVIDE dbus-x11
-  texi2html: Fix perl location on recent distros
-
-Ross Burton (1):
-  pulseaudio: remove ConsoleKit dependency
-
-Saul Wold (7):
-  build-appliance-image: Update SRCREV to Denzil 1.2.1
-  build-appliance-image: Add vmx* files and build zip file
-  build-appliance: add zip-native, which is needed to build the final
-    zip bundle
-  python-pygtk: Upgrade to 2.24
-  kernel: Fix packaging issue
-  bluez4: fix packaging issue after update
-  pulseaudio: disable tcpwrap by default
-
-Scott Garman (2):
-  relocatable.bbclass: Account for case when ORIGIN is in RPATH
-  kernel.bbclass: put perf .debug dir in -dbg package
-
-Valentin Popa (2):
-  build-appliance-image: rename from self-hosted-image
-  xz: updated to version 5.1.1alpha
-
-Xin Ouyang (1):
-  libatomics-ops: update to the latest version 7.2
-
-Zhenhua Luo (1):
-  valgrind: fix debug info reading error when do memcheck on ppc
-    targets
-
- bitbake/lib/bb/ui/crumbs/builder.py                |   23 +-
- bitbake/lib/bb/ui/crumbs/hig.py                    |   58 +-
- bitbake/lib/bb/ui/crumbs/hobeventhandler.py        |    4 +-
- meta-yocto/conf/distro/poky.conf                   |    2 +
- meta/classes/autotools.bbclass                     |   21 +
- meta/classes/distutils.bbclass                     |    2 +-
- meta/classes/kernel-yocto.bbclass                  |  121 +-
- meta/classes/kernel.bbclass                        |   37 +-
- meta/classes/mirrors.bbclass                       |    1 -
- meta/classes/package.bbclass                       |   16 +-
- meta/classes/relocatable.bbclass                   |    3 +-
- meta/classes/setuptools.bbclass                    |    1 +
- meta/conf/bitbake.conf                             |    2 +-
- meta/conf/multilib.conf                            |    2 +-
- meta/recipes-bsp/u-boot/u-boot.inc                 |   16 +-
- meta/recipes-bsp/u-boot/u-boot_2011.03.bb          |    2 +-
- meta/recipes-bsp/u-boot/u-boot_2011.06.bb          |    2 +-
- .../{bluez-hcidump_2.3.bb => bluez-hcidump_2.4.bb} |    4 +-
- .../{bluez4-4.99 => bluez4-4.101}/bluetooth.conf   |    0
- .../{bluez4-4.99 => bluez4-4.101}/sbc_mmx.patch    |    0
- meta/recipes-connectivity/bluez/bluez4.inc         |    6 +-
- .../bluez/{bluez4_4.99.bb => bluez4_4.101.bb}      |   10 +-
- ...tooth_4.99.bb => gst-plugin-bluetooth_4.101.bb} |    7 +-
- meta/recipes-connectivity/dhcp/dhcp.inc            |    2 +
- meta/recipes-connectivity/dhcp/dhcp_4.2.3-P2.bb    |    2 +-
- meta/recipes-core/dbus/dbus-glib_0.98.bb           |    2 +-
- meta/recipes-core/dbus/dbus.inc                    |   17 +-
- .../eglibc/eglibc-2.13/supported-tt-ru.patch       |   13 +
- .../eglibc/eglibc-2.15/glibc.no_sqrt.patch         |   15 +
- meta/recipes-core/eglibc/eglibc_2.13.bb            |    3 +-
- meta/recipes-core/eglibc/eglibc_2.15.bb            |    4 +-
- meta/recipes-core/glib-2.0/glib-2.0_2.30.3.bb      |    2 +-
- meta/recipes-core/glib-2.0/glib.inc                |    2 +-
- ...lf-hosted-image.bb => build-appliance-image.bb} |   28 +-
- .../Yocto_Build_Appliance.vmx                      |   52 +
- .../Yocto_Build_Appliance.vmxf                     |    8 +
- meta/recipes-core/psplash/psplash_git.bb           |    4 +-
- .../sysvinit/sysvinit-inittab_2.88dsf.bb           |   10 +-
- meta/recipes-devtools/gcc/gcc-4.6.inc              |    5 +-
- .../gcc/gcc-4.6/gcc.e6500-FSF46.patch              | 4015 ++++++++++++++++++++
- .../gcc/gcc-4.6/gcc.no_power_builtins.patch        |   30 +
- .../gcc/gcc-4.6/powerpc-e5500.patch                |  465 ---
- .../opkg-utils/opkg-utils/add-license-field.patch  |   39 -
- .../opkg-utils/arfile_header_split.patch           |   27 -
- .../opkg-utils/index-ignore-filenotfound.patch     |   73 -
- .../opkg-utils/opkg-utils/mtime-int.patch          |   30 -
- .../opkg-utils/opkg-utils/shebang.patch            |   46 -
- meta/recipes-devtools/opkg-utils/opkg-utils_git.bb |    9 +-
- .../python/python-pygtk/fix-gtkunixprint.patch     |   14 +-
- ...thon-pygtk_2.17.0.bb => python-pygtk_2.24.0.bb} |    8 +-
- ...ind-3.7.0-fix-error-of-reading-debug-info.patch |   33 +
- meta/recipes-devtools/valgrind/valgrind_3.7.0.bb   |    5 +-
- meta/recipes-extended/ltp/ltp_20120104.bb          |    4 +-
- meta/recipes-extended/man/man-1.6f/man.conf        |  140 +
- meta/recipes-extended/man/man_1.6f.bb              |   11 +-
- meta/recipes-extended/pam/libpam_1.1.5.bb          |    3 +-
- meta/recipes-extended/texi2html/texi2html_5.0.bb   |    6 +-
- .../xz/{xz_5.0.3.bb => xz_5.1.1alpha.bb}           |   10 +-
- .../pulseaudio/libatomics-ops/doublefix.patch      |   27 -
- .../fedora/libatomic_ops-1.2-ppclwzfix.patch       |   20 -
- .../gentoo/libatomic_ops-1.2-mips.patch            |  129 -
- .../libatomics-ops_fix_for_x32.patch               |   41 -
- ...libatomics-ops_1.2.bb => libatomics-ops_7.2.bb} |   11 +-
- .../{libcanberra_0.28.bb => libcanberra_0.29.bb}   |   14 +-
- meta/recipes-multimedia/pulseaudio/pulseaudio.inc  |   11 +-
- ..._for_x32.patch => pulseaudio_fix_for_x32.patch} |    0
- .../{pulseaudio_1.1.bb => pulseaudio_2.1.bb}       |    7 +-
- 67 files changed, 4642 insertions(+), 1095 deletions(-)
- rename meta/recipes-connectivity/bluez/{bluez-hcidump_2.3.bb => bluez-hcidump_2.4.bb} (83%)
- rename meta/recipes-connectivity/bluez/{bluez4-4.99 => bluez4-4.101}/bluetooth.conf (100%)
- rename meta/recipes-connectivity/bluez/{bluez4-4.99 => bluez4-4.101}/sbc_mmx.patch (100%)
- rename meta/recipes-connectivity/bluez/{bluez4_4.99.bb => bluez4_4.101.bb} (76%)
- rename meta/recipes-connectivity/bluez/{gst-plugin-bluetooth_4.99.bb => gst-plugin-bluetooth_4.101.bb} (81%)
- create mode 100644 meta/recipes-core/eglibc/eglibc-2.13/supported-tt-ru.patch
- create mode 100644 meta/recipes-core/eglibc/eglibc-2.15/glibc.no_sqrt.patch
- rename meta/recipes-core/images/{self-hosted-image.bb => build-appliance-image.bb} (69%)
- create mode 100644 meta/recipes-core/images/build-appliance-image/Yocto_Build_Appliance.vmx
- create mode 100644 meta/recipes-core/images/build-appliance-image/Yocto_Build_Appliance.vmxf
- create mode 100644 meta/recipes-devtools/gcc/gcc-4.6/gcc.e6500-FSF46.patch
- create mode 100644 meta/recipes-devtools/gcc/gcc-4.6/gcc.no_power_builtins.patch
- delete mode 100644 meta/recipes-devtools/gcc/gcc-4.6/powerpc-e5500.patch
- delete mode 100644 meta/recipes-devtools/opkg-utils/opkg-utils/add-license-field.patch
- delete mode 100644 meta/recipes-devtools/opkg-utils/opkg-utils/arfile_header_split.patch
- delete mode 100644 meta/recipes-devtools/opkg-utils/opkg-utils/index-ignore-filenotfound.patch
- delete mode 100644 meta/recipes-devtools/opkg-utils/opkg-utils/mtime-int.patch
- delete mode 100644 meta/recipes-devtools/opkg-utils/opkg-utils/shebang.patch
- rename meta/recipes-devtools/python/{python-pygtk_2.17.0.bb => python-pygtk_2.24.0.bb} (89%)
- create mode 100644 meta/recipes-devtools/valgrind/valgrind-3.7.0/valgrind-3.7.0-fix-error-of-reading-debug-info.patch
- create mode 100644 meta/recipes-extended/man/man-1.6f/man.conf
- rename meta/recipes-extended/xz/{xz_5.0.3.bb => xz_5.1.1alpha.bb} (72%)
- delete mode 100644 meta/recipes-multimedia/pulseaudio/libatomics-ops/doublefix.patch
- delete mode 100644 meta/recipes-multimedia/pulseaudio/libatomics-ops/fedora/libatomic_ops-1.2-ppclwzfix.patch
- delete mode 100644 meta/recipes-multimedia/pulseaudio/libatomics-ops/gentoo/libatomic_ops-1.2-mips.patch
- delete mode 100644 meta/recipes-multimedia/pulseaudio/libatomics-ops/libatomics-ops_fix_for_x32.patch
- rename meta/recipes-multimedia/pulseaudio/{libatomics-ops_1.2.bb => libatomics-ops_7.2.bb} (68%)
- rename meta/recipes-multimedia/pulseaudio/{libcanberra_0.28.bb => libcanberra_0.29.bb} (76%)
- rename meta/recipes-multimedia/pulseaudio/pulseaudio/{pulseaudo_fix_for_x32.patch => pulseaudio_fix_for_x32.patch} (100%)
- rename meta/recipes-multimedia/pulseaudio/{pulseaudio_1.1.bb => pulseaudio_2.1.bb} (64%)
-
--- 
-1.7.9.5
+> |
+>
+> |     Failed to find Provides:
+>
+> | DEBUG: Python function do_package_rpm finished
+>
+> | DEBUG: Python function do_package_write_rpm finished
+>
+> | ERROR: Function failed: BUILDSPEC (see
+> /usr/local/src/shumway/sep12/build-shumway2/tmp/work/x86_64-poky-linux/zl=
+ib-qat-1.2.7-r9/temp/log.do_package_write_rpm.5284
+> for further information)
+>
+> ERROR: Task 11
+> (/usr/local/src/shumway/sep12/meta-intel/meta-crystalforest/recipes-quick=
+assist/intel-zlib-qat/zlib-qat_1.2.7.bb,
+> do_package_write_rpm) failed with exit code '1'
+>
+> NOTE: Tasks Summary: Attempted 944 tasks of which 934 didn't need to be
+> rerun and 1 failed.
+>
+> Summary: 1 task failed:
+>
+>
+> /usr/local/src/shumway/sep12/meta-intel/meta-crystalforest/recipes-quicka=
+ssist/intel-zlib-qat/zlib-qat_1.2.7.bb,
+> do_package_write_rpm
+>
+> Summary: There was 1 ERROR message shown, returning a non-zero exit code.
+>
+>
+>
+> Thanks
+>
+> Kishore.
+>
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>=
 
 
