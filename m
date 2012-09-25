@@ -1,19 +1,24 @@
-Return-Path: <ioanax.grigoropol@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D95F7E011C0
-	for <yocto@yoctoproject.org>; Tue, 25 Sep 2012 04:18:52 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 25 Sep 2012 04:18:50 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,481,1344236400"; d="scan'208";a="226170722"
-Received: from ideapad (HELO localhost.localdomain) ([10.237.105.40])
-	by fmsmga001.fm.intel.com with ESMTP; 25 Sep 2012 04:18:49 -0700
-From: Ioana Grigoropol <ioanax.grigoropol@intel.com>
-To: yocto@yoctoproject.org
-Date: Tue, 25 Sep 2012 14:14:29 +0300
-Message-Id: <1348571669-1012-1-git-send-email-ioanax.grigoropol@intel.com>
-X-Mailer: git-send-email 1.7.9.5
-Subject: [PATCH] eclipse-plugin/yocto-bsp-wizard : Progress Dialog
+Return-Path: <WMiller@sdr.com>
+Received: from webmail.l6holdings.com (unknown [66.193.75.4])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C918CE002AC
+	for <yocto@yoctoproject.org>; Tue, 25 Sep 2012 06:27:30 -0700 (PDT)
+Received: from L6ExchCluster.charlotte.Lsix.us ([10.253.2.51]) by
+	srv-L6-exch03.charlotte.Lsix.us ([10.253.2.53]) with mapi;
+	Tue, 25 Sep 2012 09:27:29 -0400
+From: "Wesley J. Miller" <WMiller@sdr.com>
+To: Yocto Project <yocto@yoctoproject.org>
+Date: Tue, 25 Sep 2012 09:27:22 -0400
+Thread-Topic: Newbie looking for a Recipe Box for AM1707 aka Texas
+	Instruments TMDXEVM1707
+Thread-Index: Ac2bIYGqwLNpcmdrR7y2yv+2WyymRg==
+Message-ID: <CC87297A.9B81%wmiller@sdr.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Microsoft-MacOutlook/14.2.3.120616
+acceptlanguage: en-US
+MIME-Version: 1.0
+Subject: Newbie looking for a Recipe Box for AM1707 aka Texas Instruments TMDXEVM1707
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -25,91 +30,147 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 25 Sep 2012 11:18:53 -0000
+X-List-Received-Date: Tue, 25 Sep 2012 13:27:31 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative; boundary="_000_CC87297A9B81wmillersdrcom_"
 
-- removed progress dialog for loading kernel choices (it is a short process and it only causes the Process Dialog to appear and disapear quickly)
+--_000_CC87297A9B81wmillersdrcom_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Ioana Grigoropol <ioanax.grigoropol@intel.com>
----
- .../remotetools/wizards/bsp/PropertiesPage.java    |   36 +++++++++++---------
- 1 file changed, 20 insertions(+), 16 deletions(-)
+The subject pretty much says it all.
 
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/wizards/bsp/PropertiesPage.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/wizards/bsp/PropertiesPage.java
-index 14de18c..4a79d64 100644
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/wizards/bsp/PropertiesPage.java
-+++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/wizards/bsp/PropertiesPage.java
-@@ -135,7 +135,7 @@ public class PropertiesPage extends WizardPage {
- 			newButton.setSelection(true);
- 			existingButton.setSelection(false);
- 
--			updateKernelValues(KERNEL_CHOICES, KERNEL_CHOICE);
-+			updateKernelValues(KERNEL_CHOICES, KERNEL_CHOICE, false);
- 		}
- 
- 		try {
-@@ -383,7 +383,7 @@ public class PropertiesPage extends WizardPage {
- 			 existingButton.setSelection(false);
- 			 kbCombo.removeAll();
- 			 
--			 updateKernelValues(KERNEL_BRANCHES, "\\\"" + kernel_choice + "\\\"." + NEW_KBRANCH_NAME);
-+			 updateKernelValues(KERNEL_BRANCHES, "\\\"" + kernel_choice + "\\\"." + NEW_KBRANCH_NAME, true);
- 		 } else if (widget == kbCombo) {
- 			 setErrorMessage(null);
- 		 } else if (widget == newButton) {
-@@ -392,34 +392,38 @@ public class PropertiesPage extends WizardPage {
- 			 
- 			 if (newBranch) {
- 				 kbCombo.removeAll();
--				 updateKernelValues(KERNEL_BRANCHES, "\\\"" + kernel_choice + "\\\"." + NEW_KBRANCH_NAME);
-+				 updateKernelValues(KERNEL_BRANCHES, "\\\"" + kernel_choice + "\\\"." + NEW_KBRANCH_NAME, true);
- 			 }
- 		 } else if (widget == existingButton) {
- 			 boolean existingBranch = existingButton.getSelection();
- 
- 			 if (existingBranch) {
- 				 kbCombo.removeAll();
--				 updateKernelValues(KERNEL_BRANCHES, "\\\"" + kernel_choice + "\\\"." + EXISTING_KBRANCH_NAME);
-+				 updateKernelValues(KERNEL_BRANCHES, "\\\"" + kernel_choice + "\\\"." + EXISTING_KBRANCH_NAME, true);
- 			 }
- 		 }
- 		 canFlipToNextPage();
- 		 getWizard().getContainer().updateButtons();
- 	}
- 
--	private void updateKernelValues(final String value, String property) {
-+	private void updateKernelValues(final String value, String property, boolean showProgress) {
- 		final ValuesGetter runnable  = new ValuesGetter(property);
- 
--		ProgressMonitorDialog dialog = new ProgressMonitorDialog(getShell());
--		try {
--			dialog.run(true, true, new IRunnableWithProgress(){
--			     public void run(IProgressMonitor monitor) {
--			         monitor.beginTask("Loading Kernel " + value + " ...", 100);
--			         runnable.run();
--			         monitor.done();
--			     }
--			 });
--		} catch (Exception e) {
--			runnable.getBspAction().setMessage(e.getMessage());
-+		if (showProgress) {
-+			ProgressMonitorDialog dialog = new ProgressMonitorDialog(getShell());
-+			try {
-+				dialog.run(true, true, new IRunnableWithProgress(){
-+				     public void run(IProgressMonitor monitor) {
-+				         monitor.beginTask("Loading Kernel " + value + " ...", 100);
-+				         runnable.run();
-+				         monitor.done();
-+				     }
-+				 });
-+			} catch (Exception e) {
-+				runnable.getBspAction().setMessage(e.getMessage());
-+			}
-+		} else {
-+			runnable.run();
- 		}
- 
- 		BSPAction action = runnable.getBspAction();
--- 
-1.7.9.5
+I am looking for a build package for the TI AM1707 ARM9 EVM. This is a Sita=
+ra family processor.
+
+And if the answer is "there isn't one", what's the best package choice to u=
+se as a starting point?
+
+Wesley J. Miller
+Engineering Programmer
+NASCENT Technology, LLC
+L6 Place, 2744 Yorkmont Road
+Charlotte, NC 28208
+Office: 704-654-3112
+Fax:  704-654-3031
+Cell:  980-722-8599
+wmiller@nascent.com
 
 
+
+________________________________
+CONFIDENTIALITY NOTE:
+
+This e-mail and any attachments are confidential. If you are not the intend=
+ed recipient, be aware that any disclosure, copying, distribution or use of=
+ this e-mail or any attachment is prohibited. If you have received this e-m=
+ail in error, please notify us immediately by returning it to the sender an=
+d delete this copy from your system. Thank you for your cooperation.
+
+--_000_CC87297A9B81wmillersdrcom_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+</head>
+<body style=3D"word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-lin=
+e-break: after-white-space; color: rgb(0, 0, 0); font-size: 14px; font-fami=
+ly: Calibri, sans-serif; ">
+<div>
+<div>
+<div>The subject pretty much says it all. &nbsp;</div>
+<div><br>
+</div>
+<div>I am looking for a build package for the TI AM1707 ARM9 EVM. This is a=
+ Sitara family processor.&nbsp;</div>
+<div><br>
+</div>
+<div>And if the answer is &quot;there isn't one&quot;, what's the best pack=
+age choice to use as a starting point?</div>
+<div>
+<div>
+<div><br>
+</div>
+<div>
+<p class=3D"MsoNormal" style=3D"margin-top: 0in; margin-right: 0in; margin-=
+bottom: 0.0001pt; margin-left: 0in; font-size: 12pt; font-family: 'Times Ne=
+w Roman'; -webkit-border-horizontal-spacing: 2px; -webkit-border-vertical-s=
+pacing: 2px; ">
+<b><i><font size=3D"2" color=3D"#023a75" face=3D"Arial"><span style=3D"font=
+-size: 10pt; font-family: Arial; color: rgb(2, 58, 117); font-weight: bold;=
+ font-style: italic; ">Wesley J. Miller<br>
+</span></font><em><i><font color=3D"#023a75" face=3D"Times New Roman"><span=
+ style=3D"color: rgb(2, 58, 117); ">Engineering Programmer</span></font></i=
+></em></i></b><font face=3D"Arial"><span style=3D"font-family: Arial; "><br=
+>
+</span></font><font size=3D"2" color=3D"#023a75" face=3D"Arial"><span style=
+=3D"font-size: 10pt; font-family: Arial; color: rgb(2, 58, 117); ">NASCENT =
+Technology, LLC &nbsp; &nbsp; &nbsp;&nbsp;<br>
+<st1:street w:st=3D"on"><st1:address w:st=3D"on">L6 Place</st1:address></st=
+1:street>,&nbsp;<st1:address w:st=3D"on"><st1:address w:st=3D"on"><st1:stre=
+et w:st=3D"on">2744 Yorkmont Road</st1:street></st1:address><font color=3D"=
+navy"><span style=3D"color: navy; "><br>
+</span></font><st1:place w:st=3D"on"><st1:city w:st=3D"on">Charlotte</st1:c=
+ity>,&nbsp;<st1:state w:st=3D"on">NC</st1:state>&nbsp;<st1:postalcode w:st=
+=3D"on">28208</st1:postalcode></st1:place></st1:address></span></font><font=
+ size=3D"2" color=3D"navy" face=3D"Arial"><span style=3D"font-size: 10pt; f=
+ont-family: Arial; color: navy; "><br>
+</span></font><font size=3D"2" color=3D"#023a75" face=3D"Arial"><span style=
+=3D"font-size: 10pt; font-family: Arial; color: rgb(2, 58, 117); ">Office: =
+704-654-3112</span></font><font face=3D"Arial"><span style=3D"font-family: =
+Arial; "><br>
+</span></font><font size=3D"2" color=3D"#023a75" face=3D"Arial"><span style=
+=3D"font-size: 10pt; font-family: Arial; color: rgb(2, 58, 117); ">Fax:&nbs=
+p; 704-654-3031</span></font></p>
+<p class=3D"MsoNormal" style=3D"margin-top: 0in; margin-right: 0in; margin-=
+bottom: 0.0001pt; margin-left: 0in; font-size: 12pt; font-family: 'Times Ne=
+w Roman'; -webkit-border-horizontal-spacing: 2px; -webkit-border-vertical-s=
+pacing: 2px; ">
+<font size=3D"2" color=3D"#023a75" face=3D"Arial"><span style=3D"font-size:=
+ 10pt; font-family: Arial; color: rgb(2, 58, 117); ">Cell: &nbsp;980-722-85=
+99</span></font></p>
+<p class=3D"MsoNormal" style=3D"margin-top: 0in; margin-right: 0in; margin-=
+bottom: 0.0001pt; margin-left: 0in; font-size: 12pt; font-family: 'Times Ne=
+w Roman'; -webkit-border-horizontal-spacing: 2px; -webkit-border-vertical-s=
+pacing: 2px; ">
+<font size=3D"2" color=3D"#023a75" face=3D"Arial"><span style=3D"font-size:=
+ 10pt; font-family: Arial; color: rgb(2, 58, 117); ">wmiller@nascent.com</s=
+pan></font>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
+nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
+ &nbsp; &nbsp; &nbsp;</p>
+<p class=3D"MsoNormal" style=3D"margin-top: 0in; margin-right: 0in; margin-=
+bottom: 0.0001pt; margin-left: 0in; font-size: 12pt; font-family: 'Times Ne=
+w Roman'; -webkit-border-horizontal-spacing: 2px; -webkit-border-vertical-s=
+pacing: 2px; ">
+<br>
+</p>
+<p class=3D"MsoNormal" style=3D"margin-top: 0in; margin-right: 0in; margin-=
+bottom: 0.0001pt; margin-left: 0in; font-size: 12pt; font-family: 'Times Ne=
+w Roman'; -webkit-border-horizontal-spacing: 2px; -webkit-border-vertical-s=
+pacing: 2px; ">
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
+; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
+sp; &nbsp; &nbsp; &nbsp;&nbsp;</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<br>
+<hr>
+<font face=3D"Arial" color=3D"Gray" size=3D"1">CONFIDENTIALITY NOTE:<br>
+<br>
+This e-mail and any attachments are confidential. If you are not the intend=
+ed recipient, be aware that any disclosure, copying, distribution or use of=
+ this e-mail or any attachment is prohibited. If you have received this e-m=
+ail in error, please notify us immediately
+ by returning it to the sender and delete this copy from your system. Thank=
+ you for your cooperation.<br>
+</font>
+</body>
+</html>
+
+--_000_CC87297A9B81wmillersdrcom_--
