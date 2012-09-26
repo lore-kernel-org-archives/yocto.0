@@ -1,32 +1,32 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from fmsmga102.fm.intel.com (mga10.intel.com [192.55.52.92])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A7D7AE00346
-	for <yocto@yoctoproject.org>; Tue, 25 Sep 2012 17:39:21 -0700 (PDT)
-Received: from mail-qa0-f41.google.com ([209.85.216.41])
-	by mga11.intel.com with ESMTP/TLS/RC4-SHA; 25 Sep 2012 17:39:19 -0700
-Received: by qatp27 with SMTP id p27so3213145qat.14
-	for <yocto@yoctoproject.org>; Tue, 25 Sep 2012 17:39:18 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type
-	:x-gm-message-state;
-	bh=EaZDzgNwJTg2lyERe4lS3+yMRORIAfrluc+rqGZoFvE=;
-	b=a+mfPNy/0Ond/AenRxco0iheBMtssiAs6IaXUxv+2y1fg2hLMNBrQM931TvweKzGy4
-	+z63B8ZtL757+D6iB/TmFHIa/3Gr7ZmNmIGyz+nl6S8iqvv9iRg0Vsl5KX3iMejqvG/m
-	Jpz3azOed/iPlAMXoHH+CwpQ6GvFZnuIROUuLgSslAKaxWv4vUCJN29GTb5gog6C2eSm
-	Lt85vYyU+bel9a5QmiSYuq8OkH+EMvJ37+6xtaFl6AP+CNm01W4I4P88RA2Ze91lhcMG
-	efaNzmoYc719Egf5AJ/S5xOejAu93Ui4KJGviKcHjTmeDBmNRsQ1vSFMVsOTVTiZXtp4
-	rmuA==
-MIME-Version: 1.0
-Received: by 10.224.34.195 with SMTP id m3mr27532980qad.19.1348619957961; Tue,
-	25 Sep 2012 17:39:17 -0700 (PDT)
-Received: by 10.229.63.1 with HTTP; Tue, 25 Sep 2012 17:39:17 -0700 (PDT)
-Date: Tue, 25 Sep 2012 17:39:17 -0700
-Message-ID: <CAPhnLPCYC9_xvdinu9=prhUOz8FfquYK5TVrBKiHLZ4FyK267g@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: yocto@yoctoproject.org
-X-Gm-Message-State: ALoCoQlVYcUIXIn1g1l0y/Y+NlADMz1kEuX0+ubVL7MQTnSFiRvRcxEDb9xISp8U4iDQi/UIoSW7
-Subject: 1.3_M5.rc2 status.
+Return-Path: <opensource@keylevel.com>
+Received: from hxhsvr03.internetintuitive.net (hxhsvr03.internetintuitive.net
+	[80.254.228.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 29E33E0049F
+	for <yocto@yoctoproject.org>; Wed, 26 Sep 2012 00:32:19 -0700 (PDT)
+Received: from [109.224.129.17] (helo=macbook-pro.durham.keylevel.com)
+	by hxhsvr03.internetintuitive.net with esmtpa (Exim 4.69)
+	(envelope-from <opensource@keylevel.com>)
+	id 1TGm6Q-0006nv-Kh; Wed, 26 Sep 2012 08:32:14 +0100
+Mime-Version: 1.0 (Apple Message framework v1278)
+From: Chris Tapp <opensource@keylevel.com>
+In-Reply-To: <34F347852CDC4B699F8565643D33E53B@intel.com>
+Date: Wed, 26 Sep 2012 08:32:12 +0100
+Message-Id: <5BB2B8A2-CD8B-4F0C-B7AE-FBED8ED8077B@keylevel.com>
+References: <CEE73346-DC1B-4CB2-9D51-A2D47705ADFC@keylevel.com>
+	<34F347852CDC4B699F8565643D33E53B@intel.com>
+To: Ross Burton <ross.burton@intel.com>
+X-Mailer: Apple Mail (2.1278)
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - hxhsvr03.internetintuitive.net
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - keylevel.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Cc: "yocto@yoctoproject.org Project" <yocto@yoctoproject.org>
+Subject: Re: How can I build gstreamer and its plugins without x11?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,28 +38,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 26 Sep 2012 00:39:21 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Wed, 26 Sep 2012 07:32:20 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
-All,
+On 25 Sep 2012, at 23:12, Ross Burton wrote:
 
-1.3_M5.rc2 was started a bit late today due to some miscommunication.
-The build has begun and judging from recent autobuilder performance,
-I'm expecting it to complete in about six and a half hours from now.
-For those doing QA against 1.3_M5.rc2, if you can, please begin
-testing what you can as soon as build artifacts become available.
+> On Tuesday, 25 September 2012 at 21:51, Chris Tapp wrote:
+>> I'm trying to build gstreamer to run on a system that does not have =
+x11 (for audio and to stream video). It seems as if =
+gst-plugins-good-id3demux needs x11:
+>> ...
+>> ERROR: Required build target 'task-sjs' has no buildable providers.
+>> Missing or unbuildable dependency chain was: ['task-sjs', =
+'gst-plugins-good-id3demux', 'pulseaudio', 'consolekit', =
+'virtual/libx11']
+>=20
+> I'm not entirely sure why a demuxer is depending on pulseaudio, but =
+you'll hit this somewhere else.
+>=20
+> pulseaudio's build dependency on consolekit is entirely spurious and =
+I've fixed this in master.  pulseaudio-server then has a runtime =
+dependency on consolekit which you could argue should be a recommends - =
+in Guacamayo for now we're just removing that dependency as we're not =
+using consolekit.
 
-Download: http://autobuilder.yoctoproject.org/pub/nightly/20120926-1
-poky: 718eb85806e080d0b165344b272e531ef19421eb
-meta-qt3: 8730326c902e6fb256b5dea77a6dde28d813c424
-eclipse-poky: c88444d96958324e7dda9bd496977be3369aea1e
 
-Thanks,
+Thanks Ross. Is the reference to librsvg in gst-plugins-bad similar? =
+This pulls in gtk+ (which will not build for my DirectFB distro), but it =
+still builds if I remove it.
 
--b
+Chris Tapp
 
--- 
-Elizabeth Flanagan
-Yocto Project
-Build and Release
+opensource@keylevel.com
+www.keylevel.com
+
+
+
 
