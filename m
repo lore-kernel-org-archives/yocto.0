@@ -1,35 +1,25 @@
-Return-Path: <kergoth@gmail.com>
-Received: from mail-la0-f48.google.com (mail-la0-f48.google.com
-	[209.85.215.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 22C16E013EF
-	for <yocto@yoctoproject.org>; Wed, 26 Sep 2012 07:34:31 -0700 (PDT)
-Received: by lagu2 with SMTP id u2so80496lag.35
-	for <yocto@yoctoproject.org>; Wed, 26 Sep 2012 07:34:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:from:date
-	:x-google-sender-auth:message-id:subject:to:cc:content-type;
-	bh=0lQQRD26LHUpqI7EbSLuEMNjuEOmcgvBboujuPqLixQ=;
-	b=vPomm2vOWbwW7Pxqnz7sbL93rB4ktfCM4XBNqUoCmrUl2drJO3WqkY6kaGbAawMEJm
-	ilA1LXY/PAPfjpigZYdRflWKFkNof9Ht19WNrPKbquS9W259LmdnB/BSXW/8KsQfRlNr
-	DjHWj6Alpq5AKqLu/cmMWkqvKskRifP+Yjhkpa4RMrHYEqOsYna00hZivdrFU59XhWA4
-	saKtGjDXoO3ane7iALmzlYYgjth0YnE3ZGAc/aapvj244ef9l03mntXBdzkkox6j85TH
-	HdaJ4HIx3RisV81ayb9mbtYRCASvZAlyMK+5Wo5lHRsym4rbk7Mha6u1tJR/EzfIP8hw
-	HnRg==
-Received: by 10.152.147.130 with SMTP id tk2mr739816lab.4.1348670068607; Wed,
-	26 Sep 2012 07:34:28 -0700 (PDT)
-MIME-Version: 1.0
-Sender: kergoth@gmail.com
-Received: by 10.114.19.2 with HTTP; Wed, 26 Sep 2012 07:34:08 -0700 (PDT)
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9EDC5E013EF
+	for <yocto@yoctoproject.org>; Wed, 26 Sep 2012 07:39:12 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga101.ch.intel.com with ESMTP; 26 Sep 2012 07:39:11 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,490,1344236400"; d="scan'208";a="149365763"
+Received: from unknown (HELO helios.localnet) ([10.252.122.36])
+	by AZSMGA002.ch.intel.com with ESMTP; 26 Sep 2012 07:39:11 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Wolfgang Denk <wd@denx.de>
+Date: Wed, 26 Sep 2012 15:39:10 +0100
+Message-ID: <224780988.1nyHnvScgz@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.9.1 (Linux/3.2.0-31-generic-pae; KDE/4.9.1; i686; ; )
 In-Reply-To: <20120926142045.901EB2031A9@gemini.denx.de>
 References: <CAPhnLPCYC9_xvdinu9=prhUOz8FfquYK5TVrBKiHLZ4FyK267g@mail.gmail.com>
-	<1767865.bvfduhkKG5@helios> <20120926132851.C81472031A9@gemini.denx.de>
-	<2428256.OTjtN2nWn5@helios> <20120926142045.901EB2031A9@gemini.denx.de>
-From: Chris Larson <clarson@kergoth.com>
-Date: Wed, 26 Sep 2012 07:34:08 -0700
-X-Google-Sender-Auth: rN10Us0sDkhxrwwxdUVj9cMf4mU
-Message-ID: <CABcZAN=mJWPApXfPVJ=zx_Yfe90fUa+xN=FwRL=2Gsvhvjrj0A@mail.gmail.com>
-To: Wolfgang Denk <wd@denx.de>
-Cc: Paul Eggleton <paul.eggleton@linux.intel.com>, yocto@yoctoproject.org
+	<2428256.OTjtN2nWn5@helios>
+	<20120926142045.901EB2031A9@gemini.denx.de>
+MIME-Version: 1.0
+Cc: yocto@yoctoproject.org
 Subject: Re: 1.3_M5.rc2 status.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -42,29 +32,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 26 Sep 2012 14:34:32 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 26 Sep 2012 14:39:12 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On Wed, Sep 26, 2012 at 7:20 AM, Wolfgang Denk <wd@denx.de> wrote:
+On Wednesday 26 September 2012 16:20:45 Wolfgang Denk wrote:
+> Dear Paul Eggleton,
 > In message <2428256.OTjtN2nWn5@helios> you wrote:
->>
->> > Ah, OK.  Well, I decided to update meta/conf/sanity.conf to have a
->> > matching value of LAYER_CONF_VERSION, so this is solved.
->>
->> That will work, but normally you would edit conf/bblayers.conf, since
->> meta/conf/sanity.conf is part of the metadata.
->
+> > > Ah, OK.  Well, I decided to update meta/conf/sanity.conf to have a
+> > > matching value of LAYER_CONF_VERSION, so this is solved.
+> > 
+> > That will work, but normally you would edit conf/bblayers.conf, since
+> > meta/conf/sanity.conf is part of the metadata.
+> 
 > Well, what is the rationale for setting LAYER_CONF_VERSION=6 in
 > meta-yocto/conf/distro/poky.conf, then?
->
+
+The rationale is for this specific increase is this: if you previously had 
+meta-yocto in your existing bblayers.conf, since the reference BSP parts of 
+meta-yocto were split out into meta-yocto-bsp for the upcoming release, you 
+now need to add that layer to get the same functionality back. So we use this 
+mechanism to get users to do that.
+ 
 > If meta layer specific values of LAYER_CONF_VERSION are allowed, the
 > sanity checker needs a better way to deal with these; alternatively,
 > above setting in meta-yocto/conf/distro/poky.conf is wrong.  So either
 > of these should be fixed.
 
-They're both set exactly the way they should be. You're only affected
-by the bblayers compatibility change if you use poky, as far as I'm
-aware.
+By "better way to deal with these", what would you suggest? I don't see any 
+alternative that avoids the BSP components just disappearing for users who 
+have existing configurations.
+
+Cheers,
+Paul
+
 -- 
-Christopher Larson
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
