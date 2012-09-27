@@ -1,24 +1,29 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 30040E0027E
-	for <yocto@yoctoproject.org>; Thu, 27 Sep 2012 10:07:36 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 27 Sep 2012 10:07:33 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,496,1344236400"; d="scan'208";a="227364385"
-Received: from unknown (HELO [10.255.13.148]) ([10.255.13.148])
-	by fmsmga001.fm.intel.com with ESMTP; 27 Sep 2012 10:07:32 -0700
-Message-ID: <1348765649.32215.1.camel@empanada>
-From: Tom Zanussi <tom.zanussi@intel.com>
-To: Mihai Lindner <mihaix.lindner@linux.intel.com>
-Date: Thu, 27 Sep 2012 12:07:29 -0500
-In-Reply-To: <50645E48.7050208@linux.intel.com>
-References: <CAJTo0LYvfkAbdngN6KA_wes62RgJYVAjYHKvyVv+unjQDmt2ew@mail.gmail.com>
-	<50645E48.7050208@linux.intel.com>
-X-Mailer: Evolution 3.4.1 (3.4.1-2.fc17) 
-Mime-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: Cannot do atom-pc build with meta-cedartrail
+Return-Path: <daniel_norris@selinc.com>
+Received: from valiant.selinc.com (valiant.selinc.com [74.117.214.141])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0ECD2E0027E
+	for <yocto@yoctoproject.org>; Thu, 27 Sep 2012 10:23:28 -0700 (PDT)
+Received: from pps.filterd (valiant [127.0.0.1])
+	by valiant.selinc.com (8.14.5/8.14.5) with SMTP id q8RHHp0a012524
+	for <yocto@yoctoproject.org>; Thu, 27 Sep 2012 10:22:23 -0700
+Received: from edison.ad.selinc.com (edison.ad.selinc.com [10.100.0.15])
+	by valiant.selinc.com with ESMTP id 17aftp1wed-1
+	for <yocto@yoctoproject.org>; Thu, 27 Sep 2012 10:22:23 -0700
+To: yocto@yoctoproject.org
+MIME-Version: 1.0
+X-KeepSent: 7DD5E018:D0C2CF3A-88257A86:00579038;
+ type=4; name=$KeepSent
+X-Mailer: Lotus Notes Release 8.5.3 September 15, 2011
+Message-ID: <OF7DD5E018.D0C2CF3A-ON88257A86.00579038-88257A86.005F8681@selinc.com>
+From: daniel_norris@selinc.com
+Date: Thu, 27 Sep 2012 10:23:23 -0700
+X-MIMETrack: Serialize by Router on Edison/SEL(Release 8.5.3FP2|July 02,
+	2012) at 09/27/2012 10:23:23 AM,
+	Serialize complete at 09/27/2012 10:23:23 AM
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10432:5.7.7855, 1.0.431,
+	0.0.0000
+	definitions=2012-09-27_07:2012-09-27, 2012-09-27,
+	1970-01-01 signatures=0
+Subject: Python 3 Recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,47 +35,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 27 Sep 2012 17:07:36 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 27 Sep 2012 17:23:28 -0000
+Content-Type: multipart/alternative;
+	boundary="=_alternative 005F867C88257A86_="
 
-On Thu, 2012-09-27 at 17:10 +0300, Mihai Lindner wrote:
-> On 2012-09-27 14:31, Burton, Ross wrote:
-> > Hi,
-> > 
-> > If I add meta-intel and meta-cedartrail to my bblayers, when I try and
-> > do an atom-pc build (which I thought should still work, right?) I get
-> > the following error:
-> > 
-> > NOTE: Error during finalise of
-> > /home/ross/Yocto/poky/meta/recipes-kernel/linux/linux-yocto_3.0.bb
-> > ERROR: ExpansionError during parsing
-> > /home/ross/Yocto/poky/meta/recipes-kernel/linux/linux-yocto_3.0.bb:
-> > Failure expanding variable SRCPV, expression was
-> > ${@bb.fetch2.get_srcrev(d)} which triggered exception FetchError:
-> > Fetcher failure for URL:
-> > 'git://git.yoctoproject.org/linux-yocto-3.0;protocol=git;bareclone=1;branch=yocto/standard/common-pc/atom-pc,meta,yocto/pvr;name=machine,meta,pvr'.
-> > Please set SRCREV to a valid value
-> > 
-> > That's a bug, right?
-> > 
+--=_alternative 005F867C88257A86_=
+Content-Type: text/plain; charset="US-ASCII"
 
-Yeah, looks like the other SRC_URIs do that, but it's missing from that
-SRC_URI - I just pushed a fix for this one to meta-intel/master.
+Hi all,
 
-Tom
+Are there any plans for Yocto to include Python 3.2.3 as an alternative to 
+the Python 2.7.3 recipes?  I might need to use it at some point, so I was 
+wondering if it was on the roadmap.
 
-> > Ross
-> > _______________________________________________
-> > yocto mailing list
-> > yocto@yoctoproject.org
-> > https://lists.yoctoproject.org/listinfo/yocto
-> > 
-> > 
-> 
-> That's a bug alright.
-> It seems the overall SRC_URI of linux-yocto is overwritten by meta-cedartrail layer, when included. Should be fixed by using SRC_URI_cedartrail instead.
-> 
+Thanks!
+-------------------------------------------------------
+Daniel Norris
 
+--=_alternative 005F867C88257A86_=
+Content-Type: text/html; charset="US-ASCII"
 
+<font size=2 face="sans-serif">Hi all,</font>
+<br>
+<br><font size=2 face="sans-serif">Are there any plans for Yocto to include
+Python 3.2.3 as an alternative to the Python 2.7.3 recipes? &nbsp;I might
+need to use it at some point, so I was wondering if it was on the roadmap.</font>
+<br>
+<br><font size=2 face="sans-serif">Thanks!</font>
+<br><font size=2 face="sans-serif">-------------------------------------------------------</font>
+<br><font size=2 face="sans-serif">Daniel Norris</font>
 
+--=_alternative 005F867C88257A86_=--
