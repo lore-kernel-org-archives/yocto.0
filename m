@@ -1,29 +1,32 @@
-Return-Path: <daniel_norris@selinc.com>
-Received: from valiant.selinc.com (valiant.selinc.com [74.117.214.141])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0ECD2E0027E
-	for <yocto@yoctoproject.org>; Thu, 27 Sep 2012 10:23:28 -0700 (PDT)
-Received: from pps.filterd (valiant [127.0.0.1])
-	by valiant.selinc.com (8.14.5/8.14.5) with SMTP id q8RHHp0a012524
-	for <yocto@yoctoproject.org>; Thu, 27 Sep 2012 10:22:23 -0700
-Received: from edison.ad.selinc.com (edison.ad.selinc.com [10.100.0.15])
-	by valiant.selinc.com with ESMTP id 17aftp1wed-1
-	for <yocto@yoctoproject.org>; Thu, 27 Sep 2012 10:22:23 -0700
-To: yocto@yoctoproject.org
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-ey0-f176.google.com (mail-ey0-f176.google.com
+	[209.85.215.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 447B6E0027E
+	for <yocto@yoctoproject.org>; Thu, 27 Sep 2012 10:26:42 -0700 (PDT)
+Received: by eaan12 with SMTP id n12so840995eaa.35
+	for <yocto@yoctoproject.org>; Thu, 27 Sep 2012 10:26:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=RXPsMsugNADsHWkwaQz9mPcyBuLpdQJ41y4q5bV5x+I=;
+	b=h9PUFP9DjA9ZH6duZ1MV8KhwzJQzGye97/ePoo65Re1BRG1SlsTG7sOaBt6xCCFVM0
+	qXO2Z0xtq3wKDhdiMmSHgBYoKF2U757YEJEBT9H21pDtQpXxQl6S4yeX9iJTgQNySDdv
+	NBx2K7iydsm+cXK3Jy0Indl7rgxRy3b2GgVYejSx61YJIBFRGw0AyE2B3xel5P6718ep
+	NQdwbYCUhM2UQzb2xgWbAZsBq/UoQ3Rj1hSmS5fH7b3alrwrF++JVWExJc2K9knzhPV/
+	6UqAG7F0tu89FhlaM7PsYP1JmwlsCMXkV+VRrsBr2XdKOlWk/N3KYV/W5PF/37kHnP86
+	eblw==
 MIME-Version: 1.0
-X-KeepSent: 7DD5E018:D0C2CF3A-88257A86:00579038;
- type=4; name=$KeepSent
-X-Mailer: Lotus Notes Release 8.5.3 September 15, 2011
-Message-ID: <OF7DD5E018.D0C2CF3A-ON88257A86.00579038-88257A86.005F8681@selinc.com>
-From: daniel_norris@selinc.com
-Date: Thu, 27 Sep 2012 10:23:23 -0700
-X-MIMETrack: Serialize by Router on Edison/SEL(Release 8.5.3FP2|July 02,
-	2012) at 09/27/2012 10:23:23 AM,
-	Serialize complete at 09/27/2012 10:23:23 AM
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10432:5.7.7855, 1.0.431,
-	0.0.0000
-	definitions=2012-09-27_07:2012-09-27, 2012-09-27,
-	1970-01-01 signatures=0
-Subject: Python 3 Recipe
+Received: by 10.14.211.3 with SMTP id v3mr6585713eeo.43.1348766798953; Thu, 27
+	Sep 2012 10:26:38 -0700 (PDT)
+Received: by 10.14.173.69 with HTTP; Thu, 27 Sep 2012 10:26:38 -0700 (PDT)
+In-Reply-To: <OF7DD5E018.D0C2CF3A-ON88257A86.00579038-88257A86.005F8681@selinc.com>
+References: <OF7DD5E018.D0C2CF3A-ON88257A86.00579038-88257A86.005F8681@selinc.com>
+Date: Thu, 27 Sep 2012 10:26:38 -0700
+Message-ID: <CAMKF1soNxcbmFy2gdDuU0Ky3cAyaXeoq9EtrdPUNkL49bxFR8Q@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+To: "daniel_norris@selinc.com" <daniel_norris@selinc.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Python 3 Recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,34 +38,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 27 Sep 2012 17:23:28 -0000
-Content-Type: multipart/alternative;
-	boundary="=_alternative 005F867C88257A86_="
+X-List-Received-Date: Thu, 27 Sep 2012 17:26:42 -0000
+Content-Type: multipart/alternative; boundary=047d7b621e92efbe1704cab23db5
 
---=_alternative 005F867C88257A86_=
-Content-Type: text/plain; charset="US-ASCII"
+--047d7b621e92efbe1704cab23db5
+Content-Type: text/plain; charset=UTF-8
 
-Hi all,
+I have recipes for if 3.3 actually I will publish it after 1.3 release it
+needs some fine touches
 
-Are there any plans for Yocto to include Python 3.2.3 as an alternative to 
-the Python 2.7.3 recipes?  I might need to use it at some point, so I was 
-wondering if it was on the roadmap.
+On Thursday, September 27, 2012,  <daniel_norris@selinc.com> wrote:
+> Hi all,
+>
+> Are there any plans for Yocto to include Python 3.2.3 as an alternative
+to the Python 2.7.3 recipes?  I might need to use it at some point, so I
+was wondering if it was on the roadmap.
+>
+> Thanks!
+> -------------------------------------------------------
+> Daniel Norris
 
-Thanks!
--------------------------------------------------------
-Daniel Norris
+--047d7b621e92efbe1704cab23db5
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
---=_alternative 005F867C88257A86_=
-Content-Type: text/html; charset="US-ASCII"
+I have recipes for if 3.3 actually I will publish it after 1.3 release it n=
+eeds some fine touches<br><br>On Thursday, September 27, 2012, =C2=A0&lt;<a=
+ href=3D"mailto:daniel_norris@selinc.com">daniel_norris@selinc.com</a>&gt; =
+wrote:<br>
+&gt; Hi all,<br>&gt;<br>&gt; Are there any plans for Yocto to include Pytho=
+n 3.2.3 as an alternative to the Python 2.7.3 recipes? =C2=A0I might need t=
+o use it at some point, so I was wondering if it was on the roadmap.<br>&gt=
+;<br>
+&gt; Thanks!<br>&gt; ------------------------------------------------------=
+-<br>&gt; Daniel Norris
 
-<font size=2 face="sans-serif">Hi all,</font>
-<br>
-<br><font size=2 face="sans-serif">Are there any plans for Yocto to include
-Python 3.2.3 as an alternative to the Python 2.7.3 recipes? &nbsp;I might
-need to use it at some point, so I was wondering if it was on the roadmap.</font>
-<br>
-<br><font size=2 face="sans-serif">Thanks!</font>
-<br><font size=2 face="sans-serif">-------------------------------------------------------</font>
-<br><font size=2 face="sans-serif">Daniel Norris</font>
-
---=_alternative 005F867C88257A86_=--
+--047d7b621e92efbe1704cab23db5--
