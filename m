@@ -1,21 +1,23 @@
 Return-Path: <kevin.strasser@linux.intel.com>
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BCADBE0049B
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 00271E00347
 	for <yocto@yoctoproject.org>; Thu, 27 Sep 2012 17:31:20 -0700 (PDT)
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
 	by orsmga101.jf.intel.com with ESMTP; 27 Sep 2012 17:31:05 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,498,1344236400"; d="scan'208";a="198853022"
+X-IronPort-AV: E=Sophos;i="4.80,498,1344236400"; d="scan'208";a="198853026"
 Received: from wrk.jf.intel.com ([10.7.202.68])
 	by orsmga001.jf.intel.com with ESMTP; 27 Sep 2012 17:31:05 -0700
 From: Kevin Strasser <kevin.strasser@linux.intel.com>
 To: yocto@yoctoproject.org
-Date: Thu, 27 Sep 2012 17:31:08 -0700
-Message-Id: <1f6183c270424b625be133d6c7368f5013679cc0.1348791431.git.kevin.strasser@linux.intel.com>
+Date: Thu, 27 Sep 2012 17:31:11 -0700
+Message-Id: <e4efadec4a1ded0a66fa67c7cca868b7a4b6221b.1348791431.git.kevin.strasser@linux.intel.com>
 X-Mailer: git-send-email 1.7.9.5
+In-Reply-To: <1f6183c270424b625be133d6c7368f5013679cc0.1348791431.git.kevin.strasser@linux.intel.com>
+References: <1f6183c270424b625be133d6c7368f5013679cc0.1348791431.git.kevin.strasser@linux.intel.com>
 In-Reply-To: <cover.1348791431.git.kevin.strasser@linux.intel.com>
 References: <cover.1348791431.git.kevin.strasser@linux.intel.com>
-Subject: [meta-baryon][PATCH 1/4] proftpd: remove unused directories after install
+Subject: [meta-baryon][PATCH 4/4] talloc: specify the version of LGPL and include the license text
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,35 +29,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 28 Sep 2012 00:31:20 -0000
+X-List-Received-Date: Fri, 28 Sep 2012 00:31:21 -0000
 
-Some of the directories that are created during installation are left
-empty and not shipped in the image.
+talloc is made available under version 3 (or later) of the LGPL.
 
-Removing them clears up the following QA warning:
+This change fixes the following warning:
 
-"WARNING: QA Issue: proftpd: Files/directories were installed but not shipped
-  /usr/libexec
-  /usr/lib/proftpd
-  /usr/share/locale"
+"WARNING: talloc: No generic license file exists for: LGPL in any provider"
 
 Signed-off-by: Kevin Strasser <kevin.strasser@linux.intel.com>
 ---
- recipes-extended/proftpd/proftpd_1.3.4b.bb |    1 +
- 1 file changed, 1 insertion(+)
+ recipes-support/talloc/talloc_2.0.1.bb |    6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/recipes-extended/proftpd/proftpd_1.3.4b.bb b/recipes-extended/proftpd/proftpd_1.3.4b.bb
-index b7e201b..45e73d9 100644
---- a/recipes-extended/proftpd/proftpd_1.3.4b.bb
-+++ b/recipes-extended/proftpd/proftpd_1.3.4b.bb
-@@ -35,6 +35,7 @@ do_configure () {
+diff --git a/recipes-support/talloc/talloc_2.0.1.bb b/recipes-support/talloc/talloc_2.0.1.bb
+index a69bd40..5a3eba2 100644
+--- a/recipes-support/talloc/talloc_2.0.1.bb
++++ b/recipes-support/talloc/talloc_2.0.1.bb
+@@ -1,7 +1,7 @@
+ DESCRIPTION = "Hierarchical, reference counted memory pool system with destructors"
+ HOMEPAGE = "http://talloc.samba.org"
+-LICENSE = "LGPL"
+-LIC_FILES_CHKSUM = "file://NEWS;md5=5fe776b23a711c9153ee94bc87e47334"
++LICENSE = "LGPL-3.0+"
++LIC_FILES_CHKSUM = "file://talloc.h;beginline=4;endline=25;md5=e437634499a4434b4a24518195ff357d"
  
- do_install () {
-     oe_runmake DESTDIR=${D} install
-+    rmdir ${D}${libexecdir} ${D}${libdir}/proftpd ${D}${datadir}/locale
- }
+ inherit autotools pkgconfig
  
- pkg_postinst () {
+@@ -11,7 +11,7 @@ SRC_URI[sha256sum] = "5b810527405f29d54f50efd78bf2c89e318f2cd8bed001f22f2a1412fd
+ 
+ TARGET_CC_ARCH += "${LDFLAGS}"
+ 
+-PR = "r1"
++PR = "r2"
+ 
+ # autoreconf doesn't work well while reconfiguring included libreplace
+ do_configure () {
 -- 
 1.7.9.5
 
