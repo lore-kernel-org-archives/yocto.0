@@ -1,25 +1,35 @@
-Return-Path: <martin.donnelly@ge.com>
-Received: from exprod5og102.obsmtp.com (exprod5og102.obsmtp.com [64.18.0.143])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6AC1BE0049B
-	for <yocto@yoctoproject.org>; Fri, 28 Sep 2012 03:34:56 -0700 (PDT)
-Received: from cinmlip10.e2k.ad.ge.com ([165.156.4.1]) (using TLSv1) by
-	exprod5ob102.postini.com ([64.18.4.12]) with SMTP
-	ID DSNKUGV9SwpzhcbIEHN1oU0If9/rK19M/HZV@postini.com;
-	Fri, 28 Sep 2012 03:34:56 PDT
-Received: from unknown (HELO alpmlip01.e2k.ad.ge.com) ([3.159.17.48])
-	by cinmlip10.e2k.ad.ge.com with ESMTP; 28 Sep 2012 06:34:50 -0400
-Received: from selma.edi.geip.ge.com ([3.26.68.70])
-	by alpmlip01.e2k.ad.ge.com with ESMTP; 28 Sep 2012 06:34:50 -0400
-Received: from fyvie.edi.geip.ge.com (fyvie.edi.geip.ge.com [3.26.68.199])
-	by selma.edi.geip.ge.com (Postfix) with ESMTP id 7902DE12FE;
-	Fri, 28 Sep 2012 11:34:48 +0100 (BST)
-From: Martin Donnelly <martin.donnelly@ge.com>
-To: yocto@yoctoproject.org
-Date: Fri, 28 Sep 2012 11:34:04 +0100
-Message-Id: <1348828444-31626-1-git-send-email-martin.donnelly@ge.com>
-X-Mailer: git-send-email 1.7.11.4
-Cc: Martin Donnelly <martin.donnelly@ge.com>
-Subject: [PATCH] mtd-utils: update SRC_URI to support BB_NO_NETWORK
+Return-Path: <evadeflow@gmail.com>
+Received: from mail-oa0-f48.google.com (mail-oa0-f48.google.com
+	[209.85.219.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1654FE0027F
+	for <yocto@yoctoproject.org>; Fri, 28 Sep 2012 07:16:30 -0700 (PDT)
+Received: by oagh2 with SMTP id h2so3966522oag.35
+	for <yocto@yoctoproject.org>; Fri, 28 Sep 2012 07:16:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=CtfjpqlKlK+1zCYEfdD1wcsgAM//aVr3xXDk3LquhZM=;
+	b=p2LEfiBks+HgQ82hwixu6D+8P84371KzPkc5VqKqAcgj/ggrfeZv/5/uGcrJcdMGSL
+	RjuRAnV3cg78nMlNnNNn6bPpi9y6lvXgOEnr7YnliXc1K8BuLPzLGwPeMt8LxrGgTZ/p
+	RRnevbRRoLoGquzXZCLDEgE8IXulY2+gNGYC0MoxfI+dqpgW5kLDgNwTRlyTZAqpB5vD
+	kgF+lHAJl03ZebXsIKholB61pAwetIU6PDSOoRAxxOkfa4A6Bmod5VukcQ7eRZWu8Xnt
+	0qHVrZK6BIF3ocm3FerQk1GcK2zLqTKa/ZrWCcolheTu3c78gGnKsVQsXodSl6Vxo3oB
+	zC4A==
+MIME-Version: 1.0
+Received: by 10.60.22.162 with SMTP id e2mr5930376oef.35.1348841788203; Fri,
+	28 Sep 2012 07:16:28 -0700 (PDT)
+Received: by 10.76.153.198 with HTTP; Fri, 28 Sep 2012 07:16:27 -0700 (PDT)
+In-Reply-To: <1470336.PrNkWSnEWe@helios>
+References: <41DEA4B02DBDEF40A0F3B6D0DDB1237946A70CC9@FMSMSX151.amr.corp.intel.com>
+	<41DEA4B02DBDEF40A0F3B6D0DDB1237946A70D02@FMSMSX151.amr.corp.intel.com>
+	<CAMAb8ZPWCD+Q6CVwcUM75UCZXqf=JTTL6=-f0wfX19333KHzQw@mail.gmail.com>
+	<1470336.PrNkWSnEWe@helios>
+Date: Fri, 28 Sep 2012 10:16:27 -0400
+Message-ID: <CAMAb8ZO4+DBOAboVYLMQDq-Aa2ymreBrumnrLvUp0ZGJcqK+Tw@mail.gmail.com>
+From: Evade Flow <evadeflow@gmail.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: build failure on current
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,33 +41,85 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 28 Sep 2012 10:34:56 -0000
+X-List-Received-Date: Fri, 28 Sep 2012 14:16:31 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-Move the tag from the SRC_URI to SRCREV to enable builds
-using BB_NO_NETWORK
+Seems it definitely didn't build tar:
 
-Signed-off-by: Martin Donnelly <martin.donnelly@ge.com>
----
- meta/recipes-devtools/mtd/mtd-utils_1.5.0.bb | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+evadeflow% pwd
+/home/evadeflow/projects/poky-git/build/tmp/sysroots/i686-linux/usr/bin
+evadeflow% ls t*
+tabs  tailf  taskset  tic  toe	tput  tset  tunctl  tzselect
+evadeflow% tar --version
+tar (GNU tar) 1.22
+Copyright (C) 2009 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
 
-diff --git a/meta/recipes-devtools/mtd/mtd-utils_1.5.0.bb b/meta/recipes-devtools/mtd/mtd-utils_1.5.0.bb
-index 1a9d4d3..f371739 100644
---- a/meta/recipes-devtools/mtd/mtd-utils_1.5.0.bb
-+++ b/meta/recipes-devtools/mtd/mtd-utils_1.5.0.bb
-@@ -6,8 +6,9 @@ LICENSE = "GPLv2+"
- LIC_FILES_CHKSUM = "file://COPYING;md5=0636e73ff0215e8d672dc4c32c317bb3 \
-                     file://include/common.h;beginline=1;endline=17;md5=ba05b07912a44ea2bf81ce409380049c"
- 
--SRC_URI = "git://git.infradead.org/mtd-utils.git;protocol=git;tag=ca39eb1d98e736109c64ff9c1aa2a6ecca222d8f \
--		file://add-exclusion-to-mkfs-jffs2-git-2.patch"
-+SRC_URI = "git://git.infradead.org/mtd-utils.git;protocol=git \
-+	file://add-exclusion-to-mkfs-jffs2-git-2.patch"
-+SRCREV = "ca39eb1d98e736109c64ff9c1aa2a6ecca222d8f"
- 
- S = "${WORKDIR}/git/"
- 
--- 
-1.7.11.4
+Written by John Gilmore and Jay Fenlason.
 
+
+This is on denzil, BTW. (Maybe the check against the tar version was added
+later?)
+
+
+evadeflow% bitbake core-image-sato
+WARNING: Host distribution "Ubuntu 10.04 LTS" has not been validated
+with this version of the build system; you may possibly experience
+unexpected failures. It is recommended that you use a tested
+distribution.
+Parsing recipes: 100%
+|###################################################################|
+Time: 00:00:07
+Parsing of 829 .bb files complete (0 cached, 829 parsed). 1105
+targets, 34 skipped, 0 masked, 0 errors.
+
+OE Build Configuration:
+BB_VERSION        = "1.15.2"
+TARGET_ARCH       = "arm"
+TARGET_OS         = "linux-gnueabi"
+MACHINE           = "qemuarm"
+DISTRO            = "poky"
+DISTRO_VERSION    = "1.2.1"
+TUNE_FEATURES     = "armv5 dsp thumb arm926ejs"
+TARGET_FPU        = "soft"
+meta
+meta-yocto        = "denzil:65ffa7395055f7e012cb973f63f92380828eed0d"
+
+
+Maybe I got my build tree into an inconsistent state somehow when I was trying
+to 'fix' this. I can try rebuilding if it helps, using the original perl
+archive (not the one I re-tarballed with tar 1.22)...
+
+
+On Thu, Sep 27, 2012 at 6:58 PM, Paul Eggleton
+<paul.eggleton@linux.intel.com> wrote:
+> On Thursday 27 September 2012 17:55:45 Evade Flow wrote:
+>> Fair enough. And I should mention that the error I reported occurs on
+>> Ubuntu 10.04. It's not like I wasn't warned. :-}
+>>
+>>   WARNING: Host distribution "Ubuntu 10.04 LTS" has not been validated
+>>   with this version of the build system; you may possibly experience
+>>   unexpected failures. It is recommended that you use a tested
+>>   distribution.
+>>
+>> (Other than this oddity with the perl package, things seem to work fine.)
+>
+> Yeah, it's just a warning :)
+>
+> This issue is rather perplexing. We're supposed to not be using the host tar
+> if it is older than 1.24 due to another bug in earlier versions - if an older
+> version is found we build tar-replacement-native before anything else gets
+> built. Was tar-replacement-native built on the machine where it was failing?
+> You can verify it built by just checking under tmp/sysroots/<native
+> sysroot>/usr/bin/ to see if tar exists there.
+>
+> Cheers,
+> Paul
+>
+> --
+>
+> Paul Eggleton
+> Intel Open Source Technology Centre
 
