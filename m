@@ -1,24 +1,25 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 10142E00348
-	for <yocto@yoctoproject.org>; Fri, 28 Sep 2012 01:16:43 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 28 Sep 2012 01:16:40 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,501,1344236400"; d="scan'208";a="227644970"
-Received: from unknown (HELO helios.localnet) ([10.252.122.5])
-	by fmsmga001.fm.intel.com with ESMTP; 28 Sep 2012 01:16:38 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Kevin Strasser <kevin.strasser@linux.intel.com>
-Date: Fri, 28 Sep 2012 09:16:36 +0100
-Message-ID: <2332194.UJXiG7VFYG@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.9.1 (Linux/3.2.0-31-generic-pae; KDE/4.9.1; i686; ; )
-In-Reply-To: <cover.1348791431.git.kevin.strasser@linux.intel.com>
-References: <cover.1348791431.git.kevin.strasser@linux.intel.com>
-MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-baryon][PATCH 0/4] clear up build warnings
+Return-Path: <martin.donnelly@ge.com>
+Received: from exprod5og102.obsmtp.com (exprod5og102.obsmtp.com [64.18.0.143])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6AC1BE0049B
+	for <yocto@yoctoproject.org>; Fri, 28 Sep 2012 03:34:56 -0700 (PDT)
+Received: from cinmlip10.e2k.ad.ge.com ([165.156.4.1]) (using TLSv1) by
+	exprod5ob102.postini.com ([64.18.4.12]) with SMTP
+	ID DSNKUGV9SwpzhcbIEHN1oU0If9/rK19M/HZV@postini.com;
+	Fri, 28 Sep 2012 03:34:56 PDT
+Received: from unknown (HELO alpmlip01.e2k.ad.ge.com) ([3.159.17.48])
+	by cinmlip10.e2k.ad.ge.com with ESMTP; 28 Sep 2012 06:34:50 -0400
+Received: from selma.edi.geip.ge.com ([3.26.68.70])
+	by alpmlip01.e2k.ad.ge.com with ESMTP; 28 Sep 2012 06:34:50 -0400
+Received: from fyvie.edi.geip.ge.com (fyvie.edi.geip.ge.com [3.26.68.199])
+	by selma.edi.geip.ge.com (Postfix) with ESMTP id 7902DE12FE;
+	Fri, 28 Sep 2012 11:34:48 +0100 (BST)
+From: Martin Donnelly <martin.donnelly@ge.com>
+To: yocto@yoctoproject.org
+Date: Fri, 28 Sep 2012 11:34:04 +0100
+Message-Id: <1348828444-31626-1-git-send-email-martin.donnelly@ge.com>
+X-Mailer: git-send-email 1.7.11.4
+Cc: Martin Donnelly <martin.donnelly@ge.com>
+Subject: [PATCH] mtd-utils: update SRC_URI to support BB_NO_NETWORK
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,45 +31,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 28 Sep 2012 08:16:43 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Fri, 28 Sep 2012 10:34:56 -0000
 
-On Thursday 27 September 2012 17:30:48 Kevin Strasser wrote:
-> This patch set clears up some of the warnings that are generated when
-> building baryon against the tip of the 1.3_M3 branch of poky.
-> 
-> The following changes since commit 500a124831e292d76d864a3c64a57a5007c4553a:
-> 
->   kernel: enable nfsd when using the 3.4 kernel (2012-09-13 10:43:26 -0700)
-> 
-> are available in the git repository at:
-> 
->   git://git.yoctoproject.org/poky-contrib strassek/baryon-warnings
->  
-> http://git.yoctoproject.org/cgit.cgi/poky-contrib/log/?h=strassek/baryon-wa
-> rnings
-> 
-> Kevin Strasser (4):
->   proftpd: remove unused directories after install
->   samba: remove unused directories after install
->   orc: specify the generic licenses being used
->   talloc: specify the version of LGPL and include the license text
-> 
->  recipes-connectivity/samba/samba.inc       |    2 ++
->  recipes-extended/proftpd/proftpd_1.3.4b.bb |    1 +
->  recipes-multimedia/orc/orc.inc             |    2 +-
->  recipes-multimedia/orc/orc_0.4.5.bb        |    2 +-
->  recipes-support/talloc/talloc_2.0.1.bb     |    6 +++---
->  5 files changed, 8 insertions(+), 5 deletions(-)
+Move the tag from the SRC_URI to SRCREV to enable builds
+using BB_NO_NETWORK
 
-Merged to meta-baryon master, thanks.
+Signed-off-by: Martin Donnelly <martin.donnelly@ge.com>
+---
+ meta/recipes-devtools/mtd/mtd-utils_1.5.0.bb | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-Cheers,
-Paul
-
+diff --git a/meta/recipes-devtools/mtd/mtd-utils_1.5.0.bb b/meta/recipes-devtools/mtd/mtd-utils_1.5.0.bb
+index 1a9d4d3..f371739 100644
+--- a/meta/recipes-devtools/mtd/mtd-utils_1.5.0.bb
++++ b/meta/recipes-devtools/mtd/mtd-utils_1.5.0.bb
+@@ -6,8 +6,9 @@ LICENSE = "GPLv2+"
+ LIC_FILES_CHKSUM = "file://COPYING;md5=0636e73ff0215e8d672dc4c32c317bb3 \
+                     file://include/common.h;beginline=1;endline=17;md5=ba05b07912a44ea2bf81ce409380049c"
+ 
+-SRC_URI = "git://git.infradead.org/mtd-utils.git;protocol=git;tag=ca39eb1d98e736109c64ff9c1aa2a6ecca222d8f \
+-		file://add-exclusion-to-mkfs-jffs2-git-2.patch"
++SRC_URI = "git://git.infradead.org/mtd-utils.git;protocol=git \
++	file://add-exclusion-to-mkfs-jffs2-git-2.patch"
++SRCREV = "ca39eb1d98e736109c64ff9c1aa2a6ecca222d8f"
+ 
+ S = "${WORKDIR}/git/"
+ 
 -- 
+1.7.11.4
 
-Paul Eggleton
-Intel Open Source Technology Centre
 
