@@ -1,60 +1,31 @@
-Return-Path: <tim.bird@am.sony.com>
-Received: from am1outboundpool.messaging.microsoft.com
-	(am1ehsobe001.messaging.microsoft.com [213.199.154.204])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 21D24E0027F
-	for <yocto@yoctoproject.org>; Fri, 28 Sep 2012 11:52:20 -0700 (PDT)
-Received: from mail40-am1-R.bigfish.com (10.3.201.233) by
-	AM1EHSOBE001.bigfish.com (10.3.204.21) with Microsoft SMTP Server id
-	14.1.225.23; Fri, 28 Sep 2012 18:52:17 +0000
-Received: from mail40-am1 (localhost [127.0.0.1])	by mail40-am1-R.bigfish.com
-	(Postfix) with ESMTP id E9DD1480160;
-	Fri, 28 Sep 2012 18:52:16 +0000 (UTC)
-X-Forefront-Antispam-Report: CIP:160.33.194.230; KIP:(null); UIP:(null);
-	IPV:NLI; H:usculsndmail03v.am.sony.com; RD:mail.sonyusa.com;
-	EFVD:NLI
-X-SpamScore: -4
-X-BigFish: VPS-4(zzbb2dI98dI9371I1432Izz1202h1d1ah1d2ahzzz2fh2a8h668h839h93fhd25hf0ah107ah1288h12a5h12a9h12bdh137ah13b6h1155h)
-Received-SPF: pass (mail40-am1: domain of am.sony.com designates
-	160.33.194.230 as permitted sender) client-ip=160.33.194.230;
-	envelope-from=tim.bird@am.sony.com;
-	helo=usculsndmail03v.am.sony.com ; .am.sony.com ; 
-Received: from mail40-am1 (localhost.localdomain [127.0.0.1]) by mail40-am1
-	(MessageSwitch) id 1348858334864100_1489;
-	Fri, 28 Sep 2012 18:52:14 +0000 (UTC)
-Received: from AM1EHSMHS018.bigfish.com (unknown [10.3.201.231])	by
-	mail40-am1.bigfish.com (Postfix) with ESMTP id CCE384C0080;
-	Fri, 28 Sep 2012 18:52:14 +0000 (UTC)
-Received: from usculsndmail03v.am.sony.com (160.33.194.230) by
-	AM1EHSMHS018.bigfish.com (10.3.207.156) with Microsoft SMTP Server
-	(TLS) id 14.1.225.23; Fri, 28 Sep 2012 18:52:13 +0000
-Received: from usculsndmail11v.am.sony.com (usculsndmail11v.am.sony.com
-	[146.215.230.102])	by usculsndmail03v.am.sony.com
-	(Sentrion-MTA-4.2.2/Sentrion-MTA-4.2.2) with ESMTP id q8SIq9k1032495;
-	Fri, 28 Sep 2012 18:52:10 GMT
-Received: from mail1x.sgo.in.sel.sony.com (mail2.sgo.in.sel.sony.com
-	[43.130.1.112])	by usculsndmail11v.am.sony.com
-	(Sentrion-MTA-4.2.2/Sentrion-MTA-4.2.2) with ESMTP id q8SIq8IX017334
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=FAIL);
-	Fri, 28 Sep 2012 18:52:09 GMT
-Received: from [43.135.148.222] ([43.135.148.222])	by
-	mail1x.sgo.in.sel.sony.com (Switch-3.4.2/Switch-3.4.2) with ESMTP id
-	q8SIq7p6025383;	Fri, 28 Sep 2012 18:52:08 GMT
-Message-ID: <5065F2F3.70209@am.sony.com>
-Date: Fri, 28 Sep 2012 11:56:51 -0700
-From: Tim Bird <tim.bird@am.sony.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:15.0) Gecko/20120827 Thunderbird/15.0
+Return-Path: <twoerner@gmail.com>
+Received: from mail-lb0-f176.google.com (mail-lb0-f176.google.com
+	[209.85.217.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EA57DE0027F
+	for <yocto@yoctoproject.org>; Fri, 28 Sep 2012 12:12:47 -0700 (PDT)
+Received: by lbcs4 with SMTP id s4so779229lbc.35
+	for <yocto@yoctoproject.org>; Fri, 28 Sep 2012 12:12:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:content-type; bh=dZS0np1sTEYKZuoiS3xE43MK7kLsd+/bhXvvtjl+jOE=;
+	b=tIMqTriNNZ+Li+TVbohDPfA1EhfoVEYDobe+qYev1LOk8GwvRv1+213F8osoPedlXJ
+	pJB2edqhUX1uQc990ZZjsjaHkzEvizAK08pdNzrx+7uhnfAga7tD+nw4m9yGoqx3Xl8z
+	BhUU05kSadRv3/JOpFe2WUegpggxu4AQPi3iZTaXXeHdzZ3bC7Se0PYYsRbrz2xr6Ews
+	nhlelAtUlRzwE05J3sn3ZerxT8zneWLWIO5nBwGapkRBYEGpaacWcmItEzbdFVxabuXh
+	h0Ui9i47Cg4hRfS6fOhffqfds1mYYNBFkGyK7rz9GgzjSBwjDpzZ6fbmKg3Q0Pw5/84l
+	xYcw==
 MIME-Version: 1.0
-To: Rudolf Streif <rudolf.streif@linux.com>
+Received: by 10.112.37.105 with SMTP id x9mr3018179lbj.69.1348859564517; Fri,
+	28 Sep 2012 12:12:44 -0700 (PDT)
+Received: by 10.112.37.2 with HTTP; Fri, 28 Sep 2012 12:12:44 -0700 (PDT)
+In-Reply-To: <31384487.oKEco2inpj@helios>
 References: <41DEA4B02DBDEF40A0F3B6D0DDB1237946A720D0@FMSMSX151.amr.corp.intel.com>
 	<CA+gsK-pYtXKaVyERW7ys9j_3DEExXUKf2=wNTOOQ+r-Jvt9xrQ@mail.gmail.com>
 	<31384487.oKEco2inpj@helios>
-	<41DEA4B02DBDEF40A0F3B6D0DDB1237946A73111@FMSMSX151.amr.corp.intel.com>
-	<CA+gsK-qgU=6MHF4T+U1uU1qjVOGBq6pVsbbrTvwZUnYcBeBy=g@mail.gmail.com>
-In-Reply-To: <CA+gsK-qgU=6MHF4T+U1uU1qjVOGBq6pVsbbrTvwZUnYcBeBy=g@mail.gmail.com>
-X-OriginatorOrg: am.sony.com
-Cc: Paul Eggleton <paul.eggleton@linux.intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Fri, 28 Sep 2012 15:12:44 -0400
+Message-ID: <CAHUNapR6-jrh86pzB2HNPP+9njYqTRKJFNMT-SV4OupTPE6-NQ@mail.gmail.com>
+From: Trevor Woerner <twoerner@gmail.com>
+To: yocto@yoctoproject.org
 Subject: Re: The term Package as used in the YP docs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -67,28 +38,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 28 Sep 2012 18:52:20 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 28 Sep 2012 19:12:48 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On 09/28/2012 11:44 AM, Rudolf Streif wrote:
-> I am not advocating changing the variable names. I know that this is a huge undertaking and prone to many problems. This probably one of the many legacy things people will have to live with and
-> understand. In most cases recipe name and version exactly reflect the name and version of the package it is intended to build which to some extend mitigates the issue.
-> 
-> As far as the Terms section in the manuals is concerned, I see that you already changed the describing text for the variables. That's sufficient, I think.
+On Fri, Sep 28, 2012 at 2:34 PM, Paul Eggleton
+<paul.eggleton@linux.intel.com> wrote:
+> On Friday 28 September 2012 11:27:37 Rudolf Streif wrote:
+>> Unfortunately, changing variables like P, PN, PV, PR etc.
+>> may cause some pain. If a transition is what the broader community would
+>> like to achieve then a period where old and new variables can be used
+>> interchangeably (if possible) would be the way to go.
+>
+> I'm not sure there's a huge amount to be gained by doing this when weighed
+> against the cost - it would certainly cause a massive amount of churn, with
+> the potential for problems with layer interaction where one layer has done the
+> big rename and another that bbappends recipes in the first hasn't.
 
-(I answered Scott privately by mistake - here's some feedback on-list)
+Not that it matters in the grand scheme of things, but I would be in
+favour of switching the variable names. Consistency is as consistency
+does; if there's any hope people can stop confusing "poky" for
+"yocto", "yocto" with "the yocto project", and "packages" for
+"recipes" then it needs to be pervasively correct.
 
-I'm in favor of mentioning the history somewhere, because the names
-do have a 'P' in them, and this is confusing otherwise.
+Provided the Yocto Project continues to grow, changes like this only
+get harder with time, and if the project gets bigger (i.e. more uses)
+the confusion only spreads further the longer it is left unchecked.
 
-Overall, I think the new wording is worthwhile.
- -- Tim
-
-=============================
-Tim Bird
-Architecture Group Chair, CE Workgroup of the Linux Foundation
-Senior Staff Engineer, Sony Network Entertainment
-=============================
-
+In any case I applaud all the efforts to standardize the wording,
+especially in the documentation. As such I think it would be quite
+helpful to have the proposed historical note included. Hopefully, the
+sooner newcomers are aware of the issue, the less they're likely to
+trip up over it.
 
