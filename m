@@ -1,32 +1,19 @@
-Return-Path: <twoerner@gmail.com>
-Received: from mail-lb0-f176.google.com (mail-lb0-f176.google.com
-	[209.85.217.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EA57DE0027F
-	for <yocto@yoctoproject.org>; Fri, 28 Sep 2012 12:12:47 -0700 (PDT)
-Received: by lbcs4 with SMTP id s4so779229lbc.35
-	for <yocto@yoctoproject.org>; Fri, 28 Sep 2012 12:12:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:content-type; bh=dZS0np1sTEYKZuoiS3xE43MK7kLsd+/bhXvvtjl+jOE=;
-	b=tIMqTriNNZ+Li+TVbohDPfA1EhfoVEYDobe+qYev1LOk8GwvRv1+213F8osoPedlXJ
-	pJB2edqhUX1uQc990ZZjsjaHkzEvizAK08pdNzrx+7uhnfAga7tD+nw4m9yGoqx3Xl8z
-	BhUU05kSadRv3/JOpFe2WUegpggxu4AQPi3iZTaXXeHdzZ3bC7Se0PYYsRbrz2xr6Ews
-	nhlelAtUlRzwE05J3sn3ZerxT8zneWLWIO5nBwGapkRBYEGpaacWcmItEzbdFVxabuXh
-	h0Ui9i47Cg4hRfS6fOhffqfds1mYYNBFkGyK7rz9GgzjSBwjDpzZ6fbmKg3Q0Pw5/84l
-	xYcw==
-MIME-Version: 1.0
-Received: by 10.112.37.105 with SMTP id x9mr3018179lbj.69.1348859564517; Fri,
-	28 Sep 2012 12:12:44 -0700 (PDT)
-Received: by 10.112.37.2 with HTTP; Fri, 28 Sep 2012 12:12:44 -0700 (PDT)
-In-Reply-To: <31384487.oKEco2inpj@helios>
-References: <41DEA4B02DBDEF40A0F3B6D0DDB1237946A720D0@FMSMSX151.amr.corp.intel.com>
-	<CA+gsK-pYtXKaVyERW7ys9j_3DEExXUKf2=wNTOOQ+r-Jvt9xrQ@mail.gmail.com>
-	<31384487.oKEco2inpj@helios>
-Date: Fri, 28 Sep 2012 15:12:44 -0400
-Message-ID: <CAHUNapR6-jrh86pzB2HNPP+9njYqTRKJFNMT-SV4OupTPE6-NQ@mail.gmail.com>
-From: Trevor Woerner <twoerner@gmail.com>
+Return-Path: <kevin.strasser@linux.intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E1151E0027F
+	for <yocto@yoctoproject.org>; Fri, 28 Sep 2012 12:43:59 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 28 Sep 2012 12:43:31 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,503,1344236400"; d="scan'208";a="199486770"
+Received: from wrk.jf.intel.com ([10.7.202.88])
+	by orsmga001.jf.intel.com with ESMTP; 28 Sep 2012 12:43:46 -0700
+From: Kevin Strasser <kevin.strasser@linux.intel.com>
 To: yocto@yoctoproject.org
-Subject: Re: The term Package as used in the YP docs
+Date: Fri, 28 Sep 2012 12:43:46 -0700
+Message-Id: <cover.1348861287.git.kevin.strasser@linux.intel.com>
+X-Mailer: git-send-email 1.7.9.5
+Subject: [meta-baryon][PATCH 0/1] nfs regression workaround
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,35 +25,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 28 Sep 2012 19:12:48 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Fri, 28 Sep 2012 19:44:00 -0000
 
-On Fri, Sep 28, 2012 at 2:34 PM, Paul Eggleton
-<paul.eggleton@linux.intel.com> wrote:
-> On Friday 28 September 2012 11:27:37 Rudolf Streif wrote:
->> Unfortunately, changing variables like P, PN, PV, PR etc.
->> may cause some pain. If a transition is what the broader community would
->> like to achieve then a period where old and new variables can be used
->> interchangeably (if possible) would be the way to go.
->
-> I'm not sure there's a huge amount to be gained by doing this when weighed
-> against the cost - it would certainly cause a massive amount of churn, with
-> the potential for problems with layer interaction where one layer has done the
-> big rename and another that bbappends recipes in the first hasn't.
+The new recovery mechanism used by nfs in 3.4 kernels is currently
+failing when building baryon against poky 1.3_M3. This workaround
+causes nfs to revert back to the old recovery mechanism.
 
-Not that it matters in the grand scheme of things, but I would be in
-favour of switching the variable names. Consistency is as consistency
-does; if there's any hope people can stop confusing "poky" for
-"yocto", "yocto" with "the yocto project", and "packages" for
-"recipes" then it needs to be pervasively correct.
+The issue is discussed in more detail here:
+https://lkml.org/lkml/2012/6/11/243
 
-Provided the Yocto Project continues to grow, changes like this only
-get harder with time, and if the project gets bigger (i.e. more uses)
-the confusion only spreads further the longer it is left unchecked.
+The following changes since commit e4efadec4a1ded0a66fa67c7cca868b7a4b6221b:
 
-In any case I applaud all the efforts to standardize the wording,
-especially in the documentation. As such I think it would be quite
-helpful to have the proposed historical note included. Hopefully, the
-sooner newcomers are aware of the issue, the less they're likely to
-trip up over it.
+  talloc: specify the version of LGPL and include the license text (2012-09-27 16:54:08 -0700)
+
+are available in the git repository at:
+
+  git://git.yoctoproject.org/poky-contrib strassek/baryon-nfsd-regression
+  http://git.yoctoproject.org/cgit.cgi/poky-contrib/log/?h=strassek/baryon-nfsd-regression
+
+Kevin Strasser (1):
+  nfs-utils: workaround for nfsd regression in the 3.4 kernel
+
+ .../nfs-utils/nfs-utils_1.2.3.bbappend             |    8 ++++++++
+ 1 file changed, 8 insertions(+)
+ create mode 100644 recipes-connectivity/nfs-utils/nfs-utils_1.2.3.bbappend
+
+-- 
+1.7.9.5
+
 
