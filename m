@@ -1,36 +1,29 @@
-Return-Path: <evadeflow@gmail.com>
-Received: from mail-oa0-f48.google.com (mail-oa0-f48.google.com
-	[209.85.219.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 20A1AE0027F
-	for <yocto@yoctoproject.org>; Fri, 28 Sep 2012 10:00:47 -0700 (PDT)
-Received: by oagh2 with SMTP id h2so4230388oag.35
-	for <yocto@yoctoproject.org>; Fri, 28 Sep 2012 10:00:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=lyzTxJkJDI8bL+YB98XIe1FkaDw1/Ed8B0PZkNwL5DE=;
-	b=CtV9jOOWKfKO+KtL3WPTt/yCBFiHb4KGFJmCi0ClCfjhdLB47CBTntitocW6/h7U7D
-	mHWVUiNrVp4HXS8HHzAacBpPzFADDweYBbZCJ9MoEm1s8laGaa+abPJSCMTUc61Hnsa7
-	JOip+6qaJx6kE9/NNixyBHw45DLLuhKIsp0NFNyNg+7c6CqXiph0pjtQwTj8BcCCnGEH
-	Ns6V7WuFTBA2JSN0kC8gW/jzSXA6m5XP+L8AXzyiiFOi708cdec8wI3nMF0D9GnU4MRv
-	8T/6o0qMlABbsVr1apCmQ/Iq3HIyXzVko3qprTuFzElMraYWzq1n0KVJGH4mQDaf5n84
-	ZgEg==
+Return-Path: <scott.m.rifenbark@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 90A98E0027F
+	for <yocto@yoctoproject.org>; Fri, 28 Sep 2012 11:14:33 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 28 Sep 2012 11:14:17 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,503,1344236400"; 
+	d="scan'208,217";a="199457236"
+Received: from fmsmsx105.amr.corp.intel.com ([10.19.9.36])
+	by orsmga001.jf.intel.com with ESMTP; 28 Sep 2012 11:14:32 -0700
+Received: from fmsmsx151.amr.corp.intel.com ([169.254.6.213]) by
+	FMSMSX105.amr.corp.intel.com ([169.254.5.227]) with mapi id
+	14.01.0355.002; Fri, 28 Sep 2012 11:14:32 -0700
+From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: The term Package as used in the YP docs
+Thread-Index: Ac2dpRsLh9EQgU5BRbiGnRBZQLE+jw==
+Date: Fri, 28 Sep 2012 18:14:31 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237946A720D0@FMSMSX151.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-Received: by 10.182.73.65 with SMTP id j1mr6381117obv.42.1348851646467; Fri,
-	28 Sep 2012 10:00:46 -0700 (PDT)
-Received: by 10.76.153.198 with HTTP; Fri, 28 Sep 2012 10:00:46 -0700 (PDT)
-In-Reply-To: <CAMAb8ZO1ffsC5JaU-jMaPFw=QaXCa1tF1L2trkqwADLchrSsoA@mail.gmail.com>
-References: <41DEA4B02DBDEF40A0F3B6D0DDB1237946A70CC9@FMSMSX151.amr.corp.intel.com>
-	<19284936.TeXuZqBLh2@helios>
-	<CAMAb8ZMWnVWDah+h7A1qp=HytRd8kNOZfn_yeM5aa11QT4LHSQ@mail.gmail.com>
-	<1776612.6uYv7lrdGp@helios>
-	<CAMAb8ZO1ffsC5JaU-jMaPFw=QaXCa1tF1L2trkqwADLchrSsoA@mail.gmail.com>
-Date: Fri, 28 Sep 2012 13:00:46 -0400
-Message-ID: <CAMAb8ZP7Fa_2hO59CqRNAS0Fg2BQJWU8xOf2UK9zzd+Oorh2Lg@mail.gmail.com>
-From: Evade Flow <evadeflow@gmail.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: build failure on current
+Subject: The term Package as used in the YP docs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,105 +35,201 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 28 Sep 2012 17:00:47 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Fri, 28 Sep 2012 18:14:33 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_41DEA4B02DBDEF40A0F3B6D0DDB1237946A720D0FMSMSX151amrcor_"
 
-Just to bring this full circle: I finally got the CRC error on my Ubuntu
-10.04 build server to go away by adding the following line to
-/etc/apt/sources.list:
+--_000_41DEA4B02DBDEF40A0F3B6D0DDB1237946A720D0FMSMSX151amrcor_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-  deb http://archive.ubuntu.com/ubuntu lucid-updates main universe restricted
+This post will have some strong opinions and responses.  But, I want to thr=
+ow this out as a re-write of the term "Package" as defined in the YP Develo=
+pment Manual's "Terms" section.  I gave this a shot based on my brief under=
+standing and on some email that was tossed about a while back on the term. =
+ What I would like to ultimately come up with is a definition that works fo=
+r the term as we want to use it in the YP docs and also as an explanation f=
+or some of our older variable names like PR, PV, and so forth that really r=
+efer to recipes.  Please thrash over it....
 
-and then executing:
 
-  sudo apt-get install gzip
+*         Package: In the context of the Yocto Project, this term refers to=
+ the packaged output from a baked recipe. A package is generally the compil=
+ed binaries produced from the recipe's sources. You 'bake' something by run=
+ning it through BitBake.
 
-to update gzip.  Thanks, Paul, for all of your help in tracking this
-down...
+It is worth noting that the term "package" can, in general, have subtle mea=
+nings. For example, the packages refered to in the "The Packages<http://www=
+.yoctoproject.org/docs/1.3/yocto-project-qs/yocto-project-qs.html#packages>=
+" section are compiled binaries that when installed add functionality to yo=
+ur Linux distribution.
+
+Another point worth noting is that historically within the Yocto Project, r=
+ecipes were referred to as packages - thus, the existence of several BitBak=
+e variables that are seemingly mis-named, (e.g. PR<http://www.yoctoproject.=
+org/docs/1.3/poky-ref-manual/poky-ref-manual.html#var-PR>, PRINC<http://www=
+.yoctoproject.org/docs/1.3/poky-ref-manual/poky-ref-manual.html#var-PRINC>,=
+ PV<http://www.yoctoproject.org/docs/1.3/poky-ref-manual/poky-ref-manual.ht=
+ml#var-PV>, and PE<http://www.yoctoproject.org/docs/1.3/poky-ref-manual/pok=
+y-ref-manual.html#var-PE>).
 
 
-On Fri, Sep 28, 2012 at 12:34 PM, Evade Flow <evadeflow@gmail.com> wrote:
->> Is it definitely tar that's the problem or gzip? ...
+Scott Rifenbark
+Intel Corporation
+Yocto Project Documentation
+503.712.2702
+503.341.0418 (cell)
+
+
+--_000_41DEA4B02DBDEF40A0F3B6D0DDB1237946A720D0FMSMSX151amrcor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
 >
-> Oh! Didn't even think of that. :-% Looks like it's gzip:
->
-> evadeflow% gzip -d perl-5.14.2.tar.gz
->
-> gzip: perl-5.14.2.tar.gz: invalid compressed data--crc error
->
->
-> Nice find!  I'll see about updating my gzip...
->
->
-> On Fri, Sep 28, 2012 at 12:00 PM, Paul Eggleton
-> <paul.eggleton@linux.intel.com> wrote:
->> On Friday 28 September 2012 11:53:53 Evade Flow wrote:
->>> > > Erm... that *specific* bit prints nothing when pasted into a file and
->>> > > executed. (Is it really supposed to?)
->>> >
->>> > No, but the rest of the script (the bit following the blank line that
->>> > you've omitted) is...
->>>
->>> My bad, sorry. (I really need to read more carefully.) Here's what I get
->>> when I add the missing lines:
->>>
->>> evadeflow% cat > temp.sh
->>> #!/bin/sh
->>> needtar=1
->>> TARVERSION=`tar --version | head -n 1 | cut -d ' ' -f 4`
->>> float_test() {
->>>      echo | awk 'END { exit ( !( '"$1"')); }'
->>> }
->>>
->>> # Tar version 1.24 and onwards handle overwriting symlinks correctly
->>> # but earlier versions do not; this needs to work properly for sstate
->>> float_test "$TARVERSION > 1.23" && needtar="0"
->>> echo $needtar
->>> evadeflow% chmod +x temp.sh
->>> evadeflow% ./temp.sh
->>> 1
->>>
->>> So... it correctly determines that it needs to build tar, but... the built
->>> tar can't unpack the tarball from CPAN:
->>>
->>> evadeflow% wget http://www.cpan.org/src/5.0/perl-5.14.2.tar.gz
->>> --2012-09-28 11:46:13--  http://www.cpan.org/src/5.0/perl-5.14.2.tar.gz
->>> Resolving usaprox1.lightning.com... 10.102.184.7
->>> Connecting to usaprox1.lightning.com|10.102.184.7|:8080... connected.
->>> Proxy request sent, awaiting response... 200 OK
->>> Length: 15223598 (15M) [application/x-gzip]
->>> Saving to: `perl-5.14.2.tar.gz'
->>>
->>> 100%[================================================================>]
->>> 15,223,598  62.2M/s   in 0.2s
->>>
->>> 2012-09-28 11:46:13 (62.2 MB/s) - `perl-5.14.2.tar.gz' saved
->>> [15223598/15223598]
->>>
->>> evadeflow% ./poky-git/build/tmp/sysroots/i686-linux/usr/bin/tar xf
->>> perl-5.14.2.tar.gz
->>>
->>> gzip: stdin: invalid compressed data--crc error
->>> ./poky-git/build/tmp/sysroots/i686-linux/usr/bin/tar: Child returned status
->>> 1 ./poky-git/build/tmp/sysroots/i686-linux/usr/bin/tar: Error is not
->>> recoverable: exiting now
->>>
->>>
->>> Weird. Anyway, I have a workaround, so it's not a big deal--especially given
->>> that Ubuntu 10.04 isn't officially supported.  I'm happy to run any other
->>> tests you can think of to hunt down the cause of this (I've got a pretty
->>> fast build mchine now), but I totally understand if you've got bigger fish
->>> to fry at the moment...
->>
->> Is it definitely tar that's the problem or gzip? This would suggest gzip:
->>
->> http://code.google.com/p/go/issues/detail?id=3443
->>
->> Cheers,
->> Paul
->>
->> --
->>
->> Paul Eggleton
->> Intel Open Source Technology Centre
+<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p
+	{mso-style-priority:99;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+code
+	{mso-style-priority:99;
+	font-family:"Courier New";}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+/* List Definitions */
+@list l0
+	{mso-list-id:1087579690;
+	mso-list-template-ids:-1952302836;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">This post will have some strong opinions and respons=
+es.&nbsp; But, I want to throw this out as a re-write of the term &#8220;Pa=
+ckage&#8221; as defined in the YP Development Manual&#8217;s &#8220;Terms&#=
+8221; section.&nbsp; I gave this a shot based on my brief understanding and
+ on some email that was tossed about a while back on the term.&nbsp; What I=
+ would like to ultimately come up with is a definition that works for the t=
+erm as we want to use it in the YP docs and also as an explanation for some=
+ of our older variable names like PR,
+ PV, and so forth that really refer to recipes.&nbsp; Please thrash over it=
+&#8230;.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p style=3D"margin-left:.5in;text-indent:-.25in;mso-list:l0 level1 lfo1"><!=
+[if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol"><spa=
+n style=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt &quot;Times N=
+ew Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><em>Package:</em> In the context of the Yoct=
+o Project, this term refers to the packaged output from a baked recipe. A p=
+ackage is generally the compiled binaries produced from the recipe's source=
+s. You &#8216;bake&#8217; something by running
+ it through BitBake.<o:p></o:p></p>
+<p style=3D"margin-left:.5in">It is worth noting that the term &quot;packag=
+e&quot; can, in general, have subtle meanings. For example, the packages re=
+fered to in the &quot;<a href=3D"http://www.yoctoproject.org/docs/1.3/yocto=
+-project-qs/yocto-project-qs.html#packages" target=3D"_top">The
+ Packages</a>&quot; section are compiled binaries that when installed add f=
+unctionality to your Linux distribution.<o:p></o:p></p>
+<p style=3D"margin-left:.5in">Another point worth noting is that historical=
+ly within the Yocto Project, recipes were referred to as packages - thus, t=
+he existence of several BitBake variables that are seemingly mis-named, (e.=
+g.
+<a href=3D"http://www.yoctoproject.org/docs/1.3/poky-ref-manual/poky-ref-ma=
+nual.html#var-PR" target=3D"_top">
+<code><span style=3D"font-size:10.0pt;color:blue">PR</span></code></a>, <a =
+href=3D"http://www.yoctoproject.org/docs/1.3/poky-ref-manual/poky-ref-manua=
+l.html#var-PRINC" target=3D"_top">
+<code><span style=3D"font-size:10.0pt;color:blue">PRINC</span></code></a>, =
+<a href=3D"http://www.yoctoproject.org/docs/1.3/poky-ref-manual/poky-ref-ma=
+nual.html#var-PV" target=3D"_top">
+<code><span style=3D"font-size:10.0pt;color:blue">PV</span></code></a>, and=
+ <a href=3D"http://www.yoctoproject.org/docs/1.3/poky-ref-manual/poky-ref-m=
+anual.html#var-PE" target=3D"_top">
+<code><span style=3D"font-size:10.0pt;color:blue">PE</span></code></a>). <o=
+:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Arial&quot;,&quot;sans-serif&quot;;color:blue">Scott Rifenbark</span></b><=
+b><span style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-=
+serif&quot;;color:blue"><o:p></o:p></span></b></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:7.5pt;font-family:&quot;Ari=
+al&quot;,&quot;sans-serif&quot;;color:blue">Intel Corporation</span><span s=
+tyle=3D"font-size:7.5pt;font-family:&quot;Times New Roman&quot;,&quot;serif=
+&quot;"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:7.5pt;font-family:&quot;Ari=
+al&quot;,&quot;sans-serif&quot;;color:blue">Yocto Project Documentation<o:p=
+></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:7.5pt;font-family:&quot;Ari=
+al&quot;,&quot;sans-serif&quot;;color:blue">503.712.2702</span><span style=
+=3D"font-size:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&qu=
+ot;"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:7.5pt;font-family:&quot;Ari=
+al&quot;,&quot;sans-serif&quot;;color:blue">503.341.0418 (cell)</span><span=
+ style=3D"font-size:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;se=
+rif&quot;"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
 
+--_000_41DEA4B02DBDEF40A0F3B6D0DDB1237946A720D0FMSMSX151amrcor_--
