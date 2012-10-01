@@ -1,28 +1,53 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D99FEE01304
-	for <yocto@yoctoproject.org>; Mon,  1 Oct 2012 01:01:04 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 01 Oct 2012 01:00:40 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,514,1344236400"; d="scan'208";a="228958891"
-Received: from unknown (HELO helios.localnet) ([10.252.122.23])
-	by fmsmga002.fm.intel.com with ESMTP; 01 Oct 2012 01:00:14 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: McClintock Matthew-B29882 <B29882@freescale.com>
-Date: Mon, 01 Oct 2012 09:00:12 +0100
-Message-ID: <2929338.Cetim2KrZW@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.9.1 (Linux/3.2.0-31-generic-pae; KDE/4.9.1; i686; ; )
-In-Reply-To: <70CC66F5C30A414DADDA6973E4CA391A6A28ED@039-SN1MPN1-001.039d.mgd.msft.net>
+Return-Path: <B29882@freescale.com>
+Received: from ch1outboundpool.messaging.microsoft.com
+	(ch1ehsobe002.messaging.microsoft.com [216.32.181.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 95D7CE011C0
+	for <yocto@yoctoproject.org>; Mon,  1 Oct 2012 07:21:51 -0700 (PDT)
+Received: from mail100-ch1-R.bigfish.com (10.43.68.239) by
+	CH1EHSOBE014.bigfish.com (10.43.70.64) with Microsoft SMTP Server id
+	14.1.225.23; Mon, 1 Oct 2012 14:21:51 +0000
+Received: from mail100-ch1 (localhost [127.0.0.1])	by
+	mail100-ch1-R.bigfish.com (Postfix) with ESMTP id 00E743C0067;
+	Mon,  1 Oct 2012 14:21:51 +0000 (UTC)
+X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null); IPV:NLI;
+	H:mail.freescale.net; RD:none; EFVD:NLI
+X-SpamScore: -2
+X-BigFish: VS-2(zz98dI9371I1432Izz1202h1d1ah1d2ahzz8275bhz2dh2a8h668h839h8e2h8e3hd25hf0ah107ah10d2h1288h12a5h12a9h12bdh137ah13b6hbe9i1155h)
+Received: from mail100-ch1 (localhost.localdomain [127.0.0.1]) by mail100-ch1
+	(MessageSwitch) id 1349101309258313_31689;
+	Mon,  1 Oct 2012 14:21:49 +0000 (UTC)
+Received: from CH1EHSMHS041.bigfish.com (snatpool2.int.messaging.microsoft.com
+	[10.43.68.234])	by mail100-ch1.bigfish.com (Postfix) with ESMTP id
+	39418300162;	Mon,  1 Oct 2012 14:21:49 +0000 (UTC)
+Received: from mail.freescale.net (70.37.183.190) by CH1EHSMHS041.bigfish.com
+	(10.43.69.250) with Microsoft SMTP Server (TLS) id 14.1.225.23;
+	Mon, 1 Oct 2012 14:21:48 +0000
+Received: from 039-SN1MPN1-001.039d.mgd.msft.net ([169.254.1.124]) by
+	039-SN1MMR1-001.039d.mgd.msft.net ([10.84.1.13]) with mapi id
+	14.02.0309.003; Mon, 1 Oct 2012 09:21:48 -0500
+From: McClintock Matthew-B29882 <B29882@freescale.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Thread-Topic: [yocto] Supported host distro updates
+Thread-Index: AQHNmodZwUZBrkGLt06hx2UIHEjJspekdFMAgAAWsYA=
+Date: Mon, 1 Oct 2012 14:21:47 +0000
+Message-ID: <70CC66F5C30A414DADDA6973E4CA391A6C4BCD@039-SN1MPN1-001.039d.mgd.msft.net>
 References: <1716058.TZM8ukYCTx@helios>
 	<70CC66F5C30A414DADDA6973E4CA391A6A28ED@039-SN1MPN1-001.039d.mgd.msft.net>
+	<2929338.Cetim2KrZW@helios>
+In-Reply-To: <2929338.Cetim2KrZW@helios>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [70.112.201.132]
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
+X-OriginatorOrg: freescale.com
+Cc: McClintock Matthew-B29882 <B29882@freescale.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Supported host distro updates
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: McClintock Matthew-B29882 <B29882@freescale.com>
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -31,25 +56,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 01 Oct 2012 08:01:05 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Mon, 01 Oct 2012 14:21:51 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-ID: <D55934927F59A249B24FC07B399C7044@mgd.freescale.com>
+Content-Transfer-Encoding: quoted-printable
 
-On Monday 24 September 2012 19:03:57 McClintock Matthew-B29882 wrote:
-> CentOS release 5.8 (Final)
+On Mon, Oct 1, 2012 at 3:00 AM, Paul Eggleton
+<paul.eggleton@linux.intel.com> wrote:
+> On Monday 24 September 2012 19:03:57 McClintock Matthew-B29882 wrote:
+>> CentOS release 5.8 (Final)
+>
+> OK, so do we keep 5.6 / 5.7 or remove them in favour of 5.8?
 
-OK, so do we keep 5.6 / 5.7 or remove them in favour of 5.8?
+I don't think you can... each of these present different issues I've
+found and fixed along the way.
 
-> Fedora release 13 (Goddard)
+>> Fedora release 13 (Goddard)
+>
+> I think this is probably too old for us to be declaring support for, sinc=
+e it
+> has been unsupported upstream for some time now.
 
-I think this is probably too old for us to be declaring support for, since it 
-has been unsupported upstream for some time now.
+This has been working for me for a while (with a lot fewer issues to
+fix than CentOS 5.x) unless I'm missing something, I don't think it's
+too old.
 
-Cheers,
-Paul
+-M=
 
--- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
 
