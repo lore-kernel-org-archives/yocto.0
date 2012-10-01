@@ -1,31 +1,20 @@
-Return-Path: <kevin.strasser@linux.intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0A1ABE012FE
-	for <yocto@yoctoproject.org>; Mon,  1 Oct 2012 10:26:06 -0700 (PDT)
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ABDE8E0027E
+	for <yocto@yoctoproject.org>; Mon,  1 Oct 2012 11:05:37 -0700 (PDT)
 Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 01 Oct 2012 10:26:06 -0700
+	by azsmga101.ch.intel.com with ESMTP; 01 Oct 2012 11:05:33 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,517,1344236400"; d="scan'208";a="199288338"
-Received: from linux.jf.intel.com (HELO linux.intel.com) ([10.23.219.25])
-	by azsmga001.ch.intel.com with ESMTP; 01 Oct 2012 10:25:46 -0700
-Received: by linux.intel.com (Postfix, from userid 48)
-	id 5ED542C8001; Mon,  1 Oct 2012 10:25:47 -0700 (PDT)
-Received: from 10.7.202.71 (SquirrelMail authenticated user kevin.strasser)
-	by linux.intel.com with HTTP; Mon, 1 Oct 2012 10:25:47 -0700 (PDT)
-Message-ID: <41548.10.7.202.71.1349112347.squirrel@linux.intel.com>
-In-Reply-To: <1495016.8uVbdRUQqm@helios>
-References: <cover.1348861287.git.kevin.strasser@linux.intel.com>
-	<036e0a003642b5dd99a9bb3b89efe7fa19462cb5.1348861287.git.kevin.strasser@linux.intel.com>
-	<1495016.8uVbdRUQqm@helios>
-Date: Mon, 1 Oct 2012 10:25:47 -0700 (PDT)
-From: kevin.strasser@linux.intel.com
-To: "Paul Eggleton" <paul.eggleton@linux.intel.com>
-User-Agent: SquirrelMail/1.4.8-5.el4.centos.8
-MIME-Version: 1.0
-X-Priority: 3 (Normal)
-Importance: Normal
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-baryon][PATCH 1/1] nfs-utils: workaround for nfsd regression in the 3.4 kernel
+X-IronPort-AV: E=Sophos;i="4.80,517,1344236400"; d="scan'208";a="199303440"
+Received: from unknown (HELO helios.ger.corp.intel.com) ([10.252.122.40])
+	by azsmga001.ch.intel.com with ESMTP; 01 Oct 2012 11:05:32 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Scott Rifenbark <scott.m.rifenbark@intel.com>,
+	yocto@yoctoproject.org
+Date: Mon,  1 Oct 2012 19:05:19 +0100
+Message-Id: <cover.1349114621.git.paul.eggleton@linux.intel.com>
+X-Mailer: git-send-email 1.7.9.5
+Subject: [yocto-docs][PATCH 00/11] Misc documentation updates
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,56 +26,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 01 Oct 2012 17:26:07 -0000
-Content-Type: text/plain;charset=iso-8859-1
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 01 Oct 2012 18:05:37 -0000
 
-> Hi Kevin,
->
-> On Friday 28 September 2012 12:44:06 Kevin Strasser wrote:
->> The version of nfsd used in 3.4 kernels tries to upcall the
->> new reboot-recovery daemon and gets stuck if it is not found.
->> This causes client mounts to fail and prints the following
->> error message during boot:
->>
->> "NFSD: starting 90-second grace period
->> NFSD: Unable to end grace period: -110"
->>
->> If the directory "/var/lib/nfs/v4recovery" exists, nfsd will
->> revert back to the old method.
->>
->> Signed-off-by: Kevin Strasser <kevin.strasser@linux.intel.com>
->> ---
->>  .../nfs-utils/nfs-utils_1.2.3.bbappend             |    8 ++++++++
->>  1 file changed, 8 insertions(+)
->>  create mode 100644
->> recipes-connectivity/nfs-utils/nfs-utils_1.2.3.bbappend
->>
->> diff --git a/recipes-connectivity/nfs-utils/nfs-utils_1.2.3.bbappend
->> b/recipes-connectivity/nfs-utils/nfs-utils_1.2.3.bbappend new file mode
->> 100644
->> index 0000000..2c91a93
->> --- /dev/null
->> +++ b/recipes-connectivity/nfs-utils/nfs-utils_1.2.3.bbappend
->> @@ -0,0 +1,8 @@
->> +PR = "r5"
->
-> This needs to be:
->
-> PRINC = "1"
->
-> or, to ensure other layers can also increment the value:
->
-> PRINC := "${@int(PRINC) + 1}"
+The following changes since commit a85840611650c9124b6194acca59c8bfe71f566c:
 
-OK, that makes sense. I've made the changes and pushed them again to:
+  documentation: dev-manual - trademark added and reference updated. (2012-10-01 09:27:42 -0700)
 
-  git://git.yoctoproject.org/poky-contrib strassek/baryon-nfsd-regression
-  http://git.yoctoproject.org/cgit.cgi/poky-contrib/log/?h=strassek/baryon-nfsd-regression
+are available in the git repository at:
 
-While we are on the subject, do you think this is something that should be
-added to poky?
+  git://git.yoctoproject.org/poky-contrib paule/doc-fixes-4
+  http://git.yoctoproject.org/cgit.cgi/poky-contrib/log/?h=paule/doc-fixes-4
 
--Kevin
+Paul Eggleton (11):
+  documentation/poky-ref-manual: the G in GPL is "General"
+  documentation/poky-ref-manual: add staticdev-pkgs
+  documentation/poky-ref-manual: add SDKIMAGE_FEATURES
+  documentation/poky-ref-manual: minor improvements
+  documentation/poky-ref-manual: remove reference to Ubuntu Intrepid
+  documentation: update for current netbase version
+  documentation/dev-manual: clarify section on updating PR
+  documentation/poky-ref-manual: update FAQ for adding a new board
+  documentation/poky-ref-manual: update FAQ on stability
+  documentation/poky-ref-manual: clarify FAQ on products using the
+    system
+  documentation/poky-ref-manual: update FAQ for Poky
+
+ documentation/bsp-guide/bsp.xml                    |    2 +-
+ .../dev-manual/dev-manual-common-tasks.xml         |    7 +-
+ documentation/dev-manual/dev-manual-newbie.xml     |    2 +-
+ documentation/poky-ref-manual/faq.xml              |   74 +++++++-------------
+ documentation/poky-ref-manual/ref-features.xml     |    2 +
+ documentation/poky-ref-manual/ref-images.xml       |    4 +-
+ documentation/poky-ref-manual/ref-variables.xml    |   27 ++++---
+ documentation/poky-ref-manual/usingpoky.xml        |    6 +-
+ 8 files changed, 57 insertions(+), 67 deletions(-)
+
+-- 
+1.7.9.5
 
 
