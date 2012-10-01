@@ -1,24 +1,24 @@
 Return-Path: <paul.eggleton@linux.intel.com>
 Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 04D2BE002AB
-	for <yocto@yoctoproject.org>; Mon,  1 Oct 2012 11:05:40 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E21C8E011DB
+	for <yocto@yoctoproject.org>; Mon,  1 Oct 2012 11:05:41 -0700 (PDT)
 Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 01 Oct 2012 11:05:40 -0700
+	by azsmga101.ch.intel.com with ESMTP; 01 Oct 2012 11:05:41 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,517,1344236400"; d="scan'208";a="199303507"
+X-IronPort-AV: E=Sophos;i="4.80,517,1344236400"; d="scan'208";a="199303523"
 Received: from unknown (HELO helios.ger.corp.intel.com) ([10.252.122.40])
-	by azsmga001.ch.intel.com with ESMTP; 01 Oct 2012 11:05:39 -0700
+	by azsmga001.ch.intel.com with ESMTP; 01 Oct 2012 11:05:40 -0700
 From: Paul Eggleton <paul.eggleton@linux.intel.com>
 To: Scott Rifenbark <scott.m.rifenbark@intel.com>,
 	yocto@yoctoproject.org
-Date: Mon,  1 Oct 2012 19:05:25 +0100
-Message-Id: <e91611bb54ce81747c0708b47b16f294d5588931.1349114621.git.paul.eggleton@linux.intel.com>
+Date: Mon,  1 Oct 2012 19:05:26 +0100
+Message-Id: <6e5b36f0996605ab1bbff44d527dbbb391cf087d.1349114621.git.paul.eggleton@linux.intel.com>
 X-Mailer: git-send-email 1.7.9.5
 In-Reply-To: <cover.1349114621.git.paul.eggleton@linux.intel.com>
 References: <cover.1349114621.git.paul.eggleton@linux.intel.com>
 In-Reply-To: <cover.1349114621.git.paul.eggleton@linux.intel.com>
 References: <cover.1349114621.git.paul.eggleton@linux.intel.com>
-Subject: [yocto-docs][PATCH 06/11] documentation: update for current netbase version
+Subject: [yocto-docs][PATCH 07/11] documentation/dev-manual: clarify section on updating PR
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,42 +30,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 01 Oct 2012 18:05:41 -0000
+X-List-Received-Date: Mon, 01 Oct 2012 18:05:42 -0000
 
-Update references to the netbase recipe to the current version (5.0).
+Setting PR = "r0" isn't mandatory, but is recommended. Also, there isn't
+really any restriction on its format.
 
 Signed-off-by: Paul Eggleton <paul.eggleton@linux.intel.com>
 ---
- documentation/bsp-guide/bsp.xml       |    2 +-
- documentation/poky-ref-manual/faq.xml |    2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+ .../dev-manual/dev-manual-common-tasks.xml         |    7 +++----
+ 1 file changed, 3 insertions(+), 4 deletions(-)
 
-diff --git a/documentation/bsp-guide/bsp.xml b/documentation/bsp-guide/bsp.xml
-index 5bfa9fb..91b1be0 100644
---- a/documentation/bsp-guide/bsp.xml
-+++ b/documentation/bsp-guide/bsp.xml
-@@ -871,7 +871,7 @@
-            <para>
-                To better understand this, consider an example that customizes a recipe by adding 
-                a BSP-specific configuration file named <filename>interfaces</filename> to the 
--               <filename>netbase_4.47.bb</filename> recipe for machine "xyz".
-+               <filename>netbase_5.0.bb</filename> recipe for machine "xyz".
-                Do the following:
-                <orderedlist>
-                    <listitem><para>Edit the <filename>netbase_4.47.bbappend</filename> file so that it 
-diff --git a/documentation/poky-ref-manual/faq.xml b/documentation/poky-ref-manual/faq.xml
-index 4a17313..54c4763 100644
---- a/documentation/poky-ref-manual/faq.xml
-+++ b/documentation/poky-ref-manual/faq.xml
-@@ -399,7 +399,7 @@
-                 For example, add the following files to your layer:
-                 <literallayout class='monospaced'>
-      meta-MACHINE/recipes-bsp/netbase/netbase/MACHINE/interfaces
--     meta-MACHINE/recipes-bsp/netbase/netbase_4.44.bbappend
-+     meta-MACHINE/recipes-bsp/netbase/netbase_5.0.bbappend
-                 </literallayout>
-             </para>
-         </answer>
+diff --git a/documentation/dev-manual/dev-manual-common-tasks.xml b/documentation/dev-manual/dev-manual-common-tasks.xml
+index 8d053b3..62e3e61 100644
+--- a/documentation/dev-manual/dev-manual-common-tasks.xml
++++ b/documentation/dev-manual/dev-manual-common-tasks.xml
+@@ -1538,11 +1538,10 @@
+             <filename><ulink url='&YOCTO_DOCS_REF_URL;#var-PR'>PR</ulink></filename> 
+             variable needs to be increased 
+             (or "bumped") as part of that commit. 
+-            This means that for new recipes you must be sure to add the <filename>PR</filename>
++            For new recipes you should add the <filename>PR</filename>
+             variable and set its initial value equal to "r0".  
+-            Failing to define <filename>PR</filename> makes it easy to miss when you bump a package.
+-            Note that you can only use integer values following the "r" in the 
+-            <filename>PR</filename> variable.
++            This is the default value, however, adding it initially makes 
++            it harder to miss bumping it when you make changes in future.
+         </para>
+ 
+         <para>
 -- 
 1.7.9.5
 
