@@ -1,33 +1,36 @@
-Return-Path: <song.liu@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 46D87E002AC
-	for <yocto@yoctoproject.org>; Mon,  1 Oct 2012 15:02:34 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga101.ch.intel.com with ESMTP; 01 Oct 2012 15:02:33 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,519,1344236400"; d="scan'208";a="151275422"
-Received: from fmsmsx103.amr.corp.intel.com ([10.19.9.34])
-	by AZSMGA002.ch.intel.com with ESMTP; 01 Oct 2012 15:02:33 -0700
-Received: from FMSMSX109.amr.corp.intel.com (10.19.9.28) by
-	FMSMSX103.amr.corp.intel.com (10.19.9.34) with Microsoft SMTP Server
-	(TLS) id 14.1.355.2; Mon, 1 Oct 2012 15:02:33 -0700
-Received: from fmsmsx151.amr.corp.intel.com ([169.254.6.213]) by
-	fmsmsx109.amr.corp.intel.com ([169.254.11.64]) with mapi id
-	14.01.0355.002; Mon, 1 Oct 2012 15:02:33 -0700
-From: "Liu, Song" <song.liu@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Agenda: Yocto Project Technical Team Meeting - Tuesday,
-	October 02, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
-Thread-Index: AQHNoCB1C2pLdNx3RkWn+MSaNAAOsA==
-Date: Mon, 1 Oct 2012 22:02:32 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A48551EC9@FMSMSX151.amr.corp.intel.com>
-References: <7E680CB2A76BB8438D08CF13C09FC53A4844CAD5@ORSMSX101.amr.corp.intel.com>
-Accept-Language: en-US
+Return-Path: <jonas.l.jonsson@ericsson.com>
+Received: from mailgw1.ericsson.se (mailgw1.ericsson.se [193.180.251.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6820CE002AC
+	for <yocto@yoctoproject.org>; Tue,  2 Oct 2012 02:23:14 -0700 (PDT)
+X-AuditID: c1b4fb2d-b7fea6d000002ccb-99-506ab2800caa
+Received: from esessmw0247.eemea.ericsson.se (Unknown_Domain [153.88.253.125])
+	by mailgw1.ericsson.se (Symantec Mail Security) with SMTP id
+	67.0F.11467.082BA605; Tue,  2 Oct 2012 11:23:13 +0200 (CEST)
+Received: from ESESSCMS0355.eemea.ericsson.se ([169.254.1.103]) by
+	esessmw0247.eemea.ericsson.se ([153.88.115.93]) with mapi;
+	Tue, 2 Oct 2012 11:23:10 +0200
+From: Jonas Jonsson L <jonas.l.jonsson@ericsson.com>
+To: "Yocto Mailinglist (yocto@yoctoproject.org)" <yocto@yoctoproject.org>
+Date: Tue, 2 Oct 2012 11:23:09 +0200
+Thread-Topic: Howto add TIPC-support into kernel?
+Thread-Index: Ac2gf4nDi17a6C4ZSLqIrFdagEYJ7g==
+Message-ID: <C1024C359E9D4C4EBC664A0111A52A3F7CFB32F185@ESESSCMS0355.eemea.ericsson.se>
+Accept-Language: sv-SE, en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.138]
+acceptlanguage: sv-SE, en-US
 MIME-Version: 1.0
-Subject: Agenda: Yocto Project Technical Team Meeting - Tuesday, October 02, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrELMWRmVeSWpSXmKPExsUyM+JvrW7jpqwAg7/bWSwmvVzD5sDo0X6i
+	jy2AMYrLJiU1J7MstUjfLoErY+3sDUwFp/krjj7oY2pgnMPbxcjJISFgIvHn93dWCFtM4sK9
+	9WxdjFwcQgKnGCWO79rGAuEsYJR4u/QHC0gVG1DHhJU3GbsYOThEBDwlrjzQBQmzCKhINP58
+	BDZIWEBHovfxFyYQW0TAUGLd9x/sELaexJen0xlBbF6BcIljP16B1TAKyErc/34PbDyzgLjE
+	rSfzmSAOEpBYsuc8M4QtKvHy8T9WiHoZiVOL/rNC1OdLrDy3nR1ipqDEyZlPWCYwCs1CMmoW
+	krJZSMog4joSC3Z/YoOwtSWWLXzNDGOfOfCYCVl8ASP7Kkbh3MTMnPRyQ73Uoszk4uL8PL3i
+	1E2MwHg4uOW37g7GU+dEDjFKc7AoifNyJe33FxJITyxJzU5NLUgtii8qzUktPsTIxMEp1cCY
+	rCRkeenmlL3eQrwqtiGOUslzRQL+i+xjCPj8Jvl21B3Rb4fSuPh8UxnMJc/eufFIwGa60FPt
+	+YKXXWeqPWp+s6vZlv/Otx/7X+gfWrzV49AMbuHnqVZK4iyrWLfJTbjoMU9Wc2KwY9ANiwdL
+	D86cnp3uu+tAQVRWYXq/RTC7nXSnarZOjZcSS3FGoqEWc1FxIgBvTDjIVQIAAA==
+Subject: Howto add TIPC-support into kernel?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,133 +42,63 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 01 Oct 2012 22:02:34 -0000
+X-List-Received-Date: Tue, 02 Oct 2012 09:23:19 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Type: multipart/alternative;
+	boundary="_000_C1024C359E9D4C4EBC664A0111A52A3F7CFB32F185ESESSCMS0355e_"
+
+--_000_C1024C359E9D4C4EBC664A0111A52A3F7CFB32F185ESESSCMS0355e_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Agenda:
-=A0
-* Opens collection - 5 min (Song)
-* Yocto 1.3 status  - 10 min (Song/team)
-  https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.3_Status=20
-* SWAT team rotation: Mihai Liner - > Nitin
-* Opens - 10 min
-* Team sharing - 20 min
+Hi!
+
+I'm writing a recipe for a piece of software that requires TIPC support in =
+the kernel.  I've tried to figure out a way to accomplish this within my bb=
+-file, but with no success.  Is there a way to do such thing with Yocto, cu=
+rrently I run 'bitbake -c menuconfig linux-yocto' (or is it yocto-linux, ca=
+n't recall) and then I add 'kernel-modules' to IMAGE_INSTALL_append in my '=
+local.conf'-file?  I would like to have this dependency some-how contained =
+within my recipe.
+
+Thanks!
+
+Best regards,
+Jonas Jonsson
 
 
------Original Appointment-----
+--_000_C1024C359E9D4C4EBC664A0111A52A3F7CFB32F185ESESSCMS0355e_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
+<!-- converted from rtf -->
+<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
+ #800000 2px solid; } --></style>
+</head>
+<body>
+<font face=3D"Arial, sans-serif" size=3D"2">
+<div>Hi!</div>
+<div>&nbsp;</div>
+<div>I'm writing a recipe for a piece of software that requires TIPC suppor=
+t in the kernel.&nbsp; I've tried to figure out a way to accomplish this wi=
+thin my bb-file, but with no success.&nbsp; Is there a way to do such thing=
+ with Yocto, currently I run 'bitbake -c menuconfig
+linux-yocto' (or is it yocto-linux, can't recall) and then I add 'kernel-mo=
+dules' to IMAGE_INSTALL_append in my 'local.conf'-file?&nbsp; I would like =
+to have this dependency some-how contained within my recipe.</div>
+<div>&nbsp;</div>
+<div>Thanks!</div>
+<div>&nbsp;</div>
+<div>Best regards,</div>
+<div>Jonas Jonsson </div>
+<div>&nbsp;</div>
+</font>
+</body>
+</html>
 
-We encourage people attending the meeting to logon the Yocto IRC chancel du=
-ring the meeting (optional):
-
-Yocto IRC: http://webchat.freenode.net/?channels=3D#yocto
-IRC Tutorial: http://www.irchelp.org/irchelp/irctutorial.html=20
-
-Conference details
-Conference name:=20
-Yocto Technical Team
-Conference date/start time:=20
-Tue Jun 26, 2012 at 10:00 AM Central Daylight Time
-Participants:=20
-30
-Duration:=20
-60 minutes
-Participant passcode:=20
-76994298
-Dial-in number:=20
-1.972.995.7777
-US Toll Free number:=20
-1.877.561.6828
-BlackBerry users, click this link to join your conference as a participant:
-1.972.995.7777x76994298#
-=A0
-Depending on where you are dialing from, either your BlackBerry will pause =
-and enter the passcode automatically or you will be prompted to click again=
- to dial the passcode.
-
-Local and Global Access Numbers=20
-
-
-Country
-Dial-in number
-Australia:=20
-1800 636 843
-Czech Republic:=20
-242 430 350
-China (Beijing):=20
-From office dial 8-9957777 or 8784277
-Beijing Out of Office dial 5878 4277
-China (Shanghai):=20
-From office dial 8-9957777 or 3073322
-Shanghai Out of Office dial 2307 3322
-China (Shenzen):=20
-From office dial 8-9957777 or 6007877
-Shenzen Out of Office dial 2600 7877
-China (Other Cities):=20
-From IP phone dial 8-9957777
-Other cities - Non IP phone dial 021-23073322
-Denmark:=20
-8060 1400
-Finland:=20
-09 41333477
-France:=20
-0497 275888
-Germany:=20
-08161 803232
-Holland:=20
-030 2417490
-India:=20
-BSNL subscribers use 1800 425 9996 (Toll Free) Airtel subscribers use 0008 =
-009 861 212 (Toll Free) From TI Campus use 89957777 Others use 2509 9555 (L=
-andline within Bangalore) or
-80 2509 9555 (Outside Bangalore)
-Israel:=20
-09 790 6715
-Italy:=20
-039 69061234 (039 is local city code not country code)
-Japan:=20
-From TI Campus use 8 995 7777
-Outside TI use 03 4331 3777
-Malaysia:=20
-From IP phone dial 2643799
-From Kuala Lumpur dial 4264 3799
-Outside Kuala Lumpur dial (03)4264 3799
-Norway:=20
-2 295 8744
-Philippines:=20
-From Baguio City use 4471177
-From Metro Manila area use 8702477
-Singapore:=20
-From IP phone dial 3894777
-Outside TI use 6389 4777
-South Korea:=20
-From IP phone dial 5606998
-From Seoul dial 5606998
-Outside Seoul dial (02)5606998
-Sweden:=20
-08 58755577
-Taiwan:=20
-From IP phone dial 1363
-From Taipei dial 2241 1363
-Outside Taipei dial (02)2241 1363
-Turkey:=20
-Landline Only dial 0811 288 0001
-then enter 877 633 1123
-UK:=20
-01604 663003
-US:=20
-972 995 7777 or 1877 561 6828
-
-Recurring conferences
-First scheduled conference:=20
-Tue Jun 26, 2012
-Recurrence frequency:=20
-Weekly - Every 1 week(s) on Tuesday
-Recurrence ends:=20
-End on Fri Jun 21, 2013, 10:40 AM CDT
-
-
-
-
+--_000_C1024C359E9D4C4EBC664A0111A52A3F7CFB32F185ESESSCMS0355e_--
