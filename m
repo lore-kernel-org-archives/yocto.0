@@ -1,23 +1,30 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 10518E011C0
-	for <yocto@yoctoproject.org>; Tue,  2 Oct 2012 16:19:01 -0700 (PDT)
+Return-Path: <song.liu@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 221CAE01199
+	for <yocto@yoctoproject.org>; Tue,  2 Oct 2012 16:59:08 -0700 (PDT)
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 02 Oct 2012 16:18:58 -0700
+	by fmsmga101.fm.intel.com with ESMTP; 02 Oct 2012 16:59:07 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,525,1344236400"; d="scan'208";a="229782019"
-Received: from unknown (HELO [10.255.14.37]) ([10.255.14.37])
-	by fmsmga002.fm.intel.com with ESMTP; 02 Oct 2012 16:18:55 -0700
-Message-ID: <1349219935.8890.18.camel@empanada>
-From: Tom Zanussi <tom.zanussi@intel.com>
-To: Ross Burton <ross.burton@intel.com>
-Date: Tue, 02 Oct 2012 18:18:55 -0500
-In-Reply-To: <1349172705-29101-1-git-send-email-ross.burton@intel.com>
-References: <1349172705-29101-1-git-send-email-ross.burton@intel.com>
-X-Mailer: Evolution 3.4.1 (3.4.1-2.fc17) 
-Mime-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH] meta-cedartrail: add missing dependency on EXA module to X driver
+X-IronPort-AV: E=Sophos;i="4.80,525,1344236400"; d="scan'208";a="229794072"
+Received: from fmsmsx104.amr.corp.intel.com ([10.19.9.35])
+	by fmsmga002.fm.intel.com with ESMTP; 02 Oct 2012 16:59:07 -0700
+Received: from fmsmsx151.amr.corp.intel.com ([169.254.6.213]) by
+	FMSMSX104.amr.corp.intel.com ([169.254.4.231]) with mapi id
+	14.01.0355.002; Tue, 2 Oct 2012 16:59:06 -0700
+From: "Liu, Song" <song.liu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Minutes: Yocto Project Technical Team Meeting - Tuesday,
+	October 02, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+Thread-Index: AQHNoPnnV4Q/jV9Lr0Koi4Qgu4yZlg==
+Date: Tue, 2 Oct 2012 23:59:05 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A48554059@FMSMSX151.amr.corp.intel.com>
+References: <7E680CB2A76BB8438D08CF13C09FC53A4844CAD5@ORSMSX101.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.138]
+MIME-Version: 1.0
+Subject: Minutes: Yocto Project Technical Team Meeting - Tuesday, October 02, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,45 +36,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 02 Oct 2012 23:19:01 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 02 Oct 2012 23:59:08 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-Pulled into meta-intel/master.
+Attendees:
+David Wolf, Michael, Mark, AlexG, Bjorn, Dave, Paul, Jessica, Ross, Saul, B=
+eth, Kevin, Richard, Bruce, Nitin, LaurentiuP, Cristian, ScottR, Jeff, Miha=
+iL, Denys, Song
+=A0
+Agenda:
+=A0
+* Opens collection - 5 min (Song)
+  - Congrats to the team on M4 release.
+=A0
+* Yocto 1.3 status  - 10 min (Song/team)
+  https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.3_Status =20
+    - Status wiki page updated, bug fixing on the right direction, total # =
+of bugs down.
+    - RC3 this week, please get fixes in as soon as possible.
+    - We will be scrutinizing patches more carefully to make sure it's not =
+something invasive that could destabilize the master.
+    - Most of the high bugs have solutions and can be closed within a week.
+    - Medium+ bugs review:=20
+      . 3143: has a workaround. Laurentiu will send workaround patches.
+      . 3176: there is a solution but hard to implement. May need to move t=
+o  1.4
+      . 3183: did improve with better messaging. May need to push to 1.4. R=
+ichard/Dave will decide.
+      . 3186: Bruce/mark will look into this and find someone from Wind Riv=
+er to fix.
+      . 3119/3175: cristian. Work with Paul. Need to get this one fixed
+      . Others are mostly ok and can be turned around in a week or so.
+* SWAT team rotation: Mihai Liner - > Saul
+* Opens - 10 min
+* Team sharing - 20 min
+  - Michael: Updated bugzilla last week. Should not affect functionality. B=
+ugzilla reports, fixed the schedule wiki problem.
 
-Thanks,
-
-Tom
-
-On Tue, 2012-10-02 at 11:11 +0100, Ross Burton wrote:
-> [YOCTO #3204]
-> 
-> Signed-off-by: Ross Burton <ross.burton@intel.com>
-> ---
->  .../recipes-graphics/xorg-driver/cdv-pvr-driver_1.0.3.bb            |    3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
-> 
-> diff --git a/meta-cedartrail/recipes-graphics/xorg-driver/cdv-pvr-driver_1.0.3.bb b/meta-cedartrail/recipes-graphics/xorg-driver/cdv-pvr-driver_1.0.3.bb
-> index afda9dd..cd3407c 100644
-> --- a/meta-cedartrail/recipes-graphics/xorg-driver/cdv-pvr-driver_1.0.3.bb
-> +++ b/meta-cedartrail/recipes-graphics/xorg-driver/cdv-pvr-driver_1.0.3.bb
-> @@ -14,7 +14,7 @@ LIC_FILES_CHKSUM = " \
->  
->  DEPENDS = "rpm-native libva"
->  
-> -PR = "r1"
-> +PR = "r2"
->  
->  PSB-VIDEO = "psb-video-cdv-1.0.3-1.1.i586.rpm"
->  PSB-VIDEO-REV = "1.0.3"
-> @@ -66,6 +66,7 @@ FILES_${PN} += "${libdir}/pvr/cdv/xorg/modules/drivers"
->  FILES_${PN} += "${datadir}/doc/psb-video-cdv-${PSB-VIDEO-REV}/license.txt"
->  FILES_${PN} += "${datadir}/doc/pvr-bin-cdv-${PVR-BIN-REV_LIC}/license.txt"
->  
-> +RDEPENDS_${PN} = "xserver-xorg-module-exa"
->  
->  TARGET_CC_ARCH += "${CFLAGS}{LDFLAGS}"
->  INSANE_SKIP_${PN} += "ldflags"
 
 
 
