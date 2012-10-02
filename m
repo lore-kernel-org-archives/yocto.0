@@ -1,34 +1,30 @@
-Return-Path: <ross.burton@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5A865E002AC
-	for <yocto@yoctoproject.org>; Tue,  2 Oct 2012 03:12:51 -0700 (PDT)
-Received: from mail-wg0-f42.google.com ([74.125.82.42])
-	by mga09.intel.com with ESMTP/TLS/RC4-SHA; 02 Oct 2012 03:12:33 -0700
-Received: by mail-wg0-f42.google.com with SMTP id fm10so359209wgb.5
-	for <yocto@yoctoproject.org>; Tue, 02 Oct 2012 03:12:48 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=from:to:cc:subject:date:message-id:x-mailer:x-gm-message-state;
-	bh=GoKirqEcZlqnOxKf/LB7Yqvim+DqSGSc5b9S4ZALolw=;
-	b=biPfSb91KwDS3hM99BdwbZtM8nVk4GAvZLH353ygyX6dCKg+dTgyoe42zJcAUxr0fr
-	aEZ9lLCYA3XD0HC4fd/r4B0AZVWpyn9JXH3qqDzsa551cd8MXRp3VFUkZL1ylRBek9+t
-	0IC2+d5UMAxt/HVsXumGw0+2dfClIItC/uGyZMcRC350nX0rbdwF/ecHxaMkXRuRy7h4
-	B0q9uSnsb7nE5wXjrKRRPYVuQ11DRPYzz5AWPwPU4EpBFStqVboVlb92zHhbYNHZ55gJ
-	1MzntGljhuOLnd3C4vBbR0lRQTKK9ZBHFI1tTbpDFWjZYcrOOMTfx3oHTgqJGFlt0NJQ
-	ro0A==
-Received: by 10.180.83.101 with SMTP id p5mr20872988wiy.2.1349172768810;
-	Tue, 02 Oct 2012 03:12:48 -0700 (PDT)
-Received: from melchett.burtonini.com (35.106.2.81.in-addr.arpa. [81.2.106.35])
-	by mx.google.com with ESMTPS id f1sm3369446wiy.2.2012.10.02.03.12.47
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Tue, 02 Oct 2012 03:12:48 -0700 (PDT)
-From: Ross Burton <ross.burton@intel.com>
-To: yocto@yoctoproject.org
-Date: Tue,  2 Oct 2012 11:11:45 +0100
-Message-Id: <1349172705-29101-1-git-send-email-ross.burton@intel.com>
-X-Mailer: git-send-email 1.7.10
-X-Gm-Message-State: ALoCoQmuUoOLhFhTFzH6zegWCQBWIBUyq8ckphnBzNtkjZag4ymk554hY/P9qLqAyMUjiRbQ27HR
-Subject: [PATCH] meta-cedartrail: add missing dependency on EXA module to X driver
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
+	[93.97.173.237])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E822FE00347
+	for <yocto@yoctoproject.org>; Tue,  2 Oct 2012 05:34:01 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q92CXvig015581;
+	Tue, 2 Oct 2012 13:33:57 +0100
+Received: from tim.rpsys.net ([127.0.0.1])
+	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
+	port 10024) with LMTP
+	id 14190-08; Tue,  2 Oct 2012 13:33:53 +0100 (BST)
+Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q92CXmfd015575
+	(version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=NO);
+	Tue, 2 Oct 2012 13:33:49 +0100
+Message-ID: <1349181231.15753.141.camel@ted>
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: Scott Garman <scott.a.garman@intel.com>
+Date: Tue, 02 Oct 2012 13:33:51 +0100
+In-Reply-To: <cover.1348532753.git.scott.a.garman@intel.com>
+References: <cover.1348532753.git.scott.a.garman@intel.com>
+X-Mailer: Evolution 3.2.3-0ubuntu6 
+Mime-Version: 1.0
+X-Virus-Scanned: amavisd-new at rpsys.net
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH 00/62] denzil pull request 2
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,37 +36,141 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 02 Oct 2012 10:12:51 -0000
+X-List-Received-Date: Tue, 02 Oct 2012 12:34:02 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-[YOCTO #3204]
+On Mon, 2012-09-24 at 17:29 -0700, Scott Garman wrote:
+> The following changes since commit 65ffa7395055f7e012cb973f63f92380828eed0d:
+> 
+>   yocto-bsp: use base branches for qemu 'newbranch' case (2012-08-21 11:35:22 +0100)
+> 
+> are available in the git repository at:
+> 
+>   git://git.yoctoproject.org/poky-contrib sgarman/denzil-next-pull2
+>   http://git.yoctoproject.org/cgit.cgi/poky-contrib/log/?h=sgarman/denzil-next-pull2
+> 
+> Bogdan Marinescu (1):
+>   Save proxy settings
+> 
+> Bruce Ashfield (4):
+>   linux-yocto: allow do_validate_branches to handle all branches
+>   kernel-yocto: set master branch to a defined SRCREV
+>   kernel: save $kerndir/tools and $kerndir/lib from pruning
+>   kernel.bbclass: add non-santized kernel provides
+> 
+> Constantin Musca (1):
+>   pulseaudio: upgrade to 2.1
+> 
+> Cristian Iorga (4):
+>   gst-plugin-bluetooth: update to ver. 4.101
+>   bluez4: update to ver. 4.101
+>   pulseaudio: upgrade to 2.0
+>   libcanberra: upgrade to 0.29
+> 
+> Darren Hart (1):
+>   kernel: Add kernel headers to kernel-dev package
+> 
+> Denys Dmytriyenko (1):
+>   pulseaudio: fix typo in the patch name, pulseaudo -> pulseaudio
+> 
+> Dongxiao Xu (1):
+>   bluez-hcidump: upgrade to version 2.4
+> 
+> Franklin S Cooper Jr (1):
+>   psplash: LIC_CHKSUM Tweak
+> 
+> Franklin S. Cooper Jr (1):
+>   u-boot: Use fw_env.config if avaliable
+> 
+> Jeff Polk (1):
+>   recipes-core/eglibc-2.13: Patch for locale-base-tt-ru packaging
+> 
+> Jonas Danielsson (1):
+>   bluez4: make alsa support conditional upon DISTRO_FEATURES
+> 
+> Kang Kai (1):
+>   ltp_20120104: add rdepends
+> 
+> Khem Raj (3):
+>   kernel.bbclass: Dont package kxgettext.o
+>   libatomics-ops: Make it build for SH4
+>   pulseaudio: Always enable NLS
+> 
+> Koen Kooi (2):
+>   man: fix RDEPENDS and reformat recipe
+>   man: make man actually work by installing custom man.config
+> 
+> Marcin Juszkiewicz (1):
+>   libpam: disable NIS to not link with libtirpc when it is available
+> 
+> Martin Jansa (5):
+>   package.bbclass: fix TypeError in runstrip
+>   opkg-utils: bump SRCREV for Packages cache fix and other fixes
+>   opkg-utils: bump SRCREV
+>   kernel.bbclass: pass KERNEL_VERSION to depmod calls in postinst
+>   pulseaudio: fix pulseaudio-server RDEPENDS
+> 
+> Matthew McClintock (9):
+>   dbus.inc: disable selinux for native builds
+>   glib.inc: disable selinux for native builds
+>   eglibc/gcc: add patches to fix eglibc 2.15 build
+>   poky.conf: add distros that work correctly
+>   distutils.bbclass: fix libdir for 64-bit python modules built with
+>     distutils
+>   distutils.bblass: change order of args to install step
+>   eglibc_2.15: make patch only for Freescale machines
+>   valgrind_3.7.0.bb: fix missing leading space on _append
+>   sysvinit-inittab_2.88dsf.bb: only run serial checks at boot if we
+>     have items to check
+> 
+> Paul Eggleton (4):
+>   classes/mirrors: remove bogus gnutls mirror
+>   dhcp: remove dependency of dev/staticdev packages on main package
+>   bitbake: hob: ensure error message text is properly escaped
+>   bitbake: hob: format error messages properly
+> 
+> Radu Moisan (1):
+>   dbus: include dbus-launch in the main dbus package
+> 
+> Richard Purdie (5):
+>   distutils/steuptools: Fix files layout and unbreak builds
+>   opkg-utils: UPdate to version with python 2.6 fix
+>   autotools.bbclass: Add functionality to force a clean of ${B} when
+>     reconfiguring (and ${S} != ${B})
+>   dbus: Ensure dbus-nativesdk doesn't RPROVIDE dbus-x11
+>   texi2html: Fix perl location on recent distros
+> 
+> Ross Burton (1):
+>   pulseaudio: remove ConsoleKit dependency
+> 
+> Saul Wold (7):
+>   build-appliance-image: Update SRCREV to Denzil 1.2.1
+>   build-appliance-image: Add vmx* files and build zip file
+>   build-appliance: add zip-native, which is needed to build the final
+>     zip bundle
+>   python-pygtk: Upgrade to 2.24
+>   kernel: Fix packaging issue
+>   bluez4: fix packaging issue after update
+>   pulseaudio: disable tcpwrap by default
+> 
+> Scott Garman (2):
+>   relocatable.bbclass: Account for case when ORIGIN is in RPATH
+>   kernel.bbclass: put perf .debug dir in -dbg package
+> 
+> Valentin Popa (2):
+>   build-appliance-image: rename from self-hosted-image
+>   xz: updated to version 5.1.1alpha
+> 
+> Xin Ouyang (1):
+>   libatomics-ops: update to the latest version 7.2
+> 
+> Zhenhua Luo (1):
+>   valgrind: fix debug info reading error when do memcheck on ppc
+>     targets
 
-Signed-off-by: Ross Burton <ross.burton@intel.com>
----
- .../recipes-graphics/xorg-driver/cdv-pvr-driver_1.0.3.bb            |    3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+These got merged to the denzil branch, thanks.
 
-diff --git a/meta-cedartrail/recipes-graphics/xorg-driver/cdv-pvr-driver_1.0.3.bb b/meta-cedartrail/recipes-graphics/xorg-driver/cdv-pvr-driver_1.0.3.bb
-index afda9dd..cd3407c 100644
---- a/meta-cedartrail/recipes-graphics/xorg-driver/cdv-pvr-driver_1.0.3.bb
-+++ b/meta-cedartrail/recipes-graphics/xorg-driver/cdv-pvr-driver_1.0.3.bb
-@@ -14,7 +14,7 @@ LIC_FILES_CHKSUM = " \
- 
- DEPENDS = "rpm-native libva"
- 
--PR = "r1"
-+PR = "r2"
- 
- PSB-VIDEO = "psb-video-cdv-1.0.3-1.1.i586.rpm"
- PSB-VIDEO-REV = "1.0.3"
-@@ -66,6 +66,7 @@ FILES_${PN} += "${libdir}/pvr/cdv/xorg/modules/drivers"
- FILES_${PN} += "${datadir}/doc/psb-video-cdv-${PSB-VIDEO-REV}/license.txt"
- FILES_${PN} += "${datadir}/doc/pvr-bin-cdv-${PVR-BIN-REV_LIC}/license.txt"
- 
-+RDEPENDS_${PN} = "xserver-xorg-module-exa"
- 
- TARGET_CC_ARCH += "${CFLAGS}{LDFLAGS}"
- INSANE_SKIP_${PN} += "ldflags"
--- 
-1.7.10
+Richard
 
 
