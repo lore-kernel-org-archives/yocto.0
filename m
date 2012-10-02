@@ -1,34 +1,39 @@
-Return-Path: <evadeflow@gmail.com>
-Received: from mail-oa0-f48.google.com (mail-oa0-f48.google.com
-	[209.85.219.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0CC7CE011C5
-	for <yocto@yoctoproject.org>; Tue,  2 Oct 2012 15:01:35 -0700 (PDT)
-Received: by oagh2 with SMTP id h2so8964500oag.35
-	for <yocto@yoctoproject.org>; Tue, 02 Oct 2012 15:01:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=uD4pOS/sGlc/l9GanP5nchJxQBm66tbiqsIdO6KhwqY=;
-	b=YStr8KTIqMzqQyEUNimO5b4iJXu7TgDWYFgTmOi+C+YM7LTdcsRwHn4bfKPY3aJIxf
-	wql7qC9C3+HQPgobdJk7n6AzAH+ChJN7ZMJgHzlY/45D5NXAYNakE8gjW9bOuWFSPH17
-	cICDsfw1PT/ffZaRS/QYjph7ClkXMgjsLJBsK4AV9d9/5Vdh1eacKP8rHh15VhJ5VlLP
-	97+H92WPQqa0SUimXbU3B2PScl4r6ec5spWa5ebddqjB4P4kla0/DkbHMkxiuu+03vcF
-	g1vvwEwLDtqrB/O2kFBxyw3A9YmNOvksHXrmo3lEVQAr0gIn8AUz0zxDsa4ueaoRYDuB
-	KVHQ==
+Return-Path: <scott.a.garman@intel.com>
+Received: from azsmga102.ch.intel.com (mga12.intel.com [143.182.124.36])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 29BECE011C0
+	for <yocto@yoctoproject.org>; Tue,  2 Oct 2012 15:08:29 -0700 (PDT)
+Received: from mail-pa0-f48.google.com ([209.85.220.48])
+	by mga14.intel.com with ESMTP/TLS/RC4-SHA; 02 Oct 2012 15:08:28 -0700
+Received: by pabkp12 with SMTP id kp12so7355555pab.35
+	for <yocto@yoctoproject.org>; Tue, 02 Oct 2012 15:08:27 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=message-id:date:from:user-agent:mime-version:to:subject:references
+	:in-reply-to:content-type:content-transfer-encoding
+	:x-gm-message-state;
+	bh=FS3D25uzwWA8Sth2YIJsfJtngQ5rorT/ylxIWEMRgRs=;
+	b=Z9nJTN9gWN0FeY1Ymh6z7/QKh56A0w8ZNzQhnsj8qzETLdyp8CCpDRBipcTvUJ7tvV
+	YQtRYQ0DT5jxoMab1T3jSDf1TwT9cbNNXokcZmxVwfr9+mqqjVCjxYGvNV5jOzje3pj0
+	C3APPyf3V2qBSyxWGCM6yKNHptmlYf+cGIChvWCJxb/yvDyybF6tCXOIvQhax3ZVLge8
+	tpdNxGlk0mMWZqxcuqpXE2yLZjZ1CrH0IP8g2QJ2JfVlFAU1xFKFR+xOo2zeW7+6ANg8
+	s0c6qPppJkif9Ew1NcxetXlp4lVcPX5srU/gz7FATPXt7yL8Wn+rPw1zXoLU0/38a+ls
+	cbLA==
+Received: by 10.66.88.40 with SMTP id bd8mr308736pab.36.1349215707473;
+	Tue, 02 Oct 2012 15:08:27 -0700 (PDT)
+Received: from [192.168.1.12] (c-76-105-137-48.hsd1.or.comcast.net.
+	[76.105.137.48])
+	by mx.google.com with ESMTPS id rr6sm1485412pbc.47.2012.10.02.15.08.26
+	(version=SSLv3 cipher=OTHER); Tue, 02 Oct 2012 15:08:27 -0700 (PDT)
+Message-ID: <506B660F.7060008@intel.com>
+Date: Tue, 02 Oct 2012 15:09:19 -0700
+From: Scott Garman <scott.a.garman@intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:15.0) Gecko/20120827 Thunderbird/15.0
 MIME-Version: 1.0
-Received: by 10.182.116.6 with SMTP id js6mr48698obb.82.1349215295522; Tue, 02
-	Oct 2012 15:01:35 -0700 (PDT)
-Received: by 10.76.153.198 with HTTP; Tue, 2 Oct 2012 15:01:35 -0700 (PDT)
-In-Reply-To: <20121002215259.GF15881@jama.jama.net>
+To: yocto@yoctoproject.org
 References: <CAMAb8ZO1-psKwMhPNrVXroo-jEO37WpigX7xC0VYavTioo6PEg@mail.gmail.com>
-	<20121002212223.GE15881@jama.jama.net>
-	<159BFF45-059D-4E33-9AE6-EC78B620FA0F@jusst.de>
-	<20121002215259.GF15881@jama.jama.net>
-Date: Tue, 2 Oct 2012 18:01:35 -0400
-Message-ID: <CAMAb8ZPjmfxifCUTaPfMOH11snHPZBKQSUT3tpScznMFom5CTA@mail.gmail.com>
-From: Evade Flow <evadeflow@gmail.com>
-To: Martin Jansa <martin.jansa@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+In-Reply-To: <CAMAb8ZO1-psKwMhPNrVXroo-jEO37WpigX7xC0VYavTioo6PEg@mail.gmail.com>
+X-Gm-Message-State: ALoCoQnn3I0tgWrADUEdGv4C+Wyt6Y0IsMuXWfv/0bykc/KRO6QaC7PtXhTGEnVayABIetSzbQH4
 Subject: Re: Can't fetch git SRC_URI via HTTP
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -41,290 +46,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 02 Oct 2012 22:01:36 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Tue, 02 Oct 2012 22:08:29 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-> Change that to
-> git://dev.omapzoom.org/pub/scm/integration/kernel-ubuntu.git;protocol=http;branch=ti-ubuntu-3.1-1282
-> and you'll get git fetch over http protocol.
+On 10/02/2012 02:17 PM, Evade Flow wrote:
+> I'm trying to build core-image-sato for my Pandaboard ES, following the
+> instructions posted here:
+>
+>    - http://maniacbug.wordpress.com/2012/08/03/pandayocto/
+>
+> Thus, my OE build configuration looks like this:
 
-Ah, right! Thanks, I never considered that. In fact, the original recipe
-at:
+I just would like to comment that this is one of the best requests for 
+help I've seen on this mailing list. Kudos for including all the 
+relevant information!
 
-  - http://github.com/Angstrom-distribution/meta-ti/blob/master/recipes-kernel/linux/linux-omap4_3.1.0.bb
+Scott
 
-specifies a SRC_URI that begins with 'git://'. It seemed natural to
-change it to 'http://' because this is how the git command line works.
-But bitbake doesn't like that syntax at all. The change you suggested is
-building now, and seems to be working fine. Thank you!
-
-
-
-On Tue, Oct 2, 2012 at 5:52 PM, Martin Jansa <martin.jansa@gmail.com> wrote:
-> On Tue, Oct 02, 2012 at 11:38:08PM +0200, Julian Scheel wrote:
->>
->> Am 02.10.2012 um 23:22 schrieb Martin Jansa <martin.jansa@gmail.com>:
->>
->> > On Tue, Oct 02, 2012 at 05:17:23PM -0400, Evade Flow wrote:
->> >> I'm trying to build core-image-sato for my Pandaboard ES, following the
->> >> instructions posted here:
->> >>
->> >>  - http://maniacbug.wordpress.com/2012/08/03/pandayocto/
->> >>
->> >> Thus, my OE build configuration looks like this:
->> >>
->> >>> OE Build Configuration:
->> >>> BB_VERSION        = "1.15.2"
->> >>> TARGET_ARCH       = "arm"
->> >>> TARGET_OS         = "linux-gnueabi"
->> >>> MACHINE           = "pandaboard"
->> >>> DISTRO            = "poky"
->> >>> DISTRO_VERSION    = "1.2.1"
->> >>> TUNE_FEATURES     = "armv7a vfp neon cortexa9"
->> >>> TARGET_FPU        = "vfp-neon"
->> >>> meta
->> >>> meta-yocto        = "denzil:65ffa7395055f7e012cb973f63f92380828eed0d"
->> >>> meta-ti           = "(nobranch):30fb40ebc13614a74c2e237927c60ac43e01d1bc"
->> >>
->> >> I have these lines in my .gitconfig:
->> >>
->> >>> [http]
->> >>>    proxy=http://user:passwd@usaprox.lightning.com:8080
->> >>
->> >> so I'd expect URLs like this one (from the meta-ti layer's
->> >> linux-omap4_3.1.0.bb recipe) to work fine:
->> >>
->> >>> SRC_URI = "http://dev.omapzoom.org/pub/scm/integration/kernel-ubuntu.git;protocol=git;branch=ti-ubuntu-3.1-1282 \
->> >
->> > This url seems wrong, it should start with git:// if you want to clone
->> > git repo.
->> >
->> > Because it starts with http:// normal fetch (like wget) was used so it
->> > downloaded probably some http code (see that kernel-ubuntu.git file)
->> > instead of any relevant source.
->>
->> I ran into the same issue a few days ago. It seems yocto only supports git fetch
->> through servers providing the repositories through the git protocol. A way to use
->> git repositories which are provided through http or https would be quite a good
->> thing to have.
->
-> That's what protocol param does;
->
-> Change that to
-> git://dev.omapzoom.org/pub/scm/integration/kernel-ubuntu.git;protocol=http;branch=ti-ubuntu-3.1-1282
-> and you'll get git fetch over http protocol.
->
-> Cheers,
->
->> -Julian
->>
->> >
->> >>>           file://0001-Makefile.fwinst-fix-install-breakage-for-FW-images-r.patch \
->> >>>           file://defconfig \
->> >>>           "
->> >>
->> >> From what I can tell, though, bitbake isn't handling this SRC_URI
->> >> correctly, and I get:
->> >>
->> >>> ERROR: Command Error: exit status: 1  Output:
->> >>> Applying patch 0001-Makefile.fwinst-fix-install-breakage-for-FW-images-r.patch
->> >>> patching file scripts/Makefile.fwinst
->> >>> Hunk #1 FAILED at 27.
->> >>> 1 out of 1 hunk FAILED -- rejects in file scripts/Makefile.fwinst
->> >>> Patch 0001-Makefile.fwinst-fix-install-breakage-for-FW-images-r.patch does not apply (enforce with -f)
->> >>> ERROR: Function failed: patch_do_patch
->> >>
->> >> If I examine the folder:
->> >>
->> >>  build/tmp/work/pandaboard-poky-linux-gnueabi/linux-omap4-3.1.0-r0
->> >>
->> >> I see that it contains no source code. It does, however, contain a file
->> >> named 'kernel-ubuntu.git', whose content is exactly the same as you'd
->> >> get if you typed:
->> >>
->> >>  wget http://dev.omapzoom.org/pub/scm/integration/kernel-ubuntu.git
->> >>
->> >> This seems like a bug, possibly related to one of these:
->> >>
->> >>  - http://bugzilla.yoctoproject.org/show_bug.cgi?id=3119
->> >>  - http://bugzilla.yoctoproject.org/show_bug.cgi?id=3175
->> >>
->> >>
->> >> Maybe this has been fixed since denzil, but... everything I read about
->> >> the current state of support for the Pandaboard suggests sticking with
->> >> denzil/gcc 4.6. Is there some workaround I can use to get past this
->> >> error?  Also, assuming these instructions worked for the author of the
->> >> original blog post, I wonder what the difference is with my setup.
->> >>
->> >> Here are my mods to conf/local.conf, in case it's helpful:
->> >>
->> >>> MACHINE = "pandaboard"
->> >>> BBMASK = "meta-ti/recipes-misc"
->> >>> PACKAGE_CLASSES = "package_ipk"
->> >>> CONNECTIVITY_CHECK_URIS=""
->> >>> BB_GENERATE_MIRROR_TARBALLS = "1"
->> >>> SOURCE_MIRROR_URL ?= "file:///home/evadeflow/projects/poky-mirror/"
->> >>> INHERIT += "own-mirrors"
->> >>
->> >> And this is my bblayers.conf:
->> >>
->> >>> # LAYER_CONF_VERSION is increased each time build/conf/bblayers.conf
->> >>> # changes incompatibly
->> >>> LCONF_VERSION = "4"
->> >>>
->> >>> BBFILES ?= ""
->> >>> BBLAYERS ?= " \
->> >>>  /home/evadeflow/projects/poky-git/meta \
->> >>>  /home/evadeflow/projects/poky-git/meta-yocto \
->> >>>  /home/evadeflow/projects/poky-git/meta-ti \
->> >>>  "
->> >> _______________________________________________
->> >> yocto mailing list
->> >> yocto@yoctoproject.org
->> >> https://lists.yoctoproject.org/listinfo/yocto
->> >
->> > --
->> > Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
->> > _______________________________________________
->> > yocto mailing list
->> > yocto@yoctoproject.org
->> > https://lists.yoctoproject.org/listinfo/yocto
->>
->
-> --
-> Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
-
-On Tue, Oct 2, 2012 at 5:52 PM, Martin Jansa <martin.jansa@gmail.com> wrote:
-> On Tue, Oct 02, 2012 at 11:38:08PM +0200, Julian Scheel wrote:
->>
->> Am 02.10.2012 um 23:22 schrieb Martin Jansa <martin.jansa@gmail.com>:
->>
->> > On Tue, Oct 02, 2012 at 05:17:23PM -0400, Evade Flow wrote:
->> >> I'm trying to build core-image-sato for my Pandaboard ES, following the
->> >> instructions posted here:
->> >>
->> >>  - http://maniacbug.wordpress.com/2012/08/03/pandayocto/
->> >>
->> >> Thus, my OE build configuration looks like this:
->> >>
->> >>> OE Build Configuration:
->> >>> BB_VERSION        = "1.15.2"
->> >>> TARGET_ARCH       = "arm"
->> >>> TARGET_OS         = "linux-gnueabi"
->> >>> MACHINE           = "pandaboard"
->> >>> DISTRO            = "poky"
->> >>> DISTRO_VERSION    = "1.2.1"
->> >>> TUNE_FEATURES     = "armv7a vfp neon cortexa9"
->> >>> TARGET_FPU        = "vfp-neon"
->> >>> meta
->> >>> meta-yocto        = "denzil:65ffa7395055f7e012cb973f63f92380828eed0d"
->> >>> meta-ti           = "(nobranch):30fb40ebc13614a74c2e237927c60ac43e01d1bc"
->> >>
->> >> I have these lines in my .gitconfig:
->> >>
->> >>> [http]
->> >>>    proxy=http://user:passwd@usaprox.lightning.com:8080
->> >>
->> >> so I'd expect URLs like this one (from the meta-ti layer's
->> >> linux-omap4_3.1.0.bb recipe) to work fine:
->> >>
->> >>> SRC_URI = "http://dev.omapzoom.org/pub/scm/integration/kernel-ubuntu.git;protocol=git;branch=ti-ubuntu-3.1-1282 \
->> >
->> > This url seems wrong, it should start with git:// if you want to clone
->> > git repo.
->> >
->> > Because it starts with http:// normal fetch (like wget) was used so it
->> > downloaded probably some http code (see that kernel-ubuntu.git file)
->> > instead of any relevant source.
->>
->> I ran into the same issue a few days ago. It seems yocto only supports git fetch
->> through servers providing the repositories through the git protocol. A way to use
->> git repositories which are provided through http or https would be quite a good
->> thing to have.
->
-> That's what protocol param does;
->
-> Change that to
-> git://dev.omapzoom.org/pub/scm/integration/kernel-ubuntu.git;protocol=http;branch=ti-ubuntu-3.1-1282
-> and you'll get git fetch over http protocol.
->
-> Cheers,
->
->> -Julian
->>
->> >
->> >>>           file://0001-Makefile.fwinst-fix-install-breakage-for-FW-images-r.patch \
->> >>>           file://defconfig \
->> >>>           "
->> >>
->> >> From what I can tell, though, bitbake isn't handling this SRC_URI
->> >> correctly, and I get:
->> >>
->> >>> ERROR: Command Error: exit status: 1  Output:
->> >>> Applying patch 0001-Makefile.fwinst-fix-install-breakage-for-FW-images-r.patch
->> >>> patching file scripts/Makefile.fwinst
->> >>> Hunk #1 FAILED at 27.
->> >>> 1 out of 1 hunk FAILED -- rejects in file scripts/Makefile.fwinst
->> >>> Patch 0001-Makefile.fwinst-fix-install-breakage-for-FW-images-r.patch does not apply (enforce with -f)
->> >>> ERROR: Function failed: patch_do_patch
->> >>
->> >> If I examine the folder:
->> >>
->> >>  build/tmp/work/pandaboard-poky-linux-gnueabi/linux-omap4-3.1.0-r0
->> >>
->> >> I see that it contains no source code. It does, however, contain a file
->> >> named 'kernel-ubuntu.git', whose content is exactly the same as you'd
->> >> get if you typed:
->> >>
->> >>  wget http://dev.omapzoom.org/pub/scm/integration/kernel-ubuntu.git
->> >>
->> >> This seems like a bug, possibly related to one of these:
->> >>
->> >>  - http://bugzilla.yoctoproject.org/show_bug.cgi?id=3119
->> >>  - http://bugzilla.yoctoproject.org/show_bug.cgi?id=3175
->> >>
->> >>
->> >> Maybe this has been fixed since denzil, but... everything I read about
->> >> the current state of support for the Pandaboard suggests sticking with
->> >> denzil/gcc 4.6. Is there some workaround I can use to get past this
->> >> error?  Also, assuming these instructions worked for the author of the
->> >> original blog post, I wonder what the difference is with my setup.
->> >>
->> >> Here are my mods to conf/local.conf, in case it's helpful:
->> >>
->> >>> MACHINE = "pandaboard"
->> >>> BBMASK = "meta-ti/recipes-misc"
->> >>> PACKAGE_CLASSES = "package_ipk"
->> >>> CONNECTIVITY_CHECK_URIS=""
->> >>> BB_GENERATE_MIRROR_TARBALLS = "1"
->> >>> SOURCE_MIRROR_URL ?= "file:///home/evadeflow/projects/poky-mirror/"
->> >>> INHERIT += "own-mirrors"
->> >>
->> >> And this is my bblayers.conf:
->> >>
->> >>> # LAYER_CONF_VERSION is increased each time build/conf/bblayers.conf
->> >>> # changes incompatibly
->> >>> LCONF_VERSION = "4"
->> >>>
->> >>> BBFILES ?= ""
->> >>> BBLAYERS ?= " \
->> >>>  /home/evadeflow/projects/poky-git/meta \
->> >>>  /home/evadeflow/projects/poky-git/meta-yocto \
->> >>>  /home/evadeflow/projects/poky-git/meta-ti \
->> >>>  "
->> >> _______________________________________________
->> >> yocto mailing list
->> >> yocto@yoctoproject.org
->> >> https://lists.yoctoproject.org/listinfo/yocto
->> >
->> > --
->> > Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
->> > _______________________________________________
->> > yocto mailing list
->> > yocto@yoctoproject.org
->> > https://lists.yoctoproject.org/listinfo/yocto
->>
->
-> --
-> Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
+-- 
+Scott Garman
+Embedded Linux Engineer - Yocto Project
+Intel Open Source Technology Center
 
