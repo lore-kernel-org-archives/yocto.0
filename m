@@ -1,22 +1,23 @@
-Return-Path: <tf+lists.yocto@r-finger.com>
-Received: from r-finger.com (r-finger.com [178.79.160.5])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 682A0E00524
-	for <yocto@yoctoproject.org>; Tue,  2 Oct 2012 10:26:48 -0700 (PDT)
-Received: from [192.168.0.2] (host81-153-86-123.range81-153.btcentralplus.com
-	[81.153.86.123]) (using TLSv1 with cipher AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by r-finger.com (Postfix) with ESMTPSA id 76B6C9ADE
-	for <yocto@yoctoproject.org>; Tue,  2 Oct 2012 18:26:42 +0100 (BST)
-Message-ID: <506B23D1.5030901@r-finger.com>
-Date: Tue, 02 Oct 2012 18:26:41 +0100
-From: Tomas Frydrych <tf+lists.yocto@r-finger.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:10.0.5) Gecko/20120624 Icedove/10.0.5
-MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <CA+QkY1CX70KjdW8RufaMcUYoK+wLwW-jUKpM7aDmDmmLbWEvKg@mail.gmail.com>
-In-Reply-To: <CA+QkY1CX70KjdW8RufaMcUYoK+wLwW-jUKpM7aDmDmmLbWEvKg@mail.gmail.com>
-Subject: Re: How do you release distros produced with Yocto? How should I?
+Return-Path: <kishore.k.bodke@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B2E24E00524
+	for <yocto@yoctoproject.org>; Tue,  2 Oct 2012 10:39:59 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 02 Oct 2012 10:39:59 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,524,1344236400"; d="scan'208";a="199703215"
+Received: from kishore-desktop.sc.intel.com (HELO localhost)
+	([143.183.188.160])
+	by azsmga001.ch.intel.com with ESMTP; 02 Oct 2012 10:39:58 -0700
+From: kishore.k.bodke@intel.com
+To: tom.zanussi@intel.com,
+	yocto@yoctoproject.org
+Date: Tue,  2 Oct 2012 10:40:42 -0700
+Message-Id: <b4b775afd72aa2f0b9ba001dd30c89f03d826389.1349199109.git.kishore.k.bodke@intel.com>
+X-Mailer: git-send-email 1.7.9.5
+In-Reply-To: <cover.1349199109.git.kishore.k.bodke@intel.com>
+References: <cover.1349199109.git.kishore.k.bodke@intel.com>
+Subject: [PATCH 1/1] [meta-intel] meta-crystalforest: Create a custom build Image recipe.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,40 +29,66 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 02 Oct 2012 17:26:48 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 02 Oct 2012 17:39:59 -0000
 
-Hi,
+From: Kishore Bodke <kishore.k.bodke@intel.com>
 
-On 02/10/12 17:43, Jerrod Peach wrote:
-> I'm also starting to think there might be a better way to handle this with
-> Yocto's concept of distros (perhaps have a distro for printer X, and a
-> different one for printer Y, each pointing at versions of code that are
-> good for the respective printer), but my research so far hasn't given me
-> enough information on distros to know if this is a reasonable approach.
->  (I've poked through some of the documentation and the mailing list
-> archives.)  So, what do you all do for releasing code?  Does anyone have a
-> situation similar to mine?  (I can't imagine I'm unique, but maybe I'm more
-> special than I thought.)  Even if you don't have a situation like mine,
-> what would you suggest I do for releasing code for our printers?
+To build with the corpus files recipes, create a customized
+recipe to install them into the Image.
 
-Sounds to me like your situation implies a single distro + multiple
-machines, one for each distinct printer model; you can then specify
-revisions on per-machine basis. Whether you specify the machine specific
-revisions in the bb files, or whether you pull it together into an
-include file is a matter of taste more than anything else I suspect, as
-long as everyone knows what the deal is. But I'd advise not to specify
-package revisions local.conf, that's really for the developer/user to
-tweak, and it should not be stored in vcs, doings so just causes pain.
+Signed-off-by: Kishore Bodke <kishore.k.bodke@intel.com>
+---
+ .../recipes-qat-image/images/core-image-qat-sdk.bb |   16 ++++++++++++++++
+ .../recipes-qat-image/images/core-image-qat.bb     |   16 ++++++++++++++++
+ 2 files changed, 32 insertions(+)
+ create mode 100644 meta-crystalforest/recipes-qat-image/images/core-image-qat-sdk.bb
+ create mode 100644 meta-crystalforest/recipes-qat-image/images/core-image-qat.bb
 
-I use the unified include file in Guacamayo for the packages that we
-maintain; this is for convenience, as during the development cycle I use
-AUTOREV for these packages, but for an actual release specify the
-revisions explicitly and having them all in one place makes this easier
-to do and not forget anything. See,
-https://github.com/Guacamayo/meta-guacamayo/tree/master/meta-guacamayo/conf/
-for how we got it set up.
+diff --git a/meta-crystalforest/recipes-qat-image/images/core-image-qat-sdk.bb b/meta-crystalforest/recipes-qat-image/images/core-image-qat-sdk.bb
+new file mode 100644
+index 0000000..27feb0d
+--- /dev/null
++++ b/meta-crystalforest/recipes-qat-image/images/core-image-qat-sdk.bb
+@@ -0,0 +1,16 @@
++# Copyright (C) 2012 Intel Corporation.
++# Author: Kishore Bodke
++# kishore.k.bodke@intel.com
++#
++
++require recipes-sato/images/core-image-sato-sdk.bb
++
++IMAGE_INSTALL += " \
++		calgary-corpus \
++		canterbury-corpus \
++		silesia-corpus \
++		"
++
++LICENSE = "MIT"
++
++PR = "r0"
+diff --git a/meta-crystalforest/recipes-qat-image/images/core-image-qat.bb b/meta-crystalforest/recipes-qat-image/images/core-image-qat.bb
+new file mode 100644
+index 0000000..7c61ec6
+--- /dev/null
++++ b/meta-crystalforest/recipes-qat-image/images/core-image-qat.bb
+@@ -0,0 +1,16 @@
++# Copyright (C) 2012 Intel Corporation.
++# Author: Kishore Bodke
++# kishore.k.bodke@intel.com
++#
++
++require recipes-sato/images/core-image-sato.bb
++
++IMAGE_INSTALL += " \
++		calgary-corpus \
++		canterbury-corpus \
++		silesia-corpus \
++		"
++
++LICENSE = "MIT"
++
++PR = "r0"
+-- 
+1.7.9.5
 
-Tomas
 
