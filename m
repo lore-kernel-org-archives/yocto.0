@@ -1,37 +1,23 @@
-Return-Path: <martin.jansa@gmail.com>
-Received: from mail-wi0-f182.google.com (mail-wi0-f182.google.com
-	[209.85.212.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E9596E011C0
-	for <yocto@yoctoproject.org>; Tue,  2 Oct 2012 15:20:46 -0700 (PDT)
-Received: by wibhm2 with SMTP id hm2so1249289wib.11
-	for <yocto@yoctoproject.org>; Tue, 02 Oct 2012 15:20:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:content-disposition:in-reply-to:user-agent;
-	bh=3N6+X/8nh5z3/MpFQb6mWPxsJCz7mPA2YsWoJFFVrI8=;
-	b=zu01+SaFQFPPpP1J+dOzwtTQDEIqa6gfwg5VKA0ymjz6OlafCWuttMdsKXmgWGVR7W
-	lk+DgSin/QxQJkv94JbAE8XpJXZ+/q+7x0IDZBKLZIGOsBOGPF/UMrgOrkv4fWa4J7RD
-	eDaWP/1JIA8cTv+WfQPqOOnkMwAvqMHand5HjJwMzlCmI0z/gTXowx8OX1jV8Q7NfSNL
-	axklM3Pk2gNyNbYzlacjxtDWEjVOIOALOZCpmsrmd5tBxennj9XbGwUyyvBriEY85B7e
-	7RGlUntLr0fQVkWE2AqGG637zG96qFZkUpE193mbl73TyzL+dXJXmJ4St2ilCyWWrWS0
-	z9ZA==
-Received: by 10.180.105.6 with SMTP id gi6mr429025wib.4.1349216443900;
-	Tue, 02 Oct 2012 15:20:43 -0700 (PDT)
-Received: from localhost ([94.230.152.246])
-	by mx.google.com with ESMTPS id l6sm23659303wiz.4.2012.10.02.15.20.42
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Tue, 02 Oct 2012 15:20:42 -0700 (PDT)
-Date: Wed, 3 Oct 2012 00:20:37 +0200
-From: Martin Jansa <martin.jansa@gmail.com>
-To: Scott Garman <scott.a.garman@intel.com>
-Message-ID: <20121002222037.GH15881@jama.jama.net>
-References: <CAMAb8ZO1-psKwMhPNrVXroo-jEO37WpigX7xC0VYavTioo6PEg@mail.gmail.com>
-	<506B660F.7060008@intel.com>
-MIME-Version: 1.0
-In-Reply-To: <506B660F.7060008@intel.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 10518E011C0
+	for <yocto@yoctoproject.org>; Tue,  2 Oct 2012 16:19:01 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 02 Oct 2012 16:18:58 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,525,1344236400"; d="scan'208";a="229782019"
+Received: from unknown (HELO [10.255.14.37]) ([10.255.14.37])
+	by fmsmga002.fm.intel.com with ESMTP; 02 Oct 2012 16:18:55 -0700
+Message-ID: <1349219935.8890.18.camel@empanada>
+From: Tom Zanussi <tom.zanussi@intel.com>
+To: Ross Burton <ross.burton@intel.com>
+Date: Tue, 02 Oct 2012 18:18:55 -0500
+In-Reply-To: <1349172705-29101-1-git-send-email-ross.burton@intel.com>
+References: <1349172705-29101-1-git-send-email-ross.burton@intel.com>
+X-Mailer: Evolution 3.4.1 (3.4.1-2.fc17) 
+Mime-Version: 1.0
 Cc: yocto@yoctoproject.org
-Subject: Re: Can't fetch git SRC_URI via HTTP
+Subject: Re: [PATCH] meta-cedartrail: add missing dependency on EXA module to X driver
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,51 +29,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 02 Oct 2012 22:20:47 -0000
-X-Groupsio-MsgNum: 9763
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="LZFKeWUZP29EKQNE"
-Content-Disposition: inline
+X-List-Received-Date: Tue, 02 Oct 2012 23:19:01 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
---LZFKeWUZP29EKQNE
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Pulled into meta-intel/master.
 
-On Tue, Oct 02, 2012 at 03:09:19PM -0700, Scott Garman wrote:
-> On 10/02/2012 02:17 PM, Evade Flow wrote:
-> > I'm trying to build core-image-sato for my Pandaboard ES, following the
-> > instructions posted here:
-> >
-> >    - http://maniacbug.wordpress.com/2012/08/03/pandayocto/
-> >
-> > Thus, my OE build configuration looks like this:
->=20
-> I just would like to comment that this is one of the best requests for=20
-> help I've seen on this mailing list. Kudos for including all the=20
-> relevant information!
+Thanks,
 
-Well except that important part, that he has changed git:// to http://
-in SRC_URI..
+Tom
 
-It would be even easier to help him if he says only:
-"I've changed git:// to http:// in SRC_URI and now bitbake cannot fetch
-it anymore" :)
+On Tue, 2012-10-02 at 11:11 +0100, Ross Burton wrote:
+> [YOCTO #3204]
+> 
+> Signed-off-by: Ross Burton <ross.burton@intel.com>
+> ---
+>  .../recipes-graphics/xorg-driver/cdv-pvr-driver_1.0.3.bb            |    3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+> 
+> diff --git a/meta-cedartrail/recipes-graphics/xorg-driver/cdv-pvr-driver_1.0.3.bb b/meta-cedartrail/recipes-graphics/xorg-driver/cdv-pvr-driver_1.0.3.bb
+> index afda9dd..cd3407c 100644
+> --- a/meta-cedartrail/recipes-graphics/xorg-driver/cdv-pvr-driver_1.0.3.bb
+> +++ b/meta-cedartrail/recipes-graphics/xorg-driver/cdv-pvr-driver_1.0.3.bb
+> @@ -14,7 +14,7 @@ LIC_FILES_CHKSUM = " \
+>  
+>  DEPENDS = "rpm-native libva"
+>  
+> -PR = "r1"
+> +PR = "r2"
+>  
+>  PSB-VIDEO = "psb-video-cdv-1.0.3-1.1.i586.rpm"
+>  PSB-VIDEO-REV = "1.0.3"
+> @@ -66,6 +66,7 @@ FILES_${PN} += "${libdir}/pvr/cdv/xorg/modules/drivers"
+>  FILES_${PN} += "${datadir}/doc/psb-video-cdv-${PSB-VIDEO-REV}/license.txt"
+>  FILES_${PN} += "${datadir}/doc/pvr-bin-cdv-${PVR-BIN-REV_LIC}/license.txt"
+>  
+> +RDEPENDS_${PN} = "xserver-xorg-module-exa"
+>  
+>  TARGET_CC_ARCH += "${CFLAGS}{LDFLAGS}"
+>  INSANE_SKIP_${PN} += "ldflags"
 
-Cheers,
---=20
-Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
 
---LZFKeWUZP29EKQNE
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2.0.19 (GNU/Linux)
-
-iEYEARECAAYFAlBraLUACgkQN1Ujt2V2gBx4mQCeL3wl6ztiVrhrCwdkKfUrJmN2
-Q6cAoJ69snSI0OjyC/LD/HUF7uJAXfjA
-=yWEy
------END PGP SIGNATURE-----
-
---LZFKeWUZP29EKQNE--
