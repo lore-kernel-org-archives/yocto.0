@@ -1,26 +1,31 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 20158E00524
-	for <yocto@yoctoproject.org>; Tue,  2 Oct 2012 06:50:59 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id q92DorW3000105
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Tue, 2 Oct 2012 06:50:56 -0700 (PDT)
-Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.2.309.2;
-	Tue, 2 Oct 2012 06:50:53 -0700
-Message-ID: <506AF12E.6090009@windriver.com>
-Date: Tue, 2 Oct 2012 09:50:38 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:12.0) Gecko/20120430 Thunderbird/12.0.1
+Return-Path: <mihaix.lindner@linux.intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2AB3EE0070B
+	for <yocto@yoctoproject.org>; Tue,  2 Oct 2012 08:00:54 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 02 Oct 2012 08:00:51 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,523,1344236400"; d="scan'208";a="229027284"
+Received: from linux.jf.intel.com (HELO linux.intel.com) ([10.23.219.25])
+	by fmsmga001.fm.intel.com with ESMTP; 02 Oct 2012 08:00:32 -0700
+Received: from [10.237.105.142] (unknown [10.237.105.142])
+	by linux.intel.com (Postfix) with ESMTP id 429EE2C8001;
+	Tue,  2 Oct 2012 08:00:32 -0700 (PDT)
+Message-ID: <506B018E.6010101@linux.intel.com>
+Date: Tue, 02 Oct 2012 18:00:30 +0300
+From: Mihai Lindner <mihaix.lindner@linux.intel.com>
+Organization: Intel OTC
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
+	rv:15.0) Gecko/20120907 Thunderbird/15.0.1
 MIME-Version: 1.0
-To: Jonas Jonsson L <jonas.l.jonsson@ericsson.com>
-References: <C1024C359E9D4C4EBC664A0111A52A3F7CFB32F185@ESESSCMS0355.eemea.ericsson.se>
-In-Reply-To: <C1024C359E9D4C4EBC664A0111A52A3F7CFB32F185@ESESSCMS0355.eemea.ericsson.se>
-Cc: "Yocto Mailinglist \(yocto@yoctoproject.org\)" <yocto@yoctoproject.org>
-Subject: Re: Howto add TIPC-support into kernel?
+To: Ross Burton <ross.burton@intel.com>, Tom Zanussi <tom.zanussi@intel.com>
+References: <CAJTo0LYvfkAbdngN6KA_wes62RgJYVAjYHKvyVv+unjQDmt2ew@mail.gmail.com>
+	<50645E48.7050208@linux.intel.com>
+	<1348765649.32215.1.camel@empanada>
+	<9EAF22A4DBD743CEA7903B14F00DB03F@intel.com>
+In-Reply-To: <9EAF22A4DBD743CEA7903B14F00DB03F@intel.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: Cannot do atom-pc build with meta-cedartrail
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,49 +37,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 02 Oct 2012 13:50:59 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+X-List-Received-Date: Tue, 02 Oct 2012 15:00:54 -0000
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 12-10-02 05:23 AM, Jonas Jonsson L wrote:
-> Hi!
-> I'm writing a recipe for a piece of software that requires TIPC support
-> in the kernel. I've tried to figure out a way to accomplish this within
-> my bb-file, but with no success. Is there a way to do such thing with
-> Yocto, currently I run 'bitbake -c menuconfig linux-yocto' (or is it
-> yocto-linux, can't recall) and then I add 'kernel-modules' to
-> IMAGE_INSTALL_append in my 'local.conf'-file? I would like to have this
-> dependency some-how contained within my recipe.
+On 2012-09-29 23:50, Ross Burton wrote:
+> On Thursday, 27 September 2012 at 18:07, Tom Zanussi wrote:
+>> Yeah, looks like the other SRC_URIs do that, but it's missing from that
+>> SRC_URI - I just pushed a fix for this one to meta-intel/master.
+> 
+> Thanks Tom, I've been frequently flipping between atom-pc and cedartrail and this was getting annoying.
+> 
+> Ross 
+> 
+> 
+> 
 
-Are you primarily concerned with getting the kernel options enabled and
-then the built modules installed onto your target ? (I ask because
-TIPC userspace can come into play .. depending on your usecase).
+Unfortunately this change breaks SRC_URI appends, discarded or overwritten; e.g. adding meta-tlk brings no change to SRC_URI.
 
-If so, you'd want to add a linux-yocto_3.4.bbappend (assuming you are
-using the 3.4 kernel) to your layer, and put your options into a .cfg
-fragment that you append to the SRC_URI (just like any patch or other
-file). Those options will be added to the config on your next build and
-installed.
-
-In that same layer, you can add kernel-modules to IMAGE_INSTALL and
-you'll get the build and install whenever the layer is active.
-
-There are other ways to do this as well, but what I have above is
-what I typically do in a distro or BSP layer.
-
-Cheers,
-
-Bruce
-
-
-> Thanks!
-> Best regards,
-> Jonas Jonsson
->
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
+-- 
+Mihai Lindner
 
