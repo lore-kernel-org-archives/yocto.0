@@ -1,36 +1,34 @@
-Return-Path: <jonas.l.jonsson@ericsson.com>
-Received: from mailgw1.ericsson.se (mailgw1.ericsson.se [193.180.251.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6820CE002AC
-	for <yocto@yoctoproject.org>; Tue,  2 Oct 2012 02:23:14 -0700 (PDT)
-X-AuditID: c1b4fb2d-b7fea6d000002ccb-99-506ab2800caa
-Received: from esessmw0247.eemea.ericsson.se (Unknown_Domain [153.88.253.125])
-	by mailgw1.ericsson.se (Symantec Mail Security) with SMTP id
-	67.0F.11467.082BA605; Tue,  2 Oct 2012 11:23:13 +0200 (CEST)
-Received: from ESESSCMS0355.eemea.ericsson.se ([169.254.1.103]) by
-	esessmw0247.eemea.ericsson.se ([153.88.115.93]) with mapi;
-	Tue, 2 Oct 2012 11:23:10 +0200
-From: Jonas Jonsson L <jonas.l.jonsson@ericsson.com>
-To: "Yocto Mailinglist (yocto@yoctoproject.org)" <yocto@yoctoproject.org>
-Date: Tue, 2 Oct 2012 11:23:09 +0200
-Thread-Topic: Howto add TIPC-support into kernel?
-Thread-Index: Ac2gf4nDi17a6C4ZSLqIrFdagEYJ7g==
-Message-ID: <C1024C359E9D4C4EBC664A0111A52A3F7CFB32F185@ESESSCMS0355.eemea.ericsson.se>
-Accept-Language: sv-SE, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: sv-SE, en-US
-MIME-Version: 1.0
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrELMWRmVeSWpSXmKPExsUyM+JvrW7jpqwAg7/bWSwmvVzD5sDo0X6i
-	jy2AMYrLJiU1J7MstUjfLoErY+3sDUwFp/krjj7oY2pgnMPbxcjJISFgIvHn93dWCFtM4sK9
-	9WxdjFwcQgKnGCWO79rGAuEsYJR4u/QHC0gVG1DHhJU3GbsYOThEBDwlrjzQBQmzCKhINP58
-	BDZIWEBHovfxFyYQW0TAUGLd9x/sELaexJen0xlBbF6BcIljP16B1TAKyErc/34PbDyzgLjE
-	rSfzmSAOEpBYsuc8M4QtKvHy8T9WiHoZiVOL/rNC1OdLrDy3nR1ipqDEyZlPWCYwCs1CMmoW
-	krJZSMog4joSC3Z/YoOwtSWWLXzNDGOfOfCYCVl8ASP7Kkbh3MTMnPRyQ73Uoszk4uL8PL3i
-	1E2MwHg4uOW37g7GU+dEDjFKc7AoifNyJe33FxJITyxJzU5NLUgtii8qzUktPsTIxMEp1cCY
-	rCRkeenmlL3eQrwqtiGOUslzRQL+i+xjCPj8Jvl21B3Rb4fSuPh8UxnMJc/eufFIwGa60FPt
-	+YKXXWeqPWp+s6vZlv/Otx/7X+gfWrzV49AMbuHnqVZK4iyrWLfJTbjoMU9Wc2KwY9ANiwdL
-	D86cnp3uu+tAQVRWYXq/RTC7nXSnarZOjZcSS3FGoqEWc1FxIgBvTDjIVQIAAA==
-Subject: Howto add TIPC-support into kernel?
+Return-Path: <ross.burton@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5A865E002AC
+	for <yocto@yoctoproject.org>; Tue,  2 Oct 2012 03:12:51 -0700 (PDT)
+Received: from mail-wg0-f42.google.com ([74.125.82.42])
+	by mga09.intel.com with ESMTP/TLS/RC4-SHA; 02 Oct 2012 03:12:33 -0700
+Received: by mail-wg0-f42.google.com with SMTP id fm10so359209wgb.5
+	for <yocto@yoctoproject.org>; Tue, 02 Oct 2012 03:12:48 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=from:to:cc:subject:date:message-id:x-mailer:x-gm-message-state;
+	bh=GoKirqEcZlqnOxKf/LB7Yqvim+DqSGSc5b9S4ZALolw=;
+	b=biPfSb91KwDS3hM99BdwbZtM8nVk4GAvZLH353ygyX6dCKg+dTgyoe42zJcAUxr0fr
+	aEZ9lLCYA3XD0HC4fd/r4B0AZVWpyn9JXH3qqDzsa551cd8MXRp3VFUkZL1ylRBek9+t
+	0IC2+d5UMAxt/HVsXumGw0+2dfClIItC/uGyZMcRC350nX0rbdwF/ecHxaMkXRuRy7h4
+	B0q9uSnsb7nE5wXjrKRRPYVuQ11DRPYzz5AWPwPU4EpBFStqVboVlb92zHhbYNHZ55gJ
+	1MzntGljhuOLnd3C4vBbR0lRQTKK9ZBHFI1tTbpDFWjZYcrOOMTfx3oHTgqJGFlt0NJQ
+	ro0A==
+Received: by 10.180.83.101 with SMTP id p5mr20872988wiy.2.1349172768810;
+	Tue, 02 Oct 2012 03:12:48 -0700 (PDT)
+Received: from melchett.burtonini.com (35.106.2.81.in-addr.arpa. [81.2.106.35])
+	by mx.google.com with ESMTPS id f1sm3369446wiy.2.2012.10.02.03.12.47
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Tue, 02 Oct 2012 03:12:48 -0700 (PDT)
+From: Ross Burton <ross.burton@intel.com>
+To: yocto@yoctoproject.org
+Date: Tue,  2 Oct 2012 11:11:45 +0100
+Message-Id: <1349172705-29101-1-git-send-email-ross.burton@intel.com>
+X-Mailer: git-send-email 1.7.10
+X-Gm-Message-State: ALoCoQmuUoOLhFhTFzH6zegWCQBWIBUyq8ckphnBzNtkjZag4ymk554hY/P9qLqAyMUjiRbQ27HR
+Subject: [PATCH] meta-cedartrail: add missing dependency on EXA module to X driver
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,63 +40,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 02 Oct 2012 09:23:19 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_C1024C359E9D4C4EBC664A0111A52A3F7CFB32F185ESESSCMS0355e_"
+X-List-Received-Date: Tue, 02 Oct 2012 10:12:51 -0000
 
---_000_C1024C359E9D4C4EBC664A0111A52A3F7CFB32F185ESESSCMS0355e_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+[YOCTO #3204]
 
-Hi!
+Signed-off-by: Ross Burton <ross.burton@intel.com>
+---
+ .../recipes-graphics/xorg-driver/cdv-pvr-driver_1.0.3.bb            |    3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-I'm writing a recipe for a piece of software that requires TIPC support in =
-the kernel.  I've tried to figure out a way to accomplish this within my bb=
--file, but with no success.  Is there a way to do such thing with Yocto, cu=
-rrently I run 'bitbake -c menuconfig linux-yocto' (or is it yocto-linux, ca=
-n't recall) and then I add 'kernel-modules' to IMAGE_INSTALL_append in my '=
-local.conf'-file?  I would like to have this dependency some-how contained =
-within my recipe.
+diff --git a/meta-cedartrail/recipes-graphics/xorg-driver/cdv-pvr-driver_1.0.3.bb b/meta-cedartrail/recipes-graphics/xorg-driver/cdv-pvr-driver_1.0.3.bb
+index afda9dd..cd3407c 100644
+--- a/meta-cedartrail/recipes-graphics/xorg-driver/cdv-pvr-driver_1.0.3.bb
++++ b/meta-cedartrail/recipes-graphics/xorg-driver/cdv-pvr-driver_1.0.3.bb
+@@ -14,7 +14,7 @@ LIC_FILES_CHKSUM = " \
+ 
+ DEPENDS = "rpm-native libva"
+ 
+-PR = "r1"
++PR = "r2"
+ 
+ PSB-VIDEO = "psb-video-cdv-1.0.3-1.1.i586.rpm"
+ PSB-VIDEO-REV = "1.0.3"
+@@ -66,6 +66,7 @@ FILES_${PN} += "${libdir}/pvr/cdv/xorg/modules/drivers"
+ FILES_${PN} += "${datadir}/doc/psb-video-cdv-${PSB-VIDEO-REV}/license.txt"
+ FILES_${PN} += "${datadir}/doc/pvr-bin-cdv-${PVR-BIN-REV_LIC}/license.txt"
+ 
++RDEPENDS_${PN} = "xserver-xorg-module-exa"
+ 
+ TARGET_CC_ARCH += "${CFLAGS}{LDFLAGS}"
+ INSANE_SKIP_${PN} += "ldflags"
+-- 
+1.7.10
 
-Thanks!
 
-Best regards,
-Jonas Jonsson
-
-
---_000_C1024C359E9D4C4EBC664A0111A52A3F7CFB32F185ESESSCMS0355e_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
-<!-- converted from rtf -->
-<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
- #800000 2px solid; } --></style>
-</head>
-<body>
-<font face=3D"Arial, sans-serif" size=3D"2">
-<div>Hi!</div>
-<div>&nbsp;</div>
-<div>I'm writing a recipe for a piece of software that requires TIPC suppor=
-t in the kernel.&nbsp; I've tried to figure out a way to accomplish this wi=
-thin my bb-file, but with no success.&nbsp; Is there a way to do such thing=
- with Yocto, currently I run 'bitbake -c menuconfig
-linux-yocto' (or is it yocto-linux, can't recall) and then I add 'kernel-mo=
-dules' to IMAGE_INSTALL_append in my 'local.conf'-file?&nbsp; I would like =
-to have this dependency some-how contained within my recipe.</div>
-<div>&nbsp;</div>
-<div>Thanks!</div>
-<div>&nbsp;</div>
-<div>Best regards,</div>
-<div>Jonas Jonsson </div>
-<div>&nbsp;</div>
-</font>
-</body>
-</html>
-
---_000_C1024C359E9D4C4EBC664A0111A52A3F7CFB32F185ESESSCMS0355e_--
