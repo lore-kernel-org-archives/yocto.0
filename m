@@ -1,36 +1,34 @@
-Return-Path: <peachj@lexmark.com>
-Received: from exprod8og119.obsmtp.com (exprod8og119.obsmtp.com [64.18.3.38])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3E477E00524
-	for <yocto@yoctoproject.org>; Tue,  2 Oct 2012 11:46:00 -0700 (PDT)
-Received: from mail-qa0-f48.google.com ([209.85.216.48]) (using TLSv1) by
-	exprod8ob119.postini.com ([64.18.7.12]) with SMTP
-	ID DSNKUGs2Z8JGM63PFVBc5kgFnUf0ECW2WesX@postini.com;
-	Tue, 02 Oct 2012 11:46:00 PDT
-Received: by qadc11 with SMTP id c11so948547qad.14
-	for <yocto@yoctoproject.org>; Tue, 02 Oct 2012 11:45:59 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type:x-gm-message-state;
-	bh=PO2BDiv+k/qn9j9zqc8FgWe+z3YefjxMMucHzxapX84=;
-	b=kb33fWXR/47hAZh+RKtx1uGKE6lLDjWAvHy4tYqZpjXhgJEThuMn2zH1oD8MsqvEBp
-	bprCFIFtOLCqtvcjcx28ry+i53+iK5qW4vGOyjgP4mqrhNjAr3tOm9DL00zvVndTB/vX
-	AORoUT6Rh0EticSJeeYaEl8RMfeq4WOh7ZvsI/dV5Gx1XRb8DlwG8B1Yuit9a64KRPY9
-	jqU1ElwcDGgXe6jhTb8CzKnWZ6/rASEMpt2T0/qXFKX1A/PbT311+XpGmDk2D5WNQgWG
-	tj33EMlDSkIr3bXXzBJzrF1brGCMDmf0NVgkMxjVrmwPSjFRJgV5/RgwfYSdDCyGW1V6
-	EeEA==
-MIME-Version: 1.0
-Received: by 10.229.114.215 with SMTP id f23mr11995145qcq.93.1349203558843;
-	Tue, 02 Oct 2012 11:45:58 -0700 (PDT)
-Received: by 10.49.41.102 with HTTP; Tue, 2 Oct 2012 11:45:58 -0700 (PDT)
-In-Reply-To: <506B23D1.5030901@r-finger.com>
+Return-Path: <martin.jansa@gmail.com>
+Received: from mail-wi0-f170.google.com (mail-wi0-f170.google.com
+	[209.85.212.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C7AA9E00524
+	for <yocto@yoctoproject.org>; Tue,  2 Oct 2012 11:57:48 -0700 (PDT)
+Received: by mail-wi0-f170.google.com with SMTP id hm2so1120275wib.5
+	for <yocto@yoctoproject.org>; Tue, 02 Oct 2012 11:57:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=date:from:to:cc:subject:message-id:references:mime-version
+	:content-type:content-disposition:in-reply-to:user-agent;
+	bh=JX2PT6ICOC6pb8Xr0fHqhHF8I32Jl5kqYW6wagp7RFA=;
+	b=Vs+UJi/RokETO+odxuq5wl9udG1eEZNuutIUTKbodcBSnHernjvmeG5kEossGKz6hw
+	ZMihSO8gygo2X8gAHGkQnBZfLqr3p4U5ZKwBXckCPQ8wA6kZWxeJkhf0KNHWfDyVTPxR
+	YdB7rSaQbcYPV4rrkh67eiv3OUD8M7CQ8D8jChxCYetzfMpK32uDr8mTgOmUj1YJHljN
+	w0yF4B+hd+Q1sK160THBrom6UugsgUtKOSBS5keRouN6JRw1JGkKnICsscpEtDus1w3V
+	wG/wnZIAM81swX+63RzPgxqO/i0vIUnAnnHWghym2/KvU0SfvP0Yg80z0PtHnA6R3IPW
+	K52w==
+Received: by 10.216.93.80 with SMTP id k58mr9330683wef.98.1349204263267;
+	Tue, 02 Oct 2012 11:57:43 -0700 (PDT)
+Received: from localhost ([94.230.152.246])
+	by mx.google.com with ESMTPS id v3sm3856183wiy.5.2012.10.02.11.57.40
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Tue, 02 Oct 2012 11:57:41 -0700 (PDT)
+Date: Tue, 2 Oct 2012 20:57:40 +0200
+From: Martin Jansa <martin.jansa@gmail.com>
+To: Jerrod Peach <peachj@lexmark.com>
+Message-ID: <20121002185740.GC15881@jama.jama.net>
 References: <CA+QkY1CX70KjdW8RufaMcUYoK+wLwW-jUKpM7aDmDmmLbWEvKg@mail.gmail.com>
-	<506B23D1.5030901@r-finger.com>
-Date: Tue, 2 Oct 2012 14:45:58 -0400
-Message-ID: <CA+QkY1COKHqV25RCOJ-7u+eEyFm-WFn1OP=3zFUiMm4UkBeoww@mail.gmail.com>
-From: Jerrod Peach <peachj@lexmark.com>
-To: Tomas Frydrych <tf+lists.yocto@r-finger.com>
-X-Gm-Message-State: ALoCoQmSeViLyyULzmkfvJyWz5FDaPsDBb7vtG+zbOdOI652ysufdKjwH5ILfpjpfm6cfO334eCm
+MIME-Version: 1.0
+In-Reply-To: <CA+QkY1CX70KjdW8RufaMcUYoK+wLwW-jUKpM7aDmDmmLbWEvKg@mail.gmail.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
 Cc: yocto@yoctoproject.org
 Subject: Re: How do you release distros produced with Yocto? How should I?
 X-BeenThere: yocto@yoctoproject.org
@@ -44,124 +42,103 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 02 Oct 2012 18:46:00 -0000
-Content-Type: multipart/alternative; boundary=00235446ffecdac40504cb17ee96
+X-List-Received-Date: Tue, 02 Oct 2012 18:57:49 -0000
+X-Groupsio-MsgNum: 9755
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="3siQDZowHQqNOShm"
+Content-Disposition: inline
 
---00235446ffecdac40504cb17ee96
-Content-Type: text/plain; charset=ISO-8859-1
-
-Tomas,
-
-
-> Sounds to me like your situation implies a single distro + multiple
-> machines, one for each distinct printer model; you can then specify
-> revisions on per-machine basis.
-
-
-I don't think that's actually what we want.  The architecture of each
-machine will be the same.  That is, one ASIC will generally be on all the
-printers in a family of products.  I think I actually have one machine +
-multiple distros.  Or, should I really be counting each different printer
-as its own machine?
-
-
-> Whether you specify the machine specific
-> revisions in the bb files, or whether you pull it together into an
-> include file is a matter of taste more than anything else I suspect, as
-> long as everyone knows what the deal is. But I'd advise not to specify
-> package revisions local.conf, that's really for the developer/user to
-> tweak, and it should not be stored in vcs, doings so just causes pain.
->
-
-That's something that's come up in our side conversations here: local.conf
-is really for developers to tweak.  I will try to take care and not use
-local.conf for such a thing, and I will not store it in a VCS unless I can
-think of a really compelling reason to do so.  Thanks for the advice there.
-
-
->
-> I use the unified include file in Guacamayo for the packages that we
-> maintain; this is for convenience, as during the development cycle I use
-> AUTOREV for these packages, but for an actual release specify the
-> revisions explicitly and having them all in one place makes this easier
-> to do and not forget anything. See,
->
-> https://github.com/Guacamayo/meta-guacamayo/tree/master/meta-guacamayo/conf/
-> for how we got it set up.
->
-
-So, to me it looks like you're using conf/distro/guacamayo.conf to set
-those revisions.  That seems like that might work when there's only a
-handful of revisions to set.  However, we'll likely have at least a hundred
-packages for which we need to set/manipulate revisions.  I would think that
-would get cumbersome, and in an organization the size of ours (500 or so
-developers across two sites), there's not really going to be one person or
-team who knows what should go in that file for a release.  Moreover, that
-still leaves the problem of all those developers needing to know there are
-at least two places in which their package revisions may be controlled.  Is
-your organization significantly smaller than that or are we doing something
-wrong?
-
-Kind regards,
-
-Jerrod
-
---00235446ffecdac40504cb17ee96
-Content-Type: text/html; charset=ISO-8859-1
+--3siQDZowHQqNOShm
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-<div class=3D"gmail_quote"><div>Tomas,</div><div>=A0</div><blockquote class=
-=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padd=
-ing-left:1ex"><div class=3D"im">
-</div>Sounds to me like your situation implies a single distro + multiple<b=
-r>
-machines, one for each distinct printer model; you can then specify<br>
-revisions on per-machine basis. </blockquote><div><br></div><div>I don&#39;=
-t think that&#39;s actually what we want. =A0The architecture of each machi=
-ne will be the same. =A0That is, one ASIC will generally be on all the prin=
-ters in a family of products. =A0I think I actually have one machine + mult=
-iple distros. =A0Or, should I really be counting each different printer as =
-its own machine?=A0</div>
-<div>=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;=
-border-left:1px #ccc solid;padding-left:1ex">Whether you specify the machin=
-e specific<br>
-revisions in the bb files, or whether you pull it together into an<br>
-include file is a matter of taste more than anything else I suspect, as<br>
-long as everyone knows what the deal is. But I&#39;d advise not to specify<=
-br>
-package revisions local.conf, that&#39;s really for the developer/user to<b=
-r>
-tweak, and it should not be stored in vcs, doings so just causes pain.<br><=
-/blockquote><div><br></div><div>That&#39;s something that&#39;s come up in =
-our side conversations here: local.conf is really for developers to tweak. =
-=A0I will try to take care and not use local.conf for such a thing, and I w=
-ill not store it in a VCS unless I can think of a really compelling reason =
-to do so. =A0Thanks for the advice there.</div>
-<div>=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;=
-border-left:1px #ccc solid;padding-left:1ex">
-<br>
-I use the unified include file in Guacamayo for the packages that we<br>
-maintain; this is for convenience, as during the development cycle I use<br=
->
-AUTOREV for these packages, but for an actual release specify the<br>
-revisions explicitly and having them all in one place makes this easier<br>
-to do and not forget anything. See,<br>
-<a href=3D"https://github.com/Guacamayo/meta-guacamayo/tree/master/meta-gua=
-camayo/conf/" target=3D"_blank">https://github.com/Guacamayo/meta-guacamayo=
-/tree/master/meta-guacamayo/conf/</a><br>
-for how we got it set up.<br></blockquote><div><br></div><div>So, to me it =
-looks like you&#39;re using=A0conf/distro/guacamayo.conf to set those revis=
-ions. =A0That seems like that might work when there&#39;s only a handful of=
- revisions to set. =A0However, we&#39;ll likely have at least a hundred pac=
-kages for which we need to set/manipulate revisions. =A0I would think that =
-would get cumbersome, and in an organization the size of ours (500 or so de=
-velopers across two sites), there&#39;s not really going to be one person o=
-r team who knows what should go in that file for a release. =A0Moreover, th=
-at still leaves the problem of all those developers needing to know there a=
-re at least two places in which their package revisions may be controlled. =
-=A0Is your organization significantly smaller than that or are we doing som=
-ething wrong?</div>
-<div><br></div><div>Kind regards,</div><div><br></div><div>Jerrod</div><div=
->=A0</div></div>
+On Tue, Oct 02, 2012 at 12:43:27PM -0400, Jerrod Peach wrote:
+> All,
+>=20
+> After spending a few years working with a several-years old forked and
+> heavily-modified version of BitBake, my company is looking at switching to
+> using Yocto to build embedded Linux for its printers.  I've been playing
+> with/writing tools and process around Yocto for a couple of months now, a=
+nd
+> I'm getting to the point where I can produce integration builds without a
+> problem.
+>=20
+> Now I'm starting to think about how our release process should work with
+> pure Yocto and I'm running into a conundrum.  Before I get into that,
+> though, let me very briefly explain how we release code currently in terms
+> of Yocto as it is today.  This is not exactly what we do, but if I had to
+> explain the real process, it would take a while because of all the
+> customization we bolted on top of our forked BitBake.  Basically, we have=
+ a
+> branch in a repository containing the equivalent of local.conf, and we put
+> fixed revisions of every package for that release into the local.conf file
+> within that branch.  As patches for a release come in, the local.conf file
+> is updated to point to the new patches.
+>=20
+> I was thinking about doing something very close to that in actual Yocto,
+> except I'd store only the revisions/branches that were different from what
+> the bb file prescribed in local.conf.  I ran that idea by a couple of
+> colleagues separately and they both immediately pointed out a concern: th=
+ey
+> didn't want to have two different places that could manage the revision of
+> the package, i.e. local.conf and the package bb file.  They don't like how
+> that works in the system we have today.  Instead, they wanted to branch a=
+ll
+> the metadata and have people update individual bb files with different
+> revisions as necessary.  That leaves only one place to manage the revisio=
+n:
+> the package bb file.  Doing all that branching concerns me (it seems
+> heavier-weight than it needs to be, at the very least), but I can't say
+> specifically why branching the bb files is harmful.  If you guys can think
+> of a reason why, let me know.  If you think it's reasonable, let me know
+> that too.
 
---00235446ffecdac40504cb17ee96--
+I think that branching (or tagging) whole metadata is best option, use
+AUTOREV from some .inc file (included in local.conf) for development and
+then just before release update in recipe SRCREVs with small script from
+bitbake persistent cache (tmp-eglibc/cache/bb_persist_data.sqlite3).
+
+This way you will get correct SRCREVs in branched metadata and won't
+need so many recipe updates during development to move SRCREV too often.
+
+Cheers,
+
+> I'm also starting to think there might be a better way to handle this with
+> Yocto's concept of distros (perhaps have a distro for printer X, and a
+> different one for printer Y, each pointing at versions of code that are
+> good for the respective printer), but my research so far hasn't given me
+> enough information on distros to know if this is a reasonable approach.
+>  (I've poked through some of the documentation and the mailing list
+> archives.)  So, what do you all do for releasing code?  Does anyone have a
+> situation similar to mine?  (I can't imagine I'm unique, but maybe I'm mo=
+re
+> special than I thought.)  Even if you don't have a situation like mine,
+> what would you suggest I do for releasing code for our printers?
+>=20
+> Kind regards,
+>=20
+> Jerrod
+
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
+
+--=20
+Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
+
+--3siQDZowHQqNOShm
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2.0.19 (GNU/Linux)
+
+iEYEARECAAYFAlBrOSQACgkQN1Ujt2V2gBxzXQCdGU8uN4psTvWUgpid80HGQ8sy
+93gAoKkmf/rD/MBuSKhIZufrrJctZ3lD
+=mTSh
+-----END PGP SIGNATURE-----
+
+--3siQDZowHQqNOShm--
