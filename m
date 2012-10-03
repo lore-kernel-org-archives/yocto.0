@@ -1,32 +1,33 @@
 Return-Path: <raj.khem@gmail.com>
-Received: from mail-wi0-f182.google.com (mail-wi0-f182.google.com
-	[209.85.212.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DB201E01199
-	for <yocto@yoctoproject.org>; Tue,  2 Oct 2012 23:18:12 -0700 (PDT)
-Received: by wibhm2 with SMTP id hm2so1550758wib.11
-	for <yocto@yoctoproject.org>; Tue, 02 Oct 2012 23:18:11 -0700 (PDT)
+Received: from mail-wi0-f176.google.com (mail-wi0-f176.google.com
+	[209.85.212.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DEAA9E01199
+	for <yocto@yoctoproject.org>; Tue,  2 Oct 2012 23:21:00 -0700 (PDT)
+Received: by mail-wi0-f176.google.com with SMTP id hn14so1610035wib.11
+	for <yocto@yoctoproject.org>; Tue, 02 Oct 2012 23:21:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
 	:cc:content-type;
-	bh=VZuIxKeGlmco5pTBIz6HgurmxP6V8ci8JSRRB38trCw=;
-	b=bn0nfdtnejmA2NK8+GWUiha6DW3kVftMsh9fXbG+ePHHiLPVho8v2RGyuf/lfS0d7D
-	WXnbLl04pEkQ3WhC8pRFbL/Zxa7o6ULKnlYGMJbDUq3aBPES0vE2vqa4mr7/q4igVT1d
-	njSNR2oZ/gUbhct1bWz0exFp/EQ6MwGXwq+PrPTLqCeenbtbaA/TFncZ5yl6pi6Zi+So
-	nFSxw8vr4ODPpox9PB5aYg2E35BnX3OzHaSarVQN7CK9gtFbyVAXBZrid/DoYDojLCvw
-	XNbftK92+ynt3vsVMHkMfoO7tULNCkE2lsrWzrIoLJdeq8ZzTC22+VoDYNr0ewiRQUE4
-	TMZw==
-Received: by 10.181.13.208 with SMTP id fa16mr2511966wid.11.1349245091568;
-	Tue, 02 Oct 2012 23:18:11 -0700 (PDT)
+	bh=sPxIecHm+KaVu7x6zZG8IQdFK6itR2HIhS5xvvM66kE=;
+	b=tNHRRx+BdLjpf5mkvqFba1/i/LmwZm25tvPrsZ1FC8gPNj+x46ZKDVveOdWiNAgGim
+	0pjCwwqFt4rT8sCBmKjSffPREBxfleW54gdYqSKK3p35fEAdpkmkksH9vwP7/g83zV7a
+	z81yhXZbq/LpryZEl1NVmaeQ3uMdrUP/Ntf3JHb4DEkRePHcWoe4TjK3KlIasBxyY7BC
+	VOdtrKKnc5Z0XG3JlL9SZl9/aT6A8Es8yv2VmUN0maTKzHF9s7WqyCDN7zZPrhq4Mgc+
+	sEkXyw30lIikkNd2zjIi7JfgL2fE3dk0LX+i1rZOTr0pU2bcEaEiXPXrvSDMaue7nfxl
+	aGJQ==
+Received: by 10.180.73.76 with SMTP id j12mr2530081wiv.11.1349245260029; Tue,
+	02 Oct 2012 23:21:00 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.194.28.38 with HTTP; Tue, 2 Oct 2012 23:17:41 -0700 (PDT)
-In-Reply-To: <CANmVirjogLPbktEA2cCEmak7VOUh7PiEd3TWDZC6ZaT20C5W5g@mail.gmail.com>
-References: <CANmVirjogLPbktEA2cCEmak7VOUh7PiEd3TWDZC6ZaT20C5W5g@mail.gmail.com>
+Received: by 10.194.28.38 with HTTP; Tue, 2 Oct 2012 23:20:29 -0700 (PDT)
+In-Reply-To: <87zk457w6r.fsf@sonatest.com>
+References: <D9A15604-C508-4314-B4DC-B6F52691EC51@jusst.de>
+	<87zk457w6r.fsf@sonatest.com>
 From: Khem Raj <raj.khem@gmail.com>
-Date: Tue, 2 Oct 2012 23:17:41 -0700
-Message-ID: <CAMKF1soQpVP2qCQcOgmtF6=6-AFNkp-21VYnaAeEMq-BxsWB+Q@mail.gmail.com>
-To: Raul Rosetto Munoz <munoz0raul@gmail.com>
+Date: Tue, 2 Oct 2012 23:20:29 -0700
+Message-ID: <CAMKF1sruF-zTgM293vhKB=y+LG_qDiye_C+fdwvSn7bpNJvpzA@mail.gmail.com>
+To: Marc Ferland <ferlandm@sonatest.com>
 Cc: yocto@yoctoproject.org
-Subject: Re: Kernel Stop in Freeing init memory: 228K
+Subject: Re: Runtime update of yocto-images
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,17 +39,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 03 Oct 2012 06:18:13 -0000
+X-List-Received-Date: Wed, 03 Oct 2012 06:21:01 -0000
 Content-Type: text/plain; charset=UTF-8
 
-On Sun, Sep 30, 2012 at 8:58 AM, Raul Rosetto Munoz
-<munoz0raul@gmail.com> wrote:
->   bridge-utils \
->         nodejs \
->         cloud9 \
->         connman"
+On Mon, Oct 1, 2012 at 1:51 PM, Marc Ferland <ferlandm@sonatest.com> wrote:
+> Julian Scheel <julian@jusst.de> writes:
+>
+>> Hi,
+>>
+>> I wonder how everyone deals with runtime updates of yocto based
+>> systems? Are you using the package management for this? Actually I'd
+>> prefer a one-file update, which would replace the whole rootfs. I
+>> think having a squashfs image containing the rootfs and place it on
+>> some ext-partition would be nice. One would just need an initramfs,
+>> that could mount the squashfs file as root.
+>>
+>> Is anyone following an approach like this?
+>
+> This is the approach that I've taken. Works fairly well.
+>
+> You will need to:
+> - Create your own init script (look in:
+> meta/recipes-core/initrdscripts/files as a starting point)
+> - Patch your kernel with AUFS/unionfs/overlayfs if you want something
+> that is not 100% volatile.
+> - Create an "install/update" script that actually takes care of updating
+> your squashfs rootfs from the initramfs.
+>
 
-check what deps are added because of cloud9 are there any init
-conflicts that come in.
-bitbake -g might be helpful.
+Marc
+
+interesting. Do you have some patches to share ?
+
+> Marc
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
