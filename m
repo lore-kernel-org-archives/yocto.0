@@ -1,28 +1,35 @@
-Return-Path: <jfabernathy@gmail.com>
-Received: from mail-oa0-f48.google.com (mail-oa0-f48.google.com
-	[209.85.219.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C60CDE011C5
-	for <yocto@yoctoproject.org>; Wed,  3 Oct 2012 06:05:26 -0700 (PDT)
-Received: by oagh2 with SMTP id h2so9696540oag.35
-	for <yocto@yoctoproject.org>; Wed, 03 Oct 2012 06:05:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=ZfXpcYYywAX3WmtJFjKsp9NY3diXkVSBb4vA8esAF68=;
-	b=ND1kX0DJ1mJ2WBAsCMRRzz1q1YBu99VRNOOtd8bgVB0RfMajLaECSdPddX6geNb5Nw
-	OK/0HAOGJQGfgzmmtaB1DAfxP1PsdZcb64pz1RJ2c9nsAwhfkJEG7nOIRulRtMslmT1a
-	LkYM/9U1PCROpO32FDFkXMsejFZ1O0tNp6TzRo//Nqbco2BOCpAHwuSK6yJITW/l9ypf
-	6rKrjwqy1LLaeWwVFlDoH5JrGBAzBWchVhLweyxm4SEGrjWKUABcqGJYL4t8e1cvCu9L
-	B1ReO9I4icM3k0L9q0G+sa4Nlo+HTR1e7lO/bqFZQ4Tzza0VdbRYyzUg256QsNzK8Y2w
-	WJfA==
+Return-Path: <ross.burton@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 09934E011D0
+	for <yocto@yoctoproject.org>; Wed,  3 Oct 2012 06:21:23 -0700 (PDT)
+Received: from mail-ie0-f176.google.com ([209.85.223.176])
+	by mga09.intel.com with ESMTP/TLS/RC4-SHA; 03 Oct 2012 06:21:04 -0700
+Received: by ieak11 with SMTP id k11so20722273iea.35
+	for <yocto@yoctoproject.org>; Wed, 03 Oct 2012 06:21:22 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type:x-gm-message-state;
+	bh=lvEc1L8/BmqP01yvNAN49dHUR5BphxMJekC+mt/3k7o=;
+	b=krFVbrytEq+28VKZqDlq027fk4wG03Yyft32tqSjPnRvy6XGn5lqg/pz/+Z2uZBSNS
+	COW/e23n8Owc07dOU8AeQFerq1RTdbVCcvti8TFH4sQbDY+PCy9BBLeiKoJfUziAjRw0
+	SQZNUL0ke0+BMYmFUXVfBZh9g0rGIlCK7bd7nouvKEjME7bsHMA4dQYuD11jgEoQ79yd
+	VrnaRr2kVv+gWAv1U2eePShaIr+giqoel2Ur6fH924g2Al9ol4Wy2Ty+oabmOmbfFPLQ
+	9B2MydAcilAPX5LyqLxd/5zz0lZ1c/8jIY4tEHTz4KpBNg8xbUVe9Pckywv4ZHYtrCS/
+	AcXw==
+Received: by 10.50.104.201 with SMTP id gg9mr1678942igb.67.1349270481891; Wed,
+	03 Oct 2012 06:21:21 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.60.5.193 with SMTP id u1mr1434715oeu.111.1349269523734; Wed,
-	03 Oct 2012 06:05:23 -0700 (PDT)
-Received: by 10.76.143.225 with HTTP; Wed, 3 Oct 2012 06:05:23 -0700 (PDT)
-Date: Wed, 3 Oct 2012 09:05:23 -0400
-Message-ID: <CANFv2EnwjYa=DNKfiR9y9g+G_j=8WXyVZtBX_2gKcfM7Ga4MqQ@mail.gmail.com>
-From: James Abernathy <jfabernathy@gmail.com>
-To: yocto@yoctoproject.org
-Subject: Correct procedure for rebuilding after a git pull
+Received: by 10.64.141.70 with HTTP; Wed, 3 Oct 2012 06:21:00 -0700 (PDT)
+In-Reply-To: <CANFv2EnwjYa=DNKfiR9y9g+G_j=8WXyVZtBX_2gKcfM7Ga4MqQ@mail.gmail.com>
+References: <CANFv2EnwjYa=DNKfiR9y9g+G_j=8WXyVZtBX_2gKcfM7Ga4MqQ@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Wed, 3 Oct 2012 14:21:00 +0100
+Message-ID: <CAJTo0LbcKzbJ7-2jKoHRPzYeHx_ydYf_vULzwjsWy0zG4Q4bBQ@mail.gmail.com>
+To: James Abernathy <jfabernathy@gmail.com>
+X-Gm-Message-State: ALoCoQnqcQCxJ2LvTcYGbWXQm9jPBjwyxGNt+p1OBIQUayEZ6lOwbpQR3fIfNGNRORRUqrFhdW0L
+Cc: yocto@yoctoproject.org
+Subject: Re: Correct procedure for rebuilding after a git pull
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,59 +41,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 03 Oct 2012 13:05:27 -0000
-Content-Type: multipart/alternative; boundary=e89a8ff1cf22ab20bf04cb274ab7
+X-List-Received-Date: Wed, 03 Oct 2012 13:21:23 -0000
+Content-Type: text/plain; charset=UTF-8
 
---e89a8ff1cf22ab20bf04cb274ab7
-Content-Type: text/plain; charset=ISO-8859-1
+On 3 October 2012 14:05, James Abernathy <jfabernathy@gmail.com> wrote:
+> Now I see a bunch of patches pushed to Denzil branch and I want to test
+> them.  My build directory is untouched since the successful build before.
+> What do I do to rebuild my project to include the latest patches.  I've
+> tried things like "bitbake -c cleansstate core-image-cdv-media" before the
+> new "bitbake core-image-cdv-media" and I've tried just rebaking by itself.
+> Something always fails.  I've learned that to really test I have to
+> completely delete my build directory saving only my local.conf and
+> bblayer.conf.
 
-So I'm looking for the right way to do this.  Here's the scenario.  I do a
-complete build of the image core-image-cdv-media for the cedartrail
-machine.  No changes from the basic BSP, except for the addition of my
-meta-layer that include test audios and videos to help test the media
-playback using gst-launch.  I'm tracking the latest Denzil branch.  So
-everything works well to this point.
+Just git pull ; bitbake should work -- all of the packages that
+changed will rebuild without any problems.
 
-Now I see a bunch of patches pushed to Denzil branch and I want to test
-them.  My build directory is untouched since the successful build before.
-What do I do to rebuild my project to include the latest patches.  I've
-tried things like "bitbake -c cleansstate core-image-cdv-media" before the
-new "bitbake core-image-cdv-media" and I've tried just rebaking by itself.
-Something always fails.  I've learned that to really test I have to
-completely delete my build directory saving only my local.conf and
-bblayer.conf.
+That's the theory, and everyone who works against oe-core/poky master
+does this ever day (including me).
 
-Am I missing something or is a complete rebuild the only way to get the new
-patches in and a successful build??
+Can you give an example of something that fails?
 
-Jim A
+Ross
 
---e89a8ff1cf22ab20bf04cb274ab7
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<div>So I&#39;m looking for the right way to do this.=A0 Here&#39;s the sce=
-nario.=A0 I do a complete build of the image core-image-cdv-media for the c=
-edartrail machine.=A0 No changes from the basic BSP, except for the additio=
-n of my meta-layer that include test audios and videos to help test the med=
-ia playback using gst-launch.=A0 I&#39;m tracking the latest Denzil branch.=
-=A0 So everything works well to this point.</div>
-
-<div>=A0</div>
-<div>Now I see a bunch of patches pushed to Denzil branch and I want to tes=
-t them.=A0 My build directory is untouched since the successful build befor=
-e.=A0 What do I do to rebuild my project to include the latest patches.=A0 =
-I&#39;ve tried things like &quot;bitbake -c cleansstate core-image-cdv-medi=
-a&quot; before the new &quot;bitbake core-image-cdv-media&quot; and I&#39;v=
-e tried just rebaking by itself.=A0 Something always fails.=A0 I&#39;ve lea=
-rned that to really test I have to completely delete my build directory sav=
-ing only my local.conf and bblayer.conf.</div>
-
-<div>=A0</div>
-<div>Am I missing something or is a complete rebuild the only way to get th=
-e new patches in and a successful build??</div>
-<div>=A0</div>
-<div>Jim A</div>
-<div>=A0</div>
-
---e89a8ff1cf22ab20bf04cb274ab7--
