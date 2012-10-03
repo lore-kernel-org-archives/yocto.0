@@ -1,24 +1,24 @@
-Return-Path: <julian@jusst.de>
-Received: from smtp.work.de (smtp1.work.de [212.12.40.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EA65DE01199
-	for <yocto@yoctoproject.org>; Wed,  3 Oct 2012 00:37:16 -0700 (PDT)
-Received: from [127.0.0.1] (helo=[172.27.1.5])
-	by smtp.work.de with esmtpa (Exim 4.72)
-	(envelope-from <julian@jusst.de>)
-	id 1TJJW5-0007fB-6g; Wed, 03 Oct 2012 09:37:13 +0200
-Message-ID: <1349249984.1469.2.camel@juli-workstation.net.jusst.de>
-From: Julian Scheel <julian@jusst.de>
-To: Martin Jansa <martin.jansa@gmail.com>
-Date: Wed, 03 Oct 2012 09:39:44 +0200
-In-Reply-To: <20121002215259.GF15881@jama.jama.net>
-References: <CAMAb8ZO1-psKwMhPNrVXroo-jEO37WpigX7xC0VYavTioo6PEg@mail.gmail.com>
-	<20121002212223.GE15881@jama.jama.net>
-	<159BFF45-059D-4E33-9AE6-EC78B620FA0F@jusst.de>
-	<20121002215259.GF15881@jama.jama.net>
-X-Mailer: Evolution 3.4.4 
-Mime-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Can't fetch git SRC_URI via HTTP
+Return-Path: <tf+lists.yocto@r-finger.com>
+Received: from r-finger.com (r-finger.com [178.79.160.5])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1933FE01199
+	for <yocto@yoctoproject.org>; Wed,  3 Oct 2012 00:59:10 -0700 (PDT)
+Received: from [192.168.0.2] (host81-153-86-123.range81-153.btcentralplus.com
+	[81.153.86.123]) (using TLSv1 with cipher AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by r-finger.com (Postfix) with ESMTPSA id 632F29ADE
+	for <yocto@yoctoproject.org>; Wed,  3 Oct 2012 08:59:06 +0100 (BST)
+Message-ID: <506BF049.2010407@r-finger.com>
+Date: Wed, 03 Oct 2012 08:59:05 +0100
+From: Tomas Frydrych <tf+lists.yocto@r-finger.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:10.0.5) Gecko/20120624 Icedove/10.0.5
+MIME-Version: 1.0
+CC: yocto@yoctoproject.org
+References: <CA+QkY1CX70KjdW8RufaMcUYoK+wLwW-jUKpM7aDmDmmLbWEvKg@mail.gmail.com>
+	<506B23D1.5030901@r-finger.com>
+	<CA+QkY1COKHqV25RCOJ-7u+eEyFm-WFn1OP=3zFUiMm4UkBeoww@mail.gmail.com>
+In-Reply-To: <CA+QkY1COKHqV25RCOJ-7u+eEyFm-WFn1OP=3zFUiMm4UkBeoww@mail.gmail.com>
+Subject: Re: How do you release distros produced with Yocto? How should I?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,149 +30,70 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 03 Oct 2012 07:37:17 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Wed, 03 Oct 2012 07:59:10 -0000
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-Am Dienstag, den 02.10.2012, 23:52 +0200 schrieb Martin Jansa:
-> On Tue, Oct 02, 2012 at 11:38:08PM +0200, Julian Scheel wrote:
-> > 
-> > Am 02.10.2012 um 23:22 schrieb Martin Jansa <martin.jansa@gmail.com>:
-> > 
-> > > On Tue, Oct 02, 2012 at 05:17:23PM -0400, Evade Flow wrote:
-> > >> I'm trying to build core-image-sato for my Pandaboard ES, following the
-> > >> instructions posted here:
-> > >> 
-> > >>  - http://maniacbug.wordpress.com/2012/08/03/pandayocto/
-> > >> 
-> > >> Thus, my OE build configuration looks like this:
-> > >> 
-> > >>> OE Build Configuration:
-> > >>> BB_VERSION        = "1.15.2"
-> > >>> TARGET_ARCH       = "arm"
-> > >>> TARGET_OS         = "linux-gnueabi"
-> > >>> MACHINE           = "pandaboard"
-> > >>> DISTRO            = "poky"
-> > >>> DISTRO_VERSION    = "1.2.1"
-> > >>> TUNE_FEATURES     = "armv7a vfp neon cortexa9"
-> > >>> TARGET_FPU        = "vfp-neon"
-> > >>> meta
-> > >>> meta-yocto        = "denzil:65ffa7395055f7e012cb973f63f92380828eed0d"
-> > >>> meta-ti           = "(nobranch):30fb40ebc13614a74c2e237927c60ac43e01d1bc"
-> > >> 
-> > >> I have these lines in my .gitconfig:
-> > >> 
-> > >>> [http]
-> > >>>    proxy=http://user:passwd@usaprox.lightning.com:8080
-> > >> 
-> > >> so I'd expect URLs like this one (from the meta-ti layer's
-> > >> linux-omap4_3.1.0.bb recipe) to work fine:
-> > >> 
-> > >>> SRC_URI = "http://dev.omapzoom.org/pub/scm/integration/kernel-ubuntu.git;protocol=git;branch=ti-ubuntu-3.1-1282 \
-> > > 
-> > > This url seems wrong, it should start with git:// if you want to clone
-> > > git repo.
-> > > 
-> > > Because it starts with http:// normal fetch (like wget) was used so it
-> > > downloaded probably some http code (see that kernel-ubuntu.git file)
-> > > instead of any relevant source.
-> > 
-> > I ran into the same issue a few days ago. It seems yocto only supports git fetch
-> > through servers providing the repositories through the git protocol. A way to use
-> > git repositories which are provided through http or https would be quite a good
-> > thing to have.
-> 
-> That's what protocol param does;
-> 
-> Change that to
-> git://dev.omapzoom.org/pub/scm/integration/kernel-ubuntu.git;protocol=http;branch=ti-ubuntu-3.1-1282
-> and you'll get git fetch over http protocol.
+Hi,
 
-Nice to know. Actually when I had this issue I tried it the other way
-round. Use a http url and set protocol to git...
-Is this noted somewhere in the documentation? I could not find it. I
-think it would be worth mentioning it in the yocto reference manual as
-this seems to be a quite common thing to struggle with.
+On 02/10/12 19:45, Jerrod Peach wrote:
+> I don't think that's actually what we want.  The architecture of each
+> machine will be the same.  That is, one ASIC will generally be on all the
+> printers in a family of products.  I think I actually have one machine +
+> multiple distros.  Or, should I really be counting each different printer
+> as its own machine?
 
--Julian
+The fact that the underlying HW is the same can be simply reflected by
+having the actual HW-related definitions in a common include file. But
+if printer X requires different version of package A from printer Y then
+they are really best thought of as different machines -- you can make
+packages specific to a machine architecture and then reliably pin the
+version, you can't make packages distro-specific (the whole OE/Yocto set
+up is built around an implicit premise that any given OE/Yocto instance
+is made up of a single 'distro' and many 'machines', so the distro
+leaves no mark on the packages).
+
+If all that is different are strictly the VCS revisions, you can use
+branching but if someone introduces some other subtle difference, like
+printer-X requires --enable-feature-x for package A and printer-Y
+requires --disable-feature-x for the same package, then using different
+machines is the only option to handle this. If you use branching instead
+of distinct machines in this scenario, you will have to maintain
+distinct build locations *and* package repositories for each branch, as
+there is no way to tell package-A with --enable-feature-x from branch
+printer-x from package-A with --disable-feature-x from branch printer-y.
+
+Another reason not to use branches is that this increases the
+maintenance burden when making changes to packages that are common
+across the branches; from experience even with just a couple of extra
+branches folk invariably forget to merge the changes everywhere they
+should (or merge them into places they should not).
+
+Using different bb files per printer seems like a good idea until you
+try it, but you quickly discover it does not really work. The main
+problem here is that now packages further down the line can no longer
+depend on package-A, and have to depend on package-A-printer-X instead,
+so you will need to have multiple versions of the dependent packages
+too, and then of those depending on them, and so on ... You might think
+that PROVIDES_virtual/package-A would be an answer here, but that really
+only works for distinct machines, so you can specify PREFERRED_PROVIDER
+or use COMPATIBLE_MACHINE.
 
 
->  
-> > -Julian
-> > 
-> > > 
-> > >>>           file://0001-Makefile.fwinst-fix-install-breakage-for-FW-images-r.patch \
-> > >>>           file://defconfig \
-> > >>>           "
-> > >> 
-> > >> From what I can tell, though, bitbake isn't handling this SRC_URI
-> > >> correctly, and I get:
-> > >> 
-> > >>> ERROR: Command Error: exit status: 1  Output:
-> > >>> Applying patch 0001-Makefile.fwinst-fix-install-breakage-for-FW-images-r.patch
-> > >>> patching file scripts/Makefile.fwinst
-> > >>> Hunk #1 FAILED at 27.
-> > >>> 1 out of 1 hunk FAILED -- rejects in file scripts/Makefile.fwinst
-> > >>> Patch 0001-Makefile.fwinst-fix-install-breakage-for-FW-images-r.patch does not apply (enforce with -f)
-> > >>> ERROR: Function failed: patch_do_patch
-> > >> 
-> > >> If I examine the folder:
-> > >> 
-> > >>  build/tmp/work/pandaboard-poky-linux-gnueabi/linux-omap4-3.1.0-r0
-> > >> 
-> > >> I see that it contains no source code. It does, however, contain a file
-> > >> named 'kernel-ubuntu.git', whose content is exactly the same as you'd
-> > >> get if you typed:
-> > >> 
-> > >>  wget http://dev.omapzoom.org/pub/scm/integration/kernel-ubuntu.git
-> > >> 
-> > >> This seems like a bug, possibly related to one of these:
-> > >> 
-> > >>  - http://bugzilla.yoctoproject.org/show_bug.cgi?id=3119
-> > >>  - http://bugzilla.yoctoproject.org/show_bug.cgi?id=3175
-> > >> 
-> > >> 
-> > >> Maybe this has been fixed since denzil, but... everything I read about
-> > >> the current state of support for the Pandaboard suggests sticking with
-> > >> denzil/gcc 4.6. Is there some workaround I can use to get past this
-> > >> error?  Also, assuming these instructions worked for the author of the
-> > >> original blog post, I wonder what the difference is with my setup.
-> > >> 
-> > >> Here are my mods to conf/local.conf, in case it's helpful:
-> > >> 
-> > >>> MACHINE = "pandaboard"
-> > >>> BBMASK = "meta-ti/recipes-misc"
-> > >>> PACKAGE_CLASSES = "package_ipk"
-> > >>> CONNECTIVITY_CHECK_URIS=""
-> > >>> BB_GENERATE_MIRROR_TARBALLS = "1"
-> > >>> SOURCE_MIRROR_URL ?= "file:///home/evadeflow/projects/poky-mirror/"
-> > >>> INHERIT += "own-mirrors"
-> > >> 
-> > >> And this is my bblayers.conf:
-> > >> 
-> > >>> # LAYER_CONF_VERSION is increased each time build/conf/bblayers.conf
-> > >>> # changes incompatibly
-> > >>> LCONF_VERSION = "4"
-> > >>> 
-> > >>> BBFILES ?= ""
-> > >>> BBLAYERS ?= " \
-> > >>>  /home/evadeflow/projects/poky-git/meta \
-> > >>>  /home/evadeflow/projects/poky-git/meta-yocto \
-> > >>>  /home/evadeflow/projects/poky-git/meta-ti \
-> > >>>  "
-> > >> _______________________________________________
-> > >> yocto mailing list
-> > >> yocto@yoctoproject.org
-> > >> https://lists.yoctoproject.org/listinfo/yocto
-> > > 
-> > > -- 
-> > > Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
-> > > _______________________________________________
-> > > yocto mailing list
-> > > yocto@yoctoproject.org
-> > > https://lists.yoctoproject.org/listinfo/yocto
-> > 
-> 
+> However, we'll likely have at least a hundred
+> packages for which we need to set/manipulate revisions.  I would think that
+> would get cumbersome, and in an organization the size of ours (500 or so
+> developers across two sites), there's not really going to be one person or
+> team who knows what should go in that file for a release.  Moreover, that
+> still leaves the problem of all those developers needing to know there are
+> at least two places in which their package revisions may be controlled.  Is
+> your organization significantly smaller than that or are we doing something
+> wrong?
 
+I would agree that in this scenario it would best to maintain the source
+revisions in the bb recipes themselves, it keeps people rom stepping on
+each others toes and accidentally changing revisions for other packages
+(which is easily done in automatic merge-conflict resolution gone wrong).
 
+Tomas
 
