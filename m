@@ -1,33 +1,31 @@
 Return-Path: <raj.khem@gmail.com>
-Received: from mail-wi0-f176.google.com (mail-wi0-f176.google.com
-	[209.85.212.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DEAA9E01199
-	for <yocto@yoctoproject.org>; Tue,  2 Oct 2012 23:21:00 -0700 (PDT)
-Received: by mail-wi0-f176.google.com with SMTP id hn14so1610035wib.11
-	for <yocto@yoctoproject.org>; Tue, 02 Oct 2012 23:21:00 -0700 (PDT)
+Received: from mail-wg0-f54.google.com (mail-wg0-f54.google.com [74.125.82.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4B5E3E011C5
+	for <yocto@yoctoproject.org>; Tue,  2 Oct 2012 23:24:47 -0700 (PDT)
+Received: by wgbdt10 with SMTP id dt10so4178133wgb.11
+	for <yocto@yoctoproject.org>; Tue, 02 Oct 2012 23:24:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
 	:cc:content-type;
-	bh=sPxIecHm+KaVu7x6zZG8IQdFK6itR2HIhS5xvvM66kE=;
-	b=tNHRRx+BdLjpf5mkvqFba1/i/LmwZm25tvPrsZ1FC8gPNj+x46ZKDVveOdWiNAgGim
-	0pjCwwqFt4rT8sCBmKjSffPREBxfleW54gdYqSKK3p35fEAdpkmkksH9vwP7/g83zV7a
-	z81yhXZbq/LpryZEl1NVmaeQ3uMdrUP/Ntf3JHb4DEkRePHcWoe4TjK3KlIasBxyY7BC
-	VOdtrKKnc5Z0XG3JlL9SZl9/aT6A8Es8yv2VmUN0maTKzHF9s7WqyCDN7zZPrhq4Mgc+
-	sEkXyw30lIikkNd2zjIi7JfgL2fE3dk0LX+i1rZOTr0pU2bcEaEiXPXrvSDMaue7nfxl
-	aGJQ==
-Received: by 10.180.73.76 with SMTP id j12mr2530081wiv.11.1349245260029; Tue,
-	02 Oct 2012 23:21:00 -0700 (PDT)
+	bh=ylnM+UTzOjMeMhAfoqOPe1npht7gkkAUyWSeyRL/MOM=;
+	b=DWCoXtaA1w1AI2xJIyviwtob9wE+nF3ioFuAZNuuW+2gaZSHpblnQwGxiXOuZJqx4q
+	F5Puf2yP3RAHpVXjl6WRE2z+Lf0cMvlBGU9jgQRHNuSVKQTNKRMKxeHwi7o5+jHwYl+6
+	uIQi48uHWoYysQ5b7tNLp2yAwZyZzlk3MfiaYKuRP3wDFp4jSjhS+dO6Q6ko7/cLb/cl
+	CijE24Ntz6TPP4mIk8gAiNn2nnmiYxgNV+unwU15/EtfgM85WFwFWOhI2KiyfGPsNZ1g
+	2taEXJa6GrK6Qo/TrAelhJSWP0jumn+QQvt5aOl7fcTfsyNb9KNJG9DVDs+vLz0l8/W+
+	2WSA==
+Received: by 10.216.241.200 with SMTP id g50mr623837wer.79.1349245486442; Tue,
+	02 Oct 2012 23:24:46 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.194.28.38 with HTTP; Tue, 2 Oct 2012 23:20:29 -0700 (PDT)
-In-Reply-To: <87zk457w6r.fsf@sonatest.com>
-References: <D9A15604-C508-4314-B4DC-B6F52691EC51@jusst.de>
-	<87zk457w6r.fsf@sonatest.com>
+Received: by 10.194.28.38 with HTTP; Tue, 2 Oct 2012 23:24:16 -0700 (PDT)
+In-Reply-To: <OFC5CA2A2E.E15C455C-ONC1257A8B.0058611B-C1257A8B.0059513B@sick.de>
+References: <OFC5CA2A2E.E15C455C-ONC1257A8B.0058611B-C1257A8B.0059513B@sick.de>
 From: Khem Raj <raj.khem@gmail.com>
-Date: Tue, 2 Oct 2012 23:20:29 -0700
-Message-ID: <CAMKF1sruF-zTgM293vhKB=y+LG_qDiye_C+fdwvSn7bpNJvpzA@mail.gmail.com>
-To: Marc Ferland <ferlandm@sonatest.com>
+Date: Tue, 2 Oct 2012 23:24:16 -0700
+Message-ID: <CAMKF1srXo+DCz+SyRdvgh+aqoSfTTR-gXmkmybQivwjfDoy=Zg@mail.gmail.com>
+To: Maxime Moge <Maxime.Moge@sick.de>
 Cc: yocto@yoctoproject.org
-Subject: Re: Runtime update of yocto-images
+Subject: Re: Tftp Server Problem P1021rdb
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,41 +37,66 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 03 Oct 2012 06:21:01 -0000
+X-List-Received-Date: Wed, 03 Oct 2012 06:24:47 -0000
 Content-Type: text/plain; charset=UTF-8
 
-On Mon, Oct 1, 2012 at 1:51 PM, Marc Ferland <ferlandm@sonatest.com> wrote:
-> Julian Scheel <julian@jusst.de> writes:
+On Tue, Oct 2, 2012 at 9:15 AM, Maxime Moge <Maxime.Moge@sick.de> wrote:
+> Hello,
 >
->> Hi,
->>
->> I wonder how everyone deals with runtime updates of yocto based
->> systems? Are you using the package management for this? Actually I'd
->> prefer a one-file update, which would replace the whole rootfs. I
->> think having a squashfs image containing the rootfs and place it on
->> some ext-partition would be nice. One would just need an initramfs,
->> that could mount the squashfs file as root.
->>
->> Is anyone following an approach like this?
 >
-> This is the approach that I've taken. Works fairly well.
+> Ich ve got to install the TFTP-Server on the Linux Virtual Machine(Ubuntu
+> 10.04) :
 >
-> You will need to:
-> - Create your own init script (look in:
-> meta/recipes-core/initrdscripts/files as a starting point)
-> - Patch your kernel with AUFS/unionfs/overlayfs if you want something
-> that is not 100% volatile.
-> - Create an "install/update" script that actually takes care of updating
-> your squashfs rootfs from the initramfs.
+>         sudo apt-get install xinetd tftpd-hpa tftp
+>
+>         sudo vim /etc/default/tftpd-hpa
+>                 #defaults for tftp-hpa
+>                 RUN_DAEMON="yes"
+>                 OPTIONS="-l -s /var/lib/tftpboot"
+>
+> Then, I set up the TFTP Folder:
+>
+>         sudo mkdir /tftpboot
+>         sudo chmod -R 777 /tftpboot
+>         sudo chown -R nobody /tftpboot
+>
+> Straight after that, I startet the server:
+>         sudo /etc/init.d/tftpd-hpa start
+>
+>
+>
+> The problem is that I cant get any file from the server to the device.!
+> The problem remains when I try to get a file to my Windows Host  (Window 7)
+>         T T T T T T retry count exceed...
+>
+> I tried to get a file by using another terminal within the same linux
+> virtual machine
+>         tftp VirtualMachineIP
+>         get RunThis.sh
+>         ....Timeout
+> It didnt work out
+> Alternatively, I configured the  xinetd Tftp script :
+>         sudo vim /etc/xinetd/tftp
+>
+> Then I stopped tftpd-hpa.
+>
+> then startes xinetd (sudo service xinetd start)
+>
+> All that didnt work.
+>
+> Any Idea what I can do?
+>
 >
 
-Marc
+try atftp server it works ok for me
+http://www.ubuntugeek.com/howto-setup-advanced-tftp-server-in-ubuntu.html
 
-interesting. Do you have some patches to share ?
-
-> Marc
+> Thank in advance
+>
+>
 > _______________________________________________
 > yocto mailing list
 > yocto@yoctoproject.org
 > https://lists.yoctoproject.org/listinfo/yocto
+>
 
