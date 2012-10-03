@@ -1,31 +1,34 @@
 Return-Path: <raj.khem@gmail.com>
-Received: from mail-wg0-f54.google.com (mail-wg0-f54.google.com [74.125.82.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4B5E3E011C5
-	for <yocto@yoctoproject.org>; Tue,  2 Oct 2012 23:24:47 -0700 (PDT)
-Received: by wgbdt10 with SMTP id dt10so4178133wgb.11
-	for <yocto@yoctoproject.org>; Tue, 02 Oct 2012 23:24:46 -0700 (PDT)
+Received: from mail-wi0-f182.google.com (mail-wi0-f182.google.com
+	[209.85.212.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 868AEE011C5
+	for <yocto@yoctoproject.org>; Tue,  2 Oct 2012 23:33:43 -0700 (PDT)
+Received: by wibhm2 with SMTP id hm2so1562531wib.11
+	for <yocto@yoctoproject.org>; Tue, 02 Oct 2012 23:33:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
 	:cc:content-type;
-	bh=ylnM+UTzOjMeMhAfoqOPe1npht7gkkAUyWSeyRL/MOM=;
-	b=DWCoXtaA1w1AI2xJIyviwtob9wE+nF3ioFuAZNuuW+2gaZSHpblnQwGxiXOuZJqx4q
-	F5Puf2yP3RAHpVXjl6WRE2z+Lf0cMvlBGU9jgQRHNuSVKQTNKRMKxeHwi7o5+jHwYl+6
-	uIQi48uHWoYysQ5b7tNLp2yAwZyZzlk3MfiaYKuRP3wDFp4jSjhS+dO6Q6ko7/cLb/cl
-	CijE24Ntz6TPP4mIk8gAiNn2nnmiYxgNV+unwU15/EtfgM85WFwFWOhI2KiyfGPsNZ1g
-	2taEXJa6GrK6Qo/TrAelhJSWP0jumn+QQvt5aOl7fcTfsyNb9KNJG9DVDs+vLz0l8/W+
-	2WSA==
-Received: by 10.216.241.200 with SMTP id g50mr623837wer.79.1349245486442; Tue,
-	02 Oct 2012 23:24:46 -0700 (PDT)
+	bh=Pei3NU+LXrvgneNCwlyV2fyJ4A2+DmK0tp/b9AZOBeQ=;
+	b=jNWkQX0ju1CV1pGeEpSw4EXOCSIEKmLSrylcSbju36adVG5YL9kCA5PLnuvkN2TBb8
+	Vz9oDr/SwHBdR2RC5ERwvsBUzOhWYQiBJCFnEW0NMwI9TstQxBFL2cDHLoZkbse5SKIg
+	e4IG1fg2xULpJr3qf4BHxl0JlVkLEzUlhpUOm6eEMO4nfbBfLYHcWTO9xp+nl9TUJ5OT
+	YoKTC/11g2Nsr21YXlFowywqnFEAbpdvwOWvuZYRvCAiLDI+XMNaVA5Cko0Pxr5VYjHc
+	5E7T/4R9b0olBN6W+WHC4kJfxy9a7gtZxBfQDL88E9ztAGex5vbGFj16vCl0Q9PQrvow
+	3UoA==
+Received: by 10.216.204.139 with SMTP id h11mr645047weo.128.1349246022641;
+	Tue, 02 Oct 2012 23:33:42 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.194.28.38 with HTTP; Tue, 2 Oct 2012 23:24:16 -0700 (PDT)
-In-Reply-To: <OFC5CA2A2E.E15C455C-ONC1257A8B.0058611B-C1257A8B.0059513B@sick.de>
-References: <OFC5CA2A2E.E15C455C-ONC1257A8B.0058611B-C1257A8B.0059513B@sick.de>
+Received: by 10.194.28.38 with HTTP; Tue, 2 Oct 2012 23:33:12 -0700 (PDT)
+In-Reply-To: <CA+QkY1COKHqV25RCOJ-7u+eEyFm-WFn1OP=3zFUiMm4UkBeoww@mail.gmail.com>
+References: <CA+QkY1CX70KjdW8RufaMcUYoK+wLwW-jUKpM7aDmDmmLbWEvKg@mail.gmail.com>
+	<506B23D1.5030901@r-finger.com>
+	<CA+QkY1COKHqV25RCOJ-7u+eEyFm-WFn1OP=3zFUiMm4UkBeoww@mail.gmail.com>
 From: Khem Raj <raj.khem@gmail.com>
-Date: Tue, 2 Oct 2012 23:24:16 -0700
-Message-ID: <CAMKF1srXo+DCz+SyRdvgh+aqoSfTTR-gXmkmybQivwjfDoy=Zg@mail.gmail.com>
-To: Maxime Moge <Maxime.Moge@sick.de>
+Date: Tue, 2 Oct 2012 23:33:12 -0700
+Message-ID: <CAMKF1sqRhwgiAmLzH7ev4yuviff3JF5w7GBf5gpjZ_FXbPfPSg@mail.gmail.com>
+To: Jerrod Peach <peachj@lexmark.com>
 Cc: yocto@yoctoproject.org
-Subject: Re: Tftp Server Problem P1021rdb
+Subject: Re: How do you release distros produced with Yocto? How should I?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,61 +40,80 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 03 Oct 2012 06:24:47 -0000
+X-List-Received-Date: Wed, 03 Oct 2012 06:33:43 -0000
 Content-Type: text/plain; charset=UTF-8
 
-On Tue, Oct 2, 2012 at 9:15 AM, Maxime Moge <Maxime.Moge@sick.de> wrote:
-> Hello,
+On Tue, Oct 2, 2012 at 11:45 AM, Jerrod Peach <peachj@lexmark.com> wrote:
+> Tomas,
+>
+>>
+>> Sounds to me like your situation implies a single distro + multiple
+>> machines, one for each distinct printer model; you can then specify
+>> revisions on per-machine basis.
 >
 >
-> Ich ve got to install the TFTP-Server on the Linux Virtual Machine(Ubuntu
-> 10.04) :
->
->         sudo apt-get install xinetd tftpd-hpa tftp
->
->         sudo vim /etc/default/tftpd-hpa
->                 #defaults for tftp-hpa
->                 RUN_DAEMON="yes"
->                 OPTIONS="-l -s /var/lib/tftpboot"
->
-> Then, I set up the TFTP Folder:
->
->         sudo mkdir /tftpboot
->         sudo chmod -R 777 /tftpboot
->         sudo chown -R nobody /tftpboot
->
-> Straight after that, I startet the server:
->         sudo /etc/init.d/tftpd-hpa start
->
->
->
-> The problem is that I cant get any file from the server to the device.!
-> The problem remains when I try to get a file to my Windows Host  (Window 7)
->         T T T T T T retry count exceed...
->
-> I tried to get a file by using another terminal within the same linux
-> virtual machine
->         tftp VirtualMachineIP
->         get RunThis.sh
->         ....Timeout
-> It didnt work out
-> Alternatively, I configured the  xinetd Tftp script :
->         sudo vim /etc/xinetd/tftp
->
-> Then I stopped tftpd-hpa.
->
-> then startes xinetd (sudo service xinetd start)
->
-> All that didnt work.
->
-> Any Idea what I can do?
->
->
+> I don't think that's actually what we want.  The architecture of each
+> machine will be the same.  That is, one ASIC will generally be on all the
+> printers in a family of products.  I think I actually have one machine +
+> multiple distros.  Or, should I really be counting each different printer as
+> its own machine?
 
-try atftp server it works ok for me
-http://www.ubuntugeek.com/howto-setup-advanced-tftp-server-in-ubuntu.html
+well if machine is same then it should be so. But you can have
+different images meant for same image. e.g. image-printer1
+image-printer2 etc. however this may not be best if you want two
+different versions of same package X in those two images. You could
+also look into package groups and IMAGE_FEATURES. I think if you need
+to put two different revs of same package then branching may be better
+approach or you could have multiple recipes X-printerA.bb
+X-printerB.bb
+and so on and chose the right one into image-printerA and so on.
 
-> Thank in advance
+There are many ways you can use. You have to look into what fits best
+to your needs
+
+
+>
+>>
+>> Whether you specify the machine specific
+>> revisions in the bb files, or whether you pull it together into an
+>> include file is a matter of taste more than anything else I suspect, as
+>> long as everyone knows what the deal is. But I'd advise not to specify
+>> package revisions local.conf, that's really for the developer/user to
+>> tweak, and it should not be stored in vcs, doings so just causes pain.
+>
+>
+> That's something that's come up in our side conversations here: local.conf
+> is really for developers to tweak.  I will try to take care and not use
+> local.conf for such a thing, and I will not store it in a VCS unless I can
+> think of a really compelling reason to do so.  Thanks for the advice there.
+>
+>>
+>>
+>> I use the unified include file in Guacamayo for the packages that we
+>> maintain; this is for convenience, as during the development cycle I use
+>> AUTOREV for these packages, but for an actual release specify the
+>> revisions explicitly and having them all in one place makes this easier
+>> to do and not forget anything. See,
+>>
+>> https://github.com/Guacamayo/meta-guacamayo/tree/master/meta-guacamayo/conf/
+>> for how we got it set up.
+>
+>
+> So, to me it looks like you're using conf/distro/guacamayo.conf to set those
+> revisions.  That seems like that might work when there's only a handful of
+> revisions to set.  However, we'll likely have at least a hundred packages
+> for which we need to set/manipulate revisions.  I would think that would get
+> cumbersome, and in an organization the size of ours (500 or so developers
+> across two sites), there's not really going to be one person or team who
+> knows what should go in that file for a release.  Moreover, that still
+> leaves the problem of all those developers needing to know there are at
+> least two places in which their package revisions may be controlled.  Is
+> your organization significantly smaller than that or are we doing something
+> wrong?
+>
+> Kind regards,
+>
+> Jerrod
 >
 >
 > _______________________________________________
