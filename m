@@ -1,17 +1,28 @@
-Return-Path: <julian@jusst.de>
-Received: from smtp.work.de (smtp1.work.de [212.12.40.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B130FE00717
-	for <yocto@yoctoproject.org>; Wed,  3 Oct 2012 08:41:44 -0700 (PDT)
-Received: from [95.119.44.13] (helo=juli-workstation.adnet.avionic-design.de)
-	by smtp.work.de with esmtpsa (TLS1.0:DHE_RSA_AES_256_CBC_SHA1:32)
-	(Exim 4.72) (envelope-from <julian@jusst.de>)
-	id 1TJR4s-0006BN-7F; Wed, 03 Oct 2012 17:41:38 +0200
-From: Julian Scheel <julian@jusst.de>
-To: yocto@yoctoproject.org
-Date: Wed,  3 Oct 2012 17:43:59 +0200
-Message-Id: <1349279039-23416-1-git-send-email-julian@jusst.de>
-X-Mailer: git-send-email 1.7.12.2
-Subject: [PATCH] psplash: Add custom bar image and color options.
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
+	[93.97.173.237])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 625DEE00717
+	for <yocto@yoctoproject.org>; Wed,  3 Oct 2012 09:03:57 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q93G3qpU028538;
+	Wed, 3 Oct 2012 17:03:52 +0100
+Received: from tim.rpsys.net ([127.0.0.1])
+	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
+	port 10024) with LMTP
+	id 26503-04; Wed,  3 Oct 2012 17:03:47 +0100 (BST)
+Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q93G3gOH028532
+	(version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=NO);
+	Wed, 3 Oct 2012 17:03:44 +0100
+Message-ID: <1349280226.18301.50.camel@ted>
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: openembedded-core <openembedded-core@lists.openembedded.org>,
+	yocto@yoctoproject.org
+Date: Wed, 03 Oct 2012 17:03:46 +0100
+X-Mailer: Evolution 3.2.3-0ubuntu6 
+Mime-Version: 1.0
+X-Virus-Scanned: amavisd-new at rpsys.net
+Subject: Yocto Project 1.4 Planning Process
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -23,61 +34,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 03 Oct 2012 15:41:44 -0000
+X-List-Received-Date: Wed, 03 Oct 2012 16:03:57 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-To make more use of the option to overwrite the splash image this adds the
-possibility to overwrite the bar image as well as the color header file to
-make a consistent splash screen even when a different background color is
-desired.
+Whilst I appreciate people are concentrating on 1.3, we do also need to
+think about planning 1.4.
 
-Signed-off-by: Julian Scheel <julian@jusst.de>
----
- meta/recipes-core/psplash/psplash_git.bb | 22 +++++++++++++++++++++-
- 1 file changed, 21 insertions(+), 1 deletion(-)
+https://wiki.yoctoproject.org/wiki/Yocto_1.4_Features
 
-diff --git a/meta/recipes-core/psplash/psplash_git.bb b/meta/recipes-core/psplash/psplash_git.bb
-index 7c033e7..85c239c 100644
---- a/meta/recipes-core/psplash/psplash_git.bb
-+++ b/meta/recipes-core/psplash/psplash_git.bb
-@@ -11,9 +11,15 @@ PR = "r5"
- 
- SRC_URI = "git://git.yoctoproject.org/${BPN};protocol=git \
-            file://psplash-init \
--           ${SPLASH_IMAGES}"
-+           ${SPLASH_IMAGES} \
-+           ${BAR_IMAGE} \
-+           ${COLORS}"
- 
-+# Overwrite these to use custom splash images (multiple possible),
-+# a custom bar image (only one possible) and a custom color header file.
- SPLASH_IMAGES = "file://psplash-poky-img.h;outsuffix=default"
-+BAR_IMAGE = ""
-+COLORS = ""
- 
- python __anonymous() {
-     oldpkgs = d.getVar("PACKAGES", True).split()
-@@ -69,6 +75,20 @@ ALTERNATIVE_LINK_NAME[psplash] = "${bindir}/psplash"
- python do_compile () {
-     import shutil, commands
- 
-+    # update the bar file
-+    barimage = d.getVar('BAR_IMAGE', True)
-+    if barimage:
-+        fetcher = bb.fetch2.Fetch([barimage], d)
-+        flocal = fetcher.localpath(barimage)
-+        shutil.copyfile(flocal, "psplash-bar-img.h");
-+
-+    # update the colors file
-+    colors = d.getVar('COLORS', True)
-+    if colors:
-+        fetcher = bb.fetch2.Fetch([colors], d)
-+        flocal = fetcher.localpath(colors)
-+        shutil.copyfile(flocal, "psplash-colors.h");
-+
-     # Build a separate executable for each splash image
-     destfile = "%s/psplash-poky-img.h" % d.getVar('S', True)
-     localfiles = d.getVar('SPLASH_LOCALPATHS', True).split()
--- 
-1.7.12.2
+is seeded with the 1.4/Future targeted enhancement requests from the
+bugzilla. This is currently unsorted/unprocessed other than some guesses
+from the triage team and I doubt we can actually do everything listed
+there but there are plenty of good ideas.
+
+If people can see anything that is missing from those lists which they
+think is something we should consider working on in 1.4, I'd recommend
+filing enhancement requests in the bugzilla so they're included in the
+list.
+
+In about a week's time, I'll be sitting down with this list and talking
+with the project stakeholders about what resources are available and
+which tasks we could use those resources on and generally figure out
+what we're going to target in 1.4. If there are resources available I'm
+unaware of, please do talk to me btw! :)
+
+Equally, I'd also ask that if there are things you're planning to do in
+the 1.4 timescale, please indicate this with an entry in the bugzilla
+which you take ownership of, give a rough time estimation/ETA of and set
+the status to ACCEPTED. This tells others that you're working on
+something and gives us an idea of what changes to expect and when. This
+is useful for planning things like demos and the beta testing.
+
+Questions are more than welcome, as is feedback about this process.
+
+Cheers,
+
+Richard
+
+
+
 
 
