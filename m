@@ -1,40 +1,28 @@
-Return-Path: <peachj@lexmark.com>
-Received: from exprod8og120.obsmtp.com (exprod8og120.obsmtp.com [64.18.3.40])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5108AE011C5
-	for <yocto@yoctoproject.org>; Wed,  3 Oct 2012 05:24:02 -0700 (PDT)
-Received: from mail-qa0-f41.google.com ([209.85.216.41]) (using TLSv1) by
-	exprod8ob120.postini.com ([64.18.7.12]) with SMTP
-	ID DSNKUGwuX6HlYdCKZ+p1Hio0dtoerJm/ykw/@postini.com;
-	Wed, 03 Oct 2012 05:24:02 PDT
-Received: by mail-qa0-f41.google.com with SMTP id p27so1799296qat.14
-	for <yocto@yoctoproject.org>; Wed, 03 Oct 2012 05:23:59 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type:x-gm-message-state;
-	bh=fGNIrIjOgR0jF3mYx2TaFVOvkY6w2KiDhbtH6xAL134=;
-	b=dIhVdlShidAQNXS5C+FghBWu8fADW/L70bpEkRRUVEqDnsJGoe6FCRQfgq1TFzzeTQ
-	RufkQT7K0wJbYAxgDTvD3R8LUdyA1qYKz18/Prl1XIHATuUDo9PYRI+E7pG3/uQtZ1RK
-	GhKyAt02b14iGqKeCm3GfF4LMlQDvWIerkfeOPdGmaRyaSVOaMjoOJwZithKrddrkCHQ
-	qjRk3z0ElA/zpIJg0eVxhXNaL8Rz+q9qBEQbDwXiNPsOq4BcSFEcFfQGP3gpdlJgRqsf
-	H+VcoRnJo1KfVKnmKjr/Pyt8yvdT5XtB5u9P8lkH6+xWINu8bCQE4I67k9dAzKRyaYn1
-	iuqw==
+Return-Path: <jfabernathy@gmail.com>
+Received: from mail-oa0-f48.google.com (mail-oa0-f48.google.com
+	[209.85.219.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C60CDE011C5
+	for <yocto@yoctoproject.org>; Wed,  3 Oct 2012 06:05:26 -0700 (PDT)
+Received: by oagh2 with SMTP id h2so9696540oag.35
+	for <yocto@yoctoproject.org>; Wed, 03 Oct 2012 06:05:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=ZfXpcYYywAX3WmtJFjKsp9NY3diXkVSBb4vA8esAF68=;
+	b=ND1kX0DJ1mJ2WBAsCMRRzz1q1YBu99VRNOOtd8bgVB0RfMajLaECSdPddX6geNb5Nw
+	OK/0HAOGJQGfgzmmtaB1DAfxP1PsdZcb64pz1RJ2c9nsAwhfkJEG7nOIRulRtMslmT1a
+	LkYM/9U1PCROpO32FDFkXMsejFZ1O0tNp6TzRo//Nqbco2BOCpAHwuSK6yJITW/l9ypf
+	6rKrjwqy1LLaeWwVFlDoH5JrGBAzBWchVhLweyxm4SEGrjWKUABcqGJYL4t8e1cvCu9L
+	B1ReO9I4icM3k0L9q0G+sa4Nlo+HTR1e7lO/bqFZQ4Tzza0VdbRYyzUg256QsNzK8Y2w
+	WJfA==
 MIME-Version: 1.0
-Received: by 10.224.187.208 with SMTP id cx16mr6994621qab.31.1349267039046;
-	Wed, 03 Oct 2012 05:23:59 -0700 (PDT)
-Received: by 10.49.41.102 with HTTP; Wed, 3 Oct 2012 05:23:58 -0700 (PDT)
-In-Reply-To: <506BF049.2010407@r-finger.com>
-References: <CA+QkY1CX70KjdW8RufaMcUYoK+wLwW-jUKpM7aDmDmmLbWEvKg@mail.gmail.com>
-	<506B23D1.5030901@r-finger.com>
-	<CA+QkY1COKHqV25RCOJ-7u+eEyFm-WFn1OP=3zFUiMm4UkBeoww@mail.gmail.com>
-	<506BF049.2010407@r-finger.com>
-Date: Wed, 3 Oct 2012 08:23:58 -0400
-Message-ID: <CA+QkY1CiSNK4AtUpkiukpmT8BU5nQN9=gc=ezMeQeUjS8kVmxg@mail.gmail.com>
-From: Jerrod Peach <peachj@lexmark.com>
-To: Tomas Frydrych <tf+lists.yocto@r-finger.com>
-X-Gm-Message-State: ALoCoQnnZyvHkc4iXbrlZvqRWH3ukZZsKnkaEbTCr3TYRQm0DnFGh10YzqmKTh+Mwkz7f+utaz92
-Cc: yocto@yoctoproject.org
-Subject: Re: How do you release distros produced with Yocto? How should I?
+Received: by 10.60.5.193 with SMTP id u1mr1434715oeu.111.1349269523734; Wed,
+	03 Oct 2012 06:05:23 -0700 (PDT)
+Received: by 10.76.143.225 with HTTP; Wed, 3 Oct 2012 06:05:23 -0700 (PDT)
+Date: Wed, 3 Oct 2012 09:05:23 -0400
+Message-ID: <CANFv2EnwjYa=DNKfiR9y9g+G_j=8WXyVZtBX_2gKcfM7Ga4MqQ@mail.gmail.com>
+From: James Abernathy <jfabernathy@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Correct procedure for rebuilding after a git pull
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,91 +34,59 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 03 Oct 2012 12:24:02 -0000
-Content-Type: multipart/alternative; boundary=20cf303343c591cad504cb26b6de
+X-List-Received-Date: Wed, 03 Oct 2012 13:05:27 -0000
+Content-Type: multipart/alternative; boundary=e89a8ff1cf22ab20bf04cb274ab7
 
---20cf303343c591cad504cb26b6de
+--e89a8ff1cf22ab20bf04cb274ab7
 Content-Type: text/plain; charset=ISO-8859-1
 
-Tomas,
+So I'm looking for the right way to do this.  Here's the scenario.  I do a
+complete build of the image core-image-cdv-media for the cedartrail
+machine.  No changes from the basic BSP, except for the addition of my
+meta-layer that include test audios and videos to help test the media
+playback using gst-launch.  I'm tracking the latest Denzil branch.  So
+everything works well to this point.
 
-On Wed, Oct 3, 2012 at 3:59 AM, Tomas Frydrych
-<tf+lists.yocto@r-finger.com>wrote:
+Now I see a bunch of patches pushed to Denzil branch and I want to test
+them.  My build directory is untouched since the successful build before.
+What do I do to rebuild my project to include the latest patches.  I've
+tried things like "bitbake -c cleansstate core-image-cdv-media" before the
+new "bitbake core-image-cdv-media" and I've tried just rebaking by itself.
+Something always fails.  I've learned that to really test I have to
+completely delete my build directory saving only my local.conf and
+bblayer.conf.
 
-> > However, we'll likely have at least a hundred
-> > packages for which we need to set/manipulate revisions.  I would think
-> that
-> > would get cumbersome, and in an organization the size of ours (500 or so
-> > developers across two sites), there's not really going to be one person
-> or
-> > team who knows what should go in that file for a release.  Moreover, that
-> > still leaves the problem of all those developers needing to know there
-> are
-> > at least two places in which their package revisions may be controlled.
->  Is
-> > your organization significantly smaller than that or are we doing
-> something
-> > wrong?
->
-> I would agree that in this scenario it would best to maintain the source
-> revisions in the bb recipes themselves, it keeps people rom stepping on
-> each others toes and accidentally changing revisions for other packages
-> (which is easily done in automatic merge-conflict resolution gone wrong).
->
+Am I missing something or is a complete rebuild the only way to get the new
+patches in and a successful build??
 
-Okay, so it sounds like my game plan should be to tag my metadata and
-branch it only if necessary, i.e. if someone needs to change a BB
-file. (That makes sense, of course, but we have had a long, storied history
-of branching when it wasn't necessary in our build and library system, so
-that is a change for us.)  Even if we branch our metadata, we'll be
-creating a new tag once whatever modifications we need have been made.  Can
-anyone see a better way to handle releases than that?
+Jim A
 
-Kind regards,
-
-Jerrod
-
---20cf303343c591cad504cb26b6de
+--e89a8ff1cf22ab20bf04cb274ab7
 Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-Tomas,<br><br><div class=3D"gmail_quote">On Wed, Oct 3, 2012 at 3:59 AM, To=
-mas Frydrych <span dir=3D"ltr">&lt;<a href=3D"mailto:tf+lists.yocto@r-finge=
-r.com" target=3D"_blank">tf+lists.yocto@r-finger.com</a>&gt;</span> wrote:<=
-br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left=
-:1px #ccc solid;padding-left:1ex">
-<div class=3D"im">&gt; However, we&#39;ll likely have at least a hundred<br=
->
-&gt; packages for which we need to set/manipulate revisions. =A0I would thi=
-nk that<br>
-&gt; would get cumbersome, and in an organization the size of ours (500 or =
-so<br>
-&gt; developers across two sites), there&#39;s not really going to be one p=
-erson or<br>
-&gt; team who knows what should go in that file for a release. =A0Moreover,=
- that<br>
-&gt; still leaves the problem of all those developers needing to know there=
- are<br>
-&gt; at least two places in which their package revisions may be controlled=
-. =A0Is<br>
-&gt; your organization significantly smaller than that or are we doing some=
-thing<br>
-&gt; wrong?<br>
-<br>
-</div>I would agree that in this scenario it would best to maintain the sou=
-rce<br>
-revisions in the bb recipes themselves, it keeps people rom stepping on<br>
-each others toes and accidentally changing revisions for other packages<br>
-(which is easily done in automatic merge-conflict resolution gone wrong).<b=
-r></blockquote><div><br></div><div>Okay, so it sounds like my game plan sho=
-uld be to tag my metadata and branch it only if necessary, i.e. if someone =
-needs to change a BB file.=A0(That makes sense, of course, but we have had =
-a long, storied history of branching when it wasn&#39;t necessary in our bu=
-ild and library system, so that is a change for us.) =A0Even if we branch o=
-ur metadata, we&#39;ll be creating a new tag once whatever modifications we=
- need have been made. =A0Can anyone see a better way to handle releases tha=
-n that?</div>
-<div><br></div><div>Kind regards,</div><div><br></div><div>Jerrod</div></di=
-v>
+<div>So I&#39;m looking for the right way to do this.=A0 Here&#39;s the sce=
+nario.=A0 I do a complete build of the image core-image-cdv-media for the c=
+edartrail machine.=A0 No changes from the basic BSP, except for the additio=
+n of my meta-layer that include test audios and videos to help test the med=
+ia playback using gst-launch.=A0 I&#39;m tracking the latest Denzil branch.=
+=A0 So everything works well to this point.</div>
 
---20cf303343c591cad504cb26b6de--
+<div>=A0</div>
+<div>Now I see a bunch of patches pushed to Denzil branch and I want to tes=
+t them.=A0 My build directory is untouched since the successful build befor=
+e.=A0 What do I do to rebuild my project to include the latest patches.=A0 =
+I&#39;ve tried things like &quot;bitbake -c cleansstate core-image-cdv-medi=
+a&quot; before the new &quot;bitbake core-image-cdv-media&quot; and I&#39;v=
+e tried just rebaking by itself.=A0 Something always fails.=A0 I&#39;ve lea=
+rned that to really test I have to completely delete my build directory sav=
+ing only my local.conf and bblayer.conf.</div>
+
+<div>=A0</div>
+<div>Am I missing something or is a complete rebuild the only way to get th=
+e new patches in and a successful build??</div>
+<div>=A0</div>
+<div>Jim A</div>
+<div>=A0</div>
+
+--e89a8ff1cf22ab20bf04cb274ab7--
