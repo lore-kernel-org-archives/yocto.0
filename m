@@ -1,39 +1,31 @@
-Return-Path: <rstreif@linuxfoundation.org>
-Received: from mail-qc0-f176.google.com (mail-qc0-f176.google.com
-	[209.85.216.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DF308E00717
-	for <yocto@yoctoproject.org>; Wed,  3 Oct 2012 18:40:00 -0700 (PDT)
-Received: by qcon41 with SMTP id n41so7968632qco.35
-	for <yocto@yoctoproject.org>; Wed, 03 Oct 2012 18:40:00 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:date
-	:x-google-sender-auth:message-id:subject:from:to:cc:content-type
-	:x-gm-message-state;
-	bh=fZsIKg5/wein9sn0SINqQdD4LLd5awvyR2WVipT6/Ds=;
-	b=Eh/L6BfmG0dySdE36HjMsRHr7sq38l8BSKEFM759hQMTedPEz0ji6l8FbHSH7ylPoP
-	HDtBJvOAMbYCJLonFGjPuxFqNY4HA1nrd0pvnPN8gqT//eN753aONrTodBx0mheYfupk
-	n1KkW0zhR7vV2OP9OmSLx70z/a5v8eIIVbT5CvfTcuzNWbgVTrsVJgBlYirjRu2/vLqA
-	ylb7Rl8ycOevp0iLSrgi92NWANXKml5voNRY6zyZjBc+jJLRKVMDCXRr4R62tx/p9emf
-	0vfJWxErmIEWoXFFYJNJHWUkIqJbnny9H/cfAV8WnbCkI777RSZYVxN/v6dd5ZMBynab
-	1pGQ==
+Return-Path: <ramana.gollamudi@huawei.com>
+Received: from szxga01-in.huawei.com (szxga01-in.huawei.com [119.145.14.64])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 95413E00717
+	for <yocto@yoctoproject.org>; Wed,  3 Oct 2012 23:07:08 -0700 (PDT)
+Received: from 172.24.2.119 (EHLO szxeml208-edg.china.huawei.com)
+	([172.24.2.119])
+	by szxrg01-dlp.huawei.com (MOS 4.3.4-GA FastPath queued)
+	with ESMTP id AQA01939; Thu, 04 Oct 2012 14:07:06 +0800 (CST)
+Received: from SZXEML410-HUB.china.huawei.com (10.82.67.137) by
+	szxeml208-edg.china.huawei.com (172.24.2.57) with Microsoft SMTP Server
+	(TLS) id 14.1.323.3; Thu, 4 Oct 2012 14:06:43 +0800
+Received: from SZXEML534-MBX.china.huawei.com ([169.254.2.70]) by
+	szxeml410-hub.china.huawei.com ([10.82.67.137]) with mapi id
+	14.01.0323.003; Thu, 4 Oct 2012 14:06:43 +0800
+From: Venkata ramana gollamudi <ramana.gollamudi@huawei.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [yocto] How do you release distros produced with Yocto? How
+	should I? 
+Thread-Index: AQHNofNcHO/Z1JsyjEKUdDS+7bwbew==
+Date: Thu, 4 Oct 2012 06:06:43 +0000
+Message-ID: <36ED13F3654AE54CA763E6821D93A5711047AB47@szxeml534-mbx.china.huawei.com>
+Accept-Language: en-US, zh-CN
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.18.96.93]
 MIME-Version: 1.0
-Received: by 10.224.78.81 with SMTP id j17mr10321699qak.56.1349314800123; Wed,
-	03 Oct 2012 18:40:00 -0700 (PDT)
-Sender: rstreif@linuxfoundation.org
-Received: by 10.49.54.197 with HTTP; Wed, 3 Oct 2012 18:39:59 -0700 (PDT)
-Received: by 10.49.54.197 with HTTP; Wed, 3 Oct 2012 18:39:59 -0700 (PDT)
-In-Reply-To: <506CE7CF.6000500@linux.intel.com>
-References: <CA+gsK-oEmJJHQo1BHYfr1CZS3KbjiG8piMV30EodDGOFrEpaLA@mail.gmail.com>
-	<506CE7CF.6000500@linux.intel.com>
-Date: Wed, 3 Oct 2012 18:39:59 -0700
-X-Google-Sender-Auth: DLlNqF04EnOM3ogPfTVZbjQwDvc
-Message-ID: <CA+gsK-r9-H853RFWkhSWORCC3i7zW+KT6Q6UquXa6Sph2--0aw@mail.gmail.com>
-From: Rudolf Streif <rudolf.streif@linux.com>
-To: Saul Wold <sgw@linux.intel.com>
-X-Gm-Message-State: ALoCoQkykcqM6bw/bCGksWJTVcSUNAH/gZXWzO2DodXyRrQmaRMsZDri1vAJErYZktW/MecGdeOa
-Cc: yocto@yoctoproject.org
-Subject: Re: [Poky] Baking core-image-minimal with Poky from Master fails with libffi dependency
+X-CFilter-Loop: Reflected
+Subject: Re: How do you release distros produced with Yocto? How should I?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,253 +37,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 04 Oct 2012 01:40:01 -0000
-Content-Type: multipart/alternative; boundary=20cf3071d14e5a009804cb31d57d
-
---20cf3071d14e5a009804cb31d57d
-Content-Type: text/plain; charset=ISO-8859-1
-
-No, nothing extra. But you are right about the number of tasks. I checked
-out master a while ago, built successfully back then, now pulled the latest
-today, and reused the build environment. I will try again with a fresh
-environment.
-
-:rjs
-On Oct 3, 2012 6:35 PM, "Saul Wold" <sgw@linux.intel.com> wrote:
-
-> On 10/03/2012 04:21 PM, Rudolf Streif wrote:
->
->> I checked out Poky from Master and tried to build core-image-minimal.
->> do_rootfs failed on the libffi dependency [1]. Is that known/expected?
->>
->>  This is interesting, I just tried it also, and it is working, see below.
->
->
->  :rjs
->>
->> --------
->>
->> [1]
->>
->> bitbake core-image-minimal
->> Loading cache: 100%
->> |#############################**##############################**
->> #####################|
->> ETA:  00:00:00
->> Loaded 1131 entries from dependency cache.
->>
->> Build Configuration:
->> BB_VERSION        = "1.16.0"
->> TARGET_ARCH       = "i586"
->> TARGET_OS         = "linux"
->> MACHINE           = "qemux86"
->> DISTRO            = "poky"
->> DISTRO_VERSION    = "1.2+snapshot-20121003"
->> TUNE_FEATURES     = "m32 i586"
->> TARGET_FPU        = ""
->> meta
->> meta-yocto
->> meta-yocto-bsp    = "master:**09aaad16be178bd675750aa6cfe7a3**73d7c9a8a6"
->>
->> NOTE: Resolving any missing task queue dependencies
->> NOTE: Preparing runqueue
->> NOTE: Executing SetScene Tasks
->> NOTE: Executing RunQueue Tasks
->> ERROR: Function failed: do_rootfs (see
->> /data/Develop/yocto-develop/**x86/tmp/work/qemux86-poky-**
->> linux/core-image-minimal-1.0-**r0/temp/log.do_rootfs.29559
->> for further information)
->> ERROR: Logfile of failure stored in:
->> /data/Develop/yocto-develop/**x86/tmp/work/qemux86-poky-**
->> linux/core-image-minimal-1.0-**r0/temp/log.do_rootfs.29559
->> Log data follows:
->> | DEBUG: Executing shell function do_rootfs
->> | Generating solve db for
->> /data/Develop/yocto-develop/**x86/tmp/deploy/rpm/qemux86...
->> | Generating solve db for
->> /data/Develop/yocto-develop/**x86/tmp/deploy/rpm/i586...
->> | Generating solve db for
->> /data/Develop/yocto-develop/**x86/tmp/deploy/rpm/all...
->> | Generating solve db for
->> /data/Develop/yocto-develop/**x86/tmp/deploy/rpm/all...
->> | Processing packagegroup-core-tools-**profile...
->> | Processing packagegroup-core-boot...
->> | Processing packagegroup-core-tools-**testapps...
->> | Processing packagegroup-core-tools-debug.**..
->> | error: Failed dependencies:
->> |       libffi.so.5 is needed by lttng-viewer-0.12.38-r3.i586
->> |       libffi.so.5 is needed by
->> clutter-box2d-0.12.1+git1+**de5452e56b537a11fd7f9453d048ff**
->> 4b4793b5a2-r1.qemux86
->> |       libffi.so.5 is needed by
->> libowl-av0-0.1+git1+**03030c41ea578cfa74a2ffceb87567**5b248318ae-r3.i586
->> |       libffi.so.5 is needed by libclutter-glx-1.0-0-1.8.4-r2.**i586
->> | ERROR: Function failed: do_rootfs (see
->> /data/Develop/yocto-develop/**x86/tmp/work/qemux86-poky-**
->> linux/core-image-minimal-1.0-**r0/temp/log.do_rootfs.29559
->> for further information)
->> ERROR: Task 7
->> (/data/Develop/yocto-develop/**poky/meta/recipes-core/images/**
->> core-image-minimal.bb <http://core-image-minimal.bb>
->> <http://core-image-minimal.bb>**, do_rootfs) failed with exit code '1'
->> NOTE: Tasks Summary: Attempted 3891 tasks of which 3890 didn't need to
->> be rerun and 1 failed.
->> No currently running tasks (3890 of 3892)
->>
->>  The number of tasks and including lttng-viewer and clutter seems to be
-> lartger than core-image-minimal, do you have anything in the local.conf?
->
-> Sau!
->
->  Summary: 1 task failed:
->>
->> /data/Develop/yocto-develop/**poky/meta/recipes-core/images/**
->> core-image-minimal.bb <http://core-image-minimal.bb>
->> <http://core-image-minimal.bb>**, do_rootfs
->> Summary: There was 1 ERROR message shown, returning a non-zero exit code.
->>
->>
->>
->> ______________________________**_________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.**org/listinfo/yocto<https://lists.yoctoproject.org/listinfo/yocto>
->>
->>
-
---20cf3071d14e5a009804cb31d57d
-Content-Type: text/html; charset=ISO-8859-1
+X-List-Received-Date: Thu, 04 Oct 2012 06:07:09 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<p>No, nothing extra. But you are right about the number of tasks. I checke=
-d out master a while ago, built successfully back then, now pulled the late=
-st today, and reused the build environment. I will try again with a fresh e=
-nvironment.</p>
+On Tue, Oct 02, 2012 at 12:43:27PM -0400, Jerrod Peach wrote:
+> I was thinking about doing something very close to that in actual Yocto,
+> except I'd store only the revisions/branches that were different from wha=
+t
+> the bb file prescribed in local.conf.  I ran that idea by a couple of
+> colleagues separately and they both immediately pointed out a concern: th=
+ey
+> didn't want to have two different places that could manage the revision o=
+f
+> the package, i.e. local.conf and the package bb file.  They don't like ho=
+w
+> that works in the system we have today.  Instead, they wanted to branch a=
+ll
+> the metadata and have people update individual bb files with different
+> revisions as necessary.  That leaves only one place to manage the revisio=
+n:
+> the package bb file.  Doing all that branching concerns me (it seems
+> heavier-weight than it needs to be, at the very least), but I can't say
+> specifically why branching the bb files is harmful.  If you guys can thin=
+k
+> of a reason why, let me know.  If you think it's reasonable, let me know
+> that too.
 
-<p>:rjs</p>
-<div class=3D"gmail_quote">On Oct 3, 2012 6:35 PM, &quot;Saul Wold&quot; &l=
-t;<a href=3D"mailto:sgw@linux.intel.com">sgw@linux.intel.com</a>&gt; wrote:=
-<br type=3D"attribution"><blockquote class=3D"gmail_quote" style=3D"margin:=
-0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
-On 10/03/2012 04:21 PM, Rudolf Streif wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">
-I checked out Poky from Master and tried to build core-image-minimal.<br>
-do_rootfs failed on the libffi dependency [1]. Is that known/expected?<br>
-<br>
-</blockquote>
-This is interesting, I just tried it also, and it is working, see below.<br=
->
-<br>
-<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">
-:rjs<br>
-<br>
---------<br>
-<br>
-[1]<br>
-<br>
-bitbake core-image-minimal<br>
-Loading cache: 100%<br>
-|#############################<u></u>##############################<u></u>#=
-####################|<br>
-ETA: =A000:00:00<br>
-Loaded 1131 entries from dependency cache.<br>
-<br>
-Build Configuration:<br>
-BB_VERSION =A0 =A0 =A0 =A0=3D &quot;1.16.0&quot;<br>
-TARGET_ARCH =A0 =A0 =A0 =3D &quot;i586&quot;<br>
-TARGET_OS =A0 =A0 =A0 =A0 =3D &quot;linux&quot;<br>
-MACHINE =A0 =A0 =A0 =A0 =A0 =3D &quot;qemux86&quot;<br>
-DISTRO =A0 =A0 =A0 =A0 =A0 =A0=3D &quot;poky&quot;<br>
-DISTRO_VERSION =A0 =A0=3D &quot;1.2+snapshot-20121003&quot;<br>
-TUNE_FEATURES =A0 =A0 =3D &quot;m32 i586&quot;<br>
-TARGET_FPU =A0 =A0 =A0 =A0=3D &quot;&quot;<br>
-meta<br>
-meta-yocto<br>
-meta-yocto-bsp =A0 =A0=3D &quot;master:<u></u>09aaad16be178bd675750aa6cfe7a=
-3<u></u>73d7c9a8a6&quot;<br>
-<br>
-NOTE: Resolving any missing task queue dependencies<br>
-NOTE: Preparing runqueue<br>
-NOTE: Executing SetScene Tasks<br>
-NOTE: Executing RunQueue Tasks<br>
-ERROR: Function failed: do_rootfs (see<br>
-/data/Develop/yocto-develop/<u></u>x86/tmp/work/qemux86-poky-<u></u>linux/c=
-ore-image-minimal-1.0-<u></u>r0/temp/log.do_rootfs.29559<br>
-for further information)<br>
-ERROR: Logfile of failure stored in:<br>
-/data/Develop/yocto-develop/<u></u>x86/tmp/work/qemux86-poky-<u></u>linux/c=
-ore-image-minimal-1.0-<u></u>r0/temp/log.do_rootfs.29559<br>
-Log data follows:<br>
-| DEBUG: Executing shell function do_rootfs<br>
-| Generating solve db for<br>
-/data/Develop/yocto-develop/<u></u>x86/tmp/deploy/rpm/qemux86...<br>
-| Generating solve db for<br>
-/data/Develop/yocto-develop/<u></u>x86/tmp/deploy/rpm/i586...<br>
-| Generating solve db for<br>
-/data/Develop/yocto-develop/<u></u>x86/tmp/deploy/rpm/all...<br>
-| Generating solve db for<br>
-/data/Develop/yocto-develop/<u></u>x86/tmp/deploy/rpm/all...<br>
-| Processing packagegroup-core-tools-<u></u>profile...<br>
-| Processing packagegroup-core-boot...<br>
-| Processing packagegroup-core-tools-<u></u>testapps...<br>
-| Processing packagegroup-core-tools-debug.<u></u>..<br>
-| error: Failed dependencies:<br>
-| =A0 =A0 =A0 libffi.so.5 is needed by lttng-viewer-0.12.38-r3.i586<br>
-| =A0 =A0 =A0 libffi.so.5 is needed by<br>
-clutter-box2d-0.12.1+git1+<u></u>de5452e56b537a11fd7f9453d048ff<u></u>4b479=
-3b5a2-r1.qemux86<br>
-| =A0 =A0 =A0 libffi.so.5 is needed by<br>
-libowl-av0-0.1+git1+<u></u>03030c41ea578cfa74a2ffceb87567<u></u>5b248318ae-=
-r3.i586<br>
-| =A0 =A0 =A0 libffi.so.5 is needed by libclutter-glx-1.0-0-1.8.4-r2.<u></u=
->i586<br>
-| ERROR: Function failed: do_rootfs (see<br>
-/data/Develop/yocto-develop/<u></u>x86/tmp/work/qemux86-poky-<u></u>linux/c=
-ore-image-minimal-1.0-<u></u>r0/temp/log.do_rootfs.29559<br>
-for further information)<br>
-ERROR: Task 7<br>
-(/data/Develop/yocto-develop/<u></u>poky/meta/recipes-core/images/<a href=
-=3D"http://core-image-minimal.bb" target=3D"_blank"><u></u>core-image-minim=
-al.bb</a><br>
-&lt;<a href=3D"http://core-image-minimal.bb" target=3D"_blank">http://core-=
-image-minimal.bb</a>&gt;<u></u>, do_rootfs) failed with exit code &#39;1&#3=
-9;<br>
-NOTE: Tasks Summary: Attempted 3891 tasks of which 3890 didn&#39;t need to<=
-br>
-be rerun and 1 failed.<br>
-No currently running tasks (3890 of 3892)<br>
-<br>
-</blockquote>
-The number of tasks and including lttng-viewer and clutter seems to be lart=
-ger than core-image-minimal, do you have anything in the local.conf?<br>
-<br>
-Sau!<br>
-<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">
-Summary: 1 task failed:<br>
-<br>
-/data/Develop/yocto-develop/<u></u>poky/meta/recipes-core/images/<a href=3D=
-"http://core-image-minimal.bb" target=3D"_blank"><u></u>core-image-minimal.=
-bb</a><br>
-&lt;<a href=3D"http://core-image-minimal.bb" target=3D"_blank">http://core-=
-image-minimal.bb</a>&gt;<u></u>, do_rootfs<br>
-Summary: There was 1 ERROR message shown, returning a non-zero exit code.<b=
-r>
-<br>
-<br>
-<br>
-______________________________<u></u>_________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
->https://lists.yoctoproject.<u></u>org/listinfo/yocto</a><br>
-<br>
-</blockquote>
-</blockquote></div>
+We have solved this issue by adding OS_VERSION variable to local.conf
+Let say your product (OS) should be released in versions, Ex: 1.0 , 1.1 or =
+1.1.1 etc.
+Which is built from packages of different versions. So each package contain=
+s <pkgname>.inc and <package>_<version>.bb file.
+revision number and patches are maintained in <package>_<version>.bb and al=
+l common part under <package>.inc.
 
---20cf3071d14e5a009804cb31d57d--
+Now the problems comes to mapping the package versions to your product(OS) =
+version.
+This is done having a file included into disto file listing out all the PRE=
+FERRED_VERSIONS and PREFERRED_PROVIDERS for all packages.
+      ex: conf/disto/include/osversion_1.0.inc
+And this is included to disto file like
+      require conf/disto/include/osversion_${OS_VERSION}.inc
+
+This file is freezed after your one version release.
+Next version will add a new file osversion_1.1.inc overiding to pick all th=
+e required package version changes to make your product version.
+
+This will allow you to release multiple product(OS) versions and clearly ma=
+ps the package version, creating individual distributions.
+You can even build older version product by just giving OS_VERSION=3D1.0 in=
+ local.conf
+This eliminates branching all together.
+
+Regards,
+Ramana=
+
