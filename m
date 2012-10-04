@@ -1,27 +1,35 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 80F11E00717
-	for <yocto@yoctoproject.org>; Thu,  4 Oct 2012 05:38:33 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id F2329F81207; Thu,  4 Oct 2012 06:38:32 -0600 (MDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=unavailable version=3.3.2
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 9DC1CF811FF;
-	Thu,  4 Oct 2012 06:38:31 -0600 (MDT)
-Message-ID: <506D8357.9000203@mlbassoc.com>
-Date: Thu, 04 Oct 2012 06:38:47 -0600
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:15.0) Gecko/20120912 Thunderbird/15.0.1
-MIME-Version: 1.0
+Return-Path: <atanas.gegov.oss@gmail.com>
+Received: from mail-bk0-f48.google.com (mail-bk0-f48.google.com
+	[209.85.214.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2C40EE0049B
+	for <yocto@yoctoproject.org>; Thu,  4 Oct 2012 07:54:22 -0700 (PDT)
+Received: by mail-bk0-f48.google.com with SMTP id ik5so358936bkc.35
+	for <yocto@yoctoproject.org>; Thu, 04 Oct 2012 07:54:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:cc:subject:date:message-id:x-mailer:in-reply-to:references
+	:in-reply-to:references;
+	bh=l+Ad8P2t54M72uuWbWnSLXLc5OXROU0GwE4IW3vFTps=;
+	b=YUFsOrS0RiyTNUSmIKJyn8t1u+5lBoTepaH+JeiEMJmW6Ur0ghYmH3MKls5lEt1qsH
+	q8ThYp9bR+VBBBbUjTS+ju2kVBTEHLX27GxqHUtNwk5C4kuTjwnK56la+bM+qnhmFp9q
+	0jGMfHfGKLUOjTQhXD1oVSgrsHZRjmZgY/X0/hT6PEs28T2v4FREDFfxpOjVsXWlcFkP
+	oMjSpJOcPBpYpy1N+HC+KwlRTWuEaANyG9QmOC1TM5bt3+1YxgVBp8uuxCdOohBjds2h
+	T+MNHukKX8ezDd1lmkH0bC7KKhj92cQLInULG92SC43zm9Wpmm3T4BeLCfPl3hoovw3z
+	5jPA==
+Received: by 10.204.156.18 with SMTP id u18mr1739151bkw.131.1349362461031;
+	Thu, 04 Oct 2012 07:54:21 -0700 (PDT)
+Received: from ubuntu.bmw-carit.intra (mail.bmw-carit.de. [62.245.222.98])
+	by mx.google.com with ESMTPS id 9sm5932224bkq.13.2012.10.04.07.54.19
+	(version=SSLv3 cipher=OTHER); Thu, 04 Oct 2012 07:54:20 -0700 (PDT)
+From: Atanas Gegov <atanas.gegov.oss@gmail.com>
 To: yocto@yoctoproject.org
-References: <C1024C359E9D4C4EBC664A0111A52A3F7CFB32FC78@ESESSCMS0355.eemea.ericsson.se>
-In-Reply-To: <C1024C359E9D4C4EBC664A0111A52A3F7CFB32FC78@ESESSCMS0355.eemea.ericsson.se>
-Subject: Re: Python-installation on target (qemuppc) image ....
+Date: Thu,  4 Oct 2012 16:54:05 +0200
+Message-Id: <fef2e3a43cd710dbe5498efa418e2aa057848f3d.1349362044.git.atanas.gegov@bmw-carit.de>
+X-Mailer: git-send-email 1.7.5.4
+In-Reply-To: <cover.1349362044.git.atanas.gegov@bmw-carit.de>
+References: <cover.1349362044.git.atanas.gegov@bmw-carit.de>
+In-Reply-To: <cover.1349362044.git.atanas.gegov@bmw-carit.de>
+References: <cover.1349362044.git.atanas.gegov@bmw-carit.de>
+Subject: [RFCv2 2/3] feature/sdk: Added user doc plugin
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,33 +41,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 04 Oct 2012 12:38:33 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 04 Oct 2012 14:54:22 -0000
 
-On 2012-10-04 06:27, Jonas Jonsson L wrote:
-> Hi,
-> I'm trying to get a working python on a 'core-image-minimal' type of image but with no luck.  Loads of stuff from the standard python library aren't installed on the target
-> (qemuppc), as an example I can't run 'python-config' since the 'distutils'-module isn't available.  I need the 'shutil' module on my image but I can't figure out how to achive
-> that.  Python seems to work on the target but it seems to lack lots of standard functionality.
-> The shutil.py & shutil.pyo exists in .../build/tmp/work/ppc603e-poky-linux/python-2.7.3-r0.2/package/usr/lib/python2.7 folder but it doesn't exist on the target image...
-> Also, in ..../deploy-rpms/ppc603e/python-shell-2.7.3-r0.2.ppc603e.rpm, the shutil-files exist ...
-> Somehow, it seems as if this rpm isn't installed on my target-image, what controls that?
-> Examining the log.do_package-file shows ~5700 lines of "error: Couldn't exec ..../sysroot//*x86_64-linux*//usr/lib/rpm/pythoneggs.py: No such file or directory" (shouldn't it be
-> qemupcc??) from function package_do_filedeps.
-> Examining the log.do_populate_sysroot-file shows "WARNING: The recipe is trying to install files into a shared area when those files already exist. Those files are: pyconfig.h,
-> libpython2.7.so, libpython2.7.so.1.0 and Makefile" ....
+From: Atanas Gegov <atanas.gegov@bmw-carit.de>
 
-Python packages are split up into functionality and you'll need
-to install the pieces that you need.  Remember that these systems
-are presumed to be [somewhat] small, embedded devices and there's
-no sense to install what you will never use...
+The added doc plugin org.yocto.sdk.ide.doc.user will provide help
+contents for this feature (e.g help documents, cheat sheets).
+---
+ features/org.yocto.sdk/feature.xml |    8 ++++++++
+ 1 files changed, 8 insertions(+), 0 deletions(-)
 
-For example, you need to install 'python-distutils' to get the distutils module.
-
+diff --git a/features/org.yocto.sdk/feature.xml b/features/org.yocto.sdk/feature.xml
+index 785a7be..e82cec2 100644
+--- a/features/org.yocto.sdk/feature.xml
++++ b/features/org.yocto.sdk/feature.xml
+@@ -8,6 +8,7 @@
+    
+     Contributors:
+         Intel - initial API and implementation
++        BMW Car IT - added user documentation plugin to the feature
+  -->
+ <feature
+       id="org.yocto.sdk"
+@@ -93,4 +94,11 @@
+          version="0.0.0"
+          unpack="false"/>
+ 
++   <plugin
++         id="org.yocto.sdk.ide.doc.user"
++         download-size="0"
++         install-size="0"
++         version="0.0.0"
++         unpack="false"/>
++
+ </feature>
 -- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+1.7.5.4
+
 
