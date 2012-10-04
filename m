@@ -1,40 +1,41 @@
 Return-Path: <rstreif@linuxfoundation.org>
-Received: from mail-ia0-f176.google.com (mail-ia0-f176.google.com
-	[209.85.210.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D456DE0049F
-	for <yocto@yoctoproject.org>; Thu,  4 Oct 2012 11:59:00 -0700 (PDT)
-Received: by mail-ia0-f176.google.com with SMTP id h11so409673iae.35
-	for <yocto@yoctoproject.org>; Thu, 04 Oct 2012 11:58:58 -0700 (PDT)
+Received: from mail-ie0-f176.google.com (mail-ie0-f176.google.com
+	[209.85.223.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7030DE0049F
+	for <yocto@yoctoproject.org>; Thu,  4 Oct 2012 12:09:12 -0700 (PDT)
+Received: by mail-ie0-f176.google.com with SMTP id k11so2149270iea.35
+	for <yocto@yoctoproject.org>; Thu, 04 Oct 2012 12:09:10 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=google.com; s=20120113;
 	h=mime-version:sender:in-reply-to:references:date
 	:x-google-sender-auth:message-id:subject:from:to:cc:content-type
 	:x-gm-message-state;
-	bh=Dc1ylzlM6CcKK9xoXiXLAq5QZgLgEn+aEITZ/HoXst8=;
-	b=JJ9DHNYMEYDY1Ur91vRtEcHIPgVkJ1wj3egtwJG0uNJSQXSwhb9DSKfFA0k0NC+8Vr
-	fDRR3XCe5nNggzMIxnYix2NQBPWzs05Hvx7ezTJNTrFGfFI/4QNfnrcg/aQ+F10XNOAH
-	2XuiN6Hd3IlbxWFOucvncZ2LhjSmlb+dxlV+FNLwMs4J+uBQQpG+lXPAFUHLkcHQhgbu
-	+NsUkfmcOjdiJbteyRUVe+3CwawbOdBC+znp6d58MxAzJnxmp6k+zwiqSMVlEuzJU7Ot
-	SjajHIiAA9WOfv7aHrbum3AfppPh2mcKvO4gqjymT/vjRCPava2vnJD2NxC+EcfbvNxD
-	XKTQ==
+	bh=aRLJX6SmZcwnD5rWx07gQ5wCUj64LwY+nw+A07y2p9I=;
+	b=OefUNPr7z4W2BmG6d98dK8KfcPjRUBnpv02HMzpmmpodGxGDJAyIeK+G5kRQ9xHRkw
+	viDHldBluwaXw/I7M6yxvZUQhCjCjJr5Hnr6cWJZvOixD9bQ76tttXGwQHZaz0oKNNes
+	tKYMqfhd6a/WGkWjT+F5BTZiZkilVpS1FKZaqxeRUEQ8oyh08ZD8Ul3gP/PrGixLOUWV
+	GH3I+AscVmzUr+bkKrX6FRzbrARKKqJtKDLWBA3dWDFrr8NqeSN2XGKU3t+lp9S8aIIP
+	BIozLbEXW2M26l3LjAc65p40oBKn45aAoFvqkpi2rle1XCmA4nYw2ANXUXkNa7Q3TJUy
+	TcUQ==
 MIME-Version: 1.0
-Received: by 10.42.39.197 with SMTP id i5mr5255828ice.27.1349377138175; Thu,
-	04 Oct 2012 11:58:58 -0700 (PDT)
+Received: by 10.50.51.225 with SMTP id n1mr6430867igo.7.1349377745247; Thu, 04
+	Oct 2012 12:09:05 -0700 (PDT)
 Sender: rstreif@linuxfoundation.org
-Received: by 10.64.27.197 with HTTP; Thu, 4 Oct 2012 11:58:58 -0700 (PDT)
-In-Reply-To: <6796989A-D845-4726-B47B-64B82F380444@gamestop.com>
-References: <CC9226B2.365%PatrickTurley@gamestop.com>
-	<CC922B79.368%PatrickTurley@gamestop.com>
-	<CA+gsK-o=VD7GLYsTHYvmhK4Ht5KeNFS=4=yHmxybeAN7M_nzDw@mail.gmail.com>
-	<6796989A-D845-4726-B47B-64B82F380444@gamestop.com>
-Date: Thu, 4 Oct 2012 11:58:58 -0700
-X-Google-Sender-Auth: 92kCwGkk_l_xAxow_noK9ebMKgA
-Message-ID: <CA+gsK-p5gt0FuN4XbifdSjPv5pcnF6u=5bcrWAw9Ayd9WpUTYw@mail.gmail.com>
+Received: by 10.64.27.197 with HTTP; Thu, 4 Oct 2012 12:09:05 -0700 (PDT)
+In-Reply-To: <20121004082230.GB3005@jama.jama.net>
+References: <CA+gsK-oEmJJHQo1BHYfr1CZS3KbjiG8piMV30EodDGOFrEpaLA@mail.gmail.com>
+	<506CE7CF.6000500@linux.intel.com>
+	<CA+gsK-r9-H853RFWkhSWORCC3i7zW+KT6Q6UquXa6Sph2--0aw@mail.gmail.com>
+	<CAK18fxHT3qTTf_qMC7RiynTrPpJHVkkmw76PWV2qDKKFDi=2Qg@mail.gmail.com>
+	<20121004082230.GB3005@jama.jama.net>
+Date: Thu, 4 Oct 2012 12:09:05 -0700
+X-Google-Sender-Auth: Cehm7bgAQ4cKGz1vtu68ueUbloM
+Message-ID: <CA+gsK-qgQOEbBaoaqSkfOoX6zH14AcTspjFdEC2Y6QLURQEHEw@mail.gmail.com>
 From: Rudolf Streif <rudolf.streif@linux.com>
-To: Patrick Turley <PatrickTurley@gamestop.com>
-X-Gm-Message-State: ALoCoQkMUgZc1T/P9Fs38BCfV/7j5LPcMDTiugwSY+2lueCknom6Qv2aD5J6lxp+JXAVCSefx21f
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: The BitBake equivalent of "Hello, World!"
+To: Martin Jansa <martin.jansa@gmail.com>
+X-Gm-Message-State: ALoCoQnYVYK0ZmSr9rAr8qXwvt9eXpOWvk0VpV6e7aPrv0Us6pwy17lMULAidAtF1Z1W5CnqX5Ah
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [Poky] Baking core-image-minimal with Poky from Master fails with libffi dependency
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,497 +47,388 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 04 Oct 2012 18:59:01 -0000
-Content-Type: multipart/alternative; boundary=90e6ba6e8e1cfd2d2804cb4058a1
+X-List-Received-Date: Thu, 04 Oct 2012 19:09:12 -0000
+Content-Type: multipart/alternative; boundary=14dae93408cf2c5dec04cb407dd4
 
---90e6ba6e8e1cfd2d2804cb4058a1
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+--14dae93408cf2c5dec04cb407dd4
+Content-Type: text/plain; charset=ISO-8859-1
 
-[Warning: lengthy post, and probably boring to most.]
-
-My Bitbake "Hello World" is a little more than a basic "Hello World". It's
-idea is to incorporate a layer and use a structure similar to what OE and
-Yocto are using. You can do it simpler if you want to. I did this a while
-ago with Bitbake 1.12.0. I would think it works with newer versions too
-although I have not tested it. This is the layout I am using:
-
-bbtest/
-=E2=94=9C=E2=94=80=E2=94=80 conf
-=E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 bblayers.conf
-=E2=94=82   =E2=94=94=E2=94=80=E2=94=80 bitbake.conf
-=E2=94=9C=E2=94=80=E2=94=80 downloads
-=E2=94=82   =E2=94=94=E2=94=80=E2=94=80 /* need to create but will be popul=
-ated with downloads */
-=E2=94=9C=E2=94=80=E2=94=80 meta-test
-=E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 classes
-=E2=94=82   =E2=94=82   =E2=94=94=E2=94=80=E2=94=80 base.bbclass
-=E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 conf
-
-=E2=94=82   =E2=94=82   =E2=94=94=E2=94=80=E2=94=80 layer.conf
-
-=E2=94=82   =E2=94=94=E2=94=80=E2=94=80 recipes-test
-
-=E2=94=82       =E2=94=94=E2=94=80=E2=94=80 nano
-
-=E2=94=82         =E2=94=94=E2=94=80=E2=94=80 nano.bb
-
-=E2=94=94=E2=94=80=E2=94=80 tmp
-
-    =E2=94=94=E2=94=80=E2=94=80 /* will be created and populated when build=
-ing */
-
-The first thing Bitbake looks for is a conf/bblayers.conf file in the
-directory you started it from. This file must provide an initial setting
-for BBPATH:
-
-bblayers.conf:
-
-BBPATH :=3D "${TOPDIR}"
-BBFILES ?=3D ""
-BBLAYERS =3D " \
-  ${TOPDIR}/meta-test \
-  "
-
-Without BBPATH Bitbake will not find any conf/<filename>.conf files and
-recipe files at all. It will also not find bitbake.conf. I simply copied
-bitbake.conf from the Bitbake download and edited DL_DIR:
-
-bitbake.conf:
-
-# comments omitted
-B =3D "${S}"
-
-CVSDIR =3D "${DL_DIR}/cvs"
-
-DEPENDS =3D ""
-
-DEPLOY_DIR =3D "${TMPDIR}/deploy"
-DEPLOY_DIR_IMAGE =3D "${DEPLOY_DIR}/images"
-DL_DIR =3D "${TOPDIR}/downloads"
-FETCHCOMMAND =3D ""
-FETCHCOMMAND_cvs =3D "/usr/bin/env cvs -d${CVSROOT} co ${CVSCOOPTS}
-${CVSMODULE}"
-FETCHCOMMAND_svn =3D "/usr/bin/env svn co ${SVNCOOPTS} ${SVNROOT}
-${SVNMODULE}"
-FETCHCOMMAND_wget =3D "/usr/bin/env wget -t 5 --passive-ftp -P ${DL_DIR}
-${URI}"
-FILESDIR =3D "${@bb.utils.which(bb.data.getVar('FILESPATH', d, 1), '.')}"
-FILESPATH =3D
-"${FILE_DIRNAME}/${PF}:${FILE_DIRNAME}/${P}:${FILE_DIRNAME}/${PN}:${FILE_DI=
-RNAME}/files:${FILE_DIRNAME}"
-FILE_DIRNAME =3D "${@os.path.dirname(bb.data.getVar('FILE', d))}"
-GITDIR =3D "${DL_DIR}/git"
-IMAGE_CMD =3D "_NO_DEFINED_IMAGE_TYPES_"
-IMAGE_ROOTFS =3D "${TMPDIR}/rootfs"
-MKTEMPCMD =3D "mktemp -q ${TMPBASE}"
-MKTEMPDIRCMD =3D "mktemp -d -q ${TMPBASE}"
-OVERRIDES =3D "local:${MACHINE}:${TARGET_OS}:${TARGET_ARCH}"
-P =3D "${PN}-${PV}"
-PERSISTENT_DIR =3D "${TMPDIR}/cache"
-PF =3D "${PN}-${PV}-${PR}"
-PN =3D "${@bb.parse.BBHandler.vars_from_file(bb.data.getVar('FILE',d),d)[0]
-or 'defaultpkgname'}"
-PR =3D "${@bb.parse.BBHandler.vars_from_file(bb.data.getVar('FILE',d),d)[2]
-or 'r0'}"
-PROVIDES =3D ""
-PV =3D "${@bb.parse.BBHandler.vars_from_file(bb.data.getVar('FILE',d),d)[1]
-or '1.0'}"
-RESUMECOMMAND =3D ""
-RESUMECOMMAND_wget =3D "/usr/bin/env wget -c -t 5 --passive-ftp -P ${DL_DIR=
-}
-${URI}"
-S =3D "${WORKDIR}/${P}"
-SRC_URI =3D "file://${FILE}"
-STAMP =3D "${TMPDIR}/stamps/${PF}"
-SVNDIR =3D "${DL_DIR}/svn"
-T =3D "${WORKDIR}/temp"
-TARGET_ARCH =3D "${BUILD_ARCH}"
-TMPDIR =3D "${TOPDIR}/tmp"
-UPDATECOMMAND =3D ""
-UPDATECOMMAND_cvs =3D "/usr/bin/env cvs -d${CVSROOT} update ${CVSCOOPTS}"
-UPDATECOMMAND_svn =3D "/usr/bin/env svn update ${SVNCOOPTS}"
-WORKDIR =3D "${TMPDIR}/work/${PF}"
-PERSISTENT_DIR =3D "${TMPDIR}/cache"
-
-That's more than you need but it's convenient.
-
-Bitbake will require a base.bbclass file somewhere in a classes
-subdirectory of BBPATH. I used the base.bbclass file from the Bitbake
-download. As a minimum it should contain a do_build task. That's the target
-that Bitbake invokes by default if you do not use the -c option explicitly.
-It's empty and does not do anything but it functions as an anchor for tasks
-you define in your recipes:
-
-base.bbclass:
-
-# comments omitted
-die() {
-        bbfatal "$*"
-}
-
-bbnote() {
-        echo "NOTE:" "$*"
-}
-
-bbwarn() {
-        echo "WARNING:" "$*"
-}
-
-bbfatal() {
-        echo "FATAL:" "$*"
-        exit 1
-}
-
-addtask showdata
-do_showdata[nostamp] =3D "1"
-python do_showdata() {
-        import sys
-        # emit variables and shell functions
-        bb.data.emit_env(sys.__stdout__, d, True)
-        # emit the metadata which isnt valid shell
-        for e in bb.data.keys(d):
-                if bb.data.getVarFlag(e, 'python', d):
-                        sys.__stdout__.write("\npython %s () {\n%s}\n" %
-(e, bb.data.getVar(e, d, 1)))
-}
-
-addtask listtasks
-do_listtasks[nostamp] =3D "1"
-python do_listtasks() {
-        import sys
-        for e in bb.data.keys(d):
-                if bb.data.getVarFlag(e, 'task', d):
-                        sys.__stdout__.write("%s\n" % e)
-}
-
-addtask build
-do_build[dirs] =3D "${TOPDIR}"
-do_build[nostamp] =3D "1"
-python base_do_build () {
-        bb.note("The included, default BB base.bbclass does not define a
-useful default task.")
-        bb.note("Try running the 'listtasks' task against a .bb to see what
-tasks are defined.")
-}
-
-EXPORT_FUNCTIONS do_clean do_mrproper do_build
-
-Again, it's more than you need. It's just convenient to use it. I put this
-file inside the layer but you can also create a classes directory in
-${TOPDIR} (bbtest in this example). Next, create a layer (meta-bbtest in my
-example, name does not matter, meta-* is convention). It needs a
-conf/layer.con file:
-
-layer.conf:
-
-# We have a metadata layer directory, add to BBPATH
-BBPATH .=3D ":${LAYERDIR}"
-
-# We have a recipe directory, add to BBFILES
-BBFILES +=3D "${LAYERDIR}/recipes-*/*/*.bb \
-            ${LAYERDIR}/recipes-*/*/*.bbappend"
-
-BBFILE_COLLECTIONS +=3D "test"
-BBFILE_PATTERN_test :=3D "^${LAYERDIR}/"
-BBFILE_PRIORITY_test =3D "5"
-
-The path expression for the recipes is more complex than necessary, it just
-follows the convention. Finally a recipe to build the Nano editor:
-
-DESCRIPTION =3D "Recipe to build the 'nano' editor"
-
-PN =3D "nano"
-PV =3D "2.2.6"
-
-SRC_URI =3D "http://www.nano-editor.org/dist/v2.2/nano-2.2.6.tar.gz"
-
-python do_fetch() {
-   bb.note("Downloading source tarball from ${SRC_URI} ...")
-
-   src_uri =3D (bb.data.getVar('SRC_URI', d, True) or "").split()
-   if len(src_uri) =3D=3D 0:
-      bb.fatal("Empty URI")
-
-   try:
-      bb.fetch.init(src_uri, d)
-      bb.fetch.go(d)
-   except FetchError:
-      bb.fatal("Could not fetch source tarball.")
-
-   bb.note("Download successful.")
-}
-
-addtask fetch before do_build
-
-
-python do_unpack() {
-   bb.note("Unpacking source tarball ...")
-
-   os.system("tar x -C ${WORKDIR} -f ${DL_DIR}/${P}.tar.gz")
-
-   bb.note("Unpacked source tarball.")
-}
-
-addtask unpack before do_build after do_fetch
-
-
-python do_configure() {
-   bb.note("Configuring source package ...")
-
-   os.system("cd ${WORKDIR}/${P} && ./configure")
-
-   bb.note("Configured source package.")
-}
-
-addtask configure before do_build after do_unpack
-
-
-python do_compile() {
-   bb.note("Compiling package...")
-
-   os.system("cd ${WORKDIR}/${P} && make")
-
-   bb.note("Compiled package.")
-}
-
-addtask compile before do_build after do_configure
-
-
-Nano is an autotooled package. This recipe simply at a very basic level
-does what you would do manually. OECore's autotools.bbclass is much more
-sophisticated and so are the fetcher class files.
+I eventually had to clean out the sstate-cache to make it work. Not a big
+deal and not probably not worth any further investigation. Thanks for
+helping.
 
 :rjs
 
---90e6ba6e8e1cfd2d2804cb4058a1
-Content-Type: text/html; charset=UTF-8
+On Thu, Oct 4, 2012 at 1:22 AM, Martin Jansa <martin.jansa@gmail.com> wrote:
+
+> On Thu, Oct 04, 2012 at 09:43:58AM +0300, Andrei Gherzan wrote:
+> > There were some issues with libffi while updating the package. Maybe some
+> > bumps were missed. So:
+>
+> > 1. This is not new build. In this case a pull on master should fix it. I
+> > think I saw some pr bumps sent as patch.
+>
+> Yes but I did PR bumps only of packages in my feed
+>
+> http://lists.linuxtogo.org/pipermail/openembedded-core/2012-September/029759.html
+>
+> > 2. If 1. won't work, recompile libowl si libclutter as a workaround.
+>
+> wont fix it on target
+>
+> Cheers,
+>
+> >
+> > ag
+> >  On Oct 4, 2012 4:40 AM, "Rudolf Streif" <rudolf.streif@linux.com>
+> wrote:
+> >
+> > > No, nothing extra. But you are right about the number of tasks. I
+> checked
+> > > out master a while ago, built successfully back then, now pulled the
+> latest
+> > > today, and reused the build environment. I will try again with a fresh
+> > > environment.
+> > >
+> > > :rjs
+> > > On Oct 3, 2012 6:35 PM, "Saul Wold" <sgw@linux.intel.com> wrote:
+> > >
+> > >> On 10/03/2012 04:21 PM, Rudolf Streif wrote:
+> > >>
+> > >>> I checked out Poky from Master and tried to build core-image-minimal.
+> > >>> do_rootfs failed on the libffi dependency [1]. Is that
+> known/expected?
+> > >>>
+> > >>>  This is interesting, I just tried it also, and it is working, see
+> below.
+> > >>
+> > >>
+> > >>  :rjs
+> > >>>
+> > >>> --------
+> > >>>
+> > >>> [1]
+> > >>>
+> > >>> bitbake core-image-minimal
+> > >>> Loading cache: 100%
+> > >>> |#############################**##############################**
+> > >>> #####################|
+> > >>> ETA:  00:00:00
+> > >>> Loaded 1131 entries from dependency cache.
+> > >>>
+> > >>> Build Configuration:
+> > >>> BB_VERSION        = "1.16.0"
+> > >>> TARGET_ARCH       = "i586"
+> > >>> TARGET_OS         = "linux"
+> > >>> MACHINE           = "qemux86"
+> > >>> DISTRO            = "poky"
+> > >>> DISTRO_VERSION    = "1.2+snapshot-20121003"
+> > >>> TUNE_FEATURES     = "m32 i586"
+> > >>> TARGET_FPU        = ""
+> > >>> meta
+> > >>> meta-yocto
+> > >>> meta-yocto-bsp    = "master:**09aaad16be178bd675750aa6cfe7a3**
+> > >>> 73d7c9a8a6"
+> > >>>
+> > >>> NOTE: Resolving any missing task queue dependencies
+> > >>> NOTE: Preparing runqueue
+> > >>> NOTE: Executing SetScene Tasks
+> > >>> NOTE: Executing RunQueue Tasks
+> > >>> ERROR: Function failed: do_rootfs (see
+> > >>> /data/Develop/yocto-develop/**x86/tmp/work/qemux86-poky-**
+> > >>> linux/core-image-minimal-1.0-**r0/temp/log.do_rootfs.29559
+> > >>> for further information)
+> > >>> ERROR: Logfile of failure stored in:
+> > >>> /data/Develop/yocto-develop/**x86/tmp/work/qemux86-poky-**
+> > >>> linux/core-image-minimal-1.0-**r0/temp/log.do_rootfs.29559
+> > >>> Log data follows:
+> > >>> | DEBUG: Executing shell function do_rootfs
+> > >>> | Generating solve db for
+> > >>> /data/Develop/yocto-develop/**x86/tmp/deploy/rpm/qemux86...
+> > >>> | Generating solve db for
+> > >>> /data/Develop/yocto-develop/**x86/tmp/deploy/rpm/i586...
+> > >>> | Generating solve db for
+> > >>> /data/Develop/yocto-develop/**x86/tmp/deploy/rpm/all...
+> > >>> | Generating solve db for
+> > >>> /data/Develop/yocto-develop/**x86/tmp/deploy/rpm/all...
+> > >>> | Processing packagegroup-core-tools-**profile...
+> > >>> | Processing packagegroup-core-boot...
+> > >>> | Processing packagegroup-core-tools-**testapps...
+> > >>> | Processing packagegroup-core-tools-debug.**..
+> > >>> | error: Failed dependencies:
+> > >>> |       libffi.so.5 is needed by lttng-viewer-0.12.38-r3.i586
+> > >>> |       libffi.so.5 is needed by
+> > >>> clutter-box2d-0.12.1+git1+**de5452e56b537a11fd7f9453d048ff**
+> > >>> 4b4793b5a2-r1.qemux86
+> > >>> |       libffi.so.5 is needed by
+> > >>>
+> libowl-av0-0.1+git1+**03030c41ea578cfa74a2ffceb87567**5b248318ae-r3.i586
+> > >>> |       libffi.so.5 is needed by libclutter-glx-1.0-0-1.8.4-r2.**i586
+> > >>> | ERROR: Function failed: do_rootfs (see
+> > >>> /data/Develop/yocto-develop/**x86/tmp/work/qemux86-poky-**
+> > >>> linux/core-image-minimal-1.0-**r0/temp/log.do_rootfs.29559
+> > >>> for further information)
+> > >>> ERROR: Task 7
+> > >>> (/data/Develop/yocto-develop/**poky/meta/recipes-core/images/**
+> > >>> core-image-minimal.bb <http://core-image-minimal.bb>
+> > >>> <http://core-image-minimal.bb>**, do_rootfs) failed with exit code
+> '1'
+> > >>> NOTE: Tasks Summary: Attempted 3891 tasks of which 3890 didn't need
+> to
+> > >>> be rerun and 1 failed.
+> > >>> No currently running tasks (3890 of 3892)
+> > >>>
+> > >>>  The number of tasks and including lttng-viewer and clutter seems to
+> be
+> > >> lartger than core-image-minimal, do you have anything in the
+> local.conf?
+> > >>
+> > >> Sau!
+> > >>
+> > >>  Summary: 1 task failed:
+> > >>>
+> > >>> /data/Develop/yocto-develop/**poky/meta/recipes-core/images/**
+> > >>> core-image-minimal.bb <http://core-image-minimal.bb>
+> > >>> <http://core-image-minimal.bb>**, do_rootfs
+> > >>> Summary: There was 1 ERROR message shown, returning a non-zero exit
+> code.
+> > >>>
+> > >>>
+> > >>>
+> > >>> ______________________________**_________________
+> > >>> yocto mailing list
+> > >>> yocto@yoctoproject.org
+> > >>> https://lists.yoctoproject.**org/listinfo/yocto<
+> https://lists.yoctoproject.org/listinfo/yocto>
+> > >>>
+> > >>>
+> > > _______________________________________________
+> > > yocto mailing list
+> > > yocto@yoctoproject.org
+> > > https://lists.yoctoproject.org/listinfo/yocto
+> > >
+> > >
+>
+> > _______________________________________________
+> > yocto mailing list
+> > yocto@yoctoproject.org
+> > https://lists.yoctoproject.org/listinfo/yocto
+>
+>
+> --
+> Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
+>
+
+--14dae93408cf2c5dec04cb407dd4
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-<div>[Warning: lengthy post, and probably boring to most.]</div><div><br></=
-div>My Bitbake &quot;Hello World&quot; is a little more than a basic &quot;=
-Hello World&quot;. It&#39;s idea is to incorporate a layer and use a struct=
-ure similar to what OE and Yocto are using. You can do it simpler if you wa=
-nt to. I did this a while ago with Bitbake 1.12.0. I would think it works w=
-ith newer versions too although I have not tested it. This is the layout I =
-am using:<div>
-<br></div><div><div>bbtest/</div><div>=E2=94=9C=E2=94=80=E2=94=80 conf</div=
-><div>=E2=94=82 =C2=A0 =E2=94=9C=E2=94=80=E2=94=80 bblayers.conf</div><div>=
-=E2=94=82 =C2=A0 =E2=94=94=E2=94=80=E2=94=80 bitbake.conf</div><div>=E2=94=
-=9C=E2=94=80=E2=94=80 downloads</div><div>=E2=94=82 =C2=A0=C2=A0=E2=94=94=
-=E2=94=80=E2=94=80 /* need to create but will be populated with downloads *=
-/</div><div>=E2=94=9C=E2=94=80=E2=94=80 meta-test</div>
-<div>=E2=94=82 =C2=A0 =E2=94=9C=E2=94=80=E2=94=80 classes</div><div>=E2=94=
-=82 =C2=A0 =E2=94=82 =C2=A0 =E2=94=94=E2=94=80=E2=94=80 base.bbclass</div><=
-div>=E2=94=82 =C2=A0 =E2=94=9C=E2=94=80=E2=94=80 conf =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0</div><div>=E2=94=82 =
-=C2=A0 =E2=94=82 =C2=A0 =E2=94=94=E2=94=80=E2=94=80 layer.conf =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0</div>
-<div>=E2=94=82 =C2=A0 =E2=94=94=E2=94=80=E2=94=80 recipes-test =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0</div><div>=E2=94=82 =C2=A0 =C2=A0 =C2=
-=A0=C2=A0=E2=94=94=E2=94=80=E2=94=80 nano =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0</div>
-<div>=E2=94=82 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =E2=94=94=E2=94=80=E2=94=80 <a h=
-ref=3D"http://nano.bb">nano.bb</a> =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0</div>=
-<div>=E2=94=94=E2=94=80=E2=94=80 tmp =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0</div>
-<div>=C2=A0 =C2=A0 =E2=94=94=E2=94=80=E2=94=80 /* will be created and popul=
-ated when building */</div><div><br></div><div>The first thing Bitbake look=
-s for is a conf/bblayers.conf file in the directory you started it from. Th=
-is file must provide an initial setting for BBPATH:</div>
-<div><br></div><div>bblayers.conf:</div><div><br></div><div><div>BBPATH :=
-=3D &quot;${TOPDIR}&quot;</div><div>BBFILES ?=3D &quot;&quot;</div><div>BBL=
-AYERS =3D &quot; \</div><div>=C2=A0 ${TOPDIR}/meta-test \</div><div>=C2=A0 =
-&quot;</div></div>
-<div><br></div><div>Without BBPATH Bitbake will not find any conf/&lt;filen=
-ame&gt;.conf files and recipe files at all. It will also not find bitbake.c=
-onf. I simply copied bitbake.conf from the Bitbake download and edited DL_D=
-IR:</div>
-<div><br></div><div>bitbake.conf:</div><div><br></div><div># comments omitt=
-ed</div><div><div>B =3D &quot;${S}&quot; =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0</div>
-<div>CVSDIR =3D &quot;${DL_DIR}/cvs&quot; =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0=
-</div><div>DEPENDS =3D &quot;&quot; =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0</div>
-<div>DEPLOY_DIR =3D &quot;${TMPDIR}/deploy&quot;</div><div>DEPLOY_DIR_IMAGE=
- =3D &quot;${DEPLOY_DIR}/images&quot;</div><div>DL_DIR =3D &quot;${TOPDIR}/=
-downloads&quot;</div><div>FETCHCOMMAND =3D &quot;&quot;</div><div>FETCHCOMM=
-AND_cvs =3D &quot;/usr/bin/env cvs -d${CVSROOT} co ${CVSCOOPTS} ${CVSMODULE=
-}&quot;</div>
-<div>FETCHCOMMAND_svn =3D &quot;/usr/bin/env svn co ${SVNCOOPTS} ${SVNROOT}=
- ${SVNMODULE}&quot;</div><div>FETCHCOMMAND_wget =3D &quot;/usr/bin/env wget=
- -t 5 --passive-ftp -P ${DL_DIR} ${URI}&quot;</div><div>FILESDIR =3D &quot;=
-${@bb.utils.which(bb.data.getVar(&#39;FILESPATH&#39;, d, 1), &#39;.&#39;)}&=
-quot;</div>
-<div>FILESPATH =3D &quot;${FILE_DIRNAME}/${PF}:${FILE_DIRNAME}/${P}:${FILE_=
-DIRNAME}/${PN}:${FILE_DIRNAME}/files:${FILE_DIRNAME}&quot;</div><div>FILE_D=
-IRNAME =3D &quot;${@os.path.dirname(bb.data.getVar(&#39;FILE&#39;, d))}&quo=
-t;</div>
-<div>GITDIR =3D &quot;${DL_DIR}/git&quot;</div><div>IMAGE_CMD =3D &quot;_NO=
-_DEFINED_IMAGE_TYPES_&quot;</div><div>IMAGE_ROOTFS =3D &quot;${TMPDIR}/root=
-fs&quot;</div><div>MKTEMPCMD =3D &quot;mktemp -q ${TMPBASE}&quot;</div><div=
->MKTEMPDIRCMD =3D &quot;mktemp -d -q ${TMPBASE}&quot;</div>
-<div>OVERRIDES =3D &quot;local:${MACHINE}:${TARGET_OS}:${TARGET_ARCH}&quot;=
-</div><div>P =3D &quot;${PN}-${PV}&quot;</div><div>PERSISTENT_DIR =3D &quot=
-;${TMPDIR}/cache&quot;</div><div>PF =3D &quot;${PN}-${PV}-${PR}&quot;</div>=
-<div>
-PN =3D &quot;${@bb.parse.BBHandler.vars_from_file(bb.data.getVar(&#39;FILE&=
-#39;,d),d)[0] or &#39;defaultpkgname&#39;}&quot;</div><div>PR =3D &quot;${@=
-bb.parse.BBHandler.vars_from_file(bb.data.getVar(&#39;FILE&#39;,d),d)[2] or=
- &#39;r0&#39;}&quot;</div>
-<div>PROVIDES =3D &quot;&quot;</div><div>PV =3D &quot;${@bb.parse.BBHandler=
-.vars_from_file(bb.data.getVar(&#39;FILE&#39;,d),d)[1] or &#39;1.0&#39;}&qu=
-ot;</div><div>RESUMECOMMAND =3D &quot;&quot;</div><div>RESUMECOMMAND_wget =
-=3D &quot;/usr/bin/env wget -c -t 5 --passive-ftp -P ${DL_DIR} ${URI}&quot;=
-</div>
-<div>S =3D &quot;${WORKDIR}/${P}&quot;</div><div>SRC_URI =3D &quot;file://$=
-{FILE}&quot;</div><div>STAMP =3D &quot;${TMPDIR}/stamps/${PF}&quot;</div><d=
-iv>SVNDIR =3D &quot;${DL_DIR}/svn&quot;</div><div>T =3D &quot;${WORKDIR}/te=
-mp&quot;</div>
-<div>TARGET_ARCH =3D &quot;${BUILD_ARCH}&quot;</div><div>TMPDIR =3D &quot;$=
-{TOPDIR}/tmp&quot;</div><div>UPDATECOMMAND =3D &quot;&quot;</div><div>UPDAT=
-ECOMMAND_cvs =3D &quot;/usr/bin/env cvs -d${CVSROOT} update ${CVSCOOPTS}&qu=
-ot;</div>
-<div>UPDATECOMMAND_svn =3D &quot;/usr/bin/env svn update ${SVNCOOPTS}&quot;=
-</div><div>WORKDIR =3D &quot;${TMPDIR}/work/${PF}&quot;</div><div>PERSISTEN=
-T_DIR =3D &quot;${TMPDIR}/cache&quot;</div></div><div><br></div><div>That&#=
-39;s more than you need but it&#39;s convenient.</div>
-<div><br></div><div>Bitbake will require a base.bbclass file somewhere in a=
- classes subdirectory of BBPATH. I used the base.bbclass file from the Bitb=
-ake download. As a minimum it should contain a do_build task. That&#39;s th=
-e target that Bitbake invokes by default if you do not use the -c option ex=
-plicitly. It&#39;s empty and does not do anything but it functions as an an=
-chor for tasks you define in your recipes:</div>
-<div><br></div><div>base.bbclass:</div><div><br></div><div><div># comments =
-omitted</div><div></div><div>die() {</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-bbfatal &quot;$*&quot;</div><div>}</div><div><br></div><div>bbnote() {</div=
-><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 echo &quot;NOTE:&quot; &quot;$*&quot;</di=
-v>
-<div>}</div><div><br></div><div>bbwarn() {</div><div>=C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 echo &quot;WARNING:&quot; &quot;$*&quot;</div><div>}</div><div><br><=
-/div><div>bbfatal() {</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 echo &quot;FATA=
-L:&quot; &quot;$*&quot;</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 exit 1</div>
-<div>}</div><div><br></div><div>addtask showdata</div><div>do_showdata[nost=
-amp] =3D &quot;1&quot;</div><div>python do_showdata() {</div><div>=C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 import sys</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 # emi=
-t variables and shell functions</div><div>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 bb.data.emit_env(sys.__stdout__, d, True)</div>=
-<div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 # emit the metadata which isnt valid shell=
-</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 for e in bb.data.keys(d):</div><div>=
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 if bb.data.getVarFl=
-ag(e, &#39;python&#39;, d):</div>
-<div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 sys.__stdout__.write(&quot;\npython %s () {\n%s}\n&quot; % (e=
-, bb.data.getVar(e, d, 1)))</div><div>}</div><div><br></div><div>addtask li=
-sttasks</div><div>do_listtasks[nostamp] =3D &quot;1&quot;</div>
-<div>python do_listtasks() {</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 import s=
-ys</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 for e in bb.data.keys(d):</div><di=
-v>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 if bb.data.getVar=
-Flag(e, &#39;task&#39;, d):</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 sys.__stdout__.write(&quot=
-;%s\n&quot; % e)</div>
-<div>}</div><div><br></div><div>addtask build</div><div>do_build[dirs] =3D =
-&quot;${TOPDIR}&quot;</div><div>do_build[nostamp] =3D &quot;1&quot;</div><d=
-iv>python base_do_build () {</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 bb.note(=
-&quot;The included, default BB base.bbclass does not define a useful defaul=
-t task.&quot;)</div>
-<div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 bb.note(&quot;Try running the &#39;listtas=
-ks&#39; task against a .bb to see what tasks are defined.&quot;)</div><div>=
-}</div><div><br></div><div>EXPORT_FUNCTIONS do_clean do_mrproper do_build</=
-div></div><div><br>
-</div><div>Again, it&#39;s more than you need. It&#39;s just convenient to =
-use it. I put this file inside the layer but you can also create a classes =
-directory in ${TOPDIR} (bbtest in this example). Next, create a layer (meta=
--bbtest in my example, name does not matter, meta-* is convention). It need=
-s a conf/layer.con file:</div>
-<div><br></div><div>layer.conf:</div><div><br></div><div><div># We have a m=
-etadata layer directory, add to BBPATH</div><div>BBPATH .=3D &quot;:${LAYER=
-DIR}&quot;</div><div><br></div><div># We have a recipe directory, add to BB=
-FILES</div>
-<div>BBFILES +=3D &quot;${LAYERDIR}/recipes-*/*/*.bb \</div><div>=C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 ${LAYERDIR}/recipes-*/*/*.bbappend&quot;</d=
-iv><div><br></div><div>BBFILE_COLLECTIONS +=3D &quot;test&quot;</div><div>B=
-BFILE_PATTERN_test :=3D &quot;^${LAYERDIR}/&quot;</div>
-<div>BBFILE_PRIORITY_test =3D &quot;5&quot;</div><div><br></div></div><div>=
-The path expression for the recipes is more complex than necessary, it just=
- follows the convention. Finally a recipe to build the Nano editor:</div>
-<div><br></div><div><div>DESCRIPTION =3D &quot;Recipe to build the &#39;nan=
-o&#39; editor&quot;</div><div><br></div><div>PN =3D &quot;nano&quot;</div><=
-div>PV =3D &quot;2.2.6&quot;</div><div><br></div><div>SRC_URI =3D &quot;<a =
-href=3D"http://www.nano-editor.org/dist/v2.2/nano-2.2.6.tar.gz">http://www.=
-nano-editor.org/dist/v2.2/nano-2.2.6.tar.gz</a>&quot;</div>
-<div><br></div><div>python do_fetch() {</div><div>=C2=A0 =C2=A0bb.note(&quo=
-t;Downloading source tarball from ${SRC_URI} ...&quot;)</div><div><br></div=
-><div>=C2=A0 =C2=A0src_uri =3D (bb.data.getVar(&#39;SRC_URI&#39;, d, True) =
-or &quot;&quot;).split()</div>
-<div>=C2=A0 =C2=A0if len(src_uri) =3D=3D 0:</div><div>=C2=A0 =C2=A0 =C2=A0 =
-bb.fatal(&quot;Empty URI&quot;)</div><div><br></div><div>=C2=A0 =C2=A0try:<=
-/div><div>=C2=A0 =C2=A0 =C2=A0 bb.fetch.init(src_uri, d)</div><div>=C2=A0 =
-=C2=A0 =C2=A0 bb.fetch.go(d)</div><div>=C2=A0 =C2=A0except FetchError:</div=
->
-<div>=C2=A0 =C2=A0 =C2=A0 bb.fatal(&quot;Could not fetch source tarball.&qu=
-ot;)</div><div><br></div><div>=C2=A0 =C2=A0bb.note(&quot;Download successfu=
-l.&quot;)</div><div>}</div><div><br></div><div>addtask fetch before do_buil=
-d</div><div><br></div>
-<div><br></div><div>python do_unpack() {</div><div>=C2=A0 =C2=A0bb.note(&qu=
-ot;Unpacking source tarball ...&quot;)</div><div><br></div><div>=C2=A0 =C2=
-=A0os.system(&quot;tar x -C ${WORKDIR} -f ${DL_DIR}/${P}.tar.gz&quot;)</div=
-><div><br></div><div>
-=C2=A0 =C2=A0bb.note(&quot;Unpacked source tarball.&quot;)</div><div>}</div=
-><div><br></div><div>addtask unpack before do_build after do_fetch</div><di=
-v><br></div><div><br></div><div>python do_configure() {</div><div>=C2=A0 =
-=C2=A0bb.note(&quot;Configuring source package ...&quot;)</div>
-<div><br></div><div>=C2=A0 =C2=A0os.system(&quot;cd ${WORKDIR}/${P} &amp;&a=
-mp; ./configure&quot;)</div><div><br></div><div>=C2=A0 =C2=A0bb.note(&quot;=
-Configured source package.&quot;)</div><div>}</div><div><br></div><div>addt=
-ask configure before do_build after do_unpack</div>
-<div><br></div><div><br></div><div>python do_compile() {</div><div>=C2=A0 =
-=C2=A0bb.note(&quot;Compiling package...&quot;)</div><div><br></div><div>=
-=C2=A0 =C2=A0os.system(&quot;cd ${WORKDIR}/${P} &amp;&amp; make&quot;)</div=
-><div><br></div><div>
-=C2=A0 =C2=A0bb.note(&quot;Compiled package.&quot;)</div><div>}</div><div><=
-br></div><div>addtask compile before do_build after do_configure</div></div=
-><div><br></div><div><br></div><div>Nano is an autotooled package. This rec=
-ipe simply at a very basic level does what you would do manually. OECore&#3=
-9;s autotools.bbclass is much more sophisticated and so are the fetcher cla=
-ss files.</div>
-<div><br></div><div>:rjs</div><div><br></div><div><br></div>
-</div>
+I eventually had to clean out the sstate-cache to make it work. Not a big d=
+eal and not probably not worth any further investigation. Thanks for helpin=
+g.<div><br></div><div>:rjs<br><br><div class=3D"gmail_quote">On Thu, Oct 4,=
+ 2012 at 1:22 AM, Martin Jansa <span dir=3D"ltr">&lt;<a href=3D"mailto:mart=
+in.jansa@gmail.com" target=3D"_blank">martin.jansa@gmail.com</a>&gt;</span>=
+ wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><div class=3D"im">On Thu, Oct 04, 2012 at 09=
+:43:58AM +0300, Andrei Gherzan wrote:<br>
+&gt; There were some issues with libffi while updating the package. Maybe s=
+ome<br>
+&gt; bumps were missed. So:<br>
+<br>
+&gt; 1. This is not new build. In this case a pull on master should fix it.=
+ I<br>
+&gt; think I saw some pr bumps sent as patch.<br>
+<br>
+</div>Yes but I did PR bumps only of packages in my feed<br>
+<a href=3D"http://lists.linuxtogo.org/pipermail/openembedded-core/2012-Sept=
+ember/029759.html" target=3D"_blank">http://lists.linuxtogo.org/pipermail/o=
+penembedded-core/2012-September/029759.html</a><br>
+<div class=3D"im"><br>
+&gt; 2. If 1. won&#39;t work, recompile libowl si libclutter as a workaroun=
+d.<br>
+<br>
+</div>wont fix it on target<br>
+<br>
+Cheers,<br>
+<div class=3D"im"><br>
+&gt;<br>
+&gt; ag<br>
+&gt; =A0On Oct 4, 2012 4:40 AM, &quot;Rudolf Streif&quot; &lt;<a href=3D"ma=
+ilto:rudolf.streif@linux.com">rudolf.streif@linux.com</a>&gt; wrote:<br>
+&gt;<br>
+&gt; &gt; No, nothing extra. But you are right about the number of tasks. I=
+ checked<br>
+&gt; &gt; out master a while ago, built successfully back then, now pulled =
+the latest<br>
+&gt; &gt; today, and reused the build environment. I will try again with a =
+fresh<br>
+&gt; &gt; environment.<br>
+&gt; &gt;<br>
+&gt; &gt; :rjs<br>
+&gt; &gt; On Oct 3, 2012 6:35 PM, &quot;Saul Wold&quot; &lt;<a href=3D"mail=
+to:sgw@linux.intel.com">sgw@linux.intel.com</a>&gt; wrote:<br>
+&gt; &gt;<br>
+&gt; &gt;&gt; On 10/03/2012 04:21 PM, Rudolf Streif wrote:<br>
+&gt; &gt;&gt;<br>
+&gt; &gt;&gt;&gt; I checked out Poky from Master and tried to build core-im=
+age-minimal.<br>
+&gt; &gt;&gt;&gt; do_rootfs failed on the libffi dependency [1]. Is that kn=
+own/expected?<br>
+&gt; &gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt; =A0This is interesting, I just tried it also, and it is w=
+orking, see below.<br>
+&gt; &gt;&gt;<br>
+&gt; &gt;&gt;<br>
+&gt; &gt;&gt; =A0:rjs<br>
+&gt; &gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt; --------<br>
+&gt; &gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt; [1]<br>
+&gt; &gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt; bitbake core-image-minimal<br>
+&gt; &gt;&gt;&gt; Loading cache: 100%<br>
+</div>&gt; &gt;&gt;&gt; |#############################**###################=
+###########**<br>
+<div class=3D"im">&gt; &gt;&gt;&gt; #####################|<br>
+&gt; &gt;&gt;&gt; ETA: =A000:00:00<br>
+&gt; &gt;&gt;&gt; Loaded 1131 entries from dependency cache.<br>
+&gt; &gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt; Build Configuration:<br>
+&gt; &gt;&gt;&gt; BB_VERSION =A0 =A0 =A0 =A0=3D &quot;1.16.0&quot;<br>
+&gt; &gt;&gt;&gt; TARGET_ARCH =A0 =A0 =A0 =3D &quot;i586&quot;<br>
+&gt; &gt;&gt;&gt; TARGET_OS =A0 =A0 =A0 =A0 =3D &quot;linux&quot;<br>
+&gt; &gt;&gt;&gt; MACHINE =A0 =A0 =A0 =A0 =A0 =3D &quot;qemux86&quot;<br>
+&gt; &gt;&gt;&gt; DISTRO =A0 =A0 =A0 =A0 =A0 =A0=3D &quot;poky&quot;<br>
+&gt; &gt;&gt;&gt; DISTRO_VERSION =A0 =A0=3D &quot;1.2+snapshot-20121003&quo=
+t;<br>
+&gt; &gt;&gt;&gt; TUNE_FEATURES =A0 =A0 =3D &quot;m32 i586&quot;<br>
+&gt; &gt;&gt;&gt; TARGET_FPU =A0 =A0 =A0 =A0=3D &quot;&quot;<br>
+&gt; &gt;&gt;&gt; meta<br>
+&gt; &gt;&gt;&gt; meta-yocto<br>
+</div>&gt; &gt;&gt;&gt; meta-yocto-bsp =A0 =A0=3D &quot;master:**09aaad16be=
+178bd675750aa6cfe7a3**<br>
+<div class=3D"im">&gt; &gt;&gt;&gt; 73d7c9a8a6&quot;<br>
+&gt; &gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt; NOTE: Resolving any missing task queue dependencies<br>
+&gt; &gt;&gt;&gt; NOTE: Preparing runqueue<br>
+&gt; &gt;&gt;&gt; NOTE: Executing SetScene Tasks<br>
+&gt; &gt;&gt;&gt; NOTE: Executing RunQueue Tasks<br>
+&gt; &gt;&gt;&gt; ERROR: Function failed: do_rootfs (see<br>
+</div>&gt; &gt;&gt;&gt; /data/Develop/yocto-develop/**x86/tmp/work/qemux86-=
+poky-**<br>
+&gt; &gt;&gt;&gt; linux/core-image-minimal-1.0-**r0/temp/log.do_rootfs.2955=
+9<br>
+<div class=3D"im">&gt; &gt;&gt;&gt; for further information)<br>
+&gt; &gt;&gt;&gt; ERROR: Logfile of failure stored in:<br>
+</div>&gt; &gt;&gt;&gt; /data/Develop/yocto-develop/**x86/tmp/work/qemux86-=
+poky-**<br>
+&gt; &gt;&gt;&gt; linux/core-image-minimal-1.0-**r0/temp/log.do_rootfs.2955=
+9<br>
+<div class=3D"im">&gt; &gt;&gt;&gt; Log data follows:<br>
+&gt; &gt;&gt;&gt; | DEBUG: Executing shell function do_rootfs<br>
+&gt; &gt;&gt;&gt; | Generating solve db for<br>
+</div>&gt; &gt;&gt;&gt; /data/Develop/yocto-develop/**x86/tmp/deploy/rpm/qe=
+mux86...<br>
+&gt; &gt;&gt;&gt; | Generating solve db for<br>
+&gt; &gt;&gt;&gt; /data/Develop/yocto-develop/**x86/tmp/deploy/rpm/i586...<=
+br>
+&gt; &gt;&gt;&gt; | Generating solve db for<br>
+&gt; &gt;&gt;&gt; /data/Develop/yocto-develop/**x86/tmp/deploy/rpm/all...<b=
+r>
+&gt; &gt;&gt;&gt; | Generating solve db for<br>
+&gt; &gt;&gt;&gt; /data/Develop/yocto-develop/**x86/tmp/deploy/rpm/all...<b=
+r>
+&gt; &gt;&gt;&gt; | Processing packagegroup-core-tools-**profile...<br>
+&gt; &gt;&gt;&gt; | Processing packagegroup-core-boot...<br>
+&gt; &gt;&gt;&gt; | Processing packagegroup-core-tools-**testapps...<br>
+&gt; &gt;&gt;&gt; | Processing packagegroup-core-tools-debug.**..<br>
+<div class=3D"im">&gt; &gt;&gt;&gt; | error: Failed dependencies:<br>
+&gt; &gt;&gt;&gt; | =A0 =A0 =A0 libffi.so.5 is needed by lttng-viewer-0.12.=
+38-r3.i586<br>
+&gt; &gt;&gt;&gt; | =A0 =A0 =A0 libffi.so.5 is needed by<br>
+</div>&gt; &gt;&gt;&gt; clutter-box2d-0.12.1+git1+**de5452e56b537a11fd7f945=
+3d048ff**<br>
+&gt; &gt;&gt;&gt; 4b4793b5a2-r1.qemux86<br>
+&gt; &gt;&gt;&gt; | =A0 =A0 =A0 libffi.so.5 is needed by<br>
+&gt; &gt;&gt;&gt; libowl-av0-0.1+git1+**03030c41ea578cfa74a2ffceb87567**5b2=
+48318ae-r3.i586<br>
+&gt; &gt;&gt;&gt; | =A0 =A0 =A0 libffi.so.5 is needed by libclutter-glx-1.0=
+-0-1.8.4-r2.**i586<br>
+<div class=3D"im">&gt; &gt;&gt;&gt; | ERROR: Function failed: do_rootfs (se=
+e<br>
+</div>&gt; &gt;&gt;&gt; /data/Develop/yocto-develop/**x86/tmp/work/qemux86-=
+poky-**<br>
+&gt; &gt;&gt;&gt; linux/core-image-minimal-1.0-**r0/temp/log.do_rootfs.2955=
+9<br>
+<div class=3D"im">&gt; &gt;&gt;&gt; for further information)<br>
+&gt; &gt;&gt;&gt; ERROR: Task 7<br>
+</div>&gt; &gt;&gt;&gt; (/data/Develop/yocto-develop/**poky/meta/recipes-co=
+re/images/**<br>
+&gt; &gt;&gt;&gt; <a href=3D"http://core-image-minimal.bb" target=3D"_blank=
+">core-image-minimal.bb</a> &lt;<a href=3D"http://core-image-minimal.bb" ta=
+rget=3D"_blank">http://core-image-minimal.bb</a>&gt;<br>
+&gt; &gt;&gt;&gt; &lt;<a href=3D"http://core-image-minimal.bb" target=3D"_b=
+lank">http://core-image-minimal.bb</a>&gt;**, do_rootfs) failed with exit c=
+ode &#39;1&#39;<br>
+<div class=3D"im">&gt; &gt;&gt;&gt; NOTE: Tasks Summary: Attempted 3891 tas=
+ks of which 3890 didn&#39;t need to<br>
+&gt; &gt;&gt;&gt; be rerun and 1 failed.<br>
+&gt; &gt;&gt;&gt; No currently running tasks (3890 of 3892)<br>
+&gt; &gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt; =A0The number of tasks and including lttng-viewer and clu=
+tter seems to be<br>
+&gt; &gt;&gt; lartger than core-image-minimal, do you have anything in the =
+local.conf?<br>
+&gt; &gt;&gt;<br>
+&gt; &gt;&gt; Sau!<br>
+&gt; &gt;&gt;<br>
+&gt; &gt;&gt; =A0Summary: 1 task failed:<br>
+&gt; &gt;&gt;&gt;<br>
+</div>&gt; &gt;&gt;&gt; /data/Develop/yocto-develop/**poky/meta/recipes-cor=
+e/images/**<br>
+&gt; &gt;&gt;&gt; <a href=3D"http://core-image-minimal.bb" target=3D"_blank=
+">core-image-minimal.bb</a> &lt;<a href=3D"http://core-image-minimal.bb" ta=
+rget=3D"_blank">http://core-image-minimal.bb</a>&gt;<br>
+&gt; &gt;&gt;&gt; &lt;<a href=3D"http://core-image-minimal.bb" target=3D"_b=
+lank">http://core-image-minimal.bb</a>&gt;**, do_rootfs<br>
+<div class=3D"im">&gt; &gt;&gt;&gt; Summary: There was 1 ERROR message show=
+n, returning a non-zero exit code.<br>
+&gt; &gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt;<br>
+</div>&gt; &gt;&gt;&gt; ______________________________**_________________<b=
+r>
+&gt; &gt;&gt;&gt; yocto mailing list<br>
+&gt; &gt;&gt;&gt; <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproj=
+ect.org</a><br>
+&gt; &gt;&gt;&gt; <a href=3D"https://lists.yoctoproject." target=3D"_blank"=
+>https://lists.yoctoproject.</a>**org/listinfo/yocto&lt;<a href=3D"https://=
+lists.yoctoproject.org/listinfo/yocto" target=3D"_blank">https://lists.yoct=
+oproject.org/listinfo/yocto</a>&gt;<br>
 
---90e6ba6e8e1cfd2d2804cb4058a1--
+<div class=3D"HOEnZb"><div class=3D"h5">&gt; &gt;&gt;&gt;<br>
+&gt; &gt;&gt;&gt;<br>
+&gt; &gt; _______________________________________________<br>
+&gt; &gt; yocto mailing list<br>
+&gt; &gt; <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org<=
+/a><br>
+&gt; &gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=
+=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+&gt; &gt;<br>
+&gt; &gt;<br>
+<br>
+&gt; _______________________________________________<br>
+&gt; yocto mailing list<br>
+&gt; <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><b=
+r>
+&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_b=
+lank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+<br>
+<br>
+</div></div><span class=3D"HOEnZb"><font color=3D"#888888">--<br>
+Martin &#39;JaMa&#39; Jansa =A0 =A0 jabber: <a href=3D"mailto:Martin.Jansa@=
+gmail.com">Martin.Jansa@gmail.com</a><br>
+</font></span></blockquote></div><br></div>
+
+--14dae93408cf2c5dec04cb407dd4--
