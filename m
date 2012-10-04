@@ -1,19 +1,30 @@
-Return-Path: <andrei.adrianx.dinu@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D3466E00717
-	for <yocto@yoctoproject.org>; Thu,  4 Oct 2012 03:13:08 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 04 Oct 2012 03:13:08 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,533,1344236400"; d="scan'208";a="219867481"
-Received: from adinu-vostro-460 (HELO localhost.localdomain) ([10.237.105.39])
-	by orsmga002.jf.intel.com with ESMTP; 04 Oct 2012 03:13:07 -0700
-From: Andrei Dinu <andrei.adrianx.dinu@intel.com>
-To: yocto@yoctoproject.org
-Date: Thu,  4 Oct 2012 13:13:51 +0300
-Message-Id: <1349345631-746-1-git-send-email-andrei.adrianx.dinu@intel.com>
-X-Mailer: git-send-email 1.7.9.5
-Subject: [PATCH] gypsy: removed dependencies in meta-yocto
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
+	[93.97.173.237])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 55365E00717
+	for <yocto@yoctoproject.org>; Thu,  4 Oct 2012 04:03:23 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q94B3JZ9006075;
+	Thu, 4 Oct 2012 12:03:19 +0100
+Received: from tim.rpsys.net ([127.0.0.1])
+	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
+	port 10024) with LMTP
+	id 05653-05; Thu,  4 Oct 2012 12:03:15 +0100 (BST)
+Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q94B39Of006064
+	(version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=NO);
+	Thu, 4 Oct 2012 12:03:10 +0100
+Message-ID: <1349348593.18301.83.camel@ted>
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: "Szankin, Maciej" <maciej.szankin@intel.com>
+Date: Thu, 04 Oct 2012 12:03:13 +0100
+In-Reply-To: <4D6A41946CB68D4EBC0E4378E53ED77F3AC7D7@IRSMSX104.ger.corp.intel.com>
+References: <4D6A41946CB68D4EBC0E4378E53ED77F3AC7D7@IRSMSX104.ger.corp.intel.com>
+X-Mailer: Evolution 3.2.3-0ubuntu6 
+Mime-Version: 1.0
+X-Virus-Scanned: amavisd-new at rpsys.net
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: eglibc fails to build
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -25,41 +36,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 04 Oct 2012 10:13:08 -0000
+X-List-Received-Date: Thu, 04 Oct 2012 11:03:23 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-removed all the depenencies of gypsy in meta-yocto.
+On Thu, 2012-10-04 at 10:02 +0000, Szankin, Maciej wrote:
+> Hi,
+> I’m having a hard time building yocto.
+> I’m trying to build a tiny-poky / core-image-rt , but it doesn’t even
+> matter as in every configuration it just fails on eglibc.
+> Target architecture is x86.
+>  
+> I will keep it clean so the error log returned by build is here ->
+> http://pastebin.com/RNv5u8H8
+>
+> I think that only the last line are what matters the most. The only
+> issue that I see is multiple reference (starts @ 241 line).
+>  
+> Before this I had problems with building elfutils but adding
+> libc-ftraverse and libc-posix-clang-wchar to
+> DISTRO_FEATURES_LIBC_DEFAULTS fixed this.
+>  
+> Is there anything that I can do with eglibc?
 
-Signed-off-by: Andrei Dinu <andrei.adrianx.dinu@intel.com>
----
- meta-yocto/conf/distro/include/maintainers.inc     |    1 -
- .../distro/include/poky-floating-revisions.inc     |    1 -
- 2 files changed, 2 deletions(-)
+It sounds like those libc options you've added have some dependencies or
+other configuration you're missing. I'm not sure what those are but it
+definitely looks like an unsupported set of eglibc configuration options
+combinations.
 
-diff --git a/meta-yocto/conf/distro/include/maintainers.inc b/meta-yocto/conf/distro/include/maintainers.inc
-index 38b6974..288557b 100644
---- a/meta-yocto/conf/distro/include/maintainers.inc
-+++ b/meta-yocto/conf/distro/include/maintainers.inc
-@@ -225,7 +225,6 @@ RECIPE_MAINTAINER_pn-guile = "Bogdan Marinescu <bogdan.a.marinescu@intel.com>"
- RECIPE_MAINTAINER_pn-gupnp = "Radu Moisan <radu.moisan@intel.com>"
- RECIPE_MAINTAINER_pn-gupnp-av = "Cristian Iorga <cristian.iorga@intel.com>"
- RECIPE_MAINTAINER_pn-gupnp-tools = "Cristian Iorga <cristian.iorga@intel.com>"
--RECIPE_MAINTAINER_pn-gypsy = "Cristian Iorga <cristian.iorga@intel.com>"
- RECIPE_MAINTAINER_pn-gzip = "Scott Garman <scott.a.garman@intel.com>"
- RECIPE_MAINTAINER_pn-hal = "Saul Wold <sgw@linux.intel.com>"
- RECIPE_MAINTAINER_pn-hal-info = "Saul Wold <sgw@linux.intel.com>"
-diff --git a/meta-yocto/conf/distro/include/poky-floating-revisions.inc b/meta-yocto/conf/distro/include/poky-floating-revisions.inc
-index af8ef11..6f6ee90 100644
---- a/meta-yocto/conf/distro/include/poky-floating-revisions.inc
-+++ b/meta-yocto/conf/distro/include/poky-floating-revisions.inc
-@@ -45,7 +45,6 @@ SRCREV_pn-xvideo-tests ?= "${AUTOREV}"
- SRCREV_pn-clutter ?= "${AUTOREV}"
- SRCREV_pn-clutter-gst ?= "${AUTOREV}"
- SRCREV_pn-gaku ?= "${AUTOREV}"
--SRCREV_pn-gypsy ?= "${AUTOREV}"
- #SRCREV_pn-webkit-gtk ?= "${AUTOREV}"
- SRCREV_pn-aaina ?= "${AUTOREV}"
- SRCREV_pn-clutter-cairo ?= "${AUTOREV}"
--- 
-1.7.9.5
+Cheers,
+
+Richard
+
 
 
