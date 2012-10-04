@@ -1,23 +1,24 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 71C05E00524
-	for <yocto@yoctoproject.org>; Wed,  3 Oct 2012 17:59:07 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 03 Oct 2012 17:59:07 -0700
+Return-Path: <sgw@linux.intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F0D96E00717
+	for <yocto@yoctoproject.org>; Wed,  3 Oct 2012 18:35:12 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 03 Oct 2012 18:35:12 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,530,1344236400"; d="scan'208";a="230275751"
-Received: from unknown (HELO localhost) ([10.255.14.37])
-	by fmsmga002.fm.intel.com with ESMTP; 03 Oct 2012 17:59:06 -0700
-From: tom.zanussi@intel.com
-To: yocto@yoctoproject.org
-Date: Wed,  3 Oct 2012 19:59:02 -0500
-Message-Id: <f0d4020ff592d1d97c50ed1dafa6b96d8150b2d7.1349312169.git.tom.zanussi@intel.com>
-X-Mailer: git-send-email 1.7.11.4
-In-Reply-To: <840b7bb756a39e297c60b9b68773b69ee009cc33.1349312169.git.tom.zanussi@intel.com>
-References: <840b7bb756a39e297c60b9b68773b69ee009cc33.1349312169.git.tom.zanussi@intel.com>
-In-Reply-To: <cover.1349312169.git.tom.zanussi@intel.com>
-References: <cover.1349312169.git.tom.zanussi@intel.com>
-Subject: [PATCH 3/3] meta-crownbay: remove 3.0 kernel support
+X-IronPort-AV: E=Sophos;i="4.80,531,1344236400"; d="scan'208";a="200305321"
+Received: from unknown (HELO [10.255.13.203]) ([10.255.13.203])
+	by azsmga001.ch.intel.com with ESMTP; 03 Oct 2012 18:35:11 -0700
+Message-ID: <506CE7CF.6000500@linux.intel.com>
+Date: Wed, 03 Oct 2012 18:35:11 -0700
+From: Saul Wold <sgw@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:15.0) Gecko/20120911 Thunderbird/15.0.1
+MIME-Version: 1.0
+To: Rudolf Streif <rudolf.streif@linux.com>
+References: <CA+gsK-oEmJJHQo1BHYfr1CZS3KbjiG8piMV30EodDGOFrEpaLA@mail.gmail.com>
+In-Reply-To: <CA+gsK-oEmJJHQo1BHYfr1CZS3KbjiG8piMV30EodDGOFrEpaLA@mail.gmail.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: [Poky] Baking core-image-minimal with Poky from Master fails with libffi dependency
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,71 +30,98 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 04 Oct 2012 00:59:07 -0000
+X-List-Received-Date: Thu, 04 Oct 2012 01:35:13 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: Tom Zanussi <tom.zanussi@intel.com>
+On 10/03/2012 04:21 PM, Rudolf Streif wrote:
+> I checked out Poky from Master and tried to build core-image-minimal.
+> do_rootfs failed on the libffi dependency [1]. Is that known/expected?
+>
+This is interesting, I just tried it also, and it is working, see below.
 
-There's no need to support linux-yocto-3.0 for crownbay any more, so
-remove the 3.0 bbappends.
 
-Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
----
- .../recipes-kernel/linux/linux-yocto-rt_3.0.bbappend | 20 --------------------
- .../recipes-kernel/linux/linux-yocto_3.0.bbappend    | 17 -----------------
- 2 files changed, 37 deletions(-)
- delete mode 100644 meta-crownbay/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
- delete mode 100644 meta-crownbay/recipes-kernel/linux/linux-yocto_3.0.bbappend
+> :rjs
+>
+> --------
+>
+> [1]
+>
+> bitbake core-image-minimal
+> Loading cache: 100%
+> |################################################################################|
+> ETA:  00:00:00
+> Loaded 1131 entries from dependency cache.
+>
+> Build Configuration:
+> BB_VERSION        = "1.16.0"
+> TARGET_ARCH       = "i586"
+> TARGET_OS         = "linux"
+> MACHINE           = "qemux86"
+> DISTRO            = "poky"
+> DISTRO_VERSION    = "1.2+snapshot-20121003"
+> TUNE_FEATURES     = "m32 i586"
+> TARGET_FPU        = ""
+> meta
+> meta-yocto
+> meta-yocto-bsp    = "master:09aaad16be178bd675750aa6cfe7a373d7c9a8a6"
+>
+> NOTE: Resolving any missing task queue dependencies
+> NOTE: Preparing runqueue
+> NOTE: Executing SetScene Tasks
+> NOTE: Executing RunQueue Tasks
+> ERROR: Function failed: do_rootfs (see
+> /data/Develop/yocto-develop/x86/tmp/work/qemux86-poky-linux/core-image-minimal-1.0-r0/temp/log.do_rootfs.29559
+> for further information)
+> ERROR: Logfile of failure stored in:
+> /data/Develop/yocto-develop/x86/tmp/work/qemux86-poky-linux/core-image-minimal-1.0-r0/temp/log.do_rootfs.29559
+> Log data follows:
+> | DEBUG: Executing shell function do_rootfs
+> | Generating solve db for
+> /data/Develop/yocto-develop/x86/tmp/deploy/rpm/qemux86...
+> | Generating solve db for
+> /data/Develop/yocto-develop/x86/tmp/deploy/rpm/i586...
+> | Generating solve db for
+> /data/Develop/yocto-develop/x86/tmp/deploy/rpm/all...
+> | Generating solve db for
+> /data/Develop/yocto-develop/x86/tmp/deploy/rpm/all...
+> | Processing packagegroup-core-tools-profile...
+> | Processing packagegroup-core-boot...
+> | Processing packagegroup-core-tools-testapps...
+> | Processing packagegroup-core-tools-debug...
+> | error: Failed dependencies:
+> |       libffi.so.5 is needed by lttng-viewer-0.12.38-r3.i586
+> |       libffi.so.5 is needed by
+> clutter-box2d-0.12.1+git1+de5452e56b537a11fd7f9453d048ff4b4793b5a2-r1.qemux86
+> |       libffi.so.5 is needed by
+> libowl-av0-0.1+git1+03030c41ea578cfa74a2ffceb875675b248318ae-r3.i586
+> |       libffi.so.5 is needed by libclutter-glx-1.0-0-1.8.4-r2.i586
+> | ERROR: Function failed: do_rootfs (see
+> /data/Develop/yocto-develop/x86/tmp/work/qemux86-poky-linux/core-image-minimal-1.0-r0/temp/log.do_rootfs.29559
+> for further information)
+> ERROR: Task 7
+> (/data/Develop/yocto-develop/poky/meta/recipes-core/images/core-image-minimal.bb
+> <http://core-image-minimal.bb>, do_rootfs) failed with exit code '1'
+> NOTE: Tasks Summary: Attempted 3891 tasks of which 3890 didn't need to
+> be rerun and 1 failed.
+> No currently running tasks (3890 of 3892)
+>
+The number of tasks and including lttng-viewer and clutter seems to be 
+lartger than core-image-minimal, do you have anything in the local.conf?
 
-diff --git a/meta-crownbay/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend b/meta-crownbay/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
-deleted file mode 100644
-index dee9bce..0000000
---- a/meta-crownbay/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
-+++ /dev/null
-@@ -1,20 +0,0 @@
--FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
--
--COMPATIBLE_MACHINE_crownbay-noemgd = "crownbay-noemgd"
--KMACHINE_crownbay-noemgd = "crownbay"
--
--KERNEL_FEATURES_append_crownbay-noemgd += " cfg/smp.scc"
--
--COMPATIBLE_MACHINE_crownbay = "crownbay"
--KMACHINE_crownbay = "crownbay"
--
--KERNEL_FEATURES_append_crownbay += " cfg/smp.scc"
--
--# Update the following to use a different BSP branch or meta SRCREV
--#KBRANCH_crownbay-noemgd = "yocto/standard/preempt-rt/base"
--#SRCREV_machine_pn-linux-yocto-rt_crownbay-noemgd ?= XXXX
--#SRCREV_meta_pn-linux-yocto-rt_crownbay-noemgd ?= XXXX
--
--#KBRANCH_crownbay = "yocto/standard/preempt-rt/base"
--#SRCREV_machine_pn-linux-yocto-rt_crownbay ?= XXXX
--#SRCREV_meta_pn-linux-yocto-rt_crownbay ?= XXXX
-diff --git a/meta-crownbay/recipes-kernel/linux/linux-yocto_3.0.bbappend b/meta-crownbay/recipes-kernel/linux/linux-yocto_3.0.bbappend
-deleted file mode 100644
-index 0c92871..0000000
---- a/meta-crownbay/recipes-kernel/linux/linux-yocto_3.0.bbappend
-+++ /dev/null
-@@ -1,17 +0,0 @@
--FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
--
--COMPATIBLE_MACHINE_crownbay = "crownbay"
--KMACHINE_crownbay  = "crownbay"
--KBRANCH_crownbay  = "yocto/standard/crownbay"
--KERNEL_FEATURES_append_crownbay += " cfg/smp.scc"
--
--COMPATIBLE_MACHINE_crownbay-noemgd = "crownbay-noemgd"
--KMACHINE_crownbay-noemgd  = "crownbay"
--KBRANCH_crownbay-noemgd  = "yocto/standard/crownbay"
--KERNEL_FEATURES_append_crownbay-noemgd += " cfg/smp.scc"
--
--SRCREV_machine_pn-linux-yocto_crownbay ?= "63c65842a3a74e4bd3128004ac29b5639f16433f"
--SRCREV_meta_pn-linux-yocto_crownbay ?= "59314a3523e360796419d76d78c6f7d8c5ef2593"
--
--SRCREV_machine_pn-linux-yocto_crownbay-noemgd ?= "63c65842a3a74e4bd3128004ac29b5639f16433f"
--SRCREV_meta_pn-linux-yocto_crownbay-noemgd ?= "59314a3523e360796419d76d78c6f7d8c5ef2593"
--- 
-1.7.11.4
+Sau!
 
+> Summary: 1 task failed:
+>
+> /data/Develop/yocto-develop/poky/meta/recipes-core/images/core-image-minimal.bb
+> <http://core-image-minimal.bb>, do_rootfs
+> Summary: There was 1 ERROR message shown, returning a non-zero exit code.
+>
+>
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
