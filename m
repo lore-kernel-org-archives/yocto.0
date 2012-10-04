@@ -1,23 +1,36 @@
-Return-Path: <nitin.a.kamble@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6AAE3E01471
-	for <yocto@yoctoproject.org>; Thu,  4 Oct 2012 13:17:53 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 04 Oct 2012 13:17:51 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,537,1344236400"; d="scan'208";a="220318503"
-Received: from yocto-hm1.jf.intel.com ([10.23.232.32])
-	by orsmga002.jf.intel.com with ESMTP; 04 Oct 2012 13:17:51 -0700
-From: nitin.a.kamble@intel.com
-To: darren.hart@intel.com,
-	tom.zanussi@intel.com,
-	yocto@yoctoproject.org
-Date: Thu,  4 Oct 2012 13:16:39 -0700
-Message-Id: <452bc6fac7feb05204b3a4134269e312da565f18.1349381455.git.nitin.a.kamble@intel.com>
-X-Mailer: git-send-email 1.7.3.4
-In-Reply-To: <cover.1349381455.git.nitin.a.kamble@intel.com>
-References: <cover.1349381455.git.nitin.a.kamble@intel.com>
-Subject: [PATCH 1/1] crownbay.conf: add kernel parameters for EMGD video acceleration
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-ee0-f48.google.com (mail-ee0-f48.google.com [74.125.83.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1EFC1E01471
+	for <yocto@yoctoproject.org>; Thu,  4 Oct 2012 13:22:39 -0700 (PDT)
+Received: by mail-ee0-f48.google.com with SMTP id b45so884538eek.35
+	for <yocto@yoctoproject.org>; Thu, 04 Oct 2012 13:22:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=A0yO5jejh0RrpHBFUyim5BpuXpjERCelkMUYxetxBDc=;
+	b=oq0sdD+5odL5aFK+C/N/lod44l4bUbGxo2r/9cBxGxuFhYr4Ib+jNhBTo4/8ACO/ti
+	yEH2YKeasEoI6v2aLQdi7YoknMwSf0j5z7ZOgDMyyFZ+WColedgJA6z514vYKxqV4YR4
+	1UYNtnTYx5/iDhUbKCJzihLMPZ6azFIAlRgC7UHwgeohjeto7DJRR5YhJL7uZrOiuvGB
+	ze2YWhlfmayo15JgcPtilES3/sjcTZ20hZDFZ5Il2Bvq+FAJz+xGv6KRQr03Uk1/1jc8
+	wTBIBGZue6dUTrB0QvC9mVRzyaxzFV3jXPPF+1w/g4O1d0DwVEOlJgJMZu8kFOnJfaJU
+	v0Ag==
+Received: by 10.14.211.3 with SMTP id v3mr9966372eeo.43.1349382158802; Thu, 04
+	Oct 2012 13:22:38 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.14.173.69 with HTTP; Thu, 4 Oct 2012 13:22:08 -0700 (PDT)
+In-Reply-To: <CA+gsK-qgQOEbBaoaqSkfOoX6zH14AcTspjFdEC2Y6QLURQEHEw@mail.gmail.com>
+References: <CA+gsK-oEmJJHQo1BHYfr1CZS3KbjiG8piMV30EodDGOFrEpaLA@mail.gmail.com>
+	<506CE7CF.6000500@linux.intel.com>
+	<CA+gsK-r9-H853RFWkhSWORCC3i7zW+KT6Q6UquXa6Sph2--0aw@mail.gmail.com>
+	<CAK18fxHT3qTTf_qMC7RiynTrPpJHVkkmw76PWV2qDKKFDi=2Qg@mail.gmail.com>
+	<20121004082230.GB3005@jama.jama.net>
+	<CA+gsK-qgQOEbBaoaqSkfOoX6zH14AcTspjFdEC2Y6QLURQEHEw@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Thu, 4 Oct 2012 13:22:08 -0700
+Message-ID: <CAMKF1srvz7NrDaVx3D1U-efD0QdcUYnN-i27pUM8kosVKdOQ-g@mail.gmail.com>
+To: Rudolf Streif <rudolf.streif@linux.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [Poky] Baking core-image-minimal with Poky from Master fails with libffi dependency
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,31 +42,15 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 04 Oct 2012 20:17:53 -0000
+X-List-Received-Date: Thu, 04 Oct 2012 20:22:40 -0000
+Content-Type: text/plain; charset=UTF-8
 
-From: Nitin A Kamble <nitin.a.kamble@intel.com>
+On Thu, Oct 4, 2012 at 12:09 PM, Rudolf Streif <rudolf.streif@linux.com> wrote:
+> I eventually had to clean out the sstate-cache to make it work. Not a big
+> deal and not probably not worth any further investigation. Thanks for
+> helping.
 
-This is recommended in the EMGD User Guide.
-
-Signed-off-by: Nitin A Kamble <nitin.a.kamble@intel.com>
----
- meta-crownbay/conf/machine/crownbay.conf |    2 +-
- 1 files changed, 1 insertions(+), 1 deletions(-)
-
-diff --git a/meta-crownbay/conf/machine/crownbay.conf b/meta-crownbay/conf/machine/crownbay.conf
-index 40dbd1d..f02615e 100644
---- a/meta-crownbay/conf/machine/crownbay.conf
-+++ b/meta-crownbay/conf/machine/crownbay.conf
-@@ -21,7 +21,7 @@ PREFERRED_VERSION_xserver-xorg ?= "1.9.3"
- PREFERRED_VERSION_mesa-dri ?= "7.11"
- PREFERRED_VERSION_xf86-input-evdev ?= "2.6.0"
- 
--APPEND += "video=vesafb vga=0x318"
-+APPEND += "vga=current vmalloc=256MB"
- 
- VA_FEATURES = "${@bb.utils.contains("LICENSE_FLAGS_WHITELIST", \
- 	    "commercial", "gst-va-intel va-intel", "va-intel", d)}"
--- 
-1.7.3.4
-
+hmmm clearing sstate generally should not be needed. I wonder if there
+is something to fix here
+but now you have blown up you cache :)
 
