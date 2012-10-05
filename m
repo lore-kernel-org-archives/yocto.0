@@ -1,34 +1,31 @@
-Return-Path: <ramana.gollamudi@huawei.com>
-Received: from szxga01-in.huawei.com (szxga01-in.huawei.com [119.145.14.64])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 95DC2E0049B
-	for <yocto@yoctoproject.org>; Thu,  4 Oct 2012 21:52:56 -0700 (PDT)
-Received: from 172.24.2.119 (EHLO szxeml209-edg.china.huawei.com)
-	([172.24.2.119])
-	by szxrg01-dlp.huawei.com (MOS 4.3.4-GA FastPath queued)
-	with ESMTP id AQB15640; Fri, 05 Oct 2012 12:52:52 +0800 (CST)
-Received: from SZXEML419-HUB.china.huawei.com (10.82.67.158) by
-	szxeml209-edg.china.huawei.com (172.24.2.184) with Microsoft SMTP
-	Server (TLS) id 14.1.323.3; Fri, 5 Oct 2012 12:52:01 +0800
-Received: from SZXEML534-MBX.china.huawei.com ([169.254.2.70]) by
-	szxeml419-hub.china.huawei.com ([10.82.67.158]) with mapi id
-	14.01.0323.003; Fri, 5 Oct 2012 12:52:01 +0800
-From: Venkata ramana gollamudi <ramana.gollamudi@huawei.com>
-To: "peachj@lexmark.com" <peachj@lexmark.com>
-Thread-Topic: [yocto] How do you release distros produced with Yocto? How
-	should I? 
-Thread-Index: AQHNofNcHO/Z1JsyjEKUdDS+7bwbe5eqJEYt
-Date: Fri, 5 Oct 2012 04:52:01 +0000
-Message-ID: <36ED13F3654AE54CA763E6821D93A5711047AC6E@szxeml534-mbx.china.huawei.com>
-References: <36ED13F3654AE54CA763E6821D93A5711047AB47@szxeml534-mbx.china.huawei.com>
-In-Reply-To: <36ED13F3654AE54CA763E6821D93A5711047AB47@szxeml534-mbx.china.huawei.com>
-Accept-Language: en-US, zh-CN
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.18.96.93]
+Return-Path: <mihaix.lindner@linux.intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 48316E0049B
+	for <yocto@yoctoproject.org>; Fri,  5 Oct 2012 02:28:40 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 05 Oct 2012 02:28:39 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,541,1344236400"; d="scan'208";a="200897234"
+Received: from linux.jf.intel.com (HELO linux.intel.com) ([10.23.219.25])
+	by azsmga001.ch.intel.com with ESMTP; 05 Oct 2012 02:28:12 -0700
+Received: from [10.237.105.49] (mlindnex-mobl1.ger.corp.intel.com
+	[10.237.105.49])
+	by linux.intel.com (Postfix) with ESMTP id 1D6D22C8001;
+	Fri,  5 Oct 2012 02:28:12 -0700 (PDT)
+Message-ID: <506EA82B.3070803@linux.intel.com>
+Date: Fri, 05 Oct 2012 12:28:11 +0300
+From: Mihai Lindner <mihaix.lindner@linux.intel.com>
+Organization: Intel OTC
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
+	rv:15.0) Gecko/20120907 Thunderbird/15.0.1
 MIME-Version: 1.0
-X-CFilter-Loop: Reflected
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: How do you release distros produced with Yocto? How should I?
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+References: <cover.1349372542.git.mihaix.lindner@linux.intel.com>
+	<14ad4ba67528eeb935fe8e07e382463f8aa5685c.1349372542.git.mihaix.lindner@linux.intel.com>
+	<1594004.RBn6gvQsN0@helios>
+In-Reply-To: <1594004.RBn6gvQsN0@helios>
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH 1/1] meta-tlk: fix ignored SRC_URI appends
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,60 +37,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 05 Oct 2012 04:52:57 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 05 Oct 2012 09:28:40 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-On Tue, Oct 02, 2012 at 12:43:27PM -0400, Jerrod Peach wrote:
-> I was thinking about doing something very close to that in actual Yocto,
-> except I'd store only the revisions/branches that were different from wha=
-t
-> the bb file prescribed in local.conf.  I ran that idea by a couple of
-> colleagues separately and they both immediately pointed out a concern: th=
-ey
-> didn't want to have two different places that could manage the revision o=
-f
-> the package, i.e. local.conf and the package bb file.  They don't like ho=
-w
-> that works in the system we have today.  Instead, they wanted to branch a=
-ll
-> the metadata and have people update individual bb files with different
-> revisions as necessary.  That leaves only one place to manage the revisio=
-n:
-> the package bb file.  Doing all that branching concerns me (it seems
-> heavier-weight than it needs to be, at the very least), but I can't say
-> specifically why branching the bb files is harmful.  If you guys can thin=
-k
-> of a reason why, let me know.  If you think it's reasonable, let me know
-> that too.
+On 2012-10-04 20:51, Paul Eggleton wrote:
+> Hi Mihai,
+> 
+> On Thursday 04 October 2012 20:47:08 Mihai Lindner wrote:
+>> Fix SRC_URI appends ignored by meta-cedartrail and meta-crownbay. Used
+>> SRC_URI_append instead of SRC_URI.
+>> Also placed all variables in an .inc file to be required by all
+>> linux-yocto recipes in here, since all versions use the same.
+>>
+>> [YOCTO #3217]
+>>
+>> Signed-off-by: Mihai Lindner <mihaix.lindner@linux.intel.com>
+>> ---
+>>  meta-tlk/recipes-kernel/linux/linux-yocto.inc          | 3 +++
+>>  meta-tlk/recipes-kernel/linux/linux-yocto_3.0.bbappend | 7 +------
+>>  meta-tlk/recipes-kernel/linux/linux-yocto_3.2.bbappend | 7 +------
+>>  meta-tlk/recipes-kernel/linux/linux-yocto_3.4.bbappend | 7 +------
+>>  4 files changed, 6 insertions(+), 18 deletions(-)
+>>  create mode 100644 meta-tlk/recipes-kernel/linux/linux-yocto.inc
+>>
+>> diff --git a/meta-tlk/recipes-kernel/linux/linux-yocto.inc
+>> b/meta-tlk/recipes-kernel/linux/linux-yocto.inc new file mode 100644
+>> index 0000000..96a3adf
+>> --- /dev/null
+>> +++ b/meta-tlk/recipes-kernel/linux/linux-yocto.inc
+>> @@ -0,0 +1,3 @@
+>> +FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+>> +SRC_URI_append += "file://time-limited-kernel.cfg"
+> 
+> You should use SRC_URI_append = " file://time-limited-kernel.cfg" (note leading 
+> space) here. Obviously what you have done does work, but we want to avoid 
+> _append += as it can be confusing.
+> 
+> Cheers,
+> Paul
+> 
+Hi Paul,
 
-We have solved this issue by adding OS_VERSION variable to local.conf
-Lets say your product (OS) should be released in versions, Ex: 1.0 , 1.1 or=
- 1.1.1 etc.
-Which is built from packages of different versions. So each package contain=
-s <pkgname>.inc and <package>_<version>.bb file.
-revision number and patches are maintained in <package>_<version>.bb and al=
-l common part under <package>.inc.
+Ok, good to know. I will resend.
+I was trying to avoid spaces in values and += fitted the description.
 
-Now the problem comes to mapping the package versions to your product(OS) v=
-ersion.
-This is done having a file included into disto file listing out all the PRE=
-FERRED_VERSIONS and PREFERRED_PROVIDERS for all packages.
-      ex: conf/disto/include/osversion_1.0.inc
-And this is included to disto file like
-      require conf/disto/include/osversion_${OS_VERSION}.inc
-
-The file osversion_1.0.inc is freezed after your one version release.
-Next version will add a new file osversion_1.1.inc overiding to pick all th=
-e required package version changes to make your product version.
-
-This will allow you to release multiple product(OS) versions and clearly ma=
-ps the package version, creating individual distributions.
-You can even build older version product by just giving OS_VERSION=3D1.0 in=
- local.conf
-This eliminates branching all together.
-
-Regards,
-Ramana=
+Thanks,
+-- 
+Mihai Lindner
 
