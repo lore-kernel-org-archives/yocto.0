@@ -1,22 +1,28 @@
-Return-Path: <tf+lists.yocto@r-finger.com>
-Received: from r-finger.com (r-finger.com [178.79.160.5])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 193AAE0049F
-	for <yocto@yoctoproject.org>; Fri,  5 Oct 2012 07:48:26 -0700 (PDT)
-Received: from [192.168.0.2] (host81-153-113-77.range81-153.btcentralplus.com
-	[81.153.113.77]) (using TLSv1 with cipher AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by r-finger.com (Postfix) with ESMTPSA id 432D399A4
-	for <yocto@yoctoproject.org>; Fri,  5 Oct 2012 15:48:24 +0100 (BST)
-Message-ID: <506EF337.6080303@r-finger.com>
-Date: Fri, 05 Oct 2012 15:48:23 +0100
-From: Tomas Frydrych <tf+lists.yocto@r-finger.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:10.0.5) Gecko/20120624 Icedove/10.0.5
+Return-Path: <evadeflow@gmail.com>
+Received: from mail-oa0-f48.google.com (mail-oa0-f48.google.com
+	[209.85.219.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 12F95E0049F
+	for <yocto@yoctoproject.org>; Fri,  5 Oct 2012 07:51:02 -0700 (PDT)
+Received: by mail-oa0-f48.google.com with SMTP id h2so2293995oag.35
+	for <yocto@yoctoproject.org>; Fri, 05 Oct 2012 07:51:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=FinoSGmEm+GLfterRooDNL5YA2w+QFD5vzTrie55Amo=;
+	b=w70xr1oii5D0mLKrkjdkFQhrJsHc32Eu77GWJSJaIuWoHVN7JjGHR0t/hToGxfLgid
+	lirzpO0vlzpjVI2ieKfrh+vcS72w0pWEaX2T3gybv8JdLmZmaLNVHGIan6Hk9tEr4onm
+	EqLZzMSPLXAT6clZT0gDDOwwhfc0fFUJqv8oLRGbuhHpWX9/QvjoX/GaEfHbTlm3oZmr
+	NwxAopGNaDgagKj92GDVbk6WUnQQGj5i2fD5kMW++Wnkr3hr4TzNBmDF8EFMa8088X+B
+	C4LscgshR5qTdEYnsWhMgi9ca69MvKsZA4RwP+q/ESa993rU9ql3gnmcIfi4tJIqVlJZ
+	m8OA==
 MIME-Version: 1.0
+Received: by 10.60.170.9 with SMTP id ai9mr7084629oec.36.1349448661357; Fri,
+	05 Oct 2012 07:51:01 -0700 (PDT)
+Received: by 10.76.167.165 with HTTP; Fri, 5 Oct 2012 07:51:01 -0700 (PDT)
+Date: Fri, 5 Oct 2012 10:51:01 -0400
+Message-ID: <CAMAb8ZPFz+Q72TVbKrqO+0Nu9a5ZJyJLLV9cdtw87YgC-mm6iQ@mail.gmail.com>
+From: Evade Flow <evadeflow@gmail.com>
 To: yocto@yoctoproject.org
-References: <506EE78B.6060607@balister.org>
-In-Reply-To: <506EE78B.6060607@balister.org>
-Subject: Re: Making recipes depend on specific layers
+Subject: HTTP-accessible poky repo?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,43 +34,15 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 05 Oct 2012 14:48:26 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 05 Oct 2012 14:51:02 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-Hi,
+I'd like to track yocto development more closely, but I'm stuck behind a
+restrictive HTTP-only firewall all day at work.  Is there an official
+(or unofficial-but-up-to-date), HTTP-accessible mirror of
+git://git.yoctoproject.org/poky.git I can clone from?
 
-On 05/10/12 14:58, Philip Balister wrote:
-> I run into problems (typically with BSP layers) where I want the layer
-> to build only against oe-core, but I also would like to have recipes
-> that depend on other layers. Typically, a "complex" image that uses
-> packages built from other layers.
-
-Not sure if I fully understood what you are trying to do, but I'd be
-worried about adding yet another dependency dimension to the system as a
-whole.
-
-Regarding the problems with coexisting bsp layers, I eventually came to
-the conclusion that it's best to avoid parsing any irrelevant bsp layers
-altogether. The way we handle this in Guacamayo is to keep the
-bsp-related recipes in dedicated directories that can be easily BBMASKed
-out:
-
-  recipes-bsp/ti-appends: for recipes related to meta-ti
-  recipes-bsp/rpi-appends: for recipes related to meta-raspberrypi
-
-For each machine we support we then have a machine conf that looks like
-this (e.g., for beagleboard.conf):
-
-  # source canonical beagleboard.conf from meta-ti
-  require ../../../layers/meta-ti/conf/machine/beagleboard.conf
-
-  BBMASK .= "|.*/meta-raspberrypi|.*/recipes-bsp/rpi-appends"
-
-Consequently for any given machine only a single bsp layer is ever
-parsed and the layers do not interfere with each other; this currently
-triggers a bitbake warning about no recipes being in the masked out
-layers, but other than does exactly what it is meant to.
-
-Tomas
+I can create a clone on github and run some cron scripts at home to sync
+it, but I'd rather not bother if there's already something like this out
+there...
 
