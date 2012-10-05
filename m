@@ -1,33 +1,22 @@
-Return-Path: <PatrickTurley@gamestop.com>
-Received: from GSIRONPORTA.gamestop.com (mail1.gamestop.com [12.25.107.28])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8E39EE0049D
-	for <yocto@yoctoproject.org>; Thu,  4 Oct 2012 17:58:17 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="4.80,538,1344229200"; d="scan'208";a="68141287"
-Received: from unknown (HELO GV1HQPEX01.babgsetc.pvt) ([172.22.1.244])
-	by GSIRONPORTA.gamestop.com with ESMTP; 04 Oct 2012 19:58:16 -0500
-Received: from GV1HQPEX03.babgsetc.pvt ([169.254.1.67]) by
-	GV1HQPEX01.babgsetc.pvt ([172.22.1.191]) with mapi id 14.02.0283.003;
-	Thu, 4 Oct 2012 19:58:16 -0500
-From: Patrick Turley <PatrickTurley@gamestop.com>
-To: Rudolf Streif <rudolf.streif@linux.com>
-Thread-Topic: [yocto] The BitBake equivalent of "Hello, World!"
-Thread-Index: AQHNobawsFl2O8i4ZUWCT5ZGDLdssJeoMR8AgABV3gCAASn/AIAAJAYAgABhXwCAAAMDgA==
-Date: Fri, 5 Oct 2012 00:58:15 +0000
-Message-ID: <42EC97C7-48C0-44C9-B349-46FDCD2128C1@gamestop.com>
-References: <CC9226B2.365%PatrickTurley@gamestop.com>
-	<CC922B79.368%PatrickTurley@gamestop.com>
-	<CA+gsK-o=VD7GLYsTHYvmhK4Ht5KeNFS=4=yHmxybeAN7M_nzDw@mail.gmail.com>
-	<6796989A-D845-4726-B47B-64B82F380444@gamestop.com>
-	<CA+gsK-p5gt0FuN4XbifdSjPv5pcnF6u=5bcrWAw9Ayd9WpUTYw@mail.gmail.com>
-	<1A527469-CEF5-434E-8604-540899C8BA04@gamestop.com>
-In-Reply-To: <1A527469-CEF5-434E-8604-540899C8BA04@gamestop.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.22.1.244]
-MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: The BitBake equivalent of "Hello, World!"
+Return-Path: <kishore.k.bodke@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6AD64E00524
+	for <yocto@yoctoproject.org>; Thu,  4 Oct 2012 18:03:42 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 04 Oct 2012 18:03:42 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,537,1344236400"; d="scan'208";a="201866821"
+Received: from kishore-desktop.sc.intel.com (HELO localhost)
+	([143.183.188.160])
+	by orsmga001.jf.intel.com with ESMTP; 04 Oct 2012 18:03:41 -0700
+From: kishore.k.bodke@intel.com
+To: tom.zanussi@intel.com,
+	nitin.a.kamble@intel.com,
+	yocto@yoctoproject.org
+Date: Thu,  4 Oct 2012 18:04:35 -0700
+Message-Id: <cover.1349398751.git.kishore.k.bodke@intel.com>
+X-Mailer: git-send-email 1.7.9.5
+Subject: [PATCH 0/2][meta-intel] Add a new recipe for Zlib QAT Kernel Module.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,23 +28,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 05 Oct 2012 00:58:17 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="Windows-1252"
-Content-ID: <29650450AAE00E469905ABDBA71AAFEB@gamestop.com>
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 05 Oct 2012 01:03:42 -0000
 
-And one final question: Have I been putting this on the wrong mailing list?
+From: Kishore Bodke <kishore.k.bodke@intel.com>
 
-I just discovered the mailing lists at OpenEmbedded, specifically:
+Hi,
 
-    bitbake-devel@lists.openembedded.org
+This patch set adds the new recipe for Zlib QAT Kernel Module for 
+building the Quick Assist Technology driver by adding it to the 
+custom Image.
 
-Apologies if I've been bothering the wrong people.
+Please pull into meta-intel/master.
 
-On Oct 4, 2012, at 7:47 PM, Patrick Turley <PatrickTurley@gamestop.com>
- wrote:
+Thanks
+Kishore.
 
-> *Very* helpful stuff.
+The following changes since commit bc6f631c1eaa7154e667325da8fd636a05628f87:
+
+  jasperforest: uprev v3.4 kernel commit ids (2012-10-04 14:21:55 -0500)
+
+are available in the git repository at:
+
+  git://git.pokylinux.org/meta-intel-contrib Kishore/Zlib-qat-module
+  http://git.pokylinux.org/cgit.cgi/meta-intel-contrib/log/?h=Kishore/Zlib-qat-module
+
+Kishore Bodke (2):
+  meta-crystalforest: Add a new recipe for Zlib QAT Kernel Module.
+  meta-crystalforest: Add zlib kernel module to the qat Image.
+
+ .../zlib-qat-module/zlib-qat-module.bb             |   53 +
+ .../zlib-1.2.7-qat.L.0.4.0-005.patch               | 8559 ++++++++++++++++++++
+ .../zlib-qat-module/zlib_qat_module.patch          |   27 +
+ .../recipes-qat-image/images/core-image-qat-sdk.bb |    1 +
+ .../recipes-qat-image/images/core-image-qat.bb     |    1 +
+ 5 files changed, 8641 insertions(+)
+ create mode 100644 common/recipes-core/zlib-qat-module/zlib-qat-module.bb
+ create mode 100644 common/recipes-core/zlib-qat-module/zlib-qat-module/zlib-1.2.7-qat.L.0.4.0-005.patch
+ create mode 100644 common/recipes-core/zlib-qat-module/zlib-qat-module/zlib_qat_module.patch
+
+-- 
+1.7.9.5
 
 
