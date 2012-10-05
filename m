@@ -1,43 +1,34 @@
-Return-Path: <rstreif@linuxfoundation.org>
-Received: from mail-ie0-f176.google.com (mail-ie0-f176.google.com
-	[209.85.223.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6315FE0049F
-	for <yocto@yoctoproject.org>; Thu,  4 Oct 2012 20:06:16 -0700 (PDT)
-Received: by mail-ie0-f176.google.com with SMTP id k11so3266203iea.35
-	for <yocto@yoctoproject.org>; Thu, 04 Oct 2012 20:06:16 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:date
-	:x-google-sender-auth:message-id:subject:from:to:cc:content-type
-	:x-gm-message-state;
-	bh=e6eUeq1BNTj3kBu/an+brm0YVzr82bE9iQLB/jMoW2o=;
-	b=inJuFZQsMJnaBgEp1htMopiu90ohWrs1FzZ+k3I8rfu31su0+RovL/wquGWHO4Th8z
-	7QCGvfvhHguganwi3hqrdNk3Oznco0SysYMQADUlXzMdWyMXPc/6Sq7q4+rrAQ/jHAf1
-	OKNvELvv2vJ1QaGpAAlRBKzXWHjVpkMWn7q4UZrPJQr4QTGnjz9Q3xHhLG7EkcLnphoR
-	O6ao+RbCWJAgAyWr8h6dJ532z8w1xPtiXdbeJvYr04WiqLSBz4BaIOiBtsfUbN7dHsOh
-	SWyxVSLcWcPm8Aw73meBiPQQENzHAgdHV610VdEiTXglQLTMVAh0ibeh6/1ThQQf3C+k
-	B4Ig==
+Return-Path: <ramana.gollamudi@huawei.com>
+Received: from szxga01-in.huawei.com (szxga01-in.huawei.com [119.145.14.64])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 95DC2E0049B
+	for <yocto@yoctoproject.org>; Thu,  4 Oct 2012 21:52:56 -0700 (PDT)
+Received: from 172.24.2.119 (EHLO szxeml209-edg.china.huawei.com)
+	([172.24.2.119])
+	by szxrg01-dlp.huawei.com (MOS 4.3.4-GA FastPath queued)
+	with ESMTP id AQB15640; Fri, 05 Oct 2012 12:52:52 +0800 (CST)
+Received: from SZXEML419-HUB.china.huawei.com (10.82.67.158) by
+	szxeml209-edg.china.huawei.com (172.24.2.184) with Microsoft SMTP
+	Server (TLS) id 14.1.323.3; Fri, 5 Oct 2012 12:52:01 +0800
+Received: from SZXEML534-MBX.china.huawei.com ([169.254.2.70]) by
+	szxeml419-hub.china.huawei.com ([10.82.67.158]) with mapi id
+	14.01.0323.003; Fri, 5 Oct 2012 12:52:01 +0800
+From: Venkata ramana gollamudi <ramana.gollamudi@huawei.com>
+To: "peachj@lexmark.com" <peachj@lexmark.com>
+Thread-Topic: [yocto] How do you release distros produced with Yocto? How
+	should I? 
+Thread-Index: AQHNofNcHO/Z1JsyjEKUdDS+7bwbe5eqJEYt
+Date: Fri, 5 Oct 2012 04:52:01 +0000
+Message-ID: <36ED13F3654AE54CA763E6821D93A5711047AC6E@szxeml534-mbx.china.huawei.com>
+References: <36ED13F3654AE54CA763E6821D93A5711047AB47@szxeml534-mbx.china.huawei.com>
+In-Reply-To: <36ED13F3654AE54CA763E6821D93A5711047AB47@szxeml534-mbx.china.huawei.com>
+Accept-Language: en-US, zh-CN
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.18.96.93]
 MIME-Version: 1.0
-Received: by 10.43.91.8 with SMTP id bk8mr6119838icc.35.1349406376023; Thu, 04
-	Oct 2012 20:06:16 -0700 (PDT)
-Sender: rstreif@linuxfoundation.org
-Received: by 10.64.27.197 with HTTP; Thu, 4 Oct 2012 20:06:15 -0700 (PDT)
-In-Reply-To: <42EC97C7-48C0-44C9-B349-46FDCD2128C1@gamestop.com>
-References: <CC9226B2.365%PatrickTurley@gamestop.com>
-	<CC922B79.368%PatrickTurley@gamestop.com>
-	<CA+gsK-o=VD7GLYsTHYvmhK4Ht5KeNFS=4=yHmxybeAN7M_nzDw@mail.gmail.com>
-	<6796989A-D845-4726-B47B-64B82F380444@gamestop.com>
-	<CA+gsK-p5gt0FuN4XbifdSjPv5pcnF6u=5bcrWAw9Ayd9WpUTYw@mail.gmail.com>
-	<1A527469-CEF5-434E-8604-540899C8BA04@gamestop.com>
-	<42EC97C7-48C0-44C9-B349-46FDCD2128C1@gamestop.com>
-Date: Thu, 4 Oct 2012 20:06:15 -0700
-X-Google-Sender-Auth: 7hQxjzRgUdh6oceNIn1D974cOBQ
-Message-ID: <CA+gsK-rUTOQ0mSaraMmGQn3vH3gyTPs429g=qfp5tA8eD8BVog@mail.gmail.com>
-From: Rudolf Streif <rudolf.streif@linux.com>
-To: Patrick Turley <PatrickTurley@gamestop.com>
-X-Gm-Message-State: ALoCoQmDe0qpXez/MGQ0N59wb6yFx3163Q2+mqqE19SsZhoiBObSiK60UqkX/Zu91EmVdhZCCfvk
+X-CFilter-Loop: Reflected
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: The BitBake equivalent of "Hello, World!"
+Subject: Re: How do you release distros produced with Yocto? How should I?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,26 +40,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 05 Oct 2012 03:06:16 -0000
-Content-Type: multipart/alternative; boundary=bcaec5186d12b3552204cb4727ea
+X-List-Received-Date: Fri, 05 Oct 2012 04:52:57 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
---bcaec5186d12b3552204cb4727ea
-Content-Type: text/plain; charset=ISO-8859-1
+On Tue, Oct 02, 2012 at 12:43:27PM -0400, Jerrod Peach wrote:
+> I was thinking about doing something very close to that in actual Yocto,
+> except I'd store only the revisions/branches that were different from wha=
+t
+> the bb file prescribed in local.conf.  I ran that idea by a couple of
+> colleagues separately and they both immediately pointed out a concern: th=
+ey
+> didn't want to have two different places that could manage the revision o=
+f
+> the package, i.e. local.conf and the package bb file.  They don't like ho=
+w
+> that works in the system we have today.  Instead, they wanted to branch a=
+ll
+> the metadata and have people update individual bb files with different
+> revisions as necessary.  That leaves only one place to manage the revisio=
+n:
+> the package bb file.  Doing all that branching concerns me (it seems
+> heavier-weight than it needs to be, at the very least), but I can't say
+> specifically why branching the bb files is harmful.  If you guys can thin=
+k
+> of a reason why, let me know.  If you think it's reasonable, let me know
+> that too.
 
-> And one final question: Have I been putting this on the wrong mailing
-list?
+We have solved this issue by adding OS_VERSION variable to local.conf
+Lets say your product (OS) should be released in versions, Ex: 1.0 , 1.1 or=
+ 1.1.1 etc.
+Which is built from packages of different versions. So each package contain=
+s <pkgname>.inc and <package>_<version>.bb file.
+revision number and patches are maintained in <package>_<version>.bb and al=
+l common part under <package>.inc.
 
-Possibly, kind of, but you would not have gotten my response because I do
-not follow to bitbake-devel :)
+Now the problem comes to mapping the package versions to your product(OS) v=
+ersion.
+This is done having a file included into disto file listing out all the PRE=
+FERRED_VERSIONS and PREFERRED_PROVIDERS for all packages.
+      ex: conf/disto/include/osversion_1.0.inc
+And this is included to disto file like
+      require conf/disto/include/osversion_${OS_VERSION}.inc
 
-:rjs
+The file osversion_1.0.inc is freezed after your one version release.
+Next version will add a new file osversion_1.1.inc overiding to pick all th=
+e required package version changes to make your product version.
 
---bcaec5186d12b3552204cb4727ea
-Content-Type: text/html; charset=ISO-8859-1
+This will allow you to release multiple product(OS) versions and clearly ma=
+ps the package version, creating individual distributions.
+You can even build older version product by just giving OS_VERSION=3D1.0 in=
+ local.conf
+This eliminates branching all together.
 
-<div class="im" style="color:rgb(80,0,80);font-family:arial,sans-serif;font-size:13px;background-color:rgb(255,255,255)">&gt; And one final question: Have I been putting this on the wrong mailing list?<div><br></div></div>
-<div style="color:rgb(34,34,34);font-family:arial,sans-serif;font-size:13px;background-color:rgb(255,255,255)">Possibly, kind of, but you would not have gotten my response because I do not follow to bitbake-devel :)</div>
-<div style="color:rgb(34,34,34);font-family:arial,sans-serif;font-size:13px;background-color:rgb(255,255,255)"><br></div><div style="color:rgb(34,34,34);font-family:arial,sans-serif;font-size:13px;background-color:rgb(255,255,255)">
-:rjs</div>
+Regards,
+Ramana=
 
---bcaec5186d12b3552204cb4727ea--
