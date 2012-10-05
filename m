@@ -1,31 +1,20 @@
-Return-Path: <mihaix.lindner@linux.intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6081CE01199
-	for <yocto@yoctoproject.org>; Fri,  5 Oct 2012 05:52:20 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 05 Oct 2012 05:52:19 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,541,1344236400"; d="scan'208";a="200948222"
-Received: from linux.jf.intel.com (HELO linux.intel.com) ([10.23.219.25])
-	by azsmga001.ch.intel.com with ESMTP; 05 Oct 2012 05:52:19 -0700
-Received: from [10.237.105.49] (mlindnex-mobl1.ger.corp.intel.com
-	[10.237.105.49])
-	by linux.intel.com (Postfix) with ESMTP id BFBAF2C8001;
-	Fri,  5 Oct 2012 05:52:19 -0700 (PDT)
-Message-ID: <506ED801.9030003@linux.intel.com>
-Date: Fri, 05 Oct 2012 15:52:17 +0300
-From: Mihai Lindner <mihaix.lindner@linux.intel.com>
-Organization: Intel OTC
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
-	rv:15.0) Gecko/20120907 Thunderbird/15.0.1
+Return-Path: <philip@balister.org>
+Received: from starfish.geekisp.com (starfish.geekisp.com [216.168.135.166])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id 904A9E012F0
+	for <yocto@yoctoproject.org>; Fri,  5 Oct 2012 06:58:41 -0700 (PDT)
+Received: (qmail 31304 invoked by uid 1003); 5 Oct 2012 13:58:36 -0000
+Received: from unknown (HELO ?192.168.1.105?)
+	(philip@opensdr.com@96.240.161.134)
+	by mail.geekisp.com with (DHE-RSA-AES256-SHA encrypted) SMTP;
+	5 Oct 2012 13:58:36 -0000
+Message-ID: <506EE78B.6060607@balister.org>
+Date: Fri, 05 Oct 2012 09:58:35 -0400
+From: Philip Balister <philip@balister.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:15.0) Gecko/20120911 Thunderbird/15.0.1
 MIME-Version: 1.0
-To: Richard Purdie <richard.purdie@linuxfoundation.org>
-References: <cover.1349435514.git.mihaix.lindner@linux.intel.com>
-	<57468146a5fbeb836ac941d51fc6f41031e41b03.1349435514.git.mihaix.lindner@linux.intel.com>
-	<1349437880.15658.22.camel@ted>
-In-Reply-To: <1349437880.15658.22.camel@ted>
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 1/1] meta-tlk: fix ignored SRC_URI appends
+To: Yocto Project <yocto@yoctoproject.org>
+Subject: Making recipes depend on specific layers
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,37 +26,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 05 Oct 2012 12:52:20 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Fri, 05 Oct 2012 13:58:41 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 2012-10-05 14:51, Richard Purdie wrote:
-> On Fri, 2012-10-05 at 14:20 +0300, Mihai Lindner wrote:
->> Fix SRC_URI appends ignored by meta-cedartrail and meta-crownbay. Used
->> SRC_URI_append instead of SRC_URI.
->> Also placed all variables in an .inc file to be required by all
->> linux-yocto recipes in here, since all versions use the same.
->>
->> [YOCTO #3217]
->>
->> Signed-off-by: Mihai Lindner <mihaix.lindner@linux.intel.com>
->> ---
->>  meta-tlk/recipes-kernel/linux/linux-yocto.inc          | 3 +++
-> 
-> Could you use a slightly less generic name for this include please? I
-> worry about collisions...
-> 
-> Cheers,
-> 
-> Richard
-> 
-> 
-> 
-> 
-Sure.
+I run into problems (typically with BSP layers) where I want the layer 
+to build only against oe-core, but I also would like to have recipes 
+that depend on other layers. Typically, a "complex" image that uses 
+packages built from other layers.
 
-Thanks,
+Now, I could just make a shim layer that contains the recipes that 
+depends on a larger set of layers, but this gets annoying.
 
--- 
-Mihai Lindner
+What I'd like to do is provide a way for recipes to say they depend on 
+other layers, but if that layer is not present, parsing should not fail. 
+Obviously, attempting to build such a recipe would fail (with a suitable 
+error message).
+
+Richard showed me some Python I can use to do this, but I'd like to know 
+if this seems useful to other people.
+
+Obviously, switching layer sin and out can lead to madness, but I'd 
+rather not try to protect the end user from every stupid thing they can 
+do at the expense of making thing more complex from a shear number of 
+layers view.
+
+Philip
 
