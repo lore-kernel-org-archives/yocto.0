@@ -1,31 +1,26 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
-	[93.97.173.237])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7D9F2E0049B
-	for <yocto@yoctoproject.org>; Fri,  5 Oct 2012 04:51:28 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q95BpQFu016493;
-	Fri, 5 Oct 2012 12:51:26 +0100
-Received: from tim.rpsys.net ([127.0.0.1])
-	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
-	port 10024) with LMTP
-	id 16305-02; Fri,  5 Oct 2012 12:51:21 +0100 (BST)
-Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q95BpHoN016487
-	(version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=NO);
-	Fri, 5 Oct 2012 12:51:18 +0100
-Message-ID: <1349437880.15658.22.camel@ted>
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Mihai Lindner <mihaix.lindner@linux.intel.com>
-Date: Fri, 05 Oct 2012 12:51:20 +0100
-In-Reply-To: <57468146a5fbeb836ac941d51fc6f41031e41b03.1349435514.git.mihaix.lindner@linux.intel.com>
+Return-Path: <mihaix.lindner@linux.intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EE170E0049B
+	for <yocto@yoctoproject.org>; Fri,  5 Oct 2012 05:51:57 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga102.fm.intel.com with ESMTP; 05 Oct 2012 05:51:57 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,541,1344236400"; d="scan'208";a="230358238"
+Received: from linux.jf.intel.com (HELO linux.intel.com) ([10.23.219.25])
+	by fmsmga001.fm.intel.com with ESMTP; 05 Oct 2012 05:51:55 -0700
+Received: from moolinex.rb.intel.com (unknown [10.237.112.10])
+	by linux.intel.com (Postfix) with ESMTP id A6D812C8001
+	for <yocto@yoctoproject.org>; Fri,  5 Oct 2012 05:51:55 -0700 (PDT)
+From: Mihai Lindner <mihaix.lindner@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Fri,  5 Oct 2012 15:51:36 +0300
+Message-Id: <fe9db2a05117ca59023838590128725561f45893.1349441050.git.mihaix.lindner@linux.intel.com>
+X-Mailer: git-send-email 1.7.12
+In-Reply-To: <1349437880.15658.22.camel@ted>
 References: <cover.1349435514.git.mihaix.lindner@linux.intel.com>
 	<57468146a5fbeb836ac941d51fc6f41031e41b03.1349435514.git.mihaix.lindner@linux.intel.com>
-X-Mailer: Evolution 3.2.3-0ubuntu6 
-Mime-Version: 1.0
-X-Virus-Scanned: amavisd-new at rpsys.net
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 1/1] meta-tlk: fix ignored SRC_URI appends
+	<1349437880.15658.22.camel@ted>
+Subject: [PATCH 1/1] meta-tlk: fix ignored SRC_URI appends
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,28 +32,70 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 05 Oct 2012 11:51:29 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 05 Oct 2012 12:51:58 -0000
 
-On Fri, 2012-10-05 at 14:20 +0300, Mihai Lindner wrote:
-> Fix SRC_URI appends ignored by meta-cedartrail and meta-crownbay. Used
-> SRC_URI_append instead of SRC_URI.
-> Also placed all variables in an .inc file to be required by all
-> linux-yocto recipes in here, since all versions use the same.
-> 
-> [YOCTO #3217]
-> 
-> Signed-off-by: Mihai Lindner <mihaix.lindner@linux.intel.com>
-> ---
->  meta-tlk/recipes-kernel/linux/linux-yocto.inc          | 3 +++
+Fix SRC_URI appends ignored by meta-cedartrail and meta-crownbay. Used
+SRC_URI_append instead of SRC_URI.
+Also placed all variables in an .inc file to be required by all
+linux-yocto recipes in here, since all versions use the same.
 
-Could you use a slightly less generic name for this include please? I
-worry about collisions...
+[YOCTO #3217]
 
-Cheers,
+Signed-off-by: Mihai Lindner <mihaix.lindner@linux.intel.com>
+---
+ meta-tlk/recipes-kernel/linux/linux-yocto-tlk.inc      | 3 +++
+ meta-tlk/recipes-kernel/linux/linux-yocto_3.0.bbappend | 7 +------
+ meta-tlk/recipes-kernel/linux/linux-yocto_3.2.bbappend | 7 +------
+ meta-tlk/recipes-kernel/linux/linux-yocto_3.4.bbappend | 7 +------
+ 4 files changed, 6 insertions(+), 18 deletions(-)
+ create mode 100644 meta-tlk/recipes-kernel/linux/linux-yocto-tlk.inc
 
-Richard
-
+diff --git a/meta-tlk/recipes-kernel/linux/linux-yocto-tlk.inc b/meta-tlk/recipes-kernel/linux/linux-yocto-tlk.inc
+new file mode 100644
+index 0000000..b1cf883
+--- /dev/null
++++ b/meta-tlk/recipes-kernel/linux/linux-yocto-tlk.inc
+@@ -0,0 +1,3 @@
++FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
++SRC_URI_append = " file://time-limited-kernel.cfg"
++PR .= ".2"
+diff --git a/meta-tlk/recipes-kernel/linux/linux-yocto_3.0.bbappend b/meta-tlk/recipes-kernel/linux/linux-yocto_3.0.bbappend
+index 138cc21..e316320 100644
+--- a/meta-tlk/recipes-kernel/linux/linux-yocto_3.0.bbappend
++++ b/meta-tlk/recipes-kernel/linux/linux-yocto_3.0.bbappend
+@@ -1,6 +1 @@
+-FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+-
+-# enable the time limited kernel configuration options
+-SRC_URI += "file://time-limited-kernel.cfg"
+-
+-PR .= ".1"
++require ${PN}-tlk.inc
+diff --git a/meta-tlk/recipes-kernel/linux/linux-yocto_3.2.bbappend b/meta-tlk/recipes-kernel/linux/linux-yocto_3.2.bbappend
+index 138cc21..e316320 100644
+--- a/meta-tlk/recipes-kernel/linux/linux-yocto_3.2.bbappend
++++ b/meta-tlk/recipes-kernel/linux/linux-yocto_3.2.bbappend
+@@ -1,6 +1 @@
+-FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+-
+-# enable the time limited kernel configuration options
+-SRC_URI += "file://time-limited-kernel.cfg"
+-
+-PR .= ".1"
++require ${PN}-tlk.inc
+diff --git a/meta-tlk/recipes-kernel/linux/linux-yocto_3.4.bbappend b/meta-tlk/recipes-kernel/linux/linux-yocto_3.4.bbappend
+index 138cc21..e316320 100644
+--- a/meta-tlk/recipes-kernel/linux/linux-yocto_3.4.bbappend
++++ b/meta-tlk/recipes-kernel/linux/linux-yocto_3.4.bbappend
+@@ -1,6 +1 @@
+-FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+-
+-# enable the time limited kernel configuration options
+-SRC_URI += "file://time-limited-kernel.cfg"
+-
+-PR .= ".1"
++require ${PN}-tlk.inc
+-- 
+1.7.12
 
 
