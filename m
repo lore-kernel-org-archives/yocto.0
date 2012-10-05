@@ -1,27 +1,34 @@
-Return-Path: <gizero@gmail.com>
-Received: from mail-wg0-f54.google.com (mail-wg0-f54.google.com [74.125.82.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5DE8BE012F0
-	for <yocto@yoctoproject.org>; Fri,  5 Oct 2012 08:42:52 -0700 (PDT)
-Received: by mail-wg0-f54.google.com with SMTP id dt10so1159583wgb.11
-	for <yocto@yoctoproject.org>; Fri, 05 Oct 2012 08:42:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:cc:content-type;
-	bh=/mnUNptLENJ7XvwZyP6W6dH83yBZPcKvpbyK018Gvuw=;
-	b=TtIHY9H/aO9OAj5RkTyvJDmWA+5WxPt2ZEUzPjYwasKRQz3bItSBD5Thk6vUPl7CaH
-	pAQkQOi/S0XZjwl/xMR0UBhWKrr2sWfqX83Nsdj7oMcgE/d3h5nauCzizTFrbkpBCvsg
-	pBLplTP2O0yEexnURVRHLy/wEsMWTDG4wGHUQdncvVa+tuYjnTdChgBBEvIhFSojGZaE
-	SV1gOnFGHzOD5Cub/xFsNeXzinATazQ+Y5sG02KWj5airLE8xcMPLdRa7fkPZgB2+9hI
-	Dm2T7MfKGOfTSr1DzAIABpb/gD3hygiwspBGCvHgk/uSA/2ipABiBCjO5QFz9JFu8Bjy
-	8D6A==
+Return-Path: <scott.m.rifenbark@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6F34EE012F0
+	for <yocto@yoctoproject.org>; Fri,  5 Oct 2012 09:01:29 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 05 Oct 2012 09:01:10 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,541,1344236400"; d="scan'208";a="202114808"
+Received: from fmsmsx103.amr.corp.intel.com ([10.19.9.34])
+	by orsmga001.jf.intel.com with ESMTP; 05 Oct 2012 09:01:28 -0700
+Received: from fmsmsx101.amr.corp.intel.com (10.19.9.52) by
+	FMSMSX103.amr.corp.intel.com (10.19.9.34) with Microsoft SMTP Server
+	(TLS) id 14.1.355.2; Fri, 5 Oct 2012 09:01:28 -0700
+Received: from fmsmsx151.amr.corp.intel.com ([169.254.6.213]) by
+	FMSMSX101.amr.corp.intel.com ([169.254.1.150]) with mapi id
+	14.01.0355.002; Fri, 5 Oct 2012 09:01:27 -0700
+From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+To: Andrea Galbusera <gizero@gmail.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] Yocto Project 1.3 beta feedback
+Thread-Index: AQHNoxAoLylU4zmlo0ancOQTVVncZJeq3dyg
+Date: Fri, 5 Oct 2012 16:01:27 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237946A751FA@FMSMSX151.amr.corp.intel.com>
+References: <CAC+thW1SSxgO4e5=my01WKcVb77q1BbDzjAQh16=aq28We46fw@mail.gmail.com>
+In-Reply-To: <CAC+thW1SSxgO4e5=my01WKcVb77q1BbDzjAQh16=aq28We46fw@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.139]
 MIME-Version: 1.0
-Received: by 10.180.87.34 with SMTP id u2mr4222453wiz.4.1349451771008; Fri, 05
-	Oct 2012 08:42:51 -0700 (PDT)
-Received: by 10.223.158.74 with HTTP; Fri, 5 Oct 2012 08:42:50 -0700 (PDT)
-Date: Fri, 5 Oct 2012 17:42:50 +0200
-Message-ID: <CAC+thW1SSxgO4e5=my01WKcVb77q1BbDzjAQh16=aq28We46fw@mail.gmail.com>
-From: Andrea Galbusera <gizero@gmail.com>
-To: yocto@yoctoproject.org
-Subject: Yocto Project 1.3 beta feedback
+Subject: Re: Yocto Project 1.3 beta feedback
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,8 +40,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 05 Oct 2012 15:42:52 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Fri, 05 Oct 2012 16:01:29 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+Andrea,=20
+
+Thanks for the detailed feedback on the YP documentation.  Agree that it is=
+ difficult to meet the needs of the wide group of users and that it is diff=
+icult to have the released documentation match that of the "latest" from th=
+e website.  The "latest" documentation is always under development and I fe=
+ar will never match the released documentation.  One radical scheme to cons=
+ider is releasing a separate tarball for documentation that a user could do=
+wnload and then insert into their poky repository on the local system.  Thi=
+s would in a sense de-couple the docs and the released poky tarball.  Proba=
+bly not a popular idea among the team but an out-of-the-box one nonetheless=
+. =20
+
+We will continue to try and improve specific workflows based on specific ta=
+rget audience needs.  Feedback such as this helps.=20
+
+Scott
+
+-----Original Message-----
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Andrea Galbusera
+Sent: Friday, October 05, 2012 8:43 AM
+To: yocto@yoctoproject.org
+Subject: [yocto] Yocto Project 1.3 beta feedback
 
 Below you can find my answers to the Yocto Project 1.3 beta testing survey.
 
@@ -124,4 +158,8 @@ for production. Such a workflow does have documentation but I
 personally believe this is a point we can improve a lot.
 Yocto Project users do belong to a very heterogeneous base: I see a
 great challenge in keeping docs usable by differently focused people!
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
 
