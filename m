@@ -1,23 +1,22 @@
-Return-Path: <nitin.a.kamble@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DF55EE0032E
-	for <yocto@yoctoproject.org>; Fri,  5 Oct 2012 19:18:22 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 05 Oct 2012 19:18:22 -0700
+Return-Path: <mihaix.lindner@linux.intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 99440E0045E
+	for <yocto@yoctoproject.org>; Sat,  6 Oct 2012 08:16:55 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 06 Oct 2012 08:16:50 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,543,1344236400"; d="scan'208";a="221424722"
-Received: from yocto-hm1.jf.intel.com ([10.23.232.32])
-	by orsmga002.jf.intel.com with ESMTP; 05 Oct 2012 19:18:17 -0700
-From: nitin.a.kamble@intel.com
-To: tom.zanussi@intel.com,
-	darren.hart@intel.com,
-	yocto@yoctoproject.org
-Date: Fri,  5 Oct 2012 19:17:12 -0700
-Message-Id: <c8364de81e6dc2a1c3c2a5ef02f1bf5c3221932c.1349489713.git.nitin.a.kamble@intel.com>
-X-Mailer: git-send-email 1.7.3.4
-In-Reply-To: <cover.1349489713.git.nitin.a.kamble@intel.com>
-References: <cover.1349489713.git.nitin.a.kamble@intel.com>
-Subject: [PATCHv3 1/1] crownbay.conf: add kernel parameters for EMGD video acceleration
+X-IronPort-AV: E=Sophos;i="4.80,543,1344236400"; d="scan'208";a="231426305"
+Received: from linux.jf.intel.com (HELO linux.intel.com) ([10.23.219.25])
+	by fmsmga002.fm.intel.com with ESMTP; 06 Oct 2012 08:16:50 -0700
+Received: from moolinex.rb.intel.com (unknown [10.237.112.10])
+	by linux.intel.com (Postfix) with ESMTP id 95B982C8001
+	for <yocto@yoctoproject.org>; Sat,  6 Oct 2012 08:16:50 -0700 (PDT)
+From: Mihai Lindner <mihaix.lindner@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Sat,  6 Oct 2012 18:16:32 +0300
+Message-Id: <cover.1349536496.git.mihaix.lindner@linux.intel.com>
+X-Mailer: git-send-email 1.7.12
+Subject: [PATCH 0/1] meta-tlk: fix included file name
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,35 +28,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 06 Oct 2012 02:18:23 -0000
+X-List-Received-Date: Sat, 06 Oct 2012 15:16:55 -0000
 
-From: Nitin A Kamble <nitin.a.kamble@intel.com>
+PN in linux-yocto-tlk.inc takes the .inc file name and becomes
+linux-yocto-tlk. Renamed to linux-yocto_tlk.inc to avoid confusions.
+Related to: [YOCTO #3217]
 
-This is recommended in the EMGD User Guide.
-
-My understanding is that, the emgd kernel driver need
-to allocate memory dynamically, and the "vmalloc=256MB"
-parameter ensures enough will be available for the driver.
-
-Signed-off-by: Nitin A Kamble <nitin.a.kamble@intel.com>
+Signed-off-by: Mihai Lindner <mihaix.lindner@linux.intel.com>
 ---
- meta-crownbay/conf/machine/crownbay.conf |    2 +-
- 1 files changed, 1 insertions(+), 1 deletions(-)
+The following changes since commit 7228f6b0c81817c8a8455ea78271abfd5d66fed8:
 
-diff --git a/meta-crownbay/conf/machine/crownbay.conf b/meta-crownbay/conf/machine/crownbay.conf
-index 40dbd1d..c18fa1d 100644
---- a/meta-crownbay/conf/machine/crownbay.conf
-+++ b/meta-crownbay/conf/machine/crownbay.conf
-@@ -21,7 +21,7 @@ PREFERRED_VERSION_xserver-xorg ?= "1.9.3"
- PREFERRED_VERSION_mesa-dri ?= "7.11"
- PREFERRED_VERSION_xf86-input-evdev ?= "2.6.0"
- 
--APPEND += "video=vesafb vga=0x318"
-+APPEND += "video=vesafb vga=0x318 vmalloc=256MB"
- 
- VA_FEATURES = "${@bb.utils.contains("LICENSE_FLAGS_WHITELIST", \
- 	    "commercial", "gst-va-intel va-intel", "va-intel", d)}"
+  meta-tlk: fix ignored SRC_URI appends (2012-10-05 14:47:55 -0500)
+
+are available in the git repository at:
+
+  git://git.yoctoproject.org/poky-contrib mihai/bug3217
+  http://git.yoctoproject.org/cgit.cgi/poky-contrib/log/?h=mihai/bug3217
+
+Mihai Lindner (1):
+  meta-tlk: fix included file name
+
+ meta-tlk/recipes-kernel/linux/linux-yocto_3.0.bbappend                  | 2 +-
+ meta-tlk/recipes-kernel/linux/linux-yocto_3.2.bbappend                  | 2 +-
+ meta-tlk/recipes-kernel/linux/linux-yocto_3.4.bbappend                  | 2 +-
+ .../recipes-kernel/linux/{linux-yocto-tlk.inc => linux-yocto_tlk.inc}   | 0
+ 4 files changed, 3 insertions(+), 3 deletions(-)
+ rename meta-tlk/recipes-kernel/linux/{linux-yocto-tlk.inc => linux-yocto_tlk.inc} (100%)
+
 -- 
-1.7.3.4
+1.7.12
 
 
