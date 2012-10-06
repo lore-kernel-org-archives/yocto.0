@@ -1,23 +1,30 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 68551E0045E
-	for <yocto@yoctoproject.org>; Sat,  6 Oct 2012 08:51:29 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 06 Oct 2012 08:51:28 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,543,1344236400"; d="scan'208";a="201348562"
-Received: from unknown (HELO [10.255.13.196]) ([10.255.13.196])
-	by azsmga001.ch.intel.com with ESMTP; 06 Oct 2012 08:51:28 -0700
-Message-ID: <1349538687.1543.0.camel@empanada>
-From: Tom Zanussi <tom.zanussi@intel.com>
-To: Mihai Lindner <mihaix.lindner@linux.intel.com>
-Date: Sat, 06 Oct 2012 10:51:27 -0500
-In-Reply-To: <cover.1349536496.git.mihaix.lindner@linux.intel.com>
-References: <cover.1349536496.git.mihaix.lindner@linux.intel.com>
-X-Mailer: Evolution 3.4.1 (3.4.1-2.fc17) 
-Mime-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 0/1] meta-tlk: fix included file name
+Return-Path: <evadeflow@gmail.com>
+Received: from mail-ob0-f176.google.com (mail-ob0-f176.google.com
+	[209.85.214.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9244FE0045E
+	for <yocto@yoctoproject.org>; Sat,  6 Oct 2012 11:46:29 -0700 (PDT)
+Received: by mail-ob0-f176.google.com with SMTP id x4so3408139obh.35
+	for <yocto@yoctoproject.org>; Sat, 06 Oct 2012 11:46:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:content-type; bh=z1UiOb6BBMTOmNF5SloO96+Q6fUFqY2xYF8UyTNouoU=;
+	b=LkyiTPdnfjsF9g7ciPjHs7DXpELo+ywKr6VFA9fssq192jlNdtPb0peZX+uUKMN2YB
+	FdCyr7kJ3iWIWw0eCGPzx2l8zCb3M3Zifg0vFXoC/sjRSKgNS6Ozy3SnVZHpQ3PdFJHX
+	ADYU010kG9e5oR1O3qItpIr+wyLyTaxl6/BRuQAtu/Q5Mu6RaTm4SDurRsktFqM0Vg/2
+	weXxaB9FIJjJidxE9hvAVFaeHE2XNy626paFx2hhUx72ENoq5AWCtvoC/2mO2M5EN8U8
+	blpeC0s8URXtvgnDv8N8jMMQZaLBzsiLxzIxw+hdAtYs1NzzhAb1K5J47ScESN7iaRqD
+	u3oA==
+MIME-Version: 1.0
+Received: by 10.60.14.5 with SMTP id l5mr9932887oec.39.1349549186631; Sat, 06
+	Oct 2012 11:46:26 -0700 (PDT)
+Received: by 10.76.167.165 with HTTP; Sat, 6 Oct 2012 11:46:26 -0700 (PDT)
+In-Reply-To: <CAMAb8ZPFz+Q72TVbKrqO+0Nu9a5ZJyJLLV9cdtw87YgC-mm6iQ@mail.gmail.com>
+References: <CAMAb8ZPFz+Q72TVbKrqO+0Nu9a5ZJyJLLV9cdtw87YgC-mm6iQ@mail.gmail.com>
+Date: Sat, 6 Oct 2012 14:46:26 -0400
+Message-ID: <CAMAb8ZN6pEUaXsqWqRZ=O=AKjpVrf8gow=3rmPCiCjntLfUKkw@mail.gmail.com>
+From: Evade Flow <evadeflow@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Re: HTTP-accessible poky repo?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,42 +36,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 06 Oct 2012 15:51:29 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sat, 06 Oct 2012 18:46:29 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-Pulled into meta-intel/master.
+On Fri, Oct 5, 2012 at 10:51 AM, Evade Flow <evadeflow@gmail.com> wrote:
+> I'd like to track yocto development more closely, but I'm stuck behind a
+> restrictive HTTP-only firewall all day at work.  Is there an official
+> (or unofficial-but-up-to-date), HTTP-accessible mirror of
+> git://git.yoctoproject.org/poky.git I can clone from?
+>
+> I can create a clone on github and run some cron scripts at home to sync
+> it, but I'd rather not bother if there's already something like this out
+> there...
 
-Thanks,
+It seems no one is particularly interested in this. Oh, well. FWIW, I put
+a couple mirrors here:
 
-Tom
+  - http://github.com/yoctoproject-mirrors
 
-On Sat, 2012-10-06 at 18:16 +0300, Mihai Lindner wrote:
-> PN in linux-yocto-tlk.inc takes the .inc file name and becomes
-> linux-yocto-tlk. Renamed to linux-yocto_tlk.inc to avoid confusions.
-> Related to: [YOCTO #3217]
-> 
-> Signed-off-by: Mihai Lindner <mihaix.lindner@linux.intel.com>
-> ---
-> The following changes since commit 7228f6b0c81817c8a8455ea78271abfd5d66fed8:
-> 
->   meta-tlk: fix ignored SRC_URI appends (2012-10-05 14:47:55 -0500)
-> 
-> are available in the git repository at:
-> 
->   git://git.yoctoproject.org/poky-contrib mihai/bug3217
->   http://git.yoctoproject.org/cgit.cgi/poky-contrib/log/?h=mihai/bug3217
-> 
-> Mihai Lindner (1):
->   meta-tlk: fix included file name
-> 
->  meta-tlk/recipes-kernel/linux/linux-yocto_3.0.bbappend                  | 2 +-
->  meta-tlk/recipes-kernel/linux/linux-yocto_3.2.bbappend                  | 2 +-
->  meta-tlk/recipes-kernel/linux/linux-yocto_3.4.bbappend                  | 2 +-
->  .../recipes-kernel/linux/{linux-yocto-tlk.inc => linux-yocto_tlk.inc}   | 0
->  4 files changed, 3 insertions(+), 3 deletions(-)
->  rename meta-tlk/recipes-kernel/linux/{linux-yocto-tlk.inc => linux-yocto_tlk.inc} (100%)
-> 
-
-
+I figured this would make it easier for me to track upstream development
+from behind the firewall at work. (*Now* I'm sure people will chime in
+and tell me there's already a complete set of HTTP-accessible mirrors
+somewhere... :-})
 
