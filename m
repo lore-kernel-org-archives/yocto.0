@@ -1,39 +1,34 @@
-Return-Path: <ross.burton@intel.com>
-Received: from azsmga102.ch.intel.com (mga12.intel.com [143.182.124.36])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 53CABE0127A
-	for <yocto@yoctoproject.org>; Sun,  7 Oct 2012 14:27:51 -0700 (PDT)
-Received: from mail-we0-f176.google.com ([74.125.82.176])
-	by mga14.intel.com with ESMTP/TLS/RC4-SHA; 07 Oct 2012 14:27:49 -0700
-Received: by mail-we0-f176.google.com with SMTP id z53so2486906wey.35
-	for <yocto@yoctoproject.org>; Sun, 07 Oct 2012 14:27:48 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=date:from:to:cc:message-id:in-reply-to:references:subject:x-mailer
-	:mime-version:content-type:content-transfer-encoding
-	:content-disposition:x-gm-message-state;
-	bh=aaXlp3xJ2kedlDflRrndFxdTiW+8qbyu/Y7NTwxwnzU=;
-	b=UCwOMYs+x+XjdHDDOKU7lX8jT+AEHVI+hLa6vDdTmzFljummV8+61O3fdjsyj3mL7H
-	OguCgYPnM/11B/tYzWVgQ7lDoMspyq1R3GwxSVK74BOVNHQf6Liqpwmj3l47X6su0Q3g
-	o824ENkqCzq1Pzp89JucIJYh1OG2G6odnT59KLU17IsJ3N4jERAJCxFWYgV7Vup/qSiA
-	shL1hIzQ0U/+TNogYxau43MJZUs3RW8XHWu3LtKQpIjdZUx8al0CGHox7A9AeAupD6kM
-	2HTs+jUCp78ZB+7gX9ICrOkDPLiH1YypS9L/eDfVBfTFWPwV81Mu1T6IHNLza6WvbQYE
-	AoGQ==
-Received: by 10.181.13.208 with SMTP id fa16mr16817218wid.11.1349645267934;
-	Sun, 07 Oct 2012 14:27:47 -0700 (PDT)
-Received: from [192.168.1.7] (35.106.2.81.in-addr.arpa. [81.2.106.35])
-	by mx.google.com with ESMTPS id cl8sm16022988wib.10.2012.10.07.14.27.43
-	(version=SSLv3 cipher=OTHER); Sun, 07 Oct 2012 14:27:45 -0700 (PDT)
-Date: Sun, 7 Oct 2012 22:27:41 +0100
-From: Ross Burton <ross.burton@intel.com>
-To: Edward Vidal <vidal.develone@gmail.com>
-Message-ID: <F8C937E243F84E4999ED5A30B667DCFB@intel.com>
-In-Reply-To: <CANwz6nzXviQwG=S-5nAF9wF70tQ4PyrZNLTHFHODA5WWJfkCTw@mail.gmail.com>
-References: <CANwz6nzXviQwG=S-5nAF9wF70tQ4PyrZNLTHFHODA5WWJfkCTw@mail.gmail.com>
-X-Mailer: sparrow 1.6.3 (build 1172)
+Return-Path: <bruce.ashfield@gmail.com>
+Received: from mail-la0-f48.google.com (mail-la0-f48.google.com
+	[209.85.215.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BBBF8E0127A
+	for <yocto@yoctoproject.org>; Sun,  7 Oct 2012 14:41:51 -0700 (PDT)
+Received: by mail-la0-f48.google.com with SMTP id u2so2041852lag.35
+	for <yocto@yoctoproject.org>; Sun, 07 Oct 2012 14:41:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=b9zju4eF5FqN5rHTtbsvpso+9eM0UlUE0/XfEfx+8E4=;
+	b=HegYwl5T9bJ+lPnFwzS8X1/V6UZLv4/UtR0weXk1gYtog0BtKglQwQXsUfStqHRpvv
+	nPETTVskF+vezeSb2gFUoV6gb/RzcK5NdAP+/nFFdKQgrpPld2GGL944kvxlbedhWhWD
+	pnLYL97hQHaGN1cB8YKNBOxGst1Hahq32vivK79oOaAmD3ilpNgnuogqrb2Y41lG0blH
+	wT2VSrm3TWsdDBgXcQWt2faxZDdSrJskRBGiaU9MQeKt/2c4Yr53owR5P3L4egwRMBWn
+	yKHsdUEb8lXUNo0gGvXcJo/Y7DuGv5SDPlJ7q3rYDDQOlmsQkGjkZo75vbtPwnMBVYWN
+	iUJw==
 MIME-Version: 1.0
-X-Gm-Message-State: ALoCoQkgvzHYUWYOOotrDyQVftCkwa5ldlNmJR8aKke+mA52hUcgNx+uBklwKOmqGZzZcsVrPsEi
-Cc: yocto@yoctoproject.org
-Subject: Re: core-image-sato keyboard
+Received: by 10.112.43.34 with SMTP id t2mr5264871lbl.109.1349646108305; Sun,
+	07 Oct 2012 14:41:48 -0700 (PDT)
+Received: by 10.114.17.164 with HTTP; Sun, 7 Oct 2012 14:41:48 -0700 (PDT)
+In-Reply-To: <E413C1D3-D599-437C-A1ED-8A57DAC3E8D3@keylevel.com>
+References: <443D93B8-DA6A-40DD-854F-7007FE63854C@keylevel.com>
+	<63ECFF2A2302B44093D7CE9E9962C49003CD2F97@ORSMSX107.amr.corp.intel.com>
+	<E413C1D3-D599-437C-A1ED-8A57DAC3E8D3@keylevel.com>
+Date: Sun, 7 Oct 2012 18:41:48 -0300
+Message-ID: <CADkTA4NAnqoBBzHkWNErMr2J=0p1xdSVocSpFCMLkV_8ztrwPg@mail.gmail.com>
+From: Bruce Ashfield <bruce.ashfield@gmail.com>
+To: Chris Tapp <opensource@keylevel.com>
+Cc: "yocto@yoctoproject.org Project" <yocto@yoctoproject.org>
+Subject: Re: Meta Intel / Cedartrail / Denzil - how to get unionfs in the kernel
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,19 +40,95 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 07 Oct 2012 21:27:51 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+X-List-Received-Date: Sun, 07 Oct 2012 21:41:52 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On Saturday, 6 October 2012 at 20:20, Edward Vidal wrote:
-> Hello,
-> Just built core-image-sato for beagleboard xM C.
-> I have a usb keyboard and mouse connected. The Mouse works but not the keyboard when Terminal is selected. The virtual keyboard works okay.
-> 
+On Sun, Oct 7, 2012 at 6:08 PM, Chris Tapp <opensource@keylevel.com> wrote:
+> On 7 Oct 2012, at 03:00, Saxena, Rahul wrote:
+>
+>> Try adding the unionfs feature (below) to your kernel:
+>>
+>> http://git.yoctoproject.org/cgit/cgit.cgi/linux-yocto-3.0/tree/meta/cfg/kernel-cache/features/unionfs?h=meta
+>>
+>> create a file my_cedartrail.scc with following line:
+>> include features/unionfs/unionfs.scc
+>>
+>> put this file in a dir linux-yocto, the dir being created in
+>>
+>> meta-cedartrail/recipes-kernel/linux
+>>
+>> add following line in  meta-cedartrail/recipes-kernel/Linux/linux-yocto_3.0.bbappend
+>>
+>> SRC_URI +="file://my_cedartrail.scc"
+>
+> Thanks - I thought just running 'menuconfig' would allow me to enable it (for a quick test).
+>
+> However, this still doesn't seem to be working. I can see that 'my_cedartrail.scc' gets fetched in to the build area, but I still don't see CONFIG_UNION_FS if I run 'menuconfig'. There is also no 'unionfs' folder in fs/ of the build tree.
+>
+> Also, if I specify an invalid feature (e.g. feature2/unionfs/unionfs.scc) I'm not seeing any diagnostic.
+
+unionfs was never merged to the 3.0 kernel, I re-added it to the development
+trees for 3.2 and the 3.4 kernel (aufs for the 3.6 tree at the moment). The meta
+data is carried forward from the older kernels as a placeholder and is
+documented
+in the .scc file itself:
+
+-----------------------
+kconf non-hardware unionfs.cfg
+
+# commented pending update to a newer version ported to 2.6.35+
+# patch unionfs-2.5.4-integration.patch
+-----------------------
+
+So to get unionfs in the 3.0 kernel, we'd need a port .. but since
+we've moved on
+quite a bit past 3.0, I don't know of any pending ports myself.
+
+Cheers,
+
+Bruce
+
+>
+>>
+>> -----Original Message-----
+>> From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org] On Behalf Of Chris Tapp
+>> Sent: Saturday, October 06, 2012 5:43 PM
+>> To: yocto@yoctoproject.org Project
+>> Subject: [yocto] Meta Intel / Cedartrail / Denzil - how to get unionfs in the kernel
+>>
+>> I' trying to enable unionfs in the 3.0.32 kernel for the cedartrail BSP under Denzil 7.0.1.
+>>
+>> However, the CONFIG_UNION_FS config flag isn't in the .config ...
+>>
+>> Is there something else I need to enable, or do I need to find another way?
+>>
+>> Chris Tapp
+>>
+>> opensource@keylevel.com
+>> www.keylevel.com
+>>
+>>
+>>
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>
+> Chris Tapp
+>
+> opensource@keylevel.com
+> www.keylevel.com
+>
+>
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
 
-Does the keyboard work at a console?  Can you try an alternative keyboard and USB socket to rule out weird behaviour with the keyboard or USB socket?
 
-Ross
+-- 
+"Thou shalt not follow the NULL pointer, for chaos and madness await
+thee at its end"
 
