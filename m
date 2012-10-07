@@ -1,17 +1,17 @@
 Return-Path: <packages@autobuilder.yoctoproject.org>
-Received: from autobuilder.yoctoproject.org (ab-master.i.yoctoproject.org
+Received: from autobuilder.yoctoproject.org (ab01.i.yoctoproject.org
 	[10.0.10.111])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B5454E0045E
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B925AE0045F
 	for <yocto@yoctoproject.org>; Sat,  6 Oct 2012 17:01:01 -0700 (PDT)
 Received: by autobuilder.yoctoproject.org (Postfix, from userid 802)
-	id AB3D940503; Sun,  7 Oct 2012 00:01:01 +0000 (UTC)
+	id B81FB40503; Sun,  7 Oct 2012 00:01:01 +0000 (UTC)
 Date: Sun, 7 Oct 2012 00:01:01 +0000
 From: Yocto Project Package Report System <package-reporting@yoctoproject.org>
 To: yocto@yoctoproject.org
-Message-ID: <20121007000101.GA32297@ab01.i.yoctoproject.org>
+Message-ID: <20121007000101.GA32303@ab01.i.yoctoproject.org>
 MIME-Version: 1.0
 User-Agent: Mutt/1.5.20 (2009-12-10)
-Subject: [Package Report System]Upgrade recipes name list
+Subject: [Package Report System]Manual check recipes name list
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -24,124 +24,131 @@ List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
 X-List-Received-Date: Sun, 07 Oct 2012 00:01:01 -0000
-X-Groupsio-MsgNum: 9871
-Content-Type: multipart/mixed; boundary="qDbXVdCdHGoSgWSk"
-Content-Disposition: inline
-
---qDbXVdCdHGoSgWSk
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
 This mail was sent out by Package Report System.
-This message list those recipes which need to be upgraded. If maintainers believe some of them needn't to upgrade this time, they can fill in RECIPE_NO_UPDATE_REASON_pn-"xxx" in upstream_tracking files to ignore this recipe remainder until newer upstream version was detected.
-Example:
-RECIPE_NO_UPDATE_REASON_pn-"xxx" = "Not upgrade to 2.0 because the new version is unstable"
-You can check the detail information at http://packages.yoctoproject.org/upgradepkgname
+It will list all the recipes which can't check upstream version by script, and will show how long it is since their last mannual version check.
+You can check the detail information at http://packages.yoctoproject.org/manuallychkinfo
 
 
-PackageName                   Version                       UpVersion                     Maintainer                                        NoUpgradeReason               
-ccache                        3.1.7                         3.1.8                         Wenzong Fan <wenzong.fan@windriver.com>           
-xdg-utils                     1.0.2                         1.1.0                         Valentin Popa <valentin.popa@intel.com>           
-liberation-fonts              1.04                          2.00.0                        Valentin Popa <valentin.popa@intel.com>           
-libxslt                       1.1.26                        1.1.27                        Valentin Popa <valentin.popa@intel.com>           
-evolution-data-server         2.30+git1+3ca578d968d097      6.0                           Valentin Popa <valentin.popa@intel.com>           
-puzzles                       r9594                         9660                          Valentin Popa <valentin.popa@intel.com>           
-matchbox-panel-2              0.0+git1+cdf7a22716b8746      2.0                           Valentin Popa <valentin.popa@intel.com>           
-lttng-viewer                  0.12.38                       0.12.38.21032011              Valentin Popa <valentin.popa@intel.com>           
-sysprof                       1.1.8+git1+4692f85f625f4      1.2.0                         Tom Zanussi <tom.zanussi@intel.com>               
-shadow                        4.1.4.3                       4.1.5.1                       Scott Garman <scott.a.garman@intel.com>           
-sudo                          1.8.5p2                       1.8.6                         Scott Garman <scott.a.garman@intel.com>           
-blktool                       4-6                           4                             Scott Garman <scott.a.garman@intel.com>           
-apmd                          3.2.2-14                      3.2.2                         Scott Garman <scott.a.garman@intel.com>           
-openssh                       6.0p1                         6.1p1                         Scott Garman <scott.a.garman@intel.com>           
-mc                            4.8.4                         4.8.6                         Saul Wold <sgw@linux.intel.com>                   
-libtasn1                      2.13                          2.14                          Saul Wold <sgw@linux.intel.com>                   
-libnl                         2.0                           3.2.13                        Saul Wold <sgw@linux.intel.com>                   libnl-3.2.2 is incompatible w...
-createrepo                    0.4.11                        0.9.9                         Saul Wold <sgw@linux.intel.com>                   Versions after 0.9.* use YUM,...
-apt                           0.7.14                        0.9.7.5                       Saul Wold <sgw@linux.intel.com>                   
-pkgconfig                     0.25                          0.27.1                        Saul Wold <sgw@linux.intel.com>                   0.26 removes glib-conf, adds ...
-build-appliance-image         1.0                           3.2.1                         Saul Wold <sgw@linux.intel.com>                   
-util-linux                    2.21.2                        2.22                          Saul Wold <sgw@linux.intel.com>                   
-libxml2                       2.8.0                         2.9.0                         Saul Wold <sgw@linux.intel.com>                   
-resolvconf                    1.67                          1.68                          Saul Wold <sgw@linux.intel.com>                   
-dhcp                          4.2.4-P1                      4.2.4                         Saul Wold <sgw@linux.intel.com>                   ftp://ftp.isc.org/isc/dhcp/4.2.4-P1/dhcp-4.2.4-P1.tar.gz
-tiff                          4.0.2                         4.0.3                         Saul Wold <sgw@linux.intel.com>                   
-logrotate                     3.8.1                         3.8.2                         Robert Yang <liezhi.yang@windriver.com>           
-liburcu                       0.6.7                         0.7.4                         Radu Moisan <radu.moisan@intel.com>               
-curl                          7.26.0                        7.27.0                        Radu Moisan <radu.moisan@intel.com>               
-js                            1.7.0+1.8.0rc1                1.60                          Radu Moisan <radu.moisan@intel.com>               
-u-boot-mkimage                2011.06                       2012.07                       Radu Moisan <radu.moisan@intel.com>               
-valgrind                      3.7.0                         3.8.1                         Radu Moisan <radu.moisan@intel.com>               
-babeltrace                    0.12+git1+0d8f8c2ea27df0      1.0.0                         Radu Moisan <radu.moisan@intel.com>               
-udev                          164                           182                           Radu Moisan <radu.moisan@intel.com>               
-mobile-broadband-provider-info1.0.0+gitr1+d9995ef693cb      20090309                      Radu Moisan <radu.moisan@intel.com>               
-nativesdk-bdwgc               20110107                      7.2alpha5                     No Maintainer information                         
-nativesdk-curl                7.26.0                        7.27.0                        No Maintainer information                         
-libksba                       1.2.0                         1.3.0                         No Maintainer information                         
-cmake                         2.8.8                         2.8.9                         No Maintainer information                         
-nativesdk-cmake               2.8.8                         2.8.9                         No Maintainer information                         
-nativesdk-automake            1.12.3                        1.12.4                        No Maintainer information                         
-nativesdk-pkgconfig           0.25                          0.27.1                        No Maintainer information                         
-nativesdk-perl                5.14.2                        5.17.4                        No Maintainer information                         
-lttng-modules                 2.0.pre11+git4d3e89e379f      2.1.0                         No Maintainer information                         
-nativesdk-linux-libc-headers  3.4.3                         3.6                           No Maintainer information                         
-nativesdk-linux-libc-headers- 3.4+git-1+a1cdb60720c452      3.4.9                         No Maintainer information                         
-nativesdk-libxml2             2.8.0                         2.9.0                         No Maintainer information                         
-nativesdk-zlib                1.2.7                         121                           No Maintainer information                         
-libdumpvalue-perl             1.16                          1.17                          No Maintainer information                         
-nativesdk-openssl             1.0.0j                        1.0.1                         No Maintainer information                         
-zypper                        1.5.3-git1+2c5bb6ceb99ec      11.0                          Mark Hatle <mark.hatle@windriver.com>             
-libzypp                       0.0-git1+15b6c52260bbc52      11.0                          Mark Hatle <mark.hatle@windriver.com>             
-fontconfig                    2.9.0                         2.10.1                        Laurentiu Palcu <laurentiu.palcu@intel.com>       
-xkeyboard-config              2.1                           2.6.99                        Laurentiu Palcu <laurentiu.palcu@intel.com>       
-xserver-xorg                  1.11.2                        1.13.0                        Laurentiu Palcu <laurentiu.palcu@intel.com>       
-xf86-input-mouse              1.7.2                         1.8.1                         Laurentiu Palcu <laurentiu.palcu@intel.com>       
-xf86-input-evdev              2.7.0                         2.7.3                         Laurentiu Palcu <laurentiu.palcu@intel.com>       
-xf86-video-vesa               2.3.1                         2.3.2                         Laurentiu Palcu <laurentiu.palcu@intel.com>       
-xf86-video-fbdev              0.4.2                         0.4.3                         Laurentiu Palcu <laurentiu.palcu@intel.com>       
-xf86-video-intel              2.19.0                        2.20.8                        Laurentiu Palcu <laurentiu.palcu@intel.com>       
-xf86-input-keyboard           1.6.1                         1.6.2                         Laurentiu Palcu <laurentiu.palcu@intel.com>       
-ghostscript                   9.05                          9.06                          Kai Kang <kai.kang@windriver.com>                 
-directfb                      1.6.1                         1.6.2                         Kai Kang <kai.kang@windriver.com>                 
-qmmp                          0.6.1                         0.6.3                         Kai Kang <kai.kang@windriver.com>                 
-syslinux                      4.03                          4.05                          Darren Hart <dvhart@linux.intel.com>              Waiting for 4.06 for 3.3 kern...
-net-tools                     1.60-23                       1.60                          Cristian Iorga <cristian.iorga@intel.com>         
-connman                       1.4                           1.7                           Cristian Iorga <cristian.iorga@intel.com>         
-ofono                         1.10                          1.11                          Cristian Iorga <cristian.iorga@intel.com>         
-telepathy-mission-control     5.13.0                        5.13.2                        Cristian Iorga <cristian.iorga@intel.com>         
-telepathy-glib                0.19.8                        0.19.10                       Cristian Iorga <cristian.iorga@intel.com>         
-libmusicbrainz                3.0.3                         4.0.0                         Cristian Iorga <cristian.iorga@intel.com>         
-gst-plugins-base              0.10.36                       0.11.90                       Cristian Iorga <cristian.iorga@intel.com>         
-gst-ffmpeg                    0.10.13                       0.11.2                        Cristian Iorga <cristian.iorga@intel.com>         
-gst-plugins-good              0.10.31                       0.11.90                       Cristian Iorga <cristian.iorga@intel.com>         
-gst-plugins-bad               0.10.23                       0.11.90                       Cristian Iorga <cristian.iorga@intel.com>         
-gst-plugins-ugly              0.10.19                       0.11.90                       Cristian Iorga <cristian.iorga@intel.com>         
-gstreamer                     0.10.36                       0.11.90                       Cristian Iorga <cristian.iorga@intel.com>         upgrading to 0.11.1 causes gs...
-gst-fluendo-mp3               0.10.19                       0.10.20                       Cristian Iorga <cristian.iorga@intel.com>         
-libconvert-asn1-perl          0.22                          0.26                          Bogdan Marinescu <bogdan.a.marinescu@intel.com>   
-patch                         2.6.1                         2.7                           Bogdan Marinescu <bogdan.a.marinescu@intel.com>   
-tcf-agent                     0.4.0+git1+4ef94ecb927a8      8.0                           Bogdan Marinescu <bogdan.a.marinescu@intel.com>   
-automake                      1.12.3                        1.12.4                        Bogdan Marinescu <bogdan.a.marinescu@intel.com>   
-bison                         2.5.1                         2.6.2                         Bogdan Marinescu <bogdan.a.marinescu@intel.com>   
-nasm                          2.10.01                       2.10.05                       Bogdan Marinescu <bogdan.a.marinescu@intel.com>   
-lttng2-ust                    2.0.2+git1+a367ee66aad3f      2.1.0                         Bogdan Marinescu <bogdan.a.marinescu@intel.com>   
-linux-libc-headers-yocto      3.4+git-1+a1cdb60720c452      3.4.9                         Bogdan Marinescu <bogdan.a.marinescu@intel.com>   
-linux-libc-headers            3.4.3                         3.6                           Bogdan Marinescu <bogdan.a.marinescu@intel.com>   
-lttng-control                 0.89                          0.89.05122011                 Bogdan Marinescu <bogdan.a.marinescu@intel.com>   
-Upgradable Count: 82
-Upgrade Total Count: 88
-The based commit merge time is:
-Thu Sep 27 16:15:38 2012 -0700
-The based commit is:
-commit fc1822fc6b3cbe6fb52e7f08eac4c6b624fba462
-Author: Richard Purdie <richard.purdie@linuxfoundation.org>
-Date:   Thu Sep 27 23:06:06 2012 +0100
+PackageName              Version             LastChkVersion      LastChkTime              Maintainer                              NoUpgradeReason               
+lsb                      4.1                 4.1                 172 day                  Yi Zhao <yi.zhao@windriver.co...        1.4 is fixed version of LSB Te...
+freetype                 2.4.10              2.4.10              93 days                  Valentin Popa <valentin.popa@...        No data                       
+menu-cache               0.3.3               0.3.3               41187 d                  Valentin Popa <valentin.popa@...        No data                       
+libfm                    0.1.17              1.30                93 days                  Valentin Popa <valentin.popa@...        No data                       
+pcmanfm                  0.9.10              0.9.10              93 days                  Valentin Popa <valentin.popa@...        No data                       
+gtkhtml2                 2.11.0+svnr11...    2.11.1              41187 d                  Valentin Popa <valentin.popa@...        No data                       
+libevent                 2.0.16              2.0.20              269 day                  Scott Garman <scott.a.garman@...        No data                       
+e2fsprogs                1.42.1              1.42.5              94 days                  Scott Garman <scott.a.garman@...        No data                       
+chrpath                  0.14                0.14                94 days                  Scott Garman <scott.a.garman@...        No data                       
+opensp                   1.5.2               1.5.2               94 days                  Scott Garman <scott.a.garman@...        No data                       
+expat                    2.1.0               2.0.1               94 days                  Scott Garman <scott.a.garman@...        No data                       
+nfs-utils                1.2.3               1.2.6               94 days                  Scott Garman <scott.a.garman@...        No data                       
+libpng                   1.2.49              1.5.11              94 days                  Scott Garman <scott.a.garman@...        1.4.3 and later changes the AP...
+libatomics-ops           7.2                 N/A                 41187 d                  Scott Garman <scott.a.garman@...        No data                       
+cracklib                 2.8.19              2.8.19              94 days                  Saul Wold <sgw@linux.intel.co...        No data                       
+psmisc                   22.19               22.19               94 days                  Saul Wold <sgw@linux.intel.co...        No data                       
+sysstat                  10.1.1              10.1.1              94 days                  Saul Wold <sgw@linux.intel.co...        No data                       
+less                     444                 444                 94 days                  Saul Wold <sgw@linux.intel.co...        No data                       
+glew                     1.9.0               1.9.0               94 days                  Saul Wold <sgw@linux.intel.co...        No data                       
+mx                       1.4.6               N/A                 41187 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+libexif                  0.6.21              0.6.21              94 days                  Saul Wold <sgw@linux.intel.co...        No data                       
+sqlite3                  3.7.13              3.7.13              94 days                  Saul Wold <sgw@linux.intel.co...        No data                       
+boost                    1.51.0              1.51.0              94 days                  Saul Wold <sgw@linux.intel.co...        No data                       
+libcheck                 0.9.8               0.9.8               94 days                  Saul Wold <sgw@linux.intel.co...        No data                       
+libacpi                  0.2                 0.2                 41187 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+sysfsutils               2.1.0               2.1.0               94 days                  Saul Wold <sgw@linux.intel.co...        No data                       
+console-tools            0.3.2               0.3.2               94 days                  Saul Wold <sgw@linux.intel.co...        No data                       
+libmad                   0.15.1b             0.15.2b             94 days                  Saul Wold <sgw@linux.intel.co...        No data                       
+popt                     1.16                1.16                41187 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+clutter-gst-1.8          1.4.6               N/A                 41187 d                  Ross Burton <ross.burton@inte...        No data                       
+cogl                     1.8.2               Jul 17, 2012        299 day                  Ross Burton <ross.burton@inte...        No data                       
+clutter-1.8              1.8.4               N/A                 41187 d                  Ross Burton <ross.burton@inte...        No data                       
+clutter-gtk-1.8          0.11.4              N/A                 41187 d                  Ross Burton <ross.burton@inte...        No data                       
+tzdata                   2012d               2012c               93 days                  Radu Moisan <radu.moisan@inte...        No data                       
+bzip2                    1.0.6               1.0.6               502 day                  Radu Moisan <radu.moisan@inte...        No data                       
+zip                      3.0                 3.0                 93 days                  Radu Moisan <radu.moisan@inte...        No data                       
+watchdog                 5.12                5.12                93 days                  Radu Moisan <radu.moisan@inte...        No data                       
+hdparm                   9.39                9.39                93 days                  Radu Moisan <radu.moisan@inte...        No data                       
+tslib                    1.0                 1.0                 93 days                  Radu Moisan <radu.moisan@inte...        No data                       
+unzip                    6.0                 6.0                 93 days                  Radu Moisan <radu.moisan@inte...        No data                       
+beecrypt                 4.2.1               4.2.1               93 days                  Radu Moisan <radu.moisan@inte...        No data                       
+setserial                2.17                2.17                165 day                  Radu Moisan <radu.moisan@inte...        No data                       
+acpid                    1.0.10              1.0.10              93 days                  Radu Moisan <radu.moisan@inte...        No data                       
+squashfs-tools           4.2                 4.2                 93 days                  Radu Moisan <radu.moisan@inte...        No data                       
+u-boot-fw-utils          2011.06             20012.07            41187 d                  Radu Moisan <radu.moisan@inte...        No data                       
+ubootchart               0.0+r12             0.0+r12             41187 d                  Radu Moisan <radu.moisan@inte...        No data                       
+opkg                     0.1.8+svnr633...    0.1.8               93 days                  Radu Moisan <radu.moisan@inte...        No data                       
+fotowall                 0.9                 0.9                 41187 d                  Radu Moisan <radu.moisan@inte...        No data                       
+quicky                   0.4                 N/A                 41187 d                  Radu Moisan <radu.moisan@inte...        No data                       
+kmod                     9                   9                   41187 d                  Radu Moisan <radu.moisan@inte...        No data                       
+tinylogin                1.4                 1.4                 288 day                  Radu Moisan <radu.moisan@inte...        No data                       
+gupnp                    0.16.1              0.18.4              41187 d                  Radu Moisan <radu.moisan@inte...        No data                       
+lame                     3.99.5              3.99.5              93 days                  Radu Moisan <radu.moisan@inte...        No data                       
+nativesdk-libarchive...  2.8.5               N/A                 41187 d                  No Maintainer information               No data                       
+nativesdk-bzip2          1.0.6               N/A                 41187 d                  No Maintainer information               No data                       
+nativesdk-mpfr           3.1.0               N/A                 41187 d                  No Maintainer information               No data                       
+nativesdk-sqlite3        3.7.13              N/A                 41187 d                  No Maintainer information               No data                       
+nativesdk-db             5.3.15              N/A                 41187 d                  No Maintainer information               No data                       
+nativesdk-libmpc         0.8.2               N/A                 41187 d                  No Maintainer information               No data                       
+nativesdk-u-boot-mki...  2011.06             N/A                 41187 d                  No Maintainer information               No data                       
+kconfig-frontends        3.5.0               3.5.0               41187 d                  No Maintainer information               No data                       
+nativesdk-pseudo         1.4.1               N/A                 41187 d                  No Maintainer information               No data                       
+python-argparse          1.2.1               N/A                 41187 d                  No Maintainer information               No data                       
+nativesdk-opkg           0.1.8+svnr633...    N/A                 41187 d                  No Maintainer information               No data                       
+nativesdk-chrpath        0.14                N/A                 41187 d                  No Maintainer information               No data                       
+nativesdk-eglibc         2.16                N/A                 41187 d                  No Maintainer information               No data                       
+libcgroup                0.37.1              0.38-1              41187 d                  No Maintainer information               No data                       
+nativesdk-expat          2.1.0               N/A                 41187 d                  No Maintainer information               No data                       
+mpeg2dec                 0.4.1               0.5.1               502 day                  No Maintainer information               Why are we currently at 0.4.1?
+nativesdk-alsa-lib       1.0.25              N/A                 41187 d                  No Maintainer information               No data                       
+ltp                      20120903            20120903            208 day                  Mihai Lindner <mihaix.lindner...        No data                       
+pseudo                   1.4.1               1.2                 340 day                  Mark Hatle <mark.hatle@windri...        No data                       
+prelink                  1.0+git1+a2d8...    1.0+git1+9552...    268 day                  Mark Hatle <mark.hatle@windri...        No data                       
+rpm                      5.4.9               5.4.10              41187 d                  Mark Hatle <mark.hatle@windri...        No data                       
+x11vnc                   0.9.13              0.9.13              93 days                  Laurentiu Palcu <laurentiu.pa...        No data                       
+libarchive               2.8.5               3.0.4               41187 d                  Kai Kang <kai.kang@windriver....        No data                       
+mingetty                 1.08                1.08                269 day                  Kai Kang <kai.kang@windriver....        No data                       
+alsa-tools               1.0.25              N/A                 41187 d                  Kai Kang <kai.kang@windriver....        No data                       
+adt-installer            0.1.8+svnr596...    1.1                 41187 d                  Jessica Zhang <jessica.zhang@...        No data                       
+cwautomacros             20110201            20110201            93 days                  Cristian Iorga <cristian.iorg...        No data                       
+minicom                  2.6.1               2.6.1               93 days                  Cristian Iorga <cristian.iorg...        No data                       
+libtirpc                 0.2.2               0.2.2               93 days                  Cristian Iorga <cristian.iorg...        No data                       
+rpcbind                  0.2.0               0.2.0               93 days                  Cristian Iorga <cristian.iorg...        No data                       
+quota                    4.00                4.00                93 days                  Cristian Iorga <cristian.iorg...        No data                       
+db                       5.3.15              5.0.26              41187 d                  Cristian Iorga <cristian.iorg...        API compatibility issue       
+libproxy                 0.4.7               0.4.7               616 day                  Cristian Iorga <cristian.iorg...        No data                       
+taglib                   1.8                 1.7.2               616 day                  Cristian Iorga <cristian.iorg...        No data                       
+lrzsz                    0.12.20             0.12.20             616 day                  Cristian Iorga <cristian.iorg...        No data                       
+libical                  0.48                0.48                93 days                  Cristian Iorga <cristian.iorg...        No data                       
+wireless-tools           29                  29                  93 days                  Cristian Iorga <cristian.iorg...        No data                       
+irda-utils               0.9.18              0.9.18              93 days                  Cristian Iorga <cristian.iorg...        No data                       
+libpcap                  1.3.0               4.3.0               41187 d                  Cristian Iorga <cristian.iorg...        No data                       
+gssdp                    0.10.0              0.10.0              41187 d                  Cristian Iorga <cristian.iorg...        No data                       
+gupnp-tools              0.8.1               N/A                 41187 d                  Cristian Iorga <cristian.iorg...        No data                       
+gupnp-av                 0.8.0               0.10.3              41187 d                  Cristian Iorga <cristian.iorg...        No data                       
+tremor                   20120314            20120122            41187 d                  Cristian Iorga <cristian.iorg...        No data                       
+liba52                   0.7.4               0.7.4               616 day                  Cristian Iorga <cristian.iorg...        No data                       
+flac                     1.2.1               1.2.1               93 days                  Cristian Iorga <cristian.iorg...        No data                       
+libomxil                 0.9.3               0.9.3               93 days                  Cristian Iorga <cristian.iorg...        No data                       
+libsamplerate0           0.1.8               0.1.8               93 days                  Cristian Iorga <cristian.iorg...        No data                       
+alsa-utils               1.0.25              N/A                 41187 d                  Cristian Iorga <cristian.iorg...        No data                       
+alsa-lib                 1.0.25              N/A                 41187 d                  Cristian Iorga <cristian.iorg...        No data                       
+mpfr                     3.1.0               3.1.1               93 days                  Bogdan Marinescu <bogdan.a.ma...        No data                       
+libpcre                  8.31                8.31                93 days                  Bogdan Marinescu <bogdan.a.ma...        No data                       
+libmpc                   0.8.2               0.9                 621 day                  Bogdan Marinescu <bogdan.a.ma...        No data                       
+python-scons             2.1.0               2.2.0               41187 d                  Bogdan Marinescu <bogdan.a.ma...        No data                       
+distcc                   2.18.3              3.1.1               41187 d                  Bogdan Marinescu <bogdan.a.ma...        No data                       
+intltool                 0.50.0              0.50.2              41187 d                  Bogdan Marinescu <bogdan.a.ma...        No data                       
+strace                   4.7                 4.7                 93 days                  Bogdan Marinescu <bogdan.a.ma...        No data                       
+git                      1.7.7               N/A                 41187 d                  Bogdan Marinescu <bogdan.a.ma...        No data                       
+tcl                      8.5.11              8.5.12              93 days                  Bogdan Marinescu <bogdan.a.ma...        No data                       
+powertop                 1.13                1.97                536 day                  Bogdan Marinescu <bogdan.a.ma...        Do not upgrade to version 1.97...
+oprofile                 0.9.7               0.9.8               93 days                  Bogdan Marinescu <bogdan.a.ma...        No data                       
+latencytop               0.5                 0.5                 536 day                  Bogdan Marinescu <bogdan.a.ma...        No data                       
+eglibc                   2.16                git:16540           280 day                  Bogdan Marinescu <bogdan.a.ma...        No data                       
+Manual Check Count: 115
+Manual Need Check Count: 115
 Any problem, please contact Saul Wold <sgw@linux.intel.com> 
 
---qDbXVdCdHGoSgWSk
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: attachment; filename="potential_format_problem.log"
-
-recipe_color.inc/17: RECIPE_COLOR = "green"
-
---qDbXVdCdHGoSgWSk--
