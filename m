@@ -1,38 +1,73 @@
-Return-Path: <jfabernathy@gmail.com>
-Received: from mail-ob0-f176.google.com (mail-ob0-f176.google.com
-	[209.85.214.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B2DF0E00346
-	for <yocto@yoctoproject.org>; Tue,  9 Oct 2012 06:40:13 -0700 (PDT)
-Received: by mail-ob0-f176.google.com with SMTP id x4so5871089obh.35
-	for <yocto@yoctoproject.org>; Tue, 09 Oct 2012 06:40:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=4AEYR5F4tHVTJuIi5tHmdGx7oC5jTf9IMbm8EZX1XLo=;
-	b=Vw3ZJSXv4E18m44kwnGwV67xXGTCGYeACm/mb6TxwD211zMgZo+8e5QvlcG/IRz4HY
-	L3cGkwM+yTJ8hIwLQJsqPyUMXfCkU2t/FCjkbBd/Kc4Is+QvADqTAO0w5bSfUNj3PWk9
-	17OHANpiCFQmF3CtXPrXQZ24s3Qe8h9KrrBJqsMVqpOJMW5a9EzObVjuQpAxNDHd0rrt
-	ueW/rY6NtXU383xIu07Rzk6Q1tFm1RzHXik5JzQDddra9+XPTwl8otRWtvJ2YFwhuKGh
-	GQ8nSM5sI4K+a8p6b+7iJxdT/KAK70IdagzWHDZRTsKG0pQxId3YaRiPUyKlx5jUY8ea
-	TAuw==
+Return-Path: <song.liu@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 79CABE0027E
+	for <yocto@yoctoproject.org>; Mon,  8 Oct 2012 13:45:13 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 08 Oct 2012 13:45:12 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,556,1344236400"; d="scan'208";a="153856692"
+Received: from orsmsx105.amr.corp.intel.com ([10.22.225.132])
+	by AZSMGA002.ch.intel.com with ESMTP; 08 Oct 2012 13:45:11 -0700
+Received: from orsmsx107.amr.corp.intel.com (10.22.225.80) by
+	ORSMSX105.amr.corp.intel.com (10.22.225.132) with Microsoft SMTP Server
+	(TLS) id 14.1.355.2; Mon, 8 Oct 2012 13:45:10 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.223]) by
+	ORSMSX107.amr.corp.intel.com ([169.254.10.146]) with mapi id
+	14.01.0355.002; Mon, 8 Oct 2012 13:45:09 -0700
+From: "Liu, Song" <song.liu@intel.com>
+To: "Liu, Song" <song.liu@intel.com>, 'Anders Darander'
+	<anders@chargestorm.se>, "Barros Pena,
+	Belen" <belen.barros.pena@intel.com>, 
+	"Bodke, Kishore K" <kishore.k.bodke@intel.com>, 'Bruce Ashfield'
+	<bruce.ashfield@windriver.com>, 'Daniel Cauchy' <dcauchy@mvista.com>,
+	"'deVries, Alex'" <Alex.deVries@windriver.com>, "'Dixon, Brad'"
+	<Brad_Dixon@mentor.com>, "Dmytriyenko, Denys" <denys@ti.com>, "Erway,
+	Tracey M" <tracey.m.erway@intel.com>, "Flanagan, Elizabeth"
+	<elizabeth.flanagan@intel.com>, "Hart, Darren" <darren.hart@intel.com>, 
+	"'Hatle, Mark'" <mark.hatle@windriver.com>, 'Jeremy Puhlman'
+	<jpuhlman@gmail.com>, "Kridner, Jason" <jdk@ti.com>, "Li, Susie"
+	<susie.li@intel.com>, "'Lieu.Ta@windriver.com'" <'Lieu.Ta@windriver.com'>, 
+	"Lock, Joshua" <joshua.lock@intel.com>, "'McCombe, Kevin'"
+	<kevin.mccombe@windriver.com>, "Moeller, Thorsten"
+	<thorsten.moeller@intel.com>, 'Sanjay Raina' <sraina@mvista.com>,
+	"Osier-mixon, Jeffrey" <jeffrey.osier-mixon@intel.com>, "'Polk, Jeffrey'"
+	<jeff.polk@windriver.com>, "Purdie, Richard" <richard.purdie@intel.com>,
+	"'Ranslam, Rob'" <Rob.Ranslam@windriver.com>, "Saxena, Rahul"
+	<rahul.saxena@intel.com>, "Stewart, David C" <david.c.stewart@intel.com>,
+	"Wang, Shane" <shane.wang@intel.com>, "Wold, Saul" <saul.wold@intel.com>,
+	"Zanussi, Tom" <tom.zanussi@intel.com>, "Zhang, Jessica"
+	<jessica.zhang@intel.com>, "Rifenbark, Scott M"
+	<scott.m.rifenbark@intel.com>, "'Hudson, Sean'" <Sean_Hudson@mentor.com>,
+	"Serban, Laurentiu" <laurentiu.serban@intel.com>, "Petrisor, Ileana"
+	<ileana.petrisor@intel.com>, "Damian, Alexandru"
+	<alexandru.damian@intel.com>, "Burton, Ross" <ross.burton@intel.com>,
+	"Mueller, Robert" <robert.mueller@intel.com>, "Arce Moreno, Abraham"
+	<abraham.arce.moreno@intel.com>,
+	'Ravi Vompolu' <Ravi.Vompolu@mathworks.com>, 
+	"'Mitchell, Jeffrey - 0665 - MITLL'" <jmitchell@ll.mit.edu>, "'Sadiq,
+	Irfan'" <Irfan_Sadiq@mentor.com>, "Santana Lopez, Mario A"
+	<mario.a.santana.lopez@intel.com>, "Calles Palacios, Osvaldo"
+	<osvaldo.calles.palacios@intel.com>, "Patel, Keyur R"
+	<keyur.r.patel@intel.com>, "'achaudha@mvista.com'" <achaudha@mvista.com>
+Thread-Topic: Agenda: Yocto Project Technical Team Meeting - Tuesday,
+	October 09, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+Thread-Index: AQHNpZXOF3Qnpmm00EG9A1WvsLYKmQ==
+Date: Mon, 8 Oct 2012 20:45:08 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A4856BC7F@ORSMSX101.amr.corp.intel.com>
+References: <7E680CB2A76BB8438D08CF13C09FC53A4844CAD5@ORSMSX101.amr.corp.intel.com>
+In-Reply-To: <7E680CB2A76BB8438D08CF13C09FC53A4844CAD5@ORSMSX101.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.138]
 MIME-Version: 1.0
-Received: by 10.182.216.71 with SMTP id oo7mr2817494obc.70.1349790010801; Tue,
-	09 Oct 2012 06:40:10 -0700 (PDT)
-Received: by 10.76.143.225 with HTTP; Tue, 9 Oct 2012 06:40:10 -0700 (PDT)
-In-Reply-To: <63ECFF2A2302B44093D7CE9E9962C49003CD3284@ORSMSX107.amr.corp.intel.com>
-References: <443D93B8-DA6A-40DD-854F-7007FE63854C@keylevel.com>
-	<63ECFF2A2302B44093D7CE9E9962C49003CD2F97@ORSMSX107.amr.corp.intel.com>
-	<E413C1D3-D599-437C-A1ED-8A57DAC3E8D3@keylevel.com>
-	<CADkTA4NAnqoBBzHkWNErMr2J=0p1xdSVocSpFCMLkV_8ztrwPg@mail.gmail.com>
-	<4ED03A84-C184-4A15-BB50-B83AEE211BB4@keylevel.com>
-	<CADkTA4Oecym=XyX13qosTD634MkfKfO1PYi=Pzp5kWtPLSdd2w@mail.gmail.com>
-	<63ECFF2A2302B44093D7CE9E9962C49003CD3284@ORSMSX107.amr.corp.intel.com>
-Date: Tue, 9 Oct 2012 09:40:10 -0400
-Message-ID: <CANFv2E=5y1cfiZNmKR6FhOZbebeHDZw3y7ZwJ1MhFpK618YWwQ@mail.gmail.com>
-From: James Abernathy <jfabernathy@gmail.com>
-To: "Saxena, Rahul" <rahul.saxena@intel.com>
-Cc: "yocto@yoctoproject.org Project" <yocto@yoctoproject.org>
-Subject: Re: Meta Intel / Cedartrail / Denzil - how to get unionfs in the kernel
+X-Mailman-Approved-At: Tue, 09 Oct 2012 08:02:41 -0700
+Cc: "Palalau, AlexandruX" <alexandrux.palalau@intel.com>, "Mirea,
+	Viorel" <viorel.mirea@intel.com>,
+	SSD-OTC Romania Yocto QA <ssd-otc.romania.yocto.qa@intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Hart,
+	Darren" <darren.hart@intel.com>
+Subject: Agenda: Yocto Project Technical Team Meeting - Tuesday, October 09, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,319 +79,145 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 09 Oct 2012 13:40:14 -0000
-Content-Type: multipart/alternative; boundary=f46d044785c71d7f8b04cba07a3f
-
---f46d044785c71d7f8b04cba07a3f
-Content-Type: text/plain; charset=ISO-8859-1
-
-On Mon, Oct 8, 2012 at 12:28 PM, Saxena, Rahul <rahul.saxena@intel.com>wrote:
-
->
->
-> -----Original Message-----
-> From: Bruce Ashfield [mailto:bruce.ashfield@gmail.com]
-> Sent: Monday, October 08, 2012 7:00 AM
-> To: Chris Tapp
-> Cc: Saxena, Rahul; yocto@yoctoproject.org Project
-> Subject: Re: [yocto] Meta Intel / Cedartrail / Denzil - how to get unionfs
-> in the kernel
->
-> On Mon, Oct 8, 2012 at 3:58 AM, Chris Tapp <opensource@keylevel.com>
-> wrote:
-> > On 7 Oct 2012, at 22:41, Bruce Ashfield wrote:
-> >
-> >> On Sun, Oct 7, 2012 at 6:08 PM, Chris Tapp <opensource@keylevel.com>
-> wrote:
-> >>> On 7 Oct 2012, at 03:00, Saxena, Rahul wrote:
-> >>>
-> >>>> Try adding the unionfs feature (below) to your kernel:
-> >>>>
-> >>>> http://git.yoctoproject.org/cgit/cgit.cgi/linux-yocto-3.0/tree/meta
-> >>>> /cfg/kernel-cache/features/unionfs?h=meta
-> >>>>
-> >>>> create a file my_cedartrail.scc with following line:
-> >>>> include features/unionfs/unionfs.scc
-> >>>>
-> >>>> put this file in a dir linux-yocto, the dir being created in
-> >>>>
-> >>>> meta-cedartrail/recipes-kernel/linux
-> >>>>
-> >>>> add following line in
-> >>>> meta-cedartrail/recipes-kernel/Linux/linux-yocto_3.0.bbappend
-> >>>>
-> >>>> SRC_URI +="file://my_cedartrail.scc"
-> >>>
-> >>> Thanks - I thought just running 'menuconfig' would allow me to enable
-> it (for a quick test).
-> >>>
-> >>> However, this still doesn't seem to be working. I can see that
-> 'my_cedartrail.scc' gets fetched in to the build area, but I still don't
-> see CONFIG_UNION_FS if I run 'menuconfig'. There is also no 'unionfs'
-> folder in fs/ of the build tree.
-> >>>
-> >>> Also, if I specify an invalid feature (e.g.
-> feature2/unionfs/unionfs.scc) I'm not seeing any diagnostic.
-> >>
-> >> unionfs was never merged to the 3.0 kernel, I re-added it to the
-> >> development trees for 3.2 and the 3.4 kernel (aufs for the 3.6 tree
-> >> at the moment). The meta data is carried forward from the older
-> >> kernels as a placeholder and is documented in the .scc file itself:
-> >>
-> >> -----------------------
-> >> kconf non-hardware unionfs.cfg
-> >>
-> >> # commented pending update to a newer version ported to 2.6.35+ #
-> >> patch unionfs-2.5.4-integration.patch
-> >> -----------------------
-> >>
-> >> So to get unionfs in the 3.0 kernel, we'd need a port .. but since
-> >> we've moved on quite a bit past 3.0, I don't know of any pending
-> >> ports myself.
-> >
-> > Thanks Bruce.
-> >
-> > I guess I need to ask the Intel guys if there are any plans to move
-> Cedartrail on from 3.0 ?
->
-> It will have to happen post yocto 1.3 (as far as I know), since the
-> 3.0 kernel will be
-> dropped at that point.
->
-> For the short term, it's likely easier to backport/update unionfs than it
-> would be to update the BSP .. but I can't speak for the time to be spent
-> doing it :)
->
-> Cheers,
->
-> Bruce
->
->
-> Chris,
->
-> There are no plans to port Cedartrail BSP to support any other Kernel
-> other than 3.0. The reason is that
-> the Cedartrail PVR Graphics driver is supported only for 3.0 kernel.
->
-> Rahul
->
->
-It may not solve the 3.0 problem for CDV and Yocto, but I noticed that
-Ubuntu 12.04.1 with the 3.2 kernel supports the PVR driver on it's 3.2.0
-kernel.  I've only tested it successfully on an All-In-One with LVDS off of
-an eDP to LVDS converter used on the DN2800MT motherboard.
-
-Jim A
-
-
->  >
-> >> Cheers,
-> >>
-> >> Bruce
-> >>
-> >>>
-> >>>>
-> >>>> -----Original Message-----
-> >>>> From: yocto-bounces@yoctoproject.org
-> >>>> [mailto:yocto-bounces@yoctoproject.org] On Behalf Of Chris Tapp
-> >>>> Sent: Saturday, October 06, 2012 5:43 PM
-> >>>> To: yocto@yoctoproject.org Project
-> >>>> Subject: [yocto] Meta Intel / Cedartrail / Denzil - how to get
-> >>>> unionfs in the kernel
-> >>>>
-> >>>> I' trying to enable unionfs in the 3.0.32 kernel for the cedartrail
-> BSP under Denzil 7.0.1.
-> >>>>
-> >>>> However, the CONFIG_UNION_FS config flag isn't in the .config ...
-> >>>>
-> >>>> Is there something else I need to enable, or do I need to find
-> another way?
-> >>>>
-> >>>> Chris Tapp
-> >>>>
-> >>>> opensource@keylevel.com
-> >>>> www.keylevel.com
-> >>>>
-> >>>>
-> >>>>
-> >>>> _______________________________________________
-> >>>> yocto mailing list
-> >>>> yocto@yoctoproject.org
-> >>>> https://lists.yoctoproject.org/listinfo/yocto
-> >>>
-> >>> Chris Tapp
-> >>>
-> >>> opensource@keylevel.com
-> >>> www.keylevel.com
-> >>>
-> >>>
-> >>>
-> >>> _______________________________________________
-> >>> yocto mailing list
-> >>> yocto@yoctoproject.org
-> >>> https://lists.yoctoproject.org/listinfo/yocto
-> >>
-> >>
-> >>
-> >> --
-> >> "Thou shalt not follow the NULL pointer, for chaos and madness await
-> >> thee at its end"
-> >
-> > Chris Tapp
-> >
-> > opensource@keylevel.com
-> > www.keylevel.com
-> >
-> >
-> >
->
->
->
-> --
-> "Thou shalt not follow the NULL pointer, for chaos and madness await thee
-> at its end"
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
-
---f46d044785c71d7f8b04cba07a3f
-Content-Type: text/html; charset=ISO-8859-1
+X-List-Received-Date: Mon, 08 Oct 2012 20:45:13 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<br><br>
-<div class=3D"gmail_quote">On Mon, Oct 8, 2012 at 12:28 PM, Saxena, Rahul <=
-span dir=3D"ltr">&lt;<a href=3D"mailto:rahul.saxena@intel.com" target=3D"_b=
-lank">rahul.saxena@intel.com</a>&gt;</span> wrote:<br>
-<blockquote style=3D"BORDER-LEFT:#ccc 1px solid;MARGIN:0px 0px 0px 0.8ex;PA=
-DDING-LEFT:1ex" class=3D"gmail_quote">
-<div class=3D"HOEnZb">
-<div class=3D"h5"><br><br>-----Original Message-----<br>From: Bruce Ashfiel=
-d [mailto:<a href=3D"mailto:bruce.ashfield@gmail.com">bruce.ashfield@gmail.=
-com</a>]<br>Sent: Monday, October 08, 2012 7:00 AM<br>To: Chris Tapp<br>Cc:=
- Saxena, Rahul; <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoprojec=
-t.org</a> Project<br>
-Subject: Re: [yocto] Meta Intel / Cedartrail / Denzil - how to get unionfs =
-in the kernel<br><br>On Mon, Oct 8, 2012 at 3:58 AM, Chris Tapp &lt;<a href=
-=3D"mailto:opensource@keylevel.com">opensource@keylevel.com</a>&gt; wrote:<=
-br>
-&gt; On 7 Oct 2012, at 22:41, Bruce Ashfield wrote:<br>&gt;<br>&gt;&gt; On =
-Sun, Oct 7, 2012 at 6:08 PM, Chris Tapp &lt;<a href=3D"mailto:opensource@ke=
-ylevel.com">opensource@keylevel.com</a>&gt; wrote:<br>&gt;&gt;&gt; On 7 Oct=
- 2012, at 03:00, Saxena, Rahul wrote:<br>
-&gt;&gt;&gt;<br>&gt;&gt;&gt;&gt; Try adding the unionfs feature (below) to =
-your kernel:<br>&gt;&gt;&gt;&gt;<br>&gt;&gt;&gt;&gt; <a href=3D"http://git.=
-yoctoproject.org/cgit/cgit.cgi/linux-yocto-3.0/tree/meta" target=3D"_blank"=
->http://git.yoctoproject.org/cgit/cgit.cgi/linux-yocto-3.0/tree/meta</a><br=
->
-&gt;&gt;&gt;&gt; /cfg/kernel-cache/features/unionfs?h=3Dmeta<br>&gt;&gt;&gt=
-;&gt;<br>&gt;&gt;&gt;&gt; create a file my_cedartrail.scc with following li=
-ne:<br>&gt;&gt;&gt;&gt; include features/unionfs/unionfs.scc<br>&gt;&gt;&gt=
-;&gt;<br>
-&gt;&gt;&gt;&gt; put this file in a dir linux-yocto, the dir being created =
-in<br>&gt;&gt;&gt;&gt;<br>&gt;&gt;&gt;&gt; meta-cedartrail/recipes-kernel/l=
-inux<br>&gt;&gt;&gt;&gt;<br>&gt;&gt;&gt;&gt; add following line in<br>&gt;&=
-gt;&gt;&gt; meta-cedartrail/recipes-kernel/Linux/linux-yocto_3.0.bbappend<b=
-r>
-&gt;&gt;&gt;&gt;<br>&gt;&gt;&gt;&gt; SRC_URI +=3D&quot;file://my_cedartrail=
-.scc&quot;<br>&gt;&gt;&gt;<br>&gt;&gt;&gt; Thanks - I thought just running =
-&#39;menuconfig&#39; would allow me to enable it (for a quick test).<br>&gt=
-;&gt;&gt;<br>
-&gt;&gt;&gt; However, this still doesn&#39;t seem to be working. I can see =
-that &#39;my_cedartrail.scc&#39; gets fetched in to the build area, but I s=
-till don&#39;t see CONFIG_UNION_FS if I run &#39;menuconfig&#39;. There is =
-also no &#39;unionfs&#39; folder in fs/ of the build tree.<br>
-&gt;&gt;&gt;<br>&gt;&gt;&gt; Also, if I specify an invalid feature (e.g. fe=
-ature2/unionfs/unionfs.scc) I&#39;m not seeing any diagnostic.<br>&gt;&gt;<=
-br>&gt;&gt; unionfs was never merged to the 3.0 kernel, I re-added it to th=
-e<br>
-&gt;&gt; development trees for 3.2 and the 3.4 kernel (aufs for the 3.6 tre=
-e<br>&gt;&gt; at the moment). The meta data is carried forward from the old=
-er<br>&gt;&gt; kernels as a placeholder and is documented in the .scc file =
-itself:<br>
-&gt;&gt;<br>&gt;&gt; -----------------------<br>&gt;&gt; kconf non-hardware=
- unionfs.cfg<br>&gt;&gt;<br>&gt;&gt; # commented pending update to a newer =
-version ported to 2.6.35+ #<br>&gt;&gt; patch unionfs-2.5.4-integration.pat=
-ch<br>
-&gt;&gt; -----------------------<br>&gt;&gt;<br>&gt;&gt; So to get unionfs =
-in the 3.0 kernel, we&#39;d need a port .. but since<br>&gt;&gt; we&#39;ve =
-moved on quite a bit past 3.0, I don&#39;t know of any pending<br>&gt;&gt; =
-ports myself.<br>
-&gt;<br>&gt; Thanks Bruce.<br>&gt;<br>&gt; I guess I need to ask the Intel =
-guys if there are any plans to move Cedartrail on from 3.0 ?<br><br>It will=
- have to happen post yocto 1.3 (as far as I know), since the<br>3.0 kernel =
-will be<br>
-dropped at that point.<br><br>For the short term, it&#39;s likely easier to=
- backport/update unionfs than it would be to update the BSP .. but I can&#3=
-9;t speak for the time to be spent doing it :)<br><br>Cheers,<br><br>Bruce<=
-br>
-<br><br></div></div>Chris,<br><br>There are no plans to port Cedartrail BSP=
- to support any other Kernel other than 3.0. The reason is that<br>the Ceda=
-rtrail PVR Graphics driver is supported only for 3.0 kernel.<br><span class=
-=3D"HOEnZb"><font color=3D"#888888"><br>
-Rahul<br></font></span>
-<div class=3D"HOEnZb">
-<div class=3D"h5"><br></div></div></blockquote>
-<div>=A0</div>
-<div>It may not solve the 3.0 problem for CDV and Yocto, but I noticed that=
- Ubuntu 12.04.1 with the 3.2 kernel supports the PVR driver on it&#39;s 3.2=
-.0 kernel.=A0 I&#39;ve only tested it successfully on an All-In-One with LV=
-DS off of an eDP to LVDS converter used on the DN2800MT motherboard.</div>
+Agenda:
+=A0
+* Opens collection - 5 min (Song)
+* Yocto 1.3 status  - 10 min (Song/team)
+  https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.3_Status =20
+  - Medium+ bugs review: https://bugzilla.yoctoproject.org/buglist.cgi?bug_=
+status=3DNEW&bug_status=3DACCEPTED&bug_status=3DREOPENED&bug_status=3DNEEDI=
+NFO&bug_status=3DWaitForUpstream&list_id=3D16013&priority=3DMedium%2B&query=
+_format=3Dadvanced&target_milestone=3D1.3&target_milestone=3D1.3%20M1&targe=
+t_milestone=3D1.3%20M2&target_milestone=3D1.3%20M3&target_milestone=3D1.3%2=
+0M4&target_milestone=3D1.3%20M5&target_milestone=3D1.3.1&target_milestone=
+=3D1.3.2&order=3Dassigned_to%20DESC%2Cpriority%2Cbug_status%20DESC%2Cbug_id=
+&query_based_on=3D=20
+* Yocto 1.4 feature open discussion - 10 min (team)
+  https://wiki.yoctoproject.org/wiki/Yocto_1.4_Features=20
+* SWAT team rotation: Saul
+* Opens - 10 min
+* Team sharing - 20 min
 
-<div>=A0</div>
-<div>Jim A</div>
-<div>=A0</div>
-<blockquote style=3D"BORDER-LEFT:#ccc 1px solid;MARGIN:0px 0px 0px 0.8ex;PA=
-DDING-LEFT:1ex" class=3D"gmail_quote">
-<div class=3D"HOEnZb">
-<div class=3D"h5">&gt;<br>&gt;&gt; Cheers,<br>&gt;&gt;<br>&gt;&gt; Bruce<br=
->&gt;&gt;<br>&gt;&gt;&gt;<br>&gt;&gt;&gt;&gt;<br>&gt;&gt;&gt;&gt; -----Orig=
-inal Message-----<br>&gt;&gt;&gt;&gt; From: <a href=3D"mailto:yocto-bounces=
-@yoctoproject.org">yocto-bounces@yoctoproject.org</a><br>
-&gt;&gt;&gt;&gt; [mailto:<a href=3D"mailto:yocto-bounces@yoctoproject.org">=
-yocto-bounces@yoctoproject.org</a>] On Behalf Of Chris Tapp<br>&gt;&gt;&gt;=
-&gt; Sent: Saturday, October 06, 2012 5:43 PM<br>&gt;&gt;&gt;&gt; To: <a hr=
-ef=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a> Project<br>
-&gt;&gt;&gt;&gt; Subject: [yocto] Meta Intel / Cedartrail / Denzil - how to=
- get<br>&gt;&gt;&gt;&gt; unionfs in the kernel<br>&gt;&gt;&gt;&gt;<br>&gt;&=
-gt;&gt;&gt; I&#39; trying to enable unionfs in the 3.0.32 kernel for the ce=
-dartrail BSP under Denzil 7.0.1.<br>
-&gt;&gt;&gt;&gt;<br>&gt;&gt;&gt;&gt; However, the CONFIG_UNION_FS config fl=
-ag isn&#39;t in the .config ...<br>&gt;&gt;&gt;&gt;<br>&gt;&gt;&gt;&gt; Is =
-there something else I need to enable, or do I need to find another way?<br=
->
-&gt;&gt;&gt;&gt;<br>&gt;&gt;&gt;&gt; Chris Tapp<br>&gt;&gt;&gt;&gt;<br>&gt;=
-&gt;&gt;&gt; <a href=3D"mailto:opensource@keylevel.com">opensource@keylevel=
-.com</a><br>&gt;&gt;&gt;&gt; <a href=3D"http://www.keylevel.com/" target=3D=
-"_blank">www.keylevel.com</a><br>
-&gt;&gt;&gt;&gt;<br>&gt;&gt;&gt;&gt;<br>&gt;&gt;&gt;&gt;<br>&gt;&gt;&gt;&gt=
-; _______________________________________________<br>&gt;&gt;&gt;&gt; yocto=
- mailing list<br>&gt;&gt;&gt;&gt; <a href=3D"mailto:yocto@yoctoproject.org"=
->yocto@yoctoproject.org</a><br>
-&gt;&gt;&gt;&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" =
-target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>&gt;=
-&gt;&gt;<br>&gt;&gt;&gt; Chris Tapp<br>&gt;&gt;&gt;<br>&gt;&gt;&gt; <a href=
-=3D"mailto:opensource@keylevel.com">opensource@keylevel.com</a><br>
-&gt;&gt;&gt; <a href=3D"http://www.keylevel.com/" target=3D"_blank">www.key=
-level.com</a><br>&gt;&gt;&gt;<br>&gt;&gt;&gt;<br>&gt;&gt;&gt;<br>&gt;&gt;&g=
-t; _______________________________________________<br>&gt;&gt;&gt; yocto ma=
-iling list<br>
-&gt;&gt;&gt; <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.o=
-rg</a><br>&gt;&gt;&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/y=
-octo" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><b=
-r>
-&gt;&gt;<br>&gt;&gt;<br>&gt;&gt;<br>&gt;&gt; --<br>&gt;&gt; &quot;Thou shal=
-t not follow the NULL pointer, for chaos and madness await<br>&gt;&gt; thee=
- at its end&quot;<br>&gt;<br>&gt; Chris Tapp<br>&gt;<br>&gt; <a href=3D"mai=
-lto:opensource@keylevel.com">opensource@keylevel.com</a><br>
-&gt; <a href=3D"http://www.keylevel.com/" target=3D"_blank">www.keylevel.co=
-m</a><br>&gt;<br>&gt;<br>&gt;<br><br><br><br>--<br>&quot;Thou shalt not fol=
-low the NULL pointer, for chaos and madness await thee at its end&quot;<br>
-_______________________________________________<br>yocto mailing list<br><a=
- href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br><a hr=
-ef=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank">http=
-s://lists.yoctoproject.org/listinfo/yocto</a><br>
-</div></div></blockquote></div><br>
 
---f46d044785c71d7f8b04cba07a3f--
+-----Original Appointment-----
+
+
+
+We encourage people attending the meeting to logon the Yocto IRC chancel du=
+ring the meeting (optional):
+
+Yocto IRC: http://webchat.freenode.net/?channels=3D#yocto
+IRC Tutorial: http://www.irchelp.org/irchelp/irctutorial.html=20
+
+Conference details=20
+Conference name:=20
+Yocto Technical Team
+Conference date/start time:=20
+Tue Jun 26, 2012 at 10:00 AM Central Daylight Time=20
+Participants:=20
+30
+Duration:=20
+60 minutes=20
+Participant passcode:=20
+76994298
+Dial-in number:=20
+1.972.995.7777=20
+US Toll Free number:=20
+1.877.561.6828=20
+BlackBerry users, click this link to join your conference as a participant:
+1.972.995.7777x76994298#
+=A0
+Depending on where you are dialing from, either your BlackBerry will pause =
+and enter the passcode automatically or you will be prompted to click again=
+ to dial the passcode.
+
+Local and Global Access Numbers=20
+
+
+Country=20
+Dial-in number
+Australia:=20
+1800 636 843
+Czech Republic:=20
+242 430 350
+China (Beijing):=20
+From office dial 8-9957777 or 8784277=20
+Beijing Out of Office dial 5878 4277
+China (Shanghai):=20
+From office dial 8-9957777 or 3073322=20
+Shanghai Out of Office dial 2307 3322
+China (Shenzen):=20
+From office dial 8-9957777 or 6007877=20
+Shenzen Out of Office dial 2600 7877
+China (Other Cities):=20
+From IP phone dial 8-9957777=20
+Other cities - Non IP phone dial 021-23073322
+Denmark:=20
+8060 1400
+Finland:=20
+09 41333477
+France:=20
+0497 275888
+Germany:=20
+08161 803232
+Holland:=20
+030 2417490
+India:=20
+BSNL subscribers use 1800 425 9996 (Toll Free)
+Airtel subscribers use 0008 009 861 212 (Toll Free)
+From TI Campus use 89957777
+Others use 2509 9555 (Landline within Bangalore) or
+80 2509 9555 (Outside Bangalore)
+Israel:=20
+09 790 6715
+Italy:=20
+039 69061234 (039 is local city code not country code)
+Japan:=20
+From TI Campus use 8 995 7777=20
+Outside TI use 03 4331 3777
+Malaysia:=20
+From IP phone dial 2643799=20
+From Kuala Lumpur dial 4264 3799=20
+Outside Kuala Lumpur dial (03)4264 3799
+Norway:=20
+2 295 8744
+Philippines:=20
+From Baguio City use 4471177=20
+From Metro Manila area use 8702477
+Singapore:=20
+From IP phone dial 3894777=20
+Outside TI use 6389 4777
+South Korea:=20
+From IP phone dial 5606998=20
+From Seoul dial 5606998=20
+Outside Seoul dial (02)5606998
+Sweden:=20
+08 58755577
+Taiwan:=20
+From IP phone dial 1363=20
+From Taipei dial 2241 1363=20
+Outside Taipei dial (02)2241 1363
+Turkey:=20
+Landline Only dial 0811 288 0001=20
+then enter 877 633 1123=20
+UK:=20
+01604 663003
+US:=20
+972 995 7777 or 1877 561 6828
+
+Recurring conferences=20
+First scheduled conference:=20
+Tue Jun 26, 2012
+Recurrence frequency:=20
+Weekly - Every 1 week(s) on Tuesday
+Recurrence ends:=20
+End on Fri Jun 21, 2013, 10:40 AM CDT
+
+
+
+
