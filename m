@@ -1,23 +1,34 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 127F0E0027E
-	for <yocto@yoctoproject.org>; Mon,  8 Oct 2012 10:14:06 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga101.ch.intel.com with ESMTP; 08 Oct 2012 10:13:37 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,555,1344236400"; d="scan'208";a="153786023"
-Received: from unknown (HELO helios.localnet) ([10.252.122.50])
-	by AZSMGA002.ch.intel.com with ESMTP; 08 Oct 2012 10:13:36 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
+Return-Path: <evadeflow@gmail.com>
+Received: from mail-ie0-f176.google.com (mail-ie0-f176.google.com
+	[209.85.223.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9CDE8E0027E
+	for <yocto@yoctoproject.org>; Mon,  8 Oct 2012 10:18:35 -0700 (PDT)
+Received: by mail-ie0-f176.google.com with SMTP id k11so11405099iea.35
+	for <yocto@yoctoproject.org>; Mon, 08 Oct 2012 10:18:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:cc:subject:date:message-id:x-mailer:in-reply-to:references;
+	bh=+aOR58WNSBKNQYEnJ1BsMtzm+hMEcoHY5PVteQD0uqc=;
+	b=i7GxYRdQfY1nPca4yQhIXP2xZpLUeO46ostDcvcAyyHjo7sO7h8m1bryoBUh3JRgsp
+	1etehLCipVGz4Y5ePRkEWZ3dmOlrrkBvTZVKPF8orxyEs9aBCSlUBZWcqvD2lBHEzruh
+	mDueHM7Obg80pzhKG5cMtopupLYiF8pUmLLYPo+DWPZHZtyzLQvBIDMzdifWjTEihss5
+	7G6fmbkElBuYtNiT0HVX4d02iDTXXh+CY2ojSave292fPgwJfHrlBWc+evgi8W5aS5PE
+	iY/cVwMa64OHwz280WXtZBuBSBzbR5gz8exYl0FOzjjFWBxZkqBgzeNNyaGwjyRpu1LC
+	MKOQ==
+Received: by 10.50.42.197 with SMTP id q5mr6664904igl.21.1349716709851;
+	Mon, 08 Oct 2012 10:18:29 -0700 (PDT)
+Received: from localhost.localdomain (11.sub-174-232-65.myvzw.com.
+	[174.232.65.11])
+	by mx.google.com with ESMTPS id v12sm7866661igv.3.2012.10.08.10.18.28
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Mon, 08 Oct 2012 10:18:29 -0700 (PDT)
+From: Evade Flow <evadeflow@gmail.com>
 To: yocto@yoctoproject.org
-Date: Mon, 08 Oct 2012 18:13:35 +0100
-Message-ID: <5195719.iDMf9X1rpv@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.9.2 (Linux/3.2.0-31-generic-pae; KDE/4.9.2; i686; ; )
-In-Reply-To: <cover.1349710561.git.paul.eggleton@linux.intel.com>
-References: <cover.1349710561.git.paul.eggleton@linux.intel.com>
-MIME-Version: 1.0
-Subject: Re: [yocto-docs][PATCH 00/11] Documentation improvements
+Date: Mon,  8 Oct 2012 13:18:14 -0400
+Message-Id: <1349716696-15807-1-git-send-email-evadeflow@gmail.com>
+X-Mailer: git-send-email 1.7.9.5
+In-Reply-To: <011802>
+References: <011802>
+Subject: [PATCH 0/2] Move 'tag=' for a few SRC_URIs to SRCREV
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,60 +40,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 08 Oct 2012 17:14:07 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Mon, 08 Oct 2012 17:18:35 -0000
 
-On Monday 08 October 2012 16:38:06 Paul Eggleton wrote:
-> Add some missing variables to the variable reference and improve
-> the descriptions of others. Also fix references to "package" where
-> we mean "recipe" and a couple of other issues I noticed at the same
-> time.
-> 
-> 
-> The following changes since commit 821162221818f5ce53bb903aeef57c85314f5083:
-> 
->   documentation: dev-manual - mentioned SRC_URI in the kernel example
-> (2012-10-05 11:25:03 -0700)
-> 
-> are available in the git repository at:
-> 
->   git://git.yoctoproject.org/poky-contrib paule/doc-fixes-5
->   http://git.yoctoproject.org/cgit.cgi/poky-contrib/log/?h=paule/doc-fixes-5
-> 
-> Paul Eggleton (11):
->   documentation: dev-manual: fix spelling
->   documentation: poky-ref-manual: correct LICENSE_DIR -> LICENSE_PATH
->   documentation: poky-ref-manual: improve MACHINE_* variable
->     descriptions
->   documentation: poky-ref-manual: extend description of MACHINE
->     variable
->   documentation: poky-ref-manual: add PACKAGECONFIG variable
->   documentation: poky-ref-manual: extend DISTRO description
->   documentation: poky-ref-manual: add information on
->     *_FEATURES_BACKFILL
->   documentation: poky-ref-manual: fix description of SUMMARY variable
->   documentation: poky-ref-manual: remove references to ipkg
->   documentation: poky-ref-manual: replace "package" with "recipe" where
->     appropriate
->   documentation: poky-ref-manual: update directory structure
->     information
-> 
->  documentation/dev-manual/dev-manual-newbie.xml  |    2 +-
->  documentation/poky-ref-manual/faq.xml           |    2 +-
->  documentation/poky-ref-manual/ref-features.xml  |   46 ++++
->  documentation/poky-ref-manual/ref-structure.xml |   30 ++-
->  documentation/poky-ref-manual/ref-variables.xml |  267
-> +++++++++++++++-------- 5 files changed, 249 insertions(+), 98 deletions(-)
+Sending in response to:
 
-Apologies if 10/11 comes through twice, there was some kind of issue with 
-getting the original mail through to the mailing list server so I resent it.
+  - http://lists.yoctoproject.org/pipermail/yocto/2012-September/011802.html
 
-Cheers,
-Paul
+Building with BB_NO_NETWORK can fail if recipes specify 'tag=' in
+SRC_URI, since bitbake must contact the source repository to verify
+which hash the tag currently points to.  Since tags can, in principle,
+change, current best practice is to omit 'tag=' from SRC_URIs and
+instead specify the required revision hash in SRCREV.
+
+SHA hashes *cannot* change, so they should not need to be checked, in
+theory; however, bitbake currently has no mechanism for distinguishing
+between human-friendly tags like 'v2.1.2' and SHA-1 sums like
+'fdb6c0402337d9607c7a39155088eaf033742752': both will result in a call
+to `git ls-remote` to verify the tag, which is problematic for
+BB_NO_NETWORK builds.
+
+The second part of this patch was, I think, already submitted, but not
+yet applied to master[?]:
+
+  - http://lists.yoctoproject.org/pipermail/yocto/2012-September/011949.html
+
+
+Evade Flow (2):
+  Move 'tag=' to SRCREV in btrfs-tools recipe
+  Move 'tag=' to SRCREV in mtd-utils recipe
+
+ .../btrfs-tools/btrfs-tools_git.bb                 |    3 ++-
+ meta/recipes-devtools/mtd/mtd-utils_1.5.0.bb       |    3 ++-
+ 2 files changed, 4 insertions(+), 2 deletions(-)
 
 -- 
+1.7.9.5
 
-Paul Eggleton
-Intel Open Source Technology Centre
 
