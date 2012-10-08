@@ -1,31 +1,25 @@
-Return-Path: <schnitzeltony@googlemail.com>
-Received: from mail-ie0-f176.google.com (mail-ie0-f176.google.com
-	[209.85.223.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 825B0E01275;
-	Mon,  8 Oct 2012 03:54:47 -0700 (PDT)
-Received: by mail-ie0-f176.google.com with SMTP id k11so10296691iea.35
-	for <multiple recipients>; Mon, 08 Oct 2012 03:54:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=googlemail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:cc:content-type;
-	bh=IictIYJNGI4RfWdT4/qTeTh8a4qS42shom9wEduE8rk=;
-	b=HPUydgCkyI7O7uVPRCiOdW+6CczgMOHHAD/itXMClyb93L9fLhASR4KYnAjrhWuhdj
-	xhLW4yELqECkkKyHNS+CA2YM+S6JeVAhmHkvE/Euy92fhDXNnLxVjSbGiGz/bnEA+Ead
-	QlypEthXgRx+1qwVm8C8xUvtSslrH02KAcPTt8EJ5J/5UPDmGEG2IXc2oi3mtSDyjmw+
-	0vwJXlDI/RF8Y4SR+NhRYkBsgzpktzjwAI/WNjqzDM7t8lMWh3bB3ml0zk93ExFLseno
-	3NkrQx83pJj0/x1kCYX935hjaDbJTNm7cs8YLmZRI0IL3EkdMCCKw6XRBvhzHQr8lSQW
-	6InA==
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6F8C7E01275;
+	Mon,  8 Oct 2012 04:18:27 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 08 Oct 2012 04:18:27 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,553,1344236400"; d="scan'208";a="231207742"
+Received: from unknown (HELO helios.localnet) ([10.252.122.50])
+	by fmsmga001.fm.intel.com with ESMTP; 08 Oct 2012 04:18:25 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Andreas =?ISO-8859-1?Q?M=FCller?= <schnitzeltony@googlemail.com>
+Date: Mon, 08 Oct 2012 12:18:24 +0100
+Message-ID: <7034165.eLERhWRCDa@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.9.2 (Linux/3.2.0-31-generic-pae; KDE/4.9.2; i686; ; )
+In-Reply-To: <CALbNGRRRk1HRJx4Ahk1E8AiB+MFxqa4m1y38GDhycPwgHBREag@mail.gmail.com>
+References: <CALbNGRRRk1HRJx4Ahk1E8AiB+MFxqa4m1y38GDhycPwgHBREag@mail.gmail.com>
 MIME-Version: 1.0
-Received: by 10.42.18.193 with SMTP id y1mr12550393ica.0.1349693686909; Mon,
-	08 Oct 2012 03:54:46 -0700 (PDT)
-Received: by 10.64.18.13 with HTTP; Mon, 8 Oct 2012 03:54:46 -0700 (PDT)
-Date: Mon, 8 Oct 2012 12:54:46 +0200
-Message-ID: <CALbNGRRRk1HRJx4Ahk1E8AiB+MFxqa4m1y38GDhycPwgHBREag@mail.gmail.com>
-From: =?ISO-8859-1?Q?Andreas_M=FCller?= <schnitzeltony@googlemail.com>
-To: gumstix-users@lists.sourceforge.net
 Cc: meta-ti@yoctoproject.org, yocto@yoctoproject.org,
-	angstrom-distro-devel@linuxtogo.org
-Subject: meta-gumstix proceedings
+	gumstix-users@lists.sourceforge.net, angstrom-distro-devel@linuxtogo.org
+Subject: Re: meta-gumstix proceedings
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,21 +31,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 08 Oct 2012 10:54:47 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Mon, 08 Oct 2012 11:18:27 -0000
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
 
-Hi,
+Hi Andreas,
 
-as some of you might know, gumstix created an official BSP layer
-[1][2]. To avoid confusion I renamed my layer from meta-gumstix to
-meta-gumstix-community [3]. Users should either switch to the official
-meta-gumstix layer or rename meta-gumstix to meta-gumstix-community
-[3] in git configuration (users of angstrom-setup-scripts should also
-change the name in layers.txt).
+On Monday 08 October 2012 12:54:46 Andreas M=FCller wrote:
+> as some of you might know, gumstix created an official BSP layer
+> [1][2]. To avoid confusion I renamed my layer from meta-gumstix to
+> meta-gumstix-community [3]. Users should either switch to the officia=
+l
+> meta-gumstix layer or rename meta-gumstix to meta-gumstix-community
+> [3] in git configuration (users of angstrom-setup-scripts should also=
 
-Andreas
+> change the name in layers.txt).
 
-[1] http://sourceforge.net/mailarchive/message.php?msg_id=29914700
-[2] https://github.com/gumstix/meta-gumstix
-[3] https://gitorious.org/schnitzeltony-oe-meta/meta-gumstix-community
+So what should we do with the layer index [4]? Do we list both? What is=
+ the=20
+delta between them, and is there a hope that there will be only one lay=
+er at=20
+some point?
+
+Cheers,
+Paul
+
+[4] http://www.openembedded.org/wiki/LayerIndex
+
+--=20
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
