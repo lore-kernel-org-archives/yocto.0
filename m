@@ -1,24 +1,24 @@
 Return-Path: <paul.eggleton@linux.intel.com>
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B95C1E013F7
-	for <yocto@yoctoproject.org>; Mon,  8 Oct 2012 08:40:20 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 35686E01346
+	for <yocto@yoctoproject.org>; Mon,  8 Oct 2012 08:40:29 -0700 (PDT)
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 08 Oct 2012 08:38:26 -0700
+	by fmsmga101.fm.intel.com with ESMTP; 08 Oct 2012 08:38:27 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,554,1344236400"; d="scan'208";a="231286229"
+X-IronPort-AV: E=Sophos;i="4.80,554,1344236400"; d="scan'208";a="231286236"
 Received: from unknown (HELO helios.ger.corp.intel.com) ([10.252.122.50])
-	by fmsmga001.fm.intel.com with ESMTP; 08 Oct 2012 08:38:25 -0700
+	by fmsmga001.fm.intel.com with ESMTP; 08 Oct 2012 08:38:26 -0700
 From: Paul Eggleton <paul.eggleton@linux.intel.com>
 To: Scott Rifenbark <scott.m.rifenbark@intel.com>,
 	yocto@yoctoproject.org
-Date: Mon,  8 Oct 2012 16:38:11 +0100
-Message-Id: <2f55873956678cf259ac42dacdbe5f916afce6c0.1349710561.git.paul.eggleton@linux.intel.com>
+Date: Mon,  8 Oct 2012 16:38:12 +0100
+Message-Id: <5644889e3429758f391721047ea13afeb465f377.1349710561.git.paul.eggleton@linux.intel.com>
 X-Mailer: git-send-email 1.7.9.5
 In-Reply-To: <cover.1349710561.git.paul.eggleton@linux.intel.com>
 References: <cover.1349710561.git.paul.eggleton@linux.intel.com>
 In-Reply-To: <cover.1349710561.git.paul.eggleton@linux.intel.com>
 References: <cover.1349710561.git.paul.eggleton@linux.intel.com>
-Subject: [yocto-docs][PATCH 05/11] documentation: poky-ref-manual: add PACKAGECONFIG variable
+Subject: [yocto-docs][PATCH 06/11] documentation: poky-ref-manual: extend DISTRO description
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,58 +30,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 08 Oct 2012 15:40:29 -0000
+X-List-Received-Date: Mon, 08 Oct 2012 15:40:32 -0000
 
-Add a description of the PACKAGECONFIG variable to the variable
-glossary.
+Extend the description of the DISTRO variable so that it mentions that
+this points to a .conf file under conf/distro and mentions what happens
+if the value is left blank.
 
 Signed-off-by: Paul Eggleton <paul.eggleton@linux.intel.com>
 ---
- documentation/poky-ref-manual/ref-variables.xml |   31 +++++++++++++++++++++++
- 1 file changed, 31 insertions(+)
+ documentation/poky-ref-manual/ref-variables.xml |   11 ++++++++++-
+ 1 file changed, 10 insertions(+), 1 deletion(-)
 
 diff --git a/documentation/poky-ref-manual/ref-variables.xml b/documentation/poky-ref-manual/ref-variables.xml
-index fa2bc7f..0bb3094 100644
+index 0bb3094..ba81f96 100644
 --- a/documentation/poky-ref-manual/ref-variables.xml
 +++ b/documentation/poky-ref-manual/ref-variables.xml
-@@ -1577,6 +1577,37 @@ recipes-graphics/xorg-font/font-alias_1.0.3.bb:PR = "${INC_PR}.3"
+@@ -448,7 +448,16 @@
+ 
+         <glossentry id='var-DISTRO'><glossterm>DISTRO</glossterm>
+             <glossdef>
+-                <para>The short name of the distribution.</para>
++                <para>
++                    The short name of the distribution. This corresponds to a file with the
++                    extension .conf located in a <filename>conf/distro</filename> directory
++                    within the metadata that contains the distribution configuration. The
++                    value must not contain spaces, and is typically all lower-case.
++                </para>
++                <para>
++                    If blank, a set of default configuration will be used, which is specified
++                    within <filename>meta/conf/distro/defaultsetup.conf</filename>.
++                </para>
              </glossdef>
          </glossentry>
  
-+        <glossentry id='var-PACKAGECONFIG'><glossterm>PACKAGECONFIG</glossterm>
-+            <glossdef>
-+                <para>
-+                    Provides a means of enabling or disabling features of a recipe
-+                    on a per-recipe basis. The <filename>PACKAGECONFIG</filename>
-+                    variable itself specifies a space-separated list of the features
-+                    to enable, whilst the named flags set on the variable specify
-+                    for each feature the additional build dependencies 
-+                    (<filename><link linkend='var-DEPENDS'>DEPENDS</link></filename>)
-+                    that should be added if the feature is enabled, and any extra arguments
-+                    that should be added to the configure script argument list
-+                    (<filename><link linkend='var-EXTRA_OECONF'>EXTRA_OECONF</link></filename>)
-+                    if the feature is enabled or disabled.
-+                </para>
-+                <para>
-+                    For example, the following taken from the <filename>librsvg</filename>
-+                    recipe will add <filename>--with-croco</filename> to the
-+                    configure script arguments and <filename>libcroco</filename> to
-+                    <filename><link linkend='var-DEPENDS'>DEPENDS</link></filename>
-+                    by default; however, if "croco" is removed from <filename>PACKAGECONFIG</filename>
-+                    (for example, by using a bbappend in another layer) then
-+                    <filename>--without-croco</filename> will be added to the configure
-+                    script arguments instead:
-+                    <literallayout class='monospaced'>
-+     PACKAGECONFIG ??= "croco"
-+     PACKAGECONFIG[croco] = "--with-croco,--without-croco,libcroco"
-+                    </literallayout>
-+                </para>
-+            </glossdef>
-+        </glossentry>
-+
-         <glossentry id='var-PACKAGES'><glossterm>PACKAGES</glossterm>
-             <glossdef>
-                 <para>The list of packages to be created from the recipe.
 -- 
 1.7.9.5
 
