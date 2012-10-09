@@ -1,44 +1,38 @@
-Return-Path: <rstreif@linuxfoundation.org>
-Received: from mail-qc0-f169.google.com (mail-qc0-f169.google.com
-	[209.85.216.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 690F0E01302
-	for <yocto@yoctoproject.org>; Mon,  8 Oct 2012 19:23:55 -0700 (PDT)
-Received: by mail-qc0-f169.google.com with SMTP id t2so3490231qcq.28
-	for <yocto@yoctoproject.org>; Mon, 08 Oct 2012 19:23:52 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:date
-	:x-google-sender-auth:message-id:subject:from:to:cc:content-type
-	:x-gm-message-state;
-	bh=rsmKNgUHfDtFNSNUiyjhCn9N7mZNwmHHYq3Il7H3geg=;
-	b=jxRRH8DHERwtnUO0kghK1kDI67A1Bn7hv9fCgwgtxo6VI5PfZSfS22afo48wiKzJab
-	2H6PyyV+FcZ6wscNscDLfudZGr053sVsyEL+/bCAZPIq3yf3iX7OJCURYeDOQHtwVKHo
-	hzyo93K+hMoRbzYyQLieb80Y3NIVEGZ5QUOGlSQgXPWrp/lvuxXzZFlklzjCqDHyAhLF
-	jCidGqBErDS6hz41yi+CKWQisc622vn4ZoYmrLwI/XgZ5RGXEZqWw7QzZXmoKD4ILkTx
-	pYE8/VOJlqw853rHQFHFCQu9C36OSFdngZfz0u7fkzUNiwkd+n5BfS419ig/dp/1/2ct
-	KqGA==
+Return-Path: <jfabernathy@gmail.com>
+Received: from mail-ob0-f176.google.com (mail-ob0-f176.google.com
+	[209.85.214.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B2DF0E00346
+	for <yocto@yoctoproject.org>; Tue,  9 Oct 2012 06:40:13 -0700 (PDT)
+Received: by mail-ob0-f176.google.com with SMTP id x4so5871089obh.35
+	for <yocto@yoctoproject.org>; Tue, 09 Oct 2012 06:40:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=4AEYR5F4tHVTJuIi5tHmdGx7oC5jTf9IMbm8EZX1XLo=;
+	b=Vw3ZJSXv4E18m44kwnGwV67xXGTCGYeACm/mb6TxwD211zMgZo+8e5QvlcG/IRz4HY
+	L3cGkwM+yTJ8hIwLQJsqPyUMXfCkU2t/FCjkbBd/Kc4Is+QvADqTAO0w5bSfUNj3PWk9
+	17OHANpiCFQmF3CtXPrXQZ24s3Qe8h9KrrBJqsMVqpOJMW5a9EzObVjuQpAxNDHd0rrt
+	ueW/rY6NtXU383xIu07Rzk6Q1tFm1RzHXik5JzQDddra9+XPTwl8otRWtvJ2YFwhuKGh
+	GQ8nSM5sI4K+a8p6b+7iJxdT/KAK70IdagzWHDZRTsKG0pQxId3YaRiPUyKlx5jUY8ea
+	TAuw==
 MIME-Version: 1.0
-Received: by 10.49.71.77 with SMTP id s13mr45767227qeu.17.1349749432419; Mon,
-	08 Oct 2012 19:23:52 -0700 (PDT)
-Sender: rstreif@linuxfoundation.org
-Received: by 10.49.54.197 with HTTP; Mon, 8 Oct 2012 19:23:52 -0700 (PDT)
-In-Reply-To: <A4CBB3C5-9355-4C1E-8324-55AF1849E0CF@gamestop.com>
-References: <CC9226B2.365%PatrickTurley@gamestop.com>
-	<CC922B79.368%PatrickTurley@gamestop.com>
-	<CA+gsK-o=VD7GLYsTHYvmhK4Ht5KeNFS=4=yHmxybeAN7M_nzDw@mail.gmail.com>
-	<6796989A-D845-4726-B47B-64B82F380444@gamestop.com>
-	<CA+gsK-p5gt0FuN4XbifdSjPv5pcnF6u=5bcrWAw9Ayd9WpUTYw@mail.gmail.com>
-	<1A527469-CEF5-434E-8604-540899C8BA04@gamestop.com>
-	<CA+gsK-qzq5dK4QwOq1kw1U8tNbhDt-UZsRha-_ZKu0Kw8AWFAg@mail.gmail.com>
-	<A4CBB3C5-9355-4C1E-8324-55AF1849E0CF@gamestop.com>
-Date: Mon, 8 Oct 2012 19:23:52 -0700
-X-Google-Sender-Auth: KKCxAkPze07H-YT3dm-0JWYXvqc
-Message-ID: <CA+gsK-obQLKv9LnMiqAiukKcoPBN3Bijn-oYhdUrvJ9yp12w=g@mail.gmail.com>
-From: Rudolf Streif <rudolf.streif@linux.com>
-To: Patrick Turley <PatrickTurley@gamestop.com>
-X-Gm-Message-State: ALoCoQkFoiIljiYBKmRsyK7TsbovrD6EqItm1rz+lvENR8ym2Psl3JvUw7EFY4BD2c9H6G9eA0zJ
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: The BitBake equivalent of "Hello, World!"
+Received: by 10.182.216.71 with SMTP id oo7mr2817494obc.70.1349790010801; Tue,
+	09 Oct 2012 06:40:10 -0700 (PDT)
+Received: by 10.76.143.225 with HTTP; Tue, 9 Oct 2012 06:40:10 -0700 (PDT)
+In-Reply-To: <63ECFF2A2302B44093D7CE9E9962C49003CD3284@ORSMSX107.amr.corp.intel.com>
+References: <443D93B8-DA6A-40DD-854F-7007FE63854C@keylevel.com>
+	<63ECFF2A2302B44093D7CE9E9962C49003CD2F97@ORSMSX107.amr.corp.intel.com>
+	<E413C1D3-D599-437C-A1ED-8A57DAC3E8D3@keylevel.com>
+	<CADkTA4NAnqoBBzHkWNErMr2J=0p1xdSVocSpFCMLkV_8ztrwPg@mail.gmail.com>
+	<4ED03A84-C184-4A15-BB50-B83AEE211BB4@keylevel.com>
+	<CADkTA4Oecym=XyX13qosTD634MkfKfO1PYi=Pzp5kWtPLSdd2w@mail.gmail.com>
+	<63ECFF2A2302B44093D7CE9E9962C49003CD3284@ORSMSX107.amr.corp.intel.com>
+Date: Tue, 9 Oct 2012 09:40:10 -0400
+Message-ID: <CANFv2E=5y1cfiZNmKR6FhOZbebeHDZw3y7ZwJ1MhFpK618YWwQ@mail.gmail.com>
+From: James Abernathy <jfabernathy@gmail.com>
+To: "Saxena, Rahul" <rahul.saxena@intel.com>
+Cc: "yocto@yoctoproject.org Project" <yocto@yoctoproject.org>
+Subject: Re: Meta Intel / Cedartrail / Denzil - how to get unionfs in the kernel
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,630 +44,319 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 09 Oct 2012 02:23:55 -0000
-Content-Type: multipart/alternative; boundary=047d7b6da4cc7486a804cb9707a7
+X-List-Received-Date: Tue, 09 Oct 2012 13:40:14 -0000
+Content-Type: multipart/alternative; boundary=f46d044785c71d7f8b04cba07a3f
 
---047d7b6da4cc7486a804cb9707a7
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+--f46d044785c71d7f8b04cba07a3f
+Content-Type: text/plain; charset=ISO-8859-1
 
-The T variable points to a directory were Bitbake places temporary files
-when building a particular package. It is typically set to
+On Mon, Oct 8, 2012 at 12:28 PM, Saxena, Rahul <rahul.saxena@intel.com>wrote:
 
-T =3D ${WORKDIR}/temp
+>
+>
+> -----Original Message-----
+> From: Bruce Ashfield [mailto:bruce.ashfield@gmail.com]
+> Sent: Monday, October 08, 2012 7:00 AM
+> To: Chris Tapp
+> Cc: Saxena, Rahul; yocto@yoctoproject.org Project
+> Subject: Re: [yocto] Meta Intel / Cedartrail / Denzil - how to get unionfs
+> in the kernel
+>
+> On Mon, Oct 8, 2012 at 3:58 AM, Chris Tapp <opensource@keylevel.com>
+> wrote:
+> > On 7 Oct 2012, at 22:41, Bruce Ashfield wrote:
+> >
+> >> On Sun, Oct 7, 2012 at 6:08 PM, Chris Tapp <opensource@keylevel.com>
+> wrote:
+> >>> On 7 Oct 2012, at 03:00, Saxena, Rahul wrote:
+> >>>
+> >>>> Try adding the unionfs feature (below) to your kernel:
+> >>>>
+> >>>> http://git.yoctoproject.org/cgit/cgit.cgi/linux-yocto-3.0/tree/meta
+> >>>> /cfg/kernel-cache/features/unionfs?h=meta
+> >>>>
+> >>>> create a file my_cedartrail.scc with following line:
+> >>>> include features/unionfs/unionfs.scc
+> >>>>
+> >>>> put this file in a dir linux-yocto, the dir being created in
+> >>>>
+> >>>> meta-cedartrail/recipes-kernel/linux
+> >>>>
+> >>>> add following line in
+> >>>> meta-cedartrail/recipes-kernel/Linux/linux-yocto_3.0.bbappend
+> >>>>
+> >>>> SRC_URI +="file://my_cedartrail.scc"
+> >>>
+> >>> Thanks - I thought just running 'menuconfig' would allow me to enable
+> it (for a quick test).
+> >>>
+> >>> However, this still doesn't seem to be working. I can see that
+> 'my_cedartrail.scc' gets fetched in to the build area, but I still don't
+> see CONFIG_UNION_FS if I run 'menuconfig'. There is also no 'unionfs'
+> folder in fs/ of the build tree.
+> >>>
+> >>> Also, if I specify an invalid feature (e.g.
+> feature2/unionfs/unionfs.scc) I'm not seeing any diagnostic.
+> >>
+> >> unionfs was never merged to the 3.0 kernel, I re-added it to the
+> >> development trees for 3.2 and the 3.4 kernel (aufs for the 3.6 tree
+> >> at the moment). The meta data is carried forward from the older
+> >> kernels as a placeholder and is documented in the .scc file itself:
+> >>
+> >> -----------------------
+> >> kconf non-hardware unionfs.cfg
+> >>
+> >> # commented pending update to a newer version ported to 2.6.35+ #
+> >> patch unionfs-2.5.4-integration.patch
+> >> -----------------------
+> >>
+> >> So to get unionfs in the 3.0 kernel, we'd need a port .. but since
+> >> we've moved on quite a bit past 3.0, I don't know of any pending
+> >> ports myself.
+> >
+> > Thanks Bruce.
+> >
+> > I guess I need to ask the Intel guys if there are any plans to move
+> Cedartrail on from 3.0 ?
+>
+> It will have to happen post yocto 1.3 (as far as I know), since the
+> 3.0 kernel will be
+> dropped at that point.
+>
+> For the short term, it's likely easier to backport/update unionfs than it
+> would be to update the BSP .. but I can't speak for the time to be spent
+> doing it :)
+>
+> Cheers,
+>
+> Bruce
+>
+>
+> Chris,
+>
+> There are no plans to port Cedartrail BSP to support any other Kernel
+> other than 3.0. The reason is that
+> the Cedartrail PVR Graphics driver is supported only for 3.0 kernel.
+>
+> Rahul
+>
+>
+It may not solve the 3.0 problem for CDV and Yocto, but I noticed that
+Ubuntu 12.04.1 with the 3.2 kernel supports the PVR driver on it's 3.2.0
+kernel.  I've only tested it successfully on an All-In-One with LVDS off of
+an eDP to LVDS converter used on the DN2800MT motherboard.
 
-WORKDIR is the directory into which Bitbake unpacks and builds a package.
-The default bitbake.conf file sets this variable.
+Jim A
 
-T is not to be confused with TMPDIR which points to the root of the
-directory tree where Bitbake puts the output of an entire build.
 
-:rjs
-
-On Mon, Oct 8, 2012 at 5:30 PM, Patrick Turley
-<PatrickTurley@gamestop.com>wrote:
-
->  I am continuing my work on creating a "Hello, World!" BitBake project.
-> Because of the excellent help I got before, things have gone reasonably
-> well, but I'm again running into something I don't know how to fix.
->
->  As before, the entire contents of my very small project appear at the
-> end of this message. Here's what works fine:
->
->
->      $ ../BitBake/bin/bitbake-layers show-layers
->     Parsing recipes..done.
->
->      layer     path                                    priority
->     =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->     LayerA    /home/pturley/Workspace/Hello/LayerA    1
->
->      $ ../BitBake/bin/bitbake-layers show-recipes
->     Parsing recipes..done.
->     =3D=3D=3D Available recipes: =3D=3D=3D
->     a:
->       LayerA               1
->
->
->  When I tried this:
->
->
->      ../BitBake/bin/bitbake -c listtasks a
->
->
->  I got a Python stack trace that ended here:
->
->
->        File "../BitBake/lib/bb/runqueue.py", line 902, in
-> RunQueue.check_stamp_task(task=3D0, taskname=3D'do_listtasks', recurse=3D=
-False):
->                  # If the stamp is missing its not current
->         >        if not os.access(stampfile, os.F_OK):
->                      logger.debug(2, "Stampfile %s not available",
-> stampfile)
->     TypeError: coercing to Unicode: need string or buffer, NoneType found
->
->
->  This code isn't expecting the "stampfile" variable to be "None" (which
-> it is), so it freaks out. I made a very simple fix to get past the proble=
-m:
->
->
->      if not stampfile or not os.access(stampfile, os.F_OK):
->
->
->  That made a dramatic difference, and enabled me to get this far:
->
->
->      $ ../BitBake/bin/bitbake -c listtasks a
->     Loading cache: 100%
-> |###############################################################| ETA:
->  00:00:00
->     Loaded 2 entries from dependency cache.
->     NOTE: Resolving any missing task queue dependencies
->     NOTE: Preparing runqueue
->     NOTE: Executing RunQueue Tasks
->     NOTE: Running task 1 of 1 (ID: 0, /home/pturley/Workspace/Hello/Layer=
-A/
-> a.bb, do_listtasks)
->     ERROR: T variable not set, unable to build
->     ERROR: Task 0 (/home/pturley/Workspace/Hello/LayerA/a.bb,
-> do_listtasks) failed with exit code '1'
->     NOTE: Tasks Summary: Attempted 1 tasks of which 0 didn't need to be
-> rerun and 1 failed.
->
->      Summary: 1 task failed:
->       /home/pturley/Workspace/Hello/LayerA/a.bb, do_listtasks
->     Summary: There was 1 ERROR message shown, returning a non-zero exit
-> code.
->
->      $ ../BitBake/bin/bitbake a
->     Loading cache: 100%
-> |###############################################################| ETA:
->  00:00:00
->     Loaded 2 entries from dependency cache.
->     NOTE: Resolving any missing task queue dependencies
->     NOTE: Preparing runqueue
->     NOTE: Executing RunQueue Tasks
->     NOTE: Running task 1 of 1 (ID: 0, /home/pturley/Workspace/Hello/Layer=
-A/
-> a.bb, do_build)
->     ERROR: T variable not set, unable to build
->     ERROR: Task 0 (/home/pturley/Workspace/Hello/LayerA/a.bb, do_build)
-> failed with exit code '1'
->     NOTE: Tasks Summary: Attempted 1 tasks of which 0 didn't need to be
-> rerun and 1 failed.
->
->      Summary: 1 task failed:
->       /home/pturley/Workspace/Hello/LayerA/a.bb, do_build
->     Summary: There was 1 ERROR message shown, returning a non-zero exit
-> code.
+>  >
+> >> Cheers,
+> >>
+> >> Bruce
+> >>
+> >>>
+> >>>>
+> >>>> -----Original Message-----
+> >>>> From: yocto-bounces@yoctoproject.org
+> >>>> [mailto:yocto-bounces@yoctoproject.org] On Behalf Of Chris Tapp
+> >>>> Sent: Saturday, October 06, 2012 5:43 PM
+> >>>> To: yocto@yoctoproject.org Project
+> >>>> Subject: [yocto] Meta Intel / Cedartrail / Denzil - how to get
+> >>>> unionfs in the kernel
+> >>>>
+> >>>> I' trying to enable unionfs in the 3.0.32 kernel for the cedartrail
+> BSP under Denzil 7.0.1.
+> >>>>
+> >>>> However, the CONFIG_UNION_FS config flag isn't in the .config ...
+> >>>>
+> >>>> Is there something else I need to enable, or do I need to find
+> another way?
+> >>>>
+> >>>> Chris Tapp
+> >>>>
+> >>>> opensource@keylevel.com
+> >>>> www.keylevel.com
+> >>>>
+> >>>>
+> >>>>
+> >>>> _______________________________________________
+> >>>> yocto mailing list
+> >>>> yocto@yoctoproject.org
+> >>>> https://lists.yoctoproject.org/listinfo/yocto
+> >>>
+> >>> Chris Tapp
+> >>>
+> >>> opensource@keylevel.com
+> >>> www.keylevel.com
+> >>>
+> >>>
+> >>>
+> >>> _______________________________________________
+> >>> yocto mailing list
+> >>> yocto@yoctoproject.org
+> >>> https://lists.yoctoproject.org/listinfo/yocto
+> >>
+> >>
+> >>
+> >> --
+> >> "Thou shalt not follow the NULL pointer, for chaos and madness await
+> >> thee at its end"
+> >
+> > Chris Tapp
+> >
+> > opensource@keylevel.com
+> > www.keylevel.com
+> >
+> >
+> >
 >
 >
->  As you can see, BitBake is expecting the "T" variable to be set.  I
-> don't think I've ever seen this variable -- so I don't know what it's for
-> or what I should change.
 >
->  Can anyone offer a hint?
->
->
->  ------------------------------------------------------------
->
->
->  =E2=94=9C=E2=94=80=E2=94=80 build
-> =E2=94=82   =E2=94=82
-> =E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 classes
-> =E2=94=82   =E2=94=82   =E2=94=82
-> =E2=94=82   =E2=94=82   =E2=94=94=E2=94=80=E2=94=80 base.bbclass
-> =E2=94=82   =E2=94=82
-> =E2=94=82   =E2=94=82       +--------------------------------------------=
----
-> =E2=94=82   =E2=94=82       |  addtask listtasks
-> =E2=94=82   =E2=94=82       |
-> =E2=94=82   =E2=94=82       |  do_listtasks[nostamp] =3D "1"
-> =E2=94=82   =E2=94=82       |
-> =E2=94=82   =E2=94=82       |  python do_listtasks() {
-> =E2=94=82   =E2=94=82       |          import sys
-> =E2=94=82   =E2=94=82       |          # emit variables and shell functio=
-ns
-> =E2=94=82   =E2=94=82       |          #bb.data.emit_env(sys.__stdout__, =
-d)
-> =E2=94=82   =E2=94=82       |          # emit the metadata which isnt val=
-id shell
-> =E2=94=82   =E2=94=82       |          for e in d.keys():
-> =E2=94=82   =E2=94=82       |                  if d.getVarFlag(e, 'task')=
-:
-> =E2=94=82   =E2=94=82       |                          bb.plain("%s" % e)
-> =E2=94=82   =E2=94=82       |  }
-> =E2=94=82   =E2=94=82       |
-> =E2=94=82   =E2=94=82       |  addtask build
-> =E2=94=82   =E2=94=82       |
-> =E2=94=82   =E2=94=82       |  do_build() {
-> =E2=94=82   =E2=94=82       |      echo "Hello"
-> =E2=94=82   =E2=94=82       |  }
-> =E2=94=82   =E2=94=82       +--------------------------------------------=
----
-> =E2=94=82   =E2=94=82
-> =E2=94=82   =E2=94=94=E2=94=80=E2=94=80 conf
-> =E2=94=82       =E2=94=82
-> =E2=94=82       =E2=94=9C=E2=94=80=E2=94=80 bblayers.conf
-> =E2=94=82       =E2=94=82
-> =E2=94=82       =E2=94=82   +--------------------------------------------=
----
-> =E2=94=82       =E2=94=82   |  BBLAYERS ?=3D " \
-> =E2=94=82       =E2=94=82   |    /home/pturley/Workspace/Hello/LayerA \
-> =E2=94=82       =E2=94=82   |    "
-> =E2=94=82       =E2=94=82   +--------------------------------------------=
----
-> =E2=94=82       =E2=94=82
-> =E2=94=82       =E2=94=94=E2=94=80=E2=94=80 bitbake.conf
-> =E2=94=82
-> =E2=94=82           +-----------------------------------------------
-> =E2=94=82           |  CACHE =3D "${TOPDIR}/cache"
-> =E2=94=82           +-----------------------------------------------
-> =E2=94=82
-> =E2=94=9C=E2=94=80=E2=94=80 LayerA
-> =E2=94=82   =E2=94=82
-> =E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 a.bb
-> =E2=94=82   =E2=94=82
-> =E2=94=82   =E2=94=82       +--------------------------------------------=
----
-> =E2=94=82   =E2=94=82       |  DESCRIPTION =3D "Layer A Main Recipe"
-> =E2=94=82   =E2=94=82       |  PN =3D 'a'
-> =E2=94=82   =E2=94=82       |  PV =3D '1'
-> =E2=94=82   =E2=94=82       +--------------------------------------------=
----
-> =E2=94=82   =E2=94=82
-> =E2=94=82   =E2=94=94=E2=94=80=E2=94=80 conf
-> =E2=94=82       =E2=94=82
-> =E2=94=82       =E2=94=94=E2=94=80=E2=94=80 layer.conf
-> =E2=94=82
-> =E2=94=82           +-----------------------------------------------
-> =E2=94=82           |  BBPATH .=3D ":${LAYERDIR}"
-> =E2=94=82           |
-> =E2=94=82           |  BBFILES +=3D "${LAYERDIR}/*.bb"
-> =E2=94=82           |
-> =E2=94=82           |  BBFILE_COLLECTIONS +=3D "A"
-> =E2=94=82           |  BBFILE_PATTERN_A :=3D "^${LAYERDIR}/"
-> =E2=94=82           +-----------------------------------------------
-> =E2=94=82
-> =E2=94=94=E2=94=80=E2=94=80 BitBake
->
->     The BitBake directory origin is:
->
->         http://git.openembedded.org/bitbake/
->
->     I have the 1.15.2 tag checked out, which is what
->    Yocto denzil uses.
->
->
+> --
+> "Thou shalt not follow the NULL pointer, for chaos and madness await thee
+> at its end"
 > _______________________________________________
 > yocto mailing list
 > yocto@yoctoproject.org
 > https://lists.yoctoproject.org/listinfo/yocto
 >
->
 
---047d7b6da4cc7486a804cb9707a7
-Content-Type: text/html; charset=UTF-8
+--f46d044785c71d7f8b04cba07a3f
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-The T variable points to a directory were Bitbake places temporary files wh=
-en building a particular package. It is typically set to<div><br></div><div=
->T =3D ${WORKDIR}/temp</div><div><br></div><div>WORKDIR is the directory in=
-to which Bitbake unpacks and builds a package. The default bitbake.conf fil=
-e sets this variable.</div>
-<div><br></div><div>T is not to be confused with TMPDIR which points to the=
- root of the directory tree where Bitbake puts the output of an entire buil=
-d.</div><div><br></div><div>:rjs<br><br><div class=3D"gmail_quote">On Mon, =
-Oct 8, 2012 at 5:30 PM, Patrick Turley <span dir=3D"ltr">&lt;<a href=3D"mai=
-lto:PatrickTurley@gamestop.com" target=3D"_blank">PatrickTurley@gamestop.co=
-m</a>&gt;</span> wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">
-
-
-
-<div style=3D"word-wrap:break-word">
-<div>I am continuing my work on creating a &quot;Hello, World!&quot; BitBak=
-e project. Because of the excellent help I got before, things have gone rea=
-sonably well, but I&#39;m again running into something I don&#39;t know how=
- to fix.</div>
-
-<div><br>
-</div>
-<div>As before, the entire contents of my very small project appear at the =
-end of this message. Here&#39;s what works fine:</div>
-<div><br>
-</div>
-<div><br>
-</div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=C2=A0 =C2=A0 $ ../BitBa=
-ke/bin/bitbake-layers show-layers</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=C2=A0 =C2=A0 Parsing re=
-cipes..done.</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px"><br>
-</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=C2=A0 =C2=A0 layer =C2=
-=A0 =C2=A0 path =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0priority<=
-/font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=C2=A0 =C2=A0 =3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=C2=A0 =C2=A0 LayerA =C2=
-=A0 =C2=A0/home/pturley/Workspace/Hello/LayerA =C2=A0 =C2=A01</font></div><=
-div class=3D"im">
-<div><font face=3D"Menlo" style=3D"font-size:14px"><br>
-</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=C2=A0 =C2=A0 $ ../BitBa=
-ke/bin/bitbake-layers show-recipes</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=C2=A0 =C2=A0 Parsing re=
-cipes..done.</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=C2=A0 =C2=A0 =3D=3D=3D =
-Available recipes: =3D=3D=3D</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=C2=A0 =C2=A0 a:</font><=
-/div>
-</div><div><font face=3D"Menlo" style=3D"font-size:14px">=C2=A0 =C2=A0 =C2=
-=A0 LayerA =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 1</font></div>
-<div><br>
-</div>
-<div><br>
-</div>
-<div>When I tried this:</div>
-<div><br>
-</div>
-<div><br>
-</div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=C2=A0 =C2=A0 ../BitBake=
-/bin/bitbake -c listtasks a</font></div>
-<div><br>
-</div>
-<div><br>
-</div>
-<div>I got a Python stack trace that ended here:</div>
-<div><br>
-</div>
-<div><br>
-</div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=C2=A0 =C2=A0 =C2=A0 Fil=
-e &quot;../BitBake/lib/bb/runqueue.py&quot;, line 902, in RunQueue.check_st=
-amp_task(task=3D0, taskname=3D&#39;do_listtasks&#39;, recurse=3DFalse):</fo=
-nt></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# If the stamp is missing its not cur=
-rent</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 &gt; =C2=A0 =C2=A0 =C2=A0 =C2=A0if not os.access(stampfile, os.F_OK):</=
-font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0logger.debug(2, &quot;S=
-tampfile %s not available&quot;, stampfile)</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=C2=A0 =C2=A0 TypeError:=
- coercing to Unicode: need string or buffer, NoneType found</font></div>
-<div><br>
-</div>
-<div><br>
-</div>
-<div>This code isn&#39;t expecting the &quot;<span style=3D"font-size:14px"=
-><font face=3D"Menlo">stampfile</font></span>&quot; variable to be &quot;<f=
-ont face=3D"Menlo" style=3D"font-size:14px">None</font>&quot; (which it is)=
-, so it freaks out. I made a very simple fix to get past the
- problem:</div>
-<div><br>
-</div>
-<div><br>
-</div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=C2=A0 =C2=A0 if not sta=
-mpfile or not os.access(stampfile, os.F_OK):</font></div>
-<div><br>
-</div>
-<div><br>
-</div>
-<div>That made a dramatic difference, and enabled me to get this far:</div>
-<div><br>
-</div>
-<div><br>
-</div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=C2=A0 =C2=A0 $ ../BitBa=
-ke/bin/bitbake -c listtasks a</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=C2=A0 =C2=A0 Loading ca=
-che: 100% |###############################################################|=
- ETA: =C2=A000:00:00</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=C2=A0 =C2=A0 Loaded 2 e=
-ntries from dependency cache.</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=C2=A0 =C2=A0 NOTE: Reso=
-lving any missing task queue dependencies</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=C2=A0 =C2=A0 NOTE: Prep=
-aring runqueue</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=C2=A0 =C2=A0 NOTE: Exec=
-uting RunQueue Tasks</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=C2=A0 =C2=A0 NOTE: Runn=
-ing task 1 of 1 (ID: 0, /home/pturley/Workspace/Hello/LayerA/<a href=3D"htt=
-p://a.bb" target=3D"_blank">a.bb</a>, do_listtasks)</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=C2=A0 =C2=A0 ERROR: T v=
-ariable not set, unable to build</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=C2=A0 =C2=A0 ERROR: Tas=
-k 0 (/home/pturley/Workspace/Hello/LayerA/<a href=3D"http://a.bb" target=3D=
-"_blank">a.bb</a>, do_listtasks) failed with exit code &#39;1&#39;</font></=
-div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=C2=A0 =C2=A0 NOTE: Task=
-s Summary: Attempted 1 tasks of which 0 didn&#39;t need to be rerun and 1 f=
-ailed.</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px"><br>
-</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=C2=A0 =C2=A0 Summary: 1=
- task failed:</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=C2=A0 =C2=A0 =C2=A0 /ho=
-me/pturley/Workspace/Hello/LayerA/<a href=3D"http://a.bb" target=3D"_blank"=
->a.bb</a>, do_listtasks</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=C2=A0 =C2=A0 Summary: T=
-here was 1 ERROR message shown, returning a non-zero exit code.</font></div=
+<br><br>
+<div class=3D"gmail_quote">On Mon, Oct 8, 2012 at 12:28 PM, Saxena, Rahul <=
+span dir=3D"ltr">&lt;<a href=3D"mailto:rahul.saxena@intel.com" target=3D"_b=
+lank">rahul.saxena@intel.com</a>&gt;</span> wrote:<br>
+<blockquote style=3D"BORDER-LEFT:#ccc 1px solid;MARGIN:0px 0px 0px 0.8ex;PA=
+DDING-LEFT:1ex" class=3D"gmail_quote">
+<div class=3D"HOEnZb">
+<div class=3D"h5"><br><br>-----Original Message-----<br>From: Bruce Ashfiel=
+d [mailto:<a href=3D"mailto:bruce.ashfield@gmail.com">bruce.ashfield@gmail.=
+com</a>]<br>Sent: Monday, October 08, 2012 7:00 AM<br>To: Chris Tapp<br>Cc:=
+ Saxena, Rahul; <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoprojec=
+t.org</a> Project<br>
+Subject: Re: [yocto] Meta Intel / Cedartrail / Denzil - how to get unionfs =
+in the kernel<br><br>On Mon, Oct 8, 2012 at 3:58 AM, Chris Tapp &lt;<a href=
+=3D"mailto:opensource@keylevel.com">opensource@keylevel.com</a>&gt; wrote:<=
+br>
+&gt; On 7 Oct 2012, at 22:41, Bruce Ashfield wrote:<br>&gt;<br>&gt;&gt; On =
+Sun, Oct 7, 2012 at 6:08 PM, Chris Tapp &lt;<a href=3D"mailto:opensource@ke=
+ylevel.com">opensource@keylevel.com</a>&gt; wrote:<br>&gt;&gt;&gt; On 7 Oct=
+ 2012, at 03:00, Saxena, Rahul wrote:<br>
+&gt;&gt;&gt;<br>&gt;&gt;&gt;&gt; Try adding the unionfs feature (below) to =
+your kernel:<br>&gt;&gt;&gt;&gt;<br>&gt;&gt;&gt;&gt; <a href=3D"http://git.=
+yoctoproject.org/cgit/cgit.cgi/linux-yocto-3.0/tree/meta" target=3D"_blank"=
+>http://git.yoctoproject.org/cgit/cgit.cgi/linux-yocto-3.0/tree/meta</a><br=
 >
-<div><font face=3D"Menlo" style=3D"font-size:14px"><br>
-</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=C2=A0 =C2=A0 $ ../BitBa=
-ke/bin/bitbake a</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=C2=A0 =C2=A0 Loading ca=
-che: 100% |###############################################################|=
- ETA: =C2=A000:00:00</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=C2=A0 =C2=A0 Loaded 2 e=
-ntries from dependency cache.</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=C2=A0 =C2=A0 NOTE: Reso=
-lving any missing task queue dependencies</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=C2=A0 =C2=A0 NOTE: Prep=
-aring runqueue</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=C2=A0 =C2=A0 NOTE: Exec=
-uting RunQueue Tasks</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=C2=A0 =C2=A0 NOTE: Runn=
-ing task 1 of 1 (ID: 0, /home/pturley/Workspace/Hello/LayerA/<a href=3D"htt=
-p://a.bb" target=3D"_blank">a.bb</a>, do_build)</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=C2=A0 =C2=A0 ERROR: T v=
-ariable not set, unable to build</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=C2=A0 =C2=A0 ERROR: Tas=
-k 0 (/home/pturley/Workspace/Hello/LayerA/<a href=3D"http://a.bb" target=3D=
-"_blank">a.bb</a>, do_build) failed with exit code &#39;1&#39;</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=C2=A0 =C2=A0 NOTE: Task=
-s Summary: Attempted 1 tasks of which 0 didn&#39;t need to be rerun and 1 f=
-ailed.</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px"><br>
-</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=C2=A0 =C2=A0 Summary: 1=
- task failed:</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=C2=A0 =C2=A0 =C2=A0 /ho=
-me/pturley/Workspace/Hello/LayerA/<a href=3D"http://a.bb" target=3D"_blank"=
->a.bb</a>, do_build</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=C2=A0 =C2=A0 Summary: T=
-here was 1 ERROR message shown, returning a non-zero exit code.</font></div=
+&gt;&gt;&gt;&gt; /cfg/kernel-cache/features/unionfs?h=3Dmeta<br>&gt;&gt;&gt=
+;&gt;<br>&gt;&gt;&gt;&gt; create a file my_cedartrail.scc with following li=
+ne:<br>&gt;&gt;&gt;&gt; include features/unionfs/unionfs.scc<br>&gt;&gt;&gt=
+;&gt;<br>
+&gt;&gt;&gt;&gt; put this file in a dir linux-yocto, the dir being created =
+in<br>&gt;&gt;&gt;&gt;<br>&gt;&gt;&gt;&gt; meta-cedartrail/recipes-kernel/l=
+inux<br>&gt;&gt;&gt;&gt;<br>&gt;&gt;&gt;&gt; add following line in<br>&gt;&=
+gt;&gt;&gt; meta-cedartrail/recipes-kernel/Linux/linux-yocto_3.0.bbappend<b=
+r>
+&gt;&gt;&gt;&gt;<br>&gt;&gt;&gt;&gt; SRC_URI +=3D&quot;file://my_cedartrail=
+.scc&quot;<br>&gt;&gt;&gt;<br>&gt;&gt;&gt; Thanks - I thought just running =
+&#39;menuconfig&#39; would allow me to enable it (for a quick test).<br>&gt=
+;&gt;&gt;<br>
+&gt;&gt;&gt; However, this still doesn&#39;t seem to be working. I can see =
+that &#39;my_cedartrail.scc&#39; gets fetched in to the build area, but I s=
+till don&#39;t see CONFIG_UNION_FS if I run &#39;menuconfig&#39;. There is =
+also no &#39;unionfs&#39; folder in fs/ of the build tree.<br>
+&gt;&gt;&gt;<br>&gt;&gt;&gt; Also, if I specify an invalid feature (e.g. fe=
+ature2/unionfs/unionfs.scc) I&#39;m not seeing any diagnostic.<br>&gt;&gt;<=
+br>&gt;&gt; unionfs was never merged to the 3.0 kernel, I re-added it to th=
+e<br>
+&gt;&gt; development trees for 3.2 and the 3.4 kernel (aufs for the 3.6 tre=
+e<br>&gt;&gt; at the moment). The meta data is carried forward from the old=
+er<br>&gt;&gt; kernels as a placeholder and is documented in the .scc file =
+itself:<br>
+&gt;&gt;<br>&gt;&gt; -----------------------<br>&gt;&gt; kconf non-hardware=
+ unionfs.cfg<br>&gt;&gt;<br>&gt;&gt; # commented pending update to a newer =
+version ported to 2.6.35+ #<br>&gt;&gt; patch unionfs-2.5.4-integration.pat=
+ch<br>
+&gt;&gt; -----------------------<br>&gt;&gt;<br>&gt;&gt; So to get unionfs =
+in the 3.0 kernel, we&#39;d need a port .. but since<br>&gt;&gt; we&#39;ve =
+moved on quite a bit past 3.0, I don&#39;t know of any pending<br>&gt;&gt; =
+ports myself.<br>
+&gt;<br>&gt; Thanks Bruce.<br>&gt;<br>&gt; I guess I need to ask the Intel =
+guys if there are any plans to move Cedartrail on from 3.0 ?<br><br>It will=
+ have to happen post yocto 1.3 (as far as I know), since the<br>3.0 kernel =
+will be<br>
+dropped at that point.<br><br>For the short term, it&#39;s likely easier to=
+ backport/update unionfs than it would be to update the BSP .. but I can&#3=
+9;t speak for the time to be spent doing it :)<br><br>Cheers,<br><br>Bruce<=
+br>
+<br><br></div></div>Chris,<br><br>There are no plans to port Cedartrail BSP=
+ to support any other Kernel other than 3.0. The reason is that<br>the Ceda=
+rtrail PVR Graphics driver is supported only for 3.0 kernel.<br><span class=
+=3D"HOEnZb"><font color=3D"#888888"><br>
+Rahul<br></font></span>
+<div class=3D"HOEnZb">
+<div class=3D"h5"><br></div></div></blockquote>
+<div>=A0</div>
+<div>It may not solve the 3.0 problem for CDV and Yocto, but I noticed that=
+ Ubuntu 12.04.1 with the 3.2 kernel supports the PVR driver on it&#39;s 3.2=
+.0 kernel.=A0 I&#39;ve only tested it successfully on an All-In-One with LV=
+DS off of an eDP to LVDS converter used on the DN2800MT motherboard.</div>
+
+<div>=A0</div>
+<div>Jim A</div>
+<div>=A0</div>
+<blockquote style=3D"BORDER-LEFT:#ccc 1px solid;MARGIN:0px 0px 0px 0.8ex;PA=
+DDING-LEFT:1ex" class=3D"gmail_quote">
+<div class=3D"HOEnZb">
+<div class=3D"h5">&gt;<br>&gt;&gt; Cheers,<br>&gt;&gt;<br>&gt;&gt; Bruce<br=
+>&gt;&gt;<br>&gt;&gt;&gt;<br>&gt;&gt;&gt;&gt;<br>&gt;&gt;&gt;&gt; -----Orig=
+inal Message-----<br>&gt;&gt;&gt;&gt; From: <a href=3D"mailto:yocto-bounces=
+@yoctoproject.org">yocto-bounces@yoctoproject.org</a><br>
+&gt;&gt;&gt;&gt; [mailto:<a href=3D"mailto:yocto-bounces@yoctoproject.org">=
+yocto-bounces@yoctoproject.org</a>] On Behalf Of Chris Tapp<br>&gt;&gt;&gt;=
+&gt; Sent: Saturday, October 06, 2012 5:43 PM<br>&gt;&gt;&gt;&gt; To: <a hr=
+ef=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a> Project<br>
+&gt;&gt;&gt;&gt; Subject: [yocto] Meta Intel / Cedartrail / Denzil - how to=
+ get<br>&gt;&gt;&gt;&gt; unionfs in the kernel<br>&gt;&gt;&gt;&gt;<br>&gt;&=
+gt;&gt;&gt; I&#39; trying to enable unionfs in the 3.0.32 kernel for the ce=
+dartrail BSP under Denzil 7.0.1.<br>
+&gt;&gt;&gt;&gt;<br>&gt;&gt;&gt;&gt; However, the CONFIG_UNION_FS config fl=
+ag isn&#39;t in the .config ...<br>&gt;&gt;&gt;&gt;<br>&gt;&gt;&gt;&gt; Is =
+there something else I need to enable, or do I need to find another way?<br=
 >
-<div><br>
-</div>
-<div><br>
-</div>
-<div>As you can see, BitBake is expecting the &quot;T&quot; variable to be =
-set. =C2=A0I don&#39;t think I&#39;ve ever seen this variable -- so I don&#=
-39;t know what it&#39;s for or what I should change.</div>
-<div><br>
-</div>
-<div>Can anyone offer a hint?</div>
-<div><br>
-</div>
-<div><br>
-</div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">------------------------=
-------------------------------------</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px"><br>
-</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px"><br>
-</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=E2=94=9C=E2=94=80=E2=94=
-=80 build</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=E2=94=82 =C2=A0 =E2=94=
-=82</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=E2=94=82 =C2=A0 =E2=94=
-=9C=E2=94=80=E2=94=80 classes</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=E2=94=82 =C2=A0 =E2=94=
-=82 =C2=A0 =E2=94=82</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=E2=94=82 =C2=A0 =E2=94=
-=82 =C2=A0 =E2=94=94=E2=94=80=E2=94=80 base.bbclass</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=E2=94=82 =C2=A0 =E2=94=
-=82</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=E2=94=82 =C2=A0 =E2=94=
-=82 =C2=A0 =C2=A0 =C2=A0 +-----------------------------------------------</=
-font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=E2=94=82 =C2=A0 =E2=94=
-=82 =C2=A0 =C2=A0 =C2=A0 | =C2=A0addtask listtasks</font></div><div class=
-=3D"im">
-<div><font face=3D"Menlo" style=3D"font-size:14px">=E2=94=82 =C2=A0 =E2=94=
-=82 =C2=A0 =C2=A0 =C2=A0 |</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=E2=94=82 =C2=A0 =E2=94=
-=82 =C2=A0 =C2=A0 =C2=A0 | =C2=A0do_listtasks[nostamp] =3D &quot;1&quot;</f=
-ont></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=E2=94=82 =C2=A0 =E2=94=
-=82 =C2=A0 =C2=A0 =C2=A0 |</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=E2=94=82 =C2=A0 =E2=94=
-=82 =C2=A0 =C2=A0 =C2=A0 | =C2=A0python do_listtasks() {</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=E2=94=82 =C2=A0 =E2=94=
-=82 =C2=A0 =C2=A0 =C2=A0 | =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0import sys</fo=
-nt></div>
-</div><div><font face=3D"Menlo" style=3D"font-size:14px">=E2=94=82 =C2=A0 =
-=E2=94=82 =C2=A0 =C2=A0 =C2=A0 | =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# emit v=
-ariables and shell functions</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=E2=94=82 =C2=A0 =E2=94=
-=82 =C2=A0 =C2=A0 =C2=A0 | =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0#bb.data.emit_=
-env(sys.__stdout__, d)</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=E2=94=82 =C2=A0 =E2=94=
-=82 =C2=A0 =C2=A0 =C2=A0 | =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# emit the met=
-adata which isnt valid shell</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=E2=94=82 =C2=A0 =E2=94=
-=82 =C2=A0 =C2=A0 =C2=A0 | =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0for e in d.key=
-s():</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=E2=94=82 =C2=A0 =E2=94=
-=82 =C2=A0 =C2=A0 =C2=A0 | =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0if d.getVarFlag(e, &#39;task&#39;):</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=E2=94=82 =C2=A0 =E2=94=
-=82 =C2=A0 =C2=A0 =C2=A0 | =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0bb.plain(&quot;%s&quot; % e)</fon=
-t></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=E2=94=82 =C2=A0 =E2=94=
-=82 =C2=A0 =C2=A0 =C2=A0 | =C2=A0}</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=E2=94=82 =C2=A0 =E2=94=
-=82 =C2=A0 =C2=A0 =C2=A0 |</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=E2=94=82 =C2=A0 =E2=94=
-=82 =C2=A0 =C2=A0 =C2=A0 | =C2=A0addtask build</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=E2=94=82 =C2=A0 =E2=94=
-=82 =C2=A0 =C2=A0 =C2=A0 |</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=E2=94=82 =C2=A0 =E2=94=
-=82 =C2=A0 =C2=A0 =C2=A0 | =C2=A0do_build() {</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=E2=94=82 =C2=A0 =E2=94=
-=82 =C2=A0 =C2=A0 =C2=A0 | =C2=A0 =C2=A0 =C2=A0echo &quot;Hello&quot;</font=
-></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=E2=94=82 =C2=A0 =E2=94=
-=82 =C2=A0 =C2=A0 =C2=A0 | =C2=A0}</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=E2=94=82 =C2=A0 =E2=94=
-=82 =C2=A0 =C2=A0 =C2=A0 +-----------------------------------------------</=
-font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=E2=94=82 =C2=A0 =E2=94=
-=82</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=E2=94=82 =C2=A0 =E2=94=
-=94=E2=94=80=E2=94=80 conf</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=E2=94=82 =C2=A0 =C2=A0 =
-=C2=A0 =E2=94=82</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=E2=94=82 =C2=A0 =C2=A0 =
-=C2=A0 =E2=94=9C=E2=94=80=E2=94=80 bblayers.conf</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=E2=94=82 =C2=A0 =C2=A0 =
-=C2=A0 =E2=94=82</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=E2=94=82 =C2=A0 =C2=A0 =
-=C2=A0 =E2=94=82 =C2=A0 +-----------------------------------------------</f=
-ont></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=E2=94=82 =C2=A0 =C2=A0 =
-=C2=A0 =E2=94=82 =C2=A0 | =C2=A0BBLAYERS ?=3D &quot; \</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=E2=94=82 =C2=A0 =C2=A0 =
-=C2=A0 =E2=94=82 =C2=A0 | =C2=A0 =C2=A0/home/pturley/Workspace/Hello/LayerA=
- \</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=E2=94=82 =C2=A0 =C2=A0 =
-=C2=A0 =E2=94=82 =C2=A0 | =C2=A0 =C2=A0&quot;</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=E2=94=82 =C2=A0 =C2=A0 =
-=C2=A0 =E2=94=82 =C2=A0 +-----------------------------------------------</f=
-ont></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=E2=94=82 =C2=A0 =C2=A0 =
-=C2=A0 =E2=94=82</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=E2=94=82 =C2=A0 =C2=A0 =
-=C2=A0 =E2=94=94=E2=94=80=E2=94=80 bitbake.conf</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=E2=94=82</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=E2=94=82 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 +-----------------------------------------------</font=
-></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=E2=94=82 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 | =C2=A0CACHE =3D &quot;${TOPDIR}/cache&quot;</font></=
-div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=E2=94=82 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 +-----------------------------------------------</font=
-></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=E2=94=82</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=E2=94=9C=E2=94=80=E2=94=
-=80 LayerA</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=E2=94=82 =C2=A0 =E2=94=
-=82</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=E2=94=82 =C2=A0 =E2=94=
-=9C=E2=94=80=E2=94=80 <a href=3D"http://a.bb" target=3D"_blank">a.bb</a></f=
-ont></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=E2=94=82 =C2=A0 =E2=94=
-=82</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=E2=94=82 =C2=A0 =E2=94=
-=82 =C2=A0 =C2=A0 =C2=A0 +-----------------------------------------------</=
-font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=E2=94=82 =C2=A0 =E2=94=
-=82 =C2=A0 =C2=A0 =C2=A0 | =C2=A0DESCRIPTION =3D &quot;Layer A Main Recipe&=
-quot;</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=E2=94=82 =C2=A0 =E2=94=
-=82 =C2=A0 =C2=A0 =C2=A0 | =C2=A0PN =3D &#39;a&#39;</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=E2=94=82 =C2=A0 =E2=94=
-=82 =C2=A0 =C2=A0 =C2=A0 | =C2=A0PV =3D &#39;1&#39;</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=E2=94=82 =C2=A0 =E2=94=
-=82 =C2=A0 =C2=A0 =C2=A0 +-----------------------------------------------</=
-font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=E2=94=82 =C2=A0 =E2=94=
-=82</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=E2=94=82 =C2=A0 =E2=94=
-=94=E2=94=80=E2=94=80 conf</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=E2=94=82 =C2=A0 =C2=A0 =
-=C2=A0 =E2=94=82</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=E2=94=82 =C2=A0 =C2=A0 =
-=C2=A0 =E2=94=94=E2=94=80=E2=94=80 layer.conf</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=E2=94=82</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=E2=94=82 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 +-----------------------------------------------</font=
-></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=E2=94=82 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 | =C2=A0BBPATH .=3D &quot;:${LAYERDIR}&quot;</font></d=
-iv><div class=3D"im">
-<div><font face=3D"Menlo" style=3D"font-size:14px">=E2=94=82 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 |</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=E2=94=82 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 | =C2=A0BBFILES +=3D &quot;${LAYERDIR}/*.bb&quot;</fon=
-t></div>
-</div><div><font face=3D"Menlo" style=3D"font-size:14px">=E2=94=82 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 |</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=E2=94=82 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 | =C2=A0BBFILE_COLLECTIONS +=3D &quot;A&quot;</font></=
-div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=E2=94=82 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 | =C2=A0BBFILE_PATTERN_A :=3D &quot;^${LAYERDIR}/&quot=
-;</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=E2=94=82 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 +-----------------------------------------------</font=
-></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=E2=94=82</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=E2=94=94=E2=94=80=E2=94=
-=80 BitBake</font></div><div class=3D"im">
-<div><font face=3D"Menlo" style=3D"font-size:14px"><br>
-</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=C2=A0 =C2=A0The BitBake=
- directory origin is:</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px"><br>
-</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=C2=A0 =C2=A0 =C2=A0 =C2=
-=A0<a href=3D"http://git.openembedded.org/bitbake/" target=3D"_blank">http:=
-//git.openembedded.org/bitbake/</a></font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px"><br>
-</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=C2=A0 =C2=A0I have the =
-1.15.2 tag checked out, which is what</font></div>
-<div><font face=3D"Menlo" style=3D"font-size:14px">=C2=A0 =C2=A0Yocto denzi=
-l uses.</font></div>
-<div><br>
-</div>
-</div></div>
+&gt;&gt;&gt;&gt;<br>&gt;&gt;&gt;&gt; Chris Tapp<br>&gt;&gt;&gt;&gt;<br>&gt;=
+&gt;&gt;&gt; <a href=3D"mailto:opensource@keylevel.com">opensource@keylevel=
+.com</a><br>&gt;&gt;&gt;&gt; <a href=3D"http://www.keylevel.com/" target=3D=
+"_blank">www.keylevel.com</a><br>
+&gt;&gt;&gt;&gt;<br>&gt;&gt;&gt;&gt;<br>&gt;&gt;&gt;&gt;<br>&gt;&gt;&gt;&gt=
+; _______________________________________________<br>&gt;&gt;&gt;&gt; yocto=
+ mailing list<br>&gt;&gt;&gt;&gt; <a href=3D"mailto:yocto@yoctoproject.org"=
+>yocto@yoctoproject.org</a><br>
+&gt;&gt;&gt;&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" =
+target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>&gt;=
+&gt;&gt;<br>&gt;&gt;&gt; Chris Tapp<br>&gt;&gt;&gt;<br>&gt;&gt;&gt; <a href=
+=3D"mailto:opensource@keylevel.com">opensource@keylevel.com</a><br>
+&gt;&gt;&gt; <a href=3D"http://www.keylevel.com/" target=3D"_blank">www.key=
+level.com</a><br>&gt;&gt;&gt;<br>&gt;&gt;&gt;<br>&gt;&gt;&gt;<br>&gt;&gt;&g=
+t; _______________________________________________<br>&gt;&gt;&gt; yocto ma=
+iling list<br>
+&gt;&gt;&gt; <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.o=
+rg</a><br>&gt;&gt;&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/y=
+octo" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><b=
+r>
+&gt;&gt;<br>&gt;&gt;<br>&gt;&gt;<br>&gt;&gt; --<br>&gt;&gt; &quot;Thou shal=
+t not follow the NULL pointer, for chaos and madness await<br>&gt;&gt; thee=
+ at its end&quot;<br>&gt;<br>&gt; Chris Tapp<br>&gt;<br>&gt; <a href=3D"mai=
+lto:opensource@keylevel.com">opensource@keylevel.com</a><br>
+&gt; <a href=3D"http://www.keylevel.com/" target=3D"_blank">www.keylevel.co=
+m</a><br>&gt;<br>&gt;<br>&gt;<br><br><br><br>--<br>&quot;Thou shalt not fol=
+low the NULL pointer, for chaos and madness await thee at its end&quot;<br>
+_______________________________________________<br>yocto mailing list<br><a=
+ href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br><a hr=
+ef=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank">http=
+s://lists.yoctoproject.org/listinfo/yocto</a><br>
+</div></div></blockquote></div><br>
 
-<br>_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
->https://lists.yoctoproject.org/listinfo/yocto</a><br>
-<br></blockquote></div><br></div>
-
---047d7b6da4cc7486a804cb9707a7--
+--f46d044785c71d7f8b04cba07a3f--
