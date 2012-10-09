@@ -1,34 +1,27 @@
-Return-Path: <jfabernathy@gmail.com>
-Received: from mail-gg0-f176.google.com (mail-gg0-f176.google.com
-	[209.85.161.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 34063E011C5
-	for <yocto@yoctoproject.org>; Tue,  9 Oct 2012 13:18:12 -0700 (PDT)
-Received: by mail-gg0-f176.google.com with SMTP id e5so1780406ggk.35
-	for <yocto@yoctoproject.org>; Tue, 09 Oct 2012 13:18:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=message-id:date:from:user-agent:mime-version:to:subject
-	:content-type:content-transfer-encoding;
-	bh=vDwvriQtzv3O8qAtxBd4q8Yjn8Da9bdzeJRA9r6A+dM=;
-	b=VQVB6kwo5CRHCp9mKh/pR71xUv9qX6zRimIlZ5gX/LRxHjIwEVU4B0pZx1nXmPBLHr
-	a6ad/SlUBTfnBiIAusMdfMkv3isE5mNv+xhNCm2TvN4RbnLyXAg4ajNaB+8ohenGzVHB
-	Nsxjd3lYKY9deBLEwkue/FNW09wGZZ8r5JSl58eJ4jsRNY2e7Y2RF5BC+GxTVpSq3e4b
-	mIXWEMrevE09jiZiV5Wy0iTmEN2oqRE3oi7tbBTCzoeujFbyIxDSb4nNDSmnu65wKrDu
-	hafFyz7UMN4NfzvvZ3fUYtRJdLnAyZBI1FrieJWioQmeK4xqGn/LCF2TEISmZSc79fh+
-	/rVg==
-Received: by 10.236.110.108 with SMTP id t72mr18790870yhg.32.1349813887425;
-	Tue, 09 Oct 2012 13:18:07 -0700 (PDT)
-Received: from [192.168.0.54] (cpe-174-097-157-052.nc.res.rr.com.
-	[174.97.157.52])
-	by mx.google.com with ESMTPS id u67sm25901451yhb.8.2012.10.09.13.18.05
-	(version=SSLv3 cipher=OTHER); Tue, 09 Oct 2012 13:18:06 -0700 (PDT)
-Message-ID: <5074867D.2080101@gmail.com>
-Date: Tue, 09 Oct 2012 16:18:05 -0400
-From: Jim Abernathy <jfabernathy@gmail.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:15.0) Gecko/20120912 Thunderbird/15.0.1
-MIME-Version: 1.0
-To: yocto@yoctoproject.org
-Subject: building under Centos 6.3
+Return-Path: <chris@yassl.com>
+Received: from p3plsmtpa01-06.prod.phx3.secureserver.net
+	(p3plsmtpa01-06.prod.phx3.secureserver.net [72.167.82.86])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id 2F2ABE00293
+	for <yocto@yoctoproject.org>; Tue,  9 Oct 2012 13:26:32 -0700 (PDT)
+Received: (qmail 12947 invoked from network); 9 Oct 2012 20:26:31 -0000
+Received: from unknown (174.45.76.142)
+	by p3plsmtpa01-06.prod.phx3.secureserver.net (72.167.82.86) with ESMTP;
+	09 Oct 2012 20:26:31 -0000
+Mime-Version: 1.0 (Apple Message framework v1084)
+From: Chris Conlon <chris@yassl.com>
+In-Reply-To: <1346972003.7493.31.camel@ted>
+Date: Tue, 9 Oct 2012 14:26:34 -0600
+Message-Id: <C9CD368C-34D5-4779-8535-9E094B56733F@yassl.com>
+References: <AA149620-AFAF-4670-8666-A34E500ADA75@yassl.com>
+	<ADD6A3980E8C39419A432FF422031B4C0CCBAAD9@ORSMSX106.amr.corp.intel.com>
+	<A1E9071B-69AC-4306-ADEB-3C24FAC448C6@yassl.com>
+	<50492051.8020109@linux.intel.com>
+	<611E7277-9841-4B9C-A664-329376DCF9FF@yassl.com>
+	<1346972003.7493.31.camel@ted>
+To: Richard Purdie <richard.purdie@linuxfoundation.org>, yocto@yoctoproject.org
+X-Mailer: Apple Mail (2.1084)
+Cc: yocto@yoctoproject.org, Scott Garman <scott.a.garman@intel.com>
+Subject: Re: CyaSSL Yocto Recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,10 +33,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 09 Oct 2012 20:18:12 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 09 Oct 2012 20:26:32 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
-Just an FYI,  following the Getting Started Guide for Centos 
-prerequisites, I found one that was not listed that I needed: "chrpath".
+On Sep 6, 2012, at 4:53 PM, Richard Purdie wrote:
+
+> This looks like an interesting piece of software and a quick read
+> through your webpages suggests there may be some interesting
+> applications of this within OE which I'd love to explore.
+>=20
+> We are however quite careful about what goes into OE-Core and you've
+> picked about the worst possible point of the cycle to have this
+> discussion (just after feature freeze which was six days ago).
+>=20
+> So I certainly think this could make OE-Core but probably not in the =
+1.3
+> release timeframe. I would also want to see some kind of demo that we
+> could replace some of our openssl/gnutls usage with this too which so
+> far I've not seen. There is discussion in the OE-Core archives about
+> making the SSL/TLS provider selectable though so there is certainly
+> interest.
+>=20
+> So I think this is a good idea, a layer is a great place to start
+> experimenting and if its shown to be successful it would make the =
+core.
+> We've got to be realistic about the development process and this isn't
+> going to happen overnight though (a layer is much easier/faster to =
+start
+> with).
+
+As suggested, we have created a yaSSL layer (meta-yassl) which includes =
+a recipe for the CyaSSL embedded SSL library.  The layer can be found on =
+GitHub, here:
+
+https://github.com/cconlon/meta-yassl
+
+Any comments or suggestions on improving the layer would be greatly =
+appreciated.  Going forward from here, what would make the most sense as =
+a next step?
+
+Thanks,
+
+Chris Conlon
+www.yassl.com
+chris@yassl.com
+Skype: chris_conlon_07
++1 406 209 0601=
 
