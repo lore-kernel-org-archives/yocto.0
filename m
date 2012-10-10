@@ -1,32 +1,37 @@
-Return-Path: <kishore.k.bodke@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 00E46E0027E
-	for <yocto@yoctoproject.org>; Wed, 10 Oct 2012 10:26:34 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 10 Oct 2012 10:26:13 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,565,1344236400"; d="scan'208";a="203976162"
-Received: from orsmsx101.amr.corp.intel.com ([10.22.225.128])
-	by orsmga001.jf.intel.com with ESMTP; 10 Oct 2012 10:26:34 -0700
-Received: from orsmsx105.amr.corp.intel.com ([169.254.4.116]) by
-	ORSMSX101.amr.corp.intel.com ([169.254.8.223]) with mapi id
-	14.01.0355.002; Wed, 10 Oct 2012 10:26:33 -0700
-From: "Bodke, Kishore K" <kishore.k.bodke@intel.com>
-To: Chris Tapp <opensource@keylevel.com>, "yocto@yoctoproject.org Project"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] Finding root cause of "host include and/or library
-	paths	were used"
-Thread-Index: AQHNpwdKPvudWy3pg06I0rAjgw+RNJeyycFA
-Date: Wed, 10 Oct 2012 17:26:33 +0000
-Message-ID: <D956029D25CF204F948EA0FB515E1EE2264DCBE5@ORSMSX105.amr.corp.intel.com>
-References: <7EB7A8EA-43A7-45A9-8769-8E35AC63DC45@keylevel.com>
-In-Reply-To: <7EB7A8EA-43A7-45A9-8769-8E35AC63DC45@keylevel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
+Return-Path: <tom.rini@gmail.com>
+Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
+	[209.85.160.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2136BE0027E
+	for <yocto@yoctoproject.org>; Wed, 10 Oct 2012 10:49:07 -0700 (PDT)
+Received: by mail-pb0-f48.google.com with SMTP id wy7so1211618pbc.35
+	for <yocto@yoctoproject.org>; Wed, 10 Oct 2012 10:49:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=date:from:to:cc:subject:message-id:references:mime-version
+	:content-type:content-disposition:in-reply-to:organization
+	:user-agent; bh=NC3iXpgzCOnyZcc04IaazjEZZcAmDMwo6te3K8z2nxM=;
+	b=JY8iVaSISu8HfNDGD1vV/pB0T3vsoEFUmCvdTgKK9UR8As9oW7jg15Q6j3oGL6myh5
+	tvBAqaE0VPxx2xbD5GSLjKyMRjiHSTKBQpvK2UjTlT0XlGlN3q7AhhidQh0kHB4nYsAZ
+	KhecNuzDqL+uzWt0MwRepEApT9sQsskcNdPrzo1kj3OZHKGifTGM76U0u67jPnPwcCUQ
+	rakV+kidLh2ruQfsfVuovUlGcCqpQxogp9yafIxzujbSpt1kfYD62x1Y+64Qj90UfQJc
+	UrtK6gVy64sXJO3EQ14XrZ8gFvEeR339UZl1YoQfjFkfNdciaLBbRtJ33XRBuRZkIHW+
+	/4zw==
+Received: by 10.68.237.106 with SMTP id vb10mr1779223pbc.112.1349891344754;
+	Wed, 10 Oct 2012 10:49:04 -0700 (PDT)
+Received: from bill-the-cat ([2001:470:d:eba:a4bf:d51f:ab5e:2eb6])
+	by mx.google.com with ESMTPS id k4sm1175682pax.7.2012.10.10.10.49.02
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Wed, 10 Oct 2012 10:49:03 -0700 (PDT)
+Date: Wed, 10 Oct 2012 10:49:11 -0700
+From: Tom Rini <tom.rini@gmail.com>
+To: Elvis Dowson <elvis.dowson@gmail.com>
+Message-ID: <20121010174911.GO1137@bill-the-cat>
+References: <8FDC41DC-70B4-4BCB-9B95-51CFBCA8961D@gmail.com>
 MIME-Version: 1.0
-Subject: Re: Finding root cause of "host include and/or library paths	were used"
+In-Reply-To: <8FDC41DC-70B4-4BCB-9B95-51CFBCA8961D@gmail.com>
+Organization: Texas Instruments
+User-Agent: Mutt/1.5.21 (2010-09-15)
+Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+Subject: Re: denx.de site down?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,55 +43,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 Oct 2012 17:26:35 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Wed, 10 Oct 2012 17:49:07 -0000
+X-Groupsio-MsgNum: 10005
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="O3WNCzIuUImKerqE"
+Content-Disposition: inline
+
+--O3WNCzIuUImKerqE
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
+On Wed, Oct 10, 2012 at 09:00:44PM +0400, Elvis Dowson wrote:
 
+> Hi Wolfgang,
+>                         I noticed that your site has been down since yest=
+erday? I usually sync with your u-boot and eldk repositories, and during th=
+e yocto build process, it failed because your site was un-reachable.
+>=20
+> I was able to get past the yocto build issue, by temporarily modifying my=
+ u-boot repositories to point to the local file system.
+>=20
+> I'm sure others are also facing a similar issue.
 
->-----Original Message-----
->From: yocto-bounces@yoctoproject.org [mailto:yocto-
->bounces@yoctoproject.org] On Behalf Of Chris Tapp
->Sent: Wednesday, October 10, 2012 9:50 AM
->To: yocto@yoctoproject.org Project
->Subject: [yocto] Finding root cause of "host include and/or library paths =
-were
->used"
->
->I'm trying to get libsdl_gfx to build. I've created a .bb file which runs =
-and
->installs the relevant headers and libs in tmp/sysroots.
->
->However, I'm getting a QA failure:
->
->NOTE: package libsdl-gfx-2.0.24-r1: task do_populate_sysroot: Succeeded
->WARNING: libsdl-gfx: The compile log indicates that host include and/or li=
-brary
->paths were used.
->         Please check the log '/media/SSD-RAID/build-denzil-git-sjs-
->cedartrail/tmp/work/core2-sjs-linux/libsdl-gfx-2.0.24-
->r1/temp/log.do_compile' for more information.
->
->The compile log has instances of:
->
->cc1: warning: include location "/usr/include/SDL" is unsafe for cross-
->compilation [-Wpoison-system-directories]
->
->The source uses autotools. I've had a look round the files, but it's not o=
-bvious
->to me where the above path is set (I'm definitely not an autotools expert)=
-.
->Can anyone give me an idea what I should be looking for? I suspect it may
->have something to do with a line from Makefile.am:
->
->libSDL_gfxincludedir =3D $(includedir)/SDL
+I can't point to an archive of this since it probably didn't hit google
+in time to be cached but yes, denx's website is currently down as their
+provider needs to replace all of the disks in their RAID array.  They
+hope to be back as soon as possible.
 
-Did you inherit autotools in your recipe?
-You may have to patch your makefile not to use host header files.
-Or, I think you can use ${STAGING_INCDIR} to override, at the time of your =
-configure.
+--=20
+Tom
 
-Thanks
-Kishore.
+--O3WNCzIuUImKerqE
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
 
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.11 (GNU/Linux)
+
+iEYEARECAAYFAlB1tRcACgkQdZngf2G4WwMQyQCfU0lTfnt3JsXqazrUj7u0Ba5p
+IvsAnArPF+TFCOTGaCqIQbYZe+7mc1Iv
+=7oPV
+-----END PGP SIGNATURE-----
+
+--O3WNCzIuUImKerqE--
