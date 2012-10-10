@@ -1,19 +1,19 @@
 Return-Path: <timo.mueller@oss.bmw-carit.de>
 Received: from linuxmail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6BDF5E013F7
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6F09EE01400
 	for <yocto@yoctoproject.org>; Wed, 10 Oct 2012 02:54:44 -0700 (PDT)
 Received: from localhost (mysterion.bmw-carit.intra [192.168.101.57])
 	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
 	(No client certificate requested)
 	(Authenticated sender: timo.mueller)
-	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id CF1ED40416;
-	Wed, 10 Oct 2012 11:23:19 +0200 (CEST)
+	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 6B0474043B;
+	Wed, 10 Oct 2012 11:23:20 +0200 (CEST)
 From: mail@timomueller.eu
 To: yocto@yoctoproject.org
-Date: Wed, 10 Oct 2012 11:54:13 +0200
-Message-Id: <1f19b8ff550ec6678587af36fbe27af99ea5b186.1349444489.git.timo.mueller@bmw-carit.de>
+Date: Wed, 10 Oct 2012 11:54:18 +0200
+Message-Id: <361f4f5a3d7ee68fa20dceab69c053abc0fc8a0c.1349444489.git.timo.mueller@bmw-carit.de>
 X-Mailer: git-send-email 1.7.7.6
-In-Reply-To: <2e807b75265e7d2895d1d8a4fc9facaf163297ea.1349444489.git.timo.mueller@bmw-carit.de>
+In-Reply-To: <ca4eedcded6f2a5ef36fb677cbe41f6935f9c517.1349444489.git.timo.mueller@bmw-carit.de>
 References: <cover.1349444489.git.timo.mueller@bmw-carit.de>
 	<8f13498e19681bb4922e3094fb165b4cf93d87e1.1349444489.git.timo.mueller@bmw-carit.de>
 	<590057989cc2c7239f170407ecc57677d89f8427.1349444489.git.timo.mueller@bmw-carit.de>
@@ -34,10 +34,15 @@ References: <cover.1349444489.git.timo.mueller@bmw-carit.de>
 	<1071daedb70a3f451c37eb0038ab5cc9fa90c12a.1349444489.git.timo.mueller@bmw-carit.de>
 	<a200d390a430a902046badff1c96697404384c51.1349444489.git.timo.mueller@bmw-carit.de>
 	<2e807b75265e7d2895d1d8a4fc9facaf163297ea.1349444489.git.timo.mueller@bmw-carit.de>
+	<1f19b8ff550ec6678587af36fbe27af99ea5b186.1349444489.git.timo.mueller@bmw-carit.de>
+	<c5ba11c1e9b04b04be4ae1856c7e2e8cedb357d2.1349444489.git.timo.mueller@bmw-carit.de>
+	<695af81ff1e9d882533ac6918b136a9d316abf69.1349444489.git.timo.mueller@bmw-carit.de>
+	<24ba3060c9581d4f3a32535319e5cde061332826.1349444489.git.timo.mueller@bmw-carit.de>
+	<ca4eedcded6f2a5ef36fb677cbe41f6935f9c517.1349444489.git.timo.mueller@bmw-carit.de>
 In-Reply-To: <cover.1349444489.git.timo.mueller@bmw-carit.de>
 References: <cover.1349444489.git.timo.mueller@bmw-carit.de>
 Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: [PATCH 20/35] documentation/kernel-manual/kernel-manual.xml: Added Title tag
+Subject: [PATCH 25/35] documentation/poky-ref-manual/poky-ref-manual.xml: Added Title tag
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -56,20 +61,20 @@ From: Timo Mueller <timo.mueller@bmw-carit.de>
 The title of the document used to create metadata for output formats
 such as eclipse help.
 ---
- documentation/kernel-manual/kernel-manual.xml |    4 +++-
+ documentation/poky-ref-manual/poky-ref-manual.xml |    4 +++-
  1 files changed, 3 insertions(+), 1 deletions(-)
 
-diff --git a/documentation/kernel-manual/kernel-manual.xml b/documentation/kernel-manual/kernel-manual.xml
-index 174663a..df52f4e 100644
---- a/documentation/kernel-manual/kernel-manual.xml
-+++ b/documentation/kernel-manual/kernel-manual.xml
+diff --git a/documentation/poky-ref-manual/poky-ref-manual.xml b/documentation/poky-ref-manual/poky-ref-manual.xml
+index e405375..9f647ab 100644
+--- a/documentation/poky-ref-manual/poky-ref-manual.xml
++++ b/documentation/poky-ref-manual/poky-ref-manual.xml
 @@ -16,7 +16,9 @@
              </imageobject>    
          </mediaobject>
  
--        <title></title> 
+-        <title></title>
 +        <title>
-+            The Yocto Project Kernel Architecture and Use Manual
++            The Yocto Project Reference Manual
 +        </title>
  
          <authorgroup>
