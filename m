@@ -1,23 +1,25 @@
 Return-Path: <nitin.a.kamble@intel.com>
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 11DCDE00348
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 31F61E0070B
 	for <yocto@yoctoproject.org>; Wed, 10 Oct 2012 11:07:22 -0700 (PDT)
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
 	by fmsmga101.fm.intel.com with ESMTP; 10 Oct 2012 11:07:21 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,565,1344236400"; d="scan'208";a="233101463"
+X-IronPort-AV: E=Sophos;i="4.80,565,1344236400"; d="scan'208";a="233101466"
 Received: from yocto-hm1.jf.intel.com ([10.23.232.32])
 	by fmsmga002.fm.intel.com with ESMTP; 10 Oct 2012 11:07:21 -0700
 From: nitin.a.kamble@intel.com
 To: tom.zanussi@intel.com,
 	darren.hart@intel.com,
 	yocto@yoctoproject.org
-Date: Wed, 10 Oct 2012 11:06:13 -0700
-Message-Id: <0ee691e2e0857cd3f26fe535d67c214817062392.1349892258.git.nitin.a.kamble@intel.com>
+Date: Wed, 10 Oct 2012 11:06:14 -0700
+Message-Id: <69f8c3e5718cb9ec949f40f8ebe3a08b0bd7266f.1349892258.git.nitin.a.kamble@intel.com>
 X-Mailer: git-send-email 1.7.3.4
+In-Reply-To: <0ee691e2e0857cd3f26fe535d67c214817062392.1349892258.git.nitin.a.kamble@intel.com>
+References: <0ee691e2e0857cd3f26fe535d67c214817062392.1349892258.git.nitin.a.kamble@intel.com>
 In-Reply-To: <cover.1349892258.git.nitin.a.kamble@intel.com>
 References: <cover.1349892258.git.nitin.a.kamble@intel.com>
-Subject: [PATCHv3 1/6] xf86-video-intel: Bring 2.20.0 version to match released graphics stack
+Subject: [PATCHv3 2/6] crownbay.conf: specify the 8.0.4 version as preferred version of mesa-dri
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,108 +35,32 @@ X-List-Received-Date: Wed, 10 Oct 2012 18:07:22 -0000
 
 From: Nitin A Kamble <nitin.a.kamble@intel.com>
 
-The Intel Linux graphics stack version 12.07 released on 2012-07-24
-requires version 2.20.0 as seen here:
-   http://intellinuxgraphics.org/2012.07.html
+Avoid following warnings while building crownbay BSPs:
 
-Currently oecore has 2.19.0 version. So get this 2.20.0 version in
-meta-intel layer to be used by sugarbay and other BSPs using the
-Intel graphics stack.
+ NOTE: preferred version 7.11 of mesa-dri not available (for item virtual/libgl)
+ NOTE: versions of mesa-dri available: 2:8.0.4 2:8.0.4+git1+c1f4867c89adb1a6b19d66ec8ad146115909f0a7
 
-Also took changes from version 2.20.8 recipe from Ross Burton's branch.
+This commit addresses one of the issue reported on the bug:
+[YOCTO #3238]
 
 Signed-off-by: Nitin A Kamble <nitin.a.kamble@intel.com>
 ---
- .../xorg-driver/xf86-video-intel_2.20.0.bb         |   27 ++++++++++++++++
- .../xorg-driver/xorg-driver-common.inc             |   33 ++++++++++++++++++++
- .../xorg-driver/xorg-driver-video.inc              |    4 ++
- 3 files changed, 64 insertions(+), 0 deletions(-)
- create mode 100644 common/recipes-graphics/xorg-driver/xf86-video-intel_2.20.0.bb
- create mode 100644 common/recipes-graphics/xorg-driver/xorg-driver-common.inc
- create mode 100644 common/recipes-graphics/xorg-driver/xorg-driver-video.inc
+ meta-crownbay/conf/machine/crownbay.conf |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
 
-diff --git a/common/recipes-graphics/xorg-driver/xf86-video-intel_2.20.0.bb b/common/recipes-graphics/xorg-driver/xf86-video-intel_2.20.0.bb
-new file mode 100644
-index 0000000..6cfca03
---- /dev/null
-+++ b/common/recipes-graphics/xorg-driver/xf86-video-intel_2.20.0.bb
-@@ -0,0 +1,27 @@
-+require xorg-driver-video.inc
-+
-+SUMMARY = "X.Org X server -- Intel integrated graphics chipsets driver"
-+
-+DESCRIPTION = "intel is an Xorg driver for Intel integrated graphics \
-+chipsets. The driver supports depths 8, 15, 16 and 24. On some chipsets, \
-+the driver supports hardware accelerated 3D via the Direct Rendering \
-+Infrastructure (DRI)."
-+
-+LIC_FILES_CHKSUM = "file://COPYING;md5=8730ad58d11c7bbad9a7066d69f7808e"
-+
-+PR = "${INC_PR}.0"
-+
-+DEPENDS += "virtual/libx11 drm xf86driproto glproto \
-+	    virtual/libgl xineramaproto xf86driproto libpciaccess"
-+
-+PACKAGECONFIG ??= ""
-+PACKAGECONFIG[sna] = "--enable-sna,--disable-sna"
-+PACKAGECONFIG[xvmc] = "--enable-xvmc,--disable-xvmc,libxvmc"
-+
-+# --enable-kms-only option is required by ROOTLESS_X
-+EXTRA_OECONF += '${@base_conditional( "ROOTLESS_X", "1", " --enable-kms-only", "", d )}'
-+
-+COMPATIBLE_HOST = '(i.86|x86_64).*-linux'
-+
-+SRC_URI[md5sum] = "070bb866b05a16366bd9bb844c9b91aa"
-+SRC_URI[sha256sum] = "21949297220ceda32bba430f778c6409002079dc717c7190dbd1062ab4a56783"
-diff --git a/common/recipes-graphics/xorg-driver/xorg-driver-common.inc b/common/recipes-graphics/xorg-driver/xorg-driver-common.inc
-new file mode 100644
-index 0000000..1ed2742
---- /dev/null
-+++ b/common/recipes-graphics/xorg-driver/xorg-driver-common.inc
-@@ -0,0 +1,33 @@
-+DESCRIPTION = "X driver"
-+HOMEPAGE = "http://www.x.org"
-+BUGTRACKER = "https://bugs.freedesktop.org"
-+SECTION = "x11/drivers"
-+LICENSE = "MIT-X"
-+
-+PE = "2"
-+INC_PR = "r0"
-+
-+DEPENDS = "virtual/xserver xproto randrproto util-macros"
-+
-+SRC_URI = "${XORG_MIRROR}/individual/driver/${BPN}-${PV}.tar.bz2"
-+
-+S = "${WORKDIR}/${BPN}-${PV}"
-+
-+FILES_${PN} += " ${libdir}/xorg/modules/drivers/*.so"
-+FILES_${PN}-dbg += " ${libdir}/xorg/modules/drivers/.debug"
-+
-+inherit autotools pkgconfig
-+
-+# AC_CHECK_FILE doesn't work when cross compiling, so we create a replacement
-+# macro that simply assumes the test succeeds. 
-+do_configure_prepend () {
-+    echo 'AC_DEFUN(CC_AC_CHECK_FILE, $2)' > configure.ac.new
-+    sed 's/AC_CHECK_FILE/CC_AC_CHECK_FILE/g' configure.ac >> configure.ac.new
-+    mv configure.ac.new configure.ac
-+}
-+
-+# FIXME: We don't want to include the libtool archives (*.la) from modules
-+# directory, as they serve no useful purpose. Upstream should fix Makefile.am
-+do_install_append() {
-+	find ${D}${libdir}/xorg/modules -regex ".*\.la$" | xargs rm -f --
-+}
-diff --git a/common/recipes-graphics/xorg-driver/xorg-driver-video.inc b/common/recipes-graphics/xorg-driver/xorg-driver-video.inc
-new file mode 100644
-index 0000000..57c80d1
---- /dev/null
-+++ b/common/recipes-graphics/xorg-driver/xorg-driver-video.inc
-@@ -0,0 +1,4 @@
-+include xorg-driver-common.inc
-+
-+DEPENDS =+ "renderproto videoproto xextproto fontsproto"
-+
+diff --git a/meta-crownbay/conf/machine/crownbay.conf b/meta-crownbay/conf/machine/crownbay.conf
+index c18fa1d..72431de 100644
+--- a/meta-crownbay/conf/machine/crownbay.conf
++++ b/meta-crownbay/conf/machine/crownbay.conf
+@@ -18,7 +18,7 @@ XSERVER ?= "${XSERVER_IA32_BASE} \
+            "
+ 
+ PREFERRED_VERSION_xserver-xorg ?= "1.9.3"
+-PREFERRED_VERSION_mesa-dri ?= "7.11"
++PREFERRED_VERSION_mesa-dri ?= "8.0.4"
+ PREFERRED_VERSION_xf86-input-evdev ?= "2.6.0"
+ 
+ APPEND += "video=vesafb vga=0x318 vmalloc=256MB"
 -- 
 1.7.3.4
 
