@@ -1,19 +1,19 @@
 Return-Path: <timo.mueller@oss.bmw-carit.de>
 Received: from linuxmail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3E75EE013AF
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 66BE2E01275
 	for <yocto@yoctoproject.org>; Wed, 10 Oct 2012 02:54:44 -0700 (PDT)
 Received: from localhost (mysterion.bmw-carit.intra [192.168.101.57])
 	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
 	(No client certificate requested)
 	(Authenticated sender: timo.mueller)
-	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 466CE404E2;
-	Wed, 10 Oct 2012 11:23:21 +0200 (CEST)
+	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 7738340352;
+	Wed, 10 Oct 2012 11:23:19 +0200 (CEST)
 From: mail@timomueller.eu
 To: yocto@yoctoproject.org
-Date: Wed, 10 Oct 2012 11:54:24 +0200
-Message-Id: <7da8b333cba6d41a66ff7b78c9078444394e197d.1349444489.git.timo.mueller@bmw-carit.de>
+Date: Wed, 10 Oct 2012 11:54:10 +0200
+Message-Id: <1071daedb70a3f451c37eb0038ab5cc9fa90c12a.1349444489.git.timo.mueller@bmw-carit.de>
 X-Mailer: git-send-email 1.7.7.6
-In-Reply-To: <62995a82f0e3d03540c076f056ef980864cffa48.1349444489.git.timo.mueller@bmw-carit.de>
+In-Reply-To: <2c7bf9dd12ea207e71031b7d41bf1cc47ad8ccd6.1349444489.git.timo.mueller@bmw-carit.de>
 References: <cover.1349444489.git.timo.mueller@bmw-carit.de>
 	<8f13498e19681bb4922e3094fb165b4cf93d87e1.1349444489.git.timo.mueller@bmw-carit.de>
 	<590057989cc2c7239f170407ecc57677d89f8427.1349444489.git.timo.mueller@bmw-carit.de>
@@ -31,24 +31,10 @@ References: <cover.1349444489.git.timo.mueller@bmw-carit.de>
 	<f14c54079076b48ae05494161c45d82f53facc88.1349444489.git.timo.mueller@bmw-carit.de>
 	<3be0d3b2813a6c786d67e8a1a04d159c892d3a30.1349444489.git.timo.mueller@bmw-carit.de>
 	<2c7bf9dd12ea207e71031b7d41bf1cc47ad8ccd6.1349444489.git.timo.mueller@bmw-carit.de>
-	<1071daedb70a3f451c37eb0038ab5cc9fa90c12a.1349444489.git.timo.mueller@bmw-carit.de>
-	<a200d390a430a902046badff1c96697404384c51.1349444489.git.timo.mueller@bmw-carit.de>
-	<2e807b75265e7d2895d1d8a4fc9facaf163297ea.1349444489.git.timo.mueller@bmw-carit.de>
-	<1f19b8ff550ec6678587af36fbe27af99ea5b186.1349444489.git.timo.mueller@bmw-carit.de>
-	<c5ba11c1e9b04b04be4ae1856c7e2e8cedb357d2.1349444489.git.timo.mueller@bmw-carit.de>
-	<695af81ff1e9d882533ac6918b136a9d316abf69.1349444489.git.timo.mueller@bmw-carit.de>
-	<24ba3060c9581d4f3a32535319e5cde061332826.1349444489.git.timo.mueller@bmw-carit.de>
-	<ca4eedcded6f2a5ef36fb677cbe41f6935f9c517.1349444489.git.timo.mueller@bmw-carit.de>
-	<361f4f5a3d7ee68fa20dceab69c053abc0fc8a0c.1349444489.git.timo.mueller@bmw-carit.de>
-	<222e8c37a31b0ea405774a255b0bd2e4117e34b9.1349444489.git.timo.mueller@bmw-carit.de>
-	<24053bac29a28c6774f6f5856fef42dd8e6a369f.1349444489.git.timo.mueller@bmw-carit.de>
-	<d3134050f49bc4fe2d665891f7cab2a15b4f484f.1349444489.git.timo.mueller@bmw-carit.de>
-	<ed5fa3fbcabc31af488d36713ef3f15a756f20f9.1349444489.git.timo.mueller@bmw-carit.de>
-	<62995a82f0e3d03540c076f056ef980864cffa48.1349444489.git.timo.mueller@bmw-carit.de>
 In-Reply-To: <cover.1349444489.git.timo.mueller@bmw-carit.de>
 References: <cover.1349444489.git.timo.mueller@bmw-carit.de>
 Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: [PATCH 31/35] documentation/yocto-project-qs/yocto-project-qs.xml: Convert fake-title section into articleinfo
+Subject: [PATCH 17/35] documentation: Move kernel-manual global parameters to customization file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -64,45 +50,48 @@ X-List-Received-Date: Wed, 10 Oct 2012 09:54:44 -0000
 
 From: Timo Mueller <timo.mueller@bmw-carit.de>
 
-The fake title section is converted into a docbook
-article.articleinfo. If used with a custom title page this will lead
-to the excapt same output. But I will enable the creation of metadata
-from this title information.
+Standard stylesheet parameters were moved to the docbook customization
+file tying them to the docbook stylesheet used. Removing these
+parameters simplifies the Makefile.
 ---
- .../yocto-project-qs/yocto-project-qs.xml          |   20 ++++++++++++++------
- 1 files changed, 14 insertions(+), 6 deletions(-)
+ documentation/Makefile                             |    7 +------
+ .../kernel-manual/kernel-manual-customization.xsl  |    7 +++++--
+ 2 files changed, 6 insertions(+), 8 deletions(-)
 
-diff --git a/documentation/yocto-project-qs/yocto-project-qs.xml b/documentation/yocto-project-qs/yocto-project-qs.xml
-index ca6f65b..390c24c 100644
---- a/documentation/yocto-project-qs/yocto-project-qs.xml
-+++ b/documentation/yocto-project-qs/yocto-project-qs.xml
-@@ -3,12 +3,20 @@
- [<!ENTITY % poky SYSTEM "../poky.ent"> %poky; ] >
+diff --git a/documentation/Makefile b/documentation/Makefile
+index 9774932..d86868a 100644
+--- a/documentation/Makefile
++++ b/documentation/Makefile
+@@ -217,12 +217,7 @@ STYLESHEET = $(DOC)/*.css
+ endif
  
- <article id='intro'>
--   <imagedata fileref="figures/yocto-project-transp.png" width="6in" depth="1in" align="right" scale="25" />
+ ifeq ($(DOC),kernel-manual)
+-XSLTOPTS = --stringparam html.stylesheet kernel-style.css \
+-           --stringparam  chapter.autolabel 1 \
+-           --stringparam  appendix.autolabel A \
+-           --stringparam  section.autolabel 1 \
+-           --stringparam  section.label.includes.component.label 1 \
+-           --xinclude
++XSLTOPTS = --xinclude
+ ALLPREQ = html pdf tarball
+ TARFILES = kernel-manual.html kernel-manual.pdf kernel-style.css figures/kernel-title.png figures/kernel-architecture-overview.png
+ MANUALS = $(DOC)/$(DOC).html $(DOC)/$(DOC).pdf
+diff --git a/documentation/kernel-manual/kernel-manual-customization.xsl b/documentation/kernel-manual/kernel-manual-customization.xsl
+index 8eb6905..6f46df2 100644
+--- a/documentation/kernel-manual/kernel-manual-customization.xsl
++++ b/documentation/kernel-manual/kernel-manual-customization.xsl
+@@ -3,6 +3,9 @@
+   
+   <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/xhtml/docbook.xsl" />
+ 
+-<!--  <xsl:param name="generate.toc" select="'article nop'"></xsl:param>  -->
 -
--<section id='fake-title'>
--    <title>The Yocto Project Quick Start</title>
--    <para>Copyright &copy; &COPYRIGHT_YEAR; Linux Foundation</para>
--</section>
-+    <articleinfo>
-+        <title>The Yocto Project Quick Start</title>
-+
-+        <copyright>
-+            <year>&COPYRIGHT_YEAR;</year>
-+            <holder>Linux Foundation</holder>
-+        </copyright>
-+
-+        <abstract>
-+            <imagedata fileref="figures/yocto-project-transp.png"
-+                        width="6in" depth="1in"
-+                        align="right" scale="25" />
-+        </abstract>
-+    </articleinfo>
- 
- <section id='welcome'>
-     <title>Welcome!</title>
++  <xsl:param name="html.stylesheet" select="'kernel-style.css'" />
++  <xsl:param name="chapter.autolabel" select="1" />
++  <xsl:param name="appendix.autolabel" select="A" />
++  <xsl:param name="section.autolabel" select="1" />
++  <xsl:param name="section.label.includes.component.label" select="1" />
+ </xsl:stylesheet>
 -- 
 1.7.7.6
 
