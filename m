@@ -1,42 +1,45 @@
-Return-Path: <evadeflow@gmail.com>
-Received: from mail-ie0-f176.google.com (mail-ie0-f176.google.com
-	[209.85.223.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 97F0DE0027E
-	for <yocto@yoctoproject.org>; Wed, 10 Oct 2012 08:56:50 -0700 (PDT)
-Received: by mail-ie0-f176.google.com with SMTP id k11so1314873iea.35
-	for <yocto@yoctoproject.org>; Wed, 10 Oct 2012 08:56:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type:content-transfer-encoding;
-	bh=nbdn6BjofWAhWqpKnjPZJ+chbhmACrCu7dLGck98z6w=;
-	b=F4E2tTEYActjsiValolYAuKuKwkKdQ7zJ9aPO0alu6IN8rZakEFbtbx/yHE1ID8x0q
-	Jm0FUJzLPhcqSkZ3ra3QNNPjcoZFT1qfAb1zSe29oDxVpDAel1JwzftbtXtO1BN2utKq
-	JOrcA/5Dg4jgxj+4h5jveOx/ShhBWjZQPhlrseXet8GG1uhVER0bmCUvlQKSleQapLei
-	3tdGUFq8U17QwcZkTNTlqSj0QLGzo5xigH+meEsytdpHT49j1fAeAhiOAvQDnXRDdkZJ
-	8Om8oWb5jQ9yEiOxN+kzcIyJZg4y6pDn5Kq6QTKNpbr81RCeyMaaFNtuszBQRb0WitN+
-	aQyw==
+Return-Path: <kishore.k.bodke@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 988A7E0027E
+	for <yocto@yoctoproject.org>; Wed, 10 Oct 2012 09:27:58 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 10 Oct 2012 09:27:56 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,565,1344236400"; d="scan'208";a="232295127"
+Received: from orsmsx106.amr.corp.intel.com ([10.22.225.133])
+	by fmsmga001.fm.intel.com with ESMTP; 10 Oct 2012 09:27:55 -0700
+Received: from orsmsx151.amr.corp.intel.com (10.22.226.38) by
+	ORSMSX106.amr.corp.intel.com (10.22.225.133) with Microsoft SMTP Server
+	(TLS) id 14.1.355.2; Wed, 10 Oct 2012 09:27:49 -0700
+Received: from orsmsx105.amr.corp.intel.com ([169.254.4.116]) by
+	ORSMSX151.amr.corp.intel.com ([169.254.7.168]) with mapi id
+	14.01.0355.002; Wed, 10 Oct 2012 09:27:49 -0700
+From: "Bodke, Kishore K" <kishore.k.bodke@intel.com>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>, Chris Tapp
+	<opensource@keylevel.com>
+Thread-Topic: [yocto] Meta Intel / Cedartrail / Denzil - how to get unionfs
+	in the kernel
+Thread-Index: AQHNpY/ojWM3DzDM6UWxtca6mh6yM5ev2DkAgACCoYCAAqsIgP//txfQ
+Date: Wed, 10 Oct 2012 16:27:48 +0000
+Message-ID: <D956029D25CF204F948EA0FB515E1EE2264DCB5C@ORSMSX105.amr.corp.intel.com>
+References: <443D93B8-DA6A-40DD-854F-7007FE63854C@keylevel.com>
+	<63ECFF2A2302B44093D7CE9E9962C49003CD2F97@ORSMSX107.amr.corp.intel.com>
+	<E413C1D3-D599-437C-A1ED-8A57DAC3E8D3@keylevel.com>
+	<CADkTA4NAnqoBBzHkWNErMr2J=0p1xdSVocSpFCMLkV_8ztrwPg@mail.gmail.com>
+	<4ED03A84-C184-4A15-BB50-B83AEE211BB4@keylevel.com>
+	<D956029D25CF204F948EA0FB515E1EE2264DBE54@ORSMSX105.amr.corp.intel.com>
+	<0E3AEF49-829E-47BC-BEF4-C66A23DA3DC7@keylevel.com>
+	<D956029D25CF204F948EA0FB515E1EE2264DBF38@ORSMSX105.amr.corp.intel.com>
+	<CB24F010-05C7-459E-98C1-54FAF07D5611@keylevel.com>
+	<50757C83.1060204@windriver.com>
+In-Reply-To: <50757C83.1060204@windriver.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-Received: by 10.42.48.136 with SMTP id s8mr19209624icf.33.1349884610233; Wed,
-	10 Oct 2012 08:56:50 -0700 (PDT)
-Received: by 10.42.179.68 with HTTP; Wed, 10 Oct 2012 08:56:50 -0700 (PDT)
-In-Reply-To: <CAMAb8ZOv9ashi8gAXgPMDStB0d8ynq9LrcvpmRV2G+PVd=_g7g@mail.gmail.com>
-References: <CC9226B2.365%PatrickTurley@gamestop.com>
-	<CC922B79.368%PatrickTurley@gamestop.com>
-	<CA+gsK-o=VD7GLYsTHYvmhK4Ht5KeNFS=4=yHmxybeAN7M_nzDw@mail.gmail.com>
-	<6796989A-D845-4726-B47B-64B82F380444@gamestop.com>
-	<CA+gsK-p5gt0FuN4XbifdSjPv5pcnF6u=5bcrWAw9Ayd9WpUTYw@mail.gmail.com>
-	<1A527469-CEF5-434E-8604-540899C8BA04@gamestop.com>
-	<CA+gsK-qzq5dK4QwOq1kw1U8tNbhDt-UZsRha-_ZKu0Kw8AWFAg@mail.gmail.com>
-	<A4CBB3C5-9355-4C1E-8324-55AF1849E0CF@gamestop.com>
-	<CA+gsK-obQLKv9LnMiqAiukKcoPBN3Bijn-oYhdUrvJ9yp12w=g@mail.gmail.com>
-	<BFCDD08E-1AB4-4770-812D-3BB6E2606E18@gamestop.com>
-	<CAMAb8ZOv9ashi8gAXgPMDStB0d8ynq9LrcvpmRV2G+PVd=_g7g@mail.gmail.com>
-Date: Wed, 10 Oct 2012 11:56:50 -0400
-Message-ID: <CAMAb8ZPWHrm6K9GFnU8RLbMPfHnLgaOtG6Gz4L-ZdpaCfpoM2g@mail.gmail.com>
-From: Evade Flow <evadeflow@gmail.com>
-To: Patrick Turley <PatrickTurley@gamestop.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: The BitBake equivalent of "Hello, World!"
+Cc: "yocto@yoctoproject.org Project" <yocto@yoctoproject.org>
+Subject: Re: Meta Intel / Cedartrail / Denzil - how to get unionfs in the kernel
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,183 +51,61 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 Oct 2012 15:56:50 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 10 Oct 2012 16:27:58 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-It helps a lot if you run it from the build dir. :-%
-
-build% ../../bitbake/bin/bitbake a
-Parsing recipes: 100%
-|##########################################################################=
-#######|
-Time: 00:00:00
-Parsing of 1 .bb files complete (0 cached, 1 parsed). 1 targets, 0
-skipped, 0 masked, 0 errors.
-NOTE: Resolving any missing task queue dependencies
-NOTE: Preparing runqueue
-NOTE: Executing RunQueue Tasks
-NOTE: Running task 1 of 1 (ID: 0,
-/home/evadeflow/projects/bitbake_hello/LayerA/a.bb, do_build)
-NOTE: package None: task do_build: Started
-Hello, World!
-NOTE: package None: task do_build: Succeeded
-NOTE: Tasks Summary: Attempted 1 tasks of which 0 didn't need to be
-rerun and all succeeded.
-
-Thanks again!
 
 
-On Wed, Oct 10, 2012 at 11:45 AM, Evade Flow <evadeflow@gmail.com> wrote:
-> Again, thanks *so* much for putting this together. I tried to do this
-> once before and didn't have the tenacity to stick with it--it is a
-> surprisingly daunting task. Having a smallest-possible example will, I
-> think, be really helpful to developers who want to learn how to debug
-> bitbake and contribute fixes.
+>-----Original Message-----
+>From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]
+>Sent: Wednesday, October 10, 2012 6:48 AM
+>To: Chris Tapp
+>Cc: Bodke, Kishore K; yocto@yoctoproject.org Project
+>Subject: Re: [yocto] Meta Intel / Cedartrail / Denzil - how to get unionfs=
+ in the
+>kernel
 >
-> Interestingly, I tried running this and got the following result:
+>On 12-10-08 05:03 PM, Chris Tapp wrote:
+>> On 8 Oct 2012, at 21:30, Bodke, Kishore K wrote:
+>>
+>> <  snip ...>
+>>
+>> Thanks for the really fast response on this :-)
+>>
+>>> For denzil, try with this by creating a new file in meta-cedartrail/rec=
+ipes-
+>kernel/linux/linux-yocto_3.2.bbappend.
+>>>
+>>> FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
+>>>
+>>> SRC_URI_cedartrail-nopvr =3D "git://git.yoctoproject.org/linux-yocto-
+>3.2;protocol=3Dgit;nocheckout=3D1;branch=3D${KBRANCH},meta;name=3Dmachine,=
+m
+>eta"
+>>
+>> I had to add 'bareclone=3D1' to this to get it to run.
+>>
+>>> COMPATIBLE_MACHINE_cedartrail-nopvr =3D "cedartrail"
+>>> KMACHINE_cedartrail-nopvr  =3D "cedartrail"
+>>> KBRANCH_cedartrail-nopvr  =3D "yocto/standard/cedartrail"
+>>> KERNEL_FEATURES_append_cedartrail-nopvr +=3D " cfg/smp.scc"
+>>>
+>>> SRCREV_machine_pn-linux-yocto_cedartrail-nopvr ?=3D
+>"8b8cfaaab2b8d79ac56e8c9a85bad9ae7bca399c"
+>>> SRCREV_meta_pn-linux-yocto_cedartrail-nopvr ?=3D
+>"486f7aec824b4127e91ef53228823e996b3696f0"
+>>
+>> I think it's nearly there, but I get a failure when validating the branc=
+h:
 >
-> bitbake_hello% ../bitbake-1.15.2/bin/bitbake a
-> The BBPATH variable is not set
-> DEBUG: Removed the following variables from the environment:
-> http_proxy, CVS_RSH,
-> SHLVL, LD_LIBRARY_PATH, EDITOR, SUDO_USER, USERNAME, PROMPT,
-> PYTHONPATH, SUDO_UID,
-> RPROMPT, SUDO_COMMAND, SUDO_GID, OLDPWD, MAIL
+>I'm back to the office now. Is this issue still lurking/active ?
 >
->
-> I guess I either fat-fingered something during cut-and-paste, or it's
-> due to some difference between the tarball I downloaded and the bitbake
-> tag you were using. I'm behind a firewall, but I'll see if I can suck
-> down the the actual git repo through my phone and see if that makes a
-> difference.
->
-> On Tue, Oct 9, 2012 at 6:31 PM, Patrick Turley
-> <PatrickTurley@gamestop.com> wrote:
->> Success. The file tree depicted at the bottom of this mail is nearly the
->> smallest, valid BitBake project that prints "Hello, World!" Here's the
->> output:
->>
->>
->>     $ ../BitBake/bin/bitbake  a
->>     Parsing recipes: 100%
->> |#############################################################| Time:
->> 00:00:00
->>     Parsing of 1 .bb files complete (0 cached, 1 parsed). 1 targets, 0
->> skipped, 0 masked, 0 errors.
->>     NOTE: Resolving any missing task queue dependencies
->>     NOTE: Preparing runqueue
->>     NOTE: Executing RunQueue Tasks
->>     NOTE: Running task 1 of 1 (ID: 0,
->> /home/pturley/Workspace/Hello/LayerA/a.bb, do_build)
->>     NOTE: package None: task do_build: Started
->>     Hello, World!
->>     NOTE: package None: task do_build: Succeeded
->>     NOTE: Tasks Summary: Attempted 1 tasks of which 0 didn't need to be
->> rerun and all succeeded.
->>
->>
->> A few things to note:
->>
->> 1) This is not the *smallest* such BitBake project. For example, the
->> "DESCRIPTION" and "PV" variables need not be assigned in "a.bb". I set t=
-hose
->> variables because I wanted "show-layers" and "show-recipes" to display
->> reasonable information.
->>
->> 2) Some of the variables set in "bitbake.conf" have "simplified" values.=
- For
->> example, you would *not* want to use these values if there were multiple
->> recipes and you had to disambiguate the output from each of them.
->>
->> 3) On the other hand, *all* the variable assignments in "bitbake.conf" a=
-re
->> *essential* to BitBake itself. If you remove any one of those assignment=
-s,
->> BitBake will either declare an error or die (usually because some intern=
-al
->> variable is set to "None" and the BitBake code can't handle it).
->>
->>
->> ------------------------------------------------------------
->>
->>
->> =E2=94=9C=E2=94=80=E2=94=80 build
->> =E2=94=82   =E2=94=82
->> =E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 classes
->> =E2=94=82   =E2=94=82   =E2=94=82
->> =E2=94=82   =E2=94=82   =E2=94=94=E2=94=80=E2=94=80 base.bbclass
->> =E2=94=82   =E2=94=82
->> =E2=94=82   =E2=94=82       +-------------------------------------------=
-----
->> =E2=94=82   =E2=94=82       |  addtask build
->> =E2=94=82   =E2=94=82       +-------------------------------------------=
-----
->> =E2=94=82   =E2=94=82
->> =E2=94=82   =E2=94=94=E2=94=80=E2=94=80 conf
->> =E2=94=82       =E2=94=82
->> =E2=94=82       =E2=94=9C=E2=94=80=E2=94=80 bblayers.conf
->> =E2=94=82       =E2=94=82
->> =E2=94=82       =E2=94=82   +-------------------------------------------=
-----
->> =E2=94=82       =E2=94=82   |  BBLAYERS ?=3D " \
->> =E2=94=82       =E2=94=82   |    /home/pturley/Workspace/Hello/LayerA \
->> =E2=94=82       =E2=94=82   |    "
->> =E2=94=82       =E2=94=82   +-------------------------------------------=
-----
->> =E2=94=82       =E2=94=82
->> =E2=94=82       =E2=94=94=E2=94=80=E2=94=80 bitbake.conf
->> =E2=94=82
->> =E2=94=82           +-----------------------------------------------
->> =E2=94=82           |  TMPDIR  =3D "${TOPDIR}/tmp"
->> =E2=94=82           |  CACHE   =3D "${TMPDIR}/cache"
->> =E2=94=82           |  STAMP   =3D "${TMPDIR}/stamps"
->> =E2=94=82           |  T       =3D "${TMPDIR}/work"
->> =E2=94=82           |  B       =3D "${TMPDIR}"
->> =E2=94=82           +-----------------------------------------------
->> =E2=94=82
->> =E2=94=9C=E2=94=80=E2=94=80 LayerA
->> =E2=94=82   =E2=94=82
->> =E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 a.bb
->> =E2=94=82   =E2=94=82
->> =E2=94=82   =E2=94=82       +-------------------------------------------=
-----
->> =E2=94=82   =E2=94=82       |  DESCRIPTION =3D "Layer A Recipe"
->> =E2=94=82   =E2=94=82       |  PN =3D 'a'
->> =E2=94=82   =E2=94=82       |  PV =3D '1'
->> =E2=94=82   =E2=94=82       |
->> =E2=94=82   =E2=94=82       |  python do_build() {
->> =E2=94=82   =E2=94=82       |      bb.plain("Hello, World!");
->> =E2=94=82   =E2=94=82       |  }
->> =E2=94=82   =E2=94=82       +-------------------------------------------=
-----
->> =E2=94=82   =E2=94=82
->> =E2=94=82   =E2=94=94=E2=94=80=E2=94=80 conf
->> =E2=94=82       =E2=94=82
->> =E2=94=82       =E2=94=94=E2=94=80=E2=94=80 layer.conf
->> =E2=94=82
->> =E2=94=82           +-----------------------------------------------
->> =E2=94=82           |  BBPATH .=3D ":${LAYERDIR}"
->> =E2=94=82           |
->> =E2=94=82           |  BBFILES +=3D "${LAYERDIR}/*.bb"
->> =E2=94=82           |
->> =E2=94=82           |  BBFILE_COLLECTIONS +=3D "A"
->> =E2=94=82           |  BBFILE_PATTERN_A :=3D "^${LAYERDIR}/"
->> =E2=94=82           +-----------------------------------------------
->> =E2=94=82
->> =E2=94=94=E2=94=80=E2=94=80 BitBake
->>
->>    The BitBake directory origin is:
->>
->>        http://git.openembedded.org/bitbake/
->>
->>    I have the 1.15.2 tag checked out, which is what
->>    Yocto denzil uses.
->>
->>
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->>
+
+Issue of validating the branches is resolved.
+
+Thanks
+Kishore.
+
 
