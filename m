@@ -1,19 +1,19 @@
 Return-Path: <timo.mueller@oss.bmw-carit.de>
 Received: from linuxmail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6E8D1E013F9
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 74570E0140A
 	for <yocto@yoctoproject.org>; Wed, 10 Oct 2012 02:54:44 -0700 (PDT)
 Received: from localhost (mysterion.bmw-carit.intra [192.168.101.57])
 	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
 	(No client certificate requested)
 	(Authenticated sender: timo.mueller)
-	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 13DFE40422;
-	Wed, 10 Oct 2012 11:23:20 +0200 (CEST)
+	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 0960A404DB;
+	Wed, 10 Oct 2012 11:23:21 +0200 (CEST)
 From: mail@timomueller.eu
 To: yocto@yoctoproject.org
-Date: Wed, 10 Oct 2012 11:54:15 +0200
-Message-Id: <695af81ff1e9d882533ac6918b136a9d316abf69.1349444489.git.timo.mueller@bmw-carit.de>
+Date: Wed, 10 Oct 2012 11:54:22 +0200
+Message-Id: <ed5fa3fbcabc31af488d36713ef3f15a756f20f9.1349444489.git.timo.mueller@bmw-carit.de>
 X-Mailer: git-send-email 1.7.7.6
-In-Reply-To: <c5ba11c1e9b04b04be4ae1856c7e2e8cedb357d2.1349444489.git.timo.mueller@bmw-carit.de>
+In-Reply-To: <d3134050f49bc4fe2d665891f7cab2a15b4f484f.1349444489.git.timo.mueller@bmw-carit.de>
 References: <cover.1349444489.git.timo.mueller@bmw-carit.de>
 	<8f13498e19681bb4922e3094fb165b4cf93d87e1.1349444489.git.timo.mueller@bmw-carit.de>
 	<590057989cc2c7239f170407ecc57677d89f8427.1349444489.git.timo.mueller@bmw-carit.de>
@@ -36,10 +36,17 @@ References: <cover.1349444489.git.timo.mueller@bmw-carit.de>
 	<2e807b75265e7d2895d1d8a4fc9facaf163297ea.1349444489.git.timo.mueller@bmw-carit.de>
 	<1f19b8ff550ec6678587af36fbe27af99ea5b186.1349444489.git.timo.mueller@bmw-carit.de>
 	<c5ba11c1e9b04b04be4ae1856c7e2e8cedb357d2.1349444489.git.timo.mueller@bmw-carit.de>
+	<695af81ff1e9d882533ac6918b136a9d316abf69.1349444489.git.timo.mueller@bmw-carit.de>
+	<24ba3060c9581d4f3a32535319e5cde061332826.1349444489.git.timo.mueller@bmw-carit.de>
+	<ca4eedcded6f2a5ef36fb677cbe41f6935f9c517.1349444489.git.timo.mueller@bmw-carit.de>
+	<361f4f5a3d7ee68fa20dceab69c053abc0fc8a0c.1349444489.git.timo.mueller@bmw-carit.de>
+	<222e8c37a31b0ea405774a255b0bd2e4117e34b9.1349444489.git.timo.mueller@bmw-carit.de>
+	<24053bac29a28c6774f6f5856fef42dd8e6a369f.1349444489.git.timo.mueller@bmw-carit.de>
+	<d3134050f49bc4fe2d665891f7cab2a15b4f484f.1349444489.git.timo.mueller@bmw-carit.de>
 In-Reply-To: <cover.1349444489.git.timo.mueller@bmw-carit.de>
 References: <cover.1349444489.git.timo.mueller@bmw-carit.de>
 Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: [PATCH 22/35] documentation: Move poky-ref-manual global parameters to customization file
+Subject: [PATCH 29/35] documentation/yocto-project-qs/yocto-project-qs-eclipse-customization.xsl: new file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,46 +62,45 @@ X-List-Received-Date: Wed, 10 Oct 2012 09:54:44 -0000
 
 From: Timo Mueller <timo.mueller@bmw-carit.de>
 
-Standard stylesheet parameters were moved to the docbook customization
-file tying them to the docbook stylesheet used. Removing these
-parameters simplifies the Makefile.
+This stylesheet uses the eclipse stylesheets of docbook to create
+eclipse help from this documentation. In addition to simple html
+files these stylesheets will also create xml files which are
+needed to integrate the documentation into eclipse (e.g. toc.xml).
 ---
- documentation/Makefile                             |    7 +------
- .../poky-ref-manual-customization.xsl              |    5 +++++
- 2 files changed, 6 insertions(+), 6 deletions(-)
+ .../yocto-project-qs-eclipse-customization.xsl     |   24 ++++++++++++++++++++
+ 1 files changed, 24 insertions(+), 0 deletions(-)
+ create mode 100644 documentation/yocto-project-qs/yocto-project-qs-eclipse-customization.xsl
 
-diff --git a/documentation/Makefile b/documentation/Makefile
-index 79732f8..e2bd4a9 100644
---- a/documentation/Makefile
-+++ b/documentation/Makefile
-@@ -192,12 +192,7 @@ STYLESHEET = $(DOC)/*.css
- endif
- 
- ifeq ($(DOC),poky-ref-manual)
--XSLTOPTS = --stringparam html.stylesheet ref-style.css \
--           --stringparam  chapter.autolabel 1 \
--           --stringparam  appendix.autolabel A \
--           --stringparam  section.autolabel 1 \
--           --stringparam  section.label.includes.component.label 1 \
--           --xinclude
-+XSLTOPTS = --xinclude
- ALLPREQ = html pdf tarball
- TARFILES = poky-ref-manual.html ref-style.css figures/poky-title.png
- MANUALS = $(DOC)/$(DOC).html $(DOC)/$(DOC).pdf
-diff --git a/documentation/poky-ref-manual/poky-ref-manual-customization.xsl b/documentation/poky-ref-manual/poky-ref-manual-customization.xsl
-index 362ebed..3ad3a31 100644
---- a/documentation/poky-ref-manual/poky-ref-manual-customization.xsl
-+++ b/documentation/poky-ref-manual/poky-ref-manual-customization.xsl
-@@ -3,4 +3,9 @@
-   
-   <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/xhtml/docbook.xsl" />
- 
-+  <xsl:param name="html.stylesheet" select="'ref-style.css'" />
-+  <xsl:param name="chapter.autolabel" select="1" />
-+  <xsl:param name="appendix.autolabel" select="A" />
-+  <xsl:param name="section.autolabel" select="1" />
-+  <xsl:param name="section.label.includes.component.label" select="1" />
- </xsl:stylesheet>
+diff --git a/documentation/yocto-project-qs/yocto-project-qs-eclipse-customization.xsl b/documentation/yocto-project-qs/yocto-project-qs-eclipse-customization.xsl
+new file mode 100644
+index 0000000..468508b
+--- /dev/null
++++ b/documentation/yocto-project-qs/yocto-project-qs-eclipse-customization.xsl
+@@ -0,0 +1,24 @@
++<?xml version='1.0'?>
++<xsl:stylesheet
++	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
++	xmlns="http://www.w3.org/1999/xhtml"
++	xmlns:fo="http://www.w3.org/1999/XSL/Format"
++	version="1.0">
++
++  <xsl:import
++	  href="http://docbook.sourceforge.net/release/xsl/current/eclipse/eclipse3.xsl" />
++  <xsl:import href="yocto-project-qs-titlepage.xsl"/>
++
++  <xsl:param name="chunker.output.indent" select="'yes'"/>
++  <xsl:param name="use.id.as.filename" select="1"/>
++  <xsl:param name="ulink.target" select="'_self'" />
++  <xsl:param name="base.dir" select="'html/yocto-project-qs/'"/>
++  <xsl:param name="chunk.section.depth" select="0"/>
++  <xsl:param name="html.stylesheet" select="'../book.css'"/>
++  <xsl:param name="eclipse.manifest" select="0"/>
++  <xsl:param name="create.plugin.xml" select="0"/>
++  <xsl:param name="suppress.navigation" select="1"/>
++  <xsl:param name="generate.index" select="0"/>
++  <xsl:param name="generate.toc" select="'article nop'"></xsl:param>
++  <xsl:param name="html.stylesheet" select="'style.css'" />
++</xsl:stylesheet>
 -- 
 1.7.7.6
 
