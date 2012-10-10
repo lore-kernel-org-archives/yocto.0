@@ -1,19 +1,19 @@
 Return-Path: <timo.mueller@oss.bmw-carit.de>
 Received: from linuxmail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1D02AE01382
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6A9C0E013EF
 	for <yocto@yoctoproject.org>; Wed, 10 Oct 2012 02:54:44 -0700 (PDT)
 Received: from localhost (mysterion.bmw-carit.intra [192.168.101.57])
 	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
 	(No client certificate requested)
 	(Authenticated sender: timo.mueller)
-	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id ADD5B40498;
-	Wed, 10 Oct 2012 11:23:20 +0200 (CEST)
+	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id B26C94039F;
+	Wed, 10 Oct 2012 11:23:19 +0200 (CEST)
 From: mail@timomueller.eu
 To: yocto@yoctoproject.org
-Date: Wed, 10 Oct 2012 11:54:20 +0200
-Message-Id: <24053bac29a28c6774f6f5856fef42dd8e6a369f.1349444489.git.timo.mueller@bmw-carit.de>
+Date: Wed, 10 Oct 2012 11:54:12 +0200
+Message-Id: <2e807b75265e7d2895d1d8a4fc9facaf163297ea.1349444489.git.timo.mueller@bmw-carit.de>
 X-Mailer: git-send-email 1.7.7.6
-In-Reply-To: <222e8c37a31b0ea405774a255b0bd2e4117e34b9.1349444489.git.timo.mueller@bmw-carit.de>
+In-Reply-To: <a200d390a430a902046badff1c96697404384c51.1349444489.git.timo.mueller@bmw-carit.de>
 References: <cover.1349444489.git.timo.mueller@bmw-carit.de>
 	<8f13498e19681bb4922e3094fb165b4cf93d87e1.1349444489.git.timo.mueller@bmw-carit.de>
 	<590057989cc2c7239f170407ecc57677d89f8427.1349444489.git.timo.mueller@bmw-carit.de>
@@ -33,18 +33,10 @@ References: <cover.1349444489.git.timo.mueller@bmw-carit.de>
 	<2c7bf9dd12ea207e71031b7d41bf1cc47ad8ccd6.1349444489.git.timo.mueller@bmw-carit.de>
 	<1071daedb70a3f451c37eb0038ab5cc9fa90c12a.1349444489.git.timo.mueller@bmw-carit.de>
 	<a200d390a430a902046badff1c96697404384c51.1349444489.git.timo.mueller@bmw-carit.de>
-	<2e807b75265e7d2895d1d8a4fc9facaf163297ea.1349444489.git.timo.mueller@bmw-carit.de>
-	<1f19b8ff550ec6678587af36fbe27af99ea5b186.1349444489.git.timo.mueller@bmw-carit.de>
-	<c5ba11c1e9b04b04be4ae1856c7e2e8cedb357d2.1349444489.git.timo.mueller@bmw-carit.de>
-	<695af81ff1e9d882533ac6918b136a9d316abf69.1349444489.git.timo.mueller@bmw-carit.de>
-	<24ba3060c9581d4f3a32535319e5cde061332826.1349444489.git.timo.mueller@bmw-carit.de>
-	<ca4eedcded6f2a5ef36fb677cbe41f6935f9c517.1349444489.git.timo.mueller@bmw-carit.de>
-	<361f4f5a3d7ee68fa20dceab69c053abc0fc8a0c.1349444489.git.timo.mueller@bmw-carit.de>
-	<222e8c37a31b0ea405774a255b0bd2e4117e34b9.1349444489.git.timo.mueller@bmw-carit.de>
 In-Reply-To: <cover.1349444489.git.timo.mueller@bmw-carit.de>
 References: <cover.1349444489.git.timo.mueller@bmw-carit.de>
 Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: [PATCH 27/35] documentation: Move yocto-project-qs global parameters to customization file
+Subject: [PATCH 19/35] documentation/Makefile: Support for making Eclipse HTML kernel manual
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -60,39 +52,37 @@ X-List-Received-Date: Wed, 10 Oct 2012 09:54:44 -0000
 
 From: Timo Mueller <timo.mueller@bmw-carit.de>
 
-Standard stylesheet parameters were moved to the docbook customization
-file tying them to the docbook stylesheet used. Removing these
-parameters simplifies the Makefile.
+This target will generate eclipse help for the kernel-manual using
+the  kernel-manual-eclipse-customization.xsl stylesheet.
+
+The output will be generated to a separate directory which can be used
+for integrating the documentation into eclipse.
 ---
- documentation/Makefile                             |    3 +--
- .../yocto-project-qs-customization.xsl             |    2 +-
- 2 files changed, 2 insertions(+), 3 deletions(-)
+ documentation/Makefile |    4 +++-
+ 1 files changed, 3 insertions(+), 1 deletions(-)
 
 diff --git a/documentation/Makefile b/documentation/Makefile
-index bf4c14c..85b0e39 100644
+index d86868a..4cb7a00 100644
 --- a/documentation/Makefile
 +++ b/documentation/Makefile
-@@ -127,8 +127,7 @@ STYLESHEET = $(DOC)/*.css
- endif
+@@ -277,7 +277,7 @@ endif
+ eclipse: BASE_DIR = html/$(DOC)/
  
- ifeq ($(DOC),yocto-project-qs)
--XSLTOPTS = --stringparam html.stylesheet qs-style.css \
--           --xinclude
-+XSLTOPTS = --xinclude
- ALLPREQ = html tarball
- TARFILES = yocto-project-qs.html qs-style.css figures/yocto-environment.png figures/building-an-image.png figures/using-a-pre-built-image.png figures/yocto-project-transp.png
- MANUALS = $(DOC)/$(DOC).html
-diff --git a/documentation/yocto-project-qs/yocto-project-qs-customization.xsl b/documentation/yocto-project-qs/yocto-project-qs-customization.xsl
-index 8e6ea34..904289a 100644
---- a/documentation/yocto-project-qs/yocto-project-qs-customization.xsl
-+++ b/documentation/yocto-project-qs/yocto-project-qs-customization.xsl
-@@ -4,5 +4,5 @@
-   <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/xhtml/docbook.xsl" />
- 
-   <xsl:param name="generate.toc" select="'article nop'"></xsl:param>
--
-+  <xsl:param name="html.stylesheet" select="'qs-style.css'" />
- </xsl:stylesheet>
+ eclipse:
+-ifeq ($(filter $(DOC), adt-manual bsp-guide dev-manual),)
++ifeq ($(filter $(DOC), adt-manual bsp-guide dev-manual kernel-manual),)
+ 	@echo " "
+ 	@echo "ERROR: You can only create eclipse documentation"
+ 	@echo "       of the following documentation parts:"
+@@ -286,6 +286,8 @@ ifeq ($(filter $(DOC), adt-manual bsp-guide dev-manual),)
+ 	@echo "       - The Yocto Project Board Support Package"
+ 	@echo "                           Developer's Guide (bsp-guide)"
+ 	@echo "       - The Yocto Project Development Manual (dev-manual)"
++	@echo "       - The Yocto Project Kernel Architecture and"
++	@echo "                           Use Manual (kernel-manual)"
+ 	@echo " "
+ else
+ 	@echo " "
 -- 
 1.7.7.6
 
