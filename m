@@ -1,40 +1,35 @@
-Return-Path: <wd@denx.de>
-Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.10])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C1CA1E00292
-	for <yocto@yoctoproject.org>; Wed, 10 Oct 2012 12:41:43 -0700 (PDT)
-Received: from frontend1.mail.m-online.net (frontend1.mail.intern.m-online.net
-	[192.168.8.180])
-	by mail-out.m-online.net (Postfix) with ESMTP id 3XcQfc0tgRz3hhh5;
-	Wed, 10 Oct 2012 21:41:28 +0200 (CEST)
-Received: from localhost (dynscan1.mnet-online.de [192.168.6.68])
-	by mail.m-online.net (Postfix) with ESMTP id 3XcQfc0kYBzbbfb;
-	Wed, 10 Oct 2012 21:41:28 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at mnet-online.de
-Received: from smtp-auth.mnet-online.de ([192.168.8.180])
-	by localhost (dynscan1.mail.m-online.net [192.168.6.68]) (amavisd-new,
-	port 10024)
-	with ESMTP id Tb6u4y3sf4JQ; Wed, 10 Oct 2012 21:40:16 +0200 (CEST)
-X-Auth-Info: LH9ycTrYokCD0SvECP4LqxMqsqOXtHLEuC0m8HsK0qw=
-Received: from diddl.denx.de (host-80-81-18-216.customer.m-online.net
-	[80.81.18.216]) by smtp-auth.mnet-online.de (Postfix) with ESMTPA;
-	Wed, 10 Oct 2012 21:41:26 +0200 (CEST)
-Received: from gemini.denx.de (unknown [10.0.0.2])
-	by diddl.denx.de (Postfix) with ESMTP id A6CCC1A61D0;
-	Wed, 10 Oct 2012 21:41:26 +0200 (CEST)
-Received: from gemini.denx.de (localhost [IPv6:::1])
-	by gemini.denx.de (Postfix) with ESMTP id 4EB772002F8;
-	Wed, 10 Oct 2012 21:41:24 +0200 (CEST)
-To: Elvis Dowson <elvis.dowson@gmail.com>
-From: Wolfgang Denk <wd@denx.de>
-MIME-Version: 1.0
-In-reply-to: <8FDC41DC-70B4-4BCB-9B95-51CFBCA8961D@gmail.com>
-References: <8FDC41DC-70B4-4BCB-9B95-51CFBCA8961D@gmail.com>
-Comments: In-reply-to Elvis Dowson <elvis.dowson@gmail.com>
-	message dated "Wed, 10 Oct 2012 21:00:44 +0400."
-Date: Wed, 10 Oct 2012 21:41:24 +0200
-Message-Id: <20121010194124.4EB772002F8@gemini.denx.de>
-Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-Subject: Re: denx.de site down?
+Return-Path: <opensource@keylevel.com>
+Received: from r109.websiteservername.com (r109.websiteservername.com
+	[65.39.128.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4C256E00292
+	for <yocto@yoctoproject.org>; Wed, 10 Oct 2012 12:51:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=keylevel.com;
+	s=default; 
+	h=To:References:Message-Id:Content-Transfer-Encoding:Cc:Date:In-Reply-To:From:Content-Type:Mime-Version:Subject;
+	bh=eCKgP6pmSDwTKwijF5ext6wbhrVxSZ0qP3NQTcIzoSg=; 
+	b=O3T45EVqn+Tj8txftbnqfmBih7I1rvDhv6nS0AfzvuelIY6hcY0lMAtGNpzCxPqmdVNTuRFkTLT1zp3rXO2MkzL/k2GFhxsAVJGjV6woShVUkpPInSrQ+jpAwJU2Tzp6;
+Received: from [109.224.129.17] (port=22065
+	helo=macbook-pro.durham.keylevel.com)
+	by r109.websiteservername.com with esmtpa (Exim 4.77)
+	(envelope-from <opensource@keylevel.com>)
+	id 1TM2JE-00057J-GJ; Wed, 10 Oct 2012 20:51:12 +0100
+Mime-Version: 1.0 (Apple Message framework v1283)
+From: Chris Tapp <opensource@keylevel.com>
+In-Reply-To: <D956029D25CF204F948EA0FB515E1EE2264DCBE5@ORSMSX105.amr.corp.intel.com>
+Date: Wed, 10 Oct 2012 20:51:10 +0100
+Message-Id: <28224C3A-5033-4D63-BB99-976C75EF24A6@keylevel.com>
+References: <7EB7A8EA-43A7-45A9-8769-8E35AC63DC45@keylevel.com>
+	<D956029D25CF204F948EA0FB515E1EE2264DCBE5@ORSMSX105.amr.corp.intel.com>
+To: "Bodke, Kishore K" <kishore.k.bodke@intel.com>
+X-Mailer: Apple Mail (2.1283)
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - r109.websiteservername.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - keylevel.com
+Cc: "yocto@yoctoproject.org Project" <yocto@yoctoproject.org>
+Subject: Re: Finding root cause of "host include and/or library paths	were used"
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,41 +41,73 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 Oct 2012 19:41:44 -0000
-Content-type: text/plain; charset=UTF-8
-Content-transfer-encoding: 8bit
+X-List-Received-Date: Wed, 10 Oct 2012 19:51:14 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
-Dear Elvis,
+On 10 Oct 2012, at 18:26, Bodke, Kishore K wrote:
 
-In message <8FDC41DC-70B4-4BCB-9B95-51CFBCA8961D@gmail.com> you wrote:
->
->                         I noticed that your site has been down since
-> yesterday? I usually sync with your u-boot and eldk repositories, and
-> during the yocto build process, it failed because your site was
-> un-reachable.
-> 
-> I was able to get past the yocto build issue, by temporarily modifying
-> my u-boot repositories to point to the local file system.
-> 
-> I'm sure others are also facing a similar issue.
+>=20
+>=20
+>> -----Original Message-----
+>> From: yocto-bounces@yoctoproject.org [mailto:yocto-
+>> bounces@yoctoproject.org] On Behalf Of Chris Tapp
+>> Sent: Wednesday, October 10, 2012 9:50 AM
+>> To: yocto@yoctoproject.org Project
+>> Subject: [yocto] Finding root cause of "host include and/or library =
+paths were
+>> used"
+>>=20
+>> I'm trying to get libsdl_gfx to build. I've created a .bb file which =
+runs and
+>> installs the relevant headers and libs in tmp/sysroots.
+>>=20
+>> However, I'm getting a QA failure:
+>>=20
+>> NOTE: package libsdl-gfx-2.0.24-r1: task do_populate_sysroot: =
+Succeeded
+>> WARNING: libsdl-gfx: The compile log indicates that host include =
+and/or library
+>> paths were used.
+>>        Please check the log '/media/SSD-RAID/build-denzil-git-sjs-
+>> cedartrail/tmp/work/core2-sjs-linux/libsdl-gfx-2.0.24-
+>> r1/temp/log.do_compile' for more information.
+>>=20
+>> The compile log has instances of:
+>>=20
+>> cc1: warning: include location "/usr/include/SDL" is unsafe for =
+cross-
+>> compilation [-Wpoison-system-directories]
+>>=20
+>> The source uses autotools. I've had a look round the files, but it's =
+not obvious
+>> to me where the above path is set (I'm definitely not an autotools =
+expert).
+>> Can anyone give me an idea what I should be looking for? I suspect it =
+may
+>> have something to do with a line from Makefile.am:
+>>=20
+>> libSDL_gfxincludedir =3D $(includedir)/SDL
+>=20
+> Did you inherit autotools in your recipe?
 
-I apologize for the inconveniencies.  We had a hardware problem on our
-main server (actually nothing serious, just a dead disk drive), but our
-hoster handles this not exactly in a competent way - instead of just
-hot-swapping the failed drive so we just have to re-sync the degraded
-RAID array he decided to replace _all_ disks so we are forced to
-reinstall from scratch and restore from backups.
+Yes, that's in there.
 
-This process is still in the works.  Sorry for that.
+> You may have to patch your makefile not to use host header files.
+> Or, I think you can use ${STAGING_INCDIR} to override, at the time of =
+your configure.
 
-Best regards,
+Thanks. Are there any examples I can look at to see how to do this? I've =
+not been able to find which file I need to change after 'unpack'.
 
-Wolfgang Denk
+> Thanks
+> Kishore.
 
--- 
-DENX Software Engineering GmbH,     MD: Wolfgang Denk & Detlev Zundel
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-Phone: (+49)-8142-66989-10 Fax: (+49)-8142-66989-80 Email: wd@denx.de
-You don't need a weatherman to know which way the wind blows.
-                                                          - Bob Dylan
+Chris Tapp
+
+opensource@keylevel.com
+www.keylevel.com
+
+
+
 
