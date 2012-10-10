@@ -1,35 +1,33 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E4D9EE00348
-	for <yocto@yoctoproject.org>; Wed, 10 Oct 2012 06:48:08 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id q9ADm4Ct007398
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 10 Oct 2012 06:48:04 -0700 (PDT)
-Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.2.309.2;
-	Wed, 10 Oct 2012 06:48:04 -0700
-Message-ID: <50757C83.1060204@windriver.com>
-Date: Wed, 10 Oct 2012 09:47:47 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:12.0) Gecko/20120430 Thunderbird/12.0.1
+Return-Path: <evadeflow@gmail.com>
+Received: from mail-ie0-f176.google.com (mail-ie0-f176.google.com
+	[209.85.223.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 443F0E00348
+	for <yocto@yoctoproject.org>; Wed, 10 Oct 2012 07:52:09 -0700 (PDT)
+Received: by mail-ie0-f176.google.com with SMTP id k11so1133597iea.35
+	for <yocto@yoctoproject.org>; Wed, 10 Oct 2012 07:52:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type:content-transfer-encoding;
+	bh=Efz05VHywzbIumHJjtYtw+tF7d8r/DHawHgtIu6BV8o=;
+	b=mo7JL1g4W3A19K3k2M2l6tRbDonXzPWE8PZcTYG3y/hf1HDSBEKGmirqEXLqrF6Jar
+	UMjnJOMv8KV+Ge5GHbK0fEq8+fK+ZLZ2shlmgLCurSM8dHxmn1wmzjTo7FcEe68I7iq3
+	ob64tZ9LKFj9sr6fOvOwB54W5mTF690q6x/j5+XyRVkUbcRv3lXCFgaG5kSkUoGIU3KW
+	/+HShNc0E4fdwGODWLPLrfRP0SPndgabUI/JjbuacI2LQw3OipfUs88qa10JTT6SHsUT
+	4fbCGTQYw+aAbg10whNngNzaUise5tKG8MdNjIKZQlq3uLB8Y15E5SyyCCiwjNY9ODSC
+	6JBA==
 MIME-Version: 1.0
-To: Chris Tapp <opensource@keylevel.com>
-References: <443D93B8-DA6A-40DD-854F-7007FE63854C@keylevel.com>
-	<63ECFF2A2302B44093D7CE9E9962C49003CD2F97@ORSMSX107.amr.corp.intel.com>
-	<E413C1D3-D599-437C-A1ED-8A57DAC3E8D3@keylevel.com>
-	<CADkTA4NAnqoBBzHkWNErMr2J=0p1xdSVocSpFCMLkV_8ztrwPg@mail.gmail.com>
-	<4ED03A84-C184-4A15-BB50-B83AEE211BB4@keylevel.com>
-	<D956029D25CF204F948EA0FB515E1EE2264DBE54@ORSMSX105.amr.corp.intel.com>
-	<0E3AEF49-829E-47BC-BEF4-C66A23DA3DC7@keylevel.com>
-	<D956029D25CF204F948EA0FB515E1EE2264DBF38@ORSMSX105.amr.corp.intel.com>
-	<CB24F010-05C7-459E-98C1-54FAF07D5611@keylevel.com>
-In-Reply-To: <CB24F010-05C7-459E-98C1-54FAF07D5611@keylevel.com>
-Cc: "yocto@yoctoproject.org
- Project" <yocto@yoctoproject.org>
-Subject: Re: Meta Intel / Cedartrail / Denzil - how to get unionfs in the kernel
+Received: by 10.50.150.176 with SMTP id uj16mr5561513igb.38.1349880728741;
+	Wed, 10 Oct 2012 07:52:08 -0700 (PDT)
+Received: by 10.42.179.68 with HTTP; Wed, 10 Oct 2012 07:52:08 -0700 (PDT)
+In-Reply-To: <C6510F6D410BB64A8C15398EDC6B847C46B0D4B4@ORSMSX101.amr.corp.intel.com>
+References: <CAMAb8ZO+56YJbrf8LAjbt1eS=GpSgmYr0=MSvx020K=1xwduWw@mail.gmail.com>
+	<C6510F6D410BB64A8C15398EDC6B847C46B0D4B4@ORSMSX101.amr.corp.intel.com>
+Date: Wed, 10 Oct 2012 10:52:08 -0400
+Message-ID: <CAMAb8ZNqpSF57v84E3-s=w6wK8e2Ewj_BQw+CMPyW6dfTdBikw@mail.gmail.com>
+From: Evade Flow <evadeflow@gmail.com>
+To: "Zhang, Jessica" <jessica.zhang@intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Control which host components are included in ADT output?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,73 +39,172 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 Oct 2012 13:48:09 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 10 Oct 2012 14:52:09 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-On 12-10-08 05:03 PM, Chris Tapp wrote:
-> On 8 Oct 2012, at 21:30, Bodke, Kishore K wrote:
->
-> <  snip ...>
->
-> Thanks for the really fast response on this :-)
->
->> For denzil, try with this by creating a new file in meta-cedartrail/recipes-kernel/linux/linux-yocto_3.2.bbappend.
->>
->> FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
->>
->> SRC_URI_cedartrail-nopvr = "git://git.yoctoproject.org/linux-yocto-3.2;protocol=git;nocheckout=1;branch=${KBRANCH},meta;name=machine,meta"
->
-> I had to add 'bareclone=1' to this to get it to run.
->
->> COMPATIBLE_MACHINE_cedartrail-nopvr = "cedartrail"
->> KMACHINE_cedartrail-nopvr  = "cedartrail"
->> KBRANCH_cedartrail-nopvr  = "yocto/standard/cedartrail"
->> KERNEL_FEATURES_append_cedartrail-nopvr += " cfg/smp.scc"
->>
->> SRCREV_machine_pn-linux-yocto_cedartrail-nopvr ?= "8b8cfaaab2b8d79ac56e8c9a85bad9ae7bca399c"
->> SRCREV_meta_pn-linux-yocto_cedartrail-nopvr ?= "486f7aec824b4127e91ef53228823e996b3696f0"
->
-> I think it's nearly there, but I get a failure when validating the branch:
+> Seems you're more interested in generate a SDK for host?
 
-I'm back to the office now. Is this issue still lurking/active ?
+I wouldn't say 'more' interested, just... interested. I guess this is a
+general QA issue. We have components implementing state machines that
+only communicate via sockets, for example, and don't talk directly to
+hardware; these can be prototyped and tested on a Desktop Linux system.
+We have Qt apps that can run either on the target or the host. In
+general, we've been finding ways to get work done even without target
+hardware, since boards are scarce and tend to 'walk off' when you're not
+looking.
 
-Bruce
+Unfortunately, each developer on our team seems to do this in a slightly
+different way. We're 'supposed' to be using Ubuntu 12.04, but one guy
+uses Ubuntu 12.10, another uses 10.04 because he despises Unity so much,
+and another prefers Linux Mint. And each goes through a different
+process of typing 'apt-get install' and manually building missing
+dependencies until he's able to compile applications on his host system.
 
+This isn't the best situation, but so far it hasn't caused any major
+headaches. The 'ground truth' for the health of the project is based on
+how apps behave on the target, and apps compiled for the target are
+ALWAYS built using the same toolchain and libs. Apps compiled for the
+host are just a convenience for prototyping and testing.
+
+Still, it worries me that each developer is making lots of little
+decisions every day based on feedback from applications compiled for his
+host using a process that is essentially uncontrolled and variable.  It
+seems I could remove most of the variation by including all required
+host-side headers and libraries in the same tarball that supplies the
+target SDK.
+
+When I saw these two subdirectories in /opt/poky/1.2.1/sysroots:
+
+  - armv5te-poky-linux-gnueabi/usr/lib
+  - i686-pokysdk-linux/usr/lib
+
+I got the impression that the Yocto ADT could be used to create a
+complete host SDK as well as a target SDK, but it appears I was
+mistaken?
+
+Do other people have this same 'problem'? What's a good solution? Or...
+is it not worth worrying about?
+
+
+On Wed, Oct 10, 2012 at 2:14 AM, Zhang, Jessica <jessica.zhang@intel.com> w=
+rote:
+> Hi Evade,
 >
-> NOTE: package linux-yocto-3.2.18+git1+486f7aec824b4127e91ef53228823e996b3696f0_1+8b8cfaaab2b8d79ac56e8c9a85bad9ae7bca399c-r1: task do_validate_branches: Started
-> ERROR: Function failed: do_validate_branches (see /media/SSD-RAID/build-denzil-git-sjs-cedartrail/tmp/work/cedartrail_nopvr-sjs-linux/linux-yocto-3.2.18+git1+486f7aec824b4127e91ef53228823e996b3696f0_1+8b8cfaaab2b8d79ac56e8c9a85bad9ae7bca399c-r1/temp/log.do_validate_branches.25866 for further information)
-> ERROR: Logfile of failure stored in: /media/SSD-RAID/build-denzil-git-sjs-cedartrail/tmp/work/cedartrail_nopvr-sjs-linux/linux-yocto-3.2.18+git1+486f7aec824b4127e91ef53228823e996b3696f0_1+8b8cfaaab2b8d79ac56e8c9a85bad9ae7bca399c-r1/temp/log.do_validate_branches.25866
-> Log data follows:
-> | ERROR: Function failed: do_validate_branches (see /media/SSD-RAID/build-denzil-git-sjs-cedartrail/tmp/work/cedartrail_nopvr-sjs-linux/linux-yocto-3.2.18+git1+486f7aec824b4127e91ef53228823e996b3696f0_1+8b8cfaaab2b8d79ac56e8c9a85bad9ae7bca399c-r1/temp/log.do_validate_branches.25866 for further information)
-> NOTE: package linux-yocto-3.2.18+git1+486f7aec824b4127e91ef53228823e996b3696f0_1+8b8cfaaab2b8d79ac56e8c9a85bad9ae7bca399c-r1: task do_validate_branches: Failed
-> ERROR: Task 0 (/media/SSD-RAID/poky-git/meta/recipes-kernel/linux/linux-yocto_3.2.bb, do_validate_branches) failed with exit code '1'
+> The main purpose of Yocto ADT is for setting up a development environment=
+ on your host which allows you to cross develop applications for your targe=
+t.  And there're two key components help you to achieve this: cross-toolcha=
+in and sysroot. That's why the sysroot provides you a collection of target =
+libs and all the main focus of ADT manual is for how to customize your sysr=
+oot to meet your special development needs.
 >
->> Add these below lines to meta-cedartrail/conf/machine/cedartrail-nopvr.conf
->>
->> PREFERRED_PROVIDER_virtual/kernel ?= "linux-yocto"
->> PREFERRED_VERSION_linux-yocto ?= "3.2%"
->>
->> Add  MACHINE = "cedartrail-nopvr" to your local.conf and build.
->>
->> Ofcourse you should be adding your unionfs related stuff by some means either by menuconfig or by creating .scc file.
+> Seems you're more interested in generate a SDK for host?
 >
-> Of course, and that's the bit I understand ;-)
+> Thanks,
+> Jessica
 >
->> Thanks
->> Kishore.
->>
+> -----Original Message-----
+> From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.o=
+rg] On Behalf Of Evade Flow
+> Sent: Tuesday, October 09, 2012 3:11 PM
+> To: yocto@yoctoproject.org
+> Subject: [yocto] Control which host components are included in ADT output=
+?
 >
-> Chris Tapp
+> I have a question about the ADT and how it selects host SDK components.
+> If I type:
 >
-> opensource@keylevel.com
-> www.keylevel.com
+> % bitbake meta-toolchain-sdk
+>
+> I wind up getting hundreds of target libs when I extract the generated
+> tarball:
+>
+> % pwd
+> /opt/poky/1.2.1/sysroots
+> % ls armv5te-poky-linux-gnueabi/usr/lib | wc -l
+> 696
+>
+> but a relatively small number of host libs:
+>
+> % ls i686-pokysdk-linux/usr/lib | wc -l
+> 53
+>
+> Is this normal? Taking libxml2 as an example:
+>
+> % ls -1 armv5te-poky-linux-gnueabi/usr/lib/libxml*
+> armv5te-poky-linux-gnueabi/usr/lib/libxml2.la
+> armv5te-poky-linux-gnueabi/usr/lib/libxml2.so
+> armv5te-poky-linux-gnueabi/usr/lib/libxml2.so.2
+> armv5te-poky-linux-gnueabi/usr/lib/libxml2.so.2.7.8
+> % ls -1 i686-pokysdk-linux/usr/lib/libxml*
+> zsh: no matches found: i686-pokysdk-linux/usr/lib/libxml*
+>
+> It seems desirable to have libxml2 be part of the SDK I give to my develo=
+pment team. We have a lot of test applications that can be run on the host,=
+ and I don't like the thought of somebody wasting time chasing a bug that t=
+urns out to be due to the fact that he is linking against a different (syst=
+em-installed) version of libxml2 rather than the target version.
+>
+> Skimming the ADT manual, this section seems to hint at a solution:
+>
+>  - http://www.yoctoproject.org/docs/current/adt-manual/adt-manual.html#ad=
+t-package
+>
+> But I can't quite follow all the steps. :-% It says (using libglade as an=
+ example):
+>
+>   First, you should generate the ipk file for the libglade package and
+>   add it into a working opkg repository. Use these commands:
+>
+>     $ bitbake libglade
+>     $ bitbake package-index
 >
 >
+> Being totally new to opkg, this lost me. What does the 'package-index'
+> target actually do?  Does bitbake "add it [libglade] into a working opkg =
+repository" for me, or am I supposed to take the output of the command and =
+do something with it? I had a look in these two locations for 'package-inde=
+x' and came up empty:
 >
+>  - http://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html
+>  - http://www.yoctoproject.org/docs/current/poky-ref-manual/poky-ref-manu=
+al.html
+>
+> What's the best place to look for these kinds of references when I get st=
+uck on something?
+>
+> The ADT docs go on to say:
+>
+>   Next, source the environment setup script found in the Yocto Project
+>   files. Follow that by setting up the installation destination to point
+>   to your sysroot as <sysroot_dir>. Finally, have an OPKG configuration
+>   file <conf_file> that corresponds to the opkg repository you have just
+>   created.
+>
+>      $ opkg-cl -f <conf_file> -o <sysroot_dir> update
+>      $ opkg-cl -f <cconf_file> -o <sysroot_dir> \
+>         --force-overwrite install libglade
+>      $ opkg-cl -f <cconf_file> -o <sysroot_dir> \
+>         --force-overwrite install libglade-dbg
+>      $ opkg-cl -f <conf_file> -o <sysroot_dir> \
+>         --force-overwrite install libglade-dev
+>
+> <sysroot_dir> I understand, but what is <conf_file>? Did bitbake generate=
+ this for me? Am I supposed to create one by hand? Where? These instruction=
+s are a little hard to follow due to the use of placeholders rather than co=
+ncrete arguments. I think a complete, explicit example would help a lot her=
+e.
+>
+> Also, it seems likely that the above commands would only install a libgla=
+de compiled for the target? How would I generate a libglade for the host?
+>
+> Another question is: is there a way to tune the ADT tarball to be a bette=
+r fit for my needs so that I don't need to add so many packages by hand aft=
+er-the-fact?
+>
+> Any advice much appreciated, thanks!
 > _______________________________________________
 > yocto mailing list
 > yocto@yoctoproject.org
 > https://lists.yoctoproject.org/listinfo/yocto
-
 
