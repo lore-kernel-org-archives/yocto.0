@@ -1,37 +1,21 @@
-Return-Path: <tom.rini@gmail.com>
-Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
-	[209.85.160.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2136BE0027E
-	for <yocto@yoctoproject.org>; Wed, 10 Oct 2012 10:49:07 -0700 (PDT)
-Received: by mail-pb0-f48.google.com with SMTP id wy7so1211618pbc.35
-	for <yocto@yoctoproject.org>; Wed, 10 Oct 2012 10:49:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:content-disposition:in-reply-to:organization
-	:user-agent; bh=NC3iXpgzCOnyZcc04IaazjEZZcAmDMwo6te3K8z2nxM=;
-	b=JY8iVaSISu8HfNDGD1vV/pB0T3vsoEFUmCvdTgKK9UR8As9oW7jg15Q6j3oGL6myh5
-	tvBAqaE0VPxx2xbD5GSLjKyMRjiHSTKBQpvK2UjTlT0XlGlN3q7AhhidQh0kHB4nYsAZ
-	KhecNuzDqL+uzWt0MwRepEApT9sQsskcNdPrzo1kj3OZHKGifTGM76U0u67jPnPwcCUQ
-	rakV+kidLh2ruQfsfVuovUlGcCqpQxogp9yafIxzujbSpt1kfYD62x1Y+64Qj90UfQJc
-	UrtK6gVy64sXJO3EQ14XrZ8gFvEeR339UZl1YoQfjFkfNdciaLBbRtJ33XRBuRZkIHW+
-	/4zw==
-Received: by 10.68.237.106 with SMTP id vb10mr1779223pbc.112.1349891344754;
-	Wed, 10 Oct 2012 10:49:04 -0700 (PDT)
-Received: from bill-the-cat ([2001:470:d:eba:a4bf:d51f:ab5e:2eb6])
-	by mx.google.com with ESMTPS id k4sm1175682pax.7.2012.10.10.10.49.02
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Wed, 10 Oct 2012 10:49:03 -0700 (PDT)
-Date: Wed, 10 Oct 2012 10:49:11 -0700
-From: Tom Rini <tom.rini@gmail.com>
-To: Elvis Dowson <elvis.dowson@gmail.com>
-Message-ID: <20121010174911.GO1137@bill-the-cat>
-References: <8FDC41DC-70B4-4BCB-9B95-51CFBCA8961D@gmail.com>
-MIME-Version: 1.0
-In-Reply-To: <8FDC41DC-70B4-4BCB-9B95-51CFBCA8961D@gmail.com>
-Organization: Texas Instruments
-User-Agent: Mutt/1.5.21 (2010-09-15)
-Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-Subject: Re: denx.de site down?
+Return-Path: <nitin.a.kamble@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 29F0DE00292
+	for <yocto@yoctoproject.org>; Wed, 10 Oct 2012 11:07:14 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 10 Oct 2012 11:07:13 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,565,1344236400"; d="scan'208";a="233101419"
+Received: from yocto-hm1.jf.intel.com ([10.23.232.32])
+	by fmsmga002.fm.intel.com with ESMTP; 10 Oct 2012 11:07:13 -0700
+From: nitin.a.kamble@intel.com
+To: tom.zanussi@intel.com,
+	darren.hart@intel.com,
+	yocto@yoctoproject.org
+Date: Wed, 10 Oct 2012 11:06:10 -0700
+Message-Id: <cover.1349892258.git.nitin.a.kamble@intel.com>
+X-Mailer: git-send-email 1.7.3.4
+Subject: [PATCHv3 0/6] Misc meta-intel commits
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,47 +27,84 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 Oct 2012 17:49:07 -0000
-X-Groupsio-MsgNum: 10005
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="O3WNCzIuUImKerqE"
-Content-Disposition: inline
+X-List-Received-Date: Wed, 10 Oct 2012 18:07:14 -0000
 
---O3WNCzIuUImKerqE
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+From: Nitin A Kamble <nitin.a.kamble@intel.com>
 
-On Wed, Oct 10, 2012 at 09:00:44PM +0400, Elvis Dowson wrote:
+In this v3 pull request, teh commits are rebased to the altest tree. And one more
+commit is added for Intel-binary-only License.
 
-> Hi Wolfgang,
->                         I noticed that your site has been down since yest=
-erday? I usually sync with your u-boot and eldk repositories, and during th=
-e yocto build process, it failed because your site was un-reachable.
->=20
-> I was able to get past the yocto build issue, by temporarily modifying my=
- u-boot repositories to point to the local file system.
->=20
-> I'm sure others are also facing a similar issue.
+Thanks,
+Nitin
 
-I can't point to an archive of this since it probably didn't hit google
-in time to be cached but yes, denx's website is currently down as their
-provider needs to replace all of the disks in their RAID array.  They
-hope to be back as soon as possible.
+The following changes since commit 5d8a05811101f7d69994f4028ec620c4480f6da4:
 
---=20
-Tom
+  Fix use of PRINC in meta-intel BSPs (2012-10-09 16:04:30 -0700)
 
---O3WNCzIuUImKerqE
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
+are available in the git repository at:
+  git://git.yoctoproject.org/meta-intel-contrib nitin/misc
+  http://git.yoctoproject.org/cgit.cgi/meta-intel-contrib/log/?h=nitin/misc
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.11 (GNU/Linux)
+Nitin A Kamble (6):
+  xf86-video-intel: Bring 2.20.0 version to match released graphics
+    stack
+  crownbay.conf: specify the 8.0.4 version as preferred version of
+    mesa-dri
+  emgd-driver_bin_1.10: Remove in favor of 1.14
+  fishriver BSP retirement
+  update maintainers of various BSPs
+  custom-licenses dir for Intel-binary-only License
 
-iEYEARECAAYFAlB1tRcACgkQdZngf2G4WwMQyQCfU0lTfnt3JsXqazrUj7u0Ba5p
-IvsAnArPF+TFCOTGaCqIQbYZe+7mc1Iv
-=7oPV
------END PGP SIGNATURE-----
+ MAINTAINERS                                        |   16 +--
+ common/custom-licenses/Intel-binary-only           |   42 +++++++
+ .../xorg-driver/emgd-driver-bin_1.10.bb            |   93 ----------------
+ .../xorg-driver/xf86-video-intel_2.20.0.bb         |   27 +++++
+ .../xorg-driver/xorg-driver-common.inc             |   33 ++++++
+ .../xorg-driver/xorg-driver-video.inc              |    4 +
+ conf/layer.conf                                    |    3 +
+ meta-chiefriver/README                             |   11 ++
+ meta-crownbay/README                               |    2 +-
+ meta-crownbay/conf/machine/crownbay.conf           |    2 +-
+ meta-emenlow/README                                |    2 +-
+ meta-fishriver/COPYING.MIT                         |   17 ---
+ meta-fishriver/README                              |  114 --------------------
+ meta-fishriver/README.sources                      |   17 ---
+ meta-fishriver/conf/layer.conf                     |   12 --
+ meta-fishriver/conf/machine/fishriver.conf         |   17 ---
+ .../formfactor/formfactor/fishriver/machconfig     |    3 -
+ .../recipes-bsp/formfactor/formfactor_0.0.bbappend |    3 -
+ .../xserver-xf86-config/fishriver/xorg.conf        |   26 -----
+ .../xorg-xserver/xserver-xf86-config_0.1.bbappend  |    1 -
+ .../linux/linux-yocto-rt_3.0.bbappend              |    8 --
+ .../linux/linux-yocto-rt_3.2.bbappend              |    8 --
+ .../recipes-kernel/linux/linux-yocto_3.0.bbappend  |    9 --
+ .../recipes-kernel/linux/linux-yocto_3.2.bbappend  |    8 --
+ .../recipes-kernel/linux/linux-yocto_3.4.bbappend  |    8 --
+ meta-jasperforest/README                           |    2 +-
+ meta-sugarbay/README                               |    2 +-
+ 27 files changed, 131 insertions(+), 359 deletions(-)
+ create mode 100644 common/custom-licenses/Intel-binary-only
+ delete mode 100644 common/recipes-graphics/xorg-driver/emgd-driver-bin_1.10.bb
+ create mode 100644 common/recipes-graphics/xorg-driver/xf86-video-intel_2.20.0.bb
+ create mode 100644 common/recipes-graphics/xorg-driver/xorg-driver-common.inc
+ create mode 100644 common/recipes-graphics/xorg-driver/xorg-driver-video.inc
+ delete mode 100644 meta-fishriver/COPYING.MIT
+ delete mode 100644 meta-fishriver/README
+ delete mode 100644 meta-fishriver/README.sources
+ delete mode 100644 meta-fishriver/binary/.gitignore
+ delete mode 100644 meta-fishriver/conf/layer.conf
+ delete mode 100644 meta-fishriver/conf/machine/fishriver.conf
+ delete mode 100644 meta-fishriver/recipes-bsp/formfactor/formfactor/fishriver/machconfig
+ delete mode 100644 meta-fishriver/recipes-bsp/formfactor/formfactor_0.0.bbappend
+ delete mode 100644 meta-fishriver/recipes-graphics/xorg-xserver/xserver-xf86-config/fishriver/xorg.conf
+ delete mode 100644 meta-fishriver/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend
+ delete mode 100644 meta-fishriver/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
+ delete mode 100644 meta-fishriver/recipes-kernel/linux/linux-yocto-rt_3.2.bbappend
+ delete mode 100644 meta-fishriver/recipes-kernel/linux/linux-yocto_3.0.bbappend
+ delete mode 100644 meta-fishriver/recipes-kernel/linux/linux-yocto_3.2.bbappend
+ delete mode 100644 meta-fishriver/recipes-kernel/linux/linux-yocto_3.4.bbappend
 
---O3WNCzIuUImKerqE--
+-- 
+1.7.3.4
+
+
