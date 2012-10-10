@@ -1,19 +1,19 @@
 Return-Path: <timo.mueller@oss.bmw-carit.de>
 Received: from linuxmail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 15833E01275
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 11630E01214
 	for <yocto@yoctoproject.org>; Wed, 10 Oct 2012 02:54:44 -0700 (PDT)
 Received: from localhost (mysterion.bmw-carit.intra [192.168.101.57])
 	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
 	(No client certificate requested)
 	(Authenticated sender: timo.mueller)
-	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id EC6784041D;
+	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 9494940395;
 	Wed, 10 Oct 2012 11:23:19 +0200 (CEST)
 From: mail@timomueller.eu
 To: yocto@yoctoproject.org
-Date: Wed, 10 Oct 2012 11:54:14 +0200
-Message-Id: <c5ba11c1e9b04b04be4ae1856c7e2e8cedb357d2.1349444489.git.timo.mueller@bmw-carit.de>
+Date: Wed, 10 Oct 2012 11:54:11 +0200
+Message-Id: <a200d390a430a902046badff1c96697404384c51.1349444489.git.timo.mueller@bmw-carit.de>
 X-Mailer: git-send-email 1.7.7.6
-In-Reply-To: <1f19b8ff550ec6678587af36fbe27af99ea5b186.1349444489.git.timo.mueller@bmw-carit.de>
+In-Reply-To: <1071daedb70a3f451c37eb0038ab5cc9fa90c12a.1349444489.git.timo.mueller@bmw-carit.de>
 References: <cover.1349444489.git.timo.mueller@bmw-carit.de>
 	<8f13498e19681bb4922e3094fb165b4cf93d87e1.1349444489.git.timo.mueller@bmw-carit.de>
 	<590057989cc2c7239f170407ecc57677d89f8427.1349444489.git.timo.mueller@bmw-carit.de>
@@ -32,13 +32,10 @@ References: <cover.1349444489.git.timo.mueller@bmw-carit.de>
 	<3be0d3b2813a6c786d67e8a1a04d159c892d3a30.1349444489.git.timo.mueller@bmw-carit.de>
 	<2c7bf9dd12ea207e71031b7d41bf1cc47ad8ccd6.1349444489.git.timo.mueller@bmw-carit.de>
 	<1071daedb70a3f451c37eb0038ab5cc9fa90c12a.1349444489.git.timo.mueller@bmw-carit.de>
-	<a200d390a430a902046badff1c96697404384c51.1349444489.git.timo.mueller@bmw-carit.de>
-	<2e807b75265e7d2895d1d8a4fc9facaf163297ea.1349444489.git.timo.mueller@bmw-carit.de>
-	<1f19b8ff550ec6678587af36fbe27af99ea5b186.1349444489.git.timo.mueller@bmw-carit.de>
 In-Reply-To: <cover.1349444489.git.timo.mueller@bmw-carit.de>
 References: <cover.1349444489.git.timo.mueller@bmw-carit.de>
 Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: [PATCH 21/35] documentation/Makefile: logic to make all for kernel-manual and cleanup
+Subject: [PATCH 18/35] documentation/kernel-manual/kernel-manual-eclipse-customization.xsl: new file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,33 +51,47 @@ X-List-Received-Date: Wed, 10 Oct 2012 09:54:44 -0000
 
 From: Timo Mueller <timo.mueller@bmw-carit.de>
 
-Eclipse help documents are now created when calling the 'make all'
-target on the kernel-manual. Resulting files are archived into
-the tarball as well. When calling 'make clean' artefacts of
-the eclipse documentation build are deleted.
+This stylesheet uses the eclipse stylesheets of docbook to create
+eclipse help from this documentation. In addition to simple html
+files these stylesheets will also create xml files which are
+needed to integrate the documentation into eclipse (e.g. toc.xml).
 ---
- documentation/Makefile |    8 +++++---
- 1 files changed, 5 insertions(+), 3 deletions(-)
+ .../kernel-manual-eclipse-customization.xsl        |   26 ++++++++++++++++++++
+ 1 files changed, 26 insertions(+), 0 deletions(-)
+ create mode 100644 documentation/kernel-manual/kernel-manual-eclipse-customization.xsl
 
-diff --git a/documentation/Makefile b/documentation/Makefile
-index 4cb7a00..79732f8 100644
---- a/documentation/Makefile
-+++ b/documentation/Makefile
-@@ -218,9 +218,11 @@ endif
- 
- ifeq ($(DOC),kernel-manual)
- XSLTOPTS = --xinclude
--ALLPREQ = html pdf tarball
--TARFILES = kernel-manual.html kernel-manual.pdf kernel-style.css figures/kernel-title.png figures/kernel-architecture-overview.png
--MANUALS = $(DOC)/$(DOC).html $(DOC)/$(DOC).pdf
-+ALLPREQ = html pdf eclipse tarball
-+TARFILES = kernel-manual.html kernel-manual.pdf kernel-style.css \
-+           figures/kernel-title.png figures/kernel-architecture-overview.png \
-+           eclipse
-+MANUALS = $(DOC)/$(DOC).html $(DOC)/$(DOC).pdf $(DOC)/eclipse
- FIGURES = figures
- STYLESHEET = $(DOC)/*.css
- endif
+diff --git a/documentation/kernel-manual/kernel-manual-eclipse-customization.xsl b/documentation/kernel-manual/kernel-manual-eclipse-customization.xsl
+new file mode 100644
+index 0000000..70a1e19
+--- /dev/null
++++ b/documentation/kernel-manual/kernel-manual-eclipse-customization.xsl
+@@ -0,0 +1,26 @@
++<?xml version='1.0'?>
++<xsl:stylesheet
++	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
++	xmlns="http://www.w3.org/1999/xhtml"
++	xmlns:fo="http://www.w3.org/1999/XSL/Format"
++	version="1.0">
++
++  <xsl:import
++	  href="http://docbook.sourceforge.net/release/xsl/current/eclipse/eclipse3.xsl" />
++
++  <xsl:param name="chunker.output.indent" select="'yes'"/>
++  <xsl:param name="chunk.first.sections" select="1"/>
++  <xsl:param name="chunk.section.depth" select="10"/>
++  <xsl:param name="use.id.as.filename" select="1"/>
++  <xsl:param name="ulink.target" select="'_self'" />
++  <xsl:param name="base.dir" select="'html/kernel-manual/'"/>
++  <xsl:param name="html.stylesheet" select="'../book.css'"/>
++  <xsl:param name="eclipse.manifest" select="0"/>
++  <xsl:param name="create.plugin.xml" select="0"/>
++  <xsl:param name="suppress.navigation" select="1"/>
++  <xsl:param name="generate.index" select="0"/>
++  <xsl:param name="chapter.autolabel" select="1" />
++  <xsl:param name="appendix.autolabel" select="A" />
++  <xsl:param name="section.autolabel" select="1" />
++  <xsl:param name="section.label.includes.component.label" select="1" />
++</xsl:stylesheet>
 -- 
 1.7.7.6
 
