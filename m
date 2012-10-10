@@ -1,30 +1,26 @@
 Return-Path: <nitin.a.kamble@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 59442E00717
-	for <yocto@yoctoproject.org>; Wed, 10 Oct 2012 16:14:16 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 10 Oct 2012 16:13:55 -0700
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8D12DE01346
+	for <yocto@yoctoproject.org>; Wed, 10 Oct 2012 16:18:32 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga101.ch.intel.com with ESMTP; 10 Oct 2012 16:18:31 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,567,1344236400"; d="scan'208";a="225320696"
-Received: from orsmsx105.amr.corp.intel.com ([10.22.225.132])
-	by orsmga002.jf.intel.com with ESMTP; 10 Oct 2012 16:14:15 -0700
-Received: from orsmsx153.amr.corp.intel.com (10.22.226.247) by
-	ORSMSX105.amr.corp.intel.com (10.22.225.132) with Microsoft SMTP Server
-	(TLS) id 14.1.355.2; Wed, 10 Oct 2012 16:14:15 -0700
+X-IronPort-AV: E=Sophos;i="4.80,567,1344236400"; d="scan'208";a="154822615"
+Received: from orsmsx103.amr.corp.intel.com ([10.22.225.130])
+	by AZSMGA002.ch.intel.com with ESMTP; 10 Oct 2012 16:18:29 -0700
 Received: from orsmsx106.amr.corp.intel.com ([169.254.5.60]) by
-	ORSMSX153.amr.corp.intel.com ([169.254.13.180]) with mapi id
-	14.01.0355.002; Wed, 10 Oct 2012 16:14:14 -0700
+	ORSMSX103.amr.corp.intel.com ([169.254.2.246]) with mapi id
+	14.01.0355.002; Wed, 10 Oct 2012 16:18:19 -0700
 From: "Kamble, Nitin A" <nitin.a.kamble@intel.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Thread-Topic: [yocto] [PATCHv2 2/5] crownbay.conf: specify the 8.0.4 version
-	as preferred version of mesa-dri
-Thread-Index: AQHNpoUQRUdwR0IzAkSEcQZspqMMEZeyup0AgABxQoA=
-Date: Wed, 10 Oct 2012 23:14:14 +0000
-Message-ID: <ADD6A3980E8C39419A432FF422031B4C1573165F@ORSMSX106.amr.corp.intel.com>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
+Thread-Topic: [yocto] [PATCHv2 4/5] fishriver BSP retirement
+Thread-Index: AQHNpoUSOEyj7NfjVUOk1JZITdnUvpezfpwA//+uZ+A=
+Date: Wed, 10 Oct 2012 23:18:18 +0000
+Message-ID: <ADD6A3980E8C39419A432FF422031B4C15731670@ORSMSX106.amr.corp.intel.com>
 References: <cover.1349831664.git.nitin.a.kamble@intel.com>
-	<5e3291d077a714c7fc69d8bcc308974d75baffd4.1349831664.git.nitin.a.kamble@intel.com>
-	<CAJTo0La-n0y4jzvm5x2gFPMzV1eMm3oedvr7eaeN+WC0220seg@mail.gmail.com>
-In-Reply-To: <CAJTo0La-n0y4jzvm5x2gFPMzV1eMm3oedvr7eaeN+WC0220seg@mail.gmail.com>
+	<6d092e905592b9a22a370da627e8584e6fb5e04f.1349831664.git.nitin.a.kamble@intel.com>
+	<5075E364.6060302@windriver.com>
+In-Reply-To: <5075E364.6060302@windriver.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
@@ -32,7 +28,7 @@ x-originating-ip: [10.22.254.139]
 MIME-Version: 1.0
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Hart,
 	Darren" <darren.hart@intel.com>
-Subject: Re: [PATCHv2 2/5] crownbay.conf: specify the 8.0.4 version as preferred version of mesa-dri
+Subject: Re: [PATCHv2 4/5] fishriver BSP retirement
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,30 +40,494 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 Oct 2012 23:14:16 -0000
+X-List-Received-Date: Wed, 10 Oct 2012 23:18:33 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogQnVydG9uLCBSb3NzIFtt
-YWlsdG86cm9zcy5idXJ0b25AaW50ZWwuY29tXQ0KPiBTZW50OiBXZWRuZXNkYXksIE9jdG9iZXIg
-MTAsIDIwMTIgMjoyNSBBTQ0KPiBUbzogS2FtYmxlLCBOaXRpbiBBDQo+IENjOiBaYW51c3NpLCBU
-b207IEhhcnQsIERhcnJlbjsgeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0KPiBTdWJqZWN0OiBSZTog
-W3lvY3RvXSBbUEFUQ0h2MiAyLzVdIGNyb3duYmF5LmNvbmY6IHNwZWNpZnkgdGhlIDguMC40IHZl
-cnNpb24NCj4gYXMgcHJlZmVycmVkIHZlcnNpb24gb2YgbWVzYS1kcmkNCj4gDQo+IE9uIDEwIE9j
-dG9iZXIgMjAxMiAwMjoxNiwgIDxuaXRpbi5hLmthbWJsZUBpbnRlbC5jb20+IHdyb3RlOg0KPiA+
-IEF2b2lkIGZvbGxvd2luZyB3YXJuaW5ncyB3aGlsZSBidWlsZGluZyBjcm93bmJheSBCU1BzOg0K
-PiA+DQo+ID4gIE5PVEU6IHByZWZlcnJlZCB2ZXJzaW9uIDcuMTEgb2YgbWVzYS1kcmkgbm90IGF2
-YWlsYWJsZSAoZm9yIGl0ZW0NCj4gPiB2aXJ0dWFsL2xpYmdsKQ0KPiA+ICBOT1RFOiB2ZXJzaW9u
-cyBvZiBtZXNhLWRyaSBhdmFpbGFibGU6IDI6OC4wLjQNCj4gPiAyOjguMC40K2dpdDErYzFmNDg2
-N2M4OWFkYjFhNmIxOWQ2NmVjOGFkMTQ2MTE1OTA5ZjBhNw0KPiANCj4gVGhpcyBpcyB0aGUgcHJl
-ZmVycmVkIHZlcnNpb24gaW4gb2UtY29yZSwgc28gd291bGRuJ3QgaXQgYmUgZWFzaWVyIHRvIGp1
-c3QgZHJvcA0KPiB0aGlzIHByZWZlcnJlZCB2ZXJzaW9uIGxpbmUgYW5kIGF2b2lkIHRoaXMgcmVw
-ZWF0aW5nIGl0c2VsZiBpbiB0aGUgZnV0dXJlPw0KPiANCj4gUm9zcw0KDQpIaSBSb3NzLA0KICBU
-aGUgcmVhc29uIGlzIHdlIHdhbnQgdG8ga25vdyBpZiB0aGUgdmVyc2lvbiBvZiBtZXNhIGluIG9l
-Y29yZSBoYXMgY2hhbmdlZCBvciBub3QuIEVNR0QgaGFzIHNwZWNpZmljIG5lZWRzIG9mIG1lc2Es
-IGFuZCBpbiB0aGUgdGVzdGluZyB3ZSBhcmUgbm90IGZpbmRpbmcgYW55IGlzc3VlcyB3aXRoIHY4
-LjAuNCBvZiBtZXNhLiBCdXQgdGhhdCBtYXkgbm90IGhvbGQgdHJ1ZSBmb3IgZnV0dXJlIHZlcnNp
-b25zIG9mIG1lc2EsIHNvIHdlIHdvdWxkIGxpa2UgdG8gcGluIHRoZSB2ZXJzaW9uIGhlcmUgc28g
-d2Uga25vdyB0aGF0IHRoaXMgdmVyc2lvbiB3b3JrcyBhcyBleHBlY3RlZC4NCg0KTml0aW4NCg0K
+
+
+> -----Original Message-----
+> From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]
+> Sent: Wednesday, October 10, 2012 2:07 PM
+> To: Kamble, Nitin A
+> Cc: Zanussi, Tom; Hart, Darren; yocto@yoctoproject.org
+> Subject: Re: [yocto] [PATCHv2 4/5] fishriver BSP retirement
+>=20
+> On 12-10-09 09:16 PM, nitin.a.kamble@intel.com wrote:
+> > From: Nitin A Kamble<nitin.a.kamble@intel.com>
+> >
+> > This commit removes fishriver bsp from meta-intel layer.
+> >
+> >    Fish-River-Islnad-2 hardware and BSP has made this
+> > Fish-River-Island hardware and BSP absolute.
+> >    Also we discussed this on the Yocto Execution Tracking Meeting, and
+> > to our knowledge no customer is using (cares about) this BSP now.
+>=20
+> Just so I don't forget, can you send a patch that also removes the kernel
+> meta data for the BSP ?  That way I won't recreate the branch for future
+> releases :)
+>=20
+Removing the FRI-1 contents from meta branch of v3.4 kernel tree should be =
+ok because it preserves the old commits.
+But I think we will have to leave the topic branch for fishriver machine as=
+ it is.
+
+> I assume it is ok that the kernel branches stay in the 3.x kernels for th=
+e yocto
+> 1.3 release ?
+>=20
+I also think that is the right way to handle it.
+
+Regards,
+Nitin
+
+
+> Cheers,
+>=20
+> Bruce
+>=20
+> >
+> > Signed-off-by: Nitin A Kamble<nitin.a.kamble@intel.com>
+> > ---
+> >   MAINTAINERS                                        |    4 -
+> >   meta-fishriver/COPYING.MIT                         |   17 ---
+> >   meta-fishriver/README                              |  114 -----------=
+---------
+> >   meta-fishriver/README.sources                      |   17 ---
+> >   meta-fishriver/conf/layer.conf                     |   12 --
+> >   meta-fishriver/conf/machine/fishriver.conf         |   17 ---
+> >   .../formfactor/formfactor/fishriver/machconfig     |    3 -
+> >   .../recipes-bsp/formfactor/formfactor_0.0.bbappend |    3 -
+> >   .../xserver-xf86-config/fishriver/xorg.conf        |   26 -----
+> >   .../xorg-xserver/xserver-xf86-config_0.1.bbappend  |    1 -
+> >   .../linux/linux-yocto-rt_3.0.bbappend              |    8 --
+> >   .../linux/linux-yocto-rt_3.2.bbappend              |    8 --
+> >   .../recipes-kernel/linux/linux-yocto_3.0.bbappend  |    9 --
+> >   .../recipes-kernel/linux/linux-yocto_3.2.bbappend  |    8 --
+> >   .../recipes-kernel/linux/linux-yocto_3.4.bbappend  |    8 --
+> >   15 files changed, 0 insertions(+), 255 deletions(-)
+> >   delete mode 100644 meta-fishriver/COPYING.MIT
+> >   delete mode 100644 meta-fishriver/README
+> >   delete mode 100644 meta-fishriver/README.sources
+> >   delete mode 100644 meta-fishriver/binary/.gitignore
+> >   delete mode 100644 meta-fishriver/conf/layer.conf
+> >   delete mode 100644 meta-fishriver/conf/machine/fishriver.conf
+> >   delete mode 100644 meta-fishriver/recipes-
+> bsp/formfactor/formfactor/fishriver/machconfig
+> >   delete mode 100644 meta-fishriver/recipes-
+> bsp/formfactor/formfactor_0.0.bbappend
+> >   delete mode 100644 meta-fishriver/recipes-graphics/xorg-
+> xserver/xserver-xf86-config/fishriver/xorg.conf
+> >   delete mode 100644 meta-fishriver/recipes-graphics/xorg-
+> xserver/xserver-xf86-config_0.1.bbappend
+> >   delete mode 100644 meta-fishriver/recipes-kernel/linux/linux-yocto-
+> rt_3.0.bbappend
+> >   delete mode 100644 meta-fishriver/recipes-kernel/linux/linux-yocto-
+> rt_3.2.bbappend
+> >   delete mode 100644 meta-fishriver/recipes-kernel/linux/linux-
+> yocto_3.0.bbappend
+> >   delete mode 100644 meta-fishriver/recipes-kernel/linux/linux-
+> yocto_3.2.bbappend
+> >   delete mode 100644
+> > meta-fishriver/recipes-kernel/linux/linux-yocto_3.4.bbappend
+> >
+> > diff --git a/MAINTAINERS b/MAINTAINERS index 5bcf470..3bf0add 100644
+> > --- a/MAINTAINERS
+> > +++ b/MAINTAINERS
+> > @@ -56,10 +56,6 @@ EMENLOW
+> >   M:	Tom Zanussi<tom.zanussi@intel.com>
+> >   F:	meta-emenlow/
+> >
+> > -FISHRIVER
+> > -M:	Tom Zanussi<tom.zanussi@intel.com>
+> > -F:	meta-fishriver/
+> > -
+> >   FRI2
+> >   M:	Darren Hart<dvhart@linux.intel.com>
+> >   F:	meta-fri2/
+> > diff --git a/meta-fishriver/COPYING.MIT b/meta-fishriver/COPYING.MIT
+> > deleted file mode 100644 index fb950dc..0000000
+> > --- a/meta-fishriver/COPYING.MIT
+> > +++ /dev/null
+> > @@ -1,17 +0,0 @@
+> > -Permission is hereby granted, free of charge, to any person obtaining
+> > a copy -of this software and associated documentation files (the
+> > "Software"), to deal -in the Software without restriction, including
+> > without limitation the rights -to use, copy, modify, merge, publish,
+> > distribute, sublicense, and/or sell -copies of the Software, and to
+> > permit persons to whom the Software is -furnished to do so, subject to =
+the
+> following conditions:
+> > -
+> > -The above copyright notice and this permission notice shall be
+> > included in -all copies or substantial portions of the Software.
+> > -
+> > -THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+> > EXPRESS OR -IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+> OF
+> > MERCHANTABILITY, -FITNESS FOR A PARTICULAR PURPOSE AND
+> > NONINFRINGEMENT. IN NO EVENT SHALL THE -AUTHORS OR COPYRIGHT
+> HOLDERS
+> > BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER -LIABILITY, WHETHER IN
+> AN
+> > ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, -OUT OF OR
+> IN
+> > CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN -
+> THE SOFTWARE.
+> > diff --git a/meta-fishriver/README b/meta-fishriver/README deleted
+> > file mode 100644 index 1dd0a4c..0000000
+> > --- a/meta-fishriver/README
+> > +++ /dev/null
+> > @@ -1,114 +0,0 @@
+> > -This README file contains information on building the meta-fishriver
+> > -BSP layer, and booting the images contained in the /binary directory.
+> > -Please see the corresponding sections below for details.
+> > -
+> > -
+> > -Dependencies
+> > -=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> > -
+> > -This layer depends on:
+> > -
+> > -  URI: git://git.openembedded.org/bitbake
+> > -  branch: master
+> > -
+> > -  URI: git://git.openembedded.org/openembedded-core
+> > -  layers: meta
+> > -  branch: master
+> > -
+> > -  URI: git://git.yoctoproject.org/meta-intel
+> > -  layers: intel
+> > -  branch: master
+> > -
+> > -
+> > -Patches
+> > -=3D=3D=3D=3D=3D=3D=3D
+> > -
+> > -Please submit any patches against this BSP to the Yocto mailing list
+> > -(yocto@yoctoproject.org) and cc: the maintainer:
+> > -
+> > -Maintainer: Tom Zanussi<tom.zanussi@intel.com>
+> > -
+> > -Please see the meta-intel/MAINTAINERS file for more details.
+> > -
+> > -
+> > -Table of Contents
+> > -=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> > -
+> > -  I. Building the meta-fishriver BSP layer
+> > - II. Booting the images in /binary
+> > -
+> > -
+> > -I. Building the meta-fishriver BSP layer
+> > -=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> > -
+> > -In order to build an image with BSP support for a given release, you
+> > -need to download the corresponding BSP tarball from the 'Board
+> > Support -Package (BSP) Downloads' page of the Yocto Project website.
+> > -
+> > -Having done that, and assuming you extracted the BSP tarball contents
+> > -at the top-level of your yocto build tree, you can build a fishriver
+> > -image by adding the location of the meta-fishriver layer to
+> > -bblayers.conf, along with the meta-intel layer itself (to access
+> > -common metadata shared between BSPs) e.g.:
+> > -
+> > -  yocto/meta-intel \
+> > -  yocto/meta-intel/meta-fishriver \
+> > -
+> > -To enable the fishriver layer, add the fishriver MACHINE to local.conf=
+:
+> > -
+> > -  MACHINE ?=3D "fishriver"
+> > -
+> > -You should then be able to build a fishriver image as such:
+> > -
+> > -  $ source oe-init-build-env
+> > -  $ bitbake core-image-sato
+> > -
+> > -At the end of a successful build, you should have a live image that
+> > -you can boot from a USB flash drive (see instructions on how to do
+> > -that below, in the section 'Booting the images from /binary').
+> > -
+> > -As an alternative to downloading the BSP tarball, you can also work
+> > -directly from the meta-intel git repository.  For each BSP in the
+> > -'meta-intel' repository, there are multiple branches, one
+> > -corresponding to each major release starting with 'laverne' (0.90),
+> > in -addition to the latest code which tracks the current master (note
+> > that -not all BSPs are present in every release).  Instead of
+> > extracting a -BSP tarball at the top level of your yocto build tree,
+> > you can -equivalently check out the appropriate branch from the
+> > meta-intel -repository at the same location.
+> > -
+> > -
+> > -II. Booting the images in /binary
+> > -=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> > -
+> > -This BSP contains bootable live images, which can be used to directly
+> > -boot Yocto off of a USB flash drive.
+> > -
+> > -Under Linux, insert a USB flash drive.  Assuming the USB flash drive
+> > -takes device /dev/sdf, use dd to copy the live image to it.  For
+> > -example:
+> > -
+> > -# dd if=3Dcore-image-sato-fishriver-20101207053738.hddimg of=3D/dev/sd=
+f
+> > -# sync -# eject /dev/sdf
+> > -
+> > -This should give you a bootable USB flash device.  Insert the device
+> > -into a bootable USB socket on the target, and power on.  This should
+> > -result in a system booted to the Sato graphical desktop.
+> > -
+> > -If you want a terminal, use the arrows at the top of the UI to move
+> > to -different pages of available applications, one of which is named
+> > -'Terminal'.  Clicking that should give you a root terminal.
+> > -
+> > -If you want to ssh into the system, you can use the root terminal to
+> > -ifconfig the IP address and use that to ssh in.  The root password is
+> > -empty, so to log in type 'root' for the user name and hit 'Enter' at
+> > -the Password prompt: and you should be in.
+> > -
+> > -----
+> > -
+> > -If you find you're getting corrupt images on the USB (it doesn't show
+> > -the syslinux boot: prompt, or the boot: prompt contains strange
+> > -characters), try doing this first:
+> > -
+> > -# dd if=3D/dev/zero of=3D/dev/sdf bs=3D1M count=3D512 diff --git
+> > a/meta-fishriver/README.sources b/meta-fishriver/README.sources
+> > deleted file mode 100644 index 76180f1..0000000
+> > --- a/meta-fishriver/README.sources
+> > +++ /dev/null
+> > @@ -1,17 +0,0 @@
+> > -The sources for the packages comprising the images shipped with this
+> > -BSP can be found at the following location:
+> > -
+> > -http://downloads.yoctoproject.org/mirror/sources/
+> > -
+> > -The metadata used to generate the images shipped with this BSP, in
+> > -addition to the code contained in this BSP, can be found at the
+> > -following location:
+> > -
+> > -http://www.yoctoproject.org/downloads/yocto-1.2/poky-denzil-7.0.tar.b
+> > z2
+> > -
+> > -The metadata used to generate the images shipped with this BSP, in
+> > -addition to the code contained in this BSP, can also be found at the
+> > -following locations:
+> > -
+> > -git://git.yoctoproject.org/poky.git
+> > -git://git.yoctoproject.org/meta-intel
+> > diff --git a/meta-fishriver/binary/.gitignore
+> > b/meta-fishriver/binary/.gitignore
+> > deleted file mode 100644
+> > index e69de29..0000000
+> > diff --git a/meta-fishriver/conf/layer.conf
+> > b/meta-fishriver/conf/layer.conf deleted file mode 100644 index
+> > 61e292b..0000000
+> > --- a/meta-fishriver/conf/layer.conf
+> > +++ /dev/null
+> > @@ -1,12 +0,0 @@
+> > -# We have a conf and classes directory, add to BBPATH -BBPATH :=3D
+> > "${BBPATH}:${LAYERDIR}"
+> > -
+> > -# We have a recipes directory, add to BBFILES -BBFILES :=3D "${BBFILES=
+}
+> > ${LAYERDIR}/recipes-*/*/*.bb \
+> > -	${LAYERDIR}/recipes-*/*/*.bbappend"
+> > -
+> > -BBFILE_COLLECTIONS +=3D "fishriver"
+> > -BBFILE_PATTERN_fishriver :=3D "^${LAYERDIR}/"
+> > -BBFILE_PRIORITY_fishriver =3D "6"
+> > -
+> > -LAYERDEPENDS_fishriver =3D "intel"
+> > diff --git a/meta-fishriver/conf/machine/fishriver.conf
+> > b/meta-fishriver/conf/machine/fishriver.conf
+> > deleted file mode 100644
+> > index ec2e87f..0000000
+> > --- a/meta-fishriver/conf/machine/fishriver.conf
+> > +++ /dev/null
+> > @@ -1,17 +0,0 @@
+> > -#@TYPE: Machine
+> > -#@NAME: fishriver
+> > -
+> > -#@DESCRIPTION: Machine configuration for Fish River Island systems -#
+> > i.e. Z530/E660 + EG20T
+> > -
+> > -PREFERRED_VERSION_linux-yocto ?=3D "3.4%"
+> > -
+> > -require conf/machine/include/tune-atom.inc
+> > -require conf/machine/include/ia32-base.inc
+> > -
+> > -XSERVER ?=3D "${XSERVER_IA32_BASE} \
+> > -           ${XSERVER_IA32_EXT} \
+> > -           ${XSERVER_IA32_VESA} \
+> > -           "
+> > -
+> > -APPEND +=3D "video=3Dvesafb vga=3D0x318"
+> > diff --git
+> > a/meta-fishriver/recipes-bsp/formfactor/formfactor/fishriver/machconfi
+> > g
+> > b/meta-fishriver/recipes-bsp/formfactor/formfactor/fishriver/machconfi
+> > g
+> > deleted file mode 100644
+> > index ffce012..0000000
+> > ---
+> > a/meta-fishriver/recipes-bsp/formfactor/formfactor/fishriver/machconfi
+> > g
+> > +++ /dev/null
+> > @@ -1,3 +0,0 @@
+> > -# Assume a USB mouse and keyboard are connected
+> > -HAVE_TOUCHSCREEN=3D0
+> > -HAVE_KEYBOARD=3D1
+> > diff --git
+> > a/meta-fishriver/recipes-bsp/formfactor/formfactor_0.0.bbappend
+> > b/meta-fishriver/recipes-bsp/formfactor/formfactor_0.0.bbappend
+> > deleted file mode 100644
+> > index 54da0ff..0000000
+> > --- a/meta-fishriver/recipes-bsp/formfactor/formfactor_0.0.bbappend
+> > +++ /dev/null
+> > @@ -1,3 +0,0 @@
+> > -FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
+> > -
+> > -PRINC =3D "1"
+> > diff --git
+> > a/meta-fishriver/recipes-graphics/xorg-xserver/xserver-xf86-config/fis
+> > hriver/xorg.conf
+> > b/meta-fishriver/recipes-graphics/xorg-xserver/xserver-xf86-config/fis
+> > hriver/xorg.conf
+> > deleted file mode 100644
+> > index da4fc3c..0000000
+> > ---
+> > a/meta-fishriver/recipes-graphics/xorg-xserver/xserver-xf86-config/fis
+> > hriver/xorg.conf
+> > +++ /dev/null
+> > @@ -1,26 +0,0 @@
+> > -Section "Device"
+> > -    Identifier	"Generic VESA"
+> > -    Driver	"vesa"
+> > -EndSection
+> > -
+> > -Section "Monitor"
+> > -    Identifier    "Generic Monitor"
+> > -    Option        "DPMS"
+> > -EndSection
+> > -
+> > -Section "Screen"
+> > -    Identifier    "Default Screen"
+> > -    Device	  "Generic VESA"
+> > -    Monitor       "Generic Monitor"
+> > -    DefaultDepth  24
+> > -EndSection
+> > -
+> > -Section "ServerLayout"
+> > -    Identifier     "Default Layout"
+> > -    Screen         "Default Screen"
+> > -EndSection
+> > -
+> > -Section "ServerFlags"
+> > -    Option        "DontZap"  "0"
+> > -    Option        "AutoAddDevices"  "False"
+> > -EndSection
+> > diff --git
+> > a/meta-fishriver/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1
+> > .bbappend
+> > b/meta-fishriver/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1
+> > .bbappend
+> > deleted file mode 100644
+> > index 72d991c..0000000
+> > ---
+> > a/meta-fishriver/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1
+> > .bbappend
+> > +++ /dev/null
+> > @@ -1 +0,0 @@
+> > -FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
+> > diff --git
+> > a/meta-fishriver/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
+> > b/meta-fishriver/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
+> > deleted file mode 100644
+> > index 7a502bd..0000000
+> > --- a/meta-fishriver/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
+> > +++ /dev/null
+> > @@ -1,8 +0,0 @@
+> > -FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
+> > -COMPATIBLE_MACHINE_fishriver =3D "fishriver"
+> > -KMACHINE_fishriver  =3D "fishriver"
+> > -
+> > -# Update the following to use a different BSP branch or meta SRCREV
+> > -#KBRANCH_fishriver  =3D "yocto/standard/preempt-rt/base"
+> > -#SRCREV_machine_pn-linux-yocto-rt_fishriver ?=3D XXXX
+> > -#SRCREV_meta_pn-linux-yocto-rt_fishriver ?=3D XXXX diff --git
+> > a/meta-fishriver/recipes-kernel/linux/linux-yocto-rt_3.2.bbappend
+> > b/meta-fishriver/recipes-kernel/linux/linux-yocto-rt_3.2.bbappend
+> > deleted file mode 100644
+> > index a91a425..0000000
+> > --- a/meta-fishriver/recipes-kernel/linux/linux-yocto-rt_3.2.bbappend
+> > +++ /dev/null
+> > @@ -1,8 +0,0 @@
+> > -FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
+> > -COMPATIBLE_MACHINE_fishriver =3D "fishriver"
+> > -KMACHINE_fishriver  =3D "fishriver"
+> > -
+> > -# Update the following to use a different BSP branch or meta SRCREV
+> > -#KBRANCH_fishriver  =3D "standard/preempt-rt/base"
+> > -#SRCREV_machine_pn-linux-yocto-rt_fishriver ?=3D XXXX
+> > -#SRCREV_meta_pn-linux-yocto-rt_fishriver ?=3D XXXX diff --git
+> > a/meta-fishriver/recipes-kernel/linux/linux-yocto_3.0.bbappend
+> > b/meta-fishriver/recipes-kernel/linux/linux-yocto_3.0.bbappend
+> > deleted file mode 100644
+> > index 6ac6ef5..0000000
+> > --- a/meta-fishriver/recipes-kernel/linux/linux-yocto_3.0.bbappend
+> > +++ /dev/null
+> > @@ -1,9 +0,0 @@
+> > -FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
+> > -
+> > -COMPATIBLE_MACHINE_fishriver =3D "fishriver"
+> > -KMACHINE_fishriver  =3D "fishriver"
+> > -KBRANCH_fishriver  =3D "yocto/standard/fishriver"
+> > -KERNEL_FEATURES_append_fishriver +=3D " cfg/smp.scc"
+> > -
+> > -SRCREV_machine_pn-linux-yocto_fishriver ?=3D
+> "c139592c96722727a9f074515a4061c3820da1a6"
+> > -SRCREV_meta_pn-linux-yocto_fishriver ?=3D
+> "59314a3523e360796419d76d78c6f7d8c5ef2593"
+> > diff --git
+> > a/meta-fishriver/recipes-kernel/linux/linux-yocto_3.2.bbappend
+> > b/meta-fishriver/recipes-kernel/linux/linux-yocto_3.2.bbappend
+> > deleted file mode 100644
+> > index 9a2f678..0000000
+> > --- a/meta-fishriver/recipes-kernel/linux/linux-yocto_3.2.bbappend
+> > +++ /dev/null
+> > @@ -1,8 +0,0 @@
+> > -FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
+> > -
+> > -COMPATIBLE_MACHINE_fishriver =3D "fishriver"
+> > -KMACHINE_fishriver  =3D "fishriver"
+> > -KBRANCH_fishriver  =3D "standard/default/fishriver"
+> > -
+> > -SRCREV_machine_pn-linux-yocto_fishriver ?=3D
+> "969edd015a46eed77d6c3daeffdc299dd06e3397"
+> > -SRCREV_meta_pn-linux-yocto_fishriver ?=3D
+> "5b4c9dc78b5ae607173cc3ddab9bce1b5f78129b"
+> > diff --git
+> > a/meta-fishriver/recipes-kernel/linux/linux-yocto_3.4.bbappend
+> > b/meta-fishriver/recipes-kernel/linux/linux-yocto_3.4.bbappend
+> > deleted file mode 100644
+> > index c0d04dc..0000000
+> > --- a/meta-fishriver/recipes-kernel/linux/linux-yocto_3.4.bbappend
+> > +++ /dev/null
+> > @@ -1,8 +0,0 @@
+> > -FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
+> > -
+> > -COMPATIBLE_MACHINE_fishriver =3D "fishriver"
+> > -KMACHINE_fishriver  =3D "fishriver"
+> > -KBRANCH_fishriver  =3D "standard/fishriver"
+> > -
+> > -SRCREV_machine_pn-linux-yocto_fishriver ?=3D
+> "3fa06aa29078fdb2af431de2d3fdae7d281ba85f"
+> > -SRCREV_meta_pn-linux-yocto_fishriver ?=3D
+> "5bdc655034a58a7147176a8a882d81e2fd51e4b9"
+
 
