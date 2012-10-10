@@ -1,38 +1,32 @@
-Return-Path: <PatrickTurley@gamestop.com>
-Received: from GSIRONPORTA.gamestop.com (mail1.gamestop.com [12.25.107.28])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E4C7AE00293
-	for <yocto@yoctoproject.org>; Tue,  9 Oct 2012 16:40:36 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="4.80,563,1344229200"; d="scan'208";a="68387981"
-Received: from unknown (HELO GV1HQPEX02.babgsetc.pvt) ([172.22.1.244])
-	by GSIRONPORTA.gamestop.com with ESMTP; 09 Oct 2012 18:40:36 -0500
-Received: from GV1HQPEX03.babgsetc.pvt ([169.254.1.67]) by
-	GV1HQPEX02.babgsetc.pvt ([172.22.1.192]) with mapi id 14.02.0283.003;
-	Tue, 9 Oct 2012 18:40:36 -0500
-From: Patrick Turley <PatrickTurley@gamestop.com>
-To: McClintock Matthew-B29882 <B29882@freescale.com>
-Thread-Topic: [yocto] The BitBake equivalent of "Hello, World!"
-Thread-Index: AQHNobawsFl2O8i4ZUWCT5ZGDLdssJeoMR8AgABV3gCAASn/AIAAJAYAgABhXwCAACU7AIAGH04AgAAfuQCAAVFhAIAABu4AgAAMZ4A=
-Date: Tue, 9 Oct 2012 23:40:35 +0000
-Message-ID: <2019DF52-C805-4F78-8F04-9D63DDBB357A@gamestop.com>
-References: <CC9226B2.365%PatrickTurley@gamestop.com>
-	<CC922B79.368%PatrickTurley@gamestop.com>
-	<CA+gsK-o=VD7GLYsTHYvmhK4Ht5KeNFS=4=yHmxybeAN7M_nzDw@mail.gmail.com>
-	<6796989A-D845-4726-B47B-64B82F380444@gamestop.com>
-	<CA+gsK-p5gt0FuN4XbifdSjPv5pcnF6u=5bcrWAw9Ayd9WpUTYw@mail.gmail.com>
-	<1A527469-CEF5-434E-8604-540899C8BA04@gamestop.com>
-	<CA+gsK-qzq5dK4QwOq1kw1U8tNbhDt-UZsRha-_ZKu0Kw8AWFAg@mail.gmail.com>
-	<A4CBB3C5-9355-4C1E-8324-55AF1849E0CF@gamestop.com>
-	<CA+gsK-obQLKv9LnMiqAiukKcoPBN3Bijn-oYhdUrvJ9yp12w=g@mail.gmail.com>
-	<BFCDD08E-1AB4-4770-812D-3BB6E2606E18@gamestop.com>
-	<70CC66F5C30A414DADDA6973E4CA391A6ECFDB@039-SN1MPN1-002.039d.mgd.msft.net>
-In-Reply-To: <70CC66F5C30A414DADDA6973E4CA391A6ECFDB@039-SN1MPN1-002.039d.mgd.msft.net>
+Return-Path: <nitin.a.kamble@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6F7DAE00293
+	for <yocto@yoctoproject.org>; Tue,  9 Oct 2012 18:10:53 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 09 Oct 2012 18:10:52 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,562,1344236400"; d="scan'208";a="232761775"
+Received: from orsmsx104.amr.corp.intel.com ([10.22.225.131])
+	by fmsmga002.fm.intel.com with ESMTP; 09 Oct 2012 18:10:52 -0700
+Received: from orsmsx106.amr.corp.intel.com ([169.254.5.60]) by
+	ORSMSX104.amr.corp.intel.com ([169.254.3.159]) with mapi id
+	14.01.0355.002; Tue, 9 Oct 2012 18:10:52 -0700
+From: "Kamble, Nitin A" <nitin.a.kamble@intel.com>
+To: Darren Hart <dvhart@linux.intel.com>, Yocto Project
+	<yocto@yoctoproject.org>
+Thread-Topic: [PATCH] Fix use of PRINC in meta-intel BSPs
+Thread-Index: AQHNpnDmeszwJfZpYE+lTO8AmnO5bpexuy9g
+Date: Wed, 10 Oct 2012 01:10:51 +0000
+Message-ID: <ADD6A3980E8C39419A432FF422031B4C1573101E@ORSMSX106.amr.corp.intel.com>
+References: <1349823186-29019-1-git-send-email-dvhart@linux.intel.com>
+	<cb5383c6d2763769a5251d84b42056f5a621b79d.1349822052.git.dvhart@linux.intel.com>
+In-Reply-To: <cb5383c6d2763769a5251d84b42056f5a621b79d.1349822052.git.dvhart@linux.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [172.22.1.244]
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: The BitBake equivalent of "Hello, World!"
+Subject: Re: [PATCH] Fix use of PRINC in meta-intel BSPs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,92 +38,208 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 09 Oct 2012 23:40:37 -0000
+X-List-Received-Date: Wed, 10 Oct 2012 01:10:53 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <3B487C8228EEF544B77E49C76DDC455C@gamestop.com>
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-VGhhdCdzIGEgcGVyZmVjdGx5IHJlYXNvbmFibGUgc3VnZ2VzdGlvbiwgYW5kIGEgZ29vZCBleGN1
-c2UgZm9yIG1lIHRvIG9wZW4gYSBnaXRodWIgYWNjb3VudCBhbmQgbGVhcm4gaG93IHRvIHVzZSBp
-dCA6KQ0KDQpPbiBPY3QgOSwgMjAxMiwgYXQgNTo1NiBQTSwgTWNDbGludG9jayBNYXR0aGV3LUIy
-OTg4MiA8QjI5ODgyQGZyZWVzY2FsZS5jb20+IHdyb3RlOg0KDQo+IE9uIFR1ZSwgT2N0IDksIDIw
-MTIgYXQgNTozMSBQTSwgUGF0cmljayBUdXJsZXkNCj4gPFBhdHJpY2tUdXJsZXlAZ2FtZXN0b3Au
-Y29tPiB3cm90ZToNCj4+IFN1Y2Nlc3MuIFRoZSBmaWxlIHRyZWUgZGVwaWN0ZWQgYXQgdGhlIGJv
-dHRvbSBvZiB0aGlzIG1haWwgaXMgbmVhcmx5IHRoZQ0KPj4gc21hbGxlc3QsIHZhbGlkIEJpdEJh
-a2UgcHJvamVjdCB0aGF0IHByaW50cyAiSGVsbG8sIFdvcmxkISIgSGVyZSdzIHRoZQ0KPj4gb3V0
-cHV0Og0KPiANCj4gUGVyaGFwcyB5b3UgY291bGQgcHVzaCB0aGlzIHRvIGdpdGh1YiBzb21ld2hl
-cmUgYXMgYW4gZXhhbXBsZT8NCj4gDQo+IC1NDQo+IA0KPj4gDQo+PiANCj4+ICAgICQgLi4vQml0
-QmFrZS9iaW4vYml0YmFrZSAgYQ0KPj4gICAgUGFyc2luZyByZWNpcGVzOiAxMDAlDQo+PiB8IyMj
-IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
-I3wgVGltZToNCj4+IDAwOjAwOjAwDQo+PiAgICBQYXJzaW5nIG9mIDEgLmJiIGZpbGVzIGNvbXBs
-ZXRlICgwIGNhY2hlZCwgMSBwYXJzZWQpLiAxIHRhcmdldHMsIDANCj4+IHNraXBwZWQsIDAgbWFz
-a2VkLCAwIGVycm9ycy4NCj4+ICAgIE5PVEU6IFJlc29sdmluZyBhbnkgbWlzc2luZyB0YXNrIHF1
-ZXVlIGRlcGVuZGVuY2llcw0KPj4gICAgTk9URTogUHJlcGFyaW5nIHJ1bnF1ZXVlDQo+PiAgICBO
-T1RFOiBFeGVjdXRpbmcgUnVuUXVldWUgVGFza3MNCj4+ICAgIE5PVEU6IFJ1bm5pbmcgdGFzayAx
-IG9mIDEgKElEOiAwLA0KPj4gL2hvbWUvcHR1cmxleS9Xb3Jrc3BhY2UvSGVsbG8vTGF5ZXJBL2Eu
-YmIsIGRvX2J1aWxkKQ0KPj4gICAgTk9URTogcGFja2FnZSBOb25lOiB0YXNrIGRvX2J1aWxkOiBT
-dGFydGVkDQo+PiAgICBIZWxsbywgV29ybGQhDQo+PiAgICBOT1RFOiBwYWNrYWdlIE5vbmU6IHRh
-c2sgZG9fYnVpbGQ6IFN1Y2NlZWRlZA0KPj4gICAgTk9URTogVGFza3MgU3VtbWFyeTogQXR0ZW1w
-dGVkIDEgdGFza3Mgb2Ygd2hpY2ggMCBkaWRuJ3QgbmVlZCB0byBiZQ0KPj4gcmVydW4gYW5kIGFs
-bCBzdWNjZWVkZWQuDQo+PiANCj4+IA0KPj4gQSBmZXcgdGhpbmdzIHRvIG5vdGU6DQo+PiANCj4+
-IDEpIFRoaXMgaXMgbm90IHRoZSAqc21hbGxlc3QqIHN1Y2ggQml0QmFrZSBwcm9qZWN0LiBGb3Ig
-ZXhhbXBsZSwgdGhlDQo+PiAiREVTQ1JJUFRJT04iIGFuZCAiUFYiIHZhcmlhYmxlcyBuZWVkIG5v
-dCBiZSBhc3NpZ25lZCBpbiAiYS5iYiIuIEkgc2V0IHRob3NlDQo+PiB2YXJpYWJsZXMgYmVjYXVz
-ZSBJIHdhbnRlZCAic2hvdy1sYXllcnMiIGFuZCAic2hvdy1yZWNpcGVzIiB0byBkaXNwbGF5DQo+
-PiByZWFzb25hYmxlIGluZm9ybWF0aW9uLg0KPj4gDQo+PiAyKSBTb21lIG9mIHRoZSB2YXJpYWJs
-ZXMgc2V0IGluICJiaXRiYWtlLmNvbmYiIGhhdmUgInNpbXBsaWZpZWQiIHZhbHVlcy4gRm9yDQo+
-PiBleGFtcGxlLCB5b3Ugd291bGQgKm5vdCogd2FudCB0byB1c2UgdGhlc2UgdmFsdWVzIGlmIHRo
-ZXJlIHdlcmUgbXVsdGlwbGUNCj4+IHJlY2lwZXMgYW5kIHlvdSBoYWQgdG8gZGlzYW1iaWd1YXRl
-IHRoZSBvdXRwdXQgZnJvbSBlYWNoIG9mIHRoZW0uDQo+PiANCj4+IDMpIE9uIHRoZSBvdGhlciBo
-YW5kLCAqYWxsKiB0aGUgdmFyaWFibGUgYXNzaWdubWVudHMgaW4gImJpdGJha2UuY29uZiIgYXJl
-DQo+PiAqZXNzZW50aWFsKiB0byBCaXRCYWtlIGl0c2VsZi4gSWYgeW91IHJlbW92ZSBhbnkgb25l
-IG9mIHRob3NlIGFzc2lnbm1lbnRzLA0KPj4gQml0QmFrZSB3aWxsIGVpdGhlciBkZWNsYXJlIGFu
-IGVycm9yIG9yIGRpZSAodXN1YWxseSBiZWNhdXNlIHNvbWUgaW50ZXJuYWwNCj4+IHZhcmlhYmxl
-IGlzIHNldCB0byAiTm9uZSIgYW5kIHRoZSBCaXRCYWtlIGNvZGUgY2FuJ3QgaGFuZGxlIGl0KS4N
-Cj4+IA0KPj4gDQo+PiAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0NCj4+IA0KPj4gDQo+PiDilJzilIDilIAgYnVpbGQNCj4+IOKUgiAg
-IOKUgg0KPj4g4pSCICAg4pSc4pSA4pSAIGNsYXNzZXMNCj4+IOKUgiAgIOKUgiAgIOKUgg0KPj4g
-4pSCICAg4pSCICAg4pSU4pSA4pSAIGJhc2UuYmJjbGFzcw0KPj4g4pSCICAg4pSCDQo+PiDilIIg
-ICDilIIgICAgICAgKy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tDQo+PiDilIIgICDilIIgICAgICAgfCAgYWRkdGFzayBidWlsZA0KPj4g4pSCICAg4pSCICAg
-ICAgICstLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KPj4g
-4pSCICAg4pSCDQo+PiDilIIgICDilJTilIDilIAgY29uZg0KPj4g4pSCICAgICAgIOKUgg0KPj4g
-4pSCICAgICAgIOKUnOKUgOKUgCBiYmxheWVycy5jb25mDQo+PiDilIIgICAgICAg4pSCDQo+PiDi
-lIIgICAgICAg4pSCICAgKy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tDQo+PiDilIIgICAgICAg4pSCICAgfCAgQkJMQVlFUlMgPz0gIiBcDQo+PiDilIIgICAg
-ICAg4pSCICAgfCAgICAvaG9tZS9wdHVybGV5L1dvcmtzcGFjZS9IZWxsby9MYXllckEgXA0KPj4g
-4pSCICAgICAgIOKUgiAgIHwgICAgIg0KPj4g4pSCICAgICAgIOKUgiAgICstLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KPj4g4pSCICAgICAgIOKUgg0KPj4g
-4pSCICAgICAgIOKUlOKUgOKUgCBiaXRiYWtlLmNvbmYNCj4+IOKUgg0KPj4g4pSCICAgICAgICAg
-ICArLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCj4+IOKU
-giAgICAgICAgICAgfCAgVE1QRElSICA9ICIke1RPUERJUn0vdG1wIg0KPj4g4pSCICAgICAgICAg
-ICB8ICBDQUNIRSAgID0gIiR7VE1QRElSfS9jYWNoZSINCj4+IOKUgiAgICAgICAgICAgfCAgU1RB
-TVAgICA9ICIke1RNUERJUn0vc3RhbXBzIg0KPj4g4pSCICAgICAgICAgICB8ICBUICAgICAgID0g
-IiR7VE1QRElSfS93b3JrIg0KPj4g4pSCICAgICAgICAgICB8ICBCICAgICAgID0gIiR7VE1QRElS
-fSINCj4+IOKUgiAgICAgICAgICAgKy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tDQo+PiDilIINCj4+IOKUnOKUgOKUgCBMYXllckENCj4+IOKUgiAgIOKUgg0K
-Pj4g4pSCICAg4pSc4pSA4pSAIGEuYmINCj4+IOKUgiAgIOKUgg0KPj4g4pSCICAg4pSCICAgICAg
-ICstLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KPj4g4pSC
-ICAg4pSCICAgICAgIHwgIERFU0NSSVBUSU9OID0gIkxheWVyIEEgUmVjaXBlIg0KPj4g4pSCICAg
-4pSCICAgICAgIHwgIFBOID0gJ2EnDQo+PiDilIIgICDilIIgICAgICAgfCAgUFYgPSAnMScNCj4+
-IOKUgiAgIOKUgiAgICAgICB8DQo+PiDilIIgICDilIIgICAgICAgfCAgcHl0aG9uIGRvX2J1aWxk
-KCkgew0KPj4g4pSCICAg4pSCICAgICAgIHwgICAgICBiYi5wbGFpbigiSGVsbG8sIFdvcmxkISIp
-Ow0KPj4g4pSCICAg4pSCICAgICAgIHwgIH0NCj4+IOKUgiAgIOKUgiAgICAgICArLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCj4+IOKUgiAgIOKUgg0KPj4g
-4pSCICAg4pSU4pSA4pSAIGNvbmYNCj4+IOKUgiAgICAgICDilIINCj4+IOKUgiAgICAgICDilJTi
-lIDilIAgbGF5ZXIuY29uZg0KPj4g4pSCDQo+PiDilIIgICAgICAgICAgICstLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KPj4g4pSCICAgICAgICAgICB8ICBC
-QlBBVEggLj0gIjoke0xBWUVSRElSfSINCj4+IOKUgiAgICAgICAgICAgfA0KPj4g4pSCICAgICAg
-ICAgICB8ICBCQkZJTEVTICs9ICIke0xBWUVSRElSfS8qLmJiIg0KPj4g4pSCICAgICAgICAgICB8
-DQo+PiDilIIgICAgICAgICAgIHwgIEJCRklMRV9DT0xMRUNUSU9OUyArPSAiQSINCj4+IOKUgiAg
-ICAgICAgICAgfCAgQkJGSUxFX1BBVFRFUk5fQSA6PSAiXiR7TEFZRVJESVJ9LyINCj4+IOKUgiAg
-ICAgICAgICAgKy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-DQo+PiDilIINCj4+IOKUlOKUgOKUgCBCaXRCYWtlDQo+PiANCj4+ICAgVGhlIEJpdEJha2UgZGly
-ZWN0b3J5IG9yaWdpbiBpczoNCj4+IA0KPj4gICAgICAgaHR0cDovL2dpdC5vcGVuZW1iZWRkZWQu
-b3JnL2JpdGJha2UvDQo+PiANCj4+ICAgSSBoYXZlIHRoZSAxLjE1LjIgdGFnIGNoZWNrZWQgb3V0
-LCB3aGljaCBpcyB3aGF0DQo+PiAgIFlvY3RvIGRlbnppbCB1c2VzLg0KPj4gDQo+PiANCj4+IF9f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+PiB5b2N0byBt
-YWlsaW5nIGxpc3QNCj4+IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcNCj4+IGh0dHBzOi8vbGlzdHMu
-eW9jdG9wcm9qZWN0Lm9yZy9saXN0aW5mby95b2N0bw0KDQo=
+Tested this for sugarbay BSP, and did not see any issues with it.
+
+Nitin
+
+
+> -----Original Message-----
+> From: Darren Hart [mailto:dvhart@linux.intel.com]
+> Sent: Tuesday, October 09, 2012 3:53 PM
+> To: Yocto Project
+> Cc: Darren Hart; Saul Wold; Zanussi, Tom; Kamble, Nitin A
+> Subject: [PATCH] Fix use of PRINC in meta-intel BSPs
+>=20
+> Replaces all uses of PRINC with the form:
+>=20
+> PRINC :=3D "${@int(PRINC) + N}"
+>=20
+> Where N is the previously assigned value plus one to ensure a monotonical=
+ly
+> increasing PRINC value.
+>=20
+> Signed-off-by: Darren Hart <dvhart@linux.intel.com>
+> CC: Saul Wold <sgw@linux.intel.com>
+> CC: Tom Zanussi <tom.zanussi@intel.com>
+> CC: Nitin Kamble <nitin.a.kamble@intel.com>
+> ---
+>  .../recipes-bsp/formfactor/formfactor_0.0.bbappend |    2 +-
+>  .../recipes-bsp/formfactor/formfactor_0.0.bbappend |    2 +-
+>  .../recipes-bsp/formfactor/formfactor_0.0.bbappend |    2 +-
+>  .../recipes-bsp/formfactor/formfactor_0.0.bbappend |    2 +-
+>  .../recipes-bsp/formfactor/formfactor_0.0.bbappend |    2 +-
+>  .../recipes-bsp/formfactor/formfactor_0.0.bbappend |    4 ++--
+>  .../recipes-bsp/formfactor/formfactor_0.0.bbappend |    2 +-
+>  .../recipes-bsp/formfactor/formfactor_0.0.bbappend |    2 +-
+>  .../recipes-bsp/formfactor/formfactor_0.0.bbappend |    2 +-
+>  .../recipes-bsp/formfactor/formfactor_0.0.bbappend |    2 +-
+>  .../recipes-bsp/formfactor/formfactor_0.0.bbappend |    2 +-
+>  .../recipes-bsp/formfactor/formfactor_0.0.bbappend |    2 +-
+>  meta-tlk/recipes-core/psplash/psplash_git.bbappend |    2 +-
+>  meta-tlk/recipes-kernel/linux/linux-yocto_tlk.inc  |    2 +-
+>  14 files changed, 15 insertions(+), 15 deletions(-)
+>=20
+> diff --git a/meta-cedartrail/recipes-
+> bsp/formfactor/formfactor_0.0.bbappend b/meta-cedartrail/recipes-
+> bsp/formfactor/formfactor_0.0.bbappend
+> index 54da0ff..2a3ee7a 100644
+> --- a/meta-cedartrail/recipes-bsp/formfactor/formfactor_0.0.bbappend
+> +++ b/meta-cedartrail/recipes-bsp/formfactor/formfactor_0.0.bbappend
+> @@ -1,3 +1,3 @@
+>  FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
+>=20
+> -PRINC =3D "1"
+> +PRINC :=3D "${@int(PRINC) + 2}"
+> diff --git a/meta-chiefriver/recipes-
+> bsp/formfactor/formfactor_0.0.bbappend b/meta-chiefriver/recipes-
+> bsp/formfactor/formfactor_0.0.bbappend
+> index 54da0ff..2a3ee7a 100644
+> --- a/meta-chiefriver/recipes-bsp/formfactor/formfactor_0.0.bbappend
+> +++ b/meta-chiefriver/recipes-bsp/formfactor/formfactor_0.0.bbappend
+> @@ -1,3 +1,3 @@
+>  FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
+>=20
+> -PRINC =3D "1"
+> +PRINC :=3D "${@int(PRINC) + 2}"
+> diff --git a/meta-crownbay/recipes-
+> bsp/formfactor/formfactor_0.0.bbappend b/meta-crownbay/recipes-
+> bsp/formfactor/formfactor_0.0.bbappend
+> index 54da0ff..2a3ee7a 100644
+> --- a/meta-crownbay/recipes-bsp/formfactor/formfactor_0.0.bbappend
+> +++ b/meta-crownbay/recipes-bsp/formfactor/formfactor_0.0.bbappend
+> @@ -1,3 +1,3 @@
+>  FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
+>=20
+> -PRINC =3D "1"
+> +PRINC :=3D "${@int(PRINC) + 2}"
+> diff --git a/meta-crystalforest/recipes-
+> bsp/formfactor/formfactor_0.0.bbappend b/meta-crystalforest/recipes-
+> bsp/formfactor/formfactor_0.0.bbappend
+> index 54da0ff..2a3ee7a 100644
+> --- a/meta-crystalforest/recipes-bsp/formfactor/formfactor_0.0.bbappend
+> +++ b/meta-crystalforest/recipes-bsp/formfactor/formfactor_0.0.bbappend
+> @@ -1,3 +1,3 @@
+>  FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
+>=20
+> -PRINC =3D "1"
+> +PRINC :=3D "${@int(PRINC) + 2}"
+> diff --git a/meta-emenlow/recipes-
+> bsp/formfactor/formfactor_0.0.bbappend b/meta-emenlow/recipes-
+> bsp/formfactor/formfactor_0.0.bbappend
+> index 54da0ff..2a3ee7a 100644
+> --- a/meta-emenlow/recipes-bsp/formfactor/formfactor_0.0.bbappend
+> +++ b/meta-emenlow/recipes-bsp/formfactor/formfactor_0.0.bbappend
+> @@ -1,3 +1,3 @@
+>  FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
+>=20
+> -PRINC =3D "1"
+> +PRINC :=3D "${@int(PRINC) + 2}"
+> diff --git a/meta-fishriver/recipes-bsp/formfactor/formfactor_0.0.bbappen=
+d
+> b/meta-fishriver/recipes-bsp/formfactor/formfactor_0.0.bbappend
+> index 54da0ff..6644a84 100644
+> --- a/meta-fishriver/recipes-bsp/formfactor/formfactor_0.0.bbappend
+> +++ b/meta-fishriver/recipes-bsp/formfactor/formfactor_0.0.bbappend
+> @@ -1,3 +1,3 @@
+>  FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
+> -
+> -PRINC =3D "1"
+> +
+> +PRINC :=3D "${@int(PRINC) + 2}"
+> diff --git a/meta-fri2/recipes-bsp/formfactor/formfactor_0.0.bbappend
+> b/meta-fri2/recipes-bsp/formfactor/formfactor_0.0.bbappend
+> index 54da0ff..2a3ee7a 100644
+> --- a/meta-fri2/recipes-bsp/formfactor/formfactor_0.0.bbappend
+> +++ b/meta-fri2/recipes-bsp/formfactor/formfactor_0.0.bbappend
+> @@ -1,3 +1,3 @@
+>  FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
+>=20
+> -PRINC =3D "1"
+> +PRINC :=3D "${@int(PRINC) + 2}"
+> diff --git a/meta-jasperforest/recipes-
+> bsp/formfactor/formfactor_0.0.bbappend b/meta-jasperforest/recipes-
+> bsp/formfactor/formfactor_0.0.bbappend
+> index 54da0ff..2a3ee7a 100644
+> --- a/meta-jasperforest/recipes-bsp/formfactor/formfactor_0.0.bbappend
+> +++ b/meta-jasperforest/recipes-bsp/formfactor/formfactor_0.0.bbappend
+> @@ -1,3 +1,3 @@
+>  FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
+>=20
+> -PRINC =3D "1"
+> +PRINC :=3D "${@int(PRINC) + 2}"
+> diff --git a/meta-n450/recipes-bsp/formfactor/formfactor_0.0.bbappend
+> b/meta-n450/recipes-bsp/formfactor/formfactor_0.0.bbappend
+> index 54da0ff..2a3ee7a 100644
+> --- a/meta-n450/recipes-bsp/formfactor/formfactor_0.0.bbappend
+> +++ b/meta-n450/recipes-bsp/formfactor/formfactor_0.0.bbappend
+> @@ -1,3 +1,3 @@
+>  FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
+>=20
+> -PRINC =3D "1"
+> +PRINC :=3D "${@int(PRINC) + 2}"
+> diff --git a/meta-romley/recipes-bsp/formfactor/formfactor_0.0.bbappend
+> b/meta-romley/recipes-bsp/formfactor/formfactor_0.0.bbappend
+> index 54da0ff..2a3ee7a 100644
+> --- a/meta-romley/recipes-bsp/formfactor/formfactor_0.0.bbappend
+> +++ b/meta-romley/recipes-bsp/formfactor/formfactor_0.0.bbappend
+> @@ -1,3 +1,3 @@
+>  FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
+>=20
+> -PRINC =3D "1"
+> +PRINC :=3D "${@int(PRINC) + 2}"
+> diff --git a/meta-sugarbay/recipes-
+> bsp/formfactor/formfactor_0.0.bbappend b/meta-sugarbay/recipes-
+> bsp/formfactor/formfactor_0.0.bbappend
+> index 54da0ff..2a3ee7a 100644
+> --- a/meta-sugarbay/recipes-bsp/formfactor/formfactor_0.0.bbappend
+> +++ b/meta-sugarbay/recipes-bsp/formfactor/formfactor_0.0.bbappend
+> @@ -1,3 +1,3 @@
+>  FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
+>=20
+> -PRINC =3D "1"
+> +PRINC :=3D "${@int(PRINC) + 2}"
+> diff --git a/meta-sys940x/recipes-bsp/formfactor/formfactor_0.0.bbappend
+> b/meta-sys940x/recipes-bsp/formfactor/formfactor_0.0.bbappend
+> index 54da0ff..2a3ee7a 100644
+> --- a/meta-sys940x/recipes-bsp/formfactor/formfactor_0.0.bbappend
+> +++ b/meta-sys940x/recipes-bsp/formfactor/formfactor_0.0.bbappend
+> @@ -1,3 +1,3 @@
+>  FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
+>=20
+> -PRINC =3D "1"
+> +PRINC :=3D "${@int(PRINC) + 2}"
+> diff --git a/meta-tlk/recipes-core/psplash/psplash_git.bbappend b/meta-
+> tlk/recipes-core/psplash/psplash_git.bbappend
+> index 6b5258e..c0bf3dc 100644
+> --- a/meta-tlk/recipes-core/psplash/psplash_git.bbappend
+> +++ b/meta-tlk/recipes-core/psplash/psplash_git.bbappend
+> @@ -2,7 +2,7 @@ FILESEXTRAPATHS_prepend :=3D "${THISDIR}/files:"
+>=20
+>  DEPENDS +=3D "gdk-pixbuf-native"
+>=20
+> -PRINC =3D "6"
+> +PRINC :=3D "${@int(PRINC) + 7}"
+>=20
+>  # NB: this is only for the main logo image; if you add multiple images h=
+ere,  #
+> poky will build multiple psplash packages with 'outsuffix' in name for di=
+ff --git
+> a/meta-tlk/recipes-kernel/linux/linux-yocto_tlk.inc b/meta-tlk/recipes-
+> kernel/linux/linux-yocto_tlk.inc
+> index b1cf883..47d6ffd 100644
+> --- a/meta-tlk/recipes-kernel/linux/linux-yocto_tlk.inc
+> +++ b/meta-tlk/recipes-kernel/linux/linux-yocto_tlk.inc
+> @@ -1,3 +1,3 @@
+>  FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
+>  SRC_URI_append =3D " file://time-limited-kernel.cfg"
+> -PR .=3D ".2"
+> +PRINC :=3D "${@int(PRINC) + 1}"
+> --
+> 1.7.5.4
+
 
