@@ -1,34 +1,37 @@
-Return-Path: <jessica.zhang@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E62F0E011C5
-	for <yocto@yoctoproject.org>; Tue,  9 Oct 2012 23:14:42 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 09 Oct 2012 23:14:40 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,563,1344236400"; d="scan'208";a="232057249"
-Received: from orsmsx105.amr.corp.intel.com ([10.22.225.132])
-	by fmsmga001.fm.intel.com with ESMTP; 09 Oct 2012 23:14:19 -0700
-Received: from orsmsx153.amr.corp.intel.com (10.22.226.247) by
-	ORSMSX105.amr.corp.intel.com (10.22.225.132) with Microsoft SMTP Server
-	(TLS) id 14.1.355.2; Tue, 9 Oct 2012 23:14:19 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.223]) by
-	ORSMSX153.amr.corp.intel.com ([169.254.13.180]) with mapi id
-	14.01.0355.002; Tue, 9 Oct 2012 23:14:18 -0700
-From: "Zhang, Jessica" <jessica.zhang@intel.com>
-To: Evade Flow <evadeflow@gmail.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] Control which host components are included in ADT output?
-Thread-Index: AQHNpmsM00XKWyvFOE6R+jWnVbNMqJeyDGQQ
-Date: Wed, 10 Oct 2012 06:14:18 +0000
-Message-ID: <C6510F6D410BB64A8C15398EDC6B847C46B0D4B4@ORSMSX101.amr.corp.intel.com>
-References: <CAMAb8ZO+56YJbrf8LAjbt1eS=GpSgmYr0=MSvx020K=1xwduWw@mail.gmail.com>
-In-Reply-To: <CAMAb8ZO+56YJbrf8LAjbt1eS=GpSgmYr0=MSvx020K=1xwduWw@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.138]
+Return-Path: <ross.burton@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4407FE011DB
+	for <yocto@yoctoproject.org>; Wed, 10 Oct 2012 02:23:25 -0700 (PDT)
+Received: from mail-ia0-f176.google.com ([209.85.210.176])
+	by mga09.intel.com with ESMTP/TLS/RC4-SHA; 10 Oct 2012 02:23:04 -0700
+Received: by mail-ia0-f176.google.com with SMTP id h11so215928iae.35
+	for <yocto@yoctoproject.org>; Wed, 10 Oct 2012 02:23:23 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type:x-gm-message-state;
+	bh=aLvGcvxy2Tsxk11PcL/PK9jOO7jvaJPNTccaWw9Qpgw=;
+	b=Xa8+LWhwhl09Eol8QQM+VQ87K6jJir9DGrVZMz4Xr6qkEe5AhKcX0c2yrNDaHSunOB
+	6l3nEbg8HvBMKLPfOnUMnbbcmdIvTKvS0t51g0KNrScBchnVDxHrRfbumulA7jHa5+xU
+	qMFbQVA7pTYl2McLY646T7y/Gi5ZFZClv6LYg5nP9BWpYPNP5oY1C347BeJp4IUHopJv
+	2jEcZaZevRKaI5DmFKwYbN9hqVzDm1pne2L7qV4wxryyfz/0kXj1Q1e+r8aHv5qHWyi9
+	Wdzn0qVEEh2/fqZGOw3315JpjlQ/ciiaNnBs/UW8ppbMHXcPdSxRXXsfdE5leNFK5tXN
+	4DDg==
+Received: by 10.50.180.169 with SMTP id dp9mr4610025igc.8.1349861003140; Wed,
+	10 Oct 2012 02:23:23 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Re: Control which host components are included in ADT output?
+Received: by 10.64.141.70 with HTTP; Wed, 10 Oct 2012 02:23:01 -0700 (PDT)
+In-Reply-To: <5074E0BB.6040109@intel.com>
+References: <cover.1349831664.git.nitin.a.kamble@intel.com>
+	<35b1c05ce67d1e95bb471f3db56a14c9c519498b.1349831664.git.nitin.a.kamble@intel.com>
+	<5074E0BB.6040109@intel.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Wed, 10 Oct 2012 10:23:01 +0100
+Message-ID: <CAJTo0LbHqo6VV4BmhbZO1yTbeVwMbNiPyhCs-YZhv9QdQFUdPw@mail.gmail.com>
+To: Darren Hart <darren.hart@intel.com>
+X-Gm-Message-State: ALoCoQk73t05vzt5je+THWuz6obobUBi3HTvMU4Mp5Oj7xiQY1SGkB7fOFZymdW0g97u15kJK+Yc
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCHv2 1/5] xf86-video-intel: Bring 2.20.0 version to match released graphics stack
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,125 +43,20 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 Oct 2012 06:14:43 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 10 Oct 2012 09:23:25 -0000
+Content-Type: text/plain; charset=UTF-8
 
-Hi Evade,
+On 10 October 2012 03:43, Darren Hart <darren.hart@intel.com> wrote:
+> Saw you asked in a bug about the impact of this, I'd like to hear back
+> from Ross on the changes regarding xvmc and PACKAGECONFIG.
 
-The main purpose of Yocto ADT is for setting up a development environment o=
-n your host which allows you to cross develop applications for your target.=
-  And there're two key components help you to achieve this: cross-toolchain=
- and sysroot. That's why the sysroot provides you a collection of target li=
-bs and all the main focus of ADT manual is for how to customize your sysroo=
-t to meet your special development needs.
+So everyone hears and not just people on the bug, I'll repeat what I put.
 
-Seems you're more interested in generate a SDK for host?
+XVMC is disabled by default (as before) but available to be enabled
+via PACKAGECONFIG.
 
-Thanks,
-Jessica
+SNA (new acceleration architecture) is disabled by default but also
+enabled via PACKAGECONFIG.  Enabling SNA adds about 1MB to the binary.
 
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Evade Flow
-Sent: Tuesday, October 09, 2012 3:11 PM
-To: yocto@yoctoproject.org
-Subject: [yocto] Control which host components are included in ADT output?
-
-I have a question about the ADT and how it selects host SDK components.
-If I type:
-
-% bitbake meta-toolchain-sdk
-
-I wind up getting hundreds of target libs when I extract the generated
-tarball:
-
-% pwd
-/opt/poky/1.2.1/sysroots
-% ls armv5te-poky-linux-gnueabi/usr/lib | wc -l
-696
-
-but a relatively small number of host libs:
-
-% ls i686-pokysdk-linux/usr/lib | wc -l
-53
-
-Is this normal? Taking libxml2 as an example:
-
-% ls -1 armv5te-poky-linux-gnueabi/usr/lib/libxml*
-armv5te-poky-linux-gnueabi/usr/lib/libxml2.la
-armv5te-poky-linux-gnueabi/usr/lib/libxml2.so
-armv5te-poky-linux-gnueabi/usr/lib/libxml2.so.2
-armv5te-poky-linux-gnueabi/usr/lib/libxml2.so.2.7.8
-% ls -1 i686-pokysdk-linux/usr/lib/libxml*
-zsh: no matches found: i686-pokysdk-linux/usr/lib/libxml*
-
-It seems desirable to have libxml2 be part of the SDK I give to my developm=
-ent team. We have a lot of test applications that can be run on the host, a=
-nd I don't like the thought of somebody wasting time chasing a bug that tur=
-ns out to be due to the fact that he is linking against a different (system=
--installed) version of libxml2 rather than the target version.
-
-Skimming the ADT manual, this section seems to hint at a solution:
-
- - http://www.yoctoproject.org/docs/current/adt-manual/adt-manual.html#adt-=
-package
-
-But I can't quite follow all the steps. :-% It says (using libglade as an e=
-xample):
-
-  First, you should generate the ipk file for the libglade package and
-  add it into a working opkg repository. Use these commands:
-
-    $ bitbake libglade
-    $ bitbake package-index
-
-
-Being totally new to opkg, this lost me. What does the 'package-index'
-target actually do?  Does bitbake "add it [libglade] into a working opkg re=
-pository" for me, or am I supposed to take the output of the command and do=
- something with it? I had a look in these two locations for 'package-index'=
- and came up empty:
-
- - http://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html
- - http://www.yoctoproject.org/docs/current/poky-ref-manual/poky-ref-manual=
-.html
-
-What's the best place to look for these kinds of references when I get stuc=
-k on something?
-
-The ADT docs go on to say:
-
-  Next, source the environment setup script found in the Yocto Project
-  files. Follow that by setting up the installation destination to point
-  to your sysroot as <sysroot_dir>. Finally, have an OPKG configuration
-  file <conf_file> that corresponds to the opkg repository you have just
-  created.
-
-     $ opkg-cl -f <conf_file> -o <sysroot_dir> update
-     $ opkg-cl -f <cconf_file> -o <sysroot_dir> \
-        --force-overwrite install libglade
-     $ opkg-cl -f <cconf_file> -o <sysroot_dir> \
-        --force-overwrite install libglade-dbg
-     $ opkg-cl -f <conf_file> -o <sysroot_dir> \
-        --force-overwrite install libglade-dev
-
-<sysroot_dir> I understand, but what is <conf_file>? Did bitbake generate t=
-his for me? Am I supposed to create one by hand? Where? These instructions =
-are a little hard to follow due to the use of placeholders rather than conc=
-rete arguments. I think a complete, explicit example would help a lot here.
-
-Also, it seems likely that the above commands would only install a libglade=
- compiled for the target? How would I generate a libglade for the host?
-
-Another question is: is there a way to tune the ADT tarball to be a better =
-fit for my needs so that I don't need to add so many packages by hand after=
--the-fact?
-
-Any advice much appreciated, thanks!
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
+Ross
 
