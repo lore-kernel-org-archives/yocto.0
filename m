@@ -1,38 +1,38 @@
-Return-Path: <kishore.k.bodke@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 12ED7E00717
-	for <yocto@yoctoproject.org>; Wed, 10 Oct 2012 15:35:56 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 10 Oct 2012 15:35:34 -0700
+Return-Path: <nitin.a.kamble@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8AB73E00717
+	for <yocto@yoctoproject.org>; Wed, 10 Oct 2012 16:10:34 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 10 Oct 2012 16:10:34 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,567,1344236400"; d="scan'208";a="225309003"
-Received: from orsmsx104.amr.corp.intel.com ([10.22.225.131])
-	by orsmga002.jf.intel.com with ESMTP; 10 Oct 2012 15:35:55 -0700
-Received: from orsmsx108.amr.corp.intel.com (10.22.225.41) by
-	ORSMSX104.amr.corp.intel.com (10.22.225.131) with Microsoft SMTP Server
-	(TLS) id 14.1.355.2; Wed, 10 Oct 2012 15:35:55 -0700
-Received: from orsmsx105.amr.corp.intel.com ([169.254.4.116]) by
-	ORSMSX108.amr.corp.intel.com ([169.254.9.202]) with mapi id
-	14.01.0355.002; Wed, 10 Oct 2012 15:35:55 -0700
-From: "Bodke, Kishore K" <kishore.k.bodke@intel.com>
-To: Chris Tapp <opensource@keylevel.com>
-Thread-Topic: [yocto] Finding root cause of "host include and/or library
-	paths	were used"
-Thread-Index: AQHNpwdKPvudWy3pg06I0rAjgw+RNJeyycFAgACeuQCAABzSgP//muYg
-Date: Wed, 10 Oct 2012 22:35:54 +0000
-Message-ID: <D956029D25CF204F948EA0FB515E1EE2264DCE1D@ORSMSX105.amr.corp.intel.com>
-References: <7EB7A8EA-43A7-45A9-8769-8E35AC63DC45@keylevel.com>
-	<D956029D25CF204F948EA0FB515E1EE2264DCBE5@ORSMSX105.amr.corp.intel.com>
-	<28224C3A-5033-4D63-BB99-976C75EF24A6@keylevel.com>
-	<A4740593-AB7E-4221-BEA8-F20CB1CC5337@keylevel.com>
-In-Reply-To: <A4740593-AB7E-4221-BEA8-F20CB1CC5337@keylevel.com>
+X-IronPort-AV: E=Sophos;i="4.80,567,1344236400"; d="scan'208";a="232455101"
+Received: from orsmsx102.amr.corp.intel.com ([10.22.225.129])
+	by fmsmga001.fm.intel.com with ESMTP; 10 Oct 2012 16:10:33 -0700
+Received: from orsmsx152.amr.corp.intel.com (10.22.226.39) by
+	ORSMSX102.amr.corp.intel.com (10.22.225.129) with Microsoft SMTP Server
+	(TLS) id 14.1.355.2; Wed, 10 Oct 2012 16:10:33 -0700
+Received: from orsmsx106.amr.corp.intel.com ([169.254.5.60]) by
+	ORSMSX152.amr.corp.intel.com ([169.254.8.154]) with mapi id
+	14.01.0355.002; Wed, 10 Oct 2012 16:10:32 -0700
+From: "Kamble, Nitin A" <nitin.a.kamble@intel.com>
+To: "Burton, Ross" <ross.burton@intel.com>
+Thread-Topic: [yocto] [PATCH 2/5] crownbay.conf: specify the 8.0.4 version
+	as preferred version of mesa-dri
+Thread-Index: AQHNpmsEn7tdN8qRbUGwV5alcKA1mJeyuo4AgABu8SA=
+Date: Wed, 10 Oct 2012 23:10:31 +0000
+Message-ID: <ADD6A3980E8C39419A432FF422031B4C1573164F@ORSMSX106.amr.corp.intel.com>
+References: <cover.1349820369.git.nitin.a.kamble@intel.com>
+	<e349d9f28dd0b1064fffd14b337770ee6574e7cd.1349820369.git.nitin.a.kamble@intel.com>
+	<CAJTo0LYmbD=HJEECJC7usk7A7tLwDxnrFm-pxUoRo2=qyKGyvQ@mail.gmail.com>
+In-Reply-To: <CAJTo0LYmbD=HJEECJC7usk7A7tLwDxnrFm-pxUoRo2=qyKGyvQ@mail.gmail.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
+x-originating-ip: [10.22.254.139]
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org Project" <yocto@yoctoproject.org>
-Subject: Re: Finding root cause of "host include and/or library paths	were used"
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Hart,
+	Darren" <darren.hart@intel.com>
+Subject: Re: [PATCH 2/5] crownbay.conf: specify the 8.0.4 version as preferred version of mesa-dri
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,99 +44,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 Oct 2012 22:35:56 -0000
+X-List-Received-Date: Wed, 10 Oct 2012 23:10:34 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-
-
->-----Original Message-----
->From: Chris Tapp [mailto:opensource@keylevel.com]
->Sent: Wednesday, October 10, 2012 2:34 PM
->To: Bodke, Kishore K
->Cc: yocto@yoctoproject.org Project
->Subject: Re: [yocto] Finding root cause of "host include and/or library pa=
-ths
->were used"
->
->
->On 10 Oct 2012, at 20:51, Chris Tapp wrote:
->
->> On 10 Oct 2012, at 18:26, Bodke, Kishore K wrote:
->>
->>>
->>>
->>>> -----Original Message-----
->>>> From: yocto-bounces@yoctoproject.org [mailto:yocto-
->>>> bounces@yoctoproject.org] On Behalf Of Chris Tapp
->>>> Sent: Wednesday, October 10, 2012 9:50 AM
->>>> To: yocto@yoctoproject.org Project
->>>> Subject: [yocto] Finding root cause of "host include and/or library pa=
-ths
->were
->>>> used"
->>>>
->>>> I'm trying to get libsdl_gfx to build. I've created a .bb file which r=
-uns and
->>>> installs the relevant headers and libs in tmp/sysroots.
->>>>
->>>> However, I'm getting a QA failure:
->>>>
->>>> NOTE: package libsdl-gfx-2.0.24-r1: task do_populate_sysroot: Succeede=
-d
->>>> WARNING: libsdl-gfx: The compile log indicates that host include and/o=
-r
->library
->>>> paths were used.
->>>>       Please check the log '/media/SSD-RAID/build-denzil-git-sjs-
->>>> cedartrail/tmp/work/core2-sjs-linux/libsdl-gfx-2.0.24-
->>>> r1/temp/log.do_compile' for more information.
->>>>
->>>> The compile log has instances of:
->>>>
->>>> cc1: warning: include location "/usr/include/SDL" is unsafe for cross-
->>>> compilation [-Wpoison-system-directories]
->>>>
->>>> The source uses autotools. I've had a look round the files, but it's n=
-ot
->obvious
->>>> to me where the above path is set (I'm definitely not an autotools
->expert).
->>>> Can anyone give me an idea what I should be looking for? I suspect it =
-may
->>>> have something to do with a line from Makefile.am:
->>>>
->>>> libSDL_gfxincludedir =3D $(includedir)/SDL
->>>
->>> Did you inherit autotools in your recipe?
->>
->> Yes, that's in there.
->>
->>> You may have to patch your makefile not to use host header files.
->>> Or, I think you can use ${STAGING_INCDIR} to override, at the time of y=
-our
->configure.
->>
->> Thanks. Are there any examples I can look at to see how to do this? I've=
- not
->been able to find which file I need to change after 'unpack'.
->
->I seem to have 'fixed' it, but I'm not sure I understand how! I've added:
->
->EXTRA_OECONF =3D "--prefix=3D/any-old-thing"
->
->to the .bb file. No warnings, compile log shows the correct include path:
->
->-I/media/SSD-RAID/build-denzil-git-sjs-cedartrail/tmp/sysroots/cedartrail-
->nopvr/usr/include/SDL
-
-Yeah, EXTRA_OECONF with ${STAGING_INCDIR} would do that I guess,=20
-But not exactly sure with the syntax here. =20
-
-You might want to take a look other recipes in poky using this I guess to f=
-ind how it is done.
-
-Thanks
-Kishore.
+DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogQnVydG9uLCBSb3NzIFtt
+YWlsdG86cm9zcy5idXJ0b25AaW50ZWwuY29tXQ0KPiBTZW50OiBXZWRuZXNkYXksIE9jdG9iZXIg
+MTAsIDIwMTIgMjoyNCBBTQ0KPiBUbzogS2FtYmxlLCBOaXRpbiBBDQo+IENjOiB5b2N0b0B5b2N0
+b3Byb2plY3Qub3JnOyBaYW51c3NpLCBUb207IEhhcnQsIERhcnJlbg0KPiBTdWJqZWN0OiBSZTog
+W3lvY3RvXSBbUEFUQ0ggMi81XSBjcm93bmJheS5jb25mOiBzcGVjaWZ5IHRoZSA4LjAuNCB2ZXJz
+aW9uIGFzDQo+IHByZWZlcnJlZCB2ZXJzaW9uIG9mIG1lc2EtZHJpDQo+IA0KPiBIaSBOaXRpbiwN
+Cj4gDQo+IEZyb20gd2hhdCBJIHVuZGVyc3RhbmQsIEVNR0QncyBNZXNhIGRyaXZlciB3aWxsIG9u
+bHkgd29yayBjb3JyZWN0bHkgd2l0aCBhDQo+IE1lc2EgdGhhdCBtYXRjaGVzIGV4YWN0bHkgdGhl
+IGNvbmZpZ3VyYXRpb24gdGhhdCB3YXMgdXNlZCB0byBidWlsZCBFTUdELCBhcw0KPiB0aGUgZHJp
+dmVyIGludGVyZmFjZSBpc24ndCBzdGFibGUuICBIYXZlIHlvdSB0ZXN0ZWQgdGhlIEdMIHN1cHBv
+cnQgd2l0aCBtb3JlDQo+IHRoYW4gZ2x4aW5mbz8NCj4gDQo+IFJvc3MNCg0KSGkgUm9zcywNCiAg
+ICBJIGZpbmQgdGhhdCBlbWdkIGRyaXZlciBpdHNlbGYgaXMgcHJvdmlkaW5nIHNvbWUgb2YgdGhl
+IG1lc2EgbGlicmFyaWVzICYgaGVhZGVycy4gQW5kIEkgY291bGQgbm90IGZpbmQgYSBtYXRjaCBm
+b3IgdGhvc2UgaW4gYW55IG9mIHRoZSByZWxlYXNlZCBtZXNhIHNvdXJjZXMgYXMgd2VsbCBhcyBt
+ZXNhIGdpdCByZXBvc2l0b3J5LiBTbyBJIGRvbid0IHNlZSBhIHdheSB0byBtYXRjaCBtZXNhIGNv
+ZGUgZXhhY3RseS4gSWYgc3VjaCBtZXNhIGlzIGF2YWlsYWJsZSBpbiBjbG9zZWQgc291cmNlLCBJ
+IGFtIG5vdCBhd2FyZSBvZiBpdCBlaXRoZXIuIA0KICAgU28gZmFyIEkgaGF2ZSB0ZXN0ZWQgd2l0
+aCBnbHhnZWFycyBhbmQgZ2x4aW5mbyB3aXRoIHRoZSA4LjAuNCB2ZXJzaW9uIG9mIG1lc2EtZHJp
+LiBBbmQgSSBkaWQgbm90IGZpbmQgYW55IGlzc3Vlcy4gQW5kIFRvbSBoYXMgYmVlbiB0ZXN0aW5n
+IHRoZSBzYW1lIHdheSBzbyBmYXIgd2l0aG91dCBhbnkgY29tcGxhaW50cy4gSWYgdGhlcmUgaXMg
+c29tZXRoaW5nIHdoaWNoIGNhbiBoZWxwIHRoaW5ncyB0ZXN0IGZ1cnRoZXIsIGl0IHdvdWxkIGJl
+IG5pY2UgdG8gYWRkIGl0IHRvIHRoZSBwb2t5IHRyZWU7IHNvIHRoYXQgaXQgY2FuIGJlY29tZSBw
+YXJ0IG9mIHN0YW5kYXJkIHRlc3RzLCBhbmQgUUEgYWxzbyBjYW4gdXNlIGl0Lg0KDQpOaXRpbg0K
 
