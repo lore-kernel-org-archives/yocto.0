@@ -1,19 +1,19 @@
 Return-Path: <timo.mueller@oss.bmw-carit.de>
 Received: from linuxmail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 94A69E0127A
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 97136E0141D
 	for <yocto@yoctoproject.org>; Wed, 10 Oct 2012 02:54:44 -0700 (PDT)
 Received: from localhost (mysterion.bmw-carit.intra [192.168.101.57])
 	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
 	(No client certificate requested)
 	(Authenticated sender: timo.mueller)
-	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 662A740511;
+	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id A14E840540;
 	Wed, 10 Oct 2012 11:23:21 +0200 (CEST)
 From: mail@timomueller.eu
 To: yocto@yoctoproject.org
-Date: Wed, 10 Oct 2012 11:54:25 +0200
-Message-Id: <441f6fa0874a85ab037c2383165e0570eff1b723.1349444489.git.timo.mueller@bmw-carit.de>
+Date: Wed, 10 Oct 2012 11:54:27 +0200
+Message-Id: <c6002807dc11472163bfb5caef6265556536370e.1349444489.git.timo.mueller@bmw-carit.de>
 X-Mailer: git-send-email 1.7.7.6
-In-Reply-To: <7da8b333cba6d41a66ff7b78c9078444394e197d.1349444489.git.timo.mueller@bmw-carit.de>
+In-Reply-To: <8ed7aafb9f6b2f185768b416719786eccdf6c4f0.1349444489.git.timo.mueller@bmw-carit.de>
 References: <cover.1349444489.git.timo.mueller@bmw-carit.de>
 	<8f13498e19681bb4922e3094fb165b4cf93d87e1.1349444489.git.timo.mueller@bmw-carit.de>
 	<590057989cc2c7239f170407ecc57677d89f8427.1349444489.git.timo.mueller@bmw-carit.de>
@@ -46,10 +46,12 @@ References: <cover.1349444489.git.timo.mueller@bmw-carit.de>
 	<ed5fa3fbcabc31af488d36713ef3f15a756f20f9.1349444489.git.timo.mueller@bmw-carit.de>
 	<62995a82f0e3d03540c076f056ef980864cffa48.1349444489.git.timo.mueller@bmw-carit.de>
 	<7da8b333cba6d41a66ff7b78c9078444394e197d.1349444489.git.timo.mueller@bmw-carit.de>
+	<441f6fa0874a85ab037c2383165e0570eff1b723.1349444489.git.timo.mueller@bmw-carit.de>
+	<8ed7aafb9f6b2f185768b416719786eccdf6c4f0.1349444489.git.timo.mueller@bmw-carit.de>
 In-Reply-To: <cover.1349444489.git.timo.mueller@bmw-carit.de>
 References: <cover.1349444489.git.timo.mueller@bmw-carit.de>
 Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: [PATCH 32/35] documentation/Makefile: logic to make all for yocto-project-qs and cleanup
+Subject: [PATCH 34/35] documentation/Makefile: Added conversion of links to other documentation parts.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -65,34 +67,51 @@ X-List-Received-Date: Wed, 10 Oct 2012 09:54:45 -0000
 
 From: Timo Mueller <timo.mueller@bmw-carit.de>
 
-Eclipse help documents are now created when calling the 'make all'
-target on the yocto-project-qs. Resulting files are archived into
-the tarball as well. When calling 'make clean' artefacts of
-the eclipse documentation build are deleted.
+The script tools/eclipse-help.sed is used to convert links that
+point to other documentation parts. This avoids having to leave
+the eclipse help center when clicking these links.
 ---
- documentation/Makefile |    9 ++++++---
- 1 files changed, 6 insertions(+), 3 deletions(-)
+ documentation/Makefile |   18 ++++++++++++++++--
+ 1 files changed, 16 insertions(+), 2 deletions(-)
 
 diff --git a/documentation/Makefile b/documentation/Makefile
-index a435bbf..d38d204 100644
+index d38d204..3abfb3e 100644
 --- a/documentation/Makefile
 +++ b/documentation/Makefile
-@@ -128,9 +128,12 @@ endif
+@@ -275,7 +275,11 @@ endif
  
- ifeq ($(DOC),yocto-project-qs)
- XSLTOPTS = --xinclude
--ALLPREQ = html tarball
--TARFILES = yocto-project-qs.html qs-style.css figures/yocto-environment.png figures/building-an-image.png figures/using-a-pre-built-image.png figures/yocto-project-transp.png
--MANUALS = $(DOC)/$(DOC).html
-+ALLPREQ = html eclipse tarball
-+TARFILES = yocto-project-qs.html qs-style.css figures/yocto-environment.png \
-+           figures/building-an-image.png figures/using-a-pre-built-image.png \
-+           figures/yocto-project-transp.png \
-+           eclipse
-+MANUALS = $(DOC)/$(DOC).html $(DOC)/eclipse
- FIGURES = figures
- STYLESHEET = $(DOC)/*.css
+ eclipse: BASE_DIR = html/$(DOC)/
+ 
+-eclipse:
++eclipse: eclipse-generate eclipse-resolve-links
++
++.PHONY : eclipse-generate eclipse-resolve-links
++
++eclipse-generate:
+ ifeq ($(filter $(DOC), adt-manual bsp-guide dev-manual kernel-manual poky-ref-manual yocto-project-qs),)
+ 	@echo " "
+ 	@echo "ERROR: You can only create eclipse documentation"
+@@ -301,9 +305,19 @@ else
+ 				$(DOC)-eclipse-customization.xsl $(DOC).xml && \
+ 		mv eclipse/toc.xml eclipse/$(DOC)-toc.xml && \
+ 		cp -rf $(FIGURES) eclipse/$(BASE_DIR)/$(FIGURES) && \
+-		cd ..
++		cd ..;
++
++	$(call modify-eclipse)
  endif
+ 
++eclipse-resolve-links:
++	@echo " "
++	@echo "******** Using eclipse-help.sed to process external links"
++	@echo " "
++	$(foreach FILE, \
++		$(wildcard $(DOC)/eclipse/html/$(DOC)/*.html), \
++		$(shell sed -i -f tools/eclipse-help.sed $(FILE)))
++
+ tarball: html
+ 	@echo " "
+ 	@echo "******** Creating Tarball of document files"
 -- 
 1.7.7.6
 
