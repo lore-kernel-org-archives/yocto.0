@@ -1,26 +1,40 @@
-Return-Path: <nitin.a.kamble@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 09EC0E00717
-	for <yocto@yoctoproject.org>; Wed, 10 Oct 2012 11:07:23 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 10 Oct 2012 11:07:22 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,565,1344236400"; d="scan'208";a="233101482"
-Received: from yocto-hm1.jf.intel.com ([10.23.232.32])
-	by fmsmga002.fm.intel.com with ESMTP; 10 Oct 2012 11:07:22 -0700
-From: nitin.a.kamble@intel.com
-To: tom.zanussi@intel.com,
-	darren.hart@intel.com,
-	yocto@yoctoproject.org
-Date: Wed, 10 Oct 2012 11:06:18 -0700
-Message-Id: <8251d8977d16eff904f1529ca2c8dbeda4d68558.1349892258.git.nitin.a.kamble@intel.com>
-X-Mailer: git-send-email 1.7.3.4
-In-Reply-To: <0ee691e2e0857cd3f26fe535d67c214817062392.1349892258.git.nitin.a.kamble@intel.com>
-References: <0ee691e2e0857cd3f26fe535d67c214817062392.1349892258.git.nitin.a.kamble@intel.com>
-In-Reply-To: <cover.1349892258.git.nitin.a.kamble@intel.com>
-References: <cover.1349892258.git.nitin.a.kamble@intel.com>
+Return-Path: <wd@denx.de>
+Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.10])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C1CA1E00292
+	for <yocto@yoctoproject.org>; Wed, 10 Oct 2012 12:41:43 -0700 (PDT)
+Received: from frontend1.mail.m-online.net (frontend1.mail.intern.m-online.net
+	[192.168.8.180])
+	by mail-out.m-online.net (Postfix) with ESMTP id 3XcQfc0tgRz3hhh5;
+	Wed, 10 Oct 2012 21:41:28 +0200 (CEST)
+Received: from localhost (dynscan1.mnet-online.de [192.168.6.68])
+	by mail.m-online.net (Postfix) with ESMTP id 3XcQfc0kYBzbbfb;
+	Wed, 10 Oct 2012 21:41:28 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at mnet-online.de
+Received: from smtp-auth.mnet-online.de ([192.168.8.180])
+	by localhost (dynscan1.mail.m-online.net [192.168.6.68]) (amavisd-new,
+	port 10024)
+	with ESMTP id Tb6u4y3sf4JQ; Wed, 10 Oct 2012 21:40:16 +0200 (CEST)
+X-Auth-Info: LH9ycTrYokCD0SvECP4LqxMqsqOXtHLEuC0m8HsK0qw=
+Received: from diddl.denx.de (host-80-81-18-216.customer.m-online.net
+	[80.81.18.216]) by smtp-auth.mnet-online.de (Postfix) with ESMTPA;
+	Wed, 10 Oct 2012 21:41:26 +0200 (CEST)
+Received: from gemini.denx.de (unknown [10.0.0.2])
+	by diddl.denx.de (Postfix) with ESMTP id A6CCC1A61D0;
+	Wed, 10 Oct 2012 21:41:26 +0200 (CEST)
+Received: from gemini.denx.de (localhost [IPv6:::1])
+	by gemini.denx.de (Postfix) with ESMTP id 4EB772002F8;
+	Wed, 10 Oct 2012 21:41:24 +0200 (CEST)
+To: Elvis Dowson <elvis.dowson@gmail.com>
+From: Wolfgang Denk <wd@denx.de>
 MIME-Version: 1.0
-Subject: [PATCHv3 6/6] custom-licenses dir for Intel-binary-only License
+In-reply-to: <8FDC41DC-70B4-4BCB-9B95-51CFBCA8961D@gmail.com>
+References: <8FDC41DC-70B4-4BCB-9B95-51CFBCA8961D@gmail.com>
+Comments: In-reply-to Elvis Dowson <elvis.dowson@gmail.com>
+	message dated "Wed, 10 Oct 2012 21:00:44 +0400."
+Date: Wed, 10 Oct 2012 21:41:24 +0200
+Message-Id: <20121010194124.4EB772002F8@gemini.denx.de>
+Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+Subject: Re: denx.de site down?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,90 +46,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 Oct 2012 18:07:23 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Wed, 10 Oct 2012 19:41:44 -0000
+Content-type: text/plain; charset=UTF-8
+Content-transfer-encoding: 8bit
 
-From: Nitin A Kamble <nitin.a.kamble@intel.com>
+Dear Elvis,
 
-Add a directory common/custom-licenses to store license texts of
-recipes in meta-intel layer using custom licenses.
+In message <8FDC41DC-70B4-4BCB-9B95-51CFBCA8961D@gmail.com> you wrote:
+>
+>                         I noticed that your site has been down since
+> yesterday? I usually sync with your u-boot and eldk repositories, and
+> during the yocto build process, it failed because your site was
+> un-reachable.
+> 
+> I was able to get past the yocto build issue, by temporarily modifying
+> my u-boot repositories to point to the local file system.
+> 
+> I'm sure others are also facing a similar issue.
 
-Adding Intel-binary-only license text for emgd-driver-bin recipe.
+I apologize for the inconveniencies.  We had a hardware problem on our
+main server (actually nothing serious, just a dead disk drive), but our
+hoster handles this not exactly in a competent way - instead of just
+hot-swapping the failed drive so we just have to re-sync the degraded
+RAID array he decided to replace _all_ disks so we are forced to
+reinstall from scratch and restore from backups.
 
-This takes care of this build warning:
-WARNING: emgd-driver-bin: No generic license file exists for: Intel-binary-only in any provider
+This process is still in the works.  Sorry for that.
 
-This addresses one of the issue reported in the bug:
-[YOCTO #3238]
+Best regards,
 
-Signed-off-by: Nitin A Kamble <nitin.a.kamble@intel.com>
----
- common/custom-licenses/Intel-binary-only |   42 ++++++++++++++++++++++++++++++
- conf/layer.conf                          |    3 ++
- 2 files changed, 45 insertions(+), 0 deletions(-)
- create mode 100644 common/custom-licenses/Intel-binary-only
+Wolfgang Denk
 
-diff --git a/common/custom-licenses/Intel-binary-only b/common/custom-licenses/Intel-binary-only
-new file mode 100644
-index 0000000..5a39c93
---- /dev/null
-+++ b/common/custom-licenses/Intel-binary-only
-@@ -0,0 +1,42 @@
-+INTEL SOFTWARE LICENSE AGREEMENT 
-+
-+IMPORTANT - READ BEFORE COPYING, INSTALLING OR USING.
-+
-+Do not use or load this software and any associated materials (collectively, the "Software") until you have carefully read the following terms and conditions.  By loading or using the Software, you agree to the terms of this Agreement.  If you do not wish to so agree, do not install or use the Software.
-+
-+* The Linux DRM kernel source code, when included with this Software, is not subject to the terms of this Agreement but is subject to the “GNU General Public License Version 2”, which may be obtained at the following web site: http://www.gnu.org/licenses/gpl.txt
-+
-+* Copyright 1999 Precision Insight, Inc., Cedar Park, Texas. (copyright may need to be changed)
-+ * Copyright 2000 VA Linux Systems, Inc., Sunnyvale, California.
-+ * All Rights Reserved.
-+ *
-+ * Permission is hereby granted, free of charge, to any person obtaining copy of this software and 
-+* associated documentation files (the "Software"), to deal in the Software without restriction, including 
-+* without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell 
-+* copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to 
-+* the following conditions:
-+*
-+* The above copyright notice and this permission notice (including the next paragraph) shall be included 
-+* in all copies or substantial portions of the Software.
-+*
-+* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-+*  OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF 
-+* MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. 
-+* IN NO EVENT SHALL PRECISION INSIGHT AND/OR ITS 
-+* SUPPLIERS BE LIABLE FOR ANY 
-+* CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF 
-+* CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH 
-+* THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-+
-+
-+Copyright (c) 2011, Intel Corporation.
-+All rights reserved.
-+
-+Redistribution. Redistribution and use in binary form, without modification, are permitted provided that the following conditions are met:
-+
-+• Redistributions must reproduce the above copyright notice and the following disclaimer in the   documentation and/or other materials provided with the distribution.
-+• Neither the name of Intel Corporation nor the names of its suppliers may be used to endorse or promote products derived from this software without specific prior written permission.
-+• No reverse engineering, decompilation, or disassembly of this software is permitted.
-+• “Binary form” includes any format commonly used for electronic conveyance which is a reversible, bit-exact translation of binary representation to ASCII or ISO text, for example, “uuencode.”
-+
-+DISCLAIMER. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-diff --git a/conf/layer.conf b/conf/layer.conf
-index 190d0b2..9292fcd 100644
---- a/conf/layer.conf
-+++ b/conf/layer.conf
-@@ -8,3 +8,6 @@ BBFILES := "${BBFILES} ${LAYERDIR}/common/recipes-*/*/*.bb \
- BBFILE_COLLECTIONS += "intel"
- BBFILE_PATTERN_intel := "^${LAYERDIR}/"
- BBFILE_PRIORITY_intel = "5"
-+
-+# Additional license directories. Add your custom licenses directories this path.
-+LICENSE_PATH += "${LAYERDIR}/common/custom-licenses"
 -- 
-1.7.3.4
-
+DENX Software Engineering GmbH,     MD: Wolfgang Denk & Detlev Zundel
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+Phone: (+49)-8142-66989-10 Fax: (+49)-8142-66989-80 Email: wd@denx.de
+You don't need a weatherman to know which way the wind blows.
+                                                          - Bob Dylan
 
