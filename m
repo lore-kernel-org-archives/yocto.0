@@ -1,27 +1,25 @@
 Return-Path: <timo.mueller@oss.bmw-carit.de>
 Received: from linuxmail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AEC6FE01214
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B0054E01275
 	for <yocto@yoctoproject.org>; Wed, 10 Oct 2012 02:54:42 -0700 (PDT)
 Received: from localhost (mysterion.bmw-carit.intra [192.168.101.57])
 	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
 	(No client certificate requested)
 	(Authenticated sender: timo.mueller)
-	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id E2AD5400E8;
+	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id A8CEF4009C;
 	Wed, 10 Oct 2012 11:23:17 +0200 (CEST)
 From: mail@timomueller.eu
 To: yocto@yoctoproject.org
-Date: Wed, 10 Oct 2012 11:53:57 +0200
-Message-Id: <6df121f8751652c6872e72d6ef0c6973c11cffcb.1349444489.git.timo.mueller@bmw-carit.de>
+Date: Wed, 10 Oct 2012 11:53:55 +0200
+Message-Id: <590057989cc2c7239f170407ecc57677d89f8427.1349444489.git.timo.mueller@bmw-carit.de>
 X-Mailer: git-send-email 1.7.7.6
-In-Reply-To: <8741c48acce523dc2403fddad90e253542970689.1349444489.git.timo.mueller@bmw-carit.de>
+In-Reply-To: <8f13498e19681bb4922e3094fb165b4cf93d87e1.1349444489.git.timo.mueller@bmw-carit.de>
 References: <cover.1349444489.git.timo.mueller@bmw-carit.de>
 	<8f13498e19681bb4922e3094fb165b4cf93d87e1.1349444489.git.timo.mueller@bmw-carit.de>
-	<590057989cc2c7239f170407ecc57677d89f8427.1349444489.git.timo.mueller@bmw-carit.de>
-	<8741c48acce523dc2403fddad90e253542970689.1349444489.git.timo.mueller@bmw-carit.de>
 In-Reply-To: <cover.1349444489.git.timo.mueller@bmw-carit.de>
 References: <cover.1349444489.git.timo.mueller@bmw-carit.de>
 Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: [PATCH 04/35] documentation/Makefile: Support for making Eclipse HTML adt manual
+Subject: [PATCH 02/35] documentation: Move adt-manual global parameters to customization file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,53 +31,61 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 Oct 2012 09:54:42 -0000
+X-List-Received-Date: Wed, 10 Oct 2012 09:54:43 -0000
 
 From: Timo Mueller <timo.mueller@bmw-carit.de>
 
-This target will generate eclipse help for the adt-manual using
-the adt-manual-eclipse-customization.xsl stylesheet.
+Standard stylesheet parameters were moved to the docbook customization
+file tying them to the docbook stylesheet used. Removing these
+parameters simplifies the Makefile.
 
-The output will be generated to a separate directory which can be used
-for integrating the documentation into eclipse.
+Furthermore supporting new output formats can now be achieved by
+creating a new customization file containing its corresponding
+parameters. Parameters that are used across different stylesheets with
+different values will then be separated through different
+customization files.
+
+Global parameters can still be set through the XSLTOPTS variable since
+this precedes the parameters in the customization file.
 ---
- documentation/Makefile |   23 +++++++++++++++++++++++
- 1 files changed, 23 insertions(+), 0 deletions(-)
+ documentation/Makefile                             |    7 +------
+ .../adt-manual/adt-manual-customization.xsl        |    7 +++++--
+ 2 files changed, 6 insertions(+), 8 deletions(-)
 
 diff --git a/documentation/Makefile b/documentation/Makefile
-index 380193d..66eecaa 100644
+index ee7089a..380193d 100644
 --- a/documentation/Makefile
 +++ b/documentation/Makefile
-@@ -284,6 +284,29 @@ else
- endif
+@@ -213,12 +213,7 @@ endif
  
  
-+eclipse: BASE_DIR = html/$(DOC)/
-+
-+eclipse:
-+ifneq ($(DOC),adt-manual)
-+	@echo " "
-+	@echo "ERROR: You can only create eclipse documentation of the"
-+	@echo "       Yocto Project Application Development Toolkit (ADT)"
-+	@echo "       User's Guide"
-+	@echo " "
-+else
-+	@echo " "
-+	@echo "******** Building eclipse help of "$(DOC)
-+	@echo " "
-+	cd $(DOC) && \
-+		xsltproc $(XSLTOPTS) \
-+				--stringparam base.dir '$(BASE_DIR)' \
-+				-o eclipse/$(DOC).html \
-+				$(DOC)-eclipse-customization.xsl $(DOC).xml && \
-+		mv eclipse/toc.xml eclipse/$(DOC)-toc.xml && \
-+		cp -rf $(FIGURES) eclipse/$(BASE_DIR)/$(FIGURES) && \
-+		cd ..
-+endif
-+
- tarball: html
- 	@echo " "
- 	@echo "******** Creating Tarball of document files"
+ ifeq ($(DOC),adt-manual)
+-XSLTOPTS = --stringparam html.stylesheet adt-style.css \
+-           --stringparam  chapter.autolabel 1 \
+-           --stringparam  appendix.autolabel A \
+-           --stringparam  section.autolabel 1 \
+-           --stringparam  section.label.includes.component.label 1 \
+-           --xinclude
++XSLTOPTS = --xinclude
+ ALLPREQ = html pdf tarball
+ TARFILES = adt-manual.html adt-manual.pdf adt-style.css figures/adt-title.png
+ MANUALS = $(DOC)/$(DOC).html $(DOC)/$(DOC).pdf
+diff --git a/documentation/adt-manual/adt-manual-customization.xsl b/documentation/adt-manual/adt-manual-customization.xsl
+index 8eb6905..373bdb7 100644
+--- a/documentation/adt-manual/adt-manual-customization.xsl
++++ b/documentation/adt-manual/adt-manual-customization.xsl
+@@ -3,6 +3,9 @@
+   
+   <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/xhtml/docbook.xsl" />
+ 
+-<!--  <xsl:param name="generate.toc" select="'article nop'"></xsl:param>  -->
+-
++  <xsl:param name="html.stylesheet" select="'adt-style.css'" />
++  <xsl:param name="chapter.autolabel" select="1" />
++  <xsl:param name="appendix.autolabel" select="1" />
++  <xsl:param name="section.autolabel" select="1" />
++  <xsl:param name="section.label.includes.component.label" select="1" />
+ </xsl:stylesheet>
 -- 
 1.7.7.6
 
