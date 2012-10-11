@@ -1,39 +1,21 @@
-Return-Path: <ross.burton@intel.com>
-Received: from fmsmga102.fm.intel.com (mga10.intel.com [192.55.52.92])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AA81EE00292
-	for <yocto@yoctoproject.org>; Thu, 11 Oct 2012 03:28:51 -0700 (PDT)
-Received: from mail-oa0-f48.google.com ([209.85.219.48])
-	by mga11.intel.com with ESMTP/TLS/RC4-SHA; 11 Oct 2012 03:28:48 -0700
-Received: by mail-oa0-f48.google.com with SMTP id h2so1853303oag.35
-	for <yocto@yoctoproject.org>; Thu, 11 Oct 2012 03:28:48 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type:content-transfer-encoding:x-gm-message-state;
-	bh=Znnoeju++A/83EYHEsv0imQVRw1/YMB6txrFKt/U118=;
-	b=W/47ubx+W5nY8L/SO/TiZezXFDT4+JGeKYq7qJqN63+110cANnAzsv2kfYkQbdiKXJ
-	euVvfMaYZ7OI+LzqsnqJNQq0q4ODQmvJjyHhvj6ho3afgoeX69sQkXHmn1xBDed4F4ka
-	GWPg4ePlzsgsaZLydYzUWeF/CbB30Ocz5SDINH3gHp1KQt69uQv6DVIaSiYuZ83/XbJE
-	FW4eRJeL4CEY7iUHDlazcSbmr6ut/ODPBSf9RWorPSsIWO+rtRfj6XZEekijz3liIHg1
-	uYHn6dj5I4d9xKrAQEExau2S/FZKZY8sgsoxX67DvuI3Nkil/4pMudhWNvyOSCbr5Pku
-	Dykw==
-Received: by 10.182.154.103 with SMTP id vn7mr248893obb.95.1349951328126; Thu,
-	11 Oct 2012 03:28:48 -0700 (PDT)
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AB6D8E00292
+	for <yocto@yoctoproject.org>; Thu, 11 Oct 2012 04:22:07 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 11 Oct 2012 04:21:46 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,571,1344236400"; d="scan'208";a="204294443"
+Received: from unknown (HELO helios.localnet) ([10.252.122.70])
+	by orsmga001.jf.intel.com with ESMTP; 11 Oct 2012 04:22:06 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Thu, 11 Oct 2012 12:22:05 +0100
+Message-ID: <2995833.IARlncBIop@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.9.2 (Linux/3.2.0-31-generic-pae; KDE/4.9.2; i686; ; )
 MIME-Version: 1.0
-Received: by 10.182.70.6 with HTTP; Thu, 11 Oct 2012 03:28:27 -0700 (PDT)
-In-Reply-To: <ADD6A3980E8C39419A432FF422031B4C1573165F@ORSMSX106.amr.corp.intel.com>
-References: <cover.1349831664.git.nitin.a.kamble@intel.com>
-	<5e3291d077a714c7fc69d8bcc308974d75baffd4.1349831664.git.nitin.a.kamble@intel.com>
-	<CAJTo0La-n0y4jzvm5x2gFPMzV1eMm3oedvr7eaeN+WC0220seg@mail.gmail.com>
-	<ADD6A3980E8C39419A432FF422031B4C1573165F@ORSMSX106.amr.corp.intel.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Thu, 11 Oct 2012 11:28:27 +0100
-Message-ID: <CAJTo0LZ+0uYdFyuQDiqi46=sO06iOVETG9ktoKfP9Us7p1ysFw@mail.gmail.com>
-To: "Kamble, Nitin A" <nitin.a.kamble@intel.com>
-X-Gm-Message-State: ALoCoQkMrJ2tHss294Y4v0NRjSCXhi56cz2rUsblZ3s/WmV4ym+SqcKstDc3TftJSZiZxBGlxtkG
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Hart,
-	Darren" <darren.hart@intel.com>
-Subject: Re: [PATCHv2 2/5] crownbay.conf: specify the 8.0.4 version as preferred version of mesa-dri
+Subject: Changelog for 1.3
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,18 +27,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 11 Oct 2012 10:28:51 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 11 Oct 2012 11:22:07 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On 11 October 2012 00:14, Kamble, Nitin A <nitin.a.kamble@intel.com> wrote:
->   The reason is we want to know if the version of mesa in oecore has chan=
-ged or not. EMGD has specific needs of mesa, and in the testing we are not =
-finding any issues with v8.0.4 of mesa. But that may not hold true for futu=
-re versions of mesa, so we would like to pin the version here so we know th=
-at this version works as expected.
+Hi folks,
 
-That's an excellent reason.
+I've put together a list of medium to high-level changes based on
+browsing through the commits for the release:
 
-Ross
+- Improved terminal UI which makes it easy to see the tasks that are currently executing, and avoids burying any warnings that are printed
+- Eliminated intermediate step when building cross compiler toolchain
+- SDK is now relocatable
+- Large number of usability improvements in the Hob image building UI
+- Upgraded eglibc to version 2.16
+- Upgraded gcc to version 4.7
+- Added yocto-bsp script for automating the initial parts of creating a new BSP
+- Python functions now consistently use four spaces for indentation - no more having to try to match the mix of tabs and spaces in your recipes
+- Disabled sharing shared state between machines using different distros by default to avoid glibc version problems
+- Fixes to allow qemu-native to be built on host systems without X11 (i.e. for console use only)
+- Enabled python and perl scripting for perf as well as text-mode UI
+- Added ability to produce a companion SDK together with an image
+- Allow forcing the rebuilding of a recipe (new -C and improved -f options)
+- Enabled EFI in grub installer
+- Mesa can now provide GLES accelerated graphics without X11
+- Added script for producing "bootcharts" from buildstats so you can see the timeline of the build
+- Checksums for local files referred to in SRC_URI are now included in task signatures so that changing their contents causes the relevant tasks to be re-executed
+- Extended bitbake-diffsigs to look up signature files from task and recipe name, and trace back recursively through dependent task changes
+- Moved from module-init-tools to kmod
+- Added create-recipe script to automate some of the parts of creating a brand new recipe
+- Buildhistory improvements: better performance, track postinst/postrm scripts
+- Added bin_package bbclass for recipes that package pre-built binaries
+- Added doc-pkgs IMAGE_FEATURES feature to install all documentation
+- Added class-* overrides - particularly useful for target/cross/crosssdk but works with all classes
+- Reference hardware BSPs are now separate from Poky reference distro configuration
+- nativesdk is now a prefix rather than a suffix, simplifying packaging in nativesdk recipes greatly
+- Detect and warn if files in the sysroot are potentially written to by multiple recipes
+- Automatic launching of "screen" within terminal for devshell/patch resolution
+- task-* recipes renamed to packagegroup-* and tidied up significantly
+- Improved mirror handling - allow mirrors of mirrors; handle errors more gracefully
+- Reduced dependencies between debugging symbol packages
+- Significant cleanup of X server recipes
+- Start to add regression tests for BitBake
+
+Is there anything that belongs here that I have missed? I know we've done a
+lot of other bugfixes and package upgrades, we're really after the
+highlights.
+
+Cheers,
+Paul
+
+-- 
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
