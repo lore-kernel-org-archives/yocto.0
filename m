@@ -1,25 +1,25 @@
 Return-Path: <nitin.a.kamble@intel.com>
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9BD48E01461
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B9BACE0027E
 	for <yocto@yoctoproject.org>; Thu, 11 Oct 2012 16:32:52 -0700 (PDT)
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
 	by fmsmga102.fm.intel.com with ESMTP; 11 Oct 2012 16:32:52 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,573,1344236400"; d="scan'208";a="233777288"
+X-IronPort-AV: E=Sophos;i="4.80,573,1344236400"; d="scan'208";a="233777295"
 Received: from yocto-hm1.jf.intel.com ([10.23.232.32])
 	by fmsmga002.fm.intel.com with ESMTP; 11 Oct 2012 16:32:14 -0700
 From: nitin.a.kamble@intel.com
 To: tom.zanussi@intel.com,
 	darren.hart@intel.com,
 	yocto@yoctoproject.org
-Date: Thu, 11 Oct 2012 16:31:02 -0700
-Message-Id: <11ebd15a4c764eecb1f498934de7661027b13692.1349998086.git.nitin.a.kamble@intel.com>
+Date: Thu, 11 Oct 2012 16:31:04 -0700
+Message-Id: <6873afe354d16123146d2443834f0c36f55611a8.1349998086.git.nitin.a.kamble@intel.com>
 X-Mailer: git-send-email 1.7.3.4
 In-Reply-To: <0ee691e2e0857cd3f26fe535d67c214817062392.1349998086.git.nitin.a.kamble@intel.com>
 References: <0ee691e2e0857cd3f26fe535d67c214817062392.1349998086.git.nitin.a.kamble@intel.com>
 In-Reply-To: <cover.1349998086.git.nitin.a.kamble@intel.com>
 References: <cover.1349998086.git.nitin.a.kamble@intel.com>
-Subject: [PATCHv4 5/8] update maintainers of various BSPs
+Subject: [PATCHv4 7/8] emgd-driver-bin: note all the EMGD licenses
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,142 +35,40 @@ X-List-Received-Date: Thu, 11 Oct 2012 23:32:52 -0000
 
 From: Nitin A Kamble <nitin.a.kamble@intel.com>
 
-BSP maintainership for following BSPs is now transitioned from Tom to Nitin
- sugarbay, emenlow, crownbay, jasperforest, chiefriver
+There are two files containing the custom license data for EMGD:
+license: which holds INTEL SOFTWARE LICENSE AGREEMENT
+readme.txt: which holds User Space Graphics Driver Binary License
+
+checksum both these files to track any license changes in future.
 
 Signed-off-by: Nitin A Kamble <nitin.a.kamble@intel.com>
 ---
- MAINTAINERS              |   12 ++++++------
- meta-chiefriver/README   |   11 +++++++++++
- meta-crownbay/README     |    2 +-
- meta-emenlow/README      |    2 +-
- meta-jasperforest/README |    2 +-
- meta-sugarbay/README     |    2 +-
- 6 files changed, 21 insertions(+), 10 deletions(-)
+ .../xorg-driver/emgd-driver-bin_1.14.bb            |    5 +++--
+ 1 files changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 3bf0add..d63ed31 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -37,15 +37,15 @@ M:      Kishore Bodke <kishore.k.bodke@intel.com>
- F:      meta-cedartrail/
+diff --git a/common/recipes-graphics/xorg-driver/emgd-driver-bin_1.14.bb b/common/recipes-graphics/xorg-driver/emgd-driver-bin_1.14.bb
+index 1f585f2..ddf874e 100644
+--- a/common/recipes-graphics/xorg-driver/emgd-driver-bin_1.14.bb
++++ b/common/recipes-graphics/xorg-driver/emgd-driver-bin_1.14.bb
+@@ -5,7 +5,7 @@ tarball, and is what this recipe now uses.  Since it is a non-free license, \
+ this recipe is marked as 'License_emgd-driver-bin_1.14' and you need to add \
+ to LICENSE_FLAGS_WHITELIST += \"License_emgd-driver-bin_1.14\" to your \
+ local.conf in order to enable it in a build."
+-LICENSE = "Intel-binary-only"
++LICENSE = "Intel-software-license-emgd-1.14 & Intel-user-space-graphics-driver-binary-license-emgd-1.14"
+ LICENSE_FLAGS = "license_${PN}_${PV}"
+ PR = "r2"
  
- CHIEFRIVER
--M:	Tom Zanussi <tom.zanussi@intel.com>
-+M:	Nitin A Kamble<nitin.a.kamble@intel.com>
- F:	meta-chiefriver/
+@@ -13,7 +13,8 @@ EMGD_LIC_DIR = "IEMGD_HEAD_Linux/License"
+ EMGD_RPM_DIR = "IEMGD_HEAD_Linux/MeeGo1.2"
+ EMGD_VIDEO_PLUGIN_DIR = "../common/video_plugin"
  
- COMMON
--M:	Tom Zanussi <tom.zanussi@intel.com>
-+M:	Nitin A Kamble<nitin.a.kamble@intel.com>
- F:	common/recipes-core/
+-LIC_FILES_CHKSUM = "file://${WORKDIR}/${EMGD_LIC_DIR}/License.txt;md5=b54f01caaf8483b3cb60c0c40f2bf22d"
++LIC_FILES_CHKSUM = "file://${WORKDIR}/${EMGD_LIC_DIR}/License.txt;md5=b54f01caaf8483b3cb60c0c40f2bf22d \
++                    file://${WORKDIR}/${EMGD_LIC_DIR}/readme.txt;md5=73cbec7a0d2bc22faf567238e055bfc8"
  
- CROWNBAY
--M:	Tom Zanussi <tom.zanussi@intel.com>
-+M:	Nitin A Kamble<nitin.a.kamble@intel.com>
- F:	meta-crownbay/
- 
- CRYSTALFOREST
-@@ -53,7 +53,7 @@ M:      Kishore Bodke <kishore.k.bodke@intel.com>
- F:      meta-crystalforest/
- 
- EMENLOW
--M:	Tom Zanussi <tom.zanussi@intel.com>
-+M:	Nitin A Kamble<nitin.a.kamble@intel.com>
- F:	meta-emenlow/
- 
- FRI2
-@@ -61,7 +61,7 @@ M:	Darren Hart <dvhart@linux.intel.com>
- F:	meta-fri2/
- 
- JASPERFOREST
--M:	Tom Zanussi <tom.zanussi@intel.com>
-+M:	Nitin A Kamble<nitin.a.kamble@intel.com>
- F:	meta-jasperforest/
- 
- N450
-@@ -73,6 +73,6 @@ M:      Kishore Bodke <kishore.k.bodke@intel.com>
- F:      meta-romley/
- 
- SUGARBAY
--M:	Tom Zanussi <tom.zanussi@intel.com>
-+M:	Nitin A Kamble<nitin.a.kamble@intel.com>
- F:	meta-sugarbay/
- 
-diff --git a/meta-chiefriver/README b/meta-chiefriver/README
-index 438c293..7c47b02 100644
---- a/meta-chiefriver/README
-+++ b/meta-chiefriver/README
-@@ -24,6 +24,17 @@ This layer depends on:
-   branch: master
- 
- 
-+Patches
-+=======
-+
-+Please submit any patches against this BSP to the Yocto mailing list
-+(yocto@yoctoproject.org) and cc: the maintainer:
-+
-+Maintainer: Nitin A Kamble <nitin.a.kamble@intel.com>
-+
-+Please see the meta-intel/MAINTAINERS file for more details.
-+
-+
- Table of Contents
- =================
- 
-diff --git a/meta-crownbay/README b/meta-crownbay/README
-index f7aeffa..4bc9f31 100644
---- a/meta-crownbay/README
-+++ b/meta-crownbay/README
-@@ -32,7 +32,7 @@ Patches
- Please submit any patches against this BSP to the Yocto mailing list
- (yocto@yoctoproject.org) and cc: the maintainer:
- 
--Maintainer: Tom Zanussi <tom.zanussi@intel.com>
-+Maintainer: Nitin A Kamble <nitin.a.kamble@intel.com>
- 
- Please see the meta-intel/MAINTAINERS file for more details.
- 
-diff --git a/meta-emenlow/README b/meta-emenlow/README
-index 9bef671..3932718 100644
---- a/meta-emenlow/README
-+++ b/meta-emenlow/README
-@@ -36,7 +36,7 @@ Patches
- Please submit any patches against this BSP to the Yocto mailing list
- (yocto@yoctoproject.org) and cc: the maintainer:
- 
--Maintainer: Tom Zanussi <tom.zanussi@intel.com>
-+Maintainer: Nitin A Kamble <nitin.a.kamble@intel.com>
- 
- Please see the meta-intel/MAINTAINERS file for more details.
- 
-diff --git a/meta-jasperforest/README b/meta-jasperforest/README
-index 78852bd..12f84c2 100644
---- a/meta-jasperforest/README
-+++ b/meta-jasperforest/README
-@@ -31,7 +31,7 @@ Patches
- Please submit any patches against this BSP to the Yocto mailing list
- (yocto@yoctoproject.org) and cc: the maintainer:
- 
--Maintainer: Tom Zanussi <tom.zanussi@intel.com>
-+Maintainer: Nitin A Kamble <nitin.a.kamble@intel.com>
- 
- Please see the meta-intel/MAINTAINERS file for more details.
- 
-diff --git a/meta-sugarbay/README b/meta-sugarbay/README
-index 80833c1..c8a99d7 100644
---- a/meta-sugarbay/README
-+++ b/meta-sugarbay/README
-@@ -30,7 +30,7 @@ Patches
- Please submit any patches against this BSP to the Yocto mailing list
- (yocto@yoctoproject.org) and cc: the maintainer:
- 
--Maintainer: Tom Zanussi <tom.zanussi@intel.com>
-+Maintainer: Nitin A Kamble <nitin.a.kamble@intel.com>
- 
- Please see the meta-intel/MAINTAINERS file for more details.
- 
+ DEPENDS = "rpm-native xz-native"
+ RDEPENDS = "libxcb-dri2"
 -- 
 1.7.3.4
 
