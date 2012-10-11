@@ -1,34 +1,39 @@
-Return-Path: <jfabernathy@gmail.com>
-Received: from mail-yh0-f48.google.com (mail-yh0-f48.google.com
-	[209.85.213.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CFEA4E0027E
-	for <yocto@yoctoproject.org>; Thu, 11 Oct 2012 08:10:10 -0700 (PDT)
-Received: by mail-yh0-f48.google.com with SMTP id q46so543510yhf.35
-	for <yocto@yoctoproject.org>; Thu, 11 Oct 2012 08:10:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=message-id:date:from:user-agent:mime-version:to:subject
-	:content-type:content-transfer-encoding;
-	bh=QkSrTfBsH0yWun/EG8kHoTlLbTUHGGNlmxVztj+zv3o=;
-	b=BeLeSFLYfCqpxOM3b92m2VVnCpeKb1n3qP86NVDEvPCc83I341T+5TGdwvUtnXHZ1Y
-	5E4QmeD1NnJfH+PzN5jn1IuPzoMTqzsOh64JVhey0UpQw4nQ86tEbxzsvo3zEjrA+xHx
-	ASJ4BEDOQ0bVvV34DuXTxk1v+prIjc6MH7BfUqy7KKCruGK7A0DSK6A8oRC3fg281IKC
-	Fkksg19Y06c2VEeoE9VeoTQls12axt/LBZnWWnZ1AYqao6bykRQCug7NjPAaeMaa9b0w
-	o3vryGgBnqvNxTxZP7+4Cd8V76tS/ik/6EwbCI1qzOn0dDV1garzOGZ/LcVdn9Yp2nrJ
-	0dOA==
-Received: by 10.101.136.19 with SMTP id o19mr334348ann.40.1349968207277;
-	Thu, 11 Oct 2012 08:10:07 -0700 (PDT)
-Received: from [192.168.0.54] (cpe-174-097-157-052.nc.res.rr.com.
-	[174.97.157.52])
-	by mx.google.com with ESMTPS id p1sm3974019anj.13.2012.10.11.08.10.06
-	(version=SSLv3 cipher=OTHER); Thu, 11 Oct 2012 08:10:06 -0700 (PDT)
-Message-ID: <5076E14D.4010301@gmail.com>
-Date: Thu, 11 Oct 2012 11:10:05 -0400
-From: Jim Abernathy <jfabernathy@gmail.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:15.0) Gecko/20120912 Thunderbird/15.0.1
+Return-Path: <ross.burton@intel.com>
+Received: from fmsmga101.fm.intel.com (mga05.intel.com [192.55.52.89])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E171CE0145B
+	for <yocto@yoctoproject.org>; Thu, 11 Oct 2012 09:54:07 -0700 (PDT)
+Received: from mail-ie0-f176.google.com ([209.85.223.176])
+	by mga01.intel.com with ESMTP/TLS/RC4-SHA; 11 Oct 2012 09:54:05 -0700
+Received: by mail-ie0-f176.google.com with SMTP id k11so3885482iea.35
+	for <yocto@yoctoproject.org>; Thu, 11 Oct 2012 09:54:04 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type:content-transfer-encoding:x-gm-message-state;
+	bh=oFxhqRjZf+LP62KXLxN75+LUpiXuvDe0BYJTyYK7mWE=;
+	b=dJ2r7NA0CFqxIxH2jJ19eXPxhkjrTLaVUDm4CvHchxDkYgkj9PHGy+MzEPb0a/7RCd
+	9xtN1M7As/dlm8N4AVHSZCOdVjEAWyYKNVCFMj5liWyfG/VBWAepTbnuOG2wWUTOIo/v
+	v6vkYvCta9LO6f9SHJ4XAczRRWTqUW1ByE8svultgakSNkajigQBuiENS7OzBltoD689
+	+t5SdjnUFjnnZ9+oAoNwEOo9kvYgAxR/62nZTg38Di9b43ex/1uOFHTRl+dyyxeKzzDE
+	AHLWzVVMj/yczQvJEyScIKGBEpJncucCxWR8kpGRgY10Jr3Npz3p5VSaO8/TNMDUycXE
+	4ByA==
+Received: by 10.42.65.6 with SMTP id j6mr1308027ici.2.1349974444482; Thu, 11
+	Oct 2012 09:54:04 -0700 (PDT)
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-Subject: Build failure using Master branch for Crownbay
+Received: by 10.64.141.70 with HTTP; Thu, 11 Oct 2012 09:53:43 -0700 (PDT)
+In-Reply-To: <ADD6A3980E8C39419A432FF422031B4C1573164F@ORSMSX106.amr.corp.intel.com>
+References: <cover.1349820369.git.nitin.a.kamble@intel.com>
+	<e349d9f28dd0b1064fffd14b337770ee6574e7cd.1349820369.git.nitin.a.kamble@intel.com>
+	<CAJTo0LYmbD=HJEECJC7usk7A7tLwDxnrFm-pxUoRo2=qyKGyvQ@mail.gmail.com>
+	<ADD6A3980E8C39419A432FF422031B4C1573164F@ORSMSX106.amr.corp.intel.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Thu, 11 Oct 2012 17:53:43 +0100
+Message-ID: <CAJTo0LaA9FMThnZpb+F3T8d_XfUqFW55BXUns57jW92Phi_wGw@mail.gmail.com>
+To: "Kamble, Nitin A" <nitin.a.kamble@intel.com>
+X-Gm-Message-State: ALoCoQnWbn2bv7fpQsEtqsD6MJtdJbKDvjY3cgRr9UH1iVGfgQwEZpow1ws/zH1G08v0ITlXgGBL
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Hart,
+	Darren" <darren.hart@intel.com>
+Subject: Re: [PATCH 2/5] crownbay.conf: specify the 8.0.4 version as preferred version of mesa-dri
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,130 +45,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 11 Oct 2012 15:10:11 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 11 Oct 2012 16:54:08 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-I just did a pull today and tried to rebuild Crownbay BSP which I 
-successfully built yesterday.  I'm looking for a case where the rebuild 
-fails on a previously successful build with just running bitbake 
-core-image-sato without deleting any files or cleaning anything, as I've 
-been instructed previously.
+On 11 October 2012 00:10, Kamble, Nitin A <nitin.a.kamble@intel.com> wrote:
+>    So far I have tested with glxgears and glxinfo with the 8.0.4 version =
+of mesa-dri. And I did not find any issues. And Tom has been testing the sa=
+me way so far without any complaints. If there is something which can help =
+things test further, it would be nice to add it to the poky tree; so that i=
+t can become part of standard tests, and QA also can use it.
 
-I got such a failure today and the console log is below.  I'll hold off 
-deleting the build directory and rebuilding as I usually do when this 
-happens, until I hear from the experts on how to proceed.
+A slightly better test than glxgears that is in oe-core is in
+libclutter-glx-1.0-examples.  Run "test-interactive
+test_cairo_flowers" in a terminal, you should get flowers falling down
+the screen.
 
-JIm A
+(on cdt, this results in a PVR driver error - #3280)
 
-Build Configuration:
-BB_VERSION        = "1.16.0"
-TARGET_ARCH       = "i586"
-TARGET_OS         = "linux"
-MACHINE           = "crownbay"
-DISTRO            = "poky"
-DISTRO_VERSION    = "1.3+snapshot-20121011"
-TUNE_FEATURES     = "m32 core2"
-TARGET_FPU        = ""
-meta
-meta-yocto
-meta-yocto-bsp    = "master:df127c9cef334955e72420724fa6e1f6a6d44662"
-meta-intel
-meta-crownbay     = "master:5d8a05811101f7d69994f4028ec620c4480f6da4"
-meta-jfa          = "<unknown>:<unknown>"
-
-NOTE: Resolving any missing task queue dependencies
-NOTE: preferred version 7.11 of mesa-dri not available (for item 
-virtual/libgl)
-NOTE: versions of mesa-dri available: 2:8.0.4 
-2:8.0.4+git1+c1f4867c89adb1a6b19d66ec8ad146115909f0a7
-NOTE: preferred version 7.11 of mesa-dri not available (for item mesa-dri)
-NOTE: versions of mesa-dri available: 2:8.0.4 
-2:8.0.4+git1+c1f4867c89adb1a6b19d66ec8ad146115909f0a7
-NOTE: preferred version 7.11 of mesa-dri not available (for item 
-mesa-dri-dev)
-NOTE: versions of mesa-dri available: 2:8.0.4 
-2:8.0.4+git1+c1f4867c89adb1a6b19d66ec8ad146115909f0a7
-NOTE: preferred version 7.11 of mesa-dri not available (for item mesa-dri)
-NOTE: versions of mesa-dri available: 2:8.0.4 
-2:8.0.4+git1+c1f4867c89adb1a6b19d66ec8ad146115909f0a7
-NOTE: Preparing runqueue
-NOTE: Executing SetScene Tasks
-NOTE: Executing RunQueue Tasks
-ERROR: Function failed: do_install (see 
-/build/crownbay-master/tmp/work/core2-poky-linux/emgd-driver-bin-1.14-r2/temp/log.do_install.28628 
-for further information)
-ERROR: Logfile of failure stored in: 
-/build/crownbay-master/tmp/work/core2-poky-linux/emgd-driver-bin-1.14-r2/temp/log.do_install.28628
-Log data follows:
-| DEBUG: Executing shell function do_install
-| cpio: ./usr/lib/libgstvabuffer.so.0 not created: newer or same age 
-version exists
-| cpio: ./usr/lib/libgstvabuffer.so.0.10.8 not created: newer or same 
-age version exists
-| 19 blocks
-| cpio: ./usr/lib/libmixcommon.so.0 not created: newer or same age 
-version exists
-| cpio: ./usr/lib/libmixcommon.so.0.10.8 not created: newer or same age 
-version exists
-| 28 blocks
-| cpio: ./usr/lib/libmixvbp.so.0 not created: newer or same age version 
-exists
-| cpio: ./usr/lib/libmixvbp.so.0.10.8 not created: newer or same age 
-version exists
-| cpio: ./usr/lib/libmixvbp_h264.so.0 not created: newer or same age 
-version exists
-| cpio: ./usr/lib/libmixvbp_h264.so.0.10.8 not created: newer or same 
-age version exists
-| cpio: ./usr/lib/libmixvbp_mpeg4.so.0 not created: newer or same age 
-version exists
-| cpio: ./usr/lib/libmixvbp_mpeg4.so.0.10.8 not created: newer or same 
-age version exists
-| cpio: ./usr/lib/libmixvbp_vc1.so.0 not created: newer or same age 
-version exists
-| cpio: ./usr/lib/libmixvbp_vc1.so.0.10.8 not created: newer or same age 
-version exists
-| 358 blocks
-| cpio: ./usr/lib/libmixvideo.so.0 not created: newer or same age 
-version exists
-| cpio: ./usr/lib/libmixvideo.so.0.10.9 not created: newer or same age 
-version exists
-| 465 blocks
-| install: omitting directory 
-`/build/crownbay-master/tmp/work/core2-poky-linux/emgd-driver-bin-1.14-r2/IEMGD_HEAD_Linux/MeeGo1.2/usr/lib/dri'
-| install: omitting directory 
-`/build/crownbay-master/tmp/work/core2-poky-linux/emgd-driver-bin-1.14-r2/IEMGD_HEAD_Linux/MeeGo1.2/usr/lib/gstreamer-0.10'
-| install: cannot stat 
-`/build/crownbay-master/tmp/work/core2-poky-linux/emgd-driver-bin-1.14-r2/IEMGD_HEAD_Linux/MeeGo1.2/usr/lib/libEGL.so': 
-No such file or directory
-| install: cannot stat 
-`/build/crownbay-master/tmp/work/core2-poky-linux/emgd-driver-bin-1.14-r2/IEMGD_HEAD_Linux/MeeGo1.2/usr/lib/libGLES_CM.so': 
-No such file or directory
-| install: cannot stat 
-`/build/crownbay-master/tmp/work/core2-poky-linux/emgd-driver-bin-1.14-r2/IEMGD_HEAD_Linux/MeeGo1.2/usr/lib/libGLESv2.so': 
-No such file or directory
-| install: cannot stat 
-`/build/crownbay-master/tmp/work/core2-poky-linux/emgd-driver-bin-1.14-r2/IEMGD_HEAD_Linux/MeeGo1.2/usr/lib/libOpenVG.so': 
-No such file or directory
-| install: cannot stat 
-`/build/crownbay-master/tmp/work/core2-poky-linux/emgd-driver-bin-1.14-r2/IEMGD_HEAD_Linux/MeeGo1.2/usr/lib/libOpenVGU.so': 
-No such file or directory
-| install: omitting directory 
-`/build/crownbay-master/tmp/work/core2-poky-linux/emgd-driver-bin-1.14-r2/IEMGD_HEAD_Linux/MeeGo1.2/usr/lib/xorg'
-| ERROR: Function failed: do_install (see 
-/build/crownbay-master/tmp/work/core2-poky-linux/emgd-driver-bin-1.14-r2/temp/log.do_install.28628 
-for further information)
-ERROR: Task 3814 
-(/home/jim/poky/meta-intel/common/recipes-graphics/xorg-driver/emgd-driver-bin_1.14.bb, 
-do_install) failed with exit code '1'
-NOTE: Tasks Summary: Attempted 4452 tasks of which 2802 didn't need to 
-be rerun and 1 failed.
-Waiting for 0 running tasks to finish:
-
-Summary: 1 task failed:
-/home/jim/poky/meta-intel/common/recipes-graphics/xorg-driver/emgd-driver-bin_1.14.bb, 
-do_install
-Summary: There was 1 ERROR message shown, returning a non-zero exit code.
-jim@jim-ubuntu-x64:/build/crownbay-master$
-
+Ross
 
