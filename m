@@ -1,38 +1,25 @@
-Return-Path: <PatrickTurley@gamestop.com>
-Received: from GSIRONPORTB.gamestop.com (mail2.gamestop.com [12.25.107.29])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A43ACE0027E
-	for <yocto@yoctoproject.org>; Thu, 11 Oct 2012 14:12:38 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="4.80,573,1344229200"; d="scan'208";a="43609860"
-Received: from unknown (HELO GV1HQPEX02.babgsetc.pvt) ([172.22.1.244])
-	by GSIRONPORTB.gamestop.com with ESMTP; 11 Oct 2012 16:12:38 -0500
-Received: from GV1HQPEX03.babgsetc.pvt ([169.254.1.67]) by
-	GV1HQPEX02.babgsetc.pvt ([172.22.1.192]) with mapi id 14.02.0283.003;
-	Thu, 11 Oct 2012 16:12:37 -0500
-From: Patrick Turley <PatrickTurley@gamestop.com>
-To: McClintock Matthew-B29882 <B29882@freescale.com>
-Thread-Topic: [yocto] The BitBake equivalent of "Hello, World!"
-Thread-Index: AQHNobawsFl2O8i4ZUWCT5ZGDLdssJeoMR8AgABV3gCAASn/AIAAJAYAgABhXwCAACU7AIAGH04AgAAfuQCAAVFhAIAABu4AgAMHuYA=
-Date: Thu, 11 Oct 2012 21:12:37 +0000
-Message-ID: <FDF753CA-DD4E-4C73-B3DE-C6B3DDD26A28@gamestop.com>
-References: <CC9226B2.365%PatrickTurley@gamestop.com>
-	<CC922B79.368%PatrickTurley@gamestop.com>
-	<CA+gsK-o=VD7GLYsTHYvmhK4Ht5KeNFS=4=yHmxybeAN7M_nzDw@mail.gmail.com>
-	<6796989A-D845-4726-B47B-64B82F380444@gamestop.com>
-	<CA+gsK-p5gt0FuN4XbifdSjPv5pcnF6u=5bcrWAw9Ayd9WpUTYw@mail.gmail.com>
-	<1A527469-CEF5-434E-8604-540899C8BA04@gamestop.com>
-	<CA+gsK-qzq5dK4QwOq1kw1U8tNbhDt-UZsRha-_ZKu0Kw8AWFAg@mail.gmail.com>
-	<A4CBB3C5-9355-4C1E-8324-55AF1849E0CF@gamestop.com>
-	<CA+gsK-obQLKv9LnMiqAiukKcoPBN3Bijn-oYhdUrvJ9yp12w=g@mail.gmail.com>
-	<BFCDD08E-1AB4-4770-812D-3BB6E2606E18@gamestop.com>
-	<70CC66F5C30A414DADDA6973E4CA391A6ECFDB@039-SN1MPN1-002.039d.mgd.msft.net>
-In-Reply-To: <70CC66F5C30A414DADDA6973E4CA391A6ECFDB@039-SN1MPN1-002.039d.mgd.msft.net>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.22.1.244]
-MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: The BitBake equivalent of "Hello, World!"
+Return-Path: <nitin.a.kamble@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3DBD4E0027E
+	for <yocto@yoctoproject.org>; Thu, 11 Oct 2012 16:32:52 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 11 Oct 2012 16:32:51 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,573,1344236400"; d="scan'208";a="233777278"
+Received: from yocto-hm1.jf.intel.com ([10.23.232.32])
+	by fmsmga002.fm.intel.com with ESMTP; 11 Oct 2012 16:32:13 -0700
+From: nitin.a.kamble@intel.com
+To: tom.zanussi@intel.com,
+	darren.hart@intel.com,
+	yocto@yoctoproject.org
+Date: Thu, 11 Oct 2012 16:30:59 -0700
+Message-Id: <69f8c3e5718cb9ec949f40f8ebe3a08b0bd7266f.1349998086.git.nitin.a.kamble@intel.com>
+X-Mailer: git-send-email 1.7.3.4
+In-Reply-To: <0ee691e2e0857cd3f26fe535d67c214817062392.1349998086.git.nitin.a.kamble@intel.com>
+References: <0ee691e2e0857cd3f26fe535d67c214817062392.1349998086.git.nitin.a.kamble@intel.com>
+In-Reply-To: <cover.1349998086.git.nitin.a.kamble@intel.com>
+References: <cover.1349998086.git.nitin.a.kamble@intel.com>
+Subject: [PATCHv4 2/8] crownbay.conf: specify the 8.0.4 version as preferred version of mesa-dri
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,25 +31,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 11 Oct 2012 21:12:38 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <9EC9F150D82CB44C8088D1482D787FEC@gamestop.com>
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 11 Oct 2012 23:32:52 -0000
 
-https://github.com/pturley0/bitbake-hello-world
+From: Nitin A Kamble <nitin.a.kamble@intel.com>
 
-On Oct 9, 2012, at 5:56 PM, McClintock Matthew-B29882 <B29882@freescale.com=
-> wrote:
+Avoid following warnings while building crownbay BSPs:
 
-> On Tue, Oct 9, 2012 at 5:31 PM, Patrick Turley
-> <PatrickTurley@gamestop.com> wrote:
->> Success. The file tree depicted at the bottom of this mail is nearly the
->> smallest, valid BitBake project that prints "Hello, World!" Here's the
->> output:
->=20
-> Perhaps you could push this to github somewhere as an example?
->=20
-> -M
+ NOTE: preferred version 7.11 of mesa-dri not available (for item virtual/libgl)
+ NOTE: versions of mesa-dri available: 2:8.0.4 2:8.0.4+git1+c1f4867c89adb1a6b19d66ec8ad146115909f0a7
+
+This commit addresses one of the issue reported on the bug:
+[YOCTO #3238]
+
+Signed-off-by: Nitin A Kamble <nitin.a.kamble@intel.com>
+---
+ meta-crownbay/conf/machine/crownbay.conf |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+diff --git a/meta-crownbay/conf/machine/crownbay.conf b/meta-crownbay/conf/machine/crownbay.conf
+index c18fa1d..72431de 100644
+--- a/meta-crownbay/conf/machine/crownbay.conf
++++ b/meta-crownbay/conf/machine/crownbay.conf
+@@ -18,7 +18,7 @@ XSERVER ?= "${XSERVER_IA32_BASE} \
+            "
+ 
+ PREFERRED_VERSION_xserver-xorg ?= "1.9.3"
+-PREFERRED_VERSION_mesa-dri ?= "7.11"
++PREFERRED_VERSION_mesa-dri ?= "8.0.4"
+ PREFERRED_VERSION_xf86-input-evdev ?= "2.6.0"
+ 
+ APPEND += "video=vesafb vga=0x318 vmalloc=256MB"
+-- 
+1.7.3.4
 
 
