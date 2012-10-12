@@ -1,33 +1,23 @@
-Return-Path: <Jonathan.Haws@sdl.usu.edu>
-Received: from echo.usurf.usu.edu (echo.usurf.usu.edu [129.123.194.129])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A8004E0027E
-	for <yocto@yoctoproject.org>; Fri, 12 Oct 2012 15:18:49 -0700 (PDT)
-Received: from wef.usurf.usu.edu (129.123.194.164) by echo.usurf.usu.edu
-	(129.123.194.129) with Microsoft SMTP Server id 14.2.318.4;
-	Fri, 12 Oct 2012 16:18:49 -0600
-Received: from Mercury.usurf.usu.edu ([172.31.35.10]) by wef.usurf.usu.edu
-	with Microsoft SMTPSVC(6.0.3790.4675); Fri, 12 Oct 2012 16:18:49 -0600
-Received: from MERCURY.usurf.usu.edu ([172.31.35.10]) by Mercury.usurf.usu.edu
-	([172.31.35.10]) with mapi id 14.02.0318.004;
-	Fri, 12 Oct 2012 16:18:48 -0600
-From: Jonathan Haws <Jonathan.Haws@sdl.usu.edu>
-To: Rudolf Streif <rudolf.streif@linux.com>
-Thread-Topic: [yocto] Multiple partitions in drive image
-Thread-Index: Ac2ov/cjVA+E4+p/TJCISMabmiKnxgAORqAA//+cAzI=
-Date: Fri, 12 Oct 2012 22:18:47 +0000
-Message-ID: <DDDB9E6645DE24488B8485B41A051F471D95AFDE@Mercury.usurf.usu.edu>
-References: <DDDB9E6645DE24488B8485B41A051F471D95AFA5@Mercury.usurf.usu.edu>,
-	<CA+gsK-rsTji6KpUsHnHr_BqiN_YLVAJ4FSsKSBNgKt42rSnqyg@mail.gmail.com>
-In-Reply-To: <CA+gsK-rsTji6KpUsHnHr_BqiN_YLVAJ4FSsKSBNgKt42rSnqyg@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.31.22.105]
-MIME-Version: 1.0
-X-OriginalArrivalTime: 12 Oct 2012 22:18:49.0351 (UTC)
-	FILETIME=[8DBC7970:01CDA8C7]
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Multiple partitions in drive image
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7B378E0027E
+	for <yocto@yoctoproject.org>; Fri, 12 Oct 2012 15:55:54 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga101.ch.intel.com with ESMTP; 12 Oct 2012 15:55:45 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,578,1344236400"; d="scan'208";a="155691708"
+Received: from unknown (HELO [10.255.14.130]) ([10.255.14.130])
+	by AZSMGA002.ch.intel.com with ESMTP; 12 Oct 2012 15:55:44 -0700
+Message-ID: <1350082543.27257.5.camel@empanada>
+From: Tom Zanussi <tom.zanussi@intel.com>
+To: nitin.a.kamble@intel.com
+Date: Fri, 12 Oct 2012 17:55:43 -0500
+In-Reply-To: <cover.1349998086.git.nitin.a.kamble@intel.com>
+References: <cover.1349998086.git.nitin.a.kamble@intel.com>
+X-Mailer: Evolution 3.4.1 (3.4.1-2.fc17) 
+Mime-Version: 1.0
+Cc: darren.hart@intel.com, yocto@yoctoproject.org
+Subject: Re: [PATCHv4 0/8] Misc meta-intel commits
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,39 +29,109 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 12 Oct 2012 22:18:50 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 12 Oct 2012 22:55:55 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-This is for an ADLGS45 board from Advanced Digital Logic.  It has a Core2 D=
-uo with an Intel GS45 chipset.  I have the kernel and everything booting ju=
-st find using the hddimg file generated (and found in tmp/deploy/images), h=
-owever that is wasting a lot of space on that drive, since the image is onl=
-y 250MB (and the drive is 120GB).
 
-If I can avoid going through the hassle of installing GRUB and copying over=
- the root FS (i.e. wrap it into a single 'dd' command) that would be ideal =
-because eventually this will be turned over to a tech who knows nothing abo=
-ut GRUB or anything else and just (somewhat) follows a manual.
+On Thu, 2012-10-11 at 16:30 -0700, nitin.a.kamble@intel.com wrote:
+> From: Nitin A Kamble <nitin.a.kamble@intel.com>
+> 
+> This v4 pull request add these extra  commits compared to v3
+>   mesa-dri.bbappend: avoid conflict with emgd-driver-bin
+>   emgd-driver-bin: note all the EMGD licenses
+>   custom-licenses dir for emgd recipe Licenses
+> 
+
+All except 'mesa-dri.bbappend: avoid conflict with emgd-driver-bin'
+pulled in to meta-intel/master.
+
+The one change I made was to tweak the commit subject lines to the
+proper format for each of the commits that didn't have the normal
+[component: short-description] form like the other commits in
+meta-intel.
 
 Thanks,
-Jonathan
 
-________________________________
-From: rstreif@linuxfoundation.org [rstreif@linuxfoundation.org] on behalf o=
-f Rudolf Streif [rudolf.streif@linux.com]
-Sent: Friday, October 12, 2012 16:13
-To: Jonathan Haws
-Cc: yocto@yoctoproject.org
-Subject: Re: [yocto] Multiple partitions in drive image
+Tom
 
-Jonathan,
+> Thanks,
+> Nitin
+> 
+> The following changes since commit 5d8a05811101f7d69994f4028ec620c4480f6da4:
+> 
+>   Fix use of PRINC in meta-intel BSPs (2012-10-09 16:04:30 -0700)
+> 
+> are available in the git repository at:
+>   git://git.yoctoproject.org/meta-intel-contrib nitin/misc
+>   http://git.yoctoproject.org/cgit.cgi/meta-intel-contrib/log/?h=nitin/misc
+> 
+> Nitin A Kamble (8):
+>   xf86-video-intel: Bring 2.20.0 version to match released graphics
+>     stack
+>   crownbay.conf: specify the 8.0.4 version as preferred version of
+>     mesa-dri
+>   emgd-driver_bin_1.10: Remove in favor of 1.14
+>   fishriver BSP retirement
+>   update maintainers of various BSPs
+>   mesa-dri.bbappend: avoid conflict with emgd-driver-bin
+>   emgd-driver-bin: note all the EMGD licenses
+>   custom-licenses dir for emgd recipe Licenses
+> 
+>  MAINTAINERS                                        |   16 +-
+>  .../Intel-software-license-emgd-1.14               |   42 ++
+>  ...-space-graphics-driver-binary-license-emgd-1.14 |  559 ++++++++++++++++++++
+>  .../recipes-graphics/mesa/mesa-dri_8.0.4.bbappend  |   24 +
+>  .../xorg-driver/emgd-driver-bin_1.10.bb            |   93 ----
+>  .../xorg-driver/emgd-driver-bin_1.14.bb            |    5 +-
+>  .../xorg-driver/xf86-video-intel_2.20.0.bb         |   27 +
+>  .../xorg-driver/xorg-driver-common.inc             |   33 ++
+>  .../xorg-driver/xorg-driver-video.inc              |    4 +
+>  conf/layer.conf                                    |    3 +
+>  meta-chiefriver/README                             |   11 +
+>  meta-crownbay/README                               |    2 +-
+>  meta-crownbay/conf/machine/crownbay.conf           |    2 +-
+>  meta-emenlow/README                                |    2 +-
+>  meta-fishriver/COPYING.MIT                         |   17 -
+>  meta-fishriver/README                              |  114 ----
+>  meta-fishriver/README.sources                      |   17 -
+>  meta-fishriver/conf/layer.conf                     |   12 -
+>  meta-fishriver/conf/machine/fishriver.conf         |   17 -
+>  .../formfactor/formfactor/fishriver/machconfig     |    3 -
+>  .../recipes-bsp/formfactor/formfactor_0.0.bbappend |    3 -
+>  .../xserver-xf86-config/fishriver/xorg.conf        |   26 -
+>  .../xorg-xserver/xserver-xf86-config_0.1.bbappend  |    1 -
+>  .../linux/linux-yocto-rt_3.0.bbappend              |    8 -
+>  .../linux/linux-yocto-rt_3.2.bbappend              |    8 -
+>  .../recipes-kernel/linux/linux-yocto_3.0.bbappend  |    9 -
+>  .../recipes-kernel/linux/linux-yocto_3.2.bbappend  |    8 -
+>  .../recipes-kernel/linux/linux-yocto_3.4.bbappend  |    8 -
+>  meta-jasperforest/README                           |    2 +-
+>  meta-sugarbay/README                               |    2 +-
+>  30 files changed, 717 insertions(+), 361 deletions(-)
+>  create mode 100644 common/custom-licenses/Intel-software-license-emgd-1.14
+>  create mode 100644 common/custom-licenses/Intel-user-space-graphics-driver-binary-license-emgd-1.14
+>  create mode 100644 common/recipes-graphics/mesa/mesa-dri_8.0.4.bbappend
+>  delete mode 100644 common/recipes-graphics/xorg-driver/emgd-driver-bin_1.10.bb
+>  create mode 100644 common/recipes-graphics/xorg-driver/xf86-video-intel_2.20.0.bb
+>  create mode 100644 common/recipes-graphics/xorg-driver/xorg-driver-common.inc
+>  create mode 100644 common/recipes-graphics/xorg-driver/xorg-driver-video.inc
+>  delete mode 100644 meta-fishriver/COPYING.MIT
+>  delete mode 100644 meta-fishriver/README
+>  delete mode 100644 meta-fishriver/README.sources
+>  delete mode 100644 meta-fishriver/binary/.gitignore
+>  delete mode 100644 meta-fishriver/conf/layer.conf
+>  delete mode 100644 meta-fishriver/conf/machine/fishriver.conf
+>  delete mode 100644 meta-fishriver/recipes-bsp/formfactor/formfactor/fishriver/machconfig
+>  delete mode 100644 meta-fishriver/recipes-bsp/formfactor/formfactor_0.0.bbappend
+>  delete mode 100644 meta-fishriver/recipes-graphics/xorg-xserver/xserver-xf86-config/fishriver/xorg.conf
+>  delete mode 100644 meta-fishriver/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend
+>  delete mode 100644 meta-fishriver/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
+>  delete mode 100644 meta-fishriver/recipes-kernel/linux/linux-yocto-rt_3.2.bbappend
+>  delete mode 100644 meta-fishriver/recipes-kernel/linux/linux-yocto_3.0.bbappend
+>  delete mode 100644 meta-fishriver/recipes-kernel/linux/linux-yocto_3.2.bbappend
+>  delete mode 100644 meta-fishriver/recipes-kernel/linux/linux-yocto_3.4.bbappend
+> 
 
-For what hardware are you building? It depends on the hardware how you need=
- to layout the file system on the boot device. YP provides you with a kerne=
-l image and a root file system image and eventually, dependent on the hardw=
-are, with bootloaders in ${TMPDIR}/deploy/images.
 
-Rudi
 
