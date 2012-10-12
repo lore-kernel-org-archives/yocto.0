@@ -1,23 +1,22 @@
-Return-Path: <treebody@embedstudy.com>
-Received: from smtpbg222.qq.com (SMTPBG222.QQ.COM [183.60.2.36])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 529C6E01467
-	for <yocto@yoctoproject.org>; Fri, 12 Oct 2012 00:41:38 -0700 (PDT)
-X-QQ-SSF: 00000000000000F000000000000000G
-X-HAS-ATTACH: no
-X-QQ-BUSINESS-ORIGIN: 2
-X-Originating-IP: 222.92.156.26
-X-QQ-STYLE: 
-X-QQ-mid: webmail405t1350027695t3418801
-From: "=?ISO-8859-1?B?TGl1?=" <treebody@embedstudy.com>
-To: "=?ISO-8859-1?B?eW9jdG8=?=" <yocto@yoctoproject.org>
-Mime-Version: 1.0
-Date: Fri, 12 Oct 2012 15:41:35 +0800
-X-Priority: 3
-Message-ID: <tencent_30240F973705ED5413FC8C7A@qq.com>
-X-QQ-MIME: TCMime 1.0 by Tencent
-X-Mailer: QQMail 2.x
-X-QQ-Mailer: QQMail 2.x
-Subject: how to use SECTION in .bb file
+Return-Path: <tf+lists.yocto@r-finger.com>
+Received: from r-finger.com (r-finger.com [178.79.160.5])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 78775E01468
+	for <yocto@yoctoproject.org>; Fri, 12 Oct 2012 00:48:25 -0700 (PDT)
+Received: from [192.168.0.2] (host81-153-82-212.range81-153.btcentralplus.com
+	[81.153.82.212]) (using TLSv1 with cipher AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by r-finger.com (Postfix) with ESMTPSA id CE3BB99A4
+	for <yocto@yoctoproject.org>; Fri, 12 Oct 2012 08:48:24 +0100 (BST)
+Message-ID: <5077CB48.6090903@r-finger.com>
+Date: Fri, 12 Oct 2012 08:48:24 +0100
+From: Tomas Frydrych <tf+lists.yocto@r-finger.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:10.0.5) Gecko/20120624 Icedove/10.0.5
+MIME-Version: 1.0
+To: yocto@yoctoproject.org
+References: <tencent_30240F973705ED5413FC8C7A@qq.com>
+In-Reply-To: <tencent_30240F973705ED5413FC8C7A@qq.com>
+Subject: Re: how to use SECTION in .bb file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,34 +28,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 12 Oct 2012 07:41:43 -0000
-Content-Type: multipart/alternative;
-	boundary="----=_NextPart_5077C9AF_D68BE440_56416A83"
-Content-Transfer-Encoding: 8Bit
+X-List-Received-Date: Fri, 12 Oct 2012 07:48:25 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-------=_NextPart_5077C9AF_D68BE440_56416A83
-Content-Type: text/plain;
-	charset="ISO-8859-1"
-Content-Transfer-Encoding: base64
+On 12/10/12 08:41, Liu wrote:
+> Dear all, I want to add some packages to poky,then I faced a question
+> : In a recipe there is "SECTION" variable,it is explaned where
+> package should be put .But I do not understand what it really
+> means.
 
-RGVhciBhbGwsDQogICAgSSB3YW50IHRvIGFkZCBzb21lIHBhY2thZ2VzIHRvIHBva3ksdGhl
-biBJIGZhY2VkIGEgcXVlc3Rpb24gOg0KIEluIGEgcmVjaXBlIHRoZXJlIGlzICJTRUNUSU9O
-IiB2YXJpYWJsZSxpdCBpcyBleHBsYW5lZCB3aGVyZSBwYWNrYWdlIHNob3VsZCBiZSBwdXQg
-LkJ1dCBJIGRvIG5vdCB1bmRlcnN0YW5kIHdoYXQgaXQgcmVhbGx5IG1lYW5zLkNhbiBhbnlv
-bmUgdGVsbCBtZSBhYm91dCB0aGlzID8NCiBCZXN0IHdpc2hlcyAhDQogLS0tLS0tLS0tTGl1
+It's for packages managers to allow them to group common packages
+together in the user interface to make it easier to navigate the package
+list.
 
+Tomas
 
-------=_NextPart_5077C9AF_D68BE440_56416A83
-Content-Type: text/html;
-	charset="ISO-8859-1"
-Content-Transfer-Encoding: base64
-
-PEZPTlQgc2l6ZT0rMD4NCjxESVY+RGVhciBhbGwsPC9ESVY+DQo8RElWPiZuYnNwOyZuYnNw
-OyBJIHdhbnQgdG8gYWRkIHNvbWUgcGFja2FnZXMgdG8gcG9reSx0aGVuIEkgZmFjZWQgYSBx
-dWVzdGlvbiA6PC9ESVY+DQo8RElWPkluIGEgcmVjaXBlIHRoZXJlIGlzICJTRUNUSU9OIiB2
-YXJpYWJsZSxpdCBpcyZuYnNwO2V4cGxhbmVkIHdoZXJlIHBhY2thZ2Ugc2hvdWxkIGJlIHB1
-dCAuQnV0IEkgZG8gbm90IHVuZGVyc3RhbmQgd2hhdCBpdCByZWFsbHkgbWVhbnMuQ2FuIGFu
-eW9uZSB0ZWxsIG1lIGFib3V0IHRoaXMgPzwvRElWPg0KPERJVj5CZXN0IHdpc2hlcyAhPC9E
-SVY+DQo8RElWPi0tLS0tLS0tLUxpdTwvRElWPjwvRk9OVD4=
-
-------=_NextPart_5077C9AF_D68BE440_56416A83--
