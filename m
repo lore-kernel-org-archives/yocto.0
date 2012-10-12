@@ -1,37 +1,32 @@
-Return-Path: <nitin.a.kamble@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 73E83E0027E
-	for <yocto@yoctoproject.org>; Thu, 11 Oct 2012 16:39:13 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 11 Oct 2012 16:39:12 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,573,1344236400"; d="scan'208";a="155285299"
-Received: from orsmsx101.amr.corp.intel.com ([10.22.225.128])
-	by AZSMGA002.ch.intel.com with ESMTP; 11 Oct 2012 16:39:12 -0700
-Received: from orsmsx106.amr.corp.intel.com ([169.254.5.60]) by
-	ORSMSX101.amr.corp.intel.com ([169.254.8.223]) with mapi id
-	14.01.0355.002; Thu, 11 Oct 2012 16:39:11 -0700
-From: "Kamble, Nitin A" <nitin.a.kamble@intel.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Thread-Topic: [yocto] [PATCH 2/5] crownbay.conf: specify the 8.0.4 version
-	as preferred version of mesa-dri
-Thread-Index: AQHNpmsEn7tdN8qRbUGwV5alcKA1mJeyuo4AgABu8SCAAaD0gP//+8Tw
-Date: Thu, 11 Oct 2012 23:39:10 +0000
-Message-ID: <ADD6A3980E8C39419A432FF422031B4C15731D0E@ORSMSX106.amr.corp.intel.com>
-References: <cover.1349820369.git.nitin.a.kamble@intel.com>
-	<e349d9f28dd0b1064fffd14b337770ee6574e7cd.1349820369.git.nitin.a.kamble@intel.com>
-	<CAJTo0LYmbD=HJEECJC7usk7A7tLwDxnrFm-pxUoRo2=qyKGyvQ@mail.gmail.com>
-	<ADD6A3980E8C39419A432FF422031B4C1573164F@ORSMSX106.amr.corp.intel.com>
-	<CAJTo0LaA9FMThnZpb+F3T8d_XfUqFW55BXUns57jW92Phi_wGw@mail.gmail.com>
-In-Reply-To: <CAJTo0LaA9FMThnZpb+F3T8d_XfUqFW55BXUns57jW92Phi_wGw@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from orsmga101.jf.intel.com (mga06.intel.com [134.134.136.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 663BCE01467
+	for <yocto@yoctoproject.org>; Thu, 11 Oct 2012 17:25:57 -0700 (PDT)
+Received: from mail-qc0-f176.google.com ([209.85.216.176])
+	by mga02.intel.com with ESMTP/TLS/RC4-SHA; 11 Oct 2012 17:25:56 -0700
+Received: by mail-qc0-f176.google.com with SMTP id n41so2245003qco.35
+	for <yocto@yoctoproject.org>; Thu, 11 Oct 2012 17:25:55 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type
+	:x-gm-message-state;
+	bh=fnDSJyg+MgrZscDg1jkfg25mgkhafsD4pTvK6eIQ+3I=;
+	b=Y0Ov4hJ4fwv5QQg/ZUcBeB7QOJngrW+Ed8hgW88jtdQJlouWL5oECf8j7h4Ylzjosg
+	m94y1SFvXL2zE5UNpcUdgn5N06TLfETldzn6RgoQ/q5j9oGQor237ykdxdTrAVxgbZw7
+	N6VUtmMog1FZ6185CRbZ6ko7NT6LymE/O54U/15Zl2xOflgzMsgUET7PtmnofUL7AYn9
+	/2J2/IQuDslx6rSDY1GQeePawNtHyv7BcZ9rgy9lfilaX1sUDkq5b0inFuct+nJY8Gyz
+	9VNlkKj2EcfN07PxjAFR6XWHF+CnMalgsBrg+YAvgOwDoMbTQeuGQmOxea5zxCYUleKV
+	Ta6Q==
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Hart,
-	Darren" <darren.hart@intel.com>
-Subject: Re: [PATCH 2/5] crownbay.conf: specify the 8.0.4 version as preferred version of mesa-dri
+Received: by 10.224.186.195 with SMTP id ct3mr4715166qab.66.1350001555759;
+	Thu, 11 Oct 2012 17:25:55 -0700 (PDT)
+Received: by 10.229.110.2 with HTTP; Thu, 11 Oct 2012 17:25:55 -0700 (PDT)
+Date: Thu, 11 Oct 2012 17:25:55 -0700
+Message-ID: <CAPhnLPC5a5VNEdBxiqtvCBw+utbVpPJWPMWBQDHkNncF3-Q8Zg@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: yocto@yoctoproject.org
+X-Gm-Message-State: ALoCoQkOlJhrN95r++0g1LqtHPS0j7dTdFkrDxKunDT2hdxFFmNMhEa7wqCcD0FKVrzwjq+48nvM
+Subject: 1.3_M5.rc4 ready for QA
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,30 +38,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 11 Oct 2012 23:39:13 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Fri, 12 Oct 2012 00:25:57 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogQnVydG9uLCBSb3NzIFtt
-YWlsdG86cm9zcy5idXJ0b25AaW50ZWwuY29tXQ0KPiBTZW50OiBUaHVyc2RheSwgT2N0b2JlciAx
-MSwgMjAxMiA5OjU0IEFNDQo+IFRvOiBLYW1ibGUsIE5pdGluIEENCj4gQ2M6IHlvY3RvQHlvY3Rv
-cHJvamVjdC5vcmc7IFphbnVzc2ksIFRvbTsgSGFydCwgRGFycmVuDQo+IFN1YmplY3Q6IFJlOiBb
-eW9jdG9dIFtQQVRDSCAyLzVdIGNyb3duYmF5LmNvbmY6IHNwZWNpZnkgdGhlIDguMC40IHZlcnNp
-b24gYXMNCj4gcHJlZmVycmVkIHZlcnNpb24gb2YgbWVzYS1kcmkNCj4gDQo+IE9uIDExIE9jdG9i
-ZXIgMjAxMiAwMDoxMCwgS2FtYmxlLCBOaXRpbiBBIDxuaXRpbi5hLmthbWJsZUBpbnRlbC5jb20+
-DQo+IHdyb3RlOg0KPiA+ICAgIFNvIGZhciBJIGhhdmUgdGVzdGVkIHdpdGggZ2x4Z2VhcnMgYW5k
-IGdseGluZm8gd2l0aCB0aGUgOC4wLjQgdmVyc2lvbiBvZg0KPiBtZXNhLWRyaS4gQW5kIEkgZGlk
-IG5vdCBmaW5kIGFueSBpc3N1ZXMuIEFuZCBUb20gaGFzIGJlZW4gdGVzdGluZyB0aGUgc2FtZQ0K
-PiB3YXkgc28gZmFyIHdpdGhvdXQgYW55IGNvbXBsYWludHMuIElmIHRoZXJlIGlzIHNvbWV0aGlu
-ZyB3aGljaCBjYW4gaGVscA0KPiB0aGluZ3MgdGVzdCBmdXJ0aGVyLCBpdCB3b3VsZCBiZSBuaWNl
-IHRvIGFkZCBpdCB0byB0aGUgcG9reSB0cmVlOyBzbyB0aGF0IGl0IGNhbg0KPiBiZWNvbWUgcGFy
-dCBvZiBzdGFuZGFyZCB0ZXN0cywgYW5kIFFBIGFsc28gY2FuIHVzZSBpdC4NCj4gDQo+IEEgc2xp
-Z2h0bHkgYmV0dGVyIHRlc3QgdGhhbiBnbHhnZWFycyB0aGF0IGlzIGluIG9lLWNvcmUgaXMgaW4g
-bGliY2x1dHRlci1nbHgtMS4wLQ0KPiBleGFtcGxlcy4gIFJ1biAidGVzdC1pbnRlcmFjdGl2ZSB0
-ZXN0X2NhaXJvX2Zsb3dlcnMiIGluIGEgdGVybWluYWwsIHlvdQ0KPiBzaG91bGQgZ2V0IGZsb3dl
-cnMgZmFsbGluZyBkb3duIHRoZSBzY3JlZW4uDQo+IA0KDQoNCkhpIFJvc3MsDQogICBJIGFtIG5v
-dCBmaW5kaW5nIHRoaXMgcmVjaXBlIGluIHRoZSBwb2t5IG1hc3Rlci4NCg0KTml0aW4NCg0KDQoN
-Cj4gKG9uIGNkdCwgdGhpcyByZXN1bHRzIGluIGEgUFZSIGRyaXZlciBlcnJvciAtICMzMjgwKQ0K
-PiANCj4gUm9zcw0K
+Last night we generated what we hope will be the final release
+candidate for the upcoming Yocto Project 1.3 release "danny"
+
+Please begin QA on the following build
+
+Location: http://autobuilder.yoctoproject.org/pub/nightly/20121010-3/
+Branch: danny
+Tag: 1.3_M5.rc4
+
+Commits:
+poky: c9de24d3f4845251b01e2eab0aeeb7472badc5bb
+eclipse-poky: cb8a0eff776d2cbd1b5f596a94dce825860574ab
+meta-qt3: c86fb1727ae09526c442ec29fffde3f010aa70eb
+meta-intel: 5d8a05811101f7d69994f4028ec620c4480f6da4
+
+--
+Elizabeth Flanagan
+Yocto Project
+Build and Release
 
