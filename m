@@ -1,24 +1,37 @@
-Return-Path: <sgw@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 22E47E0149D
-	for <yocto@yoctoproject.org>; Fri, 12 Oct 2012 14:51:23 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 12 Oct 2012 14:51:00 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,578,1344236400"; d="scan'208";a="205089250"
-Received: from unknown (HELO [10.255.14.5]) ([10.255.14.5])
-	by orsmga001.jf.intel.com with ESMTP; 12 Oct 2012 14:51:22 -0700
-Message-ID: <507890D9.6010400@linux.intel.com>
-Date: Fri, 12 Oct 2012 14:51:21 -0700
-From: Saul Wold <sgw@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:15.0) Gecko/20120911 Thunderbird/15.0.1
+Return-Path: <rstreif@linuxfoundation.org>
+Received: from mail-qa0-f41.google.com (mail-qa0-f41.google.com
+	[209.85.216.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0ABA5E0027E
+	for <yocto@yoctoproject.org>; Fri, 12 Oct 2012 15:13:16 -0700 (PDT)
+Received: by mail-qa0-f41.google.com with SMTP id p27so14420qat.14
+	for <yocto@yoctoproject.org>; Fri, 12 Oct 2012 15:13:16 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:sender:in-reply-to:references:date
+	:x-google-sender-auth:message-id:subject:from:to:cc:content-type
+	:x-gm-message-state;
+	bh=JZ4G2NaHHQ+bKepeIckpJmkmdVm/3/JAhGidFsVdDWU=;
+	b=NMpCnLQKQIAE0lbloXuoYxJSANHl1NU2Xd6CcW2eT6gv4oeSl0BxZYQeWJMPHdxILI
+	uW4t1DYDDcGdjgXWEWdnl3Zxz45xuEWcKui9z+N8PO7a5iUu1ENr+sDqQJsmvYhCuIOj
+	QJhsgR8KsDnATvj/fcWvBJ2HTWUyAEuYE/1MGgO20GPUUBSGaS1OT0CO95EB3ZtDZPLB
+	lj8Jju9JC09gXbdqJ/eoPk+8rkVfjt50B4s06VRCKrlemaRFmOU67H0YIWu2AO+TXL2e
+	Eibm2L7nGMfM+VHYbj7xyhq9N6Gtjq8hCk0K4GlfW3LY6jBu3kDpIEnbmyHx1SZwj+gb
+	cPYw==
 MIME-Version: 1.0
-To: Marc Ferland <ferlandm@sonatest.com>
-References: <87hapzvgqn.fsf@sonatest.com>
-In-Reply-To: <87hapzvgqn.fsf@sonatest.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: Revision file in images
+Received: by 10.224.199.2 with SMTP id eq2mr9588310qab.55.1350079996550; Fri,
+	12 Oct 2012 15:13:16 -0700 (PDT)
+Sender: rstreif@linuxfoundation.org
+Received: by 10.49.54.197 with HTTP; Fri, 12 Oct 2012 15:13:16 -0700 (PDT)
+In-Reply-To: <DDDB9E6645DE24488B8485B41A051F471D95AFA5@Mercury.usurf.usu.edu>
+References: <DDDB9E6645DE24488B8485B41A051F471D95AFA5@Mercury.usurf.usu.edu>
+Date: Fri, 12 Oct 2012 15:13:16 -0700
+X-Google-Sender-Auth: wkM40OxcAX88RV0rJqZgoUPVxOw
+Message-ID: <CA+gsK-rsTji6KpUsHnHr_BqiN_YLVAJ4FSsKSBNgKt42rSnqyg@mail.gmail.com>
+From: Rudolf Streif <rudolf.streif@linux.com>
+To: Jonathan Haws <Jonathan.Haws@sdl.usu.edu>
+X-Gm-Message-State: ALoCoQnhWAzI1+mvYzVVWrAHjn3jFz7+gpdMAnNNp+D5Yr6QQQJAxhmsDkfTXKV34BNxqWGYdhH4
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Multiple partitions in drive image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,43 +43,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 12 Oct 2012 21:51:23 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 12 Oct 2012 22:13:17 -0000
+Content-Type: multipart/alternative; boundary=20cf300fb1559cdeb004cbe3fe6f
 
-On 10/12/2012 08:42 AM, Marc Ferland wrote:
-> Hi,
->
-> Is a revision file populated in the images produced by the build process?
-> Something listing the revisions of the different layers used. Just like
-> the "OE Build Configuration" summary.
->
-That level of detail no.
+--20cf300fb1559cdeb004cbe3fe6f
+Content-Type: text/plain; charset=ISO-8859-1
 
-> I'd like to easily identify what a target system currently runs.
->
-You can identify it based on the /etc/issue file, which contains the 
-information that you might have set in DISTRO_NAME and DISTRO_VERSION in 
-your distro.
+Jonathan,
 
-For example from poky.conf
-DISTRO_NAME = "Poky 8.0 (Yocto Project 1.3 Reference Distro)"
-DISTRO_VERSION = "1.3+snapshot-${DATE}"
+For what hardware are you building? It depends on the hardware how you need
+to layout the file system on the boot device. YP provides you with a kernel
+image and a root file system image and eventually, dependent on the
+hardware, with bootloaders in ${TMPDIR}/deploy/images.
 
-oe-core alone does not se any default name, but version as follows:
-DISTRO_VERSION ??= "oe-core.0"
+Rudi
 
-These go into the issue file via the base_files recipe.
+--20cf300fb1559cdeb004cbe3fe6f
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-Sau!
+Jonathan,<div><br></div><div>For what hardware are you building? It depends=
+ on the hardware how you need to layout the file system on the boot device.=
+ YP provides you with a kernel image and a root file system image and event=
+ually, dependent on the hardware, with bootloaders in ${TMPDIR}/deploy/imag=
+es.</div>
+<div><br></div><div>Rudi</div>
 
-> Regards,
->
-> Marc
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
->
-
+--20cf300fb1559cdeb004cbe3fe6f--
