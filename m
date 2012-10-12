@@ -1,35 +1,31 @@
-Return-Path: <rstreif@linuxfoundation.org>
-Received: from mail-qa0-f41.google.com (mail-qa0-f41.google.com
-	[209.85.216.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0ABA5E0027E
-	for <yocto@yoctoproject.org>; Fri, 12 Oct 2012 15:13:16 -0700 (PDT)
-Received: by mail-qa0-f41.google.com with SMTP id p27so14420qat.14
-	for <yocto@yoctoproject.org>; Fri, 12 Oct 2012 15:13:16 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:date
-	:x-google-sender-auth:message-id:subject:from:to:cc:content-type
-	:x-gm-message-state;
-	bh=JZ4G2NaHHQ+bKepeIckpJmkmdVm/3/JAhGidFsVdDWU=;
-	b=NMpCnLQKQIAE0lbloXuoYxJSANHl1NU2Xd6CcW2eT6gv4oeSl0BxZYQeWJMPHdxILI
-	uW4t1DYDDcGdjgXWEWdnl3Zxz45xuEWcKui9z+N8PO7a5iUu1ENr+sDqQJsmvYhCuIOj
-	QJhsgR8KsDnATvj/fcWvBJ2HTWUyAEuYE/1MGgO20GPUUBSGaS1OT0CO95EB3ZtDZPLB
-	lj8Jju9JC09gXbdqJ/eoPk+8rkVfjt50B4s06VRCKrlemaRFmOU67H0YIWu2AO+TXL2e
-	Eibm2L7nGMfM+VHYbj7xyhq9N6Gtjq8hCk0K4GlfW3LY6jBu3kDpIEnbmyHx1SZwj+gb
-	cPYw==
+Return-Path: <Jonathan.Haws@sdl.usu.edu>
+Received: from echo.usurf.usu.edu (echo.usurf.usu.edu [129.123.194.129])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A8004E0027E
+	for <yocto@yoctoproject.org>; Fri, 12 Oct 2012 15:18:49 -0700 (PDT)
+Received: from wef.usurf.usu.edu (129.123.194.164) by echo.usurf.usu.edu
+	(129.123.194.129) with Microsoft SMTP Server id 14.2.318.4;
+	Fri, 12 Oct 2012 16:18:49 -0600
+Received: from Mercury.usurf.usu.edu ([172.31.35.10]) by wef.usurf.usu.edu
+	with Microsoft SMTPSVC(6.0.3790.4675); Fri, 12 Oct 2012 16:18:49 -0600
+Received: from MERCURY.usurf.usu.edu ([172.31.35.10]) by Mercury.usurf.usu.edu
+	([172.31.35.10]) with mapi id 14.02.0318.004;
+	Fri, 12 Oct 2012 16:18:48 -0600
+From: Jonathan Haws <Jonathan.Haws@sdl.usu.edu>
+To: Rudolf Streif <rudolf.streif@linux.com>
+Thread-Topic: [yocto] Multiple partitions in drive image
+Thread-Index: Ac2ov/cjVA+E4+p/TJCISMabmiKnxgAORqAA//+cAzI=
+Date: Fri, 12 Oct 2012 22:18:47 +0000
+Message-ID: <DDDB9E6645DE24488B8485B41A051F471D95AFDE@Mercury.usurf.usu.edu>
+References: <DDDB9E6645DE24488B8485B41A051F471D95AFA5@Mercury.usurf.usu.edu>,
+	<CA+gsK-rsTji6KpUsHnHr_BqiN_YLVAJ4FSsKSBNgKt42rSnqyg@mail.gmail.com>
+In-Reply-To: <CA+gsK-rsTji6KpUsHnHr_BqiN_YLVAJ4FSsKSBNgKt42rSnqyg@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.31.22.105]
 MIME-Version: 1.0
-Received: by 10.224.199.2 with SMTP id eq2mr9588310qab.55.1350079996550; Fri,
-	12 Oct 2012 15:13:16 -0700 (PDT)
-Sender: rstreif@linuxfoundation.org
-Received: by 10.49.54.197 with HTTP; Fri, 12 Oct 2012 15:13:16 -0700 (PDT)
-In-Reply-To: <DDDB9E6645DE24488B8485B41A051F471D95AFA5@Mercury.usurf.usu.edu>
-References: <DDDB9E6645DE24488B8485B41A051F471D95AFA5@Mercury.usurf.usu.edu>
-Date: Fri, 12 Oct 2012 15:13:16 -0700
-X-Google-Sender-Auth: wkM40OxcAX88RV0rJqZgoUPVxOw
-Message-ID: <CA+gsK-rsTji6KpUsHnHr_BqiN_YLVAJ4FSsKSBNgKt42rSnqyg@mail.gmail.com>
-From: Rudolf Streif <rudolf.streif@linux.com>
-To: Jonathan Haws <Jonathan.Haws@sdl.usu.edu>
-X-Gm-Message-State: ALoCoQnhWAzI1+mvYzVVWrAHjn3jFz7+gpdMAnNNp+D5Yr6QQQJAxhmsDkfTXKV34BNxqWGYdhH4
+X-OriginalArrivalTime: 12 Oct 2012 22:18:49.0351 (UTC)
+	FILETIME=[8DBC7970:01CDA8C7]
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Multiple partitions in drive image
 X-BeenThere: yocto@yoctoproject.org
@@ -43,30 +39,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 12 Oct 2012 22:13:17 -0000
-Content-Type: multipart/alternative; boundary=20cf300fb1559cdeb004cbe3fe6f
+X-List-Received-Date: Fri, 12 Oct 2012 22:18:50 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
---20cf300fb1559cdeb004cbe3fe6f
-Content-Type: text/plain; charset=ISO-8859-1
+This is for an ADLGS45 board from Advanced Digital Logic.  It has a Core2 D=
+uo with an Intel GS45 chipset.  I have the kernel and everything booting ju=
+st find using the hddimg file generated (and found in tmp/deploy/images), h=
+owever that is wasting a lot of space on that drive, since the image is onl=
+y 250MB (and the drive is 120GB).
+
+If I can avoid going through the hassle of installing GRUB and copying over=
+ the root FS (i.e. wrap it into a single 'dd' command) that would be ideal =
+because eventually this will be turned over to a tech who knows nothing abo=
+ut GRUB or anything else and just (somewhat) follows a manual.
+
+Thanks,
+Jonathan
+
+________________________________
+From: rstreif@linuxfoundation.org [rstreif@linuxfoundation.org] on behalf o=
+f Rudolf Streif [rudolf.streif@linux.com]
+Sent: Friday, October 12, 2012 16:13
+To: Jonathan Haws
+Cc: yocto@yoctoproject.org
+Subject: Re: [yocto] Multiple partitions in drive image
 
 Jonathan,
 
-For what hardware are you building? It depends on the hardware how you need
-to layout the file system on the boot device. YP provides you with a kernel
-image and a root file system image and eventually, dependent on the
-hardware, with bootloaders in ${TMPDIR}/deploy/images.
+For what hardware are you building? It depends on the hardware how you need=
+ to layout the file system on the boot device. YP provides you with a kerne=
+l image and a root file system image and eventually, dependent on the hardw=
+are, with bootloaders in ${TMPDIR}/deploy/images.
 
 Rudi
 
---20cf300fb1559cdeb004cbe3fe6f
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-Jonathan,<div><br></div><div>For what hardware are you building? It depends=
- on the hardware how you need to layout the file system on the boot device.=
- YP provides you with a kernel image and a root file system image and event=
-ually, dependent on the hardware, with bootloaders in ${TMPDIR}/deploy/imag=
-es.</div>
-<div><br></div><div>Rudi</div>
-
---20cf300fb1559cdeb004cbe3fe6f--
