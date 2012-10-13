@@ -1,33 +1,33 @@
-Return-Path: <jeffrey.osier-mixon@intel.com>
-Received: from orsmga101.jf.intel.com (mga06.intel.com [134.134.136.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CE386E014A9
-	for <yocto@yoctoproject.org>; Fri, 12 Oct 2012 18:06:07 -0700 (PDT)
-Received: from mail-oa0-f48.google.com ([209.85.219.48])
-	by mga02.intel.com with ESMTP/TLS/RC4-SHA; 12 Oct 2012 18:06:07 -0700
-Received: by mail-oa0-f48.google.com with SMTP id h2so4249207oag.35
-	for <yocto@yoctoproject.org>; Fri, 12 Oct 2012 18:06:06 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:from:date:message-id:subject:to:content-type
-	:x-gm-message-state;
-	bh=2SgGIjtmR/3bqKBEsubezVCgVjxiRfHxKRZTipZfaFs=;
-	b=ZZI+hhCIum1QRd93oKYYV2NWjUPlUxkrYV8yaqHRy7YeRoUyB866ZtUjxS2Tz5cmgR
-	LtbVzJId2QKADgjdZqO4O0XZeGWW6rcQoqDlhSyc7Ybxf67DOR0vrt6uBNObrUk27UQS
-	8C7hvPhHJ6GJ7tj2OTV0aTW0t/tSTDS3x90MMC6AdaQ8AkRiYdYxRhWHwsIt6+jsjcqg
-	dW5nMlsLl5/eUh5W79v3Kak2ZBr7a0B++3tb2S2Hl76CI9NZDFpL/ad7PP1wXaBmvjHq
-	a74/9EOqTCrxyIebY2n1w32NSjgb5kNw2mvBIg8WOHKoNfdE1DRqwuX3qLN88Zzh/cPY
-	3OEg==
-Received: by 10.60.171.80 with SMTP id as16mr4735684oec.49.1350090366239; Fri,
-	12 Oct 2012 18:06:06 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.182.225.105 with HTTP; Fri, 12 Oct 2012 18:05:44 -0700 (PDT)
-From: "Osier-mixon, Jeffrey" <jeffrey.osier-mixon@intel.com>
-Date: Fri, 12 Oct 2012 18:05:44 -0700
-Message-ID: <CALZ2gZW+kacesbmMDKgznH+gCbwOtPsG4vS58rSALrw3st6w6w@mail.gmail.com>
-To: yocto-ab@yoctoproject.org, yocto-advocacy@yoctoproject.org, 
-	yocto@yoctoproject.org
-X-Gm-Message-State: ALoCoQl8R3v5PAZx621itGFEyJiNXh/VJSoQe/qn0LjUBEAaAfxoj7GYNGIVo5B//FBrNavTEyPP
-Subject: Yocto Project Developer Day page
+Return-Path: <elvis.dowson@gmail.com>
+Received: from mail-pa0-f48.google.com (mail-pa0-f48.google.com
+	[209.85.220.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D2C2BE003D6
+	for <yocto@yoctoproject.org>; Sat, 13 Oct 2012 07:16:14 -0700 (PDT)
+Received: by mail-pa0-f48.google.com with SMTP id kp12so4587769pab.35
+	for <yocto@yoctoproject.org>; Sat, 13 Oct 2012 07:16:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:content-type:subject:date:message-id:cc:to:mime-version
+	:x-mailer; bh=53pkEdCRMj1hE7/YlTOiQZSZ3wTNYvaybntQd0x0mrw=;
+	b=ljng3BCNFgza/AON/zHoPkEqF/xUdG6NT01egZliqvDHWXA54D4buxGsQNBo4nkNZa
+	ZHYtRMBFXLV9n1JWvDjDFjradeHY7lKWLr+0GixQW15f42+Y76D4h+V1il8/BIHj71iR
+	2HuyS3CYQEntanEl3+ALETbfA3WZAA3lJFcVd9xOHflMqw2YTECnG8e3xHmEHW9/2l2M
+	Wh+2l5c70ccuAxjevazmVnN7crhzdszRRsquYuD+j7/A8Hk+qt4MlsHZPtxeGX88YKxj
+	owXIEcXItom9GYe534rF4w2JXOaBnPqPpl+jwYbrK2+KQifc/VmoNmH4BhCBbGKqh54Q
+	a7yQ==
+Received: by 10.68.83.68 with SMTP id o4mr22803510pby.25.1350137766097;
+	Sat, 13 Oct 2012 07:16:06 -0700 (PDT)
+Received: from [192.168.1.100] ([94.205.106.220])
+	by mx.google.com with ESMTPS id op7sm6091682pbc.52.2012.10.13.07.16.04
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Sat, 13 Oct 2012 07:16:05 -0700 (PDT)
+From: Elvis Dowson <elvis.dowson@gmail.com>
+Date: Sat, 13 Oct 2012 18:16:00 +0400
+Message-Id: <A1BA209A-96E5-45BB-BA77-52FB84A5C735@gmail.com>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
+Mime-Version: 1.0 (Mac OS X Mail 6.2 \(1499\))
+X-Mailer: Apple Mail (2.1499)
+Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+Subject: Any updates to meta-zynq in the pipeline?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,14 +39,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 13 Oct 2012 01:06:07 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Sat, 13 Oct 2012 14:16:14 -0000
+Content-Type: multipart/alternative;
+	boundary="Apple-Mail=_F8DCD973-2171-4DF4-8BEF-466FC46357EA"
 
-Here is a preliminary schedule for Developer Day in Barcelona on Nov 8:
+--Apple-Mail=_F8DCD973-2171-4DF4-8BEF-466FC46357EA
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=us-ascii
 
-http://www.yoctoproject.org/devday-elce2012
+Hi Bruce,
+                  I'm about to start with my Xilinx ZC702 development =
+board, and I was wondering if there are any updates planned to the =
+meta-zynq repository?
 
--- 
-Jeff Osier-Mixon http://jefro.net/blog
-Yocto Project Community Manager @Intel http://yoctoproject.org
+In an earlier thread, you had mentioned that a whole bunch of updates =
+were pending to the meta-zynq layer:
 
+Re: [yocto] meta-zynq, was Re: any success with spartan6-lx9mb?
+
+Best regards,
+
+Elvis Dowson=
+
+--Apple-Mail=_F8DCD973-2171-4DF4-8BEF-466FC46357EA
+Content-Transfer-Encoding: 7bit
+Content-Type: text/html;
+	charset=us-ascii
+
+<html><head><meta http-equiv="Content-Type" content="text/html charset=us-ascii"></head><body style="word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-line-break: after-white-space; ">Hi Bruce,<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; I'm about to start with my Xilinx ZC702 development board, and I was wondering if there are any updates planned to the meta-zynq repository?</div><div><br></div><div>In an earlier thread, you had mentioned that a whole bunch of updates were pending to the meta-zynq layer:</div><div><br></div><div><a href="http://www.mail-archive.com/yocto@yoctoproject.org/msg08804.html">Re: [yocto] meta-zynq, was Re: any success with spartan6-lx9mb?</a></div><div><br></div><div>Best regards,</div><div><br></div><div>Elvis Dowson</div></body></html>
+
+--Apple-Mail=_F8DCD973-2171-4DF4-8BEF-466FC46357EA--
