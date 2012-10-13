@@ -1,31 +1,36 @@
-Return-Path: <gizero@gmail.com>
-Received: from mail-wg0-f54.google.com (mail-wg0-f54.google.com [74.125.82.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B1E17E0032E
-	for <yocto@yoctoproject.org>; Sat, 13 Oct 2012 11:41:59 -0700 (PDT)
-Received: by mail-wg0-f54.google.com with SMTP id dt10so2448249wgb.11
-	for <yocto@yoctoproject.org>; Sat, 13 Oct 2012 11:41:58 -0700 (PDT)
+Return-Path: <elvis.dowson@gmail.com>
+Received: from mail-pa0-f48.google.com (mail-pa0-f48.google.com
+	[209.85.220.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 88A50E0032E
+	for <yocto@yoctoproject.org>; Sat, 13 Oct 2012 12:48:54 -0700 (PDT)
+Received: by mail-pa0-f48.google.com with SMTP id kp12so4749401pab.35
+	for <yocto@yoctoproject.org>; Sat, 13 Oct 2012 12:48:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id:x-mailer;
-	bh=LBkemMtzzFyHsMKHrIWN7uUdGkBSWOpDfrgbFT7PRwY=;
-	b=bInFdOLZk6eIyby0KHHhmNCAw+8TznPbeWALw9kQ8zs9cNZUt4CBBXrsxyjQLrOXGy
-	NlRpGNQa9I3I3PX8j4lE5eBvx9b6ITE1SZUo2Qy616BvhffOcJPWMM29rTZBpH6p4uVE
-	8jaU1hAUMUNhDJ4XHxRZm2n1e61nY6FMPjW6RPFlm2jcPbC4WRPZ0Fx1nVaHfJz1Kef3
-	aTjTDAi9LFn5EctlIjjYfd7uacfQJixVSOJJrYMN4VvaVq7HPeOEf37EeAhTmZgUsCP2
-	SbpQjBn4/Cb4oB+puNQilH7sDv0U15WT7tTGMnZKGgibTUhQQ87t0BUdZyHViU2aS3+l
-	bvQg==
-Received: by 10.180.91.71 with SMTP id cc7mr13531555wib.2.1350153718422;
-	Sat, 13 Oct 2012 11:41:58 -0700 (PDT)
-Received: from gizdesk.tw.it
-	(host87-119-dynamic.8-87-r.retail.telecomitalia.it. [87.8.119.87])
-	by mx.google.com with ESMTPS id cu1sm4454385wib.6.2012.10.13.11.41.57
+	h=content-type:mime-version:subject:from:in-reply-to:date:cc
+	:content-transfer-encoding:message-id:references:to:x-mailer;
+	bh=WIx1bE1SqB9HOtUcpDUsV2yDTD4Fnoqu6eU14bbi760=;
+	b=e8ewqYMCU93u2hvQHO0DigESM4dughlZWi0+ZpoI2QHLvRCOW+waksliuRtpx/7CPm
+	G5yH79HeO77jBcl3WGxm8TyN/u4Cm1RczHqFer18EIz9R1p3P5ZSuN9cEMsmppx2uCkv
+	KI0F1PPYjd3S0KiX8KQAY6g6LdG7ZHWEwdyXPGyfKMuKAYCuVCPlF8v8T+AOJXPv+d9L
+	Bh7nmQxihfPdW35MyP5KmBQ5vvRdshtYLML2mznDK3eD0xdsDM/bDye0OD/GvKqKa47Y
+	9n9ZpITlHYxPNgxJyWoT/1izJQSYhDRawUwL6e8n3iK+mapYeCiSf0MsKdKIBQOnIuKy
+	Uo9g==
+Received: by 10.68.238.34 with SMTP id vh2mr24614801pbc.6.1350157734325;
+	Sat, 13 Oct 2012 12:48:54 -0700 (PDT)
+Received: from [192.168.1.100] ([94.205.106.220])
+	by mx.google.com with ESMTPS id ni3sm793512pbc.2.2012.10.13.12.48.52
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Sat, 13 Oct 2012 11:41:57 -0700 (PDT)
-From: Andrea Galbusera <gizero@gmail.com>
-To: yocto@yoctoproject.org
-Date: Sat, 13 Oct 2012 20:41:36 +0200
-Message-Id: <1350153696-31856-1-git-send-email-gizero@gmail.com>
-X-Mailer: git-send-email 1.7.9.5
-Subject: [PATCH] documentation: kernel-concepts: fixed typo
+	Sat, 13 Oct 2012 12:48:53 -0700 (PDT)
+Mime-Version: 1.0 (Mac OS X Mail 6.2 \(1499\))
+From: Elvis Dowson <elvis.dowson@gmail.com>
+In-Reply-To: <7618B2C1-D197-406D-B563-30E837399301@gmail.com>
+Date: Sat, 13 Oct 2012 23:48:49 +0400
+Message-Id: <CB6ED42E-986E-476C-9259-13602F3C0403@gmail.com>
+References: <7618B2C1-D197-406D-B563-30E837399301@gmail.com>
+To: Philip Balister <philip@balister.org>
+X-Mailer: Apple Mail (2.1499)
+Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+Subject: Re: meta-zynq-balister: Build output
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,28 +42,16 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 13 Oct 2012 18:42:00 -0000
+X-List-Received-Date: Sat, 13 Oct 2012 19:48:54 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
+Hi Philip,
+                  I've just sent out two patches refactoring the zc702 =
+machine configuration, and adding u-boot to the rootfs image. I've built =
+this against the latest poky/master branch.
 
-Signed-off-by: Andrea Galbusera <gizero@gmail.com>
----
- documentation/kernel-manual/kernel-concepts.xml |    2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Best regards,
 
-diff --git a/documentation/kernel-manual/kernel-concepts.xml b/documentation/kernel-manual/kernel-concepts.xml
-index 8b9e71f..157443d 100644
---- a/documentation/kernel-manual/kernel-concepts.xml
-+++ b/documentation/kernel-manual/kernel-concepts.xml
-@@ -320,7 +320,7 @@
-             Conceptually, configuration of a Yocto Project kernel occurs similarly to that needed for any
-             Linux kernel.
-             The build process for a Yocto Project kernel uses a <filename>.config</filename> file, which 
--            is created through the Linux Kernel Coinfiguration (LKC) tool.
-+            is created through the Linux Kernel Configuration (LKC) tool.
-             You can directly set various configurations in the 
-             <filename>.config</filename> file by using the <filename>menuconfig</filename> 
-             tool as built by BitBake.
--- 
-1.7.9.5
-
+Elvis Dowson=
 
