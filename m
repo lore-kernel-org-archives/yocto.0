@@ -1,26 +1,35 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C8EDCE0070B
-	for <yocto@yoctoproject.org>; Sat, 13 Oct 2012 07:46:59 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id q9DEkwQb007999
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Sat, 13 Oct 2012 07:46:58 -0700 (PDT)
-Received: from bruce-ashfields-macbook.local (128.224.23.225) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.2.309.2; Sat, 13 Oct 2012 07:46:58 -0700
-Message-ID: <50797EE5.3060007@windriver.com>
-Date: Sat, 13 Oct 2012 10:47:01 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7;
-	rv:9.0) Gecko/20111222 Thunderbird/9.0.1
-MIME-Version: 1.0
-To: Elvis Dowson <elvis.dowson@gmail.com>
+Return-Path: <elvis.dowson@gmail.com>
+Received: from mail-pa0-f48.google.com (mail-pa0-f48.google.com
+	[209.85.220.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 07068E003D6
+	for <yocto@yoctoproject.org>; Sat, 13 Oct 2012 07:48:38 -0700 (PDT)
+Received: by mail-pa0-f48.google.com with SMTP id kp12so4604751pab.35
+	for <yocto@yoctoproject.org>; Sat, 13 Oct 2012 07:48:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=content-type:mime-version:subject:from:in-reply-to:date:cc
+	:content-transfer-encoding:message-id:references:to:x-mailer;
+	bh=UczIsz2mqsgbofDLVWQ3Rt54YTGoHmOhquc3EajFJrM=;
+	b=ZImfw6I5V2abfsiwRftAdh4T69fIRXDHsacz0XkUrE84UN7aqkrSvZj/PM3gt2YkEm
+	wx4d4PzrxfgKeSZ3xVOvuM/EBW8cqpVgd/GUU7nrum+A7GkpPelaicG2e2auSxJtuJyR
+	aoZS+D7yX/KAPltauNyTMlfSoZ1dA3PLcAoE0f6wmY1Z/3+QbDxQAWcOaAwXn/9d1G+r
+	p/OEyeNbw5t87kHqCqdcxQk9K4+j92wDICL71xPCK+Z/plexUilqi9wOCi20TT1rjxLU
+	HIupubVEhut4i6OSowgQVle4CqAbk4/O+On/nHIsIKIol3paEuTzTGANhRKdsxdOQzoB
+	hLWA==
+Received: by 10.68.136.231 with SMTP id qd7mr22569448pbb.3.1350139717886;
+	Sat, 13 Oct 2012 07:48:37 -0700 (PDT)
+Received: from [192.168.1.100] ([94.205.106.220])
+	by mx.google.com with ESMTPS id i4sm6069373pav.20.2012.10.13.07.48.35
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Sat, 13 Oct 2012 07:48:37 -0700 (PDT)
+Mime-Version: 1.0 (Mac OS X Mail 6.2 \(1499\))
+From: Elvis Dowson <elvis.dowson@gmail.com>
+In-Reply-To: <50797A91.8080205@balister.org>
+Date: Sat, 13 Oct 2012 18:48:32 +0400
+Message-Id: <530FA222-35A3-4E03-9245-5D9E5B8AD079@gmail.com>
 References: <A1BA209A-96E5-45BB-BA77-52FB84A5C735@gmail.com>
-	<50797907.2060606@windriver.com>
-	<34D3AD2D-1302-4F7F-B3F3-973FC0E95136@gmail.com>
-In-Reply-To: <34D3AD2D-1302-4F7F-B3F3-973FC0E95136@gmail.com>
+	<50797A91.8080205@balister.org>
+To: Philip Balister <philip@balister.org>
+X-Mailer: Apple Mail (2.1499)
 Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
 Subject: Re: Any updates to meta-zynq in the pipeline?
 X-BeenThere: yocto@yoctoproject.org
@@ -34,50 +43,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 13 Oct 2012 14:46:59 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sat, 13 Oct 2012 14:48:38 -0000
+Content-Type: text/plain; charset=iso-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-On 12-10-13 10:43 AM, Elvis Dowson wrote:
-> Hi Bruce,
->
-> On Oct 13, 2012, at 6:21 PM, Bruce Ashfield<bruce.ashfield@windriver.com>  wrote:
->
->> There are updates planned, but with some vacations (mine and others), since
->> that last update things slowed down a bit. But work is proceeding,
->> I expect something in the next few weeks.
->>
->> In particular, as an initial item, the BSP can be bumped to the Yocto
->> 1.3 (3.4) kernel, and complete some work on remaining issues with the
->> layer.
->>
->> After that, SDK updates, and other enhancements would be in the
->> pipeline, but i don't have a complete visibility into those yet.
->
-> I'm more interested in updates to the machine configuration and tune files for the Zynq-7020 processor. Are there any updates planned for these? The processor uses a ARM Cortex A9 dual core CPU, so I was wondering where one draws on from, in order to get an accurate representation of the processor. e.g. use TRM for Zynq-7020 and then look a a TI OMAP 4430 or Freescale i.MX 6 dual core machine configuration, etc?
+Hi Philip,
 
-AFAIK, yes. Xilinx themselves are gearing up to take over this
-work, but I can't speak for them, and haven't heard anything since
-before I went on vacation. I'm hoping that this will pick up again
-soon.
+On Oct 13, 2012, at 6:28 PM, Philip Balister <philip@balister.org> =
+wrote:
 
->
-> The kernel and u-boot recipes, I can migrate to the latest 3.5 and 2012.x versions, so that shouldn't be a problem for me.
+> If you are interested in a kernel built direct from the Xilinx repo =
+look at:
+>=20
+> https://github.com/balister/meta-zynq
+>=20
+> I just pushed use changes yesterday and could use some help testing =
+them.
+>=20
+> It is setup to boot from a SD card. You have to take the output of the =
+u-boot recipe and use the Xilinx tools to combine it with the fsbl to =
+get the required BOOT.BIN file.
 
-ok! At some point the layer will become (hopefully) yocto BSP
-compliant, and at that point we'll get some consistency in kernel
-version where it will be on one of the yocto versions, LTSI, etc,
-since spraying all over the map on versions doesn't help everyone :)
+I'll help out and test your layer first, and let you know. It's going to =
+take me a while to get used to this new board. I always find that I end =
+up spending more than 2 to 3 months, just getting to know each platform =
+to a good level, the last two ones being the Gumstix TI OMAP 3530 and =
+the Xilinx ML507. I'm going to brace myself, its going to be a deep dive =
+I think! :-)
 
-Cheers,
+Adrian Alonso's meta-xilinx layer had some *.bbclass files, that invoked =
+the Xilinx tools to create the ace image files, so perhaps that could be =
+modified to automate the process or getting the final BOOT.BIN file.
 
-Bruce
+Best regards,
 
->
-> Best regards,
->
-> Elvis Dowson
->
->
-
+Elvis Dowson=
 
