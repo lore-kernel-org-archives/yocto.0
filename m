@@ -1,20 +1,17 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9274BE003D6
-	for <yocto@yoctoproject.org>; Sat, 13 Oct 2012 07:22:02 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id q9DELvWq007838
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Sat, 13 Oct 2012 07:21:57 -0700 (PDT)
-Received: from bruce-ashfields-macbook.local (128.224.23.225) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.2.309.2; Sat, 13 Oct 2012 07:21:56 -0700
-Message-ID: <50797907.2060606@windriver.com>
-Date: Sat, 13 Oct 2012 10:21:59 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7;
-	rv:9.0) Gecko/20111222 Thunderbird/9.0.1
+Return-Path: <philip@balister.org>
+Received: from sanddollar.geekisp.com (sanddollar.geekisp.com
+	[216.168.135.167])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id CC81DE006B9
+	for <yocto@yoctoproject.org>; Sat, 13 Oct 2012 07:28:40 -0700 (PDT)
+Received: (qmail 749 invoked by uid 1003); 13 Oct 2012 14:28:35 -0000
+Received: from unknown (HELO ?10.66.203.220?) (philip@opensdr.com@72.254.8.186)
+	by mail.geekisp.com with (DHE-RSA-AES256-SHA encrypted) SMTP;
+	13 Oct 2012 14:28:35 -0000
+Message-ID: <50797A91.8080205@balister.org>
+Date: Sat, 13 Oct 2012 07:28:33 -0700
+From: Philip Balister <philip@balister.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:16.0) Gecko/20121009 Thunderbird/16.0
 MIME-Version: 1.0
 To: Elvis Dowson <elvis.dowson@gmail.com>
 References: <A1BA209A-96E5-45BB-BA77-52FB84A5C735@gmail.com>
@@ -32,40 +29,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 13 Oct 2012 14:22:02 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+X-List-Received-Date: Sat, 13 Oct 2012 14:28:41 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 12-10-13 10:16 AM, Elvis Dowson wrote:
+On 10/13/2012 07:16 AM, Elvis Dowson wrote:
 > Hi Bruce,
-> I'm about to start with my Xilinx ZC702 development board, and I was
-> wondering if there are any updates planned to the meta-zynq repository?
-
-There are updates planned, but with some vacations (mine and others), since
-that last update things slowed down a bit. But work is proceeding,
-I expect something in the next few weeks.
-
-In particular, as an initial item, the BSP can be bumped to the Yocto
-1.3 (3.4) kernel, and complete some work on remaining issues with the
-layer.
-
-After that, SDK updates, and other enhancements would be in the
-pipeline, but i don't have a complete visibility into those yet.
-
-Cheers,
-
-Bruce
-
-
+>                    I'm about to start with my Xilinx ZC702 development board, and I was wondering if there are any updates planned to the meta-zynq repository?
 >
-> In an earlier thread, you had mentioned that a whole bunch of updates
-> were pending to the meta-zynq layer:
+> In an earlier thread, you had mentioned that a whole bunch of updates were pending to the meta-zynq layer:
+
+If you are interested in a kernel built direct from the Xilinx repo look at:
+
+https://github.com/balister/meta-zynq
+
+I just pushed use changes yesterday and could use some help testing them.
+
+It is setup to boot from a SD card. You have to take the output of the 
+u-boot recipe and use the Xilinx tools to combine it with the fsbl to 
+get the required BOOT.BIN file.
+
+Philip
+
+
 >
 > Re: [yocto] meta-zynq, was Re: any success with spartan6-lx9mb?
-> <http://www.mail-archive.com/yocto@yoctoproject.org/msg08804.html>
 >
 > Best regards,
 >
 > Elvis Dowson
-
+>
+>
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
