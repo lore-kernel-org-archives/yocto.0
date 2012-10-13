@@ -1,33 +1,26 @@
-Return-Path: <elvis.dowson@gmail.com>
-Received: from mail-pa0-f48.google.com (mail-pa0-f48.google.com
-	[209.85.220.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D2C2BE003D6
-	for <yocto@yoctoproject.org>; Sat, 13 Oct 2012 07:16:14 -0700 (PDT)
-Received: by mail-pa0-f48.google.com with SMTP id kp12so4587769pab.35
-	for <yocto@yoctoproject.org>; Sat, 13 Oct 2012 07:16:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:content-type:subject:date:message-id:cc:to:mime-version
-	:x-mailer; bh=53pkEdCRMj1hE7/YlTOiQZSZ3wTNYvaybntQd0x0mrw=;
-	b=ljng3BCNFgza/AON/zHoPkEqF/xUdG6NT01egZliqvDHWXA54D4buxGsQNBo4nkNZa
-	ZHYtRMBFXLV9n1JWvDjDFjradeHY7lKWLr+0GixQW15f42+Y76D4h+V1il8/BIHj71iR
-	2HuyS3CYQEntanEl3+ALETbfA3WZAA3lJFcVd9xOHflMqw2YTECnG8e3xHmEHW9/2l2M
-	Wh+2l5c70ccuAxjevazmVnN7crhzdszRRsquYuD+j7/A8Hk+qt4MlsHZPtxeGX88YKxj
-	owXIEcXItom9GYe534rF4w2JXOaBnPqPpl+jwYbrK2+KQifc/VmoNmH4BhCBbGKqh54Q
-	a7yQ==
-Received: by 10.68.83.68 with SMTP id o4mr22803510pby.25.1350137766097;
-	Sat, 13 Oct 2012 07:16:06 -0700 (PDT)
-Received: from [192.168.1.100] ([94.205.106.220])
-	by mx.google.com with ESMTPS id op7sm6091682pbc.52.2012.10.13.07.16.04
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Sat, 13 Oct 2012 07:16:05 -0700 (PDT)
-From: Elvis Dowson <elvis.dowson@gmail.com>
-Date: Sat, 13 Oct 2012 18:16:00 +0400
-Message-Id: <A1BA209A-96E5-45BB-BA77-52FB84A5C735@gmail.com>
-To: Bruce Ashfield <bruce.ashfield@windriver.com>
-Mime-Version: 1.0 (Mac OS X Mail 6.2 \(1499\))
-X-Mailer: Apple Mail (2.1499)
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9274BE003D6
+	for <yocto@yoctoproject.org>; Sat, 13 Oct 2012 07:22:02 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id q9DELvWq007838
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Sat, 13 Oct 2012 07:21:57 -0700 (PDT)
+Received: from bruce-ashfields-macbook.local (128.224.23.225) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
+	14.2.309.2; Sat, 13 Oct 2012 07:21:56 -0700
+Message-ID: <50797907.2060606@windriver.com>
+Date: Sat, 13 Oct 2012 10:21:59 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7;
+	rv:9.0) Gecko/20111222 Thunderbird/9.0.1
+MIME-Version: 1.0
+To: Elvis Dowson <elvis.dowson@gmail.com>
+References: <A1BA209A-96E5-45BB-BA77-52FB84A5C735@gmail.com>
+In-Reply-To: <A1BA209A-96E5-45BB-BA77-52FB84A5C735@gmail.com>
 Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-Subject: Any updates to meta-zynq in the pipeline?
+Subject: Re: Any updates to meta-zynq in the pipeline?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,34 +32,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 13 Oct 2012 14:16:14 -0000
-Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_F8DCD973-2171-4DF4-8BEF-466FC46357EA"
-
---Apple-Mail=_F8DCD973-2171-4DF4-8BEF-466FC46357EA
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=us-ascii
-
-Hi Bruce,
-                  I'm about to start with my Xilinx ZC702 development =
-board, and I was wondering if there are any updates planned to the =
-meta-zynq repository?
-
-In an earlier thread, you had mentioned that a whole bunch of updates =
-were pending to the meta-zynq layer:
-
-Re: [yocto] meta-zynq, was Re: any success with spartan6-lx9mb?
-
-Best regards,
-
-Elvis Dowson=
-
---Apple-Mail=_F8DCD973-2171-4DF4-8BEF-466FC46357EA
+X-List-Received-Date: Sat, 13 Oct 2012 14:22:02 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
 Content-Transfer-Encoding: 7bit
-Content-Type: text/html;
-	charset=us-ascii
 
-<html><head><meta http-equiv="Content-Type" content="text/html charset=us-ascii"></head><body style="word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-line-break: after-white-space; ">Hi Bruce,<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; I'm about to start with my Xilinx ZC702 development board, and I was wondering if there are any updates planned to the meta-zynq repository?</div><div><br></div><div>In an earlier thread, you had mentioned that a whole bunch of updates were pending to the meta-zynq layer:</div><div><br></div><div><a href="http://www.mail-archive.com/yocto@yoctoproject.org/msg08804.html">Re: [yocto] meta-zynq, was Re: any success with spartan6-lx9mb?</a></div><div><br></div><div>Best regards,</div><div><br></div><div>Elvis Dowson</div></body></html>
+On 12-10-13 10:16 AM, Elvis Dowson wrote:
+> Hi Bruce,
+> I'm about to start with my Xilinx ZC702 development board, and I was
+> wondering if there are any updates planned to the meta-zynq repository?
 
---Apple-Mail=_F8DCD973-2171-4DF4-8BEF-466FC46357EA--
+There are updates planned, but with some vacations (mine and others), since
+that last update things slowed down a bit. But work is proceeding,
+I expect something in the next few weeks.
+
+In particular, as an initial item, the BSP can be bumped to the Yocto
+1.3 (3.4) kernel, and complete some work on remaining issues with the
+layer.
+
+After that, SDK updates, and other enhancements would be in the
+pipeline, but i don't have a complete visibility into those yet.
+
+Cheers,
+
+Bruce
+
+
+>
+> In an earlier thread, you had mentioned that a whole bunch of updates
+> were pending to the meta-zynq layer:
+>
+> Re: [yocto] meta-zynq, was Re: any success with spartan6-lx9mb?
+> <http://www.mail-archive.com/yocto@yoctoproject.org/msg08804.html>
+>
+> Best regards,
+>
+> Elvis Dowson
+
+
