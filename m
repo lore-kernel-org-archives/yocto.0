@@ -1,33 +1,25 @@
-Return-Path: <Jonathan.Haws@sdl.usu.edu>
-Received: from echo.usurf.usu.edu (echo.usurf.usu.edu [129.123.194.129])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 193A1E00346
-	for <yocto@yoctoproject.org>; Mon, 15 Oct 2012 07:56:15 -0700 (PDT)
-Received: from wef.usurf.usu.edu (129.123.194.164) by echo.usurf.usu.edu
-	(129.123.194.129) with Microsoft SMTP Server id 14.2.318.4;
-	Mon, 15 Oct 2012 08:56:14 -0600
-Received: from Mercury.usurf.usu.edu ([172.31.35.10]) by wef.usurf.usu.edu
-	with Microsoft SMTPSVC(6.0.3790.4675); Mon, 15 Oct 2012 08:56:12 -0600
-Received: from MERCURY.usurf.usu.edu ([172.31.35.10]) by Mercury.usurf.usu.edu
-	([172.31.35.10]) with mapi id 14.02.0318.004;
-	Mon, 15 Oct 2012 08:56:13 -0600
-From: Jonathan Haws <Jonathan.Haws@sdl.usu.edu>
-To: Joshua Immanuel <josh@hipro.co.in>
-Thread-Topic: [yocto] Multiple partitions in drive image
-Thread-Index: Ac2ov/cjVA+E4+p/TJCISMabmiKnxgCFPjcAAAQNCEU=
-Date: Mon, 15 Oct 2012 14:56:12 +0000
-Message-ID: <DDDB9E6645DE24488B8485B41A051F471D95BDF1@Mercury.usurf.usu.edu>
-References: <DDDB9E6645DE24488B8485B41A051F471D95AFA5@Mercury.usurf.usu.edu>,
-	<1350284380.4115.18.camel@babel.joshhome>
-In-Reply-To: <1350284380.4115.18.camel@babel.joshhome>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.31.22.105]
+Return-Path: <darren.hart@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 514FCE0027E
+	for <yocto@yoctoproject.org>; Mon, 15 Oct 2012 09:11:11 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 15 Oct 2012 09:11:11 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,588,1344236400"; d="scan'208";a="205845173"
+Received: from unknown (HELO envy.home) ([10.7.199.53])
+	by orsmga001.jf.intel.com with ESMTP; 15 Oct 2012 09:11:10 -0700
+Message-ID: <507C3568.1010302@intel.com>
+Date: Mon, 15 Oct 2012 09:10:16 -0700
+From: Darren Hart <darren.hart@intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:15.0) Gecko/20120911 Thunderbird/15.0.1
 MIME-Version: 1.0
-X-OriginalArrivalTime: 15 Oct 2012 14:56:12.0038 (UTC)
-	FILETIME=[37955A60:01CDAAE5]
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Multiple partitions in drive image
+To: nitin.a.kamble@intel.com
+References: <cover.1349998086.git.nitin.a.kamble@intel.com>
+	<0ef1ee65497461228a3b9da87ba40e120ab9818e.1349998086.git.nitin.a.kamble@intel.com>
+In-Reply-To: <0ef1ee65497461228a3b9da87ba40e120ab9818e.1349998086.git.nitin.a.kamble@intel.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCHv4 6/8] mesa-dri.bbappend: avoid conflict with emgd-driver-bin
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,37 +31,85 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 15 Oct 2012 14:56:15 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 15 Oct 2012 16:11:11 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-On Fri, 2012-10-12 at 21:42 +0000, Jonathan Haws wrote:=0A=
-> What I am trying to do is have Poky build me an image that I can just=0A=
-> 'dd' to a SSD and hook up to the system to boot.  Since that image=0A=
-> will also only be only ~250MB or so, I would like to have Poky=0A=
-> generate an image containing multiple partitions - a small one=0A=
-> containing the boot files, then the rest of the image dedicated to=0A=
-> storage.  Is that possible?=0A=
-=0A=
-Yes. It is possible. I have done the following in order to generate=0A=
-image with multiple partitions.=0A=
-=0A=
-     1. I wrote a custom image_types.bbclass in order to generate=0A=
-        multiple partition images (say /, /var etc)=0A=
-     2. Wrote a bbappend for base-files recipe to generate custom fstab=0A=
-        file with required partition's mount options=0A=
-     3. Extended grub-native recipe to generate core.img and boot.img=0A=
-        using grub-mkimage for target platform=0A=
-     4. Wrote a python task to join all these generated images (boot,=0A=
-        core and filesystem images) and embedded the partition table=0A=
-        structure into it.=0A=
-     5. Added this task to my image recipe after the 'do_rootfs' task=0A=
-=0A=
-This way we can generate a custom image with the required partitions.=0A=
--------------------------------------------------------=0A=
-=0A=
-Awesome, I will take a look at this.=0A=
-=0A=
-Thanks!=
+On 10/11/2012 04:31 PM, nitin.a.kamble@intel.com wrote:
+> From: Nitin A Kamble <nitin.a.kamble@intel.com>
+> 
+> Extend the mesa-dri recipe from oecore to avoid conflict with
+> files generated by emgd-driver-bin recipe.
+> 
+> This extention is needed only when emgd-driver-bin recipe is
+> included in the target image, so the code is conditional to
+> run only on the machine with emgd graphics driver.
+> 
+> The emgd binary driver also provides egl, gles1, gles2 library & headers.
+> To avoid conflict disable egl, gles1, gles2 from meta-dri if the BSP image
+> is bundling the emgd driver.
+> 
+> This commits avoids these build warning
+> 
+> WARNING: The recipe is trying to install files into a shared area when those files already exist. Those files are:
+>    /srv/home/nitin/build-test-bsps/build-crownbay/tmp/sysroots/crownbay/usr/include/KHR/khrplatform.h
+>    /srv/home/nitin/build-test-bsps/build-crownbay/tmp/sysroots/crownbay/usr/include/EGL/eglplatform.h
+>    /srv/home/nitin/build-test-bsps/build-crownbay/tmp/sysroots/crownbay/usr/include/EGL/eglext.h
+>    /srv/home/nitin/build-test-bsps/build-crownbay/tmp/sysroots/crownbay/usr/include/EGL/egl.h
+>    /srv/home/nitin/build-test-bsps/build-crownbay/tmp/sysroots/crownbay/usr/include/GLES/glplatform.h
+>    /srv/home/nitin/build-test-bsps/build-crownbay/tmp/sysroots/crownbay/usr/include/GLES/gl.h
+>    /srv/home/nitin/build-test-bsps/build-crownbay/tmp/sysroots/crownbay/usr/include/GLES/glext.h
+>    /srv/home/nitin/build-test-bsps/build-crownbay/tmp/sysroots/crownbay/usr/include/GLES2/gl2ext.h
+>    /srv/home/nitin/build-test-bsps/build-crownbay/tmp/sysroots/crownbay/usr/include/GLES2/gl2.h
+>    /srv/home/nitin/build-test-bsps/build-crownbay/tmp/sysroots/crownbay/usr/include/GLES2/gl2platform.h
+> 
+> This resolves part of the issue reported on the bug:
+> [Yocto #3238]
+> 
+> Signed-off-by: Nitin A Kamble <nitin.a.kamble@intel.com>
+> ---
+>  .../recipes-graphics/mesa/mesa-dri_8.0.4.bbappend  |   24 ++++++++++++++++++++
+>  1 files changed, 24 insertions(+), 0 deletions(-)
+>  create mode 100644 common/recipes-graphics/mesa/mesa-dri_8.0.4.bbappend
+> 
+> diff --git a/common/recipes-graphics/mesa/mesa-dri_8.0.4.bbappend b/common/recipes-graphics/mesa/mesa-dri_8.0.4.bbappend
+> new file mode 100644
+> index 0000000..6bfa968
+> --- /dev/null
+> +++ b/common/recipes-graphics/mesa/mesa-dri_8.0.4.bbappend
+> @@ -0,0 +1,24 @@
+> +
+> +# The emgd binary driver also provides egl, gles1, gles2 library & headers.
+> +# To avoid conflict disable egl, gles1, gles2 from meta-dri if the BSP image
+> +# is bundling the emgd driver.
+> +
+> +python __anonymous () {
+> +    import re
+> +    xserver = d.getVar('XSERVER', True)
+> +    if 'emgd-driver-bin' in xserver.split(' '):
+> +        extra_oeconf = d.getVar('EXTRA_OECONF', True).split()
+> +	take_out = ["--enable-egl", "--enable-gles1", "--enable-gles2"]
+> +	put_in = ["--disable-egl", "--disable-gles1", "--disable-gles2"]
+> +        pattern = re.compile("--with-egl-platforms")
+> +        new_extra_oeconf = [ ]
+> +	for i in extra_oeconf:
+> +            if ( i not in take_out ) and ( not pattern.match(i)):
+> +                new_extra_oeconf.append(i)
+> +        for i in put_in:
+> +            new_extra_oeconf.append(i)
+> +
+> +        d.setVar('EXTRA_OECONF', ' '.join(new_extra_oeconf))
+> +        depends = d.getVar('DEPENDS', True)
+> +        d.setVar('DEPENDS', depends + " emgd-driver-bin")
+
+Odd mix of whitespace and tabs above.
+
+Also, I have to agree with Ross. This places very specific knowledge of
+an external package in the general purpose recipe. This is opposite of
+how these things should be built up.
+
+-- 
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
