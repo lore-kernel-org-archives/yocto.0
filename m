@@ -1,27 +1,26 @@
-Return-Path: <mark.hatle@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 89247E00292
-	for <yocto@yoctoproject.org>; Mon, 15 Oct 2012 12:19:21 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id q9FJJLBr018874
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Mon, 15 Oct 2012 12:19:21 -0700 (PDT)
-Received: from Marks-MacBook-Pro.local (172.25.36.229) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.2.309.2; Mon, 15 Oct 2012 12:19:20 -0700
-Message-ID: <507C61B9.8060300@windriver.com>
-Date: Mon, 15 Oct 2012 14:19:21 -0500
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8;
-	rv:16.0) Gecko/20121010 Thunderbird/16.0.1
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7B8DEE00292
+	for <yocto@yoctoproject.org>; Mon, 15 Oct 2012 12:28:38 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 15 Oct 2012 12:28:37 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,590,1344236400"; d="scan'208";a="156436339"
+Received: from unknown (HELO helios.localnet) ([10.252.122.91])
+	by AZSMGA002.ch.intel.com with ESMTP; 15 Oct 2012 12:28:36 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Marc Ferland <ferlandm@sonatest.com>
+Date: Mon, 15 Oct 2012 20:28:35 +0100
+Message-ID: <1661373.rtvAV8l5QM@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.9.2 (Linux/3.2.0-32-generic-pae; KDE/4.9.2; i686; ; )
+In-Reply-To: <87k3urmuov.fsf@sonatest.com>
+References: <87hapzvgqn.fsf@sonatest.com>
+	<20121015060147.GB9736@ad.chargestorm.se>
+	<87k3urmuov.fsf@sonatest.com>
 MIME-Version: 1.0
-To: <yocto@yoctoproject.org>
-References: <DDDB9E6645DE24488B8485B41A051F471D95AFA5@Mercury.usurf.usu.edu>
-	<1350284380.4115.18.camel@babel.joshhome>
-In-Reply-To: <1350284380.4115.18.camel@babel.joshhome>
-Subject: Re: Multiple partitions in drive image
+Cc: yocto@yoctoproject.org
+Subject: Re: Revision file in images
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,55 +32,57 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 15 Oct 2012 19:19:21 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 15 Oct 2012 19:28:38 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On 10/15/12 1:59 AM, Joshua Immanuel wrote:
-> Hello Jonathan,
->
-> On Fri, 2012-10-12 at 21:42 +0000, Jonathan Haws wrote:
->> What I am trying to do is have Poky build me an image that I can just
->> 'dd' to a SSD and hook up to the system to boot.  Since that image
->> will also only be only ~250MB or so, I would like to have Poky
->> generate an image containing multiple partitions - a small one
->> containing the boot files, then the rest of the image dedicated to
->> storage.  Is that possible?
->
-> Yes. It is possible. I have done the following in order to generate
-> image with multiple partitions.
->
->       1. I wrote a custom image_types.bbclass in order to generate
->          multiple partition images (say /, /var etc)
->       2. Wrote a bbappend for base-files recipe to generate custom fstab
->          file with required partition's mount options
->       3. Extended grub-native recipe to generate core.img and boot.img
->          using grub-mkimage for target platform
->       4. Wrote a python task to join all these generated images (boot,
->          core and filesystem images) and embedded the partition table
->          structure into it.
->       5. Added this task to my image recipe after the 'do_rootfs' task
->
-> This way we can generate a custom image with the required partitions.
->
+On Monday 15 October 2012 14:55:28 Marc Ferland wrote:
+> Anders Darander <anders@chargestorm.se> writes:
+> > * Marc Ferland <ferlandm@sonatest.com> [121012 17:40]:
+> >> Hi,
+> >> 
+> >> Is a revision file populated in the images produced by the build process?
+> >> Something listing the revisions of the different layers used. Just like
+> >> the "OE Build Configuration" summary.
+> > 
+> > As Saul wrote, I don't know any way of getting this info.
+> > 
+> >> I'd like to easily identify what a target system currently runs.
+> > 
+> > In my own project, I'm using something like:
+> > 
+> > 
+> > IMAGE_PREPROCESS_COMMAND += "rootfs_update_timestamp ;\
+> > 
+> >              git describe --dirty --long --always
+> >>
+> >>${IMAGE_ROOTFS}/etc/build ;\
+> >>
+> >              "
+> > 
+> > This doesn't explicitly put the SHA1's of the included layers into the
+> > rootfs, but it does put my the most recent tag from my top-layer,
+> > together with the number of commits after that tag, and an abreviated
+> > version of the current commits SHA1 into the file /etc/build. This will
+> > give me all info I need.
+> 
+> FYI, I was able to put the SHA1 of each meta data layer by doing:
+> 
+> def print_layers_version(d):
+> 	layertext = "Configured metadata layers:\n%s\n" %
+> '\n'.join(get_layers_branch_rev(d)) return layertext
+> 
+> IMAGE_PREPROCESS_COMMAND += "echo "${@print_layers_version(d)}" > /
+> ${IMAGE_ROOTFS}/etc/build; "
 
-Recently a we've been talking about how we could do this.  Specifically how to 
-construct a disk image that can just be DD'ed including bootloader, partitioning 
-and multiple partitions.
+I was going to say earlier I'm planning on adding something like this to OE-
+Core for 1.4.
 
-Is the code you used for the dynamic fstab, partition map, and bootloader setup 
-and image creation available anywhere?
+Cheers,
+Paul
 
-I expect it isn't too difficult to create, but if there is something to start 
-with it would be useful.
+-- 
 
---Mark
-
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
-
+Paul Eggleton
+Intel Open Source Technology Centre
 
