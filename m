@@ -1,34 +1,33 @@
-Return-Path: <scott.m.rifenbark@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BB452E013A6
-	for <yocto@yoctoproject.org>; Mon, 15 Oct 2012 06:29:10 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 15 Oct 2012 06:28:47 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,587,1344236400"; d="scan'208";a="205779158"
-Received: from orsmsx106.amr.corp.intel.com ([10.22.225.133])
-	by orsmga001.jf.intel.com with ESMTP; 15 Oct 2012 06:29:09 -0700
-Received: from orsmsx153.amr.corp.intel.com (10.22.226.247) by
-	ORSMSX106.amr.corp.intel.com (10.22.225.133) with Microsoft SMTP Server
-	(TLS) id 14.1.355.2; Mon, 15 Oct 2012 06:29:09 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.223]) by
-	ORSMSX153.amr.corp.intel.com ([169.254.13.180]) with mapi id
-	14.01.0355.002; Mon, 15 Oct 2012 06:29:09 -0700
-From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-To: Andrea Galbusera <gizero@gmail.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] [PATCH] documentation: kernel-concepts: fixed typo
-Thread-Index: AQHNqXJ+4MGL7EDVpk6TVm2PwCCxi5e6XxSg
-Date: Mon, 15 Oct 2012 13:29:08 +0000
-Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237946A7F157@ORSMSX101.amr.corp.intel.com>
-References: <1350153696-31856-1-git-send-email-gizero@gmail.com>
-In-Reply-To: <1350153696-31856-1-git-send-email-gizero@gmail.com>
+Return-Path: <Jonathan.Haws@sdl.usu.edu>
+Received: from echo.usurf.usu.edu (echo.usurf.usu.edu [129.123.194.129])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 193A1E00346
+	for <yocto@yoctoproject.org>; Mon, 15 Oct 2012 07:56:15 -0700 (PDT)
+Received: from wef.usurf.usu.edu (129.123.194.164) by echo.usurf.usu.edu
+	(129.123.194.129) with Microsoft SMTP Server id 14.2.318.4;
+	Mon, 15 Oct 2012 08:56:14 -0600
+Received: from Mercury.usurf.usu.edu ([172.31.35.10]) by wef.usurf.usu.edu
+	with Microsoft SMTPSVC(6.0.3790.4675); Mon, 15 Oct 2012 08:56:12 -0600
+Received: from MERCURY.usurf.usu.edu ([172.31.35.10]) by Mercury.usurf.usu.edu
+	([172.31.35.10]) with mapi id 14.02.0318.004;
+	Mon, 15 Oct 2012 08:56:13 -0600
+From: Jonathan Haws <Jonathan.Haws@sdl.usu.edu>
+To: Joshua Immanuel <josh@hipro.co.in>
+Thread-Topic: [yocto] Multiple partitions in drive image
+Thread-Index: Ac2ov/cjVA+E4+p/TJCISMabmiKnxgCFPjcAAAQNCEU=
+Date: Mon, 15 Oct 2012 14:56:12 +0000
+Message-ID: <DDDB9E6645DE24488B8485B41A051F471D95BDF1@Mercury.usurf.usu.edu>
+References: <DDDB9E6645DE24488B8485B41A051F471D95AFA5@Mercury.usurf.usu.edu>,
+	<1350284380.4115.18.camel@babel.joshhome>
+In-Reply-To: <1350284380.4115.18.camel@babel.joshhome>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.138]
+x-originating-ip: [172.31.22.105]
 MIME-Version: 1.0
-Subject: Re: [PATCH] documentation: kernel-concepts: fixed typo
+X-OriginalArrivalTime: 15 Oct 2012 14:56:12.0038 (UTC)
+	FILETIME=[37955A60:01CDAAE5]
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Multiple partitions in drive image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,52 +39,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 15 Oct 2012 13:29:10 -0000
+X-List-Received-Date: Mon, 15 Oct 2012 14:56:15 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Fix is applied and pushed to yocto-docs master branch.
-
-Thanks for the catch.
-
-Scott
-
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Andrea Galbusera
-Sent: Saturday, October 13, 2012 11:42 AM
-To: yocto@yoctoproject.org
-Subject: [yocto] [PATCH] documentation: kernel-concepts: fixed typo
-
-
-Signed-off-by: Andrea Galbusera <gizero@gmail.com>
----
- documentation/kernel-manual/kernel-concepts.xml |    2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/documentation/kernel-manual/kernel-concepts.xml b/documentatio=
-n/kernel-manual/kernel-concepts.xml
-index 8b9e71f..157443d 100644
---- a/documentation/kernel-manual/kernel-concepts.xml
-+++ b/documentation/kernel-manual/kernel-concepts.xml
-@@ -320,7 +320,7 @@
-             Conceptually, configuration of a Yocto Project kernel occurs s=
-imilarly to that needed for any
-             Linux kernel.
-             The build process for a Yocto Project kernel uses a <filename>=
-.config</filename> file, which=20
--            is created through the Linux Kernel Coinfiguration (LKC) tool.
-+            is created through the Linux Kernel Configuration (LKC) tool.
-             You can directly set various configurations in the=20
-             <filename>.config</filename> file by using the <filename>menuc=
-onfig</filename>=20
-             tool as built by BitBake.
---=20
-1.7.9.5
-
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
+On Fri, 2012-10-12 at 21:42 +0000, Jonathan Haws wrote:=0A=
+> What I am trying to do is have Poky build me an image that I can just=0A=
+> 'dd' to a SSD and hook up to the system to boot.  Since that image=0A=
+> will also only be only ~250MB or so, I would like to have Poky=0A=
+> generate an image containing multiple partitions - a small one=0A=
+> containing the boot files, then the rest of the image dedicated to=0A=
+> storage.  Is that possible?=0A=
+=0A=
+Yes. It is possible. I have done the following in order to generate=0A=
+image with multiple partitions.=0A=
+=0A=
+     1. I wrote a custom image_types.bbclass in order to generate=0A=
+        multiple partition images (say /, /var etc)=0A=
+     2. Wrote a bbappend for base-files recipe to generate custom fstab=0A=
+        file with required partition's mount options=0A=
+     3. Extended grub-native recipe to generate core.img and boot.img=0A=
+        using grub-mkimage for target platform=0A=
+     4. Wrote a python task to join all these generated images (boot,=0A=
+        core and filesystem images) and embedded the partition table=0A=
+        structure into it.=0A=
+     5. Added this task to my image recipe after the 'do_rootfs' task=0A=
+=0A=
+This way we can generate a custom image with the required partitions.=0A=
+-------------------------------------------------------=0A=
+=0A=
+Awesome, I will take a look at this.=0A=
+=0A=
+Thanks!=
 
