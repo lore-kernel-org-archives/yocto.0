@@ -1,24 +1,29 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3A9DFE00292
-	for <yocto@yoctoproject.org>; Tue, 16 Oct 2012 03:50:04 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 16 Oct 2012 03:50:03 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,593,1344236400"; d="scan'208";a="205007766"
-Received: from unknown (HELO helios.localnet) ([10.252.122.100])
-	by azsmga001.ch.intel.com with ESMTP; 16 Oct 2012 03:50:02 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Chin Huat Ang <chinhuat@gmail.com>
-Date: Tue, 16 Oct 2012 11:50:01 +0100
-Message-ID: <3280557.8J13GWUXdI@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.9.2 (Linux/3.2.0-32-generic-pae; KDE/4.9.2; i686; ; )
-In-Reply-To: <CABzAcgiKqN-hQ56HoZny6=EeiDbnbFAb0CoqBb7R_eJ5EEdUKQ@mail.gmail.com>
-References: <CABzAcgiKqN-hQ56HoZny6=EeiDbnbFAb0CoqBb7R_eJ5EEdUKQ@mail.gmail.com>
+Return-Path: <Jonathan.Haws@sdl.usu.edu>
+Received: from echo.usurf.usu.edu (echo.usurf.usu.edu [129.123.194.129])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A8B8DE011F3
+	for <yocto@yoctoproject.org>; Tue, 16 Oct 2012 09:00:05 -0700 (PDT)
+Received: from wef.usurf.usu.edu (129.123.194.164) by echo.usurf.usu.edu
+	(129.123.194.129) with Microsoft SMTP Server id 14.2.318.4;
+	Tue, 16 Oct 2012 10:00:03 -0600
+Received: from Mercury.usurf.usu.edu ([172.31.35.10]) by wef.usurf.usu.edu
+	with Microsoft SMTPSVC(6.0.3790.4675); Tue, 16 Oct 2012 09:59:59 -0600
+Received: from MERCURY.usurf.usu.edu ([172.31.35.10]) by Mercury.usurf.usu.edu
+	([172.31.35.10]) with mapi id 14.02.0318.004;
+	Tue, 16 Oct 2012 10:00:01 -0600
+From: Jonathan Haws <Jonathan.Haws@sdl.usu.edu>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: lm-sensors not available as a package?
+Thread-Index: Ac2rt0xY915XsixcRCmSxVny1UBT2g==
+Date: Tue, 16 Oct 2012 16:00:01 +0000
+Message-ID: <DDDB9E6645DE24488B8485B41A051F471D9618A1@Mercury.usurf.usu.edu>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.31.22.105]
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: Cloning yocto repos over https
+X-OriginalArrivalTime: 16 Oct 2012 15:59:59.0756 (UTC)
+	FILETIME=[4B7E84C0:01CDABB7]
+Subject: lm-sensors not available as a package?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,26 +35,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 16 Oct 2012 10:50:04 -0000
-Content-Transfer-Encoding: 7Bit
+X-List-Received-Date: Tue, 16 Oct 2012 16:00:05 -0000
+Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On Friday 11 May 2012 09:35:30 Chin Huat Ang wrote:
-> Is there a way to clone yocto repositories (say, poky) over https?
-> 
-> I'm behind a firewall where git port is blocked, getting it opened is a
-> bureaucracy nightmare.
-
-Sorry, it's taken us a while to look into this but we have opened a bug to 
-track it - you may wish to add yourself to the CC list:
-
-http://bugzilla.yoctoproject.org/show_bug.cgi?id=3263
-
-Cheers,
-Paul
-
--- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
+I would be surprised if a recipe for lm-sensors has not already been create=
+d, however I cannot find one.  Can someone point me in the right direction?=
+=0A=
+=0A=
+All I can find is a sysstat package that I can include via IMAGE_INSTALL_ap=
+pend, however I cannot see how I can get the same information out of it tha=
+t lm-sensors gives me.=0A=
+=0A=
+Has anyone got lm-sensors included in their image?  If so, can you share th=
+e recipe?=0A=
+=0A=
+Thanks!=0A=
+Jonathan=0A=
+=0A=
 
