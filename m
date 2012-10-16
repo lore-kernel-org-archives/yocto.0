@@ -1,31 +1,34 @@
-Return-Path: <ceolin@ulevel.com>
-Received: from mail-ob0-f176.google.com (mail-ob0-f176.google.com
-	[209.85.214.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 31053E011AF
-	for <yocto@yoctoproject.org>; Tue, 16 Oct 2012 14:32:09 -0700 (PDT)
-Received: by mail-ob0-f176.google.com with SMTP id x4so8189813obh.35
-	for <yocto@yoctoproject.org>; Tue, 16 Oct 2012 14:32:08 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:from:date:message-id:subject:to:content-type
-	:x-gm-message-state;
-	bh=fvP9WUOldLHnY7VR5mShZ8VbS1kp1sGyAQgpnQKN7WI=;
-	b=WEPXuUx1GRZmt/bcLw4cVhphUJd+hyWOPRZ6UZrW73J3MFUscVy7/DopaLAQkQkA0T
-	8qG12pxFG1WnAqmRcCNwQ5ABwm5yLgTj+wa801d56t5NQOTHo+P3hXZm8XuM2eEu1AV/
-	xtqkM6J09T+z4hiGg/x7l/o3NQL9yNsVypk4nxDdT1XlbCLFaBkzCgZuqZUpkjV5vf0P
-	PEiWpRjEXQthrikZFpBvRvOX516LSWoiXEMRdZ5WuhKa13WRLXauhSJdcpcuth+evl9w
-	o4ecPFLslOg6mRL8Lk5uKstP4EjyGYA2HQz214m6rBtIncgOftv5xfq5U4RpQLNLxsQF
-	/0IA==
-Received: by 10.60.32.81 with SMTP id g17mr13441758oei.102.1350423128569; Tue,
-	16 Oct 2012 14:32:08 -0700 (PDT)
+Return-Path: <nitin.a.kamble@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 02344E011AF
+	for <yocto@yoctoproject.org>; Tue, 16 Oct 2012 15:18:02 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 16 Oct 2012 15:18:02 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,595,1344236400"; d="scan'208";a="156969568"
+Received: from orsmsx104.amr.corp.intel.com ([10.22.225.131])
+	by AZSMGA002.ch.intel.com with ESMTP; 16 Oct 2012 15:18:01 -0700
+Received: from orsmsx106.amr.corp.intel.com ([169.254.5.130]) by
+	ORSMSX104.amr.corp.intel.com ([169.254.3.247]) with mapi id
+	14.01.0355.002; Tue, 16 Oct 2012 15:18:00 -0700
+From: "Kamble, Nitin A" <nitin.a.kamble@intel.com>
+To: "Hart, Darren" <darren.hart@intel.com>
+Thread-Topic: [PATCHv4 6/8] mesa-dri.bbappend: avoid conflict with
+	emgd-driver-bin
+Thread-Index: AQHNqAjChNxZIOZCK0KNiW5ogUryd5e7BGgAgAGDNBA=
+Date: Tue, 16 Oct 2012 22:17:59 +0000
+Message-ID: <ADD6A3980E8C39419A432FF422031B4C2D90558E@ORSMSX106.amr.corp.intel.com>
+References: <cover.1349998086.git.nitin.a.kamble@intel.com>
+	<0ef1ee65497461228a3b9da87ba40e120ab9818e.1349998086.git.nitin.a.kamble@intel.com>
+	<507C3568.1010302@intel.com>
+In-Reply-To: <507C3568.1010302@intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-Received: by 10.60.11.5 with HTTP; Tue, 16 Oct 2012 14:31:47 -0700 (PDT)
-From: =?ISO-8859-1?Q?Fabr=EDcio_Ceolin?= <ceolin@ulevel.com>
-Date: Tue, 16 Oct 2012 18:31:47 -0300
-Message-ID: <CALwiqF2MMaFfRLLo9rM_hkzON4cH4b=rW9Npg-rfo4=5vhB8kQ@mail.gmail.com>
-To: yocto@yoctoproject.org
-X-Gm-Message-State: ALoCoQmx3oCQ+P38aV00TqgniCenSpf0hDCfaGPJi+HjWKvx0EYIS5wqfs3J2PBm4GQPW9zHy+1N
-Subject: My first recipe: qjson_0.7.1.bb
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [PATCHv4 6/8] mesa-dri.bbappend: avoid conflict with emgd-driver-bin
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,218 +40,123 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 16 Oct 2012 21:32:09 -0000
-X-Groupsio-MsgNum: 10111
-Content-Type: multipart/mixed; boundary=e89a8fb1ebd8dff5b604cc33e2fa
-
---e89a8fb1ebd8dff5b604cc33e2fa
-Content-Type: multipart/alternative; boundary=e89a8fb1ebd8dff5af04cc33e2f8
-
---e89a8fb1ebd8dff5af04cc33e2f8
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Tue, 16 Oct 2012 22:18:03 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
-
-I'm new at the yocto project and I'm building my first recipe.
-
-At now, I'm in trouble because the yocto is building my application for
-toolchain and I do not need that. I need build an application only for
-target image.
-
-My machine is x86_64 and my target is qemux86.
-
-When bitbake trying to compile the qjson for toolchain, bitbake tries to
-link 32 bits binaries with 64 bits toolchain's libraries.
-
-See my bb file and error attached
-
-How can I make this compilation use only target libs?
-
-In custom bb files, how do the bitbake know that compilation if for a
-toolchain or a target?
-
-Thanks
 
 
+> -----Original Message-----
+> From: Hart, Darren
+> Sent: Monday, October 15, 2012 9:10 AM
+> To: Kamble, Nitin A
+> Cc: Zanussi, Tom; yocto@yoctoproject.org
+> Subject: Re: [PATCHv4 6/8] mesa-dri.bbappend: avoid conflict with emgd-
+> driver-bin
+>=20
+> On 10/11/2012 04:31 PM, nitin.a.kamble@intel.com wrote:
+> > From: Nitin A Kamble <nitin.a.kamble@intel.com>
+> >
+> > Extend the mesa-dri recipe from oecore to avoid conflict with files
+> > generated by emgd-driver-bin recipe.
+> >
+> > This extention is needed only when emgd-driver-bin recipe is included
+> > in the target image, so the code is conditional to run only on the
+> > machine with emgd graphics driver.
+> >
+> > The emgd binary driver also provides egl, gles1, gles2 library & header=
+s.
+> > To avoid conflict disable egl, gles1, gles2 from meta-dri if the BSP
+> > image is bundling the emgd driver.
+> >
+> > This commits avoids these build warning
+> >
+> > WARNING: The recipe is trying to install files into a shared area when =
+those
+> files already exist. Those files are:
+> >    /srv/home/nitin/build-test-bsps/build-
+> crownbay/tmp/sysroots/crownbay/usr/include/KHR/khrplatform.h
+> >    /srv/home/nitin/build-test-bsps/build-
+> crownbay/tmp/sysroots/crownbay/usr/include/EGL/eglplatform.h
+> >    /srv/home/nitin/build-test-bsps/build-
+> crownbay/tmp/sysroots/crownbay/usr/include/EGL/eglext.h
+> >    /srv/home/nitin/build-test-bsps/build-
+> crownbay/tmp/sysroots/crownbay/usr/include/EGL/egl.h
+> >    /srv/home/nitin/build-test-bsps/build-
+> crownbay/tmp/sysroots/crownbay/usr/include/GLES/glplatform.h
+> >    /srv/home/nitin/build-test-bsps/build-
+> crownbay/tmp/sysroots/crownbay/usr/include/GLES/gl.h
+> >    /srv/home/nitin/build-test-bsps/build-
+> crownbay/tmp/sysroots/crownbay/usr/include/GLES/glext.h
+> >    /srv/home/nitin/build-test-bsps/build-
+> crownbay/tmp/sysroots/crownbay/usr/include/GLES2/gl2ext.h
+> >    /srv/home/nitin/build-test-bsps/build-
+> crownbay/tmp/sysroots/crownbay/usr/include/GLES2/gl2.h
+> >
+> > /srv/home/nitin/build-test-bsps/build-
+> crownbay/tmp/sysroots/crownbay/u
+> > sr/include/GLES2/gl2platform.h
+> >
+> > This resolves part of the issue reported on the bug:
+> > [Yocto #3238]
+> >
+> > Signed-off-by: Nitin A Kamble <nitin.a.kamble@intel.com>
+> > ---
+> >  .../recipes-graphics/mesa/mesa-dri_8.0.4.bbappend  |   24
+> ++++++++++++++++++++
+> >  1 files changed, 24 insertions(+), 0 deletions(-)  create mode 100644
+> > common/recipes-graphics/mesa/mesa-dri_8.0.4.bbappend
+> >
+> > diff --git a/common/recipes-graphics/mesa/mesa-dri_8.0.4.bbappend
+> > b/common/recipes-graphics/mesa/mesa-dri_8.0.4.bbappend
+> > new file mode 100644
+> > index 0000000..6bfa968
+> > --- /dev/null
+> > +++ b/common/recipes-graphics/mesa/mesa-dri_8.0.4.bbappend
+> > @@ -0,0 +1,24 @@
+> > +
+> > +# The emgd binary driver also provides egl, gles1, gles2 library & hea=
+ders.
+> > +# To avoid conflict disable egl, gles1, gles2 from meta-dri if the
+> > +BSP image # is bundling the emgd driver.
+> > +
+> > +python __anonymous () {
+> > +    import re
+> > +    xserver =3D d.getVar('XSERVER', True)
+> > +    if 'emgd-driver-bin' in xserver.split(' '):
+> > +        extra_oeconf =3D d.getVar('EXTRA_OECONF', True).split()
+> > +	take_out =3D ["--enable-egl", "--enable-gles1", "--enable-gles2"]
+> > +	put_in =3D ["--disable-egl", "--disable-gles1", "--disable-gles2"]
+> > +        pattern =3D re.compile("--with-egl-platforms")
+> > +        new_extra_oeconf =3D [ ]
+> > +	for i in extra_oeconf:
+> > +            if ( i not in take_out ) and ( not pattern.match(i)):
+> > +                new_extra_oeconf.append(i)
+> > +        for i in put_in:
+> > +            new_extra_oeconf.append(i)
+> > +
+> > +        d.setVar('EXTRA_OECONF', ' '.join(new_extra_oeconf))
+> > +        depends =3D d.getVar('DEPENDS', True)
+> > +        d.setVar('DEPENDS', depends + " emgd-driver-bin")
+>=20
+> Odd mix of whitespace and tabs above.
+>=20
+> Also, I have to agree with Ross. This places very specific knowledge of a=
+n
+> external package in the general purpose recipe. This is opposite of how t=
+hese
+> things should be built up.
+>=20
 
+Whitespace issues can be solved easily. But if this solution is not accepta=
+ble, then I am not sure how to solve the issue. Do we push the issue to 1.4=
+?=20
 
+Nitin
 
---=20
-Fabr=EDcio Ceolin
-ulevel.com
-Diretor Executivo
+> --
+> Darren Hart
+> Intel Open Source Technology Center
+> Yocto Project - Linux Kernel
 
---e89a8fb1ebd8dff5af04cc33e2f8
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-Hi,<div><br></div><div>I&#39;m new at the yocto project and I&#39;m buildin=
-g my first recipe.</div><div><br></div><div>At now, I&#39;m in trouble beca=
-use the yocto is building my application for toolchain and I do not need th=
-at.=A0I need build an application only for target image.=A0</div>
-
-<div><br></div><div>My machine is x86_64 and my target is qemux86.</div><di=
-v><br></div><div>When bitbake trying to compile the qjson for toolchain, bi=
-tbake tries to link 32 bits binaries with 64 bits toolchain&#39;s libraries=
-.</div>
-
-<div><br></div><div>See my bb file and error attached</div><div><div><br></=
-div></div><div>How can I make this compilation use only target libs?</div><=
-div><br></div><div>In custom bb files, how do the bitbake know that compila=
-tion if for a toolchain or a target?</div>
-
-<div><br></div><div>Thanks</div><div><br></div><div><br></div><div><br></di=
-v><div><br clear=3D"all"><div><br></div>-- <br>Fabr=EDcio Ceolin<br><a href=
-=3D"http://ulevel.com">ulevel.com</a><br>Diretor Executivo<br>
-</div>
-
---e89a8fb1ebd8dff5af04cc33e2f8--
-
---e89a8fb1ebd8dff5b604cc33e2fa
-Content-Type: application/octet-stream; name="qjson_0.7.1.bb"
-Content-Disposition: attachment; filename="qjson_0.7.1.bb"
-Content-Transfer-Encoding: base64
-X-Attachment-Id: f_h8diz0p90
-
-REVTQ1JJUFRJT04gPSAiQSBKc29uIGxpYnJhcnkgZm9yIFFUIgpIT01FUEFHRSA9ICJodHRwOi8v
-cWpzb24uc291cmNlZm9yZ2UubmV0LyIKU0VDVElPTiA9ICJsaWJzIgpQQUNLQUdFX0FSQ0ggPSAi
-JHtNQUNISU5FX0FSQ0h9IgoKTElDRU5TRSA9ICJMR1BMdjIiCkxJQ19GSUxFU19DSEtTVU0gPSAi
-ZmlsZTovL0NPUFlJTkcubGliO21kNT0zNTExZDcyNmQwOTE0NGM4NTkwYWJhNDYyM2NhMmU5ZiIK
-ClNSQ1JFViA9ICIzN2JlMmI3YmY0Y2ZlOTc4NDY2NWU1MjBlYTAzNjgzYTlmMTRmMWQwIgpQViA9
-ICIwLjcuMSIKCmluaGVyaXQgcW1ha2UyIGNtYWtlIHBrZ2NvbmZpZwoKIyBEbyBhIHNzaCBjb25u
-ZWN0aW9uIGZpcnN0LCB0byByZWdpc3RlciBhIGZpbmdlcnByaW50ClNSQ19VUkkgPSAiZ2l0Oi8v
-Z2l0b3Jpb3VzLm9yZy9xanNvbi9xanNvbi5naXQiCgpSREVQRU5EUyArPSAicXQ0LWVtYmVkZGVk
-IgpERVBFTkRTICs9ICJjbWFrZSBwa2djb25maWcgcXQ0LWVtYmVkZGVkIgoKCmV4cG9ydCBFWFRS
-QV9PRUNNQUtFID0gIi1EUVRfUU1BS0VfRVhFQ1VUQUJMRT0ke09FX1FNQUtFX1FNQUtFfSBcCiAg
-ICAgICAgICAgICAgICAgICAgICAgIC1EUVRfTFJFTEVBU0VfRVhFQ1VUQUJMRT0ke09FX1FNQUtF
-X0xSRUxFQVNFfSBcCiAgICAgICAgICAgICAgICAgICAgICAgIC1EUVRfTU9DX0VYRUNVVEFCTEU9
-JHtPRV9RTUFLRV9NT0N9IFwKICAgICAgICAgICAgICAgICAgICAgICAgLURRVF9VSUNfRVhFQ1VU
-QUJMRT0ke09FX1FNQUtFX1VJQ30gXAogICAgICAgICAgICAgICAgICAgICAgICAtRFFUX1JDQ19F
-WEVDVVRBQkxFPSR7T0VfUU1BS0VfUkNDfSBcCiAgICAgICAgICAgICAgICAgICAgICAgIC1EUVRf
-TElCUkFSWV9ESVI9JHtPRV9RTUFLRV9MSUJESVJfUVR9LyBcCiAgICAgICAgICAgICAgICAgICAg
-ICAgIC1EUVRfSEVBREVSU19ESVI9JHtTVEFHSU5HX0lOQ0RJUl9OQVRJVkV9L3F0NC8gXAogICAg
-ICAgICAgICAgICAgICAgICAgICAtRFFUX1FUQ09SRV9JTkNMVURFX0RJUj0ke1NUQUdJTkdfSU5D
-RElSX05BVElWRX0vcXQ0L1F0Q29yZS8gXAogICAgICAgICAgICAgICAgICAgICAgICAiCgoKZG9f
-Y29uZmlndXJlX3ByZXBlbmQoKSB7CiAgICAgICAgZXhwb3J0IEhPU1RfU1lTPSR7SE9TVF9TWVN9
-CiAgICAgICAgZXhwb3J0IEJVSUxEX1NZUz0ke0JVSUxEX1NZU30KfQoKCgpQUiA9ICJyMCIKClMg
-PSAiJHtXT1JLRElSfS9naXQiCgo=
-
---e89a8fb1ebd8dff5b604cc33e2fa
-Content-Type: application/octet-stream; name="error.log"
-Content-Disposition: attachment; filename="error.log"
-Content-Transfer-Encoding: base64
-X-Attachment-Id: f_h8dj0l751
-
-V0FSTklORzogSG9zdCBkaXN0cmlidXRpb24gIlVidW50dSAxMi4wNC4xIExUUyIgaGFzIG5vdCBi
-ZWVuIHZhbGlkYXRlZCB3aXRoIHRoaXMgdmVyc2lvbiBvZiB0aGUgYnVpbGQgc3lzdGVtOyB5b3Ug
-bWF5IHBvc3NpYmx5IGV4cGVyaWVuY2UgdW5leHBlY3RlZCBmYWlsdXJlcy4gSXQgaXMgcmVjb21t
-ZW5kZWQgdGhhdCB5b3UgdXNlIGEgdGVzdGVkIGRpc3RyaWJ1dGlvbi4KTG9hZGluZyBjYWNoZS4u
-LmRvbmUuCkxvYWRlZCAxMTEwIGVudHJpZXMgZnJvbSBkZXBlbmRlbmN5IGNhY2hlLgoKT0UgQnVp
-bGQgQ29uZmlndXJhdGlvbjoKQkJfVkVSU0lPTiAgICAgICAgPSAiMS4xNS4yIgpUQVJHRVRfQVJD
-SCAgICAgICA9ICJpNTg2IgpUQVJHRVRfT1MgICAgICAgICA9ICJsaW51eCIKTUFDSElORSAgICAg
-ICAgICAgPSAicWVtdXg4NiIKRElTVFJPICAgICAgICAgICAgPSAicG9reSIKRElTVFJPX1ZFUlNJ
-T04gICAgPSAiMS4yLjEiClRVTkVfRkVBVFVSRVMgICAgID0gIm0zMiBpNTg2IgpUQVJHRVRfRlBV
-ICAgICAgICA9ICIiCm1ldGEgICAgICAgICAgICAgIAptZXRhLXlvY3RvICAgICAgICAKbWV0YS1q
-ZmEgICAgICAgICAgPSAiPHVua25vd24+Ojx1bmtub3duPiIKbWV0YS10cm0gICAgICAgICAgPSAi
-bWFzdGVyOmY0NzczYWM2MTRhOWFlYzNjNDM5MGJhNTI0OWY2N2EzMGE1OTI1N2EiCgpOT1RFOiBS
-ZXNvbHZpbmcgYW55IG1pc3NpbmcgdGFzayBxdWV1ZSBkZXBlbmRlbmNpZXMKTk9URTogUHJlcGFy
-aW5nIHJ1bnF1ZXVlCk5PVEU6IEV4ZWN1dGluZyBTZXRTY2VuZSBUYXNrcwpOT1RFOiBFeGVjdXRp
-bmcgUnVuUXVldWUgVGFza3MKTk9URTogUnVubmluZyB0YXNrIDE5NTUgb2YgMjc1NSAoSUQ6IDks
-IC9ob21lL2Nlb2xpbi9zcmMvcG9reS1kZW56aWwtNy4wLjEvbWV0YS10cm0vcmVjaXBlcy1xdC9x
-anNvbi9xanNvbl8wLjcuMS5iYiwgZG9fY29tcGlsZSkKTk9URTogcGFja2FnZSBxanNvbi0wLjcu
-MS1yMDogdGFzayBkb19jb21waWxlOiBTdGFydGVkCkVSUk9SOiBGdW5jdGlvbiBmYWlsZWQ6IGRv
-X2NvbXBpbGUgKHNlZSAvaG9tZS9jZW9saW4vc3JjL3Bva3ktZGVuemlsLTcuMC4xL2J1aWxkLWhl
-bGxvL3RtcC93b3JrL3FlbXV4ODYtcG9reS1saW51eC9xanNvbi0wLjcuMS1yMC90ZW1wL2xvZy5k
-b19jb21waWxlLjMyNjAyIGZvciBmdXJ0aGVyIGluZm9ybWF0aW9uKQpFUlJPUjogTG9nZmlsZSBv
-ZiBmYWlsdXJlIHN0b3JlZCBpbjogL2hvbWUvY2VvbGluL3NyYy9wb2t5LWRlbnppbC03LjAuMS9i
-dWlsZC1oZWxsby90bXAvd29yay9xZW11eDg2LXBva3ktbGludXgvcWpzb24tMC43LjEtcjAvdGVt
-cC9sb2cuZG9fY29tcGlsZS4zMjYwMgpMb2cgZGF0YSBmb2xsb3dzOgp8IERFQlVHOiBTSVRFIGZp
-bGVzIFsnZW5kaWFuLWxpdHRsZScsICdiaXQtMzInLCAnaXg4Ni1jb21tb24nLCAnY29tbW9uLWxp
-bnV4JywgJ2NvbW1vbi1nbGliYycsICdpNTg2LWxpbnV4JywgJ2NvbW1vbiddCnwgRVJST1I6IEZ1
-bmN0aW9uIGZhaWxlZDogZG9fY29tcGlsZSAoc2VlIC9ob21lL2Nlb2xpbi9zcmMvcG9reS1kZW56
-aWwtNy4wLjEvYnVpbGQtaGVsbG8vdG1wL3dvcmsvcWVtdXg4Ni1wb2t5LWxpbnV4L3Fqc29uLTAu
-Ny4xLXIwL3RlbXAvbG9nLmRvX2NvbXBpbGUuMzI2MDIgZm9yIGZ1cnRoZXIgaW5mb3JtYXRpb24p
-CnwgTk9URTogbWFrZSAtaiA4CnwgL2hvbWUvY2VvbGluL3NyYy9wb2t5LWRlbnppbC03LjAuMS9i
-dWlsZC1oZWxsby90bXAvc3lzcm9vdHMveDg2XzY0LWxpbnV4L3Vzci9iaW4vY21ha2UgLUgvaG9t
-ZS9jZW9saW4vc3JjL3Bva3ktZGVuemlsLTcuMC4xL2J1aWxkLWhlbGxvL3RtcC93b3JrL3FlbXV4
-ODYtcG9reS1saW51eC9xanNvbi0wLjcuMS1yMC9naXQgLUIvaG9tZS9jZW9saW4vc3JjL3Bva3kt
-ZGVuemlsLTcuMC4xL2J1aWxkLWhlbGxvL3RtcC93b3JrL3FlbXV4ODYtcG9reS1saW51eC9xanNv
-bi0wLjcuMS1yMC9naXQgLS1jaGVjay1idWlsZC1zeXN0ZW0gQ01ha2VGaWxlcy9NYWtlZmlsZS5j
-bWFrZSAwCnwgL2hvbWUvY2VvbGluL3NyYy9wb2t5LWRlbnppbC03LjAuMS9idWlsZC1oZWxsby90
-bXAvc3lzcm9vdHMveDg2XzY0LWxpbnV4L3Vzci9iaW4vY21ha2UgLUUgY21ha2VfcHJvZ3Jlc3Nf
-c3RhcnQgL2hvbWUvY2VvbGluL3NyYy9wb2t5LWRlbnppbC03LjAuMS9idWlsZC1oZWxsby90bXAv
-d29yay9xZW11eDg2LXBva3ktbGludXgvcWpzb24tMC43LjEtcjAvZ2l0L0NNYWtlRmlsZXMgL2hv
-bWUvY2VvbGluL3NyYy9wb2t5LWRlbnppbC03LjAuMS9idWlsZC1oZWxsby90bXAvd29yay9xZW11
-eDg2LXBva3ktbGludXgvcWpzb24tMC43LjEtcjAvZ2l0L0NNYWtlRmlsZXMvcHJvZ3Jlc3MubWFy
-a3MKfCBtYWtlIC1mIENNYWtlRmlsZXMvTWFrZWZpbGUyIGFsbAp8IG1ha2VbMV06IEVudGVyaW5n
-IGRpcmVjdG9yeSBgL2hvbWUvY2VvbGluL3NyYy9wb2t5LWRlbnppbC03LjAuMS9idWlsZC1oZWxs
-by90bXAvd29yay9xZW11eDg2LXBva3ktbGludXgvcWpzb24tMC43LjEtcjAvZ2l0Jwp8IG1ha2Ug
-LWYgc3JjL0NNYWtlRmlsZXMvcWpzb24uZGlyL2J1aWxkLm1ha2Ugc3JjL0NNYWtlRmlsZXMvcWpz
-b24uZGlyL2RlcGVuZAp8IG1ha2VbMl06IEVudGVyaW5nIGRpcmVjdG9yeSBgL2hvbWUvY2VvbGlu
-L3NyYy9wb2t5LWRlbnppbC03LjAuMS9idWlsZC1oZWxsby90bXAvd29yay9xZW11eDg2LXBva3kt
-bGludXgvcWpzb24tMC43LjEtcjAvZ2l0Jwp8IGNkIC9ob21lL2Nlb2xpbi9zcmMvcG9reS1kZW56
-aWwtNy4wLjEvYnVpbGQtaGVsbG8vdG1wL3dvcmsvcWVtdXg4Ni1wb2t5LWxpbnV4L3Fqc29uLTAu
-Ny4xLXIwL2dpdCAmJiAvaG9tZS9jZW9saW4vc3JjL3Bva3ktZGVuemlsLTcuMC4xL2J1aWxkLWhl
-bGxvL3RtcC9zeXNyb290cy94ODZfNjQtbGludXgvdXNyL2Jpbi9jbWFrZSAtRSBjbWFrZV9kZXBl
-bmRzICJVbml4IE1ha2VmaWxlcyIgL2hvbWUvY2VvbGluL3NyYy9wb2t5LWRlbnppbC03LjAuMS9i
-dWlsZC1oZWxsby90bXAvd29yay9xZW11eDg2LXBva3ktbGludXgvcWpzb24tMC43LjEtcjAvZ2l0
-IC9ob21lL2Nlb2xpbi9zcmMvcG9reS1kZW56aWwtNy4wLjEvYnVpbGQtaGVsbG8vdG1wL3dvcmsv
-cWVtdXg4Ni1wb2t5LWxpbnV4L3Fqc29uLTAuNy4xLXIwL2dpdC9zcmMgL2hvbWUvY2VvbGluL3Ny
-Yy9wb2t5LWRlbnppbC03LjAuMS9idWlsZC1oZWxsby90bXAvd29yay9xZW11eDg2LXBva3ktbGlu
-dXgvcWpzb24tMC43LjEtcjAvZ2l0IC9ob21lL2Nlb2xpbi9zcmMvcG9reS1kZW56aWwtNy4wLjEv
-YnVpbGQtaGVsbG8vdG1wL3dvcmsvcWVtdXg4Ni1wb2t5LWxpbnV4L3Fqc29uLTAuNy4xLXIwL2dp
-dC9zcmMgL2hvbWUvY2VvbGluL3NyYy9wb2t5LWRlbnppbC03LjAuMS9idWlsZC1oZWxsby90bXAv
-d29yay9xZW11eDg2LXBva3ktbGludXgvcWpzb24tMC43LjEtcjAvZ2l0L3NyYy9DTWFrZUZpbGVz
-L3Fqc29uLmRpci9EZXBlbmRJbmZvLmNtYWtlIC0tY29sb3I9CnwgbWFrZVsyXTogTGVhdmluZyBk
-aXJlY3RvcnkgYC9ob21lL2Nlb2xpbi9zcmMvcG9reS1kZW56aWwtNy4wLjEvYnVpbGQtaGVsbG8v
-dG1wL3dvcmsvcWVtdXg4Ni1wb2t5LWxpbnV4L3Fqc29uLTAuNy4xLXIwL2dpdCcKfCBtYWtlIC1m
-IHNyYy9DTWFrZUZpbGVzL3Fqc29uLmRpci9idWlsZC5tYWtlIHNyYy9DTWFrZUZpbGVzL3Fqc29u
-LmRpci9idWlsZAp8IG1ha2VbMl06IEVudGVyaW5nIGRpcmVjdG9yeSBgL2hvbWUvY2VvbGluL3Ny
-Yy9wb2t5LWRlbnppbC03LjAuMS9idWlsZC1oZWxsby90bXAvd29yay9xZW11eDg2LXBva3ktbGlu
-dXgvcWpzb24tMC43LjEtcjAvZ2l0Jwp8IExpbmtpbmcgQ1hYIHNoYXJlZCBsaWJyYXJ5IC4uL2xp
-Yi9saWJxanNvbi5zbwp8IGNkIC9ob21lL2Nlb2xpbi9zcmMvcG9reS1kZW56aWwtNy4wLjEvYnVp
-bGQtaGVsbG8vdG1wL3dvcmsvcWVtdXg4Ni1wb2t5LWxpbnV4L3Fqc29uLTAuNy4xLXIwL2dpdC9z
-cmMgJiYgL2hvbWUvY2VvbGluL3NyYy9wb2t5LWRlbnppbC03LjAuMS9idWlsZC1oZWxsby90bXAv
-c3lzcm9vdHMveDg2XzY0LWxpbnV4L3Vzci9iaW4vY21ha2UgLUUgY21ha2VfbGlua19zY3JpcHQg
-Q01ha2VGaWxlcy9xanNvbi5kaXIvbGluay50eHQgLS12ZXJib3NlPTEKfCAvaG9tZS9jZW9saW4v
-c3JjL3Bva3ktZGVuemlsLTcuMC4xL2J1aWxkLWhlbGxvL3RtcC9zeXNyb290cy94ODZfNjQtbGlu
-dXgvdXNyL2Jpbi9pNTg2LXBva3ktbGludXgvaTU4Ni1wb2t5LWxpbnV4LWcrKyAgLWZQSUMgIC1t
-MzIgICAtbWFyY2g9aTU4NiAgLS1zeXNyb290PS9ob21lL2Nlb2xpbi9zcmMvcG9reS1kZW56aWwt
-Ny4wLjEvYnVpbGQtaGVsbG8vdG1wL3N5c3Jvb3RzL3FlbXV4ODYgIC1PMiAtcGlwZSAtZyAtZmVs
-aW1pbmF0ZS11bnVzZWQtZGVidWctdHlwZXMgLWZwZXJtaXNzaXZlIC1mdmlzaWJpbGl0eS1pbmxp
-bmVzLWhpZGRlbiAtZnBlcm1pc3NpdmUgLURRVF9OT19DQVNUX0ZST01fQVNDSUkgLURRVF9OT19D
-QVNUX1RPX0FTQ0lJICAtV2wsLU8xIC1XbCwtLWhhc2gtc3R5bGU9Z251IC1XbCwtLWFzLW5lZWRl
-ZCAtc2hhcmVkIC1XbCwtc29uYW1lLGxpYnFqc29uLnNvLjAgLW8gLi4vbGliL2xpYnFqc29uLnNv
-LjAuNy4xIENNYWtlRmlsZXMvcWpzb24uZGlyL3BhcnNlci5jcHAubyBDTWFrZUZpbGVzL3Fqc29u
-LmRpci9xb2JqZWN0aGVscGVyLmNwcC5vIENNYWtlRmlsZXMvcWpzb24uZGlyL2pzb25fc2Nhbm5l
-ci5jcHAubyBDTWFrZUZpbGVzL3Fqc29uLmRpci9qc29uX3BhcnNlci5jYy5vIENNYWtlRmlsZXMv
-cWpzb24uZGlyL3BhcnNlcnJ1bm5hYmxlLmNwcC5vIENNYWtlRmlsZXMvcWpzb24uZGlyL3Nlcmlh
-bGl6ZXIuY3BwLm8gQ01ha2VGaWxlcy9xanNvbi5kaXIvc2VyaWFsaXplcnJ1bm5hYmxlLmNwcC5v
-IENNYWtlRmlsZXMvcWpzb24uZGlyL21vY19wYXJzZXJydW5uYWJsZS5jeHgubyBDTWFrZUZpbGVz
-L3Fqc29uLmRpci9tb2Nfc2VyaWFsaXplcnJ1bm5hYmxlLmN4eC5vIC9ob21lL2Nlb2xpbi9zcmMv
-cG9reS1kZW56aWwtNy4wLjEvYnVpbGQtaGVsbG8vdG1wL3N5c3Jvb3RzL3g4Nl82NC1saW51eC91
-c3IvbGliL2xpYlF0Q29yZS5zbyAtV2wsLXJwYXRoLC9ob21lL2Nlb2xpbi9zcmMvcG9reS1kZW56
-aWwtNy4wLjEvYnVpbGQtaGVsbG8vdG1wL3N5c3Jvb3RzL3g4Nl82NC1saW51eC91c3IvbGliOgp8
-IC9ob21lL2Nlb2xpbi9zcmMvcG9reS1kZW56aWwtNy4wLjEvYnVpbGQtaGVsbG8vdG1wL3N5c3Jv
-b3RzL3g4Nl82NC1saW51eC91c3IvbGliL2xpYlF0Q29yZS5zbzogY291bGQgbm90IHJlYWQgc3lt
-Ym9sczogRmlsZSBpbiB3cm9uZyBmb3JtYXQKfCBjb2xsZWN0MjogbGQgcmV0dXJuZWQgMSBleGl0
-IHN0YXR1cwp8IG1ha2VbMl06ICoqKiBbbGliL2xpYnFqc29uLnNvLjAuNy4xXSBFcnJvciAxCnwg
-bWFrZVsyXTogTGVhdmluZyBkaXJlY3RvcnkgYC9ob21lL2Nlb2xpbi9zcmMvcG9reS1kZW56aWwt
-Ny4wLjEvYnVpbGQtaGVsbG8vdG1wL3dvcmsvcWVtdXg4Ni1wb2t5LWxpbnV4L3Fqc29uLTAuNy4x
-LXIwL2dpdCcKfCBtYWtlWzFdOiAqKiogW3NyYy9DTWFrZUZpbGVzL3Fqc29uLmRpci9hbGxdIEVy
-cm9yIDIKfCBtYWtlWzFdOiBMZWF2aW5nIGRpcmVjdG9yeSBgL2hvbWUvY2VvbGluL3NyYy9wb2t5
-LWRlbnppbC03LjAuMS9idWlsZC1oZWxsby90bXAvd29yay9xZW11eDg2LXBva3ktbGludXgvcWpz
-b24tMC43LjEtcjAvZ2l0Jwp8IG1ha2U6ICoqKiBbYWxsXSBFcnJvciAyCnwgRVJST1I6IG9lX3J1
-bm1ha2UgZmFpbGVkCk5PVEU6IHBhY2thZ2UgcWpzb24tMC43LjEtcjA6IHRhc2sgZG9fY29tcGls
-ZTogRmFpbGVkCkVSUk9SOiBUYXNrIDkgKC9ob21lL2Nlb2xpbi9zcmMvcG9reS1kZW56aWwtNy4w
-LjEvbWV0YS10cm0vcmVjaXBlcy1xdC9xanNvbi9xanNvbl8wLjcuMS5iYiwgZG9fY29tcGlsZSkg
-ZmFpbGVkIHdpdGggZXhpdCBjb2RlICcxJwpOT1RFOiBUYXNrcyBTdW1tYXJ5OiBBdHRlbXB0ZWQg
-Mjc0OCB0YXNrcyBvZiB3aGljaCAyNzQ3IGRpZG4ndCBuZWVkIHRvIGJlIHJlcnVuIGFuZCAxIGZh
-aWxlZC4KClN1bW1hcnk6IDEgdGFzayBmYWlsZWQ6CiAgL2hvbWUvY2VvbGluL3NyYy9wb2t5LWRl
-bnppbC03LjAuMS9tZXRhLXRybS9yZWNpcGVzLXF0L3Fqc29uL3Fqc29uXzAuNy4xLmJiLCBkb19j
-b21waWxlClN1bW1hcnk6IFRoZXJlIHdhcyAxIFdBUk5JTkcgbWVzc2FnZSBzaG93bi4KU3VtbWFy
-eTogVGhlcmUgd2FzIDEgRVJST1IgbWVzc2FnZSBzaG93biwgcmV0dXJuaW5nIGEgbm9uLXplcm8g
-ZXhpdCBjb2RlLgo=
-
---e89a8fb1ebd8dff5b604cc33e2fa--
