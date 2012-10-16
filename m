@@ -1,24 +1,26 @@
 Return-Path: <kishore.k.bodke@intel.com>
 Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D628FE01214
-	for <yocto@yoctoproject.org>; Tue, 16 Oct 2012 14:15:27 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1628BE01214
+	for <yocto@yoctoproject.org>; Tue, 16 Oct 2012 14:15:28 -0700 (PDT)
 Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 16 Oct 2012 14:15:25 -0700
+	by azsmga102.ch.intel.com with ESMTP; 16 Oct 2012 14:15:27 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,595,1344236400"; d="scan'208";a="205266700"
+X-IronPort-AV: E=Sophos;i="4.80,595,1344236400"; d="scan'208";a="205266714"
 Received: from kishore-desktop.sc.intel.com (HELO localhost)
 	([143.183.188.160])
-	by azsmga001.ch.intel.com with ESMTP; 16 Oct 2012 14:15:24 -0700
+	by azsmga001.ch.intel.com with ESMTP; 16 Oct 2012 14:15:26 -0700
 From: kishore.k.bodke@intel.com
 To: tom.zanussi@intel.com,
 	nitin.a.kamble@intel.com,
 	yocto@yoctoproject.org
-Date: Tue, 16 Oct 2012 14:16:03 -0700
-Message-Id: <d2b03727eec46bdbd08d9b56e416dd69e88120f2.1350421785.git.kishore.k.bodke@intel.com>
+Date: Tue, 16 Oct 2012 14:16:04 -0700
+Message-Id: <5193e1743a604bf4714d46c4d4fb175be8edfe9e.1350421785.git.kishore.k.bodke@intel.com>
 X-Mailer: git-send-email 1.7.9.5
+In-Reply-To: <d2b03727eec46bdbd08d9b56e416dd69e88120f2.1350421785.git.kishore.k.bodke@intel.com>
+References: <d2b03727eec46bdbd08d9b56e416dd69e88120f2.1350421785.git.kishore.k.bodke@intel.com>
 In-Reply-To: <cover.1350421785.git.kishore.k.bodke@intel.com>
 References: <cover.1350421785.git.kishore.k.bodke@intel.com>
-Subject: [PATCH 1/2] [meta-intel] meta-intel/common: Add a new recipe for Zlib qat_mem Module.
+Subject: [PATCH 2/2] [meta-intel] meta-crystalforest: Add zlib-qat-module to the Image.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,137 +36,39 @@ X-List-Received-Date: Tue, 16 Oct 2012 21:15:28 -0000
 
 From: Kishore Bodke <kishore.k.bodke@intel.com>
 
-This adds a new recipe to build the Intel Quick Assist
-Technology Memory Management Module for Zlib.
+This adds the zlib-qat-module to build with the custom
+Image.
 
 Signed-off-by: Kishore Bodke <kishore.k.bodke@intel.com>
 ---
- .../zlib-qat-module/zlib-qat-module.bb             |   65 ++++++++++++++++++++
- .../zlib-qat-module/zlib_qat_module.patch          |   43 +++++++++++++
- 2 files changed, 108 insertions(+)
- create mode 100644 common/recipes-core/zlib-qat-module/zlib-qat-module.bb
- create mode 100644 common/recipes-core/zlib-qat-module/zlib-qat-module/zlib_qat_module.patch
+ .../recipes-qat-image/images/core-image-qat-sdk.bb |    1 +
+ .../recipes-qat-image/images/core-image-qat.bb     |    1 +
+ 2 files changed, 2 insertions(+)
 
-diff --git a/common/recipes-core/zlib-qat-module/zlib-qat-module.bb b/common/recipes-core/zlib-qat-module/zlib-qat-module.bb
-new file mode 100644
-index 0000000..63eff03
---- /dev/null
-+++ b/common/recipes-core/zlib-qat-module/zlib-qat-module.bb
-@@ -0,0 +1,65 @@
-+SUMMARY = "Zlib QAT_MEM Memory Management Module for Intel Quick Assist Technology"
-+DESCRIPTION = "This software acelerates the data compression algorithm in the zlib \
-+		software library via the Intel QuickAssist Technology implemented on \
-+		Intel Communications Chipset 89xx Series based platforms."
-+
-+HOMEPAGE = "http://zlib.net/"
-+SECTION = "libs"
-+LICENSE = "Zlib & GPLv2 & BSD"
-+
-+LIC_FILES_CHKSUM = "file://${WORKDIR}/zlib-${PV}/zlib.h;beginline=4;endline=23;md5=94d1b5a40dadd127f3351471727e66a9 \
-+			file://${COMMON_LICENSE_DIR}/GPL-2.0;md5=801f80980d171dd6425610833a22dbe6 \
-+			file://${COMMON_LICENSE_DIR}/BSD;md5=3775480a712fc46a69647678acb234cb \
-+			"
-+
-+PV = "1.2.7"
-+ZLIB_QAT_VERSION = "0.4.0-011"
-+
-+PR="r0"
-+
-+SRC_URI = " \
-+		http://www.zlib.net/zlib-${PV}.tar.gz;name=zlib \
-+		http://downloadmirror.intel.com/20294/eng/zlib-1.2.7-qat.L.${ZLIB_QAT_VERSION}.tar.gz;name=zlib_qat \
-+		file://zlib_qat_module.patch \
-+		"
-+
-+SRC_URI[zlib.md5sum]="60df6a37c56e7c1366cca812414f7b85"
-+SRC_URI[zlib.sha256sum]="fa9c9c8638efb8cb8ef5e4dd5453e455751e1c530b1595eed466e1be9b7e26c5"
-+
-+SRC_URI[zlib_qat.md5sum]="88e4140f98d2f9e170bf473f20e1a8d4"
-+SRC_URI[zlib_qat.sha256sum]="3c360878127f3930e64640ef5a5822719a5059143326bb4c396645ae37b704a6"
-+
-+TARGET_CFLAGS += "-I ${S}/contrib/qat/ -I ${S}"
-+
-+S = "${WORKDIR}/zlib-${PV}/contrib/qat/qat_mem"
-+
-+inherit module
-+
-+export KERNEL_SOURCE_ROOT = "${STAGING_KERNEL_DIR}"
-+
-+do_patch() 	{
-+
-+	cd ${WORKDIR}/zlib-${PV}
-+	patch -p0  < ${WORKDIR}/zlib-${PV}-qat.L.${ZLIB_QAT_VERSION}.patch
-+
-+	cd ${WORKDIR}
-+	patch -p1   < ${WORKDIR}/zlib_qat_module.patch
-+}
-+
-+do_compile()    {
-+
-+	cd ${S}
-+	oe_runmake KERNEL_CC="${KERNEL_CC}"
-+
-+}
-+
-+do_install_append()     {
-+
-+	install -m 0755 -d      ${D}${bindir}
-+	install -m 0755 ${S}/qat_mem_test       ${D}${bindir}
-+
-+}
-+
-+FILES_${PN} += " \
-+                ${bindir}/qat_mem_test \
-+                "
-diff --git a/common/recipes-core/zlib-qat-module/zlib-qat-module/zlib_qat_module.patch b/common/recipes-core/zlib-qat-module/zlib-qat-module/zlib_qat_module.patch
-new file mode 100644
-index 0000000..a30f8b0
---- /dev/null
-+++ b/common/recipes-core/zlib-qat-module/zlib-qat-module/zlib_qat_module.patch
-@@ -0,0 +1,43 @@
-+Index: zlib-qat-module-1.2.7-r0/zlib-1.2.7/contrib/qat/qat_mem/Makefile
-+===================================================================
-+--- zlib-qat-module-1.2.7-r0.orig/zlib-1.2.7/contrib/qat/qat_mem/Makefile	2012-10-16 13:53:10.258938722 -0700
-++++ zlib-qat-module-1.2.7-r0/zlib-1.2.7/contrib/qat/qat_mem/Makefile	2012-10-16 13:59:18.174944864 -0700
-+@@ -59,13 +59,10 @@
-+ #
-+ #
-+ #########################################################################
-+-
-+ MODULENAME 	:= qat_mem
-+-KDIR		:= /lib/modules/$(shell uname -r)/build
-++KDIR		:= $(KERNEL_SOURCE_ROOT)
-+ PWD		:= $(shell pwd)
-+-
-+-CC		:= gcc -Wall -imacros /usr/src/kernels/$(shell uname -r)/include/linux/autoconf.h
-+-
-++CC		:= $(KERNEL_CC) -Wall -imacros $(KERNEL_SOURCE_ROOT)/include/generated/autoconf.h
-+ ifeq ($(KERNELRELEASE),)
-+ all:	$(MODULENAME)_test
-+ all:
-+@@ -73,20 +70,15 @@
-+ else
-+   obj-m	:= $(MODULENAME).o
-+ endif
-+-
-++modules_install:
-++	$(MAKE) -C $(KDIR) SUBDIRS=$(PWD) modules_install
-+ $(MODULENAME)_test: $(MODULENAME)_test.c
-+ 	$(CC) -g -o $(MODULENAME)_test $(MODULENAME)_test.c
-+-
-+-
-+ load:
-+ 	insmod ./$(MODULENAME).ko
-+-
-+ unload:
-+ 	rmmod $(MODULENAME)
-+-
-+ test: all
-+ 	./$(MODULENAME)_test
-+-
-+ clean:
-+ 	rm -f *.o *.ko Module.symvers modules.order *.mod.c .*.cmd $(MODULENAME)_test
-+-
+diff --git a/meta-crystalforest/recipes-qat-image/images/core-image-qat-sdk.bb b/meta-crystalforest/recipes-qat-image/images/core-image-qat-sdk.bb
+index 27feb0d..689377f 100644
+--- a/meta-crystalforest/recipes-qat-image/images/core-image-qat-sdk.bb
++++ b/meta-crystalforest/recipes-qat-image/images/core-image-qat-sdk.bb
+@@ -9,6 +9,7 @@ IMAGE_INSTALL += " \
+ 		calgary-corpus \
+ 		canterbury-corpus \
+ 		silesia-corpus \
++		zlib-qat-module \
+ 		"
+ 
+ LICENSE = "MIT"
+diff --git a/meta-crystalforest/recipes-qat-image/images/core-image-qat.bb b/meta-crystalforest/recipes-qat-image/images/core-image-qat.bb
+index 7c61ec6..8b5e0f6 100644
+--- a/meta-crystalforest/recipes-qat-image/images/core-image-qat.bb
++++ b/meta-crystalforest/recipes-qat-image/images/core-image-qat.bb
+@@ -9,6 +9,7 @@ IMAGE_INSTALL += " \
+ 		calgary-corpus \
+ 		canterbury-corpus \
+ 		silesia-corpus \
++		zlib-qat-module \
+ 		"
+ 
+ LICENSE = "MIT"
 -- 
 1.7.9.5
 
