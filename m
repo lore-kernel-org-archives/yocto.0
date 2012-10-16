@@ -1,29 +1,24 @@
-Return-Path: <Jonathan.Haws@sdl.usu.edu>
-Received: from echo.usurf.usu.edu (echo.usurf.usu.edu [129.123.194.129])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B1A14E011AF
-	for <yocto@yoctoproject.org>; Tue, 16 Oct 2012 09:02:55 -0700 (PDT)
-Received: from wef.usurf.usu.edu (129.123.194.164) by echo.usurf.usu.edu
-	(129.123.194.129) with Microsoft SMTP Server id 14.2.318.4;
-	Tue, 16 Oct 2012 10:02:55 -0600
-Received: from Mercury.usurf.usu.edu ([172.31.35.10]) by wef.usurf.usu.edu
-	with Microsoft SMTPSVC(6.0.3790.4675); Tue, 16 Oct 2012 10:02:51 -0600
-Received: from MERCURY.usurf.usu.edu ([172.31.35.10]) by Mercury.usurf.usu.edu
-	([172.31.35.10]) with mapi id 14.02.0318.004;
-	Tue, 16 Oct 2012 10:02:54 -0600
-From: Jonathan Haws <Jonathan.Haws@sdl.usu.edu>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: .bashrc not being used by root account
-Thread-Index: Ac2rt7NrZST1ne7WQCqI3BbCR8xoow==
-Date: Tue, 16 Oct 2012 16:02:54 +0000
-Message-ID: <DDDB9E6645DE24488B8485B41A051F471D9618D2@Mercury.usurf.usu.edu>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.31.22.105]
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BB6BDE011AF
+	for <yocto@yoctoproject.org>; Tue, 16 Oct 2012 09:06:37 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 16 Oct 2012 09:06:37 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,593,1344236400"; d="scan'208";a="206548221"
+Received: from unknown (HELO helios.localnet) ([10.252.122.78])
+	by orsmga001.jf.intel.com with ESMTP; 16 Oct 2012 09:06:36 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Jonathan Haws <Jonathan.Haws@sdl.usu.edu>
+Date: Tue, 16 Oct 2012 17:06:35 +0100
+Message-ID: <1643755.JoZOaIgQYA@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.9.2 (Linux/3.2.0-32-generic-pae; KDE/4.9.2; i686; ; )
+In-Reply-To: <DDDB9E6645DE24488B8485B41A051F471D9618A1@Mercury.usurf.usu.edu>
+References: <DDDB9E6645DE24488B8485B41A051F471D9618A1@Mercury.usurf.usu.edu>
 MIME-Version: 1.0
-X-OriginalArrivalTime: 16 Oct 2012 16:02:51.0913 (UTC)
-	FILETIME=[B21B9790:01CDABB7]
-Subject: .bashrc not being used by root account
+Cc: yocto@yoctoproject.org
+Subject: Re: lm-sensors not available as a package?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,16 +30,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 16 Oct 2012 16:02:55 -0000
-Content-Language: en-US
+X-List-Received-Date: Tue, 16 Oct 2012 16:06:37 -0000
+Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
 
-I have modified the .bashrc file for the system, however the root account d=
-oes not seem to use it by default.  What am I missing?  I would rather not =
-have to source the .bashrc file every time I login as root.=0A=
-=0A=
-Thanks,=0A=
-Jonathan=0A=
-=0A=
+On Tuesday 16 October 2012 16:00:01 Jonathan Haws wrote:
+> I would be surprised if a recipe for lm-sensors has not already been
+> created, however I cannot find one.  Can someone point me in the right
+> direction?
+> 
+> All I can find is a sysstat package that I can include via
+> IMAGE_INSTALL_append, however I cannot see how I can get the same
+> information out of it that lm-sensors gives me.
+> 
+> Has anyone got lm-sensors included in their image?  If so, can you share the
+> recipe?
+
+Unless anyone else pipes up, my local index suggests that this is something 
+that hasn't yet been brought up-to-date from OE-Classic.
+
+http://git.openembedded.org/openembedded/tree/recipes/lm_sensors
+
+Assuming nothing else is available you should be able to use this as a base. 
+There is a brief guide on the main things that need to be changed when 
+updating a recipe from OE-Classic here:
+
+http://www.openembedded.org/wiki/Migrating_metadata_to_OE-Core
+
+If you do come up with an updated recipe we'd love to have it added to meta-oe 
+or some other layer ;)
+
+Cheers,
+Paul
+
+-- 
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
