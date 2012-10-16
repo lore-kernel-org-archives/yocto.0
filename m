@@ -1,24 +1,35 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BB6BDE011AF
-	for <yocto@yoctoproject.org>; Tue, 16 Oct 2012 09:06:37 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 16 Oct 2012 09:06:37 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,593,1344236400"; d="scan'208";a="206548221"
-Received: from unknown (HELO helios.localnet) ([10.252.122.78])
-	by orsmga001.jf.intel.com with ESMTP; 16 Oct 2012 09:06:36 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Jonathan Haws <Jonathan.Haws@sdl.usu.edu>
-Date: Tue, 16 Oct 2012 17:06:35 +0100
-Message-ID: <1643755.JoZOaIgQYA@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.9.2 (Linux/3.2.0-32-generic-pae; KDE/4.9.2; i686; ; )
-In-Reply-To: <DDDB9E6645DE24488B8485B41A051F471D9618A1@Mercury.usurf.usu.edu>
-References: <DDDB9E6645DE24488B8485B41A051F471D9618A1@Mercury.usurf.usu.edu>
-MIME-Version: 1.0
+Return-Path: <ross.burton@intel.com>
+Received: from fmsmga102.fm.intel.com (mga10.intel.com [192.55.52.92])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6F2FEE011AF
+	for <yocto@yoctoproject.org>; Tue, 16 Oct 2012 09:14:44 -0700 (PDT)
+Received: from mail-wg0-f42.google.com ([74.125.82.42])
+	by mga11.intel.com with ESMTP/TLS/RC4-SHA; 16 Oct 2012 09:14:41 -0700
+Received: by mail-wg0-f42.google.com with SMTP id fm10so29060wgb.5
+	for <yocto@yoctoproject.org>; Tue, 16 Oct 2012 09:14:40 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=from:to:cc:subject:date:message-id:x-mailer:x-gm-message-state;
+	bh=jdVyNIIJnWA6axBGN/teIQDpOSIscLuI4lumHi0MDbg=;
+	b=MuCnjiBTmR09gGiA38V2U8g4VVqXC+pi+5qn+kyisri7+NbHi/nfmNBOHlL9n8+FVo
+	63OAI/4cthVo6jpYZS7xgWLK1ygkCs3rIKkLpp2GB1JL4WAqcQGMVYxU5KLY9yh77ZF2
+	f8HOFnvmbnCJau+a8FnoIXgrA33Jn7xZrU7aPtD+P6qSnYK81jzUNRDKzbyc9iE1w5FJ
+	COv+suzlJ74EQLDkEMdUQ8SSYtHACmT1UXsNSH9mHDj0gRMZnMM6cdfy/pgoJVwNV921
+	mnXbSHzHx9wfis+uqBFwdBNd6v1sVWPMDyhaGBfT7W+mPGJnYUsFqqNJW+K6ZKlhqGc1
+	iMAw==
+Received: by 10.216.134.218 with SMTP id s68mr10118341wei.72.1350404079951;
+	Tue, 16 Oct 2012 09:14:39 -0700 (PDT)
+Received: from melchett.burtonini.com (35.106.2.81.in-addr.arpa. [81.2.106.35])
+	by mx.google.com with ESMTPS id v3sm19772965wiw.7.2012.10.16.09.14.37
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Tue, 16 Oct 2012 09:14:38 -0700 (PDT)
+From: Ross Burton <ross.burton@intel.com>
+To: kishore.k.bodke@intel.com
+Date: Tue, 16 Oct 2012 17:13:31 +0100
+Message-Id: <1350404011-18683-1-git-send-email-ross.burton@intel.com>
+X-Mailer: git-send-email 1.7.10
+X-Gm-Message-State: ALoCoQnY+sM5NFwS6BHAQHOlVUEjg34I+eGa9Con8wI+FA7UF0coaDU50L8ZBJnzfy+5BXi0quu1
 Cc: yocto@yoctoproject.org
-Subject: Re: lm-sensors not available as a package?
+Subject: [PATCH] cedartrail: add missing gst-va-intel-vaapi machine feature"
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,41 +41,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 16 Oct 2012 16:06:37 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Tue, 16 Oct 2012 16:14:44 -0000
 
-On Tuesday 16 October 2012 16:00:01 Jonathan Haws wrote:
-> I would be surprised if a recipe for lm-sensors has not already been
-> created, however I cannot find one.  Can someone point me in the right
-> direction?
-> 
-> All I can find is a sysstat package that I can include via
-> IMAGE_INSTALL_append, however I cannot see how I can get the same
-> information out of it that lm-sensors gives me.
-> 
-> Has anyone got lm-sensors included in their image?  If so, can you share the
-> recipe?
+There needs to be a gst-va-* MACHINE_FEATURE to get the right VA elements in the
+images.
 
-Unless anyone else pipes up, my local index suggests that this is something 
-that hasn't yet been brought up-to-date from OE-Classic.
+Signed-off-by: Ross Burton <ross.burton@intel.com>
+---
+ meta-cedartrail/conf/machine/cedartrail.conf |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-http://git.openembedded.org/openembedded/tree/recipes/lm_sensors
-
-Assuming nothing else is available you should be able to use this as a base. 
-There is a brief guide on the main things that need to be changed when 
-updating a recipe from OE-Classic here:
-
-http://www.openembedded.org/wiki/Migrating_metadata_to_OE-Core
-
-If you do come up with an updated recipe we'd love to have it added to meta-oe 
-or some other layer ;)
-
-Cheers,
-Paul
-
+diff --git a/meta-cedartrail/conf/machine/cedartrail.conf b/meta-cedartrail/conf/machine/cedartrail.conf
+index 33af012..540771d 100644
+--- a/meta-cedartrail/conf/machine/cedartrail.conf
++++ b/meta-cedartrail/conf/machine/cedartrail.conf
+@@ -7,7 +7,7 @@
+ require conf/machine/include/tune-atom.inc
+ require conf/machine/include/ia32-base.inc
+ 
+-MACHINE_FEATURES += "pcbios efi"
++MACHINE_FEATURES += "pcbios efi gst-va-video-vaapi"
+ 
+ XSERVER ?= "${XSERVER_IA32_BASE} \
+            ${XSERVER_IA32_EXT} \
 -- 
+1.7.10
 
-Paul Eggleton
-Intel Open Source Technology Centre
 
