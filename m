@@ -1,43 +1,22 @@
-Return-Path: <marc.ferland@gmail.com>
-Received: from mail-qc0-f176.google.com (mail-qc0-f176.google.com
-	[209.85.216.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1A234E011AF
-	for <yocto@yoctoproject.org>; Tue, 16 Oct 2012 11:27:51 -0700 (PDT)
-Received: by mail-qc0-f176.google.com with SMTP id n41so6168859qco.35
-	for <yocto@yoctoproject.org>; Tue, 16 Oct 2012 11:27:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=sender:from:to:cc:subject:references:date:in-reply-to:message-id
-	:user-agent:mime-version:content-type;
-	bh=qvPD8pELYK7KV35K072VyqpsIb6ZVIpVKPbXV1+yXUQ=;
-	b=c9rJPdg12PPuDj6HP0fKSd2kDrhZiT7glqakfXfqu1gCOftKm/75Br5kTILJ/in1cZ
-	zUPPTPX8SvgqMA2eA2y7SAFKTZ5wUmORURTG3i4xHaN6MjwpcQJeIbFItHuR1SIWsiXi
-	cinmCkCCh3TnpRacbTrmbE2WxMyvHyk929f/1WT7aAi1e2EG68V2mDo4uM1+Cbo43HZ2
-	NgqodhpV/Ym4u4cRxDsiJ/zeXRLaWTCGMYl/3IHzxRyrUcZR7NL29wJHV3vvDVqcVB+c
-	YMT8Mf/586d9gq/Z7dZrebn2LX9a5d6KiERBQC1S0uwX5FjLvfUebeHlhILHm8lPnfis
-	hkHg==
-Received: by 10.229.137.70 with SMTP id v6mr7649860qct.69.1350412070512;
-	Tue, 16 Oct 2012 11:27:50 -0700 (PDT)
-Received: from ferlandm@sonatest.com
-	(modemcable066.15-37-24.static.videotron.ca. [24.37.15.66])
-	by mx.google.com with ESMTPS id j3sm17503963qek.7.2012.10.16.11.27.48
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Tue, 16 Oct 2012 11:27:49 -0700 (PDT)
-Sender: Marc Ferland <marc.ferland@gmail.com>
-Received: by ferlandm@sonatest.com (sSMTP sendmail emulation);
-	Tue, 16 Oct 2012 14:27:48 -0400
-From: Marc Ferland <ferlandm@sonatest.com>
-To: Jonathan Haws <Jonathan.Haws@sdl.usu.edu>
-References: <DDDB9E6645DE24488B8485B41A051F471D9618A1@Mercury.usurf.usu.edu>
-	<1643755.JoZOaIgQYA@helios> <87vceal3m1.fsf@sonatest.com>
-	<DDDB9E6645DE24488B8485B41A051F471D961A0A@Mercury.usurf.usu.edu>
-Date: Tue, 16 Oct 2012 14:27:48 -0400
-In-Reply-To: <DDDB9E6645DE24488B8485B41A051F471D961A0A@Mercury.usurf.usu.edu>
-	(Jonathan Haws's message of "Tue, 16 Oct 2012 17:53:53 +0000")
-Message-ID: <87d30ie0gr.fsf@sonatest.com>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/24.1 (gnu/linux)
-MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: lm-sensors not available as a package?
+Return-Path: <kishore.k.bodke@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 63161E011AF
+	for <yocto@yoctoproject.org>; Tue, 16 Oct 2012 14:14:55 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 16 Oct 2012 14:14:31 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,595,1344236400"; d="scan'208";a="206783481"
+Received: from kishore-desktop.sc.intel.com (HELO localhost)
+	([143.183.188.160])
+	by orsmga001.jf.intel.com with ESMTP; 16 Oct 2012 14:14:45 -0700
+From: kishore.k.bodke@intel.com
+To: tom.zanussi@intel.com,
+	nitin.a.kamble@intel.com,
+	yocto@yoctoproject.org
+Date: Tue, 16 Oct 2012 14:16:01 -0700
+Message-Id: <cover.1350421785.git.kishore.k.bodke@intel.com>
+X-Mailer: git-send-email 1.7.9.5
+Subject: [PATCH 0/2] [meta-intel] meta-crystalforest: Add zlib qat mem module.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,21 +28,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 16 Oct 2012 18:27:51 -0000
-Content-Type: text/plain
+X-List-Received-Date: Tue, 16 Oct 2012 21:14:55 -0000
 
-Jonathan Haws <Jonathan.Haws@sdl.usu.edu> writes:
+From: Kishore Bodke <kishore.k.bodke@intel.com>
 
-> I got the oe-classic recipe building with the latest version of
-> lm-sensors.  However, I am now running into perl issues - when I try
-> to run sensors-detect, I get errors with the @INC paths - strict.pm is
-> not found anywhere on the filesystem.  I went back to see if I had
-> left out perl support, but it was present and included.  Where is
-> strict.pm?  How can I get that in my image?
->
-> Thanks!
->
-You might want to add 'perl-modules' to RDEPENDS_lmsensors-scripts.
+Hi,
 
-Marc
+This patch set adds a new recipe for Intel Quick Assist Technology
+Memory Management Module based on Zlib and include it to the custom
+build Image recipe to build them.
+
+Please pull into meta-intel/master.
+
+Thanks
+Kishore.
+
+The following changes since commit 5164713bfbef16e1a49bc599ec0d738df52ab254:
+
+  meta-crystalforest: Update SRCREV for meta. (2012-10-15 14:38:40 -0500)
+
+are available in the git repository at:
+
+  git://git.pokylinux.org/meta-intel-contrib Kishore/Zlib-qat_mem
+  http://git.pokylinux.org/cgit.cgi/meta-intel-contrib/log/?h=Kishore/Zlib-qat_mem
+
+Kishore Bodke (2):
+  meta-intel/common: Add a new recipe for Zlib qat_mem Module.
+  meta-crystalforest: Add zlib-qat-module to the Image.
+
+ .../zlib-qat-module/zlib-qat-module.bb             |   65 ++++++++++++++++++++
+ .../zlib-qat-module/zlib_qat_module.patch          |   43 +++++++++++++
+ .../recipes-qat-image/images/core-image-qat-sdk.bb |    1 +
+ .../recipes-qat-image/images/core-image-qat.bb     |    1 +
+ 4 files changed, 110 insertions(+)
+ create mode 100644 common/recipes-core/zlib-qat-module/zlib-qat-module.bb
+ create mode 100644 common/recipes-core/zlib-qat-module/zlib-qat-module/zlib_qat_module.patch
+
+-- 
+1.7.9.5
+
 
