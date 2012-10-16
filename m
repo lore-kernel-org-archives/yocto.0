@@ -1,33 +1,41 @@
-Return-Path: <evadeflow@gmail.com>
-Received: from mail-ob0-f176.google.com (mail-ob0-f176.google.com
-	[209.85.214.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F3867E011AF
-	for <yocto@yoctoproject.org>; Tue, 16 Oct 2012 09:44:16 -0700 (PDT)
-Received: by mail-ob0-f176.google.com with SMTP id x4so7779059obh.35
-	for <yocto@yoctoproject.org>; Tue, 16 Oct 2012 09:44:11 -0700 (PDT)
+Return-Path: <marc.ferland@gmail.com>
+Received: from mail-qa0-f41.google.com (mail-qa0-f41.google.com
+	[209.85.216.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DFBBEE011AF
+	for <yocto@yoctoproject.org>; Tue, 16 Oct 2012 10:38:03 -0700 (PDT)
+Received: by mail-qa0-f41.google.com with SMTP id c4so148039qae.14
+	for <yocto@yoctoproject.org>; Tue, 16 Oct 2012 10:38:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=UwO9uqTBI644vcK7mJ52NHBA7maD7+bIgxJq7Np6QG8=;
-	b=CejDDKTvGnejj8nyncoKhLn/W1zWhAp6KO+03ryGYfmkS1RJ1I0wOSoYvuU7egv6hz
-	OZ5bk4d7DvYrF329eHfu1BDa09euMlyrIxUpdH5hoVE6TRDCSTPb1VEoBImYHI93/Cgp
-	lcSuCKyCoXWnXN9bwA6W760YfzYGptjWmUJ8/4CxQYxjAqqVPt6W3YmmqxMMLijL2g3z
-	RzFCalPtG50tzcvDQJGwMDke9smCdqLYddU4zOp9/N6fvbi4QKfmJtguA+eTBpg0gjIx
-	BzaIECBGgNceyODqWDoWXUthu0NueQd6GpiteOOE/4CftfUKYrlfDVklyPcvZdrtolQQ
-	jLaw==
+	h=sender:from:to:subject:references:date:in-reply-to:message-id
+	:user-agent:mime-version:content-type;
+	bh=gsJE4yswrf0WJ+wGIOlOJDQrWEas0X6LdVneG2KKqjU=;
+	b=cm4x12U+8h8+t/zIprD28ZY/kxlwKMPUFABs5H49ix5vJ/C3cOt1Z6RrmKsfC2msH+
+	QljQtVNcn1NTPPrsbqMfiOdNF3//FYeeUXsQXQRVrhO+NpG3Qu2wqWutzYE6ebd/1Vtd
+	5ja5i32dqa2jZbKBKS5tADpYLyE3cn0m8PI76O3kO+AAR7+KIE43Xu6wSSZNZ22cdJzD
+	hJeK5LSUsMS21Aafrhnb0KXR5ewryRByKj53T3g0F5xndIsLSgDSSnNWnJxKfr6ysSu7
+	1MSWnPTNFIj1hZbI9NcoZyjySu/2/YUlNWcOhx+F6g7K+lwfiAez5OUr+3XKrPRpY9n0
+	QXAA==
+Received: by 10.49.133.97 with SMTP id pb1mr37322947qeb.31.1350409081133;
+	Tue, 16 Oct 2012 10:38:01 -0700 (PDT)
+Received: from ferlandm@sonatest.com
+	(modemcable066.15-37-24.static.videotron.ca. [24.37.15.66])
+	by mx.google.com with ESMTPS id g4sm18952433qav.16.2012.10.16.10.37.57
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Tue, 16 Oct 2012 10:38:00 -0700 (PDT)
+Sender: Marc Ferland <marc.ferland@gmail.com>
+Received: by ferlandm@sonatest.com (sSMTP sendmail emulation);
+	Tue, 16 Oct 2012 13:37:58 -0400
+From: Marc Ferland <ferlandm@sonatest.com>
+To: yocto@yoctoproject.org
+References: <DDDB9E6645DE24488B8485B41A051F471D9618A1@Mercury.usurf.usu.edu>
+	<1643755.JoZOaIgQYA@helios>
+Date: Tue, 16 Oct 2012 13:37:58 -0400
+In-Reply-To: <1643755.JoZOaIgQYA@helios> (Paul Eggleton's message of "Tue, 16
+	Oct 2012 17:06:35 +0100")
+Message-ID: <87vceal3m1.fsf@sonatest.com>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/24.1 (gnu/linux)
 MIME-Version: 1.0
-Received: by 10.60.171.114 with SMTP id at18mr12573384oec.24.1350405851643;
-	Tue, 16 Oct 2012 09:44:11 -0700 (PDT)
-Received: by 10.76.167.165 with HTTP; Tue, 16 Oct 2012 09:44:11 -0700 (PDT)
-In-Reply-To: <3280557.8J13GWUXdI@helios>
-References: <CABzAcgiKqN-hQ56HoZny6=EeiDbnbFAb0CoqBb7R_eJ5EEdUKQ@mail.gmail.com>
-	<3280557.8J13GWUXdI@helios>
-Date: Tue, 16 Oct 2012 12:44:11 -0400
-Message-ID: <CAMAb8ZOm3uSszdc3RUyFcoxaK+42FePUVFwqw3xwDktdQJ6wqA@mail.gmail.com>
-From: Evade Flow <evadeflow@gmail.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Cc: yocto@yoctoproject.org, Chin Huat Ang <chinhuat@gmail.com>
-Subject: Re: Cloning yocto repos over https
+Subject: Re: lm-sensors not available as a package?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,45 +47,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 16 Oct 2012 16:44:17 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Tue, 16 Oct 2012 17:38:04 -0000
+Content-Type: text/plain
 
->> Is there a way to clone yocto repositories (say, poky) over https?
+Paul Eggleton <paul.eggleton@linux.intel.com> writes:
 
-As Paul mentioned, there is work in progress to make it possible to clone
-yocto repos over http. This should be finished in the very near future, but in
-the meantime, I've created some (very) unofficial mirrors here:
-
-  http://github.com/yoctoproject-mirrors
-
-I have a script running that syncs all of these every 15 minutes or so.
-Perhaps this will help you until the official HTTP access is available. (Just
-be advised: I plan to delete these mirrors when they are no longer
-necessary...)
-
-
-On Tue, Oct 16, 2012 at 6:50 AM, Paul Eggleton
-<paul.eggleton@linux.intel.com> wrote:
-> On Friday 11 May 2012 09:35:30 Chin Huat Ang wrote:
->> Is there a way to clone yocto repositories (say, poky) over https?
->>
->> I'm behind a firewall where git port is blocked, getting it opened is a
->> bureaucracy nightmare.
+> On Tuesday 16 October 2012 16:00:01 Jonathan Haws wrote:
+>> I would be surprised if a recipe for lm-sensors has not already been
+>> created, however I cannot find one.  Can someone point me in the right
+>> direction?
+>> 
+>> All I can find is a sysstat package that I can include via
+>> IMAGE_INSTALL_append, however I cannot see how I can get the same
+>> information out of it that lm-sensors gives me.
+>> 
+>> Has anyone got lm-sensors included in their image?  If so, can you share the
+>> recipe?
 >
-> Sorry, it's taken us a while to look into this but we have opened a bug to
-> track it - you may wish to add yourself to the CC list:
+> Unless anyone else pipes up, my local index suggests that this is something 
+> that hasn't yet been brought up-to-date from OE-Classic.
 >
-> http://bugzilla.yoctoproject.org/show_bug.cgi?id=3263
+> http://git.openembedded.org/openembedded/tree/recipes/lm_sensors
 >
-> Cheers,
-> Paul
+> Assuming nothing else is available you should be able to use this as a base. 
+> There is a brief guide on the main things that need to be changed when 
+> updating a recipe from OE-Classic here:
 >
-> --
+> http://www.openembedded.org/wiki/Migrating_metadata_to_OE-Core
 >
-> Paul Eggleton
-> Intel Open Source Technology Centre
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+> If you do come up with an updated recipe we'd love to have it added to meta-oe 
+> or some other layer ;)
+>
+I have a lmsensors recipe somewhere around here. I'll dust it off and
+post it to the oe-core mailing list.
+
+Marc
 
