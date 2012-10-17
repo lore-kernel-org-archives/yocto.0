@@ -1,30 +1,47 @@
-Return-Path: <mihaix.lindner@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 97C46E01300
-	for <yocto@yoctoproject.org>; Wed, 17 Oct 2012 01:29:18 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 17 Oct 2012 01:28:54 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,599,1344236400"; d="scan'208";a="228604603"
-Received: from linux.jf.intel.com (HELO linux.intel.com) ([10.23.219.25])
-	by orsmga002.jf.intel.com with ESMTP; 17 Oct 2012 01:29:18 -0700
-Received: from mlindnex-mobl1.ger.corp.intel.com (unknown [10.237.105.34])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by linux.intel.com (Postfix) with ESMTP id 360D56A4001
-	for <yocto@yoctoproject.org>; Wed, 17 Oct 2012 01:29:18 -0700 (PDT)
-Message-ID: <507E6C5A.1080108@linux.intel.com>
-Date: Wed, 17 Oct 2012 11:29:14 +0300
-From: Mihai Lindner <mihaix.lindner@linux.intel.com>
-Organization: Intel OTC
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:15.0) Gecko/20121016 Thunderbird/15.0.1
+Return-Path: <tocallaghan@meyn.com>
+Received: from va3outboundpool.messaging.microsoft.com
+	(va3ehsobe003.messaging.microsoft.com [216.32.180.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C78A8E01300
+	for <yocto@yoctoproject.org>; Wed, 17 Oct 2012 01:39:41 -0700 (PDT)
+Received: from mail41-va3-R.bigfish.com (10.7.14.239) by
+	VA3EHSOBE004.bigfish.com (10.7.40.24) with Microsoft SMTP Server id
+	14.1.225.23; Wed, 17 Oct 2012 08:39:40 +0000
+Received: from mail41-va3 (localhost [127.0.0.1])	by mail41-va3-R.bigfish.com
+	(Postfix) with ESMTP id 74F043C0173	for <yocto@yoctoproject.org>;
+	Wed, 17 Oct 2012 08:39:40 +0000 (UTC)
+X-Forefront-Antispam-Report: CIP:157.56.252.37; KIP:(null); UIP:(null); IPV:NLI;
+	H:DB3PRD0510HT002.eurprd05.prod.outlook.com; RD:none; EFVD:NLI
+X-SpamScore: 0
+X-BigFish: PS0(zzzz1202h1d1ah1d2ahzz8275bhz2fh2a8h668h839h944hd25hf0ah107ah1220h1288h12a5h12a9h12bdh137ah13b6h1441h1155h)
+Received-SPF: pass (mail41-va3: domain of meyn.com designates 157.56.252.37 as
+	permitted sender) client-ip=157.56.252.37;
+	envelope-from=tocallaghan@meyn.com;
+	helo=DB3PRD0510HT002.eurprd05.prod.outlook.com ; .outlook.com ; 
+Received: from mail41-va3 (localhost.localdomain [127.0.0.1]) by mail41-va3
+	(MessageSwitch) id 1350463178659722_28961;
+	Wed, 17 Oct 2012 08:39:38 +0000 (UTC)
+Received: from VA3EHSMHS036.bigfish.com (unknown [10.7.14.244])	by
+	mail41-va3.bigfish.com (Postfix) with ESMTP id 8BF6E6008F	for
+	<yocto@yoctoproject.org>; Wed, 17 Oct 2012 08:39:38 +0000 (UTC)
+Received: from DB3PRD0510HT002.eurprd05.prod.outlook.com (157.56.252.37) by
+	VA3EHSMHS036.bigfish.com (10.7.99.46) with Microsoft SMTP Server (TLS)
+	id 14.1.225.23; Wed, 17 Oct 2012 08:39:37 +0000
+Received: from DB3PRD0510MB368.eurprd05.prod.outlook.com ([169.254.4.215]) by
+	DB3PRD0510HT002.eurprd05.prod.outlook.com ([10.255.46.37]) with mapi
+	id 14.16.0224.004; Wed, 17 Oct 2012 08:39:37 +0000
+From: Tim O'Callaghan <tocallaghan@meyn.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: How to avoid re-creating a recipe  (+my meta-bucket approach)
+Thread-Index: Ac2sQxG4JD5ZnH3qRQmZP5rGaI+kXQ==
+Date: Wed, 17 Oct 2012 08:39:36 +0000
+Message-ID: <12F9B0C37BAC49429468AA27112A5F5B37B94DF4@DB3PRD0510MB368.eurprd05.prod.outlook.com>
+Accept-Language: en-GB, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [93.154.102.135]
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <DDDB9E6645DE24488B8485B41A051F471D9618D2@Mercury.usurf.usu.edu>
-	<36ED13F3654AE54CA763E6821D93A5711047B519@szxeml534-mbx.china.huawei.com>
-In-Reply-To: <36ED13F3654AE54CA763E6821D93A5711047B519@szxeml534-mbx.china.huawei.com>
-Subject: Re: .bashrc not being used by root account
+X-OriginatorOrg: meyn.com
+Subject: How to avoid re-creating a recipe (+my meta-bucket approach)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,47 +53,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 17 Oct 2012 08:29:19 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 17 Oct 2012 08:39:42 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 10/17/2012 09:25 AM, Venkata ramana gollamudi wrote:
-> You can check the same with  "strace -f bash"
-> You can see the files being loaded, as there is a rc file loading sequence exists for bash.
->
-> Regards,
-> Ramana
->
-> ________________________________________
-> From: yocto-bounces@yoctoproject.org [yocto-bounces@yoctoproject.org] on behalf of Jonathan Haws [Jonathan.Haws@sdl.usu.edu]
-> Sent: Tuesday, October 16, 2012 9:32 PM
-> To: yocto@yoctoproject.org
-> Subject: [yocto] .bashrc not being used by root account
->
-> I have modified the .bashrc file for the system, however the root account does not seem to use it by default.  What am I missing?  I would rather not have to source the .bashrc file every time I login as root.
+Hi,
 
-Try `echo $0` to see the shell you're in. By default you should be in 
-`sh`, which does not source .bashrc.
-You can execute `bash` after login, or change the login shell of 'root'.
+After seeing the lmsensors thread float by I thought it about time I starte=
+d the discussion on how people manage to avoid re-inventing recipes, and to=
+ get the ball rolling, I thought I would describe mine.
 
-Cheers,
---Mihai
+As I do not have the any idea what recipes may be kicking about, I devised =
+what I call the meta-bucket approach. It is pretty simple, I have a script =
+that clones every existing OE/Yocto repository I know about into one easily=
+ grep-able place[1].=20
 
->
-> Thanks,
-> Jonathan
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+The to the main question, how are others managing this?
 
+Best regards,
 
--- 
-Mihai Lindner
+Tim.
+[1] https://github.com/timoc/meta-bucket
+
 
