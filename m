@@ -1,36 +1,33 @@
-Return-Path: <nitin.a.kamble@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7ED7FE011AF
-	for <yocto@yoctoproject.org>; Tue, 16 Oct 2012 17:00:55 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 16 Oct 2012 17:00:55 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,595,1344236400"; d="scan'208";a="236064700"
-Received: from orsmsx102.amr.corp.intel.com ([10.22.225.129])
-	by fmsmga002.fm.intel.com with ESMTP; 16 Oct 2012 17:00:54 -0700
-Received: from orsmsx106.amr.corp.intel.com ([169.254.5.130]) by
-	ORSMSX102.amr.corp.intel.com ([169.254.1.167]) with mapi id
-	14.01.0355.002; Tue, 16 Oct 2012 17:00:54 -0700
-From: "Kamble, Nitin A" <nitin.a.kamble@intel.com>
-To: "Hart, Darren" <darren.hart@intel.com>
-Thread-Topic: [PATCHv4 6/8] mesa-dri.bbappend: avoid conflict with
-	emgd-driver-bin
-Thread-Index: AQHNqAjChNxZIOZCK0KNiW5ogUryd5e7BGgAgAGDNBCAAHapAP//phqQ
-Date: Wed, 17 Oct 2012 00:00:53 +0000
-Message-ID: <ADD6A3980E8C39419A432FF422031B4C2D905635@ORSMSX106.amr.corp.intel.com>
-References: <cover.1349998086.git.nitin.a.kamble@intel.com>
-	<0ef1ee65497461228a3b9da87ba40e120ab9818e.1349998086.git.nitin.a.kamble@intel.com>
-	<507C3568.1010302@intel.com>
-	<ADD6A3980E8C39419A432FF422031B4C2D90558E@ORSMSX106.amr.corp.intel.com>
-	<507DDDC2.6030708@intel.com>
-In-Reply-To: <507DDDC2.6030708@intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.139]
+Return-Path: <ceolin@ulevel.com>
+Received: from mail-ob0-f176.google.com (mail-ob0-f176.google.com
+	[209.85.214.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AE68EE011AF
+	for <yocto@yoctoproject.org>; Tue, 16 Oct 2012 18:01:56 -0700 (PDT)
+Received: by mail-ob0-f176.google.com with SMTP id x4so8399833obh.35
+	for <yocto@yoctoproject.org>; Tue, 16 Oct 2012 18:01:56 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:content-type:x-gm-message-state;
+	bh=37mlPaLpXYL8fScViUF1dPTiG08PcJsLhhF6HB19R9Q=;
+	b=kMWYRmHaxspsK36PCQTcOKKO30ryFDaeAfPwZgeRnDbuEPciujKGNusTNu0PfyhLwJ
+	ftQWH+x1U55f17zHuIC20u2oE4EXiUyinoAGewbQhG3IlCF5xA3bmf/V8VhIb8S70TzD
+	J7AU+/JQ4F5EMumTXlKel+2OAccoKOiWuKv5NYkVl23cQcBg7rs97VaR+luVbevgtT9Z
+	Bl72bafmzZ/DD3aH1dUtgXOeeroGWr5iDXdbbU3A6oPa6CBafF5hfBio2KFuhd3r0ISe
+	teaGUiuEbP4tmalFVr9evvFWLWwQOUK2QwhkclWmN13L8hBdIkLbspeSg5osgnN9uGYh
+	zpsg==
+Received: by 10.60.170.76 with SMTP id ak12mr14227792oec.22.1350435715942;
+	Tue, 16 Oct 2012 18:01:55 -0700 (PDT)
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [PATCHv4 6/8] mesa-dri.bbappend: avoid conflict with emgd-driver-bin
+Received: by 10.60.11.5 with HTTP; Tue, 16 Oct 2012 18:01:35 -0700 (PDT)
+In-Reply-To: <CALwiqF2MMaFfRLLo9rM_hkzON4cH4b=rW9Npg-rfo4=5vhB8kQ@mail.gmail.com>
+References: <CALwiqF2MMaFfRLLo9rM_hkzON4cH4b=rW9Npg-rfo4=5vhB8kQ@mail.gmail.com>
+From: =?ISO-8859-1?Q?Fabr=EDcio_Ceolin?= <ceolin@ulevel.com>
+Date: Tue, 16 Oct 2012 22:01:35 -0300
+Message-ID: <CALwiqF2hgeLgExuRna4a9M27G3ME5kGc=j+HR3-hwoO5AaShkQ@mail.gmail.com>
+To: yocto@yoctoproject.org
+X-Gm-Message-State: ALoCoQl6sIcNfcTLq7K7BBMtpUIkf6VPQJrRDwsF4ANetlEZcVbsn2Tg4qJtUKnSKdn1moQ3xKkM
+Subject: Re: My first recipe: qjson_0.7.1.bb
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,70 +39,105 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 17 Oct 2012 00:00:55 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Wed, 17 Oct 2012 01:01:56 -0000
+Content-Type: multipart/alternative; boundary=bcaec54eea5a2408d404cc36d1d9
+
+--bcaec54eea5a2408d404cc36d1d9
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-> >>>
-> >>> diff --git a/common/recipes-graphics/mesa/mesa-dri_8.0.4.bbappend
-> >>> b/common/recipes-graphics/mesa/mesa-dri_8.0.4.bbappend
-> >>> new file mode 100644
-> >>> index 0000000..6bfa968
-> >>> --- /dev/null
-> >>> +++ b/common/recipes-graphics/mesa/mesa-dri_8.0.4.bbappend
-> >>> @@ -0,0 +1,24 @@
-> >>> +
-> >>> +# The emgd binary driver also provides egl, gles1, gles2 library &
-> headers.
-> >>> +# To avoid conflict disable egl, gles1, gles2 from meta-dri if the
-> >>> +BSP image # is bundling the emgd driver.
-> >>> +
-> >>> +python __anonymous () {
-> >>> +    import re
-> >>> +    xserver =3D d.getVar('XSERVER', True)
-> >>> +    if 'emgd-driver-bin' in xserver.split(' '):
-> >>> +        extra_oeconf =3D d.getVar('EXTRA_OECONF', True).split()
-> >>> +	take_out =3D ["--enable-egl", "--enable-gles1", "--enable-gles2"]
-> >>> +	put_in =3D ["--disable-egl", "--disable-gles1", "--disable-gles2"]
-> >>> +        pattern =3D re.compile("--with-egl-platforms")
-> >>> +        new_extra_oeconf =3D [ ]
-> >>> +	for i in extra_oeconf:
-> >>> +            if ( i not in take_out ) and ( not pattern.match(i)):
-> >>> +                new_extra_oeconf.append(i)
-> >>> +        for i in put_in:
-> >>> +            new_extra_oeconf.append(i)
-> >>> +
-> >>> +        d.setVar('EXTRA_OECONF', ' '.join(new_extra_oeconf))
-> >>> +        depends =3D d.getVar('DEPENDS', True)
-> >>> +        d.setVar('DEPENDS', depends + " emgd-driver-bin")
-> >>
-> >> Odd mix of whitespace and tabs above.
-> >>
-> >> Also, I have to agree with Ross. This places very specific knowledge
-> >> of an external package in the general purpose recipe. This is
-> >> opposite of how these things should be built up.
-> >>
-> >
-> > Whitespace issues can be solved easily. But if this solution is not
-> acceptable, then I am not sure how to solve the issue. Do we push the iss=
-ue
-> to 1.4?
->=20
-> Can you define a variable that EXTRA_OECONF includes which can be
-> manipulated in a bbappend in the meta-intel? This would keep this complex
-> logic out of the core recipe and move into the place that actually needs =
-it.
+Hi,
 
-If we can modify the recipe in poky, then this method is not needed to achi=
-eve same thing. But because of release we may not be able to do it.
+I solve my problem following this tutorial:
+http://cor-net.org/hello-world-in-qt-using-cmake-and-openembedded/3/
 
-Nitin
+Thanks!
 
+On Tue, Oct 16, 2012 at 6:31 PM, Fabr=EDcio Ceolin <ceolin@ulevel.com> wrot=
+e:
 
->=20
+> Hi,
+>
+> I'm new at the yocto project and I'm building my first recipe.
+>
+> At now, I'm in trouble because the yocto is building my application for
+> toolchain and I do not need that. I need build an application only for
+> target image.
+>
+> My machine is x86_64 and my target is qemux86.
+>
+> When bitbake trying to compile the qjson for toolchain, bitbake tries to
+> link 32 bits binaries with 64 bits toolchain's libraries.
+>
+> See my bb file and error attached
+>
+> How can I make this compilation use only target libs?
+>
+> In custom bb files, how do the bitbake know that compilation if for a
+> toolchain or a target?
+>
+> Thanks
+>
+>
+>
+>
+>
 > --
-> Darren Hart
-> Intel Open Source Technology Center
-> Yocto Project - Linux Kernel
+> Fabr=EDcio Ceolin
+> ulevel.com
+> Diretor Executivo
+>
 
+
+
+--=20
+Fabr=EDcio Ceolin
+ulevel.com
+Diretor Executivo
+
+--bcaec54eea5a2408d404cc36d1d9
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+Hi,<div><br></div><div>I solve my problem following this tutorial:</div><di=
+v><a href=3D"http://cor-net.org/hello-world-in-qt-using-cmake-and-openembed=
+ded/3/">http://cor-net.org/hello-world-in-qt-using-cmake-and-openembedded/3=
+/</a></div>
+
+<div><br></div><div>Thanks!<br><br><div class=3D"gmail_quote">On Tue, Oct 1=
+6, 2012 at 6:31 PM, Fabr=EDcio Ceolin <span dir=3D"ltr">&lt;<a href=3D"mail=
+to:ceolin@ulevel.com" target=3D"_blank">ceolin@ulevel.com</a>&gt;</span> wr=
+ote:<br>
+
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">Hi,<div><br></div><div>I&#39;m new at the yo=
+cto project and I&#39;m building my first recipe.</div><div><br></div><div>
+
+At now, I&#39;m in trouble because the yocto is building my application for=
+ toolchain and I do not need that.=A0I need build an application only for t=
+arget image.=A0</div>
+<div><br></div><div>My machine is x86_64 and my target is qemux86.</div><di=
+v><br></div><div>When bitbake trying to compile the qjson for toolchain, bi=
+tbake tries to link 32 bits binaries with 64 bits toolchain&#39;s libraries=
+.</div>
+
+
+<div><br></div><div>See my bb file and error attached</div><div><div><br></=
+div></div><div>How can I make this compilation use only target libs?</div><=
+div><br></div><div>In custom bb files, how do the bitbake know that compila=
+tion if for a toolchain or a target?</div>
+
+
+<div><br></div><div>Thanks</div><span class=3D"HOEnZb"><font color=3D"#8888=
+88"><div><br></div><div><br></div><div><br></div><div><br clear=3D"all"><di=
+v><br></div>-- <br>Fabr=EDcio Ceolin<br><a href=3D"http://ulevel.com" targe=
+t=3D"_blank">ulevel.com</a><br>
+
+Diretor Executivo<br>
+</div>
+</font></span></blockquote></div><br><br clear=3D"all"><div><br></div>-- <b=
+r>Fabr=EDcio Ceolin<br><a href=3D"http://ulevel.com">ulevel.com</a><br>Dire=
+tor Executivo<br>
+</div>
+
+--bcaec54eea5a2408d404cc36d1d9--
