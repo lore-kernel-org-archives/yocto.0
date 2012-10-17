@@ -1,35 +1,38 @@
 Return-Path: <ross.burton@intel.com>
 Received: from orsmga101.jf.intel.com (mga06.intel.com [134.134.136.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B46DCE0027E
-	for <yocto@yoctoproject.org>; Wed, 17 Oct 2012 08:22:30 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 06FEDE0045D
+	for <yocto@yoctoproject.org>; Wed, 17 Oct 2012 08:22:32 -0700 (PDT)
 Received: from mail-we0-f176.google.com ([74.125.82.176])
-	by mga02.intel.com with ESMTP/TLS/RC4-SHA; 17 Oct 2012 08:22:29 -0700
+	by mga02.intel.com with ESMTP/TLS/RC4-SHA; 17 Oct 2012 08:22:31 -0700
 Received: by mail-we0-f176.google.com with SMTP id z53so5109666wey.35
-	for <yocto@yoctoproject.org>; Wed, 17 Oct 2012 08:22:28 -0700 (PDT)
+	for <yocto@yoctoproject.org>; Wed, 17 Oct 2012 08:22:31 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=google.com; s=20120113;
-	h=from:to:cc:subject:date:message-id:x-mailer:x-gm-message-state;
-	bh=FnX/cZOH5FWWV5k09uOppm0GC7LIcz4iiNIVNTYYp8s=;
-	b=SbMr6svzgHgpxvZp+tdijJZwMWFijGhbAkNOGRmd5vnav2bxkjwTYHIEykyjQsZm03
-	sXEjqi7kJ84hSuwy859x/SOzNMlN/9WAquhe3TLO3/R40IHAnfYIaGm2jSeVgD11s1OU
-	pys86kjXEsSNftMyMgwp/TnUZDTB/QgkMugNi3LIWiAWwjX6e2seoTtcO5ESS+I9JVOO
-	njvbwxzxnVnMeCcjicnwJq3y9PcgbSyGBSmqdX7+ehRMeV2XEvUJMCUBrMmfngBWCD3s
-	X6VC3u5k8peK6aBqohx/6WW94nHZGYMTFG/u3q8kxwPSo/C9KjTCZwr8wLHA26/QxY4j
-	dOSQ==
-Received: by 10.216.193.227 with SMTP id k77mr10296950wen.178.1350487347837;
-	Wed, 17 Oct 2012 08:22:27 -0700 (PDT)
+	h=from:to:cc:subject:date:message-id:x-mailer:in-reply-to:references
+	:x-gm-message-state;
+	bh=tF2XE5FENa797DkKfOa+ln1uFaDbyCvxU6YjDpfvLRU=;
+	b=gfemlSbN8iToYI2vP3pkY2bph9cgmE2rWOgpF+8UjSGpuEzlt40Uc9yRT1xKFTrlPB
+	Bm/Hf5fdZ2u94vLgMFATcNy/rUmfWtK/lw9si1IUb4ngnjieAnzG/6VGraiDbc5ng/9I
+	VqRUrtVimjbV69zNh3f3tPA8SC7v1YL5HRKKFS6oEMjF+/zs1OkGeGIH/mEjvujJDbWU
+	BSOo0uOYc0FHUri+Z0TPyCnsUgLVjnENjVEa0T35wjt9wcKksnNy986L6CfZV/z8tn5k
+	a+Y2Fqs4SXZpnogirL+AqxjD8f96UJEC31EjmNYI5OE6Mb1G7XBpWR4/pyZ6kEfUGLVA
+	MkdA==
+Received: by 10.216.193.158 with SMTP id k30mr11690658wen.89.1350487351236;
+	Wed, 17 Oct 2012 08:22:31 -0700 (PDT)
 Received: from melchett.burtonini.com (35.106.2.81.in-addr.arpa. [81.2.106.35])
-	by mx.google.com with ESMTPS id z14sm3987242wiv.5.2012.10.17.08.22.25
+	by mx.google.com with ESMTPS id z14sm3987242wiv.5.2012.10.17.08.22.29
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Wed, 17 Oct 2012 08:22:26 -0700 (PDT)
+	Wed, 17 Oct 2012 08:22:30 -0700 (PDT)
 From: Ross Burton <ross.burton@intel.com>
 To: kishore.k.bodke@intel.com, nitin.a.kamble@intel.com, dvhart@linux.intel.com
-Date: Wed, 17 Oct 2012 16:21:16 +0100
-Message-Id: <1350487279-1681-1-git-send-email-ross.burton@intel.com>
+Date: Wed, 17 Oct 2012 16:21:18 +0100
+Message-Id: <1350487279-1681-3-git-send-email-ross.burton@intel.com>
 X-Mailer: git-send-email 1.7.10
-X-Gm-Message-State: ALoCoQnnPEM++X4DTqsSsYZIz66qgh+9eBx5+MQ5HAN4kgS8efxWeY0lQDG4SxdFPUtgrUPbwxnM
+In-Reply-To: <1350487279-1681-1-git-send-email-ross.burton@intel.com>
+References: <1350487279-1681-1-git-send-email-ross.burton@intel.com>
+X-Gm-Message-State: ALoCoQkWlAiYSmsrrYY89cTbbP9XeD2/m6d6HcucrVK58+cUHyop7jFpSub0eXTA8vkPr3pg2O5w
 Cc: yocto@yoctoproject.org
-Subject: Cedar Trail and gst-vaapi fixes
+Subject: [PATCH 2/3] gstreamer-vaapi: upgrade to 0.3.8, and remove ffmpeg dependencies
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,17 +44,56 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 17 Oct 2012 15:22:30 -0000
+X-List-Received-Date: Wed, 17 Oct 2012 15:22:32 -0000
 
-Hi,
+Signed-off-by: Ross Burton <ross.burton@intel.com>
+---
+ .../gstreamer/gstreamer-vaapi_git.bb               |   21 ++++++++++++++------
+ 1 file changed, 15 insertions(+), 6 deletions(-)
 
-Make gst-vaapi work on Cedar Trail, upgrade the gst-vaapi to the latest version
-which doesn't need ffmpeg anymore, and remove the commercial restriction on
-gst-vaapi.
+diff --git a/common/recipes-multimedia/gstreamer/gstreamer-vaapi_git.bb b/common/recipes-multimedia/gstreamer/gstreamer-vaapi_git.bb
+index fe601cc..27552a2 100644
+--- a/common/recipes-multimedia/gstreamer/gstreamer-vaapi_git.bb
++++ b/common/recipes-multimedia/gstreamer/gstreamer-vaapi_git.bb
+@@ -6,15 +6,14 @@ based plugins for GStreamer and helper libraries: `vaapidecode', \
+ LICENSE = "LGPLv2.1+"
+ LIC_FILES_CHKSUM = "file://COPYING.LIB;md5=4fbd65380cdd255951079008b364516c"
+ 
+-DEPENDS = "gstreamer libva ffmpeg"
++DEPENDS = "gstreamer libva"
+ 
+-# 0.2.9 tag
+-SRCREV = "c98c14bd32855467a5a0ff21b6c703e9e3461467"
+-PV = "0.2.9+git${SRCPV}"
++# 0.3.8 tag
++SRCREV = "6ec4c2252a4aa706cd8631cb1083828485b9df9a"
++PV = "0.3.8+git${SRCPV}"
+ PR = "r0"
+ 
+-SRC_URI = "git://gitorious.org/vaapi/gstreamer-vaapi.git \
+-           file://glib-includes.patch"
++SRC_URI = "git://gitorious.org/vaapi/gstreamer-vaapi.git"
+ 
+ SRC_URI[md5sum] = "729d75f21df79114a8c81d896489e5ad"
+ SRC_URI[sha256sum] = "f1770c4537f1615701dbc845eee5732fbb1036b3acafbc7488e551fab334a31d"
+@@ -23,6 +22,16 @@ S = "${WORKDIR}/git"
+ 
+ inherit autotools pkgconfig gtk-doc
+ 
++EXTRA_OECONF = "--disable-ffmpeg"
++
++do_configure_prepend() {
++  # DEBUG: Executing shell function do_configure
++  # ln: target `m4/' is not a directory: No such file or directory
++  # cp: cannot create regular file `m4/': Not a directory
++  # (should be fixed in autotools.bbclass)
++  mkdir --parents ${B}/m4
++}
++
+ FILES_${PN} += "${libdir}/gstreamer-0.10/*.so"
+ FILES_${PN}-dbg += "${libdir}/gstreamer-0.10/.debug"
+ FILES_${PN}-dev += "${libdir}/gstreamer-0.10/*.la ${libdir}/gstreamer-0.10/*.a"
+-- 
+1.7.10
 
-The new gst-vaapi was tested on Cedar Trail, and played the Sintel 720p trailer
-smoothly.  ffmpeg was required for the audio (MPEG4 AAC), but without that
-present the video still plays.
-
-Ross
 
