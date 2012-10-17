@@ -1,23 +1,35 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F29A1E0027E
-	for <yocto@yoctoproject.org>; Wed, 17 Oct 2012 08:14:06 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 17 Oct 2012 08:14:06 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,601,1344236400"; d="scan'208";a="228759383"
-Received: from unknown (HELO [10.255.14.120]) ([10.255.14.120])
-	by orsmga002.jf.intel.com with ESMTP; 17 Oct 2012 08:14:05 -0700
-Message-ID: <1350486845.1710.40.camel@empanada>
-From: Tom Zanussi <tom.zanussi@intel.com>
-To: Tim O'Callaghan <tocallaghan@meyn.com>
-Date: Wed, 17 Oct 2012 10:14:05 -0500
-In-Reply-To: <12F9B0C37BAC49429468AA27112A5F5B37B94DF4@DB3PRD0510MB368.eurprd05.prod.outlook.com>
-References: <12F9B0C37BAC49429468AA27112A5F5B37B94DF4@DB3PRD0510MB368.eurprd05.prod.outlook.com>
-X-Mailer: Evolution 3.4.1 (3.4.1-2.fc17) 
-Mime-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: How to avoid re-creating a recipe (+my meta-bucket approach)
+Return-Path: <ross.burton@intel.com>
+Received: from orsmga101.jf.intel.com (mga06.intel.com [134.134.136.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B46DCE0027E
+	for <yocto@yoctoproject.org>; Wed, 17 Oct 2012 08:22:30 -0700 (PDT)
+Received: from mail-we0-f176.google.com ([74.125.82.176])
+	by mga02.intel.com with ESMTP/TLS/RC4-SHA; 17 Oct 2012 08:22:29 -0700
+Received: by mail-we0-f176.google.com with SMTP id z53so5109666wey.35
+	for <yocto@yoctoproject.org>; Wed, 17 Oct 2012 08:22:28 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=from:to:cc:subject:date:message-id:x-mailer:x-gm-message-state;
+	bh=FnX/cZOH5FWWV5k09uOppm0GC7LIcz4iiNIVNTYYp8s=;
+	b=SbMr6svzgHgpxvZp+tdijJZwMWFijGhbAkNOGRmd5vnav2bxkjwTYHIEykyjQsZm03
+	sXEjqi7kJ84hSuwy859x/SOzNMlN/9WAquhe3TLO3/R40IHAnfYIaGm2jSeVgD11s1OU
+	pys86kjXEsSNftMyMgwp/TnUZDTB/QgkMugNi3LIWiAWwjX6e2seoTtcO5ESS+I9JVOO
+	njvbwxzxnVnMeCcjicnwJq3y9PcgbSyGBSmqdX7+ehRMeV2XEvUJMCUBrMmfngBWCD3s
+	X6VC3u5k8peK6aBqohx/6WW94nHZGYMTFG/u3q8kxwPSo/C9KjTCZwr8wLHA26/QxY4j
+	dOSQ==
+Received: by 10.216.193.227 with SMTP id k77mr10296950wen.178.1350487347837;
+	Wed, 17 Oct 2012 08:22:27 -0700 (PDT)
+Received: from melchett.burtonini.com (35.106.2.81.in-addr.arpa. [81.2.106.35])
+	by mx.google.com with ESMTPS id z14sm3987242wiv.5.2012.10.17.08.22.25
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Wed, 17 Oct 2012 08:22:26 -0700 (PDT)
+From: Ross Burton <ross.burton@intel.com>
+To: kishore.k.bodke@intel.com, nitin.a.kamble@intel.com, dvhart@linux.intel.com
+Date: Wed, 17 Oct 2012 16:21:16 +0100
+Message-Id: <1350487279-1681-1-git-send-email-ross.burton@intel.com>
+X-Mailer: git-send-email 1.7.10
+X-Gm-Message-State: ALoCoQnnPEM++X4DTqsSsYZIz66qgh+9eBx5+MQ5HAN4kgS8efxWeY0lQDG4SxdFPUtgrUPbwxnM
+Cc: yocto@yoctoproject.org
+Subject: Cedar Trail and gst-vaapi fixes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,38 +41,17 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 17 Oct 2012 15:14:07 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 17 Oct 2012 15:22:30 -0000
 
-On Wed, 2012-10-17 at 08:39 +0000, Tim O'Callaghan wrote:
-> Hi,
-> 
-> After seeing the lmsensors thread float by I thought it about time I started the discussion on how people manage to avoid re-inventing recipes, and to get the ball rolling, I thought I would describe mine.
-> 
-> As I do not have the any idea what recipes may be kicking about, I devised what I call the meta-bucket approach. It is pretty simple, I have a script that clones every existing OE/Yocto repository I know about into one easily grep-able place[1]. 
-> 
-> The to the main question, how are others managing this?
-> 
-> Best regards,
-> 
-> Tim.
-> [1] https://github.com/timoc/meta-bucket
-> 
+Hi,
 
-I do a similar thing - clone all the repos I can think of, and then have
-OpenGrok index them all.  That makes everything available as a fully
-searchable cross-referenced set of web pages.  Couldn't live without
-it...
+Make gst-vaapi work on Cedar Trail, upgrade the gst-vaapi to the latest version
+which doesn't need ffmpeg anymore, and remove the commercial restriction on
+gst-vaapi.
 
-http://hub.opensolaris.org/bin/view/Project+opengrok/
+The new gst-vaapi was tested on Cedar Trail, and played the Sintel 720p trailer
+smoothly.  ffmpeg was required for the audio (MPEG4 AAC), but without that
+present the video still plays.
 
-Tom
-
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
-
+Ross
 
