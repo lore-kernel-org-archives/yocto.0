@@ -1,22 +1,26 @@
 Return-Path: <kishore.k.bodke@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C884AE0045D
-	for <yocto@yoctoproject.org>; Wed, 17 Oct 2012 14:00:44 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga101.ch.intel.com with ESMTP; 17 Oct 2012 14:00:44 -0700
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 85930E0045D
+	for <yocto@yoctoproject.org>; Wed, 17 Oct 2012 14:01:12 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 17 Oct 2012 14:01:10 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,602,1344236400"; d="scan'208";a="157400807"
+X-IronPort-AV: E=Sophos;i="4.80,602,1344236400"; d="scan'208";a="228911938"
 Received: from kishore-desktop.sc.intel.com (HELO localhost)
 	([143.183.188.160])
-	by AZSMGA002.ch.intel.com with ESMTP; 17 Oct 2012 14:00:43 -0700
+	by orsmga002.jf.intel.com with ESMTP; 17 Oct 2012 14:01:09 -0700
 From: kishore.k.bodke@intel.com
 To: tom.zanussi@intel.com,
 	nitin.a.kamble@intel.com,
 	yocto@yoctoproject.org
-Date: Wed, 17 Oct 2012 14:02:02 -0700
-Message-Id: <cover.1350507483.git.kishore.k.bodke@intel.com>
+Date: Wed, 17 Oct 2012 14:02:04 -0700
+Message-Id: <7f9b994551c6f4eed870de3c680f2939774e42a4.1350507483.git.kishore.k.bodke@intel.com>
 X-Mailer: git-send-email 1.7.9.5
-Subject: [PATCH 0/2][meta-intel] meta-crystalforest: Add openssl qat_mem module
+In-Reply-To: <4c40eadd86683ae7fdfa74126ace5ae5c16b0167.1350507483.git.kishore.k.bodke@intel.com>
+References: <4c40eadd86683ae7fdfa74126ace5ae5c16b0167.1350507483.git.kishore.k.bodke@intel.com>
+In-Reply-To: <cover.1350507483.git.kishore.k.bodke@intel.com>
+References: <cover.1350507483.git.kishore.k.bodke@intel.com>
+Subject: [PATCH 2/2] [meta-intel] meta-crystalforest: Add openssl-qat-module to the Image.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,42 +32,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 17 Oct 2012 21:00:45 -0000
+X-List-Received-Date: Wed, 17 Oct 2012 21:01:12 -0000
 
 From: Kishore Bodke <kishore.k.bodke@intel.com>
 
-Hi,
+This adds the openssl-qat-module to build with the custom
+Image.
 
-This patch set adds a new recipe for Intel Quick Assist Technology
-Memory Management Module based on Openssl and inlcude them into custom
-build Image recipe.
-
-Please pull into meta-intel/master.
-
-Thanks
-Kishore.
-
-The following changes since commit 4614417599d35b004e4cf8a4d27530212cc05e20:
-
-  sugarbay: update kernel repo srcrevs (2012-10-16 21:14:55 -0500)
-
-are available in the git repository at:
-
-  git://git.pokylinux.org/meta-intel-contrib Kishore/openssl-qat_mem
-  http://git.pokylinux.org/cgit.cgi/meta-intel-contrib/log/?h=Kishore/openssl-qat_mem
-
-Kishore Bodke (2):
-  meta-intel/common: Add new recipe for libcrypto module.
-  meta-crystalforest: Add openssl-qat-module to the Image.
-
- common/recipes-connectivity/openssl-qat-module.bb  |   63 ++++++++++++++++++++
- .../openssl-qat-module/openssl_qat_module.patch    |   43 +++++++++++++
+Signed-off-by: Kishore Bodke <kishore.k.bodke@intel.com>
+---
  .../recipes-qat-image/images/core-image-qat-sdk.bb |    1 +
  .../recipes-qat-image/images/core-image-qat.bb     |    1 +
- 4 files changed, 108 insertions(+)
- create mode 100644 common/recipes-connectivity/openssl-qat-module.bb
- create mode 100644 common/recipes-connectivity/openssl-qat-module/openssl_qat_module.patch
+ 2 files changed, 2 insertions(+)
 
+diff --git a/meta-crystalforest/recipes-qat-image/images/core-image-qat-sdk.bb b/meta-crystalforest/recipes-qat-image/images/core-image-qat-sdk.bb
+index 27feb0d..20aae7e 100644
+--- a/meta-crystalforest/recipes-qat-image/images/core-image-qat-sdk.bb
++++ b/meta-crystalforest/recipes-qat-image/images/core-image-qat-sdk.bb
+@@ -9,6 +9,7 @@ IMAGE_INSTALL += " \
+ 		calgary-corpus \
+ 		canterbury-corpus \
+ 		silesia-corpus \
++		openssl-qat-module \
+ 		"
+ 
+ LICENSE = "MIT"
+diff --git a/meta-crystalforest/recipes-qat-image/images/core-image-qat.bb b/meta-crystalforest/recipes-qat-image/images/core-image-qat.bb
+index 7c61ec6..eb1c30a 100644
+--- a/meta-crystalforest/recipes-qat-image/images/core-image-qat.bb
++++ b/meta-crystalforest/recipes-qat-image/images/core-image-qat.bb
+@@ -9,6 +9,7 @@ IMAGE_INSTALL += " \
+ 		calgary-corpus \
+ 		canterbury-corpus \
+ 		silesia-corpus \
++		openssl-qat-module \
+ 		"
+ 
+ LICENSE = "MIT"
 -- 
 1.7.9.5
 
