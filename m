@@ -1,36 +1,37 @@
 Return-Path: <ross.burton@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8F913E0045D
-	for <yocto@yoctoproject.org>; Thu, 18 Oct 2012 02:34:11 -0700 (PDT)
+Received: from azsmga101.ch.intel.com (mga07.intel.com [143.182.124.22])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9EE7CE0045D
+	for <yocto@yoctoproject.org>; Thu, 18 Oct 2012 03:37:02 -0700 (PDT)
 Received: from mail-oa0-f48.google.com ([209.85.219.48])
-	by mga09.intel.com with ESMTP/TLS/RC4-SHA; 18 Oct 2012 02:33:46 -0700
-Received: by mail-oa0-f48.google.com with SMTP id h2so10330205oag.35
-	for <yocto@yoctoproject.org>; Thu, 18 Oct 2012 02:34:09 -0700 (PDT)
+	by mga03.intel.com with ESMTP/TLS/RC4-SHA; 18 Oct 2012 03:37:00 -0700
+Received: by mail-oa0-f48.google.com with SMTP id h2so10372815oag.35
+	for <yocto@yoctoproject.org>; Thu, 18 Oct 2012 03:36:58 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=google.com; s=20120113;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
 	:cc:content-type:x-gm-message-state;
-	bh=vz5z2qALM7JOLl7CtBgk22mEoM//W4fC9byTV99hvuw=;
-	b=AkfxPmbZSKGcrIO6BW9dpldthBNinoTSx4lVHqHY44crIjITUM4L4W/BIOwhyHpXPt
-	KbtNvwUlGm8ktgWhhhdLgK5BYK+Fx9KSR7u2GWQeG8eIdjvGLMqguIKZ99IXzvwA/0pP
-	zuaFh0QbpX+NtOfpadsgcnCJ8lWm+v+i2l7Vvg+m+ooAxfFw07Zo0/ed4q4jWWa1Deel
-	OD0nXRmDeWfywbuXF3kn5eKu+FD9LzdwWXqc/jgXQGn2UeQHBTHl+6I1qlU4yvWJkdQt
-	FP9wMdRAuZ1NWOD+MYsR6tAzZ25m8sfsd26W3+u3zxz9EhNiuRl2T3y8tTaPOkyGhIZ1
-	FV7w==
-Received: by 10.182.95.142 with SMTP id dk14mr16884477obb.2.1350552849470;
-	Thu, 18 Oct 2012 02:34:09 -0700 (PDT)
+	bh=X1O/xYhDlk/vv/NhMu35HulXbuPtdbL9USe1+cStNT4=;
+	b=BZIPEgxmqt+ibs3VVux3Aj10OYePg1rne+asoqUqHvalICizcZDYAzFijWpXplzaX9
+	9mrJzLftrj3Ns9/7nB654ZdqHi56cU+F3V5xrPexORla6TNzU3Kh4ZPMY6XXSegJiPMq
+	CuuhGq2WMjMbZl816kZPNER9RJtQ3/+zmCApE2naNNZd8ruUgTIIqii/bDPxwk0rOqp5
+	663+EkWxY8nyEG+KJJHmLIQt8wPutG086Tdn8EBpeQwcAH9TeiKlaWiUZL9sd363g6o/
+	4AzhI3XTu45jVif8gxOT3JjYnUXa8Bv/czGSToIkKJPVS0tDOtz66IWXM0hhlMOReWpm
+	TPFg==
+Received: by 10.60.172.134 with SMTP id bc6mr6980128oec.1.1350556618468; Thu,
+	18 Oct 2012 03:36:58 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.182.46.70 with HTTP; Thu, 18 Oct 2012 02:33:48 -0700 (PDT)
-In-Reply-To: <1444424.PbzRs5XmCV@helios>
+Received: by 10.182.46.70 with HTTP; Thu, 18 Oct 2012 03:36:38 -0700 (PDT)
+In-Reply-To: <CAJTo0LbS8uewRzmai8WidO982YMw7-B0QH8aYKQeX-WCqyyctQ@mail.gmail.com>
 References: <41DEA4B02DBDEF40A0F3B6D0DDB1237946A85CDB@ORSMSX101.amr.corp.intel.com>
 	<CA+gsK-ovhd30EZ3R68R=o4=iWb5MJqZAAenwRo2yJg+_Tn1NTQ@mail.gmail.com>
 	<41DEA4B02DBDEF40A0F3B6D0DDB1237946A86E2E@ORSMSX101.amr.corp.intel.com>
 	<1444424.PbzRs5XmCV@helios>
+	<CAJTo0LbS8uewRzmai8WidO982YMw7-B0QH8aYKQeX-WCqyyctQ@mail.gmail.com>
 From: "Burton, Ross" <ross.burton@intel.com>
-Date: Thu, 18 Oct 2012 10:33:48 +0100
-Message-ID: <CAJTo0LbS8uewRzmai8WidO982YMw7-B0QH8aYKQeX-WCqyyctQ@mail.gmail.com>
+Date: Thu, 18 Oct 2012 11:36:38 +0100
+Message-ID: <CAJTo0Lbt1RDT=UkMij0cVt73Wf9r1giGifcb8Ud_QOwbG=DwtQ@mail.gmail.com>
 To: Paul Eggleton <paul.eggleton@linux.intel.com>
-X-Gm-Message-State: ALoCoQmzO0RKx7w+F2qiBX2WRJy3uMgwf6ngFwpdpE2WDVU7SCTQXJvL1+5DC8pSeMNxI3refr1d
+X-Gm-Message-State: ALoCoQkp1d0Gtq7HB1t6/J+z8LFeU+QKZWHnEPBjxwdM4JTAQ1RCBNyJKUh8FshGj3pCHH0M0MXP
 Cc: yocto@yoctoproject.org
 Subject: Re: Requesting information on some variables
 X-BeenThere: yocto@yoctoproject.org
@@ -44,21 +45,15 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 18 Oct 2012 09:34:11 -0000
+X-List-Received-Date: Thu, 18 Oct 2012 10:37:02 -0000
 Content-Type: text/plain; charset=UTF-8
 
-On 18 October 2012 10:20, Paul Eggleton <paul.eggleton@linux.intel.com> wrote:
->> I don't know the relationship between "features" and "packages"...  maybe it
->> is a one-to-one relationship.
->
-> It's definitely not 1-1, and sometimes a feature doesn't just control the
-> installation of a package or packages, but influences how certain recipes are
-> built, e.g. it might determine whether a particular configure option is
-> specified within do_configure for a particular recipe.
+On 18 October 2012 10:33, Burton, Ross <ross.burton@intel.com> wrote:
+> A concrete example might help.  For example there is a "bluetooth"
+> machine feature that means bluez (the bluetooth daemon) is built and
+> added to the image, ConnMan enabled bluetooth support, and so on.
 
-A concrete example might help.  For example there is a "bluetooth"
-machine feature that means bluez (the bluetooth daemon) is built and
-added to the image, ConnMan enabled bluetooth support, and so on.
+I say machine feature, I mean distro feature.
 
 Ross
 
