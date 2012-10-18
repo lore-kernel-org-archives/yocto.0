@@ -1,35 +1,29 @@
-Return-Path: <Jonathan.Haws@sdl.usu.edu>
-Received: from echo.usurf.usu.edu (echo.usurf.usu.edu [129.123.194.129])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C34D5E01275
-	for <yocto@yoctoproject.org>; Thu, 18 Oct 2012 09:52:49 -0700 (PDT)
-Received: from wef.usurf.usu.edu (129.123.194.164) by echo.usurf.usu.edu
-	(129.123.194.129) with Microsoft SMTP Server id 14.2.318.4;
-	Thu, 18 Oct 2012 10:52:49 -0600
-Received: from Mercury.usurf.usu.edu ([172.31.35.10]) by wef.usurf.usu.edu
-	with Microsoft SMTPSVC(6.0.3790.4675); Thu, 18 Oct 2012 10:52:44 -0600
-Received: from MERCURY.usurf.usu.edu ([172.31.35.10]) by Mercury.usurf.usu.edu
-	([172.31.35.10]) with mapi id 14.02.0318.004;
-	Thu, 18 Oct 2012 10:52:48 -0600
-From: Jonathan Haws <Jonathan.Haws@sdl.usu.edu>
-To: Mihai Lindner <mihaix.lindner@linux.intel.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>, "ramana.gollamudi@huawei.com"
-	<ramana.gollamudi@huawei.com>
-Thread-Topic: [yocto] .bashrc not being used by root account
-Thread-Index: Ac2rt7NrZST1ne7WQCqI3BbCR8xoowAd999iABENRQAANyPBCg==
-Date: Thu, 18 Oct 2012 16:52:48 +0000
-Message-ID: <DDDB9E6645DE24488B8485B41A051F471D965CDB@Mercury.usurf.usu.edu>
-References: <DDDB9E6645DE24488B8485B41A051F471D9618D2@Mercury.usurf.usu.edu>
-	<36ED13F3654AE54CA763E6821D93A5711047B519@szxeml534-mbx.china.huawei.com>,
-	<507E6C5A.1080108@linux.intel.com>
-In-Reply-To: <507E6C5A.1080108@linux.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.31.22.105]
+Return-Path: <evadeflow@gmail.com>
+Received: from mail-oa0-f48.google.com (mail-oa0-f48.google.com
+	[209.85.219.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4E689E01275
+	for <yocto@yoctoproject.org>; Thu, 18 Oct 2012 10:24:49 -0700 (PDT)
+Received: by mail-oa0-f48.google.com with SMTP id h2so10908291oag.35
+	for <yocto@yoctoproject.org>; Thu, 18 Oct 2012 10:24:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type
+	:content-transfer-encoding;
+	bh=J+VRn99tDeyT9NDYgeeb5RL4uHlfS0fPLEzR7H41IhU=;
+	b=kWF8DCiCePcShTn7MXggD2iZS8xDySK0RaTfYeRqXEPdOwM8xLl2cVSHt95xn99rFI
+	aiXsfPrq4FolRnil7SkrxYJS1N9z2drJbNe61mLRRaXCeorcjVcGxisDIeNXE0h81wya
+	z5pGT9s4qaspnkPxeJz57Z4FA3FRn/di8ljf45iYLpWVvoOLSC+rTfwNUVFzvAyaGnTH
+	qWzwDuLwFMCvncRdOeWz1ikRtyVj6RNaTtyjENs8ifp0njpl0us9uSOvLGYvPCfKyd/k
+	tbVPfPfwkaXhovL5/v2+4t2OcMj6xdNPJURsZaEP6k+/Kx1iREQJ9P9NrEunTiyGLJve
+	Snzw==
 MIME-Version: 1.0
-X-OriginalArrivalTime: 18 Oct 2012 16:52:44.0147 (UTC)
-	FILETIME=[FE71C430:01CDAD50]
-Subject: Re: .bashrc not being used by root account
+Received: by 10.60.171.114 with SMTP id at18mr18785081oec.24.1350581086331;
+	Thu, 18 Oct 2012 10:24:46 -0700 (PDT)
+Received: by 10.76.167.165 with HTTP; Thu, 18 Oct 2012 10:24:46 -0700 (PDT)
+Date: Thu, 18 Oct 2012 13:24:46 -0400
+Message-ID: <CAMAb8ZPoHRy0nE3BEo+_eP8Z5T_ED0E5SSSrRsRC5cmReYnH3w@mail.gmail.com>
+From: Evade Flow <evadeflow@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Machine conf for Tegra?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,86 +35,78 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 18 Oct 2012 16:52:49 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Thu, 18 Oct 2012 17:24:49 -0000
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Okay, I have done a couple of things:=0A=
-=0A=
-1. I appended to the base-passwd recipe and added my own patch that would p=
-atch the passwd file to have root use a bash shell.  I have verified that t=
-his is the case when I login via echo $0.  It tells me that root's shell is=
- bash.=0A=
-=0A=
-2. I have appended to the base-files recipe and added a do_install_append()=
- function to my bbappend file that copies the dot.bashrc to /home/root/.bas=
-hrc.  I have verified that this is taking place and the .bashrc file is act=
-ually in /home/root.=0A=
-=0A=
-3. I ran 'strace -f bash' after logging in and /home/root/.bashrc is source=
-d (I saw it in the output and my aliases were available).=0A=
-=0A=
-However, upon first login, it appears that /home/root/.bashrc is NOT source=
-d by bash.  How can I get bash to source that file when I login at a consol=
-e?=0A=
-=0A=
-Thanks for the help!=0A=
-Jonathan=0A=
-=0A=
-=0A=
-________________________________________=0A=
-From: yocto-bounces@yoctoproject.org [yocto-bounces@yoctoproject.org] on be=
-half of Mihai Lindner [mihaix.lindner@linux.intel.com]=0A=
-Sent: Wednesday, October 17, 2012 02:29=0A=
-To: yocto@yoctoproject.org=0A=
-Subject: Re: [yocto] .bashrc not being used by root account=0A=
-=0A=
-On 10/17/2012 09:25 AM, Venkata ramana gollamudi wrote:=0A=
-> You can check the same with  "strace -f bash"=0A=
-> You can see the files being loaded, as there is a rc file loading sequenc=
-e exists for bash.=0A=
->=0A=
-> Regards,=0A=
-> Ramana=0A=
->=0A=
-> ________________________________________=0A=
-> From: yocto-bounces@yoctoproject.org [yocto-bounces@yoctoproject.org] on =
-behalf of Jonathan Haws [Jonathan.Haws@sdl.usu.edu]=0A=
-> Sent: Tuesday, October 16, 2012 9:32 PM=0A=
-> To: yocto@yoctoproject.org=0A=
-> Subject: [yocto] .bashrc not being used by root account=0A=
->=0A=
-> I have modified the .bashrc file for the system, however the root account=
- does not seem to use it by default.  What am I missing?  I would rather no=
-t have to source the .bashrc file every time I login as root.=0A=
-=0A=
-Try `echo $0` to see the shell you're in. By default you should be in=0A=
-`sh`, which does not source .bashrc.=0A=
-You can execute `bash` after login, or change the login shell of 'root'.=0A=
-=0A=
-Cheers,=0A=
---Mihai=0A=
-=0A=
->=0A=
-> Thanks,=0A=
-> Jonathan=0A=
->=0A=
-> _______________________________________________=0A=
-> yocto mailing list=0A=
-> yocto@yoctoproject.org=0A=
-> https://lists.yoctoproject.org/listinfo/yocto=0A=
-> _______________________________________________=0A=
-> yocto mailing list=0A=
-> yocto@yoctoproject.org=0A=
-> https://lists.yoctoproject.org/listinfo/yocto=0A=
->=0A=
-=0A=
-=0A=
---=0A=
-Mihai Lindner=0A=
-_______________________________________________=0A=
-yocto mailing list=0A=
-yocto@yoctoproject.org=0A=
-https://lists.yoctoproject.org/listinfo/yocto=0A=
+I need to make a root filesystem for a Tegra2 T20-based system, and
+would like to build it with some more aggressive optimizations than
+qemuarm provides. I've read through the BSP Developer's Guide, but I'm
+not sure how to 'translate' it for my situation, since I don't need to
+build a kernel. I just want the cross toolchain and root fs.
+
+I began by creating a folder hierarchy that looks like this:
+
+poky% tree -L 3 meta-tegra
+meta-tegra
+=E2=94=94=E2=94=80=E2=94=80 conf
+    =E2=94=94=E2=94=80=E2=94=80 machine
+        =E2=94=94=E2=94=80=E2=94=80 t20-sku13.conf
+
+where I simply copied the contents of qemuarm.conf into t20-sku13.conf:
+
+
+#@TYPE: Machine
+#@NAME: arm_versatile_926ejs
+#@DESCRIPTION: arm_versatile_926ejs
+
+require conf/machine/include/qemu.inc
+require conf/machine/include/tune-arm926ejs.inc
+#require conf/machine/include/tune-arm1136jf-s.inc
+
+KERNEL_IMAGETYPE =3D "zImage"
+
+SERIAL_CONSOLE =3D "115200 ttyAMA0"
+
+I could use some help understanding how to tune this for my system. It
+seems I probably ought not to include qemu.inc, but should do this
+instead(?):
+
+DEFAULTTUNE =3D "cortexa9"
+require conf/machine/include/tune-cortexa9.inc
+
+
+But I'm not sure whether this is optimal. Here are some details on the
+target system:
+
+~ # uname -a
+Linux localhost 2.6.36.2-WR3.0.2ax_standard #1 SMP PREEMPT Wed Oct 19 21:58=
+:54
+EEST 2011 armv7l armv7l armv7l GNU/Linux ODBP D1.0.1 (10.11.2011)
+
+~ # cat /proc/cpuinfo
+Processor       : ARMv7 Processor rev 0 (v7l)
+processor       : 0
+BogoMIPS        : 1795.68
+
+Features        : swp half thumb fastmult vfp edsp vfpv3 vfpv3d16
+CPU implementer : 0x41
+CPU architecture: 7
+CPU variant     : 0x1
+CPU part        : 0xc09
+CPU revision    : 0
+
+Hardware        : Tegra P852 SKU13
+Revision        : 0000
+
+Googling around, it seems that, ideally, I'd want to get
+'-mfpu=3Dvfpv3-d16' in my build options:
+
+  - http://wiki.debian.org/ArmHardFloatPort/VfpComparison#FPU
+  - http://www.mail-archive.com/openembedded-core@lists.openembedded.org/ms=
+g09497.html
+
+Any advice on how to make this happen, or other suggestions for how to
+best support building a root fs for a Tegra2 T20? (Maybe implementing a
+'half-baked' layer is overkill for my needs?)
 
