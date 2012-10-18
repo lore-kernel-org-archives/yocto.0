@@ -1,24 +1,26 @@
 Return-Path: <kishore.k.bodke@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 54C0EE013EB
-	for <yocto@yoctoproject.org>; Thu, 18 Oct 2012 11:18:06 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 18 Oct 2012 11:18:05 -0700
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 99871E013EF
+	for <yocto@yoctoproject.org>; Thu, 18 Oct 2012 11:18:24 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 18 Oct 2012 11:18:23 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,608,1344236400"; d="scan'208";a="235654084"
+X-IronPort-AV: E=Sophos;i="4.80,608,1344236400"; d="scan'208";a="157781460"
 Received: from kishore-desktop.sc.intel.com (HELO localhost)
 	([143.183.188.160])
-	by fmsmga001.fm.intel.com with ESMTP; 18 Oct 2012 11:17:56 -0700
+	by AZSMGA002.ch.intel.com with ESMTP; 18 Oct 2012 11:17:58 -0700
 From: kishore.k.bodke@intel.com
 To: tom.zanussi@intel.com,
 	nitin.a.kamble@intel.com,
 	yocto@yoctoproject.org
-Date: Thu, 18 Oct 2012 11:19:14 -0700
-Message-Id: <46df5fcf29108c0c9b5ed6714ec012fd03b94e55.1350583189.git.kishore.k.bodke@intel.com>
+Date: Thu, 18 Oct 2012 11:19:15 -0700
+Message-Id: <dc33321b7e5d0b990e730edcd5593d27ef379d1c.1350583189.git.kishore.k.bodke@intel.com>
 X-Mailer: git-send-email 1.7.9.5
+In-Reply-To: <46df5fcf29108c0c9b5ed6714ec012fd03b94e55.1350583189.git.kishore.k.bodke@intel.com>
+References: <46df5fcf29108c0c9b5ed6714ec012fd03b94e55.1350583189.git.kishore.k.bodke@intel.com>
 In-Reply-To: <cover.1350583189.git.kishore.k.bodke@intel.com>
 References: <cover.1350583189.git.kishore.k.bodke@intel.com>
-Subject: [PATCH 1/3] [meta-intel] meta-intel/common:Add a new recipe for Zlib qat_mem Module.
+Subject: [PATCH 2/3][meta-intel] meta-intel/common: Add new recipe for libcrypto module.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,96 +32,98 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 18 Oct 2012 18:18:06 -0000
+X-List-Received-Date: Thu, 18 Oct 2012 18:18:24 -0000
 
 From: Kishore Bodke <kishore.k.bodke@intel.com>
 
-This adds a new recipe to build the Intel Quick Assist
-Technology Memory Management Module for Zlib.
+This adds a new recipe to include the Intel Quick Assist
+Technology libcrypto Memory Management Module.
 
 Signed-off-by: Kishore Bodke <kishore.k.bodke@intel.com>
 ---
- .../zlib-qat-module/zlib-qat-module.bb             |   52 ++++++++++++++++++++
- .../zlib-qat-module/zlib_qat_module.patch          |   43 ++++++++++++++++
- 2 files changed, 95 insertions(+)
- create mode 100644 common/recipes-core/zlib-qat-module/zlib-qat-module.bb
- create mode 100644 common/recipes-core/zlib-qat-module/zlib-qat-module/zlib_qat_module.patch
+ .../openssl-qat-module/openssl-qat-module.bb       |   54 ++++++++++++++++++++
+ .../openssl-qat-module/openssl_qat_module.patch    |   43 ++++++++++++++++
+ 2 files changed, 97 insertions(+)
+ create mode 100644 common/recipes-connectivity/openssl-qat-module/openssl-qat-module.bb
+ create mode 100644 common/recipes-connectivity/openssl-qat-module/openssl-qat-module/openssl_qat_module.patch
 
-diff --git a/common/recipes-core/zlib-qat-module/zlib-qat-module.bb b/common/recipes-core/zlib-qat-module/zlib-qat-module.bb
+diff --git a/common/recipes-connectivity/openssl-qat-module/openssl-qat-module.bb b/common/recipes-connectivity/openssl-qat-module/openssl-qat-module.bb
 new file mode 100644
-index 0000000..5ade06e
+index 0000000..a4fe3c5
 --- /dev/null
-+++ b/common/recipes-core/zlib-qat-module/zlib-qat-module.bb
-@@ -0,0 +1,52 @@
-+SUMMARY="Zlib QAT_MEM Memory Management Module for Intel Quick Assist \
-+Technology"
-+DESCRIPTION="This software acelerates the data compression algorithm \
-+in the zlib software library via the Intel QuickAssist Technology \
++++ b/common/recipes-connectivity/openssl-qat-module/openssl-qat-module.bb
+@@ -0,0 +1,54 @@
++SUMMARY = "libcrypto* (OpenSSL*) QAT_MEM Memory Management Module \
++for Intel Quick Assist Technology"
++DESCRIPTION = "This software adds an engine that accelerates some of \
++the libcrypto algorithms via the Intel QuickAssist Technology \
 +implemented on Intel Communications Chipset 89xx Series based platforms."
 +
-+HOMEPAGE = "http://zlib.net/"
-+SECTION = "libs"
-+LICENSE = "Zlib & GPLv2 & BSD"
++HOMEPAGE = "http://www.openssl.org/"
++SECTION = "libs/network"
 +
-+LIC_FILES_CHKSUM = "file://${WORKDIR}/zlib-${PV}/zlib.h;beginline=4;endline=23;md5=94d1b5a40dadd127f3351471727e66a9 \
-+			file://${COMMON_LICENSE_DIR}/GPL-2.0;md5=801f80980d171dd6425610833a22dbe6 \
-+			file://${COMMON_LICENSE_DIR}/BSD;md5=3775480a712fc46a69647678acb234cb"
-+PV = "1.2.7"
-+ZLIB_QAT_VERSION = "0.4.0-011"
++LICENSE = "openssl"
++LIC_FILES_CHKSUM = "file://${WORKDIR}/openssl-${PV}/LICENSE;md5=f9a8f968107345e0b75aa8c2ecaa7ec8"
 +
-+PR="r0"
++PV = "1.0.1"
++PR = "r0"
 +
-+SRC_URI = "http://www.zlib.net/zlib-${PV}.tar.gz;name=zlib \
-+	http://downloadmirror.intel.com/20294/eng/zlib-${PV}-qat.L.${ZLIB_QAT_VERSION}.tar.gz;name=zlib_qat \
-+	file://zlib_qat_module.patch"
++OPENSSL_QAT_VERSION = "0.4.0-012"
 +
-+SRC_URI[zlib.md5sum]="60df6a37c56e7c1366cca812414f7b85"
-+SRC_URI[zlib.sha256sum]="fa9c9c8638efb8cb8ef5e4dd5453e455751e1c530b1595eed466e1be9b7e26c5"
++SRC_URI = "http://www.openssl.org/source/openssl-${PV}.tar.gz;name=openssl \
++	http://downloadmirror.intel.com/19368/eng/libcrypto-openssl-${PV}-qat.L.${OPENSSL_QAT_VERSION}.tar.gz;name=libcrypto \
++	file://openssl_qat_module.patch"
 +
-+SRC_URI[zlib_qat.md5sum]="88e4140f98d2f9e170bf473f20e1a8d4"
-+SRC_URI[zlib_qat.sha256sum]="3c360878127f3930e64640ef5a5822719a5059143326bb4c396645ae37b704a6"
++SRC_URI[openssl.md5sum]="134f168bc2a8333f19f81d684841710b"
++SRC_URI[openssl.sha256sum]="4d9f0a594a9a89b28e1a04a9504c04104f6508ee27ad1e0efdd17a7a6dbbeeee"
 +
-+S = "${WORKDIR}/zlib-${PV}/contrib/qat/qat_mem"
++SRC_URI[libcrypto.md5sum] = "e4e131fa56d3aa1a52b5bdb9f8fe5a69"
++SRC_URI[libcrypto.sha256sum] = "19a80ae6e78548934295d312148e4254c18dabd25e2fd72de5796d8ac15b1cfb"
 +
-+inherit module
++S = "${WORKDIR}/openssl-${PV}/engines/qat_engine/qat_mem"
++
 +export KERNEL_SOURCE_ROOT = "${STAGING_KERNEL_DIR}"
++inherit module
 +
-+do_patch() 	{
-+	cd ${WORKDIR}/zlib-${PV}
-+	patch -p0  < ${WORKDIR}/zlib-${PV}-qat.L.${ZLIB_QAT_VERSION}.patch
++do_patch()     {
++	cd ${WORKDIR}/openssl-${PV}
++	patch -p2 < ${WORKDIR}/libcrypto-openssl-${PV}-qat.L.${OPENSSL_QAT_VERSION}.patch
 +
 +	cd ${WORKDIR}
-+	patch -p1   < ${WORKDIR}/zlib_qat_module.patch
++	patch -p1 <${WORKDIR}/openssl_qat_module.patch
 +}
 +
-+do_compile()    {
++do_compile() 	{
 +	cd ${S}
-+	oe_runmake KERNEL_CC="${KERNEL_CC}"
++	oe_runmake  KERNEL_CC="${KERNEL_CC}"
 +}
 +
-+do_install_append()     {
-+	install -m 0755 -d      		${D}${bindir}
-+	install -m 0755 ${S}/qat_mem_test       ${D}${bindir}
++do_install_append() 	{
++	install -m 0755 -d ${D}${bindir} \
++			   ${D}${includedir}/engines/qat_engine/qat_mem
++
++	install -m 0755 ${S}/qat_mem_test  ${D}${bindir}
++	install -m 0750 ${S}/*.h	   ${D}${includedir}/engines/qat_engine/qat_mem/
 +}
 +
 +FILES_${PN} += "${bindir}/qat_mem_test"
-diff --git a/common/recipes-core/zlib-qat-module/zlib-qat-module/zlib_qat_module.patch b/common/recipes-core/zlib-qat-module/zlib-qat-module/zlib_qat_module.patch
+diff --git a/common/recipes-connectivity/openssl-qat-module/openssl-qat-module/openssl_qat_module.patch b/common/recipes-connectivity/openssl-qat-module/openssl-qat-module/openssl_qat_module.patch
 new file mode 100644
-index 0000000..a30f8b0
+index 0000000..dfed3c0
 --- /dev/null
-+++ b/common/recipes-core/zlib-qat-module/zlib-qat-module/zlib_qat_module.patch
++++ b/common/recipes-connectivity/openssl-qat-module/openssl-qat-module/openssl_qat_module.patch
 @@ -0,0 +1,43 @@
-+Index: zlib-qat-module-1.2.7-r0/zlib-1.2.7/contrib/qat/qat_mem/Makefile
++Index: openssl-qat-module-1.0.1-r0/openssl-1.0.1/engines/qat_engine/qat_mem/Makefile
 +===================================================================
-+--- zlib-qat-module-1.2.7-r0.orig/zlib-1.2.7/contrib/qat/qat_mem/Makefile	2012-10-16 13:53:10.258938722 -0700
-++++ zlib-qat-module-1.2.7-r0/zlib-1.2.7/contrib/qat/qat_mem/Makefile	2012-10-16 13:59:18.174944864 -0700
-+@@ -59,13 +59,10 @@
-+ #
-+ #
-+ #########################################################################
-+-
++--- openssl-qat-module-1.0.1-r0.orig/openssl-1.0.1/engines/qat_engine/qat_mem/Makefile	2012-10-17 13:31:27.932376960 -0700
+++++ openssl-qat-module-1.0.1-r0/openssl-1.0.1/engines/qat_engine/qat_mem/Makefile	2012-10-17 13:35:40.396389410 -0700
++@@ -9,13 +9,9 @@
 + MODULENAME 	:= qat_mem
++ ### should not need to change stuff below ######################
++ 
++-
 +-KDIR		:= /lib/modules/$(shell uname -r)/build
++-#KDIR		:= /exports/linux-2.6.12.2/
 ++KDIR		:= $(KERNEL_SOURCE_ROOT)
 + PWD		:= $(shell pwd)
 +-
@@ -129,17 +133,17 @@ index 0000000..a30f8b0
 + ifeq ($(KERNELRELEASE),)
 + all:	$(MODULENAME)_test
 + all:
-+@@ -73,20 +70,15 @@
++@@ -23,20 +19,15 @@
 + else
 +   obj-m	:= $(MODULENAME).o
 + endif
 +-
-++modules_install:
-++	$(MAKE) -C $(KDIR) SUBDIRS=$(PWD) modules_install
 + $(MODULENAME)_test: $(MODULENAME)_test.c
 + 	$(CC) -g -o $(MODULENAME)_test $(MODULENAME)_test.c
 +-
 +-
+++modules_install:
+++	$(MAKE) -C $(KDIR) SUBDIRS=$(PWD) modules_install
 + load:
 + 	insmod ./$(MODULENAME).ko
 +-
@@ -147,10 +151,10 @@ index 0000000..a30f8b0
 + 	rmmod $(MODULENAME)
 +-
 + test: all
-+ 	./$(MODULENAME)_test
++ 	./$(MODULENAME)_test.sh
 +-
 + clean:
-+ 	rm -f *.o *.ko Module.symvers modules.order *.mod.c .*.cmd $(MODULENAME)_test
++ 	rm -f *.o *.ko Modules.symvers *.mod.c .*.cmd $(MODULENAME)_test
 +-
 -- 
 1.7.9.5
