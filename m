@@ -1,39 +1,45 @@
 Return-Path: <mhalstead@linuxfoundation.org>
-Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
-	[209.85.160.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ADB12E013D2
-	for <yocto@yoctoproject.org>; Thu, 18 Oct 2012 12:43:27 -0700 (PDT)
-Received: by mail-pb0-f48.google.com with SMTP id wy7so10527093pbc.35
-	for <yocto@yoctoproject.org>; Thu, 18 Oct 2012 12:43:27 -0700 (PDT)
+Received: from mail-pa0-f48.google.com (mail-pa0-f48.google.com
+	[209.85.220.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0AEBBE003D6
+	for <yocto@yoctoproject.org>; Thu, 18 Oct 2012 12:59:57 -0700 (PDT)
+Received: by mail-pa0-f48.google.com with SMTP id kp12so10471613pab.35
+	for <yocto@yoctoproject.org>; Thu, 18 Oct 2012 12:59:42 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=google.com; s=20120113;
-	h=sender:message-id:date:from:user-agent:mime-version:to:subject
-	:x-enigmail-version:content-type:x-gm-message-state;
-	bh=CuQTTq/bExODppJZHXmUZLR962UyOcpI/z/blwH6C8c=;
-	b=Twy4TAJz5pwg9oMvV4BuCPpDlOO+rk8suUF8Yk6lb1EI3XeyIBz3GKHK86rLwx6YJ1
-	hzoXmuYXDNDYjGpbO1f0Oz8ZJvFsyULgO/E9g15LV73LgvauTvr426tBbXiSsa5Cq+QM
-	UQPQco1bJCh/Hu2Tv7OoJ9Df9oKq+OYNP3I4XM1OkxPOVJV6JFl1wMkAL/wM/n6megkR
-	HhYmajmYme0k2JGIAD5OXkaM8dIWzdqWYVaKGvwLz3UWXWU+jVBGmlNHT4DQRwxkDPN6
-	bu/WYQqRyWsTvvOHH2yaLz+KMlUfUVq0Khl8oCsCMHj/3GN2SqSTFArCYG6hOAdvC1jn
-	ds0w==
-Received: by 10.68.189.5 with SMTP id ge5mr69435546pbc.1.1350589407393;
-	Thu, 18 Oct 2012 12:43:27 -0700 (PDT)
+	h=sender:message-id:date:from:user-agent:mime-version:to:cc:subject
+	:references:in-reply-to:x-enigmail-version:content-type
+	:x-gm-message-state;
+	bh=TGeXGJ7Z1cl3ncXsZFUHkaQIcd+WwhIzeVPUJ9X909Y=;
+	b=orsgrpbL2tkAw7pYp4NzWvhBp/Z1kduROETAKO0PmuNJMm+fcdDY55UIOXWPQDrEeZ
+	u+9ZagH07Wo1R2mt+OAX5vTn7JIBJGtdLPorPaObnJpQqv6yAvTKsp/Mkwcd7/u3xhdY
+	jxjXgiiexEoUnaBmHUjTc8xtkMzEWRPgJ//7m4HYtyk57ipg9tVkxdnfZJxEzGsJA+Kg
+	sh5wp3hAlRIpop/NX2fBkEXt/gIGVALYnIQWuqwi9XIO45l7gLeu2zEx7W0Wo+kyZBP4
+	Cl2W0tk0vEAMYQ0nzWoKcxSyONjvI+OR3Wy7bGNrb5a8zMLet1CNl6NiUwKh/2pP+S6f
+	Z8iQ==
+Received: by 10.66.81.103 with SMTP id z7mr62288161pax.57.1350590382738;
+	Thu, 18 Oct 2012 12:59:42 -0700 (PDT)
 Received: from [192.168.1.66] (static-50-43-44-186.bvtn.or.frontiernet.net.
 	[50.43.44.186])
-	by mx.google.com with ESMTPS id kr4sm14663360pbc.76.2012.10.18.12.43.25
-	(version=SSLv3 cipher=OTHER); Thu, 18 Oct 2012 12:43:25 -0700 (PDT)
+	by mx.google.com with ESMTPS id o1sm14829481paz.34.2012.10.18.12.59.40
+	(version=SSLv3 cipher=OTHER); Thu, 18 Oct 2012 12:59:41 -0700 (PDT)
 Sender: Michael Halstead <mhalstead@linuxfoundation.org>
-Message-ID: <50805BE3.5000600@yoctoproject.org>
-Date: Thu, 18 Oct 2012 12:43:31 -0700
+Message-ID: <50805FB4.7080604@yoctoproject.org>
+Date: Thu, 18 Oct 2012 12:59:48 -0700
 From: Michael Halstead <michael@yoctoproject.org>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:16.0) Gecko/20121011 Thunderbird/16.0.1
 MIME-Version: 1.0
-To: Yocto Project Discussion <yocto@yoctoproject.org>, 
-	yocto-infrastructure@yoctoproject.org
+To: Evade Flow <evadeflow@gmail.com>
+References: <CABzAcgiKqN-hQ56HoZny6=EeiDbnbFAb0CoqBb7R_eJ5EEdUKQ@mail.gmail.com>
+	<3280557.8J13GWUXdI@helios>
+	<CAMAb8ZOm3uSszdc3RUyFcoxaK+42FePUVFwqw3xwDktdQJ6wqA@mail.gmail.com>
+In-Reply-To: <CAMAb8ZOm3uSszdc3RUyFcoxaK+42FePUVFwqw3xwDktdQJ6wqA@mail.gmail.com>
 X-Enigmail-Version: 1.4.5
-X-Gm-Message-State: ALoCoQk34/IRIVNYAX38kOhnKbdXDQcHLLwNK1DkwBfCTk0foo7KP4/A6tKT+2zoJQSRKDJrxRT5
-Subject: HTTP read only access to git repositories available
+X-Gm-Message-State: ALoCoQl6zLLt9JUN7YyY1HFrvHjhpHbJ+/3fTTyuKOcWcbz7l4rACWoHSgyR8FFlcDqyVYxOPQFA
+Cc: Paul Eggleton <paul.eggleton@linux.intel.com>,
+	Chin Huat Ang <chinhuat@gmail.com>, yocto@yoctoproject.org
+Subject: Re: Cloning yocto repos over https
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,36 +51,78 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 18 Oct 2012 19:43:27 -0000
-X-Groupsio-MsgNum: 10167
+X-List-Received-Date: Thu, 18 Oct 2012 19:59:57 -0000
+X-Groupsio-MsgNum: 10168
 Content-Type: multipart/signed; protocol="application/pkcs7-signature";
-	micalg=sha1; boundary="------------ms070701060008030508050808"
+	micalg=sha1; boundary="------------ms080008090107050702070001"
 
---------------ms070701060008030508050808
+--------------ms080008090107050702070001
 Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-All of the Yocto Project hosted git repositories can be accessed via the
-http protocol on port 80. This method uses the smart http backend and it
-is as fast as access via the git protocol. Connecting via http will help
-users behind a proxy clone and update repositories with minimal
-configuration.
+On 10/16/2012 09:44 AM, Evade Flow wrote:
+>>> Is there a way to clone yocto repositories (say, poky) over https?
+I just announced that repositories are available from
+git.yoctoproject.org via http. I didn't mention it but clones via https
+will work equally well if that is preferable.
 
-Configure git to use your http proxy by setting the http_proxy
-environment variable or by running 'git config http.proxy [proxy_url]'.
+> As Paul mentioned, there is work in progress to make it possible to clo=
+ne
+> yocto repos over http. This should be finished in the very near future,=
+ but in
+> the meantime, I've created some (very) unofficial mirrors here:
+>
+>   http://github.com/yoctoproject-mirrors
+>
+> I have a script running that syncs all of these every 15 minutes or so.=
 
-URLs are listed at the bottom of cgit project pages after the clone
-heading. Visit http://git.yoctoproject.org/cgit/cgit.cgi/poky/ for an
-example. They follow the pattern
-http://git.yoctoproject.org/git/[repo_path].
+> Perhaps this will help you until the official HTTP access is available.=
+ (Just
+> be advised: I plan to delete these mirrors when they are no longer
+> necessary...)
+The github mirrors shouldn't be needed any longer. Please tell me if
+there is anything more needed on this front.
 
---=20
 Michael Halstead
 Yocto Project / Sys Admin
 
 
+>
+>
+> On Tue, Oct 16, 2012 at 6:50 AM, Paul Eggleton
+> <paul.eggleton@linux.intel.com> wrote:
+>> On Friday 11 May 2012 09:35:30 Chin Huat Ang wrote:
+>>> Is there a way to clone yocto repositories (say, poky) over https?
+>>>
+>>> I'm behind a firewall where git port is blocked, getting it opened is=
+ a
+>>> bureaucracy nightmare.
+>> Sorry, it's taken us a while to look into this but we have opened a bu=
+g to
+>> track it - you may wish to add yourself to the CC list:
+>>
+>> http://bugzilla.yoctoproject.org/show_bug.cgi?id=3D3263
+>>
+>> Cheers,
+>> Paul
+>>
+>> --
+>>
+>> Paul Eggleton
+>> Intel Open Source Technology Centre
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
---------------ms070701060008030508050808
+
+
+--------------ms080008090107050702070001
 Content-Type: application/pkcs7-signature; name="smime.p7s"
 Content-Transfer-Encoding: base64
 Content-Disposition: attachment; filename="smime.p7s"
@@ -145,8 +193,8 @@ LxnQkElGeUzATOBq+QsVZ7Fo6sSS7kqrhpfaPibqpj83m/wSgpKVsbZJ3DGCA9owggPWAgEBMIGT
 MIGMMQswCQYDVQQGEwJJTDEWMBQGA1UEChMNU3RhcnRDb20gTHRkLjErMCkGA1UECxMiU2VjdXJl
 IERpZ2l0YWwgQ2VydGlmaWNhdGUgU2lnbmluZzE4MDYGA1UEAxMvU3RhcnRDb20gQ2xhc3MgMiBQ
 cmltYXJ5IEludGVybWVkaWF0ZSBDbGllbnQgQ0ECAiIDMAkGBSsOAwIaBQCgggIbMBgGCSqGSIb3
-DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTEyMTAxODE5NDMzMVowIwYJKoZIhvcN
-AQkEMRYEFBeJHlP2aJu/8zi/iT4OeiyrQI/eMGwGCSqGSIb3DQEJDzFfMF0wCwYJYIZIAWUDBAEq
+DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTEyMTAxODE5NTk0OFowIwYJKoZIhvcN
+AQkEMRYEFGI0WpG7HyDh6qS+krFtYqXpohKlMGwGCSqGSIb3DQEJDzFfMF0wCwYJYIZIAWUDBAEq
 MAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzAOBggqhkiG9w0DAgICAIAwDQYIKoZIhvcNAwICAUAw
 BwYFKw4DAgcwDQYIKoZIhvcNAwICASgwgaQGCSsGAQQBgjcQBDGBljCBkzCBjDELMAkGA1UEBhMC
 SUwxFjAUBgNVBAoTDVN0YXJ0Q29tIEx0ZC4xKzApBgNVBAsTIlNlY3VyZSBEaWdpdGFsIENlcnRp
@@ -154,11 +202,11 @@ ZmljYXRlIFNpZ25pbmcxODA2BgNVBAMTL1N0YXJ0Q29tIENsYXNzIDIgUHJpbWFyeSBJbnRlcm1l
 ZGlhdGUgQ2xpZW50IENBAgIiAzCBpgYLKoZIhvcNAQkQAgsxgZaggZMwgYwxCzAJBgNVBAYTAklM
 MRYwFAYDVQQKEw1TdGFydENvbSBMdGQuMSswKQYDVQQLEyJTZWN1cmUgRGlnaXRhbCBDZXJ0aWZp
 Y2F0ZSBTaWduaW5nMTgwNgYDVQQDEy9TdGFydENvbSBDbGFzcyAyIFByaW1hcnkgSW50ZXJtZWRp
-YXRlIENsaWVudCBDQQICIgMwDQYJKoZIhvcNAQEBBQAEggEAaXFrI/moB7My5Ba7LRy3eXPnV0QW
-MRM2UjdQfvkCKGerH7lfaN5UhGJlVxFVh/R0MPp4dCP9qLSN+q7tJ9eqX0T3SMoeaPlQbx6x/stM
-2ml7LzxVKkYPCN6EmDeKGnKw79V1UkjPACc3UvcwRlGwGj0h70rlIaTtfjfFnvzrtjDMPOm65rVN
-uWiEgc39GVnWODtcpY2FIKakG23fYKkX9GMwy7IVKj5PiKrESNOk5GVlO8QlSwJdwikhxtLmeLDv
-cpOL3jk6vnOfX4cJRZ1R52tIeeXgS6vsOxbCcXMOEmn2if7zIge631p0fdtDWMh+wbDzzni4xxo4
-QchyrXAWfAAAAAAAAA==
+YXRlIENsaWVudCBDQQICIgMwDQYJKoZIhvcNAQEBBQAEggEAs+VVtbNHIPTZNPvPnda28GxRapOA
+7jTZS10er/5mJRvpiuxxL1nHY/O5njsktzngvtfICo1qKTG3cj+7d/1KzshZAqU5szKwuuI4sd5F
+Oaz4OuKOG29HYr7PEAcqbYj+0K6n0JAEibf0LW6Jc6JSXclvp2yWDcisrHyMxorgo8Fb17Yz0Odc
+FZilbyrq2KNfBr9zR5hRSu6FJovavZ5wJRs1fK1owPfgaVErm0EsRVe29s4sLrK9kki3daUAaRq6
+fx4DwQQZ51c+I9ECrSbJ6rKe6pfo7um/lpDnXDwH0b94LEwniCWq/UziEBs0bjYD8756DFzJnlHF
+3MpWGHrnBQAAAAAAAA==
 
---------------ms070701060008030508050808--
+--------------ms080008090107050702070001--
