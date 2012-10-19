@@ -1,30 +1,28 @@
-Return-Path: <nitin.a.kamble@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 685ABE003D6
-	for <yocto@yoctoproject.org>; Fri, 19 Oct 2012 11:28:23 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 19 Oct 2012 11:28:23 -0700
+Return-Path: <kishore.k.bodke@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A5818E003D6
+	for <yocto@yoctoproject.org>; Fri, 19 Oct 2012 11:28:58 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 19 Oct 2012 11:28:31 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,613,1344236400"; d="scan'208";a="208223268"
-Received: from orsmsx102.amr.corp.intel.com ([10.22.225.129])
-	by orsmga001.jf.intel.com with ESMTP; 19 Oct 2012 11:28:22 -0700
-Received: from orsmsx108.amr.corp.intel.com (10.22.225.41) by
-	ORSMSX102.amr.corp.intel.com (10.22.225.129) with Microsoft SMTP Server
-	(TLS) id 14.1.355.2; Fri, 19 Oct 2012 11:28:21 -0700
-Received: from orsmsx106.amr.corp.intel.com ([169.254.5.130]) by
-	ORSMSX108.amr.corp.intel.com ([169.254.9.119]) with mapi id
-	14.01.0355.002; Fri, 19 Oct 2012 11:27:58 -0700
-From: "Kamble, Nitin A" <nitin.a.kamble@intel.com>
-To: "Bodke, Kishore K" <kishore.k.bodke@intel.com>, "Zanussi, Tom"
+X-IronPort-AV: E=Sophos;i="4.80,613,1344236400"; d="scan'208";a="229817573"
+Received: from orsmsx101.amr.corp.intel.com ([10.22.225.128])
+	by orsmga002.jf.intel.com with ESMTP; 19 Oct 2012 11:28:56 -0700
+Received: from orsmsx105.amr.corp.intel.com ([169.254.4.140]) by
+	ORSMSX101.amr.corp.intel.com ([169.254.8.82]) with mapi id
+	14.01.0355.002; Fri, 19 Oct 2012 11:28:55 -0700
+From: "Bodke, Kishore K" <kishore.k.bodke@intel.com>
+To: "Kamble, Nitin A" <nitin.a.kamble@intel.com>, "Zanussi, Tom"
 	<tom.zanussi@intel.com>, "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Thread-Topic: [PATCH 1/3] [meta-intel] meta-intel/common:Add a new recipe
 	for Zlib qat_mem Module.
-Thread-Index: AQHNrVzzUGNd0ACVp0KefjZQNQm3spfA9ANQ
-Date: Fri, 19 Oct 2012 18:27:58 +0000
-Message-ID: <ADD6A3980E8C39419A432FF422031B4C2D90C94E@ORSMSX106.amr.corp.intel.com>
+Thread-Index: AQHNrVstpl6CwEtVGEW5/u6WS/sJgZfBaY8A//+Kv8A=
+Date: Fri, 19 Oct 2012 18:28:55 +0000
+Message-ID: <D956029D25CF204F948EA0FB515E1EE233E6D804@ORSMSX105.amr.corp.intel.com>
 References: <cover.1350583189.git.kishore.k.bodke@intel.com>
 	<46df5fcf29108c0c9b5ed6714ec012fd03b94e55.1350583189.git.kishore.k.bodke@intel.com>
-In-Reply-To: <46df5fcf29108c0c9b5ed6714ec012fd03b94e55.1350583189.git.kishore.k.bodke@intel.com>
+	<ADD6A3980E8C39419A432FF422031B4C2D90C94E@ORSMSX106.amr.corp.intel.com>
+In-Reply-To: <ADD6A3980E8C39419A432FF422031B4C2D90C94E@ORSMSX106.amr.corp.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
@@ -42,181 +40,198 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 19 Oct 2012 18:28:23 -0000
+X-List-Received-Date: Fri, 19 Oct 2012 18:28:58 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Kishore,
-  Same here, if it is not used by multiple BSPs yet, then it should go in t=
-he BSP specific layer.
-
-Thanks,
-Nitin
 
 
-> -----Original Message-----
-> From: Bodke, Kishore K
-> Sent: Thursday, October 18, 2012 11:19 AM
-> To: Zanussi, Tom; Kamble, Nitin A; yocto@yoctoproject.org
-> Cc: Bodke, Kishore K
-> Subject: [PATCH 1/3] [meta-intel] meta-intel/common:Add a new recipe for
-> Zlib qat_mem Module.
->=20
-> From: Kishore Bodke <kishore.k.bodke@intel.com>
->=20
-> This adds a new recipe to build the Intel Quick Assist Technology Memory
-> Management Module for Zlib.
->=20
-> Signed-off-by: Kishore Bodke <kishore.k.bodke@intel.com>
-> ---
->  .../zlib-qat-module/zlib-qat-module.bb             |   52
-> ++++++++++++++++++++
->  .../zlib-qat-module/zlib_qat_module.patch          |   43 ++++++++++++++=
-++
->  2 files changed, 95 insertions(+)
->  create mode 100644 common/recipes-core/zlib-qat-module/zlib-qat-
-> module.bb
->  create mode 100644 common/recipes-core/zlib-qat-module/zlib-qat-
-> module/zlib_qat_module.patch
->=20
-> diff --git a/common/recipes-core/zlib-qat-module/zlib-qat-module.bb
-> b/common/recipes-core/zlib-qat-module/zlib-qat-module.bb
-> new file mode 100644
-> index 0000000..5ade06e
-> --- /dev/null
-> +++ b/common/recipes-core/zlib-qat-module/zlib-qat-module.bb
-> @@ -0,0 +1,52 @@
-> +SUMMARY=3D"Zlib QAT_MEM Memory Management Module for Intel Quick
-> Assist \
-> +Technology"
-> +DESCRIPTION=3D"This software acelerates the data compression algorithm \
-> +in the zlib software library via the Intel QuickAssist Technology \
-> +implemented on Intel Communications Chipset 89xx Series based
-> platforms."
-> +
-> +HOMEPAGE =3D "http://zlib.net/"
-> +SECTION =3D "libs"
-> +LICENSE =3D "Zlib & GPLv2 & BSD"
-> +
-> +LIC_FILES_CHKSUM =3D "file://${WORKDIR}/zlib-
-> ${PV}/zlib.h;beginline=3D4;endline=3D23;md5=3D94d1b5a40dadd127f3351471727=
-e6
-> 6a9 \
-> +			file://${COMMON_LICENSE_DIR}/GPL-
-> 2.0;md5=3D801f80980d171dd6425610833a22dbe6 \
-> +
-> 	file://${COMMON_LICENSE_DIR}/BSD;md5=3D3775480a712fc46a696476
-> 78acb234cb"
-> +PV =3D "1.2.7"
-> +ZLIB_QAT_VERSION =3D "0.4.0-011"
-> +
-> +PR=3D"r0"
-> +
-> +SRC_URI =3D "http://www.zlib.net/zlib-${PV}.tar.gz;name=3Dzlib \
-> +	http://downloadmirror.intel.com/20294/eng/zlib-${PV}-
-> qat.L.${ZLIB_QAT_VERSION}.tar.gz;name=3Dzlib_qat \
-> +	file://zlib_qat_module.patch"
-> +
-> +SRC_URI[zlib.md5sum]=3D"60df6a37c56e7c1366cca812414f7b85"
-> +SRC_URI[zlib.sha256sum]=3D"fa9c9c8638efb8cb8ef5e4dd5453e455751e1c530
-> b1595eed466e1be9b7e26c5"
-> +
-> +SRC_URI[zlib_qat.md5sum]=3D"88e4140f98d2f9e170bf473f20e1a8d4"
-> +SRC_URI[zlib_qat.sha256sum]=3D"3c360878127f3930e64640ef5a5822719a5059
-> 143326bb4c396645ae37b704a6"
-> +
-> +S =3D "${WORKDIR}/zlib-${PV}/contrib/qat/qat_mem"
-> +
-> +inherit module
-> +export KERNEL_SOURCE_ROOT =3D "${STAGING_KERNEL_DIR}"
-> +
-> +do_patch() 	{
-> +	cd ${WORKDIR}/zlib-${PV}
-> +	patch -p0  < ${WORKDIR}/zlib-${PV}-
-> qat.L.${ZLIB_QAT_VERSION}.patch
-> +
-> +	cd ${WORKDIR}
-> +	patch -p1   < ${WORKDIR}/zlib_qat_module.patch
-> +}
-> +
-> +do_compile()    {
-> +	cd ${S}
-> +	oe_runmake KERNEL_CC=3D"${KERNEL_CC}"
-> +}
-> +
-> +do_install_append()     {
-> +	install -m 0755 -d      		${D}${bindir}
-> +	install -m 0755 ${S}/qat_mem_test       ${D}${bindir}
-> +}
-> +
-> +FILES_${PN} +=3D "${bindir}/qat_mem_test"
-> diff --git a/common/recipes-core/zlib-qat-module/zlib-qat-
-> module/zlib_qat_module.patch b/common/recipes-core/zlib-qat-
-> module/zlib-qat-module/zlib_qat_module.patch
-> new file mode 100644
-> index 0000000..a30f8b0
-> --- /dev/null
-> +++ b/common/recipes-core/zlib-qat-module/zlib-qat-
-> module/zlib_qat_modul
-> +++ e.patch
-> @@ -0,0 +1,43 @@
-> +Index: zlib-qat-module-1.2.7-r0/zlib-1.2.7/contrib/qat/qat_mem/Makefile
-> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+>-----Original Message-----
+>From: Kamble, Nitin A
+>Sent: Friday, October 19, 2012 11:28 AM
+>To: Bodke, Kishore K; Zanussi, Tom; yocto@yoctoproject.org
+>Subject: RE: [PATCH 1/3] [meta-intel] meta-intel/common:Add a new recipe
+>for Zlib qat_mem Module.
+>
+>Hi Kishore,
+>  Same here, if it is not used by multiple BSPs yet, then it should go in =
+the BSP
+>specific layer.
+>
+Yes, these too will be used by both Crystal Forest and Rangely.
+
+Thanks
+Kishore.
+
+>Thanks,
+>Nitin
+>
+>
+>> -----Original Message-----
+>> From: Bodke, Kishore K
+>> Sent: Thursday, October 18, 2012 11:19 AM
+>> To: Zanussi, Tom; Kamble, Nitin A; yocto@yoctoproject.org
+>> Cc: Bodke, Kishore K
+>> Subject: [PATCH 1/3] [meta-intel] meta-intel/common:Add a new recipe for
+>> Zlib qat_mem Module.
+>>
+>> From: Kishore Bodke <kishore.k.bodke@intel.com>
+>>
+>> This adds a new recipe to build the Intel Quick Assist Technology Memory
+>> Management Module for Zlib.
+>>
+>> Signed-off-by: Kishore Bodke <kishore.k.bodke@intel.com>
+>> ---
+>>  .../zlib-qat-module/zlib-qat-module.bb             |   52
+>> ++++++++++++++++++++
+>>  .../zlib-qat-module/zlib_qat_module.patch          |   43 +++++++++++++=
++++
+>>  2 files changed, 95 insertions(+)
+>>  create mode 100644 common/recipes-core/zlib-qat-module/zlib-qat-
+>> module.bb
+>>  create mode 100644 common/recipes-core/zlib-qat-module/zlib-qat-
+>> module/zlib_qat_module.patch
+>>
+>> diff --git a/common/recipes-core/zlib-qat-module/zlib-qat-module.bb
+>> b/common/recipes-core/zlib-qat-module/zlib-qat-module.bb
+>> new file mode 100644
+>> index 0000000..5ade06e
+>> --- /dev/null
+>> +++ b/common/recipes-core/zlib-qat-module/zlib-qat-module.bb
+>> @@ -0,0 +1,52 @@
+>> +SUMMARY=3D"Zlib QAT_MEM Memory Management Module for Intel Quick
+>> Assist \
+>> +Technology"
+>> +DESCRIPTION=3D"This software acelerates the data compression algorithm =
+\
+>> +in the zlib software library via the Intel QuickAssist Technology \
+>> +implemented on Intel Communications Chipset 89xx Series based
+>> platforms."
+>> +
+>> +HOMEPAGE =3D "http://zlib.net/"
+>> +SECTION =3D "libs"
+>> +LICENSE =3D "Zlib & GPLv2 & BSD"
+>> +
+>> +LIC_FILES_CHKSUM =3D "file://${WORKDIR}/zlib-
+>> ${PV}/zlib.h;beginline=3D4;endline=3D23;md5=3D94d1b5a40dadd127f335147172=
+7e6
+>> 6a9 \
+>> +			file://${COMMON_LICENSE_DIR}/GPL-
+>> 2.0;md5=3D801f80980d171dd6425610833a22dbe6 \
+>> +
+>> 	file://${COMMON_LICENSE_DIR}/BSD;md5=3D3775480a712fc46a696476
+>> 78acb234cb"
+>> +PV =3D "1.2.7"
+>> +ZLIB_QAT_VERSION =3D "0.4.0-011"
+>> +
+>> +PR=3D"r0"
+>> +
+>> +SRC_URI =3D "http://www.zlib.net/zlib-${PV}.tar.gz;name=3Dzlib \
+>> +	http://downloadmirror.intel.com/20294/eng/zlib-${PV}-
+>> qat.L.${ZLIB_QAT_VERSION}.tar.gz;name=3Dzlib_qat \
+>> +	file://zlib_qat_module.patch"
+>> +
+>> +SRC_URI[zlib.md5sum]=3D"60df6a37c56e7c1366cca812414f7b85"
+>> +SRC_URI[zlib.sha256sum]=3D"fa9c9c8638efb8cb8ef5e4dd5453e455751e1c530
+>> b1595eed466e1be9b7e26c5"
+>> +
+>> +SRC_URI[zlib_qat.md5sum]=3D"88e4140f98d2f9e170bf473f20e1a8d4"
+>>
+>+SRC_URI[zlib_qat.sha256sum]=3D"3c360878127f3930e64640ef5a5822719a5059
+>> 143326bb4c396645ae37b704a6"
+>> +
+>> +S =3D "${WORKDIR}/zlib-${PV}/contrib/qat/qat_mem"
+>> +
+>> +inherit module
+>> +export KERNEL_SOURCE_ROOT =3D "${STAGING_KERNEL_DIR}"
+>> +
+>> +do_patch() 	{
+>> +	cd ${WORKDIR}/zlib-${PV}
+>> +	patch -p0  < ${WORKDIR}/zlib-${PV}-
+>> qat.L.${ZLIB_QAT_VERSION}.patch
+>> +
+>> +	cd ${WORKDIR}
+>> +	patch -p1   < ${WORKDIR}/zlib_qat_module.patch
+>> +}
+>> +
+>> +do_compile()    {
+>> +	cd ${S}
+>> +	oe_runmake KERNEL_CC=3D"${KERNEL_CC}"
+>> +}
+>> +
+>> +do_install_append()     {
+>> +	install -m 0755 -d      		${D}${bindir}
+>> +	install -m 0755 ${S}/qat_mem_test       ${D}${bindir}
+>> +}
+>> +
+>> +FILES_${PN} +=3D "${bindir}/qat_mem_test"
+>> diff --git a/common/recipes-core/zlib-qat-module/zlib-qat-
+>> module/zlib_qat_module.patch b/common/recipes-core/zlib-qat-
+>> module/zlib-qat-module/zlib_qat_module.patch
+>> new file mode 100644
+>> index 0000000..a30f8b0
+>> --- /dev/null
+>> +++ b/common/recipes-core/zlib-qat-module/zlib-qat-
+>> module/zlib_qat_modul
+>> +++ e.patch
+>> @@ -0,0 +1,43 @@
+>> +Index: zlib-qat-module-1.2.7-r0/zlib-1.2.7/contrib/qat/qat_mem/Makefile
+>> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
 =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> +--- zlib-qat-module-1.2.7-r0.orig/zlib-1.2.7/contrib/qat/qat_mem/Makefil=
-e
-> 	2012-10-16 13:53:10.258938722 -0700
-> ++++ zlib-qat-module-1.2.7-r0/zlib-1.2.7/contrib/qat/qat_mem/Makefile
-> 	2012-10-16 13:59:18.174944864 -0700
-> +@@ -59,13 +59,10 @@
-> + #
-> + #
-> +
-> +#########################################################
-> ##############
-> +##
-> +-
-> + MODULENAME 	:=3D qat_mem
-> +-KDIR		:=3D /lib/modules/$(shell uname -r)/build
-> ++KDIR		:=3D $(KERNEL_SOURCE_ROOT)
-> + PWD		:=3D $(shell pwd)
-> +-
-> +-CC		:=3D gcc -Wall -imacros /usr/src/kernels/$(shell uname -
-> r)/include/linux/autoconf.h
-> +-
-> ++CC		:=3D $(KERNEL_CC) -Wall -imacros
-> $(KERNEL_SOURCE_ROOT)/include/generated/autoconf.h
-> + ifeq ($(KERNELRELEASE),)
-> + all:	$(MODULENAME)_test
-> + all:
-> +@@ -73,20 +70,15 @@
-> + else
-> +   obj-m	:=3D $(MODULENAME).o
-> + endif
-> +-
-> ++modules_install:
-> ++	$(MAKE) -C $(KDIR) SUBDIRS=3D$(PWD) modules_install
-> + $(MODULENAME)_test: $(MODULENAME)_test.c
-> + 	$(CC) -g -o $(MODULENAME)_test $(MODULENAME)_test.c
-> +-
-> +-
-> + load:
-> + 	insmod ./$(MODULENAME).ko
-> +-
-> + unload:
-> + 	rmmod $(MODULENAME)
-> +-
-> + test: all
-> + 	./$(MODULENAME)_test
-> +-
-> + clean:
-> + 	rm -f *.o *.ko Module.symvers modules.order *.mod.c .*.cmd
-> +$(MODULENAME)_test
-> +-
-> --
-> 1.7.9.5
+=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>> +--- zlib-qat-module-1.2.7-r0.orig/zlib-1.2.7/contrib/qat/qat_mem/Makefi=
+le
+>> 	2012-10-16 13:53:10.258938722 -0700
+>> ++++ zlib-qat-module-1.2.7-r0/zlib-1.2.7/contrib/qat/qat_mem/Makefile
+>> 	2012-10-16 13:59:18.174944864 -0700
+>> +@@ -59,13 +59,10 @@
+>> + #
+>> + #
+>> +
+>> +#########################################################
+>> ##############
+>> +##
+>> +-
+>> + MODULENAME 	:=3D qat_mem
+>> +-KDIR		:=3D /lib/modules/$(shell uname -r)/build
+>> ++KDIR		:=3D $(KERNEL_SOURCE_ROOT)
+>> + PWD		:=3D $(shell pwd)
+>> +-
+>> +-CC		:=3D gcc -Wall -imacros /usr/src/kernels/$(shell uname -
+>> r)/include/linux/autoconf.h
+>> +-
+>> ++CC		:=3D $(KERNEL_CC) -Wall -imacros
+>> $(KERNEL_SOURCE_ROOT)/include/generated/autoconf.h
+>> + ifeq ($(KERNELRELEASE),)
+>> + all:	$(MODULENAME)_test
+>> + all:
+>> +@@ -73,20 +70,15 @@
+>> + else
+>> +   obj-m	:=3D $(MODULENAME).o
+>> + endif
+>> +-
+>> ++modules_install:
+>> ++	$(MAKE) -C $(KDIR) SUBDIRS=3D$(PWD) modules_install
+>> + $(MODULENAME)_test: $(MODULENAME)_test.c
+>> + 	$(CC) -g -o $(MODULENAME)_test $(MODULENAME)_test.c
+>> +-
+>> +-
+>> + load:
+>> + 	insmod ./$(MODULENAME).ko
+>> +-
+>> + unload:
+>> + 	rmmod $(MODULENAME)
+>> +-
+>> + test: all
+>> + 	./$(MODULENAME)_test
+>> +-
+>> + clean:
+>> + 	rm -f *.o *.ko Module.symvers modules.order *.mod.c .*.cmd
+>> +$(MODULENAME)_test
+>> +-
+>> --
+>> 1.7.9.5
 
 
