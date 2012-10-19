@@ -1,32 +1,28 @@
-Return-Path: <mihaix.lindner@linux.intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9BD7DE003D7
-	for <yocto@yoctoproject.org>; Fri, 19 Oct 2012 04:50:52 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 19 Oct 2012 04:50:51 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,612,1344236400"; d="scan'208";a="237462691"
-Received: from linux.jf.intel.com (HELO linux.intel.com) ([10.23.219.25])
-	by fmsmga002.fm.intel.com with ESMTP; 19 Oct 2012 04:50:34 -0700
-Received: from mlindnex-mobl1.ger.corp.intel.com (unknown [10.237.105.49])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by linux.intel.com (Postfix) with ESMTP id 27D302C8001
-	for <yocto@yoctoproject.org>; Fri, 19 Oct 2012 04:50:33 -0700 (PDT)
-Message-ID: <50813E84.9010102@linux.intel.com>
-Date: Fri, 19 Oct 2012 14:50:28 +0300
-From: Mihai Lindner <mihaix.lindner@linux.intel.com>
-Organization: Intel OTC
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:15.0) Gecko/20121016 Thunderbird/15.0.1
+Return-Path: <r10kindsofpeople@gmail.com>
+Received: from mail-vc0-f176.google.com (mail-vc0-f176.google.com
+	[209.85.220.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 25D16E003D7
+	for <yocto@yoctoproject.org>; Fri, 19 Oct 2012 05:48:27 -0700 (PDT)
+Received: by mail-vc0-f176.google.com with SMTP id gb22so426006vcb.35
+	for <yocto@yoctoproject.org>; Fri, 19 Oct 2012 05:48:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=bm9p11ApsqqHq3mpjBjVyszsSJ0pM3ghlT09gBkWJtg=;
+	b=lX9b0CrVfTuRGgttDUHA/+vjd3MpD7HEAbMOlkuzDegNHsurVlbR7thOrZcKiJrtBm
+	57H5B9mohz/yGGtpqjG49NVAlNPFamxfk7XNeRR0G4cLpEEs3W7j5PKmy9myWBszqh57
+	x9s6rZR79PNIuC3TJJIXsIfnnnH+L39nt04Tf2xHFWjWlLoG388Fvq7qGRaf+ODQC8Mi
+	IwdI3/6zr5cOjAsf4FU73dh+qWjpydAwY86SNu/6azyTLcB7EoNrRdaINg/YrtbiYWH2
+	ABPMRgKjYEOSMNG5sO5W7xwNTQupb9PYNV8cnA9jHxYmTr4fAfIwTLO7OQU6N0p1bsbr
+	GZIQ==
 MIME-Version: 1.0
+Received: by 10.52.95.234 with SMTP id dn10mr1130798vdb.28.1350650906043; Fri,
+	19 Oct 2012 05:48:26 -0700 (PDT)
+Received: by 10.58.116.196 with HTTP; Fri, 19 Oct 2012 05:48:26 -0700 (PDT)
+Date: Fri, 19 Oct 2012 08:48:26 -0400
+Message-ID: <CAE8H0+Xuk6kZaBNTBA9ZBBZGOs4AADf8zF88WYecDMnD8wyFpg@mail.gmail.com>
+From: r10kindsofpeople <r10kindsofpeople@gmail.com>
 To: yocto@yoctoproject.org
-References: <DDDB9E6645DE24488B8485B41A051F471D9618D2@Mercury.usurf.usu.edu>
-	<36ED13F3654AE54CA763E6821D93A5711047B519@szxeml534-mbx.china.huawei.com>,
-	<507E6C5A.1080108@linux.intel.com>
-	<DDDB9E6645DE24488B8485B41A051F471D965CDB@Mercury.usurf.usu.edu>
-In-Reply-To: <DDDB9E6645DE24488B8485B41A051F471D965CDB@Mercury.usurf.usu.edu>
-Subject: Re: .bashrc not being used by root account
+Subject: Crownbay .hddimg partition is corrupt...but works?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,88 +34,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 19 Oct 2012 11:50:52 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 19 Oct 2012 12:48:27 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On 10/18/2012 07:52 PM, Jonathan Haws wrote:
-> Okay, I have done a couple of things:
->
-> 1. I appended to the base-passwd recipe and added my own patch that would patch the passwd file to have root use a bash shell.  I have verified that this is the case when I login via echo $0.  It tells me that root's shell is bash.
->
-> 2. I have appended to the base-files recipe and added a do_install_append() function to my bbappend file that copies the dot.bashrc to /home/root/.bashrc.  I have verified that this is taking place and the .bashrc file is actually in /home/root.
->
-> 3. I ran 'strace -f bash' after logging in and /home/root/.bashrc is sourced (I saw it in the output and my aliases were available).
->
-> However, upon first login, it appears that /home/root/.bashrc is NOT sourced by bash.  How can I get bash to source that file when I login at a console?
->
+I've been following with interest the thread on creating multiple
+partitions, but before I get there, I seem to have a stumbling block.
 
-There are 2 solutions for this: rename your .bashrc in .profile, or copy 
-/etc/skel/.profile in /root/.profile
+I've been using dd to copy the .hddimg onto an SDCard and booting from
+there.  It works fine.  The core-image-minimal image is about 32MB,
+copied onto a 16GB card.  When 'boot' is mounted under Ubuntu 12.04, I
+see the 5 files totaling about 31 MB with about 1 MB free.
 
-.bashrc is sourced only for non-login shells. For console login shells 
-only .profile (or .bash_profile or .bash_login) is sourced.
+But when I run 'parted' on /dev/mmcblk0, I see one 16GB partition
+using the fat16 file system.  'parted check' warns me that Partition 1
+is 16.0GB, but the file system is 32.2MB.  GParted basically throws up
+its hands in frustration and gives up.
 
-Cheers,
---Mihai
+It seems to me that before I start trying to get a class created that
+will create the partitions automatically, I ought to first figure out
+how to create the partitions by hand, but I'm not convinced that the
+.hddimg is giving me a solid foundation to start with.
 
-> Thanks for the help!
-> Jonathan
->
->
-> ________________________________________
-> From: yocto-bounces@yoctoproject.org [yocto-bounces@yoctoproject.org] on behalf of Mihai Lindner [mihaix.lindner@linux.intel.com]
-> Sent: Wednesday, October 17, 2012 02:29
-> To: yocto@yoctoproject.org
-> Subject: Re: [yocto] .bashrc not being used by root account
->
-> On 10/17/2012 09:25 AM, Venkata ramana gollamudi wrote:
->> You can check the same with  "strace -f bash"
->> You can see the files being loaded, as there is a rc file loading sequence exists for bash.
->>
->> Regards,
->> Ramana
->>
->> ________________________________________
->> From: yocto-bounces@yoctoproject.org [yocto-bounces@yoctoproject.org] on behalf of Jonathan Haws [Jonathan.Haws@sdl.usu.edu]
->> Sent: Tuesday, October 16, 2012 9:32 PM
->> To: yocto@yoctoproject.org
->> Subject: [yocto] .bashrc not being used by root account
->>
->> I have modified the .bashrc file for the system, however the root account does not seem to use it by default.  What am I missing?  I would rather not have to source the .bashrc file every time I login as root.
->
-> Try `echo $0` to see the shell you're in. By default you should be in
-> `sh`, which does not source .bashrc.
-> You can execute `bash` after login, or change the login shell of 'root'.
->
-> Cheers,
-> --Mihai
->
->>
->> Thanks,
->> Jonathan
->>
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->>
->
->
-> --
-> Mihai Lindner
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
->
+Can anyone give me clues to the why/wherefore of the partition that
+the build system is creating?  If I create my own partitions on the
+card first, won't the 'dd' operation simply wipe that out and replace
+it with the current situation?
 
+I'm using the Crownbay emgd layer, Denzil 7.0.1.
 
--- 
-Mihai Lindner
+John
 
