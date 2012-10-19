@@ -1,28 +1,28 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3FA54E00348
-	for <yocto@yoctoproject.org>; Fri, 19 Oct 2012 11:48:58 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 19 Oct 2012 11:48:57 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,615,1344236400"; d="scan'208";a="229824428"
-Received: from unknown (HELO [10.255.14.73]) ([10.255.14.73])
-	by orsmga002.jf.intel.com with ESMTP; 19 Oct 2012 11:48:57 -0700
-Message-ID: <1350672536.1569.21.camel@empanada>
-From: Tom Zanussi <tom.zanussi@intel.com>
-To: "Bodke, Kishore K" <kishore.k.bodke@intel.com>
-Date: Fri, 19 Oct 2012 13:48:56 -0500
-In-Reply-To: <D956029D25CF204F948EA0FB515E1EE233E6D849@ORSMSX105.amr.corp.intel.com>
-References: <cover.1350583189.git.kishore.k.bodke@intel.com>
-	<46df5fcf29108c0c9b5ed6714ec012fd03b94e55.1350583189.git.kishore.k.bodke@intel.com>
-	<ADD6A3980E8C39419A432FF422031B4C2D90C94E@ORSMSX106.amr.corp.intel.com>
-	<D956029D25CF204F948EA0FB515E1EE233E6D804@ORSMSX105.amr.corp.intel.com>
-	<1350671677.1569.14.camel@empanada>
-	<D956029D25CF204F948EA0FB515E1EE233E6D849@ORSMSX105.amr.corp.intel.com>
-X-Mailer: Evolution 3.4.1 (3.4.1-2.fc17) 
-Mime-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [PATCH 1/3] [meta-intel] meta-intel/common:Add a new recipe for Zlib qat_mem Module.
+Return-Path: <b.hutchman@gmail.com>
+Received: from mail-oa0-f48.google.com (mail-oa0-f48.google.com
+	[209.85.219.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3731EE00348
+	for <yocto@yoctoproject.org>; Fri, 19 Oct 2012 12:53:28 -0700 (PDT)
+Received: by mail-oa0-f48.google.com with SMTP id h2so971311oag.35
+	for <yocto@yoctoproject.org>; Fri, 19 Oct 2012 12:53:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=MWDuL/QQUcEb9bYeqw9pJlmGYNKktnzrgmYuE95/as8=;
+	b=Wm051+BPIJbRHr20L3zdLQFv7jZx0OWYjXmnJ0a1XzNPoI9KFakFmDxiC/bCj6DGaD
+	KMhAncySrEJzQuUtjc3T0u9en70dkLKQ7tjWVOqWJhsVTCof1F7VhJKatkcK3mIYjnSd
+	Ql/uE0Di+wI9OU0NW/BxqUj3kzCLyUk9fQixQ4OGMu5c0VNR2V/k59R5VQfVtQuQod15
+	FZPKyuYVjNHXNgdrSxL/gsez8VkUi0gVU+fqdcKzg58T52qpanVoO+oZ0Wh9tUbKcaCk
+	EHBUV7/AKfkzCohJsGFwKfJW372GDSokRHa6wHf8/L6TtnaP9hA31IuW/CPxFlqPkNGj
+	n2Uw==
+MIME-Version: 1.0
+Received: by 10.60.13.198 with SMTP id j6mr2443253oec.51.1350676405405; Fri,
+	19 Oct 2012 12:53:25 -0700 (PDT)
+Received: by 10.76.22.198 with HTTP; Fri, 19 Oct 2012 12:53:25 -0700 (PDT)
+Date: Fri, 19 Oct 2012 15:53:25 -0400
+Message-ID: <CAFZh4h_OQBiRAYWbeXuLV6m0wLeohb2rD4NZe+MgfDgqAwXmvw@mail.gmail.com>
+From: Brian Hutchinson <b.hutchman@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Building meta-toolchain-sdk fails on some strange cannot parse db2omf.lang stuff
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,250 +34,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 19 Oct 2012 18:48:58 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 19 Oct 2012 19:53:28 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On Fri, 2012-10-19 at 13:40 -0500, Bodke, Kishore K wrote:
-> 
-> >-----Original Message-----
-> >From: Zanussi, Tom
-> >Sent: Friday, October 19, 2012 11:35 AM
-> >To: Bodke, Kishore K
-> >Cc: Kamble, Nitin A; yocto@yoctoproject.org
-> >Subject: Re: [PATCH 1/3] [meta-intel] meta-intel/common:Add a new recipe
-> >for Zlib qat_mem Module.
-> >
-> >Hi Kishore,
-> >
-> >I've built these and they look ok as far as that goes.
-> >
-> >But I'm wondering, which kernel did you test with and which kernel(s)
-> >are these modules designed for i.e. will they work with all the kernels
-> >supported for 1.3?
-> 
-> Hi Tom,
-> 
-> I have tested them for 3.4 Kernel for Yocto, since for Crystal Forest we only have 3.4 for now.
-> Apart from that, it should work with all the kernel versions.
-> I have tested 3.0 and 3.5 on Fedora. 
-> 
+Hi,
 
-OK, for something in common, we have to think about someone using them
-with any yocto kernel, not just 3.4.  Since you're saying they work with
-3.0, 3.4 and 3.5, I guess there's not too much risk that they'll break
-with 3.2.  If that's not the case, you should probably restrict them to
-your BSP (but we don't want multiple copies) either.
-
-The best thing would be to move them into the linux-yocto kernel(s) they
-have been tested with - that way users know those features work and are
-safe to use in their BSPs.
-
-Tom
-
-> Thanks
-> Kishore.
-> 
-> >
-> >Tom
-> >
-> >On Fri, 2012-10-19 at 13:28 -0500, Bodke, Kishore K wrote:
-> >>
-> >> >-----Original Message-----
-> >> >From: Kamble, Nitin A
-> >> >Sent: Friday, October 19, 2012 11:28 AM
-> >> >To: Bodke, Kishore K; Zanussi, Tom; yocto@yoctoproject.org
-> >> >Subject: RE: [PATCH 1/3] [meta-intel] meta-intel/common:Add a new
-> >recipe
-> >> >for Zlib qat_mem Module.
-> >> >
-> >> >Hi Kishore,
-> >> >  Same here, if it is not used by multiple BSPs yet, then it should go in the
-> >BSP
-> >> >specific layer.
-> >> >
-> >> Yes, these too will be used by both Crystal Forest and Rangely.
-> >>
-> >> Thanks
-> >> Kishore.
-> >>
-> >> >Thanks,
-> >> >Nitin
-> >> >
-> >> >
-> >> >> -----Original Message-----
-> >> >> From: Bodke, Kishore K
-> >> >> Sent: Thursday, October 18, 2012 11:19 AM
-> >> >> To: Zanussi, Tom; Kamble, Nitin A; yocto@yoctoproject.org
-> >> >> Cc: Bodke, Kishore K
-> >> >> Subject: [PATCH 1/3] [meta-intel] meta-intel/common:Add a new recipe
-> >for
-> >> >> Zlib qat_mem Module.
-> >> >>
-> >> >> From: Kishore Bodke <kishore.k.bodke@intel.com>
-> >> >>
-> >> >> This adds a new recipe to build the Intel Quick Assist Technology Memory
-> >> >> Management Module for Zlib.
-> >> >>
-> >> >> Signed-off-by: Kishore Bodke <kishore.k.bodke@intel.com>
-> >> >> ---
-> >> >>  .../zlib-qat-module/zlib-qat-module.bb             |   52
-> >> >> ++++++++++++++++++++
-> >> >>  .../zlib-qat-module/zlib_qat_module.patch          |   43
-> >++++++++++++++++
-> >> >>  2 files changed, 95 insertions(+)
-> >> >>  create mode 100644 common/recipes-core/zlib-qat-module/zlib-qat-
-> >> >> module.bb
-> >> >>  create mode 100644 common/recipes-core/zlib-qat-module/zlib-qat-
-> >> >> module/zlib_qat_module.patch
-> >> >>
-> >> >> diff --git a/common/recipes-core/zlib-qat-module/zlib-qat-module.bb
-> >> >> b/common/recipes-core/zlib-qat-module/zlib-qat-module.bb
-> >> >> new file mode 100644
-> >> >> index 0000000..5ade06e
-> >> >> --- /dev/null
-> >> >> +++ b/common/recipes-core/zlib-qat-module/zlib-qat-module.bb
-> >> >> @@ -0,0 +1,52 @@
-> >> >> +SUMMARY="Zlib QAT_MEM Memory Management Module for Intel
-> >Quick
-> >> >> Assist \
-> >> >> +Technology"
-> >> >> +DESCRIPTION="This software acelerates the data compression
-> >algorithm \
-> >> >> +in the zlib software library via the Intel QuickAssist Technology \
-> >> >> +implemented on Intel Communications Chipset 89xx Series based
-> >> >> platforms."
-> >> >> +
-> >> >> +HOMEPAGE = "http://zlib.net/"
-> >> >> +SECTION = "libs"
-> >> >> +LICENSE = "Zlib & GPLv2 & BSD"
-> >> >> +
-> >> >> +LIC_FILES_CHKSUM = "file://${WORKDIR}/zlib-
-> >> >>
-> >${PV}/zlib.h;beginline=4;endline=23;md5=94d1b5a40dadd127f3351471727e6
-> >> >> 6a9 \
-> >> >> +			file://${COMMON_LICENSE_DIR}/GPL-
-> >> >> 2.0;md5=801f80980d171dd6425610833a22dbe6 \
-> >> >> +
-> >> >> 	file://${COMMON_LICENSE_DIR}/BSD;md5=3775480a712fc46a696476
-> >> >> 78acb234cb"
-> >> >> +PV = "1.2.7"
-> >> >> +ZLIB_QAT_VERSION = "0.4.0-011"
-> >> >> +
-> >> >> +PR="r0"
-> >> >> +
-> >> >> +SRC_URI = "http://www.zlib.net/zlib-${PV}.tar.gz;name=zlib \
-> >> >> +	http://downloadmirror.intel.com/20294/eng/zlib-${PV}-
-> >> >> qat.L.${ZLIB_QAT_VERSION}.tar.gz;name=zlib_qat \
-> >> >> +	file://zlib_qat_module.patch"
-> >> >> +
-> >> >> +SRC_URI[zlib.md5sum]="60df6a37c56e7c1366cca812414f7b85"
-> >> >>
-> >+SRC_URI[zlib.sha256sum]="fa9c9c8638efb8cb8ef5e4dd5453e455751e1c530
-> >> >> b1595eed466e1be9b7e26c5"
-> >> >> +
-> >> >> +SRC_URI[zlib_qat.md5sum]="88e4140f98d2f9e170bf473f20e1a8d4"
-> >> >>
-> >>
-> >>+SRC_URI[zlib_qat.sha256sum]="3c360878127f3930e64640ef5a5822719a5059
-> >> >> 143326bb4c396645ae37b704a6"
-> >> >> +
-> >> >> +S = "${WORKDIR}/zlib-${PV}/contrib/qat/qat_mem"
-> >> >> +
-> >> >> +inherit module
-> >> >> +export KERNEL_SOURCE_ROOT = "${STAGING_KERNEL_DIR}"
-> >> >> +
-> >> >> +do_patch() 	{
-> >> >> +	cd ${WORKDIR}/zlib-${PV}
-> >> >> +	patch -p0  < ${WORKDIR}/zlib-${PV}-
-> >> >> qat.L.${ZLIB_QAT_VERSION}.patch
-> >> >> +
-> >> >> +	cd ${WORKDIR}
-> >> >> +	patch -p1   < ${WORKDIR}/zlib_qat_module.patch
-> >> >> +}
-> >> >> +
-> >> >> +do_compile()    {
-> >> >> +	cd ${S}
-> >> >> +	oe_runmake KERNEL_CC="${KERNEL_CC}"
-> >> >> +}
-> >> >> +
-> >> >> +do_install_append()     {
-> >> >> +	install -m 0755 -d      		${D}${bindir}
-> >> >> +	install -m 0755 ${S}/qat_mem_test       ${D}${bindir}
-> >> >> +}
-> >> >> +
-> >> >> +FILES_${PN} += "${bindir}/qat_mem_test"
-> >> >> diff --git a/common/recipes-core/zlib-qat-module/zlib-qat-
-> >> >> module/zlib_qat_module.patch b/common/recipes-core/zlib-qat-
-> >> >> module/zlib-qat-module/zlib_qat_module.patch
-> >> >> new file mode 100644
-> >> >> index 0000000..a30f8b0
-> >> >> --- /dev/null
-> >> >> +++ b/common/recipes-core/zlib-qat-module/zlib-qat-
-> >> >> module/zlib_qat_modul
-> >> >> +++ e.patch
-> >> >> @@ -0,0 +1,43 @@
-> >> >> +Index: zlib-qat-module-1.2.7-r0/zlib-
-> >1.2.7/contrib/qat/qat_mem/Makefile
-> >> >>
-> >+=========================================================
-> >> >> ==========
-> >> >> +--- zlib-qat-module-1.2.7-r0.orig/zlib-
-> >1.2.7/contrib/qat/qat_mem/Makefile
-> >> >> 	2012-10-16 13:53:10.258938722 -0700
-> >> >> ++++ zlib-qat-module-1.2.7-r0/zlib-1.2.7/contrib/qat/qat_mem/Makefile
-> >> >> 	2012-10-16 13:59:18.174944864 -0700
-> >> >> +@@ -59,13 +59,10 @@
-> >> >> + #
-> >> >> + #
-> >> >> +
-> >> >>
-> >+#########################################################
-> >> >> ##############
-> >> >> +##
-> >> >> +-
-> >> >> + MODULENAME 	:= qat_mem
-> >> >> +-KDIR		:= /lib/modules/$(shell uname -r)/build
-> >> >> ++KDIR		:= $(KERNEL_SOURCE_ROOT)
-> >> >> + PWD		:= $(shell pwd)
-> >> >> +-
-> >> >> +-CC		:= gcc -Wall -imacros /usr/src/kernels/$(shell uname -
-> >> >> r)/include/linux/autoconf.h
-> >> >> +-
-> >> >> ++CC		:= $(KERNEL_CC) -Wall -imacros
-> >> >> $(KERNEL_SOURCE_ROOT)/include/generated/autoconf.h
-> >> >> + ifeq ($(KERNELRELEASE),)
-> >> >> + all:	$(MODULENAME)_test
-> >> >> + all:
-> >> >> +@@ -73,20 +70,15 @@
-> >> >> + else
-> >> >> +   obj-m	:= $(MODULENAME).o
-> >> >> + endif
-> >> >> +-
-> >> >> ++modules_install:
-> >> >> ++	$(MAKE) -C $(KDIR) SUBDIRS=$(PWD) modules_install
-> >> >> + $(MODULENAME)_test: $(MODULENAME)_test.c
-> >> >> + 	$(CC) -g -o $(MODULENAME)_test $(MODULENAME)_test.c
-> >> >> +-
-> >> >> +-
-> >> >> + load:
-> >> >> + 	insmod ./$(MODULENAME).ko
-> >> >> +-
-> >> >> + unload:
-> >> >> + 	rmmod $(MODULENAME)
-> >> >> +-
-> >> >> + test: all
-> >> >> + 	./$(MODULENAME)_test
-> >> >> +-
-> >> >> + clean:
-> >> >> + 	rm -f *.o *.ko Module.symvers modules.order *.mod.c .*.cmd
-> >> >> +$(MODULENAME)_test
-> >> >> +-
-> >> >> --
-> >> >> 1.7.9.5
-> >>
-> >
-> 
+I'm trying to spin a toolchain (Poky 1.1) for x86 target that contains
+sysroot we need to link our apps against.  The bitbake of
+meta-toolchain worked fine (but no sysroot) but bitbake
+meta-toolchain-sdk fails one some gnome-doc-utils stuff that looks
+like:
 
 
+| warning: failed to load external entity "db2omf.lang"
+| cannot parse db2omf.lang
+| make[2]: *** [gnome-doc-make-C.omf] Error 1
+| make[2]: *** Waiting for unfinished jobs....
+
+When I consult Google, I see lots of other projects complaining about
+similar messages but I don't see anything that helps me figure out
+what my problem is.
+
+I'm on Ubuntu 10.04.
+
+Has anyone seen something like this before?
+
+Thanks,
+
+Brian
 
