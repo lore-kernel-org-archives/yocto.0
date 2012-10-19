@@ -1,28 +1,23 @@
-Return-Path: <b.hutchman@gmail.com>
-Received: from mail-oa0-f48.google.com (mail-oa0-f48.google.com
-	[209.85.219.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3731EE00348
-	for <yocto@yoctoproject.org>; Fri, 19 Oct 2012 12:53:28 -0700 (PDT)
-Received: by mail-oa0-f48.google.com with SMTP id h2so971311oag.35
-	for <yocto@yoctoproject.org>; Fri, 19 Oct 2012 12:53:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=MWDuL/QQUcEb9bYeqw9pJlmGYNKktnzrgmYuE95/as8=;
-	b=Wm051+BPIJbRHr20L3zdLQFv7jZx0OWYjXmnJ0a1XzNPoI9KFakFmDxiC/bCj6DGaD
-	KMhAncySrEJzQuUtjc3T0u9en70dkLKQ7tjWVOqWJhsVTCof1F7VhJKatkcK3mIYjnSd
-	Ql/uE0Di+wI9OU0NW/BxqUj3kzCLyUk9fQixQ4OGMu5c0VNR2V/k59R5VQfVtQuQod15
-	FZPKyuYVjNHXNgdrSxL/gsez8VkUi0gVU+fqdcKzg58T52qpanVoO+oZ0Wh9tUbKcaCk
-	EHBUV7/AKfkzCohJsGFwKfJW372GDSokRHa6wHf8/L6TtnaP9hA31IuW/CPxFlqPkNGj
-	n2Uw==
-MIME-Version: 1.0
-Received: by 10.60.13.198 with SMTP id j6mr2443253oec.51.1350676405405; Fri,
-	19 Oct 2012 12:53:25 -0700 (PDT)
-Received: by 10.76.22.198 with HTTP; Fri, 19 Oct 2012 12:53:25 -0700 (PDT)
-Date: Fri, 19 Oct 2012 15:53:25 -0400
-Message-ID: <CAFZh4h_OQBiRAYWbeXuLV6m0wLeohb2rD4NZe+MgfDgqAwXmvw@mail.gmail.com>
-From: Brian Hutchinson <b.hutchman@gmail.com>
-To: yocto@yoctoproject.org
-Subject: Building meta-toolchain-sdk fails on some strange cannot parse db2omf.lang stuff
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D1301E00348
+	for <yocto@yoctoproject.org>; Fri, 19 Oct 2012 13:08:09 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 19 Oct 2012 13:07:44 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,615,1344236400"; d="scan'208";a="229851885"
+Received: from unknown (HELO [10.255.14.73]) ([10.255.14.73])
+	by orsmga002.jf.intel.com with ESMTP; 19 Oct 2012 13:08:08 -0700
+Message-ID: <1350677288.1569.25.camel@empanada>
+From: Tom Zanussi <tom.zanussi@intel.com>
+To: Ross Burton <ross.burton@intel.com>
+Date: Fri, 19 Oct 2012 15:08:08 -0500
+In-Reply-To: <1350487279-1681-1-git-send-email-ross.burton@intel.com>
+References: <1350487279-1681-1-git-send-email-ross.burton@intel.com>
+X-Mailer: Evolution 3.4.1 (3.4.1-2.fc17) 
+Mime-Version: 1.0
+Cc: yocto@yoctoproject.org, dvhart@linux.intel.com
+Subject: Re: Cedar Trail and gst-vaapi fixes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,32 +29,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 19 Oct 2012 19:53:28 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Fri, 19 Oct 2012 20:08:09 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Hi,
+On Wed, 2012-10-17 at 16:21 +0100, Ross Burton wrote:
+> Hi,
+> 
+> Make gst-vaapi work on Cedar Trail, upgrade the gst-vaapi to the latest version
+> which doesn't need ffmpeg anymore, and remove the commercial restriction on
+> gst-vaapi.
+> 
+> The new gst-vaapi was tested on Cedar Trail, and played the Sintel 720p trailer
+> smoothly.  ffmpeg was required for the audio (MPEG4 AAC), but without that
+> present the video still plays.
+> 
 
-I'm trying to spin a toolchain (Poky 1.1) for x86 target that contains
-sysroot we need to link our apps against.  The bitbake of
-meta-toolchain worked fine (but no sysroot) but bitbake
-meta-toolchain-sdk fails one some gnome-doc-utils stuff that looks
-like:
+I pulled the first two patches into meta-intel/master, but left the
+third behind - we still need the commercial license since the
+gst-ffmpeg requires it, and even then we still want to keep the
+VA_FEATURES so users can just set it to "" to not include video
+acceleration.
+
+Tom
+
+> Ross
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
 
-| warning: failed to load external entity "db2omf.lang"
-| cannot parse db2omf.lang
-| make[2]: *** [gnome-doc-make-C.omf] Error 1
-| make[2]: *** Waiting for unfinished jobs....
-
-When I consult Google, I see lots of other projects complaining about
-similar messages but I don't see anything that helps me figure out
-what my problem is.
-
-I'm on Ubuntu 10.04.
-
-Has anyone seen something like this before?
-
-Thanks,
-
-Brian
 
