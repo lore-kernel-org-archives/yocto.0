@@ -1,34 +1,36 @@
-Return-Path: <kishore.k.bodke@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 62F87E00348
-	for <yocto@yoctoproject.org>; Fri, 19 Oct 2012 11:26:00 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 19 Oct 2012 11:26:00 -0700
+Return-Path: <nitin.a.kamble@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 685ABE003D6
+	for <yocto@yoctoproject.org>; Fri, 19 Oct 2012 11:28:23 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 19 Oct 2012 11:28:23 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,613,1344236400"; d="scan'208";a="237624042"
-Received: from orsmsx104.amr.corp.intel.com ([10.22.225.131])
-	by fmsmga002.fm.intel.com with ESMTP; 19 Oct 2012 11:25:59 -0700
-Received: from orsmsx105.amr.corp.intel.com ([169.254.4.140]) by
-	ORSMSX104.amr.corp.intel.com ([169.254.3.247]) with mapi id
-	14.01.0355.002; Fri, 19 Oct 2012 11:25:59 -0700
-From: "Bodke, Kishore K" <kishore.k.bodke@intel.com>
-To: "Kamble, Nitin A" <nitin.a.kamble@intel.com>, "Zanussi, Tom"
+X-IronPort-AV: E=Sophos;i="4.80,613,1344236400"; d="scan'208";a="208223268"
+Received: from orsmsx102.amr.corp.intel.com ([10.22.225.129])
+	by orsmga001.jf.intel.com with ESMTP; 19 Oct 2012 11:28:22 -0700
+Received: from orsmsx108.amr.corp.intel.com (10.22.225.41) by
+	ORSMSX102.amr.corp.intel.com (10.22.225.129) with Microsoft SMTP Server
+	(TLS) id 14.1.355.2; Fri, 19 Oct 2012 11:28:21 -0700
+Received: from orsmsx106.amr.corp.intel.com ([169.254.5.130]) by
+	ORSMSX108.amr.corp.intel.com ([169.254.9.119]) with mapi id
+	14.01.0355.002; Fri, 19 Oct 2012 11:27:58 -0700
+From: "Kamble, Nitin A" <nitin.a.kamble@intel.com>
+To: "Bodke, Kishore K" <kishore.k.bodke@intel.com>, "Zanussi, Tom"
 	<tom.zanussi@intel.com>, "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [PATCH 2/3][meta-intel] meta-intel/common: Add new recipe for
-	libcrypto module.
-Thread-Index: AQHNrVspTZ74QuMX+kieD+EteYeQr5fBaKmA//+KweA=
-Date: Fri, 19 Oct 2012 18:25:58 +0000
-Message-ID: <D956029D25CF204F948EA0FB515E1EE233E6D7ED@ORSMSX105.amr.corp.intel.com>
+Thread-Topic: [PATCH 1/3] [meta-intel] meta-intel/common:Add a new recipe
+	for Zlib qat_mem Module.
+Thread-Index: AQHNrVzzUGNd0ACVp0KefjZQNQm3spfA9ANQ
+Date: Fri, 19 Oct 2012 18:27:58 +0000
+Message-ID: <ADD6A3980E8C39419A432FF422031B4C2D90C94E@ORSMSX106.amr.corp.intel.com>
 References: <cover.1350583189.git.kishore.k.bodke@intel.com>
-	<dc33321b7e5d0b990e730edcd5593d27ef379d1c.1350583189.git.kishore.k.bodke@intel.com>
-	<ADD6A3980E8C39419A432FF422031B4C2D90C929@ORSMSX106.amr.corp.intel.com>
-In-Reply-To: <ADD6A3980E8C39419A432FF422031B4C2D90C929@ORSMSX106.amr.corp.intel.com>
+	<46df5fcf29108c0c9b5ed6714ec012fd03b94e55.1350583189.git.kishore.k.bodke@intel.com>
+In-Reply-To: <46df5fcf29108c0c9b5ed6714ec012fd03b94e55.1350583189.git.kishore.k.bodke@intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [10.22.254.139]
 MIME-Version: 1.0
-Subject: Re: [PATCH 2/3][meta-intel] meta-intel/common: Add new recipe for libcrypto module.
+Subject: Re: [PATCH 1/3] [meta-intel] meta-intel/common:Add a new recipe for Zlib qat_mem Module.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,208 +42,181 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 19 Oct 2012 18:26:00 -0000
+X-List-Received-Date: Fri, 19 Oct 2012 18:28:23 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
+Hi Kishore,
+  Same here, if it is not used by multiple BSPs yet, then it should go in t=
+he BSP specific layer.
+
+Thanks,
+Nitin
 
 
->-----Original Message-----
->From: Kamble, Nitin A
->Sent: Friday, October 19, 2012 11:25 AM
->To: Bodke, Kishore K; Zanussi, Tom; yocto@yoctoproject.org
->Subject: RE: [PATCH 2/3][meta-intel] meta-intel/common: Add new recipe for
->libcrypto module.
->
->Hi Kishore,
->   Will this recipe is being used for multiple BSPs? If not then it can go=
- in the
->BSP specific layer.
->
-
-Hi Nitin,
-
-Yes, these will be used by both Crystal Forest and Rangely.  So I put them =
-in common.
-
-Thanks
-Kishore.
-
->Thanks,
->Nitin
->
->> -----Original Message-----
->> From: Bodke, Kishore K
->> Sent: Thursday, October 18, 2012 11:19 AM
->> To: Zanussi, Tom; Kamble, Nitin A; yocto@yoctoproject.org
->> Cc: Bodke, Kishore K
->> Subject: [PATCH 2/3][meta-intel] meta-intel/common: Add new recipe for
->> libcrypto module.
->>
->> From: Kishore Bodke <kishore.k.bodke@intel.com>
->>
->> This adds a new recipe to include the Intel Quick Assist Technology libc=
-rypto
->> Memory Management Module.
->>
->> Signed-off-by: Kishore Bodke <kishore.k.bodke@intel.com>
->> ---
->>  .../openssl-qat-module/openssl-qat-module.bb       |   54
->> ++++++++++++++++++++
->>  .../openssl-qat-module/openssl_qat_module.patch    |   43
->> ++++++++++++++++
->>  2 files changed, 97 insertions(+)
->>  create mode 100644 common/recipes-connectivity/openssl-qat-
->> module/openssl-qat-module.bb
->>  create mode 100644 common/recipes-connectivity/openssl-qat-
->> module/openssl-qat-module/openssl_qat_module.patch
->>
->> diff --git a/common/recipes-connectivity/openssl-qat-module/openssl-qat-
->> module.bb b/common/recipes-connectivity/openssl-qat-module/openssl-
->> qat-module.bb
->> new file mode 100644
->> index 0000000..a4fe3c5
->> --- /dev/null
->> +++ b/common/recipes-connectivity/openssl-qat-module/openssl-qat-
->> module.
->> +++ bb
->> @@ -0,0 +1,54 @@
->> +SUMMARY =3D "libcrypto* (OpenSSL*) QAT_MEM Memory Management
->> Module \ for
->> +Intel Quick Assist Technology"
->> +DESCRIPTION =3D "This software adds an engine that accelerates some of =
-\
->> +the libcrypto algorithms via the Intel QuickAssist Technology \
->> +implemented on Intel Communications Chipset 89xx Series based
->> platforms."
->> +
->> +HOMEPAGE =3D "http://www.openssl.org/"
->> +SECTION =3D "libs/network"
->> +
->> +LICENSE =3D "openssl"
->> +LIC_FILES_CHKSUM =3D "file://${WORKDIR}/openssl-
->> ${PV}/LICENSE;md5=3Df9a8f968107345e0b75aa8c2ecaa7ec8"
->> +
->> +PV =3D "1.0.1"
->> +PR =3D "r0"
->> +
->> +OPENSSL_QAT_VERSION =3D "0.4.0-012"
->> +
->> +SRC_URI =3D "http://www.openssl.org/source/openssl-
->> ${PV}.tar.gz;name=3Dopenssl \
->> +	http://downloadmirror.intel.com/19368/eng/libcrypto-openssl-
->> ${PV}-qat.L.${OPENSSL_QAT_VERSION}.tar.gz;name=3Dlibcrypto \
->> +	file://openssl_qat_module.patch"
->> +
->> +SRC_URI[openssl.md5sum]=3D"134f168bc2a8333f19f81d684841710b"
->>
->+SRC_URI[openssl.sha256sum]=3D"4d9f0a594a9a89b28e1a04a9504c04104f6508
->> ee27ad1e0efdd17a7a6dbbeeee"
->> +
->> +SRC_URI[libcrypto.md5sum] =3D "e4e131fa56d3aa1a52b5bdb9f8fe5a69"
->> +SRC_URI[libcrypto.sha256sum] =3D
->>
->"19a80ae6e78548934295d312148e4254c18dabd25e2fd72de5796d8ac15b1cfb"
->> +
->> +S =3D "${WORKDIR}/openssl-${PV}/engines/qat_engine/qat_mem"
->> +
->> +export KERNEL_SOURCE_ROOT =3D "${STAGING_KERNEL_DIR}"
->> +inherit module
->> +
->> +do_patch()     {
->> +	cd ${WORKDIR}/openssl-${PV}
->> +	patch -p2 <
->> +${WORKDIR}/libcrypto-openssl-${PV}-
->> qat.L.${OPENSSL_QAT_VERSION}.patch
->> +
->> +	cd ${WORKDIR}
->> +	patch -p1 <${WORKDIR}/openssl_qat_module.patch
->> +}
->> +
->> +do_compile() 	{
->> +	cd ${S}
->> +	oe_runmake  KERNEL_CC=3D"${KERNEL_CC}"
->> +}
->> +
->> +do_install_append() 	{
->> +	install -m 0755 -d ${D}${bindir} \
->> +			   ${D}${includedir}/engines/qat_engine/qat_mem
->> +
->> +	install -m 0755 ${S}/qat_mem_test  ${D}${bindir}
->> +	install -m 0750 ${S}/*.h
->> ${D}${includedir}/engines/qat_engine/qat_mem/
->> +}
->> +
->> +FILES_${PN} +=3D "${bindir}/qat_mem_test"
->> diff --git a/common/recipes-connectivity/openssl-qat-module/openssl-qat-
->> module/openssl_qat_module.patch b/common/recipes-
->> connectivity/openssl-qat-module/openssl-qat-
->> module/openssl_qat_module.patch
->> new file mode 100644
->> index 0000000..dfed3c0
->> --- /dev/null
->> +++ b/common/recipes-connectivity/openssl-qat-module/openssl-qat-
->> module/
->> +++ openssl_qat_module.patch
->> @@ -0,0 +1,43 @@
->> +Index:
->> +openssl-qat-module-1.0.1-r0/openssl-
->> 1.0.1/engines/qat_engine/qat_mem/Ma
->> +kefile
->> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+> -----Original Message-----
+> From: Bodke, Kishore K
+> Sent: Thursday, October 18, 2012 11:19 AM
+> To: Zanussi, Tom; Kamble, Nitin A; yocto@yoctoproject.org
+> Cc: Bodke, Kishore K
+> Subject: [PATCH 1/3] [meta-intel] meta-intel/common:Add a new recipe for
+> Zlib qat_mem Module.
+>=20
+> From: Kishore Bodke <kishore.k.bodke@intel.com>
+>=20
+> This adds a new recipe to build the Intel Quick Assist Technology Memory
+> Management Module for Zlib.
+>=20
+> Signed-off-by: Kishore Bodke <kishore.k.bodke@intel.com>
+> ---
+>  .../zlib-qat-module/zlib-qat-module.bb             |   52
+> ++++++++++++++++++++
+>  .../zlib-qat-module/zlib_qat_module.patch          |   43 ++++++++++++++=
+++
+>  2 files changed, 95 insertions(+)
+>  create mode 100644 common/recipes-core/zlib-qat-module/zlib-qat-
+> module.bb
+>  create mode 100644 common/recipes-core/zlib-qat-module/zlib-qat-
+> module/zlib_qat_module.patch
+>=20
+> diff --git a/common/recipes-core/zlib-qat-module/zlib-qat-module.bb
+> b/common/recipes-core/zlib-qat-module/zlib-qat-module.bb
+> new file mode 100644
+> index 0000000..5ade06e
+> --- /dev/null
+> +++ b/common/recipes-core/zlib-qat-module/zlib-qat-module.bb
+> @@ -0,0 +1,52 @@
+> +SUMMARY=3D"Zlib QAT_MEM Memory Management Module for Intel Quick
+> Assist \
+> +Technology"
+> +DESCRIPTION=3D"This software acelerates the data compression algorithm \
+> +in the zlib software library via the Intel QuickAssist Technology \
+> +implemented on Intel Communications Chipset 89xx Series based
+> platforms."
+> +
+> +HOMEPAGE =3D "http://zlib.net/"
+> +SECTION =3D "libs"
+> +LICENSE =3D "Zlib & GPLv2 & BSD"
+> +
+> +LIC_FILES_CHKSUM =3D "file://${WORKDIR}/zlib-
+> ${PV}/zlib.h;beginline=3D4;endline=3D23;md5=3D94d1b5a40dadd127f3351471727=
+e6
+> 6a9 \
+> +			file://${COMMON_LICENSE_DIR}/GPL-
+> 2.0;md5=3D801f80980d171dd6425610833a22dbe6 \
+> +
+> 	file://${COMMON_LICENSE_DIR}/BSD;md5=3D3775480a712fc46a696476
+> 78acb234cb"
+> +PV =3D "1.2.7"
+> +ZLIB_QAT_VERSION =3D "0.4.0-011"
+> +
+> +PR=3D"r0"
+> +
+> +SRC_URI =3D "http://www.zlib.net/zlib-${PV}.tar.gz;name=3Dzlib \
+> +	http://downloadmirror.intel.com/20294/eng/zlib-${PV}-
+> qat.L.${ZLIB_QAT_VERSION}.tar.gz;name=3Dzlib_qat \
+> +	file://zlib_qat_module.patch"
+> +
+> +SRC_URI[zlib.md5sum]=3D"60df6a37c56e7c1366cca812414f7b85"
+> +SRC_URI[zlib.sha256sum]=3D"fa9c9c8638efb8cb8ef5e4dd5453e455751e1c530
+> b1595eed466e1be9b7e26c5"
+> +
+> +SRC_URI[zlib_qat.md5sum]=3D"88e4140f98d2f9e170bf473f20e1a8d4"
+> +SRC_URI[zlib_qat.sha256sum]=3D"3c360878127f3930e64640ef5a5822719a5059
+> 143326bb4c396645ae37b704a6"
+> +
+> +S =3D "${WORKDIR}/zlib-${PV}/contrib/qat/qat_mem"
+> +
+> +inherit module
+> +export KERNEL_SOURCE_ROOT =3D "${STAGING_KERNEL_DIR}"
+> +
+> +do_patch() 	{
+> +	cd ${WORKDIR}/zlib-${PV}
+> +	patch -p0  < ${WORKDIR}/zlib-${PV}-
+> qat.L.${ZLIB_QAT_VERSION}.patch
+> +
+> +	cd ${WORKDIR}
+> +	patch -p1   < ${WORKDIR}/zlib_qat_module.patch
+> +}
+> +
+> +do_compile()    {
+> +	cd ${S}
+> +	oe_runmake KERNEL_CC=3D"${KERNEL_CC}"
+> +}
+> +
+> +do_install_append()     {
+> +	install -m 0755 -d      		${D}${bindir}
+> +	install -m 0755 ${S}/qat_mem_test       ${D}${bindir}
+> +}
+> +
+> +FILES_${PN} +=3D "${bindir}/qat_mem_test"
+> diff --git a/common/recipes-core/zlib-qat-module/zlib-qat-
+> module/zlib_qat_module.patch b/common/recipes-core/zlib-qat-
+> module/zlib-qat-module/zlib_qat_module.patch
+> new file mode 100644
+> index 0000000..a30f8b0
+> --- /dev/null
+> +++ b/common/recipes-core/zlib-qat-module/zlib-qat-
+> module/zlib_qat_modul
+> +++ e.patch
+> @@ -0,0 +1,43 @@
+> +Index: zlib-qat-module-1.2.7-r0/zlib-1.2.7/contrib/qat/qat_mem/Makefile
+> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
 =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D
->> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->> +--- openssl-qat-module-1.0.1-r0.orig/openssl-
->> 1.0.1/engines/qat_engine/qat_mem/Makefile	2012-10-17
->> 13:31:27.932376960 -0700
->> ++++ openssl-qat-module-1.0.1-r0/openssl-
->> 1.0.1/engines/qat_engine/qat_mem/Makefile	2012-10-17
->> 13:35:40.396389410 -0700
->> +@@ -9,13 +9,9 @@
->> + MODULENAME 	:=3D qat_mem
->> + ### should not need to change stuff below ######################
->> +
->> +-
->> +-KDIR		:=3D /lib/modules/$(shell uname -r)/build
->> +-#KDIR		:=3D /exports/linux-2.6.12.2/
->> ++KDIR		:=3D $(KERNEL_SOURCE_ROOT)
->> + PWD		:=3D $(shell pwd)
->> +-
->> +-CC		:=3D gcc -Wall -imacros /usr/src/kernels/$(shell uname -
->> r)/include/linux/autoconf.h
->> +-
->> ++CC		:=3D $(KERNEL_CC) -Wall -imacros
->> $(KERNEL_SOURCE_ROOT)/include/generated/autoconf.h
->> + ifeq ($(KERNELRELEASE),)
->> + all:	$(MODULENAME)_test
->> + all:
->> +@@ -23,20 +19,15 @@
->> + else
->> +   obj-m	:=3D $(MODULENAME).o
->> + endif
->> +-
->> + $(MODULENAME)_test: $(MODULENAME)_test.c
->> + 	$(CC) -g -o $(MODULENAME)_test $(MODULENAME)_test.c
->> +-
->> +-
->> ++modules_install:
->> ++	$(MAKE) -C $(KDIR) SUBDIRS=3D$(PWD) modules_install
->> + load:
->> + 	insmod ./$(MODULENAME).ko
->> +-
->> + unload:
->> + 	rmmod $(MODULENAME)
->> +-
->> + test: all
->> + 	./$(MODULENAME)_test.sh
->> +-
->> + clean:
->> + 	rm -f *.o *.ko Modules.symvers *.mod.c .*.cmd
->> $(MODULENAME)_test
->> +-
->> --
->> 1.7.9.5
+=3D=3D=3D=3D=3D=3D=3D=3D
+> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> +--- zlib-qat-module-1.2.7-r0.orig/zlib-1.2.7/contrib/qat/qat_mem/Makefil=
+e
+> 	2012-10-16 13:53:10.258938722 -0700
+> ++++ zlib-qat-module-1.2.7-r0/zlib-1.2.7/contrib/qat/qat_mem/Makefile
+> 	2012-10-16 13:59:18.174944864 -0700
+> +@@ -59,13 +59,10 @@
+> + #
+> + #
+> +
+> +#########################################################
+> ##############
+> +##
+> +-
+> + MODULENAME 	:=3D qat_mem
+> +-KDIR		:=3D /lib/modules/$(shell uname -r)/build
+> ++KDIR		:=3D $(KERNEL_SOURCE_ROOT)
+> + PWD		:=3D $(shell pwd)
+> +-
+> +-CC		:=3D gcc -Wall -imacros /usr/src/kernels/$(shell uname -
+> r)/include/linux/autoconf.h
+> +-
+> ++CC		:=3D $(KERNEL_CC) -Wall -imacros
+> $(KERNEL_SOURCE_ROOT)/include/generated/autoconf.h
+> + ifeq ($(KERNELRELEASE),)
+> + all:	$(MODULENAME)_test
+> + all:
+> +@@ -73,20 +70,15 @@
+> + else
+> +   obj-m	:=3D $(MODULENAME).o
+> + endif
+> +-
+> ++modules_install:
+> ++	$(MAKE) -C $(KDIR) SUBDIRS=3D$(PWD) modules_install
+> + $(MODULENAME)_test: $(MODULENAME)_test.c
+> + 	$(CC) -g -o $(MODULENAME)_test $(MODULENAME)_test.c
+> +-
+> +-
+> + load:
+> + 	insmod ./$(MODULENAME).ko
+> +-
+> + unload:
+> + 	rmmod $(MODULENAME)
+> +-
+> + test: all
+> + 	./$(MODULENAME)_test
+> +-
+> + clean:
+> + 	rm -f *.o *.ko Module.symvers modules.order *.mod.c .*.cmd
+> +$(MODULENAME)_test
+> +-
+> --
+> 1.7.9.5
 
 
