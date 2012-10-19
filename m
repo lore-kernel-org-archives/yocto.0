@@ -1,24 +1,37 @@
-Return-Path: <tom.zanussi@intel.com>
+Return-Path: <kishore.k.bodke@intel.com>
 Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BD583E003D6
-	for <yocto@yoctoproject.org>; Fri, 19 Oct 2012 11:34:40 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga101.ch.intel.com with ESMTP; 19 Oct 2012 11:34:39 -0700
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B1367E003D6
+	for <yocto@yoctoproject.org>; Fri, 19 Oct 2012 11:40:28 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 19 Oct 2012 11:40:16 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,615,1344236400"; d="scan'208";a="158186950"
-Received: from unknown (HELO [10.255.14.73]) ([10.255.14.73])
-	by AZSMGA002.ch.intel.com with ESMTP; 19 Oct 2012 11:34:37 -0700
-Message-ID: <1350671677.1569.14.camel@empanada>
-From: Tom Zanussi <tom.zanussi@intel.com>
-To: "Bodke, Kishore K" <kishore.k.bodke@intel.com>
-Date: Fri, 19 Oct 2012 13:34:37 -0500
-In-Reply-To: <D956029D25CF204F948EA0FB515E1EE233E6D804@ORSMSX105.amr.corp.intel.com>
+X-IronPort-AV: E=Sophos;i="4.80,615,1344236400"; d="scan'208";a="206659732"
+Received: from orsmsx101.amr.corp.intel.com ([10.22.225.128])
+	by azsmga001.ch.intel.com with ESMTP; 19 Oct 2012 11:40:15 -0700
+Received: from orsmsx152.amr.corp.intel.com (10.22.226.39) by
+	ORSMSX101.amr.corp.intel.com (10.22.225.128) with Microsoft SMTP Server
+	(TLS) id 14.1.355.2; Fri, 19 Oct 2012 11:40:15 -0700
+Received: from orsmsx105.amr.corp.intel.com ([169.254.4.140]) by
+	ORSMSX152.amr.corp.intel.com ([169.254.8.195]) with mapi id
+	14.01.0355.002; Fri, 19 Oct 2012 11:40:15 -0700
+From: "Bodke, Kishore K" <kishore.k.bodke@intel.com>
+To: "Zanussi, Tom" <tom.zanussi@intel.com>
+Thread-Topic: [PATCH 1/3] [meta-intel] meta-intel/common:Add a new recipe
+	for Zlib qat_mem Module.
+Thread-Index: AQHNrVstpl6CwEtVGEW5/u6WS/sJgZfBaY8A//+Kv8CAAHcdgP//iwow
+Date: Fri, 19 Oct 2012 18:40:14 +0000
+Message-ID: <D956029D25CF204F948EA0FB515E1EE233E6D849@ORSMSX105.amr.corp.intel.com>
 References: <cover.1350583189.git.kishore.k.bodke@intel.com>
 	<46df5fcf29108c0c9b5ed6714ec012fd03b94e55.1350583189.git.kishore.k.bodke@intel.com>
 	<ADD6A3980E8C39419A432FF422031B4C2D90C94E@ORSMSX106.amr.corp.intel.com>
 	<D956029D25CF204F948EA0FB515E1EE233E6D804@ORSMSX105.amr.corp.intel.com>
-X-Mailer: Evolution 3.4.1 (3.4.1-2.fc17) 
-Mime-Version: 1.0
+	<1350671677.1569.14.camel@empanada>
+In-Reply-To: <1350671677.1569.14.camel@empanada>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.139]
+MIME-Version: 1.0
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: [PATCH 1/3] [meta-intel] meta-intel/common:Add a new recipe for Zlib qat_mem Module.
 X-BeenThere: yocto@yoctoproject.org
@@ -32,202 +45,133 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 19 Oct 2012 18:34:40 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 19 Oct 2012 18:40:29 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Hi Kishore,
-
-I've built these and they look ok as far as that goes.
-
-But I'm wondering, which kernel did you test with and which kernel(s)
-are these modules designed for i.e. will they work with all the kernels
-supported for 1.3?
-
-Tom
-
-On Fri, 2012-10-19 at 13:28 -0500, Bodke, Kishore K wrote:
-> 
-> >-----Original Message-----
-> >From: Kamble, Nitin A
-> >Sent: Friday, October 19, 2012 11:28 AM
-> >To: Bodke, Kishore K; Zanussi, Tom; yocto@yoctoproject.org
-> >Subject: RE: [PATCH 1/3] [meta-intel] meta-intel/common:Add a new recipe
-> >for Zlib qat_mem Module.
-> >
-> >Hi Kishore,
-> >  Same here, if it is not used by multiple BSPs yet, then it should go in the BSP
-> >specific layer.
-> >
-> Yes, these too will be used by both Crystal Forest and Rangely.
-> 
-> Thanks
-> Kishore.
-> 
-> >Thanks,
-> >Nitin
-> >
-> >
-> >> -----Original Message-----
-> >> From: Bodke, Kishore K
-> >> Sent: Thursday, October 18, 2012 11:19 AM
-> >> To: Zanussi, Tom; Kamble, Nitin A; yocto@yoctoproject.org
-> >> Cc: Bodke, Kishore K
-> >> Subject: [PATCH 1/3] [meta-intel] meta-intel/common:Add a new recipe for
-> >> Zlib qat_mem Module.
-> >>
-> >> From: Kishore Bodke <kishore.k.bodke@intel.com>
-> >>
-> >> This adds a new recipe to build the Intel Quick Assist Technology Memory
-> >> Management Module for Zlib.
-> >>
-> >> Signed-off-by: Kishore Bodke <kishore.k.bodke@intel.com>
-> >> ---
-> >>  .../zlib-qat-module/zlib-qat-module.bb             |   52
-> >> ++++++++++++++++++++
-> >>  .../zlib-qat-module/zlib_qat_module.patch          |   43 ++++++++++++++++
-> >>  2 files changed, 95 insertions(+)
-> >>  create mode 100644 common/recipes-core/zlib-qat-module/zlib-qat-
-> >> module.bb
-> >>  create mode 100644 common/recipes-core/zlib-qat-module/zlib-qat-
-> >> module/zlib_qat_module.patch
-> >>
-> >> diff --git a/common/recipes-core/zlib-qat-module/zlib-qat-module.bb
-> >> b/common/recipes-core/zlib-qat-module/zlib-qat-module.bb
-> >> new file mode 100644
-> >> index 0000000..5ade06e
-> >> --- /dev/null
-> >> +++ b/common/recipes-core/zlib-qat-module/zlib-qat-module.bb
-> >> @@ -0,0 +1,52 @@
-> >> +SUMMARY="Zlib QAT_MEM Memory Management Module for Intel Quick
-> >> Assist \
-> >> +Technology"
-> >> +DESCRIPTION="This software acelerates the data compression algorithm \
-> >> +in the zlib software library via the Intel QuickAssist Technology \
-> >> +implemented on Intel Communications Chipset 89xx Series based
-> >> platforms."
-> >> +
-> >> +HOMEPAGE = "http://zlib.net/"
-> >> +SECTION = "libs"
-> >> +LICENSE = "Zlib & GPLv2 & BSD"
-> >> +
-> >> +LIC_FILES_CHKSUM = "file://${WORKDIR}/zlib-
-> >> ${PV}/zlib.h;beginline=4;endline=23;md5=94d1b5a40dadd127f3351471727e6
-> >> 6a9 \
-> >> +			file://${COMMON_LICENSE_DIR}/GPL-
-> >> 2.0;md5=801f80980d171dd6425610833a22dbe6 \
-> >> +
-> >> 	file://${COMMON_LICENSE_DIR}/BSD;md5=3775480a712fc46a696476
-> >> 78acb234cb"
-> >> +PV = "1.2.7"
-> >> +ZLIB_QAT_VERSION = "0.4.0-011"
-> >> +
-> >> +PR="r0"
-> >> +
-> >> +SRC_URI = "http://www.zlib.net/zlib-${PV}.tar.gz;name=zlib \
-> >> +	http://downloadmirror.intel.com/20294/eng/zlib-${PV}-
-> >> qat.L.${ZLIB_QAT_VERSION}.tar.gz;name=zlib_qat \
-> >> +	file://zlib_qat_module.patch"
-> >> +
-> >> +SRC_URI[zlib.md5sum]="60df6a37c56e7c1366cca812414f7b85"
-> >> +SRC_URI[zlib.sha256sum]="fa9c9c8638efb8cb8ef5e4dd5453e455751e1c530
-> >> b1595eed466e1be9b7e26c5"
-> >> +
-> >> +SRC_URI[zlib_qat.md5sum]="88e4140f98d2f9e170bf473f20e1a8d4"
-> >>
-> >+SRC_URI[zlib_qat.sha256sum]="3c360878127f3930e64640ef5a5822719a5059
-> >> 143326bb4c396645ae37b704a6"
-> >> +
-> >> +S = "${WORKDIR}/zlib-${PV}/contrib/qat/qat_mem"
-> >> +
-> >> +inherit module
-> >> +export KERNEL_SOURCE_ROOT = "${STAGING_KERNEL_DIR}"
-> >> +
-> >> +do_patch() 	{
-> >> +	cd ${WORKDIR}/zlib-${PV}
-> >> +	patch -p0  < ${WORKDIR}/zlib-${PV}-
-> >> qat.L.${ZLIB_QAT_VERSION}.patch
-> >> +
-> >> +	cd ${WORKDIR}
-> >> +	patch -p1   < ${WORKDIR}/zlib_qat_module.patch
-> >> +}
-> >> +
-> >> +do_compile()    {
-> >> +	cd ${S}
-> >> +	oe_runmake KERNEL_CC="${KERNEL_CC}"
-> >> +}
-> >> +
-> >> +do_install_append()     {
-> >> +	install -m 0755 -d      		${D}${bindir}
-> >> +	install -m 0755 ${S}/qat_mem_test       ${D}${bindir}
-> >> +}
-> >> +
-> >> +FILES_${PN} += "${bindir}/qat_mem_test"
-> >> diff --git a/common/recipes-core/zlib-qat-module/zlib-qat-
-> >> module/zlib_qat_module.patch b/common/recipes-core/zlib-qat-
-> >> module/zlib-qat-module/zlib_qat_module.patch
-> >> new file mode 100644
-> >> index 0000000..a30f8b0
-> >> --- /dev/null
-> >> +++ b/common/recipes-core/zlib-qat-module/zlib-qat-
-> >> module/zlib_qat_modul
-> >> +++ e.patch
-> >> @@ -0,0 +1,43 @@
-> >> +Index: zlib-qat-module-1.2.7-r0/zlib-1.2.7/contrib/qat/qat_mem/Makefile
-> >> +=========================================================
-> >> ==========
-> >> +--- zlib-qat-module-1.2.7-r0.orig/zlib-1.2.7/contrib/qat/qat_mem/Makefile
-> >> 	2012-10-16 13:53:10.258938722 -0700
-> >> ++++ zlib-qat-module-1.2.7-r0/zlib-1.2.7/contrib/qat/qat_mem/Makefile
-> >> 	2012-10-16 13:59:18.174944864 -0700
-> >> +@@ -59,13 +59,10 @@
-> >> + #
-> >> + #
-> >> +
-> >> +#########################################################
-> >> ##############
-> >> +##
-> >> +-
-> >> + MODULENAME 	:= qat_mem
-> >> +-KDIR		:= /lib/modules/$(shell uname -r)/build
-> >> ++KDIR		:= $(KERNEL_SOURCE_ROOT)
-> >> + PWD		:= $(shell pwd)
-> >> +-
-> >> +-CC		:= gcc -Wall -imacros /usr/src/kernels/$(shell uname -
-> >> r)/include/linux/autoconf.h
-> >> +-
-> >> ++CC		:= $(KERNEL_CC) -Wall -imacros
-> >> $(KERNEL_SOURCE_ROOT)/include/generated/autoconf.h
-> >> + ifeq ($(KERNELRELEASE),)
-> >> + all:	$(MODULENAME)_test
-> >> + all:
-> >> +@@ -73,20 +70,15 @@
-> >> + else
-> >> +   obj-m	:= $(MODULENAME).o
-> >> + endif
-> >> +-
-> >> ++modules_install:
-> >> ++	$(MAKE) -C $(KDIR) SUBDIRS=$(PWD) modules_install
-> >> + $(MODULENAME)_test: $(MODULENAME)_test.c
-> >> + 	$(CC) -g -o $(MODULENAME)_test $(MODULENAME)_test.c
-> >> +-
-> >> +-
-> >> + load:
-> >> + 	insmod ./$(MODULENAME).ko
-> >> +-
-> >> + unload:
-> >> + 	rmmod $(MODULENAME)
-> >> +-
-> >> + test: all
-> >> + 	./$(MODULENAME)_test
-> >> +-
-> >> + clean:
-> >> + 	rm -f *.o *.ko Module.symvers modules.order *.mod.c .*.cmd
-> >> +$(MODULENAME)_test
-> >> +-
-> >> --
-> >> 1.7.9.5
-> 
-
-
+DQoNCj4tLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPkZyb206IFphbnVzc2ksIFRvbQ0KPlNl
+bnQ6IEZyaWRheSwgT2N0b2JlciAxOSwgMjAxMiAxMTozNSBBTQ0KPlRvOiBCb2RrZSwgS2lzaG9y
+ZSBLDQo+Q2M6IEthbWJsZSwgTml0aW4gQTsgeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0KPlN1Ympl
+Y3Q6IFJlOiBbUEFUQ0ggMS8zXSBbbWV0YS1pbnRlbF0gbWV0YS1pbnRlbC9jb21tb246QWRkIGEg
+bmV3IHJlY2lwZQ0KPmZvciBabGliIHFhdF9tZW0gTW9kdWxlLg0KPg0KPkhpIEtpc2hvcmUsDQo+
+DQo+SSd2ZSBidWlsdCB0aGVzZSBhbmQgdGhleSBsb29rIG9rIGFzIGZhciBhcyB0aGF0IGdvZXMu
+DQo+DQo+QnV0IEknbSB3b25kZXJpbmcsIHdoaWNoIGtlcm5lbCBkaWQgeW91IHRlc3Qgd2l0aCBh
+bmQgd2hpY2gga2VybmVsKHMpDQo+YXJlIHRoZXNlIG1vZHVsZXMgZGVzaWduZWQgZm9yIGkuZS4g
+d2lsbCB0aGV5IHdvcmsgd2l0aCBhbGwgdGhlIGtlcm5lbHMNCj5zdXBwb3J0ZWQgZm9yIDEuMz8N
+Cg0KSGkgVG9tLA0KDQpJIGhhdmUgdGVzdGVkIHRoZW0gZm9yIDMuNCBLZXJuZWwgZm9yIFlvY3Rv
+LCBzaW5jZSBmb3IgQ3J5c3RhbCBGb3Jlc3Qgd2Ugb25seSBoYXZlIDMuNCBmb3Igbm93Lg0KQXBh
+cnQgZnJvbSB0aGF0LCBpdCBzaG91bGQgd29yayB3aXRoIGFsbCB0aGUga2VybmVsIHZlcnNpb25z
+Lg0KSSBoYXZlIHRlc3RlZCAzLjAgYW5kIDMuNSBvbiBGZWRvcmEuIA0KDQpUaGFua3MNCktpc2hv
+cmUuDQoNCj4NCj5Ub20NCj4NCj5PbiBGcmksIDIwMTItMTAtMTkgYXQgMTM6MjggLTA1MDAsIEJv
+ZGtlLCBLaXNob3JlIEsgd3JvdGU6DQo+Pg0KPj4gPi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0t
+DQo+PiA+RnJvbTogS2FtYmxlLCBOaXRpbiBBDQo+PiA+U2VudDogRnJpZGF5LCBPY3RvYmVyIDE5
+LCAyMDEyIDExOjI4IEFNDQo+PiA+VG86IEJvZGtlLCBLaXNob3JlIEs7IFphbnVzc2ksIFRvbTsg
+eW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0KPj4gPlN1YmplY3Q6IFJFOiBbUEFUQ0ggMS8zXSBbbWV0
+YS1pbnRlbF0gbWV0YS1pbnRlbC9jb21tb246QWRkIGEgbmV3DQo+cmVjaXBlDQo+PiA+Zm9yIFps
+aWIgcWF0X21lbSBNb2R1bGUuDQo+PiA+DQo+PiA+SGkgS2lzaG9yZSwNCj4+ID4gIFNhbWUgaGVy
+ZSwgaWYgaXQgaXMgbm90IHVzZWQgYnkgbXVsdGlwbGUgQlNQcyB5ZXQsIHRoZW4gaXQgc2hvdWxk
+IGdvIGluIHRoZQ0KPkJTUA0KPj4gPnNwZWNpZmljIGxheWVyLg0KPj4gPg0KPj4gWWVzLCB0aGVz
+ZSB0b28gd2lsbCBiZSB1c2VkIGJ5IGJvdGggQ3J5c3RhbCBGb3Jlc3QgYW5kIFJhbmdlbHkuDQo+
+Pg0KPj4gVGhhbmtzDQo+PiBLaXNob3JlLg0KPj4NCj4+ID5UaGFua3MsDQo+PiA+Tml0aW4NCj4+
+ID4NCj4+ID4NCj4+ID4+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+PiA+PiBGcm9tOiBC
+b2RrZSwgS2lzaG9yZSBLDQo+PiA+PiBTZW50OiBUaHVyc2RheSwgT2N0b2JlciAxOCwgMjAxMiAx
+MToxOSBBTQ0KPj4gPj4gVG86IFphbnVzc2ksIFRvbTsgS2FtYmxlLCBOaXRpbiBBOyB5b2N0b0B5
+b2N0b3Byb2plY3Qub3JnDQo+PiA+PiBDYzogQm9ka2UsIEtpc2hvcmUgSw0KPj4gPj4gU3ViamVj
+dDogW1BBVENIIDEvM10gW21ldGEtaW50ZWxdIG1ldGEtaW50ZWwvY29tbW9uOkFkZCBhIG5ldyBy
+ZWNpcGUNCj5mb3INCj4+ID4+IFpsaWIgcWF0X21lbSBNb2R1bGUuDQo+PiA+Pg0KPj4gPj4gRnJv
+bTogS2lzaG9yZSBCb2RrZSA8a2lzaG9yZS5rLmJvZGtlQGludGVsLmNvbT4NCj4+ID4+DQo+PiA+
+PiBUaGlzIGFkZHMgYSBuZXcgcmVjaXBlIHRvIGJ1aWxkIHRoZSBJbnRlbCBRdWljayBBc3Npc3Qg
+VGVjaG5vbG9neSBNZW1vcnkNCj4+ID4+IE1hbmFnZW1lbnQgTW9kdWxlIGZvciBabGliLg0KPj4g
+Pj4NCj4+ID4+IFNpZ25lZC1vZmYtYnk6IEtpc2hvcmUgQm9ka2UgPGtpc2hvcmUuay5ib2RrZUBp
+bnRlbC5jb20+DQo+PiA+PiAtLS0NCj4+ID4+ICAuLi4vemxpYi1xYXQtbW9kdWxlL3psaWItcWF0
+LW1vZHVsZS5iYiAgICAgICAgICAgICB8ICAgNTINCj4+ID4+ICsrKysrKysrKysrKysrKysrKysr
+DQo+PiA+PiAgLi4uL3psaWItcWF0LW1vZHVsZS96bGliX3FhdF9tb2R1bGUucGF0Y2ggICAgICAg
+ICAgfCAgIDQzDQo+KysrKysrKysrKysrKysrKw0KPj4gPj4gIDIgZmlsZXMgY2hhbmdlZCwgOTUg
+aW5zZXJ0aW9ucygrKQ0KPj4gPj4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBjb21tb24vcmVjaXBlcy1j
+b3JlL3psaWItcWF0LW1vZHVsZS96bGliLXFhdC0NCj4+ID4+IG1vZHVsZS5iYg0KPj4gPj4gIGNy
+ZWF0ZSBtb2RlIDEwMDY0NCBjb21tb24vcmVjaXBlcy1jb3JlL3psaWItcWF0LW1vZHVsZS96bGli
+LXFhdC0NCj4+ID4+IG1vZHVsZS96bGliX3FhdF9tb2R1bGUucGF0Y2gNCj4+ID4+DQo+PiA+PiBk
+aWZmIC0tZ2l0IGEvY29tbW9uL3JlY2lwZXMtY29yZS96bGliLXFhdC1tb2R1bGUvemxpYi1xYXQt
+bW9kdWxlLmJiDQo+PiA+PiBiL2NvbW1vbi9yZWNpcGVzLWNvcmUvemxpYi1xYXQtbW9kdWxlL3ps
+aWItcWF0LW1vZHVsZS5iYg0KPj4gPj4gbmV3IGZpbGUgbW9kZSAxMDA2NDQNCj4+ID4+IGluZGV4
+IDAwMDAwMDAuLjVhZGUwNmUNCj4+ID4+IC0tLSAvZGV2L251bGwNCj4+ID4+ICsrKyBiL2NvbW1v
+bi9yZWNpcGVzLWNvcmUvemxpYi1xYXQtbW9kdWxlL3psaWItcWF0LW1vZHVsZS5iYg0KPj4gPj4g
+QEAgLTAsMCArMSw1MiBAQA0KPj4gPj4gK1NVTU1BUlk9IlpsaWIgUUFUX01FTSBNZW1vcnkgTWFu
+YWdlbWVudCBNb2R1bGUgZm9yIEludGVsDQo+UXVpY2sNCj4+ID4+IEFzc2lzdCBcDQo+PiA+PiAr
+VGVjaG5vbG9neSINCj4+ID4+ICtERVNDUklQVElPTj0iVGhpcyBzb2Z0d2FyZSBhY2VsZXJhdGVz
+IHRoZSBkYXRhIGNvbXByZXNzaW9uDQo+YWxnb3JpdGhtIFwNCj4+ID4+ICtpbiB0aGUgemxpYiBz
+b2Z0d2FyZSBsaWJyYXJ5IHZpYSB0aGUgSW50ZWwgUXVpY2tBc3Npc3QgVGVjaG5vbG9neSBcDQo+
+PiA+PiAraW1wbGVtZW50ZWQgb24gSW50ZWwgQ29tbXVuaWNhdGlvbnMgQ2hpcHNldCA4OXh4IFNl
+cmllcyBiYXNlZA0KPj4gPj4gcGxhdGZvcm1zLiINCj4+ID4+ICsNCj4+ID4+ICtIT01FUEFHRSA9
+ICJodHRwOi8vemxpYi5uZXQvIg0KPj4gPj4gK1NFQ1RJT04gPSAibGlicyINCj4+ID4+ICtMSUNF
+TlNFID0gIlpsaWIgJiBHUEx2MiAmIEJTRCINCj4+ID4+ICsNCj4+ID4+ICtMSUNfRklMRVNfQ0hL
+U1VNID0gImZpbGU6Ly8ke1dPUktESVJ9L3psaWItDQo+PiA+Pg0KPiR7UFZ9L3psaWIuaDtiZWdp
+bmxpbmU9NDtlbmRsaW5lPTIzO21kNT05NGQxYjVhNDBkYWRkMTI3ZjMzNTE0NzE3MjdlNg0KPj4g
+Pj4gNmE5IFwNCj4+ID4+ICsJCQlmaWxlOi8vJHtDT01NT05fTElDRU5TRV9ESVJ9L0dQTC0NCj4+
+ID4+IDIuMDttZDU9ODAxZjgwOTgwZDE3MWRkNjQyNTYxMDgzM2EyMmRiZTYgXA0KPj4gPj4gKw0K
+Pj4gPj4gCWZpbGU6Ly8ke0NPTU1PTl9MSUNFTlNFX0RJUn0vQlNEO21kNT0zNzc1NDgwYTcxMmZj
+NDZhNjk2NDc2DQo+PiA+PiA3OGFjYjIzNGNiIg0KPj4gPj4gK1BWID0gIjEuMi43Ig0KPj4gPj4g
+K1pMSUJfUUFUX1ZFUlNJT04gPSAiMC40LjAtMDExIg0KPj4gPj4gKw0KPj4gPj4gK1BSPSJyMCIN
+Cj4+ID4+ICsNCj4+ID4+ICtTUkNfVVJJID0gImh0dHA6Ly93d3cuemxpYi5uZXQvemxpYi0ke1BW
+fS50YXIuZ3o7bmFtZT16bGliIFwNCj4+ID4+ICsJaHR0cDovL2Rvd25sb2FkbWlycm9yLmludGVs
+LmNvbS8yMDI5NC9lbmcvemxpYi0ke1BWfS0NCj4+ID4+IHFhdC5MLiR7WkxJQl9RQVRfVkVSU0lP
+Tn0udGFyLmd6O25hbWU9emxpYl9xYXQgXA0KPj4gPj4gKwlmaWxlOi8vemxpYl9xYXRfbW9kdWxl
+LnBhdGNoIg0KPj4gPj4gKw0KPj4gPj4gK1NSQ19VUklbemxpYi5tZDVzdW1dPSI2MGRmNmEzN2M1
+NmU3YzEzNjZjY2E4MTI0MTRmN2I4NSINCj4+ID4+DQo+K1NSQ19VUklbemxpYi5zaGEyNTZzdW1d
+PSJmYTljOWM4NjM4ZWZiOGNiOGVmNWU0ZGQ1NDUzZTQ1NTc1MWUxYzUzMA0KPj4gPj4gYjE1OTVl
+ZWQ0NjZlMWJlOWI3ZTI2YzUiDQo+PiA+PiArDQo+PiA+PiArU1JDX1VSSVt6bGliX3FhdC5tZDVz
+dW1dPSI4OGU0MTQwZjk4ZDJmOWUxNzBiZjQ3M2YyMGUxYThkNCINCj4+ID4+DQo+Pg0KPj4rU1JD
+X1VSSVt6bGliX3FhdC5zaGEyNTZzdW1dPSIzYzM2MDg3ODEyN2YzOTMwZTY0NjQwZWY1YTU4MjI3
+MTlhNTA1OQ0KPj4gPj4gMTQzMzI2YmI0YzM5NjY0NWFlMzdiNzA0YTYiDQo+PiA+PiArDQo+PiA+
+PiArUyA9ICIke1dPUktESVJ9L3psaWItJHtQVn0vY29udHJpYi9xYXQvcWF0X21lbSINCj4+ID4+
+ICsNCj4+ID4+ICtpbmhlcml0IG1vZHVsZQ0KPj4gPj4gK2V4cG9ydCBLRVJORUxfU09VUkNFX1JP
+T1QgPSAiJHtTVEFHSU5HX0tFUk5FTF9ESVJ9Ig0KPj4gPj4gKw0KPj4gPj4gK2RvX3BhdGNoKCkg
+CXsNCj4+ID4+ICsJY2QgJHtXT1JLRElSfS96bGliLSR7UFZ9DQo+PiA+PiArCXBhdGNoIC1wMCAg
+PCAke1dPUktESVJ9L3psaWItJHtQVn0tDQo+PiA+PiBxYXQuTC4ke1pMSUJfUUFUX1ZFUlNJT059
+LnBhdGNoDQo+PiA+PiArDQo+PiA+PiArCWNkICR7V09SS0RJUn0NCj4+ID4+ICsJcGF0Y2ggLXAx
+ICAgPCAke1dPUktESVJ9L3psaWJfcWF0X21vZHVsZS5wYXRjaA0KPj4gPj4gK30NCj4+ID4+ICsN
+Cj4+ID4+ICtkb19jb21waWxlKCkgICAgew0KPj4gPj4gKwljZCAke1N9DQo+PiA+PiArCW9lX3J1
+bm1ha2UgS0VSTkVMX0NDPSIke0tFUk5FTF9DQ30iDQo+PiA+PiArfQ0KPj4gPj4gKw0KPj4gPj4g
+K2RvX2luc3RhbGxfYXBwZW5kKCkgICAgIHsNCj4+ID4+ICsJaW5zdGFsbCAtbSAwNzU1IC1kICAg
+ICAgCQkke0R9JHtiaW5kaXJ9DQo+PiA+PiArCWluc3RhbGwgLW0gMDc1NSAke1N9L3FhdF9tZW1f
+dGVzdCAgICAgICAke0R9JHtiaW5kaXJ9DQo+PiA+PiArfQ0KPj4gPj4gKw0KPj4gPj4gK0ZJTEVT
+XyR7UE59ICs9ICIke2JpbmRpcn0vcWF0X21lbV90ZXN0Ig0KPj4gPj4gZGlmZiAtLWdpdCBhL2Nv
+bW1vbi9yZWNpcGVzLWNvcmUvemxpYi1xYXQtbW9kdWxlL3psaWItcWF0LQ0KPj4gPj4gbW9kdWxl
+L3psaWJfcWF0X21vZHVsZS5wYXRjaCBiL2NvbW1vbi9yZWNpcGVzLWNvcmUvemxpYi1xYXQtDQo+
+PiA+PiBtb2R1bGUvemxpYi1xYXQtbW9kdWxlL3psaWJfcWF0X21vZHVsZS5wYXRjaA0KPj4gPj4g
+bmV3IGZpbGUgbW9kZSAxMDA2NDQNCj4+ID4+IGluZGV4IDAwMDAwMDAuLmEzMGY4YjANCj4+ID4+
+IC0tLSAvZGV2L251bGwNCj4+ID4+ICsrKyBiL2NvbW1vbi9yZWNpcGVzLWNvcmUvemxpYi1xYXQt
+bW9kdWxlL3psaWItcWF0LQ0KPj4gPj4gbW9kdWxlL3psaWJfcWF0X21vZHVsDQo+PiA+PiArKysg
+ZS5wYXRjaA0KPj4gPj4gQEAgLTAsMCArMSw0MyBAQA0KPj4gPj4gK0luZGV4OiB6bGliLXFhdC1t
+b2R1bGUtMS4yLjctcjAvemxpYi0NCj4xLjIuNy9jb250cmliL3FhdC9xYXRfbWVtL01ha2VmaWxl
+DQo+PiA+Pg0KPis9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT0NCj4+ID4+ID09PT09PT09PT0NCj4+ID4+ICstLS0gemxpYi1xYXQtbW9kdWxl
+LTEuMi43LXIwLm9yaWcvemxpYi0NCj4xLjIuNy9jb250cmliL3FhdC9xYXRfbWVtL01ha2VmaWxl
+DQo+PiA+PiAJMjAxMi0xMC0xNiAxMzo1MzoxMC4yNTg5Mzg3MjIgLTA3MDANCj4+ID4+ICsrKysg
+emxpYi1xYXQtbW9kdWxlLTEuMi43LXIwL3psaWItMS4yLjcvY29udHJpYi9xYXQvcWF0X21lbS9N
+YWtlZmlsZQ0KPj4gPj4gCTIwMTItMTAtMTYgMTM6NTk6MTguMTc0OTQ0ODY0IC0wNzAwDQo+PiA+
+PiArQEAgLTU5LDEzICs1OSwxMCBAQA0KPj4gPj4gKyAjDQo+PiA+PiArICMNCj4+ID4+ICsNCj4+
+ID4+DQo+KyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
+IyMjIyMjIw0KPj4gPj4gIyMjIyMjIyMjIyMjIyMNCj4+ID4+ICsjIw0KPj4gPj4gKy0NCj4+ID4+
+ICsgTU9EVUxFTkFNRSAJOj0gcWF0X21lbQ0KPj4gPj4gKy1LRElSCQk6PSAvbGliL21vZHVsZXMv
+JChzaGVsbCB1bmFtZSAtcikvYnVpbGQNCj4+ID4+ICsrS0RJUgkJOj0gJChLRVJORUxfU09VUkNF
+X1JPT1QpDQo+PiA+PiArIFBXRAkJOj0gJChzaGVsbCBwd2QpDQo+PiA+PiArLQ0KPj4gPj4gKy1D
+QwkJOj0gZ2NjIC1XYWxsIC1pbWFjcm9zIC91c3Ivc3JjL2tlcm5lbHMvJChzaGVsbCB1bmFtZSAt
+DQo+PiA+PiByKS9pbmNsdWRlL2xpbnV4L2F1dG9jb25mLmgNCj4+ID4+ICstDQo+PiA+PiArK0ND
+CQk6PSAkKEtFUk5FTF9DQykgLVdhbGwgLWltYWNyb3MNCj4+ID4+ICQoS0VSTkVMX1NPVVJDRV9S
+T09UKS9pbmNsdWRlL2dlbmVyYXRlZC9hdXRvY29uZi5oDQo+PiA+PiArIGlmZXEgKCQoS0VSTkVM
+UkVMRUFTRSksKQ0KPj4gPj4gKyBhbGw6CSQoTU9EVUxFTkFNRSlfdGVzdA0KPj4gPj4gKyBhbGw6
+DQo+PiA+PiArQEAgLTczLDIwICs3MCwxNSBAQA0KPj4gPj4gKyBlbHNlDQo+PiA+PiArICAgb2Jq
+LW0JOj0gJChNT0RVTEVOQU1FKS5vDQo+PiA+PiArIGVuZGlmDQo+PiA+PiArLQ0KPj4gPj4gKytt
+b2R1bGVzX2luc3RhbGw6DQo+PiA+PiArKwkkKE1BS0UpIC1DICQoS0RJUikgU1VCRElSUz0kKFBX
+RCkgbW9kdWxlc19pbnN0YWxsDQo+PiA+PiArICQoTU9EVUxFTkFNRSlfdGVzdDogJChNT0RVTEVO
+QU1FKV90ZXN0LmMNCj4+ID4+ICsgCSQoQ0MpIC1nIC1vICQoTU9EVUxFTkFNRSlfdGVzdCAkKE1P
+RFVMRU5BTUUpX3Rlc3QuYw0KPj4gPj4gKy0NCj4+ID4+ICstDQo+PiA+PiArIGxvYWQ6DQo+PiA+
+PiArIAlpbnNtb2QgLi8kKE1PRFVMRU5BTUUpLmtvDQo+PiA+PiArLQ0KPj4gPj4gKyB1bmxvYWQ6
+DQo+PiA+PiArIAlybW1vZCAkKE1PRFVMRU5BTUUpDQo+PiA+PiArLQ0KPj4gPj4gKyB0ZXN0OiBh
+bGwNCj4+ID4+ICsgCS4vJChNT0RVTEVOQU1FKV90ZXN0DQo+PiA+PiArLQ0KPj4gPj4gKyBjbGVh
+bjoNCj4+ID4+ICsgCXJtIC1mICoubyAqLmtvIE1vZHVsZS5zeW12ZXJzIG1vZHVsZXMub3JkZXIg
+Ki5tb2QuYyAuKi5jbWQNCj4+ID4+ICskKE1PRFVMRU5BTUUpX3Rlc3QNCj4+ID4+ICstDQo+PiA+
+PiAtLQ0KPj4gPj4gMS43LjkuNQ0KPj4NCj4NCg0K
 
