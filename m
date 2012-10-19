@@ -1,30 +1,22 @@
-Return-Path: <r10kindsofpeople@gmail.com>
-Received: from mail-vb0-f48.google.com (mail-vb0-f48.google.com
-	[209.85.212.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AFE9DE0049B
-	for <yocto@yoctoproject.org>; Fri, 19 Oct 2012 08:29:37 -0700 (PDT)
-Received: by mail-vb0-f48.google.com with SMTP id e21so680794vbm.35
-	for <yocto@yoctoproject.org>; Fri, 19 Oct 2012 08:29:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:content-type; bh=CxoWm4FUxW+hBMoQduOX9TkkAtQd60+/UBMGdyPl3T8=;
-	b=Quta/2fLl0CS9DNn9B9/RjUBz//lTXxL0nlxo6WWq82oa2s0cKu+0P4d2gq9UE7Acf
-	35AWHBcwHXYSMMpozl6kvJIgBBO2inMsUwFc707hxinWROvd3duN1SzLNVSdutmAKsdp
-	NAj/vyro+EcBtC+CEbaE0FMnc44xIecgX7HfA5KtglseVasRCF3j4PogzVHO201zUUsv
-	1QKIRo+9dIKOvJia4Cn9OIChPl/cLlqAuhweODlaWX63mM4XGN+fZt8O0qKFZ1c1Raqb
-	ZQ6bdc3DL/EwP5YM8fEUyEZbYjWjCPRhNIJ9qgCYehPvwisLcsD2ITWo4UXGnPHMiYfp
-	mFPQ==
+Return-Path: <tf@r-finger.com>
+Received: from r-finger.com (r-finger.com [178.79.160.5])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 46C02E00348
+	for <yocto@yoctoproject.org>; Fri, 19 Oct 2012 07:34:08 -0700 (PDT)
+Received: from [192.168.0.2] (host81-153-115-216.range81-153.btcentralplus.com
+	[81.153.115.216]) (using TLSv1 with cipher AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by r-finger.com (Postfix) with ESMTPSA id 429B399A4
+	for <yocto@yoctoproject.org>; Fri, 19 Oct 2012 15:33:53 +0100 (BST)
+Message-ID: <508164D0.1020408@r-finger.com>
+Date: Fri, 19 Oct 2012 15:33:52 +0100
+From: Tomas Frydrych <tf@r-finger.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:10.0.5) Gecko/20120624 Icedove/10.0.5
 MIME-Version: 1.0
-Received: by 10.59.5.229 with SMTP id cp5mr2180122ved.32.1350660574539; Fri,
-	19 Oct 2012 08:29:34 -0700 (PDT)
-Received: by 10.58.116.196 with HTTP; Fri, 19 Oct 2012 08:29:34 -0700 (PDT)
-In-Reply-To: <CAE8H0+Xuk6kZaBNTBA9ZBBZGOs4AADf8zF88WYecDMnD8wyFpg@mail.gmail.com>
-References: <CAE8H0+Xuk6kZaBNTBA9ZBBZGOs4AADf8zF88WYecDMnD8wyFpg@mail.gmail.com>
-Date: Fri, 19 Oct 2012 11:29:34 -0400
-Message-ID: <CAE8H0+UEkNN_sAEH+KCm3Zj6sm4MwOMEVcU4AE8fMsszoHH9BA@mail.gmail.com>
-From: r10kindsofpeople <r10kindsofpeople@gmail.com>
 To: yocto@yoctoproject.org
-Subject: Re: Crownbay .hddimg partition is corrupt...but works?
+X-Enigmail-Version: 1.4.1
+X-Mailman-Approved-At: Fri, 19 Oct 2012 08:34:31 -0700
+Subject: why was meta-dlna submodule history stripped out?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,55 +28,22 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 19 Oct 2012 15:29:37 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Fri, 19 Oct 2012 14:34:08 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Fri, Oct 19, 2012 at 8:48 AM, r10kindsofpeople
-<r10kindsofpeople@gmail.com> wrote:
-> I've been following with interest the thread on creating multiple
-> partitions, but before I get there, I seem to have a stumbling block.
->
-> I've been using dd to copy the .hddimg onto an SDCard and booting from
-> there.  It works fine.  The core-image-minimal image is about 32MB,
-> copied onto a 16GB card.  When 'boot' is mounted under Ubuntu 12.04, I
-> see the 5 files totaling about 31 MB with about 1 MB free.
->
-> But when I run 'parted' on /dev/mmcblk0, I see one 16GB partition
-> using the fat16 file system.  'parted check' warns me that Partition 1
-> is 16.0GB, but the file system is 32.2MB.  GParted basically throws up
-> its hands in frustration and gives up.
->
-> It seems to me that before I start trying to get a class created that
-> will create the partitions automatically, I ought to first figure out
-> how to create the partitions by hand, but I'm not convinced that the
-> .hddimg is giving me a solid foundation to start with.
->
-> Can anyone give me clues to the why/wherefore of the partition that
-> the build system is creating?  If I create my own partitions on the
-> card first, won't the 'dd' operation simply wipe that out and replace
-> it with the current situation?
->
-> I'm using the Crownbay emgd layer, Denzil 7.0.1.
->
-> John
 
-Right.  Amazing what a cup of coffee can do...
+Looking over meta-dlna in Yocto git I see it's little more than a fork
+of meta-guacamayo from guacamayo-project.org -- could someone please
+explain to me why the git history was stripped out from this 'combo' layer?
 
-So of course .hddimg has no knowledge of the drive size that I'm
-using, so I can understand why the file system and the partition size
-don't agree.
+(I am delighted Intel is finding Guacamayo useful, but the obliteration
+of the history makes it look as if the credit for this official Yocto
+layer goes to Intel; I am sure that was not intentional.)
 
-So I think what I want to create is an image class that:
-1) creates an msdos partition table
-2) creates a fat16 partition called 'boot' sized for the original
-.hddimg (or larger) with the boot flag on
-3) creates any additional partitions
-4) puts the syslinux mbr in the first 440 bytes of the new disk image
-5) puts the original .hddimg in the fat16 partition
+I am also interested in knowing why the fork was deemed necessary in the
+first place, just in case it was for technical reasons that could be
+addressed at source.
 
-Sound about right?  This seems to work by hand.  I'm using syslinux to
-boot into a ramdisk loaded rootfs, I suspect others might want
-different steps if they're booting into an ext3 image, etc.
-
-John
+Tomas
 
