@@ -1,20 +1,23 @@
-Return-Path: <tf+lists.yocto@r-finger.com>
-Received: from r-finger.com (r-finger.com [178.79.160.5])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 71FD7E0049B
-	for <yocto@yoctoproject.org>; Fri, 19 Oct 2012 07:34:27 -0700 (PDT)
-Received: from [192.168.0.2] (host81-153-115-216.range81-153.btcentralplus.com
-	[81.153.115.216]) (using TLSv1 with cipher AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by r-finger.com (Postfix) with ESMTPSA id C9CF099A4
-	for <yocto@yoctoproject.org>; Fri, 19 Oct 2012 15:34:26 +0100 (BST)
-Message-ID: <508164F1.6000108@r-finger.com>
-Date: Fri, 19 Oct 2012 15:34:25 +0100
-From: Tomas Frydrych <tf+lists.yocto@r-finger.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:10.0.5) Gecko/20120624 Icedove/10.0.5
-MIME-Version: 1.0
-To: yocto@yoctoproject.org
-Subject: why was meta-dlna submodule history stripped out?
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D7129E0049B
+	for <yocto@yoctoproject.org>; Fri, 19 Oct 2012 07:46:39 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 19 Oct 2012 07:46:04 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,612,1344236400"; d="scan'208";a="229728070"
+Received: from unknown (HELO [10.255.14.73]) ([10.255.14.73])
+	by orsmga002.jf.intel.com with ESMTP; 19 Oct 2012 07:46:27 -0700
+Message-ID: <1350657987.1569.5.camel@empanada>
+From: Tom Zanussi <tom.zanussi@intel.com>
+To: nitin.a.kamble@intel.com
+Date: Fri, 19 Oct 2012 09:46:27 -0500
+In-Reply-To: <cover.1350604720.git.nitin.a.kamble@intel.com>
+References: <cover.1350604720.git.nitin.a.kamble@intel.com>
+X-Mailer: Evolution 3.4.1 (3.4.1-2.fc17) 
+Mime-Version: 1.0
+Cc: yocto@yoctoproject.org, darren.hart@intel.com
+Subject: Re: [PATCH 0/1] meta-intel: mesa-dri build warning fix
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -26,22 +29,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 19 Oct 2012 14:34:27 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Fri, 19 Oct 2012 14:46:40 -0000
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
+On Thu, 2012-10-18 at 17:00 -0700, nitin.a.kamble@intel.com wrote:
+> From: Nitin A Kamble <nitin.a.kamble@intel.com>
+> 
+> Only one commit in this pull request to avoid the mes-dri build time warning.
+> 
 
-Looking over meta-dlna in Yocto git I see it's little more than a fork
-of meta-guacamayo from guacamayo-project.org -- could someone please
-explain to me why the git history was stripped out from this 'combo' layer?
+Pulled into meta-intel/master.
 
-(I am delighted Intel is finding Guacamayo useful, but the obliteration
-of the history makes it look as if the credit for this official Yocto
-layer goes to Intel; I am sure that was not intentional.)
+Thanks,
 
-I am also interested in knowing why the fork was deemed necessary in the
-first place, just in case it was for technical reasons that could be
-addressed at source.
+Tom
 
-Tomas
+> Thanks,
+> Nitin
+> 
+> The following changes since commit 69c3e43be6f493844a2f432ea0a56c2f6619ca00:
+> 
+>   meta-cedartrail: Add development packages to pvr driver recipe (2012-10-18 09:08:07 -0500)
+> 
+> are available in the git repository at:
+>   git://git.yoctoproject.org/meta-intel-contrib nitin/misc
+>   http://git.yoctoproject.org/cgit.cgi/meta-intel-contrib/log/?h=nitin/misc
+> 
+> Nitin A Kamble (1):
+>   mesa-dri.bbappend: avoid buildtime warnings
+> 
+>  .../recipes-graphics/mesa/mesa-dri_8.0.4.bbappend  |    5 +++++
+>  1 files changed, 5 insertions(+), 0 deletions(-)
+>  create mode 100644 common/recipes-graphics/mesa/mesa-dri_8.0.4.bbappend
+> 
+
+
 
