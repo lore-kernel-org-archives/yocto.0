@@ -1,17 +1,38 @@
-Return-Path: <packages@autobuilder.yoctoproject.org>
-Received: from autobuilder.yoctoproject.org (ab01.i.yoctoproject.org
-	[10.0.10.111])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 04E1FE01351
-	for <yocto@yoctoproject.org>; Sat, 20 Oct 2012 17:00:59 -0700 (PDT)
-Received: by autobuilder.yoctoproject.org (Postfix, from userid 802)
-	id EBEE240CF5; Sun, 21 Oct 2012 00:00:58 +0000 (UTC)
-Date: Sun, 21 Oct 2012 00:00:58 +0000
-From: Yocto Project Package Report System <package-reporting@yoctoproject.org>
-To: yocto@yoctoproject.org
-Message-ID: <20121021000058.GA19763@ab01.i.yoctoproject.org>
+Return-Path: <kishore.k.bodke@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5CC39E01248
+	for <yocto@yoctoproject.org>; Sun, 21 Oct 2012 20:15:48 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 21 Oct 2012 20:15:47 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,627,1344236400"; d="scan'208";a="207291836"
+Received: from orsmsx103.amr.corp.intel.com ([10.22.225.130])
+	by azsmga001.ch.intel.com with ESMTP; 21 Oct 2012 20:15:46 -0700
+Received: from orsmsx105.amr.corp.intel.com ([169.254.4.140]) by
+	ORSMSX103.amr.corp.intel.com ([169.254.2.85]) with mapi id
+	14.01.0355.002; Sun, 21 Oct 2012 20:15:46 -0700
+From: "Bodke, Kishore K" <kishore.k.bodke@intel.com>
+To: "Zanussi, Tom" <tom.zanussi@intel.com>
+Thread-Topic: [PATCH 1/3] [meta-intel] meta-intel/common:Add a new recipe
+	for Zlib qat_mem Module.
+Thread-Index: AQHNrVstpl6CwEtVGEW5/u6WS/sJgZfBaY8A//+Kv8CAAHcdgP//iwowgAB49gCAAzloYA==
+Date: Mon, 22 Oct 2012 03:15:46 +0000
+Message-ID: <D956029D25CF204F948EA0FB515E1EE233E6EFA3@ORSMSX105.amr.corp.intel.com>
+References: <cover.1350583189.git.kishore.k.bodke@intel.com>
+	<46df5fcf29108c0c9b5ed6714ec012fd03b94e55.1350583189.git.kishore.k.bodke@intel.com>
+	<ADD6A3980E8C39419A432FF422031B4C2D90C94E@ORSMSX106.amr.corp.intel.com>
+	<D956029D25CF204F948EA0FB515E1EE233E6D804@ORSMSX105.amr.corp.intel.com>
+	<1350671677.1569.14.camel@empanada>
+	<D956029D25CF204F948EA0FB515E1EE233E6D849@ORSMSX105.amr.corp.intel.com>
+	<1350672536.1569.21.camel@empanada>
+In-Reply-To: <1350672536.1569.21.camel@empanada>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-User-Agent: Mutt/1.5.20 (2009-12-10)
-Subject: [Package Report System]Manual check recipes name list
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [PATCH 1/3] [meta-intel] meta-intel/common:Add a new recipe for Zlib qat_mem Module.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -23,132 +44,167 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 21 Oct 2012 00:00:59 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Mon, 22 Oct 2012 03:15:49 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-This mail was sent out by Package Report System.
-It will list all the recipes which can't check upstream version by script, and will show how long it is since their last mannual version check.
-You can check the detail information at http://packages.yoctoproject.org/manuallychkinfo
-
-
-PackageName              Version             LastChkVersion      LastChkTime              Maintainer                              NoUpgradeReason               
-lsb                      4.1                 4.1                 186 day                  Yi Zhao <yi.zhao@windriver.co...        1.4 is fixed version of LSB Te...
-freetype                 2.4.10              2.4.10              107 day                  Valentin Popa <valentin.popa@...        No data                       
-menu-cache               0.3.3               0.3.3               41201 d                  Valentin Popa <valentin.popa@...        No data                       
-libfm                    0.1.17              1.30                107 day                  Valentin Popa <valentin.popa@...        No data                       
-pcmanfm                  0.9.10              0.9.10              107 day                  Valentin Popa <valentin.popa@...        No data                       
-gtkhtml2                 2.11.0+svnr11...    2.11.1              41201 d                  Valentin Popa <valentin.popa@...        No data                       
-libevent                 2.0.16              2.0.20              283 day                  Scott Garman <scott.a.garman@...        No data                       
-e2fsprogs                1.42.1              1.42.5              108 day                  Scott Garman <scott.a.garman@...        No data                       
-chrpath                  0.14                0.14                108 day                  Scott Garman <scott.a.garman@...        No data                       
-opensp                   1.5.2               1.5.2               108 day                  Scott Garman <scott.a.garman@...        No data                       
-expat                    2.1.0               2.0.1               108 day                  Scott Garman <scott.a.garman@...        No data                       
-nfs-utils                1.2.3               1.2.6               108 day                  Scott Garman <scott.a.garman@...        No data                       
-libpng                   1.2.49              1.5.11              108 day                  Scott Garman <scott.a.garman@...        1.4.3 and later changes the AP...
-libatomics-ops           7.2                 N/A                 41201 d                  Scott Garman <scott.a.garman@...        No data                       
-cracklib                 2.8.19              2.8.19              108 day                  Saul Wold <sgw@linux.intel.co...        No data                       
-psmisc                   22.19               22.19               108 day                  Saul Wold <sgw@linux.intel.co...        No data                       
-sysstat                  10.1.1              10.1.1              108 day                  Saul Wold <sgw@linux.intel.co...        No data                       
-less                     444                 444                 108 day                  Saul Wold <sgw@linux.intel.co...        No data                       
-glew                     1.9.0               1.9.0               108 day                  Saul Wold <sgw@linux.intel.co...        No data                       
-mx                       1.4.6               N/A                 41201 d                  Saul Wold <sgw@linux.intel.co...        No data                       
-libexif                  0.6.21              0.6.21              108 day                  Saul Wold <sgw@linux.intel.co...        No data                       
-sqlite3                  3.7.13              3.7.13              108 day                  Saul Wold <sgw@linux.intel.co...        No data                       
-boost                    1.51.0              1.51.0              108 day                  Saul Wold <sgw@linux.intel.co...        No data                       
-libcheck                 0.9.8               0.9.8               108 day                  Saul Wold <sgw@linux.intel.co...        No data                       
-libacpi                  0.2                 0.2                 41201 d                  Saul Wold <sgw@linux.intel.co...        No data                       
-sysfsutils               2.1.0               2.1.0               108 day                  Saul Wold <sgw@linux.intel.co...        No data                       
-console-tools            0.3.2               0.3.2               108 day                  Saul Wold <sgw@linux.intel.co...        No data                       
-libmad                   0.15.1b             0.15.2b             108 day                  Saul Wold <sgw@linux.intel.co...        No data                       
-popt                     1.16                1.16                41201 d                  Saul Wold <sgw@linux.intel.co...        No data                       
-clutter-gst-1.8          1.4.6               N/A                 41201 d                  Ross Burton <ross.burton@inte...        No data                       
-cogl                     1.8.2               Jul 17, 2012        313 day                  Ross Burton <ross.burton@inte...        No data                       
-clutter-1.8              1.8.4               N/A                 41201 d                  Ross Burton <ross.burton@inte...        No data                       
-clutter-gtk-1.8          0.11.4              N/A                 41201 d                  Ross Burton <ross.burton@inte...        No data                       
-tzdata                   2012d               2012c               107 day                  Radu Moisan <radu.moisan@inte...        No data                       
-bzip2                    1.0.6               1.0.6               516 day                  Radu Moisan <radu.moisan@inte...        No data                       
-zip                      3.0                 3.0                 107 day                  Radu Moisan <radu.moisan@inte...        No data                       
-watchdog                 5.12                5.12                107 day                  Radu Moisan <radu.moisan@inte...        No data                       
-hdparm                   9.39                9.39                107 day                  Radu Moisan <radu.moisan@inte...        No data                       
-tslib                    1.0                 1.0                 107 day                  Radu Moisan <radu.moisan@inte...        No data                       
-unzip                    6.0                 6.0                 107 day                  Radu Moisan <radu.moisan@inte...        No data                       
-beecrypt                 4.2.1               4.2.1               107 day                  Radu Moisan <radu.moisan@inte...        No data                       
-setserial                2.17                2.17                179 day                  Radu Moisan <radu.moisan@inte...        No data                       
-acpid                    1.0.10              1.0.10              107 day                  Radu Moisan <radu.moisan@inte...        No data                       
-squashfs-tools           4.2                 4.2                 107 day                  Radu Moisan <radu.moisan@inte...        No data                       
-u-boot-fw-utils          2011.06             20012.07            41201 d                  Radu Moisan <radu.moisan@inte...        No data                       
-ubootchart               0.0+r12             0.0+r12             41201 d                  Radu Moisan <radu.moisan@inte...        No data                       
-opkg                     0.1.8+svnr633...    0.1.8               107 day                  Radu Moisan <radu.moisan@inte...        No data                       
-fotowall                 0.9                 0.9                 41201 d                  Radu Moisan <radu.moisan@inte...        No data                       
-quicky                   0.4                 N/A                 41201 d                  Radu Moisan <radu.moisan@inte...        No data                       
-kmod                     9                   9                   41201 d                  Radu Moisan <radu.moisan@inte...        No data                       
-tinylogin                1.4                 1.4                 302 day                  Radu Moisan <radu.moisan@inte...        No data                       
-gupnp                    0.16.1              0.18.4              41201 d                  Radu Moisan <radu.moisan@inte...        No data                       
-lame                     3.99.5              3.99.5              107 day                  Radu Moisan <radu.moisan@inte...        No data                       
-nativesdk-libarchive...  2.8.5               N/A                 41201 d                  No Maintainer information               No data                       
-nativesdk-bzip2          1.0.6               N/A                 41201 d                  No Maintainer information               No data                       
-nativesdk-mpfr           3.1.0               N/A                 41201 d                  No Maintainer information               No data                       
-nativesdk-sqlite3        3.7.13              N/A                 41201 d                  No Maintainer information               No data                       
-nativesdk-db             5.3.15              N/A                 41201 d                  No Maintainer information               No data                       
-nativesdk-libmpc         0.8.2               N/A                 41201 d                  No Maintainer information               No data                       
-nativesdk-u-boot-mki...  2011.06             N/A                 41201 d                  No Maintainer information               No data                       
-kconfig-frontends        3.5.0               3.5.0               41201 d                  No Maintainer information               No data                       
-nativesdk-pseudo         1.4.1               N/A                 41201 d                  No Maintainer information               No data                       
-python-argparse          1.2.1               N/A                 41201 d                  No Maintainer information               No data                       
-nativesdk-opkg           0.1.8+svnr633...    N/A                 41201 d                  No Maintainer information               No data                       
-nativesdk-chrpath        0.14                N/A                 41201 d                  No Maintainer information               No data                       
-nativesdk-eglibc         2.16                N/A                 41201 d                  No Maintainer information               No data                       
-libcgroup                0.37.1              0.38-1              41201 d                  No Maintainer information               No data                       
-nativesdk-expat          2.1.0               N/A                 41201 d                  No Maintainer information               No data                       
-mpeg2dec                 0.4.1               0.5.1               516 day                  No Maintainer information               Why are we currently at 0.4.1?
-nativesdk-alsa-lib       1.0.25              N/A                 41201 d                  No Maintainer information               No data                       
-ltp                      20120903            20120903            222 day                  Mihai Lindner <mihaix.lindner...        No data                       
-pseudo                   1.4.1               1.2                 354 day                  Mark Hatle <mark.hatle@windri...        No data                       
-prelink                  1.0+git1+a2d8...    1.0+git1+9552...    282 day                  Mark Hatle <mark.hatle@windri...        No data                       
-rpm                      5.4.9               5.4.10              41201 d                  Mark Hatle <mark.hatle@windri...        No data                       
-x11vnc                   0.9.13              0.9.13              107 day                  Laurentiu Palcu <laurentiu.pa...        No data                       
-libarchive               2.8.5               3.0.4               41201 d                  Kai Kang <kai.kang@windriver....        No data                       
-mingetty                 1.08                1.08                283 day                  Kai Kang <kai.kang@windriver....        No data                       
-alsa-tools               1.0.25              N/A                 41201 d                  Kai Kang <kai.kang@windriver....        No data                       
-adt-installer            0.1.8+svnr596...    1.1                 41201 d                  Jessica Zhang <jessica.zhang@...        No data                       
-cwautomacros             20110201            20110201            107 day                  Cristian Iorga <cristian.iorg...        No data                       
-minicom                  2.6.1               2.6.1               107 day                  Cristian Iorga <cristian.iorg...        No data                       
-libtirpc                 0.2.2               0.2.2               107 day                  Cristian Iorga <cristian.iorg...        No data                       
-rpcbind                  0.2.0               0.2.0               107 day                  Cristian Iorga <cristian.iorg...        No data                       
-quota                    4.00                4.00                107 day                  Cristian Iorga <cristian.iorg...        No data                       
-db                       5.3.15              5.0.26              41201 d                  Cristian Iorga <cristian.iorg...        API compatibility issue       
-libproxy                 0.4.7               0.4.7               630 day                  Cristian Iorga <cristian.iorg...        No data                       
-taglib                   1.8                 1.7.2               630 day                  Cristian Iorga <cristian.iorg...        No data                       
-lrzsz                    0.12.20             0.12.20             630 day                  Cristian Iorga <cristian.iorg...        No data                       
-libical                  0.48                0.48                107 day                  Cristian Iorga <cristian.iorg...        No data                       
-wireless-tools           29                  29                  107 day                  Cristian Iorga <cristian.iorg...        No data                       
-irda-utils               0.9.18              0.9.18              107 day                  Cristian Iorga <cristian.iorg...        No data                       
-libpcap                  1.3.0               4.3.0               41201 d                  Cristian Iorga <cristian.iorg...        No data                       
-gssdp                    0.10.0              0.10.0              41201 d                  Cristian Iorga <cristian.iorg...        No data                       
-gupnp-tools              0.8.1               N/A                 41201 d                  Cristian Iorga <cristian.iorg...        No data                       
-gupnp-av                 0.8.0               0.10.3              41201 d                  Cristian Iorga <cristian.iorg...        No data                       
-tremor                   20120314            20120122            41201 d                  Cristian Iorga <cristian.iorg...        No data                       
-liba52                   0.7.4               0.7.4               630 day                  Cristian Iorga <cristian.iorg...        No data                       
-flac                     1.2.1               1.2.1               107 day                  Cristian Iorga <cristian.iorg...        No data                       
-libomxil                 0.9.3               0.9.3               107 day                  Cristian Iorga <cristian.iorg...        No data                       
-libsamplerate0           0.1.8               0.1.8               107 day                  Cristian Iorga <cristian.iorg...        No data                       
-alsa-utils               1.0.25              N/A                 41201 d                  Cristian Iorga <cristian.iorg...        No data                       
-alsa-lib                 1.0.25              N/A                 41201 d                  Cristian Iorga <cristian.iorg...        No data                       
-mpfr                     3.1.0               3.1.1               107 day                  Bogdan Marinescu <bogdan.a.ma...        No data                       
-libpcre                  8.31                8.31                107 day                  Bogdan Marinescu <bogdan.a.ma...        No data                       
-libmpc                   0.8.2               0.9                 635 day                  Bogdan Marinescu <bogdan.a.ma...        No data                       
-python-scons             2.1.0               2.2.0               41201 d                  Bogdan Marinescu <bogdan.a.ma...        No data                       
-distcc                   2.18.3              3.1.1               41201 d                  Bogdan Marinescu <bogdan.a.ma...        No data                       
-intltool                 0.50.0              0.50.2              41201 d                  Bogdan Marinescu <bogdan.a.ma...        No data                       
-strace                   4.7                 4.7                 107 day                  Bogdan Marinescu <bogdan.a.ma...        No data                       
-git                      1.7.7               N/A                 41201 d                  Bogdan Marinescu <bogdan.a.ma...        No data                       
-tcl                      8.5.11              8.5.12              107 day                  Bogdan Marinescu <bogdan.a.ma...        No data                       
-powertop                 1.13                1.97                550 day                  Bogdan Marinescu <bogdan.a.ma...        Do not upgrade to version 1.97...
-oprofile                 0.9.7               0.9.8               107 day                  Bogdan Marinescu <bogdan.a.ma...        No data                       
-latencytop               0.5                 0.5                 550 day                  Bogdan Marinescu <bogdan.a.ma...        No data                       
-eglibc                   2.16                git:16540           294 day                  Bogdan Marinescu <bogdan.a.ma...        No data                       
-Manual Check Count: 115
-Manual Need Check Count: 115
-Any problem, please contact Saul Wold <sgw@linux.intel.com> 
+DQoNCj4tLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPkZyb206IFphbnVzc2ksIFRvbQ0KPlNl
+bnQ6IEZyaWRheSwgT2N0b2JlciAxOSwgMjAxMiAxMTo0OSBBTQ0KPlRvOiBCb2RrZSwgS2lzaG9y
+ZSBLDQo+Q2M6IEthbWJsZSwgTml0aW4gQTsgeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0KPlN1Ympl
+Y3Q6IFJlOiBbUEFUQ0ggMS8zXSBbbWV0YS1pbnRlbF0gbWV0YS1pbnRlbC9jb21tb246QWRkIGEg
+bmV3IHJlY2lwZQ0KPmZvciBabGliIHFhdF9tZW0gTW9kdWxlLg0KPg0KPk9uIEZyaSwgMjAxMi0x
+MC0xOSBhdCAxMzo0MCAtMDUwMCwgQm9ka2UsIEtpc2hvcmUgSyB3cm90ZToNCj4+DQo+PiA+LS0t
+LS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4+ID5Gcm9tOiBaYW51c3NpLCBUb20NCj4+ID5TZW50
+OiBGcmlkYXksIE9jdG9iZXIgMTksIDIwMTIgMTE6MzUgQU0NCj4+ID5UbzogQm9ka2UsIEtpc2hv
+cmUgSw0KPj4gPkNjOiBLYW1ibGUsIE5pdGluIEE7IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcNCj4+
+ID5TdWJqZWN0OiBSZTogW1BBVENIIDEvM10gW21ldGEtaW50ZWxdIG1ldGEtaW50ZWwvY29tbW9u
+OkFkZCBhIG5ldw0KPnJlY2lwZQ0KPj4gPmZvciBabGliIHFhdF9tZW0gTW9kdWxlLg0KPj4gPg0K
+Pj4gPkhpIEtpc2hvcmUsDQo+PiA+DQo+PiA+SSd2ZSBidWlsdCB0aGVzZSBhbmQgdGhleSBsb29r
+IG9rIGFzIGZhciBhcyB0aGF0IGdvZXMuDQo+PiA+DQo+PiA+QnV0IEknbSB3b25kZXJpbmcsIHdo
+aWNoIGtlcm5lbCBkaWQgeW91IHRlc3Qgd2l0aCBhbmQgd2hpY2gga2VybmVsKHMpDQo+PiA+YXJl
+IHRoZXNlIG1vZHVsZXMgZGVzaWduZWQgZm9yIGkuZS4gd2lsbCB0aGV5IHdvcmsgd2l0aCBhbGwg
+dGhlIGtlcm5lbHMNCj4+ID5zdXBwb3J0ZWQgZm9yIDEuMz8NCj4+DQo+PiBIaSBUb20sDQo+Pg0K
+Pj4gSSBoYXZlIHRlc3RlZCB0aGVtIGZvciAzLjQgS2VybmVsIGZvciBZb2N0bywgc2luY2UgZm9y
+IENyeXN0YWwgRm9yZXN0IHdlIG9ubHkNCj5oYXZlIDMuNCBmb3Igbm93Lg0KPj4gQXBhcnQgZnJv
+bSB0aGF0LCBpdCBzaG91bGQgd29yayB3aXRoIGFsbCB0aGUga2VybmVsIHZlcnNpb25zLg0KPj4g
+SSBoYXZlIHRlc3RlZCAzLjAgYW5kIDMuNSBvbiBGZWRvcmEuDQo+Pg0KPg0KPk9LLCBmb3Igc29t
+ZXRoaW5nIGluIGNvbW1vbiwgd2UgaGF2ZSB0byB0aGluayBhYm91dCBzb21lb25lIHVzaW5nIHRo
+ZW0NCj53aXRoIGFueSB5b2N0byBrZXJuZWwsIG5vdCBqdXN0IDMuNC4gIFNpbmNlIHlvdSdyZSBz
+YXlpbmcgdGhleSB3b3JrIHdpdGgNCj4zLjAsIDMuNCBhbmQgMy41LCBJIGd1ZXNzIHRoZXJlJ3Mg
+bm90IHRvbyBtdWNoIHJpc2sgdGhhdCB0aGV5J2xsIGJyZWFrDQo+d2l0aCAzLjIuICBJZiB0aGF0
+J3Mgbm90IHRoZSBjYXNlLCB5b3Ugc2hvdWxkIHByb2JhYmx5IHJlc3RyaWN0IHRoZW0gdG8NCj55
+b3VyIEJTUCAoYnV0IHdlIGRvbid0IHdhbnQgbXVsdGlwbGUgY29waWVzKSBlaXRoZXIuDQo+DQo+
+VGhlIGJlc3QgdGhpbmcgd291bGQgYmUgdG8gbW92ZSB0aGVtIGludG8gdGhlIGxpbnV4LXlvY3Rv
+IGtlcm5lbChzKSB0aGV5DQo+aGF2ZSBiZWVuIHRlc3RlZCB3aXRoIC0gdGhhdCB3YXkgdXNlcnMg
+a25vdyB0aG9zZSBmZWF0dXJlcyB3b3JrIGFuZCBhcmUNCj5zYWZlIHRvIHVzZSBpbiB0aGVpciBC
+U1BzLg0KPg0KDQpUaGVzZSBtb2R1bGVzIGp1c3QgbmVlZCB0aGUgY29uZmlndXJlZCBrZXJuZWwg
+Zm9yIHRoZW0gdG8gYnVpbGQgd2l0aC4NCkl0IGlzIG5vdCBzcGVjaWZpYyB0byBwYXJ0aWN1bGFy
+IGtlcm5lbCB2ZXJzaW9uLiANCg0KQWxzbywgZXZlcnkgdGltZSB0aGUgS2VybmVsIHZlcnNpb24g
+bW92ZXMsIHRoaXMgd2hvbGUgc2V0IG5lZWRzIHRvIGJlIG1vdmVkIHRvby4NCkluc3RlYWQgaGF2
+ZSBpdCBpbiB0aGUgQlNQIGFuZCB3ZSBkbyBub3QgaGF2ZSB0byBydW4gYXJvdW5kIG1vdmluZyBh
+cm91bmQgd2l0aCB0aGUgZGlmZmVyZW50IGtlcm5lbHMuDQpJbnN0ZWFkIGl0IGlzIG5pY2UgdG8g
+aGF2ZSBvbmUgY29weSBpbiBjb21tb24uDQoNClRoYW5rcw0KS2lzaG9yZS4NCg0KPlRvbQ0KPg0K
+Pj4gVGhhbmtzDQo+PiBLaXNob3JlLg0KPj4NCj4+ID4NCj4+ID5Ub20NCj4+ID4NCj4+ID5PbiBG
+cmksIDIwMTItMTAtMTkgYXQgMTM6MjggLTA1MDAsIEJvZGtlLCBLaXNob3JlIEsgd3JvdGU6DQo+
+PiA+Pg0KPj4gPj4gPi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+PiA+PiA+RnJvbTogS2Ft
+YmxlLCBOaXRpbiBBDQo+PiA+PiA+U2VudDogRnJpZGF5LCBPY3RvYmVyIDE5LCAyMDEyIDExOjI4
+IEFNDQo+PiA+PiA+VG86IEJvZGtlLCBLaXNob3JlIEs7IFphbnVzc2ksIFRvbTsgeW9jdG9AeW9j
+dG9wcm9qZWN0Lm9yZw0KPj4gPj4gPlN1YmplY3Q6IFJFOiBbUEFUQ0ggMS8zXSBbbWV0YS1pbnRl
+bF0gbWV0YS1pbnRlbC9jb21tb246QWRkIGEgbmV3DQo+PiA+cmVjaXBlDQo+PiA+PiA+Zm9yIFps
+aWIgcWF0X21lbSBNb2R1bGUuDQo+PiA+PiA+DQo+PiA+PiA+SGkgS2lzaG9yZSwNCj4+ID4+ID4g
+IFNhbWUgaGVyZSwgaWYgaXQgaXMgbm90IHVzZWQgYnkgbXVsdGlwbGUgQlNQcyB5ZXQsIHRoZW4g
+aXQgc2hvdWxkIGdvIGluDQo+dGhlDQo+PiA+QlNQDQo+PiA+PiA+c3BlY2lmaWMgbGF5ZXIuDQo+
+PiA+PiA+DQo+PiA+PiBZZXMsIHRoZXNlIHRvbyB3aWxsIGJlIHVzZWQgYnkgYm90aCBDcnlzdGFs
+IEZvcmVzdCBhbmQgUmFuZ2VseS4NCj4+ID4+DQo+PiA+PiBUaGFua3MNCj4+ID4+IEtpc2hvcmUu
+DQo+PiA+Pg0KPj4gPj4gPlRoYW5rcywNCj4+ID4+ID5OaXRpbg0KPj4gPj4gPg0KPj4gPj4gPg0K
+Pj4gPj4gPj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4+ID4+ID4+IEZyb206IEJvZGtl
+LCBLaXNob3JlIEsNCj4+ID4+ID4+IFNlbnQ6IFRodXJzZGF5LCBPY3RvYmVyIDE4LCAyMDEyIDEx
+OjE5IEFNDQo+PiA+PiA+PiBUbzogWmFudXNzaSwgVG9tOyBLYW1ibGUsIE5pdGluIEE7IHlvY3Rv
+QHlvY3RvcHJvamVjdC5vcmcNCj4+ID4+ID4+IENjOiBCb2RrZSwgS2lzaG9yZSBLDQo+PiA+PiA+
+PiBTdWJqZWN0OiBbUEFUQ0ggMS8zXSBbbWV0YS1pbnRlbF0gbWV0YS1pbnRlbC9jb21tb246QWRk
+IGEgbmV3DQo+cmVjaXBlDQo+PiA+Zm9yDQo+PiA+PiA+PiBabGliIHFhdF9tZW0gTW9kdWxlLg0K
+Pj4gPj4gPj4NCj4+ID4+ID4+IEZyb206IEtpc2hvcmUgQm9ka2UgPGtpc2hvcmUuay5ib2RrZUBp
+bnRlbC5jb20+DQo+PiA+PiA+Pg0KPj4gPj4gPj4gVGhpcyBhZGRzIGEgbmV3IHJlY2lwZSB0byBi
+dWlsZCB0aGUgSW50ZWwgUXVpY2sgQXNzaXN0IFRlY2hub2xvZ3kNCj5NZW1vcnkNCj4+ID4+ID4+
+IE1hbmFnZW1lbnQgTW9kdWxlIGZvciBabGliLg0KPj4gPj4gPj4NCj4+ID4+ID4+IFNpZ25lZC1v
+ZmYtYnk6IEtpc2hvcmUgQm9ka2UgPGtpc2hvcmUuay5ib2RrZUBpbnRlbC5jb20+DQo+PiA+PiA+
+PiAtLS0NCj4+ID4+ID4+ICAuLi4vemxpYi1xYXQtbW9kdWxlL3psaWItcWF0LW1vZHVsZS5iYiAg
+ICAgICAgICAgICB8ICAgNTINCj4+ID4+ID4+ICsrKysrKysrKysrKysrKysrKysrDQo+PiA+PiA+
+PiAgLi4uL3psaWItcWF0LW1vZHVsZS96bGliX3FhdF9tb2R1bGUucGF0Y2ggICAgICAgICAgfCAg
+IDQzDQo+PiA+KysrKysrKysrKysrKysrKw0KPj4gPj4gPj4gIDIgZmlsZXMgY2hhbmdlZCwgOTUg
+aW5zZXJ0aW9ucygrKQ0KPj4gPj4gPj4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBjb21tb24vcmVjaXBl
+cy1jb3JlL3psaWItcWF0LW1vZHVsZS96bGliLXFhdC0NCj4+ID4+ID4+IG1vZHVsZS5iYg0KPj4g
+Pj4gPj4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBjb21tb24vcmVjaXBlcy1jb3JlL3psaWItcWF0LW1v
+ZHVsZS96bGliLXFhdC0NCj4+ID4+ID4+IG1vZHVsZS96bGliX3FhdF9tb2R1bGUucGF0Y2gNCj4+
+ID4+ID4+DQo+PiA+PiA+PiBkaWZmIC0tZ2l0IGEvY29tbW9uL3JlY2lwZXMtY29yZS96bGliLXFh
+dC1tb2R1bGUvemxpYi1xYXQtbW9kdWxlLmJiDQo+PiA+PiA+PiBiL2NvbW1vbi9yZWNpcGVzLWNv
+cmUvemxpYi1xYXQtbW9kdWxlL3psaWItcWF0LW1vZHVsZS5iYg0KPj4gPj4gPj4gbmV3IGZpbGUg
+bW9kZSAxMDA2NDQNCj4+ID4+ID4+IGluZGV4IDAwMDAwMDAuLjVhZGUwNmUNCj4+ID4+ID4+IC0t
+LSAvZGV2L251bGwNCj4+ID4+ID4+ICsrKyBiL2NvbW1vbi9yZWNpcGVzLWNvcmUvemxpYi1xYXQt
+bW9kdWxlL3psaWItcWF0LW1vZHVsZS5iYg0KPj4gPj4gPj4gQEAgLTAsMCArMSw1MiBAQA0KPj4g
+Pj4gPj4gK1NVTU1BUlk9IlpsaWIgUUFUX01FTSBNZW1vcnkgTWFuYWdlbWVudCBNb2R1bGUgZm9y
+IEludGVsDQo+PiA+UXVpY2sNCj4+ID4+ID4+IEFzc2lzdCBcDQo+PiA+PiA+PiArVGVjaG5vbG9n
+eSINCj4+ID4+ID4+ICtERVNDUklQVElPTj0iVGhpcyBzb2Z0d2FyZSBhY2VsZXJhdGVzIHRoZSBk
+YXRhIGNvbXByZXNzaW9uDQo+PiA+YWxnb3JpdGhtIFwNCj4+ID4+ID4+ICtpbiB0aGUgemxpYiBz
+b2Z0d2FyZSBsaWJyYXJ5IHZpYSB0aGUgSW50ZWwgUXVpY2tBc3Npc3QgVGVjaG5vbG9neSBcDQo+
+PiA+PiA+PiAraW1wbGVtZW50ZWQgb24gSW50ZWwgQ29tbXVuaWNhdGlvbnMgQ2hpcHNldCA4OXh4
+IFNlcmllcyBiYXNlZA0KPj4gPj4gPj4gcGxhdGZvcm1zLiINCj4+ID4+ID4+ICsNCj4+ID4+ID4+
+ICtIT01FUEFHRSA9ICJodHRwOi8vemxpYi5uZXQvIg0KPj4gPj4gPj4gK1NFQ1RJT04gPSAibGli
+cyINCj4+ID4+ID4+ICtMSUNFTlNFID0gIlpsaWIgJiBHUEx2MiAmIEJTRCINCj4+ID4+ID4+ICsN
+Cj4+ID4+ID4+ICtMSUNfRklMRVNfQ0hLU1VNID0gImZpbGU6Ly8ke1dPUktESVJ9L3psaWItDQo+
+PiA+PiA+Pg0KPj4NCj4+JHtQVn0vemxpYi5oO2JlZ2lubGluZT00O2VuZGxpbmU9MjM7bWQ1PTk0
+ZDFiNWE0MGRhZGQxMjdmMzM1MTQ3MTcyN2U2DQo+PiA+PiA+PiA2YTkgXA0KPj4gPj4gPj4gKwkJ
+CWZpbGU6Ly8ke0NPTU1PTl9MSUNFTlNFX0RJUn0vR1BMLQ0KPj4gPj4gPj4gMi4wO21kNT04MDFm
+ODA5ODBkMTcxZGQ2NDI1NjEwODMzYTIyZGJlNiBcDQo+PiA+PiA+PiArDQo+PiA+PiA+Pg0KPglm
+aWxlOi8vJHtDT01NT05fTElDRU5TRV9ESVJ9L0JTRDttZDU9Mzc3NTQ4MGE3MTJmYzQ2YTY5NjQ3
+Ng0KPj4gPj4gPj4gNzhhY2IyMzRjYiINCj4+ID4+ID4+ICtQViA9ICIxLjIuNyINCj4+ID4+ID4+
+ICtaTElCX1FBVF9WRVJTSU9OID0gIjAuNC4wLTAxMSINCj4+ID4+ID4+ICsNCj4+ID4+ID4+ICtQ
+Uj0icjAiDQo+PiA+PiA+PiArDQo+PiA+PiA+PiArU1JDX1VSSSA9ICJodHRwOi8vd3d3LnpsaWIu
+bmV0L3psaWItJHtQVn0udGFyLmd6O25hbWU9emxpYiBcDQo+PiA+PiA+PiArCWh0dHA6Ly9kb3du
+bG9hZG1pcnJvci5pbnRlbC5jb20vMjAyOTQvZW5nL3psaWItJHtQVn0tDQo+PiA+PiA+PiBxYXQu
+TC4ke1pMSUJfUUFUX1ZFUlNJT059LnRhci5nejtuYW1lPXpsaWJfcWF0IFwNCj4+ID4+ID4+ICsJ
+ZmlsZTovL3psaWJfcWF0X21vZHVsZS5wYXRjaCINCj4+ID4+ID4+ICsNCj4+ID4+ID4+ICtTUkNf
+VVJJW3psaWIubWQ1c3VtXT0iNjBkZjZhMzdjNTZlN2MxMzY2Y2NhODEyNDE0ZjdiODUiDQo+PiA+
+PiA+Pg0KPj4NCj4+K1NSQ19VUklbemxpYi5zaGEyNTZzdW1dPSJmYTljOWM4NjM4ZWZiOGNiOGVm
+NWU0ZGQ1NDUzZTQ1NTc1MWUxYzUzMA0KPj4gPj4gPj4gYjE1OTVlZWQ0NjZlMWJlOWI3ZTI2YzUi
+DQo+PiA+PiA+PiArDQo+PiA+PiA+PiArU1JDX1VSSVt6bGliX3FhdC5tZDVzdW1dPSI4OGU0MTQw
+Zjk4ZDJmOWUxNzBiZjQ3M2YyMGUxYThkNCINCj4+ID4+ID4+DQo+PiA+Pg0KPj4NCj4+PitTUkNf
+VVJJW3psaWJfcWF0LnNoYTI1NnN1bV09IjNjMzYwODc4MTI3ZjM5MzBlNjQ2NDBlZjVhNTgyMjcx
+OWE1MA0KPjU5DQo+PiA+PiA+PiAxNDMzMjZiYjRjMzk2NjQ1YWUzN2I3MDRhNiINCj4+ID4+ID4+
+ICsNCj4+ID4+ID4+ICtTID0gIiR7V09SS0RJUn0vemxpYi0ke1BWfS9jb250cmliL3FhdC9xYXRf
+bWVtIg0KPj4gPj4gPj4gKw0KPj4gPj4gPj4gK2luaGVyaXQgbW9kdWxlDQo+PiA+PiA+PiArZXhw
+b3J0IEtFUk5FTF9TT1VSQ0VfUk9PVCA9ICIke1NUQUdJTkdfS0VSTkVMX0RJUn0iDQo+PiA+PiA+
+PiArDQo+PiA+PiA+PiArZG9fcGF0Y2goKSAJew0KPj4gPj4gPj4gKwljZCAke1dPUktESVJ9L3ps
+aWItJHtQVn0NCj4+ID4+ID4+ICsJcGF0Y2ggLXAwICA8ICR7V09SS0RJUn0vemxpYi0ke1BWfS0N
+Cj4+ID4+ID4+IHFhdC5MLiR7WkxJQl9RQVRfVkVSU0lPTn0ucGF0Y2gNCj4+ID4+ID4+ICsNCj4+
+ID4+ID4+ICsJY2QgJHtXT1JLRElSfQ0KPj4gPj4gPj4gKwlwYXRjaCAtcDEgICA8ICR7V09SS0RJ
+Un0vemxpYl9xYXRfbW9kdWxlLnBhdGNoDQo+PiA+PiA+PiArfQ0KPj4gPj4gPj4gKw0KPj4gPj4g
+Pj4gK2RvX2NvbXBpbGUoKSAgICB7DQo+PiA+PiA+PiArCWNkICR7U30NCj4+ID4+ID4+ICsJb2Vf
+cnVubWFrZSBLRVJORUxfQ0M9IiR7S0VSTkVMX0NDfSINCj4+ID4+ID4+ICt9DQo+PiA+PiA+PiAr
+DQo+PiA+PiA+PiArZG9faW5zdGFsbF9hcHBlbmQoKSAgICAgew0KPj4gPj4gPj4gKwlpbnN0YWxs
+IC1tIDA3NTUgLWQgICAgICAJCSR7RH0ke2JpbmRpcn0NCj4+ID4+ID4+ICsJaW5zdGFsbCAtbSAw
+NzU1ICR7U30vcWF0X21lbV90ZXN0ICAgICAgICR7RH0ke2JpbmRpcn0NCj4+ID4+ID4+ICt9DQo+
+PiA+PiA+PiArDQo+PiA+PiA+PiArRklMRVNfJHtQTn0gKz0gIiR7YmluZGlyfS9xYXRfbWVtX3Rl
+c3QiDQo+PiA+PiA+PiBkaWZmIC0tZ2l0IGEvY29tbW9uL3JlY2lwZXMtY29yZS96bGliLXFhdC1t
+b2R1bGUvemxpYi1xYXQtDQo+PiA+PiA+PiBtb2R1bGUvemxpYl9xYXRfbW9kdWxlLnBhdGNoIGIv
+Y29tbW9uL3JlY2lwZXMtY29yZS96bGliLXFhdC0NCj4+ID4+ID4+IG1vZHVsZS96bGliLXFhdC1t
+b2R1bGUvemxpYl9xYXRfbW9kdWxlLnBhdGNoDQo+PiA+PiA+PiBuZXcgZmlsZSBtb2RlIDEwMDY0
+NA0KPj4gPj4gPj4gaW5kZXggMDAwMDAwMC4uYTMwZjhiMA0KPj4gPj4gPj4gLS0tIC9kZXYvbnVs
+bA0KPj4gPj4gPj4gKysrIGIvY29tbW9uL3JlY2lwZXMtY29yZS96bGliLXFhdC1tb2R1bGUvemxp
+Yi1xYXQtDQo+PiA+PiA+PiBtb2R1bGUvemxpYl9xYXRfbW9kdWwNCj4+ID4+ID4+ICsrKyBlLnBh
+dGNoDQo+PiA+PiA+PiBAQCAtMCwwICsxLDQzIEBADQo+PiA+PiA+PiArSW5kZXg6IHpsaWItcWF0
+LW1vZHVsZS0xLjIuNy1yMC96bGliLQ0KPj4gPjEuMi43L2NvbnRyaWIvcWF0L3FhdF9tZW0vTWFr
+ZWZpbGUNCj4+ID4+ID4+DQo+Pg0KPj4rPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09DQo+PiA+PiA+PiA9PT09PT09PT09DQo+PiA+PiA+PiAr
+LS0tIHpsaWItcWF0LW1vZHVsZS0xLjIuNy1yMC5vcmlnL3psaWItDQo+PiA+MS4yLjcvY29udHJp
+Yi9xYXQvcWF0X21lbS9NYWtlZmlsZQ0KPj4gPj4gPj4gCTIwMTItMTAtMTYgMTM6NTM6MTAuMjU4
+OTM4NzIyIC0wNzAwDQo+PiA+PiA+PiArKysrIHpsaWItcWF0LW1vZHVsZS0xLjIuNy1yMC96bGli
+LQ0KPjEuMi43L2NvbnRyaWIvcWF0L3FhdF9tZW0vTWFrZWZpbGUNCj4+ID4+ID4+IAkyMDEyLTEw
+LTE2IDEzOjU5OjE4LjE3NDk0NDg2NCAtMDcwMA0KPj4gPj4gPj4gK0BAIC01OSwxMyArNTksMTAg
+QEANCj4+ID4+ID4+ICsgIw0KPj4gPj4gPj4gKyAjDQo+PiA+PiA+PiArDQo+PiA+PiA+Pg0KPj4N
+Cj4+KyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
+IyMjIw0KPj4gPj4gPj4gIyMjIyMjIyMjIyMjIyMNCj4+ID4+ID4+ICsjIw0KPj4gPj4gPj4gKy0N
+Cj4+ID4+ID4+ICsgTU9EVUxFTkFNRSAJOj0gcWF0X21lbQ0KPj4gPj4gPj4gKy1LRElSCQk6PSAv
+bGliL21vZHVsZXMvJChzaGVsbCB1bmFtZSAtcikvYnVpbGQNCj4+ID4+ID4+ICsrS0RJUgkJOj0g
+JChLRVJORUxfU09VUkNFX1JPT1QpDQo+PiA+PiA+PiArIFBXRAkJOj0gJChzaGVsbCBwd2QpDQo+
+PiA+PiA+PiArLQ0KPj4gPj4gPj4gKy1DQwkJOj0gZ2NjIC1XYWxsIC1pbWFjcm9zIC91c3Ivc3Jj
+L2tlcm5lbHMvJChzaGVsbCB1bmFtZSAtDQo+PiA+PiA+PiByKS9pbmNsdWRlL2xpbnV4L2F1dG9j
+b25mLmgNCj4+ID4+ID4+ICstDQo+PiA+PiA+PiArK0NDCQk6PSAkKEtFUk5FTF9DQykgLVdhbGwg
+LWltYWNyb3MNCj4+ID4+ID4+ICQoS0VSTkVMX1NPVVJDRV9ST09UKS9pbmNsdWRlL2dlbmVyYXRl
+ZC9hdXRvY29uZi5oDQo+PiA+PiA+PiArIGlmZXEgKCQoS0VSTkVMUkVMRUFTRSksKQ0KPj4gPj4g
+Pj4gKyBhbGw6CSQoTU9EVUxFTkFNRSlfdGVzdA0KPj4gPj4gPj4gKyBhbGw6DQo+PiA+PiA+PiAr
+QEAgLTczLDIwICs3MCwxNSBAQA0KPj4gPj4gPj4gKyBlbHNlDQo+PiA+PiA+PiArICAgb2JqLW0J
+Oj0gJChNT0RVTEVOQU1FKS5vDQo+PiA+PiA+PiArIGVuZGlmDQo+PiA+PiA+PiArLQ0KPj4gPj4g
+Pj4gKyttb2R1bGVzX2luc3RhbGw6DQo+PiA+PiA+PiArKwkkKE1BS0UpIC1DICQoS0RJUikgU1VC
+RElSUz0kKFBXRCkgbW9kdWxlc19pbnN0YWxsDQo+PiA+PiA+PiArICQoTU9EVUxFTkFNRSlfdGVz
+dDogJChNT0RVTEVOQU1FKV90ZXN0LmMNCj4+ID4+ID4+ICsgCSQoQ0MpIC1nIC1vICQoTU9EVUxF
+TkFNRSlfdGVzdCAkKE1PRFVMRU5BTUUpX3Rlc3QuYw0KPj4gPj4gPj4gKy0NCj4+ID4+ID4+ICst
+DQo+PiA+PiA+PiArIGxvYWQ6DQo+PiA+PiA+PiArIAlpbnNtb2QgLi8kKE1PRFVMRU5BTUUpLmtv
+DQo+PiA+PiA+PiArLQ0KPj4gPj4gPj4gKyB1bmxvYWQ6DQo+PiA+PiA+PiArIAlybW1vZCAkKE1P
+RFVMRU5BTUUpDQo+PiA+PiA+PiArLQ0KPj4gPj4gPj4gKyB0ZXN0OiBhbGwNCj4+ID4+ID4+ICsg
+CS4vJChNT0RVTEVOQU1FKV90ZXN0DQo+PiA+PiA+PiArLQ0KPj4gPj4gPj4gKyBjbGVhbjoNCj4+
+ID4+ID4+ICsgCXJtIC1mICoubyAqLmtvIE1vZHVsZS5zeW12ZXJzIG1vZHVsZXMub3JkZXIgKi5t
+b2QuYw0KPi4qLmNtZA0KPj4gPj4gPj4gKyQoTU9EVUxFTkFNRSlfdGVzdA0KPj4gPj4gPj4gKy0N
+Cj4+ID4+ID4+IC0tDQo+PiA+PiA+PiAxLjcuOS41DQo+PiA+Pg0KPj4gPg0KPj4NCj4NCg0K
 
