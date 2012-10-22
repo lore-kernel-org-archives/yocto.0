@@ -1,37 +1,38 @@
 Return-Path: <ross.burton@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 23C67E011F3
-	for <yocto@yoctoproject.org>; Mon, 22 Oct 2012 04:40:58 -0700 (PDT)
-Received: from mail-ee0-f72.google.com ([74.125.83.72])
-	by mga09.intel.com with ESMTP/TLS/RC4-SHA; 22 Oct 2012 04:40:31 -0700
-Received: by mail-ee0-f72.google.com with SMTP id d17so1928049eek.11
-	for <yocto@yoctoproject.org>; Mon, 22 Oct 2012 04:40:55 -0700 (PDT)
+Received: from azsmga101.ch.intel.com (mga07.intel.com [143.182.124.22])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3D5AAE013EF
+	for <yocto@yoctoproject.org>; Mon, 22 Oct 2012 04:43:22 -0700 (PDT)
+Received: from mail-ob0-f200.google.com ([209.85.214.200])
+	by mga03.intel.com with ESMTP/TLS/RC4-SHA; 22 Oct 2012 04:43:21 -0700
+Received: by mail-ob0-f200.google.com with SMTP id un3so7724282obb.11
+	for <yocto@yoctoproject.org>; Mon, 22 Oct 2012 04:43:20 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=google.com; s=20120113;
-	h=from:to:cc:subject:date:message-id:x-mailer:x-gm-message-state;
-	bh=GAMmQaEiHi6JoZkhe5hAiDbeIluNI3iizz8AXwPML3g=;
-	b=ZdWIROjEl5X2Y6QAYe3WxyIHh2NjJj0AouD6NR88gUU/OWdeDjzX4eSJ88p4CN786P
-	+opJvCgdGeR8uvJIjogcFjNLj39ooblViplixrrXBOpR4w4fCu7ToffUGVhDxWjRIpSf
-	dORqYB4AdZgpQDwnQwdxhphBxDKv6G61nPXK5IFpfgJ4S9bsUumfJiRbmQ9861s2uFUL
-	2LHWSm64bVMLYPc6d4vJbEn53tw5bKa2UxCtzXSAWvizVdD1PxnecMdync+qSE3/Fcgv
-	Z4l0CK/Q6OB64PPCBYN9V5G3563q+hOFXFWIB2ELV44nCxSMq3wT1EtRxgJgDNaMem+0
-	8+jg==
-Received: by 10.180.82.72 with SMTP id g8mr35894924wiy.20.1350906055621;
-	Mon, 22 Oct 2012 04:40:55 -0700 (PDT)
-Received: by 10.180.82.72 with SMTP id g8mr35894907wiy.20.1350906055530;
-	Mon, 22 Oct 2012 04:40:55 -0700 (PDT)
-Received: from melchett.burtonini.com (35.106.2.81.in-addr.arpa. [81.2.106.35])
-	by mx.google.com with ESMTPS id hb6sm13919061wib.7.2012.10.22.04.40.52
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Mon, 22 Oct 2012 04:40:54 -0700 (PDT)
-From: Ross Burton <ross.burton@intel.com>
-To: yocto@yoctoproject.org
-Date: Mon, 22 Oct 2012 12:39:44 +0100
-Message-Id: <1350905984-17621-1-git-send-email-ross.burton@intel.com>
-X-Mailer: git-send-email 1.7.10
-X-Gm-Message-State: ALoCoQmw25D57KUAWd/akAfHaxVPrSC5gMSd2FSotb7digTZ50UDRgQflZB1gGKAck4WoSP/7D6DsTLNfZfDLoFhT7pp+fu4geNcZpjKGZ7z2x5vxFT8XhdbPT4FtCJBJFwIhZn0/mFuAZb7YKQzxPGcvvrXGdbANA==
-Cc: dvhart@linux.intel.com
-Subject: [PATCH] meta-intel: don't require commercial licenses for gstreamer-vaapi
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type:x-gm-message-state;
+	bh=KQuBWz2YjtLD963FZHcD4iYYmBe72fggSvIqjCv9rpE=;
+	b=TXqmvcpifIiK6WEGlgQXrqScXK6YA36ppO4RntEYIRdUMm8czPFKtWYr4YVQxTm21o
+	L1L69H5/d9v/l5RNEbqaVDCjueZGWv6mxJqM7oRVK6yQbj+jLfAtST73PuiOid6ViDr0
+	Z8avOgXBk4u1YSoLIH+ebzWf1ry9zj7P2HoiL7jgJ2nfD0sXzTAu+47ep+ByKtLZvpgm
+	vV1tAyT7Qjl6OUXCDa8PJ1Yw+tWNNOW2UoufXG4g/5Uc9yg0hhsJMkB1EiLX1QTBryS+
+	kyR7I9XuakkxP7hBf4DxHwYjbuEna6UR5dTBjc2Iua77vPV/DX8lrTVJ7D+Bbm9cwLnk
+	STBw==
+Received: by 10.60.171.134 with SMTP id au6mr7770427oec.69.1350906200623;
+	Mon, 22 Oct 2012 04:43:20 -0700 (PDT)
+Received: by 10.60.171.134 with SMTP id au6mr7770421oec.69.1350906200573; Mon,
+	22 Oct 2012 04:43:20 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.182.46.70 with HTTP; Mon, 22 Oct 2012 04:43:00 -0700 (PDT)
+In-Reply-To: <1350677288.1569.25.camel@empanada>
+References: <1350487279-1681-1-git-send-email-ross.burton@intel.com>
+	<1350677288.1569.25.camel@empanada>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Mon, 22 Oct 2012 12:43:00 +0100
+Message-ID: <CAJTo0LYH08HVsgkEhNDiU2qTzEh2pDdp4taeWx=1vzc6d=dhmw@mail.gmail.com>
+To: Tom Zanussi <tom.zanussi@intel.com>
+X-Gm-Message-State: ALoCoQnqFKk1lNfJJTQ9hwY0QdWOXasNDzg6SpuOS61CemImqnS9ZWIlC6cvkWLyu/yK4E7vHcffgrQzbQHgk33AIAJBpjg+vbFdf9m9hd1w5/PA0QVFb5vZS4R9FcyoUkp5ScgGEFgeo0V8Bw9d7CBKVNsO/bdtRg==
+Cc: yocto@yoctoproject.org, dvhart@linux.intel.com
+Subject: Re: Cedar Trail and gst-vaapi fixes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,101 +44,22 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 22 Oct 2012 11:40:58 -0000
+X-List-Received-Date: Mon, 22 Oct 2012 11:43:22 -0000
+Content-Type: text/plain; charset=UTF-8
 
-Now that gstreamer-vaapi doesn't depend on ffmpeg, it can always be recommended
-by the machine configuration.
+On 19 October 2012 21:08, Tom Zanussi <tom.zanussi@intel.com> wrote:
+> I pulled the first two patches into meta-intel/master, but left the
+> third behind - we still need the commercial license since the
+> gst-ffmpeg requires it, and even then we still want to keep the
+> VA_FEATURES so users can just set it to "" to not include video
+> acceleration.
 
-Signed-off-by: Ross Burton <ross.burton@intel.com>
----
- meta-cedartrail/conf/machine/cedartrail.conf |    3 +--
- meta-chiefriver/conf/machine/chiefriver.conf |    3 +--
- meta-crownbay/conf/machine/crownbay.conf     |    3 +--
- meta-fri2/conf/machine/fri2.conf             |    3 +--
- meta-sugarbay/conf/machine/sugarbay.conf     |    3 +--
- meta-sys940x/conf/machine/sys940x.conf       |    3 +--
- 6 files changed, 6 insertions(+), 12 deletions(-)
+I've restored VA_FEATURES but as gst-ffmpeg is a only-if-commercial
+rdependency of gst-va-intel-general (and not gst-vaapi with the
+patches you merged), I don't see why the commercial checks need to be
+anywhere but the rdepends of gst-va-intel-general.
 
-diff --git a/meta-cedartrail/conf/machine/cedartrail.conf b/meta-cedartrail/conf/machine/cedartrail.conf
-index ea50ea6..d8b6bc0 100644
---- a/meta-cedartrail/conf/machine/cedartrail.conf
-+++ b/meta-cedartrail/conf/machine/cedartrail.conf
-@@ -22,7 +22,6 @@ SYSLINUX_OPTS = "serial 0 115200"
- SERIAL_CONSOLE = "115200 ttyS0"
- APPEND += "console=ttyS0,115200 console=tty0"
- 
--VA_FEATURES = "${@bb.utils.contains("LICENSE_FLAGS_WHITELIST", \
--	    "commercial", "gst-va-intel va-intel", "", d)}"
-+VA_FEATURES = "gst-va-intel va-intel"
- 
- MACHINE_EXTRA_RRECOMMENDS += "${VA_FEATURES}"
-diff --git a/meta-chiefriver/conf/machine/chiefriver.conf b/meta-chiefriver/conf/machine/chiefriver.conf
-index a9c8e5a..b8b8754 100644
---- a/meta-chiefriver/conf/machine/chiefriver.conf
-+++ b/meta-chiefriver/conf/machine/chiefriver.conf
-@@ -15,7 +15,6 @@ XSERVER ?= "${XSERVER_IA32_BASE} \
-            ${XSERVER_IA32_I965} \
-            "
- 
--VA_FEATURES = "${@bb.utils.contains("LICENSE_FLAGS_WHITELIST", \
--	    "commercial", "gst-va-intel va-intel", "", d)}"
-+VA_FEATURES = "gst-va-intel va-intel"
- 
- MACHINE_EXTRA_RRECOMMENDS += "${VA_FEATURES} lms"
-diff --git a/meta-crownbay/conf/machine/crownbay.conf b/meta-crownbay/conf/machine/crownbay.conf
-index 72431de..d56ef64 100644
---- a/meta-crownbay/conf/machine/crownbay.conf
-+++ b/meta-crownbay/conf/machine/crownbay.conf
-@@ -23,7 +23,6 @@ PREFERRED_VERSION_xf86-input-evdev ?= "2.6.0"
- 
- APPEND += "video=vesafb vga=0x318 vmalloc=256MB"
- 
--VA_FEATURES = "${@bb.utils.contains("LICENSE_FLAGS_WHITELIST", \
--	    "commercial", "gst-va-intel va-intel", "va-intel", d)}"
-+VA_FEATURES = "gst-va-intel va-intel"
- 
- MACHINE_EXTRA_RRECOMMENDS += "${VA_FEATURES}"
-diff --git a/meta-fri2/conf/machine/fri2.conf b/meta-fri2/conf/machine/fri2.conf
-index dff11a8..587b976 100644
---- a/meta-fri2/conf/machine/fri2.conf
-+++ b/meta-fri2/conf/machine/fri2.conf
-@@ -8,8 +8,7 @@ require conf/machine/include/tune-atom.inc
- require conf/machine/include/ia32-base.inc
- require conf/machine/include/meta-intel.inc
- 
--VA_FEATURES = "${@bb.utils.contains("LICENSE_FLAGS_WHITELIST", \
--	    "commercial", "gst-va-intel va-intel", "va-intel", d)}"
-+VA_FEATURES = "gst-va-intel va-intel"
- 
- MACHINE_FEATURES += "wifi 3g pcbios efi va-impl-mixvideo"
- MACHINE_EXTRA_RRECOMMENDS += "linux-firmware-iwlwifi-6000g2a-5 ${VA_FEATURES}"
-diff --git a/meta-sugarbay/conf/machine/sugarbay.conf b/meta-sugarbay/conf/machine/sugarbay.conf
-index 17cc15c..1d0e68d 100644
---- a/meta-sugarbay/conf/machine/sugarbay.conf
-+++ b/meta-sugarbay/conf/machine/sugarbay.conf
-@@ -16,7 +16,6 @@ XSERVER ?= "${XSERVER_IA32_BASE} \
-            ${XSERVER_IA32_I965} \
-            "
- 
--VA_FEATURES = "${@bb.utils.contains("LICENSE_FLAGS_WHITELIST", \
--	    "commercial", "gst-va-intel va-intel", "", d)}"
-+VA_FEATURES = "gst-va-intel va-intel"
- 
- MACHINE_EXTRA_RRECOMMENDS += "${VA_FEATURES}"
-diff --git a/meta-sys940x/conf/machine/sys940x.conf b/meta-sys940x/conf/machine/sys940x.conf
-index bdd655f..eefca59 100644
---- a/meta-sys940x/conf/machine/sys940x.conf
-+++ b/meta-sys940x/conf/machine/sys940x.conf
-@@ -26,7 +26,6 @@ PREFERRED_VERSION_emgd-driver-bin ?= "1.14"
- SERIAL_CONSOLE = "115200 ttyS0"
- APPEND += "console=ttyS0,115200 console=tty0"
- 
--VA_FEATURES = "${@bb.utils.contains("LICENSE_FLAGS_WHITELIST", \
--	    "commercial", "gst-va-intel va-intel", "va-intel", d)}"
-+VA_FEATURES = "gst-va-intel va-intel"
- 
- MACHINE_EXTRA_RRECOMMENDS += "${VA_FEATURES}"
--- 
-1.7.10
+(V2 just sent)
 
+Ross
 
