@@ -1,23 +1,18 @@
-Return-Path: <kishore.k.bodke@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5CC39E01248
-	for <yocto@yoctoproject.org>; Sun, 21 Oct 2012 20:15:48 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 21 Oct 2012 20:15:47 -0700
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BCFE7E01302
+	for <yocto@yoctoproject.org>; Sun, 21 Oct 2012 21:03:13 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 21 Oct 2012 21:03:13 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,627,1344236400"; d="scan'208";a="207291836"
-Received: from orsmsx103.amr.corp.intel.com ([10.22.225.130])
-	by azsmga001.ch.intel.com with ESMTP; 21 Oct 2012 20:15:46 -0700
-Received: from orsmsx105.amr.corp.intel.com ([169.254.4.140]) by
-	ORSMSX103.amr.corp.intel.com ([169.254.2.85]) with mapi id
-	14.01.0355.002; Sun, 21 Oct 2012 20:15:46 -0700
-From: "Bodke, Kishore K" <kishore.k.bodke@intel.com>
-To: "Zanussi, Tom" <tom.zanussi@intel.com>
-Thread-Topic: [PATCH 1/3] [meta-intel] meta-intel/common:Add a new recipe
-	for Zlib qat_mem Module.
-Thread-Index: AQHNrVstpl6CwEtVGEW5/u6WS/sJgZfBaY8A//+Kv8CAAHcdgP//iwowgAB49gCAAzloYA==
-Date: Mon, 22 Oct 2012 03:15:46 +0000
-Message-ID: <D956029D25CF204F948EA0FB515E1EE233E6EFA3@ORSMSX105.amr.corp.intel.com>
+X-IronPort-AV: E=Sophos;i="4.80,628,1344236400"; d="scan'208";a="236662120"
+Received: from unknown (HELO [10.255.14.142]) ([10.255.14.142])
+	by fmsmga001.fm.intel.com with ESMTP; 21 Oct 2012 21:03:12 -0700
+Message-ID: <1350878590.1581.7.camel@empanada>
+From: Tom Zanussi <tom.zanussi@intel.com>
+To: "Bodke, Kishore K" <kishore.k.bodke@intel.com>
+Date: Sun, 21 Oct 2012 23:03:10 -0500
+In-Reply-To: <D956029D25CF204F948EA0FB515E1EE233E6EFA3@ORSMSX105.amr.corp.intel.com>
 References: <cover.1350583189.git.kishore.k.bodke@intel.com>
 	<46df5fcf29108c0c9b5ed6714ec012fd03b94e55.1350583189.git.kishore.k.bodke@intel.com>
 	<ADD6A3980E8C39419A432FF422031B4C2D90C94E@ORSMSX106.amr.corp.intel.com>
@@ -25,12 +20,9 @@ References: <cover.1350583189.git.kishore.k.bodke@intel.com>
 	<1350671677.1569.14.camel@empanada>
 	<D956029D25CF204F948EA0FB515E1EE233E6D849@ORSMSX105.amr.corp.intel.com>
 	<1350672536.1569.21.camel@empanada>
-In-Reply-To: <1350672536.1569.21.camel@empanada>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
-MIME-Version: 1.0
+	<D956029D25CF204F948EA0FB515E1EE233E6EFA3@ORSMSX105.amr.corp.intel.com>
+X-Mailer: Evolution 3.4.1 (3.4.1-2.fc17) 
+Mime-Version: 1.0
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: [PATCH 1/3] [meta-intel] meta-intel/common:Add a new recipe for Zlib qat_mem Module.
 X-BeenThere: yocto@yoctoproject.org
@@ -44,167 +36,397 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 22 Oct 2012 03:15:49 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Mon, 22 Oct 2012 04:03:14 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-DQoNCj4tLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPkZyb206IFphbnVzc2ksIFRvbQ0KPlNl
-bnQ6IEZyaWRheSwgT2N0b2JlciAxOSwgMjAxMiAxMTo0OSBBTQ0KPlRvOiBCb2RrZSwgS2lzaG9y
-ZSBLDQo+Q2M6IEthbWJsZSwgTml0aW4gQTsgeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0KPlN1Ympl
-Y3Q6IFJlOiBbUEFUQ0ggMS8zXSBbbWV0YS1pbnRlbF0gbWV0YS1pbnRlbC9jb21tb246QWRkIGEg
-bmV3IHJlY2lwZQ0KPmZvciBabGliIHFhdF9tZW0gTW9kdWxlLg0KPg0KPk9uIEZyaSwgMjAxMi0x
-MC0xOSBhdCAxMzo0MCAtMDUwMCwgQm9ka2UsIEtpc2hvcmUgSyB3cm90ZToNCj4+DQo+PiA+LS0t
-LS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4+ID5Gcm9tOiBaYW51c3NpLCBUb20NCj4+ID5TZW50
-OiBGcmlkYXksIE9jdG9iZXIgMTksIDIwMTIgMTE6MzUgQU0NCj4+ID5UbzogQm9ka2UsIEtpc2hv
-cmUgSw0KPj4gPkNjOiBLYW1ibGUsIE5pdGluIEE7IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcNCj4+
-ID5TdWJqZWN0OiBSZTogW1BBVENIIDEvM10gW21ldGEtaW50ZWxdIG1ldGEtaW50ZWwvY29tbW9u
-OkFkZCBhIG5ldw0KPnJlY2lwZQ0KPj4gPmZvciBabGliIHFhdF9tZW0gTW9kdWxlLg0KPj4gPg0K
-Pj4gPkhpIEtpc2hvcmUsDQo+PiA+DQo+PiA+SSd2ZSBidWlsdCB0aGVzZSBhbmQgdGhleSBsb29r
-IG9rIGFzIGZhciBhcyB0aGF0IGdvZXMuDQo+PiA+DQo+PiA+QnV0IEknbSB3b25kZXJpbmcsIHdo
-aWNoIGtlcm5lbCBkaWQgeW91IHRlc3Qgd2l0aCBhbmQgd2hpY2gga2VybmVsKHMpDQo+PiA+YXJl
-IHRoZXNlIG1vZHVsZXMgZGVzaWduZWQgZm9yIGkuZS4gd2lsbCB0aGV5IHdvcmsgd2l0aCBhbGwg
-dGhlIGtlcm5lbHMNCj4+ID5zdXBwb3J0ZWQgZm9yIDEuMz8NCj4+DQo+PiBIaSBUb20sDQo+Pg0K
-Pj4gSSBoYXZlIHRlc3RlZCB0aGVtIGZvciAzLjQgS2VybmVsIGZvciBZb2N0bywgc2luY2UgZm9y
-IENyeXN0YWwgRm9yZXN0IHdlIG9ubHkNCj5oYXZlIDMuNCBmb3Igbm93Lg0KPj4gQXBhcnQgZnJv
-bSB0aGF0LCBpdCBzaG91bGQgd29yayB3aXRoIGFsbCB0aGUga2VybmVsIHZlcnNpb25zLg0KPj4g
-SSBoYXZlIHRlc3RlZCAzLjAgYW5kIDMuNSBvbiBGZWRvcmEuDQo+Pg0KPg0KPk9LLCBmb3Igc29t
-ZXRoaW5nIGluIGNvbW1vbiwgd2UgaGF2ZSB0byB0aGluayBhYm91dCBzb21lb25lIHVzaW5nIHRo
-ZW0NCj53aXRoIGFueSB5b2N0byBrZXJuZWwsIG5vdCBqdXN0IDMuNC4gIFNpbmNlIHlvdSdyZSBz
-YXlpbmcgdGhleSB3b3JrIHdpdGgNCj4zLjAsIDMuNCBhbmQgMy41LCBJIGd1ZXNzIHRoZXJlJ3Mg
-bm90IHRvbyBtdWNoIHJpc2sgdGhhdCB0aGV5J2xsIGJyZWFrDQo+d2l0aCAzLjIuICBJZiB0aGF0
-J3Mgbm90IHRoZSBjYXNlLCB5b3Ugc2hvdWxkIHByb2JhYmx5IHJlc3RyaWN0IHRoZW0gdG8NCj55
-b3VyIEJTUCAoYnV0IHdlIGRvbid0IHdhbnQgbXVsdGlwbGUgY29waWVzKSBlaXRoZXIuDQo+DQo+
-VGhlIGJlc3QgdGhpbmcgd291bGQgYmUgdG8gbW92ZSB0aGVtIGludG8gdGhlIGxpbnV4LXlvY3Rv
-IGtlcm5lbChzKSB0aGV5DQo+aGF2ZSBiZWVuIHRlc3RlZCB3aXRoIC0gdGhhdCB3YXkgdXNlcnMg
-a25vdyB0aG9zZSBmZWF0dXJlcyB3b3JrIGFuZCBhcmUNCj5zYWZlIHRvIHVzZSBpbiB0aGVpciBC
-U1BzLg0KPg0KDQpUaGVzZSBtb2R1bGVzIGp1c3QgbmVlZCB0aGUgY29uZmlndXJlZCBrZXJuZWwg
-Zm9yIHRoZW0gdG8gYnVpbGQgd2l0aC4NCkl0IGlzIG5vdCBzcGVjaWZpYyB0byBwYXJ0aWN1bGFy
-IGtlcm5lbCB2ZXJzaW9uLiANCg0KQWxzbywgZXZlcnkgdGltZSB0aGUgS2VybmVsIHZlcnNpb24g
-bW92ZXMsIHRoaXMgd2hvbGUgc2V0IG5lZWRzIHRvIGJlIG1vdmVkIHRvby4NCkluc3RlYWQgaGF2
-ZSBpdCBpbiB0aGUgQlNQIGFuZCB3ZSBkbyBub3QgaGF2ZSB0byBydW4gYXJvdW5kIG1vdmluZyBh
-cm91bmQgd2l0aCB0aGUgZGlmZmVyZW50IGtlcm5lbHMuDQpJbnN0ZWFkIGl0IGlzIG5pY2UgdG8g
-aGF2ZSBvbmUgY29weSBpbiBjb21tb24uDQoNClRoYW5rcw0KS2lzaG9yZS4NCg0KPlRvbQ0KPg0K
-Pj4gVGhhbmtzDQo+PiBLaXNob3JlLg0KPj4NCj4+ID4NCj4+ID5Ub20NCj4+ID4NCj4+ID5PbiBG
-cmksIDIwMTItMTAtMTkgYXQgMTM6MjggLTA1MDAsIEJvZGtlLCBLaXNob3JlIEsgd3JvdGU6DQo+
-PiA+Pg0KPj4gPj4gPi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+PiA+PiA+RnJvbTogS2Ft
-YmxlLCBOaXRpbiBBDQo+PiA+PiA+U2VudDogRnJpZGF5LCBPY3RvYmVyIDE5LCAyMDEyIDExOjI4
-IEFNDQo+PiA+PiA+VG86IEJvZGtlLCBLaXNob3JlIEs7IFphbnVzc2ksIFRvbTsgeW9jdG9AeW9j
-dG9wcm9qZWN0Lm9yZw0KPj4gPj4gPlN1YmplY3Q6IFJFOiBbUEFUQ0ggMS8zXSBbbWV0YS1pbnRl
-bF0gbWV0YS1pbnRlbC9jb21tb246QWRkIGEgbmV3DQo+PiA+cmVjaXBlDQo+PiA+PiA+Zm9yIFps
-aWIgcWF0X21lbSBNb2R1bGUuDQo+PiA+PiA+DQo+PiA+PiA+SGkgS2lzaG9yZSwNCj4+ID4+ID4g
-IFNhbWUgaGVyZSwgaWYgaXQgaXMgbm90IHVzZWQgYnkgbXVsdGlwbGUgQlNQcyB5ZXQsIHRoZW4g
-aXQgc2hvdWxkIGdvIGluDQo+dGhlDQo+PiA+QlNQDQo+PiA+PiA+c3BlY2lmaWMgbGF5ZXIuDQo+
-PiA+PiA+DQo+PiA+PiBZZXMsIHRoZXNlIHRvbyB3aWxsIGJlIHVzZWQgYnkgYm90aCBDcnlzdGFs
-IEZvcmVzdCBhbmQgUmFuZ2VseS4NCj4+ID4+DQo+PiA+PiBUaGFua3MNCj4+ID4+IEtpc2hvcmUu
-DQo+PiA+Pg0KPj4gPj4gPlRoYW5rcywNCj4+ID4+ID5OaXRpbg0KPj4gPj4gPg0KPj4gPj4gPg0K
-Pj4gPj4gPj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4+ID4+ID4+IEZyb206IEJvZGtl
-LCBLaXNob3JlIEsNCj4+ID4+ID4+IFNlbnQ6IFRodXJzZGF5LCBPY3RvYmVyIDE4LCAyMDEyIDEx
-OjE5IEFNDQo+PiA+PiA+PiBUbzogWmFudXNzaSwgVG9tOyBLYW1ibGUsIE5pdGluIEE7IHlvY3Rv
-QHlvY3RvcHJvamVjdC5vcmcNCj4+ID4+ID4+IENjOiBCb2RrZSwgS2lzaG9yZSBLDQo+PiA+PiA+
-PiBTdWJqZWN0OiBbUEFUQ0ggMS8zXSBbbWV0YS1pbnRlbF0gbWV0YS1pbnRlbC9jb21tb246QWRk
-IGEgbmV3DQo+cmVjaXBlDQo+PiA+Zm9yDQo+PiA+PiA+PiBabGliIHFhdF9tZW0gTW9kdWxlLg0K
-Pj4gPj4gPj4NCj4+ID4+ID4+IEZyb206IEtpc2hvcmUgQm9ka2UgPGtpc2hvcmUuay5ib2RrZUBp
-bnRlbC5jb20+DQo+PiA+PiA+Pg0KPj4gPj4gPj4gVGhpcyBhZGRzIGEgbmV3IHJlY2lwZSB0byBi
-dWlsZCB0aGUgSW50ZWwgUXVpY2sgQXNzaXN0IFRlY2hub2xvZ3kNCj5NZW1vcnkNCj4+ID4+ID4+
-IE1hbmFnZW1lbnQgTW9kdWxlIGZvciBabGliLg0KPj4gPj4gPj4NCj4+ID4+ID4+IFNpZ25lZC1v
-ZmYtYnk6IEtpc2hvcmUgQm9ka2UgPGtpc2hvcmUuay5ib2RrZUBpbnRlbC5jb20+DQo+PiA+PiA+
-PiAtLS0NCj4+ID4+ID4+ICAuLi4vemxpYi1xYXQtbW9kdWxlL3psaWItcWF0LW1vZHVsZS5iYiAg
-ICAgICAgICAgICB8ICAgNTINCj4+ID4+ID4+ICsrKysrKysrKysrKysrKysrKysrDQo+PiA+PiA+
-PiAgLi4uL3psaWItcWF0LW1vZHVsZS96bGliX3FhdF9tb2R1bGUucGF0Y2ggICAgICAgICAgfCAg
-IDQzDQo+PiA+KysrKysrKysrKysrKysrKw0KPj4gPj4gPj4gIDIgZmlsZXMgY2hhbmdlZCwgOTUg
-aW5zZXJ0aW9ucygrKQ0KPj4gPj4gPj4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBjb21tb24vcmVjaXBl
-cy1jb3JlL3psaWItcWF0LW1vZHVsZS96bGliLXFhdC0NCj4+ID4+ID4+IG1vZHVsZS5iYg0KPj4g
-Pj4gPj4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBjb21tb24vcmVjaXBlcy1jb3JlL3psaWItcWF0LW1v
-ZHVsZS96bGliLXFhdC0NCj4+ID4+ID4+IG1vZHVsZS96bGliX3FhdF9tb2R1bGUucGF0Y2gNCj4+
-ID4+ID4+DQo+PiA+PiA+PiBkaWZmIC0tZ2l0IGEvY29tbW9uL3JlY2lwZXMtY29yZS96bGliLXFh
-dC1tb2R1bGUvemxpYi1xYXQtbW9kdWxlLmJiDQo+PiA+PiA+PiBiL2NvbW1vbi9yZWNpcGVzLWNv
-cmUvemxpYi1xYXQtbW9kdWxlL3psaWItcWF0LW1vZHVsZS5iYg0KPj4gPj4gPj4gbmV3IGZpbGUg
-bW9kZSAxMDA2NDQNCj4+ID4+ID4+IGluZGV4IDAwMDAwMDAuLjVhZGUwNmUNCj4+ID4+ID4+IC0t
-LSAvZGV2L251bGwNCj4+ID4+ID4+ICsrKyBiL2NvbW1vbi9yZWNpcGVzLWNvcmUvemxpYi1xYXQt
-bW9kdWxlL3psaWItcWF0LW1vZHVsZS5iYg0KPj4gPj4gPj4gQEAgLTAsMCArMSw1MiBAQA0KPj4g
-Pj4gPj4gK1NVTU1BUlk9IlpsaWIgUUFUX01FTSBNZW1vcnkgTWFuYWdlbWVudCBNb2R1bGUgZm9y
-IEludGVsDQo+PiA+UXVpY2sNCj4+ID4+ID4+IEFzc2lzdCBcDQo+PiA+PiA+PiArVGVjaG5vbG9n
-eSINCj4+ID4+ID4+ICtERVNDUklQVElPTj0iVGhpcyBzb2Z0d2FyZSBhY2VsZXJhdGVzIHRoZSBk
-YXRhIGNvbXByZXNzaW9uDQo+PiA+YWxnb3JpdGhtIFwNCj4+ID4+ID4+ICtpbiB0aGUgemxpYiBz
-b2Z0d2FyZSBsaWJyYXJ5IHZpYSB0aGUgSW50ZWwgUXVpY2tBc3Npc3QgVGVjaG5vbG9neSBcDQo+
-PiA+PiA+PiAraW1wbGVtZW50ZWQgb24gSW50ZWwgQ29tbXVuaWNhdGlvbnMgQ2hpcHNldCA4OXh4
-IFNlcmllcyBiYXNlZA0KPj4gPj4gPj4gcGxhdGZvcm1zLiINCj4+ID4+ID4+ICsNCj4+ID4+ID4+
-ICtIT01FUEFHRSA9ICJodHRwOi8vemxpYi5uZXQvIg0KPj4gPj4gPj4gK1NFQ1RJT04gPSAibGli
-cyINCj4+ID4+ID4+ICtMSUNFTlNFID0gIlpsaWIgJiBHUEx2MiAmIEJTRCINCj4+ID4+ID4+ICsN
-Cj4+ID4+ID4+ICtMSUNfRklMRVNfQ0hLU1VNID0gImZpbGU6Ly8ke1dPUktESVJ9L3psaWItDQo+
-PiA+PiA+Pg0KPj4NCj4+JHtQVn0vemxpYi5oO2JlZ2lubGluZT00O2VuZGxpbmU9MjM7bWQ1PTk0
-ZDFiNWE0MGRhZGQxMjdmMzM1MTQ3MTcyN2U2DQo+PiA+PiA+PiA2YTkgXA0KPj4gPj4gPj4gKwkJ
-CWZpbGU6Ly8ke0NPTU1PTl9MSUNFTlNFX0RJUn0vR1BMLQ0KPj4gPj4gPj4gMi4wO21kNT04MDFm
-ODA5ODBkMTcxZGQ2NDI1NjEwODMzYTIyZGJlNiBcDQo+PiA+PiA+PiArDQo+PiA+PiA+Pg0KPglm
-aWxlOi8vJHtDT01NT05fTElDRU5TRV9ESVJ9L0JTRDttZDU9Mzc3NTQ4MGE3MTJmYzQ2YTY5NjQ3
-Ng0KPj4gPj4gPj4gNzhhY2IyMzRjYiINCj4+ID4+ID4+ICtQViA9ICIxLjIuNyINCj4+ID4+ID4+
-ICtaTElCX1FBVF9WRVJTSU9OID0gIjAuNC4wLTAxMSINCj4+ID4+ID4+ICsNCj4+ID4+ID4+ICtQ
-Uj0icjAiDQo+PiA+PiA+PiArDQo+PiA+PiA+PiArU1JDX1VSSSA9ICJodHRwOi8vd3d3LnpsaWIu
-bmV0L3psaWItJHtQVn0udGFyLmd6O25hbWU9emxpYiBcDQo+PiA+PiA+PiArCWh0dHA6Ly9kb3du
-bG9hZG1pcnJvci5pbnRlbC5jb20vMjAyOTQvZW5nL3psaWItJHtQVn0tDQo+PiA+PiA+PiBxYXQu
-TC4ke1pMSUJfUUFUX1ZFUlNJT059LnRhci5nejtuYW1lPXpsaWJfcWF0IFwNCj4+ID4+ID4+ICsJ
-ZmlsZTovL3psaWJfcWF0X21vZHVsZS5wYXRjaCINCj4+ID4+ID4+ICsNCj4+ID4+ID4+ICtTUkNf
-VVJJW3psaWIubWQ1c3VtXT0iNjBkZjZhMzdjNTZlN2MxMzY2Y2NhODEyNDE0ZjdiODUiDQo+PiA+
-PiA+Pg0KPj4NCj4+K1NSQ19VUklbemxpYi5zaGEyNTZzdW1dPSJmYTljOWM4NjM4ZWZiOGNiOGVm
-NWU0ZGQ1NDUzZTQ1NTc1MWUxYzUzMA0KPj4gPj4gPj4gYjE1OTVlZWQ0NjZlMWJlOWI3ZTI2YzUi
-DQo+PiA+PiA+PiArDQo+PiA+PiA+PiArU1JDX1VSSVt6bGliX3FhdC5tZDVzdW1dPSI4OGU0MTQw
-Zjk4ZDJmOWUxNzBiZjQ3M2YyMGUxYThkNCINCj4+ID4+ID4+DQo+PiA+Pg0KPj4NCj4+PitTUkNf
-VVJJW3psaWJfcWF0LnNoYTI1NnN1bV09IjNjMzYwODc4MTI3ZjM5MzBlNjQ2NDBlZjVhNTgyMjcx
-OWE1MA0KPjU5DQo+PiA+PiA+PiAxNDMzMjZiYjRjMzk2NjQ1YWUzN2I3MDRhNiINCj4+ID4+ID4+
-ICsNCj4+ID4+ID4+ICtTID0gIiR7V09SS0RJUn0vemxpYi0ke1BWfS9jb250cmliL3FhdC9xYXRf
-bWVtIg0KPj4gPj4gPj4gKw0KPj4gPj4gPj4gK2luaGVyaXQgbW9kdWxlDQo+PiA+PiA+PiArZXhw
-b3J0IEtFUk5FTF9TT1VSQ0VfUk9PVCA9ICIke1NUQUdJTkdfS0VSTkVMX0RJUn0iDQo+PiA+PiA+
-PiArDQo+PiA+PiA+PiArZG9fcGF0Y2goKSAJew0KPj4gPj4gPj4gKwljZCAke1dPUktESVJ9L3ps
-aWItJHtQVn0NCj4+ID4+ID4+ICsJcGF0Y2ggLXAwICA8ICR7V09SS0RJUn0vemxpYi0ke1BWfS0N
-Cj4+ID4+ID4+IHFhdC5MLiR7WkxJQl9RQVRfVkVSU0lPTn0ucGF0Y2gNCj4+ID4+ID4+ICsNCj4+
-ID4+ID4+ICsJY2QgJHtXT1JLRElSfQ0KPj4gPj4gPj4gKwlwYXRjaCAtcDEgICA8ICR7V09SS0RJ
-Un0vemxpYl9xYXRfbW9kdWxlLnBhdGNoDQo+PiA+PiA+PiArfQ0KPj4gPj4gPj4gKw0KPj4gPj4g
-Pj4gK2RvX2NvbXBpbGUoKSAgICB7DQo+PiA+PiA+PiArCWNkICR7U30NCj4+ID4+ID4+ICsJb2Vf
-cnVubWFrZSBLRVJORUxfQ0M9IiR7S0VSTkVMX0NDfSINCj4+ID4+ID4+ICt9DQo+PiA+PiA+PiAr
-DQo+PiA+PiA+PiArZG9faW5zdGFsbF9hcHBlbmQoKSAgICAgew0KPj4gPj4gPj4gKwlpbnN0YWxs
-IC1tIDA3NTUgLWQgICAgICAJCSR7RH0ke2JpbmRpcn0NCj4+ID4+ID4+ICsJaW5zdGFsbCAtbSAw
-NzU1ICR7U30vcWF0X21lbV90ZXN0ICAgICAgICR7RH0ke2JpbmRpcn0NCj4+ID4+ID4+ICt9DQo+
-PiA+PiA+PiArDQo+PiA+PiA+PiArRklMRVNfJHtQTn0gKz0gIiR7YmluZGlyfS9xYXRfbWVtX3Rl
-c3QiDQo+PiA+PiA+PiBkaWZmIC0tZ2l0IGEvY29tbW9uL3JlY2lwZXMtY29yZS96bGliLXFhdC1t
-b2R1bGUvemxpYi1xYXQtDQo+PiA+PiA+PiBtb2R1bGUvemxpYl9xYXRfbW9kdWxlLnBhdGNoIGIv
-Y29tbW9uL3JlY2lwZXMtY29yZS96bGliLXFhdC0NCj4+ID4+ID4+IG1vZHVsZS96bGliLXFhdC1t
-b2R1bGUvemxpYl9xYXRfbW9kdWxlLnBhdGNoDQo+PiA+PiA+PiBuZXcgZmlsZSBtb2RlIDEwMDY0
-NA0KPj4gPj4gPj4gaW5kZXggMDAwMDAwMC4uYTMwZjhiMA0KPj4gPj4gPj4gLS0tIC9kZXYvbnVs
-bA0KPj4gPj4gPj4gKysrIGIvY29tbW9uL3JlY2lwZXMtY29yZS96bGliLXFhdC1tb2R1bGUvemxp
-Yi1xYXQtDQo+PiA+PiA+PiBtb2R1bGUvemxpYl9xYXRfbW9kdWwNCj4+ID4+ID4+ICsrKyBlLnBh
-dGNoDQo+PiA+PiA+PiBAQCAtMCwwICsxLDQzIEBADQo+PiA+PiA+PiArSW5kZXg6IHpsaWItcWF0
-LW1vZHVsZS0xLjIuNy1yMC96bGliLQ0KPj4gPjEuMi43L2NvbnRyaWIvcWF0L3FhdF9tZW0vTWFr
-ZWZpbGUNCj4+ID4+ID4+DQo+Pg0KPj4rPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
-PT09PT09PT09PT09PT09PT09PT09PT09DQo+PiA+PiA+PiA9PT09PT09PT09DQo+PiA+PiA+PiAr
-LS0tIHpsaWItcWF0LW1vZHVsZS0xLjIuNy1yMC5vcmlnL3psaWItDQo+PiA+MS4yLjcvY29udHJp
-Yi9xYXQvcWF0X21lbS9NYWtlZmlsZQ0KPj4gPj4gPj4gCTIwMTItMTAtMTYgMTM6NTM6MTAuMjU4
-OTM4NzIyIC0wNzAwDQo+PiA+PiA+PiArKysrIHpsaWItcWF0LW1vZHVsZS0xLjIuNy1yMC96bGli
-LQ0KPjEuMi43L2NvbnRyaWIvcWF0L3FhdF9tZW0vTWFrZWZpbGUNCj4+ID4+ID4+IAkyMDEyLTEw
-LTE2IDEzOjU5OjE4LjE3NDk0NDg2NCAtMDcwMA0KPj4gPj4gPj4gK0BAIC01OSwxMyArNTksMTAg
-QEANCj4+ID4+ID4+ICsgIw0KPj4gPj4gPj4gKyAjDQo+PiA+PiA+PiArDQo+PiA+PiA+Pg0KPj4N
-Cj4+KyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
-IyMjIw0KPj4gPj4gPj4gIyMjIyMjIyMjIyMjIyMNCj4+ID4+ID4+ICsjIw0KPj4gPj4gPj4gKy0N
-Cj4+ID4+ID4+ICsgTU9EVUxFTkFNRSAJOj0gcWF0X21lbQ0KPj4gPj4gPj4gKy1LRElSCQk6PSAv
-bGliL21vZHVsZXMvJChzaGVsbCB1bmFtZSAtcikvYnVpbGQNCj4+ID4+ID4+ICsrS0RJUgkJOj0g
-JChLRVJORUxfU09VUkNFX1JPT1QpDQo+PiA+PiA+PiArIFBXRAkJOj0gJChzaGVsbCBwd2QpDQo+
-PiA+PiA+PiArLQ0KPj4gPj4gPj4gKy1DQwkJOj0gZ2NjIC1XYWxsIC1pbWFjcm9zIC91c3Ivc3Jj
-L2tlcm5lbHMvJChzaGVsbCB1bmFtZSAtDQo+PiA+PiA+PiByKS9pbmNsdWRlL2xpbnV4L2F1dG9j
-b25mLmgNCj4+ID4+ID4+ICstDQo+PiA+PiA+PiArK0NDCQk6PSAkKEtFUk5FTF9DQykgLVdhbGwg
-LWltYWNyb3MNCj4+ID4+ID4+ICQoS0VSTkVMX1NPVVJDRV9ST09UKS9pbmNsdWRlL2dlbmVyYXRl
-ZC9hdXRvY29uZi5oDQo+PiA+PiA+PiArIGlmZXEgKCQoS0VSTkVMUkVMRUFTRSksKQ0KPj4gPj4g
-Pj4gKyBhbGw6CSQoTU9EVUxFTkFNRSlfdGVzdA0KPj4gPj4gPj4gKyBhbGw6DQo+PiA+PiA+PiAr
-QEAgLTczLDIwICs3MCwxNSBAQA0KPj4gPj4gPj4gKyBlbHNlDQo+PiA+PiA+PiArICAgb2JqLW0J
-Oj0gJChNT0RVTEVOQU1FKS5vDQo+PiA+PiA+PiArIGVuZGlmDQo+PiA+PiA+PiArLQ0KPj4gPj4g
-Pj4gKyttb2R1bGVzX2luc3RhbGw6DQo+PiA+PiA+PiArKwkkKE1BS0UpIC1DICQoS0RJUikgU1VC
-RElSUz0kKFBXRCkgbW9kdWxlc19pbnN0YWxsDQo+PiA+PiA+PiArICQoTU9EVUxFTkFNRSlfdGVz
-dDogJChNT0RVTEVOQU1FKV90ZXN0LmMNCj4+ID4+ID4+ICsgCSQoQ0MpIC1nIC1vICQoTU9EVUxF
-TkFNRSlfdGVzdCAkKE1PRFVMRU5BTUUpX3Rlc3QuYw0KPj4gPj4gPj4gKy0NCj4+ID4+ID4+ICst
-DQo+PiA+PiA+PiArIGxvYWQ6DQo+PiA+PiA+PiArIAlpbnNtb2QgLi8kKE1PRFVMRU5BTUUpLmtv
-DQo+PiA+PiA+PiArLQ0KPj4gPj4gPj4gKyB1bmxvYWQ6DQo+PiA+PiA+PiArIAlybW1vZCAkKE1P
-RFVMRU5BTUUpDQo+PiA+PiA+PiArLQ0KPj4gPj4gPj4gKyB0ZXN0OiBhbGwNCj4+ID4+ID4+ICsg
-CS4vJChNT0RVTEVOQU1FKV90ZXN0DQo+PiA+PiA+PiArLQ0KPj4gPj4gPj4gKyBjbGVhbjoNCj4+
-ID4+ID4+ICsgCXJtIC1mICoubyAqLmtvIE1vZHVsZS5zeW12ZXJzIG1vZHVsZXMub3JkZXIgKi5t
-b2QuYw0KPi4qLmNtZA0KPj4gPj4gPj4gKyQoTU9EVUxFTkFNRSlfdGVzdA0KPj4gPj4gPj4gKy0N
-Cj4+ID4+ID4+IC0tDQo+PiA+PiA+PiAxLjcuOS41DQo+PiA+Pg0KPj4gPg0KPj4NCj4NCg0K
+On Sun, 2012-10-21 at 22:15 -0500, Bodke, Kishore K wrote:
+> 
+> >-----Original Message-----
+> >From: Zanussi, Tom
+> >Sent: Friday, October 19, 2012 11:49 AM
+> >To: Bodke, Kishore K
+> >Cc: Kamble, Nitin A; yocto@yoctoproject.org
+> >Subject: Re: [PATCH 1/3] [meta-intel] meta-intel/common:Add a new recipe
+> >for Zlib qat_mem Module.
+> >
+> >On Fri, 2012-10-19 at 13:40 -0500, Bodke, Kishore K wrote:
+> >>
+> >> >-----Original Message-----
+> >> >From: Zanussi, Tom
+> >> >Sent: Friday, October 19, 2012 11:35 AM
+> >> >To: Bodke, Kishore K
+> >> >Cc: Kamble, Nitin A; yocto@yoctoproject.org
+> >> >Subject: Re: [PATCH 1/3] [meta-intel] meta-intel/common:Add a new
+> >recipe
+> >> >for Zlib qat_mem Module.
+> >> >
+> >> >Hi Kishore,
+> >> >
+> >> >I've built these and they look ok as far as that goes.
+> >> >
+> >> >But I'm wondering, which kernel did you test with and which kernel(s)
+> >> >are these modules designed for i.e. will they work with all the kernels
+> >> >supported for 1.3?
+> >>
+> >> Hi Tom,
+> >>
+> >> I have tested them for 3.4 Kernel for Yocto, since for Crystal Forest we only
+> >have 3.4 for now.
+> >> Apart from that, it should work with all the kernel versions.
+> >> I have tested 3.0 and 3.5 on Fedora.
+> >>
+> >
+> >OK, for something in common, we have to think about someone using them
+> >with any yocto kernel, not just 3.4.  Since you're saying they work with
+> >3.0, 3.4 and 3.5, I guess there's not too much risk that they'll break
+> >with 3.2.  If that's not the case, you should probably restrict them to
+> >your BSP (but we don't want multiple copies) either.
+> >
+> >The best thing would be to move them into the linux-yocto kernel(s) they
+> >have been tested with - that way users know those features work and are
+> >safe to use in their BSPs.
+> >
+> 
+> These modules just need the configured kernel for them to build with.
+> It is not specific to particular kernel version. 
+> 
+> Also, every time the Kernel version moves, this whole set needs to be moved too.
+> Instead have it in the BSP and we do not have to run around moving around with the different kernels.
+> Instead it is nice to have one copy in common.
+> 
+
+Hmm, I'm not able to build them with linux-yocto-3.2:
+
+[trz@empanada build]$ bitbake core-image-qat
+Loading cache: 100% |######################################################################################| ETA:  00:00:00
+Loaded 1156 entries from dependency cache.
+
+Build Configuration:
+BB_VERSION        = "1.16.0"
+TARGET_ARCH       = "x86_64"
+TARGET_OS         = "linux"
+MACHINE           = "crystalforest-shumway"
+DISTRO            = "poky"
+DISTRO_VERSION    = "1.3"
+TUNE_FEATURES     = "m64"
+TARGET_FPU        = ""
+meta              
+meta-yocto        
+meta-yocto-bsp    = "danny0:4cce3e4abab65116ca968174e59a049438ec7385"
+meta-intel        
+meta-crystalforest = "master0:c94e89507fbab050efa2e326ec92e63fb9dc07a6"
+
+NOTE: Resolving any missing task queue dependencies
+NOTE: Preparing runqueue
+NOTE: Executing SetScene Tasks
+NOTE: Executing RunQueue Tasks
+NOTE: validating kernel configuration
+WARNING: Can't find any BSP hardware or required configuration fragments.
+WARNING: Looked at meta/cfg/standard/crystalforest/hdw_frags.txt and meta/cfg/standard/crystalforest/required_frags.txt in directory: meta/cfg/standard/crystalforest
+WARNING: QA Issue: Architecture did not match (62 to 2) on /work/x86_64-poky-linux/canterbury-corpus-1.0-r0/packages-split/canterbury-corpus/lib/firmware/sum
+ERROR: Function failed: do_compile (see /home/trz/yocto/isg-test/build/tmp/work/crystalforest_shumway-poky-linux/openssl-qat-module-1.0.1-r0/temp/log.do_compile.19389 for further information)
+ERROR: Logfile of failure stored in: /home/trz/yocto/isg-test/build/tmp/work/crystalforest_shumway-poky-linux/openssl-qat-module-1.0.1-r0/temp/log.do_compile.19389
+Log data follows:
+| DEBUG: Executing shell function do_compile
+| NOTE: make -j 16 -e MAKEFLAGS= KERNEL_CC=x86_64-poky-linux-gcc
+| x86_64-poky-linux-gcc    -m64 --sysroot=/home/trz/yocto/isg-test/build/tmp/sysroots/crystalforest-shumway -g -o qat_mem_test qat_mem_test.c
+| make -C /home/trz/yocto/isg-test/build/tmp/sysroots/crystalforest-shumway/usr/src/kernel SUBDIRS=/home/trz/yocto/isg-test/build/tmp/work/crystalforest_shumway-poky-linux/openssl-qat-module-1.0.1-r0/openssl-1.0.1/engines/qat_engine/qat_mem modules
+| make[1]: Entering directory `/home/trz/yocto/isg-test/build/tmp/sysroots/crystalforest-shumway/usr/src/kernel'
+|   CC [M]  /home/trz/yocto/isg-test/build/tmp/work/crystalforest_shumway-poky-linux/openssl-qat-module-1.0.1-r0/openssl-1.0.1/engines/qat_engine/qat_mem/qat_mem.o
+|   Building modules, stage 2.
+|   MODPOST 1 modules
+|   CC      /home/trz/yocto/isg-test/build/tmp/work/crystalforest_shumway-poky-linux/openssl-qat-module-1.0.1-r0/openssl-1.0.1/engines/qat_engine/qat_mem/qat_mem.mod.o
+| /home/trz/yocto/isg-test/build/tmp/work/crystalforest_shumway-poky-linux/openssl-qat-module-1.0.1-r0/openssl-1.0.1/engines/qat_engine/qat_mem/qat_mem.mod.c:8:1: error: variable '__this_module' has initializer but incomplete type
+| /home/trz/yocto/isg-test/build/tmp/work/crystalforest_shumway-poky-linux/openssl-qat-module-1.0.1-r0/openssl-1.0.1/engines/qat_engine/qat_mem/qat_mem.mod.c:9:2: error: unknown field 'name' specified in initializer
+| /home/trz/yocto/isg-test/build/tmp/work/crystalforest_shumway-poky-linux/openssl-qat-module-1.0.1-r0/openssl-1.0.1/engines/qat_engine/qat_mem/qat_mem.mod.c:9:2: warning: excess elements in struct initializer [enabled by default]
+| /home/trz/yocto/isg-test/build/tmp/work/crystalforest_shumway-poky-linux/openssl-qat-module-1.0.1-r0/openssl-1.0.1/engines/qat_engine/qat_mem/qat_mem.mod.c:9:2: warning: (near initialization for '__this_module') [enabled by default]
+| /home/trz/yocto/isg-test/build/tmp/work/crystalforest_shumway-poky-linux/openssl-qat-module-1.0.1-r0/openssl-1.0.1/engines/qat_engine/qat_mem/qat_mem.mod.c:10:2: error: unknown field 'init' specified in initializer
+| /home/trz/yocto/isg-test/build/tmp/work/crystalforest_shumway-poky-linux/openssl-qat-module-1.0.1-r0/openssl-1.0.1/engines/qat_engine/qat_mem/qat_mem.mod.c:10:2: warning: excess elements in struct initializer [enabled by default]
+| /home/trz/yocto/isg-test/build/tmp/work/crystalforest_shumway-poky-linux/openssl-qat-module-1.0.1-r0/openssl-1.0.1/engines/qat_engine/qat_mem/qat_mem.mod.c:10:2: warning: (near initialization for '__this_module') [enabled by default]
+| /home/trz/yocto/isg-test/build/tmp/work/crystalforest_shumway-poky-linux/openssl-qat-module-1.0.1-r0/openssl-1.0.1/engines/qat_engine/qat_mem/qat_mem.mod.c:14:2: error: unknown field 'arch' specified in initializer
+| /home/trz/yocto/isg-test/build/tmp/work/crystalforest_shumway-poky-linux/openssl-qat-module-1.0.1-r0/openssl-1.0.1/engines/qat_engine/qat_mem/qat_mem.mod.c:14:10: error: 'MODULE_ARCH_INIT' undeclared here (not in a function)
+| /home/trz/yocto/isg-test/build/tmp/work/crystalforest_shumway-poky-linux/openssl-qat-module-1.0.1-r0/openssl-1.0.1/engines/qat_engine/qat_mem/qat_mem.mod.c:14:2: warning: excess elements in struct initializer [enabled by default]
+| /home/trz/yocto/isg-test/build/tmp/work/crystalforest_shumway-poky-linux/openssl-qat-module-1.0.1-r0/openssl-1.0.1/engines/qat_engine/qat_mem/qat_mem.mod.c:14:2: warning: (near initialization for '__this_module') [enabled by default]
+| make[2]: *** [/home/trz/yocto/isg-test/build/tmp/work/crystalforest_shumway-poky-linux/openssl-qat-module-1.0.1-r0/openssl-1.0.1/engines/qat_engine/qat_mem/qat_mem.mod.o] Error 1
+| make[1]: *** [modules] Error 2
+| make[1]: Leaving directory `/home/trz/yocto/isg-test/build/tmp/sysroots/crystalforest-shumway/usr/src/kernel'
+| make: *** [all] Error 2
+| ERROR: oe_runmake failed
+| ERROR: Function failed: do_compile (see /home/trz/yocto/isg-test/build/tmp/work/crystalforest_shumway-poky-linux/openssl-qat-module-1.0.1-r0/temp/log.do_compile.19389 for further information)
+ERROR: Task 393 (/home/trz/yocto/isg-test/meta-intel/common/recipes-connectivity/openssl-qat-module/openssl-qat-module.bb, do_compile) failed with exit code '1'
+ERROR: Function failed: do_compile (see /home/trz/yocto/isg-test/build/tmp/work/crystalforest_shumway-poky-linux/zlib-qat-module-1.2.7-r0/temp/log.do_compile.20691 for further information)
+ERROR: Logfile of failure stored in: /home/trz/yocto/isg-test/build/tmp/work/crystalforest_shumway-poky-linux/zlib-qat-module-1.2.7-r0/temp/log.do_compile.20691
+Log data follows:
+| DEBUG: Executing shell function do_compile
+| NOTE: make -j 16 -e MAKEFLAGS= KERNEL_CC=x86_64-poky-linux-gcc
+| x86_64-poky-linux-gcc    -m64 --sysroot=/home/trz/yocto/isg-test/build/tmp/sysroots/crystalforest-shumway -g -o qat_mem_test qat_mem_test.c
+| make -C /home/trz/yocto/isg-test/build/tmp/sysroots/crystalforest-shumway/usr/src/kernel SUBDIRS=/home/trz/yocto/isg-test/build/tmp/work/crystalforest_shumway-poky-linux/zlib-qat-module-1.2.7-r0/zlib-1.2.7/contrib/qat/qat_mem modules
+| make[1]: Entering directory `/home/trz/yocto/isg-test/build/tmp/sysroots/crystalforest-shumway/usr/src/kernel'
+|   CC [M]  /home/trz/yocto/isg-test/build/tmp/work/crystalforest_shumway-poky-linux/zlib-qat-module-1.2.7-r0/zlib-1.2.7/contrib/qat/qat_mem/qat_mem.o
+|   Building modules, stage 2.
+|   MODPOST 1 modules
+|   CC      /home/trz/yocto/isg-test/build/tmp/work/crystalforest_shumway-poky-linux/zlib-qat-module-1.2.7-r0/zlib-1.2.7/contrib/qat/qat_mem/qat_mem.mod.o
+| /home/trz/yocto/isg-test/build/tmp/work/crystalforest_shumway-poky-linux/zlib-qat-module-1.2.7-r0/zlib-1.2.7/contrib/qat/qat_mem/qat_mem.mod.c:8:1: error: variable '__this_module' has initializer but incomplete type
+| /home/trz/yocto/isg-test/build/tmp/work/crystalforest_shumway-poky-linux/zlib-qat-module-1.2.7-r0/zlib-1.2.7/contrib/qat/qat_mem/qat_mem.mod.c:9:2: error: unknown field 'name' specified in initializer
+| /home/trz/yocto/isg-test/build/tmp/work/crystalforest_shumway-poky-linux/zlib-qat-module-1.2.7-r0/zlib-1.2.7/contrib/qat/qat_mem/qat_mem.mod.c:9:2: warning: excess elements in struct initializer [enabled by default]
+| /home/trz/yocto/isg-test/build/tmp/work/crystalforest_shumway-poky-linux/zlib-qat-module-1.2.7-r0/zlib-1.2.7/contrib/qat/qat_mem/qat_mem.mod.c:9:2: warning: (near initialization for '__this_module') [enabled by default]
+| /home/trz/yocto/isg-test/build/tmp/work/crystalforest_shumway-poky-linux/zlib-qat-module-1.2.7-r0/zlib-1.2.7/contrib/qat/qat_mem/qat_mem.mod.c:10:2: error: unknown field 'init' specified in initializer
+| /home/trz/yocto/isg-test/build/tmp/work/crystalforest_shumway-poky-linux/zlib-qat-module-1.2.7-r0/zlib-1.2.7/contrib/qat/qat_mem/qat_mem.mod.c:10:2: warning: excess elements in struct initializer [enabled by default]
+| /home/trz/yocto/isg-test/build/tmp/work/crystalforest_shumway-poky-linux/zlib-qat-module-1.2.7-r0/zlib-1.2.7/contrib/qat/qat_mem/qat_mem.mod.c:10:2: warning: (near initialization for '__this_module') [enabled by default]
+| /home/trz/yocto/isg-test/build/tmp/work/crystalforest_shumway-poky-linux/zlib-qat-module-1.2.7-r0/zlib-1.2.7/contrib/qat/qat_mem/qat_mem.mod.c:14:2: error: unknown field 'arch' specified in initializer
+| /home/trz/yocto/isg-test/build/tmp/work/crystalforest_shumway-poky-linux/zlib-qat-module-1.2.7-r0/zlib-1.2.7/contrib/qat/qat_mem/qat_mem.mod.c:14:10: error: 'MODULE_ARCH_INIT' undeclared here (not in a function)
+| /home/trz/yocto/isg-test/build/tmp/work/crystalforest_shumway-poky-linux/zlib-qat-module-1.2.7-r0/zlib-1.2.7/contrib/qat/qat_mem/qat_mem.mod.c:14:2: warning: excess elements in struct initializer [enabled by default]
+| /home/trz/yocto/isg-test/build/tmp/work/crystalforest_shumway-poky-linux/zlib-qat-module-1.2.7-r0/zlib-1.2.7/contrib/qat/qat_mem/qat_mem.mod.c:14:2: warning: (near initialization for '__this_module') [enabled by default]
+| make[2]: *** [/home/trz/yocto/isg-test/build/tmp/work/crystalforest_shumway-poky-linux/zlib-qat-module-1.2.7-r0/zlib-1.2.7/contrib/qat/qat_mem/qat_mem.mod.o] Error 1
+| make[1]: *** [modules] Error 2
+| make[1]: Leaving directory `/home/trz/yocto/isg-test/build/tmp/sysroots/crystalforest-shumway/usr/src/kernel'
+| make: *** [all] Error 2
+| ERROR: oe_runmake failed
+| ERROR: Function failed: do_compile (see /home/trz/yocto/isg-test/build/tmp/work/crystalforest_shumway-poky-linux/zlib-qat-module-1.2.7-r0/temp/log.do_compile.20691 for further information)
+ERROR: Task 380 (/home/trz/yocto/isg-test/meta-intel/common/recipes-core/zlib-qat-module/zlib-qat-module.bb, do_compile) failed with exit code '1'
+ERROR: QA Issue: Architecture did not match (62 to 3) on /work/crystalforest_shumway-poky-linux/linux-yocto-3.2.18+git1+486f7aec824b4127e91ef53228823e996b3696f0_1+34e3cd8b7a1d18594a63b7b299fce46e32a6c80c-r4.1/packages-split/kernel-vmlinux/boot/vmlinux-3.2.18-yocto-standard
+ERROR: QA run found fatal errors. Please consider fixing them.
+ERROR: Function failed: do_package_qa
+ERROR: Logfile of failure stored in: /home/trz/yocto/isg-test/build/tmp/work/crystalforest_shumway-poky-linux/linux-yocto-3.2.18+git1+486f7aec824b4127e91ef53228823e996b3696f0_1+34e3cd8b7a1d18594a63b7b299fce46e32a6c80c-r4.1/temp/log.do_package.8684
+ERROR: Task 1019 (/home/trz/yocto/isg-test/meta/recipes-kernel/linux/linux-yocto_3.2.bb, do_package) failed with exit code '1'
+NOTE: Tasks Summary: Attempted 3903 tasks of which 346 didn't need to be rerun and 3 failed.
+Waiting for 0 running tasks to finish:
+
+Summary: 3 tasks failed:
+  /home/trz/yocto/isg-test/meta-intel/common/recipes-connectivity/openssl-qat-module/openssl-qat-module.bb, do_compile
+  /home/trz/yocto/isg-test/meta-intel/common/recipes-core/zlib-qat-module/zlib-qat-module.bb, do_compile
+  /home/trz/yocto/isg-test/meta/recipes-kernel/linux/linux-yocto_3.2.bb, do_package
+Summary: There was 1 WARNING message shown.
+Summary: There were 5 ERROR messages shown, returning a non-zero exit code.
+
+
+Can you please verify that these recipes will work with linux-yocto-3.2?  So far I'm not seeing that they will.
+
+Tom
+
+> Thanks
+> Kishore.
+> 
+> >Tom
+> >
+> >> Thanks
+> >> Kishore.
+> >>
+> >> >
+> >> >Tom
+> >> >
+> >> >On Fri, 2012-10-19 at 13:28 -0500, Bodke, Kishore K wrote:
+> >> >>
+> >> >> >-----Original Message-----
+> >> >> >From: Kamble, Nitin A
+> >> >> >Sent: Friday, October 19, 2012 11:28 AM
+> >> >> >To: Bodke, Kishore K; Zanussi, Tom; yocto@yoctoproject.org
+> >> >> >Subject: RE: [PATCH 1/3] [meta-intel] meta-intel/common:Add a new
+> >> >recipe
+> >> >> >for Zlib qat_mem Module.
+> >> >> >
+> >> >> >Hi Kishore,
+> >> >> >  Same here, if it is not used by multiple BSPs yet, then it should go in
+> >the
+> >> >BSP
+> >> >> >specific layer.
+> >> >> >
+> >> >> Yes, these too will be used by both Crystal Forest and Rangely.
+> >> >>
+> >> >> Thanks
+> >> >> Kishore.
+> >> >>
+> >> >> >Thanks,
+> >> >> >Nitin
+> >> >> >
+> >> >> >
+> >> >> >> -----Original Message-----
+> >> >> >> From: Bodke, Kishore K
+> >> >> >> Sent: Thursday, October 18, 2012 11:19 AM
+> >> >> >> To: Zanussi, Tom; Kamble, Nitin A; yocto@yoctoproject.org
+> >> >> >> Cc: Bodke, Kishore K
+> >> >> >> Subject: [PATCH 1/3] [meta-intel] meta-intel/common:Add a new
+> >recipe
+> >> >for
+> >> >> >> Zlib qat_mem Module.
+> >> >> >>
+> >> >> >> From: Kishore Bodke <kishore.k.bodke@intel.com>
+> >> >> >>
+> >> >> >> This adds a new recipe to build the Intel Quick Assist Technology
+> >Memory
+> >> >> >> Management Module for Zlib.
+> >> >> >>
+> >> >> >> Signed-off-by: Kishore Bodke <kishore.k.bodke@intel.com>
+> >> >> >> ---
+> >> >> >>  .../zlib-qat-module/zlib-qat-module.bb             |   52
+> >> >> >> ++++++++++++++++++++
+> >> >> >>  .../zlib-qat-module/zlib_qat_module.patch          |   43
+> >> >++++++++++++++++
+> >> >> >>  2 files changed, 95 insertions(+)
+> >> >> >>  create mode 100644 common/recipes-core/zlib-qat-module/zlib-qat-
+> >> >> >> module.bb
+> >> >> >>  create mode 100644 common/recipes-core/zlib-qat-module/zlib-qat-
+> >> >> >> module/zlib_qat_module.patch
+> >> >> >>
+> >> >> >> diff --git a/common/recipes-core/zlib-qat-module/zlib-qat-module.bb
+> >> >> >> b/common/recipes-core/zlib-qat-module/zlib-qat-module.bb
+> >> >> >> new file mode 100644
+> >> >> >> index 0000000..5ade06e
+> >> >> >> --- /dev/null
+> >> >> >> +++ b/common/recipes-core/zlib-qat-module/zlib-qat-module.bb
+> >> >> >> @@ -0,0 +1,52 @@
+> >> >> >> +SUMMARY="Zlib QAT_MEM Memory Management Module for Intel
+> >> >Quick
+> >> >> >> Assist \
+> >> >> >> +Technology"
+> >> >> >> +DESCRIPTION="This software acelerates the data compression
+> >> >algorithm \
+> >> >> >> +in the zlib software library via the Intel QuickAssist Technology \
+> >> >> >> +implemented on Intel Communications Chipset 89xx Series based
+> >> >> >> platforms."
+> >> >> >> +
+> >> >> >> +HOMEPAGE = "http://zlib.net/"
+> >> >> >> +SECTION = "libs"
+> >> >> >> +LICENSE = "Zlib & GPLv2 & BSD"
+> >> >> >> +
+> >> >> >> +LIC_FILES_CHKSUM = "file://${WORKDIR}/zlib-
+> >> >> >>
+> >>
+> >>${PV}/zlib.h;beginline=4;endline=23;md5=94d1b5a40dadd127f3351471727e6
+> >> >> >> 6a9 \
+> >> >> >> +			file://${COMMON_LICENSE_DIR}/GPL-
+> >> >> >> 2.0;md5=801f80980d171dd6425610833a22dbe6 \
+> >> >> >> +
+> >> >> >>
+> >	file://${COMMON_LICENSE_DIR}/BSD;md5=3775480a712fc46a696476
+> >> >> >> 78acb234cb"
+> >> >> >> +PV = "1.2.7"
+> >> >> >> +ZLIB_QAT_VERSION = "0.4.0-011"
+> >> >> >> +
+> >> >> >> +PR="r0"
+> >> >> >> +
+> >> >> >> +SRC_URI = "http://www.zlib.net/zlib-${PV}.tar.gz;name=zlib \
+> >> >> >> +	http://downloadmirror.intel.com/20294/eng/zlib-${PV}-
+> >> >> >> qat.L.${ZLIB_QAT_VERSION}.tar.gz;name=zlib_qat \
+> >> >> >> +	file://zlib_qat_module.patch"
+> >> >> >> +
+> >> >> >> +SRC_URI[zlib.md5sum]="60df6a37c56e7c1366cca812414f7b85"
+> >> >> >>
+> >>
+> >>+SRC_URI[zlib.sha256sum]="fa9c9c8638efb8cb8ef5e4dd5453e455751e1c530
+> >> >> >> b1595eed466e1be9b7e26c5"
+> >> >> >> +
+> >> >> >> +SRC_URI[zlib_qat.md5sum]="88e4140f98d2f9e170bf473f20e1a8d4"
+> >> >> >>
+> >> >>
+> >>
+> >>>+SRC_URI[zlib_qat.sha256sum]="3c360878127f3930e64640ef5a5822719a50
+> >59
+> >> >> >> 143326bb4c396645ae37b704a6"
+> >> >> >> +
+> >> >> >> +S = "${WORKDIR}/zlib-${PV}/contrib/qat/qat_mem"
+> >> >> >> +
+> >> >> >> +inherit module
+> >> >> >> +export KERNEL_SOURCE_ROOT = "${STAGING_KERNEL_DIR}"
+> >> >> >> +
+> >> >> >> +do_patch() 	{
+> >> >> >> +	cd ${WORKDIR}/zlib-${PV}
+> >> >> >> +	patch -p0  < ${WORKDIR}/zlib-${PV}-
+> >> >> >> qat.L.${ZLIB_QAT_VERSION}.patch
+> >> >> >> +
+> >> >> >> +	cd ${WORKDIR}
+> >> >> >> +	patch -p1   < ${WORKDIR}/zlib_qat_module.patch
+> >> >> >> +}
+> >> >> >> +
+> >> >> >> +do_compile()    {
+> >> >> >> +	cd ${S}
+> >> >> >> +	oe_runmake KERNEL_CC="${KERNEL_CC}"
+> >> >> >> +}
+> >> >> >> +
+> >> >> >> +do_install_append()     {
+> >> >> >> +	install -m 0755 -d      		${D}${bindir}
+> >> >> >> +	install -m 0755 ${S}/qat_mem_test       ${D}${bindir}
+> >> >> >> +}
+> >> >> >> +
+> >> >> >> +FILES_${PN} += "${bindir}/qat_mem_test"
+> >> >> >> diff --git a/common/recipes-core/zlib-qat-module/zlib-qat-
+> >> >> >> module/zlib_qat_module.patch b/common/recipes-core/zlib-qat-
+> >> >> >> module/zlib-qat-module/zlib_qat_module.patch
+> >> >> >> new file mode 100644
+> >> >> >> index 0000000..a30f8b0
+> >> >> >> --- /dev/null
+> >> >> >> +++ b/common/recipes-core/zlib-qat-module/zlib-qat-
+> >> >> >> module/zlib_qat_modul
+> >> >> >> +++ e.patch
+> >> >> >> @@ -0,0 +1,43 @@
+> >> >> >> +Index: zlib-qat-module-1.2.7-r0/zlib-
+> >> >1.2.7/contrib/qat/qat_mem/Makefile
+> >> >> >>
+> >>
+> >>+=========================================================
+> >> >> >> ==========
+> >> >> >> +--- zlib-qat-module-1.2.7-r0.orig/zlib-
+> >> >1.2.7/contrib/qat/qat_mem/Makefile
+> >> >> >> 	2012-10-16 13:53:10.258938722 -0700
+> >> >> >> ++++ zlib-qat-module-1.2.7-r0/zlib-
+> >1.2.7/contrib/qat/qat_mem/Makefile
+> >> >> >> 	2012-10-16 13:59:18.174944864 -0700
+> >> >> >> +@@ -59,13 +59,10 @@
+> >> >> >> + #
+> >> >> >> + #
+> >> >> >> +
+> >> >> >>
+> >>
+> >>+#########################################################
+> >> >> >> ##############
+> >> >> >> +##
+> >> >> >> +-
+> >> >> >> + MODULENAME 	:= qat_mem
+> >> >> >> +-KDIR		:= /lib/modules/$(shell uname -r)/build
+> >> >> >> ++KDIR		:= $(KERNEL_SOURCE_ROOT)
+> >> >> >> + PWD		:= $(shell pwd)
+> >> >> >> +-
+> >> >> >> +-CC		:= gcc -Wall -imacros /usr/src/kernels/$(shell uname -
+> >> >> >> r)/include/linux/autoconf.h
+> >> >> >> +-
+> >> >> >> ++CC		:= $(KERNEL_CC) -Wall -imacros
+> >> >> >> $(KERNEL_SOURCE_ROOT)/include/generated/autoconf.h
+> >> >> >> + ifeq ($(KERNELRELEASE),)
+> >> >> >> + all:	$(MODULENAME)_test
+> >> >> >> + all:
+> >> >> >> +@@ -73,20 +70,15 @@
+> >> >> >> + else
+> >> >> >> +   obj-m	:= $(MODULENAME).o
+> >> >> >> + endif
+> >> >> >> +-
+> >> >> >> ++modules_install:
+> >> >> >> ++	$(MAKE) -C $(KDIR) SUBDIRS=$(PWD) modules_install
+> >> >> >> + $(MODULENAME)_test: $(MODULENAME)_test.c
+> >> >> >> + 	$(CC) -g -o $(MODULENAME)_test $(MODULENAME)_test.c
+> >> >> >> +-
+> >> >> >> +-
+> >> >> >> + load:
+> >> >> >> + 	insmod ./$(MODULENAME).ko
+> >> >> >> +-
+> >> >> >> + unload:
+> >> >> >> + 	rmmod $(MODULENAME)
+> >> >> >> +-
+> >> >> >> + test: all
+> >> >> >> + 	./$(MODULENAME)_test
+> >> >> >> +-
+> >> >> >> + clean:
+> >> >> >> + 	rm -f *.o *.ko Module.symvers modules.order *.mod.c
+> >.*.cmd
+> >> >> >> +$(MODULENAME)_test
+> >> >> >> +-
+> >> >> >> --
+> >> >> >> 1.7.9.5
+> >> >>
+> >> >
+> >>
+> >
+> 
+
+
 
