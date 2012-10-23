@@ -1,27 +1,50 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5D2D6E00292
-	for <yocto@yoctoproject.org>; Tue, 23 Oct 2012 14:16:18 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 23 Oct 2012 14:15:51 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,637,1344236400"; d="scan'208";a="231318754"
-Received: from unknown (HELO [10.255.14.179]) ([10.255.14.179])
-	by orsmga002.jf.intel.com with ESMTP; 23 Oct 2012 14:16:17 -0700
-Message-ID: <1351026976.12186.70.camel@empanada>
-From: Tom Zanussi <tom.zanussi@intel.com>
-To: nitin.a.kamble@intel.com
-Date: Tue, 23 Oct 2012 16:16:16 -0500
-In-Reply-To: <eafcdbdb3843e08adc7385d0f1cec2b316d1b691.1351023743.git.nitin.a.kamble@intel.com>
-References: <cover.1351023743.git.nitin.a.kamble@intel.com>
-	<eafcdbdb3843e08adc7385d0f1cec2b316d1b691.1351023743.git.nitin.a.kamble@intel.com>
-X-Mailer: Evolution 3.4.1 (3.4.1-2.fc17) 
-Mime-Version: 1.0
-Cc: yocto@yoctoproject.org, darren.hart@intel.com
-Subject: Re: [PATCH 3/6] crownbay README: add WebTitle & Compliance information
+Return-Path: <B29882@freescale.com>
+Received: from am1outboundpool.messaging.microsoft.com
+	(am1ehsobe001.messaging.microsoft.com [213.199.154.204])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8323FE00533
+	for <yocto@yoctoproject.org>; Tue, 23 Oct 2012 14:19:10 -0700 (PDT)
+Received: from mail85-am1-R.bigfish.com (10.3.201.238) by
+	AM1EHSOBE009.bigfish.com (10.3.204.29) with Microsoft SMTP Server id
+	14.1.225.23; Tue, 23 Oct 2012 21:19:09 +0000
+Received: from mail85-am1 (localhost [127.0.0.1])	by mail85-am1-R.bigfish.com
+	(Postfix) with ESMTP id E88C2600E7;
+	Tue, 23 Oct 2012 21:19:08 +0000 (UTC)
+X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null); IPV:NLI;
+	H:mail.freescale.net; RD:none; EFVD:NLI
+X-SpamScore: -1
+X-BigFish: VS-1(zz98dI9371Izz1202h1d1ah1d2ahzz8275bhz2dh2a8h668h839h8e2h8e3hd25hf0ah10d2h1288h12a5h12a9h12bdh137ah13b6h1441h1537h153bhbe9i1155h)
+Received: from mail85-am1 (localhost.localdomain [127.0.0.1]) by mail85-am1
+	(MessageSwitch) id 1351027147170514_4645;
+	Tue, 23 Oct 2012 21:19:07 +0000 (UTC)
+Received: from AM1EHSMHS003.bigfish.com (unknown [10.3.201.251])	by
+	mail85-am1.bigfish.com (Postfix) with ESMTP id 261D036005C;
+	Tue, 23 Oct 2012 21:19:07 +0000 (UTC)
+Received: from mail.freescale.net (70.37.183.190) by AM1EHSMHS003.bigfish.com
+	(10.3.207.103) with Microsoft SMTP Server (TLS) id 14.1.225.23;
+	Tue, 23 Oct 2012 21:19:06 +0000
+Received: from 039-SN1MPN1-002.039d.mgd.msft.net ([169.254.2.88]) by
+	039-SN1MMR1-001.039d.mgd.msft.net ([10.84.1.13]) with mapi id
+	14.02.0318.003; Tue, 23 Oct 2012 21:19:04 +0000
+From: McClintock Matthew-B29882 <B29882@freescale.com>
+To: Elvis Dowson <elvis.dowson@gmail.com>
+Thread-Topic: [yocto] Performance improvements and machine build configuration
+Thread-Index: AQHNsWQHEd26brwV0kWY2HoM7MGQ0A==
+Date: Tue, 23 Oct 2012 21:19:04 +0000
+Message-ID: <70CC66F5C30A414DADDA6973E4CA391A71DEF4@039-SN1MPN1-002.039d.mgd.msft.net>
+References: <D8FE0C54-F09B-40E0-BDDA-5C2AA31DC4C3@gmail.com>
+In-Reply-To: <D8FE0C54-F09B-40E0-BDDA-5C2AA31DC4C3@gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [70.112.201.132]
+MIME-Version: 1.0
+X-OriginatorOrg: freescale.com
+Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+Subject: Re: Performance improvements and machine build configuration
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: McClintock Matthew-B29882 <B29882@freescale.com>
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -30,84 +53,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 23 Oct 2012 21:16:18 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 23 Oct 2012 21:19:10 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-ID: <6EE0C0290B3FAD40A138CEC33EE3617C@mgd.freescale.com>
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, 2012-10-23 at 13:24 -0700, nitin.a.kamble@intel.com wrote:
-> From: Nitin A Kamble <nitin.a.kamble@intel.com>
-> 
-> The WebTitle will be used to publish the BSP on the Yocto Project Website.
-> And adding the Yocto Project Compliance information for the 1.3 release.
-> Also specifying all the layers used from meta-intel repository.
-> 
-> Signed-off-by: Nitin A Kamble <nitin.a.kamble@intel.com>
-> ---
->  meta-crownbay/README |   13 +++++++++++--
->  1 files changed, 11 insertions(+), 2 deletions(-)
-> 
-> diff --git a/meta-crownbay/README b/meta-crownbay/README
-> index 4bc9f31..3996a94 100644
-> --- a/meta-crownbay/README
-> +++ b/meta-crownbay/README
-> @@ -2,13 +2,22 @@ This README file contains information on building the meta-crownbay
->  BSP layer, and booting the images contained in the /binary directory.
->  Please see the corresponding sections below for details.
->  
-> -The Crown Bay platform consists of the Intel Atom Z6xx processor,
-> +The Crown Bay platform consists of the Intel Atom E6xx processor,
->  plus the Intel EG20T Platform Controller Hub (Tunnel Creek + Topcliff).
->  
->  It also supports the E6xx embedded on-chip graphics via the Intel
->  Embedded Media and Graphics Driver (EMGD) 1.14 Driver.
->  
-> 
-> +WebTitle: Intel Atom E6xx processor with Intel EG20T Controller Hub development kit (crownbay)
-> +
+On Tue, Oct 23, 2012 at 1:45 PM, Elvis Dowson <elvis.dowson@gmail.com> wrot=
+e:
+> The only curious thing that I've noticed is that I don't see a large perf=
+ormance improvement using a standard 3TB Seagate Barracuda 7200 RPM HDD, an=
+d the two Intel Series 330 SSDs in a striped RAID0 configuration. The read =
+(600MB/s) / write (838MB/s) figures are impressive, although I expected the=
+ read performance to be higher than write performance, as is normally with =
+a single SSD. I'm using the motherboard's hardware RAID support on a 6GB/s =
+SATA 3 port.
 
-I'm not sure this kind of thing should be in the README since we can
-have multiple downloadable BSPs per layer e.g. crownbay vs
-crownbay-noemgd.  I suppose in keeping with the build system you could
-have separate WebTitle_crownbay and WebTitle_crownbay-noemgd lines. ;-) 
-(and it would be nice if you could get rid of the CamelCaps too)
+You probably don't use much disk I/O with 16GB of memory for a build.
 
-Why not put this info in the machine.conf, where we already have fields
-meant to be machine parseable e.g.
-
-#@TYPE: Machine
-#@NAME: crownbay
-
-#@WEBTITLE: ...
-
-Or maybe just use the exisiting #@DESCRIPTION for that...
-
-> +
-> +Compliance:
-> +============
-
-For consistency with the rest of the README, please remove the colon and
-clean up the underlining.
-
-Thanks,
-
-Tom
-
-> +This BSP is compliant with Yocto Project as per requirements listed here:
-> +http://www.yoctoproject.org/yocto-project-compatible-registration
-> +
-> +
->  Dependencies
->  ============
->  
-> @@ -22,7 +31,7 @@ This layer depends on:
->    branch: master
->  
->    URI: git://git.yoctoproject.org/meta-intel
-> -  layers: intel
-> +  layers: meta-intel, meta-crownbay
->    branch: master
->  
-> 
-
+-M=
 
 
