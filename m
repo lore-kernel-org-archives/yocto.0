@@ -1,34 +1,42 @@
-Return-Path: <opensource@keylevel.com>
-Received: from r109.websiteservername.com (r109.websiteservername.com
-	[65.39.128.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DD7A6E00294
-	for <yocto@yoctoproject.org>; Tue, 23 Oct 2012 12:40:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=keylevel.com;
-	s=default; 
-	h=To:References:Message-Id:Content-Transfer-Encoding:Cc:Date:In-Reply-To:From:Content-Type:Mime-Version:Subject;
-	bh=lrY6Lx2UYQ1gYVcyz09spMLTf9Sec/N9PQ4KO41aOVQ=; 
-	b=VThhDfKDMkID7lst5BVboQK2VR8fDoiot4cFt9EEQNRnEvkPw5ImxxIyrfPJuHfLHuuqQIoVq/5n7SGFg1WgwXpLfsqdjVJ+3SZH0hNItTI5WNay0U39BETDX9RLgSb8;
-Received: from [109.224.129.17] (port=46119
-	helo=macbook-pro.durham.keylevel.com)
-	by r109.websiteservername.com with esmtpa (Exim 4.80)
-	(envelope-from <opensource@keylevel.com>)
-	id 1TQkKV-0004HR-HE; Tue, 23 Oct 2012 20:39:59 +0100
-Mime-Version: 1.0 (Apple Message framework v1283)
-From: Chris Tapp <opensource@keylevel.com>
-In-Reply-To: <D8FE0C54-F09B-40E0-BDDA-5C2AA31DC4C3@gmail.com>
-Date: Tue, 23 Oct 2012 20:39:59 +0100
-Message-Id: <CB0328DE-EE56-4CBA-A27B-43048135AE0F@keylevel.com>
-References: <D8FE0C54-F09B-40E0-BDDA-5C2AA31DC4C3@gmail.com>
-To: Elvis Dowson <elvis.dowson@gmail.com>
-X-Mailer: Apple Mail (2.1283)
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - r109.websiteservername.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-Subject: Re: Performance improvements and machine build configuration
+Return-Path: <marc.ferland@gmail.com>
+Received: from mail-ia0-f176.google.com (mail-ia0-f176.google.com
+	[209.85.210.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7C75EE00294
+	for <yocto@yoctoproject.org>; Tue, 23 Oct 2012 12:41:38 -0700 (PDT)
+Received: by mail-ia0-f176.google.com with SMTP id h11so3756098iae.35
+	for <yocto@yoctoproject.org>; Tue, 23 Oct 2012 12:41:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=sender:from:to:cc:subject:references:date:in-reply-to:message-id
+	:user-agent:mime-version:content-type;
+	bh=sRQbm/P3Qg0ouS4igNZidKqMK0Fi5t40j9MT1l562mw=;
+	b=Xpyr+R5rS4xLOXsAvSfHhA+wcfXd9jUN2DlsUPNx0+IZceLM1bi8VH6M8HUUTlMElT
+	THi31gORj/xEYQbQRnUqrwtp/nvOIYJ/LrwvLlcQxtex/tvArUpqOSXSE1dV4zXkIW4/
+	/ydBT/cF34042SJfUmdheP6lmZWu24AqPHfI7eLKWnXRoM9ev2DE6ryqsdUwXm9xYLqx
+	TRSEjSkGir8tJhmKoEwfSM1Vh4ZsRqmb6CXCB737XJVpe6/iE6PZCQVoQfMyQjnsMT/V
+	rIWkEJNrE7tF0m0eExD7xKrYZSPq7GnIHyH4EKvbt2wevgDla6V+urV4nTzkK8LJq+zn
+	wYiQ==
+Received: by 10.50.209.71 with SMTP id mk7mr177714igc.34.1351021297836;
+	Tue, 23 Oct 2012 12:41:37 -0700 (PDT)
+Received: from ferlandm@sonatest.com
+	(modemcable066.15-37-24.static.videotron.ca. [24.37.15.66])
+	by mx.google.com with ESMTPS id rd10sm157208igb.1.2012.10.23.12.41.35
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Tue, 23 Oct 2012 12:41:36 -0700 (PDT)
+Sender: Marc Ferland <marc.ferland@gmail.com>
+Received: by ferlandm@sonatest.com (sSMTP sendmail emulation);
+	Tue, 23 Oct 2012 15:41:50 -0400
+From: Marc Ferland <ferlandm@sonatest.com>
+To: Jonathan Haws <Jonathan.Haws@sdl.usu.edu>
+References: <DDDB9E6645DE24488B8485B41A051F471D969119@Mercury.usurf.usu.edu>
+	<DDDB9E6645DE24488B8485B41A051F471D96912E@Mercury.usurf.usu.edu>
+Date: Tue, 23 Oct 2012 15:41:50 -0400
+In-Reply-To: <DDDB9E6645DE24488B8485B41A051F471D96912E@Mercury.usurf.usu.edu>
+	(Jonathan Haws's message of "Tue, 23 Oct 2012 19:34:29 +0000")
+Message-ID: <87vce1x9fl.fsf@sonatest.com>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/24.1 (gnu/linux)
+MIME-Version: 1.0
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Unreadable menuconfig
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,93 +48,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 23 Oct 2012 19:40:02 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 23 Oct 2012 19:41:38 -0000
+Content-Type: text/plain
 
-On 23 Oct 2012, at 19:45, Elvis Dowson wrote:
+Jonathan Haws <Jonathan.Haws@sdl.usu.edu> writes:
 
-> Hi,
->      I noticed that between commits=20
->=20
-> =
-http://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/?id=3D0260bb5c697883=
-9c068007fcff2f704937805faf
->=20
-> and=20
->=20
-> =
-http://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/?id=3Da3d5e9e6b77293=
-19c518dcaf25bbe0643bfb25db
->=20
-> the build time has improved by around 7 minutes for my machine =
-configuration, for building a core-image-minimal rootfs for the Xilinx =
-ZC-702 FPGA with dual ARM Cortex A-9 CPUs.
->=20
-> commit id 0260bb5c6978839c068007fcff2f704937805faf        took 29 =
-minutes
-> commit id a3d5e9e6b7729319c518dcaf25bbe0643bfb25db  took 22 minutes
->=20
-> The machine configuration is an Intel i7 3770K over-clocked to 4.2GHz, =
-with 16GB RAM at 1600Mhz, two 120GB SSDs configured into a striped disk =
-array (Intel 330 series SSDs) with a write performance of 838MB/s and =
-read performance of around 600MB/s, in RAID0 configuration, with a =
-Corsair HT100 liquid CPU cooler keeping the CPU cool at around 52 degree =
-centigrade during the build process. The motherboard is a gigabyte =
-GA-Z77X-UP5TH
->=20
-> http://www.gigabyte.com/products/product-page.aspx?pid=3D4279#ov
->=20
-> This motherboard has a thunderbolt display port, so I can re-use my =
-existing Apple Thunderbolt display. I've run Ubuntu 12.04.1 LTS and =
-Ubuntu 12.10, and it appears to work after a few tweaks.
->=20
-> The only curious thing that I've noticed is that I don't see a large =
-performance improvement using a standard 3TB Seagate Barracuda 7200 RPM =
-HDD, and the two Intel Series 330 SSDs in a striped RAID0 configuration. =
-The read (600MB/s) / write (838MB/s) figures are impressive, although I =
-expected the read performance to be higher than write performance, as is =
-normally with a single SSD. I'm using the motherboard's hardware RAID =
-support on a 6GB/s SATA 3 port.
->=20
-> The 3TB HDD took the approximately 2 or 3 minutes longer than the =
-120GB x 2 RAID0 SSD configuration for commit id =
-0260bb5c6978839c068007fcff2f704937805faf (31 minutes vs. 29 minutes).
->=20
-> My local.conf parallelism settings were set to 6 threads for bitbake =
-and make, for the quad-core (virtual 8 cpu cores)system.
->=20
-> Has anyone tried yocto builds with a 6-core, 8-core or 10-core Xeon =
-processor system? How do those figures fare? I'm thinking my current =
-bottleneck might be the CPU and not the HDD (?!), for the yocto build =
-workloads, which I find curious and would like to confirm.=20
+> When I run 'bitbake linux-yocto -c menuconfig' I was not getting a
+> menuconfig - I had to tell my local.conf to use screen because auto
+> was selecting a gnome terminal which would resize itself to something
+> too small and menuconfig would exit with an error.
+>
+> Now I can get menuconfig and make changes, but it is extremely
+> difficult to read.  I have attached a screenshot of what I am talking
+> about.
+>
+> Can anyone point me in the right direction on how to fix this?  I
+> would like to use the correct commands so that I don't mess anything
+> up.  Right now I have resorted to running menuconfig down in my build
+> directory where the .config file is stored with the kernel source.
+>
+> Thoughts?
+>
+Try:
 
+OE_TERMINAL = "xterm"
 
-I did quite a bit of experimenting with this a while back (similar spec, =
-but with nearly 1000MB/s read/write SDD array). CPU was quad core with =
-hyper-threading, so 8 virtual cores. I generally run with 16 threads, 16 =
-parallel make as I find that the main performance hit is running out of =
-stuff to keep all the cores busy.
+in your local.conf
 
-Most of the time all 8 cores are maxed out, but around when the kernel =
-gets built (and cross tools needed for it) I see the total CPU use drop =
-to about 25%. This isn't because the system is I/O bound; it simply =
-doesn't have enough tasks ready to run at that point in time.
-
-I estimate that my 55 min build times would come down by 10 to 15 =
-minutes if I could keep the CPUs busy (still, much better than the 10 =
-hour build times on my previous system!).
-
-I tried 'tinkering' with the run queue priority order, but all I proved =
-was that inverting it (i.e. make the things that were previous given =
-high-priority have low-priority) made no measurable difference to my =
-build times! I'm trying not to think too much about that one ;-)
-
-Chris Tapp
-
-opensource@keylevel.com
-www.keylevel.com
-
-
-
+Marc
 
