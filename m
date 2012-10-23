@@ -1,42 +1,46 @@
 Return-Path: <ross.burton@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 740CBE00533
-	for <yocto@yoctoproject.org>; Tue, 23 Oct 2012 14:24:46 -0700 (PDT)
-Received: from mail-ea0-f200.google.com ([209.85.215.200])
-	by mga09.intel.com with ESMTP/TLS/RC4-SHA; 23 Oct 2012 14:24:18 -0700
-Received: by mail-ea0-f200.google.com with SMTP id i11so2966378eaa.11
-	for <yocto@yoctoproject.org>; Tue, 23 Oct 2012 14:24:44 -0700 (PDT)
+Received: from azsmga102.ch.intel.com (mga12.intel.com [143.182.124.36])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C7ED7E00292
+	for <yocto@yoctoproject.org>; Tue, 23 Oct 2012 14:34:45 -0700 (PDT)
+Received: from mail-la0-f72.google.com ([209.85.215.72])
+	by mga14.intel.com with ESMTP/TLS/RC4-SHA; 23 Oct 2012 14:34:44 -0700
+Received: by mail-la0-f72.google.com with SMTP id s15so2960192lag.11
+	for <yocto@yoctoproject.org>; Tue, 23 Oct 2012 14:34:41 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=google.com; s=20120113;
 	h=date:from:to:cc:message-id:in-reply-to:references:subject:x-mailer
 	:mime-version:content-type:content-transfer-encoding
 	:content-disposition:x-gm-message-state;
-	bh=uZFEjZmdSKzlyPXuX1tgQ7AqCIl0yIGqJ5cwWAb1Ba4=;
-	b=DTQKuIzjhhZ3v27XDWifcuIz1fcCDHecLwkHMhgG2OiSrCswqet1Ja+BfCgfeCL5sb
-	D41k3QsM7tN7kLhiUFz6jUgFQRxhI9s4nNnY/sl3Q52h5VgNGCypyfBflWdWgDc6Ydvg
-	BHQgYmlbi85VrOa2VW6951I1CEJ5l6izZRDoR7jzmAuCOttnSaCs5+11Uxf0eyIrB1HX
-	fk9lRZmluwNGNWVKf1dtKi/S77QuDqaTr+gS6d6l3ueM2wWdB2/uAK/6a7WCA2uXWnDj
-	qzEozrz92IEoi56hn6AErWjAyViR6Rext4Z3fx0PjwhxjUuwcMjknYlChghZW0iVlltn
-	z2dg==
-Received: by 10.180.87.34 with SMTP id u2mr850870wiz.3.1351027484035;
-	Tue, 23 Oct 2012 14:24:44 -0700 (PDT)
-Received: by 10.180.87.34 with SMTP id u2mr850858wiz.3.1351027483903;
-	Tue, 23 Oct 2012 14:24:43 -0700 (PDT)
+	bh=9XfGSYsBxSvwRsMR7EIk8jHXqEx41m7F3yk70Pwlt00=;
+	b=dm6agCiybOrXmFQHDOfxjv0LbSqyDePzgP9sn7csFewlUxk/UkMUcXuv+DSHqpgqMX
+	vZRFBGFH7Rc2jIMt9SN8emb4B3D2v5Ny4/A6np5HLem7HCA+gbuF5GbY+3cEw9oYhs8X
+	Nz8M6jOl7R4dJ1h9Go0q2ZLQeh8mqWW1ukv7wePbFL+TIaR5LLy/zN8wfaVfxryFqP7N
+	T2qULcfYoqEJm/dEeuDvlPjnboB2Ykxr8eH3kMpiCXSzfl+L+CgIo38Z9M1I9CwPYEW5
+	9t/VziJMxvKjfmYXyk8ymIiJMxQ4JNNYyHEwcfNXPTU20pAk4vc6g9WcTmV1L52HFE9+
+	Mjiw==
+Received: by 10.180.108.38 with SMTP id hh6mr834829wib.0.1351026631234;
+	Tue, 23 Oct 2012 14:10:31 -0700 (PDT)
+Received: by 10.180.108.38 with SMTP id hh6mr834816wib.0.1351026631067;
+	Tue, 23 Oct 2012 14:10:31 -0700 (PDT)
 Received: from [192.168.1.7] (35.106.2.81.in-addr.arpa. [81.2.106.35])
-	by mx.google.com with ESMTPS id w8sm771629wif.4.2012.10.23.14.24.42
-	(version=SSLv3 cipher=OTHER); Tue, 23 Oct 2012 14:24:42 -0700 (PDT)
-Date: Tue, 23 Oct 2012 22:24:44 +0100
+	by mx.google.com with ESMTPS id hv8sm713370wib.0.2012.10.23.14.10.25
+	(version=SSLv3 cipher=OTHER); Tue, 23 Oct 2012 14:10:27 -0700 (PDT)
+Date: Tue, 23 Oct 2012 22:10:29 +0100
 From: Ross Burton <ross.burton@intel.com>
-To: McClintock Matthew-B29882 <B29882@freescale.com>
-Message-ID: <0D8519A6089349458734E822A3CBF611@intel.com>
-In-Reply-To: <70CC66F5C30A414DADDA6973E4CA391A71DEF4@039-SN1MPN1-002.039d.mgd.msft.net>
-References: <D8FE0C54-F09B-40E0-BDDA-5C2AA31DC4C3@gmail.com>
-	<70CC66F5C30A414DADDA6973E4CA391A71DEF4@039-SN1MPN1-002.039d.mgd.msft.net>
+To: Trevor Woerner <twoerner@gmail.com>
+Message-ID: <DB45BBA447A24160B0D5C2B8B88CCA6E@intel.com>
+In-Reply-To: <CAHUNapT+Tf-1uTXJo9CXB=2CT7D4A2GYd9O+MmvGLit46wogWw@mail.gmail.com>
+References: <7E7FACCF-2EB1-480F-998D-F52E40A59976@gmail.com>
+	<0C4325BA-1CE2-451F-A7CE-2C08721911CC@gmail.com>
+	<4A7E1048-DBF7-4266-8CBC-40729B10C6CA@gmail.com>
+	<37A1D383-EE8E-4490-80F6-CA3ECE928B67@gmail.com>
+	<CAJTo0LYi3s9Dp33ORf4VvQFrFY4v0ib9vzRqFOWaKy5sMjex7Q@mail.gmail.com>
+	<CAHUNapT+Tf-1uTXJo9CXB=2CT7D4A2GYd9O+MmvGLit46wogWw@mail.gmail.com>
 X-Mailer: sparrow 1.6.4 (build 1178)
 MIME-Version: 1.0
-X-Gm-Message-State: ALoCoQkfte1cji1rlUGl4PdAEXttsGp0RJHLVzUBTKEAUIxRctGq9VEvnPUpO74cf+m4GIZtxHGftZpy/g7ToU9udMLcFVUr5lGaOBr/S+OW4jZEALJnBm+bFPd3f7uZR8I1/djH/VTGID8C118awShsT8PmlTC7Xw==
+X-Gm-Message-State: ALoCoQmJzZuMsAn5oU4z7nZLIu+F0vfxQOVuugnuPxEHigGtjLtzSTnJPvGfycH0QTjoUEvA8Tigu2V04WHFmgqTZzWcW578HjDP3gYPNfDiJy0v3X3HojgvVfGAKGQNUHadjDgCVA3zkePE7jZoi70XyCRwnvyBWw==
 Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-Subject: Re: Performance improvements and machine build configuration
+Subject: Re: ERROR: Function failed: do_rootfs, poky commit id 8ce23f569584f195391bc5c68a780e1bf54e4360
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,21 +52,21 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 23 Oct 2012 21:24:46 -0000
+X-List-Received-Date: Tue, 23 Oct 2012 21:34:46 -0000
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
 Content-Disposition: inline
 
-On Tuesday, 23 October 2012 at 22:19, McClintock Matthew-B29882 wrote:
-> On Tue, Oct 23, 2012 at 1:45 PM, Elvis Dowson <elvis.dowson@gmail.com (mailto:elvis.dowson@gmail.com)> wrote:
-> > The only curious thing that I've noticed is that I don't see a large performance improvement using a standard 3TB Seagate Barracuda 7200 RPM HDD, and the two Intel Series 330 SSDs in a striped RAID0 configuration. The read (600MB/s) / write (838MB/s) figures are impressive, although I expected the read performance to be higher than write performance, as is normally with a single SSD. I'm using the motherboard's hardware RAID support on a 6GB/s SATA 3 port.
+On Tuesday, 23 October 2012 at 22:03, Trevor Woerner wrote:
+> Just out of curiosity...
+> 
+> On Tue, Oct 23, 2012 at 3:53 PM, Burton, Ross <ross.burton@intel.com (mailto:ross.burton@intel.com)> wrote:
+> > An alternative (and less intrusive) is to increase the commit timeout
+> > on the build partition
 > 
 > 
-> 
-> You probably don't use much disk I/O with 16GB of memory for a build.
-My machine has 16G of RAM, and after a good build will have 12G of "cache" (according to /proc), but the disk activity light was frantic.  I can only imagine it would be more frantic with less RAM to act as an over-sized disk cache.
+> How does one go about adjusting the commit timeout on a partition/disk? 
+commit=[duration in seconds] in fstab.  See the fstab man page for more examples. 
 
-Ross 
-
-
+Ross
 
