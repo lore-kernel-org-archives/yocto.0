@@ -1,39 +1,23 @@
-Return-Path: <martin.jansa@gmail.com>
-Received: from mail-wg0-f54.google.com (mail-wg0-f54.google.com [74.125.82.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ECD04E00294
-	for <yocto@yoctoproject.org>; Tue, 23 Oct 2012 13:12:55 -0700 (PDT)
-Received: by mail-wg0-f54.google.com with SMTP id dt10so2739204wgb.11
-	for <yocto@yoctoproject.org>; Tue, 23 Oct 2012 13:12:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:content-disposition:in-reply-to:user-agent;
-	bh=WPW+QT6wp63GYMIIaCQ7Q8kw+QIHQ6ty0HvzUj5LPO8=;
-	b=cw9lIl1szfSCtuUu8mpXxxyI3w1xaxNteR7BR1FKSplQO5Y5mgZOL30wcF3p9sMX77
-	r4Hhu+9LVTVWrkCwJFjixWLP9oZWqLJ/a6cSvvblfM+Ee5xP2IYhmeXwrxuv31StBtA8
-	A+Lu00yQM6lXXk4GevH7fqwZ8Hile8Eog8y9J5Y1yZVwi3PpHHr9lSs5ozauGSPrELUE
-	HlmNisPZsoZBiXhbQkDVmuQDegnm+p0VEWbXVM0oZ1+qXWKXWlttbK1NQ228m7i8/1Iv
-	b/FdkBHuY5+GpaC3moUVxnfrrR9VuXAnicYRWu457wJRqVylDIwOlUL9MAnophxCKIFk
-	dRqw==
-Received: by 10.180.79.202 with SMTP id l10mr504611wix.9.1351023175053;
-	Tue, 23 Oct 2012 13:12:55 -0700 (PDT)
-Received: from localhost ([94.230.152.246])
-	by mx.google.com with ESMTPS id dq6sm470918wib.5.2012.10.23.13.12.53
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Tue, 23 Oct 2012 13:12:54 -0700 (PDT)
-Date: Tue, 23 Oct 2012 22:13:10 +0200
-From: Martin Jansa <martin.jansa@gmail.com>
-To: Jonathan Haws <Jonathan.Haws@sdl.usu.edu>
-Message-ID: <20121023201310.GY3269@jama.jama.net>
-References: <DDDB9E6645DE24488B8485B41A051F471D969119@Mercury.usurf.usu.edu>
-	<20121023194651.GV3269@jama.jama.net>
-	<DDDB9E6645DE24488B8485B41A051F471D96916E@Mercury.usurf.usu.edu>
-	<20121023200402.GX3269@jama.jama.net>
-	<DDDB9E6645DE24488B8485B41A051F471D96918D@Mercury.usurf.usu.edu>
-MIME-Version: 1.0
-In-Reply-To: <DDDB9E6645DE24488B8485B41A051F471D96918D@Mercury.usurf.usu.edu>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Unreadable menuconfig
+Return-Path: <nitin.a.kamble@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B3A82E00292
+	for <yocto@yoctoproject.org>; Tue, 23 Oct 2012 13:25:41 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 23 Oct 2012 13:25:41 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,637,1344236400"; d="scan'208";a="239165257"
+Received: from yocto-hm1.jf.intel.com ([10.23.232.32])
+	by fmsmga002.fm.intel.com with ESMTP; 23 Oct 2012 13:25:40 -0700
+From: nitin.a.kamble@intel.com
+To: yocto@yoctoproject.org,
+	tom.zanussi@intel.com,
+	darren.hart@intel.com
+Date: Tue, 23 Oct 2012 13:24:36 -0700
+Message-Id: <bfc3276fad6f337215fd21751afdb1ceaaf407a4.1351023743.git.nitin.a.kamble@intel.com>
+X-Mailer: git-send-email 1.7.3.4
+In-Reply-To: <cover.1351023743.git.nitin.a.kamble@intel.com>
+References: <cover.1351023743.git.nitin.a.kamble@intel.com>
+Subject: [PATCH 1/6] MAINTAINERS: corect pathname
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,41 +29,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 23 Oct 2012 20:12:56 -0000
-X-Groupsio-MsgNum: 10237
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="gu8wNMO+QVC0jLZM"
-Content-Disposition: inline
+X-List-Received-Date: Tue, 23 Oct 2012 20:25:41 -0000
 
---gu8wNMO+QVC0jLZM
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+From: Nitin A Kamble <nitin.a.kamble@intel.com>
 
-On Tue, Oct 23, 2012 at 08:08:29PM +0000, Jonathan Haws wrote:
-> >It's still valid for me, I'm still using this
-> >https://github.com/shr-distribution/oe-core/commit/5d5e8783c0db7e2f0488e=
-ea02f795c9f543cd626
->=20
-> Hmmmm.  I did a fresh download of the Yocto repos last week and that is n=
-ot what I have.  My file still has the HOSTLDFLAGS variable set.
+The commmon directory has more stuff than just recipes-core.
+All this need to be maintained together as part of the meta-intel layer.
 
-this isn't in upstream oe-core repo, but in shr branch for
-shr-distribution.
+Signed-off-by: Nitin A Kamble <nitin.a.kamble@intel.com>
+---
+ MAINTAINERS |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
 
---=20
-Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
+diff --git a/MAINTAINERS b/MAINTAINERS
+index d63ed31..eac592b 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -42,7 +42,7 @@ F:	meta-chiefriver/
+ 
+ COMMON
+ M:	Nitin A Kamble<nitin.a.kamble@intel.com>
+-F:	common/recipes-core/
++F:	common/
+ 
+ CROWNBAY
+ M:	Nitin A Kamble<nitin.a.kamble@intel.com>
+-- 
+1.7.3.4
 
---gu8wNMO+QVC0jLZM
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2.0.19 (GNU/Linux)
-
-iEYEARECAAYFAlCG+lYACgkQN1Ujt2V2gByVJgCcC2Jdk0lcqvi6Pgn5UK9Z8Yx5
-3+wAoInGuqEtLLaWPPF1zQw0Rn5S91N3
-=pEJf
------END PGP SIGNATURE-----
-
---gu8wNMO+QVC0jLZM--
