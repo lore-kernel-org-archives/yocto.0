@@ -1,21 +1,25 @@
-Return-Path: <nitin.a.kamble@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EEDDEE00292
-	for <yocto@yoctoproject.org>; Tue, 23 Oct 2012 13:35:41 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 23 Oct 2012 13:35:41 -0700
+Return-Path: <darren.hart@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 60FCAE00292
+	for <yocto@yoctoproject.org>; Tue, 23 Oct 2012 13:47:21 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 23 Oct 2012 13:47:20 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,637,1344236400"; d="scan'208";a="239165242"
-Received: from yocto-hm1.jf.intel.com ([10.23.232.32])
-	by fmsmga002.fm.intel.com with ESMTP; 23 Oct 2012 13:25:38 -0700
-From: nitin.a.kamble@intel.com
-To: yocto@yoctoproject.org,
-	tom.zanussi@intel.com,
-	darren.hart@intel.com
-Date: Tue, 23 Oct 2012 13:24:38 -0700
-Message-Id: <cover.1351023743.git.nitin.a.kamble@intel.com>
-X-Mailer: git-send-email 1.7.3.4
-Subject: [PATCH 0/6] meta-intel: README updates
+X-IronPort-AV: E=Sophos;i="4.80,637,1344236400"; d="scan'208";a="159534883"
+Received: from unknown (HELO envy.home) ([10.255.14.9])
+	by AZSMGA002.ch.intel.com with ESMTP; 23 Oct 2012 13:47:20 -0700
+Message-ID: <50870219.7050907@intel.com>
+Date: Tue, 23 Oct 2012 13:46:17 -0700
+From: Darren Hart <darren.hart@intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:16.0) Gecko/20121009 Thunderbird/16.0
+MIME-Version: 1.0
+To: nitin.a.kamble@intel.com
+References: <cover.1351023743.git.nitin.a.kamble@intel.com>
+	<35ee85e0775c3e40fc091eda9ec48526640ec975.1351023743.git.nitin.a.kamble@intel.com>
+In-Reply-To: <35ee85e0775c3e40fc091eda9ec48526640ec975.1351023743.git.nitin.a.kamble@intel.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH 2/6] chiefriver README: add WebTitle & Compliance information
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,41 +31,59 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 23 Oct 2012 20:35:42 -0000
+X-List-Received-Date: Tue, 23 Oct 2012 20:47:21 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-From: Nitin A Kamble <nitin.a.kamble@intel.com>
+On 10/23/2012 01:24 PM, nitin.a.kamble@intel.com wrote:
+> From: Nitin A Kamble <nitin.a.kamble@intel.com>
+> 
+> The WebTitle will be used to publish the BSP on the Yocto Project Website.
+> And adding the Yocto Project Compliance information for the 1.3 release.
+> Also specifying all the layers used from meta-intel repository.
+> 
+> Signed-off-by: Nitin A Kamble <nitin.a.kamble@intel.com>
+> ---
+>  meta-chiefriver/README |   10 +++++++++-
+>  1 files changed, 9 insertions(+), 1 deletions(-)
+> 
+> diff --git a/meta-chiefriver/README b/meta-chiefriver/README
+> index 7c47b02..7af1288 100644
+> --- a/meta-chiefriver/README
+> +++ b/meta-chiefriver/README
+> @@ -6,6 +6,14 @@ The 'Chief River' platform consists of the Intel Ivy Bridge processor,
+>  plus the Panther Point PCH.  This BSP assumes that the Ivy Bridge
+>  integrated graphics are being used.
+>  
+> +WebTitle: Intel 3nd Generations Core Platforms: Core i3, i5, i7 (Ivy Bridge)
 
-For the YP 1.3 release, README changes for the BSPs I am maintaining.
+s/3nd/3rd/
 
-Thanks,
-Nitin
+Otherwise looks fine.
 
-
-The following changes since commit f502e7493694c487767f60df232055bc7b854e69:
-
-  gstreamer-vaapi: add missing build dependencies (2012-10-23 07:43:46 -0500)
-
-are available in the git repository at:
-  git://git.yoctoproject.org/meta-intel-contrib nitin/misc
-  http://git.yoctoproject.org/cgit.cgi/meta-intel-contrib/log/?h=nitin/misc
-
-Nitin A Kamble (6):
-  MAINTAINERS: corect pathname
-  chiefriver README: add WebTitle & Compliance information
-  crownbay README: add WebTitle & Compliance information
-  emenlow README: add WebTitle & Compliance information
-  jasperforest README: add WebTitle & Compliance information
-  sugarbay README: add WebTitle & Compliance information
-
- MAINTAINERS              |    2 +-
- meta-chiefriver/README   |   10 +++++++++-
- meta-crownbay/README     |   13 +++++++++++--
- meta-emenlow/README      |   11 ++++++++++-
- meta-jasperforest/README |   11 ++++++++++-
- meta-sugarbay/README     |    9 ++++++++-
- 6 files changed, 49 insertions(+), 7 deletions(-)
+> +
+> +
+> +Compliance:
+> +============
+> +This BSP is compliant with Yocto Project as per requirements listed here:
+> +http://www.yoctoproject.org/yocto-project-compatible-registration
+> +
+>  
+>  Dependencies
+>  ============
+> @@ -20,7 +28,7 @@ This layer depends on:
+>    branch: master
+>  
+>    URI: git://git.yoctoproject.org/meta-intel
+> -  layers: intel
+> +  layers: meta-intel, meta-chiefriver
+>    branch: master
+>  
+>  
+> 
 
 -- 
-1.7.3.4
-
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
