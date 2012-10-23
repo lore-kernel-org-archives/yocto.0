@@ -1,25 +1,36 @@
-Return-Path: <darren.hart@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 09F70E00348
-	for <yocto@yoctoproject.org>; Tue, 23 Oct 2012 13:50:58 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 23 Oct 2012 13:50:51 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,637,1344236400"; d="scan'208";a="159535985"
-Received: from unknown (HELO envy.home) ([10.255.14.9])
-	by AZSMGA002.ch.intel.com with ESMTP; 23 Oct 2012 13:50:26 -0700
-Message-ID: <508702D3.2030700@intel.com>
-Date: Tue, 23 Oct 2012 13:49:23 -0700
-From: Darren Hart <darren.hart@intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:16.0) Gecko/20121009 Thunderbird/16.0
+Return-Path: <twoerner@gmail.com>
+Received: from mail-lb0-f176.google.com (mail-lb0-f176.google.com
+	[209.85.217.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B81D7E00292
+	for <yocto@yoctoproject.org>; Tue, 23 Oct 2012 14:03:27 -0700 (PDT)
+Received: by mail-lb0-f176.google.com with SMTP id s4so737301lbc.35
+	for <yocto@yoctoproject.org>; Tue, 23 Oct 2012 14:03:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=ibBccHQoOvRSXzxRscizZQ1sGpq/sHoaXVevDXmEgKY=;
+	b=OMYVEM4aYUQ/XxcGvQ6UIBY6tEcjaVjX0zBum+yYggHjGhvrwWOFkWQgoPKmTviWOp
+	7gGRA73DqiumaRXf8aM5ub8BWrBsZ62PtoU09cXs0YejrBLndieFy6bZDGyrVUeoY/uS
+	KTScCwWh3HUh++cYdcI9Ua+S9p4MLddhzwwVktuzxD7Xzzx+cnwqqIhfEjQniNT5hWX3
+	v6azcpIDlZa6XJBbEDdH8LY3rAomke7UF0fGgipUUSmRB64Qpz3vNLos12/v8uRecS5A
+	wM4dgVo/VZntTRpscAFkMGikENrHfPCO3ffeyPq3somWbfubW4kiLvTRE5aDkHMH2O8g
+	z5YQ==
 MIME-Version: 1.0
-To: nitin.a.kamble@intel.com
-References: <cover.1351023743.git.nitin.a.kamble@intel.com>
-	<4f441c599bd74b28f63f170a49f550236fe27c3c.1351023743.git.nitin.a.kamble@intel.com>
-In-Reply-To: <4f441c599bd74b28f63f170a49f550236fe27c3c.1351023743.git.nitin.a.kamble@intel.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 6/6] sugarbay README: add WebTitle & Compliance information
+Received: by 10.152.106.212 with SMTP id gw20mr12475185lab.8.1351026206701;
+	Tue, 23 Oct 2012 14:03:26 -0700 (PDT)
+Received: by 10.112.20.196 with HTTP; Tue, 23 Oct 2012 14:03:26 -0700 (PDT)
+In-Reply-To: <CAJTo0LYi3s9Dp33ORf4VvQFrFY4v0ib9vzRqFOWaKy5sMjex7Q@mail.gmail.com>
+References: <7E7FACCF-2EB1-480F-998D-F52E40A59976@gmail.com>
+	<0C4325BA-1CE2-451F-A7CE-2C08721911CC@gmail.com>
+	<4A7E1048-DBF7-4266-8CBC-40729B10C6CA@gmail.com>
+	<37A1D383-EE8E-4490-80F6-CA3ECE928B67@gmail.com>
+	<CAJTo0LYi3s9Dp33ORf4VvQFrFY4v0ib9vzRqFOWaKy5sMjex7Q@mail.gmail.com>
+Date: Tue, 23 Oct 2012 17:03:26 -0400
+Message-ID: <CAHUNapT+Tf-1uTXJo9CXB=2CT7D4A2GYd9O+MmvGLit46wogWw@mail.gmail.com>
+From: Trevor Woerner <twoerner@gmail.com>
+To: "Burton, Ross" <ross.burton@intel.com>
+Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+Subject: Re: ERROR: Function failed: do_rootfs, poky commit id 8ce23f569584f195391bc5c68a780e1bf54e4360
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,61 +42,14 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 23 Oct 2012 20:50:59 -0000
+X-List-Received-Date: Tue, 23 Oct 2012 21:03:29 -0000
 Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
 
-On 10/23/2012 01:24 PM, nitin.a.kamble@intel.com wrote:
-> From: Nitin A Kamble <nitin.a.kamble@intel.com>
-> 
-> The WebTitle will be used to publish the BSP on the Yocto Project Website.
-> And adding the Yocto Project Compliance information for the 1.3 release.
-> Also specifying all the layers used from meta-intel repository.
-> 
-> Signed-off-by: Nitin A Kamble <nitin.a.kamble@intel.com>
-> ---
->  meta-sugarbay/README |    9 ++++++++-
->  1 files changed, 8 insertions(+), 1 deletions(-)
-> 
-> diff --git a/meta-sugarbay/README b/meta-sugarbay/README
-> index c8a99d7..36da170 100644
-> --- a/meta-sugarbay/README
-> +++ b/meta-sugarbay/README
-> @@ -6,6 +6,13 @@ The 'Sugar Bay' platform consists of the Intel Sandy Bridge processor,
->  plus the Cougar Point PCH (Q67 Express or B65 Express chipsets).  This
->  BSP assumes that the Sandy Bridge integrated graphics are being used.
->  
-> +WebTitle: Intel 2nd Generations Core Platforms: Core i3, i5, i7 (Sandy Bridge)
+Just out of curiosity...
 
-Some places you used merged lowercase terms "crownbay" and other places
-the capitalized expanded terms "Sandy Bridge". I don't know which is more
-correct, but we should be consistent in our usage.
+On Tue, Oct 23, 2012 at 3:53 PM, Burton, Ross <ross.burton@intel.com> wrote:
+> An alternative (and less intrusive) is to increase the commit timeout
+> on the build partition
 
---
-Darren
-
-> +
-> +Compliance:
-> +============
-> +This BSP is compliant with Yocto Project as per requirements listed here:
-> +http://www.yoctoproject.org/yocto-project-compatible-registration
-> +
->  
->  Dependencies
->  ============
-> @@ -20,7 +27,7 @@ This layer depends on:
->    branch: master
->  
->    URI: git://git.yoctoproject.org/meta-intel
-> -  layers: intel
-> +  layers: meta-intel, meta-sugarbay
->    branch: master
->  
->  
-> 
-
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
+How does one go about adjusting the commit timeout on a partition/disk?
 
