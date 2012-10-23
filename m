@@ -1,36 +1,36 @@
-Return-Path: <elvis.dowson@gmail.com>
-Received: from mail-da0-f48.google.com (mail-da0-f48.google.com
-	[209.85.210.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C68DEE0027E
-	for <yocto@yoctoproject.org>; Tue, 23 Oct 2012 09:32:09 -0700 (PDT)
-Received: by mail-da0-f48.google.com with SMTP id z8so2146976dad.35
-	for <yocto@yoctoproject.org>; Tue, 23 Oct 2012 09:32:09 -0700 (PDT)
+Return-Path: <martin.jansa@gmail.com>
+Received: from mail-wg0-f42.google.com (mail-wg0-f42.google.com [74.125.82.42])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5289CE0027E
+	for <yocto@yoctoproject.org>; Tue, 23 Oct 2012 09:40:34 -0700 (PDT)
+Received: by mail-wg0-f42.google.com with SMTP id fm10so2201322wgb.5
+	for <yocto@yoctoproject.org>; Tue, 23 Oct 2012 09:40:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:content-type:message-id:mime-version:subject:date:references
-	:to:in-reply-to:x-mailer;
-	bh=m9w0BOrCgyd3i/CYclnKKBXrN/CQv4wa4//18kPCZLo=;
-	b=kzod3ElcrqgUGz4jFosIdtJ7PJ8IFUGROiAV577yAZQXIpUZKgwwhMz+G2SCBfEsq8
-	Ik89mRdrgQI0rJfEm9FNw4kOlmdJ4EHuW7VzCz9X71LEjkq+QUkC3IePAsu+GZcCB8zI
-	BhsiB1SD0xSsdVKdFYLP/zSPBUNZUDm0+KR0XXyTymuXNO4Aq45gZQadgpEVpruq1Hpl
-	WdALJZpkDyL47VzyCcGb3YqsQ4p0sS5Klse++6oPWO/Aq80eX6YWtUbV1fh0XePKQn/i
-	PM7CHKxc8WxBpu/V0IBPE6h4H09/k4amVaBzz3wPEc3XjEKwbxR1bUe2BtdcPdOZQ5U5
-	96iA==
-Received: by 10.68.241.137 with SMTP id wi9mr41230672pbc.158.1351009929130;
-	Tue, 23 Oct 2012 09:32:09 -0700 (PDT)
-Received: from [192.168.1.100] ([94.205.106.220])
-	by mx.google.com with ESMTPS id hc4sm7932135pbc.30.2012.10.23.09.32.06
+	h=date:from:to:cc:subject:message-id:references:mime-version
+	:content-type:content-disposition:in-reply-to:user-agent;
+	bh=ZtFOREPC7DLDw6PuXUlxsCHFtEZeYmwshlO+yq/o8GE=;
+	b=xCtjT5bgaCvv1tDaSD/6TLIZtI5514oxwTtZkc+F2Xek+dwW5/kckzSFvA4vz2/H73
+	WAI1ziMdXe2ZdkVdLdTaZ5iHHSRxGyjxlxsEfgzg+pCt/7e6TxDnebduUVsqTTHmgrX0
+	JQcHuRMeBC4uBebrQM5JNQJPZgkK8NJ6DVO4b9k/H8nJCibMTGcjJiC3Ero4AgyYYHBz
+	5moqtdyzPK8cFq0lCuuJp4kBMkZNISeD8/XeJyFDd1aC3To4lUNw6eQKw/5IQW6Bqhkz
+	Wlxc6Y/4u2fgbsIkwwTLljULd0EDw/zv9AMsiYcE+wg0OJ4FtLDErfay1K8xo97f9PUi
+	zNfA==
+Received: by 10.216.207.93 with SMTP id m71mr7174591weo.201.1351010432891;
+	Tue, 23 Oct 2012 09:40:32 -0700 (PDT)
+Received: from localhost ([94.230.152.246])
+	by mx.google.com with ESMTPS id gm7sm28831394wib.10.2012.10.23.09.40.31
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Tue, 23 Oct 2012 09:32:08 -0700 (PDT)
-From: Elvis Dowson <elvis.dowson@gmail.com>
-Message-Id: <4A7E1048-DBF7-4266-8CBC-40729B10C6CA@gmail.com>
-Mime-Version: 1.0 (Mac OS X Mail 6.2 \(1499\))
-Date: Tue, 23 Oct 2012 20:32:02 +0400
+	Tue, 23 Oct 2012 09:40:31 -0700 (PDT)
+Date: Tue, 23 Oct 2012 18:40:48 +0200
+From: Martin Jansa <martin.jansa@gmail.com>
+To: Elvis Dowson <elvis.dowson@gmail.com>
+Message-ID: <20121023164048.GQ3269@jama.jama.net>
 References: <7E7FACCF-2EB1-480F-998D-F52E40A59976@gmail.com>
 	<0C4325BA-1CE2-451F-A7CE-2C08721911CC@gmail.com>
-To: Yocto Discussion Mailing List <yocto@yoctoproject.org>,
-	Philip Balister <philip@balister.org>
-In-Reply-To: <0C4325BA-1CE2-451F-A7CE-2C08721911CC@gmail.com>
-X-Mailer: Apple Mail (2.1499)
+	<4A7E1048-DBF7-4266-8CBC-40729B10C6CA@gmail.com>
+MIME-Version: 1.0
+In-Reply-To: <4A7E1048-DBF7-4266-8CBC-40729B10C6CA@gmail.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
 Subject: Re: ERROR: Function failed: do_rootfs, poky commit id 8ce23f569584f195391bc5c68a780e1bf54e4360
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -43,164 +43,94 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 23 Oct 2012 16:32:09 -0000
-Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_CEC55281-17A4-42CC-9A1A-8FB7C9BE8E85"
+X-List-Received-Date: Tue, 23 Oct 2012 16:40:34 -0000
+X-Groupsio-MsgNum: 10222
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="vIXBmblrD40XNCy4"
+Content-Disposition: inline
 
---Apple-Mail=_CEC55281-17A4-42CC-9A1A-8FB7C9BE8E85
+--vIXBmblrD40XNCy4
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=us-ascii
 
-Hi,
-       I haven't had any solutions for this build error that I'm facing. =
-If someone could offer some insight as to what might be going wrong, it =
-would be much appreciated.
-
-> On Oct 23, 2012, at 12:22 AM, Elvis Dowson <elvis.dowson@gmail.com> =
-wrote:
+On Tue, Oct 23, 2012 at 08:32:02PM +0400, Elvis Dowson wrote:
+> Hi,
+>        I haven't had any solutions for this build error that I'm facing. =
+If someone could offer some insight as to what might be going wrong, it wou=
+ld be much appreciated.
 >=20
->> | Configuring sysvinit.
->> | Collected errors:
->> |  * preinst_configure: Aborting installation of base-passwd.
->> |  * opkg_install_cmd: Cannot install package packagegroup-core-boot.
->> | ERROR: Function failed: do_rootfs (see =
-/tool/yocto/poky/build/tmp/work/zynq_zc702-poky-linux-gnueabi/core-image-m=
-inimal-1.0-r0/temp/log.do_rootfs.30138 for further information)
->> ERROR: Task 7 =
-(/tool/yocto/poky/meta/recipes-core/images/core-image-minimal.bb, =
-do_rootfs) failed with exit code '1'
->> NOTE: Tasks Summary: Attempted 1395 tasks of which 227 didn't need to =
+> > On Oct 23, 2012, at 12:22 AM, Elvis Dowson <elvis.dowson@gmail.com> wro=
+te:
+> >=20
+> >> | Configuring sysvinit.
+> >> | Collected errors:
+> >> |  * preinst_configure: Aborting installation of base-passwd.
+> >> |  * opkg_install_cmd: Cannot install package packagegroup-core-boot.
+> >> | ERROR: Function failed: do_rootfs (see /tool/yocto/poky/build/tmp/wo=
+rk/zynq_zc702-poky-linux-gnueabi/core-image-minimal-1.0-r0/temp/log.do_root=
+fs.30138 for further information)
+> >> ERROR: Task 7 (/tool/yocto/poky/meta/recipes-core/images/core-image-mi=
+nimal.bb, do_rootfs) failed with exit code '1'
+> >> NOTE: Tasks Summary: Attempted 1395 tasks of which 227 didn't need to =
 be rerun and 1 failed.
->> No currently running tasks (1395 of 1396)
+> >> No currently running tasks (1395 of 1396)
+> >=20
+> > The build appears to be failing because it cannot install packagegroup-=
+core-boot. Has something changed recently in poky/master, that might be cau=
+sing this?
 >=20
-> The build appears to be failing because it cannot install =
-packagegroup-core-boot. Has something changed recently in poky/master, =
-that might be causing this?
+> I additionally notice that the path being generated is zynq_702 instead o=
+f zynq-702.=20
 
-I additionally notice that the path being generated is zynq_702 instead =
-of zynq-702.=20
+MACHINE_ARCH replaces - with _ in machine name. see
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D946
 
-No-where in Philip Ballister's machine configs for the zc702 board, is =
-is mentioned zynq_zc702 with an underscore, yet it adds it.=20
+Cheers,
 
-It's kind of weird.
+>=20
+> No-where in Philip Ballister's machine configs for the zc702 board, is is=
+ mentioned zynq_zc702 with an underscore, yet it adds it.=20
+>=20
+> It's kind of weird.
+>=20
+> ERROR: Function failed: do_rootfs (see /tool/yocto/poky/build/tmp/work/zy=
+nq_zc702-poky-linux-gnueabi/core-image-minimal-1.0-r0/temp/log.do_rootfs.30=
+138 for further information)
+>=20
+> It's kind of weird.
+>=20
+> I also see the same zynq_zc702 entry with an underscore in the logs as fo=
+llows:
+>=20
+> | + ipkgarchs=3D'all any noarch arm armv4 armv5 armv5-vfp armv5e armv5e-v=
+fp armv6-vfp armv7a armv7a-vfp armv7a-vfp-neon zynq_zc702'
+>=20
+> What could be causing this?
+>=20
+> Best regards,
+>=20
+> Elvis Dowson
 
-ERROR: Function failed: do_rootfs (see =
-/tool/yocto/poky/build/tmp/work/zynq_zc702-poky-linux-gnueabi/core-image-m=
-inimal-1.0-r0/temp/log.do_rootfs.30138 for further information)
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-It's kind of weird.
 
-I also see the same zynq_zc702 entry with an underscore in the logs as =
-follows:
+--=20
+Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
 
-| + ipkgarchs=3D'all any noarch arm armv4 armv5 armv5-vfp armv5e =
-armv5e-vfp armv6-vfp armv7a armv7a-vfp armv7a-vfp-neon zynq_zc702'
+--vIXBmblrD40XNCy4
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
 
-What could be causing this?
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2.0.19 (GNU/Linux)
 
-Best regards,
+iEYEARECAAYFAlCGyJAACgkQN1Ujt2V2gBzBbQCgnoxwA61ry74ksHoaVdrzIF6w
+4YgAoKN9K8h9KJzs/Kf+oRIwZba+fc3t
+=4R8Y
+-----END PGP SIGNATURE-----
 
-Elvis Dowson=
-
---Apple-Mail=_CEC55281-17A4-42CC-9A1A-8FB7C9BE8E85
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html;
-	charset=us-ascii
-
-<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
-charset=3Dus-ascii"></head><body style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; -webkit-line-break: after-white-space; =
-">Hi,<div><div>&nbsp; &nbsp; &nbsp; &nbsp;I haven't had any solutions =
-for this build error that I'm facing. If someone could offer some =
-insight as to what might be going wrong, it would be much =
-appreciated.</div><div><br><blockquote type=3D"cite"><meta =
-http-equiv=3D"Content-Type" content=3D"text/html charset=3Dus-ascii"><div =
-style=3D"word-wrap: break-word; -webkit-nbsp-mode: space; =
--webkit-line-break: after-white-space; "><div><div><div>On Oct 23, 2012, =
-at 12:22 AM, Elvis Dowson &lt;<a =
-href=3D"mailto:elvis.dowson@gmail.com">elvis.dowson@gmail.com</a>&gt; =
-wrote:</div><br class=3D"Apple-interchange-newline"><blockquote =
-type=3D"cite"><div style=3D"font-family: Helvetica; font-size: medium; =
-font-style: normal; font-variant: normal; font-weight: normal; =
-letter-spacing: normal; line-height: normal; orphans: 2; text-align: =
--webkit-auto; text-indent: 0px; text-transform: none; white-space: =
-normal; widows: 2; word-spacing: 0px; -webkit-text-size-adjust: auto; =
--webkit-text-stroke-width: 0px; "><font face=3D"Monaco" size=3D"2">| =
-Configuring sysvinit.</font></div><div style=3D"font-family: Helvetica; =
-font-size: medium; font-style: normal; font-variant: normal; =
-font-weight: normal; letter-spacing: normal; line-height: normal; =
-orphans: 2; text-align: -webkit-auto; text-indent: 0px; text-transform: =
-none; white-space: normal; widows: 2; word-spacing: 0px; =
--webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; "><font =
-face=3D"Monaco" size=3D"2">| Collected errors:</font></div><div =
-style=3D"font-family: Helvetica; font-size: medium; font-style: normal; =
-font-variant: normal; font-weight: normal; letter-spacing: normal; =
-line-height: normal; orphans: 2; text-align: -webkit-auto; text-indent: =
-0px; text-transform: none; white-space: normal; widows: 2; word-spacing: =
-0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; =
-"><font face=3D"Monaco" size=3D"2">| &nbsp;* preinst_configure: Aborting =
-installation of base-passwd.</font></div><div style=3D"font-family: =
-Helvetica; font-size: medium; font-style: normal; font-variant: normal; =
-font-weight: normal; letter-spacing: normal; line-height: normal; =
-orphans: 2; text-align: -webkit-auto; text-indent: 0px; text-transform: =
-none; white-space: normal; widows: 2; word-spacing: 0px; =
--webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; "><font =
-face=3D"Monaco" size=3D"2">| &nbsp;* opkg_install_cmd: Cannot install =
-package packagegroup-core-boot.</font></div><div style=3D"font-family: =
-Helvetica; font-size: medium; font-style: normal; font-variant: normal; =
-font-weight: normal; letter-spacing: normal; line-height: normal; =
-orphans: 2; text-align: -webkit-auto; text-indent: 0px; text-transform: =
-none; white-space: normal; widows: 2; word-spacing: 0px; =
--webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; "><font =
-face=3D"Monaco" size=3D"2">| ERROR: Function failed: do_rootfs (see =
-/tool/yocto/poky/build/tmp/work/zynq_zc702-poky-linux-gnueabi/core-image-m=
-inimal-1.0-r0/temp/log.do_rootfs.30138 for further =
-information)</font></div><div style=3D"font-family: Helvetica; =
-font-size: medium; font-style: normal; font-variant: normal; =
-font-weight: normal; letter-spacing: normal; line-height: normal; =
-orphans: 2; text-align: -webkit-auto; text-indent: 0px; text-transform: =
-none; white-space: normal; widows: 2; word-spacing: 0px; =
--webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; "><font =
-face=3D"Monaco" size=3D"2">ERROR: Task 7 =
-(/tool/yocto/poky/meta/recipes-core/images/core-image-minimal.bb, =
-do_rootfs) failed with exit code '1'</font></div><div =
-style=3D"font-family: Helvetica; font-size: medium; font-style: normal; =
-font-variant: normal; font-weight: normal; letter-spacing: normal; =
-line-height: normal; orphans: 2; text-align: -webkit-auto; text-indent: =
-0px; text-transform: none; white-space: normal; widows: 2; word-spacing: =
-0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; =
-"><font face=3D"Monaco" size=3D"2">NOTE: Tasks Summary: Attempted 1395 =
-tasks of which 227 didn't need to be rerun and 1 =
-failed.</font></div><div style=3D"font-family: Helvetica; font-size: =
-medium; font-style: normal; font-variant: normal; font-weight: normal; =
-letter-spacing: normal; line-height: normal; orphans: 2; text-align: =
--webkit-auto; text-indent: 0px; text-transform: none; white-space: =
-normal; widows: 2; word-spacing: 0px; -webkit-text-size-adjust: auto; =
--webkit-text-stroke-width: 0px; "><font face=3D"Monaco" size=3D"2">No =
-currently running tasks (1395 of =
-1396)</font></div></blockquote></div><br></div><div>The build appears to =
-be failing because it cannot install packagegroup-core-boot. Has =
-something changed recently in poky/master, that might be causing =
-this?</div></div></blockquote><br></div><div>I additionally notice that =
-the path being generated is zynq_702 instead of =
-zynq-702.&nbsp;</div><div><br></div><div>No-where in Philip Ballister's =
-machine configs for the zc702 board, is is mentioned zynq_zc702 with an =
-underscore, yet it adds it.&nbsp;</div><div><br></div><div>It's kind of =
-weird.</div></div><div><br></div><div><span style=3D"font-family: =
-Monaco; font-size: small; ">ERROR: Function failed: do_rootfs (see =
-/tool/yocto/poky/build/tmp/work/zynq_zc702-poky-linux-gnueabi/core-image-m=
-inimal-1.0-r0/temp/log.do_rootfs.30138 for further =
-information)</span></div><div><span style=3D"font-family: Monaco; =
-font-size: small; "><br></span></div><div>It's kind of =
-weird.</div><div><br></div><div>I also see the same zynq_zc702 entry =
-with an underscore in the logs as =
-follows:</div><div><br></div><div><span style=3D"font-family: Monaco; =
-font-size: small; ">| + ipkgarchs=3D'all any noarch arm armv4 armv5 =
-armv5-vfp armv5e armv5e-vfp armv6-vfp armv7a armv7a-vfp armv7a-vfp-neon =
-zynq_zc702'</span></div><div><br></div><div>What could be causing =
-this?</div><div><br></div><div>Best =
-regards,</div><div><br></div><div>Elvis Dowson</div></body></html>=
-
---Apple-Mail=_CEC55281-17A4-42CC-9A1A-8FB7C9BE8E85--
+--vIXBmblrD40XNCy4--
