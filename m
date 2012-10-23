@@ -1,25 +1,25 @@
 Return-Path: <darren.hart@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 60FCAE00292
-	for <yocto@yoctoproject.org>; Tue, 23 Oct 2012 13:47:21 -0700 (PDT)
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E3975E00348
+	for <yocto@yoctoproject.org>; Tue, 23 Oct 2012 13:48:49 -0700 (PDT)
 Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 23 Oct 2012 13:47:20 -0700
+	by azsmga101.ch.intel.com with ESMTP; 23 Oct 2012 13:48:49 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,637,1344236400"; d="scan'208";a="159534883"
+X-IronPort-AV: E=Sophos;i="4.80,637,1344236400"; d="scan'208";a="159535500"
 Received: from unknown (HELO envy.home) ([10.255.14.9])
-	by AZSMGA002.ch.intel.com with ESMTP; 23 Oct 2012 13:47:20 -0700
-Message-ID: <50870219.7050907@intel.com>
-Date: Tue, 23 Oct 2012 13:46:17 -0700
+	by AZSMGA002.ch.intel.com with ESMTP; 23 Oct 2012 13:48:47 -0700
+Message-ID: <50870271.5060104@intel.com>
+Date: Tue, 23 Oct 2012 13:47:45 -0700
 From: Darren Hart <darren.hart@intel.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:16.0) Gecko/20121009 Thunderbird/16.0
 MIME-Version: 1.0
 To: nitin.a.kamble@intel.com
 References: <cover.1351023743.git.nitin.a.kamble@intel.com>
-	<35ee85e0775c3e40fc091eda9ec48526640ec975.1351023743.git.nitin.a.kamble@intel.com>
-In-Reply-To: <35ee85e0775c3e40fc091eda9ec48526640ec975.1351023743.git.nitin.a.kamble@intel.com>
+	<eafcdbdb3843e08adc7385d0f1cec2b316d1b691.1351023743.git.nitin.a.kamble@intel.com>
+In-Reply-To: <eafcdbdb3843e08adc7385d0f1cec2b316d1b691.1351023743.git.nitin.a.kamble@intel.com>
 Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 2/6] chiefriver README: add WebTitle & Compliance information
+Subject: Re: [PATCH 3/6] crownbay README: add WebTitle & Compliance information
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,7 +31,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 23 Oct 2012 20:47:21 -0000
+X-List-Received-Date: Tue, 23 Oct 2012 20:48:50 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
@@ -44,23 +44,33 @@ On 10/23/2012 01:24 PM, nitin.a.kamble@intel.com wrote:
 > 
 > Signed-off-by: Nitin A Kamble <nitin.a.kamble@intel.com>
 > ---
->  meta-chiefriver/README |   10 +++++++++-
->  1 files changed, 9 insertions(+), 1 deletions(-)
+>  meta-crownbay/README |   13 +++++++++++--
+>  1 files changed, 11 insertions(+), 2 deletions(-)
 > 
-> diff --git a/meta-chiefriver/README b/meta-chiefriver/README
-> index 7c47b02..7af1288 100644
-> --- a/meta-chiefriver/README
-> +++ b/meta-chiefriver/README
-> @@ -6,6 +6,14 @@ The 'Chief River' platform consists of the Intel Ivy Bridge processor,
->  plus the Panther Point PCH.  This BSP assumes that the Ivy Bridge
->  integrated graphics are being used.
+> diff --git a/meta-crownbay/README b/meta-crownbay/README
+> index 4bc9f31..3996a94 100644
+> --- a/meta-crownbay/README
+> +++ b/meta-crownbay/README
+> @@ -2,13 +2,22 @@ This README file contains information on building the meta-crownbay
+>  BSP layer, and booting the images contained in the /binary directory.
+>  Please see the corresponding sections below for details.
 >  
-> +WebTitle: Intel 3nd Generations Core Platforms: Core i3, i5, i7 (Ivy Bridge)
+> -The Crown Bay platform consists of the Intel Atom Z6xx processor,
+> +The Crown Bay platform consists of the Intel Atom E6xx processor,
+>  plus the Intel EG20T Platform Controller Hub (Tunnel Creek + Topcliff).
 
-s/3nd/3rd/
+How can we distinguish this from Queens Bay, which I would describe in
+exactly the same terms?
 
-Otherwise looks fine.
+--
+Darren
 
+>  
+>  It also supports the E6xx embedded on-chip graphics via the Intel
+>  Embedded Media and Graphics Driver (EMGD) 1.14 Driver.
+>  
+>  
+> +WebTitle: Intel Atom E6xx processor with Intel EG20T Controller Hub development kit (crownbay)
 > +
 > +
 > +Compliance:
@@ -68,15 +78,16 @@ Otherwise looks fine.
 > +This BSP is compliant with Yocto Project as per requirements listed here:
 > +http://www.yoctoproject.org/yocto-project-compatible-registration
 > +
->  
+> +
 >  Dependencies
 >  ============
-> @@ -20,7 +28,7 @@ This layer depends on:
+>  
+> @@ -22,7 +31,7 @@ This layer depends on:
 >    branch: master
 >  
 >    URI: git://git.yoctoproject.org/meta-intel
 > -  layers: intel
-> +  layers: meta-intel, meta-chiefriver
+> +  layers: meta-intel, meta-crownbay
 >    branch: master
 >  
 >  
