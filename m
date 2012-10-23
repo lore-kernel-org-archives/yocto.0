@@ -1,41 +1,24 @@
-Return-Path: <ross.burton@intel.com>
-Received: from azsmga101.ch.intel.com (mga07.intel.com [143.182.124.22])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CF5A4E00348
-	for <yocto@yoctoproject.org>; Tue, 23 Oct 2012 14:12:48 -0700 (PDT)
-Received: from mail-ea0-f200.google.com ([209.85.215.200])
-	by mga03.intel.com with ESMTP/TLS/RC4-SHA; 23 Oct 2012 14:12:47 -0700
-Received: by mail-ea0-f200.google.com with SMTP id i11so2960814eaa.11
-	for <yocto@yoctoproject.org>; Tue, 23 Oct 2012 14:12:46 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=date:from:to:cc:message-id:in-reply-to:references:subject:x-mailer
-	:mime-version:content-type:content-transfer-encoding
-	:content-disposition:x-gm-message-state;
-	bh=edha0x80/folpCygMfDlsuxV9rCsQiYOtC8SjQyr3bY=;
-	b=LFFnhoom+Cj60xGnIXLouqj3NthA0EMZY9hwqZfMEf4iqqriI28mnrSea93lkpydMw
-	pL1KkBe6ws9OESieXY4iK57/BXCKSItZYVA8yWWxeoV27JHza3ukkQZ3oMJJ2svcNjqs
-	mPLAr3w2Y/wJuS5+VMaQKhpPKRbzK/xxtQVqTf35B5N/XVTDj5oCbeq1bVaN3FdVdzPl
-	9i+1XsueMitd2pm1PNPIJRtiMQUe3HYU29SS5uYAG9T8JhJz7MXcGQ/f0ORtBCIGVi1q
-	+xFTNYgwUd4pogXXdjg4Gt6zBahHtukG0O+fvW22klTdRn4lfx9qC3AVaohc0+RQDJMj
-	0KRA==
-Received: by 10.216.134.145 with SMTP id s17mr8636628wei.127.1351026765977;
-	Tue, 23 Oct 2012 14:12:45 -0700 (PDT)
-Received: by 10.216.134.145 with SMTP id s17mr8636622wei.127.1351026765812;
-	Tue, 23 Oct 2012 14:12:45 -0700 (PDT)
-Received: from [192.168.1.7] (35.106.2.81.in-addr.arpa. [81.2.106.35])
-	by mx.google.com with ESMTPS id dm3sm812600wib.3.2012.10.23.14.12.44
-	(version=SSLv3 cipher=OTHER); Tue, 23 Oct 2012 14:12:45 -0700 (PDT)
-Date: Tue, 23 Oct 2012 22:12:48 +0100
-From: Ross Burton <ross.burton@intel.com>
-To: Jim Abernathy <jfabernathy@gmail.com>
-Message-ID: <7C25CAD3D2FF4EAABCD90B26EC168705@intel.com>
-In-Reply-To: <5086D81E.4030401@gmail.com>
-References: <5086D81E.4030401@gmail.com>
-X-Mailer: sparrow 1.6.4 (build 1178)
-MIME-Version: 1.0
-X-Gm-Message-State: ALoCoQnyXGT2ViTtDjPIu+/urmtnhHTiVRalPwiZFCL4STe9fK0C67B5N12rXqczNYvFU+/ciwLQU5HlGsZsDMK8YRV83/RJuhWGe23pOzQIU4r7Fj2VDqsgBHLSdPJzvhjzLWho7IxiutrUlF8c78141rBNp6QddQ==
-Cc: yocto@yoctoproject.org
-Subject: Re: build failures after pull
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5D2D6E00292
+	for <yocto@yoctoproject.org>; Tue, 23 Oct 2012 14:16:18 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 23 Oct 2012 14:15:51 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,637,1344236400"; d="scan'208";a="231318754"
+Received: from unknown (HELO [10.255.14.179]) ([10.255.14.179])
+	by orsmga002.jf.intel.com with ESMTP; 23 Oct 2012 14:16:17 -0700
+Message-ID: <1351026976.12186.70.camel@empanada>
+From: Tom Zanussi <tom.zanussi@intel.com>
+To: nitin.a.kamble@intel.com
+Date: Tue, 23 Oct 2012 16:16:16 -0500
+In-Reply-To: <eafcdbdb3843e08adc7385d0f1cec2b316d1b691.1351023743.git.nitin.a.kamble@intel.com>
+References: <cover.1351023743.git.nitin.a.kamble@intel.com>
+	<eafcdbdb3843e08adc7385d0f1cec2b316d1b691.1351023743.git.nitin.a.kamble@intel.com>
+X-Mailer: Evolution 3.4.1 (3.4.1-2.fc17) 
+Mime-Version: 1.0
+Cc: yocto@yoctoproject.org, darren.hart@intel.com
+Subject: Re: [PATCH 3/6] crownbay README: add WebTitle & Compliance information
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,29 +30,84 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 23 Oct 2012 21:12:49 -0000
-Content-Type: text/plain; charset="utf-8"
+X-List-Received-Date: Tue, 23 Oct 2012 21:16:18 -0000
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
-On Tuesday, 23 October 2012 at 18:47, Jim Abernathy wrote:
-> I've reported this before, but it still happens. Today, I did a git 
-> pull into my local while master was checked out, both on poky and 
-> meta-intel. I then tried to rerun without cleaning or deleting anything 
-> for chiefriver. My last build had been successfully built, but didn't 
-> have audio. So when I saw patches, I thought I'd test again. I simply did
+On Tue, 2012-10-23 at 13:24 -0700, nitin.a.kamble@intel.com wrote:
+> From: Nitin A Kamble <nitin.a.kamble@intel.com>
 > 
-> "source oe-init-build-env"
-> "bitbake core-image-sato"
+> The WebTitle will be used to publish the BSP on the Yocto Project Website.
+> And adding the Yocto Project Compliance information for the 1.3 release.
+> Also specifying all the layers used from meta-intel repository.
 > 
-> I got a failure in diffutils for some reason. I then did
+> Signed-off-by: Nitin A Kamble <nitin.a.kamble@intel.com>
+> ---
+>  meta-crownbay/README |   13 +++++++++++--
+>  1 files changed, 11 insertions(+), 2 deletions(-)
 > 
-> "bitbake -c cleansstate diffutils"
-> "bitbake core-image-sato".
+> diff --git a/meta-crownbay/README b/meta-crownbay/README
+> index 4bc9f31..3996a94 100644
+> --- a/meta-crownbay/README
+> +++ b/meta-crownbay/README
+> @@ -2,13 +2,22 @@ This README file contains information on building the meta-crownbay
+>  BSP layer, and booting the images contained in the /binary directory.
+>  Please see the corresponding sections below for details.
+>  
+> -The Crown Bay platform consists of the Intel Atom Z6xx processor,
+> +The Crown Bay platform consists of the Intel Atom E6xx processor,
+>  plus the Intel EG20T Platform Controller Hub (Tunnel Creek + Topcliff).
+>  
+>  It also supports the E6xx embedded on-chip graphics via the Intel
+>  Embedded Media and Graphics Driver (EMGD) 1.14 Driver.
+>  
+> 
+> +WebTitle: Intel Atom E6xx processor with Intel EG20T Controller Hub development kit (crownbay)
+> +
 
-Next time, including the log of the task that failed (do_compile in diffutils, I presume) might help identify what broke.
+I'm not sure this kind of thing should be in the README since we can
+have multiple downloadable BSPs per layer e.g. crownbay vs
+crownbay-noemgd.  I suppose in keeping with the build system you could
+have separate WebTitle_crownbay and WebTitle_crownbay-noemgd lines. ;-) 
+(and it would be nice if you could get rid of the CamelCaps too)
 
-Ross 
+Why not put this info in the machine.conf, where we already have fields
+meant to be machine parseable e.g.
+
+#@TYPE: Machine
+#@NAME: crownbay
+
+#@WEBTITLE: ...
+
+Or maybe just use the exisiting #@DESCRIPTION for that...
+
+> +
+> +Compliance:
+> +============
+
+For consistency with the rest of the README, please remove the colon and
+clean up the underlining.
+
+Thanks,
+
+Tom
+
+> +This BSP is compliant with Yocto Project as per requirements listed here:
+> +http://www.yoctoproject.org/yocto-project-compatible-registration
+> +
+> +
+>  Dependencies
+>  ============
+>  
+> @@ -22,7 +31,7 @@ This layer depends on:
+>    branch: master
+>  
+>    URI: git://git.yoctoproject.org/meta-intel
+> -  layers: intel
+> +  layers: meta-intel, meta-crownbay
+>    branch: master
+>  
+> 
 
 
 
