@@ -1,35 +1,40 @@
-Return-Path: <martin.jansa@gmail.com>
-Received: from mail-wg0-f54.google.com (mail-wg0-f54.google.com [74.125.82.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7225BE00292
-	for <yocto@yoctoproject.org>; Tue, 23 Oct 2012 12:46:37 -0700 (PDT)
-Received: by mail-wg0-f54.google.com with SMTP id dt10so2723778wgb.11
-	for <yocto@yoctoproject.org>; Tue, 23 Oct 2012 12:46:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:content-disposition:in-reply-to:user-agent;
-	bh=L7UiJNwJuHS20IpopICu7virb4xllG8SFYCeBM3fPu8=;
-	b=wYj6boD1LVIfMHAxhPGR+0TW99ZUWwzuOeefQvkXHH3Cupc9kj+Eqp6QO9S6dlWT5N
-	b6/gw1C3hcDVOvlSq0hBdrgxr/feksGbDZMy7cobJHxoBwONqWXC9Nlr72s/k4SCfhX2
-	/ML03LqY5/cFKuef627r5k6pzc7w5M6h3kF/JFlYMyvV8ErZ3/B6lMaEuihMmNHQ7ljg
-	FFJR6VG2zfhY+u1DK03tiIepRkAsnMDwwDGezcyKGfX/xNtxs3mtsyOTX46O5BOm0yJU
-	mbJz51/96G+OYs5KTOxljqhDZ4iePEC0ECB6xH6EANGflFdsRA+Gs3jyZ9wk2gEBis+v
-	2oZw==
-Received: by 10.180.94.102 with SMTP id db6mr317797wib.20.1351021596071;
-	Tue, 23 Oct 2012 12:46:36 -0700 (PDT)
-Received: from localhost ([94.230.152.246])
-	by mx.google.com with ESMTPS id ay10sm418719wib.2.2012.10.23.12.46.34
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Tue, 23 Oct 2012 12:46:34 -0700 (PDT)
-Date: Tue, 23 Oct 2012 21:46:51 +0200
-From: Martin Jansa <martin.jansa@gmail.com>
-To: Jonathan Haws <Jonathan.Haws@sdl.usu.edu>
-Message-ID: <20121023194651.GV3269@jama.jama.net>
-References: <DDDB9E6645DE24488B8485B41A051F471D969119@Mercury.usurf.usu.edu>
+Return-Path: <ross.burton@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1CCECE00294
+	for <yocto@yoctoproject.org>; Tue, 23 Oct 2012 12:53:50 -0700 (PDT)
+Received: from mail-ie0-f200.google.com ([209.85.223.200])
+	by mga09.intel.com with ESMTP/TLS/RC4-SHA; 23 Oct 2012 12:53:22 -0700
+Received: by mail-ie0-f200.google.com with SMTP id 10so11835618ied.11
+	for <yocto@yoctoproject.org>; Tue, 23 Oct 2012 12:53:45 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type:x-gm-message-state;
+	bh=E4AYk1vNFcDXmwZ6K+/cuLyxDa+qRxQ11YfpbrVAzJo=;
+	b=gTTZ/KIV8jVV8weuNmQK/kjjvIreZIpN1nEu1zqGpF89YiZWejTlCfNulFQGX2JJmC
+	b/WzgGh9ehnrvhqVz1Ok7WBQLd05KFXFNOHaUWUxUSX4m9B9z50mt8QyNHyOzm3cqtTJ
+	VF3aOgPB06akQwf8Scxl75eKpZZhUyrQdSpbVAuG3M5M6sm9/LzlH9KrJ1p8lt1gHhVf
+	bu2UseYGuNcNbL8p5jLZ2vPYCEDzHgt973v79b+wKfe/6EuCNcFC/30majQGgIP03SIn
+	rCBJO64SfuraFedbXmV2YTZWiXQy+xOCHC/vBhUmSkCuMr+U9dXeMB2RkVfPiq8nhSxa
+	kEeA==
+Received: by 10.182.228.69 with SMTP id sg5mr5788646obc.2.1351022025355;
+	Tue, 23 Oct 2012 12:53:45 -0700 (PDT)
+Received: by 10.182.228.69 with SMTP id sg5mr5788642obc.2.1351022025298; Tue,
+	23 Oct 2012 12:53:45 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <DDDB9E6645DE24488B8485B41A051F471D969119@Mercury.usurf.usu.edu>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Unreadable menuconfig
+Received: by 10.182.46.70 with HTTP; Tue, 23 Oct 2012 12:53:24 -0700 (PDT)
+In-Reply-To: <37A1D383-EE8E-4490-80F6-CA3ECE928B67@gmail.com>
+References: <7E7FACCF-2EB1-480F-998D-F52E40A59976@gmail.com>
+	<0C4325BA-1CE2-451F-A7CE-2C08721911CC@gmail.com>
+	<4A7E1048-DBF7-4266-8CBC-40729B10C6CA@gmail.com>
+	<37A1D383-EE8E-4490-80F6-CA3ECE928B67@gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Tue, 23 Oct 2012 20:53:24 +0100
+Message-ID: <CAJTo0LYi3s9Dp33ORf4VvQFrFY4v0ib9vzRqFOWaKy5sMjex7Q@mail.gmail.com>
+To: Elvis Dowson <elvis.dowson@gmail.com>
+X-Gm-Message-State: ALoCoQnnm4t8/9pAlnKQ8BpGfSJUER6jecqQlh7bXT6m+HIgdf8Kag8WxcPFHOv8NQFykZSYWEoF33eATnlbJgBUdo/hI7cD9jW51yq4XF2GnFx3ukt3CKjEgUvCLP60eY4KAwbx2p41hhGJFYxeRviOuIGIBVwHmQ==
+Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+Subject: Re: ERROR: Function failed: do_rootfs, poky commit id 8ce23f569584f195391bc5c68a780e1bf54e4360
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,52 +46,20 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 23 Oct 2012 19:46:37 -0000
-X-Groupsio-MsgNum: 10231
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="qa1NXTiqN6KSzHv0"
-Content-Disposition: inline
+X-List-Received-Date: Tue, 23 Oct 2012 19:53:50 -0000
+Content-Type: text/plain; charset=UTF-8
 
---qa1NXTiqN6KSzHv0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 23 October 2012 19:35, Elvis Dowson <elvis.dowson@gmail.com> wrote:
+> the following entry works for the /etc/fstab for moving the /tmp file to RAM
+> none    /tmp    tmpfs    defaults,noatime,nodiratime    0    0
 
-On Tue, Oct 23, 2012 at 07:33:44PM +0000, Jonathan Haws wrote:
-> When I run 'bitbake linux-yocto -c menuconfig' I was not getting a menuco=
-nfig - I had to tell my local.conf to use screen because auto was selecting=
- a gnome terminal which would resize itself to something too small and menu=
-config would exit with an error.
->=20
-> Now I can get menuconfig and make changes, but it is extremely difficult =
-to read.  I have attached a screenshot of what I am talking about.
->=20
-> Can anyone point me in the right direction on how to fix this?  I would l=
-ike to use the correct commands so that I don't mess anything up.  Right no=
-w I have resorted to running menuconfig down in my build directory where th=
-e .config file is stored with the kernel source.
+tmpfs is in virtual memory, so potentially swap.  Have you benchmarked
+a build with the build on SSD verses in tmpfs to see what the
+improvement is?
 
-see this thread
-http://lists.linuxtogo.org/pipermail/openembedded-core/2012-June/024199.html
+An alternative (and less intrusive) is to increase the commit timeout
+on the build partition, which means more data is buffered in RAM
+before the disk is used.  I haven't benchmarked that either though. :)
 
-there are some solutions for this (you have to follow it in later months
-then 2012-June too).
+Ross
 
-Cheers,
-
---=20
-Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
-
---qa1NXTiqN6KSzHv0
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2.0.19 (GNU/Linux)
-
-iEYEARECAAYFAlCG9CsACgkQN1Ujt2V2gBzgAACfS2A7BlE1hNe88962NJUAiZ0m
-Y6AAoIK7FNLx51cb97EQdoO8tHOU/Vh2
-=SdZ7
------END PGP SIGNATURE-----
-
---qa1NXTiqN6KSzHv0--
