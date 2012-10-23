@@ -1,39 +1,38 @@
 Return-Path: <martin.jansa@gmail.com>
 Received: from mail-wi0-f182.google.com (mail-wi0-f182.google.com
 	[209.85.212.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B6370E00292
-	for <yocto@yoctoproject.org>; Tue, 23 Oct 2012 13:00:59 -0700 (PDT)
-Received: by mail-wi0-f182.google.com with SMTP id hm2so3354865wib.11
-	for <yocto@yoctoproject.org>; Tue, 23 Oct 2012 13:00:58 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 581DBE00294
+	for <yocto@yoctoproject.org>; Tue, 23 Oct 2012 13:03:50 -0700 (PDT)
+Received: by mail-wi0-f182.google.com with SMTP id hm2so3356702wib.11
+	for <yocto@yoctoproject.org>; Tue, 23 Oct 2012 13:03:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=date:from:to:cc:subject:message-id:references:mime-version
 	:content-type:content-disposition:in-reply-to:user-agent;
-	bh=4UVHZHqSEy6scUdM6YY+U90SfOxTybdPs2PxN7ItmpY=;
-	b=Kh9IYQV2DjC5EAUWYFGdrqCVEJzc1bOQ0iaWd/EzQMlxlmdarvRAzzTYKChB1t06Ln
-	XlSZhKGzFb/8TQy+EvkDh9WfxZQHkZBRUcAZJlXB7cD4X6yewcRD9q5kT9z9mGeYqjNT
-	q7GIO5z8wLhmX5T6bEpJIWgCO3eVGk/18r70b12jZfKdobGael6LLduyT09MCZuhDdVd
-	BY2xMf6EciNts+0tYmudPZezUCMxqS+8zpKtHZKan/5vArNnLlTMCSEXMdki9SbeWVa3
-	53OVwW/s3EFq/rHI3y0otS6dO69PIOGR5u6K/P/OVOV4uWauZlcLh4id7u++WiZS6/p8
-	mRvg==
-Received: by 10.216.195.133 with SMTP id p5mr8552519wen.1.1351022458745;
-	Tue, 23 Oct 2012 13:00:58 -0700 (PDT)
+	bh=55dssDCvlXQmFGEVXW580YyP+UUQyYs0MzJ1UP6q0kk=;
+	b=B6r/rlx1z7EQgI8rZeIB8V1WVZhFY7bi+nZy3PSMt6/zT82YaVYHuFBS1ekMI5oaq3
+	PBz1xRYKqJAp+PhBHTHSY1xGxO94CQeS42MFcHrzj3XcDoXbIZcUpoAXcD4W3CcUYfW5
+	WtssJgSs00E5kXOPNFLxrPKLVzL1ozMpERCsqpGs2VU79+ptdoYwIln9PFa1yBWE1jw1
+	nye5onauVF1/0MGk7cxO8Sx39j3RhzL0JsQHF+A5As20KyvQEfeDNfDa0Wjuc1F6a8So
+	UXQlIHGZcsT+hioIvQW5zJZ6kYMymJAJ9iQ9vvXYsxyLGF6KPT8iXJfc+qB7BTd3zZdw
+	FGHQ==
+Received: by 10.216.213.152 with SMTP id a24mr8599212wep.224.1351022629520;
+	Tue, 23 Oct 2012 13:03:49 -0700 (PDT)
 Received: from localhost ([94.230.152.246])
-	by mx.google.com with ESMTPS id fp6sm441813wib.0.2012.10.23.13.00.56
+	by mx.google.com with ESMTPS id dm3sm494137wib.3.2012.10.23.13.03.45
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Tue, 23 Oct 2012 13:00:57 -0700 (PDT)
-Date: Tue, 23 Oct 2012 22:01:14 +0200
+	Tue, 23 Oct 2012 13:03:46 -0700 (PDT)
+Date: Tue, 23 Oct 2012 22:04:02 +0200
 From: Martin Jansa <martin.jansa@gmail.com>
-To: Elvis Dowson <elvis.dowson@gmail.com>
-Message-ID: <20121023200114.GW3269@jama.jama.net>
-References: <7E7FACCF-2EB1-480F-998D-F52E40A59976@gmail.com>
-	<0C4325BA-1CE2-451F-A7CE-2C08721911CC@gmail.com>
-	<4A7E1048-DBF7-4266-8CBC-40729B10C6CA@gmail.com>
-	<37A1D383-EE8E-4490-80F6-CA3ECE928B67@gmail.com>
+To: Jonathan Haws <Jonathan.Haws@sdl.usu.edu>
+Message-ID: <20121023200402.GX3269@jama.jama.net>
+References: <DDDB9E6645DE24488B8485B41A051F471D969119@Mercury.usurf.usu.edu>
+	<20121023194651.GV3269@jama.jama.net>
+	<DDDB9E6645DE24488B8485B41A051F471D96916E@Mercury.usurf.usu.edu>
 MIME-Version: 1.0
-In-Reply-To: <37A1D383-EE8E-4490-80F6-CA3ECE928B67@gmail.com>
+In-Reply-To: <DDDB9E6645DE24488B8485B41A051F471D96916E@Mercury.usurf.usu.edu>
 User-Agent: Mutt/1.5.21 (2010-09-15)
-Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-Subject: Re: ERROR: Function failed: do_rootfs, poky commit id 8ce23f569584f195391bc5c68a780e1bf54e4360
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Unreadable menuconfig
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,115 +44,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 23 Oct 2012 20:01:00 -0000
-X-Groupsio-MsgNum: 10234
+X-List-Received-Date: Tue, 23 Oct 2012 20:03:50 -0000
+X-Groupsio-MsgNum: 10235
 Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="aXNiKu4lnbRqA5kZ"
+	protocol="application/pgp-signature"; boundary="1RhGCd1AsoFHGRHc"
 Content-Disposition: inline
 
---aXNiKu4lnbRqA5kZ
+--1RhGCd1AsoFHGRHc
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Oct 23, 2012 at 10:35:49PM +0400, Elvis Dowson wrote:
-> Hi,      =20
+On Tue, Oct 23, 2012 at 07:54:58PM +0000, Jonathan Haws wrote:
+> Thanks for the help.  I used the solution from the following thread to ta=
+ke care of it:
 >=20
-> On Oct 23, 2012, at 8:32 PM, Elvis Dowson <elvis.dowson@gmail.com> wrote:
+> http://lists.linuxtogo.org/pipermail/openembedded-core/2012-August/027130=
+=2Ehtml
 >=20
-> > I haven't had any solutions for this build error that I'm facing. If so=
-meone could offer some insight as to what might be going wrong, it would be=
- much appreciated.
-> >=20
-> >> On Oct 23, 2012, at 12:22 AM, Elvis Dowson <elvis.dowson@gmail.com> wr=
-ote:
-> >>=20
-> >>> | Configuring sysvinit.
-> >>> | Collected errors:
-> >>> |  * preinst_configure: Aborting installation of base-passwd.
-> >>> |  * opkg_install_cmd: Cannot install package packagegroup-core-boot.
-> >>> | ERROR: Function failed: do_rootfs (see /tool/yocto/poky/build/tmp/w=
-ork/zynq_zc702-poky-linux-gnueabi/core-image-minimal-1.0-r0/temp/log.do_roo=
-tfs.30138 for further information)
-> >>> ERROR: Task 7 (/tool/yocto/poky/meta/recipes-core/images/core-image-m=
-inimal.bb, do_rootfs) failed with exit code '1'
-> >>> NOTE: Tasks Summary: Attempted 1395 tasks of which 227 didn't need to=
- be rerun and 1 failed.
-> >>> No currently running tasks (1395 of 1396)
-> >>=20
-> >> The build appears to be failing because it cannot install packagegroup=
--core-boot. Has something changed recently in poky/master, that might be ca=
-using this?
-> >=20
-> > I additionally notice that the path being generated is zynq_702 instead=
- of zynq-702.=20
-> >=20
-> > No-where in Philip Ballister's machine configs for the zc702 board, is =
-is mentioned zynq_zc702 with an underscore, yet it adds it.=20
-> >=20
-> > It's kind of weird.
-> >=20
-> > ERROR: Function failed: do_rootfs (see /tool/yocto/poky/build/tmp/work/=
-zynq_zc702-poky-linux-gnueabi/core-image-minimal-1.0-r0/temp/log.do_rootfs.=
-30138 for further information)
-> >=20
-> > It's kind of weird.
-> >=20
-> > I also see the same zynq_zc702 entry with an underscore in the logs as =
-follows:
-> >=20
-> > | + ipkgarchs=3D'all any noarch arm armv4 armv5 armv5-vfp armv5e armv5e=
--vfp armv6-vfp armv7a armv7a-vfp armv7a-vfp-neon zynq_zc702'
-> >=20
-> > What could be causing this?
-> >=20
->=20
-> I found out why it was failing. I recently added two SSD drives in a RAID=
-0 stripped disk configuration. One of the performance tweaks was to move /t=
-mp to RAM, to improve the life of the SSDs. My /etc/fstab for setting up th=
-e /tmp folder inadvertently included the noexec,nodev,nosuid options, which=
- cause the rootfs process to fail.
+> Are there others having this issue?  If so, is it something that should b=
+e pushed upstream?
 
-You can keep nodev and nosuid. I'm using this for long time without
-issues. But keep in mind that you have to keep parts of tmpdir (even
-after reboot) to keep sstate happy:
+It's still valid for me, I'm still using this
+https://github.com/shr-distribution/oe-core/commit/5d5e8783c0db7e2f0488eea0=
+2f795c9f543cd626
 
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D3221
-
->=20
-> the following entry works for the /etc/fstab for moving the /tmp file to =
-RAM
->=20
-> none    /tmp    tmpfs    defaults,noatime,nodiratime    0    0
->=20
-> I just updated poky and the rest of the meta-layers to the latest commit =
-on their respective master branches, and it built successfully.
->=20
->=20
-> Best regards,
->=20
-> Elvis Dowson
->=20
-
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
-
+Cheers,
 --=20
 Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
 
---aXNiKu4lnbRqA5kZ
+--1RhGCd1AsoFHGRHc
 Content-Type: application/pgp-signature; name="signature.asc"
 Content-Description: Digital signature
 
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v2.0.19 (GNU/Linux)
 
-iEYEARECAAYFAlCG94oACgkQN1Ujt2V2gBwJjACgoNCKvxWbnZXSIMbIOluMPIwf
-nMQAn0q0Y8t17CMl+JI6jupXcIcoQ39x
-=QjDB
+iEYEARECAAYFAlCG+DIACgkQN1Ujt2V2gBzOPgCggXhF2mcJLbRQQBK2fUdbXjtV
+TvMAn3AT5KUf0VYutMwWLp3dM8oQzN3E
+=jI7d
 -----END PGP SIGNATURE-----
 
---aXNiKu4lnbRqA5kZ--
+--1RhGCd1AsoFHGRHc--
