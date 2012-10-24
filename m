@@ -1,38 +1,37 @@
-Return-Path: <sean.liming@annabooks.com>
-Received: from mail32c40.carrierzone.com (mail32c40.carrierzone.com
-	[209.235.156.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DD8DEE0032E
-	for <yocto@yoctoproject.org>; Wed, 24 Oct 2012 11:15:48 -0700 (PDT)
-X-Authenticated-User: sean.liming.annabooks.com
-Received: from Sean7 (cpe-76-95-171-22.socal.res.rr.com [76.95.171.22])
-	(authenticated bits=0)
-	by mail32c40.carrierzone.com (8.13.6/8.13.1) with ESMTP id
-	q9OIFjQx003575
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO)
-	for <yocto@yoctoproject.org>; Wed, 24 Oct 2012 18:15:47 +0000
-From: "Sean Liming" <sean.liming@annabooks.com>
-To: <yocto@yoctoproject.org>
-References: <cover.1351023743.git.nitin.a.kamble@intel.com>	<eafcdbdb3843e08adc7385d0f1cec2b316d1b691.1351023743.git.nitin.a.kamble@intel.com>	<1351026976.12186.70.camel@empanada>	<ADD6A3980E8C39419A432FF422031B4C2D90DEAA@ORSMSX106.amr.corp.intel.com>
+Return-Path: <nitin.a.kamble@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F237EE0032E
+	for <yocto@yoctoproject.org>; Wed, 24 Oct 2012 11:37:34 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 24 Oct 2012 11:37:07 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,640,1344236400"; d="scan'208";a="231782797"
+Received: from orsmsx103.amr.corp.intel.com ([10.22.225.130])
+	by orsmga002.jf.intel.com with ESMTP; 24 Oct 2012 11:37:31 -0700
+Received: from orsmsx106.amr.corp.intel.com ([169.254.5.130]) by
+	ORSMSX103.amr.corp.intel.com ([169.254.2.85]) with mapi id
+	14.01.0355.002; Wed, 24 Oct 2012 11:37:31 -0700
+From: "Kamble, Nitin A" <nitin.a.kamble@intel.com>
+To: Sean Liming <sean.liming@annabooks.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] [PATCH 3/6] crownbay README: add WebTitle & Compliance
+	information
+Thread-Index: AQHNshOgV5LoTC7z6Umq7FK9rEakYJfIyDbQ
+Date: Wed, 24 Oct 2012 18:37:30 +0000
+Message-ID: <ADD6A3980E8C39419A432FF422031B4C2D90DF72@ORSMSX106.amr.corp.intel.com>
+References: <cover.1351023743.git.nitin.a.kamble@intel.com>
+	<eafcdbdb3843e08adc7385d0f1cec2b316d1b691.1351023743.git.nitin.a.kamble@intel.com>
+	<1351026976.12186.70.camel@empanada>
+	<ADD6A3980E8C39419A432FF422031B4C2D90DEAA@ORSMSX106.amr.corp.intel.com>
 	<1351096988.27553.19.camel@empanada>
-In-Reply-To: <1351096988.27553.19.camel@empanada>
-Date: Wed, 24 Oct 2012 11:15:39 -0700
-Message-ID: <001501cdb213$93910550$bab30ff0$@annabooks.com>
+	<001501cdb213$93910550$bab30ff0$@annabooks.com>
+In-Reply-To: <001501cdb213$93910550$bab30ff0$@annabooks.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.138]
 MIME-Version: 1.0
-X-Mailer: Microsoft Outlook 14.0
-Thread-Index: AQFbfpUGFmH3ZqVl06eUkhwgp2VYUQMW0MNcAl6wct8CRLsElgKtssYimFnn0kA=
-X-Antivirus: avast! (VPS 121024-0, 10/24/2012), Outbound message
-X-Antivirus-Status: Clean
-X-CSC: 0
-X-CHA: v=1.1 cv=3heS3dTvrDjrvHauwyvFpNTURI2p5t08AU+DPyrsBaI= c=1 sm=1
-	a=dJzlXwD_2c0A:10 a=_DgR7O7FQkkA:10 a=IkcTkHD0fZMA:10
-	a=RqNIojzclRO/fVsPhA7IgQ==:17 a=iGHA9ds3AAAA:8 a=QyXUC8HyAAAA:8
-	a=6wmpYKpkKqaopk9cU0MA:9 a=QEXdDO2ut3YA:10 a=FCaQVidmf_IA:10
-	a=nHK3ipOpxeAA:10 a=XDKM753qmDAA:10 a=dGJ0OcVc7YAA:10
-	a=RqNIojzclRO/fVsPhA7IgQ==:117
-X-CTCH-Spam: Unknown
-X-CTCH-RefID: str=0001.0A020201.50883053.007F, ss=1, re=0.000, recu=0.000,
-	reip=0.000, cl=1, cld=1, fgs=0
-Subject: Re: [PATCH 3/6] crownbay README: add WebTitle & Compliance information
+Subject: Re: [PATCH 3/6] crownbay README: add WebTitle & Compliance	information
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,218 +43,145 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 24 Oct 2012 18:15:49 -0000
-Content-Type: text/plain;
-	charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Content-Language: en-us
+X-List-Received-Date: Wed, 24 Oct 2012 18:37:35 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-> -----Original Message-----
-> From: yocto-bounces@yoctoproject.org [mailto:yocto-
-> bounces@yoctoproject.org] On Behalf Of Tom Zanussi
-> Sent: Wednesday, October 24, 2012 9:43 AM
-> To: Kamble, Nitin A
-> Cc: yocto@yoctoproject.org; Hart, Darren
-> Subject: Re: [yocto] [PATCH 3/6] crownbay README: add WebTitle &
-> Compliance information
->=20
-> On Wed, 2012-10-24 at 11:06 -0500, Kamble, Nitin A wrote:
-> >
-> > > -----Original Message-----
-> > > From: Zanussi, Tom
-> > > Sent: Tuesday, October 23, 2012 2:16 PM
-> > > To: Kamble, Nitin A
-> > > Cc: yocto@yoctoproject.org; Hart, Darren
-> > > Subject: Re: [PATCH 3/6] crownbay README: add WebTitle & =
-Compliance
-> > > information
-> > >
-> > > On Tue, 2012-10-23 at 13:24 -0700, nitin.a.kamble@intel.com wrote:
-> > > > From: Nitin A Kamble <nitin.a.kamble@intel.com>
-> > > >
-> > > > The WebTitle will be used to publish the BSP on the Yocto =
-Project
-> Website.
-> > > > And adding the Yocto Project Compliance information for the 1.3
-> release.
-> > > > Also specifying all the layers used from meta-intel repository.
-> > > >
-> > > > Signed-off-by: Nitin A Kamble <nitin.a.kamble@intel.com>
-> > > > ---
-> > > >  meta-crownbay/README |   13 +++++++++++--
-> > > >  1 files changed, 11 insertions(+), 2 deletions(-)
-> > > >
-> > > > diff --git a/meta-crownbay/README b/meta-crownbay/README index
-> > > > 4bc9f31..3996a94 100644
-> > > > --- a/meta-crownbay/README
-> > > > +++ b/meta-crownbay/README
-> > > > @@ -2,13 +2,22 @@ This README file contains information on
-> > > > building the meta-crownbay  BSP layer, and booting the images
-> > > > contained in the
-> > > /binary directory.
-> > > >  Please see the corresponding sections below for details.
-> > > >
-> > > > -The Crown Bay platform consists of the Intel Atom Z6xx =
-processor,
-> > > > +The Crown Bay platform consists of the Intel Atom E6xx =
-processor,
-> > > >  plus the Intel EG20T Platform Controller Hub (Tunnel Creek + =
-Topcliff).
-> > > >
-> > > >  It also supports the E6xx embedded on-chip graphics via the =
-Intel
-> > > > Embedded Media and Graphics Driver (EMGD) 1.14 Driver.
-> > > >
-> > > >
-> > > > +WebTitle: Intel Atom E6xx processor with Intel EG20T Controller
-> > > > +Hub development kit (crownbay)
-> > > > +
-> > >
-> > > I'm not sure this kind of thing should be in the README since we =
-can
-> > > have multiple downloadable BSPs per layer e.g. crownbay vs
-> > > crownbay-noemgd.  I suppose in keeping with the build system you
-> > > could have separate WebTitle_crownbay and WebTitle_crownbay-
-> noemgd
-> > > lines. ;-) (and it would be nice if you could get rid of the
-> > > CamelCaps too)
-> > >
-> > > Why not put this info in the machine.conf, where we already have
-> > > fields meant to be machine parseable e.g.
-> > >
-> > > #@TYPE: Machine
-> > > #@NAME: crownbay
-> > >
-> > > #@WEBTITLE: ...
-> > >
-> > > Or maybe just use the exisiting #@DESCRIPTION for that...
-> >
-> > For example in the current way the BSPs are published, this is shown
-> > on the YP website for crownbay
-> >
-> > Intel Atom Processor E660 with Intel Platform Controller Hub EG20T
-> > Development Kit
-> > Version: 7.0 "Denzil"
-> > Release date: 29 Jun 2012
-> > Type: BSP
-> > Download Links:
-> > Crown Bay
-> > Crown Bay no EMGD
-> > Release Notes
-> >
-> > So there is one BSP list item per h/w with multiple links to =
-different BSP
-> tarballs for the same hardware.
-> > If we move the WebTitle in machine file, then we will have multiple =
-items
-> in the BSP list for the same hardware.
-> > I am not sure which is better from the downloader's point of view. =
-But this
-> is worth considering for this change.
-> >
->=20
-> Yeah, on the one hand if we have text that's the same for all BSPs in =
-the
-> layer, it could go in the README for lack of a better common place.
->=20
-> But we should consider whether we want to lay things out as the =
-crownbay
-> above, or more like the cedartrail, which has:
->=20
-> Intel=C2=AE Atom=E2=84=A2 Processor N2000 and D2000 Series-based =
-Platform (CEDAR
-> TRAIL) with PowerVR Graphics
->=20
-> (there's no corresponding -nopvr version available, though I suspect =
-that's an
-> oversight and would have been something like:
->=20
-> Intel=C2=AE Atom=E2=84=A2 Processor N2000 and D2000 Series-based =
-Platform (CEDAR
-> TRAIL) with VESA Graphics
->=20
-> I'm not sure the field(s) need to map exactly to the page layout, but =
-all the
-> information should be there to allow the page to be generated or laid =
-out by
-> hand without having to ask questions, in either case.  Did you have =
-any idea
-> as to how for example to distinguish between the emgd and -noemgd
-> versions (side note: there's nothing in the current entry that tells =
-the user
-> what EMGD even is - should it at least be spelled out in the title, or =
-do we
-> need a separate subtext element to describe
-> that?)
->=20
-> Tom
->=20
-
-I am working with CEDAR trail and Crown Bay-like (SYS940X-ECX) systems. =
-For Crown Bay, it is a little confusing to know which tar ball to =
-download. It would be clearer to have one BSP with an option switch to =
-enable the video.=20
-
-Also, it would help to know how the EMGD has been configure in the BSP =
-and for what output ports. Having worked with EMGD there are many =
-options. For the SYS940X-ECX, the video driver (VGA-output) doesn't load =
-so X doesn't start. It would be nice to use EMGD to configure this =
-myself and then add the driver, but if this can already be down in the =
-configuration file, it is not clear how to do this.
-
-Regards,
-
-Sean Liming
-Owner
-Annabooks
-Tel: 714-970-7523 / Cell: 858-774-3176
-
-
-
-> > >
-> > > > +
-> > > > +Compliance:
-> > > > +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> > >
-> > > For consistency with the rest of the README, please remove the =
-colon
-> > > and clean up the underlining.
-> >
-> > Will do.
-> >
-> > Thanks,
-> > Nitin
-> > >
-> > > Thanks,
-> > >
-> > > Tom
-> > >
-> > > > +This BSP is compliant with Yocto Project as per requirements =
-listed
-> here:
-> > > > =
-+http://www.yoctoproject.org/yocto-project-compatible-registration
-> > > > +
-> > > > +
-> > > >  Dependencies
-> > > >  =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> > > >
-> > > > @@ -22,7 +31,7 @@ This layer depends on:
-> > > >    branch: master
-> > > >
-> > > >    URI: git://git.yoctoproject.org/meta-intel
-> > > > -  layers: intel
-> > > > +  layers: meta-intel, meta-crownbay
-> > > >    branch: master
-> > > >
-> > > >
-> > >
-> >
->=20
->=20
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
+DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogeW9jdG8tYm91bmNlc0B5
+b2N0b3Byb2plY3Qub3JnIFttYWlsdG86eW9jdG8tDQo+IGJvdW5jZXNAeW9jdG9wcm9qZWN0Lm9y
+Z10gT24gQmVoYWxmIE9mIFNlYW4gTGltaW5nDQo+IFNlbnQ6IFdlZG5lc2RheSwgT2N0b2JlciAy
+NCwgMjAxMiAxMToxNiBBTQ0KPiBUbzogeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0KPiBTdWJqZWN0
+OiBSZTogW3lvY3RvXSBbUEFUQ0ggMy82XSBjcm93bmJheSBSRUFETUU6IGFkZCBXZWJUaXRsZSAm
+DQo+IENvbXBsaWFuY2UgaW5mb3JtYXRpb24NCj4gDQo+ID4gLS0tLS1PcmlnaW5hbCBNZXNzYWdl
+LS0tLS0NCj4gPiBGcm9tOiB5b2N0by1ib3VuY2VzQHlvY3RvcHJvamVjdC5vcmcgW21haWx0bzp5
+b2N0by0NCj4gPiBib3VuY2VzQHlvY3RvcHJvamVjdC5vcmddIE9uIEJlaGFsZiBPZiBUb20gWmFu
+dXNzaQ0KPiA+IFNlbnQ6IFdlZG5lc2RheSwgT2N0b2JlciAyNCwgMjAxMiA5OjQzIEFNDQo+ID4g
+VG86IEthbWJsZSwgTml0aW4gQQ0KPiA+IENjOiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnOyBIYXJ0
+LCBEYXJyZW4NCj4gPiBTdWJqZWN0OiBSZTogW3lvY3RvXSBbUEFUQ0ggMy82XSBjcm93bmJheSBS
+RUFETUU6IGFkZCBXZWJUaXRsZSAmDQo+ID4gQ29tcGxpYW5jZSBpbmZvcm1hdGlvbg0KPiA+DQo+
+ID4gT24gV2VkLCAyMDEyLTEwLTI0IGF0IDExOjA2IC0wNTAwLCBLYW1ibGUsIE5pdGluIEEgd3Jv
+dGU6DQo+ID4gPg0KPiA+ID4gPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiA+ID4gPiBG
+cm9tOiBaYW51c3NpLCBUb20NCj4gPiA+ID4gU2VudDogVHVlc2RheSwgT2N0b2JlciAyMywgMjAx
+MiAyOjE2IFBNDQo+ID4gPiA+IFRvOiBLYW1ibGUsIE5pdGluIEENCj4gPiA+ID4gQ2M6IHlvY3Rv
+QHlvY3RvcHJvamVjdC5vcmc7IEhhcnQsIERhcnJlbg0KPiA+ID4gPiBTdWJqZWN0OiBSZTogW1BB
+VENIIDMvNl0gY3Jvd25iYXkgUkVBRE1FOiBhZGQgV2ViVGl0bGUgJg0KPiA+ID4gPiBDb21wbGlh
+bmNlIGluZm9ybWF0aW9uDQo+ID4gPiA+DQo+ID4gPiA+IE9uIFR1ZSwgMjAxMi0xMC0yMyBhdCAx
+MzoyNCAtMDcwMCwgbml0aW4uYS5rYW1ibGVAaW50ZWwuY29tIHdyb3RlOg0KPiA+ID4gPiA+IEZy
+b206IE5pdGluIEEgS2FtYmxlIDxuaXRpbi5hLmthbWJsZUBpbnRlbC5jb20+DQo+ID4gPiA+ID4N
+Cj4gPiA+ID4gPiBUaGUgV2ViVGl0bGUgd2lsbCBiZSB1c2VkIHRvIHB1Ymxpc2ggdGhlIEJTUCBv
+biB0aGUgWW9jdG8NCj4gPiA+ID4gPiBQcm9qZWN0DQo+ID4gV2Vic2l0ZS4NCj4gPiA+ID4gPiBB
+bmQgYWRkaW5nIHRoZSBZb2N0byBQcm9qZWN0IENvbXBsaWFuY2UgaW5mb3JtYXRpb24gZm9yIHRo
+ZSAxLjMNCj4gPiByZWxlYXNlLg0KPiA+ID4gPiA+IEFsc28gc3BlY2lmeWluZyBhbGwgdGhlIGxh
+eWVycyB1c2VkIGZyb20gbWV0YS1pbnRlbCByZXBvc2l0b3J5Lg0KPiA+ID4gPiA+DQo+ID4gPiA+
+ID4gU2lnbmVkLW9mZi1ieTogTml0aW4gQSBLYW1ibGUgPG5pdGluLmEua2FtYmxlQGludGVsLmNv
+bT4NCj4gPiA+ID4gPiAtLS0NCj4gPiA+ID4gPiAgbWV0YS1jcm93bmJheS9SRUFETUUgfCAgIDEz
+ICsrKysrKysrKysrLS0NCj4gPiA+ID4gPiAgMSBmaWxlcyBjaGFuZ2VkLCAxMSBpbnNlcnRpb25z
+KCspLCAyIGRlbGV0aW9ucygtKQ0KPiA+ID4gPiA+DQo+ID4gPiA+ID4gZGlmZiAtLWdpdCBhL21l
+dGEtY3Jvd25iYXkvUkVBRE1FIGIvbWV0YS1jcm93bmJheS9SRUFETUUNCj4gaW5kZXgNCj4gPiA+
+ID4gPiA0YmM5ZjMxLi4zOTk2YTk0IDEwMDY0NA0KPiA+ID4gPiA+IC0tLSBhL21ldGEtY3Jvd25i
+YXkvUkVBRE1FDQo+ID4gPiA+ID4gKysrIGIvbWV0YS1jcm93bmJheS9SRUFETUUNCj4gPiA+ID4g
+PiBAQCAtMiwxMyArMiwyMiBAQCBUaGlzIFJFQURNRSBmaWxlIGNvbnRhaW5zIGluZm9ybWF0aW9u
+IG9uDQo+ID4gPiA+ID4gYnVpbGRpbmcgdGhlIG1ldGEtY3Jvd25iYXkgIEJTUCBsYXllciwgYW5k
+IGJvb3RpbmcgdGhlIGltYWdlcw0KPiA+ID4gPiA+IGNvbnRhaW5lZCBpbiB0aGUNCj4gPiA+ID4g
+L2JpbmFyeSBkaXJlY3RvcnkuDQo+ID4gPiA+ID4gIFBsZWFzZSBzZWUgdGhlIGNvcnJlc3BvbmRp
+bmcgc2VjdGlvbnMgYmVsb3cgZm9yIGRldGFpbHMuDQo+ID4gPiA+ID4NCj4gPiA+ID4gPiAtVGhl
+IENyb3duIEJheSBwbGF0Zm9ybSBjb25zaXN0cyBvZiB0aGUgSW50ZWwgQXRvbSBaNnh4DQo+ID4g
+PiA+ID4gcHJvY2Vzc29yLA0KPiA+ID4gPiA+ICtUaGUgQ3Jvd24gQmF5IHBsYXRmb3JtIGNvbnNp
+c3RzIG9mIHRoZSBJbnRlbCBBdG9tIEU2eHgNCj4gPiA+ID4gPiArcHJvY2Vzc29yLA0KPiA+ID4g
+PiA+ICBwbHVzIHRoZSBJbnRlbCBFRzIwVCBQbGF0Zm9ybSBDb250cm9sbGVyIEh1YiAoVHVubmVs
+IENyZWVrICsNCj4gVG9wY2xpZmYpLg0KPiA+ID4gPiA+DQo+ID4gPiA+ID4gIEl0IGFsc28gc3Vw
+cG9ydHMgdGhlIEU2eHggZW1iZWRkZWQgb24tY2hpcCBncmFwaGljcyB2aWEgdGhlDQo+ID4gPiA+
+ID4gSW50ZWwgRW1iZWRkZWQgTWVkaWEgYW5kIEdyYXBoaWNzIERyaXZlciAoRU1HRCkgMS4xNCBE
+cml2ZXIuDQo+ID4gPiA+ID4NCj4gPiA+ID4gPg0KPiA+ID4gPiA+ICtXZWJUaXRsZTogSW50ZWwg
+QXRvbSBFNnh4IHByb2Nlc3NvciB3aXRoIEludGVsIEVHMjBUIENvbnRyb2xsZXINCj4gPiA+ID4g
+PiArSHViIGRldmVsb3BtZW50IGtpdCAoY3Jvd25iYXkpDQo+ID4gPiA+ID4gKw0KPiA+ID4gPg0K
+PiA+ID4gPiBJJ20gbm90IHN1cmUgdGhpcyBraW5kIG9mIHRoaW5nIHNob3VsZCBiZSBpbiB0aGUg
+UkVBRE1FIHNpbmNlIHdlDQo+ID4gPiA+IGNhbiBoYXZlIG11bHRpcGxlIGRvd25sb2FkYWJsZSBC
+U1BzIHBlciBsYXllciBlLmcuIGNyb3duYmF5IHZzDQo+ID4gPiA+IGNyb3duYmF5LW5vZW1nZC4g
+IEkgc3VwcG9zZSBpbiBrZWVwaW5nIHdpdGggdGhlIGJ1aWxkIHN5c3RlbSB5b3UNCj4gPiA+ID4g
+Y291bGQgaGF2ZSBzZXBhcmF0ZSBXZWJUaXRsZV9jcm93bmJheSBhbmQgV2ViVGl0bGVfY3Jvd25i
+YXktDQo+ID4gbm9lbWdkDQo+ID4gPiA+IGxpbmVzLiA7LSkgKGFuZCBpdCB3b3VsZCBiZSBuaWNl
+IGlmIHlvdSBjb3VsZCBnZXQgcmlkIG9mIHRoZQ0KPiA+ID4gPiBDYW1lbENhcHMgdG9vKQ0KPiA+
+ID4gPg0KPiA+ID4gPiBXaHkgbm90IHB1dCB0aGlzIGluZm8gaW4gdGhlIG1hY2hpbmUuY29uZiwg
+d2hlcmUgd2UgYWxyZWFkeSBoYXZlDQo+ID4gPiA+IGZpZWxkcyBtZWFudCB0byBiZSBtYWNoaW5l
+IHBhcnNlYWJsZSBlLmcuDQo+ID4gPiA+DQo+ID4gPiA+ICNAVFlQRTogTWFjaGluZQ0KPiA+ID4g
+PiAjQE5BTUU6IGNyb3duYmF5DQo+ID4gPiA+DQo+ID4gPiA+ICNAV0VCVElUTEU6IC4uLg0KPiA+
+ID4gPg0KPiA+ID4gPiBPciBtYXliZSBqdXN0IHVzZSB0aGUgZXhpc2l0aW5nICNAREVTQ1JJUFRJ
+T04gZm9yIHRoYXQuLi4NCj4gPiA+DQo+ID4gPiBGb3IgZXhhbXBsZSBpbiB0aGUgY3VycmVudCB3
+YXkgdGhlIEJTUHMgYXJlIHB1Ymxpc2hlZCwgdGhpcyBpcyBzaG93bg0KPiA+ID4gb24gdGhlIFlQ
+IHdlYnNpdGUgZm9yIGNyb3duYmF5DQo+ID4gPg0KPiA+ID4gSW50ZWwgQXRvbSBQcm9jZXNzb3Ig
+RTY2MCB3aXRoIEludGVsIFBsYXRmb3JtIENvbnRyb2xsZXIgSHViIEVHMjBUDQo+ID4gPiBEZXZl
+bG9wbWVudCBLaXQNCj4gPiA+IFZlcnNpb246IDcuMCAiRGVuemlsIg0KPiA+ID4gUmVsZWFzZSBk
+YXRlOiAyOSBKdW4gMjAxMg0KPiA+ID4gVHlwZTogQlNQDQo+ID4gPiBEb3dubG9hZCBMaW5rczoN
+Cj4gPiA+IENyb3duIEJheQ0KPiA+ID4gQ3Jvd24gQmF5IG5vIEVNR0QNCj4gPiA+IFJlbGVhc2Ug
+Tm90ZXMNCj4gPiA+DQo+ID4gPiBTbyB0aGVyZSBpcyBvbmUgQlNQIGxpc3QgaXRlbSBwZXIgaC93
+IHdpdGggbXVsdGlwbGUgbGlua3MgdG8NCj4gPiA+IGRpZmZlcmVudCBCU1ANCj4gPiB0YXJiYWxs
+cyBmb3IgdGhlIHNhbWUgaGFyZHdhcmUuDQo+ID4gPiBJZiB3ZSBtb3ZlIHRoZSBXZWJUaXRsZSBp
+biBtYWNoaW5lIGZpbGUsIHRoZW4gd2Ugd2lsbCBoYXZlIG11bHRpcGxlDQo+ID4gPiBpdGVtcw0K
+PiA+IGluIHRoZSBCU1AgbGlzdCBmb3IgdGhlIHNhbWUgaGFyZHdhcmUuDQo+ID4gPiBJIGFtIG5v
+dCBzdXJlIHdoaWNoIGlzIGJldHRlciBmcm9tIHRoZSBkb3dubG9hZGVyJ3MgcG9pbnQgb2Ygdmll
+dy4NCj4gPiA+IEJ1dCB0aGlzDQo+ID4gaXMgd29ydGggY29uc2lkZXJpbmcgZm9yIHRoaXMgY2hh
+bmdlLg0KPiA+ID4NCj4gPg0KPiA+IFllYWgsIG9uIHRoZSBvbmUgaGFuZCBpZiB3ZSBoYXZlIHRl
+eHQgdGhhdCdzIHRoZSBzYW1lIGZvciBhbGwgQlNQcyBpbg0KPiA+IHRoZSBsYXllciwgaXQgY291
+bGQgZ28gaW4gdGhlIFJFQURNRSBmb3IgbGFjayBvZiBhIGJldHRlciBjb21tb24gcGxhY2UuDQo+
+ID4NCj4gPiBCdXQgd2Ugc2hvdWxkIGNvbnNpZGVyIHdoZXRoZXIgd2Ugd2FudCB0byBsYXkgdGhp
+bmdzIG91dCBhcyB0aGUNCj4gPiBjcm93bmJheSBhYm92ZSwgb3IgbW9yZSBsaWtlIHRoZSBjZWRh
+cnRyYWlsLCB3aGljaCBoYXM6DQo+ID4NCj4gPiBJbnRlbMKuIEF0b23ihKIgUHJvY2Vzc29yIE4y
+MDAwIGFuZCBEMjAwMCBTZXJpZXMtYmFzZWQgUGxhdGZvcm0gKENFREFSDQo+ID4gVFJBSUwpIHdp
+dGggUG93ZXJWUiBHcmFwaGljcw0KPiA+DQo+ID4gKHRoZXJlJ3Mgbm8gY29ycmVzcG9uZGluZyAt
+bm9wdnIgdmVyc2lvbiBhdmFpbGFibGUsIHRob3VnaCBJIHN1c3BlY3QNCj4gPiB0aGF0J3MgYW4g
+b3ZlcnNpZ2h0IGFuZCB3b3VsZCBoYXZlIGJlZW4gc29tZXRoaW5nIGxpa2U6DQo+ID4NCj4gPiBJ
+bnRlbMKuIEF0b23ihKIgUHJvY2Vzc29yIE4yMDAwIGFuZCBEMjAwMCBTZXJpZXMtYmFzZWQgUGxh
+dGZvcm0gKENFREFSDQo+ID4gVFJBSUwpIHdpdGggVkVTQSBHcmFwaGljcw0KPiA+DQo+ID4gSSdt
+IG5vdCBzdXJlIHRoZSBmaWVsZChzKSBuZWVkIHRvIG1hcCBleGFjdGx5IHRvIHRoZSBwYWdlIGxh
+eW91dCwgYnV0DQo+ID4gYWxsIHRoZSBpbmZvcm1hdGlvbiBzaG91bGQgYmUgdGhlcmUgdG8gYWxs
+b3cgdGhlIHBhZ2UgdG8gYmUgZ2VuZXJhdGVkDQo+ID4gb3IgbGFpZCBvdXQgYnkgaGFuZCB3aXRo
+b3V0IGhhdmluZyB0byBhc2sgcXVlc3Rpb25zLCBpbiBlaXRoZXIgY2FzZS4NCj4gPiBEaWQgeW91
+IGhhdmUgYW55IGlkZWEgYXMgdG8gaG93IGZvciBleGFtcGxlIHRvIGRpc3Rpbmd1aXNoIGJldHdl
+ZW4gdGhlDQo+ID4gZW1nZCBhbmQgLW5vZW1nZCB2ZXJzaW9ucyAoc2lkZSBub3RlOiB0aGVyZSdz
+IG5vdGhpbmcgaW4gdGhlIGN1cnJlbnQNCj4gPiBlbnRyeSB0aGF0IHRlbGxzIHRoZSB1c2VyIHdo
+YXQgRU1HRCBldmVuIGlzIC0gc2hvdWxkIGl0IGF0IGxlYXN0IGJlDQo+ID4gc3BlbGxlZCBvdXQg
+aW4gdGhlIHRpdGxlLCBvciBkbyB3ZSBuZWVkIGEgc2VwYXJhdGUgc3VidGV4dCBlbGVtZW50IHRv
+DQo+ID4gZGVzY3JpYmUNCj4gPiB0aGF0PykNCj4gPg0KPiA+IFRvbQ0KPiA+DQo+IA0KPiBJIGFt
+IHdvcmtpbmcgd2l0aCBDRURBUiB0cmFpbCBhbmQgQ3Jvd24gQmF5LWxpa2UgKFNZUzk0MFgtRUNY
+KSBzeXN0ZW1zLiBGb3INCj4gQ3Jvd24gQmF5LCBpdCBpcyBhIGxpdHRsZSBjb25mdXNpbmcgdG8g
+a25vdyB3aGljaCB0YXIgYmFsbCB0byBkb3dubG9hZC4gSXQgd291bGQNCj4gYmUgY2xlYXJlciB0
+byBoYXZlIG9uZSBCU1Agd2l0aCBhbiBvcHRpb24gc3dpdGNoIHRvIGVuYWJsZSB0aGUgdmlkZW8u
+DQo+IA0KPiBBbHNvLCBpdCB3b3VsZCBoZWxwIHRvIGtub3cgaG93IHRoZSBFTUdEIGhhcyBiZWVu
+IGNvbmZpZ3VyZSBpbiB0aGUgQlNQDQo+IGFuZCBmb3Igd2hhdCBvdXRwdXQgcG9ydHMuIEhhdmlu
+ZyB3b3JrZWQgd2l0aCBFTUdEIHRoZXJlIGFyZSBtYW55DQo+IG9wdGlvbnMuIEZvciB0aGUgU1lT
+OTQwWC1FQ1gsIHRoZSB2aWRlbyBkcml2ZXIgKFZHQS1vdXRwdXQpIGRvZXNuJ3QgbG9hZCBzbw0K
+PiBYIGRvZXNuJ3Qgc3RhcnQuIEl0IHdvdWxkIGJlIG5pY2UgdG8gdXNlIEVNR0QgdG8gY29uZmln
+dXJlIHRoaXMgbXlzZWxmIGFuZA0KPiB0aGVuIGFkZCB0aGUgZHJpdmVyLCBidXQgaWYgdGhpcyBj
+YW4gYWxyZWFkeSBiZSBkb3duIGluIHRoZSBjb25maWd1cmF0aW9uIGZpbGUsIGl0DQo+IGlzIG5v
+dCBjbGVhciBob3cgdG8gZG8gdGhpcy4NCj4gDQo+IFJlZ2FyZHMsDQo+IA0KPiBTZWFuIExpbWlu
+Zw0KPiBPd25lcg0KPiBBbm5hYm9va3MNCj4gVGVsOiA3MTQtOTcwLTc1MjMgLyBDZWxsOiA4NTgt
+Nzc0LTMxNzYNCg0KU2VhbiwNCiAgV2UgaGF2ZSBhbm90aGVyIEJTUCBjYWxsZWQgc3lzOTQweCBJ
+IGd1ZXNzIHRoYXQgd291bGQgYmUgYmV0dGVyIG1hdGNoIGZvciB5b3UgdGhhbiB0aGUgY3Jvd25i
+YXkgQlNQLiBBbmQgeW91IGNhbiBsb29rIGF0IHRoZSBFTUdEIGRvY3VtZW50YXRpb24gYXQgdGhl
+aXIgd2Vic2l0ZSBmb3IgaW5zdHJ1Y3Rpb25zIG9uIGhvdyB0byBjb25maWd1cmUgaXQuIGh0dHA6
+Ly93d3cuaW50ZWwuY29tL3AvZW5fVVMvZW1iZWRkZWQvaHdzdy9zb2Z0d2FyZS9lbWdkDQoNClRo
+YW5rcywNCk5pdGluDQoNCj4gDQo+IA0KPiANCj4gPiA+ID4NCj4gPiA+ID4gPiArDQo+ID4gPiA+
+ID4gK0NvbXBsaWFuY2U6DQo+ID4gPiA+ID4gKz09PT09PT09PT09PQ0KPiA+ID4gPg0KPiA+ID4g
+PiBGb3IgY29uc2lzdGVuY3kgd2l0aCB0aGUgcmVzdCBvZiB0aGUgUkVBRE1FLCBwbGVhc2UgcmVt
+b3ZlIHRoZQ0KPiA+ID4gPiBjb2xvbiBhbmQgY2xlYW4gdXAgdGhlIHVuZGVybGluaW5nLg0KPiA+
+ID4NCj4gPiA+IFdpbGwgZG8uDQo+ID4gPg0KPiA+ID4gVGhhbmtzLA0KPiA+ID4gTml0aW4NCj4g
+PiA+ID4NCj4gPiA+ID4gVGhhbmtzLA0KPiA+ID4gPg0KPiA+ID4gPiBUb20NCj4gPiA+ID4NCj4g
+PiA+ID4gPiArVGhpcyBCU1AgaXMgY29tcGxpYW50IHdpdGggWW9jdG8gUHJvamVjdCBhcyBwZXIg
+cmVxdWlyZW1lbnRzDQo+ID4gPiA+ID4gK2xpc3RlZA0KPiA+IGhlcmU6DQo+ID4gPiA+ID4gK2h0
+dHA6Ly93d3cueW9jdG9wcm9qZWN0Lm9yZy95b2N0by1wcm9qZWN0LWNvbXBhdGlibGUtcmVnaXN0
+cmF0aQ0KPiA+ID4gPiA+ICtvbg0KPiA+ID4gPiA+ICsNCj4gPiA+ID4gPiArDQo+ID4gPiA+ID4g
+IERlcGVuZGVuY2llcw0KPiA+ID4gPiA+ICA9PT09PT09PT09PT0NCj4gPiA+ID4gPg0KPiA+ID4g
+PiA+IEBAIC0yMiw3ICszMSw3IEBAIFRoaXMgbGF5ZXIgZGVwZW5kcyBvbjoNCj4gPiA+ID4gPiAg
+ICBicmFuY2g6IG1hc3Rlcg0KPiA+ID4gPiA+DQo+ID4gPiA+ID4gICAgVVJJOiBnaXQ6Ly9naXQu
+eW9jdG9wcm9qZWN0Lm9yZy9tZXRhLWludGVsDQo+ID4gPiA+ID4gLSAgbGF5ZXJzOiBpbnRlbA0K
+PiA+ID4gPiA+ICsgIGxheWVyczogbWV0YS1pbnRlbCwgbWV0YS1jcm93bmJheQ0KPiA+ID4gPiA+
+ICAgIGJyYW5jaDogbWFzdGVyDQo+ID4gPiA+ID4NCj4gPiA+ID4gPg0KPiA+ID4gPg0KPiA+ID4N
+Cj4gPg0KPiA+DQo+ID4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18NCj4gPiB5b2N0byBtYWlsaW5nIGxpc3QNCj4gPiB5b2N0b0B5b2N0b3Byb2plY3Qub3Jn
+DQo+ID4gaHR0cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3JnL2xpc3RpbmZvL3lvY3RvDQo+IA0K
+PiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KPiB5b2N0
+byBtYWlsaW5nIGxpc3QNCj4geW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0KPiBodHRwczovL2xpc3Rz
+LnlvY3RvcHJvamVjdC5vcmcvbGlzdGluZm8veW9jdG8NCg==
 
