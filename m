@@ -1,36 +1,37 @@
-Return-Path: <nitin.a.kamble@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 97EF7E0032E
-	for <yocto@yoctoproject.org>; Wed, 24 Oct 2012 11:12:17 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 24 Oct 2012 11:12:17 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,640,1344236400"; d="scan'208";a="210105637"
-Received: from orsmsx101.amr.corp.intel.com ([10.22.225.128])
-	by orsmga001.jf.intel.com with ESMTP; 24 Oct 2012 11:12:16 -0700
-Received: from orsmsx106.amr.corp.intel.com ([169.254.5.130]) by
-	ORSMSX101.amr.corp.intel.com ([169.254.8.82]) with mapi id
-	14.01.0355.002; Wed, 24 Oct 2012 11:12:16 -0700
-From: "Kamble, Nitin A" <nitin.a.kamble@intel.com>
-To: "Zanussi, Tom" <tom.zanussi@intel.com>
-Thread-Topic: [PATCH 3/6] crownbay README: add WebTitle & Compliance
-	information
-Thread-Index: AQHNsVyVjDNyFhsawk+QzYVb3PUKupfH2eUAgADEihCAAIF7AP//oe3Q
-Date: Wed, 24 Oct 2012 18:12:15 +0000
-Message-ID: <ADD6A3980E8C39419A432FF422031B4C2D90DF50@ORSMSX106.amr.corp.intel.com>
-References: <cover.1351023743.git.nitin.a.kamble@intel.com>
-	<eafcdbdb3843e08adc7385d0f1cec2b316d1b691.1351023743.git.nitin.a.kamble@intel.com>
-	<1351026976.12186.70.camel@empanada>
-	<ADD6A3980E8C39419A432FF422031B4C2D90DEAA@ORSMSX106.amr.corp.intel.com>
+Return-Path: <sean.liming@annabooks.com>
+Received: from mail32c40.carrierzone.com (mail32c40.carrierzone.com
+	[209.235.156.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DD8DEE0032E
+	for <yocto@yoctoproject.org>; Wed, 24 Oct 2012 11:15:48 -0700 (PDT)
+X-Authenticated-User: sean.liming.annabooks.com
+Received: from Sean7 (cpe-76-95-171-22.socal.res.rr.com [76.95.171.22])
+	(authenticated bits=0)
+	by mail32c40.carrierzone.com (8.13.6/8.13.1) with ESMTP id
+	q9OIFjQx003575
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO)
+	for <yocto@yoctoproject.org>; Wed, 24 Oct 2012 18:15:47 +0000
+From: "Sean Liming" <sean.liming@annabooks.com>
+To: <yocto@yoctoproject.org>
+References: <cover.1351023743.git.nitin.a.kamble@intel.com>	<eafcdbdb3843e08adc7385d0f1cec2b316d1b691.1351023743.git.nitin.a.kamble@intel.com>	<1351026976.12186.70.camel@empanada>	<ADD6A3980E8C39419A432FF422031B4C2D90DEAA@ORSMSX106.amr.corp.intel.com>
 	<1351096988.27553.19.camel@empanada>
 In-Reply-To: <1351096988.27553.19.camel@empanada>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.138]
+Date: Wed, 24 Oct 2012 11:15:39 -0700
+Message-ID: <001501cdb213$93910550$bab30ff0$@annabooks.com>
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Hart,
-	Darren" <darren.hart@intel.com>
+X-Mailer: Microsoft Outlook 14.0
+Thread-Index: AQFbfpUGFmH3ZqVl06eUkhwgp2VYUQMW0MNcAl6wct8CRLsElgKtssYimFnn0kA=
+X-Antivirus: avast! (VPS 121024-0, 10/24/2012), Outbound message
+X-Antivirus-Status: Clean
+X-CSC: 0
+X-CHA: v=1.1 cv=3heS3dTvrDjrvHauwyvFpNTURI2p5t08AU+DPyrsBaI= c=1 sm=1
+	a=dJzlXwD_2c0A:10 a=_DgR7O7FQkkA:10 a=IkcTkHD0fZMA:10
+	a=RqNIojzclRO/fVsPhA7IgQ==:17 a=iGHA9ds3AAAA:8 a=QyXUC8HyAAAA:8
+	a=6wmpYKpkKqaopk9cU0MA:9 a=QEXdDO2ut3YA:10 a=FCaQVidmf_IA:10
+	a=nHK3ipOpxeAA:10 a=XDKM753qmDAA:10 a=dGJ0OcVc7YAA:10
+	a=RqNIojzclRO/fVsPhA7IgQ==:117
+X-CTCH-Spam: Unknown
+X-CTCH-RefID: str=0001.0A020201.50883053.007F, ss=1, re=0.000, recu=0.000,
+	reip=0.000, cl=1, cld=1, fgs=0
 Subject: Re: [PATCH 3/6] crownbay README: add WebTitle & Compliance information
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -43,115 +44,218 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 24 Oct 2012 18:12:17 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Wed, 24 Oct 2012 18:15:49 -0000
+Content-Type: text/plain;
+	charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Content-Language: en-us
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogWmFudXNzaSwgVG9tDQo+
-IFNlbnQ6IFdlZG5lc2RheSwgT2N0b2JlciAyNCwgMjAxMiA5OjQzIEFNDQo+IFRvOiBLYW1ibGUs
-IE5pdGluIEENCj4gQ2M6IHlvY3RvQHlvY3RvcHJvamVjdC5vcmc7IEhhcnQsIERhcnJlbg0KPiBT
-dWJqZWN0OiBSZTogW1BBVENIIDMvNl0gY3Jvd25iYXkgUkVBRE1FOiBhZGQgV2ViVGl0bGUgJiBD
-b21wbGlhbmNlDQo+IGluZm9ybWF0aW9uDQo+IA0KPiBPbiBXZWQsIDIwMTItMTAtMjQgYXQgMTE6
-MDYgLTA1MDAsIEthbWJsZSwgTml0aW4gQSB3cm90ZToNCj4gPg0KPiA+ID4gLS0tLS1PcmlnaW5h
-bCBNZXNzYWdlLS0tLS0NCj4gPiA+IEZyb206IFphbnVzc2ksIFRvbQ0KPiA+ID4gU2VudDogVHVl
-c2RheSwgT2N0b2JlciAyMywgMjAxMiAyOjE2IFBNDQo+ID4gPiBUbzogS2FtYmxlLCBOaXRpbiBB
-DQo+ID4gPiBDYzogeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZzsgSGFydCwgRGFycmVuDQo+ID4gPiBT
-dWJqZWN0OiBSZTogW1BBVENIIDMvNl0gY3Jvd25iYXkgUkVBRE1FOiBhZGQgV2ViVGl0bGUgJiBD
-b21wbGlhbmNlDQo+ID4gPiBpbmZvcm1hdGlvbg0KPiA+ID4NCj4gPiA+IE9uIFR1ZSwgMjAxMi0x
-MC0yMyBhdCAxMzoyNCAtMDcwMCwgbml0aW4uYS5rYW1ibGVAaW50ZWwuY29tIHdyb3RlOg0KPiA+
-ID4gPiBGcm9tOiBOaXRpbiBBIEthbWJsZSA8bml0aW4uYS5rYW1ibGVAaW50ZWwuY29tPg0KPiA+
-ID4gPg0KPiA+ID4gPiBUaGUgV2ViVGl0bGUgd2lsbCBiZSB1c2VkIHRvIHB1Ymxpc2ggdGhlIEJT
-UCBvbiB0aGUgWW9jdG8gUHJvamVjdA0KPiBXZWJzaXRlLg0KPiA+ID4gPiBBbmQgYWRkaW5nIHRo
-ZSBZb2N0byBQcm9qZWN0IENvbXBsaWFuY2UgaW5mb3JtYXRpb24gZm9yIHRoZSAxLjMNCj4gcmVs
-ZWFzZS4NCj4gPiA+ID4gQWxzbyBzcGVjaWZ5aW5nIGFsbCB0aGUgbGF5ZXJzIHVzZWQgZnJvbSBt
-ZXRhLWludGVsIHJlcG9zaXRvcnkuDQo+ID4gPiA+DQo+ID4gPiA+IFNpZ25lZC1vZmYtYnk6IE5p
-dGluIEEgS2FtYmxlIDxuaXRpbi5hLmthbWJsZUBpbnRlbC5jb20+DQo+ID4gPiA+IC0tLQ0KPiA+
-ID4gPiAgbWV0YS1jcm93bmJheS9SRUFETUUgfCAgIDEzICsrKysrKysrKysrLS0NCj4gPiA+ID4g
-IDEgZmlsZXMgY2hhbmdlZCwgMTEgaW5zZXJ0aW9ucygrKSwgMiBkZWxldGlvbnMoLSkNCj4gPiA+
-ID4NCj4gPiA+ID4gZGlmZiAtLWdpdCBhL21ldGEtY3Jvd25iYXkvUkVBRE1FIGIvbWV0YS1jcm93
-bmJheS9SRUFETUUgaW5kZXgNCj4gPiA+ID4gNGJjOWYzMS4uMzk5NmE5NCAxMDA2NDQNCj4gPiA+
-ID4gLS0tIGEvbWV0YS1jcm93bmJheS9SRUFETUUNCj4gPiA+ID4gKysrIGIvbWV0YS1jcm93bmJh
-eS9SRUFETUUNCj4gPiA+ID4gQEAgLTIsMTMgKzIsMjIgQEAgVGhpcyBSRUFETUUgZmlsZSBjb250
-YWlucyBpbmZvcm1hdGlvbiBvbg0KPiA+ID4gPiBidWlsZGluZyB0aGUgbWV0YS1jcm93bmJheSAg
-QlNQIGxheWVyLCBhbmQgYm9vdGluZyB0aGUgaW1hZ2VzDQo+ID4gPiA+IGNvbnRhaW5lZCBpbiB0
-aGUNCj4gPiA+IC9iaW5hcnkgZGlyZWN0b3J5Lg0KPiA+ID4gPiAgUGxlYXNlIHNlZSB0aGUgY29y
-cmVzcG9uZGluZyBzZWN0aW9ucyBiZWxvdyBmb3IgZGV0YWlscy4NCj4gPiA+ID4NCj4gPiA+ID4g
-LVRoZSBDcm93biBCYXkgcGxhdGZvcm0gY29uc2lzdHMgb2YgdGhlIEludGVsIEF0b20gWjZ4eCBw
-cm9jZXNzb3IsDQo+ID4gPiA+ICtUaGUgQ3Jvd24gQmF5IHBsYXRmb3JtIGNvbnNpc3RzIG9mIHRo
-ZSBJbnRlbCBBdG9tIEU2eHggcHJvY2Vzc29yLA0KPiA+ID4gPiAgcGx1cyB0aGUgSW50ZWwgRUcy
-MFQgUGxhdGZvcm0gQ29udHJvbGxlciBIdWIgKFR1bm5lbCBDcmVlayArIFRvcGNsaWZmKS4NCj4g
-PiA+ID4NCj4gPiA+ID4gIEl0IGFsc28gc3VwcG9ydHMgdGhlIEU2eHggZW1iZWRkZWQgb24tY2hp
-cCBncmFwaGljcyB2aWEgdGhlIEludGVsDQo+ID4gPiA+IEVtYmVkZGVkIE1lZGlhIGFuZCBHcmFw
-aGljcyBEcml2ZXIgKEVNR0QpIDEuMTQgRHJpdmVyLg0KPiA+ID4gPg0KPiA+ID4gPg0KPiA+ID4g
-PiArV2ViVGl0bGU6IEludGVsIEF0b20gRTZ4eCBwcm9jZXNzb3Igd2l0aCBJbnRlbCBFRzIwVCBD
-b250cm9sbGVyDQo+ID4gPiA+ICtIdWIgZGV2ZWxvcG1lbnQga2l0IChjcm93bmJheSkNCj4gPiA+
-ID4gKw0KPiA+ID4NCj4gPiA+IEknbSBub3Qgc3VyZSB0aGlzIGtpbmQgb2YgdGhpbmcgc2hvdWxk
-IGJlIGluIHRoZSBSRUFETUUgc2luY2Ugd2UgY2FuDQo+ID4gPiBoYXZlIG11bHRpcGxlIGRvd25s
-b2FkYWJsZSBCU1BzIHBlciBsYXllciBlLmcuIGNyb3duYmF5IHZzDQo+ID4gPiBjcm93bmJheS1u
-b2VtZ2QuICBJIHN1cHBvc2UgaW4ga2VlcGluZyB3aXRoIHRoZSBidWlsZCBzeXN0ZW0geW91DQo+
-ID4gPiBjb3VsZCBoYXZlIHNlcGFyYXRlIFdlYlRpdGxlX2Nyb3duYmF5IGFuZCBXZWJUaXRsZV9j
-cm93bmJheS0NCj4gbm9lbWdkDQo+ID4gPiBsaW5lcy4gOy0pIChhbmQgaXQgd291bGQgYmUgbmlj
-ZSBpZiB5b3UgY291bGQgZ2V0IHJpZCBvZiB0aGUNCj4gPiA+IENhbWVsQ2FwcyB0b28pDQo+ID4g
-Pg0KPiA+ID4gV2h5IG5vdCBwdXQgdGhpcyBpbmZvIGluIHRoZSBtYWNoaW5lLmNvbmYsIHdoZXJl
-IHdlIGFscmVhZHkgaGF2ZQ0KPiA+ID4gZmllbGRzIG1lYW50IHRvIGJlIG1hY2hpbmUgcGFyc2Vh
-YmxlIGUuZy4NCj4gPiA+DQo+ID4gPiAjQFRZUEU6IE1hY2hpbmUNCj4gPiA+ICNATkFNRTogY3Jv
-d25iYXkNCj4gPiA+DQo+ID4gPiAjQFdFQlRJVExFOiAuLi4NCj4gPiA+DQo+ID4gPiBPciBtYXli
-ZSBqdXN0IHVzZSB0aGUgZXhpc2l0aW5nICNAREVTQ1JJUFRJT04gZm9yIHRoYXQuLi4NCj4gPg0K
-PiA+IEZvciBleGFtcGxlIGluIHRoZSBjdXJyZW50IHdheSB0aGUgQlNQcyBhcmUgcHVibGlzaGVk
-LCB0aGlzIGlzIHNob3duDQo+ID4gb24gdGhlIFlQIHdlYnNpdGUgZm9yIGNyb3duYmF5DQo+ID4N
-Cj4gPiBJbnRlbCBBdG9tIFByb2Nlc3NvciBFNjYwIHdpdGggSW50ZWwgUGxhdGZvcm0gQ29udHJv
-bGxlciBIdWIgRUcyMFQNCj4gPiBEZXZlbG9wbWVudCBLaXQNCj4gPiBWZXJzaW9uOiA3LjAgIkRl
-bnppbCINCj4gPiBSZWxlYXNlIGRhdGU6IDI5IEp1biAyMDEyDQo+ID4gVHlwZTogQlNQDQo+ID4g
-RG93bmxvYWQgTGlua3M6DQo+ID4gQ3Jvd24gQmF5DQo+ID4gQ3Jvd24gQmF5IG5vIEVNR0QNCj4g
-PiBSZWxlYXNlIE5vdGVzDQo+ID4NCj4gPiBTbyB0aGVyZSBpcyBvbmUgQlNQIGxpc3QgaXRlbSBw
-ZXIgaC93IHdpdGggbXVsdGlwbGUgbGlua3MgdG8gZGlmZmVyZW50IEJTUA0KPiB0YXJiYWxscyBm
-b3IgdGhlIHNhbWUgaGFyZHdhcmUuDQo+ID4gSWYgd2UgbW92ZSB0aGUgV2ViVGl0bGUgaW4gbWFj
-aGluZSBmaWxlLCB0aGVuIHdlIHdpbGwgaGF2ZSBtdWx0aXBsZSBpdGVtcw0KPiBpbiB0aGUgQlNQ
-IGxpc3QgZm9yIHRoZSBzYW1lIGhhcmR3YXJlLg0KPiA+IEkgYW0gbm90IHN1cmUgd2hpY2ggaXMg
-YmV0dGVyIGZyb20gdGhlIGRvd25sb2FkZXIncyBwb2ludCBvZiB2aWV3LiBCdXQgdGhpcw0KPiBp
-cyB3b3J0aCBjb25zaWRlcmluZyBmb3IgdGhpcyBjaGFuZ2UuDQo+ID4NCj4gDQo+IFllYWgsIG9u
-IHRoZSBvbmUgaGFuZCBpZiB3ZSBoYXZlIHRleHQgdGhhdCdzIHRoZSBzYW1lIGZvciBhbGwgQlNQ
-cyBpbiB0aGUNCj4gbGF5ZXIsIGl0IGNvdWxkIGdvIGluIHRoZSBSRUFETUUgZm9yIGxhY2sgb2Yg
-YSBiZXR0ZXIgY29tbW9uIHBsYWNlLg0KPiANCj4gQnV0IHdlIHNob3VsZCBjb25zaWRlciB3aGV0
-aGVyIHdlIHdhbnQgdG8gbGF5IHRoaW5ncyBvdXQgYXMgdGhlIGNyb3duYmF5DQo+IGFib3ZlLCBv
-ciBtb3JlIGxpa2UgdGhlIGNlZGFydHJhaWwsIHdoaWNoIGhhczoNCj4gDQo+IEludGVswq4gQXRv
-beKEoiBQcm9jZXNzb3IgTjIwMDAgYW5kIEQyMDAwIFNlcmllcy1iYXNlZCBQbGF0Zm9ybSAoQ0VE
-QVINCj4gVFJBSUwpIHdpdGggUG93ZXJWUiBHcmFwaGljcw0KPiANCj4gKHRoZXJlJ3Mgbm8gY29y
-cmVzcG9uZGluZyAtbm9wdnIgdmVyc2lvbiBhdmFpbGFibGUsIHRob3VnaCBJIHN1c3BlY3QgdGhh
-dCdzIGFuDQo+IG92ZXJzaWdodCBhbmQgd291bGQgaGF2ZSBiZWVuIHNvbWV0aGluZyBsaWtlOg0K
-PiANCj4gSW50ZWzCriBBdG9t4oSiIFByb2Nlc3NvciBOMjAwMCBhbmQgRDIwMDAgU2VyaWVzLWJh
-c2VkIFBsYXRmb3JtIChDRURBUg0KPiBUUkFJTCkgd2l0aCBWRVNBIEdyYXBoaWNzDQo+IA0KPiBJ
-J20gbm90IHN1cmUgdGhlIGZpZWxkKHMpIG5lZWQgdG8gbWFwIGV4YWN0bHkgdG8gdGhlIHBhZ2Ug
-bGF5b3V0LCBidXQgYWxsIHRoZQ0KPiBpbmZvcm1hdGlvbiBzaG91bGQgYmUgdGhlcmUgdG8gYWxs
-b3cgdGhlIHBhZ2UgdG8gYmUgZ2VuZXJhdGVkIG9yIGxhaWQgb3V0IGJ5DQo+IGhhbmQgd2l0aG91
-dCBoYXZpbmcgdG8gYXNrIHF1ZXN0aW9ucywgaW4gZWl0aGVyIGNhc2UuICBEaWQgeW91IGhhdmUg
-YW55IGlkZWENCj4gYXMgdG8gaG93IGZvciBleGFtcGxlIHRvIGRpc3Rpbmd1aXNoIGJldHdlZW4g
-dGhlIGVtZ2QgYW5kIC1ub2VtZ2QNCj4gdmVyc2lvbnMgKHNpZGUgbm90ZTogdGhlcmUncyBub3Ro
-aW5nIGluIHRoZSBjdXJyZW50IGVudHJ5IHRoYXQgdGVsbHMgdGhlIHVzZXINCj4gd2hhdCBFTUdE
-IGV2ZW4gaXMgLSBzaG91bGQgaXQgYXQgbGVhc3QgYmUgc3BlbGxlZCBvdXQgaW4gdGhlIHRpdGxl
-LCBvciBkbyB3ZQ0KPiBuZWVkIGEgc2VwYXJhdGUgc3VidGV4dCBlbGVtZW50IHRvIGRlc2NyaWJl
-DQo+IHRoYXQ/KQ0KPiANCg0KSSB0aGluayBmb3IgY3Jvd25iYXkgd2Ugc2hvdWxkIGFkZCBpbiB0
-aGUgdGl0bGUgIndpdGggcHJvcHJpZXRhcnkgSUVNR0QgYWNjZWxlcmF0ZWQgZ3JhcGhpY3MgZHJp
-dmVycyIsIGFuZCBmb3IgY3Jvd25iYXktbm9lbWdkIHdlIHNob3VsZCBhZGQgIndpdGggb3BlbiBz
-b3VyY2UgVkVTQSBncmFwaGljcyBkcml2ZXJzIiANCkFuZCB0aGVuIHRoZXNlIGNhbiBnbyBpbiB0
-aGUgbWFjaGluZS5jb25mIGZpbGVzLiBJdCB3aWxsIG1ha2Ugb3VyIGxpc3Qgb2YgQlNQcyBiaWdn
-ZXIsIGJ1dCBpdCB3aWxsIGJlIGNsZWFyZXIgdG8gcGVvcGxlLCB3aG8gd2FudCB0byBkb3dubG9h
-ZCBhIEJTUCBmcm9tIFlQIHNpdGUuIA0KIFNoYWxsIHdlIGFkZCB0aGVzZSB0aXRsZSByZXF1aXJl
-bWVudHMgaW4gdGhlIEJTUCBzdGFuZGFyZCBmb3JtYXQsIHNvIHRoYXQgb3RoZXIgQlNQIHByb3Zp
-ZGVyJ3MgZm9sbG93IHRoZSBzYW1lIHByYWN0aWNlPw0KDQpOaXRpbg0KDQo+IFRvbQ0KPiANCj4g
-PiA+DQo+ID4gPiA+ICsNCj4gPiA+ID4gK0NvbXBsaWFuY2U6DQo+ID4gPiA+ICs9PT09PT09PT09
-PT0NCj4gPiA+DQo+ID4gPiBGb3IgY29uc2lzdGVuY3kgd2l0aCB0aGUgcmVzdCBvZiB0aGUgUkVB
-RE1FLCBwbGVhc2UgcmVtb3ZlIHRoZSBjb2xvbg0KPiA+ID4gYW5kIGNsZWFuIHVwIHRoZSB1bmRl
-cmxpbmluZy4NCj4gPg0KPiA+IFdpbGwgZG8uDQo+ID4NCj4gPiBUaGFua3MsDQo+ID4gTml0aW4N
-Cj4gPiA+DQo+ID4gPiBUaGFua3MsDQo+ID4gPg0KPiA+ID4gVG9tDQo+ID4gPg0KPiA+ID4gPiAr
-VGhpcyBCU1AgaXMgY29tcGxpYW50IHdpdGggWW9jdG8gUHJvamVjdCBhcyBwZXIgcmVxdWlyZW1l
-bnRzIGxpc3RlZA0KPiBoZXJlOg0KPiA+ID4gPiAraHR0cDovL3d3dy55b2N0b3Byb2plY3Qub3Jn
-L3lvY3RvLXByb2plY3QtY29tcGF0aWJsZS1yZWdpc3RyYXRpb24NCj4gPiA+ID4gKw0KPiA+ID4g
-PiArDQo+ID4gPiA+ICBEZXBlbmRlbmNpZXMNCj4gPiA+ID4gID09PT09PT09PT09PQ0KPiA+ID4g
-Pg0KPiA+ID4gPiBAQCAtMjIsNyArMzEsNyBAQCBUaGlzIGxheWVyIGRlcGVuZHMgb246DQo+ID4g
-PiA+ICAgIGJyYW5jaDogbWFzdGVyDQo+ID4gPiA+DQo+ID4gPiA+ICAgIFVSSTogZ2l0Oi8vZ2l0
-LnlvY3RvcHJvamVjdC5vcmcvbWV0YS1pbnRlbA0KPiA+ID4gPiAtICBsYXllcnM6IGludGVsDQo+
-ID4gPiA+ICsgIGxheWVyczogbWV0YS1pbnRlbCwgbWV0YS1jcm93bmJheQ0KPiA+ID4gPiAgICBi
-cmFuY2g6IG1hc3Rlcg0KPiA+ID4gPg0KPiA+ID4gPg0KPiA+ID4NCj4gPg0KPiANCg0K
+> -----Original Message-----
+> From: yocto-bounces@yoctoproject.org [mailto:yocto-
+> bounces@yoctoproject.org] On Behalf Of Tom Zanussi
+> Sent: Wednesday, October 24, 2012 9:43 AM
+> To: Kamble, Nitin A
+> Cc: yocto@yoctoproject.org; Hart, Darren
+> Subject: Re: [yocto] [PATCH 3/6] crownbay README: add WebTitle &
+> Compliance information
+>=20
+> On Wed, 2012-10-24 at 11:06 -0500, Kamble, Nitin A wrote:
+> >
+> > > -----Original Message-----
+> > > From: Zanussi, Tom
+> > > Sent: Tuesday, October 23, 2012 2:16 PM
+> > > To: Kamble, Nitin A
+> > > Cc: yocto@yoctoproject.org; Hart, Darren
+> > > Subject: Re: [PATCH 3/6] crownbay README: add WebTitle & =
+Compliance
+> > > information
+> > >
+> > > On Tue, 2012-10-23 at 13:24 -0700, nitin.a.kamble@intel.com wrote:
+> > > > From: Nitin A Kamble <nitin.a.kamble@intel.com>
+> > > >
+> > > > The WebTitle will be used to publish the BSP on the Yocto =
+Project
+> Website.
+> > > > And adding the Yocto Project Compliance information for the 1.3
+> release.
+> > > > Also specifying all the layers used from meta-intel repository.
+> > > >
+> > > > Signed-off-by: Nitin A Kamble <nitin.a.kamble@intel.com>
+> > > > ---
+> > > >  meta-crownbay/README |   13 +++++++++++--
+> > > >  1 files changed, 11 insertions(+), 2 deletions(-)
+> > > >
+> > > > diff --git a/meta-crownbay/README b/meta-crownbay/README index
+> > > > 4bc9f31..3996a94 100644
+> > > > --- a/meta-crownbay/README
+> > > > +++ b/meta-crownbay/README
+> > > > @@ -2,13 +2,22 @@ This README file contains information on
+> > > > building the meta-crownbay  BSP layer, and booting the images
+> > > > contained in the
+> > > /binary directory.
+> > > >  Please see the corresponding sections below for details.
+> > > >
+> > > > -The Crown Bay platform consists of the Intel Atom Z6xx =
+processor,
+> > > > +The Crown Bay platform consists of the Intel Atom E6xx =
+processor,
+> > > >  plus the Intel EG20T Platform Controller Hub (Tunnel Creek + =
+Topcliff).
+> > > >
+> > > >  It also supports the E6xx embedded on-chip graphics via the =
+Intel
+> > > > Embedded Media and Graphics Driver (EMGD) 1.14 Driver.
+> > > >
+> > > >
+> > > > +WebTitle: Intel Atom E6xx processor with Intel EG20T Controller
+> > > > +Hub development kit (crownbay)
+> > > > +
+> > >
+> > > I'm not sure this kind of thing should be in the README since we =
+can
+> > > have multiple downloadable BSPs per layer e.g. crownbay vs
+> > > crownbay-noemgd.  I suppose in keeping with the build system you
+> > > could have separate WebTitle_crownbay and WebTitle_crownbay-
+> noemgd
+> > > lines. ;-) (and it would be nice if you could get rid of the
+> > > CamelCaps too)
+> > >
+> > > Why not put this info in the machine.conf, where we already have
+> > > fields meant to be machine parseable e.g.
+> > >
+> > > #@TYPE: Machine
+> > > #@NAME: crownbay
+> > >
+> > > #@WEBTITLE: ...
+> > >
+> > > Or maybe just use the exisiting #@DESCRIPTION for that...
+> >
+> > For example in the current way the BSPs are published, this is shown
+> > on the YP website for crownbay
+> >
+> > Intel Atom Processor E660 with Intel Platform Controller Hub EG20T
+> > Development Kit
+> > Version: 7.0 "Denzil"
+> > Release date: 29 Jun 2012
+> > Type: BSP
+> > Download Links:
+> > Crown Bay
+> > Crown Bay no EMGD
+> > Release Notes
+> >
+> > So there is one BSP list item per h/w with multiple links to =
+different BSP
+> tarballs for the same hardware.
+> > If we move the WebTitle in machine file, then we will have multiple =
+items
+> in the BSP list for the same hardware.
+> > I am not sure which is better from the downloader's point of view. =
+But this
+> is worth considering for this change.
+> >
+>=20
+> Yeah, on the one hand if we have text that's the same for all BSPs in =
+the
+> layer, it could go in the README for lack of a better common place.
+>=20
+> But we should consider whether we want to lay things out as the =
+crownbay
+> above, or more like the cedartrail, which has:
+>=20
+> Intel=C2=AE Atom=E2=84=A2 Processor N2000 and D2000 Series-based =
+Platform (CEDAR
+> TRAIL) with PowerVR Graphics
+>=20
+> (there's no corresponding -nopvr version available, though I suspect =
+that's an
+> oversight and would have been something like:
+>=20
+> Intel=C2=AE Atom=E2=84=A2 Processor N2000 and D2000 Series-based =
+Platform (CEDAR
+> TRAIL) with VESA Graphics
+>=20
+> I'm not sure the field(s) need to map exactly to the page layout, but =
+all the
+> information should be there to allow the page to be generated or laid =
+out by
+> hand without having to ask questions, in either case.  Did you have =
+any idea
+> as to how for example to distinguish between the emgd and -noemgd
+> versions (side note: there's nothing in the current entry that tells =
+the user
+> what EMGD even is - should it at least be spelled out in the title, or =
+do we
+> need a separate subtext element to describe
+> that?)
+>=20
+> Tom
+>=20
+
+I am working with CEDAR trail and Crown Bay-like (SYS940X-ECX) systems. =
+For Crown Bay, it is a little confusing to know which tar ball to =
+download. It would be clearer to have one BSP with an option switch to =
+enable the video.=20
+
+Also, it would help to know how the EMGD has been configure in the BSP =
+and for what output ports. Having worked with EMGD there are many =
+options. For the SYS940X-ECX, the video driver (VGA-output) doesn't load =
+so X doesn't start. It would be nice to use EMGD to configure this =
+myself and then add the driver, but if this can already be down in the =
+configuration file, it is not clear how to do this.
+
+Regards,
+
+Sean Liming
+Owner
+Annabooks
+Tel: 714-970-7523 / Cell: 858-774-3176
+
+
+
+> > >
+> > > > +
+> > > > +Compliance:
+> > > > +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> > >
+> > > For consistency with the rest of the README, please remove the =
+colon
+> > > and clean up the underlining.
+> >
+> > Will do.
+> >
+> > Thanks,
+> > Nitin
+> > >
+> > > Thanks,
+> > >
+> > > Tom
+> > >
+> > > > +This BSP is compliant with Yocto Project as per requirements =
+listed
+> here:
+> > > > =
++http://www.yoctoproject.org/yocto-project-compatible-registration
+> > > > +
+> > > > +
+> > > >  Dependencies
+> > > >  =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> > > >
+> > > > @@ -22,7 +31,7 @@ This layer depends on:
+> > > >    branch: master
+> > > >
+> > > >    URI: git://git.yoctoproject.org/meta-intel
+> > > > -  layers: intel
+> > > > +  layers: meta-intel, meta-crownbay
+> > > >    branch: master
+> > > >
+> > > >
+> > >
+> >
+>=20
+>=20
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
 
