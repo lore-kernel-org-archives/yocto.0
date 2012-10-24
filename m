@@ -1,30 +1,32 @@
-Return-Path: <song.liu@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C80CFE0127A
-	for <yocto@yoctoproject.org>; Tue, 23 Oct 2012 20:28:29 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 23 Oct 2012 20:27:50 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,638,1344236400"; d="scan'208";a="231439024"
-Received: from orsmsx104.amr.corp.intel.com ([10.22.225.131])
-	by orsmga002.jf.intel.com with ESMTP; 23 Oct 2012 20:28:16 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.82]) by
-	ORSMSX104.amr.corp.intel.com ([169.254.3.247]) with mapi id
-	14.01.0355.002; Tue, 23 Oct 2012 20:28:16 -0700
-From: "Liu, Song" <song.liu@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Minutes: Yocto Project Technical Team Meeting - Tuesday,
-	October 23, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
-Thread-Index: AQHNsZebuF9LN+6Kc0Cg8YupFObZAg==
-Date: Wed, 24 Oct 2012 03:28:16 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A485C32A8@ORSMSX101.amr.corp.intel.com>
-References: <7E680CB2A76BB8438D08CF13C09FC53A4844CAD5@ORSMSX101.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.138]
-MIME-Version: 1.0
-Subject: Minutes: Yocto Project Technical Team Meeting - Tuesday, October 23, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-da0-f48.google.com (mail-da0-f48.google.com
+	[209.85.210.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7F96FE0127A
+	for <yocto@yoctoproject.org>; Tue, 23 Oct 2012 20:57:46 -0700 (PDT)
+Received: by mail-da0-f48.google.com with SMTP id z8so54837dad.35
+	for <yocto@yoctoproject.org>; Tue, 23 Oct 2012 20:57:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:cc:subject:date:message-id:x-mailer;
+	bh=zFkPOCyr21+mKatz99pt+sVha1MErYd/U+SK7i0lUvs=;
+	b=ObXvmfYiJenaw2lIuKT4p/LFnGpJKNl6O/CKdw9LyLZHlpn5WuGO/oSzLAiOuj+Hqs
+	4EwjrUDr6XQXDrWME0AzRuuDSyVwCJzdJX0WLOkzyBuDh7h32vqcwFS2neNiOeyBBq6W
+	VgtmIDHvoCZGBsvA6EiDlT3geLpohuJDTqekOl4piz8xEufDXArjMxTffxTYA+Uupa3f
+	L/P5gfti8Ga/UnAkc3EmspGVAELePqQKNJiL265IEK8itBo5wQIX/QzawD4D42QtIjci
+	vE8SRvpoEf4Z7H5Z5iUfxRCLJPP4uBqrkUChb4FhLLv2eCGMkHOd/4UdsdNnMD5UuUPg
+	bqXw==
+Received: by 10.68.230.234 with SMTP id tb10mr46168451pbc.71.1351051066299;
+	Tue, 23 Oct 2012 20:57:46 -0700 (PDT)
+Received: from agate.agate.openembedded.org (oldbuilder.nslu2-linux.org.
+	[140.211.169.168])
+	by mx.google.com with ESMTPS id oj1sm8762135pbb.19.2012.10.23.20.57.45
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Tue, 23 Oct 2012 20:57:45 -0700 (PDT)
+From: Khem Raj <raj.khem@gmail.com>
+To: yocto@yoctoproject.org
+Date: Tue, 23 Oct 2012 20:56:54 -0700
+Message-Id: <1351051014-15859-1-git-send-email-raj.khem@gmail.com>
+X-Mailer: git-send-email 1.7.9.5
+Subject: [meta-intel/danny][PATCH] meta-crystalforest, linux-yocto_3.4.bbappend: Pin LINUX_VERSION
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,78 +38,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 24 Oct 2012 03:28:29 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 24 Oct 2012 03:57:46 -0000
 
-Decision:=20
-  - The community has unanimously agreed to release RC4 as the 1.3 release.=
- Congrats to the team! Thank you all.
-=A0
-Attendees:
-MichaelH, Mihai, Jessica, Beth, PaulE, JeffP, Sean, Kevin, Nitin, ScottR, N=
-itin, Amit, ChrisL, Bruce, Dave, Saul, Denys, Song
-=A0
-Minutes:
-=A0
-* Clarification: What kind of things we can have in opens and team sharing:
-  - Opens: Anything you would like to have an open discussion or raise to o=
-thers, including technical issues, questions, feature or fix proposals, req=
-uest for feedback, blockers, concerns, suggestions, etc.
-  - Team sharing: Anything you have done around YP in the past week, plan f=
-or the current week, issues, road blockers, need help from others, etc. Suc=
-h as development work, conference experience, etc.
-=A0
-* Opens collection - 5 min (Song)
- =20
-* Yocto 1.3 release readiness - 20 min (Song/team)
-  https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.3_Status#Milestone_5_=
-.281.3_release.29
-  - Release criteria review: All criteria has been met with RC4.=20
-  - The QA report on RC4 is the cleanest QA report we have seen for the ent=
-ire release. Very few issues.=20
-  - Completed 71% of the work we planned for 1.3, compared with 1.2.
-  - Fixed close to 570 bugs with medium or higher priority.
-  - Dave: release criteria on performance, try common use case build. Set a=
- performance target.
-    . RP: have a suite of matrix for performance, including things such as =
-disk space, time to run a special command, overhead of starting a bitbake.e=
-tc.
-    . Beth: will work on the feature request for this performance measure. =
-Will work with QA on this.
-  - The community has unanimously agreed to release RC4 as the 1.3 release.=
- Congrats to the team! Thank you all.=20
-=A0
-=A0
-* SWAT team rotation: Saul -> Nitin
-  - RP: AB is building everything, so far, it's not too bad. There are some=
- failures on BSPs.
-=A0
-* Opens - 10 min
-  - Song: Mentor's plan around 1.4 timeframe.=20
-    . Sean: continue to align mentor linux release with YP release. Interes=
-ted to see how things move forward with webhob, will provide some feedback.=
- Trying to aligning next mentor release with 1.3 now. The team is busy work=
-ing on Mentor Linux now.
-=A0
-* Team Sharing - 20 min
-  - Mihai: working on an approach on package testing. Basic idea is to run =
-make test for each package by including a new class. The test is run in the=
- building environment (host machine). Will contact Bjorn (Enea) for this. W=
-orking on PPM module layer for poky. Just published yesterday, it's experim=
-ental.
-  - MichaelH: added secondary DNS server, no interruption of server on rebo=
-oting now. https access is there, bottom of every git page. A lots of work =
-with Jeff and others on content moving for new web site. Jeff is relieved. =
-Package reporting website. Just got moderation on wiki account. Separate pa=
-ckage reporting with download site. Getting download site for 1.3 ready.
-  - Beth: added something to dev manual. How to release product with YP. Pa=
-rticularly with source archiver. LF checked it, generally pleased.=20
-  - RP: focused on performance, we enabled sstate n 1.3, there are some iss=
-ues if you have multiple machines sharing a common package architecture. Be=
-en unwinding the issue and looking at the shared lib code. Dealing with fil=
-es, copying files. Debug package. Performance is one of the themes for 1.4.=
- changes to autotool bbclass is happening.=20
+meta-crystalforest BSPs uses 3.4.9 kernel but the default
+yocto kernel is 3.4.11, if we do not pin the LINUX_VERSION
+then we get inconsistent version number for bzImage and the modules
+where modules are installed under /lib/modules/3.4.9-yocto-standard/
+but kernel is called
+bzImage-3.4.11+git2+9e3bdb7344054264b750e53fbbb6394cc1c942ac_1+0985844fa6235422c67ef269952fa4e765f252f9-r4.3-crystalforest-stargo-20121024031021.bin
+
+This patch fixes this mismatch. Beaware that other BSPs from
+meta-intel may need something similar too.
+
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
+---
+ .../recipes-kernel/linux/linux-yocto_3.4.bbappend  |    3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/meta-crystalforest/recipes-kernel/linux/linux-yocto_3.4.bbappend b/meta-crystalforest/recipes-kernel/linux/linux-yocto_3.4.bbappend
+index 082fe38..92aaa61 100644
+--- a/meta-crystalforest/recipes-kernel/linux/linux-yocto_3.4.bbappend
++++ b/meta-crystalforest/recipes-kernel/linux/linux-yocto_3.4.bbappend
+@@ -15,3 +15,6 @@ SRCREV_machine_pn-linux-yocto_crystalforest-shumway ?= "0985844fa6235422c67ef269
+ SRCREV_meta_pn-linux-yocto_crystalforest-shumway ?= "9e3bdb7344054264b750e53fbbb6394cc1c942ac"
+ 
+ module_autoload_uio = "uio"
++
++LINUX_VERSION = "3.4.9"
++
+-- 
+1.7.9.5
 
 
