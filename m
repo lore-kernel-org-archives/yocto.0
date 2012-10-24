@@ -1,25 +1,25 @@
 Return-Path: <nitin.a.kamble@intel.com>
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D0977E0032E
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F0D9DE00346
 	for <yocto@yoctoproject.org>; Wed, 24 Oct 2012 13:27:10 -0700 (PDT)
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
 	by fmsmga101.fm.intel.com with ESMTP; 24 Oct 2012 13:26:53 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,642,1344236400"; d="scan'208";a="237817659"
+X-IronPort-AV: E=Sophos;i="4.80,642,1344236400"; d="scan'208";a="237817663"
 Received: from yocto-hm1.jf.intel.com ([10.23.232.32])
-	by fmsmga001.fm.intel.com with ESMTP; 24 Oct 2012 13:26:51 -0700
+	by fmsmga001.fm.intel.com with ESMTP; 24 Oct 2012 13:26:52 -0700
 From: nitin.a.kamble@intel.com
 To: yocto@yoctoproject.org,
 	tom.zanussi@intel.com,
 	darren.hart@intel.com
-Date: Wed, 24 Oct 2012 13:25:48 -0700
-Message-Id: <f1a7d9cde11e622392859625fed95edde1a28db5.1351110208.git.nitin.a.kamble@intel.com>
+Date: Wed, 24 Oct 2012 13:25:49 -0700
+Message-Id: <a780117b75820f5726062221827277e041d6d70c.1351110208.git.nitin.a.kamble@intel.com>
 X-Mailer: git-send-email 1.7.3.4
 In-Reply-To: <1d3856156110f722e46f1960851d1ed67e2f30f0.1351110208.git.nitin.a.kamble@intel.com>
 References: <1d3856156110f722e46f1960851d1ed67e2f30f0.1351110208.git.nitin.a.kamble@intel.com>
 In-Reply-To: <cover.1351110208.git.nitin.a.kamble@intel.com>
 References: <cover.1351110208.git.nitin.a.kamble@intel.com>
-Subject: [PATCH v2 2/6] chiefriver: add WEBTITLE & Compliance information
+Subject: [PATCH v2 3/6] crownbay: add WEBTITLE & Compliance information
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,16 +41,25 @@ Also specifying all the layers used from meta-intel repository.
 
 Signed-off-by: Nitin A Kamble <nitin.a.kamble@intel.com>
 ---
- meta-chiefriver/README                       |    8 +++++++-
- meta-chiefriver/conf/machine/chiefriver.conf |    2 ++
- 2 files changed, 9 insertions(+), 1 deletions(-)
+ meta-crownbay/README                            |   10 ++++++++--
+ meta-crownbay/conf/machine/crownbay-noemgd.conf |    2 ++
+ meta-crownbay/conf/machine/crownbay.conf        |    2 ++
+ 3 files changed, 12 insertions(+), 2 deletions(-)
 
-diff --git a/meta-chiefriver/README b/meta-chiefriver/README
-index 7c47b02..249a389 100644
---- a/meta-chiefriver/README
-+++ b/meta-chiefriver/README
-@@ -7,6 +7,12 @@ plus the Panther Point PCH.  This BSP assumes that the Ivy Bridge
- integrated graphics are being used.
+diff --git a/meta-crownbay/README b/meta-crownbay/README
+index 4bc9f31..f3ad506 100644
+--- a/meta-crownbay/README
++++ b/meta-crownbay/README
+@@ -2,13 +2,19 @@ This README file contains information on building the meta-crownbay
+ BSP layer, and booting the images contained in the /binary directory.
+ Please see the corresponding sections below for details.
+ 
+-The Crown Bay platform consists of the Intel Atom Z6xx processor,
++The Crown Bay platform consists of the Intel Atom E6xx processor,
+ plus the Intel EG20T Platform Controller Hub (Tunnel Creek + Topcliff).
+ 
+ It also supports the E6xx embedded on-chip graphics via the Intel
+ Embedded Media and Graphics Driver (EMGD) 1.14 Driver.
  
  
 +Compliance
@@ -62,27 +71,40 @@ index 7c47b02..249a389 100644
  Dependencies
  ============
  
-@@ -20,7 +26,7 @@ This layer depends on:
+@@ -22,7 +28,7 @@ This layer depends on:
    branch: master
  
    URI: git://git.yoctoproject.org/meta-intel
 -  layers: intel
-+  layers: meta-intel, meta-chiefriver
++  layers: meta-intel, meta-crownbay
    branch: master
  
  
-diff --git a/meta-chiefriver/conf/machine/chiefriver.conf b/meta-chiefriver/conf/machine/chiefriver.conf
-index b8b8754..5005ce0 100644
---- a/meta-chiefriver/conf/machine/chiefriver.conf
-+++ b/meta-chiefriver/conf/machine/chiefriver.conf
+diff --git a/meta-crownbay/conf/machine/crownbay-noemgd.conf b/meta-crownbay/conf/machine/crownbay-noemgd.conf
+index 4c869ee..c3bdcb4 100644
+--- a/meta-crownbay/conf/machine/crownbay-noemgd.conf
++++ b/meta-crownbay/conf/machine/crownbay-noemgd.conf
 @@ -1,6 +1,8 @@
  #@TYPE: Machine
- #@NAME: chiefriver
+ #@NAME: crownbay-noemgd
  
-+#@WEBTITLE: Intel 3rd Generations Core Platforms: Core i3, i5, i7 (Ivy Bridge)
++#@WEBTITLE: Intel Atom E6xx processor with Intel EG20T Controller Hub development kit (Crown Bay) with open source VESA graphics
 +
- #@DESCRIPTION: Machine configuration for Chief River systems
- # i.e. Ivy Bridge + Panther Point
+ #@DESCRIPTION: Machine configuration for Crown Bay systems, without Intel-proprietary graphics bits
+ # i.e. E660 + EG20T
+ 
+diff --git a/meta-crownbay/conf/machine/crownbay.conf b/meta-crownbay/conf/machine/crownbay.conf
+index d56ef64..5e4147c 100644
+--- a/meta-crownbay/conf/machine/crownbay.conf
++++ b/meta-crownbay/conf/machine/crownbay.conf
+@@ -1,6 +1,8 @@
+ #@TYPE: Machine
+ #@NAME: crownbay
+ 
++#@WEBTITLE: Intel Atom E6xx processor with Intel EG20T Controller Hub development kit (Crown Bay) with proprietary IEMGD accelerated graphics
++
+ #@DESCRIPTION: Machine configuration for Crown Bay systems
+ # i.e. E660 + EG20T
  
 -- 
 1.7.3.4
