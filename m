@@ -1,32 +1,24 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-da0-f48.google.com (mail-da0-f48.google.com
-	[209.85.210.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7F96FE0127A
-	for <yocto@yoctoproject.org>; Tue, 23 Oct 2012 20:57:46 -0700 (PDT)
-Received: by mail-da0-f48.google.com with SMTP id z8so54837dad.35
-	for <yocto@yoctoproject.org>; Tue, 23 Oct 2012 20:57:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id:x-mailer;
-	bh=zFkPOCyr21+mKatz99pt+sVha1MErYd/U+SK7i0lUvs=;
-	b=ObXvmfYiJenaw2lIuKT4p/LFnGpJKNl6O/CKdw9LyLZHlpn5WuGO/oSzLAiOuj+Hqs
-	4EwjrUDr6XQXDrWME0AzRuuDSyVwCJzdJX0WLOkzyBuDh7h32vqcwFS2neNiOeyBBq6W
-	VgtmIDHvoCZGBsvA6EiDlT3geLpohuJDTqekOl4piz8xEufDXArjMxTffxTYA+Uupa3f
-	L/P5gfti8Ga/UnAkc3EmspGVAELePqQKNJiL265IEK8itBo5wQIX/QzawD4D42QtIjci
-	vE8SRvpoEf4Z7H5Z5iUfxRCLJPP4uBqrkUChb4FhLLv2eCGMkHOd/4UdsdNnMD5UuUPg
-	bqXw==
-Received: by 10.68.230.234 with SMTP id tb10mr46168451pbc.71.1351051066299;
-	Tue, 23 Oct 2012 20:57:46 -0700 (PDT)
-Received: from agate.agate.openembedded.org (oldbuilder.nslu2-linux.org.
-	[140.211.169.168])
-	by mx.google.com with ESMTPS id oj1sm8762135pbb.19.2012.10.23.20.57.45
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Tue, 23 Oct 2012 20:57:45 -0700 (PDT)
-From: Khem Raj <raj.khem@gmail.com>
-To: yocto@yoctoproject.org
-Date: Tue, 23 Oct 2012 20:56:54 -0700
-Message-Id: <1351051014-15859-1-git-send-email-raj.khem@gmail.com>
-X-Mailer: git-send-email 1.7.9.5
-Subject: [meta-intel/danny][PATCH] meta-crystalforest, linux-yocto_3.4.bbappend: Pin LINUX_VERSION
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E276BE0127A
+	for <yocto@yoctoproject.org>; Tue, 23 Oct 2012 21:31:02 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 23 Oct 2012 21:31:02 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,638,1344236400"; d="scan'208";a="209809658"
+Received: from fear.jf.intel.com (HELO rage.local) ([10.7.201.160])
+	by orsmga001.jf.intel.com with ESMTP; 23 Oct 2012 21:31:02 -0700
+From: Darren Hart <dvhart@linux.intel.com>
+To: Yocto Project <yocto@yoctoproject.org>
+Date: Tue, 23 Oct 2012 21:31:16 -0700
+Message-Id: <7c04daa734711e09a830b8585c29b36a875d88c3.1351053026.git.dvhart@linux.intel.com>
+X-Mailer: git-send-email 1.7.5.4
+In-Reply-To: <18eb222d35f55fbf3cbd16afb6509ecffe30b7ca.1351053026.git.dvhart@linux.intel.com>
+References: <18eb222d35f55fbf3cbd16afb6509ecffe30b7ca.1351053026.git.dvhart@linux.intel.com>
+In-Reply-To: <18eb222d35f55fbf3cbd16afb6509ecffe30b7ca.1351053026.git.dvhart@linux.intel.com>
+References: <18eb222d35f55fbf3cbd16afb6509ecffe30b7ca.1351053026.git.dvhart@linux.intel.com>
+Cc: Darren Hart <dvhart@linux.intel.com>
+Subject: [PATCH 2/3] fri2: README: Correct typographical and wording errors
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,35 +30,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 24 Oct 2012 03:57:46 -0000
+X-List-Received-Date: Wed, 24 Oct 2012 04:31:03 -0000
 
-meta-crystalforest BSPs uses 3.4.9 kernel but the default
-yocto kernel is 3.4.11, if we do not pin the LINUX_VERSION
-then we get inconsistent version number for bzImage and the modules
-where modules are installed under /lib/modules/3.4.9-yocto-standard/
-but kernel is called
-bzImage-3.4.11+git2+9e3bdb7344054264b750e53fbbb6394cc1c942ac_1+0985844fa6235422c67ef269952fa4e765f252f9-r4.3-crystalforest-stargo-20121024031021.bin
+Correct minor issues reported by Steve S.
 
-This patch fixes this mismatch. Beaware that other BSPs from
-meta-intel may need something similar too.
-
-Signed-off-by: Khem Raj <raj.khem@gmail.com>
+Signed-off-by: Darren Hart <dvhart@linux.intel.com>
+Reported-by: Steve Sakoman <steve@sakoman.com>
 ---
- .../recipes-kernel/linux/linux-yocto_3.4.bbappend  |    3 +++
- 1 file changed, 3 insertions(+)
+ meta-fri2/README |    6 +++---
+ 1 files changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/meta-crystalforest/recipes-kernel/linux/linux-yocto_3.4.bbappend b/meta-crystalforest/recipes-kernel/linux/linux-yocto_3.4.bbappend
-index 082fe38..92aaa61 100644
---- a/meta-crystalforest/recipes-kernel/linux/linux-yocto_3.4.bbappend
-+++ b/meta-crystalforest/recipes-kernel/linux/linux-yocto_3.4.bbappend
-@@ -15,3 +15,6 @@ SRCREV_machine_pn-linux-yocto_crystalforest-shumway ?= "0985844fa6235422c67ef269
- SRCREV_meta_pn-linux-yocto_crystalforest-shumway ?= "9e3bdb7344054264b750e53fbbb6394cc1c942ac"
+diff --git a/meta-fri2/README b/meta-fri2/README
+index a866174..05b7257 100644
+--- a/meta-fri2/README
++++ b/meta-fri2/README
+@@ -154,8 +154,8 @@ example:
+ # eject /dev/sdf
  
- module_autoload_uio = "uio"
-+
-+LINUX_VERSION = "3.4.9"
-+
+ This should give you a bootable USB flash device.  Insert the device
+-into a bootable USB socket on the target, and power on.  This should
+-result in a system booted to the Sato graphical desktop.
++into one of the USB host ports on the target, and power on.  This
++should result in a system booted to the Sato graphical desktop.
+ 
+ If you want a terminal, use the arrows at the top of the UI to move to
+ different pages of available applications, one of which is named
+@@ -242,7 +242,7 @@ e. GPIO
+ -------
+ The FRI2 has two I2C PCA555x GPIO devices used for internal control
+ signals. These have not been exposed in the current release of the
+-BSP, but may be in the future. Regardless, these do would not provide
++BSP, but may be in the future. Regardless, these would not provide
+ general purpose IO with which to read or drive additional signals.
+ 
+ f. MMC
 -- 
-1.7.9.5
+1.7.5.4
 
 
