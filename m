@@ -1,24 +1,32 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 02B30E0143A
-	for <yocto@yoctoproject.org>; Tue, 23 Oct 2012 21:31:02 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 23 Oct 2012 21:31:02 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,638,1344236400"; d="scan'208";a="209809659"
-Received: from fear.jf.intel.com (HELO rage.local) ([10.7.201.160])
-	by orsmga001.jf.intel.com with ESMTP; 23 Oct 2012 21:31:02 -0700
-From: Darren Hart <dvhart@linux.intel.com>
-To: Yocto Project <yocto@yoctoproject.org>
-Date: Tue, 23 Oct 2012 21:31:17 -0700
-Message-Id: <4514ef8ee878fa1e7577b816a8fd71cd46101833.1351053026.git.dvhart@linux.intel.com>
-X-Mailer: git-send-email 1.7.5.4
-In-Reply-To: <18eb222d35f55fbf3cbd16afb6509ecffe30b7ca.1351053026.git.dvhart@linux.intel.com>
-References: <18eb222d35f55fbf3cbd16afb6509ecffe30b7ca.1351053026.git.dvhart@linux.intel.com>
-In-Reply-To: <18eb222d35f55fbf3cbd16afb6509ecffe30b7ca.1351053026.git.dvhart@linux.intel.com>
-References: <18eb222d35f55fbf3cbd16afb6509ecffe30b7ca.1351053026.git.dvhart@linux.intel.com>
-Cc: Darren Hart <dvhart@linux.intel.com>
-Subject: [PATCH 3/3] fri2: Add grub-efi workaround for USB keyboard initialization
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
+	[93.97.173.237])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7C28BE00348
+	for <yocto@yoctoproject.org>; Wed, 24 Oct 2012 04:14:30 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q9OBEGWQ002123;
+	Wed, 24 Oct 2012 12:14:16 +0100
+Received: from tim.rpsys.net ([127.0.0.1])
+	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
+	port 10024) with LMTP
+	id 01410-01; Wed, 24 Oct 2012 12:14:12 +0100 (BST)
+Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
+	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q9OBE5VW002117
+	(version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=NO);
+	Wed, 24 Oct 2012 12:14:07 +0100
+Message-ID: <1351077244.22340.90.camel@ted>
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: Steffen Sledz <sledz@dresearch-fe.de>
+Date: Wed, 24 Oct 2012 12:14:04 +0100
+In-Reply-To: <1351076036-25453-2-git-send-email-sledz@dresearch-fe.de>
+References: <20121023184056.GR3269@jama.jama.net>
+	<1351076036-25453-1-git-send-email-sledz@dresearch-fe.de>
+	<1351076036-25453-2-git-send-email-sledz@dresearch-fe.de>
+X-Mailer: Evolution 3.2.3-0ubuntu6 
+Mime-Version: 1.0
+X-Virus-Scanned: amavisd-new at rpsys.net
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH resend][opkg-utils] opkg.py/opkg-build: fix creation of tar archives
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,38 +38,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 24 Oct 2012 04:31:03 -0000
+X-List-Received-Date: Wed, 24 Oct 2012 11:14:31 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-The Fastboot firmware will sometimes fail to init the USB keyboard when
-connected directly in 1.0 mode (works fine through a 2.0 hub). By adding
-the USB modules to the grub-efi build, we can ensure the keyboard will
-be available in the grub menu at the expense of about a second in boot
-time.
+On Wed, 2012-10-24 at 12:53 +0200, Steffen Sledz wrote:
+> Since openSUSE 12.2 the installed tar uses posix instead of gnu encoding
+> by default. This format is not fully supported by opkg and results in
+> ipk packages not installable at the target.
+> 
+> Collected errors:
+>  * get_header_tar: Unknown typeflag: 0x78: Success.
+>  * get_header_tar: Unknown typeflag: 0x78: Success.
+>  * get_header_tar: Unknown typeflag: 0x78: Success.
+>  * extract_archive: Don't know how to handle /var/lib/opkg/tmp/opkg-mg997m/chicken-bin-fGRvr4/PaxHeaders.17512/.: No such file or directory.
+>  * get_header_tar: Unknown typeflag: 0x78: No such file or directory.
+>  * get_header_tar: Unknown typeflag: 0x78: No such file or directory.
+>  ...
+> 
+> Signed-off-by: Steffen Sledz <sledz@dresearch-fe.de>
+> ---
+>  opkg-build |    6 +++---
+>  opkg.py    |    6 +++---
+>  2 files changed, 6 insertions(+), 6 deletions(-)
 
-Signed-off-by: Darren Hart <dvhart@linux.intel.com>
----
- .../recipes-bsp/grub/grub-efi-native_2.00.bbappend |   11 +++++++++++
- 1 files changed, 11 insertions(+), 0 deletions(-)
- create mode 100644 meta-fri2/recipes-bsp/grub/grub-efi-native_2.00.bbappend
+Merged to master, thanks.
 
-diff --git a/meta-fri2/recipes-bsp/grub/grub-efi-native_2.00.bbappend b/meta-fri2/recipes-bsp/grub/grub-efi-native_2.00.bbappend
-new file mode 100644
-index 0000000..c6904ef
---- /dev/null
-+++ b/meta-fri2/recipes-bsp/grub/grub-efi-native_2.00.bbappend
-@@ -0,0 +1,11 @@
-+# The Intel provided Fast Boot Firmware may not initialize the USB keyboard
-+# before launching the grub.efi payload. Ensure GRUB has keyboard control by
-+# building in the usb, usb_keyboard, and ohci modules.
-+
-+do_mkimage() {
-+	./grub-mkimage -p /EFI/BOOT -d ./grub-core/ \
-+	               -O ${GRUB_TARGET}-efi -o ./${GRUB_IMAGE} \
-+	               boot linux ext2 fat serial part_msdos part_gpt normal efi_gop \
-+	               usb usb_keyboard ohci
-+}
-+
--- 
-1.7.5.4
+Richard
 
 
