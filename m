@@ -1,27 +1,24 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 56AFAE0127A
-	for <yocto@yoctoproject.org>; Wed, 24 Oct 2012 09:43:10 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 24 Oct 2012 09:43:09 -0700
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0974CE0032E
+	for <yocto@yoctoproject.org>; Wed, 24 Oct 2012 10:02:58 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 24 Oct 2012 10:02:31 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,640,1344236400"; d="scan'208";a="239574499"
-Received: from unknown (HELO [10.255.14.152]) ([10.255.14.152])
-	by fmsmga002.fm.intel.com with ESMTP; 24 Oct 2012 09:43:09 -0700
-Message-ID: <1351096988.27553.19.camel@empanada>
-From: Tom Zanussi <tom.zanussi@intel.com>
-To: "Kamble, Nitin A" <nitin.a.kamble@intel.com>
-Date: Wed, 24 Oct 2012 11:43:08 -0500
-In-Reply-To: <ADD6A3980E8C39419A432FF422031B4C2D90DEAA@ORSMSX106.amr.corp.intel.com>
-References: <cover.1351023743.git.nitin.a.kamble@intel.com>
-	<eafcdbdb3843e08adc7385d0f1cec2b316d1b691.1351023743.git.nitin.a.kamble@intel.com>
-	<1351026976.12186.70.camel@empanada>
-	<ADD6A3980E8C39419A432FF422031B4C2D90DEAA@ORSMSX106.amr.corp.intel.com>
-X-Mailer: Evolution 3.4.1 (3.4.1-2.fc17) 
-Mime-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Hart,
-	Darren" <darren.hart@intel.com>
-Subject: Re: [PATCH 3/6] crownbay README: add WebTitle & Compliance information
+X-IronPort-AV: E=Sophos;i="4.80,640,1344236400"; d="scan'208";a="231729136"
+Received: from unknown (HELO helios.localnet) ([10.252.122.99])
+	by orsmga002.jf.intel.com with ESMTP; 24 Oct 2012 10:02:57 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Stefan Herbrechtsmeier <stefan@herbrechtsmeier.net>
+Date: Wed, 24 Oct 2012 18:02:57 +0100
+Message-ID: <15358301.1EO0GOH7WD@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.9.2 (Linux/3.2.0-32-generic-pae; KDE/4.9.2; i686; ; )
+In-Reply-To: <50881794.3020305@herbrechtsmeier.net>
+References: <50881794.3020305@herbrechtsmeier.net>
+MIME-Version: 1.0
+Cc: yocto@yoctoproject.org
+Subject: Re: Ubuntu 10.04 don't support mirror option with parameter
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,146 +30,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 24 Oct 2012 16:43:10 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Wed, 24 Oct 2012 17:02:59 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On Wed, 2012-10-24 at 11:06 -0500, Kamble, Nitin A wrote:
+On Wednesday 24 October 2012 18:30:12 Stefan Herbrechtsmeier wrote:
+> the git version of Ubuntu 10.04 is to old to support mirror option with
+> parameter which is used by the bitbake fetch2.
 > 
-> > -----Original Message-----
-> > From: Zanussi, Tom
-> > Sent: Tuesday, October 23, 2012 2:16 PM
-> > To: Kamble, Nitin A
-> > Cc: yocto@yoctoproject.org; Hart, Darren
-> > Subject: Re: [PATCH 3/6] crownbay README: add WebTitle & Compliance
-> > information
-> > 
-> > On Tue, 2012-10-23 at 13:24 -0700, nitin.a.kamble@intel.com wrote:
-> > > From: Nitin A Kamble <nitin.a.kamble@intel.com>
-> > >
-> > > The WebTitle will be used to publish the BSP on the Yocto Project Website.
-> > > And adding the Yocto Project Compliance information for the 1.3 release.
-> > > Also specifying all the layers used from meta-intel repository.
-> > >
-> > > Signed-off-by: Nitin A Kamble <nitin.a.kamble@intel.com>
-> > > ---
-> > >  meta-crownbay/README |   13 +++++++++++--
-> > >  1 files changed, 11 insertions(+), 2 deletions(-)
-> > >
-> > > diff --git a/meta-crownbay/README b/meta-crownbay/README index
-> > > 4bc9f31..3996a94 100644
-> > > --- a/meta-crownbay/README
-> > > +++ b/meta-crownbay/README
-> > > @@ -2,13 +2,22 @@ This README file contains information on building
-> > > the meta-crownbay  BSP layer, and booting the images contained in the
-> > /binary directory.
-> > >  Please see the corresponding sections below for details.
-> > >
-> > > -The Crown Bay platform consists of the Intel Atom Z6xx processor,
-> > > +The Crown Bay platform consists of the Intel Atom E6xx processor,
-> > >  plus the Intel EG20T Platform Controller Hub (Tunnel Creek + Topcliff).
-> > >
-> > >  It also supports the E6xx embedded on-chip graphics via the Intel
-> > > Embedded Media and Graphics Driver (EMGD) 1.14 Driver.
-> > >
-> > >
-> > > +WebTitle: Intel Atom E6xx processor with Intel EG20T Controller Hub
-> > > +development kit (crownbay)
-> > > +
-> > 
-> > I'm not sure this kind of thing should be in the README since we can have
-> > multiple downloadable BSPs per layer e.g. crownbay vs crownbay-noemgd.  I
-> > suppose in keeping with the build system you could have separate
-> > WebTitle_crownbay and WebTitle_crownbay-noemgd lines. ;-) (and it would
-> > be nice if you could get rid of the CamelCaps too)
-> > 
-> > Why not put this info in the machine.conf, where we already have fields
-> > meant to be machine parseable e.g.
-> > 
-> > #@TYPE: Machine
-> > #@NAME: crownbay
-> > 
-> > #@WEBTITLE: ...
-> > 
-> > Or maybe just use the exisiting #@DESCRIPTION for that...
+> Regards,
+>    Stefan
 > 
-> For example in the current way the BSPs are published, this is shown on the YP website for crownbay 
 > 
-> Intel Atom Processor E660 with Intel Platform Controller Hub EG20T Development Kit
-> Version: 7.0 "Denzil"
-> Release date: 29 Jun 2012
-> Type: BSP
-> Download Links:
-> Crown Bay
-> Crown Bay no EMGD
-> Release Notes
+> DEBUG: ... git remote add --mirror=fetch origin
+> git://git.yoctoproject.org/opkg-utils
+> ERROR: Fetcher failure: Fetch command failed with exit code 129, output:
+> error: option `mirror' takes no value
+> usage: git remote add [<options>] <name> <url>
 > 
-> So there is one BSP list item per h/w with multiple links to different BSP tarballs for the same hardware.
-> If we move the WebTitle in machine file, then we will have multiple items in the BSP list for the same hardware.
-> I am not sure which is better from the downloader's point of view. But this is worth considering for this change.
+>      -f, --fetch           fetch the remote branches
+>      -t, --track <branch>  branch(es) to track
+>      -m, --master <branch>
+>                            master branch
+>      --mirror              no separate remotes
 > 
 
-Yeah, on the one hand if we have text that's the same for all BSPs in
-the layer, it could go in the README for lack of a better common place.
+Which version of the build system are you using? In master and the upcoming 
+danny / 1.3 release we have a check in the bitbake wrapper script to determine 
+if a newer version of git needs to be built (if the host's version of git is 
+older than 1.7.5); if so we build one (git-replacement-native). The denzil / 
+1.2 release does not have this, however.
 
-But we should consider whether we want to lay things out as the crownbay
-above, or more like the cedartrail, which has:
+Cheers,
+Paul
 
-Intel® Atom™ Processor N2000 and D2000 Series-based Platform (CEDAR
-TRAIL) with PowerVR Graphics
+-- 
 
-(there's no corresponding -nopvr version available, though I suspect
-that's an oversight and would have been something like:
-
-Intel® Atom™ Processor N2000 and D2000 Series-based Platform (CEDAR
-TRAIL) with VESA Graphics
-
-I'm not sure the field(s) need to map exactly to the page layout, but
-all the information should be there to allow the page to be generated or
-laid out by hand without having to ask questions, in either case.  Did
-you have any idea as to how for example to distinguish between the emgd
-and -noemgd versions (side note: there's nothing in the current entry
-that tells the user what EMGD even is - should it at least be spelled
-out in the title, or do we need a separate subtext element to describe
-that?)
-
-Tom
-
-> > 
-> > > +
-> > > +Compliance:
-> > > +============
-> > 
-> > For consistency with the rest of the README, please remove the colon and
-> > clean up the underlining.
-> 
-> Will do.
-> 
-> Thanks,
-> Nitin
-> > 
-> > Thanks,
-> > 
-> > Tom
-> > 
-> > > +This BSP is compliant with Yocto Project as per requirements listed here:
-> > > +http://www.yoctoproject.org/yocto-project-compatible-registration
-> > > +
-> > > +
-> > >  Dependencies
-> > >  ============
-> > >
-> > > @@ -22,7 +31,7 @@ This layer depends on:
-> > >    branch: master
-> > >
-> > >    URI: git://git.yoctoproject.org/meta-intel
-> > > -  layers: intel
-> > > +  layers: meta-intel, meta-crownbay
-> > >    branch: master
-> > >
-> > >
-> > 
-> 
-
-
+Paul Eggleton
+Intel Open Source Technology Centre
 
