@@ -1,24 +1,37 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C8680E00346
-	for <yocto@yoctoproject.org>; Wed, 24 Oct 2012 13:02:08 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 24 Oct 2012 13:01:53 -0700
+Return-Path: <nitin.a.kamble@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9B761E0032E
+	for <yocto@yoctoproject.org>; Wed, 24 Oct 2012 13:23:07 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 24 Oct 2012 13:23:06 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,642,1344236400"; d="scan'208";a="160048121"
-Received: from unknown (HELO [10.255.14.152]) ([10.255.14.152])
-	by AZSMGA002.ch.intel.com with ESMTP; 24 Oct 2012 13:01:52 -0700
-Message-ID: <1351108912.27553.45.camel@empanada>
-From: Tom Zanussi <tom.zanussi@intel.com>
-To: Darren Hart <dvhart@linux.intel.com>
-Date: Wed, 24 Oct 2012 15:01:52 -0500
-In-Reply-To: <4514ef8ee878fa1e7577b816a8fd71cd46101833.1351053026.git.dvhart@linux.intel.com>
-References: <18eb222d35f55fbf3cbd16afb6509ecffe30b7ca.1351053026.git.dvhart@linux.intel.com>
-	<4514ef8ee878fa1e7577b816a8fd71cd46101833.1351053026.git.dvhart@linux.intel.com>
-X-Mailer: Evolution 3.4.1 (3.4.1-2.fc17) 
-Mime-Version: 1.0
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [PATCH 3/3] fri2: Add grub-efi workaround for USB keyboard initialization
+X-IronPort-AV: E=Sophos;i="4.80,642,1344236400"; d="scan'208";a="208726030"
+Received: from orsmsx106.amr.corp.intel.com ([10.22.225.133])
+	by azsmga001.ch.intel.com with ESMTP; 24 Oct 2012 13:23:01 -0700
+Received: from orsmsx152.amr.corp.intel.com (10.22.226.39) by
+	ORSMSX106.amr.corp.intel.com (10.22.225.133) with Microsoft SMTP Server
+	(TLS) id 14.1.355.2; Wed, 24 Oct 2012 13:23:00 -0700
+Received: from orsmsx106.amr.corp.intel.com ([169.254.5.130]) by
+	ORSMSX152.amr.corp.intel.com ([169.254.8.195]) with mapi id
+	14.01.0355.002; Wed, 24 Oct 2012 13:23:00 -0700
+From: "Kamble, Nitin A" <nitin.a.kamble@intel.com>
+To: "Hart, Darren" <darren.hart@intel.com>
+Thread-Topic: [PATCH 3/6] crownbay README: add WebTitle & Compliance
+	information
+Thread-Index: AQHNsVyVjDNyFhsawk+QzYVb3PUKupfH0e6AgAEUNrA=
+Date: Wed, 24 Oct 2012 20:22:59 +0000
+Message-ID: <ADD6A3980E8C39419A432FF422031B4C2D90E01B@ORSMSX106.amr.corp.intel.com>
+References: <cover.1351023743.git.nitin.a.kamble@intel.com>
+	<eafcdbdb3843e08adc7385d0f1cec2b316d1b691.1351023743.git.nitin.a.kamble@intel.com>
+	<50870271.5060104@intel.com>
+In-Reply-To: <50870271.5060104@intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.138]
+MIME-Version: 1.0
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [PATCH 3/6] crownbay README: add WebTitle & Compliance information
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,43 +43,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 24 Oct 2012 20:02:09 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 24 Oct 2012 20:23:07 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, 2012-10-23 at 21:31 -0700, Darren Hart wrote:
-> The Fastboot firmware will sometimes fail to init the USB keyboard when
-> connected directly in 1.0 mode (works fine through a 2.0 hub). By adding
-> the USB modules to the grub-efi build, we can ensure the keyboard will
-> be available in the grub menu at the expense of about a second in boot
-> time.
-> 
-> Signed-off-by: Darren Hart <dvhart@linux.intel.com>
+> >
+> > -The Crown Bay platform consists of the Intel Atom Z6xx processor,
+> > +The Crown Bay platform consists of the Intel Atom E6xx processor,
+> >  plus the Intel EG20T Platform Controller Hub (Tunnel Creek + Topcliff)=
+.
+>=20
+> How can we distinguish this from Queens Bay, which I would describe in
+> exactly the same terms?
+>=20
+> --
+> Darren
+>=20
+> >
 
-Acked-by: Tom Zanussi <tom.zanussi@intel.com>
+1st let us understand what are the differences in the crownbay & queens bay=
+ platforms? If there are not significant differences then we can also look =
+at possibility of combining two BSPs into one.=20
 
-> ---
->  .../recipes-bsp/grub/grub-efi-native_2.00.bbappend |   11 +++++++++++
->  1 files changed, 11 insertions(+), 0 deletions(-)
->  create mode 100644 meta-fri2/recipes-bsp/grub/grub-efi-native_2.00.bbappend
-> 
-> diff --git a/meta-fri2/recipes-bsp/grub/grub-efi-native_2.00.bbappend b/meta-fri2/recipes-bsp/grub/grub-efi-native_2.00.bbappend
-> new file mode 100644
-> index 0000000..c6904ef
-> --- /dev/null
-> +++ b/meta-fri2/recipes-bsp/grub/grub-efi-native_2.00.bbappend
-> @@ -0,0 +1,11 @@
-> +# The Intel provided Fast Boot Firmware may not initialize the USB keyboard
-> +# before launching the grub.efi payload. Ensure GRUB has keyboard control by
-> +# building in the usb, usb_keyboard, and ohci modules.
-> +
-> +do_mkimage() {
-> +	./grub-mkimage -p /EFI/BOOT -d ./grub-core/ \
-> +	               -O ${GRUB_TARGET}-efi -o ./${GRUB_IMAGE} \
-> +	               boot linux ext2 fat serial part_msdos part_gpt normal efi_gop \
-> +	               usb usb_keyboard ohci
-> +}
-> +
+I can add bit more information in the crownbay readme, such as shellbay & l=
+ittlebay boards. And for FRI2 you can talk about the extra M2M devices. And=
+ I am not clear how to differentiate crownbay BSP with sys94x BSP.
+
+Nitin
 
 
 
