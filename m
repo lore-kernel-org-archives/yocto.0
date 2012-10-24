@@ -1,31 +1,20 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from tim.rpsys.net (93-97-173-237.zone5.bethere.co.uk
-	[93.97.173.237])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 05D6CE0144D
-	for <yocto@yoctoproject.org>; Wed, 24 Oct 2012 04:14:53 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q9OBEqim002137;
-	Wed, 24 Oct 2012 12:14:52 +0100
-Received: from tim.rpsys.net ([127.0.0.1])
-	by localhost (tim.rpsys.net [127.0.0.1]) (amavisd-new,
-	port 10024) with LMTP
-	id 32732-09; Wed, 24 Oct 2012 12:14:48 +0100 (BST)
-Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
-	by tim.rpsys.net (8.13.6/8.13.8) with ESMTP id q9OBEgBh002131
-	(version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=NO);
-	Wed, 24 Oct 2012 12:14:42 +0100
-Message-ID: <1351077282.22340.91.camel@ted>
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Martin Jansa <martin.jansa@gmail.com>
-Date: Wed, 24 Oct 2012 12:14:42 +0100
-In-Reply-To: <1f5c57bfc8c08926a349c395e0e72058f857448e.1349358184.git.Martin.Jansa@gmail.com>
-References: <cover.1349358184.git.Martin.Jansa@gmail.com>
-	<1f5c57bfc8c08926a349c395e0e72058f857448e.1349358184.git.Martin.Jansa@gmail.com>
-X-Mailer: Evolution 3.2.3-0ubuntu6 
-Mime-Version: 1.0
-X-Virus-Scanned: amavisd-new at rpsys.net
-Cc: yocto@yoctoproject.org
-Subject: Re: [opkg-utils][PATCH 1/1] opkg-make-index: fix mis-indented else:
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E252DE00294
+	for <yocto@yoctoproject.org>; Wed, 24 Oct 2012 06:30:50 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 24 Oct 2012 06:30:49 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,639,1344236400"; d="scan'208";a="208454562"
+Received: from unknown (HELO localhost) ([10.255.14.143])
+	by azsmga001.ch.intel.com with ESMTP; 24 Oct 2012 06:30:48 -0700
+From: tom.zanussi@intel.com
+To: yocto@yoctoproject.org,
+	paul.eggleton@linux.intel.com
+Date: Wed, 24 Oct 2012 08:30:47 -0500
+Message-Id: <cover.1351085269.git.tom.zanussi@intel.com>
+X-Mailer: git-send-email 1.7.11.4
+Subject: [PATCH 0/1] VA_FEATURES typo fix
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,34 +26,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 24 Oct 2012 11:14:54 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 24 Oct 2012 13:30:51 -0000
 
-On Thu, 2012-10-04 at 18:29 +0200, Martin Jansa wrote:
-> From: Marc Olzheim <marc@iphion.nl>
-> 
-> Signed-off-by: Martin Jansa <Martin.Jansa@gmail.com>
-> ---
->  opkg-make-index | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/opkg-make-index b/opkg-make-index
-> index 1c3a8e1..44fa64d 100755
-> --- a/opkg-make-index
-> +++ b/opkg-make-index
-> @@ -213,7 +213,7 @@ if filelist_filename:
->              (h,t) = os.path.split(fn)
->              if not t: continue
->              if t not in files: files[t] = name+':'+fn
-> -        else: files[t] = files[t] + ',' + name+':'+fn
-> +            else: files[t] = files[t] + ',' + name+':'+fn
->  
->      tmp_filelist_filename = ("%s.%d" % (filelist_filename, os.getpid()))
->      f = open(tmp_filelist_filename, "w")
+From: Tom Zanussi <tom.zanussi@intel.com>
 
-Merged to master, thanks.
+This fixes a problem introduced by a recent commit and noticed by
+Paul Eggleton.
 
-Richard
+The following changes since commit f502e7493694c487767f60df232055bc7b854e69:
+
+  gstreamer-vaapi: add missing build dependencies (2012-10-23 07:43:46 -0500)
+
+are available in the git repository at:
+
+  git://git.yoctoproject.org/meta-intel-contrib.git tzanussi/va-features-assign-fix
+  http://git.yoctoproject.org/cgit.cgi//log/?h=tzanussi/va-features-assign-fix
+
+Tom Zanussi (1):
+  meta-intel: fix VA_FEATURES assignment in machine configs
+
+ meta-cedartrail/conf/machine/cedartrail.conf | 2 +-
+ meta-chiefriver/conf/machine/chiefriver.conf | 2 +-
+ meta-crownbay/conf/machine/crownbay.conf     | 2 +-
+ meta-fri2/conf/machine/fri2.conf             | 2 +-
+ meta-sugarbay/conf/machine/sugarbay.conf     | 2 +-
+ meta-sys940x/conf/machine/sys940x.conf       | 2 +-
+ 6 files changed, 6 insertions(+), 6 deletions(-)
+
+-- 
+1.7.11.4
 
 
