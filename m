@@ -1,25 +1,25 @@
 Return-Path: <nitin.a.kamble@intel.com>
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1A986E0032E
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3C771E0127A
 	for <yocto@yoctoproject.org>; Wed, 24 Oct 2012 13:27:11 -0700 (PDT)
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
 	by fmsmga101.fm.intel.com with ESMTP; 24 Oct 2012 13:26:53 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,642,1344236400"; d="scan'208";a="237817670"
+X-IronPort-AV: E=Sophos;i="4.80,642,1344236400"; d="scan'208";a="237817673"
 Received: from yocto-hm1.jf.intel.com ([10.23.232.32])
 	by fmsmga001.fm.intel.com with ESMTP; 24 Oct 2012 13:26:52 -0700
 From: nitin.a.kamble@intel.com
 To: yocto@yoctoproject.org,
 	tom.zanussi@intel.com,
 	darren.hart@intel.com
-Date: Wed, 24 Oct 2012 13:25:51 -0700
-Message-Id: <6f887e6929f52dddb5a29fd2d92c48732486febb.1351110209.git.nitin.a.kamble@intel.com>
+Date: Wed, 24 Oct 2012 13:25:52 -0700
+Message-Id: <0f960313a605a66c12da5fde3ea2402a5f69b217.1351110209.git.nitin.a.kamble@intel.com>
 X-Mailer: git-send-email 1.7.3.4
 In-Reply-To: <1d3856156110f722e46f1960851d1ed67e2f30f0.1351110208.git.nitin.a.kamble@intel.com>
 References: <1d3856156110f722e46f1960851d1ed67e2f30f0.1351110208.git.nitin.a.kamble@intel.com>
 In-Reply-To: <cover.1351110208.git.nitin.a.kamble@intel.com>
 References: <cover.1351110208.git.nitin.a.kamble@intel.com>
-Subject: [PATCH v2 5/6] jasperforest: add WEBTITLE & Compliance information
+Subject: [PATCH v2 6/6] sugarbay: add WEBTITLE & Compliance information
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,16 +41,16 @@ Also specifying all the layers used from meta-intel repository.
 
 Signed-off-by: Nitin A Kamble <nitin.a.kamble@intel.com>
 ---
- meta-jasperforest/README                         |    8 +++++++-
- meta-jasperforest/conf/machine/jasperforest.conf |    2 ++
+ meta-sugarbay/README                     |    8 +++++++-
+ meta-sugarbay/conf/machine/sugarbay.conf |    2 ++
  2 files changed, 9 insertions(+), 1 deletions(-)
 
-diff --git a/meta-jasperforest/README b/meta-jasperforest/README
-index 12f84c2..6397ec7 100644
---- a/meta-jasperforest/README
-+++ b/meta-jasperforest/README
-@@ -8,6 +8,12 @@ combined with the Intel 3420 PCH chipset (Ibex Peak) make up the
- 'Picket Post' CRB this BSP was developed on.
+diff --git a/meta-sugarbay/README b/meta-sugarbay/README
+index c8a99d7..5b84bac 100644
+--- a/meta-sugarbay/README
++++ b/meta-sugarbay/README
+@@ -7,6 +7,12 @@ plus the Cougar Point PCH (Q67 Express or B65 Express chipsets).  This
+ BSP assumes that the Sandy Bridge integrated graphics are being used.
  
  
 +Compliance
@@ -62,27 +62,27 @@ index 12f84c2..6397ec7 100644
  Dependencies
  ============
  
-@@ -21,7 +27,7 @@ This layer depends on:
+@@ -20,7 +26,7 @@ This layer depends on:
    branch: master
  
    URI: git://git.yoctoproject.org/meta-intel
 -  layers: intel
-+  layers: meta-intel, meta-jasperforest
++  layers: meta-intel, meta-sugarbay
    branch: master
  
  
-diff --git a/meta-jasperforest/conf/machine/jasperforest.conf b/meta-jasperforest/conf/machine/jasperforest.conf
-index d661f7b..8111deb 100644
---- a/meta-jasperforest/conf/machine/jasperforest.conf
-+++ b/meta-jasperforest/conf/machine/jasperforest.conf
+diff --git a/meta-sugarbay/conf/machine/sugarbay.conf b/meta-sugarbay/conf/machine/sugarbay.conf
+index 1d0e68d..5fb0c59 100644
+--- a/meta-sugarbay/conf/machine/sugarbay.conf
++++ b/meta-sugarbay/conf/machine/sugarbay.conf
 @@ -1,6 +1,8 @@
  #@TYPE: Machine
- #@NAME: jasperforest
+ #@NAME: sugarbay
  
-+#@WEBTITLE: Platforms with Intel Xeon C5500/C3500 series processors with Intel 3420 PCH chipset (Jasper Forest)
++#@WEBTITLE: Intel 2nd Generation Core Platforms: Core i3, i5, i7 (Sandy Bridge)
 +
- #@DESCRIPTION: Machine configuration for Jasper Forest Picket Post
- # systems i.e. Xeon C5500/C3500 + Intel 3420 chipset (Ibex Peak)
+ #@DESCRIPTION: Machine configuration for Sugar Bay systems
+ # i.e. Sandy Bridge + Cougar Point
  
 -- 
 1.7.3.4
