@@ -1,24 +1,24 @@
 Return-Path: <tom.zanussi@intel.com>
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 36DF1E0045D
-	for <yocto@yoctoproject.org>; Wed, 24 Oct 2012 17:34:14 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 00B80E00655
+	for <yocto@yoctoproject.org>; Wed, 24 Oct 2012 17:42:56 -0700 (PDT)
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 24 Oct 2012 17:34:13 -0700
+	by fmsmga101.fm.intel.com with ESMTP; 24 Oct 2012 17:42:56 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,643,1344236400"; d="scan'208";a="238035804"
+X-IronPort-AV: E=Sophos;i="4.80,643,1344236400"; d="scan'208";a="238035391"
 Received: from unknown (HELO [10.255.14.152]) ([10.255.14.152])
-	by fmsmga001.fm.intel.com with ESMTP; 24 Oct 2012 17:34:13 -0700
-Message-ID: <1351125252.27553.64.camel@empanada>
+	by fmsmga001.fm.intel.com with ESMTP; 24 Oct 2012 17:32:54 -0700
+Message-ID: <1351125173.27553.62.camel@empanada>
 From: Tom Zanussi <tom.zanussi@intel.com>
 To: nitin.a.kamble@intel.com
-Date: Wed, 24 Oct 2012 19:34:12 -0500
-In-Reply-To: <6f887e6929f52dddb5a29fd2d92c48732486febb.1351110209.git.nitin.a.kamble@intel.com>
+Date: Wed, 24 Oct 2012 19:32:53 -0500
+In-Reply-To: <49e3d5d16dca0beb47398a7769529cbc9964a474.1351110209.git.nitin.a.kamble@intel.com>
 References: <cover.1351110208.git.nitin.a.kamble@intel.com>
-	<6f887e6929f52dddb5a29fd2d92c48732486febb.1351110209.git.nitin.a.kamble@intel.com>
+	<49e3d5d16dca0beb47398a7769529cbc9964a474.1351110209.git.nitin.a.kamble@intel.com>
 X-Mailer: Evolution 3.4.1 (3.4.1-2.fc17) 
 Mime-Version: 1.0
 Cc: yocto@yoctoproject.org, darren.hart@intel.com
-Subject: Re: [PATCH v2 5/6] jasperforest: add WEBTITLE & Compliance information
+Subject: Re: [PATCH v2 4/6] emenlow: add WEBTITLE & Compliance information
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,7 +30,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 25 Oct 2012 00:34:14 -0000
+X-List-Received-Date: Thu, 25 Oct 2012 00:42:57 -0000
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
@@ -43,16 +43,16 @@ On Wed, 2012-10-24 at 13:25 -0700, nitin.a.kamble@intel.com wrote:
 > 
 > Signed-off-by: Nitin A Kamble <nitin.a.kamble@intel.com>
 > ---
->  meta-jasperforest/README                         |    8 +++++++-
->  meta-jasperforest/conf/machine/jasperforest.conf |    2 ++
+>  meta-emenlow/README                    |    8 +++++++-
+>  meta-emenlow/conf/machine/emenlow.conf |    2 ++
 >  2 files changed, 9 insertions(+), 1 deletions(-)
 > 
-> diff --git a/meta-jasperforest/README b/meta-jasperforest/README
-> index 12f84c2..6397ec7 100644
-> --- a/meta-jasperforest/README
-> +++ b/meta-jasperforest/README
-> @@ -8,6 +8,12 @@ combined with the Intel 3420 PCH chipset (Ibex Peak) make up the
->  'Picket Post' CRB this BSP was developed on.
+> diff --git a/meta-emenlow/README b/meta-emenlow/README
+> index 3932718..8216af2 100644
+> --- a/meta-emenlow/README
+> +++ b/meta-emenlow/README
+> @@ -13,6 +13,12 @@ depending on which BSP tarball you downloaded.
+>  Please see the corresponding sections below for details.
 >  
 > 
 > +Compliance
@@ -64,35 +64,38 @@ On Wed, 2012-10-24 at 13:25 -0700, nitin.a.kamble@intel.com wrote:
 >  Dependencies
 >  ============
 >  
-> @@ -21,7 +27,7 @@ This layer depends on:
+> @@ -26,7 +32,7 @@ This layer depends on:
 >    branch: master
 >  
 >    URI: git://git.yoctoproject.org/meta-intel
 > -  layers: intel
-> +  layers: meta-intel, meta-jasperforest
+> +  layers: meta-intel, meta-emenlow
 >    branch: master
 >  
 > 
-> diff --git a/meta-jasperforest/conf/machine/jasperforest.conf b/meta-jasperforest/conf/machine/jasperforest.conf
-> index d661f7b..8111deb 100644
-> --- a/meta-jasperforest/conf/machine/jasperforest.conf
-> +++ b/meta-jasperforest/conf/machine/jasperforest.conf
+> diff --git a/meta-emenlow/conf/machine/emenlow.conf b/meta-emenlow/conf/machine/emenlow.conf
+> index d1efbc3..77cdbe6 100644
+> --- a/meta-emenlow/conf/machine/emenlow.conf
+> +++ b/meta-emenlow/conf/machine/emenlow.conf
 > @@ -1,6 +1,8 @@
 >  #@TYPE: Machine
->  #@NAME: jasperforest
+>  #@NAME: emenlow
 >  
-> +#@WEBTITLE: Platforms with Intel Xeon C5500/C3500 series processors with Intel 3420 PCH chipset (Jasper Forest)
+> +#@WEBTITLE: Platforms with Intel Atom Z5xx processor with Intel US15W Controller Hub (Emenlow)
 > +
 
-Similarly:
+To be consistent with the other ones e.g crownbay, remove the 'Platforms
+with' and also capitalize as:
 
-Intel Xeon C5500/C3500 Series Processors with Intel 3420 PCH Chipset
-(Jasper Forest)
+Intel Atom Z5xx Processor with Intel US15W Platform Controller Hub
+(Emenlow)
+
+I think Emenlow is actually eMenlow...
 
 Tom
 
->  #@DESCRIPTION: Machine configuration for Jasper Forest Picket Post
->  # systems i.e. Xeon C5500/C3500 + Intel 3420 chipset (Ibex Peak)
+>  #@DESCRIPTION: Machine configuration for eMenlow based systems, like the
+>  # Webs-2120 box.
 >  
 
 
