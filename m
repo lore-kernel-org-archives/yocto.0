@@ -1,36 +1,38 @@
 Return-Path: <ross.burton@intel.com>
-Received: from azsmga102.ch.intel.com (mga12.intel.com [143.182.124.36])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 655A6E013D9
-	for <yocto@yoctoproject.org>; Thu, 25 Oct 2012 02:56:17 -0700 (PDT)
-Received: from mail-ea0-f200.google.com ([209.85.215.200])
-	by mga14.intel.com with ESMTP/TLS/RC4-SHA; 25 Oct 2012 02:56:16 -0700
-Received: by mail-ea0-f200.google.com with SMTP id i11so1036930eaa.11
-	for <yocto@yoctoproject.org>; Thu, 25 Oct 2012 02:56:14 -0700 (PDT)
+Received: from fmsmga101.fm.intel.com (mga05.intel.com [192.55.52.89])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F3C63E013EF
+	for <yocto@yoctoproject.org>; Thu, 25 Oct 2012 03:15:05 -0700 (PDT)
+Received: from mail-oa0-f72.google.com ([209.85.219.72])
+	by mga01.intel.com with ESMTP/TLS/RC4-SHA; 25 Oct 2012 03:15:04 -0700
+Received: by mail-oa0-f72.google.com with SMTP id h2so4524977oag.11
+	for <yocto@yoctoproject.org>; Thu, 25 Oct 2012 03:15:03 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=google.com; s=20120113;
-	h=from:to:cc:subject:date:message-id:x-mailer:x-gm-message-state;
-	bh=k4xxFFlbKeRD5eKHYFUzNfJh4ydfC2M5j9hmxRB8tCU=;
-	b=Dff/jX9zib21gDs5bUr5qx4p68qSEjogwtZLN/femOfws4MFHHRZQi+0XF3+vs7IbG
-	XygFC+O9zpkZDnYgZTm8jSRlhRr5zW7YpvWT6003WWpZUCPk2wwyjJERWApJoZ7TNncc
-	+RKxr2XuPlAn8fRvOBJOfMCrtLVornrQSlANeQedLDNRl3u2bo+Pfe6sxTxscIi21c9o
-	IzlxnXkOYSKUVAw3J5SHLUtEm8LK0KRtQbIHNTSakrT7DrQXtRQ5zmfy98c1fdjhCtuG
-	EEYAXy228vbM3cOTeKbzCqW5tQ5aNyOX6S0QsHsO5r0PeDpyob9G5X3NG4q2z70Toj7o
-	+MNQ==
-Received: by 10.180.80.104 with SMTP id q8mr12587432wix.6.1351158974267;
-	Thu, 25 Oct 2012 02:56:14 -0700 (PDT)
-Received: by 10.180.80.104 with SMTP id q8mr12587402wix.6.1351158974050;
-	Thu, 25 Oct 2012 02:56:14 -0700 (PDT)
-Received: from melchett.burtonini.com (35.106.2.81.in-addr.arpa. [81.2.106.35])
-	by mx.google.com with ESMTPS id cu1sm9129250wib.6.2012.10.25.02.56.12
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Thu, 25 Oct 2012 02:56:12 -0700 (PDT)
-From: Ross Burton <ross.burton@intel.com>
-To: yocto@yoctoproject.org
-Date: Thu, 25 Oct 2012 10:55:04 +0100
-Message-Id: <1351158904-5759-1-git-send-email-ross.burton@intel.com>
-X-Mailer: git-send-email 1.7.10
-X-Gm-Message-State: ALoCoQkcMK4WUwQ4OxQliV1hlk9pBORCbuFr8fPjhR7T6uFWyar4tQ3LzoSfaceB4KqoVi+Ot1bwsirBH8Vj2IesCPZr42on9rTd00L14g92dGyyyyHLygIWApS9//YBmlg5RhskP/oacRrguvhQMRAsWsdfod6AYA==
-Subject: [PATCH] gnu-efi: add missing sha256 checksum
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type:x-gm-message-state;
+	bh=t0CNXkcgQ0GayhPqFYgQolMosu5nvQ/SIwPNxgKOjLY=;
+	b=Pdi/abSTYKicDf1B+cMAeiRjvXYcHzaB5R+BokPnZEoee0X4hZtTjZHw/8vHmFXKzT
+	9EQWYRO0+5EO4BruXTvunuFLVnopxAj2PnDCuSM200NtLiNom3q8DBb6XW2+sb+hkyNk
+	/V07IpngClZKb5PTQXX/17DESYuTl9njgO8y28s0uLmTj8mDS/MDW/ILB30HmV/Uhu3S
+	y2hiXedZDCMT4SqV21s5rvTH5q3OMiE4t9WoSWA+xWozxgdjxorD6Su3QDjDsPmstGnC
+	dexYAzx/o1wbkleNMOeeEf0D/2v8yubi82u/g3LCafxn/g4XWMzToZhDBLkZP5TQjk00
+	gBxQ==
+Received: by 10.182.177.72 with SMTP id co8mr15333889obc.53.1351160103429;
+	Thu, 25 Oct 2012 03:15:03 -0700 (PDT)
+Received: by 10.182.177.72 with SMTP id co8mr15333885obc.53.1351160103338;
+	Thu, 25 Oct 2012 03:15:03 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.182.46.70 with HTTP; Thu, 25 Oct 2012 03:14:43 -0700 (PDT)
+In-Reply-To: <7C25CAD3D2FF4EAABCD90B26EC168705@intel.com>
+References: <5086D81E.4030401@gmail.com>
+	<7C25CAD3D2FF4EAABCD90B26EC168705@intel.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Thu, 25 Oct 2012 11:14:43 +0100
+Message-ID: <CAJTo0LZG=HpshXy5L5gduNh-BcXus8eSCdhvDe7arZ9jG7cyLw@mail.gmail.com>
+To: Jim Abernathy <jfabernathy@gmail.com>
+X-Gm-Message-State: ALoCoQlQSbGxZopdUN3m8OR2DudFhbCZqjiOE4pizUC7R63+R94LMT/b9VlJJLh6yDHO8VTKJGjjxpkzWWZAWQYptF5pTNXCcBfot320ZSaiYfk05jsxjC72JO3JCA4LVK2An3eQTEITRqngMmirHxBYCIVB/vXwnw==
+Cc: yocto@yoctoproject.org
+Subject: Re: build failures after pull
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,26 +44,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 25 Oct 2012 09:56:17 -0000
+X-List-Received-Date: Thu, 25 Oct 2012 10:15:06 -0000
+Content-Type: text/plain; charset=UTF-8
 
-Signed-off-by: Ross Burton <ross.burton@intel.com>
----
- common/recipes-bsp/gnu-efi/gnu-efi_3.0m.bb |    1 +
- 1 file changed, 1 insertion(+)
+On 23 October 2012 22:12, Ross Burton <ross.burton@intel.com> wrote:
+> On Tuesday, 23 October 2012 at 18:47, Jim Abernathy wrote:
+>> I've reported this before, but it still happens. Today, I did a git
+>> pull into my local while master was checked out, both on poky and
+>> meta-intel. I then tried to rerun without cleaning or deleting anything
+>> for chiefriver. My last build had been successfully built, but didn't
+>> have audio. So when I saw patches, I thought I'd test again. I simply did
+>>
+>> "source oe-init-build-env"
+>> "bitbake core-image-sato"
+>>
+>> I got a failure in diffutils for some reason. I then did
+>>
+>> "bitbake -c cleansstate diffutils"
+>> "bitbake core-image-sato".
+>
+> Next time, including the log of the task that failed (do_compile in diffutils, I presume) might help identify what broke.
 
-diff --git a/common/recipes-bsp/gnu-efi/gnu-efi_3.0m.bb b/common/recipes-bsp/gnu-efi/gnu-efi_3.0m.bb
-index a0d5823..f8015f2 100644
---- a/common/recipes-bsp/gnu-efi/gnu-efi_3.0m.bb
-+++ b/common/recipes-bsp/gnu-efi/gnu-efi_3.0m.bb
-@@ -13,6 +13,7 @@ SRC_URI = "http://downloads.sourceforge.net/gnu-efi/gnu-efi_3.0m.orig.tar.gz \
- 	   file://parallel-make.patch \
-           "
- SRC_URI[md5sum] = "d0a21125aee56c0c7291ad260e916cb3"
-+SRC_URI[sha256sum] = "b7fb638f5ec8faa6edebe54beb90957f01ccccf70a2a948d1b58b834c8d7f86d"
- 
- S = "${WORKDIR}/gnu-efi-3.0"
- 
--- 
-1.7.10
+I saw this last night, and have a patch ready.
 
+Ross
 
