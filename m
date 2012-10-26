@@ -1,24 +1,36 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 20253E00294
-	for <yocto@yoctoproject.org>; Thu, 25 Oct 2012 21:45:35 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 25 Oct 2012 21:45:34 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,650,1344236400"; d="scan'208";a="238439903"
-Received: from unknown (HELO [10.255.14.152]) ([10.255.14.152])
-	by fmsmga001.fm.intel.com with ESMTP; 25 Oct 2012 13:13:20 -0700
-Message-ID: <1351196000.27553.101.camel@empanada>
-From: Tom Zanussi <tom.zanussi@intel.com>
-To: nitin.a.kamble@intel.com
-Date: Thu, 25 Oct 2012 15:13:20 -0500
-In-Reply-To: <b724623f2f22fdb2643a57ea4939831f54bd94e4.1351187270.git.nitin.a.kamble@intel.com>
-References: <cover.1351187270.git.nitin.a.kamble@intel.com>
-	<b724623f2f22fdb2643a57ea4939831f54bd94e4.1351187270.git.nitin.a.kamble@intel.com>
-X-Mailer: Evolution 3.4.1 (3.4.1-2.fc17) 
-Mime-Version: 1.0
-Cc: yocto@yoctoproject.org, darren.hart@intel.com
-Subject: Re: [Patch v3 7/7] crownbay: add more information in README
+Return-Path: <ross.burton@intel.com>
+Received: from azsmga102.ch.intel.com (mga12.intel.com [143.182.124.36])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 196E2E00294
+	for <yocto@yoctoproject.org>; Fri, 26 Oct 2012 06:03:22 -0700 (PDT)
+Received: from mail-ee0-f72.google.com ([74.125.83.72])
+	by mga14.intel.com with ESMTP/TLS/RC4-SHA; 26 Oct 2012 06:03:21 -0700
+Received: by mail-ee0-f72.google.com with SMTP id c4so2227559eek.11
+	for <yocto@yoctoproject.org>; Fri, 26 Oct 2012 06:03:20 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=from:to:cc:subject:date:message-id:x-mailer:x-gm-message-state;
+	bh=iaBUX5EooCs2AEqlz+pUMr9hlmso3Ry8sRP9LqOvdmY=;
+	b=DPgYhqb1HD74MpP6e7kQdmfyrTBKqP+Z04HKvWV7fIHOkn90Sma3xvXpjy8GO0yRIA
+	Gwb/vZxZNx/HEtIFemDf8i7rTy6vQK/eXn5Cv5Od0MpE/tHr9e8VD+La2DuPPYaRgDBy
+	TmHPDm63GkKTyvAPsR0aZHWtlqN7y/yrKoqqCEsTvmlfD/+YGX+0Gel73rrquz/7Z1BH
+	jpVzJ3NOUsJfzRlxI1MGefDVLCJVkHhPY0/h24C7fL44DfMYyi/g1w7UB+yGIKxIbTvU
+	/8TxG+s1790vgeIe/5ifowHfHAv4VSswn/2kQiZqFRL9DoL+AF1GUkHUwdlWxOB7vo+b
+	JZkg==
+Received: by 10.180.100.136 with SMTP id ey8mr4866781wib.1.1351256600033;
+	Fri, 26 Oct 2012 06:03:20 -0700 (PDT)
+Received: by 10.180.100.136 with SMTP id ey8mr4866761wib.1.1351256599865;
+	Fri, 26 Oct 2012 06:03:19 -0700 (PDT)
+Received: from melchett.burtonini.com (35.106.2.81.in-addr.arpa. [81.2.106.35])
+	by mx.google.com with ESMTPS id p4sm2926565wix.0.2012.10.26.06.03.18
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Fri, 26 Oct 2012 06:03:18 -0700 (PDT)
+From: Ross Burton <ross.burton@intel.com>
+To: yocto@yoctoproject.org
+Date: Fri, 26 Oct 2012 14:02:08 +0100
+Message-Id: <1351256528-28229-1-git-send-email-ross.burton@intel.com>
+X-Mailer: git-send-email 1.7.10
+X-Gm-Message-State: ALoCoQmI9SDVcGwuWsrG6E5PETom9+KkDk3QEc9TxtJQzLZTILNG6zCVnBOA5vEoeHwCFtMh8/wiRmhoMfcPXYYUq9Z+u1o1Td67oBdYdPL7E5is1q2xUycIZYjZxKF+JAKfa7XM+YO1RklbZtU6ZVfZGiwpNSpf1Q==
+Subject: [PATCH] cdv-pvr-driver: inhibit package stripping
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,45 +42,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 26 Oct 2012 04:45:35 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 26 Oct 2012 13:03:23 -0000
 
-On Thu, 2012-10-25 at 10:49 -0700, nitin.a.kamble@intel.com wrote:
-> From: Nitin A Kamble <nitin.a.kamble@intel.com>
-> 
-> Mention Little Bay & Shell Bay boards from the crownbay kit
-> in the readme.
-> 
-> Signed-off-by: Nitin A Kamble <nitin.a.kamble@intel.com>
-> ---
->  meta-crownbay/README |    2 ++
->  1 files changed, 2 insertions(+), 0 deletions(-)
-> 
-> diff --git a/meta-crownbay/README b/meta-crownbay/README
-> index 1f164f4..525b2e6 100644
-> --- a/meta-crownbay/README
-> +++ b/meta-crownbay/README
-> @@ -5,6 +5,8 @@ Please see the corresponding sections below for details.
->  The Crown Bay platform consists of the Intel Atom E6xx processor,
->  plus the Intel EG20T Platform Controller Hub (Tunnel Creek + Topcliff).
->  
-> +The crownbay kit consists of two boards, Shell Bay & Little Bay.
-> +
+The binaries are already stripped, so don't try stripping them again (which
+results in a warning).
 
-This seems like a sort of random fact thrown in and doesn't explain what
-Shell Bay or Little Bay are (and shouldn't it be Crown Bay kit to match,
-instead of crownbay?).
+Signed-off-by: Ross Burton <ross.burton@intel.com>
+---
+ .../recipes-graphics/xorg-driver/cdv-pvr-driver_1.0.3.bb          |    5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-I guess I'd like to see the text explaining the hardware fit together as
-a whole and not just be a collection of facts about various aspects of
-the hardware listed out randomly.
-
-Tom
-
->  It also supports the E6xx embedded on-chip graphics via the Intel
->  Embedded Media and Graphics Driver (EMGD) 1.14 Driver.
->  
-
+diff --git a/meta-cedartrail/recipes-graphics/xorg-driver/cdv-pvr-driver_1.0.3.bb b/meta-cedartrail/recipes-graphics/xorg-driver/cdv-pvr-driver_1.0.3.bb
+index e9d4ede..7bda3b5 100644
+--- a/meta-cedartrail/recipes-graphics/xorg-driver/cdv-pvr-driver_1.0.3.bb
++++ b/meta-cedartrail/recipes-graphics/xorg-driver/cdv-pvr-driver_1.0.3.bb
+@@ -14,7 +14,7 @@ LIC_FILES_CHKSUM = " \
+ 
+ DEPENDS = "rpm-native libva"
+ 
+-PR = "r4"
++PR = "r5"
+ 
+ PSB-VIDEO = "psb-video-cdv-1.0.3-1.1.i586.rpm"
+ PSB-VIDEO-REV = "1.0.3"
+@@ -66,6 +66,9 @@ S  = "${WORKDIR}/cdv-graphics-drivers_${PV}"
+ # These are closed binaries generated elsewhere so don't check ldflags
+ INSANE_SKIP_${PN} = "ldflags"
+ 
++# Don't try stripping, as the binaries are already stripped
++INHIBIT_PACKAGE_STRIP = "1"
++
+ # .so files in these binaries are not symlinks. Rearange package order
+ # so that they go to ${PN} instead of $PN}-dev
+ PACKAGES = "${PN}-dbg ${PN}-staticdev ${PN} ${PN}-dev ${PN}-doc ${PN}-locale"
+-- 
+1.7.10
 
 
