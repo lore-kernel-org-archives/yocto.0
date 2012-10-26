@@ -1,36 +1,24 @@
-Return-Path: <ross.burton@intel.com>
-Received: from azsmga102.ch.intel.com (mga12.intel.com [143.182.124.36])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 196E2E00294
-	for <yocto@yoctoproject.org>; Fri, 26 Oct 2012 06:03:22 -0700 (PDT)
-Received: from mail-ee0-f72.google.com ([74.125.83.72])
-	by mga14.intel.com with ESMTP/TLS/RC4-SHA; 26 Oct 2012 06:03:21 -0700
-Received: by mail-ee0-f72.google.com with SMTP id c4so2227559eek.11
-	for <yocto@yoctoproject.org>; Fri, 26 Oct 2012 06:03:20 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=from:to:cc:subject:date:message-id:x-mailer:x-gm-message-state;
-	bh=iaBUX5EooCs2AEqlz+pUMr9hlmso3Ry8sRP9LqOvdmY=;
-	b=DPgYhqb1HD74MpP6e7kQdmfyrTBKqP+Z04HKvWV7fIHOkn90Sma3xvXpjy8GO0yRIA
-	Gwb/vZxZNx/HEtIFemDf8i7rTy6vQK/eXn5Cv5Od0MpE/tHr9e8VD+La2DuPPYaRgDBy
-	TmHPDm63GkKTyvAPsR0aZHWtlqN7y/yrKoqqCEsTvmlfD/+YGX+0Gel73rrquz/7Z1BH
-	jpVzJ3NOUsJfzRlxI1MGefDVLCJVkHhPY0/h24C7fL44DfMYyi/g1w7UB+yGIKxIbTvU
-	/8TxG+s1790vgeIe/5ifowHfHAv4VSswn/2kQiZqFRL9DoL+AF1GUkHUwdlWxOB7vo+b
-	JZkg==
-Received: by 10.180.100.136 with SMTP id ey8mr4866781wib.1.1351256600033;
-	Fri, 26 Oct 2012 06:03:20 -0700 (PDT)
-Received: by 10.180.100.136 with SMTP id ey8mr4866761wib.1.1351256599865;
-	Fri, 26 Oct 2012 06:03:19 -0700 (PDT)
-Received: from melchett.burtonini.com (35.106.2.81.in-addr.arpa. [81.2.106.35])
-	by mx.google.com with ESMTPS id p4sm2926565wix.0.2012.10.26.06.03.18
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Fri, 26 Oct 2012 06:03:18 -0700 (PDT)
-From: Ross Burton <ross.burton@intel.com>
-To: yocto@yoctoproject.org
-Date: Fri, 26 Oct 2012 14:02:08 +0100
-Message-Id: <1351256528-28229-1-git-send-email-ross.burton@intel.com>
-X-Mailer: git-send-email 1.7.10
-X-Gm-Message-State: ALoCoQmI9SDVcGwuWsrG6E5PETom9+KkDk3QEc9TxtJQzLZTILNG6zCVnBOA5vEoeHwCFtMh8/wiRmhoMfcPXYYUq9Z+u1o1Td67oBdYdPL7E5is1q2xUycIZYjZxKF+JAKfa7XM+YO1RklbZtU6ZVfZGiwpNSpf1Q==
-Subject: [PATCH] cdv-pvr-driver: inhibit package stripping
+Return-Path: <mark.hatle@windriver.com>
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 76399E0049B
+	for <yocto@yoctoproject.org>; Fri, 26 Oct 2012 08:19:40 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id q9QFJeWC014688
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Fri, 26 Oct 2012 08:19:40 -0700 (PDT)
+Received: from msp-dhcp20.wrs.com (172.25.34.20) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.2.309.2;
+	Fri, 26 Oct 2012 08:19:38 -0700
+Message-ID: <508AAA0B.5070501@windriver.com>
+Date: Fri, 26 Oct 2012 10:19:39 -0500
+From: Mark Hatle <mark.hatle@windriver.com>
+Organization: Wind River Systems
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8;
+	rv:16.0) Gecko/20121010 Thunderbird/16.0.1
+MIME-Version: 1.0
+To: Yocto Project <yocto@yoctoproject.org>
+Subject: [OE-core] RFC: Removal of Zypper, replace with SMART
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,40 +30,182 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 26 Oct 2012 13:03:23 -0000
+X-List-Received-Date: Fri, 26 Oct 2012 15:19:40 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-The binaries are already stripped, so don't try stripping them again (which
-results in a warning).
+Working with Zypper over the last few releases of the Yocto Project has been a 
+nightmare for me.  It simply hasn't worked the way I'd like (or sometimes at 
+all), and it's been very difficult to try to correct the issues in it.  As such, 
+I'd like to propose replacing Zypper with SMART.  Below is some background and 
+details on what I am proposing.
 
-Signed-off-by: Ross Burton <ross.burton@intel.com>
----
- .../recipes-graphics/xorg-driver/cdv-pvr-driver_1.0.3.bb          |    5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+(If you don't care about RPM packaging, images generated with RPM, or on-target 
+software updates using RPM, you probably won't care about any of this.)
 
-diff --git a/meta-cedartrail/recipes-graphics/xorg-driver/cdv-pvr-driver_1.0.3.bb b/meta-cedartrail/recipes-graphics/xorg-driver/cdv-pvr-driver_1.0.3.bb
-index e9d4ede..7bda3b5 100644
---- a/meta-cedartrail/recipes-graphics/xorg-driver/cdv-pvr-driver_1.0.3.bb
-+++ b/meta-cedartrail/recipes-graphics/xorg-driver/cdv-pvr-driver_1.0.3.bb
-@@ -14,7 +14,7 @@ LIC_FILES_CHKSUM = " \
- 
- DEPENDS = "rpm-native libva"
- 
--PR = "r4"
-+PR = "r5"
- 
- PSB-VIDEO = "psb-video-cdv-1.0.3-1.1.i586.rpm"
- PSB-VIDEO-REV = "1.0.3"
-@@ -66,6 +66,9 @@ S  = "${WORKDIR}/cdv-graphics-drivers_${PV}"
- # These are closed binaries generated elsewhere so don't check ldflags
- INSANE_SKIP_${PN} = "ldflags"
- 
-+# Don't try stripping, as the binaries are already stripped
-+INHIBIT_PACKAGE_STRIP = "1"
-+
- # .so files in these binaries are not symlinks. Rearange package order
- # so that they go to ${PN} instead of $PN}-dev
- PACKAGES = "${PN}-dbg ${PN}-staticdev ${PN} ${PN}-dev ${PN}-doc ${PN}-locale"
--- 
-1.7.10
+I have sent the same proposal to the OpenEmbedded-Core mailing list as well.
 
+Zypper
+------
+
+Zypper is a software management framework by SuSE.  Zypper enables the ability
+to identify and download updated software from a remote package feed.
+
+Zypper is more then just a single application.  It is made up of a number of
+components.  Above and beyond the base system requirements for RPM Zypper
+requires: cmake, boost, curl, libxml2, libcheck, sat-solver, expat, openssl,
+libproxy, libzypp, augeas, C++ support and readline
+
+Of the above items, the biggest problem in the above list is 'boost'.  Boost is
+a set of C++ libraries that provide a large number of templates, classes and
+other components.  However, it's an unwieldy mess, and impossible to support if
+something goes wrong.  This leads to huge potential support issues.
+
+The other big problem, besides the C++, is that Zypper (and associated elements) 
+have a large hard coded list of supported architectures.  We have some nasty 
+hacks in both the libzypp and zypper recipes to write custom, machine specific 
+configurations and compile them into the machine specific version of zypper. The 
+problem with this approach is that it limits sharing between different 
+BSP/machine configurations.
+
+Zypper, and it's dependencies can add up to 44MB of additional code to a
+filesystem.  19MB of the additional code is items that nothing else on a typical 
+system will use.
+
+In early 1.3 development, I attempted to upgrade Zypper, libzypp, and sat-solver 
+to the newer version.  I was unsuccessful due to a combination of C++ issues, 
+simple bugs upstream, and the hard coded lists of compatible machines that only 
+matched SuSE behavior.
+
+In addition, from discussing the issues w/ Richard and Paul in the past, between 
+the quality, C++, boost and other requirements -- we're likely never to get a 
+functional cross - image install using Zypper.  The necessary native recipes 
+required is simply to difficult and complex to support properly.
+
+This has lead to the current solution in the package_rpm.bbclass and
+rootfs_rpm.bbclass that is a mess of hand coded package feed -- package
+selection and resolution code.  The end result is a difficult to support and
+maintain mess.
+
+
+Alternatives?
+-------------
+
+This lead us to evaluate alternatives to Zypper.  The most well know alternative 
+is YUM.  Yum is a package resolver supported primarily by Red Hat and Fedora.
+
+The maintainer, Seth Vidal is actively hostile toward RPM5, the version of RPM
+that we use.  Yum is also in the process of a refactoring that the maintainer
+has publicly stated it will intentionally be written to not be compatible with
+RPM5, as much as possible.  So YUM was excluded based on this.
+
+(Note, there are basic YUM patches to support RPM5 available from community 
+members, so this could be a backup plan if necessary.)
+
+
+SMART (http://labix.org/smart/)
+-------------------------------
+
+The other choice we had is SMART.  At Wind River we've used SMART in the past
+for basic system functionality.  Doing more recent research indicates that the
+project itself is very stable.  There are a low number of recent changes, 
+however the maintainer is still available and posts occasionally on the RPM5 
+mailing lists.  The project has not been abandoned.
+
+SMART is being used by a European Union research project, Mancoosi, as well as a 
+number of small installations.  It was originally the framework used by
+Connectiva, which was later merged into Mandriva.  It's unclear if it is still
+used by Mandriva, but SMART is still able to manage that environment if 
+necessary.  SMART also support Debian style and a few other style packages. 
+While we don't plan to use this, it is a possibility if needed.
+
+SMART is python based and has minimal dependencies.  It more or less requires
+python and rpm's python-rpm module.  The Yocto Project components already have
+these implemented.
+
+SMART being implemented in python is an advantage to us.  It will be easier for 
+people who are fluent in python to be able to identify and fix any issues found 
+in SMART.
+
+  From a basic implementation standpoint it took many days to cross compile and
+implement the Zypper solution that we currently have, and many more days to
+debug and make it minimally functional as we have it today.  SMART took approx 4 
+hours to integrate and debug to the point it is working locally on a target
+system.  This is significantly easier to integrate and use.
+
+SMART, and it's dependencies can add up to 40MB of additional code to a
+filesystem.  Only 1MB of the additional code is items that nothing else on a
+typical system will use.  This makes smart significantly more attractive then
+Zypper for embedded systems.
+
+Note, it's still unclear how configuration, cross-image generation and such will 
+work, but it seems to be dramatically easier to implement so far.
+
+SMART is able to use the existing package feeds.  For RPM repositories local
+database resolver, APT repositories, RPM-MD (yum style), Red Carpet
+(Ximian/Novell), RPM Header List (Fedora / anaconda installer), RPM directory
+(directory w/o indexing), and URPMI (Mandriva format) are all supported.  This
+should be more then flexible enough for us and our users.
+
+Zypper used the createrepo framework for indexing the package feeds.  SMART uses 
+the same method and so at a minimum existing users of Zypper should be able to 
+transition, assuming everything goes smoothly.  (We're not sure if there are any 
+existing oe-core users of Zypper.)
+
+There is however one capability that Zypper had, the ability to use 
+'delta-rpms', that it does not appear that SMART currently supports.  From a 
+basic investigation, it does not look like it would be difficult for someone to 
+implement this behavior, should it be needed.
+
+OE / Yocto Project community
+----------------------------
+The majority of the OE community does not use RPM support.  They default to IPK. 
+   Many of the Yocto Project community does the same.  This means that the 
+package feed support for RPM is likely limited to a smaller set of users.  Many 
+of these end users have simply avoided field upgrade requirements so far -- and 
+this has allowed what little Zypper support we have to be acceptable.
+
+However, as the number of users and defects in the current rootfs_rpm increase,
+it's become difficult and much slower for us to respond to problems.  Most of
+this is caused by the hacky way we do feed resolution and installation, because
+we're simply unable to use a package resolution framework during our cross installs.
+
+In past conversations, pretty much nobody likes the existing implementation and 
+everyone would like something better.  The key though is to fix up SMART, and 
+the necessary bbclass integration and show that the feed mechanism can work as 
+good or better then what we currently have.
+
+
+The following attempts to explain the type of work that will need to be done to 
+implement the above proposal.  The initial integration steps have been done and 
+many of the investigative steps have started.  Assuming there are no significant 
+objections to this, I expect to start sending patches to the list soon.
+
+Expected work items
+-------------------
+* Implement SMART
+      - Verify that the RPM recipe's python-rpm works properly
+      - Integrate smartpm (python-smartpm) from smartpm.org
+        - target
+        - native
+        - nativesdk
+      - Document SMART configuration setup, feed setup, etc
+      - Unit test using manual configuration and feeds
+      - Check if SMART supports requirement hints
+        - Add hinting (RPM_MISSINGOK) support if necessary (suggests/recommends)
+* Remove Zypper
+      - Remove Zypper, libzypp and sat-solver recipes
+      - Investigate if any of the other dependencies should be removed
+* Integrate SMART into RPM image generation
+      - Automatically construct smart configuration files
+      - Verify/extend smart to be able to pass necessary "root" parameter to RPM
+      - Modify package_rpm.bbclass and rootfs_rpm.bbclass
+        - Construct package feed
+        - Use SMART to install from package feed
+      - Unit test/verify image generation works the same as before (or better)
+
+_______________________________________________
+Openembedded-core mailing list
+Openembedded-core@lists.openembedded.org
+http://lists.linuxtogo.org/cgi-bin/mailman/listinfo/openembedded-core
 
