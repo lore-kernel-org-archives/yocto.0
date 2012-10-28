@@ -1,28 +1,17 @@
-Return-Path: <autif.mlist@gmail.com>
-Received: from mail-pa0-f48.google.com (mail-pa0-f48.google.com
-	[209.85.220.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AAAF9E00498
-	for <yocto@yoctoproject.org>; Sat, 27 Oct 2012 07:26:22 -0700 (PDT)
-Received: by mail-pa0-f48.google.com with SMTP id kp12so2559684pab.35
-	for <yocto@yoctoproject.org>; Sat, 27 Oct 2012 07:26:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=DESQN0/+7Xvp0Zw1TE0HnT2fHjX7gt8o4JT0PGGplsc=;
-	b=kWGP9z0KR75CrIDLLI+gsFRGMrvs1NoOAey0JNYuyvVsGxzNfrkqQqLo3DqvdPa7cC
-	DZx/11745GXYyC3fqLGFtrpcUsY0TRdVb87O1SLD1WI4YsA0/ZwGQlNI1MoZAj/uYeBF
-	MENjbFyNiBNHG2oYMiZnBbFiFgY5t3jEt1YjenKsuVbESb8hIaBiy2ab2F4tKcdkFr07
-	uc4kZ5NUG5zxaSErfkw3lBdG8CDvkHZHPYu0OY+v0mMmHEkKVo4VIJ/wOfOZOmcTZDEJ
-	bsYo3n6QoIicyOKv+42hJqOm26Bst190XkuNAj43aP8AiAfcWPFZCb6jELH7KJ+7q5x1
-	vl3A==
-MIME-Version: 1.0
-Received: by 10.66.86.102 with SMTP id o6mr70014928paz.11.1351347982229; Sat,
-	27 Oct 2012 07:26:22 -0700 (PDT)
-Received: by 10.68.231.231 with HTTP; Sat, 27 Oct 2012 07:26:22 -0700 (PDT)
-Date: Sat, 27 Oct 2012 10:26:22 -0400
-Message-ID: <CADzUK1J-nr5ph9TW=6DBWrotadJxgJTQFt03qE_QZVnU4sr5xw@mail.gmail.com>
-From: Autif Khan <autif.mlist@gmail.com>
+Return-Path: <packages@autobuilder.yoctoproject.org>
+Received: from autobuilder.yoctoproject.org (ab01.i.yoctoproject.org
+	[10.0.10.111])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C0758E013EB
+	for <yocto@yoctoproject.org>; Sat, 27 Oct 2012 17:01:11 -0700 (PDT)
+Received: by autobuilder.yoctoproject.org (Postfix, from userid 802)
+	id AF65240B22; Sun, 28 Oct 2012 00:01:11 +0000 (UTC)
+Date: Sun, 28 Oct 2012 00:01:11 +0000
+From: Yocto Project Package Report System <package-reporting@yoctoproject.org>
 To: yocto@yoctoproject.org
-Subject: Love what you have done with Danny
+Message-ID: <20121028000111.GA15604@ab01.i.yoctoproject.org>
+MIME-Version: 1.0
+User-Agent: Mutt/1.5.20 (2009-12-10)
+Subject: [Package Report System]Upgrade recipes name list
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,18 +23,125 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 27 Oct 2012 14:26:22 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Sun, 28 Oct 2012 00:01:11 -0000
+X-Groupsio-MsgNum: 10333
+Content-Type: multipart/mixed; boundary="LQksG6bCIzRHxTLp"
+Content-Disposition: inline
 
-I have been stuck with Denzil and have not kept up with git's tip
-(just because my hardware was fully supported by Denzil). However,
-when Danny came out I had to try it.
+--LQksG6bCIzRHxTLp
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-I love what has been done with tracking the tasks being performed -
-instead of the build logs scrolling by (which I can tail in
-tmp/log/cooker/<machine> anyway)
+This mail was sent out by Package Report System.
+This message list those recipes which need to be upgraded. If maintainers believe some of them needn't to upgrade this time, they can fill in RECIPE_NO_UPDATE_REASON_pn-"xxx" in upstream_tracking files to ignore this recipe remainder until newer upstream version was detected.
+Example:
+RECIPE_NO_UPDATE_REASON_pn-"xxx" = "Not upgrade to 2.0 because the new version is unstable"
+You can check the detail information at http://packages.yoctoproject.org/upgradepkgname
 
-Great job and thanks!
 
-Autif
+PackageName                   Version                       UpVersion                     Maintainer                                        NoUpgradeReason               
+ccache                        3.1.7                         3.1.8                         Wenzong Fan <wenzong.fan@windriver.com>           
+xdg-utils                     1.0.2                         1.1.0                         Valentin Popa <valentin.popa@intel.com>           
+liberation-fonts              1.04                          2.00.0                        Valentin Popa <valentin.popa@intel.com>           
+libxslt                       1.1.26                        1.1.27                        Valentin Popa <valentin.popa@intel.com>           
+evolution-data-server         2.30+git1+3ca578d968d097      6.0                           Valentin Popa <valentin.popa@intel.com>           
+puzzles                       r9594                         9660                          Valentin Popa <valentin.popa@intel.com>           
+matchbox-panel-2              0.0+git1+cdf7a22716b8746      2.0                           Valentin Popa <valentin.popa@intel.com>           
+lttng-viewer                  0.12.38                       0.12.38.21032011              Valentin Popa <valentin.popa@intel.com>           
+sysprof                       1.1.8+git1+4692f85f625f4      1.2.0                         Tom Zanussi <tom.zanussi@intel.com>               
+shadow                        4.1.4.3                       4.1.5.1                       Scott Garman <scott.a.garman@intel.com>           
+sudo                          1.8.5p2                       1.8.6                         Scott Garman <scott.a.garman@intel.com>           
+blktool                       4-6                           4                             Scott Garman <scott.a.garman@intel.com>           
+apmd                          3.2.2-14                      3.2.2                         Scott Garman <scott.a.garman@intel.com>           
+openssh                       6.0p1                         6.1p1                         Scott Garman <scott.a.garman@intel.com>           
+mc                            4.8.4                         4.8.6                         Saul Wold <sgw@linux.intel.com>                   
+libtasn1                      2.13                          2.14                          Saul Wold <sgw@linux.intel.com>                   
+libnl                         2.0                           3.2.13                        Saul Wold <sgw@linux.intel.com>                   libnl-3.2.2 is incompatible w...
+createrepo                    0.4.11                        0.9.9                         Saul Wold <sgw@linux.intel.com>                   Versions after 0.9.* use YUM,...
+apt                           0.7.14                        0.9.7.5                       Saul Wold <sgw@linux.intel.com>                   
+pkgconfig                     0.25                          0.27.1                        Saul Wold <sgw@linux.intel.com>                   0.26 removes glib-conf, adds ...
+build-appliance-image         1.0                           3.2.1                         Saul Wold <sgw@linux.intel.com>                   
+util-linux                    2.21.2                        2.22                          Saul Wold <sgw@linux.intel.com>                   
+libxml2                       2.8.0                         2.9.0                         Saul Wold <sgw@linux.intel.com>                   
+resolvconf                    1.67                          1.68                          Saul Wold <sgw@linux.intel.com>                   
+dhcp                          4.2.4-P1                      4.2.4                         Saul Wold <sgw@linux.intel.com>                   ftp://ftp.isc.org/isc/dhcp/4.2.4-P1/dhcp-4.2.4-P1.tar.gz
+tiff                          4.0.2                         4.0.3                         Saul Wold <sgw@linux.intel.com>                   
+logrotate                     3.8.1                         3.8.2                         Robert Yang <liezhi.yang@windriver.com>           
+liburcu                       0.6.7                         0.7.4                         Radu Moisan <radu.moisan@intel.com>               
+curl                          7.26.0                        7.27.0                        Radu Moisan <radu.moisan@intel.com>               
+js                            1.7.0+1.8.0rc1                1.60                          Radu Moisan <radu.moisan@intel.com>               
+u-boot-mkimage                2011.06                       2012.07                       Radu Moisan <radu.moisan@intel.com>               
+valgrind                      3.7.0                         3.8.1                         Radu Moisan <radu.moisan@intel.com>               
+babeltrace                    0.12+git1+0d8f8c2ea27df0      1.0.0                         Radu Moisan <radu.moisan@intel.com>               
+udev                          164                           182                           Radu Moisan <radu.moisan@intel.com>               
+mobile-broadband-provider-info1.0.0+gitr1+d9995ef693cb      20090309                      Radu Moisan <radu.moisan@intel.com>               
+nativesdk-bdwgc               20110107                      7.2alpha5                     No Maintainer information                         
+nativesdk-curl                7.26.0                        7.27.0                        No Maintainer information                         
+libksba                       1.2.0                         1.3.0                         No Maintainer information                         
+cmake                         2.8.8                         2.8.9                         No Maintainer information                         
+nativesdk-cmake               2.8.8                         2.8.9                         No Maintainer information                         
+nativesdk-automake            1.12.3                        1.12.4                        No Maintainer information                         
+nativesdk-pkgconfig           0.25                          0.27.1                        No Maintainer information                         
+nativesdk-perl                5.14.2                        5.17.4                        No Maintainer information                         
+lttng-modules                 2.0.pre11+git4d3e89e379f      2.1.0                         No Maintainer information                         
+nativesdk-linux-libc-headers  3.4.3                         3.6                           No Maintainer information                         
+nativesdk-linux-libc-headers- 3.4+git-1+a1cdb60720c452      3.4.9                         No Maintainer information                         
+nativesdk-libxml2             2.8.0                         2.9.0                         No Maintainer information                         
+nativesdk-zlib                1.2.7                         121                           No Maintainer information                         
+libdumpvalue-perl             1.16                          1.17                          No Maintainer information                         
+nativesdk-openssl             1.0.0j                        1.0.1                         No Maintainer information                         
+zypper                        1.5.3-git1+2c5bb6ceb99ec      11.0                          Mark Hatle <mark.hatle@windriver.com>             
+libzypp                       0.0-git1+15b6c52260bbc52      11.0                          Mark Hatle <mark.hatle@windriver.com>             
+fontconfig                    2.9.0                         2.10.1                        Laurentiu Palcu <laurentiu.palcu@intel.com>       
+xkeyboard-config              2.1                           2.6.99                        Laurentiu Palcu <laurentiu.palcu@intel.com>       
+xserver-xorg                  1.11.2                        1.13.0                        Laurentiu Palcu <laurentiu.palcu@intel.com>       
+xf86-input-mouse              1.7.2                         1.8.1                         Laurentiu Palcu <laurentiu.palcu@intel.com>       
+xf86-input-evdev              2.7.0                         2.7.3                         Laurentiu Palcu <laurentiu.palcu@intel.com>       
+xf86-video-vesa               2.3.1                         2.3.2                         Laurentiu Palcu <laurentiu.palcu@intel.com>       
+xf86-video-fbdev              0.4.2                         0.4.3                         Laurentiu Palcu <laurentiu.palcu@intel.com>       
+xf86-video-intel              2.19.0                        2.20.8                        Laurentiu Palcu <laurentiu.palcu@intel.com>       
+xf86-input-keyboard           1.6.1                         1.6.2                         Laurentiu Palcu <laurentiu.palcu@intel.com>       
+ghostscript                   9.05                          9.06                          Kai Kang <kai.kang@windriver.com>                 
+directfb                      1.6.1                         1.6.2                         Kai Kang <kai.kang@windriver.com>                 
+qmmp                          0.6.1                         0.6.3                         Kai Kang <kai.kang@windriver.com>                 
+syslinux                      4.03                          4.05                          Darren Hart <dvhart@linux.intel.com>              Waiting for 4.06 for 3.3 kern...
+net-tools                     1.60-23                       1.60                          Cristian Iorga <cristian.iorga@intel.com>         
+connman                       1.4                           1.7                           Cristian Iorga <cristian.iorga@intel.com>         
+ofono                         1.10                          1.11                          Cristian Iorga <cristian.iorga@intel.com>         
+telepathy-mission-control     5.13.0                        5.13.2                        Cristian Iorga <cristian.iorga@intel.com>         
+telepathy-glib                0.19.8                        0.19.10                       Cristian Iorga <cristian.iorga@intel.com>         
+libmusicbrainz                3.0.3                         4.0.0                         Cristian Iorga <cristian.iorga@intel.com>         
+gst-plugins-base              0.10.36                       0.11.90                       Cristian Iorga <cristian.iorga@intel.com>         
+gst-ffmpeg                    0.10.13                       0.11.2                        Cristian Iorga <cristian.iorga@intel.com>         
+gst-plugins-good              0.10.31                       0.11.90                       Cristian Iorga <cristian.iorga@intel.com>         
+gst-plugins-bad               0.10.23                       0.11.90                       Cristian Iorga <cristian.iorga@intel.com>         
+gst-plugins-ugly              0.10.19                       0.11.90                       Cristian Iorga <cristian.iorga@intel.com>         
+gstreamer                     0.10.36                       0.11.90                       Cristian Iorga <cristian.iorga@intel.com>         upgrading to 0.11.1 causes gs...
+gst-fluendo-mp3               0.10.19                       0.10.20                       Cristian Iorga <cristian.iorga@intel.com>         
+libconvert-asn1-perl          0.22                          0.26                          Bogdan Marinescu <bogdan.a.marinescu@intel.com>   
+patch                         2.6.1                         2.7                           Bogdan Marinescu <bogdan.a.marinescu@intel.com>   
+tcf-agent                     0.4.0+git1+4ef94ecb927a8      8.0                           Bogdan Marinescu <bogdan.a.marinescu@intel.com>   
+automake                      1.12.3                        1.12.4                        Bogdan Marinescu <bogdan.a.marinescu@intel.com>   
+bison                         2.5.1                         2.6.2                         Bogdan Marinescu <bogdan.a.marinescu@intel.com>   
+nasm                          2.10.01                       2.10.05                       Bogdan Marinescu <bogdan.a.marinescu@intel.com>   
+lttng2-ust                    2.0.2+git1+a367ee66aad3f      2.1.0                         Bogdan Marinescu <bogdan.a.marinescu@intel.com>   
+linux-libc-headers-yocto      3.4+git-1+a1cdb60720c452      3.4.9                         Bogdan Marinescu <bogdan.a.marinescu@intel.com>   
+linux-libc-headers            3.4.3                         3.6                           Bogdan Marinescu <bogdan.a.marinescu@intel.com>   
+lttng-control                 0.89                          0.89.05122011                 Bogdan Marinescu <bogdan.a.marinescu@intel.com>   
+Upgradable Count: 82
+Upgrade Total Count: 88
+The based commit merge time is:
+Thu Sep 27 16:15:38 2012 -0700
+The based commit is:
+commit fc1822fc6b3cbe6fb52e7f08eac4c6b624fba462
+Author: Richard Purdie <richard.purdie@linuxfoundation.org>
+Date:   Thu Sep 27 23:06:06 2012 +0100
+Any problem, please contact Saul Wold <sgw@linux.intel.com> 
 
+--LQksG6bCIzRHxTLp
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: attachment; filename="potential_format_problem.log"
+
+recipe_color.inc/17: RECIPE_COLOR = "green"
+
+--LQksG6bCIzRHxTLp--
