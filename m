@@ -1,24 +1,22 @@
 Return-Path: <tom.zanussi@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E61CAE0133F
-	for <yocto@yoctoproject.org>; Mon, 29 Oct 2012 16:12:03 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 29 Oct 2012 16:12:02 -0700
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EA6B2E01346
+	for <yocto@yoctoproject.org>; Mon, 29 Oct 2012 16:12:32 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 29 Oct 2012 16:12:02 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,675,1344236400"; d="scan'208";a="162117641"
+X-IronPort-AV: E=Sophos;i="4.80,675,1344236400"; d="scan'208";a="212711186"
 Received: from unknown (HELO localhost) ([10.255.14.158])
-	by AZSMGA002.ch.intel.com with ESMTP; 29 Oct 2012 16:11:59 -0700
+	by orsmga001.jf.intel.com with ESMTP; 29 Oct 2012 16:11:55 -0700
 From: tom.zanussi@intel.com
 To: yocto@yoctoproject.org, dvhart@linux.intel.com, nitin.a.kamble@intel.com,
 	kishore.k.bodke@intel.com, rahul.saxena@intel.com
-Date: Mon, 29 Oct 2012 18:11:54 -0500
-Message-Id: <376fb0a2ac28529509179a771a73fa6ac6c196cf.1351551995.git.tom.zanussi@intel.com>
+Date: Mon, 29 Oct 2012 18:11:53 -0500
+Message-Id: <3898886e634523bc1bfbfae9f942959f6badfdb0.1351551995.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.11.4
-In-Reply-To: <3898886e634523bc1bfbfae9f942959f6badfdb0.1351551995.git.tom.zanussi@intel.com>
-References: <3898886e634523bc1bfbfae9f942959f6badfdb0.1351551995.git.tom.zanussi@intel.com>
 In-Reply-To: <cover.1351551995.git.tom.zanussi@intel.com>
 References: <cover.1351551995.git.tom.zanussi@intel.com>
-Subject: [PATCH 2/2] meta-intel: remove linux-yocto*_3.0 bbappends
+Subject: [PATCH 1/2] meta-intel: update kernel SRCREVs and pin LINUX_VERSION
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,235 +28,280 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 29 Oct 2012 23:12:04 -0000
+X-List-Received-Date: Mon, 29 Oct 2012 23:12:33 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-The 3.2 and 3.4 kernels are the ones supported for Yocto 1.3, so
-remove the 3.0 versions.
+Update all the linux-yocto .bbappends with the latest kernel SRCREVs
+and add explicit LINUX_VERSIONs for the 1.3 release, to prevent a
+mismatch between the kernel version actually used in the machine
+branch vs the version the recipe uses for the kernel image, which can
+change with stable updates.
 
 Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
 ---
- .../recipes-kernel/linux/linux-yocto-rt_3.0.bbappend    |  8 --------
- .../recipes-kernel/linux/linux-yocto_3.0.bbappend       |  9 ---------
- .../recipes-kernel/linux/linux-yocto-rt_3.0.bbappend    | 11 -----------
- meta-fri2/recipes-kernel/linux/linux-yocto_3.0.bbappend | 11 -----------
- .../recipes-kernel/linux/linux-yocto-rt_3.0.bbappend    | 10 ----------
- meta-n450/recipes-kernel/linux/linux-yocto_3.0.bbappend | 10 ----------
- .../recipes-kernel/linux/linux-yocto-rt_3.0.bbappend    |  8 --------
- .../recipes-kernel/linux/linux-yocto_3.0.bbappend       |  8 --------
- .../recipes-kernel/linux/linux-yocto-rt_3.0.bbappend    |  8 --------
- .../recipes-kernel/linux/linux-yocto_3.0.bbappend       |  8 --------
- .../recipes-kernel/linux/linux-yocto-rt_3.0.bbappend    | 14 --------------
- .../recipes-kernel/linux/linux-yocto_3.0.bbappend       | 17 -----------------
- 12 files changed, 122 deletions(-)
- delete mode 100644 meta-emenlow/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
- delete mode 100644 meta-emenlow/recipes-kernel/linux/linux-yocto_3.0.bbappend
- delete mode 100644 meta-fri2/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
- delete mode 100644 meta-fri2/recipes-kernel/linux/linux-yocto_3.0.bbappend
- delete mode 100644 meta-n450/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
- delete mode 100644 meta-n450/recipes-kernel/linux/linux-yocto_3.0.bbappend
- delete mode 100644 meta-romley/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
- delete mode 100644 meta-romley/recipes-kernel/linux/linux-yocto_3.0.bbappend
- delete mode 100644 meta-sugarbay/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
- delete mode 100644 meta-sugarbay/recipes-kernel/linux/linux-yocto_3.0.bbappend
- delete mode 100644 meta-sys940x/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
- delete mode 100644 meta-sys940x/recipes-kernel/linux/linux-yocto_3.0.bbappend
+ meta-chiefriver/recipes-kernel/linux/linux-yocto_3.2.bbappend  |  2 ++
+ meta-chiefriver/recipes-kernel/linux/linux-yocto_3.4.bbappend  |  6 ++++--
+ meta-crownbay/recipes-kernel/linux/linux-yocto_3.2.bbappend    | 10 ++++++----
+ meta-crownbay/recipes-kernel/linux/linux-yocto_3.4.bbappend    | 10 ++++++----
+ .../recipes-kernel/linux/linux-yocto_3.4.bbappend              | 10 ++++++----
+ meta-emenlow/recipes-kernel/linux/linux-yocto_3.2.bbappend     |  6 ++++--
+ meta-emenlow/recipes-kernel/linux/linux-yocto_3.4.bbappend     |  6 ++++--
+ meta-fri2/recipes-kernel/linux/linux-yocto_3.2.bbappend        | 10 ++++++----
+ meta-fri2/recipes-kernel/linux/linux-yocto_3.4.bbappend        |  2 ++
+ .../recipes-kernel/linux/linux-yocto_3.2.bbappend              |  2 ++
+ .../recipes-kernel/linux/linux-yocto_3.4.bbappend              |  6 ++++--
+ meta-romley/recipes-kernel/linux/linux-yocto_3.2.bbappend      |  6 ++++--
+ meta-sugarbay/recipes-kernel/linux/linux-yocto_3.2.bbappend    |  6 ++++--
+ meta-sugarbay/recipes-kernel/linux/linux-yocto_3.4.bbappend    |  6 ++++--
+ meta-sys940x/recipes-kernel/linux/linux-yocto_3.2.bbappend     | 10 ++++++----
+ 15 files changed, 64 insertions(+), 34 deletions(-)
 
-diff --git a/meta-emenlow/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend b/meta-emenlow/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
-deleted file mode 100644
-index fce01cb..0000000
---- a/meta-emenlow/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
-+++ /dev/null
-@@ -1,8 +0,0 @@
--FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
--COMPATIBLE_MACHINE_emenlow = "emenlow"
--KMACHINE_emenlow  = "emenlow"
--
--# Update the following to use a different BSP branch or meta SRCREV
--#KBRANCH_emenlow  = "yocto/standard/preempt-rt/base"
--#SRCREV_machine_pn-linux-yocto-rt_emenlow ?= XXXX
--#SRCREV_meta_pn-linux-yocto-rt_emenlow ?= XXXX
-diff --git a/meta-emenlow/recipes-kernel/linux/linux-yocto_3.0.bbappend b/meta-emenlow/recipes-kernel/linux/linux-yocto_3.0.bbappend
-deleted file mode 100644
-index 85a4cbe..0000000
---- a/meta-emenlow/recipes-kernel/linux/linux-yocto_3.0.bbappend
-+++ /dev/null
-@@ -1,9 +0,0 @@
--FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
--
--COMPATIBLE_MACHINE_emenlow = "emenlow"
--KMACHINE_emenlow  = "emenlow"
--KBRANCH_emenlow  = "yocto/standard/emenlow"
--KERNEL_FEATURES_append_emenlow += " cfg/smp.scc"
--
--SRCREV_machine_pn-linux-yocto_emenlow ?= "0b13bbbc423fea345fd537792284ccf388809e5b"
--SRCREV_meta_pn-linux-yocto_emenlow ?= "59314a3523e360796419d76d78c6f7d8c5ef2593"
-diff --git a/meta-fri2/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend b/meta-fri2/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
-deleted file mode 100644
-index d3b4f81..0000000
---- a/meta-fri2/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
-+++ /dev/null
-@@ -1,11 +0,0 @@
--FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
--
--COMPATIBLE_MACHINE_fri2 = "fri2"
--KMACHINE_fri2 = "fri2"
--KBRANCH_fri2 = "yocto/standard/preempt-rt/base"
--
--COMPATIBLE_MACHINE_fri2-noemgd = "fri2-noemgd"
--KMACHINE_fri2-noemgd = "fri2"
--KBRANCH_fri2-noemgd = "yocto/standard/preempt-rt/base"
--
--module_autoload_iwlwifi = "iwlwifi"
-diff --git a/meta-fri2/recipes-kernel/linux/linux-yocto_3.0.bbappend b/meta-fri2/recipes-kernel/linux/linux-yocto_3.0.bbappend
-deleted file mode 100644
-index e53991a..0000000
---- a/meta-fri2/recipes-kernel/linux/linux-yocto_3.0.bbappend
-+++ /dev/null
-@@ -1,11 +0,0 @@
--FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
--
--COMPATIBLE_MACHINE_fri2 = "fri2"
--KMACHINE_fri2 = "fri2"
--KBRANCH_fri2 = "yocto/standard/fri2"
--
--COMPATIBLE_MACHINE_fri2-noemgd = "fri2-noemgd"
--KMACHINE_fri2-noemgd = "fri2"
--KBRANCH_fri2-noemgd = "yocto/standard/fri2"
--
--module_autoload_iwlwifi = "iwlwifi"
-diff --git a/meta-n450/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend b/meta-n450/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
-deleted file mode 100644
-index 1c7fef9..0000000
---- a/meta-n450/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
-+++ /dev/null
-@@ -1,10 +0,0 @@
--FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
--COMPATIBLE_MACHINE_n450 = "n450"
--KMACHINE_n450 = "atom-pc"
--
--KERNEL_FEATURES_append_n450 += " cfg/smp.scc"
--
--# Update the following to use a different BSP branch or meta SRCREV
--#KBRANCH_n450 = "yocto/standard/preempt-rt/base"
--#SRCREV_machine_pn-linux-yocto-rt_n450 ?= XXXX
--#SRCREV_meta_pn-linux-yocto-rt_n450 ?= XXXX
-diff --git a/meta-n450/recipes-kernel/linux/linux-yocto_3.0.bbappend b/meta-n450/recipes-kernel/linux/linux-yocto_3.0.bbappend
-deleted file mode 100644
-index 4590c27..0000000
---- a/meta-n450/recipes-kernel/linux/linux-yocto_3.0.bbappend
-+++ /dev/null
-@@ -1,10 +0,0 @@
--FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
--COMPATIBLE_MACHINE_n450 = "n450"
--KMACHINE_n450  = "atom-pc"
--KBRANCH_n450  = "yocto/standard/common-pc/atom-pc"
--
--# The n450 is a single core hypterthreaded CPU
--KERNEL_FEATURES_append_n450 += " cfg/smp.scc"
--
--SRCREV_machine_pn-linux-yocto_n450 = "1e18e44adbe79b846e382370eb29bc4b8cd5a1a0"
--#SRCREV_meta_pn-linux-yocto_n450 ?= XXXX
-diff --git a/meta-romley/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend b/meta-romley/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
-deleted file mode 100644
-index 1551ccf..0000000
---- a/meta-romley/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
-+++ /dev/null
-@@ -1,8 +0,0 @@
--FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
--COMPATIBLE_MACHINE_romley = "romley"
--KMACHINE_romley  = "romley"
--
--# Update the following to use a different BSP branch or meta SRCREV
--#KBRANCH_romley  = "yocto/standard/preempt-rt/base"
--#SRCREV_machine_pn-linux-yocto-rt_romley ?= XXXX
--#SRCREV_meta_pn-linux-yocto-rt_romley ?= XXXX
-diff --git a/meta-romley/recipes-kernel/linux/linux-yocto_3.0.bbappend b/meta-romley/recipes-kernel/linux/linux-yocto_3.0.bbappend
-deleted file mode 100644
-index 021f466..0000000
---- a/meta-romley/recipes-kernel/linux/linux-yocto_3.0.bbappend
-+++ /dev/null
-@@ -1,8 +0,0 @@
--FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
--
--COMPATIBLE_MACHINE_romley = "romley"
--KMACHINE_romley  = "romley"
--KBRANCH_romley  = "yocto/standard/common-pc-64/romley"
--
--SRCREV_machine_pn-linux-yocto_romley ?= "d26ab3559d75d0a3946ecaef67d3aeb7e9e7ef22"
--SRCREV_meta_pn-linux-yocto_romley ?= "67ce7623909cef63927fd145026aaf371cf4abf1"
-diff --git a/meta-sugarbay/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend b/meta-sugarbay/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
-deleted file mode 100644
-index a63959c..0000000
---- a/meta-sugarbay/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
-+++ /dev/null
-@@ -1,8 +0,0 @@
--FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
--COMPATIBLE_MACHINE_sugarbay = "sugarbay"
--KMACHINE_sugarbay  = "sugarbay"
--
--# Update the following to use a different BSP branch or meta SRCREV
--#KBRANCH_sugarbay  = "yocto/standard/preempt-rt/base"
--#SRCREV_machine_pn-linux-yocto-rt_sugarbay ?= XXXX
--#SRCREV_meta_pn-linux-yocto-rt_sugarbay ?= XXXX
-diff --git a/meta-sugarbay/recipes-kernel/linux/linux-yocto_3.0.bbappend b/meta-sugarbay/recipes-kernel/linux/linux-yocto_3.0.bbappend
-deleted file mode 100644
-index 58de27a..0000000
---- a/meta-sugarbay/recipes-kernel/linux/linux-yocto_3.0.bbappend
-+++ /dev/null
-@@ -1,8 +0,0 @@
--FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
--
--COMPATIBLE_MACHINE_sugarbay = "sugarbay"
--KMACHINE_sugarbay  = "sugarbay"
--KBRANCH_sugarbay  = "yocto/standard/common-pc-64/sugarbay"
--
--SRCREV_machine_pn-linux-yocto_sugarbay ?= "162abf381df130fbf6ba8df353821fa684e59dfa"
--SRCREV_meta_pn-linux-yocto_sugarbay ?= "59314a3523e360796419d76d78c6f7d8c5ef2593"
-diff --git a/meta-sys940x/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend b/meta-sys940x/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
-deleted file mode 100644
-index 5d3567d..0000000
---- a/meta-sys940x/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
-+++ /dev/null
-@@ -1,14 +0,0 @@
--FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
--
--COMPATIBLE_MACHINE_sys940x = "sys940x"
--KMACHINE_sys940x = "sys940x"
--KERNEL_FEATURES_append_sys940x += " cfg/smp.scc cfg/efi-ext.scc"
--
--COMPATIBLE_MACHINE_sys940x-noemgd = "sys940x-noemgd"
--KMACHINE_sys940x-noemgd = "sys940x"
--KERNEL_FEATURES_append_sys940x-noemgd += " cfg/smp.scc cfg/efi-ext.scc"
--
--# Update the following to use a different BSP branch or meta SRCREV
--#KBRANCH_sys940x = "yocto/standard/preempt-rt/base"
--#SRCREV_machine_pn-linux-yocto-rt_sys940x ?= XXXX
--#SRCREV_meta_pn-linux-yocto-rt_sys940x ?= XXXX
-diff --git a/meta-sys940x/recipes-kernel/linux/linux-yocto_3.0.bbappend b/meta-sys940x/recipes-kernel/linux/linux-yocto_3.0.bbappend
-deleted file mode 100644
-index 1d8bfb8..0000000
---- a/meta-sys940x/recipes-kernel/linux/linux-yocto_3.0.bbappend
-+++ /dev/null
-@@ -1,17 +0,0 @@
--FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
--
--
--COMPATIBLE_MACHINE_sys940x = "sys940x"
--KMACHINE_sys940x  = "sys940x"
--KBRANCH_sys940x = "yocto/standard/base"
--KERNEL_FEATURES_append_sys940x += " cfg/smp.scc cfg/efi-ext.scc"
--
--COMPATIBLE_MACHINE_sys940x-noemgd = "sys940x-noemgd"
--KMACHINE_sys940x-noemgd  = "sys940x"
--KBRANCH_sys940x-noemgd = "yocto/standard/base"
--KERNEL_FEATURES_append_sys940x-noemgd += " cfg/smp.scc cfg/efi-ext.scc"
--
--SRCREV_machine_pn-linux-yocto_sys940x ?= "5df0b4c2538399aed543133b3855f809adf08ab8"
--SRCREV_meta_pn-linux-yocto_sys940x ?= "77ca4855e80acb8dad21acea946908716c308b5b"
--SRCREV_machine_pn-linux-yocto_sys940x-noemgd ?= "5df0b4c2538399aed543133b3855f809adf08ab8"
--SRCREV_meta_pn-linux-yocto_sys940x-noemgd ?= "77ca4855e80acb8dad21acea946908716c308b5b"
+diff --git a/meta-chiefriver/recipes-kernel/linux/linux-yocto_3.2.bbappend b/meta-chiefriver/recipes-kernel/linux/linux-yocto_3.2.bbappend
+index d4e2ee6..3b07968 100644
+--- a/meta-chiefriver/recipes-kernel/linux/linux-yocto_3.2.bbappend
++++ b/meta-chiefriver/recipes-kernel/linux/linux-yocto_3.2.bbappend
+@@ -8,3 +8,5 @@ KERNEL_FEATURES_append_chiefriver = " features/amt/mei"
+ 
+ SRCREV_machine_pn-linux-yocto_chiefriver ?= "56d1c9ec36287350d154a3abef339598ef4028c2"
+ SRCREV_meta_pn-linux-yocto_chiefriver ?= "486f7aec824b4127e91ef53228823e996b3696f0"
++
++LINUX_VERSION = "3.2.18"
+diff --git a/meta-chiefriver/recipes-kernel/linux/linux-yocto_3.4.bbappend b/meta-chiefriver/recipes-kernel/linux/linux-yocto_3.4.bbappend
+index 413dc74..f023a54 100644
+--- a/meta-chiefriver/recipes-kernel/linux/linux-yocto_3.4.bbappend
++++ b/meta-chiefriver/recipes-kernel/linux/linux-yocto_3.4.bbappend
+@@ -6,5 +6,7 @@ KBRANCH_chiefriver  = "standard/common-pc-64/chiefriver"
+ 
+ KERNEL_FEATURES_append_chiefriver = " features/amt/mei"
+ 
+-SRCREV_machine_pn-linux-yocto_chiefriver ?= "449f7f520350700858f21a5554b81cc8ad23267d"
+-SRCREV_meta_pn-linux-yocto_chiefriver ?= "9e3bdb7344054264b750e53fbbb6394cc1c942ac"
++SRCREV_machine_pn-linux-yocto_chiefriver ?= "218bd8d2022b9852c60d32f0d770931e3cf343e2"
++SRCREV_meta_pn-linux-yocto_chiefriver ?= "68a635bf8dfb64b02263c1ac80c948647cc76d5f"
++
++LINUX_VERSION = "3.4.11"
+diff --git a/meta-crownbay/recipes-kernel/linux/linux-yocto_3.2.bbappend b/meta-crownbay/recipes-kernel/linux/linux-yocto_3.2.bbappend
+index fbe13a8..6478c6b 100644
+--- a/meta-crownbay/recipes-kernel/linux/linux-yocto_3.2.bbappend
++++ b/meta-crownbay/recipes-kernel/linux/linux-yocto_3.2.bbappend
+@@ -8,8 +8,10 @@ COMPATIBLE_MACHINE_crownbay-noemgd = "crownbay-noemgd"
+ KMACHINE_crownbay-noemgd  = "crownbay"
+ KBRANCH_crownbay-noemgd  = "standard/default/crownbay"
+ 
+-SRCREV_machine_pn-linux-yocto_crownbay ?= "ddcccbf870485c835f9b4b94823ca0c4186d78df"
+-SRCREV_meta_pn-linux-yocto_crownbay ?= "07ee09b520579b9f29bd15fefb01fd28b34c6064"
++SRCREV_machine_pn-linux-yocto_crownbay ?= "f5a22aa0b14bb998d88ad4732f85b66c347631f8"
++SRCREV_meta_pn-linux-yocto_crownbay ?= "486f7aec824b4127e91ef53228823e996b3696f0"
+ 
+-SRCREV_machine_pn-linux-yocto_crownbay-noemgd ?= "ddcccbf870485c835f9b4b94823ca0c4186d78df"
+-SRCREV_meta_pn-linux-yocto_crownbay-noemgd ?= "07ee09b520579b9f29bd15fefb01fd28b34c6064"
++SRCREV_machine_pn-linux-yocto_crownbay-noemgd ?= "f5a22aa0b14bb998d88ad4732f85b66c347631f8"
++SRCREV_meta_pn-linux-yocto_crownbay-noemgd ?= "486f7aec824b4127e91ef53228823e996b3696f0"
++
++LINUX_VERSION = "3.2.18"
+diff --git a/meta-crownbay/recipes-kernel/linux/linux-yocto_3.4.bbappend b/meta-crownbay/recipes-kernel/linux/linux-yocto_3.4.bbappend
+index 8a9ef9d..e8c90f9 100644
+--- a/meta-crownbay/recipes-kernel/linux/linux-yocto_3.4.bbappend
++++ b/meta-crownbay/recipes-kernel/linux/linux-yocto_3.4.bbappend
+@@ -8,13 +8,15 @@ COMPATIBLE_MACHINE_crownbay-noemgd = "crownbay-noemgd"
+ KMACHINE_crownbay-noemgd  = "crownbay"
+ KBRANCH_crownbay-noemgd  = "standard/crownbay"
+ 
+-SRCREV_machine_pn-linux-yocto_crownbay ?= "449f7f520350700858f21a5554b81cc8ad23267d"
+-SRCREV_meta_pn-linux-yocto_crownbay ?= "9e3bdb7344054264b750e53fbbb6394cc1c942ac"
++SRCREV_machine_pn-linux-yocto_crownbay ?= "218bd8d2022b9852c60d32f0d770931e3cf343e2"
++SRCREV_meta_pn-linux-yocto_crownbay ?= "68a635bf8dfb64b02263c1ac80c948647cc76d5f"
+ SRCREV_emgd_pn-linux-yocto_crownbay ?= "86643bdd8cbad616a161ab91f51108cf0da827bc"
+ 
+-SRCREV_machine_pn-linux-yocto_crownbay-noemgd ?= "449f7f520350700858f21a5554b81cc8ad23267d"
+-SRCREV_meta_pn-linux-yocto_crownbay-noemgd ?= "9e3bdb7344054264b750e53fbbb6394cc1c942ac"
++SRCREV_machine_pn-linux-yocto_crownbay-noemgd ?= "218bd8d2022b9852c60d32f0d770931e3cf343e2"
++SRCREV_meta_pn-linux-yocto_crownbay-noemgd ?= "68a635bf8dfb64b02263c1ac80c948647cc76d5f"
+ 
+ KSRC_linux_yocto_3_4 ?= "git.yoctoproject.org/linux-yocto-3.4.git"
+ SRC_URI_crownbay = "git://git.yoctoproject.org/linux-yocto-3.4.git;protocol=git;nocheckout=1;branch=${KBRANCH},meta,emgd-1.14;name=machine,meta,emgd"
+ SRC_URI_crownbay-noemgd = "git://git.yoctoproject.org/linux-yocto-3.4.git;protocol=git;nocheckout=1;branch=${KBRANCH},meta;name=machine,meta"
++
++LINUX_VERSION = "3.4.11"
+diff --git a/meta-crystalforest/recipes-kernel/linux/linux-yocto_3.4.bbappend b/meta-crystalforest/recipes-kernel/linux/linux-yocto_3.4.bbappend
+index 8418307..15ff21a 100644
+--- a/meta-crystalforest/recipes-kernel/linux/linux-yocto_3.4.bbappend
++++ b/meta-crystalforest/recipes-kernel/linux/linux-yocto_3.4.bbappend
+@@ -4,14 +4,16 @@ COMPATIBLE_MACHINE_crystalforest-gladden = "crystalforest-gladden"
+ KMACHINE_crystalforest-gladden  = "crystalforest"
+ KBRANCH_crystalforest-gladden  = "standard/common-pc-64/crystalforest"
+ 
+-SRCREV_machine_pn-linux-yocto_crystalforest-gladden ?= "449f7f520350700858f21a5554b81cc8ad23267d"
+-SRCREV_meta_pn-linux-yocto_crystalforest-gladden ?= "2ec32d511b62d44b63e8560a9b1d6895a5dac695"
++SRCREV_machine_pn-linux-yocto_crystalforest-gladden ?= "218bd8d2022b9852c60d32f0d770931e3cf343e2"
++SRCREV_meta_pn-linux-yocto_crystalforest-gladden ?= "68a635bf8dfb64b02263c1ac80c948647cc76d5f"
+ 
+ COMPATIBLE_MACHINE_crystalforest-server = "crystalforest-server"
+ KMACHINE_crystalforest-server  = "crystalforest"
+ KBRANCH_crystalforest-server  = "standard/common-pc-64/crystalforest"
+ 
+-SRCREV_machine_pn-linux-yocto_crystalforest-server ?= "449f7f520350700858f21a5554b81cc8ad23267d"
+-SRCREV_meta_pn-linux-yocto_crystalforest-server ?= "2ec32d511b62d44b63e8560a9b1d6895a5dac695"
++SRCREV_machine_pn-linux-yocto_crystalforest-server ?= "218bd8d2022b9852c60d32f0d770931e3cf343e2"
++SRCREV_meta_pn-linux-yocto_crystalforest-server ?= "68a635bf8dfb64b02263c1ac80c948647cc76d5f"
++
++LINUX_VERSION = "3.4.11"
+ 
+ module_autoload_uio = "uio"
+diff --git a/meta-emenlow/recipes-kernel/linux/linux-yocto_3.2.bbappend b/meta-emenlow/recipes-kernel/linux/linux-yocto_3.2.bbappend
+index 3e8aa9b..41dfe9a 100644
+--- a/meta-emenlow/recipes-kernel/linux/linux-yocto_3.2.bbappend
++++ b/meta-emenlow/recipes-kernel/linux/linux-yocto_3.2.bbappend
+@@ -4,5 +4,7 @@ COMPATIBLE_MACHINE_emenlow = "emenlow"
+ KMACHINE_emenlow  = "emenlow"
+ KBRANCH_emenlow  = "standard/default/emenlow"
+ 
+-SRCREV_machine_pn-linux-yocto_emenlow ?= "33fea086cb668a39765dfc7a01fd715f3ef8f6b8"
+-SRCREV_meta_pn-linux-yocto_emenlow ?= "5b4c9dc78b5ae607173cc3ddab9bce1b5f78129b"
++SRCREV_machine_pn-linux-yocto_emenlow ?= "9432e99fb8ca08b0d713fc4001f0b4a11138d20e"
++SRCREV_meta_pn-linux-yocto_emenlow ?= "486f7aec824b4127e91ef53228823e996b3696f0"
++
++LINUX_VERSION = "3.2.18"
+diff --git a/meta-emenlow/recipes-kernel/linux/linux-yocto_3.4.bbappend b/meta-emenlow/recipes-kernel/linux/linux-yocto_3.4.bbappend
+index 4fac478..7b2185f 100644
+--- a/meta-emenlow/recipes-kernel/linux/linux-yocto_3.4.bbappend
++++ b/meta-emenlow/recipes-kernel/linux/linux-yocto_3.4.bbappend
+@@ -4,5 +4,7 @@ COMPATIBLE_MACHINE_emenlow = "emenlow"
+ KMACHINE_emenlow  = "emenlow"
+ KBRANCH_emenlow  = "standard/emenlow"
+ 
+-SRCREV_machine_pn-linux-yocto_emenlow ?= "ace4e2276ac0592e3602b9b6a95348e56e7cf246"
+-SRCREV_meta_pn-linux-yocto_emenlow ?= "9e3bdb7344054264b750e53fbbb6394cc1c942ac"
++SRCREV_machine_pn-linux-yocto_emenlow ?= "d8178545bc69adf262620fcfa40dd8f8ef64ba14"
++SRCREV_meta_pn-linux-yocto_emenlow ?= "68a635bf8dfb64b02263c1ac80c948647cc76d5f"
++
++LINUX_VERSION = "3.4.11"
+diff --git a/meta-fri2/recipes-kernel/linux/linux-yocto_3.2.bbappend b/meta-fri2/recipes-kernel/linux/linux-yocto_3.2.bbappend
+index 35d0b3a..8459a35 100644
+--- a/meta-fri2/recipes-kernel/linux/linux-yocto_3.2.bbappend
++++ b/meta-fri2/recipes-kernel/linux/linux-yocto_3.2.bbappend
+@@ -3,13 +3,15 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ COMPATIBLE_MACHINE_fri2 = "fri2"
+ KMACHINE_fri2  = "fri2"
+ KBRANCH_fri2 = "standard/default/fri2"
+-SRCREV_machine_pn-linux-yocto_fri2 ?= "046bef8ea4dbb9c279e49ad9faf240b86fc80fdc"
+-SRCREV_meta_pn-linux-yocto_fri2 ?= "07ee09b520579b9f29bd15fefb01fd28b34c6064"
++SRCREV_machine_pn-linux-yocto_fri2 ?= "e0b29aa980673a1a5abde5ffdf356ca21b00f3ec"
++SRCREV_meta_pn-linux-yocto_fri2 ?= "486f7aec824b4127e91ef53228823e996b3696f0"
+ 
+ COMPATIBLE_MACHINE_fri2-noemgd = "fri2-noemgd"
+ KMACHINE_fri2-noemgd  = "fri2"
+ KBRANCH_fri2-noemgd = "standard/default/fri2"
+-SRCREV_machine_pn-linux-yocto_fri2-noemgd ?= "046bef8ea4dbb9c279e49ad9faf240b86fc80fdc"
+-SRCREV_meta_pn-linux-yocto_fri2-noemgd ?= "07ee09b520579b9f29bd15fefb01fd28b34c6064"
++SRCREV_machine_pn-linux-yocto_fri2-noemgd ?= "e0b29aa980673a1a5abde5ffdf356ca21b00f3ec"
++SRCREV_meta_pn-linux-yocto_fri2-noemgd ?= "486f7aec824b4127e91ef53228823e996b3696f0"
++
++LINUX_VERSION = "3.2.18"
+ 
+ module_autoload_iwlwifi = "iwlwifi"
+diff --git a/meta-fri2/recipes-kernel/linux/linux-yocto_3.4.bbappend b/meta-fri2/recipes-kernel/linux/linux-yocto_3.4.bbappend
+index 522c703..dff9456 100644
+--- a/meta-fri2/recipes-kernel/linux/linux-yocto_3.4.bbappend
++++ b/meta-fri2/recipes-kernel/linux/linux-yocto_3.4.bbappend
+@@ -12,4 +12,6 @@ KBRANCH_fri2-noemgd = "standard/fri2"
+ SRCREV_machine_pn-linux-yocto_fri2-noemgd ?= "218bd8d2022b9852c60d32f0d770931e3cf343e2"
+ SRCREV_meta_pn-linux-yocto_fri2-noemgd ?= "68a635bf8dfb64b02263c1ac80c948647cc76d5f"
+ 
++LINUX_VERSION = "3.4.11"
++
+ module_autoload_iwlwifi = "iwlwifi"
+diff --git a/meta-jasperforest/recipes-kernel/linux/linux-yocto_3.2.bbappend b/meta-jasperforest/recipes-kernel/linux/linux-yocto_3.2.bbappend
+index 2c3dd86..537a90c 100644
+--- a/meta-jasperforest/recipes-kernel/linux/linux-yocto_3.2.bbappend
++++ b/meta-jasperforest/recipes-kernel/linux/linux-yocto_3.2.bbappend
+@@ -7,3 +7,5 @@ KBRANCH_jasperforest  = "standard/default/common-pc-64/jasperforest"
+ 
+ SRCREV_machine_pn-linux-yocto_jasperforest ?= "3303a0ec2cde4766fd0ee9dd059e9b4dd7bd7e79"
+ SRCREV_meta_pn-linux-yocto_jasperforest ?= "486f7aec824b4127e91ef53228823e996b3696f0"
++
++LINUX_VERSION = "3.2.18"
+diff --git a/meta-jasperforest/recipes-kernel/linux/linux-yocto_3.4.bbappend b/meta-jasperforest/recipes-kernel/linux/linux-yocto_3.4.bbappend
+index 7c5a908..255f12a 100644
+--- a/meta-jasperforest/recipes-kernel/linux/linux-yocto_3.4.bbappend
++++ b/meta-jasperforest/recipes-kernel/linux/linux-yocto_3.4.bbappend
+@@ -5,5 +5,7 @@ COMPATIBLE_MACHINE_jasperforest = "jasperforest"
+ KMACHINE_jasperforest  = "jasperforest"
+ KBRANCH_jasperforest  = "standard/common-pc-64/jasperforest"
+ 
+-SRCREV_machine_pn-linux-yocto_jasperforest ?= "449f7f520350700858f21a5554b81cc8ad23267d"
+-SRCREV_meta_pn-linux-yocto_jasperforest ?= "9e3bdb7344054264b750e53fbbb6394cc1c942ac"
++SRCREV_machine_pn-linux-yocto_jasperforest ?= "218bd8d2022b9852c60d32f0d770931e3cf343e2"
++SRCREV_meta_pn-linux-yocto_jasperforest ?= "68a635bf8dfb64b02263c1ac80c948647cc76d5f"
++
++LINUX_VERSION = "3.4.11"
+diff --git a/meta-romley/recipes-kernel/linux/linux-yocto_3.2.bbappend b/meta-romley/recipes-kernel/linux/linux-yocto_3.2.bbappend
+index 1cba38f..c54505e 100644
+--- a/meta-romley/recipes-kernel/linux/linux-yocto_3.2.bbappend
++++ b/meta-romley/recipes-kernel/linux/linux-yocto_3.2.bbappend
+@@ -5,5 +5,7 @@ COMPATIBLE_MACHINE_romley = "romley"
+ KMACHINE_romley  = "romley"
+ KBRANCH_romley  = "standard/default/common-pc-64/romley"
+ 
+-SRCREV_machine_pn-linux-yocto_romley ?= "7d26ac083cb255888536b42b622b97fb438753ad"
+-SRCREV_meta_pn-linux-yocto_romley ?= "07ee09b520579b9f29bd15fefb01fd28b34c6064"
++SRCREV_machine_pn-linux-yocto_romley ?= "34e3cd8b7a1d18594a63b7b299fce46e32a6c80c"
++SRCREV_meta_pn-linux-yocto_romley ?= "486f7aec824b4127e91ef53228823e996b3696f0"
++
++LINUX_VERSION = "3.2.18"
+diff --git a/meta-sugarbay/recipes-kernel/linux/linux-yocto_3.2.bbappend b/meta-sugarbay/recipes-kernel/linux/linux-yocto_3.2.bbappend
+index a733ddc..fad7c06 100644
+--- a/meta-sugarbay/recipes-kernel/linux/linux-yocto_3.2.bbappend
++++ b/meta-sugarbay/recipes-kernel/linux/linux-yocto_3.2.bbappend
+@@ -5,7 +5,9 @@ COMPATIBLE_MACHINE_sugarbay = "sugarbay"
+ KMACHINE_sugarbay  = "sugarbay"
+ KBRANCH_sugarbay  = "standard/default/common-pc-64/sugarbay"
+ 
+-SRCREV_machine_pn-linux-yocto_sugarbay ?= "172df847dda93cb52af0c694200613a1c363c9a3"
+-SRCREV_meta_pn-linux-yocto_sugarbay ?= "5b4c9dc78b5ae607173cc3ddab9bce1b5f78129b"
++SRCREV_machine_pn-linux-yocto_sugarbay ?= "1b6466421bc314e7e07fe4dd48c5fc67cdc3fc40"
++SRCREV_meta_pn-linux-yocto_sugarbay ?= "486f7aec824b4127e91ef53228823e996b3696f0"
++
++LINUX_VERSION = "3.2.18"
+ 
+ KERNEL_FEATURES_append_sugarbay = " features/tmp/rc6"
+diff --git a/meta-sugarbay/recipes-kernel/linux/linux-yocto_3.4.bbappend b/meta-sugarbay/recipes-kernel/linux/linux-yocto_3.4.bbappend
+index 9224b63..0a481e2 100644
+--- a/meta-sugarbay/recipes-kernel/linux/linux-yocto_3.4.bbappend
++++ b/meta-sugarbay/recipes-kernel/linux/linux-yocto_3.4.bbappend
+@@ -5,5 +5,7 @@ COMPATIBLE_MACHINE_sugarbay = "sugarbay"
+ KMACHINE_sugarbay  = "sugarbay"
+ KBRANCH_sugarbay  = "standard/common-pc-64/sugarbay"
+ 
+-SRCREV_machine_pn-linux-yocto_sugarbay ?= "449f7f520350700858f21a5554b81cc8ad23267d"
+-SRCREV_meta_pn-linux-yocto_sugarbay ?= "9e3bdb7344054264b750e53fbbb6394cc1c942ac"
++SRCREV_machine_pn-linux-yocto_sugarbay ?= "218bd8d2022b9852c60d32f0d770931e3cf343e2"
++SRCREV_meta_pn-linux-yocto_sugarbay ?= "68a635bf8dfb64b02263c1ac80c948647cc76d5f"
++
++LINUX_VERSION = "3.4.11"
+diff --git a/meta-sys940x/recipes-kernel/linux/linux-yocto_3.2.bbappend b/meta-sys940x/recipes-kernel/linux/linux-yocto_3.2.bbappend
+index 7449b4b..88f3bd8 100644
+--- a/meta-sys940x/recipes-kernel/linux/linux-yocto_3.2.bbappend
++++ b/meta-sys940x/recipes-kernel/linux/linux-yocto_3.2.bbappend
+@@ -4,11 +4,13 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ COMPATIBLE_MACHINE_sys940x = "sys940x"
+ KMACHINE_sys940x  = "sys940x"
+ #KBRANCH_sys940x = "standard/default/base"
+-SRCREV_machine_pn-linux-yocto_sys940x ?= "7cc31a952f78b8f8e8469eed93c23e9675a8eeb5"
+-SRCREV_meta_pn-linux-yocto_sys940x ?= "07ee09b520579b9f29bd15fefb01fd28b34c6064"
++SRCREV_machine_pn-linux-yocto_sys940x ?= "06882fc16a4e965872e7faacb91da1497efd9ac3"
++SRCREV_meta_pn-linux-yocto_sys940x ?= "486f7aec824b4127e91ef53228823e996b3696f0"
+ 
+ COMPATIBLE_MACHINE_sys940x-noemgd = "sys940x-noemgd"
+ KMACHINE_sys940x-noemgd  = "sys940x"
+ #KBRANCH_sys940x-noemgd = "standard/default/base"
+-SRCREV_machine_pn-linux-yocto_sys940x-noemgd ?= "7cc31a952f78b8f8e8469eed93c23e9675a8eeb5"
+-SRCREV_meta_pn-linux-yocto_sys940x-noemgd ?= "07ee09b520579b9f29bd15fefb01fd28b34c6064"
++SRCREV_machine_pn-linux-yocto_sys940x-noemgd ?= "06882fc16a4e965872e7faacb91da1497efd9ac3"
++SRCREV_meta_pn-linux-yocto_sys940x-noemgd ?= "486f7aec824b4127e91ef53228823e996b3696f0"
++
++LINUX_VERSION = "3.2.18"
 -- 
 1.7.11.4
 
