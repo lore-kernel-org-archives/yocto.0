@@ -1,42 +1,25 @@
-Return-Path: <B40290@freescale.com>
-Received: from va3outboundpool.messaging.microsoft.com
-	(va3ehsobe002.messaging.microsoft.com [216.32.180.12])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8F173E013D2
-	for <yocto@yoctoproject.org>; Tue, 30 Oct 2012 00:38:26 -0700 (PDT)
-Received: from mail123-va3-R.bigfish.com (10.7.14.247) by
-	VA3EHSOBE009.bigfish.com (10.7.40.29) with Microsoft SMTP Server id
-	14.1.225.23; Tue, 30 Oct 2012 07:38:25 +0000
-Received: from mail123-va3 (localhost [127.0.0.1])	by
-	mail123-va3-R.bigfish.com (Postfix) with ESMTP id 5B71AC03B2	for
-	<yocto@yoctoproject.org>; Tue, 30 Oct 2012 07:38:25 +0000 (UTC)
-X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null); IPV:NLI;
-	H:mail.freescale.net; RD:none; EFVD:NLI
-X-SpamScore: -1
-X-BigFish: VS-1(zz936eIzz1202h1d1ah1d2ahzz8275bhz2dh2a8h668h839hd24he5bhf0ah1288h12a5h12a9h12bdh12e5h137ah139eh13b6h1441h1504h1537h1155h)
-Received: from mail123-va3 (localhost.localdomain [127.0.0.1]) by mail123-va3
-	(MessageSwitch) id 1351582703751262_27948;
-	Tue, 30 Oct 2012 07:38:23 +0000 (UTC)
-Received: from VA3EHSMHS011.bigfish.com (unknown [10.7.14.240])	by
-	mail123-va3.bigfish.com (Postfix) with ESMTP id B3D62440045	for
-	<yocto@yoctoproject.org>; Tue, 30 Oct 2012 07:38:23 +0000 (UTC)
-Received: from mail.freescale.net (70.37.183.190) by VA3EHSMHS011.bigfish.com
-	(10.7.99.21) with Microsoft SMTP Server (TLS) id 14.1.225.23;
-	Tue, 30 Oct 2012 07:38:23 +0000
-Received: from tx30smr01.am.freescale.net (10.81.153.31) by
-	039-SN1MMR1-005.039d.mgd.msft.net (10.84.1.17) with Microsoft SMTP
-	Server (TLS) id 14.2.318.3; Tue, 30 Oct 2012 07:38:22 +0000
-Received: from right.am.freescale.net (right.am.freescale.net [10.82.176.228])
-	by tx30smr01.am.freescale.net (8.14.3/8.14.0) with ESMTP id
-	q9U7cKKq017009; Tue, 30 Oct 2012 00:38:22 -0700
-From: <b40290@freescale.com>
-To: <yocto@yoctoproject.org>
-Date: Tue, 30 Oct 2012 02:38:18 -0500
-Message-ID: <1351582698-28887-1-git-send-email-b40290@freescale.com>
-X-Mailer: git-send-email 1.7.9.7
-MIME-Version: 1.0
-X-OriginatorOrg: freescale.com
-Cc: Chunrong Guo <b40290@freescale.com>
-Subject: [meta-fsl-ppc master] perf_3.4.bbappend: task oe_runmake: failed
+Return-Path: <kishore.k.bodke@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 81800E013D9
+	for <yocto@yoctoproject.org>; Tue, 30 Oct 2012 05:14:54 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 30 Oct 2012 05:14:54 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,675,1344236400"; d="scan'208";a="240030389"
+Received: from kishore-desktop.sc.intel.com (HELO localhost) ([143.183.188.87])
+	by fmsmga001.fm.intel.com with ESMTP; 29 Oct 2012 16:42:43 -0700
+From: kishore.k.bodke@intel.com
+To: tom.zanussi@intel.com,
+	nitin.a.kamble@intel.com,
+	yocto@yoctoproject.org
+Date: Mon, 29 Oct 2012 16:44:06 -0700
+Message-Id: <a3391aec3e92fbf28ebb7e030cee7ce6efe6729a.1351553989.git.kishore.k.bodke@intel.com>
+X-Mailer: git-send-email 1.7.9.5
+In-Reply-To: <cc35d8e8fa6eb4c756368a64d4007175e1516a7b.1351553989.git.kishore.k.bodke@intel.com>
+References: <cc35d8e8fa6eb4c756368a64d4007175e1516a7b.1351553989.git.kishore.k.bodke@intel.com>
+In-Reply-To: <cover.1351553989.git.kishore.k.bodke@intel.com>
+References: <cover.1351553989.git.kishore.k.bodke@intel.com>
+Subject: [PATCH 2/2] [meta-intel] crystalforest: Update the README Instructions.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,55 +31,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 30 Oct 2012 07:38:26 -0000
-Content-Type: text/plain
+X-List-Received-Date: Tue, 30 Oct 2012 12:14:54 -0000
 
-From: Chunrong Guo <b40290@freescale.com>
+From: Kishore Bodke <kishore.k.bodke@intel.com>
 
-      fix perf ERROR: oe_runmake failed
+Add Instructions to build the custom Image to
+enable qat modules.
 
-Signed-off-by: Chunrong Guo <b40290@freescale.com>
+Signed-off-by: Kishore Bodke <kishore.k.bodke@intel.com>
 ---
- .../perf/files/define-attribute-const.patch        |   13 +++++++++++++
- recipes-append/perf/perf_3.4.bbappend              |    7 +++++++
- 2 files changed, 20 insertions(+)
- create mode 100644 recipes-append/perf/files/define-attribute-const.patch
- create mode 100644 recipes-append/perf/perf_3.4.bbappend
+ meta-crystalforest/README |    9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-diff --git a/recipes-append/perf/files/define-attribute-const.patch b/recipes-append/perf/files/define-attribute-const.patch
-new file mode 100644
-index 0000000..00c7575
---- /dev/null
-+++ b/recipes-append/perf/files/define-attribute-const.patch
-@@ -0,0 +1,13 @@
-+--- linux/tools/perf/util/include/linux/compiler.h	2012-10-25 02:39:36.071441794 -0500
-++++ git/tools/perf/util/include/linux/compiler.h	2012-10-28 21:53:49.351638193 -0500
-+@@ -5,8 +5,9 @@
-+ #define __always_inline	inline
-+ #endif
-+ #define __user
-++#ifndef __attribute_const__
-+ #define __attribute_const__
-+-
-++#endif 
-+ #define __used		__attribute__((__unused__))
-+ 
-+ #endif
-diff --git a/recipes-append/perf/perf_3.4.bbappend b/recipes-append/perf/perf_3.4.bbappend
-new file mode 100644
-index 0000000..a5ff52b
---- /dev/null
-+++ b/recipes-append/perf/perf_3.4.bbappend
-@@ -0,0 +1,7 @@
-+FILESEXTRAPATHS_prepend_fsl := "${THISDIR}/files:"
+diff --git a/meta-crystalforest/README b/meta-crystalforest/README
+index a938193..8731c2a 100644
+--- a/meta-crystalforest/README
++++ b/meta-crystalforest/README
+@@ -88,6 +88,15 @@ You should then be able to build a crystalforest image as such:
+   $ source oe-init-build-env
+   $ bitbake core-image-sato
+ 
++The above image will not give you the quickassist technology features
++such as openssl-qat-module, zlib-qat-module and corpus data files.
 +
-+SRC_URI_append_fsl += "file://define-attribute-const.patch\
-+                        "
++If you want those feature built into the image by default, You should
++build the custom image by doing the following:
 +
-+PR_fsl .= "+${DISTRO}"
++  $ source oe-init-build-env
++  $ bitbake core-image-qat
 +
+ At the end of a successful build, you should have a live image that
+ you can boot from a USB flash drive (see instructions on how to do
+ that below, in the section 'Booting the images from /binary').
 -- 
-1.7.9.7
-
+1.7.9.5
 
 
