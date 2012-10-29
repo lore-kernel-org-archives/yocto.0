@@ -1,37 +1,36 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from fmsmga101.fm.intel.com (mga05.intel.com [192.55.52.89])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A8BEBE002AB
-	for <yocto@yoctoproject.org>; Mon, 29 Oct 2012 08:20:03 -0700 (PDT)
-Received: from mail-vc0-f200.google.com ([209.85.220.200])
-	by mga01.intel.com with ESMTP/TLS/RC4-SHA; 29 Oct 2012 08:20:03 -0700
-Received: by mail-vc0-f200.google.com with SMTP id fl15so8579682vcb.11
-	for <yocto@yoctoproject.org>; Mon, 29 Oct 2012 08:20:02 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type:x-gm-message-state;
-	bh=JKZz8CmgWZParkfAw0osFwzaMSMQVzPDfechjHhiiCw=;
-	b=ei0t10+4nNAUN+6rSUBGW9lK2Ndpgj09xn6G6WoBo/g7KmIMBlfqrXA6WNPTnoLvOM
-	jEgdNL3+ANWZXJEJfYuKGlujzkaJGUS2SbDLuvxWqVIb0P6IbC/NEaKXVnpykA0kkpJR
-	xbxEmTWFQE96xbTkK6AGPeGnmgmrxd2FEBAidEE/MtDaZjpgNmyc58UX03+vQi2Y9X7d
-	VVDWR0O+AqcAU6RV2WH2HAyb9RzC20ED8HbgMJRxejvjjHqPi3WP2SHPDfmnlcoe/V7H
-	tA+K4G0+lJIxLe4/fPiAenOiwFO2s/uUCaPZQ+1vtnT5VzaKJ10zuhKLLEb5W8e+p34n
-	bSlw==
-Received: by 10.49.2.200 with SMTP id 8mr22715118qew.20.1351524001976;
-	Mon, 29 Oct 2012 08:20:01 -0700 (PDT)
+Return-Path: <marc.ferland@gmail.com>
+Received: from mail-qa0-f48.google.com (mail-qa0-f48.google.com
+	[209.85.216.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C42E5E002AB
+	for <yocto@yoctoproject.org>; Mon, 29 Oct 2012 10:15:48 -0700 (PDT)
+Received: by mail-qa0-f48.google.com with SMTP id c11so1946053qad.14
+	for <yocto@yoctoproject.org>; Mon, 29 Oct 2012 10:15:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=sender:from:to:subject:date:message-id:user-agent:mime-version
+	:content-type; bh=rw+n5zTlijf4nKceFjXcechEbqiGB9W6D7YoZ/zTfl0=;
+	b=pi7MjtMzemHMGnU+KqPw08ruXcnUvMuWH735if0Gw6jBGgWTYIBRIHlC5AlvhPmGOP
+	PicZqcXPjdsTvx2uZCvUgG6uRnCNpaYk+aKtITtRNFFqpjxIe34THSpuNegsvpHyGh9k
+	o0xoPq+Tsx8u9JnBtmsyKzHgyBpHJ5jUijMdOLPrYbAduiGRf7aqguUHtn9flTVmowAu
+	rLQMAqQ96xHHCcH6otpuEklhgC0y1qwhIeNg4+dBAVqaU69L5jEDNAz0yezwxEHYPOAq
+	GrCcX0eOS6bctqyQzm26KdMzwrDcYfMpgagG9e8Dy4bPOB2DdkHNfSzVAdOxf12QoLRP
+	HzFA==
+Received: by 10.229.106.31 with SMTP id v31mr4737789qco.5.1351530947811;
+	Mon, 29 Oct 2012 10:15:47 -0700 (PDT)
+Received: from ferlandm@sonatest.com
+	(modemcable066.15-37-24.static.videotron.ca. [24.37.15.66])
+	by mx.google.com with ESMTPS id hw8sm6272679qab.9.2012.10.29.10.15.44
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Mon, 29 Oct 2012 10:15:47 -0700 (PDT)
+Sender: Marc Ferland <marc.ferland@gmail.com>
+Received: by ferlandm@sonatest.com (sSMTP sendmail emulation);
+	Mon, 29 Oct 2012 13:15:51 -0400
+From: Marc Ferland <ferlandm@sonatest.com>
+To: yocto@yoctoproject.org
+Date: Mon, 29 Oct 2012 13:15:51 -0400
+Message-ID: <87wqy9rygo.fsf@sonatest.com>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/24.1 (gnu/linux)
 MIME-Version: 1.0
-Received: by 10.49.2.200 with SMTP id 8mr22715114qew.20.1351524001902; Mon, 29
-	Oct 2012 08:20:01 -0700 (PDT)
-Received: by 10.229.94.206 with HTTP; Mon, 29 Oct 2012 08:20:01 -0700 (PDT)
-In-Reply-To: <CCB3FE6B.1AA58%belen.barros.pena@intel.com>
-References: <CCB3FE6B.1AA58%belen.barros.pena@intel.com>
-Date: Mon, 29 Oct 2012 08:20:01 -0700
-Message-ID: <CAPhnLPD1d01C73v0xFVdvFRXkmbDrd9MujK4o+Ak3eefv6fYzQ@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: "Barros Pena, Belen" <belen.barros.pena@intel.com>
-X-Gm-Message-State: ALoCoQkSnsjPHg9erWR5glL/mnO4Qt0oGt/7cNdwysybwJXJzSnxM+gPo8T/vhhkD8Jkr4k1eZbmgCD5xxPicTLafJUijaN0o8SYUNp5R3ulUjOJmeu3ooUzxiVOb3PkbTZMhXwi3bv3MLUMcBdNWOxER8k4sZgLCQ==
-Cc: yocto <yocto@yoctoproject.org>
-Subject: Re: broken link on the Downloads section
+Subject: rootless X emgd
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,51 +42,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 29 Oct 2012 15:20:03 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Mon, 29 Oct 2012 17:15:49 -0000
+Content-Type: text/plain
 
-On Mon, Oct 29, 2012 at 2:35 AM, Barros Pena, Belen
-<belen.barros.pena@intel.com> wrote:
-> The link pointing to the syslinux documentation at the very bottom of this
-> page:
->
-> http://www.yoctoproject.org/download/bsp/intel-atom-based-pcs-and-devices-0
->
->
-> Seems to be broken. It currently points to
-> http//git.kernel.org/?p=boot/syslinux/syslinux.git;a=blob_plain;f=doc/usbke
-> y.txt;hb=HEAD
+Hi,
 
-Fixed. The website edit software appended an http to the beginning.
+I'm trying to make my machine work with rootless X. The machine looks a
+lot like crownbay (with emgd).
 
--b
+I'm getting the following when X starts:
 
->
-> Does anybody know what the correct URL should be?
->
-> Belen
->
->
-> ---------------------------------------------------------------------
-> Intel Corporation (UK) Limited
-> Registered No. 1134945 (England)
-> Registered Office: Pipers Way, Swindon SN3 1RJ
-> VAT No: 860 2173 47
->
-> This e-mail and any attachments may contain confidential material for
-> the sole use of the intended recipient(s). Any review or distribution
-> by others is strictly prohibited. If you are not the intended
-> recipient, please contact the sender and delete all copies.
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+[2910604.796] (II) EMGD: Intel(R) Embedded Media and Graphics Driver version 1.10.2209 for:                                                       
+        Intel US15W Class                                                                                                                         
+[2910604.796] (--) using VT number 3                                                                                                             
+                                                                                           
+[2910604.871] (WW) VGA arbiter: cannot open kernel arbiter, no multi-card support          
+[2910604.871] (==) EMGD(0): RGB weight 888                                                 
+[2910604.871] (==) EMGD(0): Default visual is TrueColor                                    
+[2910604.873] drmOpenDevice: node name is /dev/dri/card0                                   
+[2910604.875] (WW) LoadKernelModule: Setting of real/effective user Id to 0/0 failed[2910604.883] [drm] failed to load kernel module "emgd"
+[2910604.883] (II) EMGD(0): Graphics hardware initialization failed.                                                                       
+[2910604.883] (II) EMGD(0):   The cause was a failure to connect with the DRM during PreInit().                                            
+[2910604.884] (II) EMGD(0): Cannot open a connection with the DRM                                                                          
+[2910604.884] (II) UnloadModule: "emgd"                                                                                                    
+[2910604.884] (EE) Screen(s) found, but none have a usable configuration.                                                                  
+[2910604.884]                                                                                                                              
+Fatal server error:                                                                                                                        
+[2910604.884] no screens found
 
+Anyway to solve this?
 
+BTW, I'm using denzil.
 
--- 
-Elizabeth Flanagan
-Yocto Project
-Build and Release
+Regards,
+
+Marc
 
