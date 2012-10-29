@@ -1,25 +1,22 @@
-Return-Path: <kishore.k.bodke@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A0419E01302
-	for <yocto@yoctoproject.org>; Mon, 29 Oct 2012 10:52:54 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 29 Oct 2012 10:52:54 -0700
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DCFC2E01248
+	for <yocto@yoctoproject.org>; Mon, 29 Oct 2012 11:55:33 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 29 Oct 2012 11:55:04 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,673,1344236400"; d="scan'208";a="241571814"
-Received: from kishore-desktop.sc.intel.com (HELO localhost) ([143.183.188.87])
-	by fmsmga002.fm.intel.com with ESMTP; 29 Oct 2012 10:42:18 -0700
-From: kishore.k.bodke@intel.com
-To: tom.zanussi@intel.com,
-	nitin.a.kamble@intel.com,
-	yocto@yoctoproject.org
-Date: Mon, 29 Oct 2012 10:42:28 -0700
-Message-Id: <5c98f74c77c8624d82777b1b257e983f7f14a820.1351532199.git.kishore.k.bodke@intel.com>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <c7294ca4d14e88f50ef4ce0389384bbf75cf1c05.1351532199.git.kishore.k.bodke@intel.com>
-References: <c7294ca4d14e88f50ef4ce0389384bbf75cf1c05.1351532199.git.kishore.k.bodke@intel.com>
-In-Reply-To: <cover.1351532199.git.kishore.k.bodke@intel.com>
-References: <cover.1351532199.git.kishore.k.bodke@intel.com>
-Subject: [PATCH 2/2] [meta-intel] romley: add WEBTITLE & Compliance information
+X-IronPort-AV: E=Sophos;i="4.80,673,1344236400"; d="scan'208";a="234194244"
+Received: from unknown (HELO localhost) ([10.7.199.66])
+	by orsmga002.jf.intel.com with ESMTP; 29 Oct 2012 11:55:33 -0700
+From: Darren Hart <dvhart@linux.intel.com>
+To: Yocto Project <yocto@yoctoproject.org>
+Date: Mon, 29 Oct 2012 11:54:21 -0700
+Message-Id: <749418b943b9ae67cad9ba91507c999a51a5779b.1351536782.git.dvhart@linux.intel.com>
+X-Mailer: git-send-email 1.7.11.7
+In-Reply-To: <1351536863-18712-1-git-send-email-dvhart@linux.intel.com>
+References: <1351536863-18712-1-git-send-email-dvhart@linux.intel.com>
+Cc: Darren Hart <dvhart@linux.intel.com>
+Subject: [PATCH 1/3] fri2: Add WEBTITLE and compliance information
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,60 +28,85 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 29 Oct 2012 17:52:54 -0000
+X-List-Received-Date: Mon, 29 Oct 2012 18:55:34 -0000
 
-From: Kishore Bodke <kishore.k.bodke@intel.com>
+The WEBTITLE will be used to publish the BSP on the Yocto Project website.
+Adding the Yocto Project compliance information for the 1.3 release.
 
-The WEBTITLE will be used to publish the BSP on the Yocto Project Website.
-And adding the Yocto Project Compliance information for the 1.3 release.
+Update the DESCRIPTION in the machine config and the platform description
+in the README to be consistent.
 
-Signed-off-by: Kishore Bodke <kishore.k.bodke@intel.com>
+Signed-off-by: Darren Hart <dvhart@linux.intel.com>
 ---
- meta-romley/README                   |   11 +++++++++--
- meta-romley/conf/machine/romley.conf |    5 ++++-
- 2 files changed, 13 insertions(+), 3 deletions(-)
+ meta-fri2/README                        | 19 ++++++++++++++-----
+ meta-fri2/conf/machine/fri2-noemgd.conf |  5 +++--
+ meta-fri2/conf/machine/fri2.conf        |  3 ++-
+ 3 files changed, 19 insertions(+), 8 deletions(-)
 
-diff --git a/meta-romley/README b/meta-romley/README
-index 6ddbaf2..c35c209 100644
---- a/meta-romley/README
-+++ b/meta-romley/README
-@@ -2,9 +2,16 @@ This README file contains information on building the meta-romley
- BSP layer, and booting the images contained in the /binary directory.
- Please see the corresponding sections below for details.
+diff --git a/meta-fri2/README b/meta-fri2/README
+index 05b7257..af33c0b 100644
+--- a/meta-fri2/README
++++ b/meta-fri2/README
+@@ -7,13 +7,22 @@ Developer Kit, as described here:
  
--The 'romley' platform consists of the Intel Sandy Bridge processor,
--plus the Patsburg chipset.  This BSP assumes Matrox graphics is being used.
-+The 'romley' platform consists of the Intel Xeon E5-2600 and E5-2400
-+Series Processors, plus the Intel C604/C602-J Chipset.
-+This BSP assumes Matrox graphics is being used.
+ http://us.kontron.com/products/systems+and+platforms/m2m/m2m+smart+services+developer+kit.html
  
+-The platform consists of the Intel Atom E640T processor plus the Intel
+-EG20T Platform Controller Hub (Tunnel Creek + Topcliff), along with a
+-variety of communications options and other machine-to-machine (m2m)
+-capabilities.
++The 'Queens Bay' platform consists of the Intel Atom E640T processor plus the
++Intel EG20T Platform Controller Hub (Tunnel Creek + Topcliff). The Fish River
++Island II includes a variety of communications options and other
++machine-to-machine (m2m) capabilities.
+ 
+ It also supports the E6xx embedded on-chip graphics via the Intel
+-Embedded Media and Graphics Driver (EMGD) 1.10 Driver.
++Embedded Media and Graphics Driver (EMGD).
++
++
 +Compliance
 +==========
++
 +This BSP is compliant with the Yocto Project as per the requirements
 +listed here:
 +
 +  http://www.yoctoproject.org/yocto-project-compatible-registration
  
+ 
  Dependencies
- ============
-diff --git a/meta-romley/conf/machine/romley.conf b/meta-romley/conf/machine/romley.conf
-index ab4d3c0..18d6757 100644
---- a/meta-romley/conf/machine/romley.conf
-+++ b/meta-romley/conf/machine/romley.conf
-@@ -1,8 +1,11 @@
+diff --git a/meta-fri2/conf/machine/fri2-noemgd.conf b/meta-fri2/conf/machine/fri2-noemgd.conf
+index 3c25817..cb94679 100644
+--- a/meta-fri2/conf/machine/fri2-noemgd.conf
++++ b/meta-fri2/conf/machine/fri2-noemgd.conf
+@@ -1,8 +1,9 @@
  #@TYPE: Machine
- #@NAME: romley
+ #@NAME: fri2
  
-+#@WEBTITLE: Intel Xeon E5-2600 and E5-2400 Series (Formerly Sandy Bridge-EP/EN)
-+#Processors with Intel C604/C602-J Chipset (Romley-EP/EN Platform)
+-#@DESCRIPTION: Machine configuration for Fish River Island II systems
+-# i.e. E660 + EG20T
++#@WEBTITLE: Intel Atom E640T Processor with Intel EG20T Controller Hub Development Kit (Queens Bay) with Open Source VESA Graphics for Fish River Island II systems
 +
- #@DESCRIPTION: Machine configuration for Romley systems
--# i.e. Sandy Bridge + Patsburg Chipset
-+# i.e. Xeon E5-2600 and E5-2400 + Intel CC604/C602-J
++#@DESCRIPTION: Machine configuration for Fish River Island II systems, without Intel-proprietary graphics bits
  
+ require conf/machine/include/tune-atom.inc
+ require conf/machine/include/ia32-base.inc
+diff --git a/meta-fri2/conf/machine/fri2.conf b/meta-fri2/conf/machine/fri2.conf
+index 19f2fb0..ec343f2 100644
+--- a/meta-fri2/conf/machine/fri2.conf
++++ b/meta-fri2/conf/machine/fri2.conf
+@@ -1,8 +1,9 @@
+ #@TYPE: Machine
+ #@NAME: fri2
  
- PREFERRED_VERSION_linux-yocto ?= "3.2%"
++#@WEBTITLE: Intel Atom E640T Processor with Intel EG20T Controller Hub Development Kit (Queens Bay) with Proprietary IEMGD Accelerated Graphics for Fish River Island II systems
++
+ #@DESCRIPTION: Machine configuration for Fish River Island II systems
+-# i.e. E660 + EG20T
+ 
+ require conf/machine/include/tune-atom.inc
+ require conf/machine/include/ia32-base.inc
 -- 
-1.7.9.5
+1.7.11.7
 
 
