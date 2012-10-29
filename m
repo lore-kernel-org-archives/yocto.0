@@ -1,36 +1,21 @@
-Return-Path: <marc.ferland@gmail.com>
-Received: from mail-qa0-f48.google.com (mail-qa0-f48.google.com
-	[209.85.216.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C42E5E002AB
-	for <yocto@yoctoproject.org>; Mon, 29 Oct 2012 10:15:48 -0700 (PDT)
-Received: by mail-qa0-f48.google.com with SMTP id c11so1946053qad.14
-	for <yocto@yoctoproject.org>; Mon, 29 Oct 2012 10:15:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=sender:from:to:subject:date:message-id:user-agent:mime-version
-	:content-type; bh=rw+n5zTlijf4nKceFjXcechEbqiGB9W6D7YoZ/zTfl0=;
-	b=pi7MjtMzemHMGnU+KqPw08ruXcnUvMuWH735if0Gw6jBGgWTYIBRIHlC5AlvhPmGOP
-	PicZqcXPjdsTvx2uZCvUgG6uRnCNpaYk+aKtITtRNFFqpjxIe34THSpuNegsvpHyGh9k
-	o0xoPq+Tsx8u9JnBtmsyKzHgyBpHJ5jUijMdOLPrYbAduiGRf7aqguUHtn9flTVmowAu
-	rLQMAqQ96xHHCcH6otpuEklhgC0y1qwhIeNg4+dBAVqaU69L5jEDNAz0yezwxEHYPOAq
-	GrCcX0eOS6bctqyQzm26KdMzwrDcYfMpgagG9e8Dy4bPOB2DdkHNfSzVAdOxf12QoLRP
-	HzFA==
-Received: by 10.229.106.31 with SMTP id v31mr4737789qco.5.1351530947811;
-	Mon, 29 Oct 2012 10:15:47 -0700 (PDT)
-Received: from ferlandm@sonatest.com
-	(modemcable066.15-37-24.static.videotron.ca. [24.37.15.66])
-	by mx.google.com with ESMTPS id hw8sm6272679qab.9.2012.10.29.10.15.44
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Mon, 29 Oct 2012 10:15:47 -0700 (PDT)
-Sender: Marc Ferland <marc.ferland@gmail.com>
-Received: by ferlandm@sonatest.com (sSMTP sendmail emulation);
-	Mon, 29 Oct 2012 13:15:51 -0400
-From: Marc Ferland <ferlandm@sonatest.com>
-To: yocto@yoctoproject.org
-Date: Mon, 29 Oct 2012 13:15:51 -0400
-Message-ID: <87wqy9rygo.fsf@sonatest.com>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/24.1 (gnu/linux)
-MIME-Version: 1.0
-Subject: rootless X emgd
+Return-Path: <kishore.k.bodke@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4B5C9E01248
+	for <yocto@yoctoproject.org>; Mon, 29 Oct 2012 10:41:04 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 29 Oct 2012 10:41:03 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,673,1344236400"; d="scan'208";a="241571133"
+Received: from kishore-desktop.sc.intel.com (HELO localhost) ([143.183.188.87])
+	by fmsmga002.fm.intel.com with ESMTP; 29 Oct 2012 10:41:03 -0700
+From: kishore.k.bodke@intel.com
+To: tom.zanussi@intel.com,
+	nitin.a.kamble@intel.com,
+	yocto@yoctoproject.org
+Date: Mon, 29 Oct 2012 10:42:26 -0700
+Message-Id: <cover.1351532199.git.kishore.k.bodke@intel.com>
+X-Mailer: git-send-email 1.7.9.5
+Subject: [PATCH 0/2][meta-intel] Change machine names
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,39 +27,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 29 Oct 2012 17:15:49 -0000
-Content-Type: text/plain
+X-List-Received-Date: Mon, 29 Oct 2012 17:41:04 -0000
+
+From: Kishore Bodke <kishore.k.bodke@intel.com>
 
 Hi,
 
-I'm trying to make my machine work with rootless X. The machine looks a
-lot like crownbay (with emgd).
+These patch sets are for changing the machine names
+for the Crystal Forest which will be used to publish 
+on the Yocto Project Website and adding the WEBTITLE
+for the Romley BSP.
 
-I'm getting the following when X starts:
+Please pull them into meta-intel/master.
 
-[2910604.796] (II) EMGD: Intel(R) Embedded Media and Graphics Driver version 1.10.2209 for:                                                       
-        Intel US15W Class                                                                                                                         
-[2910604.796] (--) using VT number 3                                                                                                             
-                                                                                           
-[2910604.871] (WW) VGA arbiter: cannot open kernel arbiter, no multi-card support          
-[2910604.871] (==) EMGD(0): RGB weight 888                                                 
-[2910604.871] (==) EMGD(0): Default visual is TrueColor                                    
-[2910604.873] drmOpenDevice: node name is /dev/dri/card0                                   
-[2910604.875] (WW) LoadKernelModule: Setting of real/effective user Id to 0/0 failed[2910604.883] [drm] failed to load kernel module "emgd"
-[2910604.883] (II) EMGD(0): Graphics hardware initialization failed.                                                                       
-[2910604.883] (II) EMGD(0):   The cause was a failure to connect with the DRM during PreInit().                                            
-[2910604.884] (II) EMGD(0): Cannot open a connection with the DRM                                                                          
-[2910604.884] (II) UnloadModule: "emgd"                                                                                                    
-[2910604.884] (EE) Screen(s) found, but none have a usable configuration.                                                                  
-[2910604.884]                                                                                                                              
-Fatal server error:                                                                                                                        
-[2910604.884] no screens found
+Thanks
+Kishore.
 
-Anyway to solve this?
+The following changes since commit 0ebdf34f9a0f023f62305bddcbc8427d36f740b4:
 
-BTW, I'm using denzil.
+  fri2: Add tiny-init bbappend for devtmpfs and console (2012-10-26 20:24:53 -0700)
 
-Regards,
+are available in the git repository at:
 
-Marc
+  git://git.pokylinux.org/meta-intel-contrib Kishore/change_machine
+  http://git.pokylinux.org/cgit.cgi/meta-intel-contrib/log/?h=Kishore/change_machine
+
+Kishore Bodke (2):
+  crystalforest: Change the machine names
+  romley: add WEBTITLE & Compliance information
+
+ meta-crystalforest/README                          |   26 +++++++++-----------
+ ...rest-stargo.conf => crystalforest-gladden.conf} |    4 +--
+ ...rest-shumway.conf => crystalforest-server.conf} |    4 +--
+ .../machconfig                                     |    0
+ .../machconfig                                     |    0
+ .../xorg.conf                                      |    0
+ .../xorg.conf                                      |    0
+ .../linux/linux-yocto-rt_3.4.bbappend              |   21 ++++++++--------
+ .../recipes-kernel/linux/linux-yocto_3.4.bbappend  |   20 +++++++--------
+ meta-romley/README                                 |   11 +++++++--
+ meta-romley/conf/machine/romley.conf               |    5 +++-
+ 11 files changed, 49 insertions(+), 42 deletions(-)
+ rename meta-crystalforest/conf/machine/{crystalforest-stargo.conf => crystalforest-gladden.conf} (87%)
+ rename meta-crystalforest/conf/machine/{crystalforest-shumway.conf => crystalforest-server.conf} (94%)
+ rename meta-crystalforest/recipes-bsp/formfactor/formfactor/{crystalforest-shumway => crystalforest-gladden}/machconfig (100%)
+ rename meta-crystalforest/recipes-bsp/formfactor/formfactor/{crystalforest-stargo => crystalforest-server}/machconfig (100%)
+ rename meta-crystalforest/recipes-graphics/xorg-xserver/xserver-xf86-config/{crystalforest-shumway => crystalforest-gladden}/xorg.conf (100%)
+ rename meta-crystalforest/recipes-graphics/xorg-xserver/xserver-xf86-config/{crystalforest-stargo => crystalforest-server}/xorg.conf (100%)
+
+-- 
+1.7.9.5
+
 
