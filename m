@@ -1,33 +1,25 @@
-Return-Path: <kishore.k.bodke@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2EB45E0127A
-	for <yocto@yoctoproject.org>; Mon, 29 Oct 2012 19:12:08 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 29 Oct 2012 19:12:06 -0700
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B73A6E0127A
+	for <yocto@yoctoproject.org>; Mon, 29 Oct 2012 19:25:18 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 29 Oct 2012 19:24:48 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,676,1344236400"; d="scan'208";a="162175768"
-Received: from orsmsx103.amr.corp.intel.com ([10.22.225.130])
-	by AZSMGA002.ch.intel.com with ESMTP; 29 Oct 2012 19:12:06 -0700
-Received: from orsmsx105.amr.corp.intel.com ([169.254.4.140]) by
-	ORSMSX103.amr.corp.intel.com ([169.254.2.85]) with mapi id
-	14.01.0355.002; Mon, 29 Oct 2012 19:12:06 -0700
-From: "Bodke, Kishore K" <kishore.k.bodke@intel.com>
-To: "Zanussi, Tom" <tom.zanussi@intel.com>
-Thread-Topic: [PATCH 1/2] meta-intel: update kernel SRCREVs and pin
-	LINUX_VERSION
-Thread-Index: AQHNtirRrLVW32URnEmJOGQvZSVN1ZfQ9bOAgAB+pID//6ZjYA==
-Date: Tue, 30 Oct 2012 02:12:05 +0000
-Message-ID: <D956029D25CF204F948EA0FB515E1EE233E729EA@ORSMSX105.amr.corp.intel.com>
+X-IronPort-AV: E=Sophos;i="4.80,676,1344236400"; d="scan'208";a="212771691"
+Received: from unknown (HELO [10.255.14.158]) ([10.255.14.158])
+	by orsmga001.jf.intel.com with ESMTP; 29 Oct 2012 19:25:17 -0700
+Message-ID: <1351563916.9523.38.camel@empanada>
+From: Tom Zanussi <tom.zanussi@intel.com>
+To: "Bodke, Kishore K" <kishore.k.bodke@intel.com>
+Date: Mon, 29 Oct 2012 21:25:16 -0500
+In-Reply-To: <D956029D25CF204F948EA0FB515E1EE233E729EA@ORSMSX105.amr.corp.intel.com>
 References: <cover.1351551995.git.tom.zanussi@intel.com>
 	<3898886e634523bc1bfbfae9f942959f6badfdb0.1351551995.git.tom.zanussi@intel.com>
 	<D956029D25CF204F948EA0FB515E1EE233E72903@ORSMSX105.amr.corp.intel.com>
 	<1351556987.9523.36.camel@empanada>
-In-Reply-To: <1351556987.9523.36.camel@empanada>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
-MIME-Version: 1.0
+	<D956029D25CF204F948EA0FB515E1EE233E729EA@ORSMSX105.amr.corp.intel.com>
+X-Mailer: Evolution 3.4.1 (3.4.1-2.fc17) 
+Mime-Version: 1.0
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
 	"dvhart@linux.intel.com" <dvhart@linux.intel.com>
 Subject: Re: [PATCH 1/2] meta-intel: update kernel SRCREVs and pin LINUX_VERSION
@@ -42,346 +34,457 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 30 Oct 2012 02:12:08 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Tue, 30 Oct 2012 02:25:18 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-DQoNCj4tLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPkZyb206IFphbnVzc2ksIFRvbQ0KPlNl
-bnQ6IE1vbmRheSwgT2N0b2JlciAyOSwgMjAxMiA1OjMwIFBNDQo+VG86IEJvZGtlLCBLaXNob3Jl
-IEsNCj5DYzogeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZzsgZHZoYXJ0QGxpbnV4LmludGVsLmNvbTsg
-S2FtYmxlLCBOaXRpbiBBOyBTYXhlbmEsDQo+UmFodWwNCj5TdWJqZWN0OiBSZTogW1BBVENIIDEv
-Ml0gbWV0YS1pbnRlbDogdXBkYXRlIGtlcm5lbCBTUkNSRVZzIGFuZCBwaW4NCj5MSU5VWF9WRVJT
-SU9ODQo+DQo+T24gTW9uLCAyMDEyLTEwLTI5IGF0IDE4OjU3IC0wNTAwLCBCb2RrZSwgS2lzaG9y
-ZSBLIHdyb3RlOg0KPj4gV2h5IGFyZSB3ZSBub3QgZG9pbmcgdGhpcyBMSU5VWF9WRVJTSU9OIGZv
-ciB0aGUgUlQgS2VybmVsIGJiYXBwZW5kDQo+ZmlsZXM/DQo+Pg0KPg0KPk9oLCBkaWQgSSBtaXNz
-IHNvbWV0aGluZz8gIFRoZSBydCByZWNpcGVzIEkgbG9va2VkIGF0IGRpZG4ndCBkZWZpbmUgYW55
-DQo+U1JDUkVWcy4uLg0KPg0KPkJ1dCBpZiB5b3Ugd2FudCB0byBjaGFuZ2UgdGhhdCwgc3VyZSwg
-Z28gYWhlYWQgYW5kIHNlbmQgYSBwYXRjaC4uLg0KPg0KWWVhaCwgSSBoYXZlIHRoZW0gZm9yIENy
-eXN0YWwgRm9yZXN0LCBidXQgSSBkb24ndCBzZWUgdGhlc2UgaW4gYWxsIEJTUHMuDQpNYXkgYmUg
-SSBjYW4gc2VuZCBhIHBhdGNoIGZvciB0aGUgQ3J5c3RhbCBGb3Jlc3Q/DQoNClRoYW5rcw0KS2lz
-aG9yZS4NCg0KPlRoYW5rcywNCj4NCj5Ub20NCj4NCj4+IFRoYW5rcw0KPj4gS2lzaG9yZS4NCj4+
-DQo+PiA+LS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4+ID5Gcm9tOiBaYW51c3NpLCBUb20N
-Cj4+ID5TZW50OiBNb25kYXksIE9jdG9iZXIgMjksIDIwMTIgNDoxMiBQTQ0KPj4gPlRvOiB5b2N0
-b0B5b2N0b3Byb2plY3Qub3JnOyBkdmhhcnRAbGludXguaW50ZWwuY29tOyBLYW1ibGUsIE5pdGlu
-IEE7DQo+Qm9ka2UsDQo+PiA+S2lzaG9yZSBLOyBTYXhlbmEsIFJhaHVsDQo+PiA+Q2M6IFphbnVz
-c2ksIFRvbQ0KPj4gPlN1YmplY3Q6IFtQQVRDSCAxLzJdIG1ldGEtaW50ZWw6IHVwZGF0ZSBrZXJu
-ZWwgU1JDUkVWcyBhbmQgcGluDQo+PiA+TElOVVhfVkVSU0lPTg0KPj4gPg0KPj4gPkZyb206IFRv
-bSBaYW51c3NpIDx0b20uemFudXNzaUBpbnRlbC5jb20+DQo+PiA+DQo+PiA+VXBkYXRlIGFsbCB0
-aGUgbGludXgteW9jdG8gLmJiYXBwZW5kcyB3aXRoIHRoZSBsYXRlc3Qga2VybmVsIFNSQ1JFVnMN
-Cj4+ID5hbmQgYWRkIGV4cGxpY2l0IExJTlVYX1ZFUlNJT05zIGZvciB0aGUgMS4zIHJlbGVhc2Us
-IHRvIHByZXZlbnQgYQ0KPj4gPm1pc21hdGNoIGJldHdlZW4gdGhlIGtlcm5lbCB2ZXJzaW9uIGFj
-dHVhbGx5IHVzZWQgaW4gdGhlIG1hY2hpbmUNCj4+ID5icmFuY2ggdnMgdGhlIHZlcnNpb24gdGhl
-IHJlY2lwZSB1c2VzIGZvciB0aGUga2VybmVsIGltYWdlLCB3aGljaCBjYW4NCj4+ID5jaGFuZ2Ug
-d2l0aCBzdGFibGUgdXBkYXRlcy4NCj4+ID4NCj4+ID5TaWduZWQtb2ZmLWJ5OiBUb20gWmFudXNz
-aSA8dG9tLnphbnVzc2lAaW50ZWwuY29tPg0KPj4gPi0tLQ0KPj4gPiBtZXRhLWNoaWVmcml2ZXIv
-cmVjaXBlcy1rZXJuZWwvbGludXgvbGludXgteW9jdG9fMy4yLmJiYXBwZW5kICB8ICAyICsrDQo+
-PiA+IG1ldGEtY2hpZWZyaXZlci9yZWNpcGVzLWtlcm5lbC9saW51eC9saW51eC15b2N0b18zLjQu
-YmJhcHBlbmQgIHwgIDYNCj4rKysrLS0NCj4+ID4gbWV0YS1jcm93bmJheS9yZWNpcGVzLWtlcm5l
-bC9saW51eC9saW51eC15b2N0b18zLjIuYmJhcHBlbmQgICAgfCAxMA0KPj4gPisrKysrKy0tLS0N
-Cj4+ID4gbWV0YS1jcm93bmJheS9yZWNpcGVzLWtlcm5lbC9saW51eC9saW51eC15b2N0b18zLjQu
-YmJhcHBlbmQgICAgfCAxMA0KPj4gPisrKysrKy0tLS0NCj4+ID4gLi4uL3JlY2lwZXMta2VybmVs
-L2xpbnV4L2xpbnV4LXlvY3RvXzMuNC5iYmFwcGVuZCAgICAgICAgICAgICAgfCAxMCArKysrKyst
-LS0tDQo+PiA+IG1ldGEtZW1lbmxvdy9yZWNpcGVzLWtlcm5lbC9saW51eC9saW51eC15b2N0b18z
-LjIuYmJhcHBlbmQgICAgIHwgIDYNCj4rKysrLS0NCj4+ID4gbWV0YS1lbWVubG93L3JlY2lwZXMt
-a2VybmVsL2xpbnV4L2xpbnV4LXlvY3RvXzMuNC5iYmFwcGVuZCAgICAgfCAgNg0KPisrKystLQ0K
-Pj4gPiBtZXRhLWZyaTIvcmVjaXBlcy1rZXJuZWwvbGludXgvbGludXgteW9jdG9fMy4yLmJiYXBw
-ZW5kICAgICAgICB8IDEwDQo+KysrKysrLS0tLQ0KPj4gPiBtZXRhLWZyaTIvcmVjaXBlcy1rZXJu
-ZWwvbGludXgvbGludXgteW9jdG9fMy40LmJiYXBwZW5kICAgICAgICB8ICAyICsrDQo+PiA+IC4u
-Li9yZWNpcGVzLWtlcm5lbC9saW51eC9saW51eC15b2N0b18zLjIuYmJhcHBlbmQgICAgICAgICAg
-ICAgIHwgIDIgKysNCj4+ID4gLi4uL3JlY2lwZXMta2VybmVsL2xpbnV4L2xpbnV4LXlvY3RvXzMu
-NC5iYmFwcGVuZCAgICAgICAgICAgICAgfCAgNiArKysrLS0NCj4+ID4gbWV0YS1yb21sZXkvcmVj
-aXBlcy1rZXJuZWwvbGludXgvbGludXgteW9jdG9fMy4yLmJiYXBwZW5kICAgICAgfCAgNiArKysr
-LQ0KPi0NCj4+ID4gbWV0YS1zdWdhcmJheS9yZWNpcGVzLWtlcm5lbC9saW51eC9saW51eC15b2N0
-b18zLjIuYmJhcHBlbmQgICAgfCAgNg0KPisrKystLQ0KPj4gPiBtZXRhLXN1Z2FyYmF5L3JlY2lw
-ZXMta2VybmVsL2xpbnV4L2xpbnV4LXlvY3RvXzMuNC5iYmFwcGVuZCAgICB8ICA2DQo+KysrKy0t
-DQo+PiA+IG1ldGEtc3lzOTQweC9yZWNpcGVzLWtlcm5lbC9saW51eC9saW51eC15b2N0b18zLjIu
-YmJhcHBlbmQgICAgIHwgMTANCj4+ID4rKysrKystLS0tDQo+PiA+IDE1IGZpbGVzIGNoYW5nZWQs
-IDY0IGluc2VydGlvbnMoKyksIDM0IGRlbGV0aW9ucygtKQ0KPj4gPg0KPj4gPmRpZmYgLS1naXQg
-YS9tZXRhLWNoaWVmcml2ZXIvcmVjaXBlcy1rZXJuZWwvbGludXgvbGludXgteW9jdG9fMy4yLmJi
-YXBwZW5kDQo+PiA+Yi9tZXRhLWNoaWVmcml2ZXIvcmVjaXBlcy1rZXJuZWwvbGludXgvbGludXgt
-eW9jdG9fMy4yLmJiYXBwZW5kDQo+PiA+aW5kZXggZDRlMmVlNi4uM2IwNzk2OCAxMDA2NDQNCj4+
-ID4tLS0gYS9tZXRhLWNoaWVmcml2ZXIvcmVjaXBlcy1rZXJuZWwvbGludXgvbGludXgteW9jdG9f
-My4yLmJiYXBwZW5kDQo+PiA+KysrIGIvbWV0YS1jaGllZnJpdmVyL3JlY2lwZXMta2VybmVsL2xp
-bnV4L2xpbnV4LXlvY3RvXzMuMi5iYmFwcGVuZA0KPj4gPkBAIC04LDMgKzgsNSBAQCBLRVJORUxf
-RkVBVFVSRVNfYXBwZW5kX2NoaWVmcml2ZXIgPSAiDQo+PiA+ZmVhdHVyZXMvYW10L21laSINCj4+
-ID4NCj4+ID4gU1JDUkVWX21hY2hpbmVfcG4tbGludXgteW9jdG9fY2hpZWZyaXZlciA/PQ0KPj4g
-PiI1NmQxYzllYzM2Mjg3MzUwZDE1NGEzYWJlZjMzOTU5OGVmNDAyOGMyIg0KPj4gPiBTUkNSRVZf
-bWV0YV9wbi1saW51eC15b2N0b19jaGllZnJpdmVyID89DQo+PiA+IjQ4NmY3YWVjODI0YjQxMjdl
-OTFlZjUzMjI4ODIzZTk5NmIzNjk2ZjAiDQo+PiA+Kw0KPj4gPitMSU5VWF9WRVJTSU9OID0gIjMu
-Mi4xOCINCj4+ID5kaWZmIC0tZ2l0IGEvbWV0YS1jaGllZnJpdmVyL3JlY2lwZXMta2VybmVsL2xp
-bnV4L2xpbnV4LXlvY3RvXzMuNC5iYmFwcGVuZA0KPj4gPmIvbWV0YS1jaGllZnJpdmVyL3JlY2lw
-ZXMta2VybmVsL2xpbnV4L2xpbnV4LXlvY3RvXzMuNC5iYmFwcGVuZA0KPj4gPmluZGV4IDQxM2Rj
-NzQuLmYwMjNhNTQgMTAwNjQ0DQo+PiA+LS0tIGEvbWV0YS1jaGllZnJpdmVyL3JlY2lwZXMta2Vy
-bmVsL2xpbnV4L2xpbnV4LXlvY3RvXzMuNC5iYmFwcGVuZA0KPj4gPisrKyBiL21ldGEtY2hpZWZy
-aXZlci9yZWNpcGVzLWtlcm5lbC9saW51eC9saW51eC15b2N0b18zLjQuYmJhcHBlbmQNCj4+ID5A
-QCAtNiw1ICs2LDcgQEAgS0JSQU5DSF9jaGllZnJpdmVyICA9ICJzdGFuZGFyZC9jb21tb24tcGMt
-DQo+PiA+NjQvY2hpZWZyaXZlciINCj4+ID4NCj4+ID4gS0VSTkVMX0ZFQVRVUkVTX2FwcGVuZF9j
-aGllZnJpdmVyID0gIiBmZWF0dXJlcy9hbXQvbWVpIg0KPj4gPg0KPj4gPi1TUkNSRVZfbWFjaGlu
-ZV9wbi1saW51eC15b2N0b19jaGllZnJpdmVyID89DQo+PiA+IjQ0OWY3ZjUyMDM1MDcwMDg1OGYy
-MWE1NTU0YjgxY2M4YWQyMzI2N2QiDQo+PiA+LVNSQ1JFVl9tZXRhX3BuLWxpbnV4LXlvY3RvX2No
-aWVmcml2ZXIgPz0NCj4+ID4iOWUzYmRiNzM0NDA1NDI2NGI3NTBlNTNmYmJiNjM5NGNjMWM5NDJh
-YyINCj4+ID4rU1JDUkVWX21hY2hpbmVfcG4tbGludXgteW9jdG9fY2hpZWZyaXZlciA/PQ0KPj4g
-PiIyMThiZDhkMjAyMmI5ODUyYzYwZDMyZjBkNzcwOTMxZTNjZjM0M2UyIg0KPj4gPitTUkNSRVZf
-bWV0YV9wbi1saW51eC15b2N0b19jaGllZnJpdmVyID89DQo+PiA+IjY4YTYzNWJmOGRmYjY0YjAy
-MjYzYzFhYzgwYzk0ODY0N2NjNzZkNWYiDQo+PiA+Kw0KPj4gPitMSU5VWF9WRVJTSU9OID0gIjMu
-NC4xMSINCj4+ID5kaWZmIC0tZ2l0IGEvbWV0YS1jcm93bmJheS9yZWNpcGVzLWtlcm5lbC9saW51
-eC9saW51eC0NCj55b2N0b18zLjIuYmJhcHBlbmQNCj4+ID5iL21ldGEtY3Jvd25iYXkvcmVjaXBl
-cy1rZXJuZWwvbGludXgvbGludXgteW9jdG9fMy4yLmJiYXBwZW5kDQo+PiA+aW5kZXggZmJlMTNh
-OC4uNjQ3OGM2YiAxMDA2NDQNCj4+ID4tLS0gYS9tZXRhLWNyb3duYmF5L3JlY2lwZXMta2VybmVs
-L2xpbnV4L2xpbnV4LXlvY3RvXzMuMi5iYmFwcGVuZA0KPj4gPisrKyBiL21ldGEtY3Jvd25iYXkv
-cmVjaXBlcy1rZXJuZWwvbGludXgvbGludXgteW9jdG9fMy4yLmJiYXBwZW5kDQo+PiA+QEAgLTgs
-OCArOCwxMCBAQCBDT01QQVRJQkxFX01BQ0hJTkVfY3Jvd25iYXktbm9lbWdkID0NCj4+ID4iY3Jv
-d25iYXktbm9lbWdkIg0KPj4gPiBLTUFDSElORV9jcm93bmJheS1ub2VtZ2QgID0gImNyb3duYmF5
-Ig0KPj4gPiBLQlJBTkNIX2Nyb3duYmF5LW5vZW1nZCAgPSAic3RhbmRhcmQvZGVmYXVsdC9jcm93
-bmJheSINCj4+ID4NCj4+ID4tU1JDUkVWX21hY2hpbmVfcG4tbGludXgteW9jdG9fY3Jvd25iYXkg
-Pz0NCj4+ID4iZGRjY2NiZjg3MDQ4NWM4MzVmOWI0Yjk0ODIzY2EwYzQxODZkNzhkZiINCj4+ID4t
-U1JDUkVWX21ldGFfcG4tbGludXgteW9jdG9fY3Jvd25iYXkgPz0NCj4+ID4iMDdlZTA5YjUyMDU3
-OWI5ZjI5YmQxNWZlZmIwMWZkMjhiMzRjNjA2NCINCj4+ID4rU1JDUkVWX21hY2hpbmVfcG4tbGlu
-dXgteW9jdG9fY3Jvd25iYXkgPz0NCj4+ID4iZjVhMjJhYTBiMTRiYjk5OGQ4OGFkNDczMmY4NWI2
-NmMzNDc2MzFmOCINCj4+ID4rU1JDUkVWX21ldGFfcG4tbGludXgteW9jdG9fY3Jvd25iYXkgPz0N
-Cj4+ID4iNDg2ZjdhZWM4MjRiNDEyN2U5MWVmNTMyMjg4MjNlOTk2YjM2OTZmMCINCj4+ID4NCj4+
-ID4tU1JDUkVWX21hY2hpbmVfcG4tbGludXgteW9jdG9fY3Jvd25iYXktbm9lbWdkID89DQo+PiA+
-ImRkY2NjYmY4NzA0ODVjODM1ZjliNGI5NDgyM2NhMGM0MTg2ZDc4ZGYiDQo+PiA+LVNSQ1JFVl9t
-ZXRhX3BuLWxpbnV4LXlvY3RvX2Nyb3duYmF5LW5vZW1nZCA/PQ0KPj4gPiIwN2VlMDliNTIwNTc5
-YjlmMjliZDE1ZmVmYjAxZmQyOGIzNGM2MDY0Ig0KPj4gPitTUkNSRVZfbWFjaGluZV9wbi1saW51
-eC15b2N0b19jcm93bmJheS1ub2VtZ2QgPz0NCj4+ID4iZjVhMjJhYTBiMTRiYjk5OGQ4OGFkNDcz
-MmY4NWI2NmMzNDc2MzFmOCINCj4+ID4rU1JDUkVWX21ldGFfcG4tbGludXgteW9jdG9fY3Jvd25i
-YXktbm9lbWdkID89DQo+PiA+IjQ4NmY3YWVjODI0YjQxMjdlOTFlZjUzMjI4ODIzZTk5NmIzNjk2
-ZjAiDQo+PiA+Kw0KPj4gPitMSU5VWF9WRVJTSU9OID0gIjMuMi4xOCINCj4+ID5kaWZmIC0tZ2l0
-IGEvbWV0YS1jcm93bmJheS9yZWNpcGVzLWtlcm5lbC9saW51eC9saW51eC0NCj55b2N0b18zLjQu
-YmJhcHBlbmQNCj4+ID5iL21ldGEtY3Jvd25iYXkvcmVjaXBlcy1rZXJuZWwvbGludXgvbGludXgt
-eW9jdG9fMy40LmJiYXBwZW5kDQo+PiA+aW5kZXggOGE5ZWY5ZC4uZThjOTBmOSAxMDA2NDQNCj4+
-ID4tLS0gYS9tZXRhLWNyb3duYmF5L3JlY2lwZXMta2VybmVsL2xpbnV4L2xpbnV4LXlvY3RvXzMu
-NC5iYmFwcGVuZA0KPj4gPisrKyBiL21ldGEtY3Jvd25iYXkvcmVjaXBlcy1rZXJuZWwvbGludXgv
-bGludXgteW9jdG9fMy40LmJiYXBwZW5kDQo+PiA+QEAgLTgsMTMgKzgsMTUgQEAgQ09NUEFUSUJM
-RV9NQUNISU5FX2Nyb3duYmF5LW5vZW1nZCA9DQo+PiA+ImNyb3duYmF5LW5vZW1nZCINCj4+ID4g
-S01BQ0hJTkVfY3Jvd25iYXktbm9lbWdkICA9ICJjcm93bmJheSINCj4+ID4gS0JSQU5DSF9jcm93
-bmJheS1ub2VtZ2QgID0gInN0YW5kYXJkL2Nyb3duYmF5Ig0KPj4gPg0KPj4gPi1TUkNSRVZfbWFj
-aGluZV9wbi1saW51eC15b2N0b19jcm93bmJheSA/PQ0KPj4gPiI0NDlmN2Y1MjAzNTA3MDA4NThm
-MjFhNTU1NGI4MWNjOGFkMjMyNjdkIg0KPj4gPi1TUkNSRVZfbWV0YV9wbi1saW51eC15b2N0b19j
-cm93bmJheSA/PQ0KPj4gPiI5ZTNiZGI3MzQ0MDU0MjY0Yjc1MGU1M2ZiYmI2Mzk0Y2MxYzk0MmFj
-Ig0KPj4gPitTUkNSRVZfbWFjaGluZV9wbi1saW51eC15b2N0b19jcm93bmJheSA/PQ0KPj4gPiIy
-MThiZDhkMjAyMmI5ODUyYzYwZDMyZjBkNzcwOTMxZTNjZjM0M2UyIg0KPj4gPitTUkNSRVZfbWV0
-YV9wbi1saW51eC15b2N0b19jcm93bmJheSA/PQ0KPj4gPiI2OGE2MzViZjhkZmI2NGIwMjI2M2Mx
-YWM4MGM5NDg2NDdjYzc2ZDVmIg0KPj4gPiBTUkNSRVZfZW1nZF9wbi1saW51eC15b2N0b19jcm93
-bmJheSA/PQ0KPj4gPiI4NjY0M2JkZDhjYmFkNjE2YTE2MWFiOTFmNTExMDhjZjBkYTgyN2JjIg0K
-Pj4gPg0KPj4gPi1TUkNSRVZfbWFjaGluZV9wbi1saW51eC15b2N0b19jcm93bmJheS1ub2VtZ2Qg
-Pz0NCj4+ID4iNDQ5ZjdmNTIwMzUwNzAwODU4ZjIxYTU1NTRiODFjYzhhZDIzMjY3ZCINCj4+ID4t
-U1JDUkVWX21ldGFfcG4tbGludXgteW9jdG9fY3Jvd25iYXktbm9lbWdkID89DQo+PiA+IjllM2Jk
-YjczNDQwNTQyNjRiNzUwZTUzZmJiYjYzOTRjYzFjOTQyYWMiDQo+PiA+K1NSQ1JFVl9tYWNoaW5l
-X3BuLWxpbnV4LXlvY3RvX2Nyb3duYmF5LW5vZW1nZCA/PQ0KPj4gPiIyMThiZDhkMjAyMmI5ODUy
-YzYwZDMyZjBkNzcwOTMxZTNjZjM0M2UyIg0KPj4gPitTUkNSRVZfbWV0YV9wbi1saW51eC15b2N0
-b19jcm93bmJheS1ub2VtZ2QgPz0NCj4+ID4iNjhhNjM1YmY4ZGZiNjRiMDIyNjNjMWFjODBjOTQ4
-NjQ3Y2M3NmQ1ZiINCj4+ID4NCj4+ID4gS1NSQ19saW51eF95b2N0b18zXzQgPz0gImdpdC55b2N0
-b3Byb2plY3Qub3JnL2xpbnV4LXlvY3RvLTMuNC5naXQiDQo+PiA+IFNSQ19VUklfY3Jvd25iYXkg
-PSAiZ2l0Oi8vZ2l0LnlvY3RvcHJvamVjdC5vcmcvbGludXgteW9jdG8tDQo+PiA+My40LmdpdDtw
-cm90b2NvbD1naXQ7bm9jaGVja291dD0xO2JyYW5jaD0ke0tCUkFOQ0h9LG1ldGEsZW1nZC0NCj4+
-ID4xLjE0O25hbWU9bWFjaGluZSxtZXRhLGVtZ2QiDQo+PiA+IFNSQ19VUklfY3Jvd25iYXktbm9l
-bWdkID0gImdpdDovL2dpdC55b2N0b3Byb2plY3Qub3JnL2xpbnV4LXlvY3RvLQ0KPj4NCj4+My40
-LmdpdDtwcm90b2NvbD1naXQ7bm9jaGVja291dD0xO2JyYW5jaD0ke0tCUkFOQ0h9LG1ldGE7bmFt
-ZT1tYWNoaW4NCj5lLA0KPj4gPm1ldGEiDQo+PiA+Kw0KPj4gPitMSU5VWF9WRVJTSU9OID0gIjMu
-NC4xMSINCj4+ID5kaWZmIC0tZ2l0IGEvbWV0YS1jcnlzdGFsZm9yZXN0L3JlY2lwZXMta2VybmVs
-L2xpbnV4L2xpbnV4LQ0KPnlvY3RvXzMuNC5iYmFwcGVuZA0KPj4gPmIvbWV0YS1jcnlzdGFsZm9y
-ZXN0L3JlY2lwZXMta2VybmVsL2xpbnV4L2xpbnV4LXlvY3RvXzMuNC5iYmFwcGVuZA0KPj4gPmlu
-ZGV4IDg0MTgzMDcuLjE1ZmYyMWEgMTAwNjQ0DQo+PiA+LS0tIGEvbWV0YS1jcnlzdGFsZm9yZXN0
-L3JlY2lwZXMta2VybmVsL2xpbnV4L2xpbnV4LXlvY3RvXzMuNC5iYmFwcGVuZA0KPj4gPisrKyBi
-L21ldGEtY3J5c3RhbGZvcmVzdC9yZWNpcGVzLWtlcm5lbC9saW51eC9saW51eC15b2N0b18zLjQu
-YmJhcHBlbmQNCj4+ID5AQCAtNCwxNCArNCwxNiBAQCBDT01QQVRJQkxFX01BQ0hJTkVfY3J5c3Rh
-bGZvcmVzdC1nbGFkZGVuID0NCj4+ID4iY3J5c3RhbGZvcmVzdC1nbGFkZGVuIg0KPj4gPiBLTUFD
-SElORV9jcnlzdGFsZm9yZXN0LWdsYWRkZW4gID0gImNyeXN0YWxmb3Jlc3QiDQo+PiA+IEtCUkFO
-Q0hfY3J5c3RhbGZvcmVzdC1nbGFkZGVuICA9ICJzdGFuZGFyZC9jb21tb24tcGMtDQo+NjQvY3J5
-c3RhbGZvcmVzdCINCj4+ID4NCj4+ID4tU1JDUkVWX21hY2hpbmVfcG4tbGludXgteW9jdG9fY3J5
-c3RhbGZvcmVzdC1nbGFkZGVuID89DQo+PiA+IjQ0OWY3ZjUyMDM1MDcwMDg1OGYyMWE1NTU0Yjgx
-Y2M4YWQyMzI2N2QiDQo+PiA+LVNSQ1JFVl9tZXRhX3BuLWxpbnV4LXlvY3RvX2NyeXN0YWxmb3Jl
-c3QtZ2xhZGRlbiA/PQ0KPj4gPiIyZWMzMmQ1MTFiNjJkNDRiNjNlODU2MGE5YjFkNjg5NWE1ZGFj
-Njk1Ig0KPj4gPitTUkNSRVZfbWFjaGluZV9wbi1saW51eC15b2N0b19jcnlzdGFsZm9yZXN0LWds
-YWRkZW4gPz0NCj4+ID4iMjE4YmQ4ZDIwMjJiOTg1MmM2MGQzMmYwZDc3MDkzMWUzY2YzNDNlMiIN
-Cj4+ID4rU1JDUkVWX21ldGFfcG4tbGludXgteW9jdG9fY3J5c3RhbGZvcmVzdC1nbGFkZGVuID89
-DQo+PiA+IjY4YTYzNWJmOGRmYjY0YjAyMjYzYzFhYzgwYzk0ODY0N2NjNzZkNWYiDQo+PiA+DQo+
-PiA+IENPTVBBVElCTEVfTUFDSElORV9jcnlzdGFsZm9yZXN0LXNlcnZlciA9ICJjcnlzdGFsZm9y
-ZXN0LXNlcnZlciINCj4+ID4gS01BQ0hJTkVfY3J5c3RhbGZvcmVzdC1zZXJ2ZXIgID0gImNyeXN0
-YWxmb3Jlc3QiDQo+PiA+IEtCUkFOQ0hfY3J5c3RhbGZvcmVzdC1zZXJ2ZXIgID0gInN0YW5kYXJk
-L2NvbW1vbi1wYy02NC9jcnlzdGFsZm9yZXN0Ig0KPj4gPg0KPj4gPi1TUkNSRVZfbWFjaGluZV9w
-bi1saW51eC15b2N0b19jcnlzdGFsZm9yZXN0LXNlcnZlciA/PQ0KPj4gPiI0NDlmN2Y1MjAzNTA3
-MDA4NThmMjFhNTU1NGI4MWNjOGFkMjMyNjdkIg0KPj4gPi1TUkNSRVZfbWV0YV9wbi1saW51eC15
-b2N0b19jcnlzdGFsZm9yZXN0LXNlcnZlciA/PQ0KPj4gPiIyZWMzMmQ1MTFiNjJkNDRiNjNlODU2
-MGE5YjFkNjg5NWE1ZGFjNjk1Ig0KPj4gPitTUkNSRVZfbWFjaGluZV9wbi1saW51eC15b2N0b19j
-cnlzdGFsZm9yZXN0LXNlcnZlciA/PQ0KPj4gPiIyMThiZDhkMjAyMmI5ODUyYzYwZDMyZjBkNzcw
-OTMxZTNjZjM0M2UyIg0KPj4gPitTUkNSRVZfbWV0YV9wbi1saW51eC15b2N0b19jcnlzdGFsZm9y
-ZXN0LXNlcnZlciA/PQ0KPj4gPiI2OGE2MzViZjhkZmI2NGIwMjI2M2MxYWM4MGM5NDg2NDdjYzc2
-ZDVmIg0KPj4gPisNCj4+ID4rTElOVVhfVkVSU0lPTiA9ICIzLjQuMTEiDQo+PiA+DQo+PiA+IG1v
-ZHVsZV9hdXRvbG9hZF91aW8gPSAidWlvIg0KPj4gPmRpZmYgLS1naXQgYS9tZXRhLWVtZW5sb3cv
-cmVjaXBlcy1rZXJuZWwvbGludXgvbGludXgteW9jdG9fMy4yLmJiYXBwZW5kDQo+PiA+Yi9tZXRh
-LWVtZW5sb3cvcmVjaXBlcy1rZXJuZWwvbGludXgvbGludXgteW9jdG9fMy4yLmJiYXBwZW5kDQo+
-PiA+aW5kZXggM2U4YWE5Yi4uNDFkZmU5YSAxMDA2NDQNCj4+ID4tLS0gYS9tZXRhLWVtZW5sb3cv
-cmVjaXBlcy1rZXJuZWwvbGludXgvbGludXgteW9jdG9fMy4yLmJiYXBwZW5kDQo+PiA+KysrIGIv
-bWV0YS1lbWVubG93L3JlY2lwZXMta2VybmVsL2xpbnV4L2xpbnV4LXlvY3RvXzMuMi5iYmFwcGVu
-ZA0KPj4gPkBAIC00LDUgKzQsNyBAQCBDT01QQVRJQkxFX01BQ0hJTkVfZW1lbmxvdyA9ICJlbWVu
-bG93Ig0KPj4gPiBLTUFDSElORV9lbWVubG93ICA9ICJlbWVubG93Ig0KPj4gPiBLQlJBTkNIX2Vt
-ZW5sb3cgID0gInN0YW5kYXJkL2RlZmF1bHQvZW1lbmxvdyINCj4+ID4NCj4+ID4tU1JDUkVWX21h
-Y2hpbmVfcG4tbGludXgteW9jdG9fZW1lbmxvdyA/PQ0KPj4gPiIzM2ZlYTA4NmNiNjY4YTM5NzY1
-ZGZjN2EwMWZkNzE1ZjNlZjhmNmI4Ig0KPj4gPi1TUkNSRVZfbWV0YV9wbi1saW51eC15b2N0b19l
-bWVubG93ID89DQo+PiA+IjViNGM5ZGM3OGI1YWU2MDcxNzNjYzNkZGFiOWJjZTFiNWY3ODEyOWIi
-DQo+PiA+K1NSQ1JFVl9tYWNoaW5lX3BuLWxpbnV4LXlvY3RvX2VtZW5sb3cgPz0NCj4+ID4iOTQz
-MmU5OWZiOGNhMDhiMGQ3MTNmYzQwMDFmMGI0YTExMTM4ZDIwZSINCj4+ID4rU1JDUkVWX21ldGFf
-cG4tbGludXgteW9jdG9fZW1lbmxvdyA/PQ0KPj4gPiI0ODZmN2FlYzgyNGI0MTI3ZTkxZWY1MzIy
-ODgyM2U5OTZiMzY5NmYwIg0KPj4gPisNCj4+ID4rTElOVVhfVkVSU0lPTiA9ICIzLjIuMTgiDQo+
-PiA+ZGlmZiAtLWdpdCBhL21ldGEtZW1lbmxvdy9yZWNpcGVzLWtlcm5lbC9saW51eC9saW51eC15
-b2N0b18zLjQuYmJhcHBlbmQNCj4+ID5iL21ldGEtZW1lbmxvdy9yZWNpcGVzLWtlcm5lbC9saW51
-eC9saW51eC15b2N0b18zLjQuYmJhcHBlbmQNCj4+ID5pbmRleCA0ZmFjNDc4Li43YjIxODVmIDEw
-MDY0NA0KPj4gPi0tLSBhL21ldGEtZW1lbmxvdy9yZWNpcGVzLWtlcm5lbC9saW51eC9saW51eC15
-b2N0b18zLjQuYmJhcHBlbmQNCj4+ID4rKysgYi9tZXRhLWVtZW5sb3cvcmVjaXBlcy1rZXJuZWwv
-bGludXgvbGludXgteW9jdG9fMy40LmJiYXBwZW5kDQo+PiA+QEAgLTQsNSArNCw3IEBAIENPTVBB
-VElCTEVfTUFDSElORV9lbWVubG93ID0gImVtZW5sb3ciDQo+PiA+IEtNQUNISU5FX2VtZW5sb3cg
-ID0gImVtZW5sb3ciDQo+PiA+IEtCUkFOQ0hfZW1lbmxvdyAgPSAic3RhbmRhcmQvZW1lbmxvdyIN
-Cj4+ID4NCj4+ID4tU1JDUkVWX21hY2hpbmVfcG4tbGludXgteW9jdG9fZW1lbmxvdyA/PQ0KPj4g
-PiJhY2U0ZTIyNzZhYzA1OTJlMzYwMmI5YjZhOTUzNDhlNTZlN2NmMjQ2Ig0KPj4gPi1TUkNSRVZf
-bWV0YV9wbi1saW51eC15b2N0b19lbWVubG93ID89DQo+PiA+IjllM2JkYjczNDQwNTQyNjRiNzUw
-ZTUzZmJiYjYzOTRjYzFjOTQyYWMiDQo+PiA+K1NSQ1JFVl9tYWNoaW5lX3BuLWxpbnV4LXlvY3Rv
-X2VtZW5sb3cgPz0NCj4+ID4iZDgxNzg1NDViYzY5YWRmMjYyNjIwZmNmYTQwZGQ4ZjhlZjY0YmEx
-NCINCj4+ID4rU1JDUkVWX21ldGFfcG4tbGludXgteW9jdG9fZW1lbmxvdyA/PQ0KPj4gPiI2OGE2
-MzViZjhkZmI2NGIwMjI2M2MxYWM4MGM5NDg2NDdjYzc2ZDVmIg0KPj4gPisNCj4+ID4rTElOVVhf
-VkVSU0lPTiA9ICIzLjQuMTEiDQo+PiA+ZGlmZiAtLWdpdCBhL21ldGEtZnJpMi9yZWNpcGVzLWtl
-cm5lbC9saW51eC9saW51eC15b2N0b18zLjIuYmJhcHBlbmQNCj5iL21ldGEtDQo+PiA+ZnJpMi9y
-ZWNpcGVzLWtlcm5lbC9saW51eC9saW51eC15b2N0b18zLjIuYmJhcHBlbmQNCj4+ID5pbmRleCAz
-NWQwYjNhLi44NDU5YTM1IDEwMDY0NA0KPj4gPi0tLSBhL21ldGEtZnJpMi9yZWNpcGVzLWtlcm5l
-bC9saW51eC9saW51eC15b2N0b18zLjIuYmJhcHBlbmQNCj4+ID4rKysgYi9tZXRhLWZyaTIvcmVj
-aXBlcy1rZXJuZWwvbGludXgvbGludXgteW9jdG9fMy4yLmJiYXBwZW5kDQo+PiA+QEAgLTMsMTMg
-KzMsMTUgQEAgRklMRVNFWFRSQVBBVEhTX3ByZXBlbmQgOj0gIiR7VEhJU0RJUn0vJHtQTn06Ig0K
-Pj4gPiBDT01QQVRJQkxFX01BQ0hJTkVfZnJpMiA9ICJmcmkyIg0KPj4gPiBLTUFDSElORV9mcmky
-ICA9ICJmcmkyIg0KPj4gPiBLQlJBTkNIX2ZyaTIgPSAic3RhbmRhcmQvZGVmYXVsdC9mcmkyIg0K
-Pj4gPi1TUkNSRVZfbWFjaGluZV9wbi1saW51eC15b2N0b19mcmkyID89DQo+PiA+IjA0NmJlZjhl
-YTRkYmI5YzI3OWU0OWFkOWZhZjI0MGI4NmZjODBmZGMiDQo+PiA+LVNSQ1JFVl9tZXRhX3BuLWxp
-bnV4LXlvY3RvX2ZyaTIgPz0NCj4+ID4iMDdlZTA5YjUyMDU3OWI5ZjI5YmQxNWZlZmIwMWZkMjhi
-MzRjNjA2NCINCj4+ID4rU1JDUkVWX21hY2hpbmVfcG4tbGludXgteW9jdG9fZnJpMiA/PQ0KPj4g
-PiJlMGIyOWFhOTgwNjczYTFhNWFiZGU1ZmZkZjM1NmNhMjFiMDBmM2VjIg0KPj4gPitTUkNSRVZf
-bWV0YV9wbi1saW51eC15b2N0b19mcmkyID89DQo+PiA+IjQ4NmY3YWVjODI0YjQxMjdlOTFlZjUz
-MjI4ODIzZTk5NmIzNjk2ZjAiDQo+PiA+DQo+PiA+IENPTVBBVElCTEVfTUFDSElORV9mcmkyLW5v
-ZW1nZCA9ICJmcmkyLW5vZW1nZCINCj4+ID4gS01BQ0hJTkVfZnJpMi1ub2VtZ2QgID0gImZyaTIi
-DQo+PiA+IEtCUkFOQ0hfZnJpMi1ub2VtZ2QgPSAic3RhbmRhcmQvZGVmYXVsdC9mcmkyIg0KPj4g
-Pi1TUkNSRVZfbWFjaGluZV9wbi1saW51eC15b2N0b19mcmkyLW5vZW1nZCA/PQ0KPj4gPiIwNDZi
-ZWY4ZWE0ZGJiOWMyNzllNDlhZDlmYWYyNDBiODZmYzgwZmRjIg0KPj4gPi1TUkNSRVZfbWV0YV9w
-bi1saW51eC15b2N0b19mcmkyLW5vZW1nZCA/PQ0KPj4gPiIwN2VlMDliNTIwNTc5YjlmMjliZDE1
-ZmVmYjAxZmQyOGIzNGM2MDY0Ig0KPj4gPitTUkNSRVZfbWFjaGluZV9wbi1saW51eC15b2N0b19m
-cmkyLW5vZW1nZCA/PQ0KPj4gPiJlMGIyOWFhOTgwNjczYTFhNWFiZGU1ZmZkZjM1NmNhMjFiMDBm
-M2VjIg0KPj4gPitTUkNSRVZfbWV0YV9wbi1saW51eC15b2N0b19mcmkyLW5vZW1nZCA/PQ0KPj4g
-PiI0ODZmN2FlYzgyNGI0MTI3ZTkxZWY1MzIyODgyM2U5OTZiMzY5NmYwIg0KPj4gPisNCj4+ID4r
-TElOVVhfVkVSU0lPTiA9ICIzLjIuMTgiDQo+PiA+DQo+PiA+IG1vZHVsZV9hdXRvbG9hZF9pd2x3
-aWZpID0gIml3bHdpZmkiDQo+PiA+ZGlmZiAtLWdpdCBhL21ldGEtZnJpMi9yZWNpcGVzLWtlcm5l
-bC9saW51eC9saW51eC15b2N0b18zLjQuYmJhcHBlbmQNCj5iL21ldGEtDQo+PiA+ZnJpMi9yZWNp
-cGVzLWtlcm5lbC9saW51eC9saW51eC15b2N0b18zLjQuYmJhcHBlbmQNCj4+ID5pbmRleCA1MjJj
-NzAzLi5kZmY5NDU2IDEwMDY0NA0KPj4gPi0tLSBhL21ldGEtZnJpMi9yZWNpcGVzLWtlcm5lbC9s
-aW51eC9saW51eC15b2N0b18zLjQuYmJhcHBlbmQNCj4+ID4rKysgYi9tZXRhLWZyaTIvcmVjaXBl
-cy1rZXJuZWwvbGludXgvbGludXgteW9jdG9fMy40LmJiYXBwZW5kDQo+PiA+QEAgLTEyLDQgKzEy
-LDYgQEAgS0JSQU5DSF9mcmkyLW5vZW1nZCA9ICJzdGFuZGFyZC9mcmkyIg0KPj4gPiBTUkNSRVZf
-bWFjaGluZV9wbi1saW51eC15b2N0b19mcmkyLW5vZW1nZCA/PQ0KPj4gPiIyMThiZDhkMjAyMmI5
-ODUyYzYwZDMyZjBkNzcwOTMxZTNjZjM0M2UyIg0KPj4gPiBTUkNSRVZfbWV0YV9wbi1saW51eC15
-b2N0b19mcmkyLW5vZW1nZCA/PQ0KPj4gPiI2OGE2MzViZjhkZmI2NGIwMjI2M2MxYWM4MGM5NDg2
-NDdjYzc2ZDVmIg0KPj4gPg0KPj4gPitMSU5VWF9WRVJTSU9OID0gIjMuNC4xMSINCj4+ID4rDQo+
-PiA+IG1vZHVsZV9hdXRvbG9hZF9pd2x3aWZpID0gIml3bHdpZmkiDQo+PiA+ZGlmZiAtLWdpdCBh
-L21ldGEtamFzcGVyZm9yZXN0L3JlY2lwZXMta2VybmVsL2xpbnV4L2xpbnV4LQ0KPnlvY3RvXzMu
-Mi5iYmFwcGVuZA0KPj4gPmIvbWV0YS1qYXNwZXJmb3Jlc3QvcmVjaXBlcy1rZXJuZWwvbGludXgv
-bGludXgteW9jdG9fMy4yLmJiYXBwZW5kDQo+PiA+aW5kZXggMmMzZGQ4Ni4uNTM3YTkwYyAxMDA2
-NDQNCj4+ID4tLS0gYS9tZXRhLWphc3BlcmZvcmVzdC9yZWNpcGVzLWtlcm5lbC9saW51eC9saW51
-eC15b2N0b18zLjIuYmJhcHBlbmQNCj4+ID4rKysgYi9tZXRhLWphc3BlcmZvcmVzdC9yZWNpcGVz
-LWtlcm5lbC9saW51eC9saW51eC15b2N0b18zLjIuYmJhcHBlbmQNCj4+ID5AQCAtNywzICs3LDUg
-QEAgS0JSQU5DSF9qYXNwZXJmb3Jlc3QgID0gInN0YW5kYXJkL2RlZmF1bHQvY29tbW9uLQ0KPnBj
-LQ0KPj4gPjY0L2phc3BlcmZvcmVzdCINCj4+ID4NCj4+ID4gU1JDUkVWX21hY2hpbmVfcG4tbGlu
-dXgteW9jdG9famFzcGVyZm9yZXN0ID89DQo+PiA+IjMzMDNhMGVjMmNkZTQ3NjZmZDBlZTlkZDA1
-OWU5YjRkZDdiZDdlNzkiDQo+PiA+IFNSQ1JFVl9tZXRhX3BuLWxpbnV4LXlvY3RvX2phc3BlcmZv
-cmVzdCA/PQ0KPj4gPiI0ODZmN2FlYzgyNGI0MTI3ZTkxZWY1MzIyODgyM2U5OTZiMzY5NmYwIg0K
-Pj4gPisNCj4+ID4rTElOVVhfVkVSU0lPTiA9ICIzLjIuMTgiDQo+PiA+ZGlmZiAtLWdpdCBhL21l
-dGEtamFzcGVyZm9yZXN0L3JlY2lwZXMta2VybmVsL2xpbnV4L2xpbnV4LQ0KPnlvY3RvXzMuNC5i
-YmFwcGVuZA0KPj4gPmIvbWV0YS1qYXNwZXJmb3Jlc3QvcmVjaXBlcy1rZXJuZWwvbGludXgvbGlu
-dXgteW9jdG9fMy40LmJiYXBwZW5kDQo+PiA+aW5kZXggN2M1YTkwOC4uMjU1ZjEyYSAxMDA2NDQN
-Cj4+ID4tLS0gYS9tZXRhLWphc3BlcmZvcmVzdC9yZWNpcGVzLWtlcm5lbC9saW51eC9saW51eC15
-b2N0b18zLjQuYmJhcHBlbmQNCj4+ID4rKysgYi9tZXRhLWphc3BlcmZvcmVzdC9yZWNpcGVzLWtl
-cm5lbC9saW51eC9saW51eC15b2N0b18zLjQuYmJhcHBlbmQNCj4+ID5AQCAtNSw1ICs1LDcgQEAg
-Q09NUEFUSUJMRV9NQUNISU5FX2phc3BlcmZvcmVzdCA9ICJqYXNwZXJmb3Jlc3QiDQo+PiA+IEtN
-QUNISU5FX2phc3BlcmZvcmVzdCAgPSAiamFzcGVyZm9yZXN0Ig0KPj4gPiBLQlJBTkNIX2phc3Bl
-cmZvcmVzdCAgPSAic3RhbmRhcmQvY29tbW9uLXBjLTY0L2phc3BlcmZvcmVzdCINCj4+ID4NCj4+
-ID4tU1JDUkVWX21hY2hpbmVfcG4tbGludXgteW9jdG9famFzcGVyZm9yZXN0ID89DQo+PiA+IjQ0
-OWY3ZjUyMDM1MDcwMDg1OGYyMWE1NTU0YjgxY2M4YWQyMzI2N2QiDQo+PiA+LVNSQ1JFVl9tZXRh
-X3BuLWxpbnV4LXlvY3RvX2phc3BlcmZvcmVzdCA/PQ0KPj4gPiI5ZTNiZGI3MzQ0MDU0MjY0Yjc1
-MGU1M2ZiYmI2Mzk0Y2MxYzk0MmFjIg0KPj4gPitTUkNSRVZfbWFjaGluZV9wbi1saW51eC15b2N0
-b19qYXNwZXJmb3Jlc3QgPz0NCj4+ID4iMjE4YmQ4ZDIwMjJiOTg1MmM2MGQzMmYwZDc3MDkzMWUz
-Y2YzNDNlMiINCj4+ID4rU1JDUkVWX21ldGFfcG4tbGludXgteW9jdG9famFzcGVyZm9yZXN0ID89
-DQo+PiA+IjY4YTYzNWJmOGRmYjY0YjAyMjYzYzFhYzgwYzk0ODY0N2NjNzZkNWYiDQo+PiA+Kw0K
-Pj4gPitMSU5VWF9WRVJTSU9OID0gIjMuNC4xMSINCj4+ID5kaWZmIC0tZ2l0IGEvbWV0YS1yb21s
-ZXkvcmVjaXBlcy1rZXJuZWwvbGludXgvbGludXgteW9jdG9fMy4yLmJiYXBwZW5kDQo+PiA+Yi9t
-ZXRhLXJvbWxleS9yZWNpcGVzLWtlcm5lbC9saW51eC9saW51eC15b2N0b18zLjIuYmJhcHBlbmQN
-Cj4+ID5pbmRleCAxY2JhMzhmLi5jNTQ1MDVlIDEwMDY0NA0KPj4gPi0tLSBhL21ldGEtcm9tbGV5
-L3JlY2lwZXMta2VybmVsL2xpbnV4L2xpbnV4LXlvY3RvXzMuMi5iYmFwcGVuZA0KPj4gPisrKyBi
-L21ldGEtcm9tbGV5L3JlY2lwZXMta2VybmVsL2xpbnV4L2xpbnV4LXlvY3RvXzMuMi5iYmFwcGVu
-ZA0KPj4gPkBAIC01LDUgKzUsNyBAQCBDT01QQVRJQkxFX01BQ0hJTkVfcm9tbGV5ID0gInJvbWxl
-eSINCj4+ID4gS01BQ0hJTkVfcm9tbGV5ICA9ICJyb21sZXkiDQo+PiA+IEtCUkFOQ0hfcm9tbGV5
-ICA9ICJzdGFuZGFyZC9kZWZhdWx0L2NvbW1vbi1wYy02NC9yb21sZXkiDQo+PiA+DQo+PiA+LVNS
-Q1JFVl9tYWNoaW5lX3BuLWxpbnV4LXlvY3RvX3JvbWxleSA/PQ0KPj4gPiI3ZDI2YWMwODNjYjI1
-NTg4ODUzNmI0MmI2MjJiOTdmYjQzODc1M2FkIg0KPj4gPi1TUkNSRVZfbWV0YV9wbi1saW51eC15
-b2N0b19yb21sZXkgPz0NCj4+ID4iMDdlZTA5YjUyMDU3OWI5ZjI5YmQxNWZlZmIwMWZkMjhiMzRj
-NjA2NCINCj4+ID4rU1JDUkVWX21hY2hpbmVfcG4tbGludXgteW9jdG9fcm9tbGV5ID89DQo+PiA+
-IjM0ZTNjZDhiN2ExZDE4NTk0YTYzYjdiMjk5ZmNlNDZlMzJhNmM4MGMiDQo+PiA+K1NSQ1JFVl9t
-ZXRhX3BuLWxpbnV4LXlvY3RvX3JvbWxleSA/PQ0KPj4gPiI0ODZmN2FlYzgyNGI0MTI3ZTkxZWY1
-MzIyODgyM2U5OTZiMzY5NmYwIg0KPj4gPisNCj4+ID4rTElOVVhfVkVSU0lPTiA9ICIzLjIuMTgi
-DQo+PiA+ZGlmZiAtLWdpdCBhL21ldGEtc3VnYXJiYXkvcmVjaXBlcy1rZXJuZWwvbGludXgvbGlu
-dXgteW9jdG9fMy4yLmJiYXBwZW5kDQo+PiA+Yi9tZXRhLXN1Z2FyYmF5L3JlY2lwZXMta2VybmVs
-L2xpbnV4L2xpbnV4LXlvY3RvXzMuMi5iYmFwcGVuZA0KPj4gPmluZGV4IGE3MzNkZGMuLmZhZDdj
-MDYgMTAwNjQ0DQo+PiA+LS0tIGEvbWV0YS1zdWdhcmJheS9yZWNpcGVzLWtlcm5lbC9saW51eC9s
-aW51eC15b2N0b18zLjIuYmJhcHBlbmQNCj4+ID4rKysgYi9tZXRhLXN1Z2FyYmF5L3JlY2lwZXMt
-a2VybmVsL2xpbnV4L2xpbnV4LXlvY3RvXzMuMi5iYmFwcGVuZA0KPj4gPkBAIC01LDcgKzUsOSBA
-QCBDT01QQVRJQkxFX01BQ0hJTkVfc3VnYXJiYXkgPSAic3VnYXJiYXkiDQo+PiA+IEtNQUNISU5F
-X3N1Z2FyYmF5ICA9ICJzdWdhcmJheSINCj4+ID4gS0JSQU5DSF9zdWdhcmJheSAgPSAic3RhbmRh
-cmQvZGVmYXVsdC9jb21tb24tcGMtNjQvc3VnYXJiYXkiDQo+PiA+DQo+PiA+LVNSQ1JFVl9tYWNo
-aW5lX3BuLWxpbnV4LXlvY3RvX3N1Z2FyYmF5ID89DQo+PiA+IjE3MmRmODQ3ZGRhOTNjYjUyYWYw
-YzY5NDIwMDYxM2ExYzM2M2M5YTMiDQo+PiA+LVNSQ1JFVl9tZXRhX3BuLWxpbnV4LXlvY3RvX3N1
-Z2FyYmF5ID89DQo+PiA+IjViNGM5ZGM3OGI1YWU2MDcxNzNjYzNkZGFiOWJjZTFiNWY3ODEyOWIi
-DQo+PiA+K1NSQ1JFVl9tYWNoaW5lX3BuLWxpbnV4LXlvY3RvX3N1Z2FyYmF5ID89DQo+PiA+IjFi
-NjQ2NjQyMWJjMzE0ZTdlMDdmZTRkZDQ4YzVmYzY3Y2RjM2ZjNDAiDQo+PiA+K1NSQ1JFVl9tZXRh
-X3BuLWxpbnV4LXlvY3RvX3N1Z2FyYmF5ID89DQo+PiA+IjQ4NmY3YWVjODI0YjQxMjdlOTFlZjUz
-MjI4ODIzZTk5NmIzNjk2ZjAiDQo+PiA+Kw0KPj4gPitMSU5VWF9WRVJTSU9OID0gIjMuMi4xOCIN
-Cj4+ID4NCj4+ID4gS0VSTkVMX0ZFQVRVUkVTX2FwcGVuZF9zdWdhcmJheSA9ICIgZmVhdHVyZXMv
-dG1wL3JjNiINCj4+ID5kaWZmIC0tZ2l0IGEvbWV0YS1zdWdhcmJheS9yZWNpcGVzLWtlcm5lbC9s
-aW51eC9saW51eC15b2N0b18zLjQuYmJhcHBlbmQNCj4+ID5iL21ldGEtc3VnYXJiYXkvcmVjaXBl
-cy1rZXJuZWwvbGludXgvbGludXgteW9jdG9fMy40LmJiYXBwZW5kDQo+PiA+aW5kZXggOTIyNGI2
-My4uMGE0ODFlMiAxMDA2NDQNCj4+ID4tLS0gYS9tZXRhLXN1Z2FyYmF5L3JlY2lwZXMta2VybmVs
-L2xpbnV4L2xpbnV4LXlvY3RvXzMuNC5iYmFwcGVuZA0KPj4gPisrKyBiL21ldGEtc3VnYXJiYXkv
-cmVjaXBlcy1rZXJuZWwvbGludXgvbGludXgteW9jdG9fMy40LmJiYXBwZW5kDQo+PiA+QEAgLTUs
-NSArNSw3IEBAIENPTVBBVElCTEVfTUFDSElORV9zdWdhcmJheSA9ICJzdWdhcmJheSINCj4+ID4g
-S01BQ0hJTkVfc3VnYXJiYXkgID0gInN1Z2FyYmF5Ig0KPj4gPiBLQlJBTkNIX3N1Z2FyYmF5ICA9
-ICJzdGFuZGFyZC9jb21tb24tcGMtNjQvc3VnYXJiYXkiDQo+PiA+DQo+PiA+LVNSQ1JFVl9tYWNo
-aW5lX3BuLWxpbnV4LXlvY3RvX3N1Z2FyYmF5ID89DQo+PiA+IjQ0OWY3ZjUyMDM1MDcwMDg1OGYy
-MWE1NTU0YjgxY2M4YWQyMzI2N2QiDQo+PiA+LVNSQ1JFVl9tZXRhX3BuLWxpbnV4LXlvY3RvX3N1
-Z2FyYmF5ID89DQo+PiA+IjllM2JkYjczNDQwNTQyNjRiNzUwZTUzZmJiYjYzOTRjYzFjOTQyYWMi
-DQo+PiA+K1NSQ1JFVl9tYWNoaW5lX3BuLWxpbnV4LXlvY3RvX3N1Z2FyYmF5ID89DQo+PiA+IjIx
-OGJkOGQyMDIyYjk4NTJjNjBkMzJmMGQ3NzA5MzFlM2NmMzQzZTIiDQo+PiA+K1NSQ1JFVl9tZXRh
-X3BuLWxpbnV4LXlvY3RvX3N1Z2FyYmF5ID89DQo+PiA+IjY4YTYzNWJmOGRmYjY0YjAyMjYzYzFh
-YzgwYzk0ODY0N2NjNzZkNWYiDQo+PiA+Kw0KPj4gPitMSU5VWF9WRVJTSU9OID0gIjMuNC4xMSIN
-Cj4+ID5kaWZmIC0tZ2l0IGEvbWV0YS1zeXM5NDB4L3JlY2lwZXMta2VybmVsL2xpbnV4L2xpbnV4
-LXlvY3RvXzMuMi5iYmFwcGVuZA0KPj4gPmIvbWV0YS1zeXM5NDB4L3JlY2lwZXMta2VybmVsL2xp
-bnV4L2xpbnV4LXlvY3RvXzMuMi5iYmFwcGVuZA0KPj4gPmluZGV4IDc0NDliNGIuLjg4ZjNiZDgg
-MTAwNjQ0DQo+PiA+LS0tIGEvbWV0YS1zeXM5NDB4L3JlY2lwZXMta2VybmVsL2xpbnV4L2xpbnV4
-LXlvY3RvXzMuMi5iYmFwcGVuZA0KPj4gPisrKyBiL21ldGEtc3lzOTQweC9yZWNpcGVzLWtlcm5l
-bC9saW51eC9saW51eC15b2N0b18zLjIuYmJhcHBlbmQNCj4+ID5AQCAtNCwxMSArNCwxMyBAQCBG
-SUxFU0VYVFJBUEFUSFNfcHJlcGVuZCA6PSAiJHtUSElTRElSfS8ke1BOfToiDQo+PiA+IENPTVBB
-VElCTEVfTUFDSElORV9zeXM5NDB4ID0gInN5czk0MHgiDQo+PiA+IEtNQUNISU5FX3N5czk0MHgg
-ID0gInN5czk0MHgiDQo+PiA+ICNLQlJBTkNIX3N5czk0MHggPSAic3RhbmRhcmQvZGVmYXVsdC9i
-YXNlIg0KPj4gPi1TUkNSRVZfbWFjaGluZV9wbi1saW51eC15b2N0b19zeXM5NDB4ID89DQo+PiA+
-IjdjYzMxYTk1MmY3OGI4ZjhlODQ2OWVlZDkzYzIzZTk2NzVhOGVlYjUiDQo+PiA+LVNSQ1JFVl9t
-ZXRhX3BuLWxpbnV4LXlvY3RvX3N5czk0MHggPz0NCj4+ID4iMDdlZTA5YjUyMDU3OWI5ZjI5YmQx
-NWZlZmIwMWZkMjhiMzRjNjA2NCINCj4+ID4rU1JDUkVWX21hY2hpbmVfcG4tbGludXgteW9jdG9f
-c3lzOTQweCA/PQ0KPj4gPiIwNjg4MmZjMTZhNGU5NjU4NzJlN2ZhYWNiOTFkYTE0OTdlZmQ5YWMz
-Ig0KPj4gPitTUkNSRVZfbWV0YV9wbi1saW51eC15b2N0b19zeXM5NDB4ID89DQo+PiA+IjQ4NmY3
-YWVjODI0YjQxMjdlOTFlZjUzMjI4ODIzZTk5NmIzNjk2ZjAiDQo+PiA+DQo+PiA+IENPTVBBVElC
-TEVfTUFDSElORV9zeXM5NDB4LW5vZW1nZCA9ICJzeXM5NDB4LW5vZW1nZCINCj4+ID4gS01BQ0hJ
-TkVfc3lzOTQweC1ub2VtZ2QgID0gInN5czk0MHgiDQo+PiA+ICNLQlJBTkNIX3N5czk0MHgtbm9l
-bWdkID0gInN0YW5kYXJkL2RlZmF1bHQvYmFzZSINCj4+ID4tU1JDUkVWX21hY2hpbmVfcG4tbGlu
-dXgteW9jdG9fc3lzOTQweC1ub2VtZ2QgPz0NCj4+ID4iN2NjMzFhOTUyZjc4YjhmOGU4NDY5ZWVk
-OTNjMjNlOTY3NWE4ZWViNSINCj4+ID4tU1JDUkVWX21ldGFfcG4tbGludXgteW9jdG9fc3lzOTQw
-eC1ub2VtZ2QgPz0NCj4+ID4iMDdlZTA5YjUyMDU3OWI5ZjI5YmQxNWZlZmIwMWZkMjhiMzRjNjA2
-NCINCj4+ID4rU1JDUkVWX21hY2hpbmVfcG4tbGludXgteW9jdG9fc3lzOTQweC1ub2VtZ2QgPz0N
-Cj4+ID4iMDY4ODJmYzE2YTRlOTY1ODcyZTdmYWFjYjkxZGExNDk3ZWZkOWFjMyINCj4+ID4rU1JD
-UkVWX21ldGFfcG4tbGludXgteW9jdG9fc3lzOTQweC1ub2VtZ2QgPz0NCj4+ID4iNDg2ZjdhZWM4
-MjRiNDEyN2U5MWVmNTMyMjg4MjNlOTk2YjM2OTZmMCINCj4+ID4rDQo+PiA+K0xJTlVYX1ZFUlNJ
-T04gPSAiMy4yLjE4Ig0KPj4gPi0tDQo+PiA+MS43LjExLjQNCj4+DQo+DQoNCg==
+On Mon, 2012-10-29 at 21:12 -0500, Bodke, Kishore K wrote:
+> 
+> >-----Original Message-----
+> >From: Zanussi, Tom
+> >Sent: Monday, October 29, 2012 5:30 PM
+> >To: Bodke, Kishore K
+> >Cc: yocto@yoctoproject.org; dvhart@linux.intel.com; Kamble, Nitin A; Saxena,
+> >Rahul
+> >Subject: Re: [PATCH 1/2] meta-intel: update kernel SRCREVs and pin
+> >LINUX_VERSION
+> >
+> >On Mon, 2012-10-29 at 18:57 -0500, Bodke, Kishore K wrote:
+> >> Why are we not doing this LINUX_VERSION for the RT Kernel bbappend
+> >files?
+> >>
+> >
+> >Oh, did I miss something?  The rt recipes I looked at didn't define any
+> >SRCREVs...
+> >
+> >But if you want to change that, sure, go ahead and send a patch...
+> >
+> Yeah, I have them for Crystal Forest, but I don't see these in all BSPs.
+> May be I can send a patch for the Crystal Forest?
+> 
+
+Yeah, that would be good - I'll pull it in with the rest.
+
+Tom
+
+> Thanks
+> Kishore.
+> 
+> >Thanks,
+> >
+> >Tom
+> >
+> >> Thanks
+> >> Kishore.
+> >>
+> >> >-----Original Message-----
+> >> >From: Zanussi, Tom
+> >> >Sent: Monday, October 29, 2012 4:12 PM
+> >> >To: yocto@yoctoproject.org; dvhart@linux.intel.com; Kamble, Nitin A;
+> >Bodke,
+> >> >Kishore K; Saxena, Rahul
+> >> >Cc: Zanussi, Tom
+> >> >Subject: [PATCH 1/2] meta-intel: update kernel SRCREVs and pin
+> >> >LINUX_VERSION
+> >> >
+> >> >From: Tom Zanussi <tom.zanussi@intel.com>
+> >> >
+> >> >Update all the linux-yocto .bbappends with the latest kernel SRCREVs
+> >> >and add explicit LINUX_VERSIONs for the 1.3 release, to prevent a
+> >> >mismatch between the kernel version actually used in the machine
+> >> >branch vs the version the recipe uses for the kernel image, which can
+> >> >change with stable updates.
+> >> >
+> >> >Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
+> >> >---
+> >> > meta-chiefriver/recipes-kernel/linux/linux-yocto_3.2.bbappend  |  2 ++
+> >> > meta-chiefriver/recipes-kernel/linux/linux-yocto_3.4.bbappend  |  6
+> >++++--
+> >> > meta-crownbay/recipes-kernel/linux/linux-yocto_3.2.bbappend    | 10
+> >> >++++++----
+> >> > meta-crownbay/recipes-kernel/linux/linux-yocto_3.4.bbappend    | 10
+> >> >++++++----
+> >> > .../recipes-kernel/linux/linux-yocto_3.4.bbappend              | 10 ++++++----
+> >> > meta-emenlow/recipes-kernel/linux/linux-yocto_3.2.bbappend     |  6
+> >++++--
+> >> > meta-emenlow/recipes-kernel/linux/linux-yocto_3.4.bbappend     |  6
+> >++++--
+> >> > meta-fri2/recipes-kernel/linux/linux-yocto_3.2.bbappend        | 10
+> >++++++----
+> >> > meta-fri2/recipes-kernel/linux/linux-yocto_3.4.bbappend        |  2 ++
+> >> > .../recipes-kernel/linux/linux-yocto_3.2.bbappend              |  2 ++
+> >> > .../recipes-kernel/linux/linux-yocto_3.4.bbappend              |  6 ++++--
+> >> > meta-romley/recipes-kernel/linux/linux-yocto_3.2.bbappend      |  6 ++++-
+> >-
+> >> > meta-sugarbay/recipes-kernel/linux/linux-yocto_3.2.bbappend    |  6
+> >++++--
+> >> > meta-sugarbay/recipes-kernel/linux/linux-yocto_3.4.bbappend    |  6
+> >++++--
+> >> > meta-sys940x/recipes-kernel/linux/linux-yocto_3.2.bbappend     | 10
+> >> >++++++----
+> >> > 15 files changed, 64 insertions(+), 34 deletions(-)
+> >> >
+> >> >diff --git a/meta-chiefriver/recipes-kernel/linux/linux-yocto_3.2.bbappend
+> >> >b/meta-chiefriver/recipes-kernel/linux/linux-yocto_3.2.bbappend
+> >> >index d4e2ee6..3b07968 100644
+> >> >--- a/meta-chiefriver/recipes-kernel/linux/linux-yocto_3.2.bbappend
+> >> >+++ b/meta-chiefriver/recipes-kernel/linux/linux-yocto_3.2.bbappend
+> >> >@@ -8,3 +8,5 @@ KERNEL_FEATURES_append_chiefriver = "
+> >> >features/amt/mei"
+> >> >
+> >> > SRCREV_machine_pn-linux-yocto_chiefriver ?=
+> >> >"56d1c9ec36287350d154a3abef339598ef4028c2"
+> >> > SRCREV_meta_pn-linux-yocto_chiefriver ?=
+> >> >"486f7aec824b4127e91ef53228823e996b3696f0"
+> >> >+
+> >> >+LINUX_VERSION = "3.2.18"
+> >> >diff --git a/meta-chiefriver/recipes-kernel/linux/linux-yocto_3.4.bbappend
+> >> >b/meta-chiefriver/recipes-kernel/linux/linux-yocto_3.4.bbappend
+> >> >index 413dc74..f023a54 100644
+> >> >--- a/meta-chiefriver/recipes-kernel/linux/linux-yocto_3.4.bbappend
+> >> >+++ b/meta-chiefriver/recipes-kernel/linux/linux-yocto_3.4.bbappend
+> >> >@@ -6,5 +6,7 @@ KBRANCH_chiefriver  = "standard/common-pc-
+> >> >64/chiefriver"
+> >> >
+> >> > KERNEL_FEATURES_append_chiefriver = " features/amt/mei"
+> >> >
+> >> >-SRCREV_machine_pn-linux-yocto_chiefriver ?=
+> >> >"449f7f520350700858f21a5554b81cc8ad23267d"
+> >> >-SRCREV_meta_pn-linux-yocto_chiefriver ?=
+> >> >"9e3bdb7344054264b750e53fbbb6394cc1c942ac"
+> >> >+SRCREV_machine_pn-linux-yocto_chiefriver ?=
+> >> >"218bd8d2022b9852c60d32f0d770931e3cf343e2"
+> >> >+SRCREV_meta_pn-linux-yocto_chiefriver ?=
+> >> >"68a635bf8dfb64b02263c1ac80c948647cc76d5f"
+> >> >+
+> >> >+LINUX_VERSION = "3.4.11"
+> >> >diff --git a/meta-crownbay/recipes-kernel/linux/linux-
+> >yocto_3.2.bbappend
+> >> >b/meta-crownbay/recipes-kernel/linux/linux-yocto_3.2.bbappend
+> >> >index fbe13a8..6478c6b 100644
+> >> >--- a/meta-crownbay/recipes-kernel/linux/linux-yocto_3.2.bbappend
+> >> >+++ b/meta-crownbay/recipes-kernel/linux/linux-yocto_3.2.bbappend
+> >> >@@ -8,8 +8,10 @@ COMPATIBLE_MACHINE_crownbay-noemgd =
+> >> >"crownbay-noemgd"
+> >> > KMACHINE_crownbay-noemgd  = "crownbay"
+> >> > KBRANCH_crownbay-noemgd  = "standard/default/crownbay"
+> >> >
+> >> >-SRCREV_machine_pn-linux-yocto_crownbay ?=
+> >> >"ddcccbf870485c835f9b4b94823ca0c4186d78df"
+> >> >-SRCREV_meta_pn-linux-yocto_crownbay ?=
+> >> >"07ee09b520579b9f29bd15fefb01fd28b34c6064"
+> >> >+SRCREV_machine_pn-linux-yocto_crownbay ?=
+> >> >"f5a22aa0b14bb998d88ad4732f85b66c347631f8"
+> >> >+SRCREV_meta_pn-linux-yocto_crownbay ?=
+> >> >"486f7aec824b4127e91ef53228823e996b3696f0"
+> >> >
+> >> >-SRCREV_machine_pn-linux-yocto_crownbay-noemgd ?=
+> >> >"ddcccbf870485c835f9b4b94823ca0c4186d78df"
+> >> >-SRCREV_meta_pn-linux-yocto_crownbay-noemgd ?=
+> >> >"07ee09b520579b9f29bd15fefb01fd28b34c6064"
+> >> >+SRCREV_machine_pn-linux-yocto_crownbay-noemgd ?=
+> >> >"f5a22aa0b14bb998d88ad4732f85b66c347631f8"
+> >> >+SRCREV_meta_pn-linux-yocto_crownbay-noemgd ?=
+> >> >"486f7aec824b4127e91ef53228823e996b3696f0"
+> >> >+
+> >> >+LINUX_VERSION = "3.2.18"
+> >> >diff --git a/meta-crownbay/recipes-kernel/linux/linux-
+> >yocto_3.4.bbappend
+> >> >b/meta-crownbay/recipes-kernel/linux/linux-yocto_3.4.bbappend
+> >> >index 8a9ef9d..e8c90f9 100644
+> >> >--- a/meta-crownbay/recipes-kernel/linux/linux-yocto_3.4.bbappend
+> >> >+++ b/meta-crownbay/recipes-kernel/linux/linux-yocto_3.4.bbappend
+> >> >@@ -8,13 +8,15 @@ COMPATIBLE_MACHINE_crownbay-noemgd =
+> >> >"crownbay-noemgd"
+> >> > KMACHINE_crownbay-noemgd  = "crownbay"
+> >> > KBRANCH_crownbay-noemgd  = "standard/crownbay"
+> >> >
+> >> >-SRCREV_machine_pn-linux-yocto_crownbay ?=
+> >> >"449f7f520350700858f21a5554b81cc8ad23267d"
+> >> >-SRCREV_meta_pn-linux-yocto_crownbay ?=
+> >> >"9e3bdb7344054264b750e53fbbb6394cc1c942ac"
+> >> >+SRCREV_machine_pn-linux-yocto_crownbay ?=
+> >> >"218bd8d2022b9852c60d32f0d770931e3cf343e2"
+> >> >+SRCREV_meta_pn-linux-yocto_crownbay ?=
+> >> >"68a635bf8dfb64b02263c1ac80c948647cc76d5f"
+> >> > SRCREV_emgd_pn-linux-yocto_crownbay ?=
+> >> >"86643bdd8cbad616a161ab91f51108cf0da827bc"
+> >> >
+> >> >-SRCREV_machine_pn-linux-yocto_crownbay-noemgd ?=
+> >> >"449f7f520350700858f21a5554b81cc8ad23267d"
+> >> >-SRCREV_meta_pn-linux-yocto_crownbay-noemgd ?=
+> >> >"9e3bdb7344054264b750e53fbbb6394cc1c942ac"
+> >> >+SRCREV_machine_pn-linux-yocto_crownbay-noemgd ?=
+> >> >"218bd8d2022b9852c60d32f0d770931e3cf343e2"
+> >> >+SRCREV_meta_pn-linux-yocto_crownbay-noemgd ?=
+> >> >"68a635bf8dfb64b02263c1ac80c948647cc76d5f"
+> >> >
+> >> > KSRC_linux_yocto_3_4 ?= "git.yoctoproject.org/linux-yocto-3.4.git"
+> >> > SRC_URI_crownbay = "git://git.yoctoproject.org/linux-yocto-
+> >> >3.4.git;protocol=git;nocheckout=1;branch=${KBRANCH},meta,emgd-
+> >> >1.14;name=machine,meta,emgd"
+> >> > SRC_URI_crownbay-noemgd = "git://git.yoctoproject.org/linux-yocto-
+> >>
+> >>3.4.git;protocol=git;nocheckout=1;branch=${KBRANCH},meta;name=machin
+> >e,
+> >> >meta"
+> >> >+
+> >> >+LINUX_VERSION = "3.4.11"
+> >> >diff --git a/meta-crystalforest/recipes-kernel/linux/linux-
+> >yocto_3.4.bbappend
+> >> >b/meta-crystalforest/recipes-kernel/linux/linux-yocto_3.4.bbappend
+> >> >index 8418307..15ff21a 100644
+> >> >--- a/meta-crystalforest/recipes-kernel/linux/linux-yocto_3.4.bbappend
+> >> >+++ b/meta-crystalforest/recipes-kernel/linux/linux-yocto_3.4.bbappend
+> >> >@@ -4,14 +4,16 @@ COMPATIBLE_MACHINE_crystalforest-gladden =
+> >> >"crystalforest-gladden"
+> >> > KMACHINE_crystalforest-gladden  = "crystalforest"
+> >> > KBRANCH_crystalforest-gladden  = "standard/common-pc-
+> >64/crystalforest"
+> >> >
+> >> >-SRCREV_machine_pn-linux-yocto_crystalforest-gladden ?=
+> >> >"449f7f520350700858f21a5554b81cc8ad23267d"
+> >> >-SRCREV_meta_pn-linux-yocto_crystalforest-gladden ?=
+> >> >"2ec32d511b62d44b63e8560a9b1d6895a5dac695"
+> >> >+SRCREV_machine_pn-linux-yocto_crystalforest-gladden ?=
+> >> >"218bd8d2022b9852c60d32f0d770931e3cf343e2"
+> >> >+SRCREV_meta_pn-linux-yocto_crystalforest-gladden ?=
+> >> >"68a635bf8dfb64b02263c1ac80c948647cc76d5f"
+> >> >
+> >> > COMPATIBLE_MACHINE_crystalforest-server = "crystalforest-server"
+> >> > KMACHINE_crystalforest-server  = "crystalforest"
+> >> > KBRANCH_crystalforest-server  = "standard/common-pc-64/crystalforest"
+> >> >
+> >> >-SRCREV_machine_pn-linux-yocto_crystalforest-server ?=
+> >> >"449f7f520350700858f21a5554b81cc8ad23267d"
+> >> >-SRCREV_meta_pn-linux-yocto_crystalforest-server ?=
+> >> >"2ec32d511b62d44b63e8560a9b1d6895a5dac695"
+> >> >+SRCREV_machine_pn-linux-yocto_crystalforest-server ?=
+> >> >"218bd8d2022b9852c60d32f0d770931e3cf343e2"
+> >> >+SRCREV_meta_pn-linux-yocto_crystalforest-server ?=
+> >> >"68a635bf8dfb64b02263c1ac80c948647cc76d5f"
+> >> >+
+> >> >+LINUX_VERSION = "3.4.11"
+> >> >
+> >> > module_autoload_uio = "uio"
+> >> >diff --git a/meta-emenlow/recipes-kernel/linux/linux-yocto_3.2.bbappend
+> >> >b/meta-emenlow/recipes-kernel/linux/linux-yocto_3.2.bbappend
+> >> >index 3e8aa9b..41dfe9a 100644
+> >> >--- a/meta-emenlow/recipes-kernel/linux/linux-yocto_3.2.bbappend
+> >> >+++ b/meta-emenlow/recipes-kernel/linux/linux-yocto_3.2.bbappend
+> >> >@@ -4,5 +4,7 @@ COMPATIBLE_MACHINE_emenlow = "emenlow"
+> >> > KMACHINE_emenlow  = "emenlow"
+> >> > KBRANCH_emenlow  = "standard/default/emenlow"
+> >> >
+> >> >-SRCREV_machine_pn-linux-yocto_emenlow ?=
+> >> >"33fea086cb668a39765dfc7a01fd715f3ef8f6b8"
+> >> >-SRCREV_meta_pn-linux-yocto_emenlow ?=
+> >> >"5b4c9dc78b5ae607173cc3ddab9bce1b5f78129b"
+> >> >+SRCREV_machine_pn-linux-yocto_emenlow ?=
+> >> >"9432e99fb8ca08b0d713fc4001f0b4a11138d20e"
+> >> >+SRCREV_meta_pn-linux-yocto_emenlow ?=
+> >> >"486f7aec824b4127e91ef53228823e996b3696f0"
+> >> >+
+> >> >+LINUX_VERSION = "3.2.18"
+> >> >diff --git a/meta-emenlow/recipes-kernel/linux/linux-yocto_3.4.bbappend
+> >> >b/meta-emenlow/recipes-kernel/linux/linux-yocto_3.4.bbappend
+> >> >index 4fac478..7b2185f 100644
+> >> >--- a/meta-emenlow/recipes-kernel/linux/linux-yocto_3.4.bbappend
+> >> >+++ b/meta-emenlow/recipes-kernel/linux/linux-yocto_3.4.bbappend
+> >> >@@ -4,5 +4,7 @@ COMPATIBLE_MACHINE_emenlow = "emenlow"
+> >> > KMACHINE_emenlow  = "emenlow"
+> >> > KBRANCH_emenlow  = "standard/emenlow"
+> >> >
+> >> >-SRCREV_machine_pn-linux-yocto_emenlow ?=
+> >> >"ace4e2276ac0592e3602b9b6a95348e56e7cf246"
+> >> >-SRCREV_meta_pn-linux-yocto_emenlow ?=
+> >> >"9e3bdb7344054264b750e53fbbb6394cc1c942ac"
+> >> >+SRCREV_machine_pn-linux-yocto_emenlow ?=
+> >> >"d8178545bc69adf262620fcfa40dd8f8ef64ba14"
+> >> >+SRCREV_meta_pn-linux-yocto_emenlow ?=
+> >> >"68a635bf8dfb64b02263c1ac80c948647cc76d5f"
+> >> >+
+> >> >+LINUX_VERSION = "3.4.11"
+> >> >diff --git a/meta-fri2/recipes-kernel/linux/linux-yocto_3.2.bbappend
+> >b/meta-
+> >> >fri2/recipes-kernel/linux/linux-yocto_3.2.bbappend
+> >> >index 35d0b3a..8459a35 100644
+> >> >--- a/meta-fri2/recipes-kernel/linux/linux-yocto_3.2.bbappend
+> >> >+++ b/meta-fri2/recipes-kernel/linux/linux-yocto_3.2.bbappend
+> >> >@@ -3,13 +3,15 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+> >> > COMPATIBLE_MACHINE_fri2 = "fri2"
+> >> > KMACHINE_fri2  = "fri2"
+> >> > KBRANCH_fri2 = "standard/default/fri2"
+> >> >-SRCREV_machine_pn-linux-yocto_fri2 ?=
+> >> >"046bef8ea4dbb9c279e49ad9faf240b86fc80fdc"
+> >> >-SRCREV_meta_pn-linux-yocto_fri2 ?=
+> >> >"07ee09b520579b9f29bd15fefb01fd28b34c6064"
+> >> >+SRCREV_machine_pn-linux-yocto_fri2 ?=
+> >> >"e0b29aa980673a1a5abde5ffdf356ca21b00f3ec"
+> >> >+SRCREV_meta_pn-linux-yocto_fri2 ?=
+> >> >"486f7aec824b4127e91ef53228823e996b3696f0"
+> >> >
+> >> > COMPATIBLE_MACHINE_fri2-noemgd = "fri2-noemgd"
+> >> > KMACHINE_fri2-noemgd  = "fri2"
+> >> > KBRANCH_fri2-noemgd = "standard/default/fri2"
+> >> >-SRCREV_machine_pn-linux-yocto_fri2-noemgd ?=
+> >> >"046bef8ea4dbb9c279e49ad9faf240b86fc80fdc"
+> >> >-SRCREV_meta_pn-linux-yocto_fri2-noemgd ?=
+> >> >"07ee09b520579b9f29bd15fefb01fd28b34c6064"
+> >> >+SRCREV_machine_pn-linux-yocto_fri2-noemgd ?=
+> >> >"e0b29aa980673a1a5abde5ffdf356ca21b00f3ec"
+> >> >+SRCREV_meta_pn-linux-yocto_fri2-noemgd ?=
+> >> >"486f7aec824b4127e91ef53228823e996b3696f0"
+> >> >+
+> >> >+LINUX_VERSION = "3.2.18"
+> >> >
+> >> > module_autoload_iwlwifi = "iwlwifi"
+> >> >diff --git a/meta-fri2/recipes-kernel/linux/linux-yocto_3.4.bbappend
+> >b/meta-
+> >> >fri2/recipes-kernel/linux/linux-yocto_3.4.bbappend
+> >> >index 522c703..dff9456 100644
+> >> >--- a/meta-fri2/recipes-kernel/linux/linux-yocto_3.4.bbappend
+> >> >+++ b/meta-fri2/recipes-kernel/linux/linux-yocto_3.4.bbappend
+> >> >@@ -12,4 +12,6 @@ KBRANCH_fri2-noemgd = "standard/fri2"
+> >> > SRCREV_machine_pn-linux-yocto_fri2-noemgd ?=
+> >> >"218bd8d2022b9852c60d32f0d770931e3cf343e2"
+> >> > SRCREV_meta_pn-linux-yocto_fri2-noemgd ?=
+> >> >"68a635bf8dfb64b02263c1ac80c948647cc76d5f"
+> >> >
+> >> >+LINUX_VERSION = "3.4.11"
+> >> >+
+> >> > module_autoload_iwlwifi = "iwlwifi"
+> >> >diff --git a/meta-jasperforest/recipes-kernel/linux/linux-
+> >yocto_3.2.bbappend
+> >> >b/meta-jasperforest/recipes-kernel/linux/linux-yocto_3.2.bbappend
+> >> >index 2c3dd86..537a90c 100644
+> >> >--- a/meta-jasperforest/recipes-kernel/linux/linux-yocto_3.2.bbappend
+> >> >+++ b/meta-jasperforest/recipes-kernel/linux/linux-yocto_3.2.bbappend
+> >> >@@ -7,3 +7,5 @@ KBRANCH_jasperforest  = "standard/default/common-
+> >pc-
+> >> >64/jasperforest"
+> >> >
+> >> > SRCREV_machine_pn-linux-yocto_jasperforest ?=
+> >> >"3303a0ec2cde4766fd0ee9dd059e9b4dd7bd7e79"
+> >> > SRCREV_meta_pn-linux-yocto_jasperforest ?=
+> >> >"486f7aec824b4127e91ef53228823e996b3696f0"
+> >> >+
+> >> >+LINUX_VERSION = "3.2.18"
+> >> >diff --git a/meta-jasperforest/recipes-kernel/linux/linux-
+> >yocto_3.4.bbappend
+> >> >b/meta-jasperforest/recipes-kernel/linux/linux-yocto_3.4.bbappend
+> >> >index 7c5a908..255f12a 100644
+> >> >--- a/meta-jasperforest/recipes-kernel/linux/linux-yocto_3.4.bbappend
+> >> >+++ b/meta-jasperforest/recipes-kernel/linux/linux-yocto_3.4.bbappend
+> >> >@@ -5,5 +5,7 @@ COMPATIBLE_MACHINE_jasperforest = "jasperforest"
+> >> > KMACHINE_jasperforest  = "jasperforest"
+> >> > KBRANCH_jasperforest  = "standard/common-pc-64/jasperforest"
+> >> >
+> >> >-SRCREV_machine_pn-linux-yocto_jasperforest ?=
+> >> >"449f7f520350700858f21a5554b81cc8ad23267d"
+> >> >-SRCREV_meta_pn-linux-yocto_jasperforest ?=
+> >> >"9e3bdb7344054264b750e53fbbb6394cc1c942ac"
+> >> >+SRCREV_machine_pn-linux-yocto_jasperforest ?=
+> >> >"218bd8d2022b9852c60d32f0d770931e3cf343e2"
+> >> >+SRCREV_meta_pn-linux-yocto_jasperforest ?=
+> >> >"68a635bf8dfb64b02263c1ac80c948647cc76d5f"
+> >> >+
+> >> >+LINUX_VERSION = "3.4.11"
+> >> >diff --git a/meta-romley/recipes-kernel/linux/linux-yocto_3.2.bbappend
+> >> >b/meta-romley/recipes-kernel/linux/linux-yocto_3.2.bbappend
+> >> >index 1cba38f..c54505e 100644
+> >> >--- a/meta-romley/recipes-kernel/linux/linux-yocto_3.2.bbappend
+> >> >+++ b/meta-romley/recipes-kernel/linux/linux-yocto_3.2.bbappend
+> >> >@@ -5,5 +5,7 @@ COMPATIBLE_MACHINE_romley = "romley"
+> >> > KMACHINE_romley  = "romley"
+> >> > KBRANCH_romley  = "standard/default/common-pc-64/romley"
+> >> >
+> >> >-SRCREV_machine_pn-linux-yocto_romley ?=
+> >> >"7d26ac083cb255888536b42b622b97fb438753ad"
+> >> >-SRCREV_meta_pn-linux-yocto_romley ?=
+> >> >"07ee09b520579b9f29bd15fefb01fd28b34c6064"
+> >> >+SRCREV_machine_pn-linux-yocto_romley ?=
+> >> >"34e3cd8b7a1d18594a63b7b299fce46e32a6c80c"
+> >> >+SRCREV_meta_pn-linux-yocto_romley ?=
+> >> >"486f7aec824b4127e91ef53228823e996b3696f0"
+> >> >+
+> >> >+LINUX_VERSION = "3.2.18"
+> >> >diff --git a/meta-sugarbay/recipes-kernel/linux/linux-yocto_3.2.bbappend
+> >> >b/meta-sugarbay/recipes-kernel/linux/linux-yocto_3.2.bbappend
+> >> >index a733ddc..fad7c06 100644
+> >> >--- a/meta-sugarbay/recipes-kernel/linux/linux-yocto_3.2.bbappend
+> >> >+++ b/meta-sugarbay/recipes-kernel/linux/linux-yocto_3.2.bbappend
+> >> >@@ -5,7 +5,9 @@ COMPATIBLE_MACHINE_sugarbay = "sugarbay"
+> >> > KMACHINE_sugarbay  = "sugarbay"
+> >> > KBRANCH_sugarbay  = "standard/default/common-pc-64/sugarbay"
+> >> >
+> >> >-SRCREV_machine_pn-linux-yocto_sugarbay ?=
+> >> >"172df847dda93cb52af0c694200613a1c363c9a3"
+> >> >-SRCREV_meta_pn-linux-yocto_sugarbay ?=
+> >> >"5b4c9dc78b5ae607173cc3ddab9bce1b5f78129b"
+> >> >+SRCREV_machine_pn-linux-yocto_sugarbay ?=
+> >> >"1b6466421bc314e7e07fe4dd48c5fc67cdc3fc40"
+> >> >+SRCREV_meta_pn-linux-yocto_sugarbay ?=
+> >> >"486f7aec824b4127e91ef53228823e996b3696f0"
+> >> >+
+> >> >+LINUX_VERSION = "3.2.18"
+> >> >
+> >> > KERNEL_FEATURES_append_sugarbay = " features/tmp/rc6"
+> >> >diff --git a/meta-sugarbay/recipes-kernel/linux/linux-yocto_3.4.bbappend
+> >> >b/meta-sugarbay/recipes-kernel/linux/linux-yocto_3.4.bbappend
+> >> >index 9224b63..0a481e2 100644
+> >> >--- a/meta-sugarbay/recipes-kernel/linux/linux-yocto_3.4.bbappend
+> >> >+++ b/meta-sugarbay/recipes-kernel/linux/linux-yocto_3.4.bbappend
+> >> >@@ -5,5 +5,7 @@ COMPATIBLE_MACHINE_sugarbay = "sugarbay"
+> >> > KMACHINE_sugarbay  = "sugarbay"
+> >> > KBRANCH_sugarbay  = "standard/common-pc-64/sugarbay"
+> >> >
+> >> >-SRCREV_machine_pn-linux-yocto_sugarbay ?=
+> >> >"449f7f520350700858f21a5554b81cc8ad23267d"
+> >> >-SRCREV_meta_pn-linux-yocto_sugarbay ?=
+> >> >"9e3bdb7344054264b750e53fbbb6394cc1c942ac"
+> >> >+SRCREV_machine_pn-linux-yocto_sugarbay ?=
+> >> >"218bd8d2022b9852c60d32f0d770931e3cf343e2"
+> >> >+SRCREV_meta_pn-linux-yocto_sugarbay ?=
+> >> >"68a635bf8dfb64b02263c1ac80c948647cc76d5f"
+> >> >+
+> >> >+LINUX_VERSION = "3.4.11"
+> >> >diff --git a/meta-sys940x/recipes-kernel/linux/linux-yocto_3.2.bbappend
+> >> >b/meta-sys940x/recipes-kernel/linux/linux-yocto_3.2.bbappend
+> >> >index 7449b4b..88f3bd8 100644
+> >> >--- a/meta-sys940x/recipes-kernel/linux/linux-yocto_3.2.bbappend
+> >> >+++ b/meta-sys940x/recipes-kernel/linux/linux-yocto_3.2.bbappend
+> >> >@@ -4,11 +4,13 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+> >> > COMPATIBLE_MACHINE_sys940x = "sys940x"
+> >> > KMACHINE_sys940x  = "sys940x"
+> >> > #KBRANCH_sys940x = "standard/default/base"
+> >> >-SRCREV_machine_pn-linux-yocto_sys940x ?=
+> >> >"7cc31a952f78b8f8e8469eed93c23e9675a8eeb5"
+> >> >-SRCREV_meta_pn-linux-yocto_sys940x ?=
+> >> >"07ee09b520579b9f29bd15fefb01fd28b34c6064"
+> >> >+SRCREV_machine_pn-linux-yocto_sys940x ?=
+> >> >"06882fc16a4e965872e7faacb91da1497efd9ac3"
+> >> >+SRCREV_meta_pn-linux-yocto_sys940x ?=
+> >> >"486f7aec824b4127e91ef53228823e996b3696f0"
+> >> >
+> >> > COMPATIBLE_MACHINE_sys940x-noemgd = "sys940x-noemgd"
+> >> > KMACHINE_sys940x-noemgd  = "sys940x"
+> >> > #KBRANCH_sys940x-noemgd = "standard/default/base"
+> >> >-SRCREV_machine_pn-linux-yocto_sys940x-noemgd ?=
+> >> >"7cc31a952f78b8f8e8469eed93c23e9675a8eeb5"
+> >> >-SRCREV_meta_pn-linux-yocto_sys940x-noemgd ?=
+> >> >"07ee09b520579b9f29bd15fefb01fd28b34c6064"
+> >> >+SRCREV_machine_pn-linux-yocto_sys940x-noemgd ?=
+> >> >"06882fc16a4e965872e7faacb91da1497efd9ac3"
+> >> >+SRCREV_meta_pn-linux-yocto_sys940x-noemgd ?=
+> >> >"486f7aec824b4127e91ef53228823e996b3696f0"
+> >> >+
+> >> >+LINUX_VERSION = "3.2.18"
+> >> >--
+> >> >1.7.11.4
+> >>
+> >
+> 
+
+
 
