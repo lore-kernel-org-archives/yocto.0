@@ -1,25 +1,32 @@
-Return-Path: <kishore.k.bodke@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 81800E013D9
-	for <yocto@yoctoproject.org>; Tue, 30 Oct 2012 05:14:54 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 30 Oct 2012 05:14:54 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,675,1344236400"; d="scan'208";a="240030389"
-Received: from kishore-desktop.sc.intel.com (HELO localhost) ([143.183.188.87])
-	by fmsmga001.fm.intel.com with ESMTP; 29 Oct 2012 16:42:43 -0700
-From: kishore.k.bodke@intel.com
-To: tom.zanussi@intel.com,
-	nitin.a.kamble@intel.com,
-	yocto@yoctoproject.org
-Date: Mon, 29 Oct 2012 16:44:06 -0700
-Message-Id: <a3391aec3e92fbf28ebb7e030cee7ce6efe6729a.1351553989.git.kishore.k.bodke@intel.com>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <cc35d8e8fa6eb4c756368a64d4007175e1516a7b.1351553989.git.kishore.k.bodke@intel.com>
-References: <cc35d8e8fa6eb4c756368a64d4007175e1516a7b.1351553989.git.kishore.k.bodke@intel.com>
-In-Reply-To: <cover.1351553989.git.kishore.k.bodke@intel.com>
-References: <cover.1351553989.git.kishore.k.bodke@intel.com>
-Subject: [PATCH 2/2] [meta-intel] crystalforest: Update the README Instructions.
+Return-Path: <bruce.ashfield@gmail.com>
+Received: from mail-lb0-f176.google.com (mail-lb0-f176.google.com
+	[209.85.217.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ACFE8E013D9
+	for <yocto@yoctoproject.org>; Tue, 30 Oct 2012 05:29:10 -0700 (PDT)
+Received: by mail-lb0-f176.google.com with SMTP id s4so169981lbc.35
+	for <yocto@yoctoproject.org>; Tue, 30 Oct 2012 05:29:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=1YE2CqGTfx/t6GyTZbxB/yZ7riHFwq2rpzOzCzrxVMw=;
+	b=dtKp0HaLu1F8DTSv533WN+v54YgnxOK2PUnctImxoBlUCecXQbpGwObrNGk+sk8WYX
+	UOIi9ARFyDDAFAM4bBa+3bC7dmmhNJZjq2xVGqA3pIp54orHeelp0k4K0gSJ70yYJ1X1
+	5ktWbWL5GPCiWenLTX3s5kti5ZF8OXLu7aaV3thMjjuw45aoPMvnOapwxu1EcCXHbajU
+	IjQ2lxQBwFOJPzqvU0QPFgww6Q1O8GG70A5ggYl3yiisjo17g8kFypnKThIkFy5WJ390
+	Oz0ytF0OkRadezQ6zu8kB7Htuv7fdU7s3Z5Sd9eNpIun1TCn4wm1dFiy2RGfwAEbMe/c
+	pH7Q==
+MIME-Version: 1.0
+Received: by 10.152.108.42 with SMTP id hh10mr29958181lab.4.1351600149361;
+	Tue, 30 Oct 2012 05:29:09 -0700 (PDT)
+Received: by 10.114.17.164 with HTTP; Tue, 30 Oct 2012 05:29:09 -0700 (PDT)
+In-Reply-To: <1351582698-28887-1-git-send-email-b40290@freescale.com>
+References: <1351582698-28887-1-git-send-email-b40290@freescale.com>
+Date: Tue, 30 Oct 2012 08:29:09 -0400
+Message-ID: <CADkTA4Pg+5B=sXBijpK4FvW3KSWSzMsOba7Uvv=DH3KOfgPB9A@mail.gmail.com>
+From: Bruce Ashfield <bruce.ashfield@gmail.com>
+To: b40290@freescale.com
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-fsl-ppc master] perf_3.4.bbappend: task oe_runmake: failed
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,39 +38,80 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 30 Oct 2012 12:14:54 -0000
+X-List-Received-Date: Tue, 30 Oct 2012 12:29:11 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-From: Kishore Bodke <kishore.k.bodke@intel.com>
+On Tue, Oct 30, 2012 at 3:38 AM,  <b40290@freescale.com> wrote:
+> From: Chunrong Guo <b40290@freescale.com>
+>
+>       fix perf ERROR: oe_runmake failed
+>
+> Signed-off-by: Chunrong Guo <b40290@freescale.com>
+> ---
+>  .../perf/files/define-attribute-const.patch        |   13 +++++++++++++
+>  recipes-append/perf/perf_3.4.bbappend              |    7 +++++++
+>  2 files changed, 20 insertions(+)
+>  create mode 100644 recipes-append/perf/files/define-attribute-const.patch
+>  create mode 100644 recipes-append/perf/perf_3.4.bbappend
+>
 
-Add Instructions to build the custom Image to
-enable qat modules.
+Out of curiosity .. why not patch the FSL kernel itself ? That's where the
+source for perf comes from, and that will ensure any perf recipe will build
+when that kernel source is used. We've been fixing perf issues within the
+linux-yocto repo for some time, that way the changes are matched to the
+kernel that has the problem, not the layer + toolchain which can have a
+changing kernel underneath it.
 
-Signed-off-by: Kishore Bodke <kishore.k.bodke@intel.com>
----
- meta-crystalforest/README |    9 +++++++++
- 1 file changed, 9 insertions(+)
+Just a random question.
 
-diff --git a/meta-crystalforest/README b/meta-crystalforest/README
-index a938193..8731c2a 100644
---- a/meta-crystalforest/README
-+++ b/meta-crystalforest/README
-@@ -88,6 +88,15 @@ You should then be able to build a crystalforest image as such:
-   $ source oe-init-build-env
-   $ bitbake core-image-sato
- 
-+The above image will not give you the quickassist technology features
-+such as openssl-qat-module, zlib-qat-module and corpus data files.
-+
-+If you want those feature built into the image by default, You should
-+build the custom image by doing the following:
-+
-+  $ source oe-init-build-env
-+  $ bitbake core-image-qat
-+
- At the end of a successful build, you should have a live image that
- you can boot from a USB flash drive (see instructions on how to do
- that below, in the section 'Booting the images from /binary').
+Cheers,
+
+Bruce
+
+> diff --git a/recipes-append/perf/files/define-attribute-const.patch b/recipes-append/perf/files/define-attribute-const.patch
+> new file mode 100644
+> index 0000000..00c7575
+> --- /dev/null
+> +++ b/recipes-append/perf/files/define-attribute-const.patch
+> @@ -0,0 +1,13 @@
+> +--- linux/tools/perf/util/include/linux/compiler.h     2012-10-25 02:39:36.071441794 -0500
+> ++++ git/tools/perf/util/include/linux/compiler.h       2012-10-28 21:53:49.351638193 -0500
+> +@@ -5,8 +5,9 @@
+> + #define __always_inline       inline
+> + #endif
+> + #define __user
+> ++#ifndef __attribute_const__
+> + #define __attribute_const__
+> +-
+> ++#endif
+> + #define __used                __attribute__((__unused__))
+> +
+> + #endif
+> diff --git a/recipes-append/perf/perf_3.4.bbappend b/recipes-append/perf/perf_3.4.bbappend
+> new file mode 100644
+> index 0000000..a5ff52b
+> --- /dev/null
+> +++ b/recipes-append/perf/perf_3.4.bbappend
+> @@ -0,0 +1,7 @@
+> +FILESEXTRAPATHS_prepend_fsl := "${THISDIR}/files:"
+> +
+> +SRC_URI_append_fsl += "file://define-attribute-const.patch\
+> +                        "
+> +
+> +PR_fsl .= "+${DISTRO}"
+> +
+> --
+> 1.7.9.7
+>
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
+
+
 -- 
-1.7.9.5
-
+"Thou shalt not follow the NULL pointer, for chaos and madness await
+thee at its end"
 
