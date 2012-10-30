@@ -1,56 +1,38 @@
-Return-Path: <tim.bird@am.sony.com>
-Received: from co1outboundpool.messaging.microsoft.com
-	(co1ehsobe005.messaging.microsoft.com [216.32.180.188])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8602EE00533
-	for <yocto@yoctoproject.org>; Tue, 30 Oct 2012 11:10:54 -0700 (PDT)
-Received: from mail79-co1-R.bigfish.com (10.243.78.250) by
-	CO1EHSOBE001.bigfish.com (10.243.66.64) with Microsoft SMTP Server id
-	14.1.225.23; Tue, 30 Oct 2012 18:10:53 +0000
-Received: from mail79-co1 (localhost [127.0.0.1])	by mail79-co1-R.bigfish.com
-	(Postfix) with ESMTP id 8D3D2B4017D	for <yocto@yoctoproject.org>;
-	Tue, 30 Oct 2012 18:10:53 +0000 (UTC)
-X-Forefront-Antispam-Report: CIP:160.33.194.228; KIP:(null); UIP:(null);
-	IPV:NLI; H:usculsndmail01v.am.sony.com; RD:mail01.sonyusa.com;
-	EFVD:NLI
-X-SpamScore: -1
-X-BigFish: VPS-1(zz4015Izz1202h1d1ah1d2ahzzz2fh2a8h668h839hf0ah1288h12a5h12a9h12bdh137ah13b6h1441h1504h1537h153bh1155h)
-Received-SPF: pass (mail79-co1: domain of am.sony.com designates
-	160.33.194.228 as permitted sender) client-ip=160.33.194.228;
-	envelope-from=tim.bird@am.sony.com;
-	helo=usculsndmail01v.am.sony.com ; .am.sony.com ; 
-Received: from mail79-co1 (localhost.localdomain [127.0.0.1]) by mail79-co1
-	(MessageSwitch) id 1351620651133220_17042;
-	Tue, 30 Oct 2012 18:10:51 +0000 (UTC)
-Received: from CO1EHSMHS001.bigfish.com (unknown [10.243.78.235])	by
-	mail79-co1.bigfish.com (Postfix) with ESMTP id 1CFEE3800AE	for
-	<yocto@yoctoproject.org>; Tue, 30 Oct 2012 18:10:51 +0000 (UTC)
-Received: from usculsndmail01v.am.sony.com (160.33.194.228) by
-	CO1EHSMHS001.bigfish.com (10.243.66.11) with Microsoft SMTP Server
-	(TLS) id 14.1.225.23; Tue, 30 Oct 2012 18:10:03 +0000
-Received: from usculsndmail14v.am.sony.com (usculsndmail14v.am.sony.com
-	[146.215.230.105])	by usculsndmail01v.am.sony.com
-	(Sentrion-MTA-4.2.2/Sentrion-MTA-4.2.2) with ESMTP id
-	q9UIA2Fs002229	for
-	<yocto@yoctoproject.org>; Tue, 30 Oct 2012 18:10:02 GMT
-Received: from mail1x.sjc.in.sel.sony.com (mail.sgo.in.sel.sony.com
-	[43.134.1.112])	by usculsndmail14v.am.sony.com
-	(Sentrion-MTA-4.2.2/Sentrion-MTA-4.2.2) with ESMTP id q9UI61Jw026314
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256
-	verify=FAIL)	for
-	<yocto@yoctoproject.org>; Tue, 30 Oct 2012 18:06:02 GMT
-Received: from [43.135.148.222] ([43.135.148.222])	by
-	mail1x.sjc.in.sel.sony.com (Switch-3.4.2/Switch-3.4.2) with ESMTP id
-	q9UI61bR008127	for <yocto@yoctoproject.org>;
-	Tue, 30 Oct 2012 18:06:01 GMT
-Message-ID: <50901720.1080304@am.sony.com>
-Date: Tue, 30 Oct 2012 11:06:24 -0700
-From: Tim Bird <tim.bird@am.sony.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:16.0) Gecko/20121011 Thunderbird/16.0.1
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from azsmga102.ch.intel.com (mga12.intel.com [143.182.124.36])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 83385E00498
+	for <yocto@yoctoproject.org>; Tue, 30 Oct 2012 11:19:49 -0700 (PDT)
+Received: from mail-gg0-f200.google.com ([209.85.161.200])
+	by mga14.intel.com with ESMTP/TLS/RC4-SHA; 30 Oct 2012 11:19:48 -0700
+Received: by mail-gg0-f200.google.com with SMTP id q1so911835ggn.11
+	for <yocto@yoctoproject.org>; Tue, 30 Oct 2012 11:19:44 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type:x-gm-message-state;
+	bh=iWRU7soHyr2/ltUmAPDSq0glIhkkcn3kaLTRj3S0jjA=;
+	b=Ait2sI1kz/p+6PcSetIkRSl6SufM2wf9h325OmZZ8SPqSpp9Tb6+e+7L+kT1YrC55V
+	U++uyoyzxQ5e3FItl4Ehu8qIHtFm5w33oYAIRbQ8OENBPWDFBvmXQ0bpOhKaTj1UFms5
+	dMmbaVfSfxPB4CbUlh2sNw+baw58zj17VBlme7LGbsUm7HgQn+bY39GNh7pAkJYDX8x0
+	6gUv6htYiCVLTZb0ffrbozJHPA98zGKpIiyxOxYfA5HwQ7IapjXDb07pQaN//yXwBhTF
+	uU8SZ+1+UvIhqdYE1zFSRzNfFMICMHbLSQYF+u9i+ydzYUfpyf5vgkihi926MaEdjXvU
+	eP5Q==
+Received: by 10.224.78.148 with SMTP id l20mr7933716qak.27.1351621183976;
+	Tue, 30 Oct 2012 11:19:43 -0700 (PDT)
 MIME-Version: 1.0
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-X-OriginatorOrg: am.sony.com
-Subject: supported IMAGE_FSTYPES
+Received: by 10.224.78.148 with SMTP id l20mr7933709qak.27.1351621183897; Tue,
+	30 Oct 2012 11:19:43 -0700 (PDT)
+Received: by 10.229.94.206 with HTTP; Tue, 30 Oct 2012 11:19:43 -0700 (PDT)
+In-Reply-To: <b3c825a8aa5a4e1d8fd7a861ce48b1de69fbd381.1351616833.git.kishore.k.bodke@intel.com>
+References: <cover.1351616833.git.kishore.k.bodke@intel.com>
+	<b3c825a8aa5a4e1d8fd7a861ce48b1de69fbd381.1351616833.git.kishore.k.bodke@intel.com>
+Date: Tue, 30 Oct 2012 11:19:43 -0700
+Message-ID: <CAPhnLPAGipumnCbemDobzwEACD=QUwXdF8YrABa=tvKzjvHNJQ@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: kishore.k.bodke@intel.com
+X-Gm-Message-State: ALoCoQlH7faluEfMjU2S8K4hN5SgzEpIPLb1q6q4BdtKakWUK0gGl+3lnK1U48iaXCcA1xK+Ysa9Pic0cA/sXwKlhicup7r7yL435kzJh2MwGE933gYY+Zt915kCdmdGh9YqX8PLFaJHQXQX6VDY2YEuycarlFoWOA==
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH 1/1] [meta-intel] meta-intel/common: Add License info for openssl-qat-module
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -62,55 +44,57 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 30 Oct 2012 18:10:54 -0000
-Content-Type: text/plain; charset="ISO-8859-1"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 30 Oct 2012 18:19:49 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-I am in the process of creating my own distro, and trying to figure out
-all the different build variables.  This is a pretty daunting task
-for a yocto project/Poky newbie.
+On Tue, Oct 30, 2012 at 10:11 AM,  <kishore.k.bodke@intel.com> wrote:
+> From: Kishore Bodke <kishore.k.bodke@intel.com>
+>
+> openssl-qat-module has the dual license. So add GPLv2 and BSD
+> License to openssl qat Module.
+>
+> Signed-off-by: Kishore Bodke <kishore.k.bodke@intel.com>
+> ---
+>  .../openssl-qat-module/openssl-qat-module.bb       |    6 ++++--
+>  1 file changed, 4 insertions(+), 2 deletions(-)
+>
+> diff --git a/common/recipes-connectivity/openssl-qat-module/openssl-qat-module.bb b/common/recipes-connectivity/openssl-qat-module/openssl-qat-module.bb
+> index a4fe3c5..fdeebbb 100644
+> --- a/common/recipes-connectivity/openssl-qat-module/openssl-qat-module.bb
+> +++ b/common/recipes-connectivity/openssl-qat-module/openssl-qat-module.bb
+> @@ -7,8 +7,10 @@ implemented on Intel Communications Chipset 89xx Series based platforms."
+>  HOMEPAGE = "http://www.openssl.org/"
+>  SECTION = "libs/network"
+>
+> -LICENSE = "openssl"
+> -LIC_FILES_CHKSUM = "file://${WORKDIR}/openssl-${PV}/LICENSE;md5=f9a8f968107345e0b75aa8c2ecaa7ec8"
+> +LICENSE = "openssl & GPLv2 & BSD"
 
-Is there some place where the possible values for IMAGE_FSTYPE are
-documented?  The Poky reference manual has this helpful sentence:
-"Formats of root filesystem images that you want to have created."
-However, it does not describe the possible values this variable
-should have.
+I'd actually make this:
 
-At the root of the poky source dir, doing a 'find -type f -print 0 | xargs -0 grep IMAGE_FSTYPES'
-seems to reveal the following used or checked-for image types:
- jffs2 sdimg tar.bz2 ubi ext3 ext2 cpio.gz live vmdk
+LICENSE = "OpenSSL & GPLv2 & BSD"
 
-It appears the cpio.gz corresponds to an image suitable for an initramfs.
-jffs2, ext2, ext3, ubi and tar.bz2 appear self-explanatory.
-I have a pretty good idea thaat vmdk is somehow related to the
-virtual build image.
+as there is no SPDXLICENSEMAP to map openssl to OpenSSL, so this
+should be throwing warnings.
 
-What does 'live' do?
+> +LIC_FILES_CHKSUM = "file://${WORKDIR}/openssl-${PV}/LICENSE;md5=f9a8f968107345e0b75aa8c2ecaa7ec8 \
+> +                       file://${COMMON_LICENSE_DIR}/GPL-2.0;md5=801f80980d171dd6425610833a22dbe6 \
+> +                       file://${COMMON_LICENSE_DIR}/BSD;md5=3775480a712fc46a69647678acb234cb"
+>
+>  PV = "1.0.1"
+>  PR = "r0"
+> --
+> 1.7.9.5
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-Wait a sec...
 
-Reading meta/classes/image_types.bbclass I just found IMAGE_TYPES,
-which says it is available for requesting which values are suitable
-for IMAGE_FSTYPES.
 
-This has the following:
-IMAGE_TYPES = "jffs2 sum.jffs2 cramfs ext2 ext2.gz ext2.bz2 ext3 ext3.gz
-ext2.lzma btrfs live squashfs squashfs-lzma ubi tar tar.gz tar.bz2 tar.xz
-cpio cpio.gz cpio.xz cpio.lzma vmdk"
-
-How does one query this variable?  Other than reading the source, is
-there a way to know that such variables (which list the allowed values
-for other variables) exist?
-
-I apologize if these are newbie questions.
-
-Thanks,
- -- Tim
-
-=============================
-Tim Bird
-Architecture Group Chair, CE Workgroup of the Linux Foundation
-Senior Staff Engineer, Sony Network Entertainment
-=============================
-
+-- 
+Elizabeth Flanagan
+Yocto Project
+Build and Release
 
