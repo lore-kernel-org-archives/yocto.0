@@ -1,51 +1,43 @@
-Return-Path: <B29882@freescale.com>
-Received: from co1outboundpool.messaging.microsoft.com
-	(co1ehsobe005.messaging.microsoft.com [216.32.180.188])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 426F7E013EB
-	for <yocto@yoctoproject.org>; Tue, 30 Oct 2012 12:00:53 -0700 (PDT)
-Received: from mail79-co1-R.bigfish.com (10.243.78.236) by
-	CO1EHSOBE012.bigfish.com (10.243.66.75) with Microsoft SMTP Server id
-	14.1.225.23; Tue, 30 Oct 2012 19:00:52 +0000
-Received: from mail79-co1 (localhost [127.0.0.1])	by mail79-co1-R.bigfish.com
-	(Postfix) with ESMTP id AD7A5B404BF	for <yocto@yoctoproject.org>;
-	Tue, 30 Oct 2012 19:00:52 +0000 (UTC)
-X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null); IPV:NLI;
-	H:mail.freescale.net; RD:none; EFVD:NLI
-X-SpamScore: -3
-X-BigFish: VS-3(zz98dI9371I936eI1432Izz1202h1d1ah1d2ahzz8275bh8275dhz2dh2a8h668h839h8e2h8e3hd25hf0ah10d2h1288h12a5h12a9h12bdh137ah13b6h1441h1537h153bhbe9i1155h)
-Received: from mail79-co1 (localhost.localdomain [127.0.0.1]) by mail79-co1
-	(MessageSwitch) id 1351623649554531_10287;
-	Tue, 30 Oct 2012 19:00:49 +0000 (UTC)
-Received: from CO1EHSMHS018.bigfish.com (unknown [10.243.78.232])	by
-	mail79-co1.bigfish.com (Postfix) with ESMTP id 7AE173800DA	for
-	<yocto@yoctoproject.org>; Tue, 30 Oct 2012 19:00:49 +0000 (UTC)
-Received: from mail.freescale.net (70.37.183.190) by CO1EHSMHS018.bigfish.com
-	(10.243.66.28) with Microsoft SMTP Server (TLS) id 14.1.225.23;
-	Tue, 30 Oct 2012 19:00:47 +0000
-Received: from 039-SN1MPN1-002.039d.mgd.msft.net ([169.254.2.121]) by
-	039-SN1MMR1-001.039d.mgd.msft.net ([10.84.1.13]) with mapi id
-	14.02.0318.003; Tue, 30 Oct 2012 19:00:46 +0000
-From: McClintock Matthew-B29882 <B29882@freescale.com>
-To: Guo Chunrong-B40290 <B40290@freescale.com>
-Thread-Topic: [yocto] [meta-fsl-ppc master] inetutils_1.8.bbappend:task
-	do_configure and do_compile:failed
-Thread-Index: AQHNttDeZWlLoz3bWUGaKDFZMK8VmA==
-Date: Tue, 30 Oct 2012 19:00:46 +0000
-Message-ID: <70CC66F5C30A414DADDA6973E4CA391A737325@039-SN1MPN1-002.039d.mgd.msft.net>
-References: <1351580158-13467-1-git-send-email-b40290@freescale.com>
-In-Reply-To: <1351580158-13467-1-git-send-email-b40290@freescale.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [70.112.201.132]
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from azsmga102.ch.intel.com (mga12.intel.com [143.182.124.36])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8783BE013EB
+	for <yocto@yoctoproject.org>; Tue, 30 Oct 2012 12:03:51 -0700 (PDT)
+Received: from mail-gh0-f199.google.com ([209.85.160.199])
+	by mga14.intel.com with ESMTP/TLS/RC4-SHA; 30 Oct 2012 12:03:50 -0700
+Received: by mail-gh0-f199.google.com with SMTP id r18so1276660ghr.2
+	for <yocto@yoctoproject.org>; Tue, 30 Oct 2012 12:03:49 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type:x-gm-message-state;
+	bh=ZRFsnFoeg8yi3NhluC/JFP0fB+cdoCutmkpU5Ks4DoM=;
+	b=FevFUPSP3JeyyOC5tYC9aBfxQun9sw+TG3kpgZU8s4fy4X4Q0EBenYDGUeGza1+uC1
+	pX4h8RX/VKvGC0j9Q4/ioJuUCarGcSZRq8OTHCxMZW2g6Gh7He2vY4Af0BLbbOE8WKKe
+	5ZwMvOQXhOO77nJzhDdrOBMCcAvcALvGdP4BJS5GW4KFIqqW8T2FgFFPpddHQkqtYH15
+	eGDb73ZzfOypjQwr2ZcJ+7fy0Jpr3PB/hoqoE0aoIMmj6r/IOu9tOsmin6D8KqH5F8t4
+	3qqFXLjWVhkM4su7LVavdv00kWWqFBnBt374ztg7vIt7Pnsn7JAwu9nmlYS4JAxztiqF
+	VOKg==
+Received: by 10.224.78.148 with SMTP id l20mr8044054qak.27.1351623829382;
+	Tue, 30 Oct 2012 12:03:49 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: freescale.com
+Received: by 10.224.78.148 with SMTP id l20mr8044043qak.27.1351623829203; Tue,
+	30 Oct 2012 12:03:49 -0700 (PDT)
+Received: by 10.229.94.206 with HTTP; Tue, 30 Oct 2012 12:03:49 -0700 (PDT)
+In-Reply-To: <D956029D25CF204F948EA0FB515E1EE233E72F80@ORSMSX105.amr.corp.intel.com>
+References: <cover.1351616833.git.kishore.k.bodke@intel.com>
+	<b3c825a8aa5a4e1d8fd7a861ce48b1de69fbd381.1351616833.git.kishore.k.bodke@intel.com>
+	<CAPhnLPAGipumnCbemDobzwEACD=QUwXdF8YrABa=tvKzjvHNJQ@mail.gmail.com>
+	<D956029D25CF204F948EA0FB515E1EE233E72F80@ORSMSX105.amr.corp.intel.com>
+Date: Tue, 30 Oct 2012 12:03:49 -0700
+Message-ID: <CAPhnLPDkbs1cLFTFhgqmuPd+N23nD1pVLB3m94ezy7mp19gZkA@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: "Bodke, Kishore K" <kishore.k.bodke@intel.com>
+X-Gm-Message-State: ALoCoQnM5W+R8G9/Q9McmS/LgGL8ucLeHZnSaOjGtnM6DioqddFLCD9bQBGyE5CEtfxuDv8blIgang7MGsE0xc2SpsVN9ASOC3PswYxb7ksAet0SlSgk0i3+KF0xpcn3WC9ggOpha/Rd8PM2BcKUArFnqToNSI6ILQ==
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-fsl-ppc master] inetutils_1.8.bbappend:task do_configure and do_compile:failed
+Subject: Re: [PATCH 1/1] [meta-intel] meta-intel/common: Add License info for openssl-qat-module
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: McClintock Matthew-B29882 <B29882@freescale.com>
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -54,103 +46,99 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 30 Oct 2012 19:00:53 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-ID: <88DC3E9A60769741942F26981D0B6239@mgd.freescale.com>
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 30 Oct 2012 19:03:51 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On Tue, Oct 30, 2012 at 1:55 AM,  <b40290@freescale.com> wrote:
-> From: Chunrong Guo <b40290@freescale.com>
->
->      fix inetutils task do_configure:failed and
->                    task do_compile:failed
-
-At a minimum give some hint what the errors were.
-
-> Signed-off-by: Chunrong Guo <b40290@freescale.com>
-> ---
->  .../files/disable-pre-ANSI-compilers.patch         |   11 +++++++++++
->  recipes-append/inetutils/files/remove_gets.patch   |   13 +++++++++++++
->  recipes-append/inetutils/inetutils_1.8.bbappend    |    8 ++++++++
->  3 files changed, 32 insertions(+)
->  create mode 100644 recipes-append/inetutils/files/disable-pre-ANSI-compi=
-lers.patch
->  create mode 100644 recipes-append/inetutils/files/remove_gets.patch
->  create mode 100644 recipes-append/inetutils/inetutils_1.8.bbappend
-
-I think the patches belong in meta-openembedded not in meta-fsl-ppc.
-Am I missing something here?
-
--M
-
->
-> diff --git a/recipes-append/inetutils/files/disable-pre-ANSI-compilers.pa=
-tch b/recipes-append/inetutils/files/disable-pre-ANSI-compilers.patch
-> new file mode 100644
-> index 0000000..b945f3a
-> --- /dev/null
-> +++ b/recipes-append/inetutils/files/disable-pre-ANSI-compilers.patch
-> @@ -0,0 +1,11 @@
-> +--- inetutils-1.8.org/configure.ac     2012-10-23 02:05:20.516386701 -05=
-00
-> ++++ inetutils-1.8/configure.ac 2012-10-25 21:31:10.602591484 -0500
-> +@@ -569,7 +569,7 @@
-> + IU_CHECK_MEMBERS([struct stat.st_blksize])
-> +
-> + ### Checks for compiler characteristics.
-> +-AM_C_PROTOTYPES dnl FIXME: Does inetutils even compile on pre-ANSI comp=
-ilers?
-> ++#AM_C_PROTOTYPES dnl FIXME: Does inetutils even compile on pre-ANSI com=
-pilers?
-> + AC_C_CONST
-> +
-> + dnl See if `weak refs' are possible; these make it possible (with share=
-d
-> diff --git a/recipes-append/inetutils/files/remove_gets.patch b/recipes-a=
-ppend/inetutils/files/remove_gets.patch
-> new file mode 100644
-> index 0000000..f8081a2
-> --- /dev/null
-> +++ b/recipes-append/inetutils/files/remove_gets.patch
-> @@ -0,0 +1,13 @@
-> +--- inetutils-1.8.org/lib/stdio.in.h   2010-05-15 06:35:16.000000000 -05=
-00
-> ++++ inetutils-1.8/lib/stdio.in.h       2012-10-25 22:56:43.198607472 -05=
-00
-> +@@ -138,8 +138,10 @@
-> + /* It is very rare that the developer ever has full control of stdin,
-> +    so any use of gets warrants an unconditional warning.  Assume it is
-> +    always declared, since it is required by C89.  */
-> ++#if defined gets
-> + #undef gets
-> + _GL_WARN_ON_USE (gets, "gets is a security hole - use fgets instead");
-> ++#endif
-> +
-> + #if @GNULIB_FOPEN@
-> + # if @REPLACE_FOPEN@
-> diff --git a/recipes-append/inetutils/inetutils_1.8.bbappend b/recipes-ap=
-pend/inetutils/inetutils_1.8.bbappend
-> new file mode 100644
-> index 0000000..c64f8cf
-> --- /dev/null
-> +++ b/recipes-append/inetutils/inetutils_1.8.bbappend
-> @@ -0,0 +1,8 @@
-> +FILESEXTRAPATHS_prepend_fsl :=3D "${THISDIR}/files:"
-> +
-> +SRC_URI_append_fsl +=3D "file://disable-pre-ANSI-compilers.patch \
-> +                       file://remove_gets.patch \
-> +                        "
-> +
-> +PR_fsl .=3D "+${DISTRO}"
-> +
-> --
-> 1.7.9.7
+On Tue, Oct 30, 2012 at 11:37 AM, Bodke, Kishore K
+<kishore.k.bodke@intel.com> wrote:
 >
 >
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto=
+>>-----Original Message-----
+>>From: Flanagan, Elizabeth [mailto:elizabeth.flanagan@intel.com]
+>>Sent: Tuesday, October 30, 2012 11:20 AM
+>>To: Bodke, Kishore K
+>>Cc: Zanussi, Tom; Kamble, Nitin A; yocto@yoctoproject.org
+>>Subject: Re: [yocto] [PATCH 1/1] [meta-intel] meta-intel/common: Add
+>>License info for openssl-qat-module
+>>
+>>On Tue, Oct 30, 2012 at 10:11 AM,  <kishore.k.bodke@intel.com> wrote:
+>>> From: Kishore Bodke <kishore.k.bodke@intel.com>
+>>>
+>>> openssl-qat-module has the dual license. So add GPLv2 and BSD
+>>> License to openssl qat Module.
+>>>
+>>> Signed-off-by: Kishore Bodke <kishore.k.bodke@intel.com>
+>>> ---
+>>>  .../openssl-qat-module/openssl-qat-module.bb       |    6 ++++--
+>>>  1 file changed, 4 insertions(+), 2 deletions(-)
+>>>
+>>> diff --git a/common/recipes-connectivity/openssl-qat-module/openssl-qat-
+>>module.bb b/common/recipes-connectivity/openssl-qat-module/openssl-
+>>qat-module.bb
+>>> index a4fe3c5..fdeebbb 100644
+>>> --- a/common/recipes-connectivity/openssl-qat-module/openssl-qat-
+>>module.bb
+>>> +++ b/common/recipes-connectivity/openssl-qat-module/openssl-qat-
+>>module.bb
+>>> @@ -7,8 +7,10 @@ implemented on Intel Communications Chipset 89xx
+>>Series based platforms."
+>>>  HOMEPAGE = "http://www.openssl.org/"
+>>>  SECTION = "libs/network"
+>>>
+>>> -LICENSE = "openssl"
+>>> -LIC_FILES_CHKSUM = "file://${WORKDIR}/openssl-
+>>${PV}/LICENSE;md5=f9a8f968107345e0b75aa8c2ecaa7ec8"
+>>> +LICENSE = "openssl & GPLv2 & BSD"
+>>
+>>I'd actually make this:
+>>
+>>LICENSE = "OpenSSL & GPLv2 & BSD"
+>>
+>>as there is no SPDXLICENSEMAP to map openssl to OpenSSL, so this
+>>should be throwing warnings.
+>>
+>
+> I see LICENSE = "openssl" in poky/meta/recipes-connectivity/openssl/openssl.inc.
+> So I followed the same here.
 
+Ah, I stand corrected. There is an SPDXLICENSEMAP for openssl so yes,
+this should be fine.
+
+-b
+
+>
+> Thanks
+> Kishore.
+>
+>>> +LIC_FILES_CHKSUM = "file://${WORKDIR}/openssl-
+>>${PV}/LICENSE;md5=f9a8f968107345e0b75aa8c2ecaa7ec8 \
+>>> +                       file://${COMMON_LICENSE_DIR}/GPL-
+>>2.0;md5=801f80980d171dd6425610833a22dbe6 \
+>>> +
+>>file://${COMMON_LICENSE_DIR}/BSD;md5=3775480a712fc46a69647678acb23
+>>4cb"
+>>>
+>>>  PV = "1.0.1"
+>>>  PR = "r0"
+>>> --
+>>> 1.7.9.5
+>>>
+>>> _______________________________________________
+>>> yocto mailing list
+>>> yocto@yoctoproject.org
+>>> https://lists.yoctoproject.org/listinfo/yocto
+>>
+>>
+>>
+>>--
+>>Elizabeth Flanagan
+>>Yocto Project
+>>Build and Release
+
+
+
+-- 
+Elizabeth Flanagan
+Yocto Project
+Build and Release
 
