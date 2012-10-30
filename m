@@ -1,22 +1,23 @@
-Return-Path: <bds@bsmucker.eu.org>
-Received: from mxout-07.mxes.net (mxout-07.mxes.net [216.86.168.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5BBBAE0027E
-	for <yocto@yoctoproject.org>; Tue, 30 Oct 2012 12:40:02 -0700 (PDT)
-Received: from [192.168.0.52] (unknown [199.167.96.14])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by smtp.mxes.net (Postfix) with ESMTPSA id 79E5B22E257
-	for <yocto@yoctoproject.org>; Tue, 30 Oct 2012 15:40:01 -0400 (EDT)
-Message-ID: <50902D13.5020206@bsmucker.eu.org>
-Date: Tue, 30 Oct 2012 12:40:03 -0700
-From: Brian Smucker <bds@bsmucker.eu.org>
-User-Agent: Mozilla/5.0 (Windows NT 5.1;
-	rv:16.0) Gecko/20121010 Thunderbird/16.0.1
-MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <50901799.2090408@am.sony.com>
-In-Reply-To: <50901799.2090408@am.sony.com>
-Subject: Re: supported IMAGE_FSTYPES
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E971FE0027E
+	for <yocto@yoctoproject.org>; Tue, 30 Oct 2012 13:59:22 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 30 Oct 2012 13:59:22 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,682,1344236400"; d="scan'208";a="242088210"
+Received: from unknown (HELO [10.255.14.154]) ([10.255.14.154])
+	by fmsmga002.fm.intel.com with ESMTP; 30 Oct 2012 13:59:21 -0700
+Message-ID: <1351630761.1762.3.camel@empanada>
+From: Tom Zanussi <tom.zanussi@intel.com>
+To: kishore.k.bodke@intel.com
+Date: Tue, 30 Oct 2012 15:59:21 -0500
+In-Reply-To: <cover.1351616833.git.kishore.k.bodke@intel.com>
+References: <cover.1351616833.git.kishore.k.bodke@intel.com>
+X-Mailer: Evolution 3.4.1 (3.4.1-2.fc17) 
+Mime-Version: 1.0
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH 0/1][meta-intel] Update the License
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,75 +29,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 30 Oct 2012 19:40:02 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+X-List-Received-Date: Tue, 30 Oct 2012 20:59:23 -0000
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
- From a yocto also-newbie:
+On Tue, 2012-10-30 at 10:11 -0700, kishore.k.bodke@intel.com wrote:
+> From: Kishore Bodke <kishore.k.bodke@intel.com>
+> 
+> Update the License information for the openssl-qat-module
+> 
+> Please pull into meta-intel/master.
+> 
 
-This is a helpful command: bitbake -e |grep xxx
-where xxx is something like ^IMAGE_FSTYPE=
+Pulled into meta-intel/master.
 
-That retrieves the current settings of that variable.
+Thanks,
 
-It doesn't answer your main question of what are the options.  I had 
-that exact question a week or so ago.
+Tom
 
-Thanks
+> Thanks
+> Kishore.
+> 
+> The following changes since commit 76d2942087d7563ae42f0bea6d97460ee2561f3e:
+> 
+>   crystalforest: Update the README Instructions. (2012-10-30 08:47:40 -0500)
+> 
+> are available in the git repository at:
+> 
+>   git://git.pokylinux.org/meta-intel-contrib kishore/ssl-license
+>   http://git.pokylinux.org/cgit.cgi/meta-intel-contrib/log/?h=kishore/ssl-license
+> 
+> Kishore Bodke (1):
+>   meta-intel/common: Add License info for openssl-qat-module
+> 
+>  .../openssl-qat-module/openssl-qat-module.bb       |    6 ++++--
+>  1 file changed, 4 insertions(+), 2 deletions(-)
+> 
 
-Brian
-
-On 10/30/2012 11:08 AM, Tim Bird wrote:
-> I am in the process of creating my own distro, and trying to figure out
-> all the different build variables.  This is a pretty daunting task
-> for a yocto project/Poky newbie.
->
-> Is there some place where the possible values for IMAGE_FSTYPE are
-> documented?  The Poky reference manual has this helpful sentence:
-> "Formats of root filesystem images that you want to have created."
-> However, it does not describe the possible values this variable
-> should have.
->
-> At the root of the poky source dir, doing a 'find -type f -print 0 | xargs -0 grep IMAGE_FSTYPES'
-> seems to reveal the following used or checked-for image types:
->   jffs2 sdimg tar.bz2 ubi ext3 ext2 cpio.gz live vmdk
->
-> It appears the cpio.gz corresponds to an image suitable for an initramfs.
-> jffs2, ext2, ext3, ubi and tar.bz2 appear self-explanatory.
-> I have a pretty good idea that vmdk is somehow related to the
-> virtual build image.
->
-> What does 'live' do?
->
-> Wait a sec...
->
-> Reading meta/classes/image_types.bbclass I just found IMAGE_TYPES,
-> which says it is "available to request which values are suitable
-> for IMAGE_FSTYPES".
->
-> This has the following definition in denzil:
-> IMAGE_TYPES = "jffs2 sum.jffs2 cramfs ext2 ext2.gz ext2.bz2 ext3 ext3.gz
-> ext2.lzma btrfs live squashfs squashfs-lzma ubi tar tar.gz tar.bz2 tar.xz
-> cpio cpio.gz cpio.xz cpio.lzma vmdk"
->
-> How does one query this variable?  Other than reading the source, is
-> there a way to know that such variables (which list the allowed values
-> for other variables) exist?
->
-> I apologize if these are newbie questions.
->
-> Thanks,
->   -- Tim
->
-> =============================
-> Tim Bird
-> Architecture Group Chair, CE Workgroup of the Linux Foundation
-> Senior Staff Engineer, Sony Network Entertainment
-> =============================
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
 
 
