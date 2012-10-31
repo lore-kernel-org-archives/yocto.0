@@ -1,36 +1,39 @@
-Return-Path: <opensource@keylevel.com>
-Received: from r109.websiteservername.com (r109.websiteservername.com
-	[65.39.128.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9AF4AE0027E
-	for <yocto@yoctoproject.org>; Wed, 31 Oct 2012 10:59:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=keylevel.com;
-	s=default; 
-	h=To:References:Message-Id:Content-Transfer-Encoding:Cc:Date:In-Reply-To:From:Content-Type:Mime-Version:Subject;
-	bh=/I7horJC9zroelFzqMfvaf5ksGdlyyk+b25c6/9+mfQ=; 
-	b=njHiNuavmmCXlVbT69k8XORZ1QzEh0bw8b9Bam6UAWFAO7OpdGOo34vPF/yhKnN79pOx5/EKY3IWi0K7vZ5EOMBe5+XEsG/ODKrutcnaMQ4rKPz6HT83ibcCUT2aMbSL;
-Received: from [109.224.129.17] (port=31872
-	helo=macbook-pro.durham.keylevel.com)
-	by r109.websiteservername.com with esmtpa (Exim 4.80)
-	(envelope-from <opensource@keylevel.com>)
-	id 1TTcZz-0006y0-6c; Wed, 31 Oct 2012 17:59:51 +0000
-Mime-Version: 1.0 (Apple Message framework v1283)
-From: Chris Tapp <opensource@keylevel.com>
-In-Reply-To: <CAJTo0LZ68KNZUiDoJGKVskUDW1ezstn2bUS6TB1MFq5x4EuW4w@mail.gmail.com>
-Date: Wed, 31 Oct 2012 17:59:49 +0000
-Message-Id: <9CF37953-336B-446B-AE98-D86D2EEE47AE@keylevel.com>
+Return-Path: <ross.burton@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D0BAEE0027E
+	for <yocto@yoctoproject.org>; Wed, 31 Oct 2012 13:54:14 -0700 (PDT)
+Received: from mail-oa0-f72.google.com ([209.85.219.72])
+	by mga09.intel.com with ESMTP/TLS/RC4-SHA; 31 Oct 2012 13:53:43 -0700
+Received: by mail-oa0-f72.google.com with SMTP id h2so5794295oag.11
+	for <yocto@yoctoproject.org>; Wed, 31 Oct 2012 13:54:07 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type:x-gm-message-state;
+	bh=jXOtx6D+1G0qxiX4LA9cpBJFZfSGGEe1K2h4asqDVTQ=;
+	b=MBDMIU2T7IYg9FHrMlHBW5qYKSFtMQ1+0FNg3H2H6E7n5CNV/tKw7GQ88uKhGpubyB
+	9dnm3ysG6Pcl9D03Gu2l5p5Acv5cKwRa2Pv8lvlwdOOMJrNsACA07Rzwuh+cL6PahlXQ
+	jCximzP4vz49AlqEaZ31/dpFwvuXLyXkBY0I9RrXTEwpOpcJTqE4wlCweFtjABG2HLdn
+	bgKnWatNhA+75V4Qb7rqphDh8h1l7HaMGkll90toXXqYnXH71Urz/xNK3aU/AETwuoDN
+	7ds5j3Y+/H0nm3PyIhdPnJbgQ6axe9FJYDCy5i6JJTx2TDOsZjPVdS39Z2Wjhq5e2E0m
+	r2CA==
+Received: by 10.60.31.199 with SMTP id c7mr22799544oei.126.1351716847445;
+	Wed, 31 Oct 2012 13:54:07 -0700 (PDT)
+Received: by 10.60.31.199 with SMTP id c7mr22799537oei.126.1351716847372; Wed,
+	31 Oct 2012 13:54:07 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.182.68.135 with HTTP; Wed, 31 Oct 2012 13:53:47 -0700 (PDT)
+In-Reply-To: <CAJTo0LYZwOa2twSCABHYHcqaTg_hdR-pkG--dCcKdd2Sb6NL0A@mail.gmail.com>
 References: <cover.1351650062.git.nitin.a.kamble@intel.com>
-	<4cd2ea50375322f08a3d2eedf480b3fb13c11ef5.1351650062.git.nitin.a.kamble@intel.com>
-	<CAJTo0LZ68KNZUiDoJGKVskUDW1ezstn2bUS6TB1MFq5x4EuW4w@mail.gmail.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-X-Mailer: Apple Mail (2.1283)
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - r109.websiteservername.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-Cc: yocto@yoctoproject.org, darren.hart@intel.com
-Subject: Re: [PATCH 4/4] mesa-dri.bbappend: avoid conflict with emgd-driver-bin
+	<1351696672.1762.8.camel@empanada>
+	<CAJTo0LYZwOa2twSCABHYHcqaTg_hdR-pkG--dCcKdd2Sb6NL0A@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Wed, 31 Oct 2012 20:53:47 +0000
+Message-ID: <CAJTo0LaGuVd+30ZR6SvyiwY0qLSDdg2s9aUR__eU-k68=vvEQQ@mail.gmail.com>
+To: Tom Zanussi <tom.zanussi@intel.com>
+X-Gm-Message-State: ALoCoQlgGDwUzE9AGeSv3JO5JwMpjhk6FDKsSD5QHD/+TRteSzyCpjFB6F65dgPpgtNyE4DvPKVjPdgkwHGgldhI3rtjolhF7bSW+gvJomHA1tEkM62AKUqScVlTdEWVWWVpZIB87sIgX4dS0IaUH90klKGJhdSLyQ==
+Cc: darren.hart@intel.com, yocto@yoctoproject.org
+Subject: Re: [PATCH 0/4] misc fixes for 1.3 meta-intel release
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,59 +45,18 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 31 Oct 2012 17:59:54 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 31 Oct 2012 20:54:14 -0000
+Content-Type: text/plain; charset=UTF-8
 
-Hi Ross,
+On 31 October 2012 15:21, Burton, Ross <ross.burton@intel.com> wrote:
+> On 31 October 2012 15:17, Tom Zanussi <tom.zanussi@intel.com> wrote:
+>> That just leaves cedartrail before we can pull this in.
+>
+> That's odd, I was just about to write a mail.  My current images are
+> broken as they are based on master which has a duff udev.  I'll do a
+> rebuild against danny but that might not happen promptly.
 
-On 31 Oct 2012, at 17:14, Burton, Ross wrote:
+Just tested on Cedar Trail, good old Sintel plays fine at 4% CPU.
 
-> Hi,
->=20
-> On 31 October 2012 02:23,  <nitin.a.kamble@intel.com> wrote:
->> Extend the mesa-dri recipe from oecore to avoid conflict with
->> files generated by emgd-driver-bin recipe.
->=20
-> The same problem happens with cdv-pvr-driver, right?
->=20
-> It turns out that the binary DRI drivers these closed driver packages
-> install are very dependent on the Mesa - so it's likely that they just
-> don't work with our Mesa 8.0.4.
->=20
-> cdv-pvr-driver needs Mesa 7.11.  I can't see anything in the
-> documentation about what version of Mesa EMGD expects.
->=20
-> I think we've two options: either don't ship libGL in our BSP
-> packages, or ship a version that should actually work.  This means
-> shipping a mesa recipe in meta-intel so that it's under meta-intel's
-> control, with the useful side effect that we can make it just build
-> libGL and nothing else.
-
-
-=46rom the point of view of a user I would like to be able to:
-
-1) Use hardware acceleration for most projects (Cedartrail, in my case);
-2) Use EGL/GLES and possibly GL;
-3) Run with X;
-4) Run with just a framebuffer (no X at all, so no hardware accel?);
-5) Have pvr support with kernels later than 3.0.
-
-At the moment I have to do quite a bit of hacking of MESA to do this, =
-especially when using openGL (via osmesa) to 'help' some legacy =
-framebuffer code that runs under SDL. It would be really nice if mesa =
-could be made to take some notice of DISTRO_FEATURES (e.g. X11) and =
-build a 'sensible' version.
-
-So, my 'vote' would be to include a working version. Please :-)
-
-More than happy to help out if there's anything I can do...
-
-Chris Tapp
-
-opensource@keylevel.com
-www.keylevel.com
-
-
-
+Ross
 
