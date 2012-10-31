@@ -1,21 +1,36 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2B29BE006C1
-	for <yocto@yoctoproject.org>; Wed, 31 Oct 2012 08:17:55 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 31 Oct 2012 08:17:24 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,687,1344236400"; d="scan'208";a="213528064"
-Received: from unknown (HELO [10.255.14.154]) ([10.255.14.154])
-	by orsmga001.jf.intel.com with ESMTP; 31 Oct 2012 08:17:53 -0700
-Message-ID: <1351696672.1762.8.camel@empanada>
-From: Tom Zanussi <tom.zanussi@intel.com>
-To: nitin.a.kamble@intel.com
-Date: Wed, 31 Oct 2012 10:17:52 -0500
-In-Reply-To: <cover.1351650062.git.nitin.a.kamble@intel.com>
+Return-Path: <ross.burton@intel.com>
+Received: from azsmga101.ch.intel.com (mga07.intel.com [143.182.124.22])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C71ABE0027E
+	for <yocto@yoctoproject.org>; Wed, 31 Oct 2012 08:22:24 -0700 (PDT)
+Received: from mail-ie0-f200.google.com ([209.85.223.200])
+	by mga03.intel.com with ESMTP/TLS/RC4-SHA; 31 Oct 2012 08:22:23 -0700
+Received: by mail-ie0-f200.google.com with SMTP id 10so4330330ied.11
+	for <yocto@yoctoproject.org>; Wed, 31 Oct 2012 08:21:51 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type:x-gm-message-state;
+	bh=1kgxXp7dMK5z6JGa9Q2xRulTNCofDBZT3PJX/ZelIJs=;
+	b=MT7r1gVn3Md3AJfmoQ4w5TOLxtxsCbRqzEGs8URMNvA/ybqwo3l8Gxlld+B03dab/i
+	Fw/HdczySN3z0Srtzb0VF/Rqd7nKnFlmeKi7V7SNYbEn2YpwlHyuVYY2vRn5gsp1emmv
+	AcLvuVoMw0qt8VMNCOzFxBMxlno7oUzdwyDCYV4vf63gfuAnhF41p1W0aRlKnEzYZgqR
+	5avEmmPri32YHR3kK/BojHrQYQwEFk10DCcjblpqZOf2WSlHWO47J30NfgiQhBrEEQuv
+	OqAkGsSbhVWW4MA4loMZI8iB4p4gbUHAQ3BSoLlLyTiWJ7OBZ7rF+dJR2EsSOn77gswk
+	DciA==
+Received: by 10.42.65.6 with SMTP id j6mr32165523ici.2.1351696911336;
+	Wed, 31 Oct 2012 08:21:51 -0700 (PDT)
+Received: by 10.42.65.6 with SMTP id j6mr32165514ici.2.1351696911232; Wed, 31
+	Oct 2012 08:21:51 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.64.68.41 with HTTP; Wed, 31 Oct 2012 08:21:30 -0700 (PDT)
+In-Reply-To: <1351696672.1762.8.camel@empanada>
 References: <cover.1351650062.git.nitin.a.kamble@intel.com>
-X-Mailer: Evolution 3.4.1 (3.4.1-2.fc17) 
-Mime-Version: 1.0
+	<1351696672.1762.8.camel@empanada>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Wed, 31 Oct 2012 15:21:30 +0000
+Message-ID: <CAJTo0LYZwOa2twSCABHYHcqaTg_hdR-pkG--dCcKdd2Sb6NL0A@mail.gmail.com>
+To: Tom Zanussi <tom.zanussi@intel.com>
+X-Gm-Message-State: ALoCoQkZDlzs5swLg0tbY/8U0RVecPKV6cvXQYRH8F8qGn5wsPaCHGM8H6YLk8byhZhD6ZGVLXVaU9S0wPZlKwQp4mGmjesjxVunKxQGv5Dzn43NlHsNkpevgd/8mRe9q7vqL+Pg9JPQJtYobrDIU3l3PBVmaKKcoQ==
 Cc: darren.hart@intel.com, yocto@yoctoproject.org
 Subject: Re: [PATCH 0/4] misc fixes for 1.3 meta-intel release
 X-BeenThere: yocto@yoctoproject.org
@@ -29,59 +44,15 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 31 Oct 2012 15:17:55 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 31 Oct 2012 15:22:25 -0000
+Content-Type: text/plain; charset=UTF-8
 
+On 31 October 2012 15:17, Tom Zanussi <tom.zanussi@intel.com> wrote:
+> That just leaves cedartrail before we can pull this in.
 
-On Tue, 2012-10-30 at 19:23 -0700, nitin.a.kamble@intel.com wrote:
-> From: Nitin A Kamble <nitin.a.kamble@intel.com>
-> 
-> Tested these on all BSPs i maintain with results as expected.
-> Also this testing Acks the kernel SRCREV bumps done by Tom today.
-> 
+That's odd, I was just about to write a mail.  My current images are
+broken as they are based on master which has a duff udev.  I'll do a
+rebuild against danny but that might not happen promptly.
 
-I've verified this works fine on crownbay and you've verified on
-sugarbay and chiefriver, correct?
-
-That just leaves cedartrail before we can pull this in.
-
-Tom
-
-> Thanks,
-> Nitin
-> 
-> 
-> The following changes since commit 76d2942087d7563ae42f0bea6d97460ee2561f3e:
-> 
->   crystalforest: Update the README Instructions. (2012-10-30 08:47:40 -0500)
-> 
-> are available in the git repository at:
->   git://git.yoctoproject.org/meta-intel-contrib nitin/misc
->   http://git.yoctoproject.org/cgit.cgi/meta-intel-contrib/log/?h=nitin/misc
-> 
-> Nitin A Kamble (3):
->   libva: update to the latest version
->   libva-intel-driver: update to the latest version
->   mesa-dri.bbappend: avoid conflict with emgd-driver-bin
-> 
-> Ross Burton (1):
->   libva: remove redundant libva 1.0.12
-> 
->  .../recipes-graphics/mesa/mesa-dri_8.0.4.bbappend  |   27 +++++++++++++++++---
->  .../libva/libva-intel-driver.inc                   |    2 +-
->  .../libva/libva-intel-driver_1.0.15.bb             |    8 ------
->  .../libva/libva-intel-driver_1.0.17.bb             |    9 ++++++
->  common/recipes-multimedia/libva/libva_1.0.12.bb    |    8 ------
->  common/recipes-multimedia/libva/libva_1.0.15.bb    |    8 ------
->  common/recipes-multimedia/libva/libva_1.0.16.bb    |    8 ++++++
->  7 files changed, 41 insertions(+), 29 deletions(-)
->  delete mode 100644 common/recipes-multimedia/libva/libva-intel-driver_1.0.15.bb
->  create mode 100644 common/recipes-multimedia/libva/libva-intel-driver_1.0.17.bb
->  delete mode 100644 common/recipes-multimedia/libva/libva_1.0.12.bb
->  delete mode 100644 common/recipes-multimedia/libva/libva_1.0.15.bb
->  create mode 100644 common/recipes-multimedia/libva/libva_1.0.16.bb
-> 
-
-
+Ross
 
