@@ -1,25 +1,38 @@
-Return-Path: <Kai.Kang@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DB968E003DA
-	for <yocto@yoctoproject.org>; Wed, 31 Oct 2012 02:38:10 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id q9V9c648004077
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Wed, 31 Oct 2012 02:38:07 -0700 (PDT)
-Received: from localhost.localdomain (128.224.162.205) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server
-	(TLS) id 14.2.318.4; Wed, 31 Oct 2012 02:38:06 -0700
-From: Kang Kai <kai.kang@windriver.com>
-To: <yocto@yoctoproject.org>
-Date: Wed, 31 Oct 2012 17:38:36 +0800
-Message-ID: <a45d21827b947f4ddc535b1a3e2892a20267a064.1351676013.git.kai.kang@windriver.com>
-X-Mailer: git-send-email 1.7.5.4
-In-Reply-To: <cover.1351676013.git.kai.kang@windriver.com>
-References: <cover.1351676013.git.kai.kang@windriver.com>
+Return-Path: <ross.burton@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0AEFAE0027E
+	for <yocto@yoctoproject.org>; Wed, 31 Oct 2012 03:09:12 -0700 (PDT)
+Received: from mail-oa0-f72.google.com ([209.85.219.72])
+	by mga09.intel.com with ESMTP/TLS/RC4-SHA; 31 Oct 2012 03:08:42 -0700
+Received: by mail-oa0-f72.google.com with SMTP id h2so3808018oag.11
+	for <yocto@yoctoproject.org>; Wed, 31 Oct 2012 03:09:11 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type:x-gm-message-state;
+	bh=IbDyNlskUaJ7AA5x9q4Q/FtCVp4SvlkiuzlBdi+FSmA=;
+	b=hc4FizfUV5I455z9dBSQrVWqbhZTaNtz51bVfWjAwDo3i55CHR1J6skHQsLjoF5VYP
+	LgRew6T9Pj6LHDw8hz34YvcliyMNCKUNp6j803hz/Tn8vRFpFGIU+SuZ5M4kXdZLzj1p
+	1aCZENt5yXhxBIGvvgnLlUIwxHGAk3zdQ0Iu03DYbB0G/AkoeRNM/N9e+1tx7uovd5Pq
+	zwPt2Fxj8xxzfwb4I9BNrGIKKunTT8frez4VYcu400s1ndqzjxyuMohY8dV+H6rNXZfi
+	4mKjE7eDqSS5ZL/YTELHXvZpuIVbsIhQx+En5vx+zaN/FJIaYBCdh9jh813xAb7JUflY
+	xFRQ==
+Received: by 10.60.32.210 with SMTP id l18mr31714799oei.79.1351678151507;
+	Wed, 31 Oct 2012 03:09:11 -0700 (PDT)
+Received: by 10.60.32.210 with SMTP id l18mr31714793oei.79.1351678151407; Wed,
+	31 Oct 2012 03:09:11 -0700 (PDT)
 MIME-Version: 1.0
-X-Originating-IP: [128.224.162.205]
-Subject: [PATCH 1/1] create-recipe: update re pattern and output
+Received: by 10.182.68.135 with HTTP; Wed, 31 Oct 2012 03:08:50 -0700 (PDT)
+In-Reply-To: <c96937070148df425280694792319389c2687607.1351650062.git.nitin.a.kamble@intel.com>
+References: <cover.1351650062.git.nitin.a.kamble@intel.com>
+	<c96937070148df425280694792319389c2687607.1351650062.git.nitin.a.kamble@intel.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Wed, 31 Oct 2012 10:08:50 +0000
+Message-ID: <CAJTo0LaKm-9w54qTwhYNet0X=u7eWpkK3VLMkJGbW84kgCJGzA@mail.gmail.com>
+To: nitin.a.kamble@intel.com
+X-Gm-Message-State: ALoCoQm/i7UOiGntjtTA2Z16jBtTAyxNUvn51kMVwUuH+xJAYSEAuR5UVB0Y44QcKpzqJkm7C82RoPaM/EoXmtmhwGw1CbxOYaX/8UjhqxcnKE796mCYXOCCeYf546wPWAIN06En6rfmVCH5+2EoGiiCDkF5BTW/cQ==
+Cc: yocto@yoctoproject.org, darren.hart@intel.com
+Subject: Re: [PATCH 2/4] libva-intel-driver: update to the latest version
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,119 +44,15 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 31 Oct 2012 09:38:11 -0000
-Content-Type: text/plain
+X-List-Received-Date: Wed, 31 Oct 2012 10:09:13 -0000
+Content-Type: text/plain; charset=UTF-8
 
-In the URL, there may be more than just digits in the version section,
-something like xz 5.1.2alpha. Update RE pattern to catch all the string
-after package name and before '.tar' in URL as package version.
+On 31 October 2012 02:23,  <nitin.a.kamble@intel.com> wrote:
+> The maintainer of the upstream project is recommending
+> to update the recipe to the latest version to fix the video
+> playback issue.
 
-And error message which has been sent to /dev/null still shows on Ubuntu
-12.10 with perl 5.14. Update the way to find source tar file to eraser
-the error message.
+The latest version is actually .18, not .17.
 
-configure files may rewrite the version section, and that is not necessary.
-Test when version section has been set, omit the version value from
-configure files.
-
-And tweak for output to bb file.
-
-Signed-off-by: Kang Kai <kai.kang@windriver.com>
----
- scripts/create-recipe |   29 +++++++++++++++++++----------
- 1 files changed, 19 insertions(+), 10 deletions(-)
-
-diff --git a/scripts/create-recipe b/scripts/create-recipe
-index aba9ac3..776c91d 100755
---- a/scripts/create-recipe
-+++ b/scripts/create-recipe
-@@ -35,7 +35,8 @@ use File::Basename qw(basename dirname);
- 
- 
- my $name = "";
--my $version = "TO BE FILLED IN";
-+my $predef_version = "TO BE FILLED IN";
-+my $version = $predef_version;
- my $description = "";
- my $summary = "";
- my $url = "";
-@@ -809,7 +810,7 @@ sub process_configure_ac
- #					$name = $1;
- 				}
- 			}
--			if (defined($acinit[1])) {
-+			if (defined($acinit[1]) and $version eq $predef_version) {
- 				my $ver = $acinit[1];
- 				$ver =~ s/\[//g;
- 				$ver =~ s/\]//g;
-@@ -835,7 +836,7 @@ sub process_configure_ac
- #					$name = $1;
- 				}
- 			}
--			if (defined($acinit[1])) {
-+			if (defined($acinit[1]) and $version eq $predef_version) {
- 				my $ver = $acinit[1];
- 				$ver =~ s/\[//g;
- 				$ver =~ s/\]//g;
-@@ -1536,7 +1537,7 @@ sub guess_name_from_url {
- 	}
- 	my $tarfile = $spliturl[0];
- 	
--	if ($tarfile =~ /(.*?)\-([0-9\.\-\~]+)[-\.].*?\.tar/) {
-+	if ($tarfile =~ /(.*?)\-([0-9\.\-\~]+.*?)\.tar/) {
- 		$name = $1;
- 		$version = $2;
-                 $version =~ s/\-/\_/g;
-@@ -1687,8 +1688,8 @@ sub write_bbfile
- 	print BBFILE "\"\n\n";
- 
- 	if (@license <= 0) {
--		print "Can NOT get license from package itself.\n";
--		print "Please update the license and license file manually.\n";
-+		print "Can NOT get license from package source files.\n";
-+		print "Please update the LICENSE and LIC_FILES_CHKSUM manually.\n";
- 	}
- 
- 	if (@buildreqs > 0) {
-@@ -1704,7 +1705,7 @@ sub write_bbfile
- 	}
- 	print BBFILE "\"\n\n";
- 	print BBFILE "SRC_URI[md5sum] = \"$md5sum\"\n";
--	print BBFILE "SRC_URI[sha256sum] = \"$sha256sum\"\n";
-+	print BBFILE "SRC_URI[sha256sum] = \"$sha256sum\"\n\n";
- 
- 	if (@inherits) {
- 		print BBFILE "inherit ";
-@@ -1800,9 +1801,17 @@ foreach (@tgzfiles) {
- # this is a step backwards in time that is just silly.
- #
- 
-+my @sourcetars = <$orgdir/$outputdir/*\.tar\.bz2 $orgdir/$outputdir/*\.tar\.gz>;
-+if ( length @sourcetars == 0) {
-+	print "Can NOT find source tarball. Exiting...\n";
-+	exit (1);
-+}
-+if (defined($sourcetars[0]) and $sourcetars[0] =~ ".*\.tar\.bz2") {
-+	system("cd $tmpdir; tar -jxf $sourcetars[0] &>/dev/null");
-+} elsif (defined($sourcetars[0]) and $sourcetars[0] =~ ".*\.tar\.gz") {
-+	system("cd $tmpdir; tar -zxf $sourcetars[0] &>/dev/null");
-+}
- 
--system("cd $tmpdir; tar -jxf $orgdir/$outputdir/*\.tar\.bz2 &>/dev/null");
--system("cd $tmpdir; tar -zxf $orgdir/$outputdir/*\.tar\.gz &>/dev/null");
- print "Parsing content    ....\n";
- my @dirs = <$tmpdir/*>;
- foreach (@dirs) {
-@@ -1827,7 +1836,7 @@ if ( -e "$dir/configure" ) {
- 	$configure = "";
- }
- 
--my @files = <$dir/configure.*>;
-+my @files = <$dir/configure\.*>;
- 
- my $findoutput = `find $dir -name "configure.ac" 2>/dev/null`;
- my @findlist = split(/\n/, $findoutput);
--- 
-1.7.5.4
-
+Ross
 
