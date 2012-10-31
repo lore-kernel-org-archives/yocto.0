@@ -1,23 +1,23 @@
 Return-Path: <tom.zanussi@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 98732E006C1
-	for <yocto@yoctoproject.org>; Wed, 31 Oct 2012 14:00:31 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 31 Oct 2012 14:00:31 -0700
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 582E0E006C1
+	for <yocto@yoctoproject.org>; Wed, 31 Oct 2012 14:00:58 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 31 Oct 2012 14:00:57 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,688,1344236400"; d="scan'208";a="242613450"
+X-IronPort-AV: E=Sophos;i="4.80,688,1344236400"; d="scan'208";a="211926777"
 Received: from unknown (HELO [10.255.14.154]) ([10.255.14.154])
-	by fmsmga002.fm.intel.com with ESMTP; 31 Oct 2012 14:00:30 -0700
-Message-ID: <1351717230.1762.39.camel@empanada>
+	by azsmga001.ch.intel.com with ESMTP; 31 Oct 2012 14:00:56 -0700
+Message-ID: <1351717255.1762.40.camel@empanada>
 From: Tom Zanussi <tom.zanussi@intel.com>
 To: Ross Burton <ross.burton@intel.com>
-Date: Wed, 31 Oct 2012 16:00:30 -0500
-In-Reply-To: <1351256528-28229-1-git-send-email-ross.burton@intel.com>
-References: <1351256528-28229-1-git-send-email-ross.burton@intel.com>
+Date: Wed, 31 Oct 2012 16:00:55 -0500
+In-Reply-To: <1351158904-5759-1-git-send-email-ross.burton@intel.com>
+References: <1351158904-5759-1-git-send-email-ross.burton@intel.com>
 X-Mailer: Evolution 3.4.1 (3.4.1-2.fc17) 
 Mime-Version: 1.0
 Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH] cdv-pvr-driver: inhibit package stripping
+Subject: Re: [PATCH] gnu-efi: add missing sha256 checksum
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,14 +29,11 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 31 Oct 2012 21:00:31 -0000
+X-List-Received-Date: Wed, 31 Oct 2012 21:00:58 -0000
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-On Fri, 2012-10-26 at 14:02 +0100, Ross Burton wrote:
-> The binaries are already stripped, so don't try stripping them again (which
-> results in a warning).
-> 
+On Thu, 2012-10-25 at 10:55 +0100, Ross Burton wrote:
 > Signed-off-by: Ross Burton <ross.burton@intel.com>
 
 Pulled into meta-intel/master.
@@ -44,32 +41,21 @@ Pulled into meta-intel/master.
 Tom
 
 > ---
->  .../recipes-graphics/xorg-driver/cdv-pvr-driver_1.0.3.bb          |    5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
+>  common/recipes-bsp/gnu-efi/gnu-efi_3.0m.bb |    1 +
+>  1 file changed, 1 insertion(+)
 > 
-> diff --git a/meta-cedartrail/recipes-graphics/xorg-driver/cdv-pvr-driver_1.0.3.bb b/meta-cedartrail/recipes-graphics/xorg-driver/cdv-pvr-driver_1.0.3.bb
-> index e9d4ede..7bda3b5 100644
-> --- a/meta-cedartrail/recipes-graphics/xorg-driver/cdv-pvr-driver_1.0.3.bb
-> +++ b/meta-cedartrail/recipes-graphics/xorg-driver/cdv-pvr-driver_1.0.3.bb
-> @@ -14,7 +14,7 @@ LIC_FILES_CHKSUM = " \
+> diff --git a/common/recipes-bsp/gnu-efi/gnu-efi_3.0m.bb b/common/recipes-bsp/gnu-efi/gnu-efi_3.0m.bb
+> index a0d5823..f8015f2 100644
+> --- a/common/recipes-bsp/gnu-efi/gnu-efi_3.0m.bb
+> +++ b/common/recipes-bsp/gnu-efi/gnu-efi_3.0m.bb
+> @@ -13,6 +13,7 @@ SRC_URI = "http://downloads.sourceforge.net/gnu-efi/gnu-efi_3.0m.orig.tar.gz \
+>  	   file://parallel-make.patch \
+>            "
+>  SRC_URI[md5sum] = "d0a21125aee56c0c7291ad260e916cb3"
+> +SRC_URI[sha256sum] = "b7fb638f5ec8faa6edebe54beb90957f01ccccf70a2a948d1b58b834c8d7f86d"
 >  
->  DEPENDS = "rpm-native libva"
+>  S = "${WORKDIR}/gnu-efi-3.0"
 >  
-> -PR = "r4"
-> +PR = "r5"
->  
->  PSB-VIDEO = "psb-video-cdv-1.0.3-1.1.i586.rpm"
->  PSB-VIDEO-REV = "1.0.3"
-> @@ -66,6 +66,9 @@ S  = "${WORKDIR}/cdv-graphics-drivers_${PV}"
->  # These are closed binaries generated elsewhere so don't check ldflags
->  INSANE_SKIP_${PN} = "ldflags"
->  
-> +# Don't try stripping, as the binaries are already stripped
-> +INHIBIT_PACKAGE_STRIP = "1"
-> +
->  # .so files in these binaries are not symlinks. Rearange package order
->  # so that they go to ${PN} instead of $PN}-dev
->  PACKAGES = "${PN}-dbg ${PN}-staticdev ${PN} ${PN}-dev ${PN}-doc ${PN}-locale"
 
 
 
