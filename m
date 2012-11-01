@@ -1,34 +1,21 @@
-Return-Path: <kergoth@gmail.com>
-Received: from mail-la0-f48.google.com (mail-la0-f48.google.com
-	[209.85.215.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 212E7E011F3
-	for <yocto@yoctoproject.org>; Wed, 31 Oct 2012 20:05:22 -0700 (PDT)
-Received: by mail-la0-f48.google.com with SMTP id u2so1713195lag.35
-	for <yocto@yoctoproject.org>; Wed, 31 Oct 2012 20:05:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:from:date
-	:x-google-sender-auth:message-id:subject:to:cc:content-type;
-	bh=N71iy5vi2MO9bwDTagBOqCQuBnxLi3Xw85UmClnA97Y=;
-	b=Niv78MwwRfcDcxU3iEZIbCjGKoF6e+p0h3810aV4fZRCb5zw3IUvxP2wgoulfAMEWL
-	WWlcS9bTTKGejF3hjN1G9heHcXuLcpOjlZorvHAsAA2lzTSCVxnDK4RaOBJbQZMNwrh+
-	O5G3axXPTtTK5p8XF4lGj4SjiP61xqt/4oHQJ+GOLu/yud16EO/dGGfCB4nyypsTjUzk
-	gE8/lIztBjGVfvQw61fgYoq95uzw0emJCX2VmPg/7AVLUQs/KMxlYCqy7py2oOd1Pwa4
-	RajgJOSE4K4PNvkD/3JxXaiOAz0uvQvcxEo8umF5tAGIpmbFCvLMCMjOtB3C3Q8r3Vq7
-	PT9Q==
-Received: by 10.112.28.98 with SMTP id a2mr15135329lbh.110.1351739121574; Wed,
-	31 Oct 2012 20:05:21 -0700 (PDT)
-MIME-Version: 1.0
-Sender: kergoth@gmail.com
-Received: by 10.114.1.49 with HTTP; Wed, 31 Oct 2012 20:05:01 -0700 (PDT)
-In-Reply-To: <tencent_074DE1162D42AEB548709C30@qq.com>
-References: <tencent_074DE1162D42AEB548709C30@qq.com>
-From: Chris Larson <clarson@kergoth.com>
-Date: Wed, 31 Oct 2012 20:05:01 -0700
-X-Google-Sender-Auth: RXVtOuwi-DkioMsZygNHa-uNGmQ
-Message-ID: <CABcZAN=PUHZAbJZKkP7YzOQrLGiiuiwJFzrUCh89euZcj4BMow@mail.gmail.com>
-To: Liu <treebody@embedstudy.com>
-Cc: yocto <yocto@yoctoproject.org>
-Subject: Re: how to write a shell command in local.conf
+Return-Path: <nitin.a.kamble@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4C688E006C1
+	for <yocto@yoctoproject.org>; Wed, 31 Oct 2012 22:15:56 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 31 Oct 2012 22:15:55 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,691,1344236400"; d="scan'208";a="241182278"
+Received: from yocto-hm1.jf.intel.com ([10.23.232.32])
+	by fmsmga001.fm.intel.com with ESMTP; 31 Oct 2012 22:15:55 -0700
+From: nitin.a.kamble@intel.com
+To: tom.zanussi@intel.com,
+	darren.hart@intel.com,
+	yocto@yoctoproject.org
+Date: Wed, 31 Oct 2012 22:14:56 -0700
+Message-Id: <cover.1351746741.git.nitin.a.kamble@intel.com>
+X-Mailer: git-send-email 1.7.3.4
+Subject: [Patch v2 0/4] Misc Fixes for meta-intel 1.3 release
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,30 +27,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 01 Nov 2012 03:05:23 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 01 Nov 2012 05:15:56 -0000
 
-On Wed, Oct 31, 2012 at 7:52 PM, Liu <treebody@embedstudy.com> wrote:
-> HOST_ARCH:="${@os.popen('/usr/bin/gcc -dumpmachine | sed -e s\'/-.*//\' \
->     -e \'s/sparc.*/sparc/\' \
->     -e \'s/arm.*/arm/g\' \
->     -e \'s/m68k.*/m68k/\' \
->     -e \'s/ppc/powerpc/g\' \
->     -e \'s/v850.*/v850/g\' \
->     -e \'s/sh[234]/sh/\' \
->     -e \'s/mips-.*/mips/\' \
->     -e \'s/mipsel-.*/mipsel/\' \
->     -e \'s/cris.*/cris/\' \
->     -e \'s/i[3-9]86/i386/\'').read()}"
-> Then I came up with a problem,I can see the variable HOST_ARCH changed to
-> "i386" using "bitbake -e | grep HOST_ARCH",but when I bitbake busybox ,it
-> says :
-> ERROR: Unable to determine endianness for architecture 'i386    | ETA:
-> --:--:--
-> '
+From: Nitin A Kamble <nitin.a.kamble@intel.com>
 
-You forgot to strip off the trailing newline. Use read().rstrip(). You
-may also want to use bb.process or oe.process rather than os.popen.
+This v2 pull request is with newer version of libva-intel-driver.
+These commits tested on All the BSPs I am maintaining with expected results.
+
+Thanks,
+Nitin
+
+The following changes since commit 43b2e9c34363ade4241a60f699b47179929c6fb6:
+
+  n450: Add WEBTITLE and boilerplate README (2012-10-31 08:40:15 -0700)
+
+are available in the git repository at:
+  git://git.yoctoproject.org/meta-intel-contrib nitin/misc
+  http://git.yoctoproject.org/cgit.cgi/meta-intel-contrib/log/?h=nitin/misc
+
+Nitin A Kamble (3):
+  libva: update to the latest version
+  libva-intel-driver: update to the latest version
+  mesa-dri.bbappend: avoid conflict with emgd-driver-bin
+
+Ross Burton (1):
+  libva: remove redundant libva 1.0.12
+
+ .../recipes-graphics/mesa/mesa-dri_8.0.4.bbappend  |   27 +++++++++++++++++---
+ .../libva/libva-intel-driver.inc                   |    2 +-
+ .../libva/libva-intel-driver_1.0.15.bb             |    8 ------
+ .../libva/libva-intel-driver_1.0.18.bb             |    8 ++++++
+ common/recipes-multimedia/libva/libva_1.0.12.bb    |    8 ------
+ common/recipes-multimedia/libva/libva_1.0.15.bb    |    8 ------
+ common/recipes-multimedia/libva/libva_1.0.16.bb    |    8 ++++++
+ 7 files changed, 40 insertions(+), 29 deletions(-)
+ delete mode 100644 common/recipes-multimedia/libva/libva-intel-driver_1.0.15.bb
+ create mode 100644 common/recipes-multimedia/libva/libva-intel-driver_1.0.18.bb
+ delete mode 100644 common/recipes-multimedia/libva/libva_1.0.12.bb
+ delete mode 100644 common/recipes-multimedia/libva/libva_1.0.15.bb
+ create mode 100644 common/recipes-multimedia/libva/libva_1.0.16.bb
+
 -- 
-Christopher Larson
+1.7.3.4
+
 
