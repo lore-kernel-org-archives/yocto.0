@@ -1,21 +1,23 @@
 Return-Path: <nitin.a.kamble@intel.com>
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4C688E006C1
-	for <yocto@yoctoproject.org>; Wed, 31 Oct 2012 22:15:56 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 70FB8E01214
+	for <yocto@yoctoproject.org>; Wed, 31 Oct 2012 22:15:58 -0700 (PDT)
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 31 Oct 2012 22:15:55 -0700
+	by fmsmga101.fm.intel.com with ESMTP; 31 Oct 2012 22:15:58 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,691,1344236400"; d="scan'208";a="241182278"
+X-IronPort-AV: E=Sophos;i="4.80,691,1344236400"; d="scan'208";a="241182293"
 Received: from yocto-hm1.jf.intel.com ([10.23.232.32])
-	by fmsmga001.fm.intel.com with ESMTP; 31 Oct 2012 22:15:55 -0700
+	by fmsmga001.fm.intel.com with ESMTP; 31 Oct 2012 22:15:57 -0700
 From: nitin.a.kamble@intel.com
 To: tom.zanussi@intel.com,
 	darren.hart@intel.com,
 	yocto@yoctoproject.org
-Date: Wed, 31 Oct 2012 22:14:56 -0700
-Message-Id: <cover.1351746741.git.nitin.a.kamble@intel.com>
+Date: Wed, 31 Oct 2012 22:14:57 -0700
+Message-Id: <5c5a917f76a4875f6d2d27db854added5926d774.1351746741.git.nitin.a.kamble@intel.com>
 X-Mailer: git-send-email 1.7.3.4
-Subject: [Patch v2 0/4] Misc Fixes for meta-intel 1.3 release
+In-Reply-To: <cover.1351746741.git.nitin.a.kamble@intel.com>
+References: <cover.1351746741.git.nitin.a.kamble@intel.com>
+Subject: [Patch v2 1/4] libva: update to the latest version
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,46 +29,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 01 Nov 2012 05:15:56 -0000
+X-List-Received-Date: Thu, 01 Nov 2012 05:15:58 -0000
 
 From: Nitin A Kamble <nitin.a.kamble@intel.com>
 
-This v2 pull request is with newer version of libva-intel-driver.
-These commits tested on All the BSPs I am maintaining with expected results.
+This bug https://bugzilla.yoctoproject.org/show_bug.cgi?id=3348 is triggering
+this change. The old versions of libva components are affecting video playback
+on few BSPs like sugarbay & chiefriver.
 
-Thanks,
-Nitin
+Also, use the release tarball instead of a tag snapshot.
 
-The following changes since commit 43b2e9c34363ade4241a60f699b47179929c6fb6:
-
-  n450: Add WEBTITLE and boilerplate README (2012-10-31 08:40:15 -0700)
-
-are available in the git repository at:
-  git://git.yoctoproject.org/meta-intel-contrib nitin/misc
-  http://git.yoctoproject.org/cgit.cgi/meta-intel-contrib/log/?h=nitin/misc
-
-Nitin A Kamble (3):
-  libva: update to the latest version
-  libva-intel-driver: update to the latest version
-  mesa-dri.bbappend: avoid conflict with emgd-driver-bin
-
-Ross Burton (1):
-  libva: remove redundant libva 1.0.12
-
- .../recipes-graphics/mesa/mesa-dri_8.0.4.bbappend  |   27 +++++++++++++++++---
- .../libva/libva-intel-driver.inc                   |    2 +-
- .../libva/libva-intel-driver_1.0.15.bb             |    8 ------
- .../libva/libva-intel-driver_1.0.18.bb             |    8 ++++++
- common/recipes-multimedia/libva/libva_1.0.12.bb    |    8 ------
- common/recipes-multimedia/libva/libva_1.0.15.bb    |    8 ------
- common/recipes-multimedia/libva/libva_1.0.16.bb    |    8 ++++++
- 7 files changed, 40 insertions(+), 29 deletions(-)
- delete mode 100644 common/recipes-multimedia/libva/libva-intel-driver_1.0.15.bb
- create mode 100644 common/recipes-multimedia/libva/libva-intel-driver_1.0.18.bb
- delete mode 100644 common/recipes-multimedia/libva/libva_1.0.12.bb
+Signed-off-by: Ross Burton <ross.burton@intel.com>
+Signed-off-by: Nitin A Kamble <nitin.a.kamble@intel.com>
+---
+ common/recipes-multimedia/libva/libva_1.0.15.bb |    8 --------
+ common/recipes-multimedia/libva/libva_1.0.16.bb |    8 ++++++++
+ 2 files changed, 8 insertions(+), 8 deletions(-)
  delete mode 100644 common/recipes-multimedia/libva/libva_1.0.15.bb
  create mode 100644 common/recipes-multimedia/libva/libva_1.0.16.bb
 
+diff --git a/common/recipes-multimedia/libva/libva_1.0.15.bb b/common/recipes-multimedia/libva/libva_1.0.15.bb
+deleted file mode 100644
+index e60a4b6..0000000
+--- a/common/recipes-multimedia/libva/libva_1.0.15.bb
++++ /dev/null
+@@ -1,8 +0,0 @@
+-require libva.inc
+-
+-PR = "${INC_PR}.0"
+-
+-SRC_URI = "http://cgit.freedesktop.org/vaapi/libva/snapshot/libva-${PV}.tar.bz2"
+-
+-SRC_URI[md5sum] = "ad8a94ba87ff0563a533c3c142816794"
+-SRC_URI[sha256sum] = "7cc24ae9c947aa13904255244810d3637b03d41e2b6f4b643db3b97412cacd37"
+diff --git a/common/recipes-multimedia/libva/libva_1.0.16.bb b/common/recipes-multimedia/libva/libva_1.0.16.bb
+new file mode 100644
+index 0000000..7374c70
+--- /dev/null
++++ b/common/recipes-multimedia/libva/libva_1.0.16.bb
+@@ -0,0 +1,8 @@
++require libva.inc
++
++PR = "${INC_PR}.0"
++
++SRC_URI = "http://www.freedesktop.org/software/vaapi/releases/libva/libva-${PV}.tar.bz2"
++
++SRC_URI[md5sum] = "99343b27cf24e99abc0c5db2d09e30c8"
++SRC_URI[sha256sum] = "03e46f8f48f252e6b6112c495745100bc217ddded801fdb393384aab1fafeaa2"
 -- 
 1.7.3.4
 
