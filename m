@@ -1,26 +1,23 @@
-Return-Path: <Kai.Kang@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9E269E011F3
-	for <yocto@yoctoproject.org>; Wed, 31 Oct 2012 19:33:08 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id qA12X8JZ016789
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Wed, 31 Oct 2012 19:33:08 -0700 (PDT)
-Received: from [128.224.162.205] (128.224.162.205) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.2.318.4;
-	Wed, 31 Oct 2012 19:33:07 -0700
-Message-ID: <5091DF8A.9090901@windriver.com>
-Date: Thu, 1 Nov 2012 10:33:46 +0800
-From: Kang Kai <Kai.Kang@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:10.0.2) Gecko/20120216 Thunderbird/10.0.2
-MIME-Version: 1.0
-To: <yocto@yoctoproject.org>
-References: <cover.1351676013.git.kai.kang@windriver.com>
-In-Reply-To: <cover.1351676013.git.kai.kang@windriver.com>
-X-Originating-IP: [128.224.162.205]
-Subject: Re: [PATCH 0/1] update script create-recipe
+Return-Path: <treebody@embedstudy.com>
+Received: from smtpbg297.qq.com (smtpbg297.qq.com [184.105.67.100])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id 70E2BE011F3
+	for <yocto@yoctoproject.org>; Wed, 31 Oct 2012 19:52:10 -0700 (PDT)
+X-QQ-SSF: 00000000000000F000000000000000H
+X-HAS-ATTACH: no
+X-QQ-BUSINESS-ORIGIN: 2
+X-Originating-IP: 222.92.156.26
+X-QQ-STYLE: 
+X-QQ-mid: webmail607t1351738325t511124
+From: "=?ISO-8859-1?B?TGl1?=" <treebody@embedstudy.com>
+To: "=?ISO-8859-1?B?eW9jdG8=?=" <yocto@yoctoproject.org>
+Mime-Version: 1.0
+Date: Thu, 1 Nov 2012 10:52:05 +0800
+X-Priority: 3
+Message-ID: <tencent_074DE1162D42AEB548709C30@qq.com>
+X-QQ-MIME: TCMime 1.0 by Tencent
+X-Mailer: QQMail 2.x
+X-QQ-Mailer: QQMail 2.x
+Subject: how to write a shell command in local.conf
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,73 +29,71 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 01 Nov 2012 02:33:08 -0000
+X-List-Received-Date: Thu, 01 Nov 2012 02:52:12 -0000
 Content-Type: multipart/alternative;
-	boundary="------------010306050000020709010200"
+	boundary="----=_NextPart_5091E3D5_D5D0C868_6775EE17"
+Content-Transfer-Encoding: 8Bit
 
---------------010306050000020709010200
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+------=_NextPart_5091E3D5_D5D0C868_6775EE17
+Content-Type: text/plain;
+	charset="ISO-8859-1"
+Content-Transfer-Encoding: base64
 
-On 2012?10?31? 17:38, Kang Kai wrote:
-> Update create-recipe to fix some small bugs.
->
-> The following changes since commit e9e3285e1397cfd2d34f4eb7b5aa59311eea861d:
->
->    openssl: Use ${CFLAGS} not ${FULL_OPTIMIZATION} (2012-10-30 11:06:38 +0000)
->
-> are available in the git repository at:
->    git://git.pokylinux.org/poky-contrib kangkai/update-create-recipe
->    http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=kangkai/update-create-recipe
->
-> Kang Kai (1):
->    create-recipe: update re pattern and output
->
->   scripts/create-recipe |   29 +++++++++++++++++++----------
->   1 files changed, 19 insertions(+), 10 deletions(-)
->
-Drop it, and this should be sent to oe-core list.
-Sorry for disturbing you.
+SGkgYWxsLA0KICAgIEkgYWRkIHRoZSBmb2xsb3dpbmcgc2V0dGluZ3MgaW4gbG9jYWwuY29u
+ZiA6DQogSE9TVF9BUkNIOj0iJHtAb3MucG9wZW4oJy91c3IvYmluL2djYyAtZHVtcG1hY2hp
+bmUgfCBzZWQgLWUgc1wnLy0uKi8vXCcgXA0KICAgIC1lIFwncy9zcGFyYy4qL3NwYXJjL1wn
+IFwNCiAgICAtZSBcJ3MvYXJtLiovYXJtL2dcJyBcDQogICAgLWUgXCdzL202OGsuKi9tNjhr
+L1wnIFwNCiAgICAtZSBcJ3MvcHBjL3Bvd2VycGMvZ1wnIFwNCiAgICAtZSBcJ3Mvdjg1MC4q
+L3Y4NTAvZ1wnIFwNCiAgICAtZSBcJ3Mvc2hbMjM0XS9zaC9cJyBcDQogICAgLWUgXCdzL21p
+cHMtLiovbWlwcy9cJyBcDQogICAgLWUgXCdzL21pcHNlbC0uKi9taXBzZWwvXCcgXA0KICAg
+IC1lIFwncy9jcmlzLiovY3Jpcy9cJyBcDQogICAgLWUgXCdzL2lbMy05XTg2L2kzODYvXCcn
+KS5yZWFkKCl9Ig0KVGhlbiBJIGNhbWUgdXAgd2l0aCBhIHByb2JsZW0sSSBjYW4gc2VlIHRo
+ZSB2YXJpYWJsZSBIT1NUX0FSQ0ggY2hhbmdlZCB0byAiaTM4NiIgdXNpbmcgImJpdGJha2Ug
+LWUgfCBncmVwIEhPU1RfQVJDSCIsYnV0IHdoZW4gSSBiaXRiYWtlIGJ1c3lib3ggLGl0IHNh
+eXMgOg0KIEVSUk9SOiBVbmFibGUgdG8gZGV0ZXJtaW5lIGVuZGlhbm5lc3MgZm9yIGFyY2hp
+dGVjdHVyZSAnaTM4NiAgICB8IEVUQTogIC0tOi0tOi0tDQonDQpFUlJPUjogUGxlYXNlIGFk
+ZCB5b3VyIGFyY2hpdGVjdHVyZSB0byBzaXRlaW5mby5iYmNsYXNzLg0KICANCiAxKUkgY2Fu
+IG5vdCB1bmRlcnN0YW5kIHdoeSBpdCBiZWNhbWUgdG8gJ2kzODYgfCBFVEE6IC0tOi0tOi0t
+DQonIGluc3RlYWQgb2YgJ2kzODYnLklzIHRoZXJlIGFueSBtaXN0bWFrZSBpbiBteSBzZXR0
+aW5ncyBpbiB0aGUgYWJvdmUtbWVudGlvbmVkID8gDQogMilBbm90aGVyIHF1ZXN0aW9uOiBJ
+IGNhbiBzZWUgSE9TVF9BUkNIPSJpMzg2IiB1c2luZyBiaXRiYWtlIC1lIHwgZ3JlcCBIT1NU
+X0FSQ0gsYnV0IHNlZSBub3RoaW5nIHVzaW5nIGJpdGJha2UgDQogLWUgYnVzeWJveCB8IGdy
+ZXAgSE9TVF9BUkNILkRvZXMgaXQgbWVhbiB0aGUgdGhlIHZhcmlhYmxlIGhhcyBubyBlZmZl
+Y3Qgd2hlbiBidWlsZGluZyBidXN5Ym94Pw0KICANCiBCZXN0IHdoaXNoZXMsDQogLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tTGl1
 
-Kai
+------=_NextPart_5091E3D5_D5D0C868_6775EE17
+Content-Type: text/html;
+	charset="ISO-8859-1"
+Content-Transfer-Encoding: base64
 
---------------010306050000020709010200
-Content-Type: text/html; charset="ISO-8859-1"
-Content-Transfer-Encoding: 7bit
+PERJVj5IaSBhbGwsPC9ESVY+DQo8RElWPiZuYnNwOyZuYnNwOyBJIGFkZCB0aGUgZm9sbG93
+aW5nIHNldHRpbmdzIGluIGxvY2FsLmNvbmYgOjwvRElWPg0KPERJVj5IT1NUX0FSQ0g6PSIk
+e0Bvcy5wb3BlbignL3Vzci9iaW4vZ2NjIC1kdW1wbWFjaGluZSB8IHNlZCAtZSBzXCcvLS4q
+Ly9cJyBcPEJSPiZuYnNwOyZuYnNwOyZuYnNwOyAtZSBcJ3Mvc3BhcmMuKi9zcGFyYy9cJyBc
+PEJSPiZuYnNwOyZuYnNwOyZuYnNwOyAtZSBcJ3MvYXJtLiovYXJtL2dcJyBcPEJSPiZuYnNw
+OyZuYnNwOyZuYnNwOyAtZSBcJ3MvbTY4ay4qL202OGsvXCcgXDxCUj4mbmJzcDsmbmJzcDsm
+bmJzcDsgLWUgXCdzL3BwYy9wb3dlcnBjL2dcJyBcPEJSPiZuYnNwOyZuYnNwOyZuYnNwOyAt
+ZSBcJ3Mvdjg1MC4qL3Y4NTAvZ1wnIFw8QlI+Jm5ic3A7Jm5ic3A7Jm5ic3A7IC1lIFwncy9z
+aFsyMzRdL3NoL1wnIFw8QlI+Jm5ic3A7Jm5ic3A7Jm5ic3A7IC1lIFwncy9taXBzLS4qL21p
+cHMvXCcgXDxCUj4mbmJzcDsmbmJzcDsmbmJzcDsgLWUgXCdzL21pcHNlbC0uKi9taXBzZWwv
+XCcgXDxCUj4mbmJzcDsmbmJzcDsmbmJzcDsgLWUgXCdzL2NyaXMuKi9jcmlzL1wnIFw8QlI+
+Jm5ic3A7Jm5ic3A7Jm5ic3A7IC1lIFwncy9pWzMtOV04Ni9pMzg2L1wnJykucmVhZCgpfSI8
+QlI+VGhlbiBJIGNhbWUgdXAgd2l0aCBhIHByb2JsZW0sSSBjYW4gc2VlIHRoZSB2YXJpYWJs
+ZSBIT1NUX0FSQ0ggY2hhbmdlZCB0byAiaTM4NiIgdXNpbmcgImJpdGJha2UgLWUgfCBncmVw
+IEhPU1RfQVJDSCIsYnV0IHdoZW4gSSBiaXRiYWtlIGJ1c3lib3ggLGl0Jm5ic3A7c2F5cyA6
+PC9ESVY+DQo8RElWPkVSUk9SOiBVbmFibGUgdG8gZGV0ZXJtaW5lIGVuZGlhbm5lc3MgZm9y
+IGFyY2hpdGVjdHVyZSAnaTM4NiZuYnNwOyZuYnNwOyZuYnNwOyB8IEVUQTombmJzcDsgLS06
+LS06LS08QlI+JzxCUj5FUlJPUjogUGxlYXNlIGFkZCB5b3VyIGFyY2hpdGVjdHVyZSB0byBz
+aXRlaW5mby5iYmNsYXNzLjwvRElWPg0KPERJVj4mbmJzcDs8L0RJVj4NCjxESVY+MSlJIGNh
+biBub3QgdW5kZXJzdGFuZCB3aHkgaXQgYmVjYW1lIHRvICdpMzg2IHwgRVRBOiAtLTotLTot
+LTxCUj4nIGluc3RlYWQgb2YgJ2kzODYnLklzIHRoZXJlIGFueSBtaXN0bWFrZSBpbiBteSBz
+ZXR0aW5ncyBpbiB0aGUmbmJzcDthYm92ZS1tZW50aW9uZWQgPyZuYnNwOzwvRElWPg0KPERJ
+Vj4yKUFub3RoZXIgcXVlc3Rpb246IEkgY2FuIHNlZSBIT1NUX0FSQ0g9ImkzODYiIHVzaW5n
+IGJpdGJha2UgLWUgfCBncmVwIEhPU1RfQVJDSCxidXQgc2VlIG5vdGhpbmcgdXNpbmcgYml0
+YmFrZSA8L0RJVj4NCjxESVY+LWUgYnVzeWJveCB8IGdyZXAgSE9TVF9BUkNILkRvZXMmbmJz
+cDtpdCBtZWFuIHRoZSB0aGUgdmFyaWFibGUgaGFzIG5vIGVmZmVjdCB3aGVuIGJ1aWxkaW5n
+IGJ1c3lib3g/PC9ESVY+DQo8RElWPiZuYnNwOzwvRElWPg0KPERJVj5CZXN0IHdoaXNoZXMs
+PC9ESVY+DQo8RElWPi0tLS0tLS0tLS0tLS0tLS0tLS0tLUxpdTxCUj48QlI+PC9ESVY+
 
-<html>
-  <head>
-    <meta content="text/html; charset=ISO-8859-1"
-      http-equiv="Content-Type">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    On 2012&#24180;10&#26376;31&#26085; 17:38, Kang Kai wrote:
-    <blockquote cite="mid:cover.1351676013.git.kai.kang@windriver.com"
-      type="cite">
-      <pre wrap="">Update create-recipe to fix some small bugs.
-
-The following changes since commit e9e3285e1397cfd2d34f4eb7b5aa59311eea861d:
-
-  openssl: Use ${CFLAGS} not ${FULL_OPTIMIZATION} (2012-10-30 11:06:38 +0000)
-
-are available in the git repository at:
-  git://git.pokylinux.org/poky-contrib kangkai/update-create-recipe
-  <a class="moz-txt-link-freetext" href="http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=kangkai/update-create-recipe">http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=kangkai/update-create-recipe</a>
-
-Kang Kai (1):
-  create-recipe: update re pattern and output
-
- scripts/create-recipe |   29 +++++++++++++++++++----------
- 1 files changed, 19 insertions(+), 10 deletions(-)
-
-</pre>
-    </blockquote>
-    <font size="+1">Drop it, and this should be sent to oe-core list.<br>
-      Sorry for disturbing you.<br>
-      <br>
-      Kai<br>
-    </font>
-  </body>
-</html>
-
---------------010306050000020709010200--
+------=_NextPart_5091E3D5_D5D0C868_6775EE17--
