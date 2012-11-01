@@ -1,29 +1,23 @@
-Return-Path: <Jonathan.Haws@sdl.usu.edu>
-Received: from echo.usurf.usu.edu (echo.usurf.usu.edu [129.123.194.129])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F1323E003D7
-	for <yocto@yoctoproject.org>; Thu,  1 Nov 2012 15:54:03 -0700 (PDT)
-Received: from wef.usurf.usu.edu (129.123.194.164) by echo.usurf.usu.edu
-	(129.123.194.129) with Microsoft SMTP Server id 14.2.318.4;
-	Thu, 1 Nov 2012 16:54:03 -0600
-Received: from Mercury.usurf.usu.edu ([172.31.35.10]) by wef.usurf.usu.edu
-	with Microsoft SMTPSVC(6.0.3790.4675); Thu, 1 Nov 2012 16:54:00 -0600
-Received: from MERCURY.usurf.usu.edu ([172.31.35.10]) by Mercury.usurf.usu.edu
-	([172.31.35.10]) with mapi id 14.02.0318.004;
-	Thu, 1 Nov 2012 16:54:02 -0600
-From: Jonathan Haws <Jonathan.Haws@sdl.usu.edu>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: iSCSI in Yocto
-Thread-Index: Ac24gxC1dF0DNlupSrGoedMicUuZLA==
-Date: Thu, 1 Nov 2012 22:54:01 +0000
-Message-ID: <DDDB9E6645DE24488B8485B41A051F471D983C43@Mercury.usurf.usu.edu>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.31.22.105]
-MIME-Version: 1.0
-X-OriginalArrivalTime: 01 Nov 2012 22:54:00.0291 (UTC)
-	FILETIME=[C8375B30:01CDB883]
-Subject: iSCSI in Yocto
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A658AE003D7
+	for <yocto@yoctoproject.org>; Thu,  1 Nov 2012 16:03:26 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 01 Nov 2012 16:03:25 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,695,1344236400"; d="scan'208";a="212462248"
+Received: from unknown (HELO [10.255.14.39]) ([10.255.14.39])
+	by azsmga001.ch.intel.com with ESMTP; 01 Nov 2012 16:03:17 -0700
+Message-ID: <1351810997.1601.4.camel@empanada>
+From: Tom Zanussi <tom.zanussi@intel.com>
+To: nitin.a.kamble@intel.com
+Date: Thu, 01 Nov 2012 18:03:17 -0500
+In-Reply-To: <cover.1351746741.git.nitin.a.kamble@intel.com>
+References: <cover.1351746741.git.nitin.a.kamble@intel.com>
+X-Mailer: Evolution 3.4.1 (3.4.1-2.fc17) 
+Mime-Version: 1.0
+Cc: darren.hart@intel.com, yocto@yoctoproject.org
+Subject: Re: [Patch v2 0/4] Misc Fixes for meta-intel 1.3 release
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,84 +29,59 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 01 Nov 2012 22:54:04 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 01 Nov 2012 23:03:26 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-I am trying to get iSCSI support into my Yocto build, however I am finding =
-that it is not going very well...=0A=
-=0A=
-I have my kernel configured with all the necessary options (I think...):=0A=
-=0A=
-iSCSI Boot Firmware Table Attributes module (SCSI_ISCSI_ATTRS)=0A=
-Linux-iSCSI.org iSCSI Target Mode Stack (ISCSI_TARGET)=0A=
-Generic Target Core Mod (TCM) and ConfigFS Infrastructure (CONFIG_TARGET_CO=
-RE)=0A=
-Userspace-driven configuration filesystem (CONFIGFS_FS)=0A=
-=0A=
-Now I am trying to get a program installed to configure the iSCSI setup.  I=
- found that there are no recipes for targetcli (which I would prefer to use=
- if there is one out there or if someone is willing to guide me through it)=
-, so I found a recipe for lio-utils, which I have modified to build into my=
- image.=0A=
-=0A=
-So far, I can run the LIO utilities, but am always getting errors stating t=
-hat the device is busy.  How can I get around those?  Internet searches are=
- fruitless.=0A=
-=0A=
-Any thoughts?  My output is below.  I suspect that it has something to do w=
-ith the fact that /dev/sdb1 is already mounted on /media/sdb1 (though it re=
-ally isn't - you can see that in the umount command at the end...).  Can I =
-prevent the system from trying to mount those?  It appears that it is doing=
- it via udev, but even if I move the mount script out of it's location, it =
-still is happening.=0A=
-=0A=
-What am I doing wrong?=0A=
-=0A=
-Thanks!=0A=
-=0A=
-=0A=
-penryn:~# /etc/init.d/target start=0A=
-Loading target_core_mod/ConfigFS core:   [OK]=0A=
-=0A=
-penryn:~# tcm_node --block iblock_0/sms /dev/sdb1=0A=
- ConfigFS HBA: iblock_0=0A=
-Successfully added TCM/ConfigFS HBA: iblock_0=0A=
- ConfigFS Device Alias: sms=0A=
-Device Params ['/dev/sdb1']=0A=
-sh: line 0: echo: write error: Device or resource busy=0A=
-IBLOCK: createvirtdev failed for enable_opt with echo 1 > /sys/kernel/confi=
-g/target/core/iblock_0/sms/enable=0A=
-Unable to register TCM/ConfigFS storage object: /sys/kernel/config/target/c=
-ore/iblock_0/sms=0A=
-=0A=
-penryn:~# mount=0A=
-rootfs on / type rootfs (rw)=0A=
-proc on /proc type proc (rw,relatime)=0A=
-sysfs on /sys type sysfs (rw,relatime)=0A=
-/dev/sda on /media/sda type vfat (rw,relatime,fmask=3D0022,dmask=3D0022,cod=
-epage=3Dcp437,iocharset=3Diso8859-1,shortname=3Dmixed,errors=3Dremount-ro)=
-=0A=
-/dev/sdb3 on /media/sdb3 type ext3 (rw,relatime,errors=3Dcontinue,barrier=
-=3D1,data=3Dordered)=0A=
-/dev/sdb1 on /media/sdb1 type ext2 (rw,relatime,errors=3Dcontinue)=0A=
-/dev/loop0 on / type ext3 (rw,noatime,barrier=3D1,data=3Dordered)=0A=
-devtmpfs on /dev type devtmpfs (rw,relatime,size=3D974536k,nr_inodes=3D2436=
-34,mode=3D755)=0A=
-proc on /proc type proc (rw,relatime)=0A=
-sysfs on /sys type sysfs (rw,relatime)=0A=
-debugfs on /sys/kernel/debug type debugfs (rw,relatime)=0A=
-devpts on /dev/pts type devpts (rw,relatime,gid=3D5,mode=3D620)=0A=
-tmpfs on /var/volatile type tmpfs (rw,relatime)=0A=
-tmpfs on /media/ram type tmpfs (rw,relatime)=0A=
-tmpfs on /tmp type tmpfs (rw,relatime)=0A=
-/dev/sdb3 on /data type ext3 (rw,relatime,errors=3Dcontinue,barrier=3D1,dat=
-a=3Dordered)=0A=
-configfs on /sys/kernel/config type configfs (rw,relatime)=0A=
-=0A=
-penryn:~# umount /dev/sdb1=0A=
-umount: /media/sdb1: not mounted=0A=
-=0A=
-penryn:~# =0A=
+On Wed, 2012-10-31 at 22:14 -0700, nitin.a.kamble@intel.com wrote:
+> From: Nitin A Kamble <nitin.a.kamble@intel.com>
+> 
+> This v2 pull request is with newer version of libva-intel-driver.
+> These commits tested on All the BSPs I am maintaining with expected results.
+> 
+
+OK, I've confirmed video works on crownbay and have two independent
+confirmations that cedartrail works fine too.
+
+All pulled into meta-intel/master.
+
+Thanks,
+
+Tom
+
+> Thanks,
+> Nitin
+> 
+> The following changes since commit 43b2e9c34363ade4241a60f699b47179929c6fb6:
+> 
+>   n450: Add WEBTITLE and boilerplate README (2012-10-31 08:40:15 -0700)
+> 
+> are available in the git repository at:
+>   git://git.yoctoproject.org/meta-intel-contrib nitin/misc
+>   http://git.yoctoproject.org/cgit.cgi/meta-intel-contrib/log/?h=nitin/misc
+> 
+> Nitin A Kamble (3):
+>   libva: update to the latest version
+>   libva-intel-driver: update to the latest version
+>   mesa-dri.bbappend: avoid conflict with emgd-driver-bin
+> 
+> Ross Burton (1):
+>   libva: remove redundant libva 1.0.12
+> 
+>  .../recipes-graphics/mesa/mesa-dri_8.0.4.bbappend  |   27 +++++++++++++++++---
+>  .../libva/libva-intel-driver.inc                   |    2 +-
+>  .../libva/libva-intel-driver_1.0.15.bb             |    8 ------
+>  .../libva/libva-intel-driver_1.0.18.bb             |    8 ++++++
+>  common/recipes-multimedia/libva/libva_1.0.12.bb    |    8 ------
+>  common/recipes-multimedia/libva/libva_1.0.15.bb    |    8 ------
+>  common/recipes-multimedia/libva/libva_1.0.16.bb    |    8 ++++++
+>  7 files changed, 40 insertions(+), 29 deletions(-)
+>  delete mode 100644 common/recipes-multimedia/libva/libva-intel-driver_1.0.15.bb
+>  create mode 100644 common/recipes-multimedia/libva/libva-intel-driver_1.0.18.bb
+>  delete mode 100644 common/recipes-multimedia/libva/libva_1.0.12.bb
+>  delete mode 100644 common/recipes-multimedia/libva/libva_1.0.15.bb
+>  create mode 100644 common/recipes-multimedia/libva/libva_1.0.16.bb
+> 
+
+
 
