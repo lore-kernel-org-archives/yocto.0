@@ -1,23 +1,34 @@
-Return-Path: <treebody@embedstudy.com>
-Received: from smtpbg297.qq.com (smtpbg297.qq.com [184.105.67.100])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 70E2BE011F3
-	for <yocto@yoctoproject.org>; Wed, 31 Oct 2012 19:52:10 -0700 (PDT)
-X-QQ-SSF: 00000000000000F000000000000000H
-X-HAS-ATTACH: no
-X-QQ-BUSINESS-ORIGIN: 2
-X-Originating-IP: 222.92.156.26
-X-QQ-STYLE: 
-X-QQ-mid: webmail607t1351738325t511124
-From: "=?ISO-8859-1?B?TGl1?=" <treebody@embedstudy.com>
-To: "=?ISO-8859-1?B?eW9jdG8=?=" <yocto@yoctoproject.org>
-Mime-Version: 1.0
-Date: Thu, 1 Nov 2012 10:52:05 +0800
-X-Priority: 3
-Message-ID: <tencent_074DE1162D42AEB548709C30@qq.com>
-X-QQ-MIME: TCMime 1.0 by Tencent
-X-Mailer: QQMail 2.x
-X-QQ-Mailer: QQMail 2.x
-Subject: how to write a shell command in local.conf
+Return-Path: <kergoth@gmail.com>
+Received: from mail-la0-f48.google.com (mail-la0-f48.google.com
+	[209.85.215.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 212E7E011F3
+	for <yocto@yoctoproject.org>; Wed, 31 Oct 2012 20:05:22 -0700 (PDT)
+Received: by mail-la0-f48.google.com with SMTP id u2so1713195lag.35
+	for <yocto@yoctoproject.org>; Wed, 31 Oct 2012 20:05:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:sender:in-reply-to:references:from:date
+	:x-google-sender-auth:message-id:subject:to:cc:content-type;
+	bh=N71iy5vi2MO9bwDTagBOqCQuBnxLi3Xw85UmClnA97Y=;
+	b=Niv78MwwRfcDcxU3iEZIbCjGKoF6e+p0h3810aV4fZRCb5zw3IUvxP2wgoulfAMEWL
+	WWlcS9bTTKGejF3hjN1G9heHcXuLcpOjlZorvHAsAA2lzTSCVxnDK4RaOBJbQZMNwrh+
+	O5G3axXPTtTK5p8XF4lGj4SjiP61xqt/4oHQJ+GOLu/yud16EO/dGGfCB4nyypsTjUzk
+	gE8/lIztBjGVfvQw61fgYoq95uzw0emJCX2VmPg/7AVLUQs/KMxlYCqy7py2oOd1Pwa4
+	RajgJOSE4K4PNvkD/3JxXaiOAz0uvQvcxEo8umF5tAGIpmbFCvLMCMjOtB3C3Q8r3Vq7
+	PT9Q==
+Received: by 10.112.28.98 with SMTP id a2mr15135329lbh.110.1351739121574; Wed,
+	31 Oct 2012 20:05:21 -0700 (PDT)
+MIME-Version: 1.0
+Sender: kergoth@gmail.com
+Received: by 10.114.1.49 with HTTP; Wed, 31 Oct 2012 20:05:01 -0700 (PDT)
+In-Reply-To: <tencent_074DE1162D42AEB548709C30@qq.com>
+References: <tencent_074DE1162D42AEB548709C30@qq.com>
+From: Chris Larson <clarson@kergoth.com>
+Date: Wed, 31 Oct 2012 20:05:01 -0700
+X-Google-Sender-Auth: RXVtOuwi-DkioMsZygNHa-uNGmQ
+Message-ID: <CABcZAN=PUHZAbJZKkP7YzOQrLGiiuiwJFzrUCh89euZcj4BMow@mail.gmail.com>
+To: Liu <treebody@embedstudy.com>
+Cc: yocto <yocto@yoctoproject.org>
+Subject: Re: how to write a shell command in local.conf
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,71 +40,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 01 Nov 2012 02:52:12 -0000
-Content-Type: multipart/alternative;
-	boundary="----=_NextPart_5091E3D5_D5D0C868_6775EE17"
-Content-Transfer-Encoding: 8Bit
+X-List-Received-Date: Thu, 01 Nov 2012 03:05:23 -0000
+Content-Type: text/plain; charset=UTF-8
 
-------=_NextPart_5091E3D5_D5D0C868_6775EE17
-Content-Type: text/plain;
-	charset="ISO-8859-1"
-Content-Transfer-Encoding: base64
+On Wed, Oct 31, 2012 at 7:52 PM, Liu <treebody@embedstudy.com> wrote:
+> HOST_ARCH:="${@os.popen('/usr/bin/gcc -dumpmachine | sed -e s\'/-.*//\' \
+>     -e \'s/sparc.*/sparc/\' \
+>     -e \'s/arm.*/arm/g\' \
+>     -e \'s/m68k.*/m68k/\' \
+>     -e \'s/ppc/powerpc/g\' \
+>     -e \'s/v850.*/v850/g\' \
+>     -e \'s/sh[234]/sh/\' \
+>     -e \'s/mips-.*/mips/\' \
+>     -e \'s/mipsel-.*/mipsel/\' \
+>     -e \'s/cris.*/cris/\' \
+>     -e \'s/i[3-9]86/i386/\'').read()}"
+> Then I came up with a problem,I can see the variable HOST_ARCH changed to
+> "i386" using "bitbake -e | grep HOST_ARCH",but when I bitbake busybox ,it
+> says :
+> ERROR: Unable to determine endianness for architecture 'i386    | ETA:
+> --:--:--
+> '
 
-SGkgYWxsLA0KICAgIEkgYWRkIHRoZSBmb2xsb3dpbmcgc2V0dGluZ3MgaW4gbG9jYWwuY29u
-ZiA6DQogSE9TVF9BUkNIOj0iJHtAb3MucG9wZW4oJy91c3IvYmluL2djYyAtZHVtcG1hY2hp
-bmUgfCBzZWQgLWUgc1wnLy0uKi8vXCcgXA0KICAgIC1lIFwncy9zcGFyYy4qL3NwYXJjL1wn
-IFwNCiAgICAtZSBcJ3MvYXJtLiovYXJtL2dcJyBcDQogICAgLWUgXCdzL202OGsuKi9tNjhr
-L1wnIFwNCiAgICAtZSBcJ3MvcHBjL3Bvd2VycGMvZ1wnIFwNCiAgICAtZSBcJ3Mvdjg1MC4q
-L3Y4NTAvZ1wnIFwNCiAgICAtZSBcJ3Mvc2hbMjM0XS9zaC9cJyBcDQogICAgLWUgXCdzL21p
-cHMtLiovbWlwcy9cJyBcDQogICAgLWUgXCdzL21pcHNlbC0uKi9taXBzZWwvXCcgXA0KICAg
-IC1lIFwncy9jcmlzLiovY3Jpcy9cJyBcDQogICAgLWUgXCdzL2lbMy05XTg2L2kzODYvXCcn
-KS5yZWFkKCl9Ig0KVGhlbiBJIGNhbWUgdXAgd2l0aCBhIHByb2JsZW0sSSBjYW4gc2VlIHRo
-ZSB2YXJpYWJsZSBIT1NUX0FSQ0ggY2hhbmdlZCB0byAiaTM4NiIgdXNpbmcgImJpdGJha2Ug
-LWUgfCBncmVwIEhPU1RfQVJDSCIsYnV0IHdoZW4gSSBiaXRiYWtlIGJ1c3lib3ggLGl0IHNh
-eXMgOg0KIEVSUk9SOiBVbmFibGUgdG8gZGV0ZXJtaW5lIGVuZGlhbm5lc3MgZm9yIGFyY2hp
-dGVjdHVyZSAnaTM4NiAgICB8IEVUQTogIC0tOi0tOi0tDQonDQpFUlJPUjogUGxlYXNlIGFk
-ZCB5b3VyIGFyY2hpdGVjdHVyZSB0byBzaXRlaW5mby5iYmNsYXNzLg0KICANCiAxKUkgY2Fu
-IG5vdCB1bmRlcnN0YW5kIHdoeSBpdCBiZWNhbWUgdG8gJ2kzODYgfCBFVEE6IC0tOi0tOi0t
-DQonIGluc3RlYWQgb2YgJ2kzODYnLklzIHRoZXJlIGFueSBtaXN0bWFrZSBpbiBteSBzZXR0
-aW5ncyBpbiB0aGUgYWJvdmUtbWVudGlvbmVkID8gDQogMilBbm90aGVyIHF1ZXN0aW9uOiBJ
-IGNhbiBzZWUgSE9TVF9BUkNIPSJpMzg2IiB1c2luZyBiaXRiYWtlIC1lIHwgZ3JlcCBIT1NU
-X0FSQ0gsYnV0IHNlZSBub3RoaW5nIHVzaW5nIGJpdGJha2UgDQogLWUgYnVzeWJveCB8IGdy
-ZXAgSE9TVF9BUkNILkRvZXMgaXQgbWVhbiB0aGUgdGhlIHZhcmlhYmxlIGhhcyBubyBlZmZl
-Y3Qgd2hlbiBidWlsZGluZyBidXN5Ym94Pw0KICANCiBCZXN0IHdoaXNoZXMsDQogLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tTGl1
+You forgot to strip off the trailing newline. Use read().rstrip(). You
+may also want to use bb.process or oe.process rather than os.popen.
+-- 
+Christopher Larson
 
-------=_NextPart_5091E3D5_D5D0C868_6775EE17
-Content-Type: text/html;
-	charset="ISO-8859-1"
-Content-Transfer-Encoding: base64
-
-PERJVj5IaSBhbGwsPC9ESVY+DQo8RElWPiZuYnNwOyZuYnNwOyBJIGFkZCB0aGUgZm9sbG93
-aW5nIHNldHRpbmdzIGluIGxvY2FsLmNvbmYgOjwvRElWPg0KPERJVj5IT1NUX0FSQ0g6PSIk
-e0Bvcy5wb3BlbignL3Vzci9iaW4vZ2NjIC1kdW1wbWFjaGluZSB8IHNlZCAtZSBzXCcvLS4q
-Ly9cJyBcPEJSPiZuYnNwOyZuYnNwOyZuYnNwOyAtZSBcJ3Mvc3BhcmMuKi9zcGFyYy9cJyBc
-PEJSPiZuYnNwOyZuYnNwOyZuYnNwOyAtZSBcJ3MvYXJtLiovYXJtL2dcJyBcPEJSPiZuYnNw
-OyZuYnNwOyZuYnNwOyAtZSBcJ3MvbTY4ay4qL202OGsvXCcgXDxCUj4mbmJzcDsmbmJzcDsm
-bmJzcDsgLWUgXCdzL3BwYy9wb3dlcnBjL2dcJyBcPEJSPiZuYnNwOyZuYnNwOyZuYnNwOyAt
-ZSBcJ3Mvdjg1MC4qL3Y4NTAvZ1wnIFw8QlI+Jm5ic3A7Jm5ic3A7Jm5ic3A7IC1lIFwncy9z
-aFsyMzRdL3NoL1wnIFw8QlI+Jm5ic3A7Jm5ic3A7Jm5ic3A7IC1lIFwncy9taXBzLS4qL21p
-cHMvXCcgXDxCUj4mbmJzcDsmbmJzcDsmbmJzcDsgLWUgXCdzL21pcHNlbC0uKi9taXBzZWwv
-XCcgXDxCUj4mbmJzcDsmbmJzcDsmbmJzcDsgLWUgXCdzL2NyaXMuKi9jcmlzL1wnIFw8QlI+
-Jm5ic3A7Jm5ic3A7Jm5ic3A7IC1lIFwncy9pWzMtOV04Ni9pMzg2L1wnJykucmVhZCgpfSI8
-QlI+VGhlbiBJIGNhbWUgdXAgd2l0aCBhIHByb2JsZW0sSSBjYW4gc2VlIHRoZSB2YXJpYWJs
-ZSBIT1NUX0FSQ0ggY2hhbmdlZCB0byAiaTM4NiIgdXNpbmcgImJpdGJha2UgLWUgfCBncmVw
-IEhPU1RfQVJDSCIsYnV0IHdoZW4gSSBiaXRiYWtlIGJ1c3lib3ggLGl0Jm5ic3A7c2F5cyA6
-PC9ESVY+DQo8RElWPkVSUk9SOiBVbmFibGUgdG8gZGV0ZXJtaW5lIGVuZGlhbm5lc3MgZm9y
-IGFyY2hpdGVjdHVyZSAnaTM4NiZuYnNwOyZuYnNwOyZuYnNwOyB8IEVUQTombmJzcDsgLS06
-LS06LS08QlI+JzxCUj5FUlJPUjogUGxlYXNlIGFkZCB5b3VyIGFyY2hpdGVjdHVyZSB0byBz
-aXRlaW5mby5iYmNsYXNzLjwvRElWPg0KPERJVj4mbmJzcDs8L0RJVj4NCjxESVY+MSlJIGNh
-biBub3QgdW5kZXJzdGFuZCB3aHkgaXQgYmVjYW1lIHRvICdpMzg2IHwgRVRBOiAtLTotLTot
-LTxCUj4nIGluc3RlYWQgb2YgJ2kzODYnLklzIHRoZXJlIGFueSBtaXN0bWFrZSBpbiBteSBz
-ZXR0aW5ncyBpbiB0aGUmbmJzcDthYm92ZS1tZW50aW9uZWQgPyZuYnNwOzwvRElWPg0KPERJ
-Vj4yKUFub3RoZXIgcXVlc3Rpb246IEkgY2FuIHNlZSBIT1NUX0FSQ0g9ImkzODYiIHVzaW5n
-IGJpdGJha2UgLWUgfCBncmVwIEhPU1RfQVJDSCxidXQgc2VlIG5vdGhpbmcgdXNpbmcgYml0
-YmFrZSA8L0RJVj4NCjxESVY+LWUgYnVzeWJveCB8IGdyZXAgSE9TVF9BUkNILkRvZXMmbmJz
-cDtpdCBtZWFuIHRoZSB0aGUgdmFyaWFibGUgaGFzIG5vIGVmZmVjdCB3aGVuIGJ1aWxkaW5n
-IGJ1c3lib3g/PC9ESVY+DQo8RElWPiZuYnNwOzwvRElWPg0KPERJVj5CZXN0IHdoaXNoZXMs
-PC9ESVY+DQo8RElWPi0tLS0tLS0tLS0tLS0tLS0tLS0tLUxpdTxCUj48QlI+PC9ESVY+
-
-------=_NextPart_5091E3D5_D5D0C868_6775EE17--
