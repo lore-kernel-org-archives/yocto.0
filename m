@@ -1,35 +1,24 @@
-Return-Path: <josh@hipro.co.in>
-Received: from mail-pa0-f48.google.com (mail-pa0-f48.google.com
-	[209.85.220.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1DFC1E006C1
-	for <yocto@yoctoproject.org>; Thu,  1 Nov 2012 00:46:39 -0700 (PDT)
-Received: by mail-pa0-f48.google.com with SMTP id kp12so1620127pab.35
-	for <yocto@yoctoproject.org>; Thu, 01 Nov 2012 00:46:39 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=message-id:subject:from:to:date:organization:content-type:x-mailer
-	:mime-version:x-gm-message-state;
-	bh=Gyglzwp3MAoieBGApx6bieoleMD0rB6XLjTULvPDmbI=;
-	b=jklTCzwV5V1Tf6s6x0QFv9tvTlK8Vovng5QsF6EzH3k7jkotZuV2kNMGxgLCABaE7s
-	XtTGyq56QGg5VPqYm/Gq5iNCwKja2qpdmBkmSTaL6mYSSh/vYxWSgBbQGaI29wmvj7Mv
-	Bdjyv2UgL7oLGekI4HaasQWK8OyRAqKPRIpW5v8VqIyqC0zDELzTH9MgT7380WMVL0MX
-	33WFU+spTuZ6+wLHbmy+eFZcdzl2hDHRHPvxJk/9LnxGcLAFgspWqcz79mX1tHJh67M1
-	gq6dgq2OoyNXuDujQtjEQC+aLE6iIC1jolEMPFuIkVmq/UL7rpi/+fVMjF3e20IK1kg9
-	YBPw==
-Received: by 10.68.189.233 with SMTP id gl9mr118505453pbc.166.1351755998876;
-	Thu, 01 Nov 2012 00:46:38 -0700 (PDT)
-Received: from [192.168.50.101] ([59.99.251.45])
-	by mx.google.com with ESMTPS id ve6sm3632237pbc.58.2012.11.01.00.46.34
-	(version=SSLv3 cipher=OTHER); Thu, 01 Nov 2012 00:46:37 -0700 (PDT)
-Message-ID: <1351755981.5181.14.camel@babel.joshhome>
-From: Joshua Immanuel <josh@hipro.co.in>
-To: Yocto Project <yocto@yoctoproject.org>
-Date: Thu, 01 Nov 2012 13:16:21 +0530
-Organization: HiPro IT Solutions Private Limited
-X-Mailer: Evolution 3.4.3-1 
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 179D5E006C1
+	for <yocto@yoctoproject.org>; Thu,  1 Nov 2012 06:33:14 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 01 Nov 2012 06:33:13 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,693,1344236400"; d="scan'208";a="242931273"
+Received: from unknown (HELO [10.255.14.38]) ([10.255.14.38])
+	by fmsmga002.fm.intel.com with ESMTP; 01 Nov 2012 06:33:12 -0700
+Message-ID: <1351776792.30635.3.camel@empanada>
+From: Tom Zanussi <tom.zanussi@intel.com>
+To: Darren Hart <darren.hart@intel.com>
+Date: Thu, 01 Nov 2012 08:33:12 -0500
+In-Reply-To: <50920806.2090401@intel.com>
+References: <cover.1351746741.git.nitin.a.kamble@intel.com>
+	<50920806.2090401@intel.com>
+X-Mailer: Evolution 3.4.1 (3.4.1-2.fc17) 
 Mime-Version: 1.0
-X-Gm-Message-State: ALoCoQnZuIwEcBxrbyeodVMkIXFWg9hwEMdloYXSJ5bBaszA3gbrWow7KoU3cgY0TClF6OVsF+Qo
-Subject: how to add a task via anonymous python function
+Cc: yocto@yoctoproject.org
+Subject: Re: [Patch v2 0/4] Misc Fixes for meta-intel 1.3 release
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,59 +30,72 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 01 Nov 2012 07:46:39 -0000
-X-Groupsio-MsgNum: 10425
-Content-Type: multipart/signed; micalg="pgp-sha1";
-	protocol="application/pgp-signature"; 
-	boundary="=-5S3AYlTlMk7ssJNoZWlM"
-
---=-5S3AYlTlMk7ssJNoZWlM
+X-List-Received-Date: Thu, 01 Nov 2012 13:33:14 -0000
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hello,
-
-I want to do the following in anonymous python function
-
-        addtask some_task after do_compile before do_install
-
-Getting some clue from externalsrc.bbclass I did the following
-
-        python __anonymous () {
-            tasks =3D d.getVar('__BBTASKS')
-            tasks.insert(tasks.index('do_install'), 'do_some_task')
-            d.setVar('__BBTASKS', tasks)
-            d.setVarFlag('do_some_task', 'deps', 'do_compile')
-            d.setVarFlag('do_install', 'deps', 'do_some_task')
-            tasklist =3D filter(lambda k: d.getVarFlag(k, "task"),
-        d.keys())
-            print tasklist
-        }
-       =20
-The above printed tasklist doesn't contain 'do_some_task'. I am able to
-run the task manually via
-
-        bitbake -c some_task <recipe_name>
-       =20
-But, the task doesn't gets executed automatically after the do_compile
-task. Is there anything else that should be done?
-
---=20
-Joshua Immanuel
-HiPro IT Solutions Private Limited
-http://hipro.co.in
-
---=-5S3AYlTlMk7ssJNoZWlM
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
 Content-Transfer-Encoding: 7bit
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.12 (GNU/Linux)
+On Wed, 2012-10-31 at 22:26 -0700, Darren Hart wrote:
+> On 10/31/2012 10:14 PM, nitin.a.kamble@intel.com wrote:
+> > From: Nitin A Kamble <nitin.a.kamble@intel.com>
+> > 
+> > This v2 pull request is with newer version of libva-intel-driver.
+> > These commits tested on All the BSPs I am maintaining with expected results.
+> > 
+> 
+> Nitin, do these patches fix any specific bug? Such as 3348? You mention
+> a couple, but not clearly that these patches fix them. If so, please
+> include:
+> 
+> Fixes [YOCTO #XXXX]
+> 
+> in the commit log for the associated patch(es).
+> 
 
-iEYEABECAAYFAlCSKM0ACgkQWw85XwuSFMKaogCgvECG0DVt6qupE5Tzti4uZ8qP
-6EMAnj8cqUsNlu/jRtzkoeMHEsKu4Hxe
-=7S/I
------END PGP SIGNATURE-----
+To save time, I'll go ahead and add that to those 2 patches when I pull
+it in...
 
---=-5S3AYlTlMk7ssJNoZWlM--
+Tom
+
+> Otherwise this looks to be what we have discussed.
+> 
+> Thanks,
+> 
+> Darren
+> 
+> > Thanks,
+> > Nitin
+> > 
+> > The following changes since commit 43b2e9c34363ade4241a60f699b47179929c6fb6:
+> > 
+> >   n450: Add WEBTITLE and boilerplate README (2012-10-31 08:40:15 -0700)
+> > 
+> > are available in the git repository at:
+> >   git://git.yoctoproject.org/meta-intel-contrib nitin/misc
+> >   http://git.yoctoproject.org/cgit.cgi/meta-intel-contrib/log/?h=nitin/misc
+> > 
+> > Nitin A Kamble (3):
+> >   libva: update to the latest version
+> >   libva-intel-driver: update to the latest version
+> >   mesa-dri.bbappend: avoid conflict with emgd-driver-bin
+> > 
+> > Ross Burton (1):
+> >   libva: remove redundant libva 1.0.12
+> > 
+> >  .../recipes-graphics/mesa/mesa-dri_8.0.4.bbappend  |   27 +++++++++++++++++---
+> >  .../libva/libva-intel-driver.inc                   |    2 +-
+> >  .../libva/libva-intel-driver_1.0.15.bb             |    8 ------
+> >  .../libva/libva-intel-driver_1.0.18.bb             |    8 ++++++
+> >  common/recipes-multimedia/libva/libva_1.0.12.bb    |    8 ------
+> >  common/recipes-multimedia/libva/libva_1.0.15.bb    |    8 ------
+> >  common/recipes-multimedia/libva/libva_1.0.16.bb    |    8 ++++++
+> >  7 files changed, 40 insertions(+), 29 deletions(-)
+> >  delete mode 100644 common/recipes-multimedia/libva/libva-intel-driver_1.0.15.bb
+> >  create mode 100644 common/recipes-multimedia/libva/libva-intel-driver_1.0.18.bb
+> >  delete mode 100644 common/recipes-multimedia/libva/libva_1.0.12.bb
+> >  delete mode 100644 common/recipes-multimedia/libva/libva_1.0.15.bb
+> >  create mode 100644 common/recipes-multimedia/libva/libva_1.0.16.bb
+> > 
+> 
+
+
+
