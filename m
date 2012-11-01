@@ -1,23 +1,26 @@
-Return-Path: <kishore.k.bodke@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3224FE0027E
-	for <yocto@yoctoproject.org>; Wed, 31 Oct 2012 15:14:09 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 31 Oct 2012 15:13:38 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.80,688,1344236400"; d="scan'208";a="213698916"
-Received: from kishore-desktop.sc.intel.com (HELO localhost) ([143.183.188.87])
-	by orsmga001.jf.intel.com with ESMTP; 31 Oct 2012 15:14:08 -0700
-From: kishore.k.bodke@intel.com
-To: tom.zanussi@intel.com,
-	nitin.a.kamble@intel.com,
-	yocto@yoctoproject.org
-Date: Wed, 31 Oct 2012 15:14:41 -0700
-Message-Id: <f2aebacce1371dd3a459c0019b881e444192b602.1351721365.git.kishore.k.bodke@intel.com>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <cover.1351721365.git.kishore.k.bodke@intel.com>
-References: <cover.1351721365.git.kishore.k.bodke@intel.com>
-Subject: [PATCH 1/1] [meta-intel] crystalforest: Update README Instructions.
+Return-Path: <Kai.Kang@windriver.com>
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9E269E011F3
+	for <yocto@yoctoproject.org>; Wed, 31 Oct 2012 19:33:08 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id qA12X8JZ016789
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Wed, 31 Oct 2012 19:33:08 -0700 (PDT)
+Received: from [128.224.162.205] (128.224.162.205) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.2.318.4;
+	Wed, 31 Oct 2012 19:33:07 -0700
+Message-ID: <5091DF8A.9090901@windriver.com>
+Date: Thu, 1 Nov 2012 10:33:46 +0800
+From: Kang Kai <Kai.Kang@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:10.0.2) Gecko/20120216 Thunderbird/10.0.2
+MIME-Version: 1.0
+To: <yocto@yoctoproject.org>
+References: <cover.1351676013.git.kai.kang@windriver.com>
+In-Reply-To: <cover.1351676013.git.kai.kang@windriver.com>
+X-Originating-IP: [128.224.162.205]
+Subject: Re: [PATCH 0/1] update script create-recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,63 +32,73 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 31 Oct 2012 22:14:09 -0000
+X-List-Received-Date: Thu, 01 Nov 2012 02:33:08 -0000
+Content-Type: multipart/alternative;
+	boundary="------------010306050000020709010200"
 
-From: Kishore Bodke <kishore.k.bodke@intel.com>
+--------------010306050000020709010200
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Add Instructions on how to get the DPDK and
-QuickAssist Recipes.
+On 2012?10?31? 17:38, Kang Kai wrote:
+> Update create-recipe to fix some small bugs.
+>
+> The following changes since commit e9e3285e1397cfd2d34f4eb7b5aa59311eea861d:
+>
+>    openssl: Use ${CFLAGS} not ${FULL_OPTIMIZATION} (2012-10-30 11:06:38 +0000)
+>
+> are available in the git repository at:
+>    git://git.pokylinux.org/poky-contrib kangkai/update-create-recipe
+>    http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=kangkai/update-create-recipe
+>
+> Kang Kai (1):
+>    create-recipe: update re pattern and output
+>
+>   scripts/create-recipe |   29 +++++++++++++++++++----------
+>   1 files changed, 19 insertions(+), 10 deletions(-)
+>
+Drop it, and this should be sent to oe-core list.
+Sorry for disturbing you.
 
-Signed-off-by: Kishore Bodke <kishore.k.bodke@intel.com>
----
- meta-crystalforest/README |   19 ++++++++++---------
- 1 file changed, 10 insertions(+), 9 deletions(-)
+Kai
 
-diff --git a/meta-crystalforest/README b/meta-crystalforest/README
-index 8731c2a..55e4ba0 100644
---- a/meta-crystalforest/README
-+++ b/meta-crystalforest/README
-@@ -56,6 +56,7 @@ Table of Contents
- 
-   I. Building the meta-crystalforest BSP layer
-  II. Booting the images in /binary
-+III. Enabling Intel DPDK and QuickAssist Technology
- 
- 
- I. Building the meta-crystalforest BSP layer
-@@ -88,15 +89,6 @@ You should then be able to build a crystalforest image as such:
-   $ source oe-init-build-env
-   $ bitbake core-image-sato
- 
--The above image will not give you the quickassist technology features
--such as openssl-qat-module, zlib-qat-module and corpus data files.
--
--If you want those feature built into the image by default, You should
--build the custom image by doing the following:
--
--  $ source oe-init-build-env
--  $ bitbake core-image-qat
--
- At the end of a successful build, you should have a live image that
- you can boot from a USB flash drive (see instructions on how to do
- that below, in the section 'Booting the images from /binary').
-@@ -147,6 +139,15 @@ ifconfig the IP address and use that to ssh in.  The root password is
- empty, so to log in type 'root' for the user name and hit 'Enter' at
- the Password prompt: and you should be in.
- 
-+III. Enabling Intel DPDK and QuickAssist Technology
-+===================================================
-+
-+There are recipes available for the 'Intel Data Plane Development Kit and
-+Intel QuickAssist Technology components for use with this BSP.  Please
-+contact your Intel Field Sales Representative or visit Intel Embedded Design
-+Center (www.intel.com/p/en_US/embedded/designcenter) for instructions on how
-+to locate and use these recipes.
-+
- ----
- 
- If you find you're getting corrupt images on the USB (it doesn't show
--- 
-1.7.9.5
+--------------010306050000020709010200
+Content-Type: text/html; charset="ISO-8859-1"
+Content-Transfer-Encoding: 7bit
 
+<html>
+  <head>
+    <meta content="text/html; charset=ISO-8859-1"
+      http-equiv="Content-Type">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    On 2012&#24180;10&#26376;31&#26085; 17:38, Kang Kai wrote:
+    <blockquote cite="mid:cover.1351676013.git.kai.kang@windriver.com"
+      type="cite">
+      <pre wrap="">Update create-recipe to fix some small bugs.
 
+The following changes since commit e9e3285e1397cfd2d34f4eb7b5aa59311eea861d:
+
+  openssl: Use ${CFLAGS} not ${FULL_OPTIMIZATION} (2012-10-30 11:06:38 +0000)
+
+are available in the git repository at:
+  git://git.pokylinux.org/poky-contrib kangkai/update-create-recipe
+  <a class="moz-txt-link-freetext" href="http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=kangkai/update-create-recipe">http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=kangkai/update-create-recipe</a>
+
+Kang Kai (1):
+  create-recipe: update re pattern and output
+
+ scripts/create-recipe |   29 +++++++++++++++++++----------
+ 1 files changed, 19 insertions(+), 10 deletions(-)
+
+</pre>
+    </blockquote>
+    <font size="+1">Drop it, and this should be sent to oe-core list.<br>
+      Sorry for disturbing you.<br>
+      <br>
+      Kai<br>
+    </font>
+  </body>
+</html>
+
+--------------010306050000020709010200--
