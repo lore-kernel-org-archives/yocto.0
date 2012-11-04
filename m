@@ -1,37 +1,17 @@
-Return-Path: <josh@hipro.co.in>
-Received: from mail-pa0-f48.google.com (mail-pa0-f48.google.com
-	[209.85.220.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6D161E0049B
-	for <yocto@yoctoproject.org>; Fri,  2 Nov 2012 07:42:46 -0700 (PDT)
-Received: by mail-pa0-f48.google.com with SMTP id kp12so2612083pab.35
-	for <yocto@yoctoproject.org>; Fri, 02 Nov 2012 07:42:45 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=message-id:subject:from:to:date:in-reply-to:references:organization
-	:content-type:x-mailer:mime-version:x-gm-message-state;
-	bh=HYdT1VD7ibi0OJVy11trvKpOeKhUh7ku0XdmpRgLWnI=;
-	b=lp9fWrRtmWiD8oCMKCWSRf9BuyZLuYTJ0MiGloNLBqiwr4wcSmjf6BE58vvvINTUFq
-	FZU3P3n89IVWBKpemUeGaDlOrJi3NTlgvVPgWipdRtKCPfEzxKteSATsudKa8JIa2uP2
-	8eVi5zTDBwbtp56pUglHwNA22DaNNvwBQ/K1rJIx7TZJco8bG0RJ+6fdDS7gKRf1mgLx
-	MERv6KA6ddra5Kpi17kCNSZ5u9WMY7f8H/cIsGP+jj8/vYOSKGQllqdGos8pEDG3bPEu
-	6dBALD/Um71KvytpSQZP4pt9LYLiCyGvOAEhmDtxV+LiCWZEwn8NjjKH9lAPvW9FwAPd
-	0TeA==
-Received: by 10.66.73.230 with SMTP id o6mr5889184pav.45.1351867365599;
-	Fri, 02 Nov 2012 07:42:45 -0700 (PDT)
-Received: from [192.168.10.241] ([59.99.251.45])
-	by mx.google.com with ESMTPS id sy1sm5850151pbc.66.2012.11.02.07.42.41
-	(version=SSLv3 cipher=OTHER); Fri, 02 Nov 2012 07:42:44 -0700 (PDT)
-Message-ID: <1351867349.4142.15.camel@babel.joshhome>
-From: Joshua Immanuel <josh@hipro.co.in>
-To: Yocto Project <yocto@yoctoproject.org>
-Date: Fri, 02 Nov 2012 20:12:29 +0530
-In-Reply-To: <1351755981.5181.14.camel@babel.joshhome>
-References: <1351755981.5181.14.camel@babel.joshhome>
-Organization: HiPro IT Solutions Private Limited
-X-Mailer: Evolution 3.4.3-1 
-Mime-Version: 1.0
-X-Gm-Message-State: ALoCoQkkPaNsUcB8//gfY8+Vx+RoypSveoTnr+apdhcOKgoSUWukFmAla3QjIR5ipU/akgybptjI
-Subject: Re: how to add a task via anonymous python function
+Return-Path: <packages@autobuilder.yoctoproject.org>
+Received: from autobuilder.yoctoproject.org (ab-master.i.yoctoproject.org
+	[10.0.10.111])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 41F7CE00521
+	for <yocto@yoctoproject.org>; Sat,  3 Nov 2012 17:01:06 -0700 (PDT)
+Received: by autobuilder.yoctoproject.org (Postfix, from userid 802)
+	id 3203D40464; Sun,  4 Nov 2012 00:01:06 +0000 (UTC)
+Date: Sun, 4 Nov 2012 00:01:06 +0000
+From: Yocto Project Package Report System <package-reporting@yoctoproject.org>
+To: yocto@yoctoproject.org
+Message-ID: <20121104000106.GA5982@ab01.i.yoctoproject.org>
+MIME-Version: 1.0
+User-Agent: Mutt/1.5.20 (2009-12-10)
+Subject: [Package Report System]Upgrade recipes name list
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,70 +23,125 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 02 Nov 2012 14:42:46 -0000
-X-Groupsio-MsgNum: 10436
-Content-Type: multipart/signed; micalg="pgp-sha1";
-	protocol="application/pgp-signature"; 
-	boundary="=-Fc/e3FHeIE6sNkD9TDHy"
+X-List-Received-Date: Sun, 04 Nov 2012 00:01:06 -0000
+X-Groupsio-MsgNum: 10437
+Content-Type: multipart/mixed; boundary="7JfCtLOvnd9MIVvH"
+Content-Disposition: inline
 
---=-Fc/e3FHeIE6sNkD9TDHy
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+--7JfCtLOvnd9MIVvH
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Hello,
+This mail was sent out by Package Report System.
+This message list those recipes which need to be upgraded. If maintainers believe some of them needn't to upgrade this time, they can fill in RECIPE_NO_UPDATE_REASON_pn-"xxx" in upstream_tracking files to ignore this recipe remainder until newer upstream version was detected.
+Example:
+RECIPE_NO_UPDATE_REASON_pn-"xxx" = "Not upgrade to 2.0 because the new version is unstable"
+You can check the detail information at http://packages.yoctoproject.org/upgradepkgname
 
-On Thu, 2012-11-01 at 13:16 +0530, Joshua Immanuel wrote:
-> I want to do the following in anonymous python function
->=20
->         addtask some_task after do_compile before do_install
->=20
-> Getting some clue from externalsrc.bbclass I did the following
->=20
->         python __anonymous () {
->             tasks =3D d.getVar('__BBTASKS')
->             tasks.insert(tasks.index('do_install'), 'do_some_task')
->             d.setVar('__BBTASKS', tasks)
->             d.setVarFlag('do_some_task', 'deps', 'do_compile')
->             d.setVarFlag('do_install', 'deps', 'do_some_task')
->             tasklist =3D filter(lambda k: d.getVarFlag(k, "task"),
->         d.keys())
->             print tasklist
->         }
->        =20
-> The above printed tasklist doesn't contain 'do_some_task'.=20
 
-If we have a recipe which has the BBCLASSEXTEND =3D "native" set and if we
-want to add a task just for the <recipe>-native alone. I thought, I
-could check the ${PN} and add the task dynamically. Since the above
-method is flawed. I followed a simpler and straight forward approach
-without tweaking the bitbake's internal variable. (Hope this helps
-someone)
+PackageName                   Version                       UpVersion                     Maintainer                                        NoUpgradeReason               
+ccache                        3.1.7                         3.1.8                         Wenzong Fan <wenzong.fan@windriver.com>           
+xdg-utils                     1.0.2                         1.1.0                         Valentin Popa <valentin.popa@intel.com>           
+liberation-fonts              1.04                          2.00.0                        Valentin Popa <valentin.popa@intel.com>           
+libxslt                       1.1.26                        1.1.27                        Valentin Popa <valentin.popa@intel.com>           
+evolution-data-server         2.30+git1+3ca578d968d097      6.0                           Valentin Popa <valentin.popa@intel.com>           
+puzzles                       r9594                         9660                          Valentin Popa <valentin.popa@intel.com>           
+matchbox-panel-2              0.0+git1+cdf7a22716b8746      2.0                           Valentin Popa <valentin.popa@intel.com>           
+lttng-viewer                  0.12.38                       0.12.38.21032011              Valentin Popa <valentin.popa@intel.com>           
+sysprof                       1.1.8+git1+4692f85f625f4      1.2.0                         Tom Zanussi <tom.zanussi@intel.com>               
+shadow                        4.1.4.3                       4.1.5.1                       Scott Garman <scott.a.garman@intel.com>           
+sudo                          1.8.5p2                       1.8.6                         Scott Garman <scott.a.garman@intel.com>           
+blktool                       4-6                           4                             Scott Garman <scott.a.garman@intel.com>           
+apmd                          3.2.2-14                      3.2.2                         Scott Garman <scott.a.garman@intel.com>           
+openssh                       6.0p1                         6.1p1                         Scott Garman <scott.a.garman@intel.com>           
+mc                            4.8.4                         4.8.6                         Saul Wold <sgw@linux.intel.com>                   
+libtasn1                      2.13                          2.14                          Saul Wold <sgw@linux.intel.com>                   
+libnl                         2.0                           3.2.13                        Saul Wold <sgw@linux.intel.com>                   libnl-3.2.2 is incompatible w...
+createrepo                    0.4.11                        0.9.9                         Saul Wold <sgw@linux.intel.com>                   Versions after 0.9.* use YUM,...
+apt                           0.7.14                        0.9.7.5                       Saul Wold <sgw@linux.intel.com>                   
+pkgconfig                     0.25                          0.27.1                        Saul Wold <sgw@linux.intel.com>                   0.26 removes glib-conf, adds ...
+build-appliance-image         1.0                           3.2.1                         Saul Wold <sgw@linux.intel.com>                   
+util-linux                    2.21.2                        2.22                          Saul Wold <sgw@linux.intel.com>                   
+libxml2                       2.8.0                         2.9.0                         Saul Wold <sgw@linux.intel.com>                   
+resolvconf                    1.67                          1.68                          Saul Wold <sgw@linux.intel.com>                   
+dhcp                          4.2.4-P1                      4.2.4                         Saul Wold <sgw@linux.intel.com>                   ftp://ftp.isc.org/isc/dhcp/4.2.4-P1/dhcp-4.2.4-P1.tar.gz
+tiff                          4.0.2                         4.0.3                         Saul Wold <sgw@linux.intel.com>                   
+logrotate                     3.8.1                         3.8.2                         Robert Yang <liezhi.yang@windriver.com>           
+liburcu                       0.6.7                         0.7.4                         Radu Moisan <radu.moisan@intel.com>               
+curl                          7.26.0                        7.27.0                        Radu Moisan <radu.moisan@intel.com>               
+js                            1.7.0+1.8.0rc1                1.60                          Radu Moisan <radu.moisan@intel.com>               
+u-boot-mkimage                2011.06                       2012.07                       Radu Moisan <radu.moisan@intel.com>               
+valgrind                      3.7.0                         3.8.1                         Radu Moisan <radu.moisan@intel.com>               
+babeltrace                    0.12+git1+0d8f8c2ea27df0      1.0.0                         Radu Moisan <radu.moisan@intel.com>               
+udev                          164                           182                           Radu Moisan <radu.moisan@intel.com>               
+mobile-broadband-provider-info1.0.0+gitr1+d9995ef693cb      20090309                      Radu Moisan <radu.moisan@intel.com>               
+nativesdk-bdwgc               20110107                      7.2alpha5                     No Maintainer information                         
+nativesdk-curl                7.26.0                        7.27.0                        No Maintainer information                         
+libksba                       1.2.0                         1.3.0                         No Maintainer information                         
+cmake                         2.8.8                         2.8.9                         No Maintainer information                         
+nativesdk-cmake               2.8.8                         2.8.9                         No Maintainer information                         
+nativesdk-automake            1.12.3                        1.12.4                        No Maintainer information                         
+nativesdk-pkgconfig           0.25                          0.27.1                        No Maintainer information                         
+nativesdk-perl                5.14.2                        5.17.4                        No Maintainer information                         
+lttng-modules                 2.0.pre11+git4d3e89e379f      2.1.0                         No Maintainer information                         
+nativesdk-linux-libc-headers  3.4.3                         3.6                           No Maintainer information                         
+nativesdk-linux-libc-headers- 3.4+git-1+a1cdb60720c452      3.4.9                         No Maintainer information                         
+nativesdk-libxml2             2.8.0                         2.9.0                         No Maintainer information                         
+nativesdk-zlib                1.2.7                         121                           No Maintainer information                         
+libdumpvalue-perl             1.16                          1.17                          No Maintainer information                         
+nativesdk-openssl             1.0.0j                        1.0.1                         No Maintainer information                         
+zypper                        1.5.3-git1+2c5bb6ceb99ec      11.0                          Mark Hatle <mark.hatle@windriver.com>             
+libzypp                       0.0-git1+15b6c52260bbc52      11.0                          Mark Hatle <mark.hatle@windriver.com>             
+fontconfig                    2.9.0                         2.10.1                        Laurentiu Palcu <laurentiu.palcu@intel.com>       
+xkeyboard-config              2.1                           2.6.99                        Laurentiu Palcu <laurentiu.palcu@intel.com>       
+xserver-xorg                  1.11.2                        1.13.0                        Laurentiu Palcu <laurentiu.palcu@intel.com>       
+xf86-input-mouse              1.7.2                         1.8.1                         Laurentiu Palcu <laurentiu.palcu@intel.com>       
+xf86-input-evdev              2.7.0                         2.7.3                         Laurentiu Palcu <laurentiu.palcu@intel.com>       
+xf86-video-vesa               2.3.1                         2.3.2                         Laurentiu Palcu <laurentiu.palcu@intel.com>       
+xf86-video-fbdev              0.4.2                         0.4.3                         Laurentiu Palcu <laurentiu.palcu@intel.com>       
+xf86-video-intel              2.19.0                        2.20.8                        Laurentiu Palcu <laurentiu.palcu@intel.com>       
+xf86-input-keyboard           1.6.1                         1.6.2                         Laurentiu Palcu <laurentiu.palcu@intel.com>       
+ghostscript                   9.05                          9.06                          Kai Kang <kai.kang@windriver.com>                 
+directfb                      1.6.1                         1.6.2                         Kai Kang <kai.kang@windriver.com>                 
+qmmp                          0.6.1                         0.6.3                         Kai Kang <kai.kang@windriver.com>                 
+syslinux                      4.03                          4.05                          Darren Hart <dvhart@linux.intel.com>              Waiting for 4.06 for 3.3 kern...
+net-tools                     1.60-23                       1.60                          Cristian Iorga <cristian.iorga@intel.com>         
+connman                       1.4                           1.7                           Cristian Iorga <cristian.iorga@intel.com>         
+ofono                         1.10                          1.11                          Cristian Iorga <cristian.iorga@intel.com>         
+telepathy-mission-control     5.13.0                        5.13.2                        Cristian Iorga <cristian.iorga@intel.com>         
+telepathy-glib                0.19.8                        0.19.10                       Cristian Iorga <cristian.iorga@intel.com>         
+libmusicbrainz                3.0.3                         4.0.0                         Cristian Iorga <cristian.iorga@intel.com>         
+gst-plugins-base              0.10.36                       0.11.90                       Cristian Iorga <cristian.iorga@intel.com>         
+gst-ffmpeg                    0.10.13                       0.11.2                        Cristian Iorga <cristian.iorga@intel.com>         
+gst-plugins-good              0.10.31                       0.11.90                       Cristian Iorga <cristian.iorga@intel.com>         
+gst-plugins-bad               0.10.23                       0.11.90                       Cristian Iorga <cristian.iorga@intel.com>         
+gst-plugins-ugly              0.10.19                       0.11.90                       Cristian Iorga <cristian.iorga@intel.com>         
+gstreamer                     0.10.36                       0.11.90                       Cristian Iorga <cristian.iorga@intel.com>         upgrading to 0.11.1 causes gs...
+gst-fluendo-mp3               0.10.19                       0.10.20                       Cristian Iorga <cristian.iorga@intel.com>         
+libconvert-asn1-perl          0.22                          0.26                          Bogdan Marinescu <bogdan.a.marinescu@intel.com>   
+patch                         2.6.1                         2.7                           Bogdan Marinescu <bogdan.a.marinescu@intel.com>   
+tcf-agent                     0.4.0+git1+4ef94ecb927a8      8.0                           Bogdan Marinescu <bogdan.a.marinescu@intel.com>   
+automake                      1.12.3                        1.12.4                        Bogdan Marinescu <bogdan.a.marinescu@intel.com>   
+bison                         2.5.1                         2.6.2                         Bogdan Marinescu <bogdan.a.marinescu@intel.com>   
+nasm                          2.10.01                       2.10.05                       Bogdan Marinescu <bogdan.a.marinescu@intel.com>   
+lttng2-ust                    2.0.2+git1+a367ee66aad3f      2.1.0                         Bogdan Marinescu <bogdan.a.marinescu@intel.com>   
+linux-libc-headers-yocto      3.4+git-1+a1cdb60720c452      3.4.9                         Bogdan Marinescu <bogdan.a.marinescu@intel.com>   
+linux-libc-headers            3.4.3                         3.6                           Bogdan Marinescu <bogdan.a.marinescu@intel.com>   
+lttng-control                 0.89                          0.89.05122011                 Bogdan Marinescu <bogdan.a.marinescu@intel.com>   
+Upgradable Count: 82
+Upgrade Total Count: 88
+The based commit merge time is:
+Thu Sep 27 16:15:38 2012 -0700
+The based commit is:
+commit fc1822fc6b3cbe6fb52e7f08eac4c6b624fba462
+Author: Richard Purdie <richard.purdie@linuxfoundation.org>
+Date:   Thu Sep 27 23:06:06 2012 +0100
+Any problem, please contact Saul Wold <sgw@linux.intel.com> 
 
-        BBCLASSEXTEND =3D "native"
-        addtask some_task after do_compile before do_install
-       =20
-        python __anonymous () {
-            pn =3D d.getVar('PN', True)
-            if not pn.endswith("native"):
-                d.setVarFlag('do_some_task', 'noexec', '1')
-        }
+--7JfCtLOvnd9MIVvH
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: attachment; filename="potential_format_problem.log"
 
---=20
-Joshua Immanuel
-HiPro IT Solutions Private Limited
-http://hipro.co.in
+recipe_color.inc/17: RECIPE_COLOR = "green"
 
---=-Fc/e3FHeIE6sNkD9TDHy
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.12 (GNU/Linux)
-
-iEYEABECAAYFAlCT29UACgkQWw85XwuSFML6+QCgln+qs8KSYCIC1YwhJezthEtg
-4+wAoIBqnxw7IJvlaK4QIaWXJ6Fnue0W
-=xEV6
------END PGP SIGNATURE-----
-
---=-Fc/e3FHeIE6sNkD9TDHy--
+--7JfCtLOvnd9MIVvH--
