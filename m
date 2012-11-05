@@ -1,17 +1,35 @@
-Return-Path: <packages@autobuilder.yoctoproject.org>
-Received: from autobuilder.yoctoproject.org (ab01.i.yoctoproject.org
-	[10.0.10.111])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4310AE00529
-	for <yocto@yoctoproject.org>; Sat,  3 Nov 2012 17:01:06 -0700 (PDT)
-Received: by autobuilder.yoctoproject.org (Postfix, from userid 802)
-	id 3FEB240B27; Sun,  4 Nov 2012 00:01:06 +0000 (UTC)
-Date: Sun, 4 Nov 2012 00:01:06 +0000
-From: Yocto Project Package Report System <package-reporting@yoctoproject.org>
-To: yocto@yoctoproject.org
-Message-ID: <20121104000106.GA5988@ab01.i.yoctoproject.org>
-MIME-Version: 1.0
-User-Agent: Mutt/1.5.20 (2009-12-10)
-Subject: [Package Report System]Manual check recipes name list
+Return-Path: <josh@hipro.co.in>
+Received: from mail-da0-f48.google.com (mail-da0-f48.google.com
+	[209.85.210.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7D239E013A6
+	for <yocto@yoctoproject.org>; Mon,  5 Nov 2012 01:24:30 -0800 (PST)
+Received: by mail-da0-f48.google.com with SMTP id z8so2700849dad.35
+	for <yocto@yoctoproject.org>; Mon, 05 Nov 2012 01:24:29 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=message-id:subject:from:to:date:organization:content-type:x-mailer
+	:mime-version:x-gm-message-state;
+	bh=rlXD9WdYYjwokC+rOAKLBlLnhJzZE82TPZUjP9sHQd8=;
+	b=NBHVIsh+MRJnlDwj5f7Yp+iC6afxB2VV/IQQY1F5e8opkLzkM0YY+EXtbYxhvs33a+
+	pvlB+KX4Y5jHIYeinTokp2iO1TXfdxxhCEhpYeM8Wqn/wWScP02oLbr7k/lp8mN/kIO/
+	VYiOaZeDGDeqryxAGOH4fugFP8J2UTsEx3tlzQ8mS39msk0Rwxs8tJ7xFjPQ6TZnSwvp
+	9graCnl2RrwujPOb1oz3z6PmWsBtQWYOO16peJHQIx69XfdMHlgqH+CTPmGA0k25s+F7
+	Z1f0KmATKxw8XBxaWs6gz2XOp2G6XUKB5SAc7eDNlGiCkKBg/sSE7OL/QUSJ/dv591ju
+	PW9w==
+Received: by 10.68.245.169 with SMTP id xp9mr28749469pbc.142.1352107469350;
+	Mon, 05 Nov 2012 01:24:29 -0800 (PST)
+Received: from [192.168.10.241] ([59.99.251.45])
+	by mx.google.com with ESMTPS id ve6sm10283410pbc.58.2012.11.05.01.24.26
+	(version=SSLv3 cipher=OTHER); Mon, 05 Nov 2012 01:24:28 -0800 (PST)
+Message-ID: <1352107456.4166.13.camel@babel.joshhome>
+From: Joshua Immanuel <josh@hipro.co.in>
+To: Yocto Project <yocto@yoctoproject.org>
+Date: Mon, 05 Nov 2012 14:54:16 +0530
+Organization: HiPro IT Solutions Private Limited
+X-Mailer: Evolution 3.4.3-1 
+Mime-Version: 1.0
+X-Gm-Message-State: ALoCoQkMsmiEESAnPOYeuhI51GB4EsFVD0NYcHpbGH5RuhkmDOm3QDAvvwFIPvuSGvR1sDRGNMUQ
+Subject: forcing to run a task that has been disabled by image.bbclass
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -23,132 +41,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 04 Nov 2012 00:01:06 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Mon, 05 Nov 2012 09:24:30 -0000
+X-Groupsio-MsgNum: 10439
+Content-Type: multipart/signed; micalg="pgp-sha1";
+	protocol="application/pgp-signature"; 
+	boundary="=-uhRS7bERoedQ093ijdrP"
 
-This mail was sent out by Package Report System.
-It will list all the recipes which can't check upstream version by script, and will show how long it is since their last mannual version check.
-You can check the detail information at http://packages.yoctoproject.org/manuallychkinfo
+--=-uhRS7bERoedQ093ijdrP
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+Hello,
+I have been using edison branch for quite some time. As I was trying to
+migrate my layer to danny branch I found that in commit 6706c7bd common
+tasks such as fetch, unpack, patch etc has been disabled for image
+recipes by setting the 'noexec' flag for them.
 
-PackageName              Version             LastChkVersion      LastChkTime              Maintainer                              NoUpgradeReason               
-lsb                      4.1                 4.1                 200 day                  Yi Zhao <yi.zhao@windriver.co...        1.4 is fixed version of LSB Te...
-freetype                 2.4.10              2.4.10              121 day                  Valentin Popa <valentin.popa@...        No data                       
-menu-cache               0.3.3               0.3.3               41215 d                  Valentin Popa <valentin.popa@...        No data                       
-libfm                    0.1.17              1.30                121 day                  Valentin Popa <valentin.popa@...        No data                       
-pcmanfm                  0.9.10              0.9.10              121 day                  Valentin Popa <valentin.popa@...        No data                       
-gtkhtml2                 2.11.0+svnr11...    2.11.1              41215 d                  Valentin Popa <valentin.popa@...        No data                       
-libevent                 2.0.16              2.0.20              297 day                  Scott Garman <scott.a.garman@...        No data                       
-e2fsprogs                1.42.1              1.42.5              122 day                  Scott Garman <scott.a.garman@...        No data                       
-chrpath                  0.14                0.14                122 day                  Scott Garman <scott.a.garman@...        No data                       
-opensp                   1.5.2               1.5.2               122 day                  Scott Garman <scott.a.garman@...        No data                       
-expat                    2.1.0               2.0.1               122 day                  Scott Garman <scott.a.garman@...        No data                       
-nfs-utils                1.2.3               1.2.6               122 day                  Scott Garman <scott.a.garman@...        No data                       
-libpng                   1.2.49              1.5.11              122 day                  Scott Garman <scott.a.garman@...        1.4.3 and later changes the AP...
-libatomics-ops           7.2                 N/A                 41215 d                  Scott Garman <scott.a.garman@...        No data                       
-cracklib                 2.8.19              2.8.19              122 day                  Saul Wold <sgw@linux.intel.co...        No data                       
-psmisc                   22.19               22.19               122 day                  Saul Wold <sgw@linux.intel.co...        No data                       
-sysstat                  10.1.1              10.1.1              122 day                  Saul Wold <sgw@linux.intel.co...        No data                       
-less                     444                 444                 122 day                  Saul Wold <sgw@linux.intel.co...        No data                       
-glew                     1.9.0               1.9.0               122 day                  Saul Wold <sgw@linux.intel.co...        No data                       
-mx                       1.4.6               N/A                 41215 d                  Saul Wold <sgw@linux.intel.co...        No data                       
-libexif                  0.6.21              0.6.21              122 day                  Saul Wold <sgw@linux.intel.co...        No data                       
-sqlite3                  3.7.13              3.7.13              122 day                  Saul Wold <sgw@linux.intel.co...        No data                       
-boost                    1.51.0              1.51.0              122 day                  Saul Wold <sgw@linux.intel.co...        No data                       
-libcheck                 0.9.8               0.9.8               122 day                  Saul Wold <sgw@linux.intel.co...        No data                       
-libacpi                  0.2                 0.2                 41215 d                  Saul Wold <sgw@linux.intel.co...        No data                       
-sysfsutils               2.1.0               2.1.0               122 day                  Saul Wold <sgw@linux.intel.co...        No data                       
-console-tools            0.3.2               0.3.2               122 day                  Saul Wold <sgw@linux.intel.co...        No data                       
-libmad                   0.15.1b             0.15.2b             122 day                  Saul Wold <sgw@linux.intel.co...        No data                       
-popt                     1.16                1.16                41215 d                  Saul Wold <sgw@linux.intel.co...        No data                       
-clutter-gst-1.8          1.4.6               N/A                 41215 d                  Ross Burton <ross.burton@inte...        No data                       
-cogl                     1.8.2               Jul 17, 2012        327 day                  Ross Burton <ross.burton@inte...        No data                       
-clutter-1.8              1.8.4               N/A                 41215 d                  Ross Burton <ross.burton@inte...        No data                       
-clutter-gtk-1.8          0.11.4              N/A                 41215 d                  Ross Burton <ross.burton@inte...        No data                       
-tzdata                   2012d               2012c               121 day                  Radu Moisan <radu.moisan@inte...        No data                       
-bzip2                    1.0.6               1.0.6               530 day                  Radu Moisan <radu.moisan@inte...        No data                       
-zip                      3.0                 3.0                 121 day                  Radu Moisan <radu.moisan@inte...        No data                       
-watchdog                 5.12                5.12                121 day                  Radu Moisan <radu.moisan@inte...        No data                       
-hdparm                   9.39                9.39                121 day                  Radu Moisan <radu.moisan@inte...        No data                       
-tslib                    1.0                 1.0                 121 day                  Radu Moisan <radu.moisan@inte...        No data                       
-unzip                    6.0                 6.0                 121 day                  Radu Moisan <radu.moisan@inte...        No data                       
-beecrypt                 4.2.1               4.2.1               121 day                  Radu Moisan <radu.moisan@inte...        No data                       
-setserial                2.17                2.17                193 day                  Radu Moisan <radu.moisan@inte...        No data                       
-acpid                    1.0.10              1.0.10              121 day                  Radu Moisan <radu.moisan@inte...        No data                       
-squashfs-tools           4.2                 4.2                 121 day                  Radu Moisan <radu.moisan@inte...        No data                       
-u-boot-fw-utils          2011.06             20012.07            41215 d                  Radu Moisan <radu.moisan@inte...        No data                       
-ubootchart               0.0+r12             0.0+r12             41215 d                  Radu Moisan <radu.moisan@inte...        No data                       
-opkg                     0.1.8+svnr633...    0.1.8               121 day                  Radu Moisan <radu.moisan@inte...        No data                       
-fotowall                 0.9                 0.9                 41215 d                  Radu Moisan <radu.moisan@inte...        No data                       
-quicky                   0.4                 N/A                 41215 d                  Radu Moisan <radu.moisan@inte...        No data                       
-kmod                     9                   9                   41215 d                  Radu Moisan <radu.moisan@inte...        No data                       
-tinylogin                1.4                 1.4                 316 day                  Radu Moisan <radu.moisan@inte...        No data                       
-gupnp                    0.16.1              0.18.4              41215 d                  Radu Moisan <radu.moisan@inte...        No data                       
-lame                     3.99.5              3.99.5              121 day                  Radu Moisan <radu.moisan@inte...        No data                       
-nativesdk-libarchive...  2.8.5               N/A                 41215 d                  No Maintainer information               No data                       
-nativesdk-bzip2          1.0.6               N/A                 41215 d                  No Maintainer information               No data                       
-nativesdk-mpfr           3.1.0               N/A                 41215 d                  No Maintainer information               No data                       
-nativesdk-sqlite3        3.7.13              N/A                 41215 d                  No Maintainer information               No data                       
-nativesdk-db             5.3.15              N/A                 41215 d                  No Maintainer information               No data                       
-nativesdk-libmpc         0.8.2               N/A                 41215 d                  No Maintainer information               No data                       
-nativesdk-u-boot-mki...  2011.06             N/A                 41215 d                  No Maintainer information               No data                       
-kconfig-frontends        3.5.0               3.5.0               41215 d                  No Maintainer information               No data                       
-nativesdk-pseudo         1.4.1               N/A                 41215 d                  No Maintainer information               No data                       
-python-argparse          1.2.1               N/A                 41215 d                  No Maintainer information               No data                       
-nativesdk-opkg           0.1.8+svnr633...    N/A                 41215 d                  No Maintainer information               No data                       
-nativesdk-chrpath        0.14                N/A                 41215 d                  No Maintainer information               No data                       
-nativesdk-eglibc         2.16                N/A                 41215 d                  No Maintainer information               No data                       
-libcgroup                0.37.1              0.38-1              41215 d                  No Maintainer information               No data                       
-nativesdk-expat          2.1.0               N/A                 41215 d                  No Maintainer information               No data                       
-mpeg2dec                 0.4.1               0.5.1               530 day                  No Maintainer information               Why are we currently at 0.4.1?
-nativesdk-alsa-lib       1.0.25              N/A                 41215 d                  No Maintainer information               No data                       
-ltp                      20120903            20120903            236 day                  Mihai Lindner <mihaix.lindner...        No data                       
-pseudo                   1.4.1               1.2                 368 day                  Mark Hatle <mark.hatle@windri...        No data                       
-prelink                  1.0+git1+a2d8...    1.0+git1+9552...    296 day                  Mark Hatle <mark.hatle@windri...        No data                       
-rpm                      5.4.9               5.4.10              41215 d                  Mark Hatle <mark.hatle@windri...        No data                       
-x11vnc                   0.9.13              0.9.13              121 day                  Laurentiu Palcu <laurentiu.pa...        No data                       
-libarchive               2.8.5               3.0.4               41215 d                  Kai Kang <kai.kang@windriver....        No data                       
-mingetty                 1.08                1.08                297 day                  Kai Kang <kai.kang@windriver....        No data                       
-alsa-tools               1.0.25              N/A                 41215 d                  Kai Kang <kai.kang@windriver....        No data                       
-adt-installer            0.1.8+svnr596...    1.1                 41215 d                  Jessica Zhang <jessica.zhang@...        No data                       
-cwautomacros             20110201            20110201            121 day                  Cristian Iorga <cristian.iorg...        No data                       
-minicom                  2.6.1               2.6.1               121 day                  Cristian Iorga <cristian.iorg...        No data                       
-libtirpc                 0.2.2               0.2.2               121 day                  Cristian Iorga <cristian.iorg...        No data                       
-rpcbind                  0.2.0               0.2.0               121 day                  Cristian Iorga <cristian.iorg...        No data                       
-quota                    4.00                4.00                121 day                  Cristian Iorga <cristian.iorg...        No data                       
-db                       5.3.15              5.0.26              41215 d                  Cristian Iorga <cristian.iorg...        API compatibility issue       
-libproxy                 0.4.7               0.4.7               644 day                  Cristian Iorga <cristian.iorg...        No data                       
-taglib                   1.8                 1.7.2               644 day                  Cristian Iorga <cristian.iorg...        No data                       
-lrzsz                    0.12.20             0.12.20             644 day                  Cristian Iorga <cristian.iorg...        No data                       
-libical                  0.48                0.48                121 day                  Cristian Iorga <cristian.iorg...        No data                       
-wireless-tools           29                  29                  121 day                  Cristian Iorga <cristian.iorg...        No data                       
-irda-utils               0.9.18              0.9.18              121 day                  Cristian Iorga <cristian.iorg...        No data                       
-libpcap                  1.3.0               4.3.0               41215 d                  Cristian Iorga <cristian.iorg...        No data                       
-gssdp                    0.10.0              0.10.0              41215 d                  Cristian Iorga <cristian.iorg...        No data                       
-gupnp-tools              0.8.1               N/A                 41215 d                  Cristian Iorga <cristian.iorg...        No data                       
-gupnp-av                 0.8.0               0.10.3              41215 d                  Cristian Iorga <cristian.iorg...        No data                       
-tremor                   20120314            20120122            41215 d                  Cristian Iorga <cristian.iorg...        No data                       
-liba52                   0.7.4               0.7.4               644 day                  Cristian Iorga <cristian.iorg...        No data                       
-flac                     1.2.1               1.2.1               121 day                  Cristian Iorga <cristian.iorg...        No data                       
-libomxil                 0.9.3               0.9.3               121 day                  Cristian Iorga <cristian.iorg...        No data                       
-libsamplerate0           0.1.8               0.1.8               121 day                  Cristian Iorga <cristian.iorg...        No data                       
-alsa-utils               1.0.25              N/A                 41215 d                  Cristian Iorga <cristian.iorg...        No data                       
-alsa-lib                 1.0.25              N/A                 41215 d                  Cristian Iorga <cristian.iorg...        No data                       
-mpfr                     3.1.0               3.1.1               121 day                  Bogdan Marinescu <bogdan.a.ma...        No data                       
-libpcre                  8.31                8.31                121 day                  Bogdan Marinescu <bogdan.a.ma...        No data                       
-libmpc                   0.8.2               0.9                 649 day                  Bogdan Marinescu <bogdan.a.ma...        No data                       
-python-scons             2.1.0               2.2.0               41215 d                  Bogdan Marinescu <bogdan.a.ma...        No data                       
-distcc                   2.18.3              3.1.1               41215 d                  Bogdan Marinescu <bogdan.a.ma...        No data                       
-intltool                 0.50.0              0.50.2              41215 d                  Bogdan Marinescu <bogdan.a.ma...        No data                       
-strace                   4.7                 4.7                 121 day                  Bogdan Marinescu <bogdan.a.ma...        No data                       
-git                      1.7.7               N/A                 41215 d                  Bogdan Marinescu <bogdan.a.ma...        No data                       
-tcl                      8.5.11              8.5.12              121 day                  Bogdan Marinescu <bogdan.a.ma...        No data                       
-powertop                 1.13                1.97                564 day                  Bogdan Marinescu <bogdan.a.ma...        Do not upgrade to version 1.97...
-oprofile                 0.9.7               0.9.8               121 day                  Bogdan Marinescu <bogdan.a.ma...        No data                       
-latencytop               0.5                 0.5                 564 day                  Bogdan Marinescu <bogdan.a.ma...        No data                       
-eglibc                   2.16                git:16540           308 day                  Bogdan Marinescu <bogdan.a.ma...        No data                       
-Manual Check Count: 115
-Manual Need Check Count: 115
-Any problem, please contact Saul Wold <sgw@linux.intel.com> 
+My image recipe installs certain files via IMAGE_PREPROCESS_COMMAND. So,
+how do I re-enable the do_fetch task.
 
+        inherit core-image
+        python () {
+                d.delVarFlag('do_fetch','noexec')
+        }
+
+The above code doesn't solve the purpose. I guess the order to execution
+of anonymous python function happens before the inheritance. Is there
+any other alternative other than extending the image.bbclass in my
+layer? Please guide me.
+
+--=20
+Joshua Immanuel
+HiPro IT Solutions Private Limited
+http://hipro.co.in
+=09
+
+--=-uhRS7bERoedQ093ijdrP
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.12 (GNU/Linux)
+
+iEYEABECAAYFAlCXhcAACgkQWw85XwuSFMJuZgCeJUmGXDKiPRMLKoXJLn3z5gbh
+S3YAoMWpk+0oDgIty3NMBCVGo1QU3/JK
+=qWEP
+-----END PGP SIGNATURE-----
+
+--=-uhRS7bERoedQ093ijdrP--
