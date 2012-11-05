@@ -1,38 +1,41 @@
 Return-Path: <ross.burton@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4A684E013A6
-	for <yocto@yoctoproject.org>; Mon,  5 Nov 2012 04:48:41 -0800 (PST)
-Received: from mail-ee0-f72.google.com ([74.125.83.72])
-	by mga09.intel.com with ESMTP/TLS/RC4-SHA; 05 Nov 2012 04:48:08 -0800
-Received: by mail-ee0-f72.google.com with SMTP id c4so4801042eek.11
-	for <yocto@yoctoproject.org>; Mon, 05 Nov 2012 04:48:35 -0800 (PST)
+Received: from fmsmga101.fm.intel.com (mga05.intel.com [192.55.52.89])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BFA4BE01438
+	for <yocto@yoctoproject.org>; Mon,  5 Nov 2012 04:48:42 -0800 (PST)
+Received: from mail-la0-f72.google.com ([209.85.215.72])
+	by mga01.intel.com with ESMTP/TLS/RC4-SHA; 05 Nov 2012 04:48:41 -0800
+Received: by mail-la0-f72.google.com with SMTP id s15so4147088lag.11
+	for <yocto@yoctoproject.org>; Mon, 05 Nov 2012 04:48:40 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=google.com; s=20120113;
-	h=from:to:cc:subject:date:message-id:x-mailer:x-gm-message-state;
-	bh=lpNkRObIlWSQftlCRDpoF69QVahiXPGxT4OUKEC206o=;
-	b=oEmjlfS6Nbtea4b7Euak/9dCUx14a2znj8u6nVchhYTqPWGt8xxK2QFBOgj5S0GvfJ
-	+18yQNE6sFAXuD1C2NW0O1BUQoXUGjphNjiqv7J1jpcd3V62GB5T8DM05lr1YvNnSUOj
-	qtA4dHXa6GCLkgnBudzpwUise4BBNmfbfOfwfTA5TOiR2bj6G2IGNeo1wviEUFS5Dl29
-	vO4nkfAGxHKy0UZ3zepreVcZXc/CFr8FBPZd5NWtYo+avOGEZ4SqQNoMsfyNheFCEcpq
-	xBAoFEyiNy/z0+PcKDXx0v6a+cqWHVlo6LqtrM+tdkJVs5Ghn13WRFzjpVhQ+F11eq2t
-	WqfA==
-Received: by 10.216.135.24 with SMTP id t24mr3176848wei.147.1352119715467;
-	Mon, 05 Nov 2012 04:48:35 -0800 (PST)
-Received: by 10.216.135.24 with SMTP id t24mr3176840wei.147.1352119715037;
-	Mon, 05 Nov 2012 04:48:35 -0800 (PST)
+	h=from:to:cc:subject:date:message-id:x-mailer:in-reply-to:references
+	:x-gm-message-state;
+	bh=PTrCNVGdIgZpgktP4mKs+P2KTlWgDPFzLewPd1ZGZ0M=;
+	b=m469oth5JpQBLtDsjbuce8/whKmJSShOL2cj9Z5OWJKNkuy4H2KzQvjiCh+duc7Xso
+	NeP1rFbHp/jIMYqa78zvjD8bR+xpm4dSs0o87UaAAuysAPqERaZlBWKgXzx8s44Yj9mT
+	c6mJhqo7yI8rv0e9pM6Nwg5k1gWC+LMZQXuPJaQSS7VmK9jHLkATxSAnhYAbu13rgIjT
+	wRIBDOvn6sp0b58TKCwFhuyCq2/DP/vFbbCt9oWmkZyYPKK4dXkJXJAPyZ1lyRccqnRu
+	NoB0eZbpuj63ex/+mMsTDXWjn75YR+zDKI/jhyvxn7IRY4SI1MDAx1vQAkYsYXK8YvxW
+	C46g==
+Received: by 10.180.8.197 with SMTP id t5mr13048185wia.5.1352119720016;
+	Mon, 05 Nov 2012 04:48:40 -0800 (PST)
+Received: by 10.180.8.197 with SMTP id t5mr13048178wia.5.1352119719953;
+	Mon, 05 Nov 2012 04:48:39 -0800 (PST)
 Received: from melchett.burtonini.com (35.106.2.81.in-addr.arpa. [81.2.106.35])
-	by mx.google.com with ESMTPS id fa9sm11451350wib.5.2012.11.05.04.48.33
+	by mx.google.com with ESMTPS id fa9sm11451350wib.5.2012.11.05.04.48.38
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Mon, 05 Nov 2012 04:48:34 -0800 (PST)
+	Mon, 05 Nov 2012 04:48:39 -0800 (PST)
 From: Ross Burton <ross.burton@intel.com>
 To: kishore.k.bodke@intel.com,
 	nitin.a.kamble@intel.com
-Date: Mon,  5 Nov 2012 12:47:17 +0000
-Message-Id: <1352119640-25949-1-git-send-email-ross.burton@intel.com>
+Date: Mon,  5 Nov 2012 12:47:20 +0000
+Message-Id: <1352119640-25949-4-git-send-email-ross.burton@intel.com>
 X-Mailer: git-send-email 1.7.10
-X-Gm-Message-State: ALoCoQnzhT19Ah/qeS8iiOTU+4d5L5PfhqvQQXz5aodLv8DJxa9Vb29gW3LRdvBU5g2IjpAu3QBkEo84UuRWkQirsgLbnyeiEkY0TVxrX7idRi6WMC7ErXElDsbs27Hef6ILUI6jhM0QAtsE8A+vFn+8NWx5ipl6HQ==
+In-Reply-To: <1352119640-25949-1-git-send-email-ross.burton@intel.com>
+References: <1352119640-25949-1-git-send-email-ross.burton@intel.com>
+X-Gm-Message-State: ALoCoQn3w8sXrSP+KeMpG54cEZEqDzK/VZdjg3a8/7diQQcroLOF94yKPUDpq0kYAcNZ4aQslrwM/P07pVmpOfc6IDXNMfxKwwhXSGHegZkk/FqdH+vh9FslodyHSV0Gn7ZyjER/wMKTk+C5COZgzUG7xv/YTKWEpQ==
 Cc: yocto@yoctoproject.org
-Subject: [meta-intel] Add Xorg ABI dependencies
+Subject: [PATCH 3/3] emgd-driver-bin: add xorg-abi-video- dependency
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,22 +47,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 05 Nov 2012 12:48:41 -0000
+X-List-Received-Date: Mon, 05 Nov 2012 12:48:42 -0000
 
+xserver changes the driver ABI at will, and refuses to load drivers with the
+wrong ABI version. So that we know about this error at image build time instead
+of when xserver fails to start, RDEPEND on the ABI version we expect.
 
-Hi,
+This dependency is added programmatically so that bitbake doesn't look for a
+provider of xorg-abi-video-8 at parse time, which it won't find.
 
-Following are patches against master (*not* danny) to add runtime dependencies
-on the Xorg ABI version to the binary drivers, a symbol that the Xorg server
-provides.
+Signed-off-by: Ross Burton <ross.burton@intel.com>
+---
+ common/recipes-graphics/xorg-driver/emgd-driver-bin_1.14.bb |    9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-This means that mismatching server/driver ABIs becomes a package dependency
-issue and thus image-time error, instead of a boot time error.
-
-Note that these ABI versions are calculated from the Xorg server version that
-the drivers were compiled against and need to be verified and updated manually
-when the driver is upgraded.
-
-Ross
+diff --git a/common/recipes-graphics/xorg-driver/emgd-driver-bin_1.14.bb b/common/recipes-graphics/xorg-driver/emgd-driver-bin_1.14.bb
+index e068f7a..cc78d61 100644
+--- a/common/recipes-graphics/xorg-driver/emgd-driver-bin_1.14.bb
++++ b/common/recipes-graphics/xorg-driver/emgd-driver-bin_1.14.bb
+@@ -19,6 +19,15 @@ LIC_FILES_CHKSUM = "file://${WORKDIR}/${EMGD_LIC_DIR}/License.txt;md5=b54f01caaf
+ DEPENDS = "rpm-native xz-native"
+ RDEPENDS = "libxcb-dri2"
+ 
++# Add the ABI dependency at package generation time, as otherwise bitbake will
++# attempt to find a provider for it (and fail) when it does the parse.
++#
++# This version *must* be kept correct.
++python populate_packages_prepend() {
++    pn = d.getVar("PN", True)
++    d.appendVar("RDEPENDS_" + pn, " xorg-abi-video-8")
++}
++
+ SRC_URI = "https://edc.intel.com/Download.aspx?id=6190;downloadfilename=LIN_IEMGD_1_14_GOLD_2443.tgz"
+ 
+ SRC_URI[md5sum] = "733a7f237ffce21238ce2c9956df4fd6"
+-- 
+1.7.10
 
 
