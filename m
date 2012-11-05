@@ -1,36 +1,34 @@
-Return-Path: <ross.burton@intel.com>
-Received: from fmsmga102.fm.intel.com (mga10.intel.com [192.55.52.92])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CFB1FE00655
-	for <yocto@yoctoproject.org>; Mon,  5 Nov 2012 07:57:37 -0800 (PST)
-Received: from mail-oa0-f72.google.com ([209.85.219.72])
-	by mga11.intel.com with ESMTP/TLS/RC4-SHA; 05 Nov 2012 07:57:37 -0800
-Received: by mail-oa0-f72.google.com with SMTP id h2so18786632oag.11
-	for <yocto@yoctoproject.org>; Mon, 05 Nov 2012 07:57:36 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type:x-gm-message-state;
-	bh=ECtmrOf7TqfYy5F3kVayXyUomdmbSMHRFvBn4y5oAaM=;
-	b=eD9mdSXn7GNHCvZZJwiT9asnnl4SyuInLyWrhkpXFiDNJH8GuzI2I+3PMcZnxKUnyt
-	Eq3rvmIv1DbKIQLdOFzW1XHrW8FWYx/lVl9OQh6LphaIiMk7+KKhrgjp5V0fHV2OEibD
-	VhhOC3U9cqdvJgwHYgVHbwdyUmSPGekzHz7qrPykbQqbifDHNUHEEG2t7N9P9qXLpWRU
-	DlheMmd43+S1dSsteW7bEiAAixbZCGCdeOYtqpVOMCesx7rmQfQ3q2cXqkeyae18SHUd
-	RguaIYmV76SAD92/dw2c9JxEDAcBDaD/gJ9Vy7sicJIaqYRuMpv3d/qFfXhkDwg1DLgJ
-	DcMA==
-Received: by 10.182.1.72 with SMTP id 8mr8052553obk.61.1352131056211;
-	Mon, 05 Nov 2012 07:57:36 -0800 (PST)
-Received: by 10.182.1.72 with SMTP id 8mr8052549obk.61.1352131056061; Mon, 05
-	Nov 2012 07:57:36 -0800 (PST)
-MIME-Version: 1.0
-Received: by 10.182.68.135 with HTTP; Mon, 5 Nov 2012 07:57:15 -0800 (PST)
-In-Reply-To: <D956029D25CF204F948EA0FB515E1EE23E16A1B7@ORSMSX105.amr.corp.intel.com>
+Return-Path: <kishore.k.bodke@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CD766E0052C
+	for <yocto@yoctoproject.org>; Mon,  5 Nov 2012 08:08:47 -0800 (PST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 05 Nov 2012 08:08:14 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,715,1344236400"; 
+	d="scan'208,217";a="215378938"
+Received: from orsmsx101.amr.corp.intel.com ([10.22.225.128])
+	by orsmga001.jf.intel.com with ESMTP; 05 Nov 2012 08:08:31 -0800
+Received: from orsmsx105.amr.corp.intel.com ([169.254.4.28]) by
+	ORSMSX101.amr.corp.intel.com ([169.254.8.82]) with mapi id
+	14.01.0355.002; Mon, 5 Nov 2012 08:08:30 -0800
+From: "Bodke, Kishore K" <kishore.k.bodke@intel.com>
+To: "Burton, Ross" <ross.burton@intel.com>, "Zanussi, Tom"
+	<tom.zanussi@intel.com>, "Saxena, Rahul" <rahul.saxena@intel.com>
+Thread-Topic: [PATCH meta-intel] meta-cedartrail: really fix mesa-dri
+	version (typo'd)
+Thread-Index: AQHNu1GsTMY+B/nfXU+y0AQElAWvm5fbZOWwgACHB4D//3pwsA==
+Date: Mon, 5 Nov 2012 16:08:29 +0000
+Message-ID: <D956029D25CF204F948EA0FB515E1EE23E16A27D@ORSMSX105.amr.corp.intel.com>
 References: <1352118670-25336-1-git-send-email-ross.burton@intel.com>
 	<D956029D25CF204F948EA0FB515E1EE23E16A1B7@ORSMSX105.amr.corp.intel.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Mon, 5 Nov 2012 15:57:15 +0000
-Message-ID: <CAJTo0Lb9_+XqaB61tTBxQa6fpiWm=aCmzNs0Myjo1ZT8rvj_eQ@mail.gmail.com>
-To: "Bodke, Kishore K" <kishore.k.bodke@intel.com>
-X-Gm-Message-State: ALoCoQk/S1M/xpICrCzGrgwWONkE6r+lRjk6SF+2g+2FBv8l/rBVmmCczXl62z/lg/TbN/QFwqPvIJ25JH48uMdbgfKrskyLtjuG379jh1eu82f707qzPsVAo/swwm6NYxk/2SZUsU54BsMG+9aEtosAk7KDStfVmw==
+	<CAJTo0Lb9_+XqaB61tTBxQa6fpiWm=aCmzNs0Myjo1ZT8rvj_eQ@mail.gmail.com>
+In-Reply-To: <CAJTo0Lb9_+XqaB61tTBxQa6fpiWm=aCmzNs0Myjo1ZT8rvj_eQ@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.140]
+MIME-Version: 1.0
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: [PATCH meta-intel] meta-cedartrail: really fix mesa-dri version (typo'd)
 X-BeenThere: yocto@yoctoproject.org
@@ -44,103 +42,149 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 05 Nov 2012 15:57:37 -0000
-Content-Type: multipart/alternative; boundary=f46d04462fe0494df104cdc18b26
+X-List-Received-Date: Mon, 05 Nov 2012 16:08:47 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_D956029D25CF204F948EA0FB515E1EE23E16A27DORSMSX105amrcor_"
 
---f46d04462fe0494df104cdc18b26
-Content-Type: text/plain; charset=UTF-8
+--_000_D956029D25CF204F948EA0FB515E1EE23E16A27DORSMSX105amrcor_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Both Danny and master.
+SGkgVG9tLA0KDQpDYW4gdGhpcyBnbyB0byBkYW5ueSBhcyB3ZSBhbHJlYWR5IGhhZCBjdXQgb2Zm
+Pw0KDQpUaGFua3MNCktpc2hvcmUuDQoNCkZyb206IEJ1cnRvbiwgUm9zcyBbbWFpbHRvOnJvc3Mu
+YnVydG9uQGludGVsLmNvbV0NClNlbnQ6IE1vbmRheSwgTm92ZW1iZXIgMDUsIDIwMTIgNzo1NyBB
+TQ0KVG86IEJvZGtlLCBLaXNob3JlIEsNCkNjOiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnDQpTdWJq
+ZWN0OiBSZTogW1BBVENIIG1ldGEtaW50ZWxdIG1ldGEtY2VkYXJ0cmFpbDogcmVhbGx5IGZpeCBt
+ZXNhLWRyaSB2ZXJzaW9uICh0eXBvJ2QpDQoNCkJvdGggRGFubnkgYW5kIG1hc3Rlci4NCg0KUm9z
+cw0KDQpPbiA1IE5vdmVtYmVyIDIwMTIgMTU6NTQsIEJvZGtlLCBLaXNob3JlIEsgPGtpc2hvcmUu
+ay5ib2RrZUBpbnRlbC5jb208bWFpbHRvOmtpc2hvcmUuay5ib2RrZUBpbnRlbC5jb20+PiB3cm90
+ZToNCklzIHRoaXMgcGF0Y2ggZm9yIGRhbm55Pw0KDQotS2lzaG9yZS4NCg0KPi0tLS0tT3JpZ2lu
+YWwgTWVzc2FnZS0tLS0tDQo+RnJvbTogUm9zcyBCdXJ0b24gW21haWx0bzpyb3NzLmJ1cnRvbkBp
+bnRlbC5jb208bWFpbHRvOnJvc3MuYnVydG9uQGludGVsLmNvbT5dDQo+U2VudDogTW9uZGF5LCBO
+b3ZlbWJlciAwNSwgMjAxMiA0OjMxIEFNDQo+VG86IEJvZGtlLCBLaXNob3JlIEsNCj5DYzogeW9j
+dG9AeW9jdG9wcm9qZWN0Lm9yZzxtYWlsdG86eW9jdG9AeW9jdG9wcm9qZWN0Lm9yZz4NCj5TdWJq
+ZWN0OiBbUEFUQ0ggbWV0YS1pbnRlbF0gbWV0YS1jZWRhcnRyYWlsOiByZWFsbHkgZml4IG1lc2Et
+ZHJpIHZlcnNpb24NCj4odHlwbydkKQ0KPg0KPlNpZ25lZC1vZmYtYnk6IFJvc3MgQnVydG9uIDxy
+b3NzLmJ1cnRvbkBpbnRlbC5jb208bWFpbHRvOnJvc3MuYnVydG9uQGludGVsLmNvbT4+DQo+LS0t
+DQo+IG1ldGEtY2VkYXJ0cmFpbC9jb25mL21hY2hpbmUvY2VkYXJ0cmFpbC5jb25mIHwgICAgMiAr
+LQ0KPiAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKyksIDEgZGVsZXRpb24oLSkNCj4NCj5k
+aWZmIC0tZ2l0IGEvbWV0YS1jZWRhcnRyYWlsL2NvbmYvbWFjaGluZS9jZWRhcnRyYWlsLmNvbmYg
+Yi9tZXRhLQ0KPmNlZGFydHJhaWwvY29uZi9tYWNoaW5lL2NlZGFydHJhaWwuY29uZg0KPmluZGV4
+IGFhMmE0NmEuLmE1ZmEwZjAgMTAwNjQ0DQo+LS0tIGEvbWV0YS1jZWRhcnRyYWlsL2NvbmYvbWFj
+aGluZS9jZWRhcnRyYWlsLmNvbmYNCj4rKysgYi9tZXRhLWNlZGFydHJhaWwvY29uZi9tYWNoaW5l
+L2NlZGFydHJhaWwuY29uZg0KPkBAIC0xNyw3ICsxNyw3IEBAIFhTRVJWRVIgPz0gIiR7WFNFUlZF
+Ul9JQTMyX0JBU0V9IFwNCj4gICAgICAgICAgICAiDQo+IFBSRUZFUlJFRF9WRVJTSU9OX2xpbnV4
+LXlvY3RvID89ICIzLjAlIg0KPiBQUkVGRVJSRURfVkVSU0lPTl94c2VydmVyLXhvcmcgPz0gIjEu
+OS4zIg0KPi1QUkVGRVJSRURfVkVSU0lPTl9tZXNhLWRyaSA/PSAiOC4wNCINCj4rUFJFRkVSUkVE
+X1ZFUlNJT05fbWVzYS1kcmkgPz0gIjguMC40Ig0KPiBQUkVGRVJSRURfVkVSU0lPTl94Zjg2LWlu
+cHV0LWV2ZGV2ID89ICIyLjYuMCINCj4NCj4gU1lTTElOVVhfT1BUUyA9ICJzZXJpYWwgMCAxMTUy
+MDAiDQo+LS0NCj4xLjcuMTANCg0K
 
-Ross
+--_000_D956029D25CF204F948EA0FB515E1EE23E16A27DORSMSX105amrcor_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTQgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1IDUgMiAyIDIgNCAzIDIgNDt9DQpAZm9udC1mYWNlDQoJ
+e2ZvbnQtZmFtaWx5OlRhaG9tYTsNCglwYW5vc2UtMToyIDExIDYgNCAzIDUgNCA0IDIgNDt9DQov
+KiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3JtYWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1z
+b05vcm1hbA0KCXttYXJnaW46MGluOw0KCW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250LXNp
+emU6MTIuMHB0Ow0KCWZvbnQtZmFtaWx5OiJUaW1lcyBOZXcgUm9tYW4iLCJzZXJpZiI7fQ0KYTps
+aW5rLCBzcGFuLk1zb0h5cGVybGluaw0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6
+Ymx1ZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCmE6dmlzaXRlZCwgc3Bhbi5Nc29I
+eXBlcmxpbmtGb2xsb3dlZA0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6cHVycGxl
+Ow0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0Kc3Bhbi5ob2VuemINCgl7bXNvLXN0eWxl
+LW5hbWU6aG9lbnpiO30NCnNwYW4uRW1haWxTdHlsZTE4DQoJe21zby1zdHlsZS10eXBlOnBlcnNv
+bmFsLXJlcGx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIiwic2Fucy1zZXJpZiI7DQoJY29sb3I6
+IzFGNDk3RDt9DQouTXNvQ2hwRGVmYXVsdA0KCXttc28tc3R5bGUtdHlwZTpleHBvcnQtb25seTsN
+Cglmb250LWZhbWlseToiQ2FsaWJyaSIsInNhbnMtc2VyaWYiO30NCkBwYWdlIFdvcmRTZWN0aW9u
+MQ0KCXtzaXplOjguNWluIDExLjBpbjsNCgltYXJnaW46MS4waW4gMS4waW4gMS4waW4gMS4waW47
+fQ0KZGl2LldvcmRTZWN0aW9uMQ0KCXtwYWdlOldvcmRTZWN0aW9uMTt9DQotLT48L3N0eWxlPjwh
+LS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVkZWZhdWx0cyB2OmV4dD0iZWRpdCIgc3Bp
+ZG1heD0iMTAyNiIgLz4NCjwveG1sPjwhW2VuZGlmXS0tPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1s
+Pg0KPG86c2hhcGVsYXlvdXQgdjpleHQ9ImVkaXQiPg0KPG86aWRtYXAgdjpleHQ9ImVkaXQiIGRh
+dGE9IjEiIC8+DQo8L286c2hhcGVsYXlvdXQ+PC94bWw+PCFbZW5kaWZdLS0+DQo8L2hlYWQ+DQo8
+Ym9keSBsYW5nPSJFTi1VUyIgbGluaz0iYmx1ZSIgdmxpbms9InB1cnBsZSI+DQo8ZGl2IGNsYXNz
+PSJXb3JkU2VjdGlvbjEiPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQt
+c2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNl
+cmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPkhpIFRvbSw8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8
+cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZh
+bWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFG
+NDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZx
+dW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPkNhbiB0aGlzIGdvIHRv
+IGRhbm55IGFzIHdlIGFscmVhZHkgaGFkIGN1dCBvZmY/PG86cD48L286cD48L3NwYW4+PC9wPg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1m
+YW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMx
+RjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
+PjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkm
+cXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj5UaGFua3M8bzpwPjwv
+bzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1z
+aXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2Vy
+aWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+S2lzaG9yZS48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8
+cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZh
+bWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFG
+NDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPGRpdiBzdHlsZT0iYm9yZGVyOm5v
+bmU7Ym9yZGVyLWxlZnQ6c29saWQgYmx1ZSAxLjVwdDtwYWRkaW5nOjBpbiAwaW4gMGluIDQuMHB0
+Ij4NCjxkaXY+DQo8ZGl2IHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXItdG9wOnNvbGlkICNCNUM0
+REYgMS4wcHQ7cGFkZGluZzozLjBwdCAwaW4gMGluIDBpbiI+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+Ij48Yj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtUYWhv
+bWEmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OyI+RnJvbTo8L3NwYW4+PC9iPjxzcGFuIHN0
+eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O1RhaG9tYSZxdW90OywmcXVv
+dDtzYW5zLXNlcmlmJnF1b3Q7Ij4gQnVydG9uLCBSb3NzIFttYWlsdG86cm9zcy5idXJ0b25AaW50
+ZWwuY29tXQ0KPGJyPg0KPGI+U2VudDo8L2I+IE1vbmRheSwgTm92ZW1iZXIgMDUsIDIwMTIgNzo1
+NyBBTTxicj4NCjxiPlRvOjwvYj4gQm9ka2UsIEtpc2hvcmUgSzxicj4NCjxiPkNjOjwvYj4geW9j
+dG9AeW9jdG9wcm9qZWN0Lm9yZzxicj4NCjxiPlN1YmplY3Q6PC9iPiBSZTogW1BBVENIIG1ldGEt
+aW50ZWxdIG1ldGEtY2VkYXJ0cmFpbDogcmVhbGx5IGZpeCBtZXNhLWRyaSB2ZXJzaW9uICh0eXBv
+J2QpPG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29O
+b3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+Qm90aCBE
+YW5ueSBhbmQgbWFzdGVyLjxvOnA+PC9vOnA+PC9wPg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3Jt
+YWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05v
+cm1hbCI+Um9zczxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05v
+cm1hbCIgc3R5bGU9Im1hcmdpbi1ib3R0b206MTIuMHB0Ij48bzpwPiZuYnNwOzwvbzpwPjwvcD4N
+CjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5PbiA1IE5vdmVtYmVyIDIwMTIgMTU6NTQsIEJv
+ZGtlLCBLaXNob3JlIEsgJmx0OzxhIGhyZWY9Im1haWx0bzpraXNob3JlLmsuYm9ka2VAaW50ZWwu
+Y29tIiB0YXJnZXQ9Il9ibGFuayI+a2lzaG9yZS5rLmJvZGtlQGludGVsLmNvbTwvYT4mZ3Q7IHdy
+b3RlOjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+SXMgdGhpcyBwYXRjaCBm
+b3IgZGFubnk/PGJyPg0KPHNwYW4gc3R5bGU9ImNvbG9yOiM4ODg4ODgiPjxicj4NCjxzcGFuIGNs
+YXNzPSJob2VuemIiPi1LaXNob3JlLjwvc3Bhbj48L3NwYW4+PG86cD48L286cD48L3A+DQo8ZGl2
+Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtYXJnaW4tYm90dG9tOjEyLjBw
+dCI+PGJyPg0KJmd0Oy0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tPGJyPg0KJmd0O0Zyb206IFJv
+c3MgQnVydG9uIFttYWlsdG86PGEgaHJlZj0ibWFpbHRvOnJvc3MuYnVydG9uQGludGVsLmNvbSI+
+cm9zcy5idXJ0b25AaW50ZWwuY29tPC9hPl08YnI+DQomZ3Q7U2VudDogTW9uZGF5LCBOb3ZlbWJl
+ciAwNSwgMjAxMiA0OjMxIEFNPGJyPg0KJmd0O1RvOiBCb2RrZSwgS2lzaG9yZSBLPGJyPg0KJmd0
+O0NjOiA8YSBocmVmPSJtYWlsdG86eW9jdG9AeW9jdG9wcm9qZWN0Lm9yZyI+eW9jdG9AeW9jdG9w
+cm9qZWN0Lm9yZzwvYT48YnI+DQomZ3Q7U3ViamVjdDogW1BBVENIIG1ldGEtaW50ZWxdIG1ldGEt
+Y2VkYXJ0cmFpbDogcmVhbGx5IGZpeCBtZXNhLWRyaSB2ZXJzaW9uPGJyPg0KJmd0Oyh0eXBvJ2Qp
+PGJyPg0KJmd0Ozxicj4NCiZndDtTaWduZWQtb2ZmLWJ5OiBSb3NzIEJ1cnRvbiAmbHQ7PGEgaHJl
+Zj0ibWFpbHRvOnJvc3MuYnVydG9uQGludGVsLmNvbSI+cm9zcy5idXJ0b25AaW50ZWwuY29tPC9h
+PiZndDs8YnI+DQomZ3Q7LS0tPGJyPg0KJmd0OyBtZXRhLWNlZGFydHJhaWwvY29uZi9tYWNoaW5l
+L2NlZGFydHJhaWwuY29uZiB8ICZuYnNwOyAmbmJzcDsyICYjNDM7LTxicj4NCiZndDsgMSBmaWxl
+IGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCYjNDM7KSwgMSBkZWxldGlvbigtKTxicj4NCiZndDs8YnI+
+DQomZ3Q7ZGlmZiAtLWdpdCBhL21ldGEtY2VkYXJ0cmFpbC9jb25mL21hY2hpbmUvY2VkYXJ0cmFp
+bC5jb25mIGIvbWV0YS08YnI+DQomZ3Q7Y2VkYXJ0cmFpbC9jb25mL21hY2hpbmUvY2VkYXJ0cmFp
+bC5jb25mPGJyPg0KJmd0O2luZGV4IGFhMmE0NmEuLmE1ZmEwZjAgMTAwNjQ0PGJyPg0KJmd0Oy0t
+LSBhL21ldGEtY2VkYXJ0cmFpbC9jb25mL21hY2hpbmUvY2VkYXJ0cmFpbC5jb25mPGJyPg0KJmd0
+OyYjNDM7JiM0MzsmIzQzOyBiL21ldGEtY2VkYXJ0cmFpbC9jb25mL21hY2hpbmUvY2VkYXJ0cmFp
+bC5jb25mPGJyPg0KJmd0O0BAIC0xNyw3ICYjNDM7MTcsNyBAQCBYU0VSVkVSID89ICZxdW90OyR7
+WFNFUlZFUl9JQTMyX0JBU0V9IFw8YnI+DQomZ3Q7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNw
+OyAmbmJzcDsgJm5ic3A7JnF1b3Q7PGJyPg0KJmd0OyBQUkVGRVJSRURfVkVSU0lPTl9saW51eC15
+b2N0byA/PSAmcXVvdDszLjAlJnF1b3Q7PGJyPg0KJmd0OyBQUkVGRVJSRURfVkVSU0lPTl94c2Vy
+dmVyLXhvcmcgPz0gJnF1b3Q7MS45LjMmcXVvdDs8YnI+DQomZ3Q7LVBSRUZFUlJFRF9WRVJTSU9O
+X21lc2EtZHJpID89ICZxdW90OzguMDQmcXVvdDs8YnI+DQomZ3Q7JiM0MztQUkVGRVJSRURfVkVS
+U0lPTl9tZXNhLWRyaSA/PSAmcXVvdDs4LjAuNCZxdW90Ozxicj4NCiZndDsgUFJFRkVSUkVEX1ZF
+UlNJT05feGY4Ni1pbnB1dC1ldmRldiA/PSAmcXVvdDsyLjYuMCZxdW90Ozxicj4NCiZndDs8YnI+
+DQomZ3Q7IFNZU0xJTlVYX09QVFMgPSAmcXVvdDtzZXJpYWwgMCAxMTUyMDAmcXVvdDs8YnI+DQom
+Z3Q7LS08YnI+DQomZ3Q7MS43LjEwPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9k
+aXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0K
+PC9kaXY+DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRtbD4NCg==
 
-On 5 November 2012 15:54, Bodke, Kishore K <kishore.k.bodke@intel.com>wrote:
-
-> Is this patch for danny?
->
-> -Kishore.
->
-> >-----Original Message-----
-> >From: Ross Burton [mailto:ross.burton@intel.com]
-> >Sent: Monday, November 05, 2012 4:31 AM
-> >To: Bodke, Kishore K
-> >Cc: yocto@yoctoproject.org
-> >Subject: [PATCH meta-intel] meta-cedartrail: really fix mesa-dri version
-> >(typo'd)
-> >
-> >Signed-off-by: Ross Burton <ross.burton@intel.com>
-> >---
-> > meta-cedartrail/conf/machine/cedartrail.conf |    2 +-
-> > 1 file changed, 1 insertion(+), 1 deletion(-)
-> >
-> >diff --git a/meta-cedartrail/conf/machine/cedartrail.conf b/meta-
-> >cedartrail/conf/machine/cedartrail.conf
-> >index aa2a46a..a5fa0f0 100644
-> >--- a/meta-cedartrail/conf/machine/cedartrail.conf
-> >+++ b/meta-cedartrail/conf/machine/cedartrail.conf
-> >@@ -17,7 +17,7 @@ XSERVER ?= "${XSERVER_IA32_BASE} \
-> >            "
-> > PREFERRED_VERSION_linux-yocto ?= "3.0%"
-> > PREFERRED_VERSION_xserver-xorg ?= "1.9.3"
-> >-PREFERRED_VERSION_mesa-dri ?= "8.04"
-> >+PREFERRED_VERSION_mesa-dri ?= "8.0.4"
-> > PREFERRED_VERSION_xf86-input-evdev ?= "2.6.0"
-> >
-> > SYSLINUX_OPTS = "serial 0 115200"
-> >--
-> >1.7.10
->
->
-
---f46d04462fe0494df104cdc18b26
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-Both Danny and master.<div><br></div><div>Ross</div><div class=3D"gmail_ext=
-ra"><br><br><div class=3D"gmail_quote">On 5 November 2012 15:54, Bodke, Kis=
-hore K <span dir=3D"ltr">&lt;<a href=3D"mailto:kishore.k.bodke@intel.com" t=
-arget=3D"_blank">kishore.k.bodke@intel.com</a>&gt;</span> wrote:<br>
-
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">Is this patch for danny?<br>
-<span class=3D"HOEnZb"><font color=3D"#888888"><br>
--Kishore.<br>
-</font></span><div class=3D"HOEnZb"><div class=3D"h5"><br>
-&gt;-----Original Message-----<br>
-&gt;From: Ross Burton [mailto:<a href=3D"mailto:ross.burton@intel.com">ross=
-.burton@intel.com</a>]<br>
-&gt;Sent: Monday, November 05, 2012 4:31 AM<br>
-&gt;To: Bodke, Kishore K<br>
-&gt;Cc: <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a=
-><br>
-&gt;Subject: [PATCH meta-intel] meta-cedartrail: really fix mesa-dri versio=
-n<br>
-&gt;(typo&#39;d)<br>
-&gt;<br>
-&gt;Signed-off-by: Ross Burton &lt;<a href=3D"mailto:ross.burton@intel.com"=
->ross.burton@intel.com</a>&gt;<br>
-&gt;---<br>
-&gt; meta-cedartrail/conf/machine/cedartrail.conf | =C2=A0 =C2=A02 +-<br>
-&gt; 1 file changed, 1 insertion(+), 1 deletion(-)<br>
-&gt;<br>
-&gt;diff --git a/meta-cedartrail/conf/machine/cedartrail.conf b/meta-<br>
-&gt;cedartrail/conf/machine/cedartrail.conf<br>
-&gt;index aa2a46a..a5fa0f0 100644<br>
-&gt;--- a/meta-cedartrail/conf/machine/cedartrail.conf<br>
-&gt;+++ b/meta-cedartrail/conf/machine/cedartrail.conf<br>
-&gt;@@ -17,7 +17,7 @@ XSERVER ?=3D &quot;${XSERVER_IA32_BASE} \<br>
-&gt; =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&quot;<br>
-&gt; PREFERRED_VERSION_linux-yocto ?=3D &quot;3.0%&quot;<br>
-&gt; PREFERRED_VERSION_xserver-xorg ?=3D &quot;1.9.3&quot;<br>
-&gt;-PREFERRED_VERSION_mesa-dri ?=3D &quot;8.04&quot;<br>
-&gt;+PREFERRED_VERSION_mesa-dri ?=3D &quot;8.0.4&quot;<br>
-&gt; PREFERRED_VERSION_xf86-input-evdev ?=3D &quot;2.6.0&quot;<br>
-&gt;<br>
-&gt; SYSLINUX_OPTS =3D &quot;serial 0 115200&quot;<br>
-&gt;--<br>
-&gt;1.7.10<br>
-<br>
-</div></div></blockquote></div><br></div>
-
---f46d04462fe0494df104cdc18b26--
+--_000_D956029D25CF204F948EA0FB515E1EE23E16A27DORSMSX105amrcor_--
