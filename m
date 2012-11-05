@@ -1,40 +1,37 @@
-Return-Path: <ross.burton@intel.com>
-Received: from fmsmga102.fm.intel.com (mga10.intel.com [192.55.52.92])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 55DE1E0027E
-	for <yocto@yoctoproject.org>; Mon,  5 Nov 2012 08:16:52 -0800 (PST)
-Received: from mail-ob0-f200.google.com ([209.85.214.200])
-	by mga11.intel.com with ESMTP/TLS/RC4-SHA; 05 Nov 2012 08:16:37 -0800
-Received: by mail-ob0-f200.google.com with SMTP id un3so18534892obb.11
-	for <yocto@yoctoproject.org>; Mon, 05 Nov 2012 08:16:37 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type:x-gm-message-state;
-	bh=cBI9PdH4sIK5767rElu72iVOeHUZsASE6PlEbX9henY=;
-	b=V1id+1ZLjwc2kZtOej8JLOca4cto819PhKv3Yxj0P2Gf0Jmnuq9Fvt5rjeiS6hBMjv
-	2XHd5RFauKXZVAwPgFFQiJVa/vJZ5gYkWqqhG3/+e3Op70yFujIsSReHoW3oSUAU/veP
-	YoThojaK11lkEn4uzsgu5SVUxoTkmQMANnN7GuEo5p+qwnCGq4+xJun9TYe1YhmeyZYk
-	RuZ9FQkjqEs0El3osfNrB79pTNwUcfMVDec0MuoxFL3HoN8eDUGHCpa/nV6+clJAdiIC
-	A43CO/f9r5FS/NIsYRr53LerXYnLLDOdWMZctqWykLPFSwONWmoQyekO3hVHeC6XO4P5
-	sVpw==
-Received: by 10.182.31.13 with SMTP id w13mr8311805obh.29.1352132197164;
-	Mon, 05 Nov 2012 08:16:37 -0800 (PST)
-Received: by 10.182.31.13 with SMTP id w13mr8311799obh.29.1352132197092; Mon,
-	05 Nov 2012 08:16:37 -0800 (PST)
-MIME-Version: 1.0
-Received: by 10.182.68.135 with HTTP; Mon, 5 Nov 2012 08:16:16 -0800 (PST)
-In-Reply-To: <1352131921.1601.140.camel@empanada>
+Return-Path: <rahul.saxena@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E7AA9E0027E
+	for <yocto@yoctoproject.org>; Mon,  5 Nov 2012 10:18:26 -0800 (PST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 05 Nov 2012 10:18:26 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,715,1344236400"; 
+	d="scan'208,217";a="213698846"
+Received: from orsmsx102.amr.corp.intel.com ([10.22.225.129])
+	by azsmga001.ch.intel.com with ESMTP; 05 Nov 2012 10:18:25 -0800
+Received: from orsmsx107.amr.corp.intel.com ([169.254.10.155]) by
+	ORSMSX102.amr.corp.intel.com ([169.254.1.243]) with mapi id
+	14.01.0355.002; Mon, 5 Nov 2012 10:18:24 -0800
+From: "Saxena, Rahul" <rahul.saxena@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [PATCH meta-intel] meta-cedartrail: really fix mesa-dri
+	version (typo'd)
+Thread-Index: AQHNu2/Mo2P8ZewlikaD7k87nFHvi5fb78+AgAABMACAACFKAP//efKw
+Date: Mon, 5 Nov 2012 18:18:24 +0000
+Message-ID: <63ECFF2A2302B44093D7CE9E9962C4900B820E11@ORSMSX107.amr.corp.intel.com>
 References: <1352118670-25336-1-git-send-email-ross.burton@intel.com>
 	<D956029D25CF204F948EA0FB515E1EE23E16A1B7@ORSMSX105.amr.corp.intel.com>
 	<CAJTo0Lb9_+XqaB61tTBxQa6fpiWm=aCmzNs0Myjo1ZT8rvj_eQ@mail.gmail.com>
 	<D956029D25CF204F948EA0FB515E1EE23E16A27D@ORSMSX105.amr.corp.intel.com>
 	<1352131921.1601.140.camel@empanada>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Mon, 5 Nov 2012 16:16:16 +0000
-Message-ID: <CAJTo0LZQKe-0Ob-50YK8Cc0Fk_f0ncUwzMnNS+GHxvGeqbaztw@mail.gmail.com>
-To: Tom Zanussi <tom.zanussi@intel.com>
-X-Gm-Message-State: ALoCoQkOFYXPb600ztq7zsVY9urehxNWw5goRwwkyTHhf7GfdwK+QzzSVmjAN02xW3FA1m1LNvCNt0xrmucxuAl0h4NBXLQzt6NuK99buRrSJq5hgkn4HF5QtUx2Qz5cWCoL7YhKZIUneI0Ssuq3nPhsbzOd7CVNaA==
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+	<CAJTo0LZQKe-0Ob-50YK8Cc0Fk_f0ncUwzMnNS+GHxvGeqbaztw@mail.gmail.com>
+	<D956029D25CF204F948EA0FB515E1EE23E16A31E@ORSMSX105.amr.corp.intel.com>
+In-Reply-To: <D956029D25CF204F948EA0FB515E1EE23E16A31E@ORSMSX105.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.140]
+MIME-Version: 1.0
 Subject: Re: [PATCH meta-intel] meta-cedartrail: really fix mesa-dri version (typo'd)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -47,51 +44,125 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 05 Nov 2012 16:16:52 -0000
-Content-Type: multipart/alternative; boundary=14dae93a148d4c0d0104cdc1cfbc
+X-List-Received-Date: Mon, 05 Nov 2012 18:18:27 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_63ECFF2A2302B44093D7CE9E9962C4900B820E11ORSMSX107amrcor_"
 
---14dae93a148d4c0d0104cdc1cfbc
-Content-Type: text/plain; charset=UTF-8
+--_000_63ECFF2A2302B44093D7CE9E9962C4900B820E11ORSMSX107amrcor_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-On 5 November 2012 16:12, Tom Zanussi <tom.zanussi@intel.com> wrote:
+V2UgYXJlIE9LIGZvciBwdXR0aW5nIGl0IGluIHRoZSByZWxlYXNlIG5vdGVzIGFuZCBub3QgZG9p
+bmcgUkMzLg0KDQoNClRoYW5rcw0KUmFodWwNCg0KRnJvbTogQnVydG9uLCBSb3NzIFttYWlsdG86
+cm9zcy5idXJ0b25AaW50ZWwuY29tXQ0KU2VudDogTW9uZGF5LCBOb3ZlbWJlciAwNSwgMjAxMiA4
+OjE2IEFNDQpUbzogWmFudXNzaSwgVG9tDQpDYzogQm9ka2UsIEtpc2hvcmUgSzsgU2F4ZW5hLCBS
+YWh1bDsgeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZzxtYWlsdG86eW9jdG9AeW9jdG9wcm9qZWN0Lm9y
+Zz4NClN1YmplY3Q6IFJlOiBbUEFUQ0ggbWV0YS1pbnRlbF0gbWV0YS1jZWRhcnRyYWlsOiByZWFs
+bHkgZml4IG1lc2EtZHJpIHZlcnNpb24gKHR5cG8nZCkNCg0KT24gNSBOb3ZlbWJlciAyMDEyIDE2
+OjEyLCBUb20gWmFudXNzaSA8dG9tLnphbnVzc2lAaW50ZWwuY29tPG1haWx0bzp0b20uemFudXNz
+aUBpbnRlbC5jb20+PiB3cm90ZToNCklzIGl0IGEgc2hvdy1zdG9wcGVyPyAgSWYgc28sIHdlJ2xs
+IGhhdmUgdG8gcHVsbCBpdCBpbiBhbmQgZG8gYW4gUkMzIEkNCmd1ZXNzLiAgSWYgbm90LCBJIGNh
+biBzdGlsbCBwdWxsIGl0IGluIHRvIGRhbm55LCBpdCBqdXN0IHdvbid0IGJlDQppbmNsdWRlZCBp
+biB0aGUgcmVsZWFzZSAoeW91IGNhbiByZWxlYXNlLW5vdGUgaXQgaWYgaXQncyBpbXBvcnRhbnQN
+CnBlb3BsZSBrbm93IGFib3V0IGl0IGZvciB0aGUgcmVsZWFzZSkuDQoNCkl0J3Mgbm90IGEgc2hv
+dy1zdG9wcGVyIGJ1dCBpdCdzIG9idmlvdXNseSBjb3JyZWN0IGlmIHlvdSBoYXZlIGFueXRoaW5n
+IGVsc2UgbGFuZGluZyB0byBjYXVzZSBhIFJDMy4NCg0KSXQganVzdCBkb2Vzbid0IGZpeCB0aGUg
+d2FybmluZyB0aGF0IHRoZSBvcmlnaW5hbCBmaXggd2FzIG1lYW50IHRvIGZpeCAtIHlvdSdsbCBn
+ZXQgYSBidWlsZCB3YXJuaW5nIHRoYXQgdGhlIHByZWZlcnJlZCB2ZXJzaW9uIG9mIG1lc2EtZHJp
+ICg4LjA0KSBpc24ndCBhdmFpbGFibGUgKHNob3VsZCBiZSA4LjAuNCkuDQoNClJvc3MNCg==
 
-> Is it a show-stopper?  If so, we'll have to pull it in and do an RC3 I
-> guess.  If not, I can still pull it in to danny, it just won't be
-> included in the release (you can release-note it if it's important
-> people know about it for the release).
->
+--_000_63ECFF2A2302B44093D7CE9E9962C4900B820E11ORSMSX107amrcor_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-It's not a show-stopper but it's obviously correct if you have anything
-else landing to cause a RC3.
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTIgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1IDUgMiAyIDIgNCAzIDIgNDt9DQpAZm9udC1mYWNlDQoJ
+e2ZvbnQtZmFtaWx5OlRhaG9tYTsNCglwYW5vc2UtMToyIDExIDYgNCAzIDUgNCA0IDIgNDt9DQov
+KiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3JtYWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1z
+b05vcm1hbA0KCXttYXJnaW46MGluOw0KCW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250LXNp
+emU6MTIuMHB0Ow0KCWZvbnQtZmFtaWx5OiJUaW1lcyBOZXcgUm9tYW4iLCJzZXJpZiI7fQ0KYTps
+aW5rLCBzcGFuLk1zb0h5cGVybGluaw0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6
+Ymx1ZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCmE6dmlzaXRlZCwgc3Bhbi5Nc29I
+eXBlcmxpbmtGb2xsb3dlZA0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6cHVycGxl
+Ow0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KcC5Nc29BY2V0YXRlLCBsaS5Nc29BY2V0
+YXRlLCBkaXYuTXNvQWNldGF0ZQ0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJbXNvLXN0eWxl
+LWxpbms6IkJhbGxvb24gVGV4dCBDaGFyIjsNCgltYXJnaW46MGluOw0KCW1hcmdpbi1ib3R0b206
+LjAwMDFwdDsNCglmb250LXNpemU6OC4wcHQ7DQoJZm9udC1mYW1pbHk6IlRhaG9tYSIsInNhbnMt
+c2VyaWYiO30NCnNwYW4uRW1haWxTdHlsZTE3DQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFsOw0K
+CWZvbnQtZmFtaWx5OiJDYWxpYnJpIiwic2Fucy1zZXJpZiI7DQoJY29sb3I6IzFGNDk3RDt9DQpz
+cGFuLkJhbGxvb25UZXh0Q2hhcg0KCXttc28tc3R5bGUtbmFtZToiQmFsbG9vbiBUZXh0IENoYXIi
+Ow0KCW1zby1zdHlsZS1wcmlvcml0eTo5OTsNCgltc28tc3R5bGUtbGluazoiQmFsbG9vbiBUZXh0
+IjsNCglmb250LWZhbWlseToiVGFob21hIiwic2Fucy1zZXJpZiI7fQ0Kc3Bhbi5FbWFpbFN0eWxl
+MjANCgl7bXNvLXN0eWxlLXR5cGU6cGVyc29uYWwtcmVwbHk7DQoJZm9udC1mYW1pbHk6IkNhbGli
+cmkiLCJzYW5zLXNlcmlmIjsNCgljb2xvcjojMUY0OTdEO30NCi5Nc29DaHBEZWZhdWx0DQoJe21z
+by1zdHlsZS10eXBlOmV4cG9ydC1vbmx5Ow0KCWZvbnQtc2l6ZToxMC4wcHQ7fQ0KQHBhZ2UgV29y
+ZFNlY3Rpb24xDQoJe3NpemU6OC41aW4gMTEuMGluOw0KCW1hcmdpbjoxLjBpbiAxLjBpbiAxLjBp
+biAxLjBpbjt9DQpkaXYuV29yZFNlY3Rpb24xDQoJe3BhZ2U6V29yZFNlY3Rpb24xO30NCi0tPjwv
+c3R5bGU+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWRlZmF1bHRzIHY6ZXh0PSJl
+ZGl0IiBzcGlkbWF4PSIxMDI2IiAvPg0KPC94bWw+PCFbZW5kaWZdLS0+PCEtLVtpZiBndGUgbXNv
+IDldPjx4bWw+DQo8bzpzaGFwZWxheW91dCB2OmV4dD0iZWRpdCI+DQo8bzppZG1hcCB2OmV4dD0i
+ZWRpdCIgZGF0YT0iMSIgLz4NCjwvbzpzaGFwZWxheW91dD48L3htbD48IVtlbmRpZl0tLT4NCjwv
+aGVhZD4NCjxib2R5IGxhbmc9IkVOLVVTIiBsaW5rPSJibHVlIiB2bGluaz0icHVycGxlIj4NCjxk
+aXYgY2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHls
+ZT0iY29sb3I6IzFGNDk3RCI+V2UgYXJlIE9LIGZvciBwdXR0aW5nIGl0IGluIHRoZSByZWxlYXNl
+IG5vdGVzIGFuZCBub3QgZG9pbmcgUkMzLjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+Ij48Yj48aT48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtD
+YWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+PG86cD4m
+bmJzcDs8L286cD48L3NwYW4+PC9pPjwvYj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3Bh
+biBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7
+LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48
+L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTox
+MS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1
+b3Q7O2NvbG9yOiMxRjQ5N0QiPlRoYW5rczxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNz
+PSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZx
+dW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj5S
+YWh1bDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0
+eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1
+b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bh
+bj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48Yj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEw
+LjBwdDtmb250LWZhbWlseTomcXVvdDtUYWhvbWEmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90
+OyI+RnJvbTo8L3NwYW4+PC9iPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFt
+aWx5OiZxdW90O1RhaG9tYSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ij4gQnVydG9uLCBS
+b3NzIFs8YSBocmVmPSJtYWlsdG86cm9zcy5idXJ0b25AaW50ZWwuY29tIj5tYWlsdG86cm9zcy5i
+dXJ0b25AaW50ZWwuY29tPC9hPl0NCjxicj4NCjxiPlNlbnQ6PC9iPiBNb25kYXksIE5vdmVtYmVy
+IDA1LCAyMDEyIDg6MTYgQU08YnI+DQo8Yj5Ubzo8L2I+IFphbnVzc2ksIFRvbTxicj4NCjxiPkNj
+OjwvYj4gQm9ka2UsIEtpc2hvcmUgSzsgU2F4ZW5hLCBSYWh1bDsgPGEgaHJlZj0ibWFpbHRvOnlv
+Y3RvQHlvY3RvcHJvamVjdC5vcmciPg0KeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZzwvYT48YnI+DQo8
+Yj5TdWJqZWN0OjwvYj4gUmU6IFtQQVRDSCBtZXRhLWludGVsXSBtZXRhLWNlZGFydHJhaWw6IHJl
+YWxseSBmaXggbWVzYS1kcmkgdmVyc2lvbiAodHlwbydkKTxvOnA+PC9vOnA+PC9zcGFuPjwvcD4N
+CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1z
+b05vcm1hbCI+T24gNSBOb3ZlbWJlciAyMDEyIDE2OjEyLCBUb20gWmFudXNzaSAmbHQ7PGEgaHJl
+Zj0ibWFpbHRvOnRvbS56YW51c3NpQGludGVsLmNvbSIgdGFyZ2V0PSJfYmxhbmsiPnRvbS56YW51
+c3NpQGludGVsLmNvbTwvYT4mZ3Q7IHdyb3RlOjxvOnA+PC9vOnA+PC9wPg0KPGRpdj4NCjxkaXY+
+DQo8YmxvY2txdW90ZSBzdHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLWxlZnQ6c29saWQgI0NDQ0ND
+QyAxLjBwdDtwYWRkaW5nOjBpbiAwaW4gMGluIDYuMHB0O21hcmdpbi1sZWZ0OjQuOHB0O21hcmdp
+bi10b3A6NS4wcHQ7bWFyZ2luLXJpZ2h0OjBpbjttYXJnaW4tYm90dG9tOjUuMHB0Ij4NCjxkaXY+
+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5JcyBpdCBhIHNob3ctc3RvcHBlcj8gJm5ic3A7SWYgc28s
+IHdlJ2xsIGhhdmUgdG8gcHVsbCBpdCBpbiBhbmQgZG8gYW4gUkMzIEk8bzpwPjwvbzpwPjwvcD4N
+CjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+Z3Vlc3MuICZuYnNwO0lmIG5vdCwgSSBjYW4g
+c3RpbGwgcHVsbCBpdCBpbiB0byBkYW5ueSwgaXQganVzdCB3b24ndCBiZTxicj4NCmluY2x1ZGVk
+IGluIHRoZSByZWxlYXNlICh5b3UgY2FuIHJlbGVhc2Utbm90ZSBpdCBpZiBpdCdzIGltcG9ydGFu
+dDxicj4NCnBlb3BsZSBrbm93IGFib3V0IGl0IGZvciB0aGUgcmVsZWFzZSkuPG86cD48L286cD48
+L3A+DQo8L2Jsb2NrcXVvdGU+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJz
+cDs8L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5JdCdzIG5v
+dCBhIHNob3ctc3RvcHBlciBidXQgaXQncyBvYnZpb3VzbHkgY29ycmVjdCBpZiB5b3UgaGF2ZSBh
+bnl0aGluZyBlbHNlIGxhbmRpbmcgdG8gY2F1c2UgYSBSQzMuPG86cD48L286cD48L3A+DQo8L2Rp
+dj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwv
+ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkl0IGp1c3QgZG9lc24ndCBmaXggdGhl
+IHdhcm5pbmcgdGhhdCB0aGUgb3JpZ2luYWwgZml4IHdhcyBtZWFudCB0byBmaXggLSB5b3UnbGwg
+Z2V0IGEgYnVpbGQgd2FybmluZyB0aGF0IHRoZSBwcmVmZXJyZWQgdmVyc2lvbiBvZiBtZXNhLWRy
+aSAoOC4wNCkgaXNuJ3QgYXZhaWxhYmxlIChzaG91bGQgYmUgOC4wLjQpLjxvOnA+PC9vOnA+PC9w
+Pg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48
+L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5Sb3NzJm5ic3A7PG86cD48
+L286cD48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRt
+bD4NCg==
 
-It just doesn't fix the warning that the original fix was meant to fix -
-you'll get a build warning that the preferred version of mesa-dri (8.04)
-isn't available (should be 8.0.4).
-
-Ross
-
---14dae93a148d4c0d0104cdc1cfbc
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-On 5 November 2012 16:12, Tom Zanussi <span dir=3D"ltr">&lt;<a href=3D"mail=
-to:tom.zanussi@intel.com" target=3D"_blank">tom.zanussi@intel.com</a>&gt;</=
-span> wrote:<br><div class=3D"gmail_extra"><div class=3D"gmail_quote"><bloc=
-kquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #cc=
-c solid;padding-left:1ex">
-
-<div class=3D"im">Is it a show-stopper? =C2=A0If so, we&#39;ll have to pull=
- it in and do an RC3 I<br></div>
-guess. =C2=A0If not, I can still pull it in to danny, it just won&#39;t be<=
-br>
-included in the release (you can release-note it if it&#39;s important<br>
-people know about it for the release).<br></blockquote><div><br></div><div>=
-It&#39;s not a show-stopper but it&#39;s obviously correct if you have anyt=
-hing else landing to cause a RC3.</div><div><br></div><div>It just doesn&#3=
-9;t fix the warning that the original fix was meant to fix - you&#39;ll get=
- a build warning that the preferred version of mesa-dri (8.04) isn&#39;t av=
-ailable (should be 8.0.4).</div>
-
-<div><br></div><div>Ross=C2=A0</div></div></div>
-
---14dae93a148d4c0d0104cdc1cfbc--
+--_000_63ECFF2A2302B44093D7CE9E9962C4900B820E11ORSMSX107amrcor_--
