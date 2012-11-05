@@ -1,23 +1,35 @@
-Return-Path: <Bjorn.Arnelid@enea.com>
-Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id DC7A4E0052C
-	for <yocto@yoctoproject.org>; Mon,  5 Nov 2012 07:32:20 -0800 (PST)
-Received: from SESTOEX09.enea.se ([fe80::cc12:dcdc:d521:97f8]) by
-	SESTOEX03.enea.se ([fe80::6ce7:7b51:1edf:e245%21]) with mapi id
-	14.02.0318.001; Mon, 5 Nov 2012 16:32:17 +0100
-From: =?iso-8859-1?Q?Bj=F6rn_Arnelid?= <Bjorn.Arnelid@enea.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [PATCH] [POKY-ECLIPSE] Update plugin version in installation
-	details
-Thread-Index: Ac27aosrpJRaVrjiR4W+b5LnQQCSxg==
-Date: Mon, 5 Nov 2012 15:32:17 +0000
-Message-ID: <3978FA4917A02149AA33ECE70914C5151D642417@sestoex09.enea.se>
+Return-Path: <kishore.k.bodke@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2AE3DE0052C
+	for <yocto@yoctoproject.org>; Mon,  5 Nov 2012 07:54:43 -0800 (PST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 05 Nov 2012 07:54:42 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,715,1344236400"; d="scan'208";a="213634562"
+Received: from orsmsx106.amr.corp.intel.com ([10.22.225.133])
+	by azsmga001.ch.intel.com with ESMTP; 05 Nov 2012 07:54:42 -0800
+Received: from orsmsx153.amr.corp.intel.com (10.22.226.247) by
+	ORSMSX106.amr.corp.intel.com (10.22.225.133) with Microsoft SMTP Server
+	(TLS) id 14.1.355.2; Mon, 5 Nov 2012 07:54:41 -0800
+Received: from orsmsx105.amr.corp.intel.com ([169.254.4.28]) by
+	ORSMSX153.amr.corp.intel.com ([169.254.13.228]) with mapi id
+	14.01.0355.002; Mon, 5 Nov 2012 07:54:41 -0800
+From: "Bodke, Kishore K" <kishore.k.bodke@intel.com>
+To: "Burton, Ross" <ross.burton@intel.com>
+Thread-Topic: [PATCH meta-intel] meta-cedartrail: really fix mesa-dri
+	version (typo'd)
+Thread-Index: AQHNu1GsTMY+B/nfXU+y0AQElAWvm5fbZOWw
+Date: Mon, 5 Nov 2012 15:54:40 +0000
+Message-ID: <D956029D25CF204F948EA0FB515E1EE23E16A1B7@ORSMSX105.amr.corp.intel.com>
+References: <1352118670-25336-1-git-send-email-ross.burton@intel.com>
+In-Reply-To: <1352118670-25336-1-git-send-email-ross.burton@intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [172.16.140.25]
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-Subject: [PATCH] [POKY-ECLIPSE] Update plugin version in installation details
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [PATCH meta-intel] meta-cedartrail: really fix mesa-dri version (typo'd)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,170 +41,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 05 Nov 2012 15:32:21 -0000
+X-List-Received-Date: Mon, 05 Nov 2012 15:54:43 -0000
 Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_3978FA4917A02149AA33ECE70914C5151D642417sestoex09enease_"
-
---_000_3978FA4917A02149AA33ECE70914C5151D642417sestoex09enease_
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-From: Bj=F6rn Arnelid <bjorn.arnelid@enea.com>
-Date: Mon, 5 Nov 2012 15:47:14 +0100
-Subject: [PATCH] [SIGNED-OFF] Update plugin version in installation details
-MIME-Version: 1.0
-Content-Type: text/plain; charset=3DUTF-8
-Content-Transfer-Encoding: 8bit
+Is this patch for danny?
 
+-Kishore.
 
-When using version 1.3 Danny and looking in Help -> About Eclipse SDK -> In=
-stallation Details -> Plugins.
-Yocto eclipse plugin version is described as 1.2.0.qualifier.
-Version number should be matching actual version (1.3)
-
-Changed Bundle-Version in projects MANIFEST.MF to 1.3
-
-Signed-off-by: Bj=F6rn Arnelid <bjorn.arnelid@enea.com>
----
- plugins/org.yocto.bc.ui/META-INF/MANIFEST.MF       |    2 +-
- plugins/org.yocto.sdk.ide/META-INF/MANIFEST.MF     |    2 +-
- .../org.yocto.sdk.remotetools/META-INF/MANIFEST.MF |    2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
-
-diff --git a/plugins/org.yocto.bc.ui/META-INF/MANIFEST.MF b/plugins/org.yoc=
-to.bc.ui/META-INF/MANIFEST.MF
-index dccabda..85dddf5 100644
---- a/plugins/org.yocto.bc.ui/META-INF/MANIFEST.MF
-+++ b/plugins/org.yocto.bc.ui/META-INF/MANIFEST.MF
-@@ -2,7 +2,7 @@ Manifest-Version: 1.0
- Bundle-ManifestVersion: 2
- Bundle-Name: %Bundle-Name
- Bundle-SymbolicName: org.yocto.bc.ui;singleton:=3Dtrue
--Bundle-Version: 1.2.0.qualifier
-+Bundle-Version: 1.3
- Bundle-Activator: org.yocto.bc.ui.Activator
- Bundle-Vendor: %Bundle-Vendor
- Require-Bundle: org.eclipse.ui,
-diff --git a/plugins/org.yocto.sdk.ide/META-INF/MANIFEST.MF b/plugins/org.y=
-octo.sdk.ide/META-INF/MANIFEST.MF
-index c3d8cc9..dd1b9ec 100644
---- a/plugins/org.yocto.sdk.ide/META-INF/MANIFEST.MF
-+++ b/plugins/org.yocto.sdk.ide/META-INF/MANIFEST.MF
-@@ -2,7 +2,7 @@ Manifest-Version: 1.0
- Bundle-ManifestVersion: 2
- Bundle-Name: %Bundle-Name
- Bundle-SymbolicName: org.yocto.sdk.ide;singleton:=3Dtrue
--Bundle-Version: 1.2.0.qualifier
-+Bundle-Version: 1.3
- Bundle-Activator: org.yocto.sdk.ide.YoctoSDKPlugin
- Bundle-Vendor: %Bundle-Vendor
- Require-Bundle: org.eclipse.ui,
-diff --git a/plugins/org.yocto.sdk.remotetools/META-INF/MANIFEST.MF b/plugi=
-ns/org.yocto.sdk.remotetools/META-INF/MANIFEST.MF
-index 6be7da1..df4fbb0 100644
---- a/plugins/org.yocto.sdk.remotetools/META-INF/MANIFEST.MF
-+++ b/plugins/org.yocto.sdk.remotetools/META-INF/MANIFEST.MF
-@@ -2,7 +2,7 @@ Manifest-Version: 1.0
- Bundle-ManifestVersion: 2
- Bundle-Name: %Bundle-Name
- Bundle-SymbolicName: org.yocto.sdk.remotetools; singleton:=3Dtrue
--Bundle-Version: 1.2.0.qualifier
-+Bundle-Version: 1.3
- Bundle-Activator: org.yocto.sdk.remotetools.Activator
- Require-Bundle: org.eclipse.ui,
-  org.eclipse.core.runtime,
---
-1.7.9.5
-
-
---_000_3978FA4917A02149AA33ECE70914C5151D642417sestoex09enease_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html dir=3D"ltr">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style id=3D"owaParaStyle" type=3D"text/css">P {margin-top:0;margin-bottom:=
-0;}</style>
-</head>
-<body ocsi=3D"0" fpstyle=3D"1">
-<div style=3D"direction: ltr;font-family: Tahoma;color: #000000;font-size: =
-10pt;">From: Bj=F6rn Arnelid &lt;bjorn.arnelid@enea.com&gt;<br>
-Date: Mon, 5 Nov 2012 15:47:14 &#43;0100<br>
-Subject: [PATCH] [SIGNED-OFF] Update plugin version in installation details=
-<br>
-MIME-Version: 1.0<br>
-Content-Type: text/plain; charset=3DUTF-8<br>
-Content-Transfer-Encoding: 8bit<br>
-<br>
-<br>
-When using version 1.3 Danny and looking in Help -&gt; About Eclipse SDK -&=
-gt; Installation Details -&gt; Plugins.<br>
-Yocto eclipse plugin version is described as 1.2.0.qualifier.<br>
-Version number should be matching actual version (1.3)<br>
-<br>
-Changed Bundle-Version in projects MANIFEST.MF to 1.3<br>
-<br>
-Signed-off-by: Bj=F6rn Arnelid &lt;bjorn.arnelid@enea.com&gt;<br>
----<br>
-&nbsp;plugins/org.yocto.bc.ui/META-INF/MANIFEST.MF&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp; |&nbsp;&nbsp;&nbsp; 2 &#43;-<br>
-&nbsp;plugins/org.yocto.sdk.ide/META-INF/MANIFEST.MF&nbsp;&nbsp;&nbsp;&nbsp=
-; |&nbsp;&nbsp;&nbsp; 2 &#43;-<br>
-&nbsp;.../org.yocto.sdk.remotetools/META-INF/MANIFEST.MF |&nbsp;&nbsp;&nbsp=
-; 2 &#43;-<br>
-&nbsp;3 files changed, 3 insertions(&#43;), 3 deletions(-)<br>
-<br>
-diff --git a/plugins/org.yocto.bc.ui/META-INF/MANIFEST.MF b/plugins/org.yoc=
-to.bc.ui/META-INF/MANIFEST.MF<br>
-index dccabda..85dddf5 100644<br>
---- a/plugins/org.yocto.bc.ui/META-INF/MANIFEST.MF<br>
-&#43;&#43;&#43; b/plugins/org.yocto.bc.ui/META-INF/MANIFEST.MF<br>
-@@ -2,7 &#43;2,7 @@ Manifest-Version: 1.0<br>
-&nbsp;Bundle-ManifestVersion: 2<br>
-&nbsp;Bundle-Name: %Bundle-Name<br>
-&nbsp;Bundle-SymbolicName: org.yocto.bc.ui;singleton:=3Dtrue<br>
--Bundle-Version: 1.2.0.qualifier<br>
-&#43;Bundle-Version: 1.3<br>
-&nbsp;Bundle-Activator: org.yocto.bc.ui.Activator<br>
-&nbsp;Bundle-Vendor: %Bundle-Vendor<br>
-&nbsp;Require-Bundle: org.eclipse.ui,<br>
-diff --git a/plugins/org.yocto.sdk.ide/META-INF/MANIFEST.MF b/plugins/org.y=
-octo.sdk.ide/META-INF/MANIFEST.MF<br>
-index c3d8cc9..dd1b9ec 100644<br>
---- a/plugins/org.yocto.sdk.ide/META-INF/MANIFEST.MF<br>
-&#43;&#43;&#43; b/plugins/org.yocto.sdk.ide/META-INF/MANIFEST.MF<br>
-@@ -2,7 &#43;2,7 @@ Manifest-Version: 1.0<br>
-&nbsp;Bundle-ManifestVersion: 2<br>
-&nbsp;Bundle-Name: %Bundle-Name<br>
-&nbsp;Bundle-SymbolicName: org.yocto.sdk.ide;singleton:=3Dtrue<br>
--Bundle-Version: 1.2.0.qualifier<br>
-&#43;Bundle-Version: 1.3<br>
-&nbsp;Bundle-Activator: org.yocto.sdk.ide.YoctoSDKPlugin<br>
-&nbsp;Bundle-Vendor: %Bundle-Vendor<br>
-&nbsp;Require-Bundle: org.eclipse.ui,<br>
-diff --git a/plugins/org.yocto.sdk.remotetools/META-INF/MANIFEST.MF b/plugi=
-ns/org.yocto.sdk.remotetools/META-INF/MANIFEST.MF<br>
-index 6be7da1..df4fbb0 100644<br>
---- a/plugins/org.yocto.sdk.remotetools/META-INF/MANIFEST.MF<br>
-&#43;&#43;&#43; b/plugins/org.yocto.sdk.remotetools/META-INF/MANIFEST.MF<br=
+>-----Original Message-----
+>From: Ross Burton [mailto:ross.burton@intel.com]
+>Sent: Monday, November 05, 2012 4:31 AM
+>To: Bodke, Kishore K
+>Cc: yocto@yoctoproject.org
+>Subject: [PATCH meta-intel] meta-cedartrail: really fix mesa-dri version
+>(typo'd)
 >
-@@ -2,7 &#43;2,7 @@ Manifest-Version: 1.0<br>
-&nbsp;Bundle-ManifestVersion: 2<br>
-&nbsp;Bundle-Name: %Bundle-Name<br>
-&nbsp;Bundle-SymbolicName: org.yocto.sdk.remotetools; singleton:=3Dtrue<br>
--Bundle-Version: 1.2.0.qualifier<br>
-&#43;Bundle-Version: 1.3<br>
-&nbsp;Bundle-Activator: org.yocto.sdk.remotetools.Activator<br>
-&nbsp;Require-Bundle: org.eclipse.ui,<br>
-&nbsp; org.eclipse.core.runtime,<br>
--- <br>
-1.7.9.5<br>
-<br>
-</div>
-</body>
-</html>
+>Signed-off-by: Ross Burton <ross.burton@intel.com>
+>---
+> meta-cedartrail/conf/machine/cedartrail.conf |    2 +-
+> 1 file changed, 1 insertion(+), 1 deletion(-)
+>
+>diff --git a/meta-cedartrail/conf/machine/cedartrail.conf b/meta-
+>cedartrail/conf/machine/cedartrail.conf
+>index aa2a46a..a5fa0f0 100644
+>--- a/meta-cedartrail/conf/machine/cedartrail.conf
+>+++ b/meta-cedartrail/conf/machine/cedartrail.conf
+>@@ -17,7 +17,7 @@ XSERVER ?=3D "${XSERVER_IA32_BASE} \
+>            "
+> PREFERRED_VERSION_linux-yocto ?=3D "3.0%"
+> PREFERRED_VERSION_xserver-xorg ?=3D "1.9.3"
+>-PREFERRED_VERSION_mesa-dri ?=3D "8.04"
+>+PREFERRED_VERSION_mesa-dri ?=3D "8.0.4"
+> PREFERRED_VERSION_xf86-input-evdev ?=3D "2.6.0"
+>
+> SYSLINUX_OPTS =3D "serial 0 115200"
+>--
+>1.7.10
 
---_000_3978FA4917A02149AA33ECE70914C5151D642417sestoex09enease_--
+
