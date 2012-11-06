@@ -1,38 +1,23 @@
-Return-Path: <ross.burton@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 691BDE002AB
-	for <yocto@yoctoproject.org>; Tue,  6 Nov 2012 12:40:49 -0800 (PST)
-Received: from mail-ob0-f200.google.com ([209.85.214.200])
-	by mga09.intel.com with ESMTP/TLS/RC4-SHA; 06 Nov 2012 12:40:15 -0800
-Received: by mail-ob0-f200.google.com with SMTP id un3so2647274obb.11
-	for <yocto@yoctoproject.org>; Tue, 06 Nov 2012 12:40:46 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type:x-gm-message-state;
-	bh=d33WrpCOu77C18omD582vVjK7l+XZe9PLhNj31IEjOQ=;
-	b=oiEloYlhHXJiyxZ48yLbLXO/YUPLpH2IvfqC4UXHMx1w3b4/WPCf22ilfplyZ6r7U3
-	I5WvTYrdWPFFgwIcWUTc94wvycVp9l3y8PjgU3Uc0BxcNXtQlmyFYn7ZmuBLEW4mxv3f
-	4hWlysREkKxuUGOD5NqRDWHMpQvd8ZC/DxvefA0/cujYhpMtYCo+0F535Rce9QcviA9u
-	H+0jZAcvQrakqa3Io7nKI8N2jV+NS5bMJxgssmOpugGzDCn5PwtW/ZzPwZdEsH5FmGZd
-	LHZQdEitIqcuvF1t+0O8RYIbgVAzRxwabOSpTta0p/fkxCUBR5NRtLccWNDm8VCqytO/
-	VzGQ==
-Received: by 10.43.132.65 with SMTP id ht1mr2212859icc.1.1352234445619;
-	Tue, 06 Nov 2012 12:40:45 -0800 (PST)
-Received: by 10.43.132.65 with SMTP id ht1mr2212852icc.1.1352234445542; Tue,
-	06 Nov 2012 12:40:45 -0800 (PST)
-MIME-Version: 1.0
-Received: by 10.64.58.197 with HTTP; Tue, 6 Nov 2012 12:40:25 -0800 (PST)
-In-Reply-To: <1352234097.2408.47.camel@empanada>
-References: <1352119640-25949-1-git-send-email-ross.burton@intel.com>
-	<1352234097.2408.47.camel@empanada>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Tue, 6 Nov 2012 20:40:25 +0000
-Message-ID: <CAJTo0LYW1CqYw7qmcKEPJbt22pD-HKaBWRwSCbOspBsCaXtG1g@mail.gmail.com>
-To: Tom Zanussi <tom.zanussi@intel.com>
-X-Gm-Message-State: ALoCoQnzxGhAz4IQKjPWPgx8J8sGGiAz5a1L/n4AhCOkoIwJHZiSTecJeL46/iw4ynjdZFu4GmVcO51lsGVW6avv+zPA+uM/dsgQQDil2MjwhDUqoxS5tqkwhHV/43aIXMJslDRofJQmIOkqNit8HCqFV/Sj2c+4uQ==
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1D634E00348
+	for <yocto@yoctoproject.org>; Tue,  6 Nov 2012 15:20:41 -0800 (PST)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 06 Nov 2012 15:20:40 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,724,1344236400"; d="scan'208";a="165269845"
+Received: from unknown (HELO [10.255.15.17]) ([10.255.15.17])
+	by AZSMGA002.ch.intel.com with ESMTP; 06 Nov 2012 15:20:39 -0800
+Message-ID: <1352244039.2408.62.camel@empanada>
+From: Tom Zanussi <tom.zanussi@intel.com>
+To: Ross Burton <ross.burton@intel.com>
+Date: Tue, 06 Nov 2012 17:20:39 -0600
+In-Reply-To: <1352118670-25336-1-git-send-email-ross.burton@intel.com>
+References: <1352118670-25336-1-git-send-email-ross.burton@intel.com>
+X-Mailer: Evolution 3.4.1 (3.4.1-2.fc17) 
+Mime-Version: 1.0
 Cc: yocto@yoctoproject.org
-Subject: Re: [meta-intel] Add Xorg ABI dependencies
+Subject: Re: [PATCH meta-intel] meta-cedartrail: really fix mesa-dri version (typo'd)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,20 +29,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 Nov 2012 20:40:49 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Tue, 06 Nov 2012 23:20:41 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-On 6 November 2012 20:34, Tom Zanussi <tom.zanussi@intel.com> wrote:
-> In the future, could you also add a link to the branch (if there is
-> one)?  I guess these are at:
->
-> http://git.yoctoproject.org/cgit/cgit.cgi/meta-intel-contrib/log/?h=ross/xorgabi
->
-> But would rather not guess (or compare) or have to pull them off the
-> list.
+On Mon, 2012-11-05 at 12:31 +0000, Ross Burton wrote:
+> Signed-off-by: Ross Burton <ross.burton@intel.com>
 
-Of course, apologies for not doing that.  In general with me the
-branch is canonical.
+Pulled into meta-intel/danny-next and meta-intel/master.
 
-Ross
+Thanks,
+
+Tom
+
+> ---
+>  meta-cedartrail/conf/machine/cedartrail.conf |    2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/meta-cedartrail/conf/machine/cedartrail.conf b/meta-cedartrail/conf/machine/cedartrail.conf
+> index aa2a46a..a5fa0f0 100644
+> --- a/meta-cedartrail/conf/machine/cedartrail.conf
+> +++ b/meta-cedartrail/conf/machine/cedartrail.conf
+> @@ -17,7 +17,7 @@ XSERVER ?= "${XSERVER_IA32_BASE} \
+>             "
+>  PREFERRED_VERSION_linux-yocto ?= "3.0%"
+>  PREFERRED_VERSION_xserver-xorg ?= "1.9.3"
+> -PREFERRED_VERSION_mesa-dri ?= "8.04"
+> +PREFERRED_VERSION_mesa-dri ?= "8.0.4"
+>  PREFERRED_VERSION_xf86-input-evdev ?= "2.6.0"
+>  
+>  SYSLINUX_OPTS = "serial 0 115200"
+
+
 
