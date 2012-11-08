@@ -1,37 +1,23 @@
-Return-Path: <ross.burton@intel.com>
-Received: from orsmga101.jf.intel.com (mga06.intel.com [134.134.136.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2D0C9E013D2
-	for <yocto@yoctoproject.org>; Thu,  8 Nov 2012 06:32:15 -0800 (PST)
-Received: from mail-ie0-f200.google.com ([209.85.223.200])
-	by mga02.intel.com with ESMTP/TLS/RC4-SHA; 08 Nov 2012 06:32:14 -0800
-Received: by mail-ie0-f200.google.com with SMTP id 10so8022628ied.11
-	for <yocto@yoctoproject.org>; Thu, 08 Nov 2012 06:32:14 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type:x-gm-message-state;
-	bh=TdpHPMegFrCOVxYaWmORmoAs4reUPHIKdLW5vzq98k0=;
-	b=cVafUjqC8h9DkW87lbBtou8+7jQGGSyXzAmqBNoF4eAYWxg5wMw+0n3Ir86VJ4FfEG
-	DVEAP4za7/z8RGfrJ6ZhTr9DXnOZV7IBmDT3kG3iJHCxUU+NwafZd7Vg+ee9pcPo30qK
-	CVUsx018eLAjSfuwZEUVSsMMf2B3lUn+63XcVrsFo4AOjTxjJdR1/Oh2JCIZpqVZmY7P
-	aHfCE3JeDXJQhn5TNaeDFx2a+YUXYJcYcNi41EsVXyz+PrK6HwD75NW0idE5gLiACo/o
-	V+WGCYG4xkQz938+3S9yV8ETThs4UQ028R7s33t3uxhwhLrQAuXrxrDDl8nIYkKi+ykx
-	1kpA==
-Received: by 10.182.1.72 with SMTP id 8mr5693141obk.61.1352385133847;
-	Thu, 08 Nov 2012 06:32:13 -0800 (PST)
-Received: by 10.182.1.72 with SMTP id 8mr5693130obk.61.1352385133734; Thu, 08
-	Nov 2012 06:32:13 -0800 (PST)
-MIME-Version: 1.0
-Received: by 10.182.68.135 with HTTP; Thu, 8 Nov 2012 06:31:53 -0800 (PST)
-In-Reply-To: <CAC+6ctOu6rXA5wiYTabzrGFpt8wv4XBtfc=8u=OuNPpeVN=ZQg@mail.gmail.com>
-References: <CAC+6ctOu6rXA5wiYTabzrGFpt8wv4XBtfc=8u=OuNPpeVN=ZQg@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Thu, 8 Nov 2012 14:31:53 +0000
-Message-ID: <CAJTo0LY03Bgv7YXJnhN_iqLdgdxKU=AwzGZ9Pk7xW8xpy72pHg@mail.gmail.com>
-To: Zhifan Nie <nzf1989@gmail.com>
-X-Gm-Message-State: ALoCoQmJcwM9wl7TeMncNM6Q+PZg/uzv8KAmyHdTpfU5m4ToMtsERA+DtbM8dK5XBrKKT4QlAQNPCyHk7MCuuyB8QViMupHAFu8jbcBLrpMSE9T756Kk2qizjSMw7ZRPEWp6NF1rMX2tYq22Ae9WHWfwhOgrAdQGqw==
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8DACEE003DA
+	for <yocto@yoctoproject.org>; Thu,  8 Nov 2012 07:33:40 -0800 (PST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga102.fm.intel.com with ESMTP; 08 Nov 2012 07:33:40 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,738,1344236400"; d="scan'208";a="244158427"
+Received: from unknown (HELO [10.255.12.37]) ([10.255.12.37])
+	by fmsmga001.fm.intel.com with ESMTP; 08 Nov 2012 07:33:39 -0800
+Message-ID: <1352388819.28181.2.camel@empanada>
+From: Tom Zanussi <tom.zanussi@intel.com>
+To: kishore.k.bodke@intel.com
+Date: Thu, 08 Nov 2012 09:33:39 -0600
+In-Reply-To: <cover.1352330314.git.kishore.k.bodke@intel.com>
+References: <cover.1352330314.git.kishore.k.bodke@intel.com>
+X-Mailer: Evolution 3.4.1 (3.4.1-2.fc17) 
+Mime-Version: 1.0
 Cc: yocto@yoctoproject.org
-Subject: Re: please patch runqemu
+Subject: Re: [PATCH 0/1] [meta-inte] romley: update README Instructions
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,17 +29,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 08 Nov 2012 14:32:15 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 08 Nov 2012 15:33:40 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Hi ,
+On Wed, 2012-11-07 at 15:21 -0800, kishore.k.bodke@intel.com wrote:
+> From: Kishore Bodke <kishore.k.bodke@intel.com>
+> 
+> Add instructions on how to get the Intel DPDK
+> recipes for the Romley BSP.
+> 
+> Please pull into meta-intel/danny.
+> 
 
-On 8 November 2012 08:07, Zhifan Nie <nzf1989@gmail.com> wrote:
-> please find the attached patch file to revise the runqemu script.
+Pulled into meta-intel/danny-next and meta-intel/master.
 
-The patch looks good, but could commit it to your local repository
-with a good commit message and signed-off-by, then re-send using git
-format-patch?
+Thanks,
 
-Ross
+Tom
+
+> Thanks
+> Kishore.
+> 
+> The following changes since commit 1a5ab65544830dd571a368b9d9f6ec782ffc94ac:
+> 
+>   mesa-dri.bbappend: avoid conflict with emgd-driver-bin (2012-11-01 08:35:40 -0500)
+> 
+> are available in the git repository at:
+> 
+>   git://git.pokylinux.org/meta-intel-contrib kishore/romley-readme
+>   http://git.pokylinux.org/cgit.cgi/meta-intel-contrib/log/?h=kishore/romley-readme
+> 
+> Kishore Bodke (1):
+>   romley: Update README Instructions
+> 
+>  meta-romley/README |   10 +++++++++-
+>  1 file changed, 9 insertions(+), 1 deletion(-)
+> 
+
+
 
