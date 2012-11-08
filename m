@@ -1,30 +1,34 @@
 Return-Path: <laurentiu.serban@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AC27CE01385
-	for <yocto@yoctoproject.org>; Thu,  8 Nov 2012 06:19:51 -0800 (PST)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga101.ch.intel.com with ESMTP; 08 Nov 2012 06:19:28 -0800
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EAB9CE01385
+	for <yocto@yoctoproject.org>; Thu,  8 Nov 2012 06:21:17 -0800 (PST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 08 Nov 2012 06:21:17 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="4.80,738,1344236400"; 
 	d="xml'?bin'?scan'208,217,72,48?xlsx'208,217,72,48,72,48?rels'208,217,72,48,72,48";
-	a="165961358"
-Received: from irsmsx101.ger.corp.intel.com ([163.33.3.153])
-	by AZSMGA002.ch.intel.com with ESMTP; 08 Nov 2012 06:19:15 -0800
+	a="244130942"
+Received: from irsmsx104.ger.corp.intel.com ([163.33.3.159])
+	by fmsmga001.fm.intel.com with ESMTP; 08 Nov 2012 06:21:15 -0800
+Received: from irsmsx151.ger.corp.intel.com (163.33.192.59) by
+	IRSMSX104.ger.corp.intel.com (163.33.3.159) with Microsoft SMTP Server
+	(TLS) id 14.1.355.2; Thu, 8 Nov 2012 14:20:15 +0000
 Received: from irsmsx102.ger.corp.intel.com ([169.254.2.248]) by
-	IRSMSX101.ger.corp.intel.com ([169.254.1.158]) with mapi id
-	14.01.0355.002; Thu, 8 Nov 2012 14:19:14 +0000
+	IRSMSX151.ger.corp.intel.com ([169.254.4.52]) with mapi id
+	14.01.0355.002; Thu, 8 Nov 2012 14:20:21 +0000
 From: "Serban, Laurentiu" <laurentiu.serban@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Yocto Project bug trend
-Thread-Index: Ac29vAcTZFbefI6cTG2ohWRjdDN0FQ==
-Date: Thu, 8 Nov 2012 14:19:11 +0000
-Message-ID: <E16513A01CAAFF40B65178C63CE45EEC191A0313@IRSMSX102.ger.corp.intel.com>
+To: "Serban, Laurentiu" <laurentiu.serban@intel.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: Yocto Project bug trend ww44
+Thread-Index: Ac29vAcTZFbefI6cTG2ohWRjdDN0FQAAA3GQ
+Date: Thu, 8 Nov 2012 14:20:19 +0000
+Message-ID: <E16513A01CAAFF40B65178C63CE45EEC191A0322@IRSMSX102.ger.corp.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: yes
 X-MS-TNEF-Correlator: 
 x-originating-ip: [163.33.239.180]
 MIME-Version: 1.0
-Subject: Yocto Project bug trend
+Subject: Re: Yocto Project bug trend ww44
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,19 +40,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 08 Nov 2012 14:19:54 -0000
-X-Groupsio-MsgNum: 10475
+X-List-Received-Date: Thu, 08 Nov 2012 14:21:18 -0000
+X-Groupsio-MsgNum: 10476
 Content-Language: en-US
 Content-Type: multipart/mixed;
-	boundary="_004_E16513A01CAAFF40B65178C63CE45EEC191A0313IRSMSX102gercor_"
+	boundary="_004_E16513A01CAAFF40B65178C63CE45EEC191A0322IRSMSX102gercor_"
 
---_004_E16513A01CAAFF40B65178C63CE45EEC191A0313IRSMSX102gercor_
+--_004_E16513A01CAAFF40B65178C63CE45EEC191A0322IRSMSX102gercor_
 Content-Type: multipart/alternative;
-	boundary="_000_E16513A01CAAFF40B65178C63CE45EEC191A0313IRSMSX102gercor_"
+	boundary="_000_E16513A01CAAFF40B65178C63CE45EEC191A0322IRSMSX102gercor_"
 
---_000_E16513A01CAAFF40B65178C63CE45EEC191A0313IRSMSX102gercor_
+--_000_E16513A01CAAFF40B65178C63CE45EEC191A0322IRSMSX102gercor_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
+
+Sorry,
+
+Link Correction: https://wiki.yoctoproject.org/wiki/Yocto_Bug_Trend
+
+Br,
+Laurentiu
+
+From: Serban, Laurentiu
+Sent: Thursday, November 08, 2012 4:19 PM
+To: yocto@yoctoproject.org
+Subject: Yocto Project bug trend
 
 Hello,
 
@@ -65,7 +81,7 @@ Desk: +40 31 8604742
 iNET: 88451042
 
 
---_000_E16513A01CAAFF40B65178C63CE45EEC191A0313IRSMSX102gercor_
+--_000_E16513A01CAAFF40B65178C63CE45EEC191A0322IRSMSX102gercor_
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -86,6 +102,9 @@ xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
 	{font-family:Calibri;
 	panose-1:2 15 5 2 2 2 4 3 2 4;}
 @font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
 	{font-family:Verdana;
 	panose-1:2 11 6 4 3 5 4 4 2 4;}
 /* Style Definitions */
@@ -103,11 +122,16 @@ a:visited, span.MsoHyperlinkFollowed
 	color:purple;
 	text-decoration:underline;}
 span.EmailStyle17
-	{mso-style-type:personal-compose;
+	{mso-style-type:personal;
 	font-family:"Calibri","sans-serif";
 	color:windowtext;}
+span.EmailStyle18
+	{mso-style-type:personal-reply;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
 .MsoChpDefault
-	{mso-style-type:export-only;}
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
 @page WordSection1
 	{size:8.5in 11.0in;
 	margin:1.0in 1.0in 1.0in 1.0in;}
@@ -122,6 +146,36 @@ div.WordSection1
 </head>
 <body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
 <div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Sorry,<o:p></o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Link Correction: <a hr=
+ef=3D"https://wiki.yoctoproject.org/wiki/Yocto_Bug_Trend">
+https://wiki.yoctoproject.org/wiki/Yocto_Bug_Trend</a> <o:p></o:p></span></=
+p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Br,<o:p></o:p></span><=
+/p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Laurentiu<o:p></o:p></=
+span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<div>
+<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
+0in 0in">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
+ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> Serban, =
+Laurentiu
+<br>
+<b>Sent:</b> Thursday, November 08, 2012 4:19 PM<br>
+<b>To:</b> yocto@yoctoproject.org<br>
+<b>Subject:</b> Yocto Project bug trend<o:p></o:p></span></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
 <p class=3D"MsoNormal">Hello,<o:p></o:p></p>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
 <p class=3D"MsoNormal">The ww44 bug trend for the Yocto Project was updated=
@@ -154,9 +208,9 @@ dana&quot;,&quot;sans-serif&quot;;color:#244061">iNET: 88451042<o:p></o:p><=
 </body>
 </html>
 
---_000_E16513A01CAAFF40B65178C63CE45EEC191A0313IRSMSX102gercor_--
+--_000_E16513A01CAAFF40B65178C63CE45EEC191A0322IRSMSX102gercor_--
 
---_004_E16513A01CAAFF40B65178C63CE45EEC191A0313IRSMSX102gercor_
+--_004_E16513A01CAAFF40B65178C63CE45EEC191A0322IRSMSX102gercor_
 Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;
 	name="poky-bug-trend--WW44.xlsx"
 Content-Description: poky-bug-trend--WW44.xlsx
@@ -1288,4 +1342,4 @@ WgEAAG4CAAARAAAAAAAAAAAAAAAAADPoAABkb2NQcm9wcy9jb3JlLnhtbFBLAQItABQABgAIAAAA
 IQADOo5nyQEAAK0DAAAQAAAAAAAAAAAAAAAAAMTqAABkb2NQcm9wcy9hcHAueG1sUEsFBgAAAAAq
 ACoAzQsAAMPtAAAAAA==
 
---_004_E16513A01CAAFF40B65178C63CE45EEC191A0313IRSMSX102gercor_--
+--_004_E16513A01CAAFF40B65178C63CE45EEC191A0322IRSMSX102gercor_--
