@@ -1,28 +1,37 @@
-Return-Path: <flavio.alves@gmail.com>
-Received: from mail-la0-f48.google.com (mail-la0-f48.google.com
-	[209.85.215.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7E02CE003DA
-	for <yocto@yoctoproject.org>; Thu,  8 Nov 2012 08:51:59 -0800 (PST)
-Received: by mail-la0-f48.google.com with SMTP id o2so592980lag.35
-	for <yocto@yoctoproject.org>; Thu, 08 Nov 2012 08:51:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=TCFqqYI5zOVwWePbkE3LEBsCszP4AnCAN/cdDX/RI8Y=;
-	b=bNWd09Bv6kkr9rmeKwGweFmEtAIGU/h29QOcS/UGe+2bEQpCeQaJAyGzhWlUSYlwbi
-	/7jA2wwpkiG/3bL0o6umiEAaVynWGLX0+TNGEXwLbBdbBiF0d95prRevPX7ST2ldMhz5
-	Q90TKl/KD2QyzzVMo8MpiIFdOw3cpcSVYxHqLs8nHrlh1FpMHwX1SQuR8A9ZyvpMXWpM
-	Kontbsat5O8StroSLHyevCE/ucbI6xsp5pFBWtHRokqDQcX28mb0fUCyFzCBknGn5wuC
-	LTwekVHUXRQO993BZY19tYa/iL4SAEfKcKj4voKowDULnbxBDF28FQuT3YO61ErttvP+
-	LKDA==
+Return-Path: <sean.liming@annabooks.com>
+Received: from mail30c40.carrierzone.com (mail30c40.carrierzone.com
+	[209.235.156.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 572CAE003DA
+	for <yocto@yoctoproject.org>; Thu,  8 Nov 2012 22:37:34 -0800 (PST)
+X-Authenticated-User: sean.liming.annabooks.com
+Received: from Sean7 (cpe-76-95-171-22.socal.res.rr.com [76.95.171.22])
+	(authenticated bits=0)
+	by mail30c40.carrierzone.com (8.13.6/8.13.1) with ESMTP id
+	qA96bTEW008555
+	for <yocto@yoctoproject.org>; Fri, 9 Nov 2012 06:37:31 +0000
+From: "Sean Liming" <sean.liming@annabooks.com>
+To: <yocto@yoctoproject.org>
+Date: Thu, 8 Nov 2012 22:37:20 -0800
+Message-ID: <000301cdbe44$ace11c60$06a35520$@annabooks.com>
 MIME-Version: 1.0
-Received: by 10.112.50.106 with SMTP id b10mr3547693lbo.122.1352393517991;
-	Thu, 08 Nov 2012 08:51:57 -0800 (PST)
-Received: by 10.112.75.199 with HTTP; Thu, 8 Nov 2012 08:51:57 -0800 (PST)
-Date: Thu, 8 Nov 2012 14:51:57 -0200
-Message-ID: <CAFNBftfVYsFS_HCYrf2z6FsDa=Cwer9X8Y3Gah-9KHsJ4fJcig@mail.gmail.com>
-From: Flavio Castro Alves Filho <flavio.alves@gmail.com>
-To: yocto@yoctoproject.org
-Subject: Olb Beagleboard support
+X-Mailer: Microsoft Outlook 14.0
+Thread-Index: Ac2+Q7NY4AZWZUVETMqSgwaAq2v0mg==
+X-CSC: 0
+X-CHA: v=2.0 cv=UIxq6ljy c=1 sm=1 a=RqNIojzclRO/fVsPhA7IgQ==:17
+	a=sJwdZcVEYiMA:10 a=_DgR7O7FQkkA:10 a=IjdlZ_XXAAAA:8 a=1ss5SS9nHhsA:10
+	a=oLytGXg5IkhcTOxb5bIA:9 a=CjuIK1q_8ugA:10 a=yMhMjlubAAAA:8
+	a=SSmOFEACAAAA:8 a=TW0LGbKRg0KRD6WsNF8A:9 a=gKO2Hq4RSVkA:10
+	a=UiCQ7L4-1S4A:10 a=hTZeC7Yk6K0A:10 a=frz4AuCg-hUA:10 a=NWVoK91CQyQA:10
+	a=RqNIojzclRO/fVsPhA7IgQ==:117
+X-CTCH-SenderID: 76.95.171.22
+X-CTCH-SenderID-TotalMessages: 1
+X-CTCH-SenderID-TotalSpam: 0
+X-CTCH-SenderID-TotalSuspected: 0
+X-CTCH-SenderID-TotalBulk: 0
+X-CTCH-SenderID-TotalConfirmed: 0
+X-CTCH-SenderID-TotalRecipients: 0
+X-CTCH-SenderID-TotalVirus: 0
+Subject: Cannot Compile Application in Eclipse IDE Juno
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,64 +43,127 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 08 Nov 2012 16:52:00 -0000
-Content-Type: multipart/alternative; boundary=f46d0401fe593c892a04cdfea7c0
+X-List-Received-Date: Fri, 09 Nov 2012 06:37:34 -0000
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_0004_01CDBE01.9EBDDC60"
+Content-Language: en-us
 
---f46d0401fe593c892a04cdfea7c0
-Content-Type: text/plain; charset=ISO-8859-1
+------=_NextPart_000_0004_01CDBE01.9EBDDC60
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
-Hello,
+ 
 
-Does anybody know if current Yocto support for BeagleBoard works for
-OMAP3530 based BeagleBoard.
+Yocto 1.3 Danny
 
-It works correctly with BeagleBoard-xM, but with old BeagleBoard I don't
-have any information.
+Target: n450 Black Sand
 
-If it doesn't work, can anybody give me some clue about how to build Yocto
-for this old board?
+Eclipse: Juno C/C++ Developers
 
-Best regards,
+ 
 
-Flavio
+After going through the steps to setup the ADT and Eclipse plugin, I am
+trying to compile the Hello World application based on the Hello World ANSI
+C Autotools Project type. I think I have the ADT Preference set correctly.
+It is not complaining about a missing tool chain.
 
--- 
-Flavio de Castro Alves Filho
+ 
 
-flavio.alves@gmail.com
-www.linuxembarcado.com
-Twitter: http://twitter.com/#!/fraviofii
-LinkedIn profile: www.linkedin.com/in/flaviocastroalves
+Compiling results in errors:
 
---f46d0401fe593c892a04cdfea7c0
-Content-Type: text/html; charset=ISO-8859-1
+ 
+
+Compiler cannot create executable in /home/sean/workspace/HelloADT -
+Configuration problem
+
+Make *** No rules to make target 'all' - C/C++ problem
+
+ 
+
+What am I missing?
+
+ 
+
+Regards,
+
+ 
+
+Sean 
+
+ 
+
+
+------=_NextPart_000_0004_01CDBE01.9EBDDC60
+Content-Type: text/html;
+	charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<span style=3D"font-family:arial,sans-serif;font-size:13px">Hello,</span><d=
-iv style=3D"font-family:arial,sans-serif;font-size:13px"><br></div><div sty=
-le=3D"font-family:arial,sans-serif;font-size:13px">Does anybody know if cur=
-rent Yocto support for BeagleBoard works for OMAP3530 based BeagleBoard.</d=
-iv>
-<div style=3D"font-family:arial,sans-serif;font-size:13px"><br></div><div s=
-tyle=3D"font-family:arial,sans-serif;font-size:13px">It works correctly wit=
-h BeagleBoard-xM, but with old BeagleBoard I don&#39;t have any information=
-.</div>
-<div style=3D"font-family:arial,sans-serif;font-size:13px"><br></div><div s=
-tyle=3D"font-family:arial,sans-serif;font-size:13px">If it doesn&#39;t work=
-, can anybody give me some clue about how to build Yocto for this old board=
-?</div>
-<div style=3D"font-family:arial,sans-serif;font-size:13px"><br></div><div s=
-tyle=3D"font-family:arial,sans-serif;font-size:13px">Best regards,</div><di=
-v style=3D"font-family:arial,sans-serif;font-size:13px"><br></div><div styl=
-e=3D"font-family:arial,sans-serif;font-size:13px">
-Flavio</div><div><br></div>-- <br>Flavio de Castro Alves Filho<br><br><a hr=
-ef=3D"mailto:flavio.alves@gmail.com" target=3D"_blank">flavio.alves@gmail.c=
-om</a><div><a href=3D"http://www.linuxembarcado.com" target=3D"_blank">www.=
-linuxembarcado.com</a><br>
-Twitter: <a href=3D"http://twitter.com/#!/fraviofii" target=3D"_blank">http=
-://twitter.com/#!/fraviofii</a><br></div><div>LinkedIn profile: <a href=3D"=
-http://www.linkedin.com/in/flaviocastroalves" target=3D"_blank">www.linkedi=
-n.com/in/flaviocastroalves</a></div>
-<br>
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><META =
+HTTP-EQUIV=3D"Content-Type" CONTENT=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 14 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US link=3Dblue =
+vlink=3Dpurple><div class=3DWordSection1><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>Yocto 1.3 =
+Danny<o:p></o:p></p><p class=3DMsoNormal>Target: n450 Black =
+Sand<o:p></o:p></p><p class=3DMsoNormal>Eclipse: Juno C/C++ =
+Developers<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal>After going through the steps to setup the ADT and =
+Eclipse plugin, I am trying to compile the Hello World application based =
+on the Hello World ANSI C Autotools Project type. I think I have the ADT =
+Preference set correctly. It is not complaining about a missing tool =
+chain.<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal>Compiling results in errors:<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>Compiler =
+cannot create executable in /home/sean/workspace/HelloADT &#8211; =
+Configuration problem<o:p></o:p></p><p class=3DMsoNormal>Make *** No =
+rules to make target &#8216;all&#8217; &#8211; C/C++ =
+problem<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal>What am I missing?<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal>Regards,<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>Sean =
+<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
 
---f46d0401fe593c892a04cdfea7c0--
+------=_NextPart_000_0004_01CDBE01.9EBDDC60--
