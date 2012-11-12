@@ -1,28 +1,25 @@
-Return-Path: <anna.dushistova@gmail.com>
-Received: from mail-oa0-f48.google.com (mail-oa0-f48.google.com
-	[209.85.219.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2DE00E013AF
-	for <yocto@yoctoproject.org>; Mon, 12 Nov 2012 02:52:43 -0800 (PST)
-Received: by mail-oa0-f48.google.com with SMTP id h2so6718777oag.35
-	for <yocto@yoctoproject.org>; Mon, 12 Nov 2012 02:52:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=6wHLm7209omABSQBG6hvgyVw7MjV4fNc5myeSj8+nj0=;
-	b=ZavSrOPorfpPv+y7L/Z3k7NSDVuV/wwgpipYK3OVSH0I8J5txUyk6VsD29bHgzTl1s
-	Npqnqixwd6DJMAxc47hvPNKJbPlVVsvYlsKFGen9+90qXaC+wpFqwTcQMiFhE6UjLV9b
-	OhHfjmlDolJLBApxifzlZRUHMUmHYrFEP9CfoXW+LOMXPE7WOnrOdhHYsB+xM7Y/S64E
-	gMxtVYLkHvxkfTS6lpoZLwTqrrud81ndfIoXVyR9ZhHuX3RO0kbP5ImwewMKaAjqj39/
-	VaGQNUsKGS6gyrOMX+7YRZMDFL+b30tGPIYfwI8RKbJeKSfVqMr6hYAeqcHRJ5QdrFD2
-	r31g==
+Return-Path: <Peter.Oruba@signalion.com>
+Received: from smtp-2.pop-dresden.de (smtp-2.pop-dresden.de [89.28.242.5])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 78BC7E013AF
+	for <yocto@yoctoproject.org>; Mon, 12 Nov 2012 05:44:35 -0800 (PST)
+Received: from business-178-015-087-210.static.arcor-ip.net ([178.15.87.210]
+	helo=sophie.Signalion.local)
+	by smtp-2.pop-dresden.de with esmtp (Exim 4.63)
+	(envelope-from <Peter.Oruba@signalion.com>) id 1TXuJW-0001JL-Gt
+	for yocto@yoctoproject.org; Mon, 12 Nov 2012 14:44:34 +0100
+Received: from [10.0.2.15] (192.168.102.124) by sophie.Signalion.local
+	(192.168.0.27) with Microsoft SMTP Server id 8.1.375.2; Mon, 12 Nov 2012
+	14:44:33 +0100
+Message-ID: <50A0FD41.8010900@signalion.com>
+Date: Mon, 12 Nov 2012 14:44:33 +0100
+From: Peter Oruba <peter.oruba@signalion.com>
 MIME-Version: 1.0
-Received: by 10.60.19.105 with SMTP id d9mr1430620oee.83.1352717562380; Mon,
-	12 Nov 2012 02:52:42 -0800 (PST)
-Received: by 10.182.17.9 with HTTP; Mon, 12 Nov 2012 02:52:42 -0800 (PST)
-Date: Mon, 12 Nov 2012 13:52:42 +0300
-Message-ID: <CAKL3bWW5ieSi9g9G9QRx7u2rEkoOCqSF6kzLevOdG7LjYxc6=A@mail.gmail.com>
-From: Anna Dushistova <anna.dushistova@gmail.com>
-To: yocto@yoctoproject.org
-Subject: Slides from the Yocto Developer Day
+To: <yocto@yoctoproject.org>
+X-TM-AS-Product-Ver: SMEX-8.0.0.1181-6.500.1024-19356.007
+X-TM-AS-Result: No--14.611200-8.000000-31
+X-TM-AS-User-Approved-Sender: No
+X-TM-AS-User-Blocked-Sender: No
+Subject: No package is created after do_install
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,13 +31,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 12 Nov 2012 10:52:43 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Mon, 12 Nov 2012 13:44:35 -0000
+Content-Type: text/plain; charset="ISO-8859-15"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi All,
+Hello everybody
 
-Are the slides available somewhere?
+I am using Yocto as a framework to build Debian packages. So far there 
+is a recipe working up to the stage that source is fetched and copied 
+(for now compiling is simply skipped). That part works fine, however, I 
+am having a hard time to create a Debian package with ${destdir}'s content.
 
-Thanks!
-Anna.
+The recipe looks as follows:
+
+LICENSE = "MyLicense"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=c6564c1e3c8492bdfa4eddb6d81c2c66"
+
+#SRCDATE
+SRCREV="r105"
+PV="${SRCPV}"
+PR="${SRCREV}"
+SRC_URI = "svn://repo/trunk;module=myproject;proto=http"
+S = "${WORKDIR}/${PN}"
+
+PKG="myproject-debian"
+PKGFN="myproject"
+IMAGE_ROOTFS="${D}"
+PN="myproject"
+PACKAGE_ARCH = "${MACHINE_ARCH}"
+PACKAGES = "${PN}"
+FILES_${PN} = "${D}/usr/libexec/*"
+
+inherit native package_deb
+
+do_install() {
+   #oe_runmake 'DESTDIR=${D}' install
+   install -v -d ${D}/usr/libexec/
+   cp -a -v ${S} ${D}/usr/libexec/
+}
+
+do_populate_sysroot[noexec] = "1"
+
+do_package[noexec] = "0"
+do_package_write[noexec] = "0"
+do_package_write_deb[noexec] = "0"
+
+
+Unfortunately there is not a lot of information about creating native 
+packages with Yocto that you can find out there.
+
+Thanks,
+Peter
 
