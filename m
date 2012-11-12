@@ -1,28 +1,29 @@
-Return-Path: <elad.yosef@gmail.com>
-Received: from mail-pa0-f48.google.com (mail-pa0-f48.google.com
-	[209.85.220.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 43121E013CE
-	for <yocto@yoctoproject.org>; Mon, 12 Nov 2012 02:11:00 -0800 (PST)
-Received: by mail-pa0-f48.google.com with SMTP id kp12so4265581pab.35
-	for <yocto@yoctoproject.org>; Mon, 12 Nov 2012 02:11:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=5sLnW5gcUNCea+ELAdU0Jy8yliupjXiazTKAFb5XP2w=;
-	b=SIuaKyejnNJJasfoSzMzB65Xs5Uz/lPft4YvE6VCtD17dYDAQp0eWMva/7blctkn/G
-	xmPEEzyRxVkW9++IAc/AC4Zc3BPi+kM/hbc1bZsNQFwj1WP+ExS3tQX2J5+Flx6b52gV
-	xKFYEgZMhMZ/E0cxGQV7IiXzMAQ2v7Y75nRbkBRQimbufHGoIr1eyVavOxxxOX9+ouQa
-	pC2wdd5+jpcltcEpSTYI7rNndD7Y1wlPaukS837eSdiiMIM3vEdomPP0ozA35YQLhUah
-	DSDH4IVIzzKbjeyrejCl7OJ9mvAbpI3eCJQ6al0NZ8sxhmDkzMqYN7rclh6Mll763EQJ
-	uoSg==
+Return-Path: <belen.barros.pena@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 42FB4E013AF
+	for <yocto@yoctoproject.org>; Mon, 12 Nov 2012 02:21:53 -0800 (PST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 12 Nov 2012 02:21:50 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.80,761,1344236400"; d="scan'208";a="216421855"
+Received: from irsmsx102.ger.corp.intel.com ([163.33.3.155])
+	by azsmga001.ch.intel.com with ESMTP; 12 Nov 2012 02:21:49 -0800
+Received: from irsmsx104.ger.corp.intel.com ([169.254.5.16]) by
+	IRSMSX102.ger.corp.intel.com ([169.254.2.248]) with mapi id
+	14.01.0355.002; Mon, 12 Nov 2012 10:21:40 +0000
+From: "Barros Pena, Belen" <belen.barros.pena@intel.com>
+To: yocto <yocto@yoctoproject.org>
+Thread-Topic: Yocto Project and academia
+Thread-Index: AQHNwL94NeY8Yxi6jEGyHuNXvF+QZA==
+Date: Mon, 12 Nov 2012 10:21:25 +0000
+Message-ID: <CCC67E3A.1B2B4%belen.barros.pena@intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Microsoft-MacOutlook/14.2.4.120824
+x-originating-ip: [10.252.60.188]
 MIME-Version: 1.0
-Received: by 10.68.197.197 with SMTP id iw5mr49218430pbc.22.1352715059909;
-	Mon, 12 Nov 2012 02:10:59 -0800 (PST)
-Received: by 10.68.79.134 with HTTP; Mon, 12 Nov 2012 02:10:59 -0800 (PST)
-Date: Mon, 12 Nov 2012 12:10:59 +0200
-Message-ID: <CAOFa9c0Jb=8fZUBNpf6+g8pvuycju0Z5wrYUz+2pribdSY2JwQ@mail.gmail.com>
-From: Elad Yosef <elad.yosef@gmail.com>
-To: yocto@yoctoproject.org
-Subject: Question: How to install the mkfs tools from the e2fsprogs instead of the BusyBox tools.
+Subject: Yocto Project and academia
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,45 +35,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 12 Nov 2012 10:11:00 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Mon, 12 Nov 2012 10:21:53 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-ID: <0D7BC2F7331875438BB90AFA37ACB438@intel.com>
+Content-Transfer-Encoding: quoted-printable
 
-Hi,
-I have created my own image based in existing one.
+Hi all,
 
-****************************************************************
-IMAGE_INSTALL = "task-core-boot ${ROOTFS_PKGMANAGE_BOOTSTRAP} u-boot"
+There is loads of research on embedded computing going on in academic
+circles, and I was just wondering if the YP could be of interest to them.
+A lot of this research involves creating working prototypes, so they
+probably have to deal with many of the same problems as people building
+commercial products.
 
-#My additions to the File-System
-IMAGE_INSTALL += "e2fsprogs iptables"
-IMAGE_LINGUAS = " "
-inherit core-image
-LICENSE = "MIT"
-IMAGE_ROOTFS_SIZE = "8192"
-# remove not needed ipkg informations
-ROOTFS_POSTPROCESS_COMMAND += "remove_packaging_data_files ; "
-IMAGE_FSTYPES ?= "tar.gz ext2.gz.u-boot"
-******************************************************************
+There are a few conferences coming up early next year:
 
-After building the File system I see that the mksf.ext2 point to the BusyBox.
-I checked the build log file and saw the following:
-***********************************************
-update-alternatives: Linking
-/localhome/QorIQ_SDK/QorIQ-SDK-V1.2-20120614-yocto/build_p2041rdb_release/tmp/work/p2041rdb-fsl-linux/crgn-image-minimal-1.0-r0/rootfs//sbin/mke2fs
-to ../bin/busybox
-update-alternatives: Linking
-/localhome/QorIQ_SDK/QorIQ-SDK-V1.2-20120614-yocto/build_p2041rdb_release/tmp/work/p2041rdb-fsl-linux/crgn-image-minimal-1.0-r0/rootfs//usr/bin/mkfifo
-to ../../bin/busybox
-update-alternatives: Linking
-/localhome/QorIQ_SDK/QorIQ-SDK-V1.2-20120614-yocto/build_p2041rdb_release/tmp/work/p2041rdb-fsl-linux/crgn-image-minimal-1.0-r0/rootfs//sbin/mkfs.ext2
-to ../bin/busybox
-update-alternatives: Linking
-/localhome/QorIQ_SDK/QorIQ-SDK-V1.2-20120614-yocto/build_p2041rdb_release/tmp/work/p2041rdb-fsl-linux/crgn-image-minimal-1.0-r0/rootfs//sbin/mkfs.minix
-to ../bin/busybox
-*************************************************************************************
+The Augmented Human International Conference in Stuttgart
+(http://www.hcilab.org/ah2013/).
 
-What am I missing here?
+The IEEE International Symposium on Technology and Society
+(http://veillance.me/), which has chosen "Living in a SmartWorld" as their
+theme, with wearable computing and augmediated reality as 2 of their main
+topics. =
 
-thanks
-Elad
+
+There is also the 7th International Conference on Tangible, Embedded and
+Embodied Interaction in Barcelona (http://www.tei-conf.org/13/).
+
+And I am sure there are many, many more. The above 3 happen to be
+announcing their submissions opening, that's why I came across them.
+
+I am just wondering if the Yocto Project should try to have a presence on
+some of these conferences. Many of them have a case study or similar
+submission type where a presentation about the Yocto Project could fit.
+
+Just a Monday mad thought, after all the Barcelona excitement.
+
+Bel=E9n
+
+
+---------------------------------------------------------------------
+Intel Corporation (UK) Limited
+Registered No. 1134945 (England)
+Registered Office: Pipers Way, Swindon SN3 1RJ
+VAT No: 860 2173 47
+
+This e-mail and any attachments may contain confidential material for
+the sole use of the intended recipient(s). Any review or distribution
+by others is strictly prohibited. If you are not the intended
+recipient, please contact the sender and delete all copies.
+
 
