@@ -1,38 +1,26 @@
-Return-Path: <rstreif@linuxfoundation.org>
-Received: from mail-qa0-f48.google.com (mail-qa0-f48.google.com
-	[209.85.216.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C1C74E003D6
-	for <yocto@yoctoproject.org>; Wed, 14 Nov 2012 10:45:49 -0800 (PST)
-Received: by mail-qa0-f48.google.com with SMTP id s11so668233qaa.14
-	for <yocto@yoctoproject.org>; Wed, 14 Nov 2012 10:45:49 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:date
-	:x-google-sender-auth:message-id:subject:from:to:cc:content-type
-	:x-gm-message-state;
-	bh=SdZnq+UhA32/XYINVA1/EozRa4s8vRCq7djINyEORB8=;
-	b=AjCi0eFLlWoTG30CMB4L959K/g8QZ+CFpjnvEAw9a8r0Oik2Zq9GLtUh6AyIhYLs4K
-	IUpU8fa6rRGtxSl/TgtPuOCJWgf8rgDK+1n7dHQSL56RaXEVKN0YUtgBmIWRJSteZKjj
-	7PoyJTryFmB2qxQkCCxX0en7eBf2nlZ9b7eN0u3CjMJXszsTFrgV/eOXTin9jSnXi13g
-	VHgAmjid0rW1SoNptzXy3zO31knWKktIzoLQb5TILWKHvVjO4YXbZt9YikHfTSGEIn89
-	AIxlxpMga1hbm7WGvnno+uv0oTtOfkWoTHvDNawTGhvnb7tNjzlmKP0UMDTqYzR5+O/R
-	7t3w==
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 85F1EE003D6
+	for <yocto@yoctoproject.org>; Wed, 14 Nov 2012 10:50:26 -0800 (PST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 14 Nov 2012 10:49:49 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.83,252,1352102400"; d="scan'208";a="242237835"
+Received: from unknown (HELO envy.home) ([10.255.12.66])
+	by orsmga002.jf.intel.com with ESMTP; 14 Nov 2012 10:50:25 -0800
+Message-ID: <50A3E7F1.3090306@linux.intel.com>
+Date: Wed, 14 Nov 2012 10:50:25 -0800
+From: Darren Hart <dvhart@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:16.0) Gecko/20121029 Thunderbird/16.0.2
 MIME-Version: 1.0
-Received: by 10.224.178.201 with SMTP id bn9mr26357973qab.55.1352918749107;
-	Wed, 14 Nov 2012 10:45:49 -0800 (PST)
-Sender: rstreif@linuxfoundation.org
-Received: by 10.49.54.197 with HTTP; Wed, 14 Nov 2012 10:45:48 -0800 (PST)
-Received: by 10.49.54.197 with HTTP; Wed, 14 Nov 2012 10:45:48 -0800 (PST)
-In-Reply-To: <6EACEDBB9EFFF34A830B94662D4D9A162E843F8C@FMSMSX102.amr.corp.intel.com>
-References: <6EACEDBB9EFFF34A830B94662D4D9A162E843F8C@FMSMSX102.amr.corp.intel.com>
-Date: Wed, 14 Nov 2012 10:45:48 -0800
-X-Google-Sender-Auth: jLDEk0WOBJh5voGV2sAF4_JIaN4
-Message-ID: <CA+gsK-qeGsTAdyvWtNQsybya5pdfP6he2SYO35hVVxRi0xK75w@mail.gmail.com>
-From: Rudolf Streif <rudolf.streif@linux.com>
-To: "Ramming, Brian" <brian.ramming@intel.com>
-X-Gm-Message-State: ALoCoQms6nxf8lv/YI2wIGQqEZ5SNWL3lRwRYBK2xw6pKqayI8TNcTdMRLpOUfP967X3P0HG4OJ1
+To: Tim Bird <tim.bird@am.sony.com>
+References: <50A2EFC0.3090908@am.sony.com> <50A3CB53.5040101@linux.intel.com>
+	<50A3E650.5010900@am.sony.com>
+In-Reply-To: <50A3E650.5010900@am.sony.com>
+X-Enigmail-Version: 1.4.5
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: do_fetch failure with libowl-0.1
+Subject: Re: Problem compiling diffutils on poky-tiny in danny
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,173 +32,91 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 14 Nov 2012 18:45:50 -0000
-Content-Type: multipart/alternative; boundary=20cf303b3afd7356e204ce78f1fc
-
---20cf303b3afd7356e204ce78f1fc
-Content-Type: text/plain; charset=ISO-8859-1
-
-Looks like the downloaded source file is corrupted although that should be
-caught by the checksum verification. Try to locate the source file in
-DL_DIR and unpack it manually. If it is corrupt delete the file, run a
-cleanall on the libowl recipe and run bitbake again.
-
-Rudi
-On Nov 14, 2012 10:39 AM, "Ramming, Brian" <brian.ramming@intel.com> wrote:
-
->  Hello,****
->
-> ** **
->
-> I am looking into converting my layer from Yocto 1.2 to Yocto 1.3 running
-> into an issue when trying to build my image. It fails when trying to fetch
-> libowl-0.1:****
->
-> ** **
->
-> ERROR: Fetcher failure: Fetch command failed with exit code 2, output:****
->
-> tar: Skipping to next header****
->
-> ** **
->
-> gzip: stdin: invalid compressed data--crc error****
->
-> ** **
->
-> gzip: stdin: invalid compressed data--length error****
->
-> tar: Child returned status 1****
->
-> tar: Error is not recoverable: exiting now****
->
-> ** **
->
-> DEBUG: Python function base_do_fetch finished****
->
-> DEBUG: Python function do_fetch finished****
->
-> ERROR: Function failed: Fetcher failure for URL: 'git://
-> git.yoctoproject.org/libowl;protocol=git'. Unable to fetch URL from any
-> source.****
->
-> ** **
->
-> ** **
->
-> I attached the full log from:
-> \build\tmp\work\core2-poky-linux\libowl-0.1+git1+6ebc8ac8f8575278dd40a535cadefa26374e44b1-r0
-> ****
->
-> ** **
->
-> If there is anything else that I should attach, or additional information
-> I should provide please let me know.****
->
-> ** **
->
-> Any information on this would be much appreciated.****
->
-> ** **
->
-> Thank you kindly,****
->
-> Brian R.****
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
->
-
---20cf303b3afd7356e204ce78f1fc
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<p>Looks like the downloaded source file is corrupted although that should =
-be caught by the checksum verification. Try to locate the source file in DL=
-_DIR and unpack it manually. If it is corrupt delete the file, run a cleana=
-ll on the libowl recipe and run bitbake again.</p>
-
-<p>Rudi</p>
-<div class=3D"gmail_quote">On Nov 14, 2012 10:39 AM, &quot;Ramming, Brian&q=
-uot; &lt;<a href=3D"mailto:brian.ramming@intel.com">brian.ramming@intel.com=
-</a>&gt; wrote:<br type=3D"attribution"><blockquote class=3D"gmail_quote" s=
-tyle=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
+X-List-Received-Date: Wed, 14 Nov 2012 18:50:26 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
 
 
+On 11/14/2012 10:43 AM, Tim Bird wrote:
+> On 11/14/2012 08:48 AM, Darren Hart wrote:
+>>
+>>
+>> On 11/13/2012 05:11 PM, Tim Bird wrote:
+>>> Hi all,
+>>>
+>>> I'm using DISTRO=poky-tiny and trying to build:
+>>>  $ bitbake core-image-minimal-initramfs
+>>>
+>>> I get the following error trying to compile diffutils:
+>>>
+>>> ...
+>>> i586-poky-linux-gcc  -m32   -march=i586 --sysroot=/a/home/tbird/work/yocto/danny-test1/tmp/sysroots/qemux86 -std=gnu99  -I.      -O2 -pipe -g -feliminate-unused-debug-types -c -o wcwidth.o wcwidth.c
+>>> In file included from wcwidth.c:23:0:
+>>> ./wctype.h:448:1: error: static declaration of 'iswalnum' follows non-static declaration
+>>> ./wctype.h:460:1: error: static declaration of 'iswalpha' follows non-static declaration
+>>> ...
+>>
+>>
+>> Is there an option to build diffutils without wide character support?
+>> This is something tiny does away with and frequent point of failure
+>> when trying to build additional packages with it.
+> 
+> I'll see if I can find something.
+> 
+>>
+>>> See the attached compile log for details.
+>>>
+>>> Has anyone done this recently?  Is this one of the supported images for
+>>> this distro (poky-tiny)?
+>>
+>>
+>> I don't build that target as I use the cpio.gz from core-image-minimal
+>> as an initial ramdisk. Is there a particular reason you want to build
+>> "core-image-minimal-initramfs" specifically?
+> 
+> Building poky-tiny with core-image-minimal worked fine.  I didn't understand
+> that this built multiple images (including a cpio.gz), and thought that
+> the default method of building a cpio.gz was to build the <image-name>-initramfs
+> image.  So, no, I don't have a particular reason to do this.
+> 
+> Also, I'm not sure I am doing the startup initialization with runqemu
+> correctly.  I wouldn't have expected any rootfs to be used for this image,
+> but the default invocation of runqemu uses one.  An example shows use of
+> a 'ramfs' parameter.  I think I need to dig into runqemu and verify
+> args are appropriate for an initramfs.
+> 
 
+runqemu doesn't quite know what to make of poky-tiny :-) Try the following:
 
+$ qemu-system-i386 -kernel path/to/kernel -initrd path/to/image.cpio.gz
+-nographic -append "console=ttyS0 root=/dev/ram0"
 
-<div lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div>
-<p class=3D"MsoNormal">Hello,<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=A0<u></u></p>
-<p class=3D"MsoNormal">I am looking into converting my layer from Yocto 1.2=
- to Yocto 1.3 running into an issue when trying to build my image. It fails=
- when trying to fetch libowl-0.1:<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=A0<u></u></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-fa=
-mily:&quot;Courier New&quot;">ERROR: Fetcher failure: Fetch command failed =
-with exit code 2, output:<u></u><u></u></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-fa=
-mily:&quot;Courier New&quot;">tar: Skipping to next header<u></u><u></u></s=
-pan></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-fa=
-mily:&quot;Courier New&quot;"><u></u>=A0<u></u></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-fa=
-mily:&quot;Courier New&quot;">gzip: stdin: invalid compressed data--crc err=
-or<u></u><u></u></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-fa=
-mily:&quot;Courier New&quot;"><u></u>=A0<u></u></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-fa=
-mily:&quot;Courier New&quot;">gzip: stdin: invalid compressed data--length =
-error<u></u><u></u></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-fa=
-mily:&quot;Courier New&quot;">tar: Child returned status 1<u></u><u></u></s=
-pan></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-fa=
-mily:&quot;Courier New&quot;">tar: Error is not recoverable: exiting now<u>=
-</u><u></u></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-fa=
-mily:&quot;Courier New&quot;"><u></u>=A0<u></u></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-fa=
-mily:&quot;Courier New&quot;">DEBUG: Python function base_do_fetch finished=
-<u></u><u></u></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-fa=
-mily:&quot;Courier New&quot;">DEBUG: Python function do_fetch finished<u></=
-u><u></u></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-fa=
-mily:&quot;Courier New&quot;">ERROR: Function failed: Fetcher failure for U=
-RL: &#39;git://<a href=3D"http://git.yoctoproject.org/libowl;protocol=3Dgit=
-" target=3D"_blank">git.yoctoproject.org/libowl;protocol=3Dgit</a>&#39;. Un=
-able to fetch URL from any source.<u></u><u></u></span></p>
+I really need to get the poky-tiny docs going... right after I finish
+these kernel docs I guess... anyone want to volunteer?
 
-<p class=3D"MsoNormal"><u></u>=A0<u></u></p>
-<p class=3D"MsoNormal"><u></u>=A0<u></u></p>
-<p class=3D"MsoNormal">I attached the full log from: \build\tmp\work\core2-=
-poky-linux\libowl-0.1+git1+6ebc8ac8f8575278dd40a535cadefa26374e44b1-r0<u></=
-u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=A0<u></u></p>
-<p class=3D"MsoNormal">If there is anything else that I should attach, or a=
-dditional information I should provide please let me know.<u></u><u></u></p=
->
-<p class=3D"MsoNormal"><u></u>=A0<u></u></p>
-<p class=3D"MsoNormal">Any information on this would be much appreciated.<u=
-></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=A0<u></u></p>
-<p class=3D"MsoNormal">Thank you kindly,<u></u><u></u></p>
-<p class=3D"MsoNormal">Brian R.<u></u><u></u></p>
-</div>
-</div>
+>>
+>>>
+>>> Has anyone seen this type of error before, or can provide some
+>>> hints of what to check or adjust to fix this?
+>>
+>> Yup, it's wide characters being required by diffutils and being excluded
+>> by the poky-tiny DISTRO_FEATURES_LIBC assignment. If supported by
+>> diffutils, we might be able to test ENABLE_WIDEC in diffutils and
+>> configure accordingly (see the ncurses recipes for an example).
+> 
+> I'll poke around.  I'm curious why poky-tiny core-image-minimal built
+> OK, but core-image-minimal-initramfs didn't.  I didn't expect
+> any difference in target-side binaries between the two - only some
+> changes in the image build steps.
+> 
+> Thanks for the tips.  I'll check it out.
 
-<br>_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
->https://lists.yoctoproject.org/listinfo/yocto</a><br>
-<br></blockquote></div>
+Let me know what you find out. I thought the initramfs had the installer
+in it, but maybe that's included by some other mechanism.
 
---20cf303b3afd7356e204ce78f1fc--
+-- 
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Technical Lead - Linux Kernel
+
