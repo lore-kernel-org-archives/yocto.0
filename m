@@ -1,25 +1,25 @@
-Return-Path: <Andrei.Gherzan@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A4F5AE01449
-	for <yocto@yoctoproject.org>; Wed, 14 Nov 2012 03:35:36 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id qAEBZapJ013806
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Wed, 14 Nov 2012 03:35:36 -0800 (PST)
-Received: from localhost.localdomain (128.224.171.81) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server
-	(TLS) id 14.2.318.4; Wed, 14 Nov 2012 03:35:35 -0800
-From: Andrei Gherzan <andrei.gherzan@windriver.com>
-To: <florin.sarbu@windriver.com>
-Date: Wed, 14 Nov 2012 13:34:57 +0200
-Message-ID: <1352892897-22768-1-git-send-email-andrei.gherzan@windriver.com>
-X-Mailer: git-send-email 1.7.5.4
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4CCD3E0032E
+	for <yocto@yoctoproject.org>; Wed, 14 Nov 2012 08:48:20 -0800 (PST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 14 Nov 2012 08:48:19 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.83,251,1352102400"; d="scan'208";a="246948075"
+Received: from unknown (HELO envy.home) ([10.255.12.66])
+	by fmsmga001.fm.intel.com with ESMTP; 14 Nov 2012 08:48:19 -0800
+Message-ID: <50A3CB53.5040101@linux.intel.com>
+Date: Wed, 14 Nov 2012 08:48:19 -0800
+From: Darren Hart <dvhart@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:16.0) Gecko/20121029 Thunderbird/16.0.2
 MIME-Version: 1.0
-X-Originating-IP: [128.224.171.81]
-X-Mailman-Approved-At: Wed, 14 Nov 2012 08:14:42 -0800
-Cc: yocto@yoctoproject.org, Andrei Gherzan <andrei.gherzan@windriver.com>
-Subject: [meta-ivi][PATCH 2/2] dlt-daemon: Use systemd class from meta-systemd
+To: Tim Bird <tim.bird@am.sony.com>
+References: <50A2EFC0.3090908@am.sony.com>
+In-Reply-To: <50A2EFC0.3090908@am.sony.com>
+X-Enigmail-Version: 1.4.5
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Problem compiling diffutils on poky-tiny in danny
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,79 +31,57 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 14 Nov 2012 11:35:36 -0000
-Content-Type: text/plain
+X-List-Received-Date: Wed, 14 Nov 2012 16:48:20 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Andrei Gherzan <andrei.gherzan@windriver.com>
----
- recipes-extended/dlt-daemon/dlt-daemon_2.9.0.bb |   31 ++++++++++++++++++----
- 1 files changed, 25 insertions(+), 6 deletions(-)
 
-diff --git a/recipes-extended/dlt-daemon/dlt-daemon_2.9.0.bb b/recipes-extended/dlt-daemon/dlt-daemon_2.9.0.bb
-index 7a20647..52a69f8 100644
---- a/recipes-extended/dlt-daemon/dlt-daemon_2.9.0.bb
-+++ b/recipes-extended/dlt-daemon/dlt-daemon_2.9.0.bb
-@@ -11,7 +11,7 @@ DESCRIPTION = "This component provides a standardised log and trace interface, b
- HOMEPAGE = "https://www.genivi.org/"
- SECTION = "console/utils"
- 
--PR = "r1"
-+PR = "r2"
- 
- inherit gzipnative
- 
-@@ -23,11 +23,30 @@ SRC_URI = "git://git.projects.genivi.org/${PN}.git;protocol=git;tag=v${PV}"
- 
- S = "${WORKDIR}/git"
- 
--inherit autotools gettext cmake
-+inherit autotools gettext cmake systemd
- 
--PACKAGES =+ "${PN}-systemd \
-+SYSTEMD_PACKAGES = " \
-+                    dlt-adaptor-udp-systemd \
-+                    dlt-receive-systemd \
-+                    dlt-system-systemd \
-+                    dlt-example-systemd \
-+                    dlt-daemon-systemd \
-+                    "
-+SYSTEMD_SERVICE_dlt-adaptor-udp-systemd = "dlt-adaptor-udp.service"
-+SYSTEMD_AUTO_ENABLE_dlt-adaptor-udp-systemd = "disable"
-+SYSTEMD_SERVICE_dlt-receive-systemd = "dlt-receive.service"
-+SYSTEMD_AUTO_ENABLE_dlt-receive-systemd = "disable"
-+SYSTEMD_SERVICE_dlt-system-systemd = "dlt-system.service"
-+SYSTEMD_AUTO_ENABLE_dlt-system-systemd = "disable"
-+SYSTEMD_SERVICE_dlt-example-systemd = "dlt-example-user.service"
-+SYSTEMD_AUTO_ENABLE_dlt-example-systemd = "disable"
-+SYSTEMD_SERVICE_${PN}-systemd = "dlt.service"
-+SYSTEMD_AUTO_ENABLE_${PN}-systemd = "disable"
-+
-+PACKAGES =+ " \
-              libdlt \
--             dlt-adaptor \
-+             dlt-adaptor-udp \
-+             dlt-adaptor-stdin \
-              dlt-convert \
-              dlt-example \
-              dlt-receive \
-@@ -36,7 +55,8 @@ PACKAGES =+ "${PN}-systemd \
-              "
- 
- FILES_libdlt = "${libdir}/*${SOLIBS}"
--FILES_dlt-adaptor = "${bindir}/dlt-adaptor*"
-+FILES_dlt-adaptor-udp = "${bindir}/dlt-adaptor-stdin"
-+FILES_dlt-adaptor-stdin = "${bindir}/dlt-adaptor-udp"
- FILES_dlt-convert = "${bindir}/dlt-convert*"
- FILES_dlt-example = "${bindir}/dlt-example*"
- FILES_dlt-receive = "${bindir}/dlt-receive*"
-@@ -44,6 +64,5 @@ FILES_dlt-system = "${bindir}/dlt-system* \
-                       ${sysconfdir}/dlt-system.conf"
- FILES_dlt-test = "${bindir}/dlt-test* \
-                   ${datadir}/dlt-filetransfer"
--FILES_${PN}-systemd += "${systemd_unitdir}/system/"
- 
- EXTRA_OECMAKE = "-DWITH_SYSTEMD=ON"
+
+On 11/13/2012 05:11 PM, Tim Bird wrote:
+> Hi all,
+> 
+> I'm using DISTRO=poky-tiny and trying to build:
+>  $ bitbake core-image-minimal-initramfs
+> 
+> I get the following error trying to compile diffutils:
+> 
+> ...
+> i586-poky-linux-gcc  -m32   -march=i586 --sysroot=/a/home/tbird/work/yocto/danny-test1/tmp/sysroots/qemux86 -std=gnu99  -I.      -O2 -pipe -g -feliminate-unused-debug-types -c -o wcwidth.o wcwidth.c
+> In file included from wcwidth.c:23:0:
+> ./wctype.h:448:1: error: static declaration of 'iswalnum' follows non-static declaration
+> ./wctype.h:460:1: error: static declaration of 'iswalpha' follows non-static declaration
+> ...
+
+
+Is there an option to build diffutils without wide character support?
+This is something tiny does away with and frequent point of failure
+when trying to build additional packages with it.
+
+
+> See the attached compile log for details.
+> 
+> Has anyone done this recently?  Is this one of the supported images for
+> this distro (poky-tiny)?
+
+
+I don't build that target as I use the cpio.gz from core-image-minimal
+as an initial ramdisk. Is there a particular reason you want to build
+"core-image-minimal-initramfs" specifically?
+
+
+> 
+> Has anyone seen this type of error before, or can provide some
+> hints of what to check or adjust to fix this?
+
+Yup, it's wide characters being required by diffutils and being excluded
+by the poky-tiny DISTRO_FEATURES_LIBC assignment. If supported by
+diffutils, we might be able to test ENABLE_WIDEC in diffutils and
+configure accordingly (see the ncurses recipes for an example).
+
+Thanks,
+
 -- 
-1.7.5.4
-
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Technical Lead - Linux Kernel
 
