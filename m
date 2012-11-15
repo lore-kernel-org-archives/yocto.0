@@ -1,34 +1,31 @@
-Return-Path: <jefro.net@gmail.com>
-Received: from mail-qa0-f41.google.com (mail-qa0-f41.google.com
-	[209.85.216.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9C7C8E003DA
-	for <yocto@yoctoproject.org>; Thu, 15 Nov 2012 10:50:18 -0800 (PST)
-Received: by mail-qa0-f41.google.com with SMTP id c26so4543835qad.14
-	for <yocto@yoctoproject.org>; Thu, 15 Nov 2012 10:50:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:date
-	:x-google-sender-auth:message-id:subject:from:to:cc:content-type;
-	bh=oqi8gP28gTlIAbKEvCtRdEwalt1DMhnJfxGeVN9EAnY=;
-	b=dojr1pAF/1qi4eKKsdKwcD1o5KqTHu554KfcxLskPYqG4EyOSQ0fYQs/DM3/GXARui
-	9uh5aMemmf1J12ZJgFMjP0xlDb13JdAENzmHA/VsGmU/MJY50ErPk3ePAFuK+LgH2AGX
-	EW8OAcSW5pGA9rZJerQZFY6FV+mlJ4J0jczIwNfITKr1V4SnBAy1s2hmGABetP00o4FO
-	UdZKNGl5Vuy5twTx32Hn0aucfxpewTPMN7gEMfnpHbzFyFZfnsRyo3r03DQNMyq8eHoO
-	beX6F5SXnI6T0CqEgzCWbIB5RURd/IzukusQUoSi2706sfqLj1L9lzEC0JmjvMv4X04e
-	3obg==
+Return-Path: <wmills@ti.com>
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A234AE003DA
+	for <yocto@yoctoproject.org>; Thu, 15 Nov 2012 10:57:42 -0800 (PST)
+Received: from dlelxv30.itg.ti.com ([172.17.2.17])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id qAFIvbuM005978;
+	Thu, 15 Nov 2012 12:57:37 -0600
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id qAFIvb0f020369;
+	Thu, 15 Nov 2012 12:57:37 -0600
+Received: from dlelxv22.itg.ti.com (172.17.1.197) by dfle72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.1.323.3;
+	Thu, 15 Nov 2012 12:57:37 -0600
+Received: from gtwmills.gt.design.ti.com (gtwmills.gt.design.ti.com
+	[158.218.102.52])	by dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id
+	qAFIvaKG024459;	Thu, 15 Nov 2012 12:57:36 -0600
+Message-ID: <50A53B1B.20600@ti.com>
+Date: Thu, 15 Nov 2012 13:57:31 -0500
+From: William Mills <wmills@ti.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US;
+	rv:1.9.2.27) Gecko/20120216 Thunderbird/3.1.19
 MIME-Version: 1.0
-Received: by 10.49.82.48 with SMTP id f16mr2075804qey.58.1353005417926; Thu,
-	15 Nov 2012 10:50:17 -0800 (PST)
-Sender: jefro.net@gmail.com
-Received: by 10.229.217.200 with HTTP; Thu, 15 Nov 2012 10:50:17 -0800 (PST)
-In-Reply-To: <50A53378.6030602@intel.com>
-References: <50A4DA8C.6020507@axis.com>
-	<50A53378.6030602@intel.com>
-Date: Thu, 15 Nov 2012 10:50:17 -0800
-X-Google-Sender-Auth: AghkiMODB7sqg81mIQ4lmLRs03Y
-Message-ID: <CA+YB3rbLAE8Bt2-PU0iFxh2QwtVWwE=kb3ooFc5bOdX=Cj66qQ@mail.gmail.com>
-From: Jeff Osier-Mixon <jefro@jefro.net>
-To: Scott Garman <scott.a.garman@intel.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
+To: Jeff Osier-Mixon <jefro@jefro.net>
+References: <50A4DA8C.6020507@axis.com>	<50A53378.6030602@intel.com>
+	<CA+YB3rbLAE8Bt2-PU0iFxh2QwtVWwE=kb3ooFc5bOdX=Cj66qQ@mail.gmail.com>
+In-Reply-To: <CA+YB3rbLAE8Bt2-PU0iFxh2QwtVWwE=kb3ooFc5bOdX=Cj66qQ@mail.gmail.com>
+Cc: Yocto Project <yocto@yoctoproject.org>,
+	Scott Garman <scott.a.garman@intel.com>
 Subject: Re: Virtual machine images from yocto developer day
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -41,38 +38,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 15 Nov 2012 18:50:18 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Thu, 15 Nov 2012 18:57:42 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Thu, Nov 15, 2012 at 10:24 AM, Scott Garman <scott.a.garman@intel.com> wrote:
-> On 11/15/2012 04:05 AM, Fredrik Hugosson wrote:
->>
->> Hi!
->>
->> Thanks for a great developer day in Barcelona!
->>
->> Is it possible to get the vdi-files or appliances (which ever it was)
->> used for the labs? It would save some valuable time when doing labs with
->> beginners here at work.
->>
->> Best regards
->> /Fredrik Hugosson
->
->
-> Which labs? For the intro labs, the computers were running Linux natively. I
-> took some notes on how I set up those machines I can send you off-list if
-> you'd like - let me know.
->
-> Things *should* just work if you're using a recent release of Ubuntu,
-> Fedora, or OpenSUSE and follow the setup instructions in our Quick Start
-> Guide:
->
-> https://www.yoctoproject.org/docs/current/yocto-project-qs/yocto-project-qs.html
 
-Just a side note that I should have materials available on the website
-by the end of this week
 
---
-Jeff Osier-Mixon http://jefro.net/blog
-Yocto Project Community Manager @Intel http://yoctoproject.org
+On 11/15/2012 01:50 PM, Jeff Osier-Mixon wrote:
+> On Thu, Nov 15, 2012 at 10:24 AM, Scott Garman<scott.a.garman@intel.com>  wrote:
+>> On 11/15/2012 04:05 AM, Fredrik Hugosson wrote:
+>>> Hi!
+>>>
+>>> Thanks for a great developer day in Barcelona!
+>>>
+>>> Is it possible to get the vdi-files or appliances (which ever it was)
+>>> used for the labs? It would save some valuable time when doing labs with
+>>> beginners here at work.
+>>>
+>>> Best regards
+>>> /Fredrik Hugosson
+>>
+>> Which labs? For the intro labs, the computers were running Linux natively. I
+>> took some notes on how I set up those machines I can send you off-list if
+>> you'd like - let me know.
+>>
+>> Things *should* just work if you're using a recent release of Ubuntu,
+>> Fedora, or OpenSUSE and follow the setup instructions in our Quick Start
+>> Guide:
+>>
+>> https://www.yoctoproject.org/docs/current/yocto-project-qs/yocto-project-qs.html
+> Just a side note that I should have materials available on the website
+> by the end of this week
+
+I would encourage the presenters to share the setup instructions also so 
+that some one can follow the course ware.  Some of the steps in the labs 
+assume setup has been done.
 
