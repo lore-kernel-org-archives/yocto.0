@@ -1,32 +1,33 @@
-Return-Path: <wmills@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A234AE003DA
-	for <yocto@yoctoproject.org>; Thu, 15 Nov 2012 10:57:42 -0800 (PST)
-Received: from dlelxv30.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id qAFIvbuM005978;
-	Thu, 15 Nov 2012 12:57:37 -0600
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv30.itg.ti.com (8.13.8/8.13.8) with ESMTP id qAFIvb0f020369;
-	Thu, 15 Nov 2012 12:57:37 -0600
-Received: from dlelxv22.itg.ti.com (172.17.1.197) by dfle72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.1.323.3;
-	Thu, 15 Nov 2012 12:57:37 -0600
-Received: from gtwmills.gt.design.ti.com (gtwmills.gt.design.ti.com
-	[158.218.102.52])	by dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id
-	qAFIvaKG024459;	Thu, 15 Nov 2012 12:57:36 -0600
-Message-ID: <50A53B1B.20600@ti.com>
-Date: Thu, 15 Nov 2012 13:57:31 -0500
-From: William Mills <wmills@ti.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US;
-	rv:1.9.2.27) Gecko/20120216 Thunderbird/3.1.19
+Return-Path: <twoerner@gmail.com>
+Received: from mail-la0-f48.google.com (mail-la0-f48.google.com
+	[209.85.215.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 188B6E00498
+	for <yocto@yoctoproject.org>; Thu, 15 Nov 2012 15:14:47 -0800 (PST)
+Received: by mail-la0-f48.google.com with SMTP id o2so1860787lag.35
+	for <yocto@yoctoproject.org>; Thu, 15 Nov 2012 15:14:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=dPnB2bPXy2gq3MQ3r/9Jhfdoq4VPTAB+3rhFSZ2K2o8=;
+	b=Nx2i934ejShoXpETZpEHjhqVldqWOTgbc6XD5ti5h4Z9LaKIQPJ5NKwyXl7Ocg+r5Q
+	rpoI8UnxRsVpdDABzMkuhcKK23qpnfAO3ynsNP+zmZt0+qiQUpdAarLufc7F8GXFaGZ4
+	oYMA0Ej+DGtxJpEBXHLRS+8mFVqAVgOeCHTufNAZJdcgaNALAFoOKT9GHZosOEKYPfE7
+	MEgTCuXPvVB2or3QFefX9Ciqn8cxP3rNyapzZRw+C5ju+ZKnYJJ4IVhz61lPXWOf6rQ7
+	EEHny6wGvjcykrXiSwR5oyUm/D3e3/TkcYTdXqjg+HfOUCLwtGhEDsavGkliv507F0O3
+	wi5A==
 MIME-Version: 1.0
-To: Jeff Osier-Mixon <jefro@jefro.net>
-References: <50A4DA8C.6020507@axis.com>	<50A53378.6030602@intel.com>
-	<CA+YB3rbLAE8Bt2-PU0iFxh2QwtVWwE=kb3ooFc5bOdX=Cj66qQ@mail.gmail.com>
-In-Reply-To: <CA+YB3rbLAE8Bt2-PU0iFxh2QwtVWwE=kb3ooFc5bOdX=Cj66qQ@mail.gmail.com>
-Cc: Yocto Project <yocto@yoctoproject.org>,
-	Scott Garman <scott.a.garman@intel.com>
-Subject: Re: Virtual machine images from yocto developer day
+Received: by 10.152.47.112 with SMTP id c16mr2558598lan.50.1353021286380; Thu,
+	15 Nov 2012 15:14:46 -0800 (PST)
+Received: by 10.112.117.194 with HTTP; Thu, 15 Nov 2012 15:14:46 -0800 (PST)
+In-Reply-To: <50A1F05E.5080602@intel.com>
+References: <CAKL3bWW5ieSi9g9G9QRx7u2rEkoOCqSF6kzLevOdG7LjYxc6=A@mail.gmail.com>
+	<50A1F05E.5080602@intel.com>
+Date: Thu, 15 Nov 2012 18:14:46 -0500
+Message-ID: <CAHUNapQjLyVS-FWa914ty2Y+NAOLtZ3Y2njWQ1=AEaxX1SfhOg@mail.gmail.com>
+From: Trevor Woerner <twoerner@gmail.com>
+To: Scott Garman <scott.a.garman@intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Slides from the Yocto Developer Day
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,39 +39,150 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 15 Nov 2012 18:57:42 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 15 Nov 2012 23:14:48 -0000
+Content-Type: multipart/alternative; boundary=bcaec554082625f44a04ce90d146
+
+--bcaec554082625f44a04ce90d146
+Content-Type: text/plain; charset=ISO-8859-1
+
+Thank you.
+
+These are interesting slides. As I was not able to attend the sessions in
+Barcelona, I decided to "follow along at home" with the information posted
+in this thread.
+
+The slides pdf (ypdd_2012_barcelona_intro_hands_on_lab.pdf) describes the
+first line of the contents of the meta-ypdd/recipes-ypdd/images/
+ypdd-image.bb as follows:
+
+IMAGE_INSTALL = "task-core-boot ${ROOTFS_PKGMANAGE_BOOTSTRAP} \
+${POKY_EXTRA_INSTALL} psplash dropbear"
+
+The _worksheets.pdf modifies it as follows:
+
+IMAGE_INSTALL = "task-core-boot ${ROOTFS_PKGMANAGE_BOOTSTRAP} \
+${CORE_IMAGE_EXTRA_INSTALL} psplash dropbear"
 
 
+I tried both variations using both today's latest HEAD and denzil-7.0.1.
+Neither variation worked in either release.
 
-On 11/15/2012 01:50 PM, Jeff Osier-Mixon wrote:
-> On Thu, Nov 15, 2012 at 10:24 AM, Scott Garman<scott.a.garman@intel.com>  wrote:
->> On 11/15/2012 04:05 AM, Fredrik Hugosson wrote:
->>> Hi!
->>>
->>> Thanks for a great developer day in Barcelona!
->>>
->>> Is it possible to get the vdi-files or appliances (which ever it was)
->>> used for the labs? It would save some valuable time when doing labs with
->>> beginners here at work.
->>>
->>> Best regards
->>> /Fredrik Hugosson
->>
->> Which labs? For the intro labs, the computers were running Linux natively. I
->> took some notes on how I set up those machines I can send you off-list if
->> you'd like - let me know.
->>
->> Things *should* just work if you're using a recent release of Ubuntu,
->> Fedora, or OpenSUSE and follow the setup instructions in our Quick Start
->> Guide:
->>
->> https://www.yoctoproject.org/docs/current/yocto-project-qs/yocto-project-qs.html
-> Just a side note that I should have materials available on the website
-> by the end of this week
+If anyone else is following along, I was able to get the latest HEAD to
+work with the following first line:
 
-I would encourage the presenters to share the setup instructions also so 
-that some one can follow the course ware.  Some of the steps in the labs 
-assume setup has been done.
+IMAGE_INSTALL = "packagegroup-core-boot ${ROOTFS_PKGMANAGE_BOOTSTRAP} \
+${CORE_IMAGE_EXTRA_INSTALL} psplash dropbear"
 
+For me "latest HEAD" is defined as:
+
+Build Configuration:
+BB_VERSION        = "1.16.0"
+TARGET_ARCH       = "i586"
+TARGET_OS         = "linux"
+MACHINE           = "qemux86"
+DISTRO            = "poky"
+DISTRO_VERSION    = "1.3+snapshot-20121115"
+TUNE_FEATURES     = "m32 i586"
+TARGET_FPU        = ""
+meta
+meta-yocto
+meta-yocto-bsp    = "master:9e0d3c0faa9cc80ce8f2ce0eb31dcd20ef875955"
+meta-ypdd         = "<unknown>:<unknown>"
+
+denzil-7.0.1 never worked for me in any way. At best it would fail with
+some obscure perl problem:
+
+| ERROR: Function failed: do_configure (see
+/home/trevor/devel/yocto/denzil-7.0.1/ypdd/tmp/work/x86_64-linux/openssl-native-1.0.0i-r0.2/temp/log.do_configure.30074
+for further information)
+| Can't locate find.pl in @INC (@INC contains:
+/usr/lib/perl5/site_perl/5.16.0/x86_64-linux-thread-multi
+/usr/lib/perl5/site_perl/5.16.0
+/usr/lib/perl5/vendor_perl/5.16.0/x86_64-linux-thread-multi
+/usr/lib/perl5/vendor_perl/5.16.0
+/usr/lib/perl5/5.16.0/x86_64-linux-thread-multi /usr/lib/perl5/5.16.0
+/usr/lib/perl5/site_perl/5.16.0/x86_64-linux-thread-multi
+/usr/lib/perl5/site_perl/5.16.0 /usr/lib/perl5/site_perl .) at
+perlpath.plline 7.
+NOTE: package openssl-native-1.0.0i-r0.2: task do_configure: Failed
+
+--bcaec554082625f44a04ce90d146
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+Thank you.<br><br>These are interesting slides. As I was not able to attend=
+ the sessions in Barcelona, I decided to &quot;follow along at home&quot; w=
+ith the information posted in this thread.<br><br>The slides pdf (ypdd_2012=
+_barcelona_intro_hands_on_lab.pdf) describes the first line of the contents=
+ of the meta-ypdd/recipes-ypdd/images/<a href=3D"http://ypdd-image.bb">ypdd=
+-image.bb</a> as follows:<br>
+<br><div style=3D"margin-left:40px"><span style=3D"font-family:courier new,=
+monospace">IMAGE_INSTALL =3D &quot;task-core-boot ${ROOTFS_PKGMANAGE_BOOTST=
+RAP} \<br></span><div style=3D"margin-left:40px"><span style=3D"font-family=
+:courier new,monospace">${POKY_EXTRA_INSTALL} psplash dropbear&quot;</span>=
+<br>
+</div></div><br>The _worksheets.pdf modifies it as follows:<br><br><div sty=
+le=3D"margin-left:40px"><span style=3D"font-family:courier new,monospace">I=
+MAGE_INSTALL =3D &quot;task-core-boot ${ROOTFS_PKGMANAGE_BOOTSTRAP} \<br></=
+span><div style=3D"margin-left:40px">
+<span style=3D"font-family:courier new,monospace">${CORE_IMAGE_EXTRA_INSTAL=
+L} psplash dropbear&quot;</span><br></div></div><br><br><span class=3D""></=
+span><span class=3D""></span><span class=3D""></span><span class=3D"">I tri=
+ed both variations using both today&#39;s latest HEAD and denzil-7.0.1. Nei=
+ther variation worked in either release.<br>
+<br>If anyone else is following along, I was able to get the latest HEAD to=
+ work with the following first line:<br><br></span><div style=3D"margin-lef=
+t:40px"><span class=3D""><span style=3D"font-family:courier new,monospace">=
+IMAGE_INSTALL =3D &quot;packagegroup-core-boot ${ROOTFS_PKGMANAGE_BOOTSTRAP=
+} \</span></span><br>
+<div style=3D"margin-left:40px"><span class=3D""><span style=3D"font-family=
+:courier new,monospace">${CORE_IMAGE_EXTRA_INSTALL} psplash dropbear&quot;<=
+/span></span><br></div><span class=3D""></span></div><span class=3D""><br>F=
+or me &quot;latest HEAD&quot; is defined as:<br>
+<br></span><div style=3D"margin-left:40px"><span class=3D""><span style=3D"=
+font-family:courier new,monospace">Build Configuration:</span></span><br><s=
+pan class=3D""><span style=3D"font-family:courier new,monospace">BB_VERSION=
+=A0=A0=A0=A0=A0=A0=A0 =3D &quot;1.16.0&quot;</span></span><br>
+<span class=3D""><span style=3D"font-family:courier new,monospace">TARGET_A=
+RCH=A0=A0=A0=A0=A0=A0 =3D &quot;i586&quot;</span></span><br><span class=3D"=
+"><span style=3D"font-family:courier new,monospace">TARGET_OS=A0=A0=A0=A0=
+=A0=A0=A0=A0 =3D &quot;linux&quot;</span></span><br>
+<span class=3D""><span style=3D"font-family:courier new,monospace">MACHINE=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 =3D &quot;qemux86&quot;</span></span><br><sp=
+an class=3D""><span style=3D"font-family:courier new,monospace">DISTRO=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 =3D &quot;poky&quot;</span></span><br>
+<span class=3D""><span style=3D"font-family:courier new,monospace">DISTRO_V=
+ERSION=A0=A0=A0 =3D &quot;1.3+snapshot-20121115&quot;</span></span><br><spa=
+n class=3D""><span style=3D"font-family:courier new,monospace">TUNE_FEATURE=
+S=A0=A0=A0=A0 =3D &quot;m32 i586&quot;</span></span><br>
+<span class=3D""><span style=3D"font-family:courier new,monospace">TARGET_F=
+PU=A0=A0=A0=A0=A0=A0=A0 =3D &quot;&quot;</span></span><br><span class=3D"">=
+<span style=3D"font-family:courier new,monospace">meta=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0 </span></span><br><span class=3D""><span style=3D"font-f=
+amily:courier new,monospace">meta-yocto=A0=A0=A0=A0=A0=A0=A0 </span></span>=
+<br>
+<span class=3D""><span style=3D"font-family:courier new,monospace">meta-yoc=
+to-bsp=A0=A0=A0 =3D &quot;master:9e0d3c0faa9cc80ce8f2ce0eb31dcd20ef875955&q=
+uot;</span></span><br><span class=3D""><span style=3D"font-family:courier n=
+ew,monospace">meta-ypdd=A0=A0=A0=A0=A0=A0=A0=A0 =3D &quot;&lt;unknown&gt;:&=
+lt;unknown&gt;&quot;</span></span><br>
+<span class=3D""></span></div><span class=3D""><br>denzil-7.0.1 never worke=
+d for me in any way. At best it would fail with some obscure perl problem:<=
+br><br></span><div style=3D"margin-left:40px"><span class=3D""><span style=
+=3D"font-family:courier new,monospace">| ERROR: Function failed: do_configu=
+re (see /home/trevor/devel/yocto/denzil-7.0.1/ypdd/tmp/work/x86_64-linux/op=
+enssl-native-1.0.0i-r0.2/temp/log.do_configure.30074 for further informatio=
+n)</span></span><br>
+<span class=3D""><span style=3D"font-family:courier new,monospace">| Can&#3=
+9;t locate <a href=3D"http://find.pl">find.pl</a> in @INC (@INC contains: /=
+usr/lib/perl5/site_perl/5.16.0/x86_64-linux-thread-multi /usr/lib/perl5/sit=
+e_perl/5.16.0 /usr/lib/perl5/vendor_perl/5.16.0/x86_64-linux-thread-multi /=
+usr/lib/perl5/vendor_perl/5.16.0 /usr/lib/perl5/5.16.0/x86_64-linux-thread-=
+multi /usr/lib/perl5/5.16.0 /usr/lib/perl5/site_perl/5.16.0/x86_64-linux-th=
+read-multi /usr/lib/perl5/site_perl/5.16.0 /usr/lib/perl5/site_perl .) at <=
+a href=3D"http://perlpath.pl">perlpath.pl</a> line 7.</span></span><br>
+<span class=3D""><span style=3D"font-family:courier new,monospace">NOTE: pa=
+ckage openssl-native-1.0.0i-r0.2: task do_configure: Failed</span></span><b=
+r><span class=3D""></span></div>
+
+--bcaec554082625f44a04ce90d146--
