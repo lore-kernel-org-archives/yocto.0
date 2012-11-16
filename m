@@ -1,40 +1,45 @@
-Return-Path: <peachj@lexmark.com>
-Received: from exprod8og103.obsmtp.com (exprod8og103.obsmtp.com [64.18.3.86])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C2AC3E00498
-	for <yocto@yoctoproject.org>; Fri, 16 Nov 2012 00:55:46 -0800 (PST)
-Received: from mail-qc0-f200.google.com ([209.85.216.200]) (using TLSv1) by
-	exprod8ob103.postini.com ([64.18.7.12]) with SMTP
-	ID DSNKUKX/kQ6rdosKLL8tRlZxXdWPnGkyp/6u@postini.com;
-	Fri, 16 Nov 2012 00:55:46 PST
-Received: by mail-qc0-f200.google.com with SMTP id l42so4077607qco.11
-	for <yocto@yoctoproject.org>; Fri, 16 Nov 2012 00:55:45 -0800 (PST)
+Return-Path: <scott.a.garman@intel.com>
+Received: from fmsmga102.fm.intel.com (mga10.intel.com [192.55.52.92])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D6B7DE0032E
+	for <yocto@yoctoproject.org>; Fri, 16 Nov 2012 09:57:00 -0800 (PST)
+Received: from mail-da0-f72.google.com ([209.85.210.72])
+	by mga11.intel.com with ESMTP/TLS/RC4-SHA; 16 Nov 2012 09:57:00 -0800
+Received: by mail-da0-f72.google.com with SMTP id r28so3860065daj.11
+	for <yocto@yoctoproject.org>; Fri, 16 Nov 2012 09:56:55 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=google.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type:x-gm-message-state;
-	bh=4izVOWcW5qBMhPMaJOxmHQqhouBxGHWru0JbBmoxdhY=;
-	b=CZI00n6vixwjUV4XFfOxVjHcv2Bbk6zwF5WdO3qjkwl9y5ijHNVkaIxsP3tc7EoEoL
-	mj/QNwmtAoELmW2gavAGFeRUcKGna0k5aTmYaPueo5QwsdrL6PcjBN6nlH2W5nk91xdG
-	Lpr2iuarAbATDDaM0RM1ctTWID2jaSXHaAzQbMnwJEUqDBk2PAaK2MyvVaZQYdvQQ3UR
-	gr3JTEPyrC1G3lXYlRK0mmWxhxatnFf5rSli6j6xcUHDbqrOpfj53KgDDiGhM05RY7f9
-	ljVQMGAWvdqc30CW29VWWNbhkn8Zgaj2Ej5CHYn3ocs8IU9oXmO3k3sSaKk1lVIKSI7s
-	EvAA==
-Received: by 10.229.105.131 with SMTP id t3mr822167qco.23.1353056145238;
-	Fri, 16 Nov 2012 00:55:45 -0800 (PST)
+	h=message-id:date:from:user-agent:mime-version:to:cc:subject
+	:references:in-reply-to:content-type:content-transfer-encoding
+	:x-gm-message-state;
+	bh=Nk4QvCMgidJOdIgSGWDJVvwQagP7InLb8kQK4jI1Dd8=;
+	b=lSKAOzQfsqeAqxvmMjAkOnmSnuX0DlNkprOl7A5aySL45sdBc9EQpx+sN2mbQrKyQb
+	+v2R8DuUIT8iK9LwyNaGNlg42L1lOjYXv9f+xrvcC8SNg0IUlSNJubSo9iUNuS4lDdvA
+	qYerF8i/70cYqcIs55v9cE95QtKdeXmCLj9KBxZPLBi6XwxUtndOaD6Bh7778aT61hJY
+	iAdWQDRJwF+12X6/Tgzn7yJ9h6ROzcaAIEOSxscY8ELXTS3INQjg0FWSSxnKCN/6AL4i
+	cvjPyAyiaAlDN48BZ61VHAjB1kdQH2cwP0MF7CtZzj3xlgIfAT1Fb5i92cJWQVvJ1epl
+	utpg==
+Received: by 10.68.223.230 with SMTP id qx6mr11621477pbc.159.1353088615364;
+	Fri, 16 Nov 2012 09:56:55 -0800 (PST)
+Received: by 10.68.223.230 with SMTP id qx6mr11621449pbc.159.1353088615177;
+	Fri, 16 Nov 2012 09:56:55 -0800 (PST)
+Received: from [192.168.1.12] (c-76-105-137-48.hsd1.or.comcast.net.
+	[76.105.137.48])
+	by mx.google.com with ESMTPS id is3sm1555729pbc.6.2012.11.16.09.56.53
+	(version=SSLv3 cipher=OTHER); Fri, 16 Nov 2012 09:56:54 -0800 (PST)
+Message-ID: <50A67E68.5070404@intel.com>
+Date: Fri, 16 Nov 2012 09:56:56 -0800
+From: Scott Garman <scott.a.garman@intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:16.0) Gecko/20121028 Thunderbird/16.0.2
 MIME-Version: 1.0
-Received: by 10.229.105.131 with SMTP id t3mr822165qco.23.1353056145065; Fri,
-	16 Nov 2012 00:55:45 -0800 (PST)
-Received: by 10.49.107.136 with HTTP; Fri, 16 Nov 2012 00:55:44 -0800 (PST)
-In-Reply-To: <1353044032.4160.11.camel@babel.joshhome>
-References: <tencent_4D0038032A743D29372622A1@qq.com>
-	<1353044032.4160.11.camel@babel.joshhome>
-Date: Fri, 16 Nov 2012 03:55:44 -0500
-Message-ID: <CA+QkY1DXJ3X9cHricP1fprwAx0U2tGT-+y1DjNmhkCiaLtvhGA@mail.gmail.com>
-From: Jerrod Peach <peachj@lexmark.com>
-To: Liu <treebody@embedstudy.com>
-X-Gm-Message-State: ALoCoQl76BeLVkdML+9EY8pspOZ1SG8rvAJ8FCSQ37CNsQcvSC+bWQRGI9a7ONdMzDZVm+dRsr9he8D1iBUzmYE40G8Wf8pjRGakTBM5C5EW45Zc0XEXs4nzZ5UMLp+zhB5ds6Nbddeml/0ti+556dNIZ7scXp32jg==
-Cc: yocto <yocto@yoctoproject.org>
-Subject: Re: questions about writing a recipe
+To: William Mills <wmills@ti.com>
+References: <50A4DA8C.6020507@axis.com>	<50A53378.6030602@intel.com>
+	<CA+YB3rbLAE8Bt2-PU0iFxh2QwtVWwE=kb3ooFc5bOdX=Cj66qQ@mail.gmail.com>
+	<50A53B1B.20600@ti.com>
+In-Reply-To: <50A53B1B.20600@ti.com>
+X-Gm-Message-State: ALoCoQkyBerxgQa5D16DvFXi9TiJFI9vNjFewbx0aszc8sUsFJH4Eoboi9ygXYPS8u9sualyOShxsO81iEwWdQCuMhFE2S+u+yANHk2+yT4asCv9k3feJjk5IEm9c+Fdq18DNswYYWQzaTHagNjezfr5hXaEa6w4qw==
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: Virtual machine images from yocto developer day
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,60 +51,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 16 Nov 2012 08:55:47 -0000
-Content-Type: multipart/alternative; boundary=002215401822e3460804ce98ee28
+X-List-Received-Date: Fri, 16 Nov 2012 17:57:01 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
---002215401822e3460804ce98ee28
-Content-Type: text/plain; charset=ISO-8859-1
-
-On Fri, Nov 16, 2012 at 12:33 AM, Joshua Immanuel <josh@hipro.co.in> wrote:
-
-> Hello Liu,
+On 11/15/2012 10:57 AM, William Mills wrote:
+>>>> Is it possible to get the vdi-files or appliances (which ever it was)
+>>>> used for the labs? It would save some valuable time when doing labs
+>>>> with
+>>>> beginners here at work.
+>>>>
+>>>> Best regards
+>>>> /Fredrik Hugosson
+>>>
+>>> Which labs? For the intro labs, the computers were running Linux
+>>> natively. I
+>>> took some notes on how I set up those machines I can send you
+>>> off-list if
+>>> you'd like - let me know.
+>>>
+>>> Things *should* just work if you're using a recent release of Ubuntu,
+>>> Fedora, or OpenSUSE and follow the setup instructions in our Quick Start
+>>> Guide:
+>>>
+>>> https://www.yoctoproject.org/docs/current/yocto-project-qs/yocto-project-qs.html
+>>>
+>> Just a side note that I should have materials available on the website
+>> by the end of this week
 >
-> On Fri, 2012-11-16 at 11:06 +0800, Liu wrote:
-> >     I'm writing a recipe and come up with a question.I want to invoke
-> > the the workdir of package A in my recipe of package B. I tried to use
-> > the variable WORKDIR,but it represent for the workdir of B in the
-> > recipe of package B. So is there any good ideas about this ?
->
-> IMHO, depending on files from another package's workdir is a bad idea.
->
->
-I agree with this -- it's not a good idea to depend on files from another
-package's workdir.  If you're needing headers or libraries, you should be
-installing those headers or objects to the sysroot and then getting them
-from there.
+> I would encourage the presenters to share the setup instructions also so
+> that some one can follow the course ware.  Some of the steps in the labs
+> assume setup has been done.
 
-Kind regards,
+I'm all for sharing the info so that this training material can scale as 
+much as possible. Looking over the notes I took, they were mostly about 
+how to set up the desktop environment for the lab computers. I do intend 
+to improve that to include further details about the actual build 
+environment setup.
 
-Jerrod
+I'm taking my last bit of vacation time for the year starting today and 
+will be back on Nov 26th, so I've added an item to my todo list and will 
+get back to this eventually.
 
---002215401822e3460804ce98ee28
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+Scott
 
-<div class=3D"gmail_quote">On Fri, Nov 16, 2012 at 12:33 AM, Joshua Immanue=
-l <span dir=3D"ltr">&lt;<a href=3D"mailto:josh@hipro.co.in" target=3D"_blan=
-k">josh@hipro.co.in</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quo=
-te" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"=
->
-Hello Liu,<br>
-<div class=3D"im"><br>
-On Fri, 2012-11-16 at 11:06 +0800, Liu wrote:<br>
-&gt; =A0 =A0 I&#39;m writing a recipe and come up with a question.I want to=
- invoke<br>
-&gt; the the workdir of package A in my recipe of package B. I tried to use=
-<br>
-&gt; the variable WORKDIR,but it represent for the workdir of B in the<br>
-&gt; recipe of package B. So is there any good ideas about this ?<br>
-<br>
-</div>IMHO, depending on files from another package&#39;s workdir is a bad =
-idea.<br><span class=3D"HOEnZb"><font color=3D"#888888"><br></font></span><=
-/blockquote><div><br></div><div>I agree with this -- it&#39;s not a good id=
-ea to depend on files from another package&#39;s workdir. =A0If you&#39;re =
-needing headers or libraries, you should be installing those headers or obj=
-ects to the sysroot and then getting them from there.</div>
-<div><br></div><div>Kind regards,</div><div><br></div><div>Jerrod</div></di=
-v>
+-- 
+Scott Garman
+Embedded Linux Engineer - Yocto Project
+Intel Open Source Technology Center
 
---002215401822e3460804ce98ee28--
