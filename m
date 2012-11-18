@@ -1,34 +1,17 @@
-Return-Path: <joaohf@gmail.com>
-Received: from mail-la0-f48.google.com (mail-la0-f48.google.com
-	[209.85.215.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 54780E0032E
-	for <yocto@yoctoproject.org>; Fri, 16 Nov 2012 12:26:01 -0800 (PST)
-Received: by mail-la0-f48.google.com with SMTP id m13so320103lah.35
-	for <yocto@yoctoproject.org>; Fri, 16 Nov 2012 12:26:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=dh0lfit4Nia9a8qVwJxtTfhYPgtulZwukOTRJPMW3v8=;
-	b=HQ7CiKvNPVYjM7Hel9Y3IGBav9jaagcGgR6v9TwfaghFfIZQZybtch2IM7HLjAhzqu
-	a0MRcofhW/pxv0qewtD5k2pzmwquPA83lMtTCw9PXlZzoJ8Rfoy8rbhzYW9kqGDJ3LRn
-	aCRxbvZUJH0MFMeuMZ1ZkYA0Irab4Y57GYyTq6G3HjAgZbIxZUPLuxA+nS5PqpJsl65h
-	71KdR/73W3V6Cd3pna/VhJzET0mIJdc02IliTEiydw9qGZujN43Ix5ccBgxku6aK57V0
-	zpssNBMsgG+uyEpnpDydOMxQ8oteOH5/o4RIoGGEwaA566Co16lkm3rvdfPvQUtcoRH/
-	IYGQ==
+Return-Path: <packages@autobuilder.yoctoproject.org>
+Received: from autobuilder.yoctoproject.org (ab-master.i.yoctoproject.org
+	[10.0.10.111])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F1AA4E0034C
+	for <yocto@yoctoproject.org>; Sat, 17 Nov 2012 16:01:47 -0800 (PST)
+Received: by autobuilder.yoctoproject.org (Postfix, from userid 802)
+	id DCC204299F; Sun, 18 Nov 2012 00:01:47 +0000 (UTC)
+Date: Sun, 18 Nov 2012 00:01:47 +0000
+From: Yocto Project Package Report System <package-reporting@yoctoproject.org>
+To: yocto@yoctoproject.org
+Message-ID: <20121118000147.GA936@ab01.i.yoctoproject.org>
 MIME-Version: 1.0
-Received: by 10.112.25.6 with SMTP id y6mr2414121lbf.17.1353097559998; Fri, 16
-	Nov 2012 12:25:59 -0800 (PST)
-Received: by 10.112.94.35 with HTTP; Fri, 16 Nov 2012 12:25:59 -0800 (PST)
-In-Reply-To: <CANFVK799C_XeFAnUT1_nrDL2TSDisQ2uD+sRykUP=KZ4kChvAw@mail.gmail.com>
-References: <CANFVK7_ahuH9aSOepVX__Zw1ppSeHNRr_SM=x5xgWMGd=APr6g@mail.gmail.com>
-	<1634439.IYZyxqXxWH@helios>
-	<CANFVK799C_XeFAnUT1_nrDL2TSDisQ2uD+sRykUP=KZ4kChvAw@mail.gmail.com>
-Date: Fri, 16 Nov 2012 18:25:59 -0200
-Message-ID: <CANFVK7_Qt529UxT-mXQuFr26nrx6U9wdi8LmnYOUX+mRpVE6-A@mail.gmail.com>
-From: =?UTF-8?Q?Jo=C3=A3o_Henrique_Freitas?= <joaohf@gmail.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: Using vendo kernel with Yocto
+User-Agent: Mutt/1.5.20 (2009-12-10)
+Subject: [Package Report System]Manual check recipes name list
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,82 +23,132 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 16 Nov 2012 20:26:01 -0000
-Content-Type: multipart/alternative; boundary=bcaec554dbc269030704cea29354
+X-List-Received-Date: Sun, 18 Nov 2012 00:01:48 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
---bcaec554dbc269030704cea29354
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-Hello, just a report
-
-As my vendor never will release patch to a recent kernel and our
-applications needs some recent fetures found in a recent kernel. I decided
-to make the patchs by myself.
-
-I missed one week reading datasheet, git log, studying the old
-implementation made by Mindspeed  and so on.
-
-Now the kernel 3.4.18 boot and runs in our board using yocto 1.3. Of course
-I have learned a lot of things.
-
-Maybe some adjusts will be need to do. However I am very happy to track
-Yocto project with Mindspeed hardware. This is going to speedup the release
-cicles and  tools of our products.
-
-Thanks.
+This mail was sent out by Package Report System.
+It will list all the recipes which can't check upstream version by script, and will show how long it is since their last mannual version check.
+You can check the detail information at http://packages.yoctoproject.org/manuallychkinfo
 
 
+PackageName              Version             LastChkVersion      LastChkTime              Maintainer                              NoUpgradeReason               
+lsb                      4.1                 4.1                 214 day                  Yi Zhao <yi.zhao@windriver.co...        1.4 is fixed version of LSB Te...
+freetype                 2.4.10              2.4.10              135 day                  Valentin Popa <valentin.popa@...        No data                       
+menu-cache               0.3.3               0.3.3               41229 d                  Valentin Popa <valentin.popa@...        No data                       
+libfm                    0.1.17              1.30                135 day                  Valentin Popa <valentin.popa@...        No data                       
+pcmanfm                  0.9.10              0.9.10              135 day                  Valentin Popa <valentin.popa@...        No data                       
+gtkhtml2                 2.11.0+svnr11...    2.11.1              41229 d                  Valentin Popa <valentin.popa@...        No data                       
+libevent                 2.0.16              2.0.20              311 day                  Scott Garman <scott.a.garman@...        No data                       
+e2fsprogs                1.42.1              1.42.5              136 day                  Scott Garman <scott.a.garman@...        No data                       
+chrpath                  0.14                0.14                136 day                  Scott Garman <scott.a.garman@...        No data                       
+opensp                   1.5.2               1.5.2               136 day                  Scott Garman <scott.a.garman@...        No data                       
+expat                    2.1.0               2.0.1               136 day                  Scott Garman <scott.a.garman@...        No data                       
+nfs-utils                1.2.3               1.2.6               136 day                  Scott Garman <scott.a.garman@...        No data                       
+libpng                   1.2.49              1.5.11              136 day                  Scott Garman <scott.a.garman@...        1.4.3 and later changes the AP...
+libatomics-ops           7.2                 N/A                 41229 d                  Scott Garman <scott.a.garman@...        No data                       
+cracklib                 2.8.19              2.8.19              136 day                  Saul Wold <sgw@linux.intel.co...        No data                       
+psmisc                   22.19               22.19               136 day                  Saul Wold <sgw@linux.intel.co...        No data                       
+sysstat                  10.1.1              10.1.1              136 day                  Saul Wold <sgw@linux.intel.co...        No data                       
+less                     444                 444                 136 day                  Saul Wold <sgw@linux.intel.co...        No data                       
+glew                     1.9.0               1.9.0               136 day                  Saul Wold <sgw@linux.intel.co...        No data                       
+mx                       1.4.6               N/A                 41229 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+libexif                  0.6.21              0.6.21              136 day                  Saul Wold <sgw@linux.intel.co...        No data                       
+sqlite3                  3.7.13              3.7.13              136 day                  Saul Wold <sgw@linux.intel.co...        No data                       
+boost                    1.51.0              1.51.0              136 day                  Saul Wold <sgw@linux.intel.co...        No data                       
+libcheck                 0.9.8               0.9.8               136 day                  Saul Wold <sgw@linux.intel.co...        No data                       
+libacpi                  0.2                 0.2                 41229 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+sysfsutils               2.1.0               2.1.0               136 day                  Saul Wold <sgw@linux.intel.co...        No data                       
+console-tools            0.3.2               0.3.2               136 day                  Saul Wold <sgw@linux.intel.co...        No data                       
+libmad                   0.15.1b             0.15.2b             136 day                  Saul Wold <sgw@linux.intel.co...        No data                       
+popt                     1.16                1.16                41229 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+clutter-gst-1.8          1.4.6               N/A                 41229 d                  Ross Burton <ross.burton@inte...        No data                       
+cogl                     1.8.2               Jul 17, 2012        341 day                  Ross Burton <ross.burton@inte...        No data                       
+clutter-1.8              1.8.4               N/A                 41229 d                  Ross Burton <ross.burton@inte...        No data                       
+clutter-gtk-1.8          0.11.4              N/A                 41229 d                  Ross Burton <ross.burton@inte...        No data                       
+tzdata                   2012d               2012c               135 day                  Radu Moisan <radu.moisan@inte...        No data                       
+bzip2                    1.0.6               1.0.6               544 day                  Radu Moisan <radu.moisan@inte...        No data                       
+zip                      3.0                 3.0                 135 day                  Radu Moisan <radu.moisan@inte...        No data                       
+watchdog                 5.12                5.12                135 day                  Radu Moisan <radu.moisan@inte...        No data                       
+hdparm                   9.39                9.39                135 day                  Radu Moisan <radu.moisan@inte...        No data                       
+tslib                    1.0                 1.0                 135 day                  Radu Moisan <radu.moisan@inte...        No data                       
+unzip                    6.0                 6.0                 135 day                  Radu Moisan <radu.moisan@inte...        No data                       
+beecrypt                 4.2.1               4.2.1               135 day                  Radu Moisan <radu.moisan@inte...        No data                       
+setserial                2.17                2.17                207 day                  Radu Moisan <radu.moisan@inte...        No data                       
+acpid                    1.0.10              1.0.10              135 day                  Radu Moisan <radu.moisan@inte...        No data                       
+squashfs-tools           4.2                 4.2                 135 day                  Radu Moisan <radu.moisan@inte...        No data                       
+u-boot-fw-utils          2011.06             20012.07            41229 d                  Radu Moisan <radu.moisan@inte...        No data                       
+ubootchart               0.0+r12             0.0+r12             41229 d                  Radu Moisan <radu.moisan@inte...        No data                       
+opkg                     0.1.8+svnr633...    0.1.8               135 day                  Radu Moisan <radu.moisan@inte...        No data                       
+fotowall                 0.9                 0.9                 41229 d                  Radu Moisan <radu.moisan@inte...        No data                       
+quicky                   0.4                 N/A                 41229 d                  Radu Moisan <radu.moisan@inte...        No data                       
+kmod                     9                   9                   41229 d                  Radu Moisan <radu.moisan@inte...        No data                       
+tinylogin                1.4                 1.4                 330 day                  Radu Moisan <radu.moisan@inte...        No data                       
+gupnp                    0.16.1              0.18.4              41229 d                  Radu Moisan <radu.moisan@inte...        No data                       
+lame                     3.99.5              3.99.5              135 day                  Radu Moisan <radu.moisan@inte...        No data                       
+nativesdk-libarchive...  2.8.5               N/A                 41229 d                  No Maintainer information               No data                       
+nativesdk-bzip2          1.0.6               N/A                 41229 d                  No Maintainer information               No data                       
+nativesdk-mpfr           3.1.0               N/A                 41229 d                  No Maintainer information               No data                       
+nativesdk-sqlite3        3.7.13              N/A                 41229 d                  No Maintainer information               No data                       
+nativesdk-db             5.3.15              N/A                 41229 d                  No Maintainer information               No data                       
+nativesdk-libmpc         0.8.2               N/A                 41229 d                  No Maintainer information               No data                       
+nativesdk-u-boot-mki...  2011.06             N/A                 41229 d                  No Maintainer information               No data                       
+kconfig-frontends        3.5.0               3.5.0               41229 d                  No Maintainer information               No data                       
+nativesdk-pseudo         1.4.1               N/A                 41229 d                  No Maintainer information               No data                       
+python-argparse          1.2.1               N/A                 41229 d                  No Maintainer information               No data                       
+nativesdk-opkg           0.1.8+svnr633...    N/A                 41229 d                  No Maintainer information               No data                       
+nativesdk-chrpath        0.14                N/A                 41229 d                  No Maintainer information               No data                       
+nativesdk-eglibc         2.16                N/A                 41229 d                  No Maintainer information               No data                       
+libcgroup                0.37.1              0.38-1              41229 d                  No Maintainer information               No data                       
+nativesdk-expat          2.1.0               N/A                 41229 d                  No Maintainer information               No data                       
+mpeg2dec                 0.4.1               0.5.1               544 day                  No Maintainer information               Why are we currently at 0.4.1?
+nativesdk-alsa-lib       1.0.25              N/A                 41229 d                  No Maintainer information               No data                       
+ltp                      20120903            20120903            250 day                  Mihai Lindner <mihaix.lindner...        No data                       
+pseudo                   1.4.1               1.2                 382 day                  Mark Hatle <mark.hatle@windri...        No data                       
+prelink                  1.0+git1+a2d8...    1.0+git1+9552...    310 day                  Mark Hatle <mark.hatle@windri...        No data                       
+rpm                      5.4.9               5.4.10              41229 d                  Mark Hatle <mark.hatle@windri...        No data                       
+x11vnc                   0.9.13              0.9.13              135 day                  Laurentiu Palcu <laurentiu.pa...        No data                       
+libarchive               2.8.5               3.0.4               41229 d                  Kai Kang <kai.kang@windriver....        No data                       
+mingetty                 1.08                1.08                311 day                  Kai Kang <kai.kang@windriver....        No data                       
+alsa-tools               1.0.25              N/A                 41229 d                  Kai Kang <kai.kang@windriver....        No data                       
+adt-installer            0.1.8+svnr596...    1.1                 41229 d                  Jessica Zhang <jessica.zhang@...        No data                       
+cwautomacros             20110201            20110201            135 day                  Cristian Iorga <cristian.iorg...        No data                       
+minicom                  2.6.1               2.6.1               135 day                  Cristian Iorga <cristian.iorg...        No data                       
+libtirpc                 0.2.2               0.2.2               135 day                  Cristian Iorga <cristian.iorg...        No data                       
+rpcbind                  0.2.0               0.2.0               135 day                  Cristian Iorga <cristian.iorg...        No data                       
+quota                    4.00                4.00                135 day                  Cristian Iorga <cristian.iorg...        No data                       
+db                       5.3.15              5.0.26              41229 d                  Cristian Iorga <cristian.iorg...        API compatibility issue       
+libproxy                 0.4.7               0.4.7               658 day                  Cristian Iorga <cristian.iorg...        No data                       
+taglib                   1.8                 1.7.2               658 day                  Cristian Iorga <cristian.iorg...        No data                       
+lrzsz                    0.12.20             0.12.20             658 day                  Cristian Iorga <cristian.iorg...        No data                       
+libical                  0.48                0.48                135 day                  Cristian Iorga <cristian.iorg...        No data                       
+wireless-tools           29                  29                  135 day                  Cristian Iorga <cristian.iorg...        No data                       
+irda-utils               0.9.18              0.9.18              135 day                  Cristian Iorga <cristian.iorg...        No data                       
+libpcap                  1.3.0               4.3.0               41229 d                  Cristian Iorga <cristian.iorg...        No data                       
+gssdp                    0.10.0              0.10.0              41229 d                  Cristian Iorga <cristian.iorg...        No data                       
+gupnp-tools              0.8.1               N/A                 41229 d                  Cristian Iorga <cristian.iorg...        No data                       
+gupnp-av                 0.8.0               0.10.3              41229 d                  Cristian Iorga <cristian.iorg...        No data                       
+tremor                   20120314            20120122            41229 d                  Cristian Iorga <cristian.iorg...        No data                       
+liba52                   0.7.4               0.7.4               658 day                  Cristian Iorga <cristian.iorg...        No data                       
+flac                     1.2.1               1.2.1               135 day                  Cristian Iorga <cristian.iorg...        No data                       
+libomxil                 0.9.3               0.9.3               135 day                  Cristian Iorga <cristian.iorg...        No data                       
+libsamplerate0           0.1.8               0.1.8               135 day                  Cristian Iorga <cristian.iorg...        No data                       
+alsa-utils               1.0.25              N/A                 41229 d                  Cristian Iorga <cristian.iorg...        No data                       
+alsa-lib                 1.0.25              N/A                 41229 d                  Cristian Iorga <cristian.iorg...        No data                       
+mpfr                     3.1.0               3.1.1               135 day                  Bogdan Marinescu <bogdan.a.ma...        No data                       
+libpcre                  8.31                8.31                135 day                  Bogdan Marinescu <bogdan.a.ma...        No data                       
+libmpc                   0.8.2               0.9                 663 day                  Bogdan Marinescu <bogdan.a.ma...        No data                       
+python-scons             2.1.0               2.2.0               41229 d                  Bogdan Marinescu <bogdan.a.ma...        No data                       
+distcc                   2.18.3              3.1.1               41229 d                  Bogdan Marinescu <bogdan.a.ma...        No data                       
+intltool                 0.50.0              0.50.2              41229 d                  Bogdan Marinescu <bogdan.a.ma...        No data                       
+strace                   4.7                 4.7                 135 day                  Bogdan Marinescu <bogdan.a.ma...        No data                       
+git                      1.7.7               N/A                 41229 d                  Bogdan Marinescu <bogdan.a.ma...        No data                       
+tcl                      8.5.11              8.5.12              135 day                  Bogdan Marinescu <bogdan.a.ma...        No data                       
+powertop                 1.13                1.97                578 day                  Bogdan Marinescu <bogdan.a.ma...        Do not upgrade to version 1.97...
+oprofile                 0.9.7               0.9.8               135 day                  Bogdan Marinescu <bogdan.a.ma...        No data                       
+latencytop               0.5                 0.5                 578 day                  Bogdan Marinescu <bogdan.a.ma...        No data                       
+eglibc                   2.16                git:16540           322 day                  Bogdan Marinescu <bogdan.a.ma...        No data                       
+Manual Check Count: 115
+Manual Need Check Count: 115
+Any problem, please contact Saul Wold <sgw@linux.intel.com> 
 
-
->
->
->> Have you contacted the vendor to see if they can provide an updated patc=
-h?
->>
->>
-> Yes, I contacted they. They said that the kernel is 2.6.22.19 and did not
-> have plans to upgrade it.
->
->
->
---=20
------------------------------------------------------------
-Jo=C3=A3o Henrique Freitas - joaohf_at_gmail.com
-Campinas-SP-Brasil
-BSD051283
-LPI 1
-http://www.joaohfreitas.eti.br
-
---bcaec554dbc269030704cea29354
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div class=3D"gmail_quote"><div><br>Hello, just a report<br><br>As my vendo=
-r never will release patch to a recent kernel and our applications needs so=
-me recent fetures found in a recent kernel. I decided to make the patchs by=
- myself.<br>
-<br>I missed one week reading datasheet, git log, studying the old implemen=
-tation made by Mindspeed=C2=A0 and so on.<br><br>Now the kernel 3.4.18 boot=
- and runs in our board using yocto 1.3. Of course I have learned a lot of t=
-hings.<br>
-<br>Maybe some adjusts will be need to do. However I am very happy to track=
- Yocto project with Mindspeed hardware. This is going to speedup the releas=
-e cicles and=C2=A0 tools of our products.<br><br>Thanks.<br><br><br>=C2=A0<=
-/div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-le=
-ft:1px #ccc solid;padding-left:1ex">
-<div><div class=3D"gmail_quote"><div class=3D"im"><div>=C2=A0</div><blockqu=
-ote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc s=
-olid;padding-left:1ex">
-
-Have you contacted the vendor to see if they can provide an updated patch?<=
-br>
-<br></blockquote><div><br></div></div><div>Yes, I=C2=A0contacted=C2=A0they.=
- They said that the kernel is 2.6.22.19 and did not have plans to upgrade i=
-t.</div><div>=C2=A0</div><br clear=3D"all"></div></div></blockquote></div><=
-br>-- <br>-----------------------------------------------------------<br>
-Jo=C3=A3o Henrique Freitas - <a href=3D"http://joaohf_at_gmail.com">joaohf_=
-at_gmail.com</a><br>Campinas-SP-Brasil<br>BSD051283<br>LPI 1<br><a href=3D"=
-http://www.joaohfreitas.eti.br">http://www.joaohfreitas.eti.br</a><br>
-
---bcaec554dbc269030704cea29354--
