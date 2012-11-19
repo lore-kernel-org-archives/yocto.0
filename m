@@ -1,58 +1,22 @@
-Return-Path: <B29882@freescale.com>
-Received: from tx2outboundpool.messaging.microsoft.com
-	(tx2ehsobe004.messaging.microsoft.com [65.55.88.14])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 52655E0032E
-	for <yocto@yoctoproject.org>; Mon, 19 Nov 2012 10:21:03 -0800 (PST)
-Received: from mail111-tx2-R.bigfish.com (10.9.14.239) by
-	TX2EHSOBE008.bigfish.com (10.9.40.28) with Microsoft SMTP Server id
-	14.1.225.23; Mon, 19 Nov 2012 18:21:01 +0000
-Received: from mail111-tx2 (localhost [127.0.0.1])	by
-	mail111-tx2-R.bigfish.com (Postfix) with ESMTP id 9787A180237;
-	Mon, 19 Nov 2012 18:21:01 +0000 (UTC)
-X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null); IPV:NLI;
-	H:mail.freescale.net; RD:none; EFVD:NLI
-X-SpamScore: 1
-X-BigFish: VS1(zzbb2dI98dI9371I1432Izz1de0h1202h1d1ah1d2ahzz17326ah8275bh8275dhz2dh2a8h668h839h8e2h8e3hd25hf0ah10d2h1288h12a5h12a9h12bdh137ah13b6h1441h1537h153bh162dh1631hbe9i15d0l1155h)
-Received: from mail111-tx2 (localhost.localdomain [127.0.0.1]) by mail111-tx2
-	(MessageSwitch) id 1353349238980032_7505;
-	Mon, 19 Nov 2012 18:20:38 +0000 (UTC)
-Received: from TX2EHSMHS001.bigfish.com (unknown [10.9.14.238])	by
-	mail111-tx2.bigfish.com (Postfix) with ESMTP id C77DB8013A;
-	Mon, 19 Nov 2012 18:20:36 +0000 (UTC)
-Received: from mail.freescale.net (70.37.183.190) by TX2EHSMHS001.bigfish.com
-	(10.9.99.101) with Microsoft SMTP Server (TLS) id 14.1.225.23;
-	Mon, 19 Nov 2012 18:20:36 +0000
-Received: from 039-SN1MPN1-001.039d.mgd.msft.net ([169.254.1.103]) by
-	039-SN1MMR1-001.039d.mgd.msft.net ([10.84.1.13]) with mapi id
-	14.02.0318.003; Mon, 19 Nov 2012 18:20:36 +0000
-From: McClintock Matthew-B29882 <B29882@freescale.com>
-To: Leon Woestenberg <sidebranch.openembedded@gmail.com>
-Thread-Topic: [yocto] [OE-core] meta-freescale general mailing list
-Thread-Index: AQHNxlaQXFNguGe5MkaAKeNcvNYg2JfxeFuA
-Date: Mon, 19 Nov 2012 18:20:35 +0000
-Message-ID: <70CC66F5C30A414DADDA6973E4CA391A7951DE@039-SN1MPN1-001.039d.mgd.msft.net>
-References: <70CC66F5C30A414DADDA6973E4CA391A780B30@039-SN1MPN1-001.039d.mgd.msft.net>
-	<50A50BE1.2030305@balister.org>
-	<CAP9ODKoT=n2Uxee7Weuh65OJ3ODat1pfnPmOAa0TxM05QLmB6Q@mail.gmail.com>
-	<CAP9ODKqKvxEwDeoTeYZ3WogzZHbMMo8X9v9MLqqDk0e2xDOKmA@mail.gmail.com>
-	<CAMvUbCwwJ+Y9B8V4GwnA2BVqzBiEhm_bePkA4Y+OXL3vfpwLtQ@mail.gmail.com>
-In-Reply-To: <CAMvUbCwwJ+Y9B8V4GwnA2BVqzBiEhm_bePkA4Y+OXL3vfpwLtQ@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [70.112.201.132]
-MIME-Version: 1.0
-X-OriginatorOrg: freescale.com
-Cc: McClintock Matthew-B29882 <B29882@freescale.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Otavio Salvador <otavio@ossystems.com.br>,
-	Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>
-Subject: Re: [OE-core] meta-freescale general mailing list
+Return-Path: <kevin.strasser@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F1E05E00348
+	for <yocto@yoctoproject.org>; Mon, 19 Nov 2012 12:20:42 -0800 (PST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 19 Nov 2012 12:20:42 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.83,280,1352102400"; d="scan'208";a="244486466"
+Received: from wrk.jf.intel.com ([10.7.202.54])
+	by orsmga002.jf.intel.com with ESMTP; 19 Nov 2012 12:20:42 -0800
+From: Kevin Strasser <kevin.strasser@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Mon, 19 Nov 2012 12:18:51 -0800
+Message-Id: <cover.1353354792.git.kevin.strasser@linux.intel.com>
+X-Mailer: git-send-email 1.7.9.5
+Subject: [meta-baryon][PATCH 0/3] respect EXTRA_IMAGE_FEATURES
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: McClintock Matthew-B29882 <B29882@freescale.com>
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -61,49 +25,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 19 Nov 2012 18:21:03 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-ID: <1DEE53BAF40AC9489EEA7CE386020894@mgd.freescale.com>
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 19 Nov 2012 20:20:43 -0000
 
-On Mon, Nov 19, 2012 at 7:05 AM, Leon Woestenberg
-<sidebranch.openembedded@gmail.com> wrote:
-> Hello Otavio, all,
->
-> On Sun, Nov 18, 2012 at 9:00 PM, Otavio Salvador <otavio@ossystems.com.br=
->
-> wrote:
->>
->>
->> On Thu, Nov 15, 2012 at 3:02 PM, Otavio Salvador <otavio@ossystems.com.b=
-r>
->> wrote:
->>>
->>>
->>> On Thu, Nov 15, 2012 at 1:36 PM, Philip Balister <philip@balister.org>
->>> wrote:
->>>>
->>>> On 11/14/2012 11:58 AM, McClintock Matthew-B29882 wrote:
->>>> Do we have a standard for yocto/OE list names on gmane?
->>>
->>> I tried to add it but it did not work.
->>
->> It is now done.
->>
->> You can see it at
->> http://blog.gmane.org/gmane.linux.embedded.yocto.meta-freescale
->> Regards,
->> Otavio
->
->
-> Thanks. There is a small typo in the gmane: Leyers vs Layers.
->
-> -Freescale OpenEmbedded/Yocto Leyers discussion list ()
-> +Freescale OpenEmbedded/Yocto Layers discussion list ()
+Changes introduced by this patchset:
+  * change the IMAGE_FEATURES assignment in baryon-image to append, 
+  allowing the EXTRA_IMAGE_FEATUES variable to actually have an affect 
+  on the final image. 
+  * trimmed down the profile and testapps packagegroup features so they 
+  can be pulled in without needing to build x11.
+  * util-linux has been swapped out for parted to get around the reset 
+  command conflict.
 
-I've sent a request to fix this.
+The following changes since commit ad1dfa139195f39a72b8e0fb47de5c3339397b8b:
 
--M=
+  proftpd: add initscript and tidy up recipe (2012-10-28 01:47:32 +0100)
+
+are available in the git repository at:
+
+  git://git.yoctoproject.org/poky-contrib strassek/baryon-image-features
+  http://git.yoctoproject.org/cgit.cgi/poky-contrib/log/?h=strassek/baryon-image-features
+
+Kevin Strasser (3):
+  packagegroup-core-tools: exclude packages that depend on x11
+  baryon-image: use parted instead of util-linux
+  baryon-image: change IMAGE_FEATURES assignment to "+="
+
+ .../packagegroup-core-tools-profile.bbappend       |   15 +++++++++++++++
+ .../packagegroup-core-tools-testapps.bbappend      |   12 ++++++++++++
+ recipes-extended/images/baryon-image.bb            |    4 ++--
+ 3 files changed, 29 insertions(+), 2 deletions(-)
+ create mode 100644 recipes-core/packagegroups/packagegroup-core-tools-profile.bbappend
+ create mode 100644 recipes-core/packagegroups/packagegroup-core-tools-testapps.bbappend
+
+-- 
+1.7.9.5
 
 
