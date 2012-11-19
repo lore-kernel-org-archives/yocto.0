@@ -1,29 +1,58 @@
-Return-Path: <laurentiu.palcu@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 897DCE006C2
-	for <yocto@yoctoproject.org>; Mon, 19 Nov 2012 06:21:33 -0800 (PST)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 19 Nov 2012 06:21:32 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.83,279,1352102400"; d="scan'208";a="219690890"
-Received: from lpalcu-linux (HELO [10.237.105.165]) ([10.237.105.165])
-	by azsmga001.ch.intel.com with ESMTP; 19 Nov 2012 06:21:31 -0800
-Message-ID: <50AA406A.60605@intel.com>
-Date: Mon, 19 Nov 2012 16:21:30 +0200
-From: Laurentiu Palcu <laurentiu.palcu@intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:15.0) Gecko/20120912 Thunderbird/15.0.1
+Return-Path: <B29882@freescale.com>
+Received: from tx2outboundpool.messaging.microsoft.com
+	(tx2ehsobe004.messaging.microsoft.com [65.55.88.14])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 52655E0032E
+	for <yocto@yoctoproject.org>; Mon, 19 Nov 2012 10:21:03 -0800 (PST)
+Received: from mail111-tx2-R.bigfish.com (10.9.14.239) by
+	TX2EHSOBE008.bigfish.com (10.9.40.28) with Microsoft SMTP Server id
+	14.1.225.23; Mon, 19 Nov 2012 18:21:01 +0000
+Received: from mail111-tx2 (localhost [127.0.0.1])	by
+	mail111-tx2-R.bigfish.com (Postfix) with ESMTP id 9787A180237;
+	Mon, 19 Nov 2012 18:21:01 +0000 (UTC)
+X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null); IPV:NLI;
+	H:mail.freescale.net; RD:none; EFVD:NLI
+X-SpamScore: 1
+X-BigFish: VS1(zzbb2dI98dI9371I1432Izz1de0h1202h1d1ah1d2ahzz17326ah8275bh8275dhz2dh2a8h668h839h8e2h8e3hd25hf0ah10d2h1288h12a5h12a9h12bdh137ah13b6h1441h1537h153bh162dh1631hbe9i15d0l1155h)
+Received: from mail111-tx2 (localhost.localdomain [127.0.0.1]) by mail111-tx2
+	(MessageSwitch) id 1353349238980032_7505;
+	Mon, 19 Nov 2012 18:20:38 +0000 (UTC)
+Received: from TX2EHSMHS001.bigfish.com (unknown [10.9.14.238])	by
+	mail111-tx2.bigfish.com (Postfix) with ESMTP id C77DB8013A;
+	Mon, 19 Nov 2012 18:20:36 +0000 (UTC)
+Received: from mail.freescale.net (70.37.183.190) by TX2EHSMHS001.bigfish.com
+	(10.9.99.101) with Microsoft SMTP Server (TLS) id 14.1.225.23;
+	Mon, 19 Nov 2012 18:20:36 +0000
+Received: from 039-SN1MPN1-001.039d.mgd.msft.net ([169.254.1.103]) by
+	039-SN1MMR1-001.039d.mgd.msft.net ([10.84.1.13]) with mapi id
+	14.02.0318.003; Mon, 19 Nov 2012 18:20:36 +0000
+From: McClintock Matthew-B29882 <B29882@freescale.com>
+To: Leon Woestenberg <sidebranch.openembedded@gmail.com>
+Thread-Topic: [yocto] [OE-core] meta-freescale general mailing list
+Thread-Index: AQHNxlaQXFNguGe5MkaAKeNcvNYg2JfxeFuA
+Date: Mon, 19 Nov 2012 18:20:35 +0000
+Message-ID: <70CC66F5C30A414DADDA6973E4CA391A7951DE@039-SN1MPN1-001.039d.mgd.msft.net>
+References: <70CC66F5C30A414DADDA6973E4CA391A780B30@039-SN1MPN1-001.039d.mgd.msft.net>
+	<50A50BE1.2030305@balister.org>
+	<CAP9ODKoT=n2Uxee7Weuh65OJ3ODat1pfnPmOAa0TxM05QLmB6Q@mail.gmail.com>
+	<CAP9ODKqKvxEwDeoTeYZ3WogzZHbMMo8X9v9MLqqDk0e2xDOKmA@mail.gmail.com>
+	<CAMvUbCwwJ+Y9B8V4GwnA2BVqzBiEhm_bePkA4Y+OXL3vfpwLtQ@mail.gmail.com>
+In-Reply-To: <CAMvUbCwwJ+Y9B8V4GwnA2BVqzBiEhm_bePkA4Y+OXL3vfpwLtQ@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [70.112.201.132]
 MIME-Version: 1.0
-To: Wolfgang Denk <wd@denx.de>
-References: <20121119123504.22FAF20032F@gemini.denx.de>
-	<50AA2EE4.1000207@communistcode.co.uk> <50AA31D8.5020700@intel.com>
-	<20121119135023.5927D20032F@gemini.denx.de>
-In-Reply-To: <20121119135023.5927D20032F@gemini.denx.de>
-Cc: yocto@yoctoproject.org
-Subject: Re: Alternative SDK installation directory working?
+X-OriginatorOrg: freescale.com
+Cc: McClintock Matthew-B29882 <B29882@freescale.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	Otavio Salvador <otavio@ossystems.com.br>,
+	Patches and discussions about the oe-core layer
+	<openembedded-core@lists.openembedded.org>
+Subject: Re: [OE-core] meta-freescale general mailing list
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: McClintock Matthew-B29882 <B29882@freescale.com>
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -32,45 +61,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 19 Nov 2012 14:21:33 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 19 Nov 2012 18:21:03 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-ID: <1DEE53BAF40AC9489EEA7CE386020894@mgd.freescale.com>
+Content-Transfer-Encoding: quoted-printable
 
-
-
-On 11/19/2012 03:50 PM, Wolfgang Denk wrote:
-> Dear Laurentiu,
-> 
-> In message <50AA31D8.5020700@intel.com> you wrote:
+On Mon, Nov 19, 2012 at 7:05 AM, Leon Woestenberg
+<sidebranch.openembedded@gmail.com> wrote:
+> Hello Otavio, all,
+>
+> On Sun, Nov 18, 2012 at 9:00 PM, Otavio Salvador <otavio@ossystems.com.br=
+>
+> wrote:
 >>
->>>> -> source /opt/poky-test/environment-setup-armv5te-poky-linux-gnueabi
->>>> -> ${TARGET_PREFIX}gcc -v -o /tmp/x /tmp/x.c
 >>
->> Just do: $CC -o /tmp/x /tmp/x.c
+>> On Thu, Nov 15, 2012 at 3:02 PM, Otavio Salvador <otavio@ossystems.com.b=
+r>
+>> wrote:
+>>>
+>>>
+>>> On Thu, Nov 15, 2012 at 1:36 PM, Philip Balister <philip@balister.org>
+>>> wrote:
+>>>>
+>>>> On 11/14/2012 11:58 AM, McClintock Matthew-B29882 wrote:
+>>>> Do we have a standard for yocto/OE list names on gmane?
+>>>
+>>> I tried to add it but it did not work.
 >>
->> It should work.
+>> It is now done.
 >>
->> echo $CC
->> arm-poky-linux-gnueabi-gcc -march=armv5te -marm -mthumb-interwork
->> -mtune=arm926ej-s --sysroot=/tests/sdk/sysroots/armv5te-poky-linux-gnueabi
-> 
-> Argh... Isn't it somewhat ... unconventional (to avoid stonger words)
-> to encode compiler options in a variable which is supposed to define
-> the "Program for compiling C programs" ?
-It is unconventional, I admit. Unfortunately, it's not clear to me why
-this was done in the first place. I've just read the commit message for
-these changes and it didn't make it clearer. Maybe Mark, who made these
-changes, can give us a better answer.
+>> You can see it at
+>> http://blog.gmane.org/gmane.linux.embedded.yocto.meta-freescale
+>> Regards,
+>> Otavio
+>
+>
+> Thanks. There is a small typo in the gmane: Leyers vs Layers.
+>
+> -Freescale OpenEmbedded/Yocto Leyers discussion list ()
+> +Freescale OpenEmbedded/Yocto Layers discussion list ()
 
-> 
-> Should such options not go to one of the *FLAGS variables instead?
-I personally don't see any reason why they shouldn't.
+I've sent a request to fix this.
 
-Thanks,
-Laurentiu
-> 
-> Best regards,
-> 
-> Wolfgang Denk
-> 
+-M=
+
 
