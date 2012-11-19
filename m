@@ -1,31 +1,34 @@
-Return-Path: <scott.m.rifenbark@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 71308E00348
-	for <yocto@yoctoproject.org>; Mon, 19 Nov 2012 13:55:41 -0800 (PST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 19 Nov 2012 13:55:36 -0800
+Return-Path: <song.liu@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 183DFE0032E
+	for <yocto@yoctoproject.org>; Mon, 19 Nov 2012 14:57:39 -0800 (PST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 19 Nov 2012 14:57:38 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.83,282,1352102400"; d="scan'208";a="251542922"
-Received: from orsmsx104.amr.corp.intel.com ([10.22.225.131])
-	by fmsmga002.fm.intel.com with ESMTP; 19 Nov 2012 13:55:35 -0800
+X-IronPort-AV: E=Sophos;i="4.83,282,1352102400"; d="scan'208";a="249662583"
+Received: from orsmsx103.amr.corp.intel.com ([10.22.225.130])
+	by fmsmga001.fm.intel.com with ESMTP; 19 Nov 2012 14:57:38 -0800
+Received: from orsmsx152.amr.corp.intel.com (10.22.226.39) by
+	ORSMSX103.amr.corp.intel.com (10.22.225.130) with Microsoft SMTP Server
+	(TLS) id 14.1.355.2; Mon, 19 Nov 2012 14:57:38 -0800
 Received: from orsmsx101.amr.corp.intel.com ([169.254.8.81]) by
-	ORSMSX104.amr.corp.intel.com ([169.254.3.56]) with mapi id
-	14.01.0355.002; Mon, 19 Nov 2012 13:55:35 -0800
-From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>, Yocto discussion list
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] some yocto QS guide links could be tweaked
-Thread-Index: AQHNxpxEMrz5oInjmUq3QWAaf9V5lJfxs9Eg
-Date: Mon, 19 Nov 2012 21:55:34 +0000
-Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237946AC541B@ORSMSX101.amr.corp.intel.com>
-References: <alpine.DEB.2.02.1211191621580.24035@oneiric>
-In-Reply-To: <alpine.DEB.2.02.1211191621580.24035@oneiric>
+	ORSMSX152.amr.corp.intel.com ([169.254.8.236]) with mapi id
+	14.01.0355.002; Mon, 19 Nov 2012 14:57:34 -0800
+From: "Liu, Song" <song.liu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Agenda: Yocto Project Technical Team Meeting - Tuesday,
+	November 20,
+	2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+Thread-Index: AQHNxqlCx6YAFggis0Oa/5rTP90ygg==
+Date: Mon, 19 Nov 2012 22:57:36 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A4860158B@ORSMSX101.amr.corp.intel.com>
+References: <7E680CB2A76BB8438D08CF13C09FC53A4844CAD5@ORSMSX101.amr.corp.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.139]
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-Subject: Re: some yocto QS guide links could be tweaked
+Subject: Agenda: Yocto Project Technical Team Meeting - Tuesday, November 20, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,55 +40,133 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 19 Nov 2012 21:55:41 -0000
+X-List-Received-Date: Mon, 19 Nov 2012 22:57:39 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-Robert,=20
-
-Good catch.  I have fixed these links, pushed to yocto-docs/master and repu=
-blished to "latest".
-
-Scott
-
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Robert P. J. Day
-Sent: Monday, November 19, 2012 1:24 PM
-To: Yocto discussion list
-Subject: [yocto] some yocto QS guide links could be tweaked
+Agenda:
+=A0
+* Opens collection - 5 min (Song)
+* Yocto 1.4 status - 20 min (Song/team)
+* SWAT team rotation: Jessica -> Ross
+* Opens - 10 min =20
+* Team Sharing - 20 min
 
 
-  reading the current version of the QS guide here (this is the
-current version, yes?):
+-----Original Appointment-----
 
-http://www.yoctoproject.org/docs/latest/yocto-project-qs/yocto-project-qs.h=
-tml
 
-in the Note in the section "The Linux Distribution", there are two
-links, "OE and your distro" and "Required Software" that take one to
-wiki *diff* pages, rather than the page itself.
+We encourage people attending the meeting to logon the Yocto IRC chancel du=
+ring the meeting (optional):
 
-  scott?
+Yocto IRC: http://webchat.freenode.net/?channels=3D#yocto
+IRC Tutorial: http://www.irchelp.org/irchelp/irctutorial.html=20
 
-rday
+Conference details=20
+Conference name:=20
+Yocto Technical Team
+Conference date/start time:=20
+Tue Jun 26, 2012 at 10:00 AM Central Daylight Time=20
+Participants:=20
+30
+Duration:=20
+60 minutes=20
+Participant passcode:=20
+76994298
+Dial-in number:=20
+1.972.995.7777=20
+US Toll Free number:=20
+1.877.561.6828=20
+BlackBerry users, click this link to join your conference as a participant:
+1.972.995.7777x76994298#
+=A0
+Depending on where you are dialing from, either your BlackBerry will pause =
+and enter the passcode automatically or you will be prompted to click again=
+ to dial the passcode.
 
---=20
+Local and Global Access Numbers=20
 
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
 
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
+Country=20
+Dial-in number
+Australia:=20
+1800 636 843
+Czech Republic:=20
+242 430 350
+China (Beijing):=20
+From office dial 8-9957777 or 8784277=20
+Beijing Out of Office dial 5878 4277
+China (Shanghai):=20
+From office dial 8-9957777 or 3073322=20
+Shanghai Out of Office dial 2307 3322
+China (Shenzen):=20
+From office dial 8-9957777 or 6007877=20
+Shenzen Out of Office dial 2600 7877
+China (Other Cities):=20
+From IP phone dial 8-9957777=20
+Other cities - Non IP phone dial 021-23073322
+Denmark:=20
+8060 1400
+Finland:=20
+09 41333477
+France:=20
+0497 275888
+Germany:=20
+08161 803232
+Holland:=20
+030 2417490
+India:=20
+BSNL subscribers use 1800 425 9996 (Toll Free)
+Airtel subscribers use 0008 009 861 212 (Toll Free)
+From TI Campus use 89957777
+Others use 2509 9555 (Landline within Bangalore) or
+80 2509 9555 (Outside Bangalore)
+Israel:=20
+09 790 6715
+Italy:=20
+039 69061234 (039 is local city code not country code)
+Japan:=20
+From TI Campus use 8 995 7777=20
+Outside TI use 03 4331 3777
+Malaysia:=20
+From IP phone dial 2643799=20
+From Kuala Lumpur dial 4264 3799=20
+Outside Kuala Lumpur dial (03)4264 3799
+Norway:=20
+2 295 8744
+Philippines:=20
+From Baguio City use 4471177=20
+From Metro Manila area use 8702477
+Singapore:=20
+From IP phone dial 3894777=20
+Outside TI use 6389 4777
+South Korea:=20
+From IP phone dial 5606998=20
+From Seoul dial 5606998=20
+Outside Seoul dial (02)5606998
+Sweden:=20
+08 58755577
+Taiwan:=20
+From IP phone dial 1363=20
+From Taipei dial 2241 1363=20
+Outside Taipei dial (02)2241 1363
+Turkey:=20
+Landline Only dial 0811 288 0001=20
+then enter 877 633 1123=20
+UK:=20
+01604 663003
+US:=20
+972 995 7777 or 1877 561 6828
+
+Recurring conferences=20
+First scheduled conference:=20
+Tue Jun 26, 2012
+Recurrence frequency:=20
+Weekly - Every 1 week(s) on Tuesday
+Recurrence ends:=20
+End on Fri Jun 21, 2013, 10:40 AM CDT
+
+
+
 
