@@ -1,23 +1,31 @@
-Return-Path: <kevin.strasser@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F3DB7E0049F
-	for <yocto@yoctoproject.org>; Mon, 19 Nov 2012 12:20:59 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 19 Nov 2012 12:20:20 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.83,280,1352102400"; d="scan'208";a="244486549"
-Received: from wrk.jf.intel.com ([10.7.202.54])
-	by orsmga002.jf.intel.com with ESMTP; 19 Nov 2012 12:20:59 -0800
-From: Kevin Strasser <kevin.strasser@linux.intel.com>
-To: yocto@yoctoproject.org
-Date: Mon, 19 Nov 2012 12:20:29 -0800
-Message-Id: <402d60d77de168c85d5c54fa3b7d02601d970e11.1353354792.git.kevin.strasser@linux.intel.com>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <0a89eef85ff8ed361ac5a3e2f8fca6869670d74c.1353354792.git.kevin.strasser@linux.intel.com>
-References: <0a89eef85ff8ed361ac5a3e2f8fca6869670d74c.1353354792.git.kevin.strasser@linux.intel.com>
-In-Reply-To: <cover.1353354792.git.kevin.strasser@linux.intel.com>
-References: <cover.1353354792.git.kevin.strasser@linux.intel.com>
-Subject: [meta-baryon][PATCH 3/3] baryon-image: change IMAGE_FEATURES assignment to "+="
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 25875E00348
+	for <yocto@yoctoproject.org>; Mon, 19 Nov 2012 13:24:12 -0800 (PST)
+Received: from cpebcc8100fb8db-cmbcc8100fb8d8.cpe.net.cable.rogers.com
+	([174.116.196.46]:36760 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.77) (envelope-from <rpjday@crashcourse.ca>)
+	id 1TaYp9-000480-4d
+	for yocto@yoctoproject.org; Mon, 19 Nov 2012 16:24:11 -0500
+Date: Mon, 19 Nov 2012 16:24:07 -0500 (EST)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.DEB.2.02.1211191621580.24035@oneiric>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+MIME-Version: 1.0
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: some yocto QS guide links could be tweaked
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,26 +37,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 19 Nov 2012 20:21:00 -0000
+X-List-Received-Date: Mon, 19 Nov 2012 21:24:13 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-this will allow EXTRA_IMAGE_FEATURES to have an affect on the image.
 
-Signed-off-by: Kevin Strasser <kevin.strasser@linux.intel.com>
----
- recipes-extended/images/baryon-image.bb |    2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+  reading the current version of the QS guide here (this is the
+current version, yes?):
 
-diff --git a/recipes-extended/images/baryon-image.bb b/recipes-extended/images/baryon-image.bb
-index 656fdba..d5fd8a5 100644
---- a/recipes-extended/images/baryon-image.bb
-+++ b/recipes-extended/images/baryon-image.bb
-@@ -1,4 +1,4 @@
--IMAGE_FEATURES = "nfs-server package-management ssh-server-dropbear debug-tweaks"
-+IMAGE_FEATURES += "nfs-server package-management ssh-server-dropbear"
- 
- inherit core-image
- 
+http://www.yoctoproject.org/docs/latest/yocto-project-qs/yocto-project-qs.html
+
+in the Note in the section "The Linux Distribution", there are two
+links, "OE and your distro" and "Required Software" that take one to
+wiki *diff* pages, rather than the page itself.
+
+  scott?
+
+rday
+
 -- 
-1.7.9.5
 
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
