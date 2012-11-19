@@ -1,35 +1,38 @@
-Return-Path: <eric@eukrea.com>
-Received: from mo1.mail-out.ovh.net (3.mo1.mail-out.ovh.net [46.105.60.232])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E7CDFE006C2
-	for <yocto@yoctoproject.org>; Mon, 19 Nov 2012 05:38:04 -0800 (PST)
-Received: from mail405.ha.ovh.net (b6.ovh.net [213.186.33.56])
-	by mo1.mail-out.ovh.net (Postfix) with SMTP id 46B6FFF97C7
-	for <yocto@yoctoproject.org>; Mon, 19 Nov 2012 14:49:18 +0100 (CET)
-Received: from b0.ovh.net (HELO queueout) (213.186.33.50)
-	by b0.ovh.net with SMTP; 19 Nov 2012 15:38:07 +0200
-Received: from pac33-2-82-240-38-71.fbx.proxad.net (HELO eb-e6520)
-	(eric%eukrea.com@82.240.38.71)
-	by ns0.ovh.net with SMTP; 19 Nov 2012 15:38:05 +0200
-Date: Mon, 19 Nov 2012 14:38:00 +0100
-From: Eric =?ISO-8859-1?B?QuluYXJk?= <eric@eukrea.com>
-To: Wolfgang Denk <wd@denx.de>
-X-Ovh-Mailout: 178.32.228.1 (mo1.mail-out.ovh.net)
-Message-ID: <20121119143800.654f538f@eb-e6520>
-In-Reply-To: <20121119123504.22FAF20032F@gemini.denx.de>
+Return-Path: <wd@denx.de>
+Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C4824E006C2
+	for <yocto@yoctoproject.org>; Mon, 19 Nov 2012 05:47:02 -0800 (PST)
+Received: from frontend1.mail.m-online.net (unknown [192.168.8.180])
+	by mail-out.m-online.net (Postfix) with ESMTP id 3Y4rv93zbDz4KK7b;
+	Mon, 19 Nov 2012 14:47:01 +0100 (CET)
+Received: from localhost (dynscan1.mnet-online.de [192.168.6.68])
+	by mail.m-online.net (Postfix) with ESMTP id 3Y4rv90mZXzbbhH;
+	Mon, 19 Nov 2012 14:47:01 +0100 (CET)
+X-Virus-Scanned: amavisd-new at mnet-online.de
+Received: from smtp-auth.mnet-online.de ([192.168.8.180])
+	by localhost (dynscan1.mail.m-online.net [192.168.6.68]) (amavisd-new,
+	port 10024)
+	with ESMTP id goJrULVbGt1F; Mon, 19 Nov 2012 14:44:12 +0100 (CET)
+X-Auth-Info: X4ZHVL0ZvZ9D6uy1plXsgieq692UPRLHw2Bm5ZEJgYg=
+Received: from diddl.denx.de (host-80-81-18-216.customer.m-online.net
+	[80.81.18.216]) by smtp-auth.mnet-online.de (Postfix) with ESMTPA;
+	Mon, 19 Nov 2012 14:46:59 +0100 (CET)
+Received: from gemini.denx.de (unknown [10.0.0.2])
+	by diddl.denx.de (Postfix) with ESMTP id 19F611A6D92;
+	Mon, 19 Nov 2012 14:46:55 +0100 (CET)
+Received: from gemini.denx.de (localhost [IPv6:::1])
+	by gemini.denx.de (Postfix) with ESMTP id 674B520032F;
+	Mon, 19 Nov 2012 14:46:53 +0100 (CET)
+To: ml@communistcode.co.uk
+From: Wolfgang Denk <wd@denx.de>
+MIME-Version: 1.0
+In-reply-to: <50AA2EE4.1000207@communistcode.co.uk>
 References: <20121119123504.22FAF20032F@gemini.denx.de>
-Organization: =?ISO-8859-1?B?RXVrculh?= Electromatique
-X-Mailer: Claws Mail 3.8.1 (GTK+ 2.24.8; x86_64-redhat-linux-gnu)
-Mime-Version: 1.0
-X-Ovh-Tracer-Id: 3908280051961933250
-X-Ovh-Remote: 82.240.38.71 (pac33-2-82-240-38-71.fbx.proxad.net)
-X-Ovh-Local: 213.186.33.20 (ns0.ovh.net)
-X-OVH-SPAMSTATE: OK
-X-OVH-SPAMSCORE: -100
-X-OVH-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrfeehgedrudefucetufdoteggodetrfcurfhrohhfihhlvgemucfqggfjnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfhrhhomhepgfhrihgtuceurohnrghrugcuoegvrhhitgesvghukhhrvggrrdgtohhmqeenucffohhmrghinhephihotghtohhprhhojhgvtghtrdhorhhgnecujfgurhepfffhvffukfgjfhhoofggtgfgsehtqhertdertddu
-X-Spam-Check: DONE|U 0.5/N
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrfeehgedrudefucetufdoteggodetrfcurfhrohhfihhlvgemucfqggfjnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfhrhhomhepgfhrihgtuceurohnrghrugcuoegvrhhitgesvghukhhrvggrrdgtohhmqeenucffohhmrghinhephihotghtohhprhhojhgvtghtrdhorhhgnecujfgurhepfffhvffukfgjfhhoofggtgfgsehtqhertdertddu
+	<50AA2EE4.1000207@communistcode.co.uk>
+Comments: In-reply-to Jack Mitchell <ml@communistcode.co.uk>
+	message dated "Mon, 19 Nov 2012 13:06:44 +0000."
+Date: Mon, 19 Nov 2012 14:46:53 +0100
+Message-Id: <20121119134653.674B520032F@gemini.denx.de>
 Cc: yocto@yoctoproject.org
 Subject: Re: Alternative SDK installation directory working?
 X-BeenThere: yocto@yoctoproject.org
@@ -43,20 +46,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 19 Nov 2012 13:38:05 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 19 Nov 2012 13:47:03 -0000
+Content-type: text/plain; charset=UTF-8
+Content-transfer-encoding: 8bit
 
-Hi Wolfgang,
+Dear Jack Mitchell,
 
-Le Mon, 19 Nov 2012 13:35:04 +0100,
-Wolfgang Denk <wd@denx.de> a =E9crit :
-> I wonder if the installation of the SDK into an alternative directory
-> is actually working?
->=20
-I also didn't manage to use SDK relocation with Qt Embedded SDK as
-reported here :
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D3409
+In message <50AA2EE4.1000207@communistcode.co.uk> you wrote:
+>
+> > -> source /opt/poky-test/environment-setup-armv5te-poky-linux-gnueabi
+> > -> ${TARGET_PREFIX}gcc -v -o /tmp/x /tmp/x.c
+> 
+> I think you need a --sysroot in there. e.g. --sysroot=/opt/poky-test/sysroots/arch-blah-blah-blah
 
-Eric
+I see.  Thanks for pointing out.
+
+However, this still leaves a number of somewhat suspicious messages:
+
+-> $CC -v -o /tmp/x /tmp/x.c
+...
+ignoring nonexistent directory "/opt/poky-test/sysroots/x86_64-pokysdk-linux/usr/bin/armv5te-poky-linux-gnueabi/../../lib/armv5te-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/4.7.2/../../../../../arm-poky-linux-gnueabi/include"
+ignoring duplicate directory "/opt/poky-test/sysroots/x86_64-pokysdk-linux/usr/bin/armv5te-poky-linux-gnueabi/../../lib/armv5te-poky-linux-gnueabi/gcc/../../../lib/armv5te-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/4.7.2/include"
+ignoring nonexistent directory "/opt/poky-test/sysroots/armv5te-poky-linux-gnueabi/usr/local/include"
+ignoring duplicate directory "/opt/poky-test/sysroots/x86_64-pokysdk-linux/usr/bin/armv5te-poky-linux-gnueabi/../../lib/armv5te-poky-linux-gnueabi/gcc/../../../lib/armv5te-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/4.7.2/include-fixed"
+ignoring nonexistent directory "/opt/poky-test/sysroots/x86_64-pokysdk-linux/usr/bin/armv5te-poky-linux-gnueabi/../../lib/armv5te-poky-linux-gnueabi/gcc/../../../lib/armv5te-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/4.7.2/../../../../../arm-poky-linux-gnueabi/include"
+#include "..." search starts here:
+...
+
+
+
+Best regards,
+
+Wolfgang Denk
+
+-- 
+DENX Software Engineering GmbH,     MD: Wolfgang Denk & Detlev Zundel
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+Phone: (+49)-8142-66989-10 Fax: (+49)-8142-66989-80 Email: wd@denx.de
+This cultural mystique surrounding the  biological  function  --  you
+realize humans are overly preoccupied with the subject.
+	-- Kelinda the Kelvan, "By Any Other Name", stardate 4658.9
 
