@@ -1,23 +1,36 @@
-Return-Path: <laurentiu.palcu@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 15FDEE01275
-	for <yocto@yoctoproject.org>; Mon, 19 Nov 2012 05:19:22 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 19 Nov 2012 05:18:42 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.83,279,1352102400"; d="scan'208";a="244305397"
-Received: from lpalcu-linux (HELO [10.237.105.165]) ([10.237.105.165])
-	by orsmga002.jf.intel.com with ESMTP; 19 Nov 2012 05:19:20 -0800
-Message-ID: <50AA31D8.5020700@intel.com>
-Date: Mon, 19 Nov 2012 15:19:20 +0200
-From: Laurentiu Palcu <laurentiu.palcu@intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:15.0) Gecko/20120912 Thunderbird/15.0.1
-MIME-Version: 1.0
-To: yocto@yoctoproject.org
+Return-Path: <eric@eukrea.com>
+Received: from mo1.mail-out.ovh.net (3.mo1.mail-out.ovh.net [46.105.60.232])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E7CDFE006C2
+	for <yocto@yoctoproject.org>; Mon, 19 Nov 2012 05:38:04 -0800 (PST)
+Received: from mail405.ha.ovh.net (b6.ovh.net [213.186.33.56])
+	by mo1.mail-out.ovh.net (Postfix) with SMTP id 46B6FFF97C7
+	for <yocto@yoctoproject.org>; Mon, 19 Nov 2012 14:49:18 +0100 (CET)
+Received: from b0.ovh.net (HELO queueout) (213.186.33.50)
+	by b0.ovh.net with SMTP; 19 Nov 2012 15:38:07 +0200
+Received: from pac33-2-82-240-38-71.fbx.proxad.net (HELO eb-e6520)
+	(eric%eukrea.com@82.240.38.71)
+	by ns0.ovh.net with SMTP; 19 Nov 2012 15:38:05 +0200
+Date: Mon, 19 Nov 2012 14:38:00 +0100
+From: Eric =?ISO-8859-1?B?QuluYXJk?= <eric@eukrea.com>
+To: Wolfgang Denk <wd@denx.de>
+X-Ovh-Mailout: 178.32.228.1 (mo1.mail-out.ovh.net)
+Message-ID: <20121119143800.654f538f@eb-e6520>
+In-Reply-To: <20121119123504.22FAF20032F@gemini.denx.de>
 References: <20121119123504.22FAF20032F@gemini.denx.de>
-	<50AA2EE4.1000207@communistcode.co.uk>
-In-Reply-To: <50AA2EE4.1000207@communistcode.co.uk>
+Organization: =?ISO-8859-1?B?RXVrculh?= Electromatique
+X-Mailer: Claws Mail 3.8.1 (GTK+ 2.24.8; x86_64-redhat-linux-gnu)
+Mime-Version: 1.0
+X-Ovh-Tracer-Id: 3908280051961933250
+X-Ovh-Remote: 82.240.38.71 (pac33-2-82-240-38-71.fbx.proxad.net)
+X-Ovh-Local: 213.186.33.20 (ns0.ovh.net)
+X-OVH-SPAMSTATE: OK
+X-OVH-SPAMSCORE: -100
+X-OVH-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrfeehgedrudefucetufdoteggodetrfcurfhrohhfihhlvgemucfqggfjnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfhrhhomhepgfhrihgtuceurohnrghrugcuoegvrhhitgesvghukhhrvggrrdgtohhmqeenucffohhmrghinhephihotghtohhprhhojhgvtghtrdhorhhgnecujfgurhepfffhvffukfgjfhhoofggtgfgsehtqhertdertddu
+X-Spam-Check: DONE|U 0.5/N
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrfeehgedrudefucetufdoteggodetrfcurfhrohhfihhlvgemucfqggfjnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfhrhhomhepgfhrihgtuceurohnrghrugcuoegvrhhitgesvghukhhrvggrrdgtohhmqeenucffohhmrghinhephihotghtohhprhhojhgvtghtrdhorhhgnecujfgurhepfffhvffukfgjfhhoofggtgfgsehtqhertdertddu
+Cc: yocto@yoctoproject.org
 Subject: Re: Alternative SDK installation directory working?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -30,64 +43,20 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 19 Nov 2012 13:19:22 -0000
+X-List-Received-Date: Mon, 19 Nov 2012 13:38:05 -0000
 Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
 
-Send the reply to the list too. My answer below.
+Hi Wolfgang,
 
-On 11/19/2012 03:06 PM, Jack Mitchell wrote:
-> On 19/11/12 12:35, Wolfgang Denk wrote:
->> Hello,
->>
->> I wonder if the installation of the SDK into an alternative directory
->> is actually working?
->>
->> Trying the latest snapshot
->> http://autobuilder.yoctoproject.org/pub/nightly/CURRENT/toolchain/x86_64/poky-eglibc-x86_64-arm-toolchain-gmae-1.3+snapshot-20121119.sh
->> I get this:
->>
->> Installation:
->>
->> -> sh ./poky-eglibc-x86_64-arm-toolchain-gmae-1.3+snapshot-20121119.sh
->> Enter target directory for SDK (default: /opt/poky/1.3+snapshot): /opt/poky-test
->> You are about to install the SDK to "/opt/poky-test". Proceed[Y/n]?Y
->> Extracting SDK...done
->> Setting it up...done
->> SDK has been successfully set up and is ready to be used.
->>
->>
->> Test:
->>
->> -> cat /tmp/x.c
->> int main (void)
->> {
->>          return 0;
->> }
->> -> source /opt/poky-test/environment-setup-armv5te-poky-linux-gnueabi
->> -> ${TARGET_PREFIX}gcc -v -o /tmp/x /tmp/x.c
+Le Mon, 19 Nov 2012 13:35:04 +0100,
+Wolfgang Denk <wd@denx.de> a =E9crit :
+> I wonder if the installation of the SDK into an alternative directory
+> is actually working?
+>=20
+I also didn't manage to use SDK relocation with Qt Embedded SDK as
+reported here :
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D3409
 
-Just do: $CC -o /tmp/x /tmp/x.c
-
-It should work.
-
-echo $CC
-arm-poky-linux-gnueabi-gcc -march=armv5te -marm -mthumb-interwork
--mtune=arm926ej-s --sysroot=/tests/sdk/sysroots/armv5te-poky-linux-gnueabi
-
-Thanks,
-Laurentiu
-
-> 
-> I think you need a --sysroot in there. e.g. --sysroot=/opt/poky-test/sysroots/arch-blah-blah-blah
-> 
->> What am I missing here?
->>
->> Best regards,
->>
->> Wolfgang Denk
->>
-> 
-> Regards,
-> 
+Eric
 
