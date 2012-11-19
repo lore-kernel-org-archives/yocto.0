@@ -1,39 +1,35 @@
-Return-Path: <otavio.salvador@gmail.com>
-Received: from mail-pa0-f48.google.com (mail-pa0-f48.google.com
-	[209.85.220.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C527CE006C2
-	for <yocto@yoctoproject.org>; Sun, 18 Nov 2012 12:00:28 -0800 (PST)
-Received: by mail-pa0-f48.google.com with SMTP id kp12so2981261pab.35
-	for <yocto@yoctoproject.org>; Sun, 18 Nov 2012 12:00:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:date
-	:x-google-sender-auth:message-id:subject:from:to:cc:content-type;
-	bh=K/it60DEvc+01buCoADFtngC/YOSmwydAqPSNAsTySY=;
-	b=sVLCvBbu4edb7TjFY22BrdiXhaGCFcPOK9plLJMTUrBQFZNJ9yH9cgo0mUypso59qt
-	bhAihbDqfBgDTTTli+xihboBh3NORv35oINRw1x6oZgkn1HSg5A4UbuS8VAWx7n92h0J
-	SV097iAGnZ6s+tSFcx0J+Do4pGWzVuT3BL+YTVr3t0OY83cnlG2QcKu0EH/az42iUMxB
-	ItVZHetP6YZ/8pta76yFfcIaS79Wo2xwxh/ICoHdKxgazqQeuZjBpjeOa6wLobaVAY+9
-	+2sTX5ptpynSmlXaB57mHNrcSsgxtJLyMOJP+rULLSN5C8/C2gR0U5KCws581Brlhu/s
-	PLkg==
+Return-Path: <wd@denx.de>
+Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.10])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E03BFE006C2
+	for <yocto@yoctoproject.org>; Mon, 19 Nov 2012 04:35:14 -0800 (PST)
+Received: from frontend1.mail.m-online.net (frontend1.mail.intern.m-online.net
+	[192.168.8.180])
+	by mail-out.m-online.net (Postfix) with ESMTP id 3Y4qJJ4kzqz3hhdx
+	for <yocto@yoctoproject.org>; Mon, 19 Nov 2012 13:35:12 +0100 (CET)
+Received: from localhost (dynscan1.mnet-online.de [192.168.6.68])
+	by mail.m-online.net (Postfix) with ESMTP id 3Y4qJJ0tG8zbbhd
+	for <yocto@yoctoproject.org>; Mon, 19 Nov 2012 13:35:12 +0100 (CET)
+X-Virus-Scanned: amavisd-new at mnet-online.de
+Received: from smtp-auth.mnet-online.de ([192.168.8.180])
+	by localhost (dynscan1.mail.m-online.net [192.168.6.68]) (amavisd-new,
+	port 10024) with ESMTP id AowRjWFB3uqP for <yocto@yoctoproject.org>;
+	Mon, 19 Nov 2012 13:32:18 +0100 (CET)
+X-Auth-Info: BHNj7SvLDOFsRcfjjV66K8q5RbT7OGTPmHfnwffH+vA=
+Received: from diddl.denx.de (host-80-81-18-216.customer.m-online.net
+	[80.81.18.216]) by smtp-auth.mnet-online.de (Postfix) with ESMTPA
+	for <yocto@yoctoproject.org>; Mon, 19 Nov 2012 13:35:06 +0100 (CET)
+Received: from gemini.denx.de (unknown [10.0.0.2])
+	by diddl.denx.de (Postfix) with ESMTP id D7CDE1A6D92
+	for <yocto@yoctoproject.org>; Mon, 19 Nov 2012 13:35:05 +0100 (CET)
+Received: from gemini.denx.de (localhost [IPv6:::1])
+	by gemini.denx.de (Postfix) with ESMTP id 22FAF20032F
+	for <yocto@yoctoproject.org>; Mon, 19 Nov 2012 13:35:04 +0100 (CET)
+To: yocto@yoctoproject.org
+From: Wolfgang Denk <wd@denx.de>
 MIME-Version: 1.0
-Received: by 10.68.204.103 with SMTP id kx7mr27596947pbc.33.1353268828550;
-	Sun, 18 Nov 2012 12:00:28 -0800 (PST)
-Sender: otavio.salvador@gmail.com
-Received: by 10.68.16.225 with HTTP; Sun, 18 Nov 2012 12:00:28 -0800 (PST)
-In-Reply-To: <CAP9ODKoT=n2Uxee7Weuh65OJ3ODat1pfnPmOAa0TxM05QLmB6Q@mail.gmail.com>
-References: <70CC66F5C30A414DADDA6973E4CA391A780B30@039-SN1MPN1-001.039d.mgd.msft.net>
-	<50A50BE1.2030305@balister.org>
-	<CAP9ODKoT=n2Uxee7Weuh65OJ3ODat1pfnPmOAa0TxM05QLmB6Q@mail.gmail.com>
-Date: Sun, 18 Nov 2012 18:00:28 -0200
-X-Google-Sender-Auth: enHU2ti3edllf78Dpe4mS4CDmeg
-Message-ID: <CAP9ODKqKvxEwDeoTeYZ3WogzZHbMMo8X9v9MLqqDk0e2xDOKmA@mail.gmail.com>
-From: Otavio Salvador <otavio@ossystems.com.br>
-To: Philip Balister <philip@balister.org>
-Cc: McClintock Matthew-B29882 <B29882@freescale.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>
-Subject: Re: [OE-core] meta-freescale general mailing list
+Date: Mon, 19 Nov 2012 13:35:04 +0100
+Message-Id: <20121119123504.22FAF20032F@gemini.denx.de>
+Subject: Alternative SDK installation directory working?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,109 +41,97 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 18 Nov 2012 20:00:28 -0000
-Content-Type: multipart/alternative; boundary=047d7b10d185cfb8f304ceca733d
+X-List-Received-Date: Mon, 19 Nov 2012 12:35:15 -0000
+Content-type: text/plain; charset=UTF-8
+Content-transfer-encoding: 8bit
 
---047d7b10d185cfb8f304ceca733d
-Content-Type: text/plain; charset=ISO-8859-1
+Hello,
 
-On Thu, Nov 15, 2012 at 3:02 PM, Otavio Salvador <otavio@ossystems.com.br>wrote:
+I wonder if the installation of the SDK into an alternative directory
+is actually working?
 
->
-> On Thu, Nov 15, 2012 at 1:36 PM, Philip Balister <philip@balister.org>wrote:
->
->> On 11/14/2012 11:58 AM, McClintock Matthew-B29882 wrote:
->>
->>> YoctoProject.org is now hosting a meta-freescale mailing list that are
->>> going to unify the communities of meta-fsl-ppc and meta-fsl-arm.
->>>
->>>  From now on all patches affecting meta-fsl-ppc and meta-fsl-arm can be
->>>>
->>> sent to meta-freescale@yoctoproject.**org<meta-freescale@yoctoproject.org>and have the respective tag in
->>> the patch. Please check the README in respective layer about the
->>> command line to use for git format-patch.
->>>
->>> Please subscribe here: https://lists.yoctoproject.**
->>> org/listinfo/meta-freescale<https://lists.yoctoproject.org/listinfo/meta-freescale>
->>> Archives here: https://lists.yoctoproject.**
->>> org/pipermail/meta-freescale/<https://lists.yoctoproject.org/pipermail/meta-freescale/>
->>>
->>
->> Can you register the list with gmane? I find it is much easier to follow
->> lists there.
->>
->> Do we have a standard for yocto/OE list names on gmane?
->>
->
-> I tried to add it but it did not work.
->
+Trying the latest snapshot
+http://autobuilder.yoctoproject.org/pub/nightly/CURRENT/toolchain/x86_64/poky-eglibc-x86_64-arm-toolchain-gmae-1.3+snapshot-20121119.sh
+I get this:
 
-It is now done.
+Installation:
 
-You can see it at
-http://blog.gmane.org/gmane.linux.embedded.yocto.meta-freescale
+-> sh ./poky-eglibc-x86_64-arm-toolchain-gmae-1.3+snapshot-20121119.sh 
+Enter target directory for SDK (default: /opt/poky/1.3+snapshot): /opt/poky-test
+You are about to install the SDK to "/opt/poky-test". Proceed[Y/n]?Y
+Extracting SDK...done
+Setting it up...done
+SDK has been successfully set up and is ready to be used.
 
-Regards,
+
+Test:
+
+-> cat /tmp/x.c
+int main (void)
+{
+        return 0;
+}
+-> source /opt/poky-test/environment-setup-armv5te-poky-linux-gnueabi 
+-> ${TARGET_PREFIX}gcc -v -o /tmp/x /tmp/x.c
+Using built-in specs.
+COLLECT_GCC=arm-poky-linux-gnueabi-gcc
+COLLECT_LTO_WRAPPER=/opt/poky-test/sysroots/x86_64-pokysdk-linux/usr/bin/armv5te-poky-linux-gnueabi/../../libexec/armv5te-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/4.7.2/lto-wrapper
+Target: arm-poky-linux-gnueabi
+Configured with: /srv/home/pokybuild/yocto-autobuilder/yocto-slave/nightly-arm/build/build/tmp/work-shared/gcc-4.7.2-r13/gcc-4.7.2/configure --build=x86_64-linux --host=x86_64-pokysdk-linux --target=arm-poky-linux-gnueabi --prefix=/opt/poky/1.3+snapshot/sysroots/x86_64-pokysdk-linux/usr --exec_prefix=/opt/poky/1.3+snapshot/sysroots/x86_64-pokysdk-linux/usr --bindir=/opt/poky/1.3+snapshot/sysroots/x86_64-pokysdk-linux/usr/bin/armv5te-poky-linux-gnueabi --sbindir=/opt/poky/1.3+snapshot/sysroots/x86_64-pokysdk-linux/usr/bin/armv5te-poky-linux-gnueabi --libexecdir=/opt/poky/1.3+snapshot/sysroots/x86_64-pokysdk-linux/usr/libexec/armv5te-poky-linux-gnueabi --datadir=/opt/poky/1.3+snapshot/sysroots/x86_64-pokysdk-linux/usr/share --sysconfdir=/opt/poky/1.3+snapshot/sysroots/x86_64-pokysdk-linux/etc --sharedstatedir=/opt/poky/1.3+snapshot/sysroots/x86_64-pokysdk-linux/com --localstatedir=/opt/poky/1.3+snapshot/sysroots/x86_64-pokysdk-linux/var --libdir=/opt/poky/1.3+snapshot/sysroots/x86_64-p
+ okysdk-linux/usr/lib/armv5te-poky-linux-gnueabi --includedir=/opt/poky/1.3+snapshot/sysroots/x86_64-pokysdk-linux/usr/include --oldincludedir=/opt/poky/1.3+snapshot/sysroots/x86_64-pokysdk-linux/usr/include --infodir=/opt/poky/1.3+snapshot/sysroots/x86_64-pokysdk-linux/usr/share/info --mandir=/opt/poky/1.3+snapshot/sysroots/x86_64-pokysdk-linux/usr/share/man --disable-silent-rules --disable-dependency-tracking --with-libtool-sysroot=/srv/home/pokybuild/yocto-autobuilder/yocto-slave/nightly-arm/build/build/tmp/sysroots/x86_64-nativesdk-pokysdk-linux --with-gnu-ld --enable-shared --enable-languages=c,c++ --enable-threads=posix --disable-multilib --enable-c99 --enable-long-long --enable-symvers=gnu --enable-libstdcxx-pch --program-prefix=arm-poky-linux-gnueabi- --without-local-prefix --enable-target-optspace --enable-lto --enable-libssp --disable-bootstrap --disable-libgomp --disable-libmudflap --with-system-zlib --with-linker-hash-style=gnu --with-ppl=no --with-cloog=no --enable-check
+ ing=release --enable-cheaders=c_global --with-float=soft --with-gxx-include-dir=/opt/poky/1.3+snapshot/sysroots/armv5te-poky-linux-gnueabi/usr/include/c++ --with-build-time-tools=/srv/home/pokybuild/yocto-autobuilder/yocto-slave/nightly-arm/build/build/tmp/sysroots/x86_64-linux/usr/arm-poky-linux-gnueabi/bin --with-sysroot=/opt/poky/1.3+snapshot/sysroots/armv5te-poky-linux-gnueabi --with-build-sysroot=/srv/home/pokybuild/yocto-autobuilder/yocto-slave/nightly-arm/build/build/tmp/sysroots/qemuarm --disable-libunwind-exceptions --disable-libssp --disable-libgomp --disable-libmudflap --with-mpfr=/srv/home/pokybuild/yocto-autobuilder/yocto-slave/nightly-arm/build/build/tmp/sysroots/x86_64-nativesdk-pokysdk-linux --with-mpc=/srv/home/pokybuild/yocto-autobuilder/yocto-slave/nightly-arm/build/build/tmp/sysroots/x86_64-nativesdk-pokysdk-linux --enable-nls
+Thread model: posix
+gcc version 4.7.2 (GCC) 
+COLLECT_GCC_OPTIONS='-v' '-o' '/tmp/x' '-mfloat-abi=soft' '-mtls-dialect=gnu'
+ /opt/poky-test/sysroots/x86_64-pokysdk-linux/usr/bin/armv5te-poky-linux-gnueabi/../../libexec/armv5te-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/4.7.2/cc1 -quiet -v -iprefix /opt/poky-test/sysroots/x86_64-pokysdk-linux/usr/bin/armv5te-poky-linux-gnueabi/../../lib/armv5te-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/4.7.2/ /tmp/x.c -quiet -dumpbase x.c -mfloat-abi=soft -mtls-dialect=gnu -auxbase x -version -o /tmp/ccPYybgy.s
+GNU C (GCC) version 4.7.2 (arm-poky-linux-gnueabi)
+        compiled by GNU C version 4.7.2, GMP version 5.0.5, MPFR version 3.1.0, MPC version 0.8.2
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+ignoring nonexistent directory "/opt/poky-test/sysroots/x86_64-pokysdk-linux/usr/bin/armv5te-poky-linux-gnueabi/../../lib/armv5te-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/4.7.2/../../../../../arm-poky-linux-gnueabi/include"
+ignoring duplicate directory "/opt/poky-test/sysroots/x86_64-pokysdk-linux/usr/bin/armv5te-poky-linux-gnueabi/../../lib/armv5te-poky-linux-gnueabi/gcc/../../../lib/armv5te-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/4.7.2/include"
+ignoring nonexistent directory "/opt/poky/1.3+snapshot/sysroots/armv5te-poky-linux-gnueabi/usr/local/include"
+ignoring duplicate directory "/opt/poky-test/sysroots/x86_64-pokysdk-linux/usr/bin/armv5te-poky-linux-gnueabi/../../lib/armv5te-poky-linux-gnueabi/gcc/../../../lib/armv5te-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/4.7.2/include-fixed"
+ignoring nonexistent directory "/opt/poky-test/sysroots/x86_64-pokysdk-linux/usr/bin/armv5te-poky-linux-gnueabi/../../lib/armv5te-poky-linux-gnueabi/gcc/../../../lib/armv5te-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/4.7.2/../../../../../arm-poky-linux-gnueabi/include"
+ignoring nonexistent directory "/opt/poky/1.3+snapshot/sysroots/armv5te-poky-linux-gnueabi/usr/include"
+#include "..." search starts here:
+#include <...> search starts here:
+ /opt/poky-test/sysroots/x86_64-pokysdk-linux/usr/bin/armv5te-poky-linux-gnueabi/../../lib/armv5te-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/4.7.2/include
+ /opt/poky-test/sysroots/x86_64-pokysdk-linux/usr/bin/armv5te-poky-linux-gnueabi/../../lib/armv5te-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/4.7.2/include-fixed
+End of search list.
+GNU C (GCC) version 4.7.2 (arm-poky-linux-gnueabi)
+        compiled by GNU C version 4.7.2, GMP version 5.0.5, MPFR version 3.1.0, MPC version 0.8.2
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+Compiler executable checksum: 4a741725e1b29efa4cbc59640ac72296
+COLLECT_GCC_OPTIONS='-v' '-o' '/tmp/x' '-mfloat-abi=soft' '-mtls-dialect=gnu'
+ /opt/poky-test/sysroots/x86_64-pokysdk-linux/usr/bin/armv5te-poky-linux-gnueabi/../../libexec/armv5te-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/4.7.2/as -v -mfloat-abi=soft -meabi=5 -o /tmp/ccQ6wgHT.o /tmp/ccPYybgy.s
+GNU assembler version 2.22 (arm-poky-linux-gnueabi) using BFD version (GNU Binutils) 2.22
+COMPILER_PATH=/opt/poky-test/sysroots/x86_64-pokysdk-linux/usr/bin/armv5te-poky-linux-gnueabi/../../libexec/armv5te-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/4.7.2/:/opt/poky-test/sysroots/x86_64-pokysdk-linux/usr/bin/armv5te-poky-linux-gnueabi/../../libexec/armv5te-poky-linux-gnueabi/gcc/
+LIBRARY_PATH=/opt/poky-test/sysroots/x86_64-pokysdk-linux/usr/bin/armv5te-poky-linux-gnueabi/../../lib/armv5te-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/4.7.2/:/opt/poky-test/sysroots/x86_64-pokysdk-linux/usr/bin/armv5te-poky-linux-gnueabi/../../lib/armv5te-poky-linux-gnueabi/gcc/
+COLLECT_GCC_OPTIONS='-v' '-o' '/tmp/x' '-mfloat-abi=soft' '-mtls-dialect=gnu'
+ /opt/poky-test/sysroots/x86_64-pokysdk-linux/usr/bin/armv5te-poky-linux-gnueabi/../../libexec/armv5te-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/4.7.2/collect2 --sysroot=/opt/poky/1.3+snapshot/sysroots/armv5te-poky-linux-gnueabi --eh-frame-hdr --hash-style=gnu -dynamic-linker /lib/ld-linux.so.3 -X -m armelf_linux_eabi -o /tmp/x crt1.o crti.o crtbegin.o -L/opt/poky-test/sysroots/x86_64-pokysdk-linux/usr/bin/armv5te-poky-linux-gnueabi/../../lib/armv5te-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/4.7.2 -L/opt/poky-test/sysroots/x86_64-pokysdk-linux/usr/bin/armv5te-poky-linux-gnueabi/../../lib/armv5te-poky-linux-gnueabi/gcc /tmp/ccQ6wgHT.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed crtend.o crtn.o
+/opt/poky-test/sysroots/x86_64-pokysdk-linux/usr/bin/armv5te-poky-linux-gnueabi/../../libexec/armv5te-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/4.7.2/ld: cannot find crt1.o: No such file or directory
+/opt/poky-test/sysroots/x86_64-pokysdk-linux/usr/bin/armv5te-poky-linux-gnueabi/../../libexec/armv5te-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/4.7.2/ld: cannot find crti.o: No such file or directory
+/opt/poky-test/sysroots/x86_64-pokysdk-linux/usr/bin/armv5te-poky-linux-gnueabi/../../libexec/armv5te-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/4.7.2/ld: cannot find crtbegin.o: No such file or directory
+/opt/poky-test/sysroots/x86_64-pokysdk-linux/usr/bin/armv5te-poky-linux-gnueabi/../../libexec/armv5te-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/4.7.2/ld: cannot find -lgcc
+/opt/poky-test/sysroots/x86_64-pokysdk-linux/usr/bin/armv5te-poky-linux-gnueabi/../../libexec/armv5te-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/4.7.2/ld: cannot find -lgcc_s
+/opt/poky-test/sysroots/x86_64-pokysdk-linux/usr/bin/armv5te-poky-linux-gnueabi/../../libexec/armv5te-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/4.7.2/ld: cannot find -lc
+/opt/poky-test/sysroots/x86_64-pokysdk-linux/usr/bin/armv5te-poky-linux-gnueabi/../../libexec/armv5te-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/4.7.2/ld: cannot find -lgcc
+/opt/poky-test/sysroots/x86_64-pokysdk-linux/usr/bin/armv5te-poky-linux-gnueabi/../../libexec/armv5te-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/4.7.2/ld: cannot find -lgcc_s
+/opt/poky-test/sysroots/x86_64-pokysdk-linux/usr/bin/armv5te-poky-linux-gnueabi/../../libexec/armv5te-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/4.7.2/ld: cannot find crtend.o: No such file or directory
+/opt/poky-test/sysroots/x86_64-pokysdk-linux/usr/bin/armv5te-poky-linux-gnueabi/../../libexec/armv5te-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/4.7.2/ld: cannot find crtn.o: No such file or directory
+collect2: error: ld returned 1 exit status
+
+
+What am I missing here?
+
+Best regards,
+
+Wolfgang Denk
+
 -- 
-Otavio Salvador                             O.S. Systems
-E-mail: otavio@ossystems.com.br  http://www.ossystems.com.br
-Mobile: +55 53 9981-7854              http://projetos.ossystems.com.br
+DENX Software Engineering GmbH,     MD: Wolfgang Denk & Detlev Zundel
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+Phone: (+49)-8142-66989-10 Fax: (+49)-8142-66989-80 Email: wd@denx.de
+Doubt isn't the opposite of faith; it is an element of faith.
+- Paul Tillich, German theologian and historian
 
---047d7b10d185cfb8f304ceca733d
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<br><br><div class=3D"gmail_quote">On Thu, Nov 15, 2012 at 3:02 PM, Otavio =
-Salvador <span dir=3D"ltr">&lt;<a href=3D"mailto:otavio@ossystems.com.br" t=
-arget=3D"_blank">otavio@ossystems.com.br</a>&gt;</span> wrote:<br><blockquo=
-te class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc so=
-lid;padding-left:1ex">
-<br><div class=3D"gmail_quote"><div class=3D"im">On Thu, Nov 15, 2012 at 1:=
-36 PM, Philip Balister <span dir=3D"ltr">&lt;<a href=3D"mailto:philip@balis=
-ter.org" target=3D"_blank">philip@balister.org</a>&gt;</span> wrote:<br><bl=
-ockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #=
-ccc solid;padding-left:1ex">
-
-<div>On 11/14/2012 11:58 AM, McClintock Matthew-B29882 wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">
-YoctoProject.org is now hosting a meta-freescale mailing list that are<br>
-going to unify the communities of meta-fsl-ppc and meta-fsl-arm.<br>
-<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">
-From now on all patches affecting meta-fsl-ppc and meta-fsl-arm can be<br>
-</blockquote>
-sent to <a href=3D"mailto:meta-freescale@yoctoproject.org" target=3D"_blank=
-">meta-freescale@yoctoproject.<u></u>org</a> and have the respective tag in=
-<br>
-the patch. Please check the README in respective layer about the<br>
-command line to use for git format-patch.<br>
-<br>
-Please subscribe here: <a href=3D"https://lists.yoctoproject.org/listinfo/m=
-eta-freescale" target=3D"_blank">https://lists.yoctoproject.<u></u>org/list=
-info/meta-freescale</a><br>
-Archives here: <a href=3D"https://lists.yoctoproject.org/pipermail/meta-fre=
-escale/" target=3D"_blank">https://lists.yoctoproject.<u></u>org/pipermail/=
-meta-freescale/</a><br>
-</blockquote>
-<br></div>
-Can you register the list with gmane? I find it is much easier to follow li=
-sts there.<br>
-<br>
-Do we have a standard for yocto/OE list names on gmane?<br></blockquote><di=
-v><br></div></div><div>I tried to add it but it did not work.</div></div></=
-blockquote><div><br></div><div>It is now done.</div><div><br></div><div>
-You can see it at=A0<a href=3D"http://blog.gmane.org/gmane.linux.embedded.y=
-octo.meta-freescale">http://blog.gmane.org/gmane.linux.embedded.yocto.meta-=
-freescale</a></div><div><br></div><div>Regards,=A0</div></div>-- <br>Otavio=
- Salvador=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0O.S. Sy=
-stems<br>
-E-mail: <a href=3D"mailto:otavio@ossystems.com.br" target=3D"_blank">otavio=
-@ossystems.com.br</a>=A0 <a href=3D"http://www.ossystems.com.br" target=3D"=
-_blank">http://www.ossystems.com.br</a><br>Mobile: +55 53 9981-7854=A0 =A0 =
-=A0 =A0=A0 =A0 =A0 =A0<a href=3D"http://projetos.ossystems.com.br" target=
-=3D"_blank">http://projetos.ossystems.com.br</a><br>
-<br>
-
---047d7b10d185cfb8f304ceca733d--
