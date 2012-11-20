@@ -1,19 +1,19 @@
 Return-Path: <rpjday@crashcourse.ca>
 Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
 	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8A328E0032E
-	for <yocto@yoctoproject.org>; Mon, 19 Nov 2012 15:12:57 -0800 (PST)
-Received: from cpe78cd8ec96008-cm78cd8ec96005.cpe.net.cable.rogers.com
-	([99.241.167.182]:46535 helo=crashcourse.ca)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AF141E003D9
+	for <yocto@yoctoproject.org>; Tue, 20 Nov 2012 05:13:25 -0800 (PST)
+Received: from cpebcc8100fb8db-cmbcc8100fb8d8.cpe.net.cable.rogers.com
+	([174.116.196.46]:57554 helo=crashcourse.ca)
 	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
 	(Exim 4.77) (envelope-from <rpjday@crashcourse.ca>)
-	id 1TaaWO-0003q7-TJ
-	for yocto@yoctoproject.org; Mon, 19 Nov 2012 18:12:57 -0500
-Date: Mon, 19 Nov 2012 18:12:53 -0500 (EST)
+	id 1Tandj-0003he-VW
+	for yocto@yoctoproject.org; Tue, 20 Nov 2012 08:13:24 -0500
+Date: Tue, 20 Nov 2012 08:13:21 -0500 (EST)
 From: "Robert P. J. Day" <rpjday@crashcourse.ca>
 X-X-Sender: rpjday@oneiric
 To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.DEB.2.02.1211191806400.18516@oneiric>
+Message-ID: <alpine.DEB.2.02.1211200810060.4868@oneiric>
 User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
 X-AntiAbuse: This header was added to track abuse,
@@ -25,7 +25,7 @@ X-AntiAbuse: Sender Address Domain - crashcourse.ca
 X-Source: 
 X-Source-Args: 
 X-Source-Dir: 
-Subject: possible update to yocto QS guide, "own-mirrors"
+Subject: updated wiki page for using yocto to build for beagle xM (rev C)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,33 +37,20 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 19 Nov 2012 23:12:57 -0000
+X-List-Received-Date: Tue, 20 Nov 2012 13:13:25 -0000
 Content-Type: TEXT/PLAIN; charset=US-ASCII
 
 
-  i recall that the QS guide scarfed some of my wiki QS page (which is
-fine, given that i was credited for it, :-).  if someone (scott?)
-wants to tweak, the whole current section showing how to set up a
-local mirror of tarballs using:
+  as part of some intro pages i'm going to be using in the future for
+teaching yocto, i updated one of my wiki pages this morning for using
+yocto to build and boot on a beagle xM.  nothing profound, just a
+verified recipe that should simply work for anyone:
 
-     PREMIRRORS_prepend = "\
-     git://.*/.* file:///home/you/dl/ \n \
-     svn://.*/.* file:///home/you/dl/ \n \
-     cvs://.*/.* file:///home/you/dl/ \n \
-     ftp://.*/.* file:///home/you/dl/ \n \
-     http://.*/.* file:///home/you/dl/ \n \
-     https://.*/.* file:///home/you/dl/ \n"
+http://www.crashcourse.ca/wiki/index.php/Yocto_Project_Quick_Start
 
-can be tossed and replaced by what's now at my wiki page,
-http://www.crashcourse.ca/wiki/index.php/Yocto_Project_Quick_Start,
-which is a much tidier solution:
-
-     SOURCE_MIRROR_URL ?= "file:///home/rpjday/y/src/dl/"
-     INHERIT += "own-mirrors"
-     BB_GENERATE_MIRROR_TARBALLS = "1"
-     # BB_NO_NETWORK = "1"
-
-so help yourself.
+  feedback welcome ... i updated it while not having had enough sleep
+so i fully expect it could use some polishing.  i just wanted to keep
+it simple.
 
 rday
 
