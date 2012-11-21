@@ -1,36 +1,28 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B3EDFE01423
-	for <yocto@yoctoproject.org>; Tue, 20 Nov 2012 13:30:27 -0800 (PST)
-Received: from statdsl152.travel-net.com ([206.132.183.152]:40561
-	helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.77) (envelope-from <rpjday@crashcourse.ca>)
-	id 1TavOj-0002sH-38; Tue, 20 Nov 2012 16:30:25 -0500
-Date: Tue, 20 Nov 2012 16:30:22 -0500 (EST)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Gary Thomas <gary@mlbassoc.com>
-In-Reply-To: <50ABF2B7.8060006@mlbassoc.com>
-Message-ID: <alpine.DEB.2.02.1211201629080.3394@oneiric>
-References: <alpine.DEB.2.02.1211201525020.27021@oneiric>
-	<1353445350.7717.7.camel@empanada>
-	<alpine.DEB.2.02.1211201605110.30424@oneiric>
-	<50ABF2B7.8060006@mlbassoc.com>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <ndec13@gmail.com>
+Received: from mail-vb0-f48.google.com (mail-vb0-f48.google.com
+	[209.85.212.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 321CAE011C0
+	for <yocto@yoctoproject.org>; Tue, 20 Nov 2012 16:45:20 -0800 (PST)
+Received: by mail-vb0-f48.google.com with SMTP id l22so5704626vbn.35
+	for <yocto@yoctoproject.org>; Tue, 20 Nov 2012 16:45:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:from:date:message-id:subject:to:content-type;
+	bh=as3fp4ywJ5uraDcu4bPnv/CZyCY161YRYQjYjNW0T2Y=;
+	b=sMZAnUCBZOraK9K5QVw9E0JNJxEd1mIrf1Pymi3gSpsa269z+Uuk64bE+X9c6Eq3CK
+	o9jWhmsVP6mEQqVc7r+6k780VX85dbyvHdQtegbPZ7itxwZH10juc6hE/Bf9zZgmlgdU
+	NXnU6I0bAGkvDfa6juVzguORbgFixGzwBQLDjuccxqd9jmCd3ldkf2yeHnTnKb6bE/VL
+	yh3xlf2Nmsuy7+aUTJrBeM9/3CQJDxNWrFeBpupAvtvJvdVWbnr1xkaSgXioJ9a5ylCs
+	OCPZ+OJgqhcl2Tv9NWjlLV24FGpHrzlk4kDnceAH3e5HCaWh+YgAmT52fI2n4L58uELJ
+	z86w==
+Received: by 10.58.210.65 with SMTP id ms1mr24319037vec.59.1353458719151; Tue,
+	20 Nov 2012 16:45:19 -0800 (PST)
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: yocto@yoctoproject.org
-Subject: Re: is anyone getting pathetic git download from the new kmod SRC_URI?
+Received: by 10.58.248.74 with HTTP; Tue, 20 Nov 2012 16:44:58 -0800 (PST)
+From: Nicolas Dechesne <ndec13@gmail.com>
+Date: Wed, 21 Nov 2012 01:44:58 +0100
+Message-ID: <CAOT3miKZaw+s=0QSp+nh8-VnL+-ez=Lz6M849=o3UVLJfXwjhQ@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: build error since commit: gcc: Use FILESPATH instead of FILESDIR and cleanup/simplify
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,57 +34,109 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 20 Nov 2012 21:30:27 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Wed, 21 Nov 2012 00:45:20 -0000
+Content-Type: multipart/alternative; boundary=047d7bae47922c569f04cef6aad1
 
-On Tue, 20 Nov 2012, Gary Thomas wrote:
+--047d7bae47922c569f04cef6aad1
+Content-Type: text/plain; charset=ISO-8859-1
 
-> On 2012-11-20 14:08, Robert P. J. Day wrote:
-> > On Tue, 20 Nov 2012, Tom Zanussi wrote:
-> >
-> > > On Tue, 2012-11-20 at 15:27 -0500, Robert P. J. Day wrote:
-> > > > maybe it's something i'm doing, but oe-core just changed the SRC_URI
-> > > > for kmod to git://git.kernel.org/pub/scm/utils/kernel/kmod/kmod.git,
-> > > > and the response from the URL couldn't suck any worse than if it
-> > > > sucked totally.  i've yet to get a successful clone.
-> > > >
-> > > >    thoughts?  is that working fine for others?
-> > > >
-> > >
-> > > No problems here:
-> > >
-> > > [trz@empanada tmp]$ time git clone
-> > > git://git.kernel.org/pub/scm/utils/kernel/kmod/kmod.git
-> > > Cloning into 'kmod'...
-> > > remote: Counting objects: 4003, done.
-> > > remote: Compressing objects: 100% (1599/1599), done.
-> > > remote: Total 4003 (delta 2811), reused 3196 (delta 2264)
-> > > Receiving objects: 100% (4003/4003), 4.59 MiB | 850 KiB/s, done.
-> > > Resolving deltas: 100% (2811/2811), done.
-> > >
-> > > real	0m7.183s
-> > > user	0m0.361s
-> > > sys	0m0.429s
-> >
-> >    i can't explain it -- i've yet to have a successful clone from that
-> > URL.  hangs partway through every time.
->
-> Maybe it's a routing thing - where are you located?
->
-> n.b. it just worked for me - in about the same <10 seconds
+hello,
 
-  left where i was, tried again sitting at the bar with a pint of
-dutch pilsner, and it worked fine.  i'm sure it's the pilsner.
+i was attempting a rebuild from scratch with today's master of poky, and i
+was facing issues such as:
 
-rday
+WARNING: Failed to fetch URL file://gcc-4.3.1-ARCH_FLAGS_FOR_TARGET.patch,
+attempting MIRRORS if available
+ERROR: Fetcher failure: Unable to find file
+file://gcc-4.3.1-ARCH_FLAGS_FOR_TARGET.patch anywhere. The paths that were
+searched were:
+    /yocto/poky/meta/recipes-devtools/gcc/gcc-4.7.2
+    /yocto/build-poky-master/downloads
+ERROR: Function failed: Fetcher failure for URL:
+'file://gcc-4.3.1-ARCH_FLAGS_FOR_TARGET.patch'. Unable to fetch URL from
+any source.
 
--- 
+This seems to be since this commit:
 
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
+commit 90616875b432a932415063b08497266e70c49d75
+Author: Richard Purdie <richard.purdie@linuxfoundation.org>
+Date:   Mon Nov 19 21:18:52 2012 +0000
 
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+    gcc: Use FILESPATH instead of FILESDIR and cleanup/simplify
 
+    Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
+
+and looking at a similar patch sent to oe-core (
+http://comments.gmane.org/gmane.comp.handhelds.openembedded.core/29668) not
+merged yet, the following patch fixes my problem...
+
+--- a/meta/recipes-devtools/gcc/gcc-4.7.inc
++++ b/meta/recipes-devtools/gcc/gcc-4.7.inc
+@@ -18,6 +18,8 @@ PV = "4.7.2"
+
+ BINV = "4.7.2"
+
++FILESPATH = "${FILE_DIRNAME}/gcc-4.7"
++
+ DEPENDS =+ "mpfr gmp libmpc"
+ NATIVEDEPS = "mpfr-native gmp-native libmpc-native zlib-native"
+
+without that, bitbake is looking for 'file://xxx' from recipe in the wrong
+folder (e.g. gcc-4.7.2 instead of gcc-4.7)
+
+is there anything that i am overlooking here?
+
+cheers
+
+nicolas
+
+--047d7bae47922c569f04cef6aad1
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<div>hello,</div><div><br></div><div>i was attempting a rebuild from scratc=
+h with today&#39;s master of poky, and i was facing issues such as:</div><d=
+iv><br></div><div><div>WARNING: Failed to fetch URL file://gcc-4.3.1-ARCH_F=
+LAGS_FOR_TARGET.patch, attempting MIRRORS if available</div>
+
+<div>ERROR: Fetcher failure: Unable to find file file://gcc-4.3.1-ARCH_FLAG=
+S_FOR_TARGET.patch anywhere. The paths that were searched were:</div><div>=
+=A0 =A0 /yocto/poky/meta/recipes-devtools/gcc/gcc-4.7.2</div><div>=A0 =A0 /=
+yocto/build-poky-master/downloads</div>
+
+<div>ERROR: Function failed: Fetcher failure for URL: &#39;file://gcc-4.3.1=
+-ARCH_FLAGS_FOR_TARGET.patch&#39;. Unable to fetch URL from any source.</di=
+v></div><div><br></div><div>This seems to be since this commit:</div><div>
+
+<br></div><div><div>commit 90616875b432a932415063b08497266e70c49d75</div><d=
+iv>Author: Richard Purdie &lt;<a href=3D"mailto:richard.purdie@linuxfoundat=
+ion.org">richard.purdie@linuxfoundation.org</a>&gt;</div><div>Date: =A0 Mon=
+ Nov 19 21:18:52 2012 +0000</div>
+
+<div><br></div><div>=A0 =A0 gcc: Use FILESPATH instead of FILESDIR and clea=
+nup/simplify</div><div>=A0 =A0=A0</div><div>=A0 =A0 Signed-off-by: Richard =
+Purdie &lt;<a href=3D"mailto:richard.purdie@linuxfoundation.org">richard.pu=
+rdie@linuxfoundation.org</a>&gt;</div>
+
+</div><div><br></div><div>and looking at a similar patch sent to oe-core (<=
+a href=3D"http://comments.gmane.org/gmane.comp.handhelds.openembedded.core/=
+29668">http://comments.gmane.org/gmane.comp.handhelds.openembedded.core/296=
+68</a>) not merged yet, the following patch fixes my problem...</div>
+
+<div><br></div><div>--- a/meta/recipes-devtools/gcc/gcc-4.7.inc</div><div>+=
+++ b/meta/recipes-devtools/gcc/gcc-4.7.inc</div><div>@@ -18,6 +18,8 @@ PV =
+=3D &quot;4.7.2&quot;</div><div><br></div><div>=A0BINV =3D &quot;4.7.2&quot=
+;</div>
+
+<div><br></div><div>+FILESPATH =3D &quot;${FILE_DIRNAME}/gcc-4.7&quot;</div=
+><div>+</div><div>=A0DEPENDS =3D+ &quot;mpfr gmp libmpc&quot;</div><div>=A0=
+NATIVEDEPS =3D &quot;mpfr-native gmp-native libmpc-native zlib-native&quot;=
+</div>
+
+<div><br></div><div>without that, bitbake is looking for &#39;file://xxx&#3=
+9; from recipe in the wrong folder (e.g. gcc-4.7.2 instead of gcc-4.7)</div=
+><div><br></div><div>is there anything that i am overlooking here?</div>
+
+<div><br></div><div>cheers</div><div><br></div><div>nicolas</div>
+
+--047d7bae47922c569f04cef6aad1--
