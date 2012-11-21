@@ -1,25 +1,36 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 10F62E011CF
-	for <yocto@yoctoproject.org>; Wed, 21 Nov 2012 07:15:39 -0800 (PST)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 21 Nov 2012 07:15:39 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.83,293,1352102400"; d="scan'208";a="220675373"
-Received: from unknown (HELO envy.home) ([10.255.12.178])
-	by azsmga001.ch.intel.com with ESMTP; 21 Nov 2012 07:15:39 -0800
-Message-ID: <50ACF01A.1080702@linux.intel.com>
-Date: Wed, 21 Nov 2012 07:15:38 -0800
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:16.0) Gecko/20121029 Thunderbird/16.0.2
+Return-Path: <ramana.gollamudi@huawei.com>
+Received: from szxga02-in.huawei.com (szxga02-in.huawei.com [119.145.14.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 59FBAE0127C
+	for <yocto@yoctoproject.org>; Wed, 21 Nov 2012 08:30:01 -0800 (PST)
+Received: from 172.24.2.119 (EHLO szxeml214-edg.china.huawei.com)
+	([172.24.2.119])
+	by szxrg02-dlp.huawei.com (MOS 4.3.4-GA FastPath queued)
+	with ESMTP id ASZ37496; Thu, 22 Nov 2012 00:29:27 +0800 (CST)
+Received: from SZXEML429-HUB.china.huawei.com (10.72.61.37) by
+	szxeml214-edg.china.huawei.com (172.24.2.29) with Microsoft SMTP Server
+	(TLS) id 14.1.323.3; Thu, 22 Nov 2012 00:29:28 +0800
+Received: from SZXEML534-MBX.china.huawei.com ([169.254.2.19]) by
+	SZXEML429-HUB.china.huawei.com ([10.72.61.37]) with mapi id
+	14.01.0323.003; Thu, 22 Nov 2012 00:29:16 +0800
+From: Venkata ramana gollamudi <ramana.gollamudi@huawei.com>
+To: "'Bruce Ashfield'" <bruce.ashfield@windriver.com>
+Thread-Topic: [yocto] Need for offline binary configuration
+Thread-Index: AQHNxzDKyeCK5q4Ul0GcItQcbcDHSpfyUU0AgAIk01A=
+Date: Wed, 21 Nov 2012 16:29:16 +0000
+Message-ID: <36ED13F3654AE54CA763E6821D93A5711048CA0D@szxeml534-mbx.china.huawei.com>
+References: <36ED13F3654AE54CA763E6821D93A5711048C834@szxeml534-mbx.china.huawei.com>
+	<50ABA048.7080707@windriver.com>
+In-Reply-To: <50ABA048.7080707@windriver.com>
+Accept-Language: en-US, zh-CN
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.18.96.93]
 MIME-Version: 1.0
-To: Koen Kooi <koen@dominion.thruhere.net>
-References: <1353509029-15486-1-git-send-email-koen@dominion.thruhere.net>
-In-Reply-To: <1353509029-15486-1-git-send-email-koen@dominion.thruhere.net>
-X-Enigmail-Version: 1.4.6
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-intel][fri2][PATCH] meta-fri2: update README to match current emgd driver version
+X-CFilter-Loop: Reflected
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"'dvhart@linux.intel.com'" <dvhart@linux.intel.com>,
+	Sanil kumar <sanil.kumar@huawei.com>
+Subject: Re: Need for offline binary configuration
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,66 +42,129 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Nov 2012 15:15:40 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 21 Nov 2012 16:30:02 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 11/21/2012 06:43 AM, Koen Kooi wrote:
+Reply inline
 
-Nice catch Koen, thank you.
+> -----Original Message-----
+> From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]
+> Sent: Tuesday, November 20, 2012 8:53 PM
+> To: Venkata ramana gollamudi
+> Cc: yocto@yoctoproject.org; Sanil kumar; Hatle, Mark
+> Subject: Re: [yocto] Need for offline binary configuration
+>=20
+> On 12-11-20 10:09 AM, Venkata ramana gollamudi wrote:
+> > Poky allows to build custom Linux for you, but we have cases where
+> the post build customization is required, like user-addition, network
+> configuration, service control. Even selecting the required packages
+> can be a post build activity.
+> >
+> > The current model requires the image to be rebuilt to support these
+> configuration.
+> > Offline Configuration tool (OCT), which allows a binary image
+> customization before making a final target image. This case will be
+> more evident in larger companies, where platform teams, product teams ,
+> application teams are distributed and Linux build from source will be
+> owned and lab tested by a single team, like platform team. Other teams
+> just configure to use it for product variants from same platform build.
+> >
+> > Detailed use cases can be found in enhancement bug:3252
+> >
+> > OCT should work on the binary pool of compiled packages generated
+> from poky.
+> >
+> > The basic operations that can be supported includes
+> > a) Select/deselect required packages from pool of binary packages
+> into final target image.
+> > b) Provision to select external binary packages like ADT compiled
+> applications as input and add them to final target image.
+> > c) Binary level Offline configuration can includes
+> >        Configure the users/passwords
+> >        Configure the network
+> >        Configure the host name
+> >        Select the services to be started by default
+> >        Security related configuration
+> >        Generate initrd in ramfs/ext3/... format
+> >        etc..
+> >
+> > Considering the methods to support these in our current yocto model,
+> following changes can be done.
+> > 1) HOB can be the tool which can be extended to support these
+> >      Poky can generate a binary package pool as one if its output and
+> Hob can work on this package pool to select packages, configure and
+> generate image.
+> > So HOB can support opening HOB in Binary(or OCT) mode i.e., without
+> build options but only with binary package selection. Configuration GUI
+> needs to be added to HOB.
+> > Note:HOB+OCT is together or separate, needs a bit more thought and
+> overall organization as they will be intended for different users.
+>=20
+> Is there some overlap between this point and the other ongoing
+> discussions
+> about image construction, deployment and package management ?
+>=20
+> i.e. this thread:
+>=20
+>    [OE-core] RFC: OE-Core image creation and deployment
+>=20
+> http://lists.linuxtogo.org/pipermail/openembedded-core/2012-
+> July/026938.html
+>=20
+> These may already be coordinated, but I do see some common threads and
+> it would be nice to make sure everything will work together and that we
+> aren't duplicating effort!
+>=20
+> Cheers,
+>=20
+> Bruce
+>=20
 
-> Signed-off-by: Koen Kooi <koen@dominion.thruhere.net>
-> ---
->  meta-fri2/README |    8 ++++----
->  1 files changed, 4 insertions(+), 4 deletions(-)
-> 
-> diff --git a/meta-fri2/README b/meta-fri2/README
-> index af33c0b..b90613d 100644
-> --- a/meta-fri2/README
-> +++ b/meta-fri2/README
-> @@ -93,7 +93,7 @@ bblayers.conf, e.g.:
->  The meta-fri2 layer contains support for two different machine
->  configurations. These configurations are identical except for the fact
->  that the one prefixed with 'fri2' makes use of the Intel-proprietary
-> -EMGD 1.10 graphics driver, while the one prefixed with 'fri2-noemgd'
-> +EMGD 1.14 graphics driver, while the one prefixed with 'fri2-noemgd'
->  does not.
->  
->  If you want to enable the layer that supports EMGD graphics add the
-> @@ -103,10 +103,10 @@ following to the local.conf file:
->  
->  The 'fri2' machine includes the emgd-driver-bin package, which has a
->  proprietary license that must be whitelisted by adding the string
-> -"license_emgd-driver-bin_1.10" to the LICENSE_FLAGS_WHITELIST variable
-> +"license_emgd-driver-bin_1.14" to the LICENSE_FLAGS_WHITELIST variable
->  in your local.conf.  For example:
->  
-> -  LICENSE_FLAGS_WHITELIST = "license_emgd-driver-bin_1.10"
-> +  LICENSE_FLAGS_WHITELIST = "license_emgd-driver-bin_1.14"
->  
->  If you want to enable the layer that does not support EMGD graphics
->  add the following to the local.conf file:
-> @@ -128,7 +128,7 @@ added to the the LICENSE_FLAGS_WHITELIST variable in your local.conf.
->  
->  For example:
->  
-> -  LICENSE_FLAGS_WHITELIST = "license_emgd-driver-bin_1.10 commercial"
-> +  LICENSE_FLAGS_WHITELIST = "license_emgd-driver-bin_1.14 commercial"
+Bruce, Thanks for the information. After your reply, I have gone through th=
+e discussions and agree that binary pool is in similar lines. Great to see =
+that the realization happening in yocto1.4.
+Understood that package-feed can be used to generate the target image.
 
-I have taken to using:
+Is there any RFC/mail/wiki available explaining how the configuration(like =
+fstype) during image generation will be realized?
 
-LICENSE_FLAGS_WHITELIST = "license_emgd-driver-bin commercial"
+I am looking for post build configuration tool, which allows the product te=
+am users also to configure users, network, services etc .
+Image type, file system and Partition configuration can be one of them.
+I expect the product team users who configures image and generates target i=
+mage, will have a little or no knowledge of bitbake, also needs easy instal=
+lation and less dependencies.
 
-Which avoids the constant updating based on version. Any objection to
-using this instead of the version specific flag?
+Can look in this context, how HOB will fit into this scenario or needs a ne=
+w tool.
 
->  
->  The reason this is needed is to prevent the image from including
->  anything that might violate the license terms of the packages used to
-> 
+>=20
+> > 2) Binary package pool can be a minimal/partial sstate-cache, as
+> complete sstate-cache is quite big and not required for product teams
+> as they are not expected to build but just need to select and
+> configure.
+> >      I think it is sufficient to keep the minimal binaries from
+> sstate-cache which are required to execute image.bbclass, do_rootfs
+> task to generate image.
 
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Technical Lead - Linux Kernel
+Point 2, No longer applicable as package-feed is a binary pool.
+
+> > 3) Along with specific configuration UI implementation, a generic
+> configuration model similar to kernel kconfig and menuconfig can be
+> considered, in cases where more detailed offline configurations is
+> required like detailed security configuration.
+
+Point 3, still can be thought about.
+
+> >
+> > Regards,
+> > Ramana
+> > _______________________________________________
+> > yocto mailing list
+> > yocto@yoctoproject.org
+> > https://lists.yoctoproject.org/listinfo/yocto
+> >
+
 
