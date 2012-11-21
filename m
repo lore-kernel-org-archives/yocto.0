@@ -1,28 +1,31 @@
-Return-Path: <ndec13@gmail.com>
-Received: from mail-vb0-f48.google.com (mail-vb0-f48.google.com
-	[209.85.212.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 321CAE011C0
-	for <yocto@yoctoproject.org>; Tue, 20 Nov 2012 16:45:20 -0800 (PST)
-Received: by mail-vb0-f48.google.com with SMTP id l22so5704626vbn.35
-	for <yocto@yoctoproject.org>; Tue, 20 Nov 2012 16:45:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:from:date:message-id:subject:to:content-type;
-	bh=as3fp4ywJ5uraDcu4bPnv/CZyCY161YRYQjYjNW0T2Y=;
-	b=sMZAnUCBZOraK9K5QVw9E0JNJxEd1mIrf1Pymi3gSpsa269z+Uuk64bE+X9c6Eq3CK
-	o9jWhmsVP6mEQqVc7r+6k780VX85dbyvHdQtegbPZ7itxwZH10juc6hE/Bf9zZgmlgdU
-	NXnU6I0bAGkvDfa6juVzguORbgFixGzwBQLDjuccxqd9jmCd3ldkf2yeHnTnKb6bE/VL
-	yh3xlf2Nmsuy7+aUTJrBeM9/3CQJDxNWrFeBpupAvtvJvdVWbnr1xkaSgXioJ9a5ylCs
-	OCPZ+OJgqhcl2Tv9NWjlLV24FGpHrzlk4kDnceAH3e5HCaWh+YgAmT52fI2n4L58uELJ
-	z86w==
-Received: by 10.58.210.65 with SMTP id ms1mr24319037vec.59.1353458719151; Tue,
-	20 Nov 2012 16:45:19 -0800 (PST)
+Return-Path: <song.liu@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3F020E01423
+	for <yocto@yoctoproject.org>; Tue, 20 Nov 2012 19:23:36 -0800 (PST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 20 Nov 2012 19:23:35 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.83,290,1352102400"; d="scan'208";a="250323652"
+Received: from orsmsx104.amr.corp.intel.com ([10.22.225.131])
+	by fmsmga001.fm.intel.com with ESMTP; 20 Nov 2012 19:23:31 -0800
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.81]) by
+	ORSMSX104.amr.corp.intel.com ([169.254.3.56]) with mapi id
+	14.01.0355.002; Tue, 20 Nov 2012 19:23:29 -0800
+From: "Liu, Song" <song.liu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Minutes: Yocto Project Technical Team Meeting - Tuesday,
+	November 20,
+	2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+Thread-Index: AQHNx5eTQYNlxzzDfEOm0TOvlco83g==
+Date: Wed, 21 Nov 2012 03:23:28 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A486025A1@ORSMSX101.amr.corp.intel.com>
+References: <7E680CB2A76BB8438D08CF13C09FC53A4844CAD5@ORSMSX101.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.139]
 MIME-Version: 1.0
-Received: by 10.58.248.74 with HTTP; Tue, 20 Nov 2012 16:44:58 -0800 (PST)
-From: Nicolas Dechesne <ndec13@gmail.com>
-Date: Wed, 21 Nov 2012 01:44:58 +0100
-Message-ID: <CAOT3miKZaw+s=0QSp+nh8-VnL+-ez=Lz6M849=o3UVLJfXwjhQ@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: build error since commit: gcc: Use FILESPATH instead of FILESDIR and cleanup/simplify
+Subject: Minutes: Yocto Project Technical Team Meeting - Tuesday, November 20, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,109 +37,78 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Nov 2012 00:45:20 -0000
-Content-Type: multipart/alternative; boundary=047d7bae47922c569f04cef6aad1
-
---047d7bae47922c569f04cef6aad1
-Content-Type: text/plain; charset=ISO-8859-1
-
-hello,
-
-i was attempting a rebuild from scratch with today's master of poky, and i
-was facing issues such as:
-
-WARNING: Failed to fetch URL file://gcc-4.3.1-ARCH_FLAGS_FOR_TARGET.patch,
-attempting MIRRORS if available
-ERROR: Fetcher failure: Unable to find file
-file://gcc-4.3.1-ARCH_FLAGS_FOR_TARGET.patch anywhere. The paths that were
-searched were:
-    /yocto/poky/meta/recipes-devtools/gcc/gcc-4.7.2
-    /yocto/build-poky-master/downloads
-ERROR: Function failed: Fetcher failure for URL:
-'file://gcc-4.3.1-ARCH_FLAGS_FOR_TARGET.patch'. Unable to fetch URL from
-any source.
-
-This seems to be since this commit:
-
-commit 90616875b432a932415063b08497266e70c49d75
-Author: Richard Purdie <richard.purdie@linuxfoundation.org>
-Date:   Mon Nov 19 21:18:52 2012 +0000
-
-    gcc: Use FILESPATH instead of FILESDIR and cleanup/simplify
-
-    Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
-
-and looking at a similar patch sent to oe-core (
-http://comments.gmane.org/gmane.comp.handhelds.openembedded.core/29668) not
-merged yet, the following patch fixes my problem...
-
---- a/meta/recipes-devtools/gcc/gcc-4.7.inc
-+++ b/meta/recipes-devtools/gcc/gcc-4.7.inc
-@@ -18,6 +18,8 @@ PV = "4.7.2"
-
- BINV = "4.7.2"
-
-+FILESPATH = "${FILE_DIRNAME}/gcc-4.7"
-+
- DEPENDS =+ "mpfr gmp libmpc"
- NATIVEDEPS = "mpfr-native gmp-native libmpc-native zlib-native"
-
-without that, bitbake is looking for 'file://xxx' from recipe in the wrong
-folder (e.g. gcc-4.7.2 instead of gcc-4.7)
-
-is there anything that i am overlooking here?
-
-cheers
-
-nicolas
-
---047d7bae47922c569f04cef6aad1
-Content-Type: text/html; charset=ISO-8859-1
+X-List-Received-Date: Wed, 21 Nov 2012 03:23:36 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<div>hello,</div><div><br></div><div>i was attempting a rebuild from scratc=
-h with today&#39;s master of poky, and i was facing issues such as:</div><d=
-iv><br></div><div><div>WARNING: Failed to fetch URL file://gcc-4.3.1-ARCH_F=
-LAGS_FOR_TARGET.patch, attempting MIRRORS if available</div>
+Attendees:
+Nitin, Ramana, ErenT, Saul, Beth, Daren, JeffP, TomZ, PaulE, DavidW, DaveST=
+, ChrisL, BjornS, ScottR, Nitin, MihaiL, MarkH, BruceA, Amit, Denys, Jessic=
+aZ, RP, Song=20
+=A0
+Minutes:
+=A0
+* Opens collection - 5 min (Song)
+* Yocto 1.4 status - 20 min (Song/team)
+  . Status update in Bugzilla: please update status by Monday morning. Use =
+the status field please.
+  . Always schedule the features with higher priority first.
+  . Things in master:
+    opkg: added alternative ln patch. Use 'ln -n' to avoid dereferencing li=
+nks to host files.
+    Python: resolve intermediate staging issues, simplifying python recipe =
+and the compile process.=20
+    Fixed a bug in make-3.82 for archive expression expansion.
+    Initial integration of python-smartpm recipe for SMART updater.
+    Various bitbake improvement including ensuring last tasks are displayed=
+ correctly in the footer, remove obsolete console log code, add error to re=
+turn of runCommand, etc.
+    Various HOB improvement such as saving proxy settings, adding a button =
+for network testing, UI improvement around progress bar, etc.
+    Share state improvement, allow only partial installation, speed up thin=
+gs in some cases.
+    colorize the bitbake console output
+    Reduce the amount directories when searching. patches on the mailing li=
+st. =09
+  . 1.4 M1 feature complete: Nov. 25th. Running full pass testing this week=
+.
+  . Master status: Building, there was an issue for QT, looking at it now. =
+Will have the build ready for QA this week.
+=20
+=A0
+* SWAT team rotation: Jessica -> Ross
+=A0
+* Opens - 10 min =20
+  - Eren docs: finished hello-world doc (http://erenturkay.com/doc/from-bit=
+bake-to-image/), would like to feedback. It's ok to be independent or integ=
+rated into existing YP docs. ScottR to follow up With Eren.
+  - RP: various notes about profiling (bitbake). There is wiki page (https:=
+//wiki.yoctoproject.org/wiki/Profiling), working in progress. Hopefully to =
+integrate something to bitbake manual. Tom is working on profiling for the =
+target system.
+  - Dave: offline configuration tool. Ramana: would like to take it to the =
+next step. RP: encourage people to talk to each other. Mark and Darren post=
+ed something that could be overlapping with this. Suggest Ramana, Mark and =
+Darren to talk.
+  - Bjorn: patches for package testing coming, first glib dbus testing.=20
+=A0
+* Team Sharing - 20 min
+  - DavidW: share experience building with a toolchain on a shared file sys=
+tem (Samba). 3min vs. 8min. Will try to reconfig shared storage. Michael: N=
+FS worked well for us.
+  - MichaelH: Added new status values in Bugzilla and regression types for =
+bugs. Will add hover text for the definition of regression types. meta-inte=
+l BSPs released, helped in that process. Working on some code review tools.=
+ Went over who has access to the security bugs, added some people. Let me k=
+now if anyone else needs access that.=20
+  - ScottR: had a meeting with Huawei, engaging with them, they would like =
+to start contributing to YP documentation. Will be working with them.
+  - Eren: getting the security bug in advance, it would be very helpful. se=
+curity question. RP: we are in cc? list, can we go one step further, join s=
+ome other list so that we can get warnings earlier. We started from base le=
+vel, no plans, but if anyone can get us in that circle it would be great. S=
+ong will pass this on to ScottG and CC Mark.
 
-<div>ERROR: Fetcher failure: Unable to find file file://gcc-4.3.1-ARCH_FLAG=
-S_FOR_TARGET.patch anywhere. The paths that were searched were:</div><div>=
-=A0 =A0 /yocto/poky/meta/recipes-devtools/gcc/gcc-4.7.2</div><div>=A0 =A0 /=
-yocto/build-poky-master/downloads</div>
 
-<div>ERROR: Function failed: Fetcher failure for URL: &#39;file://gcc-4.3.1=
--ARCH_FLAGS_FOR_TARGET.patch&#39;. Unable to fetch URL from any source.</di=
-v></div><div><br></div><div>This seems to be since this commit:</div><div>
 
-<br></div><div><div>commit 90616875b432a932415063b08497266e70c49d75</div><d=
-iv>Author: Richard Purdie &lt;<a href=3D"mailto:richard.purdie@linuxfoundat=
-ion.org">richard.purdie@linuxfoundation.org</a>&gt;</div><div>Date: =A0 Mon=
- Nov 19 21:18:52 2012 +0000</div>
-
-<div><br></div><div>=A0 =A0 gcc: Use FILESPATH instead of FILESDIR and clea=
-nup/simplify</div><div>=A0 =A0=A0</div><div>=A0 =A0 Signed-off-by: Richard =
-Purdie &lt;<a href=3D"mailto:richard.purdie@linuxfoundation.org">richard.pu=
-rdie@linuxfoundation.org</a>&gt;</div>
-
-</div><div><br></div><div>and looking at a similar patch sent to oe-core (<=
-a href=3D"http://comments.gmane.org/gmane.comp.handhelds.openembedded.core/=
-29668">http://comments.gmane.org/gmane.comp.handhelds.openembedded.core/296=
-68</a>) not merged yet, the following patch fixes my problem...</div>
-
-<div><br></div><div>--- a/meta/recipes-devtools/gcc/gcc-4.7.inc</div><div>+=
-++ b/meta/recipes-devtools/gcc/gcc-4.7.inc</div><div>@@ -18,6 +18,8 @@ PV =
-=3D &quot;4.7.2&quot;</div><div><br></div><div>=A0BINV =3D &quot;4.7.2&quot=
-;</div>
-
-<div><br></div><div>+FILESPATH =3D &quot;${FILE_DIRNAME}/gcc-4.7&quot;</div=
-><div>+</div><div>=A0DEPENDS =3D+ &quot;mpfr gmp libmpc&quot;</div><div>=A0=
-NATIVEDEPS =3D &quot;mpfr-native gmp-native libmpc-native zlib-native&quot;=
-</div>
-
-<div><br></div><div>without that, bitbake is looking for &#39;file://xxx&#3=
-9; from recipe in the wrong folder (e.g. gcc-4.7.2 instead of gcc-4.7)</div=
-><div><br></div><div>is there anything that i am overlooking here?</div>
-
-<div><br></div><div>cheers</div><div><br></div><div>nicolas</div>
-
---047d7bae47922c569f04cef6aad1--
