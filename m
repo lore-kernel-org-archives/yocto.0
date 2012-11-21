@@ -1,29 +1,33 @@
 Return-Path: <ndec13@gmail.com>
-Received: from mail-vb0-f48.google.com (mail-vb0-f48.google.com
-	[209.85.212.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D3248E0141C;
-	Wed, 21 Nov 2012 14:52:52 -0800 (PST)
-Received: by mail-vb0-f48.google.com with SMTP id l22so6936017vbn.35
-	for <multiple recipients>; Wed, 21 Nov 2012 14:52:52 -0800 (PST)
+Received: from mail-vc0-f176.google.com (mail-vc0-f176.google.com
+	[209.85.220.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9C69EE01447
+	for <yocto@yoctoproject.org>; Wed, 21 Nov 2012 14:54:15 -0800 (PST)
+Received: by mail-vc0-f176.google.com with SMTP id fl13so9471643vcb.35
+	for <yocto@yoctoproject.org>; Wed, 21 Nov 2012 14:54:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:from:date:message-id:subject:to:content-type;
-	bh=T+KfzdzAamn/kjP0+YV6aEUw42BStzh+iz7SxtJEFLY=;
-	b=chLfybvu10fhF9ybJ0tm1Kza05fAIGQxTSFuqCi1VtwIbKphlJrEGO5Lm6PDy/GRQ6
-	aD8ED35hrVuj4MitGX5oUYNNbKU1yjxHMvT9zImbyZL1nvnitDogQk+92IlSE+8MmbhY
-	yASd40X40RFdGutCWecsxMPOpLneXqGdc/q9009Gk4uCRNh0FfAN4hmaHghdAVHwmyTq
-	ErElzvLvu2/o70Zw8GmmjwL90S+O84mkljUxmXQJ75RHEHCS+KrR27zJr1YtzDI64Vy+
-	3Jm6y73IWB15cHUdsY7mtqKwr/DUqiBjRBHrKCxKZZJ1g59UJEDcrDZS5EbqEIMovtFu
-	zIcQ==
-Received: by 10.52.95.34 with SMTP id dh2mr26959983vdb.69.1353538372179; Wed,
-	21 Nov 2012 14:52:52 -0800 (PST)
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=blOC4gpNhlkZBsA7bQPNw38zraGXDrz664+so8IDQ0o=;
+	b=Czvf7pwiZHHE077XAUgLc1IDeeQwdZWKsKaK42/sok7TYGwv+qq+3fXsd8C+HvUM+F
+	AjOAFPLMrT6LiHE1m0WrgdgwTe68bO5zESmdWs8whg+VW41Gg+sUZ/iDelFgVIKFxveM
+	fM9mK51Cs2fufnr2xiMx5Cta5auDcIrCPi+vSHTuTUpeUFIGwXDEZvFSc+Z7Q0gVcO0p
+	O5xEa5F7NzUy9ChmW65jXq/jL1JG7TdIFKPQTEWxYINTI4yt3NJkfrDvR978LIUmA9As
+	efhV5wtlGGrV+PhepbpuaTrDz7la7uxzYiqJoBMg/oqFRaUbOXDYECKGAW9n2b+a3qeD
+	273w==
+Received: by 10.220.208.141 with SMTP id gc13mr30999430vcb.55.1353538454631;
+	Wed, 21 Nov 2012 14:54:14 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.58.248.74 with HTTP; Wed, 21 Nov 2012 14:52:30 -0800 (PST)
+Received: by 10.58.248.74 with HTTP; Wed, 21 Nov 2012 14:53:54 -0800 (PST)
+In-Reply-To: <CAJTo0LamS=ZF-o3MH-RHpE1THz2+Nr_KUaEEJ2Ff=9wKxii62w@mail.gmail.com>
+References: <CAOT3miKZaw+s=0QSp+nh8-VnL+-ez=Lz6M849=o3UVLJfXwjhQ@mail.gmail.com>
+	<CAJTo0LamS=ZF-o3MH-RHpE1THz2+Nr_KUaEEJ2Ff=9wKxii62w@mail.gmail.com>
 From: Nicolas Dechesne <ndec13@gmail.com>
-Date: Wed, 21 Nov 2012 23:52:30 +0100
-Message-ID: <CAOT3miJ73uAvR0Qij3+-q3B6K46=J5ZoFZDzW79YCSUfPbLeAA@mail.gmail.com>
-To: "meta-ti@yoctoproject.org" <meta-ti@yoctoproject.org>,
-	yocto <yocto@yoctoproject.org>
-Subject: build failure with xf86-video-omap
+Date: Wed, 21 Nov 2012 23:53:54 +0100
+Message-ID: <CAOT3miL57Vudm2WKvpG98OeFcHKR8-W1y6dvUCzMPc7=cNM=HA@mail.gmail.com>
+To: "Burton, Ross" <ross.burton@intel.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: build error since commit: gcc: Use FILESPATH instead of FILESDIR and cleanup/simplify
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,134 +39,74 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Nov 2012 22:52:53 -0000
-Content-Type: multipart/alternative; boundary=20cf307cfef4dd17a004cf09354a
+X-List-Received-Date: Wed, 21 Nov 2012 22:54:15 -0000
+Content-Type: multipart/alternative; boundary=bcaec517a674c732fd04cf093a04
 
---20cf307cfef4dd17a004cf09354a
+--bcaec517a674c732fd04cf093a04
 Content-Type: text/plain; charset=ISO-8859-1
 
-hi ,
+On Wed, Nov 21, 2012 at 9:41 AM, Burton, Ross <ross.burton@intel.com> wrote:
 
-since xf86-video-omap was recently merged in oe-core and poky, i am trying
-to remove the recipes we had staged in meta-ti trees for some weeks (
-http://git.yoctoproject.org/cgit/cgit.cgi/meta-ti/commit/?id=410dc026f2ee24a2346e7563a83f0181c79809cf).
-so i was trying to build  poky/master with meta-ti/master, for pandaboard,
-and I get build failures in xf86-video-omap [1] and [2].
+> On 21 November 2012 00:44, Nicolas Dechesne <ndec13@gmail.com> wrote:
+> > i was attempting a rebuild from scratch with today's master of poky, and
+> i
+> > was facing issues such as:
+> >
+> > WARNING: Failed to fetch URL
+> file://gcc-4.3.1-ARCH_FLAGS_FOR_TARGET.patch,
+> > attempting MIRRORS if available
+>
+> That bug was only briefly in the tree, so do another pull.
+>
 
-so [1] is actually trivial, as we are missing a DEPENDS in the recipe, i
-can send a patch in oe-core for that.
-
-[2] is a bit more cryptic to me.. so I quickly tried to build with danny (
-i just cherry picked the commit that introduced xf86-video-omap from
-master) and this time it built fine.
-
-has anyone actually tested this recipe? if so I must be doing something
-wrong, any hint would be helpful.
-
-i also tried a build without poky, and just oe-core, and got the same
-failure.
-
-cheers
-
-nicolas
-
-[1] : from log_do.configure for xf86-video-omap
-checking for XORG... no
-configure: error: Package requirements (xorg-server >= 1.3 xproto
-fontsproto libdrm >= 2.4.36 libdrm_omap xf86driproto  randrproto
-renderproto videoproto xextproto) were not met:
+indeed ;-) i can see the commits now.
 
 
-
-No package 'xf86driproto' found
-
-Consider adjusting the PKG_CONFIG_PATH environment variable if you
-installed software in a non-standard prefix.
+>
+> You'll then get image generation failures with libgl, which I'll be
+> fixing today. :(
 
 
-[2] : from log_do.configure for xf86-video-omap
-checking dependency style of arm-poky-linux-gnueabi-gcc  -march=armv7-a
--mthumb-\
-interwork -mfloat-abi=softfp -mfpu=neon -mtune=cortex-a9
---sysroot=/data/psi_omap_bu\
-ilds_admins/ndechesne/yocto/build-poky2/tmp/sysroots/pandaboard... (cached)
-none
-checking for sys/ioctl.h... (cached) yes
-checking if RANDR is defined... yes
-checking if RENDER is defined... yes
-checking if XV is defined... yes
-checking if DPMSExtension is defined... yes
-checking for XORG... yes
-checking for ANSI C header files... (cached) yes
-checking whether to include DRI support... checking for
-/usr/include/xorg/dri.h...
-configure: error: cannot check for file existence when cross compiling
-... and configure just
+well, i am not there yet, as I have more build failure (as I just reported)
 
---20cf307cfef4dd17a004cf09354a
+thanks
+
+--bcaec517a674c732fd04cf093a04
 Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-hi ,<div><br></div><div>since xf86-video-omap was recently merged in oe-cor=
-e and poky, i am trying to remove the recipes we had staged in meta-ti tree=
-s for some weeks (<a href=3D"http://git.yoctoproject.org/cgit/cgit.cgi/meta=
--ti/commit/?id=3D410dc026f2ee24a2346e7563a83f0181c79809cf">http://git.yocto=
-project.org/cgit/cgit.cgi/meta-ti/commit/?id=3D410dc026f2ee24a2346e7563a83f=
-0181c79809cf</a>). so=A0i was trying to build =A0poky/master with meta-ti/m=
-aster, for pandaboard, and I get build failures in xf86-video-omap [1] and =
-[2].</div>
+<div class=3D"gmail_extra"><br><br><div class=3D"gmail_quote">On Wed, Nov 2=
+1, 2012 at 9:41 AM, Burton, Ross <span dir=3D"ltr">&lt;<a href=3D"mailto:ro=
+ss.burton@intel.com" target=3D"_blank">ross.burton@intel.com</a>&gt;</span>=
+ wrote:<br>
 
-<div><br></div><div>so [1] is actually trivial, as we are missing a DEPENDS=
- in the recipe, i can send a patch in oe-core for that.=A0</div><div><br></=
-div><div>[2] is a bit more cryptic to me.. so I quickly tried to build with=
- danny ( i just cherry picked the commit that introduced xf86-video-omap fr=
-om master) and this time it built fine.=A0<div>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><div class=3D"im">On 21 November 2012 00:44,=
+ Nicolas Dechesne &lt;<a href=3D"mailto:ndec13@gmail.com">ndec13@gmail.com<=
+/a>&gt; wrote:<br>
+
+
+&gt; i was attempting a rebuild from scratch with today&#39;s master of pok=
+y, and i<br>
+&gt; was facing issues such as:<br>
+&gt;<br>
+&gt; WARNING: Failed to fetch URL file://gcc-4.3.1-ARCH_FLAGS_FOR_TARGET.pa=
+tch,<br>
+&gt; attempting MIRRORS if available<br>
+<br>
+</div>That bug was only briefly in the tree, so do another pull.<br></block=
+quote><div><br></div><div>indeed ;-) i can see the commits now.</div><div>=
+=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;borde=
+r-left:1px #ccc solid;padding-left:1ex">
+
 
 <br>
-</div><div>has anyone actually tested this recipe? if so I must be doing so=
-mething wrong, any hint would be helpful.</div><div><br></div><div>i also t=
-ried a build without poky, and just oe-core, and got the same failure.</div=
->
-
-<div><br></div><div>cheers</div><div><br></div><div>nicolas</div><div><br><=
-/div><div>[1] : from log_do.configure for xf86-video-omap=A0<br></div><div>=
-<div></div></div><div>checking for XORG... no<br></div><div><div>configure:=
- error: Package requirements (xorg-server &gt;=3D 1.3 xproto fontsproto lib=
-drm &gt;=3D 2.4.36 libdrm_omap xf86driproto =A0randrproto renderproto video=
-proto xextproto) were not met:</div>
-
-<div>=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
-=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0=
- =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
-=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0=
- =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0=A0=
-</div><div>No package &#39;xf86driproto&#39; found</div>
-
-<div><br></div><div>Consider adjusting the PKG_CONFIG_PATH environment vari=
-able if you</div><div>installed software in a non-standard prefix.</div></d=
-iv><div><br></div><div><br></div><div>[2] : from log_do.configure for xf86-=
-video-omap=A0<br>
-
-</div><div><div><div>checking dependency style of arm-poky-linux-gnueabi-gc=
-c =A0-march=3Darmv7-a =A0 =A0 -mthumb-\</div>
-<div>interwork -mfloat-abi=3Dsoftfp -mfpu=3Dneon -mtune=3Dcortex-a9 --sysro=
-ot=3D/data/psi_omap_bu\</div><div>ilds_admins/ndechesne/yocto/build-poky2/t=
-mp/sysroots/pandaboard... (cached) none</div><div>checking for sys/ioctl.h.=
-.. (cached) yes</div>
+You&#39;ll then get image generation failures with libgl, which I&#39;ll be=
+<br>
+fixing today. :(</blockquote></div><br></div><div class=3D"gmail_extra">wel=
+l, i am not there yet, as I have more build failure (as I just reported)</d=
+iv><div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">thanks</=
+div>
 
 
-<div>checking if RANDR is defined... yes</div><div>checking if RENDER is de=
-fined... yes</div><div>checking if XV is defined... yes</div><div>checking =
-if DPMSExtension is defined... yes</div><div>checking for XORG... yes</div>
-
-
-<div>checking for ANSI C header files... (cached) yes</div><div>checking wh=
-ether to include DRI support... checking for /usr/include/xorg/dri.h...=A0<=
-/div><div>configure: error: cannot check for file existence when cross comp=
-iling=A0</div>
-
-
-</div></div><div>... and configure just=A0</div>
-</div>
-
---20cf307cfef4dd17a004cf09354a--
+--bcaec517a674c732fd04cf093a04--
