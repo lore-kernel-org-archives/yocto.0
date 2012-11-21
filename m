@@ -1,33 +1,37 @@
-Return-Path: <ndec13@gmail.com>
-Received: from mail-vc0-f176.google.com (mail-vc0-f176.google.com
-	[209.85.220.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9C69EE01447
-	for <yocto@yoctoproject.org>; Wed, 21 Nov 2012 14:54:15 -0800 (PST)
-Received: by mail-vc0-f176.google.com with SMTP id fl13so9471643vcb.35
-	for <yocto@yoctoproject.org>; Wed, 21 Nov 2012 14:54:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=blOC4gpNhlkZBsA7bQPNw38zraGXDrz664+so8IDQ0o=;
-	b=Czvf7pwiZHHE077XAUgLc1IDeeQwdZWKsKaK42/sok7TYGwv+qq+3fXsd8C+HvUM+F
-	AjOAFPLMrT6LiHE1m0WrgdgwTe68bO5zESmdWs8whg+VW41Gg+sUZ/iDelFgVIKFxveM
-	fM9mK51Cs2fufnr2xiMx5Cta5auDcIrCPi+vSHTuTUpeUFIGwXDEZvFSc+Z7Q0gVcO0p
-	O5xEa5F7NzUy9ChmW65jXq/jL1JG7TdIFKPQTEWxYINTI4yt3NJkfrDvR978LIUmA9As
-	efhV5wtlGGrV+PhepbpuaTrDz7la7uxzYiqJoBMg/oqFRaUbOXDYECKGAW9n2b+a3qeD
-	273w==
-Received: by 10.220.208.141 with SMTP id gc13mr30999430vcb.55.1353538454631;
-	Wed, 21 Nov 2012 14:54:14 -0800 (PST)
+Return-Path: <scott.m.rifenbark@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 048E4E01447
+	for <yocto@yoctoproject.org>; Wed, 21 Nov 2012 15:01:24 -0800 (PST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 21 Nov 2012 15:01:24 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.83,295,1352102400"; d="scan'208";a="252605172"
+Received: from orsmsx104.amr.corp.intel.com ([10.22.225.131])
+	by fmsmga002.fm.intel.com with ESMTP; 21 Nov 2012 15:01:24 -0800
+Received: from orsmsx153.amr.corp.intel.com (10.22.226.247) by
+	ORSMSX104.amr.corp.intel.com (10.22.225.131) with Microsoft SMTP Server
+	(TLS) id 14.1.355.2; Wed, 21 Nov 2012 15:01:23 -0800
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.81]) by
+	ORSMSX153.amr.corp.intel.com ([169.254.13.171]) with mapi id
+	14.01.0355.002; Wed, 21 Nov 2012 15:01:23 -0800
+From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>, "Robert P. J. Day"
+	<rpjday@crashcourse.ca>
+Thread-Topic: [yocto] inconsistent pages out there for setting up your yocto
+	dev host
+Thread-Index: AQHNyDq5TaOylHmOQ0GQZnQw2I2eZpf054CQ
+Date: Wed, 21 Nov 2012 23:01:22 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237946AC664C@ORSMSX101.amr.corp.intel.com>
+References: <alpine.DEB.2.02.1211211718070.14208@oneiric>
+	<2124581.mHRnlHMV84@helios>
+In-Reply-To: <2124581.mHRnlHMV84@helios>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-Received: by 10.58.248.74 with HTTP; Wed, 21 Nov 2012 14:53:54 -0800 (PST)
-In-Reply-To: <CAJTo0LamS=ZF-o3MH-RHpE1THz2+Nr_KUaEEJ2Ff=9wKxii62w@mail.gmail.com>
-References: <CAOT3miKZaw+s=0QSp+nh8-VnL+-ez=Lz6M849=o3UVLJfXwjhQ@mail.gmail.com>
-	<CAJTo0LamS=ZF-o3MH-RHpE1THz2+Nr_KUaEEJ2Ff=9wKxii62w@mail.gmail.com>
-From: Nicolas Dechesne <ndec13@gmail.com>
-Date: Wed, 21 Nov 2012 23:53:54 +0100
-Message-ID: <CAOT3miL57Vudm2WKvpG98OeFcHKR8-W1y6dvUCzMPc7=cNM=HA@mail.gmail.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: build error since commit: gcc: Use FILESPATH instead of FILESDIR and cleanup/simplify
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: inconsistent pages out there for setting up your yocto	dev host
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,74 +43,69 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Nov 2012 22:54:15 -0000
-Content-Type: multipart/alternative; boundary=bcaec517a674c732fd04cf093a04
-
---bcaec517a674c732fd04cf093a04
-Content-Type: text/plain; charset=ISO-8859-1
-
-On Wed, Nov 21, 2012 at 9:41 AM, Burton, Ross <ross.burton@intel.com> wrote:
-
-> On 21 November 2012 00:44, Nicolas Dechesne <ndec13@gmail.com> wrote:
-> > i was attempting a rebuild from scratch with today's master of poky, and
-> i
-> > was facing issues such as:
-> >
-> > WARNING: Failed to fetch URL
-> file://gcc-4.3.1-ARCH_FLAGS_FOR_TARGET.patch,
-> > attempting MIRRORS if available
->
-> That bug was only briefly in the tree, so do another pull.
->
-
-indeed ;-) i can see the commits now.
-
-
->
-> You'll then get image generation failures with libgl, which I'll be
-> fixing today. :(
-
-
-well, i am not there yet, as I have more build failure (as I just reported)
-
-thanks
-
---bcaec517a674c732fd04cf093a04
-Content-Type: text/html; charset=ISO-8859-1
+X-List-Received-Date: Wed, 21 Nov 2012 23:01:25 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div class=3D"gmail_extra"><br><br><div class=3D"gmail_quote">On Wed, Nov 2=
-1, 2012 at 9:41 AM, Burton, Ross <span dir=3D"ltr">&lt;<a href=3D"mailto:ro=
-ss.burton@intel.com" target=3D"_blank">ross.burton@intel.com</a>&gt;</span>=
- wrote:<br>
-
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div class=3D"im">On 21 November 2012 00:44,=
- Nicolas Dechesne &lt;<a href=3D"mailto:ndec13@gmail.com">ndec13@gmail.com<=
-/a>&gt; wrote:<br>
 
 
-&gt; i was attempting a rebuild from scratch with today&#39;s master of pok=
-y, and i<br>
-&gt; was facing issues such as:<br>
-&gt;<br>
-&gt; WARNING: Failed to fetch URL file://gcc-4.3.1-ARCH_FLAGS_FOR_TARGET.pa=
-tch,<br>
-&gt; attempting MIRRORS if available<br>
-<br>
-</div>That bug was only briefly in the tree, so do another pull.<br></block=
-quote><div><br></div><div>indeed ;-) i can see the commits now.</div><div>=
-=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;borde=
-r-left:1px #ccc solid;padding-left:1ex">
+>-----Original Message-----
+>From: yocto-bounces@yoctoproject.org [mailto:yocto-
+>bounces@yoctoproject.org] On Behalf Of Paul Eggleton
+>Sent: Wednesday, November 21, 2012 2:51 PM
+>To: Robert P. J. Day
+>Cc: yocto@yoctoproject.org
+>Subject: Re: [yocto] inconsistent pages out there for setting up your
+>yocto dev host
+>
+>On Wednesday 21 November 2012 17:23:56 Robert P. J. Day wrote:
+>>   i've noticed there are various web pages purporting to explain how
+>> to set up a proper OE/yocto development host, but they give what is
+>> pretty clearly contradictory information.
+>>
+>>   as one example, there's this page on getting started with OE:
+>>
+>> http://www.openembedded.org/wiki/Getting_started
+>
+>I produced this page recently; FWIW I also came up with the pared-down
+>package
+>lists that went into the Quick Start Guide which this page borrows. How
+>is
+>this contradictory if it uses the same information?
+>
+>> that claims to steal from a number of sources including the yocto QS
+>> guide, but look at the packages one is instructed to install on that
+>> page, particularly under fedora: python, perl, git, and so on.
+>
+>So I don't recall exactly how perl got on that list; but python and git
+>are
+>absolutely required on the host. That's why they're in ASSUME_PROVIDED.
 
+Paul - Should I remove perl from the essentials list for fedora and centos?
 
-<br>
-You&#39;ll then get image generation failures with libgl, which I&#39;ll be=
-<br>
-fixing today. :(</blockquote></div><br></div><div class=3D"gmail_extra">wel=
-l, i am not there yet, as I have more build failure (as I just reported)</d=
-iv><div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">thanks</=
-div>
+>
+>>   as i read it, the sanity.bbclass and ASSUME_PROVIDED will dictate
+>> what needs to be there and what will be used if it's installed
+>> natively, no?  it certainly seems that that wiki page is insructing
+>> the developer to install a lot of software that OE will handle
+>> automatically, no?
+>
+>Er, no. Well, if by "handle automatically" you mean "error out when they
+>are
+>not present" then that's not very helpful - it's much easier if people
+>just
+>get a list of what they need to install up front.
+>
+>Cheers,
+>Paul
+>
+>--
+>
+>Paul Eggleton
+>Intel Open Source Technology Centre
+>_______________________________________________
+>yocto mailing list
+>yocto@yoctoproject.org
+>https://lists.yoctoproject.org/listinfo/yocto
 
-
---bcaec517a674c732fd04cf093a04--
