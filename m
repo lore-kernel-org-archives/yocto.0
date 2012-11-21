@@ -1,34 +1,35 @@
-Return-Path: <martin.jansa@gmail.com>
-Received: from mail-ea0-f176.google.com (mail-ea0-f176.google.com
-	[209.85.215.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7EFE7E01447;
-	Wed, 21 Nov 2012 15:01:25 -0800 (PST)
-Received: by mail-ea0-f176.google.com with SMTP id d13so1476880eaa.35
-	for <multiple recipients>; Wed, 21 Nov 2012 15:01:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:content-disposition:in-reply-to:user-agent;
-	bh=xD4im3X7mfFtoiAmHcGi3uRhYoDb0MAqpgj3dm6J1Xg=;
-	b=jEu5dg7zJECBSpwDyOQ9OdUU7ubh+VeZbajWbnsbmTHBqKjlzydlVzvuzcuq3l8P0+
-	6OdD53ezUdjlsA7yo5pD83GQyUJFmZM38BszMafg54iWI6Glx2tTkjb/VkEZ5sOA6HFn
-	Pc1AwfLf26erYyB/PpbW9/F7hTT9DndHx8ubmyo/4z+eaKKBKk626g7Fdz79pm8OZeMI
-	1OPGgDZC6IyFWi745kkbA4fH5UUsiVtQA9J+n7p4cCye5EDfD+zVFddBuQd+volzHxs1
-	iVSPd2MSgV/SGwN8N9REEI8oDc+MLNQGyA5YI5E9dW0N7ZS82JBmwPvbgAufIUa5l7P1
-	25tw==
-Received: by 10.14.221.5 with SMTP id q5mr16243894eep.33.1353538884369;
-	Wed, 21 Nov 2012 15:01:24 -0800 (PST)
-Received: from localhost ([94.230.152.246])
-	by mx.google.com with ESMTPS id a45sm2543582eep.16.2012.11.21.15.01.23
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Wed, 21 Nov 2012 15:01:23 -0800 (PST)
-Date: Thu, 22 Nov 2012 00:01:20 +0100
-From: Martin Jansa <martin.jansa@gmail.com>
-To: Nicolas Dechesne <ndec13@gmail.com>
-Message-ID: <20121121230120.GS12637@jama.jama.net>
-References: <CAOT3miJ73uAvR0Qij3+-q3B6K46=J5ZoFZDzW79YCSUfPbLeAA@mail.gmail.com>
+Return-Path: <ross.burton@intel.com>
+Received: from fmsmga101.fm.intel.com (mga05.intel.com [192.55.52.89])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E4339E0141C
+	for <yocto@yoctoproject.org>; Wed, 21 Nov 2012 15:07:41 -0800 (PST)
+Received: from mail-ia0-f200.google.com ([209.85.210.200])
+	by mga01.intel.com with ESMTP/TLS/RC4-SHA; 21 Nov 2012 15:07:41 -0800
+Received: by mail-ia0-f200.google.com with SMTP id x26so16207309iak.11
+	for <yocto@yoctoproject.org>; Wed, 21 Nov 2012 15:07:40 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type:x-gm-message-state;
+	bh=vktykzcWUxYxSTJnw+QqiR5RBJiVImZebd9Cyph72/A=;
+	b=mwUxTPCGGuCiPivCHb4u+QZQhzIi0cOq968pl6IkYowyH6jqzBKsK9LEaFbLR+HzGb
+	JL9bWlXabmCQIFQmfMAtgl7XN9/IphyHpG7YPtzWh+JeW4wlU3gpKZfX9Qj10Gho0yaF
+	bobkGEMLaua3sOlwb1Gx9d61eagb0CbLU3L2/YmgQUBn7jo1YNpifQuORO5Z0JhAI49Z
+	kLBqLqcxyZCE9F285FWIag9M+jHgiNnWn2m5Ft/wYs1Oqk/5A0QPu+yuGpHgRDwgV6ia
+	YWpaN+7BPetWcMwLqUG8BBhYo6GQE8/BFTDJlcy5nYIfgfbhJYCti0Ue6rM0q765AksQ
+	U2nQ==
+Received: by 10.60.169.243 with SMTP id ah19mr17629150oec.127.1353539260386;
+	Wed, 21 Nov 2012 15:07:40 -0800 (PST)
+Received: by 10.60.169.243 with SMTP id ah19mr17629142oec.127.1353539260177;
+	Wed, 21 Nov 2012 15:07:40 -0800 (PST)
 MIME-Version: 1.0
+Received: by 10.182.154.37 with HTTP; Wed, 21 Nov 2012 15:07:19 -0800 (PST)
 In-Reply-To: <CAOT3miJ73uAvR0Qij3+-q3B6K46=J5ZoFZDzW79YCSUfPbLeAA@mail.gmail.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
+References: <CAOT3miJ73uAvR0Qij3+-q3B6K46=J5ZoFZDzW79YCSUfPbLeAA@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Wed, 21 Nov 2012 23:07:19 +0000
+Message-ID: <CAJTo0LYLf=296eEZznK7vnFTJZhAS_u1opuXdyJ=MUvRYF1Asw@mail.gmail.com>
+To: Nicolas Dechesne <ndec13@gmail.com>
+X-Gm-Message-State: ALoCoQmc9fctprlR8ZJ8SZ64Kpcq71ob989yfRmVuUkCmHubsugWnmhL2AOX37YCRCyxeJR5dnx0z0NXnaQZEHwS+IHlvhnaQFokyOfinl0wLL26LDC+j6WvifRrNOwzbuPuxDRC7a8yoMlUTQ31mwtNqGUZorTy6w==
 Cc: "meta-ti@yoctoproject.org" <meta-ti@yoctoproject.org>,
 	yocto <yocto@yoctoproject.org>
 Subject: Re: build failure with xf86-video-omap
@@ -43,106 +44,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Nov 2012 23:01:26 -0000
-X-Groupsio-MsgNum: 10610
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="ixDgnS8AC6zwmyK0"
-Content-Disposition: inline
+X-List-Received-Date: Wed, 21 Nov 2012 23:07:42 -0000
+Content-Type: text/plain; charset=UTF-8
 
---ixDgnS8AC6zwmyK0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Wed, Nov 21, 2012 at 11:52:30PM +0100, Nicolas Dechesne wrote:
-> hi ,
->=20
+On 21 November 2012 22:52, Nicolas Dechesne <ndec13@gmail.com> wrote:
 > since xf86-video-omap was recently merged in oe-core and poky, i am trying
-> to remove the recipes we had staged in meta-ti trees for some weeks (
-> http://git.yoctoproject.org/cgit/cgit.cgi/meta-ti/commit/?id=3D410dc026f2=
-ee24a2346e7563a83f0181c79809cf).
+> to remove the recipes we had staged in meta-ti trees for some weeks
+> (http://git.yoctoproject.org/cgit/cgit.cgi/meta-ti/commit/?id=410dc026f2ee24a2346e7563a83f0181c79809cf).
 > so i was trying to build  poky/master with meta-ti/master, for pandaboard,
 > and I get build failures in xf86-video-omap [1] and [2].
->=20
-> so [1] is actually trivial, as we are missing a DEPENDS in the recipe, i
-> can send a patch in oe-core for that.
->=20
-> [2] is a bit more cryptic to me.. so I quickly tried to build with danny (
-> i just cherry picked the commit that introduced xf86-video-omap from
-> master) and this time it built fine.
+>
+> so [1] is actually trivial, as we are missing a DEPENDS in the recipe, i can
+> send a patch in oe-core for that.
 
-Check this tread:
-http://lists.linuxtogo.org/pipermail/openembedded-core/2012-November/032012=
-=2Ehtml
-=20
-> has anyone actually tested this recipe?=20
+Please do.
 
-obviously no
+> [2] is a bit more cryptic to me.. so I quickly tried to build with danny ( i
+> just cherry picked the commit that introduced xf86-video-omap from master)
+> and this time it built fine.
+>
+> has anyone actually tested this recipe? if so I must be doing something
+> wrong, any hint would be helpful.
 
-Cheers,
+This was discussed a few hours ago.  It's caused by a) the
+configure.ac being broken and b) the workaround for this being removed
+by me in e828faf027540bc5def8b7371a959884caad9557 (which is in master
+only).  Presumably this code was test built before that patch landed.
 
-> if so I must be doing something > wrong, any hint would be helpful.
->=20
-> i also tried a build without poky, and just oe-core, and got the same
-> failure.
->=20
-> cheers
->=20
-> nicolas
->=20
-> [1] : from log_do.configure for xf86-video-omap
-> checking for XORG... no
-> configure: error: Package requirements (xorg-server >=3D 1.3 xproto
-> fontsproto libdrm >=3D 2.4.36 libdrm_omap xf86driproto  randrproto
-> renderproto videoproto xextproto) were not met:
->=20
->=20
->=20
-> No package 'xf86driproto' found
->=20
-> Consider adjusting the PKG_CONFIG_PATH environment variable if you
-> installed software in a non-standard prefix.
->=20
->=20
-> [2] : from log_do.configure for xf86-video-omap
-> checking dependency style of arm-poky-linux-gnueabi-gcc  -march=3Darmv7-a
-> -mthumb-\
-> interwork -mfloat-abi=3Dsoftfp -mfpu=3Dneon -mtune=3Dcortex-a9
-> --sysroot=3D/data/psi_omap_bu\
-> ilds_admins/ndechesne/yocto/build-poky2/tmp/sysroots/pandaboard... (cache=
-d)
-> none
-> checking for sys/ioctl.h... (cached) yes
-> checking if RANDR is defined... yes
-> checking if RENDER is defined... yes
-> checking if XV is defined... yes
-> checking if DPMSExtension is defined... yes
-> checking for XORG... yes
-> checking for ANSI C header files... (cached) yes
-> checking whether to include DRI support... checking for
-> /usr/include/xorg/dri.h...
-> configure: error: cannot check for file existence when cross compiling
-> ... and configure just
+As this is a genuine upstream bug (ARM-specific driver that doesn't
+cross-compile?!) I've just filed fdo #57386.
 
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+Ross
 
-
---=20
-Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
-
---ixDgnS8AC6zwmyK0
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2.0.19 (GNU/Linux)
-
-iEYEARECAAYFAlCtXUAACgkQN1Ujt2V2gBxUtACggQ7q89grk7GiSroShD++fn/3
-eCkAn2WB77qeM91Bd5Zw1yj4EOdPiye/
-=l3tc
------END PGP SIGNATURE-----
-
---ixDgnS8AC6zwmyK0--
