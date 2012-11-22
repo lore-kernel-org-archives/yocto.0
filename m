@@ -1,34 +1,23 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BD2A6E00294
-	for <yocto@yoctoproject.org>; Wed, 21 Nov 2012 17:19:11 -0800 (PST)
-Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
-	([174.115.5.73]:49213 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.77) (envelope-from <rpjday@crashcourse.ca>)
-	id 1TbLRb-0005cZ-Ne; Wed, 21 Nov 2012 20:19:07 -0500
-Date: Wed, 21 Nov 2012 20:19:05 -0500 (EST)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-In-Reply-To: <2124581.mHRnlHMV84@helios>
-Message-ID: <alpine.DEB.2.02.1211212015080.3922@oneiric>
-References: <alpine.DEB.2.02.1211211718070.14208@oneiric>
-	<2124581.mHRnlHMV84@helios>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
-MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7BEF5E002AB
+	for <yocto@yoctoproject.org>; Wed, 21 Nov 2012 22:27:04 -0800 (PST)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga101.ch.intel.com with ESMTP; 21 Nov 2012 22:27:03 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.83,298,1352102400"; d="scan'208";a="171285705"
+Received: from unknown (HELO [10.255.12.138]) ([10.255.12.138])
+	by AZSMGA002.ch.intel.com with ESMTP; 21 Nov 2012 22:26:58 -0800
+Message-ID: <1353565617.7717.154.camel@empanada>
+From: Tom Zanussi <tom.zanussi@intel.com>
+To: Khem Raj <raj.khem@gmail.com>
+Date: Thu, 22 Nov 2012 00:26:57 -0600
+In-Reply-To: <1353530214-3748-1-git-send-email-raj.khem@gmail.com>
+References: <1353530214-3748-1-git-send-email-raj.khem@gmail.com>
+X-Mailer: Evolution 3.4.1 (3.4.1-2.fc17) 
+Mime-Version: 1.0
 Cc: yocto@yoctoproject.org
-Subject: Re: inconsistent pages out there for setting up your yocto dev host
+Subject: Re: [meta-intel][danny][PATCH V2] mesa-dri_8.0.4.bbappend: Remove tabs from python code
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,68 +29,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 22 Nov 2012 01:19:12 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Thu, 22 Nov 2012 06:27:05 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-On Wed, 21 Nov 2012, Paul Eggleton wrote:
+On Wed, 2012-11-21 at 12:36 -0800, Khem Raj wrote:
+> check for xserver to be non-empty before using it
+> fixed errors like
+> 
+> ERROR: Failed to parse recipe:
+> /b/kraj/yocto/poky/meta/recipes-graphics/mesa/mesa-dri_8.0.4.bb
+> ERROR: Error executing a python function in <code>:
+> AttributeError: 'NoneType' object has no attribute 'split'
+> 
+> Signed-off-by: Khem Raj <raj.khem@gmail.com>
 
-> On Wednesday 21 November 2012 17:23:56 Robert P. J. Day wrote:
-> >   i've noticed there are various web pages purporting to explain how
-> > to set up a proper OE/yocto development host, but they give what is
-> > pretty clearly contradictory information.
-> >
-> >   as one example, there's this page on getting started with OE:
-> >
-> > http://www.openembedded.org/wiki/Getting_started
->
-> I produced this page recently; FWIW I also came up with the
-> pared-down package lists that went into the Quick Start Guide which
-> this page borrows. How is this contradictory if it uses the same
-> information?
->
-> > that claims to steal from a number of sources including the yocto
-> > QS guide, but look at the packages one is instructed to install on
-> > that page, particularly under fedora: python, perl, git, and so
-> > on.
->
-> So I don't recall exactly how perl got on that list; but python and
-> git are absolutely required on the host. That's why they're in
-> ASSUME_PROVIDED.
->
-> >   as i read it, the sanity.bbclass and ASSUME_PROVIDED will
-> > dictate what needs to be there and what will be used if it's
-> > installed natively, no?  it certainly seems that that wiki page is
-> > insructing the developer to install a lot of software that OE will
-> > handle automatically, no?
->
-> Er, no. Well, if by "handle automatically" you mean "error out when
-> they are not present" then that's not very helpful - it's much
-> easier if people just get a list of what they need to install up
-> front.
+Pulled into meta-intel/master and meta-intel/danny-next.
 
-  at the risk of asking a dumb question, let me make sure i understand
-the different categories of software.
+Thanks,
 
-  first, there's what is absolutely *required* to be installed on the
-development system already before doing any oe/yocto work.  those
-would the packages/utilities that are listed on the wiki page as "you
-must install this", and that's what's represented in the
-sanity.bbclass.  is that about right?
+Tom
 
-  on the other hand, there's what's listed in ASSUME_PROVIDED, which
-represents software that, if it *is* natively installed, will be used;
-otherwise, oe/yocto will download and build it as part of the build
-process.  correct?  or have i misunderstood the distinction here?
+> ---
+>  .../recipes-graphics/mesa/mesa-dri_8.0.4.bbappend  |    8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
+> 
+> diff --git a/common/recipes-graphics/mesa/mesa-dri_8.0.4.bbappend b/common/recipes-graphics/mesa/mesa-dri_8.0.4.bbappend
+> index 6bfa968..b92831d 100644
+> --- a/common/recipes-graphics/mesa/mesa-dri_8.0.4.bbappend
+> +++ b/common/recipes-graphics/mesa/mesa-dri_8.0.4.bbappend
+> @@ -6,13 +6,13 @@
+>  python __anonymous () {
+>      import re
+>      xserver = d.getVar('XSERVER', True)
+> -    if 'emgd-driver-bin' in xserver.split(' '):
+> +    if xserver and 'emgd-driver-bin' in xserver.split(' '):
+>          extra_oeconf = d.getVar('EXTRA_OECONF', True).split()
+> -	take_out = ["--enable-egl", "--enable-gles1", "--enable-gles2"]
+> -	put_in = ["--disable-egl", "--disable-gles1", "--disable-gles2"]
+> +        take_out = ["--enable-egl", "--enable-gles1", "--enable-gles2"]
+> +        put_in = ["--disable-egl", "--disable-gles1", "--disable-gles2"]
+>          pattern = re.compile("--with-egl-platforms")
+>          new_extra_oeconf = [ ]
+> -	for i in extra_oeconf:
+> +        for i in extra_oeconf:
+>              if ( i not in take_out ) and ( not pattern.match(i)):
+>                  new_extra_oeconf.append(i)
+>          for i in put_in:
 
-rday
 
--- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
 
