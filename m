@@ -1,26 +1,40 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AC6CFE00294
-	for <yocto@yoctoproject.org>; Wed, 21 Nov 2012 15:45:36 -0800 (PST)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 21 Nov 2012 15:45:36 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.83,295,1352102400"; d="scan'208";a="171196348"
-Received: from unknown (HELO helios.localnet) ([10.252.122.211])
-	by AZSMGA002.ch.intel.com with ESMTP; 21 Nov 2012 15:45:27 -0800
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-Date: Wed, 21 Nov 2012 23:45:26 +0000
-Message-ID: <1480713.ustzgh0ezL@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.9.3 (Linux/3.2.0-33-generic-pae; KDE/4.9.3; i686; ; )
-In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB1237946AC664C@ORSMSX101.amr.corp.intel.com>
-References: <alpine.DEB.2.02.1211211718070.14208@oneiric>
-	<2124581.mHRnlHMV84@helios>
-	<41DEA4B02DBDEF40A0F3B6D0DDB1237946AC664C@ORSMSX101.amr.corp.intel.com>
+Return-Path: <saul.wold@intel.com>
+Received: from orsmga101.jf.intel.com (mga06.intel.com [134.134.136.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 89A92E00294
+	for <yocto@yoctoproject.org>; Wed, 21 Nov 2012 16:38:52 -0800 (PST)
+Received: from mail-pa0-f72.google.com ([209.85.220.72])
+	by mga02.intel.com with ESMTP/TLS/RC4-SHA; 21 Nov 2012 16:38:52 -0800
+Received: by mail-pa0-f72.google.com with SMTP id hz10so8791316pad.11
+	for <yocto@yoctoproject.org>; Wed, 21 Nov 2012 16:38:51 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=message-id:date:from:organization:user-agent:mime-version:to
+	:subject:content-type:content-transfer-encoding:x-gm-message-state;
+	bh=ORNv3JNoWIJG0jVEZtB6lMW2G37ijlexU+hWz6wOsPg=;
+	b=TCNGTjRwM7b34bq/sBpaMXzYUDsorHx5TYmylwWxmth8RBtgln27ZcheP0ybyN1N6N
+	JAcZYRRWX850YxdelV1nhg9sJno1QXcZg2fxe8CunBWzsH/w3vSR6b41impzB877AQez
+	iWzt0S3e4fGzvWOmZRASSEF7zFTIIDFIHXIkHzbg2w2vk+xGU/5u/Ot0doLo9OcsfmF/
+	gooyyHyCUPZpxfboQ7vIuiIn8rpN+dAXf7iVSYNFbQ5TLwajEWKUlzj0/5xp1EOSANr6
+	dpzf0C1OhtCS5gBMsQAr9uzrPrdktMYmEkamMbAe2pviAg5Az0S1Why3mXENPKpoOqLN
+	EeJQ==
+Received: by 10.66.88.41 with SMTP id bd9mr21689473pab.46.1353544731769;
+	Wed, 21 Nov 2012 16:38:51 -0800 (PST)
+Received: by 10.66.88.41 with SMTP id bd9mr21689466pab.46.1353544731711;
+	Wed, 21 Nov 2012 16:38:51 -0800 (PST)
+Received: from [10.6.18.71] (c-71-193-189-117.hsd1.wa.comcast.net.
+	[71.193.189.117])
+	by mx.google.com with ESMTPS id ok3sm1031448pbb.11.2012.11.21.16.38.50
+	(version=SSLv3 cipher=OTHER); Wed, 21 Nov 2012 16:38:51 -0800 (PST)
+Message-ID: <50AD741A.9070201@intel.com>
+Date: Wed, 21 Nov 2012 16:38:50 -0800
+From: Saul Wold <saul.wold@intel.com>
+Organization: Intel
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:15.0) Gecko/20120911 Thunderbird/15.0.1
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: inconsistent pages out there for setting up your yocto dev host
+To: Yocto Project Discussion <yocto@yoctoproject.org>
+X-Gm-Message-State: ALoCoQlxRxtNXPV2QCuBf5rbaH0S6dYN+Us8hXo0hDyVDlmzo+7o4HoMEjAj2YnRYLNvTWGB5BykWvldBtGPPbeo7yzVZERcF06L2cT5scj41qHbqj5MWLjKlL/ZPX8X8CTqez4CSIA1cruR1AuG0lQPlrpyIuP1mA==
+Subject: Nightly Build for Weekly Testing
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,53 +46,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Nov 2012 23:45:36 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Thu, 22 Nov 2012 00:38:52 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Wednesday 21 November 2012 23:01:22 Rifenbark, Scott M wrote:
-> >-----Original Message-----
-> >From: yocto-bounces@yoctoproject.org [mailto:yocto-
-> >bounces@yoctoproject.org] On Behalf Of Paul Eggleton
-> >Sent: Wednesday, November 21, 2012 2:51 PM
-> >To: Robert P. J. Day
-> >Cc: yocto@yoctoproject.org
-> >Subject: Re: [yocto] inconsistent pages out there for setting up your
-> >yocto dev host
-> >
-> >On Wednesday 21 November 2012 17:23:56 Robert P. J. Day wrote:
-> >>   i've noticed there are various web pages purporting to explain how
-> >> 
-> >> to set up a proper OE/yocto development host, but they give what is
-> >> pretty clearly contradictory information.
-> >> 
-> >>   as one example, there's this page on getting started with OE:
-> >> http://www.openembedded.org/wiki/Getting_started
-> >
-> >I produced this page recently; FWIW I also came up with the pared-down
-> >package
-> >lists that went into the Quick Start Guide which this page borrows. How
-> >is
-> >this contradictory if it uses the same information?
-> >
-> >> that claims to steal from a number of sources including the yocto QS
-> >> guide, but look at the packages one is instructed to install on that
-> >> page, particularly under fedora: python, perl, git, and so on.
-> >
-> >So I don't recall exactly how perl got on that list; but python and git
-> >are
-> >absolutely required on the host. That's why they're in ASSUME_PROVIDED.
-> 
-> Paul - Should I remove perl from the essentials list for fedora and centos?
 
-Let's leave it there for the moment - you can't have git installed on either 
-distro without perl anyway so it's not going to make too much difference.
+We have done nightly build, while there are a couple of failures in the 
+Atom-PC build (kernel issue, Bruce has addressed) and Beagle board, 
+(xf86 issue which will be looked at tomorrow).  Testing can start on as 
+many platforms that we got binaries for the fixes for these issues will 
+not require re-testing of other platforms.
 
-Cheers,
-Paul
+http://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/?id=1b4dcf10b0fe9b4e95ca84f32de0c7dcfee2b729
 
--- 
+This contains the build artifacts.
 
-Paul Eggleton
-Intel Open Source Technology Centre
+http://autobuilder.yoctoproject.org/pub/nightly/20121121-3/
+
+Please do standard weekly testing.
+
+Thanks
+	Sau!
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
+
+
 
