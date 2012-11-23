@@ -1,36 +1,28 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 03A59E013EF
-	for <yocto@yoctoproject.org>; Fri, 23 Nov 2012 06:48:22 -0800 (PST)
-Received: from cpebcc81008dd2c-cmbcc81008dd29.cpe.net.cable.rogers.com
-	([99.253.156.71]:39432 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.77) (envelope-from <rpjday@crashcourse.ca>)
-	id 1TbuYI-0007o1-4p; Fri, 23 Nov 2012 09:48:22 -0500
-Date: Fri, 23 Nov 2012 09:48:18 -0500 (EST)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-In-Reply-To: <3038126.PEqOPPdATB@helios>
-Message-ID: <alpine.DEB.2.02.1211230945001.3535@oneiric>
-References: <alpine.DEB.2.02.1211211718070.14208@oneiric>
-	<1385552.yOr8lfiUWF@helios>
-	<alpine.DEB.2.02.1211230924450.3405@oneiric>
-	<3038126.PEqOPPdATB@helios>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <twoerner@gmail.com>
+Received: from mail-la0-f48.google.com (mail-la0-f48.google.com
+	[209.85.215.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 38AC2E0052C
+	for <yocto@yoctoproject.org>; Fri, 23 Nov 2012 10:27:01 -0800 (PST)
+Received: by mail-la0-f48.google.com with SMTP id m13so5545020lah.35
+	for <yocto@yoctoproject.org>; Fri, 23 Nov 2012 10:27:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=IbkkXv+M7TCgcqJIjXfHznYaTuOPyuqsXfMioipF/EY=;
+	b=XINwcJ5wDVTvIQSRB7dnM13XJGPRxrEUN/f7FyyMjFv7p4fIH+4lrS/C2mQNDcxAPi
+	7N0ku4J5vf5iKD9ukpEbLzGIxO2ZuTbx0PIhPMIa/0sscU4rw6RELQi8nnSSfPFe6KZB
+	uhQnNOwxD/PPKs4YHOnoQOx5i+l9tlZQVWyh8vwod3vlWF5fbc2bJKwrZukowyBYAtNo
+	tDsl0sZqdpf9nnGBp7gR3TpVn6JSCtz5epr5nIFV5psP5x66A2xInZNyKtbneLyGy8vk
+	lTktqUd3ho6jVDoKU+I5N8P5BqXp3jaQndn3hyrfQXaKAXjCweLjDvOL2hxlT653IoBw
+	lKHA==
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: yocto@yoctoproject.org
-Subject: Re: inconsistent pages out there for setting up your yocto dev host
+Received: by 10.152.108.48 with SMTP id hh16mr4141482lab.25.1353695220592;
+	Fri, 23 Nov 2012 10:27:00 -0800 (PST)
+Received: by 10.112.117.194 with HTTP; Fri, 23 Nov 2012 10:27:00 -0800 (PST)
+Date: Fri, 23 Nov 2012 13:27:00 -0500
+Message-ID: <CAHUNapSSawC9WwpdoNdg4vHBY6Yh3UycqYgOyX_pbTNw3S0Etg@mail.gmail.com>
+From: Trevor Woerner <twoerner@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: IMAGE_INSTALL_append workflow
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,39 +34,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 23 Nov 2012 14:48:23 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Fri, 23 Nov 2012 18:27:02 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On Fri, 23 Nov 2012, Paul Eggleton wrote:
+There have been many emails and lots of documentation describing how
+to add a package to a build, and that's all great.
 
-> Well, we don't test with any other value of ASSUME_PROVIDED. If you
-> add tools to ASSUME_PROVIDED that we would have otherwise built so
-> that the host tools are used, we haven't tested the build with those
-> host tools. Equally if you remove items from the default value of
-> ASSUME_PROVIDED, we don't necessarily fully test the system with
-> native tools that we don't normally build (although that's less
-> likely to be an issue than the other case).
->
-> I'm not saying you can't change the value of ASSUME_PROVIDED - just
-> that if you do and the build breaks, you get to keep both pieces :)
+Today I was playing around with an image I had already built and
+decided I wanted to add a new package to the mix: trace-cmd. I added "
+trace-cmd" (with the required leading space) to IMAGE_INSTALL_append
+and re-ran my "bitbake <image>" command.
 
-  completely understood.  for the sake of classroom work, i'm going to
-experiment with adding extra entries to speed things up, and watch if
-anything breaks.  my first choice would be to add subversion to
-ASSUME_PROVIDED -- that seems fairly safe, any moderately current
-version of subversion should work.
+It failed:
 
-  thanks.
+    Unable to resolve package trace-cmd
 
-rday
+If I perform:
 
--- 
+    $ bitbake trace-cmd
 
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
+and then
 
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+    $ bitbake <image>
+
+it works fine. What am I missing?
+
+As it turns out, if I knew before my first build that I wanted
+trace-cmd, I could have just added it as described above and
+everything would have worked as well.
+
+Best regards,
+    Trevor
 
