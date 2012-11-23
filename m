@@ -1,31 +1,34 @@
-Return-Path: <aalonso00@gmail.com>
-Received: from mail-ie0-f176.google.com (mail-ie0-f176.google.com
-	[209.85.223.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2A9DFE013EF
-	for <yocto@yoctoproject.org>; Thu, 22 Nov 2012 18:37:03 -0800 (PST)
-Received: by mail-ie0-f176.google.com with SMTP id 13so7373030iea.35
-	for <yocto@yoctoproject.org>; Thu, 22 Nov 2012 18:37:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=6oZfFFVBN7qyOQtqUHPldkkKwQ4SzFoQ7Ij7Zb6e7mY=;
-	b=V808wh4AQm4UyRSDk3wYugp1gT+kqSu0ZNu8yvT2awGAtHo0Ng8bp3nuSBHWj2i0ns
-	kn/bXBkDl2G+kxTLKjhtzvJowMol7fFaWnPG/B9jnKkmLF6wuBBLhQBJDP/bGS3JsZXa
-	N/1A0BXfe/SeZlZNCm3HmyO4Zj1ryvtm6UerPF+QDEhBIP0Qn38C5unaFDkDm7w65Qwr
-	PizBfS/uHGVD7b1ptiuRfbZyzsD+BKcQOE6ke7zojySfrGyTuZZkpwH3rENXY2muyo3P
-	I6gJggQxZHISKt15qsuYl8+P0J8N6dYBArtiPfy4zCWDkNl7ElxwN11pbCJUbpj8CVKK
-	yl4Q==
+Return-Path: <alexandru.damian@intel.com>
+Received: from fmsmga101.fm.intel.com (mga05.intel.com [192.55.52.89])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6BB9CE013EF
+	for <yocto@yoctoproject.org>; Fri, 23 Nov 2012 01:39:55 -0800 (PST)
+Received: from mail-ie0-f200.google.com ([209.85.223.200])
+	by mga01.intel.com with ESMTP/TLS/RC4-SHA; 23 Nov 2012 01:39:54 -0800
+Received: by mail-ie0-f200.google.com with SMTP id 10so38845014ied.11
+	for <yocto@yoctoproject.org>; Fri, 23 Nov 2012 01:39:54 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type
+	:x-gm-message-state;
+	bh=lAiZ1gROnSrpkFREvV32yW1+mYyFAw8eDAVbGeUyX2k=;
+	b=Upkrq5JnKj9fSjobG4114gPWZSQvA/OxwMM0a8I0oqTTxcmoaZ8MOX2/hgF/1fhPi7
+	HZBtMPUs5KLDhFob/JAPA3t3abzFsQZlEEFI2f/X18N9Oz2JHcA/x80jKdSNNixjft0Y
+	6/IHyepxDitogft7MMxyc8iRkyzpqMWWCiLvB4t1q8k4o3IqLgMn/UZGrChYz3+55Ixc
+	TbL1YwHBaiiCQqRNDWM9mBEIAmimcCB7FTy/sw8HZQ3NVfp2gj1AM5Q66UC+NKS146yL
+	ax4XTEKPMOXkEt9GhUCPIL80PDJNOSfj/rpV594FWi26wyL0WzE+hRH2H4CLCtPLBDnV
+	1P/g==
+Received: by 10.50.140.38 with SMTP id rd6mr2974167igb.35.1353663594225;
+	Fri, 23 Nov 2012 01:39:54 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.50.179.5 with SMTP id dc5mr2326998igc.15.1353638222494; Thu,
-	22 Nov 2012 18:37:02 -0800 (PST)
-Received: by 10.64.166.66 with HTTP; Thu, 22 Nov 2012 18:37:02 -0800 (PST)
-Date: Thu, 22 Nov 2012 20:37:02 -0600
-Message-ID: <CAAB-1yygWq_2+V8EZqp=UN=HRdWOdBsTjXqqW7Uu+p11teK-dA@mail.gmail.com>
-From: Adrian Alonso <aalonso00@gmail.com>
-To: yocto <yocto@yoctoproject.org>, 
-	Richard Purdie <richard.purdie@linuxfoundation.org>, 
-	"Osier-mixon, Jeffrey" <jeffrey.osier-mixon@intel.com>,
-	Elvis Dowson <elvis.dowson@gmail.com>
-Subject: [meta-xilinx] Update maintainers contact informaton
+Received: by 10.50.140.38 with SMTP id rd6mr2974164igb.35.1353663594068; Fri,
+	23 Nov 2012 01:39:54 -0800 (PST)
+Received: by 10.64.49.164 with HTTP; Fri, 23 Nov 2012 01:39:53 -0800 (PST)
+Date: Fri, 23 Nov 2012 11:39:53 +0200
+Message-ID: <CAJ2CSBs2XtrEpaUpOyANzmbSpNGPXvauaEDnWNGdwdYcFcjeMw@mail.gmail.com>
+From: "Damian, Alexandru" <alexandru.damian@intel.com>
+To: Yocto Project Discussion <yocto@yoctoproject.org>
+X-Gm-Message-State: ALoCoQkhzxxrxG4Sftpl6i+MlgyMGkJhHtnJfmKmHM5IWEMRAD4tW+X8wBLNUPcjYPBMCrz4iDcVo4/1jV6ZmmIFK9ndX96aRuxtWDKqHBVMeYeJJelRv/nsT+C9vX3DXgd13ycHsSCVricp9uBXPc0IS+lhliYmyw==
+Subject: Wiki Main page terrible sparse
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,24 +40,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 23 Nov 2012 02:37:03 -0000
+X-List-Received-Date: Fri, 23 Nov 2012 09:39:55 -0000
+Content-Type: multipart/alternative; boundary=e89a8f839bb7ab7c8c04cf265d25
+
+--e89a8f839bb7ab7c8c04cf265d25
 Content-Type: text/plain; charset=ISO-8859-1
 
-Hi all,
+Hello all,
 
-Please welcome Elvis Dowson as new maintainer for meta-xilinx bsp layer.
+I can't help but notice that the main page of the Yocto Wiki looks somewhat
+underwhelming compared to the new site face.
 
-Elvis had provide fixes over the last months for this layer and I'm pretty
-sure that he can improve and move forward this layer.
+Can we please have a volunteer to update and beautify a bit the main page ?
 
-This BSP layer allows to create a custom Linux distro that can be
-deployed in Xilinx FPGA's which can either have a soft-cpu model or a
-traditional CPU like PowerPC or ARM Cortex A9.
+I'd think that we need to list current 1.4 pages, add/verify links to all
+main sections, and the Yocto logo, etc...
 
-@Richard, Jeffrey please help Elvis to get write access in this repo.
+Cheers,
+Alex
 
--- 
-Regards
-Adrian Alonso
-http://aalonso.wordpress.com
+--e89a8f839bb7ab7c8c04cf265d25
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
+Hello all,<div><br></div><div>I can&#39;t help but notice that the main pag=
+e of the Yocto Wiki looks somewhat underwhelming compared to the new site f=
+ace.</div><div><br></div><div>Can we please have a volunteer to update and =
+beautify a bit the main page ?</div>
+<div><br></div><div>I&#39;d think that we need to list current 1.4 pages, a=
+dd/verify links to all main sections, and the Yocto logo, etc...</div><div>=
+<br></div><div>Cheers,</div><div>Alex</div>
+
+--e89a8f839bb7ab7c8c04cf265d25--
