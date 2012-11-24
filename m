@@ -1,28 +1,42 @@
-Return-Path: <twoerner@gmail.com>
-Received: from mail-la0-f48.google.com (mail-la0-f48.google.com
-	[209.85.215.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 38AC2E0052C
-	for <yocto@yoctoproject.org>; Fri, 23 Nov 2012 10:27:01 -0800 (PST)
-Received: by mail-la0-f48.google.com with SMTP id m13so5545020lah.35
-	for <yocto@yoctoproject.org>; Fri, 23 Nov 2012 10:27:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=IbkkXv+M7TCgcqJIjXfHznYaTuOPyuqsXfMioipF/EY=;
-	b=XINwcJ5wDVTvIQSRB7dnM13XJGPRxrEUN/f7FyyMjFv7p4fIH+4lrS/C2mQNDcxAPi
-	7N0ku4J5vf5iKD9ukpEbLzGIxO2ZuTbx0PIhPMIa/0sscU4rw6RELQi8nnSSfPFe6KZB
-	uhQnNOwxD/PPKs4YHOnoQOx5i+l9tlZQVWyh8vwod3vlWF5fbc2bJKwrZukowyBYAtNo
-	tDsl0sZqdpf9nnGBp7gR3TpVn6JSCtz5epr5nIFV5psP5x66A2xInZNyKtbneLyGy8vk
-	lTktqUd3ho6jVDoKU+I5N8P5BqXp3jaQndn3hyrfQXaKAXjCweLjDvOL2hxlT653IoBw
-	lKHA==
+Return-Path: <wd@denx.de>
+Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D72D9E0127C
+	for <yocto@yoctoproject.org>; Sat, 24 Nov 2012 00:03:47 -0800 (PST)
+Received: from frontend1.mail.m-online.net (unknown [192.168.8.180])
+	by mail-out.m-online.net (Postfix) with ESMTP id 3Y7n2n3Dfgz4KK64;
+	Sat, 24 Nov 2012 09:03:45 +0100 (CET)
+Received: from localhost (dynscan1.mnet-online.de [192.168.6.68])
+	by mail.m-online.net (Postfix) with ESMTP id 3Y7n2n264Rzbbk1;
+	Sat, 24 Nov 2012 09:03:45 +0100 (CET)
+X-Virus-Scanned: amavisd-new at mnet-online.de
+Received: from smtp-auth.mnet-online.de ([192.168.8.180])
+	by localhost (dynscan1.mail.m-online.net [192.168.6.68]) (amavisd-new,
+	port 10024)
+	with ESMTP id l23T6yph_hrR; Sat, 24 Nov 2012 09:00:44 +0100 (CET)
+X-Auth-Info: lOtbUbeZUQgeoE6WQIHaFRCL8fqEHUlSSz2krCBrF5k=
+Received: from diddl.denx.de (host-80-81-18-216.customer.m-online.net
+	[80.81.18.216]) by smtp-auth.mnet-online.de (Postfix) with ESMTPA;
+	Sat, 24 Nov 2012 09:03:43 +0100 (CET)
+Received: from gemini.denx.de (unknown [10.0.0.2])
+	by diddl.denx.de (Postfix) with ESMTP id B68E51A6D98;
+	Sat, 24 Nov 2012 09:03:42 +0100 (CET)
+Received: from gemini.denx.de (localhost [IPv6:::1])
+	by gemini.denx.de (Postfix) with ESMTP id 6E0A5201070;
+	Sat, 24 Nov 2012 09:03:42 +0100 (CET)
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+From: Wolfgang Denk <wd@denx.de>
 MIME-Version: 1.0
-Received: by 10.152.108.48 with SMTP id hh16mr4141482lab.25.1353695220592;
-	Fri, 23 Nov 2012 10:27:00 -0800 (PST)
-Received: by 10.112.117.194 with HTTP; Fri, 23 Nov 2012 10:27:00 -0800 (PST)
-Date: Fri, 23 Nov 2012 13:27:00 -0500
-Message-ID: <CAHUNapSSawC9WwpdoNdg4vHBY6Yh3UycqYgOyX_pbTNw3S0Etg@mail.gmail.com>
-From: Trevor Woerner <twoerner@gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: IMAGE_INSTALL_append workflow
+In-reply-to: <3038126.PEqOPPdATB@helios>
+References: <alpine.DEB.2.02.1211211718070.14208@oneiric>
+	<1385552.yOr8lfiUWF@helios>
+	<alpine.DEB.2.02.1211230924450.3405@oneiric>
+	<3038126.PEqOPPdATB@helios>
+Comments: In-reply-to Paul Eggleton <paul.eggleton@linux.intel.com>
+	message dated "Fri, 23 Nov 2012 14:39:23 +0000."
+Date: Sat, 24 Nov 2012 09:03:42 +0100
+Message-Id: <20121124080342.6E0A5201070@gemini.denx.de>
+Cc: yocto@yoctoproject.org
+Subject: Re: inconsistent pages out there for setting up your yocto dev host
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,35 +48,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 23 Nov 2012 18:27:02 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Sat, 24 Nov 2012 08:03:48 -0000
+Content-type: text/plain; charset=UTF-8
+Content-transfer-encoding: 8bit
 
-There have been many emails and lots of documentation describing how
-to add a package to a build, and that's all great.
+Dear Paul,
 
-Today I was playing around with an image I had already built and
-decided I wanted to add a new package to the mix: trace-cmd. I added "
-trace-cmd" (with the required leading space) to IMAGE_INSTALL_append
-and re-ran my "bitbake <image>" command.
+In message <3038126.PEqOPPdATB@helios> you wrote:
+>
+> >   if you're on an allegedly supported distro, and you do an upgrade,
+> > it's entirely possible that one of those bits of software gets
+> > upgraded in a way that breaks OE/yocto, and by using ASSUME_PROVIDED,
+> > you'll automatically start using that newer utility.  or is the list
+> > of supported distros specifically only those installed out of the box
+> > and never updated?  if that's the case, then, yes, i agree with your
+> > position.
+> 
+> That's why we test specific versions of distributions, and with the Poky distro 
+> config we warn the user if the distro/distro version is untested. It's rare 
+> that you get that kind of breakage between major versions; if there were then 
+> other applications are likely to be affected so it would be considered a 
+> regression in that distro.
 
-It failed:
+But of course there have always been, and will always be, such
+regressions. Just look at Fedora 17 (one of the supported versions of
+distributions), if one of the updates pulls in git version 1.7.11.7
+and suddenly all git downloads using HTTP protocol will fail for you
+(due to bug 865692, see https://bugzilla.redhat.com/show_bug.cgi?id=865692)
 
-    Unable to resolve package trace-cmd
-
-If I perform:
-
-    $ bitbake trace-cmd
-
-and then
-
-    $ bitbake <image>
-
-it works fine. What am I missing?
-
-As it turns out, if I knew before my first build that I wanted
-trace-cmd, I could have just added it as described above and
-everything would have worked as well.
+Actually it may make a lot of sense for certain configurations to
+bootstrap more tools from a known version of the sources.
 
 Best regards,
-    Trevor
+
+Wolfgang Denk
+
+-- 
+DENX Software Engineering GmbH,     MD: Wolfgang Denk & Detlev Zundel
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+Phone: (+49)-8142-66989-10 Fax: (+49)-8142-66989-80 Email: wd@denx.de
+Beware of the Turing Tar-pit in  which  everything  is  possible  but
+nothing of interest is easy.
 
