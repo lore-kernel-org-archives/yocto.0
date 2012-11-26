@@ -1,40 +1,34 @@
-Return-Path: <eren@hambedded.org>
-Received: from mail-ea0-f176.google.com (mail-ea0-f176.google.com
-	[209.85.215.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BC716E0034C
-	for <yocto@yoctoproject.org>; Mon, 26 Nov 2012 11:04:21 -0800 (PST)
-Received: by mail-ea0-f176.google.com with SMTP id d13so3215514eaa.35
-	for <yocto@yoctoproject.org>; Mon, 26 Nov 2012 11:04:20 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:content-disposition:in-reply-to:user-agent
-	:x-gm-message-state;
-	bh=Uqejgx+1chnOTDSar0REJ4eIuG8nnfLW+ja+RiweF70=;
-	b=oILKpV68ks1a3rP7mk5gIcWrRyQ/6PqgE+3IQ0WaKM9RCMVYM9RzuFgYGxGj4o9uoq
-	H02o4GtmcFlVSEXDYwtWNYYeifyyAaNCFxXRYd8F3n0EVzETuQJdO6npWiBC+AP7A/DN
-	AQiNQVNRj9pwNJk9qJ4HqtLptJOUM9uPJ/cRWKFVb6G6QKNwJPRiXhUcUk9b2y6s8s4n
-	MSzhbAoDLA6k41Ymlxd5p/6og99GQWNpslcN63LmamkF8FQVWLegNyDFJOngdQW/5btd
-	lPNWL3xV+VT7d/d4T9TDvy83oj7PxlmzXfCXpKbzQmKyg0/UB76csjQlb3xIT82gn5kS
-	pbWg==
-Received: by 10.14.173.69 with SMTP id u45mr25172107eel.21.1353956659785;
-	Mon, 26 Nov 2012 11:04:19 -0800 (PST)
-Received: from gmail.com ([46.196.117.99])
-	by mx.google.com with ESMTPS id f49sm5033505eep.12.2012.11.26.11.04.17
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Mon, 26 Nov 2012 11:04:18 -0800 (PST)
-Date: Mon, 26 Nov 2012 21:04:07 +0200
-From: Eren =?iso-8859-1?Q?T=FCrkay?= <eren@hambedded.org>
-To: Trevor Woerner <twoerner@gmail.com>
-Message-ID: <20121126190407.GA69689@gmail.com>
-References: <CAHUNapSSawC9WwpdoNdg4vHBY6Yh3UycqYgOyX_pbTNw3S0Etg@mail.gmail.com>
-	<CAHUNapSVRuxDxn9L=oHg6aO-RKso2VNF6Mczaf2zwgxHn2zzBw@mail.gmail.com>
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1A965E00348
+	for <yocto@yoctoproject.org>; Mon, 26 Nov 2012 12:22:03 -0800 (PST)
+Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
+	([174.115.5.73]:53825 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.77) (envelope-from <rpjday@crashcourse.ca>)
+	id 1Td5Bp-0000RI-Pf; Mon, 26 Nov 2012 15:22:01 -0500
+Date: Mon, 26 Nov 2012 15:21:58 -0500 (EST)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: Evade Flow <evadeflow@gmail.com>
+In-Reply-To: <CAMAb8ZNU4sTV24ZdTQtmntf3TNn_1rJryi=39k6mqoLbUgOajQ@mail.gmail.com>
+Message-ID: <alpine.DEB.2.02.1211261516170.6380@oneiric>
+References: <alpine.DEB.2.02.1211211443060.4010@oneiric>
+	<CAMAb8ZNU4sTV24ZdTQtmntf3TNn_1rJryi=39k6mqoLbUgOajQ@mail.gmail.com>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
-In-Reply-To: <CAHUNapSVRuxDxn9L=oHg6aO-RKso2VNF6Mczaf2zwgxHn2zzBw@mail.gmail.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Gm-Message-State: ALoCoQloDzvHjpeSkRlWtyPzDv5kotAapa174kUMgzxt71yAcxNI7UUp684MLSg1BeQ+OsYVVuUL
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: IMAGE_INSTALL_append workflow
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: my wiki page for using OE and meta-ti layer to build for panda ES
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,76 +40,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 26 Nov 2012 19:04:22 -0000
-X-Groupsio-MsgNum: 10653
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="y0ulUmNC+osPPQO6"
-Content-Disposition: inline
+X-List-Received-Date: Mon, 26 Nov 2012 20:22:03 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
---y0ulUmNC+osPPQO6
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Mon, 26 Nov 2012, Evade Flow wrote:
 
-On Mon, Nov 26, 2012 at 10:47:31AM -0500, Trevor Woerner wrote:
-> I'm kinda surprised nobody jumped in on this one; either my question
-> is so silly it isn't worth anyone's time, or I'm the only one who
-> wants to add packages to an image after a full build. I know my
-> question has nothing to do with trace-cmd specifically, adding any
-> package after a full build results in the same problem.
+> Love it! Any chance you could add an 'Advanced' or 'Next Steps'
+> section that shows how to go beyond a minimal build? Like, how to get
+> a working Qt stack into a custom image on the PandaBoard?
+>
+> On Wed, Nov 21, 2012 at 2:44 PM, Robert P. J. Day <rpjday@crashcourse.ca> wrote:
+> >
+> >   not strictly related to yocto but i figured some folks might be
+> > interested in a recipe for using OE and the meta-ti layer to build a
+> > bootable system for a panda ES:
+> >
+> > http://www.crashcourse.ca/wiki/index.php/OE-Core%2C_meta-ti_and_the_PandaBoard_ES
+> >
+> >   feedback welcome.
 
-I don't think you are the first person who wants to add a package to image =
-after
-the image has been built :)
+  at some point, yes, but just to be clear about what i'm trying to
+do, while i'm happy to share my findings, i'm documenting solely stuff
+that is of use to *me* and the boards i'm using -- in the case above,
+the pandaboard ES (Rev B1).  and while the original panda is a
+perfectly fine board, it's not what i'm using so i'm not going to
+invest any time in it.
 
-The obvious problem would have been leading spaces in IMAGE_INSTALL_append =
-but
-you explicitly stated its correct. Normally, the class that's responsible f=
-or
-image creation (image.bbclass) depends on the packages defined in IMAGE_INS=
-TALL
-so that the packages are built before the image creation begins.
+  also, before someone suggests i post this stuff at one of common
+wikis (elinux.org, etc.), that's also a fine idea but i'm keeping this
+stuff at my site out of pure self-interest -- it brings in visitors so
+i can promote my training business.  totally selfish.  capitalism. :-)
 
-image.bbclass, line 9
----------------------
-RDEPENDS +=3D "${IMAGE_INSTALL} ${LINGUAS_INSTALL} ${NORMAL_FEATURE_INSTALL}
-${ROOTFS_BOOTSTRAP_INSTALL}"
+  all that out of the way, if anyone out there is also working on the
+board i'm using and wants to share what they've done or point to sites
+that have working recipes for this board, i'll be more than happy to
+add that to my wiki page(s).  obviously, this list should be
+restricted to yocto-related content to not wander too far afield.
 
-On irc (#oe), Eric Benard tried IMAGE_INSTALL_append =3D " trace-cmd" after=
- a full
-build and reported that it built fine. I'm CCing him.
+rday
 
-I believe that it will be better to include your <image> file and the files=
- that
-you changed so that it will be easier to debug. Mentioning your layers,
-configuration, version of Yocto you use will also be helpful.
+-- 
 
-Regards,
-Eren
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
 
---=20
-    . 73! DE TA1AET
-      http://erenturkay.com/
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
---y0ulUmNC+osPPQO6
-Content-Type: application/pgp-signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.12 (Darwin)
-
-iQIcBAEBAgAGBQJQs70nAAoJEOM7bMm6HhcTmE4P/1s48/IVVgI7ngHpmHABvHhQ
-MLkIS/HSnV/B51x5L+U/8yr7reIbWKkneJqDg4fjFCbgKka8CaSs/HJb5V9/63Id
-vlVYw0aKnBTNZ6t+YzHfL2s0pv61BrFH53jU5YAhmBd31xmENVB9Z12t2e8ZSKJf
-T6Z8gRBBzok3Yo76Q9KRYj6QFsyjVMsrMlF8yI8ZjTKUrALxrLzJ7U2iKFltV4pA
-G724bGow3wAAQZWh4XlAdQeXw7yI9xiNQJnIEVtAid2HZZcThWtnwjpnTc1TPnTb
-WsM+w4McNPlVXieEGEp2kYDyKdRyaP92r+IY5aKKPLmGT6b1riK5W4MTRj1gZYAh
-ahDUK9ae9LnIQjOTag4CRXxL3J6khPFxpObYLehS5FnQN99HN4LQ2eqHyhZZKDDL
-u3LDVWPOSAxtpxofgrVtaorJpUdITEQirHbpxWFBgljxYOrP44Kzi65JWnoEgcZo
-Uvjiwb5z5djt+oBNBjlD0j947BD2ipe23/SOI1UnyfvdgJFY6RbI09dlXHNsQZtu
-YaB2bNHL+SztR43PnkSfXb7uGJkZuSvOaWbMSZikXjpwNBUsBYBYa5cI0R13SZm6
-H5R2j4DNmP3yVpWJW3Kl7CB5c+pMHhRu4BxqQNXXTnAIBEIojx4sL03lqDEFuZB4
-fw6BsQJMu1c5ufVWo6At
-=OsEZ
------END PGP SIGNATURE-----
-
---y0ulUmNC+osPPQO6--
