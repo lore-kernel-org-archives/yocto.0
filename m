@@ -1,19 +1,19 @@
 Return-Path: <rpjday@crashcourse.ca>
 Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
 	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1A965E00348
-	for <yocto@yoctoproject.org>; Mon, 26 Nov 2012 12:22:03 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9DE9DE011CC
+	for <yocto@yoctoproject.org>; Mon, 26 Nov 2012 12:23:32 -0800 (PST)
 Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
-	([174.115.5.73]:53825 helo=crashcourse.ca)
+	([174.115.5.73]:53899 helo=crashcourse.ca)
 	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
 	(Exim 4.77) (envelope-from <rpjday@crashcourse.ca>)
-	id 1Td5Bp-0000RI-Pf; Mon, 26 Nov 2012 15:22:01 -0500
-Date: Mon, 26 Nov 2012 15:21:58 -0500 (EST)
+	id 1Td5DH-0000if-K0; Mon, 26 Nov 2012 15:23:31 -0500
+Date: Mon, 26 Nov 2012 15:23:30 -0500 (EST)
 From: "Robert P. J. Day" <rpjday@crashcourse.ca>
 X-X-Sender: rpjday@oneiric
 To: Evade Flow <evadeflow@gmail.com>
 In-Reply-To: <CAMAb8ZNU4sTV24ZdTQtmntf3TNn_1rJryi=39k6mqoLbUgOajQ@mail.gmail.com>
-Message-ID: <alpine.DEB.2.02.1211261516170.6380@oneiric>
+Message-ID: <alpine.DEB.2.02.1211261522240.6380@oneiric>
 References: <alpine.DEB.2.02.1211211443060.4010@oneiric>
 	<CAMAb8ZNU4sTV24ZdTQtmntf3TNn_1rJryi=39k6mqoLbUgOajQ@mail.gmail.com>
 User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
@@ -40,7 +40,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 26 Nov 2012 20:22:03 -0000
+X-List-Received-Date: Mon, 26 Nov 2012 20:23:32 -0000
 Content-Type: TEXT/PLAIN; charset=US-ASCII
 
 On Mon, 26 Nov 2012, Evade Flow wrote:
@@ -56,26 +56,10 @@ On Mon, 26 Nov 2012, Evade Flow wrote:
 > > bootable system for a panda ES:
 > >
 > > http://www.crashcourse.ca/wiki/index.php/OE-Core%2C_meta-ti_and_the_PandaBoard_ES
-> >
-> >   feedback welcome.
 
-  at some point, yes, but just to be clear about what i'm trying to
-do, while i'm happy to share my findings, i'm documenting solely stuff
-that is of use to *me* and the boards i'm using -- in the case above,
-the pandaboard ES (Rev B1).  and while the original panda is a
-perfectly fine board, it's not what i'm using so i'm not going to
-invest any time in it.
-
-  also, before someone suggests i post this stuff at one of common
-wikis (elinux.org, etc.), that's also a fine idea but i'm keeping this
-stuff at my site out of pure self-interest -- it brings in visitors so
-i can promote my training business.  totally selfish.  capitalism. :-)
-
-  all that out of the way, if anyone out there is also working on the
-board i'm using and wants to share what they've done or point to sites
-that have working recipes for this board, i'll be more than happy to
-add that to my wiki page(s).  obviously, this list should be
-restricted to yocto-related content to not wander too far afield.
+  by the way, would anyone using that very board like to confirm that
+my recipe so far at that wiki page is correct?  just what's there --
+is there anything that can be added or tweaked?  thanks.
 
 rday
 
