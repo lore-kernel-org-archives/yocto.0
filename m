@@ -1,19 +1,21 @@
 Return-Path: <ioanax.grigoropol@intel.com>
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0D103E011AC
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2A07AE01213
 	for <yocto@yoctoproject.org>; Mon, 26 Nov 2012 03:14:23 -0800 (PST)
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
 	by orsmga101.jf.intel.com with ESMTP; 26 Nov 2012 03:14:22 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.83,319,1352102400"; d="scan'208";a="247150796"
+X-IronPort-AV: E=Sophos;i="4.83,319,1352102400"; d="scan'208";a="247150962"
 Received: from ideapad (HELO localhost.localdomain) ([10.237.105.148])
-	by orsmga002.jf.intel.com with ESMTP; 26 Nov 2012 03:13:59 -0800
+	by orsmga002.jf.intel.com with ESMTP; 26 Nov 2012 03:14:00 -0800
 From: Ioana Grigoropol <ioanax.grigoropol@intel.com>
 To: yocto@yoctoproject.org
-Date: Mon, 26 Nov 2012 13:04:56 +0200
-Message-Id: <1353927897-10470-1-git-send-email-ioanax.grigoropol@intel.com>
+Date: Mon, 26 Nov 2012 13:04:57 +0200
+Message-Id: <1353927897-10470-2-git-send-email-ioanax.grigoropol@intel.com>
 X-Mailer: git-send-email 1.7.9.5
-Subject: [PATCH 2/3] Fix Bitbake commander project wizard
+In-Reply-To: <1353927897-10470-1-git-send-email-ioanax.grigoropol@intel.com>
+References: <1353927897-10470-1-git-send-email-ioanax.grigoropol@intel.com>
+Subject: [PATCH 3/3] Validate Recipe autopopulated fields
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,78 +29,155 @@ List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
 X-List-Received-Date: Mon, 26 Nov 2012 11:14:23 -0000
 
-- do not run git task in a loop
-- wait for the command to finish - use ModalContext.allowReadAndDispatch(false) - (needs some fixes for upstream RSE API - TBA)
+- validate that generated md5sums and sha256 sums are valid before populating the fields
+- clear all previous commands output (like after source & bitbake -e) in order to limit output parsing
 
 Signed-off-by: Ioana Grigoropol <ioanax.grigoropol@intel.com>
 ---
- .../yocto/bc/ui/wizards/install/InstallWizard.java |   27 ++++++++++----------
- 1 file changed, 14 insertions(+), 13 deletions(-)
+ .../org/yocto/bc/remote/utils/RemoteHelper.java    |    3 --
+ .../remote/utils/YoctoHostShellProcessAdapter.java |    8 ++++--
+ .../ui/wizards/NewBitBakeFileRecipeWizardPage.java |   29 ++++++++++----------
+ 3 files changed, 19 insertions(+), 21 deletions(-)
 
-diff --git a/plugins/org.yocto.bc.ui/src/org/yocto/bc/ui/wizards/install/InstallWizard.java b/plugins/org.yocto.bc.ui/src/org/yocto/bc/ui/wizards/install/InstallWizard.java
-index dd2074c..d780cbf 100644
---- a/plugins/org.yocto.bc.ui/src/org/yocto/bc/ui/wizards/install/InstallWizard.java
-+++ b/plugins/org.yocto.bc.ui/src/org/yocto/bc/ui/wizards/install/InstallWizard.java
-@@ -9,6 +9,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
- import org.eclipse.core.runtime.IStatus;
- import org.eclipse.core.runtime.Status;
- import org.eclipse.jface.operation.IRunnableWithProgress;
-+import org.eclipse.jface.operation.ModalContext;
- import org.eclipse.jface.viewers.IStructuredSelection;
- import org.eclipse.jface.wizard.WizardPage;
- import org.eclipse.ptp.remote.core.IRemoteConnection;
-@@ -114,12 +115,12 @@ public class InstallWizard extends FiniteStateWizard implements IWorkbenchWizard
- 				
- 			if (((Boolean)options.get(GIT_CLONE)).booleanValue()) {
- 				String[] cmd = {"/usr/bin/git clone --progress", "git://git.yoctoproject.org/poky.git", uri.getPath()};
-+//				String[] cmd = {"md5sum /home/builder/socks-gw"};
- 				LongtimeRunningTask runningTask = new LongtimeRunningTask("Checking out Yocto git repository", cmd, 
- 						((IRemoteConnection)model.get(InstallWizard.SELECTED_CONNECTION)), 
- 						((IRemoteServices)model.get(InstallWizard.SELECTED_REMOTE_SERVICE)));
-+				ModalContext.setAllowReadAndDispatch(false);
- 				this.getContainer().run(false, false, runningTask);
--//				while (!runningTask.isFinished)
--//					Thread.sleep(2);
- 			}
- 			
- 			CommandResponseHandler cmdHandler = RemoteHelper.getCommandHandler(RemoteHelper.getRemoteConnectionByName(((IRemoteConnection)model.get(InstallWizard.SELECTED_CONNECTION)).getName()));
-@@ -183,7 +184,7 @@ public class InstallWizard extends FiniteStateWizard implements IWorkbenchWizard
+diff --git a/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/RemoteHelper.java b/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/RemoteHelper.java
+index 430dc6d..9c88ee7 100644
+--- a/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/RemoteHelper.java
++++ b/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/RemoteHelper.java
+@@ -301,8 +301,6 @@ public class RemoteHelper {
+ 	}
+ 	
+ 	public static void runBatchRemote(IHost connection, List<YoctoCommand> cmds, IProgressMonitor monitor, boolean waitForOutput) throws CoreException {
+-		connection.getHostName();
+-		connection.getDefaultUserId();
+ 		try {
+ 			String remoteCommand = "";
+ 			for (YoctoCommand cmd : cmds) {
+@@ -364,5 +362,4 @@ public class RemoteHelper {
+ 		}
+ 		return false;
+ 	}
+-
+ }
+diff --git a/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/YoctoHostShellProcessAdapter.java b/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/YoctoHostShellProcessAdapter.java
+index a772dc4..b75401c 100644
+--- a/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/YoctoHostShellProcessAdapter.java
++++ b/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/YoctoHostShellProcessAdapter.java
+@@ -11,7 +11,6 @@ import org.eclipse.rse.services.shells.IHostOutput;
+ import org.eclipse.rse.services.shells.IHostShell;
+ import org.eclipse.rse.services.shells.IHostShellChangeEvent;
+ import org.eclipse.rse.services.shells.IHostShellOutputReader;
+-import org.eclipse.swt.widgets.Display;
  
- 		synchronized public void run(IProgressMonitor monitor) 
- 				throws InvocationTargetException, InterruptedException {
--			boolean cancel = false;
-+//			boolean cancel = false;
- 			try {
- 				monitor.beginTask(taskName, TOTALWORKLOAD);
- 				
-@@ -203,17 +204,17 @@ public class InstallWizard extends FiniteStateWizard implements IWorkbenchWizard
- 				for (int i = 1; i < cmdArray.length; i++)
- 					args += cmdArray[i] + " ";
- 				try {
--					while (!cancel) {
--	                    if(monitor.isCanceled()) {
--	                            cancel=true;
--	                            throw new InterruptedException("User Cancelled");
--	                    }
--	                    boolean hasErrors = RemoteHelper.runCommandRemote(RemoteHelper.getRemoteConnectionByName(connection.getName()), new YoctoCommand(cmdArray[0], "", args), monitor);
--	                    if (hasErrors)
--	                    	break;
-+//					while (!cancel) {
-+//	                    if(monitor.isCanceled()) {
-+//	                            cancel=true;
-+//	                            throw new InterruptedException("User Cancelled");
-+//	                    }
-+	                    RemoteHelper.runCommandRemote(RemoteHelper.getRemoteConnectionByName(connection.getName()), new YoctoCommand(cmdArray[0], "", args), monitor);
-+//	                    if (hasErrors)
-+//	                    	break;
- 	                    
--	                    Thread.sleep(5000);
--					}
-+//	                    Thread.sleep(5000);
-+//					}
+ public class YoctoHostShellProcessAdapter extends  HostShellProcessAdapter{
+ 	private ProcessStreamBuffer processStreamBuffer;
+@@ -75,7 +74,6 @@ public class YoctoHostShellProcessAdapter extends  HostShellProcessAdapter{
+ 	
+ 	private void reportProgress(String info) {
+ 		
+-		
+ 		if(calculator == null) {
+ 			updateMonitor(1);
+ 		} else {
+@@ -125,7 +123,6 @@ public class YoctoHostShellProcessAdapter extends  HostShellProcessAdapter{
+ 				this.commandResponseHandler.response(value, false);
+ 			}
+ 		}
+-
+ 		AbstractHostShellOutputReader absReader = (AbstractHostShellOutputReader)reader;
+ 		isAlive = absReader.isAlive();
+ 		isFinished = absReader.isFinished();
+@@ -145,4 +142,9 @@ public class YoctoHostShellProcessAdapter extends  HostShellProcessAdapter{
+ 	public void setAlive(boolean isAlive) {
+ 		this.isAlive = isAlive;
+ 	}
++
++	public void clearProcessBuffer() {
++		this.processStreamBuffer.outputLines.clear();
++		this.processStreamBuffer.errorLines.clear();
++	}
+ }
+diff --git a/plugins/org.yocto.bc.ui/src/org/yocto/bc/ui/wizards/NewBitBakeFileRecipeWizardPage.java b/plugins/org.yocto.bc.ui/src/org/yocto/bc/ui/wizards/NewBitBakeFileRecipeWizardPage.java
+index f45158f..eac1211 100644
+--- a/plugins/org.yocto.bc.ui/src/org/yocto/bc/ui/wizards/NewBitBakeFileRecipeWizardPage.java
++++ b/plugins/org.yocto.bc.ui/src/org/yocto/bc/ui/wizards/NewBitBakeFileRecipeWizardPage.java
+@@ -18,6 +18,7 @@ import java.util.HashMap;
+ import java.util.Iterator;
+ import java.util.List;
+ import java.util.Set;
++import java.util.regex.Pattern;
+ 
+ import org.eclipse.core.resources.IContainer;
+ import org.eclipse.core.resources.IProject;
+@@ -95,6 +96,8 @@ public class NewBitBakeFileRecipeWizardPage extends WizardPage {
+ 	private static final String CONFIGURE_IN = "configure.in";
+ 	private static final String CONFIGURE_AC = "configure.ac";
+ 	private static final String AUTOTOOLS = "autotools";
++	private static final String md5Pattern = "^[0-9a-e]{32}$";
++	protected static final String sha256Pattern = "^[0-9a-e]{64}$";
+ 	
+ 	public NewBitBakeFileRecipeWizardPage(ISelection selection, IHost connection) {
+ 		super("wizardPage");
+@@ -302,14 +305,6 @@ public class NewBitBakeFileRecipeWizardPage extends WizardPage {
  				} catch (Exception e) {
  					e.printStackTrace();
- 				} finally {
+ 				}
+-//				populateRecipeName(srcURI);
+-//				populateSrcUriChecksum(srcURI, monitor);
+-//				
+-//				URI extractDir = extractPackage(srcURI, monitor);
+-//				populateLicenseFileChecksum(extractDir, monitor);
+-//				updateSrcUri(createMirrorLookupTable(monitor), srcURI);
+-//				populateInheritance(extractDir, monitor);
+-				
+ 			} else {
+ 				String packageName = getSrcFileName(false).replace("-", "_");
+ 				fileText.setText(packageName + BB_RECIPE_EXT);
+@@ -318,10 +313,7 @@ public class NewBitBakeFileRecipeWizardPage extends WizardPage {
+ 			}
+ 		} catch (URISyntaxException e) {
+ 			e.printStackTrace();
+-		} /*catch (MalformedURLException e) {
+-			e.printStackTrace();
+-		}*/
+-		
++		}
+ 	}
+ 	
+ 	private void handleLocalPopulate(URI srcURI, IProgressMonitor monitor) {
+@@ -330,6 +322,7 @@ public class NewBitBakeFileRecipeWizardPage extends WizardPage {
+ 	}
+ 
+ 	private void handleRemotePopulate(URI srcURI, IProgressMonitor monitor) throws Exception {
++		RemoteHelper.clearProcessBuffer(connection);
+ 		populateRecipeName(srcURI);
+ 		List<YoctoCommand> commands = new ArrayList<YoctoCommand>();
+ 		
+@@ -363,9 +356,12 @@ public class NewBitBakeFileRecipeWizardPage extends WizardPage {
+ 		updateSrcUri(createMirrorLookupTable(monitor), srcURI);
+ 		populateInheritance(extractDir, monitor);
+ 		
+-		md5sumText.setText(retrieveSum(md5YCmd));
+-		sha256sumText.setText(retrieveSum(sha256YCmd));
+-		checksumText.setText(RemoteHelper.createNewURI(extractDir, COPYING_FILE).toString() + ";md5=" + retrieveSum(licenseChecksumCmd));
++		String md5Val = retrieveSum(md5YCmd);
++		md5sumText.setText(Pattern.matches(md5Pattern,  md5Val) ? md5Val : "");
++		String sha256Val = retrieveSum(sha256YCmd);
++		sha256sumText.setText(Pattern.matches(sha256Pattern,  sha256Val) ? sha256Val : "");
++		String checkSumVal =  retrieveSum(licenseChecksumCmd);
++		checksumText.setText(RemoteHelper.createNewURI(extractDir, COPYING_FILE).toString() + ";md5=" + (Pattern.matches(md5Pattern,  checkSumVal) ? checkSumVal : ""));
+ 	}
+ 
+ 	private String retrieveSum(YoctoCommand cmd) {
+@@ -409,6 +405,9 @@ public class NewBitBakeFileRecipeWizardPage extends WizardPage {
+ 	
+ 	private void populateInheritance(URI extractDir, IProgressMonitor monitor) {
+ 		IHostFile[] hostFiles = RemoteHelper.getRemoteDirContent(connection, metaDirLoc.getPath(), "", IFileService.FILE_TYPE_FILES, monitor);
++		if (hostFiles == null)
++			return;
++		
+ 		for (IHostFile file: hostFiles) {
+ 			String fileName = file.getName();
+ 			if (fileName.equalsIgnoreCase(CMAKE_LIST)){
 -- 
 1.7.9.5
 
