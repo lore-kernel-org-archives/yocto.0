@@ -1,34 +1,24 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9DE9DE011CC
-	for <yocto@yoctoproject.org>; Mon, 26 Nov 2012 12:23:32 -0800 (PST)
-Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
-	([174.115.5.73]:53899 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.77) (envelope-from <rpjday@crashcourse.ca>)
-	id 1Td5DH-0000if-K0; Mon, 26 Nov 2012 15:23:31 -0500
-Date: Mon, 26 Nov 2012 15:23:30 -0500 (EST)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Evade Flow <evadeflow@gmail.com>
-In-Reply-To: <CAMAb8ZNU4sTV24ZdTQtmntf3TNn_1rJryi=39k6mqoLbUgOajQ@mail.gmail.com>
-Message-ID: <alpine.DEB.2.02.1211261522240.6380@oneiric>
-References: <alpine.DEB.2.02.1211211443060.4010@oneiric>
-	<CAMAb8ZNU4sTV24ZdTQtmntf3TNn_1rJryi=39k6mqoLbUgOajQ@mail.gmail.com>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
-MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: my wiki page for using OE and meta-ti layer to build for panda ES
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E8C51E00348
+	for <yocto@yoctoproject.org>; Mon, 26 Nov 2012 12:44:10 -0800 (PST)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga101.ch.intel.com with ESMTP; 26 Nov 2012 12:44:10 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.83,323,1352102400"; d="scan'208";a="172801147"
+Received: from unknown (HELO [10.255.13.36]) ([10.255.13.36])
+	by AZSMGA002.ch.intel.com with ESMTP; 26 Nov 2012 12:44:09 -0800
+Message-ID: <1353962648.28133.60.camel@empanada>
+From: Tom Zanussi <tom.zanussi@intel.com>
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>
+Date: Mon, 26 Nov 2012 14:44:08 -0600
+In-Reply-To: <alpine.DEB.2.02.1211240752370.5998@oneiric>
+References: <alpine.DEB.2.02.1211240752370.5998@oneiric>
+X-Mailer: Evolution 3.4.1 (3.4.1-2.fc17) 
+Mime-Version: 1.0
+Cc: Yocto discussion list <yocto@yoctoproject.org>,
+	Saul Wold <saul.wold@intel.com>
+Subject: Re: does meta-intel/meta-tlk layer require a README.sources file?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,36 +30,59 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 26 Nov 2012 20:23:32 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Mon, 26 Nov 2012 20:44:11 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-On Mon, 26 Nov 2012, Evade Flow wrote:
+On Sat, 2012-11-24 at 07:59 -0500, Robert P. J. Day wrote:
+> more annoying pedantry, but from what i read in the current yocto
+> BSP manual, a BSP layer *requires* a README.sources file, but there is
+> no such file in the meta-intel/meta-tlk layer, although i can
+> appreciate that that layer isn't *really* a BSP definition.  or is it?
+> 
 
-> Love it! Any chance you could add an 'Advanced' or 'Next Steps'
-> section that shows how to go beyond a minimal build? Like, how to get
-> a working Qt stack into a custom image on the PandaBoard?
->
-> On Wed, Nov 21, 2012 at 2:44 PM, Robert P. J. Day <rpjday@crashcourse.ca> wrote:
-> >
-> >   not strictly related to yocto but i figured some folks might be
-> > interested in a recipe for using OE and the meta-ti layer to build a
-> > bootable system for a panda ES:
-> >
-> > http://www.crashcourse.ca/wiki/index.php/OE-Core%2C_meta-ti_and_the_PandaBoard_ES
+The meta-tlk layer isn't a BSP layer - it's a layer used to add the
+'time limited kernel' feature to images built from a meta-intel BSP
+layer and distributed with that layer e.g. in the downloadable tarballs
+available on the Yocto downloads page.
 
-  by the way, would anyone using that very board like to confirm that
-my recipe so far at that wiki page is correct?  just what's there --
-is there anything that can be added or tweaked?  thanks.
+It's a meta-intel-only layer and has no meaning unless coupled with a
+meta-intel BSP layer, which does always includes a README.sources of its
+own, and so doesn't itself need one.
 
-rday
+The purpose of the README.sources also really only has meaning relative
+to a generated image distributed with a layer - it tells the user where
+he or she can find the sources that were used to generate the image that
+was downloaded as part of the BSP.
 
--- 
+I'm cc:ing the originators of those files in case they might have
+anything to add or can correct me if my assumptions about those files
+are wrong...
 
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
+>   can someone clarify this?  is there a clear explanation as to what
+> is required for a simple *layer* and what is required for an actual
+> BSP definition?
 
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+The BSP Developer's Guide says what should go into a BSP layer.  I don't
+know of anything that says what should go into a 'simple layer' other
+than what's needed from a functional standpoint.  I suppose it would
+make sense in general to have layers follow the same basic layout as the
+main oe-core metadata, and I guess they mostly do these days already,
+but since layers are a general mechanism that mean different things to
+different people, I don't know that it's possible to require much beyond
+functionality.
+
+For BSPs, the purpose of a layer is to both document and distribute a
+test image or two, to allow the user to find the sources that were used
+to build the image, and to build the image on his or her own, which is
+what drove the specific requirements for BSP layers as described in the
+BSP Developer's Guide...
+
+Tom
+
+> 
+> rday
+> 
+
+
 
