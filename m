@@ -1,32 +1,40 @@
-Return-Path: <evadeflow@gmail.com>
-Received: from mail-oa0-f48.google.com (mail-oa0-f48.google.com
-	[209.85.219.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C4223E0045D
-	for <yocto@yoctoproject.org>; Mon, 26 Nov 2012 08:52:28 -0800 (PST)
-Received: by mail-oa0-f48.google.com with SMTP id h2so12864800oag.35
-	for <yocto@yoctoproject.org>; Mon, 26 Nov 2012 08:52:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=JlKYUxYAqX0glCBJcoVmFJTJDzHkWx8Nb8msoclMgjg=;
-	b=XcbpWB5BwXn5MJuGfi5+RYZ9MLO05Wqq7dyUB60HpqCTNrYJioJoIImDzm2pP0Us9w
-	3XeoDqNxBUkrEa4O1dOH5hWbLgyLWC6wFHMO1ks93Qkfhaupz0vle+L3fOLwgPQI1hiY
-	6bDggENT8v4W26Rl0Np+gSvSfwncWoJW+3T/1qRgqtdc6jIwJY77Ip5lt6k+51o2Emhj
-	0v66EJv6DQrVMRus90x5Q0bvHNxOOJZX999QfhOJv7yYxFjuEN4/X40GpXoCdor7jLBz
-	F3qqVnhc4SAX5mvWwn6cM31gZfMMz7rtunTVDT13kLQcvTUeZdbqI2NAK8QQGA5XVQE/
-	6Y7w==
+Return-Path: <eren@hambedded.org>
+Received: from mail-ea0-f176.google.com (mail-ea0-f176.google.com
+	[209.85.215.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BC716E0034C
+	for <yocto@yoctoproject.org>; Mon, 26 Nov 2012 11:04:21 -0800 (PST)
+Received: by mail-ea0-f176.google.com with SMTP id d13so3215514eaa.35
+	for <yocto@yoctoproject.org>; Mon, 26 Nov 2012 11:04:20 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=date:from:to:cc:subject:message-id:references:mime-version
+	:content-type:content-disposition:in-reply-to:user-agent
+	:x-gm-message-state;
+	bh=Uqejgx+1chnOTDSar0REJ4eIuG8nnfLW+ja+RiweF70=;
+	b=oILKpV68ks1a3rP7mk5gIcWrRyQ/6PqgE+3IQ0WaKM9RCMVYM9RzuFgYGxGj4o9uoq
+	H02o4GtmcFlVSEXDYwtWNYYeifyyAaNCFxXRYd8F3n0EVzETuQJdO6npWiBC+AP7A/DN
+	AQiNQVNRj9pwNJk9qJ4HqtLptJOUM9uPJ/cRWKFVb6G6QKNwJPRiXhUcUk9b2y6s8s4n
+	MSzhbAoDLA6k41Ymlxd5p/6og99GQWNpslcN63LmamkF8FQVWLegNyDFJOngdQW/5btd
+	lPNWL3xV+VT7d/d4T9TDvy83oj7PxlmzXfCXpKbzQmKyg0/UB76csjQlb3xIT82gn5kS
+	pbWg==
+Received: by 10.14.173.69 with SMTP id u45mr25172107eel.21.1353956659785;
+	Mon, 26 Nov 2012 11:04:19 -0800 (PST)
+Received: from gmail.com ([46.196.117.99])
+	by mx.google.com with ESMTPS id f49sm5033505eep.12.2012.11.26.11.04.17
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Mon, 26 Nov 2012 11:04:18 -0800 (PST)
+Date: Mon, 26 Nov 2012 21:04:07 +0200
+From: Eren =?iso-8859-1?Q?T=FCrkay?= <eren@hambedded.org>
+To: Trevor Woerner <twoerner@gmail.com>
+Message-ID: <20121126190407.GA69689@gmail.com>
+References: <CAHUNapSSawC9WwpdoNdg4vHBY6Yh3UycqYgOyX_pbTNw3S0Etg@mail.gmail.com>
+	<CAHUNapSVRuxDxn9L=oHg6aO-RKso2VNF6Mczaf2zwgxHn2zzBw@mail.gmail.com>
 MIME-Version: 1.0
-Received: by 10.60.26.38 with SMTP id i6mr9643282oeg.23.1353948747945; Mon, 26
-	Nov 2012 08:52:27 -0800 (PST)
-Received: by 10.76.167.165 with HTTP; Mon, 26 Nov 2012 08:52:27 -0800 (PST)
-In-Reply-To: <alpine.DEB.2.02.1211211443060.4010@oneiric>
-References: <alpine.DEB.2.02.1211211443060.4010@oneiric>
-Date: Mon, 26 Nov 2012 11:52:27 -0500
-Message-ID: <CAMAb8ZNU4sTV24ZdTQtmntf3TNn_1rJryi=39k6mqoLbUgOajQ@mail.gmail.com>
-From: Evade Flow <evadeflow@gmail.com>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: my wiki page for using OE and meta-ti layer to build for panda ES
+In-Reply-To: <CAHUNapSVRuxDxn9L=oHg6aO-RKso2VNF6Mczaf2zwgxHn2zzBw@mail.gmail.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Gm-Message-State: ALoCoQloDzvHjpeSkRlWtyPzDv5kotAapa174kUMgzxt71yAcxNI7UUp684MLSg1BeQ+OsYVVuUL
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: IMAGE_INSTALL_append workflow
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,36 +46,76 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 26 Nov 2012 16:52:29 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Mon, 26 Nov 2012 19:04:22 -0000
+X-Groupsio-MsgNum: 10653
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="y0ulUmNC+osPPQO6"
+Content-Disposition: inline
 
-Love it! Any chance you could add an 'Advanced' or 'Next Steps'
-section that shows how to go beyond a minimal build? Like, how to get
-a working Qt stack into a custom image on the PandaBoard?
+--y0ulUmNC+osPPQO6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Nov 21, 2012 at 2:44 PM, Robert P. J. Day <rpjday@crashcourse.ca> wrote:
->
->   not strictly related to yocto but i figured some folks might be
-> interested in a recipe for using OE and the meta-ti layer to build a
-> bootable system for a panda ES:
->
-> http://www.crashcourse.ca/wiki/index.php/OE-Core%2C_meta-ti_and_the_PandaBoard_ES
->
->   feedback welcome.
->
-> rday
->
-> --
->
-> ========================================================================
-> Robert P. J. Day                                 Ottawa, Ontario, CANADA
->                         http://crashcourse.ca
->
-> Twitter:                                       http://twitter.com/rpjday
-> LinkedIn:                               http://ca.linkedin.com/in/rpjday
-> ========================================================================
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+On Mon, Nov 26, 2012 at 10:47:31AM -0500, Trevor Woerner wrote:
+> I'm kinda surprised nobody jumped in on this one; either my question
+> is so silly it isn't worth anyone's time, or I'm the only one who
+> wants to add packages to an image after a full build. I know my
+> question has nothing to do with trace-cmd specifically, adding any
+> package after a full build results in the same problem.
 
+I don't think you are the first person who wants to add a package to image =
+after
+the image has been built :)
+
+The obvious problem would have been leading spaces in IMAGE_INSTALL_append =
+but
+you explicitly stated its correct. Normally, the class that's responsible f=
+or
+image creation (image.bbclass) depends on the packages defined in IMAGE_INS=
+TALL
+so that the packages are built before the image creation begins.
+
+image.bbclass, line 9
+---------------------
+RDEPENDS +=3D "${IMAGE_INSTALL} ${LINGUAS_INSTALL} ${NORMAL_FEATURE_INSTALL}
+${ROOTFS_BOOTSTRAP_INSTALL}"
+
+On irc (#oe), Eric Benard tried IMAGE_INSTALL_append =3D " trace-cmd" after=
+ a full
+build and reported that it built fine. I'm CCing him.
+
+I believe that it will be better to include your <image> file and the files=
+ that
+you changed so that it will be easier to debug. Mentioning your layers,
+configuration, version of Yocto you use will also be helpful.
+
+Regards,
+Eren
+
+--=20
+    . 73! DE TA1AET
+      http://erenturkay.com/
+
+--y0ulUmNC+osPPQO6
+Content-Type: application/pgp-signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.12 (Darwin)
+
+iQIcBAEBAgAGBQJQs70nAAoJEOM7bMm6HhcTmE4P/1s48/IVVgI7ngHpmHABvHhQ
+MLkIS/HSnV/B51x5L+U/8yr7reIbWKkneJqDg4fjFCbgKka8CaSs/HJb5V9/63Id
+vlVYw0aKnBTNZ6t+YzHfL2s0pv61BrFH53jU5YAhmBd31xmENVB9Z12t2e8ZSKJf
+T6Z8gRBBzok3Yo76Q9KRYj6QFsyjVMsrMlF8yI8ZjTKUrALxrLzJ7U2iKFltV4pA
+G724bGow3wAAQZWh4XlAdQeXw7yI9xiNQJnIEVtAid2HZZcThWtnwjpnTc1TPnTb
+WsM+w4McNPlVXieEGEp2kYDyKdRyaP92r+IY5aKKPLmGT6b1riK5W4MTRj1gZYAh
+ahDUK9ae9LnIQjOTag4CRXxL3J6khPFxpObYLehS5FnQN99HN4LQ2eqHyhZZKDDL
+u3LDVWPOSAxtpxofgrVtaorJpUdITEQirHbpxWFBgljxYOrP44Kzi65JWnoEgcZo
+Uvjiwb5z5djt+oBNBjlD0j947BD2ipe23/SOI1UnyfvdgJFY6RbI09dlXHNsQZtu
+YaB2bNHL+SztR43PnkSfXb7uGJkZuSvOaWbMSZikXjpwNBUsBYBYa5cI0R13SZm6
+H5R2j4DNmP3yVpWJW3Kl7CB5c+pMHhRu4BxqQNXXTnAIBEIojx4sL03lqDEFuZB4
+fw6BsQJMu1c5ufVWo6At
+=OsEZ
+-----END PGP SIGNATURE-----
+
+--y0ulUmNC+osPPQO6--
