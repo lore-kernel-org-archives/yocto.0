@@ -1,33 +1,37 @@
-Return-Path: <Aws.Ismail@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E341FE00348
-	for <yocto@yoctoproject.org>; Mon, 26 Nov 2012 13:28:55 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id qAQLSqxZ026674
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Mon, 26 Nov 2012 13:28:52 -0800 (PST)
-Received: from [128.224.147.212] (128.224.147.212) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.2.318.4;
-	Mon, 26 Nov 2012 13:28:52 -0800
-Message-ID: <50B3DE4B.9040306@windriver.com>
-Date: Mon, 26 Nov 2012 16:25:31 -0500
-From: Aws Ismail <aws.ismail@windriver.com>
-Organization: Wind River Systems
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:15.0) Gecko/20120827 Thunderbird/15.0
+Return-Path: <song.liu@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F03EAE00348
+	for <yocto@yoctoproject.org>; Mon, 26 Nov 2012 14:25:27 -0800 (PST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 26 Nov 2012 14:25:18 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.83,323,1352102400"; d="scan'208";a="252841977"
+Received: from orsmsx101.amr.corp.intel.com ([10.22.225.128])
+	by fmsmga001.fm.intel.com with ESMTP; 26 Nov 2012 14:25:18 -0800
+Received: from orsmsx107.amr.corp.intel.com (10.22.225.80) by
+	ORSMSX101.amr.corp.intel.com (10.22.225.128) with Microsoft SMTP Server
+	(TLS) id 14.1.355.2; Mon, 26 Nov 2012 14:25:17 -0800
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.81]) by
+	ORSMSX107.amr.corp.intel.com ([169.254.10.163]) with mapi id
+	14.01.0355.002; Mon, 26 Nov 2012 14:25:17 -0800
+From: "Liu, Song" <song.liu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Agenda: Yocto Project Technical Team Meeting - Tuesday,
+	November 27,
+	2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+Thread-Index: AQHNzCTpKNbYdGuGKUqhIHKyDs8vNA==
+Date: Mon, 26 Nov 2012 22:25:17 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A48606AB8@ORSMSX101.amr.corp.intel.com>
+References: <7E680CB2A76BB8438D08CF13C09FC53A4844CAD5@ORSMSX101.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.138]
 MIME-Version: 1.0
-To: =?ISO-8859-1?Q?Eren_T=FCrkay?= <eren@hambedded.org>
-References: <CAHUNapSSawC9WwpdoNdg4vHBY6Yh3UycqYgOyX_pbTNw3S0Etg@mail.gmail.com>
-	<CAHUNapSVRuxDxn9L=oHg6aO-RKso2VNF6Mczaf2zwgxHn2zzBw@mail.gmail.com>
-	<20121126190407.GA69689@gmail.com>
-In-Reply-To: <20121126190407.GA69689@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: IMAGE_INSTALL_append workflow
+Subject: Agenda: Yocto Project Technical Team Meeting - Tuesday, November 27, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: aws.ismail@windriver.com
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -36,132 +40,132 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 26 Nov 2012 21:28:56 -0000
-Content-Type: multipart/alternative;
-	boundary="------------040506010106020702000301"
+X-List-Received-Date: Mon, 26 Nov 2012 22:25:28 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
---------------040506010106020702000301
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 8bit
-
-On 11/26/2012 02:04 PM, Eren Türkay wrote:
-> On Mon, Nov 26, 2012 at 10:47:31AM -0500, Trevor Woerner wrote:
->> I'm kinda surprised nobody jumped in on this one; either my question
->> is so silly it isn't worth anyone's time, or I'm the only one who
->> wants to add packages to an image after a full build. I know my
->> question has nothing to do with trace-cmd specifically, adding any
->> package after a full build results in the same problem.
-> I don't think you are the first person who wants to add a package to image after
-> the image has been built :)
->
-> The obvious problem would have been leading spaces in IMAGE_INSTALL_append but
-> you explicitly stated its correct. Normally, the class that's responsible for
-> image creation (image.bbclass) depends on the packages defined in IMAGE_INSTALL
-> so that the packages are built before the image creation begins.
->
-> image.bbclass, line 9
-> ---------------------
-> RDEPENDS += "${IMAGE_INSTALL} ${LINGUAS_INSTALL} ${NORMAL_FEATURE_INSTALL}
-> ${ROOTFS_BOOTSTRAP_INSTALL}"
->
-> On irc (#oe), Eric Benard tried IMAGE_INSTALL_append = " trace-cmd" after a full
-> build and reported that it built fine. I'm CCing him.
-Have you also tried this?
-
-IMAGE_INSTALL_append += "foo"
-
-Aws\
->
-> I believe that it will be better to include your <image> file and the files that
-> you changed so that it will be easier to debug. Mentioning your layers,
-> configuration, version of Yocto you use will also be helpful.
->
-> Regards,
-> Eren
->
->
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+Agenda:
+=A0
+* Opens collection - 5 min (Song)
+* Yocto 1.4 status - 20 min (Song/team)
+* SWAT team rotation: Ross -> LaurentiuP
+* Opens - 10 min =20
+* Team Sharing - 20 min
 
 
--- 
+-----Original Appointment-----
+
+We encourage people attending the meeting to logon the Yocto IRC chancel du=
+ring the meeting (optional):
+
+Yocto IRC: http://webchat.freenode.net/?channels=3D#yocto
+IRC Tutorial: http://www.irchelp.org/irchelp/irctutorial.html=20
+
+Conference details=20
+Conference name:=20
+Yocto Technical Team
+Conference date/start time:=20
+Tue Jun 26, 2012 at 10:00 AM Central Daylight Time=20
+Participants:=20
+30
+Duration:=20
+60 minutes=20
+Participant passcode:=20
+76994298
+Dial-in number:=20
+1.972.995.7777=20
+US Toll Free number:=20
+1.877.561.6828=20
+BlackBerry users, click this link to join your conference as a participant:
+1.972.995.7777x76994298#
+=A0
+Depending on where you are dialing from, either your BlackBerry will pause =
+and enter the passcode automatically or you will be prompted to click again=
+ to dial the passcode.
+
+Local and Global Access Numbers=20
 
 
---------------040506010106020702000301
-Content-Type: text/html; charset="ISO-8859-1"
-Content-Transfer-Encoding: 7bit
+Country=20
+Dial-in number
+Australia:=20
+1800 636 843
+Czech Republic:=20
+242 430 350
+China (Beijing):=20
+From office dial 8-9957777 or 8784277=20
+Beijing Out of Office dial 5878 4277
+China (Shanghai):=20
+From office dial 8-9957777 or 3073322=20
+Shanghai Out of Office dial 2307 3322
+China (Shenzen):=20
+From office dial 8-9957777 or 6007877=20
+Shenzen Out of Office dial 2600 7877
+China (Other Cities):=20
+From IP phone dial 8-9957777=20
+Other cities - Non IP phone dial 021-23073322
+Denmark:=20
+8060 1400
+Finland:=20
+09 41333477
+France:=20
+0497 275888
+Germany:=20
+08161 803232
+Holland:=20
+030 2417490
+India:=20
+BSNL subscribers use 1800 425 9996 (Toll Free)
+Airtel subscribers use 0008 009 861 212 (Toll Free)
+From TI Campus use 89957777
+Others use 2509 9555 (Landline within Bangalore) or
+80 2509 9555 (Outside Bangalore)
+Israel:=20
+09 790 6715
+Italy:=20
+039 69061234 (039 is local city code not country code)
+Japan:=20
+From TI Campus use 8 995 7777=20
+Outside TI use 03 4331 3777
+Malaysia:=20
+From IP phone dial 2643799=20
+From Kuala Lumpur dial 4264 3799=20
+Outside Kuala Lumpur dial (03)4264 3799
+Norway:=20
+2 295 8744
+Philippines:=20
+From Baguio City use 4471177=20
+From Metro Manila area use 8702477
+Singapore:=20
+From IP phone dial 3894777=20
+Outside TI use 6389 4777
+South Korea:=20
+From IP phone dial 5606998=20
+From Seoul dial 5606998=20
+Outside Seoul dial (02)5606998
+Sweden:=20
+08 58755577
+Taiwan:=20
+From IP phone dial 1363=20
+From Taipei dial 2241 1363=20
+Outside Taipei dial (02)2241 1363
+Turkey:=20
+Landline Only dial 0811 288 0001=20
+then enter 877 633 1123=20
+UK:=20
+01604 663003
+US:=20
+972 995 7777 or 1877 561 6828
 
-<html>
-  <head>
-    <meta content="text/html; charset=ISO-8859-1"
-      http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 11/26/2012 02:04 PM, Eren T&uuml;rkay
-      wrote:<br>
-    </div>
-    <blockquote cite="mid:20121126190407.GA69689@gmail.com" type="cite">
-      <pre wrap="">On Mon, Nov 26, 2012 at 10:47:31AM -0500, Trevor Woerner wrote:
-</pre>
-      <blockquote type="cite">
-        <pre wrap="">I'm kinda surprised nobody jumped in on this one; either my question
-is so silly it isn't worth anyone's time, or I'm the only one who
-wants to add packages to an image after a full build. I know my
-question has nothing to do with trace-cmd specifically, adding any
-package after a full build results in the same problem.
-</pre>
-      </blockquote>
-      <pre wrap="">
-I don't think you are the first person who wants to add a package to image after
-the image has been built :)
+Recurring conferences=20
+First scheduled conference:=20
+Tue Jun 26, 2012
+Recurrence frequency:=20
+Weekly - Every 1 week(s) on Tuesday
+Recurrence ends:=20
+End on Fri Jun 21, 2013, 10:40 AM CDT
 
-The obvious problem would have been leading spaces in IMAGE_INSTALL_append but
-you explicitly stated its correct. Normally, the class that's responsible for
-image creation (image.bbclass) depends on the packages defined in IMAGE_INSTALL
-so that the packages are built before the image creation begins.
 
-image.bbclass, line 9
----------------------
-RDEPENDS += "${IMAGE_INSTALL} ${LINGUAS_INSTALL} ${NORMAL_FEATURE_INSTALL}
-${ROOTFS_BOOTSTRAP_INSTALL}"
 
-On irc (#oe), Eric Benard tried IMAGE_INSTALL_append = " trace-cmd" after a full
-build and reported that it built fine. I'm CCing him.</pre>
-    </blockquote>
-    Have you also tried this?<br>
-    <br>
-    IMAGE_INSTALL_append += "foo"<br>
-    <br>
-    Aws\<br>
-    <blockquote cite="mid:20121126190407.GA69689@gmail.com" type="cite">
-      <pre wrap="">
 
-I believe that it will be better to include your &lt;image&gt; file and the files that
-you changed so that it will be easier to debug. Mentioning your layers,
-configuration, version of Yocto you use will also be helpful.
-
-Regards,
-Eren
-
-</pre>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <br>
-      <pre wrap="">_______________________________________________
-yocto mailing list
-<a class="moz-txt-link-abbreviated" href="mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a>
-<a class="moz-txt-link-freetext" href="https://lists.yoctoproject.org/listinfo/yocto">https://lists.yoctoproject.org/listinfo/yocto</a>
-</pre>
-    </blockquote>
-    <br>
-    <br>
-    <pre class="moz-signature" cols="72">-- 
-
-</pre>
-  </body>
-</html>
-
---------------040506010106020702000301--
