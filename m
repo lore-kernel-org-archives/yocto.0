@@ -1,21 +1,45 @@
-Return-Path: <ioanax.grigoropol@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DC93DE01447
-	for <yocto@yoctoproject.org>; Tue, 27 Nov 2012 07:26:14 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 27 Nov 2012 07:26:14 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.83,328,1352102400"; d="scan'208";a="247886186"
-Received: from ideapad (HELO localhost.localdomain) ([10.237.105.148])
-	by orsmga002.jf.intel.com with ESMTP; 27 Nov 2012 07:26:13 -0800
-From: Ioana Grigoropol <ioanax.grigoropol@intel.com>
-To: yocto@yoctoproject.org
-Date: Tue, 27 Nov 2012 17:17:03 +0200
-Message-Id: <1354029423-16104-4-git-send-email-ioanax.grigoropol@intel.com>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <1354029423-16104-1-git-send-email-ioanax.grigoropol@intel.com>
-References: <1354029423-16104-1-git-send-email-ioanax.grigoropol@intel.com>
-Subject: [PATCH 4/4] Do not rely on AbstractHostShellOutputReader for waiting for command outputs
+Return-Path: <eren@hambedded.org>
+Received: from mail-wi0-f172.google.com (mail-wi0-f172.google.com
+	[209.85.212.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 45B87E011AF
+	for <yocto@yoctoproject.org>; Tue, 27 Nov 2012 08:11:48 -0800 (PST)
+Received: by mail-wi0-f172.google.com with SMTP id o1so4029260wic.11
+	for <yocto@yoctoproject.org>; Tue, 27 Nov 2012 08:11:48 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=date:from:to:cc:subject:message-id:references:mime-version
+	:content-type:content-disposition:in-reply-to:user-agent
+	:x-gm-message-state;
+	bh=zrmlm2eCbOJmFNQSc8I27Lda6jvvVIemnE0cvNAplEY=;
+	b=FK+WytzXBxVfieXYwtWI/v3Fb8kpoqPOhiB2n5yXmSot7HQhKr2bIqq/NKG+P/Lb2E
+	lOitUuK8yWWZWKCfkV+0+qhRXv1QmyKyVuwwroOOhyjv6wCirak7A9FDxgWESbL5D1iP
+	BaohXxm7P+pc47K/x7kBhCyKKTxuxP6eO7eBtLQIvmIowWYNXeIz7fJbZ5TY89N8qVE8
+	FINinj6Yv0SgHX1FZW6PrDEjz+6ubf1OfGnVyKtsoWb1/pmgGQ2i8wJ/c7HX9Sv4Gkjk
+	mTwCEWjmkRlC/hW1HyQlNNIbuin7nC2oJTZk9SHxbDjk2KkwI1lSvK7ec3H6VettzXSy
+	1NKA==
+Received: by 10.180.24.193 with SMTP id w1mr27781054wif.22.1354032707754;
+	Tue, 27 Nov 2012 08:11:47 -0800 (PST)
+Received: from gmail.com ([194.27.149.32])
+	by mx.google.com with ESMTPS id eu8sm3119792wib.1.2012.11.27.08.11.44
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Tue, 27 Nov 2012 08:11:45 -0800 (PST)
+Date: Tue, 27 Nov 2012 18:11:36 +0200
+From: Eren =?iso-8859-1?Q?T=FCrkay?= <eren@hambedded.org>
+To: Trevor Woerner <twoerner@gmail.com>
+Message-ID: <20121127161136.GA94097@gmail.com>
+References: <CAHUNapSSawC9WwpdoNdg4vHBY6Yh3UycqYgOyX_pbTNw3S0Etg@mail.gmail.com>
+	<CAHUNapSVRuxDxn9L=oHg6aO-RKso2VNF6Mczaf2zwgxHn2zzBw@mail.gmail.com>
+	<20121126190407.GA69689@gmail.com>
+	<CAHUNapRZ2Fg_=G5gv7SGE0__3n7PjKk0R362V_w1nST5AuQpGQ@mail.gmail.com>
+	<CAHUNapSUN1iAh1ijxby6XW=DZuXA=_KCFLwfm9nYpgpKuE-V8w@mail.gmail.com>
+	<20121127113952.06050a25@eb-e6520>
+	<CAHUNapSULHA0kmWi9Qb61kxRJsuvGdbTjm9Wvktxc=PmGfVOSg@mail.gmail.com>
+MIME-Version: 1.0
+In-Reply-To: <CAHUNapSULHA0kmWi9Qb61kxRJsuvGdbTjm9Wvktxc=PmGfVOSg@mail.gmail.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Gm-Message-State: ALoCoQkS9nj/CFpDfMpaYKtqKk4PTxvdL/3hUS8YnxxPgWWOJsmvIVlDQjNOqBoG6taPVuJ2qAw7
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: IMAGE_INSTALL_append workflow
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,187 +51,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 27 Nov 2012 15:26:15 -0000
+X-List-Received-Date: Tue, 27 Nov 2012 16:11:49 -0000
+X-Groupsio-MsgNum: 10679
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="cNdxnHkX5QqsyA0e"
+Content-Disposition: inline
 
-- AbstractHostShellReader is designed such that it will block in a read from the pipeline when the command is finished its execution, therefore we should not wait for this variable to be set because it will eventually block.
-Instead we will acquire a semaphore each time we run a command and wait for the first prompt line that comes after it, in order to parse the output.
+--cNdxnHkX5QqsyA0e
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Ioana Grigoropol <ioanax.grigoropol@intel.com>
----
- .../org/yocto/bc/remote/utils/RemoteHelper.java    |   21 ++++--
- .../remote/utils/YoctoHostShellProcessAdapter.java |   68 +++++++++++++++++++-
- 2 files changed, 80 insertions(+), 9 deletions(-)
+On Tue, Nov 27, 2012 at 08:40:26AM -0500, Trevor Woerner wrote:
+> Thank you, Eric, for the confirmation.
+>=20
+> Just to clarify for anyone following along: the problem isn't with
+> bash or trace-cmd themselves. If I perform the same steps but use
+> 'bash' first, then 'trace-cmd', adding 'bash' succeeds but later
+> adding 'trace-cmd' causes 'trace-cmd' to fail in the same way 'bash'
+> did when it was added second.
 
-diff --git a/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/RemoteHelper.java b/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/RemoteHelper.java
-index 9c88ee7..e017d2a 100644
---- a/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/RemoteHelper.java
-+++ b/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/RemoteHelper.java
-@@ -290,13 +290,15 @@ public class RemoteHelper {
- 		hostShellProcessAdapter.setMonitor(monitor);
- 		getHostShell(connection).writeToShell(remoteCommand);
- 		
--		try {
--			while (!hostShellProcessAdapter.isFinished() && hostShellProcessAdapter.isAlive()) {
--				Thread.sleep(2);
--			}
--		} catch (Exception e) {
--			e.printStackTrace();
--		}
-+//		try {
-+//			while (!hostShellProcessAdapter.isFinished() && hostShellProcessAdapter.isAlive()) {
-+//				Thread.sleep(2);
-+//			}
-+////			System.out.println(">>>>>>>>>>>>>>>>>>>>finished command " + remoteCommand);
-+//		} catch (Exception e) {
-+//			e.printStackTrace();
-+//		}
-+//		
- 		return hostShellProcessAdapter.hasErrors();
- 	}
- 	
-@@ -362,4 +364,9 @@ public class RemoteHelper {
- 		}
- 		return false;
- 	}
-+
-+	public static void clearProcessBuffer(IHost connection) {
-+		getHostShellProcessAdapter(connection).clearProcessBuffer();
-+	}
-+
- }
-diff --git a/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/YoctoHostShellProcessAdapter.java b/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/YoctoHostShellProcessAdapter.java
-index b75401c..79a62e0 100644
---- a/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/YoctoHostShellProcessAdapter.java
-+++ b/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/YoctoHostShellProcessAdapter.java
-@@ -1,6 +1,7 @@
- package org.yocto.bc.remote.utils;
- 
- import java.io.IOException;
-+import java.util.concurrent.Semaphore;
- import java.util.regex.Matcher;
- import java.util.regex.Pattern;
- 
-@@ -13,6 +14,10 @@ import org.eclipse.rse.services.shells.IHostShellChangeEvent;
- import org.eclipse.rse.services.shells.IHostShellOutputReader;
- 
- public class YoctoHostShellProcessAdapter extends  HostShellProcessAdapter{
-+	private String commandPrompt = null;
-+	private static final String ROOT = "root";
-+	private static final String PROMPT_USER_CH = "$";
-+	private static final String PROMPT_ROOT_CH = "#";
- 	private ProcessStreamBuffer processStreamBuffer;
- 	private CommandResponseHandler commandResponseHandler;
- 	private boolean isFinished;
-@@ -20,7 +25,34 @@ public class YoctoHostShellProcessAdapter extends  HostShellProcessAdapter{
- 	private int reportedWorkload;
- 	private IProgressMonitor monitor;
- 	private boolean isAlive;
-+
-+	private String lastCommand;
-+	private boolean waitForOutput;
-+	private String endChar = null;
-+
-+	private Semaphore sem;
- 	
-+	public String getLastCommand() {
-+		return lastCommand;
-+	}
-+
-+	public synchronized void setLastCommand(String lastCommand) {
-+//		if (waitForOutput) {
-+			try {
-+				// there are still some processes that might take a long time and if we do not wait for them, 
-+				// then the semaphore will not be released, because an interrupted exception will occur
-+				Thread.sleep(2000);
-+				System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>semaphore aquire");
-+				sem.acquire();
-+				this.lastCommand = lastCommand.trim();
-+				System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>last command set " + lastCommand);
-+			} catch (InterruptedException e) {
-+				e.printStackTrace();
-+			}
-+//		}
-+	}
-+
-+
- 	public IProgressMonitor getMonitor() {
- 		return monitor;
- 	}
-@@ -50,6 +82,9 @@ public class YoctoHostShellProcessAdapter extends  HostShellProcessAdapter{
- 		this.processStreamBuffer = processStreamBuffer;
- 		this.commandResponseHandler = commandResponseHandler;
- 		this.calculator = new GitCalculatePercentage();
-+		this.sem = new Semaphore(1);
-+		this.lastCommand = "";
-+
- 	}
- 
- 	private void updateMonitor(final int work){
-@@ -106,6 +141,7 @@ public class YoctoHostShellProcessAdapter extends  HostShellProcessAdapter{
- 				if (value.isEmpty()) {
- 					continue;
- 				}
-+				setCommandPrompt(value);
- 				System.out.println(value);
- 				this.processStreamBuffer.addErrorLine(value);
- 				this.commandResponseHandler.response(value, false);
-@@ -116,18 +152,38 @@ public class YoctoHostShellProcessAdapter extends  HostShellProcessAdapter{
- 				if (value.isEmpty()) {
- 					continue;
- 				}
--				
-+				setCommandPrompt(value);
-+				if (value.startsWith(commandPrompt) &&  value.endsWith(endChar) && 
-+						!value.endsWith(lastCommand) && processStreamBuffer.getLastOutputLineContaining(lastCommand) != null /*&& waitForOutput*/) {
-+					System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Sem release");
-+					sem.release();
-+				}
-+
- 				reportProgress(value);
- 				System.out.println(value);
- 				this.processStreamBuffer.addOutputLine(value);
- 				this.commandResponseHandler.response(value, false);
- 			}
- 		}
-+		
- 		AbstractHostShellOutputReader absReader = (AbstractHostShellOutputReader)reader;
- 		isAlive = absReader.isAlive();
- 		isFinished = absReader.isFinished();
- 	}
--
-+	private void setCommandPrompt(String value) {
-+		if (commandPrompt == null) {
-+			if (value.startsWith(ROOT) && value.indexOf(PROMPT_ROOT_CH) != -1) {
-+				int end = value.indexOf(PROMPT_ROOT_CH);
-+				commandPrompt = value.substring(0, end);
-+				endChar = PROMPT_ROOT_CH;
-+			} else if (value.indexOf(PROMPT_USER_CH) != -1) {
-+				int end = value.indexOf(PROMPT_USER_CH);
-+				commandPrompt = value.substring(0, end);
-+				endChar = PROMPT_USER_CH;
-+			}
-+				
-+		}
-+	}
- 	public boolean isFinished() {
- 		return isFinished;
- 	}
-@@ -143,6 +199,14 @@ public class YoctoHostShellProcessAdapter extends  HostShellProcessAdapter{
- 		this.isAlive = isAlive;
- 	}
- 
-+	public boolean isWaitForOutput() {
-+		return waitForOutput;
-+	}
-+
-+	public void setWaitForOutput(boolean waitForOutput) {
-+		this.waitForOutput = waitForOutput;
-+	}
-+
- 	public void clearProcessBuffer() {
- 		this.processStreamBuffer.outputLines.clear();
- 		this.processStreamBuffer.errorLines.clear();
--- 
-1.7.9.5
+Since it's confirmed from different people, I think it would be better to r=
+eport
+it using bugzilla. I guess that it's not an intended behaviour/feature of
+bitbake. Please inform the bug number so that anyone who is interested can
+follow.
 
+--=20
+    . 73! DE TA1AET
+      http://erenturkay.com/
 
+--cNdxnHkX5QqsyA0e
+Content-Type: application/pgp-signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.12 (Darwin)
+
+iQIcBAEBAgAGBQJQtOY4AAoJEOM7bMm6HhcTnQcP/0t7AlJsA+0hWGzu8boslHSK
+k0b13EOFNoKdllU5OgTF3um/KwwfWWfTVhQISgaID9bk/7ZInjYNB3f6GPHmKz1h
+48qaT+VHfGPqIscT/19seMxEYjR+iRtLJxjZDzHKwQpIx5bl2FQ+rPG8IO5etRdY
+sgnwIRg49ob+Vm90+EpQEc9JrHzyN8A1DH3oFTOro3TgT/fXUBjSJXiczMuTClb2
+CCTVlr+ZAXeex/6meEF0Hh8kh7cjUuY+l6dTAI6YanRPko3JdxWzOnd7uGMi9lDT
+wSH2M3EhYLz/TK2LB402sYPzx+y6Aat7lRQ7KgZC7XZGEsF+aeCKImFqlKk5OcNn
+lOiQHKqH1EkZS7TVvdiTX7MTsyApQbwFpzRo2BudBXR+PXDpFizMROYj9x5GGM5M
+77iCKT/LRPO4r2J3viC+U95SqNY/gQMtTw/+SiphPxingAmBo+05h0zVEfg+iW5Q
+DKVZYiuED/rUXiM5JjIb3isOaMDK54thObeNbai10ZtzQfcq+Yf1w/Y9rHAsBHhQ
+nEQL5/WEuZt7RMKttNey2GgCmrPkjOnS4jH/nnX7WhLyZr6rhqPHu200i/g28viA
+c+oQuYLD7vu2BGyrtZQBgTkM6RxfoE8ZUK4XZvAOU6xEMdqvRdLY4kUWbKl61/dI
+TYXzs5MWdi8zTigVuKKU
+=j2bu
+-----END PGP SIGNATURE-----
+
+--cNdxnHkX5QqsyA0e--
