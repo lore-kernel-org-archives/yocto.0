@@ -1,35 +1,29 @@
-Return-Path: <twoerner@gmail.com>
-Received: from mail-lb0-f176.google.com (mail-lb0-f176.google.com
-	[209.85.217.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 249DBE0032E
-	for <yocto@yoctoproject.org>; Mon, 26 Nov 2012 18:20:31 -0800 (PST)
-Received: by mail-lb0-f176.google.com with SMTP id k6so10092015lbo.35
-	for <yocto@yoctoproject.org>; Mon, 26 Nov 2012 18:20:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=KCZh1Y0X3OQjKiXS/U9utHfMbtM4EYLu845yEM3nTGQ=;
-	b=U2tFA2c4xnVdLDmDxbmp0mJM/bwhRM3A3yDSaj87vJt+4eu1b0mIDGo510F1UiUPFR
-	We0nvG4v/CYnSi2O5tT3Us9yuWHw9e2HLm97jyDmR0bwjhjEMPB22aPTmhreiPUEtRlN
-	615oXmR0SUwyTFEoQPUpoYoCoI7/AaG+BsVJOh+33vK9c7k7XGQVdIMqfe+qOKUIQDHN
-	BCP2VjeHNR/C+kIUMg2UxfQNaEv5yXOZUR2GUJVP3sUOz4aTDYir/Yp53jhRiPo3k0TV
-	QHagLp3sSGKbrwTHDLu9BdjkS2J9NmW2BWvbFubeP4Tfi3ixRU7k7qkbImj57Suf+CzQ
-	p09w==
+Return-Path: <anders@chargestorm.se>
+Received: from stoexhubfe01.domain01.net (STOEXHUBFE01.domain01.net
+	[83.145.59.140])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D986BE0033F
+	for <yocto@yoctoproject.org>; Tue, 27 Nov 2012 00:10:20 -0800 (PST)
+Received: from localhost (193.41.119.134) by stoexhubfe01.domain01.net
+	(10.12.10.6) with Microsoft SMTP Server id 8.3.279.1; Tue, 27 Nov 2012
+	09:09:55 +0100
+Date: Tue, 27 Nov 2012 09:10:18 +0100
+From: Anders Darander <anders@chargestorm.se>
+To: <yocto@yoctoproject.org>
+Message-ID: <20121127081017.GA14316@ad.chargestorm.se>
+Mail-Followup-To: yocto@yoctoproject.org
+References: <8754B3FC-739C-4344-8D24-B31A5D86D48F@keylevel.com>
+	<CA+QkY1DG+xEOrsJ_Xx8BEOB2RYsNnCdU3raSnuLHnt+mw2bPBA@mail.gmail.com>
+	<CAJTo0LZZabOquwvqQwhVxt2=BuWQmdQHQT_VBjtk1DJaRQ6rcA@mail.gmail.com>
 MIME-Version: 1.0
-Received: by 10.112.23.2 with SMTP id i2mr6073272lbf.24.1353982830974; Mon, 26
-	Nov 2012 18:20:30 -0800 (PST)
-Received: by 10.112.117.194 with HTTP; Mon, 26 Nov 2012 18:20:30 -0800 (PST)
-In-Reply-To: <CAHUNapRZ2Fg_=G5gv7SGE0__3n7PjKk0R362V_w1nST5AuQpGQ@mail.gmail.com>
-References: <CAHUNapSSawC9WwpdoNdg4vHBY6Yh3UycqYgOyX_pbTNw3S0Etg@mail.gmail.com>
-	<CAHUNapSVRuxDxn9L=oHg6aO-RKso2VNF6Mczaf2zwgxHn2zzBw@mail.gmail.com>
-	<20121126190407.GA69689@gmail.com>
-	<CAHUNapRZ2Fg_=G5gv7SGE0__3n7PjKk0R362V_w1nST5AuQpGQ@mail.gmail.com>
-Date: Mon, 26 Nov 2012 21:20:30 -0500
-Message-ID: <CAHUNapSUN1iAh1ijxby6XW=DZuXA=_KCFLwfm9nYpgpKuE-V8w@mail.gmail.com>
-From: Trevor Woerner <twoerner@gmail.com>
-To: =?ISO-8859-1?Q?Eren_T=FCrkay?= <eren@hambedded.org>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: IMAGE_INSTALL_append workflow
+In-Reply-To: <CAJTo0LZZabOquwvqQwhVxt2=BuWQmdQHQT_VBjtk1DJaRQ6rcA@mail.gmail.com>
+X-Accept-Language: sv, en, de
+X-GPG-Fingerprint: 5AF0 B2E9 78FE 9D75 D110  6F8F 3E31 84D7 920E 938C
+X-GPG-Key-Id: 0x920E938C
+X-GPG-Keyserver: hkp://keys.gnupg.net
+Organization: ChargeStorm AB
+User-Agent: Mutt/1.5.20 (2009-12-10)
+X-GFI-SMTP-Submission: 1
+Subject: Re: Best way to support multiple versions of Poky?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,47 +35,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 27 Nov 2012 02:20:32 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Tue, 27 Nov 2012 08:10:21 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-On Mon, Nov 26, 2012 at 6:52 PM, Trevor Woerner <twoerner@gmail.com> wrote:
-> I haven't yet figured out if the "PREFERRED_PROVIDER_virtual/kernel =
-> "linux-yocto-rt"" line might be the culprit.
+* Burton, Ross <ross.burton@intel.com> [121126 14:58]:
 
-No, it is not related, this problem doesn't need any fancy
-configuration features. This problem is reproducible
-with just the plain qemux86 machine and the core-image-minimal image.
-Also, before my latest tests I pulled
-the latest git repo.
+> On 26 November 2012 13:55, Jerrod Peach <peachj@lexmark.com> wrote:
+> > build-bundle (git repo with our layers + tools)
+> > |
+> > +-- meta-ourstuff (git submodule, i.e. separate repo locked to a specific
+> > version within build-bundle)
+> > +-- poky (another submodule)
+> >    |
+> >    +-- poky BB files (i.e. within meta, meta-yocto, etc.)
 
-To reproduce this problem:
+> Guacamayo does something similar, although meta-outstuff isn't a
+> submodule of build-bundle.
 
-- use the latest git repositories
-- run "source poky/oe-init-build-env qemux86"
-- make no modifications to conf/bblayers.conf
-- make no changes to conf/local.conf
-- run "bitbake core-image-minimal"
+At ChargeStorm we're using a similar scheme to Guacamayo, i.e. we have
+our repo with our recipes, bsp's, distro config etc. in our own
+meta-*-directories. And the we have oe-core, meta-oe, and/or poky and
+whatever layers we're using as submodules.
 
-After that completes successfully add the following line to your
-conf/local.conf:
+> Being able to branch a "next" branch that switched the poky revision
+> to the danny RC instead of denzil was very convenient.
 
-IMAGE_INSTALL_append = " trace-cmd"
+Indeed, and also to be able to create a next branch halfway between
+denzil and danny, to be able to port / adapt some recipe that required
+bigger changes at about the same time those occured in poky-master (or
+oe-core master).
 
-- re-run the build "bitbake core-image-minimal"
+Thus, I'm pretty satisfied with our structure for the moment, though
+everything can be improved.
 
-This should complete successfully. When it does, modify the last line
-of conf/local.conf to be:
+Cheers,
+Anders
 
-IMAGE_INSTALL_append = " trace-cmd bash"
-
-- try re-running the build now "bitbake core-image-minimal". It fails
-for me as I have detailed in my previous emails.
-
-If I manually do:
-
-$ bitbake bash
-$ bitbake core-image-minimal
-
-everything succeeds and my image contains 'bash'. But something tells
-me there's a bug in there somewhere.
+-- 
+Anders Darander
+ChargeStorm AB / eStorm AB
 
