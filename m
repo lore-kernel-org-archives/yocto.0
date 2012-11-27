@@ -1,39 +1,35 @@
-Return-Path: <eric@eukrea.com>
-Received: from mo2.mail-out.ovh.net (mo2.mail-out.ovh.net [178.32.228.2])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F203AE0033F
-	for <yocto@yoctoproject.org>; Tue, 27 Nov 2012 02:40:01 -0800 (PST)
-Received: from mail190.ha.ovh.net (b7.ovh.net [213.186.33.57])
-	by mo2.mail-out.ovh.net (Postfix) with SMTP id 7DDF8DC81AD
-	for <yocto@yoctoproject.org>; Tue, 27 Nov 2012 11:47:54 +0100 (CET)
-Received: from b0.ovh.net (HELO queueout) (213.186.33.50)
-	by b0.ovh.net with SMTP; 27 Nov 2012 12:39:55 +0200
-Received: from pac33-2-82-240-38-71.fbx.proxad.net (HELO eb-e6520)
-	(eric%eukrea.com@82.240.38.71)
-	by ns0.ovh.net with SMTP; 27 Nov 2012 12:39:53 +0200
-Date: Tue, 27 Nov 2012 11:39:52 +0100
-From: Eric =?ISO-8859-1?B?QuluYXJk?= <eric@eukrea.com>
-To: Trevor Woerner <twoerner@gmail.com>
-X-Ovh-Mailout: 178.32.228.2 (mo2.mail-out.ovh.net)
-Message-ID: <20121127113952.06050a25@eb-e6520>
-In-Reply-To: <CAHUNapSUN1iAh1ijxby6XW=DZuXA=_KCFLwfm9nYpgpKuE-V8w@mail.gmail.com>
+Return-Path: <twoerner@gmail.com>
+Received: from mail-lb0-f176.google.com (mail-lb0-f176.google.com
+	[209.85.217.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 745E6E002AB
+	for <yocto@yoctoproject.org>; Tue, 27 Nov 2012 05:40:28 -0800 (PST)
+Received: by mail-lb0-f176.google.com with SMTP id k6so10498219lbo.35
+	for <yocto@yoctoproject.org>; Tue, 27 Nov 2012 05:40:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type:content-transfer-encoding;
+	bh=KCPP0tbGbJZHfXP/20y9utjdwtaJYL+it3TIa5GBuK8=;
+	b=1AFTyRmJOFbFwiS02Gt37pVel/D01bwD7rF4TIMBNlc1vFrUIYUXH+aif/lCdKpyWA
+	0CsKKQowhMW2OOWsKd0A46+hNYqG9HD7gn5zp/U4vPOBJD9b2Uv23slUesGPHL9WJDY7
+	f947Wvy0sdUSJUvdj3h+rSKzSVNU+wXoFda/Y1EEAlW5/v37mK7ibWFedwndPx078Tie
+	nggIYW85hFiecyHTJ4bxV1s3c5bskPyp2BXLFAISAA7R5NG83t/+GyUmZ3pbN2whzTJn
+	xDL/tmraqUXZeW5PeafwIkUtkaDCSfVlMZVZaLdjTyatb1DvkRI9+vafe4pyDp8ViW38
+	QIPA==
+MIME-Version: 1.0
+Received: by 10.152.104.240 with SMTP id gh16mr14818396lab.56.1354023627099;
+	Tue, 27 Nov 2012 05:40:27 -0800 (PST)
+Received: by 10.112.117.194 with HTTP; Tue, 27 Nov 2012 05:40:26 -0800 (PST)
+In-Reply-To: <20121127113952.06050a25@eb-e6520>
 References: <CAHUNapSSawC9WwpdoNdg4vHBY6Yh3UycqYgOyX_pbTNw3S0Etg@mail.gmail.com>
 	<CAHUNapSVRuxDxn9L=oHg6aO-RKso2VNF6Mczaf2zwgxHn2zzBw@mail.gmail.com>
 	<20121126190407.GA69689@gmail.com>
 	<CAHUNapRZ2Fg_=G5gv7SGE0__3n7PjKk0R362V_w1nST5AuQpGQ@mail.gmail.com>
 	<CAHUNapSUN1iAh1ijxby6XW=DZuXA=_KCFLwfm9nYpgpKuE-V8w@mail.gmail.com>
-Organization: =?ISO-8859-1?B?RXVrculh?= Electromatique
-X-Mailer: Claws Mail 3.8.1 (GTK+ 2.24.8; x86_64-redhat-linux-gnu)
-Mime-Version: 1.0
-X-Ovh-Tracer-Id: 10986812767762951630
-X-Ovh-Remote: 82.240.38.71 (pac33-2-82-240-38-71.fbx.proxad.net)
-X-Ovh-Local: 213.186.33.20 (ns0.ovh.net)
-X-OVH-SPAMSTATE: OK
-X-OVH-SPAMSCORE: -100
-X-OVH-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrfeehhedrtdduucetufdoteggodetrfcurfhrohhfihhlvgemucfqggfjnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfhrhhomhepgfhrihgtuceurohnrghrugcuoegvrhhitgesvghukhhrvggrrdgtohhmqeenucfjughrpeffhffvuffkjghfohfogggtgfesthhqredtredtud
-X-Spam-Check: DONE|U 0.5/N
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrfeehhedrtdduucetufdoteggodetrfcurfhrohhfihhlvgemucfqggfjnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfhrhhomhepgfhrihgtuceurohnrghrugcuoegvrhhitgesvghukhhrvggrrdgtohhmqeenucfjughrpeffhffvuffkjghfohfogggtgfesthhqredtredtud
+	<20121127113952.06050a25@eb-e6520>
+Date: Tue, 27 Nov 2012 08:40:26 -0500
+Message-ID: <CAHUNapSULHA0kmWi9Qb61kxRJsuvGdbTjm9Wvktxc=PmGfVOSg@mail.gmail.com>
+From: Trevor Woerner <twoerner@gmail.com>
+To: =?ISO-8859-1?Q?Eric_B=E9nard?= <eric@eukrea.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: IMAGE_INSTALL_append workflow
 X-BeenThere: yocto@yoctoproject.org
@@ -47,62 +43,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 27 Nov 2012 10:40:02 -0000
+X-List-Received-Date: Tue, 27 Nov 2012 13:40:28 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-Hi Trevor,
+On Tue, Nov 27, 2012 at 5:39 AM, Eric B=E9nard <eric@eukrea.com> wrote:
+> I confirm the problem when following this procedure step by step.
 
-Le Mon, 26 Nov 2012 21:20:30 -0500,
-Trevor Woerner <twoerner@gmail.com> a =E9crit :
 
-> On Mon, Nov 26, 2012 at 6:52 PM, Trevor Woerner <twoerner@gmail.com> wrot=
-e:
-> > I haven't yet figured out if the "PREFERRED_PROVIDER_virtual/kernel =3D
-> > "linux-yocto-rt"" line might be the culprit.
->=20
-> No, it is not related, this problem doesn't need any fancy
-> configuration features. This problem is reproducible
-> with just the plain qemux86 machine and the core-image-minimal image.
-> Also, before my latest tests I pulled
-> the latest git repo.
->=20
-> To reproduce this problem:
->=20
-> - use the latest git repositories
-> - run "source poky/oe-init-build-env qemux86"
-> - make no modifications to conf/bblayers.conf
-> - make no changes to conf/local.conf
-> - run "bitbake core-image-minimal"
->=20
-> After that completes successfully add the following line to your
-> conf/local.conf:
->=20
-> IMAGE_INSTALL_append =3D " trace-cmd"
->=20
-> - re-run the build "bitbake core-image-minimal"
->=20
-> This should complete successfully. When it does, modify the last line
-> of conf/local.conf to be:
->=20
-> IMAGE_INSTALL_append =3D " trace-cmd bash"
->=20
-> - try re-running the build now "bitbake core-image-minimal". It fails
-> for me as I have detailed in my previous emails.
->=20
-> If I manually do:
->=20
-> $ bitbake bash
-> $ bitbake core-image-minimal
->=20
-> everything succeeds and my image contains 'bash'. But something tells
-> me there's a bug in there somewhere.
+Thank you, Eric, for the confirmation.
 
-I confirm the problem when following this procedure step by step.
-
-with bitbake -e we see that bash is in RDEPENDS and in IMAGE_INSTALL
-with bitbake -g we see that bash is not present in any of the
-*depends.dot files
-
-Eric
+Just to clarify for anyone following along: the problem isn't with
+bash or trace-cmd themselves. If I perform the same steps but use
+'bash' first, then 'trace-cmd', adding 'bash' succeeds but later
+adding 'trace-cmd' causes 'trace-cmd' to fail in the same way 'bash'
+did when it was added second.
 
