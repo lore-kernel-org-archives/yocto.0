@@ -1,42 +1,27 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7A7D7E011ED
-	for <yocto@yoctoproject.org>; Tue, 27 Nov 2012 09:53:03 -0800 (PST)
-Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
-	([174.115.5.73]:43252 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.77) (envelope-from <rpjday@crashcourse.ca>)
-	id 1TdPLC-0007mK-GX; Tue, 27 Nov 2012 12:53:02 -0500
-Date: Tue, 27 Nov 2012 12:52:58 -0500 (EST)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Trevor Woerner <twoerner@gmail.com>
-In-Reply-To: <CAHUNapRCGZMs-=eorNUfrjeKikyDW-O0K7GfREOHzs86B6pxEw@mail.gmail.com>
-Message-ID: <alpine.DEB.2.02.1211271251090.7125@oneiric>
-References: <CAHUNapSSawC9WwpdoNdg4vHBY6Yh3UycqYgOyX_pbTNw3S0Etg@mail.gmail.com>
-	<CAHUNapSVRuxDxn9L=oHg6aO-RKso2VNF6Mczaf2zwgxHn2zzBw@mail.gmail.com>
-	<20121126190407.GA69689@gmail.com>
-	<CAHUNapRZ2Fg_=G5gv7SGE0__3n7PjKk0R362V_w1nST5AuQpGQ@mail.gmail.com>
-	<CAHUNapSUN1iAh1ijxby6XW=DZuXA=_KCFLwfm9nYpgpKuE-V8w@mail.gmail.com>
-	<20121127113952.06050a25@eb-e6520>
-	<CAHUNapSULHA0kmWi9Qb61kxRJsuvGdbTjm9Wvktxc=PmGfVOSg@mail.gmail.com>
-	<20121127161136.GA94097@gmail.com>
-	<alpine.DEB.2.02.1211271203380.4220@oneiric>
-	<CAHUNapRCGZMs-=eorNUfrjeKikyDW-O0K7GfREOHzs86B6pxEw@mail.gmail.com>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <Maxin.John@enea.com>
+Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id 38735E011AF
+	for <yocto@yoctoproject.org>; Tue, 27 Nov 2012 10:32:56 -0800 (PST)
+Received: from SESTOEX05.enea.se ([fe80::41cb:8d2e:2e90:a183]) by
+	SESTOEX03.enea.se ([fe80::6ce7:7b51:1edf:e245%21]) with mapi id
+	14.02.0318.001; Tue, 27 Nov 2012 19:32:54 +0100
+From: Maxin John <Maxin.John@enea.com>
+To: Jeff Osier-Mixon <jefro@jefro.net>
+Thread-Topic: [yocto] Wiki Main page terrible sparse
+Thread-Index: AQHNzDjc8T5ogWqto0OCHRxgWKODVZf9/fhw
+Date: Tue, 27 Nov 2012 18:32:52 +0000
+Message-ID: <46F9BF9187AF5A4AA0AEF94A28ADD22485962D@sestoex05.enea.se>
+References: <46F9BF9187AF5A4AA0AEF94A28ADD224858AFE@sestoex05.enea.se>
+	<CA+YB3rYz8aQhEuLP-CZbnjpEcewZSEYVn+37G42epF6Cyr=ULQ@mail.gmail.com>
+In-Reply-To: <CA+YB3rYz8aQhEuLP-CZbnjpEcewZSEYVn+37G42epF6Cyr=ULQ@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.16.140.34]
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: IMAGE_INSTALL_append workflow
+Cc: Yocto Project Discussion <yocto@yoctoproject.org>, "Damian,
+	Alexandru" <alexandru.damian@intel.com>
+Subject: Re: Wiki Main page terrible sparse
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,44 +33,57 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 27 Nov 2012 17:53:03 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Tue, 27 Nov 2012 18:32:56 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, 27 Nov 2012, Trevor Woerner wrote:
+Hi Jeff,
 
-> On Tue, Nov 27, 2012 at 12:24 PM, Robert P. J. Day
-> <rpjday@crashcourse.ca> wrote:
-> > and ran the fetchall again.  this time, no strace source was fetched,
-> > so it looks like an issue with simple fetching.
+>Hi Maxin - it would be good to coordinate your effort with the rest of the=
+ community.=20
+Sure :)  =20
+
+>Can you let us know what you have in mind before starting?
+At first, I will try to address the suggestions of Alex along with other mo=
+difications based on our requirements.=20
+
+>Also, please let me know if you have trouble with access. I don't see any =
+account requests being held.
+I have checked the access rights and it works fine. Thanks!=20
+
+>thanks
+Thanks and Regards,
+Maxin
+
+On Fri, Nov 23, 2012 at 6:16 AM, Maxin John <Maxin.John@enea.com> wrote:
+> Hi Alex,
+>>Hello all,
 >
-> Thank you for your testing and observations.
+>>I can't help but notice that the main page of the Yocto Wiki looks somewh=
+at underwhelming compared to the new site face.
+>>Can we please have a volunteer to update and beautify a bit the main page=
+ ?
+>  I am interested in this task. I have already sent a request for access t=
+o the Yocto Wiki.
 >
-> But I'd like to point out that in my tests, all the relevant files
-> have already been fetched. My DL_DIR already contains everything to
-> do with bash, trace-cmd, and various others that I have been
-> testing. The errors I am getting are not fetching-related errors,
-> but are errors because do_rootfs can't find any packages (since
-> packages relating to the recently-appended recipes have not been
-> built).
+>>I'd think that we need to list current 1.4 pages, add/verify links to all=
+ main sections, and the Yocto logo, etc...
+> We can discuss the list of activities in this mailing-list or in irc =20
+> (nickname: maxin)
 >
-> Somewhere in the guts of bitbake a modified IMAGE_INSTALL_append
-> variable is not being noticed; packages aren't being created (as
-> I've noticed) and sources aren't being downloaded (as you have just
-> noticed). But somehow do_rootfs is noticing the change and
-> complaining it can't find the necessary packages.
+>>Cheers,
+>>Alex
+> Best Regards,
+> Maxin
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-  ah, quite so ... but it's still useful to note that the problem
-extends even to the act of fetching.  weird.
 
-rday
 
--- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+--
+Jeff Osier-Mixon http://jefro.net/blog
+Yocto Project Community Manager @Intel http://yoctoproject.org
 
