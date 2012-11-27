@@ -1,45 +1,38 @@
-Return-Path: <eren@hambedded.org>
-Received: from mail-wi0-f172.google.com (mail-wi0-f172.google.com
-	[209.85.212.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 45B87E011AF
-	for <yocto@yoctoproject.org>; Tue, 27 Nov 2012 08:11:48 -0800 (PST)
-Received: by mail-wi0-f172.google.com with SMTP id o1so4029260wic.11
-	for <yocto@yoctoproject.org>; Tue, 27 Nov 2012 08:11:48 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:content-disposition:in-reply-to:user-agent
-	:x-gm-message-state;
-	bh=zrmlm2eCbOJmFNQSc8I27Lda6jvvVIemnE0cvNAplEY=;
-	b=FK+WytzXBxVfieXYwtWI/v3Fb8kpoqPOhiB2n5yXmSot7HQhKr2bIqq/NKG+P/Lb2E
-	lOitUuK8yWWZWKCfkV+0+qhRXv1QmyKyVuwwroOOhyjv6wCirak7A9FDxgWESbL5D1iP
-	BaohXxm7P+pc47K/x7kBhCyKKTxuxP6eO7eBtLQIvmIowWYNXeIz7fJbZ5TY89N8qVE8
-	FINinj6Yv0SgHX1FZW6PrDEjz+6ubf1OfGnVyKtsoWb1/pmgGQ2i8wJ/c7HX9Sv4Gkjk
-	mTwCEWjmkRlC/hW1HyQlNNIbuin7nC2oJTZk9SHxbDjk2KkwI1lSvK7ec3H6VettzXSy
-	1NKA==
-Received: by 10.180.24.193 with SMTP id w1mr27781054wif.22.1354032707754;
-	Tue, 27 Nov 2012 08:11:47 -0800 (PST)
-Received: from gmail.com ([194.27.149.32])
-	by mx.google.com with ESMTPS id eu8sm3119792wib.1.2012.11.27.08.11.44
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Tue, 27 Nov 2012 08:11:45 -0800 (PST)
-Date: Tue, 27 Nov 2012 18:11:36 +0200
-From: Eren =?iso-8859-1?Q?T=FCrkay?= <eren@hambedded.org>
-To: Trevor Woerner <twoerner@gmail.com>
-Message-ID: <20121127161136.GA94097@gmail.com>
-References: <CAHUNapSSawC9WwpdoNdg4vHBY6Yh3UycqYgOyX_pbTNw3S0Etg@mail.gmail.com>
-	<CAHUNapSVRuxDxn9L=oHg6aO-RKso2VNF6Mczaf2zwgxHn2zzBw@mail.gmail.com>
-	<20121126190407.GA69689@gmail.com>
-	<CAHUNapRZ2Fg_=G5gv7SGE0__3n7PjKk0R362V_w1nST5AuQpGQ@mail.gmail.com>
-	<CAHUNapSUN1iAh1ijxby6XW=DZuXA=_KCFLwfm9nYpgpKuE-V8w@mail.gmail.com>
-	<20121127113952.06050a25@eb-e6520>
-	<CAHUNapSULHA0kmWi9Qb61kxRJsuvGdbTjm9Wvktxc=PmGfVOSg@mail.gmail.com>
+Return-Path: <ramana.gollamudi@huawei.com>
+Received: from szxga02-in.huawei.com (szxga02-in.huawei.com [119.145.14.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A105DE011AF
+	for <yocto@yoctoproject.org>; Tue, 27 Nov 2012 08:58:28 -0800 (PST)
+Received: from 172.24.2.119 (EHLO szxeml214-edg.china.huawei.com)
+	([172.24.2.119])
+	by szxrg02-dlp.huawei.com (MOS 4.3.4-GA FastPath queued)
+	with ESMTP id ATH45124; Wed, 28 Nov 2012 00:58:07 +0800 (CST)
+Received: from SZXEML463-HUB.china.huawei.com (10.82.67.206) by
+	szxeml214-edg.china.huawei.com (172.24.2.29) with Microsoft SMTP Server
+	(TLS) id 14.1.323.3; Wed, 28 Nov 2012 00:58:06 +0800
+Received: from SZXEML534-MBX.china.huawei.com ([169.254.2.2]) by
+	szxeml463-hub.china.huawei.com ([10.82.67.206]) with mapi id
+	14.01.0323.003; Wed, 28 Nov 2012 00:57:55 +0800
+From: Venkata ramana gollamudi <ramana.gollamudi@huawei.com>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
+Thread-Topic: [yocto] Need for offline binary configuration
+Thread-Index: AQHNxzDKyeCK5q4Ul0GcItQcbcDHSpfyUU0AgAIk01D//7JrAIAJyRp5
+Date: Tue, 27 Nov 2012 16:57:54 +0000
+Message-ID: <36ED13F3654AE54CA763E6821D93A5711049B67C@szxeml534-mbx.china.huawei.com>
+References: <36ED13F3654AE54CA763E6821D93A5711048C834@szxeml534-mbx.china.huawei.com>
+	<50ABA048.7080707@windriver.com>
+	<36ED13F3654AE54CA763E6821D93A5711048CA0D@szxeml534-mbx.china.huawei.com>,
+	<50AD2B96.60504@windriver.com>
+In-Reply-To: <50AD2B96.60504@windriver.com>
+Accept-Language: en-US, zh-CN
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.216.200.251]
 MIME-Version: 1.0
-In-Reply-To: <CAHUNapSULHA0kmWi9Qb61kxRJsuvGdbTjm9Wvktxc=PmGfVOSg@mail.gmail.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Gm-Message-State: ALoCoQkS9nj/CFpDfMpaYKtqKk4PTxvdL/3hUS8YnxxPgWWOJsmvIVlDQjNOqBoG6taPVuJ2qAw7
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: IMAGE_INSTALL_append workflow
+X-CFilter-Loop: Reflected
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"'dvhart@linux.intel.com'" <dvhart@linux.intel.com>,
+	Sanil kumar <sanil.kumar@huawei.com>
+Subject: Re: Need for offline binary configuration
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,55 +44,164 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 27 Nov 2012 16:11:49 -0000
-X-Groupsio-MsgNum: 10679
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="cNdxnHkX5QqsyA0e"
-Content-Disposition: inline
-
---cNdxnHkX5QqsyA0e
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Tue, 27 Nov 2012 16:58:29 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Nov 27, 2012 at 08:40:26AM -0500, Trevor Woerner wrote:
-> Thank you, Eric, for the confirmation.
->=20
-> Just to clarify for anyone following along: the problem isn't with
-> bash or trace-cmd themselves. If I perform the same steps but use
-> 'bash' first, then 'trace-cmd', adding 'bash' succeeds but later
-> adding 'trace-cmd' causes 'trace-cmd' to fail in the same way 'bash'
-> did when it was added second.
+Looking for comments. Thanks
+________________________________________
+From: Bruce Ashfield [bruce.ashfield@windriver.com]
+Sent: Thursday, November 22, 2012 12:59 AM
+To: Venkata ramana gollamudi
+Cc: yocto@yoctoproject.org; Sanil kumar; Hatle, Mark; 'dvhart@linux.intel.c=
+om'
+Subject: Re: [yocto] Need for offline binary configuration
 
-Since it's confirmed from different people, I think it would be better to r=
-eport
-it using bugzilla. I guess that it's not an intended behaviour/feature of
-bitbake. Please inform the bug number so that anyone who is interested can
-follow.
+On 12-11-21 11:29 AM, Venkata ramana gollamudi wrote:
+> Reply inline
+>
+>> -----Original Message-----
+>> From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]
+>> Sent: Tuesday, November 20, 2012 8:53 PM
+>> To: Venkata ramana gollamudi
+>> Cc: yocto@yoctoproject.org; Sanil kumar; Hatle, Mark
+>> Subject: Re: [yocto] Need for offline binary configuration
+>>
+>> On 12-11-20 10:09 AM, Venkata ramana gollamudi wrote:
+>>> Poky allows to build custom Linux for you, but we have cases where
+>> the post build customization is required, like user-addition, network
+>> configuration, service control. Even selecting the required packages
+>> can be a post build activity.
+>>>
+>>> The current model requires the image to be rebuilt to support these
+>> configuration.
+>>> Offline Configuration tool (OCT), which allows a binary image
+>> customization before making a final target image. This case will be
+>> more evident in larger companies, where platform teams, product teams ,
+>> application teams are distributed and Linux build from source will be
+>> owned and lab tested by a single team, like platform team. Other teams
+>> just configure to use it for product variants from same platform build.
+>>>
+>>> Detailed use cases can be found in enhancement bug:3252
+>>>
+>>> OCT should work on the binary pool of compiled packages generated
+>> from poky.
+>>>
+>>> The basic operations that can be supported includes
+>>> a) Select/deselect required packages from pool of binary packages
+>> into final target image.
+>>> b) Provision to select external binary packages like ADT compiled
+>> applications as input and add them to final target image.
+>>> c) Binary level Offline configuration can includes
+>>>         Configure the users/passwords
+>>>         Configure the network
+>>>         Configure the host name
+>>>         Select the services to be started by default
+>>>         Security related configuration
+>>>         Generate initrd in ramfs/ext3/... format
+>>>         etc..
+>>>
+>>> Considering the methods to support these in our current yocto model,
+>> following changes can be done.
+>>> 1) HOB can be the tool which can be extended to support these
+>>>       Poky can generate a binary package pool as one if its output and
+>> Hob can work on this package pool to select packages, configure and
+>> generate image.
+>>> So HOB can support opening HOB in Binary(or OCT) mode i.e., without
+>> build options but only with binary package selection. Configuration GUI
+>> needs to be added to HOB.
+>>> Note:HOB+OCT is together or separate, needs a bit more thought and
+>> overall organization as they will be intended for different users.
+>>
+>> Is there some overlap between this point and the other ongoing
+>> discussions
+>> about image construction, deployment and package management ?
+>>
+>> i.e. this thread:
+>>
+>>     [OE-core] RFC: OE-Core image creation and deployment
+>>
+>> http://lists.linuxtogo.org/pipermail/openembedded-core/2012-
+>> July/026938.html
+>>
+>> These may already be coordinated, but I do see some common threads and
+>> it would be nice to make sure everything will work together and that we
+>> aren't duplicating effort!
+>>
+>> Cheers,
+>>
+>> Bruce
+>>
+>
+> Bruce, Thanks for the information. After your reply, I have gone through =
+the discussions and agree that binary pool is in similar lines. Great to se=
+e that the realization happening in yocto1.4.
+> Understood that package-feed can be used to generate the target image.
+>
+> Is there any RFC/mail/wiki available explaining how the configuration(lik=
+e fstype) during image generation will be realized?
 
---=20
-    . 73! DE TA1AET
-      http://erenturkay.com/
+Not that I know of. It is still under design last I heard, but MarkH is the
+person to provide the details. He's out of the office at the moment, but
+I'm sure that when he is back he can provide plenty of information.
 
---cNdxnHkX5QqsyA0e
-Content-Type: application/pgp-signature
+>
+> I am looking for post build configuration tool, which allows the product =
+team users also to configure users, network, services etc .
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.12 (Darwin)
+Agreed. I see this as something to start with, since it doesn't overlap
+with the other efforts (that I know of), and when I first read your
+email I thought it was the main focus. When you continued into image
+creation and package selection, that's when I noted the overlap.
 
-iQIcBAEBAgAGBQJQtOY4AAoJEOM7bMm6HhcTnQcP/0t7AlJsA+0hWGzu8boslHSK
-k0b13EOFNoKdllU5OgTF3um/KwwfWWfTVhQISgaID9bk/7ZInjYNB3f6GPHmKz1h
-48qaT+VHfGPqIscT/19seMxEYjR+iRtLJxjZDzHKwQpIx5bl2FQ+rPG8IO5etRdY
-sgnwIRg49ob+Vm90+EpQEc9JrHzyN8A1DH3oFTOro3TgT/fXUBjSJXiczMuTClb2
-CCTVlr+ZAXeex/6meEF0Hh8kh7cjUuY+l6dTAI6YanRPko3JdxWzOnd7uGMi9lDT
-wSH2M3EhYLz/TK2LB402sYPzx+y6Aat7lRQ7KgZC7XZGEsF+aeCKImFqlKk5OcNn
-lOiQHKqH1EkZS7TVvdiTX7MTsyApQbwFpzRo2BudBXR+PXDpFizMROYj9x5GGM5M
-77iCKT/LRPO4r2J3viC+U95SqNY/gQMtTw/+SiphPxingAmBo+05h0zVEfg+iW5Q
-DKVZYiuED/rUXiM5JjIb3isOaMDK54thObeNbai10ZtzQfcq+Yf1w/Y9rHAsBHhQ
-nEQL5/WEuZt7RMKttNey2GgCmrPkjOnS4jH/nnX7WhLyZr6rhqPHu200i/g28viA
-c+oQuYLD7vu2BGyrtZQBgTkM6RxfoE8ZUK4XZvAOU6xEMdqvRdLY4kUWbKl61/dI
-TYXzs5MWdi8zTigVuKKU
-=j2bu
------END PGP SIGNATURE-----
+> Image type, file system and Partition configuration can be one of them.
+> I expect the product team users who configures image and generates target=
+ image, will have a little or no knowledge of bitbake, also needs easy inst=
+allation and less dependencies.
+>
+> Can look in this context, how HOB will fit into this scenario or needs a =
+new tool.
 
---cNdxnHkX5QqsyA0e--
+Keeping the number of tools low is a good thing, so hopefully it can fit
+within the existing options.
+
+>
+>>
+>>> 2) Binary package pool can be a minimal/partial sstate-cache, as
+>> complete sstate-cache is quite big and not required for product teams
+>> as they are not expected to build but just need to select and
+>> configure.
+>>>       I think it is sufficient to keep the minimal binaries from
+>> sstate-cache which are required to execute image.bbclass, do_rootfs
+>> task to generate image.
+>
+> Point 2, No longer applicable as package-feed is a binary pool.
+>
+>>> 3) Along with specific configuration UI implementation, a generic
+>> configuration model similar to kernel kconfig and menuconfig can be
+>> considered, in cases where more detailed offline configurations is
+>> required like detailed security configuration.
+>
+> Point 3, still can be thought about.
+
+There have been other menuconfig efforts in the past (that I've heard
+about, but not had direct involvement), so doing some research in this
+area would be appropriate as well.
+
+cheers,
+
+Bruce
+
+>
+>>>
+>>> Regards,
+>>> Ramana
+>>> _______________________________________________
+>>> yocto mailing list
+>>> yocto@yoctoproject.org
+>>> https://lists.yoctoproject.org/listinfo/yocto
+>>>
+>
+
+
