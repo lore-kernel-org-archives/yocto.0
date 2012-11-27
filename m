@@ -1,29 +1,39 @@
-Return-Path: <anders@chargestorm.se>
-Received: from stoexhubfe01.domain01.net (STOEXHUBFE01.domain01.net
-	[83.145.59.140])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D986BE0033F
-	for <yocto@yoctoproject.org>; Tue, 27 Nov 2012 00:10:20 -0800 (PST)
-Received: from localhost (193.41.119.134) by stoexhubfe01.domain01.net
-	(10.12.10.6) with Microsoft SMTP Server id 8.3.279.1; Tue, 27 Nov 2012
-	09:09:55 +0100
-Date: Tue, 27 Nov 2012 09:10:18 +0100
-From: Anders Darander <anders@chargestorm.se>
-To: <yocto@yoctoproject.org>
-Message-ID: <20121127081017.GA14316@ad.chargestorm.se>
-Mail-Followup-To: yocto@yoctoproject.org
-References: <8754B3FC-739C-4344-8D24-B31A5D86D48F@keylevel.com>
-	<CA+QkY1DG+xEOrsJ_Xx8BEOB2RYsNnCdU3raSnuLHnt+mw2bPBA@mail.gmail.com>
-	<CAJTo0LZZabOquwvqQwhVxt2=BuWQmdQHQT_VBjtk1DJaRQ6rcA@mail.gmail.com>
+Return-Path: <ross.burton@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2407DE0033F
+	for <yocto@yoctoproject.org>; Tue, 27 Nov 2012 01:31:40 -0800 (PST)
+Received: from mail-ob0-f200.google.com ([209.85.214.200])
+	by mga09.intel.com with ESMTP/TLS/RC4-SHA; 27 Nov 2012 01:30:57 -0800
+Received: by mail-ob0-f200.google.com with SMTP id lz20so49257336obb.11
+	for <yocto@yoctoproject.org>; Tue, 27 Nov 2012 01:31:38 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type:x-gm-message-state;
+	bh=oNUc6nPHLdNbRU9VWNib4+BPKQjgO02cas7k16wwvGA=;
+	b=Ww49yyry0vM6Q5Ct1VtNEZMxomAL96ifjWx3uUtxcNkMnHjM+zkbYa1tQ9YeQ5dh+Y
+	4XHBE1Gkbpgfz5nmhu6TozM0Tv93+zKuzcnQP5owZXC+PsTFPTZ9Pxe88VIMRkKdzXs+
+	ubwcJvogN7TpiLc4jtBt4Gbxbsm4NPmD12qJTiQ0ae5uny/AN+cLW1RZQuHmziOHRCvx
+	AdeK9I+ctPivFL02aXr3vcTcab80QVsjzDyR37gLnGyXo4D4/1vYEMP0QQHKQv3jZh5b
+	NtVUiUVa596pYuoRWhfAaxELQL1WhpzsEESeVkP2AKUKa0np4xBDTj+IiYLdEs5F0Qi0
+	CU6Q==
+Received: by 10.60.169.140 with SMTP id ae12mr11836979oec.52.1354008698689;
+	Tue, 27 Nov 2012 01:31:38 -0800 (PST)
+Received: by 10.60.169.140 with SMTP id ae12mr11836970oec.52.1354008698494;
+	Tue, 27 Nov 2012 01:31:38 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <CAJTo0LZZabOquwvqQwhVxt2=BuWQmdQHQT_VBjtk1DJaRQ6rcA@mail.gmail.com>
-X-Accept-Language: sv, en, de
-X-GPG-Fingerprint: 5AF0 B2E9 78FE 9D75 D110  6F8F 3E31 84D7 920E 938C
-X-GPG-Key-Id: 0x920E938C
-X-GPG-Keyserver: hkp://keys.gnupg.net
-Organization: ChargeStorm AB
-User-Agent: Mutt/1.5.20 (2009-12-10)
-X-GFI-SMTP-Submission: 1
-Subject: Re: Best way to support multiple versions of Poky?
+Received: by 10.76.132.198 with HTTP; Tue, 27 Nov 2012 01:31:18 -0800 (PST)
+In-Reply-To: <1353962648.28133.60.camel@empanada>
+References: <alpine.DEB.2.02.1211240752370.5998@oneiric>
+	<1353962648.28133.60.camel@empanada>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Tue, 27 Nov 2012 09:31:18 +0000
+Message-ID: <CAJTo0LZ0Cp78MSQRKZP_8X7M1w5eoCkOoGeoSMY7Jbnod6OgUw@mail.gmail.com>
+To: Tom Zanussi <tom.zanussi@intel.com>
+X-Gm-Message-State: ALoCoQmN3ZVICe7MKsSd5l0ve2gjcElFVC8PBWO4ki/FrgOYjksOA7wcMwUys1GfD5WHE/CMcj/T3+g62jD7tf0NGhmtrsr/MWgKvLW40JvBxGXOjRoFcsdhNZY3yASOtR0AmwTjTI0Q5ddoAKRkSdgbMB8IWApz+w==
+Cc: Yocto discussion list <yocto@yoctoproject.org>,
+	Saul Wold <saul.wold@intel.com>
+Subject: Re: does meta-intel/meta-tlk layer require a README.sources file?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,44 +45,21 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 27 Nov 2012 08:10:21 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Tue, 27 Nov 2012 09:31:40 -0000
+Content-Type: text/plain; charset=UTF-8
 
-* Burton, Ross <ross.burton@intel.com> [121126 14:58]:
+On 26 November 2012 20:44, Tom Zanussi <tom.zanussi@intel.com> wrote:
+> The meta-tlk layer isn't a BSP layer - it's a layer used to add the
+> 'time limited kernel' feature to images built from a meta-intel BSP
+> layer and distributed with that layer e.g. in the downloadable tarballs
+> available on the Yocto downloads page.
+>
+> It's a meta-intel-only layer and has no meaning unless coupled with a
+> meta-intel BSP layer, which does always includes a README.sources of its
+> own, and so doesn't itself need one.
 
-> On 26 November 2012 13:55, Jerrod Peach <peachj@lexmark.com> wrote:
-> > build-bundle (git repo with our layers + tools)
-> > |
-> > +-- meta-ourstuff (git submodule, i.e. separate repo locked to a specific
-> > version within build-bundle)
-> > +-- poky (another submodule)
-> >    |
-> >    +-- poky BB files (i.e. within meta, meta-yocto, etc.)
+It's probably worth adding basically this as the README so that anyone
+who comes across it knows what it is.
 
-> Guacamayo does something similar, although meta-outstuff isn't a
-> submodule of build-bundle.
-
-At ChargeStorm we're using a similar scheme to Guacamayo, i.e. we have
-our repo with our recipes, bsp's, distro config etc. in our own
-meta-*-directories. And the we have oe-core, meta-oe, and/or poky and
-whatever layers we're using as submodules.
-
-> Being able to branch a "next" branch that switched the poky revision
-> to the danny RC instead of denzil was very convenient.
-
-Indeed, and also to be able to create a next branch halfway between
-denzil and danny, to be able to port / adapt some recipe that required
-bigger changes at about the same time those occured in poky-master (or
-oe-core master).
-
-Thus, I'm pretty satisfied with our structure for the moment, though
-everything can be improved.
-
-Cheers,
-Anders
-
--- 
-Anders Darander
-ChargeStorm AB / eStorm AB
+Ross
 
