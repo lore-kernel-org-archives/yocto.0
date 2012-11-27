@@ -1,43 +1,53 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1C1B8E011AF
-	for <yocto@yoctoproject.org>; Tue, 27 Nov 2012 09:24:11 -0800 (PST)
-Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
-	([174.115.5.73]:41934 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.77) (envelope-from <rpjday@crashcourse.ca>)
-	id 1TdOtF-0006RB-TD; Tue, 27 Nov 2012 12:24:10 -0500
-Date: Tue, 27 Nov 2012 12:24:06 -0500 (EST)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: =?ISO-8859-15?Q?Eren_T=FCrkay?= <eren@hambedded.org>
-In-Reply-To: <20121127161136.GA94097@gmail.com>
-Message-ID: <alpine.DEB.2.02.1211271203380.4220@oneiric>
-References: <CAHUNapSSawC9WwpdoNdg4vHBY6Yh3UycqYgOyX_pbTNw3S0Etg@mail.gmail.com>
-	<CAHUNapSVRuxDxn9L=oHg6aO-RKso2VNF6Mczaf2zwgxHn2zzBw@mail.gmail.com>
-	<20121126190407.GA69689@gmail.com>
-	<CAHUNapRZ2Fg_=G5gv7SGE0__3n7PjKk0R362V_w1nST5AuQpGQ@mail.gmail.com>
-	<CAHUNapSUN1iAh1ijxby6XW=DZuXA=_KCFLwfm9nYpgpKuE-V8w@mail.gmail.com>
-	<20121127113952.06050a25@eb-e6520>
-	<CAHUNapSULHA0kmWi9Qb61kxRJsuvGdbTjm9Wvktxc=PmGfVOSg@mail.gmail.com>
-	<20121127161136.GA94097@gmail.com>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <B29882@freescale.com>
+Received: from ch1outboundpool.messaging.microsoft.com
+	(ch1ehsobe005.messaging.microsoft.com [216.32.181.185])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 273BBE011AF
+	for <yocto@yoctoproject.org>; Tue, 27 Nov 2012 09:36:36 -0800 (PST)
+Received: from mail197-ch1-R.bigfish.com (10.43.68.236) by
+	CH1EHSOBE008.bigfish.com (10.43.70.58) with Microsoft SMTP Server id
+	14.1.225.23; Tue, 27 Nov 2012 17:36:35 +0000
+Received: from mail197-ch1 (localhost [127.0.0.1])	by
+	mail197-ch1-R.bigfish.com (Postfix) with ESMTP id 45B9B402B9;
+	Tue, 27 Nov 2012 17:36:35 +0000 (UTC)
+X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null); IPV:NLI;
+	H:mail.freescale.net; RD:none; EFVD:NLI
+X-SpamScore: 2
+X-BigFish: VS2(zz98dI9371I1432Izz1de0h1202h1d1ah1d2ahzz17326ah8275dhz2dh2a8h668h839h8e2h8e3hd25hf0ah10d2h1288h12a5h12a9h12bdh137ah13b6h1441h1537h153bh162dh1631hbe9i15d0l1155h)
+Received: from mail197-ch1 (localhost.localdomain [127.0.0.1]) by mail197-ch1
+	(MessageSwitch) id 1354037792464398_17199;
+	Tue, 27 Nov 2012 17:36:32 +0000 (UTC)
+Received: from CH1EHSMHS033.bigfish.com (snatpool3.int.messaging.microsoft.com
+	[10.43.68.229])	by mail197-ch1.bigfish.com (Postfix) with ESMTP id
+	6F074180051;	Tue, 27 Nov 2012 17:36:32 +0000 (UTC)
+Received: from mail.freescale.net (70.37.183.190) by CH1EHSMHS033.bigfish.com
+	(10.43.70.33) with Microsoft SMTP Server (TLS) id 14.1.225.23;
+	Tue, 27 Nov 2012 17:36:32 +0000
+Received: from 039-SN1MPN1-001.039d.mgd.msft.net ([169.254.1.124]) by
+	039-SN1MMR1-005.039d.mgd.msft.net ([::1]) with mapi id 14.02.0318.003;
+	Tue, 27 Nov 2012 17:36:31 +0000
+From: McClintock Matthew-B29882 <B29882@freescale.com>
+To: "openembedded-devel@lists.openembedded.org"
+	<openembedded-devel@lists.openembedded.org>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [oe] patchwork support for meta-freescale
+Thread-Index: AQHNzMW8Lp0SL1M3b0KzDwpN0i0foA==
+Date: Tue, 27 Nov 2012 17:36:30 +0000
+Message-ID: <70CC66F5C30A414DADDA6973E4CA391A7AD74E@039-SN1MPN1-001.039d.mgd.msft.net>
+References: <CAP9ODKpUkrqyzaN-X74QfrfLS_NWXyLbuguzsa+uAfocHN2-aw@mail.gmail.com>
+	<CAP9ODKpjGdj_iYkpVGb-3X-SAAQkC32HO6UpjAtZJFt_zv31aw@mail.gmail.com>
+In-Reply-To: <CAP9ODKpjGdj_iYkpVGb-3X-SAAQkC32HO6UpjAtZJFt_zv31aw@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [70.112.201.132]
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: IMAGE_INSTALL_append workflow
+X-OriginatorOrg: freescale.com
+Cc: OpenEmbedded Devel List <openembedded-devel@openembedded.org>
+Subject: Re: [oe] patchwork support for meta-freescale
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: McClintock Matthew-B29882 <B29882@freescale.com>
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -46,84 +56,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 27 Nov 2012 17:24:11 -0000
-Content-Type: MULTIPART/MIXED; BOUNDARY="8323329-297237268-1354036180=:4220"
-Content-ID: <alpine.DEB.2.02.1211271222420.6797@oneiric>
+X-List-Received-Date: Tue, 27 Nov 2012 17:36:36 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-ID: <F1BB7F75B4ED1A408B7C72AD9134BD9D@mgd.freescale.com>
+Content-Transfer-Encoding: quoted-printable
 
---8323329-297237268-1354036180=:4220
-Content-Type: TEXT/PLAIN; CHARSET=ISO-8859-15
-Content-Transfer-Encoding: QUOTED-PRINTABLE
-Content-ID: <alpine.DEB.2.02.1211271222421.6797@oneiric>
-
-On Tue, 27 Nov 2012, Eren T=FCrkay wrote:
-
-> On Tue, Nov 27, 2012 at 08:40:26AM -0500, Trevor Woerner wrote:
-> > Thank you, Eric, for the confirmation.
-> >
-> > Just to clarify for anyone following along: the problem isn't with
-> > bash or trace-cmd themselves. If I perform the same steps but use
-> > 'bash' first, then 'trace-cmd', adding 'bash' succeeds but later
-> > adding 'trace-cmd' causes 'trace-cmd' to fail in the same way
-> > 'bash' did when it was added second.
+On Tue, Nov 27, 2012 at 5:21 AM, Otavio Salvador
+<otavio@ossystems.com.br> wrote:
+> On Fri, Nov 23, 2012 at 5:13 PM, Otavio Salvador
+> <otavio@ossystems.com.br> wrote:
+>> Hi,
+>>
+>> Could patchwork support be added to meta-freescale? It'd allow for
+>> easy handle of patches.
 >
-> Since it's confirmed from different people, I think it would be
-> better to report it using bugzilla. I guess that it's not an
-> intended behaviour/feature of bitbake. Please inform the bug number
-> so that anyone who is interested can follow.
+> Ping?
 
-  here's a test i made based on nothing but fetching.  using oe-core,
-i selected qemuarm, added this line at the bottom of my local.conf:
+These are hosted on different organizations...  I don't see any repos
+from git.yoctoproject.org on http://patches.openembedded.org/.
+Although it would be nice to have.
 
-IMAGE_INSTALL_append =3D " sysfsutils strace"
+-M=
 
-and ran
 
-$ bitbake -c fetchall core-image-minimal
-
-  when that was done, i checked my downloads directory for the results
-of fetching (and patching) those two packages:
-
-$ ls strace*
-strace-4.7.tar.xz  strace-4.7.tar.xz.done
-$ ls sysfs*
-sysfs.sh.done                          sysfsutils-2.1.0.tar.gz
-sysfsutils-2.0.0-class-dup.patch.done  sysfsutils-2.1.0.tar.gz.done
-$
-
-  so that seemed to work fine.  so i started over with a clean build
-and did it in two stages.  first, i reduced the line to:
-
-IMAGE_INSTALL_append =3D " sysfsutils"
-
-ran the same "fetchall" operation again, and verified that that
-content had been fetched:
-
-$ ls sysfs*
-sysfs.sh.done                          sysfsutils-2.1.0.tar.gz
-sysfsutils-2.0.0-class-dup.patch.done  sysfsutils-2.1.0.tar.gz.done
-$
-
-  i then *changed* the line in local.conf to:
-
-IMAGE_INSTALL_append =3D " strace sysfsutils"
-
-and ran the fetchall again.  this time, no strace source was fetched,
-so it looks like an issue with simple fetching.
-
-rday
-
---=20
-
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-
---8323329-297237268-1354036180=:4220--
