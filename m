@@ -1,42 +1,34 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 26DC6E011AF
-	for <yocto@yoctoproject.org>; Tue, 27 Nov 2012 12:11:35 -0800 (PST)
-Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
-	([174.115.5.73]:46797 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.77) (envelope-from <rpjday@crashcourse.ca>)
-	id 1TdRVF-000621-Ur; Tue, 27 Nov 2012 15:11:34 -0500
-Date: Tue, 27 Nov 2012 15:11:27 -0500 (EST)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Trevor Woerner <twoerner@gmail.com>
-In-Reply-To: <CAHUNapRCGZMs-=eorNUfrjeKikyDW-O0K7GfREOHzs86B6pxEw@mail.gmail.com>
-Message-ID: <alpine.DEB.2.02.1211271508420.28029@oneiric>
-References: <CAHUNapSSawC9WwpdoNdg4vHBY6Yh3UycqYgOyX_pbTNw3S0Etg@mail.gmail.com>
-	<CAHUNapSVRuxDxn9L=oHg6aO-RKso2VNF6Mczaf2zwgxHn2zzBw@mail.gmail.com>
-	<20121126190407.GA69689@gmail.com>
-	<CAHUNapRZ2Fg_=G5gv7SGE0__3n7PjKk0R362V_w1nST5AuQpGQ@mail.gmail.com>
-	<CAHUNapSUN1iAh1ijxby6XW=DZuXA=_KCFLwfm9nYpgpKuE-V8w@mail.gmail.com>
-	<20121127113952.06050a25@eb-e6520>
-	<CAHUNapSULHA0kmWi9Qb61kxRJsuvGdbTjm9Wvktxc=PmGfVOSg@mail.gmail.com>
-	<20121127161136.GA94097@gmail.com>
-	<alpine.DEB.2.02.1211271203380.4220@oneiric>
-	<CAHUNapRCGZMs-=eorNUfrjeKikyDW-O0K7GfREOHzs86B6pxEw@mail.gmail.com>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <song.liu@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B18C5E011AF
+	for <yocto@yoctoproject.org>; Tue, 27 Nov 2012 15:03:19 -0800 (PST)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga101.ch.intel.com with ESMTP; 27 Nov 2012 15:03:14 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.84,174,1355126400"; d="scan'208";a="173309619"
+Received: from orsmsx106.amr.corp.intel.com ([10.22.225.133])
+	by AZSMGA002.ch.intel.com with ESMTP; 27 Nov 2012 15:03:14 -0800
+Received: from orsmsx152.amr.corp.intel.com (10.22.226.39) by
+	ORSMSX106.amr.corp.intel.com (10.22.225.133) with Microsoft SMTP Server
+	(TLS) id 14.1.355.2; Tue, 27 Nov 2012 15:03:14 -0800
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.81]) by
+	ORSMSX152.amr.corp.intel.com ([169.254.8.236]) with mapi id
+	14.01.0355.002; Tue, 27 Nov 2012 15:03:05 -0800
+From: "Liu, Song" <song.liu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Minutes: Yocto Project Technical Team Meeting - Tuesday,
+	November 27,
+	2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+Thread-Index: AQHNzPNgF+9zK4McMky2C0EpFcuxFA==
+Date: Tue, 27 Nov 2012 23:03:13 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A48607B7F@ORSMSX101.amr.corp.intel.com>
+References: <7E680CB2A76BB8438D08CF13C09FC53A4844CAD5@ORSMSX101.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: IMAGE_INSTALL_append workflow
+Subject: Minutes: Yocto Project Technical Team Meeting - Tuesday, November 27, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,56 +40,68 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 27 Nov 2012 20:11:35 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Tue, 27 Nov 2012 23:03:19 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, 27 Nov 2012, Trevor Woerner wrote:
+Attendees:
+Dave, MichaelH, Ciby, PaulE, ScottG, Bj=F6rnS, Ramana, KevinS, TomZ, Eren, =
+AlexG, ALexD, Richard, BrianR,Jefro, LaurentiuP, Nitin, BruceA, RossB, Scot=
+tR, JeffP, MarkH, CristianI, DarrenH, DaveST, JessicaZ, Beth, Song, IoanaG.
+=A0
+Agenda:
+=A0
+* Opens collection - 5 min (Song)
+* Yocto 1.4 status - 20 min (Song/team)
+  - This week will have RC1 for QA to run a full pass testing.
+  - QA will send out report on the full pass testing on last weekly build.
+  - M1 feature complete has come and gone. This week is the planning week f=
+or M2. Please schedule your features into M2 and make sure you understand t=
+he requirement and please consider holidays and your vacation.
+  - Master status: Ross: a couple of problems, mostly green. Saul: connman =
+issue. Mihai: looking at it. Seems to be autobuilder issue. Can fix it by i=
+ncreasing the timeout.
+=A0
+* SWAT team rotation: Ross -> LaurentiuP (Friday, RO national holiday, Beth=
+ will cover that day)
+* Opens - 10 min=20
+  - Ramana: offline configuration tool. Have some ideas and thoughts, would=
+ like to hear more feedback on it. Especially from Mark.=20
+    . Dave: It is a good idea.=20
+    . RP: would like to do it in bitbake. Darren and Mark are working on si=
+milar things.=20
+    . Mark: Initial idea is to use bitbake. Pass in packages, etc. without =
+all recipe parsing, etc.=20
+    . RP: The good place to discuss this is the mailing list.
+    . Mark will respond this week. Darren will do so too.
+  - Eren - location of the team.=20
+    . Song: we have teams in US, UK, Romania, Canada, China. There are peop=
+le here from Sweden, India, etc. We are across the globe.=20
+    - Jefro:  website and wiki. Thanks for everyone who provided feedback, =
+new website was launched. We are going to setup engineering process for mai=
+ntenance and production. Anyone interested to help, please let Jefro know.
+=A0
+* Team Sharing - 20 min
+  - Darren: have been working on ext for file generation code. Got a protot=
+ype for pre-populating files/directories, basic frameworks is there. Will h=
+ave patches out soon.=20
+  - RP: traveling, fixing bugs on autobuilder, sstates, etc. Been an intere=
+sting week, the autobuilder is mostly green now.
+  - Cristian: trying to improve build appliance. Updated to a more recent v=
+ersion of poky repos. Network testing is fixed. Produced some build to test=
+ it. Tested in vmware player. Working on virualbox.=20
+  - Radu: working system D. fixing some issues and failures on core-image-m=
+inimal. Will work on sato. Code is in contrib branch with my name and 'syst=
+emd', welcome comments and feedback.=20
+  - LaurentiuP: working on package upgrades. Struggling with some relocatio=
+n issues. It's fixed. Hopefully to move on to the next stage.=20
+  - Iona: working on Eclipse for windows. Committed a few patches. A few ot=
+her issues to be addressed, will send patches today. =20
+  - MichaelH: Worked on bugzilla field description, newest version of Bugzi=
+lla has the feature. Making sure we have more hard drives. Holiday networki=
+ng maintenance. Had 4 short network outages. Coming week, generation of the=
+ graphs RP asked. Recofnigration for testopia, etc.
 
-> On Tue, Nov 27, 2012 at 12:24 PM, Robert P. J. Day
-> <rpjday@crashcourse.ca> wrote:
-> > and ran the fetchall again.  this time, no strace source was fetched,
-> > so it looks like an issue with simple fetching.
->
-> Thank you for your testing and observations.
->
-> But I'd like to point out that in my tests, all the relevant files
-> have already been fetched. My DL_DIR already contains everything to
-> do with bash, trace-cmd, and various others that I have been
-> testing. The errors I am getting are not fetching-related errors,
-> but are errors because do_rootfs can't find any packages (since
-> packages relating to the recently-appended recipes have not been
-> built).
->
-> Somewhere in the guts of bitbake a modified IMAGE_INSTALL_append
-> variable is not being noticed; packages aren't being created (as
-> I've noticed) and sources aren't being downloaded (as you have just
-> noticed). But somehow do_rootfs is noticing the change and
-> complaining it can't find the necessary packages.
-
-  for what it's worth, if you're building an image that's a variation
-of a "core" image, an alternate way of adding packages after the fact
-is:
-
-CORE_IMAGE_EXTRA_INSTALL = "sysfsutils strace bash"
-
-i just tested it and, when i added a new entry in that list, at least
-the fetching understood and fetched that new source and patched it.
-so it doesn't solve the original problem with IMAGE_INSTALL_append,
-but feel free to see if that variation works for you.
-
-  again, it's only valid if you're building a core image or some
-variation thereof.
-
-rday
-
--- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
 
 
