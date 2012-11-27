@@ -1,42 +1,24 @@
-Return-Path: <eric@eukrea.com>
-Received: from mo2.mail-out.ovh.net (4.mo2.mail-out.ovh.net [87.98.172.75])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EE865E002AB
-	for <yocto@yoctoproject.org>; Tue, 27 Nov 2012 06:04:25 -0800 (PST)
-Received: from mail190.ha.ovh.net (b7.ovh.net [213.186.33.57])
-	by mo2.mail-out.ovh.net (Postfix) with SMTP id 4AF1DDC7F1F
-	for <yocto@yoctoproject.org>; Tue, 27 Nov 2012 15:12:22 +0100 (CET)
-Received: from b0.ovh.net (HELO queueout) (213.186.33.50)
-	by b0.ovh.net with SMTP; 27 Nov 2012 16:04:23 +0200
-Received: from pac33-2-82-240-38-71.fbx.proxad.net (HELO eb-e6520)
-	(eric%eukrea.com@82.240.38.71)
-	by ns0.ovh.net with SMTP; 27 Nov 2012 16:04:18 +0200
-Date: Tue, 27 Nov 2012 15:04:17 +0100
-From: Eric =?ISO-8859-1?B?QuluYXJk?= <eric@eukrea.com>
-To: Jonas Jonsson L <jonas.l.jonsson@ericsson.com>
-X-Ovh-Mailout: 178.32.228.2 (mo2.mail-out.ovh.net)
-Message-ID: <20121127150417.4e18a339@eb-e6520>
-In-Reply-To: <0342A6AD36648742A199353A51DDC7030275E8@ESESSMB305.ericsson.se>
-References: <CAHUNapSSawC9WwpdoNdg4vHBY6Yh3UycqYgOyX_pbTNw3S0Etg@mail.gmail.com>
-	<CAHUNapSVRuxDxn9L=oHg6aO-RKso2VNF6Mczaf2zwgxHn2zzBw@mail.gmail.com>
-	<20121126190407.GA69689@gmail.com>
-	<CAHUNapRZ2Fg_=G5gv7SGE0__3n7PjKk0R362V_w1nST5AuQpGQ@mail.gmail.com>
-	<CAHUNapSUN1iAh1ijxby6XW=DZuXA=_KCFLwfm9nYpgpKuE-V8w@mail.gmail.com>
-	<0342A6AD36648742A199353A51DDC7030275E8@ESESSMB305.ericsson.se>
-Organization: =?ISO-8859-1?B?RXVrculh?= Electromatique
-X-Mailer: Claws Mail 3.8.1 (GTK+ 2.24.8; x86_64-redhat-linux-gnu)
-Mime-Version: 1.0
-X-Ovh-Tracer-Id: 14438821881050869089
-X-Ovh-Remote: 82.240.38.71 (pac33-2-82-240-38-71.fbx.proxad.net)
-X-Ovh-Local: 213.186.33.20 (ns0.ovh.net)
-X-OVH-SPAMSTATE: OK
-X-OVH-SPAMSCORE: -100
-X-OVH-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrfeehhedrtdduucetufdoteggodetrfcurfhrohhfihhlvgemucfqggfjnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfhrhhomhepgfhrihgtuceurohnrghrugcuoegvrhhitgesvghukhhrvggrrdgtohhmqeenucfjughrpeffhffvuffkjghfohfogggtgfesthhqredtredtud
-X-Spam-Check: DONE|U 0.500383/N
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrfeehhedrtdduucetufdoteggodetrfcurfhrohhfihhlvgemucfqggfjnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfhrhhomhepgfhrihgtuceurohnrghrugcuoegvrhhitgesvghukhhrvggrrdgtohhmqeenucfjughrpeffhffvuffkjghfohfogggtgfesthhqredtredtud
-Cc: "Yocto Mailinglist \(yocto@yoctoproject.org\)" <yocto@yoctoproject.org>
-Subject: Re: IMAGE_INSTALL_append workflow
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DB4B8E011AF
+	for <yocto@yoctoproject.org>; Tue, 27 Nov 2012 07:16:07 -0800 (PST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 27 Nov 2012 07:16:07 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.83,328,1352102400"; d="scan'208";a="253432426"
+Received: from unknown (HELO helios.localnet) ([10.252.122.231])
+	by fmsmga001.fm.intel.com with ESMTP; 27 Nov 2012 07:16:06 -0800
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Jerrod Peach <peachj@lexmark.com>
+Date: Tue, 27 Nov 2012 15:16:05 +0000
+Message-ID: <7652746.pHk23F2rpO@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.9.3 (Linux/3.2.0-33-generic-pae; KDE/4.9.3; i686; ; )
+In-Reply-To: <CA+QkY1CG_t-MCeKx9VniZ-jS0eAEWwM=CzjxHQP+EwO-Ra2rZw@mail.gmail.com>
+References: <CA+QkY1CG_t-MCeKx9VniZ-jS0eAEWwM=CzjxHQP+EwO-Ra2rZw@mail.gmail.com>
+MIME-Version: 1.0
+Cc: yocto@yoctoproject.org
+Subject: Re: Forcing native binaries to build as 32-bit on a 64-bit host OS?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,23 +30,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 27 Nov 2012 14:04:26 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 27 Nov 2012 15:16:08 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Le Tue, 27 Nov 2012 14:00:34 +0000,
-Jonas Jonsson L <jonas.l.jonsson@ericsson.com> a =E9crit :
+On Tuesday 20 November 2012 14:27:30 Jerrod Peach wrote:
+> My company has traditionally built all their code on 32-bit systems for
+> 32-bit target architectures.  We're now trying to move our build hosts to
+> 64-bit OSes, but that's presenting us with a bit of a problem: some
+> non-trivial number of native packages don't want to properly build 64-bit
+> binaries.    Rather than fix all those issues right now, we'd like to build
+> everything as a 32-bit binary on a 64-bit OS.  The problem is, I'm not sure
+> how I'd go about forcing that to happen.  Is there some simple mechanism I
+> can use to force all native packages to build as 32-bit on a 64-bit system?
 
-> I can also confirm this.
->=20
-> A package (I've tried with diffutils & bash) must be built separately bef=
-ore it's added to an image via IMAGE_INSTALL_append.
->=20
-that seems to work the first time you add something using
-IMAGE_INSTALL_append.
-Then it fails when you add packages later (bitbake wants to install
-the package in the image but doesn't trigger the build of the package
-before).
+Sorry for the delay in replying. I've not had to do this myself but I suspect 
+something like this might do it:
 
-Eric
+BUILD_ARCH = "i686"
+
+Cheers,
+Paul
+
+-- 
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
