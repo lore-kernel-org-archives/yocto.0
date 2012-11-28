@@ -1,21 +1,21 @@
 Return-Path: <ioanax.grigoropol@intel.com>
 Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D853FE01461
-	for <yocto@yoctoproject.org>; Wed, 28 Nov 2012 02:21:53 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 33637E01449
+	for <yocto@yoctoproject.org>; Wed, 28 Nov 2012 02:21:55 -0800 (PST)
 Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 28 Nov 2012 02:21:53 -0800
+	by azsmga102.ch.intel.com with ESMTP; 28 Nov 2012 02:21:55 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,177,1355126400"; d="scan'208";a="223584859"
+X-IronPort-AV: E=Sophos;i="4.84,177,1355126400"; d="scan'208";a="223584868"
 Received: from ideapad (HELO localhost.localdomain) ([10.237.105.148])
-	by azsmga001.ch.intel.com with ESMTP; 28 Nov 2012 02:21:52 -0800
+	by azsmga001.ch.intel.com with ESMTP; 28 Nov 2012 02:21:53 -0800
 From: Ioana Grigoropol <ioanax.grigoropol@intel.com>
 To: yocto@yoctoproject.org
-Date: Wed, 28 Nov 2012 12:12:28 +0200
-Message-Id: <1354097550-21312-7-git-send-email-ioanax.grigoropol@intel.com>
+Date: Wed, 28 Nov 2012 12:12:29 +0200
+Message-Id: <1354097550-21312-8-git-send-email-ioanax.grigoropol@intel.com>
 X-Mailer: git-send-email 1.7.9.5
 In-Reply-To: <1354097550-21312-1-git-send-email-ioanax.grigoropol@intel.com>
 References: <1354097550-21312-1-git-send-email-ioanax.grigoropol@intel.com>
-Subject: [PATCH 6/8] Fix md5sum & sha256sum pattern checks
+Subject: [PATCH 7/8] Fix bitbake session by disabling sanity checks
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,36 +27,105 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 28 Nov 2012 10:21:54 -0000
+X-List-Received-Date: Wed, 28 Nov 2012 10:21:55 -0000
+
+- when creating a shell session for  Bitbake, we cannot run "bitbake -e -b recipe.bb" just by setting DISABLE_SANITY_CHECKS=1; we must first append DISABLE_SANITY_CHECKS to BB_ENV_EXTRAWHITE
 
 Signed-off-by: Ioana Grigoropol <ioanax.grigoropol@intel.com>
 ---
- .../ui/wizards/NewBitBakeFileRecipeWizardPage.java |    5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+ .../src/org/yocto/bc/bitbake/BBRecipe.java         |   10 +++++-----
+ .../src/org/yocto/bc/bitbake/ShellSession.java     |   16 +++++++++-------
+ 2 files changed, 14 insertions(+), 12 deletions(-)
 
-diff --git a/plugins/org.yocto.bc.ui/src/org/yocto/bc/ui/wizards/NewBitBakeFileRecipeWizardPage.java b/plugins/org.yocto.bc.ui/src/org/yocto/bc/ui/wizards/NewBitBakeFileRecipeWizardPage.java
-index eac1211..f1d90c9 100644
---- a/plugins/org.yocto.bc.ui/src/org/yocto/bc/ui/wizards/NewBitBakeFileRecipeWizardPage.java
-+++ b/plugins/org.yocto.bc.ui/src/org/yocto/bc/ui/wizards/NewBitBakeFileRecipeWizardPage.java
-@@ -96,8 +96,8 @@ public class NewBitBakeFileRecipeWizardPage extends WizardPage {
- 	private static final String CONFIGURE_IN = "configure.in";
- 	private static final String CONFIGURE_AC = "configure.ac";
- 	private static final String AUTOTOOLS = "autotools";
--	private static final String md5Pattern = "^[0-9a-e]{32}$";
--	protected static final String sha256Pattern = "^[0-9a-e]{64}$";
-+	private static final String md5Pattern = "^[0-9a-f]{32}$";
-+	protected static final String sha256Pattern = "^[0-9a-f]{64}$";
- 	
- 	public NewBitBakeFileRecipeWizardPage(ISelection selection, IHost connection) {
- 		super("wizardPage");
-@@ -323,6 +323,7 @@ public class NewBitBakeFileRecipeWizardPage extends WizardPage {
+diff --git a/plugins/org.yocto.bc.ui/src/org/yocto/bc/bitbake/BBRecipe.java b/plugins/org.yocto.bc.ui/src/org/yocto/bc/bitbake/BBRecipe.java
+index 7682aee..6a33ade 100644
+--- a/plugins/org.yocto.bc.ui/src/org/yocto/bc/bitbake/BBRecipe.java
++++ b/plugins/org.yocto.bc.ui/src/org/yocto/bc/bitbake/BBRecipe.java
+@@ -20,24 +20,24 @@ import java.net.URI;
+  */
+ public class BBRecipe extends BBSession {
+ 	private final BBSession session;
+-	private final URI filePath;
++	private final URI fileURI;
  
- 	private void handleRemotePopulate(URI srcURI, IProgressMonitor monitor) throws Exception {
- 		RemoteHelper.clearProcessBuffer(connection);
-+
- 		populateRecipeName(srcURI);
- 		List<YoctoCommand> commands = new ArrayList<YoctoCommand>();
+ 	public BBRecipe(BBSession session, URI filePath) throws IOException {
+ 		super(session.shell, session.pinfo.getURI());
+ 		this.session = session;
+-		this.filePath = filePath;
+-		this.parsingCmd = "DISABLE_SANITY_CHECKS=1 bitbake -e -b " + filePath;
++		this.fileURI = filePath;
++		this.parsingCmd = "DISABLE_SANITY_CHECKS=\"1\" bitbake -e -b " + filePath.getPath();
+ 	}
+ 	
+ 	@Override
+ 	public void initialize() throws Exception {
+ 		if (this.size() == 0) {
+-			System.out.println("Failed to parse " + filePath);
++			System.out.println("Failed to parse " + fileURI);
+ 			//throw new IOException("Failed to parse " + filePath);
+ 		}
+ 	}
+ 
+ 	protected URI getDefaultDepends() {
+-		return this.filePath;
++		return this.fileURI;
+ 	}
+ }
+diff --git a/plugins/org.yocto.bc.ui/src/org/yocto/bc/bitbake/ShellSession.java b/plugins/org.yocto.bc.ui/src/org/yocto/bc/bitbake/ShellSession.java
+index a8c46dd..edff746 100644
+--- a/plugins/org.yocto.bc.ui/src/org/yocto/bc/bitbake/ShellSession.java
++++ b/plugins/org.yocto.bc.ui/src/org/yocto/bc/bitbake/ShellSession.java
+@@ -46,6 +46,7 @@ public class ShellSession {
+ 	 */
+ 	public static final String TERMINATOR = "#234o987dsfkcqiuwey18837032843259d";
+ 	public static final String LT = System.getProperty("line.separator");
++	public static final String exportCmd = "export BB_ENV_EXTRAWHITE=\"DISABLE_SANITY_CHECKS $BB_ENV_EXTRAWHITE\"";
+ 	
+ 	public static String getFilePath(String file) throws IOException {
+ 		File f = new File(file);
+@@ -69,7 +70,7 @@ public class ShellSession {
+ 
+ 	private OutputStream pos = null;
+ 	//private File initFile = null;
+-	private String shellPath = null;
++//	private String shellPath = null;
+ 	private final String initCmd;
+ 	private final IHostFile root;
+ //	private final Writer out;
+@@ -84,10 +85,10 @@ public class ShellSession {
+ //		} else {
+ //			this.out = out;
+ //		}
+-		if (shellType == SHELL_TYPE_SH) {
+-			shellPath = "/bin/sh";
+-		}
+-		shellPath  = "/bin/bash";
++//		if (shellType == SHELL_TYPE_SH) {
++//			shellPath = "/bin/sh";
++//		}
++//		shellPath  = "/bin/bash";
  		
+ 		initializeShell(new NullProgressMonitor());
+ 	}
+@@ -95,7 +96,8 @@ public class ShellSession {
+ 	private void initializeShell(IProgressMonitor monitor) throws IOException {
+ 		try {
+ 			IHost connection = RemoteHelper.getRemoteConnectionByName(projectInfo.getConnection().getName());
+-			RemoteHelper.runCommandRemote(connection, new YoctoCommand("source " + initCmd, root.getAbsolutePath(), ""), monitor);
++			RemoteHelper.runCommandRemote(connection, new YoctoCommand("source " + initCmd, root.getAbsolutePath(), ""), monitor);		
++			RemoteHelper.runCommandRemote(connection, new YoctoCommand(exportCmd, root.getAbsolutePath(), ""), monitor);
+ 		} catch (Exception e) {
+ 			e.printStackTrace();
+ 		}
+@@ -110,7 +112,7 @@ public class ShellSession {
+ 	public String execute(String command, boolean hasErrors) throws IOException {
+ 		try {
+ 			IHost connection = RemoteHelper.getRemoteConnectionByName(projectInfo.getConnection().getName());
+-			hasErrors = RemoteHelper.runCommandRemote(connection, new YoctoCommand(command, root.getAbsolutePath(), ""), new NullProgressMonitor());
++			hasErrors = RemoteHelper.runCommandRemote(connection, new YoctoCommand(command, root.getAbsolutePath() + "/build/", ""), new NullProgressMonitor());
+ 			return RemoteHelper.getProcessBuffer(connection).getMergedOutputLines();
+ 		} catch (Exception e) {
+ 			e.printStackTrace();
 -- 
 1.7.9.5
 
