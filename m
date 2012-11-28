@@ -1,21 +1,28 @@
-Return-Path: <ioanax.grigoropol@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9DAAAE01465
-	for <yocto@yoctoproject.org>; Wed, 28 Nov 2012 02:21:56 -0800 (PST)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 28 Nov 2012 02:21:56 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,177,1355126400"; d="scan'208";a="223584883"
-Received: from ideapad (HELO localhost.localdomain) ([10.237.105.148])
-	by azsmga001.ch.intel.com with ESMTP; 28 Nov 2012 02:21:55 -0800
-From: Ioana Grigoropol <ioanax.grigoropol@intel.com>
-To: yocto@yoctoproject.org
-Date: Wed, 28 Nov 2012 12:12:30 +0200
-Message-Id: <1354097550-21312-9-git-send-email-ioanax.grigoropol@intel.com>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <1354097550-21312-1-git-send-email-ioanax.grigoropol@intel.com>
-References: <1354097550-21312-1-git-send-email-ioanax.grigoropol@intel.com>
-Subject: [PATCH 8/8] Do not rely on AbstractHostShellOutputReader for waiting for command outputs
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 51286E003D6
+	for <yocto@yoctoproject.org>; Wed, 28 Nov 2012 06:27:29 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id qASERNPt015041
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Wed, 28 Nov 2012 06:27:23 -0800 (PST)
+Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.2.318.4;
+	Wed, 28 Nov 2012 06:27:22 -0800
+Message-ID: <50B61F47.5050104@windriver.com>
+Date: Wed, 28 Nov 2012 09:27:19 -0500
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:16.0) Gecko/20121028 Thunderbird/16.0.2
+MIME-Version: 1.0
+To: Yu Pan <panyu2000@gmail.com>
+References: <CAPeyoXbwyKCE2r3R24D5UW2zHTcqkAS1Po+ZKRUqaG4PsJoqOA@mail.gmail.com>
+	<50B4DB1F.2070904@windriver.com>
+	<CAPeyoXY=72u_CiQhMv2FRmiOSQ-DLbRQUrRSg=NiUufzEZAjAw@mail.gmail.com>
+In-Reply-To: <CAPeyoXY=72u_CiQhMv2FRmiOSQ-DLbRQUrRSg=NiUufzEZAjAw@mail.gmail.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: Preempt-rt kernel build for beagleboard
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,190 +34,67 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 28 Nov 2012 10:21:56 -0000
+X-List-Received-Date: Wed, 28 Nov 2012 14:27:34 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-- AbstractHostShellReader is designed such that it will block in a read from the pipeline when the command is finished its execution, therefore we should not wait for this variable to be set because it will eventually block.
-Instead we will acquire a semaphore each time we run a command and wait for the first prompt line that comes after it, in order to parse the output.
+On 12-11-28 01:07 AM, Yu Pan wrote:
+> Hi Bruce,
+>
+> Thanks for commenting :-)
+>
+>     You shouldn't have needed to do this part, since the board already has
+>     a preempt-rt BSP description:
+>
+>     http://git.yoctoproject.org/__cgit/cgit.cgi/linux-yocto-3.4/__tree/meta/cfg/kernel-cache/__bsp/beagleboard/beagleboard-__preempt-rt.scc?h=meta
+>     <http://git.yoctoproject.org/cgit/cgit.cgi/linux-yocto-3.4/tree/meta/cfg/kernel-cache/bsp/beagleboard/beagleboard-preempt-rt.scc?h=meta>
+>
+>     And when you build the linux-yocto-rt kernel with that board, that
+>     description should be found, and it enables all the base options
+>     already.
+>
+>     If you look in your build, what does the file 'linux/meta/top_tgt'
+>     contain ?
+>
+>
+> This was what puzzles me as well. I thought bitbake should pickup what
 
-Signed-off-by: Ioana Grigoropol <ioanax.grigoropol@intel.com>
----
- .../org/yocto/bc/remote/utils/RemoteHelper.java    |   22 +++++--
- .../remote/utils/YoctoHostShellProcessAdapter.java |   68 +++++++++++++++++++-
- 2 files changed, 81 insertions(+), 9 deletions(-)
+It's the kern-tools that find the .scc file based on information passed
+in from bitbake, in this case, the board name and the kernel type.
 
-diff --git a/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/RemoteHelper.java b/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/RemoteHelper.java
-index 9c88ee7..432969c 100644
---- a/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/RemoteHelper.java
-+++ b/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/RemoteHelper.java
-@@ -288,15 +288,18 @@ public class RemoteHelper {
- 	public static boolean writeToShell(IHost connection, String remoteCommand, IProgressMonitor monitor){
- 		YoctoHostShellProcessAdapter hostShellProcessAdapter = getHostShellProcessAdapter(connection);
- 		hostShellProcessAdapter.setMonitor(monitor);
-+		hostShellProcessAdapter.setLastCommand(remoteCommand);
- 		getHostShell(connection).writeToShell(remoteCommand);
- 		
--		try {
--			while (!hostShellProcessAdapter.isFinished() && hostShellProcessAdapter.isAlive()) {
--				Thread.sleep(2);
--			}
--		} catch (Exception e) {
--			e.printStackTrace();
--		}
-+//		try {
-+//			while (!hostShellProcessAdapter.isFinished() && hostShellProcessAdapter.isAlive()) {
-+//				Thread.sleep(2);
-+//			}
-+////			System.out.println(">>>>>>>>>>>>>>>>>>>>finished command " + remoteCommand);
-+//		} catch (Exception e) {
-+//			e.printStackTrace();
-+//		}
-+//		
- 		return hostShellProcessAdapter.hasErrors();
- 	}
- 	
-@@ -362,4 +365,9 @@ public class RemoteHelper {
- 		}
- 		return false;
- 	}
-+
-+	public static void clearProcessBuffer(IHost connection) {
-+		getHostShellProcessAdapter(connection).clearProcessBuffer();
-+	}
-+
- }
-diff --git a/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/YoctoHostShellProcessAdapter.java b/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/YoctoHostShellProcessAdapter.java
-index b75401c..79a62e0 100644
---- a/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/YoctoHostShellProcessAdapter.java
-+++ b/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/YoctoHostShellProcessAdapter.java
-@@ -1,6 +1,7 @@
- package org.yocto.bc.remote.utils;
- 
- import java.io.IOException;
-+import java.util.concurrent.Semaphore;
- import java.util.regex.Matcher;
- import java.util.regex.Pattern;
- 
-@@ -13,6 +14,10 @@ import org.eclipse.rse.services.shells.IHostShellChangeEvent;
- import org.eclipse.rse.services.shells.IHostShellOutputReader;
- 
- public class YoctoHostShellProcessAdapter extends  HostShellProcessAdapter{
-+	private String commandPrompt = null;
-+	private static final String ROOT = "root";
-+	private static final String PROMPT_USER_CH = "$";
-+	private static final String PROMPT_ROOT_CH = "#";
- 	private ProcessStreamBuffer processStreamBuffer;
- 	private CommandResponseHandler commandResponseHandler;
- 	private boolean isFinished;
-@@ -20,7 +25,34 @@ public class YoctoHostShellProcessAdapter extends  HostShellProcessAdapter{
- 	private int reportedWorkload;
- 	private IProgressMonitor monitor;
- 	private boolean isAlive;
-+
-+	private String lastCommand;
-+	private boolean waitForOutput;
-+	private String endChar = null;
-+
-+	private Semaphore sem;
- 	
-+	public String getLastCommand() {
-+		return lastCommand;
-+	}
-+
-+	public synchronized void setLastCommand(String lastCommand) {
-+//		if (waitForOutput) {
-+			try {
-+				// there are still some processes that might take a long time and if we do not wait for them, 
-+				// then the semaphore will not be released, because an interrupted exception will occur
-+				Thread.sleep(2000);
-+				System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>semaphore aquire");
-+				sem.acquire();
-+				this.lastCommand = lastCommand.trim();
-+				System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>last command set " + lastCommand);
-+			} catch (InterruptedException e) {
-+				e.printStackTrace();
-+			}
-+//		}
-+	}
-+
-+
- 	public IProgressMonitor getMonitor() {
- 		return monitor;
- 	}
-@@ -50,6 +82,9 @@ public class YoctoHostShellProcessAdapter extends  HostShellProcessAdapter{
- 		this.processStreamBuffer = processStreamBuffer;
- 		this.commandResponseHandler = commandResponseHandler;
- 		this.calculator = new GitCalculatePercentage();
-+		this.sem = new Semaphore(1);
-+		this.lastCommand = "";
-+
- 	}
- 
- 	private void updateMonitor(final int work){
-@@ -106,6 +141,7 @@ public class YoctoHostShellProcessAdapter extends  HostShellProcessAdapter{
- 				if (value.isEmpty()) {
- 					continue;
- 				}
-+				setCommandPrompt(value);
- 				System.out.println(value);
- 				this.processStreamBuffer.addErrorLine(value);
- 				this.commandResponseHandler.response(value, false);
-@@ -116,18 +152,38 @@ public class YoctoHostShellProcessAdapter extends  HostShellProcessAdapter{
- 				if (value.isEmpty()) {
- 					continue;
- 				}
--				
-+				setCommandPrompt(value);
-+				if (value.startsWith(commandPrompt) &&  value.endsWith(endChar) && 
-+						!value.endsWith(lastCommand) && processStreamBuffer.getLastOutputLineContaining(lastCommand) != null /*&& waitForOutput*/) {
-+					System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Sem release");
-+					sem.release();
-+				}
-+
- 				reportProgress(value);
- 				System.out.println(value);
- 				this.processStreamBuffer.addOutputLine(value);
- 				this.commandResponseHandler.response(value, false);
- 			}
- 		}
-+		
- 		AbstractHostShellOutputReader absReader = (AbstractHostShellOutputReader)reader;
- 		isAlive = absReader.isAlive();
- 		isFinished = absReader.isFinished();
- 	}
--
-+	private void setCommandPrompt(String value) {
-+		if (commandPrompt == null) {
-+			if (value.startsWith(ROOT) && value.indexOf(PROMPT_ROOT_CH) != -1) {
-+				int end = value.indexOf(PROMPT_ROOT_CH);
-+				commandPrompt = value.substring(0, end);
-+				endChar = PROMPT_ROOT_CH;
-+			} else if (value.indexOf(PROMPT_USER_CH) != -1) {
-+				int end = value.indexOf(PROMPT_USER_CH);
-+				commandPrompt = value.substring(0, end);
-+				endChar = PROMPT_USER_CH;
-+			}
-+				
-+		}
-+	}
- 	public boolean isFinished() {
- 		return isFinished;
- 	}
-@@ -143,6 +199,14 @@ public class YoctoHostShellProcessAdapter extends  HostShellProcessAdapter{
- 		this.isAlive = isAlive;
- 	}
- 
-+	public boolean isWaitForOutput() {
-+		return waitForOutput;
-+	}
-+
-+	public void setWaitForOutput(boolean waitForOutput) {
-+		this.waitForOutput = waitForOutput;
-+	}
-+
- 	public void clearProcessBuffer() {
- 		this.processStreamBuffer.outputLines.clear();
- 		this.processStreamBuffer.errorLines.clear();
--- 
-1.7.9.5
+> is specified in beagleboard-preempt-rt.scc to produce the .config in the
+> kernel build directory. But it did not, at least for the PREEMPT part.
+> Below is the PREEMPT related configs in the .config without manually
+> doing the menuconfig:
+>
+> # CONFIG_PREEMPT_RCU is not set
+> CONFIG_PREEMPT_NONE=y
+> # CONFIG_PREEMPT_VOLUNTARY is not set
+> # CONFIG_PREEMPT__LL is not set
+> # CONFIG_PREEMPT_RTB is not set
+> # CONFIG_PREEMPT_RT_FULL is not set
+>
+> Follow your pointer, I checked linux/meta/top_tgt, it indeed points to
+> meta/cfg/kernel-cache/bsp/beagleboard/beagleboard-preempt-rt.scc, which
+
+And this means that the right one was found.
+
+> includes ktypes/preempt-rt (why not ktypes/preempt-rt.scc?). In
+> ktypes/preempt-rt.cfg (included by ktypes/preempt-rt.scc),
+> CONFIG_PREEMPT_RT_FULL=y is there. So why not this configuration
+> fragment not picked up in the final .config?
+
+It should always make it into the final .config, are you working on
+master ? I'll run my own tests here to see if I can reproduce the
+failure. Master should also have a better Kconfig audit report, are
+you seeing any messages about Kconfig options being dropped ?
+
+Cheers,
+
+Bruce
+
+>
+> Cheers
+> Pan Yu
 
 
