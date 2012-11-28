@@ -1,31 +1,19 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 47AEEE013EB
-	for <yocto@yoctoproject.org>; Wed, 28 Nov 2012 02:16:59 -0800 (PST)
-Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
-	([174.115.5.73]:54248 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.77) (envelope-from <rpjday@crashcourse.ca>)
-	id 1TdehN-0004LF-Pk
-	for yocto@yoctoproject.org; Wed, 28 Nov 2012 05:16:57 -0500
-Date: Wed, 28 Nov 2012 05:16:53 -0500 (EST)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.DEB.2.02.1211280514220.31070@oneiric>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
-MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: where to report web site glitches, "Enea Linux" link borked
+Return-Path: <ioanax.grigoropol@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A2DEEE013CE
+	for <yocto@yoctoproject.org>; Wed, 28 Nov 2012 02:21:46 -0800 (PST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 28 Nov 2012 02:21:45 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.84,177,1355126400"; d="scan'208";a="223584806"
+Received: from ideapad (HELO localhost.localdomain) ([10.237.105.148])
+	by azsmga001.ch.intel.com with ESMTP; 28 Nov 2012 02:21:44 -0800
+From: Ioana Grigoropol <ioanax.grigoropol@intel.com>
+To: yocto@yoctoproject.org
+Date: Wed, 28 Nov 2012 12:12:22 +0200
+Message-Id: <1354097550-21312-1-git-send-email-ioanax.grigoropol@intel.com>
+X-Mailer: git-send-email 1.7.9.5
+Subject: [PATCH 0/8] [eclipse-poky-windows] Multiple fixes against eclipse plugin for working on Windows agains Build Appliance
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,29 +25,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 28 Nov 2012 10:16:59 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Wed, 28 Nov 2012 10:21:46 -0000
 
+- Add fixes for Recipe wizard & Bitbake Project Wizard 
+- Wait for command output in a synchronous way using semaphores
+- Fix remote deletion of files
+- Initialize Bitbake session & parse environment variables
 
-  where is the right place to report yoctoproject web site glitches?
-here:
+Ioana Grigoropol (8):
+  Add console fixes & run commands in a synchronous way
+  Initialize bitbake session & environment parse variables
+  Fix Bitbake commander project wizard
+  Validate Recipe autopopulated fields
+  Fix remote deletion of files
+  Fix md5sum & sha256sum pattern checks
+  Fix bitbake session by disabling sanity checks
+  Do not rely on AbstractHostShellOutputReader for waiting for command
+    outputs
 
-https://www.yoctoproject.org/product/enea-linux
-
-the "Enea Linux" link is currently broken, it appears that it should
-be:
-
-http://www.enea.com/software/solutions/Enea-Linux/
-
-rday
+ .../src/org/yocto/bc/bitbake/BBRecipe.java         |   10 +-
+ .../src/org/yocto/bc/bitbake/BBSession.java        |   17 ++-
+ .../src/org/yocto/bc/bitbake/ShellSession.java     |   58 ++++-----
+ .../org/yocto/bc/remote/utils/ConsoleHelper.java   |   18 +--
+ .../bc/remote/utils/ConsoleHelperRunnable.java     |   31 +++++
+ .../org/yocto/bc/remote/utils/ConsoleRunnable.java |   37 ++++++
+ .../org/yocto/bc/remote/utils/RemoteHelper.java    |   41 ++++--
+ .../org/yocto/bc/remote/utils/RemoteMachine.java   |    6 +-
+ .../remote/utils/YoctoHostShellProcessAdapter.java |  132 +++++++++++++++++---
+ .../bc/ui/wizards/NewBitBakeFileRecipeWizard.java  |    2 +-
+ .../ui/wizards/NewBitBakeFileRecipeWizardPage.java |   40 +++---
+ .../yocto/bc/ui/wizards/install/InstallWizard.java |   85 ++++---------
+ 12 files changed, 297 insertions(+), 180 deletions(-)
+ create mode 100644 plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/ConsoleHelperRunnable.java
+ create mode 100644 plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/ConsoleRunnable.java
 
 -- 
+1.7.9.5
 
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
 
