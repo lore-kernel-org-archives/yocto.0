@@ -1,28 +1,29 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 51286E003D6
-	for <yocto@yoctoproject.org>; Wed, 28 Nov 2012 06:27:29 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id qASERNPt015041
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 28 Nov 2012 06:27:23 -0800 (PST)
-Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.2.318.4;
-	Wed, 28 Nov 2012 06:27:22 -0800
-Message-ID: <50B61F47.5050104@windriver.com>
-Date: Wed, 28 Nov 2012 09:27:19 -0500
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:16.0) Gecko/20121028 Thunderbird/16.0.2
+Return-Path: <k.bouhara@gmail.com>
+Received: from mail-lb0-f176.google.com (mail-lb0-f176.google.com
+	[209.85.217.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1E62AE01275
+	for <yocto@yoctoproject.org>; Wed, 28 Nov 2012 00:31:19 -0800 (PST)
+Received: by mail-lb0-f176.google.com with SMTP id k6so11346937lbo.35
+	for <yocto@yoctoproject.org>; Wed, 28 Nov 2012 00:31:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:from:date:message-id:subject:to:content-type;
+	bh=wJJkbNXLFvi8rl5Cd0yEqdBochT2WKWdBxDQd4+CXwE=;
+	b=okv/K2puUlMkH5i31fBxAQFE+Ax8sOL5/QZObnM9CaCmrg2J1MUnFQyqG2xpS7q+OZ
+	9OOatvjSOyBmsvPZC/SRjZRV7n3v/PlJspe4mQ4UUz3G8LxqZujnG7iJfzjCjZ1OTklf
+	B5jdvz229IRkIBMEgYxzv7V0RTrVK/jgE/x/QOKghX6W1YXWkpkFeP8O58v6IptUcbBi
+	5NxENiU/B1yZP7iZzjNsGUaQg/kyQ/Lupj24UndFZPxGG7CROUqTaEH1T6CPuNT1eigu
+	+PPXgJnXYTMrr+/v5LMIpnkStfl8j1RnnwD/qP7wOrfkQdRwbsjeerxpIh2t38G26xap
+	ucsA==
+Received: by 10.152.106.4 with SMTP id gq4mr16955955lab.44.1354091478657; Wed,
+	28 Nov 2012 00:31:18 -0800 (PST)
 MIME-Version: 1.0
-To: Yu Pan <panyu2000@gmail.com>
-References: <CAPeyoXbwyKCE2r3R24D5UW2zHTcqkAS1Po+ZKRUqaG4PsJoqOA@mail.gmail.com>
-	<50B4DB1F.2070904@windriver.com>
-	<CAPeyoXY=72u_CiQhMv2FRmiOSQ-DLbRQUrRSg=NiUufzEZAjAw@mail.gmail.com>
-In-Reply-To: <CAPeyoXY=72u_CiQhMv2FRmiOSQ-DLbRQUrRSg=NiUufzEZAjAw@mail.gmail.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: Preempt-rt kernel build for beagleboard
+Received: by 10.152.146.131 with HTTP; Wed, 28 Nov 2012 00:30:58 -0800 (PST)
+From: Kamel BOUHARA <k.bouhara@gmail.com>
+Date: Wed, 28 Nov 2012 09:30:58 +0100
+Message-ID: <CAM9uW_7oiB6H8Bp=xZ22-MWDgAE4Y+vJAADH3W6k86u5Jcqc6Q@mail.gmail.com>
+To: yocto@yoctoproject.org
+X-Mailman-Approved-At: Wed, 28 Nov 2012 07:46:24 -0800
+Subject: Qt and OpenGLE package
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,67 +35,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 28 Nov 2012 14:27:34 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 28 Nov 2012 08:31:20 -0000
+Content-Type: multipart/alternative; boundary=f46d04083e0f9429e304cf89fd20
 
-On 12-11-28 01:07 AM, Yu Pan wrote:
-> Hi Bruce,
->
-> Thanks for commenting :-)
->
->     You shouldn't have needed to do this part, since the board already has
->     a preempt-rt BSP description:
->
->     http://git.yoctoproject.org/__cgit/cgit.cgi/linux-yocto-3.4/__tree/meta/cfg/kernel-cache/__bsp/beagleboard/beagleboard-__preempt-rt.scc?h=meta
->     <http://git.yoctoproject.org/cgit/cgit.cgi/linux-yocto-3.4/tree/meta/cfg/kernel-cache/bsp/beagleboard/beagleboard-preempt-rt.scc?h=meta>
->
->     And when you build the linux-yocto-rt kernel with that board, that
->     description should be found, and it enables all the base options
->     already.
->
->     If you look in your build, what does the file 'linux/meta/top_tgt'
->     contain ?
->
->
-> This was what puzzles me as well. I thought bitbake should pickup what
+--f46d04083e0f9429e304cf89fd20
+Content-Type: text/plain; charset=ISO-8859-1
 
-It's the kern-tools that find the .scc file based on information passed
-in from bitbake, in this case, the board name and the kernel type.
+Hi all,
 
-> is specified in beagleboard-preempt-rt.scc to produce the .config in the
-> kernel build directory. But it did not, at least for the PREEMPT part.
-> Below is the PREEMPT related configs in the .config without manually
-> doing the menuconfig:
->
-> # CONFIG_PREEMPT_RCU is not set
-> CONFIG_PREEMPT_NONE=y
-> # CONFIG_PREEMPT_VOLUNTARY is not set
-> # CONFIG_PREEMPT__LL is not set
-> # CONFIG_PREEMPT_RTB is not set
-> # CONFIG_PREEMPT_RT_FULL is not set
->
-> Follow your pointer, I checked linux/meta/top_tgt, it indeed points to
-> meta/cfg/kernel-cache/bsp/beagleboard/beagleboard-preempt-rt.scc, which
+Im trying to build a qt application whitch use qt4e class. Here is the
+result of the compilation:
 
-And this means that the right one was found.
+.../build/tmp/sysroots/i686-linux/usr/libexec/armv7a-vfp-neon-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/4.6.4/ld:
+cannot find -lQtOpenGLE
 
-> includes ktypes/preempt-rt (why not ktypes/preempt-rt.scc?). In
-> ktypes/preempt-rt.cfg (included by ktypes/preempt-rt.scc),
-> CONFIG_PREEMPT_RT_FULL=y is there. So why not this configuration
-> fragment not picked up in the final .config?
+So I'am wondering if a package "libqt-embeddedopengl4" exist and can be
+added to the task-qt4e.bb recipe ?
 
-It should always make it into the final .config, are you working on
-master ? I'll run my own tests here to see if I can reproduce the
-failure. Master should also have a better Kconfig audit report, are
-you seeing any messages about Kconfig options being dropped ?
+-- 
+Best Regards
+_______________________________*
+Kamel BOUHARA**
 
-Cheers,
+*
+*
+*
 
-Bruce
+--f46d04083e0f9429e304cf89fd20
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
->
-> Cheers
-> Pan Yu
+Hi all,<div><br></div><div>Im trying to build a qt application whitch use q=
+t4e class. Here is the result of the compilation:</div><div><br></div><div>=
+.../build/tmp/sysroots/i686-linux/usr/libexec/armv7a-vfp-neon-poky-linux-gn=
+ueabi/gcc/arm-poky-linux-gnueabi/4.6.4/ld: cannot find -lQtOpenGLE=A0<br cl=
+ear=3D"all">
 
+<div><br></div><div>So I&#39;am wondering if a package &quot;libqt-embedded=
+opengl4&quot; exist and can be added to the <a href=3D"http://task-qt4e.bb"=
+>task-qt4e.bb</a> recipe ?=A0</div><div><br></div>-- <br>Best Regards<br><d=
+iv>
 
+_______________________________<b><i><font face=3D"&#39;comic sans ms&#39;,=
+ sans-serif"><br></font></i><font face=3D"&#39;comic sans ms&#39;, sans-ser=
+if">Kamel BOUHARA</font></b><b><br><br></b><div><b><br></b></div><div><br>
+</div>
+<div><br></div></div><br>
+</div>
+
+--f46d04083e0f9429e304cf89fd20--
