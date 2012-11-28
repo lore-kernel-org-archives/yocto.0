@@ -1,21 +1,21 @@
 Return-Path: <ioanax.grigoropol@intel.com>
 Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 33637E01449
-	for <yocto@yoctoproject.org>; Wed, 28 Nov 2012 02:21:55 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9DAAAE01465
+	for <yocto@yoctoproject.org>; Wed, 28 Nov 2012 02:21:56 -0800 (PST)
 Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 28 Nov 2012 02:21:55 -0800
+	by azsmga102.ch.intel.com with ESMTP; 28 Nov 2012 02:21:56 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,177,1355126400"; d="scan'208";a="223584868"
+X-IronPort-AV: E=Sophos;i="4.84,177,1355126400"; d="scan'208";a="223584883"
 Received: from ideapad (HELO localhost.localdomain) ([10.237.105.148])
-	by azsmga001.ch.intel.com with ESMTP; 28 Nov 2012 02:21:53 -0800
+	by azsmga001.ch.intel.com with ESMTP; 28 Nov 2012 02:21:55 -0800
 From: Ioana Grigoropol <ioanax.grigoropol@intel.com>
 To: yocto@yoctoproject.org
-Date: Wed, 28 Nov 2012 12:12:29 +0200
-Message-Id: <1354097550-21312-8-git-send-email-ioanax.grigoropol@intel.com>
+Date: Wed, 28 Nov 2012 12:12:30 +0200
+Message-Id: <1354097550-21312-9-git-send-email-ioanax.grigoropol@intel.com>
 X-Mailer: git-send-email 1.7.9.5
 In-Reply-To: <1354097550-21312-1-git-send-email-ioanax.grigoropol@intel.com>
 References: <1354097550-21312-1-git-send-email-ioanax.grigoropol@intel.com>
-Subject: [PATCH 7/8] Fix bitbake session by disabling sanity checks
+Subject: [PATCH 8/8] Do not rely on AbstractHostShellOutputReader for waiting for command outputs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,105 +27,189 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 28 Nov 2012 10:21:55 -0000
+X-List-Received-Date: Wed, 28 Nov 2012 10:21:56 -0000
 
-- when creating a shell session for  Bitbake, we cannot run "bitbake -e -b recipe.bb" just by setting DISABLE_SANITY_CHECKS=1; we must first append DISABLE_SANITY_CHECKS to BB_ENV_EXTRAWHITE
+- AbstractHostShellReader is designed such that it will block in a read from the pipeline when the command is finished its execution, therefore we should not wait for this variable to be set because it will eventually block.
+Instead we will acquire a semaphore each time we run a command and wait for the first prompt line that comes after it, in order to parse the output.
 
 Signed-off-by: Ioana Grigoropol <ioanax.grigoropol@intel.com>
 ---
- .../src/org/yocto/bc/bitbake/BBRecipe.java         |   10 +++++-----
- .../src/org/yocto/bc/bitbake/ShellSession.java     |   16 +++++++++-------
- 2 files changed, 14 insertions(+), 12 deletions(-)
+ .../org/yocto/bc/remote/utils/RemoteHelper.java    |   22 +++++--
+ .../remote/utils/YoctoHostShellProcessAdapter.java |   68 +++++++++++++++++++-
+ 2 files changed, 81 insertions(+), 9 deletions(-)
 
-diff --git a/plugins/org.yocto.bc.ui/src/org/yocto/bc/bitbake/BBRecipe.java b/plugins/org.yocto.bc.ui/src/org/yocto/bc/bitbake/BBRecipe.java
-index 7682aee..6a33ade 100644
---- a/plugins/org.yocto.bc.ui/src/org/yocto/bc/bitbake/BBRecipe.java
-+++ b/plugins/org.yocto.bc.ui/src/org/yocto/bc/bitbake/BBRecipe.java
-@@ -20,24 +20,24 @@ import java.net.URI;
-  */
- public class BBRecipe extends BBSession {
- 	private final BBSession session;
--	private final URI filePath;
-+	private final URI fileURI;
- 
- 	public BBRecipe(BBSession session, URI filePath) throws IOException {
- 		super(session.shell, session.pinfo.getURI());
- 		this.session = session;
--		this.filePath = filePath;
--		this.parsingCmd = "DISABLE_SANITY_CHECKS=1 bitbake -e -b " + filePath;
-+		this.fileURI = filePath;
-+		this.parsingCmd = "DISABLE_SANITY_CHECKS=\"1\" bitbake -e -b " + filePath.getPath();
- 	}
- 	
- 	@Override
- 	public void initialize() throws Exception {
- 		if (this.size() == 0) {
--			System.out.println("Failed to parse " + filePath);
-+			System.out.println("Failed to parse " + fileURI);
- 			//throw new IOException("Failed to parse " + filePath);
- 		}
- 	}
- 
- 	protected URI getDefaultDepends() {
--		return this.filePath;
-+		return this.fileURI;
- 	}
- }
-diff --git a/plugins/org.yocto.bc.ui/src/org/yocto/bc/bitbake/ShellSession.java b/plugins/org.yocto.bc.ui/src/org/yocto/bc/bitbake/ShellSession.java
-index a8c46dd..edff746 100644
---- a/plugins/org.yocto.bc.ui/src/org/yocto/bc/bitbake/ShellSession.java
-+++ b/plugins/org.yocto.bc.ui/src/org/yocto/bc/bitbake/ShellSession.java
-@@ -46,6 +46,7 @@ public class ShellSession {
- 	 */
- 	public static final String TERMINATOR = "#234o987dsfkcqiuwey18837032843259d";
- 	public static final String LT = System.getProperty("line.separator");
-+	public static final String exportCmd = "export BB_ENV_EXTRAWHITE=\"DISABLE_SANITY_CHECKS $BB_ENV_EXTRAWHITE\"";
- 	
- 	public static String getFilePath(String file) throws IOException {
- 		File f = new File(file);
-@@ -69,7 +70,7 @@ public class ShellSession {
- 
- 	private OutputStream pos = null;
- 	//private File initFile = null;
--	private String shellPath = null;
-+//	private String shellPath = null;
- 	private final String initCmd;
- 	private final IHostFile root;
- //	private final Writer out;
-@@ -84,10 +85,10 @@ public class ShellSession {
- //		} else {
- //			this.out = out;
- //		}
--		if (shellType == SHELL_TYPE_SH) {
--			shellPath = "/bin/sh";
--		}
--		shellPath  = "/bin/bash";
-+//		if (shellType == SHELL_TYPE_SH) {
-+//			shellPath = "/bin/sh";
-+//		}
-+//		shellPath  = "/bin/bash";
+diff --git a/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/RemoteHelper.java b/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/RemoteHelper.java
+index 9c88ee7..432969c 100644
+--- a/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/RemoteHelper.java
++++ b/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/RemoteHelper.java
+@@ -288,15 +288,18 @@ public class RemoteHelper {
+ 	public static boolean writeToShell(IHost connection, String remoteCommand, IProgressMonitor monitor){
+ 		YoctoHostShellProcessAdapter hostShellProcessAdapter = getHostShellProcessAdapter(connection);
+ 		hostShellProcessAdapter.setMonitor(monitor);
++		hostShellProcessAdapter.setLastCommand(remoteCommand);
+ 		getHostShell(connection).writeToShell(remoteCommand);
  		
- 		initializeShell(new NullProgressMonitor());
+-		try {
+-			while (!hostShellProcessAdapter.isFinished() && hostShellProcessAdapter.isAlive()) {
+-				Thread.sleep(2);
+-			}
+-		} catch (Exception e) {
+-			e.printStackTrace();
+-		}
++//		try {
++//			while (!hostShellProcessAdapter.isFinished() && hostShellProcessAdapter.isAlive()) {
++//				Thread.sleep(2);
++//			}
++////			System.out.println(">>>>>>>>>>>>>>>>>>>>finished command " + remoteCommand);
++//		} catch (Exception e) {
++//			e.printStackTrace();
++//		}
++//		
+ 		return hostShellProcessAdapter.hasErrors();
  	}
-@@ -95,7 +96,8 @@ public class ShellSession {
- 	private void initializeShell(IProgressMonitor monitor) throws IOException {
- 		try {
- 			IHost connection = RemoteHelper.getRemoteConnectionByName(projectInfo.getConnection().getName());
--			RemoteHelper.runCommandRemote(connection, new YoctoCommand("source " + initCmd, root.getAbsolutePath(), ""), monitor);
-+			RemoteHelper.runCommandRemote(connection, new YoctoCommand("source " + initCmd, root.getAbsolutePath(), ""), monitor);		
-+			RemoteHelper.runCommandRemote(connection, new YoctoCommand(exportCmd, root.getAbsolutePath(), ""), monitor);
- 		} catch (Exception e) {
- 			e.printStackTrace();
+ 	
+@@ -362,4 +365,9 @@ public class RemoteHelper {
  		}
-@@ -110,7 +112,7 @@ public class ShellSession {
- 	public String execute(String command, boolean hasErrors) throws IOException {
- 		try {
- 			IHost connection = RemoteHelper.getRemoteConnectionByName(projectInfo.getConnection().getName());
--			hasErrors = RemoteHelper.runCommandRemote(connection, new YoctoCommand(command, root.getAbsolutePath(), ""), new NullProgressMonitor());
-+			hasErrors = RemoteHelper.runCommandRemote(connection, new YoctoCommand(command, root.getAbsolutePath() + "/build/", ""), new NullProgressMonitor());
- 			return RemoteHelper.getProcessBuffer(connection).getMergedOutputLines();
- 		} catch (Exception e) {
- 			e.printStackTrace();
+ 		return false;
+ 	}
++
++	public static void clearProcessBuffer(IHost connection) {
++		getHostShellProcessAdapter(connection).clearProcessBuffer();
++	}
++
+ }
+diff --git a/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/YoctoHostShellProcessAdapter.java b/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/YoctoHostShellProcessAdapter.java
+index b75401c..79a62e0 100644
+--- a/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/YoctoHostShellProcessAdapter.java
++++ b/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/YoctoHostShellProcessAdapter.java
+@@ -1,6 +1,7 @@
+ package org.yocto.bc.remote.utils;
+ 
+ import java.io.IOException;
++import java.util.concurrent.Semaphore;
+ import java.util.regex.Matcher;
+ import java.util.regex.Pattern;
+ 
+@@ -13,6 +14,10 @@ import org.eclipse.rse.services.shells.IHostShellChangeEvent;
+ import org.eclipse.rse.services.shells.IHostShellOutputReader;
+ 
+ public class YoctoHostShellProcessAdapter extends  HostShellProcessAdapter{
++	private String commandPrompt = null;
++	private static final String ROOT = "root";
++	private static final String PROMPT_USER_CH = "$";
++	private static final String PROMPT_ROOT_CH = "#";
+ 	private ProcessStreamBuffer processStreamBuffer;
+ 	private CommandResponseHandler commandResponseHandler;
+ 	private boolean isFinished;
+@@ -20,7 +25,34 @@ public class YoctoHostShellProcessAdapter extends  HostShellProcessAdapter{
+ 	private int reportedWorkload;
+ 	private IProgressMonitor monitor;
+ 	private boolean isAlive;
++
++	private String lastCommand;
++	private boolean waitForOutput;
++	private String endChar = null;
++
++	private Semaphore sem;
+ 	
++	public String getLastCommand() {
++		return lastCommand;
++	}
++
++	public synchronized void setLastCommand(String lastCommand) {
++//		if (waitForOutput) {
++			try {
++				// there are still some processes that might take a long time and if we do not wait for them, 
++				// then the semaphore will not be released, because an interrupted exception will occur
++				Thread.sleep(2000);
++				System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>semaphore aquire");
++				sem.acquire();
++				this.lastCommand = lastCommand.trim();
++				System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>last command set " + lastCommand);
++			} catch (InterruptedException e) {
++				e.printStackTrace();
++			}
++//		}
++	}
++
++
+ 	public IProgressMonitor getMonitor() {
+ 		return monitor;
+ 	}
+@@ -50,6 +82,9 @@ public class YoctoHostShellProcessAdapter extends  HostShellProcessAdapter{
+ 		this.processStreamBuffer = processStreamBuffer;
+ 		this.commandResponseHandler = commandResponseHandler;
+ 		this.calculator = new GitCalculatePercentage();
++		this.sem = new Semaphore(1);
++		this.lastCommand = "";
++
+ 	}
+ 
+ 	private void updateMonitor(final int work){
+@@ -106,6 +141,7 @@ public class YoctoHostShellProcessAdapter extends  HostShellProcessAdapter{
+ 				if (value.isEmpty()) {
+ 					continue;
+ 				}
++				setCommandPrompt(value);
+ 				System.out.println(value);
+ 				this.processStreamBuffer.addErrorLine(value);
+ 				this.commandResponseHandler.response(value, false);
+@@ -116,18 +152,38 @@ public class YoctoHostShellProcessAdapter extends  HostShellProcessAdapter{
+ 				if (value.isEmpty()) {
+ 					continue;
+ 				}
+-				
++				setCommandPrompt(value);
++				if (value.startsWith(commandPrompt) &&  value.endsWith(endChar) && 
++						!value.endsWith(lastCommand) && processStreamBuffer.getLastOutputLineContaining(lastCommand) != null /*&& waitForOutput*/) {
++					System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Sem release");
++					sem.release();
++				}
++
+ 				reportProgress(value);
+ 				System.out.println(value);
+ 				this.processStreamBuffer.addOutputLine(value);
+ 				this.commandResponseHandler.response(value, false);
+ 			}
+ 		}
++		
+ 		AbstractHostShellOutputReader absReader = (AbstractHostShellOutputReader)reader;
+ 		isAlive = absReader.isAlive();
+ 		isFinished = absReader.isFinished();
+ 	}
+-
++	private void setCommandPrompt(String value) {
++		if (commandPrompt == null) {
++			if (value.startsWith(ROOT) && value.indexOf(PROMPT_ROOT_CH) != -1) {
++				int end = value.indexOf(PROMPT_ROOT_CH);
++				commandPrompt = value.substring(0, end);
++				endChar = PROMPT_ROOT_CH;
++			} else if (value.indexOf(PROMPT_USER_CH) != -1) {
++				int end = value.indexOf(PROMPT_USER_CH);
++				commandPrompt = value.substring(0, end);
++				endChar = PROMPT_USER_CH;
++			}
++				
++		}
++	}
+ 	public boolean isFinished() {
+ 		return isFinished;
+ 	}
+@@ -143,6 +199,14 @@ public class YoctoHostShellProcessAdapter extends  HostShellProcessAdapter{
+ 		this.isAlive = isAlive;
+ 	}
+ 
++	public boolean isWaitForOutput() {
++		return waitForOutput;
++	}
++
++	public void setWaitForOutput(boolean waitForOutput) {
++		this.waitForOutput = waitForOutput;
++	}
++
+ 	public void clearProcessBuffer() {
+ 		this.processStreamBuffer.outputLines.clear();
+ 		this.processStreamBuffer.errorLines.clear();
 -- 
 1.7.9.5
 
