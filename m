@@ -1,35 +1,40 @@
-Return-Path: <panyu2000@gmail.com>
-Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
-	[209.85.160.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AEAD6E0032E
-	for <yocto@yoctoproject.org>; Wed, 28 Nov 2012 18:43:20 -0800 (PST)
-Received: by mail-pb0-f48.google.com with SMTP id rq13so10253671pbb.35
-	for <yocto@yoctoproject.org>; Wed, 28 Nov 2012 18:43:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=Yv0ITCdf2rgD7H/DnzY8GN0bFTU9F7tpjnPU1xCysmo=;
-	b=0mrJ9dG3NKy3ITq7SWbYyC64vuskfn2Ux1H/cipxhk0g1tXQ8JTPyWh02nf+xHYe3J
-	v+g1ThPMX9eV8U6ZizS1qmizJ0bqFCCx6XZu7fdeIlFjTrrSQqd0qqy2AwuIUFp18IEJ
-	WZXRwIkI+xPhI0ry73jGPmqW1Og8l4kW9hncNhoGeP/4UL5ccMMBL58J/PwF7JnQms9x
-	l7XlyLV+tvQQx6E7iEUVGc0rEPWNs72GKulRx95AAnlAJCX9RRm7wxouun+moPOdya0P
-	rw4AVaGv7xwsOgX+0mQ0/lMgaXoGyH0PfSANkm/m2kxM/rWnSDt+AdWi/bO+aIrCJPAa
-	VS/A==
+Return-Path: <ramana.gollamudi@huawei.com>
+Received: from szxga01-in.huawei.com (szxga01-in.huawei.com [119.145.14.64])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CA483E00348
+	for <yocto@yoctoproject.org>; Thu, 29 Nov 2012 03:10:17 -0800 (PST)
+Received: from 172.24.2.119 (EHLO szxeml205-edg.china.huawei.com)
+	([172.24.2.119])
+	by szxrg01-dlp.huawei.com (MOS 4.3.4-GA FastPath queued)
+	with ESMTP id ATS68663; Thu, 29 Nov 2012 19:10:05 +0800 (CST)
+Received: from SZXEML462-HUB.china.huawei.com (10.82.67.205) by
+	szxeml205-edg.china.huawei.com (172.24.2.58) with Microsoft SMTP Server
+	(TLS) id 14.1.323.3; Thu, 29 Nov 2012 19:10:03 +0800
+Received: from SZXEML534-MBS.china.huawei.com ([169.254.6.80]) by
+	szxeml462-hub.china.huawei.com ([10.82.67.205]) with mapi id
+	14.01.0323.003; Thu, 29 Nov 2012 19:09:55 +0800
+From: Venkata ramana gollamudi <ramana.gollamudi@huawei.com>
+To: Venkata ramana gollamudi <ramana.gollamudi@huawei.com>, Bruce Ashfield
+	<bruce.ashfield@windriver.com>
+Thread-Topic: [yocto] Need for offline binary configuration
+Thread-Index: AQHNxzDKyeCK5q4Ul0GcItQcbcDHSpfyUU0AgAIk01D//7JrAIAJyRp5gAK/xdA=
+Date: Thu, 29 Nov 2012 11:09:55 +0000
+Message-ID: <36ED13F3654AE54CA763E6821D93A571104A5BBA@szxeml534-mbs.china.huawei.com>
+References: <36ED13F3654AE54CA763E6821D93A5711048C834@szxeml534-mbx.china.huawei.com>
+	<50ABA048.7080707@windriver.com>
+	<36ED13F3654AE54CA763E6821D93A5711048CA0D@szxeml534-mbx.china.huawei.com>,
+	<50AD2B96.60504@windriver.com>
+	<36ED13F3654AE54CA763E6821D93A5711049B67C@szxeml534-mbx.china.huawei.com>
+In-Reply-To: <36ED13F3654AE54CA763E6821D93A5711049B67C@szxeml534-mbx.china.huawei.com>
+Accept-Language: en-US, zh-CN
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.18.96.93]
 MIME-Version: 1.0
-Received: by 10.66.79.168 with SMTP id k8mr57837448pax.12.1354157000498; Wed,
-	28 Nov 2012 18:43:20 -0800 (PST)
-Received: by 10.66.192.65 with HTTP; Wed, 28 Nov 2012 18:43:20 -0800 (PST)
-In-Reply-To: <50B650AF.6040809@windriver.com>
-References: <CAPeyoXbwyKCE2r3R24D5UW2zHTcqkAS1Po+ZKRUqaG4PsJoqOA@mail.gmail.com>
-	<50B4DB1F.2070904@windriver.com>
-	<CAPeyoXY=72u_CiQhMv2FRmiOSQ-DLbRQUrRSg=NiUufzEZAjAw@mail.gmail.com>
-	<50B650AF.6040809@windriver.com>
-Date: Thu, 29 Nov 2012 10:43:20 +0800
-Message-ID: <CAPeyoXZzZc5yzh6e-QQnCzMBrYe8G5gPm=W5kyV-7xgm+5kDig@mail.gmail.com>
-From: Yu Pan <panyu2000@gmail.com>
-To: Bruce Ashfield <bruce.ashfield@windriver.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: Preempt-rt kernel build for beagleboard
+X-CFilter-Loop: Reflected
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"'dvhart@linux.intel.com'" <dvhart@linux.intel.com>,
+	Sanil kumar <sanil.kumar@huawei.com>
+Subject: Re: Need for offline binary configuration
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,106 +46,85 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 29 Nov 2012 02:43:20 -0000
-Content-Type: multipart/alternative; boundary=f46d042a0d55fc1ccf04cf993e19
-
---f46d042a0d55fc1ccf04cf993e19
-Content-Type: text/plain; charset=ISO-8859-1
-
-On Thu, Nov 29, 2012 at 1:58 AM, Bruce Ashfield <
-bruce.ashfield@windriver.com> wrote:
-
-Mystery solved. The fragment is picked up properly in the build and
-> everything is operating as expected.
->
-> We had an old commit (that is still required for some configurations)
-> that disabled preemption for the beagleboard due to SD card boot
-> issues.
->
-> That being said, the entire point of trying out preempt-rt is for the
-> extra preemption, and without it, why bother. So I moved the preempt
-> disable to the standard kernel only in this commit:
->
-> http://git.yoctoproject.org/**cgit/cgit.cgi/yocto-kernel-**
-> cache/commit/?id=**551c7ad8c46d371c6b135357ed2d38**8d45af13d8<http://git.yoctoproject.org/cgit/cgit.cgi/yocto-kernel-cache/commit/?id=551c7ad8c46d371c6b135357ed2d388d45af13d8>
->
-> Once I update the SRCREVs for the meta branch of the linux-yocto-3.4
-> tree, you'll get the expected preempt settings out of the box:
->
-> > grep PREEMPT linux-beagleboard-preempt-rt-**build/.config
-> CONFIG_TINY_PREEMPT_RCU=y
-> CONFIG_PREEMPT_RCU=y
-> CONFIG_PREEMPT=y
-> CONFIG_PREEMPT_RT_BASE=y
-> # CONFIG_PREEMPT_NONE is not set
->
-> # CONFIG_PREEMPT_VOLUNTARY is not set
-> # CONFIG_PREEMPT__LL is not set
-> # CONFIG_PREEMPT_RTB is not set
-> CONFIG_PREEMPT_RT_FULL=y
-> CONFIG_PREEMPT_COUNT=y
-> CONFIG_DEBUG_PREEMPT=y
-> # CONFIG_PREEMPT_TRACER is not set
-
-
-Thanks a lot for helping Bruce.
-
-I'm trying to do the modifications to the scc here in the meta branch using
- a local bare clone of the linux-yocto-3.4 repository. Still trying to
-figure out the bitbake patching failures after modifying the SRCREV_meta
-value to point to my recent most meta commission. Will let you know.
-
-Cheers
-Pan Yu
-
---f46d042a0d55fc1ccf04cf993e19
-Content-Type: text/html; charset=ISO-8859-1
+X-List-Received-Date: Thu, 29 Nov 2012 11:10:18 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Nov 29, 2012 at 1:58 AM, Bruce Ashfield <span dir=3D"ltr">&lt;<a hr=
-ef=3D"mailto:bruce.ashfield@windriver.com" target=3D"_blank">bruce.ashfield=
-@windriver.com</a>&gt;</span> wrote:<br><div class=3D"gmail_extra"><div cla=
-ss=3D"gmail_quote">
-<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-lef=
-t:1px #ccc solid;padding-left:1ex">
-Mystery solved. The fragment is picked up properly in the build and<br>
-everything is operating as expected.<br>
-<br>
-We had an old commit (that is still required for some configurations)<br>
-that disabled preemption for the beagleboard due to SD card boot<br>
-issues.<br>
-<br>
-That being said, the entire point of trying out preempt-rt is for the<br>
-extra preemption, and without it, why bother. So I moved the preempt<br>
-disable to the standard kernel only in this commit:<br>
-<br>
-<a href=3D"http://git.yoctoproject.org/cgit/cgit.cgi/yocto-kernel-cache/com=
-mit/?id=3D551c7ad8c46d371c6b135357ed2d388d45af13d8" target=3D"_blank">http:=
-//git.yoctoproject.org/<u></u>cgit/cgit.cgi/yocto-kernel-<u></u>cache/commi=
-t/?id=3D<u></u>551c7ad8c46d371c6b135357ed2d38<u></u>8d45af13d8</a><br>
+Added few more thoughts
+Looking for possible options to implement Offline Configuration Tool requir=
+ement. please check and comment on it.
 
-<br>
-Once I update the SRCREVs for the meta branch of the linux-yocto-3.4<br>
-tree, you&#39;ll get the expected preempt settings out of the box:<br>
-<br>
-&gt; grep PREEMPT linux-beagleboard-preempt-rt-<u></u>build/.config<br>
-CONFIG_TINY_PREEMPT_RCU=3Dy<br>
-CONFIG_PREEMPT_RCU=3Dy<br>
-CONFIG_PREEMPT=3Dy<br>
-CONFIG_PREEMPT_RT_BASE=3Dy<br>
-# CONFIG_PREEMPT_NONE is not set<div class=3D"im"><br>
-# CONFIG_PREEMPT_VOLUNTARY is not set<br>
-# CONFIG_PREEMPT__LL is not set<br>
-# CONFIG_PREEMPT_RTB is not set<br></div>
-CONFIG_PREEMPT_RT_FULL=3Dy<br>
-CONFIG_PREEMPT_COUNT=3Dy<br>
-CONFIG_DEBUG_PREEMPT=3Dy<br>
-# CONFIG_PREEMPT_TRACER is not set</blockquote><div><br></div><div>Thanks a=
- lot for helping Bruce.=A0</div><div><br></div><div>I&#39;m trying to do th=
-e modifications to the scc here in the meta branch using =A0a local bare cl=
-one of the linux-yocto-3.4 repository. Still trying to figure out the bitba=
-ke patching failures after=A0modifying the SRCREV_meta value to point to my=
- recent most meta commission. Will let you know.</div>
-<div><br></div><div>Cheers</div><div>Pan Yu</div></div></div>
+Configuration flow:
 
---f46d042a0d55fc1ccf04cf993e19--
+a) Task do_createconfig will generate data to configure. This serves as inp=
+ut for configuration UI in OCT.
+
+b) OCT UI will read that config data(from step(a)) to show it in GUI. User =
+configures using GUI inputs. Stores the user OCT configuration to OCT confi=
+g file. (Note user can directly modify the OCT config file, if User is fami=
+lier with it)
+
+c) preinst, postinst, prerm, postrm, or a do_applyconfig(without bb files r=
+eparse), can read OCT config file content (using a library) and apply neces=
+sary changes.
+
+Now we can look into possibility of using a specific configuration UI imple=
+mentation or a generic configuration model or combination of both.
+
+1) Using a specific configuration GUI implementation:
+   do_createconfig generates the configuration information, in format like =
+datafile/xml and OCT reads this config data and provides a GUI to modify or=
+ configure the features.
+
+Pros: Detailed and complex GUIs can be supported which will be user friendl=
+y. Ex: User management, network management etc.
+Cons: As UI is static, it has to be modified to support new configuration r=
+equirements
+and UI modifications are generally complex.
+
+2) A generic configuration model
+   do_createconfig generates configuration information with presentation in=
+formation included (like kconfig) and OCT reads this config information and=
+ provides a generic UI implementation to modify or config the data like men=
+uconfig.
+
+Pros:=20
+	- Generic and dynamic UI allowing the config menus to be added from poky l=
+ayers providing platform for configuration.
+	- New features can add new menus configuration options. Feature/package en=
+able and disable can control the configurtion menus.=20
+	- So configuration is shown only if feature/package is present/selected.
+Cons:=20
+	- Generic method of implementing can be complex, specifically for features=
+ where configuration is complex ex: User management, network configuration.
+	- Custom or specific UI will be more user friendly and gives more control =
+to UI designer.
+
+3) Combination of both
+Complex features requiring more UI control can implement those features usi=
+ng the method(1) and also providing the plaform for generic UI implementati=
+on.
+OCT displays both UI configurations.
+Ex: Static Image level features like User management, network config can be=
+ implemented using method(1)=20
+    Service configuration, file system type, hist size configure etc can be=
+ implemented using method(2).
+
+Pros: Gives control to project to select the Complex and simple UIs.
+     =20
+Cons: Still needs a OCT UI change if method(1) feature need to be changed.
+      Drawing a line between complex and simple UI features may not very st=
+raight forward.
+      Adding dynamic Complex UI is not possible to be added from poky layer=
+s.
+
+Decision to provide a generic configuration model is mainly based on how mu=
+ch we expect the configuration area to grow along with layers.
+Image level features like user management, network management generally are=
+ not dynamic features, so having a specific/custom UI implementation looks =
+fine for such features.
+
+Regards,
+Ramana
+
