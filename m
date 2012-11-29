@@ -1,56 +1,34 @@
-Return-Path: <tim.bird@am.sony.com>
-Received: from tx2outboundpool.messaging.microsoft.com
-	(tx2ehsobe004.messaging.microsoft.com [65.55.88.14])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3C483E00294
-	for <yocto@yoctoproject.org>; Thu, 29 Nov 2012 10:48:30 -0800 (PST)
-Received: from mail53-tx2-R.bigfish.com (10.9.14.245) by
-	TX2EHSOBE008.bigfish.com (10.9.40.28) with Microsoft SMTP Server id
-	14.1.225.23; Thu, 29 Nov 2012 18:48:28 +0000
-Received: from mail53-tx2 (localhost [127.0.0.1])	by mail53-tx2-R.bigfish.com
-	(Postfix) with ESMTP id BB02220020A;
-	Thu, 29 Nov 2012 18:48:28 +0000 (UTC)
-X-Forefront-Antispam-Report: CIP:160.33.194.230; KIP:(null); UIP:(null);
-	IPV:NLI; H:usculsndmail03v.am.sony.com; RD:mail03.sonyusa.com;
-	EFVD:NLI
-X-SpamScore: -4
-X-BigFish: VPS-4(zzbb2dI98dI9371I1432Izz1de0h1202h1d1ah1d2ahzz177df4h17326ah8275dhz2fh2a8h668h839h93fhd25hf0ah1288h12a5h12a9h12bdh137ah13b6h1441h1504h1537h153bh162dh1631h1155h)
-Received-SPF: pass (mail53-tx2: domain of am.sony.com designates
-	160.33.194.230 as permitted sender) client-ip=160.33.194.230;
-	envelope-from=tim.bird@am.sony.com;
-	helo=usculsndmail03v.am.sony.com ; .am.sony.com ; 
-Received: from mail53-tx2 (localhost.localdomain [127.0.0.1]) by mail53-tx2
-	(MessageSwitch) id 1354214906144659_3562;
-	Thu, 29 Nov 2012 18:48:26 +0000 (UTC)
-Received: from TX2EHSMHS009.bigfish.com (unknown [10.9.14.249])	by
-	mail53-tx2.bigfish.com (Postfix) with ESMTP id 1F6C0220115;
-	Thu, 29 Nov 2012 18:48:26 +0000 (UTC)
-Received: from usculsndmail03v.am.sony.com (160.33.194.230) by
-	TX2EHSMHS009.bigfish.com (10.9.99.109) with Microsoft SMTP Server (TLS)
-	id 14.1.225.23; Thu, 29 Nov 2012 18:48:22 +0000
-Received: from usculsndmail12v.am.sony.com (usculsndmail12v.am.sony.com
-	[146.215.230.103])	by usculsndmail03v.am.sony.com
-	(Sentrion-MTA-4.2.2/Sentrion-MTA-4.2.2) with ESMTP id qATImL9N025436;
-	Thu, 29 Nov 2012 18:48:21 GMT
-Received: from mail1x.sgo.in.sel.sony.com (mail3.bc.in.sel.sony.com
-	[43.130.1.112])	by usculsndmail12v.am.sony.com
-	(Sentrion-MTA-4.2.2/Sentrion-MTA-4.2.2) with ESMTP id qATImKxF024891
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=FAIL);
-	Thu, 29 Nov 2012 18:48:21 GMT
-Received: from [43.135.148.222] ([43.135.148.222])	by
-	mail1x.sgo.in.sel.sony.com (Switch-3.4.2/Switch-3.4.2) with ESMTP id
-	qATImJkA011299;	Thu, 29 Nov 2012 18:48:19 GMT
-Message-ID: <50B7AE45.1070301@am.sony.com>
-Date: Thu, 29 Nov 2012 10:49:41 -0800
-From: Tim Bird <tim.bird@am.sony.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/17.0 Thunderbird/17.0
+Return-Path: <perezmeyer@gmail.com>
+Received: from mail-qc0-f176.google.com (mail-qc0-f176.google.com
+	[209.85.216.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 94DFAE00294
+	for <yocto@yoctoproject.org>; Thu, 29 Nov 2012 13:59:33 -0800 (PST)
+Received: by mail-qc0-f176.google.com with SMTP id n41so12328851qco.35
+	for <yocto@yoctoproject.org>; Thu, 29 Nov 2012 13:59:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:subject:date:user-agent:mime-version:content-type
+	:content-transfer-encoding:message-id;
+	bh=dObKZ4Cw5BNcImAyFie1nqwT0gtIsl7/LDLFNtMQOAM=;
+	b=hQtu6k2eY5NUR6O0Idndq2zCVOrNI9jKPAF2Ylh7JmhquBDtxBsn/xjSvzyhRCVFeW
+	Be80pcOyl+HSa6dTilO0oA3Sq7XqvQ3tQfS3Y1klClx3MAGjmMfyKlRsc4ygdNvrDb4R
+	8kOwgc2cnmVEmtM7q2muwzJxeENmAl9UyGtxEkhlQIIrvT3fEvrYh9UW1rqEF4fJ9sx9
+	KbExGwytA3j6Ebph3R/O5QGkMKeLW7lt7cXgPAski8eb8z0IBl0yjuYbHKXwpLE252DA
+	Qsp20p9YLZ7iFE51fKlYQy+QJcqfmC14WwzXC+YyVK2GV/rSBFlxafPHudfU4Ht5Clrt
+	7G/Q==
+Received: by 10.49.29.101 with SMTP id j5mr31512319qeh.6.1354226372281;
+	Thu, 29 Nov 2012 13:59:32 -0800 (PST)
+Received: from luna.localnet ([190.97.25.23])
+	by mx.google.com with ESMTPS id fh6sm1607778qab.19.2012.11.29.13.59.30
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Thu, 29 Nov 2012 13:59:31 -0800 (PST)
+From: Lisandro =?iso-8859-1?q?Dami=E1n_Nicanor_P=E9rez_Meyer?=
+	<perezmeyer@gmail.com>
+To: yocto@yoctoproject.org
+Date: Thu, 29 Nov 2012 18:59:18 -0300
+User-Agent: KMail/1.13.7 (Linux/3.2.21+edid; KDE/4.8.5; x86_64; ; )
 MIME-Version: 1.0
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>
-References: <alpine.DEB.2.02.1211291032530.27333@oneiric>
-In-Reply-To: <alpine.DEB.2.02.1211291032530.27333@oneiric>
-X-OriginatorOrg: am.sony.com
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: chris larson's cool "bitbake-env" utility
+Message-Id: <201211291859.27190.perezmeyer@gmail.com>
+Subject: The routerstationpro kernel image is huge
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -62,29 +40,70 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 29 Nov 2012 18:48:30 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Thu, 29 Nov 2012 21:59:33 -0000
+X-Groupsio-MsgNum: 10713
+Content-Type: multipart/signed; boundary="nextPart2991926.5h2LK1v2gj";
+	protocol="application/pgp-signature"; micalg=pgp-sha256
 Content-Transfer-Encoding: 7bit
 
-On 11/29/2012 07:34 AM, Robert P. J. Day wrote:
-> 
->   possibly prompted by my incessant whining, chris larson wrote a
-> nifty utility called "bitbake-env"; i wrote a quick page about it
-> here:
-> 
-> http://www.crashcourse.ca/wiki/index.php/OE_bitbake-env_utility
-> 
-> this is going to be more than a little useful in my courses.
+--nextPart2991926.5h2LK1v2gj
+Content-Type: text/plain;
+  charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-Yeah - this looks great.
+Hi! First of all, I don't know if this is the correct mailing list to write=
+=20
+this. If it is not, please point me to th right one. Thanks!
 
-I put a link to your page on my bitbake cheat sheet page at:
-http://elinux.org/Bitbake_Cheat_Sheet
+I have found that the kernel image for the routerstationpro in poky danny 8=
+=2E0=20
+is huge. The flash of the device is just 16MB, so a 86 MB image is more tha=
+n=20
+what fits in there ;-)
 
-=============================
-Tim Bird
-Architecture Group Chair, CE Workgroup of the Linux Foundation
-Senior Staff Engineer, Sony Network Entertainment
-=============================
+I would like to solve the problem, but I really don't know where to start.
 
+I have used OpenEmbedded before, but this are my first steps within the yoc=
+to=20
+project.
 
+Any pointer would be much appreciated.
+
+[0]=20
+<http://downloads.yoctoproject.org/releases/yocto/yocto-1.3/machines/router=
+stationpro/>
+
+Kinds regards, Lisandro.
+
+=2D-=20
+<Tincho> me cago en el gato, es como la tercera vez que me apreta
+backspace mientras tengo apretados ctrl y alt
+  Visto en #lugfi, irc.freenode.net
+
+Lisandro Dami=E1n Nicanor P=E9rez Meyer
+http://perezmeyer.com.ar/
+http://perezmeyer.blogspot.com/
+
+--nextPart2991926.5h2LK1v2gj
+Content-Type: application/pgp-signature; name=signature.asc 
+Content-Description: This is a digitally signed message part.
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.12 (GNU/Linux)
+
+iQIcBAABCAAGBQJQt9q3AAoJEKtkX0BihqfQNwYP/immC8nNwPriWBZX6QPNR8cg
+290WWZq6UfEFAr7PB5gyO7CUFFSPTJUiRS03EBUSSsj7wAWxClNSdBmSM4ew0tm8
+cLYIee1zk/O9RVcUKeA5CumjJ3uOTFvNgSAclsFLiddLopLBzLTvum+Mlwp/j79B
+HjYsB8OkBAaPCxje/17uLeqpOCkPtGQNLGQoVyAO3hVOnPNvxcX1riNb4XwnNhpw
+8hCrAqHdKu0iHXxwnMtjAET5FmJTqk53Poq/emd63HX0JJc1KUvdM/MzH4B1z7Ml
+e01wVncouHkC1gg4Kk2vL0cPNebFhy/F2YCLRt21l+u2HD2UMKPH6VgCdFgXBRUG
+bSKedFiLBRj1Wzt3rAPCor1Gqt+7mifusGmmnNet5hzuPUuLJCf3T26vp2mwCSRE
+zCfpIL3u/EbWVgnpcAYRIAcwkLZi94SLBEqPi8ZP559QDlwcF/CxQvO3GoHzOKAY
+d3h7JK0wUmM+m8uFkpBkcQtiaWBtai7awBSJapvQOj3KWo+F9mo4AhH4+uk1izDE
+j2B8n4IkvJdjFd+94iLCVJ2vPRChByWz3FpBkKe7bj/64J3lB29NSI9z1K2V/njD
+InH1me9v6Dlrwq7KZ7mpFI9legtgQr2xujqxMra4tN8buqw9oy0s4sSGIsE5YKvs
+vUeH+oAH0ULulgx3Cmtg
+=Qwgx
+-----END PGP SIGNATURE-----
+
+--nextPart2991926.5h2LK1v2gj--
