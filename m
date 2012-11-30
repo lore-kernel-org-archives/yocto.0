@@ -1,19 +1,19 @@
 Return-Path: <timo.mueller@oss.bmw-carit.de>
 Received: from linuxmail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 57B02E011AF
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 63B68E0141C
 	for <yocto@yoctoproject.org>; Fri, 30 Nov 2012 00:59:58 -0800 (PST)
 Received: from localhost (mysterion.bmw-carit.intra [192.168.101.57])
 	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
 	(No client certificate requested)
 	(Authenticated sender: timo.mueller)
-	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 3AE1B40275;
+	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id AF5FA4029C;
 	Fri, 30 Nov 2012 09:24:47 +0100 (CET)
 From: mail@timomueller.eu
 To: yocto@yoctoproject.org
-Date: Fri, 30 Nov 2012 09:59:48 +0100
-Message-Id: <4d18289e9aa11650af27aac54930b447d720eaaf.1354264975.git.timo.mueller@bmw-carit.de>
+Date: Fri, 30 Nov 2012 09:59:52 +0100
+Message-Id: <d9299824e06da83d08965c69d73e3cdf4566f898.1354264975.git.timo.mueller@bmw-carit.de>
 X-Mailer: git-send-email 1.7.7.6
-In-Reply-To: <c29a575e409921bd66f5a1c828c01cfac0ee5cfe.1354264975.git.timo.mueller@bmw-carit.de>
+In-Reply-To: <b8562daf240b978ff8af847ceb46c839dc485b75.1354264975.git.timo.mueller@bmw-carit.de>
 References: <cover.1354264975.git.timo.mueller@bmw-carit.de>
 	<ae85de5617553768dab8adfb8e33682d6f496f98.1354264975.git.timo.mueller@bmw-carit.de>
 	<0ef502fd88b1e7806abb8d93ebd53cd89769a1db.1354264975.git.timo.mueller@bmw-carit.de>
@@ -45,10 +45,14 @@ References: <cover.1354264975.git.timo.mueller@bmw-carit.de>
 	<26d705041746b459eca6b3ba9165804fdcaaab2a.1354264975.git.timo.mueller@bmw-carit.de>
 	<1c4d96f5304be20126eae15b1cb5f748a3f30373.1354264975.git.timo.mueller@bmw-carit.de>
 	<c29a575e409921bd66f5a1c828c01cfac0ee5cfe.1354264975.git.timo.mueller@bmw-carit.de>
+	<4d18289e9aa11650af27aac54930b447d720eaaf.1354264975.git.timo.mueller@bmw-carit.de>
+	<efcbd5cbaf5084b61ed150a475859d60495874fa.1354264975.git.timo.mueller@bmw-carit.de>
+	<cbb0d896f530f708d0e1eaba6d5290b4fba96dc3.1354264975.git.timo.mueller@bmw-carit.de>
+	<b8562daf240b978ff8af847ceb46c839dc485b75.1354264975.git.timo.mueller@bmw-carit.de>
 In-Reply-To: <cover.1354264975.git.timo.mueller@bmw-carit.de>
 References: <cover.1354264975.git.timo.mueller@bmw-carit.de>
 Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: [PATCHv2 31/35] documentation/yocto-project-qs/yocto-project-qs.xml: Convert fake-title section into articleinfo
+Subject: [PATCHv2 35/35] documentation/Makefile: Clean up eclipse target and update help.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -64,45 +68,45 @@ X-List-Received-Date: Fri, 30 Nov 2012 08:59:58 -0000
 
 From: Timo Mueller <timo.mueller@bmw-carit.de>
 
-The fake title section is converted into a docbook
-article.articleinfo. If used with a custom title page this will lead
-to the excapt same output. But I will enable the creation of metadata
-from this title information.
 ---
- .../yocto-project-qs/yocto-project-qs.xml          |   20 ++++++++++++++------
- 1 files changed, 14 insertions(+), 6 deletions(-)
+ documentation/Makefile |   16 ++++------------
+ 1 files changed, 4 insertions(+), 12 deletions(-)
 
-diff --git a/documentation/yocto-project-qs/yocto-project-qs.xml b/documentation/yocto-project-qs/yocto-project-qs.xml
-index b1e5df0..856c282 100644
---- a/documentation/yocto-project-qs/yocto-project-qs.xml
-+++ b/documentation/yocto-project-qs/yocto-project-qs.xml
-@@ -3,12 +3,20 @@
- [<!ENTITY % poky SYSTEM "../poky.ent"> %poky; ] >
+diff --git a/documentation/Makefile b/documentation/Makefile
+index 785c065..7da14a4 100644
+--- a/documentation/Makefile
++++ b/documentation/Makefile
+@@ -11,6 +11,8 @@
+ #              or the mega-manual (single, large HTML file comprised of all 
+ #              Yocto Project manuals).
+ #    html:     generates an HTML version of a manual.
++#    eclipse:  generates an HTML version of a manual that can be used as
++#              eclipse help (including necessary metadata files).
+ #    tarball:  creates a tarball for the doc files.
+ #    validate: validates 
+ #    publish:  pushes generated files to the Yocto Project website
+@@ -275,19 +277,9 @@ eclipse: eclipse-generate eclipse-resolve-links
+ .PHONY : eclipse-generate eclipse-resolve-links
  
- <article id='intro'>
--   <imagedata fileref="figures/yocto-project-transp.png" width="6in" depth="1in" align="right" scale="25" />
--
--<section id='fake-title'>
--    <title>The Yocto Project Quick Start</title>
--    <para>Copyright &copy; &COPYRIGHT_YEAR; Linux Foundation</para>
--</section>
-+    <articleinfo>
-+        <title>The Yocto Project Quick Start</title>
-+
-+        <copyright>
-+            <year>&COPYRIGHT_YEAR;</year>
-+            <holder>Linux Foundation</holder>
-+        </copyright>
-+
-+        <abstract>
-+            <imagedata fileref="figures/yocto-project-transp.png"
-+                        width="6in" depth="1in"
-+                        align="right" scale="25" />
-+        </abstract>
-+    </articleinfo>
- 
- <section id='welcome'>
-     <title>Welcome!</title>
+ eclipse-generate:
+-ifeq ($(filter $(DOC), adt-manual bsp-guide dev-manual kernel-manual poky-ref-manual yocto-project-qs),)
+-	@echo " "
+-	@echo "ERROR: You can only create eclipse documentation"
+-	@echo "       of the following documentation parts:"
++ifeq ($(DOC),mega-manual)
+ 	@echo " "
+-	@echo "       - The Yocto Project Application Developer's Guide (adt-manual)"
+-	@echo "       - The Yocto Project Board Support Package"
+-	@echo "                           Developer's Guide (bsp-guide)"
+-	@echo "       - The Yocto Project Development Manual (dev-manual)"
+-	@echo "       - The Yocto Project Kernel Architecture and"
+-	@echo "                           Use Manual (kernel-manual)"
+-	@echo "		  - The Yocto Project Reference Manual (poky-ref-manual)"
+-	@echo "       - The Yocto Project Quick Start (yocto-project-qs)"
++	@echo "ERROR: You cannot generate eclipse documentation for the mega-manual"
+ 	@echo " "
+ else
+ 	@echo " "
 -- 
 1.7.7.6
 
