@@ -1,30 +1,32 @@
-Return-Path: <twoerner@gmail.com>
-Received: from mail-la0-f48.google.com (mail-la0-f48.google.com
-	[209.85.215.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 63668E00655
-	for <yocto@yoctoproject.org>; Fri, 30 Nov 2012 10:06:45 -0800 (PST)
-Received: by mail-la0-f48.google.com with SMTP id m13so633672lah.35
-	for <yocto@yoctoproject.org>; Fri, 30 Nov 2012 10:06:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=ly0mWy7uMVrbHM9Bw9/DnS027gMF+RmqzGo9PGprkQM=;
-	b=mByU1YCsH12X96sTrGmjEU3CDBmRqH71sem2e47VQDL46Nqtc8hOeLd8TaArNqMTWJ
-	QUwbqLZHT2suoo3QCxLj/RLuqHanuyA1fpetMNL5JSzoAEhVrI6zF6JlPsWhkjchB3iH
-	hUBKdH1ds8mdfydo5wKFBFrVgUgAvzoAK9JRCSuiG6AMqiCDGjQMErqIWWSoRKN3Nc8W
-	1bcDThTJSgpytKuBXZQQ34epwGQj2/IEObiRkOPmFEslKKVb19nmKNI94+RiODaao19Y
-	arXjOlCoNeFrZAHrGWqTHl0vReaI4IHGVzFvpC4VYoISYI+aDyJLpJiHKo9Af45dgODH
-	AQKw==
-MIME-Version: 1.0
-Received: by 10.152.104.240 with SMTP id gh16mr2066325lab.56.1354298804120;
-	Fri, 30 Nov 2012 10:06:44 -0800 (PST)
-Received: by 10.112.117.194 with HTTP; Fri, 30 Nov 2012 10:06:43 -0800 (PST)
-In-Reply-To: <alpine.DEB.2.02.1211301230090.17477@oneiric>
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C6178E00655
+	for <yocto@yoctoproject.org>; Fri, 30 Nov 2012 11:06:46 -0800 (PST)
+Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
+	([174.115.5.73]:54536 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.77) (envelope-from <rpjday@crashcourse.ca>)
+	id 1TeVvB-0005Ss-DQ; Fri, 30 Nov 2012 14:06:45 -0500
+Date: Fri, 30 Nov 2012 14:06:42 -0500 (EST)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: Trevor Woerner <twoerner@gmail.com>
+In-Reply-To: <CAHUNapQL6YKa1vNprmUFdsSVdHn_FZO8z27K6oiFVYmKS_zNVg@mail.gmail.com>
+Message-ID: <alpine.DEB.2.02.1211301406190.3451@oneiric>
 References: <alpine.DEB.2.02.1211301230090.17477@oneiric>
-Date: Fri, 30 Nov 2012 13:06:43 -0500
-Message-ID: <CAHUNapQL6YKa1vNprmUFdsSVdHn_FZO8z27K6oiFVYmKS_zNVg@mail.gmail.com>
-From: Trevor Woerner <twoerner@gmail.com>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>
+	<CAHUNapQL6YKa1vNprmUFdsSVdHn_FZO8z27K6oiFVYmKS_zNVg@mail.gmail.com>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+MIME-Version: 1.0
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 Cc: Yocto discussion list <yocto@yoctoproject.org>
 Subject: Re: should "hob" update the MACHINE value in my local.conf?
 X-BeenThere: yocto@yoctoproject.org
@@ -38,8 +40,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 30 Nov 2012 18:06:45 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Fri, 30 Nov 2012 19:06:46 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=2934
+On Fri, 30 Nov 2012, Trevor Woerner wrote:
+
+> https://bugzilla.yoctoproject.org/show_bug.cgi?id=2934
+
+  ah, must spend more time in bugzilla.  thanks.
+
+rday
+
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
