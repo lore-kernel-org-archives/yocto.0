@@ -1,19 +1,19 @@
 Return-Path: <timo.mueller@oss.bmw-carit.de>
 Received: from linuxmail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 74DCDE013F9
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CB487E011AB
 	for <yocto@yoctoproject.org>; Fri, 30 Nov 2012 00:59:57 -0800 (PST)
 Received: from localhost (mysterion.bmw-carit.intra [192.168.101.57])
 	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
 	(No client certificate requested)
 	(Authenticated sender: timo.mueller)
-	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 85DD540359;
+	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id C120E40361;
 	Fri, 30 Nov 2012 09:24:45 +0100 (CET)
 From: mail@timomueller.eu
 To: yocto@yoctoproject.org
-Date: Fri, 30 Nov 2012 09:59:35 +0100
-Message-Id: <43f2e8cd6873988c4c8754ece92dca2fbd422a7a.1354264975.git.timo.mueller@bmw-carit.de>
+Date: Fri, 30 Nov 2012 09:59:37 +0100
+Message-Id: <7421276098498ddf72890a1b05295731ba3ceee3.1354264975.git.timo.mueller@bmw-carit.de>
 X-Mailer: git-send-email 1.7.7.6
-In-Reply-To: <81b9e274d332ceceb284ec4005a33ed60245a7eb.1354264975.git.timo.mueller@bmw-carit.de>
+In-Reply-To: <ee277b63802c121e09d5e88c2550e3d704e6d01e.1354264975.git.timo.mueller@bmw-carit.de>
 References: <cover.1354264975.git.timo.mueller@bmw-carit.de>
 	<ae85de5617553768dab8adfb8e33682d6f496f98.1354264975.git.timo.mueller@bmw-carit.de>
 	<0ef502fd88b1e7806abb8d93ebd53cd89769a1db.1354264975.git.timo.mueller@bmw-carit.de>
@@ -32,10 +32,12 @@ References: <cover.1354264975.git.timo.mueller@bmw-carit.de>
 	<17a025a8342a76eff141c6c2944a964c8b496570.1354264975.git.timo.mueller@bmw-carit.de>
 	<25ee5bb08586d9954a0076cf515ed950a58fd60c.1354264975.git.timo.mueller@bmw-carit.de>
 	<81b9e274d332ceceb284ec4005a33ed60245a7eb.1354264975.git.timo.mueller@bmw-carit.de>
+	<43f2e8cd6873988c4c8754ece92dca2fbd422a7a.1354264975.git.timo.mueller@bmw-carit.de>
+	<ee277b63802c121e09d5e88c2550e3d704e6d01e.1354264975.git.timo.mueller@bmw-carit.de>
 In-Reply-To: <cover.1354264975.git.timo.mueller@bmw-carit.de>
 References: <cover.1354264975.git.timo.mueller@bmw-carit.de>
 Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: [PATCHv2 18/35] documentation/kernel-manual/kernel-manual-eclipse-customization.xsl: new file
+Subject: [PATCHv2 20/35] documentation/kernel-manual/kernel-manual.xml: Added Title tag
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,51 +49,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 30 Nov 2012 08:59:57 -0000
+X-List-Received-Date: Fri, 30 Nov 2012 08:59:58 -0000
 
 From: Timo Mueller <timo.mueller@bmw-carit.de>
 
-This stylesheet uses the eclipse stylesheets of docbook to create
-eclipse help from this documentation. In addition to simple html
-files these stylesheets will also create xml files which are
-needed to integrate the documentation into eclipse (e.g. toc.xml).
+The title of the document used to create metadata for output formats
+such as eclipse help.
 ---
- .../kernel-manual-eclipse-customization.xsl        |   26 ++++++++++++++++++++
- 1 files changed, 26 insertions(+), 0 deletions(-)
- create mode 100644 documentation/kernel-manual/kernel-manual-eclipse-customization.xsl
+ documentation/kernel-manual/kernel-manual.xml |    4 +++-
+ 1 files changed, 3 insertions(+), 1 deletions(-)
 
-diff --git a/documentation/kernel-manual/kernel-manual-eclipse-customization.xsl b/documentation/kernel-manual/kernel-manual-eclipse-customization.xsl
-new file mode 100644
-index 0000000..70a1e19
---- /dev/null
-+++ b/documentation/kernel-manual/kernel-manual-eclipse-customization.xsl
-@@ -0,0 +1,26 @@
-+<?xml version='1.0'?>
-+<xsl:stylesheet
-+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-+	xmlns="http://www.w3.org/1999/xhtml"
-+	xmlns:fo="http://www.w3.org/1999/XSL/Format"
-+	version="1.0">
-+
-+  <xsl:import
-+	  href="http://docbook.sourceforge.net/release/xsl/current/eclipse/eclipse3.xsl" />
-+
-+  <xsl:param name="chunker.output.indent" select="'yes'"/>
-+  <xsl:param name="chunk.first.sections" select="1"/>
-+  <xsl:param name="chunk.section.depth" select="10"/>
-+  <xsl:param name="use.id.as.filename" select="1"/>
-+  <xsl:param name="ulink.target" select="'_self'" />
-+  <xsl:param name="base.dir" select="'html/kernel-manual/'"/>
-+  <xsl:param name="html.stylesheet" select="'../book.css'"/>
-+  <xsl:param name="eclipse.manifest" select="0"/>
-+  <xsl:param name="create.plugin.xml" select="0"/>
-+  <xsl:param name="suppress.navigation" select="1"/>
-+  <xsl:param name="generate.index" select="0"/>
-+  <xsl:param name="chapter.autolabel" select="1" />
-+  <xsl:param name="appendix.autolabel" select="A" />
-+  <xsl:param name="section.autolabel" select="1" />
-+  <xsl:param name="section.label.includes.component.label" select="1" />
-+</xsl:stylesheet>
+diff --git a/documentation/kernel-manual/kernel-manual.xml b/documentation/kernel-manual/kernel-manual.xml
+index 99d7184..f39f4f8 100644
+--- a/documentation/kernel-manual/kernel-manual.xml
++++ b/documentation/kernel-manual/kernel-manual.xml
+@@ -16,7 +16,9 @@
+             </imageobject>    
+         </mediaobject>
+ 
+-        <title></title> 
++        <title>
++            The Yocto Project Kernel Architecture and Use Manual
++        </title>
+ 
+         <authorgroup>
+             <author>
 -- 
 1.7.7.6
 
