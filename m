@@ -1,20 +1,30 @@
 Return-Path: <timo.mueller@oss.bmw-carit.de>
 Received: from linuxmail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 12CC2E006D5
-	for <yocto@yoctoproject.org>; Fri, 30 Nov 2012 00:59:55 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E5418E002AB
+	for <yocto@yoctoproject.org>; Fri, 30 Nov 2012 00:59:56 -0800 (PST)
 Received: from localhost (mysterion.bmw-carit.intra [192.168.101.57])
 	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
 	(No client certificate requested)
 	(Authenticated sender: timo.mueller)
-	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 5E3674006B;
-	Fri, 30 Nov 2012 09:24:43 +0100 (CET)
+	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 3869240275;
+	Fri, 30 Nov 2012 09:24:44 +0100 (CET)
 From: mail@timomueller.eu
 To: yocto@yoctoproject.org
-Date: Fri, 30 Nov 2012 09:59:17 +0100
-Message-Id: <cover.1354264975.git.timo.mueller@bmw-carit.de>
+Date: Fri, 30 Nov 2012 09:59:24 +0100
+Message-Id: <0e3b5ea52a5229679c6abc875652bf7e9b64f323.1354264975.git.timo.mueller@bmw-carit.de>
 X-Mailer: git-send-email 1.7.7.6
+In-Reply-To: <abc49ebf76d55dbb646b05fb451b08b780a921ab.1354264975.git.timo.mueller@bmw-carit.de>
+References: <cover.1354264975.git.timo.mueller@bmw-carit.de>
+	<ae85de5617553768dab8adfb8e33682d6f496f98.1354264975.git.timo.mueller@bmw-carit.de>
+	<0ef502fd88b1e7806abb8d93ebd53cd89769a1db.1354264975.git.timo.mueller@bmw-carit.de>
+	<f1b31f8514fc06af68ab00b9920498a2ba3271f6.1354264975.git.timo.mueller@bmw-carit.de>
+	<14c72e38f8845ff1c42e0b5bc5e01c76d45dbe57.1354264975.git.timo.mueller@bmw-carit.de>
+	<d9bf052b5f144b5188dfcde7b1384a843c8c81b5.1354264975.git.timo.mueller@bmw-carit.de>
+	<abc49ebf76d55dbb646b05fb451b08b780a921ab.1354264975.git.timo.mueller@bmw-carit.de>
+In-Reply-To: <cover.1354264975.git.timo.mueller@bmw-carit.de>
+References: <cover.1354264975.git.timo.mueller@bmw-carit.de>
 Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: [PATCHv2 00/35][yocto-docs] Add eclipse help generation to build system
+Subject: [PATCHv2 07/35] documentation: Move dev-manual global parameters to customization file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -26,136 +36,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 30 Nov 2012 08:59:56 -0000
+X-List-Received-Date: Fri, 30 Nov 2012 08:59:57 -0000
 
 From: Timo Mueller <timo.mueller@bmw-carit.de>
 
-Hi,
+Standard stylesheet parameters were moved to the docbook customization
+file tying them to the docbook stylesheet used. Removing these
+parameters simplifies the Makefile.
+---
+ documentation/Makefile                             |    6 +-----
+ .../dev-manual/dev-manual-customization.xsl        |    6 ++++--
+ 2 files changed, 5 insertions(+), 7 deletions(-)
 
-this patch series was put on hold until the successful release of yocto 1.3.
-This is a rebase of the original patch series that now applies to the current
-master of the project.
-
-Cheers,
-		Timo
-
-The original cover letter of the patch:
-Hi,
-
-this is a rework of the patches I've been submitting to include the
-generation of eclipse help files into the documentation build system.
-
-From original rfc ([yocto-docs] Add eclipse help generation to
-build system):
-<snip>
-I've added the target 'eclipse' to the documentation's build system to
-automate the process of eclipse help generation. This can help to
-facilitate the process of keeping the integrated documentation in sync
-with the yocto documentation.
-</snip>
-
-This patch set incorporates all changes I've been making so far:
-
-1: Remove the use if title in pdf documents
-2..6: Add eclipse generation to adt-manual
-7..11: Add eclipse generation to dev-manual
-12..16: Add eclipse generation to bsp-guide
-17..21: Add eclipse generation to kernel-manual
-22..26: Add eclipse generation to poky-ref-manual
-27..32: Add eclipse generation to yocto-project-qs
-33..34: Handle links between documents
-35: Makefile documentation update
-
-Best regards,
-	 Timo
-
-Timo Mueller (35):
-  documentation/template/titlepage.templates.xml: Remove title info
-  documentation: Move adt-manual global parameters to customization
-    file
-  documentation/adt-manual/adt-manual-eclipse-customization.xsl: new
-    file
-  documentation/Makefile: Support for making Eclipse HTML adt manual
-  documentation/adt-manual/adt-manual.xml: Added Title tag
-  documentation/Makefile: logic to make all for adt manual and cleanup
-  documentation: Move dev-manual global parameters to customization
-    file
-  documentation/dev-manual/dev-manual-eclipse-customization.xsl: new
-    file
-  documentation/Makefile: Support for making Eclipse HTML dev manual
-  documentation/dev-manual/dev-manual.xml: Added Title tag
-  documentation/Makefile: logic to make all for dev manual and cleanup
-  documentation: Move bsp-guide global parameters to customization file
-  documentation/bsp-guide/bsp-guide-eclipse-customization.xsl: new file
-  documentation/Makefile: Support for making Eclipse HTML bsp guide
-  documentation/bsp-guide/bsp-guide.xml: Added Title tag
-  documentation/Makefile: logic to make all for bsp guide and cleanup
-  documentation: Move kernel-manual global parameters to customization
-    file
-  documentation/kernel-manual/kernel-manual-eclipse-customization.xsl:
-    new file
-  documentation/Makefile: Support for making Eclipse HTML kernel manual
-  documentation/kernel-manual/kernel-manual.xml: Added Title tag
-  documentation/Makefile: logic to make all for kernel-manual and
-    cleanup
-  documentation: Move poky-ref-manual global parameters to
-    customization file
-  documentation/poky-ref-manual/poky-ref-manual-eclipse-customization.xsl:
-    new file
-  documentation/Makefile: Support for making Eclipse HTML poky ref
-    manual
-  documentation/poky-ref-manual/poky-ref-manual.xml: Added Title tag
-  documentation/Makefile: logic to make all for poky-ref-manual and
-    cleanup
-  documentation: Move yocto-project-qs global parameters to
-    customization file
-  documentation/yocto-project-qs: Added custom title page
-  documentation/yocto-project-qs/yocto-project-qs-eclipse-customization.xsl:
-    new file
-  documentation/Makefile: Support for making Eclipse HTML yocto project
-    qs manual
-  documentation/yocto-project-qs/yocto-project-qs.xml: Convert
-    fake-title section into articleinfo
-  documentation/Makefile: logic to make all for yocto-project-qs and
-    cleanup
-  documentation/tools/eclipse-help.sed: Processes external links for
-    eclipse html files
-  documentation/Makefile: Added conversion of links to other
-    documentation parts.
-  documentation/Makefile: Clean up eclipse target and update help.
-
- documentation/Makefile                             |  119 +-
- .../adt-manual/adt-manual-customization.xsl        |    7 +-
- .../adt-manual-eclipse-customization.xsl           |   26 +
- documentation/adt-manual/adt-manual.xml            |    4 +-
- .../bsp-guide/bsp-guide-customization.xsl          |    4 +
- .../bsp-guide/bsp-guide-eclipse-customization.xsl  |   26 +
- documentation/bsp-guide/bsp-guide.xml              |    4 +-
- .../dev-manual/dev-manual-customization.xsl        |    6 +-
- .../dev-manual-eclipse-customization.xsl           |   26 +
- documentation/dev-manual/dev-manual.xml            |    4 +-
- .../kernel-manual/kernel-manual-customization.xsl  |    7 +-
- .../kernel-manual-eclipse-customization.xsl        |   26 +
- documentation/kernel-manual/kernel-manual.xml      |    4 +-
- .../poky-ref-manual-customization.xsl              |    5 +
- .../poky-ref-manual-eclipse-customization.xsl      |   26 +
- documentation/poky-ref-manual/poky-ref-manual.xml  |    4 +-
- documentation/template/titlepage.templates.xml     |   13 -
- documentation/tools/eclipse-help.sed               |   18 +
- .../yocto-project-qs-customization.xsl             |    3 +-
- .../yocto-project-qs-eclipse-customization.xsl     |   24 +
- .../yocto-project-qs-titlepage.xsl                 | 3820 ++++++++++++++++++++
- .../yocto-project-qs/yocto-project-qs.xml          |   20 +-
- 22 files changed, 4116 insertions(+), 80 deletions(-)
- create mode 100644 documentation/adt-manual/adt-manual-eclipse-customization.xsl
- create mode 100644 documentation/bsp-guide/bsp-guide-eclipse-customization.xsl
- create mode 100644 documentation/dev-manual/dev-manual-eclipse-customization.xsl
- create mode 100644 documentation/kernel-manual/kernel-manual-eclipse-customization.xsl
- create mode 100644 documentation/poky-ref-manual/poky-ref-manual-eclipse-customization.xsl
- create mode 100644 documentation/tools/eclipse-help.sed
- create mode 100644 documentation/yocto-project-qs/yocto-project-qs-eclipse-customization.xsl
- create mode 100644 documentation/yocto-project-qs/yocto-project-qs-titlepage.xsl
-
+diff --git a/documentation/Makefile b/documentation/Makefile
+index 5af7766..7bcd255 100644
+--- a/documentation/Makefile
++++ b/documentation/Makefile
+@@ -84,11 +84,7 @@ STYLESHEET = $(DOC)/*.css
+ endif
+ 
+ ifeq ($(DOC),dev-manual)
+-XSLTOPTS = --stringparam html.stylesheet dev-style.css \
+-           --stringparam  chapter.autolabel 1 \
+-           --stringparam  section.autolabel 1 \
+-           --stringparam  section.label.includes.component.label 1 \
+-           --xinclude
++XSLTOPTS = --xinclude
+ ALLPREQ = html pdf tarball
+ #
+ # Note that the tarfile might produce the "Cannot stat: No such file or directory" error
+diff --git a/documentation/dev-manual/dev-manual-customization.xsl b/documentation/dev-manual/dev-manual-customization.xsl
+index 8eb6905..8969605 100644
+--- a/documentation/dev-manual/dev-manual-customization.xsl
++++ b/documentation/dev-manual/dev-manual-customization.xsl
+@@ -3,6 +3,8 @@
+   
+   <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/xhtml/docbook.xsl" />
+ 
+-<!--  <xsl:param name="generate.toc" select="'article nop'"></xsl:param>  -->
+-
++  <xsl:param name="html.stylesheet" select="'dev-style.css'" />
++  <xsl:param name="chapter.autolabel" select="1" />
++  <xsl:param name="section.autolabel" select="1" />
++  <xsl:param name="section.label.includes.component.label" select="1" />
+ </xsl:stylesheet>
 -- 
 1.7.7.6
 
