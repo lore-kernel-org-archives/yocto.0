@@ -1,19 +1,19 @@
 Return-Path: <timo.mueller@oss.bmw-carit.de>
 Received: from linuxmail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 24EDEE011CC
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7148BE011AB
 	for <yocto@yoctoproject.org>; Fri, 30 Nov 2012 00:59:57 -0800 (PST)
 Received: from localhost (mysterion.bmw-carit.intra [192.168.101.57])
 	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
 	(No client certificate requested)
 	(Authenticated sender: timo.mueller)
-	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id C7E694029E;
+	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id E5FD7402D9;
 	Fri, 30 Nov 2012 09:24:44 +0100 (CET)
 From: mail@timomueller.eu
 To: yocto@yoctoproject.org
-Date: Fri, 30 Nov 2012 09:59:29 +0100
-Message-Id: <4b5d06565d52a010678c1f3edb3710b4d5d62cec.1354264975.git.timo.mueller@bmw-carit.de>
+Date: Fri, 30 Nov 2012 09:59:30 +0100
+Message-Id: <1b85154631995b29bc8f94810ce7cfb896a1e787.1354264975.git.timo.mueller@bmw-carit.de>
 X-Mailer: git-send-email 1.7.7.6
-In-Reply-To: <899749cce559d9c6894343fae844873c337fd5b5.1354264975.git.timo.mueller@bmw-carit.de>
+In-Reply-To: <4b5d06565d52a010678c1f3edb3710b4d5d62cec.1354264975.git.timo.mueller@bmw-carit.de>
 References: <cover.1354264975.git.timo.mueller@bmw-carit.de>
 	<ae85de5617553768dab8adfb8e33682d6f496f98.1354264975.git.timo.mueller@bmw-carit.de>
 	<0ef502fd88b1e7806abb8d93ebd53cd89769a1db.1354264975.git.timo.mueller@bmw-carit.de>
@@ -26,10 +26,11 @@ References: <cover.1354264975.git.timo.mueller@bmw-carit.de>
 	<7893fff34faec13f7073016ca5221a342d92df61.1354264975.git.timo.mueller@bmw-carit.de>
 	<d9192a08f1bb84cd8ef7ab924d41eb0e81aefbea.1354264975.git.timo.mueller@bmw-carit.de>
 	<899749cce559d9c6894343fae844873c337fd5b5.1354264975.git.timo.mueller@bmw-carit.de>
+	<4b5d06565d52a010678c1f3edb3710b4d5d62cec.1354264975.git.timo.mueller@bmw-carit.de>
 In-Reply-To: <cover.1354264975.git.timo.mueller@bmw-carit.de>
 References: <cover.1354264975.git.timo.mueller@bmw-carit.de>
 Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: [PATCHv2 12/35] documentation: Move bsp-guide global parameters to customization file
+Subject: [PATCHv2 13/35] documentation/bsp-guide/bsp-guide-eclipse-customization.xsl: new file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,44 +46,47 @@ X-List-Received-Date: Fri, 30 Nov 2012 08:59:57 -0000
 
 From: Timo Mueller <timo.mueller@bmw-carit.de>
 
-Standard stylesheet parameters were moved to the docbook customization
-file tying them to the docbook stylesheet used. Removing these
-parameters simplifies the Makefile.
+This stylesheet uses the eclipse stylesheets of docbook to create
+eclipse help from this documentation. In addition to simple html
+files these stylesheets will also create xml files which are
+needed to integrate the documentation into eclipse (e.g. toc.xml).
 ---
- documentation/Makefile                             |    6 +-----
- .../bsp-guide/bsp-guide-customization.xsl          |    4 ++++
- 2 files changed, 5 insertions(+), 5 deletions(-)
+ .../bsp-guide/bsp-guide-eclipse-customization.xsl  |   26 ++++++++++++++++++++
+ 1 files changed, 26 insertions(+), 0 deletions(-)
+ create mode 100644 documentation/bsp-guide/bsp-guide-eclipse-customization.xsl
 
-diff --git a/documentation/Makefile b/documentation/Makefile
-index c535517..148bb51 100644
---- a/documentation/Makefile
-+++ b/documentation/Makefile
-@@ -70,11 +70,7 @@
- #
- 
- ifeq ($(DOC),bsp-guide)
--XSLTOPTS = --stringparam html.stylesheet bsp-style.css \
--           --stringparam  chapter.autolabel 1 \
--           --stringparam  section.autolabel 1 \
--           --stringparam  section.label.includes.component.label 1 \
--           --xinclude
-+XSLTOPTS = --xinclude
- ALLPREQ = html pdf tarball
- TARFILES = bsp-style.css bsp-guide.html bsp-guide.pdf figures/bsp-title.png
- MANUALS = $(DOC)/$(DOC).html $(DOC)/$(DOC).pdf
-diff --git a/documentation/bsp-guide/bsp-guide-customization.xsl b/documentation/bsp-guide/bsp-guide-customization.xsl
-index 362ebed..5560289 100644
---- a/documentation/bsp-guide/bsp-guide-customization.xsl
-+++ b/documentation/bsp-guide/bsp-guide-customization.xsl
-@@ -3,4 +3,8 @@
-   
-   <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/xhtml/docbook.xsl" />
- 
-+  <xsl:param name="html.stylesheet" select="'bsp-style.css'" />
+diff --git a/documentation/bsp-guide/bsp-guide-eclipse-customization.xsl b/documentation/bsp-guide/bsp-guide-eclipse-customization.xsl
+new file mode 100644
+index 0000000..b9aceb2
+--- /dev/null
++++ b/documentation/bsp-guide/bsp-guide-eclipse-customization.xsl
+@@ -0,0 +1,26 @@
++<?xml version='1.0'?>
++<xsl:stylesheet
++	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
++	xmlns="http://www.w3.org/1999/xhtml"
++	xmlns:fo="http://www.w3.org/1999/XSL/Format"
++	version="1.0">
++
++  <xsl:import
++	  href="http://docbook.sourceforge.net/release/xsl/current/eclipse/eclipse3.xsl" />
++
++  <xsl:param name="chunker.output.indent" select="'yes'"/>
++  <xsl:param name="chunk.first.sections" select="1"/>
++  <xsl:param name="chunk.section.depth" select="10"/>
++  <xsl:param name="use.id.as.filename" select="1"/>
++  <xsl:param name="ulink.target" select="'_self'" />
++  <xsl:param name="base.dir" select="'html/bsp-guide/'"/>
++  <xsl:param name="html.stylesheet" select="'../book.css'"/>
++  <xsl:param name="eclipse.manifest" select="0"/>
++  <xsl:param name="create.plugin.xml" select="0"/>
++  <xsl:param name="suppress.navigation" select="1"/>
++  <xsl:param name="generate.index" select="0"/>
 +  <xsl:param name="chapter.autolabel" select="1" />
++  <xsl:param name="appendix.autolabel" select="1" />
 +  <xsl:param name="section.autolabel" select="1" />
 +  <xsl:param name="section.label.includes.component.label" select="1" />
- </xsl:stylesheet>
++</xsl:stylesheet>
 -- 
 1.7.7.6
 
