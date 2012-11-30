@@ -1,41 +1,36 @@
-Return-Path: <eric@eukrea.com>
-Received: from mo3.mail-out.ovh.net (11.mo3.mail-out.ovh.net [87.98.184.158])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D2A3CE00655
-	for <yocto@yoctoproject.org>; Fri, 30 Nov 2012 11:44:24 -0800 (PST)
-Received: from mail622.ha.ovh.net (b7.ovh.net [213.186.33.57])
-	by mo3.mail-out.ovh.net (Postfix) with SMTP id 660F3FF9C70
-	for <yocto@yoctoproject.org>; Fri, 30 Nov 2012 20:55:48 +0100 (CET)
-Received: from b0.ovh.net (HELO queueout) (213.186.33.50)
-	by b0.ovh.net with SMTP; 30 Nov 2012 21:44:20 +0200
-Received: from tal33-3-82-233-81-124.fbx.proxad.net (HELO eb-e6520)
-	(eric%eukrea.com@82.233.81.124)
-	by ns0.ovh.net with SMTP; 30 Nov 2012 21:44:19 +0200
-Date: Fri, 30 Nov 2012 20:44:19 +0100
-From: Eric =?ISO-8859-1?B?QuluYXJk?= <eric@eukrea.com>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-Ovh-Mailout: 178.32.228.3 (mo3.mail-out.ovh.net)
-Message-ID: <20121130204419.05419251@eb-e6520>
-In-Reply-To: <alpine.DEB.2.02.1211301036190.6067@oneiric>
-References: <alpine.DEB.2.02.1211291032530.27333@oneiric>
-	<50B7AE45.1070301@am.sony.com>
-	<alpine.DEB.2.02.1211300848590.1918@oneiric>
-	<20121130163419.6cff9aa0@eb-e6520>
-	<alpine.DEB.2.02.1211301036190.6067@oneiric>
-Organization: =?ISO-8859-1?B?RXVrculh?= Electromatique
-X-Mailer: Claws Mail 3.8.1 (GTK+ 2.24.8; x86_64-redhat-linux-gnu)
-Mime-Version: 1.0
-X-Ovh-Tracer-Id: 905786475946159519
-X-Ovh-Remote: 82.233.81.124 (tal33-3-82-233-81-124.fbx.proxad.net)
-X-Ovh-Local: 213.186.33.20 (ns0.ovh.net)
-X-OVH-SPAMSTATE: OK
-X-OVH-SPAMSCORE: -100
-X-OVH-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrfeehiedrtdeiucetufdoteggodetrfcurfhrohhfihhlvgemucfqggfjnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfhrhhomhepgfhrihgtuceurohnrghrugcuoegvrhhitgesvghukhhrvggrrdgtohhmqeenucffohhmrghinhepvghlihhnuhigrdhorhhgnecujfgurhepfffhvffukfgjfhhoofggtgfgsehtqheftdertddu
-X-Spam-Check: DONE|U 0.5/N
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrfeehiedrtdeiucetufdoteggodetrfcurfhrohhfihhlvgemucfqggfjnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfhrhhomhepgfhrihgtuceurohnrghrugcuoegvrhhitgesvghukhhrvggrrdgtohhmqeenucffohhmrghinhepvghlihhnuhigrdhorhhgnecujfgurhepfffhvffukfgjfhhoofggtgfgsehtqheftdertddu
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: chris larson's cool "bitbake-env" utility
+Return-Path: <perezmeyer@gmail.com>
+Received: from mail-qc0-f176.google.com (mail-qc0-f176.google.com
+	[209.85.216.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BA349E00655
+	for <yocto@yoctoproject.org>; Fri, 30 Nov 2012 12:21:20 -0800 (PST)
+Received: by mail-qc0-f176.google.com with SMTP id n41so512165qco.35
+	for <yocto@yoctoproject.org>; Fri, 30 Nov 2012 12:21:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:subject:date:user-agent:references:in-reply-to:mime-version
+	:content-type:content-transfer-encoding:message-id;
+	bh=3UZS2/aULrNnWrPx0lECeNM1EDlilurOFWsdVhbifkc=;
+	b=0CERLno/6CdqLh8ss34J2pRH6F7skPj5cNmmdKp/vNkmoE6R6XWOhHeZAD/hn0UVQp
+	Ey+hrk4T+ZxTssViGyzx4Og2B7bl9Ah6r/XP/CI7USUFLZl2178TdQMWX+t3OhuUiJYV
+	+Dl7U+UMTknPTpetATf2GOq8voQ84QMb1dceI7ua+tswYDrD5MfncGqOwgyysOZSd0a5
+	94LpB0T2NiorLtFQFbdOrxEcaIr0ZTJQ3iP+04aDU2jAxciHojqCE7qrn9vJzlAqcNlA
+	B3RTl4XxDh6r6rPPvkw/vf3YprzWhpGSYhRQCdyV+6h/Xb50zY+P9SKWaKs5BNv2zhUu
+	UEig==
+Received: by 10.49.29.199 with SMTP id m7mr4379065qeh.41.1354306880103;
+	Fri, 30 Nov 2012 12:21:20 -0800 (PST)
+Received: from luna.localnet ([190.97.25.23])
+	by mx.google.com with ESMTPS id s17sm3601334qaa.5.2012.11.30.12.21.17
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Fri, 30 Nov 2012 12:21:19 -0800 (PST)
+From: Lisandro =?iso-8859-15?q?Dami=E1n_Nicanor_P=E9rez_Meyer?=
+	<perezmeyer@gmail.com>
+To: yocto@yoctoproject.org
+Date: Fri, 30 Nov 2012 17:21:04 -0300
+User-Agent: KMail/1.13.7 (Linux/3.2.21+edid; KDE/4.8.5; x86_64; ; )
+References: <201211291859.27190.perezmeyer@gmail.com>
+In-Reply-To: <201211291859.27190.perezmeyer@gmail.com>
+MIME-Version: 1.0
+Message-Id: <201211301721.13690.perezmeyer@gmail.com>
+Subject: Re: The routerstationpro kernel image is huge
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,61 +42,63 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 30 Nov 2012 19:44:25 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Fri, 30 Nov 2012 20:21:21 -0000
+X-Groupsio-MsgNum: 10765
+Content-Type: multipart/signed; boundary="nextPart2239596.pF9ADCoVZL";
+	protocol="application/pgp-signature"; micalg=pgp-sha256
+Content-Transfer-Encoding: 7bit
+
+--nextPart2239596.pF9ADCoVZL
+Content-Type: Text/Plain;
+  charset="iso-8859-15"
 Content-Transfer-Encoding: quoted-printable
 
-Le Fri, 30 Nov 2012 10:37:10 -0500 (EST),
-"Robert P. J. Day" <rpjday@crashcourse.ca> a =E9crit :
-
-> On Fri, 30 Nov 2012, Eric B=E9nard wrote:
+On Thu 29 Nov 2012 18:59:18 Lisandro Dami=E1n Nicanor P=E9rez Meyer escribi=
+=F3:
+> Hi! First of all, I don't know if this is the correct mailing list to wri=
+te
+> this. If it is not, please point me to th right one. Thanks!
 >=20
-> > Le Fri, 30 Nov 2012 08:53:35 -0500 (EST),
-> > "Robert P. J. Day" <rpjday@crashcourse.ca> a =E9crit :
-> >
-> > > On Thu, 29 Nov 2012, Tim Bird wrote:
-> > >
-> > > > I put a link to your page on my bitbake cheat sheet page at:
-> > > > http://elinux.org/Bitbake_Cheat_Sheet
-> > >
-> > >   as someone who has never bothered to play with any of the UIs and is
-> > > thus asking from a position of total ignorance, i have a couple
-> > > questions about the "User interfaces" section of that cheat sheet.
-> > >
-> > >   using stock oe-core, i followed your cheat sheet and tried this:
-> > >
-> > > $ bitbake
-> > >
-> > > and got:
-> > >
-> > > ERROR: Timeout while attempting to communicate with bitbake server
-> > >
-> > > so i need to start the server?  should that be mentioned there?
-> > >
-> > what would you expect to get when launching bitbake without any
-> > argument ?
-> >
-> > >   i then tried:
-> > >
-> > > $ bitbake -u knotty2
-> > > FATAL: Invalid user interface 'knotty2' specified.
-> > > Valid interfaces: depexp, goggle, ncurses, hob, knotty [default].
-> > > $
-> > >
-> > this is valid in denzil and no more in danny and up because of this
-> > commit :
-> > commit b97d50618b2187bcfd7d25f64d1444482ca62ef7
-> > Author: Richard Purdie <richard.purdie@linuxfoundation.org>
-> > Date:   Wed Aug 15 17:50:22 2012 +0100
-> >
-> >     knotty: Fold knotty2 into knotty and make it the default
->=20
->   i was just pointing out the potential confusion in the cheat sheet
-> for people unfamiliar with the UIs, nothing more.
->=20
-I was just pointing out the reason of the problem you saw and raised on
-this mailing list, sorry for the inconvenience.
+> I have found that the kernel image for the routerstationpro in poky danny
+> 8.0 is huge. The flash of the device is just 16MB, so a 86 MB image is
+> more than what fits in there ;-)
 
-Best regards,
-Eric
+JFTR: the image wasn't stripped.
 
+To strip it:
+
+=2E./../../tmp/sysroots/x86_64-linux/usr/bin/mips32-poky-linux/mips-poky-li=
+nux-
+strip  -s -R .comment vmlinux-foo.bin
+
+Kinds regards, Lisandro.
+
+
+=2D-=20
+Lisandro Dami=E1n Nicanor P=E9rez Meyer
+http://perezmeyer.com.ar/
+http://perezmeyer.blogspot.com/
+
+--nextPart2239596.pF9ADCoVZL
+Content-Type: application/pgp-signature; name=signature.asc 
+Content-Description: This is a digitally signed message part.
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.12 (GNU/Linux)
+
+iQIcBAABCAAGBQJQuRUxAAoJEKtkX0BihqfQQXcQAJZMOamEpAOyT6mMMk9P3z58
+OWEE+bRXWa3SqubMFaC5hUw+gbneHcKlgWHzvI2LWdNx6S61me8muBjDF/Ye2HJ8
+T/d6HNv3kXCtXryxZp9/enJxPrq28y4X1G9OBO5cKd4HzM5dkvaqtNSJRX5rVotp
+gEoogtlKuJxhWmKJmcayIWzVI4nUXDm2Ap4wb7I2QzOX09FccwsiG4hXjlkG7iTH
+b9J3REgCOZKDwMF48fvuq1v2ZBrCweDzl9C/3nMQXM0C18A4/GRT8G2rC8fbTcbg
+mCkRbXinKF7Bf/ejxW08tWxNgSe1tnqL0Pb2erz+qSQfgk8Z0DaYfqAevUNg/ISO
+BS2NNaW7NRnMujVKltzunk5RIj4b3R9SEpw/Ag2L1PGm4x5bIiLSCCVX5RoZZjs4
+p7Tf5Xhdt2T++Eg4llgK47Xb579psjoyYUqgv11ElDHBMxQOEUUw89L+QD9D62QQ
+hYPuFJIsBVgmHq0pgucDJaBCoHGjApaV++Z7qlB5toZPAnoznVmjaNFxsj5T4GuZ
+mBD02DTOWAUGWl2csSfl7yBKfjMUBFbvebN0iVTX5XF185UsOdk6C25rtNBHjHbR
+YuIqHFDp/lovv0ifcI0ORCtKoXTS7pqKtFrcIlhJtCrUxRHzLQkFdSO7u8jmB8iw
+OYxnGZArvE5phsHqPtbM
+=28Gh
+-----END PGP SIGNATURE-----
+
+--nextPart2239596.pF9ADCoVZL--
