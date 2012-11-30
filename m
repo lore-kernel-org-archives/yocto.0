@@ -1,34 +1,37 @@
-Return-Path: <perezmeyer@gmail.com>
-Received: from mail-qc0-f176.google.com (mail-qc0-f176.google.com
-	[209.85.216.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 94DFAE00294
-	for <yocto@yoctoproject.org>; Thu, 29 Nov 2012 13:59:33 -0800 (PST)
-Received: by mail-qc0-f176.google.com with SMTP id n41so12328851qco.35
-	for <yocto@yoctoproject.org>; Thu, 29 Nov 2012 13:59:32 -0800 (PST)
+Return-Path: <jefro.net@gmail.com>
+Received: from mail-ia0-f176.google.com (mail-ia0-f176.google.com
+	[209.85.210.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 358A5E00294
+	for <yocto@yoctoproject.org>; Thu, 29 Nov 2012 17:06:16 -0800 (PST)
+Received: by mail-ia0-f176.google.com with SMTP id k32so10668486iak.35
+	for <yocto@yoctoproject.org>; Thu, 29 Nov 2012 17:06:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:subject:date:user-agent:mime-version:content-type
-	:content-transfer-encoding:message-id;
-	bh=dObKZ4Cw5BNcImAyFie1nqwT0gtIsl7/LDLFNtMQOAM=;
-	b=hQtu6k2eY5NUR6O0Idndq2zCVOrNI9jKPAF2Ylh7JmhquBDtxBsn/xjSvzyhRCVFeW
-	Be80pcOyl+HSa6dTilO0oA3Sq7XqvQ3tQfS3Y1klClx3MAGjmMfyKlRsc4ygdNvrDb4R
-	8kOwgc2cnmVEmtM7q2muwzJxeENmAl9UyGtxEkhlQIIrvT3fEvrYh9UW1rqEF4fJ9sx9
-	KbExGwytA3j6Ebph3R/O5QGkMKeLW7lt7cXgPAski8eb8z0IBl0yjuYbHKXwpLE252DA
-	Qsp20p9YLZ7iFE51fKlYQy+QJcqfmC14WwzXC+YyVK2GV/rSBFlxafPHudfU4Ht5Clrt
-	7G/Q==
-Received: by 10.49.29.101 with SMTP id j5mr31512319qeh.6.1354226372281;
-	Thu, 29 Nov 2012 13:59:32 -0800 (PST)
-Received: from luna.localnet ([190.97.25.23])
-	by mx.google.com with ESMTPS id fh6sm1607778qab.19.2012.11.29.13.59.30
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Thu, 29 Nov 2012 13:59:31 -0800 (PST)
-From: Lisandro =?iso-8859-1?q?Dami=E1n_Nicanor_P=E9rez_Meyer?=
-	<perezmeyer@gmail.com>
-To: yocto@yoctoproject.org
-Date: Thu, 29 Nov 2012 18:59:18 -0300
-User-Agent: KMail/1.13.7 (Linux/3.2.21+edid; KDE/4.8.5; x86_64; ; )
+	h=mime-version:sender:in-reply-to:references:date
+	:x-google-sender-auth:message-id:subject:from:to:cc:content-type;
+	bh=P5WSv+zKRaEDm3N16ydrDLdp57XDXjAPWU9Q66168Rc=;
+	b=Q47myDO2N2s8jSZ3cG97oRaV28GEz6rJFR8VpilC+YKQjNksBpJGRtTDIXvjgBcUx9
+	+zXsYWtV9NYiHQoQ3xbGOdmyFidcp02AwwKdZ1/AfLNCDpZTKYbZy+B0UcyZ+kqVL+7l
+	vOm0TrvCvOA2xOmOzhvKqZL+5ae19/9banVRZrJebsNPvfqTLJ0PGuuzYiQxqmdSiKDt
+	6UcgckJhQFpn/UwTZysTCDJYB7Id7Tjc7O8Kwfb4gEOc7fWjqKeq6YkuvKpNF9KlKfZz
+	9rRafFzy+gBCTv0rwz7yMOnpnO+cvLpbZY8UnEFIuMpGXQFFmk1sTAFzU+JG4cinXARc
+	plaA==
 MIME-Version: 1.0
-Message-Id: <201211291859.27190.perezmeyer@gmail.com>
-Subject: The routerstationpro kernel image is huge
+Received: by 10.50.152.240 with SMTP id vb16mr25249587igb.45.1354237575592;
+	Thu, 29 Nov 2012 17:06:15 -0800 (PST)
+Sender: jefro.net@gmail.com
+Received: by 10.64.147.37 with HTTP; Thu, 29 Nov 2012 17:06:15 -0800 (PST)
+In-Reply-To: <46F9BF9187AF5A4AA0AEF94A28ADD22485962D@sestoex05.enea.se>
+References: <46F9BF9187AF5A4AA0AEF94A28ADD224858AFE@sestoex05.enea.se>
+	<CA+YB3rYz8aQhEuLP-CZbnjpEcewZSEYVn+37G42epF6Cyr=ULQ@mail.gmail.com>
+	<46F9BF9187AF5A4AA0AEF94A28ADD22485962D@sestoex05.enea.se>
+Date: Thu, 29 Nov 2012 17:06:15 -0800
+X-Google-Sender-Auth: 40k2t0M3J_vkNOPtg5yIjVH1ZVw
+Message-ID: <CA+YB3rYQyosNTQbmUq8-YBPVx6-wNTMEfh8+HaRDpcuTbVrm_A@mail.gmail.com>
+From: Jeff Osier-Mixon <jefro@jefro.net>
+To: Maxin John <Maxin.John@enea.com>
+Cc: Yocto Project Discussion <yocto@yoctoproject.org>, "Damian,
+	Alexandru" <alexandru.damian@intel.com>
+Subject: Re: Wiki Main page terrible sparse
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,70 +43,57 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 29 Nov 2012 21:59:33 -0000
-X-Groupsio-MsgNum: 10713
-Content-Type: multipart/signed; boundary="nextPart2991926.5h2LK1v2gj";
-	protocol="application/pgp-signature"; micalg=pgp-sha256
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 30 Nov 2012 01:06:16 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
---nextPart2991926.5h2LK1v2gj
-Content-Type: text/plain;
-  charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Thanks, Maxin. I'd love to see some details on what you plan to do beforehand.
 
-Hi! First of all, I don't know if this is the correct mailing list to write=
-=20
-this. If it is not, please point me to th right one. Thanks!
+On Tue, Nov 27, 2012 at 10:32 AM, Maxin John <Maxin.John@enea.com> wrote:
+> Hi Jeff,
+>
+>>Hi Maxin - it would be good to coordinate your effort with the rest of the community.
+> Sure :)
+>
+>>Can you let us know what you have in mind before starting?
+> At first, I will try to address the suggestions of Alex along with other modifications based on our requirements.
+>
+>>Also, please let me know if you have trouble with access. I don't see any account requests being held.
+> I have checked the access rights and it works fine. Thanks!
+>
+>>thanks
+> Thanks and Regards,
+> Maxin
+>
+> On Fri, Nov 23, 2012 at 6:16 AM, Maxin John <Maxin.John@enea.com> wrote:
+>> Hi Alex,
+>>>Hello all,
+>>
+>>>I can't help but notice that the main page of the Yocto Wiki looks somewhat underwhelming compared to the new site face.
+>>>Can we please have a volunteer to update and beautify a bit the main page ?
+>>  I am interested in this task. I have already sent a request for access to the Yocto Wiki.
+>>
+>>>I'd think that we need to list current 1.4 pages, add/verify links to all main sections, and the Yocto logo, etc...
+>> We can discuss the list of activities in this mailing-list or in irc
+>> (nickname: maxin)
+>>
+>>>Cheers,
+>>>Alex
+>> Best Regards,
+>> Maxin
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
+>
+> --
+> Jeff Osier-Mixon http://jefro.net/blog
+> Yocto Project Community Manager @Intel http://yoctoproject.org
 
-I have found that the kernel image for the routerstationpro in poky danny 8=
-=2E0=20
-is huge. The flash of the device is just 16MB, so a 86 MB image is more tha=
-n=20
-what fits in there ;-)
 
-I would like to solve the problem, but I really don't know where to start.
 
-I have used OpenEmbedded before, but this are my first steps within the yoc=
-to=20
-project.
+-- 
+Jeff Osier-Mixon http://jefro.net/blog
+Yocto Project Community Manager @Intel http://yoctoproject.org
 
-Any pointer would be much appreciated.
-
-[0]=20
-<http://downloads.yoctoproject.org/releases/yocto/yocto-1.3/machines/router=
-stationpro/>
-
-Kinds regards, Lisandro.
-
-=2D-=20
-<Tincho> me cago en el gato, es como la tercera vez que me apreta
-backspace mientras tengo apretados ctrl y alt
-  Visto en #lugfi, irc.freenode.net
-
-Lisandro Dami=E1n Nicanor P=E9rez Meyer
-http://perezmeyer.com.ar/
-http://perezmeyer.blogspot.com/
-
---nextPart2991926.5h2LK1v2gj
-Content-Type: application/pgp-signature; name=signature.asc 
-Content-Description: This is a digitally signed message part.
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.12 (GNU/Linux)
-
-iQIcBAABCAAGBQJQt9q3AAoJEKtkX0BihqfQNwYP/immC8nNwPriWBZX6QPNR8cg
-290WWZq6UfEFAr7PB5gyO7CUFFSPTJUiRS03EBUSSsj7wAWxClNSdBmSM4ew0tm8
-cLYIee1zk/O9RVcUKeA5CumjJ3uOTFvNgSAclsFLiddLopLBzLTvum+Mlwp/j79B
-HjYsB8OkBAaPCxje/17uLeqpOCkPtGQNLGQoVyAO3hVOnPNvxcX1riNb4XwnNhpw
-8hCrAqHdKu0iHXxwnMtjAET5FmJTqk53Poq/emd63HX0JJc1KUvdM/MzH4B1z7Ml
-e01wVncouHkC1gg4Kk2vL0cPNebFhy/F2YCLRt21l+u2HD2UMKPH6VgCdFgXBRUG
-bSKedFiLBRj1Wzt3rAPCor1Gqt+7mifusGmmnNet5hzuPUuLJCf3T26vp2mwCSRE
-zCfpIL3u/EbWVgnpcAYRIAcwkLZi94SLBEqPi8ZP559QDlwcF/CxQvO3GoHzOKAY
-d3h7JK0wUmM+m8uFkpBkcQtiaWBtai7awBSJapvQOj3KWo+F9mo4AhH4+uk1izDE
-j2B8n4IkvJdjFd+94iLCVJ2vPRChByWz3FpBkKe7bj/64J3lB29NSI9z1K2V/njD
-InH1me9v6Dlrwq7KZ7mpFI9legtgQr2xujqxMra4tN8buqw9oy0s4sSGIsE5YKvs
-vUeH+oAH0ULulgx3Cmtg
-=Qwgx
------END PGP SIGNATURE-----
-
---nextPart2991926.5h2LK1v2gj--
