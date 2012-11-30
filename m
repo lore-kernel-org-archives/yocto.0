@@ -1,19 +1,19 @@
 Return-Path: <timo.mueller@oss.bmw-carit.de>
 Received: from linuxmail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 094D9E01446
-	for <yocto@yoctoproject.org>; Fri, 30 Nov 2012 00:59:58 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CBE32E011AF
+	for <yocto@yoctoproject.org>; Fri, 30 Nov 2012 00:59:57 -0800 (PST)
 Received: from localhost (mysterion.bmw-carit.intra [192.168.101.57])
 	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
 	(No client certificate requested)
 	(Authenticated sender: timo.mueller)
-	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 6143D40208;
-	Fri, 30 Nov 2012 09:24:46 +0100 (CET)
+	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 6889B40358;
+	Fri, 30 Nov 2012 09:24:45 +0100 (CET)
 From: mail@timomueller.eu
 To: yocto@yoctoproject.org
-Date: Fri, 30 Nov 2012 09:59:42 +0100
-Message-Id: <4b7712db0dd4d80de3a7ff26c0a4f519096a085d.1354264975.git.timo.mueller@bmw-carit.de>
+Date: Fri, 30 Nov 2012 09:59:34 +0100
+Message-Id: <81b9e274d332ceceb284ec4005a33ed60245a7eb.1354264975.git.timo.mueller@bmw-carit.de>
 X-Mailer: git-send-email 1.7.7.6
-In-Reply-To: <4dd48c21f559de6707c1f495baef5d0b3a15f942.1354264975.git.timo.mueller@bmw-carit.de>
+In-Reply-To: <25ee5bb08586d9954a0076cf515ed950a58fd60c.1354264975.git.timo.mueller@bmw-carit.de>
 References: <cover.1354264975.git.timo.mueller@bmw-carit.de>
 	<ae85de5617553768dab8adfb8e33682d6f496f98.1354264975.git.timo.mueller@bmw-carit.de>
 	<0ef502fd88b1e7806abb8d93ebd53cd89769a1db.1354264975.git.timo.mueller@bmw-carit.de>
@@ -31,18 +31,10 @@ References: <cover.1354264975.git.timo.mueller@bmw-carit.de>
 	<546e4a349f627d25977a11979ddd580ef063c3bd.1354264975.git.timo.mueller@bmw-carit.de>
 	<17a025a8342a76eff141c6c2944a964c8b496570.1354264975.git.timo.mueller@bmw-carit.de>
 	<25ee5bb08586d9954a0076cf515ed950a58fd60c.1354264975.git.timo.mueller@bmw-carit.de>
-	<81b9e274d332ceceb284ec4005a33ed60245a7eb.1354264975.git.timo.mueller@bmw-carit.de>
-	<43f2e8cd6873988c4c8754ece92dca2fbd422a7a.1354264975.git.timo.mueller@bmw-carit.de>
-	<ee277b63802c121e09d5e88c2550e3d704e6d01e.1354264975.git.timo.mueller@bmw-carit.de>
-	<7421276098498ddf72890a1b05295731ba3ceee3.1354264975.git.timo.mueller@bmw-carit.de>
-	<c1b021e920ec33fcd1d539390ea303a2f88172d6.1354264975.git.timo.mueller@bmw-carit.de>
-	<db4770c87a1a39b9c91b492b30a22bb8db422c28.1354264975.git.timo.mueller@bmw-carit.de>
-	<95b9fea5defa34b2ad0c4038e241875befe228e5.1354264975.git.timo.mueller@bmw-carit.de>
-	<4dd48c21f559de6707c1f495baef5d0b3a15f942.1354264975.git.timo.mueller@bmw-carit.de>
 In-Reply-To: <cover.1354264975.git.timo.mueller@bmw-carit.de>
 References: <cover.1354264975.git.timo.mueller@bmw-carit.de>
 Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: [PATCHv2 25/35] documentation/poky-ref-manual/poky-ref-manual.xml: Added Title tag
+Subject: [PATCHv2 17/35] documentation: Move kernel-manual global parameters to customization file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,27 +50,48 @@ X-List-Received-Date: Fri, 30 Nov 2012 08:59:58 -0000
 
 From: Timo Mueller <timo.mueller@bmw-carit.de>
 
-The title of the document used to create metadata for output formats
-such as eclipse help.
+Standard stylesheet parameters were moved to the docbook customization
+file tying them to the docbook stylesheet used. Removing these
+parameters simplifies the Makefile.
 ---
- documentation/poky-ref-manual/poky-ref-manual.xml |    4 +++-
- 1 files changed, 3 insertions(+), 1 deletions(-)
+ documentation/Makefile                             |    7 +------
+ .../kernel-manual/kernel-manual-customization.xsl  |    7 +++++--
+ 2 files changed, 6 insertions(+), 8 deletions(-)
 
-diff --git a/documentation/poky-ref-manual/poky-ref-manual.xml b/documentation/poky-ref-manual/poky-ref-manual.xml
-index 51f5e2d..0479502 100644
---- a/documentation/poky-ref-manual/poky-ref-manual.xml
-+++ b/documentation/poky-ref-manual/poky-ref-manual.xml
-@@ -16,7 +16,9 @@
-             </imageobject>    
-         </mediaobject>
+diff --git a/documentation/Makefile b/documentation/Makefile
+index 7efead1..d050ddc 100644
+--- a/documentation/Makefile
++++ b/documentation/Makefile
+@@ -212,12 +212,7 @@ STYLESHEET = $(DOC)/*.css
+ endif
  
--        <title></title>
-+        <title>
-+            The Yocto Project Reference Manual
-+        </title>
+ ifeq ($(DOC),kernel-manual)
+-XSLTOPTS = --stringparam html.stylesheet kernel-style.css \
+-           --stringparam  chapter.autolabel 1 \
+-           --stringparam  appendix.autolabel A \
+-           --stringparam  section.autolabel 1 \
+-           --stringparam  section.label.includes.component.label 1 \
+-           --xinclude
++XSLTOPTS = --xinclude
+ ALLPREQ = html pdf tarball
+ TARFILES = kernel-manual.html kernel-manual.pdf kernel-style.css figures/kernel-title.png figures/kernel-architecture-overview.png
+ MANUALS = $(DOC)/$(DOC).html $(DOC)/$(DOC).pdf
+diff --git a/documentation/kernel-manual/kernel-manual-customization.xsl b/documentation/kernel-manual/kernel-manual-customization.xsl
+index 8eb6905..6f46df2 100644
+--- a/documentation/kernel-manual/kernel-manual-customization.xsl
++++ b/documentation/kernel-manual/kernel-manual-customization.xsl
+@@ -3,6 +3,9 @@
+   
+   <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/xhtml/docbook.xsl" />
  
-         <authorgroup>
-             <author>
+-<!--  <xsl:param name="generate.toc" select="'article nop'"></xsl:param>  -->
+-
++  <xsl:param name="html.stylesheet" select="'kernel-style.css'" />
++  <xsl:param name="chapter.autolabel" select="1" />
++  <xsl:param name="appendix.autolabel" select="A" />
++  <xsl:param name="section.autolabel" select="1" />
++  <xsl:param name="section.label.includes.component.label" select="1" />
+ </xsl:stylesheet>
 -- 
 1.7.7.6
 
