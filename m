@@ -1,28 +1,34 @@
-Return-Path: <lee.changil@gmail.com>
-Received: from mail-vb0-f54.google.com (mail-vb0-f54.google.com
-	[209.85.212.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 715AEE00294
-	for <yocto@yoctoproject.org>; Fri, 30 Nov 2012 04:31:40 -0800 (PST)
-Received: by mail-vb0-f54.google.com with SMTP id l1so9712205vba.13
-	for <yocto@yoctoproject.org>; Fri, 30 Nov 2012 04:31:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=vgJl9S56QvpfFlsIxz6vTqtCN724VOJvWyCSsg5jwDQ=;
-	b=RLQNnlzwY7i0RXnPaL0asq8nVctJ2YLPQ9VBh1Q4vSRCtCw4DrKN9Hyn+hThx9YS9E
-	bkVaOeLUKK7gxRM5RkS2AZ8yTObS0BWgClDsPetMtYVdQSEu84V7TdoeN0ir6JUDDwCF
-	ZN41NU8vEHH4WOvpFNkTR+9WonkiTTaQVTcPXNYjPo4gWdliz32/MdJEupan3/5M04AP
-	oe3MA/hX5Y3UpVJaom+sW0TiKN7F6TqmQpeVa2RS4u2Z48bxgSPiu5fX97O8igtnsA3i
-	k/w1txHpWqf/K67F9ia5oJNrAVtZ2ohFCGzHDto1fSn26sauukMagMOmUcOQceFbyqrX
-	kskg==
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3BFF0E00294
+	for <yocto@yoctoproject.org>; Fri, 30 Nov 2012 05:02:16 -0800 (PST)
+Received: from cpebcc81008dd2c-cmbcc81008dd29.cpe.net.cable.rogers.com
+	([99.253.156.71]:49140 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.77) (envelope-from <rpjday@crashcourse.ca>)
+	id 1TeQER-0004o9-B9; Fri, 30 Nov 2012 08:02:15 -0500
+Date: Fri, 30 Nov 2012 08:02:10 -0500 (EST)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: Tim Bird <tim.bird@am.sony.com>
+In-Reply-To: <50B7AE45.1070301@am.sony.com>
+Message-ID: <alpine.DEB.2.02.1211300754340.22736@oneiric>
+References: <alpine.DEB.2.02.1211291032530.27333@oneiric>
+	<50B7AE45.1070301@am.sony.com>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
-Received: by 10.220.156.143 with SMTP id x15mr869654vcw.50.1354278699503; Fri,
-	30 Nov 2012 04:31:39 -0800 (PST)
-Received: by 10.220.92.196 with HTTP; Fri, 30 Nov 2012 04:31:38 -0800 (PST)
-Date: Fri, 30 Nov 2012 21:31:38 +0900
-Message-ID: <CAOdO+zhVHmgHDmBSHHqu0ehaOpfKyiERwD_vCtZL1C_1w025cA@mail.gmail.com>
-From: Joey Lee <lee.changil@gmail.com>
-To: yocto@yoctoproject.org
-Subject: Adding thumb library to toolchain and how to use TUNE_FEATURE
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: chris larson's cool "bitbake-env" utility
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,32 +40,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 30 Nov 2012 12:31:40 -0000
-Content-Type: multipart/alternative; boundary=f46d04388ed3cf8f8804cfb59431
+X-List-Received-Date: Fri, 30 Nov 2012 13:02:16 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
---f46d04388ed3cf8f8804cfb59431
-Content-Type: text/plain; charset=UTF-8
+On Thu, 29 Nov 2012, Tim Bird wrote:
 
-Hello.
+> On 11/29/2012 07:34 AM, Robert P. J. Day wrote:
+> >
+> >   possibly prompted by my incessant whining, chris larson wrote a
+> > nifty utility called "bitbake-env"; i wrote a quick page about it
+> > here:
+> >
+> > http://www.crashcourse.ca/wiki/index.php/OE_bitbake-env_utility
+> >
+> > this is going to be more than a little useful in my courses.
+>
+> Yeah - this looks great.
+>
+> I put a link to your page on my bitbake cheat sheet page at:
+> http://elinux.org/Bitbake_Cheat_Sheet
 
-I'm newbie on yocto project and noticed that beagleboard toolchain doesn't
-have thumb library.
-So after several hour's search, I found out if I use TUNE_FEATURES, maybe
-thumb library would be generated.
+  thanks.  i just started a somewhat different bitbake tutorial page
+you can see buried in the midst of a bunch of other stuff here:
 
-Could you simply reply my guessing is right or not and how to use
-TUNE_FEATURES variable?
+  http://www.crashcourse.ca/wiki/index.php/OE_Yocto_pages
 
-Should I create my own layer to do that ?
+i'm collecting links to all of my arbitrary, disorganized OE/yocto
+wiki pages in one place, and you can see there's a section for bitbake
+stuff, with one link going back to your cheat sheet.
 
-Thank you in advance.
-Joey.
+  my (in-progress) bitbake tutorial will be a hands-on walkthrough of
+the simpler features of bitbake, so new users can follow along, run
+the commands and actually see what happens, so it's definitely not a
+reference or cheat sheet in that sense of the word.
 
---f46d04388ed3cf8f8804cfb59431
-Content-Type: text/html; charset=UTF-8
+  adding more stuff to that "tutorial" page as we speak ...
 
-Hello.<div><br></div><div>I&#39;m newbie on yocto project and noticed that beagleboard toolchain doesn&#39;t have thumb library.</div><div>So after several hour&#39;s search, I found out if I use TUNE_FEATURES, maybe thumb library would be generated.</div>
-<div><br></div><div>Could you simply reply my guessing is right or not and how to use TUNE_FEATURES variable?</div><div><br></div><div>Should I create my own layer to do that ?</div><div><br></div><div>Thank you in advance.</div>
-<div>Joey.</div>
+rday
 
---f46d04388ed3cf8f8804cfb59431--
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
+
