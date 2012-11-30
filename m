@@ -1,25 +1,28 @@
-Return-Path: <timo.mueller@oss.bmw-carit.de>
-Received: from linuxmail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8808CE006D5
-	for <yocto@yoctoproject.org>; Fri, 30 Nov 2012 02:32:57 -0800 (PST)
-Received: from localhost (mysterion.bmw-carit.intra [192.168.101.57])
-	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
-	(No client certificate requested)
-	(Authenticated sender: timo.mueller)
-	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 61713401D4;
-	Fri, 30 Nov 2012 10:57:45 +0100 (CET)
-From: mail@timomueller.eu
+Return-Path: <lee.changil@gmail.com>
+Received: from mail-vb0-f54.google.com (mail-vb0-f54.google.com
+	[209.85.212.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 715AEE00294
+	for <yocto@yoctoproject.org>; Fri, 30 Nov 2012 04:31:40 -0800 (PST)
+Received: by mail-vb0-f54.google.com with SMTP id l1so9712205vba.13
+	for <yocto@yoctoproject.org>; Fri, 30 Nov 2012 04:31:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=vgJl9S56QvpfFlsIxz6vTqtCN724VOJvWyCSsg5jwDQ=;
+	b=RLQNnlzwY7i0RXnPaL0asq8nVctJ2YLPQ9VBh1Q4vSRCtCw4DrKN9Hyn+hThx9YS9E
+	bkVaOeLUKK7gxRM5RkS2AZ8yTObS0BWgClDsPetMtYVdQSEu84V7TdoeN0ir6JUDDwCF
+	ZN41NU8vEHH4WOvpFNkTR+9WonkiTTaQVTcPXNYjPo4gWdliz32/MdJEupan3/5M04AP
+	oe3MA/hX5Y3UpVJaom+sW0TiKN7F6TqmQpeVa2RS4u2Z48bxgSPiu5fX97O8igtnsA3i
+	k/w1txHpWqf/K67F9ia5oJNrAVtZ2ohFCGzHDto1fSn26sauukMagMOmUcOQceFbyqrX
+	kskg==
+MIME-Version: 1.0
+Received: by 10.220.156.143 with SMTP id x15mr869654vcw.50.1354278699503; Fri,
+	30 Nov 2012 04:31:39 -0800 (PST)
+Received: by 10.220.92.196 with HTTP; Fri, 30 Nov 2012 04:31:38 -0800 (PST)
+Date: Fri, 30 Nov 2012 21:31:38 +0900
+Message-ID: <CAOdO+zhVHmgHDmBSHHqu0ehaOpfKyiERwD_vCtZL1C_1w025cA@mail.gmail.com>
+From: Joey Lee <lee.changil@gmail.com>
 To: yocto@yoctoproject.org
-Date: Fri, 30 Nov 2012 11:32:53 +0100
-Message-Id: <8df739d248f46a98aee50ef6167a70d1b78ecdb8.1354197844.git.timo.mueller@bmw-carit.de>
-X-Mailer: git-send-email 1.7.7.6
-In-Reply-To: <90e541cc03aea0bb0a1700bb1375eac6c4be5e16.1354197844.git.timo.mueller@bmw-carit.de>
-References: <cover.1354197844.git.timo.mueller@bmw-carit.de>
-	<90e541cc03aea0bb0a1700bb1375eac6c4be5e16.1354197844.git.timo.mueller@bmw-carit.de>
-In-Reply-To: <cover.1354197844.git.timo.mueller@bmw-carit.de>
-References: <cover.1354197844.git.timo.mueller@bmw-carit.de>
-Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: [PATCH 2/3] scripts/build.sh: Added help option to the cmdline
+Subject: Adding thumb library to toolchain and how to use TUNE_FEATURE
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,55 +34,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 30 Nov 2012 10:32:58 -0000
+X-List-Received-Date: Fri, 30 Nov 2012 12:31:40 -0000
+Content-Type: multipart/alternative; boundary=f46d04388ed3cf8f8804cfb59431
 
-From: Timo Mueller <timo.mueller@bmw-carit.de>
+--f46d04388ed3cf8f8804cfb59431
+Content-Type: text/plain; charset=UTF-8
 
-Calling the build script with the -h option will now show the usage.
-The cmdline parsing can be extended to add new options in the future.
----
- scripts/build.sh |   18 ++++++++++++++----
- 1 files changed, 14 insertions(+), 4 deletions(-)
+Hello.
 
-diff --git a/scripts/build.sh b/scripts/build.sh
-index 4ade936..2d4452e 100755
---- a/scripts/build.sh
-+++ b/scripts/build.sh
-@@ -3,12 +3,13 @@
- help ()
- {
-   echo "Build the Yocto Eclipse plugins"
--  echo "Usage: $0 <branch name> <release name>";
-+  echo "Usage: $0 [OPTIONS] BRANCH_NAME RELEASE_NAME [TAG_NAME]";
-   echo ""
-   echo "Options:"
--  echo "<branch name> - git branch name to build upon"
--  echo "<release name> - release name in the final output name"
--  echo "[tag name] - git tag name to build upon. defaults to master if not set"
-+  echo "-h - display this help and exit"
-+  echo "BRANCH_NAME - git branch name to build upon"
-+  echo "RELEAES_NAME - release name in the final output name"
-+  echo "TAG_NAME - git tag name to build upon. defaults to HEAD if not set"
-   echo ""
-   echo "Example: $0 master r0 M1.1_rc1";
-   exit 1;
-@@ -66,6 +67,15 @@ check_env ()
- }
- 
- USE_LOCAL_GIT_REPO=0
-+while getopts ":h" opt; do
-+	case $opt in
-+		h)
-+			help
-+			;;
-+	esac
-+done
-+shift $(($OPTIND - 1))
-+
- 
- if [ $# -ne 2 ] && [ $# -ne 3 ]; then 
-    help
--- 
-1.7.7.6
+I'm newbie on yocto project and noticed that beagleboard toolchain doesn't
+have thumb library.
+So after several hour's search, I found out if I use TUNE_FEATURES, maybe
+thumb library would be generated.
 
+Could you simply reply my guessing is right or not and how to use
+TUNE_FEATURES variable?
 
+Should I create my own layer to do that ?
+
+Thank you in advance.
+Joey.
+
+--f46d04388ed3cf8f8804cfb59431
+Content-Type: text/html; charset=UTF-8
+
+Hello.<div><br></div><div>I&#39;m newbie on yocto project and noticed that beagleboard toolchain doesn&#39;t have thumb library.</div><div>So after several hour&#39;s search, I found out if I use TUNE_FEATURES, maybe thumb library would be generated.</div>
+<div><br></div><div>Could you simply reply my guessing is right or not and how to use TUNE_FEATURES variable?</div><div><br></div><div>Should I create my own layer to do that ?</div><div><br></div><div>Thank you in advance.</div>
+<div>Joey.</div>
+
+--f46d04388ed3cf8f8804cfb59431--
