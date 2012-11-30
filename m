@@ -1,19 +1,19 @@
 Return-Path: <timo.mueller@oss.bmw-carit.de>
 Received: from linuxmail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D346BE0141C
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0021CE013F9
 	for <yocto@yoctoproject.org>; Fri, 30 Nov 2012 00:59:57 -0800 (PST)
 Received: from localhost (mysterion.bmw-carit.intra [192.168.101.57])
 	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
 	(No client certificate requested)
 	(Authenticated sender: timo.mueller)
-	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 06F2740098;
+	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 9CAA04037F;
 	Fri, 30 Nov 2012 09:24:46 +0100 (CET)
 From: mail@timomueller.eu
 To: yocto@yoctoproject.org
-Date: Fri, 30 Nov 2012 09:59:39 +0100
-Message-Id: <db4770c87a1a39b9c91b492b30a22bb8db422c28.1354264975.git.timo.mueller@bmw-carit.de>
+Date: Fri, 30 Nov 2012 09:59:44 +0100
+Message-Id: <015503ec1086044d1cf25d2f4d7f32cf7453e402.1354264975.git.timo.mueller@bmw-carit.de>
 X-Mailer: git-send-email 1.7.7.6
-In-Reply-To: <c1b021e920ec33fcd1d539390ea303a2f88172d6.1354264975.git.timo.mueller@bmw-carit.de>
+In-Reply-To: <1e9ffd7f81737c7e0f12cd77a4af95f6ad98155a.1354264975.git.timo.mueller@bmw-carit.de>
 References: <cover.1354264975.git.timo.mueller@bmw-carit.de>
 	<ae85de5617553768dab8adfb8e33682d6f496f98.1354264975.git.timo.mueller@bmw-carit.de>
 	<0ef502fd88b1e7806abb8d93ebd53cd89769a1db.1354264975.git.timo.mueller@bmw-carit.de>
@@ -36,10 +36,15 @@ References: <cover.1354264975.git.timo.mueller@bmw-carit.de>
 	<ee277b63802c121e09d5e88c2550e3d704e6d01e.1354264975.git.timo.mueller@bmw-carit.de>
 	<7421276098498ddf72890a1b05295731ba3ceee3.1354264975.git.timo.mueller@bmw-carit.de>
 	<c1b021e920ec33fcd1d539390ea303a2f88172d6.1354264975.git.timo.mueller@bmw-carit.de>
+	<db4770c87a1a39b9c91b492b30a22bb8db422c28.1354264975.git.timo.mueller@bmw-carit.de>
+	<95b9fea5defa34b2ad0c4038e241875befe228e5.1354264975.git.timo.mueller@bmw-carit.de>
+	<4dd48c21f559de6707c1f495baef5d0b3a15f942.1354264975.git.timo.mueller@bmw-carit.de>
+	<4b7712db0dd4d80de3a7ff26c0a4f519096a085d.1354264975.git.timo.mueller@bmw-carit.de>
+	<1e9ffd7f81737c7e0f12cd77a4af95f6ad98155a.1354264975.git.timo.mueller@bmw-carit.de>
 In-Reply-To: <cover.1354264975.git.timo.mueller@bmw-carit.de>
 References: <cover.1354264975.git.timo.mueller@bmw-carit.de>
 Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: [PATCHv2 22/35] documentation: Move poky-ref-manual global parameters to customization file
+Subject: [PATCHv2 27/35] documentation: Move yocto-project-qs global parameters to customization file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,41 +64,34 @@ Standard stylesheet parameters were moved to the docbook customization
 file tying them to the docbook stylesheet used. Removing these
 parameters simplifies the Makefile.
 ---
- documentation/Makefile                             |    7 +------
- .../poky-ref-manual-customization.xsl              |    5 +++++
- 2 files changed, 6 insertions(+), 6 deletions(-)
+ documentation/Makefile                             |    3 +--
+ .../yocto-project-qs-customization.xsl             |    2 +-
+ 2 files changed, 2 insertions(+), 3 deletions(-)
 
 diff --git a/documentation/Makefile b/documentation/Makefile
-index 5596720..1645c96 100644
+index 6939a6c..a24be18 100644
 --- a/documentation/Makefile
 +++ b/documentation/Makefile
-@@ -186,12 +186,7 @@ STYLESHEET = $(DOC)/*.css
+@@ -124,8 +124,7 @@ STYLESHEET = $(DOC)/*.css
  endif
  
- ifeq ($(DOC),poky-ref-manual)
--XSLTOPTS = --stringparam html.stylesheet ref-style.css \
--           --stringparam  chapter.autolabel 1 \
--           --stringparam  appendix.autolabel A \
--           --stringparam  section.autolabel 1 \
--           --stringparam  section.label.includes.component.label 1 \
+ ifeq ($(DOC),yocto-project-qs)
+-XSLTOPTS = --stringparam html.stylesheet qs-style.css \
 -           --xinclude
 +XSLTOPTS = --xinclude
- ALLPREQ = html pdf tarball
- TARFILES = poky-ref-manual.html ref-style.css figures/poky-title.png \
- 	figures/buildhistory.png figures/buildhistory-web.png
-diff --git a/documentation/poky-ref-manual/poky-ref-manual-customization.xsl b/documentation/poky-ref-manual/poky-ref-manual-customization.xsl
-index 362ebed..3ad3a31 100644
---- a/documentation/poky-ref-manual/poky-ref-manual-customization.xsl
-+++ b/documentation/poky-ref-manual/poky-ref-manual-customization.xsl
-@@ -3,4 +3,9 @@
-   
+ ALLPREQ = html tarball
+ TARFILES = yocto-project-qs.html qs-style.css figures/yocto-environment.png figures/building-an-image.png figures/using-a-pre-built-image.png figures/yocto-project-transp.png
+ MANUALS = $(DOC)/$(DOC).html
+diff --git a/documentation/yocto-project-qs/yocto-project-qs-customization.xsl b/documentation/yocto-project-qs/yocto-project-qs-customization.xsl
+index 8e6ea34..904289a 100644
+--- a/documentation/yocto-project-qs/yocto-project-qs-customization.xsl
++++ b/documentation/yocto-project-qs/yocto-project-qs-customization.xsl
+@@ -4,5 +4,5 @@
    <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/xhtml/docbook.xsl" />
  
-+  <xsl:param name="html.stylesheet" select="'ref-style.css'" />
-+  <xsl:param name="chapter.autolabel" select="1" />
-+  <xsl:param name="appendix.autolabel" select="A" />
-+  <xsl:param name="section.autolabel" select="1" />
-+  <xsl:param name="section.label.includes.component.label" select="1" />
+   <xsl:param name="generate.toc" select="'article nop'"></xsl:param>
+-
++  <xsl:param name="html.stylesheet" select="'qs-style.css'" />
  </xsl:stylesheet>
 -- 
 1.7.7.6
