@@ -1,19 +1,19 @@
 Return-Path: <timo.mueller@oss.bmw-carit.de>
 Received: from linuxmail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 782D5E0141C
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8041BE0142A
 	for <yocto@yoctoproject.org>; Fri, 30 Nov 2012 00:59:57 -0800 (PST)
 Received: from localhost (mysterion.bmw-carit.intra [192.168.101.57])
 	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
 	(No client certificate requested)
 	(Authenticated sender: timo.mueller)
-	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id DDC0E40368;
-	Fri, 30 Nov 2012 09:24:45 +0100 (CET)
+	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 8F93E4028F;
+	Fri, 30 Nov 2012 09:24:44 +0100 (CET)
 From: mail@timomueller.eu
 To: yocto@yoctoproject.org
-Date: Fri, 30 Nov 2012 09:59:38 +0100
-Message-Id: <c1b021e920ec33fcd1d539390ea303a2f88172d6.1354264975.git.timo.mueller@bmw-carit.de>
+Date: Fri, 30 Nov 2012 09:59:27 +0100
+Message-Id: <d9192a08f1bb84cd8ef7ab924d41eb0e81aefbea.1354264975.git.timo.mueller@bmw-carit.de>
 X-Mailer: git-send-email 1.7.7.6
-In-Reply-To: <7421276098498ddf72890a1b05295731ba3ceee3.1354264975.git.timo.mueller@bmw-carit.de>
+In-Reply-To: <7893fff34faec13f7073016ca5221a342d92df61.1354264975.git.timo.mueller@bmw-carit.de>
 References: <cover.1354264975.git.timo.mueller@bmw-carit.de>
 	<ae85de5617553768dab8adfb8e33682d6f496f98.1354264975.git.timo.mueller@bmw-carit.de>
 	<0ef502fd88b1e7806abb8d93ebd53cd89769a1db.1354264975.git.timo.mueller@bmw-carit.de>
@@ -24,21 +24,10 @@ References: <cover.1354264975.git.timo.mueller@bmw-carit.de>
 	<0e3b5ea52a5229679c6abc875652bf7e9b64f323.1354264975.git.timo.mueller@bmw-carit.de>
 	<b44f86f7f3af703ff4528a35eb82c7108586330e.1354264975.git.timo.mueller@bmw-carit.de>
 	<7893fff34faec13f7073016ca5221a342d92df61.1354264975.git.timo.mueller@bmw-carit.de>
-	<d9192a08f1bb84cd8ef7ab924d41eb0e81aefbea.1354264975.git.timo.mueller@bmw-carit.de>
-	<899749cce559d9c6894343fae844873c337fd5b5.1354264975.git.timo.mueller@bmw-carit.de>
-	<4b5d06565d52a010678c1f3edb3710b4d5d62cec.1354264975.git.timo.mueller@bmw-carit.de>
-	<1b85154631995b29bc8f94810ce7cfb896a1e787.1354264975.git.timo.mueller@bmw-carit.de>
-	<546e4a349f627d25977a11979ddd580ef063c3bd.1354264975.git.timo.mueller@bmw-carit.de>
-	<17a025a8342a76eff141c6c2944a964c8b496570.1354264975.git.timo.mueller@bmw-carit.de>
-	<25ee5bb08586d9954a0076cf515ed950a58fd60c.1354264975.git.timo.mueller@bmw-carit.de>
-	<81b9e274d332ceceb284ec4005a33ed60245a7eb.1354264975.git.timo.mueller@bmw-carit.de>
-	<43f2e8cd6873988c4c8754ece92dca2fbd422a7a.1354264975.git.timo.mueller@bmw-carit.de>
-	<ee277b63802c121e09d5e88c2550e3d704e6d01e.1354264975.git.timo.mueller@bmw-carit.de>
-	<7421276098498ddf72890a1b05295731ba3ceee3.1354264975.git.timo.mueller@bmw-carit.de>
 In-Reply-To: <cover.1354264975.git.timo.mueller@bmw-carit.de>
 References: <cover.1354264975.git.timo.mueller@bmw-carit.de>
 Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: [PATCHv2 21/35] documentation/Makefile: logic to make all for kernel-manual and cleanup
+Subject: [PATCHv2 10/35] documentation/dev-manual/dev-manual.xml: Added Title tag
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,33 +43,27 @@ X-List-Received-Date: Fri, 30 Nov 2012 08:59:57 -0000
 
 From: Timo Mueller <timo.mueller@bmw-carit.de>
 
-Eclipse help documents are now created when calling the 'make all'
-target on the kernel-manual. Resulting files are archived into
-the tarball as well. When calling 'make clean' artefacts of
-the eclipse documentation build are deleted.
+The title of the document used to create metadata for output formats
+such as eclipse help.
 ---
- documentation/Makefile |    8 +++++---
- 1 files changed, 5 insertions(+), 3 deletions(-)
+ documentation/dev-manual/dev-manual.xml |    4 +++-
+ 1 files changed, 3 insertions(+), 1 deletions(-)
 
-diff --git a/documentation/Makefile b/documentation/Makefile
-index 3366cad..5596720 100644
---- a/documentation/Makefile
-+++ b/documentation/Makefile
-@@ -213,9 +213,11 @@ endif
+diff --git a/documentation/dev-manual/dev-manual.xml b/documentation/dev-manual/dev-manual.xml
+index 19503a9..0968691 100644
+--- a/documentation/dev-manual/dev-manual.xml
++++ b/documentation/dev-manual/dev-manual.xml
+@@ -16,7 +16,9 @@
+             </imageobject> 
+         </mediaobject>
  
- ifeq ($(DOC),kernel-manual)
- XSLTOPTS = --xinclude
--ALLPREQ = html pdf tarball
--TARFILES = kernel-manual.html kernel-manual.pdf kernel-style.css figures/kernel-title.png figures/kernel-architecture-overview.png
--MANUALS = $(DOC)/$(DOC).html $(DOC)/$(DOC).pdf
-+ALLPREQ = html pdf eclipse tarball
-+TARFILES = kernel-manual.html kernel-manual.pdf kernel-style.css \
-+           figures/kernel-title.png figures/kernel-architecture-overview.png \
-+           eclipse
-+MANUALS = $(DOC)/$(DOC).html $(DOC)/$(DOC).pdf $(DOC)/eclipse
- FIGURES = figures
- STYLESHEET = $(DOC)/*.css
- endif
+-        <title></title> 
++        <title>
++            The Yocto Project Development Manual
++        </title>
+ 
+         <authorgroup>
+             <author>
 -- 
 1.7.7.6
 
