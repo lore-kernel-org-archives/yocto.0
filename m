@@ -1,19 +1,19 @@
 Return-Path: <timo.mueller@oss.bmw-carit.de>
 Received: from linuxmail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A5846E01439
-	for <yocto@yoctoproject.org>; Fri, 30 Nov 2012 00:59:57 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 094D9E01446
+	for <yocto@yoctoproject.org>; Fri, 30 Nov 2012 00:59:58 -0800 (PST)
 Received: from localhost (mysterion.bmw-carit.intra [192.168.101.57])
 	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
 	(No client certificate requested)
 	(Authenticated sender: timo.mueller)
-	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 24962401D4;
+	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 6143D40208;
 	Fri, 30 Nov 2012 09:24:46 +0100 (CET)
 From: mail@timomueller.eu
 To: yocto@yoctoproject.org
-Date: Fri, 30 Nov 2012 09:59:40 +0100
-Message-Id: <95b9fea5defa34b2ad0c4038e241875befe228e5.1354264975.git.timo.mueller@bmw-carit.de>
+Date: Fri, 30 Nov 2012 09:59:42 +0100
+Message-Id: <4b7712db0dd4d80de3a7ff26c0a4f519096a085d.1354264975.git.timo.mueller@bmw-carit.de>
 X-Mailer: git-send-email 1.7.7.6
-In-Reply-To: <db4770c87a1a39b9c91b492b30a22bb8db422c28.1354264975.git.timo.mueller@bmw-carit.de>
+In-Reply-To: <4dd48c21f559de6707c1f495baef5d0b3a15f942.1354264975.git.timo.mueller@bmw-carit.de>
 References: <cover.1354264975.git.timo.mueller@bmw-carit.de>
 	<ae85de5617553768dab8adfb8e33682d6f496f98.1354264975.git.timo.mueller@bmw-carit.de>
 	<0ef502fd88b1e7806abb8d93ebd53cd89769a1db.1354264975.git.timo.mueller@bmw-carit.de>
@@ -37,10 +37,12 @@ References: <cover.1354264975.git.timo.mueller@bmw-carit.de>
 	<7421276098498ddf72890a1b05295731ba3ceee3.1354264975.git.timo.mueller@bmw-carit.de>
 	<c1b021e920ec33fcd1d539390ea303a2f88172d6.1354264975.git.timo.mueller@bmw-carit.de>
 	<db4770c87a1a39b9c91b492b30a22bb8db422c28.1354264975.git.timo.mueller@bmw-carit.de>
+	<95b9fea5defa34b2ad0c4038e241875befe228e5.1354264975.git.timo.mueller@bmw-carit.de>
+	<4dd48c21f559de6707c1f495baef5d0b3a15f942.1354264975.git.timo.mueller@bmw-carit.de>
 In-Reply-To: <cover.1354264975.git.timo.mueller@bmw-carit.de>
 References: <cover.1354264975.git.timo.mueller@bmw-carit.de>
 Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: [PATCHv2 23/35] documentation/poky-ref-manual/poky-ref-manual-eclipse-customization.xsl: new file
+Subject: [PATCHv2 25/35] documentation/poky-ref-manual/poky-ref-manual.xml: Added Title tag
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -56,47 +58,27 @@ X-List-Received-Date: Fri, 30 Nov 2012 08:59:58 -0000
 
 From: Timo Mueller <timo.mueller@bmw-carit.de>
 
-This stylesheet uses the eclipse stylesheets of docbook to create
-eclipse help from this documentation. In addition to simple html
-files these stylesheets will also create xml files which are
-needed to integrate the documentation into eclipse (e.g. toc.xml).
+The title of the document used to create metadata for output formats
+such as eclipse help.
 ---
- .../poky-ref-manual-eclipse-customization.xsl      |   26 ++++++++++++++++++++
- 1 files changed, 26 insertions(+), 0 deletions(-)
- create mode 100644 documentation/poky-ref-manual/poky-ref-manual-eclipse-customization.xsl
+ documentation/poky-ref-manual/poky-ref-manual.xml |    4 +++-
+ 1 files changed, 3 insertions(+), 1 deletions(-)
 
-diff --git a/documentation/poky-ref-manual/poky-ref-manual-eclipse-customization.xsl b/documentation/poky-ref-manual/poky-ref-manual-eclipse-customization.xsl
-new file mode 100644
-index 0000000..4e31193
---- /dev/null
-+++ b/documentation/poky-ref-manual/poky-ref-manual-eclipse-customization.xsl
-@@ -0,0 +1,26 @@
-+<?xml version='1.0'?>
-+<xsl:stylesheet
-+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-+	xmlns="http://www.w3.org/1999/xhtml"
-+	xmlns:fo="http://www.w3.org/1999/XSL/Format"
-+	version="1.0">
-+
-+  <xsl:import
-+	  href="http://docbook.sourceforge.net/release/xsl/current/eclipse/eclipse3.xsl" />
-+
-+  <xsl:param name="chunker.output.indent" select="'yes'"/>
-+  <xsl:param name="chunk.first.sections" select="1"/>
-+  <xsl:param name="chunk.section.depth" select="10"/>
-+  <xsl:param name="use.id.as.filename" select="1"/>
-+  <xsl:param name="ulink.target" select="'_self'" />
-+  <xsl:param name="base.dir" select="'html/poky-ref-manual/'"/>
-+  <xsl:param name="html.stylesheet" select="'../book.css'"/>
-+  <xsl:param name="eclipse.manifest" select="0"/>
-+  <xsl:param name="create.plugin.xml" select="0"/>
-+  <xsl:param name="suppress.navigation" select="1"/>
-+  <xsl:param name="generate.index" select="0"/>
-+  <xsl:param name="chapter.autolabel" select="1" />
-+  <xsl:param name="appendix.autolabel" select="A" />
-+  <xsl:param name="section.autolabel" select="1" />
-+  <xsl:param name="section.label.includes.component.label" select="1" />
-+</xsl:stylesheet>
+diff --git a/documentation/poky-ref-manual/poky-ref-manual.xml b/documentation/poky-ref-manual/poky-ref-manual.xml
+index 51f5e2d..0479502 100644
+--- a/documentation/poky-ref-manual/poky-ref-manual.xml
++++ b/documentation/poky-ref-manual/poky-ref-manual.xml
+@@ -16,7 +16,9 @@
+             </imageobject>    
+         </mediaobject>
+ 
+-        <title></title>
++        <title>
++            The Yocto Project Reference Manual
++        </title>
+ 
+         <authorgroup>
+             <author>
 -- 
 1.7.7.6
 
