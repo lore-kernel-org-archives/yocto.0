@@ -1,19 +1,19 @@
 Return-Path: <timo.mueller@oss.bmw-carit.de>
 Received: from linuxmail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 63B68E0141C
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 28954E011AB
 	for <yocto@yoctoproject.org>; Fri, 30 Nov 2012 00:59:58 -0800 (PST)
 Received: from localhost (mysterion.bmw-carit.intra [192.168.101.57])
 	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
 	(No client certificate requested)
 	(Authenticated sender: timo.mueller)
-	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id AF5FA4029C;
+	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 74E2940283;
 	Fri, 30 Nov 2012 09:24:47 +0100 (CET)
 From: mail@timomueller.eu
 To: yocto@yoctoproject.org
-Date: Fri, 30 Nov 2012 09:59:52 +0100
-Message-Id: <d9299824e06da83d08965c69d73e3cdf4566f898.1354264975.git.timo.mueller@bmw-carit.de>
+Date: Fri, 30 Nov 2012 09:59:50 +0100
+Message-Id: <cbb0d896f530f708d0e1eaba6d5290b4fba96dc3.1354264975.git.timo.mueller@bmw-carit.de>
 X-Mailer: git-send-email 1.7.7.6
-In-Reply-To: <b8562daf240b978ff8af847ceb46c839dc485b75.1354264975.git.timo.mueller@bmw-carit.de>
+In-Reply-To: <efcbd5cbaf5084b61ed150a475859d60495874fa.1354264975.git.timo.mueller@bmw-carit.de>
 References: <cover.1354264975.git.timo.mueller@bmw-carit.de>
 	<ae85de5617553768dab8adfb8e33682d6f496f98.1354264975.git.timo.mueller@bmw-carit.de>
 	<0ef502fd88b1e7806abb8d93ebd53cd89769a1db.1354264975.git.timo.mueller@bmw-carit.de>
@@ -47,12 +47,10 @@ References: <cover.1354264975.git.timo.mueller@bmw-carit.de>
 	<c29a575e409921bd66f5a1c828c01cfac0ee5cfe.1354264975.git.timo.mueller@bmw-carit.de>
 	<4d18289e9aa11650af27aac54930b447d720eaaf.1354264975.git.timo.mueller@bmw-carit.de>
 	<efcbd5cbaf5084b61ed150a475859d60495874fa.1354264975.git.timo.mueller@bmw-carit.de>
-	<cbb0d896f530f708d0e1eaba6d5290b4fba96dc3.1354264975.git.timo.mueller@bmw-carit.de>
-	<b8562daf240b978ff8af847ceb46c839dc485b75.1354264975.git.timo.mueller@bmw-carit.de>
 In-Reply-To: <cover.1354264975.git.timo.mueller@bmw-carit.de>
 References: <cover.1354264975.git.timo.mueller@bmw-carit.de>
 Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: [PATCHv2 35/35] documentation/Makefile: Clean up eclipse target and update help.
+Subject: [PATCHv2 33/35] documentation/tools/eclipse-help.sed: Processes external links for eclipse html files
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -64,49 +62,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 30 Nov 2012 08:59:58 -0000
+X-List-Received-Date: Fri, 30 Nov 2012 08:59:59 -0000
 
 From: Timo Mueller <timo.mueller@bmw-carit.de>
 
+The file is used when creating eclipse help html files. It processes
+all html files and converts links so that the user can navigate
+between different docuementation parts without leaving the eclipse
+help center.
 ---
- documentation/Makefile |   16 ++++------------
- 1 files changed, 4 insertions(+), 12 deletions(-)
+ documentation/tools/eclipse-help.sed |   18 ++++++++++++++++++
+ 1 files changed, 18 insertions(+), 0 deletions(-)
+ create mode 100644 documentation/tools/eclipse-help.sed
 
-diff --git a/documentation/Makefile b/documentation/Makefile
-index 785c065..7da14a4 100644
---- a/documentation/Makefile
-+++ b/documentation/Makefile
-@@ -11,6 +11,8 @@
- #              or the mega-manual (single, large HTML file comprised of all 
- #              Yocto Project manuals).
- #    html:     generates an HTML version of a manual.
-+#    eclipse:  generates an HTML version of a manual that can be used as
-+#              eclipse help (including necessary metadata files).
- #    tarball:  creates a tarball for the doc files.
- #    validate: validates 
- #    publish:  pushes generated files to the Yocto Project website
-@@ -275,19 +277,9 @@ eclipse: eclipse-generate eclipse-resolve-links
- .PHONY : eclipse-generate eclipse-resolve-links
- 
- eclipse-generate:
--ifeq ($(filter $(DOC), adt-manual bsp-guide dev-manual kernel-manual poky-ref-manual yocto-project-qs),)
--	@echo " "
--	@echo "ERROR: You can only create eclipse documentation"
--	@echo "       of the following documentation parts:"
-+ifeq ($(DOC),mega-manual)
- 	@echo " "
--	@echo "       - The Yocto Project Application Developer's Guide (adt-manual)"
--	@echo "       - The Yocto Project Board Support Package"
--	@echo "                           Developer's Guide (bsp-guide)"
--	@echo "       - The Yocto Project Development Manual (dev-manual)"
--	@echo "       - The Yocto Project Kernel Architecture and"
--	@echo "                           Use Manual (kernel-manual)"
--	@echo "		  - The Yocto Project Reference Manual (poky-ref-manual)"
--	@echo "       - The Yocto Project Quick Start (yocto-project-qs)"
-+	@echo "ERROR: You cannot generate eclipse documentation for the mega-manual"
- 	@echo " "
- else
- 	@echo " "
+diff --git a/documentation/tools/eclipse-help.sed b/documentation/tools/eclipse-help.sed
+new file mode 100644
+index 0000000..71d3395
+--- /dev/null
++++ b/documentation/tools/eclipse-help.sed
+@@ -0,0 +1,18 @@
++# Processes poky-ref-manual and yocto-project-qs manual (<word>-<word>-<word> style)
++# For example:
++#   "ulink" href="http://www.yoctoproject.org/docs/1.3/poky-ref-manual/poky-ref-manual.html#faq" 
++#   -> "link" href="../poky-ref-manual/faq.html"
++s/\"ulink\" href=\"http:\/\/www.yoctoproject.org\/docs\/[^\/]*\/\([a-z]*-[a-z]*-[a-z]*\)\/[a-z]*-[a-z]*-[a-z]*.html#\([^\"]*\)\"/\"link\" href=\"\.\.\/\1\/\2.html\"/g
++
++# Processes all other manuals (<word>-<word> style)
++# For example:
++#   "ulink" href="http://www.yoctoproject.org/docs/1.3/kernel-manual/kernel-manual.html#faq" 
++#   -> "link" href="../kernel-manual/faq.html"
++s/\"ulink\" href=\"http:\/\/www.yoctoproject.org\/docs\/[^\/]*\/\([a-z]*-[a-z]*\)\/[a-z]*-[a-z]*.html#\([^\"]*\)\"/\"link\" href=\"\.\.\/\1\/\2.html\"/g
++
++# Process cases where just an external manual is referenced without an id anchor
++# For example:
++#   "ulink" href="http://www.yoctoproject.org/docs/1.3/kernel-manual/kernel-manual.html
++#   -> "link" href="../kernel-manual/index.html"
++s/\"ulink\" href=\"http:\/\/www.yoctoproject.org\/docs\/[^\/]*\/\([a-z]*-[a-z]*-[a-z]*\)\/[a-z]*-[a-z]*-[a-z]*.html\"/\"link\" href=\"\.\.\/\1\/index.html\"/g
++s/\"ulink\" href=\"http:\/\/www.yoctoproject.org\/docs\/[^\/]*\/\([a-z]*-[a-z]*\)\/[a-z]*-[a-z]*.html\"/\"link\" href=\"\.\.\/\1\/index.html\"/g
 -- 
 1.7.7.6
 
