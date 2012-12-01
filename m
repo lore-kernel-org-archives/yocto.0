@@ -1,28 +1,24 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 18498E00655
-	for <yocto@yoctoproject.org>; Fri, 30 Nov 2012 13:01:57 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id qAUL1u2h029886
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 30 Nov 2012 13:01:56 -0800 (PST)
-Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.2.318.4;
-	Fri, 30 Nov 2012 13:01:55 -0800
-Message-ID: <50B91EBF.4060400@windriver.com>
-Date: Fri, 30 Nov 2012 16:01:51 -0500
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
+Return-Path: <chege@cybertux.de>
+Received: from wp202.webpack.hosteurope.de (wp202.webpack.hosteurope.de
+	[80.237.132.209])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9122CE0133F
+	for <yocto@yoctoproject.org>; Sat,  1 Dec 2012 06:00:39 -0800 (PST)
+Received: from hsi-kbw-109-192-216-113.hsi6.kabel-badenwuerttemberg.de
+	([109.192.216.113] helo=[192.168.1.126]); authenticated
+	by wp202.webpack.hosteurope.de running ExIM with esmtpsa
+	(TLS1.0:DHE_RSA_AES_256_CBC_SHA1:32)
+	id 1TencQ-00074p-T3; Sat, 01 Dec 2012 15:00:34 +0100
+Message-ID: <50BA0D82.3070001@cybertux.de>
+Date: Sat, 01 Dec 2012 15:00:34 +0100
+From: Christian Ege <chege@cybertux.de>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:16.0) Gecko/20121028 Thunderbird/16.0.2
+	rv:16.0) Gecko/20121011 Thunderbird/16.0.1
 MIME-Version: 1.0
-To: =?ISO-8859-1?Q?Lisandro_Dami=E1n_Nicanor_P=E9rez_Meyer?=
-	<perezmeyer@gmail.com>
-References: <201211291859.27190.perezmeyer@gmail.com>
-	<201211301721.13690.perezmeyer@gmail.com>
-In-Reply-To: <201211301721.13690.perezmeyer@gmail.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: The routerstationpro kernel image is huge
+To: yocto@yoctoproject.org
+References: <c7e075a69adcbd736ab89d241cd10ec3-EhVcXlhFQwBWRwoYGgwbZ1dfaANWUkNeXENbAF9TNkFYXEYJVl1oA1RTQ15eQioDXF9aSFxTXQhb-webmailer2@server03.webmailer.hosteurope.de>
+In-Reply-To: <c7e075a69adcbd736ab89d241cd10ec3-EhVcXlhFQwBWRwoYGgwbZ1dfaANWUkNeXENbAF9TNkFYXEYJVl1oA1RTQ15eQioDXF9aSFxTXQhb-webmailer2@server03.webmailer.hosteurope.de>
+X-bounce-key: webpack.hosteurope.de;chege@cybertux.de;1354370439;3c86ebea;
+Subject: Re: How to handle src.rpm packages
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,37 +30,119 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 30 Nov 2012 21:01:57 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Sat, 01 Dec 2012 14:00:39 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On 12-11-30 03:21 PM, Lisandro Damián Nicanor Pérez Meyer wrote:
-> On Thu 29 Nov 2012 18:59:18 Lisandro Damián Nicanor Pérez Meyer escribió:
->> Hi! First of all, I don't know if this is the correct mailing list to write
->> this. If it is not, please point me to th right one. Thanks!
->>
->> I have found that the kernel image for the routerstationpro in poky danny
->> 8.0 is huge. The flash of the device is just 16MB, so a 86 MB image is
->> more than what fits in there ;-)
->
-> JFTR: the image wasn't stripped.
->
-> To strip it:
->
-> ../../../tmp/sysroots/x86_64-linux/usr/bin/mips32-poky-linux/mips-poky-linux-
-> strip  -s -R .comment vmlinux-foo.bin
+Hi,
 
-and also for the record, we have this logged in bug 3515, and we'll
-make this the default for the build.
+I think src rpms are not that interesting stuff for a lot of you. I've 
+fixed this by my own by adding a class to my meta-stlinux layer which 
+handles the extra sources and patches within the *.src.rpm.
 
-Cheers,
+The idea was taken from the lsof package.
 
-Bruce
+LOCAL_SRC ??= ""
 
+def src_rpm_do_base(d,func):
+     bb.build.exec_func(func, d)
+     src_uri = d.getVar('SRC_URI')
+     d.setVar('SRC_URI', '${LOCAL_SRC}')
+     bb.build.exec_func(func, d)
+     d.setVar('SRC_URI', src_uri)
+
+
+
+python do_unpack () {
+     src_rpm_do_base(d,'base_do_unpack')
+}
+
+python do_patch () {
+     src_rpm_do_base(d,'base_d
+}
+
+https://github.com/project-magpie/meta-stlinux/blob/master/classes/src_rpm.bbclass
+
+I hope this is the way things like this should be handled.
+
+regards,
+
+Christian
+
+
+
+> Hello,
 >
-> Kinds regards, Lisandro.
+> I am interested in how to handle source code inside of a src.rpm 
+> package. There had been a patch from Mark Hatle which handles the rpm 
+> packages inside the fetcher2. In his patch he suggests to handle 
+> Patches inside the rpm in the following way:
 >
 >
+> file://${WORKDIR}/mypatch.patch
+>
+> When I tried this inside the SRC_URI declaration I always get en error 
+> like this:
+>
+> NOTE: Running task 439 of 669 (ID: 4, 
+> /home/chris/src/poky-denzil/meta-stlinux/recipes-core/stslave/stslave_0.7.bb, 
+> do_fetch)
+> NOTE: package stslave-0.7-r1: task do_fetch: Started
+> ERROR: Function failed: Fetcher failure for URL: 
+> 'file:///home/chris/src/poky-denzil/spark7162-build/tmp/work/sh4-poky-linux/stslave-0.7-r1/stslave-0.7.tar.gz'. 
+> Unable to fetch URL from any source.
+> ERROR: Logfile of failure stored in: 
+> /home/chris/src/poky-denzil/spark7162-build/tmp/work/sh4-poky-linux/stslave-0.7-r1/temp/log.do_fetch.25817
+> Log data follows:
+> | DEBUG: Trying PREMIRRORS
+> | DEBUG: For url ['file', '', 
+> '/home/chris/src/poky-denzil/spark7162-build/tmp/work/sh4-poky-linux/stslave-0.7-r1/stslave-0.7.tar.gz', 
+> '', '', {}] comparing ['bzr', '.*', '/.*', '', '', {}] to ['http', 
+> 'downloads.yoctoproject.org', '/mirror/sources/', '', '', {}]
+> | DEBUG: For url ['file', '', 
+> '/home/chris/src/poky-denzil/spark7162-build/tmp/work/sh4-poky-linux/stslave-0.7-r1/stslave-0.7.tar.gz', 
+> '', '', {}] comparing ['cvs', '.*', '/.*', '', '', {}] to ['http', 
+> 'downloads.yoctoproject.org', '/mirror/sources/', '', '', {}]
+> | DEBUG: For url ['file', '', 
+> '/home/chris/src/poky-denzil/spark7162-build/tmp/work/sh4-poky-linux/stslave-0.7-r1/stslave-0.7.tar.gz', 
+> '', '', {}] comparing ['git', '.*', '/.*', '', '', {}] to ['http', 
+> 'downloads.yoctoproject.org', '/mirror/sources/', '', '', {}]
+> | DEBUG: For url ['file', '', 
+> '/home/chris/src/poky-denzil/spark7162-build/tmp/work/sh4-poky-linux/stslave-0.7-r1/stslave-0.7.tar.gz', 
+> '', '', {}] comparing ['hg', '.*', '/.*', '', '', {}] to ['http', 
+> 'downloads.yoctoproject.org', '/mirror/sources/', '', '', {}]
+> | DEBUG: For url ['file', '', 
+> '/home/chris/src/poky-denzil/spark7162-build/tmp/work/sh4-poky-linux/stslave-0.7-r1/stslave-0.7.tar.gz', 
+> '', '', {}] comparing ['osc', '.*', '/.*', '', '', {}] to ['http', 
+> 'downloads.yoctoproject.org', '/mirror/sources/', '', '', {}]
+> | DEBUG: For url ['file', '', 
+> '/home/chris/src/poky-denzil/spark7162-build/tmp/work/sh4-poky-linux/stslave-0.7-r1/stslave-0.7.tar.gz', 
+> '', '', {}] comparing ['p4', '.*', '/.*', '', '', {}] to ['http', 
+> 'downloads.yoctoproject.org', '/mirror/sources/', '', '', {}]
+> | DEBUG: For url ['file', '', 
+> '/home/chris/src/poky-denzil/spark7162-build/tmp/work/sh4-poky-linux/stslave-0.7-r1/stslave-0.7.tar.gz', 
+> '', '', {}] comparing ['svk', '.*', '/.*', '', '', {}] to ['http', 
+> 'downloads.yoctoproject.org', '/mirror/sources/', '', '', {}]
+> | DEBUG: For url ['file', '', 
+> '/home/chris/src/poky-denzil/spark7162-build/tmp/work/sh4-poky-linux/stslave-0.7-r1/stslave-0.7.tar.gz', 
+> '', '', {}] comparing ['svn', '.*', '/.*', '', '', {}] to ['http', 
+> 'downloads.yoctoproject.org', '/mirror/sources/', '', '', {}]
+> | DEBUG: Trying Upstream
+> | ERROR: Function failed: Fetcher failure for URL: 
+> 'file:///home/chris/src/poky-denzil/spark7162-build/tmp/work/sh4-poky-linux/stslave-0.7-r1/stslave-0.7.tar.gz'. 
+> Unable to fetch URL from any source.
+>
+> Yes of course I can just let fetcher2 extract all the files an 
+> afterwards apply the patches by hand. But I think there should be a 
+> more generic way to handle this. I hope I can get some hints how to 
+> solve this.
+>
+>
+>
+>
+> with kind regards,
+>
+> Christian
 >
 >
 > _______________________________________________
@@ -72,5 +150,9 @@ Bruce
 > yocto@yoctoproject.org
 > https://lists.yoctoproject.org/listinfo/yocto
 >
+
+
+-- 
+~: https://github.com/project-magpie/meta-stlinux :~
 
 
