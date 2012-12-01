@@ -1,19 +1,31 @@
-Return-Path: <yocto@mindchasers.com>
-Received: from smtp.webfaction.com (mail6.webfaction.com [74.55.86.74])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1E383E006C6
-	for <yocto@yoctoproject.org>; Sat,  1 Dec 2012 07:15:22 -0800 (PST)
-Received: from [192.168.1.11] (c-68-46-169-75.hsd1.nj.comcast.net
-	[68.46.169.75])
-	by smtp.webfaction.com (Postfix) with ESMTP id 4CC60207D3E8
-	for <yocto@yoctoproject.org>; Sat,  1 Dec 2012 09:15:21 -0600 (CST)
-Message-ID: <50BA1F07.3030802@mindchasers.com>
-Date: Sat, 01 Dec 2012 10:15:19 -0500
-From: Bob Cochran <yocto@mindchasers.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:16.0) Gecko/20121011 Thunderbird/16.0.1
+Return-Path: <gopikrishnans@pec.edu>
+Received: from mail-lb0-f176.google.com (mail-lb0-f176.google.com
+	[209.85.217.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C7483E006C6
+	for <yocto@yoctoproject.org>; Sat,  1 Dec 2012 09:20:36 -0800 (PST)
+Received: by mail-lb0-f176.google.com with SMTP id k6so1386585lbo.35
+	for <yocto@yoctoproject.org>; Sat, 01 Dec 2012 09:20:35 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type
+	:x-gm-message-state;
+	bh=hRlQewH8vkDAzFLB3duSpBodKvzp4xC959mGL5NoXC8=;
+	b=FQV7rEm6vAoV3EhF+WQjsESVePH8Lq6OeD1m8TP4hJ+QEnil+dh9JXQq86YkjufFyE
+	g7rRQE6JErw+7UABnFvzEl6f0fLKCX8vPqestQZNQPpML/uB1Zec+woDAWf84JDRHOcW
+	XL5WC/W8VTcYh76zgLgEGsGcDWzF2mJ45CNGL6FAxFkKH2l+7j3fgBNlQ9kAkHzYkfMm
+	k+za22HlA1urGTxwMExHTvl44eBSk8gLI7QRT0NBeoXM69UF+hn1c+/Nauulh3lK/yPs
+	M9p3uGlz977vhqWLwowWClV8gXk7JmLwsAMy9vqAmM45qRshs70n267XVpWEgaD9WER/
+	BQMQ==
 MIME-Version: 1.0
-To: Yocto discussion list <yocto@yoctoproject.org>
-Subject: [PATCH] Yocto Project Dev Manual - bad reference in dev-manual-newbie.xml
+Received: by 10.152.114.65 with SMTP id je1mr4770762lab.33.1354382435664; Sat,
+	01 Dec 2012 09:20:35 -0800 (PST)
+Received: by 10.112.21.193 with HTTP; Sat, 1 Dec 2012 09:20:35 -0800 (PST)
+Date: Sat, 1 Dec 2012 22:50:35 +0530
+Message-ID: <CAOkC3Rb3sVtYEvc6S0i5V2zBRiN6u=db3mA=kPu9baDcj8t7DA@mail.gmail.com>
+From: GOPIKRISHNAN S <gopikrishnans@pec.edu>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+X-Gm-Message-State: ALoCoQktkJqhng8SZx7y2CHl4OYkchb0yoDPJ2/i5rTePq03Du51lEwiDs7wzqtkDtMzRtF1iTwB
+Subject: Raspberry Pi Board
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -25,40 +37,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 01 Dec 2012 15:15:22 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sat, 01 Dec 2012 17:20:37 -0000
+Content-Type: multipart/alternative; boundary=f46d04083865f7c2e404cfcdbb52
 
-I updated a note that points the reader to the maintainers list.  The 
-note in the master branch pointed the reader to a nonexistent (old) file.
+--f46d04083865f7c2e404cfcdbb52
+Content-Type: text/plain; charset=ISO-8859-1
 
-Signed-off-by: Robert Cochran<yocto@mindchasers.com>
+Hi,
 
----
-  documentation/dev-manual/dev-manual-newbie.xml |    4 ++--
-  1 file changed, 2 insertions(+), 2 deletions(-)
+Anybody worked on Raspberry Pi Board. I wish to make my students to
+practice opensource software porting and C programming on cheaper board
+like Raspberry Pi. Or can anybody recommend a Cheaper embedded board with
+Yocto Project Support in India.?
 
-diff --git a/documentation/dev-manual/dev-manual-newbie.xml 
-b/documentation/dev-manual/dev-manual-newbie.xml
-index bb01131..8b078e1 100644
---- a/documentation/dev-manual/dev-manual-newbie.xml
-+++ b/documentation/dev-manual/dev-manual-newbie.xml
-@@ -742,8 +742,8 @@
-          The maintainer is responsible for allowing changes in from 
-other developers and for
-          organizing the underlying branch structure to reflect release 
-strategies and so forth.
-          <note>You can see who is the maintainer for Yocto Project 
-files by examining the
--        <filename>distro_tracking_fields.inc</filename> file in the 
-Yocto Project
--        <filename>meta/conf/distro/include</filename> directory.</note>
-+        <filename>maintainers.inc</filename> file in the Yocto Project
-+        <filename>meta-yocto/conf/distro/include</filename> 
-directory.</note>
-      </para>
+Reg,
+Gopi Krishnan S
 
-      <para>
--- 
-1.7.9.5
+--f46d04083865f7c2e404cfcdbb52
+Content-Type: text/html; charset=ISO-8859-1
 
+Hi,<br><br>Anybody worked on Raspberry Pi Board. I wish to make my 
+students to practice opensource software porting and C programming on 
+cheaper board like Raspberry Pi. Or can anybody recommend a Cheaper 
+embedded board with Yocto Project Support in India.?<br>
+<br>Reg,<br>Gopi Krishnan S
+
+--f46d04083865f7c2e404cfcdbb52--
