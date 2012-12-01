@@ -1,36 +1,34 @@
-Return-Path: <eric@eukrea.com>
-Received: from mo3.mail-out.ovh.net (5.mo3.mail-out.ovh.net [87.98.178.36])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 31450E006C6
-	for <yocto@yoctoproject.org>; Sat,  1 Dec 2012 10:08:09 -0800 (PST)
-Received: from mail171.ha.ovh.net (b6.ovh.net [213.186.33.56])
-	by mo3.mail-out.ovh.net (Postfix) with SMTP id F2618FF98D3
-	for <yocto@yoctoproject.org>; Sat,  1 Dec 2012 19:19:35 +0100 (CET)
-Received: from b0.ovh.net (HELO queueout) (213.186.33.50)
-	by b0.ovh.net with SMTP; 1 Dec 2012 20:08:07 +0200
-Received: from tal33-3-82-233-81-124.fbx.proxad.net (HELO eb-e6520)
-	(eric%eukrea.com@82.233.81.124)
-	by ns0.ovh.net with SMTP; 1 Dec 2012 20:08:05 +0200
-Date: Sat, 1 Dec 2012 19:08:05 +0100
-From: Eric =?ISO-8859-1?B?QuluYXJk?= <eric@eukrea.com>
-To: yocto@yoctoproject.org
-X-Ovh-Mailout: 178.32.228.3 (mo3.mail-out.ovh.net)
-Message-ID: <20121201190805.3b0084ba@eb-e6520>
-In-Reply-To: <CAOkC3Rb3sVtYEvc6S0i5V2zBRiN6u=db3mA=kPu9baDcj8t7DA@mail.gmail.com>
-References: <CAOkC3Rb3sVtYEvc6S0i5V2zBRiN6u=db3mA=kPu9baDcj8t7DA@mail.gmail.com>
-Organization: =?ISO-8859-1?B?RXVrculh?= Electromatique
-X-Mailer: Claws Mail 3.8.1 (GTK+ 2.24.8; x86_64-redhat-linux-gnu)
-Mime-Version: 1.0
-X-Ovh-Tracer-Id: 5153525349343276458
-X-Ovh-Remote: 82.233.81.124 (tal33-3-82-233-81-124.fbx.proxad.net)
-X-Ovh-Local: 213.186.33.20 (ns0.ovh.net)
-X-OVH-SPAMSTATE: OK
-X-OVH-SPAMSCORE: 0
-X-OVH-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrfeehiedrtdeiucetufdoteggodetrfcurfhrohhfihhlvgemucfqggfjnecuuegrihhlohhuthemuceftddtnecunecuhfhrohhmpefgrhhitgcuueornhgrrhguuceovghrihgtsegvuhhkrhgvrgdrtghomheqnecuffhomhgrihhnpehgihhthhhusgdrtghomhenucfjughrpeffhffvuffkjghfohfogggtgfesthhqredtredtud
-X-Spam-Check: DONE|U 0.5/N
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: 0
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrfeehiedrtdeiucetufdoteggodetrfcurfhrohhfihhlvgemucfqggfjnecuuegrihhlohhuthemuceftddtnecunecuhfhrohhmpefgrhhitgcuueornhgrrhguuceovghrihgtsegvuhhkrhgvrgdrtghomheqnecuffhomhgrihhnpehgihhthhhusgdrtghomhenucfjughrpeffhffvuffkjghfohfogggtgfesthhqredtredtud
-Subject: Re: Raspberry Pi Board
+Return-Path: <opensource@keylevel.com>
+Received: from r109.websiteservername.com (r109.websiteservername.com
+	[65.39.128.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9B4B8E01455
+	for <yocto@yoctoproject.org>; Sat,  1 Dec 2012 14:39:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=keylevel.com;
+	s=default; 
+	h=Mime-Version:To:Message-Id:Date:Subject:Content-Transfer-Encoding:Content-Type:From;
+	bh=QVt3Gk1fxqN2gxExuTAAEVXQ5+aKs9vtz0tcKYLEJQk=; 
+	b=cztcw98YYd5g0kOJ5OrPINecQgR71dZERbW1pbPuGEwHahNmwAIj9dg5ZKbvfzeMK9qKTbkAn9i8ppQi6fMaCQghzFIJdsGeMCFUjrv5t5Fk0uZRMFqtCZLSc3wilN+J;
+Received: from [109.224.129.17] (port=59943
+	helo=macbook-pro.durham.keylevel.com)
+	by r109.websiteservername.com with esmtpa (Exim 4.80)
+	(envelope-from <opensource@keylevel.com>) id 1Teviy-0001K4-3g
+	for yocto@yoctoproject.org; Sat, 01 Dec 2012 22:39:52 +0000
+From: Chris Tapp <opensource@keylevel.com>
+Date: Sat, 1 Dec 2012 22:39:51 +0000
+Message-Id: <09515033-71CF-44CC-8FD5-CA51C85CF3E0@keylevel.com>
+To: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+Mime-Version: 1.0 (Apple Message framework v1283)
+X-Mailer: Apple Mail (2.1283)
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - r109.websiteservername.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - keylevel.com
+X-Get-Message-Sender-Via: r109.websiteservername.com: authenticated_id:
+	chris.tapp+keylevel.com/only user confirmed/virtual account not
+	confirmed
+Subject: Image libraries
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,21 +40,18 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 01 Dec 2012 18:08:09 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Sat, 01 Dec 2012 22:39:54 -0000
+Content-Type: text/plain; charset=us-ascii
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+Is there a recipe available for a library which can load image files =
+into memory / GL textures?
 
-Le Sat, 1 Dec 2012 22:50:35 +0530,
-GOPIKRISHNAN S <gopikrishnans@pec.edu> a =E9crit :
-> Anybody worked on Raspberry Pi Board. I wish to make my students to
-> practice opensource software porting and C programming on cheaper board
-> like Raspberry Pi. Or can anybody recommend a Cheaper embedded board with
-> Yocto Project Support in India.?
->=20
-you can find a layer providing support for the Pi here :
-https://github.com/djwillis/meta-raspberrypi
+Chris Tapp
 
-Eric
+opensource@keylevel.com
+www.keylevel.com
+
+
+
 
