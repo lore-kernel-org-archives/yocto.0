@@ -1,31 +1,36 @@
-Return-Path: <gopikrishnans@pec.edu>
-Received: from mail-lb0-f176.google.com (mail-lb0-f176.google.com
-	[209.85.217.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C7483E006C6
-	for <yocto@yoctoproject.org>; Sat,  1 Dec 2012 09:20:36 -0800 (PST)
-Received: by mail-lb0-f176.google.com with SMTP id k6so1386585lbo.35
-	for <yocto@yoctoproject.org>; Sat, 01 Dec 2012 09:20:35 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type
-	:x-gm-message-state;
-	bh=hRlQewH8vkDAzFLB3duSpBodKvzp4xC959mGL5NoXC8=;
-	b=FQV7rEm6vAoV3EhF+WQjsESVePH8Lq6OeD1m8TP4hJ+QEnil+dh9JXQq86YkjufFyE
-	g7rRQE6JErw+7UABnFvzEl6f0fLKCX8vPqestQZNQPpML/uB1Zec+woDAWf84JDRHOcW
-	XL5WC/W8VTcYh76zgLgEGsGcDWzF2mJ45CNGL6FAxFkKH2l+7j3fgBNlQ9kAkHzYkfMm
-	k+za22HlA1urGTxwMExHTvl44eBSk8gLI7QRT0NBeoXM69UF+hn1c+/Nauulh3lK/yPs
-	M9p3uGlz977vhqWLwowWClV8gXk7JmLwsAMy9vqAmM45qRshs70n267XVpWEgaD9WER/
-	BQMQ==
-MIME-Version: 1.0
-Received: by 10.152.114.65 with SMTP id je1mr4770762lab.33.1354382435664; Sat,
-	01 Dec 2012 09:20:35 -0800 (PST)
-Received: by 10.112.21.193 with HTTP; Sat, 1 Dec 2012 09:20:35 -0800 (PST)
-Date: Sat, 1 Dec 2012 22:50:35 +0530
-Message-ID: <CAOkC3Rb3sVtYEvc6S0i5V2zBRiN6u=db3mA=kPu9baDcj8t7DA@mail.gmail.com>
-From: GOPIKRISHNAN S <gopikrishnans@pec.edu>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-X-Gm-Message-State: ALoCoQktkJqhng8SZx7y2CHl4OYkchb0yoDPJ2/i5rTePq03Du51lEwiDs7wzqtkDtMzRtF1iTwB
-Subject: Raspberry Pi Board
+Return-Path: <eric@eukrea.com>
+Received: from mo3.mail-out.ovh.net (5.mo3.mail-out.ovh.net [87.98.178.36])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 31450E006C6
+	for <yocto@yoctoproject.org>; Sat,  1 Dec 2012 10:08:09 -0800 (PST)
+Received: from mail171.ha.ovh.net (b6.ovh.net [213.186.33.56])
+	by mo3.mail-out.ovh.net (Postfix) with SMTP id F2618FF98D3
+	for <yocto@yoctoproject.org>; Sat,  1 Dec 2012 19:19:35 +0100 (CET)
+Received: from b0.ovh.net (HELO queueout) (213.186.33.50)
+	by b0.ovh.net with SMTP; 1 Dec 2012 20:08:07 +0200
+Received: from tal33-3-82-233-81-124.fbx.proxad.net (HELO eb-e6520)
+	(eric%eukrea.com@82.233.81.124)
+	by ns0.ovh.net with SMTP; 1 Dec 2012 20:08:05 +0200
+Date: Sat, 1 Dec 2012 19:08:05 +0100
+From: Eric =?ISO-8859-1?B?QuluYXJk?= <eric@eukrea.com>
+To: yocto@yoctoproject.org
+X-Ovh-Mailout: 178.32.228.3 (mo3.mail-out.ovh.net)
+Message-ID: <20121201190805.3b0084ba@eb-e6520>
+In-Reply-To: <CAOkC3Rb3sVtYEvc6S0i5V2zBRiN6u=db3mA=kPu9baDcj8t7DA@mail.gmail.com>
+References: <CAOkC3Rb3sVtYEvc6S0i5V2zBRiN6u=db3mA=kPu9baDcj8t7DA@mail.gmail.com>
+Organization: =?ISO-8859-1?B?RXVrculh?= Electromatique
+X-Mailer: Claws Mail 3.8.1 (GTK+ 2.24.8; x86_64-redhat-linux-gnu)
+Mime-Version: 1.0
+X-Ovh-Tracer-Id: 5153525349343276458
+X-Ovh-Remote: 82.233.81.124 (tal33-3-82-233-81-124.fbx.proxad.net)
+X-Ovh-Local: 213.186.33.20 (ns0.ovh.net)
+X-OVH-SPAMSTATE: OK
+X-OVH-SPAMSCORE: 0
+X-OVH-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrfeehiedrtdeiucetufdoteggodetrfcurfhrohhfihhlvgemucfqggfjnecuuegrihhlohhuthemuceftddtnecunecuhfhrohhmpefgrhhitgcuueornhgrrhguuceovghrihgtsegvuhhkrhgvrgdrtghomheqnecuffhomhgrihhnpehgihhthhhusgdrtghomhenucfjughrpeffhffvuffkjghfohfogggtgfesthhqredtredtud
+X-Spam-Check: DONE|U 0.5/N
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: 0
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrfeehiedrtdeiucetufdoteggodetrfcurfhrohhfihhlvgemucfqggfjnecuuegrihhlohhuthemuceftddtnecunecuhfhrohhmpefgrhhitgcuueornhgrrhguuceovghrihgtsegvuhhkrhgvrgdrtghomheqnecuffhomhgrihhnpehgihhthhhusgdrtghomhenucfjughrpeffhffvuffkjghfohfogggtgfesthhqredtredtud
+Subject: Re: Raspberry Pi Board
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,29 +42,21 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 01 Dec 2012 17:20:37 -0000
-Content-Type: multipart/alternative; boundary=f46d04083865f7c2e404cfcdbb52
-
---f46d04083865f7c2e404cfcdbb52
+X-List-Received-Date: Sat, 01 Dec 2012 18:08:09 -0000
 Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
 Hi,
 
-Anybody worked on Raspberry Pi Board. I wish to make my students to
-practice opensource software porting and C programming on cheaper board
-like Raspberry Pi. Or can anybody recommend a Cheaper embedded board with
-Yocto Project Support in India.?
+Le Sat, 1 Dec 2012 22:50:35 +0530,
+GOPIKRISHNAN S <gopikrishnans@pec.edu> a =E9crit :
+> Anybody worked on Raspberry Pi Board. I wish to make my students to
+> practice opensource software porting and C programming on cheaper board
+> like Raspberry Pi. Or can anybody recommend a Cheaper embedded board with
+> Yocto Project Support in India.?
+>=20
+you can find a layer providing support for the Pi here :
+https://github.com/djwillis/meta-raspberrypi
 
-Reg,
-Gopi Krishnan S
+Eric
 
---f46d04083865f7c2e404cfcdbb52
-Content-Type: text/html; charset=ISO-8859-1
-
-Hi,<br><br>Anybody worked on Raspberry Pi Board. I wish to make my 
-students to practice opensource software porting and C programming on 
-cheaper board like Raspberry Pi. Or can anybody recommend a Cheaper 
-embedded board with Yocto Project Support in India.?<br>
-<br>Reg,<br>Gopi Krishnan S
-
---f46d04083865f7c2e404cfcdbb52--
