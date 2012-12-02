@@ -1,28 +1,35 @@
-Return-Path: <errordeveloper@gmail.com>
-Received: from mail-bk0-f48.google.com (mail-bk0-f48.google.com
-	[209.85.214.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BB815E01455
-	for <yocto@yoctoproject.org>; Sun,  2 Dec 2012 04:37:31 -0800 (PST)
-Received: by mail-bk0-f48.google.com with SMTP id jc3so737575bkc.35
-	for <yocto@yoctoproject.org>; Sun, 02 Dec 2012 04:37:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=EBA8ustxaglEiYJfRdzWd/T/4LOOJtxBmqZg1Tru7sw=;
-	b=JDXBSAx5DhoT0916kJn0h96blJo2WTH36ufVRo7QER57Rua82PHxttVq6oLyS/9/mw
-	OaSoibG+mBZ69Axa+mbyfCx33+8LDfzCMv400jS5njzt1LNof2fEamXp9dur831rG8ph
-	uHioiFSWnSBf1SkKMeMxcfN3g2tUkvKp4bny4snjcXGHxoq/6QMw2egfXFwPhCMYbBlR
-	ChuMPlaNzBME6lTqePkHb1XZ5VQyfQ0ZEbIRV6TTyF8G1TGloR1ywzYJ+gz3NVriJsGu
-	Zdh6WGizwS43+NyERa6gFLo+yby+e6sBqvHS18EZo8UBQpDInAXuLgOhoBy8x2oC8kRe
-	Z4Mw==
+Return-Path: <eren@hambedded.org>
+Received: from mail-ee0-f48.google.com (mail-ee0-f48.google.com [74.125.83.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DA7CAE0075A
+	for <yocto@yoctoproject.org>; Sun,  2 Dec 2012 09:47:41 -0800 (PST)
+Received: by mail-ee0-f48.google.com with SMTP id b57so1316658eek.35
+	for <yocto@yoctoproject.org>; Sun, 02 Dec 2012 09:47:40 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=date:from:to:subject:message-id:mime-version:content-type
+	:content-disposition:user-agent:x-gm-message-state;
+	bh=eUHtCQpBrv5cAnulmKYpcEw4vHouabQu3HEvGWr6qg8=;
+	b=cZWdFVniKrIWBMm4X2vgBYQtqtZrmoEpMewnr7H2X31QvXG954ePBOyR1a3pSqzlYQ
+	1JUHxXs3qX5JufINU10x8qMBDqB8c/SgZZjLmXDsGLFkJFZf3ImOUIQieQn88mc/Eokq
+	9Z054FIM0GVsgTteuCFhqoP8GluuqfOVyR8BmtwA/abhHCZimvOP/Ir9rhY6aZQs14LN
+	lCgJYTXSDg5hisOVHdmkRam80AaP+z3ZKT4HNhsBczQphAM3zkR9Ezl67X3sSHT6h0VA
+	D1pvsc/YCpeDchzmRreNauYBVqYFAP/hUGXXLBu9h1GGAJFmZUl2Uoy9PaZRkmendxM3
+	2fbw==
+Received: by 10.14.0.71 with SMTP id 47mr27213257eea.19.1354470459823;
+	Sun, 02 Dec 2012 09:47:39 -0800 (PST)
+Received: from gmail.com ([46.196.117.99])
+	by mx.google.com with ESMTPS id e1sm25925875eem.3.2012.12.02.09.47.37
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Sun, 02 Dec 2012 09:47:38 -0800 (PST)
+Date: Sun, 2 Dec 2012 19:47:23 +0200
+From: Eren =?iso-8859-1?Q?T=FCrkay?= <eren@hambedded.org>
+To: Yocto Discussion List <yocto@yoctoproject.org>,
+	openembedded-devel <openembedded-devel@lists.openembedded.org>
+Message-ID: <20121202174723.GA91088@gmail.com>
 MIME-Version: 1.0
-Received: by 10.204.149.85 with SMTP id s21mr1929688bkv.37.1354451849892; Sun,
-	02 Dec 2012 04:37:29 -0800 (PST)
-Received: by 10.204.50.83 with HTTP; Sun, 2 Dec 2012 04:37:29 -0800 (PST)
-Date: Sun, 2 Dec 2012 12:37:29 +0000
-Message-ID: <CAPhDKbGz2yX_b5h91q83qHT8fxhj-LPywxiQDsSL81m45bhccg@mail.gmail.com>
-From: Ilya Dmitrichenko <errordeveloper@gmail.com>
-To: yocto@yoctoproject.org
-Subject: Failing to load native libs
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Gm-Message-State: ALoCoQnZzLebohxFvqTpGjCu2UvxwpiuGNofYX6vSJvk6AEi53a2HHgV3EU4fM0yDTqROZksK4+7
+Subject: [Draft] From Bitbake Hello World To an Image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,37 +41,74 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 02 Dec 2012 12:37:32 -0000
-Content-Type: multipart/alternative; boundary=0015175cae1260d2e504cfdde5dc
+X-List-Received-Date: Sun, 02 Dec 2012 17:47:42 -0000
+X-Groupsio-MsgNum: 10775
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="FCuugMFkClbJLl1L"
+Content-Disposition: inline
 
---0015175cae1260d2e504cfdde5dc
-Content-Type: text/plain; charset=ISO-8859-1
-
-I'm having a slightly odd issue, looks like LD_*_PATH is not being set or
-something like that. I've worked around it by adding
-/etc/ld.so.conf.d/poky.conf, but i still needed to do `sudo ldconfig` every
-now and again when it fails to run say bzip2 with error that it cannot load
-damn libbz2.so. It's an ugly hack of course, but I'm not so sure how to fix
-this otherwise. I wonder if this could possibly be to do with the distro i
-happend to be using as a host - it's ubuntu 10.04. That's kindda old, but I
-doubt that it's to do with that.
-
-Cheers,
--- 
-Ilya
-
---0015175cae1260d2e504cfdde5dc
-Content-Type: text/html; charset=ISO-8859-1
+--FCuugMFkClbJLl1L
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-<div>I&#39;m having a slightly odd issue, looks like LD_*_PATH is not being=
- set or something like that.=A0I&#39;ve worked around it by adding /etc/ld.=
-so.conf.d/poky.conf,=A0but i still needed to do `sudo ldconfig` every now a=
-nd again when it fails to run say bzip2 with error=A0that it cannot load da=
-mn libbz2.so.=A0It&#39;s an ugly hack of course, but I&#39;m not so sure ho=
-w to fix this otherwise.=A0I wonder if this could possibly be to do with th=
-e distro i happend to be using as a host - it&#39;s=A0ubuntu 10.04. That&#3=
-9;s kindda old,=A0but I doubt that it&#39;s to do with that.</div>
-<div><br></div><div>Cheers,</div><div>--=A0</div><div>Ilya=A0</div>
+Hello,
 
---0015175cae1260d2e504cfdde5dc--
+I have completed a document that tries to explain how image is created
+using openembedded starting from bitbake fundementals. The document
+reflects my own understanding and includes the information that I wished
+to have when I first involved in understanding openembedded.
+
+This is aimed for people who want get the big picture with some details
+under the hood (What's the sequence of creating an image, how is source
+fetched, patched, configured, and installed? How is ipk, rpm, and deb
+created? How is image produced?)
+
+People who know bitbake can skip to "Understanding OpenEmbedded" part.
+However, I suggest them to play with plain bitbake and read the first
+chapter as bitbake is the hearth of OpenEmbedded.
+
+There are additional information required which are marked with "FIXME"
+keywords. Suggestions and contributions are welcomed.
+
+I don't know how it can be integrated to current documentation but I
+would like to help if that's the case. The licence of the work is CC
+BY-SA. Use it, change it, adapt it, distribute it, as long as you
+attribute the original work and the author :)
+
+Document:
+http://hambedded.org/blog/2012/11/24/from-bitbake-hello-world-to-an-image/
+
+Markdown source:
+https://github.com/hambedded-linux/hambedded-linux.github.com/tree/source/s=
+ource/_posts
+
+Regards,
+Eren
+
+--=20
+    . 73! DE TA1AET
+      http://erenturkay.com/
+
+--FCuugMFkClbJLl1L
+Content-Type: application/pgp-signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.12 (Darwin)
+
+iQIcBAEBAgAGBQJQu5QrAAoJEOM7bMm6HhcTnCwP/0behWpEyH9FvYYLqbF6JUKr
+GfPAaKHpXpGDJZEpo2jPCdkkykMVoy9gQmzrgiwXIagZUhbdeR68R6ZnpWN33n/U
+WMj19pDXa0Dq+UIC+YUkKBj3RTaDfR/r1bjI+PADaH7EKPTwxhgd0gSLzp6kXo+F
+Zx+HpNTFRtDfHfekL4X+6yvq7N07DaoF6G3HK0FbZCdqsLgivuKkMMEkEg9z43lf
+ckDXecrmxgvrHtJxs1tKtwIDNuil9a9LBSsp5bATMkTCdazfuVczMa47h9HgNJiw
+FE3DWA3JKQt7uYrJogwzLokPsk3EZ9sqkp7cy+wZEALzKIyoT5WK19itjdy9V1NS
+zJLQHlBiRi9quTHjWh9o7/l/Zz+yRKaap6rBc2mtmDRTQZm/SofuyzGddKM5xUaP
+VjYQFdygocUuFy1yAzltrJw+5B2Xhwrx9zdV4+Y+rYlEVE1bYDkvEln7MNIx8z1I
+UxIqmEa8wZOKcfRMPJkdFdL6N0GMnBDEhXa5//Oljzw/QJjAexrLykioNA7OE15N
+xtnv0H4CF9AkrIiPSgorEPjTGPWdEMdzaLANEJnyvtIcJGIe4NXdVMiCgf4FSCY1
+T0SSSGBiDrqKTceHDRWx+PmtdYTVjBUicYD/ZZH36+hfpjspCHMxZTTa2l/Uyj3b
+5JVXgVooU/Y8BScF0xr5
+=PPZh
+-----END PGP SIGNATURE-----
+
+--FCuugMFkClbJLl1L--
