@@ -1,31 +1,19 @@
-Return-Path: <song.liu@intel.com>
+Return-Path: <kevin.strasser@linux.intel.com>
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E0212E00533
-	for <yocto@yoctoproject.org>; Mon,  3 Dec 2012 14:15:06 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 992EFE00533
+	for <yocto@yoctoproject.org>; Mon,  3 Dec 2012 15:23:25 -0800 (PST)
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 03 Dec 2012 14:14:21 -0800
+	by orsmga102.jf.intel.com with ESMTP; 03 Dec 2012 15:22:26 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,209,1355126400"; d="scan'208";a="251311352"
-Received: from orsmsx102.amr.corp.intel.com ([10.22.225.129])
-	by orsmga002.jf.intel.com with ESMTP; 03 Dec 2012 14:15:06 -0800
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.81]) by
-	ORSMSX102.amr.corp.intel.com ([169.254.1.125]) with mapi id
-	14.01.0355.002; Mon, 3 Dec 2012 14:15:06 -0800
-From: "Liu, Song" <song.liu@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Agenda: Yocto Project Technical Team Meeting - Tuesday,
-	December 04,
-	2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
-Thread-Index: AQHN0aOmwj5tf4SwVke51g0msUMbcQ==
-Date: Mon, 3 Dec 2012 22:15:06 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A4860C631@ORSMSX101.amr.corp.intel.com>
-References: <7E680CB2A76BB8438D08CF13C09FC53A4844CAD5@ORSMSX101.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.138]
-MIME-Version: 1.0
-Subject: Agenda: Yocto Project Technical Team Meeting - Tuesday, December 04, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+X-IronPort-AV: E=Sophos;i="4.84,209,1355126400"; d="scan'208";a="251340578"
+Received: from wrk.jf.intel.com ([10.7.202.159])
+	by orsmga002.jf.intel.com with ESMTP; 03 Dec 2012 15:23:12 -0800
+From: Kevin Strasser <kevin.strasser@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Mon,  3 Dec 2012 15:22:30 -0800
+Message-Id: <cover.1354575672.git.kevin.strasser@linux.intel.com>
+X-Mailer: git-send-email 1.7.9.5
+Subject: [meta-baryon][PATCH 0/1] proftpd fix
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,131 +25,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 03 Dec 2012 22:15:07 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 03 Dec 2012 23:23:25 -0000
 
-Agenda:
-=A0
-* Opens collection - 5 min (Song)
-* Yocto 1.4 status - 20 min (Song/team)
-* SWAT team rotation: LaurentiuP -> Ioana Grigoropol
-* Opens - 10 min
-* Team Sharing - 20 min
+This change fixes a breakage introduced when the value of libexecdir was 
+changed to "${libdir}/${BPN}".
 
+The proftpd recipe in meta-networking will likely need a similar patch.
 
------Original Appointment-----
+The following changes since commit ad1dfa139195f39a72b8e0fb47de5c3339397b8b:
 
-We encourage people attending the meeting to logon the Yocto IRC chancel du=
-ring the meeting (optional):
+  proftpd: add initscript and tidy up recipe (2012-10-28 01:47:32 +0100)
 
-Yocto IRC: http://webchat.freenode.net/?channels=3D#yocto
-IRC Tutorial: http://www.irchelp.org/irchelp/irctutorial.html=20
+are available in the git repository at:
 
-Conference details
-Conference name:=20
-Yocto Technical Team
-Conference date/start time:=20
-Tue Jun 26, 2012 at 10:00 AM Central Daylight Time
-Participants:=20
-30
-Duration:=20
-60 minutes
-Participant passcode:=20
-76994298
-Dial-in number:=20
-1.972.995.7777
-US Toll Free number:=20
-1.877.561.6828
-BlackBerry users, click this link to join your conference as a participant:
-1.972.995.7777x76994298#
-=A0
-Depending on where you are dialing from, either your BlackBerry will pause =
-and enter the passcode automatically or you will be prompted to click again=
- to dial the passcode.
+  git://git.yoctoproject.org/poky-contrib strassek/baryon-proftpd
+  http://git.yoctoproject.org/cgit.cgi/poky-contrib/log/?h=strassek/poky-contrib
 
-Local and Global Access Numbers=20
+Kevin Strasser (1):
+  proftpd: conditionally remove /usr/libexec
 
+ recipes-extended/proftpd/proftpd_1.3.4b.bb |    5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-Country
-Dial-in number
-Australia:=20
-1800 636 843
-Czech Republic:=20
-242 430 350
-China (Beijing):=20
-From office dial 8-9957777 or 8784277
-Beijing Out of Office dial 5878 4277
-China (Shanghai):=20
-From office dial 8-9957777 or 3073322
-Shanghai Out of Office dial 2307 3322
-China (Shenzen):=20
-From office dial 8-9957777 or 6007877
-Shenzen Out of Office dial 2600 7877
-China (Other Cities):=20
-From IP phone dial 8-9957777
-Other cities - Non IP phone dial 021-23073322
-Denmark:=20
-8060 1400
-Finland:=20
-09 41333477
-France:=20
-0497 275888
-Germany:=20
-08161 803232
-Holland:=20
-030 2417490
-India:=20
-BSNL subscribers use 1800 425 9996 (Toll Free) Airtel subscribers use 0008 =
-009 861 212 (Toll Free) From TI Campus use 89957777 Others use 2509 9555 (L=
-andline within Bangalore) or
-80 2509 9555 (Outside Bangalore)
-Israel:=20
-09 790 6715
-Italy:=20
-039 69061234 (039 is local city code not country code)
-Japan:=20
-From TI Campus use 8 995 7777
-Outside TI use 03 4331 3777
-Malaysia:=20
-From IP phone dial 2643799
-From Kuala Lumpur dial 4264 3799
-Outside Kuala Lumpur dial (03)4264 3799
-Norway:=20
-2 295 8744
-Philippines:=20
-From Baguio City use 4471177
-From Metro Manila area use 8702477
-Singapore:=20
-From IP phone dial 3894777
-Outside TI use 6389 4777
-South Korea:=20
-From IP phone dial 5606998
-From Seoul dial 5606998
-Outside Seoul dial (02)5606998
-Sweden:=20
-08 58755577
-Taiwan:=20
-From IP phone dial 1363
-From Taipei dial 2241 1363
-Outside Taipei dial (02)2241 1363
-Turkey:=20
-Landline Only dial 0811 288 0001
-then enter 877 633 1123
-UK:=20
-01604 663003
-US:=20
-972 995 7777 or 1877 561 6828
-
-Recurring conferences
-First scheduled conference:=20
-Tue Jun 26, 2012
-Recurrence frequency:=20
-Weekly - Every 1 week(s) on Tuesday
-Recurrence ends:=20
-End on Fri Jun 21, 2013, 10:40 AM CDT
-
-
+-- 
+1.7.9.5
 
 
