@@ -1,19 +1,21 @@
 Return-Path: <kevin.strasser@linux.intel.com>
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 992EFE00533
-	for <yocto@yoctoproject.org>; Mon,  3 Dec 2012 15:23:25 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F1073E006C6
+	for <yocto@yoctoproject.org>; Mon,  3 Dec 2012 15:23:26 -0800 (PST)
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 03 Dec 2012 15:22:26 -0800
+	by orsmga102.jf.intel.com with ESMTP; 03 Dec 2012 15:22:38 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,209,1355126400"; d="scan'208";a="251340578"
+X-IronPort-AV: E=Sophos;i="4.84,209,1355126400"; d="scan'208";a="251340603"
 Received: from wrk.jf.intel.com ([10.7.202.159])
-	by orsmga002.jf.intel.com with ESMTP; 03 Dec 2012 15:23:12 -0800
+	by orsmga002.jf.intel.com with ESMTP; 03 Dec 2012 15:23:24 -0800
 From: Kevin Strasser <kevin.strasser@linux.intel.com>
 To: yocto@yoctoproject.org
-Date: Mon,  3 Dec 2012 15:22:30 -0800
-Message-Id: <cover.1354575672.git.kevin.strasser@linux.intel.com>
+Date: Mon,  3 Dec 2012 15:22:42 -0800
+Message-Id: <bf3576dbca148b536d87be72e5f972af999b7c5a.1354575672.git.kevin.strasser@linux.intel.com>
 X-Mailer: git-send-email 1.7.9.5
-Subject: [meta-baryon][PATCH 0/1] proftpd fix
+In-Reply-To: <cover.1354575672.git.kevin.strasser@linux.intel.com>
+References: <cover.1354575672.git.kevin.strasser@linux.intel.com>
+Subject: [meta-baryon][PATCH 1/1] proftpd: conditionally remove /usr/libexec
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -25,28 +27,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 03 Dec 2012 23:23:25 -0000
+X-List-Received-Date: Mon, 03 Dec 2012 23:23:27 -0000
 
-This change fixes a breakage introduced when the value of libexecdir was 
-changed to "${libdir}/${BPN}".
+As of poky commit id 1d18224b24a515a07170ce36dbd725cb203d3300
+libexecdir has been changed to ${libdir}/${BPN} which is typically
+/usr/lib. This change introduces a check to see if /usr/libexec is
+being used before attempting to remove it.
 
-The proftpd recipe in meta-networking will likely need a similar patch.
+Fixes [YOCTO #3504]
 
-The following changes since commit ad1dfa139195f39a72b8e0fb47de5c3339397b8b:
-
-  proftpd: add initscript and tidy up recipe (2012-10-28 01:47:32 +0100)
-
-are available in the git repository at:
-
-  git://git.yoctoproject.org/poky-contrib strassek/baryon-proftpd
-  http://git.yoctoproject.org/cgit.cgi/poky-contrib/log/?h=strassek/poky-contrib
-
-Kevin Strasser (1):
-  proftpd: conditionally remove /usr/libexec
-
+Signed-off-by: Kevin Strasser <kevin.strasser@linux.intel.com>
+---
  recipes-extended/proftpd/proftpd_1.3.4b.bb |    5 ++++-
  1 file changed, 4 insertions(+), 1 deletion(-)
 
+diff --git a/recipes-extended/proftpd/proftpd_1.3.4b.bb b/recipes-extended/proftpd/proftpd_1.3.4b.bb
+index 8ebafbf..2b2b4e2 100644
+--- a/recipes-extended/proftpd/proftpd_1.3.4b.bb
++++ b/recipes-extended/proftpd/proftpd_1.3.4b.bb
+@@ -34,7 +34,10 @@ FTPGROUP = "ftp"
+ 
+ do_install () {
+ 	oe_runmake DESTDIR=${D} install
+-	rmdir ${D}${libexecdir} ${D}${libdir}/proftpd ${D}${datadir}/locale
++	rmdir ${D}${libdir}/proftpd ${D}${datadir}/locale
++	if [ -d ${D}/usr/libexec ] ; then
++		rmdir ${D}/usr/libexec
++	fi
+ 	sed -i '/ *User[ \t]*/s/ftp/${FTPUSER}/' ${D}${sysconfdir}/proftpd.conf
+ 	sed -i '/ *Group[ \t]*/s/ftp/${FTPGROUP}/' ${D}${sysconfdir}/proftpd.conf
+ 	install -d ${D}${sysconfdir}/init.d
 -- 
 1.7.9.5
 
