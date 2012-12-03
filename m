@@ -1,37 +1,36 @@
-Return-Path: <opensource@keylevel.com>
-Received: from r109.websiteservername.com (r109.websiteservername.com
-	[65.39.128.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1D816E011C0
-	for <yocto@yoctoproject.org>; Mon,  3 Dec 2012 03:54:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=keylevel.com;
-	s=default; 
-	h=To:References:Message-Id:Content-Transfer-Encoding:Date:In-Reply-To:From:Subject:Mime-Version:Content-Type;
-	bh=wo5S2dxwxVXqIax1Ws17/SV3CiKgoXm96R7h/IrNw9s=; 
-	b=Qvq/G5h0tMANyPZQK9ChRhXNujQDMKf7fgO61rhTHxd4LSV46lEuDDzBRG7ZxxBohkmEL8ve3gn/GLI3F5HjeW5ovwQifS3V+qyCEkGzGZCpefRWKdh3ZN49gfZMwJP3;
-Received: from [109.224.129.17] (port=58648
-	helo=macbook-pro.durham.keylevel.com)
-	by r109.websiteservername.com with esmtpa (Exim 4.80)
-	(envelope-from <opensource@keylevel.com>) id 1TfUbf-000558-Ko
-	for yocto@yoctoproject.org; Mon, 03 Dec 2012 11:54:39 +0000
-Mime-Version: 1.0 (Apple Message framework v1283)
-From: Chris Tapp <opensource@keylevel.com>
-In-Reply-To: <CAJTo0Lbox5b5u0re10VhrYghP1LZ7he8N2oFRULBy8+x+ua62g@mail.gmail.com>
-Date: Mon, 3 Dec 2012 11:54:43 +0000
-Message-Id: <2F1E8F96-4E1B-4971-BCA4-09CE414F7B1C@keylevel.com>
-References: <09515033-71CF-44CC-8FD5-CA51C85CF3E0@keylevel.com>
-	<CAJTo0Lbox5b5u0re10VhrYghP1LZ7he8N2oFRULBy8+x+ua62g@mail.gmail.com>
-To: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-X-Mailer: Apple Mail (2.1283)
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - r109.websiteservername.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-X-Get-Message-Sender-Via: r109.websiteservername.com: authenticated_id:
-	chris.tapp+keylevel.com/only user confirmed/virtual account not
-	confirmed
-Subject: Re: Image libraries
+Return-Path: <wd@denx.de>
+Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.10])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 14155E00770
+	for <yocto@yoctoproject.org>; Mon,  3 Dec 2012 04:42:38 -0800 (PST)
+Received: from frontend1.mail.m-online.net (frontend1.mail.intern.m-online.net
+	[192.168.8.180])
+	by mail-out.m-online.net (Postfix) with ESMTP id 3YFQpN4H5fz3hhgy;
+	Mon,  3 Dec 2012 13:42:36 +0100 (CET)
+Received: from localhost (dynscan1.mnet-online.de [192.168.6.68])
+	by mail.m-online.net (Postfix) with ESMTP id 3YFQpN3xbWzbbcf;
+	Mon,  3 Dec 2012 13:42:36 +0100 (CET)
+X-Virus-Scanned: amavisd-new at mnet-online.de
+Received: from smtp-auth.mnet-online.de ([192.168.8.180])
+	by localhost (dynscan1.mail.m-online.net [192.168.6.68]) (amavisd-new,
+	port 10024)
+	with ESMTP id TZePIvCL_uLG; Mon,  3 Dec 2012 13:42:35 +0100 (CET)
+X-Auth-Info: J9rv69fXLXu13UP0p+c3LXnXbmisIa2mFLm1URpt3HE=
+Received: from diddl.denx.de (host-80-81-18-216.customer.m-online.net
+	[80.81.18.216]) by smtp-auth.mnet-online.de (Postfix) with ESMTPA;
+	Mon,  3 Dec 2012 13:42:35 +0100 (CET)
+Received: from gemini.denx.de (gemini.denx.de [10.0.0.2])
+	by diddl.denx.de (Postfix) with ESMTP id 8799D1A6DDD;
+	Mon,  3 Dec 2012 13:42:34 +0100 (CET)
+Received: from gemini.denx.de (localhost [IPv6:::1])
+	by gemini.denx.de (Postfix) with ESMTP id 6327B200FF8;
+	Mon,  3 Dec 2012 13:42:34 +0100 (CET)
+To: yocto@yoctoproject.org
+From: Wolfgang Denk <wd@denx.de>
+MIME-Version: 1.0
+Date: Mon, 03 Dec 2012 13:42:34 +0100
+Message-Id: <20121203124234.6327B200FF8@gemini.denx.de>
+Cc: hs@denx.de
+Subject: sysroot for use with GDB
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,37 +42,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 03 Dec 2012 11:54:41 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 03 Dec 2012 12:42:39 -0000
+Content-type: text/plain; charset=UTF-8
+Content-transfer-encoding: 8bit
 
-Hi Ross,
+Hello,
 
-On 3 Dec 2012, at 09:51, Burton, Ross wrote:
+according to the documentation [1] the right way to debug applications
+on the target is to load the target library information in GDB using
 
-> On 1 December 2012 22:39, Chris Tapp <opensource@keylevel.com> wrote:
->> Is there a recipe available for a library which can load image files =
-into memory / GL textures?
->=20
-> Into memory, the lowest level would be libjpeg or libpng, but then
-> it's your responsibility to match the pixel formats.
+	set solib-absolute-prefix /path/to/tmp/rootfs
 
-> If you're using GL and you don't have a higher level abstraction, you
-> might want to look at Cogl (GL specifics abstraction and sanity layer)
-> or Clutter (toolkit based on Cogl).  Both of these are in oe-core.
+i. e. referring it to the libraries in the target root file system
+image.  Assuming the target root file system uses by defualt stripped
+libraries, we need to set up a copy of the rootfs with debug
+information included.
 
-Thanks, I'll have a look at that.
+But do we really have to?  Why cannot we use the libraries present in
+the SDK's sysroot directory (i. e. what OECORE_TARGET_SYSROOT points
+to) ?
 
-I've been using libsdl-image to get me going as I can use that to get at =
-the image data and it's fairly easy to work out the pixel format.
+Trying to do so, we see that it fails.  Our current suspicion is that
+maybe prelinking of the target images and libraries introduces some
+incompatibility.  Is this a reasonable assumption, and if so, is this
+a problem that should be fixed, or unavoidable for some reason?  Or is
+there a problem with the libraries in OECORE_TARGET_SYSROOT ?
 
-> Ross
+All help welcome - thanks in advance.
 
-Chris Tapp
-
-opensource@keylevel.com
-www.keylevel.com
-
+[1] http://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html#platdev-gdb-remotedebug-launch-gdb
 
 
+Best regards,
+
+Wolfgang Denk
+
+-- 
+DENX Software Engineering GmbH,     MD: Wolfgang Denk & Detlev Zundel
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+Phone: (+49)-8142-66989-10 Fax: (+49)-8142-66989-80 Email: wd@denx.de
+"Beware of bugs in the above code; I have only proved it correct, not
+tried it."                                             - Donald Knuth
 
