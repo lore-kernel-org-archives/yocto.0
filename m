@@ -1,37 +1,25 @@
-Return-Path: <ross.burton@intel.com>
-Received: from fmsmga101.fm.intel.com (mga05.intel.com [192.55.52.89])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 772ABE006C3
-	for <yocto@yoctoproject.org>; Mon,  3 Dec 2012 01:51:44 -0800 (PST)
-Received: from mail-ie0-f200.google.com ([209.85.223.200])
-	by mga01.intel.com with ESMTP/TLS/RC4-SHA; 03 Dec 2012 01:51:43 -0800
-Received: by mail-ie0-f200.google.com with SMTP id k13so12135514iea.11
-	for <yocto@yoctoproject.org>; Mon, 03 Dec 2012 01:51:43 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type:x-gm-message-state;
-	bh=pEIwF8wi4Cc78VWBMcBZ+Ep0vbp3RdscJQyFwGIK1z8=;
-	b=FAZgCVC+6B7T6iWVGY0+BUFeBJ1pLh44ARIVwiw0mq8oRij2moq061N0GU8h44NbLW
-	uDK8e5ltdT/RX+/b2fiw5I+h0r9zHrVgz9b9w0e2ry5W+vkhhcOPiB0KEou8faTTh6Th
-	fKcS+IDhwsEj50xay7oTfLg6NFDx+RwV1tQAow0PQp3HmaKR7YXxuZzKvIR2ecEnY5A9
-	Gwp3Dv+kus/rzMfV3mBgWkVWbF3ahzlURC5LMqMHGZkuwCZUiGWkAvSh1tVTAnY1qlSx
-	TNEMK1z4qgrH0sPM+aazRK0VT9fewOSbLWpCE9FQU/BVKOTF+OtV9qGmeJo1KPdLpH+I
-	oDoA==
-Received: by 10.182.240.109 with SMTP id vz13mr3831662obc.81.1354528303033;
-	Mon, 03 Dec 2012 01:51:43 -0800 (PST)
-Received: by 10.182.240.109 with SMTP id vz13mr3831655obc.81.1354528302844;
-	Mon, 03 Dec 2012 01:51:42 -0800 (PST)
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D764EE00770
+	for <yocto@yoctoproject.org>; Mon,  3 Dec 2012 02:34:15 -0800 (PST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 03 Dec 2012 02:34:15 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.84,205,1355126400"; d="scan'208";a="258163900"
+Received: from unknown (HELO helios.localnet) ([10.252.122.191])
+	by fmsmga002.fm.intel.com with ESMTP; 03 Dec 2012 02:34:14 -0800
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>
+Date: Mon, 03 Dec 2012 10:34:13 +0000
+Message-ID: <5274191.3YuTQ9B7sW@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.9.3 (Linux/3.5.0-18-generic; KDE/4.9.3; i686; ; )
+In-Reply-To: <alpine.DEB.2.02.1212030315220.6264@oneiric>
+References: <50BBDB70.2040803@intel.com> <2546786.VL41nEahXp@helios>
+	<alpine.DEB.2.02.1212030315220.6264@oneiric>
 MIME-Version: 1.0
-Received: by 10.76.132.198 with HTTP; Mon, 3 Dec 2012 01:51:22 -0800 (PST)
-In-Reply-To: <09515033-71CF-44CC-8FD5-CA51C85CF3E0@keylevel.com>
-References: <09515033-71CF-44CC-8FD5-CA51C85CF3E0@keylevel.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Mon, 3 Dec 2012 09:51:22 +0000
-Message-ID: <CAJTo0Lbox5b5u0re10VhrYghP1LZ7he8N2oFRULBy8+x+ua62g@mail.gmail.com>
-To: Chris Tapp <opensource@keylevel.com>
-X-Gm-Message-State: ALoCoQm0GvSb0r+/wglCuWsLrSUthNh6nGXuFbHotwsH3G06bVgnFD1UHACqx3C6GEztn8SgqT/yldHgQYrvvRB3AS7PIu0oBsEeJSq7aXlK0rsBsDPrIqOhnCvHyNqA0DwGHav2N/XBKSV42M9YmfeiunBK42TVNg==
-Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-Subject: Re: Image libraries
+Cc: yocto@yoctoproject.org
+Subject: Re: Use of BBPATH in a layer.conf file.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,18 +31,56 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 03 Dec 2012 09:51:44 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Mon, 03 Dec 2012 10:34:16 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On 1 December 2012 22:39, Chris Tapp <opensource@keylevel.com> wrote:
-> Is there a recipe available for a library which can load image files into memory / GL textures?
+On Monday 03 December 2012 03:16:10 Robert P. J. Day wrote:
+> On Sun, 2 Dec 2012, Paul Eggleton wrote:
+> > On Sunday 02 December 2012 15:35:54 you wrote:
+> > > On 12/02/2012 03:24 PM, Paul Eggleton wrote:
+> > > > On Sunday 02 December 2012 14:51:28 Scott Garman wrote:
+> > > >> Robert Day has brought up an inconsistency in the way we append to
+> > > >> BBPATH within a couple of our layer.conf files.
+> > > >> 
+> > > >> In meta-hob, meta-yocto-bsp, and meta-intel, we do:
+> > > >> 
+> > > >> BBPATH := "${BBPATH}:${LAYERDIR}"
+> > > >> 
+> > > >> but in meta-yocto, we do:
+> > > >> 
+> > > >> BBPATH := "${LAYERDIR}:${BBPATH}"
+> > > >> 
+> > > >> Unless someone explains to me that it's necessary to use this
+> > > >> different
+> > > >> ordering in meta-yocto's layer.conf, I will submit a patch to make
+> > > >> this
+> > > >> more consistent.
+> > > > 
+> > > > I think it actually ought to be:
+> > > > 
+> > > > BBPATH .= ":${LAYERDIR}"
+> > > 
+> > > Oh? Would this apply just to meta-yocto or all layer.conf files?
+> > 
+> > All, really. Functionally it makes no real difference, but I think it's
+> > preferred stylistically based on previous discussions.
+> 
+>   hang on ... i thought the ordering of BBPATH would affect the
+> processing of "include" directives.  no?
 
-Into memory, the lowest level would be libjpeg or libpng, but then
-it's your responsibility to match the pixel formats.
+Yes, it does. What I mean is, functionally _within layer.conf_ the following 
+two are equivalent:
 
-If you're using GL and you don't have a higher level abstraction, you
-might want to look at Cogl (GL specifics abstraction and sanity layer)
-or Clutter (toolkit based on Cogl).  Both of these are in oe-core.
+BBPATH := "${BBPATH}:${LAYERDIR}"
 
-Ross
+BBPATH .= ":${LAYERDIR}"
+
+Cheers,
+Paul
+
+-- 
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
