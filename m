@@ -1,22 +1,31 @@
-Return-Path: <tf+lists.yocto@r-finger.com>
-Received: from r-finger.com (r-finger.com [178.79.160.5])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 40B1EE0045D
-	for <yocto@yoctoproject.org>; Mon,  3 Dec 2012 09:43:58 -0800 (PST)
-Received: from [192.168.0.2] (host86-137-78-213.range86-137.btcentralplus.com
-	[86.137.78.213]) (using TLSv1 with cipher AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by r-finger.com (Postfix) with ESMTPSA id B773E9BE3
-	for <yocto@yoctoproject.org>; Mon,  3 Dec 2012 17:43:56 +0000 (GMT)
-Message-ID: <50BCE4DB.3070105@r-finger.com>
-Date: Mon, 03 Dec 2012 17:43:55 +0000
-From: Tomas Frydrych <tf+lists.yocto@r-finger.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:10.0.5) Gecko/20120624 Icedove/10.0.5
+Return-Path: <jessica.zhang@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 559DCE0045D
+	for <yocto@yoctoproject.org>; Mon,  3 Dec 2012 09:46:10 -0800 (PST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 03 Dec 2012 09:46:10 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.84,208,1355126400"; d="scan'208";a="258330641"
+Received: from orsmsx102.amr.corp.intel.com ([10.22.225.129])
+	by fmsmga002.fm.intel.com with ESMTP; 03 Dec 2012 09:46:07 -0800
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.81]) by
+	ORSMSX102.amr.corp.intel.com ([169.254.1.125]) with mapi id
+	14.01.0355.002; Mon, 3 Dec 2012 09:46:07 -0800
+From: "Zhang, Jessica" <jessica.zhang@intel.com>
+To: "koansoftware@gmail.com" <koansoftware@gmail.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [yocto] Howto use yocto meta-toolchain?
+Thread-Index: AQHN0Wb/zw6Ttm4RIkqX03P8SKy9s5gHWE0w
+Date: Mon, 3 Dec 2012 17:46:06 +0000
+Message-ID: <C6510F6D410BB64A8C15398EDC6B847C46B67F66@ORSMSX101.amr.corp.intel.com>
+References: <50BCBE77.4070700@gmail.com>
+In-Reply-To: <50BCBE77.4070700@gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.139]
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <50BBDB70.2040803@intel.com>
-In-Reply-To: <50BBDB70.2040803@intel.com>
-Subject: Re: Use of BBPATH in a layer.conf file.
+Subject: Re: Howto use yocto meta-toolchain?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,35 +37,59 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 03 Dec 2012 17:43:58 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 03 Dec 2012 17:46:10 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 02/12/12 22:51, Scott Garman wrote:
-> Robert Day has brought up an inconsistency in the way we append to
-> BBPATH within a couple of our layer.conf files.
-> 
-> In meta-hob, meta-yocto-bsp, and meta-intel, we do:
-> 
-> BBPATH := "${BBPATH}:${LAYERDIR}"
-> 
-> but in meta-yocto, we do:
-> 
-> BBPATH := "${LAYERDIR}:${BBPATH}"
-> 
-> Unless someone explains to me that it's necessary to use this different
-> ordering in meta-yocto's layer.conf, I will submit a patch to make this
-> more consistent.
+Hi Marco,
 
-This meta-yocto setup is intentional (there was thread about that a
-while back). meta-yocto is a distro layer, and for any distro layer it
-is reasonable to enforce its own precedence over any other layers is may
-use, and meta-yocto chooses to do this. Non-distro layers, including all
-bsp layers, are expected to always use an append operation so that they
-can be stacked together.
+Can you filed a bug about this in bugzilla?  Also, you don't need to sudo t=
+o run the install script, if you choose the default location which is /opt/=
+poky/1.3, it'll prompt you for the password, or you can specify a directory=
+ under your $HOME dir.  In your bug, can you provide some detail how you bu=
+ild the toolchain, e.g. the local.conf file changes, etc.?
 
-Tomas
+Thanks,
+Jessica
 
--- 
-http://sleepfive.com
+-----Original Message-----
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Marco
+Sent: Monday, December 03, 2012 7:00 AM
+To: yocto@yoctoproject.org
+Subject: [yocto] Howto use yocto meta-toolchain?
+
+Hi,
+after build meta-toolchain (for beagleboard, for example) I have this scrip=
+t
+
+15:32 koan@quad:~/yocto-8-danny/poky/build
+$ ll tmp/deploy/sdk/poky-eglibc-x86_64-arm-toolchain-1.3.sh
+-rwxr-xr-x 1 koan koan 16143 2012-12-03 15:25 tmp/deploy/sdk/poky-eglibc-x8=
+6_64-arm-toolchain-1.3.sh
+
+Then I argued I had to launch it to install the Yocto toolchain, but I get =
+an error
+
+15:32 koan@quad:~/yocto-8-danny/poky/build
+$ sudo tmp/deploy/sdk/poky-eglibc-x86_64-arm-toolchain-1.3.sh
+[sudo] password for koan:
+Enter target directory for SDK (default: /opt/poky/1.3):
+You are about to install the SDK to "/opt/poky/1.3". Proceed[Y/n]?
+Extracting SDK...done
+Setting it up...find: `/opt/poky/1.3/sysroots/x86_64-pokysdk-linux/lib':
+No such file or directory
+SDK could not be set up. Relocate script failed. Abort!
+
+What's wrong?
+I wasn't able to find any document about it in YP website.
+
+TIA
+--
+Marco
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
 
