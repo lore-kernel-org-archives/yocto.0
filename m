@@ -1,31 +1,31 @@
-Return-Path: <r10kindsofpeople@gmail.com>
-Received: from mail-wg0-f44.google.com (mail-wg0-f44.google.com [74.125.82.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 370CCE00533
-	for <yocto@yoctoproject.org>; Mon,  3 Dec 2012 11:37:39 -0800 (PST)
-Received: by mail-wg0-f44.google.com with SMTP id dr12so1490141wgb.11
-	for <yocto@yoctoproject.org>; Mon, 03 Dec 2012 11:37:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:content-type; bh=cnDpfxSRdVRfQNGwsd/mcHX4TsJonPgvl+GZn33zsLk=;
-	b=q6349anB+y2c4xy/Qp2rBb2NYJqWKjSrMkUlr2Ne20PixcIkOCOy/Tt2AS1UxuI5G0
-	7wl+mbq/rKrMEhqOtJeFhvGAsiT4+lHAXMdy0vp/EaJ0ZxFMLHm4rOGfLmkTiDy8ONBn
-	oi+tav2RqdeCthT8LjZsqKhSnKzQM5b+2Pv7hDNkdC74QicEAbU/q3flVIcZ10knHWw8
-	qp/WMnr6P8yHhX/qlKRy4snNgxh62ZFIpzu0lwq0PciEL3k8cqFIytQDc81MtlnFSjpk
-	LxNnLQ0vRIpMDyaRn1ceEgnY0TC3SAqqi6R1zC2JWyJeAgSd8gbpzhM8Fe/KLTgEaFZR
-	Ra7Q==
+Return-Path: <song.liu@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E0212E00533
+	for <yocto@yoctoproject.org>; Mon,  3 Dec 2012 14:15:06 -0800 (PST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 03 Dec 2012 14:14:21 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.84,209,1355126400"; d="scan'208";a="251311352"
+Received: from orsmsx102.amr.corp.intel.com ([10.22.225.129])
+	by orsmga002.jf.intel.com with ESMTP; 03 Dec 2012 14:15:06 -0800
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.81]) by
+	ORSMSX102.amr.corp.intel.com ([169.254.1.125]) with mapi id
+	14.01.0355.002; Mon, 3 Dec 2012 14:15:06 -0800
+From: "Liu, Song" <song.liu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Agenda: Yocto Project Technical Team Meeting - Tuesday,
+	December 04,
+	2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+Thread-Index: AQHN0aOmwj5tf4SwVke51g0msUMbcQ==
+Date: Mon, 3 Dec 2012 22:15:06 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A4860C631@ORSMSX101.amr.corp.intel.com>
+References: <7E680CB2A76BB8438D08CF13C09FC53A4844CAD5@ORSMSX101.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.138]
 MIME-Version: 1.0
-Received: by 10.180.72.232 with SMTP id g8mr367686wiv.0.1354563458006; Mon, 03
-	Dec 2012 11:37:38 -0800 (PST)
-Received: by 10.194.82.231 with HTTP; Mon, 3 Dec 2012 11:37:37 -0800 (PST)
-In-Reply-To: <50BCF9EE.7020205@mlbassoc.com>
-References: <CAE8H0+UH1A4hGLM4hkX_qvw-BD4Zt4eg_69G7OqyxmaSJJmRHA@mail.gmail.com>
-	<50BCF9EE.7020205@mlbassoc.com>
-Date: Mon, 3 Dec 2012 14:37:37 -0500
-Message-ID: <CAE8H0+VUBEsUaFWVq2dA1XSPa=eyTbqEPKWQqFA3DqPg23d9EQ@mail.gmail.com>
-From: r10kindsofpeople <r10kindsofpeople@gmail.com>
-To: Gary Thomas <gary@mlbassoc.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: dhcp-server and init scripts
+Subject: Agenda: Yocto Project Technical Team Meeting - Tuesday, December 04, 2012 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,144 +37,131 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 03 Dec 2012 19:37:39 -0000
-Content-Type: multipart/alternative; boundary=f46d043c8194bd7f2704cff7e185
-
---f46d043c8194bd7f2704cff7e185
-Content-Type: text/plain; charset=ISO-8859-1
-
-Thanks, Gary!  That did the trick.
-
-John
-
-
-On Mon, Dec 3, 2012 at 2:13 PM, Gary Thomas <gary@mlbassoc.com> wrote:
-
-> On 2012-12-03 12:01, r10kindsofpeople wrote:
->
->> I seem to have figured out how to add the dhcp-server to my image,
->> including my own dhcpd.conf and default-server files by creating a
->> "dhcp_4.2.4-P1.bbappend" recipe.  Everything
->> works, except the dhcp-server doesn't run on boot.
->>
->> If I login and run "update-rc.d dhcp-server defaults" on the target, then
->> it creates the entries in /etc/rc0.d (etc) and the service starts on the
->> next boot.
->>
->> The question is, how can I get bitbake to create those entries when it
->> creates the image?  I'm open to completely different ways of going about
->> this as well.  Looking at other
->> recipes, I thought this recipe would do, but it doesn't:
->>
->> {named dhcp_4.2.4-P1.bbappend}
->> FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
->>
->> inherit update-rc.d
->>
->> INITSCRIPT_NAME = "dhcp-server"
->> INITSCRIPT_PARAMS = "defaults"
->>
->> # Not sure this is needed, since I'm not adding files, just replacing the
->> default copies
->> SRC_URI += "file://dhcpd.conf \
->>                       file://default-server \
->>                       "
->> {end file}
->>
->> I'm using the 8.0 "danny" release with Crown-bay BSP.  The "layer.conf"
->> file includes IMAGE_INSTALL_append = " dhcp-server" (among other things).
->>
->> Thanks in advance for any assistance you can offer,
->>
->
-> You just missed one piece.  I have this working using these extra lines in
-> my .bbappend:
->
-> inherit update-rc.d
-> INITSCRIPT_PACKAGES = "dhcp-server"
-> INITSCRIPT_NAME = "dhcp-server"
-> INITSCRIPT_PARAMS = "start 50 S . stop 50 0 6 1 ."
->
-> --
-> ------------------------------**------------------------------
-> Gary Thomas                 |  Consulting for the
-> MLB Associates              |    Embedded world
-> ------------------------------**------------------------------
-> ______________________________**_________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.**org/listinfo/yocto<https://lists.yoctoproject.org/listinfo/yocto>
->
-
---f46d043c8194bd7f2704cff7e185
-Content-Type: text/html; charset=ISO-8859-1
+X-List-Received-Date: Mon, 03 Dec 2012 22:15:07 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-Thanks, Gary! =A0That did the trick.<div><br></div><div>John</div><div clas=
-s=3D"gmail_extra"><br><br><div class=3D"gmail_quote">On Mon, Dec 3, 2012 at=
- 2:13 PM, Gary Thomas <span dir=3D"ltr">&lt;<a href=3D"mailto:gary@mlbassoc=
-.com" target=3D"_blank">gary@mlbassoc.com</a>&gt;</span> wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div class=3D"HOEnZb"><div class=3D"h5">On 2=
-012-12-03 12:01, r10kindsofpeople wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">
-I seem to have figured out how to add the dhcp-server to my image, includin=
-g my own dhcpd.conf and default-server files by creating a &quot;dhcp_4.2.4=
--P1.bbappend&quot; recipe. =A0Everything<br>
-works, except the dhcp-server doesn&#39;t run on boot.<br>
-<br>
-If I login and run &quot;update-rc.d dhcp-server defaults&quot; on the targ=
-et, then it creates the entries in /etc/rc0.d (etc) and the service starts =
-on the next boot.<br>
-<br>
-The question is, how can I get bitbake to create those entries when it crea=
-tes the image? =A0I&#39;m open to completely different ways of going about =
-this as well. =A0Looking at other<br>
-recipes, I thought this recipe would do, but it doesn&#39;t:<br>
-<br>
-{named dhcp_4.2.4-P1.bbappend}<br>
-FILESEXTRAPATHS_prepend :=3D &quot;${THISDIR}/${PN}:&quot;<br>
-<br>
-inherit update-rc.d<br>
-<br>
-INITSCRIPT_NAME =3D &quot;dhcp-server&quot;<br>
-INITSCRIPT_PARAMS =3D &quot;defaults&quot;<br>
-<br>
-# Not sure this is needed, since I&#39;m not adding files, just replacing t=
-he default copies<br>
-SRC_URI +=3D &quot;file://dhcpd.conf \<br>
-=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 file://default-server \<br>
-=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 &quot;<br>
-{end file}<br>
-<br>
-I&#39;m using the 8.0 &quot;danny&quot; release with Crown-bay BSP. =A0The =
-&quot;layer.conf&quot; file includes IMAGE_INSTALL_append =3D &quot; dhcp-s=
-erver&quot; (among other things).<br>
-<br>
-Thanks in advance for any assistance you can offer,<br>
-</blockquote>
-<br></div></div>
-You just missed one piece. =A0I have this working using these extra lines i=
-n my .bbappend:<br>
-<br>
-inherit update-rc.d<br>
-INITSCRIPT_PACKAGES =3D &quot;dhcp-server&quot;<br>
-INITSCRIPT_NAME =3D &quot;dhcp-server&quot;<br>
-INITSCRIPT_PARAMS =3D &quot;start 50 S . stop 50 0 6 1 .&quot;<span class=
-=3D"HOEnZb"><font color=3D"#888888"><br>
-<br>
--- <br>
-------------------------------<u></u>------------------------------<br>
-Gary Thomas =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 | =A0Consulting for the<br>
-MLB Associates =A0 =A0 =A0 =A0 =A0 =A0 =A0| =A0 =A0Embedded world<br>
-------------------------------<u></u>------------------------------<br>
-______________________________<u></u>_________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
->https://lists.yoctoproject.<u></u>org/listinfo/yocto</a><br>
-</font></span></blockquote></div><br></div>
+Agenda:
+=A0
+* Opens collection - 5 min (Song)
+* Yocto 1.4 status - 20 min (Song/team)
+* SWAT team rotation: LaurentiuP -> Ioana Grigoropol
+* Opens - 10 min
+* Team Sharing - 20 min
 
---f46d043c8194bd7f2704cff7e185--
+
+-----Original Appointment-----
+
+We encourage people attending the meeting to logon the Yocto IRC chancel du=
+ring the meeting (optional):
+
+Yocto IRC: http://webchat.freenode.net/?channels=3D#yocto
+IRC Tutorial: http://www.irchelp.org/irchelp/irctutorial.html=20
+
+Conference details
+Conference name:=20
+Yocto Technical Team
+Conference date/start time:=20
+Tue Jun 26, 2012 at 10:00 AM Central Daylight Time
+Participants:=20
+30
+Duration:=20
+60 minutes
+Participant passcode:=20
+76994298
+Dial-in number:=20
+1.972.995.7777
+US Toll Free number:=20
+1.877.561.6828
+BlackBerry users, click this link to join your conference as a participant:
+1.972.995.7777x76994298#
+=A0
+Depending on where you are dialing from, either your BlackBerry will pause =
+and enter the passcode automatically or you will be prompted to click again=
+ to dial the passcode.
+
+Local and Global Access Numbers=20
+
+
+Country
+Dial-in number
+Australia:=20
+1800 636 843
+Czech Republic:=20
+242 430 350
+China (Beijing):=20
+From office dial 8-9957777 or 8784277
+Beijing Out of Office dial 5878 4277
+China (Shanghai):=20
+From office dial 8-9957777 or 3073322
+Shanghai Out of Office dial 2307 3322
+China (Shenzen):=20
+From office dial 8-9957777 or 6007877
+Shenzen Out of Office dial 2600 7877
+China (Other Cities):=20
+From IP phone dial 8-9957777
+Other cities - Non IP phone dial 021-23073322
+Denmark:=20
+8060 1400
+Finland:=20
+09 41333477
+France:=20
+0497 275888
+Germany:=20
+08161 803232
+Holland:=20
+030 2417490
+India:=20
+BSNL subscribers use 1800 425 9996 (Toll Free) Airtel subscribers use 0008 =
+009 861 212 (Toll Free) From TI Campus use 89957777 Others use 2509 9555 (L=
+andline within Bangalore) or
+80 2509 9555 (Outside Bangalore)
+Israel:=20
+09 790 6715
+Italy:=20
+039 69061234 (039 is local city code not country code)
+Japan:=20
+From TI Campus use 8 995 7777
+Outside TI use 03 4331 3777
+Malaysia:=20
+From IP phone dial 2643799
+From Kuala Lumpur dial 4264 3799
+Outside Kuala Lumpur dial (03)4264 3799
+Norway:=20
+2 295 8744
+Philippines:=20
+From Baguio City use 4471177
+From Metro Manila area use 8702477
+Singapore:=20
+From IP phone dial 3894777
+Outside TI use 6389 4777
+South Korea:=20
+From IP phone dial 5606998
+From Seoul dial 5606998
+Outside Seoul dial (02)5606998
+Sweden:=20
+08 58755577
+Taiwan:=20
+From IP phone dial 1363
+From Taipei dial 2241 1363
+Outside Taipei dial (02)2241 1363
+Turkey:=20
+Landline Only dial 0811 288 0001
+then enter 877 633 1123
+UK:=20
+01604 663003
+US:=20
+972 995 7777 or 1877 561 6828
+
+Recurring conferences
+First scheduled conference:=20
+Tue Jun 26, 2012
+Recurrence frequency:=20
+Weekly - Every 1 week(s) on Tuesday
+Recurrence ends:=20
+End on Fri Jun 21, 2013, 10:40 AM CDT
+
+
+
+
