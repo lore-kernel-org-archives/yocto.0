@@ -1,42 +1,28 @@
-Return-Path: <scott.a.garman@intel.com>
-Received: from azsmga102.ch.intel.com (mga12.intel.com [143.182.124.36])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2BBE4E00533
-	for <yocto@yoctoproject.org>; Mon,  3 Dec 2012 10:59:45 -0800 (PST)
-Received: from mail-pa0-f72.google.com ([209.85.220.72])
-	by mga14.intel.com with ESMTP/TLS/RC4-SHA; 03 Dec 2012 10:59:44 -0800
-Received: by mail-pa0-f72.google.com with SMTP id fb10so5878652pad.11
-	for <yocto@yoctoproject.org>; Mon, 03 Dec 2012 10:59:39 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=message-id:date:from:user-agent:mime-version:to:subject:references
-	:in-reply-to:content-type:content-transfer-encoding
-	:x-gm-message-state;
-	bh=rwIKcqFKQ/lsHmwFLVKqwwrPk44JBKT154sp58i3XIQ=;
-	b=nlquuwH0J3KNSlz+qJXGwX10Hs0AaKflp8adGnL/tGPeZl3EeRcUurfX0VsMQHxdJQ
-	RwSmeLNSqwlpBb4Dq0xgV2hGSs5fUrQryT3PoUIHhrt6VMmqPgAifM404KttlIHiMXM0
-	TKtcsMsm297C+np/bojeXArpjU2XNNLEACEuvypzPLKJXa44pB9aSAAqG6j8ZoCTdPdg
-	Oz56WY/b9iPnb22FXWRRBaLLK+RVx1ctgv8ExLS342h5BmE2vGzEYlNjuUQaPCpQtkIO
-	oVKzGYNxUUEyDXY9ppUoTp0K7ZNgT8KZvBo2UKz4/Y+6q1bVLSCUDbWWyNSuGO71z26k
-	A5yg==
-Received: by 10.68.235.208 with SMTP id uo16mr31368213pbc.65.1354561179806;
-	Mon, 03 Dec 2012 10:59:39 -0800 (PST)
-Received: by 10.68.235.208 with SMTP id uo16mr31368198pbc.65.1354561179729;
-	Mon, 03 Dec 2012 10:59:39 -0800 (PST)
-Received: from [192.168.1.12] (c-76-105-137-48.hsd1.or.comcast.net.
-	[76.105.137.48])
-	by mx.google.com with ESMTPS id x6sm8460334pav.29.2012.12.03.10.59.38
-	(version=SSLv3 cipher=OTHER); Mon, 03 Dec 2012 10:59:38 -0800 (PST)
-Message-ID: <50BCF69B.4010906@intel.com>
-Date: Mon, 03 Dec 2012 10:59:39 -0800
-From: Scott Garman <scott.a.garman@intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/17.0 Thunderbird/17.0
+Return-Path: <r10kindsofpeople@gmail.com>
+Received: from mail-we0-f176.google.com (mail-we0-f176.google.com
+	[74.125.82.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2DE54E00533
+	for <yocto@yoctoproject.org>; Mon,  3 Dec 2012 11:01:43 -0800 (PST)
+Received: by mail-we0-f176.google.com with SMTP id r5so1365103wey.35
+	for <yocto@yoctoproject.org>; Mon, 03 Dec 2012 11:01:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=Q13xoHtoG2Zzt59PiPqfgSYVPcQOAdexJBLDzmzO678=;
+	b=v8KC7foc9HKqC0aTKo3rvjoGDU486EoV9AjPjnvguBNXVQMZ+5ynfm7+/fJHPiwpF8
+	HX7UeIUbdCIpclktldwFaXPqf/ympy2OHhOSYNGf7LVNnVNabHrjxvLCli1S/SaofVVN
+	T4PkmGx8fQ25DX/VBT8LfrmKuadTMVUI2b5v2bF7uA6K/pLaK9dFH1lOTLM7m8oVCK3a
+	mkb5ALtKs4V9YI5R8V/pukECJfNyWZqxAFJtQfFE33vCc7sk4tWrazDT+ESYjWJRPm8Q
+	HpFWMxpVcV2K5xCi7yky4MSl6jCjorNXbMADYrlRsu1SkMrTfZWuNc+LT2aDE+wLs/tY
+	1u+w==
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <50BBDB70.2040803@intel.com> <50BCE4DB.3070105@r-finger.com>
-In-Reply-To: <50BCE4DB.3070105@r-finger.com>
-X-Gm-Message-State: ALoCoQlmOa5Y71VH8H5tJadCQzpwTOWAdHOsprfzL5FxLv1HvPdDSzjkw1d65G3x+aH2bOi676Jq+/UdImA2SZy6FyWK2WpFMNDX4ekvBTp59LyF1S6l8JejLkMj5OaCbc2Q50HRw7/iKbn2NDQaE7HFtD5Ej3TCOA==
-Subject: Re: Use of BBPATH in a layer.conf file.
+Received: by 10.216.133.35 with SMTP id p35mr3651922wei.2.1354561301547; Mon,
+	03 Dec 2012 11:01:41 -0800 (PST)
+Received: by 10.194.82.231 with HTTP; Mon, 3 Dec 2012 11:01:41 -0800 (PST)
+Date: Mon, 3 Dec 2012 14:01:41 -0500
+Message-ID: <CAE8H0+UH1A4hGLM4hkX_qvw-BD4Zt4eg_69G7OqyxmaSJJmRHA@mail.gmail.com>
+From: r10kindsofpeople <r10kindsofpeople@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: dhcp-server and init scripts
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,40 +34,76 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 03 Dec 2012 18:59:45 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 03 Dec 2012 19:01:43 -0000
+Content-Type: multipart/alternative; boundary=0016e6de17bc348a9a04cff7613f
 
-On 12/03/2012 09:43 AM, Tomas Frydrych wrote:
-> On 02/12/12 22:51, Scott Garman wrote:
->> Robert Day has brought up an inconsistency in the way we append to
->> BBPATH within a couple of our layer.conf files.
->>
->> In meta-hob, meta-yocto-bsp, and meta-intel, we do:
->>
->> BBPATH := "${BBPATH}:${LAYERDIR}"
->>
->> but in meta-yocto, we do:
->>
->> BBPATH := "${LAYERDIR}:${BBPATH}"
->>
->> Unless someone explains to me that it's necessary to use this different
->> ordering in meta-yocto's layer.conf, I will submit a patch to make this
->> more consistent.
->
-> This meta-yocto setup is intentional (there was thread about that a
-> while back). meta-yocto is a distro layer, and for any distro layer it
-> is reasonable to enforce its own precedence over any other layers is may
-> use, and meta-yocto chooses to do this. Non-distro layers, including all
-> bsp layers, are expected to always use an append operation so that they
-> can be stacked together.
+--0016e6de17bc348a9a04cff7613f
+Content-Type: text/plain; charset=ISO-8859-1
 
-Thanks for the concise explanation.
+I seem to have figured out how to add the dhcp-server to my image,
+including my own dhcpd.conf and default-server files by creating a
+"dhcp_4.2.4-P1.bbappend" recipe.  Everything works, except the dhcp-server
+doesn't run on boot.
 
-Scott
+If I login and run "update-rc.d dhcp-server defaults" on the target, then
+it creates the entries in /etc/rc0.d (etc) and the service starts on the
+next boot.
 
--- 
-Scott Garman
-Embedded Linux Engineer - Yocto Project
-Intel Open Source Technology Center
+The question is, how can I get bitbake to create those entries when it
+creates the image?  I'm open to completely different ways of going about
+this as well.  Looking at other recipes, I thought this recipe would do,
+but it doesn't:
 
+{named dhcp_4.2.4-P1.bbappend}
+FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+
+inherit update-rc.d
+
+INITSCRIPT_NAME = "dhcp-server"
+INITSCRIPT_PARAMS = "defaults"
+
+# Not sure this is needed, since I'm not adding files, just replacing the
+default copies
+SRC_URI += "file://dhcpd.conf \
+                     file://default-server \
+                     "
+{end file}
+
+I'm using the 8.0 "danny" release with Crown-bay BSP.  The "layer.conf"
+file includes IMAGE_INSTALL_append = " dhcp-server" (among other things).
+
+Thanks in advance for any assistance you can offer,
+
+John
+
+--0016e6de17bc348a9a04cff7613f
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+I seem to have figured out how to add the dhcp-server to my image, includin=
+g my own dhcpd.conf and default-server files by creating a &quot;dhcp_4.2.4=
+-P1.bbappend&quot; recipe. =A0Everything works, except the dhcp-server does=
+n&#39;t run on boot. =A0<div>
+<br></div><div>If I login and run &quot;update-rc.d dhcp-server defaults&qu=
+ot; on the target, then it creates the entries in /etc/rc0.d (etc) and the =
+service starts on the next boot.</div><div><br></div><div>The question is, =
+how can I get bitbake to create those entries when it creates the image? =
+=A0I&#39;m open to completely different ways of going about this as well. =
+=A0Looking at other recipes, I thought this recipe would do, but it doesn&#=
+39;t:</div>
+<div><br></div><div>{named dhcp_4.2.4-P1.bbappend}</div><div>FILESEXTRAPATH=
+S_prepend :=3D &quot;${THISDIR}/${PN}:&quot;</div><div><br></div><div>inher=
+it update-rc.d</div><div><br></div><div>INITSCRIPT_NAME =3D &quot;dhcp-serv=
+er&quot;</div>
+<div>INITSCRIPT_PARAMS =3D &quot;defaults&quot;</div><div><br></div><div># =
+Not sure this is needed, since I&#39;m not adding files, just replacing the=
+ default copies</div><div>SRC_URI +=3D &quot;file://dhcpd.conf \</div><div>
+=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0file://default-server \</div><di=
+v>=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0&quot;</div><div>{end file}</d=
+iv><div><br></div><div>I&#39;m using the 8.0 &quot;danny&quot; release with=
+ Crown-bay BSP. =A0The &quot;layer.conf&quot; file includes IMAGE_INSTALL_a=
+ppend =3D &quot; dhcp-server&quot; (among other things). =A0</div>
+<div><br></div><div>Thanks in advance for any assistance you can offer,</di=
+v><div><br></div><div>John</div>
+
+--0016e6de17bc348a9a04cff7613f--
