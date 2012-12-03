@@ -1,36 +1,22 @@
-Return-Path: <peachj@lexmark.com>
-Received: from exprod8og118.obsmtp.com (exprod8og118.obsmtp.com [64.18.3.36])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F3ED4E0045D
-	for <yocto@yoctoproject.org>; Mon,  3 Dec 2012 07:57:03 -0800 (PST)
-Received: from mail-qa0-f72.google.com ([209.85.216.72]) (using TLSv1) by
-	exprod8ob118.postini.com ([64.18.7.12]) with SMTP
-	ID DSNKULzLz44V+JLZwkY43mHPjTNUjIfNeHVq@postini.com;
-	Mon, 03 Dec 2012 07:57:04 PST
-Received: by mail-qa0-f72.google.com with SMTP id o13so5984384qaj.11
-	for <yocto@yoctoproject.org>; Mon, 03 Dec 2012 07:57:02 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type
-	:x-gm-message-state;
-	bh=vPk6UKphy7ono9LKkdi19t12TJmzocYDXRtKpLuOvpw=;
-	b=Jyig4HRTf2JGKdKN3/V61HxA0BrjyiZLh3TRWhR1pBbhXUzotx9igREG20SNG41YtV
-	Cpugppq0fIj12pUSewAnCYHxTrpb3CVAxjMVEFjutPotpH/vpti57FGM3rSjjUpZ9h5L
-	/izV/GwbxEmFiviFnWMa6amVp2DS8J97j6DYbZDsqEncg68xepKehzJhN6jne5WwNEqu
-	6lA6Uy0cSArEUvmw0j2nugul53kBSAKdcZPftCRFp4wgUsABl2Mdjxq7QgRlqhGV+U1y
-	F4yW8mE8NLz6M3rcJIeE7wqzE5waDDqOwQi2sM5HXv+rB6fV1JBAfGUREOUKnl8n/GFY
-	Ih1Q==
-Received: by 10.224.193.7 with SMTP id ds7mr17810097qab.23.1354550222808;
-	Mon, 03 Dec 2012 07:57:02 -0800 (PST)
+Return-Path: <tf+lists.yocto@r-finger.com>
+Received: from r-finger.com (r-finger.com [178.79.160.5])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 40B1EE0045D
+	for <yocto@yoctoproject.org>; Mon,  3 Dec 2012 09:43:58 -0800 (PST)
+Received: from [192.168.0.2] (host86-137-78-213.range86-137.btcentralplus.com
+	[86.137.78.213]) (using TLSv1 with cipher AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by r-finger.com (Postfix) with ESMTPSA id B773E9BE3
+	for <yocto@yoctoproject.org>; Mon,  3 Dec 2012 17:43:56 +0000 (GMT)
+Message-ID: <50BCE4DB.3070105@r-finger.com>
+Date: Mon, 03 Dec 2012 17:43:55 +0000
+From: Tomas Frydrych <tf+lists.yocto@r-finger.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:10.0.5) Gecko/20120624 Icedove/10.0.5
 MIME-Version: 1.0
-Received: by 10.224.193.7 with SMTP id ds7mr17810078qab.23.1354550222534; Mon,
-	03 Dec 2012 07:57:02 -0800 (PST)
-Received: by 10.49.48.196 with HTTP; Mon, 3 Dec 2012 07:57:02 -0800 (PST)
-Date: Mon, 3 Dec 2012 10:57:02 -0500
-Message-ID: <CA+QkY1Ai5xukjvH-yt_0O=z8VNjnTT3_4edBJTs1N5J6RZnVTg@mail.gmail.com>
-From: Jerrod Peach <peachj@lexmark.com>
-To: yocto <yocto@yoctoproject.org>
-X-Gm-Message-State: ALoCoQk75YDaBvN5knAwOkjhX2hgIF7F42KMCorqE2Gz1eOxAdspZH9MXsiJJ5KEjmH6fOvT3C6lJ/fi6Cih/hkeIvlksK38MI38L6G4hHZKI1FN30vXDDpxnTwnqZg241Gw905M2OmZZkVIxFUoGlOMeuaPiCQltA==
-Subject: recrdeptask not working correctly?
+To: yocto@yoctoproject.org
+References: <50BBDB70.2040803@intel.com>
+In-Reply-To: <50BBDB70.2040803@intel.com>
+Subject: Re: Use of BBPATH in a layer.conf file.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,64 +28,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 03 Dec 2012 15:57:04 -0000
-Content-Type: multipart/alternative; boundary=20cf30051342d837e104cff4cc05
+X-List-Received-Date: Mon, 03 Dec 2012 17:43:58 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
---20cf30051342d837e104cff4cc05
-Content-Type: text/plain; charset=ISO-8859-1
+On 02/12/12 22:51, Scott Garman wrote:
+> Robert Day has brought up an inconsistency in the way we append to
+> BBPATH within a couple of our layer.conf files.
+> 
+> In meta-hob, meta-yocto-bsp, and meta-intel, we do:
+> 
+> BBPATH := "${BBPATH}:${LAYERDIR}"
+> 
+> but in meta-yocto, we do:
+> 
+> BBPATH := "${LAYERDIR}:${BBPATH}"
+> 
+> Unless someone explains to me that it's necessary to use this different
+> ordering in meta-yocto's layer.conf, I will submit a patch to make this
+> more consistent.
 
-All,
+This meta-yocto setup is intentional (there was thread about that a
+while back). meta-yocto is a distro layer, and for any distro layer it
+is reasonable to enforce its own precedence over any other layers is may
+use, and meta-yocto chooses to do this. Non-distro layers, including all
+bsp layers, are expected to always use an append operation so that they
+can be stacked together.
 
-I noticed the changes to recrdeptask from Yocto 1.2 to Yocto 1.3.  I saw a
-number of "all" tasks in the classes change like this:
+Tomas
 
--do_checkuriall[recrdeptask] = "do_checkuri"
-+do_checkuriall[recrdeptask] = "do_checkuriall do_checkuri"
+-- 
+http://sleepfive.com
 
-I have my own task that needs to work on all packages, and I assumed making
-the same change to my task would cause this to occur.  (Prior to this, I
-had noticed the task seemed to only be running on about 12 packages, where
-it used to run on about 60.)  So, I made the change, and indeed started
-running on more packages.  It only ran on about 45 packages though, which I
-found curious.  So, I dug a little deeper and had bitbake spit out
-pn-buildlist for me (with the -g option).  That list showed around 75
-packages.  That meant I was still not running on a pretty large number of
-packages.  Then I ran checkurilall.  I noticed it, too, was running on the
-same list of packages as my task, i.e. NOT all of them.
-
-Has recrdeptask changed in some way that now prevents a task from running
-on all packages in a dependency graph recursively?  Was this intentional?
- Is there some other (more preferable?) way for me to cause a task to run
-on all packages in a dependency graph?
-
-Kind regards,
-
-Jerrod
-
---20cf30051342d837e104cff4cc05
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-All,<div><br></div><div>I noticed the changes to recrdeptask from Yocto 1.2=
- to Yocto 1.3. =A0I saw a number of &quot;all&quot; tasks in the classes ch=
-ange like this:</div><div><br></div><div><div>-do_checkuriall[recrdeptask] =
-=3D &quot;do_checkuri&quot;</div>
-<div>+do_checkuriall[recrdeptask] =3D &quot;do_checkuriall do_checkuri&quot=
-;</div></div><div><br></div><div>I have my own task that needs to work on a=
-ll packages, and I assumed making the same change to my task would cause th=
-is to occur. =A0(Prior to this, I had noticed the task seemed to only be ru=
-nning on about 12 packages, where it used to run on about 60.) =A0So, I mad=
-e the change, and indeed started running on more packages. =A0It only ran o=
-n about 45 packages though, which I found curious. =A0So, I dug a little de=
-eper and had bitbake spit out pn-buildlist for me (with the -g option). =A0=
-That list showed around 75 packages. =A0That meant I was still not running =
-on a pretty large number of packages. =A0Then I ran checkurilall. =A0I noti=
-ced it, too, was running on the same list of packages as my task, i.e. NOT =
-all of them. =A0</div>
-<div><br></div><div>Has recrdeptask changed in some way that now prevents a=
- task from running on all packages in a dependency graph recursively? =A0Wa=
-s this intentional? =A0Is there some other (more preferable?) way for me to=
- cause a task to run on all packages in a dependency graph?</div>
-<div><br></div><div>Kind regards,</div><div><br></div><div>Jerrod</div>
-
---20cf30051342d837e104cff4cc05--
