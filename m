@@ -1,36 +1,26 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 92D2FE01423
-	for <yocto@yoctoproject.org>; Tue,  4 Dec 2012 03:36:09 -0800 (PST)
-Received: from cpebcc81008dd2c-cmbcc81008dd29.cpe.net.cable.rogers.com
-	([99.253.156.71]:37261 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.77) (envelope-from <rpjday@crashcourse.ca>)
-	id 1TfqnI-0006Z5-7H; Tue, 04 Dec 2012 06:36:08 -0500
-Date: Tue, 4 Dec 2012 06:36:05 -0500 (EST)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Tim Bird <tim.bird@am.sony.com>
-In-Reply-To: <50BD4CB3.6030302@am.sony.com>
-Message-ID: <alpine.DEB.2.02.1212040634220.4114@oneiric>
-References: <alpine.DEB.2.02.1211291032530.27333@oneiric>
-	<50B7AE45.1070301@am.sony.com>
-	<alpine.DEB.2.02.1211300848590.1918@oneiric>
-	<50BD4CB3.6030302@am.sony.com>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <laurentiu.palcu@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 35514E01423
+	for <yocto@yoctoproject.org>; Tue,  4 Dec 2012 04:37:55 -0800 (PST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 04 Dec 2012 04:37:09 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.84,215,1355126400"; d="scan'208";a="228731075"
+Received: from lpalcu-linux (HELO [10.237.105.165]) ([10.237.105.165])
+	by orsmga001.jf.intel.com with ESMTP; 04 Dec 2012 04:37:53 -0800
+Message-ID: <50BDEEA0.80006@intel.com>
+Date: Tue, 04 Dec 2012 14:37:52 +0200
+From: Laurentiu Palcu <laurentiu.palcu@intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/17.0 Thunderbird/17.0
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: chris larson's cool "bitbake-env" utility
+To: koansoftware@gmail.com
+References: <50BCBE77.4070700@gmail.com>
+	<C6510F6D410BB64A8C15398EDC6B847C46B67F66@ORSMSX101.amr.corp.intel.com>
+	<50BDDCEE.4090902@gmail.com>
+In-Reply-To: <50BDDCEE.4090902@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Howto use yocto meta-toolchain?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,51 +32,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Dec 2012 11:36:09 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Tue, 04 Dec 2012 12:37:55 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-On Mon, 3 Dec 2012, Tim Bird wrote:
 
-> On 11/30/2012 05:53 AM, Robert P. J. Day wrote:
-> > On Thu, 29 Nov 2012, Tim Bird wrote:
-> >
-> >> I put a link to your page on my bitbake cheat sheet page at:
-> >> http://elinux.org/Bitbake_Cheat_Sheet
-> >
-> >   as someone who has never bothered to play with any of the UIs and is
-> > thus asking from a position of total ignorance, i have a couple
-> > questions about the "User interfaces" section of that cheat sheet.
-> >
-> >   using stock oe-core, i followed your cheat sheet and tried this:
-> >
-> > $ bitbake
-> >
-> > and got:
-> >
-> > ERROR: Timeout while attempting to communicate with bitbake server
-> >
-> > so i need to start the server?  should that be mentioned there?
->
-> Hmmm.  With bitbake from poky-1.2-denzil I get:
-> "Nothing to do.  Use 'bitbake world' to build everything, or run 'bitbake --help' for usage information."
->
-> I think that "bitbake <nothing>" is not really a valid invocation.
 
-  never mind, just my incoherence ... when i was reading up on
-"bitbake -u hob", i also read that "-u" had a default value of knotty,
-so i assumed, oh, then i should be able to run just "bitbake" (even
-though i had no idea what that would represent).  just silliness on my
-part.
+On 12/04/2012 01:22 PM, Marco wrote:
+> Il 03/12/2012 18:46, Zhang, Jessica ha scritto:
+>> Hi Marco,
+>>
+>> Can you filed a bug about this in bugzilla?  Also, you don't need to sudo to run the install script, if you choose the default location which is /opt/poky/1.3, it'll prompt you for the password, or you can specify a directory under your $HOME dir.  In your bug, can you provide some detail how you build the toolchain, e.g. the local.conf file changes, etc.?
+>>
+> 
+> Jessica,
+> thank you for answering.
+> 
+> Bugzilla classification is different from its documentation.
+> Where do you suggest to place my bug?
+> https://wiki.yoctoproject.org/wiki/Bugzilla_Configuration_and_Bug_Tracking
+You can place it for ADT.
 
-rday
+> 
+> 
+> Actually if I don't sudo to run the install script it doesn't work:
+> 
+> $ tmp/deploy/sdk/poky-eglibc-x86_64-arm-toolchain-1.3.sh
+> Enter target directory for SDK (default: /opt/poky/1.3):
+> You are about to install the SDK to "/opt/poky/1.3". Proceed[Y/n]?
+> Error: Unable to create target directory. Do you have permissions?
+> 
+The latest changes which are now in master, should fix that. You will be
+asked to insert the password. However, there still is a patch pending in
+order for this to work properly (I just saw the problem today and sent a
+patch on oe-core mailing list).
 
--- 
+However, going back to your initial problem. Is that a tarball you
+downloaded or one you built yourself? If you're filling a bug, provide
+as much details as possible in order to replicate your issue.
 
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+Thanks,
+Laurentiu
 
