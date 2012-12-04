@@ -1,45 +1,24 @@
-Return-Path: <B19537@freescale.com>
-Received: from co1outboundpool.messaging.microsoft.com
-	(co1ehsobe002.messaging.microsoft.com [216.32.180.185])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 276B1E0075A
-	for <yocto@yoctoproject.org>; Mon,  3 Dec 2012 19:53:18 -0800 (PST)
-Received: from mail14-co1-R.bigfish.com (10.243.78.245) by
-	CO1EHSOBE014.bigfish.com (10.243.66.77) with Microsoft SMTP Server id
-	14.1.225.23; Tue, 4 Dec 2012 03:53:16 +0000
-Received: from mail14-co1 (localhost [127.0.0.1])	by mail14-co1-R.bigfish.com
-	(Postfix) with ESMTP id 734729C02CF;
-	Tue,  4 Dec 2012 03:53:16 +0000 (UTC)
-X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null); IPV:NLI;
-	H:mail.freescale.net; RD:none; EFVD:NLI
-X-SpamScore: 1
-X-BigFish: VS1(zzzz1de0h1202h1d1ah1d2ahzzz2dh2a8h668h839h8e2h8e3h944hd25hf0ah1220h1288h12a5h12a9h12bdh137ah13b6h1441h1504h1537h153bh15d0h162dh1631hbe9i1155h)
-Received: from mail14-co1 (localhost.localdomain [127.0.0.1]) by mail14-co1
-	(MessageSwitch) id 1354593160753355_2500;
-	Tue,  4 Dec 2012 03:52:40 +0000 (UTC)
-Received: from CO1EHSMHS013.bigfish.com (unknown [10.243.78.247])	by
-	mail14-co1.bigfish.com (Postfix) with ESMTP id ABCFD46014D;
-	Tue,  4 Dec 2012 03:52:40 +0000 (UTC)
-Received: from mail.freescale.net (70.37.183.190) by CO1EHSMHS013.bigfish.com
-	(10.243.66.23) with Microsoft SMTP Server (TLS) id 14.1.225.23;
-	Tue, 4 Dec 2012 03:52:40 +0000
-Received: from 039-SN2MPN1-021.039d.mgd.msft.net ([169.254.1.190]) by
-	039-SN1MMR1-002.039d.mgd.msft.net ([10.84.1.15]) with mapi id
-	14.02.0318.003; Tue, 4 Dec 2012 03:52:39 +0000
-From: Luo Zhenhua-B19537 <B19537@freescale.com>
-To: "openembedded-core@lists.openembedded.org"
-	<openembedded-core@lists.openembedded.org>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: Difference of toolchain recipes
-Thread-Index: Ac3R0s0/UEOxKwlOQ72h3AL1xJ4hNA==
-Date: Tue, 4 Dec 2012 03:52:39 +0000
-Message-ID: <CA452391058F6D4E9715FB2C29D9312A013759A7@039-SN2MPN1-021.039d.mgd.msft.net>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.192.208.134]
-MIME-Version: 1.0
-X-OriginatorOrg: freescale.com
-Subject: Difference of toolchain recipes
+Return-Path: <timo.mueller@oss.bmw-carit.de>
+Received: from linuxmail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4FB8AE01275
+	for <yocto@yoctoproject.org>; Tue,  4 Dec 2012 01:22:26 -0800 (PST)
+Received: from localhost (mysterion.bmw-carit.intra [192.168.101.57])
+	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
+	(No client certificate requested)
+	(Authenticated sender: timo.mueller)
+	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 4BF13400E0;
+	Tue,  4 Dec 2012 09:46:56 +0100 (CET)
+From: mail@timomueller.eu
+To: yocto@yoctoproject.org
+Date: Tue,  4 Dec 2012 10:22:17 +0100
+Message-Id: <15320fff8e0ade9b2c6a8013b9e140aa9236aac7.1354608536.git.timo.mueller@bmw-carit.de>
+X-Mailer: git-send-email 1.7.7.6
+In-Reply-To: <56d6fb92e4678d78e49b872c45dc678f635aad80.1354608536.git.timo.mueller@bmw-carit.de>
+References: <cover.1354608536.git.timo.mueller@bmw-carit.de>
+	<56d6fb92e4678d78e49b872c45dc678f635aad80.1354608536.git.timo.mueller@bmw-carit.de>
+In-Reply-To: <cover.1354608536.git.timo.mueller@bmw-carit.de>
+References: <cover.1354608536.git.timo.mueller@bmw-carit.de>
+Subject: [PATCH 2/8] plugins/sdk.ide: Create a default YoctoUIElement from the preference store
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,21 +30,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Dec 2012 03:53:18 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 04 Dec 2012 09:22:26 -0000
 
-It is a bit confused for the different recipes of toolchian, can somebody h=
-elp to explain what's the difference for those recipes? E.g. gcc-cross, gcc=
--cross-canadian, gcc-cross-initial, gcc-cross-intermediate, gcc-crosssdk, g=
-cc-crosssdk-initial, gcc-crosssdk-intermediate, gcc-runtime, etc.=20
+From: Atanas Gegov <atanas.gegov@bmw-carit.de>
 
-Is there any document for those description?
+Adds a method to create a YoctoUIElement that contains the content of
+the yocto settings stored in the plugin's default preference store.
+---
+ .../src/org/yocto/sdk/ide/YoctoSDKUtils.java       |   25 ++++++++++++++++++++
+ 1 files changed, 25 insertions(+), 0 deletions(-)
 
-
-Best Regards,
-
-Zhenhua
+diff --git a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoSDKUtils.java b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoSDKUtils.java
+index 749fac7..16035fd 100644
+--- a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoSDKUtils.java
++++ b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoSDKUtils.java
+@@ -465,6 +465,31 @@ public class YoctoSDKUtils {
+ 		return elem;
+ 	}
+ 
++	/* Load default IDE wide POKY Preference settings into YoctoUIElement */
++	public static YoctoUIElement getDefaultElemFromStore()
++	{
++		IPreferenceStore store = YoctoSDKPlugin.getDefault().getPreferenceStore();
++		YoctoUIElement elem = new YoctoUIElement();
++		if (store.getDefaultString(PreferenceConstants.SDK_MODE).equals(IPreferenceStore.TRUE))
++			elem.setEnumPokyMode(YoctoUIElement.PokyMode.POKY_SDK_MODE);
++		else
++			elem.setEnumPokyMode(YoctoUIElement.PokyMode.POKY_TREE_MODE);
++
++		elem.setStrToolChainRoot(store.getDefaultString(PreferenceConstants.TOOLCHAIN_ROOT));
++		elem.setStrTarget(store.getDefaultString(PreferenceConstants.TOOLCHAIN_TRIPLET));
++		elem.setIntTargetIndex(store.getDefaultInt(PreferenceConstants.TARGET_ARCH_INDEX));
++		elem.setStrQemuKernelLoc(store.getDefaultString(PreferenceConstants.QEMU_KERNEL));
++		elem.setStrQemuOption(store.getDefaultString(PreferenceConstants.QEMU_OPTION));
++		elem.setStrSysrootLoc(store.getDefaultString(PreferenceConstants.SYSROOT));
++
++		if (store.getDefaultString(PreferenceConstants.TARGET_MODE).equals(IPreferenceStore.TRUE))
++			elem.setEnumDeviceMode(YoctoUIElement.DeviceMode.QEMU_MODE);
++		else
++			elem.setEnumDeviceMode(YoctoUIElement.DeviceMode.DEVICE_MODE);
++
++		return elem;
++	}
++
+ 	public static String qemuTargetTranslate(String strTargetArch) 
+ 	{
+ 		String qemu_target = "";
+-- 
+1.7.7.6
 
 
