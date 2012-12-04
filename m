@@ -1,43 +1,39 @@
-Return-Path: <koansoftware@gmail.com>
-Received: from mail-lb0-f176.google.com (mail-lb0-f176.google.com
-	[209.85.217.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A2ED8E013F9
-	for <yocto@yoctoproject.org>; Tue,  4 Dec 2012 03:22:27 -0800 (PST)
-Received: by mail-lb0-f176.google.com with SMTP id k6so3388963lbo.35
-	for <yocto@yoctoproject.org>; Tue, 04 Dec 2012 03:22:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=message-id:date:from:reply-to:organization:user-agent:mime-version
-	:to:cc:subject:references:in-reply-to:content-type
-	:content-transfer-encoding;
-	bh=VwMgoShxicOQyzLluLWP/veXYdOYwsjaRhPMdR97JRs=;
-	b=GZkpWZ6tAHpKCc+i6r99S99VKpfxvdYxSg11Zn9iefGyQzVCOkjkAh+nXXLXeasNTM
-	q/5eGnBmIj7Q+nrFrPnxxXTRnogefvrQ0VDK3bVWW0vzd0Z78IF6NIVS9EGuUg0oXcRY
-	01vJdbUsjiWpB5TYlhL/WlAEeNfCn9fpknKS4mcgdTS6BE3xz2JEtVaYYlG/0NRdy6eS
-	u7+njs2hI0ln51bsWeSG6qDJTJRUm1y08sEtgYDbNF218wIOhPpNlCD+MEZcbXVkt81l
-	00adkNOT5joI6JrGW3YlUW+Dbn53x6cn+EQMrcFIQHyu0wSJzCXIEPBsszqOmH779uiV
-	FiYQ==
-Received: by 10.152.104.240 with SMTP id gh16mr12860957lab.56.1354620146081;
-	Tue, 04 Dec 2012 03:22:26 -0800 (PST)
-Received: from [192.168.0.5]
-	(host56-7-static.30-87-b.business.telecomitalia.it. [87.30.7.56])
-	by mx.google.com with ESMTPS id pz9sm487163lab.11.2012.12.04.03.22.23
-	(version=SSLv3 cipher=OTHER); Tue, 04 Dec 2012 03:22:25 -0800 (PST)
-Message-ID: <50BDDCEE.4090902@gmail.com>
-Date: Tue, 04 Dec 2012 12:22:22 +0100
-From: Marco <koansoftware@gmail.com>
-Organization: MC
-User-Agent: Mozilla/5.0 (X11; Linux i686; rv:17.0) Gecko/17.0 Thunderbird/17.0
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 92D2FE01423
+	for <yocto@yoctoproject.org>; Tue,  4 Dec 2012 03:36:09 -0800 (PST)
+Received: from cpebcc81008dd2c-cmbcc81008dd29.cpe.net.cable.rogers.com
+	([99.253.156.71]:37261 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.77) (envelope-from <rpjday@crashcourse.ca>)
+	id 1TfqnI-0006Z5-7H; Tue, 04 Dec 2012 06:36:08 -0500
+Date: Tue, 4 Dec 2012 06:36:05 -0500 (EST)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: Tim Bird <tim.bird@am.sony.com>
+In-Reply-To: <50BD4CB3.6030302@am.sony.com>
+Message-ID: <alpine.DEB.2.02.1212040634220.4114@oneiric>
+References: <alpine.DEB.2.02.1211291032530.27333@oneiric>
+	<50B7AE45.1070301@am.sony.com>
+	<alpine.DEB.2.02.1211300848590.1918@oneiric>
+	<50BD4CB3.6030302@am.sony.com>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
-To: "Zhang, Jessica" <jessica.zhang@intel.com>
-References: <50BCBE77.4070700@gmail.com>
-	<C6510F6D410BB64A8C15398EDC6B847C46B67F66@ORSMSX101.amr.corp.intel.com>
-In-Reply-To: <C6510F6D410BB64A8C15398EDC6B847C46B67F66@ORSMSX101.amr.corp.intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Howto use yocto meta-toolchain?
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: chris larson's cool "bitbake-env" utility
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: koansoftware@gmail.com
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -46,31 +42,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Dec 2012 11:22:28 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 04 Dec 2012 11:36:09 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-Il 03/12/2012 18:46, Zhang, Jessica ha scritto:
-> Hi Marco,
+On Mon, 3 Dec 2012, Tim Bird wrote:
+
+> On 11/30/2012 05:53 AM, Robert P. J. Day wrote:
+> > On Thu, 29 Nov 2012, Tim Bird wrote:
+> >
+> >> I put a link to your page on my bitbake cheat sheet page at:
+> >> http://elinux.org/Bitbake_Cheat_Sheet
+> >
+> >   as someone who has never bothered to play with any of the UIs and is
+> > thus asking from a position of total ignorance, i have a couple
+> > questions about the "User interfaces" section of that cheat sheet.
+> >
+> >   using stock oe-core, i followed your cheat sheet and tried this:
+> >
+> > $ bitbake
+> >
+> > and got:
+> >
+> > ERROR: Timeout while attempting to communicate with bitbake server
+> >
+> > so i need to start the server?  should that be mentioned there?
 >
-> Can you filed a bug about this in bugzilla?  Also, you don't need to sudo to run the install script, if you choose the default location which is /opt/poky/1.3, it'll prompt you for the password, or you can specify a directory under your $HOME dir.  In your bug, can you provide some detail how you build the toolchain, e.g. the local.conf file changes, etc.?
+> Hmmm.  With bitbake from poky-1.2-denzil I get:
+> "Nothing to do.  Use 'bitbake world' to build everything, or run 'bitbake --help' for usage information."
 >
+> I think that "bitbake <nothing>" is not really a valid invocation.
 
-Jessica,
-thank you for answering.
+  never mind, just my incoherence ... when i was reading up on
+"bitbake -u hob", i also read that "-u" had a default value of knotty,
+so i assumed, oh, then i should be able to run just "bitbake" (even
+though i had no idea what that would represent).  just silliness on my
+part.
 
-Bugzilla classification is different from its documentation.
-Where do you suggest to place my bug?
-https://wiki.yoctoproject.org/wiki/Bugzilla_Configuration_and_Bug_Tracking
-
-
-Actually if I don't sudo to run the install script it doesn't work:
-
-$ tmp/deploy/sdk/poky-eglibc-x86_64-arm-toolchain-1.3.sh
-Enter target directory for SDK (default: /opt/poky/1.3):
-You are about to install the SDK to "/opt/poky/1.3". Proceed[Y/n]?
-Error: Unable to create target directory. Do you have permissions?
+rday
 
 -- 
-Marco
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
