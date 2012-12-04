@@ -1,24 +1,43 @@
-Return-Path: <ioanax.grigoropol@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CB74CE013F9
-	for <yocto@yoctoproject.org>; Tue,  4 Dec 2012 02:05:37 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 04 Dec 2012 02:04:51 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,214,1355126400"; d="scan'208";a="228685774"
-Received: from ideapad (HELO localhost.localdomain) ([10.237.105.148])
-	by orsmga001.jf.intel.com with ESMTP; 04 Dec 2012 02:05:36 -0800
-From: Ioana Grigoropol <ioanax.grigoropol@intel.com>
-To: yocto@yoctoproject.org
-Date: Tue,  4 Dec 2012 11:55:57 +0200
-Message-Id: <1354614958-14592-2-git-send-email-ioanax.grigoropol@intel.com>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <1354614958-14592-1-git-send-email-ioanax.grigoropol@intel.com>
-References: <1354614958-14592-1-git-send-email-ioanax.grigoropol@intel.com>
-Subject: [PATCH 2/2] Show progress bar for building new Recipe in Bitbake commander perspective
+Return-Path: <koansoftware@gmail.com>
+Received: from mail-lb0-f176.google.com (mail-lb0-f176.google.com
+	[209.85.217.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A2ED8E013F9
+	for <yocto@yoctoproject.org>; Tue,  4 Dec 2012 03:22:27 -0800 (PST)
+Received: by mail-lb0-f176.google.com with SMTP id k6so3388963lbo.35
+	for <yocto@yoctoproject.org>; Tue, 04 Dec 2012 03:22:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=message-id:date:from:reply-to:organization:user-agent:mime-version
+	:to:cc:subject:references:in-reply-to:content-type
+	:content-transfer-encoding;
+	bh=VwMgoShxicOQyzLluLWP/veXYdOYwsjaRhPMdR97JRs=;
+	b=GZkpWZ6tAHpKCc+i6r99S99VKpfxvdYxSg11Zn9iefGyQzVCOkjkAh+nXXLXeasNTM
+	q/5eGnBmIj7Q+nrFrPnxxXTRnogefvrQ0VDK3bVWW0vzd0Z78IF6NIVS9EGuUg0oXcRY
+	01vJdbUsjiWpB5TYlhL/WlAEeNfCn9fpknKS4mcgdTS6BE3xz2JEtVaYYlG/0NRdy6eS
+	u7+njs2hI0ln51bsWeSG6qDJTJRUm1y08sEtgYDbNF218wIOhPpNlCD+MEZcbXVkt81l
+	00adkNOT5joI6JrGW3YlUW+Dbn53x6cn+EQMrcFIQHyu0wSJzCXIEPBsszqOmH779uiV
+	FiYQ==
+Received: by 10.152.104.240 with SMTP id gh16mr12860957lab.56.1354620146081;
+	Tue, 04 Dec 2012 03:22:26 -0800 (PST)
+Received: from [192.168.0.5]
+	(host56-7-static.30-87-b.business.telecomitalia.it. [87.30.7.56])
+	by mx.google.com with ESMTPS id pz9sm487163lab.11.2012.12.04.03.22.23
+	(version=SSLv3 cipher=OTHER); Tue, 04 Dec 2012 03:22:25 -0800 (PST)
+Message-ID: <50BDDCEE.4090902@gmail.com>
+Date: Tue, 04 Dec 2012 12:22:22 +0100
+From: Marco <koansoftware@gmail.com>
+Organization: MC
+User-Agent: Mozilla/5.0 (X11; Linux i686; rv:17.0) Gecko/17.0 Thunderbird/17.0
+MIME-Version: 1.0
+To: "Zhang, Jessica" <jessica.zhang@intel.com>
+References: <50BCBE77.4070700@gmail.com>
+	<C6510F6D410BB64A8C15398EDC6B847C46B67F66@ORSMSX101.amr.corp.intel.com>
+In-Reply-To: <C6510F6D410BB64A8C15398EDC6B847C46B67F66@ORSMSX101.amr.corp.intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Howto use yocto meta-toolchain?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: koansoftware@gmail.com
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -27,236 +46,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Dec 2012 10:05:38 -0000
+X-List-Received-Date: Tue, 04 Dec 2012 11:22:28 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Ioana Grigoropol <ioanax.grigoropol@intel.com>
----
- .../ui/wizards/NewBitBakeFileRecipeWizardPage.java |  119 +++++++++++++-------
- 1 file changed, 78 insertions(+), 41 deletions(-)
+Il 03/12/2012 18:46, Zhang, Jessica ha scritto:
+> Hi Marco,
+>
+> Can you filed a bug about this in bugzilla?  Also, you don't need to sudo to run the install script, if you choose the default location which is /opt/poky/1.3, it'll prompt you for the password, or you can specify a directory under your $HOME dir.  In your bug, can you provide some detail how you build the toolchain, e.g. the local.conf file changes, etc.?
+>
 
-diff --git a/plugins/org.yocto.bc.ui/src/org/yocto/bc/ui/wizards/NewBitBakeFileRecipeWizardPage.java b/plugins/org.yocto.bc.ui/src/org/yocto/bc/ui/wizards/NewBitBakeFileRecipeWizardPage.java
-index e27619e..e9dc1f3 100644
---- a/plugins/org.yocto.bc.ui/src/org/yocto/bc/ui/wizards/NewBitBakeFileRecipeWizardPage.java
-+++ b/plugins/org.yocto.bc.ui/src/org/yocto/bc/ui/wizards/NewBitBakeFileRecipeWizardPage.java
-@@ -11,6 +11,7 @@
-  *******************************************************************************/
- package org.yocto.bc.ui.wizards;
- 
-+import java.lang.reflect.InvocationTargetException;
- import java.net.URI;
- import java.net.URISyntaxException;
- import java.util.ArrayList;
-@@ -27,6 +28,7 @@ import org.eclipse.core.resources.ResourcesPlugin;
- import org.eclipse.core.runtime.IProgressMonitor;
- import org.eclipse.core.runtime.NullProgressMonitor;
- import org.eclipse.core.runtime.Path;
-+import org.eclipse.jface.operation.IRunnableWithProgress;
- import org.eclipse.jface.viewers.ISelection;
- import org.eclipse.jface.viewers.IStructuredSelection;
- import org.eclipse.jface.window.Window;
-@@ -74,6 +76,8 @@ public class NewBitBakeFileRecipeWizardPage extends WizardPage {
- 	private IHost connection;
- 
- 	private String tempFolderPath;
-+	private String srcFileNameExt;
-+	private String srcFileName;
- 
- 	public static final String TEMP_FOLDER_NAME = "temp";
- 	public static final String TAR_BZ2_EXT = ".tar.bz2";
-@@ -98,6 +102,12 @@ public class NewBitBakeFileRecipeWizardPage extends WizardPage {
- 	private static final String md5Pattern = "^[0-9a-f]{32}$";
- 	protected static final String sha256Pattern = "^[0-9a-f]{64}$";
- 
-+	private HashMap<String, String> mirrorTable;
-+	private URI extractDir;
-+	private YoctoCommand licenseChecksumCmd;
-+	protected YoctoCommand md5YCmd;
-+	protected YoctoCommand sha256YCmd;
-+
- 	public NewBitBakeFileRecipeWizardPage(ISelection selection, IHost connection) {
- 		super("wizardPage");
- 		setTitle("BitBake Recipe");
-@@ -300,16 +310,17 @@ public class NewBitBakeFileRecipeWizardPage extends WizardPage {
- 			IProgressMonitor monitor = new NullProgressMonitor();
- 			URI srcURI = new URI(txtSrcURI.getText().trim());
- 			String scheme = srcURI.getScheme();
--			String srcFileName = getSrcFileName(true);
-+			this.srcFileNameExt = getSrcFileName(true);
-+			this.srcFileName = getSrcFileName(false);
- 			if ((scheme.equals(HTTP) || scheme.equals(FTP))
--					&& (srcFileName.endsWith(TAR_GZ_EXT) || srcFileName.endsWith(TAR_BZ2_EXT))) {
-+					&& (srcFileNameExt.endsWith(TAR_GZ_EXT) || srcFileNameExt.endsWith(TAR_BZ2_EXT))) {
- 				try {
- 					handleRemotePopulate(srcURI, monitor);
- 				} catch (Exception e) {
- 					e.printStackTrace();
- 				}
- 			} else {
--				String packageName = getSrcFileName(false).replace("-", "_");
-+				String packageName = srcFileName.replace("-", "_");
- 				fileText.setText(packageName + BB_RECIPE_EXT);
- 
- 				handleLocalPopulate(srcURI, monitor);
-@@ -320,52 +331,78 @@ public class NewBitBakeFileRecipeWizardPage extends WizardPage {
- 	}
- 
- 	private void handleLocalPopulate(URI srcURI, IProgressMonitor monitor) {
--		populateLicenseFileChecksum(srcURI, monitor);
-+		populateLicenseFileChecksum(srcURI);
- 		populateInheritance(srcURI, monitor);
- 	}
- 
--	private void handleRemotePopulate(URI srcURI, IProgressMonitor monitor) throws Exception {
-+	private void handleRemotePopulate(final URI srcURI, IProgressMonitor monitor) throws Exception {
- 		RemoteHelper.clearProcessBuffer(connection);
--
- 		populateRecipeName(srcURI);
--		List<YoctoCommand> commands = new ArrayList<YoctoCommand>();
- 
--		String metaDirLocPath = metaDirLoc.getPath();
--		commands.add(new YoctoCommand("rm -rf " + TEMP_FOLDER_NAME, metaDirLocPath, ""));
--		commands.add(new YoctoCommand( "mkdir " + TEMP_FOLDER_NAME, metaDirLocPath, ""));
--		updateTempFolderPath();
-+		this.getContainer().run(true, true, new IRunnableWithProgress() {
- 
-+			@Override
-+			public void run(IProgressMonitor monitor) throws InvocationTargetException,
-+					InterruptedException {
-+				monitor.beginTask("Populating recipe fields ... ", 100);
-+				List<YoctoCommand> commands = new ArrayList<YoctoCommand>();
- 
--		try {
--			commands.add(new YoctoCommand("wget " + srcURI.toURL(), tempFolderPath, ""));
-+				try {
-+					String metaDirLocPath = metaDirLoc.getPath();
- 
--			updateTempFolderPath();
--			RemoteHelper.runBatchRemote(connection, commands, true);
-+					monitor.subTask("Cleaning environment");
-+					commands.add(new YoctoCommand("rm -rf " + TEMP_FOLDER_NAME, metaDirLocPath, ""));
-+					commands.add(new YoctoCommand( "mkdir " + TEMP_FOLDER_NAME, metaDirLocPath, ""));
-+					updateTempFolderPath();
-+					monitor.worked(10);
- 
--			commands.clear();
-+					monitor.subTask("Downloading package sources");
-+					commands.add(new YoctoCommand("wget " + srcURI.toURL(), tempFolderPath, ""));
- 
--			String md5Cmd = "md5sum " + getSrcFileName(true);
--			YoctoCommand md5YCmd = new YoctoCommand(md5Cmd, tempFolderPath, "");
--			RemoteHelper.runCommandRemote(connection, md5YCmd);
-+					updateTempFolderPath();
-+					RemoteHelper.runBatchRemote(connection, commands, true);
- 
--			String sha256Cmd = "sha256sum " + getSrcFileName(true);
--			YoctoCommand sha256YCmd = new YoctoCommand(sha256Cmd, tempFolderPath, "");
--			RemoteHelper.runCommandRemote(connection, sha256YCmd);
-+					commands.clear();
-+					monitor.worked(50);
- 
--			URI extractDir = extractPackage(srcURI, monitor);
--			YoctoCommand licenseChecksumCmd = populateLicenseFileChecksum(extractDir, monitor);
--			updateSrcUri(createMirrorLookupTable(monitor), srcURI);
--			populateInheritance(extractDir, monitor);
-+					monitor.subTask("Compute package checksums");
-+					String md5Cmd = "md5sum " + srcFileNameExt;
-+					md5YCmd = new YoctoCommand(md5Cmd, tempFolderPath, "");
-+					RemoteHelper.runCommandRemote(connection, md5YCmd);
- 
--			String md5Val = retrieveSum(md5YCmd);
--			md5sumText.setText(Pattern.matches(md5Pattern,  md5Val) ? md5Val : "");
--			String sha256Val = retrieveSum(sha256YCmd);
--			sha256sumText.setText(Pattern.matches(sha256Pattern,  sha256Val) ? sha256Val : "");
--			String checkSumVal =  retrieveSum(licenseChecksumCmd);
--			checksumText.setText(RemoteHelper.createNewURI(extractDir, COPYING_FILE).toString() + ";md5=" + (Pattern.matches(md5Pattern,  checkSumVal) ? checkSumVal : ""));
--		} catch (Exception e) {
--			e.printStackTrace();
--		}
-+					monitor.worked(60);
-+
-+					String sha256Cmd = "sha256sum " + srcFileNameExt;
-+					sha256YCmd = new YoctoCommand(sha256Cmd, tempFolderPath, "");
-+					RemoteHelper.runCommandRemote(connection, sha256YCmd);
-+
-+					monitor.worked(70);
-+
-+					monitor.subTask("Extracting package");
-+					extractDir = extractPackage(srcURI);
-+					monitor.worked(80);
-+
-+					licenseChecksumCmd = populateLicenseFileChecksum(extractDir);
-+
-+					monitor.subTask("Creating mirror lookup table");
-+					mirrorTable = createMirrorLookupTable();
-+
-+					monitor.worked(90);
-+					monitor.done();
-+				} catch (Exception e) {
-+					e.printStackTrace();
-+				}
-+			}
-+		});
-+		updateSrcUri(mirrorTable, srcURI);
-+		populateInheritance(extractDir, monitor);
-+
-+		String md5Val = retrieveSum(md5YCmd);
-+		md5sumText.setText(Pattern.matches(md5Pattern,  md5Val) ? md5Val : "");
-+		String sha256Val = retrieveSum(sha256YCmd);
-+		sha256sumText.setText(Pattern.matches(sha256Pattern,  sha256Val) ? sha256Val : "");
-+		String checkSumVal =  retrieveSum(licenseChecksumCmd);
-+		checksumText.setText(RemoteHelper.createNewURI(extractDir, COPYING_FILE).toString() + ";md5=" + (Pattern.matches(md5Pattern,  checkSumVal) ? checkSumVal : ""));
- 	}
- 
- 	private String retrieveSum(YoctoCommand cmd) {
-@@ -378,9 +415,9 @@ public class NewBitBakeFileRecipeWizardPage extends WizardPage {
- 		return "";
- 	}
- 
--	private URI extractPackage(URI srcURI, IProgressMonitor monitor) {
-+	private URI extractPackage(URI srcURI) {
- 		try {
--			String path = getSrcFileName(true);
-+			String path = srcFileNameExt;
- 			String tarCmd = "tar ";
- 			if (path.endsWith(TAR_BZ2_EXT)) {
- 				tarCmd += "-zxvf ";
-@@ -390,7 +427,7 @@ public class NewBitBakeFileRecipeWizardPage extends WizardPage {
- 
- 			RemoteHelper.runCommandRemote(connection, new YoctoCommand(tarCmd + path, tempFolderPath, ""));
- 
--			return RemoteHelper.createNewURI(metaDirLoc, TEMP_FOLDER_NAME + "/" + getSrcFileName(false));
-+			return RemoteHelper.createNewURI(metaDirLoc, TEMP_FOLDER_NAME + "/" + srcFileName);
- 
- 		} catch (Exception e) {
- 			e.printStackTrace();
-@@ -424,7 +461,7 @@ public class NewBitBakeFileRecipeWizardPage extends WizardPage {
- 		}
- 	}
- 
--	private YoctoCommand populateLicenseFileChecksum(URI extractDir, IProgressMonitor monitor) {
-+	private YoctoCommand populateLicenseFileChecksum(URI extractDir) {
- 		if (extractDir == null)
- 			throw new RuntimeException("Something went wrong during source extraction!");
- 
-@@ -459,7 +496,7 @@ public class NewBitBakeFileRecipeWizardPage extends WizardPage {
- 		return "";
- 	}
- 
--	private HashMap<String, String> createMirrorLookupTable(IProgressMonitor monitor) throws Exception {
-+	private HashMap<String, String> createMirrorLookupTable() throws Exception {
- 		HashMap<String, String> mirrorMap = new HashMap<String, String>();
- 
- 		YoctoCommand cmd = new YoctoCommand("cat " + MIRRORS_FILE, getMetaFolderPath() + CLASSES_FOLDER, "");
-@@ -486,7 +523,7 @@ public class NewBitBakeFileRecipeWizardPage extends WizardPage {
- 		if (!fileName.isEmpty())
- 			return;
- 
--		String recipeFile = getSrcFileName(false).replace("-", "_");
-+		String recipeFile = srcFileName.replace("-", "_");
- 		recipeFile += BB_RECIPE_EXT;
- 		if (recipeFile != null)
- 			fileText.setText(recipeFile);
+Jessica,
+thank you for answering.
+
+Bugzilla classification is different from its documentation.
+Where do you suggest to place my bug?
+https://wiki.yoctoproject.org/wiki/Bugzilla_Configuration_and_Bug_Tracking
+
+
+Actually if I don't sudo to run the install script it doesn't work:
+
+$ tmp/deploy/sdk/poky-eglibc-x86_64-arm-toolchain-1.3.sh
+Enter target directory for SDK (default: /opt/poky/1.3):
+You are about to install the SDK to "/opt/poky/1.3". Proceed[Y/n]?
+Error: Unable to create target directory. Do you have permissions?
+
 -- 
-1.7.9.5
-
+Marco
 
