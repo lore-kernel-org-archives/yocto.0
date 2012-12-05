@@ -1,37 +1,26 @@
-Return-Path: <jfabernathy@gmail.com>
-Received: from mail-gh0-f176.google.com (mail-gh0-f176.google.com
-	[209.85.160.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C8543E0120C
-	for <yocto@yoctoproject.org>; Wed,  5 Dec 2012 12:31:56 -0800 (PST)
-Received: by mail-gh0-f176.google.com with SMTP id g10so932829ghb.35
-	for <yocto@yoctoproject.org>; Wed, 05 Dec 2012 12:31:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=message-id:date:from:user-agent:mime-version:to:cc:subject
-	:references:in-reply-to:content-type:content-transfer-encoding;
-	bh=uyCyfjgDncmhhgmNBDThE/cU4gVOfHQJIgP5hCXJTSI=;
-	b=HUCh7t51t187SpQB040+uzrMFhVBKCCmdWKVs5vG5YnK31hz3CuRvEKP89GTqBSt6Y
-	hOmjoZ0rG20GLB2gi+fJ3Cfzwymy6fpspEc3H8eA0dTzyx0amR9W2jIqbe3o6Kfa9Tcr
-	GjT9DRaxEEQhllRhu3TCbL0/0d+wCEceArk56w+F0Nxei4dAcgsc85smDciNn64/S2ZD
-	JgirV80mc5FBy3UdCc+Zxg0SGD+U5kKfgQLXAGb2wjWVTKkpAxL2z2q8ks5oPhgv0tHq
-	cYT6h0wqe8d0H0KBMRB/jQPc1iIRxl7jxgbzbEXMf1vTFGoDaGNWOoPyOc+eEvvLJ3YB
-	o02Q==
-Received: by 10.236.124.231 with SMTP id x67mr22712732yhh.41.1354739516403;
-	Wed, 05 Dec 2012 12:31:56 -0800 (PST)
-Received: from [192.168.0.54] (cpe-174-097-157-052.nc.res.rr.com.
-	[174.97.157.52])
-	by mx.google.com with ESMTPS id s21sm6254660yhb.5.2012.12.05.12.31.54
-	(version=SSLv3 cipher=OTHER); Wed, 05 Dec 2012 12:31:55 -0800 (PST)
-Message-ID: <50BFAF3C.7090204@gmail.com>
-Date: Wed, 05 Dec 2012 15:31:56 -0500
-From: Jim Abernathy <jfabernathy@gmail.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/17.0 Thunderbird/17.0
+Return-Path: <mark.hatle@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9A64DE006C3
+	for <yocto@yoctoproject.org>; Wed,  5 Dec 2012 13:12:11 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id qB5LCADq020477
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Wed, 5 Dec 2012 13:12:10 -0800 (PST)
+Received: from msp-dhcp50.wrs.com (172.25.34.50) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.2.318.4;
+	Wed, 5 Dec 2012 13:12:10 -0800
+Message-ID: <50BFB8B2.4090702@windriver.com>
+Date: Wed, 5 Dec 2012 15:12:18 -0600
+From: Mark Hatle <mark.hatle@windriver.com>
+Organization: Wind River Systems
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8;
+	rv:16.0) Gecko/20121026 Thunderbird/16.0.2
 MIME-Version: 1.0
-To: Martin Jansa <martin.jansa@gmail.com>
-References: <50BFADD0.20606@gmail.com> <20121205202844.GH3396@jama.jama.net>
-In-Reply-To: <20121205202844.GH3396@jama.jama.net>
-Cc: yocto@yoctoproject.org
-Subject: Re: problems adding extra packages
+To: <yocto@yoctoproject.org>
+References: <36ED13F3654AE54CA763E6821D93A5711048C834@szxeml534-mbx.china.huawei.com>
+In-Reply-To: <36ED13F3654AE54CA763E6821D93A5711048C834@szxeml534-mbx.china.huawei.com>
+Subject: Re: Need for offline binary configuration
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,43 +32,176 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Dec 2012 20:31:57 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+X-List-Received-Date: Wed, 05 Dec 2012 21:12:11 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 12/05/2012 03:28 PM, Martin Jansa wrote:
-> On Wed, Dec 05, 2012 at 03:25:52PM -0500, Jim Abernathy wrote:
->> In the past on denzil, I'd get images working then start adding specific
->> packages like this:
->>
->> LICENSE_FLAGS_WHITELIST = "commercial"
->> CORE_IMAGE_EXTRA_INSTALL ?= "gst-fluendo-mp3"
->> CORE_IMAGE_EXTRA_INSTALL ?= "web-webkit"
->> CORE_IMAGE_EXTRA_INSTALL ?= "myvideos"
->> CORE_IMAGE_EXTRA_INSTALL ?= "myaudios"
-> did you use '+=' before?
+My apologies for the late response.  See below, I'll follow up on your second 
+email as well...
+
+On 11/20/12 9:09 AM, Venkata ramana gollamudi wrote:
+> Poky allows to build custom Linux for you, but we have cases where the post
+> build customization is required, like user-addition, network configuration,
+> service control. Even selecting the required packages can be a post build activity.
+
+One of the objectives that we are currently working toward is being able to 
+start with the package feed (doesn't matter if it's rpm, deb or ipk files), 
+generate a rootfs, configure the rootfs and then deploy the rootfs into an image.
+
+The above should be able to be done on both a cross-configured environment or on 
+the target via a traditional installer like mechanism.
+
+> The current model requires the image to be rebuilt to support these configuration.
+
+The current model can avoid many of the tasks associated with the build by using 
+sstate-cache, but I agree that is not optimal for users who want to start with a 
+known set of binaries and then tailor from that point.  (This includes users 
+expecting a more traditional Linux install experience or users who need 
+immutable software from an upstream vendor.)
+
+> Offline Configuration tool (OCT), which allows a binary image customization
+> before making a final target image. This case will be more evident in larger
+> companies, where platform teams, product teams , application teams are
+> distributed and Linux build from source will be owned and lab tested by a single
+> team, like platform team. Other teams just configure to use it for product
+> variants from same platform build.
+
+This was factored into the work we are doing.  I know many companies have an 
+outside OSV that provides the build environment, support, etc.. and they feed 
+into an Operating Systems group (or similar).  This group then prepares the 
+software according to the corporate guidelines (license restrictions, quality 
+assurance, etc) and repackages it for consumption by others in the organization. 
+  Often time the output of the Operating System group is either a blessed source 
+based system -- or a set of binaries that are blessed as being in conformance 
+with that companies guidelines.  This process repeats through the platform group 
+and even individual projects -- with the eventual output being a product image 
+including the blessed binaries, custom applications and configurations -- and a 
+matching SDK.
+
+> Detailed use cases can be found in enhancement bug:3252
 >
-> Cheers,
-You'd think by now, my keyboard would know to put the + and not the ?.  :-)
+> OCT should work on the binary pool of compiled packages generated from poky.
+>
+> The basic operations that can be supported includes
 
-Thanks for spotting that. I looked right past it.
+For the next section, I'm going to assume the pool of binary packages is what we 
+refer to as the package feeds in OpenEmbedded.  This is simple a collection of 
+binary packages that have been built from the build system that can be used to 
+construct the rootfs.  Each package feed is constructed based on a single 
+"distribution" configuration file which sets the policies for the packages in 
+the feed and distribution wide options, such as selinux, pam, etc.
 
-Jim A
+> a) Select/deselect required packages from pool of binary packages into final target image.
 
->> Today, I got chiefriver bsp working on my hardware and then wanted to
->> add my video and audio files into the image along with extra software.
->> It didn't get added and the image is basically the same size. No errors
->> on just bitbaking again.  I was trying to avoid deleting tmp and
->> starting over again.  Has something changed with Danny?
->>
->> Along with the CORE_IMAGE_EXTRA_INSTALL additions, I added my layer in
->> bblayer.conf to pick up myvideos, etc.
->>
->> Jim A
->>
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
+The above is definitely considered in the work we've been talking about.  This 
+will require software that will take a list of the available items in the feed, 
+present the user/developer with a way to enable the components they want on the 
+target.  (Note, there is an inherit requirement here that dependencies also be 
+met, so things the user/developer may not have selected will either have to be 
+installed to meet dependencies or will have to generate an error that 
+dependencies can't be met.)
+
+> b) Provision to select external binary packages like ADT compiled applications as input and add them to final target image.
+
+As long as the external package is in the same format as the rest of the feeds, 
+this should be easy to do.  And I certainly expect that it will be needed.
+
+> c) Binary level Offline configuration can includes
+>        Configure the users/passwords
+>        Configure the network
+>        Configure the host name
+>        Select the services to be started by default
+
+The above are things we've talked about, but I don't believe there have been any 
+formal plans to implement them at this time.  The components necessary for the 
+binary package based install -> rootfs generation have taken up most of our 
+planning time at this point.
+
+One thing I would love to see is a set of standard components (or a framework) 
+that could be used for this type of configuration.  But I believe it's very 
+important that the configuration work both within the OpenEmbedded environment 
+and externally in the "installer" like environment.
+
+>        Security related configuration
+
+This is something that I don't believe has really been addressed at all, but 
+like the above we need a way to implement it.
+
+>        Generate initrd in ramfs/ext3/... format
+>        etc..
+
+We are already considering how to go from rootfs to deployable image.  initrd 
+just happens to be one of many potential image types.  We've specified hard disk 
+image (partition map, bootloader, individual partitions that comprise one or 
+more rootfs).  A flash based image -- instruction for flashing, and individual 
+flash 'partitions' that will work similarly to the hard drive.  A CD/DVD/USB 
+based bootable system.  And finally as a component of these an initrd rootfs 
+that can be used as a component of the others are separately to instantiate the 
+system before handing off control to one of the other types.
+
+We have a huge advantage in OE that we can generate multiple rootfses from a 
+given distribution configuration, we just don't currently have the tooling to 
+put those rootfses together into the various images.  I know Darren Hart at 
+Intel is working on some of the ground work for the hard disk style images.
+
+> Considering the methods to support these in our current yocto model, following changes can be done.
+
+The first thing we would like to see is a -single- rootfs creation model for all 
+of the modes.  Build system, cross-install, and target-based-install.  The way 
+that I'm approaching this right now is by attempting to abstract out just the 
+rootfs generation capabilities within the current build system.  The intention 
+is that you will be able to access interfaces to get a list of whats available 
+to be installed, (what may be already installed,) a way to pass what to install 
+and where to the environment.  Then the same code will be executed to perform 
+these actions.  The actions will be designed to be package type agnostic as well.
+
+Early R&D work is going on there, just to see if I can come up with something 
+reasonable.
+
+> 1) HOB can be the tool which can be extended to support these
+>      Poky can generate a binary package pool as one if its output and Hob can work on this package pool to select packages, configure and generate image.
+> So HOB can support opening HOB in Binary(or OCT) mode i.e., without build options but only with binary package selection. Configuration GUI needs to be added to HOB.
+> Note:HOB+OCT is together or separate, needs a bit more thought and overall organization as they will be intended for different users.
+
+I'm not sure HOB itself is the right tool for this, but there are certainly 
+facets of HOB that would be needed in this kind of tool.  The package selection, 
+etc.
+
+> 2) Binary package pool can be a minimal/partial sstate-cache, as complete sstate-cache is quite big and not required for product teams as they are not expected to build but just need to select and configure.
+>      I think it is sufficient to keep the minimal binaries from sstate-cache which are required to execute image.bbclass, do_rootfs task to generate image.
+
+There are multiple steps of binary package pool, each I think are valid.  For 
+someone wanting a source based system, with prebuilt binaries that can be 
+locally modified -- sstate-cache is by far the best way to do this.  For an 
+applications group that needs to generate images and SDKs, but is never allowed 
+to use anything but the corporate blessed binary packages, a different mechanism 
+(package based) is likely what is needed.  There is a lot of area though where 
+either method may be needed (or desired).
+
+My experience shows people familiar with traditional workstation based systems 
+prefer the binary RPM approach, while hard-core embedded developers prefer 
+source based systems.  The reality is the world has fewer hard-code embedded 
+developers and more folks used to the traditional environments, add to that the 
+capabilities of today's embedded systems and it makes sense for a lot of people 
+to start with blessed binaries, tailored for embedded systems, and simple add 
+their integration of applications and configurations after.
+
+> 3) Along with specific configuration UI implementation, a generic configuration model similar to kernel kconfig and menuconfig can be considered, in cases where more detailed offline configurations is required like detailed security configuration.
+
+This is absolutely need, but I think we need to get the general rootfs 
+generation working and figured out before we spend too much time on this. 
+However, if this is a high priority for you, it may make sense to start working 
+on configuration.  This is something that is definitely needed, and I don't 
+believe anyone is actively working on.
+
+--Mark
+
+> Regards,
+> Ramana
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
 
