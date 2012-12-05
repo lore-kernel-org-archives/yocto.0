@@ -1,41 +1,26 @@
-Return-Path: <wd@denx.de>
-Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.10])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7D4F4E0120C
-	for <yocto@yoctoproject.org>; Wed,  5 Dec 2012 05:14:50 -0800 (PST)
-Received: from frontend1.mail.m-online.net (frontend1.mail.intern.m-online.net
-	[192.168.8.180])
-	by mail-out.m-online.net (Postfix) with ESMTP id 3YGgQc51qBz3hhZC;
-	Wed,  5 Dec 2012 14:14:48 +0100 (CET)
-Received: from localhost (dynscan1.mnet-online.de [192.168.6.68])
-	by mail.m-online.net (Postfix) with ESMTP id 3YGgQb6qtCzbbfv;
-	Wed,  5 Dec 2012 14:14:47 +0100 (CET)
-X-Virus-Scanned: amavisd-new at mnet-online.de
-Received: from smtp-auth.mnet-online.de ([192.168.8.180])
-	by localhost (dynscan1.mail.m-online.net [192.168.6.68]) (amavisd-new,
-	port 10024)
-	with ESMTP id joiO4e85FnKf; Wed,  5 Dec 2012 14:14:46 +0100 (CET)
-X-Auth-Info: 1o/QwJoaZyYiiuCYqZq5TZdS/GP0sUu2oc4Lm72ckPI=
-Received: from diddl.denx.de (host-80-81-18-216.customer.m-online.net
-	[80.81.18.216]) by smtp-auth.mnet-online.de (Postfix) with ESMTPA;
-	Wed,  5 Dec 2012 14:14:46 +0100 (CET)
-Received: from gemini.denx.de (unknown [10.0.0.2])
-	by diddl.denx.de (Postfix) with ESMTP id CA7B21A6DE0;
-	Wed,  5 Dec 2012 14:14:46 +0100 (CET)
-Received: from gemini.denx.de (localhost [IPv6:::1])
-	by gemini.denx.de (Postfix) with ESMTP id BE7A2200FF2;
-	Wed,  5 Dec 2012 14:14:46 +0100 (CET)
+Return-Path: <andreas@schweigstill.de>
+Received: from kitz.schweigstill.de (kitz.schweigstill.de [195.244.237.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D1AA1E0120C
+	for <yocto@yoctoproject.org>; Wed,  5 Dec 2012 05:21:26 -0800 (PST)
+Received: from mailserver (192.168.16.41) by mail-extern (Axigen)
+	with (AES256-SHA encrypted) ESMTPS id 243CCE;
+	Wed, 5 Dec 2012 14:21:26 +0100
+Received: from mailserver (127.0.0.1) by mailserver (Axigen)
+	with ESMTPSA id 0D8E12; Wed, 5 Dec 2012 14:21:25 +0100
+Received: from [80.246.32.33] by schweigstill.de with HTTP;
+	Wed, 5 Dec 2012 14:21:25 +0100
+From: Andreas Schweigstill <andreas@schweigstill.de>
+Date: Wed, 5 Dec 2012 14:21:25 +0100
+X-Mailer: Axigen WebMail
 To: yocto@yoctoproject.org
-From: Wolfgang Denk <wd@denx.de>
+Message-ID: <1354713685799908500@schweigstill.de>
+Importance: Normal
 MIME-Version: 1.0
-In-reply-to: <20121205123818.C17EB200FF2@gemini.denx.de>
-References: <20121203124234.6327B200FF8@gemini.denx.de>
-	<20121205123818.C17EB200FF2@gemini.denx.de>
-Comments: In-reply-to Wolfgang Denk <wd@denx.de>
-	message dated "Wed, 05 Dec 2012 13:38:18 +0100."
-Date: Wed, 05 Dec 2012 14:14:46 +0100
-Message-Id: <20121205131446.BE7A2200FF2@gemini.denx.de>
-Cc: hs@denx.de
-Subject: Re: sysroot for use with GDB
+X-AxigenSpam-Level: 1
+X-CTCH-RefID: str=0001.0A0C0202.50BF4A56.0065,ss=1,fgs=0
+X-CTCH-VOD: Unknown
+X-CTCH-Spam: Unknown
+Subject: Re: mail list for Xilinx Zynq platform?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,28 +32,62 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Dec 2012 13:14:50 -0000
-Content-type: text/plain; charset=UTF-8
-Content-transfer-encoding: 8bit
+X-List-Received-Date: Wed, 05 Dec 2012 13:21:27 -0000
+Content-Type: text/plain;	charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
 
-Hello,
+Hello!
 
-In message <20121205123818.C17EB200FF2@gemini.denx.de> I wrote:
-> 
-> OK, guess I should enter a bug in bugzilla, then?
+> I personally have used Philip's meta-zynq layer to build a working u-boot=
+ and=20
+> linux kernel image using Yocto. It works really well.
 
-Done that; please see Bug 3540 - remote target debugging broken
+I have also tried to build a kernel and root filesystem for Zynq but the ke=
+rnel
+gets stuck when booting, regardless if on the ZC702 board or on Qemu. I tri=
+ed
+Poky denzil and Poky danny.
 
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=3540
+Also the alternate meta-zynq layer from git.yoctoproject.org shows the same
+behaviour.
 
-Best regards,
+These are the last console messages which I get:
+## Booting kernel from Legacy Image at 01000000 ...
+   Image Name:   Linux-3.2.11-yocto-standard
+   Created:      2012-12-04  20:07:37 UTC
+   Image Type:   ARM Linux Kernel Image (uncompressed)
+   Data Size:    2997472 Bytes =3D 2.9 MiB
+   Load Address: 00008000
+   Entry Point:  00008000
+   Verifying Checksum ... OK
+## Flattened Device Tree blob at 01a80000
+   Booting using the fdt blob at 0x1a80000
+   Loading Device Tree to 0eff8000, end 0efff185 ... OK
+   Loading Kernel Image ... OK
+OK
+   Loading Device Tree to 0efed000, end 0eff7185 ... OK
 
-Wolfgang Denk
+Starting kernel ...
 
--- 
-DENX Software Engineering GmbH,     MD: Wolfgang Denk & Detlev Zundel
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-Phone: (+49)-8142-66989-10 Fax: (+49)-8142-66989-80 Email: wd@denx.de
-I can type faster than I can move a  mouse,  so  I  find  menu-driven
-drawing packages time consuming and frustrating.      - W. R. Stevens
+
+Instead of using Linux kernel version 3.5-xilinx I always get
+Linux-3.2.11-yocto-standard which is obviously missing the
+Zynq patches.
+
+meta-zynq/recipes-kernel-linux-zynq contains the following lines:
+LINUX_VERSION ?=3D "3.5"
+LINUX_VERSION_EXTENSION ?=3D "-xilinx"
+
+How can I force Yocto to build kernel 3.5-xilinx?
+
+With best regards,
+Andreas Schweigstill
+
+=E2=80=8B--=20
+Dipl.-Phys. Andreas Schweigstill=20
+Schweigstill IT | Embedded Systems=20
+Schauenburgerstra=C3=9Fe 116, D-24118 Kiel, Germany=20
+Phone: (+49) 431 530354-35, Fax: (+49) 431 530354-36=20
+Mobile: (+49) 171 6921973, Web: http://www.schweigstill.de/=20
 
