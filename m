@@ -1,27 +1,19 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6399FE0120C
-	for <yocto@yoctoproject.org>; Wed,  5 Dec 2012 06:46:39 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id qB5EkbKs014635
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 5 Dec 2012 06:46:37 -0800 (PST)
-Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.2.318.4;
-	Wed, 5 Dec 2012 06:46:35 -0800
-Message-ID: <50BF5E45.7010100@windriver.com>
-Date: Wed, 5 Dec 2012 09:46:29 -0500
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:16.0) Gecko/20121028 Thunderbird/16.0.2
-MIME-Version: 1.0
-To: Elvis Dowson <elvis.dowson@gmail.com>
-References: <1354713685799908500@schweigstill.de>
-	<96350C20-3499-4549-9B3F-DA51BF2875D7@gmail.com>
-In-Reply-To: <96350C20-3499-4549-9B3F-DA51BF2875D7@gmail.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: mail list for Xilinx Zynq platform?
+Return-Path: <ioanax.grigoropol@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6BA6AE00498
+	for <yocto@yoctoproject.org>; Wed,  5 Dec 2012 08:32:01 -0800 (PST)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga101.ch.intel.com with ESMTP; 05 Dec 2012 08:32:01 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.84,223,1355126400"; d="scan'208";a="176531965"
+Received: from ideapad (HELO localhost.localdomain) ([10.237.105.148])
+	by AZSMGA002.ch.intel.com with ESMTP; 05 Dec 2012 08:31:59 -0800
+From: Ioana Grigoropol <ioanax.grigoropol@intel.com>
+To: yocto@yoctoproject.org
+Date: Wed,  5 Dec 2012 18:22:15 +0200
+Message-Id: <1354724537-28013-1-git-send-email-ioanax.grigoropol@intel.com>
+X-Mailer: git-send-email 1.7.9.5
+Subject: [PATCH 0/2] [eclipse-poky-windows] Fix validation & command running on Linux
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,86 +25,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Dec 2012 14:46:39 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 05 Dec 2012 16:32:01 -0000
 
-On 12-12-05 09:42 AM, Elvis Dowson wrote:
-> Hi,
->
-> On Dec 5, 2012, at 5:21 PM, Andreas Schweigstill <andreas@schweigstill.de> wrote:
->
->> I have also tried to build a kernel and root filesystem for Zynq but the kernel
->> gets stuck when booting, regardless if on the ZC702 board or on Qemu. I tried
->> Poky denzil and Poky danny.
->>
->> Also the alternate meta-zynq layer from git.yoctoproject.org shows the same
->> behaviour.
->>
->> These are the last console messages which I get:
->> ## Booting kernel from Legacy Image at 01000000 ...
->>    Image Name:   Linux-3.2.11-yocto-standard
->>    Created:      2012-12-04  20:07:37 UTC
->>    Image Type:   ARM Linux Kernel Image (uncompressed)
->>    Data Size:    2997472 Bytes = 2.9 MiB
->>    Load Address: 00008000
->>    Entry Point:  00008000
->>    Verifying Checksum ... OK
->> ## Flattened Device Tree blob at 01a80000
->>    Booting using the fdt blob at 0x1a80000
->>    Loading Device Tree to 0eff8000, end 0efff185 ... OK
->>    Loading Kernel Image ... OK
->> OK
->>    Loading Device Tree to 0efed000, end 0eff7185 ... OK
->>
->> Starting kernel ...
->>
->>
->> Instead of using Linux kernel version 3.5-xilinx I always get
->> Linux-3.2.11-yocto-standard which is obviously missing the
->> Zynq patches.
->>
->> meta-zynq/recipes-kernel-linux-zynq contains the following lines:
->> LINUX_VERSION ?= "3.5"
->> LINUX_VERSION_EXTENSION ?= "-xilinx"
->>
->> How can I force Yocto to build kernel 3.5-xilinx?
->>
->
->  From you messages, I infer that you are using the meta-zynq layer
-> located here:
->
-> http://git.yoctoproject.org/cgit/cgit.cgi/meta-zynq/
->
-> For my builds, I used Philip Ballister's meta-zynq layer located here
-> for the simple reason that it uses xilinx git repository:
->
-> https://github.com/balister/meta-zynq
+- Skip validating an existing git repo and only perform some "sanity" checks
+- When waiting for a command to finish executing do not use the command prompt because it can change depending on the target & the connection; instead use a terminator  to mark the end of the command execution
+- When running from Linux and using a Local connection, after restarting Eclipse RSE does not find the connection - fix it by manually checking for the localhost connection
 
-And in case anyone is wondering, efforts are (still) underway to
-get a single unified layer for this board (and others), but getting
-all the moving parts organized is taking a bit longer than expected
-or than we would like.
+Ioana Grigoropol (2):
+  Remove validation for existing git repository
+  Fix synchronous waiting for command prompt in Linux & connection lost
+    when restarting
 
-Cheers,
+ .../src/org/yocto/bc/bitbake/BBSession.java        |    2 +
+ .../src/org/yocto/bc/bitbake/ShellSession.java     |   24 ++----
+ .../yocto/bc/remote/utils/ProcessStreamBuffer.java |   14 ++--
+ .../org/yocto/bc/remote/utils/RemoteHelper.java    |   14 ++--
+ .../remote/utils/YoctoHostShellProcessAdapter.java |   28 +------
+ .../src/org/yocto/bc/ui/Activator.java             |   79 ++++++--------------
+ .../src/org/yocto/bc/ui/model/ProjectInfo.java     |    4 +
+ .../bc/ui/wizards/NewBitBakeFileRecipeWizard.java  |    7 +-
+ .../ui/wizards/NewBitBakeFileRecipeWizardPage.java |   15 ++--
+ .../yocto/bc/ui/wizards/install/OptionsPage.java   |   10 +--
+ 10 files changed, 65 insertions(+), 132 deletions(-)
 
-Bruce
-
->
-> Also, try to ensure that you don't put both the meta-layers in your bblayers.conf file
-> while building, and ensure that you set machine as follows in your local.conf file
->
-> MACHINE ?= "zynq-zc702"
->
-> Do let me know how it goes!
->
-> Best regards,
->
-> Elvis Dowson
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+-- 
+1.7.9.5
 
 
