@@ -1,25 +1,25 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B04EAE006C3
-	for <yocto@yoctoproject.org>; Wed,  5 Dec 2012 08:39:34 -0800 (PST)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 05 Dec 2012 08:39:17 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,223,1355126400"; d="scan'208";a="226997835"
-Received: from unknown (HELO helios.localnet) ([10.252.122.253])
-	by azsmga001.ch.intel.com with ESMTP; 05 Dec 2012 08:39:16 -0800
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Kevin Strasser <kevin.strasser@linux.intel.com>
-Date: Wed, 05 Dec 2012 16:39:15 +0000
-Message-ID: <2654428.AjfVxLn95U@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.9.3 (Linux/3.5.0-19-generic; KDE/4.9.3; i686; ; )
-In-Reply-To: <bf3576dbca148b536d87be72e5f972af999b7c5a.1354575672.git.kevin.strasser@linux.intel.com>
-References: <cover.1354575672.git.kevin.strasser@linux.intel.com>
-	<bf3576dbca148b536d87be72e5f972af999b7c5a.1354575672.git.kevin.strasser@linux.intel.com>
+Return-Path: <philip@balister.org>
+Received: from sanddollar.geekisp.com (sanddollar.geekisp.com
+	[216.168.135.167])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id F24C5E006C3
+	for <yocto@yoctoproject.org>; Wed,  5 Dec 2012 10:15:28 -0800 (PST)
+Received: (qmail 8363 invoked by uid 1003); 5 Dec 2012 18:15:26 -0000
+Received: from unknown (HELO ?10.16.24.84?) (philip@opensdr.com@157.22.28.10)
+	by mail.geekisp.com with (DHE-RSA-AES256-SHA encrypted) SMTP;
+	5 Dec 2012 18:15:26 -0000
+Message-ID: <50BF8F3C.7090609@balister.org>
+Date: Wed, 05 Dec 2012 10:15:24 -0800
+From: Philip Balister <philip@balister.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/17.0 Thunderbird/17.0
 MIME-Version: 1.0
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
+References: <1354713685799908500@schweigstill.de>
+	<96350C20-3499-4549-9B3F-DA51BF2875D7@gmail.com>
+	<50BF5E45.7010100@windriver.com>
+In-Reply-To: <50BF5E45.7010100@windriver.com>
 Cc: yocto@yoctoproject.org
-Subject: Re: [meta-baryon][PATCH 1/1] proftpd: conditionally remove /usr/libexec
+Subject: Re: mail list for Xilinx Zynq platform?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,47 +31,105 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Dec 2012 16:39:34 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Wed, 05 Dec 2012 18:15:29 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Monday 03 December 2012 15:22:42 Kevin Strasser wrote:
-> As of poky commit id 1d18224b24a515a07170ce36dbd725cb203d3300
-> libexecdir has been changed to ${libdir}/${BPN} which is typically
-> /usr/lib. This change introduces a check to see if /usr/libexec is
-> being used before attempting to remove it.
-> 
-> Fixes [YOCTO #3504]
-> 
-> Signed-off-by: Kevin Strasser <kevin.strasser@linux.intel.com>
-> ---
->  recipes-extended/proftpd/proftpd_1.3.4b.bb |    5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
-> 
-> diff --git a/recipes-extended/proftpd/proftpd_1.3.4b.bb
-> b/recipes-extended/proftpd/proftpd_1.3.4b.bb index 8ebafbf..2b2b4e2 100644
-> --- a/recipes-extended/proftpd/proftpd_1.3.4b.bb
-> +++ b/recipes-extended/proftpd/proftpd_1.3.4b.bb
-> @@ -34,7 +34,10 @@ FTPGROUP = "ftp"
-> 
->  do_install () {
->  	oe_runmake DESTDIR=${D} install
-> -	rmdir ${D}${libexecdir} ${D}${libdir}/proftpd ${D}${datadir}/locale
-> +	rmdir ${D}${libdir}/proftpd ${D}${datadir}/locale
-> +	if [ -d ${D}/usr/libexec ] ; then
-> +		rmdir ${D}/usr/libexec
-> +	fi
->  	sed -i '/ *User[ \t]*/s/ftp/${FTPUSER}/' ${D}${sysconfdir}/proftpd.conf
->  	sed -i '/ *Group[ \t]*/s/ftp/${FTPGROUP}/' ${D}${sysconfdir}/proftpd.conf
->  	install -d ${D}${sysconfdir}/init.d
+On 12/05/2012 06:46 AM, Bruce Ashfield wrote:
+> On 12-12-05 09:42 AM, Elvis Dowson wrote:
+>> Hi,
+>>
+>> On Dec 5, 2012, at 5:21 PM, Andreas Schweigstill
+>> <andreas@schweigstill.de> wrote:
+>>
+>>> I have also tried to build a kernel and root filesystem for Zynq but
+>>> the kernel
+>>> gets stuck when booting, regardless if on the ZC702 board or on Qemu.
+>>> I tried
+>>> Poky denzil and Poky danny.
+>>>
+>>> Also the alternate meta-zynq layer from git.yoctoproject.org shows
+>>> the same
+>>> behaviour.
+>>>
+>>> These are the last console messages which I get:
+>>> ## Booting kernel from Legacy Image at 01000000 ...
+>>>    Image Name:   Linux-3.2.11-yocto-standard
+>>>    Created:      2012-12-04  20:07:37 UTC
+>>>    Image Type:   ARM Linux Kernel Image (uncompressed)
+>>>    Data Size:    2997472 Bytes = 2.9 MiB
+>>>    Load Address: 00008000
+>>>    Entry Point:  00008000
+>>>    Verifying Checksum ... OK
+>>> ## Flattened Device Tree blob at 01a80000
+>>>    Booting using the fdt blob at 0x1a80000
+>>>    Loading Device Tree to 0eff8000, end 0efff185 ... OK
+>>>    Loading Kernel Image ... OK
+>>> OK
+>>>    Loading Device Tree to 0efed000, end 0eff7185 ... OK
+>>>
+>>> Starting kernel ...
+>>>
+>>>
+>>> Instead of using Linux kernel version 3.5-xilinx I always get
+>>> Linux-3.2.11-yocto-standard which is obviously missing the
+>>> Zynq patches.
+>>>
+>>> meta-zynq/recipes-kernel-linux-zynq contains the following lines:
+>>> LINUX_VERSION ?= "3.5"
+>>> LINUX_VERSION_EXTENSION ?= "-xilinx"
+>>>
+>>> How can I force Yocto to build kernel 3.5-xilinx?
+>>>
+>>
+>>  From you messages, I infer that you are using the meta-zynq layer
+>> located here:
+>>
+>> http://git.yoctoproject.org/cgit/cgit.cgi/meta-zynq/
+>>
+>> For my builds, I used Philip Ballister's meta-zynq layer located here
+>> for the simple reason that it uses xilinx git repository:
+>>
+>> https://github.com/balister/meta-zynq
+>
+> And in case anyone is wondering, efforts are (still) underway to
+> get a single unified layer for this board (and others), but getting
+> all the moving parts organized is taking a bit longer than expected
+> or than we would like.
 
-Applied, thanks. I've also sent this over to be applied to meta-networking.
+Thanks! Should we go ahead and set the list up so interested parties can 
+start coordinating our existing work?
 
-Cheers,
-Paul
+Philip
 
--- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
+>
+> Cheers,
+>
+> Bruce
+>
+>>
+>> Also, try to ensure that you don't put both the meta-layers in your
+>> bblayers.conf file
+>> while building, and ensure that you set machine as follows in your
+>> local.conf file
+>>
+>> MACHINE ?= "zynq-zc702"
+>>
+>> Do let me know how it goes!
+>>
+>> Best regards,
+>>
+>> Elvis Dowson
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>>
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
 
