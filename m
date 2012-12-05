@@ -1,13 +1,13 @@
 Return-Path: <philip@balister.org>
 Received: from starfish.geekisp.com (starfish.geekisp.com [216.168.135.166])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id D2F97E006C3
-	for <yocto@yoctoproject.org>; Wed,  5 Dec 2012 10:17:57 -0800 (PST)
-Received: (qmail 9294 invoked by uid 1003); 5 Dec 2012 18:17:57 -0000
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id 376FEE006C6
+	for <yocto@yoctoproject.org>; Wed,  5 Dec 2012 10:23:17 -0800 (PST)
+Received: (qmail 10382 invoked by uid 1003); 5 Dec 2012 18:23:16 -0000
 Received: from unknown (HELO ?10.16.24.84?) (philip@opensdr.com@157.22.28.10)
 	by mail.geekisp.com with (DHE-RSA-AES256-SHA encrypted) SMTP;
-	5 Dec 2012 18:17:57 -0000
-Message-ID: <50BF8FD4.2070207@balister.org>
-Date: Wed, 05 Dec 2012 10:17:56 -0800
+	5 Dec 2012 18:23:16 -0000
+Message-ID: <50BF9113.9070300@balister.org>
+Date: Wed, 05 Dec 2012 10:23:15 -0800
 From: Philip Balister <philip@balister.org>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:17.0) Gecko/17.0 Thunderbird/17.0
@@ -28,7 +28,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Dec 2012 18:17:58 -0000
+X-List-Received-Date: Wed, 05 Dec 2012 18:23:17 -0000
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
@@ -41,6 +41,14 @@ On 12/05/2012 05:21 AM, Andreas Schweigstill wrote:
 > I have also tried to build a kernel and root filesystem for Zynq but the kernel
 > gets stuck when booting, regardless if on the ZC702 board or on Qemu. I tried
 > Poky denzil and Poky danny.
+
+Also, try these instructions. Note they do not use the meta-yocto shim 
+layer (sorry, my customer has been taunting me again).
+
+I feel like the meta-yocto layer is "forcing" the use of "standard" kernels.
+
+Philip
+
 >
 > Also the alternate meta-zynq layer from git.yoctoproject.org shows the same
 > behaviour.
@@ -73,16 +81,6 @@ On 12/05/2012 05:21 AM, Andreas Schweigstill wrote:
 > LINUX_VERSION_EXTENSION ?= "-xilinx"
 >
 > How can I force Yocto to build kernel 3.5-xilinx?
-
-Urg, I'll have to take a look at that.
-
-Also, you'll need an updated fsbl in the BOOT.BIN file to work with the 
-later kernels. We should probably post one somewhere, although I wish 
-the fsbl license was a little less restrictive.
-
-Philip
-
-
 >
 > With best regards,
 > Andreas Schweigstill
