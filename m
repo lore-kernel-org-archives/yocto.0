@@ -1,38 +1,36 @@
-Return-Path: <peachj@lexmark.com>
-Received: from exprod8og102.obsmtp.com (exprod8og102.obsmtp.com [64.18.3.84])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E7694E01275
-	for <yocto@yoctoproject.org>; Wed,  5 Dec 2012 05:22:35 -0800 (PST)
-Received: from mail-qc0-f200.google.com ([209.85.216.200]) (using TLSv1) by
-	exprod8ob102.postini.com ([64.18.7.12]) with SMTP
-	ID DSNKUL9Km2WDqWoxkQkw/ECrdOSpkbZWzpKN@postini.com;
-	Wed, 05 Dec 2012 05:22:36 PST
-Received: by mail-qc0-f200.google.com with SMTP id l42so7972113qco.11
-	for <yocto@yoctoproject.org>; Wed, 05 Dec 2012 05:22:34 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:content-type:x-gm-message-state;
-	bh=dKqSeUu9qLAezHN80vb4yOGzUfytzY7nnqTTDOpZSuk=;
-	b=TpB3ZbVvp+3k8Zsjks9ME2wmrlmQ+FC4KYPtQf5kOCASYBXSBrKGQjSaXSO3s5hWQc
-	Y74DbAPTSFMo5r3bytiMwIHS10Y22eAwFWIT9dN+XihTfq1Nm74AlJTWqGjeN0oM3lsD
-	R8udh62O+vG/UPTWoCdnBla02DWMBYch59x/ep5DbSEqt6pEz+fUp9jpbHSYM0yXomMS
-	b4XIb04yX/fzHKHVfj9u/tbG7g0ZEdnfD4sxDRIDWqhb4MJiZ0vn11EdBeVqDIIy+xMp
-	4CNITSbjoRLEcx8qkDHE2yhgVYgcfKOpBH9qhVUSSGbY3kT5MZNtZ/F/R2HHy/VM1Tca
-	tFDg==
-Received: by 10.224.180.10 with SMTP id bs10mr27356448qab.53.1354713754549;
-	Wed, 05 Dec 2012 05:22:34 -0800 (PST)
-MIME-Version: 1.0
-Received: by 10.224.180.10 with SMTP id bs10mr27356427qab.53.1354713754310;
-	Wed, 05 Dec 2012 05:22:34 -0800 (PST)
-Received: by 10.49.48.196 with HTTP; Wed, 5 Dec 2012 05:22:34 -0800 (PST)
-In-Reply-To: <CA+QkY1Ai5xukjvH-yt_0O=z8VNjnTT3_4edBJTs1N5J6RZnVTg@mail.gmail.com>
-References: <CA+QkY1Ai5xukjvH-yt_0O=z8VNjnTT3_4edBJTs1N5J6RZnVTg@mail.gmail.com>
-Date: Wed, 5 Dec 2012 08:22:34 -0500
-Message-ID: <CA+QkY1CUk5C6Y_rBY-zgTizS68GfaWeWES44LKeiWUS=ZSX1bg@mail.gmail.com>
-From: Jerrod Peach <peachj@lexmark.com>
-To: yocto <yocto@yoctoproject.org>
-X-Gm-Message-State: ALoCoQlr4nA16803e2iqfQlIy0Vf9yatVWXPs3+L70vwlCFGySx150wLt+MulfN78MHRRvXe08eOjLEAaCr1Vz8ZmxYmbdkGJQFtPEfrws3LOd1xi/mZdTK7uxeQVxMvBqsGC7NRcg1IdGfU0/ebS8k5QA7CxMLcTA==
-Subject: Re: recrdeptask not working correctly?
+Return-Path: <elvis.dowson@gmail.com>
+Received: from mail-pa0-f48.google.com (mail-pa0-f48.google.com
+	[209.85.220.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B81E0E0120C
+	for <yocto@yoctoproject.org>; Wed,  5 Dec 2012 06:42:19 -0800 (PST)
+Received: by mail-pa0-f48.google.com with SMTP id fa1so3560239pad.35
+	for <yocto@yoctoproject.org>; Wed, 05 Dec 2012 06:42:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=content-type:mime-version:subject:from:in-reply-to:date:cc
+	:content-transfer-encoding:message-id:references:to:x-mailer;
+	bh=vd/0vcKIq77/rWwnmUOTKcyy362wlP2kqtmGiq2tOUU=;
+	b=uMO4K3NB35PcQVIKh6IjWLk0Sz0qYc7YH1U0HmeJvwEGJEx0vikKewoXKPhCfIp5t2
+	THi9zA56qYmx9EA+5hXfodCNyQt6b/y8mFg9+ZVlo5EsZ+xJ3cEoY+zBZ4ygxJMWWwqe
+	1cuSf6bo/KN6i8Ra1pU2h3JSWNSgbw1ce18wzDqNWrT4ogzXKskV134lkuPS3B6ruBMy
+	u33/8bpfQAdeqdeY36zYfVYvWDmnRAujZeXVsn8k/qwzOmxL1vRbeo/6ulkR/Hsq54Ue
+	TXosWWHkSw3DEESXQUW9mfwu41GqQVz8u2KfMMjgu6k2Yc3AUgAF3sQhLP0KavxKdxI7
+	bHeA==
+Received: by 10.68.219.67 with SMTP id pm3mr49737676pbc.150.1354718539568;
+	Wed, 05 Dec 2012 06:42:19 -0800 (PST)
+Received: from [192.168.1.100] ([94.205.107.244])
+	by mx.google.com with ESMTPS id wg3sm3002733pbc.28.2012.12.05.06.42.17
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Wed, 05 Dec 2012 06:42:19 -0800 (PST)
+Mime-Version: 1.0 (Mac OS X Mail 6.2 \(1499\))
+From: Elvis Dowson <elvis.dowson@gmail.com>
+In-Reply-To: <1354713685799908500@schweigstill.de>
+Date: Wed, 5 Dec 2012 18:42:13 +0400
+Message-Id: <96350C20-3499-4549-9B3F-DA51BF2875D7@gmail.com>
+References: <1354713685799908500@schweigstill.de>
+To: Andreas Schweigstill <andreas@schweigstill.de>
+X-Mailer: Apple Mail (2.1499)
+Cc: yocto@yoctoproject.org
+Subject: Re: mail list for Xilinx Zynq platform?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,81 +42,75 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Dec 2012 13:22:36 -0000
-Content-Type: multipart/alternative; boundary=20cf302ef9521916ba04d01ae06e
-
---20cf302ef9521916ba04d01ae06e
-Content-Type: text/plain; charset=ISO-8859-1
-
-Any thoughts on this?  Should I log a bug in bugzilla, or am I just doing
-something wrong?
-
-
-On Mon, Dec 3, 2012 at 10:57 AM, Jerrod Peach <peachj@lexmark.com> wrote:
-
-> All,
->
-> I noticed the changes to recrdeptask from Yocto 1.2 to Yocto 1.3.  I saw a
-> number of "all" tasks in the classes change like this:
->
-> -do_checkuriall[recrdeptask] = "do_checkuri"
-> +do_checkuriall[recrdeptask] = "do_checkuriall do_checkuri"
->
-> I have my own task that needs to work on all packages, and I assumed
-> making the same change to my task would cause this to occur.  (Prior to
-> this, I had noticed the task seemed to only be running on about 12
-> packages, where it used to run on about 60.)  So, I made the change, and
-> indeed started running on more packages.  It only ran on about 45 packages
-> though, which I found curious.  So, I dug a little deeper and had bitbake
-> spit out pn-buildlist for me (with the -g option).  That list showed around
-> 75 packages.  That meant I was still not running on a pretty large number
-> of packages.  Then I ran checkurilall.  I noticed it, too, was running on
-> the same list of packages as my task, i.e. NOT all of them.
->
-> Has recrdeptask changed in some way that now prevents a task from running
-> on all packages in a dependency graph recursively?  Was this intentional?
->  Is there some other (more preferable?) way for me to cause a task to run
-> on all packages in a dependency graph?
->
-> Kind regards,
->
-> Jerrod
->
-
---20cf302ef9521916ba04d01ae06e
-Content-Type: text/html; charset=ISO-8859-1
+X-List-Received-Date: Wed, 05 Dec 2012 14:42:19 -0000
+Content-Type: text/plain; charset=us-ascii
 Content-Transfer-Encoding: quoted-printable
 
-Any thoughts on this? =A0Should I log a bug in bugzilla, or am I just doing=
- something wrong?<div class=3D"gmail_extra"><br><br><div class=3D"gmail_quo=
-te">On Mon, Dec 3, 2012 at 10:57 AM, Jerrod Peach <span dir=3D"ltr">&lt;<a =
-href=3D"mailto:peachj@lexmark.com" target=3D"_blank">peachj@lexmark.com</a>=
-&gt;</span> wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">All,<div><br></div><div>I noticed the change=
-s to recrdeptask from Yocto 1.2 to Yocto 1.3. =A0I saw a number of &quot;al=
-l&quot; tasks in the classes change like this:</div>
-<div><br></div><div><div>-do_checkuriall[recrdeptask] =3D &quot;do_checkuri=
-&quot;</div>
-<div>+do_checkuriall[recrdeptask] =3D &quot;do_checkuriall do_checkuri&quot=
-;</div></div><div><br></div><div>I have my own task that needs to work on a=
-ll packages, and I assumed making the same change to my task would cause th=
-is to occur. =A0(Prior to this, I had noticed the task seemed to only be ru=
-nning on about 12 packages, where it used to run on about 60.) =A0So, I mad=
-e the change, and indeed started running on more packages. =A0It only ran o=
-n about 45 packages though, which I found curious. =A0So, I dug a little de=
-eper and had bitbake spit out pn-buildlist for me (with the -g option). =A0=
-That list showed around 75 packages. =A0That meant I was still not running =
-on a pretty large number of packages. =A0Then I ran checkurilall. =A0I noti=
-ced it, too, was running on the same list of packages as my task, i.e. NOT =
-all of them. =A0</div>
+Hi,
 
-<div><br></div><div>Has recrdeptask changed in some way that now prevents a=
- task from running on all packages in a dependency graph recursively? =A0Wa=
-s this intentional? =A0Is there some other (more preferable?) way for me to=
- cause a task to run on all packages in a dependency graph?</div>
+On Dec 5, 2012, at 5:21 PM, Andreas Schweigstill =
+<andreas@schweigstill.de> wrote:
 
-<div><br></div><div>Kind regards,</div><div><br></div><div>Jerrod</div>
-</blockquote></div><br></div>
+> I have also tried to build a kernel and root filesystem for Zynq but =
+the kernel
+> gets stuck when booting, regardless if on the ZC702 board or on Qemu. =
+I tried
+> Poky denzil and Poky danny.
+>=20
+> Also the alternate meta-zynq layer from git.yoctoproject.org shows the =
+same
+> behaviour.
+>=20
+> These are the last console messages which I get:
+> ## Booting kernel from Legacy Image at 01000000 ...
+>   Image Name:   Linux-3.2.11-yocto-standard
+>   Created:      2012-12-04  20:07:37 UTC
+>   Image Type:   ARM Linux Kernel Image (uncompressed)
+>   Data Size:    2997472 Bytes =3D 2.9 MiB
+>   Load Address: 00008000
+>   Entry Point:  00008000
+>   Verifying Checksum ... OK
+> ## Flattened Device Tree blob at 01a80000
+>   Booting using the fdt blob at 0x1a80000
+>   Loading Device Tree to 0eff8000, end 0efff185 ... OK
+>   Loading Kernel Image ... OK
+> OK
+>   Loading Device Tree to 0efed000, end 0eff7185 ... OK
+>=20
+> Starting kernel ...
+>=20
+>=20
+> Instead of using Linux kernel version 3.5-xilinx I always get
+> Linux-3.2.11-yocto-standard which is obviously missing the
+> Zynq patches.
+>=20
+> meta-zynq/recipes-kernel-linux-zynq contains the following lines:
+> LINUX_VERSION ?=3D "3.5"
+> LINUX_VERSION_EXTENSION ?=3D "-xilinx"
+>=20
+> How can I force Yocto to build kernel 3.5-xilinx?
+>=20
 
---20cf302ef9521916ba04d01ae06e--
+=46rom you messages, I infer that you are using the meta-zynq layer=20
+located here:
+
+http://git.yoctoproject.org/cgit/cgit.cgi/meta-zynq/
+
+For my builds, I used Philip Ballister's meta-zynq layer located here
+for the simple reason that it uses xilinx git repository:
+
+https://github.com/balister/meta-zynq
+
+Also, try to ensure that you don't put both the meta-layers in your =
+bblayers.conf file
+while building, and ensure that you set machine as follows in your =
+local.conf file
+
+MACHINE ?=3D "zynq-zc702"
+
+Do let me know how it goes!=20
+
+Best regards,
+
+Elvis Dowson=
+
