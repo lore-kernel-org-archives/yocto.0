@@ -1,25 +1,33 @@
 Return-Path: <mark.hatle@windriver.com>
 Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9A64DE006C3
-	for <yocto@yoctoproject.org>; Wed,  5 Dec 2012 13:12:11 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C088FE006C6
+	for <yocto@yoctoproject.org>; Wed,  5 Dec 2012 13:20:56 -0800 (PST)
 Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
 	[147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id qB5LCADq020477
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Wed, 5 Dec 2012 13:12:10 -0800 (PST)
+	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id qB5LKlVa021711
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Wed, 5 Dec 2012 13:20:47 -0800 (PST)
 Received: from msp-dhcp50.wrs.com (172.25.34.50) by ALA-HCA.corp.ad.wrs.com
 	(147.11.189.50) with Microsoft SMTP Server id 14.2.318.4;
-	Wed, 5 Dec 2012 13:12:10 -0800
-Message-ID: <50BFB8B2.4090702@windriver.com>
-Date: Wed, 5 Dec 2012 15:12:18 -0600
+	Wed, 5 Dec 2012 13:20:47 -0800
+Message-ID: <50BFBAB6.4080603@windriver.com>
+Date: Wed, 5 Dec 2012 15:20:54 -0600
 From: Mark Hatle <mark.hatle@windriver.com>
 Organization: Wind River Systems
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8;
 	rv:16.0) Gecko/20121026 Thunderbird/16.0.2
 MIME-Version: 1.0
-To: <yocto@yoctoproject.org>
+To: Venkata ramana gollamudi <ramana.gollamudi@huawei.com>
 References: <36ED13F3654AE54CA763E6821D93A5711048C834@szxeml534-mbx.china.huawei.com>
-In-Reply-To: <36ED13F3654AE54CA763E6821D93A5711048C834@szxeml534-mbx.china.huawei.com>
+	<50ABA048.7080707@windriver.com>
+	<36ED13F3654AE54CA763E6821D93A5711048CA0D@szxeml534-mbx.china.huawei.com>,
+	<50AD2B96.60504@windriver.com>
+	<36ED13F3654AE54CA763E6821D93A5711049B67C@szxeml534-mbx.china.huawei.com>
+	<36ED13F3654AE54CA763E6821D93A571104A5BBA@szxeml534-mbs.china.huawei.com>
+In-Reply-To: <36ED13F3654AE54CA763E6821D93A571104A5BBA@szxeml534-mbs.china.huawei.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"'dvhart@linux.intel.com'" <dvhart@linux.intel.com>,
+	Sanil kumar <sanil.kumar@huawei.com>
 Subject: Re: Need for offline binary configuration
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -32,176 +40,98 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Dec 2012 21:12:11 -0000
+X-List-Received-Date: Wed, 05 Dec 2012 21:20:56 -0000
 Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
 Content-Transfer-Encoding: 7bit
 
-My apologies for the late response.  See below, I'll follow up on your second 
-email as well...
-
-On 11/20/12 9:09 AM, Venkata ramana gollamudi wrote:
-> Poky allows to build custom Linux for you, but we have cases where the post
-> build customization is required, like user-addition, network configuration,
-> service control. Even selecting the required packages can be a post build activity.
-
-One of the objectives that we are currently working toward is being able to 
-start with the package feed (doesn't matter if it's rpm, deb or ipk files), 
-generate a rootfs, configure the rootfs and then deploy the rootfs into an image.
-
-The above should be able to be done on both a cross-configured environment or on 
-the target via a traditional installer like mechanism.
-
-> The current model requires the image to be rebuilt to support these configuration.
-
-The current model can avoid many of the tasks associated with the build by using 
-sstate-cache, but I agree that is not optimal for users who want to start with a 
-known set of binaries and then tailor from that point.  (This includes users 
-expecting a more traditional Linux install experience or users who need 
-immutable software from an upstream vendor.)
-
-> Offline Configuration tool (OCT), which allows a binary image customization
-> before making a final target image. This case will be more evident in larger
-> companies, where platform teams, product teams , application teams are
-> distributed and Linux build from source will be owned and lab tested by a single
-> team, like platform team. Other teams just configure to use it for product
-> variants from same platform build.
-
-This was factored into the work we are doing.  I know many companies have an 
-outside OSV that provides the build environment, support, etc.. and they feed 
-into an Operating Systems group (or similar).  This group then prepares the 
-software according to the corporate guidelines (license restrictions, quality 
-assurance, etc) and repackages it for consumption by others in the organization. 
-  Often time the output of the Operating System group is either a blessed source 
-based system -- or a set of binaries that are blessed as being in conformance 
-with that companies guidelines.  This process repeats through the platform group 
-and even individual projects -- with the eventual output being a product image 
-including the blessed binaries, custom applications and configurations -- and a 
-matching SDK.
-
-> Detailed use cases can be found in enhancement bug:3252
+On 11/29/12 5:09 AM, Venkata ramana gollamudi wrote:
+> Added few more thoughts
+> Looking for possible options to implement Offline Configuration Tool requirement. please check and comment on it.
 >
-> OCT should work on the binary pool of compiled packages generated from poky.
+> Configuration flow:
 >
-> The basic operations that can be supported includes
+> a) Task do_createconfig will generate data to configure. This serves as input for configuration UI in OCT.
 
-For the next section, I'm going to assume the pool of binary packages is what we 
-refer to as the package feeds in OpenEmbedded.  This is simple a collection of 
-binary packages that have been built from the build system that can be used to 
-construct the rootfs.  Each package feed is constructed based on a single 
-"distribution" configuration file which sets the policies for the packages in 
-the feed and distribution wide options, such as selinux, pam, etc.
+Using tasks to control the configuration elements will require the build system 
+and recipes.  This is really good for the existing workflow, but doesn't help 
+with the blessed binaries situation.
 
-> a) Select/deselect required packages from pool of binary packages into final target image.
+What I'd love to see (but don't expect) is a way for the binary packages to 
+document he configuration files and options in a way that the UI can load this 
+information, give the user simple check-box/drop down style configuration -- or 
+simply a text editor with the end result something that gets back to the target 
+environment.
 
-The above is definitely considered in the work we've been talking about.  This 
-will require software that will take a list of the available items in the feed, 
-present the user/developer with a way to enable the components they want on the 
-target.  (Note, there is an inherit requirement here that dependencies also be 
-met, so things the user/developer may not have selected will either have to be 
-installed to meet dependencies or will have to generate an error that 
-dependencies can't be met.)
+> b) OCT UI will read that config data(from step(a)) to show it in GUI. User configures using GUI inputs. Stores the user OCT configuration to OCT config file. (Note user can directly modify the OCT config file, if User is familier with it)
+>
+> c) preinst, postinst, prerm, postrm, or a do_applyconfig(without bb files reparse), can read OCT config file content (using a library) and apply necessary changes.
 
-> b) Provision to select external binary packages like ADT compiled applications as input and add them to final target image.
+I'm not sure pre/post is the right place to do these changes.  Typically I've 
+seen the default configuration files marked as such within the package system 
+and then the modifications are made externally.  Sometimes they're made in 
+ancillary packages or just made raw on the disk.  Most package management 
+systems I'm aware of can handle this just fine.
 
-As long as the external package is in the same format as the rest of the feeds, 
-this should be easy to do.  And I certainly expect that it will be needed.
+My concern with modifying the defaults is that the feed become project specific, 
+and again it requires input during the build process as opposed to the install 
+process.
 
-> c) Binary level Offline configuration can includes
->        Configure the users/passwords
->        Configure the network
->        Configure the host name
->        Select the services to be started by default
+> Now we can look into possibility of using a specific configuration UI implementation or a generic configuration model or combination of both.
+>
+> 1) Using a specific configuration GUI implementation:
+>     do_createconfig generates the configuration information, in format like datafile/xml and OCT reads this config data and provides a GUI to modify or configure the features.
+>
+> Pros: Detailed and complex GUIs can be supported which will be user friendly. Ex: User management, network management etc.
+> Cons: As UI is static, it has to be modified to support new configuration requirements
+> and UI modifications are generally complex.
 
-The above are things we've talked about, but I don't believe there have been any 
-formal plans to implement them at this time.  The components necessary for the 
-binary package based install -> rootfs generation have taken up most of our 
-planning time at this point.
+Having something like a do_createconfig (or even a do_describeconfig) to 
+generate a file that is later made available to the UI tool is my suggestion. 
+Then the input/output of the tool ends up in the rootfs directly.  (The methods 
+to get to the rootfs should be either a specific path, a URL for get/put 
+operations, or a method like tcf/ssh to copy the item to a running target.
 
-One thing I would love to see is a set of standard components (or a framework) 
-that could be used for this type of configuration.  But I believe it's very 
-important that the configuration work both within the OpenEmbedded environment 
-and externally in the "installer" like environment.
+Either a custom per-package model or a generic model may be needed.  I don't 
+know what the best approach is -- however I know previous attempts to do this 
+have generally resulted in more 'custom' model then generic + config file model.
 
->        Security related configuration
+But in general there seem to be three main types of configuration files that 
+I've seen:
 
-This is something that I don't believe has really been addressed at all, but 
-like the above we need a way to implement it.
-
->        Generate initrd in ramfs/ext3/... format
->        etc..
-
-We are already considering how to go from rootfs to deployable image.  initrd 
-just happens to be one of many potential image types.  We've specified hard disk 
-image (partition map, bootloader, individual partitions that comprise one or 
-more rootfs).  A flash based image -- instruction for flashing, and individual 
-flash 'partitions' that will work similarly to the hard drive.  A CD/DVD/USB 
-based bootable system.  And finally as a component of these an initrd rootfs 
-that can be used as a component of the others are separately to instantiate the 
-system before handing off control to one of the other types.
-
-We have a huge advantage in OE that we can generate multiple rootfses from a 
-given distribution configuration, we just don't currently have the tooling to 
-put those rootfses together into the various images.  I know Darren Hart at 
-Intel is working on some of the ground work for the hard disk style images.
-
-> Considering the methods to support these in our current yocto model, following changes can be done.
-
-The first thing we would like to see is a -single- rootfs creation model for all 
-of the modes.  Build system, cross-install, and target-based-install.  The way 
-that I'm approaching this right now is by attempting to abstract out just the 
-rootfs generation capabilities within the current build system.  The intention 
-is that you will be able to access interfaces to get a list of whats available 
-to be installed, (what may be already installed,) a way to pass what to install 
-and where to the environment.  Then the same code will be executed to perform 
-these actions.  The actions will be designed to be package type agnostic as well.
-
-Early R&D work is going on there, just to see if I can come up with something 
-reasonable.
-
-> 1) HOB can be the tool which can be extended to support these
->      Poky can generate a binary package pool as one if its output and Hob can work on this package pool to select packages, configure and generate image.
-> So HOB can support opening HOB in Binary(or OCT) mode i.e., without build options but only with binary package selection. Configuration GUI needs to be added to HOB.
-> Note:HOB+OCT is together or separate, needs a bit more thought and overall organization as they will be intended for different users.
-
-I'm not sure HOB itself is the right tool for this, but there are certainly 
-facets of HOB that would be needed in this kind of tool.  The package selection, 
-etc.
-
-> 2) Binary package pool can be a minimal/partial sstate-cache, as complete sstate-cache is quite big and not required for product teams as they are not expected to build but just need to select and configure.
->      I think it is sufficient to keep the minimal binaries from sstate-cache which are required to execute image.bbclass, do_rootfs task to generate image.
-
-There are multiple steps of binary package pool, each I think are valid.  For 
-someone wanting a source based system, with prebuilt binaries that can be 
-locally modified -- sstate-cache is by far the best way to do this.  For an 
-applications group that needs to generate images and SDKs, but is never allowed 
-to use anything but the corporate blessed binary packages, a different mechanism 
-(package based) is likely what is needed.  There is a lot of area though where 
-either method may be needed (or desired).
-
-My experience shows people familiar with traditional workstation based systems 
-prefer the binary RPM approach, while hard-core embedded developers prefer 
-source based systems.  The reality is the world has fewer hard-code embedded 
-developers and more folks used to the traditional environments, add to that the 
-capabilities of today's embedded systems and it makes sense for a lot of people 
-to start with blessed binaries, tailored for embedded systems, and simple add 
-their integration of applications and configurations after.
-
-> 3) Along with specific configuration UI implementation, a generic configuration model similar to kernel kconfig and menuconfig can be considered, in cases where more detailed offline configurations is required like detailed security configuration.
-
-This is absolutely need, but I think we need to get the general rootfs 
-generation working and figured out before we spend too much time on this. 
-However, if this is a high priority for you, it may make sense to start working 
-on configuration.  This is something that is definitely needed, and I don't 
-believe anyone is actively working on.
+Column/format based -- i.e. /etc/fstab, /etc/exports
+Key/Value based -- things like Key=Value, or Key:\nValue, etc..
+XML-like -- Highly formatted configuration files like apache.
 
 --Mark
 
+> 2) A generic configuration model
+>     do_createconfig generates configuration information with presentation information included (like kconfig) and OCT reads this config information and provides a generic UI implementation to modify or config the data like menuconfig.
+>
+> Pros:
+> 	- Generic and dynamic UI allowing the config menus to be added from poky layers providing platform for configuration.
+> 	- New features can add new menus configuration options. Feature/package enable and disable can control the configurtion menus.
+> 	- So configuration is shown only if feature/package is present/selected.
+> Cons:
+> 	- Generic method of implementing can be complex, specifically for features where configuration is complex ex: User management, network configuration.
+> 	- Custom or specific UI will be more user friendly and gives more control to UI designer.
+>
+> 3) Combination of both
+> Complex features requiring more UI control can implement those features using the method(1) and also providing the plaform for generic UI implementation.
+> OCT displays both UI configurations.
+> Ex: Static Image level features like User management, network config can be implemented using method(1)
+>      Service configuration, file system type, hist size configure etc can be implemented using method(2).
+>
+> Pros: Gives control to project to select the Complex and simple UIs.
+>
+> Cons: Still needs a OCT UI change if method(1) feature need to be changed.
+>        Drawing a line between complex and simple UI features may not very straight forward.
+>        Adding dynamic Complex UI is not possible to be added from poky layers.
+>
+> Decision to provide a generic configuration model is mainly based on how much we expect the configuration area to grow along with layers.
+> Image level features like user management, network management generally are not dynamic features, so having a specific/custom UI implementation looks fine for such features.
+>
 > Regards,
 > Ramana
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
 >
 
 
