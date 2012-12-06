@@ -1,26 +1,34 @@
-Return-Path: <mark.hatle@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DBAEDE00348
-	for <yocto@yoctoproject.org>; Thu,  6 Dec 2012 10:05:06 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id qB6I56bE020203
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Thu, 6 Dec 2012 10:05:06 -0800 (PST)
-Received: from msp-dhcp50.wrs.com (172.25.34.50) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.2.318.4;
-	Thu, 6 Dec 2012 10:05:06 -0800
-Message-ID: <50C0DE57.2040904@windriver.com>
-Date: Thu, 6 Dec 2012 12:05:11 -0600
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8;
-	rv:16.0) Gecko/20121026 Thunderbird/16.0.2
+Return-Path: <nitin.a.kamble@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BE602E00348
+	for <yocto@yoctoproject.org>; Thu,  6 Dec 2012 10:45:01 -0800 (PST)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 06 Dec 2012 10:45:00 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.84,230,1355126400"; 
+	d="scan'208,217";a="177115971"
+Received: from orsmsx104.amr.corp.intel.com ([10.22.225.131])
+	by AZSMGA002.ch.intel.com with ESMTP; 06 Dec 2012 10:45:00 -0800
+Received: from orsmsx106.amr.corp.intel.com ([169.254.5.234]) by
+	ORSMSX104.amr.corp.intel.com ([169.254.3.56]) with mapi id
+	14.01.0355.002; Thu, 6 Dec 2012 10:44:58 -0800
+From: "Kamble, Nitin A" <nitin.a.kamble@intel.com>
+To: Daniel Stone <daniel@fooishbar.org>, Martin Jansa <martin.jansa@gmail.com>
+Thread-Topic: [yocto] [PATCH 0/1] Misc: detect trailing space in the patches
+Thread-Index: AQHN00GlPM4g0T/5fE6nkDotYxw8YZgLsngAgAAXkgCAAFIBsA==
+Date: Thu, 6 Dec 2012 18:44:58 +0000
+Message-ID: <ADD6A3980E8C39419A432FF422031B4C2D933CC7@ORSMSX106.amr.corp.intel.com>
+References: <cover.1354750505.git.nitin.a.kamble@intel.com>
+	<CA+chaQcJUGYNt9qh6Nvyso21KJjTHdayrmtgS+XLZnMfXyEmeA@mail.gmail.com>
+	<CAPj87rMUEj=9G3VR05UJRXXGdNtNA2u9Mouct9CbiU2UfReoCQ@mail.gmail.com>
+In-Reply-To: <CAPj87rMUEj=9G3VR05UJRXXGdNtNA2u9Mouct9CbiU2UfReoCQ@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.139]
 MIME-Version: 1.0
-To: <yocto@yoctoproject.org>
-References: <CA452391058F6D4E9715FB2C29D9312A0137811C@039-SN2MPN1-021.039d.mgd.msft.net>
-In-Reply-To: <CA452391058F6D4E9715FB2C29D9312A0137811C@039-SN2MPN1-021.039d.mgd.msft.net>
-Subject: Re: Difference of toolchain recipes
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [PATCH 0/1] Misc: detect trailing space in the patches
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,73 +40,135 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 06 Dec 2012 18:05:07 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 06 Dec 2012 18:45:02 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_ADD6A3980E8C39419A432FF422031B4C2D933CC7ORSMSX106amrcor_"
 
-On 12/6/12 4:00 AM, Luo Zhenhua-B19537 wrote:
-> Can anybody shed some light, please?
->
->
-> Best Regards,
->
-> Zhenhua
->
->
->> -----Original Message-----
->> From: Luo Zhenhua-B19537
->> Sent: Tuesday, December 04, 2012 11:53 AM
->> To: openembedded-core@lists.openembedded.org; 'yocto@yoctoproject.org'
->> Subject: Difference of toolchain recipes
->>
->> It is a bit confused for the different recipes of toolchian, can somebody
->> help to explain what's the difference for those recipes? E.g. gcc-cross,
->> gcc-cross-canadian, gcc-cross-initial, gcc-cross-intermediate, gcc-
->> crosssdk, gcc-crosssdk-initial, gcc-crosssdk-intermediate, gcc-runtime,
->> etc.
+--_000_ADD6A3980E8C39419A432FF422031B4C2D933CC7ORSMSX106amrcor_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-gcc-cross-initial - This is the initial compiler needed to bootstrap the 
-toolchain to build software on the host for the target.  (This is a 'native' 
-package.)
+DQoNCkZyb206IERhbmllbCBTdG9uZSBbbWFpbHRvOmRhbmllbEBmb29pc2hiYXIub3JnXQ0KU2Vu
+dDogV2VkbmVzZGF5LCBEZWNlbWJlciAwNSwgMjAxMiA5OjQ4IFBNDQpUbzogTWFydGluIEphbnNh
+DQpDYzogS2FtYmxlLCBOaXRpbiBBOyB5b2N0b0B5b2N0b3Byb2plY3Qub3JnDQpTdWJqZWN0OiBS
+ZTogW3lvY3RvXSBbUEFUQ0ggMC8xXSBNaXNjOiBkZXRlY3QgdHJhaWxpbmcgc3BhY2UgaW4gdGhl
+IHBhdGNoZXMNCg0KSGksDQoNCk9uIDYgRGVjZW1iZXIgMjAxMiAxNToyMywgTWFydGluIEphbnNh
+IDxtYXJ0aW4uamFuc2FAZ21haWwuY29tPG1haWx0bzptYXJ0aW4uamFuc2FAZ21haWwuY29tPj4g
+d3JvdGU6DQoNCkNhbiB5b3UgYWRkIGFsc28gZGV0ZWN0aW9uIG9mIG1peGVkIHdoaXRlc3BhY2U/
+IEUuZy4gdGFiIGZvbGxvd2VkIGJ5IHNwYWNlIGluIG11bHRpbGluZWFyIGluZGVudGF0aW9uPyBP
+bmx5IGFzIHdhcm5pbmcuIFRoYW5rcw0KDQpUaGVzZSBjaGVja3MgY2FuIGdlbmVyYXRlIGluZnVy
+aWF0aW5nIGZhbHNlIHBvc2l0aXZlcyB3aGVuIHlvdXIgcGF0Y2ggbW9kaWZpZXMgdXBzdHJlYW0g
+Y29kZSB3aGljaCBoYXMgdHJhaWxpbmcgb3IgbWl4ZWQgd2hpdGVzcGFjZSBpbiBlaXRoZXIgY29u
+dGV4dCBvciByZW1vdmFsIGxpbmVzOyBpbiB0aGlzIGNhc2UsIHJlbW92aW5nIGEgbGluZSB3aXRo
+IHRyYWlsaW5nIHdoaXRlc3BhY2UgYW5kIHJlcGxhY2luZyBpdCB3aXRoIG9uZSB3aGljaCBkb2Vz
+bid0IHdvdWxkIGdlbmVyYXRlIGEgd2FybmluZy4gIE1peGVkIHdoaXRlc3BhY2UgaXMgYWxzbyBw
+YXJ0IG9mIHNvbWUgY29kaW5nIHN0eWxlcywgbm90YWJseSB0aGUga2VybmVsJ3MuDQoNCkNoZWVy
+cywNCkRhbmllbA0KDQpUaGlzIGNvZGUgY2hlY2tzIGZvciB0aGUgdHJpYWxpbmcgd2hpdGVzcGFj
+ZSBvbmx5IGluIHRoZSBsaW5lcyBhZGRlZCBieSB0aGUgcGF0Y2hlcy4gVGhlIGNvbnRleHQgbGlu
+ZXMgb3IgcmVtb3ZlZCBsaW5lcyBhcmUgbm90IGNoZWNrZWQuIEl0IGlzIGVhc3kgdG8gY2hlY2sg
+Zm9yIG1peGVkIHdoaXRlc3BhY2UgYWxzbywgYnV0IGJlZm9yZSBkb2luZyB0aGF0IEkgd291bGQg
+bGlrZSB0byBrbm93IHRoZSBmaW5hbCBkZWNpc2lvbiBhYm91dCBpdCwgYXMgSSBzZWUgc29tZSBv
+YmplY3Rpb24gdG8gaXQgdG9vLg0KDQpUaGFua3MsDQpOaXRpbg0KDQoNCg==
 
-gcc-cross-intermediate - This is the second stage of the bootstrap process to 
-build software on the host for the target. (This is a 'native' package.)
+--_000_ADD6A3980E8C39419A432FF422031B4C2D933CC7ORSMSX106amrcor_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-gcc-cross - this is the the final stage of the bootstrap process, and results in 
-the cross compiler to build software on the host for the target.  (This is a 
-'native' package.)  If you are replacing the cross compiler toolchain with a 
-custom version, this is what you must replace.
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTQgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1IDUgMiAyIDIgNCAzIDIgNDt9DQpAZm9udC1mYWNlDQoJ
+e2ZvbnQtZmFtaWx5OlRhaG9tYTsNCglwYW5vc2UtMToyIDExIDYgNCAzIDUgNCA0IDIgNDt9DQov
+KiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3JtYWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1z
+b05vcm1hbA0KCXttYXJnaW46MGluOw0KCW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250LXNp
+emU6MTIuMHB0Ow0KCWZvbnQtZmFtaWx5OiJUaW1lcyBOZXcgUm9tYW4iLCJzZXJpZiI7fQ0KYTps
+aW5rLCBzcGFuLk1zb0h5cGVybGluaw0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6
+Ymx1ZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCmE6dmlzaXRlZCwgc3Bhbi5Nc29I
+eXBlcmxpbmtGb2xsb3dlZA0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6cHVycGxl
+Ow0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KcA0KCXttc28tc3R5bGUtcHJpb3JpdHk6
+OTk7DQoJbXNvLW1hcmdpbi10b3AtYWx0OmF1dG87DQoJbWFyZ2luLXJpZ2h0OjBpbjsNCgltc28t
+bWFyZ2luLWJvdHRvbS1hbHQ6YXV0bzsNCgltYXJnaW4tbGVmdDowaW47DQoJZm9udC1zaXplOjEy
+LjBwdDsNCglmb250LWZhbWlseToiVGltZXMgTmV3IFJvbWFuIiwic2VyaWYiO30NCnNwYW4uRW1h
+aWxTdHlsZTE4DQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFsLXJlcGx5Ow0KCWZvbnQtZmFtaWx5
+OiJDYWxpYnJpIiwic2Fucy1zZXJpZiI7DQoJY29sb3I6IzFGNDk3RDt9DQouTXNvQ2hwRGVmYXVs
+dA0KCXttc28tc3R5bGUtdHlwZTpleHBvcnQtb25seTsNCglmb250LWZhbWlseToiQ2FsaWJyaSIs
+InNhbnMtc2VyaWYiO30NCkBwYWdlIFdvcmRTZWN0aW9uMQ0KCXtzaXplOjguNWluIDExLjBpbjsN
+CgltYXJnaW46MS4waW4gMS4waW4gMS4waW4gMS4waW47fQ0KZGl2LldvcmRTZWN0aW9uMQ0KCXtw
+YWdlOldvcmRTZWN0aW9uMTt9DQotLT48L3N0eWxlPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0K
+PG86c2hhcGVkZWZhdWx0cyB2OmV4dD0iZWRpdCIgc3BpZG1heD0iMTAyNiIgLz4NCjwveG1sPjwh
+W2VuZGlmXS0tPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVsYXlvdXQgdjpleHQ9
+ImVkaXQiPg0KPG86aWRtYXAgdjpleHQ9ImVkaXQiIGRhdGE9IjEiIC8+DQo8L286c2hhcGVsYXlv
+dXQ+PC94bWw+PCFbZW5kaWZdLS0+DQo8L2hlYWQ+DQo8Ym9keSBsYW5nPSJFTi1VUyIgbGluaz0i
+Ymx1ZSIgdmxpbms9InB1cnBsZSI+DQo8ZGl2IGNsYXNzPSJXb3JkU2VjdGlvbjEiPg0KPHAgY2xh
+c3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6
+JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0Qi
+PjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFu
+IHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDss
+JnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwv
+c3Bhbj48L3A+DQo8ZGl2IHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXItbGVmdDpzb2xpZCBibHVl
+IDEuNXB0O3BhZGRpbmc6MGluIDBpbiAwaW4gNC4wcHQiPg0KPGRpdj4NCjxkaXYgc3R5bGU9ImJv
+cmRlcjpub25lO2JvcmRlci10b3A6c29saWQgI0I1QzRERiAxLjBwdDtwYWRkaW5nOjMuMHB0IDBp
+biAwaW4gMGluIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxiPjxzcGFuIHN0eWxlPSJmb250LXNp
+emU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O1RhaG9tYSZxdW90OywmcXVvdDtzYW5zLXNlcmlm
+JnF1b3Q7Ij5Gcm9tOjwvc3Bhbj48L2I+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9u
+dC1mYW1pbHk6JnF1b3Q7VGFob21hJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDsiPiBEYW5p
+ZWwgU3RvbmUgW21haWx0bzpkYW5pZWxAZm9vaXNoYmFyLm9yZ10NCjxicj4NCjxiPlNlbnQ6PC9i
+PiBXZWRuZXNkYXksIERlY2VtYmVyIDA1LCAyMDEyIDk6NDggUE08YnI+DQo8Yj5Ubzo8L2I+IE1h
+cnRpbiBKYW5zYTxicj4NCjxiPkNjOjwvYj4gS2FtYmxlLCBOaXRpbiBBOyB5b2N0b0B5b2N0b3By
+b2plY3Qub3JnPGJyPg0KPGI+U3ViamVjdDo8L2I+IFJlOiBbeW9jdG9dIFtQQVRDSCAwLzFdIE1p
+c2M6IGRldGVjdCB0cmFpbGluZyBzcGFjZSBpbiB0aGUgcGF0Y2hlczxvOnA+PC9vOnA+PC9zcGFu
+PjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwv
+bzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkhpLDxvOnA+PC9vOnA+PC9wPg0KPGRpdj4N
+CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxicj4NCk9uIDYgRGVjZW1iZXIgMjAxMiAxNToyMywgTWFy
+dGluIEphbnNhICZsdDs8YSBocmVmPSJtYWlsdG86bWFydGluLmphbnNhQGdtYWlsLmNvbSIgdGFy
+Z2V0PSJfYmxhbmsiPm1hcnRpbi5qYW5zYUBnbWFpbC5jb208L2E+Jmd0OyB3cm90ZTo8bzpwPjwv
+bzpwPjwvcD4NCjxkaXY+DQo8YmxvY2txdW90ZSBzdHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLWxl
+ZnQ6c29saWQgI0NDQ0NDQyAxLjBwdDtwYWRkaW5nOjBpbiAwaW4gMGluIDYuMHB0O21hcmdpbi1s
+ZWZ0OjQuOHB0O21hcmdpbi1yaWdodDowaW4iPg0KPHA+Q2FuIHlvdSBhZGQgYWxzbyBkZXRlY3Rp
+b24gb2YgbWl4ZWQgd2hpdGVzcGFjZT8gRS5nLiB0YWIgZm9sbG93ZWQgYnkgc3BhY2UgaW4gbXVs
+dGlsaW5lYXIgaW5kZW50YXRpb24/IE9ubHkgYXMgd2FybmluZy4gVGhhbmtzPG86cD48L286cD48
+L3A+DQo8L2Jsb2NrcXVvdGU+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJz
+cDs8L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5UaGVzZSBj
+aGVja3MgY2FuIGdlbmVyYXRlIGluZnVyaWF0aW5nIGZhbHNlIHBvc2l0aXZlcyB3aGVuIHlvdXIg
+cGF0Y2ggbW9kaWZpZXMgdXBzdHJlYW0gY29kZSB3aGljaCBoYXMgdHJhaWxpbmcgb3IgbWl4ZWQg
+d2hpdGVzcGFjZSBpbiBlaXRoZXIgY29udGV4dCBvciByZW1vdmFsIGxpbmVzOyBpbiB0aGlzIGNh
+c2UsIHJlbW92aW5nIGEgbGluZSB3aXRoIHRyYWlsaW5nIHdoaXRlc3BhY2UgYW5kIHJlcGxhY2lu
+Zw0KIGl0IHdpdGggb25lIHdoaWNoIGRvZXNuJ3Qgd291bGQgZ2VuZXJhdGUgYSB3YXJuaW5nLiAm
+bmJzcDtNaXhlZCB3aGl0ZXNwYWNlIGlzIGFsc28gcGFydCBvZiBzb21lIGNvZGluZyBzdHlsZXMs
+IG5vdGFibHkgdGhlIGtlcm5lbCdzLjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAg
+Y2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8
+cCBjbGFzcz0iTXNvTm9ybWFsIj5DaGVlcnMsPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+
+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5EYW5pZWwmbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNs
+YXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5
+OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdE
+Ij48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3Bh
+biBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7
+LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+VGhpcyBjb2RlIGNoZWNrcyBm
+b3IgdGhlIHRyaWFsaW5nIHdoaXRlc3BhY2Ugb25seSBpbiB0aGUgbGluZXMgYWRkZWQgYnkgdGhl
+IHBhdGNoZXMuIFRoZSBjb250ZXh0IGxpbmVzIG9yIHJlbW92ZWQgbGluZXMgYXJlIG5vdCBjaGVj
+a2VkLiBJdCBpcyBlYXN5IHRvIGNoZWNrDQogZm9yIG1peGVkIHdoaXRlc3BhY2UgYWxzbywgYnV0
+IGJlZm9yZSBkb2luZyB0aGF0IEkgd291bGQgbGlrZSB0byBrbm93IHRoZSBmaW5hbCBkZWNpc2lv
+biBhYm91dCBpdCwgYXMgSSBzZWUgc29tZSBvYmplY3Rpb24gdG8gaXQgdG9vLjxvOnA+PC9vOnA+
+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6
+MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZx
+dW90Oztjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFz
+cz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTom
+cXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+
+VGhhbmtzLDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFu
+IHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDss
+JnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj5OaXRpbjxvOnA+PC9vOnA+PC9z
+cGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEu
+MHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90
+Oztjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0i
+TXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVv
+dDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+PG86
+cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+
+DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRtbD4NCg==
 
-gcc-runtime - these are the runtime libraries, but from the toolchain 
-bootstrapping process.  This results in a 'target' binary.
-
-gcc-crosssdk-initial/intermediate - stage 1 and 2 of the a cross compiler to 
-build from the 'host' to the 'sdk'.  Often the SDK is not the same target as the 
-host.  (This is a 'native' binary.)
-
-gcc-crosssdk - this the final stage of the SDK compiler.  Again, this is to 
-build on the host, for the sdk.  This is a 'native' binary.
-
-gcc-cross-canadian - This is the compiler included with the SDK to build on the 
-SDK machine creating software for the target.  This is an 'nativesdk' package.
-
->> Is there any document for those description?
-
-Not that I know of.. It's one of those things that you kind of need to know in 
-order to work with it.  It likely should be documented somewhere officially.
-
---Mark
-
->>
->>
->> Best Regards,
->>
->> Zhenhua
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
-
-
+--_000_ADD6A3980E8C39419A432FF422031B4C2D933CC7ORSMSX106amrcor_--
