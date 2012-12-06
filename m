@@ -1,30 +1,26 @@
-Return-Path: <andreas@schweigstill.de>
-Received: from kitz.schweigstill.de (kitz.schweigstill.de [195.244.237.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A418BE00348
-	for <yocto@yoctoproject.org>; Thu,  6 Dec 2012 08:33:55 -0800 (PST)
-Received: from mailserver (192.168.16.41) by mail-extern (Axigen)
-	with (AES256-SHA encrypted) ESMTPS id 36AA90;
-	Thu, 6 Dec 2012 17:33:53 +0100
-Received: from mailserver (127.0.0.1) by mailserver (Axigen)
-	with ESMTPSA id 0A6791; Thu, 6 Dec 2012 17:33:53 +0100
-Received: from [80.246.32.33] by schweigstill.de with HTTP;
-	Thu, 6 Dec 2012 17:33:53 +0100
-From: Andreas Schweigstill <andreas@schweigstill.de>
-Date: Thu, 6 Dec 2012 17:33:53 +0100
-X-Mailer: Axigen WebMail
-To: yocto@yoctoproject.org
-Message-ID: <1354811633501175500@schweigstill.de>
-In-Reply-To: <F11FDE5B-6879-4B95-851B-E52704224A33@gmail.com>
-References: <1354713685799908500@schweigstill.de>
-	<50BF8FD4.2070207@balister.org> <1354798661905184500@schweigstill.de>
-	<F11FDE5B-6879-4B95-851B-E52704224A33@gmail.com>
-Importance: Normal
+Return-Path: <mark.hatle@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DBAEDE00348
+	for <yocto@yoctoproject.org>; Thu,  6 Dec 2012 10:05:06 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id qB6I56bE020203
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Thu, 6 Dec 2012 10:05:06 -0800 (PST)
+Received: from msp-dhcp50.wrs.com (172.25.34.50) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.2.318.4;
+	Thu, 6 Dec 2012 10:05:06 -0800
+Message-ID: <50C0DE57.2040904@windriver.com>
+Date: Thu, 6 Dec 2012 12:05:11 -0600
+From: Mark Hatle <mark.hatle@windriver.com>
+Organization: Wind River Systems
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8;
+	rv:16.0) Gecko/20121026 Thunderbird/16.0.2
 MIME-Version: 1.0
-X-AxigenSpam-Level: 1
-X-CTCH-RefID: str=0001.0A0C0203.50C0C8F1.019B,ss=1,fgs=0
-X-CTCH-VOD: Unknown
-X-CTCH-Spam: Unknown
-Subject: Re: mail list for Xilinx Zynq platform?
+To: <yocto@yoctoproject.org>
+References: <CA452391058F6D4E9715FB2C29D9312A0137811C@039-SN2MPN1-021.039d.mgd.msft.net>
+In-Reply-To: <CA452391058F6D4E9715FB2C29D9312A0137811C@039-SN2MPN1-021.039d.mgd.msft.net>
+Subject: Re: Difference of toolchain recipes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,34 +32,73 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 06 Dec 2012 16:33:56 -0000
-Content-Type: text/plain;	charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-Content-Disposition: inline
+X-List-Received-Date: Thu, 06 Dec 2012 18:05:07 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Dear Elvis!
+On 12/6/12 4:00 AM, Luo Zhenhua-B19537 wrote:
+> Can anybody shed some light, please?
+>
+>
+> Best Regards,
+>
+> Zhenhua
+>
+>
+>> -----Original Message-----
+>> From: Luo Zhenhua-B19537
+>> Sent: Tuesday, December 04, 2012 11:53 AM
+>> To: openembedded-core@lists.openembedded.org; 'yocto@yoctoproject.org'
+>> Subject: Difference of toolchain recipes
+>>
+>> It is a bit confused for the different recipes of toolchian, can somebody
+>> help to explain what's the difference for those recipes? E.g. gcc-cross,
+>> gcc-cross-canadian, gcc-cross-initial, gcc-cross-intermediate, gcc-
+>> crosssdk, gcc-crosssdk-initial, gcc-crosssdk-intermediate, gcc-runtime,
+>> etc.
 
-Am Do, 12/06/2012 16:42, hat Elvis Dowson <elvis.dowson@gmail.com> geschrie=
-ben:
-> If you want to build your own version of BOOT.bin, its quite simple.
+gcc-cross-initial - This is the initial compiler needed to bootstrap the 
+toolchain to build software on the host for the target.  (This is a 'native' 
+package.)
 
-Thank you very much for your instructions regarding the creation of my own =
-BOOT.BIN
-file. Currently I am only evaluating the different Linux build systems resp=
-. "distributions"
-being quite happy that I don't have to switch U-Boot together with the Linu=
-x/rootfs.
-In the final project we probably won't use U-Boot at all but instead use a =
-proprietary
-boot mechanism.
+gcc-cross-intermediate - This is the second stage of the bootstrap process to 
+build software on the host for the target. (This is a 'native' package.)
 
-Regards,
-Andreas Schweigstill
+gcc-cross - this is the the final stage of the bootstrap process, and results in 
+the cross compiler to build software on the host for the target.  (This is a 
+'native' package.)  If you are replacing the cross compiler toolchain with a 
+custom version, this is what you must replace.
 
-=E2=80=8B--=20
-Dipl.-Phys. Andreas Schweigstill=20
-Schweigstill IT | Embedded Systems=20
-Schauenburgerstra=C3=9Fe 116, D-24118 Kiel, Germany=20
-Phone: (+49) 431 530354-35, Fax: (+49) 431 530354-36=20
-Mobile: (+49) 171 6921973, Web: http://www.schweigstill.de/
+gcc-runtime - these are the runtime libraries, but from the toolchain 
+bootstrapping process.  This results in a 'target' binary.
+
+gcc-crosssdk-initial/intermediate - stage 1 and 2 of the a cross compiler to 
+build from the 'host' to the 'sdk'.  Often the SDK is not the same target as the 
+host.  (This is a 'native' binary.)
+
+gcc-crosssdk - this the final stage of the SDK compiler.  Again, this is to 
+build on the host, for the sdk.  This is a 'native' binary.
+
+gcc-cross-canadian - This is the compiler included with the SDK to build on the 
+SDK machine creating software for the target.  This is an 'nativesdk' package.
+
+>> Is there any document for those description?
+
+Not that I know of.. It's one of those things that you kind of need to know in 
+order to work with it.  It likely should be documented somewhere officially.
+
+--Mark
+
+>>
+>>
+>> Best Regards,
+>>
+>> Zhenhua
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+
 
