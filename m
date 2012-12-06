@@ -1,29 +1,19 @@
-Return-Path: <andreas@schweigstill.de>
-Received: from kitz.schweigstill.de (kitz.schweigstill.de [195.244.237.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 31E7BE0144A
-	for <yocto@yoctoproject.org>; Thu,  6 Dec 2012 04:57:43 -0800 (PST)
-Received: from mailserver (192.168.16.41) by mail-extern (Axigen)
-	with (AES256-SHA encrypted) ESMTPS id 2E97A9;
-	Thu, 6 Dec 2012 13:57:42 +0100
-Received: from mailserver (127.0.0.1) by mailserver (Axigen)
-	with ESMTPSA id 3FE211; Thu, 6 Dec 2012 13:57:41 +0100
-Received: from [80.246.32.33] by schweigstill.de with HTTP;
-	Thu, 6 Dec 2012 13:57:41 +0100
-From: Andreas Schweigstill <andreas@schweigstill.de>
-Date: Thu, 6 Dec 2012 13:57:41 +0100
-X-Mailer: Axigen WebMail
+Return-Path: <ioanax.grigoropol@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A0F9AE0143A
+	for <yocto@yoctoproject.org>; Thu,  6 Dec 2012 05:56:56 -0800 (PST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 06 Dec 2012 05:56:56 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.84,230,1355126400"; d="scan'208";a="227491070"
+Received: from ideapad (HELO localhost.localdomain) ([10.237.105.148])
+	by azsmga001.ch.intel.com with ESMTP; 06 Dec 2012 05:56:54 -0800
+From: Ioana Grigoropol <ioanax.grigoropol@intel.com>
 To: yocto@yoctoproject.org
-Message-ID: <1354798661905184500@schweigstill.de>
-In-Reply-To: <50BF8FD4.2070207@balister.org>
-References: <1354713685799908500@schweigstill.de>
-	<50BF8FD4.2070207@balister.org>
-Importance: Normal
-MIME-Version: 1.0
-X-AxigenSpam-Level: 1
-X-CTCH-RefID: str=0001.0A0C0203.50C09646.009D,ss=1,fgs=0
-X-CTCH-VOD: Unknown
-X-CTCH-Spam: Unknown
-Subject: Re: mail list for Xilinx Zynq platform?
+Date: Thu,  6 Dec 2012 15:46:54 +0200
+Message-Id: <1354801622-13962-1-git-send-email-ioanax.grigoropol@intel.com>
+X-Mailer: git-send-email 1.7.9.5
+Subject: [PATCH 0/8] [eclipse-poky-windows] Resending patches targeting fixes for Windows plugin
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,54 +25,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 06 Dec 2012 12:57:43 -0000
-Content-Type: text/plain;	charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-Content-Disposition: inline
+X-List-Received-Date: Thu, 06 Dec 2012 13:56:56 -0000
 
-Hello!
+- files modified under Windows are CRLF ended -> convert them to CR only and apply patch 0007 with --keep-cr
 
-Am Mi, 12/05/2012 19:17, hat Philip Balister <philip@balister.org> geschrie=
-ben:
-> On 12/05/2012 05:21 AM, Andreas Schweigstill wrote:
-> > meta-zynq/recipes-kernel-linux-zynq contains the following lines:
-> > LINUX_VERSION ?=3D "3.5"
-> > LINUX_VERSION_EXTENSION ?=3D "-xilinx"
-> >
-> > How can I force Yocto to build kernel 3.5-xilinx?
->=20
-> Urg, I'll have to take a look at that.
+Ioana Grigoropol (8):
+  Show progress bar for New Bitbake Commander project
+  Show progress bar for building new Recipe in Bitbake commander
+    perspective
+  Validate project name and location for Bitbake command project
+  Fix incompatibility with jre1.6 support for typed HashMap
+  Remove validation for existing git repository
+  Fix synchronous waiting for command prompt in Linux & connection lost
+    when restarting
+  convert CRLF line terminators to CR only
+  Validate Bitbake Commander project when switching between new repo
+    and existing one
 
-After changing the order of BBLAYERS in build/conf/local.conf to meta, meta=
--zynq,
-meta-yocto, meta-yocto-bsp and using Hob to select MACHINE=3Dzynq-zc702,
-base image=3Dzc702-proto-image everything works fine. Now I get a proper to=
-olchain
-for Cortex A9 and a kernel named zynq-zc702 3.5.0-14.3-build1-yocto-standar=
-d
-which is properly running on my ZC702 board.
+ .../src/org/yocto/bc/bitbake/BBSession.java        |    2 +
+ .../src/org/yocto/bc/bitbake/ShellSession.java     |  132 +++-----
+ .../yocto/bc/remote/utils/ProcessStreamBuffer.java |   17 +-
+ .../org/yocto/bc/remote/utils/RemoteHelper.java    |  161 +++++-----
+ .../org/yocto/bc/remote/utils/RemoteMachine.java   |    4 +-
+ .../remote/utils/YoctoHostShellProcessAdapter.java |  162 +++++-----
+ .../bc/remote/utils/YoctoRunnableWithProgress.java |  106 +++++++
+ .../src/org/yocto/bc/ui/Activator.java             |   79 ++---
+ .../src/org/yocto/bc/ui/model/ProjectInfo.java     |    4 +
+ .../org/yocto/bc/ui/wizards/FiniteStateWizard.java |  112 +++----
+ .../yocto/bc/ui/wizards/FiniteStateWizardPage.java |  320 ++++++++++----------
+ .../bc/ui/wizards/NewBitBakeFileRecipeWizard.java  |    7 +-
+ .../ui/wizards/NewBitBakeFileRecipeWizardPage.java |  300 +++++++++---------
+ .../yocto/bc/ui/wizards/install/InstallWizard.java |  113 ++-----
+ .../yocto/bc/ui/wizards/install/OptionsPage.java   |  184 +++++------
+ .../BBConfigurationInitializeOperation.java        |    6 +-
+ .../newproject/CreateBBCProjectOperation.java      |   31 +-
+ 17 files changed, 823 insertions(+), 917 deletions(-)
+ create mode 100644 plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/YoctoRunnableWithProgress.java
 
-> Also, you'll need an updated fsbl in the BOOT.BIN file to work with the=20
-> later kernels. We should probably post one somewhere, although I wish=20
-> the fsbl license was a little less restrictive.
+-- 
+1.7.9.5
 
-I haven't built a BOOT.BIN file with Yocto based U-Boot yet. Instead I'm us=
-ing
-U-Boot from Petalinux 12.9 which is configured to use the QSPI Flash to sto=
-re its
-environment.
-
-Currently I boot from QSPI Flash, load kernel und DTB files via TFTP and us=
-e a
-root filesystem stored on a SD card. ;-)
-
-Regards,
-Andreas Schweigstill
-
-=E2=80=8B--=20
-Dipl.-Phys. Andreas Schweigstill=20
-Schweigstill IT | Embedded Systems=20
-Schauenburgerstra=C3=9Fe 116, D-24118 Kiel, Germany=20
-Phone: (+49) 431 530354-35, Fax: (+49) 431 530354-36=20
-Mobile: (+49) 171 6921973, Web: http://www.schweigstill.de/=20
 
