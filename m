@@ -1,33 +1,38 @@
-Return-Path: <ioanax.grigoropol@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 38BE8E01448
-	for <yocto@yoctoproject.org>; Thu,  6 Dec 2012 06:04:01 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 06 Dec 2012 06:03:59 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,230,1355126400"; d="scan'208";a="229827851"
-Received: from irsmsx102.ger.corp.intel.com ([163.33.3.155])
-	by orsmga001.jf.intel.com with ESMTP; 06 Dec 2012 06:03:58 -0800
-Received: from irsmsx101.ger.corp.intel.com ([169.254.1.13]) by
-	IRSMSX102.ger.corp.intel.com ([169.254.2.95]) with mapi id
-	14.01.0355.002; Thu, 6 Dec 2012 14:02:26 +0000
-From: "Grigoropol, IoanaX" <ioanax.grigoropol@intel.com>
-To: "Zhang, Jessica" <jessica.zhang@intel.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] [PATCH] Fix incompatibility with jre1.6 support for
-	typed	HashMap
-Thread-Index: AQHN0z32GAhGpl+nT0iGncR2NGIy0pgLzLMQ
-Date: Thu, 6 Dec 2012 14:02:25 +0000
-Message-ID: <3E179CF0D7162B4AA4E2B324209A4639AB2B02@IRSMSX101.ger.corp.intel.com>
-References: <1354704040-20058-1-git-send-email-ioanax.grigoropol@intel.com>
-	<C6510F6D410BB64A8C15398EDC6B847C46B68F16@ORSMSX101.amr.corp.intel.com>
-In-Reply-To: <C6510F6D410BB64A8C15398EDC6B847C46B68F16@ORSMSX101.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [163.33.239.180]
-MIME-Version: 1.0
-Subject: Re: [PATCH] Fix incompatibility with jre1.6 support for typed	HashMap
+Return-Path: <elvis.dowson@gmail.com>
+Received: from mail-pa0-f48.google.com (mail-pa0-f48.google.com
+	[209.85.220.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CD682E00348
+	for <yocto@yoctoproject.org>; Thu,  6 Dec 2012 07:42:24 -0800 (PST)
+Received: by mail-pa0-f48.google.com with SMTP id fa1so4470692pad.35
+	for <yocto@yoctoproject.org>; Thu, 06 Dec 2012 07:42:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=content-type:mime-version:subject:from:in-reply-to:date:cc
+	:content-transfer-encoding:message-id:references:to:x-mailer;
+	bh=1IT+uBuJ2TOILuFfXeCDxSpNlesWnwPrKECl4kCHqHw=;
+	b=b4oOF8rxLxeNzHn3pTnXjmpt7YdIiFsu5BwqR1wfxiKe0D8jKUw6Fv8kMZXxdC8zNr
+	G+yh4jvyFwewMa5519HgbPMGIROM/sY8dfJBGBAvZTLTHysKjiofUNSvAof5USPNOfXj
+	fJXyX/IB5ssqoyXp0jRQ+a4ucN+3uuZCwxWhekJWMt/zIAXdWiyuh391uFmwMU+bVN3Y
+	bRn3vYOuLmlfHEiBXtf95umidVGHvanAeyTWPHQU5O+9Rh3fXwPtGbSIU0lfkiPgjOSB
+	8SfO82WqsX4Qfmjb+hua40WfP24h4Aj5C/m8+k6Q+v28rUj6VkjLB5vWJOD3U4CinE+e
+	80Ww==
+Received: by 10.66.78.231 with SMTP id e7mr5016966pax.44.1354808544651;
+	Thu, 06 Dec 2012 07:42:24 -0800 (PST)
+Received: from [192.168.1.100] ([94.205.107.244])
+	by mx.google.com with ESMTPS id kb3sm4969438pbc.27.2012.12.06.07.42.22
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Thu, 06 Dec 2012 07:42:24 -0800 (PST)
+Mime-Version: 1.0 (Mac OS X Mail 6.2 \(1499\))
+From: Elvis Dowson <elvis.dowson@gmail.com>
+In-Reply-To: <1354798661905184500@schweigstill.de>
+Date: Thu, 6 Dec 2012 19:42:19 +0400
+Message-Id: <F11FDE5B-6879-4B95-851B-E52704224A33@gmail.com>
+References: <1354713685799908500@schweigstill.de>
+	<50BF8FD4.2070207@balister.org>
+	<1354798661905184500@schweigstill.de>
+To: Andreas Schweigstill <andreas@schweigstill.de>
+X-Mailer: Apple Mail (2.1499)
+Cc: yocto@yoctoproject.org
+Subject: Re: mail list for Xilinx Zynq platform?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,174 +44,54 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 06 Dec 2012 14:04:01 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Thu, 06 Dec 2012 15:42:24 -0000
+Content-Type: text/plain; charset=us-ascii
 Content-Transfer-Encoding: quoted-printable
 
-Hi Jessica,
+Hi Andreas,
 
-There seems to be a bit of a mix-up on the new branch in the order of the p=
-atches were applied. Also, some files modified under Linux have CRLF ending=
- instead of CR.=20
-Can you please rebase the branch (the new one or the old one) to commit ec4=
-fcf7b478f59e190d9b9fe9b56e44971c4f66c, and then apply the set of 8 patches =
-I resent to the mailing list ?
-Bare in mind that the patch before last (that converts from CRLF to CR) wil=
-l not apply unless applied with option --keep-cr.=20
+On Dec 6, 2012, at 4:57 PM, Andreas Schweigstill =
+<andreas@schweigstill.de> wrote:
 
-Thanks,
-Ioana
+> After changing the order of BBLAYERS in build/conf/local.conf to meta, =
+meta-zynq,
+> meta-yocto, meta-yocto-bsp and using Hob to select MACHINE=3Dzynq-zc702,=
 
------Original Message-----
-From: Zhang, Jessica=20
-Sent: Thursday, December 06, 2012 1:12 AM
-To: Grigoropol, IoanaX; yocto@yoctoproject.org
-Subject: RE: [yocto] [PATCH] Fix incompatibility with jre1.6 support for ty=
-ped HashMap
+> base image=3Dzc702-proto-image everything works fine. Now I get a =
+proper toolchain
+> for Cortex A9 and a kernel named zynq-zc702 =
+3.5.0-14.3-build1-yocto-standard
+> which is properly running on my ZC702 board.
 
-Hi Ioana,
+I don't add meta-yocto-bsp to my bblayers configuration.=20
 
-None of your patches of today apply so there seems to be some rebase issue.=
-  Also, I've added headless build support changes for windows BC plugin, so=
- can you rebase against jzhang/windows-build and resubmit the patch series?
+> I haven't built a BOOT.BIN file with Yocto based U-Boot yet. Instead =
+I'm using
+> U-Boot from Petalinux 12.9 which is configured to use the QSPI Flash =
+to store its
+> environment.
+>=20
+> Currently I boot from QSPI Flash, load kernel und DTB files via TFTP =
+and use a
+> root filesystem stored on a SD card. ;-)
 
-Thanks,
-Jessica
+If you want to build your own version of BOOT.bin, its quite simple. =
+Just take the=20
+u-boot.elf file, and use SDK to create a simple zynq_fsbl project. =46rom =
+that create
+the boot image, using the SDK, and add the system.bit, zynq_fsbl.elf and =
+u-boot.elf
+binaries. Rename the produce binary to BOOT.bin, and you're good to go.
 
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Ioana Grigoropol
-Sent: Wednesday, December 05, 2012 2:41 AM
-To: yocto@yoctoproject.org
-Subject: [yocto] [PATCH] Fix incompatibility with jre1.6 support for typed =
-HashMap
+You can find more information of the boot image creation process on =
+section 3.5,
+page 29, of the UG821 - Zynq-7000 EPP Software Developers Guide v3.0.
 
-Signed-off-by: Ioana Grigoropol <ioanax.grigoropol@intel.com>
----
- .../remote/utils/YoctoHostShellProcessAdapter.java |   18 ++++++++++++----=
---
- 1 file changed, 12 insertions(+), 6 deletions(-)
+=46rom within SDK, it's pretty straightforward, and it will =
+automatically create the bif file
+after you've specified all the binaries, and create the bootable image.
 
-diff --git a/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/YoctoHos=
-tShellProcessAdapter.java b/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote=
-/utils/YoctoHostShellProcessAdapter.java
-index 9ab43cf..2dba0a6 100644
---- a/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/YoctoHostShellP=
-rocessAdapter.java
-+++ b/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/YoctoHostShe
-+++ llProcessAdapter.java
-@@ -34,6 +34,7 @@ public class YoctoHostShellProcessAdapter extends  HostSh=
-ellProcessAdapter {
-=20
- 	private Semaphore sem;
-=20
-+
- 	public YoctoHostShellProcessAdapter(IHostShell hostShell, ProcessStreamBu=
-ffer processStreamBuffer, CommandResponseHandler commandResponseHandler) th=
-rows IOException {
- 		super(hostShell);
- 		this.processStreamBuffer =3D processStreamBuffer; @@ -41,7 +42,7 @@ publ=
-ic class YoctoHostShellProcessAdapter extends  HostShellProcessAdapter {
- 		this.calculator =3D new GitCalculatePercentage();
- 		this.sem =3D new Semaphore(1);
- 		this.command =3D "";
--		this.commandMonitors =3D new HashMap<>();
-+		this.commandMonitors =3D new HashMap<String, IProgressMonitor>();
- 	}
-=20
- 	public String getLastCommand() {
-@@ -50,7 +51,7 @@ public class YoctoHostShellProcessAdapter extends  HostSh=
-ellProcessAdapter {
-=20
- 	public synchronized void setLastCommand(String lastCommand) {
- 		try {
--			// there are still some processes that might take a long time and if we=
- do not wait for them,=20
-+			// there are still some processes that might take a long time and if=20
-+we do not wait for them,
- 			// then the semaphore will not be released, because an interrupted exce=
-ption will occur
- 			Thread.sleep(2000);
- 			isFinished =3D false;
-@@ -70,6 +71,7 @@ public class YoctoHostShellProcessAdapter extends  HostSh=
-ellProcessAdapter {
-=20
- 	private class GitCalculatePercentage implements ICalculatePercentage {
- 		final Pattern pattern =3D Pattern.compile("^Receiving objects:\\s*(\\d+)=
-%.*");
-+		@Override
- 		public float calWorkloadDone(String info) throws IllegalArgumentExceptio=
-n {
- 			Matcher m =3D pattern.matcher(info.trim());
- 			if(m.matches()) {
-@@ -88,13 +90,16 @@ public class YoctoHostShellProcessAdapter extends  Host=
-ShellProcessAdapter {
- 	}
-=20
- 	private void updateMonitor(final int work){
-+
- 		Display.getDefault().asyncExec(new Runnable() {
-+
- 			@Override
- 			public void run() {
- 				if (getMonitor() !=3D null) {
- 					getMonitor().worked(work);
- 				}
- 			}
-+
- 		});
- 	}
-=20
-@@ -124,7 +129,7 @@ public class YoctoHostShellProcessAdapter extends  Host=
-ShellProcessAdapter {
- 				updateMonitor(delta);
- 				reportedWorkload +=3D delta;
- 			}
--		=09
-+
- 			if (reportedWorkload =3D=3D RemoteHelper.TOTALWORKLOAD)
- 				doneMonitor();
- 		}
-@@ -152,8 +157,9 @@ public class YoctoHostShellProcessAdapter extends  Host=
-ShellProcessAdapter {
- 					continue;
- 				}
- 				setCommandPrompt(value);
-+
- 				if (commandPrompt !=3D null && endChar !=3D null && command !=3D null =
-&& processStreamBuffer !=3D null &&
--						value.startsWith(commandPrompt) &&  value.endsWith(endChar) &&=20
-+						value.startsWith(commandPrompt) &&  value.endsWith(endChar) &&
- 						!value.endsWith(command) && processStreamBuffer.getLastOutputLineCon=
-taining(command) !=3D null /*&& waitForOutput*/) {
- 					sem.release();
- 					isFinished =3D true;
-@@ -165,7 +171,7 @@ public class YoctoHostShellProcessAdapter extends  Host=
-ShellProcessAdapter {
- 				this.commandResponseHandler.response(value, false);
- 			}
- 		}
--	=09
-+
- 	}
- 	private void setCommandPrompt(String value) {
- 		if (commandPrompt =3D=3D null) {
-@@ -178,7 +184,7 @@ public class YoctoHostShellProcessAdapter extends  Host=
-ShellProcessAdapter {
- 				commandPrompt =3D value.substring(0, end);
- 				endChar =3D PROMPT_USER_CH;
- 			}
--			=09
-+
- 		}
- 	}
- 	public boolean isFinished() {
---
-1.7.9.5
+Best regards,
 
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
+Elvis Dowson=
 
