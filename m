@@ -1,34 +1,36 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F3C45E00655
-	for <yocto@yoctoproject.org>; Thu,  6 Dec 2012 15:16:28 -0800 (PST)
-Received: from statdsl152.travel-net.com ([206.132.183.152]:53090
-	helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1Tgkg7-0005pN-UB; Thu, 06 Dec 2012 18:16:28 -0500
-Date: Thu, 6 Dec 2012 18:16:24 -0500 (EST)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Chris Larson <clarson@kergoth.com>
-In-Reply-To: <CABcZANkhN-Nx_TfeRDnt2+96HtAwyb_Lp-fM7GBkKWs=a0Ad8A@mail.gmail.com>
-Message-ID: <alpine.DEB.2.02.1212061812580.3304@oneiric>
+Return-Path: <kergoth@gmail.com>
+Received: from mail-lb0-f176.google.com (mail-lb0-f176.google.com
+	[209.85.217.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 18F73E00655
+	for <yocto@yoctoproject.org>; Thu,  6 Dec 2012 15:24:24 -0800 (PST)
+Received: by mail-lb0-f176.google.com with SMTP id k6so6214455lbo.35
+	for <yocto@yoctoproject.org>; Thu, 06 Dec 2012 15:24:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:sender:in-reply-to:references:from:date
+	:x-google-sender-auth:message-id:subject:to:cc:content-type;
+	bh=7A9C1JwkiZ30xNbpE8OCrg+CxOXVwhoA+bDobxh9J8g=;
+	b=jp5w/mxkQAdKjqy2NfheUoSz6MmDhTKPN8f4d7LH5a2ta2g89ZKbHwyGq1oyk0t7Ju
+	sZJh5nPZExxRKMVc9JgV9eflqOnQS83hjvR/qxfS03TM1Rgo4BERsJb6SnVcDphcsvOm
+	YNNzfSwolQJK58HkAoVdLQ9Nd7q6NDFKxcVVmBcFsXG+NZQmkiR6YPDdRjmrm13DXyRm
+	IcmfWle5KDW2+OIZIF5Cf0CKMnm97XKxPlkwFjPVEjkTvCyRojrpF7NcmZaXosVt1NKC
+	feBlfJffNwe0Ikb+y2cmbiw3Vf9ZnEjngsp8GDDyHCvl3uNsYB5JH8qxZw0gj+Ip+YGj
+	Yhzw==
+Received: by 10.152.104.44 with SMTP id gb12mr3562886lab.11.1354836263862;
+	Thu, 06 Dec 2012 15:24:23 -0800 (PST)
+MIME-Version: 1.0
+Sender: kergoth@gmail.com
+Received: by 10.112.42.162 with HTTP; Thu, 6 Dec 2012 15:24:03 -0800 (PST)
+In-Reply-To: <alpine.DEB.2.02.1212061812580.3304@oneiric>
 References: <alpine.DEB.2.02.1212061650350.4116@oneiric>
 	<CABcZAN=JuymHBYdL8kZUjcYjScfjKAJwYJibP6R=7Xkto1Gh1g@mail.gmail.com>
 	<alpine.DEB.2.02.1212061731550.4523@oneiric>
 	<CABcZANkhN-Nx_TfeRDnt2+96HtAwyb_Lp-fM7GBkKWs=a0Ad8A@mail.gmail.com>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
-MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+	<alpine.DEB.2.02.1212061812580.3304@oneiric>
+From: Chris Larson <clarson@kergoth.com>
+Date: Thu, 6 Dec 2012 16:24:03 -0700
+X-Google-Sender-Auth: 2vupfaVs_vqTSU_Nb9A1AxjO33w
+Message-ID: <CABcZANk525GkR-T=6OLvpac4p8gwQ8hG-oEEaZU7RC+5nu2JZw@mail.gmail.com>
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>
 Cc: Yocto discussion list <yocto@yoctoproject.org>
 Subject: Re: FILESEXTRAPATHS needs to be explained *way* better
 X-BeenThere: yocto@yoctoproject.org
@@ -42,77 +44,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 06 Dec 2012 23:16:29 -0000
-Content-Type: MULTIPART/MIXED; BOUNDARY="8323329-650939725-1354835788=:3304"
+X-List-Received-Date: Thu, 06 Dec 2012 23:24:25 -0000
+Content-Type: multipart/alternative; boundary=f46d04088ef53c81f804d037668d
 
---8323329-650939725-1354835788=:3304
-Content-Type: TEXT/PLAIN; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+--f46d04088ef53c81f804d037668d
+Content-Type: text/plain; charset=UTF-8
 
-On Thu, 6 Dec 2012, Chris Larson wrote:
+On Thu, Dec 6, 2012 at 4:16 PM, Robert P. J. Day <rpjday@crashcourse.ca>wrote:
 
+>   ok, that's just silly (but that could be the 9% quebec beer
+> talking).  if i'm working with just one layer, then this:
 >
+> FILESEXTRAPATHS_prepend := "rday"
 >
-> On Thu, Dec 6, 2012 at 3:32 PM, Robert P. J. Day <rpjday@crashcourse.ca> wrote:
->       On Thu, 6 Dec 2012, Chris Larson wrote:
+> works fine:
 >
->       >
->       >
->       > On Thu, Dec 6, 2012 at 2:59 PM, Robert P. J. Day <rpjday@crashcourse.ca>
->       wrote:
->       >         in addition, there is absolutely no need to add a ":" to the value
->       >       as the processing adds that for you, so the many, many examples of
->       >
->       >       FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
->       >
->       >       is potentially confusing to folks reading the code.  (that trailing
->       >       ":" doesn't hurt, but it has no value.)
->       >
->       >
->       > This is wrong. You only don't need the leading : if FILESEXTRAPATHS
->       > was empty to begin with, which is only the case if that is the first
->       > and only bbappend adding to it. As soon as you get more than one,
->       > you'll end up with concatenated values and no separator.
+> FILESPATH="rday/linux-gnueabi:rday/arm:rday/build-linux:rday/pn-netbase:...
 >
->   i'm confused, not sure what this means.  what is the *proper* usage
-> of that variable?
+> if that fails with more than one layer, then that is, quite simply,
+> asinine.
 >
->
-> As I'm pretty sure you've already been told in one of the other 2
-> threads about this, it's a colon separated list of paths. If you go
-> appending to it without a separator, you're going to end up with
-> something useless.
->
-> layer1/.../foo.bbappend
-> FILESEXTRAPATHS_prepend = "${THISDIR}/foo"
->
-> layer2/.../foo.bbappend
-> FILESEXTRAPATHS_prepend = "${THISDIR}/bar"
->
-> resulting FILESEXTRAPATHS: layer1/.../foo/layer2/.../bar
 
-  ok, that's just silly (but that could be the 9% quebec beer
-talking).  if i'm working with just one layer, then this:
-
-FILESEXTRAPATHS_prepend := "rday"
-
-works fine:
-
-FILESPATH="rday/linux-gnueabi:rday/arm:rday/build-linux:rday/pn-netbase:...
-
-if that fails with more than one layer, then that is, quite simply,
-asinine.
-
-rday
-
+I really don't see why you're failing to grasp such a basic concept as a
+colon separated variable. Do you think you can add something to PATH
+without adding a colon?
 -- 
+Christopher Larson
 
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
+--f46d04088ef53c81f804d037668d
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+<div class=3D"gmail_extra">On Thu, Dec 6, 2012 at 4:16 PM, Robert P. J. Day=
+ <span dir=3D"ltr">&lt;<a href=3D"mailto:rpjday@crashcourse.ca" target=3D"_=
+blank">rpjday@crashcourse.ca</a>&gt;</span> wrote:<br><div class=3D"gmail_q=
+uote"><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-l=
+eft:1px #ccc solid;padding-left:1ex">
 
---8323329-650939725-1354835788=:3304--
+<div id=3D":tg">=C2=A0 ok, that&#39;s just silly (but that could be the 9% =
+quebec beer<br>
+talking). =C2=A0if i&#39;m working with just one layer, then this:<br>
+<br>
+FILESEXTRAPATHS_prepend :=3D &quot;rday&quot;<br>
+<br>
+works fine:<br>
+<br>
+FILESPATH=3D&quot;rday/linux-gnueabi:rday/arm:rday/build-linux:rday/pn-netb=
+ase:...<br>
+<br>
+if that fails with more than one layer, then that is, quite simply,<br>
+asinine.</div></blockquote></div><br>I really don&#39;t see why you&#39;re =
+failing to grasp such a basic concept as a colon separated variable. Do you=
+ think you can add something to PATH without adding a colon?<br>-- <br>
+
+Christopher Larson<br>
+</div>
+
+--f46d04088ef53c81f804d037668d--
