@@ -1,30 +1,30 @@
-Return-Path: <timo.mueller@oss.bmw-carit.de>
-Received: from linuxmail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A5203E0144D
-	for <yocto@yoctoproject.org>; Thu,  6 Dec 2012 07:48:41 -0800 (PST)
-Received: from localhost (mysterion.bmw-carit.intra [192.168.101.57])
-	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
-	(No client certificate requested)
-	(Authenticated sender: timo.mueller)
-	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 840C64028F;
-	Thu,  6 Dec 2012 16:13:01 +0100 (CET)
-From: mail@timomueller.eu
+Return-Path: <andreas@schweigstill.de>
+Received: from kitz.schweigstill.de (kitz.schweigstill.de [195.244.237.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A418BE00348
+	for <yocto@yoctoproject.org>; Thu,  6 Dec 2012 08:33:55 -0800 (PST)
+Received: from mailserver (192.168.16.41) by mail-extern (Axigen)
+	with (AES256-SHA encrypted) ESMTPS id 36AA90;
+	Thu, 6 Dec 2012 17:33:53 +0100
+Received: from mailserver (127.0.0.1) by mailserver (Axigen)
+	with ESMTPSA id 0A6791; Thu, 6 Dec 2012 17:33:53 +0100
+Received: from [80.246.32.33] by schweigstill.de with HTTP;
+	Thu, 6 Dec 2012 17:33:53 +0100
+From: Andreas Schweigstill <andreas@schweigstill.de>
+Date: Thu, 6 Dec 2012 17:33:53 +0100
+X-Mailer: Axigen WebMail
 To: yocto@yoctoproject.org
-Date: Thu,  6 Dec 2012 16:48:38 +0100
-Message-Id: <0021e2c50161a819911d9604a7bc1666662a136a.1354805521.git.timo.mueller@bmw-carit.de>
-X-Mailer: git-send-email 1.7.7.6
-In-Reply-To: <b5947a7db458d557db00e16819782a5e7fa8f5cb.1354805521.git.timo.mueller@bmw-carit.de>
-References: <cover.1354805521.git.timo.mueller@bmw-carit.de>
-	<b7c6bd306781ef02179f4b82c46cfa4f73792c1f.1354805521.git.timo.mueller@bmw-carit.de>
-	<bde760220ffcfa140bab6930f327977ecf085f22.1354805521.git.timo.mueller@bmw-carit.de>
-	<e247a383ace4fcb7a2cb47f7a88abd06b23166ac.1354805521.git.timo.mueller@bmw-carit.de>
-	<97a95f82f6fb74dccfbdbafb5542bef21b8f82d2.1354805521.git.timo.mueller@bmw-carit.de>
-	<48cf1e2fec74552d010f6fedc08f7758793be2ca.1354805521.git.timo.mueller@bmw-carit.de>
-	<b5947a7db458d557db00e16819782a5e7fa8f5cb.1354805521.git.timo.mueller@bmw-carit.de>
-In-Reply-To: <cover.1354805521.git.timo.mueller@bmw-carit.de>
-References: <cover.1354805521.git.timo.mueller@bmw-carit.de>
-Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: [RFCv3 7/7] (TEMPORARY): Use origin/timo branch of yocto docs project
+Message-ID: <1354811633501175500@schweigstill.de>
+In-Reply-To: <F11FDE5B-6879-4B95-851B-E52704224A33@gmail.com>
+References: <1354713685799908500@schweigstill.de>
+	<50BF8FD4.2070207@balister.org> <1354798661905184500@schweigstill.de>
+	<F11FDE5B-6879-4B95-851B-E52704224A33@gmail.com>
+Importance: Normal
+MIME-Version: 1.0
+X-AxigenSpam-Level: 1
+X-CTCH-RefID: str=0001.0A0C0203.50C0C8F1.019B,ss=1,fgs=0
+X-CTCH-VOD: Unknown
+X-CTCH-Spam: Unknown
+Subject: Re: mail list for Xilinx Zynq platform?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,34 +36,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 06 Dec 2012 15:48:42 -0000
+X-List-Received-Date: Thu, 06 Dec 2012 16:33:56 -0000
+Content-Type: text/plain;	charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
 
-From: Timo Mueller <timo.mueller@bmw-carit.de>
+Dear Elvis!
 
-As the eclipse generation is currently not part of the master the generation is always using the origin/timo branch to generate the eclipse help. This patch is added for testing purposes only.
+Am Do, 12/06/2012 16:42, hat Elvis Dowson <elvis.dowson@gmail.com> geschrie=
+ben:
+> If you want to build your own version of BOOT.bin, its quite simple.
 
-DO NOT MERGE THIS PATCH UPSTREAM - ONLY APPLY LOCALLY FOR TESTING
----
- scripts/generate_doc.sh |    5 +++++
- 1 files changed, 5 insertions(+), 0 deletions(-)
+Thank you very much for your instructions regarding the creation of my own =
+BOOT.BIN
+file. Currently I am only evaluating the different Linux build systems resp=
+. "distributions"
+being quite happy that I don't have to switch U-Boot together with the Linu=
+x/rootfs.
+In the final project we probably won't use U-Boot at all but instead use a =
+proprietary
+boot mechanism.
 
-diff --git a/scripts/generate_doc.sh b/scripts/generate_doc.sh
-index 7d4911f..f5ae55e 100755
---- a/scripts/generate_doc.sh
-+++ b/scripts/generate_doc.sh
-@@ -48,6 +48,11 @@ else
- fi
- PLUGIN_FOLDER=$2
- 
-+# ====================================================================
-+# TODO remove this section if eclipse generation is merged into master
-+REFERENCE=origin/timo
-+# ====================================================================
-+
- TOP=`pwd`
- 
- DOC_DIR=${PLUGIN_FOLDER}/docs
--- 
-1.7.7.6
+Regards,
+Andreas Schweigstill
 
+=E2=80=8B--=20
+Dipl.-Phys. Andreas Schweigstill=20
+Schweigstill IT | Embedded Systems=20
+Schauenburgerstra=C3=9Fe 116, D-24118 Kiel, Germany=20
+Phone: (+49) 431 530354-35, Fax: (+49) 431 530354-36=20
+Mobile: (+49) 171 6921973, Web: http://www.schweigstill.de/
 
