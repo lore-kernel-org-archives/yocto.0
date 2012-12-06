@@ -1,22 +1,43 @@
-Return-Path: <Tim.Verstraete@medecbenelux.be>
-Received: from mail.medecbenelux.be (mail.medecbenelux.be [81.83.14.242])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DB028E01430
-	for <yocto@yoctoproject.org>; Thu,  6 Dec 2012 02:24:59 -0800 (PST)
-Received: from SBS-MEDEC.medecbenelux.local ([fe80::1b66:a66e:3778:1407]) by
-	SBS-MEDEC.medecbenelux.local ([fe80::1b66:a66e:3778:1407%10]) with mapi
-	id 14.01.0421.002; Thu, 6 Dec 2012 11:24:57 +0100
-From: Tim Verstraete <Tim.Verstraete@medecbenelux.be>
+Return-Path: <B19537@freescale.com>
+Received: from am1outboundpool.messaging.microsoft.com
+	(am1ehsobe006.messaging.microsoft.com [213.199.154.209])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3C9A9E01430
+	for <yocto@yoctoproject.org>; Thu,  6 Dec 2012 02:34:29 -0800 (PST)
+Received: from mail89-am1-R.bigfish.com (10.3.201.237) by
+	AM1EHSOBE010.bigfish.com (10.3.204.30) with Microsoft SMTP Server id
+	14.1.225.23; Thu, 6 Dec 2012 10:34:27 +0000
+Received: from mail89-am1 (localhost [127.0.0.1])	by mail89-am1-R.bigfish.com
+	(Postfix) with ESMTP id 523241E0365	for <yocto@yoctoproject.org>;
+	Thu,  6 Dec 2012 10:34:27 +0000 (UTC)
+X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null); IPV:NLI;
+	H:mail.freescale.net; RD:none; EFVD:NLI
+X-SpamScore: 1
+X-BigFish: VS1(zzzz1de0h1202h1d1ah1d2ahzzz2dh2a8h668h839h8e2h8e3h944hd25hf0ah1220h1288h12a5h12a9h12bdh137ah13b6h1441h1504h1537h153bh15d0h162dh1631hbe9i1155h)
+Received: from mail89-am1 (localhost.localdomain [127.0.0.1]) by mail89-am1
+	(MessageSwitch) id 1354790064389195_5756;
+	Thu,  6 Dec 2012 10:34:24 +0000 (UTC)
+Received: from AM1EHSMHS005.bigfish.com (unknown [10.3.201.253])	by
+	mail89-am1.bigfish.com (Postfix) with ESMTP id 4B6B93E004A	for
+	<yocto@yoctoproject.org>; Thu,  6 Dec 2012 10:34:24 +0000 (UTC)
+Received: from mail.freescale.net (70.37.183.190) by AM1EHSMHS005.bigfish.com
+	(10.3.207.105) with Microsoft SMTP Server (TLS) id 14.1.225.23;
+	Thu, 6 Dec 2012 10:22:20 +0000
+Received: from 039-SN2MPN1-021.039d.mgd.msft.net ([169.254.1.190]) by
+	039-SN1MMR1-002.039d.mgd.msft.net ([10.84.1.15]) with mapi id
+	14.02.0318.003; Thu, 6 Dec 2012 10:22:19 +0000
+From: Luo Zhenhua-B19537 <B19537@freescale.com>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: uboot i.MX6
-Thread-Index: Ac3Tm4Wec0Im9QQGTqajTv7DxzR57w==
-Date: Thu, 6 Dec 2012 10:24:56 +0000
-Message-ID: <4439C3C0562087488F139C696CD862A71328DE01@SBS-MEDEC.medecbenelux.local>
+Thread-Topic: Issue of external toolchain usage in Yocto
+Thread-Index: Ac3Tm5ESjcLY7ZxJR4m3FI2AaKnczQ==
+Date: Thu, 6 Dec 2012 10:22:18 +0000
+Message-ID: <CA452391058F6D4E9715FB2C29D9312A01378161@039-SN2MPN1-021.039d.mgd.msft.net>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [2002:5153:ef2:0:e1f3:c168:1f63:f93d]
+x-originating-ip: [10.192.208.134]
 MIME-Version: 1.0
-Subject: uboot i.MX6
+X-OriginatorOrg: freescale.com
+Subject: Issue of external toolchain usage in Yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,122 +49,76 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 06 Dec 2012 10:25:00 -0000
+X-List-Received-Date: Thu, 06 Dec 2012 10:34:29 -0000
 Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_4439C3C0562087488F139C696CD862A71328DE01SBSMEDECmedecbe_"
-
---_000_4439C3C0562087488F139C696CD862A71328DE01SBSMEDECmedecbe_
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Hi everybody,
+I tried to use CS external toolchain to build images in Yocto, I met follow=
+ing issue when doing configure for package.
 
-I have build the i.MX6 with danny release of yocto and latest freescale met=
-a using the core-image-minimal image for imx6qsabresd target machine =3D=3D=
-> result is build has done everything BUT I when I upload my uboot to my sd=
- card I get nothing. When I change uboot to the image from the freescale we=
-bsite everything runs ...
+configure:2728: checking for powerpc-linux-gnu-gcc  -m32   -mcpu=3D8548 -ma=
+bi=3Dspe -mspe -mfloat-gprs=3Ddouble --sysroot=3D/home/yocto/poky/build_bsc=
+9131rdb_release/tmp/sysroots/bsc9131rdb-tcbootstrap option to accept ISO C8=
+9
+configure:2802: powerpc-linux-gnu-gcc  -m32   -mcpu=3D8548 -mabi=3Dspe -msp=
+e -mfloat-gprs=3Ddouble --sysroot=3D/home/yocto/poky/build_bsc9131rdb_relea=
+se/tmp/sysroots/bsc9131rdb-tcbootstrap  -c -isystem/opt/freescale/usr/local=
+/gcc-4.5.55-eglibc-2.11.55/powerpc-linux-gnu/powerpc-fsl-linux-gnuspe/inclu=
+de -I/home/yocto/poky/build_bsc9131rdb_release/tmp/sysroots/bsc9131rdb -O2 =
+-pipe -g -feliminate-unused-debug-types  conftest.c >&5
+conftest.c:9:19: fatal error: stdio.h: No such file or directory
 
-So this means the kernel and root file system are just fine, only uboot is =
-not ok. My uboot is about half the size of the freescale uboot.
+Firstly I run above compile command manually, it failed as following:=20
+$ /opt/freescale/usr/local/gcc-4.5.55-eglibc-2.11.55/powerpc-linux-gnu/bin/=
+powerpc-linux-gnu-gcc -m32 -mcpu=3D8548 -mabi=3Dspe -mspe -mfloat-gprs=3Ddo=
+uble --sysroot=3D/home/yocto/poky/build_bsc9131rdb_release/tmp/sysroots/bsc=
+9131rdb-tcbootstrap -c -isystem/opt/freescale/usr/local/gcc-4.5.55-eglibc-2=
+.11.55/powerpc-linux-gnu/powerpc-fsl-linux-gnuspe/include  -I/home/yocto/po=
+ky/build_bsc9131rdb_release/tmp/sysroots/bsc9131rdb  -O2 -pipe -g -felimina=
+te-unused-debug-types conftest.c
+conftest.c:10:19: fatal error: stdio.h: No such file or directory
+compilation terminated.
 
-Do I need to do anything special for uboot to run on my device?
+Secondly I removed --sysroot flag, the build process passed.=20
+$ /opt/freescale/usr/local/gcc-4.5.55-eglibc-2.11.55/powerpc-linux-gnu/bin/=
+powerpc-linux-gnu-gcc -m32 -mcpu=3D8548 -mabi=3Dspe -mspe -mfloat-gprs=3Ddo=
+uble -c -isystem/opt/freescale/usr/local/gcc-4.5.55-eglibc-2.11.55/powerpc-=
+linux-gnu/powerpc-fsl-linux-gnuspe/include  -I/home/yocto/poky/build_bsc913=
+1rdb_release/tmp/sysroots/bsc9131rdb  -O2 -pipe -g -feliminate-unused-debug=
+-types conftest.c
 
-Thanks in advance,
+I also used the toolchain built by Yocto, the same issue happened.
 
-Kind regards,
+I did following change in meta/conf/distro/include/tcmode-external-csl.inc,=
+ is there anything missing to use external toolchain in Yocto?
+-EXTERNAL_TOOLCHAIN ?=3D "/usr/local/csl/${TARGET_ARCH}"
++EXTERNAL_TOOLCHAIN ?=3D "/opt/freescale/usr/local/gcc-4.5.55-eglibc-2.11.5=
+5/powerpc-linux-gnu"
 
-Tim
+Content of my contest.c:
+#define PACKAGE_NAME "module-init-tools"
+#define PACKAGE_TARNAME "module-init-tools"
+#define PACKAGE_VERSION "3.16"
+#define PACKAGE_STRING "module-init-tools 3.16"
+#define PACKAGE_BUGREPORT ""
+#define PACKAGE_URL ""
+#define PACKAGE "module-init-tools"
+#define VERSION "3.16"
+
+#include <stdio.h>
+
+int main ()
+{
+  ;
+  return 0;
+}
 
 
---_000_4439C3C0562087488F139C696CD862A71328DE01SBSMEDECmedecbe_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Best Regards,
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri","sans-serif";
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:70.85pt 70.85pt 70.85pt 70.85pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"NL" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi everybody,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">I have build the i.MX6 with dan=
-ny release of yocto and latest freescale meta using the core-image-minimal =
-image for imx6qsabresd target machine
-</span><span lang=3D"EN-US" style=3D"font-family:Wingdings">=E8</span><span=
- lang=3D"EN-US"> result is build has done everything BUT I when I upload my=
- uboot to my sd card I get nothing. When I change uboot to the image from t=
-he freescale website everything runs &#8230;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">So this means the kernel and ro=
-ot file system are just fine, only uboot is not ok. My uboot is about half =
-the size of the freescale uboot.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Do I need to do anything specia=
-l for uboot to run on my device?<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Thanks in advance,<o:p></o:p></=
-span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Kind regards,<o:p></o:p></span>=
-</p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Tim<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-</div>
-</body>
-</html>
+Zhenhua
 
---_000_4439C3C0562087488F139C696CD862A71328DE01SBSMEDECmedecbe_--
+
+
+
