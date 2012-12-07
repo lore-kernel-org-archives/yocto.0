@@ -1,47 +1,38 @@
-Return-Path: <B19537@freescale.com>
-Received: from co1outboundpool.messaging.microsoft.com
-	(co1ehsobe006.messaging.microsoft.com [216.32.180.189])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 86E5DE00655
-	for <yocto@yoctoproject.org>; Thu,  6 Dec 2012 19:16:33 -0800 (PST)
-Received: from mail91-co1-R.bigfish.com (10.243.78.249) by
-	CO1EHSOBE003.bigfish.com (10.243.66.66) with Microsoft SMTP Server id
-	14.1.225.23; Fri, 7 Dec 2012 03:16:32 +0000
-Received: from mail91-co1 (localhost [127.0.0.1])	by mail91-co1-R.bigfish.com
-	(Postfix) with ESMTP id 16F613C020A;
-	Fri,  7 Dec 2012 03:16:32 +0000 (UTC)
-X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null); IPV:NLI;
-	H:mail.freescale.net; RD:none; EFVD:NLI
-X-SpamScore: -4
-X-BigFish: VS-4(zzbb2dI98dI9371I542I1432Izz1de0h1202h1e76h1d1ah1d2ahzz8275dhz2dh2a8h668h839h8e2h8e3h944hd25hf0ah1220h1288h12a5h12a9h12bdh137ah13b6h1441h1504h1537h153bh15d0h162dh1631h1758hbe9i1155h)
-Received: from mail91-co1 (localhost.localdomain [127.0.0.1]) by mail91-co1
-	(MessageSwitch) id 1354850189452404_15067;
-	Fri,  7 Dec 2012 03:16:29 +0000 (UTC)
-Received: from CO1EHSMHS027.bigfish.com (unknown [10.243.78.237])	by
-	mail91-co1.bigfish.com (Postfix) with ESMTP id 61FF1D00054;
-	Fri,  7 Dec 2012 03:16:29 +0000 (UTC)
-Received: from mail.freescale.net (70.37.183.190) by CO1EHSMHS027.bigfish.com
-	(10.243.66.37) with Microsoft SMTP Server (TLS) id 14.1.225.23;
-	Fri, 7 Dec 2012 03:16:29 +0000
-Received: from 039-SN2MPN1-021.039d.mgd.msft.net ([169.254.1.190]) by
-	039-SN1MMR1-002.039d.mgd.msft.net ([10.84.1.15]) with mapi id
-	14.02.0318.003; Fri, 7 Dec 2012 03:16:28 +0000
-From: Luo Zhenhua-B19537 <B19537@freescale.com>
-To: Mark Hatle <mark.hatle@windriver.com>
-Thread-Topic: [yocto] Difference of toolchain recipes
-Thread-Index: Ac3R0s0/UEOxKwlOQ72h3AL1xJ4hNABxX2jAABD8L4AAEzUv0A==
-Date: Fri, 7 Dec 2012 03:16:27 +0000
-Message-ID: <CA452391058F6D4E9715FB2C29D9312A01378976@039-SN2MPN1-021.039d.mgd.msft.net>
-References: <CA452391058F6D4E9715FB2C29D9312A0137811C@039-SN2MPN1-021.039d.mgd.msft.net>
-	<50C0DE57.2040904@windriver.com>
-In-Reply-To: <50C0DE57.2040904@windriver.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.192.208.138]
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A2AAAE006C9
+	for <yocto@yoctoproject.org>; Fri,  7 Dec 2012 05:05:02 -0800 (PST)
+Received: from cpebcc81008dd2c-cmbcc81008dd29.cpe.net.cable.rogers.com
+	([99.253.156.71]:43263 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1Tgxbx-0001BD-9i; Fri, 07 Dec 2012 08:05:01 -0500
+Date: Fri, 7 Dec 2012 08:04:58 -0500 (EST)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: Chris Larson <clarson@kergoth.com>
+In-Reply-To: <CABcZANk525GkR-T=6OLvpac4p8gwQ8hG-oEEaZU7RC+5nu2JZw@mail.gmail.com>
+Message-ID: <alpine.DEB.2.02.1212070744340.5574@oneiric>
+References: <alpine.DEB.2.02.1212061650350.4116@oneiric>
+	<CABcZAN=JuymHBYdL8kZUjcYjScfjKAJwYJibP6R=7Xkto1Gh1g@mail.gmail.com>
+	<alpine.DEB.2.02.1212061731550.4523@oneiric>
+	<CABcZANkhN-Nx_TfeRDnt2+96HtAwyb_Lp-fM7GBkKWs=a0Ad8A@mail.gmail.com>
+	<alpine.DEB.2.02.1212061812580.3304@oneiric>
+	<CABcZANk525GkR-T=6OLvpac4p8gwQ8hG-oEEaZU7RC+5nu2JZw@mail.gmail.com>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
-X-OriginatorOrg: freescale.com
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Difference of toolchain recipes
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: FILESEXTRAPATHS needs to be explained *way* better
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,101 +44,158 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 07 Dec 2012 03:16:33 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 07 Dec 2012 13:05:02 -0000
+Content-Type: MULTIPART/MIXED; BOUNDARY="8323329-1936067213-1354885501=:5574"
 
-Hello Mark,
+--8323329-1936067213-1354885501=:5574
+Content-Type: TEXT/PLAIN; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 
-Thanks a lot, this is very helpful for understanding the different recipes =
-of toolchain.=20
+On Thu, 6 Dec 2012, Chris Larson wrote:
 
+> On Thu, Dec 6, 2012 at 4:16 PM, Robert P. J. Day <rpjday@crashcourse.ca> wrote:
+>         ok, that's just silly (but that could be the 9% quebec beer
+>       talking).  if i'm working with just one layer, then this:
+>
+>       FILESEXTRAPATHS_prepend := "rday"
+>
+>       works fine:
+>
+>       FILESPATH="rday/linux-gnueabi:rday/arm:rday/build-linux:rday/pn-netbase:...
+>
+>       if that fails with more than one layer, then that is, quite simply,
+>       asinine.
+>
+>
+> I really don't see why you're failing to grasp such a basic concept
+> as a colon separated variable. Do you think you can add something to
+> PATH without adding a colon?
 
-Best Regards,
+  arrrrrrrgggghhhh ... i'll try this again.  as i read it (and i'm
+willing to be corrected), the value of FILESEXTRAPATHS_prepend is not
+used for a simple, textual prepend.  period.  end of discussion.
 
-Zhenhua
+  rather, it is used as the basis for extending FILESPATH based on
+*processing* that involves taking the value of OVERRIDES into
+consideration.  using the example i was talking about yesterday (the
+meta-ti layer and the netbase recipe), if my netbase .bbappend
+contains *only* this:
 
-> -----Original Message-----
-> From: yocto-bounces@yoctoproject.org [mailto:yocto-
-> bounces@yoctoproject.org] On Behalf Of Mark Hatle
-> Sent: Friday, December 07, 2012 2:05 AM
-> To: yocto@yoctoproject.org
-> Subject: Re: [yocto] Difference of toolchain recipes
->=20
-> On 12/6/12 4:00 AM, Luo Zhenhua-B19537 wrote:
-> > Can anybody shed some light, please?
-> >
-> >
-> > Best Regards,
-> >
-> > Zhenhua
-> >
-> >
-> >> -----Original Message-----
-> >> From: Luo Zhenhua-B19537
-> >> Sent: Tuesday, December 04, 2012 11:53 AM
-> >> To: openembedded-core@lists.openembedded.org; 'yocto@yoctoproject.org'
-> >> Subject: Difference of toolchain recipes
-> >>
-> >> It is a bit confused for the different recipes of toolchian, can
-> >> somebody help to explain what's the difference for those recipes?
-> >> E.g. gcc-cross, gcc-cross-canadian, gcc-cross-initial,
-> >> gcc-cross-intermediate, gcc- crosssdk, gcc-crosssdk-initial,
-> >> gcc-crosssdk-intermediate, gcc-runtime, etc.
->=20
-> gcc-cross-initial - This is the initial compiler needed to bootstrap the
-> toolchain to build software on the host for the target.  (This is a
-> 'native'
-> package.)
->=20
-> gcc-cross-intermediate - This is the second stage of the bootstrap
-> process to build software on the host for the target. (This is a 'native'
-> package.)
->=20
-> gcc-cross - this is the the final stage of the bootstrap process, and
-> results in the cross compiler to build software on the host for the
-> target.  (This is a 'native' package.)  If you are replacing the cross
-> compiler toolchain with a custom version, this is what you must replace.
->=20
-> gcc-runtime - these are the runtime libraries, but from the toolchain
-> bootstrapping process.  This results in a 'target' binary.
->=20
-> gcc-crosssdk-initial/intermediate - stage 1 and 2 of the a cross compiler
-> to build from the 'host' to the 'sdk'.  Often the SDK is not the same
-> target as the host.  (This is a 'native' binary.)
->=20
-> gcc-crosssdk - this the final stage of the SDK compiler.  Again, this is
-> to build on the host, for the sdk.  This is a 'native' binary.
->=20
-> gcc-cross-canadian - This is the compiler included with the SDK to build
-> on the SDK machine creating software for the target.  This is an
-> 'nativesdk' package.
->=20
-> >> Is there any document for those description?
->=20
-> Not that I know of.. It's one of those things that you kind of need to
-> know in order to work with it.  It likely should be documented somewhere
-> officially.
->=20
-> --Mark
->=20
-> >>
-> >>
-> >> Best Regards,
-> >>
-> >> Zhenhua
-> >
-> > _______________________________________________
-> > yocto mailing list
-> > yocto@yoctoproject.org
-> > https://lists.yoctoproject.org/listinfo/yocto
-> >
->=20
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+FILESEXTRAPATHS_prepend := "/rday"
 
+then if i use bitbake-env to see what happens with FILESPATH wrt to
+that recipe, i see (replacing ":" with newlines for prettiness):
 
+$ bitbake-env -r netbase FILESPATH | tr : '\n'
+Parsing recipes..done.
+# FILESPATH="${@base_set_filespath(["${FILE_DIRNAME}/${BP}",
+"${FILE_DIRNAME}/${BPN}", "${FILE_DIRNAME}/files"], d)}"
+FILESPATH="/rday/linux-gnueabi
+/rday/arm
+/rday/build-linux
+/rday/pn-netbase
+/rday/dm814x-evm
+/rday/ti814x
+/rday/armv7a
+/rday/
+/rday/class-target
+/rday/forcevariable
+/rday/libc-glibc
+/rday/
+/home/rpjday/OE/dist/layers/oe-core/meta/recipes-core/netbase/netbase-5.0/linux-gnueabi
+/home/rpjday/OE/dist/layers/oe-core/meta/recipes-core/netbase/netbase-5.0/arm
+/home/rpjday/OE/dist/layers/oe-core/meta/recipes-core/netbase/netbase-5.0/build-linux
+/home/rpjday/OE/dist/layers/oe-core/meta/recipes-core/netbase/netbase-5.0/pn-netbase
+... snip ...
 
+  see?  how much clearer can i make this?  if you prefer adding the
+silly colon to that line, as in:
+
+FILESEXTRAPATHS_prepend := "/rday:"
+
+it ends up making exactly *no* difference.  none.  zip.  squat.
+you're quite welcome to add as many as you like:
+
+FILESEXTRAPATHS_prepend := "/rday:::::::::::::::::"
+
+and it will make no difference since, as i read it, you are not
+specifying a value to be literally prepended to FILESPATH, you are
+identifying a *directory* to be processed (by, i believe, def
+base_set_filespath(path, d) in utils.bbclass).  if for some bizarre
+reason you like to add that superfluous ":", knock yourself out, but
+don't claim that it is somehow *necessary* because of a
+colon-separated list of directories.
+
+  on the other hand, it *is* useful if you want to add, say, *two*
+dirtectories, as in:
+
+FILESEXTRAPATHS_prepend := "/rday1:/rday2"
+
+which will produce (predictably):
+
+FILESPATH="/rday1/linux-gnueabi
+/rday1/arm
+/rday1/build-linux
+/rday1/pn-netbase
+/rday1/dm814x-evm
+/rday1/ti814x
+/rday1/armv7a
+/rday1/
+/rday1/class-target
+/rday1/forcevariable
+/rday1/libc-glibc
+/rday1/
+/rday2/linux-gnueabi
+/rday2/arm
+/rday2/build-linux
+/rday2/pn-netbase
+/rday2/dm814x-evm
+/rday2/ti814x
+/rday2/armv7a
+/rday2/
+/rday2/class-target
+/rday2/forcevariable
+/rday2/libc-glibc
+/rday2/
+/home/rpjday/OE/dist/layers/oe-core/meta/recipes-core/netbase/netbase-5.0/linux-gnueabi
+/home/rpjday/OE/dist/layers/oe-core/meta/recipes-core/netbase/netbase-5.0/arm
+/home/rpjday/OE/dist/layers/oe-core/meta/recipes-core/netbase/netbase-5.0/build-linux
+/home/rpjday/OE/dist/layers/oe-core/meta/recipes-core/netbase/netbase-5.0/pn-netbase
+... snip ...
+
+so why am i so fixated on this?  thanks for asking.
+
+  i find the current, widespread usage of this form (with the colon):
+
+FILESEXTRAPATHS_prepend := "${THISDIR}/patches:"
+
+potentially misleading since people reading the .bbappend file will
+(quite naturally) assume that, hey, that must represent a literal
+prepend since it includes the colon.  and they will be wrong.  in
+fact, i'm willing to bet that, based on that ubiquitous usage, many
+people who wrote .bbappend files had no idea that that's what was
+happening.
+
+  i'm willing to bet that, in many cases, those people just added what
+they thought was a simple overriding directory name, having no clue
+that that was being expanded into multiple directories, one of which
+just *happened* to match the directory name they supplied.  so things
+worked out, but not for the reason they thought.
+
+  as it stands, the way things are done now will work just fine, of
+course.  but i think it's visually misleading, and not very well
+explained.
+
+rday
+
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
+
+--8323329-1936067213-1354885501=:5574--
