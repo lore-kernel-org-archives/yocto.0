@@ -1,39 +1,28 @@
-Return-Path: <sean.liming@annabooks.com>
-Received: from mail30c40.carrierzone.com (mail30c40.carrierzone.com
-	[209.235.156.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7D12FE003D6
-	for <yocto@yoctoproject.org>; Fri,  7 Dec 2012 19:28:14 -0800 (PST)
-X-Authenticated-User: sean.liming.annabooks.com
-Received: from Sean7 (cpe-76-95-171-22.socal.res.rr.com [76.95.171.22])
-	(authenticated bits=0)
-	by mail30c40.carrierzone.com (8.13.6/8.13.1) with ESMTP id
-	qB83S8x2024788; Sat, 8 Dec 2012 03:28:11 +0000
-From: "Sean Liming" <sean.liming@annabooks.com>
-To: "'Jon Szymaniak'" <jon.szymaniak@gmail.com>
-References: <CANge7vUOfMWzkokgvDQ3imc8xQTBMLBkfonvQyJyDyJfqE4udg@mail.gmail.com>
-In-Reply-To: <CANge7vUOfMWzkokgvDQ3imc8xQTBMLBkfonvQyJyDyJfqE4udg@mail.gmail.com>
-Date: Fri, 7 Dec 2012 19:27:50 -0800
-Message-ID: <000001cdd4f4$024e7f60$06eb7e20$@annabooks.com>
+Return-Path: <vidal.develone@gmail.com>
+Received: from mail-ie0-f175.google.com (mail-ie0-f175.google.com
+	[209.85.223.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BF0DEE003DA
+	for <yocto@yoctoproject.org>; Sat,  8 Dec 2012 06:15:41 -0800 (PST)
+Received: by mail-ie0-f175.google.com with SMTP id qd14so4071698ieb.6
+	for <yocto@yoctoproject.org>; Sat, 08 Dec 2012 06:15:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=AuXVpTnth6GmivYMyU9HSA4Q4c6QEbq/DZ8Y0KeV8Rs=;
+	b=Yv3xihkiosAiAm6Dp4gwiq5HMrjlB7EpNUzQbjm2GuW0WXQtV5NNckhexf9uZMaw1x
+	fJkzD2id7AKn8951nOX7KHkIU2kTz8WoHc8WnVz1g6TTobUcHBNzAIxOGaJ+nd1UXvlV
+	OZhoNEh0zCmBcaonbHFCrrcRdHFE5UfQw21VItFr2JUVBBxlPxlU5p/za1hIsfg73pfL
+	BhAvf9iVBjfgm6Z3pgZdg8mXHCXDoJUxz3Z15eLpVrg+mhsyhsq7q0F7ONzXIYxq5od9
+	qhWJZCgS8CDZGweyqmZmYwtMh1O6nGVPSXduhk8nlooI+8cY9cBF4g7u0SjGbshf1jel
+	18bA==
 MIME-Version: 1.0
-X-Mailer: Microsoft Outlook 14.0
-Thread-Index: AQFtWxaAWYthnn+Dw9MBT9IlXuYpKpjPL9lw
-X-CSC: 0
-X-CHA: v=2.0 cv=OYkv+GvY c=1 sm=1 a=RqNIojzclRO/fVsPhA7IgQ==:17
-	a=XOWhGNYKZXsA:10 a=_DgR7O7FQkkA:10 a=kj9zAlcOel0A:10 a=IjdlZ_XXAAAA:8
-	a=esmHc91EQXkA:10 a=pGLkceISAAAA:8 a=iGHA9ds3AAAA:8
-	a=XTvWsD_j-M-W1WHkRU4A:9 a=CjuIK1q_8ugA:10 a=nHK3ipOpxeAA:10
-	a=FCaQVidmf_IA:10 a=MSl-tDqOz04A:10 a=PAfwrr6pMpkA:10 a=XDKM753qmDAA:10
-	a=RqNIojzclRO/fVsPhA7IgQ==:117
-X-CTCH-RefID: str=0001.0A020209.50C2B3CC.0006, ss=1, re=0.000, recu=0.000,
-	reip=0.000, cl=1, cld=1, fgs=0
-X-CTCH-VOD: Unknown
-X-CTCH-Spam: Unknown
-X-CTCH-Score: 0.000
-X-CTCH-Rules: 
-X-CTCH-Flags: 0
-X-CTCH-ScoreCust: 0.000
-Cc: yocto@yoctoproject.org
-Subject: Re: QA issue with custom recipe
+Received: by 10.50.6.169 with SMTP id c9mr1992442iga.24.1354976141068; Sat, 08
+	Dec 2012 06:15:41 -0800 (PST)
+Received: by 10.64.40.132 with HTTP; Sat, 8 Dec 2012 06:15:40 -0800 (PST)
+Date: Sat, 8 Dec 2012 07:15:40 -0700
+Message-ID: <CANwz6nwfqaMyCv5LDe_pJ60J2f9N46qdiNieHLNFZSwuRBf7tw@mail.gmail.com>
+From: Edward Vidal <vidal.develone@gmail.com>
+To: yocto@yoctoproject.org
+Subject: beagleboard not booting to SATO interface
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,115 +34,100 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 08 Dec 2012 03:28:14 -0000
-Content-Type: text/plain;
-	charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Content-Language: en-us
+X-List-Received-Date: Sat, 08 Dec 2012 14:15:41 -0000
+Content-Type: multipart/alternative; boundary=e89a8f64671791479004d057f772
+
+--e89a8f64671791479004d057f772
+Content-Type: text/plain; charset=ISO-8859-1
+
+Hello
+This is the first time that I have created and MMC for the beagleboard on a
+RHELx86_64 6.3.  The beagleboard boots and the YOCTO display comes up but
+never goes to the SATO display.
 
 
-> -----Original Message-----
-> From: Jon Szymaniak [mailto:jon.szymaniak@gmail.com]
-> Sent: Friday, December 07, 2012 1:36 PM
-> To: sean.liming@annabooks.com
-> Cc: yocto@yoctoproject.org
-> Subject: Re: QA issue with custom recipe
-> 
-> > I am trying to create a simple hello world recipe for a helloworld.c
-> > file. The recipe almost works except it hits a QA issue: WARNING: QA
-> > Issue: hello: Files/directories were installed but not shipped
-> >
-> > The warning leads to a failure in the do_rootfs.
-> >
-> > WARNING: QA Issue: hello: Files/directories were installed but not
-shipped
-> >    /usr
-> >    /usr/bin
-> > ERROR: Function failed: do_rootfs
-> > --------------------------
-> >
-> >
-> > What am I missing in the recipe?
-> >
-> > --
-> > Regards,
-> >
-> > Sean D. Liming
-> > Owner
-> > Annabooks
-> > Cell: 858-774-3176
-> >
-> >
-> > -------------- next part -------------- DESCRIPTION = "Hello World
-> > Application"
-> > LICENSE = "GPL-2"
-> > LIC_FILES_CHKSUM =
-> > "file://${COREBASE}/LICENSE;md5=3f40d7994397109285ec7b81fdeb3b58"
-> >
-> > SECTION = "apps"
-> >
-> > SRC_URI = "file:///home/sean/workspace/Hello/HelloYocto.c"
-> > SRC_URI[md5sum] = "4f5c57b446cc08a7299d4dca58c49cda"
-> > SRC_URI[sha256sum] =
-> >
-> "f357d9214f9c585d8b3997c6a3038eb28b218de264a8bb39ae8474949ad2b98d"
-> >
-> > S = "${WORKDIR}"
-> >
-> > do_compile() {
-> >  ${CC} ${CFLAGS} ${LDFLAGS} /home/sean/workspace/Hello/HelloYocto.c -
-> o
-> > helloyocto }
-> >
-> > do_install() {
-> >  install -d ${D}${bindir}
-> >  install -m 0755 helloyocto ${D}{bindir} }
-> >
-> >
-> 
-> Sean,
-> 
-> I think you need to note which files are installed by the packages
-> associated with this recipe, via:
-> 
-> FILES_${PN} = "${bindir}"
-> 
-> For more info on these, Check out the FILES and CONFFILES
-> variables in the Poky Reference Manual. I also found it helpful
-> to grep around some of the bigger recipes to see how they use
-> these. (I got a bit tripped up with some libraries with the sonames set!)
-> 
-> 
-> Regards,
-> Jon
+WARNING: Host distribution "Red Hat Enterprise Linux Workstation release
+6.3 (Santiago)" has not been validated with this version of the build
+system; you may possibly experience unexpected failures. It is recommended
+that you use a tested distribution.
 
+Build Configuration:
+BB_VERSION        = "1.17.0"
+BUILD_SYS         = "x86_64-linux"
+NATIVELSBSTRING   = "RedHatEnterpriseWorkstation-6.3"
+TARGET_SYS        = "arm-poky-linux-gnueabi"
+MACHINE           = "beagleboard"
+DISTRO            = "poky"
+DISTRO_VERSION    = "1.3+snapshot-20121208"
+TUNE_FEATURES     = "armv7a vfp neon"
+TARGET_FPU        = "vfp-neon"
+meta
+meta-yocto
+meta-yocto-bsp    = "master:c607095894cab60493ddfc4b967b0325e1c313b4"
 
+NOTE: recipe core-image-sato-sdk-1.0-r0: task do_rootfs: Succeeded
+NOTE: Running noexec task 6235 of 6235 (ID: 11,
+/home/vidal/poky/meta/recipes-sato/images/core-image-sato-sdk.bb, do_build)
+NOTE: Tasks Summary: Attempted 6235 tasks of which 5220 didn't need to be
+rerun and all succeeded.
 
-John,
+The Xorg.log is okay up to the end where the following shows the error.
+[2058343.877]     ABI class: X.Org XInput driver, version 18.0
+[2058343.877] (EE) No drivers available.
+[2058343.877]
+Fatal server error:
+[2058343.878] no screens found
+[2058343.878] (EE)
+Please consult the The X.Org Foundation support
+     at http://wiki.x.org
+ for help.
+[2058343.879] (EE) Please also check the log file at "/var/log/Xorg.0.log"
+for additional information.
+[2058343.879] (EE)
+[2058343.890] Server terminated with error (1). Closing log file.
 
-Thank you. The Q/A Warning is gone. That is one step closer, but the package
-is still not resolved.
+Networking is working Okay.
+Any help will be welcomed.
+Thanks
 
--------------------------------------
-Processing HelloYocto...
+--e89a8f64671791479004d057f772
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-Unable to resolve package HelloYocto
+Hello<br>This is the first time that I have created and MMC for the beagleb=
+oard on a RHELx86_64 6.3.=A0 The beagleboard boots and the YOCTO display co=
+mes up but never goes to the SATO display. <br><br><br>WARNING: Host distri=
+bution &quot;Red Hat Enterprise Linux Workstation release 6.3 (Santiago)&qu=
+ot; has not been validated with this version of the build system; you may p=
+ossibly experience unexpected failures. It is recommended that you use a te=
+sted distribution.<br>
+<br>Build Configuration:<br>BB_VERSION=A0=A0=A0=A0=A0=A0=A0 =3D &quot;1.17.=
+0&quot;<br>BUILD_SYS=A0=A0=A0=A0=A0=A0=A0=A0 =3D &quot;x86_64-linux&quot;<b=
+r>NATIVELSBSTRING=A0=A0 =3D &quot;RedHatEnterpriseWorkstation-6.3&quot;<br>=
+TARGET_SYS=A0=A0=A0=A0=A0=A0=A0 =3D &quot;arm-poky-linux-gnueabi&quot;<br>
+MACHINE=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 =3D &quot;beagleboard&quot;<br>DISTRO=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 =3D &quot;poky&quot;<br>DISTRO_VERSION=A0=
+=A0=A0 =3D &quot;1.3+snapshot-20121208&quot;<br>TUNE_FEATURES=A0=A0=A0=A0 =
+=3D &quot;armv7a vfp neon&quot;<br>TARGET_FPU=A0=A0=A0=A0=A0=A0=A0 =3D &quo=
+t;vfp-neon&quot;<br>
+meta=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 <br>meta-yocto=A0=A0=A0=A0=A0=
+=A0=A0 <br>meta-yocto-bsp=A0=A0=A0 =3D &quot;master:c607095894cab60493ddfc4=
+b967b0325e1c313b4&quot;<br><br>NOTE: recipe core-image-sato-sdk-1.0-r0: tas=
+k do_rootfs: Succeeded<br>NOTE: Running noexec task 6235 of 6235 (ID: 11, /=
+home/vidal/poky/meta/recipes-sato/images/<a href=3D"http://core-image-sato-=
+sdk.bb">core-image-sato-sdk.bb</a>, do_build)<br>
+NOTE: Tasks Summary: Attempted 6235 tasks of which 5220 didn&#39;t need to =
+be rerun and all succeeded.<br><br>The Xorg.log is okay up to the end where=
+ the following shows the error.<br>[2058343.877] =A0=A0=A0 ABI class: X.Org=
+ XInput driver, version 18.0<br>
+[2058343.877] (EE) No drivers available.<br>[2058343.877] <br>Fatal server =
+error:<br>[2058343.878] no screens found<br>[2058343.878] (EE) <br>Please c=
+onsult the The X.Org Foundation support <br>=A0=A0=A0 =A0at <a href=3D"http=
+://wiki.x.org">http://wiki.x.org</a><br>
+=A0for help. <br>[2058343.879] (EE) Please also check the log file at &quot=
+;/var/log/Xorg.0.log&quot; for additional information.<br>[2058343.879] (EE=
+) <br>[2058343.890] Server terminated with error (1). Closing log file.<br>
+<br>Networking is working Okay.<br>Any help will be welcomed.<br>Thanks<br>=
+<br>
 
-ERROR: some packages were missing
-
-ERROR: Function failed: do_rootfs (see
-/home/sean/Yocto1.3/n2800/tmp/work/cedartrail-poky-linux/core-image-minimal-
-1.0-r0/temp/log.do_rootfs.24265 for further information)
-
-----------------------
-
-
-
-Regards,
-
-Sean Liming
-Owner
-Annabooks
-Tel: 714-970-7523 / Cell: 858-774-3176
-
-
+--e89a8f64671791479004d057f772--
