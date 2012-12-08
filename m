@@ -1,33 +1,39 @@
-Return-Path: <jessica.zhang@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 283A6E0034C
-	for <yocto@yoctoproject.org>; Fri,  7 Dec 2012 16:24:07 -0800 (PST)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 07 Dec 2012 16:24:06 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,241,1355126400"; d="scan'208";a="177729476"
-Received: from orsmsx102.amr.corp.intel.com ([10.22.225.129])
-	by AZSMGA002.ch.intel.com with ESMTP; 07 Dec 2012 16:24:06 -0800
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.81]) by
-	ORSMSX102.amr.corp.intel.com ([169.254.1.125]) with mapi id
-	14.01.0355.002; Fri, 7 Dec 2012 16:24:05 -0800
-From: "Zhang, Jessica" <jessica.zhang@intel.com>
-To: "mail@timomueller.eu" <mail@timomueller.eu>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] [PATCH 0/3][eclipse-poky] Add option to allow building
-	from	local repo
-Thread-Index: AQHNzuYiyvlIHKu1lkKVBq7G4UOGnJgOFo0g
-Date: Sat, 8 Dec 2012 00:24:05 +0000
-Message-ID: <C6510F6D410BB64A8C15398EDC6B847C46B69CA9@ORSMSX101.amr.corp.intel.com>
-References: <cover.1354197844.git.timo.mueller@bmw-carit.de>
-In-Reply-To: <cover.1354197844.git.timo.mueller@bmw-carit.de>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.139]
+Return-Path: <sean.liming@annabooks.com>
+Received: from mail30c40.carrierzone.com (mail30c40.carrierzone.com
+	[209.235.156.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7D12FE003D6
+	for <yocto@yoctoproject.org>; Fri,  7 Dec 2012 19:28:14 -0800 (PST)
+X-Authenticated-User: sean.liming.annabooks.com
+Received: from Sean7 (cpe-76-95-171-22.socal.res.rr.com [76.95.171.22])
+	(authenticated bits=0)
+	by mail30c40.carrierzone.com (8.13.6/8.13.1) with ESMTP id
+	qB83S8x2024788; Sat, 8 Dec 2012 03:28:11 +0000
+From: "Sean Liming" <sean.liming@annabooks.com>
+To: "'Jon Szymaniak'" <jon.szymaniak@gmail.com>
+References: <CANge7vUOfMWzkokgvDQ3imc8xQTBMLBkfonvQyJyDyJfqE4udg@mail.gmail.com>
+In-Reply-To: <CANge7vUOfMWzkokgvDQ3imc8xQTBMLBkfonvQyJyDyJfqE4udg@mail.gmail.com>
+Date: Fri, 7 Dec 2012 19:27:50 -0800
+Message-ID: <000001cdd4f4$024e7f60$06eb7e20$@annabooks.com>
 MIME-Version: 1.0
-Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: Re: [PATCH 0/3][eclipse-poky] Add option to allow building from	local repo
+X-Mailer: Microsoft Outlook 14.0
+Thread-Index: AQFtWxaAWYthnn+Dw9MBT9IlXuYpKpjPL9lw
+X-CSC: 0
+X-CHA: v=2.0 cv=OYkv+GvY c=1 sm=1 a=RqNIojzclRO/fVsPhA7IgQ==:17
+	a=XOWhGNYKZXsA:10 a=_DgR7O7FQkkA:10 a=kj9zAlcOel0A:10 a=IjdlZ_XXAAAA:8
+	a=esmHc91EQXkA:10 a=pGLkceISAAAA:8 a=iGHA9ds3AAAA:8
+	a=XTvWsD_j-M-W1WHkRU4A:9 a=CjuIK1q_8ugA:10 a=nHK3ipOpxeAA:10
+	a=FCaQVidmf_IA:10 a=MSl-tDqOz04A:10 a=PAfwrr6pMpkA:10 a=XDKM753qmDAA:10
+	a=RqNIojzclRO/fVsPhA7IgQ==:117
+X-CTCH-RefID: str=0001.0A020209.50C2B3CC.0006, ss=1, re=0.000, recu=0.000,
+	reip=0.000, cl=1, cld=1, fgs=0
+X-CTCH-VOD: Unknown
+X-CTCH-Spam: Unknown
+X-CTCH-Score: 0.000
+X-CTCH-Rules: 
+X-CTCH-Flags: 0
+X-CTCH-ScoreCust: 0.000
+Cc: yocto@yoctoproject.org
+Subject: Re: QA issue with custom recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,56 +45,115 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 08 Dec 2012 00:24:07 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Sat, 08 Dec 2012 03:28:14 -0000
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Content-Language: en-us
 
-Hi Timo,
 
-There're some changes made to eclipse build scripts, so your patch won't be=
- able to apply.  Can you rebase against latest master and resend?
+> -----Original Message-----
+> From: Jon Szymaniak [mailto:jon.szymaniak@gmail.com]
+> Sent: Friday, December 07, 2012 1:36 PM
+> To: sean.liming@annabooks.com
+> Cc: yocto@yoctoproject.org
+> Subject: Re: QA issue with custom recipe
+> 
+> > I am trying to create a simple hello world recipe for a helloworld.c
+> > file. The recipe almost works except it hits a QA issue: WARNING: QA
+> > Issue: hello: Files/directories were installed but not shipped
+> >
+> > The warning leads to a failure in the do_rootfs.
+> >
+> > WARNING: QA Issue: hello: Files/directories were installed but not
+shipped
+> >    /usr
+> >    /usr/bin
+> > ERROR: Function failed: do_rootfs
+> > --------------------------
+> >
+> >
+> > What am I missing in the recipe?
+> >
+> > --
+> > Regards,
+> >
+> > Sean D. Liming
+> > Owner
+> > Annabooks
+> > Cell: 858-774-3176
+> >
+> >
+> > -------------- next part -------------- DESCRIPTION = "Hello World
+> > Application"
+> > LICENSE = "GPL-2"
+> > LIC_FILES_CHKSUM =
+> > "file://${COREBASE}/LICENSE;md5=3f40d7994397109285ec7b81fdeb3b58"
+> >
+> > SECTION = "apps"
+> >
+> > SRC_URI = "file:///home/sean/workspace/Hello/HelloYocto.c"
+> > SRC_URI[md5sum] = "4f5c57b446cc08a7299d4dca58c49cda"
+> > SRC_URI[sha256sum] =
+> >
+> "f357d9214f9c585d8b3997c6a3038eb28b218de264a8bb39ae8474949ad2b98d"
+> >
+> > S = "${WORKDIR}"
+> >
+> > do_compile() {
+> >  ${CC} ${CFLAGS} ${LDFLAGS} /home/sean/workspace/Hello/HelloYocto.c -
+> o
+> > helloyocto }
+> >
+> > do_install() {
+> >  install -d ${D}${bindir}
+> >  install -m 0755 helloyocto ${D}{bindir} }
+> >
+> >
+> 
+> Sean,
+> 
+> I think you need to note which files are installed by the packages
+> associated with this recipe, via:
+> 
+> FILES_${PN} = "${bindir}"
+> 
+> For more info on these, Check out the FILES and CONFFILES
+> variables in the Poky Reference Manual. I also found it helpful
+> to grep around some of the bigger recipes to see how they use
+> these. (I got a bit tripped up with some libraries with the sonames set!)
+> 
+> 
+> Regards,
+> Jon
 
-Thanks,
-Jessica
 
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of mail@timomueller.eu
-Sent: Friday, November 30, 2012 2:33 AM
-To: yocto@yoctoproject.org
-Cc: Timo Mueller
-Subject: [yocto] [PATCH 0/3][eclipse-poky] Add option to allow building fro=
-m local repo
 
-From: Timo Mueller <timo.mueller@bmw-carit.de>
+John,
 
-Hi,
+Thank you. The Q/A Warning is gone. That is one step closer, but the package
+is still not resolved.
 
-if you build eclipse-poky with the provided build script it will always use=
- the upstream version of the IDE.
-During development I wanted to use my local repository to make sure that my=
- changes don't break the build system. Therefor I added an option to the bu=
-ild script to allow building from the local eclipse-poky git repository.
+-------------------------------------
+Processing HelloYocto...
 
-Best regards,
-         Timo
+Unable to resolve package HelloYocto
 
-Timo Mueller (3):
-  scripts/build.sh: Added function to use the local repository for
-    building
-  scripts/build.sh: Added help option to the cmdline
-  script/build.sh: Added option to enable building from local
-    repository.
+ERROR: some packages were missing
 
- scripts/build.sh |   30 ++++++++++++++++++++++++++----
- 1 files changed, 26 insertions(+), 4 deletions(-)
+ERROR: Function failed: do_rootfs (see
+/home/sean/Yocto1.3/n2800/tmp/work/cedartrail-poky-linux/core-image-minimal-
+1.0-r0/temp/log.do_rootfs.24265 for further information)
 
---
-1.7.7.6
+----------------------
 
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
+
+
+Regards,
+
+Sean Liming
+Owner
+Annabooks
+Tel: 714-970-7523 / Cell: 858-774-3176
+
 
