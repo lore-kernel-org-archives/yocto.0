@@ -1,28 +1,36 @@
-Return-Path: <vidal.develone@gmail.com>
-Received: from mail-ia0-f169.google.com (mail-ia0-f169.google.com
-	[209.85.210.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6E424E00559
-	for <yocto@yoctoproject.org>; Sat,  8 Dec 2012 09:24:48 -0800 (PST)
-Received: by mail-ia0-f169.google.com with SMTP id r4so2964306iaj.0
-	for <yocto@yoctoproject.org>; Sat, 08 Dec 2012 09:24:47 -0800 (PST)
+Return-Path: <elvis.dowson@gmail.com>
+Received: from mail-da0-f48.google.com (mail-da0-f48.google.com
+	[209.85.210.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 45301E00559
+	for <yocto@yoctoproject.org>; Sat,  8 Dec 2012 09:49:55 -0800 (PST)
+Received: by mail-da0-f48.google.com with SMTP id k18so631539dae.35
+	for <yocto@yoctoproject.org>; Sat, 08 Dec 2012 09:49:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=7SbjDEna0RDOFaT65aDaVrZSRuzuRj23Zhg04iLMO6U=;
-	b=MXvrryhzoJg2KqTvuBCAk0rn2l/mmDiKt1mliopk7iNJsn1+FT1ZISqHYRpmLr1TC3
-	QmbrDPUOeUkFsqPseAxr9S5z/V89VSwWD4YFIHWB4ATNh1R14jG3+h6BQqVHWOe3CdDq
-	f1YY+tL01QxSzvbeu9v53DOtvUPgZCRvhhrdz7kuQlOuCAHol2OalSjWnq5Bj8rsIl2C
-	mKeKp2/jHGCHzaUMFvtVedL9vU7wET/9WCf6wZEGrKg6MpksypJ0Dv1MCWSmokl3cWd+
-	DmBay46/2XymmcwuXS1Kj4WiJN1fNM3RUsbJL1/kstG/DhoBagV+jmuIjP+0MWpQqwdy
-	3x0g==
-MIME-Version: 1.0
-Received: by 10.50.185.230 with SMTP id ff6mr2370533igc.7.1354987487636; Sat,
-	08 Dec 2012 09:24:47 -0800 (PST)
-Received: by 10.64.40.132 with HTTP; Sat, 8 Dec 2012 09:24:47 -0800 (PST)
-Date: Sat, 8 Dec 2012 10:24:47 -0700
-Message-ID: <CANwz6nzr_CjMO8ejGQf-8tb171BuK+3a=Kmj-46Ga2LjZ-GZJg@mail.gmail.com>
-From: Edward Vidal <vidal.develone@gmail.com>
-To: yocto@yoctoproject.org
-Subject: beagleboard not booting to SATO interface
+	h=content-type:mime-version:subject:from:in-reply-to:date
+	:content-transfer-encoding:message-id:references:to:x-mailer;
+	bh=3nSRquRnPOSHAfpzEkGbarnL9g7c43I4NYUjAigJm1g=;
+	b=mzJp+tc2/9tFrieOE09TAMKGqgF/AjldH7PpD1GKNrubyJSBDOZnlGwkJIfEQBYWEt
+	7mbPSt5Lx/THYGh3F1F1VM1f/ASQSPzw0AZhQNxtI9kGRCOVmDmRKfsiTEX7ZhKVZeVB
+	NMDqtS1jSZsOwqgV7eFWrKOPkwh8rxvkTdTVh81xCUrp0AXaBPAmZiSygNEdhBxyUE8R
+	vWCB8DblQOIiYMbEUWEQgTJb7A4xNYYI7n+UNW5+Vem0ffONJxgfMN1GJtkNFf7bN9FP
+	Oed3pnh6QC7PG+QW4VOzRj+fc2a5zyItktYoI1e/a1nsa2t4r6s6qhXl3C0uimn8o9iP
+	f2VQ==
+Received: by 10.68.222.196 with SMTP id qo4mr24782765pbc.140.1354988994887;
+	Sat, 08 Dec 2012 09:49:54 -0800 (PST)
+Received: from [192.168.1.100] ([94.205.107.244])
+	by mx.google.com with ESMTPS id nf9sm8753549pbc.17.2012.12.08.09.49.53
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Sat, 08 Dec 2012 09:49:54 -0800 (PST)
+Mime-Version: 1.0 (Mac OS X Mail 6.2 \(1499\))
+From: Elvis Dowson <elvis.dowson@gmail.com>
+In-Reply-To: <50C3647F.4050900@mlbassoc.com>
+Date: Sat, 8 Dec 2012 21:49:50 +0400
+Message-Id: <5AACF581-BEC6-4F1C-88D6-EF1B8FE74F32@gmail.com>
+References: <31099774-8FED-4465-BFC3-67C718BC4AF6@gmail.com>
+	<50C3647F.4050900@mlbassoc.com>
+To: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+X-Mailer: Apple Mail (2.1499)
+Subject: Re: How to check if systemd is correctly setup
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,51 +42,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 08 Dec 2012 17:24:48 -0000
-Content-Type: multipart/alternative; boundary=14dae9340681e02c6404d05a9be2
-
---14dae9340681e02c6404d05a9be2
-Content-Type: text/plain; charset=ISO-8859-1
-
-Hello,
-Checking  I did no have the file
-/usr/lib/xorg/modules/drivers/omapfb_drv.so only the file
-/usr/lib/xorg/modules/drivers/omap_drv.so
-I copied the file /usr/lib/xorg/modules/drivers/omapfb_drv.so from a
-core-image-sato previous version that was working.
-Then I get the following in the /var/log/Xorg.0.log
-
-
-[2058242.925] (II) Loading /usr/lib/xorg/modules/drivers/omapfb_drv.so
-[2058242.931] (II) Module omapfb: vendor="X.Org Foundation"
-[2058242.932]   compiled for 1.11.4, module version = 0.1.1
-[2058242.932]   ABI class: X.Org Video Driver, version 11.0
-[2058242.932] (EE) module ABI major version (11) doesn't match the server's
-version (13)
-[2058242.932] (II) UnloadModule: "omapfb"
-[2058242.932] (II) Unloading omapfb
-[2058242.933] (EE) Failed to load module "omapfb" (module requirement
-mismatch, 0)
-Any help will be welcomed
-Thanks
-
---14dae9340681e02c6404d05a9be2
-Content-Type: text/html; charset=ISO-8859-1
+X-List-Received-Date: Sat, 08 Dec 2012 17:49:55 -0000
+Content-Type: text/plain; charset=us-ascii
 Content-Transfer-Encoding: quoted-printable
 
-Hello,<br>Checking=A0 I did no have the file<br>/usr/lib/xorg/modules/drive=
-rs/omapfb_drv.so only the file /usr/lib/xorg/modules/drivers/omap_drv.so<br=
->I copied the file /usr/lib/xorg/modules/drivers/omapfb_drv.so from a core-=
-image-sato previous version that was working.<br>
-Then I get the following in the /var/log/Xorg.0.log<br><br><br>[2058242.925=
-] (II) Loading /usr/lib/xorg/modules/drivers/omapfb_drv.so<br>[2058242.931]=
- (II) Module omapfb: vendor=3D&quot;X.Org Foundation&quot;<br>[2058242.932]=
-=A0=A0 compiled for 1.11.4, module version =3D 0.1.1<br>
-[2058242.932]=A0=A0 ABI class: X.Org Video Driver, version 11.0<br>[2058242=
-.932] (EE) module ABI major version (11) doesn&#39;t match the server&#39;s=
- version (13)<br>[2058242.932] (II) UnloadModule: &quot;omapfb&quot;<br>[20=
-58242.932] (II) Unloading omapfb<br>
-[2058242.933] (EE) Failed to load module &quot;omapfb&quot; (module require=
-ment mismatch, 0)<br>Any help will be welcomed <br>Thanks<br><br><br>
+Hi Gary,
+                Thanks for the reply!
 
---14dae9340681e02c6404d05a9be2--
+On Dec 8, 2012, at 8:02 PM, Gary Thomas <gary@mlbassoc.com> wrote:
+
+> On 2012-12-08 07:19, Elvis Dowson wrote:
+>> Hi,
+>>       I haven't used systemd before, and I've just built a linux =
+kernel image using the latest yocto poky/master.
+>>=20
+>> The boot process starts as normal, but it just displays "freeing =
+memory (some value)" and I get no console prompt.
+>>=20
+>> Q1: Which config setting or recipe code, controls the inclusion of =
+systemd in the root filesystem?
+>>=20
+>> Q2: How can I check to see if systemd is properly configured for my =
+target (virtex-5-powerpc-405-ml507-softfloat)?
+>=20
+> First thing, make sure that your kernel has this in the config:
+>  CONFIG_DEVTMPFS=3Dy
+>  CONFIG_DEVTMPFS_MOUNT=3Dy
+> The latest udev (rev 182) has to have this to work.
+
+Yes, my defconfig has the above two configs set.
+
+Which file control if systemd gets pulled into the core-image-minimal =
+recipe?=20
+
+Where are the systemd configuration files stored?
+
+Best regards,
+
+Elvis Dowson=
+
