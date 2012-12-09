@@ -1,35 +1,41 @@
-Return-Path: <bruce.ashfield@gmail.com>
-Received: from mail-vc0-f176.google.com (mail-vc0-f176.google.com
-	[209.85.220.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 92FEFE006C3
-	for <yocto@yoctoproject.org>; Sat,  8 Dec 2012 20:47:03 -0800 (PST)
-Received: by mail-vc0-f176.google.com with SMTP id fo13so1768046vcb.35
-	for <yocto@yoctoproject.org>; Sat, 08 Dec 2012 20:47:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=em60CCiWnjp6zAb4etA6X4jG8rDZ51CMQphB5fCTfgk=;
-	b=b5Sjl5IO7rqiqQQNerwnTZLrJdTog2oLTSBm3KOis3k27HzKTxN6caP6xhaiiYTB4X
-	cRnjvD+GDr7kdS7c1MyGTwPjreEHTbp7NEptaCCN3aFGYGBlMus0VWAbgHJ6b1YMYiX4
-	WmTuuQkx5vfPXVUJFRFOCRaySDW2/8WYPoWWDJY8Z9UrPFKNFiztOsjmNcxrnDEO0TAK
-	OAm2mAk7pOoGTBk9mu666uq7Og2ZKCl3bdNvMlmnSyh3ts4TwHggcSoIH/jhacOQHwoZ
-	xu5PNccMoj8f3/N+DUj2Vsr5qceh90utc8s98BiiHv+4M+jhY58sNRjTnGtR0NIbNmLk
-	HNxQ==
+Return-Path: <sean.liming@annabooks.com>
+Received: from mail42c40.carrierzone.com (mail42c40.carrierzone.com
+	[209.235.156.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4410CE006C6
+	for <yocto@yoctoproject.org>; Sat,  8 Dec 2012 21:03:46 -0800 (PST)
+X-Authenticated-User: sean.liming.annabooks.com
+Received: from Sean7 (cpe-76-95-171-22.socal.res.rr.com [76.95.171.22])
+	(authenticated bits=0)
+	by mail42c40.carrierzone.com (8.13.6/8.13.1) with ESMTP id
+	qB953ctW008120; Sun, 9 Dec 2012 05:03:41 +0000
+From: "Sean Liming" <sean.liming@annabooks.com>
+To: "'Jon Szymaniak'" <jon.szymaniak@gmail.com>
+References: <CANge7vUOfMWzkokgvDQ3imc8xQTBMLBkfonvQyJyDyJfqE4udg@mail.gmail.com>	<000001cdd4f4$024e7f60$06eb7e20$@annabooks.com>	<CANge7vVpMeEHgAK8M_tNXHBGexowv7dCDHgLqmcA6k-4ogwkTw@mail.gmail.com>
+	<001401cdd568$7ccae840$7660b8c0$@annabooks.com>
+In-Reply-To: <001401cdd568$7ccae840$7660b8c0$@annabooks.com>
+Date: Sat, 8 Dec 2012 21:03:19 -0800
+Message-ID: <000b01cdd5ca$850cefa0$8f26cee0$@annabooks.com>
 MIME-Version: 1.0
-Received: by 10.220.150.136 with SMTP id y8mr6545937vcv.34.1355028422695; Sat,
-	08 Dec 2012 20:47:02 -0800 (PST)
-Received: by 10.58.161.78 with HTTP; Sat, 8 Dec 2012 20:47:02 -0800 (PST)
-In-Reply-To: <58D08629-AD55-4693-8F56-83EA0A52CA77@keylevel.com>
-References: <560B845B-ADB9-4244-B82D-8B7136E70F13@keylevel.com>
-	<CABcZANm7UGMYO1BRK8k9EQdGrDG6w013S-nkQrCgFe5O+4v1SQ@mail.gmail.com>
-	<58D08629-AD55-4693-8F56-83EA0A52CA77@keylevel.com>
-Date: Sat, 8 Dec 2012 23:47:02 -0500
-Message-ID: <CADkTA4ORbfM0zT5g5j4pSMUtfH7LJmSsdbckahXPu=2FDiDv7g@mail.gmail.com>
-From: Bruce Ashfield <bruce.ashfield@gmail.com>
-To: Chris Tapp <opensource@keylevel.com>
-Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>,
-	Chris Larson <clarson@kergoth.com>
-Subject: Re: bbappending a bbappend
+X-Mailer: Microsoft Outlook 14.0
+Thread-Index: AQFtWxaAWYthnn+Dw9MBT9IlXuYpKgKVM1YcAo7WcvIB3TMX7JiY1Jmg
+X-CSC: 0
+X-CHA: v=2.0 cv=J44dGnbS c=1 sm=1 a=RqNIojzclRO/fVsPhA7IgQ==:17
+	a=ktSfJsUCs3wA:10 a=_DgR7O7FQkkA:10 a=kj9zAlcOel0A:10 a=IjdlZ_XXAAAA:8
+	a=UCb7yobyFwwA:10 a=iGHA9ds3AAAA:8 a=pGLkceISAAAA:8
+	a=Rza09LPHWKrvZ3EK3mwA:9 a=CjuIK1q_8ugA:10 a=nHK3ipOpxeAA:10
+	a=FCaQVidmf_IA:10 a=XDKM753qmDAA:10 a=MSl-tDqOz04A:10
+	a=jkhDWq6NqUMP1Zf1:21
+	a=kRUTI1Z_UnTvcpKV:21 a=RqNIojzclRO/fVsPhA7IgQ==:117
+X-CTCH-RefID: str=0001.0A020205.50C41BB0.003B, ss=1, re=0.000, recu=0.000,
+	reip=0.000, cl=1, cld=1, fgs=0
+X-CTCH-VOD: Unknown
+X-CTCH-Spam: Unknown
+X-CTCH-Score: 0.000
+X-CTCH-Rules: 
+X-CTCH-Flags: 0
+X-CTCH-ScoreCust: 0.000
+Cc: yocto@yoctoproject.org
+Subject: Re: QA issue with custom recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,139 +47,199 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 09 Dec 2012 04:47:03 -0000
-Content-Type: multipart/alternative; boundary=f46d043d64b3cb9a9d04d064230a
-
---f46d043d64b3cb9a9d04d064230a
-Content-Type: text/plain; charset=ISO-8859-1
-
-On Sat, Dec 8, 2012 at 7:54 PM, Chris Tapp <opensource@keylevel.com> wrote:
-
-> On 9 Dec 2012, at 00:11, Chris Larson wrote:
->
-> On Sat, Dec 8, 2012 at 5:07 PM, Chris Tapp <opensource@keylevel.com>wrote:
->
->> Is it possible to have more than one bbappend applied to a recipe?
->>
->> I'm using meta-cedartrail with my own layer (which is set as lower
->> priority).
->>
->> Meta-cedartrail has a linux-yocto_3.0.bbappend, but I want to be able to
->> enable CONFIG_HID_APPLE in my layer so my Apple keyboard works (and keep
->> meta-cedartrail 'clean'). Is it possible to use another
->> linux-yocto_3.0.bbappend in my layer? I've given it a try, but it's not
->> working and I thought it would be an idea to see if it __should__ before I
->> try and fix it ;-)
->>
->
-> All bbappends from all layers are applied, in layer priority order.
->
->
-> Thanks, I was hoping that was the case.
->
-> I wonder why this isn't working then - I think I've done it as shown in
-> the dev manual...
->
-
-Is it something other than the bbappends ? i.e. are you sure you have all
-the required
-dependencies for CONFIG_HID_APPLE already enabled, or in the same fragment
-you are appending ?
-
-Bruce
+X-List-Received-Date: Sun, 09 Dec 2012 05:03:46 -0000
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Content-Language: en-us
 
 
->
-> --
-> Christopher Larson
->
->
-> Chris Tapp
->
-> opensource@keylevel.com
-> www.keylevel.com
->
->
->
->
+> -----Original Message-----
+> From: yocto-bounces@yoctoproject.org [mailto:yocto-
+> bounces@yoctoproject.org] On Behalf Of Sean Liming
+> Sent: Saturday, December 08, 2012 9:22 AM
+> To: 'Jon Szymaniak'
+> Cc: yocto@yoctoproject.org
+> Subject: Re: [yocto] QA issue with custom recipe
+> 
+> 
+> > -----Original Message-----
+> > From: Jon Szymaniak [mailto:jon.szymaniak@gmail.com]
+> > Sent: Saturday, December 08, 2012 7:05 AM
+> > To: Sean Liming
+> > Cc: yocto@yoctoproject.org
+> > Subject: Re: QA issue with custom recipe
+> >
+> > > > > I am trying to create a simple hello world recipe for a
+> > > > > helloworld.c file. The recipe almost works except it hits a QA
+> > > > > issue: WARNING: QA
+> > > > > Issue: hello: Files/directories were installed but not shipped
+> > > > >
+> > > > > The warning leads to a failure in the do_rootfs.
+> > > > >
+> > > > > WARNING: QA Issue: hello: Files/directories were installed but
+> > > > > not
+> > > shipped
+> > > > >    /usr
+> > > > >    /usr/bin
+> > > > > ERROR: Function failed: do_rootfs
+> > > > > --------------------------
+> > > > >
+> > > > >
+> > > > > What am I missing in the recipe?
+> > > > >
+> > > > > --
+> > > > > Regards,
+> > > > >
+> > > > > Sean D. Liming
+> > > > > Owner
+> > > > > Annabooks
+> > > > > Cell: 858-774-3176
+> > > > >
+> > > > >
+> > > > > -------------- next part -------------- DESCRIPTION = "Hello
+> > > > > World Application"
+> > > > > LICENSE = "GPL-2"
+> > > > > LIC_FILES_CHKSUM =
+> > > > >
+> > "file://${COREBASE}/LICENSE;md5=3f40d7994397109285ec7b81fdeb3b58"
+> > > > >
+> > > > > SECTION = "apps"
+> > > > >
+> > > > > SRC_URI = "file:///home/sean/workspace/Hello/HelloYocto.c"
+> > > > > SRC_URI[md5sum] = "4f5c57b446cc08a7299d4dca58c49cda"
+> > > > > SRC_URI[sha256sum] =
+> > > > >
+> > > >
+> >
+> "f357d9214f9c585d8b3997c6a3038eb28b218de264a8bb39ae8474949ad2b98d"
+> > > > >
+> > > > > S = "${WORKDIR}"
+> > > > >
+> > > > > do_compile() {
+> > > > >  ${CC} ${CFLAGS} ${LDFLAGS}
+> > > > > /home/sean/workspace/Hello/HelloYocto.c -
+> > > > o
+> > > > > helloyocto }
+> > > > >
+> > > > > do_install() {
+> > > > >  install -d ${D}${bindir}
+> > > > >  install -m 0755 helloyocto ${D}{bindir} }
+> > > > >
+> > > > >
+> > > >
+> > > > Sean,
+> > > >
+> > > > I think you need to note which files are installed by the packages
+> > > > associated with this recipe, via:
+> > > >
+> > > > FILES_${PN} = "${bindir}"
+> > > >
+> > > > For more info on these, Check out the FILES and CONFFILES
+> > > > variables in the Poky Reference Manual. I also found it helpful to
+> > > > grep around some of the bigger recipes to see how they use these.
+> > > > (I got a bit tripped up with some libraries with the sonames
+> > > > set!)
+> > > >
+> > > >
+> > > > Regards,
+> > > > Jon
+> > >
+> > >
+> > >
+> > > John,
+> > >
+> > > Thank you. The Q/A Warning is gone. That is one step closer, but the
+> > > package is still not resolved.
+> > >
+> > > -------------------------------------
+> > > Processing HelloYocto...
+> > >
+> > > Unable to resolve package HelloYocto
+> > >
+> > > ERROR: some packages were missing
+> > >
+> > > ERROR: Function failed: do_rootfs (see
+> > >
+> > > /home/sean/Yocto1.3/n2800/tmp/work/cedartrail-poky-linux/core-
+> image-
+> > mi
+> > > nimal-
+> > > 1.0-r0/temp/log.do_rootfs.24265 for further information)
+> > >
+> > > ----------------------
+> > >
+> > >
+> > >
+> > > Regards,
+> > >
+> > > Sean Liming
+> > > Owner
+> > > Annabooks
+> > > Tel: 714-970-7523 / Cell: 858-774-3176
+> > >
+> >
+> > Hi Sean,
+> >
+> > What's the name of your hello world recipe? Try naming it
+> > hello-world.bb
+> or
+> > hello-world_0.1.0.bb (for a version 0.1.0) and appending hello-world
+> > to
+> your
+> > IMAGE_INSTALL.
+> >
+> > I believe recipe names must be lower case and use '-' as a separator.
+> > An underscore is used to separate the package name and the version
+> > number, as I've shown above.
+> >
+> > It looks like someone posted a great hello world example on the wiki,
+> > so
+> be
+> > sure to check that out:
+> >
+> >
+> https://wiki.yoctoproject.org/wiki/How_do_I#Q:_How_do_I_put_my_recip
+> > e_into_Yocto.3F
+> >
+> > Take a look at meta-skeleton as well. I found that to provide a few
+> > very helpful examples as well. :)
+> >
+> > Cheers!
+> > Jon
+> 
+> Jon,
+> 
+> Good ideas. I tried the wiki how-to again, this time it worked with some
+> modifications, and  I will tweak it to match the title rules. Now, I need
+to get
+> my own project working.
+> 
+> Thanks for the help.
+> 
+> Regards,
+> 
+> Sean Liming
+> Owner
+> Annabooks
+> Tel: 714-970-7523 / Cell: 858-774-3176
+> 
 > _______________________________________________
 > yocto mailing list
 > yocto@yoctoproject.org
 > https://lists.yoctoproject.org/listinfo/yocto
->
->
 
 
--- 
-"Thou shalt not follow the NULL pointer, for chaos and madness await thee
-at its end"
+Jon,
 
---f46d043d64b3cb9a9d04d064230a
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+Thanks for your help. It was a path problem with the install call. Digging
+into the working directory the copy from path needs to be specified.
 
-<br><div class=3D"gmail_extra"><br><br><div class=3D"gmail_quote">On Sat, D=
-ec 8, 2012 at 7:54 PM, Chris Tapp <span dir=3D"ltr">&lt;<a href=3D"mailto:o=
-pensource@keylevel.com" target=3D"_blank">opensource@keylevel.com</a>&gt;</=
-span> wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div style=3D"word-wrap:break-word"><div><di=
-v><div class=3D"h5"><div>On 9 Dec 2012, at 00:11, Chris Larson wrote:</div>=
-<br>
-<blockquote type=3D"cite"><div class=3D"gmail_extra">On Sat, Dec 8, 2012 at=
- 5:07 PM, Chris Tapp <span dir=3D"ltr">&lt;<a href=3D"mailto:opensource@key=
-level.com" target=3D"_blank">opensource@keylevel.com</a>&gt;</span> wrote:<=
-br><div class=3D"gmail_quote">
-<blockquote class=3D"gmail_quote" style=3D"margin-top:0px;margin-right:0px;=
-margin-bottom:0px;margin-left:0.8ex;border-left-width:1px;border-left-color=
-:rgb(204,204,204);border-left-style:solid;padding-left:1ex">
+Regards,
 
-<div>Is it possible to have more than one bbappend applied to a recipe?<br>
-<br>
-I&#39;m using meta-cedartrail with my own layer (which is set as lower prio=
-rity).<br>
-<br>
-Meta-cedartrail has a linux-yocto_3.0.bbappend, but I want to be able to en=
-able CONFIG_HID_APPLE in my layer so my Apple keyboard works (and keep meta=
--cedartrail &#39;clean&#39;). Is it possible to use another linux-yocto_3.0=
-.bbappend in my layer? I&#39;ve given it a try, but it&#39;s not working an=
-d I thought it would be an idea to see if it __should__ before I try and fi=
-x it ;-)</div>
+Sean Liming
+Owner
+Annabooks
+Tel: 714-970-7523 / Cell: 858-774-3176
 
 
-</blockquote></div><br>All bbappends from all layers are applied, in layer =
-priority order.</div></blockquote><div><br></div></div></div><div>Thanks, I=
- was hoping that was the case.</div><div><br></div><div>I wonder why this i=
-sn&#39;t working then - I think I&#39;ve done it as shown in the dev manual=
-...</div>
-</div></div></blockquote><div><br></div><div>Is it something other than the=
- bbappends ? i.e. are you sure you have all the required</div><div>dependen=
-cies for CONFIG_HID_APPLE already enabled, or in the same fragment</div>
-<div>you are appending ?</div><div><br></div><div>Bruce</div><div>=A0</div>=
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div style=3D"word-wrap:break-word"><div><br=
-><blockquote type=3D"cite">
-<div class=3D"gmail_extra">-- <br>Christopher Larson<br>
-</div>
-</blockquote></div><br><div>
-<span style=3D"text-indent:0px;letter-spacing:normal;font-variant:normal;te=
-xt-align:auto;font-style:normal;font-weight:normal;line-height:normal;borde=
-r-collapse:separate;text-transform:none;font-size:medium;white-space:normal=
-;font-family:Helvetica;word-spacing:0px"><div>
-Chris Tapp</div><div><br></div><div><a href=3D"mailto:opensource@keylevel.c=
-om" target=3D"_blank">opensource@keylevel.com</a></div><div><a href=3D"http=
-://www.keylevel.com" target=3D"_blank">www.keylevel.com</a></div><div><br><=
-/div>
-</span><br>
-</div>
-<br></div><br>_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
->https://lists.yoctoproject.org/listinfo/yocto</a><br>
-<br></blockquote></div><br><br clear=3D"all"><div><br></div>-- <br>&quot;Th=
-ou shalt not follow the NULL pointer, for chaos and madness await thee at i=
-ts end&quot;<br>
-</div>
-
---f46d043d64b3cb9a9d04d064230a--
