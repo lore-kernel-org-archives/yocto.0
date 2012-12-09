@@ -1,36 +1,40 @@
-Return-Path: <jon.szymaniak@gmail.com>
-Received: from mail-ie0-f170.google.com (mail-ie0-f170.google.com
-	[209.85.223.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 31D1DE006C0
-	for <yocto@yoctoproject.org>; Sat,  8 Dec 2012 21:21:52 -0800 (PST)
-Received: by mail-ie0-f170.google.com with SMTP id k10so5798306iea.29
-	for <yocto@yoctoproject.org>; Sat, 08 Dec 2012 21:21:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=ZQytGUu0F008bnrUrZArbp/k0uQhjj1ztDR6gprBm3I=;
-	b=tFsVGDkxYajDrkuDXFhQvidaF2K4yiXIUGd8Q3RUQV3vrpvI0AW5BAz5P71ulNaLKI
-	ugclQq74qhTtJ2VT7RrSc3sPDslKEKjzcaXj4e6Xbi9aeRRY2GPu2O2KRD0deV7tOpMM
-	oT9a/PHjrTSjtdAC9O0v0hspOI63G05AgxRKC+hUZY0Yk2PhVHsLcBT48mQ3oJEeXDt4
-	UPYpi0aYPGcyO7NnYD9Rm7Hgj1PxBgjBUunTfaZ3pmM6Cl9woenZvP0+iGIodZjXgFHs
-	LEEBFvgSTldMAJcpCQqIk6yYA3KvW7J2mwUZJ0s1ayGW8uJ8yvewEiW78V/aK2z3vaOV
-	aSJQ==
-Received: by 10.50.6.169 with SMTP id c9mr3325597iga.24.1355030511701; Sat, 08
-	Dec 2012 21:21:51 -0800 (PST)
-MIME-Version: 1.0
-Received: by 10.64.167.165 with HTTP; Sat, 8 Dec 2012 21:21:30 -0800 (PST)
-In-Reply-To: <000b01cdd5ca$850cefa0$8f26cee0$@annabooks.com>
-References: <CANge7vUOfMWzkokgvDQ3imc8xQTBMLBkfonvQyJyDyJfqE4udg@mail.gmail.com>
-	<000001cdd4f4$024e7f60$06eb7e20$@annabooks.com>
-	<CANge7vVpMeEHgAK8M_tNXHBGexowv7dCDHgLqmcA6k-4ogwkTw@mail.gmail.com>
-	<001401cdd568$7ccae840$7660b8c0$@annabooks.com>
-	<000b01cdd5ca$850cefa0$8f26cee0$@annabooks.com>
-From: Jon Szymaniak <jon.szymaniak@gmail.com>
-Date: Sun, 9 Dec 2012 00:21:30 -0500
-Message-ID: <CANge7vUauzj9m1V+MYRP_VjLu_=EZr5DdZYiV2K_jS2g7VZfwA@mail.gmail.com>
-To: Sean Liming <sean.liming@annabooks.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: QA issue with custom recipe
+Return-Path: <opensource@keylevel.com>
+Received: from r109.websiteservername.com (r109.websiteservername.com
+	[65.39.128.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3C423E006C0
+	for <yocto@yoctoproject.org>; Sun,  9 Dec 2012 02:43:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=keylevel.com;
+	s=default; 
+	h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Content-Type:Mime-Version:Subject;
+	bh=xZFEjsSi8EBTUbBBAotANnHmYDhK40AKQDq6Gl83lQw=; 
+	b=SwdsTnxMFlMUyoRTvVGfsIKnx7J3KHwWkpyWWs5Ma1i8BJmqPbkNbPsOzoafKkDpv/2xZSlkhqPZ7MBscG/5dmdft3v9AJb7+bm8UwaX+oF+XjU+c+8IRCFrYe1tLI8F;
+Received: from [109.224.129.17] (port=36733
+	helo=macbook-pro.durham.keylevel.com)
+	by r109.websiteservername.com with esmtpa (Exim 4.80)
+	(envelope-from <opensource@keylevel.com>)
+	id 1TheMJ-0007f6-9Y; Sun, 09 Dec 2012 10:43:43 +0000
+Mime-Version: 1.0 (Apple Message framework v1283)
+From: Chris Tapp <opensource@keylevel.com>
+In-Reply-To: <CABcZANkw6yU2HwRqnd9Liokc1d67Ngmxv-3eEc2OOmQYD+q7AQ@mail.gmail.com>
+Date: Sun, 9 Dec 2012 10:43:43 +0000
+Message-Id: <34769012-DB60-420D-B87D-F361D3FC16FD@keylevel.com>
+References: <560B845B-ADB9-4244-B82D-8B7136E70F13@keylevel.com>
+	<CABcZANm7UGMYO1BRK8k9EQdGrDG6w013S-nkQrCgFe5O+4v1SQ@mail.gmail.com>
+	<58D08629-AD55-4693-8F56-83EA0A52CA77@keylevel.com>
+	<CABcZANkw6yU2HwRqnd9Liokc1d67Ngmxv-3eEc2OOmQYD+q7AQ@mail.gmail.com>
+To: Chris Larson <clarson@kergoth.com>
+X-Mailer: Apple Mail (2.1283)
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - r109.websiteservername.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - keylevel.com
+X-Get-Message-Sender-Via: r109.websiteservername.com: authenticated_id:
+	chris.tapp+keylevel.com/only user confirmed/virtual account not
+	confirmed
+Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+Subject: Re: bbappending a bbappend
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,32 +46,92 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 09 Dec 2012 05:21:52 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Sun, 09 Dec 2012 10:43:45 -0000
+Content-Type: multipart/alternative;
+	boundary="Apple-Mail=_88D65690-F847-4B7F-B391-B11CC78D1456"
 
-> Jon,
->
-> Thanks for your help. It was a path problem with the install call. Digging
-> into the working directory the copy from path needs to be specified.
->
-> Regards,
->
-> Sean Liming
-> Owner
-> Annabooks
-> Tel: 714-970-7523 / Cell: 858-774-3176
->
+--Apple-Mail=_88D65690-F847-4B7F-B391-B11CC78D1456
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=us-ascii
 
-Hi Sean,
+On 9 Dec 2012, at 02:06, Chris Larson wrote:
 
-Good find! Sorry, I missed that install issue earlier.
+>=20
+>=20
+> On Sat, Dec 8, 2012 at 5:54 PM, Chris Tapp <opensource@keylevel.com> =
+wrote:
+> On 9 Dec 2012, at 00:11, Chris Larson wrote:
+>=20
+>> On Sat, Dec 8, 2012 at 5:07 PM, Chris Tapp <opensource@keylevel.com> =
+wrote:
+>> Is it possible to have more than one bbappend applied to a recipe?
+>>=20
+>> I'm using meta-cedartrail with my own layer (which is set as lower =
+priority).
+>>=20
+>> Meta-cedartrail has a linux-yocto_3.0.bbappend, but I want to be able =
+to enable CONFIG_HID_APPLE in my layer so my Apple keyboard works (and =
+keep meta-cedartrail 'clean'). Is it possible to use another =
+linux-yocto_3.0.bbappend in my layer? I've given it a try, but it's not =
+working and I thought it would be an idea to see if it __should__ before =
+I try and fix it ;-)
+>>=20
+>> All bbappends from all layers are applied, in layer priority order.
+>=20
+> Thanks, I was hoping that was the case.
+>=20
+> I wonder why this isn't working then - I think I've done it as shown =
+in the dev manual...
+>=20
+>=20
+> Try making use of bitbake-layers show-appends (iirc)
 
-Note that if you're only installing a single file, you can make that a
-one liner:
-do_install() {
-  install -D -m 0755 ${S}/helloyocto ${D}/{bindir}/helloyocto
-}
+Thanks, I didn't know about that one. It shows three .bbappends:
 
-Best of luck! :)
-- Jon
+1) meta-yocto-bsp
+2) meta-cedartrail
+3) One for my layer
 
+> --=20
+> Christopher Larson
+
+Chris Tapp
+
+opensource@keylevel.com
+www.keylevel.com
+
+
+
+
+--Apple-Mail=_88D65690-F847-4B7F-B391-B11CC78D1456
+Content-Transfer-Encoding: 7bit
+Content-Type: text/html;
+	charset=us-ascii
+
+<html><head></head><body style="word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-line-break: after-white-space; "><div><div>On 9 Dec 2012, at 02:06, Chris Larson wrote:</div><br class="Apple-interchange-newline"><blockquote type="cite"><div class="gmail_extra"><br><br><div class="gmail_quote">On Sat, Dec 8, 2012 at 5:54 PM, Chris Tapp <span dir="ltr">&lt;<a href="mailto:opensource@keylevel.com" target="_blank">opensource@keylevel.com</a>&gt;</span> wrote:<br>
+
+<blockquote class="gmail_quote" style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0.8ex; border-left-width: 1px; border-left-color: rgb(204, 204, 204); border-left-style: solid; padding-left: 1ex; position: static; z-index: auto; "><div class="adM"><div class="h5"><div>On 9 Dec 2012, at 00:11, Chris Larson wrote:</div><br><blockquote type="cite"><div class="gmail_extra">
+
+On Sat, Dec 8, 2012 at 5:07 PM, Chris Tapp <span dir="ltr">&lt;<a href="mailto:opensource@keylevel.com" target="_blank">opensource@keylevel.com</a>&gt;</span> wrote:<br><div class="gmail_quote"><blockquote class="gmail_quote" style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0.8ex; border-left-width: 1px; border-left-color: rgb(204, 204, 204); border-left-style: solid; padding-left: 1ex; position: static; z-index: auto; ">
+
+
+
+<div>Is it possible to have more than one bbappend applied to a recipe?<br>
+<br>
+I'm using meta-cedartrail with my own layer (which is set as lower priority).<br>
+<br>
+Meta-cedartrail has a linux-yocto_3.0.bbappend, but I want to be able to enable CONFIG_HID_APPLE in my layer so my Apple keyboard works (and keep meta-cedartrail 'clean'). Is it possible to use another linux-yocto_3.0.bbappend in my layer? I've given it a try, but it's not working and I thought it would be an idea to see if it __should__ before I try and fix it ;-)</div>
+
+
+
+</blockquote></div><br>All bbappends from all layers are applied, in layer priority order.</div></blockquote><div><br></div></div></div><div>Thanks, I was hoping that was the case.</div><div><br></div><div>I wonder why this isn't working then - I think I've done it as shown in the dev manual...</div>
+
+</blockquote></div><br><br clear="all"><div>Try making use of bitbake-layers show-appends (iirc)</div></div></blockquote><div><br></div><div>Thanks, I didn't know about that one.&nbsp;It shows three .bbappends:</div><div><br></div><div>1) meta-yocto-bsp</div><div>2) meta-cedartrail</div><div>3) One for my layer</div><br><blockquote type="cite"><div class="gmail_extra"><div>--&nbsp;</div>Christopher Larson<br>
+</div>
+</blockquote></div><br><div apple-content-edited="true">
+<span class="Apple-style-span" style="border-collapse: separate; color: rgb(0, 0, 0); font-family: Helvetica; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: auto; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-border-horizontal-spacing: 0px; -webkit-border-vertical-spacing: 0px; -webkit-text-decorations-in-effect: none; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; font-size: medium; "><div>Chris Tapp</div><div><br></div><div><a href="mailto:opensource@keylevel.com">opensource@keylevel.com</a></div><div><a href="http://www.keylevel.com">www.keylevel.com</a></div><div><br></div></span><br class="Apple-interchange-newline">
+</div>
+<br></body></html>
+
+--Apple-Mail=_88D65690-F847-4B7F-B391-B11CC78D1456--
