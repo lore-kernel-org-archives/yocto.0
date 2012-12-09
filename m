@@ -1,17 +1,35 @@
-Return-Path: <packages@autobuilder.yoctoproject.org>
-Received: from autobuilder.yoctoproject.org (ab01.i.yoctoproject.org
-	[10.0.10.111])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E3A1AE006C3
-	for <yocto@yoctoproject.org>; Sat,  8 Dec 2012 18:13:48 -0800 (PST)
-Received: by autobuilder.yoctoproject.org (Postfix, from userid 802)
-	id E0439429C6; Sun,  9 Dec 2012 02:13:48 +0000 (UTC)
-Date: Sun, 9 Dec 2012 02:13:48 +0000
-From: Yocto Project Package Report System <package-reporting@yoctoproject.org>
-To: yocto@yoctoproject.org
-Message-ID: <20121209021348.GA23660@ab01.i.yoctoproject.org>
+Return-Path: <bruce.ashfield@gmail.com>
+Received: from mail-vc0-f176.google.com (mail-vc0-f176.google.com
+	[209.85.220.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 92FEFE006C3
+	for <yocto@yoctoproject.org>; Sat,  8 Dec 2012 20:47:03 -0800 (PST)
+Received: by mail-vc0-f176.google.com with SMTP id fo13so1768046vcb.35
+	for <yocto@yoctoproject.org>; Sat, 08 Dec 2012 20:47:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=em60CCiWnjp6zAb4etA6X4jG8rDZ51CMQphB5fCTfgk=;
+	b=b5Sjl5IO7rqiqQQNerwnTZLrJdTog2oLTSBm3KOis3k27HzKTxN6caP6xhaiiYTB4X
+	cRnjvD+GDr7kdS7c1MyGTwPjreEHTbp7NEptaCCN3aFGYGBlMus0VWAbgHJ6b1YMYiX4
+	WmTuuQkx5vfPXVUJFRFOCRaySDW2/8WYPoWWDJY8Z9UrPFKNFiztOsjmNcxrnDEO0TAK
+	OAm2mAk7pOoGTBk9mu666uq7Og2ZKCl3bdNvMlmnSyh3ts4TwHggcSoIH/jhacOQHwoZ
+	xu5PNccMoj8f3/N+DUj2Vsr5qceh90utc8s98BiiHv+4M+jhY58sNRjTnGtR0NIbNmLk
+	HNxQ==
 MIME-Version: 1.0
-User-Agent: Mutt/1.5.20 (2009-12-10)
-Subject: [Package Report System]Manual check recipes name list
+Received: by 10.220.150.136 with SMTP id y8mr6545937vcv.34.1355028422695; Sat,
+	08 Dec 2012 20:47:02 -0800 (PST)
+Received: by 10.58.161.78 with HTTP; Sat, 8 Dec 2012 20:47:02 -0800 (PST)
+In-Reply-To: <58D08629-AD55-4693-8F56-83EA0A52CA77@keylevel.com>
+References: <560B845B-ADB9-4244-B82D-8B7136E70F13@keylevel.com>
+	<CABcZANm7UGMYO1BRK8k9EQdGrDG6w013S-nkQrCgFe5O+4v1SQ@mail.gmail.com>
+	<58D08629-AD55-4693-8F56-83EA0A52CA77@keylevel.com>
+Date: Sat, 8 Dec 2012 23:47:02 -0500
+Message-ID: <CADkTA4ORbfM0zT5g5j4pSMUtfH7LJmSsdbckahXPu=2FDiDv7g@mail.gmail.com>
+From: Bruce Ashfield <bruce.ashfield@gmail.com>
+To: Chris Tapp <opensource@keylevel.com>
+Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>,
+	Chris Larson <clarson@kergoth.com>
+Subject: Re: bbappending a bbappend
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -23,79 +41,139 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 09 Dec 2012 02:13:49 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Sun, 09 Dec 2012 04:47:03 -0000
+Content-Type: multipart/alternative; boundary=f46d043d64b3cb9a9d04d064230a
 
-This mail was sent out by Package Report System.
-It will list all the recipes which can't check upstream version by script, and will show how long it is since their last mannual version check.
-You can check the detail information at http://packages.yoctoproject.org/manuallychkinfo
+--f46d043d64b3cb9a9d04d064230a
+Content-Type: text/plain; charset=ISO-8859-1
+
+On Sat, Dec 8, 2012 at 7:54 PM, Chris Tapp <opensource@keylevel.com> wrote:
+
+> On 9 Dec 2012, at 00:11, Chris Larson wrote:
+>
+> On Sat, Dec 8, 2012 at 5:07 PM, Chris Tapp <opensource@keylevel.com>wrote:
+>
+>> Is it possible to have more than one bbappend applied to a recipe?
+>>
+>> I'm using meta-cedartrail with my own layer (which is set as lower
+>> priority).
+>>
+>> Meta-cedartrail has a linux-yocto_3.0.bbappend, but I want to be able to
+>> enable CONFIG_HID_APPLE in my layer so my Apple keyboard works (and keep
+>> meta-cedartrail 'clean'). Is it possible to use another
+>> linux-yocto_3.0.bbappend in my layer? I've given it a try, but it's not
+>> working and I thought it would be an idea to see if it __should__ before I
+>> try and fix it ;-)
+>>
+>
+> All bbappends from all layers are applied, in layer priority order.
+>
+>
+> Thanks, I was hoping that was the case.
+>
+> I wonder why this isn't working then - I think I've done it as shown in
+> the dev manual...
+>
+
+Is it something other than the bbappends ? i.e. are you sure you have all
+the required
+dependencies for CONFIG_HID_APPLE already enabled, or in the same fragment
+you are appending ?
+
+Bruce
 
 
-PackageName              Version             LastChkVersion      LastChkTime              Maintainer                              NoUpgradeReason               
-lsb                      4.1                 4.1                 95 days                  Yi Zhao <yi.zhao@windriver.co...        No data                       
-e2fsprogs                1.42.1              1.42.5              103 day                  Scott Garman <scott.a.garman@...        No data                       
-chrpath                  0.14                0.14                104 day                  Scott Garman <scott.a.garman@...        No data                       
-opensp                   1.5.2               1.5.2               100 day                  Scott Garman <scott.a.garman@...        No data                       
-expat                    2.1.0               2.0.1               103 day                  Scott Garman <scott.a.garman@...        No data                       
-nfs-utils                1.2.3               1.2.6               100 day                  Scott Garman <scott.a.garman@...        No data                       
-libpng                   1.2.50              1.5.11              157 day                  Scott Garman <scott.a.garman@...        1.4.3 and later changes the AP...
-cracklib                 2.8.19              2.8.19              37 days                  Saul Wold <sgw@linux.intel.co...        No data                       
-psmisc                   22.20               22.20               37 days                  Saul Wold <sgw@linux.intel.co...        No data                       
-sysstat                  10.1.2              10.1.2              37 days                  Saul Wold <sgw@linux.intel.co...        No data                       
-less                     456                 451                 37 days                  Saul Wold <sgw@linux.intel.co...        No data                       
-glew                     1.9.0               1.9.0               37 days                  Saul Wold <sgw@linux.intel.co...        No data                       
-libexif                  0.6.21              0.6.21              37 days                  Saul Wold <sgw@linux.intel.co...        No data                       
-sqlite3                  3.7.14.1            3.7.14.1            37 days                  Saul Wold <sgw@linux.intel.co...        No data                       
-boost                    1.51.0              1.51.0              37 days                  Saul Wold <sgw@linux.intel.co...        No data                       
-libcheck                 0.9.9               0.9.9               37 days                  Saul Wold <sgw@linux.intel.co...        No data                       
-kconfig-frontends        3.6.0               3.6.0               37 days                  Saul Wold <sgw@linux.intel.co...        No data                       
-sysfsutils               2.1.0               2.1.0               37 days                  Saul Wold <sgw@linux.intel.co...        No data                       
-libcgroup                0.37.1              0.38-1              37 days                  Saul Wold <sgw@linux.intel.co...        No data                       
-console-tools            0.3.2               0.3.2               37 days                  Saul Wold <sgw@linux.intel.co...        No data                       
-libmad                   0.15.1b             0.15.1b             37 days                  Saul Wold <sgw@linux.intel.co...        No data                       
-tzdata                   2012d               2012c               94 days                  Radu Moisan <radu.moisan@inte...        No data                       
-watchdog                 5.12                5.12                30 days                  Radu Moisan <radu.moisan@inte...        No data                       
-hdparm                   9.39                9.39                30 days                  Radu Moisan <radu.moisan@inte...        No data                       
-tslib                    1.0                 1.0                 97 days                  Radu Moisan <radu.moisan@inte...        No data                       
-zip                      3.0                 3.0                 96 days                  Radu Moisan <radu.moisan@inte...        No data                       
-unzip                    6.0                 6.0                 97 days                  Radu Moisan <radu.moisan@inte...        No data                       
-beecrypt                 4.2.1               4.2.1               30 days                  Radu Moisan <radu.moisan@inte...        No data                       
-setserial                2.17                2.17                30 days                  Radu Moisan <radu.moisan@inte...        No data                       
-acpid                    1.0.10              1.0.10              30 days                  Radu Moisan <radu.moisan@inte...        No data                       
-squashfs-tools           4.2                 4.2                 30 days                  Radu Moisan <radu.moisan@inte...        No data                       
-ubootchart               0.0+r12             0.0+r12             89 days                  Radu Moisan <radu.moisan@inte...        No data                       
-opkg                     0.1.8+svnr649...    0.1.8               100 day                  Radu Moisan <radu.moisan@inte...        No data                       
-kmod                     9                   9                   135 day                  Radu Moisan <radu.moisan@inte...        No data                       
-tinylogin                1.4                 1.4                 97 days                  Radu Moisan <radu.moisan@inte...        TinyLogin was merged into Busy...
-lame                     3.99.5              3.99.5              102 day                  Radu Moisan <radu.moisan@inte...        No data                       
-ltp                      20120903            20120903            12 days                  Mihai Lindner <mihaix.lindner...        No data                       
-prelink                  1.0+git1+a2d8...    1.0+git1+9552...    100 day                  Mark Hatle <mark.hatle@windri...        No data                       
-x11vnc                   0.9.13              0.9.13              97 days                  Laurentiu Palcu <laurentiu.pa...        No data                       
-adt-installer            0.1.8+svnr596...    1.1                 89 days                  Jessica Zhang <jessica.zhang@...        No data                       
-cwautomacros             20110201            20110201            31 days                  Cristian Iorga <cristian.iorg...        No data                       
-quota                    4.00                4.00                31 days                  Cristian Iorga <cristian.iorg...        No data                       
-libtirpc                 0.2.2               0.2.2               31 days                  Cristian Iorga <cristian.iorg...        No data                       
-minicom                  2.6.1               2.6.1               100 day                  Cristian Iorga <cristian.iorg...        No data                       
-rpcbind                  0.2.0               0.2.0               31 days                  Cristian Iorga <cristian.iorg...        No data                       
-wireless-tools           29                  29                  31 days                  Cristian Iorga <cristian.iorg...        No data                       
-irda-utils               0.9.18              0.9.18              31 days                  Cristian Iorga <cristian.iorg...        No data                       
-tremor                   20120314            20120122            31 days                  Cristian Iorga <cristian.iorg...        No data                       
-flac                     1.2.1               1.2.1               31 days                  Cristian Iorga <cristian.iorg...        No data                       
-libomxil                 0.9.3               0.9.3               31 days                  Cristian Iorga <cristian.iorg...        No data                       
-libsamplerate0           0.1.8               0.1.8               31 days                  Cristian Iorga <cristian.iorg...        No data                       
-freetype                 2.4.10              2.4.10              102 day                  Constantin Musca <constantinx...        No data                       
-menu-cache               0.3.3               0.3.3               100 day                  Constantin Musca <constantinx...        No data                       
-libfm                    0.1.17              1.30                101 day                  Constantin Musca <constantinx...        No data                       
-pcmanfm                  0.9.10              0.9.10              100 day                  Constantin Musca <constantinx...        No data                       
-gtkhtml2                 2.11.0+svnr11...    2.11.1              102 day                  Constantin Musca <constantinx...        No data                       
-libpcre                  8.31                8.31                31 days                  Bogdan Marinescu <bogdan.a.ma...        No data                       
-mpfr                     3.1.0               3.1.1               31 days                  Bogdan Marinescu <bogdan.a.ma...        No data                       
-python-scons             2.1.0               2.2.0               31 days                  Bogdan Marinescu <bogdan.a.ma...        No data                       
-strace                   4.7                 4.7                 31 days                  Bogdan Marinescu <bogdan.a.ma...        No data                       
-tcl                      8.5.11              8.5.12              31 days                  Bogdan Marinescu <bogdan.a.ma...        No data                       
-oprofile                 0.9.7               0.9.8               31 days                  Bogdan Marinescu <bogdan.a.ma...        No data                       
-Manual Check Count: 62
-Manual Need Check Count: 55
-Any problem, please contact Saul Wold <sgw@linux.intel.com> 
+>
+> --
+> Christopher Larson
+>
+>
+> Chris Tapp
+>
+> opensource@keylevel.com
+> www.keylevel.com
+>
+>
+>
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
 
+
+-- 
+"Thou shalt not follow the NULL pointer, for chaos and madness await thee
+at its end"
+
+--f46d043d64b3cb9a9d04d064230a
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<br><div class=3D"gmail_extra"><br><br><div class=3D"gmail_quote">On Sat, D=
+ec 8, 2012 at 7:54 PM, Chris Tapp <span dir=3D"ltr">&lt;<a href=3D"mailto:o=
+pensource@keylevel.com" target=3D"_blank">opensource@keylevel.com</a>&gt;</=
+span> wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><div style=3D"word-wrap:break-word"><div><di=
+v><div class=3D"h5"><div>On 9 Dec 2012, at 00:11, Chris Larson wrote:</div>=
+<br>
+<blockquote type=3D"cite"><div class=3D"gmail_extra">On Sat, Dec 8, 2012 at=
+ 5:07 PM, Chris Tapp <span dir=3D"ltr">&lt;<a href=3D"mailto:opensource@key=
+level.com" target=3D"_blank">opensource@keylevel.com</a>&gt;</span> wrote:<=
+br><div class=3D"gmail_quote">
+<blockquote class=3D"gmail_quote" style=3D"margin-top:0px;margin-right:0px;=
+margin-bottom:0px;margin-left:0.8ex;border-left-width:1px;border-left-color=
+:rgb(204,204,204);border-left-style:solid;padding-left:1ex">
+
+<div>Is it possible to have more than one bbappend applied to a recipe?<br>
+<br>
+I&#39;m using meta-cedartrail with my own layer (which is set as lower prio=
+rity).<br>
+<br>
+Meta-cedartrail has a linux-yocto_3.0.bbappend, but I want to be able to en=
+able CONFIG_HID_APPLE in my layer so my Apple keyboard works (and keep meta=
+-cedartrail &#39;clean&#39;). Is it possible to use another linux-yocto_3.0=
+.bbappend in my layer? I&#39;ve given it a try, but it&#39;s not working an=
+d I thought it would be an idea to see if it __should__ before I try and fi=
+x it ;-)</div>
+
+
+</blockquote></div><br>All bbappends from all layers are applied, in layer =
+priority order.</div></blockquote><div><br></div></div></div><div>Thanks, I=
+ was hoping that was the case.</div><div><br></div><div>I wonder why this i=
+sn&#39;t working then - I think I&#39;ve done it as shown in the dev manual=
+...</div>
+</div></div></blockquote><div><br></div><div>Is it something other than the=
+ bbappends ? i.e. are you sure you have all the required</div><div>dependen=
+cies for CONFIG_HID_APPLE already enabled, or in the same fragment</div>
+<div>you are appending ?</div><div><br></div><div>Bruce</div><div>=A0</div>=
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><div style=3D"word-wrap:break-word"><div><br=
+><blockquote type=3D"cite">
+<div class=3D"gmail_extra">-- <br>Christopher Larson<br>
+</div>
+</blockquote></div><br><div>
+<span style=3D"text-indent:0px;letter-spacing:normal;font-variant:normal;te=
+xt-align:auto;font-style:normal;font-weight:normal;line-height:normal;borde=
+r-collapse:separate;text-transform:none;font-size:medium;white-space:normal=
+;font-family:Helvetica;word-spacing:0px"><div>
+Chris Tapp</div><div><br></div><div><a href=3D"mailto:opensource@keylevel.c=
+om" target=3D"_blank">opensource@keylevel.com</a></div><div><a href=3D"http=
+://www.keylevel.com" target=3D"_blank">www.keylevel.com</a></div><div><br><=
+/div>
+</span><br>
+</div>
+<br></div><br>_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
+>https://lists.yoctoproject.org/listinfo/yocto</a><br>
+<br></blockquote></div><br><br clear=3D"all"><div><br></div>-- <br>&quot;Th=
+ou shalt not follow the NULL pointer, for chaos and madness await thee at i=
+ts end&quot;<br>
+</div>
+
+--f46d043d64b3cb9a9d04d064230a--
