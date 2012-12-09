@@ -1,28 +1,34 @@
-Return-Path: <kaiserfarrell@gmail.com>
-Received: from mail-wi0-f172.google.com (mail-wi0-f172.google.com
-	[209.85.212.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 48790E0072E
-	for <yocto@yoctoproject.org>; Sun,  9 Dec 2012 07:13:06 -0800 (PST)
-Received: by mail-wi0-f172.google.com with SMTP id o1so593073wic.11
-	for <yocto@yoctoproject.org>; Sun, 09 Dec 2012 07:13:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=EDl9psDrdcZ+mIWKs5uWb5Y+XuHVMGc6zVygNe2t2No=;
-	b=I3KLn8Kuud5Ut9u3aqzdoRczllh3DVviacHZ1nFxM6CLjWLJkeMgG8I7sxV6+5wP1K
-	DXlOZf0MW1ax7Kh7noKtFxZ+E3CIgb/ohV8wIuKzHol2U9/URbO9ZlpSf/F77RRujS/u
-	6XhSm811ERwMTbCcnPpsfkflSzUsrYZI4XC398JYu7JSM4IJ/KlOcB5uU7yDZPvc/Dlb
-	4eocoYCIDqFHkrkk1swgUC5OsCX/AXPZ0pfDGFf34INTKocf1E0ix3J9Ad92g1z3Wd6s
-	HOclBwLuearK+BqhKjdjv9W7xHsn55lTCbnAtVwNZqYPNQmdG24Bs/JeJv0N/lms2FCJ
-	BvVA==
-MIME-Version: 1.0
-Received: by 10.180.88.71 with SMTP id be7mr6694165wib.17.1355065985053; Sun,
-	09 Dec 2012 07:13:05 -0800 (PST)
-Received: by 10.216.180.136 with HTTP; Sun, 9 Dec 2012 07:13:04 -0800 (PST)
-Date: Sun, 9 Dec 2012 23:13:04 +0800
-Message-ID: <CAFHpHeXaRetCsFTEwo=DFicS-FQnto6pkVksNQNQ+ha2W=cWfg@mail.gmail.com>
-From: kaiser farrell <kaiserfarrell@gmail.com>
-To: yocto@yoctoproject.org
-Subject: /poky-danny-8.01 task failed: /meta/recipes-devtools/openjade/openjade-native_1.3.2.bb, do_compile
+Return-Path: <opensource@keylevel.com>
+Received: from r109.websiteservername.com (r109.websiteservername.com
+	[65.39.128.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C837DE00770
+	for <yocto@yoctoproject.org>; Sun,  9 Dec 2012 08:20:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=keylevel.com;
+	s=default; 
+	h=Mime-Version:To:Message-Id:Date:Subject:Content-Transfer-Encoding:Content-Type:From;
+	bh=vkecAB2rXAfkji+EvHWbtLO2N0RQPFusjeaxYycezGI=; 
+	b=CTS0tjado8c6ODJdi6EtEU+QuOpuyEZM/KkcXyCJfFuHySSa8EJ8zSuDfK4R+Y865PgS/r3mOyDhrW0aeY188n/rARnlRGPS9SIv+aJ45tHPsx4wRdiZr6KpmmfUSdTo;
+Received: from [109.224.129.17] (port=43292
+	helo=macbook-pro.durham.keylevel.com)
+	by r109.websiteservername.com with esmtpa (Exim 4.80)
+	(envelope-from <opensource@keylevel.com>) id 1ThjcK-0005Xt-98
+	for yocto@yoctoproject.org; Sun, 09 Dec 2012 16:20:36 +0000
+From: Chris Tapp <opensource@keylevel.com>
+Date: Sun, 9 Dec 2012 16:20:35 +0000
+Message-Id: <FB68EBDE-D764-47BC-9AE8-3947BC6E7F0B@keylevel.com>
+To: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+Mime-Version: 1.0 (Apple Message framework v1283)
+X-Mailer: Apple Mail (2.1283)
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - r109.websiteservername.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - keylevel.com
+X-Get-Message-Sender-Via: r109.websiteservername.com: authenticated_id:
+	chris.tapp+keylevel.com/only user confirmed/virtual account not
+	confirmed
+Subject: meta-cedartrail - install to sdb fails to boot
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,27 +40,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 09 Dec 2012 15:13:06 -0000
-Content-Type: multipart/alternative; boundary=f46d0442833aafb57c04d06ce220
-
---f46d0442833aafb57c04d06ce220
-Content-Type: text/plain; charset=ISO-8859-1
-
-Hi everyone..
-
-i'm using poky-danny 8.0
-
-I got error openjade/openjade-native_1.3.2.bb, do_compile .. how can i
-solve it?
-http://pastebin.ubuntu.com/1421160/
-
---f46d0442833aafb57c04d06ce220
-Content-Type: text/html; charset=ISO-8859-1
+X-List-Received-Date: Sun, 09 Dec 2012 16:20:37 -0000
+Content-Type: text/plain; charset=us-ascii
 Content-Transfer-Encoding: quoted-printable
 
-Hi everyone..<br><br>i&#39;m using poky-danny 8.0<br><br>I got error openja=
-de/<a href=3D"http://openjade-native_1.3.2.bb">openjade-native_1.3.2.bb</a>=
-, do_compile .. how can i solve it?<br><a href=3D"http://pastebin.ubuntu.co=
-m/1421160/">http://pastebin.ubuntu.com/1421160/</a><br>
+I've built an image using meta-cedartrail and copied the .hdd image onto =
+a USB drive.
 
---f46d0442833aafb57c04d06ce220--
+Booting the 'install' label install as expected to an mSATA SSD as sda =
+on an Intel DN2800MT board and this boots as expected.
+
+However, I need to use an eUSB SSD. The installer detects this as 'sdb' =
+and installs ok, but the system fails to boot with a 'kernel panic' =
+reporting that the root FS can't be found. The grub boot specifies:
+
+set root=3D(hd0,1)
+
+... root=3D/dev/sdb2
+
+Which looks reasonable. The serial console diagnostics "... here are the =
+available partitions:" entry does not list __any__ partitions. Does this =
+mean that the driver required is currently a module and needs to be =
+configured as a built-in? If so, is there an easy way to work out which =
+one?
+
+Chris Tapp
+
+opensource@keylevel.com
+www.keylevel.com
+
+
+
+
