@@ -1,35 +1,46 @@
-Return-Path: <ioanax.grigoropol@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8508DE013F7
-	for <yocto@yoctoproject.org>; Mon, 10 Dec 2012 01:55:26 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 10 Dec 2012 01:55:26 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,250,1355126400"; d="scan'208";a="231596474"
-Received: from irsmsx103.ger.corp.intel.com ([163.33.3.157])
-	by orsmga001.jf.intel.com with ESMTP; 10 Dec 2012 01:55:25 -0800
-Received: from irsmsx101.ger.corp.intel.com ([169.254.1.13]) by
-	IRSMSX103.ger.corp.intel.com ([169.254.3.74]) with mapi id
-	14.01.0355.002; Mon, 10 Dec 2012 09:55:24 +0000
-From: "Grigoropol, IoanaX" <ioanax.grigoropol@intel.com>
-To: "Zhang, Jessica" <jessica.zhang@intel.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] [PATCH] Fix incompatibility with jre1.6 support for
-	typed	HashMap
-Thread-Index: AQHN0z32GAhGpl+nT0iGncR2NGIy0pgLzLMQgAIqWQCAA9iyAA==
-Date: Mon, 10 Dec 2012 09:55:23 +0000
-Message-ID: <3E179CF0D7162B4AA4E2B324209A4639AB3F6C@IRSMSX101.ger.corp.intel.com>
-References: <1354704040-20058-1-git-send-email-ioanax.grigoropol@intel.com>
-	<C6510F6D410BB64A8C15398EDC6B847C46B68F16@ORSMSX101.amr.corp.intel.com>
-	<3E179CF0D7162B4AA4E2B324209A4639AB2B02@IRSMSX101.ger.corp.intel.com>
-	<C6510F6D410BB64A8C15398EDC6B847C46B69AD7@ORSMSX101.amr.corp.intel.com>
-In-Reply-To: <C6510F6D410BB64A8C15398EDC6B847C46B69AD7@ORSMSX101.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [163.33.239.182]
-MIME-Version: 1.0
-Subject: Re: [PATCH] Fix incompatibility with jre1.6 support for typed	HashMap
+Return-Path: <opensource@keylevel.com>
+Received: from r109.websiteservername.com (r109.websiteservername.com
+	[65.39.128.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 91417E013F7
+	for <yocto@yoctoproject.org>; Mon, 10 Dec 2012 02:23:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=keylevel.com;
+	s=default; 
+	h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Content-Type:Mime-Version:Subject;
+	bh=8cdO9j1p2zKbyPwKVhPbx79x5OyZYe5fGNr3e8bqKqA=; 
+	b=SOVxJBMX8UEQJDeZ6vNfLTGxpZ+FP0owFBWezZ8P0nzXd7HbJGjbIDv+N5mhD2bmGNocVUKR7UwdzRP8C0u7S/RbZ0Nlps8k8X9OGUxusBi3ghvwmM+jhxe9G5ytTgxJ;
+Received: from [109.224.129.17] (port=30082
+	helo=macbook-pro.durham.keylevel.com)
+	by r109.websiteservername.com with esmtpa (Exim 4.80)
+	(envelope-from <opensource@keylevel.com>)
+	id 1Ti0WP-0006rY-WE; Mon, 10 Dec 2012 10:23:38 +0000
+Mime-Version: 1.0 (Apple Message framework v1283)
+From: Chris Tapp <opensource@keylevel.com>
+In-Reply-To: <BBF3222A-17DC-455A-8F79-A8CD0231179C@keylevel.com>
+Date: Mon, 10 Dec 2012 10:23:37 +0000
+Message-Id: <2FD32D91-25A9-486F-9E23-E25F8932B7A9@keylevel.com>
+References: <560B845B-ADB9-4244-B82D-8B7136E70F13@keylevel.com>
+	<CABcZANm7UGMYO1BRK8k9EQdGrDG6w013S-nkQrCgFe5O+4v1SQ@mail.gmail.com>
+	<58D08629-AD55-4693-8F56-83EA0A52CA77@keylevel.com>
+	<CADkTA4ORbfM0zT5g5j4pSMUtfH7LJmSsdbckahXPu=2FDiDv7g@mail.gmail.com>
+	<26A95DB9-6C86-4677-94FA-48C0E0AFF2B9@keylevel.com>
+	<50C4A54C.9060201@windriver.com>
+	<CABcZANnEy4WsPqRrQhd99HfeyXX59fabhVtnALzxz=wfOXToYQ@mail.gmail.com>
+	<5A9D49A5-7CBB-4A2D-9119-3F52B212AC84@keylevel.com>
+	<CABcZAN=Ob8u2QA0QEPyPsPnzxsLLsPjROq2PSc0jPJAOnDotLg@mail.gmail.com>
+	<BBF3222A-17DC-455A-8F79-A8CD0231179C@keylevel.com>
+To: Chris Larson <clarson@kergoth.com>
+X-Mailer: Apple Mail (2.1283)
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - r109.websiteservername.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - keylevel.com
+X-Get-Message-Sender-Via: r109.websiteservername.com: authenticated_id:
+	chris.tapp+keylevel.com/only user confirmed/virtual account not
+	confirmed
+Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+Subject: Re: bbappending a bbappend
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,243 +52,204 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 10 Dec 2012 09:55:26 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Mon, 10 Dec 2012 10:23:39 -0000
+Content-Type: multipart/alternative;
+	boundary="Apple-Mail=_AA907B3C-FD7D-4DD0-9FE9-8828AEB60968"
+
+--Apple-Mail=_AA907B3C-FD7D-4DD0-9FE9-8828AEB60968
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=us-ascii
 
-Hi Jessica,
+On 9 Dec 2012, at 16:57, Chris Tapp wrote:
 
-I double checked and everything applies correctly on jzhang/windows-build.=
-=20
-The option --keep-cr expects to receive a patch who's line terminator is ca=
-rriage return, maybe in the process of saving & applying the patches these =
-line terminators get removed somehow?=20
-I can send you the patches on email as an attachment and you can download t=
-hem as such and apply them onto windows-build branch in order to prevent an=
-y alterations to the files.=20
+>=20
+> On 9 Dec 2012, at 16:47, Chris Larson wrote:
+>=20
+>>=20
+>>=20
+>> On Sun, Dec 9, 2012 at 9:44 AM, Chris Tapp <opensource@keylevel.com> =
+wrote:
+>> On 9 Dec 2012, at 16:30, Chris Larson wrote:
+>>=20
+>>> On Sun, Dec 9, 2012 at 7:50 AM, Bruce Ashfield =
+<bruce.ashfield@windriver.com> wrote:
+>>> On 12-12-09 5:48 AM, Chris Tapp wrote:
+>>> On 9 Dec 2012, at 04:47, Bruce Ashfield wrote:
+>>>=20
+>>>=20
+>>>=20
+>>>=20
+>>> On Sat, Dec 8, 2012 at 7:54 PM, Chris Tapp <opensource@keylevel.com
+>>> <mailto:opensource@keylevel.com>> wrote:
+>>>=20
+>>>     On 9 Dec 2012, at 00:11, Chris Larson wrote:
+>>>=20
+>>>     On Sat, Dec 8, 2012 at 5:07 PM, Chris Tapp
+>>>     <opensource@keylevel.com <mailto:opensource@keylevel.com>> =
+wrote:
+>>>=20
+>>>         Is it possible to have more than one bbappend applied to a
+>>>         recipe?
+>>>=20
+>>>         I'm using meta-cedartrail with my own layer (which is set as
+>>>         lower priority).
+>>>=20
+>>>         Meta-cedartrail has a linux-yocto_3.0.bbappend, but I want =
+to
+>>>         be able to enable CONFIG_HID_APPLE in my layer so my Apple
+>>>         keyboard works (and keep meta-cedartrail 'clean'). Is it
+>>>         possible to use another linux-yocto_3.0.bbappend in my =
+layer?
+>>>         I've given it a try, but it's not working and I thought it
+>>>         would be an idea to see if it __should__ before I try and =
+fix
+>>>         it ;-)
+>>>=20
+>>>=20
+>>>     All bbappends from all layers are applied, in layer priority =
+order.
+>>>=20
+>>>     Thanks, I was hoping that was the case.
+>>>=20
+>>>     I wonder why this isn't working then - I think I've done it as
+>>>     shown in the dev manual...
+>>>=20
+>>>=20
+>>> Is it something other than the bbappends ? i.e. are you sure you =
+have
+>>> all the required
+>>> dependencies for CONFIG_HID_APPLE already enabled, or in the same =
+fragment
+>>> you are appending ?
+>>>=20
+>>> menuconfig shows that the dependencies are ok. I've got a single
+>>> fragment referenced using a SRC_URI in the bbappend which sets
+>>> FILESEXTRAPATHS_prepend. The .cfg file just sets:
+>>>=20
+>>> CONFIG_HID_APPLE=3Dy
+>>>=20
+>>> I can't find my .cfg file in the work area, so it seems as if it's =
+not
+>>> being picked up.
+>>>=20
+>>> I'd suggest putting your .bbappend on a pastebin so we can inspect =
+it.
+>>=20
+>> Please see http://pastebin.com/EnesrEN0
+>>=20
+>> Did you use bitbake -e linux-yocto | grep SRC_URI=3D to confirm it's =
+listed there?
+>=20
+> I have now - it isn't showing. Any syntax errors in the bbappend are =
+detected, so it looks like it's being processed.
 
-Thanks,=20
-Ioana
+I think I may have worked this out.
 
------Original Message-----
-From: Zhang, Jessica=20
-Sent: Saturday, December 08, 2012 1:01 AM
-To: Grigoropol, IoanaX; yocto@yoctoproject.org
-Subject: RE: [yocto] [PATCH] Fix incompatibility with jre1.6 support for ty=
-ped HashMap
+My bbappend was using SRC_URI. If I change this to SRC_URI_cedartrail =
+then my .cfg is fetched and merged as expected.
 
-Hi Ioana,
+I was expecting SRC_URI to be used for all machines, but this doesn't =
+seem to be the case.
 
-Seems the patch won't apply even with the --keep-cr flag.  This is against =
-jzhang/windows-build branch.
+>> --=20
+>> Christopher Larson
+>=20
+> Chris Tapp
+>=20
+> opensource@keylevel.com
+> www.keylevel.com
+>=20
+>=20
+>=20
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-Can you double check?
+Chris Tapp
 
-Thanks,
-Jessica
+opensource@keylevel.com
+www.keylevel.com
 
-git am --keep-cr ~/mbox/\[yocto\]_\[PATCH_7_8\]_convert_CRLF_line_terminato=
-rs_to_CR_only.mbox
-Applying: convert CRLF line terminators to CR only
-/home/jzhang/eclipse-poky-windows/.git/rebase-apply/patch:79: trailing whit=
-espace.
-    public FiniteStateWizard() {               =20
-/home/jzhang/eclipse-poky-windows/.git/rebase-apply/patch:81: trailing whit=
-espace.
-   =20
-/home/jzhang/eclipse-poky-windows/.git/rebase-apply/patch:96: trailing whit=
-espace.
-   =20
-/home/jzhang/eclipse-poky-windows/.git/rebase-apply/patch:101: trailing whi=
-tespace.
-        super.createPageControls(pageContainer);       =20
-/home/jzhang/eclipse-poky-windows/.git/rebase-apply/patch:112: trailing whi=
-tespace.
-   =20
-error: patch failed: plugins/org.yocto.bc.ui/src/org/yocto/bc/ui/wizards/Fi=
-niteStateWizard.java:1
-error: plugins/org.yocto.bc.ui/src/org/yocto/bc/ui/wizards/FiniteStateWizar=
-d.java: patch does not apply
-error: patch failed: plugins/org.yocto.bc.ui/src/org/yocto/bc/ui/wizards/Fi=
-niteStateWizardPage.java:1
-error: plugins/org.yocto.bc.ui/src/org/yocto/bc/ui/wizards/FiniteStateWizar=
-dPage.java: patch does not apply Patch failed at 0001 convert CRLF line ter=
-minators to CR only When you have resolved this problem run "git am --resol=
-ved".
-If you would prefer to skip this patch, instead run "git am --skip".
-To restore the original branch and stop patching run "git am --abort".
 
------Original Message-----
-From: Grigoropol, IoanaX
-Sent: Thursday, December 06, 2012 6:02 AM
-To: Zhang, Jessica; yocto@yoctoproject.org
-Subject: RE: [yocto] [PATCH] Fix incompatibility with jre1.6 support for ty=
-ped HashMap
 
-Hi Jessica,
 
-There seems to be a bit of a mix-up on the new branch in the order of the p=
-atches were applied. Also, some files modified under Linux have CRLF ending=
- instead of CR.=20
-Can you please rebase the branch (the new one or the old one) to commit ec4=
-fcf7b478f59e190d9b9fe9b56e44971c4f66c, and then apply the set of 8 patches =
-I resent to the mailing list ?
-Bare in mind that the patch before last (that converts from CRLF to CR) wil=
-l not apply unless applied with option --keep-cr.=20
+--Apple-Mail=_AA907B3C-FD7D-4DD0-9FE9-8828AEB60968
+Content-Transfer-Encoding: 7bit
+Content-Type: text/html;
+	charset=us-ascii
 
-Thanks,
-Ioana
+<html><head></head><body style="word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-line-break: after-white-space; "><div><div>On 9 Dec 2012, at 16:57, Chris Tapp wrote:</div><br class="Apple-interchange-newline"><blockquote type="cite"><div style="word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-line-break: after-white-space; "><br><div><div>On 9 Dec 2012, at 16:47, Chris Larson wrote:</div><br class="Apple-interchange-newline"><blockquote type="cite"><div class="gmail_extra"><br><br><div class="gmail_quote">On Sun, Dec 9, 2012 at 9:44 AM, Chris Tapp <span dir="ltr">&lt;<a href="mailto:opensource@keylevel.com" target="_blank">opensource@keylevel.com</a>&gt;</span> wrote:<br>
 
------Original Message-----
-From: Zhang, Jessica
-Sent: Thursday, December 06, 2012 1:12 AM
-To: Grigoropol, IoanaX; yocto@yoctoproject.org
-Subject: RE: [yocto] [PATCH] Fix incompatibility with jre1.6 support for ty=
-ped HashMap
+<blockquote class="gmail_quote" style="margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div class="adM"><div class="h5"><div>On 9 Dec 2012, at 16:30, Chris Larson wrote:</div><br><blockquote type="cite"><div class="gmail_extra">
 
-Hi Ioana,
+<div class="gmail_quote">On Sun, Dec 9, 2012 at 7:50 AM, Bruce Ashfield <span dir="ltr">&lt;<a href="mailto:bruce.ashfield@windriver.com" target="_blank">bruce.ashfield@windriver.com</a>&gt;</span> wrote:<br>
 
-None of your patches of today apply so there seems to be some rebase issue.=
-  Also, I've added headless build support changes for windows BC plugin, so=
- can you rebase against jzhang/windows-build and resubmit the patch series?
+<blockquote class="gmail_quote" style="margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div>On 12-12-09 5:48 AM, Chris Tapp wrote:<br>
+</div><blockquote class="gmail_quote" style="margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div>
+On 9 Dec 2012, at 04:47, Bruce Ashfield wrote:<br>
+<br>
+</div><blockquote class="gmail_quote" style="margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div>
+<br>
+<br>
+<br>
+On Sat, Dec 8, 2012 at 7:54 PM, Chris Tapp &lt;<a href="mailto:opensource@keylevel.com" target="_blank">opensource@keylevel.com</a><br></div><div>
+&lt;mailto:<a href="mailto:opensource@keylevel.com" target="_blank">opensource@keylevel.<u></u>com</a>&gt;&gt; wrote:<br>
+<br>
+&nbsp; &nbsp; On 9 Dec 2012, at 00:11, Chris Larson wrote:<br>
+<br>
+</div><blockquote class="gmail_quote" style="margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div>
+&nbsp; &nbsp; On Sat, Dec 8, 2012 at 5:07 PM, Chris Tapp<br></div><div><div>
+&nbsp; &nbsp; &lt;<a href="mailto:opensource@keylevel.com" target="_blank">opensource@keylevel.com</a> &lt;mailto:<a href="mailto:opensource@keylevel.com" target="_blank">opensource@keylevel.<u></u>com</a>&gt;&gt; wrote:<br>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; Is it possible to have more than one bbappend applied to a<br>
+&nbsp; &nbsp; &nbsp; &nbsp; recipe?<br>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; I'm using meta-cedartrail with my own layer (which is set as<br>
+&nbsp; &nbsp; &nbsp; &nbsp; lower priority).<br>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; Meta-cedartrail has a linux-yocto_3.0.bbappend, but I want to<br>
+&nbsp; &nbsp; &nbsp; &nbsp; be able to enable CONFIG_HID_APPLE in my layer so my Apple<br>
+&nbsp; &nbsp; &nbsp; &nbsp; keyboard works (and keep meta-cedartrail 'clean'). Is it<br>
+&nbsp; &nbsp; &nbsp; &nbsp; possible to use another linux-yocto_3.0.bbappend in my layer?<br>
+&nbsp; &nbsp; &nbsp; &nbsp; I've given it a try, but it's not working and I thought it<br>
+&nbsp; &nbsp; &nbsp; &nbsp; would be an idea to see if it __should__ before I try and fix<br>
+&nbsp; &nbsp; &nbsp; &nbsp; it ;-)<br>
+<br>
+<br>
+&nbsp; &nbsp; All bbappends from all layers are applied, in layer priority order.<br>
+</div></div></blockquote><div><div>
+<br>
+&nbsp; &nbsp; Thanks, I was hoping that was the case.<br>
+<br>
+&nbsp; &nbsp; I wonder why this isn't working then - I think I've done it as<br>
+&nbsp; &nbsp; shown in the dev manual...<br>
+<br>
+<br>
+Is it something other than the bbappends ? i.e. are you sure you have<br>
+all the required<br>
+dependencies for CONFIG_HID_APPLE already enabled, or in the same fragment<br>
+you are appending ?<br>
+</div></div></blockquote><div><div>
+<br>
+menuconfig shows that the dependencies are ok. I've got a single<br>
+fragment referenced using a SRC_URI in the bbappend which sets<br>
+FILESEXTRAPATHS_prepend. The .cfg file just sets:<br>
+<br>
+CONFIG_HID_APPLE=y<br>
+<br>
+I can't find my .cfg file in the work area, so it seems as if it's not<br>
+being picked up.<br></div></div></blockquote></blockquote><div><br></div><div>I'd suggest putting your .bbappend on a pastebin so we can inspect it.</div></div></div></blockquote><div><br></div></div></div><div>Please see&nbsp;<a href="http://pastebin.com/EnesrEN0" target="_blank">http://pastebin.com/EnesrEN0</a></div>
 
-Thanks,
-Jessica
+</blockquote></div><br>Did you use bitbake -e linux-yocto | grep SRC_URI= to confirm it's listed there?<br></div></blockquote><div><br></div><div>I have now - it isn't showing. Any syntax errors in the bbappend are detected, so it looks like it's being processed.</div></div></div></blockquote><div><br></div><div>I think I may have worked this out.</div><div><br></div><div>My bbappend was using SRC_URI. If I change this to SRC_URI_cedartrail then my .cfg is fetched and merged as expected.</div><div><br></div><div>I was expecting SRC_URI to be used for all machines, but this doesn't seem to be the case.</div><br><blockquote type="cite"><div style="word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-line-break: after-white-space; "><div><blockquote type="cite"><div class="gmail_extra">-- <br>Christopher Larson<br>
+</div>
+</blockquote></div><br><div apple-content-edited="true">
+<span class="Apple-style-span" style="border-collapse: separate; font-family: Helvetica; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-border-horizontal-spacing: 0px; -webkit-border-vertical-spacing: 0px; -webkit-text-decorations-in-effect: none; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; font-size: medium; "><div>Chris Tapp</div><div><br></div><div><a href="mailto:opensource@keylevel.com">opensource@keylevel.com</a></div><div><a href="http://www.keylevel.com/">www.keylevel.com</a></div><div><br></div></span><br class="Apple-interchange-newline">
+</div>
+<br></div>_______________________________________________<br>yocto mailing list<br><a href="mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>https://lists.yoctoproject.org/listinfo/yocto<br></blockquote></div><br><div apple-content-edited="true">
+<span class="Apple-style-span" style="border-collapse: separate; color: rgb(0, 0, 0); font-family: Helvetica; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: auto; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-border-horizontal-spacing: 0px; -webkit-border-vertical-spacing: 0px; -webkit-text-decorations-in-effect: none; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; font-size: medium; "><div>Chris Tapp</div><div><br></div><div><a href="mailto:opensource@keylevel.com">opensource@keylevel.com</a></div><div><a href="http://www.keylevel.com">www.keylevel.com</a></div><div><br></div></span><br class="Apple-interchange-newline">
+</div>
+<br></body></html>
 
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Ioana Grigoropol
-Sent: Wednesday, December 05, 2012 2:41 AM
-To: yocto@yoctoproject.org
-Subject: [yocto] [PATCH] Fix incompatibility with jre1.6 support for typed =
-HashMap
-
-Signed-off-by: Ioana Grigoropol <ioanax.grigoropol@intel.com>
----
- .../remote/utils/YoctoHostShellProcessAdapter.java |   18 ++++++++++++----=
---
- 1 file changed, 12 insertions(+), 6 deletions(-)
-
-diff --git a/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/YoctoHos=
-tShellProcessAdapter.java b/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote=
-/utils/YoctoHostShellProcessAdapter.java
-index 9ab43cf..2dba0a6 100644
---- a/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/YoctoHostShellP=
-rocessAdapter.java
-+++ b/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/YoctoHostShe
-+++ llProcessAdapter.java
-@@ -34,6 +34,7 @@ public class YoctoHostShellProcessAdapter extends  HostSh=
-ellProcessAdapter {
-=20
- 	private Semaphore sem;
-=20
-+
- 	public YoctoHostShellProcessAdapter(IHostShell hostShell, ProcessStreamBu=
-ffer processStreamBuffer, CommandResponseHandler commandResponseHandler) th=
-rows IOException {
- 		super(hostShell);
- 		this.processStreamBuffer =3D processStreamBuffer; @@ -41,7 +42,7 @@ publ=
-ic class YoctoHostShellProcessAdapter extends  HostShellProcessAdapter {
- 		this.calculator =3D new GitCalculatePercentage();
- 		this.sem =3D new Semaphore(1);
- 		this.command =3D "";
--		this.commandMonitors =3D new HashMap<>();
-+		this.commandMonitors =3D new HashMap<String, IProgressMonitor>();
- 	}
-=20
- 	public String getLastCommand() {
-@@ -50,7 +51,7 @@ public class YoctoHostShellProcessAdapter extends  HostSh=
-ellProcessAdapter {
-=20
- 	public synchronized void setLastCommand(String lastCommand) {
- 		try {
--			// there are still some processes that might take a long time and if we=
- do not wait for them,=20
-+			// there are still some processes that might take a long time and if=20
-+we do not wait for them,
- 			// then the semaphore will not be released, because an interrupted exce=
-ption will occur
- 			Thread.sleep(2000);
- 			isFinished =3D false;
-@@ -70,6 +71,7 @@ public class YoctoHostShellProcessAdapter extends  HostSh=
-ellProcessAdapter {
-=20
- 	private class GitCalculatePercentage implements ICalculatePercentage {
- 		final Pattern pattern =3D Pattern.compile("^Receiving objects:\\s*(\\d+)=
-%.*");
-+		@Override
- 		public float calWorkloadDone(String info) throws IllegalArgumentExceptio=
-n {
- 			Matcher m =3D pattern.matcher(info.trim());
- 			if(m.matches()) {
-@@ -88,13 +90,16 @@ public class YoctoHostShellProcessAdapter extends  Host=
-ShellProcessAdapter {
- 	}
-=20
- 	private void updateMonitor(final int work){
-+
- 		Display.getDefault().asyncExec(new Runnable() {
-+
- 			@Override
- 			public void run() {
- 				if (getMonitor() !=3D null) {
- 					getMonitor().worked(work);
- 				}
- 			}
-+
- 		});
- 	}
-=20
-@@ -124,7 +129,7 @@ public class YoctoHostShellProcessAdapter extends  Host=
-ShellProcessAdapter {
- 				updateMonitor(delta);
- 				reportedWorkload +=3D delta;
- 			}
--		=09
-+
- 			if (reportedWorkload =3D=3D RemoteHelper.TOTALWORKLOAD)
- 				doneMonitor();
- 		}
-@@ -152,8 +157,9 @@ public class YoctoHostShellProcessAdapter extends  Host=
-ShellProcessAdapter {
- 					continue;
- 				}
- 				setCommandPrompt(value);
-+
- 				if (commandPrompt !=3D null && endChar !=3D null && command !=3D null =
-&& processStreamBuffer !=3D null &&
--						value.startsWith(commandPrompt) &&  value.endsWith(endChar) &&=20
-+						value.startsWith(commandPrompt) &&  value.endsWith(endChar) &&
- 						!value.endsWith(command) && processStreamBuffer.getLastOutputLineCon=
-taining(command) !=3D null /*&& waitForOutput*/) {
- 					sem.release();
- 					isFinished =3D true;
-@@ -165,7 +171,7 @@ public class YoctoHostShellProcessAdapter extends  Host=
-ShellProcessAdapter {
- 				this.commandResponseHandler.response(value, false);
- 			}
- 		}
--	=09
-+
- 	}
- 	private void setCommandPrompt(String value) {
- 		if (commandPrompt =3D=3D null) {
-@@ -178,7 +184,7 @@ public class YoctoHostShellProcessAdapter extends  Host=
-ShellProcessAdapter {
- 				commandPrompt =3D value.substring(0, end);
- 				endChar =3D PROMPT_USER_CH;
- 			}
--			=09
-+
- 		}
- 	}
- 	public boolean isFinished() {
---
-1.7.9.5
-
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
-
+--Apple-Mail=_AA907B3C-FD7D-4DD0-9FE9-8828AEB60968--
