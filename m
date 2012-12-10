@@ -1,34 +1,28 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9D377E0034C
-	for <yocto@yoctoproject.org>; Mon, 10 Dec 2012 13:33:32 -0800 (PST)
-Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
-	([174.115.5.73]:59948 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1TiAyh-00032W-O5; Mon, 10 Dec 2012 16:33:31 -0500
-Date: Mon, 10 Dec 2012 16:33:27 -0500 (EST)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Tim Coote <tim+yoctoproject.org@coote.org>
-In-Reply-To: <4CC85B88-E024-42A0-AC0A-5DEB60C56852@coote.org>
-Message-ID: <alpine.DEB.2.02.1212101632490.18950@oneiric>
-References: <alpine.DEB.2.02.1212101203550.10798@oneiric>
-	<4CC85B88-E024-42A0-AC0A-5DEB60C56852@coote.org>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <jon.szymaniak@gmail.com>
+Received: from mail-ia0-f176.google.com (mail-ia0-f176.google.com
+	[209.85.210.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 723FCE00348
+	for <yocto@yoctoproject.org>; Mon, 10 Dec 2012 15:58:35 -0800 (PST)
+Received: by mail-ia0-f176.google.com with SMTP id y26so2367159iab.35
+	for <yocto@yoctoproject.org>; Mon, 10 Dec 2012 15:58:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:from:date:message-id:subject:to:content-type;
+	bh=K/frAFCHC24REgDLtS2qtGBYiQ+qLJu6sYuQgAoo2ic=;
+	b=b3hKW1/5P+SGvDnd/BOXcfk1mBy4liutK3DNkG6IH8NJ5GmyCzsjYVEMvG32bImrhf
+	iPdU4UDWIzYRdJcJtPNWnDlhHldmTH4fVFhjLCc/ls/KMr7epA20c1+QVZjylH0QaNip
+	Yk014yV0c2Rh+K2/zuvHFDxOw6xN9/KZ70bx1oYhNPToaF5+TDTsObGyBaIsT6vSOuPz
+	wthaMPF0QNsRMtCbjKpGHagg00FR/HHOGizEWYKibyW7DHXwXpneJmEK6VoQ8lGWbMUc
+	iFb2SKXvtSYH5Ve8vgidhm/w3sF5yntRQUhdXCbROEkSGHsuFcwhpoT/bosmxTsQHOb1
+	4xCg==
+Received: by 10.42.75.6 with SMTP id y6mr12527222icj.30.1355183914990; Mon, 10
+	Dec 2012 15:58:34 -0800 (PST)
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: newest yocto release directories don't contain qemu kernel image
+Received: by 10.64.167.165 with HTTP; Mon, 10 Dec 2012 15:58:14 -0800 (PST)
+From: Jon Szymaniak <jon.szymaniak@gmail.com>
+Date: Mon, 10 Dec 2012 18:58:14 -0500
+Message-ID: <CANge7vXkVTnbwREHzXwP_f2ck-WP6BJQbUURGBHg=+eQsZjxQg@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: packagegroup-core-boot failure for RTC-less system
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,25 +34,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 10 Dec 2012 21:33:32 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Mon, 10 Dec 2012 23:58:35 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On Mon, 10 Dec 2012, Tim Coote wrote:
+Hi all,
 
-> So I wasn't being totally stupid when I couldn't work out where the
-> kernel images were.
+I have a MACHINE_FEATURES which *does not* include "rtc", as the platform I
+am working on doesn't have an RTC.
 
-  i just checked, they have been restored.
+The busybox bbappend I'm using (attached below) uses the provided
+defconfig, but
+disables the HWCLOCK features.
 
-rday
+However, my build is failing due to packagegroup-core-boot being unable to
+meet the busybox-hwclock dependency. Looking at this line from
+packagegroup-core-boot.bb, it seems to me that busybox-hwlock shouldn't be
+getting placed in the core-boot's RDEPENDS, given that my MACHINE_FEATURES does
+not include "rtc":
 
--- 
+    ${@base_contains("MACHINE_FEATURES", "rtc", "busybox-hwclock", "", d)} \
 
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
 
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+Any thoughts or tips on debugging this? Perhaps there's somewhere I can stick a
+print of MACHINE_FEATURES to verify that it is what I thought I set?
+
+
+Thank you,
+Jon
+
+
+busybox_1.20.2.bbappend:
+------------------------
+
+PRINC="1"
+
+do_prepare_config_prepend() {
+
+    # Back up the defconfig just for later debugging, diffing, etc.
+    mv ${WORKDIR}/defconfig ${WORKDIR}/defconfig.orig
+
+    # We don't have an RTC on our platform, so disable hwclock features.
+    sed -e 's/\(CONFIG_HWCLOCK\)=y/ #\1 is not set/g'
+${WORKDIR}/defconfig > ${WORKDIR}/defconfig.tmp
+    mv ${WORKDIR}/defconfig.tmp ${WORKDIR}/defconfig
+
+    sed -e 's/\(CONFIG_FEATURE_HWCLOCK_.*\)=y/ #\1 is not set/g'
+${WORKDIR}/defconfig > ${WORKDIR}/defconfig.tmp
+    mv ${WORKDIR}/defconfig.tmp ${WORKDIR}/defconfig
+}
+
+
+Build Error:
+-------------------------
+  * satisfy_dependencies_for: Cannot satisfy the following
+dependencies for packagegroup-core-boot:
+  *    busybox-hwclock *
+  * opkg_install_cmd: Cannot install package packagegroup-core-boot.
 
