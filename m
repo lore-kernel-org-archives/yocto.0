@@ -1,34 +1,25 @@
-Return-Path: <opensource@keylevel.com>
-Received: from r109.websiteservername.com (r109.websiteservername.com
-	[65.39.128.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6AEA7E00294
-	for <yocto@yoctoproject.org>; Sun,  9 Dec 2012 15:17:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=keylevel.com;
-	s=default; 
-	h=Mime-Version:To:Message-Id:Date:Subject:Content-Transfer-Encoding:Content-Type:From;
-	bh=7CPa9stHYBWWm35HnbQLBwIdBxOTjWrD9hsTIt26fEY=; 
-	b=nD4P20AcYJlu25mzjNAIOeaWTfGjxIvN1O/x1wHrJ2G/DV8mnplu/GY9MlMTL8faLT1YMbkqFYMErtN+Ym6gtM4pUmEuW/zGZOhI1AKGzdJMvFG7XNiB9zIs1otO2sbn;
-Received: from [109.224.129.17] (port=16154
-	helo=macbook-pro.durham.keylevel.com)
-	by r109.websiteservername.com with esmtpa (Exim 4.80)
-	(envelope-from <opensource@keylevel.com>) id 1Thq7c-0002Hv-2j
-	for yocto@yoctoproject.org; Sun, 09 Dec 2012 23:17:20 +0000
-From: Chris Tapp <opensource@keylevel.com>
-Date: Sun, 9 Dec 2012 23:17:18 +0000
-Message-Id: <93700C12-76D8-4F46-9AAB-B66A9869D70C@keylevel.com>
-To: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-Mime-Version: 1.0 (Apple Message framework v1283)
-X-Mailer: Apple Mail (2.1283)
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - r109.websiteservername.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-X-Get-Message-Sender-Via: r109.websiteservername.com: authenticated_id:
-	chris.tapp+keylevel.com/only user confirmed/virtual account not
-	confirmed
-Subject: I think my kernel image just went back in time...
+Return-Path: <timo.mueller@oss.bmw-carit.de>
+Received: from linuxmail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B582EE006B4
+	for <yocto@yoctoproject.org>; Mon, 10 Dec 2012 00:13:46 -0800 (PST)
+Received: from localhost (mysterion.bmw-carit.intra [192.168.101.57])
+	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
+	(No client certificate requested)
+	(Authenticated sender: timo.mueller)
+	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 133E8400B6;
+	Mon, 10 Dec 2012 08:37:50 +0100 (CET)
+From: mail@timomueller.eu
+To: yocto@yoctoproject.org
+Date: Mon, 10 Dec 2012 09:13:43 +0100
+Message-Id: <b440f373a0598aec02171958e7db35b85478aadf.1355127001.git.timo.mueller@bmw-carit.de>
+X-Mailer: git-send-email 1.7.7.6
+In-Reply-To: <b3a6a0ce99676e3a40b6b83744bdff16a50215b6.1355127001.git.timo.mueller@bmw-carit.de>
+References: <cover.1355127001.git.timo.mueller@bmw-carit.de>
+	<b3a6a0ce99676e3a40b6b83744bdff16a50215b6.1355127001.git.timo.mueller@bmw-carit.de>
+In-Reply-To: <cover.1355127001.git.timo.mueller@bmw-carit.de>
+References: <cover.1355127001.git.timo.mueller@bmw-carit.de>
+Cc: Timo Mueller <timo.mueller@bmw-carit.de>
+Subject: [PATCHv2 2/3] scripts/build.sh: Added help option to the cmdline
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,31 +31,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 09 Dec 2012 23:17:21 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 10 Dec 2012 08:13:47 -0000
 
-In tmp/deploy/images:
+From: Timo Mueller <timo.mueller@bmw-carit.de>
 
-1) bzImage had a timestamp of 2012-12-09 21:49 and the file ended =
--20121209214459.bin
+Calling the build script with the -h option will now show the usage.
+The cmdline parsing can be extended to add new options in the future.
+---
+ scripts/build.sh |   18 ++++++++++++++----
+ 1 files changed, 14 insertions(+), 4 deletions(-)
 
-2) Cleaned the image and the task it contained (to pick up some changes =
-on rebuild) and deleted the image files (.hddimg, etc.) in =
-tmp/deploy/images making sure to leave the kernel files intact.
-
-3) Rebuilt the image. The bzImage now has a timestamp of 2012-12-09 =
-11:13 and the name ends -20121209105420.bin
-
-This looks to me like the kernel image has reverted to an earlier one! =
-It is certainly behaving as if this is the case, because a kernel option =
-that I added is no longer in the deployed image...
-
-Chris Tapp
-
-opensource@keylevel.com
-www.keylevel.com
-
-
+diff --git a/scripts/build.sh b/scripts/build.sh
+index cbb7375..693dcf7 100755
+--- a/scripts/build.sh
++++ b/scripts/build.sh
+@@ -3,12 +3,13 @@
+ help ()
+ {
+   echo "Build the Yocto Eclipse plugins"
+-  echo "Usage: $0 <branch name> <release name>";
++  echo "Usage: $0 [OPTIONS] BRANCH_NAME RELEASE_NAME [TAG_NAME]";
+   echo ""
+   echo "Options:"
+-  echo "<branch name> - git branch name to build upon"
+-  echo "<release name> - release name in the final output name"
+-  echo "[tag name] - git tag name to build upon. defaults to master if not set"
++  echo "-h - display this help and exit"
++  echo "BRANCH_NAME - git branch name to build upon"
++  echo "RELEAES_NAME - release name in the final output name"
++  echo "TAG_NAME - git tag name to build upon. defaults to HEAD if not set"
+   echo ""
+   echo "Example: $0 master r0 M1.1_rc1";
+   exit 1;
+@@ -66,6 +67,15 @@ check_env ()
+ }
+ 
+ USE_LOCAL_GIT_REPO=0
++while getopts ":h" opt; do
++	case $opt in
++		h)
++			help
++			;;
++	esac
++done
++shift $(($OPTIND - 1))
++
+ 
+ if [ $# -ne 2 ] && [ $# -ne 3 ]; then 
+    help
+-- 
+1.7.7.6
 
 
