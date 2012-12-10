@@ -1,19 +1,31 @@
-Return-Path: <ioanax.grigoropol@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D7BADE00777
-	for <yocto@yoctoproject.org>; Mon, 10 Dec 2012 08:40:54 -0800 (PST)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 10 Dec 2012 08:40:53 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,252,1355126400"; d="scan'208";a="229438358"
-Received: from ideapad (HELO localhost.localdomain) ([10.237.105.148])
-	by azsmga001.ch.intel.com with ESMTP; 10 Dec 2012 08:40:52 -0800
-From: Ioana Grigoropol <ioanax.grigoropol@intel.com>
-To: yocto@yoctoproject.org
-Date: Mon, 10 Dec 2012 18:30:47 +0200
-Message-Id: <1355157047-6061-1-git-send-email-ioanax.grigoropol@intel.com>
-X-Mailer: git-send-email 1.7.9.5
-Subject: [PATCH] [PATCH:v2][eclipse-poky][branch:windows-build]Ignore files from repository with invalid resource names
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7F9A6E00777
+	for <yocto@yoctoproject.org>; Mon, 10 Dec 2012 09:07:15 -0800 (PST)
+Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
+	([174.115.5.73]:57367 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1Ti6p0-00065m-FG
+	for yocto@yoctoproject.org; Mon, 10 Dec 2012 12:07:14 -0500
+Date: Mon, 10 Dec 2012 12:07:09 -0500 (EST)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.DEB.2.02.1212101203550.10798@oneiric>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+MIME-Version: 1.0
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: newest yocto release directories don't contain qemu kernel image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -25,40 +37,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 10 Dec 2012 16:40:55 -0000
+X-List-Received-Date: Mon, 10 Dec 2012 17:07:15 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-- when browsing through files in poky repository, files that contain '<', '>', ':','"', '/', '\', '|', '?', '*' will not be displayed on a Windows environment and will through a ResourceException
-- since these files are needed for the internal cooking files should not be deleted, but the user does not need to see or modify them -> just ignore these exception, causing the files to be skipped when browsing the repo
 
-Signed-off-by: Ioana Grigoropol <ioanax.grigoropol@intel.com>
----
- .../newproject/CreateBBCProjectOperation.java      |    5 +++++
- 1 file changed, 5 insertions(+)
+  in the section "Using Pre-Built Binaries and QEMU" in the QS guide
+that i contributed to, there's a link to the qemu download
+directories:
 
-diff --git a/plugins/org.yocto.bc.ui/src/org/yocto/bc/ui/wizards/newproject/CreateBBCProjectOperation.java b/plugins/org.yocto.bc.ui/src/org/yocto/bc/ui/wizards/newproject/CreateBBCProjectOperation.java
-index 1a19479..42fa5b1 100644
---- a/plugins/org.yocto.bc.ui/src/org/yocto/bc/ui/wizards/newproject/CreateBBCProjectOperation.java
-+++ b/plugins/org.yocto.bc.ui/src/org/yocto/bc/ui/wizards/newproject/CreateBBCProjectOperation.java
-@@ -15,6 +15,7 @@ import java.lang.reflect.InvocationTargetException;
- import java.util.Arrays;
- import java.util.Vector;
- 
-+import org.eclipse.core.internal.resources.ResourceException;
- import org.eclipse.core.resources.IProject;
- import org.eclipse.core.resources.IProjectDescription;
- import org.eclipse.core.resources.IWorkspace;
-@@ -82,6 +83,10 @@ public class CreateBBCProjectOperation extends WorkspaceModifyOperation {
- 			proj.open(monitor);
- 		} catch (IOException e) {
- 			throw new InvocationTargetException(e);
-+		} catch (ResourceException e){
-+			// ignore this exception since it only occurs for special internal files from the repository on Windows platform
-+			// the resource names on Windows must not contain '<', '>', ':','"', '/', '\', '|', '?', '*'
-+			// the ignored files must not be removed since they are internal cooking files, but the user does not need to see/modify them
- 		} catch (Exception e) {
- 			e.printStackTrace();
- 		}
+http://downloads.yoctoproject.org/releases/yocto/yocto-1.3/machines/qemu
+
+and a suggestion that one can go there and download the appropriate
+kernel for their QEMU session.
+
+  but starting with release 1.3, there is no pre-built kernel there
+anymore, so the quick start is therefore wrong.  have the pre-built
+kernels simply been dropped?  moved elsewhere?
+
+rday
+
 -- 
-1.7.9.5
 
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
