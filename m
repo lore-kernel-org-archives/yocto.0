@@ -1,26 +1,39 @@
-Return-Path: <timo.mueller@oss.bmw-carit.de>
-Received: from linuxmail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D96B1E011AB
-	for <yocto@yoctoproject.org>; Tue, 11 Dec 2012 00:13:05 -0800 (PST)
-Received: from localhost (mysterion.bmw-carit.intra [192.168.101.57])
-	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
-	(No client certificate requested)
-	(Authenticated sender: timo.mueller)
-	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 10BF040208;
-	Tue, 11 Dec 2012 08:37:05 +0100 (CET)
-From: mail@timomueller.eu
-To: yocto@yoctoproject.org
-Date: Tue, 11 Dec 2012 09:13:03 +0100
-Message-Id: <6d5b5b330f39a73a831f2d65887f5d055d523585.1355213278.git.timo.mueller@bmw-carit.de>
-X-Mailer: git-send-email 1.7.7.6
-In-Reply-To: <b440f373a0598aec02171958e7db35b85478aadf.1355213278.git.timo.mueller@bmw-carit.de>
-References: <cover.1355213278.git.timo.mueller@bmw-carit.de>
-	<b3a6a0ce99676e3a40b6b83744bdff16a50215b6.1355213278.git.timo.mueller@bmw-carit.de>
-	<b440f373a0598aec02171958e7db35b85478aadf.1355213278.git.timo.mueller@bmw-carit.de>
-In-Reply-To: <cover.1355213278.git.timo.mueller@bmw-carit.de>
-References: <cover.1355213278.git.timo.mueller@bmw-carit.de>
-Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: [PATCHv3 3/3] script/build.sh: Added option to enable building from local repository.
+Return-Path: <matsumoto.hiroo@jp.fujitsu.com>
+Received: from fgwmail5.fujitsu.co.jp (fgwmail5.fujitsu.co.jp [192.51.44.35])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 37519E00770
+	for <yocto@yoctoproject.org>; Tue, 11 Dec 2012 01:55:24 -0800 (PST)
+Received: from m4.gw.fujitsu.co.jp (unknown [10.0.50.74])
+	by fgwmail5.fujitsu.co.jp (Postfix) with ESMTP id 9FD4E3EE081
+	for <yocto@yoctoproject.org>; Tue, 11 Dec 2012 18:55:22 +0900 (JST)
+Received: from smail (m4 [127.0.0.1])
+	by outgoing.m4.gw.fujitsu.co.jp (Postfix) with ESMTP id 7601045DE59
+	for <yocto@yoctoproject.org>; Tue, 11 Dec 2012 18:55:22 +0900 (JST)
+Received: from s4.gw.fujitsu.co.jp (s4.gw.fujitsu.co.jp [10.0.50.94])
+	by m4.gw.fujitsu.co.jp (Postfix) with ESMTP id 5D76345DE58
+	for <yocto@yoctoproject.org>; Tue, 11 Dec 2012 18:55:22 +0900 (JST)
+Received: from s4.gw.fujitsu.co.jp (localhost.localdomain [127.0.0.1])
+	by s4.gw.fujitsu.co.jp (Postfix) with ESMTP id 51D7D1DB803E
+	for <yocto@yoctoproject.org>; Tue, 11 Dec 2012 18:55:22 +0900 (JST)
+Received: from g01jpexchyt29.g01.fujitsu.local
+	(g01jpexchyt29.g01.fujitsu.local [10.128.193.112])
+	by s4.gw.fujitsu.co.jp (Postfix) with ESMTP id 017CC1DB803F
+	for <yocto@yoctoproject.org>; Tue, 11 Dec 2012 18:55:22 +0900 (JST)
+Received: from G01JPEXMBYT23.g01.fujitsu.local ([10.128.193.131]) by
+	g01jpexchyt29 ([10.128.193.112]) with mapi id 14.02.0309.002;
+	Tue, 11 Dec 2012 18:55:17 +0900
+From: "Matsumoto, Hiroo" <matsumoto.hiroo@jp.fujitsu.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Is LICENSE in a recipe of groff correct
+Thread-Index: Ac3Xhm/1XdfHrXfVRYKbKtpeoqKZoQ==
+Date: Tue, 11 Dec 2012 09:55:22 +0000
+Message-ID: <C2BCE4ECCB7E6645A9B84891C13CF76E1BFFD87B@g01jpexmbyt23>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-securitypolicycheck: OK by SHieldMailChecker v1.8.4
+x-originating-ip: [10.24.19.138]
+MIME-Version: 1.0
+Subject: Is LICENSE in a recipe of groff correct
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,47 +45,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 11 Dec 2012 08:13:06 -0000
+X-List-Received-Date: Tue, 11 Dec 2012 09:55:24 -0000
+Content-Language: ja-JP
+Content-Type: text/plain; charset="iso-2022-jp"
+Content-Transfer-Encoding: quoted-printable
 
-From: Timo Mueller <timo.mueller@bmw-carit.de>
+Hi
 
-If the script is called with the -l option the local git repository is
-used instead of the upstream repository.
 
-Signed-off-by: Timo Mueller <timo.mueller@bmw-carit.de>
----
- scripts/build.sh |    6 +++++-
- 1 files changed, 5 insertions(+), 1 deletions(-)
+A recipe of groff, which is meta/recipes-extended/groff/groff_1.20.1.bb,
+shows that license of groff is GPLv2, but COPYING file in groff-1.20.1
+shows that license of groff is GPLv3.
 
-diff --git a/scripts/build.sh b/scripts/build.sh
-index 693dcf7..54081d5 100755
---- a/scripts/build.sh
-+++ b/scripts/build.sh
-@@ -7,6 +7,7 @@ help ()
-   echo ""
-   echo "Options:"
-   echo "-h - display this help and exit"
-+  echo "-l - use local git repository"
-   echo "BRANCH_NAME - git branch name to build upon"
-   echo "RELEAES_NAME - release name in the final output name"
-   echo "TAG_NAME - git tag name to build upon. defaults to HEAD if not set"
-@@ -67,11 +68,14 @@ check_env ()
- }
- 
- USE_LOCAL_GIT_REPO=0
--while getopts ":h" opt; do
-+while getopts ":lh" opt; do
- 	case $opt in
- 		h)
- 			help
- 			;;
-+		l)
-+			USE_LOCAL_GIT_REPO=1
-+			;;
- 	esac
- done
- shift $(($OPTIND - 1))
--- 
-1.7.7.6
+I think that license is GPLv2 until groff-1.19.2 and is GPLv3 from groff-1.=
+20.1.
 
+
+Regards.
+
+Hiroo MATSUMOTO
 
