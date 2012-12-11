@@ -1,36 +1,23 @@
-Return-Path: <ross.burton@intel.com>
-Received: from fmsmga101.fm.intel.com (mga05.intel.com [192.55.52.89])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4FAC6E00777
-	for <yocto@yoctoproject.org>; Tue, 11 Dec 2012 12:24:22 -0800 (PST)
-Received: from mail-ia0-f200.google.com ([209.85.210.200])
-	by mga01.intel.com with ESMTP/TLS/RC4-SHA; 11 Dec 2012 12:24:21 -0800
-Received: by mail-ia0-f200.google.com with SMTP id f6so10593272iag.11
-	for <yocto@yoctoproject.org>; Tue, 11 Dec 2012 12:24:21 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type:x-gm-message-state;
-	bh=WtJZm5sMvjR8PSOBwdau0VH//Ep0zEuqbyt2c69EP0Q=;
-	b=DWZfDapfhzJWhgehaU62TY3n+QVFBtkhveuVglCRgP9Hia0Ik0yhCQP4/ZOHNozgMr
-	36binS223Zkvrwf3LFGFPBRysBrWamr8R7a0TmQQhwMIg8Vph0wHYBC7N0kX6gi22uuZ
-	WRvhi/7vhK0bKEbg0wAJwZwFW5ERWyDB72fQAbDlnr0whGB7NWtbSOQqFFtHDYA8uyON
-	2G/IQKq9eQ3ArkfczprDNO0Mvh/jgxHNj95TIw/vRKZlIRTb9KtDK4cfVEXqiRpEzXC0
-	854TtE+w6oM+If7bYZZswrZv90wTQCauj2vB7kMCNaUujg0zLwIE8hpjfMZnWfFJCuKO
-	1F/w==
-Received: by 10.60.169.171 with SMTP id af11mr9940231oec.92.1355257461139;
-	Tue, 11 Dec 2012 12:24:21 -0800 (PST)
-Received: by 10.60.169.171 with SMTP id af11mr9940223oec.92.1355257460936;
-	Tue, 11 Dec 2012 12:24:20 -0800 (PST)
+Return-Path: <philip@balister.org>
+Received: from sanddollar.geekisp.com (sanddollar.geekisp.com
+	[216.168.135.167])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id 2C366E00777
+	for <yocto@yoctoproject.org>; Tue, 11 Dec 2012 12:34:44 -0800 (PST)
+Received: (qmail 32464 invoked by uid 1003); 11 Dec 2012 20:34:43 -0000
+Received: from unknown (HELO ?192.168.1.105?)
+	(philip@opensdr.com@96.240.164.36)
+	by mail.geekisp.com with (DHE-RSA-AES256-SHA encrypted) SMTP;
+	11 Dec 2012 20:34:43 -0000
+Message-ID: <50C798E2.9050903@balister.org>
+Date: Tue, 11 Dec 2012 15:34:42 -0500
+From: Philip Balister <philip@balister.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/17.0 Thunderbird/17.0
 MIME-Version: 1.0
-Received: by 10.76.132.198 with HTTP; Tue, 11 Dec 2012 12:24:00 -0800 (PST)
-In-Reply-To: <2119845.UNQndSV9LY@helios>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
 References: <CALq3SOH+1wwBgskaNO0dpoMQis1FoWVuFzWmJ=0r4vpRAjy2Sg@mail.gmail.com>
 	<2119845.UNQndSV9LY@helios>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Tue, 11 Dec 2012 20:24:00 +0000
-Message-ID: <CAJTo0LbcRGxyVaf0mR66TxTY-9C7F0h3prAjsds5yJVCA3vGFA@mail.gmail.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-X-Gm-Message-State: ALoCoQkx6ekoUxiXd16JJBXPAX7brRq5CsT5WuCEZ+dvHvyH7rgnhzyoInqXU+21u2jmA5OkEZ6IjQPrJp7VUD9jVZtDZLZD603alXhrqLcdkBJaoTOeeW4qecqNuM0KcCjXrMX5hgKee1CjCJyiznG1oyCdSniZXg==
+In-Reply-To: <2119845.UNQndSV9LY@helios>
 Cc: yocto@yoctoproject.org
 Subject: Re: Boot failure when adding the meta-oe layer
 X-BeenThere: yocto@yoctoproject.org
@@ -44,21 +31,54 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 11 Dec 2012 20:24:22 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Tue, 11 Dec 2012 20:34:44 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On 11 December 2012 18:11, Paul Eggleton <paul.eggleton@linux.intel.com> wrote:
+On 12/11/2012 01:11 PM, Paul Eggleton wrote:
+> On Tuesday 11 December 2012 12:54:57 Zach Tibbitts wrote:
+>> I'm working on an embedded Linux platform for work to run an app that's
+>> written with Gtk+3. The hardware in question is a Sandy Bridge Core i3
+>> platform. With a vanilla Yocto build, I can boot an image just fine (I've
+>> tested with core-image-basic, core-image-minimal, and core-image-x11) and
+>> everything seems to work; I can even install it to the internal drive
+>> without issue.
+>>
+>> I found recipes for Gtk+3, as well as some of our other dependencies in the
+>> meta-oe layer from the meta-openembedded repository. However, just adding
+>> these layers and rebuilding any of the images that I've built (without
+>> actually adding any new recipes) cause the image to hang when run on
+>> hardware (but oddly enough not in QEMU).
+>>
+>> The last line printed before the bootup apparently stops is along the lines
+>> of: "sd 4:0:0:0: [sdb] Attached SCSI removable disk", and the line that
+>> seems most at fault is a little farther up, "/init: line 69: udevd: not
+>> found". If needed, I can try to capture more of the output, maybe with a
+>> camera, I'm not sure of an easy way to pastebin the output from hardware...
+>>
+>> What I'm wondering is if this is a known issue, or if meta-openembedded
+>> isn't meant to be used in conjunction with Yocto. My assumption is that
+>> something from meta-oe is superceeding a recipe in Yocto and causing this
+>> failure.
+>
 > This is a known issue in meta-oe unfortunately; the udev version there
 > apparently does not work outside of use with systemd. I believe the plan is to
 > drop udev from meta-oe fairly soon.
 
-Oh, so that's why my recent builds are breaking...
+Is this recent? I've been running oe-core + meta-oe without meta-systemd 
+and don't think I've seen this. I haven't updated in a couple of weeks 
+though.
 
-Can I propose to the TSC that meta-oe should "do no evil" so to speak
-- i.e. adding it alongside oe-core should have zero effect initially.
-Along with this udev breakage (why does meta-oe have it's own udev?) I
-notice that it introduces a different drop-in implementation
-(resulting in build-time warnings).
+Philip
 
-Ross
+>
+> The workaround is to force the system to use the version of udev in meta/ -
+> I'm guessing you are using the 1.3 release version, in which case you can add
+> the following to your local.conf:
+>
+> PREFERRED_VERSION_udev = "164"
+>
+> Cheers,
+> Paul
+>
 
