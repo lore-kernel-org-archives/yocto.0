@@ -1,28 +1,25 @@
-Return-Path: <zachtib@gmail.com>
-Received: from mail-bk0-f48.google.com (mail-bk0-f48.google.com
-	[209.85.214.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D35BDE00777
-	for <yocto@yoctoproject.org>; Tue, 11 Dec 2012 09:54:58 -0800 (PST)
-Received: by mail-bk0-f48.google.com with SMTP id jc3so1931445bkc.35
-	for <yocto@yoctoproject.org>; Tue, 11 Dec 2012 09:54:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=XlE0/Pds/cKMPxL9FTRCGCLgnKizyl1Rd8QgmxuyUD4=;
-	b=OrMAMQG2gszBauhDn8bGrswEK2V0YU7XNYoYmyx+VzJIVYZFc6tVNqFzp0lA/geVEx
-	7+1TIHJeCXXsJnXNDRCdIYd7bhPTqkk4iDgjBtuyBDQTCaIg/88MKXiNsft8nz3DfKEo
-	MC+JbThzMdcsIZY9u7P1v21BQUklrcUb6mEkv72zk+1h27I69j759+XqPVAGz2V8Q7Cw
-	IQfp9CHa3iUkCtdXhAmUIh7F72LgUU0qIYd9fvl3ptFzF/JxVIZ/zE4duh8MVevCfID/
-	n8E5Ft7zaRzZnVYPMex2Yq6NmoPtgBIKgAyaw8+5owZ3bIHEGg5sZiwahvk29CwnWKQT
-	iTiA==
-MIME-Version: 1.0
-Received: by 10.204.5.69 with SMTP id 5mr6586788bku.26.1355248497382; Tue, 11
-	Dec 2012 09:54:57 -0800 (PST)
-Received: by 10.204.152.140 with HTTP; Tue, 11 Dec 2012 09:54:57 -0800 (PST)
-Date: Tue, 11 Dec 2012 12:54:57 -0500
-Message-ID: <CALq3SOH+1wwBgskaNO0dpoMQis1FoWVuFzWmJ=0r4vpRAjy2Sg@mail.gmail.com>
-From: Zach Tibbitts <zachtib@gmail.com>
+Return-Path: <prvs=685d11186=Maxime.Moge@sick.de>
+Received: from mail.sick.de (mail.sick.de [91.207.92.60])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 05768E00777
+	for <yocto@yoctoproject.org>; Tue, 11 Dec 2012 10:00:05 -0800 (PST)
+X-IronPort-AV: E=Sophos;i="4.84,260,1355094000"; 
+   d="scan'208";a="373969"
+Received: from unknown (HELO deags00086.sickcn.net) ([10.2.32.182])
+	by mail.waki.de.dmz with ESMTP; 11 Dec 2012 19:00:04 +0100
+In-Reply-To: <alpine.DEB.2.02.1212110801200.23904@oneiric>
+References: <alpine.DEB.2.02.1212110801200.23904@oneiric>
 To: yocto@yoctoproject.org
-Subject: Boot failure when adding the meta-oe layer
+MIME-Version: 1.0
+X-KeepSent: 1C2954B7:9AD39620-C1257AD1:00627511;
+ type=4; name=$KeepSent
+X-Mailer: Lotus Notes Release 8.5.2FP2 SHF191 July 18, 2011
+Message-ID: <OF1C2954B7.9AD39620-ONC1257AD1.00627511-C1257AD1.0062D841@sick.de>
+From: Maxime Moge <Maxime.Moge@sick.de>
+Date: Tue, 11 Dec 2012 18:59:49 +0100
+X-MIMETrack: Serialize by Router on WAKMA02.waki.de.internal/SRV/SICK(Release
+	8.5.3FP2|July 02, 2012) at 11.12.2012 19:00:04,
+	Serialize complete at 11.12.2012 19:00:04
+Subject: jffs2 change erase block size / page size
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,71 +31,156 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 11 Dec 2012 17:54:59 -0000
-Content-Type: multipart/alternative; boundary=00151758a6e644d5a604d097618d
+X-List-Received-Date: Tue, 11 Dec 2012 18:00:06 -0000
+Content-Type: multipart/alternative;
+	boundary="=_alternative 0062D841C1257AD1_="
 
---00151758a6e644d5a604d097618d
-Content-Type: text/plain; charset=ISO-8859-1
+--=_alternative 0062D841C1257AD1_=
+Content-Type: text/plain; charset="US-ASCII"
 
-I'm working on an embedded Linux platform for work to run an app that's
-written with Gtk+3. The hardware in question is a Sandy Bridge Core i3
-platform. With a vanilla Yocto build, I can boot an image just fine (I've
-tested with core-image-basic, core-image-minimal, and core-image-x11) and
-everything seems to work; I can even install it to the internal drive
-without issue.
+Hi,
 
-I found recipes for Gtk+3, as well as some of our other dependencies in the
-meta-oe layer from the meta-openembedded repository. However, just adding
-these layers and rebuilding any of the images that I've built (without
-actually adding any new recipes) cause the image to hang when run on
-hardware (but oddly enough not in QEMU).
+I need to know where can i configure the jffs2 image type in the yocto 
+directory?
 
-The last line printed before the bootup apparently stops is along the lines
-of: "sd 4:0:0:0: [sdb] Attached SCSI removable disk", and the line that
-seems most at fault is a little farther up, "/init: line 69: udevd: not
-found". If needed, I can try to capture more of the output, maybe with a
-camera, I'm not sure of an easy way to pastebin the output from hardware...
+Thanks in advance for the reply.
 
-What I'm wondering is if this is a known issue, or if meta-openembedded
-isn't meant to be used in conjunction with Yocto. My assumption is that
-something from meta-oe is superceeding a recipe in Yocto and causing this
-failure.
 
-Any help you can provide would be greatly appreciated
 
-Thanks,
+
+Von:    "Robert P. J. Day" <rpjday@crashcourse.ca>
+An:     Yocto discussion list <yocto@yoctoproject.org>
+Datum:  12/11/2012 02:08 PM
+Betreff:        [yocto] should users be able to run yocto's pre-built 
+images  standalone?
+Gesendet von:   yocto-bounces@yoctoproject.org
+
+
+
+
+  following up on my updated QEMU page here:
+
+http://www.crashcourse.ca/wiki/index.php/Running_pre-built_QEMU_images
+
+a basic question -- is it supported that users be able to download and
+run yocto's pre-built QEMU images without having to download an entire
+build system, and set up bitbake, etc?  theoretically, of course, it
+can be done, but it's not set up to do it conveniently (if it even
+should be).
+
+  first, one can't get yocto's qemu-related utilities without
+downloading either oe-core or a toolchain.  is that really necessary?
+how hard would it be to break out the QEMU stuff into a much smaller
+tarball if that's all people want?
+
+  and if that's done, certainly, the help messages from runqemu can be
+updated, since those utilities clearly assume they're running as part
+of a build infrastructure when that's not necessary.
+
+  anyway, you can see the observations i made on my QEMU page.  it
+seems that, if you just want people to be able to *easily* fire up
+some pre-built images to see the beauty of yocto, you shouldn't make
+them download an entire build infrastructure they don't need.
+
+  thoughts?
+
+rday
 
 -- 
-Zach Tibbitts
 
---00151758a6e644d5a604d097618d
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
 
-I&#39;m working on an embedded Linux platform for work to run an app that&#=
-39;s written with Gtk+3. The hardware in question is a Sandy Bridge Core i3=
- platform. With a vanilla Yocto build, I can boot an image just fine (I&#39=
-;ve tested with core-image-basic, core-image-minimal, and core-image-x11) a=
-nd everything seems to work; I can even install it to the internal drive wi=
-thout issue.<div>
-<br></div><div>I found recipes for Gtk+3, as well as some of our other depe=
-ndencies in the meta-oe layer from the meta-openembedded repository. Howeve=
-r, just adding these layers and rebuilding any of the images that I&#39;ve =
-built (without actually adding any new recipes) cause the image to hang whe=
-n run on hardware (but oddly enough not in QEMU).</div>
-<div><br></div><div>The last line printed before the bootup apparently stop=
-s is along the lines of: &quot;sd 4:0:0:0: [sdb] Attached SCSI removable di=
-sk&quot;, and the line that seems most at fault is a little farther up, &qu=
-ot;/init: line 69: udevd: not found&quot;. If needed, I can try to capture =
-more of the output, maybe with a camera, I&#39;m not sure of an easy way to=
- pastebin the output from hardware...</div>
-<div><br></div><div>What I&#39;m wondering is if this is a known issue, or =
-if meta-openembedded isn&#39;t meant to be used in conjunction with Yocto. =
-My assumption is that something from meta-oe is superceeding a recipe in Yo=
-cto and causing this failure.</div>
-<div><br></div><div>Any help you can provide would be greatly appreciated<b=
-r><div><br></div><div>Thanks,<br clear=3D"all"><div><br></div>-- <br>Zach T=
-ibbitts<br>
-</div></div>
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
 
---00151758a6e644d5a604d097618d--
+
+--=_alternative 0062D841C1257AD1_=
+Content-Type: text/html; charset="US-ASCII"
+
+<font size=2 face="sans-serif">Hi,</font>
+<br>
+<br><font size=2 face="sans-serif">I need to know where can i configure
+the jffs2 image type in the yocto directory?</font>
+<br>
+<br><font size=2 face="sans-serif">Thanks in advance for the reply.</font>
+<br>
+<br>
+<br>
+<br>
+<br><font size=1 color=#5f5f5f face="sans-serif">Von: &nbsp; &nbsp; &nbsp;
+&nbsp;</font><font size=1 face="sans-serif">&quot;Robert P. J.
+Day&quot; &lt;rpjday@crashcourse.ca&gt;</font>
+<br><font size=1 color=#5f5f5f face="sans-serif">An: &nbsp; &nbsp; &nbsp;
+&nbsp;</font><font size=1 face="sans-serif">Yocto discussion list
+&lt;yocto@yoctoproject.org&gt;</font>
+<br><font size=1 color=#5f5f5f face="sans-serif">Datum: &nbsp; &nbsp; &nbsp;
+&nbsp;</font><font size=1 face="sans-serif">12/11/2012 02:08 PM</font>
+<br><font size=1 color=#5f5f5f face="sans-serif">Betreff: &nbsp; &nbsp;
+&nbsp; &nbsp;</font><font size=1 face="sans-serif">[yocto] should
+users be able to run yocto's pre-built images &nbsp; &nbsp; &nbsp; &nbsp;standalone?</font>
+<br><font size=1 color=#5f5f5f face="sans-serif">Gesendet von: &nbsp; &nbsp;
+&nbsp; &nbsp;</font><font size=1 face="sans-serif">yocto-bounces@yoctoproject.org</font>
+<br>
+<hr noshade>
+<br>
+<br>
+<br><tt><font size=2><br>
+ &nbsp;following up on my updated QEMU page here:<br>
+<br>
+</font></tt><a href="http://www.crashcourse.ca/wiki/index.php/Running_pre-built_QEMU_images"><tt><font size=2>http://www.crashcourse.ca/wiki/index.php/Running_pre-built_QEMU_images</font></tt></a><tt><font size=2><br>
+<br>
+a basic question -- is it supported that users be able to download and<br>
+run yocto's pre-built QEMU images without having to download an entire<br>
+build system, and set up bitbake, etc? &nbsp;theoretically, of course,
+it<br>
+can be done, but it's not set up to do it conveniently (if it even<br>
+should be).<br>
+<br>
+ &nbsp;first, one can't get yocto's qemu-related utilities without<br>
+downloading either oe-core or a toolchain. &nbsp;is that really necessary?<br>
+how hard would it be to break out the QEMU stuff into a much smaller<br>
+tarball if that's all people want?<br>
+<br>
+ &nbsp;and if that's done, certainly, the help messages from runqemu can
+be<br>
+updated, since those utilities clearly assume they're running as part<br>
+of a build infrastructure when that's not necessary.<br>
+<br>
+ &nbsp;anyway, you can see the observations i made on my QEMU page. &nbsp;it<br>
+seems that, if you just want people to be able to *easily* fire up<br>
+some pre-built images to see the beauty of yocto, you shouldn't make<br>
+them download an entire build infrastructure they don't need.<br>
+<br>
+ &nbsp;thoughts?<br>
+<br>
+rday<br>
+<br>
+-- <br>
+<br>
+========================================================================<br>
+Robert P. J. Day &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Ottawa, Ontario,
+CANADA<br>
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp;</font></tt><a href=http://crashcourse.ca/><tt><font size=2>http://crashcourse.ca</font></tt></a><tt><font size=2><br>
+<br>
+Twitter: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </font></tt><a href=http://twitter.com/rpjday><tt><font size=2>http://twitter.com/rpjday</font></tt></a><tt><font size=2><br>
+LinkedIn: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </font></tt><a href=http://ca.linkedin.com/in/rpjday><tt><font size=2>http://ca.linkedin.com/in/rpjday</font></tt></a><tt><font size=2><br>
+========================================================================<br>
+_______________________________________________<br>
+yocto mailing list<br>
+yocto@yoctoproject.org<br>
+</font></tt><a href=https://lists.yoctoproject.org/listinfo/yocto><tt><font size=2>https://lists.yoctoproject.org/listinfo/yocto</font></tt></a><tt><font size=2><br>
+</font></tt>
+<br>
+
+--=_alternative 0062D841C1257AD1_=--
