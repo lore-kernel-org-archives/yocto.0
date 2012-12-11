@@ -1,24 +1,25 @@
 Return-Path: <timo.mueller@oss.bmw-carit.de>
 Received: from linuxmail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D6BBBE006C3
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D6C85E00770
 	for <yocto@yoctoproject.org>; Tue, 11 Dec 2012 00:13:05 -0800 (PST)
 Received: from localhost (mysterion.bmw-carit.intra [192.168.101.57])
 	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
 	(No client certificate requested)
 	(Authenticated sender: timo.mueller)
-	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id CA333400B2;
+	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id E82B0400E8;
 	Tue, 11 Dec 2012 08:37:04 +0100 (CET)
 From: mail@timomueller.eu
 To: yocto@yoctoproject.org
-Date: Tue, 11 Dec 2012 09:13:01 +0100
-Message-Id: <b3a6a0ce99676e3a40b6b83744bdff16a50215b6.1355213278.git.timo.mueller@bmw-carit.de>
+Date: Tue, 11 Dec 2012 09:13:02 +0100
+Message-Id: <b440f373a0598aec02171958e7db35b85478aadf.1355213278.git.timo.mueller@bmw-carit.de>
 X-Mailer: git-send-email 1.7.7.6
-In-Reply-To: <cover.1355213278.git.timo.mueller@bmw-carit.de>
+In-Reply-To: <b3a6a0ce99676e3a40b6b83744bdff16a50215b6.1355213278.git.timo.mueller@bmw-carit.de>
 References: <cover.1355213278.git.timo.mueller@bmw-carit.de>
+	<b3a6a0ce99676e3a40b6b83744bdff16a50215b6.1355213278.git.timo.mueller@bmw-carit.de>
 In-Reply-To: <cover.1355213278.git.timo.mueller@bmw-carit.de>
 References: <cover.1355213278.git.timo.mueller@bmw-carit.de>
 Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: [PATCHv3 1/3] scripts/build.sh: Added function to use the local repository for building
+Subject: [PATCHv3 2/3] scripts/build.sh: Added help option to the cmdline
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,42 +35,52 @@ X-List-Received-Date: Tue, 11 Dec 2012 08:13:06 -0000
 
 From: Timo Mueller <timo.mueller@bmw-carit.de>
 
-If USE_LOCAL_GIT_REPO is set to 1 the build scripts uses the local
-repository of the eclipse poky project for building instead of the
-upstream project. The local repository is derived from the location
-for the build script.
+Calling the build script with the -h option will now show the usage.
+The cmdline parsing can be extended to add new options in the future.
 
 Signed-off-by: Timo Mueller <timo.mueller@bmw-carit.de>
 ---
- scripts/build.sh |    8 ++++++++
- 1 files changed, 8 insertions(+), 0 deletions(-)
+ scripts/build.sh |   18 ++++++++++++++----
+ 1 files changed, 14 insertions(+), 4 deletions(-)
 
 diff --git a/scripts/build.sh b/scripts/build.sh
-index de81ce3..cbb7375 100755
+index cbb7375..693dcf7 100755
 --- a/scripts/build.sh
 +++ b/scripts/build.sh
-@@ -65,6 +65,8 @@ check_env ()
-   fi 
+@@ -3,12 +3,13 @@
+ help ()
+ {
+   echo "Build the Yocto Eclipse plugins"
+-  echo "Usage: $0 <branch name> <release name>";
++  echo "Usage: $0 [OPTIONS] BRANCH_NAME RELEASE_NAME [TAG_NAME]";
+   echo ""
+   echo "Options:"
+-  echo "<branch name> - git branch name to build upon"
+-  echo "<release name> - release name in the final output name"
+-  echo "[tag name] - git tag name to build upon. defaults to master if not set"
++  echo "-h - display this help and exit"
++  echo "BRANCH_NAME - git branch name to build upon"
++  echo "RELEAES_NAME - release name in the final output name"
++  echo "TAG_NAME - git tag name to build upon. defaults to HEAD if not set"
+   echo ""
+   echo "Example: $0 master r0 M1.1_rc1";
+   exit 1;
+@@ -66,6 +67,15 @@ check_env ()
  }
  
-+USE_LOCAL_GIT_REPO=0
+ USE_LOCAL_GIT_REPO=0
++while getopts ":h" opt; do
++	case $opt in
++		h)
++			help
++			;;
++	esac
++done
++shift $(($OPTIND - 1))
 +
+ 
  if [ $# -ne 2 ] && [ $# -ne 3 ]; then 
     help
- fi
-@@ -97,6 +99,12 @@ mkdir ${BUILD_DIR} || fail $? "Create temporary build directory ${BUILD_DIR}"
- 
- #git clone
- GIT_URL=git://git.pokylinux.org/eclipse-poky.git
-+if [ $USE_LOCAL_GIT_REPO -eq 1 ]; then
-+	SCRIPT_DIR=`dirname $0`
-+	GIT_DIR=`readlink -f ${SCRIPTDIR}\..`
-+	GIT_URL="file://${GIT_DIR}"
-+fi
-+
- GIT_DIR=${BUILD_SRC}
- #mkdir ${GIT_DIR}
- #cp -r features/ ${GIT_DIR}
 -- 
 1.7.7.6
 
