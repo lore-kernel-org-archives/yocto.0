@@ -1,28 +1,31 @@
-Return-Path: <twoerner@gmail.com>
-Received: from mail-lb0-f176.google.com (mail-lb0-f176.google.com
-	[209.85.217.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8C30DE00777
-	for <yocto@yoctoproject.org>; Tue, 11 Dec 2012 13:05:04 -0800 (PST)
-Received: by mail-lb0-f176.google.com with SMTP id k6so3687739lbo.35
-	for <yocto@yoctoproject.org>; Tue, 11 Dec 2012 13:05:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=tb64Wukm6ACD1Sw+dT/84RES47n6VUoRRf43tuNyWPI=;
-	b=O/mMKp+WMDXQqt4hTt5lOdDvhxbIBhe824F8qags/4YJYmBaf7VJ8vsXeE4rNResfr
-	BRR65s7ZOZ1yeFgmqQbMNgh0q6EsvJPwLtplNLKJZXcQiAV/KJ7nQWZOUD8RhshhHk/b
-	jTIfh2RCNS7+EWfOUn3KEslnsoP/YZklqaQGoVxdYDNgZNnj8mw9NL+anYPUUeVVudFB
-	IWqdw4b5bgnRF97WW2DbbrIdAtjOXaBasBJmeSxPncBnwuL35Jn43pVT44GpHR9DgP6T
-	37mhkaRKCIeuCuPk+6oFZZ+3/Meqb/30tpRLwvgzD0ODbJmbLhg2nj7Ee7SYhLdb4BwH
-	6CqA==
+Return-Path: <scott.m.rifenbark@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4C6FBE00777
+	for <yocto@yoctoproject.org>; Tue, 11 Dec 2012 13:09:49 -0800 (PST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 11 Dec 2012 13:09:45 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.84,262,1355126400"; d="scan'208";a="230109364"
+Received: from orsmsx102.amr.corp.intel.com ([10.22.225.129])
+	by azsmga001.ch.intel.com with ESMTP; 11 Dec 2012 13:09:45 -0800
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.81]) by
+	ORSMSX102.amr.corp.intel.com ([169.254.1.125]) with mapi id
+	14.01.0355.002; Tue, 11 Dec 2012 13:09:44 -0800
+From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+To: Jon Szymaniak <jon.szymaniak@gmail.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] Disabling PREMIRRORS and upstream sources
+Thread-Index: AQHN0WmWxgskPaXHkECFxGcGckjxfpgUJBng
+Date: Tue, 11 Dec 2012 21:09:43 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237946ACC39E@ORSMSX101.amr.corp.intel.com>
+References: <CANge7vV0M3t1r3e+=76+r7+_BwdaQfW2eOQ=AeLTXn5-R7XX-A@mail.gmail.com>
+In-Reply-To: <CANge7vV0M3t1r3e+=76+r7+_BwdaQfW2eOQ=AeLTXn5-R7XX-A@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.139]
 MIME-Version: 1.0
-Received: by 10.152.148.40 with SMTP id tp8mr18576215lab.30.1355259902869;
-	Tue, 11 Dec 2012 13:05:02 -0800 (PST)
-Received: by 10.112.101.135 with HTTP; Tue, 11 Dec 2012 13:05:02 -0800 (PST)
-Date: Tue, 11 Dec 2012 16:05:02 -0500
-Message-ID: <CAHUNapSruo7u=gn7tjbpJdp8KA53fJsB+0Ez7OVFpKiJ69fX0g@mail.gmail.com>
-From: Trevor Woerner <twoerner@gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: per-image ROOTFS sizes
+Subject: Re: Disabling PREMIRRORS and upstream sources
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,21 +37,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 11 Dec 2012 21:05:05 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Tue, 11 Dec 2012 21:09:49 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Hi,
+Isn't this set up in the local.conf file for global use?  Also, Jon, what d=
+ocumentation are you referring to here?  Are you looking at the latest Yoct=
+o Project documentation (e.g. http://www.yoctoproject.org/docs/1.4/poky-ref=
+-manual/poky-ref-manual.html for the Yocto Project Reference Manual?).
 
-Are per-image ROOTFS sizes (i.e. IMAGE_ROOTFS_SIZE_<image>) still
-supported? From this:
+Scott
 
-http://patches.openembedded.org/patch/4671/
-
-it would appear not. However
-poky-extras/meta-kernel-dev/conf/machine/example.conf contains
-IMAGE_ROOTFS_SIZE_ext3 (which would make it appear as though they
-are).
-
-Best regards,
-    Trevor
+>-----Original Message-----
+>From: yocto-bounces@yoctoproject.org [mailto:yocto-
+>bounces@yoctoproject.org] On Behalf Of Jon Szymaniak
+>Sent: Monday, December 03, 2012 7:19 AM
+>To: yocto@yoctoproject.org
+>Subject: [yocto] Disabling PREMIRRORS and upstream sources
+>
+>Is there a simple way to disable the use of PREMIRRORS and MIRRORS
+>within a recipe?
+>
+>(Perhaps the answer here might be worth mentioning in Section 12.23 of
+>the
+>Poky Reference  Manual?)
+>
+>My use case for this is the situation where the code hasn't been
+>released yet,
+>so there's no point in checking mirrors.
+>
+>Thank you,
+>Jon
+>_______________________________________________
+>yocto mailing list
+>yocto@yoctoproject.org
+>https://lists.yoctoproject.org/listinfo/yocto
 
