@@ -1,19 +1,31 @@
-Return-Path: <ioanax.grigoropol@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 13A61E00770
-	for <yocto@yoctoproject.org>; Tue, 11 Dec 2012 03:13:38 -0800 (PST)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 11 Dec 2012 03:13:37 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,258,1355126400"; d="scan'208";a="260447489"
-Received: from ideapad (HELO localhost.localdomain) ([10.237.105.148])
-	by fmsmga001.fm.intel.com with ESMTP; 11 Dec 2012 03:13:29 -0800
-From: Ioana Grigoropol <ioanax.grigoropol@intel.com>
-To: yocto@yoctoproject.org
-Date: Tue, 11 Dec 2012 13:03:20 +0200
-Message-Id: <1355223801-14269-1-git-send-email-ioanax.grigoropol@intel.com>
-X-Mailer: git-send-email 1.7.9.5
-Subject: [PATCH] [eclipse-poky-windows][branch:windows-build]Remove validate existing repository radio button
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C93E2E00777
+	for <yocto@yoctoproject.org>; Tue, 11 Dec 2012 05:07:52 -0800 (PST)
+Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
+	([174.115.5.73]:38431 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1TiPYu-0004QH-08
+	for yocto@yoctoproject.org; Tue, 11 Dec 2012 08:07:52 -0500
+Date: Tue, 11 Dec 2012 08:07:48 -0500 (EST)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.DEB.2.02.1212110801200.23904@oneiric>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+MIME-Version: 1.0
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: should users be able to run yocto's pre-built images standalone?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -25,106 +37,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 11 Dec 2012 11:13:38 -0000
+X-List-Received-Date: Tue, 11 Dec 2012 13:07:52 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-- remove radio button for validating existing repository but keep performing the validation in the back
-- make 'clone' button a check button
 
-Signed-off-by: Ioana Grigoropol <ioanax.grigoropol@intel.com>
----
- .../yocto/bc/ui/wizards/install/OptionsPage.java   |   40 +++++++++-----------
- 1 file changed, 18 insertions(+), 22 deletions(-)
+  following up on my updated QEMU page here:
 
-diff --git a/plugins/org.yocto.bc.ui/src/org/yocto/bc/ui/wizards/install/OptionsPage.java b/plugins/org.yocto.bc.ui/src/org/yocto/bc/ui/wizards/install/OptionsPage.java
-index 9e94aea..9c01e4e 100644
---- a/plugins/org.yocto.bc.ui/src/org/yocto/bc/ui/wizards/install/OptionsPage.java
-+++ b/plugins/org.yocto.bc.ui/src/org/yocto/bc/ui/wizards/install/OptionsPage.java
-@@ -54,7 +54,7 @@ public class OptionsPage extends FiniteStateWizardPage {
- 	private ValidationListener validationListener;
- 	private Text txtProjectName;
- 	private Button btnGit;
--	private Button btnValidate;
-+//	private Button btnValidate;
- 
- 	private RemoteProjectContentsLocationArea locationArea;
- 
-@@ -67,7 +67,7 @@ public class OptionsPage extends FiniteStateWizardPage {
- 	public void createControl(Composite parent) {
- 		top = new Composite(parent, SWT.None);
- 		top.setLayout(new GridLayout());
--		top.setLayoutData(new GridData(GridData.FILL_BOTH));
-+		top.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
- 
- 		GridData gdFillH = new GridData(GridData.FILL_HORIZONTAL);
- 
-@@ -97,25 +97,26 @@ public class OptionsPage extends FiniteStateWizardPage {
- 
- 		locationArea = new RemoteProjectContentsLocationArea(errorReporter, top, null);
- 
--		Group locationValidationGroup = new Group(top, SWT.NONE);
--		locationValidationGroup.setText("Git repository");
--		GridData gd = new GridData(GridData.VERTICAL_ALIGN_END | GridData.FILL_HORIZONTAL);
--		locationValidationGroup.setLayoutData(gd);
--		GridLayout gl = new GridLayout(1, false);
--		locationValidationGroup.setLayout(gl);
-+//		Group locationValidationGroup = new Group(top, SWT.NONE);
-+//		locationValidationGroup.setText("Git repository");
-+//		GridData gd = new GridData(GridData.VERTICAL_ALIGN_END | GridData.FILL_HORIZONTAL);
-+//		locationValidationGroup.setLayoutData(gd);
-+//		GridLayout gl = new GridLayout(1, false);
-+//		locationValidationGroup.setLayout(gl);
- 
--		btnGit = new Button(locationValidationGroup, SWT.RADIO);
-+		btnGit = new Button(top, SWT.CHECK);
- 		btnGit.setText("Clone from Yocto Project &Git Repository into new location");
- 		btnGit.setEnabled(true);
- 		btnGit.setSelection(true);
- 		btnGit.addSelectionListener(validationListener);
-+		GridData gd = new GridData(GridData.VERTICAL_ALIGN_END | GridData.FILL_HORIZONTAL);
-+		btnGit.setLayoutData(gd);
- 
--
--		btnValidate = new Button(locationValidationGroup, SWT.RADIO);
--		btnValidate.setText("&Validate existing Git project location");
--		btnValidate.setEnabled(true);
--		btnValidate.setSelection(false);
--		btnValidate.addSelectionListener(validationListener);
-+//		btnValidate = new Button(locationValidationGroup, SWT.RADIO);
-+//		btnValidate.setText("&Validate existing Git project location");
-+//		btnValidate.setEnabled(true);
-+//		btnValidate.setSelection(false);
-+//		btnValidate.addSelectionListener(validationListener);
- 
- 		setControl(top);
- 	}
-@@ -165,16 +166,11 @@ public class OptionsPage extends FiniteStateWizardPage {
- 		String projectPath = projectLoc + separator + getProjectName();
- 		IHostFile repoDest = RemoteHelper.getRemoteHostFile(connection, projectPath, new NullProgressMonitor());
- 
--		if(btnValidate.getSelection()) {
-+		if(!btnGit.getSelection()) {
- 			if (repoDest == null || !repoDest.exists()) {
- 				setErrorMessage("Directory " + projectPath + " does not exist, please select git clone.");
- 				return false;
- 			}
--//			IHostFile gitDescr = RemoteHelper.getRemoteHostFile(connection, projectPath + "/.git", new NullProgressMonitor());
--//			if (gitDescr == null || !gitDescr.exists()) {
--//				setErrorMessage("Directory " + projectPath + " does not contain a git repository, please select git clone.");
--//				return false;
--//			}
- 
- 			IHostFile validationFile = RemoteHelper.getRemoteHostFile(connection, projectPath + URI_SEPARATOR + InstallWizard.VALIDATION_FILE, new NullProgressMonitor());
- 			if (validationFile == null || !validationFile.exists()) {
-@@ -185,7 +181,7 @@ public class OptionsPage extends FiniteStateWizardPage {
- 			if (repoDest.exists() && repoDest.isDirectory()) {
- 				IHostFile gitDescr = RemoteHelper.getRemoteHostFile(connection, projectPath + "/.git", new NullProgressMonitor());
- 				if (gitDescr != null && gitDescr.exists()) {
--					setErrorMessage("Directory " + projectPath + " contains a repository, please select validate repository.");
-+					setErrorMessage("Directory " + projectPath + " contains a repository, please choose another location or skip cloning the repository.");
- 					return false;
- 				}
- 			}
+http://www.crashcourse.ca/wiki/index.php/Running_pre-built_QEMU_images
+
+a basic question -- is it supported that users be able to download and
+run yocto's pre-built QEMU images without having to download an entire
+build system, and set up bitbake, etc?  theoretically, of course, it
+can be done, but it's not set up to do it conveniently (if it even
+should be).
+
+  first, one can't get yocto's qemu-related utilities without
+downloading either oe-core or a toolchain.  is that really necessary?
+how hard would it be to break out the QEMU stuff into a much smaller
+tarball if that's all people want?
+
+  and if that's done, certainly, the help messages from runqemu can be
+updated, since those utilities clearly assume they're running as part
+of a build infrastructure when that's not necessary.
+
+  anyway, you can see the observations i made on my QEMU page.  it
+seems that, if you just want people to be able to *easily* fire up
+some pre-built images to see the beauty of yocto, you shouldn't make
+them download an entire build infrastructure they don't need.
+
+  thoughts?
+
+rday
+
 -- 
-1.7.9.5
 
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
