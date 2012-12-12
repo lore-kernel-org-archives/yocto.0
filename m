@@ -1,35 +1,35 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8C252E00294
-	for <yocto@yoctoproject.org>; Wed, 12 Dec 2012 12:46:36 -0800 (PST)
-Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
-	([174.115.5.73]:45900 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1TitCN-0005jO-Bi; Wed, 12 Dec 2012 15:46:35 -0500
-Date: Wed, 12 Dec 2012 15:46:31 -0500 (EST)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Trevor Woerner <twoerner@gmail.com>
-In-Reply-To: <CAHUNapSTKMXS607--qaODp=Jg8e=rSKbPOhegCOA9vZ+YS3hrw@mail.gmail.com>
-Message-ID: <alpine.DEB.2.02.1212121541120.14335@oneiric>
+Return-Path: <twoerner@gmail.com>
+Received: from mail-lb0-f176.google.com (mail-lb0-f176.google.com
+	[209.85.217.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 76225E00294
+	for <yocto@yoctoproject.org>; Wed, 12 Dec 2012 13:28:26 -0800 (PST)
+Received: by mail-lb0-f176.google.com with SMTP id k6so1141997lbo.35
+	for <yocto@yoctoproject.org>; Wed, 12 Dec 2012 13:28:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=xLfKMIq0UAEBkhHH9t9VaFAloyiQCioItx0yH53C3ek=;
+	b=EJvHEnDrr8drJn1zz8tqXppfZ6Co3b//1Cm9MTCw42LWy7a6o2GVXCA1r7H1oCigvH
+	476A5wKDAxLMbdTP3DvvhIqbBZhLq1SxyNMhzyOVYRUb80LCWNZiboOlIcHlTXqZhQF4
+	ZRGwOsK6s18iDzxH/+YKseXIjr83RWnd/JEP1M94NwOJWIuMGUW1AWvzvG0chMcxIwLu
+	4PYXsMUq0+22pDdX6ZAFxtH0E/Eanr574w5hmAVEOWwTuH4kV2sLOJ/Rwe9QqksiLoHY
+	czLAQ89cehWiJonFuMEOkIRzb/Vjf8F3Iyp+SIpEf8B7L7iTyFaG8/EW8SYKvkP1XLih
+	3Hjg==
+MIME-Version: 1.0
+Received: by 10.152.104.240 with SMTP id gh16mr2507312lab.56.1355347704818;
+	Wed, 12 Dec 2012 13:28:24 -0800 (PST)
+Received: by 10.112.101.135 with HTTP; Wed, 12 Dec 2012 13:28:24 -0800 (PST)
+In-Reply-To: <50C8E6DE.4020308@linux.intel.com>
 References: <CAHUNapSruo7u=gn7tjbpJdp8KA53fJsB+0Ez7OVFpKiJ69fX0g@mail.gmail.com>
 	<50C8E206.6040203@linux.intel.com>
 	<CAHUNapSTKMXS607--qaODp=Jg8e=rSKbPOhegCOA9vZ+YS3hrw@mail.gmail.com>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
-MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Darren Hart <dvhart@linux.intel.com>
+	<50C8E6DE.4020308@linux.intel.com>
+Date: Wed, 12 Dec 2012 16:28:24 -0500
+Message-ID: <CAHUNapTOtDGwCbEp2naVTiZyZjCipNH=Vo1u30UczyFQHBFYOQ@mail.gmail.com>
+From: Trevor Woerner <twoerner@gmail.com>
+To: Darren Hart <dvhart@linux.intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Wold,
+	Saul" <saul.wold@intel.com>
 Subject: Re: per-image ROOTFS sizes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -42,72 +42,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 12 Dec 2012 20:46:36 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Wed, 12 Dec 2012 21:28:26 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On Wed, 12 Dec 2012, Trevor Woerner wrote:
+On Wed, Dec 12, 2012 at 3:19 PM, Darren Hart <dvhart@linux.intel.com> wrote:
+> What is the reason you would like to do this just for vmdk? Is it to
+> avoid increasing the size of all the images when it is only vmdk you
+> care about? That would makes sense.
 
-> Hi Darren,
->
-> On Wed, Dec 12, 2012 at 2:59 PM, Darren Hart <dvhart@linux.intel.com> wrote:
-> > On 12/11/2012 01:05 PM, Trevor Woerner wrote:
-> >> Are per-image ROOTFS sizes (i.e. IMAGE_ROOTFS_SIZE_<image>) still
-> >> supported?
-> > Interesting, I haven't tried myself. Have you tried and run into an issue?
->
->
-> Yes. I had been trying to figure out why my:
->
->     IMAGE_ROOTFS_SIZE_vmdk = "500000"
->
-> line in my config file wasn't working when I found the link I provided
-> earlier. Right now all I can say is that it doesn't work for _vmdk
-> specifically.
+Yes, that's it exactly. I have an existing build system in place
+(which is all based on custom scripts) that I would like to upgrade to
+Yocto. Our target device uses a 2GB CF card. My build system generates
+an "image" which I use in conjunction with a script to create CF cards
+based on any given build. There's no reason the "image" needs to be
+2GB in size; the script formats and mounts the CF card, mounts the
+"image", then copies the files from the image to the CF card. The
+script also takes care of running LILO against the CF so it can boot.
+The build system also generates a VDI (which is very much like a VMDK)
+of the device which can be used for testing or development of
+non-hardware-related features (e.g. web interface, snmp, etc). What I
+like about the VDI is that it will start at, roughly, 200MB (which
+makes it easier to copy around, download, etc) but when run will act
+like the real 2GB system.
 
-  since i was going to play with vmdk soon, i took a look at this and
-from a position of extreme ignorance, i can see image-vmdk.bbclass
-(which i'm going to assume is the class being used) which contains:
+> Perhaps, for now, you could limit
+> the image types you build to just vmdk and increate the size without the
+> override?
 
-#inherit image-live
-inherit boot-directdisk
-
-create_vmdk_image () {
-        qemu-img convert -O vmdk ${DEPLOY_DIR_IMAGE}/${IMAGE_NAME}.hdddirect ${DEPLOY_DIR_IMAGE}/${IMAGE_NAME}.vmdk
-        ln -s ${IMAGE_NAME}.vmdk ${DEPLOY_DIR_IMAGE}/${IMAGE_LINK_NAME}.vmdk
-
-}
-
-so my *guess* is that any sort of rootfs size calculation has to come
-from boot-directdisk.bbclass, but if you look there, there's no
-apparent reference to IMAGE_ROOTFS_SIZE.  what you see are numerous
-references to BLOCKS and ROOTFSBLOCKS and BOOTDD_EXTRA_SPACE and so
-on, with:
-
-        ROOTFSBLOCKS=`du -Lbks ${ROOTFS} | cut -f 1`
-        TOTALSIZE=`expr $BLOCKS + $ROOTFSBLOCKS`
-        END1=`expr $BLOCKS \* 1024`
-        END2=`expr $END1 + 512`
-        END3=`expr \( $ROOTFSBLOCKS \* 1024 \) + $END1`
-
-        echo $ROOTFSBLOCKS $TOTALSIZE $END1 $END2 $END3
-        rm -rf $IMAGE
-        dd if=/dev/zero of=$IMAGE bs=1024 seek=$TOTALSIZE count=1
-
-        parted $IMAGE mklabel msdos
-        parted $IMAGE mkpart primary fat16 0 ${END1}B
-        parted $IMAGE unit B mkpart primary ext2 ${END2}B ${END3}B
-
-so what happens if you try to set the appropriate variables above?
-
-rday
-
--- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+Yes, that'll do for now. But I'd like to keep investigating so that
+the ext3 image can be only as big as it needs to be while the
+V{DI,MDK} can be dynamically sized to whatever is specified in
+IMAGE_ROOTFS_SIZE_vmdk.
 
