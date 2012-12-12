@@ -1,32 +1,34 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AF2F8E00294
-	for <yocto@yoctoproject.org>; Wed, 12 Dec 2012 11:53:51 -0800 (PST)
-Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
-	([174.115.5.73]:45481 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1TisNK-00036R-Tq; Wed, 12 Dec 2012 14:53:51 -0500
-Date: Wed, 12 Dec 2012 14:53:47 -0500 (EST)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
+Return-Path: <martin.jansa@gmail.com>
+Received: from mail-ee0-f48.google.com (mail-ee0-f48.google.com [74.125.83.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5920DE00348
+	for <yocto@yoctoproject.org>; Wed, 12 Dec 2012 11:54:23 -0800 (PST)
+Received: by mail-ee0-f48.google.com with SMTP id b57so784088eek.35
+	for <yocto@yoctoproject.org>; Wed, 12 Dec 2012 11:54:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=date:from:to:cc:subject:message-id:references:mime-version
+	:content-type:content-disposition:in-reply-to:user-agent;
+	bh=GicqB1N6qBDTWgYAhOfC3i/gikrNHvRctP1OHmcSxWU=;
+	b=gDgjSLr9Te/WmlZXK4S4QwoerxJAKEkrEIdGqwItmA7krFh9avlxsAPi8cWGND9siJ
+	HgiUHct9mczwshASwy1cZYUgxuV0ctr03ica76C6pKfJHd2PsQRnl5zhjEWk61lO37jH
+	c9usE2LHbf6SbVljd+9NUKqXCcx3Eh6G29Kj25o/Xc11MYN1H7e33bwfjwG/H0Ae0Jca
+	2HFwrpOAllGPN2d2DRczm/CPfdnvMFS2KGg+xA5TfBV+MaJgcum98h/Llk4ghnRBwiVq
+	ozIJ/wROB3aSwA7xS9ga0N4VnUXsNyQLJmM/u3ifbBhb8yOUqCxP3AMhlAOWpGv0iR0S
+	lSxg==
+Received: by 10.14.194.195 with SMTP id m43mr5556566een.44.1355342061479;
+	Wed, 12 Dec 2012 11:54:21 -0800 (PST)
+Received: from localhost (ip-62-24-80-7.net.upcbroadband.cz. [62.24.80.7])
+	by mx.google.com with ESMTPS id w44sm32935566eep.6.2012.12.12.11.54.18
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Wed, 12 Dec 2012 11:54:20 -0800 (PST)
+Date: Wed, 12 Dec 2012 20:54:34 +0100
+From: Martin Jansa <martin.jansa@gmail.com>
 To: Tim Bird <tim.bird@am.sony.com>
-In-Reply-To: <50C8DE31.6000703@am.sony.com>
-Message-ID: <alpine.DEB.2.02.1212121448150.13689@oneiric>
+Message-ID: <20121212195434.GC1756@jama.jama.net>
 References: <alpine.DEB.2.02.1212121421340.13445@oneiric>
 	<50C8DE31.6000703@am.sony.com>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+In-Reply-To: <50C8DE31.6000703@am.sony.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
 Cc: Yocto discussion list <yocto@yoctoproject.org>
 Subject: Re: might it be worth explaining BBMASK more comprehensively?
 X-BeenThere: yocto@yoctoproject.org
@@ -40,86 +42,85 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 12 Dec 2012 19:53:51 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Wed, 12 Dec 2012 19:54:23 -0000
+X-Groupsio-MsgNum: 11050
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="qtZFehHsKgwS5rPz"
+Content-Disposition: inline
 
-On Wed, 12 Dec 2012, Tim Bird wrote:
+--qtZFehHsKgwS5rPz
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+On Wed, Dec 12, 2012 at 11:42:41AM -0800, Tim Bird wrote:
 > On 12/12/2012 11:27 AM, Robert P. J. Day wrote:
-> >
+> >=20
 > >   a bit more pedantry, but is there a more complete example of the use
 > > of BBMASK than the trivial example in the ref and dev manuals?
-> >
+> >=20
 > >   the ref manual provides this example by way of explanation:
-> >
-> > BBMASK = ".*/meta-ti/recipes-misc/"
-> >
+> >=20
+> > BBMASK =3D ".*/meta-ti/recipes-misc/"
+> >=20
 > > well, ok, except you occasinally find slight variations like:
-> >
-> > BBMASK = "meta-ti/recipes-misc/"
-> >
+> >=20
+> > BBMASK =3D "meta-ti/recipes-misc/"
+> >=20
 > > or
-> >
-> > BBMASK = "meta-ti/recipes-misc"
-> >
+> >=20
+> > BBMASK =3D "meta-ti/recipes-misc"
+> >=20
 > >   given that there are places where a trailing slash is significant,
 > > are all of the above exactly equivalent?  if so, that's worth noting.
-> >
+> >=20
 > >   also, what about an example showing masking out a couple
 > > directories, or perhaps a single recipe from a layer, and so on?  at
 > > the moment, the manuals suggest you can mask multiple recipes but
 > > nowhere do i see the reader being given an actual example of how to do
 > > that.
->
+>=20
 > Indeed.  These would be good clarifications.  The manual says that
 > this is a single python regular expression.  Hence, when masking multiple
-> directories or recipes, you use a vertical bar to separate the regex fragments.
->
+> directories or recipes, you use a vertical bar to separate the regex frag=
+ments.
+>=20
 > Here's a particularly complex case I used once:
-> BBMASK = "meta-ti/recipes-misc|meta-ti/recipes-ti/packagegroup"
-> BBMASK .= "|.*meta-oe/recipes-support"
-> #BBMASK .= "|.*openldap"
-> #BBMASK .= "|.*opencv"
-> #BBMASK .= "|.*lzma"
-> BBMASK .= "|meta-oe/recipes-core/packagegroups"
-> BBMASK .= "|meta-oe/recipes-devtools"
-> BBMASK .= "|meta-oe/recipes-extended"
-> BBMASK .= "|meta-oe/recipes-multimedia"
-> BBMASK .= "|meta-oe/recipes-navigation"
-> BBMASK .= "|meta-oe/recipes-connectivity"
-> BBMASK .= "|meta-oe/recipes-graphics"
-> BBMASK .= "|meta-oe/recipes-qt"
->
-> I don't know if the .= with leading bar is the optimal
+> BBMASK =3D "meta-ti/recipes-misc|meta-ti/recipes-ti/packagegroup"
+> BBMASK .=3D "|.*meta-oe/recipes-support"
+> #BBMASK .=3D "|.*openldap"
+> #BBMASK .=3D "|.*opencv"
+> #BBMASK .=3D "|.*lzma"
+> BBMASK .=3D "|meta-oe/recipes-core/packagegroups"
+> BBMASK .=3D "|meta-oe/recipes-devtools"
+> BBMASK .=3D "|meta-oe/recipes-extended"
+> BBMASK .=3D "|meta-oe/recipes-multimedia"
+> BBMASK .=3D "|meta-oe/recipes-navigation"
+> BBMASK .=3D "|meta-oe/recipes-connectivity"
+> BBMASK .=3D "|meta-oe/recipes-graphics"
+> BBMASK .=3D "|meta-oe/recipes-qt"
+>=20
+> I don't know if the .=3D with leading bar is the optimal
 > way to append on to BBMASK, but it seems fairly straightforward
-> to me.  I sometimes use the leading ".*" and sometimes not.
 
-  it doesn't seem like the leading ".*" makes any difference but
-that's the sort of detail that might confuse a reader and should be
-explained.
+Yes because +=3D would add extra space and break regexp (_append should
+probably work too).
 
-> In my setup it seems to not be required, but maybe for flexibility
-> it should be used.  I'm not sure -- it would depend on wheter
-> python re.match or re.search is used for the regex.
+Cheers,
 
->  -- Tim
+--=20
+Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
 
-from your examples above, is this how you mask individual software
-recipes?
+--qtZFehHsKgwS5rPz
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
 
-  BBMASK .= "|.*openldap"
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2.0.19 (GNU/Linux)
 
-that's kind of useful to know.
+iEYEARECAAYFAlDI4PoACgkQN1Ujt2V2gBwI7wCfYQvYMWl3qpfBsg7qujFzRXG4
+iw8AoIkC0cqQAxuf5kQ3h+C5C1qNpt7P
+=wt9/
+-----END PGP SIGNATURE-----
 
-rday
-
--- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
-
+--qtZFehHsKgwS5rPz--
