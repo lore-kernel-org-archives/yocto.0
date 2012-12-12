@@ -1,38 +1,35 @@
-Return-Path: <elvis.dowson@gmail.com>
-Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
-	[209.85.160.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 636BFE011CC
-	for <yocto@yoctoproject.org>; Wed, 12 Dec 2012 07:53:10 -0800 (PST)
-Received: by mail-pb0-f48.google.com with SMTP id rq13so666919pbb.35
-	for <yocto@yoctoproject.org>; Wed, 12 Dec 2012 07:53:10 -0800 (PST)
+Return-Path: <jon.szymaniak@gmail.com>
+Received: from mail-ie0-f176.google.com (mail-ie0-f176.google.com
+	[209.85.223.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 34245E011CC
+	for <yocto@yoctoproject.org>; Wed, 12 Dec 2012 08:33:00 -0800 (PST)
+Received: by mail-ie0-f176.google.com with SMTP id 13so2185541iea.35
+	for <yocto@yoctoproject.org>; Wed, 12 Dec 2012 08:32:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=content-type:mime-version:subject:from:in-reply-to:date:cc
-	:content-transfer-encoding:message-id:references:to:x-mailer;
-	bh=2gac3zOaGRnc3xwejG/OHb4178YG0KEu4+nat7cvKng=;
-	b=Z2MVPvbuYdtUXOa1JI3VS9184f82iE14VYOIrUs2xT9gB+S078y/ZFlic3WYElzDQa
-	yL4Ol0Ch/00MIgT7SP7iXWuWGmkUcs0OUuHLL+Mm9qCszs+jUYjb6WT6NCCGHcWtG8Hk
-	iOBc4pRp9uuigxXvL3OVKfLYi+XKFfEyaMjO1CVLGTWBfTtEAocixe21kZ5d8epMlDyx
-	S87HvGZ/VnkG7LaBvoAGhG+bJXLeJXqa145Q/d+T+WWuEaruHOEHzBOrvEHuJskvPpQ+
-	G672LkgpYgb/xpcJzsj+XUcANUI4z76JRyDk+WiNVjQyd6G9TPTdaMt676eCgPSex5cH
-	J1dA==
-Received: by 10.66.73.102 with SMTP id k6mr3698742pav.22.1355327590214;
-	Wed, 12 Dec 2012 07:53:10 -0800 (PST)
-Received: from [192.168.1.100] ([94.205.106.4])
-	by mx.google.com with ESMTPS id i1sm16001945pav.35.2012.12.12.07.53.08
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Wed, 12 Dec 2012 07:53:09 -0800 (PST)
-Mime-Version: 1.0 (Mac OS X Mail 6.2 \(1499\))
-From: Elvis Dowson <elvis.dowson@gmail.com>
-In-Reply-To: <CAKS01okkz7ntkzUAxb1oLfNAt4RXYW7jgBAHqBpLksVSU=O7qg@mail.gmail.com>
-Date: Wed, 12 Dec 2012 19:53:03 +0400
-Message-Id: <A9E0D1F5-A62D-4BA9-8682-19ADBC5A47F3@gmail.com>
-References: <CAKS01o=9sWAg3OhZAf-S+GRyWtv4QxktWKEmtZ7LaXK3vJQoCQ@mail.gmail.com>
-	<92408E63-2CBD-4806-9B71-14BECF354896@gmail.com>
-	<CAKS01okkz7ntkzUAxb1oLfNAt4RXYW7jgBAHqBpLksVSU=O7qg@mail.gmail.com>
-To: Anup Kini <akini@synapticon.com>
-X-Mailer: Apple Mail (2.1499)
-Cc: yocto@yoctoproject.org
-Subject: Re: building for ZYNQ ZC702 SoC
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:content-type; bh=rpnQaGh6YqFavQ1tmzPDHrVZ1c7ZXHGGisnxJCsvWs8=;
+	b=t++ZuVqMZEDW+VKJY5/OGk+w4Y694/qFhuxRxrt6Kb0edVupxBXEeNu85KKdbXoJyL
+	a9MMudy8o9fM6xHuxjQ6fVsPvu0DdLhKXF1+5bWWoItF9HClLsc6sxsFHXIvNzn8bGBG
+	85T1Ils8Z68W9GMiVUNHEkPNEKUuXKMzpYFDNPfKZCNX9hb6Y2PCQkDN0S56RECJJw3K
+	WpNAOuATo84E8fFIVEsNkV9gLfnS3xdQacam1EHb1XDTJ+VRdc6dBoZjaOXkwvVRGFOi
+	GrAWC0shC9Zj9sLqG06yICj6KFTy3PTqBgdRzn20atWQCrL/fN5aYH2qfg6e9ubjvSzz
+	vsyA==
+Received: by 10.42.75.6 with SMTP id y6mr1261427icj.30.1355329979848; Wed, 12
+	Dec 2012 08:32:59 -0800 (PST)
+MIME-Version: 1.0
+Received: by 10.64.167.165 with HTTP; Wed, 12 Dec 2012 08:32:39 -0800 (PST)
+In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB1237946ACC79C@ORSMSX101.amr.corp.intel.com>
+References: <CANge7vV0M3t1r3e+=76+r7+_BwdaQfW2eOQ=AeLTXn5-R7XX-A@mail.gmail.com>
+	<41DEA4B02DBDEF40A0F3B6D0DDB1237946ACC39E@ORSMSX101.amr.corp.intel.com>
+	<CANge7vWRftA1-RgR4HYX58e744ZFR9at39NeTyqex_UXkZUxdg@mail.gmail.com>
+	<41DEA4B02DBDEF40A0F3B6D0DDB1237946ACC6D6@ORSMSX101.amr.corp.intel.com>
+	<41DEA4B02DBDEF40A0F3B6D0DDB1237946ACC79C@ORSMSX101.amr.corp.intel.com>
+From: Jon Szymaniak <jon.szymaniak@gmail.com>
+Date: Wed, 12 Dec 2012 11:32:39 -0500
+Message-ID: <CANge7vWPf-sqGH_sdoVHoLvnpK_wPXC_QBAkUG2dEvMUzz99UQ@mail.gmail.com>
+To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>, 
+	Paul Eggleton <paul.eggleton@linux.intel.com>, yocto@yoctoproject.org
+Subject: Re: Disabling PREMIRRORS and upstream sources
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,44 +41,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 12 Dec 2012 15:53:10 -0000
-Content-Type: text/plain; charset=iso-8859-1
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 12 Dec 2012 16:33:00 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-Hi Anup,
+>>Hi Jon,
+>>
+>>Thanks for the clarification on which manual release you were looking
+>>at.  I am the technical writer for the project so hopefully someone from
+>>the team will address the technical aspect of you issue.  If there is a
+>>way to disable these within a specific recipe then I can get that
+>>information into the documentation.
+>>
+>>Does anyone know if this is possible and how to do it?
+>>
+>>Scott
+>
+> I guess the easiest thing would be just to set PREMIRRORS and MIRRORS to
+> "" in the recipe.
+>
+> Cheers,
+> Paul
+>
+> Scott
+>
 
-On Dec 12, 2012, at 7:32 PM, Anup Kini <akini@synapticon.com> wrote:
+Scott and Paul,
 
-> I could not find where the arm gcc was included in this build.
-> I was checking the build process and took the gcc.4.4.6 while building =
-the core-image-minimal.
->=20
-> Hence i wanted to confirm if the arm-gcc can be integrated and steps =
-to do it.
+Thank you both very much for your time and help!
 
-Two things to keep in mind here:
+I confirmed this does indeed work.
 
-a. Yocto will generate a cross compiler for you. It will be called =
-arm-poky-linux-gcc , and will be located in the =
-poky/build/tmp/sysroots/x86_64-linux/usr/bin folder
+Just to make sure I'm understanding this... so when I place PREMIRRORS = ""
+in a recipe, I see that it doesn't affect the associated variables in other
+recipes.
 
-This won't appear in your path, unless you explicitly specify it.
+Is this because I'm inherently setting up PREMIRRORS_${PN}, which is
+initialized with the PREMIRROR defaults (and what was appended and
+prepended in the local.conf)?
 
-You can use this to build u-boot, the linux kernel and the root =
-filesystem for the ZC702.
+I'm also guessing that touching PREMIRRORS and MIRRORS within recipes
+is generally a bad practice. I'd be curious to hear if my use case
+sounds totally
+wacky, as I'm still very much getting up to speed on Yocto/OE and best
+practices.
 
-b. The cross compiler generated from yocto has some issues building the =
-Xilinx SDK sources, for compiling the bsp and fsbl sources. Hence, you =
-can use the default xilinx supplied compiler, which is already setup =
-with Xilinx SDK, to build the bsp and fsbl binaries. You only need the =
-Xilinx supplied gcc toolchain for these tasks, as well as for bare-metal =
-applications using StandAlone OS or XilKernel.
 
-For the rest, yocto gives you an easy way to build a fully working image =
-for the ZC702.
-
-Best regards,
-
-Elvis Dowson
-
+Many thanks,
+Jon
 
