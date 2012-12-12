@@ -1,30 +1,35 @@
-Return-Path: <mark.hatle@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 06361E0140A
-	for <yocto@yoctoproject.org>; Wed, 12 Dec 2012 09:13:57 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id qBCHDvkQ013574
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Wed, 12 Dec 2012 09:13:57 -0800 (PST)
-Received: from msp-dhcp53.wrs.com (172.25.34.53) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.2.318.4;
-	Wed, 12 Dec 2012 09:13:57 -0800
-Message-ID: <50C8BB57.90008@windriver.com>
-Date: Wed, 12 Dec 2012 11:13:59 -0600
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8;
-	rv:17.0) Gecko/17.0 Thunderbird/17.0
+Return-Path: <scott.m.rifenbark@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 63702E011CC
+	for <yocto@yoctoproject.org>; Wed, 12 Dec 2012 09:23:57 -0800 (PST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 12 Dec 2012 09:23:56 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.84,267,1355126400"; d="scan'208";a="232882497"
+Received: from orsmsx106.amr.corp.intel.com ([10.22.225.133])
+	by orsmga001.jf.intel.com with ESMTP; 12 Dec 2012 09:23:48 -0800
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.81]) by
+	ORSMSX106.amr.corp.intel.com ([169.254.5.66]) with mapi id
+	14.01.0355.002; Wed, 12 Dec 2012 09:23:47 -0800
+From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>, Jon Szymaniak
+	<jon.szymaniak@gmail.com>
+Thread-Topic: [yocto] Disabling PREMIRRORS and upstream sources
+Thread-Index: AQHN0WmWxgskPaXHkECFxGcGckjxfpgUJBnggAEA2wCAAAPikIAAKDWggACe14CAAASPAP//gzsA
+Date: Wed, 12 Dec 2012 17:23:46 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237946ACC8E0@ORSMSX101.amr.corp.intel.com>
+References: <CANge7vV0M3t1r3e+=76+r7+_BwdaQfW2eOQ=AeLTXn5-R7XX-A@mail.gmail.com>
+	<41DEA4B02DBDEF40A0F3B6D0DDB1237946ACC79C@ORSMSX101.amr.corp.intel.com>
+	<CANge7vWPf-sqGH_sdoVHoLvnpK_wPXC_QBAkUG2dEvMUzz99UQ@mail.gmail.com>
+	<2131314.OQZPzJsPrp@helios>
+In-Reply-To: <2131314.OQZPzJsPrp@helios>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.138]
 MIME-Version: 1.0
-To: <yocto@yoctoproject.org>
-References: <C56AD576-BC63-4357-A090-C0DA3D5398C1@coote.org>
-	<CAJTo0LZPSPeKkTcDQ+F_i8w=wUvNxEQeU7T6x4g5aE4cPz4G+w@mail.gmail.com>
-	<A994F48C-F169-4B59-9706-891A05CDB785@coote.org>
-	<CAJTo0LYQe6NRA+3FZOrsB0Caun7DVi=58re1jMO2baTuxKrQSQ@mail.gmail.com>
-	<2D72F639-44DB-41E5-A1E0-223072FC1AA3@coote.org>
-In-Reply-To: <2D72F639-44DB-41E5-A1E0-223072FC1AA3@coote.org>
-Subject: Re: adding package management
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Disabling PREMIRRORS and upstream sources
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,50 +41,56 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 12 Dec 2012 17:13:58 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 12 Dec 2012 17:23:57 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 12/12/12 6:07 AM, Tim Coote wrote:
-> ok. Thanks.
+If this is something we would not encourage in a published recipe, then it =
+is questionable as to documenting this simple way.  Or, perhaps, document i=
+t with the caveat that it is not something you would normally do?
+
+Scott
+
+>-----Original Message-----
+>From: Paul Eggleton [mailto:paul.eggleton@linux.intel.com]
+>Sent: Wednesday, December 12, 2012 8:49 AM
+>To: Jon Szymaniak
+>Cc: Rifenbark, Scott M; yocto@yoctoproject.org
+>Subject: Re: [yocto] Disabling PREMIRRORS and upstream sources
 >
-> just spotted the split between rpm / rpm5 and yum. I suppose that the knock on is managing multiple repos for different update managers.
->
-> don't suppose you know if there are material differences from a packaging/dependency point of view between rpm4 and rpm5?
-
-Generated packages are more or less compatible.  The only big difference is that 
-all RPM5 packages are 'self-signed' to integrity purposes.  Self-signing is 
-better then simply md5sums.  (They of course can also be signed with a specific 
-key to indicate trust as well.)
-
-But the primary difference is in cross compiling and support for the activities 
-that we need when cross-constructing root filesystems and such.  There is also 
-an aspect of 'control' behind this.  We have input into the RPM5 development, in 
-RPM4 we have absolutely no influence and they have removed everything that 
-helped in a cross-compiled environment after the split.
-
-> is there an eta for smart in the mainstream core?
-
-Hopefully the next version of the integration patches should be sent up today. 
-We're really trying to get the code in by next week.
-
---Mark
-
-> On 12 Dec 2012, at 11:43, "Burton, Ross" <ross.burton@intel.com> wrote:
->
->> On 12 December 2012 11:31, Tim Coote <tim+yoctoproject.org@coote.org> wrote:
->>> Am I right in thinking that yum isn't in the standard recipes?
+>On Wednesday 12 December 2012 11:32:39 Jon Szymaniak wrote:
+>> Just to make sure I'm understanding this... so when I place PREMIRRORS
+>=3D ""
+>> in a recipe, I see that it doesn't affect the associated variables in
+>other
+>> recipes.
 >>
->> Yum, no.  Zypper is in oe-core and is used when you construct a RPM-based image.
->>
->> (note that Zypper is being replaced by Smart in oe-core master)
->>
->> Ross
+>> Is this because I'm inherently setting up PREMIRRORS_${PN}, which is
+>> initialized with the PREMIRROR defaults (and what was appended and
+>> prepended in the local.conf)?
 >
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+>When you set a variable within a recipe it's setting it just within the
+>context of that recipe, so there's no way for it to affect other
+>recipes.
 >
-
+>> I'm also guessing that touching PREMIRRORS and MIRRORS within recipes
+>> is generally a bad practice. I'd be curious to hear if my use case
+>> sounds totally
+>> wacky, as I'm still very much getting up to speed on Yocto/OE and best
+>> practices.
+>
+>I guess it's not unreasonable to want to avoid touching anything
+>external when
+>building something internal; but you're right as a general practice this
+>is
+>something we would not do in published recipes.
+>
+>Cheers,
+>Paul
+>
+>--
+>
+>Paul Eggleton
+>Intel Open Source Technology Centre
 
