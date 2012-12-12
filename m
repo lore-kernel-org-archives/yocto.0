@@ -1,28 +1,58 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ACF1AE00348
-	for <yocto@yoctoproject.org>; Wed, 12 Dec 2012 12:19:43 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 12 Dec 2012 12:19:43 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,268,1355126400"; d="scan'208";a="256597666"
-Received: from unknown (HELO envy.home) ([10.255.13.227])
-	by orsmga002.jf.intel.com with ESMTP; 12 Dec 2012 12:19:42 -0800
-Message-ID: <50C8E6DE.4020308@linux.intel.com>
-Date: Wed, 12 Dec 2012 12:19:42 -0800
-From: Darren Hart <dvhart@linux.intel.com>
+Return-Path: <tim.bird@am.sony.com>
+Received: from db3outboundpool.messaging.microsoft.com
+	(db3ehsobe001.messaging.microsoft.com [213.199.154.139])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 44B1CE00294
+	for <yocto@yoctoproject.org>; Wed, 12 Dec 2012 12:31:36 -0800 (PST)
+Received: from mail103-db3-R.bigfish.com (10.3.81.238) by
+	DB3EHSOBE001.bigfish.com (10.3.84.21) with Microsoft SMTP Server id
+	14.1.225.23; Wed, 12 Dec 2012 20:31:34 +0000
+Received: from mail103-db3 (localhost [127.0.0.1])	by
+	mail103-db3-R.bigfish.com (Postfix) with ESMTP id D04332001D7;
+	Wed, 12 Dec 2012 20:31:34 +0000 (UTC)
+X-Forefront-Antispam-Report: CIP:160.33.194.229; KIP:(null); UIP:(null);
+	IPV:NLI; H:usculsndmail02v.am.sony.com; RD:mail.sonyusa.com;
+	EFVD:NLI
+X-SpamScore: -4
+X-BigFish: VPS-4(zzbb2dI98dI9371I1432Izz1de0h1202h1e76h1d1ah1d2ahzzz2fh2a8h668h839h93fhd25hf0ah1288h12a5h12a9h12bdh137ah13b6h1441h1504h1537h153bh162dh1631h1758h1765h1155h)
+Received-SPF: pass (mail103-db3: domain of am.sony.com designates
+	160.33.194.229 as permitted sender) client-ip=160.33.194.229;
+	envelope-from=tim.bird@am.sony.com;
+	helo=usculsndmail02v.am.sony.com ; .am.sony.com ; 
+Received: from mail103-db3 (localhost.localdomain [127.0.0.1]) by mail103-db3
+	(MessageSwitch) id 1355344292710006_18706;
+	Wed, 12 Dec 2012 20:31:32 +0000 (UTC)
+Received: from DB3EHSMHS012.bigfish.com (unknown [10.3.81.245])	by
+	mail103-db3.bigfish.com (Postfix) with ESMTP id A85F9A004B;
+	Wed, 12 Dec 2012 20:31:32 +0000 (UTC)
+Received: from usculsndmail02v.am.sony.com (160.33.194.229) by
+	DB3EHSMHS012.bigfish.com (10.3.87.112) with Microsoft SMTP Server (TLS)
+	id 14.1.225.23; Wed, 12 Dec 2012 20:31:31 +0000
+Received: from usculsndmail14v.am.sony.com (usculsndmail14v.am.sony.com
+	[146.215.230.105])	by usculsndmail02v.am.sony.com
+	(Sentrion-MTA-4.2.2/Sentrion-MTA-4.2.2) with ESMTP id qBCKVTZ2021492;
+	Wed, 12 Dec 2012 20:31:29 GMT
+Received: from mail1x.sjc.in.sel.sony.com (mail.bc.in.sel.sony.com
+	[43.134.1.112])	by usculsndmail14v.am.sony.com
+	(Sentrion-MTA-4.2.2/Sentrion-MTA-4.2.2) with ESMTP id qBCKVScE027978
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=FAIL);
+	Wed, 12 Dec 2012 20:31:29 GMT
+Received: from [43.135.148.222] ([43.135.148.222])	by
+	mail1x.sjc.in.sel.sony.com (Switch-3.4.2/Switch-3.4.2) with ESMTP id
+	qBCKVRf2025458;	Wed, 12 Dec 2012 20:31:27 GMT
+Message-ID: <50C8EA1C.9070804@am.sony.com>
+Date: Wed, 12 Dec 2012 12:33:32 -0800
+From: Tim Bird <tim.bird@am.sony.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:17.0) Gecko/17.0 Thunderbird/17.0
 MIME-Version: 1.0
-To: Trevor Woerner <twoerner@gmail.com>
-References: <CAHUNapSruo7u=gn7tjbpJdp8KA53fJsB+0Ez7OVFpKiJ69fX0g@mail.gmail.com>
-	<50C8E206.6040203@linux.intel.com>
-	<CAHUNapSTKMXS607--qaODp=Jg8e=rSKbPOhegCOA9vZ+YS3hrw@mail.gmail.com>
-In-Reply-To: <CAHUNapSTKMXS607--qaODp=Jg8e=rSKbPOhegCOA9vZ+YS3hrw@mail.gmail.com>
-X-Enigmail-Version: 1.4.6
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Wold,
-	Saul" <saul.wold@intel.com>
-Subject: Re: per-image ROOTFS sizes
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>
+References: <alpine.DEB.2.02.1212121421340.13445@oneiric>
+	<50C8DE31.6000703@am.sony.com>
+	<alpine.DEB.2.02.1212121448150.13689@oneiric>
+In-Reply-To: <alpine.DEB.2.02.1212121448150.13689@oneiric>
+X-OriginatorOrg: am.sony.com
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: might it be worth explaining BBMASK more comprehensively?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,43 +64,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 12 Dec 2012 20:19:43 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Wed, 12 Dec 2012 20:31:36 -0000
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-
-
-On 12/12/2012 12:14 PM, Trevor Woerner wrote:
-> Hi Darren,
+On 12/12/2012 11:53 AM, Robert P. J. Day wrote:
+> On Wed, 12 Dec 2012, Tim Bird wrote:
+>> I don't know if the .= with leading bar is the optimal
+>> way to append on to BBMASK, but it seems fairly straightforward
+>> to me.  I sometimes use the leading ".*" and sometimes not.
 > 
-> On Wed, Dec 12, 2012 at 2:59 PM, Darren Hart <dvhart@linux.intel.com> wrote:
->> On 12/11/2012 01:05 PM, Trevor Woerner wrote:
->>> Are per-image ROOTFS sizes (i.e. IMAGE_ROOTFS_SIZE_<image>) still
->>> supported?
->> Interesting, I haven't tried myself. Have you tried and run into an issue?
+>   it doesn't seem like the leading ".*" makes any difference but
+> that's the sort of detail that might confuse a reader and should be
+> explained.
 > 
-> 
-> Yes. I had been trying to figure out why my:
-> 
->     IMAGE_ROOTFS_SIZE_vmdk = "500000"
-> 
-> line in my config file wasn't working when I found the link I provided
-> earlier. Right now all I can say is that it doesn't work for _vmdk
-> specifically.
+>> In my setup it seems to not be required, but maybe for flexibility
+>> it should be used.  I'm not sure -- it would depend on whether
+>> python re.match or re.search is used for the regex.
 
-That was:
-http://patches.openembedded.org/patch/4671/
+Just to answer my own question...
 
-What is the reason you would like to do this just for vmdk? Is it to
-avoid increasing the size of all the images when it is only vmdk you
-care about? That would makes sense. Perhaps, for now, you could limit
-the image types you build to just vmdk and increate the size without the
-override?
+In bitbake in poky-danny-8.0,
+(poky-danny-8.0/bitbake/lib/bb/cooker.py)
+bbmask_compiled.search() is used, which means that
+the leading ".*" is unnecessary.  A python re.search()
+can match anywhere in the string, while a python re.match()
+must match at the beginning of a string.  Maybe previous
+versions of bitbake used re.match()??
 
-Saul on CC for comment as that was his RFC Patch.
+In any event, I would think that it should be considered
+best practice to NOT include the leading ".*" in BBMASK
+regex fragments.
+ -- Tim
 
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Technical Lead - Linux Kernel
+=============================
+Tim Bird
+Architecture Group Chair, CE Workgroup of the Linux Foundation
+Senior Staff Engineer, Sony Network Entertainment
+=============================
+
 
