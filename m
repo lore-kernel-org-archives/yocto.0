@@ -1,34 +1,22 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2481CE00348
-	for <yocto@yoctoproject.org>; Wed, 12 Dec 2012 11:37:34 -0800 (PST)
-Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
-	([174.115.5.73]:45419 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1Tis7Z-0002C4-8I; Wed, 12 Dec 2012 14:37:33 -0500
-Date: Wed, 12 Dec 2012 14:37:29 -0500 (EST)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB1237946ACC98F@ORSMSX101.amr.corp.intel.com>
-Message-ID: <alpine.DEB.2.02.1212121435070.13534@oneiric>
-References: <alpine.DEB.2.02.1212121421340.13445@oneiric>
-	<41DEA4B02DBDEF40A0F3B6D0DDB1237946ACC98F@ORSMSX101.amr.corp.intel.com>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F1828E00348
+	for <yocto@yoctoproject.org>; Wed, 12 Dec 2012 11:39:33 -0800 (PST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 12 Dec 2012 11:39:33 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.84,268,1355126400"; d="scan'208";a="230658372"
+Received: from unknown (HELO envy.home) ([10.255.13.227])
+	by azsmga001.ch.intel.com with ESMTP; 12 Dec 2012 11:39:33 -0800
+Message-ID: <50C8DD74.2030301@linux.intel.com>
+Date: Wed, 12 Dec 2012 11:39:32 -0800
+From: Darren Hart <dvhart@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/17.0 Thunderbird/17.0
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: might it be worth explaining BBMASK more comprehensively?
+To: Yocto Project <yocto@yoctoproject.org>
+X-Enigmail-Version: 1.4.6
+Subject: Strange error with missing "meta-yocto" in bblayers
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,35 +28,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 12 Dec 2012 19:37:34 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Wed, 12 Dec 2012 19:39:34 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-On Wed, 12 Dec 2012, Rifenbark, Scott M wrote:
+When trying to build a machine I had not built in a while, I got the
+following error:
 
-> Please feel free (anyone) to provide some useful examples and a bit
-> of explanation for each and I will be happy to get them in the
-> manual(s).
+$ bitbake core-image-minimal
+Pseudo is not present but is required, building this first before the
+main build
+NOTE: Your conf/bblayers.conf has been automatically updated. Please
+re-run bitbake
+.
+mkdir: cannot create directory `/../../var/pseudo': Permission denied
+/home/dvhart/source/poky/scripts/bitbake: line 178: /pseudo: No such
+file or direct
+ory
 
-  i forgot to mention this snippet i ran across in the meta-angstrom
-layer's contrib/local.conf:
-
-BBFILES := "/OE/org.openembedded.dev/recipes/*/*.bb"
-BBMASK = ""
-
-that combination isn't something that appears to be explained anywhere
-and some readers might wonder what it means to explicitly set BBFILES
-and clear BBMASK.
-
-rday
+It turns out I had "meta" and "meta-yocto-bsp" in bblayers, but not
+"meta-yocto". The error wasn't at all helpful, but I figured it had to
+be something in my configuration. Would there be someway to better
+articulate to the user what the failure actually was?
 
 -- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
-
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Technical Lead - Linux Kernel
 
