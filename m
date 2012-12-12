@@ -1,24 +1,39 @@
-Return-Path: <tim+yoctoproject.org@coote.org>
-Received: from mercury.coote.org (mail.coote.org [46.65.100.130])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7DDDDE00770
-	for <yocto@yoctoproject.org>; Wed, 12 Dec 2012 04:07:59 -0800 (PST)
-Received: by mercury.coote.org (Postfix, from userid 500)
-	id 6174E4AA4; Wed, 12 Dec 2012 12:07:58 +0000 (GMT)
-Received: from [127.0.0.1] (fw.coote.org [172.17.1.1])
-	by mercury.coote.org (Postfix) with ESMTP id E2ACE4AA4;
-	Wed, 12 Dec 2012 12:07:57 +0000 (GMT)
-Mime-Version: 1.0 (Mac OS X Mail 6.2 \(1499\))
-From: Tim Coote <tim+yoctoproject.org@coote.org>
-In-Reply-To: <CAJTo0LYQe6NRA+3FZOrsB0Caun7DVi=58re1jMO2baTuxKrQSQ@mail.gmail.com>
-Date: Wed, 12 Dec 2012 12:07:53 +0000
-Message-Id: <2D72F639-44DB-41E5-A1E0-223072FC1AA3@coote.org>
+Return-Path: <ross.burton@intel.com>
+Received: from fmsmga102.fm.intel.com (mga10.intel.com [192.55.52.92])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2EE79E006C3
+	for <yocto@yoctoproject.org>; Wed, 12 Dec 2012 04:17:09 -0800 (PST)
+Received: from mail-oa0-f72.google.com ([209.85.219.72])
+	by mga11.intel.com with ESMTP/TLS/RC4-SHA; 12 Dec 2012 04:17:08 -0800
+Received: by mail-oa0-f72.google.com with SMTP id h2so2841029oag.11
+	for <yocto@yoctoproject.org>; Wed, 12 Dec 2012 04:17:07 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type:x-gm-message-state;
+	bh=bPuX9eSCzGxB3anDtvGGzg9dMV0QTVZthDx4zXZkUtE=;
+	b=Jqma5y/2IgaVFFvXlV/SZrSLzUUV1krJCyx9dN4eWXsiVrfk9Xj68lk+7eZzCGqtla
+	TGiE3rvJa9pw5IVROo1b8B1jjuEOEGg7NGl+VFg99sVqZMSNv1tcjH39R/9ZqieP86X7
+	TOuQkH0FJOI9xQkmPCHzC5iLDsH1DOl6CMTV5tMEkU2Z5XzC+kHVP76Timty3/k0CkVM
+	iP0RWZdQ/BlZn+iWQHntrJIg4196l6+iQtnxb8CAfzHwT4cgij1CTELkZRsM2YOXtnYh
+	eFSR44v7XPTXALQ+28yfDfWgAeEDPqDU37lJ+esVZvjxFJxO7SgRyvjp0pi3C9OGrvk6
+	3v6Q==
+Received: by 10.60.12.99 with SMTP id x3mr385715oeb.71.1355314627357;
+	Wed, 12 Dec 2012 04:17:07 -0800 (PST)
+Received: by 10.60.12.99 with SMTP id x3mr385708oeb.71.1355314627202; Wed, 12
+	Dec 2012 04:17:07 -0800 (PST)
+MIME-Version: 1.0
+Received: by 10.76.132.198 with HTTP; Wed, 12 Dec 2012 04:16:47 -0800 (PST)
+In-Reply-To: <2D72F639-44DB-41E5-A1E0-223072FC1AA3@coote.org>
 References: <C56AD576-BC63-4357-A090-C0DA3D5398C1@coote.org>
 	<CAJTo0LZPSPeKkTcDQ+F_i8w=wUvNxEQeU7T6x4g5aE4cPz4G+w@mail.gmail.com>
 	<A994F48C-F169-4B59-9706-891A05CDB785@coote.org>
 	<CAJTo0LYQe6NRA+3FZOrsB0Caun7DVi=58re1jMO2baTuxKrQSQ@mail.gmail.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-X-Mailer: Apple Mail (2.1499)
-X-Spambayes-Classification: ham; 0.00
+	<2D72F639-44DB-41E5-A1E0-223072FC1AA3@coote.org>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Wed, 12 Dec 2012 12:16:47 +0000
+Message-ID: <CAJTo0LYGY5x6CwB6ozGWROD7eeb=rEEAeGGsCrAj8XxZZfdPzg@mail.gmail.com>
+To: Tim Coote <tim+yoctoproject.org@coote.org>
+X-Gm-Message-State: ALoCoQkfy2+DHlh3G9LQujN79JL9tzNfRKj5ZSRnR5oCEu3UFX5XzMWinJsa23Y+aMBTRLNcO88qw+I638TgKrRoNOXmmAjCmPDJzoV9NE1ObrmR7bV11VxGovif0Ac5l6/nA6u43aOyJsTssrvnA39XINdUg6KHFw==
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: adding package management
 X-BeenThere: yocto@yoctoproject.org
@@ -32,30 +47,17 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 12 Dec 2012 12:07:59 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 12 Dec 2012 12:17:09 -0000
+Content-Type: text/plain; charset=UTF-8
 
-ok. Thanks.=20
+On 12 December 2012 12:07, Tim Coote <tim+yoctoproject.org@coote.org> wrote:
+> don't suppose you know if there are material differences from a packaging/dependency point of view between rpm4 and rpm5?
 
-just spotted the split between rpm / rpm5 and yum. I suppose that the =
-knock on is managing multiple repos for different update managers.
+Not sure, I prefer opkg for Yocto and am a Debian user for my desktop.s
 
-don't suppose you know if there are material differences from a =
-packaging/dependency point of view between rpm4 and rpm5?
+> is there an eta for smart in the mainstream core?
 
-is there an eta for smart in the mainstream core?
-On 12 Dec 2012, at 11:43, "Burton, Ross" <ross.burton@intel.com> wrote:
+The patches are being finalised right now.
 
-> On 12 December 2012 11:31, Tim Coote <tim+yoctoproject.org@coote.org> =
-wrote:
->> Am I right in thinking that yum isn't in the standard recipes?
->=20
-> Yum, no.  Zypper is in oe-core and is used when you construct a =
-RPM-based image.
->=20
-> (note that Zypper is being replaced by Smart in oe-core master)
->=20
-> Ross
-
+Ross
 
