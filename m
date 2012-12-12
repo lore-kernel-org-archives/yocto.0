@@ -1,23 +1,33 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CD79BE00777
-	for <yocto@yoctoproject.org>; Wed, 12 Dec 2012 06:23:05 -0800 (PST)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 12 Dec 2012 06:23:05 -0800
+Return-Path: <belen.barros.pena@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 16FAAE00770
+	for <yocto@yoctoproject.org>; Wed, 12 Dec 2012 06:26:52 -0800 (PST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 12 Dec 2012 06:25:51 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,266,1355126400"; d="scan'208";a="230509545"
-Received: from unknown (HELO helios.localnet) ([10.252.122.189])
-	by azsmga001.ch.intel.com with ESMTP; 12 Dec 2012 06:23:04 -0800
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: yocto@yoctoproject.org
-Date: Wed, 12 Dec 2012 14:23:03 +0000
-Message-ID: <24205817.7arhVS9Yr9@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.9.3 (Linux/3.5.0-19-generic; KDE/4.9.3; i686; ; )
+X-IronPort-AV: E=Sophos;i="4.84,266,1355126400"; d="scan'208";a="256426985"
+Received: from irsmsx101.ger.corp.intel.com ([163.33.3.153])
+	by orsmga002.jf.intel.com with ESMTP; 12 Dec 2012 06:26:40 -0800
+Received: from irsmsx151.ger.corp.intel.com (163.33.192.59) by
+	IRSMSX101.ger.corp.intel.com (163.33.3.153) with Microsoft SMTP Server
+	(TLS) id 14.1.355.2; Wed, 12 Dec 2012 14:26:38 +0000
+Received: from irsmsx104.ger.corp.intel.com ([169.254.5.151]) by
+	IRSMSX151.ger.corp.intel.com ([169.254.4.21]) with mapi id
+	14.01.0355.002; Wed, 12 Dec 2012 14:26:38 +0000
+From: "Barros Pena, Belen" <belen.barros.pena@intel.com>
+To: "Burton, Ross" <ross.burton@intel.com>
+Thread-Topic: [yocto] Building pseudo fails
+Thread-Index: AQHN2HSxqEvKpNYLQUWE9tQZu83P9Q==
+Date: Wed, 12 Dec 2012 14:26:37 +0000
+Message-ID: <CCEE4385.1DB1A%belen.barros.pena@intel.com>
 In-Reply-To: <CAJTo0LbtCBm3zDQ1kmwCpBwuVM+tk2Cvs2HsaoLw1woV3zgZCQ@mail.gmail.com>
-References: <CCEE409D.1DB0A%belen.barros.pena@intel.com>
-	<CAJTo0LbtCBm3zDQ1kmwCpBwuVM+tk2Cvs2HsaoLw1woV3zgZCQ@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Microsoft-MacOutlook/14.2.5.121010
+x-originating-ip: [10.252.63.93]
 MIME-Version: 1.0
+Cc: yocto <yocto@yoctoproject.org>
 Subject: Re: Building pseudo fails
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -30,39 +40,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 12 Dec 2012 14:23:06 -0000
-Content-Transfer-Encoding: 7Bit
+X-List-Received-Date: Wed, 12 Dec 2012 14:26:52 -0000
+Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
+Content-ID: <3FE224EDDF199C4E8DF76547E47AA211@intel.com>
+Content-Transfer-Encoding: quoted-printable
 
-On Wednesday 12 December 2012 14:15:50 Burton, Ross wrote:
-> On 12 December 2012 14:09, Barros Pena, Belen
-> 
-> <belen.barros.pena@intel.com> wrote:
-> > I just downloaded the Danny release to an Ubuntu 12.10 computer, and
-> > pseudo failed to build. Before opening a bug, I just wanted to make sure
-> > it's not something silly I am doing. The log file is attached and below
-> > I've pasted the terminal output.
-> 
-> It appears you need to install the "chrpath" package.  If that fixes
-> it then we've clearly got a mismatch between the "assumed to exist"
-> list and the "verified to exist" list.
+That totally worked. Silly me, just realised I forgot to check the quick
+start guide to install the required packages.
 
-Whoops, missed this earlier when I talked to Belen about this issue off-list. 
-chrpath is in the list of "verified to exist" utilities 
-(SANITY_REQUIRED_UTILITIES), however the catch is that when running hob the 
-sanity checks are deferred until the UI actually starts (which is after pseudo 
-gets built), so you won't get the error on startup.
+Thanks, Ross.
 
-Obviously this is not an ideal situation; I suspect we're going to need to re-
-engineer how the sanity checks are run within hob so that the critical ones 
-can run before pseudo gets built and only the ones that may require 
-configuration (e.g. network connectivity checks) are deferred.
+Belen
 
-Cheers,
-Paul
+On 12/12/2012 14:15, "Burton, Ross" <ross.burton@intel.com> wrote:
 
--- 
+>On 12 December 2012 14:09, Barros Pena, Belen
+><belen.barros.pena@intel.com> wrote:
+>> I just downloaded the Danny release to an Ubuntu 12.10 computer, and
+>> pseudo failed to build. Before opening a bug, I just wanted to make sure
+>> it's not something silly I am doing. The log file is attached and below
+>> I've pasted the terminal output.
+>
+>It appears you need to install the "chrpath" package.  If that fixes
+>it then we've clearly got a mismatch between the "assumed to exist"
+>list and the "verified to exist" list.
+>
+>Ross
 
-Paul Eggleton
-Intel Open Source Technology Centre
+---------------------------------------------------------------------
+Intel Corporation (UK) Limited
+Registered No. 1134945 (England)
+Registered Office: Pipers Way, Swindon SN3 1RJ
+VAT No: 860 2173 47
+
+This e-mail and any attachments may contain confidential material for
+the sole use of the intended recipient(s). Any review or distribution
+by others is strictly prohibited. If you are not the intended
+recipient, please contact the sender and delete all copies.
+
 
