@@ -1,25 +1,31 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D5238E00348
-	for <yocto@yoctoproject.org>; Wed, 12 Dec 2012 12:05:37 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 12 Dec 2012 11:59:03 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,268,1355126400"; d="scan'208";a="256583691"
-Received: from unknown (HELO envy.home) ([10.255.13.227])
-	by orsmga002.jf.intel.com with ESMTP; 12 Dec 2012 11:59:02 -0800
-Message-ID: <50C8E206.6040203@linux.intel.com>
-Date: Wed, 12 Dec 2012 11:59:02 -0800
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/17.0 Thunderbird/17.0
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6D731E00294
+	for <yocto@yoctoproject.org>; Wed, 12 Dec 2012 12:13:08 -0800 (PST)
+Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
+	([174.115.5.73]:45597 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1Tisfz-000480-Lg
+	for yocto@yoctoproject.org; Wed, 12 Dec 2012 15:13:07 -0500
+Date: Wed, 12 Dec 2012 15:12:59 -0500 (EST)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.DEB.2.02.1212121507090.13855@oneiric>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
-To: Trevor Woerner <twoerner@gmail.com>
-References: <CAHUNapSruo7u=gn7tjbpJdp8KA53fJsB+0Ez7OVFpKiJ69fX0g@mail.gmail.com>
-In-Reply-To: <CAHUNapSruo7u=gn7tjbpJdp8KA53fJsB+0Ez7OVFpKiJ69fX0g@mail.gmail.com>
-X-Enigmail-Version: 1.4.6
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: per-image ROOTFS sizes
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: SRC_URI and appending and a "style guide"?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,30 +37,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 12 Dec 2012 20:05:40 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 12 Dec 2012 20:13:08 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
 
+  it's a pedantry-laden day today so i'm going to continue to whine
+about aesthetics.  what about a yocto style guide for coding style
+recommendations?  for example, consider the variations:
 
-On 12/11/2012 01:05 PM, Trevor Woerner wrote:
-> Hi,
-> 
-> Are per-image ROOTFS sizes (i.e. IMAGE_ROOTFS_SIZE_<image>) still
-> supported? From this:
-> 
-> http://patches.openembedded.org/patch/4671/
-> 
-> it would appear not. However
-> poky-extras/meta-kernel-dev/conf/machine/example.conf contains
-> IMAGE_ROOTFS_SIZE_ext3 (which would make it appear as though they
-> are).
-> 
+poky/meta/recipes-support/libcroco/libcroco_0.6.3.bb:SRC_URI_append = " file://croco.patch;apply=yes \
+poky/meta/recipes-support/attr/ea-acl.inc:SRC_URI += "file://relative-libdir.patch;striplevel=0 \
+poky/meta/recipes-support/db/db_5.3.15.bb:SRC_URI += "file://arm-thumb-mutex_db5.patch;patchdir=.."
+poky/meta/recipes-sato/leafpad/leafpad_0.8.18.1.bb:SRC_URI_append_poky = " file://owl-menu.patch;apply=yes "
+poky/meta/recipes-sato/puzzles/oh-puzzles_git.bb:SRC_URI_append_poky = " file://oh-puzzles-owl-menu.patch;striplevel=0 "
 
-Interesting, I haven't tried myself. Have you tried and run into an issue?
+  in the above, you have three different variations for appending to
+SRC_URI.  i don't think it would be clear to a reader if there was any
+difference between "+=" and "_append", other than that "_append"
+forces you to add the space yourself while "+=" doesn't.  of course,
+"_append_poky" is self-explanatory.
+
+  so is there a *preferred* form for things like that?  is it written
+down somewhere?  should it be?  just because it works for perl doesn't
+always mean that "there's more than one way to do it" is a good idea.
+:-)
+
+rday
 
 -- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Technical Lead - Linux Kernel
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
