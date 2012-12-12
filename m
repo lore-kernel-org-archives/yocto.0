@@ -1,34 +1,37 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 60B79E00348
-	for <yocto@yoctoproject.org>; Wed, 12 Dec 2012 11:33:37 -0800 (PST)
-Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
-	([174.115.5.73]:45388 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1Tis3k-0001vP-E1; Wed, 12 Dec 2012 14:33:36 -0500
-Date: Wed, 12 Dec 2012 14:33:34 -0500 (EST)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Rudolf Streif <rudolf.streif@linux.com>
-In-Reply-To: <CA+gsK-onggLFhVYTS3zwmrdvwkS_5oFDy4ai_A4WKzmZfyHdHA@mail.gmail.com>
-Message-ID: <alpine.DEB.2.02.1212121429160.13445@oneiric>
-References: <alpine.DEB.2.02.1212110801200.23904@oneiric>
-	<CA+gsK-onggLFhVYTS3zwmrdvwkS_5oFDy4ai_A4WKzmZfyHdHA@mail.gmail.com>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <scott.m.rifenbark@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EBC00E00348
+	for <yocto@yoctoproject.org>; Wed, 12 Dec 2012 11:35:35 -0800 (PST)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga101.ch.intel.com with ESMTP; 12 Dec 2012 11:35:35 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.84,268,1355126400"; d="scan'208";a="180062812"
+Received: from orsmsx104.amr.corp.intel.com ([10.22.225.131])
+	by AZSMGA002.ch.intel.com with ESMTP; 12 Dec 2012 11:35:35 -0800
+Received: from orsmsx107.amr.corp.intel.com (10.22.225.80) by
+	ORSMSX104.amr.corp.intel.com (10.22.225.131) with Microsoft SMTP Server
+	(TLS) id 14.1.355.2; Wed, 12 Dec 2012 11:35:34 -0800
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.81]) by
+	ORSMSX107.amr.corp.intel.com ([169.254.10.151]) with mapi id
+	14.01.0355.002; Wed, 12 Dec 2012 11:33:16 -0800
+From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+To: Mark Hatle <mark.hatle@windriver.com>
+Thread-Topic: [yocto] Difference of toolchain recipes
+Thread-Index: Ac3R0s0/UEOxKwlOQ72h3AL1xJ4hNABxX2jAACG/uIAA8XAKAAA6UTcAAAu08DA=
+Date: Wed, 12 Dec 2012 19:33:16 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237946ACC99E@ORSMSX101.amr.corp.intel.com>
+References: <CA452391058F6D4E9715FB2C29D9312A0137811C@039-SN2MPN1-021.039d.mgd.msft.net>
+	<50C0DE57.2040904@windriver.com>
+	<41DEA4B02DBDEF40A0F3B6D0DDB1237946ACC3C0@ORSMSX101.amr.corp.intel.com>
+	<50C8B9F6.1010700@windriver.com>
+In-Reply-To: <50C8B9F6.1010700@windriver.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.138]
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: should users be able to run yocto's pre-built images standalone?
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Difference of toolchain recipes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,79 +43,133 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 12 Dec 2012 19:33:37 -0000
-Content-Type: MULTIPART/MIXED; BOUNDARY="8323329-951184524-1355340815=:13445"
+X-List-Received-Date: Wed, 12 Dec 2012 19:35:36 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
---8323329-951184524-1355340815=:13445
-Content-Type: TEXT/PLAIN; charset=ISO-8859-1
-Content-Transfer-Encoding: 8BIT
+Thanks for the feedback Mark.  I will go ahead with it.
 
-On Tue, 11 Dec 2012, Rudolf Streif wrote:
+Scott
 
-> Hi Robert,
+>-----Original Message-----
+>From: Mark Hatle [mailto:mark.hatle@windriver.com]
+>Sent: Wednesday, December 12, 2012 9:08 AM
+>To: Rifenbark, Scott M
+>Cc: yocto@yoctoproject.org
+>Subject: Re: [yocto] Difference of toolchain recipes
 >
+>On 12/11/12 3:20 PM, Rifenbark, Scott M wrote:
+>> I think what I am going to do is document these in general as part of
+>the "Terms" section in the YP Development Manual where the term "Cross-
+>Development Toolchain" is defined.  Would putting such a high-level list
+>in the YP documentation be unnecessary or helpful?
 >
+>I think it would.  The set of compiler/toolchain elements we have is
+>definitely
+>confusing to someone new.
 >
->       a basic question -- is it supported that users be able to download and
->       run yocto's pre-built QEMU images without having to download an entire
->       build system, and set up bitbake, etc?  theoretically, of course, it
->       can be done, but it's not set up to do it conveniently (if it even
->       should be).
+>--Mark
 >
->
-> IMHO that is exactly what the ADT installer does. OK, it could use
-> some enhancements but it lets you specify what pre-built images you
-> would like to use and sets it up, including QEMU and the related
-> scripts.  
+>> Scott
+>>
+>>> -----Original Message-----
+>>> From: yocto-bounces@yoctoproject.org [mailto:yocto-
+>>> bounces@yoctoproject.org] On Behalf Of Mark Hatle
+>>> Sent: Thursday, December 06, 2012 10:05 AM
+>>> To: yocto@yoctoproject.org
+>>> Subject: Re: [yocto] Difference of toolchain recipes
+>>>
+>>> On 12/6/12 4:00 AM, Luo Zhenhua-B19537 wrote:
+>>>> Can anybody shed some light, please?
+>>>>
+>>>>
+>>>> Best Regards,
+>>>>
+>>>> Zhenhua
+>>>>
+>>>>
+>>>>> -----Original Message-----
+>>>>> From: Luo Zhenhua-B19537
+>>>>> Sent: Tuesday, December 04, 2012 11:53 AM
+>>>>> To: openembedded-core@lists.openembedded.org;
+>>> 'yocto@yoctoproject.org'
+>>>>> Subject: Difference of toolchain recipes
+>>>>>
+>>>>> It is a bit confused for the different recipes of toolchian, can
+>>> somebody
+>>>>> help to explain what's the difference for those recipes? E.g. gcc-
+>>> cross,
+>>>>> gcc-cross-canadian, gcc-cross-initial, gcc-cross-intermediate, gcc-
+>>>>> crosssdk, gcc-crosssdk-initial, gcc-crosssdk-intermediate, gcc-
+>>> runtime,
+>>>>> etc.
+>>>
+>>> gcc-cross-initial - This is the initial compiler needed to bootstrap
+>the
+>>> toolchain to build software on the host for the target.  (This is a
+>>> 'native'
+>>> package.)
+>>>
+>>> gcc-cross-intermediate - This is the second stage of the bootstrap
+>>> process to
+>>> build software on the host for the target. (This is a 'native'
+>package.)
+>>>
+>>> gcc-cross - this is the the final stage of the bootstrap process, and
+>>> results in
+>>> the cross compiler to build software on the host for the target.
+>(This
+>>> is a
+>>> 'native' package.)  If you are replacing the cross compiler toolchain
+>>> with a
+>>> custom version, this is what you must replace.
+>>>
+>>> gcc-runtime - these are the runtime libraries, but from the toolchain
+>>> bootstrapping process.  This results in a 'target' binary.
+>>>
+>>> gcc-crosssdk-initial/intermediate - stage 1 and 2 of the a cross
+>>> compiler to
+>>> build from the 'host' to the 'sdk'.  Often the SDK is not the same
+>>> target as the
+>>> host.  (This is a 'native' binary.)
+>>>
+>>> gcc-crosssdk - this the final stage of the SDK compiler.  Again, this
+>is
+>>> to
+>>> build on the host, for the sdk.  This is a 'native' binary.
+>>>
+>>> gcc-cross-canadian - This is the compiler included with the SDK to
+>build
+>>> on the
+>>> SDK machine creating software for the target.  This is an 'nativesdk'
+>>> package.
+>>>
+>>>>> Is there any document for those description?
+>>>
+>>> Not that I know of.. It's one of those things that you kind of need
+>to
+>>> know in
+>>> order to work with it.  It likely should be documented somewhere
+>>> officially.
+>>>
+>>> --Mark
+>>>
+>>>>>
+>>>>>
+>>>>> Best Regards,
+>>>>>
+>>>>> Zhenhua
+>>>>
+>>>> _______________________________________________
+>>>> yocto mailing list
+>>>> yocto@yoctoproject.org
+>>>> https://lists.yoctoproject.org/listinfo/yocto
+>>>>
+>>>
+>>> _______________________________________________
+>>> yocto mailing list
+>>> yocto@yoctoproject.org
+>>> https://lists.yoctoproject.org/listinfo/yocto
 
-  ok, i haven't poked around there yet, i'll look at that later.
 
->         first, one can't get yocto's qemu-related utilities without
->       downloading either oe-core or a toolchain.  is that really necessary?
->       how hard would it be to break out the QEMU stuff into a much smaller
->       tarball if that's all people want?
->
->
-> I think you want at least QEMU, the scripts, the user-space NFS
-> server and the cross-toolchain. Quite frankly, what do you really do
-> with just QEMU, scripts and images? Either you want to build your
-> own images then you need Poky (the build system) or you want to do
-> user-space development then you need images and a cross-toolchain.
-> Just booting an image into QEMU seems quite boring to me. 
-
-  good point ... i originally envisioned someone perhaps wanting to do
-nothing more than just downloading and running the pre-built images to
-see what all the fuss was about.  if that's really not considered a
-useful example, i'll forget about it.
-
->         and if that's done, certainly, the help messages from runqemu can be
->       updated, since those utilities clearly assume they're running as part
->       of a build infrastructure when that's not necessary.
->
-> Fair enough, but if you could provide more details outlining what
-> the error message said, what the root cause of the problem was, and
-> what you think the error message should say, it would really help
-> the developers to make the improvements. Unless you are inclined to
-> rummage through the code, fix it and submit patches.
-
-  ah, that i can provide.  in the runqemu usage message, you see the
-suggestion:
-
- $MYNAME qemux86-64 core-image-sato ext3"
-
-but that assumes you're in a build directory.  of course, using the
-adt-installer as you suggested might make all this moot.
-
-rday
-
--- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
-
---8323329-951184524-1355340815=:13445--
