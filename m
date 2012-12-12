@@ -1,22 +1,37 @@
-Return-Path: <tim+yoctoproject.org@coote.org>
-Received: from mercury.coote.org (mail.coote.org [46.65.100.130])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A3BD2E006C3
-	for <yocto@yoctoproject.org>; Wed, 12 Dec 2012 03:31:35 -0800 (PST)
-Received: by mercury.coote.org (Postfix, from userid 500)
-	id E45814AA6; Wed, 12 Dec 2012 11:31:34 +0000 (GMT)
-Received: from [127.0.0.1] (fw.coote.org [172.17.1.1])
-	by mercury.coote.org (Postfix) with ESMTP id 70DF1436F;
-	Wed, 12 Dec 2012 11:31:34 +0000 (GMT)
-Mime-Version: 1.0 (Mac OS X Mail 6.2 \(1499\))
-From: Tim Coote <tim+yoctoproject.org@coote.org>
-In-Reply-To: <CAJTo0LZPSPeKkTcDQ+F_i8w=wUvNxEQeU7T6x4g5aE4cPz4G+w@mail.gmail.com>
-Date: Wed, 12 Dec 2012 11:31:30 +0000
-Message-Id: <A994F48C-F169-4B59-9706-891A05CDB785@coote.org>
+Return-Path: <ross.burton@intel.com>
+Received: from azsmga102.ch.intel.com (mga12.intel.com [143.182.124.36])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5B578E00770
+	for <yocto@yoctoproject.org>; Wed, 12 Dec 2012 03:43:31 -0800 (PST)
+Received: from mail-ob0-f200.google.com ([209.85.214.200])
+	by mga14.intel.com with ESMTP/TLS/RC4-SHA; 12 Dec 2012 03:43:30 -0800
+Received: by mail-ob0-f200.google.com with SMTP id wd20so2792732obb.11
+	for <yocto@yoctoproject.org>; Wed, 12 Dec 2012 03:43:28 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type:x-gm-message-state;
+	bh=rTteZGn1LjQ+Pi4fRjsPWecbzxPAVkH2c5cZkWtFX8w=;
+	b=QTw21+qEMTCWH+hN6cjuLy3QP0TU833w+ceOqxJHVmd41Mlg0lxic+lDYlPkKMHVI2
+	SB9sZXjiCdfG0RXFwhBRKIY5C9y9KaEeQiUaaMeSdQ4ltDBFbVo8iJZlVzWIyh4hC9f6
+	uuafs8rTgsU0igra0HFkS8yB4do/nlf5SQh3nJxgZi5pURy5PTJNbZhE9Ywaw/4ln9VK
+	sY1V9Wh8ba579BKxTZHWRuqKt4Vl123SgAD9hjBSSHBI5sJEK0J5a8q78fri4e67fptX
+	JPagsMWmthzVFwCNM+ZSU3ihi6oMiO3vIXwMktO0kSvT6dQ8TmpEgztZbJmlLQ+h8ZF2
+	lh0A==
+Received: by 10.60.31.49 with SMTP id x17mr336464oeh.33.1355312608687;
+	Wed, 12 Dec 2012 03:43:28 -0800 (PST)
+Received: by 10.60.31.49 with SMTP id x17mr336459oeh.33.1355312608572; Wed, 12
+	Dec 2012 03:43:28 -0800 (PST)
+MIME-Version: 1.0
+Received: by 10.76.132.198 with HTTP; Wed, 12 Dec 2012 03:43:08 -0800 (PST)
+In-Reply-To: <A994F48C-F169-4B59-9706-891A05CDB785@coote.org>
 References: <C56AD576-BC63-4357-A090-C0DA3D5398C1@coote.org>
 	<CAJTo0LZPSPeKkTcDQ+F_i8w=wUvNxEQeU7T6x4g5aE4cPz4G+w@mail.gmail.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-X-Mailer: Apple Mail (2.1499)
-X-Spambayes-Classification: ham; 0.00
+	<A994F48C-F169-4B59-9706-891A05CDB785@coote.org>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Wed, 12 Dec 2012 11:43:08 +0000
+Message-ID: <CAJTo0LYQe6NRA+3FZOrsB0Caun7DVi=58re1jMO2baTuxKrQSQ@mail.gmail.com>
+To: Tim Coote <tim+yoctoproject.org@coote.org>
+X-Gm-Message-State: ALoCoQkj4eUgTM9eyE/LP/k+LsTOjbRxEYwIZsCZbVjmN+8AYOILeF3xfE3pO0fd0qIqLzb+z3/WtLXXeqQljrw9GiqtvaCL412h1rQtv8bnilkgIhTEjUDZr9RDpkqPmHdQJGzykMluCmZY60QNNaloFt1vKCULnA==
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: adding package management
 X-BeenThere: yocto@yoctoproject.org
@@ -30,36 +45,15 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 12 Dec 2012 11:31:35 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 12 Dec 2012 11:43:31 -0000
+Content-Type: text/plain; charset=UTF-8
 
-Thanks, Ross. That fixed that. Either I had finger trouble before when =
-invoking rpm or I needed to remove the ? from the ?=3D in =
-PACKAGE_CLASSES ?=3D "package_rpm"
+On 12 December 2012 11:31, Tim Coote <tim+yoctoproject.org@coote.org> wrote:
+> Am I right in thinking that yum isn't in the standard recipes?
 
-Am I right in thinking that yum isn't in the standard recipes?
+Yum, no.  Zypper is in oe-core and is used when you construct a RPM-based image.
 
-Tim
-On 12 Dec 2012, at 11:18, "Burton, Ross" <ross.burton@intel.com> wrote:
+(note that Zypper is being replaced by Smart in oe-core master)
 
-> On 12 December 2012 11:13, Tim Coote <tim+yoctoproject.org@coote.org> =
-wrote:
->> I'm trying to add package management to a yocto build. My preference =
-would be yum/rpm on a rh/centos/fedora distro (as that's the distro used =
-elsewhere), but I don't think that's feasible.
->>=20
->> I've added:
->> [code]
->> IMAGE_FEATURES +=3D "package-management"
->> IMAGE_INSTALL_append +=3D " apt perl"
->> [/code]
->=20
-> Why are you adding apt when you said you wanted rpm?
->=20
-> Just ensure IMAGE_FEATURES has package-mangement and set
-> PACKAGE_CLASSES to "package_rpm".
->=20
-> Ross
-
+Ross
 
