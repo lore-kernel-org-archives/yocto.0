@@ -1,41 +1,33 @@
-Return-Path: <ross.burton@intel.com>
-Received: from fmsmga102.fm.intel.com (mga10.intel.com [192.55.52.92])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2EE79E006C3
-	for <yocto@yoctoproject.org>; Wed, 12 Dec 2012 04:17:09 -0800 (PST)
-Received: from mail-oa0-f72.google.com ([209.85.219.72])
-	by mga11.intel.com with ESMTP/TLS/RC4-SHA; 12 Dec 2012 04:17:08 -0800
-Received: by mail-oa0-f72.google.com with SMTP id h2so2841029oag.11
-	for <yocto@yoctoproject.org>; Wed, 12 Dec 2012 04:17:07 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type:x-gm-message-state;
-	bh=bPuX9eSCzGxB3anDtvGGzg9dMV0QTVZthDx4zXZkUtE=;
-	b=Jqma5y/2IgaVFFvXlV/SZrSLzUUV1krJCyx9dN4eWXsiVrfk9Xj68lk+7eZzCGqtla
-	TGiE3rvJa9pw5IVROo1b8B1jjuEOEGg7NGl+VFg99sVqZMSNv1tcjH39R/9ZqieP86X7
-	TOuQkH0FJOI9xQkmPCHzC5iLDsH1DOl6CMTV5tMEkU2Z5XzC+kHVP76Timty3/k0CkVM
-	iP0RWZdQ/BlZn+iWQHntrJIg4196l6+iQtnxb8CAfzHwT4cgij1CTELkZRsM2YOXtnYh
-	eFSR44v7XPTXALQ+28yfDfWgAeEDPqDU37lJ+esVZvjxFJxO7SgRyvjp0pi3C9OGrvk6
-	3v6Q==
-Received: by 10.60.12.99 with SMTP id x3mr385715oeb.71.1355314627357;
-	Wed, 12 Dec 2012 04:17:07 -0800 (PST)
-Received: by 10.60.12.99 with SMTP id x3mr385708oeb.71.1355314627202; Wed, 12
-	Dec 2012 04:17:07 -0800 (PST)
+Return-Path: <scott.m.rifenbark@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E3A83E00770
+	for <yocto@yoctoproject.org>; Wed, 12 Dec 2012 04:42:44 -0800 (PST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 12 Dec 2012 04:42:41 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.84,266,1355126400"; d="scan'208";a="232759673"
+Received: from orsmsx104.amr.corp.intel.com ([10.22.225.131])
+	by orsmga001.jf.intel.com with ESMTP; 12 Dec 2012 04:42:41 -0800
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.81]) by
+	ORSMSX104.amr.corp.intel.com ([169.254.3.20]) with mapi id
+	14.01.0355.002; Wed, 12 Dec 2012 04:42:41 -0800
+From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+To: Jon Szymaniak <jon.szymaniak@gmail.com>
+Thread-Topic: [yocto] Disabling PREMIRRORS and upstream sources
+Thread-Index: AQHN0WmWxgskPaXHkECFxGcGckjxfpgUJBnggAEA2wCAAAPikA==
+Date: Wed, 12 Dec 2012 12:42:41 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237946ACC6D6@ORSMSX101.amr.corp.intel.com>
+References: <CANge7vV0M3t1r3e+=76+r7+_BwdaQfW2eOQ=AeLTXn5-R7XX-A@mail.gmail.com>
+	<41DEA4B02DBDEF40A0F3B6D0DDB1237946ACC39E@ORSMSX101.amr.corp.intel.com>
+	<CANge7vWRftA1-RgR4HYX58e744ZFR9at39NeTyqex_UXkZUxdg@mail.gmail.com>
+In-Reply-To: <CANge7vWRftA1-RgR4HYX58e744ZFR9at39NeTyqex_UXkZUxdg@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.139]
 MIME-Version: 1.0
-Received: by 10.76.132.198 with HTTP; Wed, 12 Dec 2012 04:16:47 -0800 (PST)
-In-Reply-To: <2D72F639-44DB-41E5-A1E0-223072FC1AA3@coote.org>
-References: <C56AD576-BC63-4357-A090-C0DA3D5398C1@coote.org>
-	<CAJTo0LZPSPeKkTcDQ+F_i8w=wUvNxEQeU7T6x4g5aE4cPz4G+w@mail.gmail.com>
-	<A994F48C-F169-4B59-9706-891A05CDB785@coote.org>
-	<CAJTo0LYQe6NRA+3FZOrsB0Caun7DVi=58re1jMO2baTuxKrQSQ@mail.gmail.com>
-	<2D72F639-44DB-41E5-A1E0-223072FC1AA3@coote.org>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Wed, 12 Dec 2012 12:16:47 +0000
-Message-ID: <CAJTo0LYGY5x6CwB6ozGWROD7eeb=rEEAeGGsCrAj8XxZZfdPzg@mail.gmail.com>
-To: Tim Coote <tim+yoctoproject.org@coote.org>
-X-Gm-Message-State: ALoCoQkfy2+DHlh3G9LQujN79JL9tzNfRKj5ZSRnR5oCEu3UFX5XzMWinJsa23Y+aMBTRLNcO88qw+I638TgKrRoNOXmmAjCmPDJzoV9NE1ObrmR7bV11VxGovif0Ac5l6/nA6u43aOyJsTssrvnA39XINdUg6KHFw==
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: adding package management
+Subject: Re: Disabling PREMIRRORS and upstream sources
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,17 +39,83 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 12 Dec 2012 12:17:09 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 12 Dec 2012 12:42:45 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 12 December 2012 12:07, Tim Coote <tim+yoctoproject.org@coote.org> wrote:
-> don't suppose you know if there are material differences from a packaging/dependency point of view between rpm4 and rpm5?
+Hi Jon,=20
 
-Not sure, I prefer opkg for Yocto and am a Debian user for my desktop.s
+Thanks for the clarification on which manual release you were looking at.  =
+I am the technical writer for the project so hopefully someone from the tea=
+m will address the technical aspect of you issue.  If there is a way to dis=
+able these within a specific recipe then I can get that information into th=
+e documentation. =20
 
-> is there an eta for smart in the mainstream core?
+Does anyone know if this is possible and how to do it?
 
-The patches are being finalised right now.
+Scott
 
-Ross
+>-----Original Message-----
+>From: Jon Szymaniak [mailto:jon.szymaniak@gmail.com]
+>Sent: Tuesday, December 11, 2012 8:26 PM
+>To: Rifenbark, Scott M
+>Cc: yocto@yoctoproject.org
+>Subject: Re: [yocto] Disabling PREMIRRORS and upstream sources
+>
+>>>From: yocto-bounces@yoctoproject.org [mailto:yocto-
+>>>bounces@yoctoproject.org] On Behalf Of Jon Szymaniak
+>>>Sent: Monday, December 03, 2012 7:19 AM
+>>>To: yocto@yoctoproject.org
+>>>Subject: [yocto] Disabling PREMIRRORS and upstream sources
+>>>
+>>>Is there a simple way to disable the use of PREMIRRORS and MIRRORS
+>>>within a recipe?
+>>>
+>>>(Perhaps the answer here might be worth mentioning in Section 12.23 of
+>>>the
+>>>Poky Reference  Manual?)
+>>>
+>>>My use case for this is the situation where the code hasn't been
+>>>released yet,
+>>>so there's no point in checking mirrors.
+>>>
+>>>Thank you,
+>>>Jon
+>
+>
+>> Isn't this set up in the local.conf file for global use?
+>
+>In the manual I see that there are indeed global options, configured via
+>local.conf.
+>
+>However, I'm wondering if there's a way to denote that PREMIRRORS and
+>MIRRORS
+>should not be used for a *specific recipe* (i.e., only attempt to fetch
+>via
+>what's provided in SRC_URI, and still use the mirrors for other
+>recipes).
+>
+>Perhaps this is a wacky thing to want to do. I just figured there's no
+>sense
+>in hitting all those 404's if I know the code associated with a specific
+>recipe isn't on any of the standard mirrors.
+>
+>> Also, Jon, what documentation
+>> are you referring to here?  Are you looking at the latest Yocto
+>Project
+>> documentation (e.g. http://www.yoctoproject.org/docs/1.4/poky-ref-
+>manual/poky-ref-manual.html
+>> for the Yocto Project Reference Manual?).
+>
+>I think I may have actually been looking at an old manual version, but
+>yes,
+>that'd the documentation I was referring to. It seemed that 12.23, "How
+>does
+>the OpenEmbedded build system obtain source code..." seemed the most
+>relevant
+>to my question.
+>
+>Thanks!
+>Jon
 
