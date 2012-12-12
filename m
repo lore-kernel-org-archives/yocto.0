@@ -1,26 +1,29 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 58407E011CC
-	for <yocto@yoctoproject.org>; Wed, 12 Dec 2012 08:49:09 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 12 Dec 2012 08:49:08 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,267,1355126400"; d="scan'208";a="256492131"
-Received: from unknown (HELO helios.localnet) ([10.252.122.189])
-	by orsmga002.jf.intel.com with ESMTP; 12 Dec 2012 08:48:59 -0800
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Jon Szymaniak <jon.szymaniak@gmail.com>
-Date: Wed, 12 Dec 2012 16:48:58 +0000
-Message-ID: <2131314.OQZPzJsPrp@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.9.3 (Linux/3.5.0-19-generic; KDE/4.9.3; i686; ; )
-In-Reply-To: <CANge7vWPf-sqGH_sdoVHoLvnpK_wPXC_QBAkUG2dEvMUzz99UQ@mail.gmail.com>
-References: <CANge7vV0M3t1r3e+=76+r7+_BwdaQfW2eOQ=AeLTXn5-R7XX-A@mail.gmail.com>
-	<41DEA4B02DBDEF40A0F3B6D0DDB1237946ACC79C@ORSMSX101.amr.corp.intel.com>
-	<CANge7vWPf-sqGH_sdoVHoLvnpK_wPXC_QBAkUG2dEvMUzz99UQ@mail.gmail.com>
+Return-Path: <mark.hatle@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CDD20E011CC
+	for <yocto@yoctoproject.org>; Wed, 12 Dec 2012 09:08:06 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id qBCH85lX012631
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Wed, 12 Dec 2012 09:08:05 -0800 (PST)
+Received: from msp-dhcp53.wrs.com (172.25.34.53) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.2.318.4;
+	Wed, 12 Dec 2012 09:08:05 -0800
+Message-ID: <50C8B9F6.1010700@windriver.com>
+Date: Wed, 12 Dec 2012 11:08:06 -0600
+From: Mark Hatle <mark.hatle@windriver.com>
+Organization: Wind River Systems
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8;
+	rv:17.0) Gecko/17.0 Thunderbird/17.0
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: Disabling PREMIRRORS and upstream sources
+To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+References: <CA452391058F6D4E9715FB2C29D9312A0137811C@039-SN2MPN1-021.039d.mgd.msft.net>
+	<50C0DE57.2040904@windriver.com>
+	<41DEA4B02DBDEF40A0F3B6D0DDB1237946ACC3C0@ORSMSX101.amr.corp.intel.com>
+In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB1237946ACC3C0@ORSMSX101.amr.corp.intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Difference of toolchain recipes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,37 +35,111 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 12 Dec 2012 16:49:09 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Wed, 12 Dec 2012 17:08:06 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Wednesday 12 December 2012 11:32:39 Jon Szymaniak wrote:
-> Just to make sure I'm understanding this... so when I place PREMIRRORS = ""
-> in a recipe, I see that it doesn't affect the associated variables in other
-> recipes.
-> 
-> Is this because I'm inherently setting up PREMIRRORS_${PN}, which is
-> initialized with the PREMIRROR defaults (and what was appended and
-> prepended in the local.conf)?
+On 12/11/12 3:20 PM, Rifenbark, Scott M wrote:
+> I think what I am going to do is document these in general as part of the "Terms" section in the YP Development Manual where the term "Cross-Development Toolchain" is defined.  Would putting such a high-level list in the YP documentation be unnecessary or helpful?
 
-When you set a variable within a recipe it's setting it just within the 
-context of that recipe, so there's no way for it to affect other recipes.
+I think it would.  The set of compiler/toolchain elements we have is definitely 
+confusing to someone new.
 
-> I'm also guessing that touching PREMIRRORS and MIRRORS within recipes
-> is generally a bad practice. I'd be curious to hear if my use case
-> sounds totally
-> wacky, as I'm still very much getting up to speed on Yocto/OE and best
-> practices.
+--Mark
 
-I guess it's not unreasonable to want to avoid touching anything external when 
-building something internal; but you're right as a general practice this is 
-something we would not do in published recipes.
+> Scott
+>
+>> -----Original Message-----
+>> From: yocto-bounces@yoctoproject.org [mailto:yocto-
+>> bounces@yoctoproject.org] On Behalf Of Mark Hatle
+>> Sent: Thursday, December 06, 2012 10:05 AM
+>> To: yocto@yoctoproject.org
+>> Subject: Re: [yocto] Difference of toolchain recipes
+>>
+>> On 12/6/12 4:00 AM, Luo Zhenhua-B19537 wrote:
+>>> Can anybody shed some light, please?
+>>>
+>>>
+>>> Best Regards,
+>>>
+>>> Zhenhua
+>>>
+>>>
+>>>> -----Original Message-----
+>>>> From: Luo Zhenhua-B19537
+>>>> Sent: Tuesday, December 04, 2012 11:53 AM
+>>>> To: openembedded-core@lists.openembedded.org;
+>> 'yocto@yoctoproject.org'
+>>>> Subject: Difference of toolchain recipes
+>>>>
+>>>> It is a bit confused for the different recipes of toolchian, can
+>> somebody
+>>>> help to explain what's the difference for those recipes? E.g. gcc-
+>> cross,
+>>>> gcc-cross-canadian, gcc-cross-initial, gcc-cross-intermediate, gcc-
+>>>> crosssdk, gcc-crosssdk-initial, gcc-crosssdk-intermediate, gcc-
+>> runtime,
+>>>> etc.
+>>
+>> gcc-cross-initial - This is the initial compiler needed to bootstrap the
+>> toolchain to build software on the host for the target.  (This is a
+>> 'native'
+>> package.)
+>>
+>> gcc-cross-intermediate - This is the second stage of the bootstrap
+>> process to
+>> build software on the host for the target. (This is a 'native' package.)
+>>
+>> gcc-cross - this is the the final stage of the bootstrap process, and
+>> results in
+>> the cross compiler to build software on the host for the target.  (This
+>> is a
+>> 'native' package.)  If you are replacing the cross compiler toolchain
+>> with a
+>> custom version, this is what you must replace.
+>>
+>> gcc-runtime - these are the runtime libraries, but from the toolchain
+>> bootstrapping process.  This results in a 'target' binary.
+>>
+>> gcc-crosssdk-initial/intermediate - stage 1 and 2 of the a cross
+>> compiler to
+>> build from the 'host' to the 'sdk'.  Often the SDK is not the same
+>> target as the
+>> host.  (This is a 'native' binary.)
+>>
+>> gcc-crosssdk - this the final stage of the SDK compiler.  Again, this is
+>> to
+>> build on the host, for the sdk.  This is a 'native' binary.
+>>
+>> gcc-cross-canadian - This is the compiler included with the SDK to build
+>> on the
+>> SDK machine creating software for the target.  This is an 'nativesdk'
+>> package.
+>>
+>>>> Is there any document for those description?
+>>
+>> Not that I know of.. It's one of those things that you kind of need to
+>> know in
+>> order to work with it.  It likely should be documented somewhere
+>> officially.
+>>
+>> --Mark
+>>
+>>>>
+>>>>
+>>>> Best Regards,
+>>>>
+>>>> Zhenhua
+>>>
+>>> _______________________________________________
+>>> yocto mailing list
+>>> yocto@yoctoproject.org
+>>> https://lists.yoctoproject.org/listinfo/yocto
+>>>
+>>
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
 
-Cheers,
-Paul
-
--- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
 
