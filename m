@@ -1,29 +1,29 @@
 Return-Path: <mark.hatle@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CDD20E011CC
-	for <yocto@yoctoproject.org>; Wed, 12 Dec 2012 09:08:06 -0800 (PST)
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4C705E0140A
+	for <yocto@yoctoproject.org>; Wed, 12 Dec 2012 09:11:12 -0800 (PST)
 Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
 	[147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id qBCH85lX012631
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 12 Dec 2012 09:08:05 -0800 (PST)
+	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id qBCHBCMU012878
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Wed, 12 Dec 2012 09:11:12 -0800 (PST)
 Received: from msp-dhcp53.wrs.com (172.25.34.53) by ALA-HCA.corp.ad.wrs.com
 	(147.11.189.50) with Microsoft SMTP Server id 14.2.318.4;
-	Wed, 12 Dec 2012 09:08:05 -0800
-Message-ID: <50C8B9F6.1010700@windriver.com>
-Date: Wed, 12 Dec 2012 11:08:06 -0600
+	Wed, 12 Dec 2012 09:11:11 -0800
+Message-ID: <50C8BAB1.9090508@windriver.com>
+Date: Wed, 12 Dec 2012 11:11:13 -0600
 From: Mark Hatle <mark.hatle@windriver.com>
 Organization: Wind River Systems
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8;
 	rv:17.0) Gecko/17.0 Thunderbird/17.0
 MIME-Version: 1.0
-To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-References: <CA452391058F6D4E9715FB2C29D9312A0137811C@039-SN2MPN1-021.039d.mgd.msft.net>
-	<50C0DE57.2040904@windriver.com>
-	<41DEA4B02DBDEF40A0F3B6D0DDB1237946ACC3C0@ORSMSX101.amr.corp.intel.com>
-In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB1237946ACC3C0@ORSMSX101.amr.corp.intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Difference of toolchain recipes
+To: <yocto@yoctoproject.org>
+References: <C56AD576-BC63-4357-A090-C0DA3D5398C1@coote.org>
+	<CAJTo0LZPSPeKkTcDQ+F_i8w=wUvNxEQeU7T6x4g5aE4cPz4G+w@mail.gmail.com>
+	<A994F48C-F169-4B59-9706-891A05CDB785@coote.org>
+	<CAJTo0LYQe6NRA+3FZOrsB0Caun7DVi=58re1jMO2baTuxKrQSQ@mail.gmail.com>
+In-Reply-To: <CAJTo0LYQe6NRA+3FZOrsB0Caun7DVi=58re1jMO2baTuxKrQSQ@mail.gmail.com>
+Subject: Re: adding package management
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,111 +35,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 12 Dec 2012 17:08:06 -0000
+X-List-Received-Date: Wed, 12 Dec 2012 17:11:12 -0000
 Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 12/11/12 3:20 PM, Rifenbark, Scott M wrote:
-> I think what I am going to do is document these in general as part of the "Terms" section in the YP Development Manual where the term "Cross-Development Toolchain" is defined.  Would putting such a high-level list in the YP documentation be unnecessary or helpful?
+On 12/12/12 5:43 AM, Burton, Ross wrote:
+> On 12 December 2012 11:31, Tim Coote <tim+yoctoproject.org@coote.org> wrote:
+>> Am I right in thinking that yum isn't in the standard recipes?
+>
+> Yum, no.  Zypper is in oe-core and is used when you construct a RPM-based image.
+>
+> (note that Zypper is being replaced by Smart in oe-core master)
 
-I think it would.  The set of compiler/toolchain elements we have is definitely 
-confusing to someone new.
+See the following for more information on the change:
+http://permalink.gmane.org/gmane.comp.handhelds.openembedded.core/29105
+
+The one feature that Smart does not have that Zypper does (that I know people 
+want) is delta-rpm support.  Otherwise it seems to be better for our uses in 
+Embedded Systems.
 
 --Mark
 
-> Scott
+> Ross
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 >
->> -----Original Message-----
->> From: yocto-bounces@yoctoproject.org [mailto:yocto-
->> bounces@yoctoproject.org] On Behalf Of Mark Hatle
->> Sent: Thursday, December 06, 2012 10:05 AM
->> To: yocto@yoctoproject.org
->> Subject: Re: [yocto] Difference of toolchain recipes
->>
->> On 12/6/12 4:00 AM, Luo Zhenhua-B19537 wrote:
->>> Can anybody shed some light, please?
->>>
->>>
->>> Best Regards,
->>>
->>> Zhenhua
->>>
->>>
->>>> -----Original Message-----
->>>> From: Luo Zhenhua-B19537
->>>> Sent: Tuesday, December 04, 2012 11:53 AM
->>>> To: openembedded-core@lists.openembedded.org;
->> 'yocto@yoctoproject.org'
->>>> Subject: Difference of toolchain recipes
->>>>
->>>> It is a bit confused for the different recipes of toolchian, can
->> somebody
->>>> help to explain what's the difference for those recipes? E.g. gcc-
->> cross,
->>>> gcc-cross-canadian, gcc-cross-initial, gcc-cross-intermediate, gcc-
->>>> crosssdk, gcc-crosssdk-initial, gcc-crosssdk-intermediate, gcc-
->> runtime,
->>>> etc.
->>
->> gcc-cross-initial - This is the initial compiler needed to bootstrap the
->> toolchain to build software on the host for the target.  (This is a
->> 'native'
->> package.)
->>
->> gcc-cross-intermediate - This is the second stage of the bootstrap
->> process to
->> build software on the host for the target. (This is a 'native' package.)
->>
->> gcc-cross - this is the the final stage of the bootstrap process, and
->> results in
->> the cross compiler to build software on the host for the target.  (This
->> is a
->> 'native' package.)  If you are replacing the cross compiler toolchain
->> with a
->> custom version, this is what you must replace.
->>
->> gcc-runtime - these are the runtime libraries, but from the toolchain
->> bootstrapping process.  This results in a 'target' binary.
->>
->> gcc-crosssdk-initial/intermediate - stage 1 and 2 of the a cross
->> compiler to
->> build from the 'host' to the 'sdk'.  Often the SDK is not the same
->> target as the
->> host.  (This is a 'native' binary.)
->>
->> gcc-crosssdk - this the final stage of the SDK compiler.  Again, this is
->> to
->> build on the host, for the sdk.  This is a 'native' binary.
->>
->> gcc-cross-canadian - This is the compiler included with the SDK to build
->> on the
->> SDK machine creating software for the target.  This is an 'nativesdk'
->> package.
->>
->>>> Is there any document for those description?
->>
->> Not that I know of.. It's one of those things that you kind of need to
->> know in
->> order to work with it.  It likely should be documented somewhere
->> officially.
->>
->> --Mark
->>
->>>>
->>>>
->>>> Best Regards,
->>>>
->>>> Zhenhua
->>>
->>> _______________________________________________
->>> yocto mailing list
->>> yocto@yoctoproject.org
->>> https://lists.yoctoproject.org/listinfo/yocto
->>>
->>
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
 
 
