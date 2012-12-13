@@ -1,19 +1,19 @@
 Return-Path: <rpjday@crashcourse.ca>
 Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
 	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 38C5FE01458
-	for <yocto@yoctoproject.org>; Thu, 13 Dec 2012 05:32:42 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EF690E01459
+	for <yocto@yoctoproject.org>; Thu, 13 Dec 2012 05:33:45 -0800 (PST)
 Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
-	([174.115.5.73]:47888 helo=crashcourse.ca)
+	([174.115.5.73]:47894 helo=crashcourse.ca)
 	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
 	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1Tj8u1-0007Np-Di; Thu, 13 Dec 2012 08:32:41 -0500
-Date: Thu, 13 Dec 2012 08:32:37 -0500 (EST)
+	id 1Tj8v3-0007Ql-10; Thu, 13 Dec 2012 08:33:45 -0500
+Date: Thu, 13 Dec 2012 08:33:43 -0500 (EST)
 From: "Robert P. J. Day" <rpjday@crashcourse.ca>
 X-X-Sender: rpjday@oneiric
 To: Jerrod Peach <peachj@lexmark.com>
 In-Reply-To: <CA+QkY1DypOEx4e48Xb0vYwf=S34qXP_2whuzKBng8v0WUF5A6A@mail.gmail.com>
-Message-ID: <alpine.DEB.2.02.1212130831340.5426@oneiric>
+Message-ID: <alpine.DEB.2.02.1212130832540.5426@oneiric>
 References: <alpine.DEB.2.02.1212121507090.13855@oneiric>
 	<CA+QkY1DypOEx4e48Xb0vYwf=S34qXP_2whuzKBng8v0WUF5A6A@mail.gmail.com>
 User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
@@ -40,10 +40,10 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 13 Dec 2012 13:32:42 -0000
-Content-Type: MULTIPART/MIXED; BOUNDARY="8323329-649161046-1355405560=:5426"
+X-List-Received-Date: Thu, 13 Dec 2012 13:33:46 -0000
+Content-Type: MULTIPART/MIXED; BOUNDARY="8323329-1997259026-1355405624=:5426"
 
---8323329-649161046-1355405560=:5426
+--8323329-1997259026-1355405624=:5426
 Content-Type: TEXT/PLAIN; charset=ISO-8859-1
 Content-Transfer-Encoding: 8BIT
 
@@ -57,12 +57,9 @@ On Thu, 13 Dec 2012, Jerrod Peach wrote:
 > Wiki: https://wiki.yoctoproject.org/wiki/Recipe_%26_Patch_Style_Guide.  That would be the obvious place to put such a
 > recommendation, if that is indeed the consensus.
 
-  heh.  i just noticed that that wiki page still uses the old style of
-"pnum=" as opposed to "striplevel=".  no big deal.  i'm just giddy
-from not enough sleep.
-
-  but you're right -- that looks like the place, i didn't even realize
-that existed.
+  oops, never mind that earlier comment, i just noticed that that page
+encourages people to replace pnum= with striplevel=.  definitely need
+more sleep.
 
 rday
 
@@ -76,4 +73,4 @@ Twitter:                                       http://twitter.com/rpjday
 LinkedIn:                               http://ca.linkedin.com/in/rpjday
 ========================================================================
 
---8323329-649161046-1355405560=:5426--
+--8323329-1997259026-1355405624=:5426--
