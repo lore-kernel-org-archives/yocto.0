@@ -1,30 +1,40 @@
-Return-Path: <lukas.bulwahn@bmw-carit.de>
-Received: from mail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4BDE3E011CC
-	for <yocto@yoctoproject.org>; Thu, 13 Dec 2012 00:32:43 -0800 (PST)
-Received: from exchange2010.bmw-carit.intra ([192.168.100.28]:15290
-	helo=dc01.bmw-carit.de)
-	by mail.bmw-carit.de with esmtps (TLSv1:AES128-SHA:128) (Exim 4.76)
-	(envelope-from <Lukas.Bulwahn@bmw-carit.de>) id 1Tj4DZ-00078O-0U
-	for yocto@yoctoproject.org; Thu, 13 Dec 2012 09:32:33 +0100
-Received: from EXCHANGE2010.bmw-carit.intra ([fe80::f196:9f8b:c87f:e44]) by
-	Exchange2010.bmw-carit.intra ([fe80::f196:9f8b:c87f:e44%14]) with mapi
-	id 14.01.0218.012; Thu, 13 Dec 2012 09:32:31 +0100
-X-CTCH-RefID: str=0001.0A0C0206.50C992A1.007A,ss=1,re=0.000,fgs=0
-From: Lukas Bulwahn <Lukas.Bulwahn@bmw-carit.de>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [yocto] Packaging ROS for Yocto-Linux
-Thread-Index: Ac3SMKrNlfMWCiokRk63kRXF0U/yKQG2mTyw
-Date: Thu, 13 Dec 2012 08:32:13 +0000
-Message-ID: <F672537F6568FE49AF3065326904F744206D10@Exchange2010.bmw-carit.intra>
-References: <000501cdd231$1c134db0$5439e910$@oss.bmw-carit.de>
-In-Reply-To: <000501cdd231$1c134db0$5439e910$@oss.bmw-carit.de>
-Accept-Language: de-DE, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [192.168.101.67]
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1CDBEE01439
+	for <yocto@yoctoproject.org>; Thu, 13 Dec 2012 05:03:32 -0800 (PST)
+Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
+	([174.115.5.73]:47613 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1Tj8Rm-00067Y-IU; Thu, 13 Dec 2012 08:03:30 -0500
+Date: Thu, 13 Dec 2012 08:03:27 -0500 (EST)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: Saul Wold <sgw@linux.intel.com>
+In-Reply-To: <50C989F4.90004@linux.intel.com>
+Message-ID: <alpine.DEB.2.02.1212130753530.5175@oneiric>
+References: <CAHUNapSruo7u=gn7tjbpJdp8KA53fJsB+0Ez7OVFpKiJ69fX0g@mail.gmail.com>
+	<50C8E206.6040203@linux.intel.com>
+	<CAHUNapSTKMXS607--qaODp=Jg8e=rSKbPOhegCOA9vZ+YS3hrw@mail.gmail.com>
+	<alpine.DEB.2.02.1212121541120.14335@oneiric>
+	<CAHUNapTPuUUUyVbhoGQAX9jSCGwEop9nyjevXGo0FbQ1PXWXqA@mail.gmail.com>
+	<alpine.DEB.2.02.1212121756210.30220@oneiric>
+	<50C989F4.90004@linux.intel.com>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
-Subject: Re: Packaging ROS for Yocto-Linux
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	Darren Hart <dvhart@linux.intel.com>
+Subject: Re: per-image ROOTFS sizes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,56 +46,67 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 13 Dec 2012 08:32:43 -0000
-Content-Language: de-DE
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 13 Dec 2012 13:03:32 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-Hi all,
+On Wed, 12 Dec 2012, Saul Wold wrote:
 
-To my previous question, I have not received any feedback here. If anyone k=
-nows someone who might be interested in packaging ROS, please contact us. W=
-e're looking for collaborators and users.
+> Some serious magic!  It took me a while to reload my cache on this one.
+>
+> All strapped in because here we go!
+>
+> So you have selected the types of images you want to build by add
+> it's type to IMAGE_FSTYPES, of which you can have multiple types.
 
-Lukas
+  a minor nit but i used meta-yocto to configure for a beagle and used
+bitbake-env to display the default value of IMAGE_FSTYPES:
 
------Urspr=FCngliche Nachricht-----
-Von: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org]=
- Im Auftrag von Lukas Bulwahn
-Gesendet: Dienstag, 4. Dezember 2012 16:08
-An: yocto@yoctoproject.org
-Betreff: [yocto] Packaging ROS for Yocto-Linux
+$ bitbake-env IMAGE_FSTYPES
+IMAGE_FSTYPES=" tar.bz2 jffs2"
+$
 
-Hi all,
+so far, so good.  but then i simply *assigned* (not added) in
+local.conf:
 
-we are interested in setting up a computing platform for our development us=
-ing Yocto-Linux and the robotic operating system ROS (http://www.ros.org/).=
- We are currently at the very beginning of this
-development: As a first step, we want to package ROS for our own needs, but=
- we are open to contribute this to the community if there are others that n=
-eed this as well.
+IMAGE_FSTYPES = "vmdk"
 
-Has someone in the community already packaged ROS for Yocto? Are there othe=
-rs that also interested in a ROS package for Yocto?=20
+and checked again ... ???
 
-We are happy about any feedback.
+$ bitbake-env IMAGE_FSTYPES
+IMAGE_FSTYPES="vmdk tar.bz2 jffs2"
+$
+
+  um ... huh?  which is explained by the following inconsistent
+collection of assignments in poky:
+
+$ grep -r "IMAGE_FSTYPES.*=" *
+meta/conf/bitbake.conf:IMAGE_FSTYPES ?= "tar.gz"
+meta/conf/machine/include/ia32-base.inc:IMAGE_FSTYPES += "ext3 cpio.gz live"
+meta/conf/machine/include/qemu.inc:IMAGE_FSTYPES += "tar.bz2 ext3"
+meta/recipes-core/images/core-image-minimal-initramfs.bb:IMAGE_FSTYPES = "${INITRAMFS_FSTYPES}"
+meta/recipes-core/images/build-appliance-image.bb:IMAGE_FSTYPES = "vmdk"
+meta-yocto/conf/distro/poky-tiny.conf:IMAGE_FSTYPES = "ext2 cpio.gz"
+meta-yocto-bsp/conf/machine/beagleboard.conf:IMAGE_FSTYPES += "tar.bz2 jffs2"
+meta-yocto-bsp/conf/machine/routerstationpro.conf:IMAGE_FSTYPES ?= "jffs2 tar.bz2"
+meta-yocto-bsp/conf/machine/atom-pc.conf:IMAGE_FSTYPES ?= "ext3 cpio.gz live"
+scripts/lib/bsp/substrate/target/arch/mips/conf/machine/{{=machine}}.conf:IMAGE_FSTYPES ?= "jffs2 tar.bz2"
+scripts/lib/bsp/substrate/target/arch/arm/conf/machine/{{=machine}}.conf:IMAGE_FSTYPES += "tar.bz2 jffs2"
+$
+
+  that appears to be a very confusing mix of "=" and "?=" and "+=".
+is that really the effect you were going for?
+
+rday
+
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
 
-Lukas Bulwahn
-BMW Car IT GmbH
-Petuelring 116
-D-80809 Muenchen
-Germany
-Mail: lukas.bulwahn@oss.bmw-carit.de
-Web: http://www.bmw-carit.de
--------------------------------------------------------------
-BMW Car IT GmbH
-Gesch=E4ftsf=FChrer: Harald Heinecke
-Sitz und Registergericht: M=FCnchen HRB134810
--------------------------------------------------------------
-
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
 
