@@ -1,33 +1,42 @@
-Return-Path: <kishore.k.bodke@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3C651E00294
-	for <yocto@yoctoproject.org>; Thu, 13 Dec 2012 10:23:13 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 13 Dec 2012 10:23:12 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,275,1355126400"; d="scan'208";a="257069268"
-Received: from orsmsx104.amr.corp.intel.com ([10.22.225.131])
-	by orsmga002.jf.intel.com with ESMTP; 13 Dec 2012 10:23:11 -0800
-Received: from orsmsx105.amr.corp.intel.com ([169.254.4.144]) by
-	ORSMSX104.amr.corp.intel.com ([169.254.3.20]) with mapi id
-	14.01.0355.002; Thu, 13 Dec 2012 10:23:11 -0800
-From: "Bodke, Kishore K" <kishore.k.bodke@intel.com>
-To: "Zanussi, Tom" <tom.zanussi@intel.com>, Bob Cochran <yocto@mindchasers.com>
-Thread-Topic: [yocto] Intel announces S1200 low power family, so when might
-	we see a Yocto BSP....
-Thread-Index: AQHN2Tw3QyKEbqnwRUWUH+012wd4GpgXedkA//+MP6A=
-Date: Thu, 13 Dec 2012 18:23:10 +0000
-Message-ID: <D956029D25CF204F948EA0FB515E1EE24A49FC2F@ORSMSX105.amr.corp.intel.com>
-References: <50C9E2AD.5050705@mindchasers.com>
-	<1355417922.13241.6.camel@empanada>
-In-Reply-To: <1355417922.13241.6.camel@empanada>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.138]
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 96631E00294
+	for <yocto@yoctoproject.org>; Thu, 13 Dec 2012 11:14:30 -0800 (PST)
+Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
+	([174.115.5.73]:55221 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1TjEEi-0008OV-3b; Thu, 13 Dec 2012 14:14:24 -0500
+Date: Thu, 13 Dec 2012 14:14:19 -0500 (EST)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: Saul Wold <sgw@linux.intel.com>
+In-Reply-To: <50CA1382.2040005@linux.intel.com>
+Message-ID: <alpine.DEB.2.02.1212131412350.10182@oneiric>
+References: <CAHUNapSruo7u=gn7tjbpJdp8KA53fJsB+0Ez7OVFpKiJ69fX0g@mail.gmail.com>
+	<50C8E206.6040203@linux.intel.com>
+	<CAHUNapSTKMXS607--qaODp=Jg8e=rSKbPOhegCOA9vZ+YS3hrw@mail.gmail.com>
+	<alpine.DEB.2.02.1212121541120.14335@oneiric>
+	<CAHUNapTPuUUUyVbhoGQAX9jSCGwEop9nyjevXGo0FbQ1PXWXqA@mail.gmail.com>
+	<alpine.DEB.2.02.1212121756210.30220@oneiric>
+	<50C989F4.90004@linux.intel.com>
+	<alpine.DEB.2.02.1212130753530.5175@oneiric>
+	<50CA1382.2040005@linux.intel.com>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: Intel announces S1200 low power family, so when might we see a Yocto BSP....
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	Darren Hart <dvhart@linux.intel.com>
+Subject: Re: per-image ROOTFS sizes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,50 +48,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 13 Dec 2012 18:23:13 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 13 Dec 2012 19:14:30 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
+On Thu, 13 Dec 2012, Saul Wold wrote:
 
+> > meta-yocto-bsp/conf/machine/routerstationpro.conf:IMAGE_FSTYPES ?= "jffs2
+> > tar.bz2"
+> > meta-yocto-bsp/conf/machine/atom-pc.conf:IMAGE_FSTYPES ?= "ext3 cpio.gz
+> > live"
 
->-----Original Message-----
->From: yocto-bounces@yoctoproject.org [mailto:yocto-
->bounces@yoctoproject.org] On Behalf Of Tom Zanussi
->Sent: Thursday, December 13, 2012 8:59 AM
->To: Bob Cochran
->Cc: Yocto discussion list
->Subject: Re: [yocto] Intel announces S1200 low power family, so when might
->we see a Yocto BSP....
+> I would think that += would be better here, I would welcome a patch!
 >
->On Thu, 2012-12-13 at 09:14 -0500, Bob Cochran wrote:
->> Hello,
->>
->> As reported in Information Week (link below), Intel announced a new Atom
->> S1200 family for micro servers.  I believe Yocto has applications for
->> this family of processors.  Assuming this is true, when do we see a
->> Yocto BSP for this family?
->>
->> I don't actually expect that there are plans already, but I'm assuming
->> the Intel team has a rough idea how long it takes to introduce a new BSP
->> for a new Atom family.
->>
->> Any feedback will be greatly appreciated.
->>
->
->Hi Bob,
->
->Let me check around and see if the Cedartrail guys have any plans for
->this.
->
->We can also accept new BSPs from anyone interested in submitting and
->supporting one, which is another possibility...
->
+> > scripts/lib/bsp/substrate/target/arch/mips/conf/machine/{{=machine}}.conf:IMAGE_FSTYPES
+> > ?= "jffs2 tar.bz2"
 
-Actually we have a Rangeley BSP, which will be hosted public early next yea=
-r.
-This is a micro server with Intel 2nd generation Atom.
+> Looks like these followed the pattern of the base machine, but I think this
+> should be +=, a patch would be welcome!
 
-Thanks
-Kishore.
+  ok, so those are the only cases that warrant tidying up?  unless
+there's an objection, i'll submit two patches, one for each of the
+above.
+
+rday
+
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
