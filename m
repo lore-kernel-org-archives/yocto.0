@@ -1,32 +1,27 @@
-Return-Path: <scott.m.rifenbark@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 526C2E006C9
-	for <yocto@yoctoproject.org>; Thu, 13 Dec 2012 07:18:15 -0800 (PST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 13 Dec 2012 07:18:14 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,274,1355126400"; d="scan'208";a="263546644"
-Received: from orsmsx104.amr.corp.intel.com ([10.22.225.131])
-	by fmsmga002.fm.intel.com with ESMTP; 13 Dec 2012 07:18:14 -0800
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.81]) by
-	ORSMSX104.amr.corp.intel.com ([169.254.3.20]) with mapi id
-	14.01.0355.002; Thu, 13 Dec 2012 07:18:14 -0800
-From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>, Yocto discussion list
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] bitbake user manual vs mega manual, and more info on
-	local file fetcher?
-Thread-Index: AQHN2Ttx4aDZEf74mEO65d8fL7y5SJgW1xxA
-Date: Thu, 13 Dec 2012 15:18:13 +0000
-Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237946ACCE36@ORSMSX101.amr.corp.intel.com>
-References: <alpine.DEB.2.02.1212130857190.5702@oneiric>
-In-Reply-To: <alpine.DEB.2.02.1212130857190.5702@oneiric>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.139]
+Return-Path: <gizero@gmail.com>
+Received: from mail-ee0-f48.google.com (mail-ee0-f48.google.com [74.125.83.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A93E0E00559
+	for <yocto@yoctoproject.org>; Thu, 13 Dec 2012 08:22:47 -0800 (PST)
+Received: by mail-ee0-f48.google.com with SMTP id b57so1409952eek.35
+	for <yocto@yoctoproject.org>; Thu, 13 Dec 2012 08:22:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=ie98gtj5BBkQLGhXWmAwf+rx67r+vLHjcijbWhoFBhA=;
+	b=dOVM1WIcLt0T8GuYOX+b+6TtBWnxXCzWX/WkhuV/OMXKY7t9+biDwiaL7sBVH1BXOn
+	CdO1N9aA2IDKLH0SDAL5NWPu4n5zc8nDFaDphAF6tY0iIgkTb5wsopvpiQ0eqsQgtPrU
+	cH3qVXZWT55PCxbb0OzzJNg0QDKWVcekEeK4ObKrdJMFvqV1H119bi0qHFOL0lB5eclB
+	3f9PBq63HZfMfsfgyveFg8+rLiHlwqxbE2v8MKiNRNRgZ5Q+89i0/Z/3nQ+GedGjFkrt
+	A9LZTp314T7DUjzH/6w44EZu2Q5RsGGHJ7wOyDyKhFXC1Skq5YC0FiNFsXdXBMsTBSsH
+	IeUA==
 MIME-Version: 1.0
-Subject: Re: bitbake user manual vs mega manual, and more info on local file fetcher?
+Received: by 10.14.219.72 with SMTP id l48mr6534003eep.37.1355415766466; Thu,
+	13 Dec 2012 08:22:46 -0800 (PST)
+Received: by 10.14.53.5 with HTTP; Thu, 13 Dec 2012 08:22:46 -0800 (PST)
+Date: Thu, 13 Dec 2012 17:22:46 +0100
+Message-ID: <CAC+thW247JHyVxtyeFKyOtv3EHhwPf4JWucx5vDrjVmkfBUg0A@mail.gmail.com>
+From: Andrea Galbusera <gizero@gmail.com>
+To: yocto@yoctoproject.org
+Subject: AUTOREVing with legacy recipe fetching from cvs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,81 +33,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 13 Dec 2012 15:18:15 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 13 Dec 2012 16:22:48 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-Hey Robert,=20
+In a custom layer I maintain, which is based on Yocto denzil, there is
+a recipe that fetches sources from a cvs repository. Since there is
+still some development of such a software, for testing reasons, I need
+to be able to automate the generation of an image with the latest
+revision of a given branch of such a repository (say a nightly build).
 
-Great questions... we are revising the BitBake manual as part of the YP 1.4=
- release.  And, we are currently discussing exactly how to position it.  So=
- the answers to your questions are in the works. =20
+After reading the manual I understand that the ${AUTOREV} method is
+not working with cvs. Is there an alternative approach to instruct the
+fetcher to always perform an update/checkout from the repository?
 
-Scott
+At moment I can force re-fetching and re-building with:
 
->-----Original Message-----
->From: yocto-bounces@yoctoproject.org [mailto:yocto-
->bounces@yoctoproject.org] On Behalf Of Robert P. J. Day
->Sent: Thursday, December 13, 2012 6:09 AM
->To: Yocto discussion list
->Subject: [yocto] bitbake user manual vs mega manual, and more info on
->local file fetcher?
->
->
->  first question -- is the bitbake user manual that comes bundled with
->the bitbake source considered part of the yocto doc collection?  as
->in, if one wants detailed info on bitbake, does one read the bitbake
->user manual (which is not mentioned on the yocto docs page), or is
->bitbake user info assumed to now be scattered throughout the yocto
->docs?  i think it's important to identify the canonical location for
->that documentation.
->
->  following on that, i'm asking since the bitbake user manual is
->definitely a *little* deficient on info for the local file fetcher.
->here's the sum total of its examples:
->
->SRC_URI=3D "file://relativefile.patch"
->SRC_URI=3D "file://relativefile.patch;this=3Dignored"
->SRC_URI=3D "file:///Users/ich/very_important_software"
->
->but there's no mention that (as i read it) that protocol accepts
->wildcards:
->
->meta-angstrom/recipes-angstrom/angstrom/angstrom-uboot-
->scripts.bb:SRC_URI =3D "file://*.cmd"
->
->i had no idea that was even true until i stumbled over the above (if
->that's indeed what it means).
->
->  there's also no comprehensive coverage of how to define and use
->patches in the yocto docs.  the only mention i see is in the ref
->manual, in the variable glossary under SRC_URI, which isn't even
->complete (no mention of apply=3D or patchdir=3D).
->
->  so basic question -- is the bitbake user manual still under active
->maintenance and is it considered part of the yocto docs collection?
->since all that bitbake information should be *somewhere* but it's not
->clear where.
->
->rday
->
->
->--
->
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->Robert P. J. Day                                 Ottawa, Ontario, CANADA
->                        http://crashcourse.ca
->
->Twitter:                                       http://twitter.com/rpjday
->LinkedIn:                               http://ca.linkedin.com/in/rpjday
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->_______________________________________________
->yocto mailing list
->yocto@yoctoproject.org
->https://lists.yoctoproject.org/listinfo/yocto
+bitbake -c cleansstate myrecipe && bitbake myrecipe
+
+but I'm looking for a cleaner approach, if it does exist. The goal
+being to simply run:
+
+bitbake myimage
+
+...and get the latest myrecipe sources fetched from cvs.
+
+TIA,
+Andrea
 
