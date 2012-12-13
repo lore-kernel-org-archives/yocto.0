@@ -1,39 +1,40 @@
-Return-Path: <opensource@keylevel.com>
-Received: from r109.websiteservername.com (r109.websiteservername.com
-	[65.39.128.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 286ADE00294
-	for <yocto@yoctoproject.org>; Thu, 13 Dec 2012 15:23:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=keylevel.com;
-	s=default; 
-	h=To:References:Message-Id:Content-Transfer-Encoding:Cc:Date:In-Reply-To:From:Content-Type:Mime-Version:Subject;
-	bh=5596Zhc3cPkJX0ZBaQ2kU2t7Wep7qPuwkBNsUVX2SbE=; 
-	b=CpVUTMsdEiFNFg4ljey+45dppmFf9YUBzbhzGRu6cFJ9KQjyTAGu3XnBLofOQPhJv+iKbu0u/66Rghe2K8t+7FVg0GmG3B0lkKFMEgfwoa26OOKLAAO8us3pevgu8fVn;
-Received: from [109.224.129.17] (port=24240
-	helo=macbook-pro.durham.keylevel.com)
-	by r109.websiteservername.com with esmtpa (Exim 4.80)
-	(envelope-from <opensource@keylevel.com>)
-	id 1TjI7M-00080r-Un; Thu, 13 Dec 2012 23:23:05 +0000
-Mime-Version: 1.0 (Apple Message framework v1283)
-From: Chris Tapp <opensource@keylevel.com>
-In-Reply-To: <BDB77FD9-2563-4703-BFA8-707101CA366D@keylevel.com>
-Date: Thu, 13 Dec 2012 23:23:03 +0000
-Message-Id: <A5D6B647-03DE-4ECD-9610-7FBE100684A7@keylevel.com>
+Return-Path: <ross.burton@intel.com>
+Received: from azsmga102.ch.intel.com (mga12.intel.com [143.182.124.36])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9CCE1E00294
+	for <yocto@yoctoproject.org>; Thu, 13 Dec 2012 15:58:33 -0800 (PST)
+Received: from mail-ie0-f200.google.com ([209.85.223.200])
+	by mga14.intel.com with ESMTP/TLS/RC4-SHA; 13 Dec 2012 15:58:32 -0800
+Received: by mail-ie0-f200.google.com with SMTP id k13so11661497iea.11
+	for <yocto@yoctoproject.org>; Thu, 13 Dec 2012 15:58:32 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type:x-gm-message-state;
+	bh=ws2Qrr5nK4wSLy/C5xNhWRUlmBSL/BUFYbYpxT6d/9w=;
+	b=lO8R17NV+KwHctIsXr3AEm2L9/dIZhQa3A+EiYGQ24bHiCF+0CyhJb3oO4TNhtjZrz
+	OjTvDg8lSZek+M8Uv+VB/ILBohOjWrhWVMzfki9b5IcTE2t2GCKDap/BMeb3bIGsccKI
+	x7Gh5o5b1Fq0vhwB45aRrOkxa1jBzncy4rui6vFWe0JuoAi9aXJTi2rOsF1ub0yZ3pLk
+	lvSszX4wu0GH2aQzHwuCJ8b+H5tcS2EA+j4mEaLe0DCJ/eYH5uEELExgY8h09iMxlSos
+	mFG22AUxlsdm62uZSmPiMaBfqQs0tnkIkS7TBHVFyc42t13E8rBJqtCaCYgNH7XLfh1x
+	o1Zw==
+Received: by 10.60.31.49 with SMTP id x17mr3233066oeh.33.1355443111965;
+	Thu, 13 Dec 2012 15:58:31 -0800 (PST)
+Received: by 10.60.31.49 with SMTP id x17mr3233056oeh.33.1355443111782; Thu,
+	13 Dec 2012 15:58:31 -0800 (PST)
+MIME-Version: 1.0
+Received: by 10.76.132.198 with HTTP; Thu, 13 Dec 2012 15:58:11 -0800 (PST)
+In-Reply-To: <A5D6B647-03DE-4ECD-9610-7FBE100684A7@keylevel.com>
 References: <6D85911C-A82F-4029-A41E-D289D8050C79@keylevel.com>
 	<03D0A6FB83364ABF99FCB0481EA3EE0F@intel.com>
 	<D082E3D9-189B-4C66-A272-F28BB743D309@keylevel.com>
 	<6E2C4456B0C04C20952CCD8694B0B56F@intel.com>
 	<BDB77FD9-2563-4703-BFA8-707101CA366D@keylevel.com>
-To: Ross Burton <ross.burton@intel.com>
-X-Mailer: Apple Mail (2.1283)
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - r109.websiteservername.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-X-Get-Message-Sender-Via: r109.websiteservername.com: authenticated_id:
-	chris.tapp+keylevel.com/only user confirmed/virtual account not
-	confirmed
+	<A5D6B647-03DE-4ECD-9610-7FBE100684A7@keylevel.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Thu, 13 Dec 2012 23:58:11 +0000
+Message-ID: <CAJTo0LYTdoSeuoCQXYn23Xn8oY+9kXq5Qm0G-yV=bzZ6UuwXtw@mail.gmail.com>
+To: Chris Tapp <opensource@keylevel.com>
+X-Gm-Message-State: ALoCoQkLGmq1XjsKX2DV7wjc7TojBovJRB1ZR3uZR4P/cy1/KxTH/0ICGCtnpWVZgjraqYi1z+AYO0DFP4SjByDJ7HL/fAiVZ1FiIWV6+WQpO+6dt+5MAoeKV1Uhl/aepr0LGJg0MSWfdiZBuaadjflwDX4qdjyvmA==
 Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
 Subject: Re: libva failing for mp4 using gstreamer under 'danny' with cedartrail BSP
 X-BeenThere: yocto@yoctoproject.org
@@ -47,70 +48,17 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 13 Dec 2012 23:23:07 -0000
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 13 Dec 2012 23:58:33 -0000
+Content-Type: text/plain; charset=UTF-8
 
+On 13 December 2012 23:23, Chris Tapp <opensource@keylevel.com> wrote:
+> Unfortunately, adding xvimagesink hasn't helped. I also still don't really understand why webm and flv work ok.
 
-On 13 Dec 2012, at 22:50, Chris Tapp wrote:
+They're probably using ximagesink, but depending on your pipeline
+you're probably doing the decode for mp4 using VAAPI, which has
+special requirements on sinks.
 
->=20
-> On 13 Dec 2012, at 22:38, Ross Burton wrote:
->=20
->> On Thursday, 13 December 2012 at 22:22, Chris Tapp wrote:
->>> Good catch. This shows there is no video/x-surface decoder =
-available. Off to find which plugin I need...
->>>=20
->>> I should have thought of trying that. Thanks! I'll have to find out =
-why my gstreamer error handler isn't spotting the problem!
->> Yeah=85 that's a bug I meant to fix in danny-next but failed.  =
-Install gst-plugins-xvimagesink (or something like that, not at my work =
-machines right now).
->=20
-> Thanks, I'll give that a try.
+I'd throw in some debugging to inspect the pipelines constructed for flv vs mp4.
 
-Unfortunately, adding xvimagesink hasn't helped. I also still don't =
-really understand why webm and flv work ok.
-
->>>> It's possible that you've got some horrible GLES/VA interaction, =
-specifically the download from VA-land to however you're getting the =
-video into the textures. Speaking of which, how are you getting from =
-frames to textures?
->>> I'm using appsink to give me access to the raw pixel data which I =
-then glTexSubImage into a texture. I'm using appsink as I've got legacy =
-code that uses it for an SDL app. I may try and switch to gstreamer GL =
-plugin support when I find the best option ;-)
->>=20
->> There'll be a better way - gstreamer-gl is worth a look at if you can =
-assume VAAPI you should be able to construct a fairly efficient vaapi-gl =
-pipeline (with gstreamer 1.0 I believe you'll be able to get zero-copy)
->=20
-> I had a quick scan of that the other day and thought it looked like it =
-would be worth a try. I'm hoping to be able to stick with the DN2800MT =
-board for a while, so VAAPI will be available. Zero-copy would be really =
-nice :-)
->=20
->> Ross =20
->>=20
->>=20
->=20
-> Chris Tapp
->=20
-> opensource@keylevel.com
-> www.keylevel.com
->=20
->=20
->=20
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
-Chris Tapp
-
-opensource@keylevel.com
-www.keylevel.com
-
-
-
+Ross
 
