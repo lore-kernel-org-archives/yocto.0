@@ -1,27 +1,23 @@
-Return-Path: <gizero@gmail.com>
-Received: from mail-ee0-f48.google.com (mail-ee0-f48.google.com [74.125.83.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A93E0E00559
-	for <yocto@yoctoproject.org>; Thu, 13 Dec 2012 08:22:47 -0800 (PST)
-Received: by mail-ee0-f48.google.com with SMTP id b57so1409952eek.35
-	for <yocto@yoctoproject.org>; Thu, 13 Dec 2012 08:22:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=ie98gtj5BBkQLGhXWmAwf+rx67r+vLHjcijbWhoFBhA=;
-	b=dOVM1WIcLt0T8GuYOX+b+6TtBWnxXCzWX/WkhuV/OMXKY7t9+biDwiaL7sBVH1BXOn
-	CdO1N9aA2IDKLH0SDAL5NWPu4n5zc8nDFaDphAF6tY0iIgkTb5wsopvpiQ0eqsQgtPrU
-	cH3qVXZWT55PCxbb0OzzJNg0QDKWVcekEeK4ObKrdJMFvqV1H119bi0qHFOL0lB5eclB
-	3f9PBq63HZfMfsfgyveFg8+rLiHlwqxbE2v8MKiNRNRgZ5Q+89i0/Z/3nQ+GedGjFkrt
-	A9LZTp314T7DUjzH/6w44EZu2Q5RsGGHJ7wOyDyKhFXC1Skq5YC0FiNFsXdXBMsTBSsH
-	IeUA==
-MIME-Version: 1.0
-Received: by 10.14.219.72 with SMTP id l48mr6534003eep.37.1355415766466; Thu,
-	13 Dec 2012 08:22:46 -0800 (PST)
-Received: by 10.14.53.5 with HTTP; Thu, 13 Dec 2012 08:22:46 -0800 (PST)
-Date: Thu, 13 Dec 2012 17:22:46 +0100
-Message-ID: <CAC+thW247JHyVxtyeFKyOtv3EHhwPf4JWucx5vDrjVmkfBUg0A@mail.gmail.com>
-From: Andrea Galbusera <gizero@gmail.com>
-To: yocto@yoctoproject.org
-Subject: AUTOREVing with legacy recipe fetching from cvs
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BF959E00294
+	for <yocto@yoctoproject.org>; Thu, 13 Dec 2012 08:58:43 -0800 (PST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 13 Dec 2012 08:58:43 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.84,275,1355126400"; d="scan'208";a="257028813"
+Received: from unknown (HELO [10.255.12.87]) ([10.255.12.87])
+	by orsmga002.jf.intel.com with ESMTP; 13 Dec 2012 08:58:42 -0800
+Message-ID: <1355417922.13241.6.camel@empanada>
+From: Tom Zanussi <tom.zanussi@intel.com>
+To: Bob Cochran <yocto@mindchasers.com>
+Date: Thu, 13 Dec 2012 10:58:42 -0600
+In-Reply-To: <50C9E2AD.5050705@mindchasers.com>
+References: <50C9E2AD.5050705@mindchasers.com>
+X-Mailer: Evolution 3.4.1 (3.4.1-2.fc17) 
+Mime-Version: 1.0
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: Intel announces S1200 low power family, so when might we see a Yocto BSP....
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,30 +29,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 13 Dec 2012 16:22:48 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Thu, 13 Dec 2012 16:58:43 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-In a custom layer I maintain, which is based on Yocto denzil, there is
-a recipe that fetches sources from a cvs repository. Since there is
-still some development of such a software, for testing reasons, I need
-to be able to automate the generation of an image with the latest
-revision of a given branch of such a repository (say a nightly build).
+On Thu, 2012-12-13 at 09:14 -0500, Bob Cochran wrote:
+> Hello,
+> 
+> As reported in Information Week (link below), Intel announced a new Atom 
+> S1200 family for micro servers.  I believe Yocto has applications for 
+> this family of processors.  Assuming this is true, when do we see a 
+> Yocto BSP for this family?
+> 
+> I don't actually expect that there are plans already, but I'm assuming 
+> the Intel team has a rough idea how long it takes to introduce a new BSP 
+> for a new Atom family.
+> 
+> Any feedback will be greatly appreciated.
+> 
 
-After reading the manual I understand that the ${AUTOREV} method is
-not working with cvs. Is there an alternative approach to instruct the
-fetcher to always perform an update/checkout from the repository?
+Hi Bob,
 
-At moment I can force re-fetching and re-building with:
+Let me check around and see if the Cedartrail guys have any plans for
+this.
 
-bitbake -c cleansstate myrecipe && bitbake myrecipe
+We can also accept new BSPs from anyone interested in submitting and
+supporting one, which is another possibility...
 
-but I'm looking for a cleaner approach, if it does exist. The goal
-being to simply run:
+Thanks,
 
-bitbake myimage
+Tom
 
-...and get the latest myrecipe sources fetched from cvs.
+> Thanks,
+> 
+> Bob
+> 
+> 
+> 
+> http://www.informationweek.com/hardware/processors/intel-launches-low-power-atom-to-counter/240144257
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-TIA,
-Andrea
+
 
