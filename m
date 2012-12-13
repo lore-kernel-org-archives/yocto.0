@@ -1,37 +1,27 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3A2EEE00294
-	for <yocto@yoctoproject.org>; Wed, 12 Dec 2012 15:18:51 -0800 (PST)
-Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
-	([174.115.5.73]:50663 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1TivZi-00045j-Aw; Wed, 12 Dec 2012 18:18:50 -0500
-Date: Wed, 12 Dec 2012 18:18:43 -0500 (EST)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Trevor Woerner <twoerner@gmail.com>
-In-Reply-To: <CAHUNapQxy-pJ=URDQQa8tY=6oLquuBhveLyKEcBEx5Rjjk7+Aw@mail.gmail.com>
-Message-ID: <alpine.DEB.2.02.1212121817220.30911@oneiric>
+Return-Path: <sgw@linux.intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9B986E011CC
+	for <yocto@yoctoproject.org>; Wed, 12 Dec 2012 23:55:57 -0800 (PST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 12 Dec 2012 23:55:57 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.84,273,1355126400"; d="scan'208";a="263385405"
+Received: from unknown (HELO swold-linux.bigsur.com) ([10.255.13.105])
+	by fmsmga002.fm.intel.com with ESMTP; 12 Dec 2012 23:55:32 -0800
+Message-ID: <50C989F4.90004@linux.intel.com>
+Date: Wed, 12 Dec 2012 23:55:32 -0800
+From: Saul Wold <sgw@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/17.0 Thunderbird/17.0
+MIME-Version: 1.0
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>
 References: <CAHUNapSruo7u=gn7tjbpJdp8KA53fJsB+0Ez7OVFpKiJ69fX0g@mail.gmail.com>
 	<50C8E206.6040203@linux.intel.com>
 	<CAHUNapSTKMXS607--qaODp=Jg8e=rSKbPOhegCOA9vZ+YS3hrw@mail.gmail.com>
 	<alpine.DEB.2.02.1212121541120.14335@oneiric>
 	<CAHUNapTPuUUUyVbhoGQAX9jSCGwEop9nyjevXGo0FbQ1PXWXqA@mail.gmail.com>
-	<alpine.DEB.2.02.1212121702380.16245@oneiric>
-	<CAHUNapQxy-pJ=URDQQa8tY=6oLquuBhveLyKEcBEx5Rjjk7+Aw@mail.gmail.com>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
-MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+	<alpine.DEB.2.02.1212121756210.30220@oneiric>
+In-Reply-To: <alpine.DEB.2.02.1212121756210.30220@oneiric>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
 	Darren Hart <dvhart@linux.intel.com>
 Subject: Re: per-image ROOTFS sizes
@@ -46,91 +36,114 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 12 Dec 2012 23:18:51 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Thu, 13 Dec 2012 07:55:57 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Wed, 12 Dec 2012, Trevor Woerner wrote:
+On 12/12/2012 03:16 PM, Robert P. J. Day wrote:
+> On Wed, 12 Dec 2012, Trevor Woerner wrote:
+>
+>> On Wed, Dec 12, 2012 at 3:46 PM, Robert P. J. Day <rpjday@crashcourse.ca> wrote:
+>>> so what happens if you try to set the appropriate variables above?
+>>
+>> When Yocto creates a VMDK, it creates 2 partitions:
+>> - an MSDOS partition for the syslinux stuff
+>> - the ext{3,4} partition of your root image
+>>
+>> When it then shmushes these two together into 1 file, it has to make
+>> sure all the sizes are set correctly as per the information in the
+>> disk's partition table. That's what all these calculations are doing
+>> (I recognize it from similar work in my own scripts).
+>>
+>> Personally I have my own approach that can use either LILO or syslinux
+>> for booting x86 (it can also create bootable ARM images with the
+>> appropriate uboot/mlo); neither of the x86 solutions require a
+>> separate MSDOS partition. Hopefully I'll find some time to examine how
+>> Yocto is doing things and perhaps integrate my own findings into the
+>> broader project(?).
+>>
+>> (please see https://github.com/twoerner/qemu-image-builder)
+>>
+>> I believe Yocto calculates the sizes (using IMAGE_ROOTFS_SIZE) from
+>> code in poky/meta/classes/image_types.bbclass, which is also run for
+>> the VMDK's calculations too.
+>
+>    and here's where i'm confused.  i'm *assuming* that the
+> image-vmdk.bbclass file defines the creation of vmdk images, yes?  but
+> that class file inherits directly only boot-directdisk.bbclass, and if
+> i look in that class file, i don't see any further inherits that might
+> process IMAGE_ROOTFS_SIZE.  i just see hardcoded calculations that
+> build an image based on actual rootfs directory size.
+>
+>    so what am i missing?
+>
+Some serious magic!  It took me a while to reload my cache on this one.
 
-> Hi Robert,
->
-> (we met at OLS last summer, I came and chatted with you briefly after
-> your presentation)
->
-> On Wed, Dec 12, 2012 at 5:03 PM, Robert P. J. Day <rpjday@crashcourse.ca> wrote:
-> >   now i'm interested, so ... what are your config steps?  i wouldn't
-> > mind trying to reproduce this on my system.
->
->
-> My doodle layer can be found here:
->     https://github.com/twoerner/meta-trevor
->
-> My conf/bblayers.conf adds this and meta-openembedded/meta-oe.
-> My conf/local.conf currently looks like:
->
->     BB_NUMBER_THREADS = "4"
->     PARALLEL_MAKE = "-j 4"
->     MACHINE = "qemux86"
->     DL_DIR = "/home/trevor/devel/Downloads"
->     DISTRO = "poky"
->     PACKAGE_CLASSES = "package_ipk"
->     EXTRA_IMAGE_FEATURES = "debug-tweaks ssh-server-openssh"
->     USER_CLASSES = "buildstats image-mklibs image-prelink"
->     PATCHRESOLVE = "noop"
->
->     #
->     # Disk Space Monitoring during the build
->     #
->     # Monitor the disk space during the build. If there is less that
-> 1GB of space or less
->     # than 100K inodes in any key build location (TMPDIR, DL_DIR,
-> SSTATE_DIR), gracefully
->     # shutdown the build. If there is less that 100MB or 1K inodes,
-> perform a hard abort
->     # of the build. The reason for this is that running completely out
-> of space can corrupt
->     # files and damages the build in ways which may not be easily recoverable.
->     BB_DISKMON_DIRS = "\
->         STOPTASKS,${TMPDIR},1G,100K \
->         STOPTASKS,${DL_DIR},1G,100K \
->         STOPTASKS,${SSTATE_DIR},1G,100K \
->         ABORT,${TMPDIR},100M,1K \
->         ABORT,${DL_DIR},100M,1K \
->         ABORT,${SSTATE_DIR},100M,1K"
->
->     CONF_VERSION = "1"
->     BB_DANGLINGAPPENDS_WARNONLY = "yes"
->     IMAGE_FSTYPES = "vmdk"
->     IMAGE_ROOTFS_SIZE = "500000"
->
-> You can then either "bitbake bboverride" or "bitbake core-image-minimal".
->
-> To easily boot the resulting VMDK with qemu, you'll have to patch your
-> poky/scripts/runqemu and poky/scripts/runqemu-internal with my patch
-> here (unless by the time you read this, it has already been included):
->     https://lists.yoctoproject.org/pipermail/yocto/2012-December/013279.html
->
-> and then run:
->     $ runqemu tmp/deploy/images/<image>.vmdk
->
-> Currently I can't think of any nice/easy way to _flexibly_ specify the
-> eth0 IP address of the vmdk image, but the runqemu script does setup
-> your local tap interface for 192.168.7.1/24 as expected. You can then
-> manually configure eth0 once the VM boots and/or setup
-> '/etc/network/interfaces'.
+All strapped in because here we go!
 
-  i'll check all this out, either this eve or tomorrow.  probably
-tomorrow since i'm well into a bottle of 10-YO single malt ardbeg at
-the moment.  you're jealous.  i know you are.
+So you have selected the types of images you want to build by add it's 
+type to IMAGE_FSTYPES, of which you can have multiple types.
 
-rday
+When the do_rootfs() is run for an image, there is a call into 
+image_types.bbclass via the ${@get_imagecmds(d)}, which returns a list 
+of cmds to execute to create the various images selected via the above 
+IMAGE_FSTYPES.  Of note here is that if vmdk or live is select, but not 
+ext3 (soon to be ext4 we hope), then ext3 will be added to the types 
+list, and vmdk and/or live will be removed.
 
--- 
+in the get_imagecmds code, you can see that the OVERRIDES are updated 
+locally to include the filesystem type, so that correct IMAGE_CMD can be 
+selected via overrides and set into $cmd while the compressed version is 
+set to $ccmd, then the runimagecmd is added to the cmds list (different 
+than cmd, yes a little confusing).
 
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
+runimagecmd is here the size computation occurs and the IMAGE_CMD is run 
+via $cmd. Since we are not out side the get_imagecmds() context and do 
+not have the localdata that set filesystem type overrides we won't seem 
+them and beside runimagecmd will never get called for a vmdk or live 
+image type! The underlying filesystem for those is the ext3 fs type.
 
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+Now that the rootfs has been created in the correct fs type (ext3) it 
+mething to the TOTALSIZE and END3 computations in this code 
+fragment:needs to be converted to vmdk, this is done via the 
+image-vmdk.bbclass which is optionally inherited in image.bbclass.  This 
+class slips the do_vmdkimg() function after do_bootdirectdisk, which is 
+needed to get the right disk leve partitioning. The image-vmdk.bbclass 
+inherits boot-directdisk.bbclass to get it incorporated correctly.  This 
+is where Trevor correctly noted that that we are doing the multiple 
+partition approach.
+
+SO we cycle back to the initial question which is how to have 2 
+different sizes for ext3 vanilla images vs a fixed size for the vmdk, 
+right now that's really hard! Since we create an ext3 (4) for including 
+mething to the TOTALSIZE and END3 computations in this code 
+fragment:into the vmdk, that's where the sizing occurs.
+
+What I think you are asking for is create a default sized ext3 and then 
+allow the partition to be resized in the boot-directdisk partitioning 
+code, since that's where the extra space would get accounted for.
+
+Possibly we could add something to the TOTALSIZE and END3 computations 
+in this code fragment:
+
+         ROOTFSBLOCKS=`du -Lbks ${ROOTFS} | cut -f 1`
+         TOTALSIZE=`expr $BLOCKS + $ROOTFSBLOCKS`
+         END1=`expr $BLOCKS \* 1024`
+         END2=`expr $END1 + 512`
+         END3=`expr \( $ROOTFSBLOCKS \* 1024 \) + $END1`
+
+That code feeds into the parted command, the dd that happens after that 
+would have to change since we are dd'ing a ext3 and it does not know it 
+has more space, this is the tricky part!  More thought is required, 
+maybe a single malt (yes I was jealous).
+
+Anyway, I hope have I not thoroughly confused everyone at this point.
+
+
+Sau!
+
+
+
+> rday
+>
 
