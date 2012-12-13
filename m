@@ -1,40 +1,29 @@
-Return-Path: <opensource@keylevel.com>
-Received: from r109.websiteservername.com (r109.websiteservername.com
-	[65.39.128.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 89AC1E00348
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BA804E00348
 	for <yocto@yoctoproject.org>; Thu, 13 Dec 2012 14:50:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=keylevel.com;
-	s=default; 
-	h=To:References:Message-Id:Content-Transfer-Encoding:Cc:Date:In-Reply-To:From:Content-Type:Mime-Version:Subject;
-	bh=XHPJ4mY+1vDR8a/PxldP5niDHJM8JPoJje65qrl8Wsc=; 
-	b=VRnM4YLmjp/BjJA7wFQ/U0bhR0kppLQdaxIZuolg4DCWXEw9Vja2pzkRZdEx+xX/SG23gAlLzhbT73PSbH3BHn/kOc/gNzMvMS5tYESPxk2+BVJMp5j/udHxxAhrEiWN;
-Received: from [109.224.129.17] (port=17677
-	helo=macbook-pro.durham.keylevel.com)
-	by r109.websiteservername.com with esmtpa (Exim 4.80)
-	(envelope-from <opensource@keylevel.com>)
-	id 1TjHcE-00015O-G1; Thu, 13 Dec 2012 22:50:54 +0000
-Mime-Version: 1.0 (Apple Message framework v1283)
-From: Chris Tapp <opensource@keylevel.com>
-In-Reply-To: <6E2C4456B0C04C20952CCD8694B0B56F@intel.com>
-Date: Thu, 13 Dec 2012 22:50:52 +0000
-Message-Id: <BDB77FD9-2563-4703-BFA8-707101CA366D@keylevel.com>
-References: <6D85911C-A82F-4029-A41E-D289D8050C79@keylevel.com>
-	<03D0A6FB83364ABF99FCB0481EA3EE0F@intel.com>
-	<D082E3D9-189B-4C66-A272-F28BB743D309@keylevel.com>
-	<6E2C4456B0C04C20952CCD8694B0B56F@intel.com>
-To: Ross Burton <ross.burton@intel.com>
-X-Mailer: Apple Mail (2.1283)
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - r109.websiteservername.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-X-Get-Message-Sender-Via: r109.websiteservername.com: authenticated_id:
-	chris.tapp+keylevel.com/only user confirmed/virtual account not
-	confirmed
-Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-Subject: Re: libva failing for mp4 using gstreamer under 'danny' with cedartrail BSP
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id 72A08F81221; Thu, 13 Dec 2012 15:50:56 -0700 (MST)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=unavailable version=3.3.2
+Received: from [192.168.1.114] (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id 55089F8120E;
+	Thu, 13 Dec 2012 15:50:54 -0700 (MST)
+Message-ID: <50CA5BE5.5000709@mlbassoc.com>
+Date: Thu, 13 Dec 2012 15:51:17 -0700
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/17.0 Thunderbird/17.0
+MIME-Version: 1.0
+To: yocto@yoctoproject.org
+References: <alpine.DEB.2.02.1212131456500.10980@oneiric>
+	<88701C38B5D07249817D428430999C9128AA9E5D@sestoex09.enea.se>
+	<alpine.DEB.2.02.1212131644350.12603@oneiric>
+In-Reply-To: <alpine.DEB.2.02.1212131644350.12603@oneiric>
+Subject: Re: [PATCH] Use "+=" consistently when setting IMAGE_FSTYPES in Yocto machine conf files.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,51 +36,70 @@ List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
 X-List-Received-Date: Thu, 13 Dec 2012 22:50:56 -0000
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 8bit
 
+On 2012-12-13 14:45, Robert P. J. Day wrote:
+> On Thu, 13 Dec 2012, David Nyström wrote:
+>
+>> Hi,
+>>
+>> Hmm,
+>> This will lead to these variables beeing append:able but non-overridable in image layer, as an(un?)intended consequence,
+>> right ?
+>>
+>> Br,
+>> David
+>>
+>> Sent from my Android phone using TouchDown (www.nitrodesk.com)
+>>
+>> -----Original Message-----
+>> From: Robert P. J. Day [rpjday@crashcourse.ca]
+>> Received: Thursday, 13 Dec 2012, 20:59
+>> To: Yocto discussion list [yocto@yoctoproject.org]
+>> Subject: [yocto] [PATCH] Use "+=" consistently when setting IMAGE_FSTYPES in Yocto machine conf files.
+>>
+>>
+>> Signed-off-by: Robert P. J. Day <rpjday@crashcourse.ca>
+>>
+>> ---
+>>
+>> diff --git a/meta-yocto-bsp/conf/machine/atom-pc.conf b/meta-yocto-bsp/conf/machine/atom-pc.conf
+>> index 77dd7fb..fbde1d3 100644
+>> --- a/meta-yocto-bsp/conf/machine/atom-pc.conf
+>> +++ b/meta-yocto-bsp/conf/machine/atom-pc.conf
+>> @@ -25,7 +25,7 @@ XSERVER ?= "xserver-xorg \
+>>
+>>   MACHINE_EXTRA_RRECOMMENDS = "kernel-modules eee-acpi-scripts"
+>>
+>> -IMAGE_FSTYPES ?= "ext3 cpio.gz live"
+>> +IMAGE_FSTYPES += "ext3 cpio.gz live"
+>>
+>>   APPEND += "usbcore.autosuspend=1"
+>>
+>> diff --git a/meta-yocto-bsp/conf/machine/routerstationpro.conf b/meta-yocto-bsp/conf/machine/routerstationpro.conf
+>> index e5e4d1a..c7a5ad5 100644
+>> --- a/meta-yocto-bsp/conf/machine/routerstationpro.conf
+>> +++ b/meta-yocto-bsp/conf/machine/routerstationpro.conf
+>> @@ -22,5 +22,5 @@ USE_VT ?= "0"
+>>
+>>   MACHINE_EXTRA_RRECOMMENDS = " kernel-modules"
+>>
+>> -IMAGE_FSTYPES ?= "jffs2 tar.bz2"
+>> +IMAGE_FSTYPES += "jffs2 tar.bz2"
+>
+>    please don't top post.  and i'll have to take a look at this to see
+> what the potential problem is here.  can anyone else see a potential
+> issue with this patch?
 
-On 13 Dec 2012, at 22:38, Ross Burton wrote:
+Yes, as David said, it eliminates the possibility of overriding
+the variable.  IMO, all of these should be ?= which lets there
+be a useful default, but can still be [completely] overridden
+by the user.
 
-> On Thursday, 13 December 2012 at 22:22, Chris Tapp wrote:
->> Good catch. This shows there is no video/x-surface decoder available. =
-Off to find which plugin I need...
->>=20
->> I should have thought of trying that. Thanks! I'll have to find out =
-why my gstreamer error handler isn't spotting the problem!
-> Yeah=85 that's a bug I meant to fix in danny-next but failed.  Install =
-gst-plugins-xvimagesink (or something like that, not at my work machines =
-right now).
-
-Thanks, I'll give that a try.
-
->>> It's possible that you've got some horrible GLES/VA interaction, =
-specifically the download from VA-land to however you're getting the =
-video into the textures. Speaking of which, how are you getting from =
-frames to textures?
->> I'm using appsink to give me access to the raw pixel data which I =
-then glTexSubImage into a texture. I'm using appsink as I've got legacy =
-code that uses it for an SDL app. I may try and switch to gstreamer GL =
-plugin support when I find the best option ;-)
->=20
-> There'll be a better way - gstreamer-gl is worth a look at if you can =
-assume VAAPI you should be able to construct a fairly efficient vaapi-gl =
-pipeline (with gstreamer 1.0 I believe you'll be able to get zero-copy)
-
-I had a quick scan of that the other day and thought it looked like it =
-would be worth a try. I'm hoping to be able to stick with the DN2800MT =
-board for a while, so VAAPI will be available. Zero-copy would be really =
-nice :-)
-
-> Ross =20
->=20
->=20
-
-Chris Tapp
-
-opensource@keylevel.com
-www.keylevel.com
-
-
-
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
