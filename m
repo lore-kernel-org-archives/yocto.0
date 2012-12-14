@@ -1,33 +1,59 @@
-Return-Path: <b.hutchman@gmail.com>
-Received: from mail-ee0-f48.google.com (mail-ee0-f48.google.com [74.125.83.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DD10CE00294
-	for <yocto@yoctoproject.org>; Fri, 14 Dec 2012 13:57:49 -0800 (PST)
-Received: by mail-ee0-f48.google.com with SMTP id b57so2276346eek.35
-	for <yocto@yoctoproject.org>; Fri, 14 Dec 2012 13:57:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type:content-transfer-encoding;
-	bh=8SQk/glDZHQeEnTZqB6ZllGo3mSWhS7ctpdkSLDG+iI=;
-	b=l8QsCpkbtf+QHro4M5EPbmJEsLQf15REbUolnK/MAZ9XC+suMnMEvUC2URLn95HEGT
-	w0g8qA4dwWQ1EsbamnNHk+i2oMSlBkBLhwbLY1ScJhJXH3kTlEVze6IDjCIy7fy0dDTj
-	s7RnbOrmsEBQjDZJMijeNx/yQSYZajX7w2OXzO3pTJw+3GVxfSCojNML06FovZ6d8koE
-	5+9wXTpK2DXdriaAy9O+4K7rkFYYDbN1dAEb094ez3sWMjWalcsDlPiummhuQs/Q2R0z
-	I04+3pkPB/UYW9AkDeX22V5K/F77OtLXxjH0OTMwWvL1WvkImXcMw61KRXANz9kC2wXS
-	TbSw==
+Return-Path: <tim.bird@am.sony.com>
+Received: from am1outboundpool.messaging.microsoft.com
+	(am1ehsobe003.messaging.microsoft.com [213.199.154.206])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9EE4EE00294
+	for <yocto@yoctoproject.org>; Fri, 14 Dec 2012 14:10:20 -0800 (PST)
+Received: from mail90-am1-R.bigfish.com (10.3.201.226) by
+	AM1EHSOBE001.bigfish.com (10.3.204.21) with Microsoft SMTP Server id
+	14.1.225.23; Fri, 14 Dec 2012 22:10:19 +0000
+Received: from mail90-am1 (localhost [127.0.0.1])	by mail90-am1-R.bigfish.com
+	(Postfix) with ESMTP id 446B9C0318	for <yocto@yoctoproject.org>;
+	Fri, 14 Dec 2012 22:10:19 +0000 (UTC)
+X-Forefront-Antispam-Report: CIP:160.33.194.229; KIP:(null); UIP:(null);
+	IPV:NLI; H:usculsndmail02v.am.sony.com; RD:mail.sonyusa.com;
+	EFVD:NLI
+X-SpamScore: -4
+X-BigFish: VPS-4(zzbb2dI98dI9371I1432Izz1de0h1202h1e76h1d1ah1d2ahzz8275bhz2fh2a8h668h839h93fhd25hf0ah1288h12a5h12a9h12bdh137ah13b6h1441h1504h1537h153bh162dh1631h1758h1765h1155h)
+Received-SPF: pass (mail90-am1: domain of am.sony.com designates
+	160.33.194.229 as permitted sender) client-ip=160.33.194.229;
+	envelope-from=tim.bird@am.sony.com;
+	helo=usculsndmail02v.am.sony.com ; .am.sony.com ; 
+Received: from mail90-am1 (localhost.localdomain [127.0.0.1]) by mail90-am1
+	(MessageSwitch) id 1355523017878380_4296;
+	Fri, 14 Dec 2012 22:10:17 +0000 (UTC)
+Received: from AM1EHSMHS006.bigfish.com (unknown [10.3.201.251])	by
+	mail90-am1.bigfish.com (Postfix) with ESMTP id CE8FB2E0059	for
+	<yocto@yoctoproject.org>; Fri, 14 Dec 2012 22:10:17 +0000 (UTC)
+Received: from usculsndmail02v.am.sony.com (160.33.194.229) by
+	AM1EHSMHS006.bigfish.com (10.3.207.106) with Microsoft SMTP Server
+	(TLS) id 14.1.225.23; Fri, 14 Dec 2012 22:10:17 +0000
+Received: from usculsndmail12v.am.sony.com (usculsndmail12v.am.sony.com
+	[146.215.230.103])	by usculsndmail02v.am.sony.com
+	(Sentrion-MTA-4.2.2/Sentrion-MTA-4.2.2) with ESMTP id
+	qBEMAFjZ012283	for
+	<yocto@yoctoproject.org>; Fri, 14 Dec 2012 22:10:16 GMT
+Received: from mail1x.sgo.in.sel.sony.com (mail4.bc.in.sel.sony.com
+	[43.130.1.112])	by usculsndmail12v.am.sony.com
+	(Sentrion-MTA-4.2.2/Sentrion-MTA-4.2.2) with ESMTP id qBEMAEBT010660
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256
+	verify=FAIL)	for
+	<yocto@yoctoproject.org>; Fri, 14 Dec 2012 22:10:15 GMT
+Received: from [43.135.148.222] ([43.135.148.222])	by
+	mail1x.sgo.in.sel.sony.com (Switch-3.4.2/Switch-3.4.2) with ESMTP id
+	qBEMAE9O013173	for <yocto@yoctoproject.org>;
+	Fri, 14 Dec 2012 22:10:14 GMT
+Message-ID: <50CBA44C.4030009@am.sony.com>
+Date: Fri, 14 Dec 2012 14:12:28 -0800
+From: Tim Bird <tim.bird@am.sony.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/17.0 Thunderbird/17.0
 MIME-Version: 1.0
-Received: by 10.14.206.197 with SMTP id l45mr18450771eeo.17.1355522268622;
-	Fri, 14 Dec 2012 13:57:48 -0800 (PST)
-Received: by 10.223.127.138 with HTTP; Fri, 14 Dec 2012 13:57:48 -0800 (PST)
-In-Reply-To: <C6510F6D410BB64A8C15398EDC6B847C46B6C012@ORSMSX101.amr.corp.intel.com>
+To: <yocto@yoctoproject.org>
 References: <50CB8173.4030801@am.sony.com>
 	<CAJTo0LaHPuYMnasJJ3dvufb6HYy9rpf8CUpkB8CcwMNSyux5NQ@mail.gmail.com>
 	<50CB9004.60908@windriver.com>
-	<C6510F6D410BB64A8C15398EDC6B847C46B6C012@ORSMSX101.amr.corp.intel.com>
-Date: Fri, 14 Dec 2012 16:57:48 -0500
-Message-ID: <CAFZh4h-nVqnzFVH8SsmKyJL+=8DPa6ew-YQG1=dy2j13kxCtSA@mail.gmail.com>
-From: Brian Hutchinson <b.hutchman@gmail.com>
-To: "Zhang, Jessica" <jessica.zhang@intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+In-Reply-To: <50CB9004.60908@windriver.com>
+X-OriginatorOrg: am.sony.com
 Subject: Re: What is GMAE?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -40,35 +66,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 14 Dec 2012 21:57:50 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 14 Dec 2012 22:10:21 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-On Fri, Dec 14, 2012 at 4:09 PM, Zhang, Jessica <jessica.zhang@intel.com> w=
-rote:
-> Actually I talked with Richard regarding retiring the toolchain targets (=
-meta-toolchain and meta-toolchain-gmae) as Mark mentioned that now we can b=
-uild a toolchain matching the >image.  Also, we're continue improving adt-i=
-nstaller which also allows you to setup sysroot using the target image as w=
-ell.  Richard's concern is there maybe some legacy user that >preferred the=
- toolchain target. With the latest changes in toolchain generation which re=
-ally maps to target images, probably we should unplug to legacy ones to mak=
-e the toolchain generation more streamline.  Thoughts or concerns?
+On 12/14/2012 12:45 PM, Mark Hatle wrote:
+> On 12/14/12 1:46 PM, Burton, Ross wrote:
+>> On 14 December 2012 19:43, Tim Bird <tim.bird@am.sony.com> wrote:
+>>> "If you need GMAE, you should use the bitbake meta-toolchain-gmae command. The resulting installation script when run will support such development. However, if you are not concerned with GMAE, you
+>>> can generate the toolchain installer using bitbake meta-toolchain."
+>>>
+>>> After googling a bit, I figured out that GMAE stands for Gnome Mobile and Embedded.
+>>>
+>>> It might be good to put this acronym somewhere in the manual.
+>>> (I'm still not sure if I need GMAE or not...)
+>>
+>> Basically, GMAE means GTK+ 2 and bits of the GNOME stack.
+>>
+>> A stealth plan of mine is to remove every trace of GMAE from Yocto.
+>> It was an initiative Poky was involved with back in the OpenedHand
+>> days that didn't really take off, and we're still carrying pieces of
+>> it.
+> 
+> I get this question a lot.  With the ability (new in 1.3) to build an SDK based 
+> on the contents of any arbitrary image.. the meta-toolchain-gmae is simply not 
+> necessary.
+> 
+> bitbake -c populate_sdk <image recipe>
 
-I'm one of the users that is stuck using Edison 6.0.  I'm desperate
-for the ability to generate a toolchain and sysroot that matches our
-target.  Right now I have to build meta-toolchain and then manually
-look in the tmp for sysroot-destdir related stuff from our build and
-copy it to the sysroot in /opt/poky and hand that out to developers.
-When our sister group overseas makes a change that effects the sysroot
-it breaks our build and I have to figure out what happened and
-manually adjust our sysroot to fix the problem.  I sure would like to
-be able to just do an update and then bitbake the toolchain to pick up
-the changes.  I figure we are stuck with Edison for a while ... can I
-back port these toolchain features you all are talking about to
-Edison?
+Aha.  Thanks very much.
 
-Regards,
+Is this the preferred way to get a toolchain out of yocto?
+That's exactly what I'm working on at the moment (well, after
+fixing up some toolchain build issues I've encountered after
+messing around a bit with the toolchain recipes...;-)
 
-Brian
+ -- Tim
+
+
+=============================
+Tim Bird
+Architecture Group Chair, CE Workgroup of the Linux Foundation
+Senior Staff Engineer, Sony Network Entertainment
+=============================
+
 
