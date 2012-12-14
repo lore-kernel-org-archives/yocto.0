@@ -1,26 +1,56 @@
-Return-Path: <sherbrec@cit-ec.uni-bielefeld.de>
-Received: from smarthost.TechFak.Uni-Bielefeld.DE
-	(smarthost.TechFak.Uni-Bielefeld.DE [129.70.137.17])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 558C5E006D5
-	for <yocto@yoctoproject.org>; Fri, 14 Dec 2012 02:57:55 -0800 (PST)
-Received: from [129.70.144.11] (hooge.TechFak.Uni-Bielefeld.DE [129.70.144.11])
-	(using TLSv1 with cipher DHE-RSA-CAMELLIA256-SHA (256/256 bits))
-	(No client certificate requested) (Authenticated sender: sherbrec)
-	by smarthost.TechFak.Uni-Bielefeld.DE (Postfix) with ESMTPSA id
-	D06FA80035; Fri, 14 Dec 2012 11:57:51 +0100 (CET)
-Message-ID: <50CB062D.3010601@cit-ec.uni-bielefeld.de>
-Date: Fri, 14 Dec 2012 11:57:49 +0100
-From: Stefan Herbrechtsmeier <sherbrec@cit-ec.uni-bielefeld.de>
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
+Return-Path: <tim.bird@am.sony.com>
+Received: from co9outboundpool.messaging.microsoft.com
+	(co9ehsobe003.messaging.microsoft.com [207.46.163.26])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 214D1E00294
+	for <yocto@yoctoproject.org>; Fri, 14 Dec 2012 11:41:40 -0800 (PST)
+Received: from mail181-co9-R.bigfish.com (10.236.132.230) by
+	CO9EHSOBE030.bigfish.com (10.236.130.93) with Microsoft SMTP Server id
+	14.1.225.23; Fri, 14 Dec 2012 19:41:39 +0000
+Received: from mail181-co9 (localhost [127.0.0.1])	by
+	mail181-co9-R.bigfish.com (Postfix) with ESMTP id 30CB73E01E3	for
+	<yocto@yoctoproject.org>; Fri, 14 Dec 2012 19:41:39 +0000 (UTC)
+X-Forefront-Antispam-Report: CIP:160.33.194.231; KIP:(null); UIP:(null);
+	IPV:NLI; H:usculsndmail04v.am.sony.com; RD:mail04.sonyusa.com;
+	EFVD:NLI
+X-SpamScore: 0
+X-BigFish: VPS0(zzzz1de0h1202h1e76h1d1ah1d2ahzzz2fh2a8h668h839h947hd25hf0ah1288h12a5h12a9h12bdh137ah13b6h1441h1504h1537h153bh162dh1631h1758h1765h1155h)
+Received-SPF: pass (mail181-co9: domain of am.sony.com designates
+	160.33.194.231 as permitted sender) client-ip=160.33.194.231;
+	envelope-from=tim.bird@am.sony.com;
+	helo=usculsndmail04v.am.sony.com ; .am.sony.com ; 
+Received: from mail181-co9 (localhost.localdomain [127.0.0.1]) by mail181-co9
+	(MessageSwitch) id 1355514097241042_22571;
+	Fri, 14 Dec 2012 19:41:37 +0000 (UTC)
+Received: from CO9EHSMHS005.bigfish.com (unknown [10.236.132.246])	by
+	mail181-co9.bigfish.com (Postfix) with ESMTP id 3368780045	for
+	<yocto@yoctoproject.org>; Fri, 14 Dec 2012 19:41:37 +0000 (UTC)
+Received: from usculsndmail04v.am.sony.com (160.33.194.231) by
+	CO9EHSMHS005.bigfish.com (10.236.130.15) with Microsoft SMTP Server
+	(TLS) id 14.1.225.23; Fri, 14 Dec 2012 19:41:36 +0000
+Received: from usculsndmail14v.am.sony.com (usculsndmail14v.am.sony.com
+	[146.215.230.105])	by usculsndmail04v.am.sony.com
+	(Sentrion-MTA-4.2.2/Sentrion-MTA-4.2.2) with ESMTP id
+	qBEJfZIw018169	for
+	<yocto@yoctoproject.org>; Fri, 14 Dec 2012 19:41:35 GMT
+Received: from mail1x.sjc.in.sel.sony.com (mailx.bc.in.sel.sony.com
+	[43.134.1.112])	by usculsndmail14v.am.sony.com
+	(Sentrion-MTA-4.2.2/Sentrion-MTA-4.2.2) with ESMTP id qBEJfXrs000626
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256
+	verify=FAIL)	for
+	<yocto@yoctoproject.org>; Fri, 14 Dec 2012 19:41:34 GMT
+Received: from [43.135.148.222] ([43.135.148.222])	by
+	mail1x.sjc.in.sel.sony.com (Switch-3.4.2/Switch-3.4.2) with ESMTP id
+	qBEJfXCs010585	for <yocto@yoctoproject.org>;
+	Fri, 14 Dec 2012 19:41:33 GMT
+Message-ID: <50CB8173.4030801@am.sony.com>
+Date: Fri, 14 Dec 2012 11:43:47 -0800
+From: Tim Bird <tim.bird@am.sony.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:17.0) Gecko/17.0 Thunderbird/17.0
 MIME-Version: 1.0
-To: Lukas Bulwahn <Lukas.Bulwahn@bmw-carit.de>
-References: <000501cdd231$1c134db0$5439e910$@oss.bmw-carit.de>
-	<F672537F6568FE49AF3065326904F744206D10@Exchange2010.bmw-carit.intra>
-In-Reply-To: <F672537F6568FE49AF3065326904F744206D10@Exchange2010.bmw-carit.intra>
-X-Mailman-Approved-At: Fri, 14 Dec 2012 08:06:36 -0800
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Packaging ROS for Yocto-Linux
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+X-OriginatorOrg: am.sony.com
+Subject: What is GMAE?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,80 +62,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 14 Dec 2012 10:57:56 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Fri, 14 Dec 2012 19:41:40 -0000
+Content-Type: text/plain; charset="ISO-8859-1"
+Content-Transfer-Encoding: 7bit
 
-Hi Lukas,
+I was reading in the adt manual about using the cross-toochain tarball,
+and I came across this sentence:
 
-I have interest in a ROS layer for Yocto. We are already using Yocto for 
-your mini robot platforms but with the older player framework and our 
-own framework. Last time I checked ROS they only support cross compiling 
-via a native ROS installation and hide a lot of the compiling and 
-installation process behind their own tools / scripts.
+"If you need GMAE, you should use the bitbake meta-toolchain-gmae command. The resulting installation script when run will support such development. However, if you are not concerned with GMAE, you
+can generate the toolchain installer using bitbake meta-toolchain."
 
-Kind regards,
-   Stefan
+After googling a bit, I figured out that GMAE stands for Gnome Mobile and Embedded.
 
-Am 13.12.2012 09:32, schrieb Lukas Bulwahn:
-> Hi all,
->
-> To my previous question, I have not received any feedback here. If anyone knows someone who might be interested in packaging ROS, please contact us. We're looking for collaborators and users.
->
-> Lukas
->
-> -----Urspr¸ngliche Nachricht-----
-> Von: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org] Im Auftrag von Lukas Bulwahn
-> Gesendet: Dienstag, 4. Dezember 2012 16:08
-> An: yocto@yoctoproject.org
-> Betreff: [yocto] Packaging ROS for Yocto-Linux
->
-> Hi all,
->
-> we are interested in setting up a computing platform for our development using Yocto-Linux and the robotic operating system ROS (http://www.ros.org/). We are currently at the very beginning of this
-> development: As a first step, we want to package ROS for our own needs, but we are open to contribute this to the community if there are others that need this as well.
->
-> Has someone in the community already packaged ROS for Yocto? Are there others that also interested in a ROS package for Yocto?
->
-> We are happy about any feedback.
->
->
-> Lukas Bulwahn
-> BMW Car IT GmbH
-> Petuelring 116
-> D-80809 Muenchen
-> Germany
-> Mail: lukas.bulwahn@oss.bmw-carit.de
-> Web: http://www.bmw-carit.de
-> -------------------------------------------------------------
-> BMW Car IT GmbH
-> Gesch‰ftsf¸hrer: Harald Heinecke
-> Sitz und Registergericht: M¸nchen HRB134810
-> -------------------------------------------------------------
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+It might be good to put this acronym somewhere in the manual.
+(I'm still not sure if I need GMAE or not...)
 
+ -- Tim
 
--- 
-Dipl.-Ing. Stefan Herbrechtsmeier
-
-Universit‰t Bielefeld
-AG Kognitronik & Sensorik
-Exzellenzcluster Cognitive Interaction Technology (CITEC)
-Universit‰tsstraﬂe 21-23
-D-33615 Bielefeld (Germany)
-
-office : M6-117
-phone  : +49 521-106-67370
-fax    : +49 521-106-12348
-mailto : sherbrec@cit-ec.uni-bielefeld.de
-www    : http://www.ks.cit-ec.uni-bielefeld.de/
+=============================
+Tim Bird
+Architecture Group Chair, CE Workgroup of the Linux Foundation
+Senior Staff Engineer, Sony Network Entertainment
+=============================
 
 
