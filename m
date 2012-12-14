@@ -1,34 +1,27 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 534AEE00294
-	for <yocto@yoctoproject.org>; Fri, 14 Dec 2012 12:33:34 -0800 (PST)
-Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
-	([174.115.5.73]:38106 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1Tjbwr-0002F3-47; Fri, 14 Dec 2012 15:33:33 -0500
-Date: Fri, 14 Dec 2012 15:33:29 -0500 (EST)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Martin Jansa <martin.jansa@gmail.com>
-In-Reply-To: <20121214201540.GD8699@jama.jama.net>
-Message-ID: <alpine.DEB.2.02.1212141532400.22801@oneiric>
-References: <alpine.DEB.2.02.1212141442080.21542@oneiric>
-	<20121214201540.GD8699@jama.jama.net>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <mark.hatle@windriver.com>
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AE004E00294
+	for <yocto@yoctoproject.org>; Fri, 14 Dec 2012 12:45:47 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id qBEKjmHi025588
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Fri, 14 Dec 2012 12:45:48 -0800 (PST)
+Received: from msp-dhcp56.wrs.com (172.25.34.56) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.2.318.4;
+	Fri, 14 Dec 2012 12:45:46 -0800
+Message-ID: <50CB9004.60908@windriver.com>
+Date: Fri, 14 Dec 2012 14:45:56 -0600
+From: Mark Hatle <mark.hatle@windriver.com>
+Organization: Wind River Systems
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8;
+	rv:17.0) Gecko/17.0 Thunderbird/17.0
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: is distro_tracking_fields.inc actually used?
+To: <yocto@yoctoproject.org>
+References: <50CB8173.4030801@am.sony.com>
+	<CAJTo0LaHPuYMnasJJ3dvufb6HYy9rpf8CUpkB8CcwMNSyux5NQ@mail.gmail.com>
+In-Reply-To: <CAJTo0LaHPuYMnasJJ3dvufb6HYy9rpf8CUpkB8CcwMNSyux5NQ@mail.gmail.com>
+Subject: Re: What is GMAE?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,56 +33,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 14 Dec 2012 20:33:34 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Fri, 14 Dec 2012 20:45:47 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Fri, 14 Dec 2012, Martin Jansa wrote:
-
-> On Fri, Dec 14, 2012 at 02:43:08PM -0500, Robert P. J. Day wrote:
-> >
-> >   from https://wiki.yoctoproject.org/wiki/Distro_Tracking
-> >
-> > "The Distro Tracking Fields
-> > (meta/conf/distro/include/distro_tracking_fields.inc) is a location
-> > for sharing information about the status of recipes and tracking
-> > version information. Not all of this information can be generated
-> > automatically (yet), so the manual editing is needed."
-> >
-> >   i don't see that file so what's the story?
+On 12/14/12 1:46 PM, Burton, Ross wrote:
+> On 14 December 2012 19:43, Tim Bird <tim.bird@am.sony.com> wrote:
+>> "If you need GMAE, you should use the bitbake meta-toolchain-gmae command. The resulting installation script when run will support such development. However, if you are not concerned with GMAE, you
+>> can generate the toolchain installer using bitbake meta-toolchain."
+>>
+>> After googling a bit, I figured out that GMAE stands for Gnome Mobile and Embedded.
+>>
+>> It might be good to put this acronym somewhere in the manual.
+>> (I'm still not sure if I need GMAE or not...)
 >
-> Why don't you use git log if you're interested in stories?
+> Basically, GMAE means GTK+ 2 and bits of the GNOME stack.
 >
-> git log -- meta/conf/distro/include/distro_tracking_fields.inc
-> commit e8808c85a6bba8422cd82631b2bbc367543e4cdd
-> Author: Saul Wold <sgw@linux.intel.com>
-> Date:   Tue Jun 12 07:03:27 2012 -0700
+> A stealth plan of mine is to remove every trace of GMAE from Yocto.
+> It was an initiative Poky was involved with back in the OpenedHand
+> days that didn't really take off, and we're still carrying pieces of
+> it.
+
+I get this question a lot.  With the ability (new in 1.3) to build an SDK based 
+on the contents of any arbitrary image.. the meta-toolchain-gmae is simply not 
+necessary.
+
+bitbake -c populate_sdk <image recipe>
+
+--Mark
+
+> Ross
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 >
->     distro_tracking_fields: move to meta-yocto as seperate files
->
->     We are going to take a phased approach of breaking up the
->     distro_tracking_fields, first is to remove it from oe-core,
->     then create new files in meta-yocto.  We are doing this because
->     the distro_tracking_fields is getting unweildly and some of
->     the data can be part of a burn down list instead continually
->     stored, thus it will get split up.
->
->     Signed-off-by: Saul Wold <sgw@linux.intel.com>
-> ...
->
-> ./meta-yocto/conf/distro/include/upstream_tracking.inc
 
-  ah, quite right, my fault for not poking further.  in any event, it
-would seem that that wiki page could use some updating.
-
-rday
-
--- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
 
