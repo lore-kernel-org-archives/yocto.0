@@ -1,38 +1,35 @@
-Return-Path: <jeffrey.osier-mixon@intel.com>
-Received: from azsmga101.ch.intel.com (mga07.intel.com [143.182.124.22])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DCACFE003DA
-	for <yocto@yoctoproject.org>; Fri, 14 Dec 2012 18:37:12 -0800 (PST)
-Received: from mail-ie0-f200.google.com ([209.85.223.200])
-	by mga03.intel.com with ESMTP/TLS/RC4-SHA; 14 Dec 2012 18:37:11 -0800
-Received: by mail-ie0-f200.google.com with SMTP id k13so17507138iea.11
-	for <yocto@yoctoproject.org>; Fri, 14 Dec 2012 18:37:11 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:from:date:message-id:subject:to:content-type
-	:x-gm-message-state;
-	bh=sFy6MW88k+VH/R5bbQ2zLeiZ18UY3E3N0Jo7kK3C69A=;
-	b=nJxbdbkzYSRCtwklQ+k+r0UFMW3yb3ddsuvZWUDm25kWs8yaxVgwXlSNGhxioG6M1/
-	LNRkfvjL7xSSweqBxBfDozpSQ0IGTRxmoGMBXu8DOwdfGTZ9hnCuSZ9XOjIfj2LUpz+B
-	XeB9mavBF7QJis4gZuHYvy4FLzjl4al8moDBjiscgNht+wmgM+ScJW8U4zY5aVyJb4yg
-	ZS7bx2GVgcVhz5MUwu1rynrZnOc3m/ywWovGLq85KKmZqr9mh40ReV2KvEfiKEk0cTbx
-	mRg1mivacv+s7GUmXmXeIP2z9MNFfYPk3S2EFeOMt9+usybTJT/DO0sZFTeYU+n9XBCN
-	Tb2Q==
-Received: by 10.60.3.40 with SMTP id 8mr6226984oez.41.1355539030914;
-	Fri, 14 Dec 2012 18:37:10 -0800 (PST)
-Received: by 10.60.3.40 with SMTP id 8mr6226976oez.41.1355539030722; Fri, 14
-	Dec 2012 18:37:10 -0800 (PST)
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C9556E003DA
+	for <yocto@yoctoproject.org>; Sat, 15 Dec 2012 03:04:53 -0800 (PST)
+Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
+	([174.115.5.73]:58174 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1TjpY4-0004hB-J6; Sat, 15 Dec 2012 06:04:52 -0500
+Date: Sat, 15 Dec 2012 06:04:45 -0500 (EST)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: Tim Bird <tim.bird@am.sony.com>
+In-Reply-To: <50CBA44C.4030009@am.sony.com>
+Message-ID: <alpine.DEB.2.02.1212150559190.2317@oneiric>
+References: <50CB8173.4030801@am.sony.com>
+	<CAJTo0LaHPuYMnasJJ3dvufb6HYy9rpf8CUpkB8CcwMNSyux5NQ@mail.gmail.com>
+	<50CB9004.60908@windriver.com> <50CBA44C.4030009@am.sony.com>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
-Received: by 10.76.86.230 with HTTP; Fri, 14 Dec 2012 18:36:50 -0800 (PST)
-From: "Osier-mixon, Jeffrey" <jeffrey.osier-mixon@intel.com>
-Date: Fri, 14 Dec 2012 18:36:50 -0800
-Message-ID: <CALZ2gZVA1goEG0FZZxf6QxN5Ha4157G5h=QXENMY9aLBtqaojg@mail.gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, 
-	"yocto-ab@yoctoproject.org" <yocto-ab@yoctoproject.org>, 
-	"yocto-advocacy@yoctoproject.org" <yocto-advocacy@yoctoproject.org>, 
-	"Halstead, Michael D" <michael@yoctoproject.org>,
-	Melissa Anderson <melissa@happypunch.com>
-X-Gm-Message-State: ALoCoQk2e7GOSPdAnY6PMeIfymEfBwwrZHvrRnYfH9A9wEjODnlvwqdVJQznIUP4gCU1+uMDNusnHZwojcIwFpFYmIsXxqVLxZQHHznQWk0Y4zH+mHeGJkonfC+kw3xrbSfb6EmUVnjZ1F+PD++ZHLZTdZEurRw5kA==
-Subject: Happy Holidays
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Cc: yocto@yoctoproject.org
+Subject: Re: What is GMAE?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,29 +41,76 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 15 Dec 2012 02:37:13 -0000
-Content-Type: multipart/alternative; boundary=e89a8f83a34567c9a904d0db06e7
+X-List-Received-Date: Sat, 15 Dec 2012 11:04:54 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
---e89a8f83a34567c9a904d0db06e7
-Content-Type: text/plain; charset=ISO-8859-1
+On Fri, 14 Dec 2012, Tim Bird wrote:
 
-Whatever holidays you celebrate, I hope they are happy and peaceful. See
-you next year!
+> On 12/14/2012 12:45 PM, Mark Hatle wrote:
+> > On 12/14/12 1:46 PM, Burton, Ross wrote:
+> >> On 14 December 2012 19:43, Tim Bird <tim.bird@am.sony.com> wrote:
+> >>> "If you need GMAE, you should use the bitbake meta-toolchain-gmae command. The resulting installation script when run will support such development. However, if you are not concerned with GMAE, you
+> >>> can generate the toolchain installer using bitbake meta-toolchain."
+> >>>
+> >>> After googling a bit, I figured out that GMAE stands for Gnome Mobile and Embedded.
+> >>>
+> >>> It might be good to put this acronym somewhere in the manual.
+> >>> (I'm still not sure if I need GMAE or not...)
+> >>
+> >> Basically, GMAE means GTK+ 2 and bits of the GNOME stack.
+> >>
+> >> A stealth plan of mine is to remove every trace of GMAE from Yocto.
+> >> It was an initiative Poky was involved with back in the OpenedHand
+> >> days that didn't really take off, and we're still carrying pieces of
+> >> it.
+> >
+> > I get this question a lot.  With the ability (new in 1.3) to build an SDK based
+> > on the contents of any arbitrary image.. the meta-toolchain-gmae is simply not
+> > necessary.
+> >
+> > bitbake -c populate_sdk <image recipe>
+>
+> Aha.  Thanks very much.
+>
+> Is this the preferred way to get a toolchain out of yocto?
+> That's exactly what I'm working on at the moment (well, after
+> fixing up some toolchain build issues I've encountered after
+> messing around a bit with the toolchain recipes...;-)
+
+  some observations about the documentation (or lack thereof) of this
+task since tim seemed susprised about it, and i remember vaguely
+running across it once upon a time but forgetting about it.
+
+  the entirety of mention of populate_sdk in all of the checked out
+yocto-docs repo is:
+
+$ grep -rw populate_sdk *
+documentation/ref-manual/eclipse/html/poky-ref-manual/ref-variables-glos.html:                <code class="filename">bitbake -c populate_sdk imagename</code>).
+documentation/ref-manual/ref-variables.xml:                <filename>bitbake -c populate_sdk imagename</filename>).
+documentation/ref-manual/ref-classes.xml:        populate_sdk*.bbclass
+$
+
+and part of that is a large comment at the end of ref-classes.xml
+listing all of the undocumented classes, so it would seem this task
+merits a bit more coverage.
+
+  also, the yocto wiki currently contains this page for the "SDK
+Generator" but it hasn't been updated since 2010:
+
+https://wiki.yoctoproject.org/wiki/SDK_Generator
+
+  just making some observations, i'm currently working through the ADT
+manual and building an SDK for my beagle as we speak.
+
+rday
 
 -- 
-Jeff Osier-Mixon http://jefro.net/blog
-Yocto Project Community Manager @Intel http://yoctoproject.org
 
---e89a8f83a34567c9a904d0db06e7
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
 
-Whatever holidays you celebrate, I hope they are happy and peaceful. See yo=
-u next year!<br clear=3D"all"><div><br></div>-- <br>Jeff Osier-Mixon=A0<a h=
-ref=3D"http://jefro.net/blog" target=3D"_blank">http://jefro.net/blog</a><d=
-iv>Yocto Project Community Manager @Intel=A0<a href=3D"http://yoctoproject.=
-org/" target=3D"_blank">http://yoctoproject.org</a></div>
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
-<br>
-
---e89a8f83a34567c9a904d0db06e7--
