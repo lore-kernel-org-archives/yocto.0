@@ -1,31 +1,30 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 63EB7E0049F
-	for <yocto@yoctoproject.org>; Sat, 15 Dec 2012 03:56:23 -0800 (PST)
-Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
-	([174.115.5.73]:59054 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1TjqLu-00066m-LC
-	for yocto@yoctoproject.org; Sat, 15 Dec 2012 06:56:22 -0500
-Date: Sat, 15 Dec 2012 06:56:18 -0500 (EST)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.DEB.2.02.1212150649380.1381@oneiric>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <twoerner@gmail.com>
+Received: from mail-lb0-f176.google.com (mail-lb0-f176.google.com
+	[209.85.217.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0C97FE006B4
+	for <yocto@yoctoproject.org>; Sat, 15 Dec 2012 04:18:02 -0800 (PST)
+Received: by mail-lb0-f176.google.com with SMTP id k6so3555907lbo.35
+	for <yocto@yoctoproject.org>; Sat, 15 Dec 2012 04:18:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:content-type; bh=khpSu1DhibJGVcTMwHkHqQWuflRmwHCEO+DBIsRnOjI=;
+	b=E4TyM2XtitBtbRZVjOcDHs+D2jwEK5xsUC0JtB63NaZMp34nManjjS4NTFhNh0vDab
+	HNUV6hB3mbv7VMeR1AlOR8/MkaLQZUpqVw7hq+3zGZa6AkTPUaJhO4Dj1FcgaZ8rx+j1
+	Ecv+NNbDCwA3zRGRiSN0ExR7hfxfYW7/lcoc7gtqPzFE6vu9sdWSNcR80bNEPztFyW3B
+	Lonb1yZOu/a1wkBXKmAEnevEmzigLPqhqrZp0NkSlyAHRdUwxUtX1r8fEJsMzJTF1fQN
+	IqrvNroakXhsdmEFFf55VMXvKX1rvfemytW0ZLQy+4gel4S6ptRouQshphATglOZK03A
+	QDCQ==
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: sometimes, the documentation is a bit too verbose and redundant
+Received: by 10.112.100.195 with SMTP id fa3mr3587562lbb.38.1355573881492;
+	Sat, 15 Dec 2012 04:18:01 -0800 (PST)
+Received: by 10.112.101.135 with HTTP; Sat, 15 Dec 2012 04:18:01 -0800 (PST)
+In-Reply-To: <1355312626-17604-1-git-send-email-twoerner@gmail.com>
+References: <1355312626-17604-1-git-send-email-twoerner@gmail.com>
+Date: Sat, 15 Dec 2012 07:18:01 -0500
+Message-ID: <CAHUNapTdTXSBUh+mBjwC=UM9g1NB5G8+LTQ1Nbre7BkuxnTmcQ@mail.gmail.com>
+From: Trevor Woerner <twoerner@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [PATCH runqemu] runqemu: add support for FSTYPE=vmdk
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,50 +36,8 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 15 Dec 2012 11:56:23 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Sat, 15 Dec 2012 12:18:03 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-
-  a general observation about something i've noticed about the yocto
-docs in places.  here's an example from the ADT manual, section
-2.1.1.1:
-
-"The following example commands download the Poky tarball, set up the
-Source Directory, set up the environment while also creating the
-default Build Directory, and run the bitbake command that results in
-the tarball
-~/yocto-project/build/tmp/deploy/sdk/adt_installer.tar.bz2:
-
-     $ cd ~
-     $ mkdir yocto-project
-     $ cd yocto-project
-     $ wget http://downloads.yoctoproject.org/releases/yocto/yocto-1.4/poky-tbd-8.0.tar.bz2
-     $ tar xjf poky-tbd-8.0.tar.bz2
-     $ source poky-tbd-8.0/oe-init-build-env
-     $ bitbake adt-installer"
-
-  it would seem that if someone is at this point, it's simply
-superfluous to be explaining how to create a new build directory and
-download a tarball, and untar it, and source the environment script --
-that's just a lot of clutter.  the only relevant line there is:
-
- $ bitbake adt-installer
-
-everything above that can be deleted, and the ADT manual can open with
-a simple list of prerequisites a reader is expected to understand,
-with a link if they don't.
-
-  thoughts?
-
-rday
-
--- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+Is there a chance this can get included?
 
