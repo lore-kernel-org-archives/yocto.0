@@ -1,30 +1,35 @@
-Return-Path: <twoerner@gmail.com>
-Received: from mail-lb0-f176.google.com (mail-lb0-f176.google.com
-	[209.85.217.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0C97FE006B4
-	for <yocto@yoctoproject.org>; Sat, 15 Dec 2012 04:18:02 -0800 (PST)
-Received: by mail-lb0-f176.google.com with SMTP id k6so3555907lbo.35
-	for <yocto@yoctoproject.org>; Sat, 15 Dec 2012 04:18:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:content-type; bh=khpSu1DhibJGVcTMwHkHqQWuflRmwHCEO+DBIsRnOjI=;
-	b=E4TyM2XtitBtbRZVjOcDHs+D2jwEK5xsUC0JtB63NaZMp34nManjjS4NTFhNh0vDab
-	HNUV6hB3mbv7VMeR1AlOR8/MkaLQZUpqVw7hq+3zGZa6AkTPUaJhO4Dj1FcgaZ8rx+j1
-	Ecv+NNbDCwA3zRGRiSN0ExR7hfxfYW7/lcoc7gtqPzFE6vu9sdWSNcR80bNEPztFyW3B
-	Lonb1yZOu/a1wkBXKmAEnevEmzigLPqhqrZp0NkSlyAHRdUwxUtX1r8fEJsMzJTF1fQN
-	IqrvNroakXhsdmEFFf55VMXvKX1rvfemytW0ZLQy+4gel4S6ptRouQshphATglOZK03A
-	QDCQ==
+Return-Path: <wd@denx.de>
+Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.10])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 048DCE006B4
+	for <yocto@yoctoproject.org>; Sat, 15 Dec 2012 05:22:42 -0800 (PST)
+Received: from frontend1.mail.m-online.net (frontend1.mail.intern.m-online.net
+	[192.168.8.180])
+	by mail-out.m-online.net (Postfix) with ESMTP id 3YNq746bKNz3hhl5
+	for <yocto@yoctoproject.org>; Sat, 15 Dec 2012 14:22:40 +0100 (CET)
+Received: from localhost (dynscan1.mnet-online.de [192.168.6.68])
+	by mail.m-online.net (Postfix) with ESMTP id 3YNq742qkSzbbl1
+	for <yocto@yoctoproject.org>; Sat, 15 Dec 2012 14:22:40 +0100 (CET)
+X-Virus-Scanned: amavisd-new at mnet-online.de
+Received: from smtp-auth.mnet-online.de ([192.168.8.180])
+	by localhost (dynscan1.mail.m-online.net [192.168.6.68]) (amavisd-new,
+	port 10024) with ESMTP id thHP8s8Dz6cH for <yocto@yoctoproject.org>;
+	Sat, 15 Dec 2012 14:22:38 +0100 (CET)
+X-Auth-Info: bfxcrd6ocKpklOFv1mcsplj1PbOTQq6StfBQjSLNbWY=
+Received: from diddl.denx.de (host-80-81-18-216.customer.m-online.net
+	[80.81.18.216]) by smtp-auth.mnet-online.de (Postfix) with ESMTPA
+	for <yocto@yoctoproject.org>; Sat, 15 Dec 2012 14:22:38 +0100 (CET)
+Received: from gemini.denx.de (unknown [10.0.0.2])
+	by diddl.denx.de (Postfix) with ESMTP id 7C1E01A6DF7
+	for <yocto@yoctoproject.org>; Sat, 15 Dec 2012 14:22:38 +0100 (CET)
+Received: from gemini.denx.de (localhost [IPv6:::1])
+	by gemini.denx.de (Postfix) with ESMTP id 503DC201C62
+	for <yocto@yoctoproject.org>; Sat, 15 Dec 2012 14:22:38 +0100 (CET)
+To: yocto@yoctoproject.org
+From: Wolfgang Denk <wd@denx.de>
 MIME-Version: 1.0
-Received: by 10.112.100.195 with SMTP id fa3mr3587562lbb.38.1355573881492;
-	Sat, 15 Dec 2012 04:18:01 -0800 (PST)
-Received: by 10.112.101.135 with HTTP; Sat, 15 Dec 2012 04:18:01 -0800 (PST)
-In-Reply-To: <1355312626-17604-1-git-send-email-twoerner@gmail.com>
-References: <1355312626-17604-1-git-send-email-twoerner@gmail.com>
-Date: Sat, 15 Dec 2012 07:18:01 -0500
-Message-ID: <CAHUNapTdTXSBUh+mBjwC=UM9g1NB5G8+LTQ1Nbre7BkuxnTmcQ@mail.gmail.com>
-From: Trevor Woerner <twoerner@gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [PATCH runqemu] runqemu: add support for FSTYPE=vmdk
+Date: Sat, 15 Dec 2012 14:22:38 +0100
+Message-Id: <20121215132238.503DC201C62@gemini.denx.de>
+Subject: Git tag systematics ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,8 +41,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 15 Dec 2012 12:18:03 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Sat, 15 Dec 2012 13:22:43 -0000
+Content-type: text/plain; charset=UTF-8
+Content-transfer-encoding: 8bit
 
-Is there a chance this can get included?
+Hi,
+
+can anybody explain to me the systematics of the git tags ysed to mark
+the Yocto / Poky releases?
+
+For example, for Yocto 1.2 and before, we have release tags like
+denzil-7.0, edison-6.0, bernard-5.0, laverne-4.0, etc.
+
+Some parts of the current 1.3 Yocto release refer to it as "Poky 8.0"
+or Version "8.0 Danny", see for example here:
+https://www.yoctoproject.org/download/yocto-project-13-poky-80
+
+However, there is no such release tag as "danny-8.0".
+
+Instead, there is a tag "1.3" - but there are no similar tags as "1.1"
+or "1.2" for the earlier releases?
+
+
+What is the system in this numbering / tagging?
+
+
+Releated:  is there any document which explains the branch names being
+used for development.  for example, how can I find out ("officially")
+what the branch name for Yocto 1.4 will be / is ?
+
+Best regards,
+
+Wolfgang Denk
+
+-- 
+DENX Software Engineering GmbH,     MD: Wolfgang Denk & Detlev Zundel
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+Phone: (+49)-8142-66989-10 Fax: (+49)-8142-66989-80 Email: wd@denx.de
+A committee is a group that keeps the minutes and loses hours.
+                                                      -- Milton Berle
 
