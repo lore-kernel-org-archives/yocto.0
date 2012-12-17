@@ -1,23 +1,19 @@
 Return-Path: <tom.zanussi@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 37995E01454
-	for <yocto@yoctoproject.org>; Mon, 17 Dec 2012 09:51:50 -0800 (PST)
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 58D40E00294
+	for <yocto@yoctoproject.org>; Mon, 17 Dec 2012 09:54:38 -0800 (PST)
 Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga101.ch.intel.com with ESMTP; 17 Dec 2012 09:51:49 -0800
+	by azsmga102.ch.intel.com with ESMTP; 17 Dec 2012 09:51:37 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,303,1355126400"; d="scan'208";a="181982067"
+X-IronPort-AV: E=Sophos;i="4.84,303,1355126400"; d="scan'208";a="181981983"
 Received: from unknown (HELO localhost) ([10.255.13.202])
-	by AZSMGA002.ch.intel.com with ESMTP; 17 Dec 2012 09:51:48 -0800
+	by AZSMGA002.ch.intel.com with ESMTP; 17 Dec 2012 09:51:36 -0800
 From: tom.zanussi@intel.com
 To: dvhart@linux.intel.com, david.c.stewart@intel.com, yocto@yoctoproject.org
-Date: Mon, 17 Dec 2012 11:51:37 -0600
-Message-Id: <0fa9aa4dd2070f9f0245dc0af2958cfa895a04b5.1355766001.git.tom.zanussi@intel.com>
+Date: Mon, 17 Dec 2012 11:51:34 -0600
+Message-Id: <cover.1355766001.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.11.4
-In-Reply-To: <f339ca3f94ec7bb6a749c5973acb1f85bc1ace6c.1355766001.git.tom.zanussi@intel.com>
-References: <f339ca3f94ec7bb6a749c5973acb1f85bc1ace6c.1355766001.git.tom.zanussi@intel.com>
-In-Reply-To: <cover.1355766001.git.tom.zanussi@intel.com>
-References: <cover.1355766001.git.tom.zanussi@intel.com>
-Subject: [PATCH 5/5] scripts/lib/bsp/engine.py: refactor bsp-creation code
+Subject: [PATCH 0/5] RFC: new 'yocto-layer' tool for creating generic Yocto layers
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,240 +25,147 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 17 Dec 2012 17:51:50 -0000
+X-List-Received-Date: Mon, 17 Dec 2012 17:54:38 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-This does a bit of refactoring of the bsp-generation code to make it
-generically reusable for generating non-bsp layers.
+Since I've been doing kind of similar work lately for the 'custom kernel'
+support for yocto-bsp and have gotten several requests lately (mainly
+from Darren in support of the new kernel documentation) for something
+like this, I decided to just go ahead and try to quickly implement a
+general-purpose layer-generation tool based on the BSP-generation code
+used in the yocto-bsp tool.  
 
-The first user remains the existing yocto-bsp tool; these changes
-allow a second user, the new yocto-layer tool, to use the same code.
+There's actually an enhancement request bug for this already in the
+Yocto bugzilla, but it doesn't contain many details:
 
-Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
----
- scripts/lib/bsp/engine.py | 120 +++++++++++++++++++++++++---------------------
- 1 file changed, 65 insertions(+), 55 deletions(-)
+Bug 3094 - Add a layer generation tool:
 
-diff --git a/scripts/lib/bsp/engine.py b/scripts/lib/bsp/engine.py
-index d406e79..6a13a03 100644
---- a/scripts/lib/bsp/engine.py
-+++ b/scripts/lib/bsp/engine.py
-@@ -1039,7 +1039,9 @@ def gen_program_machine_lines(machine, program_lines):
-     Use the input values we got from the command line.
-     """
-     line = "machine = \"" + machine + "\""
-+    program_lines.append(line)
- 
-+    line = "layer_name = \"" + machine + "\""
-     program_lines.append(line)
- 
- 
-@@ -1321,10 +1323,13 @@ def capture_context(context):
-     return captured_context
- 
- 
--def expand_targets(context, bsp_output_dir):
-+def expand_targets(context, bsp_output_dir, expand_common=True):
-     """
-     Expand all the tags in both the common and machine-specific
-     'targets'.
-+
-+    If expand_common is False, don't expand the common target (this
-+    option is used to create special-purpose layers).
-     """
-     target_files = []
- 
-@@ -1336,8 +1341,9 @@ def expand_targets(context, bsp_output_dir):
-     bsp_path = lib_path + '/bsp'
-     arch_path = bsp_path + '/substrate/target/arch'
- 
--    common = os.path.join(arch_path, "common")
--    expand_target(common, target_files, bsp_output_dir)
-+    if expand_common:
-+        common = os.path.join(arch_path, "common")
-+        expand_target(common, target_files, bsp_output_dir)
- 
-     arches = os.listdir(arch_path)
-     if arch not in arches or arch == "common":
-@@ -1352,18 +1358,17 @@ def expand_targets(context, bsp_output_dir):
-     return target_files
- 
- 
--def yocto_layer_create(layer_name, scripts_path, layer_output_dir, codedump, properties_file):
-+def yocto_common_create(machine, arch, scripts_path, bsp_output_dir, codedump, properties_file, expand_common=True):
-     """
--    Create yocto layer
-+    Create bsp
- 
--    layer_name - user-defined layer name
-+    machine - user-defined machine name
-+    arch - the arch the bsp will be based on, must be one in
-+           scripts/lib/bsp/substrate/target/arch
-     scripts_path - absolute path to yocto /scripts dir
-     bsp_output_dir - dirname to create for BSP
-     codedump - dump generated code to bspgen.out
-     properties_file - use values from here if nonempty i.e no prompting
--
--    arch - the arch for a generic layer is 'generic-layer', defined in
--           scripts/lib/bsp/substrate/target/generic-layer
-     """
-     if os.path.exists(bsp_output_dir):
-         print "\nBSP output dir already exists, exiting. (%s)" % bsp_output_dir
-@@ -1383,7 +1388,7 @@ def yocto_layer_create(layer_name, scripts_path, layer_output_dir, codedump, pro
-     os.mkdir(bsp_output_dir)
- 
-     context = create_context(machine, arch, scripts_path)
--    target_files = expand_targets(context, bsp_output_dir)
-+    target_files = expand_targets(context, bsp_output_dir, expand_common)
- 
-     input_lines = gather_inputlines(target_files)
- 
-@@ -1405,7 +1410,24 @@ def yocto_layer_create(layer_name, scripts_path, layer_output_dir, codedump, pro
- 
-     run_program_lines(program_lines, codedump)
- 
--    print "New %s BSP created in %s" % (arch, bsp_output_dir)
-+
-+def yocto_layer_create(layer_name, scripts_path, layer_output_dir, codedump, properties_file):
-+    """
-+    Create yocto layer
-+
-+    layer_name - user-defined layer name
-+    scripts_path - absolute path to yocto /scripts dir
-+    bsp_output_dir - dirname to create for BSP
-+    codedump - dump generated code to bspgen.out
-+    properties_file - use values from here if nonempty i.e no prompting
-+
-+    arch - the arch for a generic layer is 'generic-layer', defined in
-+           scripts/lib/bsp/substrate/target/generic-layer
-+    """
-+    yocto_common_create(layer_name, "layer", scripts_path, layer_output_dir, codedump, properties_file, False)
-+
-+    print "\nNew layer created in %s.\n" % (layer_output_dir)
-+    print "Don't forget to add it to your BBLAYERS (for details see %s\README)." % (layer_output_dir)
- 
- 
- def yocto_bsp_create(machine, arch, scripts_path, bsp_output_dir, codedump, properties_file):
-@@ -1420,47 +1442,9 @@ def yocto_bsp_create(machine, arch, scripts_path, bsp_output_dir, codedump, prop
-     codedump - dump generated code to bspgen.out
-     properties_file - use values from here if nonempty i.e no prompting
-     """
--    if os.path.exists(bsp_output_dir):
--        print "\nBSP output dir already exists, exiting. (%s)" % bsp_output_dir
--        sys.exit(1)
--
--    properties = None
--
--    if properties_file:
--        try:
--            infile = open(properties_file, "r")
--        except IOError:
--            print "Couldn't open properties file %s for reading, exiting" % properties_file
--            sys.exit(1)
--
--        properties = json.load(infile)
-+    yocto_common_create(machine, arch, scripts_path, bsp_output_dir, codedump, properties_file)
- 
--    os.mkdir(bsp_output_dir)
--
--    context = create_context(machine, arch, scripts_path)
--    target_files = expand_targets(context, bsp_output_dir)
--
--    input_lines = gather_inputlines(target_files)
--
--    program_lines = []
--
--    gen_program_header_lines(program_lines)
--
--    gen_initial_property_vals(input_lines, program_lines)
--
--    if properties:
--        gen_supplied_property_vals(properties, program_lines)
--
--    gen_program_machine_lines(machine, program_lines)
--
--    if not properties:
--        gen_program_input_lines(input_lines, program_lines, context)
--
--    gen_program_lines(target_files, program_lines)
--
--    run_program_lines(program_lines, codedump)
--
--    print "New %s BSP created in %s" % (arch, bsp_output_dir)
-+    print "\nNew %s BSP created in %s" % (arch, bsp_output_dir)
- 
- 
- def print_dict(items, indent = 0):
-@@ -1508,7 +1492,7 @@ def get_properties(input_lines):
-     return properties
- 
- 
--def yocto_bsp_list_properties(arch, scripts_path, properties_file):
-+def yocto_bsp_list_properties(arch, scripts_path, properties_file, expand_common=True):
-     """
-     List the complete set of properties for all the input items in the
-     BSP.  If properties_file is non-null, write the complete set of
-@@ -1516,7 +1500,7 @@ def yocto_bsp_list_properties(arch, scripts_path, properties_file):
-     nested dictionary.
-     """
-     context = create_context("unused", arch, scripts_path)
--    target_files = expand_targets(context, "unused")
-+    target_files = expand_targets(context, "unused", expand_common)
- 
-     input_lines = gather_inputlines(target_files)
- 
-@@ -1605,7 +1589,7 @@ def print_values(type, values_list):
-             print "[\"%s\", \"%s\"]" % (value[0], value[1])
- 
- 
--def yocto_bsp_list_property_values(arch, property, scripts_path, properties_file):
-+def yocto_bsp_list_property_values(arch, property, scripts_path, properties_file, expand_common=True):
-     """
-     List the possible values for a given input property.  If
-     properties_file is non-null, write the complete set of properties
-@@ -1614,7 +1598,7 @@ def yocto_bsp_list_property_values(arch, property, scripts_path, properties_file
-     context = create_context("unused", arch, scripts_path)
-     context["name"] = property
- 
--    target_files = expand_targets(context, "unused")
-+    target_files = expand_targets(context, "unused", expand_common)
- 
-     input_lines = gather_inputlines(target_files)
- 
-@@ -1710,6 +1694,32 @@ def yocto_bsp_list(args, scripts_path, properties_file):
-     return True
- 
- 
-+def yocto_layer_list(args, scripts_path, properties_file):
-+    """
-+    Print the complete list of input properties defined by the layer,
-+    or the possible values for a particular layer property.
-+    """
-+    if len(args) < 1:
-+        return False
-+
-+    if len(args) < 1 or len(args) > 2:
-+        return False
-+
-+    if len(args) == 1:
-+        if args[0] == "properties":
-+            yocto_bsp_list_properties("layer", scripts_path, properties_file, False)
-+        else:
-+            return False
-+
-+    if len(args) == 2:
-+        if args[0] == "property":
-+            yocto_bsp_list_property_values("layer", args[1], scripts_path, properties_file, False)
-+        else:
-+            return False
-+
-+    return True
-+
-+
- def map_standard_kbranch(need_new_kbranch, new_kbranch, existing_kbranch):
-     """
-     Return the linux-yocto bsp branch to use with the specified
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=3094
+
+So anyway, this is my initial take on what that bug means.  It's an RFC for
+a couple reasons, first that I'd like to get comments on whether this is
+actually what's needed for a 'layer generation tool', and second, because I
+still need to do some cleanup of the refactored code, but don't want to
+waste much time on it if it's not really what's needed.
+
+Below are a couple examples of how it's used - you really have to try it
+yourself to see what's generated - I don't want to post tarballs or such on
+the list and it's simple to generate and look at the layers.
+
+The first case is just a very simple layer with a layer.conf and README -
+basically the simplest layer you can create, and which exists mainly because
+even that is easy to get wrong.  As with the yocto-bsp tool, the script
+queries the user for a couple items, here we just take the defaults, which
+are a priority of 6 for the layer and no other components such as example
+recipes:
+
+[trz@empanada build]$ yocto-layer create simplestlayer
+Please enter the layer priority you'd like to use for the layer: [default: 6] 
+Would you like to have an example recipe created? (y/n) [default: n]  
+Would you like to have an example bbappend file created? (y/n) [default: n] 
+
+New layer created in meta-simplestlayer.
+
+Don't forget to add it to your BBLAYERS (for details see meta-simplestlayer\README).
+
+[trz@empanada build]$ find .
+.
+./meta-simplestlayer
+./meta-simplestlayer/conf
+./meta-simplestlayer/conf/layer.conf
+./meta-simplestlayer/README
+./meta-simplestlayer/COPYING.MIT
+
+
+In the second case, we tell the tool that we do want an example .bb and and
+an example .bbappend.  We're queried for the recipe name that we want our
+recipe to have, and for the .bbappend, the name of the base recipe and its
+version.  Below you can see the files it generates - please look at the files
+themselves to see the contents.  For the recipe example, it generates a recipe
+based on the example in the Yocto manual, and my own helloworld.c code
+(untested so far which is also why this is an RFC).  For the .bbappend example,
+it just creates an empty .patch file with some instructions on what to do to
+modify the parent recipe with a patch:
+
+[trz@empanada build]$ yocto-layer create mylayer
+Please enter the layer priority you'd like to use for the layer: [default: 6] 
+Would you like to have an example recipe created? (y/n) [default: n] y
+Please enter the name you'd like to use for your example recipe: [default: example] flork
+Would you like to have an example bbappend file created? (y/n) [default: n] y
+Please enter the name you'd like to use for your bbappend file: [default: example] chork
+Please enter the version number you'd like to use for your bbappend file (this should match the recipe you're appending to): [default: 0.1] 0.22.3
+
+New layer created in meta-mylayer.
+
+Don't forget to add it to your BBLAYERS (for details see meta-mylayer\README).
+
+[trz@empanada build]$ find .
+.
+./meta-mylayer
+./meta-mylayer/recipes-example
+./meta-mylayer/recipes-example/example
+./meta-mylayer/recipes-example/example/flork-0.1
+./meta-mylayer/recipes-example/example/flork-0.1/helloworld.c
+./meta-mylayer/recipes-example/example/flork-0.1/example.patch
+./meta-mylayer/recipes-example/example/flork_0.1.bb
+./meta-mylayer/conf
+./meta-mylayer/conf/layer.conf
+./meta-mylayer/recipes-example-bbappend
+./meta-mylayer/recipes-example-bbappend/example-bbappend
+./meta-mylayer/recipes-example-bbappend/example-bbappend/chork-0.22.3
+./meta-mylayer/recipes-example-bbappend/example-bbappend/chork-0.22.3/example.patch
+./meta-mylayer/recipes-example-bbappend/example-bbappend/chork_0.22.3.bbappend
+./meta-mylayer/README
+./meta-mylayer/COPYING.MIT
+
+Please try it and look at the generated code - any comments or suggestions
+are welcome.
+
+Thanks,
+
+Tom
+
+The following changes since commit da598d4f0fcf6faa62055084a51d70d735399d33:
+
+  eglibc: fix checksums of fetched patches (2012-12-13 18:02:21 +0000)
+
+are available in the git repository at:
+
+  git://git.yoctoproject.org/poky-contrib.git tzanussi/yocto-layer-rfc
+  http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/log/?h=tzanussi/yocto-layer-rfc
+
+Tom Zanussi (5):
+  scripts/lib/bsp/engine.py: add yocto_layer_create()
+  yocto-layer: new script
+  yocto-layer: add help/usage
+  yocto-layer: add 'layer' template data
+  scripts/lib/bsp/engine.py: refactor bsp-creation code
+
+ scripts/lib/bsp/engine.py                          |  86 +++++++-
+ scripts/lib/bsp/help.py                            | 228 +++++++++++++++++++++
+ .../bsp/substrate/target/arch/layer/COPYING.MIT    |  17 ++
+ scripts/lib/bsp/substrate/target/arch/layer/README |  64 ++++++
+ .../substrate/target/arch/layer/conf/layer.conf    |  10 +
+ .../target/arch/layer/layer-questions.noinstall    |  14 ++
+ .../example.patch"                                 |  12 ++
+ ..._name}}_{{=example_bbappend_version}}.bbappend" |   8 +
+ .../{{=example_recipe_name}}-0.1/example.patch"    |  12 ++
+ .../{{=example_recipe_name}}-0.1/helloworld.c"     |   6 +
+ .../example/{{=example_recipe_name}}_0.1.bb"       |  23 +++
+ scripts/yocto-layer                                | 142 +++++++++++++
+ 12 files changed, 612 insertions(+), 10 deletions(-)
+ create mode 100644 scripts/lib/bsp/substrate/target/arch/layer/COPYING.MIT
+ create mode 100644 scripts/lib/bsp/substrate/target/arch/layer/README
+ create mode 100644 scripts/lib/bsp/substrate/target/arch/layer/conf/layer.conf
+ create mode 100644 scripts/lib/bsp/substrate/target/arch/layer/layer-questions.noinstall
+ create mode 100644 "scripts/lib/bsp/substrate/target/arch/layer/{{ if create_example_bbappend == \"y\": }} recipes-example-bbappend/example-bbappend/{{=example_bbappend_name}}-{{=example_bbappend_version}}/example.patch"
+ create mode 100644 "scripts/lib/bsp/substrate/target/arch/layer/{{ if create_example_bbappend == \"y\": }} recipes-example-bbappend/example-bbappend/{{=example_bbappend_name}}_{{=example_bbappend_version}}.bbappend"
+ create mode 100644 "scripts/lib/bsp/substrate/target/arch/layer/{{ if create_example_recipe == \"y\": }} recipes-example/example/{{=example_recipe_name}}-0.1/example.patch"
+ create mode 100644 "scripts/lib/bsp/substrate/target/arch/layer/{{ if create_example_recipe == \"y\": }} recipes-example/example/{{=example_recipe_name}}-0.1/helloworld.c"
+ create mode 100644 "scripts/lib/bsp/substrate/target/arch/layer/{{ if create_example_recipe == \"y\": }} recipes-example/example/{{=example_recipe_name}}_0.1.bb"
+ create mode 100755 scripts/yocto-layer
+
 -- 
 1.7.11.4
 
