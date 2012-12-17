@@ -1,43 +1,36 @@
-Return-Path: <ross.burton@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 17E1BE0034C
-	for <yocto@yoctoproject.org>; Mon, 17 Dec 2012 14:45:57 -0800 (PST)
-Received: from mail-ee0-f72.google.com ([74.125.83.72])
-	by mga09.intel.com with ESMTP/TLS/RC4-SHA; 17 Dec 2012 14:45:04 -0800
-Received: by mail-ee0-f72.google.com with SMTP id c13so4986697eek.11
-	for <yocto@yoctoproject.org>; Mon, 17 Dec 2012 14:45:54 -0800 (PST)
+Return-Path: <mhalstead@linuxfoundation.org>
+Received: from mail-pb0-f52.google.com (mail-pb0-f52.google.com
+	[209.85.160.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7990AE00294
+	for <yocto@yoctoproject.org>; Mon, 17 Dec 2012 15:49:18 -0800 (PST)
+Received: by mail-pb0-f52.google.com with SMTP id ro2so3922171pbb.25
+	for <yocto@yoctoproject.org>; Mon, 17 Dec 2012 15:49:18 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=google.com; s=20120113;
-	h=date:from:to:cc:message-id:in-reply-to:references:subject:x-mailer
-	:mime-version:content-type:content-transfer-encoding
-	:content-disposition:x-gm-message-state;
-	bh=oz/03GcI/QpFKjyF4n3p4u3ex2XO0pXlEHeZmUU59V0=;
-	b=M+pV7A9QJY9CFSYL6mLakr4ypTEPJResZ3/J8u9Qz3BzcvkWeVNAiTDQyApn60norS
-	CKPvIvU20zQT31yhN5AzSQTgknr06HXPe04MjurpYGtrHgaKtGImVbXDgPmhdLByiHrQ
-	6oCziJKSFL/glglZ1B6SgLroYT4/2cB8LKl2G9NyUMr1R30IHtqICXco6W7h6zCf8kdg
-	GIf+ojVKBoDaUQSA2g8Ezzo/520Scge087t7YyyYXKBXy/nhLMwYnc3nN+m7Af2nSSlH
-	ITSr9hTOxivmYOiBk+D3pAjenFh+gF5O0tWxL+Ilzw9UJ5eb3QXnG2lX6TwBVq75y9WI
-	KNTw==
-Received: by 10.194.76.99 with SMTP id j3mr20240935wjw.47.1355784354407;
-	Mon, 17 Dec 2012 14:45:54 -0800 (PST)
-Received: by 10.194.76.99 with SMTP id j3mr20240922wjw.47.1355784354209;
-	Mon, 17 Dec 2012 14:45:54 -0800 (PST)
-Received: from [192.168.1.13] (35.106.2.81.in-addr.arpa. [81.2.106.35])
-	by mx.google.com with ESMTPS id bz12sm14792561wib.5.2012.12.17.14.45.52
-	(version=SSLv3 cipher=OTHER); Mon, 17 Dec 2012 14:45:53 -0800 (PST)
-Date: Mon, 17 Dec 2012 22:45:55 +0000
-From: Ross Burton <ross.burton@intel.com>
-To: Jim Abernathy <jfabernathy@gmail.com>
-Message-ID: <B8ED14ABBE8B49F4A95B1A5D2C5095F8@intel.com>
-In-Reply-To: <50CF8383.4040904@gmail.com>
-References: <50CF5A47.4040509@gmail.com>
-	<CAJTo0LbWOq7J4McwEK0tC8wW---CJ9ToKz4zfeuFE3p_viXBiQ@mail.gmail.com>
-	<50CF8383.4040904@gmail.com>
-X-Mailer: sparrow 1.6.4 (build 1178)
+	h=x-received:sender:message-id:date:from:user-agent:mime-version:to
+	:subject:x-enigmail-version:content-type:x-gm-message-state;
+	bh=wJI7oEUN4g+nUga9Oc22OHRheleZz2OpmecBjldHldA=;
+	b=UR7XTHAbsaTtOB7VQko4/YCwR/V1eT6wF0d4PHLVhZljqmIjNka00gy2BEgPbScqgX
+	2vOhBgw1OF0kHQ4ht6Pd2cbyHd2LAoZXrmfCWwGXs+fJtONKpSRN6yJbFHqxocJGjb+U
+	eB53VJRCVWmKtFDXPMO4pepD9j3rtFyscPvn7lKd9llgBDfNX4tjuRaycgvuzUTCHetQ
+	e2NMHDhPJttxXFtU3scjSa/xP9747vwEWcb/VHQzpAgGNZuPuWmOFfA+Q0430yHMyOY0
+	xFdcfWkPtFwfCZ80ru26JyWzS5Atm4oqzc2Uw/eyI0OIE3LZvWsjjFfLi6pcqREKFTL6
+	fAYQ==
+X-Received: by 10.68.132.10 with SMTP id oq10mr395344pbb.18.1355788158303;
+	Mon, 17 Dec 2012 15:49:18 -0800 (PST)
+Received: from pride.localdomain ([198.145.30.54])
+	by mx.google.com with ESMTPS id k2sm221347paw.24.2012.12.17.15.49.16
+	(version=SSLv3 cipher=OTHER); Mon, 17 Dec 2012 15:49:17 -0800 (PST)
+Sender: Michael Halstead <mhalstead@linuxfoundation.org>
+Message-ID: <50CFAF7C.4070000@yoctoproject.org>
+Date: Mon, 17 Dec 2012 15:49:16 -0800
+From: Michael Halstead <michael@yoctoproject.org>
+User-Agent: Mozilla/5.0 (X11; Linux i686; rv:17.0) Gecko/17.0 Thunderbird/17.0
 MIME-Version: 1.0
-X-Gm-Message-State: ALoCoQmwzEp82GNk9QEGIrAAVDgVzVAUBuh9aDA1ZiH1TFU/x8WOEDa/YW2BCbF9pUQKuiPir66lu/QOvxBzVNTqfCt0McRppq5Gw+sbinhdgGhhSDMzdIhTWGU2QfNYrFvmqxuPa7h5MJhKy/rHW+akCINu6QeHJA==
-Cc: yocto@yoctoproject.org
-Subject: Re: Recipe differences between Danny and Master
+To: Yocto Project Discussion <yocto@yoctoproject.org>
+X-Enigmail-Version: 1.4.6
+X-Gm-Message-State: ALoCoQnDVqX1t+QXxeajziPg2Kc8Xo9kFcvn4hgpxCLsFKnZl3osWbi6N6wHChfSg651kyB+6F3P
+Subject: experimental/meta-tpm replaced by experimental/meta-trusted
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,25 +42,114 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 17 Dec 2012 22:45:57 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+X-List-Received-Date: Mon, 17 Dec 2012 23:49:18 -0000
+X-Groupsio-MsgNum: 11159
+Content-Type: multipart/signed; protocol="application/pkcs7-signature";
+	micalg=sha1; boundary="------------ms050809070004090606000006"
 
-On Monday, 17 December 2012 at 20:41, Jim Abernathy wrote:
-> I have not tested this back on Danny, but it seems to be past the point
-> where it couldn't find anything. I have no idea how it worked in the 
-> past. I remember having to toy with it a lot. I'm still not clear about 
-> all the paths in a recipe. So I just copy others and try things that 
-> eventually work.
+--------------ms050809070004090606000006
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-The basic rule is that for a file: uri in a SRC_URI field, relative to the .bb it searches $PN-PV, $PN, then files/.
+The public git repository experimental/meta-tpm has been replaced with
+experimental/meta-trusted which will include libraries and tools that
+are not necessarily TCG/TPM destined as well as the work that was
+already in place.
 
-Obviously there are complications with extending that search path, and .bbappends extending the search path, but that's the underlying principle.
+Find the new repository at
+http://git.yoctoproject.org/cgit/cgit.cgi/experimental/meta-trusted/
 
-The practical result of this is that you can split general, per-package, and per-version files, which is useful when for example you need different patches per version of a package, but all versions can share an initscript.
+--=20
+Michael Halstead
+Yocto Project / Sys Admin
 
-Ross
 
 
+--------------ms050809070004090606000006
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: S/MIME Cryptographic Signature
 
+MIAGCSqGSIb3DQEHAqCAMIACAQExCzAJBgUrDgMCGgUAMIAGCSqGSIb3DQEHAQAAoIINjDCCBjQw
+ggQcoAMCAQICASAwDQYJKoZIhvcNAQEFBQAwfTELMAkGA1UEBhMCSUwxFjAUBgNVBAoTDVN0YXJ0
+Q29tIEx0ZC4xKzApBgNVBAsTIlNlY3VyZSBEaWdpdGFsIENlcnRpZmljYXRlIFNpZ25pbmcxKTAn
+BgNVBAMTIFN0YXJ0Q29tIENlcnRpZmljYXRpb24gQXV0aG9yaXR5MB4XDTA3MTAyNDIxMDI1NVoX
+DTE3MTAyNDIxMDI1NVowgYwxCzAJBgNVBAYTAklMMRYwFAYDVQQKEw1TdGFydENvbSBMdGQuMSsw
+KQYDVQQLEyJTZWN1cmUgRGlnaXRhbCBDZXJ0aWZpY2F0ZSBTaWduaW5nMTgwNgYDVQQDEy9TdGFy
+dENvbSBDbGFzcyAyIFByaW1hcnkgSW50ZXJtZWRpYXRlIENsaWVudCBDQTCCASIwDQYJKoZIhvcN
+AQEBBQADggEPADCCAQoCggEBAMsohUWcASz7GfKrpTOMKqANy9BV7V0igWdGxA8IU77L3aTxErQ+
+fcxtDYZ36Z6GH0YFn7fq5RADteP0AYzrCA+EQTfi8q1+kA3m0nwtwXG94M5sIqsvs7lRP1aycBke
+/s5g9hJHryZ2acScnzczjBCAo7X1v5G3yw8MDP2m2RCye0KfgZ4nODerZJVzhAlOD9YejvAXZqHk
+sw56HzElVIoYSZ3q4+RJuPXXfIoyby+Y2m1E+YzX5iCZXBx05gk6MKAW1vaw4/v2OOLy6FZH3XHH
+tOkzUreG//CsFnB9+uaYSlR65cdGzTsmoIK8WH1ygoXhRBm98SD7Hf/r3FELNvUCAwEAAaOCAa0w
+ggGpMA8GA1UdEwEB/wQFMAMBAf8wDgYDVR0PAQH/BAQDAgEGMB0GA1UdDgQWBBSuVYNv7DHKufcd
++q9rMfPIHeOsuzAfBgNVHSMEGDAWgBROC+8apEBbpRdphzDKNGhD0EGu8jBmBggrBgEFBQcBAQRa
+MFgwJwYIKwYBBQUHMAGGG2h0dHA6Ly9vY3NwLnN0YXJ0c3NsLmNvbS9jYTAtBggrBgEFBQcwAoYh
+aHR0cDovL3d3dy5zdGFydHNzbC5jb20vc2ZzY2EuY3J0MFsGA1UdHwRUMFIwJ6AloCOGIWh0dHA6
+Ly93d3cuc3RhcnRzc2wuY29tL3Nmc2NhLmNybDAnoCWgI4YhaHR0cDovL2NybC5zdGFydHNzbC5j
+b20vc2ZzY2EuY3JsMIGABgNVHSAEeTB3MHUGCysGAQQBgbU3AQIBMGYwLgYIKwYBBQUHAgEWImh0
+dHA6Ly93d3cuc3RhcnRzc2wuY29tL3BvbGljeS5wZGYwNAYIKwYBBQUHAgEWKGh0dHA6Ly93d3cu
+c3RhcnRzc2wuY29tL2ludGVybWVkaWF0ZS5wZGYwDQYJKoZIhvcNAQEFBQADggIBADqpJw3I07QW
+ke9plNBpxUxcffc7nUrIQpJHDci91DFG7fVhHRkMZ1J+BKg5UNUxIFJ2Z9B90Micc/NXcs7kPBRd
+n6XGO/vPc87Y6R+cWS9Nc9+fp3Enmsm94OxOwI9wn8qnr/6o3mD4noP9JphwUPTXwHovjavRnhUQ
+HLfo/i2NG0XXgTHXS2Xm0kVUozXqpYpAdumMiB/vezj1QHQJDmUdPYMcp+reg9901zkyT3fDW/iv
+JVv6pWtkh6Pw2ytZT7mvg7YhX3V50Nv860cV11mocUVcqBLv0gcT+HBDYtbuvexNftwNQKD5193A
+7zN4vG7CTYkXxytSjKuXrpEatEiFPxWgb84nVj25SU5q/r1Xhwby6mLhkbaXslkVtwEWT3Van49r
+KjlK4XrUKYYWtnfzq6aSak5u0Vpxd1rY79tWhD3EdCvOhNz/QplNa+VkIsrcp7+8ZhP1l1b2U6Ma
+xIVteuVMD3X0vziIwr7jxYae9FZjbxlpUemqXjcC0QaFfN7qI0JsQMALL7iGRBg7K0CoOBzECdD3
+fuZil5kU/LP9cr1BK31U0Uy651bFnAMMMkqhAChIbn0ei72VnbpSsrrSdF0BAGYQ8vyHae5aCg+H
+75dVCV33K6FuxZrf09yTz+Vx/PkdRUYkXmZz/OTfyJXsUOUXrym6KvI2rYpccSk5MIIHUDCCBjig
+AwIBAgICIgMwDQYJKoZIhvcNAQEFBQAwgYwxCzAJBgNVBAYTAklMMRYwFAYDVQQKEw1TdGFydENv
+bSBMdGQuMSswKQYDVQQLEyJTZWN1cmUgRGlnaXRhbCBDZXJ0aWZpY2F0ZSBTaWduaW5nMTgwNgYD
+VQQDEy9TdGFydENvbSBDbGFzcyAyIFByaW1hcnkgSW50ZXJtZWRpYXRlIENsaWVudCBDQTAeFw0x
+MjA2MTMwNDU5MjlaFw0xNDA2MTQxNjE4MzBaMIGRMRkwFwYDVQQNExBnMDFwWTYwMWJGM1BrRTY3
+MQswCQYDVQQGEwJVUzEPMA0GA1UECBMGT3JlZ29uMRIwEAYDVQQHEwlIaWxsc2Jvcm8xGTAXBgNV
+BAMTEE1pY2hhZWwgSGFsc3RlYWQxJzAlBgkqhkiG9w0BCQEWGG1pY2hhZWxAeW9jdG9wcm9qZWN0
+Lm9yZzCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMFZ+GW0VKdiyuQy3hlOvwcHxcm0
+8ZwNGGah4zipYky5wVFZO7p9LjJfyF6rvd24xdkaTluxTMmd9pfq2cOVQ6c3RsPufv1yBUbytk6F
+4Wk+qD0qEGjuHh5FfakcLIEsHiSn3nzaQZHaolS/yzx/A3coQS8pQrshZYqAF/ME5OxMyL8KDdtk
+xatt1reDPqzvI5rKYdeEbmHsTYgd9WWHvs8MfZFHidZoAXMXU+PcsKCUxEYhgP/h9NKcTApu/Mhd
+IPKn11pD+gfDM+ochGu1uxuW/t1tNJyRYDVQSDV+rpliQ7mrimSmyktIKkow02pUk4Xw3OqdYq7/
+/HpVOUs5nk8CAwEAAaOCA7MwggOvMAkGA1UdEwQCMAAwCwYDVR0PBAQDAgSwMB0GA1UdJQQWMBQG
+CCsGAQUFBwMCBggrBgEFBQcDBDAdBgNVHQ4EFgQUcZFNotb1OfDmPE6GQ6MQIBh7meUwHwYDVR0j
+BBgwFoAUrlWDb+wxyrn3HfqvazHzyB3jrLswIwYDVR0RBBwwGoEYbWljaGFlbEB5b2N0b3Byb2pl
+Y3Qub3JnMIICIQYDVR0gBIICGDCCAhQwggIQBgsrBgEEAYG1NwECAjCCAf8wLgYIKwYBBQUHAgEW
+Imh0dHA6Ly93d3cuc3RhcnRzc2wuY29tL3BvbGljeS5wZGYwNAYIKwYBBQUHAgEWKGh0dHA6Ly93
+d3cuc3RhcnRzc2wuY29tL2ludGVybWVkaWF0ZS5wZGYwgfcGCCsGAQUFBwICMIHqMCcWIFN0YXJ0
+Q29tIENlcnRpZmljYXRpb24gQXV0aG9yaXR5MAMCAQEagb5UaGlzIGNlcnRpZmljYXRlIHdhcyBp
+c3N1ZWQgYWNjb3JkaW5nIHRvIHRoZSBDbGFzcyAyIFZhbGlkYXRpb24gcmVxdWlyZW1lbnRzIG9m
+IHRoZSBTdGFydENvbSBDQSBwb2xpY3ksIHJlbGlhbmNlIG9ubHkgZm9yIHRoZSBpbnRlbmRlZCBw
+dXJwb3NlIGluIGNvbXBsaWFuY2Ugb2YgdGhlIHJlbHlpbmcgcGFydHkgb2JsaWdhdGlvbnMuMIGc
+BggrBgEFBQcCAjCBjzAnFiBTdGFydENvbSBDZXJ0aWZpY2F0aW9uIEF1dGhvcml0eTADAgECGmRM
+aWFiaWxpdHkgYW5kIHdhcnJhbnRpZXMgYXJlIGxpbWl0ZWQhIFNlZSBzZWN0aW9uICJMZWdhbCBh
+bmQgTGltaXRhdGlvbnMiIG9mIHRoZSBTdGFydENvbSBDQSBwb2xpY3kuMDYGA1UdHwQvMC0wK6Ap
+oCeGJWh0dHA6Ly9jcmwuc3RhcnRzc2wuY29tL2NydHUyLWNybC5jcmwwgY4GCCsGAQUFBwEBBIGB
+MH8wOQYIKwYBBQUHMAGGLWh0dHA6Ly9vY3NwLnN0YXJ0c3NsLmNvbS9zdWIvY2xhc3MyL2NsaWVu
+dC9jYTBCBggrBgEFBQcwAoY2aHR0cDovL2FpYS5zdGFydHNzbC5jb20vY2VydHMvc3ViLmNsYXNz
+Mi5jbGllbnQuY2EuY3J0MCMGA1UdEgQcMBqGGGh0dHA6Ly93d3cuc3RhcnRzc2wuY29tLzANBgkq
+hkiG9w0BAQUFAAOCAQEANR/d6M8GHL/rkx3Kz9ILDxYMcekmFgefaDXNQMicUHiUw5TsIl5af1pS
+Y2AvbKlA2/FZnyG8w42FuK6ZQBZJxs4/N10NW8qDmuuFTi6TyJgurj73tx9RogW50miDHMZLoMRe
+avB1h8zy99L2lRPZSebpSFkrQdYDHaGRVhYMjEcWNW9cLxhR8BaAEw/KlpERv3hUQpwGMppYOE66
+M7KJ3HpeR7DXfa4njL9W2hukTQNsskdWtzejHp5iQ65+5Mv+NXLmYP4uLJcR9AbttgNhwStc0P1b
+LxnQkElGeUzATOBq+QsVZ7Fo6sSS7kqrhpfaPibqpj83m/wSgpKVsbZJ3DGCA9owggPWAgEBMIGT
+MIGMMQswCQYDVQQGEwJJTDEWMBQGA1UEChMNU3RhcnRDb20gTHRkLjErMCkGA1UECxMiU2VjdXJl
+IERpZ2l0YWwgQ2VydGlmaWNhdGUgU2lnbmluZzE4MDYGA1UEAxMvU3RhcnRDb20gQ2xhc3MgMiBQ
+cmltYXJ5IEludGVybWVkaWF0ZSBDbGllbnQgQ0ECAiIDMAkGBSsOAwIaBQCgggIbMBgGCSqGSIb3
+DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTEyMTIxNzIzNDkxNlowIwYJKoZIhvcN
+AQkEMRYEFFyNy3DR1kn25JUk2Dl0dd0MZVC/MGwGCSqGSIb3DQEJDzFfMF0wCwYJYIZIAWUDBAEq
+MAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzAOBggqhkiG9w0DAgICAIAwDQYIKoZIhvcNAwICAUAw
+BwYFKw4DAgcwDQYIKoZIhvcNAwICASgwgaQGCSsGAQQBgjcQBDGBljCBkzCBjDELMAkGA1UEBhMC
+SUwxFjAUBgNVBAoTDVN0YXJ0Q29tIEx0ZC4xKzApBgNVBAsTIlNlY3VyZSBEaWdpdGFsIENlcnRp
+ZmljYXRlIFNpZ25pbmcxODA2BgNVBAMTL1N0YXJ0Q29tIENsYXNzIDIgUHJpbWFyeSBJbnRlcm1l
+ZGlhdGUgQ2xpZW50IENBAgIiAzCBpgYLKoZIhvcNAQkQAgsxgZaggZMwgYwxCzAJBgNVBAYTAklM
+MRYwFAYDVQQKEw1TdGFydENvbSBMdGQuMSswKQYDVQQLEyJTZWN1cmUgRGlnaXRhbCBDZXJ0aWZp
+Y2F0ZSBTaWduaW5nMTgwNgYDVQQDEy9TdGFydENvbSBDbGFzcyAyIFByaW1hcnkgSW50ZXJtZWRp
+YXRlIENsaWVudCBDQQICIgMwDQYJKoZIhvcNAQEBBQAEggEAlgSnVa92OpsO+LHnDPoSuH00GGn4
+S+dDFmhMO6+psziFKvXkThfqWl8dInEzPDxKRYeu+GLlG13rVc+ThuugpUchYx89D1ea0rzXpfN/
+i6TXpgjNye4kwdyTqrmSQMwt/HsCGdPEV/++/3eWYCUH5YRHuSHeCjyX5+Ujrn9FtPuO7yxXhnGG
+YAsS8J2cIjU+RjdxcSh1FuFCNNGFn0Asre7X/GqFeab5+EKmf5OIez4bpgotE1wKdy2nobbDknbB
+mb5xKCylcKGPY0DYeUJPdDFRvnkBKxgVgBMufHJwIcstGFgND02dm9sCbkSc06KVRPtNlXo8CnRb
+P0H9HKeKAQAAAAAAAA==
+
+--------------ms050809070004090606000006--
