@@ -1,21 +1,23 @@
 Return-Path: <tom.zanussi@intel.com>
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CB98DE00294
-	for <yocto@yoctoproject.org>; Mon, 17 Dec 2012 09:51:40 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 068E9E00294
+	for <yocto@yoctoproject.org>; Mon, 17 Dec 2012 09:51:46 -0800 (PST)
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 17 Dec 2012 09:50:48 -0800
+	by orsmga102.jf.intel.com with ESMTP; 17 Dec 2012 09:50:54 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,303,1355126400"; d="scan'208";a="235189812"
+X-IronPort-AV: E=Sophos;i="4.84,303,1355126400"; d="scan'208";a="235189831"
 Received: from unknown (HELO localhost) ([10.255.13.202])
-	by orsmga001.jf.intel.com with ESMTP; 17 Dec 2012 09:51:38 -0800
+	by orsmga001.jf.intel.com with ESMTP; 17 Dec 2012 09:51:44 -0800
 From: tom.zanussi@intel.com
 To: dvhart@linux.intel.com, david.c.stewart@intel.com, yocto@yoctoproject.org
-Date: Mon, 17 Dec 2012 11:51:33 -0600
-Message-Id: <f339ca3f94ec7bb6a749c5973acb1f85bc1ace6c.1355766001.git.tom.zanussi@intel.com>
+Date: Mon, 17 Dec 2012 11:51:35 -0600
+Message-Id: <3478bff517fb3269bd651a0fdf4c758bef260cac.1355766001.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.11.4
+In-Reply-To: <f339ca3f94ec7bb6a749c5973acb1f85bc1ace6c.1355766001.git.tom.zanussi@intel.com>
+References: <f339ca3f94ec7bb6a749c5973acb1f85bc1ace6c.1355766001.git.tom.zanussi@intel.com>
 In-Reply-To: <cover.1355766001.git.tom.zanussi@intel.com>
 References: <cover.1355766001.git.tom.zanussi@intel.com>
-Subject: [PATCH 1/5] scripts/lib/bsp/engine.py: add yocto_layer_create()
+Subject: [PATCH 3/5] yocto-layer: add help/usage
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,85 +29,256 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 17 Dec 2012 17:51:40 -0000
+X-List-Received-Date: Mon, 17 Dec 2012 17:51:46 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-Add a new yocto_layer_create() function that will be used to generate
-a generic yocto layer (for the new 'yocto-layer' command).
+This is essentially 'the documentation' for the yocto-layer tool.
 
 Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
 ---
- scripts/lib/bsp/engine.py | 56 +++++++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 56 insertions(+)
+ scripts/lib/bsp/help.py | 228 ++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 228 insertions(+)
 
-diff --git a/scripts/lib/bsp/engine.py b/scripts/lib/bsp/engine.py
-index 8985544..d406e79 100644
---- a/scripts/lib/bsp/engine.py
-+++ b/scripts/lib/bsp/engine.py
-@@ -1352,6 +1352,62 @@ def expand_targets(context, bsp_output_dir):
-     return target_files
+diff --git a/scripts/lib/bsp/help.py b/scripts/lib/bsp/help.py
+index 3a1f52c..eac172a 100644
+--- a/scripts/lib/bsp/help.py
++++ b/scripts/lib/bsp/help.py
+@@ -595,6 +595,234 @@ DESCRIPTION
+ """
  
+ ##
++# yocto-layer help and usage strings
++##
++
++yocto_layer_usage = """
++
++ Create a generic Yocto layer.
++
++ usage: yocto-layer [--version] [--help] COMMAND [ARGS]
++
++ Current 'yocto-layer' commands are:
++    create            Create a new generic Yocto layer
++    list              List available values for input options and properties
++
++ See 'yocto-layer help COMMAND' for more information on a specific command.
++"""
++
++yocto_layer_help_usage = """
++
++ usage: yocto-layer help <subcommand>
++
++ This command displays detailed help for the specified subcommand.
++"""
++
++yocto_layer_create_usage = """
++
++ Create a new generic Yocto layer
++
++ usage: yocto-layer create <layer-name> [-o <DIRNAME> | --outdir <DIRNAME>]
++            [-i <JSON PROPERTY FILE> | --infile <JSON PROPERTY_FILE>]
++
++ This command creates a generic Yocto layer based on the specified
++ parameters.  The new layer will be a new Yocto layer contained by
++ default within the top-level directory specified as
++ 'meta-layer-name'.  The -o option can be used to place the layer in a
++ directory with a different name and location.
++
++ NOTE: Once created, you should add your new layer to your
++ bblayers.conf file in order for it to be subsequently seen and
++ modified by the yocto-kernel tool.  Instructions for doing this can
++ be found in the README file generated in the layer's top-level
++ directory.
++
++ See 'yocto layer help create' for more detailed instructions.
++"""
++
++yocto_layer_create_help = """
++
++NAME
++    yocto-layer create - Create a new generic Yocto layer
++
++SYNOPSIS
++    yocto-layer create <layer-name> [-o <DIRNAME> | --outdir <DIRNAME>]
++        [-i <JSON PROPERTY FILE> | --infile <JSON PROPERTY_FILE>]
++
++DESCRIPTION
++    This command creates a generic Yocto layer based on the specified
++    parameters.  The new layer will be a new Yocto layer contained by
++    default within the top-level directory specified as
++    'meta-layer-name'.  The -o option can be used to place the layer
++    in a directory with a different name and location.
++
++    The layer-specific properties that define the values that will be
++    used to generate the layer can be specified on the command-line
++    using the -i option and supplying a JSON object consisting of the
++    set of name:value pairs needed by the layer.
++
++    If the -i option is not used, the user will be interactively
++    prompted for each of the required property values, which will then
++    be used as values for layer generation.
++
++    The set of properties available can be listed using the
++    'yocto-layer list' command.
++
++    Specifying -c causes the Python code generated and executed to
++    create the layer to be dumped to the 'bspgen.out' file in the
++    current directory, and is useful for debugging.
++
++    NOTE: Once created, you should add your new layer to your
++    bblayers.conf file in order for it to be subsequently seen and
++    modified by the yocto-kernel tool.  Instructions for doing this
++    can be found in the README file generated in the layer's top-level
++    directory.
++
++    For example, assuming your poky repo is at /path/to/poky, your new
++    layer is at /path/to/poky/meta-mylayer, and your build directory
++    is /path/to/build:
++
++    $ gedit /path/to/build/conf/bblayers.conf
++
++    BBLAYERS ?= " \\
++      /path/to/poky/meta \\
++      /path/to/poky/meta-yocto \\
++      /path/to/poky/meta-mylayer \\
++      "
++"""
++
++yocto_layer_list_usage = """
++
++ usage: yocto-layer list properties
++                [-o <JSON PROPERTY FILE> | --outfile <JSON PROPERTY_FILE>]
++        yocto-layer list property <xxx>
++                [-o <JSON PROPERTY FILE> | --outfile <JSON PROPERTY_FILE>]
++
++ This command enumerates the complete set of possible values for a
++ specified option or property needed by the layer creation process.
++
++ The first form enumerates all the possible properties that exist and
++ must have values specified for them in the 'yocto-layer create'
++ command.
++
++ The second form enumerates all the possible values that exist and can
++ be specified for any of the enumerable properties in the 'yocto-layer
++ create' command.
++
++ See 'yocto-layer help list' for more details.
++"""
++
++yocto_layer_list_help = """
++
++NAME
++    yocto-layer list - List available values for layer input options and properties
++
++SYNOPSIS
++    yocto-layer list properties
++            [--o <JSON PROPERTY FILE> | -outfile <JSON PROPERTY_FILE>]
++    yocto-layer list property <xxx>
++            [--o <JSON PROPERTY FILE> | -outfile <JSON PROPERTY_FILE>]
++
++DESCRIPTION
++    This command enumerates the complete set of possible values for a
++    specified option or property needed by the layer creation process.
++
++    The first form enumerates all the possible properties that exist
++    and must have values specified for them in the 'yocto-layer
++    create' command.  This command is mainly meant to aid the
++    development of user interface alternatives to the default
++    text-based prompting interface.  If the -o option is specified,
++    the list of properties, in addition to being displayed, will be
++    written to the specified file as a JSON object.  In this case, the
++    object will consist of the set of name:value pairs corresponding
++    to the (possibly nested) dictionary of properties defined by the
++    input statements used by the BSP.  Some example output for the
++    'list properties' command:
++
++    $ yocto-layer list properties
++    "example_bbappend_name" : {
++        "default" : example
++        "msg" : Please enter the name you'd like to use for your bbappend file:
++        "type" : edit
++        "prio" : 20
++        "filename" : /home/trz/yocto/yocto-layer-dev/scripts/lib/bsp/substrate/target/arch/layer/layer-questions.noinstall
++    }
++    "create_example_recipe" : {
++        "default" : n
++        "msg" : Would you like to have an example recipe created? (y/n)
++        "type" : boolean
++        "prio" : 20
++        "filename" : /home/trz/yocto/yocto-layer-dev/scripts/lib/bsp/substrate/target/arch/layer/layer-questions.noinstall
++    }
++    "example_recipe_name" : {
++        "default" : example
++        "msg" : Please enter the name you'd like to use for your example recipe:
++        "type" : edit
++        "prio" : 20
++        "filename" : /home/trz/yocto/yocto-layer-dev/scripts/lib/bsp/substrate/target/arch/layer/layer-questions.noinstall
++    }
++    "layer_priority" : {
++        "default" : 6
++        "msg" : Please enter the layer priority you'd like to use for the layer:
++        "type" : edit
++        "prio" : 20
++        "filename" : /home/trz/yocto/yocto-layer-dev/scripts/lib/bsp/substrate/target/arch/layer/layer-questions.noinstall
++    }
++    "create_example_bbappend" : {
++        "default" : n
++        "msg" : Would you like to have an example bbappend file created? (y/n)
++        "type" : boolean
++        "prio" : 20
++        "filename" : /home/trz/yocto/yocto-layer-dev/scripts/lib/bsp/substrate/target/arch/layer/layer-questions.noinstall
++    }
++    "example_bbappend_version" : {
++        "default" : 0.1
++        "msg" : Please enter the version number you'd like to use for your bbappend file (this should match the recipe you're appending to):
++        "type" : edit
++        "prio" : 20
++        "filename" : /home/trz/yocto/yocto-layer-dev/scripts/lib/bsp/substrate/target/arch/layer/layer-questions.noinstall
++    }
++
++    Each entry in the output consists of the name of the input element
++    e.g. "layer_priority", followed by the properties defined for that
++    element enclosed in braces.  This information should provide
++    sufficient information to create a complete user interface.  Two
++    features of the scheme provide for conditional input.  First, if a
++    Python "if" statement appears in place of an input element name,
++    the set of enclosed input elements apply and should be presented
++    to the user only if the 'if' statement evaluates to true.  The
++    test in the if statement will always reference another input
++    element in the list, which means that the element being tested
++    should be presented to the user before the elements enclosed by
++    the if block.  Secondly, in a similar way, some elements contain
++    "depends-on" and depends-on-val" tags, which mean that the
++    affected input element should only be presented to the user if the
++    element it depends on has already been presented to the user and
++    the user has selected the specified value for that element.
++
++    The second form enumerates all the possible values that exist and
++    can be specified for any of the enumerable properties in the
++    'yocto-layer create' command.  If the -o option is specified, the
++    list of values for the given property, in addition to being
++    displayed, will be written to the specified file as a JSON object.
++    In this case, the object will consist of the set of name:value
++    pairs corresponding to the array of property values associated
++    with the property.
++
++    $ yocto-layer list property layer_priority
++     [no output - layer_priority is a text field that has no enumerable values]
++
++    The second form as well is meant mainly for developers of
++    alternative interfaces - it allows the developer to fetch the
++    possible values for a given input element on-demand.  This
++    on-demand capability is especially valuable for elements that
++    require relatively expensive remote operations to fulfill, such as
++    the example that returns the set of branches available in a remote
++    git tree above.
++
++"""
++
++##
+ # test code
+ ##
  
-+def yocto_layer_create(layer_name, scripts_path, layer_output_dir, codedump, properties_file):
-+    """
-+    Create yocto layer
-+
-+    layer_name - user-defined layer name
-+    scripts_path - absolute path to yocto /scripts dir
-+    bsp_output_dir - dirname to create for BSP
-+    codedump - dump generated code to bspgen.out
-+    properties_file - use values from here if nonempty i.e no prompting
-+
-+    arch - the arch for a generic layer is 'generic-layer', defined in
-+           scripts/lib/bsp/substrate/target/generic-layer
-+    """
-+    if os.path.exists(bsp_output_dir):
-+        print "\nBSP output dir already exists, exiting. (%s)" % bsp_output_dir
-+        sys.exit(1)
-+
-+    properties = None
-+
-+    if properties_file:
-+        try:
-+            infile = open(properties_file, "r")
-+        except IOError:
-+            print "Couldn't open properties file %s for reading, exiting" % properties_file
-+            sys.exit(1)
-+
-+        properties = json.load(infile)
-+
-+    os.mkdir(bsp_output_dir)
-+
-+    context = create_context(machine, arch, scripts_path)
-+    target_files = expand_targets(context, bsp_output_dir)
-+
-+    input_lines = gather_inputlines(target_files)
-+
-+    program_lines = []
-+
-+    gen_program_header_lines(program_lines)
-+
-+    gen_initial_property_vals(input_lines, program_lines)
-+
-+    if properties:
-+        gen_supplied_property_vals(properties, program_lines)
-+
-+    gen_program_machine_lines(machine, program_lines)
-+
-+    if not properties:
-+        gen_program_input_lines(input_lines, program_lines, context)
-+
-+    gen_program_lines(target_files, program_lines)
-+
-+    run_program_lines(program_lines, codedump)
-+
-+    print "New %s BSP created in %s" % (arch, bsp_output_dir)
-+
-+
- def yocto_bsp_create(machine, arch, scripts_path, bsp_output_dir, codedump, properties_file):
-     """
-     Create bsp
 -- 
 1.7.11.4
 
