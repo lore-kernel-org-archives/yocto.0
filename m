@@ -1,34 +1,35 @@
-Return-Path: <jessica.zhang@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8426DE00294
-	for <yocto@yoctoproject.org>; Mon, 17 Dec 2012 08:40:13 -0800 (PST)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 17 Dec 2012 08:40:13 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,303,1355126400"; d="scan'208";a="263205613"
-Received: from orsmsx102.amr.corp.intel.com ([10.22.225.129])
-	by fmsmga001.fm.intel.com with ESMTP; 17 Dec 2012 08:40:12 -0800
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.81]) by
-	ORSMSX102.amr.corp.intel.com ([169.254.1.125]) with mapi id
-	14.01.0355.002; Mon, 17 Dec 2012 08:40:12 -0800
-From: "Zhang, Jessica" <jessica.zhang@intel.com>
-To: Mark Hatle <mark.hatle@windriver.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] IMHO, cross-compile/toolchain examples should use
-	non-x86 arches
-Thread-Index: AQHN3G4FLJueJntkgUiFTNyi+qb/A5gdMABQ
-Date: Mon, 17 Dec 2012 16:40:10 +0000
-Message-ID: <C6510F6D410BB64A8C15398EDC6B847C46B6D866@ORSMSX101.amr.corp.intel.com>
-References: <alpine.DEB.2.02.1212161148480.17740@oneiric>
-	<000601cddbe0$b587de30$20979a90$@annabooks.com>
-	<50CF3EBD.3040101@windriver.com>
-In-Reply-To: <50CF3EBD.3040101@windriver.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.138]
+Return-Path: <langabe@gmail.com>
+Received: from mail-oa0-f48.google.com (mail-oa0-f48.google.com
+	[209.85.219.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3841EE00294
+	for <yocto@yoctoproject.org>; Mon, 17 Dec 2012 08:47:59 -0800 (PST)
+Received: by mail-oa0-f48.google.com with SMTP id h2so6219697oag.35
+	for <yocto@yoctoproject.org>; Mon, 17 Dec 2012 08:47:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:sender:in-reply-to:references:from:date
+	:x-google-sender-auth:message-id:subject:to:cc:content-type;
+	bh=sbb1XrQCmnznVxZi7R3yLYsVwTr3yaaJ54hoI8c2y9g=;
+	b=ZKuz3lWvJL7YDzg09gsqJ1r8CfM4JoAIZsZ2v8RKkIRWolKyBIUZ3IERN0koaMiOzq
+	zA2LsSHkoZFgKMEa2NxEiaxtRPbpk7J6W3vSE09ubI45BMB//im1R/K97BEdciD+tgrn
+	jhwzwQc+y/mOp+be+4RKi2KRgGowVs938gqKhw/EnuGoNtHmsMUdEfr6AmjaMQYaTaAu
+	IVhuVArFkMfO9NG3zgNnaDObPYEq29S3uasOvej2ZhyZZhCofniuW3UGGKTDWw5AFKLf
+	QsowQQExo+pNBGy4PPU+TtF5QiXug+RVtaqa6hwS5YoxLORFmhkjoIxwxqhiBPUEe9Ax
+	gSfw==
+Received: by 10.182.207.3 with SMTP id ls3mr11459525obc.60.1355762878805; Mon,
+	17 Dec 2012 08:47:58 -0800 (PST)
 MIME-Version: 1.0
-Subject: Re: IMHO, cross-compile/toolchain examples should use non-x86 arches
+Sender: langabe@gmail.com
+Received: by 10.182.153.4 with HTTP; Mon, 17 Dec 2012 08:47:37 -0800 (PST)
+In-Reply-To: <CABcZANkkB3z_hXB8wLM4Ds5zzVLn6yhHzkoTdJqDFH9j1RiHug@mail.gmail.com>
+References: <CANsDNf39kE=R4EhFpVsGQWP1AD1VSFgNWNxw4h1A2_nSuRUkUA@mail.gmail.com>
+	<CABcZANkkB3z_hXB8wLM4Ds5zzVLn6yhHzkoTdJqDFH9j1RiHug@mail.gmail.com>
+From: Alex Gonzalez <alex@lindusembedded.com>
+Date: Mon, 17 Dec 2012 17:47:37 +0100
+X-Google-Sender-Auth: pOMTQKCKFT25gNYJTLIQryICb8k
+Message-ID: <CANsDNf2+VRWcY-PqrVV=OubNnwGS8BqLKd=qZoE3eccbYUPTvg@mail.gmail.com>
+To: Chris Larson <clarson@kergoth.com>
+Cc: yocto <yocto@yoctoproject.org>
+Subject: Re: Specifying different make flags for different tasks.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,140 +41,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 17 Dec 2012 16:40:13 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 17 Dec 2012 16:47:59 -0000
+Content-Type: text/plain; charset=UTF-8
 
-Or in Yocto Project context, we kind of use ADT more inclusive that referri=
-ng what Mark talked about SDK, the eclipse plug-in and other developers too=
-ls.  And we don't call out SDK that much.
+Hi Chris,
 
- --Jessica
+Yes, that would be exactly what I want, except that it' not working for me.
 
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Mark Hatle
-Sent: Monday, December 17, 2012 7:48 AM
-To: yocto@yoctoproject.org
-Subject: Re: [yocto] IMHO, cross-compile/toolchain examples should use non-=
-x86 arches
+Probably something obvious, but just in case, any reason why this
+should not work in denzil?
 
-On 12/16/12 4:57 PM, Sean Liming wrote:
+Thanks,
+Alex
+
+On Mon, Dec 17, 2012 at 4:24 PM, Chris Larson <clarson@kergoth.com> wrote:
 >
-> My 2c (USD) is for clarity on ADT vs. SDK vs. Toolchain.
-
-The biggest clarify problem I've seen is the terms being intermingled.  The=
-re are clear definitions for each.
-
-Toolchain, the compiler and related tools that enable compiling software fo=
-r a given target.
-
-SDK - Software Development Kit - On OE-Core this purpose of this is to enab=
-le developing software to be run on a specific target environment, generall=
-y also constructed from OE-Core.  The SDK consists of three primary compone=
-nts:
-   1) environment setup files - these configure the compilation environment=
- with the right settings
-   2) nativesdk software - these are applications that run on the -host- sy=
-stem to assist in compiling software for the target (this includes the targ=
-et toolchain.)
-   3) target sysroot - The sysroot is the collection of libraries, headers =
-and assorted items that are compiled for the target.  A sysroot is setup in=
- a similar fashion as a target's root filesystem.
-
-ADT - Application Developer Tool - This is an Eclipse component that can us=
-e the SDK, generated by OE-Core, to enable application development within t=
-he Eclipse framework.  (I may be slightly wrong on this item, as people hav=
-e told me in the past there are command line parts to the ADT.... but the A=
-DT itself is -not- the
-SDK.)
-
---Mark
-
-> Regards,
 >
-> Sean Liming
-> Owner
-> Annabooks
-> Tel: 714-970-7523 / Cell: 858-774-3176
+> On Mon, Dec 17, 2012 at 1:36 AM, Alex Gonzalez <alex@lindusembedded.com>
+> wrote:
+>>
+>> I am using EXTRA_OEMAKE to pass extra flags to make.
+>>
+>> How can I pass different flags for different tasks?
+>>
+>> In this case I am compiling an external kernel module and I need
+>> different make flags for the do_make_scripts and do_compile tasks. If
+>> I set EXTRA_OEMAKE in the recipe, all tasks use the same make flags.
 >
->> -----Original Message-----
->> From: yocto-bounces@yoctoproject.org [mailto:yocto-=20
->> bounces@yoctoproject.org] On Behalf Of Robert P. J. Day
->> Sent: Sunday, December 16, 2012 8:55 AM
->> To: Yocto discussion list
->> Subject: [yocto] IMHO, cross-compile/toolchain examples should use=20
->> non-
->> x86 arches
->>
->>
->>    a general preference on my part, but i think it would be useful if=20
->> any
-> yocto
->> docs that are discussing toolchains or cross-compilation or the like=20
->> use
->> *non*-x86 architectures to get the point across.
->>
->>    for example, consider the current application developer's guide.
->> part of it uses, as an example, the toolchain installer
-> poky-eglibc-x86_64-i586-
->> toolchain-gmae-1.4.sh.  while this works just fine, of course, what=20
->> it
-> does is
->> potentially co-mingle both the dev host content and target host=20
->> content, making it harder than necessary for the reader to draw a=20
->> clear distinction between the two.
->>
->>    if any example related to compilation or a toolchain involves,=20
->> say, an
-> *arm*
->> target, then it's *immediately* obvious (using the "file"
->> command) whether something belongs on the dev host or on the target.
->>
->>    also, if you're using x86 for both dev content and target content,=20
->> you
-> run
->> the risk of an example working by accident since you're picking up
-> natively-
->> installed tools when you shouldn't be.  if you use a non-x86 arch,=20
->> there's
-> little
->> chance of that happening.
->>
->>    just my $0.02 (Cdn).
->>
->> rday
->>
->>
->> --
->>
->> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D
->> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->> Robert P. J. Day                                 Ottawa, Ontario, CANADA
->>                          http://crashcourse.ca
->>
->> Twitter:                                       http://twitter.com/rpjday
->> LinkedIn:                               http://ca.linkedin.com/in/rpjday
->> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D
->> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
 >
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+> You could use the task-<taskname> override. E.g.:
 >
-
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
+> EXTRA_OEMAKE_append_task-do_compile = " FOO=bar"
+> --
+> Christopher Larson
 
