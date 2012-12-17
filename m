@@ -1,23 +1,37 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C2EA1E0073D
-	for <yocto@yoctoproject.org>; Mon, 17 Dec 2012 09:54:40 -0800 (PST)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 17 Dec 2012 09:51:43 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,303,1355126400"; d="scan'208";a="181982013"
-Received: from unknown (HELO localhost) ([10.255.13.202])
-	by AZSMGA002.ch.intel.com with ESMTP; 17 Dec 2012 09:51:41 -0800
-From: tom.zanussi@intel.com
-To: dvhart@linux.intel.com, david.c.stewart@intel.com, yocto@yoctoproject.org
-Date: Mon, 17 Dec 2012 11:51:34 -0600
-Message-Id: <82ce4e5c6166c96066a84df920cf0732e98ba3dc.1355766001.git.tom.zanussi@intel.com>
-X-Mailer: git-send-email 1.7.11.4
-In-Reply-To: <f339ca3f94ec7bb6a749c5973acb1f85bc1ace6c.1355766001.git.tom.zanussi@intel.com>
-References: <f339ca3f94ec7bb6a749c5973acb1f85bc1ace6c.1355766001.git.tom.zanussi@intel.com>
-In-Reply-To: <cover.1355766001.git.tom.zanussi@intel.com>
-References: <cover.1355766001.git.tom.zanussi@intel.com>
-Subject: [PATCH 2/5] yocto-layer: new script
+Return-Path: <ross.burton@intel.com>
+Received: from azsmga102.ch.intel.com (mga12.intel.com [143.182.124.36])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7EB85E00294
+	for <yocto@yoctoproject.org>; Mon, 17 Dec 2012 09:56:23 -0800 (PST)
+Received: from mail-gg0-f200.google.com ([209.85.161.200])
+	by mga14.intel.com with ESMTP/TLS/RC4-SHA; 17 Dec 2012 09:56:22 -0800
+Received: by mail-gg0-f200.google.com with SMTP id k5so8416033ggd.11
+	for <yocto@yoctoproject.org>; Mon, 17 Dec 2012 09:56:18 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type:x-gm-message-state;
+	bh=UBLeJIxGkOUqh2mDyNW2B2R6TDIDQv8HfSmt1+PAo7g=;
+	b=pfQr/sha7simmwz23FEmjXU4RARjW6tg6xUFq4tzsVosGB8ztrv90ZdePCVohX3ssz
+	fhlfEvly8BLOwQxLhQxZixrhpnJ+LEx6pRFPbiVZx70NeiD1JXxRPZKj2NrTEBpQaVZ8
+	BQxLZcgO9ZR+DCoUxprlfjg/CnmhPgERbs+qu1cGI5y6MKKRsu8CECj9sBkfRICqlLqE
+	YpLQxW5qhlHE6Yp10au3QGm7kwaIP+fSOsDT83Cf5IQHySiGOu8piAzkG8AGquI3s2MB
+	YVsqvpxi3fCgE2T+/R08Gnph9BZlK6K7cMu+nj2dUs1BiJDJ8VW4INHkbvwyNCnIxhRW
+	3/VA==
+Received: by 10.58.221.130 with SMTP id qe2mr25688374vec.14.1355766978088;
+	Mon, 17 Dec 2012 09:56:18 -0800 (PST)
+Received: by 10.58.221.130 with SMTP id qe2mr25688365vec.14.1355766977947;
+	Mon, 17 Dec 2012 09:56:17 -0800 (PST)
+MIME-Version: 1.0
+Received: by 10.58.178.244 with HTTP; Mon, 17 Dec 2012 09:55:57 -0800 (PST)
+In-Reply-To: <50CF5A47.4040509@gmail.com>
+References: <50CF5A47.4040509@gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Mon, 17 Dec 2012 17:55:57 +0000
+Message-ID: <CAJTo0LbWOq7J4McwEK0tC8wW---CJ9ToKz4zfeuFE3p_viXBiQ@mail.gmail.com>
+To: Jim Abernathy <jfabernathy@gmail.com>
+X-Gm-Message-State: ALoCoQk0mAfKDA25kHeGvjIrSi7/cd6H5YULE478p4EvZYl9QI9c3s2/L/d6csZVlbSzy7AUTKtqpz/IoHRzFh6DLUsRl0hqnspa4u1LcIjsw9t560l34RufVQ87dz5/rXOhHlpTJAuZgSIwaP7WeKW3w+hH72jrDw==
+Cc: yocto@yoctoproject.org
+Subject: Re: Recipe differences between Danny and Master
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,168 +43,20 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 17 Dec 2012 17:54:41 -0000
+X-List-Received-Date: Mon, 17 Dec 2012 17:56:23 -0000
+Content-Type: text/plain; charset=UTF-8
 
-From: Tom Zanussi <tom.zanussi@intel.com>
+On 17 December 2012 17:45, Jim Abernathy <jfabernathy@gmail.com> wrote:
+> SRC_URI = "file://myaudios-1.0/myaudios-1.0.tar.gz"
 
-Implementation of the 'yocto-layer' command-line tool, for creating
-generic layers and listing their input properties.
+You don't need to specify the myaudios-1.0 section, that's implicit in
+the search paths along with the unversioned ${BPN} and files/.
+SRC_URI="file://myaudios-1.0.tar.gz" will find it and also work with
+every previous Yocto release.
 
-Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
----
- scripts/yocto-layer | 142 ++++++++++++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 142 insertions(+)
- create mode 100755 scripts/yocto-layer
+This must have worked previously because the search path logic was
+rather overcomplicated and unpredictable.  It was recently cleaned up
+but obviously you were unknowingly relying on undocumented behaviour.
 
-diff --git a/scripts/yocto-layer b/scripts/yocto-layer
-new file mode 100755
-index 0000000..f759275
---- /dev/null
-+++ b/scripts/yocto-layer
-@@ -0,0 +1,142 @@
-+#!/usr/bin/env python
-+# ex:ts=4:sw=4:sts=4:et
-+# -*- tab-width: 4; c-basic-offset: 4; indent-tabs-mode: nil -*-
-+#
-+# Copyright (c) 2012, Intel Corporation.
-+# All rights reserved.
-+#
-+# This program is free software; you can redistribute it and/or modify
-+# it under the terms of the GNU General Public License version 2 as
-+# published by the Free Software Foundation.
-+#
-+# This program is distributed in the hope that it will be useful,
-+# but WITHOUT ANY WARRANTY; without even the implied warranty of
-+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-+# GNU General Public License for more details.
-+#
-+# You should have received a copy of the GNU General Public License along
-+# with this program; if not, write to the Free Software Foundation, Inc.,
-+# 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-+#
-+# DESCRIPTION
-+# 'yocto-layer' is the Yocto Tool that helps users create a new Yocto
-+# layer.  Invoking it without any arguments will display help screens
-+# for the 'yocto-layer' command and list the available 'yocto-layer'
-+# subcommands.  Invoking a subcommand without any arguments will
-+# likewise display help screens for the specified subcommand.  Please
-+# use that interface for detailed help.
-+#
-+# AUTHORS
-+# Tom Zanussi <tom.zanussi (at] intel.com>
-+#
-+
-+__version__ = "0.1.0"
-+
-+import os
-+import sys
-+import optparse
-+import logging
-+
-+scripts_path = os.path.abspath(os.path.dirname(os.path.abspath(sys.argv[0])))
-+lib_path = scripts_path + '/lib'
-+sys.path = sys.path + [lib_path]
-+
-+from bsp.help import *
-+from bsp.engine import *
-+
-+
-+def yocto_layer_create_subcommand(args, usage_str):
-+    """
-+    Command-line handling for layer creation.  The real work is done by
-+    bsp.engine.yocto_layer_create()
-+    """
-+    parser = optparse.OptionParser(usage = usage_str)
-+
-+    parser.add_option("-o", "--outdir", dest = "outdir", action = "store",
-+                      help = "name of layer dir to create")
-+    parser.add_option("-i", "--infile", dest = "properties_file", action = "store",
-+                      help = "name of file containing the values for layer input properties as a JSON file")
-+    parser.add_option("-c", "--codedump", dest = "codedump", action = "store_true",
-+                      default = False, help = "dump the generated code to layergen.out")
-+    (options, args) = parser.parse_args(args)
-+
-+    if len(args) != 1:
-+        logging.error("Wrong number of arguments, exiting\n")
-+        parser.print_help()
-+        sys.exit(1)
-+
-+    layer_name = args[0]
-+
-+    if options.outdir:
-+        layer_output_dir = options.outdir
-+    else:
-+        layer_output_dir = "meta-" + layer_name
-+
-+    yocto_layer_create(layer_name, scripts_path, layer_output_dir, options.codedump, options.properties_file)
-+
-+
-+def yocto_layer_list_subcommand(args, usage_str):
-+    """
-+    Command-line handling for listing available layer properties and
-+    values.  The real work is done by bsp.engine.yocto_layer_list()
-+    """
-+    parser = optparse.OptionParser(usage = usage_str)
-+
-+    parser.add_option("-o", "--outfile", action = "store", dest = "properties_file",
-+                      help = "dump the possible values for layer properties to a JSON file")
-+
-+    (options, args) = parser.parse_args(args)
-+
-+    if not yocto_layer_list(args, scripts_path, options.properties_file):
-+        logging.error("Bad list arguments, exiting\n")
-+        parser.print_help()
-+        sys.exit(1)
-+
-+
-+subcommands = {
-+    "create": [yocto_layer_create_subcommand,
-+               yocto_layer_create_usage,
-+               yocto_layer_create_help],
-+    "list":   [yocto_layer_list_subcommand,
-+               yocto_layer_list_usage,
-+               yocto_layer_list_help],
-+}
-+
-+
-+def start_logging(loglevel):
-+    logging.basicConfig(filname = 'yocto-layer.log', filemode = 'w', level=loglevel)
-+
-+
-+def main():
-+    parser = optparse.OptionParser(version = "yocto-layer version %s" % __version__,
-+                                   usage = yocto_layer_usage)
-+
-+    parser.disable_interspersed_args()
-+    parser.add_option("-D", "--debug", dest = "debug", action = "store_true",
-+                      default = False, help = "output debug information")
-+
-+    (options, args) = parser.parse_args()
-+
-+    loglevel = logging.INFO
-+    if options.debug:
-+        loglevel = logging.DEBUG
-+    start_logging(loglevel)
-+
-+    if len(args):
-+        if args[0] == "help":
-+            if len(args) == 1:
-+                parser.print_help()
-+                sys.exit(1)
-+
-+    invoke_subcommand(args, parser, yocto_layer_help_usage, subcommands)
-+
-+
-+if __name__ == "__main__":
-+    try:
-+        ret = main()
-+    except Exception:
-+        ret = 1
-+        import traceback
-+        traceback.print_exc(5)
-+    sys.exit(ret)
-+
--- 
-1.7.11.4
-
+Ross
 
