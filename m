@@ -1,31 +1,29 @@
-Return-Path: <langabe@gmail.com>
-Received: from mail-oa0-f48.google.com (mail-oa0-f48.google.com
-	[209.85.219.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A9D3DE006B3
-	for <yocto@yoctoproject.org>; Mon, 17 Dec 2012 00:36:35 -0800 (PST)
-Received: by mail-oa0-f48.google.com with SMTP id h2so5671722oag.35
-	for <yocto@yoctoproject.org>; Mon, 17 Dec 2012 00:36:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:from:date:x-google-sender-auth:message-id
-	:subject:to:content-type;
-	bh=q/fsvnHjeY/GVxGeUIhTMjiVUu0UMERsrxkACU+EcKs=;
-	b=DyxaDUPBRm3QkF2UxAk8GMTtAahkzADPsi0i/MlIfknAO/k5d2aNLlOm1e6tIbWbhE
-	783sbEig7RwmViSFshg4BZdMyV4elcJaQEwHhrSJKdoYB8IHBuC5yRIVqcjp3cux4/yT
-	l88fXedyE6UF7kC07k80Gugiqbc8HAj25Vmh94bEVnlQ0krlqiQVoHKmq3gLi/2C8x0X
-	4hwAWshLfXLUhffEgHec2aMj/ojHipntvk1g5a27VjEMR7vghmDAQwjK0fCpNGYrOCCm
-	ve7v1K8ebx0LkUded73vrkAK0RcAKsRFvySLmvcqK43+d47ZHesVSByBy38pb9+VtyaY
-	8NJg==
-Received: by 10.182.21.135 with SMTP id v7mr11048192obe.101.1355733395213;
-	Mon, 17 Dec 2012 00:36:35 -0800 (PST)
-MIME-Version: 1.0
-Sender: langabe@gmail.com
-Received: by 10.182.153.4 with HTTP; Mon, 17 Dec 2012 00:36:15 -0800 (PST)
-From: Alex Gonzalez <alex@lindusembedded.com>
-Date: Mon, 17 Dec 2012 09:36:15 +0100
-X-Google-Sender-Auth: eiJHedmJZg_F5idcUls9GWk_fhs
-Message-ID: <CANsDNf39kE=R4EhFpVsGQWP1AD1VSFgNWNxw4h1A2_nSuRUkUA@mail.gmail.com>
+Return-Path: <huanmateme@163.com>
+Received: from m13-24.163.com (unknown [220.181.13.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E7AEAE006B4
+	for <yocto@yoctoproject.org>; Mon, 17 Dec 2012 01:06:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=Received:Date:From:To:Subject:Content-Type:
+	MIME-Version:Message-ID; bh=n6vq2uwg9rUZDsuV088eDKxgPJDltglvCX1a
+	EkJChIg=; b=BytS82l7crshj+O7rM8Yqgk9/WvEAgIf3RTZkIUVztMU3m7DL8PO
+	t78oiV5k7ivCMPq9qkH8OrkLQeTH5iVGSUgySiCCk7mxNFLNhdpBz8aHKiMd0csT
+	sVb1Np29Vut2sH+BxC6eDLpn/cjxkPzjVzlWPnWF/6V85Zm5Flq70Rs=
+Received: from huanmateme$163.com ( [61.148.56.138] ) by
+	ajax-webmail-wmsvr24 (Coremail) ; Mon, 17 Dec 2012 17:06:26 +0800 (CST)
+X-Originating-IP: [61.148.56.138]
+Date: Mon, 17 Dec 2012 17:06:26 +0800 (CST)
+From: Biao <huanmateme@163.com>
 To: yocto@yoctoproject.org
-Subject: Specifying different make flags for different tasks.
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version SP_ntes V3.5 build
+	20121210(21001.5125.5051) Copyright (c) 2002-2012 www.mailtech.cn
+	163com
+MIME-Version: 1.0
+Message-ID: <23bf4f1e.c486.13ba81d3be7.Coremail.huanmateme@163.com>
+X-CM-TRANSID: GMGowGAZv0CT4M5QaHANAA--.8736W
+X-CM-SenderInfo: xkxd0z5dwhzvi6rwjhhfrp/xtbBSQGIgE9otYFikwAAsi
+X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
+Subject: Where does the bitbake get the variable "TOPDIR"
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,19 +35,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 17 Dec 2012 08:36:35 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Mon, 17 Dec 2012 09:06:57 -0000
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_185503_1189173442.1355735186406"
 
-Hi,
+------=_Part_185503_1189173442.1355735186406
+Content-Type: text/plain; charset=GBK
+Content-Transfer-Encoding: 7bit
 
-I am using EXTRA_OEMAKE to pass extra flags to make.
+Greetings, 
 
-How can I pass different flags for different tasks?
 
-In this case I am compiling an external kernel module and I need
-different make flags for the do_make_scripts and do_compile tasks. If
-I set EXTRA_OEMAKE in the recipe, all tasks use the same make flags.
+I am a newbie tying to understand how bitbake works.
+There is one line as BBPATH = "${TOPDIR}" in the mybuild/conf/bblayers.conf, i would like to know where the TOPDIR is defined? 
+
 
 Thanks,
-Alex
+Biao
 
+------=_Part_185503_1189173442.1355735186406
+Content-Type: text/html; charset=GBK
+Content-Transfer-Encoding: 7bit
+
+<div style="line-height:1.7;color:#000000;font-size:14px;font-family:arial">Greetings,&nbsp;<div><br></div><div>I am a newbie tying to understand how bitbake works.</div><div>There is one line as BBPATH = "${TOPDIR}" in the mybuild/conf/bblayers.conf, i would like to know where the TOPDIR is defined?&nbsp;</div><div><br></div><div>Thanks,</div><div>Biao</div></div>
+
+------=_Part_185503_1189173442.1355735186406--
