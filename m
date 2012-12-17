@@ -1,35 +1,43 @@
-Return-Path: <david.c.nystrom@gmail.com>
-Received: from mail-bk0-f48.google.com (mail-bk0-f48.google.com
-	[209.85.214.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A1FF1E0073D
-	for <yocto@yoctoproject.org>; Mon, 17 Dec 2012 07:16:57 -0800 (PST)
-Received: by mail-bk0-f48.google.com with SMTP id jc3so2780375bkc.35
-	for <yocto@yoctoproject.org>; Mon, 17 Dec 2012 07:16:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id:x-mailer:mime-version
-	:content-type:content-transfer-encoding;
-	bh=SyYtXxZ9iyNplbEMxhjjV3nj90VHX4Hir7lIIFQw/co=;
-	b=o6xU2nTu2kqLM8zdPmJDJGttVhw4c/lhzigkhnyZRkM+7X4y4068YXJnSxeCLFo+b8
-	qYv5uuMe637M3QcF/18XCHwpXuqlynYho6pnB3ICnTRai8crG0g21HFsa213xlSMOl5f
-	+S5fJ0IOc6wawhMelzheHJVNFtioxJcHExzzspJK1dI65YblnYTjr9DV/cy+VovLkli+
-	fu2nhQrHB4SDx2EBwDHbVN2QAndLac2gDA98Kru4jFEq5Jl/mz6VVKpFZBdf3c1zUt+M
-	/7MZ54oUiE28gcNTdkxFVTWjZ45gJjZThQcfVV1OPhu68FhG6wM2+z1kxWIQc5GS93R1
-	2CXA==
-Received: by 10.204.5.135 with SMTP id 7mr5951464bkv.48.1355757416266;
-	Mon, 17 Dec 2012 07:16:56 -0800 (PST)
-Received: from nysan (sestofw01.enea.se. [192.36.1.252])
-	by mx.google.com with ESMTPS id c10sm9676613bkw.1.2012.12.17.07.16.55
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Mon, 17 Dec 2012 07:16:55 -0800 (PST)
-Received: by nysan (Postfix, from userid 1000)
-	id 07E744004F7; Mon, 17 Dec 2012 16:16:47 +0100 (CET)
-From: "=?UTF-8?q?David=20Nystr=C3=B6m?=" <david.c.nystrom@gmail.com>
-To: yocto@yoctoproject.org
-Date: Mon, 17 Dec 2012 16:16:37 +0100
-Message-Id: <1355757397-8143-1-git-send-email-david.nystrom@enea.com>
-X-Mailer: git-send-email 1.7.9.5
-MIME-Version: 1.0
-Subject: [PATCH] Added ability to parse python sources to create-recipe
+Return-Path: <opensource@keylevel.com>
+Received: from r109.websiteservername.com (r109.websiteservername.com
+	[65.39.128.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1CF10E0073D
+	for <yocto@yoctoproject.org>; Mon, 17 Dec 2012 07:20:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=keylevel.com;
+	s=default; 
+	h=To:References:Message-Id:Content-Transfer-Encoding:Cc:Date:In-Reply-To:From:Content-Type:Mime-Version:Subject;
+	bh=38xK6ieDu+mqrRI5geNWzkKnuQrX2Si9B7RMA+v90wM=; 
+	b=Wwbw28Vn4kFn8dhRGhYW5r7XpVT6Av9YnLQ3QRpqHxRskChwff5CKBov0dTAZaWRXoIsFHg6e/cRfcFCmpfKlmIai6IsOx02U8nqMJkCZq4nj5f9zI/iD7LSauvGbZcY;
+Received: from [109.224.129.17] (port=38012
+	helo=macbook-pro.durham.keylevel.com)
+	by r109.websiteservername.com with esmtpa (Exim 4.80)
+	(envelope-from <opensource@keylevel.com>)
+	id 1TkcUD-002IGZ-1h; Mon, 17 Dec 2012 15:20:09 +0000
+Mime-Version: 1.0 (Apple Message framework v1283)
+From: Chris Tapp <opensource@keylevel.com>
+In-Reply-To: <CAJTo0LYTdoSeuoCQXYn23Xn8oY+9kXq5Qm0G-yV=bzZ6UuwXtw@mail.gmail.com>
+Date: Mon, 17 Dec 2012 15:20:07 +0000
+Message-Id: <99DDC49C-484B-4736-AF0A-71840CECF682@keylevel.com>
+References: <6D85911C-A82F-4029-A41E-D289D8050C79@keylevel.com>
+	<03D0A6FB83364ABF99FCB0481EA3EE0F@intel.com>
+	<D082E3D9-189B-4C66-A272-F28BB743D309@keylevel.com>
+	<6E2C4456B0C04C20952CCD8694B0B56F@intel.com>
+	<BDB77FD9-2563-4703-BFA8-707101CA366D@keylevel.com>
+	<A5D6B647-03DE-4ECD-9610-7FBE100684A7@keylevel.com>
+	<CAJTo0LYTdoSeuoCQXYn23Xn8oY+9kXq5Qm0G-yV=bzZ6UuwXtw@mail.gmail.com>
+To: "Burton, Ross" <ross.burton@intel.com>
+X-Mailer: Apple Mail (2.1283)
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - r109.websiteservername.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - keylevel.com
+X-Get-Message-Sender-Via: r109.websiteservername.com: authenticated_id:
+	chris.tapp+keylevel.com/only user confirmed/virtual account not
+	confirmed
+Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+Subject: Re: libva failing for mp4 using gstreamer under 'danny' with cedartrail BSP
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,131 +49,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 17 Dec 2012 15:16:58 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 17 Dec 2012 15:20:11 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
-Hi,
+Hi Ross,
 
-Added python source parsing abilities to create-recipe.
+On 13 Dec 2012, at 23:58, Burton, Ross wrote:
 
-Signed-off-by: David Nyström <david.nystrom@enea.com>
----
- scripts/create-recipe |   51 ++++++++++++++++++++++++++++++++++++++++++++++---
- 1 file changed, 48 insertions(+), 3 deletions(-)
+> On 13 December 2012 23:23, Chris Tapp <opensource@keylevel.com> wrote:
+>> Unfortunately, adding xvimagesink hasn't helped. I also still don't =
+really understand why webm and flv work ok.
+>=20
+> They're probably using ximagesink, but depending on your pipeline
+> you're probably doing the decode for mp4 using VAAPI, which has
+> special requirements on sinks.
 
-diff --git a/scripts/create-recipe b/scripts/create-recipe
-index 776c91d..a556e39 100755
---- a/scripts/create-recipe
-+++ b/scripts/create-recipe
-@@ -40,6 +40,8 @@ my $version = $predef_version;
- my $description = "";
- my $summary = "";
- my $url = "";
-+my $homepage;
-+my @rdepends;
- my $configure = "";
- my $localename = "";
- my @sources;
-@@ -1679,6 +1681,7 @@ sub write_bbfile
- 	open(BBFILE, ">${name}_$version.bb");
- 	print BBFILE "SUMMARY = \"$summary\"\n";
- 	print BBFILE "DESCRIPTION = \"$description\"\n";
-+	print BBFILE "HOMEPAGE = \"$homepage\"\n";
- 
- 	print BBFILE "LICENSE = \"@license\"\n";
- 	print BBFILE "LIC_FILES_CHKSUM = \"";
-@@ -1698,6 +1701,10 @@ sub write_bbfile
- 		print BBFILE "DEPENDS = \"@out\"\n\n";
- 	};
- 
-+	if (@rdepends > 0) {
-+	    print BBFILE "RDEPENDS_\$\{PN\} += \"@rdepends\"\n";
-+	}
-+
- 	print BBFILE 'PR = "r0"' . "\n\n";
- 	print BBFILE "SRC_URI = \"";
- 	foreach (@sources) {
-@@ -1734,6 +1741,7 @@ sub calculate_sums
-     chomp($sha256sum);
- }
- 
-+
- ############################################################################
- #
- # Main program 
-@@ -1820,6 +1828,40 @@ foreach (@dirs) {
- 
- $fulldir = $dir;
- 
-+if ( -e "$dir/setup.py" ) {
-+       	$python = 1;
-+	push(@inherits, "distutils");
-+	
-+	system("cd $dir ; python setup.py build sdist &> /dev/null");	
-+
-+        $templic = `sed '/^License: */!d; s///;q' $dir/*.egg-info/PKG-INFO`;
-+	chomp($templic);
-+	push(@license, $templic);
-+	$summary = `sed '/^Name: */!d; s///;q' $dir/*.egg-info/PKG-INFO`;
-+	chomp($summary);
-+	$description = `sed '/^Summary: */!d; s///;q' $dir/*.egg-info/PKG-INFO`;
-+	chomp($description);
-+	$homepage = `sed '/^Home-page: */!d; s///;q' $dir/*.egg-info/PKG-INFO`;
-+	chomp($homepage);
-+	$findoutput = `find $dir/*.egg-info/ -name "requires.txt" 2>/dev/null`;
-+	@findlist = split(/\n/, $findoutput);
-+	foreach (@findlist) {
-+	    # Adding dependency do buildreqs should be removed when
-+	    # distutils is unbroken, i.e. blocks setup.py install from 
-+	    # downloading and installing dependencies.
-+	    push(@buildreqs, `sed 's/[^a-zA-Z]//g' $dir/*.egg-info/requires.txt`);
-+	    chomp(@buildreqs);	    
-+	    foreach $item (@buildreqs) {
-+		$item = "python-" . $item
-+	    }
-+	    push(@rdepends, `sed 's/[^a-zA-Z]//g' $dir/*.egg-info/requires.txt`);
-+	    chomp(@rdepends);
-+	    foreach $item (@rdepends) {
-+		$item = "python-" . $item
-+	    }
-+	}
-+}
-+
- if ( -e "$dir/autogen.sh" ) {
- 	$configure = "autogen";
- 	$uses_configure = 1;
-@@ -1859,7 +1901,6 @@ if (-e "$dir/$name.pro") {
- 	push(@inherits, "qmake2");
- }
- 
--
- #
- # This is a good place to generate configure.in
- #
-@@ -1868,6 +1909,8 @@ if (length($configure) > 2) {
- 		system("cd $dir ; ./autogen.sh &> /dev/null");
- 	}
- }
-+
-+
- @files = <$dir/configure>;
- foreach (@files) {
- 	process_configure("$_");
-@@ -1893,8 +1936,10 @@ foreach (@files) {
- 	guess_license_from_file("$_");
- }
- 
--
--guess_description($dir);
-+ 
-+if ($python != 1) {
-+        guess_description($dir);
-+}
- 
- #
- # Output of bbfile file
--- 
-1.7.9.5
+One question - is that also true for 'fakesink'? I thought that was =
+supposed to accept any format, but it also throws the same error.
+
+My pipeline is just uridecodebin ! fakesink
+
+> I'd throw in some debugging to inspect the pipelines constructed for =
+flv vs mp4.
+>=20
+> Ross
+
+Chris Tapp
+
+opensource@keylevel.com
+www.keylevel.com
+
+
 
 
