@@ -1,40 +1,31 @@
-Return-Path: <sean.liming@annabooks.com>
-Received: from mail14c40.carrierzone.com (mail14c40.carrierzone.com
-	[209.235.156.154])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 18E65E0052C
-	for <yocto@yoctoproject.org>; Sun, 16 Dec 2012 14:57:27 -0800 (PST)
-X-Authenticated-User: sean.liming.annabooks.com
-Received: from Sean7 (cpe-76-95-171-22.socal.res.rr.com [76.95.171.22])
-	(authenticated bits=0)
-	by mail14c40.carrierzone.com (8.13.6/8.13.1) with ESMTP id
-	qBGMvKof016966; Sun, 16 Dec 2012 22:57:22 +0000
-From: "Sean Liming" <sean.liming@annabooks.com>
-To: "'Robert P. J. Day'" <rpjday@crashcourse.ca>,
-	"'Yocto discussion list'" <yocto@yoctoproject.org>
-References: <alpine.DEB.2.02.1212161148480.17740@oneiric>
-In-Reply-To: <alpine.DEB.2.02.1212161148480.17740@oneiric>
-Date: Sun, 16 Dec 2012 14:57:20 -0800
-Message-ID: <000601cddbe0$b587de30$20979a90$@annabooks.com>
+Return-Path: <langabe@gmail.com>
+Received: from mail-oa0-f48.google.com (mail-oa0-f48.google.com
+	[209.85.219.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A9D3DE006B3
+	for <yocto@yoctoproject.org>; Mon, 17 Dec 2012 00:36:35 -0800 (PST)
+Received: by mail-oa0-f48.google.com with SMTP id h2so5671722oag.35
+	for <yocto@yoctoproject.org>; Mon, 17 Dec 2012 00:36:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:sender:from:date:x-google-sender-auth:message-id
+	:subject:to:content-type;
+	bh=q/fsvnHjeY/GVxGeUIhTMjiVUu0UMERsrxkACU+EcKs=;
+	b=DyxaDUPBRm3QkF2UxAk8GMTtAahkzADPsi0i/MlIfknAO/k5d2aNLlOm1e6tIbWbhE
+	783sbEig7RwmViSFshg4BZdMyV4elcJaQEwHhrSJKdoYB8IHBuC5yRIVqcjp3cux4/yT
+	l88fXedyE6UF7kC07k80Gugiqbc8HAj25Vmh94bEVnlQ0krlqiQVoHKmq3gLi/2C8x0X
+	4hwAWshLfXLUhffEgHec2aMj/ojHipntvk1g5a27VjEMR7vghmDAQwjK0fCpNGYrOCCm
+	ve7v1K8ebx0LkUded73vrkAK0RcAKsRFvySLmvcqK43+d47ZHesVSByBy38pb9+VtyaY
+	8NJg==
+Received: by 10.182.21.135 with SMTP id v7mr11048192obe.101.1355733395213;
+	Mon, 17 Dec 2012 00:36:35 -0800 (PST)
 MIME-Version: 1.0
-X-Mailer: Microsoft Outlook 14.0
-Thread-Index: AQKE64vHZTZaihch8F83pyFl5XI0ypat6d9g
-X-CSC: 0
-X-CHA: v=2.0 cv=b6IFFK6x c=1 sm=1 a=RqNIojzclRO/fVsPhA7IgQ==:17
-	a=GQDNyb0EKFoA:10 a=_DgR7O7FQkkA:10 a=kj9zAlcOel0A:10 a=IjdlZ_XXAAAA:8
-	a=ef6r1I4Mhy4A:10 a=iGHA9ds3AAAA:8 a=CEtC_dnCAAAA:8 a=JqEG_dyiAAAA:8
-	a=jU4qhlNgAAAA:8 a=9gXKw4XzjNMs1rnZZb8A:9 a=CjuIK1q_8ugA:10
-	a=FCaQVidmf_IA:10 a=nHK3ipOpxeAA:10 a=XDKM753qmDAA:10
-	a=LDBzWXw00qedIebD:21
-	a=2gNDFkYU30OqBnDz:21 a=RqNIojzclRO/fVsPhA7IgQ==:117
-X-CTCH-RefID: str=0001.0A020208.50CE51D3.0004, ss=1, re=0.000, recu=0.000,
-	reip=0.000, cl=1, cld=1, fgs=0
-X-CTCH-VOD: Unknown
-X-CTCH-Spam: Unknown
-X-CTCH-Score: 0.000
-X-CTCH-Rules: 
-X-CTCH-Flags: 0
-X-CTCH-ScoreCust: 0.000
-Subject: Re: IMHO, cross-compile/toolchain examples should use non-x86 arches
+Sender: langabe@gmail.com
+Received: by 10.182.153.4 with HTTP; Mon, 17 Dec 2012 00:36:15 -0800 (PST)
+From: Alex Gonzalez <alex@lindusembedded.com>
+Date: Mon, 17 Dec 2012 09:36:15 +0100
+X-Google-Sender-Auth: eiJHedmJZg_F5idcUls9GWk_fhs
+Message-ID: <CANsDNf39kE=R4EhFpVsGQWP1AD1VSFgNWNxw4h1A2_nSuRUkUA@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: Specifying different make flags for different tasks.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,77 +37,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 16 Dec 2012 22:57:28 -0000
-Content-Type: text/plain;
-	charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Content-Language: en-us
+X-List-Received-Date: Mon, 17 Dec 2012 08:36:35 -0000
+Content-Type: text/plain; charset=UTF-8
 
+Hi,
 
-My 2c (USD) is for clarity on ADT vs. SDK vs. Toolchain.
+I am using EXTRA_OEMAKE to pass extra flags to make.
 
-Regards,
+How can I pass different flags for different tasks?
 
-Sean Liming
-Owner
-Annabooks
-Tel: 714-970-7523 / Cell: 858-774-3176
+In this case I am compiling an external kernel module and I need
+different make flags for the do_make_scripts and do_compile tasks. If
+I set EXTRA_OEMAKE in the recipe, all tasks use the same make flags.
 
-> -----Original Message-----
-> From: yocto-bounces@yoctoproject.org [mailto:yocto-
-> bounces@yoctoproject.org] On Behalf Of Robert P. J. Day
-> Sent: Sunday, December 16, 2012 8:55 AM
-> To: Yocto discussion list
-> Subject: [yocto] IMHO, cross-compile/toolchain examples should use non-
-> x86 arches
-> 
-> 
->   a general preference on my part, but i think it would be useful if any
-yocto
-> docs that are discussing toolchains or cross-compilation or the like use
-> *non*-x86 architectures to get the point across.
-> 
->   for example, consider the current application developer's guide.
-> part of it uses, as an example, the toolchain installer
-poky-eglibc-x86_64-i586-
-> toolchain-gmae-1.4.sh.  while this works just fine, of course, what it
-does is
-> potentially co-mingle both the dev host content and target host content,
-> making it harder than necessary for the reader to draw a clear distinction
-> between the two.
-> 
->   if any example related to compilation or a toolchain involves, say, an
-*arm*
-> target, then it's *immediately* obvious (using the "file"
-> command) whether something belongs on the dev host or on the target.
-> 
->   also, if you're using x86 for both dev content and target content, you
-run
-> the risk of an example working by accident since you're picking up
-natively-
-> installed tools when you shouldn't be.  if you use a non-x86 arch, there's
-little
-> chance of that happening.
-> 
->   just my $0.02 (Cdn).
-> 
-> rday
-> 
-> 
-> --
-> 
-> ==========================================================
-> ==============
-> Robert P. J. Day                                 Ottawa, Ontario, CANADA
->                         http://crashcourse.ca
-> 
-> Twitter:                                       http://twitter.com/rpjday
-> LinkedIn:                               http://ca.linkedin.com/in/rpjday
-> ==========================================================
-> ==============
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
+Thanks,
+Alex
 
