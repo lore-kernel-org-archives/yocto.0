@@ -1,28 +1,25 @@
-Return-Path: <munoz0raul@gmail.com>
-Received: from mail-ie0-f172.google.com (mail-ie0-f172.google.com
-	[209.85.223.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1E06FE006B4
-	for <yocto@yoctoproject.org>; Tue, 18 Dec 2012 05:48:19 -0800 (PST)
-Received: by mail-ie0-f172.google.com with SMTP id c13so891598ieb.3
-	for <yocto@yoctoproject.org>; Tue, 18 Dec 2012 05:48:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=B1T4nbZKaJgUAgyAuPp5i6hhCG1jZdUnxEDOzFH2i0o=;
-	b=z+Z2+v//cEWDLxCnY5fxoRPpmT3xMa4d+JhJFVL0ePo1KJkn+ymTLcQqTazEqdcwW+
-	AKhYaCeguprl/GSOgjynUZqcWBi6Z7gCRK4rkWLBVF3RqVAJjaE/8vZGfHNTqL529mbn
-	QWpf2wQcB/wfBz11/L+yY9Pg8MsVtWCaVUBGx24HdnP0YljCkao+8iKymSaLqMOqdGBs
-	oDPM33FiTXmNBqoE4e0ycV+/sDH42VlegvTm6K7inftrut+tlYxSmqyLJekzTcAGN6CW
-	cCokba5OyxfPddA5UqQWqQWemj/yIYP1Hl4i2Vx7mOQ+X8VtoK8Bdyv+0t3Pn5IUi1CI
-	THow==
+Return-Path: <philip@balister.org>
+Received: from starfish.geekisp.com (starfish.geekisp.com [216.168.135.166])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id F2AE7E006B4
+	for <yocto@yoctoproject.org>; Tue, 18 Dec 2012 06:13:55 -0800 (PST)
+Received: (qmail 6253 invoked by uid 1003); 18 Dec 2012 14:13:55 -0000
+Received: from unknown (HELO ?192.168.1.105?)
+	(philip@opensdr.com@96.240.164.36)
+	by mail.geekisp.com with (DHE-RSA-AES256-SHA encrypted) SMTP;
+	18 Dec 2012 14:13:54 -0000
+Message-ID: <50D07A22.8000906@balister.org>
+Date: Tue, 18 Dec 2012 09:13:54 -0500
+From: Philip Balister <philip@balister.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/17.0 Thunderbird/17.0
 MIME-Version: 1.0
-Received: by 10.42.74.73 with SMTP id v9mr1977652icj.37.1355838498688; Tue, 18
-	Dec 2012 05:48:18 -0800 (PST)
-Received: by 10.64.147.40 with HTTP; Tue, 18 Dec 2012 05:48:18 -0800 (PST)
-Date: Tue, 18 Dec 2012 11:48:18 -0200
-Message-ID: <CANmViriCGoKznqztTxC9TDP_+ZKizB_hUzbHLJ66NQ21H+re_g@mail.gmail.com>
-From: Raul Rosetto Munoz <munoz0raul@gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: How to use JRE (Java Runtime) in Yocto Projects
+To: tom.zanussi@intel.com
+References: <cover.1355766001.git.tom.zanussi@intel.com>
+	<f339ca3f94ec7bb6a749c5973acb1f85bc1ace6c.1355766001.git.tom.zanussi@intel.com>
+In-Reply-To: <f339ca3f94ec7bb6a749c5973acb1f85bc1ace6c.1355766001.git.tom.zanussi@intel.com>
+X-Enigmail-Version: 1.4.6
+Cc: yocto@yoctoproject.org, dvhart@linux.intel.com
+Subject: Re: [PATCH 1/5] scripts/lib/bsp/engine.py: add yocto_layer_create()
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,56 +31,96 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 18 Dec 2012 13:48:19 -0000
-Content-Type: multipart/alternative; boundary=90e6ba6e8490164e2804d120c011
-
---90e6ba6e8490164e2804d120c011
+X-List-Received-Date: Tue, 18 Dec 2012 14:13:56 -0000
 Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
 
-Hello all,
+On 12/17/2012 12:51 PM, tom.zanussi@intel.com wrote:
+> From: Tom Zanussi <tom.zanussi@intel.com>
+> 
+> Add a new yocto_layer_create() function that will be used to generate
+> a generic yocto layer (for the new 'yocto-layer' command).
 
-I'm using yocto project to create a linux for a IMX28.
+How is a "yocto layer" different from an OpenEmbedded layer? If you
+insist on "yocto layter", wouldn't "Yocto Project layer" be more accurate.
 
-I currently insert these layers:
+One of our goals for next year should be to clean up our terminology to
+reduce confusion in the user community.
 
-poky/meta
-poky/meta-yocto
-meta-fsl-arm
-meta-openembedded/meta-oe
+Philip
 
-I want to use JRE (Java Runtime) like openJDK, and I saw that have some
-existing layers that provide this features.
+> 
+> Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
+> ---
+>  scripts/lib/bsp/engine.py | 56 +++++++++++++++++++++++++++++++++++++++++++++++
+>  1 file changed, 56 insertions(+)
+> 
+> diff --git a/scripts/lib/bsp/engine.py b/scripts/lib/bsp/engine.py
+> index 8985544..d406e79 100644
+> --- a/scripts/lib/bsp/engine.py
+> +++ b/scripts/lib/bsp/engine.py
+> @@ -1352,6 +1352,62 @@ def expand_targets(context, bsp_output_dir):
+>      return target_files
+>  
+>  
+> +def yocto_layer_create(layer_name, scripts_path, layer_output_dir, codedump, properties_file):
+> +    """
+> +    Create yocto layer
+> +
+> +    layer_name - user-defined layer name
+> +    scripts_path - absolute path to yocto /scripts dir
+> +    bsp_output_dir - dirname to create for BSP
+> +    codedump - dump generated code to bspgen.out
+> +    properties_file - use values from here if nonempty i.e no prompting
+> +
+> +    arch - the arch for a generic layer is 'generic-layer', defined in
+> +           scripts/lib/bsp/substrate/target/generic-layer
+> +    """
+> +    if os.path.exists(bsp_output_dir):
+> +        print "\nBSP output dir already exists, exiting. (%s)" % bsp_output_dir
+> +        sys.exit(1)
+> +
+> +    properties = None
+> +
+> +    if properties_file:
+> +        try:
+> +            infile = open(properties_file, "r")
+> +        except IOError:
+> +            print "Couldn't open properties file %s for reading, exiting" % properties_file
+> +            sys.exit(1)
+> +
+> +        properties = json.load(infile)
+> +
+> +    os.mkdir(bsp_output_dir)
+> +
+> +    context = create_context(machine, arch, scripts_path)
+> +    target_files = expand_targets(context, bsp_output_dir)
+> +
+> +    input_lines = gather_inputlines(target_files)
+> +
+> +    program_lines = []
+> +
+> +    gen_program_header_lines(program_lines)
+> +
+> +    gen_initial_property_vals(input_lines, program_lines)
+> +
+> +    if properties:
+> +        gen_supplied_property_vals(properties, program_lines)
+> +
+> +    gen_program_machine_lines(machine, program_lines)
+> +
+> +    if not properties:
+> +        gen_program_input_lines(input_lines, program_lines, context)
+> +
+> +    gen_program_lines(target_files, program_lines)
+> +
+> +    run_program_lines(program_lines, codedump)
+> +
+> +    print "New %s BSP created in %s" % (arch, bsp_output_dir)
+> +
+> +
+>  def yocto_bsp_create(machine, arch, scripts_path, bsp_output_dir, codedump, properties_file):
+>      """
+>      Create bsp
+> 
 
-Specifically:
-
-meta-java
-meta-oracle-java
-
-What is the easy way to use JAVA with yocto?
-
-Thans for all help.
-
---=20
-*Raul Rosetto Mu=F1oz*
-
---90e6ba6e8490164e2804d120c011
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<div><div><div>Hello all,</div><div><br></div><div>I&#39;m using yocto proj=
-ect to create a linux for a IMX28.</div><div><br></div><div>I currently ins=
-ert these layers:</div><div><br></div><div>poky/meta</div><div>poky/meta-yo=
-cto</div>
-<div>meta-fsl-arm</div><div>meta-openembedded/meta-oe</div><div><br></div><=
-div>I want to use JRE (Java Runtime) like openJDK, and I saw that have some=
- existing layers that provide this features.</div><div><br></div><div>Speci=
-fically:</div>
-<div><br></div><div>meta-java</div><div>meta-oracle-java</div><div><br></di=
-v><div>What is the easy way to use JAVA with yocto?</div><div><br></div><di=
-v>Thans for all help.</div></div><div><br></div>-- <br><b>Raul Rosetto Mu=
-=F1oz</b><br>
-
-</div>
-
---90e6ba6e8490164e2804d120c011--
