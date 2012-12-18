@@ -1,29 +1,41 @@
-Return-Path: <philip@balister.org>
-Received: from starfish.geekisp.com (starfish.geekisp.com [216.168.135.166])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id DAA7EE00770
-	for <yocto@yoctoproject.org>; Tue, 18 Dec 2012 09:32:15 -0800 (PST)
-Received: (qmail 11463 invoked by uid 1003); 18 Dec 2012 17:32:11 -0000
-Received: from unknown (HELO ?192.168.1.105?)
-	(philip@opensdr.com@96.240.164.36)
-	by mail.geekisp.com with (DHE-RSA-AES256-SHA encrypted) SMTP;
-	18 Dec 2012 17:32:11 -0000
-Message-ID: <50D0A89A.5000106@balister.org>
-Date: Tue, 18 Dec 2012 12:32:10 -0500
-From: Philip Balister <philip@balister.org>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/17.0 Thunderbird/17.0
+Return-Path: <sean.liming@annabooks.com>
+Received: from mail32c40.carrierzone.com (mail32c40.carrierzone.com
+	[209.235.156.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E9BD2E0034C
+	for <yocto@yoctoproject.org>; Tue, 18 Dec 2012 09:36:37 -0800 (PST)
+X-Authenticated-User: sean.liming.annabooks.com
+Received: from Sean7 (cpe-76-95-171-22.socal.res.rr.com [76.95.171.22])
+	(authenticated bits=0)
+	by mail32c40.carrierzone.com (8.13.6/8.13.1) with ESMTP id
+	qBIHaTNT001308; Tue, 18 Dec 2012 17:36:30 +0000
+From: "Sean Liming" <sean.liming@annabooks.com>
+To: "'Zhang, Jessica'" <jessica.zhang@intel.com>,
+	"'Mark Hatle'" <mark.hatle@windriver.com>, <yocto@yoctoproject.org>
+References: <alpine.DEB.2.02.1212161148480.17740@oneiric>	<000601cddbe0$b587de30$20979a90$@annabooks.com>	<50CF3EBD.3040101@windriver.com>
+	<C6510F6D410BB64A8C15398EDC6B847C46B6D866@ORSMSX101.amr.corp.intel.com>
+In-Reply-To: <C6510F6D410BB64A8C15398EDC6B847C46B6D866@ORSMSX101.amr.corp.intel.com>
+Date: Tue, 18 Dec 2012 09:36:27 -0800
+Message-ID: <005101cddd46$36d09160$a471b420$@annabooks.com>
 MIME-Version: 1.0
-To: Tom Zanussi <tom.zanussi@intel.com>
-References: <cover.1355766001.git.tom.zanussi@intel.com>
-	<f339ca3f94ec7bb6a749c5973acb1f85bc1ace6c.1355766001.git.tom.zanussi@intel.com>
-	<50D07A22.8000906@balister.org>
-	<1355841229.20791.32.camel@empanada>
-	<50D09BBB.1030604@balister.org>
-	<1355849760.20791.47.camel@empanada>
-In-Reply-To: <1355849760.20791.47.camel@empanada>
-X-Enigmail-Version: 1.4.6
-Cc: yocto@yoctoproject.org, dvhart@linux.intel.com
-Subject: Re: [PATCH 1/5] scripts/lib/bsp/engine.py: add yocto_layer_create()
+X-Mailer: Microsoft Outlook 14.0
+Thread-Index: AQKE64vHZTZaihch8F83pyFl5XI0ygGsT6mlAlwMPZ4B5qylLZaBOPtA
+X-CSC: 0
+X-CHA: v=2.0 cv=WpGcx6jv c=1 sm=1 a=RqNIojzclRO/fVsPhA7IgQ==:17
+	a=6j2Cmf9_ExMA:10 a=_DgR7O7FQkkA:10 a=kj9zAlcOel0A:10 a=IjdlZ_XXAAAA:8
+	a=ef6r1I4Mhy4A:10 a=iGHA9ds3AAAA:8 a=CEtC_dnCAAAA:8 a=JqEG_dyiAAAA:8
+	a=jU4qhlNgAAAA:8 a=DCGUjhEUll1Gy5AlTlgA:9 a=CjuIK1q_8ugA:10
+	a=FCaQVidmf_IA:10 a=nHK3ipOpxeAA:10 a=XDKM753qmDAA:10
+	a=5LB9p0qODcCMjpOp:21
+	a=XijxIDpzpxe18u7m:21 a=RqNIojzclRO/fVsPhA7IgQ==:117
+X-CTCH-RefID: str=0001.0A020207.50D0A99F.0181, ss=1, re=0.000, recu=0.000,
+	reip=0.000, cl=1, cld=1, fgs=0
+X-CTCH-VOD: Unknown
+X-CTCH-Spam: Unknown
+X-CTCH-Score: 0.000
+X-CTCH-Rules: 
+X-CTCH-Flags: 0
+X-CTCH-ScoreCust: 0.000
+Subject: Re: IMHO, cross-compile/toolchain examples should use non-x86 arches
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,158 +47,194 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 18 Dec 2012 17:32:16 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Tue, 18 Dec 2012 17:36:38 -0000
+Content-Type: text/plain;
+	charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Language: en-us
 
-On 12/18/2012 11:56 AM, Tom Zanussi wrote:
-> On Tue, 2012-12-18 at 11:37 -0500, Philip Balister wrote:
->> On 12/18/2012 09:33 AM, Tom Zanussi wrote:
->>> On Tue, 2012-12-18 at 09:13 -0500, Philip Balister wrote:
->>>> On 12/17/2012 12:51 PM, tom.zanussi@intel.com wrote:
->>>>> From: Tom Zanussi <tom.zanussi@intel.com>
->>>>>
->>>>> Add a new yocto_layer_create() function that will be used to generate
->>>>> a generic yocto layer (for the new 'yocto-layer' command).
->>>>
->>>> How is a "yocto layer" different from an OpenEmbedded layer? If you
->>>> insist on "yocto layter", wouldn't "Yocto Project layer" be more accurate.
->>>>
->>>
->>> Technically it isn't any different, but it's based on the template
->>> engine code and templates that make up the 'Yocto BSP Tools', which for
->>> various reasons (they create Yocto-compliant BSP layers, something not
->>> of interest to OpenEmbedded proper, and it probably doesn't make sense
->>> to clutter oe-core with a bunch of 'template data', etc) live in poky
->>> and not oe-core.
->>
->> Actually, BSP's should work standalone with oe-core, so it is of interest.
->>
->>>
->>> As such, the new tool is named 'yocto-layer' to match the other existing
->>> Yocto BSP tools, 'yocto-bsp' and 'yocto-kernel'.
->>
->> I will now get pedantic. <rday mode on>
->>
->> The meta-yocto layer functions as a distro layer. So referring to things
->> as yocto this and yocto that, suggests they only work with the
->> meta-yocto layer.
->>
->> So it doesn't make sense to me to put general purpose tools in a distro
->> layer.
->>
->> <rday mode off>
->>
-> 
-> Right, none of the yocto- tools has anything to do with the meta-yocto
-> layer, so if that's how it's taken, then, yeah, it's misleading.
-> 
-> It wouldn't bother me to do a global search and replace of 'yocto' with
-> 'oe' for the tools - I guess that would imply it would all be moving
-> into oe-core, though.  Is that what you're suggesting?
+Jessica and Mark,
 
-I am not sure what the best way to clear up terminology is at the
-moment, and given it is he week before Christmas, a number of people I
-would like to discuss this with are on holiday, so we can defer the
-solution until next year.
+Thank you for the responses. It appears that there is another thread on the
+same subject. Let me feedback what I am seeing and hearing:
 
-In the meantime, I have no problem with people getting work done, so I
-have no objection to the patch moving forward.
+The quick start guide
+(http://www.yoctoproject.org/docs/current/yocto-project-qs/yocto-project-qs.
+html) and various presentation slides showing the Poky Work Flow / Yocto
+Project Development Environment show an output of the image and Application
+Development SDK. When I include the option to build the SDK in a Yoicto1.3
+Danny build, I see in the /../tmp/deploy/sdk is the ADT installer. To me the
+ADT installer installs the toolchain and the rootfs to build applications.
+Also, the ADT installer only installs a rootfs based on pre-set images like
+core-image-sato, core-image-minimal, etc., and doesn't address a custom
+rootfs that may have more or less support than the standard images. The
+Eclipse plug in adds the capability to Eclipse to link to the toolchain and
+rootfs installed by the ADT installer.
 
-Philip
+Does this sound correct?
 
+Regards,
+
+Sean Liming
+Owner
+Annabooks
+Tel: 714-970-7523 / Cell: 858-774-3176
+
+> -----Original Message-----
+> From: yocto-bounces@yoctoproject.org [mailto:yocto-
+> bounces@yoctoproject.org] On Behalf Of Zhang, Jessica
+> Sent: Monday, December 17, 2012 8:40 AM
+> To: Mark Hatle; yocto@yoctoproject.org
+> Subject: Re: [yocto] IMHO, cross-compile/toolchain examples should use
+> non-x86 arches
 > 
-> Tom
+> Or in Yocto Project context, we kind of use ADT more inclusive that
+referring
+> what Mark talked about SDK, the eclipse plug-in and other developers
+tools.
+> And we don't call out SDK that much.
 > 
->>>
->>> Tom
->>>
->>>
->>>> One of our goals for next year should be to clean up our terminology to
->>>> reduce confusion in the user community.
->>>>
->>>> Philip
->>>>
->>>>>
->>>>> Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
->>>>> ---
->>>>>  scripts/lib/bsp/engine.py | 56 +++++++++++++++++++++++++++++++++++++++++++++++
->>>>>  1 file changed, 56 insertions(+)
->>>>>
->>>>> diff --git a/scripts/lib/bsp/engine.py b/scripts/lib/bsp/engine.py
->>>>> index 8985544..d406e79 100644
->>>>> --- a/scripts/lib/bsp/engine.py
->>>>> +++ b/scripts/lib/bsp/engine.py
->>>>> @@ -1352,6 +1352,62 @@ def expand_targets(context, bsp_output_dir):
->>>>>      return target_files
->>>>>  
->>>>>  
->>>>> +def yocto_layer_create(layer_name, scripts_path, layer_output_dir, codedump, properties_file):
->>>>> +    """
->>>>> +    Create yocto layer
->>>>> +
->>>>> +    layer_name - user-defined layer name
->>>>> +    scripts_path - absolute path to yocto /scripts dir
->>>>> +    bsp_output_dir - dirname to create for BSP
->>>>> +    codedump - dump generated code to bspgen.out
->>>>> +    properties_file - use values from here if nonempty i.e no prompting
->>>>> +
->>>>> +    arch - the arch for a generic layer is 'generic-layer', defined in
->>>>> +           scripts/lib/bsp/substrate/target/generic-layer
->>>>> +    """
->>>>> +    if os.path.exists(bsp_output_dir):
->>>>> +        print "\nBSP output dir already exists, exiting. (%s)" % bsp_output_dir
->>>>> +        sys.exit(1)
->>>>> +
->>>>> +    properties = None
->>>>> +
->>>>> +    if properties_file:
->>>>> +        try:
->>>>> +            infile = open(properties_file, "r")
->>>>> +        except IOError:
->>>>> +            print "Couldn't open properties file %s for reading, exiting" % properties_file
->>>>> +            sys.exit(1)
->>>>> +
->>>>> +        properties = json.load(infile)
->>>>> +
->>>>> +    os.mkdir(bsp_output_dir)
->>>>> +
->>>>> +    context = create_context(machine, arch, scripts_path)
->>>>> +    target_files = expand_targets(context, bsp_output_dir)
->>>>> +
->>>>> +    input_lines = gather_inputlines(target_files)
->>>>> +
->>>>> +    program_lines = []
->>>>> +
->>>>> +    gen_program_header_lines(program_lines)
->>>>> +
->>>>> +    gen_initial_property_vals(input_lines, program_lines)
->>>>> +
->>>>> +    if properties:
->>>>> +        gen_supplied_property_vals(properties, program_lines)
->>>>> +
->>>>> +    gen_program_machine_lines(machine, program_lines)
->>>>> +
->>>>> +    if not properties:
->>>>> +        gen_program_input_lines(input_lines, program_lines, context)
->>>>> +
->>>>> +    gen_program_lines(target_files, program_lines)
->>>>> +
->>>>> +    run_program_lines(program_lines, codedump)
->>>>> +
->>>>> +    print "New %s BSP created in %s" % (arch, bsp_output_dir)
->>>>> +
->>>>> +
->>>>>  def yocto_bsp_create(machine, arch, scripts_path, bsp_output_dir, codedump, properties_file):
->>>>>      """
->>>>>      Create bsp
->>>>>
->>>
->>>
->>>
->>>
+>  --Jessica
 > 
+> -----Original Message-----
+> From: yocto-bounces@yoctoproject.org [mailto:yocto-
+> bounces@yoctoproject.org] On Behalf Of Mark Hatle
+> Sent: Monday, December 17, 2012 7:48 AM
+> To: yocto@yoctoproject.org
+> Subject: Re: [yocto] IMHO, cross-compile/toolchain examples should use
+> non-x86 arches
 > 
+> On 12/16/12 4:57 PM, Sean Liming wrote:
+> >
+> > My 2c (USD) is for clarity on ADT vs. SDK vs. Toolchain.
 > 
+> The biggest clarify problem I've seen is the terms being intermingled.
+There
+> are clear definitions for each.
 > 
+> Toolchain, the compiler and related tools that enable compiling software
+for
+> a given target.
+> 
+> SDK - Software Development Kit - On OE-Core this purpose of this is to
+> enable developing software to be run on a specific target environment,
+> generally also constructed from OE-Core.  The SDK consists of three
+primary
+> components:
+>    1) environment setup files - these configure the compilation
+environment
+> with the right settings
+>    2) nativesdk software - these are applications that run on the -host-
+system
+> to assist in compiling software for the target (this includes the target
+> toolchain.)
+>    3) target sysroot - The sysroot is the collection of libraries, headers
+and
+> assorted items that are compiled for the target.  A sysroot is setup in a
+similar
+> fashion as a target's root filesystem.
+> 
+> ADT - Application Developer Tool - This is an Eclipse component that can
+use
+> the SDK, generated by OE-Core, to enable application development within
+> the Eclipse framework.  (I may be slightly wrong on this item, as people
+have
+> told me in the past there are command line parts to the ADT.... but the
+ADT
+> itself is -not- the
+> SDK.)
+> 
+> --Mark
+> 
+> > Regards,
+> >
+> > Sean Liming
+> > Owner
+> > Annabooks
+> > Tel: 714-970-7523 / Cell: 858-774-3176
+> >
+> >> -----Original Message-----
+> >> From: yocto-bounces@yoctoproject.org [mailto:yocto-
+> >> bounces@yoctoproject.org] On Behalf Of Robert P. J. Day
+> >> Sent: Sunday, December 16, 2012 8:55 AM
+> >> To: Yocto discussion list
+> >> Subject: [yocto] IMHO, cross-compile/toolchain examples should use
+> >> non-
+> >> x86 arches
+> >>
+> >>
+> >>    a general preference on my part, but i think it would be useful if
+> >> any
+> > yocto
+> >> docs that are discussing toolchains or cross-compilation or the like
+> >> use
+> >> *non*-x86 architectures to get the point across.
+> >>
+> >>    for example, consider the current application developer's guide.
+> >> part of it uses, as an example, the toolchain installer
+> > poky-eglibc-x86_64-i586-
+> >> toolchain-gmae-1.4.sh.  while this works just fine, of course, what
+> >> it
+> > does is
+> >> potentially co-mingle both the dev host content and target host
+> >> content, making it harder than necessary for the reader to draw a
+> >> clear distinction between the two.
+> >>
+> >>    if any example related to compilation or a toolchain involves,
+> >> say, an
+> > *arm*
+> >> target, then it's *immediately* obvious (using the "file"
+> >> command) whether something belongs on the dev host or on the target.
+> >>
+> >>    also, if you're using x86 for both dev content and target content,
+> >> you
+> > run
+> >> the risk of an example working by accident since you're picking up
+> > natively-
+> >> installed tools when you shouldn't be.  if you use a non-x86 arch,
+> >> there's
+> > little
+> >> chance of that happening.
+> >>
+> >>    just my $0.02 (Cdn).
+> >>
+> >> rday
+> >>
+> >>
+> >> --
+> >>
+> >>
+> ==========================================================
+> >> ==============
+> >> Robert P. J. Day                                 Ottawa, Ontario,
+CANADA
+> >>                          http://crashcourse.ca
+> >>
+> >> Twitter:
+http://twitter.com/rpjday
+> >> LinkedIn:
+http://ca.linkedin.com/in/rpjday
+> >>
+> ==========================================================
+> >> ==============
+> >> _______________________________________________
+> >> yocto mailing list
+> >> yocto@yoctoproject.org
+> >> https://lists.yoctoproject.org/listinfo/yocto
+> >
+> > _______________________________________________
+> > yocto mailing list
+> > yocto@yoctoproject.org
+> > https://lists.yoctoproject.org/listinfo/yocto
+> >
+> 
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
 
