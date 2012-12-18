@@ -1,40 +1,28 @@
-Return-Path: <jessica.zhang@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A063BE0034C
-	for <yocto@yoctoproject.org>; Tue, 18 Dec 2012 09:54:29 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 18 Dec 2012 09:53:12 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,309,1355126400"; d="scan'208";a="235941023"
-Received: from orsmsx104.amr.corp.intel.com ([10.22.225.131])
-	by orsmga001.jf.intel.com with ESMTP; 18 Dec 2012 09:54:04 -0800
-Received: from orsmsx152.amr.corp.intel.com (10.22.226.39) by
-	ORSMSX104.amr.corp.intel.com (10.22.225.131) with Microsoft SMTP Server
-	(TLS) id 14.1.355.2; Tue, 18 Dec 2012 09:54:03 -0800
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.81]) by
-	ORSMSX152.amr.corp.intel.com ([169.254.8.179]) with mapi id
-	14.01.0355.002; Tue, 18 Dec 2012 09:54:02 -0800
-From: "Zhang, Jessica" <jessica.zhang@intel.com>
-To: Sean Liming <sean.liming@annabooks.com>, 'Mark Hatle'
-	<mark.hatle@windriver.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [yocto] IMHO, cross-compile/toolchain examples should use
-	non-x86 arches
-Thread-Index: AQHN3G4FLJueJntkgUiFTNyi+qb/A5gdMABQgAIpqoD//3ulcA==
-Date: Tue, 18 Dec 2012 17:53:59 +0000
-Message-ID: <C6510F6D410BB64A8C15398EDC6B847C46B6DEE3@ORSMSX101.amr.corp.intel.com>
-References: <alpine.DEB.2.02.1212161148480.17740@oneiric>
-	<000601cddbe0$b587de30$20979a90$@annabooks.com>
-	<50CF3EBD.3040101@windriver.com>
-	<C6510F6D410BB64A8C15398EDC6B847C46B6D866@ORSMSX101.amr.corp.intel.com>
-	<005101cddd46$36d09160$a471b420$@annabooks.com>
-In-Reply-To: <005101cddd46$36d09160$a471b420$@annabooks.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.139]
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 32BA8E0034C
+	for <yocto@yoctoproject.org>; Tue, 18 Dec 2012 09:57:58 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id qBIHvvfa028182
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Tue, 18 Dec 2012 09:57:57 -0800 (PST)
+Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.2.318.4;
+	Tue, 18 Dec 2012 09:57:57 -0800
+Message-ID: <50D0AE9A.4070907@windriver.com>
+Date: Tue, 18 Dec 2012 12:57:46 -0500
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:16.0) Gecko/20121028 Thunderbird/16.0.2
 MIME-Version: 1.0
-Subject: Re: IMHO, cross-compile/toolchain examples should use non-x86 arches
+To: "Marco C." <koansoftware@gmail.com>
+References: <50C4EF27.2030106@gmail.com>
+	<CADkTA4NAdSTxwjMfSKVutev6ksRoDce9a9buVnZymVXpeXCJqw@mail.gmail.com>
+	<CAHQNVWDNEdVzv3-2Jf2eNPiEG1zChRT78J8-4d2NXd1a20+iww@mail.gmail.com>
+In-Reply-To: <CAHQNVWDNEdVzv3-2Jf2eNPiEG1zChRT78J8-4d2NXd1a20+iww@mail.gmail.com>
+Cc: Yocto Project Discussion <yocto@yoctoproject.org>
+Subject: Re: bitbake -c devshell option
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,234 +34,215 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 18 Dec 2012 17:54:29 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 18 Dec 2012 17:57:58 -0000
+X-Groupsio-MsgNum: 11178
+Content-Type: multipart/mixed; boundary="------------060702000606040408060604"
 
-Hi Sean,
+--------------060702000606040408060604
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Your summary is correct as far as current ADT installer's capabilities goes=
-.  I think in the ADT manual we talked about besides using ADT installer to=
- setup an application cross development environment, user can also using a =
-toolchain tarball.  This is discussed in another email thread atm.  Origina=
-lly the toolchain tarball sysroot is pretty much canned so very limited for=
- user to customize to match their target images.  For 1.3, Mark has added t=
-he capability to generate the toolchain tarball that matching the target im=
-age via bitbake -c populate_sdk image.  As far as eclipse plug-in goes, you=
- can specify you desired toolchain and sysroot combination whether they're =
-installed via adt-installer or toolchain tarball.
+On 12-12-18 10:45 AM, Marco C. wrote:
+> 2012/12/9 Bruce Ashfield <bruce.ashfield@gmail.com>:
+>
+>> As Chris said, this way should still work, and it does work here for me.
+>> There's
+>> one thing that you may notice with kernel's that have split source/build
+>> dirs
+>> (like linux-yocto), is that once you have gone through the configure phase
+>> and drop into the devshell you may not have KBUILT_OUTPUT set to the
+>> build directory, and end up dropping files in the source dir .. which causes
+>> you
+>> mrproper and build issue.
+>>
+>> I have a local append to devshell that sets:
+>>
+>>        d.setVar("KBUILD_OUTPUT", "${B}")
+>>
+>> To make sure things work.  If you need something like this as well, or have
+>> problems with linux-yocot, I can arrange to have something like this added
+>> by default. But since no one else has asked about it, I assumed no one else
+>> is either using devshell, or they haven't run into it.
+>>
+>> Cheers,
+>>
+>> Bruce
+>
+>
+> Dear Bruce,
+> I'd like to have the same behaviour as before, so what you suggested
+> would suit me.
+> Could you please tell me where to add that line?
+> Fileneme and function.
 
-BTW, one of the features that we will be working on for adt-installer is to=
- make it base on sstate instead of the current opkg and ipk adt-repo.  In t=
-his way, we eliminate the dependency on particular ipk package format also,=
- gives user the flexibility to customized their sysroot instead of the the =
-predefined images rootfs.
+Apply the patch to your yocto/oe-core repository (master branch, but
+it should apply to danny as well). This will be part of my next
+consolidated kernel pull request, so you'll only need to carry
+it locally for a short time.
 
-Thanks,
-Jessica
------Original Message-----
-From: Sean Liming [mailto:sean.liming@annabooks.com]
-Sent: Tuesday, December 18, 2012 9:36 AM
-To: Zhang, Jessica; 'Mark Hatle'; yocto@yoctoproject.org
-Subject: RE: [yocto] IMHO, cross-compile/toolchain examples should use non-=
-x86 arches
+Cheers,
 
-Jessica and Mark,
+Bruce
 
-Thank you for the responses. It appears that there is another thread on the=
- same subject. Let me feedback what I am seeing and hearing:
-
-The quick start guide
-(http://www.yoctoproject.org/docs/current/yocto-project-qs/yocto-project-qs=
-.
-html) and various presentation slides showing the Poky Work Flow / Yocto Pr=
-oject Development Environment show an output of the image and Application D=
-evelopment SDK. When I include the option to build the SDK in a Yoicto1.3 D=
-anny build, I see in the /../tmp/deploy/sdk is the ADT installer. To me the=
- ADT installer installs the toolchain and the rootfs to build applications.
-Also, the ADT installer only installs a rootfs based on pre-set images like=
- core-image-sato, core-image-minimal, etc., and doesn't address a custom ro=
-otfs that may have more or less support than the standard images. The Eclip=
-se plug in adds the capability to Eclipse to link to the toolchain and root=
-fs installed by the ADT installer.
-
-Does this sound correct?
-
-Regards,
-
-Sean Liming
-Owner
-Annabooks
-Tel: 714-970-7523 / Cell: 858-774-3176
-
-> -----Original Message-----
-> From: yocto-bounces@yoctoproject.org [mailto:yocto-
-> bounces@yoctoproject.org] On Behalf Of Zhang, Jessica
-> Sent: Monday, December 17, 2012 8:40 AM
-> To: Mark Hatle; yocto@yoctoproject.org
-> Subject: Re: [yocto] IMHO, cross-compile/toolchain examples should use
-> non-x86 arches
 >
-> Or in Yocto Project context, we kind of use ADT more inclusive that
-referring
-> what Mark talked about SDK, the eclipse plug-in and other developers
-tools.
-> And we don't call out SDK that much.
+> Thank you
+>   --
+> Marco Cavallini
 >
->  --Jessica
->
-> -----Original Message-----
-> From: yocto-bounces@yoctoproject.org [mailto:yocto-
-> bounces@yoctoproject.org] On Behalf Of Mark Hatle
-> Sent: Monday, December 17, 2012 7:48 AM
-> To: yocto@yoctoproject.org
-> Subject: Re: [yocto] IMHO, cross-compile/toolchain examples should use
-> non-x86 arches
->
-> On 12/16/12 4:57 PM, Sean Liming wrote:
-> >
-> > My 2c (USD) is for clarity on ADT vs. SDK vs. Toolchain.
->
-> The biggest clarify problem I've seen is the terms being intermingled.
-There
-> are clear definitions for each.
->
-> Toolchain, the compiler and related tools that enable compiling
-> software
-for
-> a given target.
->
-> SDK - Software Development Kit - On OE-Core this purpose of this is to
-> enable developing software to be run on a specific target environment,
-> generally also constructed from OE-Core.  The SDK consists of three
-primary
-> components:
->    1) environment setup files - these configure the compilation
-environment
-> with the right settings
->    2) nativesdk software - these are applications that run on the
-> -host-
-system
-> to assist in compiling software for the target (this includes the
-> target
-> toolchain.)
->    3) target sysroot - The sysroot is the collection of libraries,
-> headers
-and
-> assorted items that are compiled for the target.  A sysroot is setup
-> in a
-similar
-> fashion as a target's root filesystem.
->
-> ADT - Application Developer Tool - This is an Eclipse component that
-> can
-use
-> the SDK, generated by OE-Core, to enable application development
-> within the Eclipse framework.  (I may be slightly wrong on this item,
-> as people
-have
-> told me in the past there are command line parts to the ADT.... but
-> the
-ADT
-> itself is -not- the
-> SDK.)
->
-> --Mark
->
-> > Regards,
-> >
-> > Sean Liming
-> > Owner
-> > Annabooks
-> > Tel: 714-970-7523 / Cell: 858-774-3176
-> >
-> >> -----Original Message-----
-> >> From: yocto-bounces@yoctoproject.org [mailto:yocto-
-> >> bounces@yoctoproject.org] On Behalf Of Robert P. J. Day
-> >> Sent: Sunday, December 16, 2012 8:55 AM
-> >> To: Yocto discussion list
-> >> Subject: [yocto] IMHO, cross-compile/toolchain examples should use
-> >> non-
-> >> x86 arches
-> >>
-> >>
-> >>    a general preference on my part, but i think it would be useful
-> >> if any
-> > yocto
-> >> docs that are discussing toolchains or cross-compilation or the
-> >> like use
-> >> *non*-x86 architectures to get the point across.
-> >>
-> >>    for example, consider the current application developer's guide.
-> >> part of it uses, as an example, the toolchain installer
-> > poky-eglibc-x86_64-i586-
-> >> toolchain-gmae-1.4.sh.  while this works just fine, of course, what
-> >> it
-> > does is
-> >> potentially co-mingle both the dev host content and target host
-> >> content, making it harder than necessary for the reader to draw a
-> >> clear distinction between the two.
-> >>
-> >>    if any example related to compilation or a toolchain involves,
-> >> say, an
-> > *arm*
-> >> target, then it's *immediately* obvious (using the "file"
-> >> command) whether something belongs on the dev host or on the target.
-> >>
-> >>    also, if you're using x86 for both dev content and target
-> >> content, you
-> > run
-> >> the risk of an example working by accident since you're picking up
-> > natively-
-> >> installed tools when you shouldn't be.  if you use a non-x86 arch,
-> >> there's
-> > little
-> >> chance of that happening.
-> >>
-> >>    just my $0.02 (Cdn).
-> >>
-> >> rday
-> >>
-> >>
-> >> --
-> >>
-> >>
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> >> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> >> Robert P. J. Day                                 Ottawa, Ontario,
-CANADA
-> >>                          http://crashcourse.ca
-> >>
-> >> Twitter:
-http://twitter.com/rpjday
-> >> LinkedIn:
-http://ca.linkedin.com/in/rpjday
-> >>
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> >> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> >> _______________________________________________
-> >> yocto mailing list
-> >> yocto@yoctoproject.org
-> >> https://lists.yoctoproject.org/listinfo/yocto
-> >
-> > _______________________________________________
-> > yocto mailing list
-> > yocto@yoctoproject.org
-> > https://lists.yoctoproject.org/listinfo/yocto
-> >
->
+> 2012/12/9 Bruce Ashfield <bruce.ashfield@gmail.com>:
+>>
+>>
+>>
+>> On Sun, Dec 9, 2012 at 3:05 PM, Marco <koansoftware@gmail.com> wrote:
+>>>
+>>> Hello,
+>>> I was used to work with oe-classic.
+>>> When I used oe-classic, often I used the 'devshell' option to try to
+>>> compile (make uImage) the kernel with the entire environment set up
+>>> correctly.
+>>> Now if I do the same procedure with Yocto 8 Danny it does not work.
+>>> For example I'm using a default configuration below:
+>>>
+>>> 1st step
+>>> ---
+>>> MACHINE="beagleboard" bitbake -c devshell virtual/kernel
+>>>
+>>> Build Configuration:
+>>> BB_VERSION        = "1.16.0"
+>>> TARGET_ARCH       = "arm"
+>>> TARGET_OS         = "linux-gnueabi"
+>>> MACHINE           = "beagleboard"
+>>> DISTRO            = "poky"
+>>> DISTRO_VERSION    = "1.3"
+>>> TUNE_FEATURES     = "armv7a vfp neon cortexa8"
+>>> TARGET_FPU        = "vfp-neon"
+>>> meta
+>>> meta-yocto
+>>> meta-yocto-bsp    = "danny:09031ac2fc0f30ec577ee823fc61ff0e5d852e21"
+>>>
+>>> NOTE: Resolving any missing task queue dependencies
+>>> NOTE: Preparing runqueue
+>>> NOTE: Executing SetScene Tasks
+>>> NOTE: Executing RunQueue Tasks
+>>> NOTE: Tasks Summary: Attempted 912 tasks of which 912 didn't need to be
+>>> rerun and all succeeded.
+>>>
+>>>
+>>> 2nd step just after 1st
+>>> ------------------------
+>>> MACHINE="beagleboard" bitbake -c devshell virtual/kernel
+>>>
+>>> - Devshell starts in a new screen
+>>> ------------------------
+>>> $ pwd
+>>>
+>>> ~/yocto-8-danny/poky/build/tmp/work/beagleboard-poky-linux-gnueabi/linux-yocto-3.4.11+git1+a201268353c030d9fafe00f2041976f7437d9386_1+449f7f520350700858f21a5554b81cc8ad23267d-r4.3/linux
+>>>
+>>> - lauch a kernel build (as I was used to do)
+>>> ------------------------
+>>> $ make
+>>> scripts/kconfig/conf --silentoldconfig Kconfig
+>>> ***
+>>> *** Configuration file ".config" not found!
+>>> ***
+>>> *** Please run some configurator (e.g. "make oldconfig" or
+>>> *** "make menuconfig" or "make xconfig").
+>>> ***
+>>> make[2]: *** [silentoldconfig] Error 1
+>>> make[1]: *** [silentoldconfig] Error 2
+>>> make: *** No rule to make target `include/config/auto.conf', needed by
+>>> `include/config/kernel.release'.  Stop.
+>>>
+>>>
+>>> I would like to find out whether you can still do this and what is the new
+>>> way to go
+>>
+>>
+>> As Chris said, this way should still work, and it does work here for me.
+>> There's
+>> one thing that you may notice with kernel's that have split source/build
+>> dirs
+>> (like linux-yocto), is that once you have gone through the configure phase
+>> and drop into the devshell you may not have KBUILT_OUTPUT set to the
+>> build directory, and end up dropping files in the source dir .. which causes
+>> you
+>> mrproper and build issue.
+>>
+>> I have a local append to devshell that sets:
+>>
+>>        d.setVar("KBUILD_OUTPUT", "${B}")
+>>
+>> To make sure things work.  If you need something like this as well, or have
+>> problems with linux-yocot, I can arrange to have something like this added
+>> by default. But since no one else has asked about it, I assumed no one else
+>> is either using devshell, or they haven't run into it.
+>>
+>> Cheers,
+>>
+>> Bruce
+>>
+>>
+>>
+>>>
+>>>
+>>> TIA
+>>> --
+>>> Marco Cavallini
+>>> _______________________________________________
+>>> yocto mailing list
+>>> yocto@yoctoproject.org
+>>> https://lists.yoctoproject.org/listinfo/yocto
+>>
+>>
+>>
+>>
+>> --
+>> "Thou shalt not follow the NULL pointer, for chaos and madness await thee at
+>> its end"
 > _______________________________________________
 > yocto mailing list
 > yocto@yoctoproject.org
 > https://lists.yoctoproject.org/listinfo/yocto
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+>
 
 
+--------------060702000606040408060604
+Content-Type: text/x-patch;
+	name="0001-kernel-yocto-add-KBUILD_OUTPUT-to-OE_TERMINAL_EXPORT.patch"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+	filename*0="0001-kernel-yocto-add-KBUILD_OUTPUT-to-OE_TERMINAL_EXPORT.pa";
+	filename*1="tch"
+
+From 0f0092ea9091765ab30d83d6574831083e3870c1 Mon Sep 17 00:00:00 2001
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+Date: Tue, 18 Dec 2012 12:54:20 -0500
+Subject: [PATCH] kernel-yocto: add KBUILD_OUTPUT to OE_TERMINAL_EXPORTS
+
+Since linux-yocto based recipes have a split build and source directory,
+we should export KBUILD=${B} to the devshell. This allows the kernel to
+be incrementally build within the shell and not dirty the source
+directory (which breaks subsequent full builds).
+
+Signed-off-by: Bruce Ashfield <bruce.ashfield@windriver.com>
+---
+ meta/classes/kernel-yocto.bbclass |    3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/meta/classes/kernel-yocto.bbclass b/meta/classes/kernel-yocto.bbclass
+index 793921f..b336e43 100644
+--- a/meta/classes/kernel-yocto.bbclass
++++ b/meta/classes/kernel-yocto.bbclass
+@@ -344,5 +344,6 @@ do_kernel_link_vmlinux() {
+ 	ln -sf ../../../vmlinux
+ }
+ 
+-OE_TERMINAL_EXPORTS += "GUILT_BASE"
++OE_TERMINAL_EXPORTS += "GUILT_BASE KBUILD_OUTPUT"
+ GUILT_BASE = "meta"
++KBUILD_OUTPUT = "${B}"
+-- 
+1.7.10.4
+
+
+--------------060702000606040408060604--
