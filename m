@@ -1,25 +1,31 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9875FE006B4
-	for <yocto@yoctoproject.org>; Tue, 18 Dec 2012 06:33:51 -0800 (PST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 18 Dec 2012 06:33:51 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,309,1355126400"; d="scan'208";a="266256130"
-Received: from unknown (HELO [10.255.13.202]) ([10.255.13.202])
-	by fmsmga002.fm.intel.com with ESMTP; 18 Dec 2012 06:33:49 -0800
-Message-ID: <1355841229.20791.32.camel@empanada>
-From: Tom Zanussi <tom.zanussi@intel.com>
-To: Philip Balister <philip@balister.org>
-Date: Tue, 18 Dec 2012 08:33:49 -0600
-In-Reply-To: <50D07A22.8000906@balister.org>
-References: <cover.1355766001.git.tom.zanussi@intel.com>
-	<f339ca3f94ec7bb6a749c5973acb1f85bc1ace6c.1355766001.git.tom.zanussi@intel.com>
-	<50D07A22.8000906@balister.org>
-X-Mailer: Evolution 3.4.1 (3.4.1-2.fc17) 
-Mime-Version: 1.0
-Cc: yocto@yoctoproject.org, dvhart@linux.intel.com
-Subject: Re: [PATCH 1/5] scripts/lib/bsp/engine.py: add yocto_layer_create()
+Return-Path: <koansoftware@gmail.com>
+Received: from mail-pb0-f53.google.com (mail-pb0-f53.google.com
+	[209.85.160.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 62E15E00655
+	for <yocto@yoctoproject.org>; Tue, 18 Dec 2012 07:45:14 -0800 (PST)
+Received: by mail-pb0-f53.google.com with SMTP id jt11so523273pbb.12
+	for <yocto@yoctoproject.org>; Tue, 18 Dec 2012 07:45:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:content-type; bh=J22/RbfZ+A7BVbDCYwkTacJZasE6oCxz/+iaLRyzvR0=;
+	b=Gye1Pyp01/UKlnwyGjUAWB+j78lyrI38JtxWYl68RK82BxikPwq2N0CYooDLVRUPZF
+	ZbIAT+F+weyuyhDRL94Z4Lr98AJevsywJM8rmZx5kyo7jq22Oh7jxz6CgparVXI+zSzc
+	/EQUrtsS9RZtNDLDCAAufHRmTSBJ0Ursm436RPpkpSSiSUNDiugR9P3lBhCKhmrQqNVk
+	2tIKQPnpZ9FMuWzdYuVIzSi6/9qdp5S6A9ocG1h4R9Hjy966ReaPfd2gQqWslijA6TCr
+	QWYBBWz4pCg03iG/oZNZIiylw8lYfCwyifb/gOHLFl3AKNK3ostyr5VZ0gf8MlESrIpW
+	vd9A==
+MIME-Version: 1.0
+Received: by 10.66.77.201 with SMTP id u9mr7664221paw.80.1355845514236; Tue,
+	18 Dec 2012 07:45:14 -0800 (PST)
+Received: by 10.68.228.229 with HTTP; Tue, 18 Dec 2012 07:45:14 -0800 (PST)
+In-Reply-To: <CADkTA4NAdSTxwjMfSKVutev6ksRoDce9a9buVnZymVXpeXCJqw@mail.gmail.com>
+References: <50C4EF27.2030106@gmail.com>
+	<CADkTA4NAdSTxwjMfSKVutev6ksRoDce9a9buVnZymVXpeXCJqw@mail.gmail.com>
+Date: Tue, 18 Dec 2012 16:45:14 +0100
+Message-ID: <CAHQNVWDNEdVzv3-2Jf2eNPiEG1zChRT78J8-4d2NXd1a20+iww@mail.gmail.com>
+From: "Marco C." <koansoftware@gmail.com>
+To: Yocto Project Discussion <yocto@yoctoproject.org>
+Subject: Re: bitbake -c devshell option
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,113 +37,153 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 18 Dec 2012 14:33:51 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 18 Dec 2012 15:45:14 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On Tue, 2012-12-18 at 09:13 -0500, Philip Balister wrote:
-> On 12/17/2012 12:51 PM, tom.zanussi@intel.com wrote:
-> > From: Tom Zanussi <tom.zanussi@intel.com>
-> > 
-> > Add a new yocto_layer_create() function that will be used to generate
-> > a generic yocto layer (for the new 'yocto-layer' command).
-> 
-> How is a "yocto layer" different from an OpenEmbedded layer? If you
-> insist on "yocto layter", wouldn't "Yocto Project layer" be more accurate.
-> 
+2012/12/9 Bruce Ashfield <bruce.ashfield@gmail.com>:
 
-Technically it isn't any different, but it's based on the template
-engine code and templates that make up the 'Yocto BSP Tools', which for
-various reasons (they create Yocto-compliant BSP layers, something not
-of interest to OpenEmbedded proper, and it probably doesn't make sense
-to clutter oe-core with a bunch of 'template data', etc) live in poky
-and not oe-core.
-
-As such, the new tool is named 'yocto-layer' to match the other existing
-Yocto BSP tools, 'yocto-bsp' and 'yocto-kernel'.
-
-Tom
-
-
-> One of our goals for next year should be to clean up our terminology to
-> reduce confusion in the user community.
-> 
-> Philip
-> 
-> > 
-> > Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
-> > ---
-> >  scripts/lib/bsp/engine.py | 56 +++++++++++++++++++++++++++++++++++++++++++++++
-> >  1 file changed, 56 insertions(+)
-> > 
-> > diff --git a/scripts/lib/bsp/engine.py b/scripts/lib/bsp/engine.py
-> > index 8985544..d406e79 100644
-> > --- a/scripts/lib/bsp/engine.py
-> > +++ b/scripts/lib/bsp/engine.py
-> > @@ -1352,6 +1352,62 @@ def expand_targets(context, bsp_output_dir):
-> >      return target_files
-> >  
-> >  
-> > +def yocto_layer_create(layer_name, scripts_path, layer_output_dir, codedump, properties_file):
-> > +    """
-> > +    Create yocto layer
-> > +
-> > +    layer_name - user-defined layer name
-> > +    scripts_path - absolute path to yocto /scripts dir
-> > +    bsp_output_dir - dirname to create for BSP
-> > +    codedump - dump generated code to bspgen.out
-> > +    properties_file - use values from here if nonempty i.e no prompting
-> > +
-> > +    arch - the arch for a generic layer is 'generic-layer', defined in
-> > +           scripts/lib/bsp/substrate/target/generic-layer
-> > +    """
-> > +    if os.path.exists(bsp_output_dir):
-> > +        print "\nBSP output dir already exists, exiting. (%s)" % bsp_output_dir
-> > +        sys.exit(1)
-> > +
-> > +    properties = None
-> > +
-> > +    if properties_file:
-> > +        try:
-> > +            infile = open(properties_file, "r")
-> > +        except IOError:
-> > +            print "Couldn't open properties file %s for reading, exiting" % properties_file
-> > +            sys.exit(1)
-> > +
-> > +        properties = json.load(infile)
-> > +
-> > +    os.mkdir(bsp_output_dir)
-> > +
-> > +    context = create_context(machine, arch, scripts_path)
-> > +    target_files = expand_targets(context, bsp_output_dir)
-> > +
-> > +    input_lines = gather_inputlines(target_files)
-> > +
-> > +    program_lines = []
-> > +
-> > +    gen_program_header_lines(program_lines)
-> > +
-> > +    gen_initial_property_vals(input_lines, program_lines)
-> > +
-> > +    if properties:
-> > +        gen_supplied_property_vals(properties, program_lines)
-> > +
-> > +    gen_program_machine_lines(machine, program_lines)
-> > +
-> > +    if not properties:
-> > +        gen_program_input_lines(input_lines, program_lines, context)
-> > +
-> > +    gen_program_lines(target_files, program_lines)
-> > +
-> > +    run_program_lines(program_lines, codedump)
-> > +
-> > +    print "New %s BSP created in %s" % (arch, bsp_output_dir)
-> > +
-> > +
-> >  def yocto_bsp_create(machine, arch, scripts_path, bsp_output_dir, codedump, properties_file):
-> >      """
-> >      Create bsp
-> > 
+> As Chris said, this way should still work, and it does work here for me.
+> There's
+> one thing that you may notice with kernel's that have split source/build
+> dirs
+> (like linux-yocto), is that once you have gone through the configure phase
+> and drop into the devshell you may not have KBUILT_OUTPUT set to the
+> build directory, and end up dropping files in the source dir .. which causes
+> you
+> mrproper and build issue.
+>
+> I have a local append to devshell that sets:
+>
+>       d.setVar("KBUILD_OUTPUT", "${B}")
+>
+> To make sure things work.  If you need something like this as well, or have
+> problems with linux-yocot, I can arrange to have something like this added
+> by default. But since no one else has asked about it, I assumed no one else
+> is either using devshell, or they haven't run into it.
+>
+> Cheers,
+>
+> Bruce
 
 
+Dear Bruce,
+I'd like to have the same behaviour as before, so what you suggested
+would suit me.
+Could you please tell me where to add that line?
+Fileneme and function.
+
+Thank you
+ --
+Marco Cavallini
+
+2012/12/9 Bruce Ashfield <bruce.ashfield@gmail.com>:
+>
+>
+>
+> On Sun, Dec 9, 2012 at 3:05 PM, Marco <koansoftware@gmail.com> wrote:
+>>
+>> Hello,
+>> I was used to work with oe-classic.
+>> When I used oe-classic, often I used the 'devshell' option to try to
+>> compile (make uImage) the kernel with the entire environment set up
+>> correctly.
+>> Now if I do the same procedure with Yocto 8 Danny it does not work.
+>> For example I'm using a default configuration below:
+>>
+>> 1st step
+>> ---
+>> MACHINE="beagleboard" bitbake -c devshell virtual/kernel
+>>
+>> Build Configuration:
+>> BB_VERSION        = "1.16.0"
+>> TARGET_ARCH       = "arm"
+>> TARGET_OS         = "linux-gnueabi"
+>> MACHINE           = "beagleboard"
+>> DISTRO            = "poky"
+>> DISTRO_VERSION    = "1.3"
+>> TUNE_FEATURES     = "armv7a vfp neon cortexa8"
+>> TARGET_FPU        = "vfp-neon"
+>> meta
+>> meta-yocto
+>> meta-yocto-bsp    = "danny:09031ac2fc0f30ec577ee823fc61ff0e5d852e21"
+>>
+>> NOTE: Resolving any missing task queue dependencies
+>> NOTE: Preparing runqueue
+>> NOTE: Executing SetScene Tasks
+>> NOTE: Executing RunQueue Tasks
+>> NOTE: Tasks Summary: Attempted 912 tasks of which 912 didn't need to be
+>> rerun and all succeeded.
+>>
+>>
+>> 2nd step just after 1st
+>> ------------------------
+>> MACHINE="beagleboard" bitbake -c devshell virtual/kernel
+>>
+>> - Devshell starts in a new screen
+>> ------------------------
+>> $ pwd
+>>
+>> ~/yocto-8-danny/poky/build/tmp/work/beagleboard-poky-linux-gnueabi/linux-yocto-3.4.11+git1+a201268353c030d9fafe00f2041976f7437d9386_1+449f7f520350700858f21a5554b81cc8ad23267d-r4.3/linux
+>>
+>> - lauch a kernel build (as I was used to do)
+>> ------------------------
+>> $ make
+>> scripts/kconfig/conf --silentoldconfig Kconfig
+>> ***
+>> *** Configuration file ".config" not found!
+>> ***
+>> *** Please run some configurator (e.g. "make oldconfig" or
+>> *** "make menuconfig" or "make xconfig").
+>> ***
+>> make[2]: *** [silentoldconfig] Error 1
+>> make[1]: *** [silentoldconfig] Error 2
+>> make: *** No rule to make target `include/config/auto.conf', needed by
+>> `include/config/kernel.release'.  Stop.
+>>
+>>
+>> I would like to find out whether you can still do this and what is the new
+>> way to go
+>
+>
+> As Chris said, this way should still work, and it does work here for me.
+> There's
+> one thing that you may notice with kernel's that have split source/build
+> dirs
+> (like linux-yocto), is that once you have gone through the configure phase
+> and drop into the devshell you may not have KBUILT_OUTPUT set to the
+> build directory, and end up dropping files in the source dir .. which causes
+> you
+> mrproper and build issue.
+>
+> I have a local append to devshell that sets:
+>
+>       d.setVar("KBUILD_OUTPUT", "${B}")
+>
+> To make sure things work.  If you need something like this as well, or have
+> problems with linux-yocot, I can arrange to have something like this added
+> by default. But since no one else has asked about it, I assumed no one else
+> is either using devshell, or they haven't run into it.
+>
+> Cheers,
+>
+> Bruce
+>
+>
+>
+>>
+>>
+>> TIA
+>> --
+>> Marco Cavallini
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
+>
+>
+> --
+> "Thou shalt not follow the NULL pointer, for chaos and madness await thee at
+> its end"
 
