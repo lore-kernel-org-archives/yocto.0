@@ -1,28 +1,37 @@
-Return-Path: <mail@timomueller.eu>
-Received: from h1954115.stratoserver.net (h1954115.stratoserver.net
-	[85.214.246.27])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AB778E00294
-	for <yocto@yoctoproject.org>; Tue, 18 Dec 2012 00:33:51 -0800 (PST)
-Received: from [192.168.101.86] (mail.bmw-carit.de [62.245.222.98])
-	(using TLSv1 with cipher DHE-RSA-CAMELLIA256-SHA (256/256 bits))
-	(No client certificate requested)
-	(Authenticated sender: mail@timomueller.eu)
-	by h1954115.stratoserver.net (mailserver) with ESMTPSA id 4388E6E94001; 
-	Tue, 18 Dec 2012 09:33:48 +0100 (CET)
-Message-ID: <50D02A6B.2000605@timomueller.eu>
-Date: Tue, 18 Dec 2012 09:33:47 +0100
-From: =?ISO-8859-1?Q?Timo_M=FCller?= <mail@timomueller.eu>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:15.0) Gecko/20120911 Thunderbird/15.0.1
+Return-Path: <ross.burton@intel.com>
+Received: from fmsmga102.fm.intel.com (mga10.intel.com [192.55.52.92])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E9A1AE0052C
+	for <yocto@yoctoproject.org>; Tue, 18 Dec 2012 03:36:06 -0800 (PST)
+Received: from mail-ye0-f200.google.com ([209.85.213.200])
+	by mga11.intel.com with ESMTP/TLS/RC4-SHA; 18 Dec 2012 03:36:06 -0800
+Received: by mail-ye0-f200.google.com with SMTP id r13so796818yen.11
+	for <yocto@yoctoproject.org>; Tue, 18 Dec 2012 03:36:05 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=x-received:mime-version:in-reply-to:references:from:date:message-id
+	:subject:to:cc:content-type:x-gm-message-state;
+	bh=wqLQSOzjfI81mPewIwCp8hL8psbWwmxxF0SaO55THGQ=;
+	b=iYZVPpQmhAaQjxgS8+fUi5au7mX3BVyOfvEdebhkNsoJ4TWuGKDr99cGF/33CUfP55
+	cpc4IvtKbig3G3UW2eZmweUj9tgf4dvmJpwzIgbjkQxvaZw5IObH31WVpZvuJlI7mAHx
+	/bs0jEi36n8+ZAfNNwWwKewWF+iIbYPnJO56mGKw2HCig8Qb1UgY9BCVcSQuvYgeRZnQ
+	GPau0AeaxMCpZvQv0BDodrXboeQ8OkGNSZqJbSip68fnxYzzZybC0/SjWO5SjfatikMA
+	cEWstxp2QiottBeONXzHI5saKdXQb73GfstN5lhX0tE4fnmCYIYsJFC/8NlwrT5nBeCX
+	ES5Q==
+X-Received: by 10.52.37.9 with SMTP id u9mr2047884vdj.83.1355830565107;
+	Tue, 18 Dec 2012 03:36:05 -0800 (PST)
+Received: by 10.52.37.9 with SMTP id u9mr2047871vdj.83.1355830564865; Tue, 18
+	Dec 2012 03:36:04 -0800 (PST)
 MIME-Version: 1.0
-To: "Zhang, Jessica" <jessica.zhang@intel.com>
-References: <cover.1354805521.git.timo.mueller@bmw-carit.de>
-	<50C88216.3010803@timomueller.eu>
-	<C6510F6D410BB64A8C15398EDC6B847C46B6C126@ORSMSX101.amr.corp.intel.com>
-In-Reply-To: <C6510F6D410BB64A8C15398EDC6B847C46B6C126@ORSMSX101.amr.corp.intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: Re: [RFCv3 0/7][eclipse-poky] Integrate yocto documentation into eclipse
+Received: by 10.58.178.244 with HTTP; Tue, 18 Dec 2012 03:35:44 -0800 (PST)
+In-Reply-To: <20121215132238.503DC201C62@gemini.denx.de>
+References: <20121215132238.503DC201C62@gemini.denx.de>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Tue, 18 Dec 2012 11:35:44 +0000
+Message-ID: <CAJTo0LaEoAv6hi6D_pxGJA=uLzA=YRHE0B-nd8s9YK+hV-w48g@mail.gmail.com>
+To: Wolfgang Denk <wd@denx.de>
+X-Gm-Message-State: ALoCoQm92qJ1Wn6wg5R7orsm0XCdcBxtlfcKiOVKObwHTaI1fjEZR/BWJaj2cwacwxp9b083KmkRH7LImn2KZZlBBv89AdGzPv9KFBIQ91jrCyky2/TH7AF+VE915k0lOlrCSZ+hHaipuXroPwUkBTftI+0aq6PMgw==
+Cc: yocto@yoctoproject.org
+Subject: Re: Git tag systematics ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,153 +43,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 18 Dec 2012 08:33:52 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Tue, 18 Dec 2012 11:36:07 -0000
+Content-Type: text/plain; charset=UTF-8
 
-Hi Jessica,
-
-Zhang, Jessica wrote, On 15.12.2012 00:37:
-> Hi Timo,
+On 15 December 2012 13:22, Wolfgang Denk <wd@denx.de> wrote:
+> can anybody explain to me the systematics of the git tags ysed to mark
+> the Yocto / Poky releases?
 >
-> Sorry for the delay, but finally got a chance to look into these
-> patches. I like how it automate the docgen and integrate them into
-> eclipse. The concern that I'm having is, it seems converting all the
-> Yocto Project Docs, originally I thought only for ADT manual.
-
-The first version of this RFC was meant to be a proof of concept,
-that's why I only included the ADT manual.
-One of the reasons why I integrated all manuals are the links between
-the different documents. The links pointing to documentation at
-yoctoprojects.org are rewritten to point to the documentation inside
-eclipse (I'm using the same mechanism as the mega-manual). So there's
-no need for internet connectivity and the user doesn't have to leave
-eclipse.
-
-> So to view
-> these doc in eclipse are nice, but since we don't have some
-> corresponding feature support in eclipse plug-in, it'll look awkward to
-> combine these docs with ADT plugin.
-
-I guess for some manuals it makes more sense to have them inside of
-eclipse than for others. But I personally like that everything is in
-one place, either just on the website, in the PDFs or in eclipse.
-
-> BTW, to support our bitbake
-> commander plug-in running on windows usage, we recently split the
-> plug-in into 2 features: ADT and bitbake commander and the doc plug-in
-> is part of ADT feature. So I'd suggest, if we want to show all the docs,
-> probably create a separate Yocto Doc Feature. If we want to combine with
-> ADT plug-in, then probably only covert the ADT manual content generation
-> and integration. Make sense?
-
-Yes. Creating a separate feature seems like a good idea. I will rewrite 
-the patch series accordingly.
-
+> For example, for Yocto 1.2 and before, we have release tags like
+> denzil-7.0, edison-6.0, bernard-5.0, laverne-4.0, etc.
 >
-> Thanks,
-> Jessica
+> Some parts of the current 1.3 Yocto release refer to it as "Poky 8.0"
+> or Version "8.0 Danny", see for example here:
+> https://www.yoctoproject.org/download/yocto-project-13-poky-80
 >
-> -----Original Message-----
-> From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org] On Behalf Of Timo Müller
-> Sent: Wednesday, December 12, 2012 5:10 AM
-> To: yocto@yoctoproject.org
-> Cc: Timo Mueller
-> Subject: Re: [yocto] [RFCv3 0/7][eclipse-poky] Integrate yocto documentation into eclipse
+> However, there is no such release tag as "danny-8.0".
 >
-> Hi,
+> Instead, there is a tag "1.3" - but there are no similar tags as "1.1"
+> or "1.2" for the earlier releases?
 >
-> mail@timomueller.eu wrote, On 06.12.2012 16:48:
->> From: Timo Mueller <timo.mueller@bmw-carit.de>
->>
->> Hi,
->>
->> since the last proposal some things have changed:
->> 1. Eclipse help generation is now part of the yocto-docs project
->> (currently available in the origin/timo branch) 2. We agreed that the
->> plugin should be licensed under the EPL v1.0 instead of having a
->> separate documentation plugin licensed under the CCA-SA 2.0 UK.
->>
->> The last patch set was adding generated eclipse help files (html) to
->> the repository. One major change in this patch series is that I
->> extended the plugin build system to integrate the generation into the
->> build process. Thus keeping the eclipse help and the official
->> documentation in sync is now automated.
->> Also the eclipse help is now part of the user.doc plugin and no longer
->> contained in a separate plugin/feature.
->>
->> Rational from the original patch:
->> <snip>
->> the documentation of the yocto project can currently be viewed online
->> or as a separate pdf. When using the eclipse ide to develop software
->> on base of a yocto sysroot and toolchain it would be convenient to
->> access the relevant parts of the documentation from within the ide.
->> </snip>
->> <snip>
->> I have intergrated this
->> documentation in the ide and it can now be accessed through the
->> eclipse help center (Help -> Help Contents).
->> </snip>
->>
->> Best regards
->> Timo
->>
->> Timo Mueller (7):
->>     plugins/sdk.ide.doc.user: Add empty eclipse help
->>     plugins/sdk.ide.doc.user: Add about.html to prepare addition of yocto
->>       documentation
->>     scripts/generate_doc.sh: Add script to handle eclipse help generation
->>     plugins/sdk.ide.doc.user: Add yocto documentation to the table of
->>       contents
->>     scripts/generat-doc.sh: Copy generated eclipse help into the user.doc
->>       plugin
->>     scripts/build.sh: Add documentation generation to the default build
->>     (TEMPORARY): Use origin/timo branch of yocto docs project
->>
->>    .../META-INF/MANIFEST.MF                           |    3 +-
->>    plugins/org.yocto.sdk.ide.doc.user/about.html.in   |  166 ++++++++++++++++++++
->>    .../org.yocto.sdk.ide.doc.user/build.properties    |    9 +-
->>    plugins/org.yocto.sdk.ide.doc.user/html/book.css   |    1 +
->>    plugins/org.yocto.sdk.ide.doc.user/plugin.xml      |   31 ++++
->>    plugins/org.yocto.sdk.ide.doc.user/toc.xml         |   21 +++
->>    scripts/build.sh                                   |    7 +
->>    scripts/generate_doc.sh                            |   91 +++++++++++
->>    8 files changed, 326 insertions(+), 3 deletions(-)
->>    create mode 100644 plugins/org.yocto.sdk.ide.doc.user/about.html.in
->>    create mode 100644 plugins/org.yocto.sdk.ide.doc.user/html/book.css
->>    create mode 100644 plugins/org.yocto.sdk.ide.doc.user/toc.xml
->>    create mode 100755 scripts/generate_doc.sh
->>
 >
-> The name of the poky-ref-manual will be changed to ref-manual. This
-> change has an impact on this patch series, since the name is used in the
-> generate-doc shell script.
-> But with the temporary fix in patch 7, the timo branch is used, which
-> will for the time being remain unaffected by the name changes. This
-> way you can test the documentation integration proposed in this patch
-> set.I would like to get your opinion on the general approach to
-> integrate the documentation into eclipse. If it fits into the
-> eclipse-poky project in general, I will rewrite this patch series to
-> reflect the changes. The rewrite will also remove the "the" from the
-> different help chapters (as  Scott pointed out to me).
-> I also agreed with Scott that once this approach is agreed on I will
-> provide the necessary patches to the timo branch of the yocto-docs
-> project and he will merge the eclipse generation into the master of the
-> project.
->
-> Best regards,
-> Timo
->
-> PS: I also apologize for not signing off the patch series. I will
-> make  up for that in the reworked patches.
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+> What is the system in this numbering / tagging?
 
-Best regards,
-Timo
+I think the problem is that there isn't a system - there's a mix of tag naming.
 
+If you know the name of a release and the corresponding oe-core/Poky
+versions all the tags are present, but that's not ideal.
 
+> Releated:  is there any document which explains the branch names being
+> used for development.  for example, how can I find out ("officially")
+> what the branch name for Yocto 1.4 will be / is ?
+
+The name for 1.4 is top top secret until the release.  It will be
+decided by Richard and he keeps it a mystery until the release.
+
+The names are in themes, the Inky / Clyde / Blinky series is easily
+googlable, as is Laverne / Bernard / Edison.  Denzil and Danny, well,
+Richard thought he told me what the theme was but I can't remember and
+he won't tell me again. :(
+
+Ross
 
