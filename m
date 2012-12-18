@@ -1,33 +1,36 @@
-Return-Path: <huanmateme@163.com>
-Received: from m13-70.163.com (unknown [220.181.13.70])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7B86EE006CB
-	for <yocto@yoctoproject.org>; Tue, 18 Dec 2012 04:29:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=Received:Date:From:To:Cc:Subject:In-Reply-To:
-	References:Content-Type:MIME-Version:Message-ID; bh=nOnXiin84Wo2
-	9QVxRD0RYcw/66zb72c49lPDMozp+4Y=; b=LjccPxSk/vMCs7ydVdJnQZsNQ2V5
-	yUlV5Ad8eULttFGyZRlHvc96rVKklTRz58IJZT0H+HrjYesFRmYWudy6rhX11hch
-	0fegJ9aEKGl0eCPGUkIkwoj9n0VHHgwc+WjRIC/0W4T7DGZDgSjWpgPiPev6S+Km
-	DOVAx6tK3rJ2T7g=
-Received: from huanmateme$163.com ( [61.148.56.138] ) by
-	ajax-webmail-wmsvr70 (Coremail) ; Tue, 18 Dec 2012 20:28:32 +0800 (CST)
-X-Originating-IP: [61.148.56.138]
-Date: Tue, 18 Dec 2012 20:28:32 +0800 (CST)
-From: Biao  <huanmateme@163.com>
-To: =?GBK?Q?Eren_T=A8=B9rkay?= <eren@hambedded.org>
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version SP_ntes V3.5 build
-	20121210(21001.5125.5051) Copyright (c) 2002-2012 www.mailtech.cn
-	163com
-In-Reply-To: <20121217153752.GA5124@gmail.com>
+Return-Path: <wmat@alphatroop.com>
+Received: from mail-ia0-f173.google.com (mail-ia0-f173.google.com
+	[209.85.210.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C747FE006B4
+	for <yocto@yoctoproject.org>; Tue, 18 Dec 2012 05:18:34 -0800 (PST)
+Received: by mail-ia0-f173.google.com with SMTP id w21so506756iac.18
+	for <yocto@yoctoproject.org>; Tue, 18 Dec 2012 05:18:34 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:x-originating-ip:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type:x-gm-message-state;
+	bh=hnBaD3mg4cWcvqge0RvDWBRROIrCBj9iyD51fuRRUyU=;
+	b=cP4fuGlbbR7/SarVEC+JZ0d1AcBmi/FNyFmcM7okos09J+/CTwEbrb5aJT+a1Gvo4o
+	z6lzoC6OeNV7pXYJ5iMfVRYQZ6q9vHtn+q6MxPMRw1sW2se7QcOJU7cevsZY4gwTgfHw
+	GA7LQolucFt9hx+yTm3KwJMuIagznKLXHzVx+ws17Wlaozq2o4T5ZxzZ9lHLCmi98tPJ
+	4mOumuSPACCHqgOhoY2bFAV00bUA7mUTe0WxKMelZ84LblgdNyKUiEnPIm2bxSv61IwV
+	IM5tILq0LhSdRmLGj3GIBQ+wCPhln1/eaeZXfbFTwn0j1BIyEY/j7QMPz4SHVmbyx4Se
+	91nQ==
+Received: by 10.50.6.169 with SMTP id c9mr2187946iga.24.1355836714210; Tue, 18
+	Dec 2012 05:18:34 -0800 (PST)
+MIME-Version: 1.0
+Received: by 10.50.74.169 with HTTP; Tue, 18 Dec 2012 05:18:14 -0800 (PST)
+X-Originating-IP: [24.246.30.132]
+In-Reply-To: <42e1516f.20e80.13badfc9db3.Coremail.huanmateme@163.com>
 References: <23bf4f1e.c486.13ba81d3be7.Coremail.huanmateme@163.com>
 	<20121217153752.GA5124@gmail.com>
-MIME-Version: 1.0
-Message-ID: <42e1516f.20e80.13badfc9db3.Coremail.huanmateme@163.com>
-X-CM-TRANSID: RsGowEBJj0JwYdBQUiIQAA--.5878W
-X-CM-SenderInfo: xkxd0z5dwhzvi6rwjhhfrp/xtbB0A6JgE9o6RhOBAABsK
-X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
-Cc: yocto@yoctoproject.org
+	<42e1516f.20e80.13badfc9db3.Coremail.huanmateme@163.com>
+From: Bill Traynor <wmat@alphatroop.com>
+Date: Tue, 18 Dec 2012 08:18:14 -0500
+Message-ID: <CAGfZjq7KecT80xYinA6iiTBhZpQiwC3BiRUf=EvuZ3HDWi-duQ@mail.gmail.com>
+To: Biao <huanmateme@163.com>
+X-Gm-Message-State: ALoCoQng0a273M4zsEQo8norDPZgwFaGki1D48dqLdmf2CA3A/UU9U+XBgu79lwyzCNbzJmzccmm
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Where does the bitbake get the variable "TOPDIR"
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -40,109 +43,183 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 18 Dec 2012 12:29:09 -0000
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_496974_14639645.1355833712051"
+X-List-Received-Date: Tue, 18 Dec 2012 13:18:35 -0000
+Content-Type: multipart/alternative; boundary=e89a8f646717b9554204d120557e
 
-------=_Part_496974_14639645.1355833712051
-Content-Type: text/plain; charset=GBK
-Content-Transfer-Encoding: base64
+--e89a8f646717b9554204d120557e
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-CgpBdCAyMDEyLTEyLTE3IDIzOjM3OjUyLCJFcmVuIFSouXJrYXkiIDxlcmVuQGhhbWJlZGRlZC5v
-cmc+IHdyb3RlOgo+T24gTW9uLCBEZWMgMTcsIDIwMTIgYXQgMDU6MDY6MjZQTSArMDgwMCwgQmlh
-byB3cm90ZToKPj4gR3JlZXRpbmdzLCAKPj4gCj4+IEkgYW0gYSBuZXdiaWUgdHlpbmcgdG8gdW5k
-ZXJzdGFuZCBob3cgYml0YmFrZSB3b3Jrcy4KPj4gVGhlcmUgaXMgb25lIGxpbmUgYXMgQkJQQVRI
-ID0gIiR7VE9QRElSfSIgaW4gdGhlIG15YnVpbGQvY29uZi9iYmxheWVycy5jb25mLCBpIHdvdWxk
-IGxpa2UgdG8ga25vdyB3aGVyZSB0aGUgVE9QRElSIGlzIGRlZmluZWQ/IAo+Cj5JdCdzIGRlZmlu
-ZCBpbiAibGliL2JiL3BhcnNlL3BhcnNlX3B5L0NvbmZIYW5kbGVyLnB5OjM2Ii4gV2hlbiBUT1BE
-SVIgaXMKPm5vdCBkZWZpbmVkIGluIGFueSBvZiB0aGUgYml0YmFrZSBjb25maWd1cmF0aW9uIGZp
-bGVzLCBpdCdzIHNldCB0bwo+Y3VycmVudCB3b3JraW5nIGRpcmVjdG9yeSBhdXRvbWF0aWNhbGx5
-Lgo+ClRoZSB3aG9sZSBwaWN0dXJlIG9mIGhvdyBiaXRiYWtlIHdvcmtzIGlzIG1pc3NpbmcgZnJv
-bSB0aGUgTWFudWFsIG9mIHRoZSBiaXRiYWtlLCB3aGljaCB0eXBpY2FsbHkgc2hvdWxkIGJlKEkg
-Z3Vlc3MpIDoKMS4gU2V0IHNvbWUgZW52aXJvbm1lbnQgdmFyaWFibGVzIGxpa2UgIlRPUERJUiwg
-VEhJU0RJUi4uLiIKMi4gTG9va2luZyBmb3IgYW5kIHBhcnNpbmcgdGhlIGNvbmYvYmJsYXllcnMu
-Y29uZi4KMy4gU2V0IHRoZSBMQVlFUkRJUiBhbmQgcGFyc2luZyBlYWNoIG9mIHRoZSBPTkVMQVlF
-Ui9jb25mL2xheWVyLmNvbmYKNC4gTG9jYXRlIGFuZCBwYXJzaW5nIHRoZSBjb25mL2JpdGJha2Uu
-Y29uZi4KNS4gR28gb3ZlciBvZiBlYWNoIG9mIHRoZSAuYmIgYW5kIHNldHVwIGFsbCB0aGUgZ2xv
-YmFsIHZhcmlhYmxlcyB0byBnZXQgYSBkZXBlbmRlbmN5IHRyZWUuLi4KNi4gU3RhcnQgdGhlIGJ1
-aWxkCjcuLi4uCkkgYW0gdHJ5aW5nIHRvIGRyYXcgYSBwaWN0dXJlIGxpa2UgdGhlIGxpc3QgYWJv
-dmUsd2hpY2ggaXMgZnJvbSB0aGUgYml0YmFrZSdzIHBvaW50IG9mIHZpZXcsCiBzb21lIG9mIHRo
-ZSBsaXN0IGlzIG5vdCByaWdodCwgc2luY2UgbG90cyB0aGluZ3MgYXJlIHN0aWxsIG5vdCBjbGVh
-ciB0byBtZS4gSWYgc29tZW9uZSBjb3VsZCBkcmF3IHN1Y2ggcGljdHVyZSwgaXQgaGVscHMgYSBs
-b3QgdG8gdW5kZXJzdGFuZCB0aGUgYml0YmFrZS4KPiguLi4pCj4KPmRlZiBpbml0KGRhdGEpOgo+
-ICAgIHRvcGRpciA9IGRhdGEuZ2V0VmFyKCdUT1BESVInKQo+ICAgIGlmIG5vdCB0b3BkaXI6Cj4g
-ICAgICAgIGRhdGEuc2V0VmFyKCdUT1BESVInLCBvcy5nZXRjd2QoKSkKPgo+KC4uLikKPgo+WW91
-IG1heSB3YW50IHRvIHJlYWQgdGhlIG5ld2x5LXdyaXR0ZW4gZG9jdW1lbnRhdGlvbiBhYm91dCBi
-aXRiYWtlIGFuZAo+b3BlbiBlbWJlZGRlZC4gSSB0cmllZCB0byBleHBsYWluIGhvdyB0aGluZ3Mg
-Zml0IHRvZ2V0aGVyLiBJIHdvdWxkIGxpa2UKPnRvIGhhdmUgeW91ciBmZWVkYmFjay4KPgo+aHR0
-cDovL2hhbWJlZGRlZC5vcmcvYmxvZy8yMDEyLzExLzI0L2Zyb20tYml0YmFrZS1oZWxsby13b3Js
-ZC10by1hbi1pbWFnZS8KSSB3aWxsIHRyeSB0byBnaXZlIHNvbWUgZmVlZGJhY2sgYWZ0ZXIgZmlu
-aXNoaW5nIHRoZSByZWFkaW5nLgpCdXQgZm9yIG5vdywgdGhlcmUgYXJlIHNvbWUgc2lsbHkgcXVl
-c3Rpb25zOgoxLiBUaGVyZSBpcyBhIGJhc2VfZG9fZmV0Y2goKSB7fSwgSSBkaWQgbm90IGZpbmQg
-dGhlIGV4cGxhbmF0aW9uIG9mIHRoZSBrZXl3b3JkIG9mICdiYXNlJyBpbiB0aGUgbWFudWFsLCBk
-byBpIG1pc3Mgc29tZXRoaW5nPwoyLiBUaGVyZSBpcyAnYmIubm90ZScgYW5kICdiYm5vdGUnIGlu
-IHRoZSBjb2RlIGV4YW1wbGUsIGlzIGl0IGEgdHlwZS1taXN0YWtlIG9yIHNvbWV0aGluZyBlbHNl
-Pwo+Cj4tLSAKPiAgICAuIDczISBERSBUQTFBRVQKPiAgICAgIGh0dHA6Ly9saW5rZWRpbi5jb20v
-aW4vZXJlbnR1cmtheQo=
+On Tue, Dec 18, 2012 at 7:28 AM, Biao <huanmateme@163.com> wrote:
 
-------=_Part_496974_14639645.1355833712051
-Content-Type: text/html; charset=GBK
-Content-Transfer-Encoding: base64
+>
+> At 2012-12-17 23:37:52,"Eren T=FCrkay" <eren@hambedded.org> wrote:
+> >On Mon, Dec 17, 2012 at 05:06:26PM +0800, Biao wrote:
+> >> Greetings,
+> >>
+> >> I am a newbie tying to understand how bitbake works.
+> >> There is one line as BBPATH =3D "${TOPDIR}" in the mybuild/conf/bblaye=
+rs.conf, i would like to know where the TOPDIR is defined?
+> >
+> >It's defind in "lib/bb/parse/parse_py/ConfHandler.py:36". When TOPDIR is
+> >not defined in any of the bitbake configuration files, it's set to
+> >current working directory automatically.
+> >
+>
+> The whole picture of how bitbake works is missing from the Manual of the =
+bitbake, which typically should be(I guess) :
+>
+> 1. Set some environment variables like "TOPDIR, THISDIR..."
+>
+>
+> 2. Looking for and parsing the conf/bblayers.conf.
+>
+> 3. Set the LAYERDIR and parsing each of the ONELAYER/conf/layer.conf
+>
+> 4. Locate and parsing the conf/bitbake.conf.
+>
+> 5. Go over of each of the .bb and setup all the global variables to get a=
+ dependency tree...
+>
+> 6. Start the build
+>
+> 7....
+>
+>
+Have a look at the Bitbake section of the Yocto Project Reference manual
+(Chapter 6), as it provides a little more information.
 
-PGRpdiBzdHlsZT0ibGluZS1oZWlnaHQ6MS43O2NvbG9yOiMwMDAwMDA7Zm9udC1zaXplOjE0cHg7
-Zm9udC1mYW1pbHk6YXJpYWwiPjxwcmU+PGJyPjwvcHJlPjxwcmU+QXQmbmJzcDsyMDEyLTEyLTE3
-Jm5ic3A7MjM6Mzc6NTIsIkVyZW4mbmJzcDtUqLlya2F5IiZuYnNwOyZsdDtlcmVuQGhhbWJlZGRl
-ZC5vcmcmZ3Q7Jm5ic3A7d3JvdGU6CiZndDtPbiZuYnNwO01vbiwmbmJzcDtEZWMmbmJzcDsxNywm
-bmJzcDsyMDEyJm5ic3A7YXQmbmJzcDswNTowNjoyNlBNJm5ic3A7KzA4MDAsJm5ic3A7QmlhbyZu
-YnNwO3dyb3RlOgomZ3Q7Jmd0OyZuYnNwO0dyZWV0aW5ncywmbmJzcDsKJmd0OyZndDsmbmJzcDsK
-Jmd0OyZndDsmbmJzcDtJJm5ic3A7YW0mbmJzcDthJm5ic3A7bmV3YmllJm5ic3A7dHlpbmcmbmJz
-cDt0byZuYnNwO3VuZGVyc3RhbmQmbmJzcDtob3cmbmJzcDtiaXRiYWtlJm5ic3A7d29ya3MuCiZn
-dDsmZ3Q7Jm5ic3A7VGhlcmUmbmJzcDtpcyZuYnNwO29uZSZuYnNwO2xpbmUmbmJzcDthcyZuYnNw
-O0JCUEFUSCZuYnNwOz0mbmJzcDsiJHtUT1BESVJ9IiZuYnNwO2luJm5ic3A7dGhlJm5ic3A7bXli
-dWlsZC9jb25mL2JibGF5ZXJzLmNvbmYsJm5ic3A7aSZuYnNwO3dvdWxkJm5ic3A7bGlrZSZuYnNw
-O3RvJm5ic3A7a25vdyZuYnNwO3doZXJlJm5ic3A7dGhlJm5ic3A7VE9QRElSJm5ic3A7aXMmbmJz
-cDtkZWZpbmVkPyZuYnNwOwomZ3Q7CiZndDtJdCdzJm5ic3A7ZGVmaW5kJm5ic3A7aW4mbmJzcDsi
-bGliL2JiL3BhcnNlL3BhcnNlX3B5L0NvbmZIYW5kbGVyLnB5OjM2Ii4mbmJzcDtXaGVuJm5ic3A7
-VE9QRElSJm5ic3A7aXMKJmd0O25vdCZuYnNwO2RlZmluZWQmbmJzcDtpbiZuYnNwO2FueSZuYnNw
-O29mJm5ic3A7dGhlJm5ic3A7Yml0YmFrZSZuYnNwO2NvbmZpZ3VyYXRpb24mbmJzcDtmaWxlcywm
-bmJzcDtpdCdzJm5ic3A7c2V0Jm5ic3A7dG8KJmd0O2N1cnJlbnQmbmJzcDt3b3JraW5nJm5ic3A7
-ZGlyZWN0b3J5Jm5ic3A7YXV0b21hdGljYWxseS4KJmd0OzwvcHJlPjxwcmU+VGhlIHdob2xlIHBp
-Y3R1cmUgb2YgaG93IGJpdGJha2Ugd29ya3MgaXMgbWlzc2luZyBmcm9tIHRoZSBNYW51YWwgb2Yg
-dGhlIGJpdGJha2UsIHdoaWNoIHR5cGljYWxseSBzaG91bGQgYmUoSSBndWVzcykgOjwvcHJlPjxw
-cmU+MS4gU2V0IHNvbWUgZW52aXJvbm1lbnQgdmFyaWFibGVzIGxpa2UgIlRPUERJUiwgVEhJU0RJ
-Ui4uLiI8L3ByZT48cHJlPjIuIExvb2tpbmcgZm9yIGFuZCBwYXJzaW5nIHRoZSBjb25mL2JibGF5
-ZXJzLmNvbmYuPC9wcmU+PHByZT4zLiBTZXQgdGhlIExBWUVSRElSIGFuZCBwYXJzaW5nIGVhY2gg
-b2YgdGhlIE9ORUxBWUVSL2NvbmYvbGF5ZXIuY29uZjwvcHJlPjxwcmU+NC4gTG9jYXRlIGFuZCBw
-YXJzaW5nIHRoZSBjb25mL2JpdGJha2UuY29uZi48L3ByZT48cHJlPjUuIEdvIG92ZXIgb2YgZWFj
-aCBvZiB0aGUgLmJiIGFuZCBzZXR1cCBhbGwgdGhlIGdsb2JhbCB2YXJpYWJsZXMgdG8gZ2V0IGEg
-ZGVwZW5kZW5jeSB0cmVlLi4uPC9wcmU+PHByZT42LiBTdGFydCB0aGUgYnVpbGQ8L3ByZT48cHJl
-PjcuLi4uPC9wcmU+PHByZT5JIGFtIHRyeWluZyB0byBkcmF3IGEgcGljdHVyZSBsaWtlIHRoZSBs
-aXN0IGFib3ZlLHdoaWNoIGlzIGZyb20gdGhlIGJpdGJha2UncyBwb2ludCBvZiB2aWV3LDwvcHJl
-PjxwcmU+IHNvbWUgb2YgdGhlIGxpc3QgaXMgbm90IHJpZ2h0LCBzaW5jZSBsb3RzIHRoaW5ncyBh
-cmUgc3RpbGwgbm90IGNsZWFyIHRvIG1lLiBJZiBzb21lb25lIGNvdWxkIGRyYXcgc3VjaCBwaWN0
-dXJlLCBpdCBoZWxwcyBhIGxvdCB0byB1bmRlcnN0YW5kIHRoZSBiaXRiYWtlLjwvcHJlPjxwcmU+
-Jmd0OyguLi4pCiZndDsKJmd0O2RlZiZuYnNwO2luaXQoZGF0YSk6CiZndDsmbmJzcDsmbmJzcDsm
-bmJzcDsmbmJzcDt0b3BkaXImbmJzcDs9Jm5ic3A7ZGF0YS5nZXRWYXIoJ1RPUERJUicpCiZndDsm
-bmJzcDsmbmJzcDsmbmJzcDsmbmJzcDtpZiZuYnNwO25vdCZuYnNwO3RvcGRpcjoKJmd0OyZuYnNw
-OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwO2RhdGEuc2V0VmFyKCdU
-T1BESVInLCZuYnNwO29zLmdldGN3ZCgpKQomZ3Q7CiZndDsoLi4uKQomZ3Q7CiZndDtZb3UmbmJz
-cDttYXkmbmJzcDt3YW50Jm5ic3A7dG8mbmJzcDtyZWFkJm5ic3A7dGhlJm5ic3A7bmV3bHktd3Jp
-dHRlbiZuYnNwO2RvY3VtZW50YXRpb24mbmJzcDthYm91dCZuYnNwO2JpdGJha2UmbmJzcDthbmQK
-Jmd0O29wZW4mbmJzcDtlbWJlZGRlZC4mbmJzcDtJJm5ic3A7dHJpZWQmbmJzcDt0byZuYnNwO2V4
-cGxhaW4mbmJzcDtob3cmbmJzcDt0aGluZ3MmbmJzcDtmaXQmbmJzcDt0b2dldGhlci4mbmJzcDtJ
-Jm5ic3A7d291bGQmbmJzcDtsaWtlCiZndDt0byZuYnNwO2hhdmUmbmJzcDt5b3VyJm5ic3A7ZmVl
-ZGJhY2suCiZndDsKJmd0OzxhIGhyZWY9Imh0dHA6Ly9oYW1iZWRkZWQub3JnL2Jsb2cvMjAxMi8x
-MS8yNC9mcm9tLWJpdGJha2UtaGVsbG8td29ybGQtdG8tYW4taW1hZ2UvIiB0YXJnZXQ9Il9ibGFu
-ayI+aHR0cDovL2hhbWJlZGRlZC5vcmcvYmxvZy8yMDEyLzExLzI0L2Zyb20tYml0YmFrZS1oZWxs
-by13b3JsZC10by1hbi1pbWFnZS88L2E+PC9wcmU+PHByZT5JIHdpbGwgdHJ5IHRvIGdpdmUgc29t
-ZSBmZWVkYmFjayBhZnRlciBmaW5pc2hpbmcgdGhlIHJlYWRpbmcuPC9wcmU+PHByZT5CdXQgZm9y
-IG5vdywgdGhlcmUgYXJlIHNvbWUgc2lsbHkgcXVlc3Rpb25zOjwvcHJlPjxwcmU+MS4gVGhlcmUg
-aXMgYSBiYXNlX2RvX2ZldGNoKCkge30sIEkgZGlkIG5vdCBmaW5kIHRoZSBleHBsYW5hdGlvbiBv
-ZiB0aGUga2V5d29yZCBvZiAnYmFzZScgaW4gdGhlIG1hbnVhbCwgZG8gaSBtaXNzIHNvbWV0aGlu
-Zz88L3ByZT48cHJlPjIuIFRoZXJlIGlzICdiYi5ub3RlJyBhbmQgJ2Jibm90ZScgaW4gdGhlIGNv
-ZGUgZXhhbXBsZSwgaXMgaXQgYSB0eXBlLW1pc3Rha2Ugb3Igc29tZXRoaW5nIGVsc2U/PC9wcmU+
-PHByZT4mZ3Q7CiZndDstLSZuYnNwOwomZ3Q7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7LiZuYnNw
-OzczISZuYnNwO0RFJm5ic3A7VEExQUVUCiZndDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
-cDsmbmJzcDtodHRwOi8vbGlua2VkaW4uY29tL2luL2VyZW50dXJrYXkKPC9wcmU+PC9kaXY+
+I am trying to draw a picture like the list above,which is from the
+bitbake's point of view,
+>
+>  some of the list is not right, since lots things are still not clear to =
+me. If someone could draw such picture, it helps a lot to understand the bi=
+tbake.
+>
+> >(...)
+> >
+> >def init(data):
+> >    topdir =3D data.getVar('TOPDIR')
+> >    if not topdir:
+> >        data.setVar('TOPDIR', os.getcwd())
+> >
+> >(...)
+> >
+> >You may want to read the newly-written documentation about bitbake and
+> >open embedded. I tried to explain how things fit together. I would like
+> >to have your feedback.
+> >
+> >http://hambedded.org/blog/2012/11/24/from-bitbake-hello-world-to-an-imag=
+e/
+>
+> I will try to give some feedback after finishing the reading.
+>
+> But for now, there are some silly questions:
+>
+> 1. There is a base_do_fetch() {}, I did not find the explanation of the k=
+eyword of 'base' in the manual, do i miss something?
+>
+> 2. There is 'bb.note' and 'bbnote' in the code example, is it a type-mist=
+ake or something else?
+>
+> >
+> >--
+> >    . 73! DE TA1AET
+> >      http://linkedin.com/in/erenturkay
+>
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
 
-------=_Part_496974_14639645.1355833712051--
+--e89a8f646717b9554204d120557e
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><br><div class=3D"gmail_extra"><br><br><div class=3D"gmail=
+_quote">On Tue, Dec 18, 2012 at 7:28 AM, Biao <span dir=3D"ltr">&lt;<a href=
+=3D"mailto:huanmateme@163.com" target=3D"_blank">huanmateme@163.com</a>&gt;=
+</span> wrote:<br>
+
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><div style=3D"line-height:1.7;font-size:14px=
+;font-family:arial"><pre><br></pre><pre>At=A0<a href=3D"tel:2012-12-17%C2%A=
+023" value=3D"+12012121723" target=3D"_blank">2012-12-17=A023</a>:37:52,&qu=
+ot;Eren=A0T=FCrkay&quot;=A0&lt;<a href=3D"mailto:eren@hambedded.org" target=
+=3D"_blank">eren@hambedded.org</a>&gt;=A0wrote:
+&gt;On=A0Mon,=A0Dec=A017,=A02012=A0at=A005:06:26PM=A0+0800,=A0Biao=A0wrote:
+&gt;&gt;=A0Greetings,=A0
+&gt;&gt;=A0
+&gt;&gt;=A0I=A0am=A0a=A0newbie=A0tying=A0to=A0understand=A0how=A0bitbake=A0=
+works.
+&gt;&gt;=A0There=A0is=A0one=A0line=A0as=A0BBPATH=A0=3D=A0&quot;${TOPDIR}&qu=
+ot;=A0in=A0the=A0mybuild/conf/bblayers.conf,=A0i=A0would=A0like=A0to=A0know=
+=A0where=A0the=A0TOPDIR=A0is=A0defined?=A0
+&gt;
+&gt;It&#39;s=A0defind=A0in=A0&quot;lib/bb/parse/parse_py/ConfHandler.py:36&=
+quot;.=A0When=A0TOPDIR=A0is
+&gt;not=A0defined=A0in=A0any=A0of=A0the=A0bitbake=A0configuration=A0files,=
+=A0it&#39;s=A0set=A0to
+&gt;current=A0working=A0directory=A0automatically.
+&gt;</pre><pre>The whole picture of how bitbake works is missing from the M=
+anual of the bitbake, which typically should be(I guess) :</pre><pre>1. Set=
+ some environment variables like &quot;TOPDIR, THISDIR...&quot;</pre><pre>
+
+2. Looking for and parsing the conf/bblayers.conf.</pre><pre>3. Set the LAY=
+ERDIR and parsing each of the ONELAYER/conf/layer.conf</pre><pre>4. Locate =
+and parsing the conf/bitbake.conf.</pre><pre>5. Go over of each of the .bb =
+and setup all the global variables to get a dependency tree...</pre>
+
+<pre>6. Start the build</pre><pre>7....</pre></div></blockquote><div><br></=
+div><div>Have a look at the Bitbake section of the Yocto Project Reference =
+manual (Chapter 6), as it provides a little more information.=A0 <br><br>
+
+</div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-l=
+eft:1px #ccc solid;padding-left:1ex"><div style=3D"line-height:1.7;font-siz=
+e:14px;font-family:arial"><pre>I am trying to draw a picture like the list =
+above,which is from the bitbake&#39;s point of view,</pre>
+
+<pre> some of the list is not right, since lots things are still not clear =
+to me. If someone could draw such picture, it helps a lot to understand the=
+ bitbake.</pre><div class=3D"im"><pre>&gt;(...)
+&gt;
+&gt;def=A0init(data):
+&gt;=A0=A0=A0=A0topdir=A0=3D=A0data.getVar(&#39;TOPDIR&#39;)
+&gt;=A0=A0=A0=A0if=A0not=A0topdir:
+&gt;=A0=A0=A0=A0=A0=A0=A0=A0data.setVar(&#39;TOPDIR&#39;,=A0os.getcwd())
+&gt;
+&gt;(...)
+&gt;
+&gt;You=A0may=A0want=A0to=A0read=A0the=A0newly-written=A0documentation=A0ab=
+out=A0bitbake=A0and
+&gt;open=A0embedded.=A0I=A0tried=A0to=A0explain=A0how=A0things=A0fit=A0toge=
+ther.=A0I=A0would=A0like
+&gt;to=A0have=A0your=A0feedback.
+&gt;
+&gt;<a href=3D"http://hambedded.org/blog/2012/11/24/from-bitbake-hello-worl=
+d-to-an-image/" target=3D"_blank">http://hambedded.org/blog/2012/11/24/from=
+-bitbake-hello-world-to-an-image/</a></pre></div><pre>I will try to give so=
+me feedback after finishing the reading.</pre>
+
+<pre>But for now, there are some silly questions:</pre><pre>1. There is a b=
+ase_do_fetch() {}, I did not find the explanation of the keyword of &#39;ba=
+se&#39; in the manual, do i miss something?</pre><pre>2. There is &#39;bb.n=
+ote&#39; and &#39;bbnote&#39; in the code example, is it a type-mistake or =
+something else?</pre>
+
+<div class=3D"im"><pre>&gt;
+&gt;--=A0
+&gt;=A0=A0=A0=A0.=A073!=A0DE=A0TA1AET
+&gt;=A0=A0=A0=A0=A0=A0<a href=3D"http://linkedin.com/in/erenturkay" target=
+=3D"_blank">http://linkedin.com/in/erenturkay</a>
+</pre></div></div><br>_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
+>https://lists.yoctoproject.org/listinfo/yocto</a><br>
+<br></blockquote></div><br></div></div>
+
+--e89a8f646717b9554204d120557e--
