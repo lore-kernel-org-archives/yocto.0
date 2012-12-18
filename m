@@ -1,37 +1,34 @@
-Return-Path: <ross.burton@intel.com>
-Received: from fmsmga102.fm.intel.com (mga10.intel.com [192.55.52.92])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E9A1AE0052C
-	for <yocto@yoctoproject.org>; Tue, 18 Dec 2012 03:36:06 -0800 (PST)
-Received: from mail-ye0-f200.google.com ([209.85.213.200])
-	by mga11.intel.com with ESMTP/TLS/RC4-SHA; 18 Dec 2012 03:36:06 -0800
-Received: by mail-ye0-f200.google.com with SMTP id r13so796818yen.11
-	for <yocto@yoctoproject.org>; Tue, 18 Dec 2012 03:36:05 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=x-received:mime-version:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type:x-gm-message-state;
-	bh=wqLQSOzjfI81mPewIwCp8hL8psbWwmxxF0SaO55THGQ=;
-	b=iYZVPpQmhAaQjxgS8+fUi5au7mX3BVyOfvEdebhkNsoJ4TWuGKDr99cGF/33CUfP55
-	cpc4IvtKbig3G3UW2eZmweUj9tgf4dvmJpwzIgbjkQxvaZw5IObH31WVpZvuJlI7mAHx
-	/bs0jEi36n8+ZAfNNwWwKewWF+iIbYPnJO56mGKw2HCig8Qb1UgY9BCVcSQuvYgeRZnQ
-	GPau0AeaxMCpZvQv0BDodrXboeQ8OkGNSZqJbSip68fnxYzzZybC0/SjWO5SjfatikMA
-	cEWstxp2QiottBeONXzHI5saKdXQb73GfstN5lhX0tE4fnmCYIYsJFC/8NlwrT5nBeCX
-	ES5Q==
-X-Received: by 10.52.37.9 with SMTP id u9mr2047884vdj.83.1355830565107;
-	Tue, 18 Dec 2012 03:36:05 -0800 (PST)
-Received: by 10.52.37.9 with SMTP id u9mr2047871vdj.83.1355830564865; Tue, 18
-	Dec 2012 03:36:04 -0800 (PST)
+Return-Path: <huanmateme@163.com>
+Received: from m13-70.163.com (unknown [220.181.13.70])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7B86EE006CB
+	for <yocto@yoctoproject.org>; Tue, 18 Dec 2012 04:29:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=Received:Date:From:To:Cc:Subject:In-Reply-To:
+	References:Content-Type:MIME-Version:Message-ID; bh=nOnXiin84Wo2
+	9QVxRD0RYcw/66zb72c49lPDMozp+4Y=; b=LjccPxSk/vMCs7ydVdJnQZsNQ2V5
+	yUlV5Ad8eULttFGyZRlHvc96rVKklTRz58IJZT0H+HrjYesFRmYWudy6rhX11hch
+	0fegJ9aEKGl0eCPGUkIkwoj9n0VHHgwc+WjRIC/0W4T7DGZDgSjWpgPiPev6S+Km
+	DOVAx6tK3rJ2T7g=
+Received: from huanmateme$163.com ( [61.148.56.138] ) by
+	ajax-webmail-wmsvr70 (Coremail) ; Tue, 18 Dec 2012 20:28:32 +0800 (CST)
+X-Originating-IP: [61.148.56.138]
+Date: Tue, 18 Dec 2012 20:28:32 +0800 (CST)
+From: Biao  <huanmateme@163.com>
+To: =?GBK?Q?Eren_T=A8=B9rkay?= <eren@hambedded.org>
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version SP_ntes V3.5 build
+	20121210(21001.5125.5051) Copyright (c) 2002-2012 www.mailtech.cn
+	163com
+In-Reply-To: <20121217153752.GA5124@gmail.com>
+References: <23bf4f1e.c486.13ba81d3be7.Coremail.huanmateme@163.com>
+	<20121217153752.GA5124@gmail.com>
 MIME-Version: 1.0
-Received: by 10.58.178.244 with HTTP; Tue, 18 Dec 2012 03:35:44 -0800 (PST)
-In-Reply-To: <20121215132238.503DC201C62@gemini.denx.de>
-References: <20121215132238.503DC201C62@gemini.denx.de>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Tue, 18 Dec 2012 11:35:44 +0000
-Message-ID: <CAJTo0LaEoAv6hi6D_pxGJA=uLzA=YRHE0B-nd8s9YK+hV-w48g@mail.gmail.com>
-To: Wolfgang Denk <wd@denx.de>
-X-Gm-Message-State: ALoCoQm92qJ1Wn6wg5R7orsm0XCdcBxtlfcKiOVKObwHTaI1fjEZR/BWJaj2cwacwxp9b083KmkRH7LImn2KZZlBBv89AdGzPv9KFBIQ91jrCyky2/TH7AF+VE915k0lOlrCSZ+hHaipuXroPwUkBTftI+0aq6PMgw==
+Message-ID: <42e1516f.20e80.13badfc9db3.Coremail.huanmateme@163.com>
+X-CM-TRANSID: RsGowEBJj0JwYdBQUiIQAA--.5878W
+X-CM-SenderInfo: xkxd0z5dwhzvi6rwjhhfrp/xtbB0A6JgE9o6RhOBAABsK
+X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
 Cc: yocto@yoctoproject.org
-Subject: Re: Git tag systematics ?
+Subject: Re: Where does the bitbake get the variable "TOPDIR"
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,44 +40,109 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 18 Dec 2012 11:36:07 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Tue, 18 Dec 2012 12:29:09 -0000
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_496974_14639645.1355833712051"
 
-On 15 December 2012 13:22, Wolfgang Denk <wd@denx.de> wrote:
-> can anybody explain to me the systematics of the git tags ysed to mark
-> the Yocto / Poky releases?
->
-> For example, for Yocto 1.2 and before, we have release tags like
-> denzil-7.0, edison-6.0, bernard-5.0, laverne-4.0, etc.
->
-> Some parts of the current 1.3 Yocto release refer to it as "Poky 8.0"
-> or Version "8.0 Danny", see for example here:
-> https://www.yoctoproject.org/download/yocto-project-13-poky-80
->
-> However, there is no such release tag as "danny-8.0".
->
-> Instead, there is a tag "1.3" - but there are no similar tags as "1.1"
-> or "1.2" for the earlier releases?
->
->
-> What is the system in this numbering / tagging?
+------=_Part_496974_14639645.1355833712051
+Content-Type: text/plain; charset=GBK
+Content-Transfer-Encoding: base64
 
-I think the problem is that there isn't a system - there's a mix of tag naming.
+CgpBdCAyMDEyLTEyLTE3IDIzOjM3OjUyLCJFcmVuIFSouXJrYXkiIDxlcmVuQGhhbWJlZGRlZC5v
+cmc+IHdyb3RlOgo+T24gTW9uLCBEZWMgMTcsIDIwMTIgYXQgMDU6MDY6MjZQTSArMDgwMCwgQmlh
+byB3cm90ZToKPj4gR3JlZXRpbmdzLCAKPj4gCj4+IEkgYW0gYSBuZXdiaWUgdHlpbmcgdG8gdW5k
+ZXJzdGFuZCBob3cgYml0YmFrZSB3b3Jrcy4KPj4gVGhlcmUgaXMgb25lIGxpbmUgYXMgQkJQQVRI
+ID0gIiR7VE9QRElSfSIgaW4gdGhlIG15YnVpbGQvY29uZi9iYmxheWVycy5jb25mLCBpIHdvdWxk
+IGxpa2UgdG8ga25vdyB3aGVyZSB0aGUgVE9QRElSIGlzIGRlZmluZWQ/IAo+Cj5JdCdzIGRlZmlu
+ZCBpbiAibGliL2JiL3BhcnNlL3BhcnNlX3B5L0NvbmZIYW5kbGVyLnB5OjM2Ii4gV2hlbiBUT1BE
+SVIgaXMKPm5vdCBkZWZpbmVkIGluIGFueSBvZiB0aGUgYml0YmFrZSBjb25maWd1cmF0aW9uIGZp
+bGVzLCBpdCdzIHNldCB0bwo+Y3VycmVudCB3b3JraW5nIGRpcmVjdG9yeSBhdXRvbWF0aWNhbGx5
+Lgo+ClRoZSB3aG9sZSBwaWN0dXJlIG9mIGhvdyBiaXRiYWtlIHdvcmtzIGlzIG1pc3NpbmcgZnJv
+bSB0aGUgTWFudWFsIG9mIHRoZSBiaXRiYWtlLCB3aGljaCB0eXBpY2FsbHkgc2hvdWxkIGJlKEkg
+Z3Vlc3MpIDoKMS4gU2V0IHNvbWUgZW52aXJvbm1lbnQgdmFyaWFibGVzIGxpa2UgIlRPUERJUiwg
+VEhJU0RJUi4uLiIKMi4gTG9va2luZyBmb3IgYW5kIHBhcnNpbmcgdGhlIGNvbmYvYmJsYXllcnMu
+Y29uZi4KMy4gU2V0IHRoZSBMQVlFUkRJUiBhbmQgcGFyc2luZyBlYWNoIG9mIHRoZSBPTkVMQVlF
+Ui9jb25mL2xheWVyLmNvbmYKNC4gTG9jYXRlIGFuZCBwYXJzaW5nIHRoZSBjb25mL2JpdGJha2Uu
+Y29uZi4KNS4gR28gb3ZlciBvZiBlYWNoIG9mIHRoZSAuYmIgYW5kIHNldHVwIGFsbCB0aGUgZ2xv
+YmFsIHZhcmlhYmxlcyB0byBnZXQgYSBkZXBlbmRlbmN5IHRyZWUuLi4KNi4gU3RhcnQgdGhlIGJ1
+aWxkCjcuLi4uCkkgYW0gdHJ5aW5nIHRvIGRyYXcgYSBwaWN0dXJlIGxpa2UgdGhlIGxpc3QgYWJv
+dmUsd2hpY2ggaXMgZnJvbSB0aGUgYml0YmFrZSdzIHBvaW50IG9mIHZpZXcsCiBzb21lIG9mIHRo
+ZSBsaXN0IGlzIG5vdCByaWdodCwgc2luY2UgbG90cyB0aGluZ3MgYXJlIHN0aWxsIG5vdCBjbGVh
+ciB0byBtZS4gSWYgc29tZW9uZSBjb3VsZCBkcmF3IHN1Y2ggcGljdHVyZSwgaXQgaGVscHMgYSBs
+b3QgdG8gdW5kZXJzdGFuZCB0aGUgYml0YmFrZS4KPiguLi4pCj4KPmRlZiBpbml0KGRhdGEpOgo+
+ICAgIHRvcGRpciA9IGRhdGEuZ2V0VmFyKCdUT1BESVInKQo+ICAgIGlmIG5vdCB0b3BkaXI6Cj4g
+ICAgICAgIGRhdGEuc2V0VmFyKCdUT1BESVInLCBvcy5nZXRjd2QoKSkKPgo+KC4uLikKPgo+WW91
+IG1heSB3YW50IHRvIHJlYWQgdGhlIG5ld2x5LXdyaXR0ZW4gZG9jdW1lbnRhdGlvbiBhYm91dCBi
+aXRiYWtlIGFuZAo+b3BlbiBlbWJlZGRlZC4gSSB0cmllZCB0byBleHBsYWluIGhvdyB0aGluZ3Mg
+Zml0IHRvZ2V0aGVyLiBJIHdvdWxkIGxpa2UKPnRvIGhhdmUgeW91ciBmZWVkYmFjay4KPgo+aHR0
+cDovL2hhbWJlZGRlZC5vcmcvYmxvZy8yMDEyLzExLzI0L2Zyb20tYml0YmFrZS1oZWxsby13b3Js
+ZC10by1hbi1pbWFnZS8KSSB3aWxsIHRyeSB0byBnaXZlIHNvbWUgZmVlZGJhY2sgYWZ0ZXIgZmlu
+aXNoaW5nIHRoZSByZWFkaW5nLgpCdXQgZm9yIG5vdywgdGhlcmUgYXJlIHNvbWUgc2lsbHkgcXVl
+c3Rpb25zOgoxLiBUaGVyZSBpcyBhIGJhc2VfZG9fZmV0Y2goKSB7fSwgSSBkaWQgbm90IGZpbmQg
+dGhlIGV4cGxhbmF0aW9uIG9mIHRoZSBrZXl3b3JkIG9mICdiYXNlJyBpbiB0aGUgbWFudWFsLCBk
+byBpIG1pc3Mgc29tZXRoaW5nPwoyLiBUaGVyZSBpcyAnYmIubm90ZScgYW5kICdiYm5vdGUnIGlu
+IHRoZSBjb2RlIGV4YW1wbGUsIGlzIGl0IGEgdHlwZS1taXN0YWtlIG9yIHNvbWV0aGluZyBlbHNl
+Pwo+Cj4tLSAKPiAgICAuIDczISBERSBUQTFBRVQKPiAgICAgIGh0dHA6Ly9saW5rZWRpbi5jb20v
+aW4vZXJlbnR1cmtheQo=
 
-If you know the name of a release and the corresponding oe-core/Poky
-versions all the tags are present, but that's not ideal.
+------=_Part_496974_14639645.1355833712051
+Content-Type: text/html; charset=GBK
+Content-Transfer-Encoding: base64
 
-> Releated:  is there any document which explains the branch names being
-> used for development.  for example, how can I find out ("officially")
-> what the branch name for Yocto 1.4 will be / is ?
+PGRpdiBzdHlsZT0ibGluZS1oZWlnaHQ6MS43O2NvbG9yOiMwMDAwMDA7Zm9udC1zaXplOjE0cHg7
+Zm9udC1mYW1pbHk6YXJpYWwiPjxwcmU+PGJyPjwvcHJlPjxwcmU+QXQmbmJzcDsyMDEyLTEyLTE3
+Jm5ic3A7MjM6Mzc6NTIsIkVyZW4mbmJzcDtUqLlya2F5IiZuYnNwOyZsdDtlcmVuQGhhbWJlZGRl
+ZC5vcmcmZ3Q7Jm5ic3A7d3JvdGU6CiZndDtPbiZuYnNwO01vbiwmbmJzcDtEZWMmbmJzcDsxNywm
+bmJzcDsyMDEyJm5ic3A7YXQmbmJzcDswNTowNjoyNlBNJm5ic3A7KzA4MDAsJm5ic3A7QmlhbyZu
+YnNwO3dyb3RlOgomZ3Q7Jmd0OyZuYnNwO0dyZWV0aW5ncywmbmJzcDsKJmd0OyZndDsmbmJzcDsK
+Jmd0OyZndDsmbmJzcDtJJm5ic3A7YW0mbmJzcDthJm5ic3A7bmV3YmllJm5ic3A7dHlpbmcmbmJz
+cDt0byZuYnNwO3VuZGVyc3RhbmQmbmJzcDtob3cmbmJzcDtiaXRiYWtlJm5ic3A7d29ya3MuCiZn
+dDsmZ3Q7Jm5ic3A7VGhlcmUmbmJzcDtpcyZuYnNwO29uZSZuYnNwO2xpbmUmbmJzcDthcyZuYnNw
+O0JCUEFUSCZuYnNwOz0mbmJzcDsiJHtUT1BESVJ9IiZuYnNwO2luJm5ic3A7dGhlJm5ic3A7bXli
+dWlsZC9jb25mL2JibGF5ZXJzLmNvbmYsJm5ic3A7aSZuYnNwO3dvdWxkJm5ic3A7bGlrZSZuYnNw
+O3RvJm5ic3A7a25vdyZuYnNwO3doZXJlJm5ic3A7dGhlJm5ic3A7VE9QRElSJm5ic3A7aXMmbmJz
+cDtkZWZpbmVkPyZuYnNwOwomZ3Q7CiZndDtJdCdzJm5ic3A7ZGVmaW5kJm5ic3A7aW4mbmJzcDsi
+bGliL2JiL3BhcnNlL3BhcnNlX3B5L0NvbmZIYW5kbGVyLnB5OjM2Ii4mbmJzcDtXaGVuJm5ic3A7
+VE9QRElSJm5ic3A7aXMKJmd0O25vdCZuYnNwO2RlZmluZWQmbmJzcDtpbiZuYnNwO2FueSZuYnNw
+O29mJm5ic3A7dGhlJm5ic3A7Yml0YmFrZSZuYnNwO2NvbmZpZ3VyYXRpb24mbmJzcDtmaWxlcywm
+bmJzcDtpdCdzJm5ic3A7c2V0Jm5ic3A7dG8KJmd0O2N1cnJlbnQmbmJzcDt3b3JraW5nJm5ic3A7
+ZGlyZWN0b3J5Jm5ic3A7YXV0b21hdGljYWxseS4KJmd0OzwvcHJlPjxwcmU+VGhlIHdob2xlIHBp
+Y3R1cmUgb2YgaG93IGJpdGJha2Ugd29ya3MgaXMgbWlzc2luZyBmcm9tIHRoZSBNYW51YWwgb2Yg
+dGhlIGJpdGJha2UsIHdoaWNoIHR5cGljYWxseSBzaG91bGQgYmUoSSBndWVzcykgOjwvcHJlPjxw
+cmU+MS4gU2V0IHNvbWUgZW52aXJvbm1lbnQgdmFyaWFibGVzIGxpa2UgIlRPUERJUiwgVEhJU0RJ
+Ui4uLiI8L3ByZT48cHJlPjIuIExvb2tpbmcgZm9yIGFuZCBwYXJzaW5nIHRoZSBjb25mL2JibGF5
+ZXJzLmNvbmYuPC9wcmU+PHByZT4zLiBTZXQgdGhlIExBWUVSRElSIGFuZCBwYXJzaW5nIGVhY2gg
+b2YgdGhlIE9ORUxBWUVSL2NvbmYvbGF5ZXIuY29uZjwvcHJlPjxwcmU+NC4gTG9jYXRlIGFuZCBw
+YXJzaW5nIHRoZSBjb25mL2JpdGJha2UuY29uZi48L3ByZT48cHJlPjUuIEdvIG92ZXIgb2YgZWFj
+aCBvZiB0aGUgLmJiIGFuZCBzZXR1cCBhbGwgdGhlIGdsb2JhbCB2YXJpYWJsZXMgdG8gZ2V0IGEg
+ZGVwZW5kZW5jeSB0cmVlLi4uPC9wcmU+PHByZT42LiBTdGFydCB0aGUgYnVpbGQ8L3ByZT48cHJl
+PjcuLi4uPC9wcmU+PHByZT5JIGFtIHRyeWluZyB0byBkcmF3IGEgcGljdHVyZSBsaWtlIHRoZSBs
+aXN0IGFib3ZlLHdoaWNoIGlzIGZyb20gdGhlIGJpdGJha2UncyBwb2ludCBvZiB2aWV3LDwvcHJl
+PjxwcmU+IHNvbWUgb2YgdGhlIGxpc3QgaXMgbm90IHJpZ2h0LCBzaW5jZSBsb3RzIHRoaW5ncyBh
+cmUgc3RpbGwgbm90IGNsZWFyIHRvIG1lLiBJZiBzb21lb25lIGNvdWxkIGRyYXcgc3VjaCBwaWN0
+dXJlLCBpdCBoZWxwcyBhIGxvdCB0byB1bmRlcnN0YW5kIHRoZSBiaXRiYWtlLjwvcHJlPjxwcmU+
+Jmd0OyguLi4pCiZndDsKJmd0O2RlZiZuYnNwO2luaXQoZGF0YSk6CiZndDsmbmJzcDsmbmJzcDsm
+bmJzcDsmbmJzcDt0b3BkaXImbmJzcDs9Jm5ic3A7ZGF0YS5nZXRWYXIoJ1RPUERJUicpCiZndDsm
+bmJzcDsmbmJzcDsmbmJzcDsmbmJzcDtpZiZuYnNwO25vdCZuYnNwO3RvcGRpcjoKJmd0OyZuYnNw
+OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwO2RhdGEuc2V0VmFyKCdU
+T1BESVInLCZuYnNwO29zLmdldGN3ZCgpKQomZ3Q7CiZndDsoLi4uKQomZ3Q7CiZndDtZb3UmbmJz
+cDttYXkmbmJzcDt3YW50Jm5ic3A7dG8mbmJzcDtyZWFkJm5ic3A7dGhlJm5ic3A7bmV3bHktd3Jp
+dHRlbiZuYnNwO2RvY3VtZW50YXRpb24mbmJzcDthYm91dCZuYnNwO2JpdGJha2UmbmJzcDthbmQK
+Jmd0O29wZW4mbmJzcDtlbWJlZGRlZC4mbmJzcDtJJm5ic3A7dHJpZWQmbmJzcDt0byZuYnNwO2V4
+cGxhaW4mbmJzcDtob3cmbmJzcDt0aGluZ3MmbmJzcDtmaXQmbmJzcDt0b2dldGhlci4mbmJzcDtJ
+Jm5ic3A7d291bGQmbmJzcDtsaWtlCiZndDt0byZuYnNwO2hhdmUmbmJzcDt5b3VyJm5ic3A7ZmVl
+ZGJhY2suCiZndDsKJmd0OzxhIGhyZWY9Imh0dHA6Ly9oYW1iZWRkZWQub3JnL2Jsb2cvMjAxMi8x
+MS8yNC9mcm9tLWJpdGJha2UtaGVsbG8td29ybGQtdG8tYW4taW1hZ2UvIiB0YXJnZXQ9Il9ibGFu
+ayI+aHR0cDovL2hhbWJlZGRlZC5vcmcvYmxvZy8yMDEyLzExLzI0L2Zyb20tYml0YmFrZS1oZWxs
+by13b3JsZC10by1hbi1pbWFnZS88L2E+PC9wcmU+PHByZT5JIHdpbGwgdHJ5IHRvIGdpdmUgc29t
+ZSBmZWVkYmFjayBhZnRlciBmaW5pc2hpbmcgdGhlIHJlYWRpbmcuPC9wcmU+PHByZT5CdXQgZm9y
+IG5vdywgdGhlcmUgYXJlIHNvbWUgc2lsbHkgcXVlc3Rpb25zOjwvcHJlPjxwcmU+MS4gVGhlcmUg
+aXMgYSBiYXNlX2RvX2ZldGNoKCkge30sIEkgZGlkIG5vdCBmaW5kIHRoZSBleHBsYW5hdGlvbiBv
+ZiB0aGUga2V5d29yZCBvZiAnYmFzZScgaW4gdGhlIG1hbnVhbCwgZG8gaSBtaXNzIHNvbWV0aGlu
+Zz88L3ByZT48cHJlPjIuIFRoZXJlIGlzICdiYi5ub3RlJyBhbmQgJ2Jibm90ZScgaW4gdGhlIGNv
+ZGUgZXhhbXBsZSwgaXMgaXQgYSB0eXBlLW1pc3Rha2Ugb3Igc29tZXRoaW5nIGVsc2U/PC9wcmU+
+PHByZT4mZ3Q7CiZndDstLSZuYnNwOwomZ3Q7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7LiZuYnNw
+OzczISZuYnNwO0RFJm5ic3A7VEExQUVUCiZndDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
+cDsmbmJzcDtodHRwOi8vbGlua2VkaW4uY29tL2luL2VyZW50dXJrYXkKPC9wcmU+PC9kaXY+
 
-The name for 1.4 is top top secret until the release.  It will be
-decided by Richard and he keeps it a mystery until the release.
-
-The names are in themes, the Inky / Clyde / Blinky series is easily
-googlable, as is Laverne / Bernard / Edison.  Denzil and Danny, well,
-Richard thought he told me what the theme was but I can't remember and
-he won't tell me again. :(
-
-Ross
-
+------=_Part_496974_14639645.1355833712051--
