@@ -1,34 +1,25 @@
-Return-Path: <munoz0raul@gmail.com>
-Received: from mail-ie0-f176.google.com (mail-ie0-f176.google.com
-	[209.85.223.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 05E42E013EB
-	for <yocto@yoctoproject.org>; Wed, 19 Dec 2012 09:31:43 -0800 (PST)
-Received: by mail-ie0-f176.google.com with SMTP id 13so3193372iea.7
-	for <yocto@yoctoproject.org>; Wed, 19 Dec 2012 09:31:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=JN88DEjxXGKbsGk3eqmjhJGG8z8JhzNPo62KCk0WXl8=;
-	b=nnj/kaDSML3Il1R+JhrHrChjC812YD2IyYCy0e915eSxeZNvd5rpr3+0fa6D3f+49c
-	tgNiWnmO/G269qyM82NdJOvslV76gaT5KAUL/dTopB/aeYsMxsMrCmKwRkY4GKwr01i5
-	ahOuCk5dbpohfBUKdWcjSzSKCZy4HIZ5amhwOMlYdfFyDIAz+cWhu7jjKEHI4VwVwkzN
-	PU/pw/XYRwfNX4kvdfIjXrh8WxEs2xdQxGOVs4DmHuUe7VZuQP9i+wsKTFp/qNM7wytH
-	DEhFFlcN9Fs9vFcMccJcIj4yTOyp7fs/RcerSsOGZkgvYliYpsSS4FQZf6nkc5As+a0N
-	/0tA==
-MIME-Version: 1.0
-Received: by 10.50.106.199 with SMTP id gw7mr7423174igb.26.1355938303473; Wed,
-	19 Dec 2012 09:31:43 -0800 (PST)
-Received: by 10.64.147.40 with HTTP; Wed, 19 Dec 2012 09:31:42 -0800 (PST)
-In-Reply-To: <CANmVirhdCb55A8h=rQOU-2EanWwmXUyF8nV5n7P+ay2mAxnyfQ@mail.gmail.com>
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 883A9E013EB
+	for <yocto@yoctoproject.org>; Wed, 19 Dec 2012 10:08:04 -0800 (PST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 19 Dec 2012 10:08:04 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.84,318,1355126400"; d="scan'208";a="236534563"
+Received: from unknown (HELO helios.localnet) ([10.252.122.248])
+	by orsmga001.jf.intel.com with ESMTP; 19 Dec 2012 10:08:03 -0800
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Raul Rosetto Munoz <munoz0raul@gmail.com>
+Date: Wed, 19 Dec 2012 18:08:02 +0000
+Message-ID: <3911329.LVxahrYG8d@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.9.3 (Linux/3.5.0-19-generic; KDE/4.9.3; i686; ; )
+In-Reply-To: <CANmVirgqh54ir776cAQtHPX7RA9nawas4tztjCkLyJnaermsdA@mail.gmail.com>
 References: <CANmViriCGoKznqztTxC9TDP_+ZKizB_hUzbHLJ66NQ21H+re_g@mail.gmail.com>
-	<CANmVirhKN+g8YawraT9d3ieFrCrQtaTomEUC7Zv1X_DTZc7rmg@mail.gmail.com>
-	<2089740.tnt0W30Y43@helios>
 	<CANmVirhdCb55A8h=rQOU-2EanWwmXUyF8nV5n7P+ay2mAxnyfQ@mail.gmail.com>
-Date: Wed, 19 Dec 2012 15:31:42 -0200
-Message-ID: <CANmVirgqh54ir776cAQtHPX7RA9nawas4tztjCkLyJnaermsdA@mail.gmail.com>
-From: Raul Rosetto Munoz <munoz0raul@gmail.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+	<CANmVirgqh54ir776cAQtHPX7RA9nawas4tztjCkLyJnaermsdA@mail.gmail.com>
+MIME-Version: 1.0
+Cc: yocto@yoctoproject.org
 Subject: Re: How to use JRE (Java Runtime) in Yocto Projects
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -41,203 +32,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 19 Dec 2012 17:31:44 -0000
-Content-Type: multipart/alternative; boundary=e89a8f234d6dea78a804d137fc4e
+X-List-Received-Date: Wed, 19 Dec 2012 18:08:04 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
---e89a8f234d6dea78a804d137fc4e
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+On Wednesday 19 December 2012 15:31:42 Raul Rosetto Munoz wrote:
+> raul@phi04:/home/prjs/poky$ git branch
+> * local/origin/denzil
 
-raul@phi04:/home/prjs/poky$ git branch
-* local/origin/denzil
+There doesn't seem to be a denzil branch for meta-java and it's likely the 
+error you're receiving is because the master branch of meta-java is 
+incompatible with the denzil release. I would suggest updating to the danny 
+release, or alternatively you'll need to modify meta-java to be compatible 
+with denzil (i.e. you'll have to match indenting in python functions such as 
+populate_packages_prepend).
 
+Cheers,
+Paul
 
+-- 
 
-2012/12/19 Raul Rosetto Munoz <munoz0raul@gmail.com>
+Paul Eggleton
+Intel Open Source Technology Centre
 
-> raul@phi04:/home/prjs/newcom0001/workspace/philinux/philinux-imx28-newcom=
-$
-> bitbake --version
-> BitBake Build Tool Core version 1.15.2, bitbake version 1.15.2
->
->
->
-> 2012/12/19 Paul Eggleton <paul.eggleton@linux.intel.com>
->
->> On Wednesday 19 December 2012 08:25:00 Raul Rosetto Munoz wrote:
->> > Hello all,
->> > I did some things like this wiki.
->> >
->> > I added the meta-java layer but the only important diference is that I=
-'m
->> > using meta poky (/poky/meta) and no meta oe-core (/oe-core/meta).
->> >
->> > https://github.com/woglinde/meta-java/wiki
->> >
->> > The fisrt probleme tha I have is that the package LLVM show me some
->> errors.
->> >
->> > here is what I have:
->> >
->> > raul@phi04
->> :/home/prjs/newcom0001/workspace/philinux/philinux-imx28-newcom$
->> > bitbake openjdk-6
->> > WARNING: Host distribution "Ubuntu 12.04.1 LTS" has not been validated
->> with
->> > this version of the build system; you may possibly experience unexpect=
-ed
->> > failures. It is recommended that you use a tested distribution.
->> > NOTE: Error expanding variable populate_packages
->> >
->> >                                                             | ETA:
->>  00:00:38
->> >
->> > NOTE: Error during finalise of
->> > /home/prjs/newcom0001/workspace/philinux/meta-java/recipes-core/llvm/
->> > llvm2.8_2.8.bb
->> > ERROR: Unable to parse
->> > /home/prjs/newcom0001/workspace/philinux/meta-java/recipes-core/llvm/
->> > llvm2.8_2.8.bb
->> > ERROR: Command execution failed: Traceback (most recent call last):
->> >   File "/home/prjs/poky/bitbake/lib/bb/command.py", line 84, in
->> > runAsyncCommand
->> >     self.cooker.updateCache()
->> >   File "/home/prjs/poky/bitbake/lib/bb/cooker.py", line 1202, in
->> updateCache
->> > if not self.parser.parse_next():
->> >   File "/home/prjs/poky/bitbake/lib/bb/cooker.py", line 1669, in
->> parse_next
->> >     self.virtuals +=3D len(result)
->> > UnboundLocalError: local variable 'result' referenced before assignmen=
-t
->> >
->> >
->> > Summary: There was 1 WARNING message shown.
->> > Summary: There were 2 ERROR messages shown, returning a non-zero exit
->> code.
->> > raul@phi04
->> :/home/prjs/newcom0001/workspace/philinux/philinux-imx28-newcom$
->>
->> Which version of the build system are you using?
->>
->> Cheers,
->> Paul
->>
->> --
->>
->> Paul Eggleton
->> Intel Open Source Technology Centre
->>
->
->
->
-> --
-> *Raul Rosetto Mu=F1oz*
->
-
-
-
---=20
-*Raul Rosetto Mu=F1oz*
-
---e89a8f234d6dea78a804d137fc4e
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>raul@phi04:/home/prjs/poky$ git branch=A0</div><div>*=
- local/origin/denzil</div><div><br></div></div><div class=3D"gmail_extra"><=
-br><br><div class=3D"gmail_quote">2012/12/19 Raul Rosetto Munoz <span dir=
-=3D"ltr">&lt;<a href=3D"mailto:munoz0raul@gmail.com" target=3D"_blank">muno=
-z0raul@gmail.com</a>&gt;</span><br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div dir=3D"ltr"><div>raul@phi04:/home/prjs/=
-newcom0001/workspace/philinux/philinux-imx28-newcom$ bitbake --version</div=
-><div>
-BitBake Build Tool Core version 1.15.2, bitbake version 1.15.2</div><div><b=
-r></div></div><div class=3D"gmail_extra"><div><div class=3D"h5">
-<br><br><div class=3D"gmail_quote">2012/12/19 Paul Eggleton <span dir=3D"lt=
-r">&lt;<a href=3D"mailto:paul.eggleton@linux.intel.com" target=3D"_blank">p=
-aul.eggleton@linux.intel.com</a>&gt;</span><br><blockquote class=3D"gmail_q=
-uote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1e=
-x">
-
-<div><div>On Wednesday 19 December 2012 08:25:00 Raul Rosetto Munoz wrote:<=
-br>
-&gt; Hello all,<br>
-&gt; I did some things like this wiki.<br>
-&gt;<br>
-&gt; I added the meta-java layer but the only important diference is that I=
-&#39;m<br>
-&gt; using meta poky (/poky/meta) and no meta oe-core (/oe-core/meta).<br>
-&gt;<br>
-&gt; <a href=3D"https://github.com/woglinde/meta-java/wiki" target=3D"_blan=
-k">https://github.com/woglinde/meta-java/wiki</a><br>
-&gt;<br>
-&gt; The fisrt probleme tha I have is that the package LLVM show me some er=
-rors.<br>
-&gt;<br>
-&gt; here is what I have:<br>
-&gt;<br>
-&gt; raul@phi04:/home/prjs/newcom0001/workspace/philinux/philinux-imx28-new=
-com$<br>
-&gt; bitbake openjdk-6<br>
-&gt; WARNING: Host distribution &quot;Ubuntu 12.04.1 LTS&quot; has not been=
- validated with<br>
-&gt; this version of the build system; you may possibly experience unexpect=
-ed<br>
-&gt; failures. It is recommended that you use a tested distribution.<br>
-&gt; NOTE: Error expanding variable populate_packages<br>
-&gt;<br>
-&gt; =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
-=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 | ETA: =A000:00:38<br>
-&gt;<br>
-&gt; NOTE: Error during finalise of<br>
-&gt; /home/prjs/newcom0001/workspace/philinux/meta-java/recipes-core/llvm/<=
-br>
-&gt; <a href=3D"http://llvm2.8_2.8.bb" target=3D"_blank">llvm2.8_2.8.bb</a>=
-<br>
-&gt; ERROR: Unable to parse<br>
-&gt; /home/prjs/newcom0001/workspace/philinux/meta-java/recipes-core/llvm/<=
-br>
-&gt; <a href=3D"http://llvm2.8_2.8.bb" target=3D"_blank">llvm2.8_2.8.bb</a>=
-<br>
-&gt; ERROR: Command execution failed: Traceback (most recent call last):<br=
->
-&gt; =A0 File &quot;/home/prjs/poky/bitbake/lib/bb/command.py&quot;, line 8=
-4, in<br>
-&gt; runAsyncCommand<br>
-&gt; =A0 =A0 self.cooker.updateCache()<br>
-&gt; =A0 File &quot;/home/prjs/poky/bitbake/lib/bb/cooker.py&quot;, line 12=
-02, in updateCache<br>
-&gt; if not self.parser.parse_next():<br>
-&gt; =A0 File &quot;/home/prjs/poky/bitbake/lib/bb/cooker.py&quot;, line 16=
-69, in parse_next<br>
-&gt; =A0 =A0 self.virtuals +=3D len(result)<br>
-&gt; UnboundLocalError: local variable &#39;result&#39; referenced before a=
-ssignment<br>
-&gt;<br>
-&gt;<br>
-&gt; Summary: There was 1 WARNING message shown.<br>
-&gt; Summary: There were 2 ERROR messages shown, returning a non-zero exit =
-code.<br>
-&gt; raul@phi04:/home/prjs/newcom0001/workspace/philinux/philinux-imx28-new=
-com$<br>
-<br>
-</div></div>Which version of the build system are you using?<br>
-<br>
-Cheers,<br>
-Paul<br>
-<span><font color=3D"#888888"><br>
---<br>
-<br>
-Paul Eggleton<br>
-Intel Open Source Technology Centre<br>
-</font></span></blockquote></div><br><br clear=3D"all"><div><br></div></div=
-></div><span class=3D"HOEnZb"><font color=3D"#888888">-- <br><b>Raul Rosett=
-o Mu=F1oz</b><br>
-</font></span></div>
-</blockquote></div><br><br clear=3D"all"><div><br></div>-- <br><b>Raul Rose=
-tto Mu=F1oz</b><br>
-</div>
-
---e89a8f234d6dea78a804d137fc4e--
