@@ -1,32 +1,32 @@
 Return-Path: <alexandrux.palalau@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 30825E00294
-	for <yocto@yoctoproject.org>; Wed, 19 Dec 2012 23:34:55 -0800 (PST)
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 703D8E00294
+	for <yocto@yoctoproject.org>; Thu, 20 Dec 2012 00:06:58 -0800 (PST)
 Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 19 Dec 2012 23:34:50 -0800
+	by azsmga101.ch.intel.com with ESMTP; 20 Dec 2012 00:06:55 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="4.84,322,1355126400"; 
 	d="xml'?bin'?vml'?scan'208,217,72,48?rels'208,217,72,48?xlsx'208,217,72,48,72,48";
-	a="182871361"
-Received: from irsmsx102.ger.corp.intel.com ([163.33.3.155])
-	by AZSMGA002.ch.intel.com with ESMTP; 19 Dec 2012 00:09:06 -0800
+	a="182901838"
+Received: from irsmsx101.ger.corp.intel.com ([163.33.3.153])
+	by AZSMGA002.ch.intel.com with ESMTP; 19 Dec 2012 01:36:18 -0800
 Received: from irsmsx104.ger.corp.intel.com ([169.254.5.151]) by
-	IRSMSX102.ger.corp.intel.com ([169.254.2.95]) with mapi id
-	14.01.0355.002; Wed, 19 Dec 2012 08:08:59 +0000
+	IRSMSX101.ger.corp.intel.com ([169.254.1.13]) with mapi id
+	14.01.0355.002; Wed, 19 Dec 2012 09:36:15 +0000
 From: "Palalau, AlexandruX" <alexandrux.palalau@intel.com>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Thread-Topic: Fullpass Test Report for Yocto 1.2.2 denzil-next 20121206 Build
-Thread-Index: Ac3dZOnzonBnQS5VS92epuzSKd3PhAAWxI1A
-Date: Wed, 19 Dec 2012 08:08:58 +0000
-Message-ID: <A45D4FDC92525B4F8A75E1B55399F328C101DB@IRSMSX104.ger.corp.intel.com>
+Thread-Index: Ac3dZOnzonBnQS5VS92epuzSKd3PhAAZ0biQ
+Date: Wed, 19 Dec 2012 09:36:17 +0000
+Message-ID: <A45D4FDC92525B4F8A75E1B55399F328C101FD@IRSMSX104.ger.corp.intel.com>
 References: <A45D4FDC92525B4F8A75E1B55399F328C10137@IRSMSX104.ger.corp.intel.com>
 In-Reply-To: <A45D4FDC92525B4F8A75E1B55399F328C10137@IRSMSX104.ger.corp.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: yes
 X-MS-TNEF-Correlator: 
-x-originating-ip: [163.33.239.182]
+x-originating-ip: [163.33.239.180]
 MIME-Version: 1.0
-Subject: Fullpass Test Report for Yocto 1.2.2 denzil-next 20121206 Build
+Subject: FW: Fullpass Test Report for Yocto 1.2.2 denzil-next 20121206 Build
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,19 +38,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 20 Dec 2012 07:34:56 -0000
-X-Groupsio-MsgNum: 11195
+X-List-Received-Date: Thu, 20 Dec 2012 08:07:02 -0000
+X-Groupsio-MsgNum: 11196
 Content-Language: en-US
 Content-Type: multipart/mixed;
-	boundary="_004_A45D4FDC92525B4F8A75E1B55399F328C101DBIRSMSX104gercorpi_"
+	boundary="_004_A45D4FDC92525B4F8A75E1B55399F328C101FDIRSMSX104gercorpi_"
 
---_004_A45D4FDC92525B4F8A75E1B55399F328C101DBIRSMSX104gercorpi_
+--_004_A45D4FDC92525B4F8A75E1B55399F328C101FDIRSMSX104gercorpi_
 Content-Type: multipart/alternative;
-	boundary="_000_A45D4FDC92525B4F8A75E1B55399F328C101DBIRSMSX104gercorpi_"
+	boundary="_000_A45D4FDC92525B4F8A75E1B55399F328C101FDIRSMSX104gercorpi_"
 
---_000_A45D4FDC92525B4F8A75E1B55399F328C101DBIRSMSX104gercorpi_
+--_000_A45D4FDC92525B4F8A75E1B55399F328C101FDIRSMSX104gercorpi_
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
+
+
+Somehow, this didn't get sent last night...
+Br,
+--
+Alexandru Palalau
+QA Contractor @ Yocto Project
+Open-source Technology Center Romania
+System Software Division
+
+From: Palalau, AlexandruX
+Sent: Tuesday, December 18, 2012 11:17 PM
+To: yocto@yoctoproject.org
+Cc: Liu, Song
+Subject: Fullpass Test Report for Yocto 1.2.2 denzil-next 20121206 Build
 
 Hello,
 
@@ -402,7 +417,7 @@ System Software Division
 
 
 
---_000_A45D4FDC92525B4F8A75E1B55399F328C101DBIRSMSX104gercorpi_
+--_000_A45D4FDC92525B4F8A75E1B55399F328C101FDIRSMSX104gercorpi_
 Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
@@ -425,6 +440,9 @@ Content-Transfer-Encoding: quoted-printable
 @font-face
 	{font-family:Calibri;
 	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
 @font-face
 	{font-family:"\@SimSun";
 	panose-1:2 1 6 0 3 1 1 1 1 1;}
@@ -572,6 +590,51 @@ ul
 </head>
 <body bgcolor=3D"white" lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
 <div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
+/p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Somehow, this didn&#8217;=
+t get sent last night&#8230;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Br,<o:p></o:p></span></p>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D;mso-fareast-language:EN-US=
+">--<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D;mso-fareast-language:EN-US=
+">Alexandru Palalau<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D;mso-fareast-language:EN-US=
+">QA Contractor @ Yocto Project<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D;mso-fareast-language:EN-US=
+">Open-source Technology Center Romania<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D;mso-fareast-language:EN-US=
+">System Software Division<o:p></o:p></span></p>
+</div>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
+/p>
+<div>
+<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
+0in 0in">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Tahoma&quot;,&quot;sans-serif&quot;;color:windowtext;mso-fareast-language:=
+EN-US">From:</span></b><span style=3D"font-size:10.0pt;font-family:&quot;Ta=
+homa&quot;,&quot;sans-serif&quot;;color:windowtext;mso-fareast-language:EN-=
+US">
+ Palalau, AlexandruX <br>
+<b>Sent:</b> Tuesday, December 18, 2012 11:17 PM<br>
+<b>To:</b> yocto@yoctoproject.org<br>
+<b>Cc:</b> Liu, Song<br>
+<b>Subject:</b> Fullpass Test Report for Yocto 1.2.2 denzil-next 20121206 B=
+uild<o:p></o:p></span></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
 libri&quot;,&quot;sans-serif&quot;;color:windowtext">Hello,<o:p></o:p></spa=
 n></p>
@@ -1563,9 +1626,9 @@ sp;</o:p></span></p>
 </body>
 </html>
 
---_000_A45D4FDC92525B4F8A75E1B55399F328C101DBIRSMSX104gercorpi_--
+--_000_A45D4FDC92525B4F8A75E1B55399F328C101FDIRSMSX104gercorpi_--
 
---_004_A45D4FDC92525B4F8A75E1B55399F328C101DBIRSMSX104gercorpi_
+--_004_A45D4FDC92525B4F8A75E1B55399F328C101FDIRSMSX104gercorpi_
 Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;
 	name="1.2.2 denzil-next Fullpass.xlsx"
 Content-Description: 1.2.2 denzil-next Fullpass.xlsx
@@ -2352,4 +2415,4 @@ AADcAAAAJwAAAAAAAAAAAAAAAAAUmwAAeGwvcHJpbnRlclNldHRpbmdzL3ByaW50ZXJTZXR0aW5n
 czcuYmluUEsBAi0AFAAGAAgAAAAhAIz78tQTAgAAAAUAABAAAAAAAAAAAAAAAAAApZsAAGRvY1By
 b3BzL2FwcC54bWxQSwUGAAAAADAAMADlDQAA7p4AAAAA
 
---_004_A45D4FDC92525B4F8A75E1B55399F328C101DBIRSMSX104gercorpi_--
+--_004_A45D4FDC92525B4F8A75E1B55399F328C101FDIRSMSX104gercorpi_--
