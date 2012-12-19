@@ -1,26 +1,41 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 883A9E013EB
-	for <yocto@yoctoproject.org>; Wed, 19 Dec 2012 10:08:04 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 19 Dec 2012 10:08:04 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,318,1355126400"; d="scan'208";a="236534563"
-Received: from unknown (HELO helios.localnet) ([10.252.122.248])
-	by orsmga001.jf.intel.com with ESMTP; 19 Dec 2012 10:08:03 -0800
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Raul Rosetto Munoz <munoz0raul@gmail.com>
-Date: Wed, 19 Dec 2012 18:08:02 +0000
-Message-ID: <3911329.LVxahrYG8d@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.9.3 (Linux/3.5.0-19-generic; KDE/4.9.3; i686; ; )
-In-Reply-To: <CANmVirgqh54ir776cAQtHPX7RA9nawas4tztjCkLyJnaermsdA@mail.gmail.com>
-References: <CANmViriCGoKznqztTxC9TDP_+ZKizB_hUzbHLJ66NQ21H+re_g@mail.gmail.com>
-	<CANmVirhdCb55A8h=rQOU-2EanWwmXUyF8nV5n7P+ay2mAxnyfQ@mail.gmail.com>
-	<CANmVirgqh54ir776cAQtHPX7RA9nawas4tztjCkLyJnaermsdA@mail.gmail.com>
+Return-Path: <wd@denx.de>
+Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.10])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E420EE013EB
+	for <yocto@yoctoproject.org>; Wed, 19 Dec 2012 11:23:28 -0800 (PST)
+Received: from frontend1.mail.m-online.net (frontend1.mail.intern.m-online.net
+	[192.168.8.180])
+	by mail-out.m-online.net (Postfix) with ESMTP id 3YRQxV5NM2z3hhlB;
+	Wed, 19 Dec 2012 20:23:25 +0100 (CET)
+Received: from localhost (dynscan1.mnet-online.de [192.168.6.68])
+	by mail.m-online.net (Postfix) with ESMTP id 3YRQxT3jszzbbjB;
+	Wed, 19 Dec 2012 20:23:25 +0100 (CET)
+X-Virus-Scanned: amavisd-new at mnet-online.de
+Received: from smtp-auth.mnet-online.de ([192.168.8.180])
+	by localhost (dynscan1.mail.m-online.net [192.168.6.68]) (amavisd-new,
+	port 10024)
+	with ESMTP id Z0LlBGwyhsmo; Wed, 19 Dec 2012 20:23:24 +0100 (CET)
+X-Auth-Info: gdCiIrZWZa/Ml8+7PAr0Y+dDddGNGYX6BaGKTGnWjFw=
+Received: from diddl.denx.de (host-80-81-18-216.customer.m-online.net
+	[80.81.18.216]) by smtp-auth.mnet-online.de (Postfix) with ESMTPA;
+	Wed, 19 Dec 2012 20:23:24 +0100 (CET)
+Received: from gemini.denx.de (unknown [10.0.0.2])
+	by diddl.denx.de (Postfix) with ESMTP id 387E61A6E00;
+	Wed, 19 Dec 2012 20:23:24 +0100 (CET)
+Received: from gemini.denx.de (localhost [IPv6:::1])
+	by gemini.denx.de (Postfix) with ESMTP id 23783202B6E;
+	Wed, 19 Dec 2012 20:23:24 +0100 (CET)
+To: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+From: Wolfgang Denk <wd@denx.de>
 MIME-Version: 1.0
+In-reply-to: <CAPhnLPBXsYcNDeKsW6xBLjSrJunHUDtkRohR_aHtU9PysQMLhg@mail.gmail.com>
+References: <20121215132238.503DC201C62@gemini.denx.de>
+	<CAPhnLPBXsYcNDeKsW6xBLjSrJunHUDtkRohR_aHtU9PysQMLhg@mail.gmail.com>
+Comments: In-reply-to "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+	message dated "Tue, 18 Dec 2012 09:42:06 -0800."
+Date: Wed, 19 Dec 2012 20:23:24 +0100
+Message-Id: <20121219192324.23783202B6E@gemini.denx.de>
 Cc: yocto@yoctoproject.org
-Subject: Re: How to use JRE (Java Runtime) in Yocto Projects
+Subject: Re: Git tag systematics ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,26 +47,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 19 Dec 2012 18:08:04 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Wed, 19 Dec 2012 19:23:29 -0000
+Content-type: text/plain; charset=UTF-8
+Content-transfer-encoding: 8bit
 
-On Wednesday 19 December 2012 15:31:42 Raul Rosetto Munoz wrote:
-> raul@phi04:/home/prjs/poky$ git branch
-> * local/origin/denzil
+Dear Elizabeth,
 
-There doesn't seem to be a denzil branch for meta-java and it's likely the 
-error you're receiving is because the master branch of meta-java is 
-incompatible with the denzil release. I would suggest updating to the danny 
-release, or alternatively you'll need to modify meta-java to be compatible 
-with denzil (i.e. you'll have to match indenting in python functions such as 
-populate_packages_prepend).
+In message <CAPhnLPBXsYcNDeKsW6xBLjSrJunHUDtkRohR_aHtU9PysQMLhg@mail.gmail.com> you wrote:
+>
+> > However, there is no such release tag as "danny-8.0".
+> 
+> You are correct. That was an oversight on my part. I've corrected it.
 
-Cheers,
-Paul
+Thanks.
+
+Is there some formal procedure in place how git release tags are
+assigned, and when?
+
+> > What is the system in this numbering / tagging?
+> 
+> Milestones: 1.x_My.rcz
+> Major releases: 1.x and they should also get the name-x.y.z tag
+
+Thanks again - but is there any documetn somehere on the web pages or
+in the wiki that actually says what the name of the next release will
+be, and which branch it is being worked on?
+
+> > Releated:  is there any document which explains the branch names being
+> > used for development.  for example, how can I find out ("officially")
+> > what the branch name for Yocto 1.4 will be / is ?
+> 
+> When Richard tells me :)
+
+We have a "1.4_M1.final" tag in the "1.4_M1" branch, and I see similar
+"1.x_My" branches for the other releases.  When will some "name-..."
+branch become visible?
+
+Best regards,
+
+Wolfgang Denk
 
 -- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
+DENX Software Engineering GmbH,     MD: Wolfgang Denk & Detlev Zundel
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+Phone: (+49)-8142-66989-10 Fax: (+49)-8142-66989-80 Email: wd@denx.de
+Lots of people drink from the wrong bottle sometimes.
+	-- Edith Keeler, "The City on the Edge of Forever",
+	   stardate unknown
 
