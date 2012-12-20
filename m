@@ -1,35 +1,25 @@
-Return-Path: <tb@travelping.com>
-Received: from mail.tpip.net (mail.tpip.net [92.43.49.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B3F47E011ED
-	for <yocto@yoctoproject.org>; Thu, 20 Dec 2012 08:03:30 -0800 (PST)
-Received: from office.tpip.net (port-87-193-171-186.static.qsc.de
-	[87.193.171.186])
-	by mail.tpip.net (Postfix) with ESMTP id 7671D4F418;
-	Thu, 20 Dec 2012 16:03:29 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by office.tpip.net (Postfix) with ESMTP id 6A63042E83;
-	Thu, 20 Dec 2012 17:03:28 +0100 (CET)
-X-Virus-Scanned: amavisd-new at tpip.net
-Received: from office.tpip.net ([127.0.0.1])
-	by localhost (office.tpip.net [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id CofdfJMIFtD2; Thu, 20 Dec 2012 17:03:27 +0100 (CET)
-Received: from [192.168.14.111] (p4FEA4F5D.dip.t-dialin.net [79.234.79.93])
-	by office.tpip.net (Postfix) with ESMTPSA id 5DBC042E2A;
-	Thu, 20 Dec 2012 17:03:27 +0100 (CET)
-Message-ID: <50D336CE.6060706@travelping.com>
-Date: Thu, 20 Dec 2012 17:03:26 +0100
-From: Tino Breddin <tb@travelping.com>
-Organization: Travelping GmbH
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/17.0 Thunderbird/17.0
-MIME-Version: 1.0
-To: Jerrod Peach <peachj@lexmark.com>
-References: <50D32FE8.7020506@travelping.com>
-	<CA+QkY1Dt0tYj+iREYRNVGXsMmiuxBRMBpc1i9pZDatjjcYxSDw@mail.gmail.com>
-In-Reply-To: <CA+QkY1Dt0tYj+iREYRNVGXsMmiuxBRMBpc1i9pZDatjjcYxSDw@mail.gmail.com>
-X-Enigmail-Version: 1.4.6
-Cc: yocto <yocto@yoctoproject.org>
-Subject: Re: How to update Git clone when rebuilding
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 68AE0E011ED
+	for <yocto@yoctoproject.org>; Thu, 20 Dec 2012 08:24:26 -0800 (PST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 20 Dec 2012 08:24:13 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.84,324,1355126400"; d="scan'208";a="265082495"
+Received: from unknown (HELO [10.255.14.10]) ([10.255.14.10])
+	by fmsmga001.fm.intel.com with ESMTP; 20 Dec 2012 08:23:53 -0800
+Message-ID: <1356020632.30533.51.camel@empanada>
+From: Tom Zanussi <tom.zanussi@intel.com>
+To: Darren Hart <dvhart@linux.intel.com>
+Date: Thu, 20 Dec 2012 10:23:52 -0600
+In-Reply-To: <50D25E76.1000302@linux.intel.com>
+References: <f339ca3f94ec7bb6a749c5973acb1f85bc1ace6c.1355766001.git.tom.zanussi@intel.com>
+	<0c46e74f56afa3b2c2922209e8f746ca210c9152.1355766001.git.tom.zanussi@intel.com>
+	<50D25E76.1000302@linux.intel.com>
+X-Mailer: Evolution 3.4.1 (3.4.1-2.fc17) 
+Mime-Version: 1.0
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH 4/5] yocto-layer: add 'layer' template data
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,68 +31,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 20 Dec 2012 16:03:31 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Thu, 20 Dec 2012 16:24:26 -0000
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-Hi Jerrod,
-
-That looks promising. Will try that once I can build again.
-
-Thanks,
-Tino
-
-On 12/20/2012 04:38 PM, Jerrod Peach wrote:
-> Tino,
+On Wed, 2012-12-19 at 16:40 -0800, Darren Hart wrote:
 > 
-> SRCREV = "${AUTOREV}"
+> On 12/17/2012 09:51 AM, tom.zanussi@intel.com wrote:
+> > From: Tom Zanussi <tom.zanussi@intel.com>
+> > 
+> > Add a 'layer' target containing all the data that will be used to
+> > generate a generic yocto layer.
+> > 
+> > Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
+> > ---
 > 
-> You can read a little more about that in these two docs:
+> Great stuff Tom, only one nit below:
 > 
-> http://www.yoctoproject.org/docs/current/poky-ref-manual/poky-ref-manual.html#ref-variables-glossary
-> http://www.yoctoproject.org/docs/1.3/dev-manual/dev-manual.html#platdev-appdev-srcrev
+> > new file mode 100644
+> > index 0000000..90ce90e
+> > --- /dev/null
+> > +++ "b/scripts/lib/bsp/substrate/target/arch/layer/{{ if create_example_recipe == \"y\": }} recipes-example/example/{{=example_recipe_name}}-0.1/helloworld.c"	
+> > @@ -0,0 +1,6 @@
+> > +#include <stdio.h>
+> > +
+> > +int main(int argc, char **argv)
+> > +{
+> > +    printf("Hello World!\n");
 > 
-> Kind regards,
+> If you specify a return type of int, you should be returning one:
 > 
-> Jerrod
+> 	return 0;
 > 
-> 
-> On Thu, Dec 20, 2012 at 10:34 AM, Tino Breddin <tb@travelping.com> wrote:
-> 
->> Hi,
->>
->> I've noticed that bitbake won't update a Git checkout of an
->> application referenced through a recipe when running a follow-up build.
->>
->> Is there some way to tell bitbake to check whether the remote Git
->> repository provides updates which should trigger a rebuild of the
->> application?
->>
->> Cheers,
->> Tino
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->>
+> :-)
 > 
 
--- 
-Tino Breddin
-Technical Director
+Hmm, I don't think that's actually necessary for main() - if you don't
+specify a return value for main(), it should already implicitly return 0
+IIRC...
 
-email: tb@travelping.com
-mobile: +49-151-27054995
+Tom
 
-------------------- enabling your networks -------------------
+> > +}
+> 
+> 
+> Looks good otherwise.
+> 
+> 
 
-Travelping GmbH               phone:         +49-391-819099229
-Roentgenstr. 13               fax:           +49-391-819099299
-D-39108 Magdeburg             email:       info@travelping.com
-GERMANY                       web:   http://www.travelping.com
 
-
-Company Registration: Amtsgericht Stendal Reg No.:   HRB 10578
-Geschaeftsfuehrer: Holger Winkelmann | VAT ID No.: DE236673780
---------------------------------------------------------------
 
