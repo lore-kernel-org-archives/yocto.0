@@ -1,34 +1,26 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from azsmga101.ch.intel.com (mga07.intel.com [143.182.124.22])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9391AE0045D
-	for <yocto@yoctoproject.org>; Wed, 19 Dec 2012 15:54:49 -0800 (PST)
-Received: from mail-gg0-f198.google.com ([209.85.161.198])
-	by mga03.intel.com with ESMTP/TLS/RC4-SHA; 19 Dec 2012 15:54:48 -0800
-Received: by mail-gg0-f198.google.com with SMTP id f4so3915068ggn.5
-	for <yocto@yoctoproject.org>; Wed, 19 Dec 2012 15:54:47 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=x-received:mime-version:date:message-id:subject:from:to:cc
-	:content-type:x-gm-message-state;
-	bh=6LrK4mzj7SLhnH98BKl7Ux0/AFxbaXJOSlQs4JZ8Ncg=;
-	b=d5FBay5yl7+oHF1jeVvdJncR/p1HtfID64BU0PPfmu+Fr2o3oirtYhFvcGGsaN4s8K
-	LgSMRW6blr4bogrkHkwYPVwBvOpG+yIvUozj4rWAYE4Uc1URRqlIFPcfSgGldxC11oJb
-	jeAx5QNgBEZpWRltDVwnrlxurSCUss1QgMerlVuqDSk8kH6FQcGrebx1iJTjU++EDRi2
-	/5A8m+mj6bZYPaniukafCczQKHM4DVzqFKCiq89/Ay6yS/8Xmmlz8Kbp9XTX6h9f74uv
-	ntA0vrIRjTlHVTeGyOgkB67/6IA6IsfNlyDjjAy46oX2lKcjLAinc5eGzRK7X+itobTk
-	vQuw==
-X-Received: by 10.224.30.203 with SMTP id v11mr3940976qac.31.1355961287745;
-	Wed, 19 Dec 2012 15:54:47 -0800 (PST)
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 61639E0144E
+	for <yocto@yoctoproject.org>; Wed, 19 Dec 2012 16:36:13 -0800 (PST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 19 Dec 2012 16:36:13 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.84,320,1355126400"; d="scan'208";a="236688089"
+Received: from unknown (HELO envy.home) ([10.255.14.13])
+	by orsmga001.jf.intel.com with ESMTP; 19 Dec 2012 16:36:12 -0800
+Message-ID: <50D25D7C.5090906@linux.intel.com>
+Date: Wed, 19 Dec 2012 16:36:12 -0800
+From: Darren Hart <dvhart@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/17.0 Thunderbird/17.0
 MIME-Version: 1.0
-Received: by 10.224.30.203 with SMTP id v11mr3940970qac.31.1355961287522; Wed,
-	19 Dec 2012 15:54:47 -0800 (PST)
-Received: by 10.49.12.136 with HTTP; Wed, 19 Dec 2012 15:54:47 -0800 (PST)
-Date: Wed, 19 Dec 2012 15:54:47 -0800
-Message-ID: <CAPhnLPAPfR=pnk67N024-7x_zo6t-+ZAU11Nkd_LDMxaui2fvA@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: yocto@yoctoproject.org
-X-Gm-Message-State: ALoCoQmlGBgT9WFCa0hErGbgploHDBm+4XM8yYhhuSbvSDd1fwAVk2KeUj5/kY6/c/2/HrJEsk71w7hyfll5+9DKC+AYU71cuv7nM7xDjBLcJPuQQs61+7GoEBgjKUzHnKItquLVh9CxAvd58izWmeExFrN09Vh7xA==
-Subject: Weekly build availability.
+To: tom.zanussi@intel.com
+References: <f339ca3f94ec7bb6a749c5973acb1f85bc1ace6c.1355766001.git.tom.zanussi@intel.com>
+	<82ce4e5c6166c96066a84df920cf0732e98ba3dc.1355766001.git.tom.zanussi@intel.com>
+In-Reply-To: <82ce4e5c6166c96066a84df920cf0732e98ba3dc.1355766001.git.tom.zanussi@intel.com>
+X-Enigmail-Version: 1.4.6
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH 2/5] yocto-layer: new script
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,24 +32,186 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 19 Dec 2012 23:54:49 -0000
+X-List-Received-Date: Thu, 20 Dec 2012 00:36:13 -0000
 Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-The weekly build will be available in a few hours at:
+On 12/17/2012 09:51 AM, tom.zanussi@intel.com wrote:
+> From: Tom Zanussi <tom.zanussi@intel.com>
+> 
+> Implementation of the 'yocto-layer' command-line tool, for creating
+> generic layers and listing their input properties.
 
-http://autobuilder.yoctoproject.org/pub/nightly/20121219-5
+No specific comments below, looks good.
 
-One known issue is that the eclipse plugin needs to be built alone and
-moved manually. I'll do this when it is finished building. This is due
-to some autobuilder issues I'll be fixing tonight.
+Would the final version also include a removal of similar code from
+yocto-bsp, such that yocto-bsp would call yocto-layer? I'm thinking
+about reducing code duplication. I guess not as this is mostly just
+argument parsing and all the logic is already abstracted into bsp.engine?
 
-I *will* be producing weekly builds over the holidays in case we have
-anyone who wants them.
+Thanks,
 
--b
+Darren
+
+> 
+> Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
+> ---
+>  scripts/yocto-layer | 142 ++++++++++++++++++++++++++++++++++++++++++++++++++++
+>  1 file changed, 142 insertions(+)
+>  create mode 100755 scripts/yocto-layer
+> 
+> diff --git a/scripts/yocto-layer b/scripts/yocto-layer
+> new file mode 100755
+> index 0000000..f759275
+> --- /dev/null
+> +++ b/scripts/yocto-layer
+> @@ -0,0 +1,142 @@
+> +#!/usr/bin/env python
+> +# ex:ts=4:sw=4:sts=4:et
+> +# -*- tab-width: 4; c-basic-offset: 4; indent-tabs-mode: nil -*-
+> +#
+> +# Copyright (c) 2012, Intel Corporation.
+> +# All rights reserved.
+> +#
+> +# This program is free software; you can redistribute it and/or modify
+> +# it under the terms of the GNU General Public License version 2 as
+> +# published by the Free Software Foundation.
+> +#
+> +# This program is distributed in the hope that it will be useful,
+> +# but WITHOUT ANY WARRANTY; without even the implied warranty of
+> +# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+> +# GNU General Public License for more details.
+> +#
+> +# You should have received a copy of the GNU General Public License along
+> +# with this program; if not, write to the Free Software Foundation, Inc.,
+> +# 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+> +#
+> +# DESCRIPTION
+> +# 'yocto-layer' is the Yocto Tool that helps users create a new Yocto
+> +# layer.  Invoking it without any arguments will display help screens
+> +# for the 'yocto-layer' command and list the available 'yocto-layer'
+> +# subcommands.  Invoking a subcommand without any arguments will
+> +# likewise display help screens for the specified subcommand.  Please
+> +# use that interface for detailed help.
+> +#
+> +# AUTHORS
+> +# Tom Zanussi <tom.zanussi (at] intel.com>
+> +#
+> +
+> +__version__ = "0.1.0"
+> +
+> +import os
+> +import sys
+> +import optparse
+> +import logging
+> +
+> +scripts_path = os.path.abspath(os.path.dirname(os.path.abspath(sys.argv[0])))
+> +lib_path = scripts_path + '/lib'
+> +sys.path = sys.path + [lib_path]
+> +
+> +from bsp.help import *
+> +from bsp.engine import *
+> +
+> +
+> +def yocto_layer_create_subcommand(args, usage_str):
+> +    """
+> +    Command-line handling for layer creation.  The real work is done by
+> +    bsp.engine.yocto_layer_create()
+> +    """
+> +    parser = optparse.OptionParser(usage = usage_str)
+> +
+> +    parser.add_option("-o", "--outdir", dest = "outdir", action = "store",
+> +                      help = "name of layer dir to create")
+> +    parser.add_option("-i", "--infile", dest = "properties_file", action = "store",
+> +                      help = "name of file containing the values for layer input properties as a JSON file")
+> +    parser.add_option("-c", "--codedump", dest = "codedump", action = "store_true",
+> +                      default = False, help = "dump the generated code to layergen.out")
+> +    (options, args) = parser.parse_args(args)
+> +
+> +    if len(args) != 1:
+> +        logging.error("Wrong number of arguments, exiting\n")
+> +        parser.print_help()
+> +        sys.exit(1)
+> +
+> +    layer_name = args[0]
+> +
+> +    if options.outdir:
+> +        layer_output_dir = options.outdir
+> +    else:
+> +        layer_output_dir = "meta-" + layer_name
+> +
+> +    yocto_layer_create(layer_name, scripts_path, layer_output_dir, options.codedump, options.properties_file)
+> +
+> +
+> +def yocto_layer_list_subcommand(args, usage_str):
+> +    """
+> +    Command-line handling for listing available layer properties and
+> +    values.  The real work is done by bsp.engine.yocto_layer_list()
+> +    """
+> +    parser = optparse.OptionParser(usage = usage_str)
+> +
+> +    parser.add_option("-o", "--outfile", action = "store", dest = "properties_file",
+> +                      help = "dump the possible values for layer properties to a JSON file")
+> +
+> +    (options, args) = parser.parse_args(args)
+> +
+> +    if not yocto_layer_list(args, scripts_path, options.properties_file):
+> +        logging.error("Bad list arguments, exiting\n")
+> +        parser.print_help()
+> +        sys.exit(1)
+> +
+> +
+> +subcommands = {
+> +    "create": [yocto_layer_create_subcommand,
+> +               yocto_layer_create_usage,
+> +               yocto_layer_create_help],
+> +    "list":   [yocto_layer_list_subcommand,
+> +               yocto_layer_list_usage,
+> +               yocto_layer_list_help],
+> +}
+> +
+> +
+> +def start_logging(loglevel):
+> +    logging.basicConfig(filname = 'yocto-layer.log', filemode = 'w', level=loglevel)
+> +
+> +
+> +def main():
+> +    parser = optparse.OptionParser(version = "yocto-layer version %s" % __version__,
+> +                                   usage = yocto_layer_usage)
+> +
+> +    parser.disable_interspersed_args()
+> +    parser.add_option("-D", "--debug", dest = "debug", action = "store_true",
+> +                      default = False, help = "output debug information")
+> +
+> +    (options, args) = parser.parse_args()
+> +
+> +    loglevel = logging.INFO
+> +    if options.debug:
+> +        loglevel = logging.DEBUG
+> +    start_logging(loglevel)
+> +
+> +    if len(args):
+> +        if args[0] == "help":
+> +            if len(args) == 1:
+> +                parser.print_help()
+> +                sys.exit(1)
+> +
+> +    invoke_subcommand(args, parser, yocto_layer_help_usage, subcommands)
+> +
+> +
+> +if __name__ == "__main__":
+> +    try:
+> +        ret = main()
+> +    except Exception:
+> +        ret = 1
+> +        import traceback
+> +        traceback.print_exc(5)
+> +    sys.exit(ret)
+> +
+> 
 
 -- 
-Elizabeth Flanagan
-Yocto Project
-Build and Release
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Technical Lead - Linux Kernel
 
