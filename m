@@ -1,22 +1,20 @@
-Return-Path: <tf+lists.yocto@r-finger.com>
-Received: from r-finger.com (r-finger.com [178.79.160.5])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3FA92E0145C
-	for <yocto@yoctoproject.org>; Fri, 21 Dec 2012 10:17:28 -0800 (PST)
-Received: from [192.168.0.2] (host86-137-82-70.range86-137.btcentralplus.com
-	[86.137.82.70]) (using TLSv1 with cipher AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by r-finger.com (Postfix) with ESMTPSA id 6BCFD9BF8
-	for <yocto@yoctoproject.org>; Fri, 21 Dec 2012 18:17:27 +0000 (GMT)
-Message-ID: <50D4A7B6.6040603@r-finger.com>
-Date: Fri, 21 Dec 2012 18:17:26 +0000
-From: Tomas Frydrych <tf+lists.yocto@r-finger.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:10.0.5) Gecko/20120624 Icedove/10.0.5
-MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <93700C12-76D8-4F46-9AAB-B66A9869D70C@keylevel.com>
-In-Reply-To: <93700C12-76D8-4F46-9AAB-B66A9869D70C@keylevel.com>
-Subject: Re: I think my kernel image just went back in time...
+Return-Path: <tim+yoctoproject.org@coote.org>
+Received: from mercury.coote.org (mail.coote.org [46.65.100.130])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 35477E0144E
+	for <yocto@yoctoproject.org>; Fri, 21 Dec 2012 10:57:39 -0800 (PST)
+Received: by mercury.coote.org (Postfix, from userid 500)
+	id F2F274236; Fri, 21 Dec 2012 18:57:36 +0000 (GMT)
+Received: from [127.0.0.1] (fw.coote.org [172.17.1.1])
+	by mercury.coote.org (Postfix) with ESMTP id 81E524216
+	for <yocto@yoctoproject.org>; Fri, 21 Dec 2012 18:57:36 +0000 (GMT)
+From: Tim Coote <tim+yoctoproject.org@coote.org>
+Message-Id: <24B0C6F3-41F1-4A4D-918A-05EDB584CD74@coote.org>
+Date: Fri, 21 Dec 2012 18:57:36 +0000
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Mime-Version: 1.0 (Mac OS X Mail 6.2 \(1499\))
+X-Mailer: Apple Mail (2.1499)
+X-Spambayes-Classification: ham; 0.00
+Subject: cannot bitbake a java runtime
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,27 +26,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 21 Dec 2012 18:17:28 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 21 Dec 2012 18:57:39 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
-On 09/12/12 23:17, Chris Tapp wrote:
-> In tmp/deploy/images:
-> 
-> 1) bzImage had a timestamp of 2012-12-09 21:49 and the file ended
-> -20121209214459.bin
-> 
-> 2) Cleaned the image and the task it contained (to pick up some
-> changes on rebuild) and deleted the image files (.hddimg, etc.) in
-> tmp/deploy/images making sure to leave the kernel files intact.
+Hullo
+I'm trying to get a java runtime on a qemu arm image. I'm following =
+this: http://bit.ly/UW7fVs, which I think is the right thing to do. =
+However, when I get to:
 
-Did you cleansstate it? I find that without cleaning the state kernel
-image gets always pulled out of sstate rather than properly rebuilt.
+bitbake openjdk-6
 
-Tomas
+I get the following error:
+
+ERROR: Nothing PROVIDES 'giflib' (but =
+/opt/poky/poky-danny-8.0/meta-java/recipes-core/openjdk/openjdk-6_6b24-1.1=
+1.5.bb DEPENDS on or otherwise requires it)
+ERROR: Required build target 'openjdk-6' has no buildable providers.
+Missing or unbuildable dependency chain was: ['openjdk-6', 'giflib']
 
 
+Am I using the wrong documentation, or is there a missing package?
 
--- 
-http://sleepfive.com
+Any pointers welcome.
+
+Tim=
 
