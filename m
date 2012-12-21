@@ -1,22 +1,31 @@
-Return-Path: <tf+lists.yocto@r-finger.com>
-Received: from r-finger.com (r-finger.com [178.79.160.5])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 84D6DE006C3
-	for <yocto@yoctoproject.org>; Fri, 21 Dec 2012 07:44:57 -0800 (PST)
-Received: from [192.168.0.2] (host86-137-82-70.range86-137.btcentralplus.com
-	[86.137.82.70]) (using TLSv1 with cipher AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by r-finger.com (Postfix) with ESMTPSA id 30C899BF8
-	for <yocto@yoctoproject.org>; Fri, 21 Dec 2012 15:44:55 +0000 (GMT)
-Message-ID: <50D483F6.7070002@r-finger.com>
-Date: Fri, 21 Dec 2012 15:44:54 +0000
-From: Tomas Frydrych <tf+lists.yocto@r-finger.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:10.0.5) Gecko/20120624 Icedove/10.0.5
+Return-Path: <gopikrishnans@pec.edu>
+Received: from mail-la0-f43.google.com (mail-la0-f43.google.com
+	[209.85.215.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6F53DE006C3
+	for <yocto@yoctoproject.org>; Fri, 21 Dec 2012 08:11:40 -0800 (PST)
+Received: by mail-la0-f43.google.com with SMTP id z14so5282312lag.2
+	for <yocto@yoctoproject.org>; Fri, 21 Dec 2012 08:11:39 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type
+	:x-gm-message-state;
+	bh=2eV0jK4pT6EyqLQTZJSV6FYF7MiwJxRn0e1A5+gSkAg=;
+	b=ZwMMzBn63J53P2yZhRyDef3ISCr5I5fJbBAgVeZb03Pp20iFzoYy11VojKiA4c/JPx
+	V+FpnQpnZj2HayMs8x1//3B7noBltszUD2RNT02WOvsoIqy1roIStG63bHdh2/YyGOsK
+	qCEYuETjbugm9Tr5kpT64h2XMxk4orscc0+yFYOJBNjbTzz6LJBvrUAeBNnRHGUOGULQ
+	LvdY4yGT5j119PrVFSCiWg7CLMgy9xiPgiWTy+Z7rEzv4qzOuTD+bzfiXefeYs+ZWN1m
+	lM9gOv+XYRoJ3M8rj0NjqYm/b86VsxnW7gpvnJN5rvuD3NakVl77hQVk89flnnP55eJy
+	/kvQ==
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <0342A6AD36648742A199353A51DDC703114FF6A1@ESESSMB305.ericsson.se>
-In-Reply-To: <0342A6AD36648742A199353A51DDC703114FF6A1@ESESSMB305.ericsson.se>
-Subject: Re: Set hostname on image?
+Received: by 10.112.16.69 with SMTP id e5mr5575757lbd.43.1356106298743; Fri,
+	21 Dec 2012 08:11:38 -0800 (PST)
+Received: by 10.112.21.193 with HTTP; Fri, 21 Dec 2012 08:11:38 -0800 (PST)
+Date: Fri, 21 Dec 2012 21:41:38 +0530
+Message-ID: <CAOkC3RaLxgZVNQOB_-o-HKJ=CiS_J8whpAF6gZzk+pYuhoCz=w@mail.gmail.com>
+From: GOPIKRISHNAN S <gopikrishnans@pec.edu>
+To: meta-freescale@yoctoproject.org, yocto@yoctoproject.org
+X-Gm-Message-State: ALoCoQl8D7T85Mj/pE2dMhnumvESv6ORFKG2UF5fxR5zL2H3ahg29+fvHE+zxD50OIV+yKjqMT9G
+Subject: hiawatha-8.6 using Yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,21 +37,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 21 Dec 2012 15:44:57 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 21 Dec 2012 16:11:40 -0000
+Content-Type: multipart/alternative; boundary=f46d0401fb4136dc3504d15f1ae7
 
-On 21/12/12 15:04, Jonas Jonsson L wrote:
-> The installed (/etc/hostname) file is created & installed in the
-> base-files recipe, but I don't understand how to set/use the
-> hostname-variable in that recipe so that it becomes what I want it to be
-> (unless I start editing that recipe ....).
->  
-> Is there a way to modify the hostname from my 'local.conf' file?
+--f46d0401fb4136dc3504d15f1ae7
+Content-Type: text/plain; charset=ISO-8859-1
 
-You will not be able to override it in local.conf because the 'hostname'
-variable in the recipe is not weakly assigned. But you should be able to
-override it in a base-files.bbappend.
+Hi,
 
-Tomas
+I was trying to install hiawatha on my freescale p2041rdb. But it is using
+cmake to configure and install.
+How to write recipe for this with cmake. I have writted recipe for packages
+with autotools, and make file.
+Any Idea???
 
+
+Reg,
+Gopi Krishnan S
+
+--f46d0401fb4136dc3504d15f1ae7
+Content-Type: text/html; charset=ISO-8859-1
+
+Hi,<br><br>I was trying to install hiawatha on my freescale p2041rdb. But it is using cmake to configure and install.<br>How to write recipe for this with cmake. I have writted recipe for packages with autotools, and make file. <br>
+Any Idea???<br><br><br>Reg,<br>Gopi Krishnan S<br>
+
+--f46d0401fb4136dc3504d15f1ae7--
