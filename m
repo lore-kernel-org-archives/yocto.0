@@ -1,36 +1,44 @@
-Return-Path: <daiane.list@gmail.com>
-Received: from mail-qa0-f43.google.com (mail-qa0-f43.google.com
-	[209.85.216.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 38769E011AC;
-	Fri, 21 Dec 2012 10:16:45 -0800 (PST)
-Received: by mail-qa0-f43.google.com with SMTP id cr7so6419049qab.9
-	for <multiple recipients>; Fri, 21 Dec 2012 10:16:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type:content-transfer-encoding;
-	bh=XqQr3mUq6nc8ktMF0I/kqx3UiJsAr/M+9cr3xnACMnw=;
-	b=pZ6osAuoegCPnfcf+PYXsWf+JOBxYflzvYQkjNtz7FIj0tj8q3ldpLmMCkNxYqjppD
-	2+GQG8VT8NW3OvbUVSb8cN18AmhkAMpWyMlv26FY4K7BPqv/q+I6mJflO90D9MFE76t+
-	cm13n6V3GGX+qo/970886dJz9reaqOAfuUs/ENvsdW23NJwhwADspjTuqB7vYBfRA7Tz
-	ccRBuciToMLdzBvNvZuWFka8PM67a0QJrPSG4xGl3gUflojVFBkB/GW0LMqZpxY0bS8O
-	92/nWxkfEwndkg6+1KjGPHKEFWeWNrmVoNx1K6/lM42NZfgf+dd0L8RXjNt2Cljb2MRn
-	ltQw==
-MIME-Version: 1.0
-Received: by 10.224.183.147 with SMTP id cg19mr6990820qab.16.1356113804469;
-	Fri, 21 Dec 2012 10:16:44 -0800 (PST)
-Received: by 10.49.119.200 with HTTP; Fri, 21 Dec 2012 10:16:44 -0800 (PST)
-In-Reply-To: <70CC66F5C30A414DADDA6973E4CA391A80FFB0@039-SN1MPN1-002.039d.mgd.msft.net>
-References: <4439C3C0562087488F139C696CD862A71328DE01@SBS-MEDEC.medecbenelux.local>
-	<70CC66F5C30A414DADDA6973E4CA391A80FFB0@039-SN1MPN1-002.039d.mgd.msft.net>
-Date: Fri, 21 Dec 2012 16:16:44 -0200
-Message-ID: <CA+jg_OUAX0i8kF2siRhx8JKS_DMO2Xx5-kj8SJ8itr2fZ2_yCQ@mail.gmail.com>
-From: Daiane Angolini <daiane.list@gmail.com>
-To: McClintock Matthew-B29882 <B29882@freescale.com>
-X-Mailman-Approved-At: Fri, 21 Dec 2012 12:05:44 -0800
-Cc: "meta-freescale@yoctoproject.org" <meta-freescale@yoctoproject.org>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Tim Verstraete <Tim.Verstraete@medecbenelux.be>
-Subject: Re: [meta-freescale] uboot i.MX6
+Return-Path: <sgw@bigsur.com>
+Received: from mail-da0-f52.google.com (mail-da0-f52.google.com
+	[209.85.210.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 542D5E006C2
+	for <yocto@yoctoproject.org>; Sat, 22 Dec 2012 00:23:26 -0800 (PST)
+Received: by mail-da0-f52.google.com with SMTP id f10so2434963dak.11
+	for <yocto@yoctoproject.org>; Sat, 22 Dec 2012 00:23:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=bigsur.com; s=bigsur.com;
+	h=x-received:sender:from:to:cc:subject:date:message-id:x-mailer;
+	bh=emZ/8gN6ZYXSCU5nEuvsC0db0JGYXuUVrEuOJubeEMM=;
+	b=d/PY1+XPOU/oPZ1JcORqpElwk2KT4k2Uw1RRxTJ9luc7Neji/Hf+TCfdAeTXq0DJxp
+	LFPYq6OxgXHG77PfO45Ws0SloBN/QJrMduClMxEhwsHLUE/1i+FGdQYe4cQ5MgtEACun
+	IvOqgVeHB9fUAXteHiqD1Q85xH+JFFDJMYD6U=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=x-received:sender:from:to:cc:subject:date:message-id:x-mailer
+	:x-gm-message-state;
+	bh=emZ/8gN6ZYXSCU5nEuvsC0db0JGYXuUVrEuOJubeEMM=;
+	b=WHU0Bnu0Jr1VRA6XmD0XnGZz152cvErSWfWwQbzAmEe/JATbXlslkmxcyuVGR3YqpJ
+	3ZYjjBZ22VWdbuFhFlswl4E+07xM9tA+nYo/pxkOjo7RT3Y0hJRIsZhgBINASwc7rlOv
+	/+h8yk+TdCSDuiYSp+iZhRocHjiCDiohQcepmcw2OXE72t0onhC1JYeZKbE/hGYVx5WC
+	wfw7IYKZIXgl72/RqHKF4w8M0HtMAhGNlOY11Xkwwd9+ptpLz8AzqSgvICDXT2/mBfvM
+	BMSXjAa1uVG1nG+zdW6kEqO/XpSs/qcw1J8V/hpHM4f97Z1rxVquh/Ozt6OztJcuh1NV
+	HVNA==
+X-Received: by 10.68.131.73 with SMTP id ok9mr47571753pbb.83.1356164605592;
+	Sat, 22 Dec 2012 00:23:25 -0800 (PST)
+Received: from localhost (c-71-193-189-117.hsd1.wa.comcast.net.
+	[71.193.189.117])
+	by mx.google.com with ESMTPS id d8sm8893424pax.23.2012.12.22.00.23.23
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Sat, 22 Dec 2012 00:23:24 -0800 (PST)
+Sender: Saul Wold <sgw@bigsur.com>
+From: Saul Wold <sgw@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Sat, 22 Dec 2012 00:22:52 -0800
+Message-Id: <1356164572-25770-1-git-send-email-sgw@linux.intel.com>
+X-Mailer: git-send-email 1.7.9.5
+X-Gm-Message-State: ALoCoQmmiDDSI7To0z+yq+ZdURnqt5DMXetSHqieSv9koc430duyJ093A08l5LHONIVBalyhV9Ui
+Cc: openembedded-core@lists.openembedded.org
+Subject: [PATCH] qt-x11-free-native: Use private libpng
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,29 +50,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 21 Dec 2012 18:16:45 -0000
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Sat, 22 Dec 2012 08:23:26 -0000
 
-On Fri, Dec 21, 2012 at 3:34 PM, McClintock Matthew-B29882
-<B29882@freescale.com> wrote:
-> On Thu, Dec 6, 2012 at 4:24 AM, Tim Verstraete
-> <Tim.Verstraete@medecbenelux.be> wrote:
->> I have build the i.MX6 with danny release of yocto and latest freescale =
-meta
->> using the core-image-minimal image for imx6qsabresd target machine =E8 r=
-esult
->> is build has done everything BUT I when I upload my uboot to my sd card =
-I
->> get nothing. When I change uboot to the image from the freescale website
->> everything runs =85
+Ensure the 3rdparty version of libpng headers are found first, otherwise
+the sysroot libpng15 header are found which causes a mis-match issue.
 
-What=B4s your board? Are you using imx6 Sabre SD?
-I=B4ve been working with imx6qsabresd last week and I always boot the board=
-.
+Signed-off-by: Saul Wold <sgw@linux.intel.com>
+---
+ recipes-qt3/qt3/qt-x11-free-native_3.3.5.bb |    1 +
+ 1 file changed, 1 insertion(+)
 
-Let=B4s understand why you facing this behavior.
+diff --git a/recipes-qt3/qt3/qt-x11-free-native_3.3.5.bb b/recipes-qt3/qt3/qt-x11-free-native_3.3.5.bb
+index 2d87d26..b18ea0d 100644
+--- a/recipes-qt3/qt3/qt-x11-free-native_3.3.5.bb
++++ b/recipes-qt3/qt3/qt-x11-free-native_3.3.5.bb
+@@ -40,6 +40,7 @@ inherit native
+ do_configure() {
+ 	echo "yes" | ./configure -prefix ${prefix} ${QT_CONFIG_FLAGS} -fast -L ${STAGING_LIBDIR} \
+                 -I ${STAGING_INCDIR_NATIVE} 
++	sed -i -e '\:obj/release-shared-mt/qpngio.o\ kerne:s:$(CXXFLAGS):-I3rdparty/libpng $(CXXFLAGS):' src/Makefile
+ }
+ 
+ do_compile() {
+-- 
+1.7.9.5
 
-
-Daiane
 
