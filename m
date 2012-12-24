@@ -1,26 +1,32 @@
-Return-Path: <Qi.Chen@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2F165E00726
-	for <yocto@yoctoproject.org>; Sun, 23 Dec 2012 18:22:41 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id qBO2MeDn014648
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Sun, 23 Dec 2012 18:22:40 -0800 (PST)
-Received: from [128.224.163.154] (128.224.163.154) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.2.318.4;
-	Sun, 23 Dec 2012 18:22:40 -0800
-Message-ID: <50D7BC8C.70708@windriver.com>
-Date: Mon, 24 Dec 2012 10:23:08 +0800
-From: ChenQi <Qi.Chen@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:11.0) Gecko/20120410 Thunderbird/11.0.1
+Return-Path: <bruce.ashfield@gmail.com>
+Received: from mail-la0-f51.google.com (mail-la0-f51.google.com
+	[209.85.215.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9C3ABE0146D
+	for <yocto@yoctoproject.org>; Sun, 23 Dec 2012 19:10:16 -0800 (PST)
+Received: by mail-la0-f51.google.com with SMTP id e4so8038047lag.38
+	for <yocto@yoctoproject.org>; Sun, 23 Dec 2012 19:10:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=LPUUycEuHqCyrL9tOPyCJz5PfMDXY1jPB02OD4LK69w=;
+	b=K79VjSOxikZkKQ10AVzyf6pEaKijtYYERB2OhOodVnwSJ6d2UGr38Gz2KYAjSThQzD
+	prKbSs6W9Z9fzE4Es7v0+6aflmJgLAjwuPsqXFw0UK4z90gnNYRq6tlp4zHMa2NKrlnY
+	mdkcQGkeVRN8UC3Krt7SFk2rM+Pw+AL28ngarpJPGQwrWDp6XcaYt015H5W5v5R8xFy7
+	+cur8f1hGfwuI5ckIFtmkOMXHVFCWALNnW+tZkG+6L11AMAlaJFqVczN0UWjP2BAdLPy
+	jRiPet7QeoGHJOSWaVu7FVZI8ButesiZRLfxDOE8GHBAS4bkbupmnXvsbQuBVcjTwfOb
+	Pr1w==
 MIME-Version: 1.0
-To: <yocto@yoctoproject.org>
-References: <0342A6AD36648742A199353A51DDC703114FF6A1@ESESSMB305.ericsson.se>
-In-Reply-To: <0342A6AD36648742A199353A51DDC703114FF6A1@ESESSMB305.ericsson.se>
-X-Originating-IP: [128.224.163.154]
-Subject: Re: Set hostname on image?
+Received: by 10.112.40.129 with SMTP id x1mr8303305lbk.95.1356318614964; Sun,
+	23 Dec 2012 19:10:14 -0800 (PST)
+Received: by 10.112.127.35 with HTTP; Sun, 23 Dec 2012 19:10:14 -0800 (PST)
+In-Reply-To: <alpine.DEB.2.02.1212231024040.27586@oneiric>
+References: <alpine.DEB.2.02.1212231024040.27586@oneiric>
+Date: Sun, 23 Dec 2012 23:10:14 -0400
+Message-ID: <CADkTA4MDzpUdovXTfJ0a04XfPcpiuENu3ERWx--Xmo4EbDvDFA@mail.gmail.com>
+From: Bruce Ashfield <bruce.ashfield@gmail.com>
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: kernel manual seems to make no mention of "defconfig"
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,110 +38,147 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 24 Dec 2012 02:22:41 -0000
-Content-Type: multipart/alternative;
-	boundary="------------060901010303090702020508"
+X-List-Received-Date: Mon, 24 Dec 2012 03:10:17 -0000
+Content-Type: multipart/alternative; boundary=e0cb4efe323e3f4c7f04d190892a
 
---------------060901010303090702020508
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+--e0cb4efe323e3f4c7f04d190892a
+Content-Type: text/plain; charset=ISO-8859-1
 
-On 12/21/2012 11:04 PM, Jonas Jonsson L wrote:
-> Hi!
-> This is probably a very stupid question, but I don't understand how to 
-> set the hostname of the system that I'm building (I'm building a 
-> 'core-image-minimal'), unless I
-> A) write a /etc/hostname file to the image, or
-> B) write a script that updates the hostname during startup
-> The installed (/etc/hostname) file is created & installed in the 
-> base-files recipe, but I don't understand how to set/use the 
-> hostname-variable in that recipe so that it becomes what I want it to 
-> be (unless I start editing that recipe ....).
-> Is there a way to modify the hostname from my 'local.conf' file?
-The hostname.sh script in recipes-core/initscripts will be later 
-modified to regard the kernel command line parameters. You can then 
-specify your hostname in kernel command line when booting.
+On Sun, Dec 23, 2012 at 12:26 PM, Robert P. J. Day <rpjday@crashcourse.ca>wrote:
 
-Best Regards,
-Chen Qi
-> Best regards, Merry Christmas & Happy New Year!
-> Jonas
 >
+>   poking around kern-tools for purpose of documenting some stuff and
+> ran across this in "updateme":
 >
+> split_command_line_objects() {
+>         command_line_values=$@
+>
+>         for v in $command_line_values; do
+>             v_base=`basename $v`
+>             case $v_base in
+>                 *.scc) migrate_feature $v
+>                     ;;
+>                 *.cfg) migrate_cfg $v
+>                     ;;
+>                 *.patch|*.diff) migrate_patch $v
+>                     ;;
+>                 defconfig) migrate_cfg $v;;
+>                 *) ;;
+>             esac
+>         done
+> }
+>
+>   AFAICT, there is no mention of a possible "defconfig" entry anywhere
+> in the current yocto kernel manual.
+>
+
+You won't find it there because it isn't specific to the kern-tools, what
+you see
+there is a small wrapper on top of the kernel.bbclass defconfig handling,
+with
+the same end result. So standard yocto/oe-core docs apply here.
+
+Cheers,
+
+Bruce
+
+
+>
+> rday
+>
+> --
+>
+> ========================================================================
+> Robert P. J. Day                                 Ottawa, Ontario, CANADA
+>                         http://crashcourse.ca
+>
+> Twitter:                                       http://twitter.com/rpjday
+> LinkedIn:                               http://ca.linkedin.com/in/rpjday
+> ========================================================================
 > _______________________________________________
 > yocto mailing list
 > yocto@yoctoproject.org
 > https://lists.yoctoproject.org/listinfo/yocto
+>
 
 
---------------060901010303090702020508
-Content-Type: text/html; charset="ISO-8859-1"
-Content-Transfer-Encoding: 7bit
 
-<html>
-  <head>
-    <meta content="text/html; charset=ISO-8859-1"
-      http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    On 12/21/2012 11:04 PM, Jonas Jonsson L wrote:
-    <blockquote
-cite="mid:0342A6AD36648742A199353A51DDC703114FF6A1@ESESSMB305.ericsson.se"
-      type="cite">
-      <meta http-equiv="Content-Type" content="text/html;
-        charset=ISO-8859-1">
-      <meta name="Generator" content="Microsoft Exchange Server">
-      <!-- converted from rtf -->
-      <style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left: #800000 2px solid; } --></style>
-      <font face="Arial" size="2"><span style="font-size: 10pt;">
-          <div>Hi!</div>
-          <div>&nbsp;</div>
-          <div>This is probably a very stupid question, but I don't
-            understand how to set the hostname of the system that I'm
-            building (I'm building a 'core-image-minimal'), unless I</div>
-          <div>&nbsp;</div>
-          <div>A) write a /etc/hostname file to the image, or</div>
-          <div>B) write a script that updates the hostname during
-            startup</div>
-          <div>&nbsp;</div>
-          <div>The installed (/etc/hostname) file is created &amp;
-            installed in the base-files recipe, but I don't understand
-            how to set/use the hostname-variable in that recipe so that
-            it becomes what I want it to be (unless I start editing that
-            recipe ....).</div>
-          <div>&nbsp;</div>
-          <div>Is there a way to modify the hostname from my
-            'local.conf' file?</div>
-          <div>&nbsp;</div>
-        </span></font></blockquote>
-    The hostname.sh script in recipes-core/initscripts will be later
-    modified to regard the kernel command line parameters. You can then
-    specify your hostname in kernel command line when booting.<br>
-    <br>
-    Best Regards,<br>
-    Chen Qi<br>
-    <blockquote
-cite="mid:0342A6AD36648742A199353A51DDC703114FF6A1@ESESSMB305.ericsson.se"
-      type="cite"><font face="Arial" size="2"><span
-          style="font-size:10pt;">
-          <div>Best regards, Merry Christmas &amp; Happy New Year!</div>
-          <div>&nbsp;</div>
-          <div>Jonas</div>
-          <div>&nbsp;</div>
-          <div><font face="Times New Roman" size="3"><span
-                style="font-size:12pt;">&nbsp;</span></font></div>
-        </span></font>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <br>
-      <pre wrap="">_______________________________________________
-yocto mailing list
-<a class="moz-txt-link-abbreviated" href="mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a>
-<a class="moz-txt-link-freetext" href="https://lists.yoctoproject.org/listinfo/yocto">https://lists.yoctoproject.org/listinfo/yocto</a>
-</pre>
-    </blockquote>
-    <br>
-  </body>
-</html>
+-- 
+"Thou shalt not follow the NULL pointer, for chaos and madness await thee
+at its end"
 
---------------060901010303090702020508--
+--e0cb4efe323e3f4c7f04d190892a
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><br><div class=3D"gmail_extra"><br><br><div class=3D"gmail=
+_quote">On Sun, Dec 23, 2012 at 12:26 PM, Robert P. J. Day <span dir=3D"ltr=
+">&lt;<a href=3D"mailto:rpjday@crashcourse.ca" target=3D"_blank">rpjday@cra=
+shcourse.ca</a>&gt;</span> wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><br>
+=A0 poking around kern-tools for purpose of documenting some stuff and<br>
+ran across this in &quot;updateme&quot;:<br>
+<br>
+split_command_line_objects() {<br>
+=A0 =A0 =A0 =A0 command_line_values=3D$@<br>
+<br>
+=A0 =A0 =A0 =A0 for v in $command_line_values; do<br>
+=A0 =A0 =A0 =A0 =A0 =A0 v_base=3D`basename $v`<br>
+=A0 =A0 =A0 =A0 =A0 =A0 case $v_base in<br>
+=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 *.scc) migrate_feature $v<br>
+=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 ;;<br>
+=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 *.cfg) migrate_cfg $v<br>
+=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 ;;<br>
+=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 *.patch|*.diff) migrate_patch $v<br>
+=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 ;;<br>
+=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 defconfig) migrate_cfg $v;;<br>
+=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 *) ;;<br>
+=A0 =A0 =A0 =A0 =A0 =A0 esac<br>
+=A0 =A0 =A0 =A0 done<br>
+}<br>
+<br>
+=A0 AFAICT, there is no mention of a possible &quot;defconfig&quot; entry a=
+nywhere<br>
+in the current yocto kernel manual.<br></blockquote><div><br></div><div sty=
+le>You won&#39;t find it=A0there because it isn&#39;t specific to the kern-=
+tools, what you see</div><div style>there is a small wrapper on top of the =
+kernel.bbclass defconfig handling, with</div>
+<div style>the same end result. So standard yocto/oe-core docs apply here.<=
+/div><div style><br></div><div style>Cheers,</div><div style><br></div><div=
+ style>Bruce</div><div>=A0</div><blockquote class=3D"gmail_quote" style=3D"=
+margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
+
+<br>
+rday<br>
+<br>
+--<br>
+<br>
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>
+Robert P. J. Day =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
+=A0 =A0 Ottawa, Ontario, CANADA<br>
+=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 <a href=3D"http://crashcour=
+se.ca" target=3D"_blank">http://crashcourse.ca</a><br>
+<br>
+Twitter: =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
+=A0 =A0 =A0 <a href=3D"http://twitter.com/rpjday" target=3D"_blank">http://=
+twitter.com/rpjday</a><br>
+LinkedIn: =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 <a hr=
+ef=3D"http://ca.linkedin.com/in/rpjday" target=3D"_blank">http://ca.linkedi=
+n.com/in/rpjday</a><br>
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
+>https://lists.yoctoproject.org/listinfo/yocto</a><br>
+</blockquote></div><br><br clear=3D"all"><div><br></div>-- <br>&quot;Thou s=
+halt not follow the NULL pointer, for chaos and madness await thee at its e=
+nd&quot;
+</div></div>
+
+--e0cb4efe323e3f4c7f04d190892a--
