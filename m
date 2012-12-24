@@ -1,35 +1,29 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4ECE7E01493
-	for <yocto@yoctoproject.org>; Mon, 24 Dec 2012 04:30:48 -0800 (PST)
-Received: from wnpgmb0903w-ds01-73-59.dynamic.mtsallstream.net
-	([207.161.73.59]:33606 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1Tn7B9-0004QC-85; Mon, 24 Dec 2012 07:30:47 -0500
-Date: Mon, 24 Dec 2012 06:30:44 -0600 (CST)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Bruce Ashfield <bruce.ashfield@gmail.com>
-In-Reply-To: <CADkTA4MAAVVGeOyQ9PAXOhibj4BQK4BnsVmyhWxh6294ONGCNw@mail.gmail.com>
-Message-ID: <alpine.DEB.2.02.1212240629520.5826@oneiric>
-References: <alpine.DEB.2.02.1212231024040.27586@oneiric>
-	<CADkTA4MDzpUdovXTfJ0a04XfPcpiuENu3ERWx--Xmo4EbDvDFA@mail.gmail.com>
-	<CADkTA4MAAVVGeOyQ9PAXOhibj4BQK4BnsVmyhWxh6294ONGCNw@mail.gmail.com>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
-MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: kernel manual seems to make no mention of "defconfig"
+Return-Path: <mihaix.lindner@linux.intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 80C5AE01490
+	for <yocto@yoctoproject.org>; Mon, 24 Dec 2012 04:37:40 -0800 (PST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 24 Dec 2012 04:37:40 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.84,347,1355126400"; d="scan'208";a="236184135"
+Received: from linux.jf.intel.com (HELO linux.intel.com) ([10.23.219.25])
+	by azsmga001.ch.intel.com with ESMTP; 24 Dec 2012 04:37:39 -0800
+Received: from [10.252.123.17] (unknown [10.252.123.17])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by linux.intel.com (Postfix) with ESMTP id 329146A4004
+	for <yocto@yoctoproject.org>; Mon, 24 Dec 2012 04:37:36 -0800 (PST)
+Message-ID: <1356352646.358.8.camel@mlindnex-mobl1.ger.corp.intel.com>
+From: Mihai Lindner <mihaix.lindner@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Mon, 24 Dec 2012 14:37:26 +0200
+In-Reply-To: <1356351789.358.4.camel@mlindnex-mobl1.ger.corp.intel.com>
+References: <4e4f660f.1086b.13bcbd86279.Coremail.huanmateme@163.com>
+	<1356351789.358.4.camel@mlindnex-mobl1.ger.corp.intel.com>
+Organization: Intel OTC
+X-Mailer: Evolution 3.4.4 
+Mime-Version: 1.0
+Subject: Re: Fails to launch the hob
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,72 +35,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 24 Dec 2012 12:30:48 -0000
-Content-Type: MULTIPART/MIXED; BOUNDARY="8323329-1831079729-1356352247=:5826"
+X-List-Received-Date: Mon, 24 Dec 2012 12:37:40 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
---8323329-1831079729-1356352247=:5826
-Content-Type: TEXT/PLAIN; charset=ISO-8859-1
-Content-Transfer-Encoding: 8BIT
+On Mon, 2012-12-24 at 14:23 +0200, Mihai Lindner wrote:
+> On Mon, 2012-12-24 at 15:37 +0800, Biao wrote:
+> > Hi all, 
+> > 
+> > 
+> > I can not launch hob on my ubun-10.04, it seems saying "no PyGobject" whereas python-object has already been installed. Can anyone kindly give a help?
+> > 
+Oh, forgot to mention here, that you should probably be using Denzil,
+instead of Danny or 'master'.
+> > 
+> > $ hob
+> > FATAL: Gtk+, PyGtk and PyGobject are required to use Hob,
+> > You have Gtk+ 2.20.1 and PyGtk 2.17.0.
+> > 
+> > 
+> > $ sudo apt-get install python-gobject
+> > Reading package lists... Done
+> > Building dependency tree       
+> > Reading state information... Done
+> > python-gobject is already the newest version.
+> > 
+> Python-gobject seems fine, Gtk seems fine (you have 2.20.1, Hob wants
+> higher than 2.20.0), which leaves python-gtk2 version 2.17.0 on your
+> system. Hob wants a version higher than 2.21.0.
+> 
+> --Mihai
+> > 
+> > $ uname -a
+> > Linux zb-d 2.6.32-33-generic #72-Ubuntu SMP Fri Jul 29 21:07:13 UTC 2011 x86_64 GNU/Linux
+> > 
+> > 
+> > Thanks,
+> > Biao
+> > _______________________________________________ yocto mailing list yocto@yoctoproject.org https://lists.yoctoproject.org/listinfo/yocto
+> 
+> 
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-On Sun, 23 Dec 2012, Bruce Ashfield wrote:
 
->
->
->
-> On Sun, Dec 23, 2012 at 11:10 PM, Bruce Ashfield <bruce.ashfield@gmail.com> wrote:
->
->
->
->       On Sun, Dec 23, 2012 at 12:26 PM, Robert P. J. Day <rpjday@crashcourse.ca> wrote:
->
->               poking around kern-tools for purpose of documenting some stuff and
->             ran across this in "updateme":
->
->             split_command_line_objects() {
->                     command_line_values=$@
->
->                     for v in $command_line_values; do
->                         v_base=`basename $v`
->                         case $v_base in
->                             *.scc) migrate_feature $v
->                                 ;;
->                             *.cfg) migrate_cfg $v
->                                 ;;
->                             *.patch|*.diff) migrate_patch $v
->                                 ;;
->                             defconfig) migrate_cfg $v;;
->                             *) ;;
->                         esac
->                     done
->             }
->
->               AFAICT, there is no mention of a possible "defconfig" entry anywhere
->             in the current yocto kernel manual.
->
->
-> You won't find it there because it isn't specific to the kern-tools,
-> what you see there is a small wrapper on top of the kernel.bbclass
-> defconfig handling, with the same end result. So standard
-> yocto/oe-core docs apply here.
->
-> I also forgot to mention that Darren did cover defconfigs in the
-> yocto kernel  docs that were put together for the 1.4 release (I
-> think they were posted here), so there's better / additional
-> coverage upcoming!
 
-  ah, i will go back and check those out, thanks.  just trying to
-catch up on several days of not reading the list.
-
-rday
-
--- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
-
---8323329-1831079729-1356352247=:5826--
