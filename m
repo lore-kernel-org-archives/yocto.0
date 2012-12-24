@@ -1,33 +1,31 @@
-Return-Path: <bruce.ashfield@gmail.com>
-Received: from mail-la0-f45.google.com (mail-la0-f45.google.com
-	[209.85.215.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D33A0E0146F
-	for <yocto@yoctoproject.org>; Sun, 23 Dec 2012 19:22:33 -0800 (PST)
-Received: by mail-la0-f45.google.com with SMTP id p9so8020740laa.18
-	for <yocto@yoctoproject.org>; Sun, 23 Dec 2012 19:22:32 -0800 (PST)
+Return-Path: <eddy.lai.tw@gmail.com>
+Received: from mail-vb0-f45.google.com (mail-vb0-f45.google.com
+	[209.85.212.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B34D5E01470
+	for <yocto@yoctoproject.org>; Sun, 23 Dec 2012 23:37:41 -0800 (PST)
+Received: by mail-vb0-f45.google.com with SMTP id p1so7177391vbi.18
+	for <yocto@yoctoproject.org>; Sun, 23 Dec 2012 23:37:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=TK7XX4cxoA0kV/ogLWgSQ/fR2ksXqK2DXTh8hZ8PLMo=;
-	b=v6DnnW9fGHFQyUd3d1TLm5FZ5QgF8rd+GJ1h9pFAPtPz4Xn1tFX1jieQDiFVcp3Og2
-	4TSV0Nf7ueyryFFXM4VuqjplQbWy/vfqYBfanbKlMPHmmqZoFyVbgyirP3gHj8a4nFzA
-	qEuLNZXQEcCl0Vwd4p9U3zEUihtW7Fp4e25gyyT+4i7y876WG0irUV9flDlOjfWkcNbA
-	X7/yIq3y44C6wvI32CWzRMEXcVcFAY/Di3rhX3OBWMOOtukQztlEriHoMnHvwg2Ynz/q
-	6y1iio1nm5WJ0Si8bTT4uflIQigGA87zSHzXB/7WWH57OAZoV1WFReYOldSwmSlHhAOo
-	lfiQ==
+	:content-type; bh=3tGU0HdwzLwcguhDD5c9cKLhNmA73K74UzlJHRy5oaI=;
+	b=FK7iDt57RGDQjGR34zfUNSHBlBRZwmW0hh5hzuYpgTdI1ON4Mq5N7+s7Z71VYeA7Ha
+	DYY0lcZhKKzcS74TC8XWXnpzdGPaMVW1zHqkBBUsztuR/R/92BF9zUR/oD0lhBUe/Npb
+	O0mcD0dusUtgbOH8Grx6x8x0JpqTko1K1alUCCjKeGe1D3SltBbvzAigcWOyVV0lNYUd
+	lNNHrtbPYesoTjX4+VRYs0GnOpxGqTm+O4usnLJ7JcKM9oV38wEkDOSNma8j2gFPF8yP
+	UrgRk3PSAZfFXE0hhqRVXc/HWupWxKIJy18vANJzhO6bUmxuA8IUtNsDPXztzMaaoVF5
+	HqVA==
 MIME-Version: 1.0
-Received: by 10.152.110.18 with SMTP id hw18mr19162970lab.22.1356319352597;
-	Sun, 23 Dec 2012 19:22:32 -0800 (PST)
-Received: by 10.112.127.35 with HTTP; Sun, 23 Dec 2012 19:22:32 -0800 (PST)
-In-Reply-To: <CADkTA4MDzpUdovXTfJ0a04XfPcpiuENu3ERWx--Xmo4EbDvDFA@mail.gmail.com>
-References: <alpine.DEB.2.02.1212231024040.27586@oneiric>
-	<CADkTA4MDzpUdovXTfJ0a04XfPcpiuENu3ERWx--Xmo4EbDvDFA@mail.gmail.com>
-Date: Sun, 23 Dec 2012 23:22:32 -0400
-Message-ID: <CADkTA4MAAVVGeOyQ9PAXOhibj4BQK4BnsVmyhWxh6294ONGCNw@mail.gmail.com>
-From: Bruce Ashfield <bruce.ashfield@gmail.com>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: kernel manual seems to make no mention of "defconfig"
+Received: by 10.52.23.37 with SMTP id j5mr27647115vdf.56.1356334660901; Sun,
+	23 Dec 2012 23:37:40 -0800 (PST)
+Received: by 10.58.18.235 with HTTP; Sun, 23 Dec 2012 23:37:40 -0800 (PST)
+In-Reply-To: <CADkTA4N3yAAgtsxtSy_Dg=h2-4sK=DJ5rpR71x1XFjkyq47Tqw@mail.gmail.com>
+References: <-2529861647849882481@unknownmsgid>
+	<CADkTA4N3yAAgtsxtSy_Dg=h2-4sK=DJ5rpR71x1XFjkyq47Tqw@mail.gmail.com>
+Date: Mon, 24 Dec 2012 15:37:40 +0800
+Message-ID: <CACrgoddTEdOQSeRwHf+vd9H6h_643TdmMpWCasi2HpWQ+G8YhA@mail.gmail.com>
+From: Lai Eddy <eddy.lai.tw@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: no /tmp/work/../linux-standard-build source output
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,205 +37,107 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 24 Dec 2012 03:22:34 -0000
-Content-Type: multipart/alternative; boundary=bcaec54d4de836ae8504d190b582
+X-List-Received-Date: Mon, 24 Dec 2012 07:37:41 -0000
+Content-Type: multipart/alternative; boundary=20cf30780a7ea8dd2504d19445e3
 
---bcaec54d4de836ae8504d190b582
+--20cf30780a7ea8dd2504d19445e3
 Content-Type: text/plain; charset=ISO-8859-1
 
-On Sun, Dec 23, 2012 at 11:10 PM, Bruce Ashfield
-<bruce.ashfield@gmail.com>wrote:
+got errors during "bitbake core-image-minimal" on yacto 1.3 + jasperforest
+BSP
+how can I just clean everything then re-build all?
+since I don't modify any kernel code before make the build, will this error
+caused by build environment settings problem?
+message from
+"tmp/work/x86_64-linux/gettext-native-0.18.1.1-r17/temp/log.do_compile.28574"
+like below:
+-----------------------------------------------------------------------------------------------------------------
+2067 execute.c:267:5: warning: passing argument 1 of
+'posix_spawnattr_destroy' from incompatible pointer type [enabled by
+default]
+2068 /usr/include/spawn.h:94:12: note: expected 'struct posix_spawnattr_t
+*' but argument is of type 'struct posix_spawnattr_t *'
+2069 make[4]: *** [execute.lo] Error 1
+2070 make[4]: *** Waiting for unfinished jobs....
+2071 x86_64-linux-libtool: compile:  gcc -std=gnu99 -DHAVE_CONFIG_H
+-DEXEEXT=\"\" -DEXEEXT=\"\" -DEXEEXT=\"\" -I. -I.. -I../intl -I../intl -I..
+-I.. -DDEPENDS_ON_LIBICONV=1 -D     DEPENDS_ON_LIBINTL=1 -DLIBXML_STATIC
+-I../intl -I./libcroco
+-isystem/home/eddylai/poky-danny-8.0/build/tmp/sysroots/x86_64-linux/usr/include
+-isystem/home/eddylai/poky-danny-8.0/build/tmp/sysroots/x86_64-linux/usr/include
+-O2 -pipe -c exitfail.c  -fPIC -DPIC -o .libs/exitfail.o
+2072 x86_64-linux-libtool: compile:  gcc -std=gnu99 -DHAVE_CONFIG_H
+-DEXEEXT=\"\" -DEXEEXT=\"\" -DEXEEXT=\"\" -I. -I.. -I../intl -I../intl -I..
+-I.. -DDEPENDS_ON_LIBICONV=1 -D     DEPENDS_ON_LIBINTL=1 -DLIBXML_STATIC
+-I../intl -I./libcroco
+-isystem/home/eddylai/poky-danny-8.0/build/tmp/sysroots/x86_64-linux/usr/include
+-isystem/home/eddylai/poky-danny-8.0/build/tmp/sysroots/x86_64-linux/usr/include
+-O2 -pipe -c exitfail.c -o exitfail.o >/dev/null 2>&1
+2073 make[4]: Leaving directory
+`/home/eddylai/poky-danny-8.0/build/tmp/work/x86_64-linux/gettext-native-0.18.1.1-r17/gettext-0.18.1.1/gettext-tools/gnulib-lib'
+2074 make[3]: *** [all] Error 2
+2075 make[3]: Leaving directory
+`/home/eddylai/poky-danny-8.0/build/tmp/work/x86_64-linux/gettext-native-0.18.1.1-r17/gettext-0.18.1.1/gettext-tools/gnulib-lib'
+2076 make[2]: *** [all-recursive] Error 1
+2077 make[2]: Leaving directory
+`/home/eddylai/poky-danny-8.0/build/tmp/work/x86_64-linux/gettext-native-0.18.1.1-r17/gettext-0.18.1.1/gettext-tools'
+2078 make[1]: *** [all] Error 2
+2079 make[1]: Leaving directory
+`/home/eddylai/poky-danny-8.0/build/tmp/work/x86_64-linux/gettext-native-0.18.1.1-r17/gettext-0.18.1.1/gettext-tools'
+2080 make: *** [all-recursive] Error 1
+2081 ERROR: oe_runmake failed
+2082 ERROR: Function failed: do_compile (see
+/home/eddylai/poky-danny-8.0/build/tmp/work/x86_64-linux/gettext-native-0.18.1.1-r17/temp/log.do_compile.5711
+for further information)
 
->
->
->
-> On Sun, Dec 23, 2012 at 12:26 PM, Robert P. J. Day <rpjday@crashcourse.ca>wrote:
->
->>
->>   poking around kern-tools for purpose of documenting some stuff and
->> ran across this in "updateme":
->>
->> split_command_line_objects() {
->>         command_line_values=$@
->>
->>         for v in $command_line_values; do
->>             v_base=`basename $v`
->>             case $v_base in
->>                 *.scc) migrate_feature $v
->>                     ;;
->>                 *.cfg) migrate_cfg $v
->>                     ;;
->>                 *.patch|*.diff) migrate_patch $v
->>                     ;;
->>                 defconfig) migrate_cfg $v;;
->>                 *) ;;
->>             esac
->>         done
->> }
->>
->>   AFAICT, there is no mention of a possible "defconfig" entry anywhere
->> in the current yocto kernel manual.
->>
->
-> You won't find it there because it isn't specific to the kern-tools, what
-> you see
-> there is a small wrapper on top of the kernel.bbclass defconfig handling,
-> with
-> the same end result. So standard yocto/oe-core docs apply here.
->
-
-
-I also forgot to mention that Darren did cover defconfigs in the yocto
-kernel
-docs that were put together for the 1.4 release (I think they were posted
-here),
-so there's better / additional coverage upcoming!
-
-I'm just not near my normal development systems to confirm, since I'm hiding
-out for the holidays watching a pack of kids get completely wound up for the
-big day!
-
-Cheers,
-
-Bruce
-
-
->
-> Cheers,
->
-> Bruce
->
->
->>
->> rday
->>
->> --
->>
->> ========================================================================
->> Robert P. J. Day                                 Ottawa, Ontario, CANADA
->>                         http://crashcourse.ca
->>
->> Twitter:                                       http://twitter.com/rpjday
->> LinkedIn:                               http://ca.linkedin.com/in/rpjday
->> ========================================================================
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->>
->
->
->
-> --
-> "Thou shalt not follow the NULL pointer, for chaos and madness await thee
-> at its end"
->
-
-
-
--- 
-"Thou shalt not follow the NULL pointer, for chaos and madness await thee
-at its end"
-
---bcaec54d4de836ae8504d190b582
+--20cf30780a7ea8dd2504d19445e3
 Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><br><div class=3D"gmail_extra"><br><br><div class=3D"gmail=
-_quote">On Sun, Dec 23, 2012 at 11:10 PM, Bruce Ashfield <span dir=3D"ltr">=
-&lt;<a href=3D"mailto:bruce.ashfield@gmail.com" target=3D"_blank">bruce.ash=
-field@gmail.com</a>&gt;</span> wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div dir=3D"ltr"><br><div class=3D"gmail_ext=
-ra"><br><br><div class=3D"gmail_quote"><div class=3D"im">On Sun, Dec 23, 20=
-12 at 12:26 PM, Robert P. J. Day <span dir=3D"ltr">&lt;<a href=3D"mailto:rp=
-jday@crashcourse.ca" target=3D"_blank">rpjday@crashcourse.ca</a>&gt;</span>=
- wrote:<br>
+<div dir=3D"ltr"><div>got errors during &quot;bitbake core-image-minimal&qu=
+ot; on yacto 1.3 + jasperforest BSP<br></div><div>how can I just clean ever=
+ything then re-build all?<br></div><div>since I don&#39;t modify any kernel=
+ code before make the build, will this error caused by build environment se=
+ttings problem?<br>
+</div>message from &quot;tmp/work/x86_64-linux/gettext-native-0.18.1.1-r17/=
+temp/log.do_compile.28574&quot; like below:<br><div>-----------------------=
+---------------------------------------------------------------------------=
+---------------<br>
+2067 execute.c:267:5: warning: passing argument 1 of &#39;posix_spawnattr_d=
+estroy&#39; from incompatible pointer type [enabled by default]<br>2068 /us=
+r/include/spawn.h:94:12: note: expected &#39;struct posix_spawnattr_t *&#39=
+; but argument is of type &#39;struct posix_spawnattr_t *&#39;<br>
+2069 make[4]: *** [execute.lo] Error 1<br>2070 make[4]: *** Waiting for unf=
+inished jobs....<br>2071 x86_64-linux-libtool: compile:=A0 gcc -std=3Dgnu99=
+ -DHAVE_CONFIG_H -DEXEEXT=3D\&quot;\&quot; -DEXEEXT=3D\&quot;\&quot; -DEXEE=
+XT=3D\&quot;\&quot; -I. -I.. -I../intl -I../intl -I.. -I.. -DDEPENDS_ON_LIB=
+ICONV=3D1 -D=A0=A0=A0=A0 DEPENDS_ON_LIBINTL=3D1 -DLIBXML_STATIC -I../intl -=
+I./libcroco -isystem/home/eddylai/poky-danny-8.0/build/tmp/sysroots/x86_64-=
+linux/usr/include -isystem/home/eddylai/poky-danny-8.0/build/tmp/sysroots/x=
+86_64-linux/usr/include -O2 -pipe -c exitfail.c=A0 -fPIC -DPIC -o .libs/exi=
+tfail.o<br>
+2072 x86_64-linux-libtool: compile:=A0 gcc -std=3Dgnu99 -DHAVE_CONFIG_H -DE=
+XEEXT=3D\&quot;\&quot; -DEXEEXT=3D\&quot;\&quot; -DEXEEXT=3D\&quot;\&quot; =
+-I. -I.. -I../intl -I../intl -I.. -I.. -DDEPENDS_ON_LIBICONV=3D1 -D=A0=A0=
+=A0=A0 DEPENDS_ON_LIBINTL=3D1 -DLIBXML_STATIC -I../intl -I./libcroco -isyst=
+em/home/eddylai/poky-danny-8.0/build/tmp/sysroots/x86_64-linux/usr/include =
+-isystem/home/eddylai/poky-danny-8.0/build/tmp/sysroots/x86_64-linux/usr/in=
+clude -O2 -pipe -c exitfail.c -o exitfail.o &gt;/dev/null 2&gt;&amp;1<br>
+2073 make[4]: Leaving directory `/home/eddylai/poky-danny-8.0/build/tmp/wor=
+k/x86_64-linux/gettext-native-0.18.1.1-r17/gettext-0.18.1.1/gettext-tools/g=
+nulib-lib&#39;<br>2074 make[3]: *** [all] Error 2<br>2075 make[3]: Leaving =
+directory `/home/eddylai/poky-danny-8.0/build/tmp/work/x86_64-linux/gettext=
+-native-0.18.1.1-r17/gettext-0.18.1.1/gettext-tools/gnulib-lib&#39;<br>
+2076 make[2]: *** [all-recursive] Error 1<br>2077 make[2]: Leaving director=
+y `/home/eddylai/poky-danny-8.0/build/tmp/work/x86_64-linux/gettext-native-=
+0.18.1.1-r17/gettext-0.18.1.1/gettext-tools&#39;<br>2078 make[1]: *** [all]=
+ Error 2<br>
+2079 make[1]: Leaving directory `/home/eddylai/poky-danny-8.0/build/tmp/wor=
+k/x86_64-linux/gettext-native-0.18.1.1-r17/gettext-0.18.1.1/gettext-tools&#=
+39;<br>2080 make: *** [all-recursive] Error 1<br>2081 ERROR: oe_runmake fai=
+led<br>
+2082 ERROR: Function failed: do_compile (see /home/eddylai/poky-danny-8.0/b=
+uild/tmp/work/x86_64-linux/gettext-native-0.18.1.1-r17/temp/log.do_compile.=
+5711 for further information)<br><br></div></div>
 
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><br>
-=A0 poking around kern-tools for purpose of documenting some stuff and<br>
-ran across this in &quot;updateme&quot;:<br>
-<br>
-split_command_line_objects() {<br>
-=A0 =A0 =A0 =A0 command_line_values=3D$@<br>
-<br>
-=A0 =A0 =A0 =A0 for v in $command_line_values; do<br>
-=A0 =A0 =A0 =A0 =A0 =A0 v_base=3D`basename $v`<br>
-=A0 =A0 =A0 =A0 =A0 =A0 case $v_base in<br>
-=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 *.scc) migrate_feature $v<br>
-=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 ;;<br>
-=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 *.cfg) migrate_cfg $v<br>
-=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 ;;<br>
-=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 *.patch|*.diff) migrate_patch $v<br>
-=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 ;;<br>
-=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 defconfig) migrate_cfg $v;;<br>
-=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 *) ;;<br>
-=A0 =A0 =A0 =A0 =A0 =A0 esac<br>
-=A0 =A0 =A0 =A0 done<br>
-}<br>
-<br>
-=A0 AFAICT, there is no mention of a possible &quot;defconfig&quot; entry a=
-nywhere<br>
-in the current yocto kernel manual.<br></blockquote><div><br></div></div><d=
-iv>You won&#39;t find it=A0there because it isn&#39;t specific to the kern-=
-tools, what you see</div><div>there is a small wrapper on top of the kernel=
-.bbclass defconfig handling, with</div>
-
-<div>the same end result. So standard yocto/oe-core docs apply here.</div><=
-/div></div></div></blockquote><div><br></div><div><br></div><div style>I al=
-so forgot to mention that Darren did cover defconfigs in the yocto kernel=
-=A0</div>
-<div style>docs that were put together for the 1.4 release (I think they we=
-re posted here),</div><div style>so there&#39;s better / additional coverag=
-e upcoming!</div><div style><br></div><div style>I&#39;m just not near my n=
-ormal development systems to confirm, since I&#39;m hiding</div>
-<div style>out for the holidays watching a pack of kids get completely woun=
-d up for the</div><div style>big day!</div><div style><br></div><div style>=
-Cheers,</div><div style><br></div><div style>Bruce</div><div>=A0</div><bloc=
-kquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #cc=
-c solid;padding-left:1ex">
-<div dir=3D"ltr"><div class=3D"gmail_extra"><div class=3D"gmail_quote"><div=
-><br></div><div>Cheers,</div><div><br></div><div>Bruce</div><div class=3D"i=
-m"><div>=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8=
-ex;border-left:1px #ccc solid;padding-left:1ex">
-
-
-<br>
-rday<br>
-<br>
---<br>
-<br>
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>
-Robert P. J. Day =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
-=A0 =A0 Ottawa, Ontario, CANADA<br>
-=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 <a href=3D"http://crashcour=
-se.ca" target=3D"_blank">http://crashcourse.ca</a><br>
-<br>
-Twitter: =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
-=A0 =A0 =A0 <a href=3D"http://twitter.com/rpjday" target=3D"_blank">http://=
-twitter.com/rpjday</a><br>
-LinkedIn: =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 <a hr=
-ef=3D"http://ca.linkedin.com/in/rpjday" target=3D"_blank">http://ca.linkedi=
-n.com/in/rpjday</a><br>
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
->https://lists.yoctoproject.org/listinfo/yocto</a><br>
-</blockquote></div></div><span class=3D"HOEnZb"><font color=3D"#888888"><br=
-><br clear=3D"all"><div><br></div>-- <br>&quot;Thou shalt not follow the NU=
-LL pointer, for chaos and madness await thee at its end&quot;
-</font></span></div></div>
-</blockquote></div><br><br clear=3D"all"><div><br></div>-- <br>&quot;Thou s=
-halt not follow the NULL pointer, for chaos and madness await thee at its e=
-nd&quot;
-</div></div>
-
---bcaec54d4de836ae8504d190b582--
+--20cf30780a7ea8dd2504d19445e3--
