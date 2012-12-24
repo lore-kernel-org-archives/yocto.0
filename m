@@ -1,32 +1,32 @@
 Return-Path: <bruce.ashfield@gmail.com>
-Received: from mail-la0-f51.google.com (mail-la0-f51.google.com
-	[209.85.215.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9C3ABE0146D
-	for <yocto@yoctoproject.org>; Sun, 23 Dec 2012 19:10:16 -0800 (PST)
-Received: by mail-la0-f51.google.com with SMTP id e4so8038047lag.38
-	for <yocto@yoctoproject.org>; Sun, 23 Dec 2012 19:10:15 -0800 (PST)
+Received: from mail-la0-f44.google.com (mail-la0-f44.google.com
+	[209.85.215.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7AC92E0146D
+	for <yocto@yoctoproject.org>; Sun, 23 Dec 2012 19:12:03 -0800 (PST)
+Received: by mail-la0-f44.google.com with SMTP id d3so8004881lah.3
+	for <yocto@yoctoproject.org>; Sun, 23 Dec 2012 19:12:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
 	:cc:content-type;
-	bh=LPUUycEuHqCyrL9tOPyCJz5PfMDXY1jPB02OD4LK69w=;
-	b=K79VjSOxikZkKQ10AVzyf6pEaKijtYYERB2OhOodVnwSJ6d2UGr38Gz2KYAjSThQzD
-	prKbSs6W9Z9fzE4Es7v0+6aflmJgLAjwuPsqXFw0UK4z90gnNYRq6tlp4zHMa2NKrlnY
-	mdkcQGkeVRN8UC3Krt7SFk2rM+Pw+AL28ngarpJPGQwrWDp6XcaYt015H5W5v5R8xFy7
-	+cur8f1hGfwuI5ckIFtmkOMXHVFCWALNnW+tZkG+6L11AMAlaJFqVczN0UWjP2BAdLPy
-	jRiPet7QeoGHJOSWaVu7FVZI8ButesiZRLfxDOE8GHBAS4bkbupmnXvsbQuBVcjTwfOb
-	Pr1w==
+	bh=JoSCMAcwQEYvTra6QnuJ0QnDTlzfnwR6ECmsd0MgdAw=;
+	b=K+vfWsgSSqJG156pouOT81pY9ZSr6zU+8FcGwbnKwpZfMCaw8SGjb9X+IayVVP/jmf
+	apaSynVAxBnwfqRjmomBqPU+45jUs6v9yQwmsIDU1RCKLZ55qGwqcqGAbA66WBuV/55c
+	7ouqHemz0fd4N+nlbx4gy1XUa/+H1cUtu8EFkvK6RTzadwgA8kSCEMg6Am+6Nc6tbL9V
+	unvnMtXW91dtYOF++UhfGVF6As2OCVPAhiVZg5WBFKYB5grdiEJ1WdS66Q+BkQjOVlTc
+	A/hQuZWdQpkSrmXwgRHjxck8i9XJtPVTIr8xBtlscmN4Z5H5nACBYjwkOok2nKJudR2b
+	C9WQ==
 MIME-Version: 1.0
-Received: by 10.112.40.129 with SMTP id x1mr8303305lbk.95.1356318614964; Sun,
-	23 Dec 2012 19:10:14 -0800 (PST)
-Received: by 10.112.127.35 with HTTP; Sun, 23 Dec 2012 19:10:14 -0800 (PST)
-In-Reply-To: <alpine.DEB.2.02.1212231024040.27586@oneiric>
-References: <alpine.DEB.2.02.1212231024040.27586@oneiric>
-Date: Sun, 23 Dec 2012 23:10:14 -0400
-Message-ID: <CADkTA4MDzpUdovXTfJ0a04XfPcpiuENu3ERWx--Xmo4EbDvDFA@mail.gmail.com>
+Received: by 10.112.50.205 with SMTP id e13mr8170650lbo.57.1356318721478; Sun,
+	23 Dec 2012 19:12:01 -0800 (PST)
+Received: by 10.112.127.35 with HTTP; Sun, 23 Dec 2012 19:12:01 -0800 (PST)
+In-Reply-To: <-2529861647849882481@unknownmsgid>
+References: <-2529861647849882481@unknownmsgid>
+Date: Sun, 23 Dec 2012 23:12:01 -0400
+Message-ID: <CADkTA4N3yAAgtsxtSy_Dg=h2-4sK=DJ5rpR71x1XFjkyq47Tqw@mail.gmail.com>
 From: Bruce Ashfield <bruce.ashfield@gmail.com>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: kernel manual seems to make no mention of "defconfig"
+To: Lai Eddy <eddy.lai.tw@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: no /tmp/work/../linux-standard-build source output
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,147 +38,135 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 24 Dec 2012 03:10:17 -0000
-Content-Type: multipart/alternative; boundary=e0cb4efe323e3f4c7f04d190892a
+X-List-Received-Date: Mon, 24 Dec 2012 03:12:03 -0000
+Content-Type: multipart/alternative; boundary=f46d0401fe3b988f4c04d1908f76
 
---e0cb4efe323e3f4c7f04d190892a
-Content-Type: text/plain; charset=ISO-8859-1
+--f46d0401fe3b988f4c04d1908f76
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: quoted-printable
 
-On Sun, Dec 23, 2012 at 12:26 PM, Robert P. J. Day <rpjday@crashcourse.ca>wrote:
+On Sun, Dec 23, 2012 at 7:10 PM, Lai Eddy <eddy.lai.tw@gmail.com> wrote:
 
+> Hi,
 >
->   poking around kern-tools for purpose of documenting some stuff and
-> ran across this in "updateme":
->
-> split_command_line_objects() {
->         command_line_values=$@
->
->         for v in $command_line_values; do
->             v_base=`basename $v`
->             case $v_base in
->                 *.scc) migrate_feature $v
->                     ;;
->                 *.cfg) migrate_cfg $v
->                     ;;
->                 *.patch|*.diff) migrate_patch $v
->                     ;;
->                 defconfig) migrate_cfg $v;;
->                 *) ;;
->             esac
->         done
-> }
->
->   AFAICT, there is no mention of a possible "defconfig" entry anywhere
-> in the current yocto kernel manual.
+> I=92m using yocto 1.3 (poky-8.0) with jasperforest BSP,
+> sometimes =93bitbake core-image-minimal=94 did create files in
+> /tmp/work/xxx-poky-linux/linux-yocto-xxx/linux-xxx-standard-build , but
+> always create new image in /tmp/deploy/image folder (file date time is ne=
+w)
 >
 
-You won't find it there because it isn't specific to the kern-tools, what
-you see
-there is a small wrapper on top of the kernel.bbclass defconfig handling,
-with
-the same end result. So standard yocto/oe-core docs apply here.
+Have you looked in:
+
+  /tmp/work/xxx-poky-linux/linux-yocto-xxx/linux
+
+That's your source directory. The linux-yocto recipes build with split
+source and object directories.
 
 Cheers,
 
 Bruce
 
 
+> every =93bitbake core-image-minimal=94 build finished with successfully, =
+why
+> there=92s no source files in the linux-xxx-standard-build? will the conte=
+nt
+> of the /tmp/deply/image build with previous-built binarys?
 >
-> rday
+> Eddy Lai / NCUT Taiwan
 >
-> --
->
-> ========================================================================
-> Robert P. J. Day                                 Ottawa, Ontario, CANADA
->                         http://crashcourse.ca
->
-> Twitter:                                       http://twitter.com/rpjday
-> LinkedIn:                               http://ca.linkedin.com/in/rpjday
-> ========================================================================
 > _______________________________________________
 > yocto mailing list
 > yocto@yoctoproject.org
 > https://lists.yoctoproject.org/listinfo/yocto
 >
+>
 
 
-
--- 
+--=20
 "Thou shalt not follow the NULL pointer, for chaos and madness await thee
 at its end"
 
---e0cb4efe323e3f4c7f04d190892a
-Content-Type: text/html; charset=ISO-8859-1
+--f46d0401fe3b988f4c04d1908f76
+Content-Type: text/html; charset=windows-1252
 Content-Transfer-Encoding: quoted-printable
 
 <div dir=3D"ltr"><br><div class=3D"gmail_extra"><br><br><div class=3D"gmail=
-_quote">On Sun, Dec 23, 2012 at 12:26 PM, Robert P. J. Day <span dir=3D"ltr=
-">&lt;<a href=3D"mailto:rpjday@crashcourse.ca" target=3D"_blank">rpjday@cra=
-shcourse.ca</a>&gt;</span> wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><br>
-=A0 poking around kern-tools for purpose of documenting some stuff and<br>
-ran across this in &quot;updateme&quot;:<br>
-<br>
-split_command_line_objects() {<br>
-=A0 =A0 =A0 =A0 command_line_values=3D$@<br>
-<br>
-=A0 =A0 =A0 =A0 for v in $command_line_values; do<br>
-=A0 =A0 =A0 =A0 =A0 =A0 v_base=3D`basename $v`<br>
-=A0 =A0 =A0 =A0 =A0 =A0 case $v_base in<br>
-=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 *.scc) migrate_feature $v<br>
-=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 ;;<br>
-=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 *.cfg) migrate_cfg $v<br>
-=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 ;;<br>
-=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 *.patch|*.diff) migrate_patch $v<br>
-=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 ;;<br>
-=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 defconfig) migrate_cfg $v;;<br>
-=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 *) ;;<br>
-=A0 =A0 =A0 =A0 =A0 =A0 esac<br>
-=A0 =A0 =A0 =A0 done<br>
-}<br>
-<br>
-=A0 AFAICT, there is no mention of a possible &quot;defconfig&quot; entry a=
-nywhere<br>
-in the current yocto kernel manual.<br></blockquote><div><br></div><div sty=
-le>You won&#39;t find it=A0there because it isn&#39;t specific to the kern-=
-tools, what you see</div><div style>there is a small wrapper on top of the =
-kernel.bbclass defconfig handling, with</div>
-<div style>the same end result. So standard yocto/oe-core docs apply here.<=
-/div><div style><br></div><div style>Cheers,</div><div style><br></div><div=
- style>Bruce</div><div>=A0</div><blockquote class=3D"gmail_quote" style=3D"=
-margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
+_quote">On Sun, Dec 23, 2012 at 7:10 PM, Lai Eddy <span dir=3D"ltr">&lt;<a =
+href=3D"mailto:eddy.lai.tw@gmail.com" target=3D"_blank">eddy.lai.tw@gmail.c=
+om</a>&gt;</span> wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
+left-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;p=
+adding-left:1ex"><div><div style=3D"font-family:&#39;Microsoft JhengHei UI&=
+#39;,Calibri,&#39;Segoe UI&#39;,Meiryo,&#39;Microsoft YaHei UI&#39;,&#39;Ma=
+lgun Gothic&#39;,&#39;Khmer UI&#39;,&#39;Nirmala UI&#39;,Tunga,&#39;Lao UI&=
+#39;,Ebrima,sans-serif;font-size:16px">
 
-<br>
-rday<br>
-<br>
---<br>
-<br>
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>
-Robert P. J. Day =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
-=A0 =A0 Ottawa, Ontario, CANADA<br>
-=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 <a href=3D"http://crashcour=
-se.ca" target=3D"_blank">http://crashcourse.ca</a><br>
-<br>
-Twitter: =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
-=A0 =A0 =A0 <a href=3D"http://twitter.com/rpjday" target=3D"_blank">http://=
-twitter.com/rpjday</a><br>
-LinkedIn: =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 <a hr=
-ef=3D"http://ca.linkedin.com/in/rpjday" target=3D"_blank">http://ca.linkedi=
-n.com/in/rpjday</a><br>
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>
-_______________________________________________<br>
+<div>Hi,</div><div>=A0</div><div>I=92m using yocto 1.3 (poky-8.0) with jasp=
+erforest BSP,</div><div>sometimes=A0=93bitbake core-image-minimal=94 did cr=
+eate files in /tmp/work/xxx-poky-linux/linux-yocto-xxx/linux-xxx-standard-b=
+uild , but always create new image in /tmp/deploy/image folder (file date t=
+ime is new)</div>
+</div></div></blockquote><div><br></div><div style>Have you looked in:</div=
+><div style><br></div><div style><span style=3D"font-family:&#39;Microsoft =
+JhengHei UI&#39;,Calibri,&#39;Segoe UI&#39;,Meiryo,&#39;Microsoft YaHei UI&=
+#39;,&#39;Malgun Gothic&#39;,&#39;Khmer UI&#39;,&#39;Nirmala UI&#39;,Tunga,=
+&#39;Lao UI&#39;,Ebrima,sans-serif;font-size:16px">=A0 /tmp/work/xxx-poky-l=
+inux/</span><span style=3D"font-family:&#39;Microsoft JhengHei UI&#39;,Cali=
+bri,&#39;Segoe UI&#39;,Meiryo,&#39;Microsoft YaHei UI&#39;,&#39;Malgun Goth=
+ic&#39;,&#39;Khmer UI&#39;,&#39;Nirmala UI&#39;,Tunga,&#39;Lao UI&#39;,Ebri=
+ma,sans-serif;font-size:16px">linux-yocto-xxx/linux=A0</span><br>
+</div><div style><span style=3D"font-family:&#39;Microsoft JhengHei UI&#39;=
+,Calibri,&#39;Segoe UI&#39;,Meiryo,&#39;Microsoft YaHei UI&#39;,&#39;Malgun=
+ Gothic&#39;,&#39;Khmer UI&#39;,&#39;Nirmala UI&#39;,Tunga,&#39;Lao UI&#39;=
+,Ebrima,sans-serif;font-size:16px"><br>
+</span></div><div style><span style=3D"font-family:&#39;Microsoft JhengHei =
+UI&#39;,Calibri,&#39;Segoe UI&#39;,Meiryo,&#39;Microsoft YaHei UI&#39;,&#39=
+;Malgun Gothic&#39;,&#39;Khmer UI&#39;,&#39;Nirmala UI&#39;,Tunga,&#39;Lao =
+UI&#39;,Ebrima,sans-serif;font-size:16px">That&#39;s your source directory.=
+ The linux-yocto recipes build with split</span></div>
+<div style><span style=3D"font-family:&#39;Microsoft JhengHei UI&#39;,Calib=
+ri,&#39;Segoe UI&#39;,Meiryo,&#39;Microsoft YaHei UI&#39;,&#39;Malgun Gothi=
+c&#39;,&#39;Khmer UI&#39;,&#39;Nirmala UI&#39;,Tunga,&#39;Lao UI&#39;,Ebrim=
+a,sans-serif;font-size:16px">source and object directories.</span></div>
+<div style><span style=3D"font-family:&#39;Microsoft JhengHei UI&#39;,Calib=
+ri,&#39;Segoe UI&#39;,Meiryo,&#39;Microsoft YaHei UI&#39;,&#39;Malgun Gothi=
+c&#39;,&#39;Khmer UI&#39;,&#39;Nirmala UI&#39;,Tunga,&#39;Lao UI&#39;,Ebrim=
+a,sans-serif;font-size:16px"><br>
+</span></div><div style><span style=3D"font-family:&#39;Microsoft JhengHei =
+UI&#39;,Calibri,&#39;Segoe UI&#39;,Meiryo,&#39;Microsoft YaHei UI&#39;,&#39=
+;Malgun Gothic&#39;,&#39;Khmer UI&#39;,&#39;Nirmala UI&#39;,Tunga,&#39;Lao =
+UI&#39;,Ebrima,sans-serif;font-size:16px">Cheers,</span></div>
+<div style><span style=3D"font-family:&#39;Microsoft JhengHei UI&#39;,Calib=
+ri,&#39;Segoe UI&#39;,Meiryo,&#39;Microsoft YaHei UI&#39;,&#39;Malgun Gothi=
+c&#39;,&#39;Khmer UI&#39;,&#39;Nirmala UI&#39;,Tunga,&#39;Lao UI&#39;,Ebrim=
+a,sans-serif;font-size:16px"><br>
+</span></div><div style><span style=3D"font-family:&#39;Microsoft JhengHei =
+UI&#39;,Calibri,&#39;Segoe UI&#39;,Meiryo,&#39;Microsoft YaHei UI&#39;,&#39=
+;Malgun Gothic&#39;,&#39;Khmer UI&#39;,&#39;Nirmala UI&#39;,Tunga,&#39;Lao =
+UI&#39;,Ebrima,sans-serif;font-size:16px">Bruce</span></div>
+<div>=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px=
+ 0.8ex;border-left-width:1px;border-left-color:rgb(204,204,204);border-left=
+-style:solid;padding-left:1ex"><div><div style=3D"font-family:&#39;Microsof=
+t JhengHei UI&#39;,Calibri,&#39;Segoe UI&#39;,Meiryo,&#39;Microsoft YaHei U=
+I&#39;,&#39;Malgun Gothic&#39;,&#39;Khmer UI&#39;,&#39;Nirmala UI&#39;,Tung=
+a,&#39;Lao UI&#39;,Ebrima,sans-serif;font-size:16px">
+
+<div>every=A0=93bitbake core-image-minimal=94 build finished with successfu=
+lly, why there=92s no source files in the linux-xxx-standard-build?=A0will =
+the content of the /tmp/deply/image build with=A0previous-built=A0binarys?=
+=A0</div><div>
+
+=A0</div><div>Eddy Lai / NCUT Taiwan</div></div></div>
+<br>_______________________________________________<br>
 yocto mailing list<br>
 <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
 <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
 >https://lists.yoctoproject.org/listinfo/yocto</a><br>
-</blockquote></div><br><br clear=3D"all"><div><br></div>-- <br>&quot;Thou s=
-halt not follow the NULL pointer, for chaos and madness await thee at its e=
-nd&quot;
+<br></blockquote></div><br><br clear=3D"all"><div><br></div>-- <br>&quot;Th=
+ou shalt not follow the NULL pointer, for chaos and madness await thee at i=
+ts end&quot;
 </div></div>
 
---e0cb4efe323e3f4c7f04d190892a--
+--f46d0401fe3b988f4c04d1908f76--
