@@ -1,21 +1,18 @@
 Return-Path: <rpjday@crashcourse.ca>
 Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
 	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 65154E002AB
-	for <yocto@yoctoproject.org>; Tue, 25 Dec 2012 11:36:12 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 562C2E002AB
+	for <yocto@yoctoproject.org>; Tue, 25 Dec 2012 11:40:39 -0800 (PST)
 Received: from wnpgmb0903w-ds01-73-59.dynamic.mtsallstream.net
-	([207.161.73.59]:54393 helo=crashcourse.ca)
+	([207.161.73.59]:54409 helo=crashcourse.ca)
 	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
 	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1TnaIN-00033q-JY
-	for yocto@yoctoproject.org; Tue, 25 Dec 2012 14:36:11 -0500
-Date: Tue, 25 Dec 2012 13:36:07 -0600 (CST)
+	id 1TnaMg-0003D7-Gj; Tue, 25 Dec 2012 14:40:38 -0500
+Date: Tue, 25 Dec 2012 13:40:35 -0600 (CST)
 From: "Robert P. J. Day" <rpjday@crashcourse.ca>
 X-X-Sender: rpjday@oneiric
 To: Yocto discussion list <yocto@yoctoproject.org>
-In-Reply-To: <alpine.DEB.2.02.1212251309530.4843@oneiric>
-Message-ID: <alpine.DEB.2.02.1212251327120.5038@oneiric>
-References: <alpine.DEB.2.02.1212251309530.4843@oneiric>
+Message-ID: <alpine.DEB.2.02.1212251339360.5117@oneiric>
 User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
 X-AntiAbuse: This header was added to track abuse,
@@ -27,7 +24,7 @@ X-AntiAbuse: Sender Address Domain - crashcourse.ca
 X-Source: 
 X-Source-Args: 
 X-Source-Dir: 
-Subject: Re: which is the *official* yocto "download" page?
+Subject: [PATCH] Documentation: Minor tweaks in Chapter 2 of Dev Manual.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,42 +36,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 25 Dec 2012 19:36:12 -0000
+X-List-Received-Date: Tue, 25 Dec 2012 19:40:39 -0000
 Content-Type: TEXT/PLAIN; charset=US-ASCII
 
 
-  as one more data point to suggest that the URLs to yocto pages need
-some kind of reorg, toward the bottom of section 2.2 in the dev
-manual, one reads:
+Signed-off-by: Robert P. J. Day <rpjday@crashcourse.ca>
 
-"Tarball Extraction: You can download any released BSP tarball from
-the same download site used to get the Yocto Project release."
+---
 
-  the link under "download site" is
-http://www.yoctoproject.org/download which, again because of
-redirection, takes you here:
-
-https://www.yoctoproject.org/download/yocto-project-13-poky-80
-
-which is definitely inappropriate since that has nothing to do with
-BSPs.
-
-  for a number of these things, there appear to be two types of URLs.
-in the case of BSPs, there's both of:
-
-https://www.yoctoproject.org/downloads/bsp
-http://downloads.yoctoproject.org/releases/yocto/yocto-1.3/machines/
-
-the latter obviously representing the earlier BSP download page before
-the yocto web site had a total makeover.  the same can be said for the
-"tools" download page -- which of these two is it?
-
-https://www.yoctoproject.org/downloads/tools
-http://downloads.yoctoproject.org/tools/
-
-  just looking for consistency.
-
-rday
+diff --git a/documentation/dev-manual/dev-manual-start.xml b/documentation/dev-manual/dev-manual-start.xml
+index 299a02d..b9401e9 100644
+--- a/documentation/dev-manual/dev-manual-start.xml
++++ b/documentation/dev-manual/dev-manual-start.xml
+@@ -53,7 +53,7 @@
+             <listitem><para><emphasis>Host System:</emphasis>  You should have a reasonably current
+                 Linux-based host system.
+                 You will have the best results with a recent release of Fedora,
+-                OpenSUSE, Ubuntu, or CentOS as these releases are frequently tested against the Yocto Project
++                OpenSUSE, Debian, Ubuntu, or CentOS as these releases are frequently tested against the Yocto Project
+                 and officially supported.
+                 For a list of the distributions under validation and their status, see the
+                 "<ulink url='&YOCTO_DOCS_REF_URL;#detailed-supported-distros'>Supported Linux Distributions</ulink>" section
+@@ -70,7 +70,7 @@
+                 for the supported distributions.</para></listitem>
+             <listitem id='local-yp-release'><para><emphasis>Yocto Project Release:</emphasis>
+                 You need a release of the Yocto Project.
+-                You set up a with local <link linkend='source-directory'>Source Directory</link>
++                You set that up with a local <link linkend='source-directory'>Source Directory</link>
+                 one of two ways depending on whether you
+                 are going to contribute back into the Yocto Project or not.
+                 <note>
 
 -- 
 
