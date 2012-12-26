@@ -1,42 +1,26 @@
-Return-Path: <scott.a.garman@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 72B40E00770
-	for <yocto@yoctoproject.org>; Wed, 26 Dec 2012 09:18:55 -0800 (PST)
-Received: from mail-pb0-f69.google.com ([209.85.160.69])
-	by mga09.intel.com with ESMTP/TLS/RC4-SHA; 26 Dec 2012 09:17:59 -0800
-Received: by mail-pb0-f69.google.com with SMTP id un15so9452241pbc.0
-	for <yocto@yoctoproject.org>; Wed, 26 Dec 2012 09:18:54 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=x-received:x-received:message-id:date:from:user-agent:mime-version
-	:to:cc:subject:content-type:content-transfer-encoding
-	:x-gm-message-state;
-	bh=ObZF5/m9wZcFu+4OsNMXhiKgn8aUAQeaK19o6Kf1nKQ=;
-	b=AmKB10glX/PlU0N1TYwcB+Y/vCGDDSkR3iyFxD5IXOs1DBS+bIeiB+zXyik97weUeo
-	WJQW1+emk5XKixRNCAh6dCBQfyEQdL0ThlqWnlBihfhRNhHpgXM5fOVMUBfAnwGZv2LS
-	0rL9KXTIbDvScjAbRUBy5oS+WqxIq/WadtwORVdwawKAlmrbIQBqAo5ZMzJDl+bBjra+
-	P5gUjZOtM5ZJ1XFCdgrEMSMMXgtVdT7k2893a8FZOBcw0wnROTUoWQ9U6Newpk1sUdA2
-	6SHrxuJAVmEygq8jxEA+3vZDIwyLIK5cmJ0IfB8ynp6yMYPBflLDHEYL6XTpIoqXOGJi
-	v0Fg==
-X-Received: by 10.69.0.74 with SMTP id aw10mr87141668pbd.87.1356542334673;
-	Wed, 26 Dec 2012 09:18:54 -0800 (PST)
-X-Received: by 10.69.0.74 with SMTP id aw10mr87141644pbd.87.1356542334516;
-	Wed, 26 Dec 2012 09:18:54 -0800 (PST)
-Received: from [10.1.10.13] (c-50-137-42-92.hsd1.or.comcast.net.
-	[50.137.42.92])
-	by mx.google.com with ESMTPS id wh8sm16182276pbc.75.2012.12.26.09.18.49
-	(version=SSLv3 cipher=OTHER); Wed, 26 Dec 2012 09:18:53 -0800 (PST)
-Message-ID: <50DB3174.1030709@intel.com>
-Date: Wed, 26 Dec 2012 09:18:44 -0800
-From: Scott Garman <scott.a.garman@intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/17.0 Thunderbird/17.0
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F18D2E0142C
+	for <yocto@yoctoproject.org>; Wed, 26 Dec 2012 12:06:46 -0800 (PST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 26 Dec 2012 12:06:45 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.84,358,1355126400"; d="scan'208";a="236949424"
+Received: from unknown (HELO helios.localnet) ([10.252.123.34])
+	by azsmga001.ch.intel.com with ESMTP; 26 Dec 2012 12:06:25 -0800
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Navani Srivastava <navani.srivastava@gmail.com>
+Date: Wed, 26 Dec 2012 20:06:22 +0000
+Message-ID: <3031778.nf6PVNJiXr@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.9.3 (Linux/3.5.0-21-generic; KDE/4.9.3; i686; ; )
+In-Reply-To: <CA+Z6RkV-6udeBNJsnoqen7=3GSqyZT9DDsykQ1duNoNv9_NqGQ@mail.gmail.com>
+References: <9BACABF0C6B14A4D8C33B42A795119BE099ABD88@POCITMSEXMB03.LntUniverse.com>
+	<CA+Z6RkV-6udeBNJsnoqen7=3GSqyZT9DDsykQ1duNoNv9_NqGQ@mail.gmail.com>
 MIME-Version: 1.0
-To: Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>
-X-Gm-Message-State: ALoCoQkzbGy/BrJStK5n8qLSkelSvfSjjjGmRPeT7a2iq/hw6MDwTuAZ74dxu1izn4yEn7jFRhGZE2MbrWJY07ycJcGIuiW8lqxIgoWrFhE95xZKBuc17rld5izwQYiUnlrZikTKtWgNNEhE8dYzjc/6eRnwH52NjQ==
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, poky@yoctoproject.org
-Subject: Denzil 1.2.2 development nearly complete
+Cc: yocto@yoctoproject.org,
+	"navani.srivastava@lnties.com" <navani.srivastava@lnties.com>
+Subject: Re: Remove unwanted package from Qt
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,43 +32,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 26 Dec 2012 17:18:55 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 26 Dec 2012 20:06:47 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Hi everyone,
+On Wednesday 26 December 2012 09:56:05 Navani Srivastava wrote:
+> I am compiling Qt-4.8.0 with poky-denzil-7.0 for arm1136 architecture.
+> 
+> At the time of integrating qt-embedded with rootfs, I am getting qtopia
+> directory in usr/share path of rootfs.
+> 
+> I tried removing qtopia directory through qt recipe but ended in
+> compilation error. Please suggest any idea to remove qtopia from share
+> directory.
 
-I wanted to make sure the community is aware that I am wrapping things 
-up for our next denzil stable release, 1.2.2. We've had some discussions 
-about this at the Technical Team Meetings, but I thought I'd send this 
-out to the mailing lists as well.
+"qtopia" is just the name of the directory that gets used for Qt Embedded (see 
+the QT_DIR_NAME setting in meta/classes/qt4e.bbclass) - are there actually any 
+files in that directory you don't want or is it just the directory name that 
+concerns you?
 
-The current status of my testing branches can be found here:
-
-oe-core based tree:
-http://git.openembedded.org/openembedded-core-contrib/log/?h=sgarman/denzil-next
-
-and my poky-based tree:
-http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/log/?h=sgarman/denzil-next
-
-I will be submitting a pull request to Richard soon to get these patches 
-merged to the official denzil branches of the oe-core and poky 
-repositories, respectively. If anyone has outstanding patches they need 
-in denzil (or that I've overlooked), please get them to me as soon as 
-possible.
-
-To see a list of bugs addressed during the 1.2.2 release cycle, do a 
-Bugzilla search for bugs with a Target Milestone of 1.2.2.
-
-Our QA team will be back on Monday, January 7, and will begin another 
-full-pass test cycle on denzil. If they don't find any new bugs and can 
-verify the recently fixed bugs in denzil, our goal is to release 1.2.2 
-shortly thereafter.
-
-Scott
+Cheers,
+Paul
 
 -- 
-Scott Garman
-Embedded Linux Engineer - Yocto Project
-Intel Open Source Technology Center
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
