@@ -1,33 +1,27 @@
-Return-Path: <navani.srivastava@gmail.com>
-Received: from mail-oa0-f45.google.com (mail-oa0-f45.google.com
-	[209.85.219.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7E7E2E014A5
-	for <yocto@yoctoproject.org>; Tue, 25 Dec 2012 20:26:06 -0800 (PST)
-Received: by mail-oa0-f45.google.com with SMTP id i18so7814410oag.32
-	for <yocto@yoctoproject.org>; Tue, 25 Dec 2012 20:26:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=cPa8gfDQXsZA+RZdGx7cEm1Ka1WIG//kuo9fHxkm8Uk=;
-	b=Ynsk6kxEzl3Jud9fhc4Ch2kbhZxYYpyMh3cbLT7VlVeFOaAv9i2cdljVNfYxRX50Jg
-	3S10xwhT84Oac/dUhcH3i7ONW5JyEa8rYB1AHdEY93D2b7QTZmZFf2fOmorxOqOoUOKa
-	QhfD2oXRYBMPNJ6O4QVjHt1Fd6DN1w1Nl3cOra+tKXZiJHWQE5fWRkRDoP/R4s33e9aA
-	hKm3ZG3nmO7z+XGjOTHXXIFOAXxQSt3XdocrbUYtAxXvNJ2PmTPht7RczNxgjd4+3jOk
-	i87psw2+uIju23KPENwTTEEvJ5bh5rynT9ZJgXTetazGPcbAxhWsHPRu0jpS+be+Y+z2
-	zUaw==
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ECA9EE014A7
+	for <yocto@yoctoproject.org>; Wed, 26 Dec 2012 04:08:47 -0800 (PST)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id 89D9CF8121E; Wed, 26 Dec 2012 05:08:47 -0700 (MST)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=unavailable version=3.3.2
+Received: from [192.168.1.114] (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id 874F5F8121D;
+	Wed, 26 Dec 2012 05:08:45 -0700 (MST)
+Message-ID: <50DAE8D5.7090309@mlbassoc.com>
+Date: Wed, 26 Dec 2012 05:08:53 -0700
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/17.0 Thunderbird/17.0
 MIME-Version: 1.0
-Received: by 10.182.207.70 with SMTP id lu6mr20814755obc.78.1356495965739;
-	Tue, 25 Dec 2012 20:26:05 -0800 (PST)
-Received: by 10.182.107.196 with HTTP; Tue, 25 Dec 2012 20:26:05 -0800 (PST)
-Received: by 10.182.107.196 with HTTP; Tue, 25 Dec 2012 20:26:05 -0800 (PST)
-In-Reply-To: <9BACABF0C6B14A4D8C33B42A795119BE099ABD88@POCITMSEXMB03.LntUniverse.com>
-References: <9BACABF0C6B14A4D8C33B42A795119BE099ABD88@POCITMSEXMB03.LntUniverse.com>
-Date: Wed, 26 Dec 2012 09:56:05 +0530
-Message-ID: <CA+Z6RkV-6udeBNJsnoqen7=3GSqyZT9DDsykQ1duNoNv9_NqGQ@mail.gmail.com>
-From: Navani Srivastava <navani.srivastava@gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Cc: "navani.srivastava@lnties.com" <navani.srivastava@lnties.com>
-Subject: Remove unwanted package from Qt
+To: yocto@yoctoproject.org
+References: <CACrgodehbngP-+zvoEyn=Gbr+mqK+w7ipsREOGT4kgbN+K7AvA@mail.gmail.com>
+In-Reply-To: <CACrgodehbngP-+zvoEyn=Gbr+mqK+w7ipsREOGT4kgbN+K7AvA@mail.gmail.com>
+Subject: Re: enable netbase network interfaces?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,46 +33,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 26 Dec 2012 04:26:06 -0000
-Content-Type: multipart/alternative; boundary=e89a8f5039aa2d5b1804d1b9d4c7
+X-List-Received-Date: Wed, 26 Dec 2012 12:08:48 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
---e89a8f5039aa2d5b1804d1b9d4c7
-Content-Type: text/plain; charset=ISO-8859-1
+On 2012-12-25 16:31, Lai Eddy wrote:
+> in the "Reference Manual "How do I make sure connected network interfaces are brought up by default?" said 2 files need to be added to enable network interfaces, where can I find
+> template files?
+> -----------------------------------------------------------------------------------------------------------
+> The default interfaces file provided by the netbase recipe does not automatically bring up network interfaces. Therefore, you will need to add a BSP-specific netbase that includes
+> an interfaces file.
+> For example, add the following files to your layer:
+>       meta-MACHINE/recipes-bsp/netbase/netbase/MACHINE/interfaces
+>       meta-MACHINE/recipes-bsp/netbase/netbase_5.0.bbappend
+> ------------------------------------------------------------------------------------------------------------
 
-Hi,
-
-I am compiling Qt-4.8.0 with poky-denzil-7.0 for arm1136 architecture.
-
-
-
-At the time of integrating qt-embedded with rootfs, I am getting qtopia
-directory in usr/share path of rootfs.
-
-I tried removing qtopia directory through qt recipe but ended in
-compilation error. Please suggest any idea to remove qtopia from share
-directory.
+Look in meta-ti (git://git.yoctoproject.org/meta-ti):
+$ find meta-ti/recipes-core/netbase/
+meta-ti/recipes-core/netbase/
+meta-ti/recipes-core/netbase/netbase-5.0
+meta-ti/recipes-core/netbase/netbase-5.0/beagleboard
+meta-ti/recipes-core/netbase/netbase-5.0/beagleboard/interfaces
+meta-ti/recipes-core/netbase/netbase_5.0.bbappend
 
 
 
-Thanks and Regards
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
-Navani Kamal Srivastava
-
---e89a8f5039aa2d5b1804d1b9d4c7
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<p>Hi,</p>
-<p>I am compiling Qt-4.8.0 with poky-denzil-7.0 for arm1136 architecture.</=
-p>
-<p>=A0</p>
-<p>At the time of integrating qt-embedded with rootfs, I am getting qtopia =
-directory in usr/share path of rootfs.</p>
-<p>I tried removing qtopia directory through qt recipe but ended in compila=
-tion error. Please suggest any idea to remove qtopia from share directory.<=
-/p>
-<p>=A0</p>
-<p>Thanks and Regards</p>
-<p>Navani Kamal Srivastava</p>
-
---e89a8f5039aa2d5b1804d1b9d4c7--
