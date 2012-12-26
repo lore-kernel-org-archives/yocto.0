@@ -1,27 +1,31 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ECA9EE014A7
-	for <yocto@yoctoproject.org>; Wed, 26 Dec 2012 04:08:47 -0800 (PST)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id 89D9CF8121E; Wed, 26 Dec 2012 05:08:47 -0700 (MST)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=unavailable version=3.3.2
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 874F5F8121D;
-	Wed, 26 Dec 2012 05:08:45 -0700 (MST)
-Message-ID: <50DAE8D5.7090309@mlbassoc.com>
-Date: Wed, 26 Dec 2012 05:08:53 -0700
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/17.0 Thunderbird/17.0
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 89911E014A7
+	for <yocto@yoctoproject.org>; Wed, 26 Dec 2012 04:36:16 -0800 (PST)
+Received: from wnpgmb0903w-ds01-73-59.dynamic.mtsallstream.net
+	([207.161.73.59]:39091 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1TnqDX-0008FP-RT
+	for yocto@yoctoproject.org; Wed, 26 Dec 2012 07:36:15 -0500
+Date: Wed, 26 Dec 2012 06:36:12 -0600 (CST)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.DEB.2.02.1212260629440.5217@oneiric>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <CACrgodehbngP-+zvoEyn=Gbr+mqK+w7ipsREOGT4kgbN+K7AvA@mail.gmail.com>
-In-Reply-To: <CACrgodehbngP-+zvoEyn=Gbr+mqK+w7ipsREOGT4kgbN+K7AvA@mail.gmail.com>
-Subject: Re: enable netbase network interfaces?
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: clarifying terminology: "tasks" and "images"
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,34 +37,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 26 Dec 2012 12:08:48 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
-
-On 2012-12-25 16:31, Lai Eddy wrote:
-> in the "Reference Manual "How do I make sure connected network interfaces are brought up by default?" said 2 files need to be added to enable network interfaces, where can I find
-> template files?
-> -----------------------------------------------------------------------------------------------------------
-> The default interfaces file provided by the netbase recipe does not automatically bring up network interfaces. Therefore, you will need to add a BSP-specific netbase that includes
-> an interfaces file.
-> For example, add the following files to your layer:
->       meta-MACHINE/recipes-bsp/netbase/netbase/MACHINE/interfaces
->       meta-MACHINE/recipes-bsp/netbase/netbase_5.0.bbappend
-> ------------------------------------------------------------------------------------------------------------
-
-Look in meta-ti (git://git.yoctoproject.org/meta-ti):
-$ find meta-ti/recipes-core/netbase/
-meta-ti/recipes-core/netbase/
-meta-ti/recipes-core/netbase/netbase-5.0
-meta-ti/recipes-core/netbase/netbase-5.0/beagleboard
-meta-ti/recipes-core/netbase/netbase-5.0/beagleboard/interfaces
-meta-ti/recipes-core/netbase/netbase_5.0.bbappend
+X-List-Received-Date: Wed, 26 Dec 2012 12:36:16 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
 
+  a couple observations about ambiguous use of terminology.  in ch 3
+of dev manual, "yocto project terms":
+
+http://www.yoctoproject.org/docs/latest/dev-manual/dev-manual.html#yocto-project-terms
+
+i first assume that the "Tasks" definition should be rebranded as
+"Package Groups", no?  and that "tasks" should perhaps be defined as
+bitbake tasks such as fetch, unpack, etc, etc.
+
+  also, the term "image" is used in a confusing way.  the definition
+in that same list is confusing as the definition reads "the result
+produced when BitBake processes a given collection of recipes and
+related metadata", yet the link to the "Images" chapter in the ref
+manual is to images such as core-image-base, core-image-minimal and so
+on.  this is pretty much guaranteed to confuse readers.
+
+  it would have made much more sense to call the output of the bitbake
+build step "artifacts", which is in fact the term used in a number of
+places in the development manual and which is the perfect word for
+that.
+
+  thoughts?
+
+rday
 
 -- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
