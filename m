@@ -1,26 +1,34 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F18D2E0142C
-	for <yocto@yoctoproject.org>; Wed, 26 Dec 2012 12:06:46 -0800 (PST)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 26 Dec 2012 12:06:45 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,358,1355126400"; d="scan'208";a="236949424"
-Received: from unknown (HELO helios.localnet) ([10.252.123.34])
-	by azsmga001.ch.intel.com with ESMTP; 26 Dec 2012 12:06:25 -0800
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Navani Srivastava <navani.srivastava@gmail.com>
-Date: Wed, 26 Dec 2012 20:06:22 +0000
-Message-ID: <3031778.nf6PVNJiXr@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.9.3 (Linux/3.5.0-21-generic; KDE/4.9.3; i686; ; )
-In-Reply-To: <CA+Z6RkV-6udeBNJsnoqen7=3GSqyZT9DDsykQ1duNoNv9_NqGQ@mail.gmail.com>
-References: <9BACABF0C6B14A4D8C33B42A795119BE099ABD88@POCITMSEXMB03.LntUniverse.com>
-	<CA+Z6RkV-6udeBNJsnoqen7=3GSqyZT9DDsykQ1duNoNv9_NqGQ@mail.gmail.com>
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CF081E00770
+	for <yocto@yoctoproject.org>; Wed, 26 Dec 2012 16:09:38 -0800 (PST)
+Received: from mail-gg0-f198.google.com ([209.85.161.198])
+	by mga09.intel.com with ESMTP/TLS/RC4-SHA; 26 Dec 2012 16:08:42 -0800
+Received: by mail-gg0-f198.google.com with SMTP id f4so13357885ggn.5
+	for <yocto@yoctoproject.org>; Wed, 26 Dec 2012 16:09:37 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=x-received:mime-version:date:message-id:subject:from:to:cc
+	:content-type:x-gm-message-state;
+	bh=PiVfKtMd5UwTpW6kGMqf1QeA8V68TW498p4MZ3aSioE=;
+	b=agXtb210zncJEekzITm/i54Rho7WVFHWeO3WBf0coW4KTX1/Unlt2PoAV5yB0yvYjC
+	8CQvtG0KvVoEpDvoLBeHACnBkfXtB55gbuIcWOTZq0mLh2DvxSojtZ7TzcKkws291Zwr
+	ocv1cLES8XPUOGP7P42286woS0+vsBOW7RYkTivtAEqUH+hU2AuaMI+Vl3omjXKJZeF+
+	1JwlKIp33D+zVzD4Bl4uO3TiwljVE0jAHm1CN3FZPY+V+t5qf33oFy8AT8urbYtClGnU
+	8w4LZ/UOuCUYox+/hmXDhZ0+NlNf8MpvzHm5Gpvj++HS1iqq6bAcsR+UDhYQPeo474ZA
+	Qmlg==
+X-Received: by 10.49.73.105 with SMTP id k9mr15710882qev.6.1356566977672;
+	Wed, 26 Dec 2012 16:09:37 -0800 (PST)
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org,
-	"navani.srivastava@lnties.com" <navani.srivastava@lnties.com>
-Subject: Re: Remove unwanted package from Qt
+Received: by 10.49.73.105 with SMTP id k9mr15710877qev.6.1356566977549; Wed,
+	26 Dec 2012 16:09:37 -0800 (PST)
+Received: by 10.49.12.136 with HTTP; Wed, 26 Dec 2012 16:09:37 -0800 (PST)
+Date: Wed, 26 Dec 2012 16:09:37 -0800
+Message-ID: <CAPhnLPDqLAHHxnXYM+Q=ALnAm2jSmYLJY4C44Mc_YGOvLdLsGg@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: yocto@yoctoproject.org
+X-Gm-Message-State: ALoCoQmCbLTy+QC0ABknX3AYvIdcTKCwRKwiTSPQ1WQCMxNFSvbQOQ5nEKTu1pIlE+tYTgVwy2ormTnD+bHUjWoRWE2TbOTDwfPlxY73mZRzqnMEVmEDN/Fh5zfFTEOV0t10XKClW0NOm1kBWubiks/Na6Vaq2lBag==
+Subject: Weekly Build Availability
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,30 +40,20 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 26 Dec 2012 20:06:47 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Thu, 27 Dec 2012 00:09:38 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On Wednesday 26 December 2012 09:56:05 Navani Srivastava wrote:
-> I am compiling Qt-4.8.0 with poky-denzil-7.0 for arm1136 architecture.
-> 
-> At the time of integrating qt-embedded with rootfs, I am getting qtopia
-> directory in usr/share path of rootfs.
-> 
-> I tried removing qtopia directory through qt recipe but ended in
-> compilation error. Please suggest any idea to remove qtopia from share
-> directory.
+The weekly build is in the final process of generation and will be
+available at: autobuilder.yoctoproject.org/pub/nightly/20121226-1. Due
+to a git checkout error, I will need to move nightly-ppc-lsb and the
+eclipse plugin later tonight after they have finished generation.
 
-"qtopia" is just the name of the directory that gets used for Qt Embedded (see 
-the QT_DIR_NAME setting in meta/classes/qt4e.bbclass) - are there actually any 
-files in that directory you don't want or is it just the directory name that 
-concerns you?
+thanks
 
-Cheers,
-Paul
+-b
 
 -- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
+Elizabeth Flanagan
+Yocto Project
+Build and Release
 
