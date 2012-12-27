@@ -1,32 +1,74 @@
 Return-Path: <song.liu@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 91ABAE01470
-	for <yocto@yoctoproject.org>; Thu, 27 Dec 2012 12:58:11 -0800 (PST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 27 Dec 2012 12:58:11 -0800
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 694C7E01465
+	for <yocto@yoctoproject.org>; Thu, 27 Dec 2012 11:41:30 -0800 (PST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 27 Dec 2012 11:40:33 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="4.84,363,1355126400"; 
-	d="scan'208,217";a="270475701"
+	d="scan'208,217";a="263632006"
 Received: from orsmsx105.amr.corp.intel.com ([10.22.225.132])
-	by fmsmga002.fm.intel.com with ESMTP; 27 Dec 2012 12:58:10 -0800
-Received: from orsmsx152.amr.corp.intel.com (10.22.226.39) by
+	by orsmga002.jf.intel.com with ESMTP; 27 Dec 2012 11:41:29 -0800
+Received: from orsmsx151.amr.corp.intel.com (10.22.226.38) by
 	ORSMSX105.amr.corp.intel.com (10.22.225.132) with Microsoft SMTP Server
-	(TLS) id 14.1.355.2; Thu, 27 Dec 2012 12:58:10 -0800
+	(TLS) id 14.1.355.2; Thu, 27 Dec 2012 11:41:28 -0800
 Received: from orsmsx101.amr.corp.intel.com ([169.254.8.237]) by
-	ORSMSX152.amr.corp.intel.com ([169.254.8.179]) with mapi id
-	14.01.0355.002; Thu, 27 Dec 2012 12:58:10 -0800
+	ORSMSX151.amr.corp.intel.com ([169.254.7.43]) with mapi id
+	14.01.0355.002; Thu, 27 Dec 2012 11:41:27 -0800
 From: "Liu, Song" <song.liu@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Merging of M2 and M3 milestone
-Thread-Index: Ac3kdOAQEOrK4EqUR5S3r1ZINiEGMA==
-Date: Thu, 27 Dec 2012 20:58:09 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A486350A2@ORSMSX101.amr.corp.intel.com>
+To: 'Anders Darander' <anders@chargestorm.se>, "Barros Pena, Belen"
+	<belen.barros.pena@intel.com>, "Bodke, Kishore K"
+	<kishore.k.bodke@intel.com>,
+	'Bruce Ashfield' <bruce.ashfield@windriver.com>, 
+	'Daniel Cauchy' <dcauchy@mvista.com>, "'deVries, Alex'"
+	<Alex.deVries@windriver.com>, "'Dixon, Brad'" <Brad_Dixon@mentor.com>, 
+	"Dmytriyenko, Denys" <denys@ti.com>, "Erway, Tracey M"
+	<tracey.m.erway@intel.com>, "Flanagan, Elizabeth"
+	<elizabeth.flanagan@intel.com>, "Hart, Darren" <darren.hart@intel.com>, 
+	"'Hatle, Mark'" <mark.hatle@windriver.com>, 'Jeremy Puhlman'
+	<jpuhlman@gmail.com>, "Kridner, Jason" <jdk@ti.com>,
+	"'Lieu.Ta@windriver.com'" <'Lieu.Ta@windriver.com'>, "Lock, Joshua"
+	<joshua.lock@intel.com>, "'McCombe, Kevin'" <kevin.mccombe@windriver.com>, 
+	"Moeller, Thorsten" <thorsten.moeller@intel.com>, 'Sanjay Raina'
+	<sraina@mvista.com>, "Osier-mixon,
+	Jeffrey" <jeffrey.osier-mixon@intel.com>, 
+	"'Polk, Jeffrey'" <jeff.polk@windriver.com>, "Purdie, Richard"
+	<richard.purdie@intel.com>, "'Ranslam, Rob'" <Rob.Ranslam@windriver.com>,
+	"Saxena, Rahul" <rahul.saxena@intel.com>, "Stewart, David C"
+	<david.c.stewart@intel.com>, "Wold, Saul" <saul.wold@intel.com>, "Zanussi, 
+	Tom" <tom.zanussi@intel.com>, "Zhang, Jessica" <jessica.zhang@intel.com>,
+	"Rifenbark, Scott M" <scott.m.rifenbark@intel.com>, "'Hudson, Sean'"
+	<Sean_Hudson@mentor.com>, "Serban,
+	Laurentiu" <laurentiu.serban@intel.com>, 
+	"Petrisor, Ileana" <ileana.petrisor@intel.com>, "Damian, Alexandru"
+	<alexandru.damian@intel.com>, "Burton, Ross" <ross.burton@intel.com>,
+	"Mueller, Robert" <robert.mueller@intel.com>, "Arce Moreno, Abraham"
+	<abraham.arce.moreno@intel.com>,
+	'Ravi Vompolu' <Ravi.Vompolu@mathworks.com>, 
+	"'Sadiq, Irfan'" <Irfan_Sadiq@mentor.com>, "Santana Lopez, Mario A"
+	<mario.a.santana.lopez@intel.com>, "Calles Palacios, Osvaldo"
+	<osvaldo.calles.palacios@intel.com>, "Patel, Keyur R"
+	<keyur.r.patel@intel.com>, "'achaudha@mvista.com'" <achaudha@mvista.com>
+Thread-Topic: Yocto Project Technical Team Meeting - cancelled this week due
+	to holidays
+Thread-Index: Ac1PD+V8Ct/ClNHmQjqLT20ujqok5yVWkByw
+Importance: high
+X-Priority: 1
+Date: Thu, 27 Dec 2012 19:41:26 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A48634E83@ORSMSX101.amr.corp.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-Subject: Merging of M2 and M3 milestone
+X-Mailman-Approved-At: Thu, 27 Dec 2012 15:25:34 -0800
+Cc: "Szankin, Maciej" <maciej.szankin@intel.com>, "Moisan,
+	Radu" <radu.moisan@intel.com>, "Palalau,
+	AlexandruX" <alexandrux.palalau@intel.com>, "Mirea,
+	Viorel" <viorel.mirea@intel.com>,
+	SSD-OTC Romania Yocto QA <ssd-otc.romania.yocto.qa@intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Canceled: Yocto Project Technical Team Meeting - cancelled this week due to holidays
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,140 +80,205 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 27 Dec 2012 20:58:12 -0000
+X-List-Received-Date: Thu, 27 Dec 2012 19:41:30 -0000
+X-Groupsio-MsgNum: 11271
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_7E680CB2A76BB8438D08CF13C09FC53A486350A2ORSMSX101amrcor_"
+	boundary="_000_7E680CB2A76BB8438D08CF13C09FC53A48634E83ORSMSX101amrcor_"
 
---_000_7E680CB2A76BB8438D08CF13C09FC53A486350A2ORSMSX101amrcor_
-Content-Type: text/plain; charset="us-ascii"
+--_000_7E680CB2A76BB8438D08CF13C09FC53A48634E83ORSMSX101amrcor_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-Hi team,
+When: Tuesday, January 01, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (U=
+S & Canada).
+Where: Bridge Info Enclosed
 
-Due to limited availability of many people during holidays, we don't feel M=
-2 is feasible or necessary. Yocto Project CCB has approved our request to m=
-erge M2 and M3 together. So there won't be a M2 release and we will be work=
-ing toward a M3 release for M2 and M3 features by Feb. 7th, 2013. The featu=
-re freeze for M3 is on Jan. 20th, 2013. So action items for the team:
+Note: The GMT offset above does not reflect daylight saving time adjustment=
+s.
+
+*~*~*~*~*~*~*~*~*~*
+
+Happy holidays!
 
 
-1.       Please continue working on scheduled M2 and M3 items according to =
-their priority.
-
-2.       Please complete your planning of M3 by the end of next week or as =
-soon as possible after you come back from vacation.
-
-Please let me know if you have any questions or concerns.
-
-Thanks,
-Song
-
---_000_7E680CB2A76BB8438D08CF13C09FC53A486350A2ORSMSX101amrcor_
-Content-Type: text/html; charset="us-ascii"
+--_000_7E680CB2A76BB8438D08CF13C09FC53A48634E83ORSMSX101amrcor_
+Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
+<html>
 <head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
-	{mso-style-priority:34;
-	margin-top:0in;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:.5in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
-/* List Definitions */
-@list l0
-	{mso-list-id:1232544222;
-	mso-list-type:hybrid;
-	mso-list-template-ids:-200626532 67698703 67698713 67698715 67698703 67698=
-713 67698715 67698703 67698713 67698715;}
-@list l0:level1
-	{mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-ol
-	{margin-bottom:0in;}
-ul
-	{margin-bottom:0in;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
+<!-- converted from rtf -->
+<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
+ #800000 2px solid; } --></style>
 </head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi team, <o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Due to limited availability of many people during ho=
-lidays, we don&#8217;t feel M2 is feasible or necessary. Yocto Project CCB =
-has approved our request to merge M2 and M3 together. So there won&#8217;t =
-be a M2 release and we will be working toward
- a M3 release for M2 and M3 features by Feb. 7<sup>th</sup>, 2013. The feat=
-ure freeze for M3 is on Jan. 20<sup>th</sup>, 2013. So action items for the=
- team:<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
-1 lfo1"><![if !supportLists]><span style=3D"mso-list:Ignore">1.<span style=
-=3D"font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;
-</span></span><![endif]>Please continue working on scheduled M2 and M3 item=
-s according to their priority.<o:p></o:p></p>
-<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
-1 lfo1"><![if !supportLists]><span style=3D"mso-list:Ignore">2.<span style=
-=3D"font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;
-</span></span><![endif]>Please complete your planning of M3 by the end of n=
-ext week or as soon as possible after you come back from vacation.<o:p></o:=
-p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Please let me know if you have any questions or conc=
-erns.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal">Song<o:p></o:p></p>
-</div>
+<body>
+<font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">
+<div>When: Tuesday, January 01, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Ti=
+me (US &amp; Canada).</div>
+<div>Where: Bridge Info Enclosed</div>
+<div>&nbsp;</div>
+<div>Note: The GMT offset above does not reflect daylight saving time adjus=
+tments.</div>
+<div>&nbsp;</div>
+<div>*~*~*~*~*~*~*~*~*~*</div>
+<div>&nbsp;</div>
+<div>Happy holidays!</div>
+<div>&nbsp;</div>
+</span></font>
 </body>
 </html>
 
---_000_7E680CB2A76BB8438D08CF13C09FC53A486350A2ORSMSX101amrcor_--
+--_000_7E680CB2A76BB8438D08CF13C09FC53A48634E83ORSMSX101amrcor_
+Content-Type: text/calendar; charset="utf-8"; method=CANCEL
+Content-Transfer-Encoding: base64
+
+QkVHSU46VkNBTEVOREFSDQpNRVRIT0Q6Q0FOQ0VMDQpQUk9ESUQ6TWljcm9zb2Z0IEV4Y2hhbmdl
+IFNlcnZlciAyMDEwDQpWRVJTSU9OOjIuMA0KQkVHSU46VlRJTUVaT05FDQpUWklEOlBhY2lmaWMg
+U3RhbmRhcmQgVGltZQ0KQkVHSU46U1RBTkRBUkQNCkRUU1RBUlQ6MTYwMTAxMDFUMDIwMDAwDQpU
+Wk9GRlNFVEZST006LTA3MDANClRaT0ZGU0VUVE86LTA4MDANClJSVUxFOkZSRVE9WUVBUkxZO0lO
+VEVSVkFMPTE7QllEQVk9MVNVO0JZTU9OVEg9MTENCkVORDpTVEFOREFSRA0KQkVHSU46REFZTElH
+SFQNCkRUU1RBUlQ6MTYwMTAxMDFUMDIwMDAwDQpUWk9GRlNFVEZST006LTA4MDANClRaT0ZGU0VU
+VE86LTA3MDANClJSVUxFOkZSRVE9WUVBUkxZO0lOVEVSVkFMPTE7QllEQVk9MlNVO0JZTU9OVEg9
+Mw0KRU5EOkRBWUxJR0hUDQpFTkQ6VlRJTUVaT05FDQpCRUdJTjpWRVZFTlQNCk9SR0FOSVpFUjtD
+Tj0iTGl1LCBTb25nIjpNQUlMVE86c29uZy5saXVAaW50ZWwuY29tDQpBVFRFTkRFRTtST0xFPVJF
+US1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSdBbmRlcnMg
+RGENCiByYW5kZXInOk1BSUxUTzphbmRlcnNAY2hhcmdlc3Rvcm0uc2UNCkFUVEVOREVFO1JPTEU9
+UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQPVRSVUU7Q049IkJhcnJv
+cyBQZW4NCiBhLCBCZWxlbiI6TUFJTFRPOmJlbGVuLmJhcnJvcy5wZW5hQGludGVsLmNvbQ0KQVRU
+RU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJV
+RTtDTj0iQm9ka2UsIEtpcw0KIGhvcmUgSyI6TUFJTFRPOmtpc2hvcmUuay5ib2RrZUBpbnRlbC5j
+b20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtS
+U1ZQPVRSVUU7Q049J0JydWNlIEFzaA0KIGZpZWxkJzpNQUlMVE86YnJ1Y2UuYXNoZmllbGRAd2lu
+ZHJpdmVyLmNvbQ0KQVRURU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMt
+QUNUSU9OO1JTVlA9VFJVRTtDTj0nRGFuaWVsIENhDQogdWNoeSc6TUFJTFRPOmRjYXVjaHlAbXZp
+c3RhLmNvbQ0KQVRURU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNU
+SU9OO1JTVlA9VFJVRTtDTj0iJ2RlVnJpZXMsIA0KIEFsZXgnIjpNQUlMVE86QWxleC5kZVZyaWVz
+QHdpbmRyaXZlci5jb20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5F
+RURTLUFDVElPTjtSU1ZQPVRSVUU7Q049IidEaXhvbiwgQnINCiBhZCciOk1BSUxUTzpCcmFkX0Rp
+eG9uQG1lbnRvci5jb20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5F
+RURTLUFDVElPTjtSU1ZQPVRSVUU7Q049IkRteXRyaXllbmsNCiBvLCBEZW55cyI6TUFJTFRPOmRl
+bnlzQHRpLmNvbQ0KQVRURU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMt
+QUNUSU9OO1JTVlA9VFJVRTtDTj0iRXJ3YXksIFRyYQ0KIGNleSBNIjpNQUlMVE86dHJhY2V5Lm0u
+ZXJ3YXlAaW50ZWwuY29tDQpBVFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1O
+RUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSJGbGFuYWdhbiwgDQogRWxpemFiZXRoIjpNQUlMVE86
+ZWxpemFiZXRoLmZsYW5hZ2FuQGludGVsLmNvbQ0KQVRURU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBB
+TlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0iSGFydCwgRGFycg0KIGVuIjpN
+QUlMVE86ZGFycmVuLmhhcnRAaW50ZWwuY29tDQpBVFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJUEFO
+VDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSInSGF0bGUsIE1hDQogcmsnIjpN
+QUlMVE86bWFyay5oYXRsZUB3aW5kcml2ZXIuY29tDQpBVFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJ
+UEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSdKZXJlbXkgUHUNCiBobG1h
+bic6TUFJTFRPOmpwdWhsbWFuQGdtYWlsLmNvbQ0KQVRURU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBB
+TlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0iS3JpZG5lciwgSg0KIGFzb24i
+Ok1BSUxUTzpqZGtAdGkuY29tDQpBVFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RB
+VD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSdMaWV1LlRhQHcNCiBpbmRyaXZlci5jb20nOk1B
+SUxUTzonTGlldS5UYUB3aW5kcml2ZXIuY29tJw0KQVRURU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBB
+TlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0iTG9jaywgSm9zaA0KIHVhIjpN
+QUlMVE86am9zaHVhLmxvY2tAaW50ZWwuY29tDQpBVFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJUEFO
+VDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSInTWNDb21iZSwgDQogS2V2aW4n
+IjpNQUlMVE86a2V2aW4ubWNjb21iZUB3aW5kcml2ZXIuY29tDQpBVFRFTkRFRTtST0xFPVJFUS1Q
+QVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSJNb2VsbGVyLCBU
+DQogaG9yc3RlbiI6TUFJTFRPOnRob3JzdGVuLm1vZWxsZXJAaW50ZWwuY29tDQpBVFRFTkRFRTtS
+T0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSdT
+YW5qYXkgUmENCiBpbmEnOk1BSUxUTzpzcmFpbmFAbXZpc3RhLmNvbQ0KQVRURU5ERUU7Uk9MRT1S
+RVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0iT3NpZXIt
+bWl4bw0KIG4sIEplZmZyZXkiOk1BSUxUTzpqZWZmcmV5Lm9zaWVyLW1peG9uQGludGVsLmNvbQ0K
+QVRURU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9
+VFJVRTtDTj0iJ1BvbGssIEplZg0KIGZyZXknIjpNQUlMVE86amVmZi5wb2xrQHdpbmRyaXZlci5j
+b20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtS
+U1ZQPVRSVUU7Q049IlB1cmRpZSwgUmkNCiBjaGFyZCI6TUFJTFRPOnJpY2hhcmQucHVyZGllQGlu
+dGVsLmNvbQ0KQVRURU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNU
+SU9OO1JTVlA9VFJVRTtDTj0iJ1JhbnNsYW0sIA0KIFJvYiciOk1BSUxUTzpSb2IuUmFuc2xhbUB3
+aW5kcml2ZXIuY29tDQpBVFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVE
+Uy1BQ1RJT047UlNWUD1UUlVFO0NOPSJTYXhlbmEsIFJhDQogaHVsIjpNQUlMVE86cmFodWwuc2F4
+ZW5hQGludGVsLmNvbQ0KQVRURU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVF
+RFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0iU3Rld2FydCwgRA0KIGF2aWQgQyI6TUFJTFRPOmRhdmlk
+LmMuc3Rld2FydEBpbnRlbC5jb20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRT
+VEFUPU5FRURTLUFDVElPTjtSU1ZQPVRSVUU7Q049IldvbGQsIFNhdWwiDQogOk1BSUxUTzpzYXVs
+LndvbGRAaW50ZWwuY29tDQpBVFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1O
+RUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSJaYW51c3NpLCBUDQogb20iOk1BSUxUTzp0b20uemFu
+dXNzaUBpbnRlbC5jb20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5F
+RURTLUFDVElPTjtSU1ZQPVRSVUU7Q049IlpoYW5nLCBKZXMNCiBzaWNhIjpNQUlMVE86amVzc2lj
+YS56aGFuZ0BpbnRlbC5jb20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFU
+PU5FRURTLUFDVElPTjtSU1ZQPVRSVUU7Q049IlJpZmVuYmFyaywNCiAgU2NvdHQgTSI6TUFJTFRP
+OnNjb3R0Lm0ucmlmZW5iYXJrQGludGVsLmNvbQ0KQVRURU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBB
+TlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0iJ0h1ZHNvbiwgUw0KIGVhbici
+Ok1BSUxUTzpTZWFuX0h1ZHNvbkBtZW50b3IuY29tDQpBVFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJ
+UEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSJTZXJiYW4sIExhDQogdXJl
+bnRpdSI6TUFJTFRPOmxhdXJlbnRpdS5zZXJiYW5AaW50ZWwuY29tDQpBVFRFTkRFRTtST0xFPVJF
+US1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSJQZXRyaXNv
+ciwgDQogSWxlYW5hIjpNQUlMVE86aWxlYW5hLnBldHJpc29yQGludGVsLmNvbQ0KQVRURU5ERUU7
+Uk9MRT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0i
+RGFtaWFuLCBBbA0KIGV4YW5kcnUiOk1BSUxUTzphbGV4YW5kcnUuZGFtaWFuQGludGVsLmNvbQ0K
+QVRURU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9
+VFJVRTtDTj0iQnVydG9uLCBSbw0KIHNzIjpNQUlMVE86cm9zcy5idXJ0b25AaW50ZWwuY29tDQpB
+VFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1U
+UlVFO0NOPSJNdWVsbGVyLCBSDQogb2JlcnQiOk1BSUxUTzpyb2JlcnQubXVlbGxlckBpbnRlbC5j
+b20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtS
+U1ZQPVRSVUU7Q049IkFyY2UgTW9yZW4NCiBvLCBBYnJhaGFtIjpNQUlMVE86YWJyYWhhbS5hcmNl
+Lm1vcmVub0BpbnRlbC5jb20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFU
+PU5FRURTLUFDVElPTjtSU1ZQPVRSVUU7Q049J1JhdmkgVm9tcA0KIG9sdSc6TUFJTFRPOlJhdmku
+Vm9tcG9sdUBtYXRod29ya3MuY29tDQpBVFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJU
+U1RBVD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSInU2FkaXEsIElyDQogZmFuJyI6TUFJTFRP
+OklyZmFuX1NhZGlxQG1lbnRvci5jb20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BB
+UlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQPVRSVUU7Q049IlNhbnRhbmEgTG8NCiBwZXosIE1hcmlv
+IEEiOk1BSUxUTzptYXJpby5hLnNhbnRhbmEubG9wZXpAaW50ZWwuY29tDQpBVFRFTkRFRTtST0xF
+PVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSJDYWxs
+ZXMgUGFsDQogYWNpb3MsIE9zdmFsZG8iOk1BSUxUTzpvc3ZhbGRvLmNhbGxlcy5wYWxhY2lvc0Bp
+bnRlbC5jb20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFD
+VElPTjtSU1ZQPVRSVUU7Q049IlBhdGVsLCBLZXkNCiB1ciBSIjpNQUlMVE86a2V5dXIuci5wYXRl
+bEBpbnRlbC5jb20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURT
+LUFDVElPTjtSU1ZQPVRSVUU7Q049J2FjaGF1ZGhhQA0KIG12aXN0YS5jb20nOk1BSUxUTzphY2hh
+dWRoYUBtdmlzdGEuY29tDQpBVFRFTkRFRTtST0xFPU9QVC1QQVJUSUNJUEFOVDtQQVJUU1RBVD1O
+RUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSJQb3BhLCBWYWxlDQogbnRpbiI6TUFJTFRPOnZhbGVu
+dGluLnBvcGFAaW50ZWwuY29tDQpBVFRFTkRFRTtST0xFPU9QVC1QQVJUSUNJUEFOVDtQQVJUU1RB
+VD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSJNb3NlcywgRnJlDQogZCI6TUFJTFRPOmZyZWQu
+bW9zZXNAaW50ZWwuY29tDQpBVFRFTkRFRTtST0xFPU9QVC1QQVJUSUNJUEFOVDtQQVJUU1RBVD1O
+RUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPXlvY3RvQHlvY3QNCiBvcHJvamVjdC5vcmc6TUFJTFRP
+OnlvY3RvQHlvY3RvcHJvamVjdC5vcmcNCkFUVEVOREVFO1JPTEU9T1BULVBBUlRJQ0lQQU5UO1BB
+UlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQPVRSVUU7Q049IklvcmdhLCBDcmkNCiBzdGlhbiI6TUFJ
+TFRPOmNyaXN0aWFuLmlvcmdhQGludGVsLmNvbQ0KQVRURU5ERUU7Uk9MRT1PUFQtUEFSVElDSVBB
+TlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj1TU0QtT1RDIFJvDQogbWFuaWEg
+WW9jdG8gUUE6TUFJTFRPOnNzZC1vdGMucm9tYW5pYS55b2N0by5xYUBpbnRlbC5jb20NCkFUVEVO
+REVFO1JPTEU9T1BULVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQPVRSVUU7
+Q049IlBhbGFsYXUsIEENCiBsZXhhbmRydVgiOk1BSUxUTzphbGV4YW5kcnV4LnBhbGFsYXVAaW50
+ZWwuY29tDQpBVFRFTkRFRTtST0xFPU9QVC1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJ
+T047UlNWUD1UUlVFO0NOPSInQnV0bGVyLCBQDQogYXVsJyI6TUFJTFRPOlBhdWwuQnV0bGVyQHdp
+bmRyaXZlci5jb20NCkFUVEVOREVFO1JPTEU9T1BULVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURT
+LUFDVElPTjtSU1ZQPVRSVUU7Q049Ik1pcmVhLCBWaW8NCiByZWwiOk1BSUxUTzp2aW9yZWwubWly
+ZWFAaW50ZWwuY29tDQpBVFRFTkRFRTtST0xFPU9QVC1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVE
+Uy1BQ1RJT047UlNWUD1UUlVFO0NOPSJLYW1ibGUsIE5pDQogdGluIEEiOk1BSUxUTzpuaXRpbi5h
+LmthbWJsZUBpbnRlbC5jb20NCkFUVEVOREVFO1JPTEU9T1BULVBBUlRJQ0lQQU5UO1BBUlRTVEFU
+PU5FRURTLUFDVElPTjtSU1ZQPVRSVUU7Q049IlN6YW5raW4sIE0NCiBhY2llaiI6TUFJTFRPOm1h
+Y2llai5zemFua2luQGludGVsLmNvbQ0KQVRURU5ERUU7Uk9MRT1PUFQtUEFSVElDSVBBTlQ7UEFS
+VFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0iTW9pc2FuLCBSYQ0KIGR1IjpNQUlMVE86
+cmFkdS5tb2lzYW5AaW50ZWwuY29tDQpBVFRFTkRFRTtST0xFPU9QVC1QQVJUSUNJUEFOVDtQQVJU
+U1RBVD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSJHcmlnb3JvcG9sDQogLCBJb2FuYVgiOk1B
+SUxUTzppb2FuYXguZ3JpZ29yb3BvbEBpbnRlbC5jb20NCkFUVEVOREVFO1JPTEU9T1BULVBBUlRJ
+Q0lQQU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQPVRSVUU7Q049IidNaXRjaGVsbCwNCiAg
+SmVmZnJleSAtIDA2NjUgLSBNSVRMTCciOk1BSUxUTzpqbWl0Y2hlbGxAbGwubWl0LmVkdQ0KREVT
+Q1JJUFRJT047TEFOR1VBR0U9ZW4tVVM6V2hlbjogVHVlc2RheVwsIEphbnVhcnkgMDFcLCAyMDEz
+IDg6MDAgQU0tOTowMCBBDQogTSAoVVRDLTA4OjAwKSBQYWNpZmljIFRpbWUgKFVTICYgQ2FuYWRh
+KS5cbldoZXJlOiBCcmlkZ2UgSW5mbyBFbmNsb3NlZFxuXG4NCiBOb3RlOiBUaGUgR01UIG9mZnNl
+dCBhYm92ZSBkb2VzIG5vdCByZWZsZWN0IGRheWxpZ2h0IHNhdmluZyB0aW1lIGFkanVzdG1lbg0K
+IHRzLlxuXG4qfip+Kn4qfip+Kn4qfip+Kn4qXG5cbkhhcHB5IGhvbGlkYXlzIVxuXG4NClNVTU1B
+Ulk7TEFOR1VBR0U9ZW4tVVM6Q2FuY2VsZWQ6IFlvY3RvIFByb2plY3QgVGVjaG5pY2FsIFRlYW0g
+TWVldGluZyAtIGNhbg0KIGNlbGxlZCB0aGlzIHdlZWsgZHVlIHRvIGhvbGlkYXlzDQpEVFNUQVJU
+O1RaSUQ9UGFjaWZpYyBTdGFuZGFyZCBUaW1lOjIwMTMwMTAxVDA4MDAwMA0KRFRFTkQ7VFpJRD1Q
+YWNpZmljIFN0YW5kYXJkIFRpbWU6MjAxMzAxMDFUMDkwMDAwDQpVSUQ6MDQwMDAwMDA4MjAwRTAw
+MDc0QzVCNzEwMUE4MkUwMDgwMDAwMDAwMDcwNjYxRDM1Mjg0RUNEMDEwMDAwMDAwMDAwMDAwMDAN
+CiAwMTAwMDAwMDBFMUY0MUE3MUY5OTczRDQxQUUwOUU2MzY2MzFFQzlFQg0KUkVDVVJSRU5DRS1J
+RDtUWklEPVBhY2lmaWMgU3RhbmRhcmQgVGltZToyMDEzMDEwMVQwODAwMDANCkNMQVNTOlBVQkxJ
+Qw0KUFJJT1JJVFk6MQ0KRFRTVEFNUDoyMDEyMTIyN1QxOTQxMjJaDQpUUkFOU1A6T1BBUVVFDQpT
+VEFUVVM6Q0FOQ0VMTEVEDQpTRVFVRU5DRToyMQ0KTE9DQVRJT047TEFOR1VBR0U9ZW4tVVM6QnJp
+ZGdlIEluZm8gRW5jbG9zZWQNClgtTUlDUk9TT0ZULUNETy1BUFBULVNFUVVFTkNFOjIxDQpYLU1J
+Q1JPU09GVC1DRE8tT1dORVJBUFBUSUQ6MjAwODMxMTc3Mg0KWC1NSUNST1NPRlQtQ0RPLUJVU1lT
+VEFUVVM6RlJFRQ0KWC1NSUNST1NPRlQtQ0RPLUlOVEVOREVEU1RBVFVTOkZSRUUNClgtTUlDUk9T
+T0ZULUNETy1BTExEQVlFVkVOVDpGQUxTRQ0KWC1NSUNST1NPRlQtQ0RPLUlNUE9SVEFOQ0U6Mg0K
+WC1NSUNST1NPRlQtQ0RPLUlOU1RUWVBFOjMNClgtTUlDUk9TT0ZULURJU0FMTE9XLUNPVU5URVI6
+RkFMU0UNCkVORDpWRVZFTlQNCkVORDpWQ0FMRU5EQVINCg==
+
+--_000_7E680CB2A76BB8438D08CF13C09FC53A48634E83ORSMSX101amrcor_--
