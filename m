@@ -1,74 +1,36 @@
-Return-Path: <song.liu@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 694C7E01465
-	for <yocto@yoctoproject.org>; Thu, 27 Dec 2012 11:41:30 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 27 Dec 2012 11:40:33 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,363,1355126400"; 
-	d="scan'208,217";a="263632006"
-Received: from orsmsx105.amr.corp.intel.com ([10.22.225.132])
-	by orsmga002.jf.intel.com with ESMTP; 27 Dec 2012 11:41:29 -0800
-Received: from orsmsx151.amr.corp.intel.com (10.22.226.38) by
-	ORSMSX105.amr.corp.intel.com (10.22.225.132) with Microsoft SMTP Server
-	(TLS) id 14.1.355.2; Thu, 27 Dec 2012 11:41:28 -0800
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.237]) by
-	ORSMSX151.amr.corp.intel.com ([169.254.7.43]) with mapi id
-	14.01.0355.002; Thu, 27 Dec 2012 11:41:27 -0800
-From: "Liu, Song" <song.liu@intel.com>
-To: 'Anders Darander' <anders@chargestorm.se>, "Barros Pena, Belen"
-	<belen.barros.pena@intel.com>, "Bodke, Kishore K"
-	<kishore.k.bodke@intel.com>,
-	'Bruce Ashfield' <bruce.ashfield@windriver.com>, 
-	'Daniel Cauchy' <dcauchy@mvista.com>, "'deVries, Alex'"
-	<Alex.deVries@windriver.com>, "'Dixon, Brad'" <Brad_Dixon@mentor.com>, 
-	"Dmytriyenko, Denys" <denys@ti.com>, "Erway, Tracey M"
-	<tracey.m.erway@intel.com>, "Flanagan, Elizabeth"
-	<elizabeth.flanagan@intel.com>, "Hart, Darren" <darren.hart@intel.com>, 
-	"'Hatle, Mark'" <mark.hatle@windriver.com>, 'Jeremy Puhlman'
-	<jpuhlman@gmail.com>, "Kridner, Jason" <jdk@ti.com>,
-	"'Lieu.Ta@windriver.com'" <'Lieu.Ta@windriver.com'>, "Lock, Joshua"
-	<joshua.lock@intel.com>, "'McCombe, Kevin'" <kevin.mccombe@windriver.com>, 
-	"Moeller, Thorsten" <thorsten.moeller@intel.com>, 'Sanjay Raina'
-	<sraina@mvista.com>, "Osier-mixon,
-	Jeffrey" <jeffrey.osier-mixon@intel.com>, 
-	"'Polk, Jeffrey'" <jeff.polk@windriver.com>, "Purdie, Richard"
-	<richard.purdie@intel.com>, "'Ranslam, Rob'" <Rob.Ranslam@windriver.com>,
-	"Saxena, Rahul" <rahul.saxena@intel.com>, "Stewart, David C"
-	<david.c.stewart@intel.com>, "Wold, Saul" <saul.wold@intel.com>, "Zanussi, 
-	Tom" <tom.zanussi@intel.com>, "Zhang, Jessica" <jessica.zhang@intel.com>,
-	"Rifenbark, Scott M" <scott.m.rifenbark@intel.com>, "'Hudson, Sean'"
-	<Sean_Hudson@mentor.com>, "Serban,
-	Laurentiu" <laurentiu.serban@intel.com>, 
-	"Petrisor, Ileana" <ileana.petrisor@intel.com>, "Damian, Alexandru"
-	<alexandru.damian@intel.com>, "Burton, Ross" <ross.burton@intel.com>,
-	"Mueller, Robert" <robert.mueller@intel.com>, "Arce Moreno, Abraham"
-	<abraham.arce.moreno@intel.com>,
-	'Ravi Vompolu' <Ravi.Vompolu@mathworks.com>, 
-	"'Sadiq, Irfan'" <Irfan_Sadiq@mentor.com>, "Santana Lopez, Mario A"
-	<mario.a.santana.lopez@intel.com>, "Calles Palacios, Osvaldo"
-	<osvaldo.calles.palacios@intel.com>, "Patel, Keyur R"
-	<keyur.r.patel@intel.com>, "'achaudha@mvista.com'" <achaudha@mvista.com>
-Thread-Topic: Yocto Project Technical Team Meeting - cancelled this week due
-	to holidays
-Thread-Index: Ac1PD+V8Ct/ClNHmQjqLT20ujqok5yVWkByw
-Importance: high
-X-Priority: 1
-Date: Thu, 27 Dec 2012 19:41:26 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A48634E83@ORSMSX101.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
+Return-Path: <gopikrishnans@pec.edu>
+Received: from mail-la0-f54.google.com (mail-la0-f54.google.com
+	[209.85.215.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E729DE002AB
+	for <yocto@yoctoproject.org>; Thu, 27 Dec 2012 22:30:35 -0800 (PST)
+Received: by mail-la0-f54.google.com with SMTP id fp12so345688lab.41
+	for <yocto@yoctoproject.org>; Thu, 27 Dec 2012 22:30:34 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type:x-gm-message-state;
+	bh=BMAEPOJcuPD2llSGwVAwMECv2CehTFpVVhzgxtZr6a8=;
+	b=KNwn/CuTH7T+hwsAVVfPYKfshnldQs4GmWqErcr0nmP6AoNBxkJytDbkqKk9mybT/E
+	4zEJG7m6oDsSUsEtR8+4Y8HuaBuUp1a7zzo7GiNq0q3Oz7RP8RcZbKqAulGw6Y7PxEMM
+	4Ht6HSIQw0qBc9BHNNqcka3LTGo1kpawLJWT87FGPlNHO2+MAlcJtKGclAhy4wxvdeKA
+	1m+UY/92SbRTMLRKcz4FiGqHzmnXVL+/fSsxKzb3Yv+Q9KLFJbVLfTmAoFR8uk7dkfCh
+	U/vt+R/1gGaSooZGUciK13kYC+8+dlV7ZTmCiQj4If4IWMxMUzSqKTyfht1BVhxWNvW3
+	obOA==
 MIME-Version: 1.0
-X-Mailman-Approved-At: Thu, 27 Dec 2012 15:25:34 -0800
-Cc: "Szankin, Maciej" <maciej.szankin@intel.com>, "Moisan,
-	Radu" <radu.moisan@intel.com>, "Palalau,
-	AlexandruX" <alexandrux.palalau@intel.com>, "Mirea,
-	Viorel" <viorel.mirea@intel.com>,
-	SSD-OTC Romania Yocto QA <ssd-otc.romania.yocto.qa@intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Canceled: Yocto Project Technical Team Meeting - cancelled this week due to holidays
+Received: by 10.112.16.69 with SMTP id e5mr13145579lbd.43.1356676233816; Thu,
+	27 Dec 2012 22:30:33 -0800 (PST)
+Received: by 10.112.21.193 with HTTP; Thu, 27 Dec 2012 22:30:33 -0800 (PST)
+In-Reply-To: <CAOkC3RZmx1ph=LKk2n9_oFAD=PjfbG6KCscQheAcRUigOuXiKA@mail.gmail.com>
+References: <CAOkC3RaLxgZVNQOB_-o-HKJ=CiS_J8whpAF6gZzk+pYuhoCz=w@mail.gmail.com>
+	<20121221182320.0698db75@eb-e6520>
+	<CAOkC3RZmx1ph=LKk2n9_oFAD=PjfbG6KCscQheAcRUigOuXiKA@mail.gmail.com>
+Date: Fri, 28 Dec 2012 12:00:33 +0530
+Message-ID: <CAOkC3RYPbP=rH-zr9J-vVzWUp9baEzWe=MX7m-+FOjVWhXsg+g@mail.gmail.com>
+From: GOPIKRISHNAN S <gopikrishnans@pec.edu>
+To: =?ISO-8859-1?Q?Eric_B=E9nard?= <eric@eukrea.com>
+X-Gm-Message-State: ALoCoQmXPXuEJnSoO2OY6+GmbkjTcun9kBD05qNXsDt3A2hRJ8LRcV8ZBQk6IIq0iYBQMoaNO5Z8
+Cc: meta-freescale@yoctoproject.org, yocto@yoctoproject.org
+Subject: Re: [meta-freescale] hiawatha-8.6 using Yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -80,205 +42,165 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 27 Dec 2012 19:41:30 -0000
-X-Groupsio-MsgNum: 11271
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_7E680CB2A76BB8438D08CF13C09FC53A48634E83ORSMSX101amrcor_"
+X-List-Received-Date: Fri, 28 Dec 2012 06:30:36 -0000
+Content-Type: multipart/alternative; boundary=f46d0401fb41fde99304d1e3cc3f
 
---_000_7E680CB2A76BB8438D08CF13C09FC53A48634E83ORSMSX101amrcor_
-Content-Type: text/plain; charset="iso-8859-1"
+--f46d0401fb41fde99304d1e3cc3f
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-When: Tuesday, January 01, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (U=
-S & Canada).
-Where: Bridge Info Enclosed
+I am getting some errors while building hiawatha(using recipe from
+openembedded). In investigation I found all return \type and parameter type
+seems to be same & in all /usr/include/*.h files in declared as extern was
+added before to make it visible in global. I wonder no problem was
+not raised while compiling for my host platform (Debian 6 on x86), and
+getting problem only doing it for my freescale board
 
-Note: The GMT offset above does not reflect daylight saving time adjustment=
-s.
+/media/sdk/3.1/QorIQ-SDK-V1.3-20121114-yocto/build_p2041rdb_release/tmp/wor=
+k/ppce500mc-fsl-linux/hiawatha-8.6-r2/hiawatha-8.6/src/alternative.c:39:5:
+error: conflictin
+g types for 'unsetenv'
+/media/sdk/3.1/QorIQ-SDK-V1.3-20121114-yocto/build_p2041rdb_release/tmp/sys=
+roots/p2041rdb/usr/include/stdlib.h:589:12:
+note: previous declaration of 'unsetenv' was her
+e
+/media/sdk/3.1/QorIQ-SDK-V1.3-20121114-yocto/build_p2041rdb_release/tmp/wor=
+k/ppce500mc-fsl-linux/hiawatha-8.6-r2/hiawatha-8.6/src/alternative.c:49:6:
+error: conflictin
+g types for 'clearenv'
+/media/sdk/3.1/QorIQ-SDK-V1.3-20121114-yocto/build_p2041rdb_release/tmp/sys=
+roots/p2041rdb/usr/include/stdlib.h:596:12:
+note: previous declaration of 'clearenv' was her
+e
+/media/sdk/3.1/QorIQ-SDK-V1.3-20121114-yocto/build_p2041rdb_release/tmp/wor=
+k/ppce500mc-fsl-linux/hiawatha-8.6-r2/hiawatha-8.6/src/alternative.c:39:5:
+error: conflictin
+g types for 'unsetenv'
+/media/sdk/3.1/QorIQ-SDK-V1.3-20121114-yocto/build_p2041rdb_release/tmp/sys=
+roots/p2041rdb/usr/include/stdlib.h:589:12:
+note: previous declaration of 'unsetenv' was her
+e
+/media/sdk/3.1/QorIQ-SDK-V1.3-20121114-yocto/build_p2041rdb_release/tmp/wor=
+k/ppce500mc-fsl-linux/hiawatha-8.6-r2/hiawatha-8.6/src/alternative.c:
+In function 'strcasecm
+p':/media/sdk/3.1/QorIQ-SDK-V1.3-20121114-yocto/build_p2041rdb_release/tmp/=
+work/ppce500mc-fsl-linux/hiawatha-8.6-r2/hiawatha-8.6/src/alternative.c:49:=
+6:
+error: conflic
+ting types for 'clearenv'
+/media/sdk/3.1/QorIQ-SDK-V1.3-20121114-yocto/build_p2041rdb_release/tmp/sys=
+roots/p2041rdb/usr/include/stdlib.h:596:12:
+note: previous declaration of 'clearenv' was her
+e
 
-*~*~*~*~*~*~*~*~*~*
 
-Happy holidays!
+On Thu, Dec 27, 2012 at 9:25 PM, GOPIKRISHNAN S <gopikrishnans@pec.edu>wrot=
+e:
 
+> Thanks. Your link was so helpful.
+>
+>
+> On Fri, Dec 21, 2012 at 10:53 PM, Eric B=E9nard <eric@eukrea.com> wrote:
+>
+>> Hi,
+>>
+>> Le Fri, 21 Dec 2012 21:41:38 +0530,
+>> GOPIKRISHNAN S <gopikrishnans@pec.edu> a =E9crit :
+>> > I was trying to install hiawatha on my freescale p2041rdb. But it is
+>> using
+>> > cmake to configure and install.
+>> > How to write recipe for this with cmake. I have writted recipe for
+>> packages
+>> > with autotools, and make file.
+>> > Any Idea???
+>>
+>> by using meta-openembedded/meta-webserver you can get hiawatha running
+>> in a few minutes :
+>>
+>> http://cgit.openembedded.org/meta-openembedded/tree/meta-webserver/recip=
+es-httpd/hiawatha
+>>
+>> Best regards
+>> Eric
+>>
+>
+>
 
---_000_7E680CB2A76BB8438D08CF13C09FC53A48634E83ORSMSX101amrcor_
-Content-Type: text/html; charset="iso-8859-1"
+--f46d0401fb41fde99304d1e3cc3f
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
-<!-- converted from rtf -->
-<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
- #800000 2px solid; } --></style>
-</head>
-<body>
-<font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">
-<div>When: Tuesday, January 01, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Ti=
-me (US &amp; Canada).</div>
-<div>Where: Bridge Info Enclosed</div>
-<div>&nbsp;</div>
-<div>Note: The GMT offset above does not reflect daylight saving time adjus=
-tments.</div>
-<div>&nbsp;</div>
-<div>*~*~*~*~*~*~*~*~*~*</div>
-<div>&nbsp;</div>
-<div>Happy holidays!</div>
-<div>&nbsp;</div>
-</span></font>
-</body>
-</html>
+I am getting some errors while building hiawatha(using=A0recipe=A0from open=
+embedded). In investigation I found all return \type and parameter type see=
+ms to be same &amp; in all /usr/include/*.h files in declared as extern was=
+ added before to make it visible in global. I wonder no problem was not=A0r=
+aised=A0while compiling for my host platform (Debian 6 on x86), and getting=
+ problem only doing it for my freescale board<div>
+<br></div><div><div>/media/sdk/3.1/QorIQ-SDK-V1.3-20121114-yocto/build_p204=
+1rdb_release/tmp/work/ppce500mc-fsl-linux/hiawatha-8.6-r2/hiawatha-8.6/src/=
+alternative.c:39:5: error: conflictin</div><div>g types for &#39;unsetenv&#=
+39;</div>
+<div>/media/sdk/3.1/QorIQ-SDK-V1.3-20121114-yocto/build_p2041rdb_release/tm=
+p/sysroots/p2041rdb/usr/include/stdlib.h:589:12: note: previous declaration=
+ of &#39;unsetenv&#39; was her</div><div>e</div><div>/media/sdk/3.1/QorIQ-S=
+DK-V1.3-20121114-yocto/build_p2041rdb_release/tmp/work/ppce500mc-fsl-linux/=
+hiawatha-8.6-r2/hiawatha-8.6/src/alternative.c:49:6: error: conflictin</div=
+>
+<div>g types for &#39;clearenv&#39;</div><div>/media/sdk/3.1/QorIQ-SDK-V1.3=
+-20121114-yocto/build_p2041rdb_release/tmp/sysroots/p2041rdb/usr/include/st=
+dlib.h:596:12: note: previous declaration of &#39;clearenv&#39; was her</di=
+v>
+<div>e</div><div>/media/sdk/3.1/QorIQ-SDK-V1.3-20121114-yocto/build_p2041rd=
+b_release/tmp/work/ppce500mc-fsl-linux/hiawatha-8.6-r2/hiawatha-8.6/src/alt=
+ernative.c:39:5: error: conflictin</div><div>g types for &#39;unsetenv&#39;=
+</div>
+<div>/media/sdk/3.1/QorIQ-SDK-V1.3-20121114-yocto/build_p2041rdb_release/tm=
+p/sysroots/p2041rdb/usr/include/stdlib.h:589:12: note: previous declaration=
+ of &#39;unsetenv&#39; was her</div><div>e</div><div>/media/sdk/3.1/QorIQ-S=
+DK-V1.3-20121114-yocto/build_p2041rdb_release/tmp/work/ppce500mc-fsl-linux/=
+hiawatha-8.6-r2/hiawatha-8.6/src/alternative.c: In function &#39;strcasecm<=
+/div>
+<div>p&#39;:/media/sdk/3.1/QorIQ-SDK-V1.3-20121114-yocto/build_p2041rdb_rel=
+ease/tmp/work/ppce500mc-fsl-linux/hiawatha-8.6-r2/hiawatha-8.6/src/alternat=
+ive.c:49:6: error: conflic</div><div>ting types for &#39;clearenv&#39;</div=
+>
+<div>/media/sdk/3.1/QorIQ-SDK-V1.3-20121114-yocto/build_p2041rdb_release/tm=
+p/sysroots/p2041rdb/usr/include/stdlib.h:596:12: note: previous declaration=
+ of &#39;clearenv&#39; was her</div><div>e</div><div><br></div><br><div cla=
+ss=3D"gmail_quote">
+On Thu, Dec 27, 2012 at 9:25 PM, GOPIKRISHNAN S <span dir=3D"ltr">&lt;<a hr=
+ef=3D"mailto:gopikrishnans@pec.edu" target=3D"_blank">gopikrishnans@pec.edu=
+</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin=
+:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
+Thanks. Your link was so helpful.<div class=3D"HOEnZb"><div class=3D"h5"><b=
+r><br><div class=3D"gmail_quote">On Fri, Dec 21, 2012 at 10:53 PM, Eric B=
+=E9nard <span dir=3D"ltr">&lt;<a href=3D"mailto:eric@eukrea.com" target=3D"=
+_blank">eric@eukrea.com</a>&gt;</span> wrote:<br>
 
---_000_7E680CB2A76BB8438D08CF13C09FC53A48634E83ORSMSX101amrcor_
-Content-Type: text/calendar; charset="utf-8"; method=CANCEL
-Content-Transfer-Encoding: base64
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">Hi,<br>
+<br>
+Le Fri, 21 Dec 2012 21:41:38 +0530,<br>
+GOPIKRISHNAN S &lt;<a href=3D"mailto:gopikrishnans@pec.edu" target=3D"_blan=
+k">gopikrishnans@pec.edu</a>&gt; a =E9crit :<br>
+<div><div>&gt; I was trying to install hiawatha on my freescale p2041rdb. B=
+ut it is using<br>
+&gt; cmake to configure and install.<br>
+&gt; How to write recipe for this with cmake. I have writted recipe for pac=
+kages<br>
+&gt; with autotools, and make file.<br>
+&gt; Any Idea???<br>
+<br>
+</div></div>by using meta-openembedded/meta-webserver you can get hiawatha =
+running<br>
+in a few minutes :<br>
+<a href=3D"http://cgit.openembedded.org/meta-openembedded/tree/meta-webserv=
+er/recipes-httpd/hiawatha" target=3D"_blank">http://cgit.openembedded.org/m=
+eta-openembedded/tree/meta-webserver/recipes-httpd/hiawatha</a><br>
+<br>
+Best regards<br>
+<span><font color=3D"#888888">Eric<br>
+</font></span></blockquote></div><br>
+</div></div></blockquote></div><br></div>
 
-QkVHSU46VkNBTEVOREFSDQpNRVRIT0Q6Q0FOQ0VMDQpQUk9ESUQ6TWljcm9zb2Z0IEV4Y2hhbmdl
-IFNlcnZlciAyMDEwDQpWRVJTSU9OOjIuMA0KQkVHSU46VlRJTUVaT05FDQpUWklEOlBhY2lmaWMg
-U3RhbmRhcmQgVGltZQ0KQkVHSU46U1RBTkRBUkQNCkRUU1RBUlQ6MTYwMTAxMDFUMDIwMDAwDQpU
-Wk9GRlNFVEZST006LTA3MDANClRaT0ZGU0VUVE86LTA4MDANClJSVUxFOkZSRVE9WUVBUkxZO0lO
-VEVSVkFMPTE7QllEQVk9MVNVO0JZTU9OVEg9MTENCkVORDpTVEFOREFSRA0KQkVHSU46REFZTElH
-SFQNCkRUU1RBUlQ6MTYwMTAxMDFUMDIwMDAwDQpUWk9GRlNFVEZST006LTA4MDANClRaT0ZGU0VU
-VE86LTA3MDANClJSVUxFOkZSRVE9WUVBUkxZO0lOVEVSVkFMPTE7QllEQVk9MlNVO0JZTU9OVEg9
-Mw0KRU5EOkRBWUxJR0hUDQpFTkQ6VlRJTUVaT05FDQpCRUdJTjpWRVZFTlQNCk9SR0FOSVpFUjtD
-Tj0iTGl1LCBTb25nIjpNQUlMVE86c29uZy5saXVAaW50ZWwuY29tDQpBVFRFTkRFRTtST0xFPVJF
-US1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSdBbmRlcnMg
-RGENCiByYW5kZXInOk1BSUxUTzphbmRlcnNAY2hhcmdlc3Rvcm0uc2UNCkFUVEVOREVFO1JPTEU9
-UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQPVRSVUU7Q049IkJhcnJv
-cyBQZW4NCiBhLCBCZWxlbiI6TUFJTFRPOmJlbGVuLmJhcnJvcy5wZW5hQGludGVsLmNvbQ0KQVRU
-RU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJV
-RTtDTj0iQm9ka2UsIEtpcw0KIGhvcmUgSyI6TUFJTFRPOmtpc2hvcmUuay5ib2RrZUBpbnRlbC5j
-b20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtS
-U1ZQPVRSVUU7Q049J0JydWNlIEFzaA0KIGZpZWxkJzpNQUlMVE86YnJ1Y2UuYXNoZmllbGRAd2lu
-ZHJpdmVyLmNvbQ0KQVRURU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMt
-QUNUSU9OO1JTVlA9VFJVRTtDTj0nRGFuaWVsIENhDQogdWNoeSc6TUFJTFRPOmRjYXVjaHlAbXZp
-c3RhLmNvbQ0KQVRURU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNU
-SU9OO1JTVlA9VFJVRTtDTj0iJ2RlVnJpZXMsIA0KIEFsZXgnIjpNQUlMVE86QWxleC5kZVZyaWVz
-QHdpbmRyaXZlci5jb20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5F
-RURTLUFDVElPTjtSU1ZQPVRSVUU7Q049IidEaXhvbiwgQnINCiBhZCciOk1BSUxUTzpCcmFkX0Rp
-eG9uQG1lbnRvci5jb20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5F
-RURTLUFDVElPTjtSU1ZQPVRSVUU7Q049IkRteXRyaXllbmsNCiBvLCBEZW55cyI6TUFJTFRPOmRl
-bnlzQHRpLmNvbQ0KQVRURU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMt
-QUNUSU9OO1JTVlA9VFJVRTtDTj0iRXJ3YXksIFRyYQ0KIGNleSBNIjpNQUlMVE86dHJhY2V5Lm0u
-ZXJ3YXlAaW50ZWwuY29tDQpBVFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1O
-RUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSJGbGFuYWdhbiwgDQogRWxpemFiZXRoIjpNQUlMVE86
-ZWxpemFiZXRoLmZsYW5hZ2FuQGludGVsLmNvbQ0KQVRURU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBB
-TlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0iSGFydCwgRGFycg0KIGVuIjpN
-QUlMVE86ZGFycmVuLmhhcnRAaW50ZWwuY29tDQpBVFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJUEFO
-VDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSInSGF0bGUsIE1hDQogcmsnIjpN
-QUlMVE86bWFyay5oYXRsZUB3aW5kcml2ZXIuY29tDQpBVFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJ
-UEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSdKZXJlbXkgUHUNCiBobG1h
-bic6TUFJTFRPOmpwdWhsbWFuQGdtYWlsLmNvbQ0KQVRURU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBB
-TlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0iS3JpZG5lciwgSg0KIGFzb24i
-Ok1BSUxUTzpqZGtAdGkuY29tDQpBVFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RB
-VD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSdMaWV1LlRhQHcNCiBpbmRyaXZlci5jb20nOk1B
-SUxUTzonTGlldS5UYUB3aW5kcml2ZXIuY29tJw0KQVRURU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBB
-TlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0iTG9jaywgSm9zaA0KIHVhIjpN
-QUlMVE86am9zaHVhLmxvY2tAaW50ZWwuY29tDQpBVFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJUEFO
-VDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSInTWNDb21iZSwgDQogS2V2aW4n
-IjpNQUlMVE86a2V2aW4ubWNjb21iZUB3aW5kcml2ZXIuY29tDQpBVFRFTkRFRTtST0xFPVJFUS1Q
-QVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSJNb2VsbGVyLCBU
-DQogaG9yc3RlbiI6TUFJTFRPOnRob3JzdGVuLm1vZWxsZXJAaW50ZWwuY29tDQpBVFRFTkRFRTtS
-T0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSdT
-YW5qYXkgUmENCiBpbmEnOk1BSUxUTzpzcmFpbmFAbXZpc3RhLmNvbQ0KQVRURU5ERUU7Uk9MRT1S
-RVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0iT3NpZXIt
-bWl4bw0KIG4sIEplZmZyZXkiOk1BSUxUTzpqZWZmcmV5Lm9zaWVyLW1peG9uQGludGVsLmNvbQ0K
-QVRURU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9
-VFJVRTtDTj0iJ1BvbGssIEplZg0KIGZyZXknIjpNQUlMVE86amVmZi5wb2xrQHdpbmRyaXZlci5j
-b20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtS
-U1ZQPVRSVUU7Q049IlB1cmRpZSwgUmkNCiBjaGFyZCI6TUFJTFRPOnJpY2hhcmQucHVyZGllQGlu
-dGVsLmNvbQ0KQVRURU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNU
-SU9OO1JTVlA9VFJVRTtDTj0iJ1JhbnNsYW0sIA0KIFJvYiciOk1BSUxUTzpSb2IuUmFuc2xhbUB3
-aW5kcml2ZXIuY29tDQpBVFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVE
-Uy1BQ1RJT047UlNWUD1UUlVFO0NOPSJTYXhlbmEsIFJhDQogaHVsIjpNQUlMVE86cmFodWwuc2F4
-ZW5hQGludGVsLmNvbQ0KQVRURU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVF
-RFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0iU3Rld2FydCwgRA0KIGF2aWQgQyI6TUFJTFRPOmRhdmlk
-LmMuc3Rld2FydEBpbnRlbC5jb20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRT
-VEFUPU5FRURTLUFDVElPTjtSU1ZQPVRSVUU7Q049IldvbGQsIFNhdWwiDQogOk1BSUxUTzpzYXVs
-LndvbGRAaW50ZWwuY29tDQpBVFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1O
-RUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSJaYW51c3NpLCBUDQogb20iOk1BSUxUTzp0b20uemFu
-dXNzaUBpbnRlbC5jb20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5F
-RURTLUFDVElPTjtSU1ZQPVRSVUU7Q049IlpoYW5nLCBKZXMNCiBzaWNhIjpNQUlMVE86amVzc2lj
-YS56aGFuZ0BpbnRlbC5jb20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFU
-PU5FRURTLUFDVElPTjtSU1ZQPVRSVUU7Q049IlJpZmVuYmFyaywNCiAgU2NvdHQgTSI6TUFJTFRP
-OnNjb3R0Lm0ucmlmZW5iYXJrQGludGVsLmNvbQ0KQVRURU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBB
-TlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0iJ0h1ZHNvbiwgUw0KIGVhbici
-Ok1BSUxUTzpTZWFuX0h1ZHNvbkBtZW50b3IuY29tDQpBVFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJ
-UEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSJTZXJiYW4sIExhDQogdXJl
-bnRpdSI6TUFJTFRPOmxhdXJlbnRpdS5zZXJiYW5AaW50ZWwuY29tDQpBVFRFTkRFRTtST0xFPVJF
-US1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSJQZXRyaXNv
-ciwgDQogSWxlYW5hIjpNQUlMVE86aWxlYW5hLnBldHJpc29yQGludGVsLmNvbQ0KQVRURU5ERUU7
-Uk9MRT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0i
-RGFtaWFuLCBBbA0KIGV4YW5kcnUiOk1BSUxUTzphbGV4YW5kcnUuZGFtaWFuQGludGVsLmNvbQ0K
-QVRURU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9
-VFJVRTtDTj0iQnVydG9uLCBSbw0KIHNzIjpNQUlMVE86cm9zcy5idXJ0b25AaW50ZWwuY29tDQpB
-VFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1U
-UlVFO0NOPSJNdWVsbGVyLCBSDQogb2JlcnQiOk1BSUxUTzpyb2JlcnQubXVlbGxlckBpbnRlbC5j
-b20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtS
-U1ZQPVRSVUU7Q049IkFyY2UgTW9yZW4NCiBvLCBBYnJhaGFtIjpNQUlMVE86YWJyYWhhbS5hcmNl
-Lm1vcmVub0BpbnRlbC5jb20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFU
-PU5FRURTLUFDVElPTjtSU1ZQPVRSVUU7Q049J1JhdmkgVm9tcA0KIG9sdSc6TUFJTFRPOlJhdmku
-Vm9tcG9sdUBtYXRod29ya3MuY29tDQpBVFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJU
-U1RBVD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSInU2FkaXEsIElyDQogZmFuJyI6TUFJTFRP
-OklyZmFuX1NhZGlxQG1lbnRvci5jb20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BB
-UlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQPVRSVUU7Q049IlNhbnRhbmEgTG8NCiBwZXosIE1hcmlv
-IEEiOk1BSUxUTzptYXJpby5hLnNhbnRhbmEubG9wZXpAaW50ZWwuY29tDQpBVFRFTkRFRTtST0xF
-PVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSJDYWxs
-ZXMgUGFsDQogYWNpb3MsIE9zdmFsZG8iOk1BSUxUTzpvc3ZhbGRvLmNhbGxlcy5wYWxhY2lvc0Bp
-bnRlbC5jb20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFD
-VElPTjtSU1ZQPVRSVUU7Q049IlBhdGVsLCBLZXkNCiB1ciBSIjpNQUlMVE86a2V5dXIuci5wYXRl
-bEBpbnRlbC5jb20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURT
-LUFDVElPTjtSU1ZQPVRSVUU7Q049J2FjaGF1ZGhhQA0KIG12aXN0YS5jb20nOk1BSUxUTzphY2hh
-dWRoYUBtdmlzdGEuY29tDQpBVFRFTkRFRTtST0xFPU9QVC1QQVJUSUNJUEFOVDtQQVJUU1RBVD1O
-RUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSJQb3BhLCBWYWxlDQogbnRpbiI6TUFJTFRPOnZhbGVu
-dGluLnBvcGFAaW50ZWwuY29tDQpBVFRFTkRFRTtST0xFPU9QVC1QQVJUSUNJUEFOVDtQQVJUU1RB
-VD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSJNb3NlcywgRnJlDQogZCI6TUFJTFRPOmZyZWQu
-bW9zZXNAaW50ZWwuY29tDQpBVFRFTkRFRTtST0xFPU9QVC1QQVJUSUNJUEFOVDtQQVJUU1RBVD1O
-RUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPXlvY3RvQHlvY3QNCiBvcHJvamVjdC5vcmc6TUFJTFRP
-OnlvY3RvQHlvY3RvcHJvamVjdC5vcmcNCkFUVEVOREVFO1JPTEU9T1BULVBBUlRJQ0lQQU5UO1BB
-UlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQPVRSVUU7Q049IklvcmdhLCBDcmkNCiBzdGlhbiI6TUFJ
-TFRPOmNyaXN0aWFuLmlvcmdhQGludGVsLmNvbQ0KQVRURU5ERUU7Uk9MRT1PUFQtUEFSVElDSVBB
-TlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj1TU0QtT1RDIFJvDQogbWFuaWEg
-WW9jdG8gUUE6TUFJTFRPOnNzZC1vdGMucm9tYW5pYS55b2N0by5xYUBpbnRlbC5jb20NCkFUVEVO
-REVFO1JPTEU9T1BULVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQPVRSVUU7
-Q049IlBhbGFsYXUsIEENCiBsZXhhbmRydVgiOk1BSUxUTzphbGV4YW5kcnV4LnBhbGFsYXVAaW50
-ZWwuY29tDQpBVFRFTkRFRTtST0xFPU9QVC1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJ
-T047UlNWUD1UUlVFO0NOPSInQnV0bGVyLCBQDQogYXVsJyI6TUFJTFRPOlBhdWwuQnV0bGVyQHdp
-bmRyaXZlci5jb20NCkFUVEVOREVFO1JPTEU9T1BULVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURT
-LUFDVElPTjtSU1ZQPVRSVUU7Q049Ik1pcmVhLCBWaW8NCiByZWwiOk1BSUxUTzp2aW9yZWwubWly
-ZWFAaW50ZWwuY29tDQpBVFRFTkRFRTtST0xFPU9QVC1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVE
-Uy1BQ1RJT047UlNWUD1UUlVFO0NOPSJLYW1ibGUsIE5pDQogdGluIEEiOk1BSUxUTzpuaXRpbi5h
-LmthbWJsZUBpbnRlbC5jb20NCkFUVEVOREVFO1JPTEU9T1BULVBBUlRJQ0lQQU5UO1BBUlRTVEFU
-PU5FRURTLUFDVElPTjtSU1ZQPVRSVUU7Q049IlN6YW5raW4sIE0NCiBhY2llaiI6TUFJTFRPOm1h
-Y2llai5zemFua2luQGludGVsLmNvbQ0KQVRURU5ERUU7Uk9MRT1PUFQtUEFSVElDSVBBTlQ7UEFS
-VFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0iTW9pc2FuLCBSYQ0KIGR1IjpNQUlMVE86
-cmFkdS5tb2lzYW5AaW50ZWwuY29tDQpBVFRFTkRFRTtST0xFPU9QVC1QQVJUSUNJUEFOVDtQQVJU
-U1RBVD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSJHcmlnb3JvcG9sDQogLCBJb2FuYVgiOk1B
-SUxUTzppb2FuYXguZ3JpZ29yb3BvbEBpbnRlbC5jb20NCkFUVEVOREVFO1JPTEU9T1BULVBBUlRJ
-Q0lQQU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQPVRSVUU7Q049IidNaXRjaGVsbCwNCiAg
-SmVmZnJleSAtIDA2NjUgLSBNSVRMTCciOk1BSUxUTzpqbWl0Y2hlbGxAbGwubWl0LmVkdQ0KREVT
-Q1JJUFRJT047TEFOR1VBR0U9ZW4tVVM6V2hlbjogVHVlc2RheVwsIEphbnVhcnkgMDFcLCAyMDEz
-IDg6MDAgQU0tOTowMCBBDQogTSAoVVRDLTA4OjAwKSBQYWNpZmljIFRpbWUgKFVTICYgQ2FuYWRh
-KS5cbldoZXJlOiBCcmlkZ2UgSW5mbyBFbmNsb3NlZFxuXG4NCiBOb3RlOiBUaGUgR01UIG9mZnNl
-dCBhYm92ZSBkb2VzIG5vdCByZWZsZWN0IGRheWxpZ2h0IHNhdmluZyB0aW1lIGFkanVzdG1lbg0K
-IHRzLlxuXG4qfip+Kn4qfip+Kn4qfip+Kn4qXG5cbkhhcHB5IGhvbGlkYXlzIVxuXG4NClNVTU1B
-Ulk7TEFOR1VBR0U9ZW4tVVM6Q2FuY2VsZWQ6IFlvY3RvIFByb2plY3QgVGVjaG5pY2FsIFRlYW0g
-TWVldGluZyAtIGNhbg0KIGNlbGxlZCB0aGlzIHdlZWsgZHVlIHRvIGhvbGlkYXlzDQpEVFNUQVJU
-O1RaSUQ9UGFjaWZpYyBTdGFuZGFyZCBUaW1lOjIwMTMwMTAxVDA4MDAwMA0KRFRFTkQ7VFpJRD1Q
-YWNpZmljIFN0YW5kYXJkIFRpbWU6MjAxMzAxMDFUMDkwMDAwDQpVSUQ6MDQwMDAwMDA4MjAwRTAw
-MDc0QzVCNzEwMUE4MkUwMDgwMDAwMDAwMDcwNjYxRDM1Mjg0RUNEMDEwMDAwMDAwMDAwMDAwMDAN
-CiAwMTAwMDAwMDBFMUY0MUE3MUY5OTczRDQxQUUwOUU2MzY2MzFFQzlFQg0KUkVDVVJSRU5DRS1J
-RDtUWklEPVBhY2lmaWMgU3RhbmRhcmQgVGltZToyMDEzMDEwMVQwODAwMDANCkNMQVNTOlBVQkxJ
-Qw0KUFJJT1JJVFk6MQ0KRFRTVEFNUDoyMDEyMTIyN1QxOTQxMjJaDQpUUkFOU1A6T1BBUVVFDQpT
-VEFUVVM6Q0FOQ0VMTEVEDQpTRVFVRU5DRToyMQ0KTE9DQVRJT047TEFOR1VBR0U9ZW4tVVM6QnJp
-ZGdlIEluZm8gRW5jbG9zZWQNClgtTUlDUk9TT0ZULUNETy1BUFBULVNFUVVFTkNFOjIxDQpYLU1J
-Q1JPU09GVC1DRE8tT1dORVJBUFBUSUQ6MjAwODMxMTc3Mg0KWC1NSUNST1NPRlQtQ0RPLUJVU1lT
-VEFUVVM6RlJFRQ0KWC1NSUNST1NPRlQtQ0RPLUlOVEVOREVEU1RBVFVTOkZSRUUNClgtTUlDUk9T
-T0ZULUNETy1BTExEQVlFVkVOVDpGQUxTRQ0KWC1NSUNST1NPRlQtQ0RPLUlNUE9SVEFOQ0U6Mg0K
-WC1NSUNST1NPRlQtQ0RPLUlOU1RUWVBFOjMNClgtTUlDUk9TT0ZULURJU0FMTE9XLUNPVU5URVI6
-RkFMU0UNCkVORDpWRVZFTlQNCkVORDpWQ0FMRU5EQVINCg==
-
---_000_7E680CB2A76BB8438D08CF13C09FC53A48634E83ORSMSX101amrcor_--
+--f46d0401fb41fde99304d1e3cc3f--
