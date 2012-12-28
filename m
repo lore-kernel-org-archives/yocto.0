@@ -1,36 +1,34 @@
-Return-Path: <gopikrishnans@pec.edu>
-Received: from mail-la0-f54.google.com (mail-la0-f54.google.com
-	[209.85.215.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E729DE002AB
-	for <yocto@yoctoproject.org>; Thu, 27 Dec 2012 22:30:35 -0800 (PST)
-Received: by mail-la0-f54.google.com with SMTP id fp12so345688lab.41
-	for <yocto@yoctoproject.org>; Thu, 27 Dec 2012 22:30:34 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
+Return-Path: <eddy.lai.tw@gmail.com>
+Received: from mail-vc0-f169.google.com (mail-vc0-f169.google.com
+	[209.85.220.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4A5C6E002AB
+	for <yocto@yoctoproject.org>; Thu, 27 Dec 2012 22:40:58 -0800 (PST)
+Received: by mail-vc0-f169.google.com with SMTP id gb23so10792518vcb.0
+	for <yocto@yoctoproject.org>; Thu, 27 Dec 2012 22:40:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type:x-gm-message-state;
-	bh=BMAEPOJcuPD2llSGwVAwMECv2CehTFpVVhzgxtZr6a8=;
-	b=KNwn/CuTH7T+hwsAVVfPYKfshnldQs4GmWqErcr0nmP6AoNBxkJytDbkqKk9mybT/E
-	4zEJG7m6oDsSUsEtR8+4Y8HuaBuUp1a7zzo7GiNq0q3Oz7RP8RcZbKqAulGw6Y7PxEMM
-	4Ht6HSIQw0qBc9BHNNqcka3LTGo1kpawLJWT87FGPlNHO2+MAlcJtKGclAhy4wxvdeKA
-	1m+UY/92SbRTMLRKcz4FiGqHzmnXVL+/fSsxKzb3Yv+Q9KLFJbVLfTmAoFR8uk7dkfCh
-	U/vt+R/1gGaSooZGUciK13kYC+8+dlV7ZTmCiQj4If4IWMxMUzSqKTyfht1BVhxWNvW3
-	obOA==
+	:cc:content-type;
+	bh=CWckq1VGyFB95KQCTTgMkRNGl9j3gVDSEdTV2/oBPeg=;
+	b=RDQ8DfnfXRknBzIQKI+AFFoS1hVpin2XaKbdpQJ1MSAPTa07yv5yhcKC7/kq9n7tqk
+	IT4877Qh8ixLuBiYBbcTnVZvGibqPJozHasyXIUlqyXKp4fcHAqJegaPrBIq8lgUpZhP
+	0GrDp/50GiGE7TTmqnUzCKPVD+awerhEkqgBrPM7/EjUFPpfdMZoiJsKCp/eZhO3duWx
+	7n6cKzcaJj0CmtJAtpZYsRaMOaAb61Nd0L/vZrqGhmgSAApELYZ/xv/Ob72ToiP+LIeQ
+	VsVFZOTBbT5iZqzf0e9x7Mqi0YQwc0eaDZXFHZ0fQrC1i9udCJAYQYDxE88m9SJVqY+R
+	Dpeg==
 MIME-Version: 1.0
-Received: by 10.112.16.69 with SMTP id e5mr13145579lbd.43.1356676233816; Thu,
-	27 Dec 2012 22:30:33 -0800 (PST)
-Received: by 10.112.21.193 with HTTP; Thu, 27 Dec 2012 22:30:33 -0800 (PST)
-In-Reply-To: <CAOkC3RZmx1ph=LKk2n9_oFAD=PjfbG6KCscQheAcRUigOuXiKA@mail.gmail.com>
-References: <CAOkC3RaLxgZVNQOB_-o-HKJ=CiS_J8whpAF6gZzk+pYuhoCz=w@mail.gmail.com>
-	<20121221182320.0698db75@eb-e6520>
-	<CAOkC3RZmx1ph=LKk2n9_oFAD=PjfbG6KCscQheAcRUigOuXiKA@mail.gmail.com>
-Date: Fri, 28 Dec 2012 12:00:33 +0530
-Message-ID: <CAOkC3RYPbP=rH-zr9J-vVzWUp9baEzWe=MX7m-+FOjVWhXsg+g@mail.gmail.com>
-From: GOPIKRISHNAN S <gopikrishnans@pec.edu>
-To: =?ISO-8859-1?Q?Eric_B=E9nard?= <eric@eukrea.com>
-X-Gm-Message-State: ALoCoQmXPXuEJnSoO2OY6+GmbkjTcun9kBD05qNXsDt3A2hRJ8LRcV8ZBQk6IIq0iYBQMoaNO5Z8
-Cc: meta-freescale@yoctoproject.org, yocto@yoctoproject.org
-Subject: Re: [meta-freescale] hiawatha-8.6 using Yocto
+Received: by 10.220.151.142 with SMTP id c14mr49578901vcw.16.1356676857311;
+	Thu, 27 Dec 2012 22:40:57 -0800 (PST)
+Received: by 10.58.18.235 with HTTP; Thu, 27 Dec 2012 22:40:57 -0800 (PST)
+Received: by 10.58.18.235 with HTTP; Thu, 27 Dec 2012 22:40:57 -0800 (PST)
+In-Reply-To: <50DAE8D5.7090309@mlbassoc.com>
+References: <CACrgodehbngP-+zvoEyn=Gbr+mqK+w7ipsREOGT4kgbN+K7AvA@mail.gmail.com>
+	<50DAE8D5.7090309@mlbassoc.com>
+Date: Fri, 28 Dec 2012 14:40:57 +0800
+Message-ID: <CACrgodeMSvt9yr_M_VE0GqTHVFeYXTbMhFzALF762QjXaJMbmg@mail.gmail.com>
+From: Lai Eddy <eddy.lai.tw@gmail.com>
+To: Gary Thomas <gary@mlbassoc.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: enable netbase network interfaces?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,165 +40,113 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 28 Dec 2012 06:30:36 -0000
-Content-Type: multipart/alternative; boundary=f46d0401fb41fde99304d1e3cc3f
+X-List-Received-Date: Fri, 28 Dec 2012 06:40:58 -0000
+Content-Type: multipart/alternative; boundary=f46d043be06a27b2dc04d1e3f231
 
---f46d0401fb41fde99304d1e3cc3f
+--f46d043be06a27b2dc04d1e3f231
 Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
 
-I am getting some errors while building hiawatha(using recipe from
-openembedded). In investigation I found all return \type and parameter type
-seems to be same & in all /usr/include/*.h files in declared as extern was
-added before to make it visible in global. I wonder no problem was
-not raised while compiling for my host platform (Debian 6 on x86), and
-getting problem only doing it for my freescale board
+Thanks Gary,
 
-/media/sdk/3.1/QorIQ-SDK-V1.3-20121114-yocto/build_p2041rdb_release/tmp/wor=
-k/ppce500mc-fsl-linux/hiawatha-8.6-r2/hiawatha-8.6/src/alternative.c:39:5:
-error: conflictin
-g types for 'unsetenv'
-/media/sdk/3.1/QorIQ-SDK-V1.3-20121114-yocto/build_p2041rdb_release/tmp/sys=
-roots/p2041rdb/usr/include/stdlib.h:589:12:
-note: previous declaration of 'unsetenv' was her
-e
-/media/sdk/3.1/QorIQ-SDK-V1.3-20121114-yocto/build_p2041rdb_release/tmp/wor=
-k/ppce500mc-fsl-linux/hiawatha-8.6-r2/hiawatha-8.6/src/alternative.c:49:6:
-error: conflictin
-g types for 'clearenv'
-/media/sdk/3.1/QorIQ-SDK-V1.3-20121114-yocto/build_p2041rdb_release/tmp/sys=
-roots/p2041rdb/usr/include/stdlib.h:596:12:
-note: previous declaration of 'clearenv' was her
-e
-/media/sdk/3.1/QorIQ-SDK-V1.3-20121114-yocto/build_p2041rdb_release/tmp/wor=
-k/ppce500mc-fsl-linux/hiawatha-8.6-r2/hiawatha-8.6/src/alternative.c:39:5:
-error: conflictin
-g types for 'unsetenv'
-/media/sdk/3.1/QorIQ-SDK-V1.3-20121114-yocto/build_p2041rdb_release/tmp/sys=
-roots/p2041rdb/usr/include/stdlib.h:589:12:
-note: previous declaration of 'unsetenv' was her
-e
-/media/sdk/3.1/QorIQ-SDK-V1.3-20121114-yocto/build_p2041rdb_release/tmp/wor=
-k/ppce500mc-fsl-linux/hiawatha-8.6-r2/hiawatha-8.6/src/alternative.c:
-In function 'strcasecm
-p':/media/sdk/3.1/QorIQ-SDK-V1.3-20121114-yocto/build_p2041rdb_release/tmp/=
-work/ppce500mc-fsl-linux/hiawatha-8.6-r2/hiawatha-8.6/src/alternative.c:49:=
-6:
-error: conflic
-ting types for 'clearenv'
-/media/sdk/3.1/QorIQ-SDK-V1.3-20121114-yocto/build_p2041rdb_release/tmp/sys=
-roots/p2041rdb/usr/include/stdlib.h:596:12:
-note: previous declaration of 'clearenv' was her
-e
+after download and extract the ti cortex A8 BSP . there's only binary image
+inside, what MACHINE to use to build a beagleboard yocto image?
+ On 2012-12-25 16:31, Lai Eddy wrote:
 
-
-On Thu, Dec 27, 2012 at 9:25 PM, GOPIKRISHNAN S <gopikrishnans@pec.edu>wrot=
-e:
-
-> Thanks. Your link was so helpful.
->
->
-> On Fri, Dec 21, 2012 at 10:53 PM, Eric B=E9nard <eric@eukrea.com> wrote:
->
->> Hi,
->>
->> Le Fri, 21 Dec 2012 21:41:38 +0530,
->> GOPIKRISHNAN S <gopikrishnans@pec.edu> a =E9crit :
->> > I was trying to install hiawatha on my freescale p2041rdb. But it is
->> using
->> > cmake to configure and install.
->> > How to write recipe for this with cmake. I have writted recipe for
->> packages
->> > with autotools, and make file.
->> > Any Idea???
->>
->> by using meta-openembedded/meta-webserver you can get hiawatha running
->> in a few minutes :
->>
->> http://cgit.openembedded.org/meta-openembedded/tree/meta-webserver/recip=
-es-httpd/hiawatha
->>
->> Best regards
->> Eric
->>
->
+> in the "Reference Manual "How do I make sure connected network interfaces
+> are brought up by default?" said 2 files need to be added to enable network
+> interfaces, where can I find
+> template files?
+> ------------------------------**------------------------------**
+> ------------------------------**-----------------
+> The default interfaces file provided by the netbase recipe does not
+> automatically bring up network interfaces. Therefore, you will need to add
+> a BSP-specific netbase that includes
+> an interfaces file.
+> For example, add the following files to your layer:
+>       meta-MACHINE/recipes-bsp/**netbase/netbase/MACHINE/**interfaces
+>       meta-MACHINE/recipes-bsp/**netbase/netbase_5.0.bbappend
+> ------------------------------**------------------------------**
+> ------------------------------**------------------
 >
 
---f46d0401fb41fde99304d1e3cc3f
+Look in meta-ti
+(git://git.yoctoproject.org/**meta-ti<http://git.yoctoproject.org/meta-ti>
+):
+$ find meta-ti/recipes-core/netbase/
+meta-ti/recipes-core/netbase/
+meta-ti/recipes-core/netbase/**netbase-5.0
+meta-ti/recipes-core/netbase/**netbase-5.0/beagleboard
+meta-ti/recipes-core/netbase/**netbase-5.0/beagleboard/**interfaces
+meta-ti/recipes-core/netbase/**netbase_5.0.bbappend
+
+
+
+-- 
+------------------------------**------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------**------------------------------
+______________________________**_________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.**org/listinfo/yocto<https://lists.yoctoproject.org/listinfo/yocto>
+
+--f46d043be06a27b2dc04d1e3f231
 Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-I am getting some errors while building hiawatha(using=A0recipe=A0from open=
-embedded). In investigation I found all return \type and parameter type see=
-ms to be same &amp; in all /usr/include/*.h files in declared as extern was=
- added before to make it visible in global. I wonder no problem was not=A0r=
-aised=A0while compiling for my host platform (Debian 6 on x86), and getting=
- problem only doing it for my freescale board<div>
-<br></div><div><div>/media/sdk/3.1/QorIQ-SDK-V1.3-20121114-yocto/build_p204=
-1rdb_release/tmp/work/ppce500mc-fsl-linux/hiawatha-8.6-r2/hiawatha-8.6/src/=
-alternative.c:39:5: error: conflictin</div><div>g types for &#39;unsetenv&#=
-39;</div>
-<div>/media/sdk/3.1/QorIQ-SDK-V1.3-20121114-yocto/build_p2041rdb_release/tm=
-p/sysroots/p2041rdb/usr/include/stdlib.h:589:12: note: previous declaration=
- of &#39;unsetenv&#39; was her</div><div>e</div><div>/media/sdk/3.1/QorIQ-S=
-DK-V1.3-20121114-yocto/build_p2041rdb_release/tmp/work/ppce500mc-fsl-linux/=
-hiawatha-8.6-r2/hiawatha-8.6/src/alternative.c:49:6: error: conflictin</div=
->
-<div>g types for &#39;clearenv&#39;</div><div>/media/sdk/3.1/QorIQ-SDK-V1.3=
--20121114-yocto/build_p2041rdb_release/tmp/sysroots/p2041rdb/usr/include/st=
-dlib.h:596:12: note: previous declaration of &#39;clearenv&#39; was her</di=
-v>
-<div>e</div><div>/media/sdk/3.1/QorIQ-SDK-V1.3-20121114-yocto/build_p2041rd=
-b_release/tmp/work/ppce500mc-fsl-linux/hiawatha-8.6-r2/hiawatha-8.6/src/alt=
-ernative.c:39:5: error: conflictin</div><div>g types for &#39;unsetenv&#39;=
-</div>
-<div>/media/sdk/3.1/QorIQ-SDK-V1.3-20121114-yocto/build_p2041rdb_release/tm=
-p/sysroots/p2041rdb/usr/include/stdlib.h:589:12: note: previous declaration=
- of &#39;unsetenv&#39; was her</div><div>e</div><div>/media/sdk/3.1/QorIQ-S=
-DK-V1.3-20121114-yocto/build_p2041rdb_release/tmp/work/ppce500mc-fsl-linux/=
-hiawatha-8.6-r2/hiawatha-8.6/src/alternative.c: In function &#39;strcasecm<=
-/div>
-<div>p&#39;:/media/sdk/3.1/QorIQ-SDK-V1.3-20121114-yocto/build_p2041rdb_rel=
-ease/tmp/work/ppce500mc-fsl-linux/hiawatha-8.6-r2/hiawatha-8.6/src/alternat=
-ive.c:49:6: error: conflic</div><div>ting types for &#39;clearenv&#39;</div=
->
-<div>/media/sdk/3.1/QorIQ-SDK-V1.3-20121114-yocto/build_p2041rdb_release/tm=
-p/sysroots/p2041rdb/usr/include/stdlib.h:596:12: note: previous declaration=
- of &#39;clearenv&#39; was her</div><div>e</div><div><br></div><br><div cla=
-ss=3D"gmail_quote">
-On Thu, Dec 27, 2012 at 9:25 PM, GOPIKRISHNAN S <span dir=3D"ltr">&lt;<a hr=
-ef=3D"mailto:gopikrishnans@pec.edu" target=3D"_blank">gopikrishnans@pec.edu=
-</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin=
-:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
-Thanks. Your link was so helpful.<div class=3D"HOEnZb"><div class=3D"h5"><b=
-r><br><div class=3D"gmail_quote">On Fri, Dec 21, 2012 at 10:53 PM, Eric B=
-=E9nard <span dir=3D"ltr">&lt;<a href=3D"mailto:eric@eukrea.com" target=3D"=
-_blank">eric@eukrea.com</a>&gt;</span> wrote:<br>
-
+<p>Thanks Gary,</p>
+<p>after download and extract the=A0ti cortex A8 BSP . there&#39;s only bin=
+ary image inside, what MACHINE to use to build a beagleboard yocto image?<b=
+r>
+</p>
+<div class=3D"gmail_quot&lt;blockquote class=3D" style=3D"margin:0 0 0 .8ex=
+;border-left:1px #ccc solid;padding-left:1ex">On 2012-12-25 16:31, Lai Eddy=
+ wrote:<br>
 <blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">Hi,<br>
+x #ccc solid;padding-left:1ex">
+in the &quot;Reference Manual &quot;How do I make sure connected network in=
+terfaces are brought up by default?&quot; said 2 files need to be added to =
+enable network interfaces, where can I find<br>
+template files?<br>
+------------------------------<u></u>------------------------------<u></u>-=
+-----------------------------<u></u>-----------------<br>
+The default interfaces file provided by the netbase recipe does not automat=
+ically bring up network interfaces. Therefore, you will need to add a BSP-s=
+pecific netbase that includes<br>
+an interfaces file.<br>
+For example, add the following files to your layer:<br>
+=A0 =A0 =A0 meta-MACHINE/recipes-bsp/<u></u>netbase/netbase/MACHINE/<u></u>=
+interfaces<br>
+=A0 =A0 =A0 meta-MACHINE/recipes-bsp/<u></u>netbase/netbase_5.0.bbappend<br=
+>
+------------------------------<u></u>------------------------------<u></u>-=
+-----------------------------<u></u>------------------<br>
+</blockquote>
 <br>
-Le Fri, 21 Dec 2012 21:41:38 +0530,<br>
-GOPIKRISHNAN S &lt;<a href=3D"mailto:gopikrishnans@pec.edu" target=3D"_blan=
-k">gopikrishnans@pec.edu</a>&gt; a =E9crit :<br>
-<div><div>&gt; I was trying to install hiawatha on my freescale p2041rdb. B=
-ut it is using<br>
-&gt; cmake to configure and install.<br>
-&gt; How to write recipe for this with cmake. I have writted recipe for pac=
-kages<br>
-&gt; with autotools, and make file.<br>
-&gt; Any Idea???<br>
+Look in meta-ti (git://<a href=3D"http://git.yoctoproject.org/meta-ti" targ=
+et=3D"_blank">git.yoctoproject.org/<u></u>meta-ti</a>):<br>
+$ find meta-ti/recipes-core/netbase/<br>
+meta-ti/recipes-core/netbase/<br>
+meta-ti/recipes-core/netbase/<u></u>netbase-5.0<br>
+meta-ti/recipes-core/netbase/<u></u>netbase-5.0/beagleboard<br>
+meta-ti/recipes-core/netbase/<u></u>netbase-5.0/beagleboard/<u></u>interfac=
+es<br>
+meta-ti/recipes-core/netbase/<u></u>netbase_5.0.bbappend<br>
 <br>
-</div></div>by using meta-openembedded/meta-webserver you can get hiawatha =
-running<br>
-in a few minutes :<br>
-<a href=3D"http://cgit.openembedded.org/meta-openembedded/tree/meta-webserv=
-er/recipes-httpd/hiawatha" target=3D"_blank">http://cgit.openembedded.org/m=
-eta-openembedded/tree/meta-webserver/recipes-httpd/hiawatha</a><br>
 <br>
-Best regards<br>
-<span><font color=3D"#888888">Eric<br>
-</font></span></blockquote></div><br>
-</div></div></blockquote></div><br></div>
+<br>
+-- <br>
+------------------------------<u></u>------------------------------<br>
+Gary Thomas =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 | =A0Consulting for the<br>
+MLB Associates =A0 =A0 =A0 =A0 =A0 =A0 =A0| =A0 =A0Embedded world<br>
+------------------------------<u></u>------------------------------<br>
+______________________________<u></u>_________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
+ect.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
+>https://lists.yoctoproject.<u></u>org/listinfo/yocto</a><br>
+</div>
 
---f46d0401fb41fde99304d1e3cc3f--
+--f46d043be06a27b2dc04d1e3f231--
