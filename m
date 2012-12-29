@@ -1,32 +1,39 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 19600E0147A
-	for <yocto@yoctoproject.org>; Sat, 29 Dec 2012 04:25:11 -0800 (PST)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id EB2D9F81230; Sat, 29 Dec 2012 05:25:10 -0700 (MST)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=unavailable version=3.3.2
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 6A5FEF81188;
-	Sat, 29 Dec 2012 05:25:09 -0700 (MST)
-Message-ID: <50DEE132.9020108@mlbassoc.com>
-Date: Sat, 29 Dec 2012 05:25:22 -0700
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/17.0 Thunderbird/17.0
+Return-Path: <sean.liming@annabooks.com>
+Received: from mail32c40.carrierzone.com (mail32c40.carrierzone.com
+	[209.235.156.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4C3CAE004F1
+	for <yocto@yoctoproject.org>; Sat, 29 Dec 2012 09:00:47 -0800 (PST)
+X-Authenticated-User: sean.liming.annabooks.com
+Received: from Sean7 (cpe-76-95-171-22.socal.res.rr.com [76.95.171.22])
+	(authenticated bits=0)
+	by mail32c40.carrierzone.com (8.13.6/8.13.1) with ESMTP id
+	qBTH0eHK003292; Sat, 29 Dec 2012 17:00:42 +0000
+From: "Sean Liming" <sean.liming@annabooks.com>
+To: "'Robert P. J. Day'" <rpjday@crashcourse.ca>,
+	"'Yocto discussion list'" <yocto@yoctoproject.org>
+References: <alpine.DEB.2.02.1212290516160.16100@oneiric>
+In-Reply-To: <alpine.DEB.2.02.1212290516160.16100@oneiric>
+Date: Sat, 29 Dec 2012 09:00:33 -0800
+Message-ID: <001601cde5e6$05086f10$0f194d30$@annabooks.com>
 MIME-Version: 1.0
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>
-References: <CACrgodehbngP-+zvoEyn=Gbr+mqK+w7ipsREOGT4kgbN+K7AvA@mail.gmail.com>
-	<50DAE8D5.7090309@mlbassoc.com>
-	<CACrgodeMSvt9yr_M_VE0GqTHVFeYXTbMhFzALF762QjXaJMbmg@mail.gmail.com>
-	<50DDAEFD.90202@mlbassoc.com>
-	<alpine.DEB.2.02.1212290446490.20712@oneiric>
-In-Reply-To: <alpine.DEB.2.02.1212290446490.20712@oneiric>
-Cc: yocto@yoctoproject.org
-Subject: Re: enable netbase network interfaces?
+X-Mailer: Microsoft Outlook 14.0
+Thread-Index: AQF1MkUvHeiUiD2XpUmpk2MOZ9+co5jhZz8g
+X-CSC: 0
+X-CHA: v=2.0 cv=WpGcx6jv c=1 sm=1 a=RqNIojzclRO/fVsPhA7IgQ==:17
+	a=A3j_ZTgn1nYA:10 a=_DgR7O7FQkkA:10 a=kj9zAlcOel0A:10 a=IjdlZ_XXAAAA:8
+	a=z2PQdu-nfxcA:10 a=iGHA9ds3AAAA:8 a=CEtC_dnCAAAA:8 a=JqEG_dyiAAAA:8
+	a=jU4qhlNgAAAA:8 a=4PbL4BICDS0C2x1vFQ4A:9 a=CjuIK1q_8ugA:10
+	a=FCaQVidmf_IA:10 a=nHK3ipOpxeAA:10 a=XDKM753qmDAA:10
+	a=RqNIojzclRO/fVsPhA7IgQ==:117
+X-CTCH-RefID: str=0001.0A020201.50DF21BA.0094, ss=1, re=0.000, recu=0.000,
+	reip=0.000, cl=1, cld=1, fgs=0
+X-CTCH-VOD: Unknown
+X-CTCH-Spam: Unknown
+X-CTCH-Score: 0.000
+X-CTCH-Rules: 
+X-CTCH-Flags: 0
+X-CTCH-ScoreCust: 0.000
+Subject: Re: IMHO, the "meta-yocto" layer is not adequately explained
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,124 +45,73 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 29 Dec 2012 12:25:12 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+X-List-Received-Date: Sat, 29 Dec 2012 17:00:47 -0000
+Content-Type: text/plain;
+	charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Language: en-us
 
-On 2012-12-29 02:58, Robert P. J. Day wrote:
-> On Fri, 28 Dec 2012, Gary Thomas wrote:
->
->> On 2012-12-27 23:40, Lai Eddy wrote:
->>> Thanks Gary,
->>>
->>> after download and extract the ti cortex A8 BSP . there's only binary image
->>> inside, what MACHINE to use to build a beagleboard yocto image?
->>
->> MACHINE="beagleboard"
->>
->> Why does this matter?  You asked about how to set up *your* BSP to have
->> a tailored network interface file.  All you need to do is pattern your
->> setup after the beagleboard one, as quoted.
->>
->> n.b. please don't top-post :-(
->>
->>>
->>> On 2012-12-25 16:31, Lai Eddy wrote:
->>>
->>>      in the "Reference Manual "How do I make sure connected network
->>> interfaces are brought up by default?" said 2 files need to be added to
->>> enable network interfaces, where can I find
->>>      template files?
->>>      ------------------------------__------------------------------__------------------------------__-----------------
->>>      The default interfaces file provided by the netbase recipe does not
->>> automatically bring up network interfaces. Therefore, you will need to add a
->>> BSP-specific netbase that includes
->>>      an interfaces file.
->>>      For example, add the following files to your layer:
->>>             meta-MACHINE/recipes-bsp/__netbase/netbase/MACHINE/__interfaces
->>>             meta-MACHINE/recipes-bsp/__netbase/netbase_5.0.bbappend
->>>      ------------------------------__------------------------------__------------------------------__------------------
->>>
->>>
->>> Look in meta-ti (git://git.yoctoproject.org/__meta-ti
->>> <http://git.yoctoproject.org/meta-ti>):
->>> $ find meta-ti/recipes-core/netbase/
->>> meta-ti/recipes-core/netbase/
->>> meta-ti/recipes-core/netbase/__netbase-5.0
->>> meta-ti/recipes-core/netbase/__netbase-5.0/beagleboard
->>> meta-ti/recipes-core/netbase/__netbase-5.0/beagleboard/__interfaces
->>> meta-ti/recipes-core/netbase/__netbase_5.0.bbappend
->
->    i'm not sure where your "__" prefixes are coming from, but i know
-> i've pointed out before that meta-ti's netbase_5.0.bbappend file seems
-> to be broken.  currently, on dev branch, it contains:
->
-> THISDIR := "${@os.path.dirname(bb.data.getVar('FILE', d, True))}"
-> FILESPATH =. "${@base_set_filespath(["${THISDIR}/${PN}"], d)}:"
->
->    that value for FILESPATH is incorrect -- because the directory name
-> for the "interfaces" file in meta-ti is netbase-5.0 (not simply
-> netbase), it will *not* be picked up; rather, the default "interfaces"
-> file from oe-core will be pulled in.
->
->    using bitbake-env, you can *see* the FILESPATH value that's used
-> when building for beagle using meta-ti:
->
-> $ bitbake-env -r netbase FILESPATH | tr : '\n'
-> Parsing recipes..WARNING: No recipes available for:
->
-> /home/rpjday/oe/dist/layers/meta-ti/recipes-graphics/mesa/mesa-dri_8.0.4.bbappend
-> done.
-> # FILESPATH="${@base_set_filespath(["${THISDIR}/${PN}"], d)}
-> ${@base_set_filespath(["${FILE_DIRNAME}/${BP}",
-> "${FILE_DIRNAME}/${BPN}", "${FILE_DIRNAME}/files"], d)}"
-> FILESPATH="/home/rpjday/oe/dist/layers/meta-ti/recipes-core/netbase/netbase/arm
-> /home/rpjday/oe/dist/layers/meta-ti/recipes-core/netbase/netbase/beagleboard
-> /home/rpjday/oe/dist/layers/meta-ti/recipes-core/netbase/netbase/omap3
-> /home/rpjday/oe/dist/layers/meta-ti/recipes-core/netbase/netbase/armv7a
-> /home/rpjday/oe/dist/layers/meta-ti/recipes-core/netbase/netbase/
-> /home/rpjday/oe/dist/layers/meta-ti/recipes-core/netbase/netbase/
-> /home/rpjday/oe/dist/layers/oe-core/meta/recipes-core/netbase/netbase-5.0/arm
-> /home/rpjday/oe/dist/layers/oe-core/meta/recipes-core/netbase/netbase-5.0/beagleboard
-> /home/rpjday/oe/dist/layers/oe-core/meta/recipes-core/netbase/netbase-5.0/omap3
-> /home/rpjday/oe/dist/layers/oe-core/meta/recipes-core/netbase/netbase-5.0/armv7a
-> /home/rpjday/oe/dist/layers/oe-core/meta/recipes-core/netbase/netbase-5.0/
-> /home/rpjday/oe/dist/layers/oe-core/meta/recipes-core/netbase/netbase-5.0/
-> /home/rpjday/oe/dist/layers/oe-core/meta/recipes-core/netbase/netbase/arm
-> /home/rpjday/oe/dist/layers/oe-core/meta/recipes-core/netbase/netbase/beagleboard
-> /home/rpjday/oe/dist/layers/oe-core/meta/recipes-core/netbase/netbase/omap3
-> /home/rpjday/oe/dist/layers/oe-core/meta/recipes-core/netbase/netbase/armv7a
-> /home/rpjday/oe/dist/layers/oe-core/meta/recipes-core/netbase/netbase/
-> /home/rpjday/oe/dist/layers/oe-core/meta/recipes-core/netbase/netbase/
-> /home/rpjday/oe/dist/layers/oe-core/meta/recipes-core/netbase/files/arm
-> /home/rpjday/oe/dist/layers/oe-core/meta/recipes-core/netbase/files/beagleboard
-> /home/rpjday/oe/dist/layers/oe-core/meta/recipes-core/netbase/files/omap3
-> /home/rpjday/oe/dist/layers/oe-core/meta/recipes-core/netbase/files/armv7a
-> /home/rpjday/oe/dist/layers/oe-core/meta/recipes-core/netbase/files/
-> /home/rpjday/oe/dist/layers/oe-core/meta/recipes-core/netbase/files/"
-> $
->
->    you can see that FILESPATH doesn't include the very directory in
-> meta-ti that contains the overriding beagleboard "interfaces" file.
->
->    or am i horribly misunderstanding something here?
 
-I agree that file is incorrect.  I simply quoted its use as it is the only
-example in a commonly available layer.  I'll send a patch for the meta-ti
-file and hopefully they'll fix it.
+> -----Original Message-----
+> From: yocto-bounces@yoctoproject.org [mailto:yocto-
+> bounces@yoctoproject.org] On Behalf Of Robert P. J. Day
+> Sent: Saturday, December 29, 2012 2:23 AM
+> To: Yocto discussion list
+> Subject: [yocto] IMHO, the "meta-yocto" layer is not adequately explained
+> 
+> 
+>   during travels thru the docs, ran across a "layer" graphic (dang, can't
+> remember where) whose bottom layers were:
+> 
+> 	... snip ...
+> 	BSPs
+> 	Yocto
+> 	OE Core
+> 
+> clearly showing the yocto layer sitting above OE core and directly below
+BSPs.
+> but that picture is somewhat misleading since it's perfectly reasonable to
+> build BSPs with no inclusion of the meta-yocto layer.
+> 
+>   i think there's a danger that new readers will get the impression that
+they
+> *must* include the meta-yocto layer to do any serious work, when that's
+> just not true.  i think it would be worth briefly explaining what the
+meta-
+> yocto (and, consequently, meta-yocto-bsp) layers bring to the table, and
+> under what circumstances one can leave that out.
+> 
+>   i realize this sounds contradictory since this *is* the yocto project,
+but a
+> simple list of what constitutes meta-yocto would be handy so developers
+> realize what they're pulling in, and even if they need it.
+> 
+> rday
+> 
+> --
+> 
+> ==========================================================
+> ==============
+> Robert P. J. Day                                 Ottawa, Ontario, CANADA
+>                         http://crashcourse.ca
+> 
+> Twitter:                                       http://twitter.com/rpjday
+> LinkedIn:                               http://ca.linkedin.com/in/rpjday
+> ==========================================================
+> ==============
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-Here's what I use in my own layers [which are not public, sorry]
-   $ cat meta-some-target/recipes-core/netbase/netbase_5.0.bbappend
-   FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
-   PACKAGE_ARCH = "${MACHINE_ARCH}"
 
-This will pick up the interfaces file from ".../meta-some-target/recipes-core/netbase/netbase-5.0/${MACHINE}/interfaces"
+That is a great idea. It would be very helpful.
 
-As for the "__" scattered in the email - those crept in with Eddy's reply.
+Regards,
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+Sean Liming
+Owner
+Annabooks
+Tel: 714-970-7523 / Cell: 858-774-3176
+
 
