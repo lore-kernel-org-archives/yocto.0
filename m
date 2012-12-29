@@ -1,31 +1,22 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1B10DE004F1
-	for <yocto@yoctoproject.org>; Sat, 29 Dec 2012 09:33:27 -0800 (PST)
-Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
-	([174.115.5.73]:41562 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1Tp0Hm-0005IO-TS
-	for yocto@yoctoproject.org; Sat, 29 Dec 2012 12:33:27 -0500
-Date: Sat, 29 Dec 2012 12:33:22 -0500 (EST)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.DEB.2.02.1212291218520.4787@oneiric>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <ajlennon@dynamicdevices.co.uk>
+Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
+	[89.200.136.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 01835E0045D
+	for <yocto@yoctoproject.org>; Sat, 29 Dec 2012 11:05:21 -0800 (PST)
+Received: from cpc8-live22-2-0-cust106.know.cable.virginmedia.com
+	([82.42.168.107] helo=[127.0.0.1])
+	by www.dynamicdevices.co.uk with esmtpsa
+	(TLS1.0:DHE_RSA_AES_256_CBC_SHA1:32) (Exim 4.69)
+	(envelope-from <ajlennon@dynamicdevices.co.uk>) id 1Tp1f1-0007Pt-5a
+	for yocto@yoctoproject.org; Sat, 29 Dec 2012 19:01:31 +0000
+Message-ID: <50DF3EE1.5050001@dynamicdevices.co.uk>
+Date: Sat, 29 Dec 2012 19:05:05 +0000
+From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
+	rv:17.0) Gecko/17.0 Thunderbird/17.0
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: odd(?) behaviour with qemu arm image and "runqemu-extract-sdk"
+To: yocto@yoctoproject.org
+Subject: How to include RPM database into target image?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,88 +28,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 29 Dec 2012 17:33:28 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Sat, 29 Dec 2012 19:05:22 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
 
-  first time perusing these sections in the yocto docs, kind of
-puzzling result so i'm prepared to believe i did something silly.
-reading:
+Presumably this is very obvious, apologies, but I can't track down the 
+answer.
 
-http://www.yoctoproject.org/docs/latest/dev-manual/dev-manual.html#workflow-using-stand-alone-cross-development-toolchains
+I'm building a distro based on Yocto for a Raspberry Pi but I don't seem 
+to have
+the RPM database / sample feeds installed on the target image.
 
-"Workflow Using Stand-alone Cross-development Toolchains", and i
-already had an OE qemuarm core-image-minimal built that i can run
-just fine with:
+Having hunted around and googled I can't spot the environment variable or
+recipe I presumably need to set/include.
 
-$ runqemu qemuarm
+Can anybody advise?
 
-so i was reading that section and followed the link over to the ADT
-manual:
+Many Thanks,
 
-http://www.yoctoproject.org/docs/1.4/adt-manual/adt-manual.html#extracting-the-root-filesystem
+Alex
 
-where it talked about "Extracting the Root Filesystem", so i figured,
-what the heck, i'll give that a shot, so i ran "runqemu-extract-sdk"
-on the very rootfs tarball that had been created by my build and
-extracted it under ~/rootfs, then without reading any further, tried
-this variation of runqemu for the first time:
-
-$ runqemu qemuarm ~/rootfs
-Assuming /home/rpjday/rootfs is an nfs rootfs
-Continuing with the following parameters:
-KERNEL:
-[/home/rpjday/oe/builds/oe/qemuarm/tmp-eglibc/deploy/images/zImage-qemuarm.bin]
-ROOTFS: [/home/rpjday/rootfs]
-FSTYPE: [nfs]
-Setting up tap interface under sudo
-[sudo] password for rpjday:
-Acquiring lockfile for tap0...
-runqemu-export-rootfs restart /home/rpjday/rootfs
-Error: Unable to find rpc.mountd binary in
-/home/rpjday/oe/builds/oe/qemuarm/tmp-eglibc/sysroots/x86_64-linux/usr/sbin/
-Have you run 'bitbake meta-ide-support'?
-Set 'tap0' nonpersistent
-Releasing lockfile of preconfigured tap device 'tap0'
-$
-
-  so ... how many things did i do wrong?  some random thoughts on this
-before i dig back into the docs and code:
-
-1) why the name "runqemu-extract-sdk"?  it seems that the point of
-that script is to just untar a root filesystem.  i don't see anything
-being "extracted" per se.
-
-
-2) i notice that the "dev" directory created by that script contains
-only regular files instead of actual special device files.  but if i
-use "sudo" to just untar exactly the same tarball, i get real device
-files.  is that the expected behaviour of that script?
-
-3) what should i have done earlier to have the apparently necessary
-usr/sbin/rpc.mountd in my sysroot?  it seems odd that i can run my
-built qemu image just fine if i run it normally, but if i
-runqemu-extract-sdk to unload a rootfs, suddenly my sysroot is missing
-that utility.  is the documentation simply missing some simple but
-critical details about what types of images are required for this?
-
-  and one more thing.  from that first link in the dev manual, there's
-that note that takes you over to the ADT manual.  and it's entirely
-possible that there some critical info *before* the section
-"Extracting the Root Filesystem" but given how one got there (by
-following the link), the reader might miss it.
-
-  anyway, thoughts?
-
-rday
-
--- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
 
