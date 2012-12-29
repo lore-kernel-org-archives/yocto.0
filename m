@@ -1,39 +1,31 @@
-Return-Path: <sean.liming@annabooks.com>
-Received: from mail32c40.carrierzone.com (mail32c40.carrierzone.com
-	[209.235.156.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4C3CAE004F1
-	for <yocto@yoctoproject.org>; Sat, 29 Dec 2012 09:00:47 -0800 (PST)
-X-Authenticated-User: sean.liming.annabooks.com
-Received: from Sean7 (cpe-76-95-171-22.socal.res.rr.com [76.95.171.22])
-	(authenticated bits=0)
-	by mail32c40.carrierzone.com (8.13.6/8.13.1) with ESMTP id
-	qBTH0eHK003292; Sat, 29 Dec 2012 17:00:42 +0000
-From: "Sean Liming" <sean.liming@annabooks.com>
-To: "'Robert P. J. Day'" <rpjday@crashcourse.ca>,
-	"'Yocto discussion list'" <yocto@yoctoproject.org>
-References: <alpine.DEB.2.02.1212290516160.16100@oneiric>
-In-Reply-To: <alpine.DEB.2.02.1212290516160.16100@oneiric>
-Date: Sat, 29 Dec 2012 09:00:33 -0800
-Message-ID: <001601cde5e6$05086f10$0f194d30$@annabooks.com>
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1B10DE004F1
+	for <yocto@yoctoproject.org>; Sat, 29 Dec 2012 09:33:27 -0800 (PST)
+Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
+	([174.115.5.73]:41562 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1Tp0Hm-0005IO-TS
+	for yocto@yoctoproject.org; Sat, 29 Dec 2012 12:33:27 -0500
+Date: Sat, 29 Dec 2012 12:33:22 -0500 (EST)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.DEB.2.02.1212291218520.4787@oneiric>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
-X-Mailer: Microsoft Outlook 14.0
-Thread-Index: AQF1MkUvHeiUiD2XpUmpk2MOZ9+co5jhZz8g
-X-CSC: 0
-X-CHA: v=2.0 cv=WpGcx6jv c=1 sm=1 a=RqNIojzclRO/fVsPhA7IgQ==:17
-	a=A3j_ZTgn1nYA:10 a=_DgR7O7FQkkA:10 a=kj9zAlcOel0A:10 a=IjdlZ_XXAAAA:8
-	a=z2PQdu-nfxcA:10 a=iGHA9ds3AAAA:8 a=CEtC_dnCAAAA:8 a=JqEG_dyiAAAA:8
-	a=jU4qhlNgAAAA:8 a=4PbL4BICDS0C2x1vFQ4A:9 a=CjuIK1q_8ugA:10
-	a=FCaQVidmf_IA:10 a=nHK3ipOpxeAA:10 a=XDKM753qmDAA:10
-	a=RqNIojzclRO/fVsPhA7IgQ==:117
-X-CTCH-RefID: str=0001.0A020201.50DF21BA.0094, ss=1, re=0.000, recu=0.000,
-	reip=0.000, cl=1, cld=1, fgs=0
-X-CTCH-VOD: Unknown
-X-CTCH-Spam: Unknown
-X-CTCH-Score: 0.000
-X-CTCH-Rules: 
-X-CTCH-Flags: 0
-X-CTCH-ScoreCust: 0.000
-Subject: Re: IMHO, the "meta-yocto" layer is not adequately explained
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: odd(?) behaviour with qemu arm image and "runqemu-extract-sdk"
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,73 +37,88 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 29 Dec 2012 17:00:47 -0000
-Content-Type: text/plain;
-	charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Content-Language: en-us
+X-List-Received-Date: Sat, 29 Dec 2012 17:33:28 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
 
-> -----Original Message-----
-> From: yocto-bounces@yoctoproject.org [mailto:yocto-
-> bounces@yoctoproject.org] On Behalf Of Robert P. J. Day
-> Sent: Saturday, December 29, 2012 2:23 AM
-> To: Yocto discussion list
-> Subject: [yocto] IMHO, the "meta-yocto" layer is not adequately explained
-> 
-> 
->   during travels thru the docs, ran across a "layer" graphic (dang, can't
-> remember where) whose bottom layers were:
-> 
-> 	... snip ...
-> 	BSPs
-> 	Yocto
-> 	OE Core
-> 
-> clearly showing the yocto layer sitting above OE core and directly below
-BSPs.
-> but that picture is somewhat misleading since it's perfectly reasonable to
-> build BSPs with no inclusion of the meta-yocto layer.
-> 
->   i think there's a danger that new readers will get the impression that
-they
-> *must* include the meta-yocto layer to do any serious work, when that's
-> just not true.  i think it would be worth briefly explaining what the
-meta-
-> yocto (and, consequently, meta-yocto-bsp) layers bring to the table, and
-> under what circumstances one can leave that out.
-> 
->   i realize this sounds contradictory since this *is* the yocto project,
-but a
-> simple list of what constitutes meta-yocto would be handy so developers
-> realize what they're pulling in, and even if they need it.
-> 
-> rday
-> 
-> --
-> 
-> ==========================================================
-> ==============
-> Robert P. J. Day                                 Ottawa, Ontario, CANADA
->                         http://crashcourse.ca
-> 
-> Twitter:                                       http://twitter.com/rpjday
-> LinkedIn:                               http://ca.linkedin.com/in/rpjday
-> ==========================================================
-> ==============
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+  first time perusing these sections in the yocto docs, kind of
+puzzling result so i'm prepared to believe i did something silly.
+reading:
+
+http://www.yoctoproject.org/docs/latest/dev-manual/dev-manual.html#workflow-using-stand-alone-cross-development-toolchains
+
+"Workflow Using Stand-alone Cross-development Toolchains", and i
+already had an OE qemuarm core-image-minimal built that i can run
+just fine with:
+
+$ runqemu qemuarm
+
+so i was reading that section and followed the link over to the ADT
+manual:
+
+http://www.yoctoproject.org/docs/1.4/adt-manual/adt-manual.html#extracting-the-root-filesystem
+
+where it talked about "Extracting the Root Filesystem", so i figured,
+what the heck, i'll give that a shot, so i ran "runqemu-extract-sdk"
+on the very rootfs tarball that had been created by my build and
+extracted it under ~/rootfs, then without reading any further, tried
+this variation of runqemu for the first time:
+
+$ runqemu qemuarm ~/rootfs
+Assuming /home/rpjday/rootfs is an nfs rootfs
+Continuing with the following parameters:
+KERNEL:
+[/home/rpjday/oe/builds/oe/qemuarm/tmp-eglibc/deploy/images/zImage-qemuarm.bin]
+ROOTFS: [/home/rpjday/rootfs]
+FSTYPE: [nfs]
+Setting up tap interface under sudo
+[sudo] password for rpjday:
+Acquiring lockfile for tap0...
+runqemu-export-rootfs restart /home/rpjday/rootfs
+Error: Unable to find rpc.mountd binary in
+/home/rpjday/oe/builds/oe/qemuarm/tmp-eglibc/sysroots/x86_64-linux/usr/sbin/
+Have you run 'bitbake meta-ide-support'?
+Set 'tap0' nonpersistent
+Releasing lockfile of preconfigured tap device 'tap0'
+$
+
+  so ... how many things did i do wrong?  some random thoughts on this
+before i dig back into the docs and code:
+
+1) why the name "runqemu-extract-sdk"?  it seems that the point of
+that script is to just untar a root filesystem.  i don't see anything
+being "extracted" per se.
 
 
-That is a great idea. It would be very helpful.
+2) i notice that the "dev" directory created by that script contains
+only regular files instead of actual special device files.  but if i
+use "sudo" to just untar exactly the same tarball, i get real device
+files.  is that the expected behaviour of that script?
 
-Regards,
+3) what should i have done earlier to have the apparently necessary
+usr/sbin/rpc.mountd in my sysroot?  it seems odd that i can run my
+built qemu image just fine if i run it normally, but if i
+runqemu-extract-sdk to unload a rootfs, suddenly my sysroot is missing
+that utility.  is the documentation simply missing some simple but
+critical details about what types of images are required for this?
 
-Sean Liming
-Owner
-Annabooks
-Tel: 714-970-7523 / Cell: 858-774-3176
+  and one more thing.  from that first link in the dev manual, there's
+that note that takes you over to the ADT manual.  and it's entirely
+possible that there some critical info *before* the section
+"Extracting the Root Filesystem" but given how one got there (by
+following the link), the reader might miss it.
 
+  anyway, thoughts?
+
+rday
+
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
