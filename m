@@ -1,34 +1,31 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B43F3E004D1
-	for <yocto@yoctoproject.org>; Sun, 30 Dec 2012 08:10:56 -0800 (PST)
-Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
-	([174.115.5.73]:50743 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1TpLTT-0004JA-Fp; Sun, 30 Dec 2012 11:10:55 -0500
-Date: Sun, 30 Dec 2012 11:10:43 -0500 (EST)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Bill Traynor <wmat@alphatroop.com>
-In-Reply-To: <CAGfZjq5hbEs3LVkN0JYbUzGXrJGyTTtoqvSLx7a24nWj5mft9w@mail.gmail.com>
-Message-ID: <alpine.DEB.2.02.1212301107480.15769@oneiric>
-References: <alpine.DEB.2.02.1212300427410.11574@oneiric>
-	<CAGfZjq5hbEs3LVkN0JYbUzGXrJGyTTtoqvSLx7a24nWj5mft9w@mail.gmail.com>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <gopikrishnans@pec.edu>
+Received: from mail-la0-f51.google.com (mail-la0-f51.google.com
+	[209.85.215.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BF9E4E004D1
+	for <yocto@yoctoproject.org>; Sun, 30 Dec 2012 09:50:54 -0800 (PST)
+Received: by mail-la0-f51.google.com with SMTP id fj20so2993503lab.24
+	for <yocto@yoctoproject.org>; Sun, 30 Dec 2012 09:50:53 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type
+	:x-gm-message-state;
+	bh=6DHpyccIyvZQBU3Y3EMDOnJTW50u6E95S2z9vaKNTMs=;
+	b=Lp8MH9p8UwvpeW7XCiLyrXaH7pq7fvDkHbMHVf1zFLUlvsVxfyU7hJMC+MU2wX5L9s
+	1xqsFUUAEB2LL+5ggYxOfzI9xV9O0gLMoxHvogYOaaSVKXnf+wX7+w/plBPMV3371kW9
+	Uzgox92zt1+9VggnHsZe+iJH6tt4vCQWSMOgFQgeTRoWuYgiIg9v51H6qufB+VVLkjcv
+	IHmwOKISgb8DrSl/lubeAzPDZp7k0bjXfsrL89EKPESZok5iPQkQ6geDj5orRJdFXi8z
+	13r1G8l6zw4v+02NB2+e8/BmzDZYlN5wXx93+9vfMVqc5duy415RPGN5CZU1TXy7250G
+	xxHg==
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: dev manual is confusing as to whether a layer *must* be named "meta-..."
+Received: by 10.112.49.202 with SMTP id w10mr15105315lbn.2.1356889852937; Sun,
+	30 Dec 2012 09:50:52 -0800 (PST)
+Received: by 10.112.21.193 with HTTP; Sun, 30 Dec 2012 09:50:52 -0800 (PST)
+Date: Sun, 30 Dec 2012 23:20:52 +0530
+Message-ID: <CAOkC3RY1VWVH0Qa462ODewUDOUiKdnC2GHv7gkk5-pXNekSPoQ@mail.gmail.com>
+From: GOPIKRISHNAN S <gopikrishnans@pec.edu>
+To: yocto@yoctoproject.org
+X-Gm-Message-State: ALoCoQn3xIFogDMsZ7kYw5NMFizJTChmy/slfb1F2BJfjK5yhc6+oSfytdTXeplCZQAR4LxDvayj
+Subject: Reg: Career Building
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,58 +37,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 30 Dec 2012 16:10:57 -0000
-Content-Type: MULTIPART/MIXED; BOUNDARY="8323329-777934115-1356883852=:15769"
+X-List-Received-Date: Sun, 30 Dec 2012 17:50:55 -0000
+Content-Type: multipart/alternative; boundary=bcaec554daa2af06d304d21589be
 
---8323329-777934115-1356883852=:15769
-Content-Type: TEXT/PLAIN; charset=ISO-8859-1
-Content-Transfer-Encoding: 8BIT
+--bcaec554daa2af06d304d21589be
+Content-Type: text/plain; charset=ISO-8859-1
 
-On Sun, 30 Dec 2012, Bill Traynor wrote:
+Hi Folks,
 
->
->
->
-> On Sun, Dec 30, 2012 at 4:29 AM, Robert P. J. Day <rpjday@crashcourse.ca> wrote:
->
->         section 5.1.1 of dev manual:
->
->       "Folders that are layers begin with the string meta."
->
->         section 5.1.2, immediately afterwards:
->
->       "Traditionally, prepend the name of the folder with the string meta."
->
->         those two statements are somewhat contradictory.
->
->
-> The first statement is in a paragraph describing the identification
-> of a layer within the Source directory, i.e. its name begins with
-> "meta".
->
-> The second statement is describing the naming of the folder that
-> will contain a new layer, i.e. pre-pend the name with "meta".
->
-> I'm not sure I see the contradiction here.  Can you explain?
+    Is it possible to build my career with Yocto Project for Building Linux
+Distros and other software. Especially in India? I am eager to know the
+career opportunities for Yocto Project professional. Now I am a basic Linux
+user with little Linux networking knowledge and some scripting knowledge.
 
-  the (as i see it) inconsistency is that it's not clear whether a
-layer name *must* begin with the prefix "meta-".  if one says that
-something happens "traditionally", that suggests it's not mandatory,
-simply a matter of custom.
+I am aiming for new career path by year 2013....
 
-  i'd prefer that that section was explicit.  you can never go wrong
-being explicit. :-)
+Thanks in Advance,
 
-rday
+Happy New year 2013....................
 
--- 
+Reg,
+Gopi Krishnan S
 
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
+--bcaec554daa2af06d304d21589be
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+Hi Folks,=A0<div><br></div><div>=A0 =A0 Is it possible to build my=A0career=
+=A0with Yocto Project for Building Linux Distros and other=A0software. Espe=
+cially in India? I am eager to know the career=A0opportunities for Yocto Pr=
+oject professional. Now I am a basic Linux user with little Linux networkin=
+g knowledge and some scripting knowledge.</div>
+<div><br></div><div>I am aiming for new career path by year 2013....</div><=
+div><br></div><div>Thanks in Advance,</div><div><br></div><div>Happy New ye=
+ar 2013....................</div><div><br></div><div>Reg,</div><div>Gopi Kr=
+ishnan S</div>
 
---8323329-777934115-1356883852=:15769--
+--bcaec554daa2af06d304d21589be--
