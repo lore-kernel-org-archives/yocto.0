@@ -1,17 +1,31 @@
-Return-Path: <noor_ahsan@mentor.com>
-Received: from alm.mentorg.com (nat-lmt.mentorg.com [139.181.28.34])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 31AB6E011CC
-	for <yocto@yoctoproject.org>; Mon, 31 Dec 2012 03:56:17 -0800 (PST)
-Received: from pkl-ahsann-ubuntu.mgc.mentorg.com ([137.202.157.70])
-	by alm.mentorg.com (8.12.10/8.12.10) with ESMTP id qBVBuCaF024083;
-	Mon, 31 Dec 2012 05:56:13 -0600
-From: "Noor, Ahsan" <noor_ahsan@mentor.com>
-To: yocto@yoctoproject.org
-Date: Mon, 31 Dec 2012 16:56:05 +0500
-Message-Id: <1356954965-17029-1-git-send-email-noor_ahsan@mentor.com>
-X-Mailer: git-send-email 1.7.9.5
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 70209E011CC
+	for <yocto@yoctoproject.org>; Mon, 31 Dec 2012 04:00:16 -0800 (PST)
+Received: from cpebcc81008dd2c-cmbcc81008dd29.cpe.net.cable.rogers.com
+	([99.253.156.71]:44407 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1Tpe2R-0008E7-C7
+	for yocto@yoctoproject.org; Mon, 31 Dec 2012 07:00:15 -0500
+Date: Mon, 31 Dec 2012 07:00:08 -0500 (EST)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.DEB.2.02.1212310649410.4755@oneiric>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
-Subject: [meta-intel][PATCH] linux-yocto: Add a patch to resolve undefined RUSAGE_SELF for perf.
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: a wiki page on packagegroups -- now correct, I think :-)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -23,75 +37,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 31 Dec 2012 11:56:17 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 31 Dec 2012 12:00:16 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-From: Noor Ahsan <noor_ahsan@mentor.com>
 
-* Perf gived compilation error
-  CC builtin-sched.o
-    builtin-sched.c: In function ‘get_cpu_usage_nsec_parent’:
-  builtin-sched.c:399:16: error: storage size of ‘ru’ isn’t known
-* Added a patch from linux kernel git repo commit id
-  7b78f13603c6fcb64e020a0bbe31a651ea2b657b which include resource.h
-  file in builtin-sched.c.
+  total redesign of a page i lashed together in about 45 minutes to
+explain packagegroups since i feel it got short shrift in the yocto
+dev manual:
 
-Signed-off-by: Noor Ahsan <noor_ahsan@mentor.com>
----
- .../linux/linux-yocto/linux-yocto_3.0.bbappend     |   23 ++++++++++++++++++++
- .../recipes-kernel/linux/linux-yocto_3.0.bbappend  |    8 +++++--
- 2 files changed, 29 insertions(+), 2 deletions(-)
+http://www.crashcourse.ca/wiki/index.php/OE_package_groups
 
-diff --git a/meta-cedartrail/recipes-kernel/linux/linux-yocto/linux-yocto_3.0.bbappend b/meta-cedartrail/recipes-kernel/linux/linux-yocto/linux-yocto_3.0.bbappend
-new file mode 100644
-index 0000000..440cd77
---- /dev/null
-+++ b/meta-cedartrail/recipes-kernel/linux/linux-yocto/linux-yocto_3.0.bbappend
-@@ -0,0 +1,23 @@
-+FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-+
-+SRC_URI_cedartrail = "git://git.yoctoproject.org/linux-yocto-3.0;protocol=git;bareclone=1;branch=${KBRANCH},meta,yocto/pvr;name=machine,meta,pvr"
-+
-+SRC_URI_cedartrail-nopvr = "git://git.yoctoproject.org/linux-yocto-3.0;protocol=git;nocheckout=1;branch=${KBRANCH},meta;name=machine,meta"
-+
-+COMPATIBLE_MACHINE_cedartrail = "cedartrail"
-+KMACHINE_cedartrail  = "cedartrail"
-+KBRANCH_cedartrail  = "yocto/standard/cedartrail"
-+KERNEL_FEATURES_append_cedartrail += "bsp/cedartrail/cedartrail-pvr-merge.scc"
-+KERNEL_FEATURES_append_cedartrail += "cfg/efi-ext.scc"
-+
-+COMPATIBLE_MACHINE_cedartrail-nopvr = "cedartrail"
-+KMACHINE_cedartrail-nopvr  = "cedartrail"
-+KBRANCH_cedartrail-nopvr  = "yocto/standard/cedartrail"
-+KERNEL_FEATURES_append_cedartrail-nopvr += " cfg/smp.scc"
-+
-+SRCREV_machine_pn-linux-yocto_cedartrail ?= "${AUTOREV}"
-+SRCREV_meta_pn-linux-yocto_cedartrail ?= "${AUTOREV}"
-+SRCREV_pvr_pn-linux-yocto_cedartrail ?= "${AUTOREV}"
-+
-+SRCREV_machine_pn-linux-yocto_cedartrail-nopvr ?= "${AUTOREV}"
-+SRCREV_meta_pn-linux-yocto_cedartrail-nopvr ?= "${AUTOREV}"
-diff --git a/meta-cedartrail/recipes-kernel/linux/linux-yocto_3.0.bbappend b/meta-cedartrail/recipes-kernel/linux/linux-yocto_3.0.bbappend
-index 440cd77..6797eeb 100644
---- a/meta-cedartrail/recipes-kernel/linux/linux-yocto_3.0.bbappend
-+++ b/meta-cedartrail/recipes-kernel/linux/linux-yocto_3.0.bbappend
-@@ -1,8 +1,12 @@
- FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
- 
--SRC_URI_cedartrail = "git://git.yoctoproject.org/linux-yocto-3.0;protocol=git;bareclone=1;branch=${KBRANCH},meta,yocto/pvr;name=machine,meta,pvr"
-+SRC_URI_cedartrail = "git://git.yoctoproject.org/linux-yocto-3.0;protocol=git;bareclone=1;branch=${KBRANCH},meta,yocto/pvr;name=machine,meta,pvr \
-+file://linux-yocto_3.0.bbappend \
-+"
- 
--SRC_URI_cedartrail-nopvr = "git://git.yoctoproject.org/linux-yocto-3.0;protocol=git;nocheckout=1;branch=${KBRANCH},meta;name=machine,meta"
-+SRC_URI_cedartrail-nopvr = "git://git.yoctoproject.org/linux-yocto-3.0;protocol=git;nocheckout=1;branch=${KBRANCH},meta;name=machine,meta \
-+file://linux-yocto_3.0.bbappend \
-+"
- 
- COMPATIBLE_MACHINE_cedartrail = "cedartrail"
- KMACHINE_cedartrail  = "cedartrail"
+  note: my wiki pages are typically terse and consist mostly of
+ripping code out of OE or elsewhere since i find this handy for
+explaining concepts to students -- i actually bring up a wiki page and
+start scrolling through it, explaining the code bit by bit, but i
+don't add a lot of editorializing since *that's* what takes forever to
+write.  but it's real easy to just copy and paste and build an
+informative wiki page in minutes that i can spend an hour explaining.
+:-)
+
+  and one question while i'm here -- i notice the definition of a
+number of package groups in core-image.bbclass:
+
+... snip ...
+PACKAGE_GROUP_x11 = "packagegroup-core-x11"
+PACKAGE_GROUP_x11-base = "packagegroup-core-x11-base"
+PACKAGE_GROUP_x11-sato = "packagegroup-core-x11-sato"
+PACKAGE_GROUP_tools-debug = "packagegroup-core-tools-debug"
+... snip ...
+
+is that simply an equivalent way to include a package group into your
+(core-image-based) build?  to use IMAGE_FEATURES?  as opposed to
+simply referring to the packagegroup recipe file directly?  thanks.
+
+rday
+
 -- 
-1.7.9.5
 
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
