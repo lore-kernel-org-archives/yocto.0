@@ -1,31 +1,17 @@
-Return-Path: <gopikrishnans@pec.edu>
-Received: from mail-la0-f51.google.com (mail-la0-f51.google.com
-	[209.85.215.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BF9E4E004D1
-	for <yocto@yoctoproject.org>; Sun, 30 Dec 2012 09:50:54 -0800 (PST)
-Received: by mail-la0-f51.google.com with SMTP id fj20so2993503lab.24
-	for <yocto@yoctoproject.org>; Sun, 30 Dec 2012 09:50:53 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type
-	:x-gm-message-state;
-	bh=6DHpyccIyvZQBU3Y3EMDOnJTW50u6E95S2z9vaKNTMs=;
-	b=Lp8MH9p8UwvpeW7XCiLyrXaH7pq7fvDkHbMHVf1zFLUlvsVxfyU7hJMC+MU2wX5L9s
-	1xqsFUUAEB2LL+5ggYxOfzI9xV9O0gLMoxHvogYOaaSVKXnf+wX7+w/plBPMV3371kW9
-	Uzgox92zt1+9VggnHsZe+iJH6tt4vCQWSMOgFQgeTRoWuYgiIg9v51H6qufB+VVLkjcv
-	IHmwOKISgb8DrSl/lubeAzPDZp7k0bjXfsrL89EKPESZok5iPQkQ6geDj5orRJdFXi8z
-	13r1G8l6zw4v+02NB2+e8/BmzDZYlN5wXx93+9vfMVqc5duy415RPGN5CZU1TXy7250G
-	xxHg==
-MIME-Version: 1.0
-Received: by 10.112.49.202 with SMTP id w10mr15105315lbn.2.1356889852937; Sun,
-	30 Dec 2012 09:50:52 -0800 (PST)
-Received: by 10.112.21.193 with HTTP; Sun, 30 Dec 2012 09:50:52 -0800 (PST)
-Date: Sun, 30 Dec 2012 23:20:52 +0530
-Message-ID: <CAOkC3RY1VWVH0Qa462ODewUDOUiKdnC2GHv7gkk5-pXNekSPoQ@mail.gmail.com>
-From: GOPIKRISHNAN S <gopikrishnans@pec.edu>
+Return-Path: <noor_ahsan@mentor.com>
+Received: from alm.mentorg.com (nat-lmt.mentorg.com [139.181.28.34])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 31AB6E011CC
+	for <yocto@yoctoproject.org>; Mon, 31 Dec 2012 03:56:17 -0800 (PST)
+Received: from pkl-ahsann-ubuntu.mgc.mentorg.com ([137.202.157.70])
+	by alm.mentorg.com (8.12.10/8.12.10) with ESMTP id qBVBuCaF024083;
+	Mon, 31 Dec 2012 05:56:13 -0600
+From: "Noor, Ahsan" <noor_ahsan@mentor.com>
 To: yocto@yoctoproject.org
-X-Gm-Message-State: ALoCoQn3xIFogDMsZ7kYw5NMFizJTChmy/slfb1F2BJfjK5yhc6+oSfytdTXeplCZQAR4LxDvayj
-Subject: Reg: Career Building
+Date: Mon, 31 Dec 2012 16:56:05 +0500
+Message-Id: <1356954965-17029-1-git-send-email-noor_ahsan@mentor.com>
+X-Mailer: git-send-email 1.7.9.5
+MIME-Version: 1.0
+Subject: [meta-intel][PATCH] linux-yocto: Add a patch to resolve undefined RUSAGE_SELF for perf.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,40 +23,75 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 30 Dec 2012 17:50:55 -0000
-Content-Type: multipart/alternative; boundary=bcaec554daa2af06d304d21589be
+X-List-Received-Date: Mon, 31 Dec 2012 11:56:17 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
---bcaec554daa2af06d304d21589be
-Content-Type: text/plain; charset=ISO-8859-1
+From: Noor Ahsan <noor_ahsan@mentor.com>
 
-Hi Folks,
+* Perf gived compilation error
+  CC builtin-sched.o
+    builtin-sched.c: In function ‘get_cpu_usage_nsec_parent’:
+  builtin-sched.c:399:16: error: storage size of ‘ru’ isn’t known
+* Added a patch from linux kernel git repo commit id
+  7b78f13603c6fcb64e020a0bbe31a651ea2b657b which include resource.h
+  file in builtin-sched.c.
 
-    Is it possible to build my career with Yocto Project for Building Linux
-Distros and other software. Especially in India? I am eager to know the
-career opportunities for Yocto Project professional. Now I am a basic Linux
-user with little Linux networking knowledge and some scripting knowledge.
+Signed-off-by: Noor Ahsan <noor_ahsan@mentor.com>
+---
+ .../linux/linux-yocto/linux-yocto_3.0.bbappend     |   23 ++++++++++++++++++++
+ .../recipes-kernel/linux/linux-yocto_3.0.bbappend  |    8 +++++--
+ 2 files changed, 29 insertions(+), 2 deletions(-)
 
-I am aiming for new career path by year 2013....
+diff --git a/meta-cedartrail/recipes-kernel/linux/linux-yocto/linux-yocto_3.0.bbappend b/meta-cedartrail/recipes-kernel/linux/linux-yocto/linux-yocto_3.0.bbappend
+new file mode 100644
+index 0000000..440cd77
+--- /dev/null
++++ b/meta-cedartrail/recipes-kernel/linux/linux-yocto/linux-yocto_3.0.bbappend
+@@ -0,0 +1,23 @@
++FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
++
++SRC_URI_cedartrail = "git://git.yoctoproject.org/linux-yocto-3.0;protocol=git;bareclone=1;branch=${KBRANCH},meta,yocto/pvr;name=machine,meta,pvr"
++
++SRC_URI_cedartrail-nopvr = "git://git.yoctoproject.org/linux-yocto-3.0;protocol=git;nocheckout=1;branch=${KBRANCH},meta;name=machine,meta"
++
++COMPATIBLE_MACHINE_cedartrail = "cedartrail"
++KMACHINE_cedartrail  = "cedartrail"
++KBRANCH_cedartrail  = "yocto/standard/cedartrail"
++KERNEL_FEATURES_append_cedartrail += "bsp/cedartrail/cedartrail-pvr-merge.scc"
++KERNEL_FEATURES_append_cedartrail += "cfg/efi-ext.scc"
++
++COMPATIBLE_MACHINE_cedartrail-nopvr = "cedartrail"
++KMACHINE_cedartrail-nopvr  = "cedartrail"
++KBRANCH_cedartrail-nopvr  = "yocto/standard/cedartrail"
++KERNEL_FEATURES_append_cedartrail-nopvr += " cfg/smp.scc"
++
++SRCREV_machine_pn-linux-yocto_cedartrail ?= "${AUTOREV}"
++SRCREV_meta_pn-linux-yocto_cedartrail ?= "${AUTOREV}"
++SRCREV_pvr_pn-linux-yocto_cedartrail ?= "${AUTOREV}"
++
++SRCREV_machine_pn-linux-yocto_cedartrail-nopvr ?= "${AUTOREV}"
++SRCREV_meta_pn-linux-yocto_cedartrail-nopvr ?= "${AUTOREV}"
+diff --git a/meta-cedartrail/recipes-kernel/linux/linux-yocto_3.0.bbappend b/meta-cedartrail/recipes-kernel/linux/linux-yocto_3.0.bbappend
+index 440cd77..6797eeb 100644
+--- a/meta-cedartrail/recipes-kernel/linux/linux-yocto_3.0.bbappend
++++ b/meta-cedartrail/recipes-kernel/linux/linux-yocto_3.0.bbappend
+@@ -1,8 +1,12 @@
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ 
+-SRC_URI_cedartrail = "git://git.yoctoproject.org/linux-yocto-3.0;protocol=git;bareclone=1;branch=${KBRANCH},meta,yocto/pvr;name=machine,meta,pvr"
++SRC_URI_cedartrail = "git://git.yoctoproject.org/linux-yocto-3.0;protocol=git;bareclone=1;branch=${KBRANCH},meta,yocto/pvr;name=machine,meta,pvr \
++file://linux-yocto_3.0.bbappend \
++"
+ 
+-SRC_URI_cedartrail-nopvr = "git://git.yoctoproject.org/linux-yocto-3.0;protocol=git;nocheckout=1;branch=${KBRANCH},meta;name=machine,meta"
++SRC_URI_cedartrail-nopvr = "git://git.yoctoproject.org/linux-yocto-3.0;protocol=git;nocheckout=1;branch=${KBRANCH},meta;name=machine,meta \
++file://linux-yocto_3.0.bbappend \
++"
+ 
+ COMPATIBLE_MACHINE_cedartrail = "cedartrail"
+ KMACHINE_cedartrail  = "cedartrail"
+-- 
+1.7.9.5
 
-Thanks in Advance,
 
-Happy New year 2013....................
-
-Reg,
-Gopi Krishnan S
-
---bcaec554daa2af06d304d21589be
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-Hi Folks,=A0<div><br></div><div>=A0 =A0 Is it possible to build my=A0career=
-=A0with Yocto Project for Building Linux Distros and other=A0software. Espe=
-cially in India? I am eager to know the career=A0opportunities for Yocto Pr=
-oject professional. Now I am a basic Linux user with little Linux networkin=
-g knowledge and some scripting knowledge.</div>
-<div><br></div><div>I am aiming for new career path by year 2013....</div><=
-div><br></div><div>Thanks in Advance,</div><div><br></div><div>Happy New ye=
-ar 2013....................</div><div><br></div><div>Reg,</div><div>Gopi Kr=
-ishnan S</div>
-
---bcaec554daa2af06d304d21589be--
