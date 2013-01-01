@@ -1,41 +1,34 @@
-Return-Path: <scott.a.garman@intel.com>
-Received: from azsmga102.ch.intel.com (mga12.intel.com [143.182.124.36])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AE871E0144A
-	for <yocto@yoctoproject.org>; Tue,  1 Jan 2013 10:58:06 -0800 (PST)
-Received: from mail-ob0-f198.google.com ([209.85.214.198])
-	by mga14.intel.com with ESMTP/TLS/RC4-SHA; 01 Jan 2013 10:58:06 -0800
-Received: by mail-ob0-f198.google.com with SMTP id un3so58064468obb.9
-	for <yocto@yoctoproject.org>; Tue, 01 Jan 2013 10:58:05 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=x-received:x-received:message-id:date:from:user-agent:mime-version
-	:to:cc:subject:references:in-reply-to:content-type
-	:content-transfer-encoding:x-gm-message-state;
-	bh=R7f9A3p1Dyd0d0V165iIvBcXFPcZlod5BPQ4f4xle3w=;
-	b=YerGYDzogcFBU0So8rYHTESba2uZCrL3KdkD3+nTqjBjoK35l4FFumHaQvN/Qa+57N
-	mgpnekmz5mCP0SsAkZv6BZNAiy0PMLqNx4o/CsOW8W6UNBb2WgI30jgL5IgHN6Fzw+qL
-	/+FhynyKQErpi7RDbAjpwLc49pQWJbR1cDSTt9TygeITzfzUDo9bes9qJvZg8X4TEmxj
-	hESl27b7okHZdCYG8XAN0fmyxX6NnxKx3f8F5Wb/vDVvNosA7NXTmtCoH5bQoCaqHrD2
-	GeBNQ7vCgI2tT6lqbfCwizknEWbljOhIGabELySsL7JOqs+Vs3mNUTu8Elyjquhvmweb
-	UG4g==
-X-Received: by 10.50.196.198 with SMTP id io6mr38575054igc.39.1357066685048;
-	Tue, 01 Jan 2013 10:58:05 -0800 (PST)
-X-Received: by 10.50.196.198 with SMTP id io6mr38575048igc.39.1357066684956;
-	Tue, 01 Jan 2013 10:58:04 -0800 (PST)
-Received: from [10.0.0.188] ([12.70.159.234]) by mx.google.com with ESMTPS id
-	lu10sm29769235igc.15.2013.01.01.10.58.03
-	(version=SSLv3 cipher=OTHER); Tue, 01 Jan 2013 10:58:04 -0800 (PST)
-Message-ID: <50E331BE.1020302@intel.com>
-Date: Tue, 01 Jan 2013 10:58:06 -0800
-From: Scott Garman <scott.a.garman@intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/17.0 Thunderbird/17.0
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9EEC2E0144A
+	for <yocto@yoctoproject.org>; Tue,  1 Jan 2013 11:46:44 -0800 (PST)
+Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
+	([174.115.5.73]:37986 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1Tq7nP-000509-0r; Tue, 01 Jan 2013 14:46:43 -0500
+Date: Tue, 1 Jan 2013 14:46:39 -0500 (EST)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: Scott Garman <scott.a.garman@intel.com>
+In-Reply-To: <50E32FD8.3070905@intel.com>
+Message-ID: <alpine.DEB.2.02.1301011443260.21012@oneiric>
+References: <alpine.DEB.2.02.1212291218520.4787@oneiric>
+	<50E32FD8.3070905@intel.com>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <alpine.DEB.2.02.1212300440460.11647@oneiric>
-In-Reply-To: <alpine.DEB.2.02.1212300440460.11647@oneiric>
-X-Gm-Message-State: ALoCoQk1znpaMM51rt4gLs5+K5Fv/KEC4fJfxAhF8Rc0NiUsATcHjyJ38g7jHrkVPHQt/yKHyQFsRnR8LeTwHyj27YOh9RT27LVkz01n0hsevt0AmhmMXLXCNVXixZGF11jTvypDYv0OwqDrSxAGHB0Ad133RnwjSA==
-Subject: Re: discussion of layers in dev manual uses a *really* bad example
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Cc: yocto@yoctoproject.org
+Subject: Re: odd(?) behaviour with qemu arm image and "runqemu-extract-sdk"
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,48 +40,93 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 01 Jan 2013 18:58:06 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 01 Jan 2013 19:46:44 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-On 12/30/2012 01:45 AM, Robert P. J. Day wrote:
+On Tue, 1 Jan 2013, Scott Garman wrote:
+
+> On 12/29/2012 09:33 AM, Robert P. J. Day wrote:
+> >
+> >    first time perusing these sections in the yocto docs, kind of
+> > puzzling result so i'm prepared to believe i did something silly.
+> > reading:
+> >
+> > http://www.yoctoproject.org/docs/latest/dev-manual/dev-manual.html#workflow-using-stand-alone-cross-development-toolchains
+> >
+> > "Workflow Using Stand-alone Cross-development Toolchains", and i
+> > already had an OE qemuarm core-image-minimal built that i can run
+> > just fine with:
+> >
+> > $ runqemu qemuarm
+> >
+> > so i was reading that section and followed the link over to the ADT
+> > manual:
+> >
+> > http://www.yoctoproject.org/docs/1.4/adt-manual/adt-manual.html#extracting-the-root-filesystem
+> >
+> > where it talked about "Extracting the Root Filesystem", so i figured,
+> > what the heck, i'll give that a shot, so i ran "runqemu-extract-sdk"
+> > on the very rootfs tarball that had been created by my build and
+> > extracted it under ~/rootfs, then without reading any further, tried
+> > this variation of runqemu for the first time:
+> >
+> > $ runqemu qemuarm ~/rootfs
+> > Assuming /home/rpjday/rootfs is an nfs rootfs
+> > Continuing with the following parameters:
+> > KERNEL:
+> > [/home/rpjday/oe/builds/oe/qemuarm/tmp-eglibc/deploy/images/zImage-qemuarm.bin]
+> > ROOTFS: [/home/rpjday/rootfs]
+> > FSTYPE: [nfs]
+> > Setting up tap interface under sudo
+> > [sudo] password for rpjday:
+> > Acquiring lockfile for tap0...
+> > runqemu-export-rootfs restart /home/rpjday/rootfs
+> > Error: Unable to find rpc.mountd binary in
+> > /home/rpjday/oe/builds/oe/qemuarm/tmp-eglibc/sysroots/x86_64-linux/usr/sbin/
+> > Have you run 'bitbake meta-ide-support'?
+> > Set 'tap0' nonpersistent
+> > Releasing lockfile of preconfigured tap device 'tap0'
+> > $
+> >
+> >    so ... how many things did i do wrong?
 >
->    more pedantry -- dev manual, section 5.1.2 talks about creating a
-> new layer and recommends using the meta-yocto layer.conf as a starting
-> point, which contains:
+> Hi Robert,
 >
->       # We have a conf and classes directory, add to BBPATH
->       BBPATH := "${LAYERDIR}:${BBPATH}"
+> When you built your original image, it generated a filesystem in a
+> file (in this case, an ext3 one) which the runqemu script used to
+> boot with.
 >
->    the problem is that almost every other layer *appends* LAYERDIR to
-> BBPATH, not the other way around, so that example is spectacularly
-> unrepresentative.  (i'm unaware of any other layer that sets BBPATH in
-> that order, and i recall tom zanussi (?) explaining once why that
-> was.)
+> But booting an nfs-based image with runqemu requires our userspace
+> NFS server. This is a new requirement that requires you to build the
+> meta-ide-support target.
 >
->    perhaps a different example, and a short explanation about why the
-> meta-yocto layer is the exception here?
+> So in this case, what you're seeing is exactly what is intended -
+> the runqemu script tells you what you need to do to proceed. You did
+> nothing wrong.
+>
+> There was a time (a long time ago) when meta-ide-support was built
+> anytime qemu was built, but we ended up splitting it out since it
+> added an unnecessary build dependency on meta-ide-support when most
+> users never needed to boot an NFS image.
 
-ScottR:
+  that's fine ... it's probably worth adding that tidbit to the docs
+since the only thing that was concerning me was trying something
+according to the docs and have it come back saying, "wait, did you do
+X first?" when i didn't recall anything suggesting i do X in the first
+place.  and i didn't want to simply follow the advice and do X until i
+verified that i didn't miss the advice to run X earlier.
 
-As some background on this issue, please take a look at this thread from 
-almost exactly a month ago:
+  ok, that's the mimosas talking ...
 
-https://lists.yoctoproject.org/pipermail/yocto/2012-December/013041.html
-
-https://lists.yoctoproject.org/pipermail/yocto/2012-December/013057.html
-
-I agree that we shouldn't recommend using the meta-yocto layer.conf as a 
-starting point, due to the BBPATH append ordering difference.
-
-And maybe a note about why we order the BBPATH append as we do in 
-meta-yocto (see Thomas' concise explanation in the second link above) 
-would be appropriate.
-
-Scott
+rday
 
 -- 
-Scott Garman
-Embedded Linux Engineer - Yocto Project
-Intel Open Source Technology Center
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
