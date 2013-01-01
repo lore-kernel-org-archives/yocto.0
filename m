@@ -1,41 +1,41 @@
 Return-Path: <scott.a.garman@intel.com>
-Received: from azsmga101.ch.intel.com (mga07.intel.com [143.182.124.22])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 18D59E0144A
-	for <yocto@yoctoproject.org>; Tue,  1 Jan 2013 10:50:02 -0800 (PST)
-Received: from mail-ie0-f199.google.com ([209.85.223.199])
-	by mga03.intel.com with ESMTP/TLS/RC4-SHA; 01 Jan 2013 10:50:01 -0800
-Received: by mail-ie0-f199.google.com with SMTP id k10so58550751iea.6
-	for <yocto@yoctoproject.org>; Tue, 01 Jan 2013 10:50:00 -0800 (PST)
+Received: from azsmga102.ch.intel.com (mga12.intel.com [143.182.124.36])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AE871E0144A
+	for <yocto@yoctoproject.org>; Tue,  1 Jan 2013 10:58:06 -0800 (PST)
+Received: from mail-ob0-f198.google.com ([209.85.214.198])
+	by mga14.intel.com with ESMTP/TLS/RC4-SHA; 01 Jan 2013 10:58:06 -0800
+Received: by mail-ob0-f198.google.com with SMTP id un3so58064468obb.9
+	for <yocto@yoctoproject.org>; Tue, 01 Jan 2013 10:58:05 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=google.com; s=20120113;
 	h=x-received:x-received:message-id:date:from:user-agent:mime-version
-	:to:subject:references:in-reply-to:content-type
+	:to:cc:subject:references:in-reply-to:content-type
 	:content-transfer-encoding:x-gm-message-state;
-	bh=eerT8+rQ93C6fbefBtuaMX8jMAiyA4kfZYW2bg1q2+E=;
-	b=GWWN0yczoCQbmjbDS45g2TFaO9yZkYz4EgjcTxNNaBzWlDT6S7ieXxGNbeQQNItUmW
-	T5XyRMzH7i01mySMuGoIdQXY25XTdg+toSU4+6IiXvU5xV0kdQssFKR5oLr7uqiya01F
-	BpL/2ARWP1RtEbl/VEgZNhQAUH4MZXCzE2NGWl+XSuxma0eMnSO7pdGI74ra7GoYDg0g
-	r22XLHQ9LXEWJdA2RN6eFo863OFgsmMIZPM0WQN2henpQQ8yIrV3MT+S67iIFvxofOim
-	siYHv8YYQkf8v0OVosOCoPwbh28/8lMt5OyFNfePSKPYeoDfvysmTF1V7zvGwm0X2Ule
-	dA2A==
-X-Received: by 10.50.91.168 with SMTP id cf8mr39057878igb.20.1357066199974;
-	Tue, 01 Jan 2013 10:49:59 -0800 (PST)
-X-Received: by 10.50.91.168 with SMTP id cf8mr39057871igb.20.1357066199784;
-	Tue, 01 Jan 2013 10:49:59 -0800 (PST)
-Received: from [10.0.0.188] ([12.70.159.234])
-	by mx.google.com with ESMTPS id l8sm36440606igo.13.2013.01.01.10.49.58
-	(version=SSLv3 cipher=OTHER); Tue, 01 Jan 2013 10:49:59 -0800 (PST)
-Message-ID: <50E32FD8.3070905@intel.com>
-Date: Tue, 01 Jan 2013 10:50:00 -0800
+	bh=R7f9A3p1Dyd0d0V165iIvBcXFPcZlod5BPQ4f4xle3w=;
+	b=YerGYDzogcFBU0So8rYHTESba2uZCrL3KdkD3+nTqjBjoK35l4FFumHaQvN/Qa+57N
+	mgpnekmz5mCP0SsAkZv6BZNAiy0PMLqNx4o/CsOW8W6UNBb2WgI30jgL5IgHN6Fzw+qL
+	/+FhynyKQErpi7RDbAjpwLc49pQWJbR1cDSTt9TygeITzfzUDo9bes9qJvZg8X4TEmxj
+	hESl27b7okHZdCYG8XAN0fmyxX6NnxKx3f8F5Wb/vDVvNosA7NXTmtCoH5bQoCaqHrD2
+	GeBNQ7vCgI2tT6lqbfCwizknEWbljOhIGabELySsL7JOqs+Vs3mNUTu8Elyjquhvmweb
+	UG4g==
+X-Received: by 10.50.196.198 with SMTP id io6mr38575054igc.39.1357066685048;
+	Tue, 01 Jan 2013 10:58:05 -0800 (PST)
+X-Received: by 10.50.196.198 with SMTP id io6mr38575048igc.39.1357066684956;
+	Tue, 01 Jan 2013 10:58:04 -0800 (PST)
+Received: from [10.0.0.188] ([12.70.159.234]) by mx.google.com with ESMTPS id
+	lu10sm29769235igc.15.2013.01.01.10.58.03
+	(version=SSLv3 cipher=OTHER); Tue, 01 Jan 2013 10:58:04 -0800 (PST)
+Message-ID: <50E331BE.1020302@intel.com>
+Date: Tue, 01 Jan 2013 10:58:06 -0800
 From: Scott Garman <scott.a.garman@intel.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:17.0) Gecko/17.0 Thunderbird/17.0
 MIME-Version: 1.0
 To: yocto@yoctoproject.org
-References: <alpine.DEB.2.02.1212291218520.4787@oneiric>
-In-Reply-To: <alpine.DEB.2.02.1212291218520.4787@oneiric>
-X-Gm-Message-State: ALoCoQnTerelQ3QhiImSTr7dJrdtyt1Nr9o0hhJr8GqFN5CsZBQbts0aK+0p4hT/qEOA1uS3ueTnuGgDCsPfZ32uj8/udcW5q7IAfZnxWSrKHhOg5h+7OyppSaP770kvewMuBVrtT61EN50JwWYbbYgAngNUiwvL2A==
-Subject: Re: odd(?) behaviour with qemu arm image and "runqemu-extract-sdk"
+References: <alpine.DEB.2.02.1212300440460.11647@oneiric>
+In-Reply-To: <alpine.DEB.2.02.1212300440460.11647@oneiric>
+X-Gm-Message-State: ALoCoQk1znpaMM51rt4gLs5+K5Fv/KEC4fJfxAhF8Rc0NiUsATcHjyJ38g7jHrkVPHQt/yKHyQFsRnR8LeTwHyj27YOh9RT27LVkz01n0hsevt0AmhmMXLXCNVXixZGF11jTvypDYv0OwqDrSxAGHB0Ad133RnwjSA==
+Subject: Re: discussion of layers in dev manual uses a *really* bad example
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,122 +47,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 01 Jan 2013 18:50:02 -0000
+X-List-Received-Date: Tue, 01 Jan 2013 18:58:06 -0000
 Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 12/29/2012 09:33 AM, Robert P. J. Day wrote:
+On 12/30/2012 01:45 AM, Robert P. J. Day wrote:
 >
->    first time perusing these sections in the yocto docs, kind of
-> puzzling result so i'm prepared to believe i did something silly.
-> reading:
+>    more pedantry -- dev manual, section 5.1.2 talks about creating a
+> new layer and recommends using the meta-yocto layer.conf as a starting
+> point, which contains:
 >
-> http://www.yoctoproject.org/docs/latest/dev-manual/dev-manual.html#workflow-using-stand-alone-cross-development-toolchains
+>       # We have a conf and classes directory, add to BBPATH
+>       BBPATH := "${LAYERDIR}:${BBPATH}"
 >
-> "Workflow Using Stand-alone Cross-development Toolchains", and i
-> already had an OE qemuarm core-image-minimal built that i can run
-> just fine with:
+>    the problem is that almost every other layer *appends* LAYERDIR to
+> BBPATH, not the other way around, so that example is spectacularly
+> unrepresentative.  (i'm unaware of any other layer that sets BBPATH in
+> that order, and i recall tom zanussi (?) explaining once why that
+> was.)
 >
-> $ runqemu qemuarm
->
-> so i was reading that section and followed the link over to the ADT
-> manual:
->
-> http://www.yoctoproject.org/docs/1.4/adt-manual/adt-manual.html#extracting-the-root-filesystem
->
-> where it talked about "Extracting the Root Filesystem", so i figured,
-> what the heck, i'll give that a shot, so i ran "runqemu-extract-sdk"
-> on the very rootfs tarball that had been created by my build and
-> extracted it under ~/rootfs, then without reading any further, tried
-> this variation of runqemu for the first time:
->
-> $ runqemu qemuarm ~/rootfs
-> Assuming /home/rpjday/rootfs is an nfs rootfs
-> Continuing with the following parameters:
-> KERNEL:
-> [/home/rpjday/oe/builds/oe/qemuarm/tmp-eglibc/deploy/images/zImage-qemuarm.bin]
-> ROOTFS: [/home/rpjday/rootfs]
-> FSTYPE: [nfs]
-> Setting up tap interface under sudo
-> [sudo] password for rpjday:
-> Acquiring lockfile for tap0...
-> runqemu-export-rootfs restart /home/rpjday/rootfs
-> Error: Unable to find rpc.mountd binary in
-> /home/rpjday/oe/builds/oe/qemuarm/tmp-eglibc/sysroots/x86_64-linux/usr/sbin/
-> Have you run 'bitbake meta-ide-support'?
-> Set 'tap0' nonpersistent
-> Releasing lockfile of preconfigured tap device 'tap0'
-> $
->
->    so ... how many things did i do wrong?
+>    perhaps a different example, and a short explanation about why the
+> meta-yocto layer is the exception here?
 
-Hi Robert,
+ScottR:
 
-When you built your original image, it generated a filesystem in a file 
-(in this case, an ext3 one) which the runqemu script used to boot with.
+As some background on this issue, please take a look at this thread from 
+almost exactly a month ago:
 
-But booting an nfs-based image with runqemu requires our userspace NFS 
-server. This is a new requirement that requires you to build the 
-meta-ide-support target.
+https://lists.yoctoproject.org/pipermail/yocto/2012-December/013041.html
 
-So in this case, what you're seeing is exactly what is intended - the 
-runqemu script tells you what you need to do to proceed. You did nothing 
-wrong.
+https://lists.yoctoproject.org/pipermail/yocto/2012-December/013057.html
 
-There was a time (a long time ago) when meta-ide-support was built 
-anytime qemu was built, but we ended up splitting it out since it added 
-an unnecessary build dependency on meta-ide-support when most users 
-never needed to boot an NFS image.
+I agree that we shouldn't recommend using the meta-yocto layer.conf as a 
+starting point, due to the BBPATH append ordering difference.
 
-   some random thoughts on this
-> before i dig back into the docs and code:
->
-> 1) why the name "runqemu-extract-sdk"?  it seems that the point of
-> that script is to just untar a root filesystem.  i don't see anything
-> being "extracted" per se.
-
-I suppose runqemu-extract-rootfs might be a better name for it. When the 
-script was first developed, the main use case for it was extracting the 
--sdk images so they could be used with our application developer tools.
-
-The key thing this script does is extract the rootfs tarball under 
-pseudo, which creates a virtual mapping of file ownership that is 
-necessary for the rootfs to be usable but not require root access from 
-the end user's perspective.
-
-> 2) i notice that the "dev" directory created by that script contains
-> only regular files instead of actual special device files.  but if i
-> use "sudo" to just untar exactly the same tarball, i get real device
-> files.  is that the expected behaviour of that script?
-
-Yes - since the invokation of pseudo from the runqemu-extract-rootfs 
-script creates a pseudo database that will later be used when runqemu 
-boots the rootfs to read the files.
-
-> 3) what should i have done earlier to have the apparently necessary
-> usr/sbin/rpc.mountd in my sysroot?
-
-Just what the script said: bitbake meta-ide-support
-
-
-   it seems odd that i can run my
-> built qemu image just fine if i run it normally, but if i
-> runqemu-extract-sdk to unload a rootfs, suddenly my sysroot is missing
-> that utility.
-
-By now I hope it should be clear that the rpc.mountd was not needed to 
-boot a .ext3 image. It's only needed for NFS-based booting. So the file 
-didn't suddenly disappear when you went to boot the NFS-based rootfs. It 
-was just needed for the first time then.
-
->    and one more thing.  from that first link in the dev manual, there's
-> that note that takes you over to the ADT manual.  and it's entirely
-> possible that there some critical info *before* the section
-> "Extracting the Root Filesystem" but given how one got there (by
-> following the link), the reader might miss it.
-
-I'll have to leave this one to our app dev folks and ScottR if they 
-agree something should be changed.
+And maybe a note about why we order the BBPATH append as we do in 
+meta-yocto (see Thomas' concise explanation in the second link above) 
+would be appropriate.
 
 Scott
 
