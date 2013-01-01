@@ -1,22 +1,24 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C0DE8E00655
-	for <yocto@yoctoproject.org>; Mon, 31 Dec 2012 14:05:56 -0800 (PST)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga101.ch.intel.com with ESMTP; 31 Dec 2012 14:05:55 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,387,1355126400"; d="scan'208";a="186523291"
-Received: from unknown (HELO helios.localnet) ([10.252.123.27])
-	by AZSMGA002.ch.intel.com with ESMTP; 31 Dec 2012 14:05:53 -0800
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
-Date: Mon, 31 Dec 2012 22:05:50 +0000
-Message-ID: <17626842.21drbRVtj6@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.9.3 (Linux/3.5.0-21-generic; KDE/4.9.3; i686; ; )
-In-Reply-To: <50DF3EE1.5050001@dynamicdevices.co.uk>
-References: <50DF3EE1.5050001@dynamicdevices.co.uk>
+Return-Path: <ajlennon@dynamicdevices.co.uk>
+Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
+	[89.200.136.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BFA46E0144A
+	for <yocto@yoctoproject.org>; Tue,  1 Jan 2013 10:12:43 -0800 (PST)
+Received: from cpc8-live22-2-0-cust106.know.cable.virginmedia.com
+	([82.42.168.107] helo=[127.0.0.1])
+	by www.dynamicdevices.co.uk with esmtpsa
+	(TLS1.0:DHE_RSA_AES_256_CBC_SHA1:32) (Exim 4.69)
+	(envelope-from <ajlennon@dynamicdevices.co.uk>)
+	id 1Tq6Ge-00009R-OG; Tue, 01 Jan 2013 18:08:48 +0000
+Message-ID: <50E326FC.5040006@dynamicdevices.co.uk>
+Date: Tue, 01 Jan 2013 18:12:12 +0000
+From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
+	rv:17.0) Gecko/17.0 Thunderbird/17.0
 MIME-Version: 1.0
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+References: <50DF3EE1.5050001@dynamicdevices.co.uk>
+	<17626842.21drbRVtj6@helios>
+In-Reply-To: <17626842.21drbRVtj6@helios>
 Cc: yocto@yoctoproject.org
 Subject: Re: How to include RPM database into target image?
 X-BeenThere: yocto@yoctoproject.org
@@ -30,33 +32,20 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 31 Dec 2012 22:05:56 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Tue, 01 Jan 2013 18:12:44 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Alex,
+Hi Paul,
 
-On Saturday 29 December 2012 19:05:05 Alex J Lennon wrote:
-> I'm building a distro based on Yocto for a Raspberry Pi but I don't seem
-> to have the RPM database / sample feeds installed on the target image.
-> 
-> Having hunted around and googled I can't spot the environment variable or
-> recipe I presumably need to set/include.
+ >You only need to ensure that "package-management" is present in
+ >IMAGE_FEATURES. You can do this from local.conf by adding the 
+following to it:
 
-You only need to ensure that "package-management" is present in 
-IMAGE_FEATURES. You can do this from local.conf by adding the following to it:
+Many thanks - that seems to do the trick. And Happy New Year!
 
-EXTRA_IMAGE_FEATURES += "package-management"
+Regards,
 
-This will ensure the package manager's database (RPM if you've selected RPM 
-packaging) is preserved, but won't set up any sample feeds. The latter would 
-need to be done manually or via ROOTFS_POSTPROCESS_COMMAND.
+Alex
 
-Cheers,
-Paul
-
--- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
 
