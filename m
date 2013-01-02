@@ -1,22 +1,27 @@
-Return-Path: <bds@bsmucker.eu.org>
-Received: from mxout-07.mxes.net (mxout-07.mxes.net [216.86.168.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 21D5CE01423
-	for <yocto@yoctoproject.org>; Wed,  2 Jan 2013 13:47:55 -0800 (PST)
-Received: from [192.168.0.42] (unknown [50.37.140.69])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by smtp.mxes.net (Postfix) with ESMTPSA id 3928B22E257;
-	Wed,  2 Jan 2013 16:47:54 -0500 (EST)
-Message-ID: <50E4AB07.9090208@bsmucker.eu.org>
-Date: Wed, 02 Jan 2013 13:47:51 -0800
-From: Brian Smucker <bds@bsmucker.eu.org>
-User-Agent: Mozilla/5.0 (Windows NT 5.1; rv:17.0) Gecko/17.0 Thunderbird/17.0
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EFFE3E013D9
+	for <yocto@yoctoproject.org>; Wed,  2 Jan 2013 13:55:49 -0800 (PST)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id 8E75FF811D9; Wed,  2 Jan 2013 14:55:49 -0700 (MST)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-0.9 required=4.0 tests=ALL_TRUSTED,BAYES_00,
+	DEAR_SOMETHING autolearn=no version=3.3.2
+Received: from [192.168.1.114] (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id C03ADF811D9;
+	Wed,  2 Jan 2013 14:55:48 -0700 (MST)
+Message-ID: <50E4ACE5.2020502@mlbassoc.com>
+Date: Wed, 02 Jan 2013 14:55:49 -0700
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/17.0 Thunderbird/17.0
 MIME-Version: 1.0
-To: Bruce Ashfield <bruce.ashfield@windriver.com>, 
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-References: <50E4A287.3050607@bsmucker.eu.org> <50E4A2D0.8020205@windriver.com>
-In-Reply-To: <50E4A2D0.8020205@windriver.com>
-Subject: Re: Magic kernel config option.
+To: yocto@yoctoproject.org
+References: <50E4AAFE.4080905@btinternet.com>
+In-Reply-To: <50E4AAFE.4080905@btinternet.com>
+Subject: Re: Basic failures building 1st Yocto Project and Yocto Raspberry Pi
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,112 +33,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 02 Jan 2013 21:47:55 -0000
+X-List-Received-Date: Wed, 02 Jan 2013 21:55:50 -0000
 Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 1/2/2013 1:12 PM, Bruce Ashfield wrote:
-> On 13-01-02 04:11 PM, Brian Smucker wrote:
->> On 1/2/2013 10:06 AM, Bruce Ashfield wrote:
->>  > On 12-12-24 02:59 PM, Brian Smucker wrote:
->>  >> Hi,
->>  >>
->>  >
->>  > Catching up on email from the holidays. Did you ever get an answer
->>  > to this ?
->> Not yet,  resumed my quest today.
->>
->>  >> I'm a yocto mostly-newbie, trying to find my way.  I have a custom
->> layer
->>  >> that I am using to build a kernel. The layer right now consists of a
->> few
->>  >> kernel patches and a defconfig and is based on the standard kernel
->>  >> otherwise.
->>  >>
->>  >> When I do a diff on my defconfig and the bitbake generated .config,
->> they
->>  >> are quite similar, but the CONFIG_UNION_FS=y line magically shows 
->> up.
->>  >> I'm wondering where it comes from and how to disable it.
->>  >
->>  > CONFIG_UNION_FS is being enabled by the standard kernel (and all
->>  > kernels that inherit it). Since you are based on that kernel, you
->>  > get the option enabled.
->>  >
->>  >>
->>  >> I can do a bitbake -c menuconfig virtual/kernel and eliminate that
->>  >> option giving me the kernel I want, but those changes are gone 
->> after a
->>  >> bitbake -c cleansstate ...
->>  >
->>  > Have you tried putting
->>  >
->>  > # CONFIG_UNION_FS is not set
->>  >
->>  > in your defconfig ? That should disable it.
->>  >
->> I did try that, but that did not disable it.
+On 2013-01-02 14:47, David Evans wrote:
+> Dear Sirs,
 >
-> Hmmm. It worked here. I'll run another test shortly (I'm working on
-> 3.8-rc1 at the moment).
+> I apologise for asking this question to everyone, but I can't figure out who best to direct this question to.
 >
->>
->> So after much pain and thrashing about to figure things out, now I see
->> that in the standard-nocfg.scc file, the unionfs feature is set. This
->> file is found in the following path: tmp/work/..
->> ../linux/meta/cfg/kernel-cache/ktypes/standard/ directory.
->>
->> My current burning question is:  Where is does this file come from? It
->> does not seem to be part of the kernel git repository.  I can changes
->> this file and affect the kernel build, but again, those changes are
->> transitory and do not persist after cleaning.
+> When I build the standard Yocto Project in the Quick-Start guide I get the following Warnings.
 >
-> It's from the meta branch of the kernel git repository. Those
-> are all the fragments that are used to construct and configure
-> the kernel. Part of the build process makes them available to the
-> configuration phase.
+> WARNING: Failed to fetch URL http://www.apache.org/dist/subversion/subversion-1.7.6.tar.bz2, attempting MIRRORS if available
+> WARNING: Failed to fetch URL ftp://ftp.ossp.org/pkg/lib/uuid/uuid-1.6.2.tar.gz, attempting MIRRORS if available
+> WARNING: Failed to fetch URL http://downloads.sourceforge.net/project/libpng/libpng12/1.2.49/libpng-1.2.49.tar.bz2, attempting MIRRORS if available
 >
-> As something else to try, call your file <foo>.cfg and add it to the
-> SRC_URI the same way you added the defconfig. defconfig's get special
-> processing, calling it <foo>.cfg will simply get your changes added
-> to the end of the build and they teka precedence. 
-
-Tried your above suggestion, didn't seem to work.
-
-So with a bit of further testing it looks like by the time the defconfig 
-and the <foo>.cfg are copied into the linux directory, the commented out 
-config option: # CONFIG_UNION_FS is not set
-line is totally gone.
-
-
-> That being said, if
-> a feature with a Kconfig of the kernel has a "select UNIONFS" then you
-> can't override it with a config/defconfig option, you need to patch
-> the kernel.
-Not sure what you are saying here.  If you mean that the unionfs kernel 
-option is required by another selected kernel config option, I'm pretty 
-sure that's not the case.  I can bitbake -c menuconfig virtual/kernel 
-and merely deselect the unionfs option and the kernel is good.
-
-
-Brian
-
-
-
-
-> If you send me your defconfig, I can run some test builds here.
+> As a complete Newbie to Yocto, having the Quick-Start fail like this is killing me, as I have no stable example upon which to build my under standing.
 >
-> Bruce
+> My ultimate goal is to run the Raspberry Pi project as outlined at http://www.pimpmypi.com/blog/blogPost.php?blogPostID=7, but I am seeing the same do_fetch failures as those
+> reported by Ed Nelson at https://lists.yoctoproject.org/pipermail/yocto/2013-January/013571.html.
 >
->
->
->
->>
->> Thanks,
->>
->> Brian
->>
->>
->
+> Any help will be much appreciated.
 
+What version of Yocto (OE-core) do you have?  Those are pretty old
+recipes and the corresponding tarballs seem to no longer be available.
+If you update your repositories, you may get farther along.
+
+n.b. when you run bitbake, you'll see a summary of what repositories
+you are using.  Posting that would help a lot.
+
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
