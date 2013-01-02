@@ -1,34 +1,33 @@
-Return-Path: <schnitzeltony@googlemail.com>
-Received: from mail-wi0-f180.google.com (mail-wi0-f180.google.com
-	[209.85.212.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BECE0E011AC
-	for <yocto@yoctoproject.org>; Wed,  2 Jan 2013 11:33:37 -0800 (PST)
-Received: by mail-wi0-f180.google.com with SMTP id hj13so8118853wib.7
-	for <yocto@yoctoproject.org>; Wed, 02 Jan 2013 11:33:36 -0800 (PST)
+Return-Path: <autif.mlist@gmail.com>
+Received: from mail-la0-f41.google.com (mail-la0-f41.google.com
+	[209.85.215.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BEE16E011CC
+	for <yocto@yoctoproject.org>; Wed,  2 Jan 2013 12:27:33 -0800 (PST)
+Received: by mail-la0-f41.google.com with SMTP id em20so6782350lab.28
+	for <yocto@yoctoproject.org>; Wed, 02 Jan 2013 12:27:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=x-received:from:to:subject:date:message-id:x-mailer:mime-version
-	:content-type:content-transfer-encoding;
-	bh=mTAR7b84LGgIhL6yFspILhPoKld18mEQ//ZyaGiEGCU=;
-	b=kLlzWyvgCUEIck8vR+Jnf8Zb3L6jbSL/kG1q7V0JFDL6oZah5yVMfHiXNqs/LFvyI7
-	283piyNiuXmSx1pZUwj3G1hyM1m1JaBSoNAzlTsnD4xFWReXEhg2c8cnexvxsEvQV2Xq
-	DleltToLza5kNZGinUALDCxC0lhGbh47XL81vcwhsuzrs81jtgz27EkvixmxZ2vFH21O
-	2LxL6SyMTmeqUCEnCZVL5sBYe/lObRacWJLwZY++bah4XQVob5GTtUyU8IzVacopBeaX
-	oM5BHon8ayqlJHpWoEQiGDmo1j2KQhY4wnPOucP62e12i7Al6gxLH8COpvr6sNVta2zX
-	y7Ag==
-X-Received: by 10.180.109.201 with SMTP id hu9mr21932476wib.32.1357155216438; 
-	Wed, 02 Jan 2013 11:33:36 -0800 (PST)
-Received: from localhost.localdomain (p4FDF1C58.dip.t-dialin.net.
-	[79.223.28.88])
-	by mx.google.com with ESMTPS id bd6sm55105478wib.10.2013.01.02.11.33.34
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Wed, 02 Jan 2013 11:33:35 -0800 (PST)
-From: =?UTF-8?q?Andreas=20M=C3=BCller?= <schnitzeltony@googlemail.com>
-To: yocto@yoctoproject.org
-Date: Wed,  2 Jan 2013 20:33:22 +0100
-Message-Id: <1357155202-8885-1-git-send-email-schnitzeltony@googlemail.com>
-X-Mailer: git-send-email 1.7.4.4
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=jyXIHhvfqzd6UaZl3uaZkWw5YzmAClT3WJfJRw3Ihc8=;
+	b=PyFETlMc5Unh0DhNE3CuyhdSv4D1sGaaXFA5VQLWAWSd2rUvRZIqpOSzoogx2K2anl
+	1idYv+gYKbjSXe3UU3U5LFaSuzyTHrxYqvE3iS6DTnd+alUWwaQR88I2oLuZFLfdjrsT
+	O2abrdyrkZFUUFtFX1Z+G7Pw1YCqIKD/L9vt+gwRpDP/kkRCF5zO1/RUjtn+UvB2+Lwz
+	5VVvxsQ9rM/0sm+mWtBEoGCtexFPn3NJk2ElTWvkbj1xOBfivtwNJEmNMlnfzLCQQ3iL
+	6G+ObNc6F1hDIzYAvAP6gfQndECLORxtiGiHGBC/55xeG0vI/YGUoRARoAXyPIhbdv/c
+	3l4g==
 MIME-Version: 1.0
-Subject: [meta-raspberrypi] layer.conf: fix parse
+Received: by 10.152.109.146 with SMTP id hs18mr36305976lab.8.1357158452281;
+	Wed, 02 Jan 2013 12:27:32 -0800 (PST)
+Received: by 10.112.61.74 with HTTP; Wed, 2 Jan 2013 12:27:32 -0800 (PST)
+In-Reply-To: <CADzUK1+kiKx_=ZHKL2WXskDv+rrg5SSLFtHQoLAOaPb0s4Z0Gg@mail.gmail.com>
+References: <50DB2E67.4090602@dynamicdevices.co.uk>
+	<CADzUK1+kiKx_=ZHKL2WXskDv+rrg5SSLFtHQoLAOaPb0s4Z0Gg@mail.gmail.com>
+Date: Wed, 2 Jan 2013 15:27:32 -0500
+Message-ID: <CADzUK1+ZHRrPT6ysoOLsc5NaNcB6bRYRMc-FZDkGR52p9BjpQA@mail.gmail.com>
+From: Autif Khan <autif.mlist@gmail.com>
+To: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-mono] Support for Visual Studio debugging on Yocto/OE targets (e.g. RPi)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,48 +39,115 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 02 Jan 2013 19:33:38 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Wed, 02 Jan 2013 20:27:34 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-after meta-systemd commit [1] the following error was thrown during parsing:
+On Thu, Dec 27, 2012 at 12:10 PM, Autif Khan <autif.mlist@gmail.com> wrote:
+> On Wed, Dec 26, 2012 at 12:05 PM, Alex J Lennon
+> <ajlennon@dynamicdevices.co.uk> wrote:
+>> Hi all, Autif,
+>>
+>> I've been working to support .NET development on Linux
+>> over the past few days.
+>>
+>> There is a Visual Studio plugin, MonoTools for Visual Studio
+>> which provides support for local and remote debugging of
+>> .NET applications with Mono.
+>>
+>> This requires a remote stub to be running on the target
+>> platform, monotools-server.
+>>
+>> I've created a recipe to build monotools-server, which in
+>> turn required me to pull in Openembedded Legacy recipes
+>> for mono-xsp and gtk-sharp.
+>>
+>> As it stands I'm now able to build an X enabled image for
+>> the Raspberry Pi and remote-debug some simple Windows
+>> Forms .NET applications within the Visual Studio IDE.
+>>
+>> Recipes are hosted here in 'recipes-mono'
+>>
+>> git@git.assembla.com:ciseco-eve.meta-eve.git
 
-ERROR: Unable to parse /home/Superandy/data/oe-core/sources/meta-raspberrypi/conf/layer.conf:
-Failure expanding variable BBFILES, expression was
-...
-/home/Superandy/data/oe-core/sources/meta-openembedded/meta-systemd/recipes-*/*/*.bb
-/home/Superandy/data/oe-core/sources/meta-openembedded/meta-systemd/oe-core/recipes-*/*/*.bbappend
-/home/Superandy/data/oe-core/sources/meta-openembedded/meta-systemd/meta-oe/recipes-*/*/*.bbappend
-${@base_contains('BBFILE_COLLECTIONS', 'systemd-layer','', '/home/Superandy/data/oe-core/sources/meta-openembedded/meta-systemd/invalid.bb', d)}
-${@base_contains('BBFILE_COLLECTIONS', 'gnome-layer','/home/Superandy/data/oe-core/sources/meta-openembedded/meta-systemd/meta-gnome/recipes-*/*/*.bbappend', '', d)}
-${@base_contains('BBFILE_COLLECTIONS', 'efl-layer','/home/Superandy/data/oe-core/sources/meta-openembedded/meta-systemd/meta-efl/recipes-*/*/*.bbappend', '', d)}
-${@base_contains('BBFILE_COLLECTIONS', 'multimedia-layer','/home/Superandy/data/oe-core/sources/meta-openembedded/meta-systemd/meta-multimedia/recipes-*/*/*.bbappend', '', d)}
-${@base_contains('BBFILE_COLLECTIONS', 'networking','/home/Superandy/data/oe-core/sources/meta-openembedded/meta-systemd/meta-networking/recipes-*/*/*.bbappend', '', d)}
-${@base_contains('BBFILE_COLLECTIONS', 'xfce-layer','/home/Superandy/data/oe-core/sources/meta-openembedded/meta-systemd/meta-xfce/recipes-*/*/*.bbappend', '', d)}
-...
-which triggered exception NameError: name 'base_contains' is not defined
+I could not "git clone" the repo.
 
-[1] http://cgit.openembedded.org/meta-openembedded/commit/?id=3c21a46020bd0816579648f684c41dbd6333583e
+Presumably, you want to release the recipes with the MIT and/or GPLv2 licenses.
 
-Signed-off-by: Andreas Müller <schnitzeltony@googlemail.com>
----
- conf/layer.conf |    2 +-
- 1 files changed, 1 insertions(+), 1 deletions(-)
+If the license is different for monotools-server or mono-xsp or
+gtk-sharp, you will likely have to submit a patch for README file too.
 
-diff --git a/conf/layer.conf b/conf/layer.conf
-index 32e1827..e8b87b2 100644
---- a/conf/layer.conf
-+++ b/conf/layer.conf
-@@ -2,7 +2,7 @@
- BBPATH .= ":${LAYERDIR}"
- 
- # We have a recipes directory containing .bb and .bbappend files, add to BBFILES
--BBFILES := "${BBFILES} ${LAYERDIR}/recipes*/*/*.bb \ 
-+BBFILES += "${LAYERDIR}/recipes*/*/*.bb \
-             ${LAYERDIR}/recipes*/*/*.bbappend"
- 
- BBFILE_COLLECTIONS += "raspberrypi"
--- 
-1.7.4.4
+Even otherwise, section 4 in README needs to be updated. If you have
+any tasks left - please add them to section 10.
 
+The guidelines for the Yocto project are very similar to other FOSS
+projects including the Linux kernel. They are outlined here:
+
+https://wiki.yoctoproject.org/wiki/Contribution_Guidelines
+
+I used the following as a guide when I have submitted my patches in
+the past. This is for the Linux kernel, adapt as appropriate for
+meta-mono.
+
+http://linux.koolsolutions.com/2011/02/26/howto-create-and-submit-your-first-linux-kernel-patch/
+
+Please submit separate patches for each of the recipes (presumably
+there are no changes to the mono/libGDI+ recipes)
+
+Please add me to the "To:" recipient (I filter a lot of PATCH related
+traffic) - this should allow the emails to be caught by the filter
+instead of archiving.
+
+In case I do not respond within 72 hours, please email me with a
+gentle reminder :-)
+
+I have not had the opportunity to integrate patches just yet, please
+bear with me in case I screw up.
+
+Thanks again for contributing!
+
+PS #1: If you do not want to go thru the hassle - please email me the
+tar.gz as an attachment and I will check it in directly - a bad side
+effect of this would be that you will not get any "git" credit for
+this
+
+PS #2: I am still on vacation, but had a few hours - the 72 hour clock
+will start only after Monday :-)
+
+And finally, PS #3:
+
+http://marc.info/?l=linux-usb&m=135229956521385&w=2
+http://marc.info/?l=linux-usb&m=135119051922403&w=2
+http://marc.info/?l=linux-usb&m=134858043613838&w=2
+http://marc.info/?l=linux-usb&m=134791970203982&w=2
+... many others ...
+
+Please refrain from top posting :-)
+
+Autif
+
+>> If there is interest in migrating these recipes into meta-mono
+>> and  somebody will review them then I'll be pleased to make
+>> whatever changes are needed to comply with relevant
+>> Yocto policies.
+>
+> Absolutely!
+>
+> I am about to embark on a vacation returning to work on Jan 7.
+>
+> More then - Unfortunately, I will not have time to look at this today
+> or until Jan 7.
+>
+> Working hard - then playing hard :-)
+>
+> I will dig into then when I return.
+>
+> (Side note - we gave up on GTK# recipe and decided that Windows forms
+> are 'good enough' for us. This makes me glad :-)
+>
+>>
+>> Best Regards, (& Happy Holidays)
+>>
+>> Alex
+>>
+>>
 
