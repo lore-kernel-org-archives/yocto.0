@@ -1,24 +1,33 @@
-Return-Path: <sgw@linux.intel.com>
+Return-Path: <christopher.a.thornburg@intel.com>
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9DA63E013CE
-	for <yocto@yoctoproject.org>; Wed,  2 Jan 2013 15:17:47 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 02 Jan 2013 15:16:47 -0800
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AD173E011AB
+	for <yocto@yoctoproject.org>; Wed,  2 Jan 2013 14:48:03 -0800 (PST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 02 Jan 2013 14:47:04 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,398,1355126400"; d="scan'208";a="266461348"
-Received: from unknown (HELO [10.255.14.64]) ([10.255.14.64])
-	by orsmga002.jf.intel.com with ESMTP; 02 Jan 2013 15:17:42 -0800
-Message-ID: <50E4C016.6040408@linux.intel.com>
-Date: Wed, 02 Jan 2013 15:17:42 -0800
-From: Saul Wold <sgw@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/17.0 Thunderbird/17.0
+X-IronPort-AV: E=Sophos;i="4.84,398,1355126400"; 
+	d="scan'208,217";a="241389318"
+Received: from fmsmsx105.amr.corp.intel.com ([10.19.9.36])
+	by orsmga001.jf.intel.com with ESMTP; 02 Jan 2013 14:48:03 -0800
+Received: from fmsmsx151.amr.corp.intel.com (10.19.17.220) by
+	FMSMSX105.amr.corp.intel.com (10.19.9.36) with Microsoft SMTP Server
+	(TLS) id 14.1.355.2; Wed, 2 Jan 2013 14:48:02 -0800
+Received: from fmsmsx102.amr.corp.intel.com ([169.254.2.26]) by
+	FMSMSX151.amr.corp.intel.com ([169.254.6.211]) with mapi id
+	14.01.0355.002; Wed, 2 Jan 2013 14:48:02 -0800
+From: "Thornburg, Christopher A" <christopher.a.thornburg@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Host authenticity failures
+Thread-Index: Ac3pKzQZM1BzWyyVTNGjOLWRV4i1fA==
+Date: Wed, 2 Jan 2013 22:48:01 +0000
+Message-ID: <752F65977A748344A01D69BF22DCDBAE25B95894@FMSMSX102.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.1.200.107]
 MIME-Version: 1.0
-To: Gary Thomas <gary@mlbassoc.com>
-References: <50E4AAFE.4080905@btinternet.com> <50E4ACE5.2020502@mlbassoc.com>
-In-Reply-To: <50E4ACE5.2020502@mlbassoc.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: Basic failures building 1st Yocto Project and Yocto Raspberry Pi
+X-Mailman-Approved-At: Wed, 02 Jan 2013 16:39:05 -0800
+Subject: Host authenticity failures
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,65 +39,110 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 02 Jan 2013 23:17:47 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 02 Jan 2013 22:48:03 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_752F65977A748344A01D69BF22DCDBAE25B95894FMSMSX102amrcor_"
 
-On 01/02/2013 01:55 PM, Gary Thomas wrote:
-> On 2013-01-02 14:47, David Evans wrote:
->> Dear Sirs,
->>
->> I apologise for asking this question to everyone, but I can't figure
->> out who best to direct this question to.
->>
->> When I build the standard Yocto Project in the Quick-Start guide I get
->> the following Warnings.
->>
->> WARNING: Failed to fetch URL
->> http://www.apache.org/dist/subversion/subversion-1.7.6.tar.bz2,
->> attempting MIRRORS if available
->> WARNING: Failed to fetch URL
->> ftp://ftp.ossp.org/pkg/lib/uuid/uuid-1.6.2.tar.gz, attempting MIRRORS
->> if available
->> WARNING: Failed to fetch URL
->> http://downloads.sourceforge.net/project/libpng/libpng12/1.2.49/libpng-1.2.49.tar.bz2,
->> attempting MIRRORS if available
->>
-Notice that these are WARNINGS, bitbake is doing the right thing and 
-falling back to the Yocto Project Mirrors where those older tarballs do 
-exist.
+--_000_752F65977A748344A01D69BF22DCDBAE25B95894FMSMSX102amrcor_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
->> As a complete Newbie to Yocto, having the Quick-Start fail like this
->> is killing me, as I have no stable example upon which to build my
->> under standing.
->>
-Is your build failing beyond this?  Are you able to create an image?  I 
-recently built RPi, myself and it worked OK for me, both images.
+I've started getting the following error from bitbake when it's trying to a=
+ccess my git server:
+
+The authenticity of host '[<githost>]:<port>([<IP>]:<port>)' can't be estab=
+lished.
+DSA key fingerprint is <blah>
+
+I understand this error means that the server's key has probably changed, a=
+nd I understand in general how to deal with this via SSH config. When I man=
+ually ssh'd to the server the first time after receiving the error, I got t=
+he same message, as expected. I entered "yes" and tried again to verify tha=
+t the error went away. It did. I think ran bitbake again and got the same e=
+rror. I changed my ~/.ssh/ssh_config file to disable StrictHostKeyChecking =
+and still get the error.
+
+Is bitbake somehow using different known_hosts and ssh_config files from th=
+e ones I use for interactive logins? Other ideas on how to resolve this?
 
 
-If you have other failures please let us know.
+--_000_752F65977A748344A01D69BF22DCDBAE25B95894FMSMSX102amrcor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-
->> My ultimate goal is to run the Raspberry Pi project as outlined at
->> http://www.pimpmypi.com/blog/blogPost.php?blogPostID=7, but I am
->> seeing the same do_fetch failures as those
->> reported by Ed Nelson at
->> https://lists.yoctoproject.org/pipermail/yocto/2013-January/013571.html.
->>
->> Any help will be much appreciated.
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
 >
-> What version of Yocto (OE-core) do you have?  Those are pretty old
-> recipes and the corresponding tarballs seem to no longer be available.
-> If you update your repositories, you may get farther along.
->
-Both Openembedded and the Yocto Project keep mirrors of the older 
-tarballs since as you say some upstreams remove older tarballs from 
-their sites.
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">I&#8217;ve started getting the following error from =
+bitbake when it&#8217;s trying to access my git server:<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal" style=3D"margin-left:.5in">The authenticity of host =
+'[&lt;githost&gt;]:&lt;port&gt;([&lt;IP&gt;]:&lt;port&gt;)' can't be establ=
+ished.<o:p></o:p></p>
+<p class=3D"MsoNormal" style=3D"margin-left:.5in">DSA key fingerprint is &l=
+t;blah&gt;<o:p></o:p></p>
+<p class=3D"MsoNormal" style=3D"margin-left:.5in"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I understand this error means that the server&#8217;=
+s key has probably changed, and I understand in general how to deal with th=
+is via SSH config. When I manually ssh&#8217;d to the server the first time=
+ after receiving the error, I got the same message,
+ as expected. I entered &#8220;yes&#8221; and tried again to verify that th=
+e error went away. It did. I think ran bitbake again and got the same error=
+. I changed my ~/.ssh/ssh_config file to disable StrictHostKeyChecking and =
+still get the error.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Is bitbake somehow using different known_hosts and s=
+sh_config files from the ones I use for interactive logins? Other ideas on =
+how to resolve this?<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
 
-
-Sau!
-
-> n.b. when you run bitbake, you'll see a summary of what repositories
-> you are using.  Posting that would help a lot.
->
-
+--_000_752F65977A748344A01D69BF22DCDBAE25B95894FMSMSX102amrcor_--
