@@ -1,28 +1,26 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5925FE011AC
-	for <yocto@yoctoproject.org>; Wed,  2 Jan 2013 09:19:27 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 02 Jan 2013 09:18:28 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,397,1355126400"; d="scan'208";a="266314879"
-Received: from unknown (HELO envy.home) ([10.255.14.43])
-	by orsmga002.jf.intel.com with ESMTP; 02 Jan 2013 09:19:26 -0800
-Message-ID: <50E46C1E.2080109@linux.intel.com>
-Date: Wed, 02 Jan 2013 09:19:26 -0800
-From: Darren Hart <dvhart@linux.intel.com>
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EB857E011AC
+	for <yocto@yoctoproject.org>; Wed,  2 Jan 2013 10:06:56 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id r02I6o2X023411
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Wed, 2 Jan 2013 10:06:50 -0800 (PST)
+Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.2.318.4;
+	Wed, 2 Jan 2013 10:06:51 -0800
+Message-ID: <50E4772C.7050708@windriver.com>
+Date: Wed, 2 Jan 2013 13:06:36 -0500
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/17.0 Thunderbird/17.0
+	rv:16.0) Gecko/20121028 Thunderbird/16.0.2
 MIME-Version: 1.0
-To: Tom Zanussi <tom.zanussi@intel.com>
-References: <f339ca3f94ec7bb6a749c5973acb1f85bc1ace6c.1355766001.git.tom.zanussi@intel.com>
-	<0c46e74f56afa3b2c2922209e8f746ca210c9152.1355766001.git.tom.zanussi@intel.com>
-	<50D25E76.1000302@linux.intel.com>
-	<1356020632.30533.51.camel@empanada>
-In-Reply-To: <1356020632.30533.51.camel@empanada>
-X-Enigmail-Version: 1.4.6
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 4/5] yocto-layer: add 'layer' template data
+To: Brian Smucker <bds@bsmucker.eu.org>
+References: <50D8B40C.7020305@bsmucker.eu.org>
+In-Reply-To: <50D8B40C.7020305@bsmucker.eu.org>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Magic kernel config option.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,53 +32,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 02 Jan 2013 17:19:27 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 02 Jan 2013 18:06:57 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
 Content-Transfer-Encoding: 7bit
 
+On 12-12-24 02:59 PM, Brian Smucker wrote:
+> Hi,
+>
 
+Catching up on email from the holidays. Did you ever get an answer
+to this ?
 
-On 12/20/2012 08:23 AM, Tom Zanussi wrote:
-> On Wed, 2012-12-19 at 16:40 -0800, Darren Hart wrote:
->>
->> On 12/17/2012 09:51 AM, tom.zanussi@intel.com wrote:
->>> From: Tom Zanussi <tom.zanussi@intel.com>
->>>
->>> Add a 'layer' target containing all the data that will be used to
->>> generate a generic yocto layer.
->>>
->>> Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
->>> ---
->>
->> Great stuff Tom, only one nit below:
->>
->>> new file mode 100644
->>> index 0000000..90ce90e
->>> --- /dev/null
->>> +++ "b/scripts/lib/bsp/substrate/target/arch/layer/{{ if create_example_recipe == \"y\": }} recipes-example/example/{{=example_recipe_name}}-0.1/helloworld.c"	
->>> @@ -0,0 +1,6 @@
->>> +#include <stdio.h>
->>> +
->>> +int main(int argc, char **argv)
->>> +{
->>> +    printf("Hello World!\n");
->>
->> If you specify a return type of int, you should be returning one:
->>
->> 	return 0;
->>
->> :-)
->>
-> 
-> Hmm, I don't think that's actually necessary for main() - if you don't
-> specify a return value for main(), it should already implicitly return 0
-> IIRC...
+> I'm a yocto mostly-newbie, trying to find my way.  I have a custom layer
+> that I am using to build a kernel. The layer right now consists of a few
+> kernel patches and a defconfig and is based on the standard kernel
+> otherwise.
+>
+> When I do a diff on my defconfig and the bitbake generated .config, they
+> are quite similar, but the CONFIG_UNION_FS=y line magically shows up.
+> I'm wondering where it comes from and how to disable it.
 
-Possibly, but explicit is better IMO. I've been yelled at in certain
-forums for using the implicit return.
+CONFIG_UNION_FS is being enabled by the standard kernel (and all
+kernels that inherit it). Since you are based on that kernel, you
+get the option enabled.
 
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Technical Lead - Linux Kernel
+>
+> I can do a bitbake -c menuconfig virtual/kernel and eliminate that
+> option giving me the kernel I want, but those changes are gone after a
+> bitbake -c cleansstate ...
+
+Have you tried putting
+
+# CONFIG_UNION_FS is not set
+
+in your defconfig ? That should disable it.
+
+Bruce
+
+>
+> Could someone give me some help about where to go from here?
+>
+> Thanks,
+> Brian
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
 
