@@ -1,27 +1,20 @@
-Return-Path: <ajlennon@dynamicdevices.co.uk>
-Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
-	[89.200.136.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CB2A5E011AC
-	for <yocto@yoctoproject.org>; Wed,  2 Jan 2013 12:46:42 -0800 (PST)
-Received: from cpc8-live22-2-0-cust106.know.cable.virginmedia.com
-	([82.42.168.107] helo=[127.0.0.1])
-	by www.dynamicdevices.co.uk with esmtpsa
-	(TLS1.0:DHE_RSA_AES_256_CBC_SHA1:32) (Exim 4.69)
-	(envelope-from <ajlennon@dynamicdevices.co.uk>)
-	id 1TqV9C-0000ch-KQ; Wed, 02 Jan 2013 20:42:46 +0000
-Message-ID: <50E49C8A.3000603@dynamicdevices.co.uk>
-Date: Wed, 02 Jan 2013 20:46:02 +0000
-From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
-	rv:17.0) Gecko/17.0 Thunderbird/17.0
+Return-Path: <bds@bsmucker.eu.org>
+Received: from mxout-07.mxes.net (mxout-07.mxes.net [216.86.168.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2C62CE011CC
+	for <yocto@yoctoproject.org>; Wed,  2 Jan 2013 13:11:39 -0800 (PST)
+Received: from [192.168.0.42] (unknown [50.37.140.69])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by smtp.mxes.net (Postfix) with ESMTPSA id 400B722E1FA;
+	Wed,  2 Jan 2013 16:11:37 -0500 (EST)
+Message-ID: <50E4A287.3050607@bsmucker.eu.org>
+Date: Wed, 02 Jan 2013 13:11:35 -0800
+From: Brian Smucker <bds@bsmucker.eu.org>
+User-Agent: Mozilla/5.0 (Windows NT 5.1; rv:17.0) Gecko/17.0 Thunderbird/17.0
 MIME-Version: 1.0
-To: Autif Khan <autif.mlist@gmail.com>
-References: <50DB2E67.4090602@dynamicdevices.co.uk>
-	<CADzUK1+kiKx_=ZHKL2WXskDv+rrg5SSLFtHQoLAOaPb0s4Z0Gg@mail.gmail.com>
-	<CADzUK1+ZHRrPT6ysoOLsc5NaNcB6bRYRMc-FZDkGR52p9BjpQA@mail.gmail.com>
-In-Reply-To: <CADzUK1+ZHRrPT6ysoOLsc5NaNcB6bRYRMc-FZDkGR52p9BjpQA@mail.gmail.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-mono] Support for Visual Studio debugging on Yocto/OE targets (e.g. RPi)
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, 
+	Bruce Ashfield <bruce.ashfield@windriver.com>
+Subject: Re: Magic kernel config option.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,142 +26,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 02 Jan 2013 20:46:43 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Wed, 02 Jan 2013 21:11:39 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 02/01/2013 20:27, Autif Khan wrote:
-> On Thu, Dec 27, 2012 at 12:10 PM, Autif Khan <autif.mlist@gmail.com> wrote:
->> On Wed, Dec 26, 2012 at 12:05 PM, Alex J Lennon
->> <ajlennon@dynamicdevices.co.uk> wrote:
->>> Hi all, Autif,
->>>
->>> I've been working to support .NET development on Linux
->>> over the past few days.
->>>
->>> There is a Visual Studio plugin, MonoTools for Visual Studio
->>> which provides support for local and remote debugging of
->>> .NET applications with Mono.
->>>
->>> This requires a remote stub to be running on the target
->>> platform, monotools-server.
->>>
->>> I've created a recipe to build monotools-server, which in
->>> turn required me to pull in Openembedded Legacy recipes
->>> for mono-xsp and gtk-sharp.
->>>
->>> As it stands I'm now able to build an X enabled image for
->>> the Raspberry Pi and remote-debug some simple Windows
->>> Forms .NET applications within the Visual Studio IDE.
->>>
->>> Recipes are hosted here in 'recipes-mono'
->>>
->>> git@git.assembla.com:ciseco-eve.meta-eve.git
-> 
-> I could not "git clone" the repo.
+On 1/2/2013 10:06 AM, Bruce Ashfield wrote:
+ > On 12-12-24 02:59 PM, Brian Smucker wrote:
+ >> Hi,
+ >>
+ >
+ > Catching up on email from the holidays. Did you ever get an answer
+ > to this ?
+Not yet,  resumed my quest today.
 
-Apologies. I should have given you the public r/o link.
+ >> I'm a yocto mostly-newbie, trying to find my way.  I have a custom layer
+ >> that I am using to build a kernel. The layer right now consists of a few
+ >> kernel patches and a defconfig and is based on the standard kernel
+ >> otherwise.
+ >>
+ >> When I do a diff on my defconfig and the bitbake generated .config, they
+ >> are quite similar, but the CONFIG_UNION_FS=y line magically shows up.
+ >> I'm wondering where it comes from and how to disable it.
+ >
+ > CONFIG_UNION_FS is being enabled by the standard kernel (and all
+ > kernels that inherit it). Since you are based on that kernel, you
+ > get the option enabled.
+ >
+ >>
+ >> I can do a bitbake -c menuconfig virtual/kernel and eliminate that
+ >> option giving me the kernel I want, but those changes are gone after a
+ >> bitbake -c cleansstate ...
+ >
+ > Have you tried putting
+ >
+ > # CONFIG_UNION_FS is not set
+ >
+ > in your defconfig ? That should disable it.
+ >
+I did try that, but that did not disable it.
 
-Originally I was trying to avoid modifying meta-mono, adding .bbappends
-into my own meta-eve layer instead, but since my last post to you I
-found I couldn't build against the current HEAD of Yocto due to some odd
-file location issues which I couldn't overlay. (i.e. it didn't seem to
-be able to pick up the patches where you had them - although was fine
-with an older commit of the Yocto core).
+So after much pain and thrashing about to figure things out, now I see 
+that in the standard-nocfg.scc file, the unionfs feature is set. This 
+file is found in the following path: tmp/work/.. 
+../linux/meta/cfg/kernel-cache/ktypes/standard/ directory.
 
-As a result I've moved the original meta-mono patches that weren't being
-picked up by bitbake and merged my additions into a fork of meta-mono
-which is here:
+My current burning question is:  Where is does this file come from? It 
+does not seem to be part of the kernel git repository.  I can changes 
+this file and affect the kernel build, but again, those changes are 
+transitory and do not persist after cleaning.
 
-git://git.assembla.com/ciseco-eve.meta-mono.git
+Thanks,
 
-I'm coming up the curve on Git, as I migrate from mainly Subversion use.
-Can I issue a "pull request" to you or some such?
+Brian
 
-> Presumably, you want to release the recipes with the MIT and/or GPLv2 licenses.
-> 
-> If the license is different for monotools-server or mono-xsp or
-> gtk-sharp, you will likely have to submit a patch for README file too.
-> Even otherwise, section 4 in README needs to be updated. If you have
-> any tasks left - please add them to section 10.
-> 
-
-Will double check this. I am waiting for feedback from the
-monotools-server people on their license as there's nothing explicit in
-their source.
-
-> The guidelines for the Yocto project are very similar to other FOSS
-> projects including the Linux kernel. They are outlined here:
-> 
-> https://wiki.yoctoproject.org/wiki/Contribution_Guidelines
-> 
-> I used the following as a guide when I have submitted my patches in
-> the past. This is for the Linux kernel, adapt as appropriate for
-> meta-mono.
-> 
-> http://linux.koolsolutions.com/2011/02/26/howto-create-and-submit-your-first-linux-kernel-patch/
-> 
-> Please submit separate patches for each of the recipes (presumably
-> there are no changes to the mono/libGDI+ recipes)
-> 
-> Please add me to the "To:" recipient (I filter a lot of PATCH related
-> traffic) - this should allow the emails to be caught by the filter
-> instead of archiving.
-> 
-> In case I do not respond within 72 hours, please email me with a
-> gentle reminder :-)
-> 
-> I have not had the opportunity to integrate patches just yet, please
-> bear with me in case I screw up.
-> 
-> Thanks again for contributing!
-> 
-> PS #1: If you do not want to go thru the hassle - please email me the
-> tar.gz as an attachment and I will check it in directly - a bad side
-> effect of this would be that you will not get any "git" credit for
-> this
-> 
-> PS #2: I am still on vacation, but had a few hours - the 72 hour clock
-> will start only after Monday :-)
-> 
-> And finally, PS #3:
-> 
-> http://marc.info/?l=linux-usb&m=135229956521385&w=2
-> http://marc.info/?l=linux-usb&m=135119051922403&w=2
-> http://marc.info/?l=linux-usb&m=134858043613838&w=2
-> http://marc.info/?l=linux-usb&m=134791970203982&w=2
-> ... many others ...
-> 
-> Please refrain from top posting :-)
-
-Happy to try if that's the etiquette here - like this?
-
-> Autif
-> 
->>> If there is interest in migrating these recipes into meta-mono
->>> and  somebody will review them then I'll be pleased to make
->>> whatever changes are needed to comply with relevant
->>> Yocto policies.
->>
->> Absolutely!
->>
->> I am about to embark on a vacation returning to work on Jan 7.
->>
->> More then - Unfortunately, I will not have time to look at this today
->> or until Jan 7.
->>
->> Working hard - then playing hard :-)
->>
->> I will dig into then when I return.
->>
->> (Side note - we gave up on GTK# recipe and decided that Windows forms
->> are 'good enough' for us. This makes me glad :-)
->>
->>>
->>> Best Regards, (& Happy Holidays)
->>>
->>> Alex
->>>
->>>
 
 
