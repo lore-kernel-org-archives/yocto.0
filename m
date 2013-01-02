@@ -1,26 +1,27 @@
-Return-Path: <mark.hatle@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E7F74E011AC
-	for <yocto@yoctoproject.org>; Wed,  2 Jan 2013 08:44:12 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id r02GiC5Y010095
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Wed, 2 Jan 2013 08:44:12 -0800 (PST)
-Received: from msp-dhcp10.wrs.com (172.25.34.10) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.2.318.4;
-	Wed, 2 Jan 2013 08:44:12 -0800
-Message-ID: <50E463DE.4090300@windriver.com>
-Date: Wed, 2 Jan 2013 10:44:14 -0600
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8;
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1E023E011AC
+	for <yocto@yoctoproject.org>; Wed,  2 Jan 2013 09:18:21 -0800 (PST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 02 Jan 2013 09:18:20 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.84,397,1355126400"; d="scan'208";a="266314480"
+Received: from unknown (HELO envy.home) ([10.255.14.43])
+	by orsmga002.jf.intel.com with ESMTP; 02 Jan 2013 09:18:20 -0800
+Message-ID: <50E46BDB.10701@linux.intel.com>
+Date: Wed, 02 Jan 2013 09:18:19 -0800
+From: Darren Hart <dvhart@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:17.0) Gecko/17.0 Thunderbird/17.0
 MIME-Version: 1.0
-To: <yocto@yoctoproject.org>
-References: <alpine.DEB.2.02.1212240604580.4904@oneiric>
-In-Reply-To: <alpine.DEB.2.02.1212240604580.4904@oneiric>
-Subject: Re: where should "bitbake -c populate_sdk ..." be documented?
+To: Tom Zanussi <tom.zanussi@intel.com>
+References: <cover.1355766001.git.tom.zanussi@intel.com>
+	<50D25D00.2010507@linux.intel.com>
+	<1356018439.30533.44.camel@empanada>
+In-Reply-To: <1356018439.30533.44.camel@empanada>
+X-Enigmail-Version: 1.4.6
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH 0/5] RFC: new 'yocto-layer' tool for creating generic Yocto layers
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,25 +33,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 02 Jan 2013 16:44:13 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+X-List-Received-Date: Wed, 02 Jan 2013 17:18:21 -0000
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 12/24/12 6:06 AM, Robert P. J. Day wrote:
->
->    at the moment, the only mention of that task is in the reference
-> manual.  does it deserve additional coverage, perhaps in the ADT
-> manual?  just asking.
 
-I would recommend any place that mentioned "meta-toolchain" or variants as a way 
-to generate the SDK that can be used by the ADT tooling.
 
-Since the goal of the populate_sdk task (when used with an image) is the same as 
-the stand-a-lone SDK recipes.
+On 12/20/2012 07:47 AM, Tom Zanussi wrote:
+> On Wed, 2012-12-19 at 16:34 -0800, Darren Hart wrote:
+>> On 12/17/2012 09:51 AM, tom.zanussi@intel.com wrote:
+>>> From: Tom Zanussi <tom.zanussi@intel.com>
+>>>
 
---Mark
+> I'm thinking that most users probably won't use these tools very often,
+> so providing a complete command-line equivalent encompassing all the
+> options would be more trouble than it's worth.  It might make sense
+> though to do it for the case of the 'simplest layer' which would mean
+> just adding a 'priority' option in addition to the layer name already
+> specified on the command line.
 
-> rday
->
 
+Nothing else to add, agreed.
+
+
+>> It might make sense to create a recipes/ directory as well, just to
+>> support convention.
+>>
+> 
+> Not sure what you mean - if you say 'y' to either the recipe or the
+> bbappend, it will create a recipes-example/ dir to contain them.  Do you
+> mean something else?
+
+
+Missed that, problem solved.
+
+
+-- 
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Technical Lead - Linux Kernel
 
