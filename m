@@ -1,35 +1,35 @@
-Return-Path: <andrei@gherzan.ro>
-Received: from mail-vb0-f49.google.com (mail-vb0-f49.google.com
-	[209.85.212.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3806BE00498
-	for <yocto@yoctoproject.org>; Tue,  1 Jan 2013 18:51:12 -0800 (PST)
-Received: by mail-vb0-f49.google.com with SMTP id r6so13648829vbi.8
-	for <yocto@yoctoproject.org>; Tue, 01 Jan 2013 18:51:11 -0800 (PST)
+Return-Path: <rstreif@linuxfoundation.org>
+Received: from mail-ee0-f49.google.com (mail-ee0-f49.google.com [74.125.83.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 760BCE004D1
+	for <yocto@yoctoproject.org>; Tue,  1 Jan 2013 19:01:37 -0800 (PST)
+Received: by mail-ee0-f49.google.com with SMTP id c4so6579806eek.22
+	for <yocto@yoctoproject.org>; Tue, 01 Jan 2013 19:01:35 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=google.com; s=20120113;
-	h=mime-version:x-originating-ip:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type:x-gm-message-state;
-	bh=/ZEA3KNh8aHz7MRoj3pvHGPrcnJyfxVq1C3EmbxpvVA=;
-	b=CLmcbVTFmazr50mh1c0qpQaRwZSp2k89GMIZHVK1IaNRzu9khGDd0zTIcocBYxnToX
-	h99AnwqT7wJEd4QGNu5MR5RZsOOjJd5QnXyFCk5qheNgik7291WMdsj5LpoHFHI7a5tp
-	TOTmWFzSsy5uBId725pMncRB6aMP3Kv8QmTN9fB5+Wxin893D7k66HALbNxsiioP05bg
-	RmQX9sVRfmL5lipFVBit2zH6Ykc3r25sBOpPdo+yoAvYUvIt0Kwfkzh3OhZfha0icBj4
-	V/cf8D4becGClFDRseW4kjM+5x0P+sR9SaNu1tGL0XDx8iYdU7uQm0bwkhYc33ACkCLY
-	S2Tg==
-Received: by 10.58.74.196 with SMTP id w4mr70820067vev.7.1357095071367; Tue,
-	01 Jan 2013 18:51:11 -0800 (PST)
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type:x-gm-message-state;
+	bh=Dbmq6zZ8aztZL83wYvdYI1Ljfow8bq/ak7aN7VH6b8A=;
+	b=ag9fDIAsvPTYLmS8xF97xSpo0gOGi/7ut+L4xnafs31WvNzH02Q9dYJlCip10LGqw4
+	y7gPqHGyZr93DENBSPjsPiz8BhEGqW54jsAWN9lJg3VeKTMI5JcBw19BslDOcKBapWrv
+	Hgh/1OBAn9JAJ3697y+3CZKL6rXNS42mnTuDvPb+kznUH/z+/7l33bHLDOQq4nkvjtek
+	Le9ePJ7lYcLgVSTcTqpwgahGfQCqNclcwCc2bmaA4gzKvCFONC6FtPR9FFHnq6d2mPNQ
+	3+QeX9YiXKlreUJT0j+fyBiVBujp9o0iG3khbCat/OzzRM52UTrWj9Y+zSkzDQqAmfFD
+	b01w==
 MIME-Version: 1.0
-Received: by 10.58.102.132 with HTTP; Tue, 1 Jan 2013 18:50:51 -0800 (PST)
-X-Originating-IP: [5.13.212.252]
-In-Reply-To: <50E31E11.2090708@comcast.net>
-References: <50E31E11.2090708@comcast.net>
-From: Andrei Gherzan <andrei@gherzan.ro>
-Date: Wed, 2 Jan 2013 04:50:51 +0200
-Message-ID: <CAK18fxGENyi53KHpjUBA8t+387hmvKfaHLjURVo4A-NtnhkYmw@mail.gmail.com>
-To: ed nelson <enelson1000@comcast.net>
-X-Gm-Message-State: ALoCoQlB9uGfAmaTFiOdceK0f52FwiE7VPH2U6gSblIXqDeSPNAJvl8RAqiDE7qPaPoX0Jw6YFr7
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: Raspberry Pi do_fetch failure
+Received: by 10.14.216.70 with SMTP id f46mr121955190eep.12.1357095695715;
+	Tue, 01 Jan 2013 19:01:35 -0800 (PST)
+Received: by 10.223.144.149 with HTTP; Tue, 1 Jan 2013 19:01:35 -0800 (PST)
+In-Reply-To: <alpine.DEB.2.02.1212301107480.15769@oneiric>
+References: <alpine.DEB.2.02.1212300427410.11574@oneiric>
+	<CAGfZjq5hbEs3LVkN0JYbUzGXrJGyTTtoqvSLx7a24nWj5mft9w@mail.gmail.com>
+	<alpine.DEB.2.02.1212301107480.15769@oneiric>
+Date: Tue, 1 Jan 2013 19:01:35 -0800
+Message-ID: <CA+gsK-qxC6rmxyk7bnfBEd+o98D2_vpXz+J+s35fuTyz24VD+w@mail.gmail.com>
+From: Rudolf Streif <rstreif@linuxfoundation.org>
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-Gm-Message-State: ALoCoQl8USMVQkFBTs/QKP8qyIXVpDfPyDhR4Agq1qe9bm7BuJrPinLza4rFBP/TmoFnzB2pIqF8
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: dev manual is confusing as to whether a layer *must* be named "meta-..."
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,125 +41,203 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 02 Jan 2013 02:51:12 -0000
-Content-Type: multipart/alternative; boundary=047d7b86edf6a7c1a604d2455111
+X-List-Received-Date: Wed, 02 Jan 2013 03:01:37 -0000
+Content-Type: multipart/alternative; boundary=047d7b603c1ede8b5804d24576e6
 
---047d7b86edf6a7c1a604d2455111
+--047d7b603c1ede8b5804d24576e6
 Content-Type: text/plain; charset=ISO-8859-1
 
-On Tue, Jan 1, 2013 at 7:34 PM, ed nelson <enelson1000@comcast.net> wrote:
+The meta- prefix for layers is purely customary convention and has been
+adopted as best practice. There is no technical reason for it. The only
+place where the name of a layer directory is referenced is in
+bblayers.conf. Technically, you can give your layer any name you want to as
+long as it is compliant with directory names of the filesystem.
 
-> I am getting a do_fetch failure on raspberrypi kernel.  Is anyone else
-> having this problem?
->
-> Build Configuration:
-> BB_VERSION        = "1.16.0"
-> TARGET_ARCH       = "arm"
-> TARGET_OS         = "linux-gnueabi"
-> MACHINE           = "raspberrypi"
-> DISTRO            = "poky"
-> DISTRO_VERSION    = "1.3"
-> TUNE_FEATURES     = "armv6 vfp"
-> TARGET_FPU        = "vfp"
-> meta
-> meta-yocto
-> meta-yocto-bsp    = "danny:**bf909b267498dbab4d7695c26b0dce**903ac8b6b0"
-> meta-raspberrypi  = "master:**305c5259e24eaa9fb285ca983dc4f9**454743fa0c"
->
-> NOTE: Resolving any missing task queue dependencies
-> NOTE: Preparing runqueue
-> NOTE: Executing SetScene Tasks
-> NOTE: Executing RunQueue Tasks
-> WARNING: Failed to fetch URL git://github.com/raspberrypi/**
-> linux.git;protocol=git;branch=**rpi-3.2.27<http://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.2.27>,
-> attempting MIRRORS if available
-> ERROR: Fetcher failure: Fetch command failed with exit code 128, output:
-> Cloning into bare repository '/home/ed/oe/poky-danny/**
-> rasperryPiBuild/downloads/**git2/github.com.raspberrypi.**linux.git'...
->
-> fatal: read error: Connection reset by peer
-> fatal: early EOF
-> fatal: index-pack failed
->
-> ERROR: Function failed: Fetcher failure for URL: 'git://
-> github.com/raspberrypi/**linux.git;protocol=git;branch=**rpi-3.2.27<http://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.2.27>'.
-> Unable to fetch URL from any source.
->
->
-So this error hits again.
+:rjs
 
-It's something related  to github. I've seen this on other repos and solved
-it with a ticket to github - strangely I can't reproduce your issue now on
-my host. As i recall the clone would fail if "--quiet" was used. Can you
-confirm? Are you able to clone that repo manually? WIth "--quiet" too?
 
-Andrei
+On Sun, Dec 30, 2012 at 8:10 AM, Robert P. J. Day <rpjday@crashcourse.ca>wrote:
 
---047d7b86edf6a7c1a604d2455111
+> On Sun, 30 Dec 2012, Bill Traynor wrote:
+>
+> >
+> >
+> >
+> > On Sun, Dec 30, 2012 at 4:29 AM, Robert P. J. Day <rpjday@crashcourse.ca>
+> wrote:
+> >
+> >         section 5.1.1 of dev manual:
+> >
+> >       "Folders that are layers begin with the string meta."
+> >
+> >         section 5.1.2, immediately afterwards:
+> >
+> >       "Traditionally, prepend the name of the folder with the string
+> meta."
+> >
+> >         those two statements are somewhat contradictory.
+> >
+> >
+> > The first statement is in a paragraph describing the identification
+> > of a layer within the Source directory, i.e. its name begins with
+> > "meta".
+> >
+> > The second statement is describing the naming of the folder that
+> > will contain a new layer, i.e. pre-pend the name with "meta".
+> >
+> > I'm not sure I see the contradiction here.  Can you explain?
+>
+>   the (as i see it) inconsistency is that it's not clear whether a
+> layer name *must* begin with the prefix "meta-".  if one says that
+> something happens "traditionally", that suggests it's not mandatory,
+> simply a matter of custom.
+>
+>   i'd prefer that that section was explicit.  you can never go wrong
+> being explicit. :-)
+>
+> rday
+>
+> --
+>
+> ========================================================================
+> Robert P. J. Day                                 Ottawa, Ontario, CANADA
+>                         http://crashcourse.ca
+>
+> Twitter:                                       http://twitter.com/rpjday
+> LinkedIn:                               http://ca.linkedin.com/in/rpjday
+> ========================================================================
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
+
+
+-- 
+-- 
+*Rudolf J. Streif*
+Director of Embedded Solutions
+The Linux Foundation
+
+rudolf.streif@linux.com
+Phone: +1.619.631.5383
+Skype: rudolfstreif
+PGP: RSA 2048/2048 D6E7D28B
+
+Linux Foundation Events Schedule:  events.linuxfoundation.org
+Linux Foundation Training Schedule: training.linuxfoundation.org
+
+--047d7b603c1ede8b5804d24576e6
 Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">On Tue, Jan 1, 2013 at 7:34 PM, ed nelson <span dir=3D"ltr=
-">&lt;<a href=3D"mailto:enelson1000@comcast.net" target=3D"_blank">enelson1=
-000@comcast.net</a>&gt;</span> wrote:<br><div dir=3D"ltr"><div class=3D"gma=
-il_extra">
-
-<div class=3D"gmail_quote"><blockquote class=3D"gmail_quote" style=3D"margi=
-n:0px 0px 0px 0.8ex;border-left-width:1px;border-left-color:rgb(204,204,204=
-);border-left-style:solid;padding-left:1ex">I am getting a do_fetch failure=
- on raspberrypi kernel. =A0Is anyone else having this problem?<br>
-
-
+The meta- prefix for layers is purely customary convention and has been ado=
+pted as best practice. There is no technical reason for it. The only place =
+where the name of a layer directory is referenced is in bblayers.conf. Tech=
+nically, you can give your layer any name you want to as long as it is comp=
+liant with directory names of the filesystem.<div>
+<br></div><div>:rjs</div><div class=3D"gmail_extra"><br><br><div class=3D"g=
+mail_quote">On Sun, Dec 30, 2012 at 8:10 AM, Robert P. J. Day <span dir=3D"=
+ltr">&lt;<a href=3D"mailto:rpjday@crashcourse.ca" target=3D"_blank">rpjday@=
+crashcourse.ca</a>&gt;</span> wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><div class=3D"im">On Sun, 30 Dec 2012, Bill =
+Traynor wrote:<br>
 <br>
-Build Configuration:<br>
-BB_VERSION =A0 =A0 =A0 =A0=3D &quot;1.16.0&quot;<br>
-TARGET_ARCH =A0 =A0 =A0 =3D &quot;arm&quot;<br>
-TARGET_OS =A0 =A0 =A0 =A0 =3D &quot;linux-gnueabi&quot;<br>
-MACHINE =A0 =A0 =A0 =A0 =A0 =3D &quot;raspberrypi&quot;<br>
-DISTRO =A0 =A0 =A0 =A0 =A0 =A0=3D &quot;poky&quot;<br>
-DISTRO_VERSION =A0 =A0=3D &quot;1.3&quot;<br>
-TUNE_FEATURES =A0 =A0 =3D &quot;armv6 vfp&quot;<br>
-TARGET_FPU =A0 =A0 =A0 =A0=3D &quot;vfp&quot;<br>
-meta<br>
-meta-yocto<br>
-meta-yocto-bsp =A0 =A0=3D &quot;danny:<u></u>bf909b267498dbab4d7695c26b0dce=
-<u></u>903ac8b6b0&quot;<br>
-meta-raspberrypi =A0=3D &quot;master:<u></u>305c5259e24eaa9fb285ca983dc4f9<=
-u></u>454743fa0c&quot;<br>
-<br>
-NOTE: Resolving any missing task queue dependencies<br>
-NOTE: Preparing runqueue<br>
-NOTE: Executing SetScene Tasks<br>
-NOTE: Executing RunQueue Tasks<br>
-WARNING: Failed to fetch URL git://<a href=3D"http://github.com/raspberrypi=
-/linux.git;protocol=3Dgit;branch=3Drpi-3.2.27" target=3D"_blank">github.com=
-/raspberrypi/<u></u>linux.git;protocol=3Dgit;branch=3D<u></u>rpi-3.2.27</a>=
-, attempting MIRRORS if available<br>
-
-
-ERROR: Fetcher failure: Fetch command failed with exit code 128, output:<br=
+&gt;<br>
+&gt;<br>
+&gt;<br>
+&gt; On Sun, Dec 30, 2012 at 4:29 AM, Robert P. J. Day &lt;<a href=3D"mailt=
+o:rpjday@crashcourse.ca">rpjday@crashcourse.ca</a>&gt; wrote:<br>
+&gt;<br>
+&gt; =A0 =A0 =A0 =A0 section 5.1.1 of dev manual:<br>
+&gt;<br>
+&gt; =A0 =A0 =A0 &quot;Folders that are layers begin with the string meta.&=
+quot;<br>
+&gt;<br>
+&gt; =A0 =A0 =A0 =A0 section 5.1.2, immediately afterwards:<br>
+&gt;<br>
+&gt; =A0 =A0 =A0 &quot;Traditionally, prepend the name of the folder with t=
+he string meta.&quot;<br>
+&gt;<br>
+&gt; =A0 =A0 =A0 =A0 those two statements are somewhat contradictory.<br>
+&gt;<br>
+&gt;<br>
+&gt; The first statement is in a paragraph describing the identification<br=
 >
-Cloning into bare repository &#39;/home/ed/oe/poky-danny/<u></u>rasperryPiB=
-uild/downloads/<u></u>git2/github.com.raspberrypi.<u></u>linux.git&#39;...<=
-br>
+&gt; of a layer within the Source directory, i.e. its name begins with<br>
+&gt; &quot;meta&quot;.<br>
+&gt;<br>
+&gt; The second statement is describing the naming of the folder that<br>
+&gt; will contain a new layer, i.e. pre-pend the name with &quot;meta&quot;=
+.<br>
+&gt;<br>
+&gt; I&#39;m not sure I see the contradiction here. =A0Can you explain?<br>
 <br>
-fatal: read error: Connection reset by peer<br>
-fatal: early EOF<br>
-fatal: index-pack failed<br>
+</div>=A0 the (as i see it) inconsistency is that it&#39;s not clear whethe=
+r a<br>
+layer name *must* begin with the prefix &quot;meta-&quot;. =A0if one says t=
+hat<br>
+something happens &quot;traditionally&quot;, that suggests it&#39;s not man=
+datory,<br>
+simply a matter of custom.<br>
 <br>
-ERROR: Function failed: Fetcher failure for URL: &#39;git://<a href=3D"http=
-://github.com/raspberrypi/linux.git;protocol=3Dgit;branch=3Drpi-3.2.27" tar=
-get=3D"_blank">github.com/raspberrypi/<u></u>linux.git;protocol=3Dgit;branc=
-h=3D<u></u>rpi-3.2.27</a>&#39;. Unable to fetch URL from any source.<br>
+=A0 i&#39;d prefer that that section was explicit. =A0you can never go wron=
+g<br>
+being explicit. :-)<br>
+<div class=3D"HOEnZb"><div class=3D"h5"><br>
+rday<br>
+<br>
+--<br>
+<br>
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>
+Robert P. J. Day =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
+=A0 =A0 Ottawa, Ontario, CANADA<br>
+=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 <a href=3D"http://crashcour=
+se.ca" target=3D"_blank">http://crashcourse.ca</a><br>
+<br>
+Twitter: =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
+=A0 =A0 =A0 <a href=3D"http://twitter.com/rpjday" target=3D"_blank">http://=
+twitter.com/rpjday</a><br>
+LinkedIn: =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 <a hr=
+ef=3D"http://ca.linkedin.com/in/rpjday" target=3D"_blank">http://ca.linkedi=
+n.com/in/rpjday</a><br>
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</div></d=
+iv><br>_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
+>https://lists.yoctoproject.org/listinfo/yocto</a><br>
+<br></blockquote></div><br><br clear=3D"all"><div><br></div>-- <br>--=A0<br=
+><font face=3D"arial, helvetica, sans-serif"><b>Rudolf J. Streif</b></font>=
+<div><font face=3D"arial, helvetica, sans-serif">Director of Embedded Solut=
+ions</font></div>
+<div><font face=3D"arial, helvetica, sans-serif">The Linux Foundation</font=
+></div><div><font face=3D"arial, helvetica, sans-serif"><br></font></div><d=
+iv><a href=3D"mailto:rudolf.streif@linux.com" target=3D"_blank"><font face=
+=3D"arial, helvetica, sans-serif">rudolf.streif@linux.com</font></a></div>
+<div><font face=3D"arial, helvetica, sans-serif">Phone: +1.619.631.5383</fo=
+nt></div><div><font face=3D"arial, helvetica, sans-serif">Skype: rudolfstre=
+if</font></div><div><font face=3D"arial, helvetica, sans-serif">PGP: RSA 20=
+48/2048 D6E7D28B</font></div>
+<div><font face=3D"garamond, serif"><br></font></div><div><font face=3D"gar=
+amond, serif"><span style=3D"border-collapse:collapse;color:rgb(102,102,102=
+);font-family:arial,sans-serif;font-size:13px"><span style=3D"border-collap=
+se:collapse">Linux Foundation Events Schedule: =A0<a href=3D"http://events.=
+linuxfoundation.org/" style=3D"color:rgb(64,100,128)" target=3D"_blank">eve=
+nts.linuxfoundation.org</a><br>
+Linux Foundation Training Schedule:=A0<a href=3D"http://training.linuxfound=
+ation.org/" style=3D"color:rgb(64,100,128)" target=3D"_blank">training.linu=
+xfoundation.org</a></span><br></span></font></div><div><font face=3D"garamo=
+nd, serif"><span style=3D"border-collapse:collapse;color:rgb(102,102,102);f=
+ont-family:arial,sans-serif;font-size:13px"><br>
+</span></font></div>
+</div>
 
-
-<br></blockquote><div>=A0</div><div style>So this error hits again.=A0</div=
-><div style><br></div><div style>It&#39;s something related =A0to github. I=
-&#39;ve seen this on other repos and solved it with a ticket to github - st=
-rangely I can&#39;t=A0reproduce=A0your issue now on my host. As i recall th=
-e clone would fail if &quot;--quiet&quot; was used. Can you confirm? Are yo=
-u able to clone that repo manually? WIth &quot;--quiet&quot; too?</div>
-
-<div style><br></div><div style>Andrei</div></div></div></div></div>
-
---047d7b86edf6a7c1a604d2455111--
+--047d7b603c1ede8b5804d24576e6--
