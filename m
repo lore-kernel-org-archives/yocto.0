@@ -1,36 +1,28 @@
-Return-Path: <jessica.zhang@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 95506E002AB
-	for <yocto@yoctoproject.org>; Thu,  3 Jan 2013 15:11:16 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 03 Jan 2013 15:10:16 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,405,1355126400"; d="scan'208";a="267019441"
-Received: from orsmsx106.amr.corp.intel.com ([10.22.225.133])
-	by orsmga002.jf.intel.com with ESMTP; 03 Jan 2013 15:11:16 -0800
-Received: from orsmsx153.amr.corp.intel.com (10.22.226.247) by
-	ORSMSX106.amr.corp.intel.com (10.22.225.133) with Microsoft SMTP Server
-	(TLS) id 14.1.355.2; Thu, 3 Jan 2013 15:11:15 -0800
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.237]) by
-	ORSMSX153.amr.corp.intel.com ([169.254.13.66]) with mapi id
-	14.01.0355.002; Thu, 3 Jan 2013 15:11:09 -0800
-From: "Zhang, Jessica" <jessica.zhang@intel.com>
-To: "Barros Pena, Belen" <belen.barros.pena@intel.com>, Biao
-	<huanmateme@163.com>, Mihai Lindner <mihaix.lindner@linux.intel.com>
-Thread-Topic: [yocto] Fails to launch the hob
-Thread-Index: AQHN4am51NPTFHs6WUi4wZlhxR3zMpgoZaaAgAAD/gCAASfyAIAO1VIA///kdwA=
-Date: Thu, 3 Jan 2013 23:11:15 +0000
-Message-ID: <C6510F6D410BB64A8C15398EDC6B847C46B7EE6F@ORSMSX101.amr.corp.intel.com>
-References: <28832c0.77c6.13bd0b4afab.Coremail.huanmateme@163.com>
-	<CD0B6407.1EB06%belen.barros.pena@intel.com>
-In-Reply-To: <CD0B6407.1EB06%belen.barros.pena@intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.138]
+Return-Path: <errordeveloper@gmail.com>
+Received: from mail-bk0-f46.google.com (mail-bk0-f46.google.com
+	[209.85.214.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 08F84E002AB
+	for <yocto@yoctoproject.org>; Thu,  3 Jan 2013 15:43:44 -0800 (PST)
+Received: by mail-bk0-f46.google.com with SMTP id q16so6920806bkw.5
+	for <yocto@yoctoproject.org>; Thu, 03 Jan 2013 15:43:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=25p5UUXo9bWUXw+6KMYSUDLdU+LR0qR3NAFs42B3wEA=;
+	b=gq/oNV8FHAaTOEa04zRUfprcFiKWqHY3zg5iGNpqKNihyVZe3tV4yu84plDbIbEm5a
+	mKxP6aqju3Gs7HJYRs31PUxUpOEkntAGJWpZBOoyCpV9pn6Cwzd/FqrSSDVvc4rI2Cfa
+	/lClY9UHg/F520jBW/fw9frYWl+RciU0Ezza1+Gg12KWYwt5mq4eMNl7qo5NTqMMVhar
+	eu01/ttsBdiq/FHIO+e0qTW9zefXYizvj9sD8U015KOOKFA/dfrmW6JjWYnlf1bf3poL
+	eNEBqZFtAVjZwyD9CtAmEHmWwylKYsxSS7CZYA9MkwPR+ebvoTntUgXchxbtWSM1BgO5
+	6A2A==
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Fails to launch the hob
+Received: by 10.204.147.67 with SMTP id k3mr24351514bkv.117.1357256623602;
+	Thu, 03 Jan 2013 15:43:43 -0800 (PST)
+Received: by 10.204.50.83 with HTTP; Thu, 3 Jan 2013 15:43:43 -0800 (PST)
+Date: Thu, 3 Jan 2013 23:43:43 +0000
+Message-ID: <CAPhDKbHyqGUd5axL+fQVa0dbCF5yAjEEXmnexbb-ZwVJQKXfyA@mail.gmail.com>
+From: Ilya Dmitrichenko <errordeveloper@gmail.com>
+To: yocto@yoctoproject.org
+Subject: configuration management on remote target
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,140 +34,89 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 03 Jan 2013 23:11:16 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Thu, 03 Jan 2013 23:43:45 -0000
+Content-Type: multipart/alternative; boundary=0015174c40bceb3c0b04d26aee54
+
+--0015174c40bceb3c0b04d26aee54
+Content-Type: text/plain; charset=ISO-8859-1
+
+Hi,
+
+As my day job mostly involves configuring servers using puppet
+configuration management system, I had been thinking of what sort of tool
+would be best to use on an embedded devices where on some occasions one
+would want to update a couple of config files and scripts. Perhaps this can
+be limited just to the `/etc` direcotry...
+
+So the best I could come up with so far is to implement it as cron job that
+would pull a git repository, perhaps it would also run a script (git hook)
+that would restart a daemon or do something of that kind.
+
+I suppose that some people will suggest to just use packages, but I'm not
+very keen on maintaining a package repository on some sever out in the
+internet that would be one big single point of failure. Although, perhaps,
+on some occasion, this may be the only way.
+Another reason why I wouldn't like to use git to manage configuration, as
+that way all configs are going to be at hand from one directory tree, which
+is, IMO, much quicker to manage and validate rather then a recipes spread
+across subdirectories.
+
+Firstly, I'd appreciate any feedback on this!
+
+And I do have a few rather more specific questions ;)
+
+a) How often OE users do not implement any system updates over the wire in
+their products, although the product is able to access the internet?
+
+b) Has anyone here use the configuration tools like puppet, chef or
+cfendgine and understands the benefits?
+
+c) Has anyone succeeded building git without having to include perl on the
+target? I'd probably get ways with just a subset of git commands.
+I have also had a look at libgit2, but not sure if I'd be able to implement
+something as robust as git itself with libgit2...
+
+
+Cheers,
+-- 
+Ilya
+
+--0015174c40bceb3c0b04d26aee54
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-Hi Belen,
+<div dir=3D"ltr">Hi,<div><br></div><div style>As my day job mostly involves=
+ configuring servers using puppet configuration management system, I had be=
+en thinking of what sort of tool would be best to use on an embedded device=
+s where on some occasions one would want to update a couple of config files=
+ and scripts. Perhaps this can be limited just to the `/etc` direcotry...</=
+div>
+<div style><br></div><div style>So the best I could come up with so far is =
+to implement it as cron job that would pull a git repository, perhaps it wo=
+uld also run a script (git hook) that would restart a daemon or do somethin=
+g of that kind.</div>
+<div style><br></div><div style>I suppose that some people will suggest to =
+just use packages, but I&#39;m not very keen on maintaining a package repos=
+itory on some sever out in the internet that would be one big single point =
+of failure. Although, perhaps, on some occasion, this may be the only way.<=
+/div>
+<div style>Another reason why I wouldn&#39;t like to use git to manage conf=
+iguration, as that way all configs are going to be at hand from one directo=
+ry tree, which is, IMO, much quicker to manage and validate rather then a r=
+ecipes spread across subdirectories.</div>
+<div style><br></div><div style>Firstly, I&#39;d appreciate any feedback on=
+ this!</div><div style><br></div><div style>And I do have a few rather more=
+ specific questions ;)</div><div style><br></div><div style>a) How often OE=
+ users do not implement any system updates over the wire in their products,=
+ although the product is able to access the internet?</div>
+<div style><br></div><div style>b) Has anyone here use the configuration to=
+ols like puppet, chef or cfendgine and understands the benefits?</div><div =
+style><br></div><div style>c) Has anyone succeeded building git without hav=
+ing to include perl on the target? I&#39;d probably get ways with just a su=
+bset of git commands.</div>
+<div style>I have also had a look at libgit2, but not sure if I&#39;d be ab=
+le to implement something as robust as git itself with libgit2...</div><div=
+ style><br></div><div style><br></div><div style>Cheers,</div><div style>
+--=A0</div><div style>Ilya=A0</div><div style><br></div></div>
 
-I'll modify the error message per suggestion.  By looking at the existing c=
-ode, seems we only check for GTK+ and PyGtk version, so probably I'll drop =
-PyGobject in the error message.  So you probably can update the hob info on=
- the web-site accordingly.
-
-Thanks,
-Jessica
-
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Barros Pena, Belen
-Sent: Thursday, January 03, 2013 8:48 AM
-To: Biao; Mihai Lindner
-Cc: yocto@yoctoproject.org
-Subject: Re: [yocto] Fails to launch the hob
-
-Any chance we could change the content of the error message to provide bett=
-er indication of what the problem is? The idea would be adding version numb=
-ers and printing only what's causing trouble.
-
-So, from:
-
-$ hob
-FATAL: Gtk+, PyGtk and PyGobject are required to use Hob, You have Gtk+ 2.2=
-0.1 and PyGtk 2.17.0.
-
-To something like:
-
-$ hob
-FATAL: Hob requires Gtk+ 2.20.0 or higher, PyGtk 2.21.0 or higher and PyGob=
-ject [insert minimum version here] or higher You have PyGtk 2.17.0.
-
-Would this be possible?
-
-We should probably also add a paragraph listing essential packages to the H=
-ob manual page on the website (https://www.yoctoproject.org/documentation/h=
-ob-manual). If someone tells me what's the minimum version of PyGobject req=
-uired I could probably edit the page myself.
-
-Thanks!
-
-Belen
-
-
-
-From: Biao <huanmateme@163.com<mailto:huanmateme@163.com>>
-Date: Tuesday, 25 December 2012 06:16
-To: Mihai Lindner <mihaix.lindner@linux.intel.com<mailto:mihaix.lindner@lin=
-ux.intel.com>>
-Cc: "yocto@yoctoproject.org<mailto:yocto@yoctoproject.org>" <yocto@yoctopro=
-ject.org<mailto:yocto@yoctoproject.org>>
-Subject: Re: [yocto] Fails to launch the hob
-
-
-At 2012-12-24 20:37:26,"Mihai Lindner" <mihaix.lindner@linux.intel.com<mail=
-to:mihaix.lindner@linux.intel.com>> wrote:
->On Mon, 2012-12-24 at 14:23 +0200, Mihai Lindner wrote:
->> On Mon, 2012-12-24 at 15:37 +0800, Biao wrote:
->> > Hi all,
->> >
->> >
->> > I can not launch hob on my ubun-10.04, it seems saying "no PyGobject" =
-whereas python-object has already been installed. Can anyone kindly give a =
-help?
->> >
->Oh, forgot to mention here, that you should probably be using Denzil,
->instead of Danny or 'master'.
-
-Thanks for the kindly reminder.
->> >
->> > $ hob
->> > FATAL: Gtk+, PyGtk and PyGobject are required to use Hob, You have
->> > Gtk+ 2.20.1 and PyGtk 2.17.0.
->> >
->> >
->> > $ sudo apt-get install python-gobject Reading package lists... Done
->> > Building dependency tree Reading state information... Done
->> > python-gobject is already the newest version.
->> >
->> Python-gobject seems fine, Gtk seems fine (you have 2.20.1, Hob wants
->> higher than 2.20.0), which leaves python-gtk2 version 2.17.0 on your
->> system. Hob wants a version higher than 2.21.0.
-
-Thanks for this information, it seems the prompt message on the environment=
- checking is not so clear.  Where are the hob users supposed to get such ki=
-nd of information from?
-
-I did not found this information from the hob manual.
-
->>
->> --Mihai
->> >
->> > $ uname -a
->> > Linux zb-d 2.6.32-33-generic #72-Ubuntu SMP Fri Jul 29 21:07:13 UTC
->> > 2011 x86_64 GNU/Linux
->> >
->> >
->> > Thanks,
->> > Biao
->> > _______________________________________________ yocto mailing list
->> > yocto@yoctoproject.org<mailto:yocto@yoctoproject.org>
->> > https://lists.yoctoproject.org/listinfo/yocto
->>
->>
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org<mailto:yocto@yoctoproject.org>
->> https://lists.yoctoproject.org/listinfo/yocto
->
->
->_______________________________________________
->yocto mailing list
->yocto@yoctoproject.org<mailto:yocto@yoctoproject.org>
->https://lists.yoctoproject.org/listinfo/yocto
-
----------------------------------------------------------------------
-Intel Corporation (UK) Limited
-Registered No. 1134945 (England)
-Registered Office: Pipers Way, Swindon SN3 1RJ VAT No: 860 2173 47
-
-This e-mail and any attachments may contain confidential material for the s=
-ole use of the intended recipient(s). Any review or distribution by others =
-is strictly prohibited. If you are not the intended recipient, please conta=
-ct the sender and delete all copies.
-
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
-
+--0015174c40bceb3c0b04d26aee54--
