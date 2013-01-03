@@ -1,36 +1,39 @@
 Return-Path: <cazfi74@gmail.com>
-Received: from mail-la0-f45.google.com (mail-la0-f45.google.com
-	[209.85.215.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 05A83E00527
-	for <yocto@yoctoproject.org>; Wed,  2 Jan 2013 23:52:18 -0800 (PST)
-Received: by mail-la0-f45.google.com with SMTP id ep20so7469619lab.32
-	for <yocto@yoctoproject.org>; Wed, 02 Jan 2013 23:52:17 -0800 (PST)
+Received: from mail-la0-f49.google.com (mail-la0-f49.google.com
+	[209.85.215.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A265AE00527
+	for <yocto@yoctoproject.org>; Wed,  2 Jan 2013 23:52:19 -0800 (PST)
+Received: by mail-la0-f49.google.com with SMTP id fk20so7448925lab.36
+	for <yocto@yoctoproject.org>; Wed, 02 Jan 2013 23:52:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=x-received:from:to:subject:date:message-id:x-mailer;
-	bh=Dr5U443Ntydc9pLD6YofP2CUzncGg9ZG/GBSZvYUTqo=;
-	b=s5iwSvXh99M23x2FkvBvPypZpsA+Pud61SzY5aaZAOa8G/JsMRtKHoCf8+4EjM1zaG
-	lleUG4WrlqNquMgkpuqFdjJwhICiHKCzXOE/WKZEPDZ4rbBkniGDekTxsMJdWLTFLh2C
-	6hBwwUXzA3l2MrQMELLrWmQoKGrccqdMGH8N8TfebsHVU1N/46XqQo/iUuN9l02yFUcS
-	h7BD4gXQPn8UeA37R93HgUACaNH6gGG1RFm9hvgOCL4PsuxBsA1UXgMk788QJOt8eOGX
-	VFJafCuwIx212p+oCAFmKmdyQ453SwqP+xhnQbo/EqW+bTYjat3EPZ9iTQ4iiDvAEB02
-	fqeQ==
-X-Received: by 10.112.13.133 with SMTP id h5mr18956041lbc.99.1357199537527;
-	Wed, 02 Jan 2013 23:52:17 -0800 (PST)
+	h=x-received:from:to:cc:subject:date:message-id:x-mailer:in-reply-to
+	:references; bh=VCYrKshFfIaV6ClLsp4O5tKda4kH8ApJ6BvE0JI1fKc=;
+	b=WTURRMc6O82bl65EGMc7Zf9bQGPvNGq7Wp/n7comwlKNdhA0QbwIVuZn8aRmlgm7Tb
+	9hJqlvnjlbgQHH9pgwIsLqi9NQ5a/UXEyaOxCL4M9N43uUO13PyXmkjyV1SCsf/2Mewz
+	x0zMN+uO1fzAg1oudNmqAhr638t9hKwNBnv+6CeNKAQ/n1pLTk/W2bogaJSkkBJjqwGQ
+	a0J0/vZFlw9xui1U69u93e0QF/AkHpzCqAnMLDRQV8adsCbR7eskm64Tyd2jBw2ykpec
+	qXigCxiVo4mYtKH/LVBvo73AuzYAr8yqmgJJ5zIy6mD6zyFpouAdi/5GA3TR8KW7qY47
+	fAXA==
+X-Received: by 10.112.17.129 with SMTP id o1mr19647915lbd.54.1357199538375;
+	Wed, 02 Jan 2013 23:52:18 -0800 (PST)
 Received: from prime (a91-153-5-18.elisa-laajakaista.fi. [91.153.5.18])
-	by mx.google.com with ESMTPS id fb1sm16725741lbb.15.2013.01.02.23.52.15
+	by mx.google.com with ESMTPS id u5sm16731087lbm.8.2013.01.02.23.52.16
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Wed, 02 Jan 2013 23:52:16 -0800 (PST)
+	Wed, 02 Jan 2013 23:52:17 -0800 (PST)
 Received: from cazfi by prime with local (Exim 4.80)
 	(envelope-from <cazfi74@gmail.com>)
-	id 1Tqfb4-0005ZF-CP; Thu, 03 Jan 2013 09:52:14 +0200
+	id 1Tqfb5-0005kU-CK; Thu, 03 Jan 2013 09:52:15 +0200
 From: Marko Lindqvist <cazfi74@gmail.com>
 To: yocto@yoctoproject.org,
 	mark.hatle@windriver.com
-Date: Thu,  3 Jan 2013 09:52:11 +0200
-Message-Id: <1357199532-22977-1-git-send-email-cazfi74@gmail.com>
+Date: Thu,  3 Jan 2013 09:52:12 +0200
+Message-Id: <1357199532-22977-2-git-send-email-cazfi74@gmail.com>
 X-Mailer: git-send-email 1.7.10.4
+In-Reply-To: <1357199532-22977-1-git-send-email-cazfi74@gmail.com>
+References: <1357199532-22977-1-git-send-email-cazfi74@gmail.com>
 X-Mailman-Approved-At: Fri, 04 Jan 2013 09:33:47 -0800
-Subject: Fix prelink build with automake-1.13
+Cc: Marko Lindqvist <cazfi74@gmail.com>
+Subject: [PATCH] fix build with automake-1.13.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,20 +45,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 03 Jan 2013 07:52:19 -0000
+X-List-Received-Date: Thu, 03 Jan 2013 07:52:20 -0000
 
-[PATCH] fix build with automake-1.13.
+Rename autoconf input file from deprecated name configure.in to
+configure.ac
+Replace AM_CONFIG_HEADER obsoleted in automake-1.13 with
+AC_CONFIG_HEADERS.
 
-Long obsolete AM_CONFIG_HEADER is completely removed from automake-1.13,
-which errors out upon seeing it.
-configure.in -> configure.ac rename is not strictly necessary yet,
-use of deprecated name still gives only warning.
+Signed-off-by: Marko Lindqvist <cazfi74@gmail.com>
+---
+ trunk/{configure.in => configure.ac} |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+ rename trunk/{configure.in => configure.ac} (98%)
 
-Problem in dropping obsolete constructs is that support for autotools
-versions so ancient that now-obsolete way is the only way to do things.
-configure.in seems to have AC_PREREQ(2.13), but with these changes
-(if not earlier) such an ancient autoconf will not do.
+diff --git a/trunk/configure.in b/trunk/configure.ac
+similarity index 98%
+rename from trunk/configure.in
+rename to trunk/configure.ac
+index 396f3ac..a90cfb2 100644
+--- a/trunk/configure.in
++++ b/trunk/configure.ac
+@@ -1,6 +1,6 @@
+ dnl Process this file with autoconf to produce a configure script. -*-m4-*-
+ AC_INIT(src/prelink.c)
+-AM_CONFIG_HEADER(config.h)
++AC_CONFIG_HEADERS(config.h)
+ AC_PREREQ(2.13)			dnl Minimum Autoconf version required.
+ AC_CANONICAL_HOST
+ 
+-- 
+1.7.10.4
 
-
- - ML
 
