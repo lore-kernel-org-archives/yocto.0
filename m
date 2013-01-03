@@ -1,33 +1,29 @@
-Return-Path: <christopher.a.thornburg@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AD173E011AB
-	for <yocto@yoctoproject.org>; Wed,  2 Jan 2013 14:48:03 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 02 Jan 2013 14:47:04 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,398,1355126400"; 
-	d="scan'208,217";a="241389318"
-Received: from fmsmsx105.amr.corp.intel.com ([10.19.9.36])
-	by orsmga001.jf.intel.com with ESMTP; 02 Jan 2013 14:48:03 -0800
-Received: from fmsmsx151.amr.corp.intel.com (10.19.17.220) by
-	FMSMSX105.amr.corp.intel.com (10.19.9.36) with Microsoft SMTP Server
-	(TLS) id 14.1.355.2; Wed, 2 Jan 2013 14:48:02 -0800
-Received: from fmsmsx102.amr.corp.intel.com ([169.254.2.26]) by
-	FMSMSX151.amr.corp.intel.com ([169.254.6.211]) with mapi id
-	14.01.0355.002; Wed, 2 Jan 2013 14:48:02 -0800
-From: "Thornburg, Christopher A" <christopher.a.thornburg@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Host authenticity failures
-Thread-Index: Ac3pKzQZM1BzWyyVTNGjOLWRV4i1fA==
-Date: Wed, 2 Jan 2013 22:48:01 +0000
-Message-ID: <752F65977A748344A01D69BF22DCDBAE25B95894@FMSMSX102.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.1.200.107]
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1D01CE0045D
+	for <yocto@yoctoproject.org>; Wed,  2 Jan 2013 17:28:54 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id r031SnTm013033
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Wed, 2 Jan 2013 17:28:49 -0800 (PST)
+Received: from bruce-ashfields-macbook.local (128.224.18.41) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
+	14.2.318.4; Wed, 2 Jan 2013 17:28:48 -0800
+Message-ID: <50E4DECE.2030306@windriver.com>
+Date: Wed, 2 Jan 2013 20:28:46 -0500
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7;
+	rv:9.0) Gecko/20111222 Thunderbird/9.0.1
 MIME-Version: 1.0
-X-Mailman-Approved-At: Wed, 02 Jan 2013 16:39:05 -0800
-Subject: Host authenticity failures
+To: Brian Smucker <bds@bsmucker.eu.org>
+References: <50E4A287.3050607@bsmucker.eu.org> <50E4A2D0.8020205@windriver.com>
+	<50E4AB07.9090208@bsmucker.eu.org>
+	<CADkTA4OqaB2J9QHbKrp0Prq0MMM=CtKO4ZsYhbXUWi6t3Aa8rg@mail.gmail.com>
+	<50E4B814.6060003@bsmucker.eu.org>
+In-Reply-To: <50E4B814.6060003@bsmucker.eu.org>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Magic kernel config option.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,110 +35,215 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 02 Jan 2013 22:48:03 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_752F65977A748344A01D69BF22DCDBAE25B95894FMSMSX102amrcor_"
+X-List-Received-Date: Thu, 03 Jan 2013 01:28:54 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
---_000_752F65977A748344A01D69BF22DCDBAE25B95894FMSMSX102amrcor_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-I've started getting the following error from bitbake when it's trying to a=
-ccess my git server:
-
-The authenticity of host '[<githost>]:<port>([<IP>]:<port>)' can't be estab=
-lished.
-DSA key fingerprint is <blah>
-
-I understand this error means that the server's key has probably changed, a=
-nd I understand in general how to deal with this via SSH config. When I man=
-ually ssh'd to the server the first time after receiving the error, I got t=
-he same message, as expected. I entered "yes" and tried again to verify tha=
-t the error went away. It did. I think ran bitbake again and got the same e=
-rror. I changed my ~/.ssh/ssh_config file to disable StrictHostKeyChecking =
-and still get the error.
-
-Is bitbake somehow using different known_hosts and ssh_config files from th=
-e ones I use for interactive logins? Other ideas on how to resolve this?
-
-
---_000_752F65977A748344A01D69BF22DCDBAE25B95894FMSMSX102amrcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+On 13-01-02 5:43 PM, Brian Smucker wrote:
+> I take everything back. The entry in the defconfig did the trick. My
+> problem was that the recipe was grabbing its defconfig from the wrong
+> directory, costing me much confusion.
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri","sans-serif";}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">I&#8217;ve started getting the following error from =
-bitbake when it&#8217;s trying to access my git server:<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">The authenticity of host =
-'[&lt;githost&gt;]:&lt;port&gt;([&lt;IP&gt;]:&lt;port&gt;)' can't be establ=
-ished.<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">DSA key fingerprint is &l=
-t;blah&gt;<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I understand this error means that the server&#8217;=
-s key has probably changed, and I understand in general how to deal with th=
-is via SSH config. When I manually ssh&#8217;d to the server the first time=
- after receiving the error, I got the same message,
- as expected. I entered &#8220;yes&#8221; and tried again to verify that th=
-e error went away. It did. I think ran bitbake again and got the same error=
-. I changed my ~/.ssh/ssh_config file to disable StrictHostKeyChecking and =
-still get the error.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Is bitbake somehow using different known_hosts and s=
-sh_config files from the ones I use for interactive logins? Other ideas on =
-how to resolve this?<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
+> So sorry for the false alarm. Thanks again for your help. When you said
+> the defconfig was a straight copy, the light finally dawned that there
+> was something else going on.
 
---_000_752F65977A748344A01D69BF22DCDBAE25B95894FMSMSX102amrcor_--
+Aha! That is good news. Thanks for following up.
+
+>
+> The silver lining to all this thrashing around for me was the fact that
+> I do understand the kernel bitbake process much better.
+
+:) Always a good thing.
+
+Bruce
+
+>
+> Brian
+>
+> On 1/2/2013 2:15 PM, Bruce Ashfield wrote:
+>>
+>>
+>>
+>> On Wed, Jan 2, 2013 at 4:47 PM, Brian Smucker <bds@bsmucker.eu.org
+>> <mailto:bds@bsmucker.eu.org>> wrote:
+>>
+>>     On 1/2/2013 1:12 PM, Bruce Ashfield wrote:
+>>
+>>         On 13-01-02 04:11 PM, Brian Smucker wrote:
+>>
+>>             On 1/2/2013 10:06 AM, Bruce Ashfield wrote:
+>>             > On 12-12-24 02:59 PM, Brian Smucker wrote:
+>>             >> Hi,
+>>             >>
+>>             >
+>>             > Catching up on email from the holidays. Did you ever get
+>>             an answer
+>>             > to this ?
+>>             Not yet, resumed my quest today.
+>>
+>>             >> I'm a yocto mostly-newbie, trying to find my way. I
+>>             have a custom
+>>             layer
+>>             >> that I am using to build a kernel. The layer right now
+>>             consists of a
+>>             few
+>>             >> kernel patches and a defconfig and is based on the
+>>             standard kernel
+>>             >> otherwise.
+>>             >>
+>>             >> When I do a diff on my defconfig and the bitbake
+>>             generated .config,
+>>             they
+>>             >> are quite similar, but the CONFIG_UNION_FS=y line
+>>             magically shows up.
+>>             >> I'm wondering where it comes from and how to disable it.
+>>             >
+>>             > CONFIG_UNION_FS is being enabled by the standard kernel
+>>             (and all
+>>             > kernels that inherit it). Since you are based on that
+>>             kernel, you
+>>             > get the option enabled.
+>>             >
+>>             >>
+>>             >> I can do a bitbake -c menuconfig virtual/kernel and
+>>             eliminate that
+>>             >> option giving me the kernel I want, but those changes
+>>             are gone after a
+>>             >> bitbake -c cleansstate ...
+>>             >
+>>             > Have you tried putting
+>>             >
+>>             > # CONFIG_UNION_FS is not set
+>>             >
+>>             > in your defconfig ? That should disable it.
+>>             >
+>>             I did try that, but that did not disable it.
+>>
+>>
+>>         Hmmm. It worked here. I'll run another test shortly (I'm
+>>         working on
+>>         3.8-rc1 at the moment).
+>>
+>>
+>>             So after much pain and thrashing about to figure things
+>>             out, now I see
+>>             that in the standard-nocfg.scc file, the unionfs feature
+>>             is set. This
+>>             file is found in the following path: tmp/work/..
+>>             ../linux/meta/cfg/kernel-cache/ktypes/standard/ directory.
+>>
+>>             My current burning question is: Where is does this file
+>>             come from? It
+>>             does not seem to be part of the kernel git repository. I
+>>             can changes
+>>             this file and affect the kernel build, but again, those
+>>             changes are
+>>             transitory and do not persist after cleaning.
+>>
+>>
+>>         It's from the meta branch of the kernel git repository. Those
+>>         are all the fragments that are used to construct and configure
+>>         the kernel. Part of the build process makes them available to the
+>>         configuration phase.
+>>
+>>         As something else to try, call your file <foo>.cfg and add it
+>>         to the
+>>         SRC_URI the same way you added the defconfig. defconfig's get
+>>         special
+>>         processing, calling it <foo>.cfg will simply get your changes
+>>         added
+>>         to the end of the build and they teka precedence.
+>>
+>>
+>>     Tried your above suggestion, didn't seem to work.
+>>
+>>     So with a bit of further testing it looks like by the time the
+>>     defconfig and the <foo>.cfg are copied into the linux directory,
+>>     the commented out config option: # CONFIG_UNION_FS is not set
+>>     line is totally gone.
+>>
+>>
+>> Interesting .. and not really possible if you are talking about the
+>> version in $WORKDIR (i.e
+>> the directory above the linux/ source directory). Those are straight
+>> copies from your
+>> layer, with zero processing. Same with the copy within the
+>> linux/meta/cfg/* directory
+>> structure, they are straight copies and are only processed after being
+>> ordered and
+>> concatenated.
+>>
+>>
+>>
+>>         That being said, if
+>>         a feature with a Kconfig of the kernel has a "select UNIONFS"
+>>         then you
+>>         can't override it with a config/defconfig option, you need to
+>>         patch
+>>         the kernel.
+>>
+>>     Not sure what you are saying here. If you mean that the unionfs
+>>     kernel option is required by another selected kernel config
+>>     option, I'm pretty sure that's not the case. I can bitbake -c
+>>     menuconfig virtual/kernel and merely deselect the unionfs option
+>>     and the kernel is good.
+>>
+>>
+>> I can't see your source tree, so it was always an option. I know it
+>> definitely isn't
+>> the case in the linux-yocto tree. But the ability to deselect it in
+>> menuconfig isn't
+>> contingent on something else not selecting it from within another Kconfig.
+>>
+>> Again, if you send me your defconfig and local.conf changes (for the
+>> BSP), I'll
+>> run a kernel configuration test and be able to easily tell you what is
+>> happening.
+>>
+>> Cheers,
+>>
+>> Bruce
+>>
+>>
+>>     Brian
+>>
+>>
+>>
+>>
+>>
+>>         If you send me your defconfig, I can run some test builds here.
+>>
+>>         Bruce
+>>
+>>
+>>
+>>
+>>
+>>             Thanks,
+>>
+>>             Brian
+>>
+>>
+>>
+>>
+>>     _______________________________________________
+>>     yocto mailing list
+>>     yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
+>>     https://lists.yoctoproject.org/listinfo/yocto
+>>
+>>
+>>
+>>
+>> --
+>> "Thou shalt not follow the NULL pointer, for chaos and madness await
+>> thee at its end"
+>
+>
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
+
