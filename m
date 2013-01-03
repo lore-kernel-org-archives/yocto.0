@@ -1,29 +1,29 @@
-Return-Path: <ajlennon@dynamicdevices.co.uk>
-Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
-	[89.200.136.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8180DE002AB
-	for <yocto@yoctoproject.org>; Thu,  3 Jan 2013 07:46:10 -0800 (PST)
-Received: from cpc8-live22-2-0-cust106.know.cable.virginmedia.com
-	([82.42.168.107] helo=[127.0.0.1])
-	by www.dynamicdevices.co.uk with esmtpsa
-	(TLS1.0:DHE_RSA_AES_256_CBC_SHA1:32) (Exim 4.69)
-	(envelope-from <ajlennon@dynamicdevices.co.uk>)
-	id 1Tqmvu-00011d-R7; Thu, 03 Jan 2013 15:42:14 +0000
-Message-ID: <50E5A795.4070202@dynamicdevices.co.uk>
-Date: Thu, 03 Jan 2013 15:45:25 +0000
-From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
-	rv:17.0) Gecko/17.0 Thunderbird/17.0
+Return-Path: <belen.barros.pena@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 62562E002AB
+	for <yocto@yoctoproject.org>; Thu,  3 Jan 2013 07:59:16 -0800 (PST)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga101.ch.intel.com with ESMTP; 03 Jan 2013 07:59:15 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.84,403,1355126400"; d="scan'208";a="187388742"
+Received: from irsmsx103.ger.corp.intel.com ([163.33.3.157])
+	by AZSMGA002.ch.intel.com with ESMTP; 03 Jan 2013 07:59:14 -0800
+Received: from irsmsx104.ger.corp.intel.com ([169.254.5.151]) by
+	IRSMSX103.ger.corp.intel.com ([169.254.3.74]) with mapi id
+	14.01.0355.002; Thu, 3 Jan 2013 15:59:12 +0000
+From: "Barros Pena, Belen" <belen.barros.pena@intel.com>
+To: yocto <yocto@yoctoproject.org>
+Thread-Topic: do_patch fails for quilt-native-0.60-r0
+Thread-Index: AQHN6ctF61DGjaE6I063359NV7Wtfw==
+Date: Thu, 3 Jan 2013 15:59:12 +0000
+Message-ID: <CD0B5B50.1EAF1%belen.barros.pena@intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Microsoft-MacOutlook/14.2.5.121010
+x-originating-ip: [10.252.21.11]
 MIME-Version: 1.0
-To: Autif Khan <autif.mlist@gmail.com>
-References: <50DB2E67.4090602@dynamicdevices.co.uk>
-	<CADzUK1+kiKx_=ZHKL2WXskDv+rrg5SSLFtHQoLAOaPb0s4Z0Gg@mail.gmail.com>
-	<CADzUK1+ZHRrPT6ysoOLsc5NaNcB6bRYRMc-FZDkGR52p9BjpQA@mail.gmail.com>
-	<50E49C8A.3000603@dynamicdevices.co.uk>
-	<CADzUK1+0fAn2QtZnUKbMfYcqMcb+J+g-gsUMR692vd6zEfN9CQ@mail.gmail.com>
-In-Reply-To: <CADzUK1+0fAn2QtZnUKbMfYcqMcb+J+g-gsUMR692vd6zEfN9CQ@mail.gmail.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-mono] Support for Visual Studio debugging on Yocto/OE targets (e.g. RPi)
+Subject: do_patch fails for quilt-native-0.60-r0
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,195 +35,103 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 03 Jan 2013 15:46:10 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 03 Jan 2013 15:59:16 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <5D1C14267E79C6449B3C684B77053F0D@intel.com>
+Content-Transfer-Encoding: quoted-printable
 
-On 03/01/2013 15:24, Autif Khan wrote:
-> On Wed, Jan 2, 2013 at 3:46 PM, Alex J Lennon
-> <ajlennon@dynamicdevices.co.uk> wrote:
->> On 02/01/2013 20:27, Autif Khan wrote:
->>> On Thu, Dec 27, 2012 at 12:10 PM, Autif Khan <autif.mlist@gmail.com> wrote:
->>>> On Wed, Dec 26, 2012 at 12:05 PM, Alex J Lennon
->>>> <ajlennon@dynamicdevices.co.uk> wrote:
->>>>> Hi all, Autif,
->>>>>
->>>>> I've been working to support .NET development on Linux
->>>>> over the past few days.
->>>>>
->>>>> There is a Visual Studio plugin, MonoTools for Visual Studio
->>>>> which provides support for local and remote debugging of
->>>>> .NET applications with Mono.
->>>>>
->>>>> This requires a remote stub to be running on the target
->>>>> platform, monotools-server.
->>>>>
->>>>> I've created a recipe to build monotools-server, which in
->>>>> turn required me to pull in Openembedded Legacy recipes
->>>>> for mono-xsp and gtk-sharp.
->>>>>
->>>>> As it stands I'm now able to build an X enabled image for
->>>>> the Raspberry Pi and remote-debug some simple Windows
->>>>> Forms .NET applications within the Visual Studio IDE.
->>>>>
->>>>> Recipes are hosted here in 'recipes-mono'
->>>>>
->>>>> git@git.assembla.com:ciseco-eve.meta-eve.git
->>>
->>> I could not "git clone" the repo.
->>
->> Apologies. I should have given you the public r/o link.
->>
->> Originally I was trying to avoid modifying meta-mono, adding .bbappends
->> into my own meta-eve layer instead, but since my last post to you I
->> found I couldn't build against the current HEAD of Yocto due to some odd
->> file location issues which I couldn't overlay. (i.e. it didn't seem to
->> be able to pick up the patches where you had them - although was fine
->> with an older commit of the Yocto core).
->>
->> As a result I've moved the original meta-mono patches that weren't being
->> picked up by bitbake and merged my additions into a fork of meta-mono
->> which is here:
->>
->> git://git.assembla.com/ciseco-eve.meta-mono.git
-> 
-> Got it.
-> 
-> I scanned thru the code and saw what you did to re-organize the
-> directory structure.
-> 
-> When I get back, I will see if I can build libGDI+ and mono with
-> denzil (I am stuck with denzil for reasons beyond my control, or until
-> I find a show stopping bug in denzil for our project - unlikely)
-> 
-> Meanwhile, I have no questions about changes for gk-sharp, mono,
-> mono-xsp and monotools-server.
-> 
+Hi there,
 
-Good oh.
+I am trying to build core-image-minimal with Hob using the latest master.
+The build fails. I've pasted the log below.
 
-> Presumably, you will take care of the "TODO: This needs fixing
-> properly and needs to be revisited" in mono_<version>.bb - I
-> definitely do not want unstripped binaries on my distribution -
-> presumably, this was needed for some debugging and is not meant to be
-> checked into production.
+Does anybody know why and what can I do to fix it?
 
-Ah yes. I'd forgotten about that. I shall habe to revisit why that was
-erroring.
+Thanks!!
 
-> I could not understand the purpose of
-> libgdiplus/files/libgdiplus-2.10/libgdiplus-2.10.1-libpng15.patch -
-> could you please help me understand what prompted these seemingly non
-> trivial changes.
->
+Belen
 
-Yes there seems to be a problem building libGDI against libpng15. It
-seems a known issue:
 
-https://github.com/mono/libgdiplus/pull/4
+Build Configuration:
+BB_VERSION        =3D "1.17.0"
+BUILD_SYS         =3D "x86_64-linux"
+NATIVELSBSTRING   =3D "Unknown"
+TARGET_SYS        =3D "mips-poky-linux"
+MACHINE           =3D "qemumips"
+DISTRO            =3D "poky"
+DISTRO_VERSION    =3D "1.3+snapshot-20130103"
+TUNE_FEATURES     =3D "o32 bigendian fpu-hard mips32"
+TARGET_FPU        =3D ""
+meta
+meta-hob
+meta-yocto-bsp
+meta-yocto        =3D "master:09359e6ec00901abfe49157f1f9730117b4d284b"
 
-> Everything else looks good.
-> 
+WARNING: /home/yocto/poky/bitbake/lib/bb/ui/crumbs/hobwidget.py:769:
+Warning: g_object_set_qdata: assertion `G_IS_OBJECT (object)' failed
+  if self.props.icon_name or self.props.pixbuf or self.props.stock_id:
 
-Good oh
+WARNING: /home/yocto/poky/bitbake/lib/bb/ui/crumbs/hobwidget.py:751:
+Warning: g_object_set_qdata: assertion `G_IS_OBJECT (object)' failed
+  elif self.props.pixbuf:
 
->> I'm coming up the curve on Git, as I migrate from mainly Subversion use.
->> Can I issue a "pull request" to you or some such?
-> 
-> Yes, a pull request should work.
-> 
->>> Presumably, you want to release the recipes with the MIT and/or GPLv2 licenses.
->>>
->>> If the license is different for monotools-server or mono-xsp or
->>> gtk-sharp, you will likely have to submit a patch for README file too.
->>> Even otherwise, section 4 in README needs to be updated. If you have
->>> any tasks left - please add them to section 10.
->>>
->>
->> Will double check this. I am waiting for feedback from the
->> monotools-server people on their license as there's nothing explicit in
->> their source.
-> 
-> Will wait for that. Might affect the README
-> 
+NOTE: Resolving any missing task queue dependencies
+NOTE: Preparing runqueue
+NOTE: Executing SetScene Tasks
+NOTE: Executing RunQueue Tasks
+NOTE: Running task 3 of 1629 (ID: 879,
+/home/yocto/poky/meta/recipes-devtools/quilt/quilt-native_0.60.bb,
+do_patch)
+NOTE: Running task 28 of 1629 (ID: 1112,
+virtual:native:/home/yocto/poky/meta/recipes-devtools/bison/bison_2.7.bb,
+do_fetch)
+NOTE: Running task 35 of 1629 (ID: 332,
+/home/yocto/poky/meta/recipes-devtools/binutils/binutils-cross_2.23.1.bb,
+do_fetch)
+NOTE: Running task 38 of 1629 (ID: 200,
+/home/yocto/poky/meta/recipes-kernel/linux-libc-headers/linux-libc-headers_
+3.4.3.bb,
+do_fetch)
+NOTE: recipe linux-libc-headers-3.4.3-r0: task do_fetch: Succeeded
+NOTE: Running task 39 of 1629 (ID: 196,
+/home/yocto/poky/meta/recipes-kernel/linux-libc-headers/linux-libc-headers_
+3.4.3.bb,
+do_unpack)
+ERROR: Command Error: exit status: 1  Output:
+can't find file to patch at input line 5
+Perhaps you used the wrong -p or --strip option?
+The text leading up to this was:
+--------------------------
+|Upstream-Status: Pending
+|
+|--- quilt-0.47/Makefile.in	2008-12-31 19:09:13.000000000 +0000
+|+++ quilt-0.47/Makefile.in.orig	2008-08-21 13:21:32.000000000 +0100
+--------------------------
+File to patch:
+Skip this patch? [y]
+Skipping patch.
+1 out of 1 hunk ignored
+ERROR: Function failed: patch_do_patch
+NOTE: recipe quilt-native-0.60-r0: task do_patch: Failed
+ERROR: Task 879
+(/home/yocto/poky/meta/recipes-devtools/quilt/quilt-native_0.60.bb,
+do_patch) failed with exit code '1'
+NOTE: recipe binutils-cross-2.23.1-r0: task do_fetch: Succeeded
+NOTE: recipe bison-native-2.7-r0: task do_fetch: Succeeded
+NOTE: recipe linux-libc-headers-3.4.3-r0: task do_unpack: Succeeded
+NOTE: Tasks Summary: Attempted 39 tasks of which 34 didn't need to be
+rerun and 1 failed.
 
-I'll give them another nudge once I've worked our what's going on with
-the stripping, commit to my fork and then try to work out how to send
-you a pull req.
+---------------------------------------------------------------------
+Intel Corporation (UK) Limited
+Registered No. 1134945 (England)
+Registered Office: Pipers Way, Swindon SN3 1RJ
+VAT No: 860 2173 47
 
->>> The guidelines for the Yocto project are very similar to other FOSS
->>> projects including the Linux kernel. They are outlined here:
->>>
->>> https://wiki.yoctoproject.org/wiki/Contribution_Guidelines
->>>
->>> I used the following as a guide when I have submitted my patches in
->>> the past. This is for the Linux kernel, adapt as appropriate for
->>> meta-mono.
->>>
->>> http://linux.koolsolutions.com/2011/02/26/howto-create-and-submit-your-first-linux-kernel-patch/
->>>
->>> Please submit separate patches for each of the recipes (presumably
->>> there are no changes to the mono/libGDI+ recipes)
->>>
->>> Please add me to the "To:" recipient (I filter a lot of PATCH related
->>> traffic) - this should allow the emails to be caught by the filter
->>> instead of archiving.
->>>
->>> In case I do not respond within 72 hours, please email me with a
->>> gentle reminder :-)
->>>
->>> I have not had the opportunity to integrate patches just yet, please
->>> bear with me in case I screw up.
->>>
->>> Thanks again for contributing!
->>>
->>> PS #1: If you do not want to go thru the hassle - please email me the
->>> tar.gz as an attachment and I will check it in directly - a bad side
->>> effect of this would be that you will not get any "git" credit for
->>> this
->>>
->>> PS #2: I am still on vacation, but had a few hours - the 72 hour clock
->>> will start only after Monday :-)
->>>
->>> And finally, PS #3:
->>>
->>> http://marc.info/?l=linux-usb&m=135229956521385&w=2
->>> http://marc.info/?l=linux-usb&m=135119051922403&w=2
->>> http://marc.info/?l=linux-usb&m=134858043613838&w=2
->>> http://marc.info/?l=linux-usb&m=134791970203982&w=2
->>> ... many others ...
->>>
->>> Please refrain from top posting :-)
->>
->> Happy to try if that's the etiquette here - like this?
->>
->>> Autif
->>>
->>>>> If there is interest in migrating these recipes into meta-mono
->>>>> and  somebody will review them then I'll be pleased to make
->>>>> whatever changes are needed to comply with relevant
->>>>> Yocto policies.
->>>>
->>>> Absolutely!
->>>>
->>>> I am about to embark on a vacation returning to work on Jan 7.
->>>>
->>>> More then - Unfortunately, I will not have time to look at this today
->>>> or until Jan 7.
->>>>
->>>> Working hard - then playing hard :-)
->>>>
->>>> I will dig into then when I return.
->>>>
->>>> (Side note - we gave up on GTK# recipe and decided that Windows forms
->>>> are 'good enough' for us. This makes me glad :-)
->>>>
->>>>>
->>>>> Best Regards, (& Happy Holidays)
->>>>>
->>>>> Alex
->>>>>
->>>>>
->>
+This e-mail and any attachments may contain confidential material for
+the sole use of the intended recipient(s). Any review or distribution
+by others is strictly prohibited. If you are not the intended
+recipient, please contact the sender and delete all copies.
 
 
