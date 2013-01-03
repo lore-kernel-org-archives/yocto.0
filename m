@@ -1,39 +1,32 @@
-Return-Path: <cazfi74@gmail.com>
-Received: from mail-la0-f49.google.com (mail-la0-f49.google.com
-	[209.85.215.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A265AE00527
-	for <yocto@yoctoproject.org>; Wed,  2 Jan 2013 23:52:19 -0800 (PST)
-Received: by mail-la0-f49.google.com with SMTP id fk20so7448925lab.36
-	for <yocto@yoctoproject.org>; Wed, 02 Jan 2013 23:52:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=x-received:from:to:cc:subject:date:message-id:x-mailer:in-reply-to
-	:references; bh=VCYrKshFfIaV6ClLsp4O5tKda4kH8ApJ6BvE0JI1fKc=;
-	b=WTURRMc6O82bl65EGMc7Zf9bQGPvNGq7Wp/n7comwlKNdhA0QbwIVuZn8aRmlgm7Tb
-	9hJqlvnjlbgQHH9pgwIsLqi9NQ5a/UXEyaOxCL4M9N43uUO13PyXmkjyV1SCsf/2Mewz
-	x0zMN+uO1fzAg1oudNmqAhr638t9hKwNBnv+6CeNKAQ/n1pLTk/W2bogaJSkkBJjqwGQ
-	a0J0/vZFlw9xui1U69u93e0QF/AkHpzCqAnMLDRQV8adsCbR7eskm64Tyd2jBw2ykpec
-	qXigCxiVo4mYtKH/LVBvo73AuzYAr8yqmgJJ5zIy6mD6zyFpouAdi/5GA3TR8KW7qY47
-	fAXA==
-X-Received: by 10.112.17.129 with SMTP id o1mr19647915lbd.54.1357199538375;
-	Wed, 02 Jan 2013 23:52:18 -0800 (PST)
-Received: from prime (a91-153-5-18.elisa-laajakaista.fi. [91.153.5.18])
-	by mx.google.com with ESMTPS id u5sm16731087lbm.8.2013.01.02.23.52.16
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Wed, 02 Jan 2013 23:52:17 -0800 (PST)
-Received: from cazfi by prime with local (Exim 4.80)
-	(envelope-from <cazfi74@gmail.com>)
-	id 1Tqfb5-0005kU-CK; Thu, 03 Jan 2013 09:52:15 +0200
-From: Marko Lindqvist <cazfi74@gmail.com>
-To: yocto@yoctoproject.org,
-	mark.hatle@windriver.com
-Date: Thu,  3 Jan 2013 09:52:12 +0200
-Message-Id: <1357199532-22977-2-git-send-email-cazfi74@gmail.com>
-X-Mailer: git-send-email 1.7.10.4
-In-Reply-To: <1357199532-22977-1-git-send-email-cazfi74@gmail.com>
-References: <1357199532-22977-1-git-send-email-cazfi74@gmail.com>
+Return-Path: <ronan@fridu.net>
+Received: from mail-qc0-f173.google.com (mail-qc0-f173.google.com
+	[209.85.216.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BA9FEE006D2
+	for <yocto@yoctoproject.org>; Thu,  3 Jan 2013 04:48:16 -0800 (PST)
+Received: by mail-qc0-f173.google.com with SMTP id b12so7908022qca.18
+	for <yocto@yoctoproject.org>; Thu, 03 Jan 2013 04:48:15 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:cc:content-type
+	:x-gm-message-state;
+	bh=d0WrNbjcN3cKttm5VeLPNPdf7kcnpa5IFqo9wtaHufk=;
+	b=muJGPWi7xdT9eCLydXJ8dooVopICI4kUwO2xYZ/+ngCMozfxN2bx+SemTwvCvSfcX2
+	N7IFY3Zln10b6bcFuOThvWoXCx2aZbTMWB7WBRgCBBYK3vX8N3vAjqBLUdTGaBhneszI
+	jsMWSDRSRVpkHAopxBV52pk/19Er5dNZJL3QGvwzzEfjusGLHEc4QvrP8Mhx/1vGt/J9
+	VF+6cILv8Uy7c4IxTm5UgZYBSGhqU8P1X/JmHYfbofw60O23woCQ5W8IATE0X6ehs7mR
+	b7OMqWgkfg5tZ2LQdZf8w35C/k/G0BBGcuyAIvT4M36Zx0RoMMxHTh/alDzRy2CGOSq8
+	Yg4g==
+MIME-Version: 1.0
+Received: by 10.49.130.167 with SMTP id of7mr32387399qeb.22.1357217295657;
+	Thu, 03 Jan 2013 04:48:15 -0800 (PST)
+Received: by 10.49.58.194 with HTTP; Thu, 3 Jan 2013 04:48:15 -0800 (PST)
+Date: Thu, 3 Jan 2013 13:48:15 +0100
+Message-ID: <CAEmu=9FBbN0x+iTj07Wz1qb2Xht8wi-CMr_s5GojtoW3b3VCpA@mail.gmail.com>
+From: Ronan Le Martret <ronan@fridu.net>
+To: yocto@yoctoproject.org
+X-Gm-Message-State: ALoCoQk7I/wsE26tHKgR7rUTinJ/zobbtWOQ2ytGQV76E7A2ZuOYiNK83NSIjkfL/BsSVDi85979
 X-Mailman-Approved-At: Fri, 04 Jan 2013 09:33:47 -0800
-Cc: Marko Lindqvist <cazfi74@gmail.com>
-Subject: [PATCH] fix build with automake-1.13.
+Subject: cairo failed on openSUSE
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,35 +38,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 03 Jan 2013 07:52:20 -0000
+X-List-Received-Date: Thu, 03 Jan 2013 12:48:17 -0000
+X-Groupsio-MsgNum: 11356
+Content-Type: multipart/mixed; boundary=047d7bdc1a86ca6b6004d261c63b
 
-Rename autoconf input file from deprecated name configure.in to
-configure.ac
-Replace AM_CONFIG_HEADER obsoleted in automake-1.13 with
-AC_CONFIG_HEADERS.
+--047d7bdc1a86ca6b6004d261c63b
+Content-Type: text/plain; charset=ISO-8859-1
 
-Signed-off-by: Marko Lindqvist <cazfi74@gmail.com>
----
- trunk/{configure.in => configure.ac} |    2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
- rename trunk/{configure.in => configure.ac} (98%)
+- add libpng version 15 to configure.ac of cairo. (libpng12 confict.)
 
-diff --git a/trunk/configure.in b/trunk/configure.ac
-similarity index 98%
-rename from trunk/configure.in
-rename to trunk/configure.ac
-index 396f3ac..a90cfb2 100644
---- a/trunk/configure.in
-+++ b/trunk/configure.ac
-@@ -1,6 +1,6 @@
- dnl Process this file with autoconf to produce a configure script. -*-m4-*-
- AC_INIT(src/prelink.c)
--AM_CONFIG_HEADER(config.h)
-+AC_CONFIG_HEADERS(config.h)
- AC_PREREQ(2.13)			dnl Minimum Autoconf version required.
- AC_CANONICAL_HOST
- 
 -- 
-1.7.10.4
+Ronan Le Martret
+Intel Open Source Technology Center
 
+--047d7bdc1a86ca6b6004d261c63b
+Content-Type: application/octet-stream; name="bug_cairo_png_version.patch"
+Content-Disposition: attachment; filename="bug_cairo_png_version.patch"
+Content-Transfer-Encoding: base64
+X-Attachment-Id: f_hbhqkpzo0
 
+ZGlmZiAtLWdpdCBhL21ldGEvcmVjaXBlcy1ncmFwaGljcy9jYWlyby9jYWlyb18xLjEyLjguYmIg
+Yi9tZXRhL3JlY2lwZXMtZ3JhcGhpY3MvY2Fpcm8vY2Fpcm9fMS4xMi44LmJiCmluZGV4IDA1ODg1
+NGMuLjhjZjkzZjkgMTAwNjQ0Ci0tLSBhL21ldGEvcmVjaXBlcy1ncmFwaGljcy9jYWlyby9jYWly
+b18xLjEyLjguYmIKKysrIGIvbWV0YS9yZWNpcGVzLWdyYXBoaWNzL2NhaXJvL2NhaXJvXzEuMTIu
+OC5iYgpAQCAtNCw3ICs0LDkgQEAgTElDX0ZJTEVTX0NIS1NVTSA9ICJmaWxlOi8vQ09QWUlORztt
+ZDU9ZTczZTk5OWUwYzcyYjVhYzkwMTI0MjRmYTE1N2FkNzciCiAKIFBSID0gInIwIgogCi1TUkNf
+VVJJID0gImh0dHA6Ly9jYWlyb2dyYXBoaWNzLm9yZy9yZWxlYXNlcy9jYWlyby0ke1BWfS50YXIu
+eHoiCitTUkNfVVJJID0gImh0dHA6Ly9jYWlyb2dyYXBoaWNzLm9yZy9yZWxlYXNlcy9jYWlyby0k
+e1BWfS50YXIueHogXAorICAgICAgICAgICBmaWxlOi8vbGlicG5nX2FkZHZlcnNpb24ucGF0Y2gg
+XAorICAgICAgICAgICIKIAogU1JDX1VSSVttZDVzdW1dID0gIjhiM2RjYWRlODU5YzQ0ZmI3ZTU2
+ZmM2OGVkZmU5YTQ1IgogU1JDX1VSSVtzaGEyNTZzdW1dID0gIjhmYmI2ZmM2NjExN2FiNDEwMGJh
+ZDgzMGNiNDQ3OTQ5N2U1M2M2ZjNmYWNiOThiZjA1YzhkMjk4NTU0ZWJkZDkiCmRpZmYgLS1naXQg
+YS9tZXRhL3JlY2lwZXMtZ3JhcGhpY3MvY2Fpcm8vZmlsZXMvbGlicG5nX2FkZHZlcnNpb24ucGF0
+Y2ggYi9tZXRhL3JlY2lwZXMtZ3JhcGhpY3MvY2Fpcm8vZmlsZXMvbGlicG5nX2FkZHZlcnNpb24u
+cGF0Y2gKbmV3IGZpbGUgbW9kZSAxMDA2NDQKaW5kZXggMDAwMDAwMC4uMGY0MGZiMwotLS0gL2Rl
+di9udWxsCisrKyBiL21ldGEvcmVjaXBlcy1ncmFwaGljcy9jYWlyby9maWxlcy9saWJwbmdfYWRk
+dmVyc2lvbi5wYXRjaApAQCAtMCwwICsxLDEzIEBACitkaWZmIC0tZ2l0IGEvY29uZmlndXJlLmFj
+IGIvY29uZmlndXJlLmFjCitpbmRleCBmNTIzMjg0Li4yMjM1YzE2IDEwMDY0NAorLS0tIGEvY29u
+ZmlndXJlLmFjCisrKysgYi9jb25maWd1cmUuYWMKK0BAIC0zMDgsNyArMzA4LDcgQEAgQ0FJUk9f
+RU5BQkxFX0ZVTkNUSU9OUyhwbmcsIFBORywgeWVzLCBbCisgICBBQ19BUkdfVkFSKFtwbmdfUkVR
+VUlSRVNdLCBbbW9kdWxlIG5hbWUgZm9yIGxpYnBuZyB0byBzZWFyY2ggZm9yIHVzaW5nIHBrZy1j
+b25maWddKQorICAgaWYgdGVzdCAieCRwbmdfUkVRVUlSRVMiID0geDsgdGhlbgorICAgICAjIGxp
+YnBuZzEzIGlzIEdudVdpbjMyJ3MgbGlicG5nLTEuMi44IDotKAorLSAgICBmb3IgbCBpbiBsaWJw
+bmcgbGlicG5nMTQgbGlicG5nMTIgbGlicG5nMTMgbGlicG5nMTA7IGRvCisrICAgIGZvciBsIGlu
+IGxpYnBuZyBsaWJwbmcxNSBsaWJwbmcxNCBsaWJwbmcxMiBsaWJwbmcxMyBsaWJwbmcxMDsgZG8K
+KyAgICAgICBpZiAkUEtHX0NPTkZJRyAtLWV4aXN0cyAkbCA7IHRoZW4KKyAgICAgICAgIHBuZ19S
+RVFVSVJFUz0kbAorICAgICAgICAgdXNlX3BuZz15ZXMK
+
+--047d7bdc1a86ca6b6004d261c63b--
