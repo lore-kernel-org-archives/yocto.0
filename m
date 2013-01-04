@@ -1,32 +1,36 @@
-Return-Path: <ronan@fridu.net>
-Received: from mail-qc0-f173.google.com (mail-qc0-f173.google.com
-	[209.85.216.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BA9FEE006D2
-	for <yocto@yoctoproject.org>; Thu,  3 Jan 2013 04:48:16 -0800 (PST)
-Received: by mail-qc0-f173.google.com with SMTP id b12so7908022qca.18
-	for <yocto@yoctoproject.org>; Thu, 03 Jan 2013 04:48:15 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:cc:content-type
-	:x-gm-message-state;
-	bh=d0WrNbjcN3cKttm5VeLPNPdf7kcnpa5IFqo9wtaHufk=;
-	b=muJGPWi7xdT9eCLydXJ8dooVopICI4kUwO2xYZ/+ngCMozfxN2bx+SemTwvCvSfcX2
-	N7IFY3Zln10b6bcFuOThvWoXCx2aZbTMWB7WBRgCBBYK3vX8N3vAjqBLUdTGaBhneszI
-	jsMWSDRSRVpkHAopxBV52pk/19Er5dNZJL3QGvwzzEfjusGLHEc4QvrP8Mhx/1vGt/J9
-	VF+6cILv8Uy7c4IxTm5UgZYBSGhqU8P1X/JmHYfbofw60O23woCQ5W8IATE0X6ehs7mR
-	b7OMqWgkfg5tZ2LQdZf8w35C/k/G0BBGcuyAIvT4M36Zx0RoMMxHTh/alDzRy2CGOSq8
-	Yg4g==
+Return-Path: <martin.jansa@gmail.com>
+Received: from mail-pb0-f43.google.com (mail-pb0-f43.google.com
+	[209.85.160.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3E93EE0045D
+	for <yocto@yoctoproject.org>; Fri,  4 Jan 2013 09:45:18 -0800 (PST)
+Received: by mail-pb0-f43.google.com with SMTP id um15so9329076pbc.16
+	for <yocto@yoctoproject.org>; Fri, 04 Jan 2013 09:45:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=x-received:date:from:to:cc:subject:message-id:references
+	:mime-version:content-type:content-disposition:in-reply-to
+	:user-agent; bh=Lq0WL0jdldZ2yU3HLUByq6Ayj9gat0EeB+Vw0wBmj7Y=;
+	b=j4swD0G6hqxO2Gd4KgQt+fQX7Ube9ZeUnJIByYeGDcRcrPdxKGwbqafRAmfz7BIGKh
+	dRhYZL998yoMLjTKFZPljOE6LJkHnP6xdlrIDnCNRwBHjsPyzTeIGYyz8PAY1LRrVQ9W
+	9TqtUeVi7WnPRGP7XmWFdSiELApkFUR+Sq5Jy10CwcOauq1HlYx54VTLtbAB0Tz1sZW5
+	E2j0WFNgIeX+3svoKS3LTx+X2ijrybA40qLQ5bXwmT3QB/E/uzczpieaUN8ThTa14L5l
+	nx43L6cIgJHYyB55dj9bj6zu4+lH42/NsD+B9Dx+un0V/5QmPFXQKwdbde74dDeyMUxc
+	QV4w==
+X-Received: by 10.68.197.9 with SMTP id iq9mr162439452pbc.130.1357321517966;
+	Fri, 04 Jan 2013 09:45:17 -0800 (PST)
+Received: from localhost (ip-62-24-80-7.net.upcbroadband.cz. [62.24.80.7])
+	by mx.google.com with ESMTPS id kp4sm32565918pbc.52.2013.01.04.09.45.15
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Fri, 04 Jan 2013 09:45:16 -0800 (PST)
+Date: Fri, 4 Jan 2013 18:45:13 +0100
+From: Martin Jansa <martin.jansa@gmail.com>
+To: Ronan Le Martret <ronan@fridu.net>
+Message-ID: <20130104174513.GD3222@jama>
+References: <CAEmu=9FBbN0x+iTj07Wz1qb2Xht8wi-CMr_s5GojtoW3b3VCpA@mail.gmail.com>
 MIME-Version: 1.0
-Received: by 10.49.130.167 with SMTP id of7mr32387399qeb.22.1357217295657;
-	Thu, 03 Jan 2013 04:48:15 -0800 (PST)
-Received: by 10.49.58.194 with HTTP; Thu, 3 Jan 2013 04:48:15 -0800 (PST)
-Date: Thu, 3 Jan 2013 13:48:15 +0100
-Message-ID: <CAEmu=9FBbN0x+iTj07Wz1qb2Xht8wi-CMr_s5GojtoW3b3VCpA@mail.gmail.com>
-From: Ronan Le Martret <ronan@fridu.net>
-To: yocto@yoctoproject.org
-X-Gm-Message-State: ALoCoQk7I/wsE26tHKgR7rUTinJ/zobbtWOQ2ytGQV76E7A2ZuOYiNK83NSIjkfL/BsSVDi85979
-X-Mailman-Approved-At: Fri, 04 Jan 2013 09:33:47 -0800
-Subject: cairo failed on openSUSE
+In-Reply-To: <CAEmu=9FBbN0x+iTj07Wz1qb2Xht8wi-CMr_s5GojtoW3b3VCpA@mail.gmail.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+Cc: yocto@yoctoproject.org
+Subject: Re: cairo failed on openSUSE
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,51 +42,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 03 Jan 2013 12:48:17 -0000
-X-Groupsio-MsgNum: 11356
-Content-Type: multipart/mixed; boundary=047d7bdc1a86ca6b6004d261c63b
+X-List-Received-Date: Fri, 04 Jan 2013 17:45:18 -0000
+X-Groupsio-MsgNum: 11357
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="ILuaRSyQpoVaJ1HG"
+Content-Disposition: inline
 
---047d7bdc1a86ca6b6004d261c63b
-Content-Type: text/plain; charset=ISO-8859-1
+--ILuaRSyQpoVaJ1HG
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-- add libpng version 15 to configure.ac of cairo. (libpng12 confict.)
+On Thu, Jan 03, 2013 at 01:48:15PM +0100, Ronan Le Martret wrote:
+> - add libpng version 15 to configure.ac of cairo. (libpng12 confict.)
 
--- 
-Ronan Le Martret
-Intel Open Source Technology Center
+Please follow:
+http://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEmbedded
 
---047d7bdc1a86ca6b6004d261c63b
-Content-Type: application/octet-stream; name="bug_cairo_png_version.patch"
-Content-Disposition: attachment; filename="bug_cairo_png_version.patch"
-Content-Transfer-Encoding: base64
-X-Attachment-Id: f_hbhqkpzo0
+And this belongs to oe-core ML.
 
-ZGlmZiAtLWdpdCBhL21ldGEvcmVjaXBlcy1ncmFwaGljcy9jYWlyby9jYWlyb18xLjEyLjguYmIg
-Yi9tZXRhL3JlY2lwZXMtZ3JhcGhpY3MvY2Fpcm8vY2Fpcm9fMS4xMi44LmJiCmluZGV4IDA1ODg1
-NGMuLjhjZjkzZjkgMTAwNjQ0Ci0tLSBhL21ldGEvcmVjaXBlcy1ncmFwaGljcy9jYWlyby9jYWly
-b18xLjEyLjguYmIKKysrIGIvbWV0YS9yZWNpcGVzLWdyYXBoaWNzL2NhaXJvL2NhaXJvXzEuMTIu
-OC5iYgpAQCAtNCw3ICs0LDkgQEAgTElDX0ZJTEVTX0NIS1NVTSA9ICJmaWxlOi8vQ09QWUlORztt
-ZDU9ZTczZTk5OWUwYzcyYjVhYzkwMTI0MjRmYTE1N2FkNzciCiAKIFBSID0gInIwIgogCi1TUkNf
-VVJJID0gImh0dHA6Ly9jYWlyb2dyYXBoaWNzLm9yZy9yZWxlYXNlcy9jYWlyby0ke1BWfS50YXIu
-eHoiCitTUkNfVVJJID0gImh0dHA6Ly9jYWlyb2dyYXBoaWNzLm9yZy9yZWxlYXNlcy9jYWlyby0k
-e1BWfS50YXIueHogXAorICAgICAgICAgICBmaWxlOi8vbGlicG5nX2FkZHZlcnNpb24ucGF0Y2gg
-XAorICAgICAgICAgICIKIAogU1JDX1VSSVttZDVzdW1dID0gIjhiM2RjYWRlODU5YzQ0ZmI3ZTU2
-ZmM2OGVkZmU5YTQ1IgogU1JDX1VSSVtzaGEyNTZzdW1dID0gIjhmYmI2ZmM2NjExN2FiNDEwMGJh
-ZDgzMGNiNDQ3OTQ5N2U1M2M2ZjNmYWNiOThiZjA1YzhkMjk4NTU0ZWJkZDkiCmRpZmYgLS1naXQg
-YS9tZXRhL3JlY2lwZXMtZ3JhcGhpY3MvY2Fpcm8vZmlsZXMvbGlicG5nX2FkZHZlcnNpb24ucGF0
-Y2ggYi9tZXRhL3JlY2lwZXMtZ3JhcGhpY3MvY2Fpcm8vZmlsZXMvbGlicG5nX2FkZHZlcnNpb24u
-cGF0Y2gKbmV3IGZpbGUgbW9kZSAxMDA2NDQKaW5kZXggMDAwMDAwMC4uMGY0MGZiMwotLS0gL2Rl
-di9udWxsCisrKyBiL21ldGEvcmVjaXBlcy1ncmFwaGljcy9jYWlyby9maWxlcy9saWJwbmdfYWRk
-dmVyc2lvbi5wYXRjaApAQCAtMCwwICsxLDEzIEBACitkaWZmIC0tZ2l0IGEvY29uZmlndXJlLmFj
-IGIvY29uZmlndXJlLmFjCitpbmRleCBmNTIzMjg0Li4yMjM1YzE2IDEwMDY0NAorLS0tIGEvY29u
-ZmlndXJlLmFjCisrKysgYi9jb25maWd1cmUuYWMKK0BAIC0zMDgsNyArMzA4LDcgQEAgQ0FJUk9f
-RU5BQkxFX0ZVTkNUSU9OUyhwbmcsIFBORywgeWVzLCBbCisgICBBQ19BUkdfVkFSKFtwbmdfUkVR
-VUlSRVNdLCBbbW9kdWxlIG5hbWUgZm9yIGxpYnBuZyB0byBzZWFyY2ggZm9yIHVzaW5nIHBrZy1j
-b25maWddKQorICAgaWYgdGVzdCAieCRwbmdfUkVRVUlSRVMiID0geDsgdGhlbgorICAgICAjIGxp
-YnBuZzEzIGlzIEdudVdpbjMyJ3MgbGlicG5nLTEuMi44IDotKAorLSAgICBmb3IgbCBpbiBsaWJw
-bmcgbGlicG5nMTQgbGlicG5nMTIgbGlicG5nMTMgbGlicG5nMTA7IGRvCisrICAgIGZvciBsIGlu
-IGxpYnBuZyBsaWJwbmcxNSBsaWJwbmcxNCBsaWJwbmcxMiBsaWJwbmcxMyBsaWJwbmcxMDsgZG8K
-KyAgICAgICBpZiAkUEtHX0NPTkZJRyAtLWV4aXN0cyAkbCA7IHRoZW4KKyAgICAgICAgIHBuZ19S
-RVFVSVJFUz0kbAorICAgICAgICAgdXNlX3BuZz15ZXMK
+Cheers,
 
---047d7bdc1a86ca6b6004d261c63b--
+--=20
+Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
+
+--ILuaRSyQpoVaJ1HG
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2.0.19 (GNU/Linux)
+
+iEYEARECAAYFAlDnFSkACgkQN1Ujt2V2gBy1iQCZAYtH52Xhb5GSk4X+/+ZXOjqz
+qpoAoKOyy8B7I2KVvILLxHJOAr1FUGzK
+=I9Ee
+-----END PGP SIGNATURE-----
+
+--ILuaRSyQpoVaJ1HG--
