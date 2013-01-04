@@ -1,29 +1,33 @@
-Return-Path: <huanmateme@163.com>
-Received: from m13-24.163.com (unknown [220.181.13.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E2890E006F5
-	for <yocto@yoctoproject.org>; Thu,  3 Jan 2013 22:53:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=Received:Date:From:To:Subject:Content-Type:
-	MIME-Version:Message-ID; bh=/uVjbiKnyaRz0rXf4Ag4ONtV9bnDqL3CjUNB
-	1S00vBM=; b=XTmQ7bZpg03MSCt+Kkl4n5BmrfZ5sMelKD/CPu5vUboZow75u/gB
-	VbpxSCwZTOK5VHhrH0kFZh6ONOHCIF1clOpo6oWbV69koNZrSoGGTAqrZfkjIJ2Y
-	ScKgjWU/DN1uDG3K9kMTEokAYATBUzblpnR0/F8T3YtVVcARRAxLpq4=
-Received: from huanmateme$163.com ( [61.148.56.138] ) by
-	ajax-webmail-wmsvr24 (Coremail) ; Fri, 4 Jan 2013 14:53:14 +0800 (CST)
-X-Originating-IP: [61.148.56.138]
-Date: Fri, 4 Jan 2013 14:53:14 +0800 (CST)
-From: Biao <huanmateme@163.com>
-To: yocto <yocto@yoctoproject.org>
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version SP_ntes V3.5 build
-	20121219(21170.5156.5150) Copyright (c) 2002-2013 www.mailtech.cn
-	163com
-MIME-Version: 1.0
-Message-ID: <2b77c4be.fa75.13c0455c02d.Coremail.huanmateme@163.com>
-X-CM-TRANSID: GMGowGD5oEJafOZQoW0fAA--.16879W
-X-CM-SenderInfo: xkxd0z5dwhzvi6rwjhhfrp/xtbBiBqagE9o6u0MZwAAsD
-X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
-Subject: Where does the 'PN' is set.
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-pa0-f44.google.com (mail-pa0-f44.google.com
+	[209.85.220.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0CE89E006F5
+	for <yocto@yoctoproject.org>; Thu,  3 Jan 2013 23:22:45 -0800 (PST)
+Received: by mail-pa0-f44.google.com with SMTP id hz11so9155063pad.17
+	for <yocto@yoctoproject.org>; Thu, 03 Jan 2013 23:22:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=x-received:from:to:cc:subject:date:message-id:x-mailer;
+	bh=JmUAsGsbrrzohAQ14asy45QrQ0BISZQugLcIvc9/upc=;
+	b=TKBwzhVb0ONJYjij7ATropTC1FcuR2S5HzkL2bFOc7jxexH5qdtTJB4lCObn8k7ZgY
+	0wqL8W5+WLabC37XG5s3vMvQcuLNBXCAVzjOV0/TgKgw/v9+aeEBBrZvsQVDwXl9B/NZ
+	WVqMpTdRBON1A6Iu5sTG6rAWVXstnepxZkZU1M9oi+VcA+MiJ29l/vI0GN8rIS96F+GN
+	PeaOKIYsfgMX5z4gl04fiq+fBg6R7fRlWbi/rWcFWfygROCV9+BxAO387pZ8OO55ewRq
+	XFTJR1EeCLLaxr3OIF5SCn74uGbFvjzaHEzrAehCDDp+snDOQOjXHWZrb14Nxg2ym4xa
+	Xi9g==
+X-Received: by 10.66.88.197 with SMTP id bi5mr151769117pab.36.1357284164039;
+	Thu, 03 Jan 2013 23:22:44 -0800 (PST)
+Received: from agate.agate.openembedded.org (oldbuilder.nslu2-linux.org.
+	[140.211.169.168])
+	by mx.google.com with ESMTPS id bh9sm32720060pab.12.2013.01.03.23.22.42
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Thu, 03 Jan 2013 23:22:42 -0800 (PST)
+From: Khem Raj <raj.khem@gmail.com>
+To: autif.mlist@gmail.com,
+	yocto@yoctoproject.org
+Date: Thu,  3 Jan 2013 23:22:03 -0800
+Message-Id: <1357284123-14925-1-git-send-email-raj.khem@gmail.com>
+X-Mailer: git-send-email 1.7.9.5
+Subject: [meta-mono][PATCH] layer.conf: Use .= for adding to BBPATH and += to BBFILES
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,32 +39,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 04 Jan 2013 06:53:45 -0000
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_238351_865356997.1357282394156"
+X-List-Received-Date: Fri, 04 Jan 2013 07:22:45 -0000
 
-------=_Part_238351_865356997.1357282394156
-Content-Type: text/plain; charset=GBK
-Content-Transfer-Encoding: 7bit
+Fixes parsing errors which is appearing after this commit to
+meta-openembedded
 
-Hi,
+http://cgit.openembedded.org/meta-openembedded/commit/?id=3c21a46020bd0816579648f
+
+This triggers
+exception NameError: name 'base_contains' is not defined
+without this change
+
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
+---
+ conf/layer.conf |    4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/conf/layer.conf b/conf/layer.conf
+index 6bcf70e..d8cc797 100644
+--- a/conf/layer.conf
++++ b/conf/layer.conf
+@@ -1,8 +1,8 @@
+ # We have a conf and classes directory, add to BBPATH
+-BBPATH := "${BBPATH}:${LAYERDIR}"
++BBPATH .= ":${LAYERDIR}"
+ 
+ # We have a recipes directory, add to BBFILES
+-BBFILES := "${BBFILES} ${LAYERDIR}/recipes-mono/*/*.bb \
++BBFILES += "${LAYERDIR}/recipes-mono/*/*.bb \
+             ${LAYERDIR}/recipes-mono/*/*.bbappend"
+ 
+ BBFILE_COLLECTIONS += "mono"
+-- 
+1.7.9.5
 
 
-In meta/conf/documentation.conf
-PN[doc] = "PN holds the name of the package (Package Name). It is gathered from the bitbake-file filename"
-
-
-I would like to know where does the so-called 'gather' exactly happens?
-For example, does it mean the bitbake core get the 'PN = u-boot' by cutting of the name of 'u-boot_2011.03.bb'?
-
-
-Thanks,
-Biao 
-
-------=_Part_238351_865356997.1357282394156
-Content-Type: text/html; charset=GBK
-Content-Transfer-Encoding: 7bit
-
-<div style="line-height:1.7;color:#000000;font-size:14px;font-family:arial"><div>Hi,</div><div><br></div><div>In meta/conf/documentation.conf</div>PN[doc] = "PN holds the name of the package (Package Name). It is gathered from the bitbake-file filename"<div><br></div><div>I would like to know where does the so-called 'gather' exactly happens?</div><div>For example, does it mean the bitbake core get the 'PN = u-boot' by cutting of the name of 'u-boot_2011.03.bb'?</div><div><br></div><div>Thanks,</div><div>Biao&nbsp;</div></div>
-
-------=_Part_238351_865356997.1357282394156--
