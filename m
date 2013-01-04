@@ -1,23 +1,32 @@
-Return-Path: <Maxin.John@enea.com>
-Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id B0F93E01248
-	for <yocto@yoctoproject.org>; Fri,  4 Jan 2013 07:41:49 -0800 (PST)
-Received: from localhost (172.16.140.24) by smtp.enea.com (172.21.1.209) with
-	Microsoft SMTP Server id 14.2.318.1; Fri, 4 Jan 2013 16:41:48 +0100
-Date: Fri, 4 Jan 2013 16:41:33 +0100
-From: "Maxin B. John" <Maxin.John@enea.com>
-To: Richard Purdie <richard.purdie@linuxfoundation.org>
-Message-ID: <20130104154133.GA12178@ubuntu.ubuntu-domain>
-References: <1357299055-56828-1-git-send-email-maxin.john@enea.com>
-	<1357309662.28649.127.camel@ted>
+Return-Path: <belen.barros.pena@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 24C22E013CE
+	for <yocto@yoctoproject.org>; Fri,  4 Jan 2013 08:57:19 -0800 (PST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 04 Jan 2013 08:57:18 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.84,411,1355126400"; d="scan'208";a="269997257"
+Received: from irsmsx102.ger.corp.intel.com ([163.33.3.155])
+	by fmsmga001.fm.intel.com with ESMTP; 04 Jan 2013 08:57:17 -0800
+Received: from irsmsx104.ger.corp.intel.com ([169.254.5.151]) by
+	IRSMSX102.ger.corp.intel.com ([169.254.2.95]) with mapi id
+	14.01.0355.002; Fri, 4 Jan 2013 16:57:16 +0000
+From: "Barros Pena, Belen" <belen.barros.pena@intel.com>
+To: "Zhang, Jessica" <jessica.zhang@intel.com>, Biao <huanmateme@163.com>,
+	Mihai Lindner <mihaix.lindner@linux.intel.com>
+Thread-Topic: [yocto] Fails to launch the hob
+Thread-Index: AQHN6pyMZESc/95WWU6FotoyhKjvKg==
+Date: Fri, 4 Jan 2013 16:57:15 +0000
+Message-ID: <CD0CBA1D.1EC82%belen.barros.pena@intel.com>
+In-Reply-To: <C6510F6D410BB64A8C15398EDC6B847C46B7EE6F@ORSMSX101.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Microsoft-MacOutlook/14.2.5.121010
+x-originating-ip: [10.252.23.91]
 MIME-Version: 1.0
-In-Reply-To: <1357309662.28649.127.camel@ted>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-Received-SPF: None (SESTOEX03.enea.se: Maxin.John@enea.com does not
-	designate permitted sender hosts)
-Cc: yocto@yoctoproject.org, scott.a.garman@intel.com,
-	openembedded-core@lists.openembedded.org
-Subject: Re: [PATCH] latencytop: add sudo as runtime dependency
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Fails to launch the hob
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,65 +38,165 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 04 Jan 2013 15:41:50 -0000
+X-List-Received-Date: Fri, 04 Jan 2013 16:57:19 -0000
+Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+Content-ID: <579695B0B2416C42B14889DAC04B8151@intel.com>
+Content-Transfer-Encoding: quoted-printable
 
-Hi Richard,
-On Fri, Jan 04, 2013 at 02:27:42PM +0000, Richard Purdie wrote:
-> On Fri, 2013-01-04 at 12:30 +0100, Maxin B. John wrote:
-> > From: "Maxin B. John" <maxin.john@enea.com>
-> > 
-> > Latencytop needs superuser privileges. The latencytop plugin in
-> > eclipse invokes it as 'sudo latencytop'. So, it will be good to
-> > include sudo as a runtime dependency.
-> > 
-> > Signed-off-by: Maxin B. John <maxin.john@enea.com>
-> > ---
-> >  meta/recipes-kernel/latencytop/latencytop_0.5.bb |    3 +++
-> >  1 files changed, 3 insertions(+), 0 deletions(-)
-> > 
-> > diff --git a/meta/recipes-kernel/latencytop/latencytop_0.5.bb b/meta/recipes-kernel/latencytop/latencytop_0.5.bb
-> > index 3e35bf9..a148a47 100644
-> > --- a/meta/recipes-kernel/latencytop/latencytop_0.5.bb
-> > +++ b/meta/recipes-kernel/latencytop/latencytop_0.5.bb
-> > @@ -7,6 +7,9 @@ LIC_FILES_CHKSUM = "file://latencytop.c;endline=23;md5=ee9ea9b1415356e5734adad4a
-> >  
-> >  DEPENDS = "virtual/libintl ncurses glib-2.0  ${@base_contains('DISTRO_FEATURES', 'x11', 'gtk+', '', d)}"
-> >  
-> > +# latencytop and it's eclipse support need sudo
-> > +RDEPENDS_${PN} = "sudo"
-> > +
-> >  PR = "r3"
-> 
-> Shouldn't the eclipse support RDEPEND on sudo, not latencytop? There are
-> several ways you could run latencytop without sudo...
+We have updated the Hob Manual to include the required packages and
+screenshots of the 1.3 Hob
 
-I agree. We can run latencytop without sudo. However, it is possible
-to install the Eclipse Yocto Plug-in from the downloads.yoctoproject.org.
-So, it may not be necessary to build the Eclipse Yocto Plug-in
-support in-order to use it.
+https://www.yoctoproject.org/documentation/hob-manual
 
-In that case, when we use the latencytop plugin from Eclipse by
-connecting to a target board running linux, it will fail with the
-following output:
-# sudo : command not found
+Belen
 
-It is because of this line in 'LatencytopHandler.java':
-private static String initCmd="export
-PATH=$PATH:/usr/local/sbin:/usr/sbin:/sbin; cd; sudo latencytop\r"; 
+On 03/01/2013 23:11, "Zhang, Jessica" <jessica.zhang@intel.com> wrote:
 
-This line 'assumes' that every target board with latencytop also have
-sudo. Please correct me if I am wrong.
- 
-> Following this logic, we'd add an RDEPENDS on sudo for every app that
-> could possibly need root privs.
-I didn't mean that :) 
-This is a special case for latencytop. Please let me know your comments.
+>Hi Belen,
+>
+>I'll modify the error message per suggestion.  By looking at the existing
+>code, seems we only check for GTK+ and PyGtk version, so probably I'll
+>drop PyGobject in the error message.  So you probably can update the hob
+>info on the web-site accordingly.
+>
+>Thanks,
+>Jessica
+>
+>-----Original Message-----
+>From: yocto-bounces@yoctoproject.org
+>[mailto:yocto-bounces@yoctoproject.org] On Behalf Of Barros Pena, Belen
+>Sent: Thursday, January 03, 2013 8:48 AM
+>To: Biao; Mihai Lindner
+>Cc: yocto@yoctoproject.org
+>Subject: Re: [yocto] Fails to launch the hob
+>
+>Any chance we could change the content of the error message to provide
+>better indication of what the problem is? The idea would be adding
+>version numbers and printing only what's causing trouble.
+>
+>So, from:
+>
+>$ hob
+>FATAL: Gtk+, PyGtk and PyGobject are required to use Hob, You have Gtk+
+>2.20.1 and PyGtk 2.17.0.
+>
+>To something like:
+>
+>$ hob
+>FATAL: Hob requires Gtk+ 2.20.0 or higher, PyGtk 2.21.0 or higher and
+>PyGobject [insert minimum version here] or higher You have PyGtk 2.17.0.
+>
+>Would this be possible?
+>
+>We should probably also add a paragraph listing essential packages to the
+>Hob manual page on the website
+>(https://www.yoctoproject.org/documentation/hob-manual). If someone tells
+>me what's the minimum version of PyGobject required I could probably edit
+>the page myself.
+>
+>Thanks!
+>
+>Belen
+>
+>
+>
+>From: Biao <huanmateme@163.com<mailto:huanmateme@163.com>>
+>Date: Tuesday, 25 December 2012 06:16
+>To: Mihai Lindner =
 
-> Cheers,
-> 
-> Richard
-Best Regards,
-Maxin
+><mihaix.lindner@linux.intel.com<mailto:mihaix.lindner@linux.intel.com>>
+>Cc: "yocto@yoctoproject.org<mailto:yocto@yoctoproject.org>"
+><yocto@yoctoproject.org<mailto:yocto@yoctoproject.org>>
+>Subject: Re: [yocto] Fails to launch the hob
+>
+>
+>At 2012-12-24 20:37:26,"Mihai Lindner"
+><mihaix.lindner@linux.intel.com<mailto:mihaix.lindner@linux.intel.com>>
+>wrote:
+>>On Mon, 2012-12-24 at 14:23 +0200, Mihai Lindner wrote:
+>>> On Mon, 2012-12-24 at 15:37 +0800, Biao wrote:
+>>> > Hi all,
+>>> >
+>>> >
+>>> > I can not launch hob on my ubun-10.04, it seems saying "no
+>>>PyGobject" whereas python-object has already been installed. Can anyone
+>>>kindly give a help?
+>>> >
+>>Oh, forgot to mention here, that you should probably be using Denzil,
+>>instead of Danny or 'master'.
+>
+>Thanks for the kindly reminder.
+>>> >
+>>> > $ hob
+>>> > FATAL: Gtk+, PyGtk and PyGobject are required to use Hob, You have
+>>> > Gtk+ 2.20.1 and PyGtk 2.17.0.
+>>> >
+>>> >
+>>> > $ sudo apt-get install python-gobject Reading package lists... Done
+>>> > Building dependency tree Reading state information... Done
+>>> > python-gobject is already the newest version.
+>>> >
+>>> Python-gobject seems fine, Gtk seems fine (you have 2.20.1, Hob wants
+>>> higher than 2.20.0), which leaves python-gtk2 version 2.17.0 on your
+>>> system. Hob wants a version higher than 2.21.0.
+>
+>Thanks for this information, it seems the prompt message on the
+>environment checking is not so clear.  Where are the hob users supposed
+>to get such kind of information from?
+>
+>I did not found this information from the hob manual.
+>
+>>>
+>>> --Mihai
+>>> >
+>>> > $ uname -a
+>>> > Linux zb-d 2.6.32-33-generic #72-Ubuntu SMP Fri Jul 29 21:07:13 UTC
+>>> > 2011 x86_64 GNU/Linux
+>>> >
+>>> >
+>>> > Thanks,
+>>> > Biao
+>>> > _______________________________________________ yocto mailing list
+>>> > yocto@yoctoproject.org<mailto:yocto@yoctoproject.org>
+>>> > https://lists.yoctoproject.org/listinfo/yocto
+>>>
+>>>
+>>> _______________________________________________
+>>> yocto mailing list
+>>> yocto@yoctoproject.org<mailto:yocto@yoctoproject.org>
+>>> https://lists.yoctoproject.org/listinfo/yocto
+>>
+>>
+>>_______________________________________________
+>>yocto mailing list
+>>yocto@yoctoproject.org<mailto:yocto@yoctoproject.org>
+>>https://lists.yoctoproject.org/listinfo/yocto
+>
+>---------------------------------------------------------------------
+>Intel Corporation (UK) Limited
+>Registered No. 1134945 (England)
+>Registered Office: Pipers Way, Swindon SN3 1RJ VAT No: 860 2173 47
+>
+>This e-mail and any attachments may contain confidential material for the
+>sole use of the intended recipient(s). Any review or distribution by
+>others is strictly prohibited. If you are not the intended recipient,
+>please contact the sender and delete all copies.
+>
+>_______________________________________________
+>yocto mailing list
+>yocto@yoctoproject.org
+>https://lists.yoctoproject.org/listinfo/yocto
+
+---------------------------------------------------------------------
+Intel Corporation (UK) Limited
+Registered No. 1134945 (England)
+Registered Office: Pipers Way, Swindon SN3 1RJ
+VAT No: 860 2173 47
+
+This e-mail and any attachments may contain confidential material for
+the sole use of the intended recipient(s). Any review or distribution
+by others is strictly prohibited. If you are not the intended
+recipient, please contact the sender and delete all copies.
+
 
