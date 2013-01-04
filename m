@@ -1,27 +1,32 @@
-Return-Path: <mark.hatle@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DA721E002AB
-	for <yocto@yoctoproject.org>; Thu,  3 Jan 2013 15:57:05 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id r03Nv3eZ002158
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 3 Jan 2013 15:57:03 -0800 (PST)
-Received: from msp-dhcp10.wrs.com (172.25.34.10) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.2.318.4;
-	Thu, 3 Jan 2013 15:57:02 -0800
-Message-ID: <50E61AD5.6070600@windriver.com>
-Date: Thu, 3 Jan 2013 17:57:09 -0600
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8;
-	rv:17.0) Gecko/17.0 Thunderbird/17.0
-MIME-Version: 1.0
-To: Ilya Dmitrichenko <errordeveloper@gmail.com>
-References: <CAPhDKbHyqGUd5axL+fQVa0dbCF5yAjEEXmnexbb-ZwVJQKXfyA@mail.gmail.com>
-In-Reply-To: <CAPhDKbHyqGUd5axL+fQVa0dbCF5yAjEEXmnexbb-ZwVJQKXfyA@mail.gmail.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: configuration management on remote target
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-da0-f45.google.com (mail-da0-f45.google.com
+	[209.85.210.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 33E17E006CC
+	for <yocto@yoctoproject.org>; Thu,  3 Jan 2013 19:51:15 -0800 (PST)
+Received: by mail-da0-f45.google.com with SMTP id w4so7268599dam.18
+	for <yocto@yoctoproject.org>; Thu, 03 Jan 2013 19:51:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=x-received:from:to:cc:subject:date:message-id:x-mailer;
+	bh=5ukOk1Gxj1BzstCOUruzA9SVcn+OMzQ11pYAmH7xmv4=;
+	b=WsNKO8Mh9249BlqWWgycLtq6sTj0mm6BFlpaXqXfeWMsXgNh/OmL6fxhbJ1HWJSqYf
+	/BTR//hskPEcfsuoyj9B25Y9qMMa/gfAnKEmSEDcxoWHtgExdpSt/DtVS5YP566SFZAm
+	OfEBpxqF3dQext2vWQQ/uffgvqbBwu4e+dyeZJ/OgjHpPmyvv9duzxijA+7va3OjLKon
+	v/LIpgEYQlcKjZHc82h4M0/KiNf3EfPbjVVQKXE7qXYzbhrXnrP/b3PNH0n3TIW+xFei
+	9yGzUG4PJSH/4s0i0itEPL7sPf0UsZe6sX8D5JS6w7ZB7gEjKGBBgOKWcCSS0HxL9AkK
+	XqDQ==
+X-Received: by 10.66.82.200 with SMTP id k8mr151140352pay.56.1357271474908;
+	Thu, 03 Jan 2013 19:51:14 -0800 (PST)
+Received: from agate.agate.openembedded.org (oldbuilder.nslu2-linux.org.
+	[140.211.169.168])
+	by mx.google.com with ESMTPS id kb3sm31432367pbc.27.2013.01.03.19.51.13
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Thu, 03 Jan 2013 19:51:14 -0800 (PST)
+From: Khem Raj <raj.khem@gmail.com>
+To: yocto@yoctoproject.org
+Date: Thu,  3 Jan 2013 19:50:30 -0800
+Message-Id: <1357271430-31116-1-git-send-email-raj.khem@gmail.com>
+X-Mailer: git-send-email 1.7.9.5
+Subject: [meta-intel][PATCH] layer.conf: Use .= for adding to BBPATH and += to BBFILES
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,93 +38,244 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 03 Jan 2013 23:57:06 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 04 Jan 2013 03:51:15 -0000
 
-On 1/3/13 5:43 PM, Ilya Dmitrichenko wrote:
-> Hi,
->
-> As my day job mostly involves configuring servers using puppet configuration
-> management system, I had been thinking of what sort of tool would be best to use
-> on an embedded devices where on some occasions one would want to update a couple
-> of config files and scripts. Perhaps this can be limited just to the `/etc`
-> direcotry...
->
-> So the best I could come up with so far is to implement it as cron job that
-> would pull a git repository, perhaps it would also run a script (git hook) that
-> would restart a daemon or do something of that kind.
->
-> I suppose that some people will suggest to just use packages, but I'm not very
-> keen on maintaining a package repository on some sever out in the internet that
-> would be one big single point of failure. Although, perhaps, on some occasion,
-> this may be the only way.
-> Another reason why I wouldn't like to use git to manage configuration, as that
-> way all configs are going to be at hand from one directory tree, which is, IMO,
-> much quicker to manage and validate rather then a recipes spread across
-> subdirectories.
+Fixes parsing errors which is appearing after this commit to
+meta-openembedded
 
-There are different systems out there that need to be managed (as well as 
-different philosophies of how to manage them.)  Solving all of the problems 
-isn't going to work.  Solving a specific problem has a chance.  :)
+http://cgit.openembedded.org/meta-openembedded/commit/?id=3c21a46020bd0816579648f684c41dbd6333583e
 
-It's fairly typical that a device can be maintained as files, packages, or 
-filesystem images.  Each of those approaches requires a very different 
-upgrade/maintenance mechanism.  In addition since embedded systems do not have 
-an admin console, if they fail during the upgrade process you can brick a user, 
-so a fail safe is almost always required!
+This triggers
+exception NameError: name 'base_contains' is not defined
+without this change
 
-In each of the above methods, you can do things like transfer an individual file 
-(or files) and related reset commands after an upgrade has occurred.. send up a 
-package (or packages) and automate that -- or even upgrade the filesystem, but 
-in each of these cases bandwidth may be at a premium.  Most field upgrade 
-systems want a "delta" (diff) based system, where only the changes have to be 
-sent, not the whole file.
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
+---
+ conf/layer.conf                    |    4 ++--
+ meta-cedartrail/conf/layer.conf    |    4 ++--
+ meta-chiefriver/conf/layer.conf    |    4 ++--
+ meta-crownbay/conf/layer.conf      |    4 ++--
+ meta-crystalforest/conf/layer.conf |    4 ++--
+ meta-emenlow/conf/layer.conf       |    4 ++--
+ meta-fri2/conf/layer.conf          |    4 ++--
+ meta-jasperforest/conf/layer.conf  |    4 ++--
+ meta-n450/conf/layer.conf          |    4 ++--
+ meta-nuc/conf/layer.conf           |    4 ++--
+ meta-romley/conf/layer.conf        |    4 ++--
+ meta-sugarbay/conf/layer.conf      |    4 ++--
+ meta-sys940x/conf/layer.conf       |    4 ++--
+ meta-tlk/conf/layer.conf           |    4 ++--
+ 14 files changed, 28 insertions(+), 28 deletions(-)
 
-> Firstly, I'd appreciate any feedback on this!
->
-> And I do have a few rather more specific questions ;)
-
-> a) How often OE users do not implement any system updates over the wire in their
-> products, although the product is able to access the internet?
-
-Due to the complexity of upgrading, this is fairly typical on embedded systems 
-in my experience...but it's being tolerated less and less over time.  (They 
-usually have some kind of an upgrade mechanism, they just don't do it over the 
-internet.)
-
-> b) Has anyone here use the configuration tools like puppet, chef or cfendgine
-> and understands the benefits?
->
-> c) Has anyone succeeded building git without having to include perl on the
-> target? I'd probably get ways with just a subset of git commands.
-> I have also had a look at libgit2, but not sure if I'd be able to implement
-> something as robust as git itself with libgit2...
-
-Last time I looked (a few months back) it was not possible to build a functional 
-git system w/o perl -- or at least I wasn't able to.  I hope this continues to 
-get better, as perl is -very- heavy weight for an embedded system.
-
-
-So if you want the ultimate works for everyone system.. it really needs to be a 
-field upgrade tool of some kind.  Basically providing the infrastructure to 
-push/pull the update, a way to use a delta of the update to what is already 
-installed on the device to construct the "file" to save bandwidth, a way to 
-apply the update and control the associated behavior.  Then people can use that 
-to implement file, package or image based upgrades... fail safe behavior is also 
-usually device specific and would be implemented based on the toolkit.
-
->
-> Cheers,
-> --
-> Ilya
->
->
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+diff --git a/conf/layer.conf b/conf/layer.conf
+index e9c2b10..31132ab 100644
+--- a/conf/layer.conf
++++ b/conf/layer.conf
+@@ -1,8 +1,8 @@
+ # We have a conf and classes directory, add to BBPATH
+-BBPATH := "${BBPATH}:${LAYERDIR}"
++BBPATH .= ":${LAYERDIR}"
+ 
+ # We have recipes-* directories, add to BBFILES
+-BBFILES := "${BBFILES} ${LAYERDIR}/common/recipes-*/*/*.bb \
++BBFILES += "${LAYERDIR}/common/recipes-*/*/*.bb \
+             ${LAYERDIR}/common/recipes-*/*/*.bbappend"
+ 
+ BBFILE_COLLECTIONS += "intel"
+diff --git a/meta-cedartrail/conf/layer.conf b/meta-cedartrail/conf/layer.conf
+index c19c4c1..0166b35 100644
+--- a/meta-cedartrail/conf/layer.conf
++++ b/meta-cedartrail/conf/layer.conf
+@@ -1,8 +1,8 @@
+ # We have a conf and classes directory, add to BBPATH
+-BBPATH := "${BBPATH}:${LAYERDIR}"
++BBPATH .= ":${LAYERDIR}"
+ 
+ # We have a recipes directory, add to BBFILES
+-BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
++BBFILES += "${LAYERDIR}/recipes-*/*/*.bb \
+ 	${LAYERDIR}/recipes-*/*/*.bbappend"
+ 
+ BBFILE_COLLECTIONS += "cedartrail"
+diff --git a/meta-chiefriver/conf/layer.conf b/meta-chiefriver/conf/layer.conf
+index 5dc3c02..6164f99 100644
+--- a/meta-chiefriver/conf/layer.conf
++++ b/meta-chiefriver/conf/layer.conf
+@@ -1,8 +1,8 @@
+ # We have a conf and classes directory, add to BBPATH
+-BBPATH := "${BBPATH}:${LAYERDIR}"
++BBPATH .= ":${LAYERDIR}"
+ 
+ # We have a recipes directory, add to BBFILES
+-BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
++BBFILES += "${LAYERDIR}/recipes-*/*/*.bb \
+ 	${LAYERDIR}/recipes-*/*/*.bbappend"
+ 
+ BBFILE_COLLECTIONS += "chiefriver"
+diff --git a/meta-crownbay/conf/layer.conf b/meta-crownbay/conf/layer.conf
+index cb17298..e6cc2a0 100644
+--- a/meta-crownbay/conf/layer.conf
++++ b/meta-crownbay/conf/layer.conf
+@@ -1,8 +1,8 @@
+ # We have a conf and classes directory, add to BBPATH
+-BBPATH := "${BBPATH}:${LAYERDIR}"
++BBPATH .= ":${LAYERDIR}"
+ 
+ # We have a recipes directory, add to BBFILES
+-BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
++BBFILES += "${LAYERDIR}/recipes-*/*/*.bb \
+ 	${LAYERDIR}/recipes-*/*/*.bbappend"
+ 
+ BBFILE_COLLECTIONS += "crownbay"
+diff --git a/meta-crystalforest/conf/layer.conf b/meta-crystalforest/conf/layer.conf
+index 6b802d6..daa2ba7 100644
+--- a/meta-crystalforest/conf/layer.conf
++++ b/meta-crystalforest/conf/layer.conf
+@@ -1,8 +1,8 @@
+ # We have a conf and classes directory, add to BBPATH
+-BBPATH := "${BBPATH}:${LAYERDIR}"
++BBPATH .= ":${LAYERDIR}"
+ 
+ # We have a recipes directory, add to BBFILES
+-BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
++BBFILES += "${LAYERDIR}/recipes-*/*/*.bb \
+ 	${LAYERDIR}/recipes-*/*/*.bbappend"
+ 
+ BBFILE_COLLECTIONS += "crystalforest"
+diff --git a/meta-emenlow/conf/layer.conf b/meta-emenlow/conf/layer.conf
+index a49ec47..b5832e4 100644
+--- a/meta-emenlow/conf/layer.conf
++++ b/meta-emenlow/conf/layer.conf
+@@ -1,8 +1,8 @@
+ # We have a conf and classes directory, add to BBPATH
+-BBPATH := "${BBPATH}:${LAYERDIR}"
++BBPATH .= ":${LAYERDIR}"
+ 
+ # We have recipes-* directories, add to BBFILES
+-BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
++BBFILES += "${LAYERDIR}/recipes-*/*/*.bb \
+ 	${LAYERDIR}/recipes-*/*/*.bbappend"
+ 
+ BBFILE_COLLECTIONS += "emenlow"
+diff --git a/meta-fri2/conf/layer.conf b/meta-fri2/conf/layer.conf
+index 4d140f9..0bb29a1 100644
+--- a/meta-fri2/conf/layer.conf
++++ b/meta-fri2/conf/layer.conf
+@@ -1,8 +1,8 @@
+ # We have a conf and classes directory, add to BBPATH
+-BBPATH := "${BBPATH}:${LAYERDIR}"
++BBPATH .= ":${LAYERDIR}"
+ 
+ # We have a recipes directory, add to BBFILES
+-BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
++BBFILES += "${LAYERDIR}/recipes-*/*/*.bb \
+ 	${LAYERDIR}/recipes-*/*/*.bbappend"
+ 
+ BBFILE_COLLECTIONS += "fri2"
+diff --git a/meta-jasperforest/conf/layer.conf b/meta-jasperforest/conf/layer.conf
+index 09f1647..b539733 100644
+--- a/meta-jasperforest/conf/layer.conf
++++ b/meta-jasperforest/conf/layer.conf
+@@ -1,8 +1,8 @@
+ # We have a conf and classes directory, add to BBPATH
+-BBPATH := "${BBPATH}:${LAYERDIR}"
++BBPATH .= ":${LAYERDIR}"
+ 
+ # We have a recipes directory, add to BBFILES
+-BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
++BBFILES .= "${LAYERDIR}/recipes-*/*/*.bb \
+ 	${LAYERDIR}/recipes-*/*/*.bbappend"
+ 
+ BBFILE_COLLECTIONS += "jasperforest"
+diff --git a/meta-n450/conf/layer.conf b/meta-n450/conf/layer.conf
+index 4481121..ee53e54 100644
+--- a/meta-n450/conf/layer.conf
++++ b/meta-n450/conf/layer.conf
+@@ -1,8 +1,8 @@
+ # We have a conf and classes directory, add to BBPATH
+-BBPATH := "${BBPATH}:${LAYERDIR}"
++BBPATH .= ":${LAYERDIR}"
+ 
+ # We have recipes-* directories, add to BBFILES
+-BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
++BBFILES += "${LAYERDIR}/recipes-*/*/*.bb \
+ 	${LAYERDIR}/recipes-*/*/*.bbappend"
+ 
+ BBFILE_COLLECTIONS += "n450"
+diff --git a/meta-nuc/conf/layer.conf b/meta-nuc/conf/layer.conf
+index fb5b58a..174411f 100644
+--- a/meta-nuc/conf/layer.conf
++++ b/meta-nuc/conf/layer.conf
+@@ -1,8 +1,8 @@
+ # We have a conf and classes directory, add to BBPATH
+-BBPATH := "${BBPATH}:${LAYERDIR}"
++BBPATH .= ":${LAYERDIR}"
+ 
+ # We have a recipes directory, add to BBFILES
+-BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
++BBFILES += "${LAYERDIR}/recipes-*/*/*.bb \
+ 	${LAYERDIR}/recipes-*/*/*.bbappend"
+ 
+ BBFILE_COLLECTIONS += "nuc"
+diff --git a/meta-romley/conf/layer.conf b/meta-romley/conf/layer.conf
+index 8ce1a4d..7b6a5bc 100644
+--- a/meta-romley/conf/layer.conf
++++ b/meta-romley/conf/layer.conf
+@@ -1,8 +1,8 @@
+ # We have a conf and classes directory, add to BBPATH
+-BBPATH := "${BBPATH}:${LAYERDIR}"
++BBPATH .= ":${LAYERDIR}"
+ 
+ # We have a recipes directory, add to BBFILES
+-BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
++BBFILES += "${LAYERDIR}/recipes-*/*/*.bb \
+ 	${LAYERDIR}/recipes-*/*/*.bbappend"
+ 
+ BBFILE_COLLECTIONS += "romley"
+diff --git a/meta-sugarbay/conf/layer.conf b/meta-sugarbay/conf/layer.conf
+index eb8ec45..9576330 100644
+--- a/meta-sugarbay/conf/layer.conf
++++ b/meta-sugarbay/conf/layer.conf
+@@ -1,8 +1,8 @@
+ # We have a conf and classes directory, add to BBPATH
+-BBPATH := "${BBPATH}:${LAYERDIR}"
++BBPATH .= ":${LAYERDIR}"
+ 
+ # We have a recipes directory, add to BBFILES
+-BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
++BBFILES += "${LAYERDIR}/recipes-*/*/*.bb \
+ 	${LAYERDIR}/recipes-*/*/*.bbappend"
+ 
+ BBFILE_COLLECTIONS += "sugarbay"
+diff --git a/meta-sys940x/conf/layer.conf b/meta-sys940x/conf/layer.conf
+index 5d588ad..b14be6d 100644
+--- a/meta-sys940x/conf/layer.conf
++++ b/meta-sys940x/conf/layer.conf
+@@ -1,8 +1,8 @@
+ # We have a conf and classes directory, add to BBPATH
+-BBPATH := "${BBPATH}:${LAYERDIR}"
++BBPATH .= ":${LAYERDIR}"
+ 
+ # We have a recipes directory, add to BBFILES
+-BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
++BBFILES += "${LAYERDIR}/recipes-*/*/*.bb \
+ 	${LAYERDIR}/recipes-*/*/*.bbappend"
+ 
+ BBFILE_COLLECTIONS += "sys940x"
+diff --git a/meta-tlk/conf/layer.conf b/meta-tlk/conf/layer.conf
+index fc0da61..38b0e0c 100644
+--- a/meta-tlk/conf/layer.conf
++++ b/meta-tlk/conf/layer.conf
+@@ -1,6 +1,6 @@
+ # We have a conf and classes directory, add to BBPATH
+-BBPATH := "${BBPATH}:${LAYERDIR}"
++BBPATH .= ":${LAYERDIR}"
+ 
+ # We have recipes-* directories, add to BBFILES
+-BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
++BBFILES += "${LAYERDIR}/recipes-*/*/*.bb \
+ 	${LAYERDIR}/recipes-*/*/*.bbappend"
+-- 
+1.7.9.5
 
 
