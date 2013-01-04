@@ -1,25 +1,35 @@
-Return-Path: <ajlennon@dynamicdevices.co.uk>
-Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
-	[89.200.136.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A25BEE0045D
-	for <yocto@yoctoproject.org>; Fri,  4 Jan 2013 13:18:40 -0800 (PST)
-Received: from cpc8-live22-2-0-cust106.know.cable.virginmedia.com
-	([82.42.168.107] helo=[127.0.0.1])
-	by www.dynamicdevices.co.uk with esmtpsa
-	(TLS1.0:DHE_RSA_AES_256_CBC_SHA1:32) (Exim 4.69)
-	(envelope-from <ajlennon@dynamicdevices.co.uk>)
-	id 1TrEbC-0001ck-US; Fri, 04 Jan 2013 21:14:43 +0000
-Message-ID: <50E746F7.6000306@dynamicdevices.co.uk>
-Date: Fri, 04 Jan 2013 21:17:43 +0000
-From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
-	rv:17.0) Gecko/17.0 Thunderbird/17.0
+Return-Path: <kergoth@gmail.com>
+Received: from mail-la0-f42.google.com (mail-la0-f42.google.com
+	[209.85.215.42])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 24F58E0045D
+	for <yocto@yoctoproject.org>; Fri,  4 Jan 2013 13:27:31 -0800 (PST)
+Received: by mail-la0-f42.google.com with SMTP id fe20so10466134lab.29
+	for <yocto@yoctoproject.org>; Fri, 04 Jan 2013 13:27:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:sender:in-reply-to:references:from:date
+	:x-google-sender-auth:message-id:subject:to:cc:content-type;
+	bh=f96Orv6jSyxBle8EFCoicvMpPCnnZwsbAuw5zkSWufo=;
+	b=Gd3p15FWgD91i5pSp6HfBpaqhp1gPH2QNf4Ei1lkFS2xt5KtAE9DJgDkU1qbK91L1s
+	D8SFZZqtwqtbC0lZvG3ZmIPDuKJNjQiydWnPh+3bICzQCATXOCvgdMBseGhA1EODXv+I
+	bkMLU0YAKK8iVX4ZqSEm5yEHg9guEfsoRQcpHqXn6rcQjrmKTIERDDu7sp2vU9VHIm2y
+	ortoWbguHQUbX5CWS/PI3cdwocYFtLejwoYkBNXzLazJNMXxzSK+sri0gmFX0jjKNrnK
+	7KrPRHERSzzbOEbT4k8rjIuFIkbDElGtRBIeM1IS7yYp1Zh5lc/9ZTz7rU6azMhN3iIe
+	J9AA==
+Received: by 10.152.124.68 with SMTP id mg4mr50308866lab.51.1357334850949;
+	Fri, 04 Jan 2013 13:27:30 -0800 (PST)
 MIME-Version: 1.0
-To: Chris Larson <clarson@kergoth.com>
+Sender: kergoth@gmail.com
+Received: by 10.112.34.10 with HTTP; Fri, 4 Jan 2013 13:27:10 -0800 (PST)
+In-Reply-To: <50E746F7.6000306@dynamicdevices.co.uk>
 References: <CD0B6407.1EB06%belen.barros.pena@intel.com>
 	<50E741F0.50303@dynamicdevices.co.uk>
 	<CABcZANndjkYoRecpoeUQcUzCevoVqCPWO-EpFCMKSaxh6QFoew@mail.gmail.com>
-In-Reply-To: <CABcZANndjkYoRecpoeUQcUzCevoVqCPWO-EpFCMKSaxh6QFoew@mail.gmail.com>
+	<50E746F7.6000306@dynamicdevices.co.uk>
+From: Chris Larson <clarson@kergoth.com>
+Date: Fri, 4 Jan 2013 14:27:10 -0700
+X-Google-Sender-Auth: aho2YM5wjTNvlYFAW6Z-n99Ey1U
+Message-ID: <CABcZAN=itXmpVoa1Rm+f9wPAV+kisM3hvVP2LOpYiAxhsbxeJA@mail.gmail.com>
+To: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
 Cc: yocto <yocto@yoctoproject.org>
 Subject: Re: Bitbake and task offloading onto multiple cloud-based servers
 X-BeenThere: yocto@yoctoproject.org
@@ -33,57 +43,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 04 Jan 2013 21:18:40 -0000
+X-List-Received-Date: Fri, 04 Jan 2013 21:27:32 -0000
+Content-Type: multipart/alternative; boundary=f46d043bd8fea1d20904d27d2518
+
+--f46d043bd8fea1d20904d27d2518
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
 
-On 04/01/2013 21:08, Chris Larson wrote:
-> 
-> 
-> On Fri, Jan 4, 2013 at 1:56 PM, Alex J Lennon
-> <ajlennon@dynamicdevices.co.uk <mailto:ajlennon@dynamicdevices.co.uk>>
+On Fri, Jan 4, 2013 at 2:17 PM, Alex J Lennon <ajlennon@dynamicdevices.co.uk
 > wrote:
-> 
->     Can anybody advise on whether bitbake currently supports offloading of
->     build tasks onto multiple systems? Perhaps cloud based?
-> 
->     I'm thinking that it would be more efficient for me if I could bring up
->     a number of Amazon EC2 servers (or similar) then have bitbake
->     parallelise the build onto those servers to significantly reduce my
->     build times?
-> 
->     I see bitbake supports a level of task parallelisation on a single box.
-> 
->     Can parallelisation of build onto multiple systems be achieved?
-> 
->     Is it something that should even be a goal?
-> 
-> 
-> It's not supported today. It could be implemented, but nobody has made
-> it a priority and done so.
 
-Do you have any feeling for the level of difficulty of such an
-implementation / what would have to change / how invasive it would be to
-the codebase ?
+> Where would one start to look in the bitbake code to add this kind of
+> support in?
+>
 
-I'm wondering if it could be along the lines of creating a "remote task"
-class and then, say, having that class ssh into one of a pool of servers
-(running a standard image with all tools preinstalled maybe) then
-bitbaking the recipes for the particular and waiting on completion
-before pulling back the output rpm/deb/ipkg ?
+See the subclasses of RunQueueExecute in bb.runqueue, this is what executes
+the tasks. For an idea of how to implement opting in to a different class,
+see how BB_SCHEDULER is implemented.
+-- 
+Christopher Larson
 
-Things are usually more complex than expected when you get into the
-nitty gritty though. What would the challenges be do you think?
+--f46d043bd8fea1d20904d27d2518
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Where would one start to look in the bitbake code to add this kind of
-support in?
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><br><div class=3D"gmail_quo=
+te">On Fri, Jan 4, 2013 at 2:17 PM, Alex J Lennon <span dir=3D"ltr">&lt;<a =
+href=3D"mailto:ajlennon@dynamicdevices.co.uk" target=3D"_blank">ajlennon@dy=
+namicdevices.co.uk</a>&gt;</span> wrote:<br>
 
-Thanks,
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><div id=3D":bv">Where would one start to loo=
+k in the bitbake code to add this kind of<br>
+support in?</div></blockquote></div><br>See the subclasses of RunQueueExecu=
+te in bb.runqueue, this is what executes the tasks. For an idea of how to i=
+mplement opting in to a different class, see how BB_SCHEDULER is implemente=
+d.<br>
 
-Alex
+-- <br>Christopher Larson</div></div>
 
-
-> -- 
-> Christopher Larson
-
-
+--f46d043bd8fea1d20904d27d2518--
