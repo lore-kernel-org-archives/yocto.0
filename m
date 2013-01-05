@@ -1,24 +1,34 @@
-Return-Path: <ml@communistcode.co.uk>
-Received: from eumx.net (eumx.net [91.82.101.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A60F9E00706
-	for <yocto@yoctoproject.org>; Sat,  5 Jan 2013 10:16:19 -0800 (PST)
-Message-ID: <50E86C69.7090106@communistcode.co.uk>
-Date: Sat, 05 Jan 2013 18:09:45 +0000
-From: Jack Mitchell <ml@communistcode.co.uk>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/17.0 Thunderbird/17.0
+Return-Path: <errordeveloper@gmail.com>
+Received: from mail-bk0-f54.google.com (mail-bk0-f54.google.com
+	[209.85.214.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5C3FDE00706
+	for <yocto@yoctoproject.org>; Sat,  5 Jan 2013 12:41:03 -0800 (PST)
+Received: by mail-bk0-f54.google.com with SMTP id je9so7734267bkc.41
+	for <yocto@yoctoproject.org>; Sat, 05 Jan 2013 12:41:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:content-type; bh=3Dl3jVmiyW7lwSGt0SPkQ47Oa0hV0N635YzznXdXAM8=;
+	b=Hud2rhz2yqhA8VC+qMgFylQmntLBglsYW3Pv5m4ZOHNaSJnJ2pWgsbV9BNaC7zhMPu
+	WOZ1KB5h1VBw/l5s0Zp862n/1CY6KiCYT1tLbMW8QpJm90FQweElv57jU7nLYkMmwqmV
+	wQHZa1onOTQYbAnG4WmvereQVnmxAFpOMjxLS7wT1v/qdWseiz3/3cqjmbNFmFfZ+s4i
+	SUxShVPU6CE4ndzbmNTfRAZXrCbMpeQtfGCI5ssTYer6pQA2NDTQntiT7ZPvWGNRkuXz
+	NuVbc69No+whLAnatuQGpGxiVmZ/EoXzC7QbLGERyQW+UzRWZREbzsWWWmsnxoT8ZepE
+	kULg==
 MIME-Version: 1.0
-To: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
-References: <50E4AAFE.4080905@btinternet.com>
-	<50E5620A.3070208@communistcode.co.uk>
-	<50E77C80.1000806@dynamicdevices.co.uk>
-In-Reply-To: <50E77C80.1000806@dynamicdevices.co.uk>
-Cc: yocto@yoctoproject.org
-Subject: Re: Basic failures building 1st Yocto Project and Yocto Raspberry Pi
+Received: by 10.204.146.92 with SMTP id g28mr27324268bkv.127.1357418461968;
+	Sat, 05 Jan 2013 12:41:01 -0800 (PST)
+Received: by 10.204.50.83 with HTTP; Sat, 5 Jan 2013 12:41:01 -0800 (PST)
+In-Reply-To: <50E61AD5.6070600@windriver.com>
+References: <CAPhDKbHyqGUd5axL+fQVa0dbCF5yAjEEXmnexbb-ZwVJQKXfyA@mail.gmail.com>
+	<50E61AD5.6070600@windriver.com>
+Date: Sat, 5 Jan 2013 20:41:01 +0000
+Message-ID: <CAPhDKbEANrCmtTjAqU5NpSDK_KkO2DS4weVPEdhn6rNWOjYemQ@mail.gmail.com>
+From: Ilya Dmitrichenko <errordeveloper@gmail.com>
+To: Mark Hatle <mark.hatle@windriver.com>, yocto@yoctoproject.org
+Subject: Re: configuration management on remote target
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: ml@communistcode.co.uk
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -27,44 +37,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 05 Jan 2013 18:16:19 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sat, 05 Jan 2013 20:41:03 -0000
+Content-Type: multipart/alternative; boundary=0015174a04563cb88a04d2909df4
 
-On 01/05/13 01:06, Alex J Lennon wrote:
->> It should just be a matter of changing a few git revisions, and tweaking
->> the wording a bit to involve the new meta-yocto, meta-yocto-bsp split.
->> If anyone wishes to step up to the plate the source for this blog post
->> is available at [1] and I will happily accept patches.
->>
-> Jack, I've taken up your invitation, forked the repo and committed a
-> change to my fork which updates the document to current meta-raspberrypi
-> commit and a recent (circa two weeks) Yocto commit.
->
-> I've just built this from scratch here and aside from a couple of GitHub
-> feed hiccups it works. It runs up on the RPi.
->
-> I've sent a pull request over to your base repo (or at least I think I
-> have...)
+--0015174a04563cb88a04d2909df4
+Content-Type: text/plain; charset=ISO-8859-1
 
-Hi Alex,
+Mark, thanks for such a comprehensive reply :)
 
-Pulled, Merged and should be live on the site now.
+I have actually just recollected that I have come across this page earlier:
+https://cfengine.com/oem-cfengine
+I might have a look into it a little bit more, it might fit my needs
+actually :)
 
-Thanks for your contributions!
+Cheers,
+-- 
+Ilya
 
-Regards,
-Jack.
+--0015174a04563cb88a04d2909df4
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
->
-> Cheers,
->
-> Alex
->
->> Cheers,
->> Jack.
->>
->> [1] https://github.com/CommunistCode/PimpMyPi-Community-Blog-Posts
->>
+<div dir=3D"ltr"><div class=3D"gmail_extra" style>Mark, thanks for such a c=
+omprehensive reply :)</div><div class=3D"gmail_extra" style><br></div><div =
+class=3D"gmail_extra" style>I have actually just recollected that I have co=
+me across this page earlier:</div>
+<div class=3D"gmail_extra" style><a href=3D"https://cfengine.com/oem-cfengi=
+ne">https://cfengine.com/oem-cfengine</a><br></div><div class=3D"gmail_extr=
+a" style>I might have a look into it a little bit more, it might fit my nee=
+ds actually :)</div>
+<div class=3D"gmail_extra" style><br></div><div class=3D"gmail_extra" style=
+>Cheers,</div><div class=3D"gmail_extra" style>--=A0</div><div class=3D"gma=
+il_extra" style>Ilya=A0</div></div>
 
-
+--0015174a04563cb88a04d2909df4--
