@@ -1,26 +1,34 @@
-Return-Path: <ajlennon@dynamicdevices.co.uk>
-Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
-	[89.200.136.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 07F24E0045D
-	for <yocto@yoctoproject.org>; Fri,  4 Jan 2013 17:07:07 -0800 (PST)
-Received: from cpc8-live22-2-0-cust106.know.cable.virginmedia.com
-	([82.42.168.107] helo=[127.0.0.1])
-	by www.dynamicdevices.co.uk with esmtpsa
-	(TLS1.0:DHE_RSA_AES_256_CBC_SHA1:32) (Exim 4.69)
-	(envelope-from <ajlennon@dynamicdevices.co.uk>)
-	id 1TrIAG-0001gp-KI; Sat, 05 Jan 2013 01:03:08 +0000
-Message-ID: <50E77C80.1000806@dynamicdevices.co.uk>
-Date: Sat, 05 Jan 2013 01:06:08 +0000
-From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
-	rv:17.0) Gecko/17.0 Thunderbird/17.0
+Return-Path: <huanmateme@163.com>
+Received: from m13-113.163.com (unknown [220.181.13.113])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EC18CE00498
+	for <yocto@yoctoproject.org>; Fri,  4 Jan 2013 18:47:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=Received:Date:From:To:Cc:Subject:In-Reply-To:
+	References:Content-Type:MIME-Version:Message-ID; bh=Zcq///quQg1C
+	SuDR2BtLValzvAm0HFCDDSOuYdPibZo=; b=SXK4mINPTOqse63QZrqQeVBVWMEq
+	LH0oDXkwmuuiU0ZLCbJJjhQEXkI0RjlCEven0UqHBA4s1MZpaFKgSnot4engux1h
+	/XWUMQ9/EAMHfgF4/M5k8PB5cbFNKb0eZGZxmLKXt538vg9tFwrbsofZbmQa6ipe
+	5Gs/ECun23cteAs=
+Received: from huanmateme$163.com ( [61.148.56.138] ) by
+	ajax-webmail-wmsvr113 (Coremail) ; Sat, 5 Jan 2013 10:46:59 +0800 (CST)
+X-Originating-IP: [61.148.56.138]
+Date: Sat, 5 Jan 2013 10:46:59 +0800 (CST)
+From: Biao  <huanmateme@163.com>
+To: "Bill Traynor" <wmat@alphatroop.com>
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version SP_ntes V3.5 build
+	20121219(21170.5156.5150) Copyright (c) 2002-2013 www.mailtech.cn
+	163com
+In-Reply-To: <CAGfZjq4+JFT_HA-1SitqkWaxWgOztrd7XyQc7vBMfhTLauVGkw@mail.gmail.com>
+References: <2b77c4be.fa75.13c0455c02d.Coremail.huanmateme@163.com>
+	<CAGfZjq4+JFT_HA-1SitqkWaxWgOztrd7XyQc7vBMfhTLauVGkw@mail.gmail.com>
 MIME-Version: 1.0
-To: ml@communistcode.co.uk
-References: <50E4AAFE.4080905@btinternet.com>
-	<50E5620A.3070208@communistcode.co.uk>
-In-Reply-To: <50E5620A.3070208@communistcode.co.uk>
-Cc: yocto@yoctoproject.org
-Subject: Re: Basic failures building 1st Yocto Project and Yocto Raspberry Pi
+Message-ID: <1af1d018.4059.13c089aac97.Coremail.huanmateme@163.com>
+X-CM-TRANSID: ccGowEDZFEAklOdQGecmAA--.60W
+X-CM-SenderInfo: xkxd0z5dwhzvi6rwjhhfrp/1tbiURSbgE9o2aEUOgABsu
+X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
+Cc: yocto <yocto@yoctoproject.org>
+Subject: Re: Where does the 'PN' is set.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,34 +40,88 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 05 Jan 2013 01:07:08 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sat, 05 Jan 2013 02:47:34 -0000
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_61193_1547558668.1357354019991"
 
-> It should just be a matter of changing a few git revisions, and tweaking 
-> the wording a bit to involve the new meta-yocto, meta-yocto-bsp split. 
-> If anyone wishes to step up to the plate the source for this blog post 
-> is available at [1] and I will happily accept patches.
-> 
+------=_Part_61193_1547558668.1357354019991
+Content-Type: text/plain; charset=GBK
+Content-Transfer-Encoding: base64
 
-Jack, I've taken up your invitation, forked the repo and committed a
-change to my fork which updates the document to current meta-raspberrypi
-commit and a recent (circa two weeks) Yocto commit.
+CtTaIDIwMTMtMDEtMDQgMTk6MzQ6MTCjrCJCaWxsIFRyYXlub3IiIDx3bWF0QGFscGhhdHJvb3Au
+Y29tPiDQtLXAo7oKCk9uIEZyaSwgSmFuIDQsIDIwMTMgYXQgMTo1MyBBTSwgQmlhbyA8aHVhbm1h
+dGVtZUAxNjMuY29tPiB3cm90ZToKCkhpLAoKCkluIG1ldGEvY29uZi9kb2N1bWVudGF0aW9uLmNv
+bmYKUE5bZG9jXSA9ICJQTiBob2xkcyB0aGUgbmFtZSBvZiB0aGUgcGFja2FnZSAoUGFja2FnZSBO
+YW1lKS4gSXQgaXMgZ2F0aGVyZWQgZnJvbSB0aGUgYml0YmFrZS1maWxlIGZpbGVuYW1lIgoKCkkg
+d291bGQgbGlrZSB0byBrbm93IHdoZXJlIGRvZXMgdGhlIHNvLWNhbGxlZCAnZ2F0aGVyJyBleGFj
+dGx5IGhhcHBlbnM/CkZvciBleGFtcGxlLCBkb2VzIGl0IG1lYW4gdGhlIGJpdGJha2UgY29yZSBn
+ZXQgdGhlICdQTiA9IHUtYm9vdCcgYnkgY3V0dGluZyBvZiB0aGUgbmFtZSBvZiAndS1ib290XzIw
+MTEuMDMuYmInPwoKClllcywgd2l0aGluIHRoZSBjb250ZXh0IG9mIHRoZSBidWlsZCBwcm9jZXNz
+LCBQTiByZWZlcnMgdG8gdGhlIFBhY2thZ2UgTmFtZSB0aGF0IGlzIGV4dHJhY3RlZCBmcm9tIHRo
+ZSByZWNpcGUgZmlsZSBuYW1lLiAgU28geW91ciBleGFtcGxlIGlzIGNvcnJlY3QuCgoKRm9yIHJl
+ZmVyZW5jZSwgc2VlIHRoZSBQTiB2YXJpYWJsZSBkZXNjcmlwdGlvbiBpbiB0aGUgWW9jdG8gUHJv
+amVjdCBSZWZlcmVuY2UgbWFudWFsOiAgaHR0cDovL3d3dy55b2N0b3Byb2plY3Qub3JnL2RvY3Mv
+Y3VycmVudC9wb2t5LXJlZi1tYW51YWwvcG9reS1yZWYtbWFudWFsLmh0bWwjdmFyLVAKCgpUaGUg
+ImdhdGhlcmluZyIgb2NjdXJzIGR1cmluZyB0aGUgQml0YmFrZSBwYXJzaW5nIHN0ZXAuICBSb3Vn
+aGx5LCBwYXJzaW5nIG9jY3VycyBpbiB0aGUgZm9sbG93aW5nIG9yZGVyOiAgY29uZmlndXJhdGlv
+biBmaWxlcywgY2xhc3NlcywgYmJmaWxlcy4KCgpUaGFua3MgZm9yIHlvdSBraW5kbHkgaGVscC4g
+CgoKCgoKClRoYW5rcywKQmlhbyAKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fCnlvY3RvIG1haWxpbmcgbGlzdAp5b2N0b0B5b2N0b3Byb2plY3Qub3JnCmh0
+dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9saXN0aW5mby95b2N0bwoKCgo=
 
-I've just built this from scratch here and aside from a couple of GitHub
-feed hiccups it works. It runs up on the RPi.
+------=_Part_61193_1547558668.1357354019991
+Content-Type: text/html; charset=GBK
+Content-Transfer-Encoding: base64
 
-I've sent a pull request over to your base repo (or at least I think I
-have...)
+PGRpdiBzdHlsZT0ibGluZS1oZWlnaHQ6MS43O2NvbG9yOiMwMDAwMDA7Zm9udC1zaXplOjE0cHg7
+Zm9udC1mYW1pbHk6YXJpYWwiPjxicj7U2iAyMDEzLTAxLTA0IDE5OjM0OjEwo6wiQmlsbCZuYnNw
+O1RyYXlub3IiJm5ic3A7Jmx0O3dtYXRAYWxwaGF0cm9vcC5jb20mZ3Q7INC0tcCjujxicj4gPGJs
+b2NrcXVvdGUgaWQ9ImlzUmVwbHlDb250ZW50IiBzdHlsZT0iUEFERElORy1MRUZUOiAxZXg7IE1B
+UkdJTjogMHB4IDBweCAwcHggMC44ZXg7IEJPUkRFUi1MRUZUOiAjY2NjIDFweCBzb2xpZCI+PGRp
+diBkaXI9Imx0ciI+T24gRnJpLCBKYW4gNCwgMjAxMyBhdCAxOjUzIEFNLCBCaWFvIDxzcGFuIGRp
+cj0ibHRyIj4mbHQ7PGEgaHJlZj0ibWFpbHRvOmh1YW5tYXRlbWVAMTYzLmNvbSIgdGFyZ2V0PSJf
+YmxhbmsiPmh1YW5tYXRlbWVAMTYzLmNvbTwvYT4mZ3Q7PC9zcGFuPiB3cm90ZTo8YnI+PGRpdiBj
+bGFzcz0iZ21haWxfZXh0cmEiPjxkaXYgY2xhc3M9ImdtYWlsX3F1b3RlIj48YmxvY2txdW90ZSBj
+bGFzcz0iZ21haWxfcXVvdGUiIHN0eWxlPSJtYXJnaW46MHB4IDBweCAwcHggMC44ZXg7Ym9yZGVy
+LWxlZnQtd2lkdGg6MXB4O2JvcmRlci1sZWZ0LWNvbG9yOnJnYigyMDQsMjA0LDIwNCk7Ym9yZGVy
+LWxlZnQtc3R5bGU6c29saWQ7cGFkZGluZy1sZWZ0OjFleCI+Cgo8ZGl2IHN0eWxlPSJsaW5lLWhl
+aWdodDoxLjc7Zm9udC1zaXplOjE0cHg7Zm9udC1mYW1pbHk6YXJpYWwiPjxkaXY+SGksPC9kaXY+
+PGRpdj48YnI+PC9kaXY+PGRpdj5JbiBtZXRhL2NvbmYvZG9jdW1lbnRhdGlvbi5jb25mPC9kaXY+
+UE5bZG9jXSA9ICJQTiBob2xkcyB0aGUgbmFtZSBvZiB0aGUgcGFja2FnZSAoUGFja2FnZSBOYW1l
+KS4gSXQgaXMgZ2F0aGVyZWQgZnJvbSB0aGUgYml0YmFrZS1maWxlIGZpbGVuYW1lIjxkaXY+Cgo8
+YnI+PC9kaXY+PGRpdj5JIHdvdWxkIGxpa2UgdG8ga25vdyB3aGVyZSBkb2VzIHRoZSBzby1jYWxs
+ZWQgJ2dhdGhlcicgZXhhY3RseSBoYXBwZW5zPzwvZGl2PjxkaXY+Rm9yIGV4YW1wbGUsIGRvZXMg
+aXQgbWVhbiB0aGUgYml0YmFrZSBjb3JlIGdldCB0aGUgJ1BOID0gdS1ib290JyBieSBjdXR0aW5n
+IG9mIHRoZSBuYW1lIG9mICc8YSBocmVmPSJodHRwOi8vdS1ib290XzIwMTEuMDMuYmIiIHRhcmdl
+dD0iX2JsYW5rIj51LWJvb3RfMjAxMS4wMy5iYjwvYT4nPzwvZGl2PgoKPC9kaXY+PC9ibG9ja3F1
+b3RlPjxkaXY+PGJyPjwvZGl2PjxkaXYgc3R5bGU9IiI+WWVzLCB3aXRoaW4gdGhlIGNvbnRleHQg
+b2YgdGhlIGJ1aWxkIHByb2Nlc3MsIFBOIHJlZmVycyB0byB0aGUgUGFja2FnZSBOYW1lIHRoYXQg
+aXMgZXh0cmFjdGVkIGZyb20gdGhlIHJlY2lwZSBmaWxlIG5hbWUuICZuYnNwO1NvIHlvdXIgZXhh
+bXBsZSBpcyBjb3JyZWN0LjwvZGl2PjxkaXYgc3R5bGU9IiI+PGJyPjwvZGl2PgoKPGRpdiBzdHls
+ZT0iIj5Gb3IgcmVmZXJlbmNlLCBzZWUgdGhlIFBOIHZhcmlhYmxlIGRlc2NyaXB0aW9uIGluIHRo
+ZSBZb2N0byBQcm9qZWN0IFJlZmVyZW5jZSBtYW51YWw6ICZuYnNwOzxhIGhyZWY9Imh0dHA6Ly93
+d3cueW9jdG9wcm9qZWN0Lm9yZy9kb2NzL2N1cnJlbnQvcG9reS1yZWYtbWFudWFsL3Bva3ktcmVm
+LW1hbnVhbC5odG1sI3Zhci1QIj5odHRwOi8vd3d3LnlvY3RvcHJvamVjdC5vcmcvZG9jcy9jdXJy
+ZW50L3Bva3ktcmVmLW1hbnVhbC9wb2t5LXJlZi1tYW51YWwuaHRtbCN2YXItUDwvYT48L2Rpdj4K
+CjxkaXYgc3R5bGU9IiI+PGJyPjwvZGl2PjxkaXYgc3R5bGU9IiI+VGhlICJnYXRoZXJpbmciIG9j
+Y3VycyBkdXJpbmcgdGhlIEJpdGJha2UgcGFyc2luZyBzdGVwLiAmbmJzcDtSb3VnaGx5LCBwYXJz
+aW5nIG9jY3VycyBpbiB0aGUgZm9sbG93aW5nIG9yZGVyOiAmbmJzcDtjb25maWd1cmF0aW9uIGZp
+bGVzLCBjbGFzc2VzLCBiYmZpbGVzLjwvZGl2PjxkaXYgc3R5bGU9IiI+PGJyPjwvZGl2PjwvZGl2
+PjwvZGl2PjwvZGl2PjwvYmxvY2txdW90ZT5UaGFua3MgZm9yIHlvdSBraW5kbHkgaGVscC4mbmJz
+cDs8ZGl2Pjxicj48L2Rpdj48ZGl2Pjxicj48YmxvY2txdW90ZSBzdHlsZT0iUEFERElORy1MRUZU
+OiAxZXg7IE1BUkdJTjogMHB4IDBweCAwcHggMC44ZXg7IEJPUkRFUi1MRUZUOiAjY2NjIDFweCBz
+b2xpZCI+PGRpdiBkaXI9Imx0ciI+PGRpdiBjbGFzcz0iZ21haWxfZXh0cmEiPjxkaXYgY2xhc3M9
+ImdtYWlsX3F1b3RlIj48YmxvY2txdW90ZSBjbGFzcz0iZ21haWxfcXVvdGUiIHN0eWxlPSJtYXJn
+aW46MHB4IDBweCAwcHggMC44ZXg7Ym9yZGVyLWxlZnQtd2lkdGg6MXB4O2JvcmRlci1sZWZ0LWNv
+bG9yOnJnYigyMDQsMjA0LDIwNCk7Ym9yZGVyLWxlZnQtc3R5bGU6c29saWQ7cGFkZGluZy1sZWZ0
+OjFleCI+PGRpdiBzdHlsZT0ibGluZS1oZWlnaHQ6MS43O2ZvbnQtc2l6ZToxNHB4O2ZvbnQtZmFt
+aWx5OmFyaWFsIj4KCjxkaXY+PGJyPjwvZGl2PjxkaXY+VGhhbmtzLDwvZGl2PjxkaXY+QmlhbyZu
+YnNwOzwvZGl2PjwvZGl2Pjxicj5fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fXzxicj4KeW9jdG8gbWFpbGluZyBsaXN0PGJyPgo8YSBocmVmPSJtYWlsdG86eW9j
+dG9AeW9jdG9wcm9qZWN0Lm9yZyI+eW9jdG9AeW9jdG9wcm9qZWN0Lm9yZzwvYT48YnI+CjxhIGhy
+ZWY9Imh0dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9saXN0aW5mby95b2N0byIgdGFyZ2V0
+PSJfYmxhbmsiPmh0dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9saXN0aW5mby95b2N0bzwv
+YT48YnI+Cjxicj48L2Jsb2NrcXVvdGU+PC9kaXY+PGJyPjwvZGl2PjwvZGl2Pgo8L2Jsb2NrcXVv
+dGU+PC9kaXY+PC9kaXY+
 
-Cheers,
-
-Alex
-
-> Cheers,
-> Jack.
-> 
-> [1] https://github.com/CommunistCode/PimpMyPi-Community-Blog-Posts
-> 
-
-
+------=_Part_61193_1547558668.1357354019991--
