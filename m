@@ -1,30 +1,35 @@
-Return-Path: <david.c.stewart@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DAE12E00498
-	for <yocto@yoctoproject.org>; Fri,  4 Jan 2013 18:50:05 -0800 (PST)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 04 Jan 2013 18:50:05 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,413,1355126400"; d="scan'208";a="270154539"
-Received: from orsmsx103.amr.corp.intel.com ([10.22.225.130])
-	by fmsmga001.fm.intel.com with ESMTP; 04 Jan 2013 18:50:05 -0800
-Received: from orsmsx105.amr.corp.intel.com ([169.254.4.201]) by
-	ORSMSX103.amr.corp.intel.com ([169.254.2.132]) with mapi id
-	14.01.0355.002; Fri, 4 Jan 2013 18:50:05 -0800
-From: "Stewart, David C" <david.c.stewart@intel.com>
-To: "Thornburg, Christopher A" <christopher.a.thornburg@intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [yocto] Host authenticity failures
-Thread-Index: Ac3pKzQZhYJH+sn0QHOZ3HIEYrrlywBxCeUA
-Date: Sat, 5 Jan 2013 02:50:04 +0000
-Message-ID: <CD0CD4BB.1C4D8%david.c.stewart@intel.com>
-In-Reply-To: <752F65977A748344A01D69BF22DCDBAE25B95894@FMSMSX102.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Microsoft-MacOutlook/14.2.3.120616
-x-originating-ip: [10.254.118.218]
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-ye0-f180.google.com (mail-ye0-f180.google.com
+	[209.85.213.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 941C3E004D1
+	for <yocto@yoctoproject.org>; Fri,  4 Jan 2013 18:52:32 -0800 (PST)
+Received: by mail-ye0-f180.google.com with SMTP id m9so2745741yen.39
+	for <yocto@yoctoproject.org>; Fri, 04 Jan 2013 18:52:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=x-received:message-id:date:from:user-agent:mime-version:to:subject
+	:references:in-reply-to:content-type:content-transfer-encoding;
+	bh=s8xViw8QiWPlUgs0/jy+U0MFPNtx20TypxAxy8bEOuk=;
+	b=WI1qqKcMpVHheVL3HCl+2lj/MSwsmhjTl57ZiMwIOYuoj4iKmpzjtvOx+orSLGLCnI
+	d9nQlxB0muuTVO67FPkzdPQ2Dmkr1ep2mNkxLkC7nQha8J0Gmhsdbh8zYVUL1VCDetQP
+	FtfeLOCZYNgmiisgH6EPK/ciydOquKbKZTfppqyB8H07+ZeGayrxKnrQx69XXQqtcMOO
+	vcGsjmZaCoVnNd105IcSPzo3ipTPyx9w+kA5M8ZAR2zIOulXKZmS97IpEfj1zHjxCgMg
+	nrw287iKZ4xem/VaMPjrJDV2kYXvQaIc626w+1smjLbyr7XP6jSMGARM7PPxXqqEd1F9
+	+O/Q==
+X-Received: by 10.236.154.165 with SMTP id h25mr57300952yhk.38.1357354351957; 
+	Fri, 04 Jan 2013 18:52:31 -0800 (PST)
+Received: from [192.168.1.104] (99-57-140-209.lightspeed.sntcca.sbcglobal.net.
+	[99.57.140.209])
+	by mx.google.com with ESMTPS id n20sm49967444anl.19.2013.01.04.18.52.30
+	(version=SSLv3 cipher=OTHER); Fri, 04 Jan 2013 18:52:31 -0800 (PST)
+Message-ID: <50E7956D.10503@gmail.com>
+Date: Fri, 04 Jan 2013 18:52:29 -0800
+From: Khem Raj <raj.khem@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/17.0 Thunderbird/17.0
 MIME-Version: 1.0
+To: yocto@yoctoproject.org
+References: <CD0CD4BB.1C4D8%david.c.stewart@intel.com>
+In-Reply-To: <CD0CD4BB.1C4D8%david.c.stewart@intel.com>
 Subject: Re: Host authenticity failures
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -37,37 +42,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 05 Jan 2013 02:50:06 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="Windows-1252"
-Content-ID: <07EA8FA1B2CA1A45A3EBD1C3FE5DD148@intel.com>
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Sat, 05 Jan 2013 02:52:32 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Is this still a problem?
+On 01/04/2013 06:50 PM, Stewart, David C wrote:
+> Is this still a problem?
+>
+> From: <Thornburg>, Christopher A <christopher.a.thornburg@intel.com<mailto:christopher.a.thornburg@intel.com>>
+> Date: Wednesday, January 2, 2013 2:48 PM
+> To: "yocto@yoctoproject.org<mailto:yocto@yoctoproject.org>" <yocto@yoctoproject.org<mailto:yocto@yoctoproject.org>>
+> Subject: [yocto] Host authenticity failures
+>
+> I’ve started getting the following error from bitbake when it’s trying to access my git server:
+>
+> The authenticity of host '[<githost>]:<port>([<IP>]:<port>)' can't be established.
+> DSA key fingerprint is <blah>
+>
+> I understand this error means that the server’s key has probably changed, and I understand in general how to deal with this via SSH config. When I manually ssh’d to the server the first time after receiving the error, I got the same message, as expected. I entered “yes” and tried again to verify that the error went away. It did. I think ran bitbake again and got the same error. I changed my ~/.ssh/ssh_config file to disable StrictHostKeyChecking and still get the error.
+>
+> Is bitbake somehow using different known_hosts and ssh_config files from the ones I use for interactive logins? Other ideas on how to resolve this?
+>
 
-From: <Thornburg>, Christopher A <christopher.a.thornburg@intel.com<mailto:=
-christopher.a.thornburg@intel.com>>
-Date: Wednesday, January 2, 2013 2:48 PM
-To: "yocto@yoctoproject.org<mailto:yocto@yoctoproject.org>" <yocto@yoctopro=
-ject.org<mailto:yocto@yoctoproject.org>>
-Subject: [yocto] Host authenticity failures
+bitbake is not hosted on yp dot org but on oe dot org
 
-I=92ve started getting the following error from bitbake when it=92s trying =
-to access my git server:
-
-The authenticity of host '[<githost>]:<port>([<IP>]:<port>)' can't be estab=
-lished.
-DSA key fingerprint is <blah>
-
-I understand this error means that the server=92s key has probably changed,=
- and I understand in general how to deal with this via SSH config. When I m=
-anually ssh=92d to the server the first time after receiving the error, I g=
-ot the same message, as expected. I entered =93yes=94 and tried again to ve=
-rify that the error went away. It did. I think ran bitbake again and got th=
-e same error. I changed my ~/.ssh/ssh_config file to disable StrictHostKeyC=
-hecking and still get the error.
-
-Is bitbake somehow using different known_hosts and ssh_config files from th=
-e ones I use for interactive logins? Other ideas on how to resolve this?
 
 
