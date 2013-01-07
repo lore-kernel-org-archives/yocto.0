@@ -1,19 +1,35 @@
-Return-Path: <ioanax.grigoropol@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 67816E00498
-	for <yocto@yoctoproject.org>; Mon,  7 Jan 2013 06:12:22 -0800 (PST)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 07 Jan 2013 06:12:21 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,424,1355126400"; d="scan'208";a="240854264"
-Received: from ideapad (HELO localhost.localdomain) ([10.237.105.62])
-	by azsmga001.ch.intel.com with ESMTP; 07 Jan 2013 06:12:20 -0800
-From: Ioana Grigoropol <ioanax.grigoropol@intel.com>
-To: yocto@yoctoproject.org
-Date: Mon,  7 Jan 2013 15:59:57 +0200
-Message-Id: <1357567197-19752-1-git-send-email-ioanax.grigoropol@intel.com>
-X-Mailer: git-send-email 1.7.9.5
-Subject: [PATCH] [eclipse-poky][branch:windows-build]Fix variables hoover & remote file system detection
+Return-Path: <wmat@alphatroop.com>
+Received: from mail-ie0-f173.google.com (mail-ie0-f173.google.com
+	[209.85.223.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6099CE00498
+	for <yocto@yoctoproject.org>; Mon,  7 Jan 2013 06:16:12 -0800 (PST)
+Received: by mail-ie0-f173.google.com with SMTP id e13so23666254iej.32
+	for <yocto@yoctoproject.org>; Mon, 07 Jan 2013 06:16:12 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:x-originating-ip:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type:x-gm-message-state;
+	bh=cEjOTLxn0fS96quxen7Xd2L6CwxtbEwveWRdy5o//ok=;
+	b=VkrYSnJnfnegwHv4Cnblesi1XSkMDSQpYJG4m70DSmc6+qxdzCL7IKg6SmmvsjyRII
+	u9CCH5QWE609sGlWkfV9kvHLv+FaMOajdUmhTR+BpfIQIPPV8XsGaoyN5OaD5qcTMp4G
+	2yIICVRKvzEG+4RF8CIs4Crd1A4JO5kECLnj3S2kTBfRCn3HQ8UMkzL+XzxEOiB/ptMU
+	oGb230E4Ioz9A+ryMi4FpVrszMFRni/NmefoQm8rJCo+espTJRLtERvCsnesMTA3S+ft
+	swotPMCRTY8uaPwUj18XdlXyGh9PqpnFPABUk0rjmw0fEWK4Js+s61h5BfDdV8NAwUpY
+	LlMA==
+Received: by 10.50.108.161 with SMTP id hl1mr5550234igb.101.1357568171853;
+	Mon, 07 Jan 2013 06:16:11 -0800 (PST)
+MIME-Version: 1.0
+Received: by 10.50.74.169 with HTTP; Mon, 7 Jan 2013 06:15:51 -0800 (PST)
+X-Originating-IP: [24.246.30.132]
+In-Reply-To: <CABvo1H9DsXTvrgyDXj2snCH+p+SFwz=WG5iWikfPjz3JqD4XcQ@mail.gmail.com>
+References: <CABvo1H9DsXTvrgyDXj2snCH+p+SFwz=WG5iWikfPjz3JqD4XcQ@mail.gmail.com>
+From: Bill Traynor <wmat@alphatroop.com>
+Date: Mon, 7 Jan 2013 09:15:51 -0500
+Message-ID: <CAGfZjq4xW=XU5MVtJNxm9fme33ij334g15FMqhHpJwJU9yiO2w@mail.gmail.com>
+To: Ian Graham <ian@thecodefactory.ca>
+X-Gm-Message-State: ALoCoQn/540Pmf+i7e/YWnyxZKiqQ01SW0P2/Q3rBJGYJdNFE0Pd4X09B+LNJ4GFRsAoKf1w67MK
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Starting point ... Help?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -25,161 +41,132 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 07 Jan 2013 14:12:22 -0000
+X-List-Received-Date: Mon, 07 Jan 2013 14:16:12 -0000
+Content-Type: multipart/alternative; boundary=f46d0402a9afa448b704d2b37855
 
-- initialize bitbake session for recipe:
-	- when starting a new project, the session environment variables are obtained by calling "bitbake -e"
-	- when a new recipe is created and edited, the session variables should be updated with the values obtained from "bitbake -e -b package" => overwrite the session with the new one
-- if we try to retrive a "remote" file (local file system, remote host) using RSE protocol before the system is initialized, null will be returned causing every remote operation to fail:
-	- add exception handling
-	- make sure that the "remote" FileSystem gets initialized, as well as the project connection
+--f46d0402a9afa448b704d2b37855
+Content-Type: text/plain; charset=ISO-8859-1
 
-Signed-off-by: Ioana Grigoropol <ioanax.grigoropol@intel.com>
----
- .../src/org/yocto/bc/bitbake/BBSession.java        |    4 ++++
- .../src/org/yocto/bc/bitbake/ShellSession.java     |   13 ++++++++-----
- .../org/yocto/bc/remote/utils/RemoteHelper.java    |    7 ++++++-
- .../org/yocto/bc/remote/utils/RemoteMachine.java   |    8 +++++---
- .../bc/ui/editors/bitbake/BBVariableTextHover.java |   12 +++++++++---
- 5 files changed, 32 insertions(+), 12 deletions(-)
+On Sat, Jan 5, 2013 at 12:26 PM, Ian Graham <ian@thecodefactory.ca> wrote:
 
-diff --git a/plugins/org.yocto.bc.ui/src/org/yocto/bc/bitbake/BBSession.java b/plugins/org.yocto.bc.ui/src/org/yocto/bc/bitbake/BBSession.java
-index 3aa4efe..66a6083 100644
---- a/plugins/org.yocto.bc.ui/src/org/yocto/bc/bitbake/BBSession.java
-+++ b/plugins/org.yocto.bc.ui/src/org/yocto/bc/bitbake/BBSession.java
-@@ -746,4 +746,8 @@ public class BBSession implements IBBSessionListener, IModelElement, Map {
- 			wlock.unlock();
- 		}
- 	}
-+
-+	public Map<String, String> getProperties() {
-+		return (Map<String, String>) properties;
-+	}
- }
-diff --git a/plugins/org.yocto.bc.ui/src/org/yocto/bc/bitbake/ShellSession.java b/plugins/org.yocto.bc.ui/src/org/yocto/bc/bitbake/ShellSession.java
-index c127c25..38e2557 100644
---- a/plugins/org.yocto.bc.ui/src/org/yocto/bc/bitbake/ShellSession.java
-+++ b/plugins/org.yocto.bc.ui/src/org/yocto/bc/bitbake/ShellSession.java
-@@ -86,8 +86,12 @@ public class ShellSession {
- 
- 	private void initializeShell(IProgressMonitor monitor) throws IOException {
- 		try {
--			RemoteHelper.runCommandRemote(projectInfo.getConnection(), new YoctoCommand("source " + initCmd, root.getAbsolutePath(), ""));
--			RemoteHelper.runCommandRemote(projectInfo.getConnection(), new YoctoCommand(exportCmd, root.getAbsolutePath(), ""));
-+			if (root != null) {
-+				RemoteHelper.runCommandRemote(projectInfo.getConnection(), new YoctoCommand("source " + initCmd, root.getAbsolutePath(), ""));
-+				RemoteHelper.runCommandRemote(projectInfo.getConnection(), new YoctoCommand(exportCmd, root.getAbsolutePath(), ""));
-+			} else {
-+				throw new Exception("Root file not found!");
-+			}
- 		} catch (Exception e) {
- 			e.printStackTrace();
- 		}
-@@ -103,9 +107,8 @@ public class ShellSession {
- 
- 		try {
- 			if (projectInfo.getConnection() != null) {
--				IHost connection = RemoteHelper.getRemoteConnectionByName(projectInfo.getConnection().getName());
--				hasErrors = RemoteHelper.runCommandRemote(connection, new YoctoCommand(command, root.getAbsolutePath() + "/build/", ""));
--				return RemoteHelper.getProcessBuffer(connection).getMergedOutputLines();
-+				hasErrors = RemoteHelper.runCommandRemote(projectInfo.getConnection(), new YoctoCommand(command, root.getAbsolutePath() + "/build/", ""));
-+				return RemoteHelper.getProcessBuffer(projectInfo.getConnection()).getMergedOutputLines();
- 			}
- 			return null;
- 		} catch (Exception e) {
-diff --git a/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/RemoteHelper.java b/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/RemoteHelper.java
-index c230fd6..e511e06 100644
---- a/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/RemoteHelper.java
-+++ b/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/RemoteHelper.java
-@@ -99,7 +99,11 @@ public class RemoteHelper {
- 		if (host == null) {
- 			// this is a local connection
- 			ISystemRegistry sr = RSECorePlugin.getTheSystemRegistry();
--			return sr.getLocalHost();
-+			IHost local = null;
-+			while (local == null) {
-+				local = sr.getLocalHost();
-+			}
-+			return local;
- 		}
- 		ISystemRegistry sr = RSECorePlugin.getTheSystemRegistry();
- 		IHost[] connections = sr.getHosts();
-@@ -237,6 +241,7 @@ public class RemoteHelper {
- 			IHostFile remoteFile = fileService.getFile(remotePath.removeLastSegments(1).toString(), remotePath.lastSegment(), new SubProgressMonitor(monitor, 5));
- 			return remoteFile;
- 		} catch (Exception e) {
-+			e.printStackTrace();
- 	    }finally {
- 			monitor.done();
- 		}
-diff --git a/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/RemoteMachine.java b/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/RemoteMachine.java
-index 6eb2945..a25eea4 100644
---- a/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/RemoteMachine.java
-+++ b/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/RemoteMachine.java
-@@ -123,6 +123,9 @@ public class RemoteMachine {
- 	}
- 
- 	public IHost getConnection() {
-+//		if (connection == null) {
-+//			connection = RemoteHelper.getRemoteConnectionForURI(, new NullProgressMonitor());
-+//		}
- 		return connection;
- 	}
- 	public void setConnection(IHost connection) {
-@@ -132,9 +135,8 @@ public class RemoteMachine {
- 	public IFileService getRemoteFileService(IProgressMonitor monitor) throws Exception {
- 		if (fileService == null) {
- 	
--			if (getFileSubsystem() == null)
--				throw new Exception(Messages.ErrorNoSubsystem);
--	
-+			while(getFileSubsystem() == null)
-+				Thread.sleep(2);
- 			try {
- 				getFileSubsystem().connect(monitor, false);
- 			} catch (CoreException e) {
-diff --git a/plugins/org.yocto.bc.ui/src/org/yocto/bc/ui/editors/bitbake/BBVariableTextHover.java b/plugins/org.yocto.bc.ui/src/org/yocto/bc/ui/editors/bitbake/BBVariableTextHover.java
-index cd18d54..329ec6b 100644
---- a/plugins/org.yocto.bc.ui/src/org/yocto/bc/ui/editors/bitbake/BBVariableTextHover.java
-+++ b/plugins/org.yocto.bc.ui/src/org/yocto/bc/ui/editors/bitbake/BBVariableTextHover.java
-@@ -29,11 +29,17 @@ class BBVariableTextHover implements ITextHover {
- 
- 	public BBVariableTextHover(BBSession session, URI file) {
- 		this.session = session;
--//		envMap = session;
-+		envMap = getEnvironmentMap();
- 		LoadRecipeJob loadRecipeJob = new LoadRecipeJob(getFilename(file), file);
- 		loadRecipeJob.schedule();
- 	}
- 
-+	private Map<String, String> getEnvironmentMap() {
-+		if (envMap == null)
-+			envMap = this.session.getProperties();
-+		return envMap;
-+	}
-+
- 	private String getFilename(URI uri) {
- 		return uri.getPath();
- 	}
-@@ -77,7 +83,7 @@ class BBVariableTextHover implements ITextHover {
- 		}
- 		
- 		String key = new String(line, start + 2, i - start - 2);
--		String val = (String) envMap.get(key);
-+		String val = (String) getEnvironmentMap().get(key);
- 		
- 		if (val == null) {
- 			val = "";
-@@ -103,7 +109,7 @@ class BBVariableTextHover implements ITextHover {
- 			try {
- 				BBRecipe recipe = Activator.getBBRecipe(session, filePath);
- 				recipe.initialize();
--//				envMap = recipe;
-+				envMap = recipe;
- 			} catch (Exception e) {
- 				return new Status(IStatus.WARNING, Activator.PLUGIN_ID, "Unable to load session for " + filePath, e);
- 			} 
--- 
-1.7.9.5
+> Hello,
+>
+> Apologies in advance if this is not the appropriate resource for this
+> request. Someone recommended this email list as a potential resource.
+>
+
+This is indeed a useful list.
 
 
+>
+> Where is the best place to go to get help on Yocto project if you are
+> brand new to this type of embedded development? ... I have basic hardware,
+> embedded, computer and software skills but no specific knowledge of linux,
+> yocto or build environment?
+>
+> What I am looking to do is to setup a very simple development environment
+> to learn by doing with Raspberry Pi as the BSP and yocto as the SDK. Then
+> do some fun little projects to get familiar with the build environment and
+> start doing more advanced projects.
+>
+> I am totally new to yocto, linux and this type of embedded development.
+> However, I have been playing with Yocto over the past few weeks trying to
+> get a development environment setup up, reading the Yoctoproject.org site,
+> googling various resources and trying to learn as much as I can. Setup
+> VMware player and build appliance as per the
+> https://www.yoctoproject.org/documentation/build-appliance-manual but
+> dead ended because of some networking issues. Next tried mysysGit but,
+> encountered some errors (attached) when setting up the project.
+>
+
+It would seem to me that you're already hitting the most useful resources.
+There are also some good introductory videos on Youtube.  Just search for
+Yocto.
+
+However, to obtain help here (or anywhere else) you'll need to describe
+your "networking issues" in as much detail as possible.  Your msysgit
+errors are likely due to a your environment setup, such as your version of
+Python.
+
+
+> Any assistance greatly appreciated.
+>
+> Ian Graham
+>
+> --
+>
+> *Making Start-ups Happen!*
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
+
+--f46d0402a9afa448b704d2b37855
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><br><div class=3D"gmail_extra"><br><br><div class=3D"gmail=
+_quote">On Sat, Jan 5, 2013 at 12:26 PM, Ian Graham <span dir=3D"ltr">&lt;<=
+a href=3D"mailto:ian@thecodefactory.ca" target=3D"_blank">ian@thecodefactor=
+y.ca</a>&gt;</span> wrote:<br>
+
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">Hello,<div><br></div><div>Apologies in advan=
+ce if this is not the appropriate resource for this request. Someone=A0reco=
+mmended=A0this email list as a potential resource.</div>
+
+</blockquote><div><br></div><div>This is indeed a useful list.<br>=A0<br></=
+div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-lef=
+t:1px #ccc solid;padding-left:1ex"><div><div><br></div><div>Where is the be=
+st place to go to get help on Yocto project if you are brand new to this ty=
+pe of embedded development? ... I have basic hardware, embedded, computer a=
+nd software skills but no specific knowledge of linux, yocto or build envir=
+onment?</div>
+
+
+<div><br></div><div>What I am looking to do is to setup a very simple devel=
+opment environment to learn by doing with=A0Raspberry=A0Pi as the BSP and y=
+octo as the SDK. Then do some fun little projects to get familiar with the =
+build=A0environment=A0and start doing more advanced projects.</div>
+
+
+<div><br></div><div>I am totally new to yocto, linux and this type of embed=
+ded development. However, I have been playing with Yocto over the past few =
+weeks trying to get a=A0development=A0environment setup up, reading the Yoc=
+toproject.org site, googling various resources and trying to learn as much =
+as I can. Setup VMware player and build=A0appliance as per the <a href=3D"h=
+ttps://www.yoctoproject.org/documentation/build-appliance-manual" target=3D=
+"_blank">https://www.yoctoproject.org/documentation/build-appliance-manual<=
+/a> but dead ended because of some networking issues. Next tried mysysGit b=
+ut, encountered some errors (attached) when setting up the project.=A0</div=
+>
+
+</div></blockquote><div><br></div><div>It would seem to me that you&#39;re =
+already hitting the most useful resources.=A0 There are also some good intr=
+oductory videos on Youtube.=A0 Just search for Yocto.<br><br></div><div>How=
+ever, to obtain help here (or anywhere else) you&#39;ll need to describe yo=
+ur &quot;networking issues&quot; in as much detail as possible.=A0 Your msy=
+sgit errors are likely due to a your environment setup, such as your versio=
+n of Python.<br>
+
+<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;bord=
+er-left:1px #ccc solid;padding-left:1ex"><div>
+<div><br></div><div>Any assistance greatly appreciated.</div><span class=3D=
+"HOEnZb"><font color=3D"#888888"><div><br></div><div>Ian Graham<br clear=3D=
+"all"><div><br></div>-- <br><img src=3D"http://media01.linkedin.com/media/p=
+/1/000/021/1af/1a176ad.png" height=3D"48" width=3D"96"><br>
+
+
+<div><b><font size=3D"1">Making Start-ups Happen!</font></b></div>
+</div></font></span></div>
+<br>_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
+>https://lists.yoctoproject.org/listinfo/yocto</a><br>
+<br></blockquote></div><br></div></div>
+
+--f46d0402a9afa448b704d2b37855--
