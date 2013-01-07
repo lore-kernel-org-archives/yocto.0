@@ -1,34 +1,36 @@
-Return-Path: <kishore.k.bodke@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 79694E01456;
-	Mon,  7 Jan 2013 09:34:15 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 07 Jan 2013 09:33:13 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,425,1355126400"; d="scan'208";a="268759560"
-Received: from orsmsx104.amr.corp.intel.com ([10.22.225.131])
-	by orsmga002.jf.intel.com with ESMTP; 07 Jan 2013 09:34:14 -0800
-Received: from orsmsx105.amr.corp.intel.com ([169.254.4.201]) by
-	ORSMSX104.amr.corp.intel.com ([169.254.3.133]) with mapi id
-	14.01.0355.002; Mon, 7 Jan 2013 09:34:14 -0800
-From: "Bodke, Kishore K" <kishore.k.bodke@intel.com>
-To: Darren Hart <dvhart@linux.intel.com>, "Noor, Ahsan" <noor_ahsan@mentor.com>
-Thread-Topic: [yocto] [meta-intel][PATCH] linux-yocto: Add a patch to
-	resolve undefined RUSAGE_SELF for perf.
-Thread-Index: AQHN7PLKEm1EKtLXGE+bFwaX9pT3Upg+IDuQ
-Date: Mon, 7 Jan 2013 17:34:13 +0000
-Message-ID: <D956029D25CF204F948EA0FB515E1EE24A4C9CB2@ORSMSX105.amr.corp.intel.com>
-References: <1356954965-17029-1-git-send-email-noor_ahsan@mentor.com>
-	<50EAF597.3030908@linux.intel.com>
-In-Reply-To: <50EAF597.3030908@linux.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.138]
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3D033E0145F
+	for <yocto@yoctoproject.org>; Mon,  7 Jan 2013 09:53:48 -0800 (PST)
+Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
+	([174.115.5.73]:34680 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1TsGtO-0004Kz-QE; Mon, 07 Jan 2013 12:53:46 -0500
+Date: Mon, 7 Jan 2013 12:53:42 -0500 (EST)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+In-Reply-To: <50EAB28F.6080506@dynamicdevices.co.uk>
+Message-ID: <alpine.DEB.2.02.1301071251510.1319@oneiric>
+References: <50E31E11.2090708@comcast.net>
+	<50E73A16.4070303@dynamicdevices.co.uk>
+	<50EA5C2E.9060701@comcast.net>
+	<50EAB28F.6080506@dynamicdevices.co.uk>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
-Cc: "meta-intel@yoctoproject.org" <meta-intel@yoctoproject.org>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-intel][PATCH] linux-yocto: Add a patch to resolve undefined RUSAGE_SELF for perf.
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Cc: yocto@yoctoproject.org, ed nelson <enelson1000@comcast.net>
+Subject: Re: Raspberry Pi do_fetch failure
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,88 +42,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 07 Jan 2013 17:34:15 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Mon, 07 Jan 2013 17:53:48 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-DQoNCj4tLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPkZyb206IERhcnJlbiBIYXJ0IFttYWls
-dG86ZHZoYXJ0QGxpbnV4LmludGVsLmNvbV0NCj5TZW50OiBNb25kYXksIEphbnVhcnkgMDcsIDIw
-MTMgODoyMCBBTQ0KPlRvOiBOb29yLCBBaHNhbg0KPkNjOiB5b2N0b0B5b2N0b3Byb2plY3Qub3Jn
-OyBtZXRhLWludGVsQHlvY3RvcHJvamVjdC5vcmc7IEJvZGtlLCBLaXNob3JlIEsNCj5TdWJqZWN0
-OiBSZTogW3lvY3RvXSBbbWV0YS1pbnRlbF1bUEFUQ0hdIGxpbnV4LXlvY3RvOiBBZGQgYSBwYXRj
-aCB0byByZXNvbHZlDQo+dW5kZWZpbmVkIFJVU0FHRV9TRUxGIGZvciBwZXJmLg0KPg0KPk9uIDEy
-LzMxLzIwMTIgMDM6NTYgQU0sIE5vb3IsIEFoc2FuIHdyb3RlOg0KPj4gRnJvbTogTm9vciBBaHNh
-biA8bm9vcl9haHNhbkBtZW50b3IuY29tPg0KPg0KPkhpIE5vb3IsDQo+DQo+Pg0KPj4gKiBQZXJm
-IGdpdmVkIGNvbXBpbGF0aW9uIGVycm9yDQo+PiAgIENDIGJ1aWx0aW4tc2NoZWQubw0KPj4gICAg
-IGJ1aWx0aW4tc2NoZWQuYzogSW4gZnVuY3Rpb24g4oCYZ2V0X2NwdV91c2FnZV9uc2VjX3BhcmVu
-dOKAmToNCj4+ICAgYnVpbHRpbi1zY2hlZC5jOjM5OToxNjogZXJyb3I6IHN0b3JhZ2Ugc2l6ZSBv
-ZiDigJhydeKAmSBpc27igJl0IGtub3duDQo+PiAqIEFkZGVkIGEgcGF0Y2ggZnJvbSBsaW51eCBr
-ZXJuZWwgZ2l0IHJlcG8gY29tbWl0IGlkDQo+PiAgIDdiNzhmMTM2MDNjNmZjYjY0ZTAyMGEwYmJl
-MzFhNjUxZWEyYjY1N2Igd2hpY2ggaW5jbHVkZSByZXNvdXJjZS5oDQo+PiAgIGZpbGUgaW4gYnVp
-bHRpbi1zY2hlZC5jLg0KPg0KPg0KPlBsZWFzZSBzZW5kIG1ldGEtaW50ZWwgcGF0Y2hlcyB0byB0
-aGUgbWV0YS1pbnRlbCBsaXN0IGFuZCBDQyB0aGUgQlNQDQo+bWFpbnRhaW5lciwgaW4gdGhpcyBj
-YXNlIEtpc2hvcmUgKG9uIENjKS4NCj4NCj5UaGUgcGF0Y2ggYmVsb3cgc2VlbXMgdG8gYmFzaWNh
-bGx5IGR1cGxpY2F0ZSB0aGUgZXhpc3RpbmcNCj5saW51eC15b2N0b18zLjAuYmJhcHBlbmQgaW4g
-dGhlIHJlcG9zaXRvcnkgYW5kIEkgZG9uJ3Qgc2VlIHRoZSBwYXRjaCB5b3UNCj5tZW50aW9uLiBJ
-cyB0aGlzIHRoZSBwYXRjaCB5b3UgaW50ZW5kZWQgdG8gc2VuZD8NCj4NCkhpIE5vb3IsDQpZZWFo
-LCBpdCBpcyBkdXBsaWNhdGlvbiBvZiB0aGUgbGludXgteW9jdG9fMy4wLmJiYXBwZW5kLiANCldo
-eSBkbyB5b3Ugd2FudCB0byBkbyB0aGlzPw0KDQpUaGFua3MNCktpc2hvcmUuDQoNCj5UaGFua3Ms
-DQo+DQo+RGFycmVuDQo+DQo+Pg0KPj4gU2lnbmVkLW9mZi1ieTogTm9vciBBaHNhbiA8bm9vcl9h
-aHNhbkBtZW50b3IuY29tPg0KPj4gLS0tDQo+PiAgLi4uL2xpbnV4L2xpbnV4LXlvY3RvL2xpbnV4
-LXlvY3RvXzMuMC5iYmFwcGVuZCAgICAgfCAgIDIzDQo+KysrKysrKysrKysrKysrKysrKysNCj4+
-ICAuLi4vcmVjaXBlcy1rZXJuZWwvbGludXgvbGludXgteW9jdG9fMy4wLmJiYXBwZW5kICB8ICAg
-IDggKysrKystLQ0KPj4gIDIgZmlsZXMgY2hhbmdlZCwgMjkgaW5zZXJ0aW9ucygrKSwgMiBkZWxl
-dGlvbnMoLSkNCj4+DQo+PiBkaWZmIC0tZ2l0IGEvbWV0YS1jZWRhcnRyYWlsL3JlY2lwZXMta2Vy
-bmVsL2xpbnV4L2xpbnV4LXlvY3RvL2xpbnV4LQ0KPnlvY3RvXzMuMC5iYmFwcGVuZCBiL21ldGEt
-Y2VkYXJ0cmFpbC9yZWNpcGVzLWtlcm5lbC9saW51eC9saW51eC0NCj55b2N0by9saW51eC15b2N0
-b18zLjAuYmJhcHBlbmQNCj4+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0DQo+PiBpbmRleCAwMDAwMDAw
-Li40NDBjZDc3DQo+PiAtLS0gL2Rldi9udWxsDQo+PiArKysgYi9tZXRhLWNlZGFydHJhaWwvcmVj
-aXBlcy1rZXJuZWwvbGludXgvbGludXgteW9jdG8vbGludXgtDQo+eW9jdG9fMy4wLmJiYXBwZW5k
-DQo+PiBAQCAtMCwwICsxLDIzIEBADQo+PiArRklMRVNFWFRSQVBBVEhTX3ByZXBlbmQgOj0gIiR7
-VEhJU0RJUn0vJHtQTn06Ig0KPj4gKw0KPj4gK1NSQ19VUklfY2VkYXJ0cmFpbCA9ICJnaXQ6Ly9n
-aXQueW9jdG9wcm9qZWN0Lm9yZy9saW51eC15b2N0by0NCj4zLjA7cHJvdG9jb2w9Z2l0O2JhcmVj
-bG9uZT0xO2JyYW5jaD0ke0tCUkFOQ0h9LG1ldGEseW9jdG8vcHZyO25hbWU9bWENCj5jaGluZSxt
-ZXRhLHB2ciINCj4+ICsNCj4+ICtTUkNfVVJJX2NlZGFydHJhaWwtbm9wdnIgPSAiZ2l0Oi8vZ2l0
-LnlvY3RvcHJvamVjdC5vcmcvbGludXgteW9jdG8tDQo+My4wO3Byb3RvY29sPWdpdDtub2NoZWNr
-b3V0PTE7YnJhbmNoPSR7S0JSQU5DSH0sbWV0YTtuYW1lPW1hY2hpbmUsbQ0KPmV0YSINCj4+ICsN
-Cj4+ICtDT01QQVRJQkxFX01BQ0hJTkVfY2VkYXJ0cmFpbCA9ICJjZWRhcnRyYWlsIg0KPj4gK0tN
-QUNISU5FX2NlZGFydHJhaWwgID0gImNlZGFydHJhaWwiDQo+PiArS0JSQU5DSF9jZWRhcnRyYWls
-ICA9ICJ5b2N0by9zdGFuZGFyZC9jZWRhcnRyYWlsIg0KPj4gK0tFUk5FTF9GRUFUVVJFU19hcHBl
-bmRfY2VkYXJ0cmFpbCArPSAiYnNwL2NlZGFydHJhaWwvY2VkYXJ0cmFpbC1wdnItDQo+bWVyZ2Uu
-c2NjIg0KPj4gK0tFUk5FTF9GRUFUVVJFU19hcHBlbmRfY2VkYXJ0cmFpbCArPSAiY2ZnL2VmaS1l
-eHQuc2NjIg0KPj4gKw0KPj4gK0NPTVBBVElCTEVfTUFDSElORV9jZWRhcnRyYWlsLW5vcHZyID0g
-ImNlZGFydHJhaWwiDQo+PiArS01BQ0hJTkVfY2VkYXJ0cmFpbC1ub3B2ciAgPSAiY2VkYXJ0cmFp
-bCINCj4+ICtLQlJBTkNIX2NlZGFydHJhaWwtbm9wdnIgID0gInlvY3RvL3N0YW5kYXJkL2NlZGFy
-dHJhaWwiDQo+PiArS0VSTkVMX0ZFQVRVUkVTX2FwcGVuZF9jZWRhcnRyYWlsLW5vcHZyICs9ICIg
-Y2ZnL3NtcC5zY2MiDQo+PiArDQo+PiArU1JDUkVWX21hY2hpbmVfcG4tbGludXgteW9jdG9fY2Vk
-YXJ0cmFpbCA/PSAiJHtBVVRPUkVWfSINCj4+ICtTUkNSRVZfbWV0YV9wbi1saW51eC15b2N0b19j
-ZWRhcnRyYWlsID89ICIke0FVVE9SRVZ9Ig0KPj4gK1NSQ1JFVl9wdnJfcG4tbGludXgteW9jdG9f
-Y2VkYXJ0cmFpbCA/PSAiJHtBVVRPUkVWfSINCj4+ICsNCj4+ICtTUkNSRVZfbWFjaGluZV9wbi1s
-aW51eC15b2N0b19jZWRhcnRyYWlsLW5vcHZyID89ICIke0FVVE9SRVZ9Ig0KPj4gK1NSQ1JFVl9t
-ZXRhX3BuLWxpbnV4LXlvY3RvX2NlZGFydHJhaWwtbm9wdnIgPz0gIiR7QVVUT1JFVn0iDQo+PiBk
-aWZmIC0tZ2l0IGEvbWV0YS1jZWRhcnRyYWlsL3JlY2lwZXMta2VybmVsL2xpbnV4L2xpbnV4LXlv
-Y3RvXzMuMC5iYmFwcGVuZA0KPmIvbWV0YS1jZWRhcnRyYWlsL3JlY2lwZXMta2VybmVsL2xpbnV4
-L2xpbnV4LXlvY3RvXzMuMC5iYmFwcGVuZA0KPj4gaW5kZXggNDQwY2Q3Ny4uNjc5N2VlYiAxMDA2
-NDQNCj4+IC0tLSBhL21ldGEtY2VkYXJ0cmFpbC9yZWNpcGVzLWtlcm5lbC9saW51eC9saW51eC15
-b2N0b18zLjAuYmJhcHBlbmQNCj4+ICsrKyBiL21ldGEtY2VkYXJ0cmFpbC9yZWNpcGVzLWtlcm5l
-bC9saW51eC9saW51eC15b2N0b18zLjAuYmJhcHBlbmQNCj4+IEBAIC0xLDggKzEsMTIgQEANCj4+
-ICBGSUxFU0VYVFJBUEFUSFNfcHJlcGVuZCA6PSAiJHtUSElTRElSfS8ke1BOfToiDQo+Pg0KPj4g
-LVNSQ19VUklfY2VkYXJ0cmFpbCA9ICJnaXQ6Ly9naXQueW9jdG9wcm9qZWN0Lm9yZy9saW51eC15
-b2N0by0NCj4zLjA7cHJvdG9jb2w9Z2l0O2JhcmVjbG9uZT0xO2JyYW5jaD0ke0tCUkFOQ0h9LG1l
-dGEseW9jdG8vcHZyO25hbWU9bWENCj5jaGluZSxtZXRhLHB2ciINCj4+ICtTUkNfVVJJX2NlZGFy
-dHJhaWwgPSAiZ2l0Oi8vZ2l0LnlvY3RvcHJvamVjdC5vcmcvbGludXgteW9jdG8tDQo+My4wO3By
-b3RvY29sPWdpdDtiYXJlY2xvbmU9MTticmFuY2g9JHtLQlJBTkNIfSxtZXRhLHlvY3RvL3B2cjtu
-YW1lPW1hDQo+Y2hpbmUsbWV0YSxwdnIgXA0KPj4gK2ZpbGU6Ly9saW51eC15b2N0b18zLjAuYmJh
-cHBlbmQgXA0KPj4gKyINCj4+DQo+PiAtU1JDX1VSSV9jZWRhcnRyYWlsLW5vcHZyID0gImdpdDov
-L2dpdC55b2N0b3Byb2plY3Qub3JnL2xpbnV4LXlvY3RvLQ0KPjMuMDtwcm90b2NvbD1naXQ7bm9j
-aGVja291dD0xO2JyYW5jaD0ke0tCUkFOQ0h9LG1ldGE7bmFtZT1tYWNoaW5lLG0NCj5ldGEiDQo+
-PiArU1JDX1VSSV9jZWRhcnRyYWlsLW5vcHZyID0gImdpdDovL2dpdC55b2N0b3Byb2plY3Qub3Jn
-L2xpbnV4LXlvY3RvLQ0KPjMuMDtwcm90b2NvbD1naXQ7bm9jaGVja291dD0xO2JyYW5jaD0ke0tC
-UkFOQ0h9LG1ldGE7bmFtZT1tYWNoaW5lLG0NCj5ldGEgXA0KPj4gK2ZpbGU6Ly9saW51eC15b2N0
-b18zLjAuYmJhcHBlbmQgXA0KPj4gKyINCj4+DQo+PiAgQ09NUEFUSUJMRV9NQUNISU5FX2NlZGFy
-dHJhaWwgPSAiY2VkYXJ0cmFpbCINCj4+ICBLTUFDSElORV9jZWRhcnRyYWlsICA9ICJjZWRhcnRy
-YWlsIg0KPj4NCj4NCj4tLQ0KPkRhcnJlbiBIYXJ0DQo+SW50ZWwgT3BlbiBTb3VyY2UgVGVjaG5v
-bG9neSBDZW50ZXINCj5Zb2N0byBQcm9qZWN0IC0gVGVjaG5pY2FsIExlYWQgLSBMaW51eCBLZXJu
-ZWwNCg==
+On Mon, 7 Jan 2013, Alex J Lennon wrote:
+
+> > Alex
+> >
+> > Thanks I was able to download and build core-image-sato
+> >
+> > Having discussion with github but no real solution yet.
+> >
+>
+> Hi Ed, I'm glad that was useful in moving you forward. I did some
+> googling and this issue with GitHub does seem to pop up
+> intermittently. My gut feeling is there's some kind of resource
+> issue, perhaps related to compression on the server. Some of the
+> comments do seem to suggest that disabling compression helps.
+>
+> I do wonder if someone from the Yocto project is able to fork the
+> RPi linux repo and mirror either the Git repo itself or an archive
+> of that (and indeed if that's a good idea)?
+
+  is there a current diagnosis for this github fetching irritation?  i
+thought i'd take a shot at building for rpi and, like others, i failed
+to fetch the kernel from github:
+
+WARNING: Failed to fetch URL
+git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.2.27,
+attempting MIRRORS if available
+ERROR: Fetcher failure: Fetch command failed with exit code 128,
+output:
+Cloning into bare repository
+'/home/rpjday/oe/builds/rpi/downloads/git2/github.com.raspberrypi.linux.git'...
+
+fatal: The remote end hung up unexpectedly
+fatal: early EOF
+fatal: index-pack failed
+
+ERROR: Function failed: Fetcher failure for URL:
+'git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.2.27'.
+Unable to fetch URL from any source.
+ERROR: Logfile of failure stored in:
+/home/rpjday/oe/builds/rpi/tmp-eglibc/work/armv6-vfp-oe-linux-gnueabi/linux-libc-headers-raspberrypi/3.2.27-r0/temp/log.do_fetch.1278
+ERROR: Task 62
+(/home/rpjday/oe/dist/layers/meta-raspberrypi/recipes-kernel/linux-libc-headers/linux-libc-headers-raspberrypi_3.2.27.bb,
+do_fetch) failed with exit code '1'
+
+  thoughts?  i've tried a few times this morning, same result each
+time.
+
+rday
+
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
