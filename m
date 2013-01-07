@@ -1,26 +1,25 @@
 Return-Path: <dvhart@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 78563E0120B
-	for <yocto@yoctoproject.org>; Mon,  7 Jan 2013 08:26:15 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 07 Jan 2013 08:25:13 -0800
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E3AB8E01423
+	for <yocto@yoctoproject.org>; Mon,  7 Jan 2013 08:41:40 -0800 (PST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 07 Jan 2013 08:41:40 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,424,1355126400"; d="scan'208";a="243031795"
+X-IronPort-AV: E=Sophos;i="4.84,424,1355126400"; d="scan'208";a="268731262"
 Received: from envy.jf.intel.com (HELO envy.home) ([10.7.199.53])
-	by orsmga001.jf.intel.com with ESMTP; 07 Jan 2013 08:26:15 -0800
-Message-ID: <50EAF727.6060107@linux.intel.com>
-Date: Mon, 07 Jan 2013 08:26:15 -0800
+	by orsmga002.jf.intel.com with ESMTP; 07 Jan 2013 08:41:39 -0800
+Message-ID: <50EAFAC4.7000504@linux.intel.com>
+Date: Mon, 07 Jan 2013 08:41:40 -0800
 From: Darren Hart <dvhart@linux.intel.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:17.0) Gecko/17.0 Thunderbird/17.0
 MIME-Version: 1.0
-To: Tomas Frydrych <tf+lists.yocto@r-finger.com>
-References: <93700C12-76D8-4F46-9AAB-B66A9869D70C@keylevel.com>
-	<50D4A7B6.6040603@r-finger.com>
-In-Reply-To: <50D4A7B6.6040603@r-finger.com>
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>
+References: <alpine.DEB.2.02.1212090955220.13565@oneiric>
+In-Reply-To: <alpine.DEB.2.02.1212090955220.13565@oneiric>
 X-Enigmail-Version: 1.4.6
-Cc: yocto@yoctoproject.org
-Subject: Re: I think my kernel image just went back in time...
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: are the yocto qemu download directories supposed to have kernel images?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,29 +31,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 07 Jan 2013 16:26:15 -0000
+X-List-Received-Date: Mon, 07 Jan 2013 16:41:41 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-
-
-On 12/21/2012 10:17 AM, Tomas Frydrych wrote:
-> On 09/12/12 23:17, Chris Tapp wrote:
->> In tmp/deploy/images:
->>
->> 1) bzImage had a timestamp of 2012-12-09 21:49 and the file ended
->> -20121209214459.bin
->>
->> 2) Cleaned the image and the task it contained (to pick up some
->> changes on rebuild) and deleted the image files (.hddimg, etc.) in
->> tmp/deploy/images making sure to leave the kernel files intact.
+On 12/09/2012 06:57 AM, Robert P. J. Day wrote:
 > 
-> Did you cleansstate it? I find that without cleaning the state kernel
-> image gets always pulled out of sstate rather than properly rebuilt.
+>   just updating my QEMU page, and the 1.3 download qemu pages no
+> longer have kernel image files.  for instance, here:
 > 
-> Tomas
+> http://downloads.yoctoproject.org/releases/yocto/yocto-1.2.1/machines/qemu/qemuarm/
+> 
+> you can see the file "zImage-qemuarm.bin".  but such a file no longer
+> exists under:
+> 
+> http://downloads.yoctoproject.org/releases/yocto/yocto-1.3/machines/qemu/qemuarm/
+> 
+> should it?
+> 
+> rday
+> 
 
-Do you still experience this on the master branch?
+This appears to be fixed.
 
 -- 
 Darren Hart
