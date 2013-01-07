@@ -1,25 +1,27 @@
 Return-Path: <dvhart@linux.intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A1EA1E01410;
-	Mon,  7 Jan 2013 08:19:35 -0800 (PST)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E9DDFE00724
+	for <yocto@yoctoproject.org>; Mon,  7 Jan 2013 08:21:55 -0800 (PST)
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 07 Jan 2013 08:19:35 -0800
+	by orsmga102.jf.intel.com with ESMTP; 07 Jan 2013 08:20:54 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,424,1355126400"; d="scan'208";a="243029061"
+X-IronPort-AV: E=Sophos;i="4.84,424,1355126400"; d="scan'208";a="243030076"
 Received: from envy.jf.intel.com (HELO envy.home) ([10.7.199.53])
-	by orsmga001.jf.intel.com with ESMTP; 07 Jan 2013 08:19:34 -0800
-Message-ID: <50EAF597.3030908@linux.intel.com>
-Date: Mon, 07 Jan 2013 08:19:35 -0800
+	by orsmga001.jf.intel.com with ESMTP; 07 Jan 2013 08:21:43 -0800
+Message-ID: <50EAF616.5060604@linux.intel.com>
+Date: Mon, 07 Jan 2013 08:21:42 -0800
 From: Darren Hart <dvhart@linux.intel.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:17.0) Gecko/17.0 Thunderbird/17.0
 MIME-Version: 1.0
-To: "Noor, Ahsan" <noor_ahsan@mentor.com>
-References: <1356954965-17029-1-git-send-email-noor_ahsan@mentor.com>
-In-Reply-To: <1356954965-17029-1-git-send-email-noor_ahsan@mentor.com>
+To: Bruce Ashfield <bruce.ashfield@gmail.com>
+References: <1219DA3ECB038C40A6CF638974AA84A52517920E@sestoex05.enea.se>
+	<CADkTA4PNsOqwWbvDmyLGrcn6GVboeFkJX3voR1Pji_FoVU8m1w@mail.gmail.com>
+In-Reply-To: <CADkTA4PNsOqwWbvDmyLGrcn6GVboeFkJX3voR1Pji_FoVU8m1w@mail.gmail.com>
 X-Enigmail-Version: 1.4.6
-Cc: meta-intel@yoctoproject.org, yocto@yoctoproject.org
-Subject: Re: [meta-intel][PATCH] linux-yocto: Add a patch to resolve undefined RUSAGE_SELF for perf.
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	Rick Yang <Rick.Yang@enea.com>
+Subject: Re: yocto-kernel-tools
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,92 +33,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 07 Jan 2013 16:19:35 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 07 Jan 2013 16:21:56 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-On 12/31/2012 03:56 AM, Noor, Ahsan wrote:
-> From: Noor Ahsan <noor_ahsan@mentor.com>
-
-Hi Noor,
-
+On 12/24/2012 08:15 AM, Bruce Ashfield wrote:
 > 
-> * Perf gived compilation error
->   CC builtin-sched.o
->     builtin-sched.c: In function ‘get_cpu_usage_nsec_parent’:
->   builtin-sched.c:399:16: error: storage size of ‘ru’ isn’t known
-> * Added a patch from linux kernel git repo commit id
->   7b78f13603c6fcb64e020a0bbe31a651ea2b657b which include resource.h
->   file in builtin-sched.c.
-
-
-Please send meta-intel patches to the meta-intel list and CC the BSP
-maintainer, in this case Kishore (on Cc).
-
-The patch below seems to basically duplicate the existing
-linux-yocto_3.0.bbappend in the repository and I don't see the patch you
-mention. Is this the patch you intended to send?
-
-Thanks,
-
-Darren
-
 > 
-> Signed-off-by: Noor Ahsan <noor_ahsan@mentor.com>
-> ---
->  .../linux/linux-yocto/linux-yocto_3.0.bbappend     |   23 ++++++++++++++++++++
->  .../recipes-kernel/linux/linux-yocto_3.0.bbappend  |    8 +++++--
->  2 files changed, 29 insertions(+), 2 deletions(-)
 > 
-> diff --git a/meta-cedartrail/recipes-kernel/linux/linux-yocto/linux-yocto_3.0.bbappend b/meta-cedartrail/recipes-kernel/linux/linux-yocto/linux-yocto_3.0.bbappend
-> new file mode 100644
-> index 0000000..440cd77
-> --- /dev/null
-> +++ b/meta-cedartrail/recipes-kernel/linux/linux-yocto/linux-yocto_3.0.bbappend
-> @@ -0,0 +1,23 @@
-> +FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-> +
-> +SRC_URI_cedartrail = "git://git.yoctoproject.org/linux-yocto-3.0;protocol=git;bareclone=1;branch=${KBRANCH},meta,yocto/pvr;name=machine,meta,pvr"
-> +
-> +SRC_URI_cedartrail-nopvr = "git://git.yoctoproject.org/linux-yocto-3.0;protocol=git;nocheckout=1;branch=${KBRANCH},meta;name=machine,meta"
-> +
-> +COMPATIBLE_MACHINE_cedartrail = "cedartrail"
-> +KMACHINE_cedartrail  = "cedartrail"
-> +KBRANCH_cedartrail  = "yocto/standard/cedartrail"
-> +KERNEL_FEATURES_append_cedartrail += "bsp/cedartrail/cedartrail-pvr-merge.scc"
-> +KERNEL_FEATURES_append_cedartrail += "cfg/efi-ext.scc"
-> +
-> +COMPATIBLE_MACHINE_cedartrail-nopvr = "cedartrail"
-> +KMACHINE_cedartrail-nopvr  = "cedartrail"
-> +KBRANCH_cedartrail-nopvr  = "yocto/standard/cedartrail"
-> +KERNEL_FEATURES_append_cedartrail-nopvr += " cfg/smp.scc"
-> +
-> +SRCREV_machine_pn-linux-yocto_cedartrail ?= "${AUTOREV}"
-> +SRCREV_meta_pn-linux-yocto_cedartrail ?= "${AUTOREV}"
-> +SRCREV_pvr_pn-linux-yocto_cedartrail ?= "${AUTOREV}"
-> +
-> +SRCREV_machine_pn-linux-yocto_cedartrail-nopvr ?= "${AUTOREV}"
-> +SRCREV_meta_pn-linux-yocto_cedartrail-nopvr ?= "${AUTOREV}"
-> diff --git a/meta-cedartrail/recipes-kernel/linux/linux-yocto_3.0.bbappend b/meta-cedartrail/recipes-kernel/linux/linux-yocto_3.0.bbappend
-> index 440cd77..6797eeb 100644
-> --- a/meta-cedartrail/recipes-kernel/linux/linux-yocto_3.0.bbappend
-> +++ b/meta-cedartrail/recipes-kernel/linux/linux-yocto_3.0.bbappend
-> @@ -1,8 +1,12 @@
->  FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
->  
-> -SRC_URI_cedartrail = "git://git.yoctoproject.org/linux-yocto-3.0;protocol=git;bareclone=1;branch=${KBRANCH},meta,yocto/pvr;name=machine,meta,pvr"
-> +SRC_URI_cedartrail = "git://git.yoctoproject.org/linux-yocto-3.0;protocol=git;bareclone=1;branch=${KBRANCH},meta,yocto/pvr;name=machine,meta,pvr \
-> +file://linux-yocto_3.0.bbappend \
-> +"
->  
-> -SRC_URI_cedartrail-nopvr = "git://git.yoctoproject.org/linux-yocto-3.0;protocol=git;nocheckout=1;branch=${KBRANCH},meta;name=machine,meta"
-> +SRC_URI_cedartrail-nopvr = "git://git.yoctoproject.org/linux-yocto-3.0;protocol=git;nocheckout=1;branch=${KBRANCH},meta;name=machine,meta \
-> +file://linux-yocto_3.0.bbappend \
-> +"
->  
->  COMPATIBLE_MACHINE_cedartrail = "cedartrail"
->  KMACHINE_cedartrail  = "cedartrail"
+> On Mon, Dec 24, 2012 at 6:28 AM, Rick Yang <Rick.Yang@enea.com
+> <mailto:Rick.Yang@enea.com>> wrote:
 > 
+>     Hi , ____
+> 
+>     We have a linux release base on yocto, and we want to use
+>     yocto-kernel-tools to manage kernel configuration fragments, instead
+>     of the old method. So we want to know, when poky will use
+>     yocto-kernel-tools to manage the kernel ? Is there a plan?
+> 
+> 
+> I'm not sure I follow the question. Since yocto 1.0 the kern-tools have
+> been used
+> to manage the kernel, they've been changing over time, but the
+> foundation and
+> theory is the same.
+> 
+> If you want to manage a custom kernel, have a look in meta-skeleton for 
+> linux-yocto-custom.bb <http://linux-yocto-custom.bb> and you can apply
+> fragments to any upstream git tree
+> of your choosing. It would of course be better if we get more
+> contributions to the
+> main linux-yocto meta data (yocto-kernel-cache and the linux-yocto meta
+> branch), but
+> that's completely voluntary. 
+
+If you need some documentation on this please let us know, we have some
+early docs going through some active development we can point you at if
+interested.
 
 -- 
 Darren Hart
