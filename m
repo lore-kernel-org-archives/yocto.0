@@ -1,25 +1,33 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 67E71E01275
-	for <yocto@yoctoproject.org>; Mon,  7 Jan 2013 08:44:52 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 07 Jan 2013 08:44:52 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,424,1355126400"; d="scan'208";a="268732464"
-Received: from envy.jf.intel.com (HELO envy.home) ([10.7.199.53])
-	by orsmga002.jf.intel.com with ESMTP; 07 Jan 2013 08:44:52 -0800
-Message-ID: <50EAFB84.9090007@linux.intel.com>
-Date: Mon, 07 Jan 2013 08:44:52 -0800
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/17.0 Thunderbird/17.0
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-ie0-f170.google.com (mail-ie0-f170.google.com
+	[209.85.223.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CBE86E0072F;
+	Mon,  7 Jan 2013 09:11:18 -0800 (PST)
+Received: by mail-ie0-f170.google.com with SMTP id k10so24600097iea.29
+	for <multiple recipients>; Mon, 07 Jan 2013 09:11:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=x-received:mime-version:in-reply-to:references:from:date:message-id
+	:subject:to:cc:content-type;
+	bh=mSliWIAiaXwhVLR7pDiCxtwL0nAafyH169bitbp3tYY=;
+	b=DiV27RfMIC+IAYcdTTuf6i4iUn3kaXpneHuJj76OrBRMz98E4OXua+HMgTLG+7OrFC
+	2fVMCc+DNuVlLVSQDABNMuMZoksoDZUCmuXg/uMdh2w6R79q+9I4Fx2aV53nb5tJjDbG
+	ZFCp/M/VO37RmxN6hzQub2uXL1NeJC/7xaxG5KFYbJ9DrtqdD4FtMmaYgIcyEpdDiQaL
+	4GGnKpbD7C1ENJ4R0NYK4ovzefON63wrsXqhtR+vXrWEXkd8Nf7dK47JUD6/ZOIddrus
+	tsSX7gvbJMG/QTOYo10WkIt7wYjGSkdXYFEkHFHw0uxk+xSz7dvdbyoo8Vg73tsAWUDx
+	+FRg==
+X-Received: by 10.50.184.199 with SMTP id ew7mr6246114igc.84.1357578678510;
+	Mon, 07 Jan 2013 09:11:18 -0800 (PST)
 MIME-Version: 1.0
-To: Chris Tapp <opensource@keylevel.com>
-References: <6F94DE12-515D-47A0-BDC6-9491AFD6849F@keylevel.com>
-In-Reply-To: <6F94DE12-515D-47A0-BDC6-9491AFD6849F@keylevel.com>
-X-Enigmail-Version: 1.4.6
-Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-Subject: Re: meta-cedartrail - where is grub configured for 'install' option?
+Received: by 10.64.19.8 with HTTP; Mon, 7 Jan 2013 09:10:47 -0800 (PST)
+In-Reply-To: <50EAF2F3.3030402@linux.intel.com>
+References: <1357271430-31116-1-git-send-email-raj.khem@gmail.com>
+	<50EAF2F3.3030402@linux.intel.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Mon, 7 Jan 2013 09:10:47 -0800
+Message-ID: <CAMKF1soWojEn=xNYg6LRQDmg6=zsw6g7ck7K6ADzDGN0cefKRg@mail.gmail.com>
+To: Darren Hart <dvhart@linux.intel.com>
+Cc: meta-intel@yoctoproject.org, yocto@yoctoproject.org
+Subject: Re: [meta-intel][PATCH] layer.conf: Use .= for adding to BBPATH and += to BBFILES
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,30 +39,278 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 07 Jan 2013 16:44:52 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 07 Jan 2013 17:11:19 -0000
+Content-Type: text/plain; charset=UTF-8
 
+On Mon, Jan 7, 2013 at 8:08 AM, Darren Hart <dvhart@linux.intel.com> wrote:
+> Hi Khem,
+>
+> On 01/03/2013 07:50 PM, Khem Raj wrote:
+>> Fixes parsing errors which is appearing after this commit to
+>> meta-openembedded
+>>
+>> http://cgit.openembedded.org/meta-openembedded/commit/?id=3c21a46020bd0816579648f684c41dbd6333583e
+>>
+>> This triggers
+>> exception NameError: name 'base_contains' is not defined
+>> without this change
+>
+> OK, so your solution is to avoid the immediate expansion operator (:=)
+> which caused base_contains added in the previous commit to fail to
+> expand at the time the meta-intel layer configs are parsed
+> and replace it with one of the append operators (.= or +=) that allows
+> for delayed variable expansion. This seems correct to me - but please
+> include this explanation in your commit message in the future.
+>
 
+.= and += are explained in bb manual very well :)
 
-On 12/09/2012 01:39 PM, Chris Tapp wrote:
-> I am trying to change the 'install' behaviour for the meta-cedartrail image so that the installed system has a different grub.cfg file. Is there a file I can bbappend to achieve this?
-> 
-> image_live.bbclass refers to the 'install' syslinux label that triggers the install, but I've not been able to get from this to how/where grub.cfg is created.
-> 
+> Also, please use the meta-intel mailing list for changes to meta-intel
+> (Cc'd now).
 
-This is currently rather crudely implemented here:
+oh ok. I did not know if such a ml existed.
 
-meta/recipes-core/initrdscripts/files/init-install.sh
-
-A better deployment mechanism is something being discussed and which
-should make this more configurable.
-
-For now, you could bbappend initramfs-live-install_1.0.bb and replace the
-init-install.sh script with your own.
-
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Technical Lead - Linux Kernel
+> https://lists.yoctoproject.org/listinfo/meta-intel
+>
+> Tom, any objection?
+>
+>
+>>
+>> Signed-off-by: Khem Raj <raj.khem@gmail.com>
+>
+>
+> Acked-by: Darren Hart <dvhart@linux.intel.com>
+>
+>
+>> ---
+>>  conf/layer.conf                    |    4 ++--
+>>  meta-cedartrail/conf/layer.conf    |    4 ++--
+>>  meta-chiefriver/conf/layer.conf    |    4 ++--
+>>  meta-crownbay/conf/layer.conf      |    4 ++--
+>>  meta-crystalforest/conf/layer.conf |    4 ++--
+>>  meta-emenlow/conf/layer.conf       |    4 ++--
+>>  meta-fri2/conf/layer.conf          |    4 ++--
+>>  meta-jasperforest/conf/layer.conf  |    4 ++--
+>>  meta-n450/conf/layer.conf          |    4 ++--
+>>  meta-nuc/conf/layer.conf           |    4 ++--
+>>  meta-romley/conf/layer.conf        |    4 ++--
+>>  meta-sugarbay/conf/layer.conf      |    4 ++--
+>>  meta-sys940x/conf/layer.conf       |    4 ++--
+>>  meta-tlk/conf/layer.conf           |    4 ++--
+>>  14 files changed, 28 insertions(+), 28 deletions(-)
+>>
+>> diff --git a/conf/layer.conf b/conf/layer.conf
+>> index e9c2b10..31132ab 100644
+>> --- a/conf/layer.conf
+>> +++ b/conf/layer.conf
+>> @@ -1,8 +1,8 @@
+>>  # We have a conf and classes directory, add to BBPATH
+>> -BBPATH := "${BBPATH}:${LAYERDIR}"
+>> +BBPATH .= ":${LAYERDIR}"
+>>
+>>  # We have recipes-* directories, add to BBFILES
+>> -BBFILES := "${BBFILES} ${LAYERDIR}/common/recipes-*/*/*.bb \
+>> +BBFILES += "${LAYERDIR}/common/recipes-*/*/*.bb \
+>>              ${LAYERDIR}/common/recipes-*/*/*.bbappend"
+>>
+>>  BBFILE_COLLECTIONS += "intel"
+>> diff --git a/meta-cedartrail/conf/layer.conf b/meta-cedartrail/conf/layer.conf
+>> index c19c4c1..0166b35 100644
+>> --- a/meta-cedartrail/conf/layer.conf
+>> +++ b/meta-cedartrail/conf/layer.conf
+>> @@ -1,8 +1,8 @@
+>>  # We have a conf and classes directory, add to BBPATH
+>> -BBPATH := "${BBPATH}:${LAYERDIR}"
+>> +BBPATH .= ":${LAYERDIR}"
+>>
+>>  # We have a recipes directory, add to BBFILES
+>> -BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
+>> +BBFILES += "${LAYERDIR}/recipes-*/*/*.bb \
+>>       ${LAYERDIR}/recipes-*/*/*.bbappend"
+>>
+>>  BBFILE_COLLECTIONS += "cedartrail"
+>> diff --git a/meta-chiefriver/conf/layer.conf b/meta-chiefriver/conf/layer.conf
+>> index 5dc3c02..6164f99 100644
+>> --- a/meta-chiefriver/conf/layer.conf
+>> +++ b/meta-chiefriver/conf/layer.conf
+>> @@ -1,8 +1,8 @@
+>>  # We have a conf and classes directory, add to BBPATH
+>> -BBPATH := "${BBPATH}:${LAYERDIR}"
+>> +BBPATH .= ":${LAYERDIR}"
+>>
+>>  # We have a recipes directory, add to BBFILES
+>> -BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
+>> +BBFILES += "${LAYERDIR}/recipes-*/*/*.bb \
+>>       ${LAYERDIR}/recipes-*/*/*.bbappend"
+>>
+>>  BBFILE_COLLECTIONS += "chiefriver"
+>> diff --git a/meta-crownbay/conf/layer.conf b/meta-crownbay/conf/layer.conf
+>> index cb17298..e6cc2a0 100644
+>> --- a/meta-crownbay/conf/layer.conf
+>> +++ b/meta-crownbay/conf/layer.conf
+>> @@ -1,8 +1,8 @@
+>>  # We have a conf and classes directory, add to BBPATH
+>> -BBPATH := "${BBPATH}:${LAYERDIR}"
+>> +BBPATH .= ":${LAYERDIR}"
+>>
+>>  # We have a recipes directory, add to BBFILES
+>> -BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
+>> +BBFILES += "${LAYERDIR}/recipes-*/*/*.bb \
+>>       ${LAYERDIR}/recipes-*/*/*.bbappend"
+>>
+>>  BBFILE_COLLECTIONS += "crownbay"
+>> diff --git a/meta-crystalforest/conf/layer.conf b/meta-crystalforest/conf/layer.conf
+>> index 6b802d6..daa2ba7 100644
+>> --- a/meta-crystalforest/conf/layer.conf
+>> +++ b/meta-crystalforest/conf/layer.conf
+>> @@ -1,8 +1,8 @@
+>>  # We have a conf and classes directory, add to BBPATH
+>> -BBPATH := "${BBPATH}:${LAYERDIR}"
+>> +BBPATH .= ":${LAYERDIR}"
+>>
+>>  # We have a recipes directory, add to BBFILES
+>> -BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
+>> +BBFILES += "${LAYERDIR}/recipes-*/*/*.bb \
+>>       ${LAYERDIR}/recipes-*/*/*.bbappend"
+>>
+>>  BBFILE_COLLECTIONS += "crystalforest"
+>> diff --git a/meta-emenlow/conf/layer.conf b/meta-emenlow/conf/layer.conf
+>> index a49ec47..b5832e4 100644
+>> --- a/meta-emenlow/conf/layer.conf
+>> +++ b/meta-emenlow/conf/layer.conf
+>> @@ -1,8 +1,8 @@
+>>  # We have a conf and classes directory, add to BBPATH
+>> -BBPATH := "${BBPATH}:${LAYERDIR}"
+>> +BBPATH .= ":${LAYERDIR}"
+>>
+>>  # We have recipes-* directories, add to BBFILES
+>> -BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
+>> +BBFILES += "${LAYERDIR}/recipes-*/*/*.bb \
+>>       ${LAYERDIR}/recipes-*/*/*.bbappend"
+>>
+>>  BBFILE_COLLECTIONS += "emenlow"
+>> diff --git a/meta-fri2/conf/layer.conf b/meta-fri2/conf/layer.conf
+>> index 4d140f9..0bb29a1 100644
+>> --- a/meta-fri2/conf/layer.conf
+>> +++ b/meta-fri2/conf/layer.conf
+>> @@ -1,8 +1,8 @@
+>>  # We have a conf and classes directory, add to BBPATH
+>> -BBPATH := "${BBPATH}:${LAYERDIR}"
+>> +BBPATH .= ":${LAYERDIR}"
+>>
+>>  # We have a recipes directory, add to BBFILES
+>> -BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
+>> +BBFILES += "${LAYERDIR}/recipes-*/*/*.bb \
+>>       ${LAYERDIR}/recipes-*/*/*.bbappend"
+>>
+>>  BBFILE_COLLECTIONS += "fri2"
+>> diff --git a/meta-jasperforest/conf/layer.conf b/meta-jasperforest/conf/layer.conf
+>> index 09f1647..b539733 100644
+>> --- a/meta-jasperforest/conf/layer.conf
+>> +++ b/meta-jasperforest/conf/layer.conf
+>> @@ -1,8 +1,8 @@
+>>  # We have a conf and classes directory, add to BBPATH
+>> -BBPATH := "${BBPATH}:${LAYERDIR}"
+>> +BBPATH .= ":${LAYERDIR}"
+>>
+>>  # We have a recipes directory, add to BBFILES
+>> -BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
+>> +BBFILES .= "${LAYERDIR}/recipes-*/*/*.bb \
+>>       ${LAYERDIR}/recipes-*/*/*.bbappend"
+>>
+>>  BBFILE_COLLECTIONS += "jasperforest"
+>> diff --git a/meta-n450/conf/layer.conf b/meta-n450/conf/layer.conf
+>> index 4481121..ee53e54 100644
+>> --- a/meta-n450/conf/layer.conf
+>> +++ b/meta-n450/conf/layer.conf
+>> @@ -1,8 +1,8 @@
+>>  # We have a conf and classes directory, add to BBPATH
+>> -BBPATH := "${BBPATH}:${LAYERDIR}"
+>> +BBPATH .= ":${LAYERDIR}"
+>>
+>>  # We have recipes-* directories, add to BBFILES
+>> -BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
+>> +BBFILES += "${LAYERDIR}/recipes-*/*/*.bb \
+>>       ${LAYERDIR}/recipes-*/*/*.bbappend"
+>>
+>>  BBFILE_COLLECTIONS += "n450"
+>> diff --git a/meta-nuc/conf/layer.conf b/meta-nuc/conf/layer.conf
+>> index fb5b58a..174411f 100644
+>> --- a/meta-nuc/conf/layer.conf
+>> +++ b/meta-nuc/conf/layer.conf
+>> @@ -1,8 +1,8 @@
+>>  # We have a conf and classes directory, add to BBPATH
+>> -BBPATH := "${BBPATH}:${LAYERDIR}"
+>> +BBPATH .= ":${LAYERDIR}"
+>>
+>>  # We have a recipes directory, add to BBFILES
+>> -BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
+>> +BBFILES += "${LAYERDIR}/recipes-*/*/*.bb \
+>>       ${LAYERDIR}/recipes-*/*/*.bbappend"
+>>
+>>  BBFILE_COLLECTIONS += "nuc"
+>> diff --git a/meta-romley/conf/layer.conf b/meta-romley/conf/layer.conf
+>> index 8ce1a4d..7b6a5bc 100644
+>> --- a/meta-romley/conf/layer.conf
+>> +++ b/meta-romley/conf/layer.conf
+>> @@ -1,8 +1,8 @@
+>>  # We have a conf and classes directory, add to BBPATH
+>> -BBPATH := "${BBPATH}:${LAYERDIR}"
+>> +BBPATH .= ":${LAYERDIR}"
+>>
+>>  # We have a recipes directory, add to BBFILES
+>> -BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
+>> +BBFILES += "${LAYERDIR}/recipes-*/*/*.bb \
+>>       ${LAYERDIR}/recipes-*/*/*.bbappend"
+>>
+>>  BBFILE_COLLECTIONS += "romley"
+>> diff --git a/meta-sugarbay/conf/layer.conf b/meta-sugarbay/conf/layer.conf
+>> index eb8ec45..9576330 100644
+>> --- a/meta-sugarbay/conf/layer.conf
+>> +++ b/meta-sugarbay/conf/layer.conf
+>> @@ -1,8 +1,8 @@
+>>  # We have a conf and classes directory, add to BBPATH
+>> -BBPATH := "${BBPATH}:${LAYERDIR}"
+>> +BBPATH .= ":${LAYERDIR}"
+>>
+>>  # We have a recipes directory, add to BBFILES
+>> -BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
+>> +BBFILES += "${LAYERDIR}/recipes-*/*/*.bb \
+>>       ${LAYERDIR}/recipes-*/*/*.bbappend"
+>>
+>>  BBFILE_COLLECTIONS += "sugarbay"
+>> diff --git a/meta-sys940x/conf/layer.conf b/meta-sys940x/conf/layer.conf
+>> index 5d588ad..b14be6d 100644
+>> --- a/meta-sys940x/conf/layer.conf
+>> +++ b/meta-sys940x/conf/layer.conf
+>> @@ -1,8 +1,8 @@
+>>  # We have a conf and classes directory, add to BBPATH
+>> -BBPATH := "${BBPATH}:${LAYERDIR}"
+>> +BBPATH .= ":${LAYERDIR}"
+>>
+>>  # We have a recipes directory, add to BBFILES
+>> -BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
+>> +BBFILES += "${LAYERDIR}/recipes-*/*/*.bb \
+>>       ${LAYERDIR}/recipes-*/*/*.bbappend"
+>>
+>>  BBFILE_COLLECTIONS += "sys940x"
+>> diff --git a/meta-tlk/conf/layer.conf b/meta-tlk/conf/layer.conf
+>> index fc0da61..38b0e0c 100644
+>> --- a/meta-tlk/conf/layer.conf
+>> +++ b/meta-tlk/conf/layer.conf
+>> @@ -1,6 +1,6 @@
+>>  # We have a conf and classes directory, add to BBPATH
+>> -BBPATH := "${BBPATH}:${LAYERDIR}"
+>> +BBPATH .= ":${LAYERDIR}"
+>>
+>>  # We have recipes-* directories, add to BBFILES
+>> -BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
+>> +BBFILES += "${LAYERDIR}/recipes-*/*/*.bb \
+>>       ${LAYERDIR}/recipes-*/*/*.bbappend"
+>>
+>
+> --
+> Darren Hart
+> Intel Open Source Technology Center
+> Yocto Project - Technical Lead - Linux Kernel
 
