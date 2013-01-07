@@ -1,24 +1,34 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 54C12E01410;
-	Mon,  7 Jan 2013 09:31:32 -0800 (PST)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 07 Jan 2013 09:31:31 -0800
+Return-Path: <kishore.k.bodke@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 79694E01456;
+	Mon,  7 Jan 2013 09:34:15 -0800 (PST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 07 Jan 2013 09:33:13 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,425,1355126400"; d="scan'208";a="240929922"
-Received: from unknown (HELO [10.255.14.51]) ([10.255.14.51])
-	by azsmga001.ch.intel.com with ESMTP; 07 Jan 2013 09:31:26 -0800
-Message-ID: <1357579885.16583.17.camel@empanada>
-From: Tom Zanussi <tom.zanussi@intel.com>
-To: Darren Hart <dvhart@linux.intel.com>
-Date: Mon, 07 Jan 2013 11:31:25 -0600
-In-Reply-To: <50EAF2F3.3030402@linux.intel.com>
-References: <1357271430-31116-1-git-send-email-raj.khem@gmail.com>
-	<50EAF2F3.3030402@linux.intel.com>
-X-Mailer: Evolution 3.4.1 (3.4.1-2.fc17) 
-Mime-Version: 1.0
-Cc: meta-intel@yoctoproject.org, yocto@yoctoproject.org
-Subject: Re: [meta-intel][PATCH] layer.conf: Use .= for adding to BBPATH and += to BBFILES
+X-IronPort-AV: E=Sophos;i="4.84,425,1355126400"; d="scan'208";a="268759560"
+Received: from orsmsx104.amr.corp.intel.com ([10.22.225.131])
+	by orsmga002.jf.intel.com with ESMTP; 07 Jan 2013 09:34:14 -0800
+Received: from orsmsx105.amr.corp.intel.com ([169.254.4.201]) by
+	ORSMSX104.amr.corp.intel.com ([169.254.3.133]) with mapi id
+	14.01.0355.002; Mon, 7 Jan 2013 09:34:14 -0800
+From: "Bodke, Kishore K" <kishore.k.bodke@intel.com>
+To: Darren Hart <dvhart@linux.intel.com>, "Noor, Ahsan" <noor_ahsan@mentor.com>
+Thread-Topic: [yocto] [meta-intel][PATCH] linux-yocto: Add a patch to
+	resolve undefined RUSAGE_SELF for perf.
+Thread-Index: AQHN7PLKEm1EKtLXGE+bFwaX9pT3Upg+IDuQ
+Date: Mon, 7 Jan 2013 17:34:13 +0000
+Message-ID: <D956029D25CF204F948EA0FB515E1EE24A4C9CB2@ORSMSX105.amr.corp.intel.com>
+References: <1356954965-17029-1-git-send-email-noor_ahsan@mentor.com>
+	<50EAF597.3030908@linux.intel.com>
+In-Reply-To: <50EAF597.3030908@linux.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.138]
+MIME-Version: 1.0
+Cc: "meta-intel@yoctoproject.org" <meta-intel@yoctoproject.org>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [meta-intel][PATCH] linux-yocto: Add a patch to resolve undefined RUSAGE_SELF for perf.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,276 +40,88 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 07 Jan 2013 17:31:32 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 07 Jan 2013 17:34:15 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-On Mon, 2013-01-07 at 08:08 -0800, Darren Hart wrote:
-> Hi Khem,
-> 
-> On 01/03/2013 07:50 PM, Khem Raj wrote:
-> > Fixes parsing errors which is appearing after this commit to
-> > meta-openembedded
-> > 
-> > http://cgit.openembedded.org/meta-openembedded/commit/?id=3c21a46020bd0816579648f684c41dbd6333583e
-> > 
-> > This triggers
-> > exception NameError: name 'base_contains' is not defined
-> > without this change
-> 
-> OK, so your solution is to avoid the immediate expansion operator (:=)
-> which caused base_contains added in the previous commit to fail to
-> expand at the time the meta-intel layer configs are parsed
-> and replace it with one of the append operators (.= or +=) that allows
-> for delayed variable expansion. This seems correct to me - but please
-> include this explanation in your commit message in the future.
-> 
-> Also, please use the meta-intel mailing list for changes to meta-intel
-> (Cc'd now).
-> https://lists.yoctoproject.org/listinfo/meta-intel
-> 
-> Tom, any objection?
-> 
-
-No, the changes look fine to me.
-
-Acked-by: Tom Zanussi <tom.zanussi@intel.com>
-
-> 
-> > 
-> > Signed-off-by: Khem Raj <raj.khem@gmail.com>
-> 
-> 
-> Acked-by: Darren Hart <dvhart@linux.intel.com>
-> 
-> 
-> > ---
-> >  conf/layer.conf                    |    4 ++--
-> >  meta-cedartrail/conf/layer.conf    |    4 ++--
-> >  meta-chiefriver/conf/layer.conf    |    4 ++--
-> >  meta-crownbay/conf/layer.conf      |    4 ++--
-> >  meta-crystalforest/conf/layer.conf |    4 ++--
-> >  meta-emenlow/conf/layer.conf       |    4 ++--
-> >  meta-fri2/conf/layer.conf          |    4 ++--
-> >  meta-jasperforest/conf/layer.conf  |    4 ++--
-> >  meta-n450/conf/layer.conf          |    4 ++--
-> >  meta-nuc/conf/layer.conf           |    4 ++--
-> >  meta-romley/conf/layer.conf        |    4 ++--
-> >  meta-sugarbay/conf/layer.conf      |    4 ++--
-> >  meta-sys940x/conf/layer.conf       |    4 ++--
-> >  meta-tlk/conf/layer.conf           |    4 ++--
-> >  14 files changed, 28 insertions(+), 28 deletions(-)
-> > 
-> > diff --git a/conf/layer.conf b/conf/layer.conf
-> > index e9c2b10..31132ab 100644
-> > --- a/conf/layer.conf
-> > +++ b/conf/layer.conf
-> > @@ -1,8 +1,8 @@
-> >  # We have a conf and classes directory, add to BBPATH
-> > -BBPATH := "${BBPATH}:${LAYERDIR}"
-> > +BBPATH .= ":${LAYERDIR}"
-> >  
-> >  # We have recipes-* directories, add to BBFILES
-> > -BBFILES := "${BBFILES} ${LAYERDIR}/common/recipes-*/*/*.bb \
-> > +BBFILES += "${LAYERDIR}/common/recipes-*/*/*.bb \
-> >              ${LAYERDIR}/common/recipes-*/*/*.bbappend"
-> >  
-> >  BBFILE_COLLECTIONS += "intel"
-> > diff --git a/meta-cedartrail/conf/layer.conf b/meta-cedartrail/conf/layer.conf
-> > index c19c4c1..0166b35 100644
-> > --- a/meta-cedartrail/conf/layer.conf
-> > +++ b/meta-cedartrail/conf/layer.conf
-> > @@ -1,8 +1,8 @@
-> >  # We have a conf and classes directory, add to BBPATH
-> > -BBPATH := "${BBPATH}:${LAYERDIR}"
-> > +BBPATH .= ":${LAYERDIR}"
-> >  
-> >  # We have a recipes directory, add to BBFILES
-> > -BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
-> > +BBFILES += "${LAYERDIR}/recipes-*/*/*.bb \
-> >  	${LAYERDIR}/recipes-*/*/*.bbappend"
-> >  
-> >  BBFILE_COLLECTIONS += "cedartrail"
-> > diff --git a/meta-chiefriver/conf/layer.conf b/meta-chiefriver/conf/layer.conf
-> > index 5dc3c02..6164f99 100644
-> > --- a/meta-chiefriver/conf/layer.conf
-> > +++ b/meta-chiefriver/conf/layer.conf
-> > @@ -1,8 +1,8 @@
-> >  # We have a conf and classes directory, add to BBPATH
-> > -BBPATH := "${BBPATH}:${LAYERDIR}"
-> > +BBPATH .= ":${LAYERDIR}"
-> >  
-> >  # We have a recipes directory, add to BBFILES
-> > -BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
-> > +BBFILES += "${LAYERDIR}/recipes-*/*/*.bb \
-> >  	${LAYERDIR}/recipes-*/*/*.bbappend"
-> >  
-> >  BBFILE_COLLECTIONS += "chiefriver"
-> > diff --git a/meta-crownbay/conf/layer.conf b/meta-crownbay/conf/layer.conf
-> > index cb17298..e6cc2a0 100644
-> > --- a/meta-crownbay/conf/layer.conf
-> > +++ b/meta-crownbay/conf/layer.conf
-> > @@ -1,8 +1,8 @@
-> >  # We have a conf and classes directory, add to BBPATH
-> > -BBPATH := "${BBPATH}:${LAYERDIR}"
-> > +BBPATH .= ":${LAYERDIR}"
-> >  
-> >  # We have a recipes directory, add to BBFILES
-> > -BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
-> > +BBFILES += "${LAYERDIR}/recipes-*/*/*.bb \
-> >  	${LAYERDIR}/recipes-*/*/*.bbappend"
-> >  
-> >  BBFILE_COLLECTIONS += "crownbay"
-> > diff --git a/meta-crystalforest/conf/layer.conf b/meta-crystalforest/conf/layer.conf
-> > index 6b802d6..daa2ba7 100644
-> > --- a/meta-crystalforest/conf/layer.conf
-> > +++ b/meta-crystalforest/conf/layer.conf
-> > @@ -1,8 +1,8 @@
-> >  # We have a conf and classes directory, add to BBPATH
-> > -BBPATH := "${BBPATH}:${LAYERDIR}"
-> > +BBPATH .= ":${LAYERDIR}"
-> >  
-> >  # We have a recipes directory, add to BBFILES
-> > -BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
-> > +BBFILES += "${LAYERDIR}/recipes-*/*/*.bb \
-> >  	${LAYERDIR}/recipes-*/*/*.bbappend"
-> >  
-> >  BBFILE_COLLECTIONS += "crystalforest"
-> > diff --git a/meta-emenlow/conf/layer.conf b/meta-emenlow/conf/layer.conf
-> > index a49ec47..b5832e4 100644
-> > --- a/meta-emenlow/conf/layer.conf
-> > +++ b/meta-emenlow/conf/layer.conf
-> > @@ -1,8 +1,8 @@
-> >  # We have a conf and classes directory, add to BBPATH
-> > -BBPATH := "${BBPATH}:${LAYERDIR}"
-> > +BBPATH .= ":${LAYERDIR}"
-> >  
-> >  # We have recipes-* directories, add to BBFILES
-> > -BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
-> > +BBFILES += "${LAYERDIR}/recipes-*/*/*.bb \
-> >  	${LAYERDIR}/recipes-*/*/*.bbappend"
-> >  
-> >  BBFILE_COLLECTIONS += "emenlow"
-> > diff --git a/meta-fri2/conf/layer.conf b/meta-fri2/conf/layer.conf
-> > index 4d140f9..0bb29a1 100644
-> > --- a/meta-fri2/conf/layer.conf
-> > +++ b/meta-fri2/conf/layer.conf
-> > @@ -1,8 +1,8 @@
-> >  # We have a conf and classes directory, add to BBPATH
-> > -BBPATH := "${BBPATH}:${LAYERDIR}"
-> > +BBPATH .= ":${LAYERDIR}"
-> >  
-> >  # We have a recipes directory, add to BBFILES
-> > -BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
-> > +BBFILES += "${LAYERDIR}/recipes-*/*/*.bb \
-> >  	${LAYERDIR}/recipes-*/*/*.bbappend"
-> >  
-> >  BBFILE_COLLECTIONS += "fri2"
-> > diff --git a/meta-jasperforest/conf/layer.conf b/meta-jasperforest/conf/layer.conf
-> > index 09f1647..b539733 100644
-> > --- a/meta-jasperforest/conf/layer.conf
-> > +++ b/meta-jasperforest/conf/layer.conf
-> > @@ -1,8 +1,8 @@
-> >  # We have a conf and classes directory, add to BBPATH
-> > -BBPATH := "${BBPATH}:${LAYERDIR}"
-> > +BBPATH .= ":${LAYERDIR}"
-> >  
-> >  # We have a recipes directory, add to BBFILES
-> > -BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
-> > +BBFILES .= "${LAYERDIR}/recipes-*/*/*.bb \
-> >  	${LAYERDIR}/recipes-*/*/*.bbappend"
-> >  
-> >  BBFILE_COLLECTIONS += "jasperforest"
-> > diff --git a/meta-n450/conf/layer.conf b/meta-n450/conf/layer.conf
-> > index 4481121..ee53e54 100644
-> > --- a/meta-n450/conf/layer.conf
-> > +++ b/meta-n450/conf/layer.conf
-> > @@ -1,8 +1,8 @@
-> >  # We have a conf and classes directory, add to BBPATH
-> > -BBPATH := "${BBPATH}:${LAYERDIR}"
-> > +BBPATH .= ":${LAYERDIR}"
-> >  
-> >  # We have recipes-* directories, add to BBFILES
-> > -BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
-> > +BBFILES += "${LAYERDIR}/recipes-*/*/*.bb \
-> >  	${LAYERDIR}/recipes-*/*/*.bbappend"
-> >  
-> >  BBFILE_COLLECTIONS += "n450"
-> > diff --git a/meta-nuc/conf/layer.conf b/meta-nuc/conf/layer.conf
-> > index fb5b58a..174411f 100644
-> > --- a/meta-nuc/conf/layer.conf
-> > +++ b/meta-nuc/conf/layer.conf
-> > @@ -1,8 +1,8 @@
-> >  # We have a conf and classes directory, add to BBPATH
-> > -BBPATH := "${BBPATH}:${LAYERDIR}"
-> > +BBPATH .= ":${LAYERDIR}"
-> >  
-> >  # We have a recipes directory, add to BBFILES
-> > -BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
-> > +BBFILES += "${LAYERDIR}/recipes-*/*/*.bb \
-> >  	${LAYERDIR}/recipes-*/*/*.bbappend"
-> >  
-> >  BBFILE_COLLECTIONS += "nuc"
-> > diff --git a/meta-romley/conf/layer.conf b/meta-romley/conf/layer.conf
-> > index 8ce1a4d..7b6a5bc 100644
-> > --- a/meta-romley/conf/layer.conf
-> > +++ b/meta-romley/conf/layer.conf
-> > @@ -1,8 +1,8 @@
-> >  # We have a conf and classes directory, add to BBPATH
-> > -BBPATH := "${BBPATH}:${LAYERDIR}"
-> > +BBPATH .= ":${LAYERDIR}"
-> >  
-> >  # We have a recipes directory, add to BBFILES
-> > -BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
-> > +BBFILES += "${LAYERDIR}/recipes-*/*/*.bb \
-> >  	${LAYERDIR}/recipes-*/*/*.bbappend"
-> >  
-> >  BBFILE_COLLECTIONS += "romley"
-> > diff --git a/meta-sugarbay/conf/layer.conf b/meta-sugarbay/conf/layer.conf
-> > index eb8ec45..9576330 100644
-> > --- a/meta-sugarbay/conf/layer.conf
-> > +++ b/meta-sugarbay/conf/layer.conf
-> > @@ -1,8 +1,8 @@
-> >  # We have a conf and classes directory, add to BBPATH
-> > -BBPATH := "${BBPATH}:${LAYERDIR}"
-> > +BBPATH .= ":${LAYERDIR}"
-> >  
-> >  # We have a recipes directory, add to BBFILES
-> > -BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
-> > +BBFILES += "${LAYERDIR}/recipes-*/*/*.bb \
-> >  	${LAYERDIR}/recipes-*/*/*.bbappend"
-> >  
-> >  BBFILE_COLLECTIONS += "sugarbay"
-> > diff --git a/meta-sys940x/conf/layer.conf b/meta-sys940x/conf/layer.conf
-> > index 5d588ad..b14be6d 100644
-> > --- a/meta-sys940x/conf/layer.conf
-> > +++ b/meta-sys940x/conf/layer.conf
-> > @@ -1,8 +1,8 @@
-> >  # We have a conf and classes directory, add to BBPATH
-> > -BBPATH := "${BBPATH}:${LAYERDIR}"
-> > +BBPATH .= ":${LAYERDIR}"
-> >  
-> >  # We have a recipes directory, add to BBFILES
-> > -BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
-> > +BBFILES += "${LAYERDIR}/recipes-*/*/*.bb \
-> >  	${LAYERDIR}/recipes-*/*/*.bbappend"
-> >  
-> >  BBFILE_COLLECTIONS += "sys940x"
-> > diff --git a/meta-tlk/conf/layer.conf b/meta-tlk/conf/layer.conf
-> > index fc0da61..38b0e0c 100644
-> > --- a/meta-tlk/conf/layer.conf
-> > +++ b/meta-tlk/conf/layer.conf
-> > @@ -1,6 +1,6 @@
-> >  # We have a conf and classes directory, add to BBPATH
-> > -BBPATH := "${BBPATH}:${LAYERDIR}"
-> > +BBPATH .= ":${LAYERDIR}"
-> >  
-> >  # We have recipes-* directories, add to BBFILES
-> > -BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
-> > +BBFILES += "${LAYERDIR}/recipes-*/*/*.bb \
-> >  	${LAYERDIR}/recipes-*/*/*.bbappend"
-> > 
-> 
-
-
+DQoNCj4tLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPkZyb206IERhcnJlbiBIYXJ0IFttYWls
+dG86ZHZoYXJ0QGxpbnV4LmludGVsLmNvbV0NCj5TZW50OiBNb25kYXksIEphbnVhcnkgMDcsIDIw
+MTMgODoyMCBBTQ0KPlRvOiBOb29yLCBBaHNhbg0KPkNjOiB5b2N0b0B5b2N0b3Byb2plY3Qub3Jn
+OyBtZXRhLWludGVsQHlvY3RvcHJvamVjdC5vcmc7IEJvZGtlLCBLaXNob3JlIEsNCj5TdWJqZWN0
+OiBSZTogW3lvY3RvXSBbbWV0YS1pbnRlbF1bUEFUQ0hdIGxpbnV4LXlvY3RvOiBBZGQgYSBwYXRj
+aCB0byByZXNvbHZlDQo+dW5kZWZpbmVkIFJVU0FHRV9TRUxGIGZvciBwZXJmLg0KPg0KPk9uIDEy
+LzMxLzIwMTIgMDM6NTYgQU0sIE5vb3IsIEFoc2FuIHdyb3RlOg0KPj4gRnJvbTogTm9vciBBaHNh
+biA8bm9vcl9haHNhbkBtZW50b3IuY29tPg0KPg0KPkhpIE5vb3IsDQo+DQo+Pg0KPj4gKiBQZXJm
+IGdpdmVkIGNvbXBpbGF0aW9uIGVycm9yDQo+PiAgIENDIGJ1aWx0aW4tc2NoZWQubw0KPj4gICAg
+IGJ1aWx0aW4tc2NoZWQuYzogSW4gZnVuY3Rpb24g4oCYZ2V0X2NwdV91c2FnZV9uc2VjX3BhcmVu
+dOKAmToNCj4+ICAgYnVpbHRpbi1zY2hlZC5jOjM5OToxNjogZXJyb3I6IHN0b3JhZ2Ugc2l6ZSBv
+ZiDigJhydeKAmSBpc27igJl0IGtub3duDQo+PiAqIEFkZGVkIGEgcGF0Y2ggZnJvbSBsaW51eCBr
+ZXJuZWwgZ2l0IHJlcG8gY29tbWl0IGlkDQo+PiAgIDdiNzhmMTM2MDNjNmZjYjY0ZTAyMGEwYmJl
+MzFhNjUxZWEyYjY1N2Igd2hpY2ggaW5jbHVkZSByZXNvdXJjZS5oDQo+PiAgIGZpbGUgaW4gYnVp
+bHRpbi1zY2hlZC5jLg0KPg0KPg0KPlBsZWFzZSBzZW5kIG1ldGEtaW50ZWwgcGF0Y2hlcyB0byB0
+aGUgbWV0YS1pbnRlbCBsaXN0IGFuZCBDQyB0aGUgQlNQDQo+bWFpbnRhaW5lciwgaW4gdGhpcyBj
+YXNlIEtpc2hvcmUgKG9uIENjKS4NCj4NCj5UaGUgcGF0Y2ggYmVsb3cgc2VlbXMgdG8gYmFzaWNh
+bGx5IGR1cGxpY2F0ZSB0aGUgZXhpc3RpbmcNCj5saW51eC15b2N0b18zLjAuYmJhcHBlbmQgaW4g
+dGhlIHJlcG9zaXRvcnkgYW5kIEkgZG9uJ3Qgc2VlIHRoZSBwYXRjaCB5b3UNCj5tZW50aW9uLiBJ
+cyB0aGlzIHRoZSBwYXRjaCB5b3UgaW50ZW5kZWQgdG8gc2VuZD8NCj4NCkhpIE5vb3IsDQpZZWFo
+LCBpdCBpcyBkdXBsaWNhdGlvbiBvZiB0aGUgbGludXgteW9jdG9fMy4wLmJiYXBwZW5kLiANCldo
+eSBkbyB5b3Ugd2FudCB0byBkbyB0aGlzPw0KDQpUaGFua3MNCktpc2hvcmUuDQoNCj5UaGFua3Ms
+DQo+DQo+RGFycmVuDQo+DQo+Pg0KPj4gU2lnbmVkLW9mZi1ieTogTm9vciBBaHNhbiA8bm9vcl9h
+aHNhbkBtZW50b3IuY29tPg0KPj4gLS0tDQo+PiAgLi4uL2xpbnV4L2xpbnV4LXlvY3RvL2xpbnV4
+LXlvY3RvXzMuMC5iYmFwcGVuZCAgICAgfCAgIDIzDQo+KysrKysrKysrKysrKysrKysrKysNCj4+
+ICAuLi4vcmVjaXBlcy1rZXJuZWwvbGludXgvbGludXgteW9jdG9fMy4wLmJiYXBwZW5kICB8ICAg
+IDggKysrKystLQ0KPj4gIDIgZmlsZXMgY2hhbmdlZCwgMjkgaW5zZXJ0aW9ucygrKSwgMiBkZWxl
+dGlvbnMoLSkNCj4+DQo+PiBkaWZmIC0tZ2l0IGEvbWV0YS1jZWRhcnRyYWlsL3JlY2lwZXMta2Vy
+bmVsL2xpbnV4L2xpbnV4LXlvY3RvL2xpbnV4LQ0KPnlvY3RvXzMuMC5iYmFwcGVuZCBiL21ldGEt
+Y2VkYXJ0cmFpbC9yZWNpcGVzLWtlcm5lbC9saW51eC9saW51eC0NCj55b2N0by9saW51eC15b2N0
+b18zLjAuYmJhcHBlbmQNCj4+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0DQo+PiBpbmRleCAwMDAwMDAw
+Li40NDBjZDc3DQo+PiAtLS0gL2Rldi9udWxsDQo+PiArKysgYi9tZXRhLWNlZGFydHJhaWwvcmVj
+aXBlcy1rZXJuZWwvbGludXgvbGludXgteW9jdG8vbGludXgtDQo+eW9jdG9fMy4wLmJiYXBwZW5k
+DQo+PiBAQCAtMCwwICsxLDIzIEBADQo+PiArRklMRVNFWFRSQVBBVEhTX3ByZXBlbmQgOj0gIiR7
+VEhJU0RJUn0vJHtQTn06Ig0KPj4gKw0KPj4gK1NSQ19VUklfY2VkYXJ0cmFpbCA9ICJnaXQ6Ly9n
+aXQueW9jdG9wcm9qZWN0Lm9yZy9saW51eC15b2N0by0NCj4zLjA7cHJvdG9jb2w9Z2l0O2JhcmVj
+bG9uZT0xO2JyYW5jaD0ke0tCUkFOQ0h9LG1ldGEseW9jdG8vcHZyO25hbWU9bWENCj5jaGluZSxt
+ZXRhLHB2ciINCj4+ICsNCj4+ICtTUkNfVVJJX2NlZGFydHJhaWwtbm9wdnIgPSAiZ2l0Oi8vZ2l0
+LnlvY3RvcHJvamVjdC5vcmcvbGludXgteW9jdG8tDQo+My4wO3Byb3RvY29sPWdpdDtub2NoZWNr
+b3V0PTE7YnJhbmNoPSR7S0JSQU5DSH0sbWV0YTtuYW1lPW1hY2hpbmUsbQ0KPmV0YSINCj4+ICsN
+Cj4+ICtDT01QQVRJQkxFX01BQ0hJTkVfY2VkYXJ0cmFpbCA9ICJjZWRhcnRyYWlsIg0KPj4gK0tN
+QUNISU5FX2NlZGFydHJhaWwgID0gImNlZGFydHJhaWwiDQo+PiArS0JSQU5DSF9jZWRhcnRyYWls
+ICA9ICJ5b2N0by9zdGFuZGFyZC9jZWRhcnRyYWlsIg0KPj4gK0tFUk5FTF9GRUFUVVJFU19hcHBl
+bmRfY2VkYXJ0cmFpbCArPSAiYnNwL2NlZGFydHJhaWwvY2VkYXJ0cmFpbC1wdnItDQo+bWVyZ2Uu
+c2NjIg0KPj4gK0tFUk5FTF9GRUFUVVJFU19hcHBlbmRfY2VkYXJ0cmFpbCArPSAiY2ZnL2VmaS1l
+eHQuc2NjIg0KPj4gKw0KPj4gK0NPTVBBVElCTEVfTUFDSElORV9jZWRhcnRyYWlsLW5vcHZyID0g
+ImNlZGFydHJhaWwiDQo+PiArS01BQ0hJTkVfY2VkYXJ0cmFpbC1ub3B2ciAgPSAiY2VkYXJ0cmFp
+bCINCj4+ICtLQlJBTkNIX2NlZGFydHJhaWwtbm9wdnIgID0gInlvY3RvL3N0YW5kYXJkL2NlZGFy
+dHJhaWwiDQo+PiArS0VSTkVMX0ZFQVRVUkVTX2FwcGVuZF9jZWRhcnRyYWlsLW5vcHZyICs9ICIg
+Y2ZnL3NtcC5zY2MiDQo+PiArDQo+PiArU1JDUkVWX21hY2hpbmVfcG4tbGludXgteW9jdG9fY2Vk
+YXJ0cmFpbCA/PSAiJHtBVVRPUkVWfSINCj4+ICtTUkNSRVZfbWV0YV9wbi1saW51eC15b2N0b19j
+ZWRhcnRyYWlsID89ICIke0FVVE9SRVZ9Ig0KPj4gK1NSQ1JFVl9wdnJfcG4tbGludXgteW9jdG9f
+Y2VkYXJ0cmFpbCA/PSAiJHtBVVRPUkVWfSINCj4+ICsNCj4+ICtTUkNSRVZfbWFjaGluZV9wbi1s
+aW51eC15b2N0b19jZWRhcnRyYWlsLW5vcHZyID89ICIke0FVVE9SRVZ9Ig0KPj4gK1NSQ1JFVl9t
+ZXRhX3BuLWxpbnV4LXlvY3RvX2NlZGFydHJhaWwtbm9wdnIgPz0gIiR7QVVUT1JFVn0iDQo+PiBk
+aWZmIC0tZ2l0IGEvbWV0YS1jZWRhcnRyYWlsL3JlY2lwZXMta2VybmVsL2xpbnV4L2xpbnV4LXlv
+Y3RvXzMuMC5iYmFwcGVuZA0KPmIvbWV0YS1jZWRhcnRyYWlsL3JlY2lwZXMta2VybmVsL2xpbnV4
+L2xpbnV4LXlvY3RvXzMuMC5iYmFwcGVuZA0KPj4gaW5kZXggNDQwY2Q3Ny4uNjc5N2VlYiAxMDA2
+NDQNCj4+IC0tLSBhL21ldGEtY2VkYXJ0cmFpbC9yZWNpcGVzLWtlcm5lbC9saW51eC9saW51eC15
+b2N0b18zLjAuYmJhcHBlbmQNCj4+ICsrKyBiL21ldGEtY2VkYXJ0cmFpbC9yZWNpcGVzLWtlcm5l
+bC9saW51eC9saW51eC15b2N0b18zLjAuYmJhcHBlbmQNCj4+IEBAIC0xLDggKzEsMTIgQEANCj4+
+ICBGSUxFU0VYVFJBUEFUSFNfcHJlcGVuZCA6PSAiJHtUSElTRElSfS8ke1BOfToiDQo+Pg0KPj4g
+LVNSQ19VUklfY2VkYXJ0cmFpbCA9ICJnaXQ6Ly9naXQueW9jdG9wcm9qZWN0Lm9yZy9saW51eC15
+b2N0by0NCj4zLjA7cHJvdG9jb2w9Z2l0O2JhcmVjbG9uZT0xO2JyYW5jaD0ke0tCUkFOQ0h9LG1l
+dGEseW9jdG8vcHZyO25hbWU9bWENCj5jaGluZSxtZXRhLHB2ciINCj4+ICtTUkNfVVJJX2NlZGFy
+dHJhaWwgPSAiZ2l0Oi8vZ2l0LnlvY3RvcHJvamVjdC5vcmcvbGludXgteW9jdG8tDQo+My4wO3By
+b3RvY29sPWdpdDtiYXJlY2xvbmU9MTticmFuY2g9JHtLQlJBTkNIfSxtZXRhLHlvY3RvL3B2cjtu
+YW1lPW1hDQo+Y2hpbmUsbWV0YSxwdnIgXA0KPj4gK2ZpbGU6Ly9saW51eC15b2N0b18zLjAuYmJh
+cHBlbmQgXA0KPj4gKyINCj4+DQo+PiAtU1JDX1VSSV9jZWRhcnRyYWlsLW5vcHZyID0gImdpdDov
+L2dpdC55b2N0b3Byb2plY3Qub3JnL2xpbnV4LXlvY3RvLQ0KPjMuMDtwcm90b2NvbD1naXQ7bm9j
+aGVja291dD0xO2JyYW5jaD0ke0tCUkFOQ0h9LG1ldGE7bmFtZT1tYWNoaW5lLG0NCj5ldGEiDQo+
+PiArU1JDX1VSSV9jZWRhcnRyYWlsLW5vcHZyID0gImdpdDovL2dpdC55b2N0b3Byb2plY3Qub3Jn
+L2xpbnV4LXlvY3RvLQ0KPjMuMDtwcm90b2NvbD1naXQ7bm9jaGVja291dD0xO2JyYW5jaD0ke0tC
+UkFOQ0h9LG1ldGE7bmFtZT1tYWNoaW5lLG0NCj5ldGEgXA0KPj4gK2ZpbGU6Ly9saW51eC15b2N0
+b18zLjAuYmJhcHBlbmQgXA0KPj4gKyINCj4+DQo+PiAgQ09NUEFUSUJMRV9NQUNISU5FX2NlZGFy
+dHJhaWwgPSAiY2VkYXJ0cmFpbCINCj4+ICBLTUFDSElORV9jZWRhcnRyYWlsICA9ICJjZWRhcnRy
+YWlsIg0KPj4NCj4NCj4tLQ0KPkRhcnJlbiBIYXJ0DQo+SW50ZWwgT3BlbiBTb3VyY2UgVGVjaG5v
+bG9neSBDZW50ZXINCj5Zb2N0byBQcm9qZWN0IC0gVGVjaG5pY2FsIExlYWQgLSBMaW51eCBLZXJu
+ZWwNCg==
 
