@@ -1,27 +1,28 @@
 Return-Path: <dvhart@linux.intel.com>
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E9DDFE00724
-	for <yocto@yoctoproject.org>; Mon,  7 Jan 2013 08:21:55 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8E5C7E0072F
+	for <yocto@yoctoproject.org>; Mon,  7 Jan 2013 08:25:05 -0800 (PST)
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 07 Jan 2013 08:20:54 -0800
+	by orsmga102.jf.intel.com with ESMTP; 07 Jan 2013 08:24:00 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,424,1355126400"; d="scan'208";a="243030076"
+X-IronPort-AV: E=Sophos;i="4.84,424,1355126400"; d="scan'208";a="243031278"
 Received: from envy.jf.intel.com (HELO envy.home) ([10.7.199.53])
-	by orsmga001.jf.intel.com with ESMTP; 07 Jan 2013 08:21:43 -0800
-Message-ID: <50EAF616.5060604@linux.intel.com>
-Date: Mon, 07 Jan 2013 08:21:42 -0800
+	by orsmga001.jf.intel.com with ESMTP; 07 Jan 2013 08:25:01 -0800
+Message-ID: <50EAF6DD.1050508@linux.intel.com>
+Date: Mon, 07 Jan 2013 08:25:01 -0800
 From: Darren Hart <dvhart@linux.intel.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:17.0) Gecko/17.0 Thunderbird/17.0
 MIME-Version: 1.0
-To: Bruce Ashfield <bruce.ashfield@gmail.com>
-References: <1219DA3ECB038C40A6CF638974AA84A52517920E@sestoex05.enea.se>
-	<CADkTA4PNsOqwWbvDmyLGrcn6GVboeFkJX3voR1Pji_FoVU8m1w@mail.gmail.com>
-In-Reply-To: <CADkTA4PNsOqwWbvDmyLGrcn6GVboeFkJX3voR1Pji_FoVU8m1w@mail.gmail.com>
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>
+References: <alpine.DEB.2.02.1212231024040.27586@oneiric>
+	<CADkTA4MDzpUdovXTfJ0a04XfPcpiuENu3ERWx--Xmo4EbDvDFA@mail.gmail.com>
+	<CADkTA4MAAVVGeOyQ9PAXOhibj4BQK4BnsVmyhWxh6294ONGCNw@mail.gmail.com>
+	<alpine.DEB.2.02.1212240629520.5826@oneiric>
+In-Reply-To: <alpine.DEB.2.02.1212240629520.5826@oneiric>
 X-Enigmail-Version: 1.4.6
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Rick Yang <Rick.Yang@enea.com>
-Subject: Re: yocto-kernel-tools
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: kernel manual seems to make no mention of "defconfig"
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,43 +34,87 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 07 Jan 2013 16:21:56 -0000
+X-List-Received-Date: Mon, 07 Jan 2013 16:25:05 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-On 12/24/2012 08:15 AM, Bruce Ashfield wrote:
-> 
-> 
-> 
-> On Mon, Dec 24, 2012 at 6:28 AM, Rick Yang <Rick.Yang@enea.com
-> <mailto:Rick.Yang@enea.com>> wrote:
-> 
->     Hi , ____
-> 
->     We have a linux release base on yocto, and we want to use
->     yocto-kernel-tools to manage kernel configuration fragments, instead
->     of the old method. So we want to know, when poky will use
->     yocto-kernel-tools to manage the kernel ? Is there a plan?
-> 
-> 
-> I'm not sure I follow the question. Since yocto 1.0 the kern-tools have
-> been used
-> to manage the kernel, they've been changing over time, but the
-> foundation and
-> theory is the same.
-> 
-> If you want to manage a custom kernel, have a look in meta-skeleton for 
-> linux-yocto-custom.bb <http://linux-yocto-custom.bb> and you can apply
-> fragments to any upstream git tree
-> of your choosing. It would of course be better if we get more
-> contributions to the
-> main linux-yocto meta data (yocto-kernel-cache and the linux-yocto meta
-> branch), but
-> that's completely voluntary. 
 
-If you need some documentation on this please let us know, we have some
-early docs going through some active development we can point you at if
-interested.
+
+On 12/24/2012 04:30 AM, Robert P. J. Day wrote:
+> On Sun, 23 Dec 2012, Bruce Ashfield wrote:
+> 
+>>
+>>
+>>
+>> On Sun, Dec 23, 2012 at 11:10 PM, Bruce Ashfield <bruce.ashfield@gmail.com> wrote:
+>>
+>>
+>>
+>>       On Sun, Dec 23, 2012 at 12:26 PM, Robert P. J. Day <rpjday@crashcourse.ca> wrote:
+>>
+>>               poking around kern-tools for purpose of documenting some stuff and
+>>             ran across this in "updateme":
+>>
+>>             split_command_line_objects() {
+>>                     command_line_values=$@
+>>
+>>                     for v in $command_line_values; do
+>>                         v_base=`basename $v`
+>>                         case $v_base in
+>>                             *.scc) migrate_feature $v
+>>                                 ;;
+>>                             *.cfg) migrate_cfg $v
+>>                                 ;;
+>>                             *.patch|*.diff) migrate_patch $v
+>>                                 ;;
+>>                             defconfig) migrate_cfg $v;;
+>>                             *) ;;
+>>                         esac
+>>                     done
+>>             }
+>>
+>>               AFAICT, there is no mention of a possible "defconfig" entry anywhere
+>>             in the current yocto kernel manual.
+>>
+>>
+>> You won't find it there because it isn't specific to the kern-tools,
+>> what you see there is a small wrapper on top of the kernel.bbclass
+>> defconfig handling, with the same end result. So standard
+>> yocto/oe-core docs apply here.
+>>
+>> I also forgot to mention that Darren did cover defconfigs in the
+>> yocto kernel  docs that were put together for the 1.4 release (I
+>> think they were posted here), so there's better / additional
+>> coverage upcoming!
+> 
+>   ah, i will go back and check those out, thanks.  just trying to
+> catch up on several days of not reading the list.
+
+They are in the process of being edited by our tech writer as well as
+being converted from ascii to docbook. You can see the current state of
+them here:
+
+http://www.yoctoproject.org/docs/hart/kernel-dev/kernel-dev.html
+
+See Section 2.2.2 and the sections that follow.
+
+Keep in mind these are being actively worked on, so there are some rough
+edges we're working through still.
+
+
+Thanks,
+
+Darren
+> 
+> rday
+> 
+> 
+> 
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+> 
 
 -- 
 Darren Hart
