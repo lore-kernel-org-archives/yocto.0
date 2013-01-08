@@ -1,39 +1,31 @@
-Return-Path: <tb@travelping.com>
-Received: from mail.tpip.net (mail.tpip.net [92.43.49.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2DC22E01439
-	for <yocto@yoctoproject.org>; Tue,  8 Jan 2013 03:34:15 -0800 (PST)
-Received: from office.tpip.net (port-87-193-171-186.static.qsc.de
-	[87.193.171.186]) by mail.tpip.net (Postfix) with ESMTP id 6A8434F418
-	for <yocto@yoctoproject.org>; Tue,  8 Jan 2013 11:34:13 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by office.tpip.net (Postfix) with ESMTP id AE704471C4
-	for <yocto@yoctoproject.org>; Tue,  8 Jan 2013 12:34:12 +0100 (CET)
-X-Virus-Scanned: amavisd-new at tpip.net
-Received: from office.tpip.net ([127.0.0.1])
-	by localhost (office.tpip.net [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id oL1wv3OLMCa8 for <yocto@yoctoproject.org>;
-	Tue,  8 Jan 2013 12:34:12 +0100 (CET)
-Received: from localhost (localhost [127.0.0.1])
-	by office.tpip.net (Postfix) with ESMTP id 61802471C5
-	for <yocto@yoctoproject.org>; Tue,  8 Jan 2013 12:34:12 +0100 (CET)
-X-Virus-Scanned: amavisd-new at tpip.net
-Received: from office.tpip.net ([127.0.0.1])
-	by localhost (office.tpip.net [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id Tdv6r3ipiQgj for <yocto@yoctoproject.org>;
-	Tue,  8 Jan 2013 12:34:11 +0100 (CET)
-Received: from [192.168.13.42] (unknown [192.168.13.42])
-	by office.tpip.net (Postfix) with ESMTPSA id 8E3A9471C3
-	for <yocto@yoctoproject.org>; Tue,  8 Jan 2013 12:34:11 +0100 (CET)
-Message-ID: <50EC0433.4020206@travelping.com>
-Date: Tue, 08 Jan 2013 12:34:11 +0100
-From: Tino Breddin <tb@travelping.com>
-Organization: Travelping GmbH
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/17.0 Thunderbird/17.0
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 70BF0E01474
+	for <yocto@yoctoproject.org>; Tue,  8 Jan 2013 04:49:35 -0800 (PST)
+Received: from cpebcc81008dd2c-cmbcc81008dd29.cpe.net.cable.rogers.com
+	([99.253.156.71]:47266 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1TsYcY-0003R0-Lq
+	for yocto@yoctoproject.org; Tue, 08 Jan 2013 07:49:34 -0500
+Date: Tue, 8 Jan 2013 07:49:31 -0500 (EST)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.DEB.2.02.1301080746080.18817@oneiric>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
-To: yocto <yocto@yoctoproject.org>
-X-Enigmail-Version: 1.4.6
-Subject: Future of WebHob?
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: wiki page for building basic image for raspberry pi
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,19 +37,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 08 Jan 2013 11:34:16 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 08 Jan 2013 12:49:35 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-Hi,
 
-I was wondering what the future plans for WebHob are. I'm aware of the
-wiki design page [1] and the repo [2] and recall having read that it has
-been dropped from release 1.3. However I can't find any further information.
+  after reading what's available, i gave it a shot and documented the
+results here:
 
-Cheers,
-Tino
+http://www.crashcourse.ca/wiki/index.php/Building_basic_RPi_image
 
-[1] https://wiki.yoctoproject.org/wiki/Yocto_Web_Hob_Design
-[2] http://git.yoctoproject.org/cgit/cgit.cgi/yocto-webhob-design/
+  the build seems to have worked, although i have no rpi unit on which
+to test the generated artifacts.
+
+rday
+
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
