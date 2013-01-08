@@ -1,36 +1,23 @@
-Return-Path: <christopher.a.thornburg@intel.com>
+Return-Path: <sgw@linux.intel.com>
 Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 45630E0146A
-	for <yocto@yoctoproject.org>; Mon,  7 Jan 2013 13:48:36 -0800 (PST)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga101.ch.intel.com with ESMTP; 07 Jan 2013 13:48:35 -0800
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D18CCE01469
+	for <yocto@yoctoproject.org>; Mon,  7 Jan 2013 21:31:23 -0800 (PST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 07 Jan 2013 21:31:23 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,425,1355126400"; 
-	d="scan'208,217";a="188630435"
-Received: from fmsmsx108.amr.corp.intel.com ([10.19.9.228])
-	by AZSMGA002.ch.intel.com with ESMTP; 07 Jan 2013 13:48:35 -0800
-Received: from fmsmsx153.amr.corp.intel.com (10.19.17.7) by
-	FMSMSX108.amr.corp.intel.com (10.19.9.228) with Microsoft SMTP Server
-	(TLS) id 14.1.355.2; Mon, 7 Jan 2013 13:48:34 -0800
-Received: from fmsmsx102.amr.corp.intel.com ([169.254.2.26]) by
-	FMSMSX153.amr.corp.intel.com ([169.254.11.130]) with mapi id
-	14.01.0355.002; Mon, 7 Jan 2013 13:48:34 -0800
-From: "Thornburg, Christopher A" <christopher.a.thornburg@intel.com>
-To: "Stewart, David C" <david.c.stewart@intel.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] Host authenticity failures
-Thread-Index: Ac3pKzQZM1BzWyyVTNGjOLWRV4i1fACBzbsAAHuSUCA=
-Date: Mon, 7 Jan 2013 21:48:32 +0000
-Message-ID: <752F65977A748344A01D69BF22DCDBAE25B96D9C@FMSMSX102.amr.corp.intel.com>
-References: <752F65977A748344A01D69BF22DCDBAE25B95894@FMSMSX102.amr.corp.intel.com>
-	<CD0CD4BB.1C4D8%david.c.stewart@intel.com>
-In-Reply-To: <CD0CD4BB.1C4D8%david.c.stewart@intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.1.200.106]
+X-IronPort-AV: E=Sophos;i="4.84,428,1355126400"; d="scan'208";a="241139889"
+Received: from unknown (HELO [10.255.14.104]) ([10.255.14.104])
+	by azsmga001.ch.intel.com with ESMTP; 07 Jan 2013 21:31:22 -0800
+Message-ID: <50EBAF2A.7010902@linux.intel.com>
+Date: Mon, 07 Jan 2013 21:31:22 -0800
+From: Saul Wold <sgw@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/17.0 Thunderbird/17.0
 MIME-Version: 1.0
-Subject: Re: Host authenticity failures
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <7E680CB2A76BB8438D08CF13C09FC53A4844CAD5@ORSMSX101.amr.corp.intel.com>
+In-Reply-To: <7E680CB2A76BB8438D08CF13C09FC53A4844CAD5@ORSMSX101.amr.corp.intel.com>
+Subject: Agenda: Yocto Project Technical Team Meeting - Tuesday, January 8, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,206 +29,102 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 07 Jan 2013 21:48:37 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_752F65977A748344A01D69BF22DCDBAE25B96D9CFMSMSX102amrcor_"
+X-List-Received-Date: Tue, 08 Jan 2013 05:31:24 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
---_000_752F65977A748344A01D69BF22DCDBAE25B96D9CFMSMSX102amrcor_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Agenda:
 
-Yes...this is still happening. :(
-
-From: Stewart, David C
-Sent: Friday, January 04, 2013 7:50 PM
-To: Thornburg, Christopher A; yocto@yoctoproject.org
-Subject: Re: [yocto] Host authenticity failures
-
-Is this still a problem?
-
-From: <Thornburg>, Christopher A <christopher.a.thornburg@intel.com<mailto:=
-christopher.a.thornburg@intel.com>>
-Date: Wednesday, January 2, 2013 2:48 PM
-To: "yocto@yoctoproject.org<mailto:yocto@yoctoproject.org>" <yocto@yoctopro=
-ject.org<mailto:yocto@yoctoproject.org>>
-Subject: [yocto] Host authenticity failures
-
-I've started getting the following error from bitbake when it's trying to a=
-ccess my git server:
-
-The authenticity of host '[<githost>]:<port>([<IP>]:<port>)' can't be estab=
-lished.
-DSA key fingerprint is <blah>
-
-I understand this error means that the server's key has probably changed, a=
-nd I understand in general how to deal with this via SSH config. When I man=
-ually ssh'd to the server the first time after receiving the error, I got t=
-he same message, as expected. I entered "yes" and tried again to verify tha=
-t the error went away. It did. I think ran bitbake again and got the same e=
-rror. I changed my ~/.ssh/ssh_config file to disable StrictHostKeyChecking =
-and still get the error.
-
-Is bitbake somehow using different known_hosts and ssh_config files from th=
-e ones I use for interactive logins? Other ideas on how to resolve this?
+* Opens collection - 5 min (Saul)
+* Denzil 1.2.2 Status - 5 min (ScottG/Saul)
+* Danny 1.3.1 Status - 5 min (Ross/Saul)
+* Yocto 1.4 status - 15 min (Saul/team)
+* SWAT team rotation: Cristiana Voicu -> Radu Moisan
+* Opens - 10 min
+* Team Sharing - 20 min
 
 
---_000_752F65977A748344A01D69BF22DCDBAE25B96D9CFMSMSX102amrcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+-----Original Appointment-----
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
-	{mso-style-priority:99;
-	mso-style-link:"Balloon Text Char";
-	margin:0in;
-	margin-bottom:.0001pt;
-	font-size:8.0pt;
-	font-family:"Tahoma","sans-serif";}
-span.EmailStyle17
-	{mso-style-type:personal;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-span.BalloonTextChar
-	{mso-style-name:"Balloon Text Char";
-	mso-style-priority:99;
-	mso-style-link:"Balloon Text";
-	font-family:"Tahoma","sans-serif";}
-span.EmailStyle20
-	{mso-style-type:personal-reply;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Yes&#8230;this is stil=
-l happening. </span>
-<span style=3D"font-family:Wingdings;color:#1F497D">L</span><span style=3D"=
-color:#1F497D"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<div>
-<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
-0in 0in">
-<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
-;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
-ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> Stewart,=
- David C
-<br>
-<b>Sent:</b> Friday, January 04, 2013 7:50 PM<br>
-<b>To:</b> Thornburg, Christopher A; yocto@yoctoproject.org<br>
-<b>Subject:</b> Re: [yocto] Host authenticity failures<o:p></o:p></span></p=
->
-</div>
-</div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;color:black">Is this=
- still a problem?<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;color:black"><o:p>&n=
-bsp;</o:p></span></p>
-</div>
-<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
-0in 0in">
-<p class=3D"MsoNormal"><b><span style=3D"color:black">From: </span></b><spa=
-n style=3D"color:black">&lt;Thornburg&gt;, Christopher A &lt;<a href=3D"mai=
-lto:christopher.a.thornburg@intel.com">christopher.a.thornburg@intel.com</a=
->&gt;<br>
-<b>Date: </b>Wednesday, January 2, 2013 2:48 PM<br>
-<b>To: </b>&quot;<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproje=
-ct.org</a>&quot; &lt;<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctop=
-roject.org</a>&gt;<br>
-<b>Subject: </b>[yocto] Host authenticity failures<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;color:black"><o:p>&n=
-bsp;</o:p></span></p>
-</div>
-<div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"color:black">I&#8217;ve started getti=
-ng the following error from bitbake when it&#8217;s trying to access my git=
- server:<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:black">&nbsp;<o:p></o:p></span>=
-</p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in"><span style=3D"color:blac=
-k">The authenticity of host '[&lt;githost&gt;]:&lt;port&gt;([&lt;IP&gt;]:&l=
-t;port&gt;)' can't be established.<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in"><span style=3D"color:blac=
-k">DSA key fingerprint is &lt;blah&gt;<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in"><span style=3D"color:blac=
-k">&nbsp;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:black">I understand this error =
-means that the server&#8217;s key has probably changed, and I understand in=
- general how to deal with this via SSH config. When I manually ssh&#8217;d =
-to the server the first time after receiving the
- error, I got the same message, as expected. I entered &#8220;yes&#8221; an=
-d tried again to verify that the error went away. It did. I think ran bitba=
-ke again and got the same error. I changed my ~/.ssh/ssh_config file to dis=
-able StrictHostKeyChecking and still get the
- error.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:black">&nbsp;<o:p></o:p></span>=
-</p>
-<p class=3D"MsoNormal"><span style=3D"color:black">Is bitbake somehow using=
- different known_hosts and ssh_config files from the ones I use for interac=
-tive logins? Other ideas on how to resolve this?<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:black">&nbsp;<o:p></o:p></span>=
-</p>
-</div>
-</div>
-</div>
-</body>
-</html>
+We encourage people attending the meeting to logon the Yocto IRC chancel 
+during the meeting (optional):
 
---_000_752F65977A748344A01D69BF22DCDBAE25B96D9CFMSMSX102amrcor_--
+Yocto IRC: http://webchat.freenode.net/?channels=#yocto
+IRC Tutorial: http://www.irchelp.org/irchelp/irctutorial.html
+Conference details
+Conference name: Yocto Technical Team
+Conference date/start time: Tue Jun 26, 2012 at 10:00 AM Central 
+Daylight Time
+Participants: 30
+Duration: 60 minutes
+Participant passcode: 76994298
+Dial-in number: 1.972.995.7777
+US Toll Free number: 1.877.561.6828
+BlackBerry users, click this link to join your conference as a participant:
+1.972.995.7777x76994298#
+
+Depending on where you are dialing from, either your BlackBerry will 
+pause and enter the passcode automatically or you will be prompted to 
+click again to dial the passcode.
+
+Local and Global Access Numbers
+
+Country
+Dial-in number
+Australia: 1800 636 843
+Czech Republic: 242 430 350
+China (Beijing): >From office dial 8-9957777 or 8784277
+Beijing Out of Office dial 5878 4277
+China (Shanghai): >From office dial 8-9957777 or 3073322
+Shanghai Out of Office dial 2307 3322
+China (Shenzen): >From office dial 8-9957777 or 6007877
+Shenzen Out of Office dial 2600 7877
+China (Other Cities): >From IP phone dial 8-9957777
+Other cities - Non IP phone dial 021-23073322
+Denmark: 8060 1400
+Finland: 09 41333477
+France: 0497 275888
+Germany: 08161 803232
+Holland: 030 2417490
+India: BSNL subscribers use 1800 425 9996 (Toll Free) Airtel subscribers 
+use 0008 009 861 212 (Toll Free) From TI Campus use 89957777 Others use 
+2509 9555 (Landline within Bangalore) or
+80 2509 9555 (Outside Bangalore)
+Israel: 09 790 6715
+Italy: 039 69061234 (039 is local city code not country code)
+Japan: >From TI Campus use 8 995 7777
+Outside TI use 03 4331 3777
+Malaysia: >From IP phone dial 2643799
+From Kuala Lumpur dial 4264 3799
+Outside Kuala Lumpur dial (03)4264 3799
+Norway: 2 295 8744
+Philippines: >From Baguio City use 4471177
+From Metro Manila area use 8702477
+Singapore: >From IP phone dial 3894777
+Outside TI use 6389 4777
+South Korea: >From IP phone dial 5606998
+From Seoul dial 5606998
+Outside Seoul dial (02)5606998
+Sweden: 08 58755577
+Taiwan: >From IP phone dial 1363
+From Taipei dial 2241 1363
+Outside Taipei dial (02)2241 1363
+Turkey: Landline Only dial 0811 288 0001
+then enter 877 633 1123
+UK: 01604 663003
+US: 972 995 7777 or 1877 561 6828
+
+Recurring conferences
+First scheduled conference: Tue Jun 26, 2012
+Recurrence frequency: Weekly - Every 1 week(s) on Tuesday
+Recurrence ends: End on Fri Jun 21, 2013, 10:40 AM CDT
+
+
+
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
+
+
+
