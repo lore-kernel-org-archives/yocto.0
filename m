@@ -1,36 +1,27 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AEA81E0146A
-	for <yocto@yoctoproject.org>; Wed,  9 Jan 2013 09:03:13 -0800 (PST)
-Received: from cpebcc81008dd2c-cmbcc81008dd29.cpe.net.cable.rogers.com
-	([99.253.156.71]:40272 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1Tsz3Y-0001o2-Bz; Wed, 09 Jan 2013 12:03:12 -0500
-Date: Wed, 9 Jan 2013 12:03:04 -0500 (EST)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Jeff Osier-Mixon <jefro@jefro.net>
-In-Reply-To: <CA+YB3rYN0m_Sv-5-1TL1UfmTY1vgrgTpFA9mT2N54XY-T2VWvA@mail.gmail.com>
-Message-ID: <alpine.DEB.2.02.1301091201530.13432@oneiric>
-References: <alpine.DEB.2.02.1301080746080.18817@oneiric>
-	<50EC277F.8010507@dynamicdevices.co.uk>
-	<alpine.DEB.2.02.1301080914250.19857@oneiric>
-	<CA+YB3rYN0m_Sv-5-1TL1UfmTY1vgrgTpFA9mT2N54XY-T2VWvA@mail.gmail.com>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <vidal.develone@gmail.com>
+Received: from mail-ee0-f44.google.com (mail-ee0-f44.google.com [74.125.83.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5D51EE00559
+	for <yocto@yoctoproject.org>; Wed,  9 Jan 2013 15:59:52 -0800 (PST)
+Received: by mail-ee0-f44.google.com with SMTP id l10so469259eei.17
+	for <yocto@yoctoproject.org>; Wed, 09 Jan 2013 15:59:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=k7fb2KKK9GYXYxPRlMg6elXQNXogtB8k6AkUPzxGGo0=;
+	b=Hqy+4RGbfbE+v44hkqP6bHAgvBb1LDbfjFiDtk0Zk9K6edf8ryCKhhx6sWZxgoVXtM
+	6z+4uyU01Y7asNZ+p9tc3DzAlslmJ+xRIoeXYnW1D3tAMEBsYEloBW3j+XYmvp+kIpa0
+	0hXvBSXCBmT+F7puKelcPkYvZduSYWjL0Zgd6KmsJHW/9gYQI60WCRC+h9d3nfWjb9oi
+	qQalIferCMOJOkLlfOyHowWWiGZbbCppsFKM5mhOVxVFA+n41fezoDVMwK36wNP/hEJj
+	cRDPguG+4ZJtJ19zyvV2nQLbDoFb1FuW79M50iPaT4kiM1ggsASB4hJXRPlzgTZDQzAi
+	v+3Q==
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: wiki page for building basic image for raspberry pi
+Received: by 10.14.207.195 with SMTP id n43mr185612912eeo.38.1357775990753;
+	Wed, 09 Jan 2013 15:59:50 -0800 (PST)
+Received: by 10.223.160.16 with HTTP; Wed, 9 Jan 2013 15:59:50 -0800 (PST)
+Date: Wed, 9 Jan 2013 16:59:50 -0700
+Message-ID: <CANwz6nz5QUDFeSZR62uncFEsr-4=ehGUpn3AtZpW-4k4reX49A@mail.gmail.com>
+From: Edward Vidal <vidal.develone@gmail.com>
+To: yocto@yoctoproject.org
+Subject: adt-manual.pdf
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,37 +33,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 09 Jan 2013 17:03:13 -0000
-Content-Type: MULTIPART/MIXED; BOUNDARY="8323329-2144029362-1357750992=:13432"
+X-List-Received-Date: Wed, 09 Jan 2013 23:59:52 -0000
+Content-Type: multipart/alternative; boundary=047d7b3437329d0a6004d2e3db97
 
---8323329-2144029362-1357750992=:13432
-Content-Type: TEXT/PLAIN; charset=ISO-8859-1
-Content-Transfer-Encoding: 8BIT
+--047d7b3437329d0a6004d2e3db97
+Content-Type: text/plain; charset=ISO-8859-1
 
-On Wed, 9 Jan 2013, Jeff Osier-Mixon wrote:
+Hello,
+I was testing the example  4.1 Autotools-Based Projects
+should the file "configure".in be "configure.ac"
+this is the error that I get when I execute aclocal
+aclocal
+aclocal: warning: autoconf input should be named 'configure.ac', not '
+configure.in'
+Any help will be appreciated.
+Ed Vidal Jr.
 
->
->
->
-> On Tue, Jan 8, 2013 at 6:15 AM, Robert P. J. Day <rpjday@crashcourse.ca> wrote:
->       On Tue, 8 Jan 2013, Alex J Lennon wrote:
->
->       > On 08/01/2013 12:49, Robert P. J. Day wrote:
->       > >
->       > >   after reading what's available, i gave it a shot and documented the
->       > > results here:
->       > >
->       > > http://www.crashcourse.ca/wiki/index.php/Building_basic_RPi_image
->       > >
->       > >   the build seems to have worked, although i have no rpi unit on which
->       > > to test the generated artifacts.
->
-> Thanks for writing this up, Robert. If you would like to host this
-> on the Yocto Project wiki I'd be glad to help set it up.
+--047d7b3437329d0a6004d2e3db97
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-  let me test it first, i have no access to an RPi at the moment.
-should be a day or two.  and i want to clean it up just a touch.
+Hello,<br>I was testing the example=A0 4.1 Autotools-Based Projects<br>shou=
+ld the file &quot;configure&quot;.in be &quot;<a href=3D"http://configure.a=
+c">configure.ac</a>&quot;<br>this is the error that I get when I execute ac=
+local<br>
+aclocal<br>aclocal: warning: autoconf input should be named &#39;<a href=3D=
+"http://configure.ac">configure.ac</a>&#39;, not &#39;<a href=3D"http://con=
+figure.in">configure.in</a>&#39;<br>Any help will be appreciated.<br>Ed Vid=
+al Jr. <br>
 
-rday
-
---8323329-2144029362-1357750992=:13432--
+--047d7b3437329d0a6004d2e3db97--
