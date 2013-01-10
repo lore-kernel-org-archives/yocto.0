@@ -1,26 +1,34 @@
-Return-Path: <PatrickTurley@gamestop.com>
-Received: from gsironport1.gamestop.com (mail1.gamestop.com [12.25.107.28])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ABBD1E00720
-	for <yocto@yoctoproject.org>; Thu, 10 Jan 2013 14:46:26 -0800 (PST)
-X-IronPort-AV: E=Sophos;i="4.84,447,1355119200"; 
-   d="scan'208";a="6587977"
-Received: from unknown (HELO GV1HQPEX01.babgsetc.pvt) ([172.22.1.244])
-	by gsironport1.gamestop.com with ESMTP; 10 Jan 2013 16:46:25 -0600
-Received: from GV1HQPEX03.babgsetc.pvt ([169.254.1.222]) by
-	GV1HQPEX01.babgsetc.pvt ([172.22.1.191]) with mapi id 14.02.0318.004;
-	Thu, 10 Jan 2013 16:46:25 -0600
-From: Patrick Turley <PatrickTurley@gamestop.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Return-Path: <jessica.zhang@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D2BF3E00720
+	for <yocto@yoctoproject.org>; Thu, 10 Jan 2013 15:03:11 -0800 (PST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 10 Jan 2013 15:03:07 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.84,447,1355126400"; d="scan'208";a="242488546"
+Received: from orsmsx102.amr.corp.intel.com ([10.22.225.129])
+	by azsmga001.ch.intel.com with ESMTP; 10 Jan 2013 15:03:07 -0800
+Received: from orsmsx108.amr.corp.intel.com (10.22.225.41) by
+	ORSMSX102.amr.corp.intel.com (10.22.225.129) with Microsoft SMTP Server
+	(TLS) id 14.1.355.2; Thu, 10 Jan 2013 15:03:06 -0800
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.237]) by
+	ORSMSX108.amr.corp.intel.com ([169.254.9.188]) with mapi id
+	14.01.0355.002; Thu, 10 Jan 2013 15:03:06 -0800
+From: "Zhang, Jessica" <jessica.zhang@intel.com>
+To: Patrick Turley <PatrickTurley@gamestop.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
 Thread-Topic: Shouldn't linux/version.h appear in the SDK's host sysroot?
-Thread-Index: AQHN74RRRgdDAMaXIkOZBHm2H4rXqw==
-Date: Thu, 10 Jan 2013 22:46:23 +0000
-Message-ID: <5BEFD653CA8A8D47AA194ED30AB5968C35AE74@GV1HQPEX03.babgsetc.pvt>
+Thread-Index: AQHN74RRRgdDAMaXIkOZBHm2H4rXq5hDLG0Q
+Date: Thu, 10 Jan 2013 23:03:05 +0000
+Message-ID: <C6510F6D410BB64A8C15398EDC6B847C46B8119D@ORSMSX101.amr.corp.intel.com>
+References: <5BEFD653CA8A8D47AA194ED30AB5968C35AE74@GV1HQPEX03.babgsetc.pvt>
+In-Reply-To: <5BEFD653CA8A8D47AA194ED30AB5968C35AE74@GV1HQPEX03.babgsetc.pvt>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [172.22.1.244]
+x-originating-ip: [10.22.254.138]
 MIME-Version: 1.0
-Subject: Shouldn't linux/version.h appear in the SDK's host sysroot?
+Subject: Re: Shouldn't linux/version.h appear in the SDK's host sysroot?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,17 +40,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 10 Jan 2013 22:46:26 -0000
+X-List-Received-Date: Thu, 10 Jan 2013 23:03:12 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
-Content-ID: <D8DBED43C9E86D4792184DB50CAC9D1F@gamestop.com>
 Content-Transfer-Encoding: quoted-printable
+
+Hi Patrick,
+
+The toolchain and sysroot are behaving correctly,  the x86_64-pokysdk-linux=
+ contains the cross tools for your development host, whereas armv7a-vfp-neo=
+n-poky-linux-gnueabi contains your target sysroot, and all your target prog=
+rams should be using files against that sysroot.  By not knowing how your c=
+ompile your package, but if you look at our ADT manual, you should source t=
+he environment setup script before you try to use the toolchain and you als=
+o need to pass sysroot option to your compiler and linker for them to go to=
+ the target sysroot location for headers and libraries.
+
+Thanks,
+Jessica
+
+-----Original Message-----
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Patrick Turley
+Sent: Thursday, January 10, 2013 2:46 PM
+To: yocto@yoctoproject.org
+Subject: [yocto] Shouldn't linux/version.h appear in the SDK's host sysroot=
+?
 
 I'm using a Yocto-based SDK, produced by:
 
     bitbake meta-toolchain-sdk
 
-This creates the file=20
+This creates the file
 
     poky-eglibc-x86_64-arm-toolchain-gmae-1.3.sh
 
@@ -87,4 +116,8 @@ done wrong.
 
 3) Something else.
 
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
 
