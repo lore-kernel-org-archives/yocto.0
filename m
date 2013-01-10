@@ -1,32 +1,38 @@
-Return-Path: <david.c.stewart@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 891F8E01468
-	for <yocto@yoctoproject.org>; Wed,  9 Jan 2013 16:54:42 -0800 (PST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 09 Jan 2013 16:54:42 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,440,1355126400"; d="scan'208";a="275135850"
-Received: from orsmsx101.amr.corp.intel.com ([10.22.225.128])
-	by fmsmga002.fm.intel.com with ESMTP; 09 Jan 2013 16:54:40 -0800
-Received: from orsmsx105.amr.corp.intel.com ([169.254.4.201]) by
-	ORSMSX101.amr.corp.intel.com ([169.254.8.237]) with mapi id
-	14.01.0355.002; Wed, 9 Jan 2013 16:54:40 -0800
-From: "Stewart, David C" <david.c.stewart@intel.com>
-To: "Serban, Laurentiu" <laurentiu.serban@intel.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: Yocto Bug Trend
-Thread-Index: Ac3twrfRfRIvCrfHTHytUcdg6JCn3gBClhSA
-Date: Thu, 10 Jan 2013 00:54:39 +0000
-Message-ID: <CD13512F.1EABE%david.c.stewart@intel.com>
-In-Reply-To: <E16513A01CAAFF40B65178C63CE45EEC191CF903@IRSMSX102.ger.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Microsoft-MacOutlook/14.2.3.120616
-x-originating-ip: [10.24.0.51]
-MIME-Version: 1.0
-Cc: "Wold, Saul" <saul.wold@intel.com>
-Subject: Re: Yocto Bug Trend
+Return-Path: <opensource@keylevel.com>
+Received: from r109.websiteservername.com (r109.websiteservername.com
+	[65.39.128.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7769BE006C2
+	for <yocto@yoctoproject.org>; Thu, 10 Jan 2013 00:09:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=keylevel.com;
+	s=default; 
+	h=To:References:Message-Id:Content-Transfer-Encoding:Cc:Date:In-Reply-To:From:Content-Type:Mime-Version:Subject;
+	bh=gtZV7j/Lp6UITQWryNTaAm43c5Hg4ZLMIJ3aCTXW9/c=; 
+	b=PtyHKhpRAxGCuRcZxNlHVGXHvkFL+YOxYUpEwCAsLd7orlZu2kb5O08vrGd84DVwCU6IE1AfgkXhXquq5LoNvpyCEC+QwmAyezFcixAESLhkbtC6o13qVkVq+fEbhlUz;
+Received: from [109.224.129.17] (port=4043
+	helo=macbook-pro.durham.keylevel.com)
+	by r109.websiteservername.com with esmtpa (Exim 4.80)
+	(envelope-from <opensource@keylevel.com>)
+	id 1TtDCx-000Q7l-Mo; Thu, 10 Jan 2013 08:09:51 +0000
+Mime-Version: 1.0 (Apple Message framework v1283)
+From: Chris Tapp <opensource@keylevel.com>
+In-Reply-To: <50EAFB84.9090007@linux.intel.com>
+Date: Thu, 10 Jan 2013 08:09:50 +0000
+Message-Id: <E4DED516-A931-4908-A58F-5C44D072072B@keylevel.com>
+References: <6F94DE12-515D-47A0-BDC6-9491AFD6849F@keylevel.com>
+	<50EAFB84.9090007@linux.intel.com>
+To: Darren Hart <dvhart@linux.intel.com>
+X-Mailer: Apple Mail (2.1283)
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - r109.websiteservername.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - keylevel.com
+X-Get-Message-Sender-Via: r109.websiteservername.com: authenticated_id:
+	chris.tapp+keylevel.com/only user confirmed/virtual account not
+	confirmed
+Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+Subject: Re: meta-cedartrail - where is grub configured for 'install' option?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,36 +44,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 10 Jan 2013 00:54:42 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="Windows-1252"
-Content-ID: <63DB26A27EE8734694A037C3BDB8BD5C@intel.com>
+X-List-Received-Date: Thu, 10 Jan 2013 08:09:53 -0000
+Content-Type: text/plain; charset=iso-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-Thanks =96 what's the new dotted line in the Weekly Open Bug Trend chart?
+Hi Darren,
 
-From: <Serban>, Laurentiu Serban <laurentiu.serban@intel.com<mailto:laurent=
-iu.serban@intel.com>>
-Date: Tuesday, January 8, 2013 9:08 AM
-To: "yocto@yoctoproject.org<mailto:yocto@yoctoproject.org>" <yocto@yoctopro=
-ject.org<mailto:yocto@yoctoproject.org>>
-Cc: "Wold, Saul" <saul.wold@intel.com<mailto:saul.wold@intel.com>>, David S=
-tewart <david.c.stewart@intel.com<mailto:david.c.stewart@intel.com>>, "Liu,=
- Song" <song.liu@intel.com<mailto:song.liu@intel.com>>
-Subject: Yocto Bug Trend
+On 7 Jan 2013, at 16:44, Darren Hart wrote:
 
-Hello,
+> On 12/09/2012 01:39 PM, Chris Tapp wrote:
+>> I am trying to change the 'install' behaviour for the meta-cedartrail =
+image so that the installed system has a different grub.cfg file. Is =
+there a file I can bbappend to achieve this?
+>>=20
+>> image_live.bbclass refers to the 'install' syslinux label that =
+triggers the install, but I've not been able to get from this to =
+how/where grub.cfg is created.
+>>=20
+>=20
+> This is currently rather crudely implemented here:
+>=20
+> meta/recipes-core/initrdscripts/files/init-install.sh
+>=20
+> A better deployment mechanism is something being discussed and which
+> should make this more configurable.
+>=20
+> For now, you could bbappend initramfs-live-install_1.0.bb and replace =
+the
+> init-install.sh script with your own.
 
-The Yocto Bug Trend was updated for ww01.
-https://wiki.yoctoproject.org/wiki/Yocto_Bug_Trend
+Thanks. I've already got to look at that script anyway as it fails to =
+install to an internal USB drive on a DN2800-MT board as (I think) it =
+isn't waiting long enough for it to enumerate when booting the 'install' =
+image.
 
-Best regards and a happy new year :)
+> --=20
+> Darren Hart
+> Intel Open Source Technology Center
+> Yocto Project - Technical Lead - Linux Kernel
 
-Laurentiu Serban
-QA Engineer
-Open Source Technology Center
-System Software Division Romania
-Desk: +40 31 8604742
-iNET: 88451042
+Chris Tapp
+
+opensource@keylevel.com
+www.keylevel.com
+
+
 
 
