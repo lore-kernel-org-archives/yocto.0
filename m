@@ -1,26 +1,24 @@
-Return-Path: <andreas@schweigstill.de>
-Received: from kitz.schweigstill.de (kitz.schweigstill.de [195.244.237.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2FF5CE006C2
-	for <yocto@yoctoproject.org>; Thu, 10 Jan 2013 02:26:58 -0800 (PST)
-Received: from mailserver (192.168.16.41) by mail-extern (Axigen)
-	with (AES256-SHA encrypted) ESMTPS id 3AD6DC;
-	Thu, 10 Jan 2013 11:26:55 +0100
-Received: from mailserver (127.0.0.1) by mailserver (Axigen)
-	with ESMTPSA id 0F972C; Thu, 10 Jan 2013 11:26:55 +0100
-Received: from [80.246.32.33] by schweigstill.de with HTTP;
-	Thu, 10 Jan 2013 11:26:55 +0100
-From: Andreas Schweigstill <andreas@schweigstill.de>
-Date: Thu, 10 Jan 2013 11:26:55 +0100
-X-Mailer: Axigen WebMail
-To: yocto@yoctoproject.org
-Message-ID: <1357813615700846500@schweigstill.de>
-Importance: Normal
+Return-Path: <Andrei.Gherzan@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 112B0E006C2
+	for <yocto@yoctoproject.org>; Thu, 10 Jan 2013 05:14:48 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id r0ADEkWV021160
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Thu, 10 Jan 2013 05:14:46 -0800 (PST)
+Received: from localhost.localdomain (128.224.170.79) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server
+	(TLS) id 14.2.318.4; Thu, 10 Jan 2013 05:14:46 -0800
+From: Andrei Gherzan <andrei.gherzan@windriver.com>
+To: <holger.behrens@windriver.com>, <florin.sarbu@windriver.com>
+Date: Thu, 10 Jan 2013 15:15:11 +0200
+Message-ID: <1357823711-1297-1-git-send-email-andrei.gherzan@windriver.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-X-AxigenSpam-Level: 1
-X-CTCH-RefID: str=0001.0A0C020A.50EE9770.008D,ss=1,fgs=0
-X-CTCH-VOD: Unknown
-X-CTCH-Spam: Unknown
-Subject: Recipes for Xilinx ZC706 (Zynq 7045) and Avnet Zedboard
+X-Originating-IP: [128.224.170.79]
+Cc: yocto@yoctoproject.org, Andrei Gherzan <andrei.gherzan@windriver.com>
+Subject: [meta-ivi][PATCH] consolekit: Remove bbappend as gnome-common is not GPLv3
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,27 +30,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 10 Jan 2013 10:26:58 -0000
-Content-Type: text/plain;	charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-Content-Disposition: inline
+X-List-Received-Date: Thu, 10 Jan 2013 13:14:48 -0000
+Content-Type: text/plain
 
-Hello,
+gnome-common's LICENSE fixed with this oe-core commit:
+commit 97469db0cba6d21ab1290238225d3fe365931a5c
+Author: Ross Burton <ross.burton@intel.com>
+Date:   Tue Oct 30 12:02:45 2012 +0000
 
-after successfully using the recipe for the ZC702 development board I would
-like to know if anybody is working on recipes for the Xilinx ZC706 (Zynq 70=
-45)
-and Avnet Zedboard.
+gnome-common: Fix license
+gnome-common 2.28 is GPLv2+.  From Christian Persch, upstream:
+The licence is presumed GPL2+, although it's not there explicitly. GPL2+
+because as far as I could figure out when I tried to, gnome-autogen started in
+gnome-core which had a GPL2 COPYING file.
 
-Thank you very much in advance!
+Signed-off-by: Andrei Gherzan <andrei.gherzan@windriver.com>
+---
+ .../consolekit/consolekit_0.4.5.bbappend           |    8 --------
+ 1 file changed, 8 deletions(-)
+ delete mode 100644 recipes-support-ivi/consolekit/consolekit_0.4.5.bbappend
 
-With best regards,
-Andreas Schweigstill
+diff --git a/recipes-support-ivi/consolekit/consolekit_0.4.5.bbappend b/recipes-support-ivi/consolekit/consolekit_0.4.5.bbappend
+deleted file mode 100644
+index 1dccee5..0000000
+--- a/recipes-support-ivi/consolekit/consolekit_0.4.5.bbappend
++++ /dev/null
+@@ -1,8 +0,0 @@
+-PRINC := "${@int(PRINC) + 1}"
+-
+-# gnome-common is GPLv3 so we drop this dependency
+-# if INCOMPATIBLE_LICENSE contains GPLv3
+-python () {
+-    if (d.getVar("INCOMPATIBLE_LICENSE", True) or "").find("GPLv3") != -1:
+-        d.setVar("DEPENDS", " ".join(i for i in d.getVar("DEPENDS").split() if i != "gnome-common" and i != "gconf" and i != "gconf-native"))
+-}
+-- 
+1.7.9.5
 
-=E2=80=8B--=20
-Dipl.-Phys. Andreas Schweigstill=20
-Schweigstill IT | Embedded Systems=20
-Schauenburgerstra=C3=9Fe 116, D-24118 Kiel, Germany=20
-Phone: (+49) 431 530354-35, Fax: (+49) 431 530354-36=20
-Mobile: (+49) 171 6921973, Web: http://www.schweigstill.de/=20
 
