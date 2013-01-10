@@ -1,27 +1,32 @@
-Return-Path: <vidal.develone@gmail.com>
-Received: from mail-ee0-f44.google.com (mail-ee0-f44.google.com [74.125.83.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5D51EE00559
-	for <yocto@yoctoproject.org>; Wed,  9 Jan 2013 15:59:52 -0800 (PST)
-Received: by mail-ee0-f44.google.com with SMTP id l10so469259eei.17
-	for <yocto@yoctoproject.org>; Wed, 09 Jan 2013 15:59:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=k7fb2KKK9GYXYxPRlMg6elXQNXogtB8k6AkUPzxGGo0=;
-	b=Hqy+4RGbfbE+v44hkqP6bHAgvBb1LDbfjFiDtk0Zk9K6edf8ryCKhhx6sWZxgoVXtM
-	6z+4uyU01Y7asNZ+p9tc3DzAlslmJ+xRIoeXYnW1D3tAMEBsYEloBW3j+XYmvp+kIpa0
-	0hXvBSXCBmT+F7puKelcPkYvZduSYWjL0Zgd6KmsJHW/9gYQI60WCRC+h9d3nfWjb9oi
-	qQalIferCMOJOkLlfOyHowWWiGZbbCppsFKM5mhOVxVFA+n41fezoDVMwK36wNP/hEJj
-	cRDPguG+4ZJtJ19zyvV2nQLbDoFb1FuW79M50iPaT4kiM1ggsASB4hJXRPlzgTZDQzAi
-	v+3Q==
+Return-Path: <david.c.stewart@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 891F8E01468
+	for <yocto@yoctoproject.org>; Wed,  9 Jan 2013 16:54:42 -0800 (PST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 09 Jan 2013 16:54:42 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.84,440,1355126400"; d="scan'208";a="275135850"
+Received: from orsmsx101.amr.corp.intel.com ([10.22.225.128])
+	by fmsmga002.fm.intel.com with ESMTP; 09 Jan 2013 16:54:40 -0800
+Received: from orsmsx105.amr.corp.intel.com ([169.254.4.201]) by
+	ORSMSX101.amr.corp.intel.com ([169.254.8.237]) with mapi id
+	14.01.0355.002; Wed, 9 Jan 2013 16:54:40 -0800
+From: "Stewart, David C" <david.c.stewart@intel.com>
+To: "Serban, Laurentiu" <laurentiu.serban@intel.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: Yocto Bug Trend
+Thread-Index: Ac3twrfRfRIvCrfHTHytUcdg6JCn3gBClhSA
+Date: Thu, 10 Jan 2013 00:54:39 +0000
+Message-ID: <CD13512F.1EABE%david.c.stewart@intel.com>
+In-Reply-To: <E16513A01CAAFF40B65178C63CE45EEC191CF903@IRSMSX102.ger.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Microsoft-MacOutlook/14.2.3.120616
+x-originating-ip: [10.24.0.51]
 MIME-Version: 1.0
-Received: by 10.14.207.195 with SMTP id n43mr185612912eeo.38.1357775990753;
-	Wed, 09 Jan 2013 15:59:50 -0800 (PST)
-Received: by 10.223.160.16 with HTTP; Wed, 9 Jan 2013 15:59:50 -0800 (PST)
-Date: Wed, 9 Jan 2013 16:59:50 -0700
-Message-ID: <CANwz6nz5QUDFeSZR62uncFEsr-4=ehGUpn3AtZpW-4k4reX49A@mail.gmail.com>
-From: Edward Vidal <vidal.develone@gmail.com>
-To: yocto@yoctoproject.org
-Subject: adt-manual.pdf
+Cc: "Wold, Saul" <saul.wold@intel.com>
+Subject: Re: Yocto Bug Trend
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,33 +38,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 09 Jan 2013 23:59:52 -0000
-Content-Type: multipart/alternative; boundary=047d7b3437329d0a6004d2e3db97
-
---047d7b3437329d0a6004d2e3db97
-Content-Type: text/plain; charset=ISO-8859-1
-
-Hello,
-I was testing the example  4.1 Autotools-Based Projects
-should the file "configure".in be "configure.ac"
-this is the error that I get when I execute aclocal
-aclocal
-aclocal: warning: autoconf input should be named 'configure.ac', not '
-configure.in'
-Any help will be appreciated.
-Ed Vidal Jr.
-
---047d7b3437329d0a6004d2e3db97
-Content-Type: text/html; charset=ISO-8859-1
+X-List-Received-Date: Thu, 10 Jan 2013 00:54:42 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="Windows-1252"
+Content-ID: <63DB26A27EE8734694A037C3BDB8BD5C@intel.com>
 Content-Transfer-Encoding: quoted-printable
 
-Hello,<br>I was testing the example=A0 4.1 Autotools-Based Projects<br>shou=
-ld the file &quot;configure&quot;.in be &quot;<a href=3D"http://configure.a=
-c">configure.ac</a>&quot;<br>this is the error that I get when I execute ac=
-local<br>
-aclocal<br>aclocal: warning: autoconf input should be named &#39;<a href=3D=
-"http://configure.ac">configure.ac</a>&#39;, not &#39;<a href=3D"http://con=
-figure.in">configure.in</a>&#39;<br>Any help will be appreciated.<br>Ed Vid=
-al Jr. <br>
+Thanks =96 what's the new dotted line in the Weekly Open Bug Trend chart?
 
---047d7b3437329d0a6004d2e3db97--
+From: <Serban>, Laurentiu Serban <laurentiu.serban@intel.com<mailto:laurent=
+iu.serban@intel.com>>
+Date: Tuesday, January 8, 2013 9:08 AM
+To: "yocto@yoctoproject.org<mailto:yocto@yoctoproject.org>" <yocto@yoctopro=
+ject.org<mailto:yocto@yoctoproject.org>>
+Cc: "Wold, Saul" <saul.wold@intel.com<mailto:saul.wold@intel.com>>, David S=
+tewart <david.c.stewart@intel.com<mailto:david.c.stewart@intel.com>>, "Liu,=
+ Song" <song.liu@intel.com<mailto:song.liu@intel.com>>
+Subject: Yocto Bug Trend
+
+Hello,
+
+The Yocto Bug Trend was updated for ww01.
+https://wiki.yoctoproject.org/wiki/Yocto_Bug_Trend
+
+Best regards and a happy new year :)
+
+Laurentiu Serban
+QA Engineer
+Open Source Technology Center
+System Software Division Romania
+Desk: +40 31 8604742
+iNET: 88451042
+
+
