@@ -1,24 +1,25 @@
-Return-Path: <Andrei.Gherzan@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 112B0E006C2
-	for <yocto@yoctoproject.org>; Thu, 10 Jan 2013 05:14:48 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id r0ADEkWV021160
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 10 Jan 2013 05:14:46 -0800 (PST)
-Received: from localhost.localdomain (128.224.170.79) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server
-	(TLS) id 14.2.318.4; Thu, 10 Jan 2013 05:14:46 -0800
-From: Andrei Gherzan <andrei.gherzan@windriver.com>
-To: <holger.behrens@windriver.com>, <florin.sarbu@windriver.com>
-Date: Thu, 10 Jan 2013 15:15:11 +0200
-Message-ID: <1357823711-1297-1-git-send-email-andrei.gherzan@windriver.com>
-X-Mailer: git-send-email 1.7.9.5
+Return-Path: <philip@balister.org>
+Received: from sanddollar.geekisp.com (sanddollar.geekisp.com
+	[216.168.135.167])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id 9A33AE006C2
+	for <yocto@yoctoproject.org>; Thu, 10 Jan 2013 05:43:10 -0800 (PST)
+Received: (qmail 31578 invoked by uid 1003); 10 Jan 2013 13:43:10 -0000
+Received: from unknown (HELO ?192.168.43.231?)
+	(philip@opensdr.com@32.169.62.27)
+	by mail.geekisp.com with (DHE-RSA-AES256-SHA encrypted) SMTP;
+	10 Jan 2013 13:43:09 -0000
+Message-ID: <50EEC56A.2030006@balister.org>
+Date: Thu, 10 Jan 2013 08:43:06 -0500
+From: Philip Balister <philip@balister.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/17.0 Thunderbird/17.0
 MIME-Version: 1.0
-X-Originating-IP: [128.224.170.79]
-Cc: yocto@yoctoproject.org, Andrei Gherzan <andrei.gherzan@windriver.com>
-Subject: [meta-ivi][PATCH] consolekit: Remove bbappend as gnome-common is not GPLv3
+To: Andreas Schweigstill <andreas@schweigstill.de>
+References: <1357813615700846500@schweigstill.de>
+In-Reply-To: <1357813615700846500@schweigstill.de>
+X-Enigmail-Version: 1.4.6
+Cc: yocto@yoctoproject.org
+Subject: Re: Recipes for Xilinx ZC706 (Zynq 7045) and Avnet Zedboard
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,41 +31,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 10 Jan 2013 13:14:48 -0000
-Content-Type: text/plain
+X-List-Received-Date: Thu, 10 Jan 2013 13:43:11 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-gnome-common's LICENSE fixed with this oe-core commit:
-commit 97469db0cba6d21ab1290238225d3fe365931a5c
-Author: Ross Burton <ross.burton@intel.com>
-Date:   Tue Oct 30 12:02:45 2012 +0000
+On 01/10/2013 05:26 AM, Andreas Schweigstill wrote:
+> Hello,
+> 
+> after successfully using the recipe for the ZC702 development board I would
+> like to know if anybody is working on recipes for the Xilinx ZC706 (Zynq 7045)
+> and Avnet Zedboard.
 
-gnome-common: Fix license
-gnome-common 2.28 is GPLv2+.  From Christian Persch, upstream:
-The licence is presumed GPL2+, although it's not there explicitly. GPL2+
-because as far as I could figure out when I tried to, gnome-autogen started in
-gnome-core which had a GPL2 COPYING file.
 
-Signed-off-by: Andrei Gherzan <andrei.gherzan@windriver.com>
----
- .../consolekit/consolekit_0.4.5.bbappend           |    8 --------
- 1 file changed, 8 deletions(-)
- delete mode 100644 recipes-support-ivi/consolekit/consolekit_0.4.5.bbappend
+Trying ....
 
-diff --git a/recipes-support-ivi/consolekit/consolekit_0.4.5.bbappend b/recipes-support-ivi/consolekit/consolekit_0.4.5.bbappend
-deleted file mode 100644
-index 1dccee5..0000000
---- a/recipes-support-ivi/consolekit/consolekit_0.4.5.bbappend
-+++ /dev/null
-@@ -1,8 +0,0 @@
--PRINC := "${@int(PRINC) + 1}"
--
--# gnome-common is GPLv3 so we drop this dependency
--# if INCOMPATIBLE_LICENSE contains GPLv3
--python () {
--    if (d.getVar("INCOMPATIBLE_LICENSE", True) or "").find("GPLv3") != -1:
--        d.setVar("DEPENDS", " ".join(i for i in d.getVar("DEPENDS").split() if i != "gnome-common" and i != "gconf" and i != "gconf-native"))
--}
--- 
-1.7.9.5
+I am looking at the best way to do this. My goal is to get one kernel in
+meta-zynq that is pretty good across the public boards and do the board
+selection via the device tree.
 
+In the meantime, you can build a rootfs for the zc702 and use a kernel
+built outside OE. Do you know if there is support for the zc706 in the
+code on the public Xilnx git repo.
+
+Philip
+
+
+> 
+> Thank you very much in advance!
+> 
+> With best regards,
+> Andreas Schweigstill
+> 
+> ​-- 
+> Dipl.-Phys. Andreas Schweigstill 
+> Schweigstill IT | Embedded Systems 
+> Schauenburgerstraße 116, D-24118 Kiel, Germany 
+> Phone: (+49) 431 530354-35, Fax: (+49) 431 530354-36 
+> Mobile: (+49) 171 6921973, Web: http://www.schweigstill.de/ 
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+> 
 
