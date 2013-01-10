@@ -1,20 +1,20 @@
 Return-Path: <ioanax.grigoropol@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 652FAE0070F
-	for <yocto@yoctoproject.org>; Thu, 10 Jan 2013 07:24:55 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 10 Jan 2013 07:23:52 -0800
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2802CE0070F
+	for <yocto@yoctoproject.org>; Thu, 10 Jan 2013 08:04:43 -0800 (PST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 10 Jan 2013 08:04:42 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,444,1355126400"; d="scan'208";a="270512000"
+X-IronPort-AV: E=Sophos;i="4.84,444,1355126400"; d="scan'208";a="244685147"
 Received: from igrigorx-mobl.ger.corp.intel.com (HELO localhost.localdomain)
 	([10.237.108.42])
-	by orsmga002.jf.intel.com with ESMTP; 10 Jan 2013 07:24:53 -0800
+	by orsmga001.jf.intel.com with ESMTP; 10 Jan 2013 08:04:28 -0800
 From: Ioana Grigoropol <ioanax.grigoropol@intel.com>
 To: yocto@yoctoproject.org
-Date: Thu, 10 Jan 2013 17:24:47 +0200
-Message-Id: <1357831490-15478-1-git-send-email-ioanax.grigoropol@intel.com>
+Date: Thu, 10 Jan 2013 18:04:14 +0200
+Message-Id: <1357833857-16426-1-git-send-email-ioanax.grigoropol@intel.com>
 X-Mailer: git-send-email 1.7.9.5
-Subject: [PATCH 0/3][eclipse-poky][branch:windows-build]
+Subject: [PATCH v2 0/3][eclipse-poky][branch:windows-build]Multiple fixes for windows-build branch
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -26,16 +26,11 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 10 Jan 2013 15:24:55 -0000
+X-List-Received-Date: Thu, 10 Jan 2013 16:04:43 -0000
 
-*** BLURB HERE ***
-
-Ioana Grigoropol (1):
+Ioana Grigoropol (3):
   Fix variables hoover & remote file system detection
-
-yocto (2):
-  Allow '-' in project names     Signed-off-by: yocto
-    <yocto@yocto-VirtualBox.(none)>
+  Allow '-' in project names
   Reinstate OEFileSystem, OEFile and Ignored Paths for Linux
 
  plugins/org.yocto.bc.ui/META-INF/MANIFEST.MF       |    2 +-
