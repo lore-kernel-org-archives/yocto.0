@@ -1,28 +1,29 @@
-Return-Path: <thomas.petazzoni@free-electrons.com>
-Received: from mail.free-electrons.com (mail.free-electrons.com [94.23.32.191])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9A107E006D2
-	for <yocto@yoctoproject.org>; Fri, 11 Jan 2013 08:19:15 -0800 (PST)
-Received: by mail.free-electrons.com (Postfix, from userid 106)
-	id 20ABE1A5; Fri, 11 Jan 2013 17:19:11 +0100 (CET)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	mail.free-electrons.com
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=5.0 tests=ALL_TRUSTED,SHORTCIRCUIT
-	shortcircuit=ham autolearn=disabled version=3.3.2
-Received: from skate (humanoidz.org [82.247.183.72])
-	by mail.free-electrons.com (Postfix) with ESMTPSA id 6C221D1;
-	Fri, 11 Jan 2013 17:19:11 +0100 (CET)
-Date: Fri, 11 Jan 2013 17:19:08 +0100
-From: Thomas Petazzoni <thomas.petazzoni@free-electrons.com>
-To: Robert Berger <gmane@reliableembeddedsystems.com>
-Message-ID: <20130111171908.5162428c@skate>
-In-Reply-To: <kcop9d$mfv$1@ger.gmane.org>
-References: <kcop9d$mfv$1@ger.gmane.org>
-Organization: Free Electrons
-X-Mailer: Claws Mail 3.9.0 (GTK+ 2.24.10; x86_64-pc-linux-gnu)
-Mime-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: gcov on target
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0DFD1E006D2
+	for <yocto@yoctoproject.org>; Fri, 11 Jan 2013 08:31:07 -0800 (PST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 11 Jan 2013 08:31:07 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.84,453,1355126400"; d="scan'208";a="242814414"
+Received: from unknown (HELO envy.home) ([10.255.14.218])
+	by azsmga001.ch.intel.com with ESMTP; 11 Jan 2013 08:31:07 -0800
+Message-ID: <50F03E48.6030300@linux.intel.com>
+Date: Fri, 11 Jan 2013 08:31:04 -0800
+From: Darren Hart <dvhart@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/17.0 Thunderbird/17.0
+MIME-Version: 1.0
+To: Chris Tapp <opensource@keylevel.com>
+References: <6F94DE12-515D-47A0-BDC6-9491AFD6849F@keylevel.com>
+	<50EAFB84.9090007@linux.intel.com>
+	<E4DED516-A931-4908-A58F-5C44D072072B@keylevel.com>
+	<50EEF716.5080500@linux.intel.com>
+	<BA3737A9-620D-47D1-A6B5-A69309AC706F@keylevel.com>
+In-Reply-To: <BA3737A9-620D-47D1-A6B5-A69309AC706F@keylevel.com>
+X-Enigmail-Version: 1.4.6
+Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+Subject: Re: meta-cedartrail - where is grub configured for 'install' option?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,34 +35,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 11 Jan 2013 16:19:15 -0000
-Content-Type: text/plain; charset=US-ASCII
+X-List-Received-Date: Fri, 11 Jan 2013 16:31:08 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-Dear Robert Berger,
 
-On Fri, 11 Jan 2013 12:24:47 +0200, Robert Berger wrote:
 
-> I use Yocto Project, 1.3 "danny" for a beagle-xm and would like to show
-> kernel code coverage with a core-image-sato-sdk.
-> This image is pretty complete. Unfortunately there is no gcov available
-> on the target.
-> 
-> It looks like it's only built for the host.
-> 
-> Did someone manage to build/run gcov for an armv7a?
-> ... or let's put it otherwise: Why doesn't it exist on the target?
+On 01/11/2013 01:00 AM, Chris Tapp wrote:
 
-I supposed the idea is to generate to coverage data on the target, and
-then analyze them with gcov on the build machine. See
-http://gcc.gnu.org/onlinedocs/gcc/Cross_002dprofiling.html#Cross_002dprofiling.
+> BTW the change I need to make to the grub file is partially related -
+> the boot device is sda and the internal (install target) is sdb. Grub
+> gets configured to boot from sdb but the device is sda on a clean
+> boot.
 
-Best regards,
+That is definitely a weakness in the installer. Would you please open a
+bug for this? An improved installer is something we are working on and
+this would be good input to track.
 
-Thomas
+Thanks,
+
 -- 
-Thomas Petazzoni, Free Electrons
-Kernel, drivers, real-time and embedded Linux
-development, consulting, training and support.
-http://free-electrons.com
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Technical Lead - Linux Kernel
 
