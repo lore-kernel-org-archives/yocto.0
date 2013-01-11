@@ -1,34 +1,40 @@
-Return-Path: <jessica.zhang@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 74FD4E00720
-	for <yocto@yoctoproject.org>; Thu, 10 Jan 2013 15:55:40 -0800 (PST)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 10 Jan 2013 15:55:40 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,447,1355126400"; d="scan'208";a="189946953"
-Received: from orsmsx101.amr.corp.intel.com ([10.22.225.128])
-	by AZSMGA002.ch.intel.com with ESMTP; 10 Jan 2013 15:55:39 -0800
-Received: from orsmsx151.amr.corp.intel.com (10.22.226.38) by
-	ORSMSX101.amr.corp.intel.com (10.22.225.128) with Microsoft SMTP Server
-	(TLS) id 14.1.355.2; Thu, 10 Jan 2013 15:55:39 -0800
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.237]) by
-	ORSMSX151.amr.corp.intel.com ([169.254.7.195]) with mapi id
-	14.01.0355.002; Thu, 10 Jan 2013 15:55:39 -0800
-From: "Zhang, Jessica" <jessica.zhang@intel.com>
-To: "Grigoropol, IoanaX" <ioanax.grigoropol@intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [yocto] [PATCH 0/3][eclipse-poky][branch:windows-build]
-Thread-Index: AQHN70a/TIDTtf4k/0CTdMkuQR/L/phDPF5w
-Date: Thu, 10 Jan 2013 23:55:38 +0000
-Message-ID: <C6510F6D410BB64A8C15398EDC6B847C46B81216@ORSMSX101.amr.corp.intel.com>
-References: <1357831490-15478-1-git-send-email-ioanax.grigoropol@intel.com>
-In-Reply-To: <1357831490-15478-1-git-send-email-ioanax.grigoropol@intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
-MIME-Version: 1.0
-Subject: Re: [PATCH 0/3][eclipse-poky][branch:windows-build]
+Return-Path: <opensource@keylevel.com>
+Received: from r109.websiteservername.com (r109.websiteservername.com
+	[65.39.128.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7F1E5E01275
+	for <yocto@yoctoproject.org>; Fri, 11 Jan 2013 01:00:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=keylevel.com;
+	s=default; 
+	h=To:References:Message-Id:Content-Transfer-Encoding:Cc:Date:In-Reply-To:From:Content-Type:Mime-Version:Subject;
+	bh=v18AtSNpoPrwQWEsIdxnf2rrhwnSavlF6ROUlq5WRjw=; 
+	b=oSRK0OEutdb4zdnOXbPqx9iNpxqPex9+5zEAUsrYMyx+dAGH7dcCvu4he0F67TsLc+5sPANG8FE7jFSDIQa2Qop9bMkfm3BH+TLCg8UMkkJsFzyK5xhb7f/NS90YVYHO;
+Received: from [109.224.129.17] (port=20513
+	helo=macbook-pro.durham.keylevel.com)
+	by r109.websiteservername.com with esmtpa (Exim 4.80)
+	(envelope-from <opensource@keylevel.com>)
+	id 1TtaTv-004ER7-Dl; Fri, 11 Jan 2013 09:00:55 +0000
+Mime-Version: 1.0 (Apple Message framework v1283)
+From: Chris Tapp <opensource@keylevel.com>
+In-Reply-To: <50EEF716.5080500@linux.intel.com>
+Date: Fri, 11 Jan 2013 09:00:56 +0000
+Message-Id: <BA3737A9-620D-47D1-A6B5-A69309AC706F@keylevel.com>
+References: <6F94DE12-515D-47A0-BDC6-9491AFD6849F@keylevel.com>
+	<50EAFB84.9090007@linux.intel.com>
+	<E4DED516-A931-4908-A58F-5C44D072072B@keylevel.com>
+	<50EEF716.5080500@linux.intel.com>
+To: Darren Hart <dvhart@linux.intel.com>
+X-Mailer: Apple Mail (2.1283)
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - r109.websiteservername.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - keylevel.com
+X-Get-Message-Sender-Via: r109.websiteservername.com: authenticated_id:
+	chris.tapp+keylevel.com/only user confirmed/virtual account not
+	confirmed
+Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+Subject: Re: meta-cedartrail - where is grub configured for 'install' option?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,71 +46,77 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 10 Jan 2013 23:55:40 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Fri, 11 Jan 2013 09:00:57 -0000
+Content-Type: text/plain; charset=iso-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-Hi Ioana,
 
-I'm still seeing problems:
+On 10 Jan 2013, at 17:15, Darren Hart wrote:
 
-1. seems the reinstate OEFilesystem etc. changes is not taking effect, I'm =
-still running into heap space error with my metadata directory with huge bu=
-ild data.  So can you create such a metadata directory and run toolchain, a=
-nd sato-sdk build and see whether you can create the project against it?
-2. Ran into another issue while playing with these patch set, if I leave th=
-e clone box checked, even though I do see the error message telling me the =
-directory/project already a clone directory, I was still able to click on f=
-inish and all process continue on instead of being blocked by the error mes=
-sage.
+>=20
+>=20
+> On 01/10/2013 12:09 AM, Chris Tapp wrote:
+>> Hi Darren,
+>>=20
+>> On 7 Jan 2013, at 16:44, Darren Hart wrote:
+>>=20
+>>> On 12/09/2012 01:39 PM, Chris Tapp wrote:
+>>>> I am trying to change the 'install' behaviour for the =
+meta-cedartrail image so that the installed system has a different =
+grub.cfg file. Is there a file I can bbappend to achieve this?
+>>>>=20
+>>>> image_live.bbclass refers to the 'install' syslinux label that =
+triggers the install, but I've not been able to get from this to =
+how/where grub.cfg is created.
+>>>>=20
+>>>=20
+>>> This is currently rather crudely implemented here:
+>>>=20
+>>> meta/recipes-core/initrdscripts/files/init-install.sh
+>>>=20
+>>> A better deployment mechanism is something being discussed and which
+>>> should make this more configurable.
+>>>=20
+>>> For now, you could bbappend initramfs-live-install_1.0.bb and =
+replace the
+>>> init-install.sh script with your own.
+>>=20
+>> Thanks. I've already got to look at that script anyway as it fails to
+>> install to an internal USB drive on a DN2800-MT board as (I think) it
+>> isn't waiting long enough for it to enumerate when booting the
+>> 'install' image.
+>=20
+> Hrm, I thought it waited indefinitely for the device to appear. Or is =
+it
+> finding something else and bailing out of the loop? Where is the =
+failure?
 
-Thanks,
-Jessica
+The only other device is the USB drive I booted from. I've not had a =
+chance yet to really look at what's going on, but it looks as if it's =
+not waiting long enough as it reports no installable devices. If I then =
+check when it exits to the shell I can see the drive is there and =
+re-running the script then means it does find it (the script then fails =
+for other reasons to do with the failed run).
 
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Ioana Grigoropol
-Sent: Thursday, January 10, 2013 7:25 AM
-To: yocto@yoctoproject.org
-Subject: [yocto] [PATCH 0/3][eclipse-poky][branch:windows-build]
+It will sometimes install, so it looks as if the wait is nearly long =
+enough.
 
-*** BLURB HERE ***
+I'm using an ATP AF512SSGH if that makes a difference.
 
-Ioana Grigoropol (1):
-  Fix variables hoover & remote file system detection
+BTW the change I need to make to the grub file is partially related - =
+the boot device is sda and the internal (install target) is sdb. Grub =
+gets configured to boot from sdb but the device is sda on a clean boot.
 
-yocto (2):
-  Allow '-' in project names     Signed-off-by: yocto
-    <yocto@yocto-VirtualBox.(none)>
-  Reinstate OEFileSystem, OEFile and Ignored Paths for Linux
+> --=20
+> Darren Hart
+> Intel Open Source Technology Center
+> Yocto Project - Technical Lead - Linux Kernel
 
- plugins/org.yocto.bc.ui/META-INF/MANIFEST.MF       |    2 +-
- plugins/org.yocto.bc.ui/plugin.xml                 |    3 +-
- .../src/org/yocto/bc/bitbake/BBSession.java        |    4 +
- .../org/yocto/bc/bitbake/ProjectInfoHelper.java    |   24 ++--
- .../src/org/yocto/bc/bitbake/ShellSession.java     |   13 ++-
- .../org/yocto/bc/remote/utils/RemoteHelper.java    |    7 +-
- .../org/yocto/bc/remote/utils/RemoteMachine.java   |    8 +-
- .../src/org/yocto/bc/ui/Activator.java             |   45 +++++---
- .../org/yocto/bc/ui/BCResourceChangeListener.java  |    1 -
- .../bc/ui/editors/bitbake/BBVariableTextHover.java |   12 +-
- .../src/org/yocto/bc/ui/filesystem/OEFile.java     |  120 ++++------------=
-----
- .../org/yocto/bc/ui/filesystem/OEFileSystem.java   |   50 ++++++--
- .../bc/ui/filesystem/OEFileSystemContributor.java  |    7 +-
- .../org/yocto/bc/ui/filesystem/OEIgnoreFile.java   |   31 ++++-
- .../src/org/yocto/bc/ui/model/ProjectInfo.java     |   21 +++-
- .../src/org/yocto/bc/ui/model/YoctoHostFile.java   |  100 ++++++++++++----
- .../yocto/bc/ui/wizards/install/OptionsPage.java   |    3 +-
- .../newproject/CreateBBCProjectOperation.java      |   23 ++--
- 18 files changed, 281 insertions(+), 193 deletions(-)
+Chris Tapp
 
---
-1.7.9.5
+opensource@keylevel.com
+www.keylevel.com
 
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
+
+
 
