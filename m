@@ -1,24 +1,24 @@
 Return-Path: <tom.zanussi@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 92BE6E01246
-	for <yocto@yoctoproject.org>; Fri, 11 Jan 2013 12:43:50 -0800 (PST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 11 Jan 2013 12:43:50 -0800
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 47CC3E01301
+	for <yocto@yoctoproject.org>; Fri, 11 Jan 2013 12:43:52 -0800 (PST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga102.fm.intel.com with ESMTP; 11 Jan 2013 12:43:52 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,453,1355126400"; d="scan'208";a="275973460"
+X-IronPort-AV: E=Sophos;i="4.84,453,1355126400"; d="scan'208";a="272856659"
 Received: from unknown (HELO localhost) ([10.255.14.242])
-	by fmsmga002.fm.intel.com with ESMTP; 11 Jan 2013 12:43:49 -0800
+	by fmsmga001.fm.intel.com with ESMTP; 11 Jan 2013 12:43:51 -0800
 From: tom.zanussi@intel.com
 To: yocto@yoctoproject.org,
 	dvhart@linux.intel.com
-Date: Fri, 11 Jan 2013 14:43:38 -0600
-Message-Id: <ce65749f47398206705a91d6e2eecff0358a3a51.1357935675.git.tom.zanussi@intel.com>
+Date: Fri, 11 Jan 2013 14:43:39 -0600
+Message-Id: <5ba0919b5bcadba47f59a3b342aaa27048f0ff18.1357935675.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.11.4
 In-Reply-To: <1d1bf17bacd100d0ad849607863157e017617754.1357935675.git.tom.zanussi@intel.com>
 References: <1d1bf17bacd100d0ad849607863157e017617754.1357935675.git.tom.zanussi@intel.com>
 In-Reply-To: <cover.1357935675.git.tom.zanussi@intel.com>
 References: <cover.1357935675.git.tom.zanussi@intel.com>
-Subject: [PATCH 6/7] yocto-layer: add optional layer priority param
+Subject: [PATCH 7/7] scripts/lib/bsp/engine.py: add handling for JSON strings
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,97 +30,73 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 11 Jan 2013 20:43:50 -0000
+X-List-Received-Date: Fri, 11 Jan 2013 20:43:52 -0000
 
 From: Tom Zanussi <tom.zanussi@intel.com>
 
-If the user specifies a layer priority following the layer name, layer
-creation will proceed without further queries using the specified
-layer priority and the remaining values defaulted.
+Normally pre-canned properties are supplied as JSON from a file, which
+the user can specify using e.g. the -i option.
+
+We can reuse that basic functionality for dedicated command-line
+parameters by sythesizing a JSON string containing those param values
+on the fly and passing that in instead.
+
+This adds the ability for the common creation code to accept JSON
+strings as well as JSON files.
 
 Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
 ---
- scripts/lib/bsp/help.py | 14 ++++++++++++--
- scripts/yocto-layer     |  9 +++++++--
- 2 files changed, 19 insertions(+), 4 deletions(-)
+ scripts/lib/bsp/engine.py | 11 +++++++----
+ 1 file changed, 7 insertions(+), 4 deletions(-)
 
-diff --git a/scripts/lib/bsp/help.py b/scripts/lib/bsp/help.py
-index eac172a..346bf0f 100644
---- a/scripts/lib/bsp/help.py
-+++ b/scripts/lib/bsp/help.py
-@@ -622,7 +622,8 @@ yocto_layer_create_usage = """
+diff --git a/scripts/lib/bsp/engine.py b/scripts/lib/bsp/engine.py
+index 7431860..aa26280 100644
+--- a/scripts/lib/bsp/engine.py
++++ b/scripts/lib/bsp/engine.py
+@@ -1387,6 +1387,9 @@ def yocto_common_create(machine, target, scripts_path, layer_output_dir, codedum
  
-  Create a new generic Yocto layer
+         properties = json.load(infile)
  
-- usage: yocto-layer create <layer-name> [-o <DIRNAME> | --outdir <DIRNAME>]
-+ usage: yocto-layer create <layer-name> [layer_priority]
-+            [-o <DIRNAME> | --outdir <DIRNAME>]
-             [-i <JSON PROPERTY FILE> | --infile <JSON PROPERTY_FILE>]
- 
-  This command creates a generic Yocto layer based on the specified
-@@ -631,6 +632,10 @@ yocto_layer_create_usage = """
-  'meta-layer-name'.  The -o option can be used to place the layer in a
-  directory with a different name and location.
- 
-+ If layer_priority is specified, a simple layer will be created using
-+ the given layer priority, and the user will not be prompted for
-+ further input.
++    if properties_str and not properties:
++        properties = json.loads(properties_str)
 +
-  NOTE: Once created, you should add your new layer to your
-  bblayers.conf file in order for it to be subsequently seen and
-  modified by the yocto-kernel tool.  Instructions for doing this can
-@@ -646,7 +651,8 @@ NAME
-     yocto-layer create - Create a new generic Yocto layer
+     os.mkdir(layer_output_dir)
  
- SYNOPSIS
--    yocto-layer create <layer-name> [-o <DIRNAME> | --outdir <DIRNAME>]
-+    yocto-layer create <layer-name> [layer_priority]
-+        [-o <DIRNAME> | --outdir <DIRNAME>]
-         [-i <JSON PROPERTY FILE> | --infile <JSON PROPERTY_FILE>]
- 
- DESCRIPTION
-@@ -656,6 +662,10 @@ DESCRIPTION
-     'meta-layer-name'.  The -o option can be used to place the layer
-     in a directory with a different name and location.
- 
-+    If layer_priority is specified, a simple layer will be created
-+    using the given layer priority, and the user will not be prompted
-+    for further input.
-+
-     The layer-specific properties that define the values that will be
-     used to generate the layer can be specified on the command-line
-     using the -i option and supplying a JSON object consisting of the
-diff --git a/scripts/yocto-layer b/scripts/yocto-layer
-index f759275..53d2aab 100755
---- a/scripts/yocto-layer
-+++ b/scripts/yocto-layer
-@@ -60,19 +60,24 @@ def yocto_layer_create_subcommand(args, usage_str):
-                       default = False, help = "dump the generated code to layergen.out")
-     (options, args) = parser.parse_args(args)
- 
--    if len(args) != 1:
-+    if len(args) < 1 or len(args) > 2:
-         logging.error("Wrong number of arguments, exiting\n")
-         parser.print_help()
-         sys.exit(1)
- 
-     layer_name = args[0]
-+    properties = ""
-+
-+    if len(args) == 2:
-+        layer_priority = args[1]
-+        properties = '{"layer_priority":"' + layer_priority + '"}'
- 
-     if options.outdir:
-         layer_output_dir = options.outdir
-     else:
-         layer_output_dir = "meta-" + layer_name
- 
--    yocto_layer_create(layer_name, scripts_path, layer_output_dir, options.codedump, options.properties_file)
-+    yocto_layer_create(layer_name, scripts_path, layer_output_dir, options.codedump, options.properties_file, properties)
+     context = create_context(machine, target, scripts_path)
+@@ -1413,7 +1416,7 @@ def yocto_common_create(machine, target, scripts_path, layer_output_dir, codedum
+     run_program_lines(program_lines, codedump)
  
  
- def yocto_layer_list_subcommand(args, usage_str):
+-def yocto_layer_create(layer_name, scripts_path, layer_output_dir, codedump, properties_file):
++def yocto_layer_create(layer_name, scripts_path, layer_output_dir, codedump, properties_file, properties=""):
+     """
+     Create yocto layer
+ 
+@@ -1424,13 +1427,13 @@ def yocto_layer_create(layer_name, scripts_path, layer_output_dir, codedump, pro
+     properties_file - use values from this file if nonempty i.e no prompting
+     properties - use values from this string if nonempty i.e no prompting
+     """
+-    yocto_common_create(layer_name, "layer", scripts_path, layer_output_dir, codedump, properties_file, False)
++    yocto_common_create(layer_name, "layer", scripts_path, layer_output_dir, codedump, properties_file, properties, False)
+ 
+     print "\nNew layer created in %s.\n" % (layer_output_dir)
+     print "Don't forget to add it to your BBLAYERS (for details see %s\README)." % (layer_output_dir)
+ 
+ 
+-def yocto_bsp_create(machine, arch, scripts_path, bsp_output_dir, codedump, properties_file):
++def yocto_bsp_create(machine, arch, scripts_path, bsp_output_dir, codedump, properties_file, properties=None):
+     """
+     Create bsp
+ 
+@@ -1443,7 +1446,7 @@ def yocto_bsp_create(machine, arch, scripts_path, bsp_output_dir, codedump, prop
+     properties_file - use values from this file if nonempty i.e no prompting
+     properties - use values from this string if nonempty i.e no prompting
+     """
+-    yocto_common_create(machine, arch, scripts_path, bsp_output_dir, codedump, properties_file)
++    yocto_common_create(machine, arch, scripts_path, bsp_output_dir, codedump, properties_file, properties)
+ 
+     print "\nNew %s BSP created in %s" % (arch, bsp_output_dir)
+ 
 -- 
 1.7.11.4
 
