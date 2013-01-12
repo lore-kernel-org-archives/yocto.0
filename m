@@ -1,32 +1,28 @@
-Return-Path: <christopher.a.thornburg@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4644FE004D1
-	for <yocto@yoctoproject.org>; Fri, 11 Jan 2013 14:06:42 -0800 (PST)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 11 Jan 2013 14:06:41 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,455,1355126400"; 
-	d="scan'208,217";a="190324320"
-Received: from fmsmsx106.amr.corp.intel.com ([10.19.9.37])
-	by AZSMGA002.ch.intel.com with ESMTP; 11 Jan 2013 14:06:41 -0800
-Received: from fmsmsx153.amr.corp.intel.com (10.19.17.7) by
-	FMSMSX106.amr.corp.intel.com (10.19.9.37) with Microsoft SMTP Server
-	(TLS) id 14.1.355.2; Fri, 11 Jan 2013 14:06:40 -0800
-Received: from fmsmsx101.amr.corp.intel.com ([169.254.1.247]) by
-	FMSMSX153.amr.corp.intel.com ([169.254.11.130]) with mapi id
-	14.01.0355.002; Fri, 11 Jan 2013 14:06:39 -0800
-From: "Thornburg, Christopher A" <christopher.a.thornburg@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Enabling shared state mirrors
-Thread-Index: Ac3wRxrrF4rW1SVQTZSHsIwDIem33g==
-Date: Fri, 11 Jan 2013 22:06:39 +0000
-Message-ID: <752F65977A748344A01D69BF22DCDBAE3357F1D4@FMSMSX101.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.1.200.106]
+Return-Path: <cazfi74@gmail.com>
+Received: from mail-vc0-f178.google.com (mail-vc0-f178.google.com
+	[209.85.220.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8AD2AE00527
+	for <yocto@yoctoproject.org>; Sat, 12 Jan 2013 01:09:09 -0800 (PST)
+Received: by mail-vc0-f178.google.com with SMTP id l6so2198272vcl.9
+	for <yocto@yoctoproject.org>; Sat, 12 Jan 2013 01:09:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=dIngvx1t8zyEQrHr+0m1K+ft7GlWwsM6y6fPY3vjcdw=;
+	b=saY8/6w+xmvFLJ5bUlwNJVaAdtgWYKWa5J3+2ptLr7ua4o+NJtAEH3YAMbjdvxlOYh
+	9udlkiJKq5tFLKXWcAKM8LbJCeB1HMDfB68ZH1DKDNVfFD79BiJkqVg73Up8Gn2QoiYd
+	U83xId/O8UIAZrp+gDiGzfIxlyAkQnz6gZHRYIfPkxFt8M+7AYldXtPVhuU7CJ3BubFY
+	4UrMu9eXaFzh6k74EXrbT31cJm7/+uPClntAP6qsKt7RIajq8e5Rla9cx5a9uVBTi/VO
+	ppfG9j6Lbn6Sez69JXOP8oL0i+gOMZrgyeKfsY7h9zJo04jVsCWd86p6t03fP/LRPyLQ
+	CYTw==
 MIME-Version: 1.0
-Subject: Enabling shared state mirrors
+Received: by 10.52.98.134 with SMTP id ei6mr84036535vdb.114.1357981748883;
+	Sat, 12 Jan 2013 01:09:08 -0800 (PST)
+Received: by 10.58.80.2 with HTTP; Sat, 12 Jan 2013 01:09:08 -0800 (PST)
+Date: Sat, 12 Jan 2013 11:09:08 +0200
+Message-ID: <CAF6bG8dKsTb2sGfTTDuk4zJ3+4RYbkk+qpeDo=HkOLLj6f_vMw@mail.gmail.com>
+From: Marko Lindqvist <cazfi74@gmail.com>
+To: yocto@yoctoproject.org, Constantin Musca <constantinx.musca@intel.com>
+Subject: [PATCH] matchbox-wm: Fix build with automake-1.13
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,120 +34,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 11 Jan 2013 22:06:42 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_752F65977A748344A01D69BF22DCDBAE3357F1D4FMSMSX101amrcor_"
+X-List-Received-Date: Sat, 12 Jan 2013 09:09:09 -0000
+X-Groupsio-MsgNum: 11484
+Content-Type: multipart/mixed; boundary=20cf307d0426c0f2a204d313c349
 
---_000_752F65977A748344A01D69BF22DCDBAE3357F1D4FMSMSX101amrcor_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+--20cf307d0426c0f2a204d313c349
+Content-Type: text/plain; charset=UTF-8
 
-Struggling to get shared state mirrors to work. I can see files with the sa=
-me file name (and therefore the same hash) in my mirror and, after a build,=
- in my local sstate cache direcotry. Ala:
-/storage/yocto-cache/sstate-toolchain/Ubuntu-10.04/95/sstate-bzip2-native-i=
-686-linux-1.0.6-r5-i686-2-95b6058a3f3f35386c8593e8447c59da_populate-lic.tgz=
-.siginfo
-and
-<build dir>/sstate-cache/Ubuntu-10.04/95/sstate-bzip2-native-i686-linux-1.0=
-.6-r5-i686-2-95b6058a3f3f35386c8593e8447c59da_populate-lic.tgz.siginfo
-
-bitbake-diffsigs confirms that the signatures match. I have the following i=
-n my local.conf:
-SSTATE_MIRRORS ?=3D "\
-file://.* file:///storage/yocto-cache/sstate-toolchain/PATH \
-file://.* file:///storage/yocto-cache/sstate-kernel/PATH<file:///\\storage\=
-yocto-cache\sstate-kernel\PATH>"
-
-...and yet bitbake insists on rebuilding everything every time. I had this =
-working yesterday, and today it fails again.
-
-Any suggestions?
+ Automake-1.13 fix to matchbox-wm git attached.
 
 
---_000_752F65977A748344A01D69BF22DCDBAE3357F1D4FMSMSX101amrcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+ - ML
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri","sans-serif";}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Struggling to get shared state mirrors to work. I ca=
-n see files with the same file name (and therefore the same hash) in my mir=
-ror and, after a build, in my local sstate cache direcotry. Ala:<o:p></o:p>=
-</p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">/storage/yocto-cache/ssta=
-te-toolchain/Ubuntu-10.04/95/sstate-bzip2-native-i686-linux-1.0.6-r5-i686-2=
--95b6058a3f3f35386c8593e8447c59da_populate-lic.tgz.siginfo<o:p></o:p></p>
-<p class=3D"MsoNormal">and<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">&lt;build dir&gt;/sstate-=
-cache/Ubuntu-10.04/95/sstate-bzip2-native-i686-linux-1.0.6-r5-i686-2-95b605=
-8a3f3f35386c8593e8447c59da_populate-lic.tgz.siginfo<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">bitbake-diffsigs confirms that the signatures match.=
- I have the following in my local.conf:<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">SSTATE_MIRRORS ?=3D &quot=
-;\<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">file://.* file:///storage=
-/yocto-cache/sstate-toolchain/PATH \<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">file://.* <a href=3D"file=
-:///\\storage\yocto-cache\sstate-kernel\PATH">
-file:///storage/yocto-cache/sstate-kernel/PATH</a>&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">&#8230;and yet bitbake insists on rebuilding everyth=
-ing every time. I had this working yesterday, and today it fails again.<o:p=
-></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Any suggestions?<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
+--20cf307d0426c0f2a204d313c349
+Content-Type: application/octet-stream; 
+	name="0001-configure.ac-fix-autoreconf-with-automake-1.13.patch"
+Content-Disposition: attachment; 
+	filename="0001-configure.ac-fix-autoreconf-with-automake-1.13.patch"
+Content-Transfer-Encoding: base64
+X-Attachment-Id: f_hbuj78rf0
 
---_000_752F65977A748344A01D69BF22DCDBAE3357F1D4FMSMSX101amrcor_--
+RnJvbSAxZmExMjQyOWM2NGE0NWJkM2NmMDk1YTIxZjYxYTlmY2UxODUxYWJiIE1vbiBTZXAgMTcg
+MDA6MDA6MDAgMjAwMQpGcm9tOiBNYXJrbyBMaW5kcXZpc3QgPGNhemZpNzRAZ21haWwuY29tPgpE
+YXRlOiBTYXQsIDEyIEphbiAyMDEzIDEwOjU2OjE4ICswMjAwClN1YmplY3Q6IFtQQVRDSF0gY29u
+ZmlndXJlLmFjOiBmaXggYXV0b3JlY29uZiB3aXRoIGF1dG9tYWtlLTEuMTMKClJlcGxhY2UgbG9u
+ZyBvYnNvbGV0ZSBBTV9DT05GSUdfSEVBREVSIHdpdGggcHJvcGVyIEFDX0NPTkZJR19IRUFERVJT
+LgphdXRvbWFrZS0xLjEzIGVycm9ycyBvdXQgdXBvbiBzZWVpbmcgZm9ybWVyLgoKU2lnbmVkLW9m
+Zi1ieTogTWFya28gTGluZHF2aXN0IDxjYXpmaTc0QGdtYWlsLmNvbT4KLS0tCiBjb25maWd1cmUu
+YWMgfCAgICAyICstCiAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKyksIDEgZGVsZXRpb24o
+LSkKCmRpZmYgLS1naXQgYS9jb25maWd1cmUuYWMgYi9jb25maWd1cmUuYWMKaW5kZXggNjdhZTBl
+Ni4uMzhhZGQ1ZiAxMDA2NDQKLS0tIGEvY29uZmlndXJlLmFjCisrKyBiL2NvbmZpZ3VyZS5hYwpA
+QCAtNCw3ICs0LDcgQEAgQUNfQ09ORklHX1NSQ0RJUihbc3JjL3dtLmNdKQogCiBBTV9JTklUX0FV
+VE9NQUtFKCkKIEFNX01BSU5UQUlORVJfTU9ERQotQU1fQ09ORklHX0hFQURFUihbY29uZmlnLmhd
+KQorQUNfQ09ORklHX0hFQURFUlMoW2NvbmZpZy5oXSkKIAogIyBDaGVja3MgZm9yIHByb2dyYW1z
+LgogQUNfUFJPR19DQwotLSAKMS43LjEwLjQKCg==
+
+--20cf307d0426c0f2a204d313c349--
