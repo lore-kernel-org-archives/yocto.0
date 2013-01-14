@@ -1,41 +1,39 @@
-Return-Path: <dedekind1@gmail.com>
-Received: from mail-la0-f42.google.com (mail-la0-f42.google.com
-	[209.85.215.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 66C98E00527
-	for <yocto@yoctoproject.org>; Mon, 14 Jan 2013 10:17:51 -0800 (PST)
-Received: by mail-la0-f42.google.com with SMTP id fe20so4241487lab.1
-	for <yocto@yoctoproject.org>; Mon, 14 Jan 2013 10:17:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=x-received:message-id:subject:from:reply-to:to:cc:date:in-reply-to
-	:references:content-type:x-mailer:mime-version;
-	bh=sRKyogQ52AuwLu3KrFxUkFzRANE6Fq2b+xwCsKM3cl4=;
-	b=NchIiMFKSn2qlEeH7Di9uYGeyXbZ1HPNJQ445qpkHaoHiBIBctUILnEOOrJxEw6KvA
-	nzM4Ylm8SNfatfDGYblNu7LC4A3ZpZC8QJoWmEUIV2xhFWkZ++UbIVl5BC4QN/eA1AMv
-	8580jLw2ZSiEBXBDvufZhbg7W2uPaEl5pKvKz1ttK1JCb9u9p77k4WkPYYhPF6uNG2u8
-	Er+k1wmTbDrOJ3Z+bajt7LbaCqbJw9yabuN3gYz6DjdZ9pJDNdHH7iqRvrl3IKzNfuVD
-	Ym03M6Q9VTc3Fqv0IDrmLeX3MwHIPIFwXOcaTLxrpbiskYR57MPttN0tuIcFHAk2s8gK
-	UtnA==
-X-Received: by 10.112.39.129 with SMTP id p1mr35507100lbk.26.1358187469908;
-	Mon, 14 Jan 2013 10:17:49 -0800 (PST)
-Received: from [192.168.255.2] (host-94-101-1-70.igua.fi. [94.101.1.70])
-	by mx.google.com with ESMTPS id v7sm5794848lbj.13.2013.01.14.10.17.41
-	(version=SSLv3 cipher=RC4-SHA bits=128/128);
-	Mon, 14 Jan 2013 10:17:42 -0800 (PST)
-Message-ID: <1358187450.1627.8.camel@kyv>
-From: Artem Bityutskiy <dedekind1@gmail.com>
-To: Wolfgang Denk <wd@denx.de>
-Date: Mon, 14 Jan 2013 20:17:30 +0200
-In-Reply-To: <20130114175648.E653B200A4C@gemini.denx.de>
-References: <1358167593.2731.66.camel@sauron.fi.intel.com>
-	<20130114175648.E653B200A4C@gemini.denx.de>
-X-Mailer: Evolution 3.4.4 (3.4.4-2.fc17) 
-Mime-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: [ANOUNCEMENT] bmaptool
+Return-Path: <scott.m.rifenbark@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 13E9FE00740
+	for <yocto@yoctoproject.org>; Mon, 14 Jan 2013 12:06:32 -0800 (PST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 14 Jan 2013 12:05:26 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.84,468,1355126400"; d="scan'208";a="246549354"
+Received: from orsmsx102.amr.corp.intel.com ([10.22.225.129])
+	by orsmga001.jf.intel.com with ESMTP; 14 Jan 2013 12:06:21 -0800
+Received: from orsmsx108.amr.corp.intel.com (10.22.225.41) by
+	ORSMSX102.amr.corp.intel.com (10.22.225.129) with Microsoft SMTP Server
+	(TLS) id 14.1.355.2; Mon, 14 Jan 2013 12:06:17 -0800
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.209]) by
+	ORSMSX108.amr.corp.intel.com ([169.254.9.188]) with mapi id
+	14.01.0355.002; Mon, 14 Jan 2013 12:06:17 -0800
+From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+To: Martin Jansa <martin.jansa@gmail.com>, Jerrod Peach <peachj@lexmark.com>
+Thread-Topic: [yocto] SRCPV description
+Thread-Index: Ac3yZs+nKWhPkX2ZQdqv7/VG//MDcAARZm4AAAJcsQAACNbFQA==
+Date: Mon, 14 Jan 2013 20:06:16 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237957D24178@ORSMSX101.amr.corp.intel.com>
+References: <41DEA4B02DBDEF40A0F3B6D0DDB1237957D23083@ORSMSX101.amr.corp.intel.com>
+	<CA+QkY1BDAof70=YAjtkpwH3ZpV5doDiVBuySZyq9YOiuajTQJQ@mail.gmail.com>
+	<20130114161836.GE2992@jama>
+In-Reply-To: <20130114161836.GE2992@jama>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.140]
+MIME-Version: 1.0
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: SRCPV description
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: dedekind1@gmail.com
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -44,72 +42,97 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 14 Jan 2013 18:17:51 -0000
-X-Groupsio-MsgNum: 11503
-Content-Type: multipart/signed; micalg="pgp-sha1";
-	protocol="application/pgp-signature"; 
-	boundary="=-9L6VN31O0Te0OuesWXrU"
-
---=-9L6VN31O0Te0OuesWXrU
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Mon, 14 Jan 2013 20:06:32 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, 2013-01-14 at 18:56 +0100, Wolfgang Denk wrote:
-> Thanks for doing this, as the links on the page referenced above are
-> broken:  both [1] "Introduction" and [2] "Usage" give just a 404 to
-> me...
->=20
-> [1] https://source.tizen.org/documentation/reference/bmap-tool/bmap-intro=
-duction
-> [2] https://source.tizen.org/documentation/reference/bmap-tool/usage
+Thanks for the explanations for this variable all.
 
-Very embarrassing, sorry. The links are broken, I'll try to fix them
-tomorrow. Please, so far use the links at the left-side frame of the web
-page. You should see them there like this:
+Scott
 
-The bmaptool
- * Introduction
- * Usage
-   - bmaptool copy
-   - bmaptool create
- * Bmap-tools project
+>-----Original Message-----
+>From: Martin Jansa [mailto:martin.jansa@gmail.com]
+>Sent: Monday, January 14, 2013 8:19 AM
+>To: Jerrod Peach
+>Cc: Rifenbark, Scott M; Yocto discussion list
+>Subject: Re: [yocto] SRCPV description
+>
+>On Mon, Jan 14, 2013 at 10:10:58AM -0500, Jerrod Peach wrote:
+>> On Mon, Jan 14, 2013 at 9:52 AM, Rifenbark, Scott M <
+>> scott.m.rifenbark@intel.com> wrote:
+>>
+>> > Hi,
+>> >
+>> > I need a description of the SRCPV variable for the YP reference
+>glossary.
+>> >  I have been told that it is generated and not assigned and that it
+>> > is used to define PV values that include the source revisions from
+>> > an RCS.  By default it is set to the following in the
+>conf/bitbake.conf file:
+>> >
+>> > SRCPV =3D "${@bb.fetch2.get_srcrev(d)}"
+>> >
+>> > Can anyone provide more information on this variable?
+>> >
+>> > Thanks,
+>> > Scott
+>> >
+>> >
+>> >
+>> > Scott Rifenbark
+>> > Intel Corporation
+>> > Yocto Project Documentation
+>> > 503.712.2702
+>> > 503.341.0418 (cell)
+>> >
+>> > _______________________________________________
+>> > yocto mailing list
+>> > yocto@yoctoproject.org
+>> > https://lists.yoctoproject.org/listinfo/yocto
+>> >
+>>
+>> Scott,
+>>
+>> Off the top of my head, I know SRCPV is a combination of the VCS type
+>> and revision used in the actual build. Most interestingly, SRCPV will
+>> always contain the real revision used in the build, even if ${AUTOREV}
+>> is specified as the SRCREV for a given package. Note that if a package
+>> does not include SRCPV somewhere within its recipe, I believe setting
+>> SRCREV to ${AUTOREV} will have no effect, as ${AUTOREV} by itself
+>> simply resolves to the string "AUTOINC", which does not permute the
+>hash of the recipe.
+>>
+>> Note that I'm not really a Yocto expert nor am I sitting with the code
+>> in front of me right now, so someone can jump in if I missed something
+>> or got a detail incorrect.  I don't remember the exact format of the
+>> string, but I want to say its a combination of the VCS name, a
+>> Yocto-internal VCS identification number (just like 1 or 2, not some
+>> huge int), and the revision (be it a hash it git or an integer in SVN
+>> or whatever else is used by a supported VCS).
+>
+>There isn't VCS type in SRCPV (that's why there is always prefix like
+>1.0+git${SRCPV}, 1.0+svn${SRCPV}). Some recipes even in oe-core are
+>using wrong prefix like -git or ~git:
+>meta/recipes-connectivity/ofono/ofono_git.bb:PV  =3D "0.12-git${SRCPV}"
+>meta/recipes-extended/libzypp/libzypp_git.bb:PV =3D "0.0-git${SRCPV}"
+>meta/recipes-extended/sat-solver/sat-solver_git.bb:PV =3D "0.0-
+>git${SRCPV}"
+>meta/recipes-extended/zypper/zypper_git.bb:PV =3D "1.5.3-git${SRCPV}"
+>meta/recipes-graphics/mesa/mesa-git.inc:PV =3D "9.1~git${SRCPV}"
+>
+>And +git/+gitr, +svn/+svnr prefixes are inconsistently used.
+>
+>AUTOINC is used instead of LOCALCOUNT only after
+>http://git.openembedded.org/bitbake/commit/?id=3D61cf01c5c236b4218f40cfae7
+>c059c2b86765dbd
+>
+>And AUTOREV should expand to latest revision in SRCREV even without
+>SRCPV in recipe (SRCPV is already used in bitbake.conf
+>meta/conf/bitbake.conf:SRCPV =3D "${@bb.fetch2.get_srcrev(d)}").
+>
+>Cheers,
+>
+>--
+>Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
 
-Sorry for inconvenience. The direct links are:
-
-https://source.tizen.org/documentation/reference/bmaptool/bmap-introduction
-https://source.tizen.org/documentation/reference/bmaptool/bmaptool-usage
-https://source.tizen.org/documentation/reference/bmaptool/usage/bmaptool-co=
-py
-https://source.tizen.org/documentation/reference/bmaptool/usage/bmaptool-cr=
-eate
-https://source.tizen.org/documentation/reference/bmaptool/bmap-tools-projec=
-t
-
---=20
-Best Regards,
-Artem Bityutskiy
-
---=-9L6VN31O0Te0OuesWXrU
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.12 (GNU/Linux)
-
-iQIcBAABAgAGBQJQ9Eu6AAoJECmIfjd9wqK0gwsP/36O/39r/Orddx5UoIOo3fLy
-jcw8ddu8oBlPyjneGGs93qGslLy5ks3d+CS/BDISmjQKSNWzQF6E8LJMXGKDx2kN
-J3iz7r8DZIW0fb4hQShPYkQEoKYDeeWGvXda8qZc0RdeFli+GvEbTnsmNx2Q70Nq
-cLHpeT5qSAZU+75B0BMybxdhHjZYwhYYY0XimcLLndjp6gG7bgZQuxvLj2knxCuH
-eZJWN33jlx1gM0T+P+2LXe2DUaT7ujF45J6zxD3gZi/2nBE+uuPzpCs/IPdTXuCy
-amHeMoMfx2hiAlKnUvk8L1aM5x5gLR/Bc3hu0/h/lFFFXQltVXNyuN3T3Ppjg8DK
-NwHKFyLetutVkmZ2c4nBE6cRHaQwdQG3kY75uE6X4berau/RswNl6KFWJr3oIUFP
-CeE7VlF0uy2LgPtUbFXulFcD89spfgXVvUgvIs/VmAgVUOzOQ4WsjwqUlOgryS7z
-Io+Hk9+6jN6iSQkj3YKqGMu5pmv53sSL6hpr209/I1nfhKovs4ddj6mJ48Uu3gc2
-4mknekd+fa3ee7Xr/64yZyFHeyxHy6qDIHqdfxGV0AGCPOECngqB3attTwP2v/vl
-6VhSjPDUMGqETrlUnErv1mXUpjWpo66JXWWiMjs/Am8k+Y9vxWgZmFtk2QYJCpo7
-4uL1M+EWvmn3lqzyMV0l
-=5jKB
------END PGP SIGNATURE-----
-
---=-9L6VN31O0Te0OuesWXrU--
