@@ -1,36 +1,33 @@
-Return-Path: <scott.m.rifenbark@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 13E9FE00740
-	for <yocto@yoctoproject.org>; Mon, 14 Jan 2013 12:06:32 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 14 Jan 2013 12:05:26 -0800
+Return-Path: <song.liu@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 99E88E011CC
+	for <yocto@yoctoproject.org>; Mon, 14 Jan 2013 12:40:08 -0800 (PST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 14 Jan 2013 12:40:08 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,468,1355126400"; d="scan'208";a="246549354"
-Received: from orsmsx102.amr.corp.intel.com ([10.22.225.129])
-	by orsmga001.jf.intel.com with ESMTP; 14 Jan 2013 12:06:21 -0800
-Received: from orsmsx108.amr.corp.intel.com (10.22.225.41) by
-	ORSMSX102.amr.corp.intel.com (10.22.225.129) with Microsoft SMTP Server
-	(TLS) id 14.1.355.2; Mon, 14 Jan 2013 12:06:17 -0800
+X-IronPort-AV: E=Sophos;i="4.84,468,1355126400"; d="scan'208";a="271912307"
+Received: from orsmsx103.amr.corp.intel.com ([10.22.225.130])
+	by orsmga002.jf.intel.com with ESMTP; 14 Jan 2013 12:40:08 -0800
+Received: from orsmsx107.amr.corp.intel.com (10.22.225.80) by
+	ORSMSX103.amr.corp.intel.com (10.22.225.130) with Microsoft SMTP Server
+	(TLS) id 14.1.355.2; Mon, 14 Jan 2013 12:40:08 -0800
 Received: from orsmsx101.amr.corp.intel.com ([169.254.8.209]) by
-	ORSMSX108.amr.corp.intel.com ([169.254.9.188]) with mapi id
-	14.01.0355.002; Mon, 14 Jan 2013 12:06:17 -0800
-From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-To: Martin Jansa <martin.jansa@gmail.com>, Jerrod Peach <peachj@lexmark.com>
-Thread-Topic: [yocto] SRCPV description
-Thread-Index: Ac3yZs+nKWhPkX2ZQdqv7/VG//MDcAARZm4AAAJcsQAACNbFQA==
-Date: Mon, 14 Jan 2013 20:06:16 +0000
-Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237957D24178@ORSMSX101.amr.corp.intel.com>
-References: <41DEA4B02DBDEF40A0F3B6D0DDB1237957D23083@ORSMSX101.amr.corp.intel.com>
-	<CA+QkY1BDAof70=YAjtkpwH3ZpV5doDiVBuySZyq9YOiuajTQJQ@mail.gmail.com>
-	<20130114161836.GE2992@jama>
-In-Reply-To: <20130114161836.GE2992@jama>
+	ORSMSX107.amr.corp.intel.com ([169.254.10.151]) with mapi id
+	14.01.0421.002; Mon, 14 Jan 2013 12:40:08 -0800
+From: "Liu, Song" <song.liu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Agenda: Yocto Project Technical Team Meeting - Tuesday,
+	January 15, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+Thread-Index: AQHN8pdW2JQCGKWWq0eRSc7nOwKlBg==
+Date: Mon, 14 Jan 2013 20:40:07 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A5989A0E1@ORSMSX101.amr.corp.intel.com>
+References: <7E680CB2A76BB8438D08CF13C09FC53A4844CAD5@ORSMSX101.amr.corp.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
+x-originating-ip: [10.22.254.139]
 MIME-Version: 1.0
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: SRCPV description
+Subject: Agenda: Yocto Project Technical Team Meeting - Tuesday, January 15, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,97 +39,135 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 14 Jan 2013 20:06:32 -0000
+X-List-Received-Date: Mon, 14 Jan 2013 20:40:08 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-Thanks for the explanations for this variable all.
+Agenda:
+=A0
+* Opens collection - 5 min (Song)
+* Yocto Project 1.2.2 status - 10 min (Scott/AlexG)
+* Yocto Project 1.3.1 status - 10 min (Ross)
+* Yocto 1.4 status - 10 min (Song/team)
+  https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.4_Status#Overview
+* SWAT team rotation: Radu Moisan -> Constantin Musca
+* Opens - 10 min
+* Team Sharing - 20 min
 
-Scott
 
->-----Original Message-----
->From: Martin Jansa [mailto:martin.jansa@gmail.com]
->Sent: Monday, January 14, 2013 8:19 AM
->To: Jerrod Peach
->Cc: Rifenbark, Scott M; Yocto discussion list
->Subject: Re: [yocto] SRCPV description
->
->On Mon, Jan 14, 2013 at 10:10:58AM -0500, Jerrod Peach wrote:
->> On Mon, Jan 14, 2013 at 9:52 AM, Rifenbark, Scott M <
->> scott.m.rifenbark@intel.com> wrote:
->>
->> > Hi,
->> >
->> > I need a description of the SRCPV variable for the YP reference
->glossary.
->> >  I have been told that it is generated and not assigned and that it
->> > is used to define PV values that include the source revisions from
->> > an RCS.  By default it is set to the following in the
->conf/bitbake.conf file:
->> >
->> > SRCPV =3D "${@bb.fetch2.get_srcrev(d)}"
->> >
->> > Can anyone provide more information on this variable?
->> >
->> > Thanks,
->> > Scott
->> >
->> >
->> >
->> > Scott Rifenbark
->> > Intel Corporation
->> > Yocto Project Documentation
->> > 503.712.2702
->> > 503.341.0418 (cell)
->> >
->> > _______________________________________________
->> > yocto mailing list
->> > yocto@yoctoproject.org
->> > https://lists.yoctoproject.org/listinfo/yocto
->> >
->>
->> Scott,
->>
->> Off the top of my head, I know SRCPV is a combination of the VCS type
->> and revision used in the actual build. Most interestingly, SRCPV will
->> always contain the real revision used in the build, even if ${AUTOREV}
->> is specified as the SRCREV for a given package. Note that if a package
->> does not include SRCPV somewhere within its recipe, I believe setting
->> SRCREV to ${AUTOREV} will have no effect, as ${AUTOREV} by itself
->> simply resolves to the string "AUTOINC", which does not permute the
->hash of the recipe.
->>
->> Note that I'm not really a Yocto expert nor am I sitting with the code
->> in front of me right now, so someone can jump in if I missed something
->> or got a detail incorrect.  I don't remember the exact format of the
->> string, but I want to say its a combination of the VCS name, a
->> Yocto-internal VCS identification number (just like 1 or 2, not some
->> huge int), and the revision (be it a hash it git or an integer in SVN
->> or whatever else is used by a supported VCS).
->
->There isn't VCS type in SRCPV (that's why there is always prefix like
->1.0+git${SRCPV}, 1.0+svn${SRCPV}). Some recipes even in oe-core are
->using wrong prefix like -git or ~git:
->meta/recipes-connectivity/ofono/ofono_git.bb:PV  =3D "0.12-git${SRCPV}"
->meta/recipes-extended/libzypp/libzypp_git.bb:PV =3D "0.0-git${SRCPV}"
->meta/recipes-extended/sat-solver/sat-solver_git.bb:PV =3D "0.0-
->git${SRCPV}"
->meta/recipes-extended/zypper/zypper_git.bb:PV =3D "1.5.3-git${SRCPV}"
->meta/recipes-graphics/mesa/mesa-git.inc:PV =3D "9.1~git${SRCPV}"
->
->And +git/+gitr, +svn/+svnr prefixes are inconsistently used.
->
->AUTOINC is used instead of LOCALCOUNT only after
->http://git.openembedded.org/bitbake/commit/?id=3D61cf01c5c236b4218f40cfae7
->c059c2b86765dbd
->
->And AUTOREV should expand to latest revision in SRCREV even without
->SRCPV in recipe (SRCPV is already used in bitbake.conf
->meta/conf/bitbake.conf:SRCPV =3D "${@bb.fetch2.get_srcrev(d)}").
->
->Cheers,
->
->--
->Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
+-----Original Appointment-----
+
+
+We encourage people attending the meeting to logon the Yocto IRC chancel du=
+ring the meeting (optional):
+
+Yocto IRC: http://webchat.freenode.net/?channels=3D#yocto
+IRC Tutorial: http://www.irchelp.org/irchelp/irctutorial.html=20
+
+Conference details
+Conference name:=20
+Yocto Technical Team
+Conference date/start time:=20
+Tue Jun 26, 2012 at 10:00 AM Central Daylight Time
+Participants:=20
+30
+Duration:=20
+60 minutes
+Participant passcode:=20
+76994298
+Dial-in number:=20
+1.972.995.7777
+US Toll Free number:=20
+1.877.561.6828
+BlackBerry users, click this link to join your conference as a participant:
+1.972.995.7777x76994298#
+=A0
+Depending on where you are dialing from, either your BlackBerry will pause =
+and enter the passcode automatically or you will be prompted to click again=
+ to dial the passcode.
+
+Local and Global Access Numbers=20
+
+
+Country
+Dial-in number
+Australia:=20
+1800 636 843
+Czech Republic:=20
+242 430 350
+China (Beijing):=20
+From office dial 8-9957777 or 8784277
+Beijing Out of Office dial 5878 4277
+China (Shanghai):=20
+From office dial 8-9957777 or 3073322
+Shanghai Out of Office dial 2307 3322
+China (Shenzen):=20
+From office dial 8-9957777 or 6007877
+Shenzen Out of Office dial 2600 7877
+China (Other Cities):=20
+From IP phone dial 8-9957777
+Other cities - Non IP phone dial 021-23073322
+Denmark:=20
+8060 1400
+Finland:=20
+09 41333477
+France:=20
+0497 275888
+Germany:=20
+08161 803232
+Holland:=20
+030 2417490
+India:=20
+BSNL subscribers use 1800 425 9996 (Toll Free) Airtel subscribers use 0008 =
+009 861 212 (Toll Free) From TI Campus use 89957777 Others use 2509 9555 (L=
+andline within Bangalore) or
+80 2509 9555 (Outside Bangalore)
+Israel:=20
+09 790 6715
+Italy:=20
+039 69061234 (039 is local city code not country code)
+Japan:=20
+From TI Campus use 8 995 7777
+Outside TI use 03 4331 3777
+Malaysia:=20
+From IP phone dial 2643799
+From Kuala Lumpur dial 4264 3799
+Outside Kuala Lumpur dial (03)4264 3799
+Norway:=20
+2 295 8744
+Philippines:=20
+From Baguio City use 4471177
+From Metro Manila area use 8702477
+Singapore:=20
+From IP phone dial 3894777
+Outside TI use 6389 4777
+South Korea:=20
+From IP phone dial 5606998
+From Seoul dial 5606998
+Outside Seoul dial (02)5606998
+Sweden:=20
+08 58755577
+Taiwan:=20
+From IP phone dial 1363
+From Taipei dial 2241 1363
+Outside Taipei dial (02)2241 1363
+Turkey:=20
+Landline Only dial 0811 288 0001
+then enter 877 633 1123
+UK:=20
+01604 663003
+US:=20
+972 995 7777 or 1877 561 6828
+
+Recurring conferences
+First scheduled conference:=20
+Tue Jun 26, 2012
+Recurrence frequency:=20
+Weekly - Every 1 week(s) on Tuesday
+Recurrence ends:=20
+End on Fri Jun 21, 2013, 10:40 AM CDT
+
+
+
 
