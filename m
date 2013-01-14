@@ -1,39 +1,36 @@
-Return-Path: <wd@denx.de>
-Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6B53CE00527
-	for <yocto@yoctoproject.org>; Mon, 14 Jan 2013 09:56:54 -0800 (PST)
-Received: from frontend1.mail.m-online.net (unknown [192.168.8.180])
-	by mail-out.m-online.net (Postfix) with ESMTP id 3YlMnb4TfPz4KKDS;
-	Mon, 14 Jan 2013 18:56:51 +0100 (CET)
-Received: from localhost (dynscan1.mnet-online.de [192.168.6.68])
-	by mail.m-online.net (Postfix) with ESMTP id 3YlMnb4MGnzbbhq;
-	Mon, 14 Jan 2013 18:56:51 +0100 (CET)
-X-Virus-Scanned: amavisd-new at mnet-online.de
-Received: from smtp-auth.mnet-online.de ([192.168.8.180])
-	by localhost (dynscan1.mail.m-online.net [192.168.6.68]) (amavisd-new,
-	port 10024)
-	with ESMTP id 0QrBe2P7YUCJ; Mon, 14 Jan 2013 18:56:37 +0100 (CET)
-X-Auth-Info: uGDzWzgmsx5LhnMdeM5OShi+JHXn2/ihM0YkjmOm7DI=
-Received: from diddl.denx.de (host-80-81-18-216.customer.m-online.net
-	[80.81.18.216]) by smtp-auth.mnet-online.de (Postfix) with ESMTPA;
-	Mon, 14 Jan 2013 18:56:49 +0100 (CET)
-Received: from gemini.denx.de (gemini.denx.de [10.0.0.2])
-	by diddl.denx.de (Postfix) with ESMTP id 011A11A1499;
-	Mon, 14 Jan 2013 18:56:49 +0100 (CET)
-Received: from gemini.denx.de (localhost [IPv6:::1])
-	by gemini.denx.de (Postfix) with ESMTP id E653B200A4C;
-	Mon, 14 Jan 2013 18:56:48 +0100 (CET)
-To: dedekind1@gmail.com
-From: Wolfgang Denk <wd@denx.de>
+Return-Path: <andrei@gherzan.ro>
+Received: from mail-vc0-f180.google.com (mail-vc0-f180.google.com
+	[209.85.220.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 03E69E00527
+	for <yocto@yoctoproject.org>; Mon, 14 Jan 2013 10:03:50 -0800 (PST)
+Received: by mail-vc0-f180.google.com with SMTP id p16so3780757vcq.39
+	for <yocto@yoctoproject.org>; Mon, 14 Jan 2013 10:03:50 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:x-originating-ip:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type:x-gm-message-state;
+	bh=Aapy/z0Ge9NyRA3oS5ktfBl4bgFHVfKod17H8G7ib8E=;
+	b=SpUtXdotqUJUlc51MtjeKEpDYB/QGIVI4f0n3NhdW9xEWci0algILw8jBoP3C4whk6
+	cBYqgNICj3Sf2pHZib8OrZOCqrzcGgiN9ZtHHefWl7Bd2rAJ9qfYRMREckxJyAyqMcsP
+	Bb9/WH9U7tqhNiJhiqFag4mS8qkogOcvbxMGuP83U0exDGuZqXDVkW0s20X047GJll9D
+	9TSQtoJlsTu/tSEe3oyyZDufOQL1qUQDLr0piLzWcGwR2JnUivubiJbwhHlIhVwa5TIe
+	n78IGJwF9jbc9xMN7pu2CgtaJMrCNhO6pJALqS9zE/xzVqWJvzSnk9x20d8vqYO4B4lb
+	HfaA==
+Received: by 10.52.88.19 with SMTP id bc19mr59288010vdb.67.1358186630291; Mon,
+	14 Jan 2013 10:03:50 -0800 (PST)
 MIME-Version: 1.0
-In-reply-to: <1358167593.2731.66.camel@sauron.fi.intel.com>
-References: <1358167593.2731.66.camel@sauron.fi.intel.com>
-Comments: In-reply-to Artem Bityutskiy <dedekind1@gmail.com>
-	message dated "Mon, 14 Jan 2013 14:46:33 +0200."
-Date: Mon, 14 Jan 2013 18:56:48 +0100
-Message-Id: <20130114175648.E653B200A4C@gemini.denx.de>
-Cc: yocto@yoctoproject.org
-Subject: Re: [ANOUNCEMENT] bmaptool
+Received: by 10.58.102.132 with HTTP; Mon, 14 Jan 2013 10:03:30 -0800 (PST)
+X-Originating-IP: [89.121.200.106]
+In-Reply-To: <50EA3F6E.5080708@windriver.com>
+References: <1357473302-19235-1-git-send-email-andrei.gherzan@windriver.com>
+	<50EA3F6E.5080708@windriver.com>
+From: Andrei Gherzan <andrei@gherzan.ro>
+Date: Mon, 14 Jan 2013 20:03:30 +0200
+Message-ID: <CAK18fxFAxvmhDcib9FpJuSoVNd=TKUtd6AVokebW_faj86gd3A@mail.gmail.com>
+To: ChenQi <Qi.Chen@windriver.com>
+X-Gm-Message-State: ALoCoQnc8do/zu7T/NfoIFga048Ktk7QK8lqoGalh2j856OPHCkUEzba2jWFNh6Z+hHOtoQPMGQ+
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [meta-ivi][PATCH 01/23] base-passwd: Modify patch as home directory of root user is /root
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,39 +42,57 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 14 Jan 2013 17:56:54 -0000
-Content-type: text/plain; charset=UTF-8
-Content-transfer-encoding: 8bit
+X-List-Received-Date: Mon, 14 Jan 2013 18:03:51 -0000
+Content-Type: multipart/alternative; boundary=20cf3071ca14a3227004d343779b
 
-Dear Artem,
+--20cf3071ca14a3227004d343779b
+Content-Type: text/plain; charset=ISO-8859-1
 
-In message <1358167593.2731.66.camel@sauron.fi.intel.com> you wrote:
-> 
-> Please, read all the details in the project wiki page:
-> https://source.tizen.org/documentation/reference/bmaptool
-> 
-> The project was created for Tizen IVI, but it is generic and is not
-> bounded to Tizen in any way.
-> 
-> I do not want to duplicate the bmap-tools documentation here, but
-> instead, let me just describe how we use it in Tizen IVI.
+On Mon, Jan 7, 2013 at 5:22 AM, ChenQi <Qi.Chen@windriver.com> wrote:
 
-Thanks for doing this, as the links on the page referenced above are
-broken:  both [1] "Introduction" and [2] "Usage" give just a 404 to
-me...
+> Home directory is now configurable now.
+> You could specify it in local.conf.
+>
+> See the following commits for more details.
+>
+> 845c2c0 oprofile: use dynamic root home directory
+> 2af073a base-passwd: use configurable root home directory
+> 07b842f base-files: use dynamic root home directory
+> de5b44a bitbake.conf: import var ROOT_HOME
+>
+>
+This bbappend was added to modify the default password of root. And we
+modify the whole root line from passwd.master which includes the home
+directory. And as home directory was moved to /home we had to rebase this
+patch too.
 
-[1] https://source.tizen.org/documentation/reference/bmap-tool/bmap-introduction
-[2] https://source.tizen.org/documentation/reference/bmap-tool/usage
+ag
 
+--20cf3071ca14a3227004d343779b
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-Best regards,
+<div dir=3D"ltr">On Mon, Jan 7, 2013 at 5:22 AM, ChenQi <span dir=3D"ltr">&=
+lt;<a href=3D"mailto:Qi.Chen@windriver.com" target=3D"_blank">Qi.Chen@windr=
+iver.com</a>&gt;</span> wrote:<br><div dir=3D"ltr"><div class=3D"gmail_extr=
+a"><div class=3D"gmail_quote">
 
-Wolfgang Denk
+<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
+left-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;p=
+adding-left:1ex">Home directory is now configurable now.<br>
+You could specify it in local.conf.<br>
+<br>
+See the following commits for more details.<br>
+<br>
+845c2c0 oprofile: use dynamic root home directory<br>
+2af073a base-passwd: use configurable root home directory<br>
+07b842f base-files: use dynamic root home directory<br>
+de5b44a bitbake.conf: import var ROOT_HOME<br>
+<br></blockquote><div style><br></div><div style>This bbappend was added to=
+ modify the default password of root. And we modify the whole root=A0line=
+=A0from=A0passwd.master which includes the home directory. And as home dire=
+ctory was moved to /home we had to rebase this patch too.</div>
 
--- 
-DENX Software Engineering GmbH,     MD: Wolfgang Denk & Detlev Zundel
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-Phone: (+49)-8142-66989-10 Fax: (+49)-8142-66989-80 Email: wd@denx.de
-If the odds are a million to one against something occuring,  chances
-are 50-50 it will.
+<div style><br></div><div style>ag</div></div></div></div></div>
 
+--20cf3071ca14a3227004d343779b--
