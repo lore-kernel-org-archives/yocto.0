@@ -1,42 +1,33 @@
-Return-Path: <jessica.zhang@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E1A04E0047F
-	for <yocto@yoctoproject.org>; Tue, 15 Jan 2013 11:17:01 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 15 Jan 2013 11:16:57 -0800
+Return-Path: <song.liu@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6943BE00740
+	for <yocto@yoctoproject.org>; Tue, 15 Jan 2013 12:04:45 -0800 (PST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 15 Jan 2013 12:04:45 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,475,1355126400"; d="scan'208";a="272411499"
-Received: from orsmsx104.amr.corp.intel.com ([10.22.225.131])
-	by orsmga002.jf.intel.com with ESMTP; 15 Jan 2013 11:16:54 -0800
+X-IronPort-AV: E=Sophos;i="4.84,475,1355126400"; d="scan'208";a="277267118"
+Received: from orsmsx102.amr.corp.intel.com ([10.22.225.129])
+	by fmsmga002.fm.intel.com with ESMTP; 15 Jan 2013 12:04:44 -0800
 Received: from orsmsx153.amr.corp.intel.com (10.22.226.247) by
-	ORSMSX104.amr.corp.intel.com (10.22.225.131) with Microsoft SMTP Server
-	(TLS) id 14.1.355.2; Tue, 15 Jan 2013 11:16:54 -0800
+	ORSMSX102.amr.corp.intel.com (10.22.225.129) with Microsoft SMTP Server
+	(TLS) id 14.1.355.2; Tue, 15 Jan 2013 12:04:44 -0800
 Received: from orsmsx101.amr.corp.intel.com ([169.254.8.209]) by
 	ORSMSX153.amr.corp.intel.com ([169.254.13.17]) with mapi id
-	14.01.0355.002; Tue, 15 Jan 2013 11:16:54 -0800
-From: "Zhang, Jessica" <jessica.zhang@intel.com>
-To: Bruce Ashfield <bruce.ashfield@windriver.com>, Patrick Turley
-	<PatrickTurley@gamestop.com>
-Thread-Topic: [yocto] Build external module against Yocto kernel
-Thread-Index: AQHN8q6s5QOP/6xKnEq8yLl/GYg/sJhLJlqAgAAApYCAAAxrAIAAAagAgAAHNgCAAAN4gP//ge2w
-Date: Tue, 15 Jan 2013 19:16:53 +0000
-Message-ID: <C6510F6D410BB64A8C15398EDC6B847C57DD15B4@ORSMSX101.amr.corp.intel.com>
-References: <5BEFD653CA8A8D47AA194ED30AB5968C35CD91@GV1HQPEX03.babgsetc.pvt>
-	<1358269651.2479.5.camel@omclinuxballt.devnet.ordermatic.net>
-	<1358269789.2479.6.camel@omclinuxballt.devnet.ordermatic.net>
-	<5BEFD653CA8A8D47AA194ED30AB5968C35D715@GV1HQPEX03.babgsetc.pvt>
-	<50F5992C.9070705@windriver.com>
-	<5BEFD653CA8A8D47AA194ED30AB5968C35D97A@GV1HQPEX03.babgsetc.pvt>
-	<50F5A221.2070209@windriver.com>
-In-Reply-To: <50F5A221.2070209@windriver.com>
+	14.01.0355.002; Tue, 15 Jan 2013 12:04:44 -0800
+From: "Liu, Song" <song.liu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Minutes: Yocto Project Technical Team Meeting - Tuesday,
+	January 15, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+Thread-Index: AQHN81uPo8kLJNArDkeWvs/S9o9F3g==
+Date: Tue, 15 Jan 2013 20:04:43 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A5989BC8A@ORSMSX101.amr.corp.intel.com>
+References: <7E680CB2A76BB8438D08CF13C09FC53A4844CAD5@ORSMSX101.amr.corp.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.139]
+x-originating-ip: [10.22.254.138]
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Darren Hart <dvhart@linux.intel.com>, Brian Lloyd <blloyd@familyhonor.net>
-Subject: Re: Build external module against Yocto kernel
+Subject: Minutes: Yocto Project Technical Team Meeting - Tuesday, January 15, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,99 +39,95 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 15 Jan 2013 19:17:02 -0000
+X-List-Received-Date: Tue, 15 Jan 2013 20:04:45 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Patrick,
+Attendees:
+Ciby (Mentor), Jessica, Sean, MarkH, ChrisL, ChrisK, ScottG, TomZ, KevinS, =
+ScottR, BruceA, Corneliu, Saul, Nitin, JeffP, DaveST, Bj=F6rnS, Song
+=A0
+Agenda:
+=A0
+-- Thanks to Saul for covering me while I was on vacation.
+=A0
+* Opens collection - 5 min (Song)
+* Yocto Project 1.2.2 status - 10 min (Scott/AlexG)
+  - ScottG:has gone through full pass QA testing. All the issues can be rel=
+ease noted. No blockers.
+  - Song: listed all the know issues in the IRC channel. No Special concern=
+s from the audience.
+  - Saul: More patches from Koen (4), what can we do? Sean/Saul: Suggest to=
+ make them available, get them to the tip of the denzil branches. But Movin=
+g forward with the plan. Wrapping up 1.2.2.=20
+  - Song: QA complete, no concerns or blockers. Move ahead with 1.2.2 relea=
+se. Song will send CCB email asking for approval.
+=A0
+* Yocto Project 1.3.1 status - 10 min :
+  - Saul: patches are integrated. Ready for QA test.=20
+  - Song: QA will be done after 1.4 M2/M3 release. If anyone would like to =
+suggest more patches, please let Ross (ross.burton@intel.com) know.
+  -=20
+* Yocto 1.4 status - 10 min (Song/team)
+  https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.4_Status#Overview=20
+=A0
+  - Bug fixing: resolved 51 last week. Thanks to Otavio Salvador (4) from t=
+he community (Ossystems.com.br), ScottG (11). Good work and thank you all.
+  - Feature development (M2/3 cutoff is this coming Sunday):=20
+    . SMART updater/Mark: code is there and working, a couple of bugs, a co=
+uple of performance issues related to incremental install and complimentary=
+ install. Opening bugs to track them in Bugzilla. Other than those. Everyth=
+ing is working.
+    .systemd/Saul: patches pending, reworked a little bit. There are still =
+some issues. Trying to get this done by the end of this week.
+    .wayland/Saul: 3 patches pending, dependency issues. Saul will touch ba=
+se with Ross to get the status, hope to resolve this feature by the end of =
+this week.
+    . LTSI (Bruce): still underway, pending. Cannot be done for M3.
+    . Song: QA is working on the test plan for the above features. Please e=
+xpect working with QA.=20
+    . Mater status/Saul: RP pulled in last set of consolidated patches. Hop=
+ing to have a weekly build, and then full QA. Build will be available somet=
+ime tomorrow (RO/PRC time).
+=A0
+* SWAT team rotation: Radu Moisan -> Constantin Musca=20
+=A0
+* Opens - 10 min=20
+ - ChrisK: Design firm Tobias & Tobias are helping with the design of a web=
+ UI for analysing builds and images. They are looking for people willing to=
+ test & give feedback on an early-stage design prototype. Interviews will b=
+e conducted via phone or Skype and take about 30 minutes.=20
+    . If you can participate, please email: chris.kaminski@tobias.tv
+  - Bjorn: x-test and x-ptest. have been working on the ptest framework. A =
+week ago, it was merged. But a different approache has been merged. It's be=
+tter if we could have only one way. =20
+    . Saul: this is an oversight. ptest should be the way. Will contact Kai=
+ Kang to sort this out.
+    . Bjorn has a wiki page for this framework: https://wiki.yoctoproject.o=
+rg/wiki/Ptest
+=A0
+* Team Sharing - 20 min
+ - ScottR: url: http://www.yoctoproject.org/docs/1.4/kernel-dev/kernel-dev.=
+html. People can go here to see the kernel development manual. Also sent an=
+ email to the yp mailing list.=20
+ - Corneliu: tesopia is in its final version. Is a new testcase management =
+platform we are going to use from now on. Feel free to ask me if there is a=
+ny questions:=20
+https://wiki.yoctoproject.org/wiki/Testopia. Will be adding SMART testcases=
+ today. Remove zypper testcases. All existing testcases are there.
+- Michael: reinstall OS on AB 3/7/9. new OSes and better support. HW error =
+happening and been corrected. Added webhob mailing list. Working on testopi=
+a integration. Had some slight changes and extra testing. Corneliu working =
+with me. This week will continue. YP dev day assistant. More information an=
+d organization on the web site BSP page.=20
+  - Sean/ScottG/Saul: Yocto Dev day: small budget issue, plan still in the =
+work. Will go ahead with the dev day, but likely no hands-on lab, will have=
+ small focus group discussions. Build system will be setup on individual la=
+ptop, etc.
 
-According to bug 1614, the kernel dev packages should be included in sdk im=
-ages.  Please generate your toolchain using "bitbake core-image-sato-sdk -c=
- populate_sdk" which will make the toolchain target sysroot matching your i=
-mage's sysroot (this is a new feature of 1.3) as long as your image is a sd=
-k image.  If you still run into issue(missing kernel headers, etc.), then t=
-hat's a bug of the 1614 patch that we need to reopen it.
-
-For your LDFLAGS question in another email thread, the yocto SDK is mainly =
-produced for application developer, but seems we are hearing more usage req=
-uest for it to support kernel module build as well.  As Eric pointed, can y=
-ou just set LDFLAGS=3D"" and we'll add that instruction to developer's manu=
-al?
-
-Thanks,
-Jessica
-
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Bruce Ashfield
-Sent: Tuesday, January 15, 2013 10:38 AM
-To: Patrick Turley
-Cc: yocto@yoctoproject.org; Darren Hart; Brian Lloyd
-Subject: Re: [yocto] Build external module against Yocto kernel
-
-On 13-01-15 01:26 PM, Patrick Turley wrote:
-> On Jan 15, 2013, at 12:00 PM, Bruce Ashfield <bruce.ashfield@windriver.co=
-m>
->   wrote:
->
->> On 13-01-15 12:54 PM, Patrick Turley wrote:
->>> Thank you for directing me toward that documentation. As it happens,
->>> I have already read that, and it doesn't apply.
->>
->> There are ways to do this, your requirement is the same as the
->> on-target module building requirement. Have enough of the kernel
->> source packaged to build modules on the target, after it has booted.
->
-> Well, I still want to cross-compile them, but I see your point.
->
->> The trick is packaging things properly to not get binary/target
->> elements in the SDK/native packages, and to package just enough for
->> the build. But the issues have been explored and there was a plan. I
->> know that Darren
->> (cc'd) has looked into this more than I have recently.
->>
->> I can't locate the bugzilla entries on this at the moment, but I
->> recall that some parts were still missing, but may be addressed in
->> yocto 1.4, when I find the bug numbers, I'll have a better idea.
->
-> As I expected, someone else has already thought about this. This isn't th=
-e most common approach so it makes sense that it's been a lower priority. T=
-he good news for me is that I know I'm not missing something, so I can stop=
- looking for it.
-
-I finally found the entries that I was recalling earlier. They are:
-
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D241
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D1614
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D2968
-
-1614 and 2968 are the most interesting for what you are asking.
-
-As you can see the net result of those bugs is that you can get the right p=
-arts of the kernel tree in SDK packages, since they include dev packages, a=
-nd with what is currently in kernel-dev .. it should be enough to build aga=
-inst in the SDK (perhaps with just the LDFLAGS tweaks mentioned in the othe=
-r thread). The sources should be part of the sysroot, and hence available w=
-hen that is packaged for use outside of bitbake/yocto.
-
-If you aren't seeing kernel-dev in the SDK image, it might be that TOOLCHAI=
-N_TARGET_TASK doesn't have kernel-dev by default, or something else is diff=
-erent in the SDK that is being generated in your testing.
-
-I'm only speculating about what might be missing, since I'm not 100% famili=
-ar with the SDK, but perhaps Jessica or others can chime in if I've led you=
- astray :)
-
-Cheers,
-
-Bruce
 
 
->
 
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
+
 
