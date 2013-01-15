@@ -1,40 +1,34 @@
-Return-Path: <eric@eukrea.com>
-Received: from mo1.mail-out.ovh.net (1.mo1.mail-out.ovh.net [178.32.127.22])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2BE99E0047F
-	for <yocto@yoctoproject.org>; Tue, 15 Jan 2013 10:21:36 -0800 (PST)
-Received: from mail94.ha.ovh.net (b9.ovh.net [213.186.33.59])
-	by mo1.mail-out.ovh.net (Postfix) with SMTP id CAE23FF9468
-	for <yocto@yoctoproject.org>; Tue, 15 Jan 2013 19:35:32 +0100 (CET)
-Received: from b0.ovh.net (HELO queueout) (213.186.33.50)
-	by b0.ovh.net with SMTP; 15 Jan 2013 20:21:33 +0200
-Received: from tal33-3-82-233-81-124.fbx.proxad.net (HELO e6520eb)
-	(eric%eukrea.com@82.233.81.124)
-	by ns0.ovh.net with SMTP; 15 Jan 2013 20:21:30 +0200
-Date: Tue, 15 Jan 2013 19:21:29 +0100
-From: Eric =?UTF-8?B?QsOpbmFyZA==?= <eric@eukrea.com>
-To: Patrick Turley <PatrickTurley@gamestop.com>
-X-Ovh-Mailout: 178.32.228.1 (mo1.mail-out.ovh.net)
-Message-ID: <20130115192129.3ac2c16c@e6520eb>
-In-Reply-To: <5BEFD653CA8A8D47AA194ED30AB5968C35D76D@GV1HQPEX03.babgsetc.pvt>
-References: <5BEFD653CA8A8D47AA194ED30AB5968C35D457@GV1HQPEX03.babgsetc.pvt>
-	<1358271523.2479.14.camel@omclinuxballt.devnet.ordermatic.net>
-	<5BEFD653CA8A8D47AA194ED30AB5968C35D76D@GV1HQPEX03.babgsetc.pvt>
-Organization: =?UTF-8?B?RXVrcsOpYQ==?= Electromatique
-X-Mailer: Claws Mail 3.9.0 (GTK+ 2.24.13; x86_64-redhat-linux-gnu)
-Mime-Version: 1.0
-X-Ovh-Tracer-Id: 11396921807502552513
-X-Ovh-Remote: 82.233.81.124 (tal33-3-82-233-81-124.fbx.proxad.net)
-X-Ovh-Local: 213.186.33.20 (ns0.ovh.net)
-X-OVH-SPAMSTATE: OK
-X-OVH-SPAMSCORE: -100
-X-OVH-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrfeehledrheekucetufdoteggodetrfcurfhrohhfihhlvgemucfqggfjnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-X-Spam-Check: DONE|U 0.5/N
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrfeehledrheekucetufdoteggodetrfcurfhrohhfihhlvgemucfqggfjnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+Return-Path: <PatrickTurley@gamestop.com>
+Received: from gsironport2.gamestop.com (mail2.gamestop.com [12.25.107.29])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8E1B5E0145C
+	for <yocto@yoctoproject.org>; Tue, 15 Jan 2013 10:26:01 -0800 (PST)
+X-IronPort-AV: E=Sophos;i="4.84,475,1355119200"; 
+   d="scan'208";a="7009235"
+Received: from unknown (HELO GV1HQPEX02.babgsetc.pvt) ([172.22.1.244])
+	by gsironport2.gamestop.com with ESMTP; 15 Jan 2013 12:26:02 -0600
+Received: from GV1HQPEX03.babgsetc.pvt ([169.254.1.222]) by
+	GV1HQPEX02.babgsetc.pvt ([172.22.1.192]) with mapi id 14.02.0318.004;
+	Tue, 15 Jan 2013 12:26:00 -0600
+From: Patrick Turley <PatrickTurley@gamestop.com>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
+Thread-Topic: [yocto] Build external module against Yocto kernel
+Thread-Index: AQHN8q6s5QOP/6xKnEq8yLl/GYg/sJhLBNOAgAAApYCAAAxrAIAAAagAgAAHNgA=
+Date: Tue, 15 Jan 2013 18:26:00 +0000
+Message-ID: <5BEFD653CA8A8D47AA194ED30AB5968C35D97A@GV1HQPEX03.babgsetc.pvt>
+References: <5BEFD653CA8A8D47AA194ED30AB5968C35CD91@GV1HQPEX03.babgsetc.pvt>
+	<1358269651.2479.5.camel@omclinuxballt.devnet.ordermatic.net>
+	<1358269789.2479.6.camel@omclinuxballt.devnet.ordermatic.net>
+	<5BEFD653CA8A8D47AA194ED30AB5968C35D715@GV1HQPEX03.babgsetc.pvt>
+	<50F5992C.9070705@windriver.com>
+In-Reply-To: <50F5992C.9070705@windriver.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.22.1.244]
+MIME-Version: 1.0
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Brian Lloyd <blloyd@familyhonor.net>
-Subject: Re: SDK environment LDFLAGS problem?
+	Darren Hart <dvhart@linux.intel.com>, Brian Lloyd <blloyd@familyhonor.net>
+Subject: Re: Build external module against Yocto kernel
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,18 +40,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 15 Jan 2013 18:21:36 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Tue, 15 Jan 2013 18:26:01 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-ID: <2F51EA49E826DC438C35D3D8D58E1188@gamestop.com>
 Content-Transfer-Encoding: quoted-printable
 
-Le Tue, 15 Jan 2013 17:59:10 +0000,
-Patrick Turley <PatrickTurley@gamestop.com> a =C3=A9crit :
-> Yes, it's clear to me that, in this one respect, the SDK is unsuitable fo=
-r building kernels or kernel modules.
->=20
-> My point is that this is a problem, and it might be reasonable to fix it.
->=20
-set LDFLAGS=3D"" and you can build kernel and/or modules with the SDK.
+On Jan 15, 2013, at 12:00 PM, Bruce Ashfield <bruce.ashfield@windriver.com>
+ wrote:
 
-Eric
+> On 13-01-15 12:54 PM, Patrick Turley wrote:
+>> Thank you for directing me toward that documentation. As it happens, I
+>> have already read that, and it doesn't apply.
+>=20
+> There are ways to do this, your requirement is the same as the on-target
+> module building requirement. Have enough of the kernel source packaged
+> to build modules on the target, after it has booted.
+
+Well, I still want to cross-compile them, but I see your point.
+
+> The trick is packaging things properly to not get binary/target elements
+> in the SDK/native packages, and to package just enough for the build. But
+> the issues have been explored and there was a plan. I know that Darren
+> (cc'd) has looked into this more than I have recently.
+>=20
+> I can't locate the bugzilla entries on this at the moment, but I recall
+> that some parts were still missing, but may be addressed in yocto 1.4,
+> when I find the bug numbers, I'll have a better idea.
+
+As I expected, someone else has already thought about this. This isn't the =
+most common approach so it makes sense that it's been a lower priority. The=
+ good news for me is that I know I'm not missing something, so I can stop l=
+ooking for it.
+
 
