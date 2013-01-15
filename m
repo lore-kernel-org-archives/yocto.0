@@ -1,32 +1,37 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 99361E0047F
-	for <yocto@yoctoproject.org>; Tue, 15 Jan 2013 10:38:31 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id r0FIcScP020747
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Tue, 15 Jan 2013 10:38:28 -0800 (PST)
-Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.2.318.4;
-	Tue, 15 Jan 2013 10:38:28 -0800
-Message-ID: <50F5A221.2070209@windriver.com>
-Date: Tue, 15 Jan 2013 13:38:25 -0500
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130106 Thunderbird/17.0.2
+Return-Path: <autif.mlist@gmail.com>
+Received: from mail-la0-f41.google.com (mail-la0-f41.google.com
+	[209.85.215.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 28BD9E0047F
+	for <yocto@yoctoproject.org>; Tue, 15 Jan 2013 10:53:23 -0800 (PST)
+Received: by mail-la0-f41.google.com with SMTP id em20so520830lab.0
+	for <yocto@yoctoproject.org>; Tue, 15 Jan 2013 10:53:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=cU+hDnHNlC2yCk61E/TxCmktgqt5kWfTT4xDm9Ke8no=;
+	b=yTiPKxOZm3yJrjABgDp8k0E0KAQ2nEkySihJ1Ebv+//w0JC7Sub0BTYKuM8RRar83e
+	fTLOYt4bPz6NPHQ3BdEuQuWJ38pc5iikwk2tUUTm1bVicu24yz1t0UtLP8p5F2eMAPVw
+	vqnYwdebEoRkzQerSAEb0JIqB9sknsZD4ViiimL8BQkdpCiGmHlxy0lbU4s7OktVOH4K
+	NUxr6QwbSaYt3CFv1Yxld6XhIOAIcNXBYBedGsRu34aXXhAxyKKt8re6tITLH73Y1mZh
+	kWiTynvYIfae3DEc2fFaB0EdFnTxFlzfBrVo66Mr2YfxqNpAf/2/WxxJmD0bEXPyqcKS
+	kZrA==
 MIME-Version: 1.0
-To: Patrick Turley <PatrickTurley@gamestop.com>
-References: <5BEFD653CA8A8D47AA194ED30AB5968C35CD91@GV1HQPEX03.babgsetc.pvt>
-	<1358269651.2479.5.camel@omclinuxballt.devnet.ordermatic.net>
-	<1358269789.2479.6.camel@omclinuxballt.devnet.ordermatic.net>
-	<5BEFD653CA8A8D47AA194ED30AB5968C35D715@GV1HQPEX03.babgsetc.pvt>
-	<50F5992C.9070705@windriver.com>
-	<5BEFD653CA8A8D47AA194ED30AB5968C35D97A@GV1HQPEX03.babgsetc.pvt>
-In-Reply-To: <5BEFD653CA8A8D47AA194ED30AB5968C35D97A@GV1HQPEX03.babgsetc.pvt>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Darren Hart <dvhart@linux.intel.com>, Brian Lloyd <blloyd@familyhonor.net>
-Subject: Re: Build external module against Yocto kernel
+Received: by 10.112.47.168 with SMTP id e8mr37025741lbn.46.1358276002712; Tue,
+	15 Jan 2013 10:53:22 -0800 (PST)
+Received: by 10.112.61.74 with HTTP; Tue, 15 Jan 2013 10:53:22 -0800 (PST)
+In-Reply-To: <50E5A795.4070202@dynamicdevices.co.uk>
+References: <50DB2E67.4090602@dynamicdevices.co.uk>
+	<CADzUK1+kiKx_=ZHKL2WXskDv+rrg5SSLFtHQoLAOaPb0s4Z0Gg@mail.gmail.com>
+	<CADzUK1+ZHRrPT6ysoOLsc5NaNcB6bRYRMc-FZDkGR52p9BjpQA@mail.gmail.com>
+	<50E49C8A.3000603@dynamicdevices.co.uk>
+	<CADzUK1+0fAn2QtZnUKbMfYcqMcb+J+g-gsUMR692vd6zEfN9CQ@mail.gmail.com>
+	<50E5A795.4070202@dynamicdevices.co.uk>
+Date: Tue, 15 Jan 2013 13:53:22 -0500
+Message-ID: <CADzUK1KeRaTuCyZ7RZ=A4_LDC4CwwCFLkrUmmXXXMs06DEESsw@mail.gmail.com>
+From: Autif Khan <autif.mlist@gmail.com>
+To: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-mono] Support for Visual Studio debugging on Yocto/OE targets (e.g. RPi)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,64 +43,198 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 15 Jan 2013 18:38:31 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 15 Jan 2013 18:53:24 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On 13-01-15 01:26 PM, Patrick Turley wrote:
-> On Jan 15, 2013, at 12:00 PM, Bruce Ashfield <bruce.ashfield@windriver.com>
->   wrote:
->
->> On 13-01-15 12:54 PM, Patrick Turley wrote:
->>> Thank you for directing me toward that documentation. As it happens, I
->>> have already read that, and it doesn't apply.
+On Thu, Jan 3, 2013 at 10:45 AM, Alex J Lennon
+<ajlennon@dynamicdevices.co.uk> wrote:
+> On 03/01/2013 15:24, Autif Khan wrote:
+>> On Wed, Jan 2, 2013 at 3:46 PM, Alex J Lennon
+>> <ajlennon@dynamicdevices.co.uk> wrote:
+>>> On 02/01/2013 20:27, Autif Khan wrote:
+>>>> On Thu, Dec 27, 2012 at 12:10 PM, Autif Khan <autif.mlist@gmail.com> wrote:
+>>>>> On Wed, Dec 26, 2012 at 12:05 PM, Alex J Lennon
+>>>>> <ajlennon@dynamicdevices.co.uk> wrote:
+>>>>>> Hi all, Autif,
+>>>>>>
+>>>>>> I've been working to support .NET development on Linux
+>>>>>> over the past few days.
+>>>>>>
+>>>>>> There is a Visual Studio plugin, MonoTools for Visual Studio
+>>>>>> which provides support for local and remote debugging of
+>>>>>> .NET applications with Mono.
+>>>>>>
+>>>>>> This requires a remote stub to be running on the target
+>>>>>> platform, monotools-server.
+>>>>>>
+>>>>>> I've created a recipe to build monotools-server, which in
+>>>>>> turn required me to pull in Openembedded Legacy recipes
+>>>>>> for mono-xsp and gtk-sharp.
+>>>>>>
+>>>>>> As it stands I'm now able to build an X enabled image for
+>>>>>> the Raspberry Pi and remote-debug some simple Windows
+>>>>>> Forms .NET applications within the Visual Studio IDE.
+>>>>>>
+>>>>>> Recipes are hosted here in 'recipes-mono'
+>>>>>>
+>>>>>> git@git.assembla.com:ciseco-eve.meta-eve.git
+>>>>
+>>>> I could not "git clone" the repo.
+>>>
+>>> Apologies. I should have given you the public r/o link.
+>>>
+>>> Originally I was trying to avoid modifying meta-mono, adding .bbappends
+>>> into my own meta-eve layer instead, but since my last post to you I
+>>> found I couldn't build against the current HEAD of Yocto due to some odd
+>>> file location issues which I couldn't overlay. (i.e. it didn't seem to
+>>> be able to pick up the patches where you had them - although was fine
+>>> with an older commit of the Yocto core).
+>>>
+>>> As a result I've moved the original meta-mono patches that weren't being
+>>> picked up by bitbake and merged my additions into a fork of meta-mono
+>>> which is here:
+>>>
+>>> git://git.assembla.com/ciseco-eve.meta-mono.git
 >>
->> There are ways to do this, your requirement is the same as the on-target
->> module building requirement. Have enough of the kernel source packaged
->> to build modules on the target, after it has booted.
->
-> Well, I still want to cross-compile them, but I see your point.
->
->> The trick is packaging things properly to not get binary/target elements
->> in the SDK/native packages, and to package just enough for the build. But
->> the issues have been explored and there was a plan. I know that Darren
->> (cc'd) has looked into this more than I have recently.
+>> Got it.
 >>
->> I can't locate the bugzilla entries on this at the moment, but I recall
->> that some parts were still missing, but may be addressed in yocto 1.4,
->> when I find the bug numbers, I'll have a better idea.
+>> I scanned thru the code and saw what you did to re-organize the
+>> directory structure.
+>>
+>> When I get back, I will see if I can build libGDI+ and mono with
+>> denzil (I am stuck with denzil for reasons beyond my control, or until
+>> I find a show stopping bug in denzil for our project - unlikely)
+>>
+>> Meanwhile, I have no questions about changes for gk-sharp, mono,
+>> mono-xsp and monotools-server.
+>>
 >
-> As I expected, someone else has already thought about this. This isn't the most common approach so it makes sense that it's been a lower priority. The good news for me is that I know I'm not missing something, so I can stop looking for it.
-
-I finally found the entries that I was recalling earlier. They are:
-
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=241
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=1614
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=2968
-
-1614 and 2968 are the most interesting for what you are asking.
-
-As you can see the net result of those bugs is that you can get the
-right parts of the kernel tree in SDK packages, since they include
-dev packages, and with what is currently in kernel-dev .. it should
-be enough to build against in the SDK (perhaps with just the LDFLAGS
-tweaks mentioned in the other thread). The sources should be part
-of the sysroot, and hence available when that is packaged for use
-outside of bitbake/yocto.
-
-If you aren't seeing kernel-dev in the SDK image, it might be that
-TOOLCHAIN_TARGET_TASK doesn't have kernel-dev by default, or something
-else is different in the SDK that is being generated in your testing.
-
-I'm only speculating about what might be missing, since I'm not 100%
-familiar with the SDK, but perhaps Jessica or others can chime in if
-I've led you astray :)
-
-Cheers,
-
-Bruce
-
-
+> Good oh.
+>
+>> Presumably, you will take care of the "TODO: This needs fixing
+>> properly and needs to be revisited" in mono_<version>.bb - I
+>> definitely do not want unstripped binaries on my distribution -
+>> presumably, this was needed for some debugging and is not meant to be
+>> checked into production.
+>
+> Ah yes. I'd forgotten about that. I shall habe to revisit why that was
+> erroring.
+>
+>> I could not understand the purpose of
+>> libgdiplus/files/libgdiplus-2.10/libgdiplus-2.10.1-libpng15.patch -
+>> could you please help me understand what prompted these seemingly non
+>> trivial changes.
+>>
+>
+> Yes there seems to be a problem building libGDI against libpng15. It
+> seems a known issue:
+>
+> https://github.com/mono/libgdiplus/pull/4
+>
+>> Everything else looks good.
+>>
+>
+> Good oh
+>
+>>> I'm coming up the curve on Git, as I migrate from mainly Subversion use.
+>>> Can I issue a "pull request" to you or some such?
+>>
+>> Yes, a pull request should work.
+>>
+>>>> Presumably, you want to release the recipes with the MIT and/or GPLv2 licenses.
+>>>>
+>>>> If the license is different for monotools-server or mono-xsp or
+>>>> gtk-sharp, you will likely have to submit a patch for README file too.
+>>>> Even otherwise, section 4 in README needs to be updated. If you have
+>>>> any tasks left - please add them to section 10.
+>>>>
+>>>
+>>> Will double check this. I am waiting for feedback from the
+>>> monotools-server people on their license as there's nothing explicit in
+>>> their source.
+>>
+>> Will wait for that. Might affect the README
+>>
+>
+> I'll give them another nudge once I've worked our what's going on with
+> the stripping, commit to my fork and then try to work out how to send
+> you a pull req.
+>
+>>>> The guidelines for the Yocto project are very similar to other FOSS
+>>>> projects including the Linux kernel. They are outlined here:
+>>>>
+>>>> https://wiki.yoctoproject.org/wiki/Contribution_Guidelines
+>>>>
+>>>> I used the following as a guide when I have submitted my patches in
+>>>> the past. This is for the Linux kernel, adapt as appropriate for
+>>>> meta-mono.
+>>>>
+>>>> http://linux.koolsolutions.com/2011/02/26/howto-create-and-submit-your-first-linux-kernel-patch/
+>>>>
+>>>> Please submit separate patches for each of the recipes (presumably
+>>>> there are no changes to the mono/libGDI+ recipes)
+>>>>
+>>>> Please add me to the "To:" recipient (I filter a lot of PATCH related
+>>>> traffic) - this should allow the emails to be caught by the filter
+>>>> instead of archiving.
+>>>>
+>>>> In case I do not respond within 72 hours, please email me with a
+>>>> gentle reminder :-)
+>>>>
+>>>> I have not had the opportunity to integrate patches just yet, please
+>>>> bear with me in case I screw up.
+>>>>
+>>>> Thanks again for contributing!
+>>>>
+>>>> PS #1: If you do not want to go thru the hassle - please email me the
+>>>> tar.gz as an attachment and I will check it in directly - a bad side
+>>>> effect of this would be that you will not get any "git" credit for
+>>>> this
+>>>>
+>>>> PS #2: I am still on vacation, but had a few hours - the 72 hour clock
+>>>> will start only after Monday :-)
+>>>>
+>>>> And finally, PS #3:
+>>>>
+>>>> http://marc.info/?l=linux-usb&m=135229956521385&w=2
+>>>> http://marc.info/?l=linux-usb&m=135119051922403&w=2
+>>>> http://marc.info/?l=linux-usb&m=134858043613838&w=2
+>>>> http://marc.info/?l=linux-usb&m=134791970203982&w=2
+>>>> ... many others ...
+>>>>
+>>>> Please refrain from top posting :-)
+>>>
+>>> Happy to try if that's the etiquette here - like this?
+>>>
+>>>> Autif
+>>>>
+>>>>>> If there is interest in migrating these recipes into meta-mono
+>>>>>> and  somebody will review them then I'll be pleased to make
+>>>>>> whatever changes are needed to comply with relevant
+>>>>>> Yocto policies.
+>>>>>
+>>>>> Absolutely!
+>>>>>
+>>>>> I am about to embark on a vacation returning to work on Jan 7.
+>>>>>
+>>>>> More then - Unfortunately, I will not have time to look at this today
+>>>>> or until Jan 7.
+>>>>>
+>>>>> Working hard - then playing hard :-)
+>>>>>
+>>>>> I will dig into then when I return.
+>>>>>
+>>>>> (Side note - we gave up on GTK# recipe and decided that Windows forms
+>>>>> are 'good enough' for us. This makes me glad :-)
+>>>>>
+>>>>>>
+>>>>>> Best Regards, (& Happy Holidays)
+>>>>>>
+>>>>>> Alex
+>>>>>>
+>>>>>>
+>>>
 >
 
+Merged into master.
 
