@@ -1,19 +1,32 @@
-Return-Path: <ioanax.grigoropol@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A2714E002AB
-	for <yocto@yoctoproject.org>; Tue, 15 Jan 2013 08:53:10 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 15 Jan 2013 08:53:10 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,473,1355126400"; d="scan'208";a="272347506"
-Received: from ideapad (HELO localhost.localdomain) ([10.237.105.62])
-	by orsmga002.jf.intel.com with ESMTP; 15 Jan 2013 08:53:06 -0800
-From: Ioana Grigoropol <ioanax.grigoropol@intel.com>
-To: yocto@yoctoproject.org
-Date: Tue, 15 Jan 2013 18:40:16 +0200
-Message-Id: <1358268016-7179-1-git-send-email-ioanax.grigoropol@intel.com>
-X-Mailer: git-send-email 1.7.9.5
-Subject: [PATCH] [Bug #3963][eclipse-poky][branch:denzil]
+Return-Path: <blloyd@familyhonor.net>
+Received: from mho-01-ewr.mailhop.org (mho-03-ewr.mailhop.org [204.13.248.66])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 05AAFE0047F
+	for <yocto@yoctoproject.org>; Tue, 15 Jan 2013 09:07:39 -0800 (PST)
+Received: from [98.142.68.251] (helo=lloydserv.familyhonor.net)
+	by mho-01-ewr.mailhop.org with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.72) (envelope-from <blloyd@familyhonor.net>)
+	id 1Tv9z5-0008Z8-SG; Tue, 15 Jan 2013 17:07:36 +0000
+Received: from [192.168.0.33] ([98.142.68.251]) (authenticated bits=0)
+	by lloydserv.familyhonor.net (8.14.5/8.14.5) with ESMTP id
+	r0FH7VkL017012
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-CAMELLIA256-SHA bits=256 verify=NO);
+	Tue, 15 Jan 2013 11:07:32 -0600
+X-Mail-Handler: Dyn Standard SMTP by Dyn
+X-Originating-IP: 98.142.68.251
+X-Report-Abuse-To: abuse@dyndns.com (see
+	http://www.dyndns.com/services/sendlabs/outbound_abuse.html for
+	abuse reporting information)
+X-MHO-User: U2FsdGVkX18xhQyiD/Utr2GcRPE+BbcmtHRGhAMhrNM=
+Message-ID: <1358269651.2479.5.camel@omclinuxballt.devnet.ordermatic.net>
+From: Brian Lloyd <blloyd@familyhonor.net>
+To: Patrick Turley <PatrickTurley@gamestop.com>
+Date: Tue, 15 Jan 2013 11:07:31 -0600
+In-Reply-To: <5BEFD653CA8A8D47AA194ED30AB5968C35CD91@GV1HQPEX03.babgsetc.pvt>
+References: <5BEFD653CA8A8D47AA194ED30AB5968C35CD91@GV1HQPEX03.babgsetc.pvt>
+X-Mailer: Evolution 3.4.4 (3.4.4-2.fc17) 
+Mime-Version: 1.0
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Build external module against Yocto kernel
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -25,187 +38,98 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 15 Jan 2013 16:53:10 -0000
+X-List-Received-Date: Tue, 15 Jan 2013 17:07:40 -0000
+Content-Type: multipart/alternative; boundary="=-45kpyOnTf0O9Zq+1ZAdF"
 
-- source oe-init-build-env each time a command is ran using yocto-bsp tool
+--=-45kpyOnTf0O9Zq+1ZAdF
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Ioana Grigoropol <ioanax.grigoropol@intel.com>
----
- .../sdk/remotetools/wizards/bsp/MainPage.java      |   86 ++++++++++++++++++--
- .../remotetools/wizards/bsp/PropertiesPage.java    |   16 ++--
- 2 files changed, 89 insertions(+), 13 deletions(-)
+Try this in work documentation and let us know how it helps or if there
+is something missing that would help more:
+http://www.yoctoproject.org/docs/hart/kernel-dev/kernel-dev.html#incorporating-out-of-tree-modules
 
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/wizards/bsp/MainPage.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/wizards/bsp/MainPage.java
-index aa1c124..f7dea27 100644
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/wizards/bsp/MainPage.java
-+++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/wizards/bsp/MainPage.java
-@@ -56,6 +56,7 @@ public class MainPage extends WizardPage {
- 	private static final String PROPERTIES_CMD_PREFIX = "yocto-bsp list ";
- 	private static final String PROPERTIES_CMD_SURFIX = " properties -o ";
- 	private static final String PROPERTIES_FILE = "/tmp/properties.json";
-+	static final String INIT_FILE = "/oe-init-build-env";
- 
- 	private Button btnMetadataLoc;
- 	private Button btnBspOutLoc;
-@@ -287,8 +288,18 @@ public class MainPage extends WizardPage {
- 		}
- 		
- 		bspElem.setBspName(bspname);
-+//		if (!textBspOutLoc.getText().isEmpty())
-+//			bspElem.setBspOutLoc(textBspOutLoc.getText());
- 		if (!textBspOutLoc.getText().isEmpty())
- 			bspElem.setBspOutLoc(textBspOutLoc.getText());
-+		else
-+			bspElem.setBspOutLoc("");
-+		if (!textBspOutLoc.getText().isEmpty())
-+			bspElem.setBuildLoc(textBspOutLoc.getText());
-+		else {
-+			bspElem.setBuildLoc(metadata_loc + "/build");
-+			checkBuildDir();
-+		}
- 		bspElem.setMetadataLoc(metadata_loc);
- 		bspElem.setKarch(karch);
- 		bspElem.setQarch(qarch);
-@@ -296,6 +307,53 @@ public class MainPage extends WizardPage {
- 		
- 		return true;
- 	}
-+	private Status createBuildDir(String buildLoc) {
-+		String metadataDir = textMetadataLoc.getText();
-+
-+		// if we do  not change the directory to metadata location the script will be looked into the directory indicated by user.dir system property
-+		// system.property usually points to the location from where eclipse was started
-+		String createBuildDirCmd = "cd " + metadataDir + ";source " + metadataDir + INIT_FILE + " " + buildLoc;
-+
-+		try {
-+			ProcessBuilder builder = new ProcessBuilder(new String[] {"sh", "-c", createBuildDirCmd});
-+			Process proc = builder.start();
-+			InputStream errorStream = proc.getErrorStream();
-+			InputStreamReader isr = new InputStreamReader(errorStream);
-+			BufferedReader br = new BufferedReader(isr);
-+			String line = null;
-+			String status = "";
-+			while ( (line = br.readLine()) != null) {
-+				status += line;
-+			}
-+
-+			if (proc.waitFor() != 0)
-+				return new Status(IStatus.ERROR, "not_used", 0, status, null);;
-+			return new Status(IStatus.OK, "not_used", 0, "", null);
-+		} catch (Exception e) {
-+			return  new Status(IStatus.ERROR, "not_used", 0, e.getMessage(), null);
-+		}
-+	}
-+	private Status checkBuildDir() {
-+
-+		String metadataLoc = textMetadataLoc.getText();
-+
-+		String buildLoc = metadataLoc + "/build";
-+		return createBuildDir(buildLoc);
-+	}
-+	private String getBuildDir() {
-+
-+		String metadataLoc = textMetadataLoc.getText();
-+		String buildLoc = textBspOutLoc.getText();
-+
-+		if (buildLoc.isEmpty()) {
-+			buildLoc = metadataLoc + "/build";
-+		} 
-+		File buildLocDir = new File(buildLoc);
-+		if (!buildLocDir.exists()) {
-+			createBuildDir(buildLoc);
-+		}
-+		return buildLoc;
-+	}
- 	
- 	private boolean createPropertiesFile() {
- 		String create_properties_cmd = bspElem.getMetadataLoc() + "/scripts/" + 
-@@ -319,14 +377,22 @@ public class MainPage extends WizardPage {
- 		}
- 		return true;
- 	}
--	
-+	private String getSourceCmd(){
-+		String metadataLoc = textMetadataLoc.getText();
-+		return "source " + metadataLoc + INIT_FILE + " " + getBuildDir() +" > temps; rm -rf temps;";
-+	}
- 	private ArrayList<String> getKArches() {
- 		ArrayList<String> karches = new ArrayList<String>();
--		
--		String get_karch_cmd = textMetadataLoc.getText() + "/scripts/" + KARCH_CMD;
-+		String metadataLoc = textMetadataLoc.getText();
-+
-+		String get_karch_cmd = getSourceCmd() + metadataLoc + "/scripts/" + KARCH_CMD;
- 		try {
--			Runtime rt = Runtime.getRuntime();
--			Process proc = rt.exec(get_karch_cmd);
-+//			Runtime rt = Runtime.getRuntime();
-+//			Process proc = rt.exec(get_karch_cmd);
-+			
-+			ProcessBuilder builder = new ProcessBuilder(new String[] {"sh", "-c", get_karch_cmd});
-+			Process proc = builder.start();
-+			
- 			InputStream stdin = proc.getInputStream();
- 			InputStreamReader isr = new InputStreamReader(stdin);
- 			BufferedReader br = new BufferedReader(isr);
-@@ -351,11 +417,15 @@ public class MainPage extends WizardPage {
- 
- 	private ArrayList<String> getQArches() {
- 		ArrayList<String> qarches = new ArrayList<String>();
-+		String metadataLoc = textMetadataLoc.getText();
- 		
--		String get_qarch_cmd = textMetadataLoc.getText() + "/scripts/" + QARCH_CMD;
-+		String get_qarch_cmd = getSourceCmd() + metadataLoc + "/scripts/" + QARCH_CMD;
- 		try {
--			Runtime rt = Runtime.getRuntime();
--			Process proc = rt.exec(get_qarch_cmd);
-+//			Runtime rt = Runtime.getRuntime();
-+//			Process proc = rt.exec(get_qarch_cmd);
-+			ProcessBuilder builder = new ProcessBuilder(new String[] {"sh", "-c", get_qarch_cmd});
-+			Process proc = builder.start();
-+			
- 			InputStream stdin = proc.getInputStream();
- 			InputStreamReader isr = new InputStreamReader(stdin);
- 			BufferedReader br = new BufferedReader(isr);
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/wizards/bsp/PropertiesPage.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/wizards/bsp/PropertiesPage.java
-index a5e220e..61bd2e5 100644
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/wizards/bsp/PropertiesPage.java
-+++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/wizards/bsp/PropertiesPage.java
-@@ -398,7 +398,7 @@ public class PropertiesPage extends WizardPage {
- 			 existingButton.setSelection(false);
- 			 kbCombo.removeAll();
- 			 
--			 kb_property = "\"" + kernel_choice + "\"."+NEW_KBRANCH_NAME;
-+			 kb_property = "\\\"" + kernel_choice + "\\\"."+NEW_KBRANCH_NAME;
- 			 String[] values = getValues(kb_property);
- 			 if (values != null)
- 				 kbCombo.setItems(values);
-@@ -435,14 +435,20 @@ public class PropertiesPage extends WizardPage {
- 		 canFlipToNextPage();
- 		 getWizard().getContainer().updateButtons();
- 	}
--	
-+	private String getSourceCmd(){
-+		String metadataLoc = bspElem.getMetadataLoc();
-+		return "source " + metadataLoc + MainPage.INIT_FILE  +" > temps; rm -rf temps;";
-+	}
- 	private String[] getValues(String property) {
- 		ArrayList<String> values = new ArrayList<String>();
- 		
--		String values_cmd = bspElem.getMetadataLoc() + "/scripts/" + VALUES_CMD_PREFIX + bspElem.getKarch() + VALUES_CMD_SURFIX + property;
-+		String values_cmd = getSourceCmd() + bspElem.getMetadataLoc() + "/scripts/" + VALUES_CMD_PREFIX + bspElem.getKarch() + VALUES_CMD_SURFIX + property;
- 		try {
--			Runtime rt = Runtime.getRuntime();
--			Process proc = rt.exec(values_cmd);
-+//			Runtime rt = Runtime.getRuntime();
-+//			Process proc = rt.exec(values_cmd);
-+			ProcessBuilder builder = new ProcessBuilder(new String[] {"sh", "-c", values_cmd});
-+			Process proc = builder.start();
-+			
- 			InputStream stdin = proc.getInputStream();
- 			InputStreamReader isr = new InputStreamReader(stdin);
- 			BufferedReader br = new BufferedReader(isr);
--- 
-1.7.9.5
+I just did the exact same thing and was happy to discover there is
+support in yocto for doing just this.
+
+Brian
+
+On Mon, 2013-01-14 at 23:27 +0000, Patrick Turley wrote:
+
+> I have to build a module from a third-party that has nothing to do with Yocto.
+> 
+> I want to build this module against the kernel Yocto is giving me.
+> 
+> The Make file for this module has a build command like this:
+> 
+>     make -C $(LINUX_DIR) M=`pwd` $(ENV) \
+>         EXTRA_CFLAGS="$(EXTRA_CFLAGS)" modules
+> 
+> Obviously, this command needs to connect with either the Linux source tree or something like a "kernel-headers" package.
+> 
+> I used the meta-toolchain-sdk recipe to produce an SDK, and I installed it. Unfortunately, I don't see a "kernel-header" equivalent in there.
+> 
+> This leads me to imagine I must point this command at some sub-tree within the Yocto output (probably under tmp/sysroots). And, if I want that tree available elsewhere, I have to package it up into a tarball and transport it.
+> 
+> Usually, Yocto is way ahead of me on these sorts of things, and there's already a graceful way to deal with this -- I just haven't figure it out yet.
+> 
+> What am I missing?
+> 
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
 
+
+--=-45kpyOnTf0O9Zq+1ZAdF
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 TRANSITIONAL//EN">
+<HTML>
+<HEAD>
+  <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=UTF-8">
+  <META NAME="GENERATOR" CONTENT="GtkHTML/4.4.4">
+</HEAD>
+<BODY>
+Try this in work documentation and let us know how it helps or if there is something missing that would help more:<BR>
+<A HREF="http://www.yoctoproject.org/docs/hart/kernel-dev/kernel-dev.html#incorporating-out-of-tree-modules">http://www.yoctoproject.org/docs/hart/kernel-dev/kernel-dev.html#incorporating-out-of-tree-modules</A><BR>
+<BR>
+I just did the exact same thing and was happy to discover there is support in yocto for doing just this.<BR>
+<BR>
+Brian<BR>
+<BR>
+On Mon, 2013-01-14 at 23:27 +0000, Patrick Turley wrote:
+<BLOCKQUOTE TYPE=CITE>
+<PRE>
+I have to build a module from a third-party that has nothing to do with Yocto.
+
+I want to build this module against the kernel Yocto is giving me.
+
+The Make file for this module has a build command like this:
+
+    make -C $(LINUX_DIR) M=`pwd` $(ENV) \
+        EXTRA_CFLAGS=&quot;$(EXTRA_CFLAGS)&quot; modules
+
+Obviously, this command needs to connect with either the Linux source tree or something like a &quot;kernel-headers&quot; package.
+
+I used the meta-toolchain-sdk recipe to produce an SDK, and I installed it. Unfortunately, I don't see a &quot;kernel-header&quot; equivalent in there.
+
+This leads me to imagine I must point this command at some sub-tree within the Yocto output (probably under tmp/sysroots). And, if I want that tree available elsewhere, I have to package it up into a tarball and transport it.
+
+Usually, Yocto is way ahead of me on these sorts of things, and there's already a graceful way to deal with this -- I just haven't figure it out yet.
+
+What am I missing?
+
+_______________________________________________
+yocto mailing list
+<A HREF="mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</A>
+<A HREF="https://lists.yoctoproject.org/listinfo/yocto">https://lists.yoctoproject.org/listinfo/yocto</A>
+</PRE>
+</BLOCKQUOTE>
+<BR>
+</BODY>
+</HTML>
+
+--=-45kpyOnTf0O9Zq+1ZAdF--
