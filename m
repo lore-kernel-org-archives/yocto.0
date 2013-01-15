@@ -1,28 +1,19 @@
-Return-Path: <thomas.besemer@gmail.com>
-Received: from mail-ie0-f175.google.com (mail-ie0-f175.google.com
-	[209.85.223.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ED2C1E002AB
-	for <yocto@yoctoproject.org>; Mon, 14 Jan 2013 16:26:12 -0800 (PST)
-Received: by mail-ie0-f175.google.com with SMTP id qd14so6091423ieb.6
-	for <yocto@yoctoproject.org>; Mon, 14 Jan 2013 16:26:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:x-received:date:message-id:subject:from:to
-	:content-type; bh=btV3XljbE48SV0E+Cgc+Ht+1k5fS/fzGlnm1IX6K8Dw=;
-	b=vh690IpvfiE2BB40U9uagJxiqp1LK2xCVKSMBxP5TS/i1i62nZibcxbfdQOL9QVUKu
-	Z7YDlhVCKSzeNRuc5OCJs00OMbgYpDngQ+JnIKQg/BwlLI/1mK3qsBBdIt5D4t7yJx2T
-	/P7YJUr05KJYLMp9v1nrDg4VD+G/2ckZTNr5YUEdTXK7Bbo3pN4vnzfpH2XPMWHE5stI
-	O09vzyetdMsvbyIGtEi9GUtqaiHQLuiehq6mkA81sUIZYMSn716XV/zS+SCJ+arPAKYF
-	cLAhRH6FxoHeq/zVT3CwOgY+8xpi9B4ZhDa4IZJ9CMKmpy4ECGZrZMyKky07UfdHjmRy
-	9QrQ==
-MIME-Version: 1.0
-X-Received: by 10.50.219.233 with SMTP id pr9mr301824igc.19.1358209572381;
-	Mon, 14 Jan 2013 16:26:12 -0800 (PST)
-Received: by 10.50.87.5 with HTTP; Mon, 14 Jan 2013 16:26:12 -0800 (PST)
-Date: Mon, 14 Jan 2013 16:26:12 -0800
-Message-ID: <CAO7m3AnhP6hxnNvQ_n5CP2Jgq=rG4SOVm5zizgZrdoeR=NQD8A@mail.gmail.com>
-From: Thomas Besemer <thomas.besemer@gmail.com>
+Return-Path: <ioanax.grigoropol@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CE658E01248
+	for <yocto@yoctoproject.org>; Tue, 15 Jan 2013 06:55:49 -0800 (PST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 15 Jan 2013 06:55:49 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.84,473,1355126400"; d="scan'208";a="277134854"
+Received: from ideapad (HELO localhost.localdomain) ([10.237.105.62])
+	by fmsmga002.fm.intel.com with ESMTP; 15 Jan 2013 06:55:48 -0800
+From: Ioana Grigoropol <ioanax.grigoropol@intel.com>
 To: yocto@yoctoproject.org
-Subject: librt within Yocto Recipe (beagle)
+Date: Tue, 15 Jan 2013 16:42:41 +0200
+Message-Id: <1358260969-4551-1-git-send-email-ioanax.grigoropol@intel.com>
+X-Mailer: git-send-email 1.7.9.5
+Subject: [PATCH v2 0/5][eclipse-poky][branch:windows-build]Multiple fixes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,39 +25,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 15 Jan 2013 00:26:13 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Tue, 15 Jan 2013 14:55:49 -0000
 
-I'm working with Beagleboard right now, stock top of tree from Yocto
-pull.  GCC 4.7.2 builds fine.
+- applies onto commit 27bb1f9e45f0a9408453f9e7e70cc333b97afe
 
-I am able to use tools built during this process to link with librt
-(-lrt) (as librt is in), but can't figure out how to do it from within
-a Yocto/OE recipe.  I created a recipe to build my application, but it
-complains that I don't have dependencies for librt (wants something).
-My recipe:
+Ioana Grigoropol (5):
+  Fix variables hoover & remote file system detection
+  Allow '-' in project names
+  Reinstate OEFileSystem, OEFile and Ignored Paths for Linux
+  Disable "Finish" when project location is invalid
+  Send output from bitbake environment parsing in the background
 
-DESCRIPTION = "GCPY Server application"
-SECTION = "gcsim"
-LICENSE = "MIT"
-LIC_FILES_CHKSUM =
-"file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
-PV = "1_0"
+ plugins/org.yocto.bc.ui/META-INF/MANIFEST.MF       |    2 +-
+ plugins/org.yocto.bc.ui/plugin.xml                 |    3 +-
+ .../src/org/yocto/bc/bitbake/BBSession.java        |   91 ++++++++-----
+ .../org/yocto/bc/bitbake/ProjectInfoHelper.java    |   24 ++--
+ .../src/org/yocto/bc/bitbake/ShellSession.java     |   14 +-
+ .../org/yocto/bc/remote/utils/RemoteHelper.java    |   10 +-
+ .../org/yocto/bc/remote/utils/RemoteMachine.java   |   25 ++--
+ .../remote/utils/YoctoHostShellProcessAdapter.java |   14 +-
+ .../src/org/yocto/bc/ui/Activator.java             |   45 ++++--
+ .../org/yocto/bc/ui/BCResourceChangeListener.java  |    1 -
+ .../bc/ui/editors/bitbake/BBVariableTextHover.java |   12 +-
+ .../src/org/yocto/bc/ui/filesystem/OEFile.java     |  143 ++++++--------------
+ .../org/yocto/bc/ui/filesystem/OEFileSystem.java   |   52 ++++---
+ .../bc/ui/filesystem/OEFileSystemContributor.java  |    7 +-
+ .../org/yocto/bc/ui/filesystem/OEIgnoreFile.java   |   31 ++++-
+ .../src/org/yocto/bc/ui/model/ProjectInfo.java     |   21 ++-
+ .../src/org/yocto/bc/ui/model/YoctoHostFile.java   |  110 ++++++++++++---
+ .../yocto/bc/ui/wizards/FiniteStateWizardPage.java |   54 ++++----
+ .../bc/ui/wizards/NewBitBakeFileRecipeWizard.java  |   58 ++++----
+ .../ui/wizards/NewBitBakeFileRecipeWizardPage.java |    5 +-
+ .../yocto/bc/ui/wizards/install/InstallWizard.java |   63 +++++----
+ .../yocto/bc/ui/wizards/install/OptionsPage.java   |   11 +-
+ .../BBConfigurationInitializeOperation.java        |    2 +
+ .../newproject/CreateBBCProjectOperation.java      |   23 ++--
+ 24 files changed, 494 insertions(+), 327 deletions(-)
 
-SRC_URI = "file://gcpy.tar"
+-- 
+1.7.9.5
 
-S = "${WORKDIR}"
-
-do_install() {
-	install -d ${D}${base_libdir}
-	install -m 0755 libgcpy_gc6016.so ${D}${base_libdir}
-	install -d ${D}${bindir}
-	install -m 0755 gcpy_gc6016_server ${D}${bindir}
-}
-
-There is a Makefile within tarball, and when I use the Yocto generated
-tools outside of Yocto, builds fine.  Thus, I know librt is present
-(and I see it).
-
-What do I need in recipe to make this work?
 
