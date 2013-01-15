@@ -1,22 +1,28 @@
-Return-Path: <bds@bsmucker.eu.org>
-Received: from mxout-08.mxes.net (mxout-08.mxes.net [216.86.168.183])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 07E99E002AB
-	for <yocto@yoctoproject.org>; Tue, 15 Jan 2013 13:27:00 -0800 (PST)
-Received: from [192.168.0.42] (unknown [50.37.82.244])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by smtp.mxes.net (Postfix) with ESMTPSA id 1BE5F509BB
-	for <yocto@yoctoproject.org>; Tue, 15 Jan 2013 16:26:59 -0500 (EST)
-Message-ID: <50F5C999.2020307@bsmucker.eu.org>
-Date: Tue, 15 Jan 2013 13:26:49 -0800
-From: Brian Smucker <bds@bsmucker.eu.org>
-User-Agent: Mozilla/5.0 (Windows NT 5.1;
-	rv:17.0) Gecko/20130107 Thunderbird/17.0.2
+Return-Path: <tigrux@gmail.com>
+Received: from mail-ob0-f174.google.com (mail-ob0-f174.google.com
+	[209.85.214.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 60693E002AB
+	for <yocto@yoctoproject.org>; Tue, 15 Jan 2013 14:46:50 -0800 (PST)
+Received: by mail-ob0-f174.google.com with SMTP id ta14so731831obb.33
+	for <yocto@yoctoproject.org>; Tue, 15 Jan 2013 14:46:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=CT8Iz0FKvPaoKPcRWvOxsCaZByhZu0mnTXrTkuK4V5g=;
+	b=E8AKp/8rkva/v0T4AcmwodZggwZlovvqq1OA1dyLLUoPVfnp8ii569TdtpFSHntLXd
+	XqSqP/4m2TMdbV/qL+1AW34ZSXAyzJOoqzzo/EwyCqz8neiR3sJyj5wDlFHym3sJZl7u
+	ImJHnMckIQcajzAqVjNE/Cg6Z3OqrdKCAmvYHlsmPlnUOF9fCNbEbgFmhfg8Eay9hUIr
+	EUyGsLIB7N+9M//iQQXXZ5l/32JQN9wpZ58sP0Kn+I6X0d1UnPUkXTj0ibDZzbzNf2r8
+	0PutShVsIW+uzZMLQgiucKnUlG5SuaaiAfG0t+7+/kIyN8LaC/aTlJSdPJuPBoIUAiiJ
+	Mwfg==
 MIME-Version: 1.0
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-References: <7E680CB2A76BB8438D08CF13C09FC53A5989BCAB@ORSMSX101.amr.corp.intel.com>
-In-Reply-To: <7E680CB2A76BB8438D08CF13C09FC53A5989BCAB@ORSMSX101.amr.corp.intel.com>
-Subject: Busybox still old version: Still looking for a clear understanding of an old mystery.
+Received: by 10.182.52.105 with SMTP id s9mr66257106obo.25.1358290009850; Tue,
+	15 Jan 2013 14:46:49 -0800 (PST)
+Received: by 10.60.14.73 with HTTP; Tue, 15 Jan 2013 14:46:49 -0800 (PST)
+Date: Tue, 15 Jan 2013 16:46:49 -0600
+Message-ID: <CAJX_UagqsBF7u-J8EEUAV+93R_=SbXTYFqJd5enau1NYM3_7GQ@mail.gmail.com>
+From: Sandino Flores Moreno <tigrux@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Details on automated Yocto validation?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,51 +34,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 15 Jan 2013 21:27:01 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 15 Jan 2013 22:46:50 -0000
+Content-Type: multipart/alternative; boundary=14dae93994298a017604d35b898d
 
-Hello All,
+--14dae93994298a017604d35b898d
+Content-Type: text/plain; charset=ISO-8859-1
 
-I'm a relative newbie to yocto/oe, but have got a ways down the road to 
-understanding, but the gaps in my understanding cause me great grief at 
-times.
+Hello.
+I'm familiar to bitbake and poky, but I'm new to Yocto.
 
-I think this probably is a simple question, but somehow I'm doing 
-something wrong.
+Where may I find details about Yocto Validation?
+Especially in what regards to automated tests.
 
-I recompile busybox with a new config: bitbake -c menuconfig busybox
-I make busybox: bitbake busybox
-bitbake gets compiled.
+I came up with this topic because we are using it to build a custom linux
+distribution, rpm based, and now it is required to implement a proper
+validation to ensure there are no regressions, that packages are sane, etc.
 
-Then I do a bitbake core-image-minimal.  It does the do_rootfs action 
-and makes a new image.
-But the busybox is not the newly-compiled one, it is old.
-I expect the new version.
-Maybe my expectations are wrong.  But I've struggled with this and 
-similar scenarios time and time again, sometimes hitting on a 
-combination of things that work or by selectively deleting a directory 
-or so or by bitbake -c cleansstate -f on one target or another.
+As it normally happens, there may be an effort that someone else started
+already.
 
-But it's always been kind of a mystery to me how to recompile a 
-particular target, which then succeeds, and subsequently make sure that 
-target is included in the image target (core-image-minimal). I've 
-succeeded in a hit-or-miss way at times, but I would love to know a 
-clear series of steps that will work definitively.
+So far I have only found:
+https://wiki.yoctoproject.org/wiki/Yocto_1.4_Schedule
 
-I know I can delete the entire tmp directory, but that seems far too 
-extreme, not to mention slow to recover from.
+But it's, as the name states, it is very general.
+Something more specific would be useful.
 
-Can someone help me?
+Thanks in advance for any info.
 
-I'm using Danny.
+--14dae93994298a017604d35b898d
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-Thanks,
-Brian
+<div dir=3D"ltr">Hello.<div style>I&#39;m familiar to bitbake and poky, but=
+ I&#39;m new to Yocto.</div><div style><br></div><div style>Where may I fin=
+d details about Yocto Validation?</div><div style>Especially in what regard=
+s to automated tests.</div>
+<div style><br></div><div style>I came up with this topic because we are us=
+ing it to build a custom linux distribution, rpm based, and now it is requi=
+red to implement a proper validation to ensure there are no regressions, th=
+at packages are sane, etc.</div>
+<div style><br></div><div style>As it normally happens, there may be an eff=
+ort that someone else started already.</div><div style><br></div><div style=
+>So far I have only found:</div><div style><a href=3D"https://wiki.yoctopro=
+ject.org/wiki/Yocto_1.4_Schedule">https://wiki.yoctoproject.org/wiki/Yocto_=
+1.4_Schedule</a><br>
+</div><div style><br></div><div style>But it&#39;s, as the name states, it =
+is very general.</div><div style>Something more specific would be useful.</=
+div><div style><br></div><div style>Thanks in advance for any info.</div>
+<div style><br></div><div style><br></div><div style><br></div></div>
 
-
-
-
-
-
-
+--14dae93994298a017604d35b898d--
