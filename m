@@ -1,19 +1,24 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 32A6EE01490
-	for <yocto@yoctoproject.org>; Wed, 16 Jan 2013 06:11:01 -0800 (PST)
-Received: from cpebcc81008dd2c-cmbcc81008dd29.cpe.net.cable.rogers.com
-	([99.253.156.71]:57582 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1TvThk-0005Gs-5h; Wed, 16 Jan 2013 09:11:00 -0500
-Date: Wed, 16 Jan 2013 09:10:39 -0500 (EST)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
-In-Reply-To: <50F6B2EF.9030807@dynamicdevices.co.uk>
-Message-ID: <alpine.DEB.2.02.1301160907180.20985@oneiric>
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6674EE01490
+	for <yocto@yoctoproject.org>; Wed, 16 Jan 2013 06:11:51 -0800 (PST)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id 02552F81243; Wed, 16 Jan 2013 07:11:50 -0700 (MST)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=ham version=3.3.2
+Received: from [192.168.1.114] (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id 2BAF4F8121F;
+	Wed, 16 Jan 2013 07:11:50 -0700 (MST)
+Message-ID: <50F6B52E.5050006@mlbassoc.com>
+Date: Wed, 16 Jan 2013 07:11:58 -0700
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130106 Thunderbird/17.0.2
+MIME-Version: 1.0
+To: yocto@yoctoproject.org
 References: <50E31E11.2090708@comcast.net>
 	<50E73A16.4070303@dynamicdevices.co.uk>
 	<50EA5C2E.9060701@comcast.net>
@@ -25,18 +30,7 @@ References: <50E31E11.2090708@comcast.net>
 	<50F6AF06.3020908@dynamicdevices.co.uk>
 	<alpine.DEB.2.02.1301160857110.20863@oneiric>
 	<50F6B2EF.9030807@dynamicdevices.co.uk>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
-MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: Yocto Project <yocto@yoctoproject.org>, Ed Nelson <enelson1000@comcast.net>
+In-Reply-To: <50F6B2EF.9030807@dynamicdevices.co.uk>
 Subject: Re: Raspberry Pi do_fetch failure
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -49,96 +43,72 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 16 Jan 2013 14:11:01 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Wed, 16 Jan 2013 14:11:51 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Wed, 16 Jan 2013, Alex J Lennon wrote:
-
+On 2013-01-16 07:02, Alex J Lennon wrote:
 > On 16/01/2013 13:59, Robert P. J. Day wrote:
-> > On Wed, 16 Jan 2013, Alex J Lennon wrote:
-> >
-> > > On 16/01/2013 05:45, Ed Nelson wrote:
-> > > > I finally got a response back from github ....
-> > > >
-> > > > Hi Ed,
-> > > >
-> > > > We tracked the issue down to an internal network timeout (it only
-> > > > happens
-> > > > when `--quiet` is used, because git is silent on the network while
-> > > > preparing
-> > > > the clone in that case). We've bumped up the limit, and you should be
-> > > > able
-> > > > to clone now. Please let us know if you have any more trouble.
-> > > >
-> > > > ....
-> > > >
-> > > > I have not tried it yet but hopefully they fixed the problem
-> > > I've just tried it and it is still failing -
-> > >
-> > > WARNING: Failed to fetch URL
-> > > git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.2.27,
-> > > attempting MIRRORS if available
-> > > ERROR: Fetcher failure: Fetch command failed with exit code 128, output:
-> > > Cloning into bare repository
-> > > '/data_drive/RPiMonoSmoke/yoctoProject/raspberryPiBuild/downloads/git2/github.com.raspberrypi.linux.git'...
-> > >
-> > > fatal: read error: Connection timed out
-> > > fatal: early EOF
-> > > fatal: index-pack failed
-> > >
-> > > ERROR: Function failed: Fetcher failure for URL:
-> > > 'git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.2.27'.
-> > > Unable to fetch URL from any source.
-> >    github has been particularly annoying with respect to this lately.
-> > my workaround is to simply clone what you need manually, then tweak
-> > the recipe thusly to point at your local repo:
-> >
-> > SRCREV = "10182a3bc434b27740f81c2b836a1af943060241"
-> > SRC_URI =
-> > "git:///home/rpjday/oe/dist/t/linux;protocol=git;branch=rpi-3.2.27 \
-> >            "
-> >
-> >    yes, it's hacky, but it lets me get back to work.  sure be nice when
-> > this silliness is resolved.
-> >
-> > rday
-> >
+>> On Wed, 16 Jan 2013, Alex J Lennon wrote:
+>>
+>>> On 16/01/2013 05:45, Ed Nelson wrote:
+>>>> I finally got a response back from github ....
+>>>>
+>>>> Hi Ed,
+>>>>
+>>>> We tracked the issue down to an internal network timeout (it only happens
+>>>> when `--quiet` is used, because git is silent on the network while preparing
+>>>> the clone in that case). We've bumped up the limit, and you should be able
+>>>> to clone now. Please let us know if you have any more trouble.
+>>>>
+>>>> ....
+>>>>
+>>>> I have not tried it yet but hopefully they fixed the problem
+>>> I've just tried it and it is still failing -
+>>>
+>>> WARNING: Failed to fetch URL
+>>> git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.2.27,
+>>> attempting MIRRORS if available
+>>> ERROR: Fetcher failure: Fetch command failed with exit code 128, output:
+>>> Cloning into bare repository
+>>> '/data_drive/RPiMonoSmoke/yoctoProject/raspberryPiBuild/downloads/git2/github.com.raspberrypi.linux.git'...
+>>>
+>>> fatal: read error: Connection timed out
+>>> fatal: early EOF
+>>> fatal: index-pack failed
+>>>
+>>> ERROR: Function failed: Fetcher failure for URL:
+>>> 'git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.2.27'.
+>>> Unable to fetch URL from any source.
+>>    github has been particularly annoying with respect to this lately.
+>> my workaround is to simply clone what you need manually, then tweak
+>> the recipe thusly to point at your local repo:
+>>
+>> SRCREV = "10182a3bc434b27740f81c2b836a1af943060241"
+>> SRC_URI =
+>> "git:///home/rpjday/oe/dist/t/linux;protocol=git;branch=rpi-3.2.27 \
+>>            "
+>>
+>>    yes, it's hacky, but it lets me get back to work.  sure be nice when
+>> this silliness is resolved.
+>>
+>> rday
+>>
 >
-> Thanks Robert. I've got an archive I can use but wanted to see if it was
-> working yet.
+> Thanks Robert. I've got an archive I can use but wanted to see if it was working yet.
+>
+> I think the fetcher archives up the retrieved git repo into a .tar.gz doesn't it in the downloads
+> directory? Would  it not help if those tarballs were mirrored so the fetcher could fall back on
+> the mirror?
 
-  wait a minute, what i wrote above can't be right, i have a wiki page
-for this:
+Yes, that would work (it's how I use it).  However, it's not tiny :-)  Here's what the
+tarball looked like last I touched this:
 
-http://www.crashcourse.ca/wiki/index.php/Building_basic_RPi_image
-
-which shows my recipe mods to look like:
-
--SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.2.27 \
-+SRC_URI = "git:///home/rpjday/oe/dist/t/linux;protocol=file;branch=rpi-3.2.27 \
-
-not sure where i got the earlier stuff i posted.
-
-> I think the fetcher archives up the retrieved git repo into a
-> .tar.gz doesn't it in the downloads directory? Would it not help if
-> those tarballs were mirrored so the fetcher could fall back on the
-> mirror?
-
-  my setup always creates tarballs from whatever is fetched so, once
-that's done, i always end up using local tarballs.  i have a wiki page
-which explains how to create your own local mirror of tarballs:
-
-http://www.crashcourse.ca/wiki/index.php/OE_Creating_your_%22own_mirror%22
-
-rday
+-rw-rw-r-- 1 996 996 555905690 Sep  5 10:29 /work/misc/Poky/sources/git2_github.com.raspberrypi.linux.git.tar.gz
 
 -- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
