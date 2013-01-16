@@ -1,24 +1,35 @@
-Return-Path: <bds@bsmucker.eu.org>
-Received: from mxout-08.mxes.net (mxout-08.mxes.net [216.86.168.183])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B8428E01473
-	for <yocto@yoctoproject.org>; Tue, 15 Jan 2013 15:57:33 -0800 (PST)
-Received: from [192.168.0.42] (unknown [50.37.82.244])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by smtp.mxes.net (Postfix) with ESMTPSA id 228BC509B6
-	for <yocto@yoctoproject.org>; Tue, 15 Jan 2013 18:57:32 -0500 (EST)
-Message-ID: <50F5ECE7.2090503@bsmucker.eu.org>
-Date: Tue, 15 Jan 2013 15:57:27 -0800
-From: Brian Smucker <bds@bsmucker.eu.org>
-User-Agent: Mozilla/5.0 (Windows NT 5.1;
-	rv:17.0) Gecko/20130107 Thunderbird/17.0.2
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from orsmga101.jf.intel.com (mga06.intel.com [134.134.136.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3F5BCE01473
+	for <yocto@yoctoproject.org>; Tue, 15 Jan 2013 17:09:34 -0800 (PST)
+Received: from mail-vb0-f72.google.com ([209.85.212.72])
+	by mga02.intel.com with ESMTP/TLS/RC4-SHA; 15 Jan 2013 17:09:23 -0800
+Received: by mail-vb0-f72.google.com with SMTP id ft2so573816vbb.11
+	for <yocto@yoctoproject.org>; Tue, 15 Jan 2013 17:09:22 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=x-received:mime-version:date:message-id:subject:from:to:cc
+	:content-type:x-gm-message-state;
+	bh=docTrKiokxc60ACGWCWY3F4FlbiIYr2RMloDcZPgRaI=;
+	b=Odn538ehbZODxAMuxMQjo4UI34kux5EEAHoxNnujB987jdnc8KFIelRDQihHV0oYi2
+	D8J7SUCi6TtHjjPQn3ZTPahPGd7jBjEs/MuUki8dCW2i4r7/T0PJe01mBibRNg2mlcMx
+	zqxXesYGoWmdiOHwINvbuNuZGB76Wnr4GQ5MBCeGbemd/p1ud94BeYhIjp50lhkgRsKN
+	MojBy3mcr0M8OlyN4av2wa+0CwOEQJVM+0snFGc3Qp6QvEXjIMany3ma+iZvDj1Cnb5q
+	ksaQ8UZaf3sglhlNkGmglxsf1N7ewlCjQxK3eWrisX8zfhg3NghCL7UFpKZ4MKa74b4k
+	0GdQ==
+X-Received: by 10.229.69.32 with SMTP id x32mr19038233qci.129.1358298562269;
+	Tue, 15 Jan 2013 17:09:22 -0800 (PST)
 MIME-Version: 1.0
+Received: by 10.229.69.32 with SMTP id x32mr19038227qci.129.1358298562117;
+	Tue, 15 Jan 2013 17:09:22 -0800 (PST)
+Received: by 10.49.128.234 with HTTP; Tue, 15 Jan 2013 17:09:21 -0800 (PST)
+Date: Tue, 15 Jan 2013 17:09:21 -0800
+Message-ID: <CAPhnLPDoOkB=-mzUQ55cdT998oqGev+hkOiLV9vEGNUqcSXj=g@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
 To: yocto@yoctoproject.org
-References: <7E680CB2A76BB8438D08CF13C09FC53A5989BCAB@ORSMSX101.amr.corp.intel.com>
-	<50F5C999.2020307@bsmucker.eu.org>
-	<CA+gsK-o81MjUVKjGBbbat0EGOm_Z+2ow+1rMvZ8Jdik9g++3JA@mail.gmail.com>
-In-Reply-To: <CA+gsK-o81MjUVKjGBbbat0EGOm_Z+2ow+1rMvZ8Jdik9g++3JA@mail.gmail.com>
-Subject: Re: Busybox still old version: Still looking for a clear understanding of an old mystery.
+X-Gm-Message-State: ALoCoQlh1wqAKwwufKbf/0mJo4oa8MlZYHqsdj/y0wYpMLj51/MV5Z/6vUYyr5M0PVQ3xPVnkWkodYQhbnS6DLvSZAOTUlEJEyTy6rjiigesStaXUOELNWy33c+TIPcNyYa8iLc1p24EGh9UJKspI+RA2OG20uH0LA==
+Cc: McClintock Matthew-B29882 <B29882@freescale.com>
+Subject: Weekly build availability.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,49 +41,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 15 Jan 2013 23:57:33 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 16 Jan 2013 01:09:34 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-Hi Rudolf,
+The weekly build is available at:
 
-On 1/15/2013 3:28 PM, Rudolf Streif wrote:
->
-> Brian,
->
-> What are you exactly referring to as "new version"? The package 
-> version that bitbake builds is defined by the recipe, through the 
-> version designation in the recipe's file name or through explicitly 
-> setting PV.
->
-> I think what you are trying to do is to modify the busybox 
-> configuration and then recompile and package. Bitbake will not 
-> automatically recompile after menuconfig. Menuconfig does not 
-> invslidate the shared state cache. Try this:
->
-> bitbake -c menuconfig busybox
-> bitbake -c -f compile busybox
-> bitbake busybox
->
->
-So I have done the above.  That is not the question.  Busybox compiles 
-fine and the new unstripped busybox is in the 
-.../yocto/tmp/work/armv4t-poky-linux-gnueabi/busybox-1.20.2-r2/busybox-1.20.2/
+http://autobuilder.yoctoproject.org/pub/nightly/20130115-2
 
-My question is that after compiling busybox, I do
+Known issues:
 
-bitbake -c cleansstate core-image-minimal
-bitbake core-image-minimal
+- The eclipse plugin needs to be built alone and moved manually. I'm
+doing this right now. This is due to moving the eclipse builder to a
+slightly overloaded machine. I'll be moving it back once I have idle
+time on the infrastructure.
+- p1022ds failed due to a libxml2_2.8.0 failure. it is also throwing
+warnings about missing patches.
+- nightly-fsl-arm core-image-x11 failed. Multiple providers for
+virtual/libgl and compile issues for beecrypt and avahi
+- nightly-ppc failed on oprofile
 
-expecting that the core image generated will contain the new busybox.  
-It does not, it contains a busybox copy that was compiled days ago, not 
-the custom one I just compiled.
 
-Why is this?  How can I force the bitbake to include the newly-compiled 
-busybox into my minimal image?
-
-Thanks,
-
-Brian
-
+-b
 
