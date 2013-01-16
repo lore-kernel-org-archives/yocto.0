@@ -1,35 +1,37 @@
-Return-Path: <jon.szymaniak@gmail.com>
-Received: from mail-ie0-f181.google.com (mail-ie0-f181.google.com
-	[209.85.223.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 26B2BE00527
-	for <yocto@yoctoproject.org>; Wed, 16 Jan 2013 10:49:46 -0800 (PST)
-Received: by mail-ie0-f181.google.com with SMTP id 16so3190584iea.12
-	for <yocto@yoctoproject.org>; Wed, 16 Jan 2013 10:49:45 -0800 (PST)
+Return-Path: <autif.mlist@gmail.com>
+Received: from mail-lb0-f169.google.com (mail-lb0-f169.google.com
+	[209.85.217.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8621DE00527
+	for <yocto@yoctoproject.org>; Wed, 16 Jan 2013 10:56:00 -0800 (PST)
+Received: by mail-lb0-f169.google.com with SMTP id m4so29774lbo.14
+	for <yocto@yoctoproject.org>; Wed, 16 Jan 2013 10:55:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=x-received:mime-version:in-reply-to:references:from:date:message-id
-	:subject:to:content-type;
-	bh=9f7dwoFfzlNA5cODeGSZ77Lpz5U7Qa1LG1CZV4zZhl0=;
-	b=b3u0jlQJWyTI3gfTlhVanrBPp7Ati5qDfkPTUJxevLdXGCyftoeh0+1YE6aJkAJpx2
-	a3QHIr8nowe2PMeZmqkGTd0jKHrTWCwAkuB3RRXFPdM2kLQ7kKsKLQslcJ4ogd4wSFxP
-	jSsK4TT75X7EAbh1XUc6j3NbViPFAka0VvIRFdeLZaqdUsw+YYfgfAcYW4BT07tp5FPd
-	UhGVKDNYXGlHsxj/7nxarDeH2Os/8rqKvIHIt/41n+xaTyKp3LP5PYukD5P6SkQlyTAU
-	tzE+IEg9NxYCYRVawbz0gkLGoonKNWDFdMzopctzxFY2//iQHLdBGjdMpk5s+2trhvbC
-	oMZg==
-X-Received: by 10.50.197.161 with SMTP id iv1mr5657720igc.53.1358362185619;
-	Wed, 16 Jan 2013 10:49:45 -0800 (PST)
+	h=mime-version:x-received:in-reply-to:references:date:message-id
+	:subject:from:to:cc:content-type;
+	bh=l7yKwtQSTx8jB76IHRQL3uNMaUUk0btMdJB0xDoZzV0=;
+	b=QZijp5HhI7ToBP4v7GXVz+bFfx9M7SQV43uqId6lA4kVajBd+xWR8MoAKIW+GYbUT1
+	ES4OZOFQ3Rbg0SldBL4Xz9y6jtmgHmTHq96vOtvOj26smnas3ZmIh70KcgRAhMiW8XSR
+	kPCNcN4w3StrErawI+RBVXqJBGc8JVmAIlPfkx6ks3YkEb2HoQjtZI/TM5oVuSs7iEoO
+	PVucHSzrkRIym8rEwUfDqVmIA7uXSIfhaCZskRsgLh1Uc4SMhuRL2iITHwaBg7FVfhHd
+	0YICFvyksK7od4ekVyKo52zaF36ZNmqN9rUh6T1enLr/Os1Ub+o/xBqBi9W0RiniMNNC
+	4EYA==
 MIME-Version: 1.0
-Received: by 10.64.12.129 with HTTP; Wed, 16 Jan 2013 10:49:25 -0800 (PST)
-In-Reply-To: <19691651.cLZhLvd0Ni@helios>
-References: <CANge7vUAQxfbBrkSwQd=0sxgUN71Gaveub07gPX9oYLsj9A3tQ@mail.gmail.com>
-	<CANge7vWDaQj2+eYJpRnbhQ0NQ_V8A4zE0sBhXTnvGQDCC5MTHA@mail.gmail.com>
-	<CA+Z6RkXWTm-SPUPwW1Xrd0E_HXrLKd8Ah57wfkH5OspoG7o2Qg@mail.gmail.com>
-	<19691651.cLZhLvd0Ni@helios>
-From: Jon Szymaniak <jon.szymaniak@gmail.com>
-Date: Wed, 16 Jan 2013 13:49:25 -0500
-Message-ID: <CANge7vWH1tCjHsJOSa=JP86a3+APQk93ds1UwuYeUGzy4F02WQ@mail.gmail.com>
-To: yocto@yoctoproject.org, 
-	"navani.srivastava@lnties.com" <navani.srivastava@lnties.com>
-Subject: Re: Remove unwanted package from Qt
+X-Received: by 10.112.9.104 with SMTP id y8mr1080305lba.89.1358362559054; Wed,
+	16 Jan 2013 10:55:59 -0800 (PST)
+Received: by 10.112.61.74 with HTTP; Wed, 16 Jan 2013 10:55:58 -0800 (PST)
+In-Reply-To: <50F6C5F0.1050605@bsmucker.eu.org>
+References: <7E680CB2A76BB8438D08CF13C09FC53A5989BCAB@ORSMSX101.amr.corp.intel.com>
+	<50F5C999.2020307@bsmucker.eu.org>
+	<CA+gsK-o81MjUVKjGBbbat0EGOm_Z+2ow+1rMvZ8Jdik9g++3JA@mail.gmail.com>
+	<50F5ECE7.2090503@bsmucker.eu.org>
+	<CADzUK1+AqHq0PfVa6GwyefBSAjP=iaB=NAKLB9LwSkXT9RHhEQ@mail.gmail.com>
+	<50F6C5F0.1050605@bsmucker.eu.org>
+Date: Wed, 16 Jan 2013 13:55:58 -0500
+Message-ID: <CADzUK1J8JW716dZJ4xic1m05h6g7yZV_=TWfovWjvsBdY6PBKA@mail.gmail.com>
+From: Autif Khan <autif.mlist@gmail.com>
+To: Brian Smucker <bds@bsmucker.eu.org>
+Cc: yocto@yoctoproject.org
+Subject: Re: Busybox still old version: Still looking for a clear understanding of an old mystery.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,109 +43,113 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 16 Jan 2013 18:49:46 -0000
+X-List-Received-Date: Wed, 16 Jan 2013 18:56:01 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 
-On Wed, Jan 16, 2013 at 1:14 PM, Paul Eggleton
-<paul.eggleton@linux.intel.com> wrote:
+On Wed, Jan 16, 2013 at 10:23 AM, Brian Smucker <bds@bsmucker.eu.org> wrote:
+> Hi,
 >
-> On Wednesday 16 January 2013 23:26:20 Navani Srivastava wrote:
-> > On Thu, Dec 27, 2012 at 11:08 PM, Jon Szymaniak
-> <jon.szymaniak@gmail.com>wrote:
-> > > >> I am compiling Qt-4.8.0 with poky-denzil-7.0 for arm1136
-> > > >> architecture.
-> > > >>
-> > > >> At the time of integrating qt-embedded with rootfs, I am getting
-> > > >> qtopia
-> > > >> directory in usr/share path of rootfs.
-> > > >>
-> > > >> I tried removing qtopia directory through qt recipe but ended in
-> > > >> compilation error. Please suggest any idea to remove qtopia from
-> > > >> share
-> > > >> directory.
-> > > >
-> > > > I ran into this as well after using a bbappend to disable a number
-> > > > of
-> > > > Qt features, including the building of demos that get staged in the
-> > > > aforementioned path.  In my case, that qtopia directory (and any
-> > > > subdirectories) wound up either being empty or containing files that
-> > > > were unnecessary for my build.
-> > > >
-> > > > My quick and dirty solution was to just to add a install_append()
-> > > > containing a 'rm -rf ${D}${datadir}/qtopia' in my bbappend. (Be sure
-> > > > you don't have anything important in there!) I'd be curious to hear
-> > > > if
-> > > > there's a better approach to this as well...
-> > >
-> > > Oops...just wanted to note the typo in my above response -- I'm not at
-> > > a machine where I have access to my recipes.
-> > >
-> > > That should be a do_install_append(), not install_append().  I'd also
-> > > double check the qtopia path, as I wrote that from memory, which may
-> > > not be reliable. ;)
-> >
-> > I tried the same but again ended up with error. As of now i am removing
-> > all
-> > unwanted things from rootfs by making changes in image_types.bbclass. I
-> > am
-> > sure this is not the correct way, any ideas are appreciated..
+> The version of busybox is the same.  I've just temporarily done a bitbake -c
+> menuconfig to change one of the options, recompiled using the custom config
+> that's generated, and now I want to force its inclusion into
+> core-image-minimal.
+
+I see. I think that is a bit unorthodox. (Mostly because I have never
+tried it. Is it even supposed to work like you describe? I suppose
+not. But that aside ...)
+
+If I were doing this, I would create a busybox bbappend in my meta
+layer and override the danny stock do_prepare_config() (in
+meta/recipes-core/busybox/busybox.inc)
+
+ 96 do_prepare_config () {
+ 97         sed -e 's#@DATADIR@#${datadir}#g' \
+ 98                 < ${WORKDIR}/defconfig > ${S}/.config
+ 99         sed -i -e '/CONFIG_STATIC/d' .config
+100         echo "# CONFIG_STATIC is not set" >> .config
+101         for i in 'CROSS' 'DISTRO FEATURES'; do echo "### $i"; done >> \
+102                 ${S}/.config
+103         sed -i -e '${configmangle}' ${S}/.config
+104         if test ${DO_IPv4} -eq 0 && test ${DO_IPv6} -eq 0; then
+105           # disable networking applets
+106           mv ${S}/.config ${S}/.config.oe-tmp
+107           awk 'BEGIN{net=0}
+108           /^# Networking Utilities/{net=1}
+109           /^#$/{if(net){net=net+1}}
+110           {if(net==2&&$0 !~ /^#/&&$1){print("# "$1" is not
+set")}else{print}}' \
+111                   ${S}/.config.oe-tmp > ${S}/.config
+112         fi
+113 }
+
+> Thanks,
 >
-> Can I ask both of you exactly how you are getting Qt installed into the
-> image?
+> Brian
 >
-> Cheers,
-> Paul
 >
-> --
+> On 1/16/2013 6:13 AM, Autif Khan wrote:
+>>
+>> On Tue, Jan 15, 2013 at 6:57 PM, Brian Smucker <bds@bsmucker.eu.org>
+>> wrote:
+>>>
+>>> Hi Rudolf,
+>>>
+>>>
+>>> On 1/15/2013 3:28 PM, Rudolf Streif wrote:
+>>>>
+>>>>
+>>>> Brian,
+>>>>
+>>>> What are you exactly referring to as "new version"? The package version
+>>>> that bitbake builds is defined by the recipe, through the version
+>>>> designation in the recipe's file name or through explicitly setting PV.
+>>>>
+>>>> I think what you are trying to do is to modify the busybox configuration
+>>>> and then recompile and package. Bitbake will not automatically recompile
+>>>> after menuconfig. Menuconfig does not invslidate the shared state cache.
+>>>> Try
+>>>> this:
+>>>>
+>>>> bitbake -c menuconfig busybox
+>>>> bitbake -c -f compile busybox
+>>>> bitbake busybox
+>>>>
+>>>>
+>>> So I have done the above.  That is not the question.  Busybox compiles
+>>> fine
+>>> and the new unstripped busybox is in the
+>>>
+>>> .../yocto/tmp/work/armv4t-poky-linux-gnueabi/busybox-1.20.2-r2/busybox-1.20.2/
+>>
+>> What is the new version of busybox?
+>>
+>> What is the full filename of the new recipe that you created to
+>> compile a new version of busybox? For example the old one is
+>> busybox_1.20.2.bb (in meta/recipes-core/busybox)
+>>
+>> Also, can you please paste the .bb file in the email
+>>
+>>> My question is that after compiling busybox, I do
+>>>
+>>> bitbake -c cleansstate core-image-minimal
+>>> bitbake core-image-minimal
+>>>
+>>> expecting that the core image generated will contain the new busybox.  It
+>>> does not, it contains a busybox copy that was compiled days ago, not the
+>>> custom one I just compiled.
+>>>
+>>> Why is this?  How can I force the bitbake to include the newly-compiled
+>>> busybox into my minimal image?
+>>>
+>>>
+>>> Thanks,
+>>>
+>>> Brian
+>>>
+>>> _______________________________________________
+>>> yocto mailing list
+>>> yocto@yoctoproject.org
+>>> https://lists.yoctoproject.org/listinfo/yocto
 >
-> Paul Eggleton
-> Intel Open Source Technology Centre
-
-I'm not doing anything too unusual for "installing" Qt. My recipes for
-my Qt application simply inherit qt4e, and list qt4-embedded in
-DEPENDS.
-
-The only place where I deviated a bit from the norm is that I use a
-qt4-embedded_4.8.3.bbappend to set up QT_CONFIG_FLAGS exactly as I
-want them, and to rm ${D}/usr/bin/qtopia. Below's my bbappend. I'd be
-interested to hear if there's a better way to clean out unneeded
-directories from a rootfs (in my case ${D}/usr/bin/qtopia).
-
-DEPENDS = "qt4-tools-native freetype jpeg libpng zlib"
-
-# Override provided recipe and configure Qt4 to...
-# - Disable irrelevant functionality and output
-# - Disable SQL Plugins
-# - Disable unused input/ouput
-# - Have keyboard input and mouse input via /dev/input/mice
-# - Have Linux framebuffer support
-# - Use QML (so we need the declarative engine)
-#
-# Note, some of these might be extraneous, and this is a work in progress.
-# (You've been warned!)
-QT_CONFIG_FLAGS = "\
- -embedded ${QT_ARCH} -qtlibinfix ${QT_LIBINFIX} \
- -release -no-rpath -reduce-relocations -shared -no-exceptions \
- -no-mmx -no-3dnow -no-sse -no-sse2 -no-sse3 -no-sse4.1 -no-sse4.2 -no-avx \
- -no-glib -no-largefile -no-accessibility -no-openssl -no-gtkstyle \
- -no-xcursor -no-xinerama -no-phonon -no-phonon-backend -no-svg -no-webkit \
- -no-libmng -no-accessibility -no-qt3support -no-xmlpatterns \
- -no-audio-backend -no-gif -nomake examples -nomake demos -no-javascript-jit \
- -no-nis -no-cups -no-declarative-debug \
- -no-sql-db2 -no-sql-ibase -no-sql-mysql -no-sql-oci -no-sql-odbc \
- -no-sql-sqlite -no-sql-sqlite2 -no-sql-sqlite_symbian -no-sql-tds \
- -no-xkb -no-kbd-tty -no-kbd-qnx -no-mouse-linuxinput \
- -no-mouse-tslib -no-mouse-qnx -no-mouse-linuxtp \
- -qt-mouse-pc -qt-kbd-linuxinput \
- -qt-gfx-linuxfb -qt-gfx-multiscreen \
- -depths 8,16,24,32 \
- -declarative -script"
-
-PRINC := "${@int(PRINC) + 1}"
-
-# Despite not building them, qt4.inc creates /usr/bin/qtopia/ with
-# only demo/ and example/ underneath. Let's get rid of these...
-do_install_append() {
-    rm -rf ${D}/usr/bin/qtopia
-}
+>
 
