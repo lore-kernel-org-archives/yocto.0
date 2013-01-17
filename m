@@ -1,19 +1,32 @@
-Return-Path: <ioanax.grigoropol@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 78A67E01473
-	for <yocto@yoctoproject.org>; Thu, 17 Jan 2013 04:11:13 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 17 Jan 2013 04:11:13 -0800
+Return-Path: <jessica.zhang@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E91EDE002AB
+	for <yocto@yoctoproject.org>; Thu, 17 Jan 2013 11:22:53 -0800 (PST)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 17 Jan 2013 11:22:52 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,486,1355126400"; d="scan'208";a="248283875"
-Received: from unknown (HELO localhost.localdomain) ([10.237.108.37])
-	by orsmga001.jf.intel.com with ESMTP; 17 Jan 2013 04:11:11 -0800
-From: Ioana Grigoropol <ioanax.grigoropol@intel.com>
-To: yocto@yoctoproject.org
-Date: Thu, 17 Jan 2013 14:11:07 +0200
-Message-Id: <1358424667-3614-1-git-send-email-ioanax.grigoropol@intel.com>
-X-Mailer: git-send-email 1.7.9.5
-Subject: [PATCH v2] [local patch for org.eclipse.rse.services] Fix race conditions for reading output from local processes
+X-IronPort-AV: E=Sophos;i="4.84,486,1355126400"; 
+	d="scan'208,217";a="192344247"
+Received: from orsmsx104.amr.corp.intel.com ([10.22.225.131])
+	by AZSMGA002.ch.intel.com with ESMTP; 17 Jan 2013 11:22:51 -0800
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.209]) by
+	ORSMSX104.amr.corp.intel.com ([169.254.3.50]) with mapi id
+	14.01.0355.002; Thu, 17 Jan 2013 11:22:50 -0800
+From: "Zhang, Jessica" <jessica.zhang@intel.com>
+To: Raul Rosetto Munoz <munoz0raul@gmail.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] Eclipse Plugin
+Thread-Index: AQHN9KvFtc8WGUaUVUagiLFVR9+DMphN5YOA
+Date: Thu, 17 Jan 2013 19:22:50 +0000
+Message-ID: <C6510F6D410BB64A8C15398EDC6B847C57DD45A6@ORSMSX101.amr.corp.intel.com>
+References: <CANmViri9tO7geBequNB5V7bVgJi49VyzybdbLodrSvbaoYJ0fw@mail.gmail.com>
+In-Reply-To: <CANmViri9tO7geBequNB5V7bVgJi49VyzybdbLodrSvbaoYJ0fw@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.139]
+MIME-Version: 1.0
+Subject: Re: Eclipse Plugin
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -25,671 +38,998 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 17 Jan 2013 12:11:13 -0000
+X-List-Received-Date: Thu, 17 Jan 2013 19:22:54 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_C6510F6D410BB64A8C15398EDC6B847C57DD45A6ORSMSX101amrcor_"
 
-When creating a new LocalHostShell a new LocalHostThread is created, along side with two LocalShellOutputReaders (output and error).
-Both readers will receive a reference to one of the localhostThread's readers.
-When the thread finishes its task, the reader is closed. If any of the readers is "late" trying to read data, will through an error similar to "Ensure open stream" or "Pipe closed".
-Any reading done on the reader should be done atomically, such that no reader should be caught off-guard when the stream closes.
-Also, the readers should reference the thread's reader, otherwise nulling this reference will be useless.
+--_000_C6510F6D410BB64A8C15398EDC6B847C57DD45A6ORSMSX101amrcor_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Ioana Grigoropol <ioanax.grigoropol@intel.com>
----
- .../dstore/shells/DStoreShellOutputReader.java     |   52 ++++++++++++--------
- .../services/local/shells/LocalHostShell.java      |   22 ++++-----
- .../local/shells/LocalShellOutputReader.java       |   52 ++++++++++++++------
- .../services/local/shells/LocalShellThread.java    |   24 +++++++--
- .../.settings/.api_filters                         |   38 +++++++++++---
- .../shells/TerminalServiceShellOutputReader.java   |   25 +++++++---
- .../services/shells/IHostShellOutputReader.java    |   21 ++++++--
- 7 files changed, 162 insertions(+), 72 deletions(-)
-
-diff --git a/rse/plugins/org.eclipse.rse.services.dstore/src/org/eclipse/rse/internal/services/dstore/shells/DStoreShellOutputReader.java b/rse/plugins/org.eclipse.rse.services.dstore/src/org/eclipse/rse/internal/services/dstore/shells/DStoreShellOutputReader.java
-index 84c9bb9..3f3e476 100644
---- a/rse/plugins/org.eclipse.rse.services.dstore/src/org/eclipse/rse/internal/services/dstore/shells/DStoreShellOutputReader.java
-+++ b/rse/plugins/org.eclipse.rse.services.dstore/src/org/eclipse/rse/internal/services/dstore/shells/DStoreShellOutputReader.java
-@@ -7,16 +7,19 @@
-  *
-  * Initial Contributors:
-  * The following IBM employees contributed to the Remote System Explorer
-- * component that contains this file: David McKnight, Kushal Munir, 
-- * Michael Berger, David Dykstal, Phil Coulthard, Don Yantzi, Eric Simpson, 
-+ * component that contains this file: David McKnight, Kushal Munir,
-+ * Michael Berger, David Dykstal, Phil Coulthard, Don Yantzi, Eric Simpson,
-  * Emily Bruner, Mazen Faraj, Adrian Storisteanu, Li Ding, and Kent Hawley.
-- * 
-+ *
-  * Contributors:
-  * David McKnight (IBM) - [286671] return null when status is null
-  *******************************************************************************/
- 
- package org.eclipse.rse.internal.services.dstore.shells;
- 
-+import java.io.BufferedReader;
-+import java.util.concurrent.locks.Lock;
-+
- import org.eclipse.dstore.core.model.DataElement;
- import org.eclipse.dstore.extra.DomainEvent;
- import org.eclipse.dstore.extra.IDomainListener;
-@@ -41,13 +44,13 @@ public class DStoreShellOutputReader extends AbstractHostShellOutputReader imple
- 			_status.getDataStore().getDomainNotifier().addDomainListener(this);
- 		}
- 	}
--	
-+
- 	public String getWorkingDirectory()
- 	{
- 		String pwd = _status.getSource();
- 		return pwd;
- 	}
--	
-+
- 	protected IHostOutput internalReadLine()
- 	{
- 		if (_status != null && _keepRunning)
-@@ -57,9 +60,9 @@ public class DStoreShellOutputReader extends AbstractHostShellOutputReader imple
- 			while (newSize > _statusOffset)
- 			{
- 				DataElement line = _status.get(_statusOffset++);
--				
--			
--				
-+
-+
-+
- 				String type = line.getType();
- 				boolean isError =  type.equals("error") || type.equals("stderr"); //$NON-NLS-1$ //$NON-NLS-2$
- 				if (_isErrorReader && isError)
-@@ -71,13 +74,13 @@ public class DStoreShellOutputReader extends AbstractHostShellOutputReader imple
- 					return new DStoreHostOutput(line);
- 				}
- 			}
--			
--		
-+
-+
- 			try
- 			{
- 				if (_hostShell.isActive())
- 				{
--					waitForResponse();	
-+					waitForResponse();
- 					return internalReadLine();
- 				}
- 				else
-@@ -86,7 +89,7 @@ public class DStoreShellOutputReader extends AbstractHostShellOutputReader imple
- 				}
- 			}
- 			catch (Exception e)
--			{					
-+			{
- 				e.printStackTrace();
- 			}
- 		}
-@@ -128,7 +131,7 @@ public class DStoreShellOutputReader extends AbstractHostShellOutputReader imple
- 	            // for now, this is pulled via internalReadLine()
- 	        	notifyResponse();
- 	        }
--		
-+
- 	}
- 
- 	/**
-@@ -138,16 +141,16 @@ public class DStoreShellOutputReader extends AbstractHostShellOutputReader imple
- 	{
- 		try
- 		{
--			wait();		
-+			wait();
- 		}
- 		catch (InterruptedException e)
- 		{
- 			e.printStackTrace();
- 		}
- 	}
--	
-+
- 	/**
--	 * Causes all threads waiting for this 
-+	 * Causes all threads waiting for this
- 	 * to wake up.
- 	 */
- 	public synchronized void notifyResponse()
-@@ -161,13 +164,22 @@ public class DStoreShellOutputReader extends AbstractHostShellOutputReader imple
- 			e.printStackTrace();
- 		}
- 	}
--	
-+
- 	public void finish()
- 	{
- 		super.finish();
- 		notifyResponse();
- 	}
--	
-+
-+	public BufferedReader getReader() {
-+		// TODO Auto-generated method stub
-+		return null;
-+	}
-+
-+	public Lock getReaderLock() {
-+		return null;
-+	}
-+
- 	/*
- 	private void handleInput()
- 	{
-@@ -177,7 +189,7 @@ public class DStoreShellOutputReader extends AbstractHostShellOutputReader imple
-         int currentSize = _linesOfOutput.size();
- 
-         for (int loop = currentSize; loop < totalSize; loop++)
--        {        	        	        	            
-+        {
-         	DataElement result = (DataElement) results.get(loop);
-             addLine(result.getName());
-         }
-@@ -185,4 +197,4 @@ public class DStoreShellOutputReader extends AbstractHostShellOutputReader imple
- 	*/
- 
- }
-- 
-+
-diff --git a/rse/plugins/org.eclipse.rse.services.local/src/org/eclipse/rse/internal/services/local/shells/LocalHostShell.java b/rse/plugins/org.eclipse.rse.services.local/src/org/eclipse/rse/internal/services/local/shells/LocalHostShell.java
-index 250a904..d272989 100644
---- a/rse/plugins/org.eclipse.rse.services.local/src/org/eclipse/rse/internal/services/local/shells/LocalHostShell.java
-+++ b/rse/plugins/org.eclipse.rse.services.local/src/org/eclipse/rse/internal/services/local/shells/LocalHostShell.java
-@@ -7,10 +7,10 @@
-  *
-  * Initial Contributors:
-  * The following IBM employees contributed to the Remote System Explorer
-- * component that contains this file: David McKnight, Kushal Munir, 
-- * Michael Berger, David Dykstal, Phil Coulthard, Don Yantzi, Eric Simpson, 
-+ * component that contains this file: David McKnight, Kushal Munir,
-+ * Michael Berger, David Dykstal, Phil Coulthard, Don Yantzi, Eric Simpson,
-  * Emily Bruner, Mazen Faraj, Adrian Storisteanu, Li Ding, and Kent Hawley.
-- * 
-+ *
-  * Contributors:
-  * Martin Oberhuber (Wind River) - [161838] local shell reports isActive() wrong
-  *******************************************************************************/
-@@ -18,8 +18,6 @@
- package org.eclipse.rse.internal.services.local.shells;
- 
- import org.eclipse.core.runtime.IProgressMonitor;
--import org.eclipse.rse.internal.services.local.shells.LocalShellOutputReader;
--import org.eclipse.rse.internal.services.local.shells.LocalShellThread;
- import org.eclipse.rse.services.shells.AbstractHostShell;
- import org.eclipse.rse.services.shells.IHostShell;
- import org.eclipse.rse.services.shells.IHostShellOutputReader;
-@@ -33,19 +31,19 @@ public class LocalHostShell extends AbstractHostShell implements IHostShell
- 	private LocalShellThread _shellThread;
- 	private LocalShellOutputReader _stdoutHandler;
- 	private LocalShellOutputReader _stderrHandler;
--	
-+
- 	public LocalHostShell(String initialWorkingDirectory, String invocation, String encoding, String[] environment)
- 	{
--		_shellThread = new LocalShellThread(initialWorkingDirectory, invocation, encoding, environment);	
--		_stdoutHandler = new LocalShellOutputReader(this, _shellThread.getOutputStream(), false);
--		_stderrHandler = new LocalShellOutputReader(this, _shellThread.getErrorStream(),true);
-+		_shellThread = new LocalShellThread(initialWorkingDirectory, invocation, encoding, environment);
-+		_stdoutHandler = new LocalShellOutputReader(this, _shellThread.getOutputStream(), _shellThread, false);
-+		_stderrHandler = new LocalShellOutputReader(this, _shellThread.getErrorStream(), _shellThread, true);
- 	}
--	
-+
- 	protected void run(IProgressMonitor monitor)
- 	{
- 		_shellThread.start();
- 	}
-- 
-+
- 
- 	/* (non-Javadoc)
- 	 * @see org.eclipse.rse.services.shells.IHostShell#isActive()
-@@ -68,7 +66,7 @@ public class LocalHostShell extends AbstractHostShell implements IHostShell
- 	{
- 		_shellThread.sendInput(command);
- 	}
--	
-+
- 	public IHostShellOutputReader getStandardOutputReader()
- 	{
- 		return _stdoutHandler;
-diff --git a/rse/plugins/org.eclipse.rse.services.local/src/org/eclipse/rse/internal/services/local/shells/LocalShellOutputReader.java b/rse/plugins/org.eclipse.rse.services.local/src/org/eclipse/rse/internal/services/local/shells/LocalShellOutputReader.java
-index ab8ff5c..ad3fa86 100644
---- a/rse/plugins/org.eclipse.rse.services.local/src/org/eclipse/rse/internal/services/local/shells/LocalShellOutputReader.java
-+++ b/rse/plugins/org.eclipse.rse.services.local/src/org/eclipse/rse/internal/services/local/shells/LocalShellOutputReader.java
-@@ -7,10 +7,10 @@
-  *
-  * Initial Contributors:
-  * The following IBM employees contributed to the Remote System Explorer
-- * component that contains this file: David McKnight, Kushal Munir, 
-- * Michael Berger, David Dykstal, Phil Coulthard, Don Yantzi, Eric Simpson, 
-+ * component that contains this file: David McKnight, Kushal Munir,
-+ * Michael Berger, David Dykstal, Phil Coulthard, Don Yantzi, Eric Simpson,
-  * Emily Bruner, Mazen Faraj, Adrian Storisteanu, Li Ding, and Kent Hawley.
-- * 
-+ *
-  * Contributors:
-  * {Name} (company) - description of contribution.
-  *******************************************************************************/
-@@ -19,6 +19,7 @@ package org.eclipse.rse.internal.services.local.shells;
- 
- import java.io.BufferedReader;
- import java.io.IOException;
-+import java.util.concurrent.locks.Lock;
- 
- import org.eclipse.rse.internal.services.local.Activator;
- import org.eclipse.rse.services.shells.AbstractHostShellOutputReader;
-@@ -33,14 +34,16 @@ import org.eclipse.rse.services.shells.SimpleHostOutput;
-  */
- public class LocalShellOutputReader extends AbstractHostShellOutputReader implements IHostShellOutputReader
- {
--	protected BufferedReader _reader;
-+//	protected volatile BufferedReader _reader;
-+	private LocalShellThread _shellThread;
- 	private String fPromptChars = ">$%#]"; //Characters we accept as the end of a prompt //$NON-NLS-1$;
- 
--	
--	public LocalShellOutputReader(IHostShell hostShell, BufferedReader reader, boolean isErrorReader)
-+
-+	public LocalShellOutputReader(IHostShell hostShell, BufferedReader reader, LocalShellThread shellThread, boolean isErrorReader)
- 	{
- 		super(hostShell, isErrorReader);
--		_reader = reader;
-+//		_reader = reader;
-+		_shellThread = shellThread;
- 	}
- 	/*
- 	protected Object internalReadLine()
-@@ -137,9 +140,11 @@ public class LocalShellOutputReader extends AbstractHostShellOutputReader implem
- 	}
- */
- 	protected IHostOutput internalReadLine() {
--		if (_reader == null) {
-+		getLock().lock();
-+		if (getReader() == null) {
- 			//Our workaround sets the stderr reader to null, so we never give any stderr output.
- 			//TODO Check if ssh supports some method of having separate stdout and stderr streams
-+			getLock().unlock();
- 			return null;
- 		}
- 		StringBuffer theLine = new StringBuffer();
-@@ -149,12 +154,14 @@ public class LocalShellOutputReader extends AbstractHostShellOutputReader implem
- 		boolean done = false;
- 		while (!done && !isFinished()) {
- 			try {
--				ch = _reader.read();
-+				ch = getReader().read();
- 				switch (ch) {
- 				case -1:
- 				case 65535:
--					if (theLine.length() == 0) // End of Reader
-+					if (theLine.length() == 0) {// End of Reader
-+						getLock().unlock();
- 						return null;
-+					}
- 					done = true;
- 					break;
- 				case '\b': //backspace
-@@ -185,13 +192,13 @@ public class LocalShellOutputReader extends AbstractHostShellOutputReader implem
- 						theLine.append(tch); // Any other character
- 					} else if (ch == 27) {
- 						// Escape: ignore next char too
--						int nch = _reader.read();
-+						int nch = getReader().read();
- 						if (theDebugLine!=null) theDebugLine.append((char)nch);
- 						if (nch == 91) {
- 							//vt100 escape sequence: read until end-of-command (skip digits and semicolon)
- 							//e.g. \x1b;13;m --> ignore the entire command, including the trailing m
- 							do {
--								nch = _reader.read();
-+								nch = getReader().read();
- 								if (theDebugLine!=null) theDebugLine.append((char)nch);
- 							} while (Character.isDigit((char)nch) || nch == ';');
- 						}
-@@ -202,9 +209,9 @@ public class LocalShellOutputReader extends AbstractHostShellOutputReader implem
- 				// there are more characters
- 				// in the Buffer...If not, then we assume it is waiting for
- 				// input.
--				if (!done && !_reader.ready()) {
--					// wait to make sure -- max. 500 msec to wait for new chars 
--					// if we are not at a CRLF seems to be appropriate for the 
-+				if (!done && !getReader().ready()) {
-+					// wait to make sure -- max. 500 msec to wait for new chars
-+					// if we are not at a CRLF seems to be appropriate for the
- 					// Pipes and Threads in ssh.
- 					long waitIncrement = 500;
- 					// Check if we think we are at a prompt
-@@ -219,7 +226,7 @@ public class LocalShellOutputReader extends AbstractHostShellOutputReader implem
- 						Thread.sleep(waitIncrement);
- 					} catch (InterruptedException e) {
- 					}
--					if (!_reader.ready()) {
-+					if (!getReader().ready()) {
- 						done = true;
- 					}
- 				}
-@@ -228,6 +235,7 @@ public class LocalShellOutputReader extends AbstractHostShellOutputReader implem
- 				//our reader thread completely... the exception could just be
- 				//temporary, and we should keep running!
- 				Activator.getDefault().logException(e);
-+				getLock().unlock();
- 				return null;
- 			}
- 		}
-@@ -235,8 +243,20 @@ public class LocalShellOutputReader extends AbstractHostShellOutputReader implem
- 			String debugLine = theDebugLine.toString();
- 			debugLine.compareTo(""); //$NON-NLS-1$
- 		}
-+		getLock().unlock();
- 		return new SimpleHostOutput(theLine.toString());
- 	}
-+	private Lock getLock() {
-+		return _shellThread.getLock();
-+	}
-+	public BufferedReader getReader() {
-+		if (isErrorReader())
-+			return _shellThread.getErrorStream();
-+		return _shellThread.getOutputStream();
-+	}
-+	public Lock getReaderLock() {
-+		return _shellThread.getLock();
-+	}
- 
- 
- }
-diff --git a/rse/plugins/org.eclipse.rse.services.local/src/org/eclipse/rse/internal/services/local/shells/LocalShellThread.java b/rse/plugins/org.eclipse.rse.services.local/src/org/eclipse/rse/internal/services/local/shells/LocalShellThread.java
-index 0a33ad4..7407f2e 100644
---- a/rse/plugins/org.eclipse.rse.services.local/src/org/eclipse/rse/internal/services/local/shells/LocalShellThread.java
-+++ b/rse/plugins/org.eclipse.rse.services.local/src/org/eclipse/rse/internal/services/local/shells/LocalShellThread.java
-@@ -16,7 +16,7 @@
-  * Lothar Werzinger (Tradescape) - [161838] Support terminating local shells
-  * David McKnight       (IBM)    - [189387] Use specified encoding for shell output
-  * Martin Oberhuber (Wind River) - [161838] local shell reports isActive() wrong
-- * Anna Dushistova  (MontaVsita) - [249354] Incorrect behaviour of local shells subsystem runCommand method 
-+ * Anna Dushistova  (MontaVsita) - [249354] Incorrect behaviour of local shells subsystem runCommand method
-  *******************************************************************************/
- 
- package org.eclipse.rse.internal.services.local.shells;
-@@ -29,6 +29,8 @@ import java.io.InputStreamReader;
- import java.io.OutputStream;
- import java.io.OutputStreamWriter;
- import java.net.URL;
-+import java.util.concurrent.locks.Lock;
-+import java.util.concurrent.locks.ReentrantLock;
- 
- import org.eclipse.core.runtime.FileLocator;
- 
-@@ -62,9 +64,10 @@ public class LocalShellThread extends Thread
- 	private BufferedReader _stdInput;
- 	private BufferedReader _stdError;
- 
-+	private Lock _lock;
- 	/**
- 	 * constructor for local command shell monitor
--	 * 
-+	 *
- 	 * @param cwd initial working directory
- 	 * @param invocation launch shell command
- 	 * @param encoding encoding to use or <code>null</code> for default
-@@ -192,7 +195,7 @@ public class LocalShellThread extends Thread
- 							args = new String[1];
- 							args[0] = _invocation;
- 							_theProcess = Runtime.getRuntime().exec(args[0], envVars, theDirectory);
--						} else {	
-+						} else {
- 							args = new String[3];
- 							args[0] = theShell;
- 							args[1] = "-c";//$NON-NLS-1$
-@@ -260,6 +263,7 @@ public class LocalShellThread extends Thread
- 
- 			_stdError = new BufferedReader(new InputStreamReader(_theProcess.getErrorStream()));
- 
-+			_lock = new ReentrantLock();
- 		}
- 		catch (IOException e)
- 		{
-@@ -438,9 +442,14 @@ public class LocalShellThread extends Thread
- 		_isDone = true;
- 		try
- 		{
-+			_lock.lock();
- 			_stdInput.close();
- 			_stdError.close();
- 
-+			_stdInput = null;
-+			_stdError = null;
-+
-+			_lock.unlock();
- 			if (_theProcess != null)
- 			{
- 
-@@ -511,4 +520,13 @@ public class LocalShellThread extends Thread
- 	}
- 
- 
-+	public Lock getLock() {
-+		return _lock;
-+	}
-+
-+
-+	public void setLock(Lock _lock) {
-+		this._lock = _lock;
-+	}
-+
- }
-diff --git a/rse/plugins/org.eclipse.rse.services/.settings/.api_filters b/rse/plugins/org.eclipse.rse.services/.settings/.api_filters
-index 19273c2..b550320 100644
---- a/rse/plugins/org.eclipse.rse.services/.settings/.api_filters
-+++ b/rse/plugins/org.eclipse.rse.services/.settings/.api_filters
-@@ -1,5 +1,13 @@
- <?xml version="1.0" encoding="UTF-8" standalone="no"?>
- <component id="org.eclipse.rse.services" version="2">
-+    <resource path="META-INF/MANIFEST.MF">
-+        <filter id="923795461">
-+            <message_arguments>
-+                <message_argument value="3.2.200"/>
-+                <message_argument value="3.2.200"/>
-+            </message_arguments>
-+        </filter>
-+    </resource>
-     <resource path="META-INF/MANIFEST.MF" type="org.eclipse.rse.internal.services.terminals.AbstractTerminalService">
-         <filter id="305324134">
-             <message_arguments>
-@@ -32,13 +40,13 @@
-         <filter id="305324134">
-             <message_arguments>
-                 <message_argument value="org.eclipse.rse.internal.services.terminals.BaseShellDecorator"/>
--                <message_argument value="org.eclipse.rse.services_3.1.1"/>
-+                <message_argument value="org.eclipse.rse.services_3.1.0"/>
-             </message_arguments>
-         </filter>
-         <filter id="305324134">
-             <message_arguments>
-                 <message_argument value="org.eclipse.rse.internal.services.terminals.BaseShellDecorator"/>
--                <message_argument value="org.eclipse.rse.services_3.1.0"/>
-+                <message_argument value="org.eclipse.rse.services_3.1.1"/>
-             </message_arguments>
-         </filter>
-     </resource>
-@@ -46,13 +54,13 @@
-         <filter id="305324134">
-             <message_arguments>
-                 <message_argument value="org.eclipse.rse.internal.services.terminals.IBaseShell"/>
--                <message_argument value="org.eclipse.rse.services_3.1.1"/>
-+                <message_argument value="org.eclipse.rse.services_3.1.0"/>
-             </message_arguments>
-         </filter>
-         <filter id="305324134">
-             <message_arguments>
-                 <message_argument value="org.eclipse.rse.internal.services.terminals.IBaseShell"/>
--                <message_argument value="org.eclipse.rse.services_3.1.0"/>
-+                <message_argument value="org.eclipse.rse.services_3.1.1"/>
-             </message_arguments>
-         </filter>
-     </resource>
-@@ -88,13 +96,13 @@
-         <filter id="305324134">
-             <message_arguments>
-                 <message_argument value="org.eclipse.rse.internal.services.terminals.TerminalShellDecorator"/>
--                <message_argument value="org.eclipse.rse.services_3.1.1"/>
-+                <message_argument value="org.eclipse.rse.services_3.1.0"/>
-             </message_arguments>
-         </filter>
-         <filter id="305324134">
-             <message_arguments>
-                 <message_argument value="org.eclipse.rse.internal.services.terminals.TerminalShellDecorator"/>
--                <message_argument value="org.eclipse.rse.services_3.1.0"/>
-+                <message_argument value="org.eclipse.rse.services_3.1.1"/>
-             </message_arguments>
-         </filter>
-     </resource>
-@@ -109,13 +117,27 @@
-         <filter id="305365105">
-             <message_arguments>
-                 <message_argument value="org.eclipse.rse.internal.services.terminals.ProcessBaseShell"/>
--                <message_argument value="org.eclipse.rse.services_3.1.1"/>
-+                <message_argument value="org.eclipse.rse.services_3.1.0"/>
-             </message_arguments>
-         </filter>
-         <filter id="305365105">
-             <message_arguments>
-                 <message_argument value="org.eclipse.rse.internal.services.terminals.ProcessBaseShell"/>
--                <message_argument value="org.eclipse.rse.services_3.1.0"/>
-+                <message_argument value="org.eclipse.rse.services_3.1.1"/>
-+            </message_arguments>
-+        </filter>
-+    </resource>
-+    <resource path="src/org/eclipse/rse/services/shells/IHostShellOutputReader.java" type="org.eclipse.rse.services.shells.IHostShellOutputReader">
-+        <filter id="403804204">
-+            <message_arguments>
-+                <message_argument value="org.eclipse.rse.services.shells.IHostShellOutputReader"/>
-+                <message_argument value="getReader()"/>
-+            </message_arguments>
-+        </filter>
-+        <filter id="403804204">
-+            <message_arguments>
-+                <message_argument value="org.eclipse.rse.services.shells.IHostShellOutputReader"/>
-+                <message_argument value="getReaderLock()"/>
-             </message_arguments>
-         </filter>
-     </resource>
-diff --git a/rse/plugins/org.eclipse.rse.services/src/org/eclipse/rse/internal/services/shells/TerminalServiceShellOutputReader.java b/rse/plugins/org.eclipse.rse.services/src/org/eclipse/rse/internal/services/shells/TerminalServiceShellOutputReader.java
-index 16364e1..fef0032 100644
---- a/rse/plugins/org.eclipse.rse.services/src/org/eclipse/rse/internal/services/shells/TerminalServiceShellOutputReader.java
-+++ b/rse/plugins/org.eclipse.rse.services/src/org/eclipse/rse/internal/services/shells/TerminalServiceShellOutputReader.java
-@@ -7,13 +7,13 @@
-  *
-  * Initial Contributors:
-  * The following IBM employees contributed to the Remote System Explorer
-- * component that contains this file: David McKnight, Kushal Munir, 
-- * Michael Berger, David Dykstal, Phil Coulthard, Don Yantzi, Eric Simpson, 
-+ * component that contains this file: David McKnight, Kushal Munir,
-+ * Michael Berger, David Dykstal, Phil Coulthard, Don Yantzi, Eric Simpson,
-  * Emily Bruner, Mazen Faraj, Adrian Storisteanu, Li Ding, and Kent Hawley.
-- * 
-+ *
-  * Contributors:
-- * Martin Oberhuber (Wind River) - Adapted from LocalShellOutputReader. 
-- * Martin Oberhuber (Wind River) - Added vt100 escape sequence ignoring. 
-+ * Martin Oberhuber (Wind River) - Adapted from LocalShellOutputReader.
-+ * Martin Oberhuber (Wind River) - Added vt100 escape sequence ignoring.
-  * Anna Dushistova  (MontaVista) - adapted from SshShellOutputReader
-  * Anna Dushistova  (MontaVista) - [240523] [rseterminals] Provide a generic adapter factory that adapts any ITerminalService to an IShellService
-  * Rob Stryker (JBoss) - [335059] TerminalServiceShellOutputReader logs error when hostShell.exit() is called
-@@ -23,6 +23,7 @@ package org.eclipse.rse.internal.services.shells;
- 
- import java.io.BufferedReader;
- import java.io.IOException;
-+import java.util.concurrent.locks.Lock;
- 
- import org.eclipse.rse.internal.services.Activator;
- import org.eclipse.rse.services.shells.AbstractHostShellOutputReader;
-@@ -125,8 +126,8 @@ public class TerminalServiceShellOutputReader extends
- 				// in the Buffer...If not, then we assume it is waiting for
- 				// input.
- 				if (!done && !fReader.ready()) {
--					// wait to make sure -- max. 500 msec to wait for new chars 
--					// if we are not at a CRLF seems to be appropriate for the 
-+					// wait to make sure -- max. 500 msec to wait for new chars
-+					// if we are not at a CRLF seems to be appropriate for the
- 					// Pipes and Threads in ssh.
- 					long waitIncrement = 500;
- 					// Check if we think we are at a prompt
-@@ -163,7 +164,7 @@ public class TerminalServiceShellOutputReader extends
- 		}
- 		return new SimpleHostOutput(theLine.toString());
- 	}
--	
-+
- 	/**
- 	 * Stop the reader Thread, forcing internalReadLine() to return.
- 	 * Does not close the Stream.
-@@ -174,4 +175,12 @@ public class TerminalServiceShellOutputReader extends
- 			fReaderThread.interrupt();
- 		}
- 	}
-+
-+	public BufferedReader getReader() {
-+		return fReader;
-+	}
-+
-+	public Lock getReaderLock() {
-+		return null;
-+	}
- }
-diff --git a/rse/plugins/org.eclipse.rse.services/src/org/eclipse/rse/services/shells/IHostShellOutputReader.java b/rse/plugins/org.eclipse.rse.services/src/org/eclipse/rse/services/shells/IHostShellOutputReader.java
-index 103c31f..f8d49b0 100644
---- a/rse/plugins/org.eclipse.rse.services/src/org/eclipse/rse/services/shells/IHostShellOutputReader.java
-+++ b/rse/plugins/org.eclipse.rse.services/src/org/eclipse/rse/services/shells/IHostShellOutputReader.java
-@@ -1,21 +1,24 @@
- /********************************************************************************
-  * Copyright (c) 2006 IBM Corporation. All rights reserved.
-  * This program and the accompanying materials are made available under the terms
-- * of the Eclipse Public License v1.0 which accompanies this distribution, and is 
-+ * of the Eclipse Public License v1.0 which accompanies this distribution, and is
-  * available at http://www.eclipse.org/legal/epl-v10.html
-- * 
-+ *
-  * Initial Contributors:
-  * The following IBM employees contributed to the Remote System Explorer
-- * component that contains this file: David McKnight, Kushal Munir, 
-- * Michael Berger, David Dykstal, Phil Coulthard, Don Yantzi, Eric Simpson, 
-+ * component that contains this file: David McKnight, Kushal Munir,
-+ * Michael Berger, David Dykstal, Phil Coulthard, Don Yantzi, Eric Simpson,
-  * Emily Bruner, Mazen Faraj, Adrian Storisteanu, Li Ding, and Kent Hawley.
-- * 
-+ *
-  * Contributors:
-  * {Name} (company) - description of contribution.
-  ********************************************************************************/
- 
- package org.eclipse.rse.services.shells;
- 
-+import java.io.BufferedReader;
-+import java.util.concurrent.locks.Lock;
-+
- public interface IHostShellOutputReader extends IHostShellOutputNotifier
- {
- 	public IHostOutput readLine();
-@@ -23,4 +26,12 @@ public interface IHostShellOutputReader extends IHostShellOutputNotifier
- 	public void addOutputListener(IHostShellOutputListener listener);
- 	public boolean isErrorReader();
- 	public void finish();
-+	/**
-+	 * @since 3.2
-+	 */
-+	public BufferedReader getReader();
-+	/**
-+	 * @since 3.2
-+	 */
-+	public Lock getReaderLock();
- }
-\ No newline at end of file
--- 
-1.7.9.5
+Hi Raul,
 
 
+
+Before we can help you debug your issue, can you provide more info regardin=
+g to:
+
+
+
+1.       How did you setup your cross toolchain? ADT installer or toolchain=
+ tarball (your build if so, how did you build it.  If not, which one did yo=
+u download?)
+
+2.       And also, please provide more info what's your toolchain setup in =
+Eclipse, specifically the Yocto Project ADT preference config under Window?
+
+Thanks,
+
+Jessica
+
+
+
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Raul Rosetto Munoz
+Sent: Thursday, January 17, 2013 4:10 AM
+To: yocto@yoctoproject.org
+Subject: [yocto] Eclipse Plugin
+
+
+
+Hello All,
+
+I followed the ADT manual to create a eclipse environment.
+
+
+
+After create a default Hello World Yocto project I get some compile errors.
+
+
+
+At file config.log I saw some errors lines:
+
+
+
+
+
+configure:2861: checking for arm-poky-linux-gnueabi-gcc
+
+configure:2888: result: arm-poky-linux-gnueabi-gcc  -march=3Darmv5te  -marm=
+ -mthumb-interwork  -mtune=3Darm926ej-s --sysroot=3D/home/prjs/compsis0001/=
+philinux/arm
+
+configure:3157: checking for C compiler version
+
+configure:3166: arm-poky-linux-gnueabi-gcc  -march=3Darmv5te  -marm -mthumb=
+-interwork  -mtune=3Darm926ej-s --sysroot=3D/home/prjs/compsis0001/philinux=
+/arm --version >&5
+
+arm-poky-linux-gnueabi-gcc (GCC) 4.7.2
+
+Copyright (C) 2012 Free Software Foundation, Inc.
+
+This is free software; see the source for copying conditions.  There is NO
+
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+
+
+configure:3177: $? =3D 0
+
+configure:3166: arm-poky-linux-gnueabi-gcc  -march=3Darmv5te  -marm -mthumb=
+-interwork  -mtune=3Darm926ej-s --sysroot=3D/home/prjs/compsis0001/philinux=
+/arm -v >&5
+
+Using built-in specs.
+
+COLLECT_GCC=3Darm-poky-linux-gnueabi-gcc
+
+COLLECT_LTO_WRAPPER=3D/opt/poky/1.3/sysroots/i686-pokysdk-linux/usr/libexec=
+/armv5te-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/4.7.2/lto-wrapper
+
+Target: arm-poky-linux-gnueabi
+
+Configured with: /srv/home/pokybuild/yocto-autobuilder/yocto-slave/nightly-=
+arm/build/build/tmp/work-shared/gcc-4.7.2-r13/gcc-4.7.2/configure --build=
+=3Dx86_64-linux --host=3Di686-pokysdk-linux --target=3Darm-poky-linux-gnuea=
+bi --prefix=3D/opt/poky/1.3/sysroots/i686-pokysdk-linux/usr --exec_prefix=
+=3D/opt/poky/1.3/sysroots/i686-pokysdk-linux/usr --bindir=3D/opt/poky/1.3/s=
+ysroots/i686-pokysdk-linux/usr/bin/armv5te-poky-linux-gnueabi --sbindir=3D/=
+opt/poky/1.3/sysroots/i686-pokysdk-linux/usr/bin/armv5te-poky-linux-gnueabi=
+ --libexecdir=3D/opt/poky/1.3/sysroots/i686-pokysdk-linux/usr/libexec/armv5=
+te-poky-linux-gnueabi --datadir=3D/opt/poky/1.3/sysroots/i686-pokysdk-linux=
+/usr/share --sysconfdir=3D/opt/poky/1.3/sysroots/i686-pokysdk-linux/etc --s=
+haredstatedir=3D/opt/poky/1.3/sysroots/i686-pokysdk-linux/com --localstated=
+ir=3D/opt/poky/1.3/sysroots/i686-pokysdk-linux/var --libdir=3D/opt/poky/1.3=
+/sysroots/i686-pokysdk-linux/usr/lib/armv5te-poky-linux-gnueabi --includedi=
+r=3D/opt/poky/1.3/sysroots/i686-pokysdk-linux/usr/include --oldincludedir=
+=3D/opt/poky/1.3/sysroots/i686-pokysdk-linux/usr/include --infodir=3D/opt/p=
+oky/1.3/sysroots/i686-pokysdk-linux/usr/share/info --mandir=3D/opt/poky/1.3=
+/sysroots/i686-pokysdk-linux/usr/share/man --disable-silent-rules --disable=
+-dependency-tracking --with-libtool-sysroot=3D/srv/home/pokybuild/yocto-aut=
+obuilder/yocto-slave/nightly-arm/build/build/tmp/sysroots/i686-nativesdk-po=
+kysdk-linux --with-gnu-ld --enable-shared --enable-languages=3Dc,c++ --enab=
+le-threads=3Dposix --disable-multilib --enable-c99 --enable-long-long --ena=
+ble-symvers=3Dgnu --enable-libstdcxx-pch --program-prefix=3Darm-poky-linux-=
+gnueabi- --without-local-prefix --enable-target-optspace --enable-lto --ena=
+ble-libssp --disable-bootstrap --disable-libgomp --disable-libmudflap --wit=
+h-system-zlib --with-linker-hash-style=3Dgnu --with-ppl=3Dno --with-cloog=
+=3Dno --enable-checking=3Drelease --enable-cheaders=3Dc_global --with-float=
+=3Dsoft --with-gxx-include-dir=3D/opt/poky/1.3/sysroots/armv5te-poky-linux-=
+gnueabi/usr/include/c++ --with-build-time-tools=3D/srv/home/pokybuild/yocto=
+-autobuilder/yocto-slave/nightly-arm/build/build/tmp/sysroots/x86_64-linux/=
+usr/arm-poky-linux-gnueabi/bin --with-sysroot=3D/opt/poky/1.3/sysroots/armv=
+5te-poky-linux-gnueabi --with-build-sysroot=3D/srv/home/pokybuild/yocto-aut=
+obuilder/yocto-slave/nightly-arm/build/build/tmp/sysroots/qemuarm --disable=
+-libunwind-exceptions --disable-libssp --disable-libgomp --disable-libmudfl=
+ap --with-mpfr=3D/srv/home/pokybuild/yocto-autobuilder/yocto-slave/nightly-=
+arm/build/build/tmp/sysroots/i686-nativesdk-pokysdk-linux --with-mpc=3D/srv=
+/home/pokybuild/yocto-autobuilder/yocto-slave/nightly-arm/build/build/tmp/s=
+ysroots/i686-nativesdk-pokysdk-linux --enable-nls
+
+Thread model: posix
+
+gcc version 4.7.2 (GCC)
+
+configure:3177: $? =3D 0
+
+configure:3166: arm-poky-linux-gnueabi-gcc  -march=3Darmv5te  -marm -mthumb=
+-interwork  -mtune=3Darm926ej-s --sysroot=3D/home/prjs/compsis0001/philinux=
+/arm -V >&5
+
+arm-poky-linux-gnueabi-gcc: error: unrecognized command line option '-V'
+
+arm-poky-linux-gnueabi-gcc: fatal error: no input files
+
+compilation terminated.
+
+configure:3177: $? =3D 1
+
+configure:3166: arm-poky-linux-gnueabi-gcc  -march=3Darmv5te  -marm -mthumb=
+-interwork  -mtune=3Darm926ej-s --sysroot=3D/home/prjs/compsis0001/philinux=
+/arm -qversion >&5
+
+arm-poky-linux-gnueabi-gcc: error: unrecognized command line option '-qvers=
+ion'
+
+arm-poky-linux-gnueabi-gcc: fatal error: no input files
+
+compilation terminated.
+
+configure:3177: $? =3D 1
+
+configure:3197: checking whether the C compiler works
+
+configure:3219: arm-poky-linux-gnueabi-gcc  -march=3Darmv5te  -marm -mthumb=
+-interwork  -mtune=3Darm926ej-s --sysroot=3D/home/prjs/compsis0001/philinux=
+/arm  -g -O0  --sysroot=3D/opt/poky/1.3  --sysroot=3D/opt/poky/1.3  --sysro=
+ot=3D/opt/poky/1.3 conftest.c  >&5
+
+/opt/poky/1.3/sysroots/i686-pokysdk-linux/usr/libexec/armv5te-poky-linux-gn=
+ueabi/gcc/arm-poky-linux-gnueabi/4.7.2/ld: cannot find crt1.o: No such file=
+ or directory
+
+/opt/poky/1.3/sysroots/i686-pokysdk-linux/usr/libexec/armv5te-poky-linux-gn=
+ueabi/gcc/arm-poky-linux-gnueabi/4.7.2/ld: cannot find crti.o: No such file=
+ or directory
+
+/opt/poky/1.3/sysroots/i686-pokysdk-linux/usr/libexec/armv5te-poky-linux-gn=
+ueabi/gcc/arm-poky-linux-gnueabi/4.7.2/ld: cannot find crtbegin.o: No such =
+file or directory
+
+/opt/poky/1.3/sysroots/i686-pokysdk-linux/usr/libexec/armv5te-poky-linux-gn=
+ueabi/gcc/arm-poky-linux-gnueabi/4.7.2/ld: cannot find -lgcc
+
+/opt/poky/1.3/sysroots/i686-pokysdk-linux/usr/libexec/armv5te-poky-linux-gn=
+ueabi/gcc/arm-poky-linux-gnueabi/4.7.2/ld: cannot find -lgcc_s
+
+/opt/poky/1.3/sysroots/i686-pokysdk-linux/usr/libexec/armv5te-poky-linux-gn=
+ueabi/gcc/arm-poky-linux-gnueabi/4.7.2/ld: cannot find -lc
+
+/opt/poky/1.3/sysroots/i686-pokysdk-linux/usr/libexec/armv5te-poky-linux-gn=
+ueabi/gcc/arm-poky-linux-gnueabi/4.7.2/ld: cannot find -lgcc
+
+/opt/poky/1.3/sysroots/i686-pokysdk-linux/usr/libexec/armv5te-poky-linux-gn=
+ueabi/gcc/arm-poky-linux-gnueabi/4.7.2/ld: cannot find -lgcc_s
+
+/opt/poky/1.3/sysroots/i686-pokysdk-linux/usr/libexec/armv5te-poky-linux-gn=
+ueabi/gcc/arm-poky-linux-gnueabi/4.7.2/ld: cannot find crtend.o: No such fi=
+le or directory
+
+/opt/poky/1.3/sysroots/i686-pokysdk-linux/usr/libexec/armv5te-poky-linux-gn=
+ueabi/gcc/arm-poky-linux-gnueabi/4.7.2/ld: cannot find crtn.o: No such file=
+ or directory
+
+collect2: error: ld returned 1 exit status
+
+configure:3223: $? =3D 1
+
+configure:3261: result: no
+
+configure: failed program was:
+
+| /* confdefs.h */
+
+| #define PACKAGE_NAME "teste"
+
+| #define PACKAGE_TARNAME "teste"
+
+| #define PACKAGE_VERSION "0.1.0"
+
+| #define PACKAGE_STRING "teste 0.1.0"
+
+| #define PACKAGE_BUGREPORT ""
+
+| #define PACKAGE_URL ""
+
+| #define PACKAGE "teste"
+
+| #define VERSION "0.1.0"
+
+| /* end confdefs.h.  */
+
+|
+
+| int
+
+| main ()
+
+| {
+
+|
+
+|   ;
+
+|   return 0;
+
+| }
+
+configure:3266: error: in `/home/prjs/compsis0001/workspace/teste':
+
+configure:3268: error: C compiler cannot create executables
+
+See `config.log' for more details
+
+
+
+## ---------------- ##
+
+## Cache variables. ##
+
+## ---------------- ##
+
+...
+
+...
+
+...
+
+## ----------------- ##
+
+## Output variables. ##
+
+## ----------------- ##
+
+...
+
+...
+
+...
+
+/* confdefs.h */
+
+#define PACKAGE_NAME "teste"
+
+#define PACKAGE_TARNAME "teste"
+
+#define PACKAGE_VERSION "0.1.0"
+
+#define PACKAGE_STRING "teste 0.1.0"
+
+#define PACKAGE_BUGREPORT ""
+
+#define PACKAGE_URL ""
+
+#define PACKAGE "teste"
+
+#define VERSION "0.1.0"
+
+
+
+configure: exit 77
+
+
+
+
+
+Some One can Help me?
+
+
+
+Thanks
+
+
+
+--
+Raul Rosetto Mu=F1oz
+
+
+--_000_C6510F6D410BB64A8C15398EDC6B847C57DD45A6ORSMSX101amrcor_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:SimSun;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:SimSun;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:SimSun;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{mso-style-priority:34;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:36.0pt;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+span.EmailStyle17
+	{mso-style-type:personal-reply;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+/* List Definitions */
+@list l0
+	{mso-list-id:2011366364;
+	mso-list-type:hybrid;
+	mso-list-template-ids:514591544 67698703 67698713 67698715 67698703 676987=
+13 67698715 67698703 67698713 67698715;}
+@list l0:level1
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l0:level2
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l0:level3
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+@list l0:level4
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l0:level5
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l0:level6
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+@list l0:level7
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l0:level8
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l0:level9
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Hi Raul,<o:p></o:p></span=
+></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
+/p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Before we can help you de=
+bug your issue, can you provide more info regarding to:<o:p></o:p></span></=
+p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
+/p>
+<p class=3D"MsoListParagraph" style=3D"text-indent:-18.0pt;mso-list:l0 leve=
+l1 lfo1"><![if !supportLists]><span style=3D"font-size:11.0pt;font-family:&=
+quot;Calibri&quot;,&quot;sans-serif&quot;;color:#1F497D"><span style=3D"mso=
+-list:Ignore">1.<span style=3D"font:7.0pt &quot;Times New Roman&quot;">&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
+&quot;Calibri&quot;,&quot;sans-serif&quot;;color:#1F497D">How did you setup=
+ your cross toolchain? ADT installer or toolchain tarball (your build if so=
+, how did you build it. &nbsp;If not, which one did you download?)<o:p></o:=
+p></span></p>
+<p class=3D"MsoListParagraph" style=3D"text-indent:-18.0pt;mso-list:l0 leve=
+l1 lfo1"><![if !supportLists]><span style=3D"font-size:11.0pt;font-family:&=
+quot;Calibri&quot;,&quot;sans-serif&quot;;color:#1F497D"><span style=3D"mso=
+-list:Ignore">2.<span style=3D"font:7.0pt &quot;Times New Roman&quot;">&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
+&quot;Calibri&quot;,&quot;sans-serif&quot;;color:#1F497D">And also, please =
+provide more info what&#8217;s your toolchain setup in Eclipse, specificall=
+y the Yocto Project ADT preference config under Window?<o:p></o:p></span></=
+p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Thanks,<o:p></o:p></span>=
+</p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Jessica<o:p></o:p></span>=
+</p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
+/p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
+ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> yocto-bo=
+unces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org]
+<b>On Behalf Of </b>Raul Rosetto Munoz<br>
+<b>Sent:</b> Thursday, January 17, 2013 4:10 AM<br>
+<b>To:</b> yocto@yoctoproject.org<br>
+<b>Subject:</b> [yocto] Eclipse Plugin<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<div>
+<div>
+<div>
+<p class=3D"MsoNormal">Hello All,<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">I followed the ADT manual to create a eclipse enviro=
+nment.<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">After create a default Hello World Yocto project I g=
+et some compile errors.<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">At file config.log I saw some errors lines:<o:p></o:=
+p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+configure:2861: checking for arm-poky-linux-gnueabi-gcc</span><o:p></o:p></=
+p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+configure:2888: result: arm-poky-linux-gnueabi-gcc &nbsp;-march=3Darmv5te &=
+nbsp;-marm -mthumb-interwork &nbsp;-mtune=3Darm926ej-s --sysroot=3D/home/pr=
+js/compsis0001/philinux/arm</span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+configure:3157: checking for C compiler version</span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+configure:3166: arm-poky-linux-gnueabi-gcc &nbsp;-march=3Darmv5te &nbsp;-ma=
+rm -mthumb-interwork &nbsp;-mtune=3Darm926ej-s --sysroot=3D/home/prjs/comps=
+is0001/philinux/arm --version &gt;&amp;5</span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+arm-poky-linux-gnueabi-gcc (GCC) 4.7.2</span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+Copyright (C) 2012 Free Software Foundation, Inc.</span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+This is free software; see the source for copying conditions. &nbsp;There i=
+s NO</span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.=
+</span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+configure:3177: $? =3D 0</span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+configure:3166: arm-poky-linux-gnueabi-gcc &nbsp;-march=3Darmv5te &nbsp;-ma=
+rm -mthumb-interwork &nbsp;-mtune=3Darm926ej-s --sysroot=3D/home/prjs/comps=
+is0001/philinux/arm -v &gt;&amp;5</span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+Using built-in specs.</span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+COLLECT_GCC=3Darm-poky-linux-gnueabi-gcc</span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+COLLECT_LTO_WRAPPER=3D/opt/poky/1.3/sysroots/i686-pokysdk-linux/usr/libexec=
+/armv5te-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/4.7.2/lto-wrapper</s=
+pan><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+Target: arm-poky-linux-gnueabi</span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+Configured with: /srv/home/pokybuild/yocto-autobuilder/yocto-slave/nightly-=
+arm/build/build/tmp/work-shared/gcc-4.7.2-r13/gcc-4.7.2/configure --build=
+=3Dx86_64-linux --host=3Di686-pokysdk-linux --target=3Darm-poky-linux-gnuea=
+bi
+ --prefix=3D/opt/poky/1.3/sysroots/i686-pokysdk-linux/usr --exec_prefix=3D/=
+opt/poky/1.3/sysroots/i686-pokysdk-linux/usr --bindir=3D/opt/poky/1.3/sysro=
+ots/i686-pokysdk-linux/usr/bin/armv5te-poky-linux-gnueabi --sbindir=3D/opt/=
+poky/1.3/sysroots/i686-pokysdk-linux/usr/bin/armv5te-poky-linux-gnueabi
+ --libexecdir=3D/opt/poky/1.3/sysroots/i686-pokysdk-linux/usr/libexec/armv5=
+te-poky-linux-gnueabi --datadir=3D/opt/poky/1.3/sysroots/i686-pokysdk-linux=
+/usr/share --sysconfdir=3D/opt/poky/1.3/sysroots/i686-pokysdk-linux/etc --s=
+haredstatedir=3D/opt/poky/1.3/sysroots/i686-pokysdk-linux/com
+ --localstatedir=3D/opt/poky/1.3/sysroots/i686-pokysdk-linux/var --libdir=
+=3D/opt/poky/1.3/sysroots/i686-pokysdk-linux/usr/lib/armv5te-poky-linux-gnu=
+eabi --includedir=3D/opt/poky/1.3/sysroots/i686-pokysdk-linux/usr/include -=
+-oldincludedir=3D/opt/poky/1.3/sysroots/i686-pokysdk-linux/usr/include
+ --infodir=3D/opt/poky/1.3/sysroots/i686-pokysdk-linux/usr/share/info --man=
+dir=3D/opt/poky/1.3/sysroots/i686-pokysdk-linux/usr/share/man --disable-sil=
+ent-rules --disable-dependency-tracking --with-libtool-sysroot=3D/srv/home/=
+pokybuild/yocto-autobuilder/yocto-slave/nightly-arm/build/build/tmp/sysroot=
+s/i686-nativesdk-pokysdk-linux
+ --with-gnu-ld --enable-shared --enable-languages=3Dc,c&#43;&#43; --enable-=
+threads=3Dposix --disable-multilib --enable-c99 --enable-long-long --enable=
+-symvers=3Dgnu --enable-libstdcxx-pch --program-prefix=3Darm-poky-linux-gnu=
+eabi- --without-local-prefix --enable-target-optspace
+ --enable-lto --enable-libssp --disable-bootstrap --disable-libgomp --disab=
+le-libmudflap --with-system-zlib --with-linker-hash-style=3Dgnu --with-ppl=
+=3Dno --with-cloog=3Dno --enable-checking=3Drelease --enable-cheaders=3Dc_g=
+lobal --with-float=3Dsoft --with-gxx-include-dir=3D/opt/poky/1.3/sysroots/a=
+rmv5te-poky-linux-gnueabi/usr/include/c&#43;&#43;
+ --with-build-time-tools=3D/srv/home/pokybuild/yocto-autobuilder/yocto-slav=
+e/nightly-arm/build/build/tmp/sysroots/x86_64-linux/usr/arm-poky-linux-gnue=
+abi/bin --with-sysroot=3D/opt/poky/1.3/sysroots/armv5te-poky-linux-gnueabi =
+--with-build-sysroot=3D/srv/home/pokybuild/yocto-autobuilder/yocto-slave/ni=
+ghtly-arm/build/build/tmp/sysroots/qemuarm
+ --disable-libunwind-exceptions --disable-libssp --disable-libgomp --disabl=
+e-libmudflap --with-mpfr=3D/srv/home/pokybuild/yocto-autobuilder/yocto-slav=
+e/nightly-arm/build/build/tmp/sysroots/i686-nativesdk-pokysdk-linux --with-=
+mpc=3D/srv/home/pokybuild/yocto-autobuilder/yocto-slave/nightly-arm/build/b=
+uild/tmp/sysroots/i686-nativesdk-pokysdk-linux
+ --enable-nls</span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+Thread model: posix</span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+gcc version 4.7.2 (GCC)&nbsp;</span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+configure:3177: $? =3D 0</span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+configure:3166: arm-poky-linux-gnueabi-gcc &nbsp;-march=3Darmv5te &nbsp;-ma=
+rm -mthumb-interwork &nbsp;-mtune=3Darm926ej-s --<b><span style=3D"color:re=
+d">sysroot=3D/home/prjs/compsis0001/philinux/arm -V &gt;&amp;5</span></b></=
+span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><b><span style=3D"font-family:&quot;Courier New&quot=
+;;color:red">arm-poky-linux-gnueabi-gcc: error: unrecognized command line o=
+ption '-V'</span></b><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><b><span style=3D"font-family:&quot;Courier New&quot=
+;;color:red">arm-poky-linux-gnueabi-gcc: fatal error: no input files</span>=
+</b><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><b><span style=3D"font-family:&quot;Courier New&quot=
+;;color:red">compilation terminated.</span></b><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><b><span style=3D"font-family:&quot;Courier New&quot=
+;;color:red">configure:3177: $? =3D 1</span></b><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><b><span style=3D"font-family:&quot;Courier New&quot=
+;;color:red">configure:3166: arm-poky-linux-gnueabi-gcc &nbsp;-march=3Darmv=
+5te &nbsp;-marm -mthumb-interwork &nbsp;-mtune=3Darm926ej-s --sysroot=3D/ho=
+me/prjs/compsis0001/philinux/arm -qversion &gt;&amp;5</span></b><o:p></o:p>=
+</p>
+</div>
+<div>
+<p class=3D"MsoNormal"><b><span style=3D"font-family:&quot;Courier New&quot=
+;;color:red">arm-poky-linux-gnueabi-gcc: error: unrecognized command line o=
+ption '-qversion'</span></b><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><b><span style=3D"font-family:&quot;Courier New&quot=
+;;color:red">arm-poky-linux-gnueabi-gcc: fatal error: no input files</span>=
+</b><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><b><span style=3D"font-family:&quot;Courier New&quot=
+;;color:red">compilation terminated.</span></b><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><b><span style=3D"font-family:&quot;Courier New&quot=
+;;color:red">configure:3177: $? =3D 1</span></b><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><b><span style=3D"font-family:&quot;Courier New&quot=
+;;color:red">configure:3197: checking whether the C compiler works</span></=
+b><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+configure:3219: arm-poky-linux-gnueabi-gcc &nbsp;-march=3Darmv5te &nbsp;-ma=
+rm -mthumb-interwork &nbsp;-mtune=3Darm926ej-s --sysroot=3D/home/prjs/comps=
+is0001/philinux/arm &nbsp;-g -O0 &nbsp;--sysroot=3D/opt/poky/1.3 &nbsp;--sy=
+sroot=3D/opt/poky/1.3
+ &nbsp;--sysroot=3D/opt/poky/1.3 conftest.c &nbsp;&gt;&amp;5</span><o:p></o=
+:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+/opt/poky/1.3/sysroots/i686-pokysdk-linux/usr/libexec/armv5te-poky-linux-gn=
+ueabi/gcc/arm-poky-linux-gnueabi/4.7.2/ld: cannot find crt1.o: No such file=
+ or directory</span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+/opt/poky/1.3/sysroots/i686-pokysdk-linux/usr/libexec/armv5te-poky-linux-gn=
+ueabi/gcc/arm-poky-linux-gnueabi/4.7.2/ld: cannot find crti.o: No such file=
+ or directory</span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+/opt/poky/1.3/sysroots/i686-pokysdk-linux/usr/libexec/armv5te-poky-linux-gn=
+ueabi/gcc/arm-poky-linux-gnueabi/4.7.2/ld: cannot find crtbegin.o: No such =
+file or directory</span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+/opt/poky/1.3/sysroots/i686-pokysdk-linux/usr/libexec/armv5te-poky-linux-gn=
+ueabi/gcc/arm-poky-linux-gnueabi/4.7.2/ld: cannot find -lgcc</span><o:p></o=
+:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+/opt/poky/1.3/sysroots/i686-pokysdk-linux/usr/libexec/armv5te-poky-linux-gn=
+ueabi/gcc/arm-poky-linux-gnueabi/4.7.2/ld: cannot find -lgcc_s</span><o:p><=
+/o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+/opt/poky/1.3/sysroots/i686-pokysdk-linux/usr/libexec/armv5te-poky-linux-gn=
+ueabi/gcc/arm-poky-linux-gnueabi/4.7.2/ld: cannot find -lc</span><o:p></o:p=
+></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+/opt/poky/1.3/sysroots/i686-pokysdk-linux/usr/libexec/armv5te-poky-linux-gn=
+ueabi/gcc/arm-poky-linux-gnueabi/4.7.2/ld: cannot find -lgcc</span><o:p></o=
+:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+/opt/poky/1.3/sysroots/i686-pokysdk-linux/usr/libexec/armv5te-poky-linux-gn=
+ueabi/gcc/arm-poky-linux-gnueabi/4.7.2/ld: cannot find -lgcc_s</span><o:p><=
+/o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+/opt/poky/1.3/sysroots/i686-pokysdk-linux/usr/libexec/armv5te-poky-linux-gn=
+ueabi/gcc/arm-poky-linux-gnueabi/4.7.2/ld: cannot find crtend.o: No such fi=
+le or directory</span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+/opt/poky/1.3/sysroots/i686-pokysdk-linux/usr/libexec/armv5te-poky-linux-gn=
+ueabi/gcc/arm-poky-linux-gnueabi/4.7.2/ld: cannot find crtn.o: No such file=
+ or directory</span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+collect2: error: ld returned 1 exit status</span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+configure:3223: $? =3D 1</span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+configure:3261: result: no</span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+configure: failed program was:</span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+| /* confdefs.h */</span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+| #define PACKAGE_NAME &quot;teste&quot;</span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+| #define PACKAGE_TARNAME &quot;teste&quot;</span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+| #define PACKAGE_VERSION &quot;0.1.0&quot;</span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+| #define PACKAGE_STRING &quot;teste 0.1.0&quot;</span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+| #define PACKAGE_BUGREPORT &quot;&quot;</span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+| #define PACKAGE_URL &quot;&quot;</span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+| #define PACKAGE &quot;teste&quot;</span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+| #define VERSION &quot;0.1.0&quot;</span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+| /* end confdefs.h. &nbsp;*/</span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+|&nbsp;</span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+| int</span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+| main ()</span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+| {</span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+|&nbsp;</span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+| &nbsp; ;</span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+| &nbsp; return 0;</span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+| }</span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+configure:3266: error: in `/home/prjs/compsis0001/workspace/teste':</span><=
+o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+configure:3268: error: C compiler cannot create executables</span><o:p></o:=
+p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+See `config.log' for more details</span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+## ---------------- ##</span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+## Cache variables. ##</span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+## ---------------- ##</span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+...</span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+...</span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+...</span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+## ----------------- ##</span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+## Output variables. ##</span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+## ----------------- ##</span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+...</span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+...</span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+...</span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+/* confdefs.h */</span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+#define PACKAGE_NAME &quot;teste&quot;</span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+#define PACKAGE_TARNAME &quot;teste&quot;</span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+#define PACKAGE_VERSION &quot;0.1.0&quot;</span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+#define PACKAGE_STRING &quot;teste 0.1.0&quot;</span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+#define PACKAGE_BUGREPORT &quot;&quot;</span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+#define PACKAGE_URL &quot;&quot;</span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+#define PACKAGE &quot;teste&quot;</span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+#define VERSION &quot;0.1.0&quot;</span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+configure: exit 77</span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Some One can Help me?<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Thanks&nbsp;<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<p class=3D"MsoNormal">-- <br>
+<b>Raul Rosetto Mu=F1oz</b> <o:p></o:p></p>
+</div>
+</div>
+</div>
+</body>
+</html>
+
+--_000_C6510F6D410BB64A8C15398EDC6B847C57DD45A6ORSMSX101amrcor_--
