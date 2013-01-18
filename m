@@ -1,37 +1,43 @@
-Return-Path: <jon.szymaniak@gmail.com>
-Received: from mail-ie0-f176.google.com (mail-ie0-f176.google.com
-	[209.85.223.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 19514E006D2
-	for <yocto@yoctoproject.org>; Fri, 18 Jan 2013 07:25:43 -0800 (PST)
-Received: by mail-ie0-f176.google.com with SMTP id 13so6361716iea.35
-	for <yocto@yoctoproject.org>; Fri, 18 Jan 2013 07:25:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=x-received:mime-version:in-reply-to:references:from:date:message-id
-	:subject:to:content-type:content-transfer-encoding;
-	bh=elkhW1A3yfZg09pQ7ZPISDdmb9PNBGWqO0ejxjpCHkU=;
-	b=xYeNoqw5xjHUwQHSQVfdiqesAM204s42UDhBcH0Aza9BQfsUzTIh3+Pem99hs/oXg3
-	Xuh6GnEtdgqYkVXy0M7DYWco5s5JTILqOtT9aOG/DQ80/rb5r1OW5tiahn5aqvDwfxAJ
-	SDmjI5zjvz+4uAzjqzOu4scpQ27jH/uE3mXHDH34jwufMs+ajR1jGXErUTUmkFCS6YBY
-	OKDKgi+iziFcy4iFUVgDCOYlXGsmEU/abJbTvEiAHqv2uAt0+HcgqhgNv6oazKWWEFOu
-	+EOBP1w8jzsv18mQxVo18QpzJIQ/kXA8uRSfkYvAinJPSM6OW+mTALbzCYcRf9m4Hagp
-	vTbg==
-X-Received: by 10.50.197.161 with SMTP id iv1mr2402766igc.53.1358522742658;
-	Fri, 18 Jan 2013 07:25:42 -0800 (PST)
-MIME-Version: 1.0
-Received: by 10.64.12.129 with HTTP; Fri, 18 Jan 2013 07:25:22 -0800 (PST)
-In-Reply-To: <20130117091908.493c18fb@e6520eb>
+Return-Path: <eric@eukrea.com>
+Received: from mo2.mail-out.ovh.net (mo2.mail-out.ovh.net [178.32.228.2])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4B6DBE006D2
+	for <yocto@yoctoproject.org>; Fri, 18 Jan 2013 07:59:10 -0800 (PST)
+Received: from mail240.ha.ovh.net (b6.ovh.net [213.186.33.56])
+	by mo2.mail-out.ovh.net (Postfix) with SMTP id 9D4CFDC1744
+	for <yocto@yoctoproject.org>; Fri, 18 Jan 2013 17:08:44 +0100 (CET)
+Received: from b0.ovh.net (HELO queueout) (213.186.33.50)
+	by b0.ovh.net with SMTP; 18 Jan 2013 17:59:07 +0200
+Received: from pac33-2-82-240-38-71.fbx.proxad.net (HELO e6520eb)
+	(eric%eukrea.com@82.240.38.71)
+	by ns0.ovh.net with SMTP; 18 Jan 2013 17:59:07 +0200
+Date: Fri, 18 Jan 2013 16:59:06 +0100
+From: Eric =?UTF-8?B?QsOpbmFyZA==?= <eric@eukrea.com>
+To: Jon Szymaniak <jon.szymaniak@gmail.com>
+X-Ovh-Mailout: 178.32.228.2 (mo2.mail-out.ovh.net)
+Message-ID: <20130118165906.676f0ec6@e6520eb>
+In-Reply-To: <CANge7vXP6Cy4sxo-vXuPEyigd5ag=Jt2ixc_WhZv2QQ+UnnBxw@mail.gmail.com>
 References: <CANge7vUAQxfbBrkSwQd=0sxgUN71Gaveub07gPX9oYLsj9A3tQ@mail.gmail.com>
 	<CANge7vWDaQj2+eYJpRnbhQ0NQ_V8A4zE0sBhXTnvGQDCC5MTHA@mail.gmail.com>
 	<CA+Z6RkXWTm-SPUPwW1Xrd0E_HXrLKd8Ah57wfkH5OspoG7o2Qg@mail.gmail.com>
 	<19691651.cLZhLvd0Ni@helios>
 	<CANge7vWH1tCjHsJOSa=JP86a3+APQk93ds1UwuYeUGzy4F02WQ@mail.gmail.com>
 	<20130117091908.493c18fb@e6520eb>
-From: Jon Szymaniak <jon.szymaniak@gmail.com>
-Date: Fri, 18 Jan 2013 10:25:22 -0500
-Message-ID: <CANge7vXP6Cy4sxo-vXuPEyigd5ag=Jt2ixc_WhZv2QQ+UnnBxw@mail.gmail.com>
-To: =?ISO-8859-1?Q?Eric_B=E9nard?= <eric@eukrea.com>, yocto@yoctoproject.org, 
-	"navani.srivastava@lnties.com" <navani.srivastava@lnties.com>, 
-	Paul Eggleton <paul.eggleton@linux.intel.com>
+	<CANge7vXP6Cy4sxo-vXuPEyigd5ag=Jt2ixc_WhZv2QQ+UnnBxw@mail.gmail.com>
+Organization: =?UTF-8?B?RXVrcsOpYQ==?= Electromatique
+X-Mailer: Claws Mail 3.9.0 (GTK+ 2.24.13; x86_64-redhat-linux-gnu)
+Mime-Version: 1.0
+X-Ovh-Tracer-Id: 8163337274612886852
+X-Ovh-Remote: 82.240.38.71 (pac33-2-82-240-38-71.fbx.proxad.net)
+X-Ovh-Local: 213.186.33.20 (ns0.ovh.net)
+X-OVH-SPAMSTATE: OK
+X-OVH-SPAMSCORE: -100
+X-OVH-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrfeehledrieeiucetufdoteggodetrfcurfhrohhfihhlvgemucfqggfjnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+X-Spam-Check: DONE|U 0.5/N
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrfeehledrieeiucetufdoteggodetrfcurfhrohhfihhlvgemucfqggfjnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+Cc: yocto@yoctoproject.org, Paul Eggleton <paul.eggleton@linux.intel.com>,
+	"navani.srivastava@lnties.com" <navani.srivastava@lnties.com>
 Subject: Re: Remove unwanted package from Qt
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -44,70 +50,54 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 18 Jan 2013 15:25:43 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Fri, 18 Jan 2013 15:59:10 -0000
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jan 17, 2013 at 3:19 AM, Eric B=E9nard <eric@eukrea.com> wrote:
-> Hi Jon,
->
-> "inherit qt4e" is enough, no need to add qt4-embedded to DEPENDS.
->
+Le Fri, 18 Jan 2013 10:25:22 -0500,
+Jon Szymaniak <jon.szymaniak@gmail.com> a =C3=A9crit :
+> I checked the package list on a running system (opkg list | grep -i
+> qt). Here's all the installed Qt packages...no qt4-embedded-examples
+> as far as I see.
+>=20
+> libqtcoree4 - 4.8.3-r50.0
+> libqtdeclarativee4 - 4.8.3-r50.0
+> libqtguie4 - 4.8.3-r50.0
+> libqtnetworke4 - 4.8.3-r50.0
+> libqtscripte4 - 4.8.3-r50.0
+> libqtsqle4 - 4.8.3-r50.0
+>=20
+> Seems strange to me...any thoughts?
 
-Thanks! This makes sense, as I see this dependency is established in
-the first few lines of qt4e.bbclass.
+strange, in a fresh build of danny /usr/share/qtopia is only present in
+the following packages :
 
->
-> strange, demos and examples are packaged in ${QT_BASE_NAME}-demos and
-> ${QT_BASE_NAME}-examples packages so if you find these directories on
-> your target, that means you requested qt4-embedded-demos and
-> qt4-embedded-examples to be installed in your image.
->
-> Are you installing packagegroup-core-qt4e in your image like in
-> qt4e-demo-image ? If yes, that's where you pull demos & examples.
->
-> To get a minimal image, you could simply have :
-> IMAGE_INSTALL +=3D "\
->         ${CORE_IMAGE_BASE_INSTALL} \
->         you_qt_app \
->         some qt4-embedded-fonts or qt4-embedded-plugin you may need
->         (check packagegroup-core-qt4e.bb for the exact names) \
->         "
-> inherit core-image
->
-> The Qt libraries your application is linked with will be automatically
-> installed and you won't get extra unwanted packages in your image.
->
-> Best regards,
-> Eric
+./qt4-embedded-translation-linguist/usr/share/qtopia
+./qt4-embedded-translation-qt/usr/share/qtopia
+./qt4-embedded-translation-qvfb/usr/share/qtopia
+./qt4-embedded-qt3to4/usr/share/qtopia
+./qt4-embedded-translation-qtconfig/usr/share/qtopia
+./qt4-embedded-mkspecs/usr/share/qtopia
+./qt4-embedded-phrasebook-dutch/usr/share/qtopia
+./qt4-embedded-phrasebook-french/usr/share/qtopia
+./qt4-embedded-phrasebook-spanish/usr/share/qtopia
+./qt4-embedded-phrasebook-russian/usr/share/qtopia
+./qt4-embedded-phrasebook-italian/usr/share/qtopia
+./qt4-embedded-phrasebook-polish/usr/share/qtopia
+./qt4-embedded-translation-assistant/usr/share/qtopia
+./qt4-embedded-phrasebook-swedish/usr/share/qtopia
+./qt4-embedded-doc/usr/share/doc/qtopia
+./qt4-embedded-translation-designer/usr/share/qtopia
+./qt4-embedded-phrasebook-danish/usr/share/qtopia
+./qt4-embedded-phrasebook-finnish/usr/share/qtopia
+./qt4-embedded-phrasebook-german/usr/share/qtopia
+./qt4-embedded-demos-doc/usr/share/doc/qtopia
+./qt4-embedded-phrasebook-japanese/usr/share/qtopia
+./qt4-embedded-phrasebook-norwegian/usr/share/qtopia
+./qt4-embedded-phrasebook-hungarian/usr/share/qtopia
 
-My IMAGE_INSTALL looks very similar to what you've shown there, which
-I based upon what I saw in core-image-minimal. I see that I still have
-a task-core-boot lying around, so I need to change that a
-packagegroup-core-boot. (IIRC, packagegroup-core-boot PROVIDES
-task-core-boot for the time being...)
+can you check in your workdir in packages-split which package includes
+this directory ?
 
-IMAGE_INSTALL =3D "
-  task-core-boot \
-  my_qt_app \
-  a_few_unrelated_recipes_that_don't_use_qt \
-  ${ROOTFS_PKGMANAGE_BOOTSTRAP} \
-  ${CORE_IMAGE_EXTRA_INSTALL} \
-"
-
-I checked the package list on a running system (opkg list | grep -i
-qt). Here's all the installed Qt packages...no qt4-embedded-examples
-as far as I see.
-
-libqtcoree4 - 4.8.3-r50.0
-libqtdeclarativee4 - 4.8.3-r50.0
-libqtguie4 - 4.8.3-r50.0
-libqtnetworke4 - 4.8.3-r50.0
-libqtscripte4 - 4.8.3-r50.0
-libqtsqle4 - 4.8.3-r50.0
-
-Seems strange to me...any thoughts?
-
-Thank you for your time and help!
-Jon
+Eric
 
