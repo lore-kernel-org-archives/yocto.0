@@ -1,20 +1,36 @@
-Return-Path: <ioanax.grigoropol@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4A55CE002AB
-	for <yocto@yoctoproject.org>; Fri, 18 Jan 2013 08:53:30 -0800 (PST)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 18 Jan 2013 08:53:29 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,493,1355126400"; d="scan'208";a="245673593"
-Received: from igrigorx-mobl.ger.corp.intel.com (HELO localhost.localdomain)
-	([10.237.108.166])
-	by azsmga001.ch.intel.com with ESMTP; 18 Jan 2013 08:53:28 -0800
-From: Ioana Grigoropol <ioanax.grigoropol@intel.com>
-To: yocto@yoctoproject.org
-Date: Fri, 18 Jan 2013 18:53:23 +0200
-Message-Id: <1358528003-3695-1-git-send-email-ioanax.grigoropol@intel.com>
-X-Mailer: git-send-email 1.7.9.5
-Subject: [PATCH v3] [local patch for org.eclipse.rse.services] Fix race conditions for reading output from local processes
+Return-Path: <flavio.alves@gmail.com>
+Received: from mail-ia0-f174.google.com (mail-ia0-f174.google.com
+	[209.85.210.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 27AACE00724
+	for <yocto@yoctoproject.org>; Sat, 19 Jan 2013 05:37:12 -0800 (PST)
+Received: by mail-ia0-f174.google.com with SMTP id o25so1993635iad.5
+	for <yocto@yoctoproject.org>; Sat, 19 Jan 2013 05:37:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:x-received:in-reply-to:references:date:message-id
+	:subject:from:to:cc:content-type:content-transfer-encoding;
+	bh=+z97sso8DzFMDqXod1rtG1Cgxle+jzm5i2lNKkKuIB0=;
+	b=C8ISfFLb7dlWEOGWa2UIIiDLzIgjqeDPX/B+VjZQqZO5nFDMpkPmMhDwNDq3qirPwU
+	rSk+yPee1HW0bwM2/qdXOoFu5JDF0Z/g3MFRxR7hRdXsHHtpUNznLFFRi03Uwu5PNdJE
+	pYNwY1heUWb5LrXfWoYJbI+vsOH89geJ+tIXdyaLKJ9UVlwl52d2RSkPd7ajELrH+Wwd
+	P3f2XbSc7aUh2j8cfwoJr0/CyI/bFUoXCYYgbDAuJcKo9FCsRMkfZOeylfA2niXujWrJ
+	vrt/L4YaO3e1ykBU4IX0i4HM6RI1RTcN3rLzdmJS6jBNd0jKCMhg7mtwOtrKdrXl6KFS
+	9IHw==
+MIME-Version: 1.0
+X-Received: by 10.50.34.193 with SMTP id b1mr4823697igj.89.1358602632376; Sat,
+	19 Jan 2013 05:37:12 -0800 (PST)
+Received: by 10.42.127.141 with HTTP; Sat, 19 Jan 2013 05:37:12 -0800 (PST)
+In-Reply-To: <C6510F6D410BB64A8C15398EDC6B847C57DD4A5F@ORSMSX101.amr.corp.intel.com>
+References: <CANmViri9tO7geBequNB5V7bVgJi49VyzybdbLodrSvbaoYJ0fw@mail.gmail.com>
+	<C6510F6D410BB64A8C15398EDC6B847C57DD45A6@ORSMSX101.amr.corp.intel.com>
+	<CAFNBftf-+ae4b4a0yf+t60RXYmheD7f7wr1v38t9JQM40eK1aw@mail.gmail.com>
+	<C6510F6D410BB64A8C15398EDC6B847C57DD4A5F@ORSMSX101.amr.corp.intel.com>
+Date: Sat, 19 Jan 2013 11:37:12 -0200
+Message-ID: <CAFNBfteSSsrvSjocTqi=UZoSO1ZPgyAW5cuuCFtGhz2VwXwzrg@mail.gmail.com>
+From: Flavio Castro Alves Filho <flavio.alves@gmail.com>
+To: "Zhang, Jessica" <jessica.zhang@intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	Raul Rosetto Munoz <munoz0raul@gmail.com>
+Subject: Re: Eclipse Plugin
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -26,414 +42,459 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 18 Jan 2013 16:53:30 -0000
+X-List-Received-Date: Sat, 19 Jan 2013 13:37:13 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-When running a command using RSE Api, using a Local connection from a linux host a new LocalHostShell is created.
-When this is created, a new LocalHostThread is launched, along side with two LocalShellOutputReaders (output and error). The constructors for the OutputReaders will receive a reference to the reader created by the LocalHostThread.
+Hello Jessica,
 
-When calling runCommandRemote, the newly creared IHostShell is returned, making it possible to create an adapter(IHostShellProcessAdapter) that  will then be used to read all available output from the readers.
-When the LocalHostThread finishes running its run() method, it will perform a cleanup causing both readers (output and error) to be closed. If at this point, there are any readers, or handlers to the readers that are still trying to read data (using internalReadLine or read on handlers), obviously, an error will be thrown saying that the the pipe to the stream is closed ("Ensure open stream"/ "Pipe closed" errors).
-After inspecting the internalReadLine, it seems that it expects a null reference of the reader in order to consider that the reading is done. In order to ensure that this will happen once the LocalHostThread closes the stream(s), we will make sure that the reference to the readers is set to null, and that LocalShellOutputReaders use the same reference. For this to happen, a reference of the thread must be kept in the reader, in order to retrieve the correct reference of the underlying reader.
-Since there can still be race conditions in this solution, all operations that involve the reference to now the only reader, must be performed under mutual exclusion using a shared lock between the LocalShellOutputReader and LocalHostThread.
+2013/1/18 Zhang, Jessica <jessica.zhang@intel.com>:
+> Hi Flavio,
+>
+> See my comments or questions below...
+>
+> Thanks,
+> Jessica
+>
+> -----Original Message-----
+> From: Flavio Castro Alves Filho [mailto:flavio.alves@gmail.com]
+> Sent: Friday, January 18, 2013 4:25 AM
+> To: Zhang, Jessica
+> Cc: Raul Rosetto Munoz; yocto@yoctoproject.org
+> Subject: Re: [yocto] Eclipse Plugin
+>
+> Hello,
+>
+> I'm facing similar issue (in fact, Raul and I are working together on thi=
+s deploy).
+>
+> I'll describe the steps that we followed. Our system is Ubuntu 12.04 LTS =
+and our Eclipse version is Juno.
+>
+> 1) We build core-image-minimal using poky 1.3 (danny), meta-ti, meta-open=
+embedded/meta-oe
+> [JZ}So if you want to use the image rootfs packages as target sysroot, pl=
+ease build an -sdk or -dev image which contains the dev packages for your a=
+pplication need
 
-Signed-off-by: Ioana Grigoropol <ioanax.grigoropol@intel.com>
----
- .../dstore/shells/DStoreShellOutputReader.java     |   14 +++++-
- .../services/local/shells/LocalHostShell.java      |    6 +--
- .../local/shells/LocalShellOutputReader.java       |   46 ++++++++++++++------
- .../services/local/shells/LocalShellThread.java    |   18 ++++++++
- .../.settings/.api_filters                         |   38 ++++++++++++----
- .../shells/TerminalServiceShellOutputReader.java   |    9 ++++
- .../services/shells/IHostShellOutputReader.java    |   11 +++++
- 7 files changed, 117 insertions(+), 25 deletions(-)
+Ok ... thank you. Actually, I didn't do that.
 
-diff --git a/rse/plugins/org.eclipse.rse.services.dstore/src/org/eclipse/rse/internal/services/dstore/shells/DStoreShellOutputReader.java b/rse/plugins/org.eclipse.rse.services.dstore/src/org/eclipse/rse/internal/services/dstore/shells/DStoreShellOutputReader.java
-index 84c9bb9..281e240 100644
---- a/rse/plugins/org.eclipse.rse.services.dstore/src/org/eclipse/rse/internal/services/dstore/shells/DStoreShellOutputReader.java
-+++ b/rse/plugins/org.eclipse.rse.services.dstore/src/org/eclipse/rse/internal/services/dstore/shells/DStoreShellOutputReader.java
-@@ -17,6 +17,9 @@
- 
- package org.eclipse.rse.internal.services.dstore.shells;
- 
-+import java.io.BufferedReader;
-+import java.util.concurrent.locks.Lock;
-+
- import org.eclipse.dstore.core.model.DataElement;
- import org.eclipse.dstore.extra.DomainEvent;
- import org.eclipse.dstore.extra.IDomainListener;
-@@ -167,7 +170,16 @@ public class DStoreShellOutputReader extends AbstractHostShellOutputReader imple
- 		super.finish();
- 		notifyResponse();
- 	}
--	
-+
-+	public BufferedReader getReader() {
-+		// TODO Auto-generated method stub
-+		return null;
-+	}
-+
-+	public Lock getReaderLock() {
-+		return null;
-+	}
-+
- 	/*
- 	private void handleInput()
- 	{
-diff --git a/rse/plugins/org.eclipse.rse.services.local/src/org/eclipse/rse/internal/services/local/shells/LocalHostShell.java b/rse/plugins/org.eclipse.rse.services.local/src/org/eclipse/rse/internal/services/local/shells/LocalHostShell.java
-index 250a904..3179bab 100644
---- a/rse/plugins/org.eclipse.rse.services.local/src/org/eclipse/rse/internal/services/local/shells/LocalHostShell.java
-+++ b/rse/plugins/org.eclipse.rse.services.local/src/org/eclipse/rse/internal/services/local/shells/LocalHostShell.java
-@@ -36,9 +36,9 @@ public class LocalHostShell extends AbstractHostShell implements IHostShell
- 	
- 	public LocalHostShell(String initialWorkingDirectory, String invocation, String encoding, String[] environment)
- 	{
--		_shellThread = new LocalShellThread(initialWorkingDirectory, invocation, encoding, environment);	
--		_stdoutHandler = new LocalShellOutputReader(this, _shellThread.getOutputStream(), false);
--		_stderrHandler = new LocalShellOutputReader(this, _shellThread.getErrorStream(),true);
-+		_shellThread = new LocalShellThread(initialWorkingDirectory, invocation, encoding, environment);
-+		_stdoutHandler = new LocalShellOutputReader(this, _shellThread.getOutputStream(), _shellThread, false);
-+		_stderrHandler = new LocalShellOutputReader(this, _shellThread.getErrorStream(), _shellThread, true);
- 	}
- 	
- 	protected void run(IProgressMonitor monitor)
-diff --git a/rse/plugins/org.eclipse.rse.services.local/src/org/eclipse/rse/internal/services/local/shells/LocalShellOutputReader.java b/rse/plugins/org.eclipse.rse.services.local/src/org/eclipse/rse/internal/services/local/shells/LocalShellOutputReader.java
-index ab8ff5c..021095e 100644
---- a/rse/plugins/org.eclipse.rse.services.local/src/org/eclipse/rse/internal/services/local/shells/LocalShellOutputReader.java
-+++ b/rse/plugins/org.eclipse.rse.services.local/src/org/eclipse/rse/internal/services/local/shells/LocalShellOutputReader.java
-@@ -19,6 +19,7 @@ package org.eclipse.rse.internal.services.local.shells;
- 
- import java.io.BufferedReader;
- import java.io.IOException;
-+import java.util.concurrent.locks.Lock;
- 
- import org.eclipse.rse.internal.services.local.Activator;
- import org.eclipse.rse.services.shells.AbstractHostShellOutputReader;
-@@ -33,14 +34,16 @@ import org.eclipse.rse.services.shells.SimpleHostOutput;
-  */
- public class LocalShellOutputReader extends AbstractHostShellOutputReader implements IHostShellOutputReader
- {
--	protected BufferedReader _reader;
-+//	protected volatile BufferedReader _reader;
-+	private LocalShellThread _shellThread;
- 	private String fPromptChars = ">$%#]"; //Characters we accept as the end of a prompt //$NON-NLS-1$;
- 
--	
--	public LocalShellOutputReader(IHostShell hostShell, BufferedReader reader, boolean isErrorReader)
-+
-+	public LocalShellOutputReader(IHostShell hostShell, BufferedReader reader, LocalShellThread shellThread, boolean isErrorReader)
- 	{
- 		super(hostShell, isErrorReader);
--		_reader = reader;
-+//		_reader = reader;
-+		_shellThread = shellThread;
- 	}
- 	/*
- 	protected Object internalReadLine()
-@@ -137,9 +140,11 @@ public class LocalShellOutputReader extends AbstractHostShellOutputReader implem
- 	}
- */
- 	protected IHostOutput internalReadLine() {
--		if (_reader == null) {
-+		getLock().lock();
-+		if (getReader() == null) {
- 			//Our workaround sets the stderr reader to null, so we never give any stderr output.
- 			//TODO Check if ssh supports some method of having separate stdout and stderr streams
-+			getLock().unlock();
- 			return null;
- 		}
- 		StringBuffer theLine = new StringBuffer();
-@@ -149,12 +154,14 @@ public class LocalShellOutputReader extends AbstractHostShellOutputReader implem
- 		boolean done = false;
- 		while (!done && !isFinished()) {
- 			try {
--				ch = _reader.read();
-+				ch = getReader().read();
- 				switch (ch) {
- 				case -1:
- 				case 65535:
--					if (theLine.length() == 0) // End of Reader
-+					if (theLine.length() == 0) {// End of Reader
-+						getLock().unlock();
- 						return null;
-+					}
- 					done = true;
- 					break;
- 				case '\b': //backspace
-@@ -185,13 +192,13 @@ public class LocalShellOutputReader extends AbstractHostShellOutputReader implem
- 						theLine.append(tch); // Any other character
- 					} else if (ch == 27) {
- 						// Escape: ignore next char too
--						int nch = _reader.read();
-+						int nch = getReader().read();
- 						if (theDebugLine!=null) theDebugLine.append((char)nch);
- 						if (nch == 91) {
- 							//vt100 escape sequence: read until end-of-command (skip digits and semicolon)
- 							//e.g. \x1b;13;m --> ignore the entire command, including the trailing m
- 							do {
--								nch = _reader.read();
-+								nch = getReader().read();
- 								if (theDebugLine!=null) theDebugLine.append((char)nch);
- 							} while (Character.isDigit((char)nch) || nch == ';');
- 						}
-@@ -202,9 +209,9 @@ public class LocalShellOutputReader extends AbstractHostShellOutputReader implem
- 				// there are more characters
- 				// in the Buffer...If not, then we assume it is waiting for
- 				// input.
--				if (!done && !_reader.ready()) {
--					// wait to make sure -- max. 500 msec to wait for new chars 
--					// if we are not at a CRLF seems to be appropriate for the 
-+				if (!done && !getReader().ready()) {
-+					// wait to make sure -- max. 500 msec to wait for new chars
-+					// if we are not at a CRLF seems to be appropriate for the
- 					// Pipes and Threads in ssh.
- 					long waitIncrement = 500;
- 					// Check if we think we are at a prompt
-@@ -219,7 +226,7 @@ public class LocalShellOutputReader extends AbstractHostShellOutputReader implem
- 						Thread.sleep(waitIncrement);
- 					} catch (InterruptedException e) {
- 					}
--					if (!_reader.ready()) {
-+					if (!getReader().ready()) {
- 						done = true;
- 					}
- 				}
-@@ -228,6 +235,7 @@ public class LocalShellOutputReader extends AbstractHostShellOutputReader implem
- 				//our reader thread completely... the exception could just be
- 				//temporary, and we should keep running!
- 				Activator.getDefault().logException(e);
-+				getLock().unlock();
- 				return null;
- 			}
- 		}
-@@ -235,8 +243,20 @@ public class LocalShellOutputReader extends AbstractHostShellOutputReader implem
- 			String debugLine = theDebugLine.toString();
- 			debugLine.compareTo(""); //$NON-NLS-1$
- 		}
-+		getLock().unlock();
- 		return new SimpleHostOutput(theLine.toString());
- 	}
-+	private Lock getLock() {
-+		return _shellThread.getLock();
-+	}
-+	public BufferedReader getReader() {
-+		if (isErrorReader())
-+			return _shellThread.getErrorStream();
-+		return _shellThread.getOutputStream();
-+	}
-+	public Lock getReaderLock() {
-+		return _shellThread.getLock();
-+	}
- 
- 
- }
-diff --git a/rse/plugins/org.eclipse.rse.services.local/src/org/eclipse/rse/internal/services/local/shells/LocalShellThread.java b/rse/plugins/org.eclipse.rse.services.local/src/org/eclipse/rse/internal/services/local/shells/LocalShellThread.java
-index 0a33ad4..18f1373 100644
---- a/rse/plugins/org.eclipse.rse.services.local/src/org/eclipse/rse/internal/services/local/shells/LocalShellThread.java
-+++ b/rse/plugins/org.eclipse.rse.services.local/src/org/eclipse/rse/internal/services/local/shells/LocalShellThread.java
-@@ -29,6 +29,8 @@ import java.io.InputStreamReader;
- import java.io.OutputStream;
- import java.io.OutputStreamWriter;
- import java.net.URL;
-+import java.util.concurrent.locks.Lock;
-+import java.util.concurrent.locks.ReentrantLock;
- 
- import org.eclipse.core.runtime.FileLocator;
- 
-@@ -62,6 +64,7 @@ public class LocalShellThread extends Thread
- 	private BufferedReader _stdInput;
- 	private BufferedReader _stdError;
- 
-+	private Lock _lock;
- 	/**
- 	 * constructor for local command shell monitor
- 	 * 
-@@ -260,6 +263,7 @@ public class LocalShellThread extends Thread
- 
- 			_stdError = new BufferedReader(new InputStreamReader(_theProcess.getErrorStream()));
- 
-+			_lock = new ReentrantLock();
- 		}
- 		catch (IOException e)
- 		{
-@@ -438,9 +442,14 @@ public class LocalShellThread extends Thread
- 		_isDone = true;
- 		try
- 		{
-+			_lock.lock();
- 			_stdInput.close();
- 			_stdError.close();
- 
-+			_stdInput = null;
-+			_stdError = null;
-+
-+			_lock.unlock();
- 			if (_theProcess != null)
- 			{
- 
-@@ -511,4 +520,13 @@ public class LocalShellThread extends Thread
- 	}
- 
- 
-+	public Lock getLock() {
-+		return _lock;
-+	}
-+
-+
-+	public void setLock(Lock _lock) {
-+		this._lock = _lock;
-+	}
-+
- }
-diff --git a/rse/plugins/org.eclipse.rse.services/.settings/.api_filters b/rse/plugins/org.eclipse.rse.services/.settings/.api_filters
-index 19273c2..b550320 100644
---- a/rse/plugins/org.eclipse.rse.services/.settings/.api_filters
-+++ b/rse/plugins/org.eclipse.rse.services/.settings/.api_filters
-@@ -1,5 +1,13 @@
- <?xml version="1.0" encoding="UTF-8" standalone="no"?>
- <component id="org.eclipse.rse.services" version="2">
-+    <resource path="META-INF/MANIFEST.MF">
-+        <filter id="923795461">
-+            <message_arguments>
-+                <message_argument value="3.2.200"/>
-+                <message_argument value="3.2.200"/>
-+            </message_arguments>
-+        </filter>
-+    </resource>
-     <resource path="META-INF/MANIFEST.MF" type="org.eclipse.rse.internal.services.terminals.AbstractTerminalService">
-         <filter id="305324134">
-             <message_arguments>
-@@ -32,13 +40,13 @@
-         <filter id="305324134">
-             <message_arguments>
-                 <message_argument value="org.eclipse.rse.internal.services.terminals.BaseShellDecorator"/>
--                <message_argument value="org.eclipse.rse.services_3.1.1"/>
-+                <message_argument value="org.eclipse.rse.services_3.1.0"/>
-             </message_arguments>
-         </filter>
-         <filter id="305324134">
-             <message_arguments>
-                 <message_argument value="org.eclipse.rse.internal.services.terminals.BaseShellDecorator"/>
--                <message_argument value="org.eclipse.rse.services_3.1.0"/>
-+                <message_argument value="org.eclipse.rse.services_3.1.1"/>
-             </message_arguments>
-         </filter>
-     </resource>
-@@ -46,13 +54,13 @@
-         <filter id="305324134">
-             <message_arguments>
-                 <message_argument value="org.eclipse.rse.internal.services.terminals.IBaseShell"/>
--                <message_argument value="org.eclipse.rse.services_3.1.1"/>
-+                <message_argument value="org.eclipse.rse.services_3.1.0"/>
-             </message_arguments>
-         </filter>
-         <filter id="305324134">
-             <message_arguments>
-                 <message_argument value="org.eclipse.rse.internal.services.terminals.IBaseShell"/>
--                <message_argument value="org.eclipse.rse.services_3.1.0"/>
-+                <message_argument value="org.eclipse.rse.services_3.1.1"/>
-             </message_arguments>
-         </filter>
-     </resource>
-@@ -88,13 +96,13 @@
-         <filter id="305324134">
-             <message_arguments>
-                 <message_argument value="org.eclipse.rse.internal.services.terminals.TerminalShellDecorator"/>
--                <message_argument value="org.eclipse.rse.services_3.1.1"/>
-+                <message_argument value="org.eclipse.rse.services_3.1.0"/>
-             </message_arguments>
-         </filter>
-         <filter id="305324134">
-             <message_arguments>
-                 <message_argument value="org.eclipse.rse.internal.services.terminals.TerminalShellDecorator"/>
--                <message_argument value="org.eclipse.rse.services_3.1.0"/>
-+                <message_argument value="org.eclipse.rse.services_3.1.1"/>
-             </message_arguments>
-         </filter>
-     </resource>
-@@ -109,13 +117,27 @@
-         <filter id="305365105">
-             <message_arguments>
-                 <message_argument value="org.eclipse.rse.internal.services.terminals.ProcessBaseShell"/>
--                <message_argument value="org.eclipse.rse.services_3.1.1"/>
-+                <message_argument value="org.eclipse.rse.services_3.1.0"/>
-             </message_arguments>
-         </filter>
-         <filter id="305365105">
-             <message_arguments>
-                 <message_argument value="org.eclipse.rse.internal.services.terminals.ProcessBaseShell"/>
--                <message_argument value="org.eclipse.rse.services_3.1.0"/>
-+                <message_argument value="org.eclipse.rse.services_3.1.1"/>
-+            </message_arguments>
-+        </filter>
-+    </resource>
-+    <resource path="src/org/eclipse/rse/services/shells/IHostShellOutputReader.java" type="org.eclipse.rse.services.shells.IHostShellOutputReader">
-+        <filter id="403804204">
-+            <message_arguments>
-+                <message_argument value="org.eclipse.rse.services.shells.IHostShellOutputReader"/>
-+                <message_argument value="getReader()"/>
-+            </message_arguments>
-+        </filter>
-+        <filter id="403804204">
-+            <message_arguments>
-+                <message_argument value="org.eclipse.rse.services.shells.IHostShellOutputReader"/>
-+                <message_argument value="getReaderLock()"/>
-             </message_arguments>
-         </filter>
-     </resource>
-diff --git a/rse/plugins/org.eclipse.rse.services/src/org/eclipse/rse/internal/services/shells/TerminalServiceShellOutputReader.java b/rse/plugins/org.eclipse.rse.services/src/org/eclipse/rse/internal/services/shells/TerminalServiceShellOutputReader.java
-index 16364e1..3e5c655 100644
---- a/rse/plugins/org.eclipse.rse.services/src/org/eclipse/rse/internal/services/shells/TerminalServiceShellOutputReader.java
-+++ b/rse/plugins/org.eclipse.rse.services/src/org/eclipse/rse/internal/services/shells/TerminalServiceShellOutputReader.java
-@@ -23,6 +23,7 @@ package org.eclipse.rse.internal.services.shells;
- 
- import java.io.BufferedReader;
- import java.io.IOException;
-+import java.util.concurrent.locks.Lock;
- 
- import org.eclipse.rse.internal.services.Activator;
- import org.eclipse.rse.services.shells.AbstractHostShellOutputReader;
-@@ -174,4 +175,12 @@ public class TerminalServiceShellOutputReader extends
- 			fReaderThread.interrupt();
- 		}
- 	}
-+
-+	public BufferedReader getReader() {
-+		return fReader;
-+	}
-+
-+	public Lock getReaderLock() {
-+		return new ReentrantLock();;
-+	}
- }
-diff --git a/rse/plugins/org.eclipse.rse.services/src/org/eclipse/rse/services/shells/IHostShellOutputReader.java b/rse/plugins/org.eclipse.rse.services/src/org/eclipse/rse/services/shells/IHostShellOutputReader.java
-index 103c31f..5f8bf78 100644
---- a/rse/plugins/org.eclipse.rse.services/src/org/eclipse/rse/services/shells/IHostShellOutputReader.java
-+++ b/rse/plugins/org.eclipse.rse.services/src/org/eclipse/rse/services/shells/IHostShellOutputReader.java
-@@ -16,6 +16,9 @@
- 
- package org.eclipse.rse.services.shells;
- 
-+import java.io.BufferedReader;
-+import java.util.concurrent.locks.Lock;
-+
- public interface IHostShellOutputReader extends IHostShellOutputNotifier
- {
- 	public IHostOutput readLine();
-@@ -23,4 +26,12 @@ public interface IHostShellOutputReader extends IHostShellOutputNotifier
- 	public void addOutputListener(IHostShellOutputListener listener);
- 	public boolean isErrorReader();
- 	public void finish();
-+	/**
-+	 * @since 3.2
-+	 */
-+	public BufferedReader getReader();
-+	/**
-+	 * @since 3.2
-+	 */
-+	public Lock getReaderLock();
- }
-\ No newline at end of file
--- 
-1.7.9.5
+>
+> 2) We build toolchain from the build system, using meta-ide-support
+>
+> 3) We downloaded Eclipse classic from Eclipse's website
+>
+> 4) We installed the Eclipse's components, according to Yocto dev manual i=
+nstructions
+>
+> 5) We installed Yocto ADT plugin from the repository (version 1.3)
+>
+> We extracted the generated root filesystem in another directory, in order=
+ to properly configure the Eclipse Yocto plugin.
+>
+> [JZ] Base on your info, in the eclipse plug-in preference setup, you "Bui=
+ld system derived toolchain" and can you give me your toolchain location an=
+d sysroot location settings?
 
+The toolchain location is the build system location, as indicated in
+the documentation. The sysroot location is a different directory where
+I extracted the generated .tar.gz file from the end of the build.
+
+But ... to be clear: our problem is that Eclipse is not building the
+'autotools hello world' example project. The project is created
+correctly, but it is not compiling from the IDE.
+
+When I go, using terminal, to the project directory. I can see the
+'autogen.sh' file. If I execute, from IDE, the reconfigure option, I
+can see, from terminal, the configure file. But I cannot see the
+makefiles.
+
+According to the documentation, when I execute the 'reconfigure'
+option from Eclipse, it will execute autogen.sh + configure. What is
+happening is that autogen.sh is being executed, but not configure.
+
+>
+> For now, installation worked fine. The problem occurs when we try to buil=
+d the hello world application.
+>
+> We followed the steps from the Yocto dev manual.
+>
+> Before starting the build, I lanched the reconfigure option. After, when =
+started to build, the error message indicates 'no make target'.
+>
+> Looking at the files, I could see that autogen.sh was executed, but the c=
+onfigure script don't. I believe that there is some isse where the IDE is n=
+ot executing the configure script.
+>
+> Do you have any clue about how to solve this issue?
+>
+> Best regards,
+>
+> Flavio
+>
+>
+> 2013/1/17 Zhang, Jessica <jessica.zhang@intel.com>:
+>> Hi Raul,
+>>
+>>
+>>
+>> Before we can help you debug your issue, can you provide more info
+>> regarding
+>> to:
+>>
+>>
+>>
+>> 1.       How did you setup your cross toolchain? ADT installer or toolch=
+ain
+>> tarball (your build if so, how did you build it.  If not, which one
+>> did you
+>> download?)
+>>
+>> 2.       And also, please provide more info what's your toolchain setup =
+in
+>> Eclipse, specifically the Yocto Project ADT preference config under Wind=
+ow?
+>>
+>> Thanks,
+>>
+>> Jessica
+>>
+>>
+>>
+>> From: yocto-bounces@yoctoproject.org
+>> [mailto:yocto-bounces@yoctoproject.org]
+>> On Behalf Of Raul Rosetto Munoz
+>> Sent: Thursday, January 17, 2013 4:10 AM
+>> To: yocto@yoctoproject.org
+>> Subject: [yocto] Eclipse Plugin
+>>
+>>
+>>
+>> Hello All,
+>>
+>> I followed the ADT manual to create a eclipse environment.
+>>
+>>
+>>
+>> After create a default Hello World Yocto project I get some compile erro=
+rs.
+>>
+>>
+>>
+>> At file config.log I saw some errors lines:
+>>
+>>
+>>
+>>
+>>
+>> configure:2861: checking for arm-poky-linux-gnueabi-gcc
+>>
+>> configure:2888: result: arm-poky-linux-gnueabi-gcc  -march=3Darmv5te
+>> -marm -mthumb-interwork  -mtune=3Darm926ej-s
+>> --sysroot=3D/home/prjs/compsis0001/philinux/arm
+>>
+>> configure:3157: checking for C compiler version
+>>
+>> configure:3166: arm-poky-linux-gnueabi-gcc  -march=3Darmv5te  -marm
+>> -mthumb-interwork  -mtune=3Darm926ej-s
+>> --sysroot=3D/home/prjs/compsis0001/philinux/arm --version >&5
+>>
+>> arm-poky-linux-gnueabi-gcc (GCC) 4.7.2
+>>
+>> Copyright (C) 2012 Free Software Foundation, Inc.
+>>
+>> This is free software; see the source for copying conditions.  There
+>> is NO
+>>
+>> warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPO=
+SE.
+>>
+>>
+>>
+>> configure:3177: $? =3D 0
+>>
+>> configure:3166: arm-poky-linux-gnueabi-gcc  -march=3Darmv5te  -marm
+>> -mthumb-interwork  -mtune=3Darm926ej-s
+>> --sysroot=3D/home/prjs/compsis0001/philinux/arm -v >&5
+>>
+>> Using built-in specs.
+>>
+>> COLLECT_GCC=3Darm-poky-linux-gnueabi-gcc
+>>
+>> COLLECT_LTO_WRAPPER=3D/opt/poky/1.3/sysroots/i686-pokysdk-linux/usr/libe
+>> xec/armv5te-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/4.7.2/lto-wr
+>> apper
+>>
+>> Target: arm-poky-linux-gnueabi
+>>
+>> Configured with:
+>> /srv/home/pokybuild/yocto-autobuilder/yocto-slave/nightly-arm/build/bu
+>> ild/tmp/work-shared/gcc-4.7.2-r13/gcc-4.7.2/configure
+>> --build=3Dx86_64-linux --host=3Di686-pokysdk-linux
+>> --target=3Darm-poky-linux-gnueabi
+>> --prefix=3D/opt/poky/1.3/sysroots/i686-pokysdk-linux/usr
+>> --exec_prefix=3D/opt/poky/1.3/sysroots/i686-pokysdk-linux/usr
+>> --bindir=3D/opt/poky/1.3/sysroots/i686-pokysdk-linux/usr/bin/armv5te-pok
+>> y-linux-gnueabi
+>> --sbindir=3D/opt/poky/1.3/sysroots/i686-pokysdk-linux/usr/bin/armv5te-po
+>> ky-linux-gnueabi
+>> --libexecdir=3D/opt/poky/1.3/sysroots/i686-pokysdk-linux/usr/libexec/arm
+>> v5te-poky-linux-gnueabi
+>> --datadir=3D/opt/poky/1.3/sysroots/i686-pokysdk-linux/usr/share
+>> --sysconfdir=3D/opt/poky/1.3/sysroots/i686-pokysdk-linux/etc
+>> --sharedstatedir=3D/opt/poky/1.3/sysroots/i686-pokysdk-linux/com
+>> --localstatedir=3D/opt/poky/1.3/sysroots/i686-pokysdk-linux/var
+>> --libdir=3D/opt/poky/1.3/sysroots/i686-pokysdk-linux/usr/lib/armv5te-pok
+>> y-linux-gnueabi
+>> --includedir=3D/opt/poky/1.3/sysroots/i686-pokysdk-linux/usr/include
+>> --oldincludedir=3D/opt/poky/1.3/sysroots/i686-pokysdk-linux/usr/include
+>> --infodir=3D/opt/poky/1.3/sysroots/i686-pokysdk-linux/usr/share/info
+>> --mandir=3D/opt/poky/1.3/sysroots/i686-pokysdk-linux/usr/share/man
+>> --disable-silent-rules --disable-dependency-tracking
+>> --with-libtool-sysroot=3D/srv/home/pokybuild/yocto-autobuilder/yocto-sla
+>> ve/nightly-arm/build/build/tmp/sysroots/i686-nativesdk-pokysdk-linux
+>> --with-gnu-ld --enable-shared --enable-languages=3Dc,c++
+>> --enable-threads=3Dposix --disable-multilib --enable-c99
+>> --enable-long-long --enable-symvers=3Dgnu --enable-libstdcxx-pch
+>> --program-prefix=3Darm-poky-linux-gnueabi- --without-local-prefix
+>> --enable-target-optspace --enable-lto --enable-libssp
+>> --disable-bootstrap --disable-libgomp --disable-libmudflap
+>> --with-system-zlib --with-linker-hash-style=3Dgnu --with-ppl=3Dno
+>> --with-cloog=3Dno --enable-checking=3Drelease --enable-cheaders=3Dc_glob=
+al
+>> --with-float=3Dsoft
+>> --with-gxx-include-dir=3D/opt/poky/1.3/sysroots/armv5te-poky-linux-gnuea
+>> bi/usr/include/c++
+>> --with-build-time-tools=3D/srv/home/pokybuild/yocto-autobuilder/yocto-sl
+>> ave/nightly-arm/build/build/tmp/sysroots/x86_64-linux/usr/arm-poky-lin
+>> ux-gnueabi/bin
+>> --with-sysroot=3D/opt/poky/1.3/sysroots/armv5te-poky-linux-gnueabi
+>> --with-build-sysroot=3D/srv/home/pokybuild/yocto-autobuilder/yocto-slave
+>> /nightly-arm/build/build/tmp/sysroots/qemuarm
+>> --disable-libunwind-exceptions --disable-libssp --disable-libgomp
+>> --disable-libmudflap
+>> --with-mpfr=3D/srv/home/pokybuild/yocto-autobuilder/yocto-slave/nightly-
+>> arm/build/build/tmp/sysroots/i686-nativesdk-pokysdk-linux
+>> --with-mpc=3D/srv/home/pokybuild/yocto-autobuilder/yocto-slave/nightly-a
+>> rm/build/build/tmp/sysroots/i686-nativesdk-pokysdk-linux
+>> --enable-nls
+>>
+>> Thread model: posix
+>>
+>> gcc version 4.7.2 (GCC)
+>>
+>> configure:3177: $? =3D 0
+>>
+>> configure:3166: arm-poky-linux-gnueabi-gcc  -march=3Darmv5te  -marm
+>> -mthumb-interwork  -mtune=3Darm926ej-s
+>> --sysroot=3D/home/prjs/compsis0001/philinux/arm -V >&5
+>>
+>> arm-poky-linux-gnueabi-gcc: error: unrecognized command line option '-V'
+>>
+>> arm-poky-linux-gnueabi-gcc: fatal error: no input files
+>>
+>> compilation terminated.
+>>
+>> configure:3177: $? =3D 1
+>>
+>> configure:3166: arm-poky-linux-gnueabi-gcc  -march=3Darmv5te  -marm
+>> -mthumb-interwork  -mtune=3Darm926ej-s
+>> --sysroot=3D/home/prjs/compsis0001/philinux/arm -qversion >&5
+>>
+>> arm-poky-linux-gnueabi-gcc: error: unrecognized command line option
+>> '-qversion'
+>>
+>> arm-poky-linux-gnueabi-gcc: fatal error: no input files
+>>
+>> compilation terminated.
+>>
+>> configure:3177: $? =3D 1
+>>
+>> configure:3197: checking whether the C compiler works
+>>
+>> configure:3219: arm-poky-linux-gnueabi-gcc  -march=3Darmv5te  -marm
+>> -mthumb-interwork  -mtune=3Darm926ej-s
+>> --sysroot=3D/home/prjs/compsis0001/philinux/arm  -g -O0
+>> --sysroot=3D/opt/poky/1.3  --sysroot=3D/opt/poky/1.3
+>> --sysroot=3D/opt/poky/1.3 conftest.c  >&5
+>>
+>> /opt/poky/1.3/sysroots/i686-pokysdk-linux/usr/libexec/armv5te-poky-linux=
+-gnueabi/gcc/arm-poky-linux-gnueabi/4.7.2/ld:
+>> cannot find crt1.o: No such file or directory
+>>
+>> /opt/poky/1.3/sysroots/i686-pokysdk-linux/usr/libexec/armv5te-poky-linux=
+-gnueabi/gcc/arm-poky-linux-gnueabi/4.7.2/ld:
+>> cannot find crti.o: No such file or directory
+>>
+>> /opt/poky/1.3/sysroots/i686-pokysdk-linux/usr/libexec/armv5te-poky-linux=
+-gnueabi/gcc/arm-poky-linux-gnueabi/4.7.2/ld:
+>> cannot find crtbegin.o: No such file or directory
+>>
+>> /opt/poky/1.3/sysroots/i686-pokysdk-linux/usr/libexec/armv5te-poky-linux=
+-gnueabi/gcc/arm-poky-linux-gnueabi/4.7.2/ld:
+>> cannot find -lgcc
+>>
+>> /opt/poky/1.3/sysroots/i686-pokysdk-linux/usr/libexec/armv5te-poky-linux=
+-gnueabi/gcc/arm-poky-linux-gnueabi/4.7.2/ld:
+>> cannot find -lgcc_s
+>>
+>> /opt/poky/1.3/sysroots/i686-pokysdk-linux/usr/libexec/armv5te-poky-linux=
+-gnueabi/gcc/arm-poky-linux-gnueabi/4.7.2/ld:
+>> cannot find -lc
+>>
+>> /opt/poky/1.3/sysroots/i686-pokysdk-linux/usr/libexec/armv5te-poky-linux=
+-gnueabi/gcc/arm-poky-linux-gnueabi/4.7.2/ld:
+>> cannot find -lgcc
+>>
+>> /opt/poky/1.3/sysroots/i686-pokysdk-linux/usr/libexec/armv5te-poky-linux=
+-gnueabi/gcc/arm-poky-linux-gnueabi/4.7.2/ld:
+>> cannot find -lgcc_s
+>>
+>> /opt/poky/1.3/sysroots/i686-pokysdk-linux/usr/libexec/armv5te-poky-linux=
+-gnueabi/gcc/arm-poky-linux-gnueabi/4.7.2/ld:
+>> cannot find crtend.o: No such file or directory
+>>
+>> /opt/poky/1.3/sysroots/i686-pokysdk-linux/usr/libexec/armv5te-poky-linux=
+-gnueabi/gcc/arm-poky-linux-gnueabi/4.7.2/ld:
+>> cannot find crtn.o: No such file or directory
+>>
+>> collect2: error: ld returned 1 exit status
+>>
+>> configure:3223: $? =3D 1
+>>
+>> configure:3261: result: no
+>>
+>> configure: failed program was:
+>>
+>> | /* confdefs.h */
+>>
+>> | #define PACKAGE_NAME "teste"
+>>
+>> | #define PACKAGE_TARNAME "teste"
+>>
+>> | #define PACKAGE_VERSION "0.1.0"
+>>
+>> | #define PACKAGE_STRING "teste 0.1.0"
+>>
+>> | #define PACKAGE_BUGREPORT ""
+>>
+>> | #define PACKAGE_URL ""
+>>
+>> | #define PACKAGE "teste"
+>>
+>> | #define VERSION "0.1.0"
+>>
+>> | /* end confdefs.h.  */
+>>
+>> |
+>>
+>> | int
+>>
+>> | main ()
+>>
+>> | {
+>>
+>> |
+>>
+>> |   ;
+>>
+>> |   return 0;
+>>
+>> | }
+>>
+>> configure:3266: error: in `/home/prjs/compsis0001/workspace/teste':
+>>
+>> configure:3268: error: C compiler cannot create executables
+>>
+>> See `config.log' for more details
+>>
+>>
+>>
+>> ## ---------------- ##
+>>
+>> ## Cache variables. ##
+>>
+>> ## ---------------- ##
+>>
+>> ...
+>>
+>> ...
+>>
+>> ...
+>>
+>> ## ----------------- ##
+>>
+>> ## Output variables. ##
+>>
+>> ## ----------------- ##
+>>
+>> ...
+>>
+>> ...
+>>
+>> ...
+>>
+>> /* confdefs.h */
+>>
+>> #define PACKAGE_NAME "teste"
+>>
+>> #define PACKAGE_TARNAME "teste"
+>>
+>> #define PACKAGE_VERSION "0.1.0"
+>>
+>> #define PACKAGE_STRING "teste 0.1.0"
+>>
+>> #define PACKAGE_BUGREPORT ""
+>>
+>> #define PACKAGE_URL ""
+>>
+>> #define PACKAGE "teste"
+>>
+>> #define VERSION "0.1.0"
+>>
+>>
+>>
+>> configure: exit 77
+>>
+>>
+>>
+>>
+>>
+>> Some One can Help me?
+>>
+>>
+>>
+>> Thanks
+>>
+>>
+>>
+>> --
+>> Raul Rosetto Mu=F1oz
+>>
+>>
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>>
+>
+>
+>
+> --
+> Flavio de Castro Alves Filho
+>
+> flavio.alves@gmail.com
+> www.linuxembarcado.com
+> Twitter: http://twitter.com/#!/fraviofii LinkedIn profile: www.linkedin.c=
+om/in/flaviocastroalves
+
+
+
+--
+Flavio de Castro Alves Filho
+
+flavio.alves@gmail.com
+www.linuxembarcado.com
+Twitter: http://twitter.com/#!/fraviofii
+LinkedIn profile: www.linkedin.com/in/flaviocastroalves
 
