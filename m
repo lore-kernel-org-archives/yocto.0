@@ -1,31 +1,33 @@
-Return-Path: <jessica.zhang@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D2A92E011ED
-	for <yocto@yoctoproject.org>; Mon, 21 Jan 2013 14:35:26 -0800 (PST)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 21 Jan 2013 14:35:26 -0800
+Return-Path: <song.liu@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9919BE00515
+	for <yocto@yoctoproject.org>; Mon, 21 Jan 2013 14:47:21 -0800 (PST)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga101.ch.intel.com with ESMTP; 21 Jan 2013 14:47:21 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,508,1355126400"; d="scan'208";a="276671955"
+X-IronPort-AV: E=Sophos;i="4.84,510,1355126400"; d="scan'208";a="193652622"
 Received: from orsmsx104.amr.corp.intel.com ([10.22.225.131])
-	by fmsmga001.fm.intel.com with ESMTP; 21 Jan 2013 14:35:26 -0800
+	by AZSMGA002.ch.intel.com with ESMTP; 21 Jan 2013 14:47:20 -0800
+Received: from orsmsx152.amr.corp.intel.com (10.22.226.39) by
+	ORSMSX104.amr.corp.intel.com (10.22.225.131) with Microsoft SMTP Server
+	(TLS) id 14.1.355.2; Mon, 21 Jan 2013 14:47:20 -0800
 Received: from orsmsx101.amr.corp.intel.com ([169.254.8.209]) by
-	ORSMSX104.amr.corp.intel.com ([169.254.3.50]) with mapi id
-	14.01.0355.002; Mon, 21 Jan 2013 14:35:26 -0800
-From: "Zhang, Jessica" <jessica.zhang@intel.com>
-To: Patrick Turley <PatrickTurley@gamestop.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: Adding ALSA to the Yocto SDK
-Thread-Index: AQHN+B4WLsv3IxjS3EyIVDhGEOlyI5hUXhPQ
-Date: Mon, 21 Jan 2013 22:35:25 +0000
-Message-ID: <C6510F6D410BB64A8C15398EDC6B847C57DD5B1F@ORSMSX101.amr.corp.intel.com>
-References: <5BEFD653CA8A8D47AA194ED30AB5968C36D6FA@GV1HQPEX03.babgsetc.pvt>
-In-Reply-To: <5BEFD653CA8A8D47AA194ED30AB5968C36D6FA@GV1HQPEX03.babgsetc.pvt>
+	ORSMSX152.amr.corp.intel.com ([169.254.8.3]) with mapi id
+	14.01.0421.002; Mon, 21 Jan 2013 14:47:20 -0800
+From: "Liu, Song" <song.liu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Agenda: Yocto Project Technical Team Meeting - Tuesday,
+	January 22, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+Thread-Index: AQHN+ClECOgBZapsqEupbxaSxeHe2w==
+Date: Mon, 21 Jan 2013 22:47:19 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A598A1018@ORSMSX101.amr.corp.intel.com>
+References: <7E680CB2A76BB8438D08CF13C09FC53A4844CAD5@ORSMSX101.amr.corp.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.138]
+x-originating-ip: [10.22.254.139]
 MIME-Version: 1.0
-Subject: Re: Adding ALSA to the Yocto SDK
+Subject: Agenda: Yocto Project Technical Team Meeting - Tuesday, January 22, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,69 +39,135 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 21 Jan 2013 22:35:27 -0000
+X-List-Received-Date: Mon, 21 Jan 2013 22:47:21 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Patrick,
-
-Since you're able to add the dev packages to images, just do bitbake yourim=
-agewithALSA -c populate_sdk, that should generate a SDK contains ALSA.  By =
-default, meta-toolchain-sdk is predefined unless you use "-c populate_sdk" =
-to enforce the SDK sysroot to match your rootfs.
-
-Cheers,
-Jessica
-
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Patrick Turley
-Sent: Monday, January 21, 2013 1:27 PM
-To: yocto@yoctoproject.org
-Subject: [yocto] Adding ALSA to the Yocto SDK
-
-I've been working on re-targeting some code from a vendor's board to our ow=
-n board.
-
-For libraries and other low-level code, everything's been fine. For test ap=
-plications, I'm running into a dependency on the header file alsa/asoundlib=
-.h, which is obviously part of ALSA.
-
-I've been building our SDK with:
-
-    bitbake meta-toolchain-sdk
-
-This gives us most everything we need, but it does *not* include header fil=
-es and libraries for ALSA. That actually seems perfectly reasonable to me -=
-- not everyone needs ALSA support in their applications, so the *default* S=
-DK shouldn't be burdened with that.
-
-We *do* need it. As I see it, there are two possibilities:
-
-1) There's something I can do that will cause OE/Yocto to include ALSA head=
-er files in the SDK I produce. If that's the case, can you tell me what I n=
-eed to do?
-
-2) The ALSA header files aren't *supposed* to be in the SDK -- I'm supposed=
- to be delivering them to the compilation process in another way. If that's=
- the case, can you tell me what I need to do?
+Agenda:
+=A0
+* Opens collection - 5 min (Song)
+* Yocto Project 1.2.2 status - 10 min (Scott/Beth)
+* Yocto Project 1.3.1 status - 10 min (Ross)
+* Yocto 1.4 status - 10 min (Song/team)
+  https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.4_Status#Overview=20
+* SWAT team rotation: Constantin Musca -> Bogdan Marinescu
+* Opens - 10 min=20
+* Team Sharing - 20 min
 
 
-Other items of note...
+-----Original Appointment-----
+We encourage people attending the meeting to logon the Yocto IRC chancel du=
+ring the meeting (optional):
 
--- Executing "bitbake alsa-lib" *did* put the expected files within our sys=
-root (under tmp/sysroots). Even so (as we intuitively expected) executing "=
-bitbake meta-toolchain-sdk" afterward did *not* put them into the SDK. We c=
-onclude that having a package built and available for the SDK doesn't neces=
-sarily get it into the SDK.
+Yocto IRC: http://webchat.freenode.net/?channels=3D#yocto
+IRC Tutorial: http://www.irchelp.org/irchelp/irctutorial.html=20
 
--- Adding ALSA to our image also caused the correct files to end up in our =
-sysroot but, again, nothing appeared in the SDK. We conclude that the conte=
-nts of the image do *not* dictate the contents of the SDK.
+Conference details=20
+Conference name:=20
+Yocto Technical Team
+Conference date/start time:=20
+Tue Jun 26, 2012 at 10:00 AM Central Daylight Time=20
+Participants:=20
+30
+Duration:=20
+60 minutes=20
+Participant passcode:=20
+76994298
+Dial-in number:=20
+1.972.995.7777=20
+US Toll Free number:=20
+1.877.561.6828=20
+BlackBerry users, click this link to join your conference as a participant:
+1.972.995.7777x76994298#
+=A0
+Depending on where you are dialing from, either your BlackBerry will pause =
+and enter the passcode automatically or you will be prompted to click again=
+ to dial the passcode.
 
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
+Local and Global Access Numbers=20
+
+
+Country=20
+Dial-in number
+Australia:=20
+1800 636 843
+Czech Republic:=20
+242 430 350
+China (Beijing):=20
+From office dial 8-9957777 or 8784277=20
+Beijing Out of Office dial 5878 4277
+China (Shanghai):=20
+From office dial 8-9957777 or 3073322=20
+Shanghai Out of Office dial 2307 3322
+China (Shenzen):=20
+From office dial 8-9957777 or 6007877=20
+Shenzen Out of Office dial 2600 7877
+China (Other Cities):=20
+From IP phone dial 8-9957777=20
+Other cities - Non IP phone dial 021-23073322
+Denmark:=20
+8060 1400
+Finland:=20
+09 41333477
+France:=20
+0497 275888
+Germany:=20
+08161 803232
+Holland:=20
+030 2417490
+India:=20
+BSNL subscribers use 1800 425 9996 (Toll Free)
+Airtel subscribers use 0008 009 861 212 (Toll Free)
+From TI Campus use 89957777
+Others use 2509 9555 (Landline within Bangalore) or
+80 2509 9555 (Outside Bangalore)
+Israel:=20
+09 790 6715
+Italy:=20
+039 69061234 (039 is local city code not country code)
+Japan:=20
+From TI Campus use 8 995 7777=20
+Outside TI use 03 4331 3777
+Malaysia:=20
+From IP phone dial 2643799=20
+From Kuala Lumpur dial 4264 3799=20
+Outside Kuala Lumpur dial (03)4264 3799
+Norway:=20
+2 295 8744
+Philippines:=20
+From Baguio City use 4471177=20
+From Metro Manila area use 8702477
+Singapore:=20
+From IP phone dial 3894777=20
+Outside TI use 6389 4777
+South Korea:=20
+From IP phone dial 5606998=20
+From Seoul dial 5606998=20
+Outside Seoul dial (02)5606998
+Sweden:=20
+08 58755577
+Taiwan:=20
+From IP phone dial 1363=20
+From Taipei dial 2241 1363=20
+Outside Taipei dial (02)2241 1363
+Turkey:=20
+Landline Only dial 0811 288 0001=20
+then enter 877 633 1123=20
+UK:=20
+01604 663003
+US:=20
+972 995 7777 or 1877 561 6828
+
+Recurring conferences=20
+First scheduled conference:=20
+Tue Jun 26, 2012
+Recurrence frequency:=20
+Weekly - Every 1 week(s) on Tuesday
+Recurrence ends:=20
+End on Fri Jun 21, 2013, 10:40 AM CDT
+
+
+
+
 
