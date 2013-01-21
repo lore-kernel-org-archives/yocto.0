@@ -1,30 +1,33 @@
-Return-Path: <PatrickTurley@gamestop.com>
-Received: from gsironport2.gamestop.com (mail2.gamestop.com [12.25.107.29])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0360AE006DC
-	for <yocto@yoctoproject.org>; Mon, 21 Jan 2013 15:16:13 -0800 (PST)
-X-IronPort-AV: E=Sophos;i="4.84,510,1355119200"; 
-   d="scan'208";a="7327252"
-Received: from unknown (HELO GV1HQPEX01.babgsetc.pvt) ([172.22.1.244])
-	by gsironport2.gamestop.com with ESMTP; 21 Jan 2013 17:16:12 -0600
-Received: from GV1HQPEX03.babgsetc.pvt ([169.254.1.225]) by
-	GV1HQPEX01.babgsetc.pvt ([172.22.1.191]) with mapi id 14.02.0318.004;
-	Mon, 21 Jan 2013 17:16:11 -0600
-From: Patrick Turley <PatrickTurley@gamestop.com>
-To: "Zhang, Jessica" <jessica.zhang@intel.com>
-Thread-Topic: Adding ALSA to the Yocto SDK
-Thread-Index: AQHN+B4WLsv3IxjS3EyIVDhGEOlyI5hUXhPQgABw34A=
-Date: Mon, 21 Jan 2013 23:16:11 +0000
-Message-ID: <5BEFD653CA8A8D47AA194ED30AB5968C36F004@GV1HQPEX03.babgsetc.pvt>
-References: <5BEFD653CA8A8D47AA194ED30AB5968C36D6FA@GV1HQPEX03.babgsetc.pvt>
-	<C6510F6D410BB64A8C15398EDC6B847C57DD5B1F@ORSMSX101.amr.corp.intel.com>
-In-Reply-To: <C6510F6D410BB64A8C15398EDC6B847C57DD5B1F@ORSMSX101.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.22.1.244]
-MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Adding ALSA to the Yocto SDK
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-pa0-f47.google.com (mail-pa0-f47.google.com
+	[209.85.220.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3AA90E006EB
+	for <yocto@yoctoproject.org>; Mon, 21 Jan 2013 15:18:10 -0800 (PST)
+Received: by mail-pa0-f47.google.com with SMTP id fa10so3652714pad.20
+	for <yocto@yoctoproject.org>; Mon, 21 Jan 2013 15:18:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=x-received:from:to:cc:subject:date:message-id:x-mailer;
+	bh=JmUAsGsbrrzohAQ14asy45QrQ0BISZQugLcIvc9/upc=;
+	b=sx2TX2fIGEnuN29Cp4hiPsJugGhv0Z3mT7rB+khCslwd/8TGEeSq57lfOAZKsYEXSz
+	EwxZHub6bU0s6xGzGMV4ezaTDiUPD88LTWku7dVOKJtsHlO8WcvdHvhc/aRhp13K2n2K
+	psrD2f0fdKRVeJFS/DIdTzOWuq378/BrC3+v3frOV4YVhAuRsHaGYrL9p6tUapaC6QN8
+	Br8vWvgDXRvvQT6HkdlZbLfSG4AdnSxLD/Of3s3Vz7FbMaCOvaw5VZqarq2d7JN5zKa/
+	wSC3H72lX4kxSd4BKZTF4Z8BDYuB78kD4Z0Eg7+mJuZ2TXedWPp0rUZElnRr4H6iy2Y7
+	JUxQ==
+X-Received: by 10.68.136.163 with SMTP id qb3mr33728924pbb.129.1358810290072; 
+	Mon, 21 Jan 2013 15:18:10 -0800 (PST)
+Received: from isis.gateway.2wire.net
+	(99-57-140-209.lightspeed.sntcca.sbcglobal.net. [99.57.140.209])
+	by mx.google.com with ESMTPS id nt5sm9449743pbb.59.2013.01.21.15.18.08
+	(version=TLSv1.1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Mon, 21 Jan 2013 15:18:09 -0800 (PST)
+From: Khem Raj <raj.khem@gmail.com>
+To: yocto@yoctoproject.org,
+	autif.mlist@gmail.com
+Date: Mon, 21 Jan 2013 15:17:56 -0800
+Message-Id: <1358810277-11975-1-git-send-email-raj.khem@gmail.com>
+X-Mailer: git-send-email 1.7.9.5
+Subject: [meta-mono][PATCH 1/2] layer.conf: Use .= for adding to BBPATH and += to BBFILES
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,29 +39,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 21 Jan 2013 23:16:14 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <7043C6CD734C22469CEC187A6440036B@gamestop.com>
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 21 Jan 2013 23:18:10 -0000
 
-On Jan 21, 2013, at 4:35 PM, "Zhang, Jessica" <jessica.zhang@intel.com> wro=
-te:
+Fixes parsing errors which is appearing after this commit to
+meta-openembedded
 
-> Hi Patrick,
->=20
-> Since you're able to add the dev packages to images, just do bitbake your=
-imagewithALSA -c populate_sdk, that should generate a SDK contains ALSA.  B=
-y default, meta-toolchain-sdk is predefined unless you use "-c populate_sdk=
-" to enforce the SDK sysroot to match your rootfs.
+http://cgit.openembedded.org/meta-openembedded/commit/?id=3c21a46020bd0816579648f
 
+This triggers
+exception NameError: name 'base_contains' is not defined
+without this change
 
-All the clues rolling in are starting to knit together.
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
+---
+ conf/layer.conf |    4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-At first, I regarded the "populate_sdk" task as a hack, since it seemed to =
-be expressing something that was naturally a "target" -- not a "task."
-
-Now I see that it is a way to connect an image to a corresponding SDK. That=
- makes a *lot* more sense.
+diff --git a/conf/layer.conf b/conf/layer.conf
+index 6bcf70e..d8cc797 100644
+--- a/conf/layer.conf
++++ b/conf/layer.conf
+@@ -1,8 +1,8 @@
+ # We have a conf and classes directory, add to BBPATH
+-BBPATH := "${BBPATH}:${LAYERDIR}"
++BBPATH .= ":${LAYERDIR}"
+ 
+ # We have a recipes directory, add to BBFILES
+-BBFILES := "${BBFILES} ${LAYERDIR}/recipes-mono/*/*.bb \
++BBFILES += "${LAYERDIR}/recipes-mono/*/*.bb \
+             ${LAYERDIR}/recipes-mono/*/*.bbappend"
+ 
+ BBFILE_COLLECTIONS += "mono"
+-- 
+1.7.9.5
 
 
