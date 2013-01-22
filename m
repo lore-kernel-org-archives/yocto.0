@@ -1,25 +1,36 @@
-Return-Path: <darren.hart@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 11427E00716
-	for <yocto@yoctoproject.org>; Tue, 22 Jan 2013 11:14:30 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 22 Jan 2013 11:14:29 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,516,1355126400"; d="scan'208";a="250824113"
-Received: from unknown (HELO envy.home) ([10.255.15.13])
-	by orsmga001.jf.intel.com with ESMTP; 22 Jan 2013 11:14:14 -0800
-Message-ID: <50FEE506.1020002@intel.com>
-Date: Tue, 22 Jan 2013 11:14:14 -0800
-From: Darren Hart <darren.hart@intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/17.0 Thunderbird/17.0
+Return-Path: <PatrickTurley@gamestop.com>
+Received: from gsironport1.gamestop.com (mail1.gamestop.com [12.25.107.28])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D091EE014C6
+	for <yocto@yoctoproject.org>; Tue, 22 Jan 2013 11:52:44 -0800 (PST)
+X-IronPort-AV: E=Sophos;i="4.84,516,1355119200"; 
+   d="scan'208";a="7140389"
+Received: from unknown (HELO GV1HQPEX01.babgsetc.pvt) ([172.22.1.244])
+	by gsironport1.gamestop.com with ESMTP; 22 Jan 2013 13:52:44 -0600
+Received: from GV1HQPEX03.babgsetc.pvt ([169.254.1.225]) by
+	GV1HQPEX01.babgsetc.pvt ([172.22.1.191]) with mapi id 14.02.0318.004;
+	Tue, 22 Jan 2013 13:52:44 -0600
+From: Patrick Turley <PatrickTurley@gamestop.com>
+To: "Zhang, Jessica" <jessica.zhang@intel.com>
+Thread-Topic: [yocto] Build external module against Yocto kernel
+Thread-Index: AQHN8q6s5QOP/6xKnEq8yLl/GYg/sJhLBNOAgAAApYCAAAxrAIAAAagAgAAHNgCAAAN4gIAACr+AgAsKVYA=
+Date: Tue, 22 Jan 2013 19:52:43 +0000
+Message-ID: <5BEFD653CA8A8D47AA194ED30AB5968C36FEBC@GV1HQPEX03.babgsetc.pvt>
+References: <5BEFD653CA8A8D47AA194ED30AB5968C35CD91@GV1HQPEX03.babgsetc.pvt>
+	<1358269651.2479.5.camel@omclinuxballt.devnet.ordermatic.net>
+	<1358269789.2479.6.camel@omclinuxballt.devnet.ordermatic.net>
+	<5BEFD653CA8A8D47AA194ED30AB5968C35D715@GV1HQPEX03.babgsetc.pvt>
+	<50F5992C.9070705@windriver.com>
+	<5BEFD653CA8A8D47AA194ED30AB5968C35D97A@GV1HQPEX03.babgsetc.pvt>
+	<50F5A221.2070209@windriver.com>
+	<C6510F6D410BB64A8C15398EDC6B847C57DD15B4@ORSMSX101.amr.corp.intel.com>
+In-Reply-To: <C6510F6D410BB64A8C15398EDC6B847C57DD15B4@ORSMSX101.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.22.1.244]
 MIME-Version: 1.0
-To: Christian Ege <christian.ege@familie-ege.net>
-References: <41DEA4B02DBDEF40A0F3B6D0DDB1237957D27592@ORSMSX101.amr.corp.intel.com>
-	<8389da1c972242f1c69900ba7f48db4e-EhVcXlhFQwBWRwoYGgwbZ1dfaANWUkNeXENbAF9TNkFcVEYOV0F1AUtXXl8wQEYHV1JdRVlTWw==-webmailer2@server04.webmailer.hosteurope.de>
-In-Reply-To: <8389da1c972242f1c69900ba7f48db4e-EhVcXlhFQwBWRwoYGgwbZ1dfaANWUkNeXENbAF9TNkFcVEYOV0F1AUtXXl8wQEYHV1JdRVlTWw==-webmailer2@server04.webmailer.hosteurope.de>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: FW: YP Linux Kernel Development Manual
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Build external module against Yocto kernel
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,54 +42,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 22 Jan 2013 19:14:30 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 22 Jan 2013 19:52:45 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <6213FC0750E9F546843C6F3C4A1B10D4@gamestop.com>
+Content-Transfer-Encoding: quoted-printable
 
-On 01/22/2013 12:59 AM, Christian Ege wrote:
->  Hi,
->  I am not sure if this is the problem you are struggling with.
->  I am wondering why class module.bbclass behaves completely different
->  than kernel.bbclacc
-> 
->>  hi, I follow the kernel development manual "2.5. Incorporating
->> Out-of-Tree Modules",
->>  copy the "hello-mod_0.1.bb" and "files" folder into my taget layer
->> "meta-intel/meta-jasperforest/recipe-kernel", then add 
->> "MACHINE_EXTRA_
->> RDEPENDS += "kernel-module-hello" in the conf/local.conf
->>  after build and boot, there's no "hello.ko" found in the binary 
->> image
->>  also there's no hello.ko in the "tmp/work/..." folder
-> 
->  If you hello-mod_0.1.bb inherits module class there is no mechanism
->  to create the kernel-module package. This only applies to the 
->  kernel.bbclass
-> 
->  http://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/classes/module.bbclass
->  http://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/classes/module-base.bbclass
-> 
->  Have a look at kernel.bbclass instead shows some pathon code which 
->  handles the module package creation:
->  http://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/classes/kernel.bbclass#n301
-> 
->  I've fixed this in my layer by stealing the code from kernel.bbclass
->  https://github.com/project-magpie/meta-stlinux/blob/master/recipes-bsp/tdt-driver/tdt-driver.inc
-> 
->  With this you can also use the following extends with your module:
->  module_autoload_aotom = "aotom"
->  and
->  module_conf_stmfb = "options stmfb 
->  display0=1280x720-32@50:8m:pal:yuv:yuv"
+On Jan 15, 2013, at 1:16 PM, "Zhang, Jessica" <jessica.zhang@intel.com> wro=
+te:
 
-Christian, this is a really good point I hadn't considered. Would you
-care to take a stab at adding this to module.bbclass and sending the
-patch to the oe-core list for review? CC'ing myself?
+> For your LDFLAGS question in another email thread, the yocto SDK is mainl=
+y produced for application developer, but seems we are hearing more usage r=
+equest for it to support kernel module build as well.  As Eric pointed, can=
+ you just set LDFLAGS=3D"" and we'll add that instruction to developer's ma=
+nual?
 
-Thanks,
+I *can* clear the LDFLAGS variable just before building modules against the=
+ kernel. That works.
 
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
+I understand history makes this difficult, and this is a problem OE/Yocto w=
+asn't originally *intended* to solve. My use case in an outlier, and I don'=
+t presume to know what "should" be done. On the other hand, I wouldn't want=
+ anyone to feel that putting those instructions in the documentation is a "=
+tidy" solution.
+
 
