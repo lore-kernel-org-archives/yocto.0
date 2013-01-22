@@ -1,32 +1,31 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-ie0-f174.google.com (mail-ie0-f174.google.com
-	[209.85.223.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 35E67E0034C
-	for <yocto@yoctoproject.org>; Wed, 23 Jan 2013 08:21:10 -0800 (PST)
-Received: by mail-ie0-f174.google.com with SMTP id k11so8185651iea.33
-	for <yocto@yoctoproject.org>; Wed, 23 Jan 2013 08:21:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:x-received:in-reply-to:references:date:message-id
-	:subject:from:to:cc:content-type;
-	bh=vQehSadp6Nx6TiGbL9C3IqmB+nb4uoeHI5zkimwGTJs=;
-	b=AAN96tquuvhojGILYT9S2fSrovCZOkx7JPT7hi+jzmvzdAuY3bYp5gtppjJytO4Jda
-	44qse8F6M7O8QQJBZDfJZhG250brCnjHu589pheaNh5lJ1iKM6PIv9ulKn8HCgSPC/xw
-	xH90JPmGwwFlMaHgwWUAuVxV28rs2/FXFkcd+3EQ6E1kT9wZy5Db6uIbNOlIinEv6GOB
-	glC6JkH3YY/oTGBmshwLZjv/wxJj2vv1EM/LQvhbbSyjkEsybY+BcqN0ESGBPSGCoHce
-	DSJ4z+NNEYhvpCwja8/oTdHAmwodpl36YZczzwdR26n/cZEZTQ1+zrDEgpjgT+T8diny
-	khrg==
+Return-Path: <christian.ege@familie-ege.net>
+Received: from server02.mc0.hosteurope.de (server02.mc0.hosteurope.de
+	[92.51.170.73])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 67996E011AF
+	for <yocto@yoctoproject.org>; Tue, 22 Jan 2013 00:59:25 -0800 (PST)
+Received: from server04.webmailer.hosteurope.de ([10.9.0.183]); 
+	by mailout.hosteurope.de (server02.mc0.hosteurope.de) running
+	EXperimental Internet Mailer with esmtps (TLSv1:AES256-SHA:256)
+	id 1TxZhT-0004ih-G7; Tue, 22 Jan 2013 09:59:23 +0100
+Received: from nobody by server04.webmailer.hosteurope.de with local (Exim
+	4.72) (envelope-from <christian.ege@familie-ege.net>)
+	id 1TxZhT-0000jm-EE; Tue, 22 Jan 2013 09:59:23 +0100
+To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
 MIME-Version: 1.0
-X-Received: by 10.50.13.173 with SMTP id i13mr15217322igc.93.1358958069886;
-	Wed, 23 Jan 2013 08:21:09 -0800 (PST)
-Received: by 10.64.18.169 with HTTP; Wed, 23 Jan 2013 08:21:09 -0800 (PST)
-In-Reply-To: <5BEFD653CA8A8D47AA194ED30AB5968C3714A8@GV1HQPEX03.babgsetc.pvt>
-References: <5BEFD653CA8A8D47AA194ED30AB5968C3714A8@GV1HQPEX03.babgsetc.pvt>
-Date: Wed, 23 Jan 2013 08:21:09 -0800
-Message-ID: <CAMKF1sozFpyECQw4tDe=Muu3=epj-KTdYHHX+Bd21e0fwd-4ag@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-To: Patrick Turley <PatrickTurley@gamestop.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Inconsistency in the SDK
+Date: Tue, 22 Jan 2013 09:59:23 +0100
+From: Christian Ege <christian.ege@familie-ege.net>
+In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB1237957D27592@ORSMSX101.amr.corp.intel.com>
+References: <41DEA4B02DBDEF40A0F3B6D0DDB1237957D27592@ORSMSX101.amr.corp.intel.com>
+Message-ID: <8389da1c972242f1c69900ba7f48db4e-EhVcXlhFQwBWRwoYGgwbZ1dfaANWUkNeXENbAF9TNkFcVEYOV0F1AUtXXl8wQEYHV1JdRVlTWw==-webmailer2@server04.webmailer.hosteurope.de>
+X-Sender: christian.ege@familie-ege.net
+User-Agent: Host Europe Webmailer/2.0
+X-HE-Access: Yes
+X-bounce-key: webpack.hosteurope.de; christian.ege@familie-ege.net; 1358845163;
+	909436e3; 
+X-Mailman-Approved-At: Wed, 23 Jan 2013 08:42:18 -0800
+Cc: Yocto discussion list <yocto@yoctoproject.org>, "Hart,
+	Darren" <darren.hart@intel.com>
+Subject: Re: FW: YP Linux Kernel Development Manual
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,132 +37,174 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 23 Jan 2013 16:21:10 -0000
-Content-Type: multipart/alternative; boundary=f46d0444017e052f1204d3f71574
+X-List-Received-Date: Tue, 22 Jan 2013 08:59:26 -0000
+Content-Type: text/plain;
+ charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 7bit
 
---f46d0444017e052f1204d3f71574
-Content-Type: text/plain; charset=UTF-8
+ Hi,
+ I am not sure if this is the problem you are struggling with.
+ I am wondering why class module.bbclass behaves completely different
+ than kernel.bbclacc
 
-Did you source the env script before doing all that ?
+>  hi, I follow the kernel development manual "2.5. Incorporating
+> Out-of-Tree Modules",
+>  copy the "hello-mod_0.1.bb" and "files" folder into my taget layer
+> "meta-intel/meta-jasperforest/recipe-kernel", then add 
+> "MACHINE_EXTRA_
+> RDEPENDS += "kernel-module-hello" in the conf/local.conf
+>  after build and boot, there's no "hello.ko" found in the binary 
+> image
+>  also there's no hello.ko in the "tmp/work/..." folder
 
-On Wednesday, January 23, 2013, Patrick Turley <PatrickTurley@gamestop.com>
-wrote:
-> Here's our machine in local.conf:
+ If you hello-mod_0.1.bb inherits module class there is no mechanism
+ to create the kernel-module package. This only applies to the 
+ kernel.bbclass
+
+ http://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/classes/module.bbclass
+ http://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/classes/module-base.bbclass
+
+ Have a look at kernel.bbclass instead shows some pathon code which 
+ handles the module package creation:
+ http://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/classes/kernel.bbclass#n301
+
+ I've fixed this in my layer by stealing the code from kernel.bbclass
+ https://github.com/project-magpie/meta-stlinux/blob/master/recipes-bsp/tdt-driver/tdt-driver.inc
+
+ With this you can also use the following extends with your module:
+ module_autoload_aotom = "aotom"
+ and
+ module_conf_stmfb = "options stmfb 
+ display0=1280x720-32@50:8m:pal:yuv:yuv"
+
+ If you are only inherting from module this have not worked for me.
+
+ The next part I had to fight against was the fact that in 
+ core-image-minimal the package managment information are stripped and 
+ thus no pre hooks are executet. So the module is installed in the image 
+ but not loaded on boot-up unless you call update-modules by hand.
+
+ ROOTFS_POSTPROCESS_COMMAND += "remove_packaging_data_files ; "
+
+ To prevent this I've defined an image without the stripping:
+ https://github.com/project-magpie/meta-stlinux/blob/master/recipes-core/images/core-image-base.bb
+
+ I hope this clarify things a little bit
+
+
+ regards,
+ Christian
+
 >
->     MACHINE = "dm8148-mpu"
+>  Eddy
 >
-> Naturally, then, we see a directly like this under tmp/work:
+> All,
 >
->     dm8148_mpu-poky-linux-gnueabi
+> There is a new YP manual under development. It is a development 
+> manual
+> for Linux kernels in the YP. Darren Hart is the original author of 
+> the
+> manual as you probably know. It is still being worked on but it is in
+> HTML form and now part of the yocto-docs/master branch. It is
+> published at
+> http://www.yoctoproject.org/docs/1.4/kernel-dev/kernel-dev.html [1].
+> Feel free to access it and comment.
 >
-> Also, under tmp/sysroots, we see these two:
+> Thanks,
 >
->     dm8148-mpu
->     dm8148-mpu-tcbootstrap
+> Scott
 >
-> Finally, when I install the SDK, I see the following under sysroots:
+> Scott Rifenbark
 >
->     dm8148_mpu-poky-linux-gnueabi
->     x86_64-pokysdk-linux
+> Intel Corporation
 >
-> However, if I ask the cross-compiler the path to its default sysroot, I
-see this:
+> Yocto Project Documentation
 >
->     $ cd /opt/poky/1.3/sysroots/x86_64-pokysdk-linux
->     $ cd usr/bin/armv7a-vfp-neon-poky-linux-gnueabi
->     $ ./arm-poky-linux-gnueabi-gcc -print-sysroot
->     /opt/poky/1.3/sysroots/armv7a-vfp-neon-poky-linux-gnueabi
+> 503.712.2702
 >
-> There is no such directory. That is, the default sysroot for the SDK
-doesn't exist.
->
-> Now, if I go back and look in tmp/work, I realize that I see *both* of
-these:
->
->     dm8148_mpu-poky-linux-gnueabi
->     armv7a-vfp-neon-poky-linux-gnueabi
->
-> There are a number of work directories under both.
->
-> It seems to me there are these possibilities:
->
->
-> 1) There are at least two different (and disagreeing) methods to compute
-the architecture "tuple," and different pieces of the system are choosing
-different methods. These different methods usually agree, but sometimes
-they don't. Thus, when they *do* agree, it's "luck."
->
->
-> 2) These strings *should* agree, but something is missing from our
-machine definition that causes them to disagree (we weren't using our own
-machine definition until recently). In that case, the machine definition
-code should change such that it's not *possible* for these strings to
-disagree. Also, I'd like to know what we missed, so we can fix it.
->
->
-> 3) These strings, though similar, actually *mean* different things and
-are *both* correct. The only problem is that the build process for the tool
-chain chooses the wrong one when defining the default sysroot path.
->
->
-> In any case, I can fix the immediate problem with a symbolic link, but
-that's not a long-term solution.
+> 503.341.0418 (cell)
 >
 > _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
 >
+> yocto mailing list
+>
+> yocto@yoctoproject.org [2]
+>
+> https://lists.yoctoproject.org/listinfo/yocto [3]
+>
+>
+>
+> Links:
+> ------
+> [1] http://www.yoctoproject.org/docs/1.4/kernel-dev/kernel-dev.html
+> [2] mailto:yocto@yoctoproject.org
+> [3] https://lists.yoctoproject.org/listinfo/yocto
+> Hi,
+>
+> I am reposting this to the discussion list and copying Darren Hart.
+>
+> Scott
+>
+> FROM: Eddy Lai GMail [mailto:eddy.lai.tw@gmail.com]
+>  SENT: Monday, January 21, 2013 3:36 PM
+>  TO: Rifenbark, Scott M
+>  SUBJECT: Re: [yocto] YP Linux Kernel Development Manual
+>
+> hi
+>
+>  hi, I follow the kernel development manual "2.5. Incorporating
+> Out-of-Tree Modules",
+>  copy the "hello-mod_0.1.bb" and "files" folder into my taget layer
+> "meta-intel/meta-jasperforest/recipe-kernel", then add 
+> "MACHINE_EXTRA_
+> RDEPENDS += "kernel-module-hello" in the conf/local.conf
+>  after build and boot, there's no "hello.ko" found in the binary 
+> image
+>  also there's no hello.ko in the "tmp/work/..." folder
+>
+>  Eddy
+>
+> All,
+>
+> There is a new YP manual under development. It is a development 
+> manual
+> for Linux kernels in the YP. Darren Hart is the original author of 
+> the
+> manual as you probably know. It is still being worked on but it is in
+> HTML form and now part of the yocto-docs/master branch. It is
+> published at
+> http://www.yoctoproject.org/docs/1.4/kernel-dev/kernel-dev.html [1].
+> Feel free to access it and comment.
+>
+> Thanks,
+>
+> Scott
+>
+> Scott Rifenbark
+>
+> Intel Corporation
+>
+> Yocto Project Documentation
+>
+> 503.712.2702
+>
+> 503.341.0418 (cell)
+>
+> _______________________________________________
+>
+> yocto mailing list
+>
+> yocto@yoctoproject.org [2]
+>
+> https://lists.yoctoproject.org/listinfo/yocto [3]
+>
+>
+>
+> Links:
+> ------
+> [1] http://www.yoctoproject.org/docs/1.4/kernel-dev/kernel-dev.html
+> [2] mailto:yocto@yoctoproject.org
+> [3] https://lists.yoctoproject.org/listinfo/yocto
 
---f46d0444017e052f1204d3f71574
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
 
-<br>Did you source the env script before doing all that ?<br><br>On Wednesd=
-ay, January 23, 2013, Patrick Turley &lt;<a href=3D"mailto:PatrickTurley@ga=
-mestop.com">PatrickTurley@gamestop.com</a>&gt; wrote:<br>&gt; Here&#39;s ou=
-r machine in local.conf:<br>
-&gt;<br>&gt; =C2=A0 =C2=A0 MACHINE =3D &quot;dm8148-mpu&quot;<br>&gt;<br>&g=
-t; Naturally, then, we see a directly like this under tmp/work:<br>&gt;<br>=
-&gt; =C2=A0 =C2=A0 dm8148_mpu-poky-linux-gnueabi<br>&gt;<br>&gt; Also, unde=
-r tmp/sysroots, we see these two:<br>
-&gt;<br>&gt; =C2=A0 =C2=A0 dm8148-mpu<br>&gt; =C2=A0 =C2=A0 dm8148-mpu-tcbo=
-otstrap<br>&gt;<br>&gt; Finally, when I install the SDK, I see the followin=
-g under sysroots:<br>&gt;<br>&gt; =C2=A0 =C2=A0 dm8148_mpu-poky-linux-gnuea=
-bi<br>&gt; =C2=A0 =C2=A0 x86_64-pokysdk-linux<br>
-&gt;<br>&gt; However, if I ask the cross-compiler the path to its default s=
-ysroot, I see this:<br>&gt;<br>&gt; =C2=A0 =C2=A0 $ cd /opt/poky/1.3/sysroo=
-ts/x86_64-pokysdk-linux<br>&gt; =C2=A0 =C2=A0 $ cd usr/bin/armv7a-vfp-neon-=
-poky-linux-gnueabi<br>
-&gt; =C2=A0 =C2=A0 $ ./arm-poky-linux-gnueabi-gcc -print-sysroot<br>&gt; =
-=C2=A0 =C2=A0 /opt/poky/1.3/sysroots/armv7a-vfp-neon-poky-linux-gnueabi<br>=
-&gt;<br>&gt; There is no such directory. That is, the default sysroot for t=
-he SDK doesn&#39;t exist.<br>
-&gt;<br>&gt; Now, if I go back and look in tmp/work, I realize that I see *=
-both* of these:<br>&gt;<br>&gt; =C2=A0 =C2=A0 dm8148_mpu-poky-linux-gnueabi=
-<br>&gt; =C2=A0 =C2=A0 armv7a-vfp-neon-poky-linux-gnueabi<br>&gt;<br>&gt; T=
-here are a number of work directories under both.<br>
-&gt;<br>&gt; It seems to me there are these possibilities:<br>&gt;<br>&gt;<=
-br>&gt; 1) There are at least two different (and disagreeing) methods to co=
-mpute the architecture &quot;tuple,&quot; and different pieces of the syste=
-m are choosing different methods. These different methods usually agree, bu=
-t sometimes they don&#39;t. Thus, when they *do* agree, it&#39;s &quot;luck=
-.&quot;<br>
-&gt;<br>&gt;<br>&gt; 2) These strings *should* agree, but something is miss=
-ing from our machine definition that causes them to disagree (we weren&#39;=
-t using our own machine definition until recently). In that case, the machi=
-ne definition code should change such that it&#39;s not *possible* for thes=
-e strings to disagree. Also, I&#39;d like to know what we missed, so we can=
- fix it.<br>
-&gt;<br>&gt;<br>&gt; 3) These strings, though similar, actually *mean* diff=
-erent things and are *both* correct. The only problem is that the build pro=
-cess for the tool chain chooses the wrong one when defining the default sys=
-root path.<br>
-&gt;<br>&gt;<br>&gt; In any case, I can fix the immediate problem with a sy=
-mbolic link, but that&#39;s not a long-term solution.<br>&gt;<br>&gt; _____=
-__________________________________________<br>&gt; yocto mailing list<br>
-&gt; <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><b=
-r>&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto">https://li=
-sts.yoctoproject.org/listinfo/yocto</a><br>&gt;
-
---f46d0444017e052f1204d3f71574--
