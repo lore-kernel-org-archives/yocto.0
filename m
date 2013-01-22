@@ -1,30 +1,43 @@
-Return-Path: <PatrickTurley@gamestop.com>
-Received: from gsironport1.gamestop.com (mail1.gamestop.com [12.25.107.28])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 36451E01480
-	for <yocto@yoctoproject.org>; Tue, 22 Jan 2013 08:43:54 -0800 (PST)
-X-IronPort-AV: E=Sophos;i="4.84,515,1355119200"; 
-   d="scan'208";a="7120490"
-Received: from unknown (HELO GV1HQPEX02.babgsetc.pvt) ([172.22.1.244])
-	by gsironport1.gamestop.com with ESMTP; 22 Jan 2013 10:43:53 -0600
-Received: from GV1HQPEX03.babgsetc.pvt ([169.254.1.225]) by
-	GV1HQPEX02.babgsetc.pvt ([172.22.1.192]) with mapi id 14.02.0318.004;
-	Tue, 22 Jan 2013 10:43:53 -0600
-From: Patrick Turley <PatrickTurley@gamestop.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [yocto] Adding ALSA to the Yocto SDK
-Thread-Index: AQHN+B4WLsv3IxjS3EyIVDhGEOlyI5hUXhPQgABw34CAASS4AA==
-Date: Tue, 22 Jan 2013 16:43:52 +0000
-Message-ID: <5BEFD653CA8A8D47AA194ED30AB5968C36FA44@GV1HQPEX03.babgsetc.pvt>
-References: <5BEFD653CA8A8D47AA194ED30AB5968C36D6FA@GV1HQPEX03.babgsetc.pvt>
-	<C6510F6D410BB64A8C15398EDC6B847C57DD5B1F@ORSMSX101.amr.corp.intel.com>
-	<5BEFD653CA8A8D47AA194ED30AB5968C36F004@GV1HQPEX03.babgsetc.pvt>
-In-Reply-To: <5BEFD653CA8A8D47AA194ED30AB5968C36F004@GV1HQPEX03.babgsetc.pvt>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.22.1.244]
+Return-Path: <wd@denx.de>
+Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.10])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D6429E01488
+	for <yocto@yoctoproject.org>; Tue, 22 Jan 2013 10:34:33 -0800 (PST)
+Received: from frontend1.mail.m-online.net (frontend1.mail.intern.m-online.net
+	[192.168.8.180])
+	by mail-out.m-online.net (Postfix) with ESMTP id 3YrJFN0N53z3hhjc;
+	Tue, 22 Jan 2013 19:34:30 +0100 (CET)
+Received: from localhost (dynscan1.mnet-online.de [192.168.6.68])
+	by mail.m-online.net (Postfix) with ESMTP id 3YrJFL6h8Tzbbt6;
+	Tue, 22 Jan 2013 19:34:30 +0100 (CET)
+X-Virus-Scanned: amavisd-new at mnet-online.de
+Received: from smtp-auth.mnet-online.de ([192.168.8.180])
+	by localhost (dynscan1.mail.m-online.net [192.168.6.68]) (amavisd-new,
+	port 10024)
+	with ESMTP id Zh-7jP9WOIII; Tue, 22 Jan 2013 19:33:56 +0100 (CET)
+X-Auth-Info: Jg2j2TiD8ZPzCOEBdJkDSW0yTfqAOdEp99TMFGJOi4k=
+Received: from diddl.denx.de (host-80-81-18-216.customer.m-online.net
+	[80.81.18.216]) by smtp-auth.mnet-online.de (Postfix) with ESMTPA;
+	Tue, 22 Jan 2013 19:34:28 +0100 (CET)
+Received: from gemini.denx.de (gemini.denx.de [10.0.0.2])
+	by diddl.denx.de (Postfix) with ESMTP id B4EB11A14CC;
+	Tue, 22 Jan 2013 19:34:28 +0100 (CET)
+Received: from gemini.denx.de (localhost [IPv6:::1])
+	by gemini.denx.de (Postfix) with ESMTP id 96FCA20DA99;
+	Tue, 22 Jan 2013 19:34:28 +0100 (CET)
+To: John Mehaffey <mehaf@mvista.com>
+From: Wolfgang Denk <wd@denx.de>
 MIME-Version: 1.0
-Subject: Re: Adding ALSA to the Yocto SDK
+In-reply-to: <CAGOhT_fp04iRBj2PqNJSZJJiOw5qzjyqcTZ0rXuDG_GjvhADoQ@mail.gmail.com>
+References: <20130122070331.C3B6120DA8C@gemini.denx.de>
+	<33115ABC4887814E8A92A08FBC93416B08DC598A@IRSMSX103.ger.corp.intel.com>
+	<20130122112628.E460120DA8C@gemini.denx.de>
+	<CAGOhT_fp04iRBj2PqNJSZJJiOw5qzjyqcTZ0rXuDG_GjvhADoQ@mail.gmail.com>
+Comments: In-reply-to John Mehaffey <mehaf@mvista.com>
+	message dated "Tue, 22 Jan 2013 08:35:25 -0800."
+Date: Tue, 22 Jan 2013 19:34:28 +0100
+Message-Id: <20130122183428.96FCA20DA99@gemini.denx.de>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: M2, M3, M4 milestones available?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,60 +49,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 22 Jan 2013 16:43:54 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <91D4EA3819AEE04B91B2A7B847D6ABB8@gamestop.com>
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 22 Jan 2013 18:34:34 -0000
+Content-type: text/plain; charset=UTF-8
+Content-transfer-encoding: 8bit
 
+Dear John,
 
-On Jan 21, 2013, at 5:16 PM, Patrick Turley <PatrickTurley@gamestop.com> wr=
-ote:
+In message <CAGOhT_fp04iRBj2PqNJSZJJiOw5qzjyqcTZ0rXuDG_GjvhADoQ@mail.gmail.com> you wrote:
+>
+> The M2 and M3 milestones were merged. Please see Liu Song's email on Dec
+> 27, in part: "Yocto Project CCB has approved our request to merge M2 and M3
+> together. So there won't be a M2 release and we will be working toward a M3
+> release for M2 and M3 features by Feb. 7th, 2013"
 
-> On Jan 21, 2013, at 4:35 PM, "Zhang, Jessica" <jessica.zhang@intel.com> w=
-rote:
->=20
->> Hi Patrick,
->>=20
->> Since you're able to add the dev packages to images, just do bitbake you=
-rimagewithALSA -c populate_sdk, that should generate a SDK contains ALSA.  =
-By default, meta-toolchain-sdk is predefined unless you use "-c populate_sd=
-k" to enforce the SDK sysroot to match your rootfs.
->=20
->=20
-> All the clues rolling in are starting to knit together.
->=20
-> At first, I regarded the "populate_sdk" task as a hack, since it seemed t=
-o be expressing something that was naturally a "target" -- not a "task."
->=20
-> Now I see that it is a way to connect an image to a corresponding SDK. Th=
-at makes a *lot* more sense.
+Thanks, understood now.
 
-One of my colleagues did some research on this and I believe we've found th=
-e best way for *us* to do this.
+Best regards,
 
-We tried using a single image recipe. We tried both bitbake'ing this recipe=
- directly *and* using the "populate_sdk" task with it. This gave us the SDK=
- we needed, but it resulted in development header files appearing in the ta=
-rget root file system.
+Wolfgang Denk
 
-Like core-image-sato and core-image-sato-sdk, we'll have have two images:
-
-1) A target image recipe.
-We will bitbake this recipe directly to produce the target image. We will *=
-never* use the "populate_sdk" task with this recipe.
-
-2) An SDK image recipe.
-This recipe "require's" the target image recipe and adds various developmen=
-t packages to it. We will *never* bitbake this recipe directly because we h=
-ave no interest in the root file system it would produce. We will *only* us=
-e the "populate_sdk" task with this recipe.
-
-This gives us the clean target root file system we need *and* the SDK we ne=
-ed.
-
-The disadvantage is that we have to keep two recipe files in sync with each=
- other. Fortunately, these are low-frequency and low-volume changes, so we =
-think this is a reasonable trade-off.
-
+-- 
+DENX Software Engineering GmbH,     MD: Wolfgang Denk & Detlev Zundel
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+Phone: (+49)-8142-66989-10 Fax: (+49)-8142-66989-80 Email: wd@denx.de
+You don't have to worry about me. I might have been born yesterday...
+but I stayed up all night.
 
