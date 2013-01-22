@@ -1,30 +1,24 @@
-Return-Path: <belen.barros.pena@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E07FCE006F5;
-	Tue, 22 Jan 2013 05:58:47 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 22 Jan 2013 05:58:46 -0800
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0B906E01473
+	for <yocto@yoctoproject.org>; Tue, 22 Jan 2013 07:57:18 -0800 (PST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 22 Jan 2013 07:57:18 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,514,1355126400"; d="scan'208";a="275167507"
-Received: from irsmsx101.ger.corp.intel.com ([163.33.3.153])
-	by orsmga002.jf.intel.com with ESMTP; 22 Jan 2013 05:58:45 -0800
-Received: from irsmsx104.ger.corp.intel.com ([169.254.5.20]) by
-	IRSMSX101.ger.corp.intel.com ([163.33.3.153]) with mapi id
-	14.01.0355.002; Tue, 22 Jan 2013 13:58:44 +0000
-From: "Barros Pena, Belen" <belen.barros.pena@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"webhob@yoctoproject.org" <webhob@yoctoproject.org>
-Thread-Topic: Web Hob first designs: tell us what you think
-Thread-Index: AQHN+KiX+RA9T1/EUUGLhs8Rtfvtaw==
-Date: Tue, 22 Jan 2013 13:58:44 +0000
-Message-ID: <CD244B93.20189%belen.barros.pena@intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Microsoft-MacOutlook/14.2.5.121010
-x-originating-ip: [10.252.54.163]
+X-IronPort-AV: E=Sophos;i="4.84,515,1355126400"; d="scan'208";a="280601194"
+Received: from unknown (HELO helios.localnet) ([10.252.123.171])
+	by fmsmga002.fm.intel.com with ESMTP; 22 Jan 2013 07:57:05 -0800
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Kevin Strasser <kevin.strasser@linux.intel.com>
+Date: Tue, 22 Jan 2013 15:57:04 +0000
+Message-ID: <1936060.L02r3qFecV@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.9.4 (Linux/3.5.0-22-generic; KDE/4.9.4; i686; ; )
+In-Reply-To: <cover.1357591796.git.kevin.strasser@linux.intel.com>
+References: <cover.1357591796.git.kevin.strasser@linux.intel.com>
 MIME-Version: 1.0
-Subject: Web Hob first designs: tell us what you think
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-baryon][PATCH 0/4] baryon updates
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,56 +30,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 22 Jan 2013 13:58:48 -0000
-Content-Language: en-US
+X-List-Received-Date: Tue, 22 Jan 2013 15:57:19 -0000
+Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
-Content-ID: <DC5D34B92E0AFE49A0EC4CC35EF97354@intel.com>
-Content-Transfer-Encoding: quoted-printable
 
-Hi all,
+On Monday 07 January 2013 13:05:37 Kevin Strasser wrote:
+> This patch set contains a change which will not work with versions of poky
+> prior to commit 51cbb5ae76a22d465e2f6c5ef923ec2682624e3b, and therefor
+> should not be applied until after cutting a danny branch.
+> 
+> The following changes since commit 9a80f62b1874bbb0819068cf394e9fd920bb84b7:
+> 
+>   proftpd: conditionally remove /usr/libexec (2012-12-05 16:27:36 +0000)
+> 
+> are available in the git repository at:
+> 
+>   git://git.yoctoproject.org/poky-contrib strassek/baryon-updates
+>  
+> http://git.yoctoproject.org/cgit.cgi/poky-contrib/log/?h=strassek/baryon-up
+> dates
+> 
+> Kevin Strasser (4):
+>   webmin: remove perl-module-warnings-register RDEPENDS
+>   ffmpeg: build position independent code where possible
+>   baryon-image: use parted instead of util-linux
+>   schroedinger: specify the version of MPL in use
+> 
+>  recipes-extended/images/baryon-image.bb          |    2 +-
+>  recipes-extended/webmin/webmin_1.590.bb          |    4 ++--
+>  recipes-multimedia/ffmpeg/ffmpeg_0.6.1.bb        |    3 ++-
+>  recipes-multimedia/schroedinger/schroedinger.inc |    2 +-
+>  4 files changed, 6 insertions(+), 5 deletions(-)
 
-Over the past couple of weeks we have been working on some ideas for the
-design of Web Hob. We are know searching for volunteers to give us their
-opinion about them. It works like this:
+I've merged these, and created a danny branch which excludes the perl-module-
+warnings-register patch.
 
-- We arrange a 30-minute phone call at any time that suits you and a
-screen-sharing session (using Skype or a tool called Team Viewer -
-http://www.teamviewer.com)
+Thanks,
+Paul
 
-- We give you the URL where our web-based prototype is hosted
+-- 
 
-- You try the prototype and tell us what you think about it
-
-If at all possible, we would like to record our conversations so that we
-can come back to them, but please don't let this stop you from
-volunteering: if recording makes you uncomfortable, we can live without it.
-
-We are trying to gather feedback this week, but if you can't do this week
-we'll find another time.
-
-I wish I could convey how incredibly valuable your feedback is for our
-design work. If you would like to help, please get in touch with me at
-belen.barros.pena@intel.com
-
-Thanks!!
-
-Belen
-
-
-
-
-
-
-
----------------------------------------------------------------------
-Intel Corporation (UK) Limited
-Registered No. 1134945 (England)
-Registered Office: Pipers Way, Swindon SN3 1RJ
-VAT No: 860 2173 47
-
-This e-mail and any attachments may contain confidential material for
-the sole use of the intended recipient(s). Any review or distribution
-by others is strictly prohibited. If you are not the intended
-recipient, please contact the sender and delete all copies.
-
+Paul Eggleton
+Intel Open Source Technology Centre
 
