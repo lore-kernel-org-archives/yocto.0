@@ -1,36 +1,30 @@
-Return-Path: <jmehaffey@mvista.com>
-Received: from mail-we0-f181.google.com (mail-we0-f181.google.com
-	[74.125.82.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F2B01E01485
-	for <yocto@yoctoproject.org>; Tue, 22 Jan 2013 08:35:27 -0800 (PST)
-Received: by mail-we0-f181.google.com with SMTP id u7so1909748wey.26
-	for <yocto@yoctoproject.org>; Tue, 22 Jan 2013 08:35:26 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:x-received:in-reply-to:references:date:message-id
-	:subject:from:to:cc:content-type:x-gm-message-state;
-	bh=RLvNbA3WlLMDxQxj4RsGJ1iMpJo3ArvzFywp38RIwy4=;
-	b=URKbFzqKUK/sAukihIAKTEXIlZeRRA6EAgTp9xxoMssWeyL/mVhMpAvXGqsjEcbv+U
-	zlXy9ywPB5Y57SCgK6yW2x/F1b2MoLrs191O08NRiXtz6jyxnbabzhcrxpDoSULI6xY1
-	aCQxydCunscpOOhMgxm4r5oJ7nPpcUIg/2CGVQGKAgof7z9QCmY6JaUCYRdlf3B+jGoO
-	nGQWxUJm1fIeuE/bfUTmrOInv1OUioIC04uiu/D/jwlXrjh5fqy7j+RNf5bY95KV6HCI
-	DR6TCRQxqlHvePE7lZgwqVUDzcT2HAXidd0d76kOb41pfhj0QZFj9aPcXGrbbSnxzUq3
-	46xA==
+Return-Path: <PatrickTurley@gamestop.com>
+Received: from gsironport1.gamestop.com (mail1.gamestop.com [12.25.107.28])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 36451E01480
+	for <yocto@yoctoproject.org>; Tue, 22 Jan 2013 08:43:54 -0800 (PST)
+X-IronPort-AV: E=Sophos;i="4.84,515,1355119200"; 
+   d="scan'208";a="7120490"
+Received: from unknown (HELO GV1HQPEX02.babgsetc.pvt) ([172.22.1.244])
+	by gsironport1.gamestop.com with ESMTP; 22 Jan 2013 10:43:53 -0600
+Received: from GV1HQPEX03.babgsetc.pvt ([169.254.1.225]) by
+	GV1HQPEX02.babgsetc.pvt ([172.22.1.192]) with mapi id 14.02.0318.004;
+	Tue, 22 Jan 2013 10:43:53 -0600
+From: Patrick Turley <PatrickTurley@gamestop.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [yocto] Adding ALSA to the Yocto SDK
+Thread-Index: AQHN+B4WLsv3IxjS3EyIVDhGEOlyI5hUXhPQgABw34CAASS4AA==
+Date: Tue, 22 Jan 2013 16:43:52 +0000
+Message-ID: <5BEFD653CA8A8D47AA194ED30AB5968C36FA44@GV1HQPEX03.babgsetc.pvt>
+References: <5BEFD653CA8A8D47AA194ED30AB5968C36D6FA@GV1HQPEX03.babgsetc.pvt>
+	<C6510F6D410BB64A8C15398EDC6B847C57DD5B1F@ORSMSX101.amr.corp.intel.com>
+	<5BEFD653CA8A8D47AA194ED30AB5968C36F004@GV1HQPEX03.babgsetc.pvt>
+In-Reply-To: <5BEFD653CA8A8D47AA194ED30AB5968C36F004@GV1HQPEX03.babgsetc.pvt>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.22.1.244]
 MIME-Version: 1.0
-X-Received: by 10.194.143.35 with SMTP id sb3mr33505206wjb.30.1358872526073;
-	Tue, 22 Jan 2013 08:35:26 -0800 (PST)
-Received: by 10.227.2.68 with HTTP; Tue, 22 Jan 2013 08:35:25 -0800 (PST)
-In-Reply-To: <20130122112628.E460120DA8C@gemini.denx.de>
-References: <20130122070331.C3B6120DA8C@gemini.denx.de>
-	<33115ABC4887814E8A92A08FBC93416B08DC598A@IRSMSX103.ger.corp.intel.com>
-	<20130122112628.E460120DA8C@gemini.denx.de>
-Date: Tue, 22 Jan 2013 08:35:25 -0800
-Message-ID: <CAGOhT_fp04iRBj2PqNJSZJJiOw5qzjyqcTZ0rXuDG_GjvhADoQ@mail.gmail.com>
-From: John Mehaffey <mehaf@mvista.com>
-To: Wolfgang Denk <wd@denx.de>
-X-Gm-Message-State: ALoCoQlEk+ARhL+JxTqxXNP/oA/hRJdnMwo/Pev0AwTgs1j6W5O++sjWMqSF0vsJXL056ElXMzmJ
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: M2, M3, M4 milestones available?
+Subject: Re: Adding ALSA to the Yocto SDK
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,157 +36,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 22 Jan 2013 16:35:28 -0000
-Content-Type: multipart/alternative; boundary=089e0115e878362fd004d3e32ae9
-
---089e0115e878362fd004d3e32ae9
-Content-Type: text/plain; charset=windows-1252
+X-List-Received-Date: Tue, 22 Jan 2013 16:43:54 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <91D4EA3819AEE04B91B2A7B847D6ABB8@gamestop.com>
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Jan 22, 2013 at 3:26 AM, Wolfgang Denk <wd@denx.de> wrote:
 
-> Dear Cornel,
->
-> In message <
-> 33115ABC4887814E8A92A08FBC93416B08DC598A@IRSMSX103.ger.corp.intel.com>
-> you wrote:
-> >
-> > From a QA point of view, we are approaching the 1.4 M3 milestone.
-> > Here is what Saul wrote for the latest Full Pass request:
-> >
-> > "
-> > QA Teams:
-> >
-> > Please do FULL Pass testing on this as a PRE-M3 Full Pass so we have
-> > some idea of what's going on.
-> >
-> > Git Rev: 9eb88ceb39b7d0b8ddc6487e61ce8edadef10ec4
-> > "
->
-> OK, so we have not reached M3 yet.  Thanks.
->
-> Would it not make sense to regularly update the release schedule web
-> page [1] so that it also reports the current state?  or is there any
-> other web page where such information is present?
->
-> [1] https://wiki.yoctoproject.org/wiki/Yocto_1.4_Schedule
->
->
-> > 1.4 M2 was kind of blurry because it landed during charismas and new
-> > year thus many of us were on vacation.
->
-> So what exactly is the git commit ID of the 1.4 M2 milestone release?
-> I cannot see any matching tag in the git repository?
->
+On Jan 21, 2013, at 5:16 PM, Patrick Turley <PatrickTurley@gamestop.com> wr=
+ote:
 
-Hi Wolfgang,
+> On Jan 21, 2013, at 4:35 PM, "Zhang, Jessica" <jessica.zhang@intel.com> w=
+rote:
+>=20
+>> Hi Patrick,
+>>=20
+>> Since you're able to add the dev packages to images, just do bitbake you=
+rimagewithALSA -c populate_sdk, that should generate a SDK contains ALSA.  =
+By default, meta-toolchain-sdk is predefined unless you use "-c populate_sd=
+k" to enforce the SDK sysroot to match your rootfs.
+>=20
+>=20
+> All the clues rolling in are starting to knit together.
+>=20
+> At first, I regarded the "populate_sdk" task as a hack, since it seemed t=
+o be expressing something that was naturally a "target" -- not a "task."
+>=20
+> Now I see that it is a way to connect an image to a corresponding SDK. Th=
+at makes a *lot* more sense.
 
-The M2 and M3 milestones were merged. Please see Liu Song's email on Dec
-27, in part: "Yocto Project CCB has approved our request to merge M2 and M3
-together. So there won=92t be a M2 release and we will be working toward a =
-M3
-release for M2 and M3 features by Feb. 7th, 2013"
+One of my colleagues did some research on this and I believe we've found th=
+e best way for *us* to do this.
 
--mehaf
+We tried using a single image recipe. We tried both bitbake'ing this recipe=
+ directly *and* using the "populate_sdk" task with it. This gave us the SDK=
+ we needed, but it resulted in development header files appearing in the ta=
+rget root file system.
 
-"
+Like core-image-sato and core-image-sato-sdk, we'll have have two images:
 
->
-> Best regards,
->
-> Wolfgang Denk
->
-> --
-> DENX Software Engineering GmbH,     MD: Wolfgang Denk & Detlev Zundel
-> HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-> Phone: (+49)-8142-66989-10 Fax: (+49)-8142-66989-80 Email: wd@denx.de
-> If you use modules, you pay the price. Sane embedded solutions
-> running in "tight" environments don't use modules :-)
->     -- Benjamin Herrenschmidt in <1258234866.2140.451.camel@pasglop>
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+1) A target image recipe.
+We will bitbake this recipe directly to produce the target image. We will *=
+never* use the "populate_sdk" task with this recipe.
 
---089e0115e878362fd004d3e32ae9
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: quoted-printable
+2) An SDK image recipe.
+This recipe "require's" the target image recipe and adds various developmen=
+t packages to it. We will *never* bitbake this recipe directly because we h=
+ave no interest in the root file system it would produce. We will *only* us=
+e the "populate_sdk" task with this recipe.
 
-<div class=3D"gmail_quote">On Tue, Jan 22, 2013 at 3:26 AM, Wolfgang Denk <=
-span dir=3D"ltr">&lt;<a href=3D"mailto:wd@denx.de" target=3D"_blank">wd@den=
-x.de</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"ma=
-rgin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
-Dear Cornel,<br>
-<div class=3D"im"><br>
-In message &lt;<a href=3D"mailto:33115ABC4887814E8A92A08FBC93416B08DC598A@I=
-RSMSX103.ger.corp.intel.com">33115ABC4887814E8A92A08FBC93416B08DC598A@IRSMS=
-X103.ger.corp.intel.com</a>&gt; you wrote:<br>
-&gt;<br>
-&gt; From a QA point of view, we are approaching the 1.4 M3 milestone.<br>
-&gt; Here is what Saul wrote for the latest Full Pass request:<br>
-&gt;<br>
-&gt; &quot;<br>
-&gt; QA Teams:<br>
-&gt;<br>
-&gt; Please do FULL Pass testing on this as a PRE-M3 Full Pass so we have<b=
-r>
-&gt; some idea of what&#39;s going on.<br>
-&gt;<br>
-&gt; Git Rev: 9eb88ceb39b7d0b8ddc6487e61ce8edadef10ec4<br>
-&gt; &quot;<br>
-<br>
-</div>OK, so we have not reached M3 yet. =A0Thanks.<br>
-<br>
-Would it not make sense to regularly update the release schedule web<br>
-page [1] so that it also reports the current state? =A0or is there any<br>
-other web page where such information is present?<br>
-<br>
-[1] <a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_1.4_Schedule" targe=
-t=3D"_blank">https://wiki.yoctoproject.org/wiki/Yocto_1.4_Schedule</a><br>
-<div class=3D"im"><br>
-<br>
-&gt; 1.4 M2 was kind of blurry because it landed during charismas and new<b=
-r>
-&gt; year thus many of us were on vacation.<br>
-<br>
-</div>So what exactly is the git commit ID of the 1.4 M2 milestone release?=
-<br>
-I cannot see any matching tag in the git repository?<br></blockquote><div><=
-br>Hi Wolfgang,<br><br>The M2 and M3 milestones were merged. Please see Liu=
- Song&#39;s email on Dec 27, in part: &quot;Yocto Project CCB has approved =
-our request to <span class=3D"il">merge</span> <span class=3D"il">M2</span>=
- and M3 together. So there won=92t be a <span class=3D"il">M2</span> releas=
-e and we will be working toward
- a M3 release for <span class=3D"il">M2</span> and M3 features by Feb. 7<su=
-p>th</sup>, 2013&quot;<br><br>-mehaf<br><br>&quot; <br></div><blockquote cl=
-ass=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;p=
-adding-left:1ex">
+This gives us the clean target root file system we need *and* the SDK we ne=
+ed.
 
-<div class=3D"im"><br>
-Best regards,<br>
-<br>
-Wolfgang Denk<br>
-<br>
---<br>
-DENX Software Engineering GmbH, =A0 =A0 MD: Wolfgang Denk &amp; Detlev Zund=
-el<br>
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany<br>
-Phone: <a href=3D"tel:%28%2B49%29-8142-66989-10" value=3D"+4981426698910">(=
-+49)-8142-66989-10</a> Fax: <a href=3D"tel:%28%2B49%29-8142-66989-80" value=
-=3D"+4981426698980">(+49)-8142-66989-80</a> Email: <a href=3D"mailto:wd@den=
-x.de">wd@denx.de</a><br>
+The disadvantage is that we have to keep two recipe files in sync with each=
+ other. Fortunately, these are low-frequency and low-volume changes, so we =
+think this is a reasonable trade-off.
 
-</div>If you use modules, you pay the price. Sane embedded solutions<br>
-running in &quot;tight&quot; environments don&#39;t use modules :-)<br>
-=A0 =A0 -- Benjamin Herrenschmidt in &lt;1258234866.2140.451.camel@pasglop&=
-gt;<br>
-<div class=3D"HOEnZb"><div class=3D"h5">___________________________________=
-____________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
->https://lists.yoctoproject.org/listinfo/yocto</a><br>
-</div></div></blockquote></div><br>
 
---089e0115e878362fd004d3e32ae9--
