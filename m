@@ -1,34 +1,42 @@
-Return-Path: <corneliux.stoicescu@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1CA3BE0149A
-	for <yocto@yoctoproject.org>; Tue, 22 Jan 2013 02:38:12 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 22 Jan 2013 02:37:03 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,513,1355126400"; d="scan'208";a="250635051"
-Received: from irsmsx103.ger.corp.intel.com ([163.33.3.157])
-	by orsmga001.jf.intel.com with ESMTP; 22 Jan 2013 02:38:10 -0800
-Received: from irsmsx151.ger.corp.intel.com (163.33.192.59) by
-	IRSMSX103.ger.corp.intel.com (163.33.3.157) with Microsoft SMTP Server
-	(TLS) id 14.1.355.2; Tue, 22 Jan 2013 10:38:10 +0000
-Received: from irsmsx103.ger.corp.intel.com ([169.254.3.218]) by
-	IRSMSX151.ger.corp.intel.com ([169.254.4.144]) with mapi id
-	14.01.0355.002; Tue, 22 Jan 2013 10:38:10 +0000
-From: "Stoicescu, CorneliuX" <corneliux.stoicescu@intel.com>
-To: Wolfgang Denk <wd@denx.de>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] M2, M3, M4 milestones available?
-Thread-Index: AQHN+HotHjvf4pJhIk+eGJFNSGGpcphVJqGA
-Date: Tue, 22 Jan 2013 10:38:09 +0000
-Message-ID: <33115ABC4887814E8A92A08FBC93416B08DC598A@IRSMSX103.ger.corp.intel.com>
-References: <20130122070331.C3B6120DA8C@gemini.denx.de>
-In-Reply-To: <20130122070331.C3B6120DA8C@gemini.denx.de>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [163.33.239.181]
+Return-Path: <wd@denx.de>
+Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 71235E01483
+	for <yocto@yoctoproject.org>; Tue, 22 Jan 2013 03:14:50 -0800 (PST)
+Received: from frontend1.mail.m-online.net (unknown [192.168.8.180])
+	by mail-out.m-online.net (Postfix) with ESMTP id 3Yr6V100c3z4KKXq;
+	Tue, 22 Jan 2013 12:14:48 +0100 (CET)
+Received: from localhost (dynscan1.mnet-online.de [192.168.6.68])
+	by mail.m-online.net (Postfix) with ESMTP id 3Yr6V05glvzbbh2;
+	Tue, 22 Jan 2013 12:14:48 +0100 (CET)
+X-Virus-Scanned: amavisd-new at mnet-online.de
+Received: from smtp-auth.mnet-online.de ([192.168.8.180])
+	by localhost (dynscan1.mail.m-online.net [192.168.6.68]) (amavisd-new,
+	port 10024)
+	with ESMTP id Mlkmqm_a8ZNn; Tue, 22 Jan 2013 12:14:15 +0100 (CET)
+X-Auth-Info: //NBXB1DNbPvWZKG6ItUIBGTNyisJ4lwzQu5v4KA6h4=
+Received: from diddl.denx.de (host-80-81-18-216.customer.m-online.net
+	[80.81.18.216]) by smtp-auth.mnet-online.de (Postfix) with ESMTPA;
+	Tue, 22 Jan 2013 12:14:46 +0100 (CET)
+Received: from gemini.denx.de (unknown [10.0.0.2])
+	by diddl.denx.de (Postfix) with ESMTP id 7E35C1A14C6;
+	Tue, 22 Jan 2013 12:14:46 +0100 (CET)
+Received: from gemini.denx.de (localhost [IPv6:::1])
+	by gemini.denx.de (Postfix) with ESMTP id 4E5F220DA8C;
+	Tue, 22 Jan 2013 12:14:46 +0100 (CET)
+To: Laurentiu Palcu <laurentiu.palcu@intel.com>
+From: Wolfgang Denk <wd@denx.de>
 MIME-Version: 1.0
-Subject: Re: M2, M3, M4 milestones available?
+In-reply-to: <50FE5F87.4060300@intel.com>
+References: <20130122071621.9D11520DA8C@gemini.denx.de>
+	<50FE4900.7020804@intel.com>
+	<20130122090351.6492320DA8C@gemini.denx.de>
+	<50FE5F87.4060300@intel.com>
+Comments: In-reply-to Laurentiu Palcu <laurentiu.palcu@intel.com>
+	message dated "Tue, 22 Jan 2013 11:44:39 +0200."
+Date: Tue, 22 Jan 2013 12:14:46 +0100
+Message-Id: <20130122111446.4E5F220DA8C@gemini.denx.de>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Installation of i686 SDK on a x86_64 machine?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,66 +48,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 22 Jan 2013 10:38:12 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 22 Jan 2013 11:14:50 -0000
+Content-type: text/plain; charset=UTF-8
+Content-transfer-encoding: 8bit
 
-Hello Wolfgang,
+Dear Laurentiu,
 
-From a QA point of view, we are approaching the 1.4 M3 milestone. Here is w=
-hat Saul wrote for the latest Full Pass request:
-"
-QA Teams:
+In message <50FE5F87.4060300@intel.com> you wrote:
+> 
+> > Id	SDK_ARCH	INST_ARCH	Status
+> > ==============================================
+> > 1	ix86		ix86		works
+> > 2	ix86		x86_64		works
+> > 3	x86_64		ix86		cannot work
+> > 4	x86_64		x86_64		works
+> > 
+> > The bug report is about case 3 - attempting to install a 64 bit SDK on
+> > a 32 bit machine.  This indeed cannot work and shuld be prevented byy
+> > the installer.
+> > 
+> > But the current code also prevents case 2, installing 32 bit images on
+> > a 64 bit machine, which works perfectly fine (assuming you have the
+> > needed 32 bit libraries installed).
+> 
+> I see your point. Would you please file a bug on this?
 
-Please do FULL Pass testing on this as a PRE-M3 Full Pass so we have some i=
-dea of what's going on.
+Done, with a patch included.
 
-Git Rev: 9eb88ceb39b7d0b8ddc6487e61ce8edadef10ec4
-"
-1.4 M2 was kind of blurry because it landed during charismas and new year t=
-hus many of us were on vacation.
-
-I hope this helped.
-
-Have a nice day,
-Stoicescu Cornel
-Romania Yocto QA =20
-
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Wolfgang Denk
-Sent: Tuesday, January 22, 2013 9:04 AM
-To: yocto@yoctoproject.org
-Subject: [yocto] M2, M3, M4 milestones available?
-
-Hello,
-
-I wonder if the M2, M3 and M4 milestones have been reached already?
-The release schedule [1] says they were due on Nov 26 2012, Dec 24
-2012 and Jan 11 2013 respectively, and even lists bugs against these.
-
-[1] https://wiki.yoctoproject.org/wiki/Yocto_1.4_Schedule
-
-
-However, I cannot find any other git tags but 1.4_M1.rc1 and 1.4_M1.final
-
-So are these later milestones available somewhere?
-
-
-Thanks in advance.
+Please see https://bugzilla.yoctoproject.org/show_bug.cgi?id=3770
 
 Best regards,
 
 Wolfgang Denk
 
---=20
+-- 
 DENX Software Engineering GmbH,     MD: Wolfgang Denk & Detlev Zundel
 HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
 Phone: (+49)-8142-66989-10 Fax: (+49)-8142-66989-80 Email: wd@denx.de
-Neckties strangle clear thinking.                       -- Lin Yutang
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
+Worlds are conquered, galaxies destroyed -- but a woman is  always  a
+woman.
+	-- Kirk, "Conscience of the King", stardate unknown
 
