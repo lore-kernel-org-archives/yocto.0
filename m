@@ -1,42 +1,40 @@
 Return-Path: <wd@denx.de>
 Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 71235E01483
-	for <yocto@yoctoproject.org>; Tue, 22 Jan 2013 03:14:50 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C39EBE0121B
+	for <yocto@yoctoproject.org>; Tue, 22 Jan 2013 03:26:33 -0800 (PST)
 Received: from frontend1.mail.m-online.net (unknown [192.168.8.180])
-	by mail-out.m-online.net (Postfix) with ESMTP id 3Yr6V100c3z4KKXq;
-	Tue, 22 Jan 2013 12:14:48 +0100 (CET)
+	by mail-out.m-online.net (Postfix) with ESMTP id 3Yr6lX2TWbz4KK2r;
+	Tue, 22 Jan 2013 12:26:32 +0100 (CET)
 Received: from localhost (dynscan1.mnet-online.de [192.168.6.68])
-	by mail.m-online.net (Postfix) with ESMTP id 3Yr6V05glvzbbh2;
-	Tue, 22 Jan 2013 12:14:48 +0100 (CET)
+	by mail.m-online.net (Postfix) with ESMTP id 3Yr6lX0z3lzbbgG;
+	Tue, 22 Jan 2013 12:26:32 +0100 (CET)
 X-Virus-Scanned: amavisd-new at mnet-online.de
 Received: from smtp-auth.mnet-online.de ([192.168.8.180])
 	by localhost (dynscan1.mail.m-online.net [192.168.6.68]) (amavisd-new,
 	port 10024)
-	with ESMTP id Mlkmqm_a8ZNn; Tue, 22 Jan 2013 12:14:15 +0100 (CET)
-X-Auth-Info: //NBXB1DNbPvWZKG6ItUIBGTNyisJ4lwzQu5v4KA6h4=
+	with ESMTP id 1wVBsDKYm-s3; Tue, 22 Jan 2013 12:25:57 +0100 (CET)
+X-Auth-Info: eKrH6Kq/rFMwXpr4clsFQ07oK7eXWJFI8gD2is3sBDE=
 Received: from diddl.denx.de (host-80-81-18-216.customer.m-online.net
 	[80.81.18.216]) by smtp-auth.mnet-online.de (Postfix) with ESMTPA;
-	Tue, 22 Jan 2013 12:14:46 +0100 (CET)
-Received: from gemini.denx.de (unknown [10.0.0.2])
-	by diddl.denx.de (Postfix) with ESMTP id 7E35C1A14C6;
-	Tue, 22 Jan 2013 12:14:46 +0100 (CET)
+	Tue, 22 Jan 2013 12:26:29 +0100 (CET)
+Received: from gemini.denx.de (gemini.denx.de [10.0.0.2])
+	by diddl.denx.de (Postfix) with ESMTP id F17121A14C6;
+	Tue, 22 Jan 2013 12:26:28 +0100 (CET)
 Received: from gemini.denx.de (localhost [IPv6:::1])
-	by gemini.denx.de (Postfix) with ESMTP id 4E5F220DA8C;
-	Tue, 22 Jan 2013 12:14:46 +0100 (CET)
-To: Laurentiu Palcu <laurentiu.palcu@intel.com>
+	by gemini.denx.de (Postfix) with ESMTP id E460120DA8C;
+	Tue, 22 Jan 2013 12:26:28 +0100 (CET)
+To: "Stoicescu, CorneliuX" <corneliux.stoicescu@intel.com>
 From: Wolfgang Denk <wd@denx.de>
 MIME-Version: 1.0
-In-reply-to: <50FE5F87.4060300@intel.com>
-References: <20130122071621.9D11520DA8C@gemini.denx.de>
-	<50FE4900.7020804@intel.com>
-	<20130122090351.6492320DA8C@gemini.denx.de>
-	<50FE5F87.4060300@intel.com>
-Comments: In-reply-to Laurentiu Palcu <laurentiu.palcu@intel.com>
-	message dated "Tue, 22 Jan 2013 11:44:39 +0200."
-Date: Tue, 22 Jan 2013 12:14:46 +0100
-Message-Id: <20130122111446.4E5F220DA8C@gemini.denx.de>
+In-reply-to: <33115ABC4887814E8A92A08FBC93416B08DC598A@IRSMSX103.ger.corp.intel.com>
+References: <20130122070331.C3B6120DA8C@gemini.denx.de>
+	<33115ABC4887814E8A92A08FBC93416B08DC598A@IRSMSX103.ger.corp.intel.com>
+Comments: In-reply-to "Stoicescu, CorneliuX" <corneliux.stoicescu@intel.com>
+	message dated "Tue, 22 Jan 2013 10:38:09 +0000."
+Date: Tue, 22 Jan 2013 12:26:28 +0100
+Message-Id: <20130122112628.E460120DA8C@gemini.denx.de>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Installation of i686 SDK on a x86_64 machine?
+Subject: Re: M2, M3, M4 milestones available?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,34 +46,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 22 Jan 2013 11:14:50 -0000
+X-List-Received-Date: Tue, 22 Jan 2013 11:26:34 -0000
 Content-type: text/plain; charset=UTF-8
 Content-transfer-encoding: 8bit
 
-Dear Laurentiu,
+Dear Cornel,
 
-In message <50FE5F87.4060300@intel.com> you wrote:
+In message <33115ABC4887814E8A92A08FBC93416B08DC598A@IRSMSX103.ger.corp.intel.com> you wrote:
 > 
-> > Id	SDK_ARCH	INST_ARCH	Status
-> > ==============================================
-> > 1	ix86		ix86		works
-> > 2	ix86		x86_64		works
-> > 3	x86_64		ix86		cannot work
-> > 4	x86_64		x86_64		works
-> > 
-> > The bug report is about case 3 - attempting to install a 64 bit SDK on
-> > a 32 bit machine.  This indeed cannot work and shuld be prevented byy
-> > the installer.
-> > 
-> > But the current code also prevents case 2, installing 32 bit images on
-> > a 64 bit machine, which works perfectly fine (assuming you have the
-> > needed 32 bit libraries installed).
+> From a QA point of view, we are approaching the 1.4 M3 milestone.
+> Here is what Saul wrote for the latest Full Pass request:
 > 
-> I see your point. Would you please file a bug on this?
+> "
+> QA Teams:
+> 
+> Please do FULL Pass testing on this as a PRE-M3 Full Pass so we have
+> some idea of what's going on.
+> 
+> Git Rev: 9eb88ceb39b7d0b8ddc6487e61ce8edadef10ec4
+> "
 
-Done, with a patch included.
+OK, so we have not reached M3 yet.  Thanks.
 
-Please see https://bugzilla.yoctoproject.org/show_bug.cgi?id=3770
+Would it not make sense to regularly update the release schedule web
+page [1] so that it also reports the current state?  or is there any
+other web page where such information is present?
+
+[1] https://wiki.yoctoproject.org/wiki/Yocto_1.4_Schedule
+
+
+> 1.4 M2 was kind of blurry because it landed during charismas and new
+> year thus many of us were on vacation.
+
+So what exactly is the git commit ID of the 1.4 M2 milestone release?
+I cannot see any matching tag in the git repository?
 
 Best regards,
 
@@ -85,7 +89,7 @@ Wolfgang Denk
 DENX Software Engineering GmbH,     MD: Wolfgang Denk & Detlev Zundel
 HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
 Phone: (+49)-8142-66989-10 Fax: (+49)-8142-66989-80 Email: wd@denx.de
-Worlds are conquered, galaxies destroyed -- but a woman is  always  a
-woman.
-	-- Kirk, "Conscience of the King", stardate unknown
+If you use modules, you pay the price. Sane embedded solutions
+running in "tight" environments don't use modules :-)
+    -- Benjamin Herrenschmidt in <1258234866.2140.451.camel@pasglop>
 
