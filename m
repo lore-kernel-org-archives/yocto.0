@@ -1,22 +1,38 @@
-Return-Path: <laurentiu.palcu@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 62219E00721
-	for <yocto@yoctoproject.org>; Tue, 22 Jan 2013 00:10:35 -0800 (PST)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga101.ch.intel.com with ESMTP; 22 Jan 2013 00:08:34 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,513,1355126400"; d="scan'208";a="193829782"
-Received: from lpalcu-linux (HELO [10.237.105.165]) ([10.237.105.165])
-	by AZSMGA002.ch.intel.com with ESMTP; 22 Jan 2013 00:08:33 -0800
-Message-ID: <50FE4900.7020804@intel.com>
-Date: Tue, 22 Jan 2013 10:08:32 +0200
-From: Laurentiu Palcu <laurentiu.palcu@intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/17.0 Thunderbird/17.0
+Return-Path: <wd@denx.de>
+Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 714A0E01457
+	for <yocto@yoctoproject.org>; Tue, 22 Jan 2013 01:03:57 -0800 (PST)
+Received: from frontend1.mail.m-online.net (unknown [192.168.8.180])
+	by mail-out.m-online.net (Postfix) with ESMTP id 3Yr3b03bgRz4KKxn;
+	Tue, 22 Jan 2013 10:03:55 +0100 (CET)
+Received: from localhost (dynscan1.mnet-online.de [192.168.6.68])
+	by mail.m-online.net (Postfix) with ESMTP id 3Yr3Zz19Gdzbbfs;
+	Tue, 22 Jan 2013 10:03:55 +0100 (CET)
+X-Virus-Scanned: amavisd-new at mnet-online.de
+Received: from smtp-auth.mnet-online.de ([192.168.8.180])
+	by localhost (dynscan1.mail.m-online.net [192.168.6.68]) (amavisd-new,
+	port 10024)
+	with ESMTP id 9RPXPiWMHqQn; Tue, 22 Jan 2013 10:03:22 +0100 (CET)
+X-Auth-Info: oOrnTN0n8+iuUiH/SGPmCHAWh3jLI7W3TBSBRRDBGX0=
+Received: from diddl.denx.de (host-80-81-18-216.customer.m-online.net
+	[80.81.18.216]) by smtp-auth.mnet-online.de (Postfix) with ESMTPA;
+	Tue, 22 Jan 2013 10:03:53 +0100 (CET)
+Received: from gemini.denx.de (gemini.denx.de [10.0.0.2])
+	by diddl.denx.de (Postfix) with ESMTP id C09831A14C6;
+	Tue, 22 Jan 2013 10:03:53 +0100 (CET)
+Received: from gemini.denx.de (localhost [IPv6:::1])
+	by gemini.denx.de (Postfix) with ESMTP id 6492320DA8C;
+	Tue, 22 Jan 2013 10:03:51 +0100 (CET)
+To: Laurentiu Palcu <laurentiu.palcu@intel.com>
+From: Wolfgang Denk <wd@denx.de>
 MIME-Version: 1.0
-To: Wolfgang Denk <wd@denx.de>
+In-reply-to: <50FE4900.7020804@intel.com>
 References: <20130122071621.9D11520DA8C@gemini.denx.de>
-In-Reply-To: <20130122071621.9D11520DA8C@gemini.denx.de>
+	<50FE4900.7020804@intel.com>
+Comments: In-reply-to Laurentiu Palcu <laurentiu.palcu@intel.com>
+	message dated "Tue, 22 Jan 2013 10:08:32 +0200."
+Date: Tue, 22 Jan 2013 10:03:51 +0100
+Message-Id: <20130122090351.6492320DA8C@gemini.denx.de>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Installation of i686 SDK on a x86_64 machine?
 X-BeenThere: yocto@yoctoproject.org
@@ -30,56 +46,61 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 22 Jan 2013 08:10:35 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 22 Jan 2013 09:03:58 -0000
+Content-type: text/plain; charset=UTF-8
+Content-transfer-encoding: 8bit
 
-Hi Wolfgang,
+Dear Laurentiu,
 
-On 01/22/2013 09:16 AM, Wolfgang Denk wrote:
-> Hi,
+In message <50FE4900.7020804@intel.com> you wrote:
 > 
-> in previous releases it ha always been possible to install a SDK
-> configured for a i686 machine on both x86 and x86_64 systems.
-> 
-> Since commit c04f5435 "populate_sdk_base.bbclass: use SDK_ARCH instead
-> of SDKMACHINE" this does not work any more; instead, installation will
-> abort with "Error: Installation machine not supported!"
-> 
-> ++ uname -m
-> ++ sed -e 's/i[3-6]86/ix86/' -e 's/x86[-_]64/x86_64/'
-> + INST_ARCH=x86_64
-> ++ echo i686
-> ++ sed -e 's/i[5-6]86/ix86/'
-> + SDK_ARCH=ix86
-> + '[' x86_64 '!=' ix86 ']'
-> + echo 'Error: Installation machine not supported!'
-> Error: Installation machine not supported!
-> + exit -1
-> 
-> 
-> Is this intended behaviour (and if so, why?) or rather a bug that
-> should be reported and fixed?
-This is the intended behavior. Please check:
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=3269
+> > in previous releases it ha always been possible to install a SDK
+> > configured for a i686 machine on both x86 and x86_64 systems.
+> > 
+> > Since commit c04f5435 "populate_sdk_base.bbclass: use SDK_ARCH instead
+> > of SDKMACHINE" this does not work any more; instead, installation will
+> > abort with "Error: Installation machine not supported!"
+...
 
-Also, this thread:
-http://lists.linuxtogo.org/pipermail/openembedded-core/2012-November/031519.html
+> > Is this intended behaviour (and if so, why?) or rather a bug that
+> > should be reported and fixed?
+> This is the intended behavior. Please check:
+> https://bugzilla.yoctoproject.org/show_bug.cgi?id=3269
 
-If people really need to install SDK tarballs intended for other hosts
-than the SDK was built for (i686 on x86_64 or vice-versa), we could add
-a -f flag to force installation and show an error message like this:
+Sorry, but this bug is about a different problem - the fix overshoots
+the mark.
 
-"Error: Installation machine not supported! Use -f to force installation."
+The following combinations of SDK_ARCH and INST_ARCH are possible and
+relevant here:
 
-Thanks,
-Laurentiu
+Id	SDK_ARCH	INST_ARCH	Status
+==============================================
+1	ix86		ix86		works
+2	ix86		x86_64		works
+3	x86_64		ix86		cannot work
+4	x86_64		x86_64		works
 
-> 
-> Thanks in advance.
-> 
-> Best regards,
-> 
-> Wolfgang Denk
-> 
+The bug report is about case 3 - attempting to install a 64 bit SDK on
+a 32 bit machine.  This indeed cannot work and shuld be prevented byy
+the installer.
+
+But the current code also prevents case 2, installing 32 bit images on
+a 64 bit machine, which works perfectly fine (assuming you have the
+needed 32 bit libraries installed).
+
+For any distribution it is very convenient to provide only one set of
+images (configured for ix86), as these images will work both on 32 and
+64 bit systems.
+
+I consider it a major drawback if you intentionally prevent such use.
+
+Best regards,
+
+Wolfgang Denk
+
+-- 
+DENX Software Engineering GmbH,     MD: Wolfgang Denk & Detlev Zundel
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+Phone: (+49)-8142-66989-10 Fax: (+49)-8142-66989-80 Email: wd@denx.de
+"I'm not a god, I was misquoted."                 - Lister, Red Dwarf
 
