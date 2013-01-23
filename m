@@ -1,43 +1,31 @@
-Return-Path: <PatrickTurley@gamestop.com>
-Received: from gsironport1.gamestop.com (mail1.gamestop.com [12.25.107.28])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 68964E0034C
-	for <yocto@yoctoproject.org>; Wed, 23 Jan 2013 07:17:29 -0800 (PST)
-X-IronPort-AV: E=Sophos;i="4.84,523,1355119200"; 
-   d="scan'208";a="7183776"
-Received: from unknown (HELO GV1HQPEX02.babgsetc.pvt) ([172.22.1.244])
-	by gsironport1.gamestop.com with ESMTP; 23 Jan 2013 09:17:28 -0600
-Received: from GV1HQPEX03.babgsetc.pvt ([169.254.1.225]) by
-	GV1HQPEX02.babgsetc.pvt ([172.22.1.192]) with mapi id 14.02.0318.004;
-	Wed, 23 Jan 2013 09:17:28 -0600
-From: Patrick Turley <PatrickTurley@gamestop.com>
-To: Bruce Ashfield <bruce.ashfield@windriver.com>
-Thread-Topic: [yocto] Build external module against Yocto kernel
-Thread-Index: AQHN8q6s5QOP/6xKnEq8yLl/GYg/sJhLBNOAgAAApYCAAAxrAIAAAagAgAAHNgCAAAN4gIABeiEAgAmk9wCAAAHDAIAAYkSAgAAmVACAAAiBAIAAANIAgAAEyICAAIo0AIAAGMIA
-Date: Wed, 23 Jan 2013 15:17:28 +0000
-Message-ID: <5BEFD653CA8A8D47AA194ED30AB5968C3710B3@GV1HQPEX03.babgsetc.pvt>
-References: <5BEFD653CA8A8D47AA194ED30AB5968C35CD91@GV1HQPEX03.babgsetc.pvt>
-	<1358269651.2479.5.camel@omclinuxballt.devnet.ordermatic.net>
-	<1358269789.2479.6.camel@omclinuxballt.devnet.ordermatic.net>
-	<5BEFD653CA8A8D47AA194ED30AB5968C35D715@GV1HQPEX03.babgsetc.pvt>
-	<50F5992C.9070705@windriver.com>
-	<5BEFD653CA8A8D47AA194ED30AB5968C35D97A@GV1HQPEX03.babgsetc.pvt>
-	<50F5A221.2070209@windriver.com> <50F6DF54.2020005@linux.intel.com>
-	<5BEFD653CA8A8D47AA194ED30AB5968C370295@GV1HQPEX03.babgsetc.pvt>
-	<50FEF7EC.6030601@windriver.com>
-	<5BEFD653CA8A8D47AA194ED30AB5968C370A99@GV1HQPEX03.babgsetc.pvt>
-	<50FF6A82.9090201@windriver.com>
-	<5BEFD653CA8A8D47AA194ED30AB5968C370F09@GV1HQPEX03.babgsetc.pvt>
-	<50FF7254.2050903@windriver.com>
-	<5BEFD653CA8A8D47AA194ED30AB5968C370F97@GV1HQPEX03.babgsetc.pvt>
-	<50FFEA46.5050303@windriver.com>
-In-Reply-To: <50FFEA46.5050303@windriver.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.22.1.244]
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C940FE0034C
+	for <yocto@yoctoproject.org>; Wed, 23 Jan 2013 07:53:58 -0800 (PST)
+Received: from cpebcc81008dd2c-cmbcc81008dd29.cpe.net.cable.rogers.com
+	([99.253.156.71]:42782 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1Ty2eD-00062u-W4
+	for yocto@yoctoproject.org; Wed, 23 Jan 2013 10:53:58 -0500
+Date: Wed, 23 Jan 2013 10:53:51 -0500 (EST)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.DEB.2.02.1301231051460.13683@oneiric>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Build external module against Yocto kernel
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: [OT] the beauty of yocto/OE doing all your license tracking for you
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,31 +37,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 23 Jan 2013 15:17:29 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="Windows-1252"
-Content-ID: <4BFD4668AFF04D44895AF34DB4EE7E8C@gamestop.com>
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 23 Jan 2013 15:53:58 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
 
-On Jan 23, 2013, at 7:48 AM, Bruce Ashfield <bruce.ashfield@windriver.com>
- wrote:
-> On 13-01-23 12:34 AM, Patrick Turley wrote:
->>=20
->> On Jan 22, 2013, at 11:17 PM, Bruce Ashfield <bruce.ashfield@windriver.c=
-om> wrote:
->>=20
->>> On 13-01-23 12:14 AM, Patrick Turley wrote:
->>>> On Jan 22, 2013, at 10:43 PM, Bruce Ashfield<bruce.ashfield@windriver.=
-com>  wrote:
->>>>> On 13-01-22 9:26 PM, Patrick Turley wrote:
->=20
-> Argh. I'll have to just run the commands myself and stop spamming the
-> list with ideas :) It's just a matter of making lkc accept the defaults
-> (i.e. you could also use allyesconfig, or allnoconfig) or even better
-> not trigger that config check at all.
+  just noticed this online -- "How Much Disruption Will Scanning For
+OSS Cause Me?:
 
-You're very kind to have spent so much time on my problem already. I look f=
-orward to hearing back.
+http://www.openlogic.com/blog/bid/249485/How-Much-Disruption-Will-Scanning-For-OSS-Cause-Me?utm_source=twitter&utm_medium=social&utm_content=86ee217f-b5bc-4a65-b643-743878c36b25
 
+"Scanning and auditing your code for open source software (OSS) is a
+great first step towards compliance. However, some organizations may
+be reluctant to perform scans because of concerns about how disruptive
+the process can be to their development effort."
+
+  just thought some folks might find that interesting.
+
+rday
+
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
