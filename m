@@ -1,56 +1,32 @@
-Return-Path: <tim.bird@am.sony.com>
-Received: from va3outboundpool.messaging.microsoft.com
-	(va3ehsobe005.messaging.microsoft.com [216.32.180.31])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 463A4E002AB
-	for <yocto@yoctoproject.org>; Wed, 23 Jan 2013 11:38:10 -0800 (PST)
-Received: from mail88-va3-R.bigfish.com (10.7.14.237) by
-	VA3EHSOBE009.bigfish.com (10.7.40.29) with Microsoft SMTP Server id
-	14.1.225.23; Wed, 23 Jan 2013 19:38:08 +0000
-Received: from mail88-va3 (localhost [127.0.0.1])	by mail88-va3-R.bigfish.com
-	(Postfix) with ESMTP id 629D3120101	for <yocto@yoctoproject.org>;
-	Wed, 23 Jan 2013 19:38:08 +0000 (UTC)
-X-Forefront-Antispam-Report: CIP:160.33.194.228; KIP:(null); UIP:(null);
-	IPV:NLI; H:usculsndmail01v.am.sony.com; RD:mail01.sonyusa.com;
-	EFVD:NLI
-X-SpamScore: -2
-X-BigFish: VPS-2(zz4015I14ffIzz1ee6h1de0h1202h1e76h1d1ah1d2ahzzz2fh2a8h668h839h947hd25hf0ah1288h12a5h12a9h12bdh137ah13b6h1441h1504h1537h153bh162dh1631h1758h1765h18e1h190ch1155h)
-Received-SPF: pass (mail88-va3: domain of am.sony.com designates
-	160.33.194.228 as permitted sender) client-ip=160.33.194.228;
-	envelope-from=tim.bird@am.sony.com;
-	helo=usculsndmail01v.am.sony.com ; .am.sony.com ; 
-Received: from mail88-va3 (localhost.localdomain [127.0.0.1]) by mail88-va3
-	(MessageSwitch) id 1358969886494830_23187;
-	Wed, 23 Jan 2013 19:38:06 +0000 (UTC)
-Received: from VA3EHSMHS003.bigfish.com (unknown [10.7.14.250])	by
-	mail88-va3.bigfish.com (Postfix) with ESMTP id 66A9D22006A	for
-	<yocto@yoctoproject.org>; Wed, 23 Jan 2013 19:38:06 +0000 (UTC)
-Received: from usculsndmail01v.am.sony.com (160.33.194.228) by
-	VA3EHSMHS003.bigfish.com (10.7.99.13) with Microsoft SMTP Server (TLS)
-	id 14.1.225.23; Wed, 23 Jan 2013 19:38:05 +0000
-Received: from usculsndmail12v.am.sony.com (usculsndmail12v.am.sony.com
-	[146.215.230.103])	by usculsndmail01v.am.sony.com
-	(Sentrion-MTA-4.2.2/Sentrion-MTA-4.2.2) with ESMTP id
-	r0NJc3Uj022849	for
-	<yocto@yoctoproject.org>; Wed, 23 Jan 2013 19:38:03 GMT
-Received: from mail1x.sjc.in.sel.sony.com (mail3.sjc.in.sel.sony.com
-	[43.134.1.112])	by usculsndmail12v.am.sony.com
-	(Sentrion-MTA-4.2.2/Sentrion-MTA-4.2.2) with ESMTP id r0NJc1Ru022158
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256
-	verify=FAIL)	for
-	<yocto@yoctoproject.org>; Wed, 23 Jan 2013 19:38:03 GMT
-Received: from [43.135.148.222] ([43.135.148.222])	by
-	mail1x.sjc.in.sel.sony.com (Switch-3.4.2/Switch-3.4.2) with ESMTP id
-	r0NJc1xE006811	for <yocto@yoctoproject.org>;
-	Wed, 23 Jan 2013 19:38:01 GMT
-Message-ID: <51003D50.3080600@am.sony.com>
-Date: Wed, 23 Jan 2013 11:43:12 -0800
-From: Tim Bird <tim.bird@am.sony.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130106 Thunderbird/17.0.2
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-ie0-f170.google.com (mail-ie0-f170.google.com
+	[209.85.223.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 151C9E011ED
+	for <yocto@yoctoproject.org>; Wed, 23 Jan 2013 13:05:41 -0800 (PST)
+Received: by mail-ie0-f170.google.com with SMTP id k10so14771017iea.29
+	for <yocto@yoctoproject.org>; Wed, 23 Jan 2013 13:05:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=x-received:mime-version:in-reply-to:references:from:date:message-id
+	:subject:to:cc:content-type:content-transfer-encoding;
+	bh=bg0Llu0xG6wobulvFQstF/KB5NYsqti5SdSJUWKjynA=;
+	b=Wx4uYeJWn7YG6rv0SG3wr48xEtKcVJfBiNZQ8Ri8rsvUgY1bN+0ZItP++q/MdpmWzH
+	XIz2SwBlXBETlNQBRGQomcTdnOHh+Gg0SZq7BkUpkaX8/gpSfmTY+HtlGdfF4lOVFJqb
+	5e/3/nWQYUydPND98PwNQ8Zse7kJsMqAOTWLFJllChNn5YkY/ckZBSM/wZ/oTjH5cjTn
+	RcHiLQ0sUgxle+QptZMyw4Hak/UBLV5AtcOCllAwp9Yj10f87GsW/79yj8lxGMRFNsBu
+	KJmnnnZD79QXNcvnZ43Yw7DZWHsfZTrOMg3Os7H1ppbwsCL1gm/AE1kSaZDSwAhCZKst
+	omoQ==
+X-Received: by 10.42.39.80 with SMTP id g16mr2100460ice.26.1358975140504; Wed,
+	23 Jan 2013 13:05:40 -0800 (PST)
 MIME-Version: 1.0
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-X-OriginatorOrg: am.sony.com
-Subject: RFC - integrating target runtime information into a yocto build
+Received: by 10.64.18.169 with HTTP; Wed, 23 Jan 2013 13:05:10 -0800 (PST)
+In-Reply-To: <5BEFD653CA8A8D47AA194ED30AB5968C3714A8@GV1HQPEX03.babgsetc.pvt>
+References: <5BEFD653CA8A8D47AA194ED30AB5968C3714A8@GV1HQPEX03.babgsetc.pvt>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Wed, 23 Jan 2013 13:05:10 -0800
+Message-ID: <CAMKF1spHcoN88Qwx0_f43N9LbcsJeR6VNykLf4RXUo5c8CzvvQ@mail.gmail.com>
+To: Patrick Turley <PatrickTurley@gamestop.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Inconsistency in the SDK
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -62,70 +38,97 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 23 Jan 2013 19:38:10 -0000
-Content-Type: text/plain; charset="ISO-8859-1"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 23 Jan 2013 21:05:41 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Hi everyone,
+On Wed, Jan 23, 2013 at 8:05 AM, Patrick Turley
+<PatrickTurley@gamestop.com> wrote:
+> Here's our machine in local.conf:
+>
+>     MACHINE =3D "dm8148-mpu"
+>
+> Naturally, then, we see a directly like this under tmp/work:
+>
+>     dm8148_mpu-poky-linux-gnueabi
 
-I'm doing research on whole-system optimization, and I'd like to ask opinions
-on the next stage of my work.
+This will contain builds of machine specific packages
 
-== background ==
-After a fair amount of blood, sweat and tears, I have (finally) produced a working
-ARM kernel that is optimized with gcc's link-time-optimization (LTO) feature.
-Previously, I had completed a system that did syscall detection in object files,
-and unused syscall elimination in the Linux kernel.
+>
+> Also, under tmp/sysroots, we see these two:
+>
+>     dm8148-mpu
 
-In the next stage of my research, I'm planning on combining those two
-to do kernel optimization and rebuilding, AFTER the distribution image build.
+This is machine sysroot which is not same as SDK sysroot
 
-There are a number of other techniques I'll be looking at as well, including
-1) profiling applications and re-linking with modified linker scripts to increase
-the locality of init-time functions (and reduce flash access during boot)
-2) profiling block-layer accesses to convert portions of applications to XIP
-using the AXFS filesystem
-3) additional automated kernel feature elimination from whole-image static
-and runtime analysis.
+>     dm8148-mpu-tcbootstrap
 
-Finally (by way of background), I already have tools to automate the process
-of installing software on the target, rebooting, running programs and
-collecting results.
+intermediate sysroot needed for bootstrapping the build
 
-== questions ==
-First, has anyone already done anything with OE or YP that takes data
-from a running system, and feeds it back into the build system?
+>
+> Finally, when I install the SDK, I see the following under sysroots:
 
-Does it make sense to add recipes to YP that wrap my tools, collect
-the data and re-start the build process?  Is this even possible?
-That is, can bitbake wait for results from a late build stage,
-invalidate previous results, and cause rebuilds of key components?
-Or is this stretching things too far?
+how did you generate and install the SDK ?
 
-Has anyone built recipes in OE or YP for image deployment,
-target control, or test execution?
+>
+>     dm8148_mpu-poky-linux-gnueabi
+>     x86_64-pokysdk-linux
 
-The alternative is to put this iteration outside of the build process.
-That is, to do an initial build, collect results, modify the build inputs,
-and do a subsequent build (directed from "above" bitbake, rather than
-from recipes inside the build system).
+I am using 1.3/danny and I dont see this problem the first sysroot has
+MACHINE_ARCH and not MACHINE_NAME
+as first part of target triplet. The second sysroot is for nativesdk
+packages which is quite OK.
 
-Does anyone have any experience with this?  Any ideas on the best
-approach?
-
-I'm not expert enough in YP to know the dangers here.
-I would, however, very much like to make this work reproducible
-and automated, which is why I have a high interest in doing
-this in YP.
-
-Thanks,
- -- Tim
+so It would be interested to see what your local.conf and machine.conf
+looks like.
 
 
-=============================
-Tim Bird
-Architecture Group Chair, CE Workgroup of the Linux Foundation
-Senior Staff Engineer, Sony Network Entertainment
-=============================
-
+>
+> However, if I ask the cross-compiler the path to its default sysroot, I s=
+ee this:
+>
+>     $ cd /opt/poky/1.3/sysroots/x86_64-pokysdk-linux
+>     $ cd usr/bin/armv7a-vfp-neon-poky-linux-gnueabi
+>     $ ./arm-poky-linux-gnueabi-gcc -print-sysroot
+>     /opt/poky/1.3/sysroots/armv7a-vfp-neon-poky-linux-gnueabi
+>
+> There is no such directory. That is, the default sysroot for the SDK does=
+n't exist.
+>
+> Now, if I go back and look in tmp/work, I realize that I see *both* of th=
+ese:
+>
+>     dm8148_mpu-poky-linux-gnueabi
+>     armv7a-vfp-neon-poky-linux-gnueabi
+>
+> There are a number of work directories under both.
+>
+> It seems to me there are these possibilities:
+>
+>
+> 1) There are at least two different (and disagreeing) methods to compute =
+the architecture "tuple," and different pieces of the system are choosing d=
+ifferent methods. These different methods usually agree, but sometimes they=
+ don't. Thus, when they *do* agree, it's "luck."
+>
+>
+> 2) These strings *should* agree, but something is missing from our machin=
+e definition that causes them to disagree (we weren't using our own machine=
+ definition until recently). In that case, the machine definition code shou=
+ld change such that it's not *possible* for these strings to disagree. Also=
+, I'd like to know what we missed, so we can fix it.
+>
+>
+> 3) These strings, though similar, actually *mean* different things and ar=
+e *both* correct. The only problem is that the build process for the tool c=
+hain chooses the wrong one when defining the default sysroot path.
+>
+>
+> In any case, I can fix the immediate problem with a symbolic link, but th=
+at's not a long-term solution.
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
