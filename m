@@ -1,26 +1,32 @@
-Return-Path: <sgw@linux.intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 78FCDE011ED
-	for <yocto@yoctoproject.org>; Wed, 23 Jan 2013 15:21:54 -0800 (PST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 23 Jan 2013 15:21:54 -0800
+Return-Path: <jessica.zhang@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3FE5EE01458
+	for <yocto@yoctoproject.org>; Wed, 23 Jan 2013 16:39:11 -0800 (PST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 23 Jan 2013 16:39:10 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,524,1355126400"; d="scan'208";a="281421899"
-Received: from unknown (HELO [10.255.15.108]) ([10.255.15.108])
-	by fmsmga002.fm.intel.com with ESMTP; 23 Jan 2013 15:21:53 -0800
-Message-ID: <51007091.1030609@linux.intel.com>
-Date: Wed, 23 Jan 2013 15:21:53 -0800
-From: Saul Wold <sgw@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/17.0 Thunderbird/17.0
+X-IronPort-AV: E=Sophos;i="4.84,525,1355126400"; d="scan'208";a="247698702"
+Received: from orsmsx105.amr.corp.intel.com ([10.22.225.132])
+	by azsmga001.ch.intel.com with ESMTP; 23 Jan 2013 16:39:10 -0800
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.209]) by
+	ORSMSX105.amr.corp.intel.com ([169.254.4.35]) with mapi id
+	14.01.0355.002; Wed, 23 Jan 2013 16:39:10 -0800
+From: "Zhang, Jessica" <jessica.zhang@intel.com>
+To: Trevor Woerner <twoerner@gmail.com>
+Thread-Topic: are separate -sdk image targets necessary Was: [yocto] Build
+	external module against Yocto kernel
+Thread-Index: AQHN+Ynh9Q9rTaYroUSoeei2mtokcJhXobmg
+Date: Thu, 24 Jan 2013 00:39:09 +0000
+Message-ID: <C6510F6D410BB64A8C15398EDC6B847C57DD6E88@ORSMSX101.amr.corp.intel.com>
+References: <CAHUNapRAcCu=82B3JX0WQweEhz0-m+5sYhdR8gtX+U3UyiKnkg@mail.gmail.com>
+In-Reply-To: <CAHUNapRAcCu=82B3JX0WQweEhz0-m+5sYhdR8gtX+U3UyiKnkg@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.139]
 MIME-Version: 1.0
-To: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>, 
-	Zhao Yi <yi.zhao@windriver.com>,
-	"Georgescu, Alexandru C" <alexandru.c.georgescu@intel.com>
-References: <CAPhnLPAm17JHdDE=abqjaEEvZebxMQmuSKWSEj8C+qU-TwPs=w@mail.gmail.com>
-In-Reply-To: <CAPhnLPAm17JHdDE=abqjaEEvZebxMQmuSKWSEj8C+qU-TwPs=w@mail.gmail.com>
-Cc: McClintock Matthew-B29882 <B29882@freescale.com>, yocto@yoctoproject.org
-Subject: Re: M2/M3.rc1 availability
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: are separate -sdk image targets necessary Was: Build external module against Yocto kernel
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,32 +38,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 23 Jan 2013 23:21:54 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 24 Jan 2013 00:39:11 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
+Hi Trevor,
 
-Please continue to test the rc1 of M3.  The Meta-Intel bits might come a 
-little later this time due to some issues which are being worked on.
+-c populate_sdk will generate a SDK that matches the target image, while an=
+ -sdk image allows people to use it to boot up device and do development wo=
+rk on target as you can see in the requirements of bug 1614. The other usag=
+e of an -sdk image is to extract its rootfs and use it as your cross develo=
+pment sysroot, if you want to use your toolchain against different sysroot(=
+s).
 
-Thanks
-	Sau!
+Thanks,
+Jessica
 
+-----Original Message-----
+From: Trevor Woerner [mailto:twoerner@gmail.com]
+Sent: Wednesday, January 23, 2013 8:51 AM
+To: Zhang, Jessica
+Cc: yocto@yoctoproject.org
+Subject: are separate -sdk image targets necessary Was: [yocto] Build exter=
+nal module against Yocto kernel
 
-On 01/22/2013 06:09 PM, Flanagan, Elizabeth wrote:
-> The weekly build is available at:
->
-> http://autobuilder.yoctoproject.org/pub/nightly/20130122-2
->
-> This build is built from master HEAD.
->
-> Please begin testing against this rc. Please note that tag and branch
-> names for this milestone will be named as if it was M3. I will be
-> tagging tonight and branching in the morning once given the all clear
-> by RP.
->
->
-> -b
->
->
+On Tue, Jan 15, 2013 at 2:16 PM, Zhang, Jessica <jessica.zhang@intel.com> w=
+rote:
+> According to bug 1614, the kernel dev packages should be included in
+> sdk images. Please generate your toolchain using "bitbake
+> core-image-sato-sdk -c populate_sdk" which will make the toolchain
+> target sysroot matching your image's sysroot (this is a new feature of
+> 1.3) as long as your image is a sdk image.
+
+I am a bit confused by the above email. To me it appears as if Jessica is s=
+aying: "add '-c populate_sdk' to the build of an -sdk image".
+
+But if we look at this email from Mark Hatle:
+http://www.mail-archive.com/yocto@yoctoproject.org/msg10636.html
+
+I get the impression that Mark is saying: "now that '-c populate_sdk'
+is available, there no longer is any need for separate -sdk images".
+
+Am I confusing two different things with each other?
 
