@@ -1,32 +1,48 @@
-Return-Path: <andrei@gherzan.ro>
-Received: from mail-ve0-f170.google.com (mail-ve0-f170.google.com
-	[209.85.128.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7F1CDE014D3
-	for <yocto@yoctoproject.org>; Thu, 24 Jan 2013 11:45:39 -0800 (PST)
-Received: by mail-ve0-f170.google.com with SMTP id ox1so1728327veb.29
-	for <yocto@yoctoproject.org>; Thu, 24 Jan 2013 11:45:38 -0800 (PST)
+Return-Path: <jmehaffey@mvista.com>
+Received: from mail-wg0-f45.google.com (mail-wg0-f45.google.com [74.125.82.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E1135E01458
+	for <yocto@yoctoproject.org>; Thu, 24 Jan 2013 11:58:56 -0800 (PST)
+Received: by mail-wg0-f45.google.com with SMTP id dq12so1703019wgb.12
+	for <yocto@yoctoproject.org>; Thu, 24 Jan 2013 11:58:56 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=google.com; s=20120113;
-	h=x-received:mime-version:x-originating-ip:from:date:message-id
-	:subject:to:cc:content-type:x-gm-message-state;
-	bh=Ry9LF1ITkXpKvE8aQ/TBk0sl4NOsVrDJpQj/kAwYzPQ=;
-	b=Rsfx7KWopp83MLusMFbzf6z1kmqLCQK3qMZQBvYKxhcwozY5PTOt3VzsQZc7Laei9s
-	mSXLcUoePYoFk7OqX6R/DQX9MB8oZe1NbAR2kHtzT2PVXyczxdKLuvBpNyawhnBcj2FO
-	QhPm1HGR5v0G3zn7wkrGjdUSpzSFj5MFyQh/DZir+NSWUoeFTHJKLeTXK5Z0j7/BZpgq
-	MG0fMbq/hHVr/BbbCcINfsZoj4R3Y6hkTSCtXUfzwYdDS1jU6eGEWA11t8Gxd1DjuTKL
-	hmBuuk3r8i5B0pmXhUERa1Yzq0tMhasIxwyo8nHCyz+bCUtag0OVYHoHxAGL/Oypq3uE
-	60+w==
-X-Received: by 10.220.153.201 with SMTP id l9mr3281678vcw.33.1359056738696;
-	Thu, 24 Jan 2013 11:45:38 -0800 (PST)
+	h=mime-version:x-received:in-reply-to:references:date:message-id
+	:subject:from:to:cc:content-type:x-gm-message-state;
+	bh=5n66RPjFoIJaRxVEdeFxFUDQeMEP0gVxxWI2kXymeUA=;
+	b=Vfxzecq3MvoGgYruvYUvN4T0ABj92JvCA+SWeoy87Q/2sSRSck7WlwvjWnb9Jkp2ud
+	EHwAD05V/1lXuCFfVZMwlX15ihw1Kaxrul8yiRRdBdh9ujm77o2fR3jX/0FPV2L3EK7d
+	d5bpbP3BNRUMy36Tk8/c4qO5tYbGLR2eTsZ7VvJZ3TePkVSCNXmm72SyaLY7dQwTxa4c
+	tvSezWPcX03TTDumQoWXi2XDe+VsbRYrUnrEBDKDwGaGxoVtlzwx0gORxD9km0W7D1RP
+	lYJMlw+g6684r5J4YkjJ8c4m36RNoartb0T/7gNWbdUpPDcwIQ2EaaQZttq21Lw30+oM
+	Nr4A==
 MIME-Version: 1.0
-Received: by 10.58.153.163 with HTTP; Thu, 24 Jan 2013 11:45:18 -0800 (PST)
-X-Originating-IP: [89.121.200.106]
-From: Andrei Gherzan <andrei@gherzan.ro>
-Date: Thu, 24 Jan 2013 21:45:18 +0200
-Message-ID: <CAK18fxHAWADFz53eLP8JsURSgxNM0G+fbG3MiM6z4KmDbo3p6Q@mail.gmail.com>
-To: Yocto Project <yocto@yoctoproject.org>
-X-Gm-Message-State: ALoCoQnR/ClbeBDfqaPTB0PgFYGmGLJwGqBkmlHp2Kdrc79qgc9aR8bAuNms+oJlc4OVwa8wdw4D
-Subject: meta-raspberrypi has a new home - yocto
+X-Received: by 10.180.72.232 with SMTP id g8mr5354799wiv.0.1359057535988; Thu,
+	24 Jan 2013 11:58:55 -0800 (PST)
+Received: by 10.227.19.146 with HTTP; Thu, 24 Jan 2013 11:58:55 -0800 (PST)
+In-Reply-To: <5BEFD653CA8A8D47AA194ED30AB5968C3710B3@GV1HQPEX03.babgsetc.pvt>
+References: <5BEFD653CA8A8D47AA194ED30AB5968C35CD91@GV1HQPEX03.babgsetc.pvt>
+	<1358269651.2479.5.camel@omclinuxballt.devnet.ordermatic.net>
+	<1358269789.2479.6.camel@omclinuxballt.devnet.ordermatic.net>
+	<5BEFD653CA8A8D47AA194ED30AB5968C35D715@GV1HQPEX03.babgsetc.pvt>
+	<50F5992C.9070705@windriver.com>
+	<5BEFD653CA8A8D47AA194ED30AB5968C35D97A@GV1HQPEX03.babgsetc.pvt>
+	<50F5A221.2070209@windriver.com> <50F6DF54.2020005@linux.intel.com>
+	<5BEFD653CA8A8D47AA194ED30AB5968C370295@GV1HQPEX03.babgsetc.pvt>
+	<50FEF7EC.6030601@windriver.com>
+	<5BEFD653CA8A8D47AA194ED30AB5968C370A99@GV1HQPEX03.babgsetc.pvt>
+	<50FF6A82.9090201@windriver.com>
+	<5BEFD653CA8A8D47AA194ED30AB5968C370F09@GV1HQPEX03.babgsetc.pvt>
+	<50FF7254.2050903@windriver.com>
+	<5BEFD653CA8A8D47AA194ED30AB5968C370F97@GV1HQPEX03.babgsetc.pvt>
+	<50FFEA46.5050303@windriver.com>
+	<5BEFD653CA8A8D47AA194ED30AB5968C3710B3@GV1HQPEX03.babgsetc.pvt>
+Date: Thu, 24 Jan 2013 11:58:55 -0800
+Message-ID: <CAGOhT_cSVJOkB0=EutkGojn8SFQSR6PyzxbDc_QLNB4a9M=wLQ@mail.gmail.com>
+From: John Mehaffey <mehaf@mvista.com>
+To: Patrick Turley <PatrickTurley@gamestop.com>
+X-Gm-Message-State: ALoCoQno97u4X4ckG+msyItdSqiwMke7kxKLplcQmaXGKT5Ykpser/k9wFxUup8ndRBs0WOBCcBd
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Build external module against Yocto kernel
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,77 +54,99 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 24 Jan 2013 19:45:39 -0000
-Content-Type: multipart/alternative; boundary=f46d04339ce423be0404d40e0e2d
+X-List-Received-Date: Thu, 24 Jan 2013 19:58:57 -0000
+Content-Type: multipart/alternative; boundary=f46d043c8194a974b204d40e3dd1
 
---f46d04339ce423be0404d40e0e2d
+--f46d043c8194a974b204d40e3dd1
 Content-Type: text/plain; charset=ISO-8859-1
 
-Hello raspberrypi owners,
+On Wed, Jan 23, 2013 at 7:17 AM, Patrick Turley
+<PatrickTurley@gamestop.com>wrote:
 
-I am happy to announce that yoctoproject hosts now the meta-raspberrypi BSP
-layer.
-The web interface is now up and running:
-http://git.yoctoproject.org/cgit/cgit.cgi/meta-raspberrypi/ and we will use
-the yocto mailing list for meta-raspberrypi specific discussions. Please
-don't forget to add "[meta-raspberrypi]" in subject.
+>
+> On Jan 23, 2013, at 7:48 AM, Bruce Ashfield <bruce.ashfield@windriver.com>
+>  wrote:
+> > On 13-01-23 12:34 AM, Patrick Turley wrote:
+> >>
+> >> On Jan 22, 2013, at 11:17 PM, Bruce Ashfield <
+> bruce.ashfield@windriver.com> wrote:
+> >>
+> >>> On 13-01-23 12:14 AM, Patrick Turley wrote:
+> >>>> On Jan 22, 2013, at 10:43 PM, Bruce Ashfield<
+> bruce.ashfield@windriver.com>  wrote:
+> >>>>> On 13-01-22 9:26 PM, Patrick Turley wrote:
+> >
+> > Argh. I'll have to just run the commands myself and stop spamming the
+> > list with ideas :) It's just a matter of making lkc accept the defaults
+> > (i.e. you could also use allyesconfig, or allnoconfig) or even better
+> > not trigger that config check at all.
+>
+> You're very kind to have spent so much time on my problem already. I look
+> forward to hearing back.
+>
 
-For more information check the included README in the layer.
+It sounds like you are building for a board with an ARCH other than i386
+(the default).
 
-In the end i want to thank the group who added value to this layer:
+You need to either run it in a devshell or use "make ARCH=<arch> oldconfig".
 
-Aurelian Zanoschi
-David-John Willis
-Gary Thomas
-Jack Mitchell
-Julian Scheel
-Koen Kooi
-Paul Eggleton
-Sander van Grieken
-Tomas Frydrych
-Tyler Hall
+-mehaf
 
-Special thanks to David-John Willis. He's actually the owner. :)
 
-Keep up the good work guys!
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
--- 
-*Andrei Gherzan*
-m: +40.744.478.414 |  f: +40.31.816.28.12
-
---f46d04339ce423be0404d40e0e2d
+--f46d043c8194a974b204d40e3dd1
 Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div style>Hello raspberrypi owners,</div><div style><br><=
-/div>I am happy to announce that yoctoproject hosts now the meta-raspberryp=
-i BSP layer.<div>The web interface is now up and running:=A0<a href=3D"http=
-://git.yoctoproject.org/cgit/cgit.cgi/meta-raspberrypi/" target=3D"_blank" =
-style=3D"font-family:arial,sans-serif;font-size:13px">http://git.yoctoproje=
-ct.org/cgit/cgit.cgi/meta-raspberrypi/</a>=A0and we will use the yocto mail=
-ing list for meta-raspberrypi specific discussions. Please don&#39;t forget=
- to add &quot;[meta-raspberrypi]&quot; in subject.</div>
+<div class=3D"gmail_quote">On Wed, Jan 23, 2013 at 7:17 AM, Patrick Turley =
+<span dir=3D"ltr">&lt;<a href=3D"mailto:PatrickTurley@gamestop.com" target=
+=3D"_blank">PatrickTurley@gamestop.com</a>&gt;</span> wrote:<br><blockquote=
+ class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc soli=
+d;padding-left:1ex">
+<br>
+On Jan 23, 2013, at 7:48 AM, Bruce Ashfield &lt;<a href=3D"mailto:bruce.ash=
+field@windriver.com">bruce.ashfield@windriver.com</a>&gt;<br>
+<div class=3D"im">=A0wrote:<br>
+&gt; On 13-01-23 12:34 AM, Patrick Turley wrote:<br>
+&gt;&gt;<br>
+&gt;&gt; On Jan 22, 2013, at 11:17 PM, Bruce Ashfield &lt;<a href=3D"mailto=
+:bruce.ashfield@windriver.com">bruce.ashfield@windriver.com</a>&gt; wrote:<=
+br>
+&gt;&gt;<br>
+&gt;&gt;&gt; On 13-01-23 12:14 AM, Patrick Turley wrote:<br>
+&gt;&gt;&gt;&gt; On Jan 22, 2013, at 10:43 PM, Bruce Ashfield&lt;<a href=3D=
+"mailto:bruce.ashfield@windriver.com">bruce.ashfield@windriver.com</a>&gt; =
+=A0wrote:<br>
+&gt;&gt;&gt;&gt;&gt; On 13-01-22 9:26 PM, Patrick Turley wrote:<br>
+&gt;<br>
+</div><div class=3D"im">&gt; Argh. I&#39;ll have to just run the commands m=
+yself and stop spamming the<br>
+&gt; list with ideas :) It&#39;s just a matter of making lkc accept the def=
+aults<br>
+&gt; (i.e. you could also use allyesconfig, or allnoconfig) or even better<=
+br>
+&gt; not trigger that config check at all.<br>
+<br>
+</div>You&#39;re very kind to have spent so much time on my problem already=
+. I look forward to hearing back.<br></blockquote><div><br>It sounds like y=
+ou are building for a board with an ARCH other than i386 (the default).<br>
+<br>You need to either run it in a devshell or use &quot;make ARCH=3D&lt;ar=
+ch&gt; oldconfig&quot;.<br><br>-mehaf<br>=A0<br></div><blockquote class=3D"=
+gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-=
+left:1ex">
 
-<div><br></div><div>For more information check the included README in the l=
-ayer.</div><div><br></div><div>In the end i want to thank the group who add=
-ed value to this layer:</div><div><br></div><div><div>Aurelian Zanoschi<br>
+<div class=3D"HOEnZb"><div class=3D"h5"><br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
+>https://lists.yoctoproject.org/listinfo/yocto</a><br>
+</div></div></blockquote></div><br>
 
-</div><div>David-John Willis</div><div>Gary Thomas</div><div>Jack Mitchell<=
-/div><div>Julian Scheel</div><div>Koen Kooi</div><div>Paul Eggleton</div><d=
-iv>Sander van Grieken</div><div>Tomas Frydrych</div><div>Tyler Hall</div>
-
-<div><br></div><div style>Special thanks to=A0David-John Willis. He&#39;s a=
-ctually the owner. :)</div><div><br></div><div>Keep up the good work guys!<=
-br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"><div style=3D"text-=
-align:center">
-
-</div><div style=3D"text-align:center"><div align=3D"left" style=3D"font-fa=
-mily:&#39;Times New Roman&#39;;font-size:medium"><b style=3D"color:rgb(51,5=
-1,51);font-family:Arial;font-size:small;text-align:center">Andrei Gherzan</=
-b><font face=3D"Arial" color=3D"#333333" size=3D"-1"><br>
-
-</font><font face=3D"Arial" color=3D"#333333" size=3D"-1">m: +40.744.478.41=
-4 | =A0f: +40.31.816.28.12</font><br></div></div></div>
-</div></div></div>
-
---f46d04339ce423be0404d40e0e2d--
+--f46d043c8194a974b204d40e3dd1--
